@@ -2,10 +2,10 @@
     "name": "@thi.ng/date",
     "version": "1.0.6",
     "description": "Datetime types, relative dates, math, iterators, composable formatters, locales",
+    "type": "module",
     "module": "./index.js",
-    "main": "./lib/index.js",
-    "umd:main": "./lib/index.umd.js",
     "typings": "./index.d.ts",
+    "sideEffects": false,
     "repository": {
         "type": "git",
         "url": "https://github.com/thi-ng/umbrella.git"
@@ -24,13 +24,9 @@
     "author": "Karsten Schmidt <k+npm@thi.ng>",
     "license": "Apache-2.0",
     "scripts": {
-        "build": "yarn clean && yarn build:es6 && node ../../scripts/bundle-module",
-        "build:release": "yarn clean && yarn build:es6 && node ../../scripts/bundle-module all",
-        "build:es6": "tsc --declaration",
-        "build:test": "rimraf build && tsc -p test/tsconfig.json",
+        "build": "yarn clean && tsc --declaration",
         "build:check": "tsc --isolatedModules --noEmit",
-        "test": "mocha test",
-        "cover": "nyc mocha test && nyc report --reporter=lcov",
+        "test": "testament test",
         "clean": "rimraf *.js *.d.ts *.map .nyc_output build coverage doc lib",
         "doc:readme": "ts-node -P ../../tools/tsconfig.json ../../tools/src/readme.ts",
         "doc:ae": "mkdir -p .ae/doc .ae/temp && node_modules/.bin/api-extractor run --local --verbose",
@@ -42,12 +38,9 @@
         "@thi.ng/checks": "^2.9.11",
         "@thi.ng/strings": "^2.1.7"
     },
-    "files": [
-        "*.js",
-        "*.d.ts",
-        "lib",
-        "i18n"
-    ],
+    "devDependencies": {
+        "@thi.ng/testament": "^0.0.1"
+    },
     "keywords": [
         "datastructure",
         "date",
@@ -69,7 +62,58 @@
     "publishConfig": {
         "access": "public"
     },
-    "sideEffects": false,
+    "files": [
+        "*.js",
+        "*.d.ts",
+        "i18n"
+    ],
+    "exports": {
+        ".": {
+            "import": "./index.js"
+        },
+        "./api": {
+            "import": "./api.js"
+        },
+        "./datetime": {
+            "import": "./datetime.js"
+        },
+        "./format": {
+            "import": "./format.js"
+        },
+        "./i18n/de": {
+            "import": "./i18n/de.js"
+        },
+        "./i18n/en": {
+            "import": "./i18n/en.js"
+        },
+        "./i18n/es": {
+            "import": "./i18n/es.js"
+        },
+        "./i18n/fr": {
+            "import": "./i18n/fr.js"
+        },
+        "./i18n/it": {
+            "import": "./i18n/it.js"
+        },
+        "./i18n": {
+            "import": "./i18n.js"
+        },
+        "./iterators": {
+            "import": "./iterators.js"
+        },
+        "./relative": {
+            "import": "./relative.js"
+        },
+        "./round": {
+            "import": "./round.js"
+        },
+        "./timecode": {
+            "import": "./timecode.js"
+        },
+        "./utils": {
+            "import": "./utils.js"
+        }
+    },
     "thi.ng": {
         "year": 2020
     }

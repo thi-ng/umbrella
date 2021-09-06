@@ -2,10 +2,10 @@
     "name": "@thi.ng/strings",
     "version": "2.1.7",
     "description": "Various string formatting & utility functions",
+    "type": "module",
     "module": "./index.js",
-    "main": "./lib/index.js",
-    "umd:main": "./lib/index.umd.js",
     "typings": "./index.d.ts",
+    "sideEffects": false,
     "repository": {
         "type": "git",
         "url": "https://github.com/thi-ng/umbrella.git"
@@ -24,13 +24,9 @@
     "author": "Karsten Schmidt <k+npm@thi.ng>",
     "license": "Apache-2.0",
     "scripts": {
-        "build": "yarn clean && yarn build:es6 && node ../../scripts/bundle-module",
-        "build:release": "yarn clean && yarn build:es6 && node ../../scripts/bundle-module all",
-        "build:es6": "tsc --declaration",
-        "build:test": "rimraf build && tsc -p test/tsconfig.json",
+        "build": "yarn clean && tsc --declaration",
         "build:check": "tsc --isolatedModules --noEmit",
-        "test": "mocha test",
-        "cover": "nyc mocha test && nyc report --reporter=lcov",
+        "test": "testament test",
         "clean": "rimraf *.js *.d.ts *.map .nyc_output build coverage doc lib",
         "doc:readme": "ts-node -P ../../tools/tsconfig.json ../../tools/src/readme.ts",
         "doc": "typedoc --excludePrivate --out doc --theme ../../tools/doc/typedoc-theme src/index.ts",
@@ -43,11 +39,9 @@
         "@thi.ng/hex": "^1.0.4",
         "@thi.ng/memoize": "^2.1.21"
     },
-    "files": [
-        "*.js",
-        "*.d.ts",
-        "lib"
-    ],
+    "devDependencies": {
+        "@thi.ng/testament": "^0.0.1"
+    },
     "keywords": [
         "ansi",
         "composition",
@@ -75,7 +69,117 @@
     "publishConfig": {
         "access": "public"
     },
-    "sideEffects": false,
+    "files": [
+        "*.js",
+        "*.d.ts"
+    ],
+    "exports": {
+        ".": {
+            "import": "./index.js"
+        },
+        "./ansi": {
+            "import": "./ansi.js"
+        },
+        "./api": {
+            "import": "./api.js"
+        },
+        "./case": {
+            "import": "./case.js"
+        },
+        "./center": {
+            "import": "./center.js"
+        },
+        "./cursor": {
+            "import": "./cursor.js"
+        },
+        "./escape": {
+            "import": "./escape.js"
+        },
+        "./float": {
+            "import": "./float.js"
+        },
+        "./format": {
+            "import": "./format.js"
+        },
+        "./groups": {
+            "import": "./groups.js"
+        },
+        "./hollerith": {
+            "import": "./hollerith.js"
+        },
+        "./int": {
+            "import": "./int.js"
+        },
+        "./interpolate": {
+            "import": "./interpolate.js"
+        },
+        "./join": {
+            "import": "./join.js"
+        },
+        "./pad-left": {
+            "import": "./pad-left.js"
+        },
+        "./pad-right": {
+            "import": "./pad-right.js"
+        },
+        "./parse": {
+            "import": "./parse.js"
+        },
+        "./percent": {
+            "import": "./percent.js"
+        },
+        "./radix": {
+            "import": "./radix.js"
+        },
+        "./range": {
+            "import": "./range.js"
+        },
+        "./repeat": {
+            "import": "./repeat.js"
+        },
+        "./ruler": {
+            "import": "./ruler.js"
+        },
+        "./slugify": {
+            "import": "./slugify.js"
+        },
+        "./splice": {
+            "import": "./splice.js"
+        },
+        "./split": {
+            "import": "./split.js"
+        },
+        "./stringify": {
+            "import": "./stringify.js"
+        },
+        "./tabs": {
+            "import": "./tabs.js"
+        },
+        "./trim": {
+            "import": "./trim.js"
+        },
+        "./truncate-left": {
+            "import": "./truncate-left.js"
+        },
+        "./truncate": {
+            "import": "./truncate.js"
+        },
+        "./units": {
+            "import": "./units.js"
+        },
+        "./uuid": {
+            "import": "./uuid.js"
+        },
+        "./vector": {
+            "import": "./vector.js"
+        },
+        "./word-wrap": {
+            "import": "./word-wrap.js"
+        },
+        "./wrap": {
+            "import": "./wrap.js"
+        }
+    },
     "thi.ng": {
         "year": 2015
     }

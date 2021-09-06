@@ -2,10 +2,10 @@
     "name": "@thi.ng/text-canvas",
     "version": "1.1.4",
     "description": "Text based canvas, drawing, tables with arbitrary formatting (incl. ANSI/HTML)",
+    "type": "module",
     "module": "./index.js",
-    "main": "./lib/index.js",
-    "umd:main": "./lib/index.umd.js",
     "typings": "./index.d.ts",
+    "sideEffects": false,
     "repository": {
         "type": "git",
         "url": "https://github.com/thi-ng/umbrella.git"
@@ -24,13 +24,9 @@
     "author": "Karsten Schmidt <k+npm@thi.ng>",
     "license": "Apache-2.0",
     "scripts": {
-        "build": "yarn clean && yarn build:es6 && node ../../scripts/bundle-module",
-        "build:release": "yarn clean && yarn build:es6 && node ../../scripts/bundle-module all",
-        "build:es6": "tsc --declaration",
-        "build:test": "rimraf build && tsc -p test/tsconfig.json",
+        "build": "yarn clean && tsc --declaration",
         "build:check": "tsc --isolatedModules --noEmit",
-        "test": "mocha test",
-        "cover": "nyc mocha test && nyc report --reporter=lcov",
+        "test": "testament test",
         "clean": "rimraf *.js *.d.ts *.map .nyc_output build coverage doc lib",
         "doc:readme": "ts-node -P ../../tools/tsconfig.json ../../tools/src/readme.ts",
         "doc:ae": "mkdir -p .ae/doc .ae/temp && node_modules/.bin/api-extractor run --local --verbose",
@@ -47,11 +43,9 @@
         "@thi.ng/strings": "^2.1.7",
         "@thi.ng/transducers": "^7.9.2"
     },
-    "files": [
-        "*.js",
-        "*.d.ts",
-        "lib"
-    ],
+    "devDependencies": {
+        "@thi.ng/testament": "^0.0.1"
+    },
     "keywords": [
         "4bit",
         "8bit",
@@ -84,7 +78,57 @@
     "publishConfig": {
         "access": "public"
     },
-    "sideEffects": false,
+    "files": [
+        "*.js",
+        "*.d.ts"
+    ],
+    "exports": {
+        ".": {
+            "import": "./index.js"
+        },
+        "./api": {
+            "import": "./api.js"
+        },
+        "./bars": {
+            "import": "./bars.js"
+        },
+        "./canvas": {
+            "import": "./canvas.js"
+        },
+        "./circle": {
+            "import": "./circle.js"
+        },
+        "./format": {
+            "import": "./format.js"
+        },
+        "./hvline": {
+            "import": "./hvline.js"
+        },
+        "./image": {
+            "import": "./image.js"
+        },
+        "./line": {
+            "import": "./line.js"
+        },
+        "./rect": {
+            "import": "./rect.js"
+        },
+        "./string": {
+            "import": "./string.js"
+        },
+        "./style": {
+            "import": "./style.js"
+        },
+        "./table": {
+            "import": "./table.js"
+        },
+        "./text": {
+            "import": "./text.js"
+        },
+        "./utils": {
+            "import": "./utils.js"
+        }
+    },
     "thi.ng": {
         "year": 2020
     }

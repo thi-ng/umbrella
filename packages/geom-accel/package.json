@@ -2,10 +2,10 @@
     "name": "@thi.ng/geom-accel",
     "version": "2.1.60",
     "description": "n-D spatial indexing data structures with a shared ES6 Map/Set-like API",
+    "type": "module",
     "module": "./index.js",
-    "main": "./lib/index.js",
-    "umd:main": "./lib/index.umd.js",
     "typings": "./index.d.ts",
+    "sideEffects": false,
     "repository": {
         "type": "git",
         "url": "https://github.com/thi-ng/umbrella.git"
@@ -24,14 +24,10 @@
     "author": "Karsten Schmidt <k+npm@thi.ng>",
     "license": "Apache-2.0",
     "scripts": {
-        "build": "yarn clean && yarn build:es6 && node ../../scripts/bundle-module",
-        "build:release": "yarn clean && yarn build:es6 && node ../../scripts/bundle-module all",
-        "build:es6": "tsc --declaration",
-        "build:test": "rimraf build && tsc -p test/tsconfig.json",
+        "build": "yarn clean && tsc --declaration",
         "bench": "ts-node -P bench/tsconfig.json bench/index.ts",
         "build:check": "tsc --isolatedModules --noEmit",
-        "test": "mocha test",
-        "cover": "nyc mocha test && nyc report --reporter=lcov",
+        "test": "testament test",
         "clean": "rimraf *.js *.d.ts *.map .nyc_output build coverage doc lib internal",
         "doc:readme": "ts-node -P ../../tools/tsconfig.json ../../tools/src/readme.ts",
         "doc": "typedoc --excludePrivate --out doc --theme ../../tools/doc/typedoc-theme src/index.ts",
@@ -50,11 +46,9 @@
         "@thi.ng/transducers": "^7.9.2",
         "@thi.ng/vectors": "^6.2.0"
     },
-    "files": [
-        "*.js",
-        "*.d.ts",
-        "lib"
-    ],
+    "devDependencies": {
+        "@thi.ng/testament": "^0.0.1"
+    },
     "keywords": [
         "2d",
         "3d",
@@ -77,7 +71,39 @@
     "publishConfig": {
         "access": "public"
     },
-    "sideEffects": false,
+    "files": [
+        "*.js",
+        "*.d.ts"
+    ],
+    "exports": {
+        ".": {
+            "import": "./index.js"
+        },
+        "./aspatial-grid": {
+            "import": "./aspatial-grid.js"
+        },
+        "./kd-tree-map": {
+            "import": "./kd-tree-map.js"
+        },
+        "./kd-tree-set": {
+            "import": "./kd-tree-set.js"
+        },
+        "./nd-quadtree-map": {
+            "import": "./nd-quadtree-map.js"
+        },
+        "./nd-quadtree-set": {
+            "import": "./nd-quadtree-set.js"
+        },
+        "./spatial-grid2": {
+            "import": "./spatial-grid2.js"
+        },
+        "./spatial-grid3": {
+            "import": "./spatial-grid3.js"
+        },
+        "./utils": {
+            "import": "./utils.js"
+        }
+    },
     "thi.ng": {
         "year": 2013
     }

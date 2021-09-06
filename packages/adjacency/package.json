@@ -2,10 +2,10 @@
     "name": "@thi.ng/adjacency",
     "version": "1.0.5",
     "description": "Sparse & bitwise adjacency matrices and related functions for directed & undirected graphs",
+    "type": "module",
     "module": "./index.js",
-    "main": "./lib/index.js",
-    "umd:main": "./lib/index.umd.js",
     "typings": "./index.d.ts",
+    "sideEffects": false,
     "repository": {
         "type": "git",
         "url": "https://github.com/thi-ng/umbrella.git"
@@ -24,21 +24,14 @@
     "author": "Karsten Schmidt <k+npm@thi.ng>",
     "license": "Apache-2.0",
     "scripts": {
-        "build": "yarn clean && yarn build:es6 && node ../../scripts/bundle-module",
-        "build:release": "yarn clean && yarn build:es6 && node ../../scripts/bundle-module all",
-        "build:es6": "tsc --declaration",
-        "build:test": "rimraf build && tsc -p test/tsconfig.json",
+        "build": "yarn clean && tsc --declaration",
         "build:check": "tsc --isolatedModules --noEmit",
-        "test": "mocha test",
-        "cover": "nyc mocha test && nyc report --reporter=lcov",
+        "test": "testament test",
         "clean": "rimraf *.js *.d.ts *.map .nyc_output build coverage doc lib",
         "doc:readme": "ts-node -P ../../tools/tsconfig.json ../../tools/src/readme.ts",
         "doc": "typedoc --excludePrivate --out doc --theme ../../tools/doc/typedoc-theme src/index.ts",
         "doc:ae": "mkdir -p .ae/doc .ae/temp && node_modules/.bin/api-extractor run --local --verbose",
         "pub": "yarn build:release && yarn publish --access public"
-    },
-    "devDependencies": {
-        "@thi.ng/vectors": "^6.2.0"
     },
     "dependencies": {
         "@thi.ng/api": "^7.2.0",
@@ -48,11 +41,10 @@
         "@thi.ng/errors": "^1.3.4",
         "@thi.ng/sparse": "^0.1.89"
     },
-    "files": [
-        "*.js",
-        "*.d.ts",
-        "lib"
-    ],
+    "devDependencies": {
+        "@thi.ng/testament": "^0.0.1",
+        "@thi.ng/vectors": "^6.2.0"
+    },
     "keywords": [
         "adjacency",
         "binary",
@@ -80,7 +72,42 @@
     "publishConfig": {
         "access": "public"
     },
-    "sideEffects": false,
+    "files": [
+        "*.js",
+        "*.d.ts"
+    ],
+    "exports": {
+        ".": {
+            "import": "./index.js"
+        },
+        "./api": {
+            "import": "./api.js"
+        },
+        "./bfs": {
+            "import": "./bfs.js"
+        },
+        "./binary": {
+            "import": "./binary.js"
+        },
+        "./dfs": {
+            "import": "./dfs.js"
+        },
+        "./disjoint-set": {
+            "import": "./disjoint-set.js"
+        },
+        "./list": {
+            "import": "./list.js"
+        },
+        "./mst": {
+            "import": "./mst.js"
+        },
+        "./sparse": {
+            "import": "./sparse.js"
+        },
+        "./utils": {
+            "import": "./utils.js"
+        }
+    },
     "thi.ng": {
         "related": [
             "dgraph"

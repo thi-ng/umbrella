@@ -2,10 +2,10 @@
     "name": "@thi.ng/geom",
     "version": "2.1.29",
     "description": "Functional, polymorphic API for 2D geometry types & SVG generation",
+    "type": "module",
     "module": "./index.js",
-    "main": "./lib/index.js",
-    "umd:main": "./lib/index.umd.js",
     "typings": "./index.d.ts",
+    "sideEffects": false,
     "repository": {
         "type": "git",
         "url": "https://github.com/thi-ng/umbrella.git"
@@ -24,13 +24,9 @@
     "author": "Karsten Schmidt <k+npm@thi.ng>",
     "license": "Apache-2.0",
     "scripts": {
-        "build": "yarn clean && yarn build:es6 && node ../../scripts/bundle-module",
-        "build:release": "yarn clean && yarn build:es6 && node ../../scripts/bundle-module all",
-        "build:es6": "tsc --declaration",
-        "build:test": "rimraf build && tsc -p test/tsconfig.json",
+        "build": "yarn clean && tsc --declaration",
         "build:check": "tsc --isolatedModules --noEmit",
-        "test": "mocha test",
-        "cover": "nyc mocha test && nyc report --reporter=lcov",
+        "test": "testament test",
         "clean": "rimraf *.js *.d.ts *.map .nyc_output build coverage doc lib api ctors internal ops",
         "doc:readme": "ts-node -P ../../tools/tsconfig.json ../../tools/src/readme.ts",
         "doc": "typedoc --excludePrivate --out doc --theme ../../tools/doc/typedoc-theme src/index.ts",
@@ -65,15 +61,9 @@
         "@thi.ng/transducers": "^7.9.2",
         "@thi.ng/vectors": "^6.2.0"
     },
-    "files": [
-        "*.js",
-        "*.d.ts",
-        "lib",
-        "api",
-        "ctors",
-        "internal",
-        "ops"
-    ],
+    "devDependencies": {
+        "@thi.ng/testament": "^0.0.1"
+    },
     "keywords": [
         "2d",
         "analysis",
@@ -99,7 +89,262 @@
     "publishConfig": {
         "access": "public"
     },
-    "sideEffects": false,
+    "files": [
+        "*.js",
+        "*.d.ts",
+        "api",
+        "ctors",
+        "internal",
+        "ops"
+    ],
+    "exports": {
+        ".": {
+            "import": "./index.js"
+        },
+        "./api/aabb": {
+            "import": "./api/aabb.js"
+        },
+        "./api/apc": {
+            "import": "./api/apc.js"
+        },
+        "./api/arc": {
+            "import": "./api/arc.js"
+        },
+        "./api/circle": {
+            "import": "./api/circle.js"
+        },
+        "./api/cubic": {
+            "import": "./api/cubic.js"
+        },
+        "./api/ellipse": {
+            "import": "./api/ellipse.js"
+        },
+        "./api/group": {
+            "import": "./api/group.js"
+        },
+        "./api/line": {
+            "import": "./api/line.js"
+        },
+        "./api/path": {
+            "import": "./api/path.js"
+        },
+        "./api/plane": {
+            "import": "./api/plane.js"
+        },
+        "./api/points": {
+            "import": "./api/points.js"
+        },
+        "./api/polygon": {
+            "import": "./api/polygon.js"
+        },
+        "./api/polyline": {
+            "import": "./api/polyline.js"
+        },
+        "./api/quad": {
+            "import": "./api/quad.js"
+        },
+        "./api/quad3": {
+            "import": "./api/quad3.js"
+        },
+        "./api/quadratic": {
+            "import": "./api/quadratic.js"
+        },
+        "./api/ray": {
+            "import": "./api/ray.js"
+        },
+        "./api/rect": {
+            "import": "./api/rect.js"
+        },
+        "./api/sphere": {
+            "import": "./api/sphere.js"
+        },
+        "./api/text": {
+            "import": "./api/text.js"
+        },
+        "./api/triangle": {
+            "import": "./api/triangle.js"
+        },
+        "./ctors/aabb": {
+            "import": "./ctors/aabb.js"
+        },
+        "./ctors/arc": {
+            "import": "./ctors/arc.js"
+        },
+        "./ctors/circle": {
+            "import": "./ctors/circle.js"
+        },
+        "./ctors/cubic": {
+            "import": "./ctors/cubic.js"
+        },
+        "./ctors/ellipse": {
+            "import": "./ctors/ellipse.js"
+        },
+        "./ctors/group": {
+            "import": "./ctors/group.js"
+        },
+        "./ctors/line": {
+            "import": "./ctors/line.js"
+        },
+        "./ctors/path-builder": {
+            "import": "./ctors/path-builder.js"
+        },
+        "./ctors/path-from-svg": {
+            "import": "./ctors/path-from-svg.js"
+        },
+        "./ctors/path": {
+            "import": "./ctors/path.js"
+        },
+        "./ctors/plane": {
+            "import": "./ctors/plane.js"
+        },
+        "./ctors/points": {
+            "import": "./ctors/points.js"
+        },
+        "./ctors/polygon": {
+            "import": "./ctors/polygon.js"
+        },
+        "./ctors/polyline": {
+            "import": "./ctors/polyline.js"
+        },
+        "./ctors/quad": {
+            "import": "./ctors/quad.js"
+        },
+        "./ctors/quadratic": {
+            "import": "./ctors/quadratic.js"
+        },
+        "./ctors/ray": {
+            "import": "./ctors/ray.js"
+        },
+        "./ctors/rect": {
+            "import": "./ctors/rect.js"
+        },
+        "./ctors/sphere": {
+            "import": "./ctors/sphere.js"
+        },
+        "./ctors/text": {
+            "import": "./ctors/text.js"
+        },
+        "./ctors/triangle": {
+            "import": "./ctors/triangle.js"
+        },
+        "./ops/arc-length": {
+            "import": "./ops/arc-length.js"
+        },
+        "./ops/area": {
+            "import": "./ops/area.js"
+        },
+        "./ops/as-cubic": {
+            "import": "./ops/as-cubic.js"
+        },
+        "./ops/as-path": {
+            "import": "./ops/as-path.js"
+        },
+        "./ops/as-polygon": {
+            "import": "./ops/as-polygon.js"
+        },
+        "./ops/as-polyline": {
+            "import": "./ops/as-polyline.js"
+        },
+        "./ops/as-svg": {
+            "import": "./ops/as-svg.js"
+        },
+        "./ops/bounds": {
+            "import": "./ops/bounds.js"
+        },
+        "./ops/center": {
+            "import": "./ops/center.js"
+        },
+        "./ops/centroid": {
+            "import": "./ops/centroid.js"
+        },
+        "./ops/classify-point": {
+            "import": "./ops/classify-point.js"
+        },
+        "./ops/clip-convex": {
+            "import": "./ops/clip-convex.js"
+        },
+        "./ops/closest-point": {
+            "import": "./ops/closest-point.js"
+        },
+        "./ops/convex-hull": {
+            "import": "./ops/convex-hull.js"
+        },
+        "./ops/edges": {
+            "import": "./ops/edges.js"
+        },
+        "./ops/fit-into-bounds": {
+            "import": "./ops/fit-into-bounds.js"
+        },
+        "./ops/flip": {
+            "import": "./ops/flip.js"
+        },
+        "./ops/intersects": {
+            "import": "./ops/intersects.js"
+        },
+        "./ops/map-point": {
+            "import": "./ops/map-point.js"
+        },
+        "./ops/offset": {
+            "import": "./ops/offset.js"
+        },
+        "./ops/point-at": {
+            "import": "./ops/point-at.js"
+        },
+        "./ops/point-inside": {
+            "import": "./ops/point-inside.js"
+        },
+        "./ops/resample": {
+            "import": "./ops/resample.js"
+        },
+        "./ops/scatter": {
+            "import": "./ops/scatter.js"
+        },
+        "./ops/simplify": {
+            "import": "./ops/simplify.js"
+        },
+        "./ops/split-at": {
+            "import": "./ops/split-at.js"
+        },
+        "./ops/split-near": {
+            "import": "./ops/split-near.js"
+        },
+        "./ops/subdiv-curve": {
+            "import": "./ops/subdiv-curve.js"
+        },
+        "./ops/tangent-at": {
+            "import": "./ops/tangent-at.js"
+        },
+        "./ops/tessellate": {
+            "import": "./ops/tessellate.js"
+        },
+        "./ops/transform-vertices": {
+            "import": "./ops/transform-vertices.js"
+        },
+        "./ops/transform": {
+            "import": "./ops/transform.js"
+        },
+        "./ops/translate": {
+            "import": "./ops/translate.js"
+        },
+        "./ops/union": {
+            "import": "./ops/union.js"
+        },
+        "./ops/unmap-point": {
+            "import": "./ops/unmap-point.js"
+        },
+        "./ops/vertices": {
+            "import": "./ops/vertices.js"
+        },
+        "./ops/volume": {
+            "import": "./ops/volume.js"
+        },
+        "./ops/warp-points": {
+            "import": "./ops/warp-points.js"
+        },
+        "./ops/with-attribs": {
+            "import": "./ops/with-attribs.js"
+        }
+    },
     "thi.ng": {
         "year": 2013
     }

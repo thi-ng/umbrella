@@ -2,10 +2,10 @@
     "name": "@thi.ng/shader-ast-js",
     "version": "0.5.49",
     "description": "Customizable JS codegen, compiler & runtime for @thi.ng/shader-ast",
+    "type": "module",
     "module": "./index.js",
-    "main": "./lib/index.js",
-    "umd:main": "./lib/index.umd.js",
     "typings": "./index.d.ts",
+    "sideEffects": false,
     "repository": {
         "type": "git",
         "url": "https://github.com/thi-ng/umbrella.git"
@@ -24,13 +24,9 @@
     "author": "Karsten Schmidt <k+npm@thi.ng>",
     "license": "Apache-2.0",
     "scripts": {
-        "build": "yarn clean && yarn build:es6 && node ../../scripts/bundle-module",
-        "build:release": "yarn clean && yarn build:es6 && node ../../scripts/bundle-module all",
-        "build:es6": "tsc --declaration",
-        "build:test": "rimraf build && tsc -p test/tsconfig.json",
+        "build": "yarn clean && tsc --declaration",
         "build:check": "tsc --isolatedModules --noEmit",
-        "test": "mocha test",
-        "cover": "nyc mocha test && nyc report --reporter=lcov",
+        "test": "testament test",
         "clean": "rimraf *.js *.d.ts *.map .nyc_output build coverage doc lib env",
         "doc:readme": "ts-node -P ../../tools/tsconfig.json ../../tools/src/readme.ts",
         "doc": "typedoc --excludePrivate --out doc --theme ../../tools/doc/typedoc-theme src/index.ts",
@@ -47,12 +43,9 @@
         "@thi.ng/shader-ast": "^0.10.4",
         "@thi.ng/vectors": "^6.2.0"
     },
-    "files": [
-        "*.js",
-        "*.d.ts",
-        "lib",
-        "env"
-    ],
+    "devDependencies": {
+        "@thi.ng/testament": "^0.0.1"
+    },
     "keywords": [
         "ast",
         "canvas",
@@ -68,7 +61,76 @@
     "publishConfig": {
         "access": "public"
     },
-    "sideEffects": false,
+    "files": [
+        "*.js",
+        "*.d.ts",
+        "env"
+    ],
+    "exports": {
+        ".": {
+            "import": "./index.js"
+        },
+        "./api": {
+            "import": "./api.js"
+        },
+        "./env/bvec": {
+            "import": "./env/bvec.js"
+        },
+        "./env/float": {
+            "import": "./env/float.js"
+        },
+        "./env/int": {
+            "import": "./env/int.js"
+        },
+        "./env/ivec2": {
+            "import": "./env/ivec2.js"
+        },
+        "./env/ivec3": {
+            "import": "./env/ivec3.js"
+        },
+        "./env/ivec4": {
+            "import": "./env/ivec4.js"
+        },
+        "./env/mat2": {
+            "import": "./env/mat2.js"
+        },
+        "./env/mat3": {
+            "import": "./env/mat3.js"
+        },
+        "./env/mat4": {
+            "import": "./env/mat4.js"
+        },
+        "./env/uint": {
+            "import": "./env/uint.js"
+        },
+        "./env/uvec2": {
+            "import": "./env/uvec2.js"
+        },
+        "./env/uvec3": {
+            "import": "./env/uvec3.js"
+        },
+        "./env/uvec4": {
+            "import": "./env/uvec4.js"
+        },
+        "./env/vec2": {
+            "import": "./env/vec2.js"
+        },
+        "./env/vec3": {
+            "import": "./env/vec3.js"
+        },
+        "./env/vec4": {
+            "import": "./env/vec4.js"
+        },
+        "./env": {
+            "import": "./env.js"
+        },
+        "./runtime": {
+            "import": "./runtime.js"
+        },
+        "./target": {
+            "import": "./target.js"
+        }
+    },
     "thi.ng": {
         "parent": "@thi.ng/shader-ast",
         "related": [

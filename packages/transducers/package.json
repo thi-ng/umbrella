@@ -2,10 +2,10 @@
     "name": "@thi.ng/transducers",
     "version": "7.9.2",
     "description": "Lightweight transducer implementations for ES6 / TypeScript",
+    "type": "module",
     "module": "./index.js",
-    "main": "./lib/index.js",
-    "umd:main": "./lib/index.umd.js",
     "typings": "./index.d.ts",
+    "sideEffects": false,
     "repository": {
         "type": "git",
         "url": "https://github.com/thi-ng/umbrella.git"
@@ -24,13 +24,9 @@
     "author": "Karsten Schmidt <k+npm@thi.ng>",
     "license": "Apache-2.0",
     "scripts": {
-        "build": "yarn clean && yarn build:es6 && node ../../scripts/bundle-module",
-        "build:release": "yarn clean && yarn build:es6 && node ../../scripts/bundle-module all",
-        "build:es6": "tsc --declaration",
-        "build:test": "rimraf build && tsc -p test/tsconfig.json",
+        "build": "yarn clean && tsc --declaration",
         "build:check": "tsc --isolatedModules --noEmit",
-        "test": "mocha test",
-        "cover": "nyc mocha test && nyc report --reporter=lcov",
+        "test": "testament test",
         "clean": "rimraf *.js *.d.ts *.map .nyc_output build coverage doc lib func internal iter rfn xform",
         "doc:readme": "ts-node -P ../../tools/tsconfig.json ../../tools/src/readme.ts",
         "doc": "typedoc --excludePrivate --out doc --theme ../../tools/doc/typedoc-theme src/index.ts",
@@ -47,16 +43,9 @@
         "@thi.ng/math": "^4.0.6",
         "@thi.ng/random": "^2.4.8"
     },
-    "files": [
-        "*.js",
-        "*.d.ts",
-        "lib",
-        "func",
-        "internal",
-        "iter",
-        "rfn",
-        "xform"
-    ],
+    "devDependencies": {
+        "@thi.ng/testament": "^0.0.1"
+    },
     "keywords": [
         "2d",
         "3d",
@@ -96,7 +85,452 @@
     "publishConfig": {
         "access": "public"
     },
-    "sideEffects": false,
+    "files": [
+        "*.js",
+        "*.d.ts",
+        "func",
+        "internal",
+        "iter",
+        "rfn",
+        "xform"
+    ],
+    "exports": {
+        ".": {
+            "import": "./index.js"
+        },
+        "./api": {
+            "import": "./api.js"
+        },
+        "./func/comp": {
+            "import": "./func/comp.js"
+        },
+        "./func/compr": {
+            "import": "./func/compr.js"
+        },
+        "./func/deep-transform": {
+            "import": "./func/deep-transform.js"
+        },
+        "./func/juxtr": {
+            "import": "./func/juxtr.js"
+        },
+        "./func/key-selector": {
+            "import": "./func/key-selector.js"
+        },
+        "./func/lookup": {
+            "import": "./func/lookup.js"
+        },
+        "./func/renamer": {
+            "import": "./func/renamer.js"
+        },
+        "./iter/as-iterable": {
+            "import": "./iter/as-iterable.js"
+        },
+        "./iter/choices": {
+            "import": "./iter/choices.js"
+        },
+        "./iter/concat": {
+            "import": "./iter/concat.js"
+        },
+        "./iter/curve": {
+            "import": "./iter/curve.js"
+        },
+        "./iter/cycle": {
+            "import": "./iter/cycle.js"
+        },
+        "./iter/dup": {
+            "import": "./iter/dup.js"
+        },
+        "./iter/extend-sides": {
+            "import": "./iter/extend-sides.js"
+        },
+        "./iter/iterate": {
+            "import": "./iter/iterate.js"
+        },
+        "./iter/key-permutations": {
+            "import": "./iter/key-permutations.js"
+        },
+        "./iter/keys": {
+            "import": "./iter/keys.js"
+        },
+        "./iter/line": {
+            "import": "./iter/line.js"
+        },
+        "./iter/norm-range": {
+            "import": "./iter/norm-range.js"
+        },
+        "./iter/pad-sides": {
+            "import": "./iter/pad-sides.js"
+        },
+        "./iter/pairs": {
+            "import": "./iter/pairs.js"
+        },
+        "./iter/palindrome": {
+            "import": "./iter/palindrome.js"
+        },
+        "./iter/permutations": {
+            "import": "./iter/permutations.js"
+        },
+        "./iter/range-nd": {
+            "import": "./iter/range-nd.js"
+        },
+        "./iter/range": {
+            "import": "./iter/range.js"
+        },
+        "./iter/range2d": {
+            "import": "./iter/range2d.js"
+        },
+        "./iter/range3d": {
+            "import": "./iter/range3d.js"
+        },
+        "./iter/repeat": {
+            "import": "./iter/repeat.js"
+        },
+        "./iter/repeatedly": {
+            "import": "./iter/repeatedly.js"
+        },
+        "./iter/reverse": {
+            "import": "./iter/reverse.js"
+        },
+        "./iter/sorted-keys": {
+            "import": "./iter/sorted-keys.js"
+        },
+        "./iter/symmetric": {
+            "import": "./iter/symmetric.js"
+        },
+        "./iter/tween": {
+            "import": "./iter/tween.js"
+        },
+        "./iter/vals": {
+            "import": "./iter/vals.js"
+        },
+        "./iter/wrap-sides": {
+            "import": "./iter/wrap-sides.js"
+        },
+        "./iter/zip": {
+            "import": "./iter/zip.js"
+        },
+        "./iterator": {
+            "import": "./iterator.js"
+        },
+        "./reduce": {
+            "import": "./reduce.js"
+        },
+        "./reduced": {
+            "import": "./reduced.js"
+        },
+        "./rfn/add": {
+            "import": "./rfn/add.js"
+        },
+        "./rfn/assoc-map": {
+            "import": "./rfn/assoc-map.js"
+        },
+        "./rfn/assoc-obj": {
+            "import": "./rfn/assoc-obj.js"
+        },
+        "./rfn/auto-obj": {
+            "import": "./rfn/auto-obj.js"
+        },
+        "./rfn/conj": {
+            "import": "./rfn/conj.js"
+        },
+        "./rfn/count": {
+            "import": "./rfn/count.js"
+        },
+        "./rfn/div": {
+            "import": "./rfn/div.js"
+        },
+        "./rfn/every": {
+            "import": "./rfn/every.js"
+        },
+        "./rfn/fill": {
+            "import": "./rfn/fill.js"
+        },
+        "./rfn/frequencies": {
+            "import": "./rfn/frequencies.js"
+        },
+        "./rfn/group-binary": {
+            "import": "./rfn/group-binary.js"
+        },
+        "./rfn/group-by-map": {
+            "import": "./rfn/group-by-map.js"
+        },
+        "./rfn/group-by-obj": {
+            "import": "./rfn/group-by-obj.js"
+        },
+        "./rfn/last": {
+            "import": "./rfn/last.js"
+        },
+        "./rfn/max-compare": {
+            "import": "./rfn/max-compare.js"
+        },
+        "./rfn/max-mag": {
+            "import": "./rfn/max-mag.js"
+        },
+        "./rfn/max": {
+            "import": "./rfn/max.js"
+        },
+        "./rfn/mean": {
+            "import": "./rfn/mean.js"
+        },
+        "./rfn/min-compare": {
+            "import": "./rfn/min-compare.js"
+        },
+        "./rfn/min-mag": {
+            "import": "./rfn/min-mag.js"
+        },
+        "./rfn/min-max": {
+            "import": "./rfn/min-max.js"
+        },
+        "./rfn/min": {
+            "import": "./rfn/min.js"
+        },
+        "./rfn/mul": {
+            "import": "./rfn/mul.js"
+        },
+        "./rfn/norm-count": {
+            "import": "./rfn/norm-count.js"
+        },
+        "./rfn/norm-frequencies-auto": {
+            "import": "./rfn/norm-frequencies-auto.js"
+        },
+        "./rfn/norm-frequencies": {
+            "import": "./rfn/norm-frequencies.js"
+        },
+        "./rfn/push-copy": {
+            "import": "./rfn/push-copy.js"
+        },
+        "./rfn/push-sort": {
+            "import": "./rfn/push-sort.js"
+        },
+        "./rfn/push": {
+            "import": "./rfn/push.js"
+        },
+        "./rfn/reductions": {
+            "import": "./rfn/reductions.js"
+        },
+        "./rfn/some": {
+            "import": "./rfn/some.js"
+        },
+        "./rfn/str": {
+            "import": "./rfn/str.js"
+        },
+        "./rfn/sub": {
+            "import": "./rfn/sub.js"
+        },
+        "./run": {
+            "import": "./run.js"
+        },
+        "./step": {
+            "import": "./step.js"
+        },
+        "./transduce": {
+            "import": "./transduce.js"
+        },
+        "./xform/benchmark": {
+            "import": "./xform/benchmark.js"
+        },
+        "./xform/cat": {
+            "import": "./xform/cat.js"
+        },
+        "./xform/converge": {
+            "import": "./xform/converge.js"
+        },
+        "./xform/convolve": {
+            "import": "./xform/convolve.js"
+        },
+        "./xform/dedupe": {
+            "import": "./xform/dedupe.js"
+        },
+        "./xform/delayed": {
+            "import": "./xform/delayed.js"
+        },
+        "./xform/distinct": {
+            "import": "./xform/distinct.js"
+        },
+        "./xform/drop-nth": {
+            "import": "./xform/drop-nth.js"
+        },
+        "./xform/drop-while": {
+            "import": "./xform/drop-while.js"
+        },
+        "./xform/drop": {
+            "import": "./xform/drop.js"
+        },
+        "./xform/duplicate": {
+            "import": "./xform/duplicate.js"
+        },
+        "./xform/filter-fuzzy": {
+            "import": "./xform/filter-fuzzy.js"
+        },
+        "./xform/filter": {
+            "import": "./xform/filter.js"
+        },
+        "./xform/flatten-with": {
+            "import": "./xform/flatten-with.js"
+        },
+        "./xform/flatten": {
+            "import": "./xform/flatten.js"
+        },
+        "./xform/indexed": {
+            "import": "./xform/indexed.js"
+        },
+        "./xform/interleave": {
+            "import": "./xform/interleave.js"
+        },
+        "./xform/interpolate-hermite": {
+            "import": "./xform/interpolate-hermite.js"
+        },
+        "./xform/interpolate-linear": {
+            "import": "./xform/interpolate-linear.js"
+        },
+        "./xform/interpolate": {
+            "import": "./xform/interpolate.js"
+        },
+        "./xform/interpose": {
+            "import": "./xform/interpose.js"
+        },
+        "./xform/keep": {
+            "import": "./xform/keep.js"
+        },
+        "./xform/labeled": {
+            "import": "./xform/labeled.js"
+        },
+        "./xform/map-deep": {
+            "import": "./xform/map-deep.js"
+        },
+        "./xform/map-indexed": {
+            "import": "./xform/map-indexed.js"
+        },
+        "./xform/map-keys": {
+            "import": "./xform/map-keys.js"
+        },
+        "./xform/map-nth": {
+            "import": "./xform/map-nth.js"
+        },
+        "./xform/map-vals": {
+            "import": "./xform/map-vals.js"
+        },
+        "./xform/map": {
+            "import": "./xform/map.js"
+        },
+        "./xform/mapcat-indexed": {
+            "import": "./xform/mapcat-indexed.js"
+        },
+        "./xform/mapcat": {
+            "import": "./xform/mapcat.js"
+        },
+        "./xform/match-first": {
+            "import": "./xform/match-first.js"
+        },
+        "./xform/match-last": {
+            "import": "./xform/match-last.js"
+        },
+        "./xform/moving-average": {
+            "import": "./xform/moving-average.js"
+        },
+        "./xform/moving-median": {
+            "import": "./xform/moving-median.js"
+        },
+        "./xform/multiplex-obj": {
+            "import": "./xform/multiplex-obj.js"
+        },
+        "./xform/multiplex": {
+            "import": "./xform/multiplex.js"
+        },
+        "./xform/noop": {
+            "import": "./xform/noop.js"
+        },
+        "./xform/pad-last": {
+            "import": "./xform/pad-last.js"
+        },
+        "./xform/page": {
+            "import": "./xform/page.js"
+        },
+        "./xform/partition-by": {
+            "import": "./xform/partition-by.js"
+        },
+        "./xform/partition-of": {
+            "import": "./xform/partition-of.js"
+        },
+        "./xform/partition-sort": {
+            "import": "./xform/partition-sort.js"
+        },
+        "./xform/partition-sync": {
+            "import": "./xform/partition-sync.js"
+        },
+        "./xform/partition-time": {
+            "import": "./xform/partition-time.js"
+        },
+        "./xform/partition-when": {
+            "import": "./xform/partition-when.js"
+        },
+        "./xform/partition": {
+            "import": "./xform/partition.js"
+        },
+        "./xform/peek": {
+            "import": "./xform/peek.js"
+        },
+        "./xform/pluck": {
+            "import": "./xform/pluck.js"
+        },
+        "./xform/rename": {
+            "import": "./xform/rename.js"
+        },
+        "./xform/sample": {
+            "import": "./xform/sample.js"
+        },
+        "./xform/scan": {
+            "import": "./xform/scan.js"
+        },
+        "./xform/select-keys": {
+            "import": "./xform/select-keys.js"
+        },
+        "./xform/side-effect": {
+            "import": "./xform/side-effect.js"
+        },
+        "./xform/sliding-window": {
+            "import": "./xform/sliding-window.js"
+        },
+        "./xform/stream-shuffle": {
+            "import": "./xform/stream-shuffle.js"
+        },
+        "./xform/stream-sort": {
+            "import": "./xform/stream-sort.js"
+        },
+        "./xform/struct": {
+            "import": "./xform/struct.js"
+        },
+        "./xform/swizzle": {
+            "import": "./xform/swizzle.js"
+        },
+        "./xform/take-last": {
+            "import": "./xform/take-last.js"
+        },
+        "./xform/take-nth": {
+            "import": "./xform/take-nth.js"
+        },
+        "./xform/take-while": {
+            "import": "./xform/take-while.js"
+        },
+        "./xform/take": {
+            "import": "./xform/take.js"
+        },
+        "./xform/throttle-time": {
+            "import": "./xform/throttle-time.js"
+        },
+        "./xform/throttle": {
+            "import": "./xform/throttle.js"
+        },
+        "./xform/toggle": {
+            "import": "./xform/toggle.js"
+        },
+        "./xform/trace": {
+            "import": "./xform/trace.js"
+        },
+        "./xform/word-wrap": {
+            "import": "./xform/word-wrap.js"
+        }
+    },
     "thi.ng": {
         "blog": [
             {

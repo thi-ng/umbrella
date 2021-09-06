@@ -1,15 +1,14 @@
 {
     "private": true,
+    "type": "module",
     "workspaces": [
         "packages/*"
     ],
     "devDependencies": {
-        "@istanbuljs/nyc-config-typescript": "^1.0.1",
         "@microsoft/api-documenter": "^7.13.44",
         "@microsoft/api-extractor": "^7.18.7",
         "@snowpack/plugin-typescript": "^1.2.1",
         "@snowpack/plugin-webpack": "^3.0.0",
-        "@types/mocha": "^9.0.0",
         "@types/node": "^16.7.10",
         "@types/snowpack-env": "^2.3.4",
         "benchmark": "^2.1.4",
@@ -18,8 +17,6 @@
         "gzip-size": "^6.0.0",
         "html-minifier-terser": "^6.0.2",
         "lerna": "^4.0.0",
-        "mocha": "^9.1.1",
-        "nyc": "^15.1.0",
         "postcss": "^8.3.6",
         "rimraf": "^3.0.2",
         "rollup": "^2.56.3",
@@ -37,13 +34,10 @@
         "@ygoe/msgpack": "^1.0.3"
     },
     "scripts": {
-        "bootstrap": "yarn install && lerna -v && lerna bootstrap",
+        "bootstrap": "yarn install && lerna bootstrap",
         "build": "yarn bootstrap && lerna run build --sort",
-        "build:release": "yarn bootstrap && lerna run build:release --sort",
-        "build:es6only": "lerna run clean && lerna run build:es6 --sort",
         "build:check": "lerna run build:check",
         "clean": "lerna run clean",
-        "cover": "lerna run cover",
         "doc": "lerna run doc",
         "doc:readme": "lerna run doc:readme",
         "doc:ae": "lerna run doc:ae && scripts/collect-apis",

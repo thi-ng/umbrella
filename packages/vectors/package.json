@@ -2,10 +2,10 @@
     "name": "@thi.ng/vectors",
     "version": "6.2.0",
     "description": "Optimized 2d/3d/4d and arbitrary length vector operations",
+    "type": "module",
     "module": "./index.js",
-    "main": "./lib/index.js",
-    "umd:main": "./lib/index.umd.js",
     "typings": "./index.d.ts",
+    "sideEffects": false,
     "repository": {
         "type": "git",
         "url": "https://github.com/thi-ng/umbrella.git"
@@ -24,13 +24,9 @@
     "author": "Karsten Schmidt <k+npm@thi.ng>",
     "license": "Apache-2.0",
     "scripts": {
-        "build": "yarn clean && yarn build:es6 && node ../../scripts/bundle-module",
-        "build:release": "yarn clean && yarn build:es6 && node ../../scripts/bundle-module all",
-        "build:es6": "tsc --declaration",
-        "build:test": "rimraf build && tsc -p test/tsconfig.json",
+        "build": "yarn clean && tsc --declaration",
         "build:check": "tsc --isolatedModules --noEmit",
-        "test": "mocha test",
-        "cover": "nyc mocha test && nyc report --reporter=lcov",
+        "test": "testament test",
         "clean": "rimraf *.js *.d.ts *.map .nyc_output build coverage doc lib internal",
         "doc:readme": "ts-node -P ../../tools/tsconfig.json ../../tools/src/readme.ts",
         "doc": "typedoc --excludePrivate --out doc --theme ../../tools/doc/typedoc-theme src/index.ts",
@@ -48,12 +44,9 @@
         "@thi.ng/random": "^2.4.8",
         "@thi.ng/transducers": "^7.9.2"
     },
-    "files": [
-        "*.js",
-        "*.d.ts",
-        "lib",
-        "internal"
-    ],
+    "devDependencies": {
+        "@thi.ng/testament": "^0.0.1"
+    },
     "keywords": [
         "2d",
         "3d",
@@ -105,7 +98,613 @@
         "process": false,
         "setTimeout": false
     },
-    "sideEffects": false,
+    "files": [
+        "*.js",
+        "*.d.ts",
+        "internal"
+    ],
+    "exports": {
+        ".": {
+            "import": "./index.js"
+        },
+        "./abs": {
+            "import": "./abs.js"
+        },
+        "./acos": {
+            "import": "./acos.js"
+        },
+        "./add": {
+            "import": "./add.js"
+        },
+        "./addi": {
+            "import": "./addi.js"
+        },
+        "./addm": {
+            "import": "./addm.js"
+        },
+        "./addmn": {
+            "import": "./addmn.js"
+        },
+        "./addmns": {
+            "import": "./addmns.js"
+        },
+        "./addms": {
+            "import": "./addms.js"
+        },
+        "./addn": {
+            "import": "./addn.js"
+        },
+        "./addns": {
+            "import": "./addns.js"
+        },
+        "./adds": {
+            "import": "./adds.js"
+        },
+        "./addw": {
+            "import": "./addw.js"
+        },
+        "./angle-between": {
+            "import": "./angle-between.js"
+        },
+        "./api": {
+            "import": "./api.js"
+        },
+        "./asin": {
+            "import": "./asin.js"
+        },
+        "./atan": {
+            "import": "./atan.js"
+        },
+        "./bisect": {
+            "import": "./bisect.js"
+        },
+        "./bit-and": {
+            "import": "./bit-and.js"
+        },
+        "./bit-not": {
+            "import": "./bit-not.js"
+        },
+        "./bit-or": {
+            "import": "./bit-or.js"
+        },
+        "./bit-xor": {
+            "import": "./bit-xor.js"
+        },
+        "./buffer": {
+            "import": "./buffer.js"
+        },
+        "./cartesian": {
+            "import": "./cartesian.js"
+        },
+        "./ceil": {
+            "import": "./ceil.js"
+        },
+        "./center": {
+            "import": "./center.js"
+        },
+        "./clamp": {
+            "import": "./clamp.js"
+        },
+        "./clampn": {
+            "import": "./clampn.js"
+        },
+        "./clockwise": {
+            "import": "./clockwise.js"
+        },
+        "./compare": {
+            "import": "./compare.js"
+        },
+        "./convert": {
+            "import": "./convert.js"
+        },
+        "./copy": {
+            "import": "./copy.js"
+        },
+        "./correlation": {
+            "import": "./correlation.js"
+        },
+        "./cos": {
+            "import": "./cos.js"
+        },
+        "./cosh": {
+            "import": "./cosh.js"
+        },
+        "./covariance": {
+            "import": "./covariance.js"
+        },
+        "./cross": {
+            "import": "./cross.js"
+        },
+        "./crosss": {
+            "import": "./crosss.js"
+        },
+        "./degrees": {
+            "import": "./degrees.js"
+        },
+        "./direction": {
+            "import": "./direction.js"
+        },
+        "./dist-braycurtis": {
+            "import": "./dist-braycurtis.js"
+        },
+        "./dist-canberra": {
+            "import": "./dist-canberra.js"
+        },
+        "./dist-chebyshev": {
+            "import": "./dist-chebyshev.js"
+        },
+        "./dist-hamming": {
+            "import": "./dist-hamming.js"
+        },
+        "./dist-haversine": {
+            "import": "./dist-haversine.js"
+        },
+        "./dist-jaccard": {
+            "import": "./dist-jaccard.js"
+        },
+        "./dist-manhattan": {
+            "import": "./dist-manhattan.js"
+        },
+        "./dist-minkowski": {
+            "import": "./dist-minkowski.js"
+        },
+        "./dist-sorensendice": {
+            "import": "./dist-sorensendice.js"
+        },
+        "./dist-weighted": {
+            "import": "./dist-weighted.js"
+        },
+        "./dist": {
+            "import": "./dist.js"
+        },
+        "./distsq": {
+            "import": "./distsq.js"
+        },
+        "./div": {
+            "import": "./div.js"
+        },
+        "./divi": {
+            "import": "./divi.js"
+        },
+        "./divn": {
+            "import": "./divn.js"
+        },
+        "./divns": {
+            "import": "./divns.js"
+        },
+        "./divs": {
+            "import": "./divs.js"
+        },
+        "./dot": {
+            "import": "./dot.js"
+        },
+        "./dotc": {
+            "import": "./dotc.js"
+        },
+        "./dots": {
+            "import": "./dots.js"
+        },
+        "./empty": {
+            "import": "./empty.js"
+        },
+        "./eq": {
+            "import": "./eq.js"
+        },
+        "./eqdelta": {
+            "import": "./eqdelta.js"
+        },
+        "./equals": {
+            "import": "./equals.js"
+        },
+        "./every": {
+            "import": "./every.js"
+        },
+        "./exp": {
+            "import": "./exp.js"
+        },
+        "./exp_2": {
+            "import": "./exp_2.js"
+        },
+        "./face-forward": {
+            "import": "./face-forward.js"
+        },
+        "./fill": {
+            "import": "./fill.js"
+        },
+        "./fit": {
+            "import": "./fit.js"
+        },
+        "./floor": {
+            "import": "./floor.js"
+        },
+        "./fmod": {
+            "import": "./fmod.js"
+        },
+        "./fmodn": {
+            "import": "./fmodn.js"
+        },
+        "./fract": {
+            "import": "./fract.js"
+        },
+        "./gt": {
+            "import": "./gt.js"
+        },
+        "./gte": {
+            "import": "./gte.js"
+        },
+        "./gvec": {
+            "import": "./gvec.js"
+        },
+        "./hash": {
+            "import": "./hash.js"
+        },
+        "./heading-segment": {
+            "import": "./heading-segment.js"
+        },
+        "./heading": {
+            "import": "./heading.js"
+        },
+        "./homogeneous": {
+            "import": "./homogeneous.js"
+        },
+        "./invert": {
+            "import": "./invert.js"
+        },
+        "./invsqrt": {
+            "import": "./invsqrt.js"
+        },
+        "./is-inf": {
+            "import": "./is-inf.js"
+        },
+        "./is-nan": {
+            "import": "./is-nan.js"
+        },
+        "./jitter": {
+            "import": "./jitter.js"
+        },
+        "./limit": {
+            "import": "./limit.js"
+        },
+        "./log": {
+            "import": "./log.js"
+        },
+        "./log_2": {
+            "import": "./log_2.js"
+        },
+        "./logic-and": {
+            "import": "./logic-and.js"
+        },
+        "./logic-not": {
+            "import": "./logic-not.js"
+        },
+        "./logic-or": {
+            "import": "./logic-or.js"
+        },
+        "./lshift": {
+            "import": "./lshift.js"
+        },
+        "./lt": {
+            "import": "./lt.js"
+        },
+        "./lte": {
+            "import": "./lte.js"
+        },
+        "./madd": {
+            "import": "./madd.js"
+        },
+        "./maddn": {
+            "import": "./maddn.js"
+        },
+        "./maddns": {
+            "import": "./maddns.js"
+        },
+        "./madds": {
+            "import": "./madds.js"
+        },
+        "./mag": {
+            "import": "./mag.js"
+        },
+        "./mags": {
+            "import": "./mags.js"
+        },
+        "./magsq": {
+            "import": "./magsq.js"
+        },
+        "./magsqs": {
+            "import": "./magsqs.js"
+        },
+        "./major": {
+            "import": "./major.js"
+        },
+        "./map-vectors": {
+            "import": "./map-vectors.js"
+        },
+        "./map": {
+            "import": "./map.js"
+        },
+        "./max-bounds": {
+            "import": "./max-bounds.js"
+        },
+        "./max": {
+            "import": "./max.js"
+        },
+        "./mean": {
+            "import": "./mean.js"
+        },
+        "./median": {
+            "import": "./median.js"
+        },
+        "./min-bounds": {
+            "import": "./min-bounds.js"
+        },
+        "./min": {
+            "import": "./min.js"
+        },
+        "./minor": {
+            "import": "./minor.js"
+        },
+        "./mix-bilinear": {
+            "import": "./mix-bilinear.js"
+        },
+        "./mix-cubic": {
+            "import": "./mix-cubic.js"
+        },
+        "./mix-hermite": {
+            "import": "./mix-hermite.js"
+        },
+        "./mix-quadratic": {
+            "import": "./mix-quadratic.js"
+        },
+        "./mix": {
+            "import": "./mix.js"
+        },
+        "./mixn": {
+            "import": "./mixn.js"
+        },
+        "./mixns": {
+            "import": "./mixns.js"
+        },
+        "./mixs": {
+            "import": "./mixs.js"
+        },
+        "./mod": {
+            "import": "./mod.js"
+        },
+        "./modn": {
+            "import": "./modn.js"
+        },
+        "./msub": {
+            "import": "./msub.js"
+        },
+        "./msubn": {
+            "import": "./msubn.js"
+        },
+        "./msubns": {
+            "import": "./msubns.js"
+        },
+        "./msubs": {
+            "import": "./msubs.js"
+        },
+        "./mul": {
+            "import": "./mul.js"
+        },
+        "./muli": {
+            "import": "./muli.js"
+        },
+        "./muln": {
+            "import": "./muln.js"
+        },
+        "./mulns": {
+            "import": "./mulns.js"
+        },
+        "./muls": {
+            "import": "./muls.js"
+        },
+        "./neg": {
+            "import": "./neg.js"
+        },
+        "./neq": {
+            "import": "./neq.js"
+        },
+        "./normal": {
+            "import": "./normal.js"
+        },
+        "./normalize": {
+            "import": "./normalize.js"
+        },
+        "./normalizes": {
+            "import": "./normalizes.js"
+        },
+        "./not": {
+            "import": "./not.js"
+        },
+        "./ortho-normal": {
+            "import": "./ortho-normal.js"
+        },
+        "./perpendicular": {
+            "import": "./perpendicular.js"
+        },
+        "./point-on-ray": {
+            "import": "./point-on-ray.js"
+        },
+        "./polar": {
+            "import": "./polar.js"
+        },
+        "./pow": {
+            "import": "./pow.js"
+        },
+        "./pown": {
+            "import": "./pown.js"
+        },
+        "./project": {
+            "import": "./project.js"
+        },
+        "./radians": {
+            "import": "./radians.js"
+        },
+        "./random": {
+            "import": "./random.js"
+        },
+        "./randoms": {
+            "import": "./randoms.js"
+        },
+        "./reflect": {
+            "import": "./reflect.js"
+        },
+        "./refract": {
+            "import": "./refract.js"
+        },
+        "./remainder": {
+            "import": "./remainder.js"
+        },
+        "./remaindern": {
+            "import": "./remaindern.js"
+        },
+        "./rotate-around-axis": {
+            "import": "./rotate-around-axis.js"
+        },
+        "./rotate-around-point": {
+            "import": "./rotate-around-point.js"
+        },
+        "./rotate": {
+            "import": "./rotate.js"
+        },
+        "./rotates": {
+            "import": "./rotates.js"
+        },
+        "./round": {
+            "import": "./round.js"
+        },
+        "./rshift": {
+            "import": "./rshift.js"
+        },
+        "./safe-div": {
+            "import": "./safe-div.js"
+        },
+        "./set": {
+            "import": "./set.js"
+        },
+        "./setc": {
+            "import": "./setc.js"
+        },
+        "./setcs": {
+            "import": "./setcs.js"
+        },
+        "./setn": {
+            "import": "./setn.js"
+        },
+        "./setns": {
+            "import": "./setns.js"
+        },
+        "./sets": {
+            "import": "./sets.js"
+        },
+        "./setvn": {
+            "import": "./setvn.js"
+        },
+        "./setvv": {
+            "import": "./setvv.js"
+        },
+        "./sign": {
+            "import": "./sign.js"
+        },
+        "./signed-area": {
+            "import": "./signed-area.js"
+        },
+        "./signed-volume": {
+            "import": "./signed-volume.js"
+        },
+        "./sin": {
+            "import": "./sin.js"
+        },
+        "./sinh": {
+            "import": "./sinh.js"
+        },
+        "./smoothstep": {
+            "import": "./smoothstep.js"
+        },
+        "./softmax": {
+            "import": "./softmax.js"
+        },
+        "./some": {
+            "import": "./some.js"
+        },
+        "./sqrt": {
+            "import": "./sqrt.js"
+        },
+        "./standardize": {
+            "import": "./standardize.js"
+        },
+        "./step": {
+            "import": "./step.js"
+        },
+        "./string": {
+            "import": "./string.js"
+        },
+        "./sub": {
+            "import": "./sub.js"
+        },
+        "./subi": {
+            "import": "./subi.js"
+        },
+        "./subm": {
+            "import": "./subm.js"
+        },
+        "./submn": {
+            "import": "./submn.js"
+        },
+        "./submns": {
+            "import": "./submns.js"
+        },
+        "./subms": {
+            "import": "./subms.js"
+        },
+        "./subn": {
+            "import": "./subn.js"
+        },
+        "./subns": {
+            "import": "./subns.js"
+        },
+        "./subs": {
+            "import": "./subs.js"
+        },
+        "./sum": {
+            "import": "./sum.js"
+        },
+        "./swizzle": {
+            "import": "./swizzle.js"
+        },
+        "./tan": {
+            "import": "./tan.js"
+        },
+        "./tanh": {
+            "import": "./tanh.js"
+        },
+        "./tensor": {
+            "import": "./tensor.js"
+        },
+        "./trunc": {
+            "import": "./trunc.js"
+        },
+        "./variance": {
+            "import": "./variance.js"
+        },
+        "./vec-of": {
+            "import": "./vec-of.js"
+        },
+        "./vec2": {
+            "import": "./vec2.js"
+        },
+        "./vec3": {
+            "import": "./vec3.js"
+        },
+        "./vec4": {
+            "import": "./vec4.js"
+        },
+        "./wrap": {
+            "import": "./wrap.js"
+        }
+    },
     "thi.ng": {
         "related": [
             "color",

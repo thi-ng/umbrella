@@ -2,10 +2,10 @@
     "name": "@thi.ng/webgl",
     "version": "5.0.14",
     "description": "WebGL & GLSL abstraction layer",
+    "type": "module",
     "module": "./index.js",
-    "main": "./lib/index.js",
-    "umd:main": "./lib/index.umd.js",
     "typings": "./index.d.ts",
+    "sideEffects": false,
     "repository": {
         "type": "git",
         "url": "https://github.com/thi-ng/umbrella.git"
@@ -24,13 +24,9 @@
     "author": "Karsten Schmidt <k+npm@thi.ng>",
     "license": "Apache-2.0",
     "scripts": {
-        "build": "yarn clean && yarn build:es6 && node ../../scripts/bundle-module",
-        "build:release": "yarn clean && yarn build:es6 && node ../../scripts/bundle-module all",
-        "build:es6": "tsc --declaration",
-        "build:test": "rimraf build && tsc -p test/tsconfig.json",
+        "build": "yarn clean && tsc --declaration",
         "build:check": "tsc --isolatedModules --noEmit",
-        "test": "mocha test",
-        "cover": "nyc mocha test && nyc report --reporter=lcov",
+        "test": "testament test",
         "clean": "rimraf *.js *.d.ts *.map .nyc_output build coverage doc lib api geo shaders textures",
         "doc:readme": "ts-node -P ../../tools/tsconfig.json ../../tools/src/readme.ts",
         "doc": "typedoc --excludePrivate --out doc --theme ../../tools/doc/typedoc-theme src/index.ts",
@@ -54,15 +50,9 @@
         "@thi.ng/vector-pools": "^2.0.25",
         "@thi.ng/vectors": "^6.2.0"
     },
-    "files": [
-        "*.js",
-        "*.d.ts",
-        "lib",
-        "api",
-        "geo",
-        "shaders",
-        "textures"
-    ],
+    "devDependencies": {
+        "@thi.ng/testament": "^0.0.1"
+    },
     "keywords": [
         "2d",
         "3d",
@@ -85,7 +75,124 @@
     "publishConfig": {
         "access": "public"
     },
-    "sideEffects": false,
+    "files": [
+        "*.js",
+        "*.d.ts",
+        "api",
+        "geo",
+        "shaders",
+        "textures"
+    ],
+    "exports": {
+        ".": {
+            "import": "./index.js"
+        },
+        "./api/blend": {
+            "import": "./api/blend.js"
+        },
+        "./api/buffers": {
+            "import": "./api/buffers.js"
+        },
+        "./api/canvas": {
+            "import": "./api/canvas.js"
+        },
+        "./api/ext": {
+            "import": "./api/ext.js"
+        },
+        "./api/glsl": {
+            "import": "./api/glsl.js"
+        },
+        "./api/logger": {
+            "import": "./api/logger.js"
+        },
+        "./api/material": {
+            "import": "./api/material.js"
+        },
+        "./api/model": {
+            "import": "./api/model.js"
+        },
+        "./api/multipass": {
+            "import": "./api/multipass.js"
+        },
+        "./api/shader": {
+            "import": "./api/shader.js"
+        },
+        "./api/stencil": {
+            "import": "./api/stencil.js"
+        },
+        "./api/texture": {
+            "import": "./api/texture.js"
+        },
+        "./buffer": {
+            "import": "./buffer.js"
+        },
+        "./canvas": {
+            "import": "./canvas.js"
+        },
+        "./checks": {
+            "import": "./checks.js"
+        },
+        "./draw": {
+            "import": "./draw.js"
+        },
+        "./error": {
+            "import": "./error.js"
+        },
+        "./fbo": {
+            "import": "./fbo.js"
+        },
+        "./geo/cube": {
+            "import": "./geo/cube.js"
+        },
+        "./geo/quad": {
+            "import": "./geo/quad.js"
+        },
+        "./material": {
+            "import": "./material.js"
+        },
+        "./matrices": {
+            "import": "./matrices.js"
+        },
+        "./multipass": {
+            "import": "./multipass.js"
+        },
+        "./rbo": {
+            "import": "./rbo.js"
+        },
+        "./readpixels": {
+            "import": "./readpixels.js"
+        },
+        "./shader": {
+            "import": "./shader.js"
+        },
+        "./shaders/lambert": {
+            "import": "./shaders/lambert.js"
+        },
+        "./shaders/phong": {
+            "import": "./shaders/phong.js"
+        },
+        "./shaders/pipeline": {
+            "import": "./shaders/pipeline.js"
+        },
+        "./syntax": {
+            "import": "./syntax.js"
+        },
+        "./texture": {
+            "import": "./texture.js"
+        },
+        "./textures/checkerboard": {
+            "import": "./textures/checkerboard.js"
+        },
+        "./textures/stripes": {
+            "import": "./textures/stripes.js"
+        },
+        "./uniforms": {
+            "import": "./uniforms.js"
+        },
+        "./utils": {
+            "import": "./utils.js"
+        }
+    },
     "thi.ng": {
         "related": [
             "ecs",

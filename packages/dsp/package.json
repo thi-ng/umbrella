@@ -2,10 +2,10 @@
     "name": "@thi.ng/dsp",
     "version": "3.0.31",
     "description": "Composable signal generators, oscillators, filters, FFT, spectrum, windowing & related DSP utils",
+    "type": "module",
     "module": "./index.js",
-    "main": "./lib/index.js",
-    "umd:main": "./lib/index.umd.js",
     "typings": "./index.d.ts",
+    "sideEffects": false,
     "repository": {
         "type": "git",
         "url": "https://github.com/thi-ng/umbrella.git"
@@ -24,13 +24,9 @@
     "author": "Karsten Schmidt <k+npm@thi.ng>",
     "license": "Apache-2.0",
     "scripts": {
-        "build": "yarn clean && yarn build:es6 && node ../../scripts/bundle-module",
-        "build:release": "yarn clean && yarn build:es6 && node ../../scripts/bundle-module all",
-        "build:es6": "tsc --declaration",
-        "build:test": "rimraf build && tsc -p test/tsconfig.json",
+        "build": "yarn clean && tsc --declaration",
         "build:check": "tsc --isolatedModules --noEmit",
-        "test": "mocha test",
-        "cover": "nyc mocha test && nyc report --reporter=lcov",
+        "test": "testament test",
         "clean": "rimraf *.js *.d.ts *.map .nyc_output build coverage doc lib comp fft gen osc proc util",
         "doc:readme": "ts-node -P ../../tools/tsconfig.json ../../tools/src/readme.ts",
         "doc": "typedoc --excludePrivate --out doc --theme ../../tools/doc/typedoc-theme src/index.ts",
@@ -45,17 +41,9 @@
         "@thi.ng/random": "^2.4.8",
         "@thi.ng/transducers": "^7.9.2"
     },
-    "files": [
-        "*.js",
-        "*.d.ts",
-        "lib",
-        "comp",
-        "fft",
-        "gen",
-        "osc",
-        "proc",
-        "util"
-    ],
+    "devDependencies": {
+        "@thi.ng/testament": "^0.0.1"
+    },
     "keywords": [
         "allpass",
         "analysis",
@@ -89,7 +77,189 @@
     "publishConfig": {
         "access": "public"
     },
-    "sideEffects": false,
+    "files": [
+        "*.js",
+        "*.d.ts",
+        "comp",
+        "fft",
+        "gen",
+        "osc",
+        "proc",
+        "util"
+    ],
+    "exports": {
+        ".": {
+            "import": "./index.js"
+        },
+        "./api": {
+            "import": "./api.js"
+        },
+        "./comp/addg": {
+            "import": "./comp/addg.js"
+        },
+        "./comp/compp": {
+            "import": "./comp/compp.js"
+        },
+        "./comp/mapg": {
+            "import": "./comp/mapg.js"
+        },
+        "./comp/multiplex": {
+            "import": "./comp/multiplex.js"
+        },
+        "./comp/pipe": {
+            "import": "./comp/pipe.js"
+        },
+        "./comp/product": {
+            "import": "./comp/product.js"
+        },
+        "./comp/sum": {
+            "import": "./comp/sum.js"
+        },
+        "./fft/fft": {
+            "import": "./fft/fft.js"
+        },
+        "./fft/power": {
+            "import": "./fft/power.js"
+        },
+        "./fft/window": {
+            "import": "./fft/window.js"
+        },
+        "./gen/add": {
+            "import": "./gen/add.js"
+        },
+        "./gen/adsr": {
+            "import": "./gen/adsr.js"
+        },
+        "./gen/agen": {
+            "import": "./gen/agen.js"
+        },
+        "./gen/alt": {
+            "import": "./gen/alt.js"
+        },
+        "./gen/const": {
+            "import": "./gen/const.js"
+        },
+        "./gen/cosine": {
+            "import": "./gen/cosine.js"
+        },
+        "./gen/curve": {
+            "import": "./gen/curve.js"
+        },
+        "./gen/impulse-train": {
+            "import": "./gen/impulse-train.js"
+        },
+        "./gen/impulse": {
+            "import": "./gen/impulse.js"
+        },
+        "./gen/iterable": {
+            "import": "./gen/iterable.js"
+        },
+        "./gen/line": {
+            "import": "./gen/line.js"
+        },
+        "./gen/madd": {
+            "import": "./gen/madd.js"
+        },
+        "./gen/mul": {
+            "import": "./gen/mul.js"
+        },
+        "./gen/osc": {
+            "import": "./gen/osc.js"
+        },
+        "./gen/pink-noise": {
+            "import": "./gen/pink-noise.js"
+        },
+        "./gen/reciprocal": {
+            "import": "./gen/reciprocal.js"
+        },
+        "./gen/sincos": {
+            "import": "./gen/sincos.js"
+        },
+        "./gen/sweep": {
+            "import": "./gen/sweep.js"
+        },
+        "./gen/white-noise": {
+            "import": "./gen/white-noise.js"
+        },
+        "./osc/additive": {
+            "import": "./osc/additive.js"
+        },
+        "./osc/cos": {
+            "import": "./osc/cos.js"
+        },
+        "./osc/dsf": {
+            "import": "./osc/dsf.js"
+        },
+        "./osc/mix": {
+            "import": "./osc/mix.js"
+        },
+        "./osc/parabolic": {
+            "import": "./osc/parabolic.js"
+        },
+        "./osc/rect": {
+            "import": "./osc/rect.js"
+        },
+        "./osc/saw": {
+            "import": "./osc/saw.js"
+        },
+        "./osc/sin": {
+            "import": "./osc/sin.js"
+        },
+        "./osc/tri": {
+            "import": "./osc/tri.js"
+        },
+        "./osc/wavetable": {
+            "import": "./osc/wavetable.js"
+        },
+        "./proc/allpass": {
+            "import": "./proc/allpass.js"
+        },
+        "./proc/aproc": {
+            "import": "./proc/aproc.js"
+        },
+        "./proc/biquad": {
+            "import": "./proc/biquad.js"
+        },
+        "./proc/dcblock": {
+            "import": "./proc/dcblock.js"
+        },
+        "./proc/delay": {
+            "import": "./proc/delay.js"
+        },
+        "./proc/feedback-delay": {
+            "import": "./proc/feedback-delay.js"
+        },
+        "./proc/foldback": {
+            "import": "./proc/foldback.js"
+        },
+        "./proc/integrator": {
+            "import": "./proc/integrator.js"
+        },
+        "./proc/mix": {
+            "import": "./proc/mix.js"
+        },
+        "./proc/onepole": {
+            "import": "./proc/onepole.js"
+        },
+        "./proc/svf": {
+            "import": "./proc/svf.js"
+        },
+        "./proc/waveshaper": {
+            "import": "./proc/waveshaper.js"
+        },
+        "./util/anti-alias": {
+            "import": "./util/anti-alias.js"
+        },
+        "./util/complex": {
+            "import": "./util/complex.js"
+        },
+        "./util/convert": {
+            "import": "./util/convert.js"
+        },
+        "./util/filter-response": {
+            "import": "./util/filter-response.js"
+        }
+    },
     "thi.ng": {
         "related": [
             "math"
