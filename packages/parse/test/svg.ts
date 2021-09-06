@@ -1,3 +1,4 @@
+import { group } from "@thi.ng/testament";
 import * as assert from "assert";
 import {
     alt,
@@ -24,8 +25,8 @@ const check = (
     assert.strictEqual(ctx.state!.p, pos, `src: '${src}' pos: ${ctx.state!.p}`);
 };
 
-describe("parse", () => {
-    it("SVG", () => {
+group("parse", {
+    SVG: () => {
         const wsc = discard(zeroOrMore(oneOf(" \n,")));
         const point = collect(seq([INT, wsc, INT]));
         const move = collect(seq([oneOf("Mm"), WS0, point, WS0]));
@@ -42,13 +43,13 @@ describe("parse", () => {
         check(path, "M0,1L2 3c4,5-6,7 8 9z", true, 21);
 
         const ctx = defContext("M0,1L2 3c4,5-6,7 8 9z");
-        assert(path(ctx));
-        assert(ctx.done);
+        assert.ok(path(ctx));
+        assert.ok(ctx.done);
         assert.deepStrictEqual(ctx.result, [
             ["M", [0, 1]],
             ["L", [2, 3]],
             ["c", [4, 5], [-6, 7], [8, 9]],
             ["z"],
         ]);
-    });
+    },
 });

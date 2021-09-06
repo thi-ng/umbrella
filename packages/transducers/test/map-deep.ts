@@ -1,8 +1,9 @@
+import { group } from "@thi.ng/testament";
 import * as assert from "assert";
 import { deepTransform } from "../src";
 
-describe("deepTransform", () => {
-    it("transforms hiccup", () => {
+group("deepTransform", {
+    "transforms hiccup": () => {
         assert.deepStrictEqual(
             deepTransform([
                 ({ type, meta, title, body }) => [
@@ -47,5 +48,5 @@ describe("deepTransform", () => {
                 "Ratione necessitatibus doloremque itaque.",
             ]
         );
-    });
+    },
 });

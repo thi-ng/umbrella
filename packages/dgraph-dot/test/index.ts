@@ -1,9 +1,10 @@
 import { defDGraph } from "@thi.ng/dgraph";
+import { group } from "@thi.ng/testament";
 import * as assert from "assert";
 import { toDot } from "../src";
 
-describe("dgraph-dot", () => {
-    it("basic", () => {
+group("dgraph-dot", {
+    basic: () => {
         const g = defDGraph([
             ["a", "b"],
             ["a", "c"],
@@ -41,5 +42,5 @@ edge[arrowsize="0.75"];
 "a" -> "c";
 }`
         );
-    });
+    },
 });

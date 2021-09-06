@@ -1,26 +1,26 @@
+import { group } from "@thi.ng/testament";
+import * as assert from "assert";
 import { juxt } from "../src";
 
-import * as assert from "assert";
-
-describe("juxt", () => {
-    it("2-args", () => {
+group("juxt", {
+    "2-args": () => {
         const a = juxt(
             (x: number) => x + 1,
             (x: number) => x * 10
         );
         assert.deepStrictEqual(a(1), [2, 10]);
-    });
+    },
 
-    it("3-args", () => {
+    "3-args": () => {
         const a = juxt(
             (x: number) => x + 1,
             (x: number) => x * 10,
             (x: number) => "id-" + x
         );
         assert.deepStrictEqual(a(1), [2, 10, "id-1"]);
-    });
+    },
 
-    it("4-args", () => {
+    "4-args": () => {
         const a = juxt(
             (x: number) => x + 1,
             (x: number) => x * 10,
@@ -28,9 +28,9 @@ describe("juxt", () => {
             (x: number) => [x, x]
         );
         assert.deepStrictEqual(a(1), [2, 10, "id-1", [1, 1]]);
-    });
+    },
 
-    it("5-args", () => {
+    "5-args": () => {
         const a = juxt(
             (x: number) => x + 1,
             (x: number) => x * 10,
@@ -39,9 +39,9 @@ describe("juxt", () => {
             (x: number) => ({ a: x })
         );
         assert.deepStrictEqual(a(1), [2, 10, "id-1", [1, 1], { a: 1 }]);
-    });
+    },
 
-    it("6-args", () => {
+    "6-args": () => {
         const a = juxt(
             (x: number) => x + 1,
             (x: number) => x - 1,
@@ -51,9 +51,9 @@ describe("juxt", () => {
             (x: number) => ({ a: x })
         );
         assert.deepStrictEqual(a(1), [2, 0, 10, "id-1", [1, 1], { a: 1 }]);
-    });
+    },
 
-    it("7-args", () => {
+    "7-args": () => {
         const a = juxt(
             (x: number) => x + 1,
             (x: number) => x - 1,
@@ -64,9 +64,9 @@ describe("juxt", () => {
             (x: number) => ({ a: x })
         );
         assert.deepStrictEqual(a(1), [2, 0, 10, 100, "id-1", [1, 1], { a: 1 }]);
-    });
+    },
 
-    it("8-args", () => {
+    "8-args": () => {
         const a = juxt(
             (x: number) => x + 1,
             (x: number) => x - 1,
@@ -87,9 +87,9 @@ describe("juxt", () => {
             [1, 1],
             { a: 1 },
         ]);
-    });
+    },
 
-    it("9-args", () => {
+    "9-args": () => {
         const a = juxt(
             (x: number) => x + 1,
             (x: number) => x - 1,
@@ -112,5 +112,5 @@ describe("juxt", () => {
             [1, 1],
             { a: 1 },
         ]);
-    });
+    },
 });

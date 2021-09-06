@@ -1,6 +1,6 @@
 // import * as assert from "assert";
 // import { } from "../src";
 
-describe("palettes", () => {
-    it("tests pending");
-});
+// group("palettes", () => {
+//     it("tests pending");
+// });

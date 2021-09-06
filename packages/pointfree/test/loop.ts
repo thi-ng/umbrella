@@ -1,5 +1,21 @@
-import type { StackFn, StackProgram } from "../src";
-import * as pf from "../src";
+import {
+    defJoin,
+    defLoop,
+    defTuple,
+    defWord,
+    drop,
+    dup,
+    dup2,
+    inc,
+    invrot,
+    lt,
+    maptos,
+    nop,
+    runU,
+    StackFn,
+    StackProgram,
+    swap,
+} from "../src";
 
 /**
  * This higher order word defines a 2D loop construct, executing a user
@@ -14,18 +30,13 @@ import * as pf from "../src";
  * @param bodyQ -
  */
 const loop2 = (i: number, j: number, bodyQ: StackProgram) =>
-    pf.defWord([
+    defWord([
         0,
-        pf.defLoop(
-            [pf.dup, i, pf.lt],
-            [
-                0,
-                pf.defLoop([pf.dup, j, pf.lt], [pf.dup2, ...bodyQ, pf.inc]),
-                pf.drop,
-                pf.inc,
-            ]
+        defLoop(
+            [dup, i, lt],
+            [0, defLoop([dup, j, lt], [dup2, ...bodyQ, inc]), drop, inc]
         ),
-        pf.drop,
+        drop,
     ]);
 
 /**
@@ -40,8 +51,8 @@ const loop2 = (i: number, j: number, bodyQ: StackProgram) =>
  * @param j - inner size
  * @param body - user quotation
  */
-const grid = (i: number, j: number, body: StackProgram = [pf.defTuple(2)]) =>
-    pf.defWord([loop2(i, j, [...body, pf.invrot]), pf.defTuple(i * j)]);
+const grid = (i: number, j: number, body: StackProgram = [defTuple(2)]) =>
+    defWord([loop2(i, j, [...body, invrot]), defTuple(i * j)]);
 
 /**
  * Special version of `grid` which transforms `i,j` pairs into strings
@@ -59,26 +70,24 @@ const makeids = (
     i: number,
     j: number,
     sep: string,
-    id1: StackFn = pf.nop,
+    id1: StackFn = nop,
     id2 = id1
-) => grid(i, j, [id2, pf.swap, id1, pf.swap, pf.defTuple(2), pf.defJoin(sep)]);
+) => grid(i, j, [id2, swap, id1, swap, defTuple(2), defJoin(sep)]);
 
 // helper word which looks up TOS in given string/array/object, i.e. to
 // transform a number into another value (e.g. string)
-const idgen = (ids: any) => pf.maptos((x) => ids[x]);
+const idgen = (ids: any) => maptos((x) => ids[x]);
 
-console.log(pf.runU(grid(4, 4)));
-console.log(pf.runU(makeids(4, 4, "", idgen("abcd"))));
+console.log(runU(grid(4, 4)));
+console.log(runU(makeids(4, 4, "", idgen("abcd"))));
 console.log(
-    pf.runU(
-        makeids(4, 4, "-", idgen(["alpha", "beta", "gamma", "delta"]), pf.nop)
-    )
+    runU(makeids(4, 4, "-", idgen(["alpha", "beta", "gamma", "delta"]), nop))
 );
 
 console.log(
-    pf.runU([
+    runU([
         makeids(4, 4, "", idgen("abcd")),
-        pf.maptos((id) => pf.runU(makeids(4, 4, "/", idgen(id)))),
-        pf.maptos((id) => pf.runU(makeids(4, 4, "-", idgen(id)))),
+        maptos((id) => runU(makeids(4, 4, "/", idgen(id)))),
+        maptos((id) => runU(makeids(4, 4, "-", idgen(id)))),
     ])
 );

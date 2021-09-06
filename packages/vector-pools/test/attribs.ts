@@ -1,9 +1,10 @@
 import { equiv } from "@thi.ng/equiv";
+import { group } from "@thi.ng/testament";
 import * as assert from "assert";
 import { AttribPool } from "../src/attrib-pool";
 
-describe("vector-pools", () => {
-    it("attribs", () => {
+group("vector-pools", {
+    attribs: () => {
         const pool = new AttribPool({
             mem: { size: 0x100 },
             num: 8,
@@ -42,7 +43,7 @@ describe("vector-pools", () => {
                 },
             },
         });
-        assert(
+        assert.ok(
             equiv(
                 [...pool.attribValues("pos")],
                 [
@@ -57,11 +58,13 @@ describe("vector-pools", () => {
                 ]
             )
         );
-        assert(equiv([...pool.attribValues("id")], [0, 0, 0, 0, 1, 2, 0, 0]));
-        assert(
+        assert.ok(
+            equiv([...pool.attribValues("id")], [0, 0, 0, 0, 1, 2, 0, 0])
+        );
+        assert.ok(
             equiv([...pool.attribValues("index")], [10, 20, 0, 0, 0, 0, 0, 0])
         );
-        assert(
+        assert.ok(
             equiv(
                 [...pool.attribValues("col")],
                 [
@@ -77,14 +80,14 @@ describe("vector-pools", () => {
             )
         );
         // prettier-ignore
-        assert(
+        assert.ok(
             equiv(pool.attribArray("pos"),
             [1, 2, 3, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
         );
         // prettier-ignore
-        assert(
+        assert.ok(
             equiv(pool.attribArray("index"),
             [10, 20, 0, 0, 0, 0, 0, 0])
         );
-    });
+    },
 });

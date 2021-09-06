@@ -1,8 +1,9 @@
 import * as assert from "assert";
+import { group } from "@thi.ng/testament";
 import { wavByteArray } from "../src";
 
-describe("dsp-io-wav", () => {
-    it("mono 48kHz/16 bits", () => {
+group("dsp-io-wav", {
+    "mono 48kHz/16 bits": () => {
         assert.deepStrictEqual(
             [
                 ...wavByteArray(
@@ -22,5 +23,5 @@ describe("dsp-io-wav", () => {
                 0x00, 0xff, 0x7f
               ]
         );
-    });
+    },
 });

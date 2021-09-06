@@ -1,9 +1,10 @@
+import { group } from "@thi.ng/testament";
 import { reduce, reductions } from "@thi.ng/transducers";
 import * as assert from "assert";
 import { patchArray, patchObj } from "../src";
 
-describe("transducers-patch", () => {
-    it("patchArray", () => {
+group("transducers-patch", {
+    patchArray: () => {
         assert.deepStrictEqual(
             reduce(
                 reductions(patchArray<number>()),
@@ -23,9 +24,9 @@ describe("transducers-patch", () => {
                 [10, 110, 200, 3],
             ]
         );
-    });
+    },
 
-    it("patchObj", () => {
+    patchObj: () => {
         assert.deepStrictEqual(
             reduce(
                 reductions(patchObj()),
@@ -43,5 +44,5 @@ describe("transducers-patch", () => {
                 { a: { b: 11 } },
             ]
         );
-    });
+    },
 });

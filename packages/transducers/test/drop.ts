@@ -1,8 +1,9 @@
+import { group } from "@thi.ng/testament";
 import * as assert from "assert";
 import { drop, range } from "../src";
 
-describe("drop", () => {
-    it("starts iterating after N items", () => {
+group("drop", {
+    "starts iterating after N items": () => {
         assert.deepStrictEqual([...drop(0, [true, false])], [true, false]);
         assert.deepStrictEqual([...drop(1, [true, false])], [false]);
         assert.deepStrictEqual([...drop(2, [true, false])], []);
@@ -16,5 +17,5 @@ describe("drop", () => {
         assert.deepStrictEqual([...drop(0, "abc")], ["a", "b", "c"]);
         assert.deepStrictEqual([...drop(1, "abc")], ["b", "c"]);
         assert.deepStrictEqual([...drop(2, "abc")], ["c"]);
-    });
+    },
 });

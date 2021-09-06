@@ -1,3 +1,4 @@
+import { group } from "@thi.ng/testament";
 import * as assert from "assert";
 import {
     DE_LONG,
@@ -60,8 +61,8 @@ const check = (locale: LocaleSpec, spec: I18NTestSpec) => {
     });
 };
 
-describe("i18n", () => {
-    it("DE_LONG", () => {
+group("i18n", {
+    DE_LONG: () => {
         check(DE_LONG, {
             year1: "1 Jahr",
             in_year1: "in 1 Jahr",
@@ -72,9 +73,9 @@ describe("i18n", () => {
             in_less_year2: "in weniger als 2 Jahren",
             ago_less_year2: "vor weniger als 2 Jahren",
         });
-    });
+    },
 
-    it("EN_LONG", () => {
+    EN_LONG: () => {
         check(EN_LONG, {
             year1: "1 year",
             in_year1: "in 1 year",
@@ -85,9 +86,9 @@ describe("i18n", () => {
             in_less_year2: "in less than 2 years",
             ago_less_year2: "less than 2 years ago",
         });
-    });
+    },
 
-    it("ES_LONG", () => {
+    ES_LONG: () => {
         check(ES_LONG, {
             year1: "1 año",
             in_year1: "en 1 año",
@@ -98,9 +99,9 @@ describe("i18n", () => {
             in_less_year2: "en menos de 2 años",
             ago_less_year2: "hace menos de 2 años",
         });
-    });
+    },
 
-    it("FR_LONG", () => {
+    FR_LONG: () => {
         check(FR_LONG, {
             year1: "1 année",
             in_year1: "dans 1 an",
@@ -111,9 +112,9 @@ describe("i18n", () => {
             in_less_year2: "dans moins de 2 ans",
             ago_less_year2: "il y a moins de 2 ans",
         });
-    });
+    },
 
-    it("IT_LONG", () => {
+    IT_LONG: () => {
         check(IT_LONG, {
             year1: "1 anno",
             in_year1: "in 1 anno",
@@ -124,5 +125,5 @@ describe("i18n", () => {
             in_less_year2: "in meno di 2 anni",
             ago_less_year2: "meno di 2 anni fa",
         });
-    });
+    },
 });

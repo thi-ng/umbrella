@@ -1,32 +1,37 @@
+import { group } from "@thi.ng/testament";
 import * as assert from "assert";
 import { flatten, range } from "../src";
 
-describe("flatten", () => {
-    it("empty arrays", () => {
+group("flatten", {
+    "empty arrays": () => {
         assert.deepStrictEqual([...flatten([])], []);
         assert.deepStrictEqual([...flatten([[], []])], []);
-    });
-    it("arrays", () => {
+    },
+
+    arrays: () => {
         assert.deepStrictEqual([...flatten([undefined])], [undefined]);
         assert.deepStrictEqual(
             [...flatten([[undefined], null])],
             [undefined, null]
         );
-    });
-    it("strings", () => {
+    },
+
+    strings: () => {
         assert.deepStrictEqual([...flatten(["", "a"])], ["", "a"]);
         assert.deepStrictEqual([...flatten([[], ["a"], ""])], ["a", ""]);
-    });
-    it("strings (atomic)", () => {
+    },
+
+    "strings (atomic)": () => {
         assert.deepStrictEqual([...flatten([["abc"]])], ["abc"]);
         assert.deepStrictEqual([...flatten(["abc"])], ["abc"]);
         assert.deepStrictEqual([...flatten("abc")], ["abc"]);
         assert.deepStrictEqual([...flatten([""])], [""]);
         assert.deepStrictEqual([...flatten("")], [""]);
-    });
-    it("iterators", () => {
+    },
+
+    iterators: () => {
         assert.deepStrictEqual([...flatten(range(0))], []);
         assert.deepStrictEqual([...flatten([range(0)])], []);
         assert.deepStrictEqual([...flatten([range(2), range(0)])], [0, 1]);
-    });
+    },
 });

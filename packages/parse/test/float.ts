@@ -1,8 +1,9 @@
+import { group } from "@thi.ng/testament";
 import * as assert from "assert";
 import { defContext, FLOAT } from "../src";
 
-describe("parse", () => {
-    it("float", () => {
+group("parse", {
+    float: () => {
         [
             "1",
             "-1",
@@ -17,8 +18,8 @@ describe("parse", () => {
             "-1-",
         ].forEach((x) => {
             const ctx = defContext(x);
-            assert(FLOAT(ctx), x);
+            assert.ok(FLOAT(ctx), x);
             assert.strictEqual(ctx.scope.children![0].result, parseFloat(x), x);
         });
-    });
+    },
 });

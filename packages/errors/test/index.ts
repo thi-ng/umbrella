@@ -1,6 +1,7 @@
+// import { group } from "@thi.ng/testament";
 // import * as assert from "assert";
 // import * as errors from "../src";
 
-describe("errors", () => {
-    it("tests pending");
-});
+// group("errors", () => {
+//     it("tests pending");
+// });

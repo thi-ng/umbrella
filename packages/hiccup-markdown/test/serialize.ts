@@ -1,8 +1,9 @@
+import { group } from "@thi.ng/testament";
 import * as assert from "assert";
 import { serialize } from "../src";
 
-describe("hiccup-markdown", () => {
-    it("serialize", () => {
+group("hiccup-markdown", {
+    serialize: () => {
         // list component
         // the 1st arg is the optional user context object
         // passed to {@link serialize} (ignored here)
@@ -126,5 +127,5 @@ _Table caption_
 More info [here](http://thi.ng/hiccup-markdown).
 `
         );
-    });
+    },
 });

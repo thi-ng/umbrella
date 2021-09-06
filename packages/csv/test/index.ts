@@ -1,15 +1,16 @@
+import { group } from "@thi.ng/testament";
 import * as assert from "assert";
 import { parseCSV, parseCSVFromString } from "../src";
 
-describe("csv", () => {
-    it("header", () => {
+group("csv", {
+    header: () => {
         assert.deepStrictEqual(
             [...parseCSV({ header: ["a", "b", "c"] }, ["1,2,3"])],
             [{ a: "1", b: "2", c: "3" }]
         );
-    });
+    },
 
-    it("column mapping (obj)", () => {
+    "column mapping (obj)": () => {
         assert.deepStrictEqual(
             [
                 ...parseCSV(
@@ -27,9 +28,9 @@ describe("csv", () => {
                 { aa: "BAR", bb: "BAR66", c: "88" },
             ]
         );
-    });
+    },
 
-    it("column mapping (array, no header)", () => {
+    "column mapping (array, no header)": () => {
         assert.deepStrictEqual(
             [
                 ...parseCSV(
@@ -50,9 +51,9 @@ describe("csv", () => {
                 { 0: "BAR", cc: "BAR88" },
             ]
         );
-    });
+    },
 
-    it("column mapping (array, w/ header)", () => {
+    "column mapping (array, w/ header)": () => {
         assert.deepStrictEqual(
             [
                 ...parseCSV(
@@ -73,9 +74,9 @@ describe("csv", () => {
                 { a: "BAR", cc: "BAR88" },
             ]
         );
-    });
+    },
 
-    it("quotes", () => {
+    quotes: () => {
         assert.deepStrictEqual(
             [...parseCSVFromString({}, `a,b,c\n"ha ""he""\nho","2,",3\n4,,6`)],
             [
@@ -83,9 +84,9 @@ describe("csv", () => {
                 { a: "4", b: "", c: "6" },
             ]
         );
-    });
+    },
 
-    it("quotes in header", () => {
+    "quotes in header": () => {
         assert.deepStrictEqual(
             [
                 ...parseCSVFromString(
@@ -95,5 +96,5 @@ describe("csv", () => {
             ],
             [{ foo: "1", "bar\nbaz": "2", "fin,\n#ignore": "3" }]
         );
-    });
+    },
 });

@@ -1,4 +1,5 @@
 import { hasWASM } from "@thi.ng/checks";
+import { group } from "@thi.ng/testament";
 import * as assert from "assert";
 import {
     decodeSLEB128,
@@ -7,9 +8,9 @@ import {
     encodeULEB128,
 } from "../src";
 
-describe("leb128", () => {
-    if (hasWASM()) {
-        it("signed", () => {
+if (hasWASM()) {
+    group("leb128", {
+        signed: () => {
             let a;
             assert.deepStrictEqual(
                 [...(a = encodeSLEB128(Number.MAX_SAFE_INTEGER))],
@@ -29,9 +30,9 @@ describe("leb128", () => {
             ]);
             assert.deepStrictEqual(decodeSLEB128(encodeSLEB128(64)), [64, 2]);
             assert.deepStrictEqual(decodeSLEB128(encodeSLEB128(-64)), [-64, 1]);
-        });
+        },
 
-        it("unsigned", () => {
+        unsigned: () => {
             let a;
             assert.deepStrictEqual(
                 [...(a = encodeULEB128(Number.MAX_SAFE_INTEGER))],
@@ -47,8 +48,8 @@ describe("leb128", () => {
             );
             assert.deepStrictEqual(decodeULEB128(a), [0, 1]);
             assert.deepStrictEqual(decodeULEB128(encodeULEB128(127)), [127, 1]);
-        });
-    } else {
-        console.warn("WASM not available, skipping tests...");
-    }
-});
+        },
+    });
+} else {
+    console.warn("WASM not available, skipping tests...");
+}

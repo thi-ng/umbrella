@@ -1,4 +1,5 @@
 import * as assert from "assert";
+import { group } from "@thi.ng/testament";
 import {
     compareByKey,
     compareByKeys2,
@@ -6,8 +7,8 @@ import {
     compareByKeys4,
 } from "../src";
 
-describe("compare", () => {
-    it("compareByKey", () => {
+group("compare", {
+    compareByKey: () => {
         const src = [
             { a: 2, b: 2 },
             { a: 1, b: 1 },
@@ -22,8 +23,9 @@ describe("compare", () => {
         ];
         assert.deepStrictEqual([...src].sort(compareByKey("a")), res);
         assert.deepStrictEqual([...src].sort(compareByKey((x) => x.a)), res);
-    });
-    it("compareByKeys2", () => {
+    },
+
+    compareByKeys2: () => {
         const src = [
             { a: 2, b: 2 },
             { a: 1, b: 1 },
@@ -46,9 +48,9 @@ describe("compare", () => {
             ),
             res
         );
-    });
+    },
 
-    it("compareByKeys3", () => {
+    compareByKeys3: () => {
         const src = [
             { a: 1, b: 2, c: 3 },
             { a: 1, b: 2, c: 1 },
@@ -75,9 +77,9 @@ describe("compare", () => {
             ),
             res
         );
-    });
+    },
 
-    it("compareByKeys4", () => {
+    compareByKeys4: () => {
         const src = [
             { a: 1, b: 2, c: 3, d: 3 },
             { a: 1, b: 2, c: 3, d: 2 },
@@ -105,5 +107,5 @@ describe("compare", () => {
             ),
             res
         );
-    });
+    },
 });

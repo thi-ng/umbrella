@@ -1,3 +1,4 @@
+import { group } from "@thi.ng/testament";
 import { iterator } from "@thi.ng/transducers";
 import * as assert from "assert";
 import { parse } from "../src";
@@ -5,15 +6,15 @@ import { parse } from "../src";
 const check = (src: string, expected: any[]) =>
     assert.deepStrictEqual([...iterator(parse(), src)], expected);
 
-describe("parse", () => {
-    it("CRLF", () => {
+group("parse", {
+    CRLF: () => {
         check(`# hello\r\n\r\nworld\r\n\r\n`, [
             ["h1", {}, " hello "],
             ["p", {}, "world "],
         ]);
-    });
+    },
 
-    it("blockquote", () => {
+    blockquote: () => {
         check(`>a block **quote** of\n> two _lines_.\n\n`, [
             [
                 "blockquote",
@@ -27,9 +28,9 @@ describe("parse", () => {
                 ". ",
             ],
         ]);
-    });
+    },
 
-    it("code", () => {
+    code: () => {
         check("inline `const example = 'indeed!'` code\n\n", [
             [
                 "p",
@@ -39,74 +40,74 @@ describe("parse", () => {
                 " code ",
             ],
         ]);
-    });
+    },
 
-    it("code_block", () => {
+    code_block: () => {
         check("```js\nconst code = () => 'indeed!'\n```\n", [
             ["pre", { lang: "js" }, "const code = () => 'indeed!'"],
         ]);
-    });
+    },
 
-    it("em", () => {
+    em: () => {
         check(`some _emphasized_ text\n\n`, [
             ["p", {}, "some ", ["em", {}, "emphasized"], " text "],
         ]);
-    });
+    },
 
-    it("h1", () => {
+    h1: () => {
         check(`# Heading One\n\nbody\n\n`, [
             ["h1", {}, " Heading One "],
             ["p", {}, "body "],
         ]);
-    });
+    },
 
-    it("h2", () => {
+    h2: () => {
         check(`## Heading Two\n\nbody\n\n`, [
             ["h2", {}, " Heading Two "],
             ["p", {}, "body "],
         ]);
-    });
+    },
 
-    it("h3", () => {
+    h3: () => {
         check(`### Heading Three\n\nbody\n\n`, [
             ["h3", {}, " Heading Three "],
             ["p", {}, "body "],
         ]);
-    });
+    },
 
-    it("h4", () => {
+    h4: () => {
         check(`#### Heading Four\n\nbody\n\n`, [
             ["h4", {}, " Heading Four "],
             ["p", {}, "body "],
         ]);
-    });
+    },
 
-    it("h5", () => {
+    h5: () => {
         check(`##### Heading Five\n\nbody\n\n`, [
             ["h5", {}, " Heading Five "],
             ["p", {}, "body "],
         ]);
-    });
+    },
 
-    it("h6", () => {
+    h6: () => {
         check(`###### Heading Six\n\nbody\n\n`, [
             ["h6", {}, " Heading Six "],
             ["p", {}, "body "],
         ]);
-    });
+    },
 
-    it("h7", () => {
+    h7: () => {
         check(`####### Heading Seven\n\nbody\n\n`, [
             ["p", {}, " Heading Seven "],
             ["p", {}, "body "],
         ]);
-    });
+    },
 
-    it("hr", () => {
+    hr: () => {
         check(`---\n`, [["hr", {}]]);
-    });
+    },
 
-    it("img", () => {
+    img: () => {
         check(
             `![thi.ng](https://media.giphy.com/media/f6qMGmXuOdkwU/giphy.gif)\n\n`,
             [
@@ -116,8 +117,7 @@ describe("parse", () => {
                     [
                         "img",
                         {
-                            src:
-                                "https://media.giphy.com/media/f6qMGmXuOdkwU/giphy.gif",
+                            src: "https://media.giphy.com/media/f6qMGmXuOdkwU/giphy.gif",
                             alt: "thi.ng",
                         },
                     ],
@@ -125,15 +125,15 @@ describe("parse", () => {
                 ],
             ]
         );
-    });
+    },
 
-    it("li", () => {
+    li: () => {
         check(`- an item\n- another\n\n`, [
             ["ul", {}, ["li", {}, "an item "], ["li", {}, "another "]],
         ]);
-    });
+    },
 
-    it("link", () => {
+    link: () => {
         check(`come [to](http://thi.ng/umbrella) the light\n\n`, [
             [
                 "p",
@@ -143,21 +143,21 @@ describe("parse", () => {
                 " the light ",
             ],
         ]);
-    });
+    },
 
-    it("strike", () => {
+    strike: () => {
         check(`I ~~am amazing~~ messed up\n\n`, [
             ["p", {}, "I ", ["del", {}, "am amazing"], " messed up "],
         ]);
-    });
+    },
 
-    it("strong", () => {
+    strong: () => {
         check(`I **really** meant that\n\n`, [
             ["p", {}, "I ", ["strong", {}, "really"], " meant that "],
         ]);
-    });
+    },
 
-    it("table", () => {
+    table: () => {
         check(`| col1 | col2 |\n| --- | --- |\n| row1 | row2 |\n\n`, [
             [
                 "table",
@@ -170,5 +170,5 @@ describe("parse", () => {
                 ],
             ],
         ]);
-    });
+    },
 });

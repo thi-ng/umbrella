@@ -1,5 +1,15 @@
 import { DEFAULT, defmulti } from "@thi.ng/defmulti";
-import * as tx from "@thi.ng/transducers";
+import { group } from "@thi.ng/testament";
+import {
+    comp,
+    filter,
+    iterator,
+    last,
+    map,
+    mapcat,
+    matchFirst,
+    transduce,
+} from "@thi.ng/transducers";
 import * as assert from "assert";
 import { parse, ParseElement, Type } from "../src";
 
@@ -18,19 +28,19 @@ const svg = `
     </g>
 </svg>`;
 
-describe("sax", () => {
-    it("svg parse", () => {
+group("sax", {
+    "svg parse": () => {
         assert.deepStrictEqual(
             [
-                ...tx.iterator(
-                    tx.comp(
+                ...iterator(
+                    comp(
                         parse({ children: true }),
-                        tx.matchFirst(
+                        matchFirst(
                             (e) => e.type == Type.ELEM_END && e.tag == "g"
                         ),
-                        tx.mapcat((e) => e.children),
-                        tx.filter((e) => e.tag == "circle"),
-                        tx.map((e) => [
+                        mapcat((e) => e.children),
+                        filter((e) => e.tag == "circle"),
+                        map((e) => [
                             e.tag,
                             {
                                 ...e.attribs,
@@ -58,9 +68,9 @@ describe("sax", () => {
                 ],
             ]
         );
-    });
+    },
 
-    it("svg parse (defmulti)", () => {
+    "svg parse (defmulti)": () => {
         const numericAttribs = (e: ParseElement, ...ids: string[]) =>
             ids.reduce(
                 (acc, id) => ((acc[id] = parseFloat(e.attribs[id])), acc),
@@ -68,10 +78,10 @@ describe("sax", () => {
             );
 
         const parsedChildren = (e: ParseElement) =>
-            tx.iterator(
-                tx.comp(
-                    tx.map(parseElement),
-                    tx.filter((e: any) => !!e)
+            iterator(
+                comp(
+                    map(parseElement),
+                    filter((e: any) => !!e)
                 ),
                 e.children
             );
@@ -102,7 +112,7 @@ describe("sax", () => {
         parseElement.add(DEFAULT, () => undefined);
 
         assert.deepStrictEqual(
-            parseElement(<ParseElement>tx.transduce(parse(), tx.last(), svg)),
+            parseElement(<ParseElement>transduce(parse(), last(), svg)),
             [
                 "svg",
                 {
@@ -146,9 +156,9 @@ describe("sax", () => {
                 ],
             ]
         );
-    });
+    },
 
-    it("errors", () => {
+    errors: () => {
         assert.deepStrictEqual(
             [...parse("a")],
             [{ type: 7, body: "unexpected char: 'a' @ pos 1" }]
@@ -161,9 +171,9 @@ describe("sax", () => {
                 { type: 7, body: "unmatched tag: 'c' @ pos 7" },
             ]
         );
-    });
+    },
 
-    it("boolean attribs", () => {
+    "boolean attribs": () => {
         assert.deepStrictEqual(
             [...parse({ boolean: true }, `<foo a b="2" c></foo>`)],
             [
@@ -185,5 +195,5 @@ describe("sax", () => {
             ],
             "with slash"
         );
-    });
+    },
 });

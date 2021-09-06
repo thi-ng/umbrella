@@ -1,10 +1,10 @@
-import { Type } from "@thi.ng/api";
 import { equiv } from "@thi.ng/equiv";
+import { group } from "@thi.ng/testament";
 import * as assert from "assert";
 import { soa } from "../src";
 
-describe("soa", () => {
-    it("basic", () => {
+group("soa", {
+    basic: () => {
         const struct = soa(2, {
             a: { type: "u16" },
             b: { size: 2, default: [1, 2] },
@@ -12,13 +12,13 @@ describe("soa", () => {
         });
         assert.strictEqual(struct.length, 2);
         assert.deepStrictEqual(struct.keys(), ["a", "b", "c"]);
-        assert(struct.buffers.a instanceof Uint16Array);
+        assert.ok(struct.buffers.a instanceof Uint16Array);
         assert.strictEqual(struct.buffers.a.length, 2);
-        assert(struct.buffers.b instanceof Float32Array);
+        assert.ok(struct.buffers.b instanceof Float32Array);
         assert.strictEqual(struct.buffers.b.length, 4);
-        assert(struct.buffers.c instanceof Int8Array);
+        assert.ok(struct.buffers.c instanceof Int8Array);
         assert.strictEqual(struct.buffers.c.length, 4);
-        assert(
+        assert.ok(
             equiv(
                 [...struct.values()],
                 [
@@ -27,9 +27,9 @@ describe("soa", () => {
                 ]
             )
         );
-    });
+    },
 
-    it("copy", () => {
+    copy: () => {
         const src = soa(2, {
             a: { type: "u16" },
             b: { size: 2, default: [1, 2] },
@@ -41,7 +41,7 @@ describe("soa", () => {
             c: { type: "i8", size: 2 },
         });
         src.copyTo(dest, undefined, 2);
-        assert(
+        assert.ok(
             equiv(
                 [...dest.values()],
                 [
@@ -52,5 +52,5 @@ describe("soa", () => {
                 ]
             )
         );
-    });
+    },
 });

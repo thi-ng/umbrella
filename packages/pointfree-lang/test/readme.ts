@@ -1,5 +1,5 @@
 import type { StackContext } from "@thi.ng/pointfree";
-import * as pf from "../src";
+import { ensureStack, ffi, run, runWord } from "@thi.ng/pointfree-lang";
 
 const src = `
 ( helper words for forming 2D vectors )
@@ -22,7 +22,7 @@ const src = `
 const drawLine = (ctx: StackContext) => {
     const stack = ctx[0];
     // minimum stack depth guard
-    pf.ensureStack(stack, 2);
+    ensureStack(stack, 2);
     // pop top 2 values
     const [x2, y2] = stack.pop();
     const [x1, y1] = stack.pop();
@@ -41,7 +41,7 @@ const drawLine = (ctx: StackContext) => {
 };
 
 // create new environment and associate custom FFI words
-const env = pf.ffi(
+const env = ffi(
     {},
     {
         "gfx.line": drawLine,
@@ -50,7 +50,7 @@ const env = pf.ffi(
 
 // compile / execute source code w/ given env
 // the compiled words will be stored in given env
-pf.run(src, env);
+run(src, env);
 
 // (optional, but that's how we do it here for example purposes)
 // store some external state / config in env
@@ -61,7 +61,7 @@ env.width = 640;
 env.height = 480;
 
 // now actually call the `hairx` word with args pulled from env
-pf.run(`@mouseX @mouseY @width @height hairx`, env);
+run(`@mouseX @mouseY @width @height hairx`, env);
 
 // or call precompiled word/function directly w/ given initial stack
-pf.runWord("hairx", env, [100, 200, 640, 480]);
+runWord("hairx", env, [100, 200, 640, 480]);

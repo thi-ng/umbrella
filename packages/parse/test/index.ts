@@ -1,3 +1,4 @@
+import { group } from "@thi.ng/testament";
 import * as assert from "assert";
 import {
     defContext,
@@ -20,8 +21,8 @@ const check = (
     assert.strictEqual(ctx.state!.p, pos, `src: '${src}' pos: ${ctx.state!.p}`);
 };
 
-describe("parse", () => {
-    it("initial ctx", () => {
+group("parse", {
+    "initial ctx": () => {
         assert.deepStrictEqual(defContext("").state, {
             p: 0,
             l: 1,
@@ -34,9 +35,9 @@ describe("parse", () => {
             c: 1,
             done: false,
         });
-    });
+    },
 
-    it("zeroOrMore", () => {
+    zeroOrMore: () => {
         const ws = zeroOrMore(WS);
         const p1 = seq([DIGIT, ws, DIGIT]);
         const p2 = zeroOrMore(p1);
@@ -57,9 +58,9 @@ describe("parse", () => {
         check(p2, "1 1", true, 3);
         check(p2, "1 x", true, 0);
         check(p2, "1 122", true, 5);
-    });
+    },
 
-    it("oneOrMore", () => {
+    oneOrMore: () => {
         const ws = oneOrMore(WS);
         const p1 = seq([DIGIT, ws, DIGIT]);
         const p2 = oneOrMore(p1);
@@ -90,5 +91,5 @@ describe("parse", () => {
         check(p3, "1111", true, 4);
         check(p3, "111 1", true, 5);
         check(p3, "11x", true, 2);
-    });
+    },
 });

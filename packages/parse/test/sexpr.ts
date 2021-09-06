@@ -1,3 +1,4 @@
+import { group } from "@thi.ng/testament";
 import * as assert from "assert";
 import { defContext, defGrammar, ParseScope } from "../src";
 
@@ -22,14 +23,14 @@ const prune = (scope: ParseScope<any>) => {
     return scope;
 };
 
-describe("parse", () => {
-    it("s-expr", () => {
+group("parse", {
+    "s-expr": () => {
         const lang = defGrammar(grammar);
-        assert(!!lang);
+        assert.ok(!!lang);
         const ctx = defContext(
             `(def hello (x) (str "hello, " x))\n\n(print (hello -12.3))`
         );
-        assert(lang!.rules.prog(ctx));
+        assert.ok(lang!.rules.prog(ctx));
         const tree = prune(ctx.root);
         assert.deepStrictEqual(tree, {
             id: "root",
@@ -127,5 +128,5 @@ describe("parse", () => {
                 },
             ],
         });
-    });
+    },
 });

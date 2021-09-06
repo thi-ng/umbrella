@@ -1,8 +1,9 @@
+import { group } from "@thi.ng/testament";
 import * as assert from "assert";
 import { parseHeader, read } from "../src";
 
-describe("pixel-io-netpbm", () => {
-    it("parse header", () => {
+group("pixel-io-netpbm", {
+    "parse header": () => {
         assert.deepStrictEqual(parseHeader(Buffer.from("P4\n2\n3\n")), {
             comments: [],
             height: 3,
@@ -22,9 +23,9 @@ describe("pixel-io-netpbm", () => {
                 width: 2,
             }
         );
-    });
+    },
 
-    it("read 1bit", () => {
+    "read 1bit": () => {
         // prettier-ignore
         assert.deepStrictEqual(
             read(new Uint8Array([0x50, 0x34, 0x0a, 0x31, 0x32, 0x20, 0x32, 0x0a, 0xff, 0xff, 0xaa, 0x55])).pixels,
@@ -33,9 +34,9 @@ describe("pixel-io-netpbm", () => {
                 0x00, 0xff, 0x00, 0xff, 0x00, 0xff, 0x00, 0xff, 0xff, 0x00, 0xff, 0x00
             ])
         );
-    });
+    },
 
-    it("read 4bit", () => {
+    "read 4bit": () => {
         // prettier-ignore
         assert.deepStrictEqual(
             read(new Uint8Array([
@@ -48,9 +49,9 @@ describe("pixel-io-netpbm", () => {
                 0x88, 0x99, 0xaa, 0xbb, 0xcc, 0xdd, 0xee, 0xff
             ])
         );
-    });
+    },
 
-    it("read 8bit", () => {
+    "read 8bit": () => {
         // prettier-ignore
         assert.deepStrictEqual(
             read(new Uint8Array([
@@ -59,9 +60,9 @@ describe("pixel-io-netpbm", () => {
             ])).pixels,
             new Uint8Array([0x00, 0x44, 0x88, 0xff])
         );
-    });
+    },
 
-    it("read 16bit", () => {
+    "read 16bit": () => {
         // prettier-ignore
         assert.deepStrictEqual(
             read(new Uint8Array([
@@ -70,9 +71,9 @@ describe("pixel-io-netpbm", () => {
             ])).pixels,
             new Uint16Array([0xffff, 0x400f, 0xbfef, 0x3fcf])
         );
-    });
+    },
 
-    it("read 24bit", () => {
+    "read 24bit": () => {
         // prettier-ignore
         assert.deepStrictEqual(
             read(new Uint8Array([
@@ -82,5 +83,5 @@ describe("pixel-io-netpbm", () => {
             ])).pixels,
             new Uint32Array([0x112233, 0x445566, 0x778899, 0xaabbcc])
         );
-    });
+    },
 });

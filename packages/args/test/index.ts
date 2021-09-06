@@ -1,4 +1,5 @@
 import * as assert from "assert";
+import { group } from "@thi.ng/testament";
 import {
     coerceInt,
     flag,
@@ -19,8 +20,8 @@ import {
     Tuple,
 } from "../src";
 
-describe("args", () => {
-    it("basic / string", () => {
+group("args", {
+    "basic / string": () => {
         assert.deepStrictEqual(
             parse<{ a?: string }>({ a: string({}) }, ["--a", "a"], {
                 start: 0,
@@ -50,9 +51,9 @@ describe("args", () => {
                 showUsage: false,
             })
         );
-    });
+    },
 
-    it("flag", () => {
+    flag: () => {
         assert.deepStrictEqual(
             parse<{ a?: boolean }>({ a: flag({}) }, ["--a"], {
                 start: 0,
@@ -65,9 +66,9 @@ describe("args", () => {
             }),
             { result: { a: false }, index: 0, done: true, rest: [] }
         );
-    });
+    },
 
-    it("number", () => {
+    number: () => {
         assert.deepStrictEqual(
             parse<{ a?: number }>({ a: float({}) }, ["--a", "1.23"], {
                 start: 0,
@@ -92,9 +93,9 @@ describe("args", () => {
                 showUsage: false,
             })
         );
-    });
+    },
 
-    it("enum", () => {
+    enum: () => {
         type E = "abc" | "xyz";
         const opts: E[] = ["abc", "xyz"];
         assert.deepStrictEqual(
@@ -113,9 +114,9 @@ describe("args", () => {
                 showUsage: false,
             })
         );
-    });
+    },
 
-    it("kv", () => {
+    kv: () => {
         assert.deepStrictEqual(
             parse<{ a?: KVDict }>(
                 { a: kvPairs({}) },
@@ -135,7 +136,12 @@ describe("args", () => {
             parse<{ a?: KVDict }>({ a: kvPairs({}, ":") }, ["--a", "foo:bar"], {
                 start: 0,
             }),
-            { result: { a: { foo: "bar" } }, index: 2, done: true, rest: [] }
+            {
+                result: { a: { foo: "bar" } },
+                index: 2,
+                done: true,
+                rest: [],
+            }
         );
         assert.throws(() =>
             parse<{ a?: KVDict }>(
@@ -147,9 +153,9 @@ describe("args", () => {
                 }
             )
         );
-    });
+    },
 
-    it("kvMulti", () => {
+    kvMulti: () => {
         assert.deepStrictEqual(
             parse<{ a?: KVMultiDict }>(
                 { a: kvPairsMulti({}) },
@@ -174,9 +180,9 @@ describe("args", () => {
                 rest: [],
             }
         );
-    });
+    },
 
-    it("json", () => {
+    json: () => {
         assert.deepStrictEqual(
             parse<{ a: any }>(
                 { a: json<any, any>({}) },
@@ -187,9 +193,9 @@ describe("args", () => {
             ),
             { result: { a: { foo: [23] } }, index: 2, done: true, rest: [] }
         );
-    });
+    },
 
-    it("number[]", () => {
+    "number[]": () => {
         assert.deepStrictEqual(
             parse<{ a?: number[] }>({ a: ints({}) }, ["--a", "1", "--a", "2"], {
                 start: 0,
@@ -206,9 +212,9 @@ describe("args", () => {
             ),
             { result: { a: [1, 2, 3, 4] }, index: 4, done: true, rest: [] }
         );
-    });
+    },
 
-    it("tuple", () => {
+    tuple: () => {
         const res = {
             result: { a: new Tuple([1, 2, 3]) },
             index: 2,
@@ -235,9 +241,9 @@ describe("args", () => {
             ),
             res
         );
-    });
+    },
 
-    it("stop early", () => {
+    "stop early": () => {
         assert.deepStrictEqual(
             parse<{ a?: number }>({ a: int({}) }, ["--a", "1", "foo"], {
                 start: 0,
@@ -254,9 +260,9 @@ describe("args", () => {
             ),
             { result: { a: 1 }, index: 3, done: false, rest: ["ignore"] }
         );
-    });
+    },
 
-    it("long alias", () => {
+    "long alias": () => {
         assert.deepStrictEqual(
             parse<{ a?: string }>(
                 { a: string({ alias: "aaa" }) },
@@ -267,5 +273,5 @@ describe("args", () => {
             ),
             { result: { a: "a" }, index: 2, done: true, rest: [] }
         );
-    });
+    },
 });

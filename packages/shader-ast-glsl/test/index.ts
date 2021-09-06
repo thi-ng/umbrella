@@ -17,6 +17,7 @@ import {
     vec3,
     vec4,
 } from "@thi.ng/shader-ast";
+import { group } from "@thi.ng/testament";
 import * as assert from "assert";
 import { GLSLVersion, targetGLSL } from "../src";
 
@@ -37,8 +38,8 @@ const V2 = sym("vec2", "v");
 const V3 = sym("vec3", "v");
 const V4 = sym("vec4", "v");
 
-describe("shader-ast (glsl)", () => {
-    it("lit", () => {
+group("shader-ast (glsl)", {
+    lit: () => {
         assert.strictEqual(fs300(TRUE), "true");
         assert.strictEqual(fs300(FALSE), "false");
         assert.strictEqual(fs300(float(0)), "0.0");
@@ -50,15 +51,15 @@ describe("shader-ast (glsl)", () => {
         assert.strictEqual(fs300(uint(0)), "0");
         assert.strictEqual(fs300(uint(-1)), "4294967295");
         assert.strictEqual(fs300(uint(3.1415)), "3");
-    });
+    },
 
-    it("vec2", () => {
+    vec2: () => {
         assert.strictEqual(fs300(vec2()), "vec2(0.0)");
         assert.strictEqual(fs300(vec2(1)), "vec2(1.0)");
         assert.strictEqual(fs300(vec2(1, -2)), "vec2(1.0, -2.0)");
-    });
+    },
 
-    it("vec3", () => {
+    vec3: () => {
         assert.strictEqual(fs300(vec3()), "vec3(0.0)");
         assert.strictEqual(fs300(vec3(1)), "vec3(1.0)");
         assert.strictEqual(fs300(vec3(1, -2, 3.14)), "vec3(1.0, -2.0, 3.14)");
@@ -66,9 +67,9 @@ describe("shader-ast (glsl)", () => {
             fs300(vec3(vec2(1, -2), 3.14)),
             "vec3(vec2(1.0, -2.0), 3.14)"
         );
-    });
+    },
 
-    it("vec4", () => {
+    vec4: () => {
         assert.strictEqual(fs300(vec4()), "vec4(0.0)");
         assert.strictEqual(fs300(vec4(1)), "vec4(1.0)");
         assert.strictEqual(
@@ -83,9 +84,9 @@ describe("shader-ast (glsl)", () => {
             fs300(vec4(vec3(1, -2, 0), 3.14)),
             "vec4(vec3(1.0, -2.0, 0.0), 3.14)"
         );
-    });
+    },
 
-    it("swizzle", () => {
+    swizzle: () => {
         const check = (v: Term<Vec | IVec>, pat: string) => {
             const res = $(<any>v, <any>pat);
             assert.strictEqual(
@@ -107,9 +108,9 @@ describe("shader-ast (glsl)", () => {
         check(V4, "wz");
         check(V4, "wzy");
         check(V4, "wzyx");
-    });
+    },
 
-    it("inputs", () => {
+    inputs: () => {
         [
             [
                 input("vec3", "a"),
@@ -139,9 +140,9 @@ describe("shader-ast (glsl)", () => {
             assert.strictEqual(fs100(spec), f100, "fs100");
             assert.strictEqual(fs300(spec), f300, "fs300");
         });
-    });
+    },
 
-    it("uniforms", () => {
+    uniforms: () => {
         [
             [uniform("vec3", "a"), "uniform vec3 a;", "uniform vec3 a;"],
             [
@@ -161,9 +162,9 @@ describe("shader-ast (glsl)", () => {
             assert.strictEqual(fs100(spec), gl100, "fs100");
             assert.strictEqual(fs300(spec), gl300, "fs300");
         });
-    });
+    },
 
-    it("outputs", () => {
+    outputs: () => {
         [
             [
                 output("vec3", "a"),
@@ -190,5 +191,5 @@ describe("shader-ast (glsl)", () => {
             assert.throws(() => fs100(spec), "fs100");
             assert.strictEqual(fs300(spec), f300, "fs300");
         });
-    });
+    },
 });

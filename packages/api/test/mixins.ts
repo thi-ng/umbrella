@@ -1,8 +1,9 @@
 import * as assert from "assert";
+import { group } from "@thi.ng/testament";
 import { Event, EVENT_ALL, INotify, INotifyMixin, Listener } from "../src";
 
-describe("mixins", () => {
-    it("INotify", () => {
+group("mixins", {
+    INotify: () => {
         @INotifyMixin
         class Foo implements INotify {
             addListener(_: string, __: Listener, ___?: any): boolean {
@@ -34,5 +35,5 @@ describe("mixins", () => {
         assert.deepStrictEqual((<any>foo)._listeners, {});
         foo.notify({ id: "x", value: 3 });
         assert.deepStrictEqual(res, { x: 1, [EVENT_ALL]: 2 });
-    });
+    },
 });

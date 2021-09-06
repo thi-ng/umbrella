@@ -1,29 +1,30 @@
+import { group } from "@thi.ng/testament";
 import * as tx from "@thi.ng/transducers";
 import * as assert from "assert";
 import { resolve, ResolveFn } from "../src";
 
-describe("resolve-map", () => {
-    it("simple", () => {
+group("resolve-map", {
+    simple: () => {
         assert.deepStrictEqual(resolve({ a: 1, b: "@a" }), { a: 1, b: 1 });
-    });
+    },
 
-    it("linked refs", () => {
+    "linked refs": () => {
         assert.deepStrictEqual(resolve({ a: "@c", b: "@a", c: 1 }), {
             a: 1,
             b: 1,
             c: 1,
         });
-    });
+    },
 
-    it("array refs", () => {
+    "array refs": () => {
         assert.deepStrictEqual(resolve({ a: "@c/1", b: "@a", c: [1, 2] }), {
             a: 2,
             b: 2,
             c: [1, 2],
         });
-    });
+    },
 
-    it("abs vs rel refs", () => {
+    "abs vs rel refs": () => {
         assert.deepStrictEqual(
             resolve({
                 a1: { b: 1, c: "@b" },
@@ -32,9 +33,9 @@ describe("resolve-map", () => {
             }),
             { a1: { b: 1, c: 1 }, a2: { b: 2, c: 2 }, a3: { b: 3, c: 1 } }
         );
-    });
+    },
 
-    it("rel parent refs", () => {
+    "rel parent refs": () => {
         assert.deepStrictEqual(
             resolve({
                 a: { b: { c: "@../c/d", d: "@c", e: "@/c/d" }, c: { d: 1 } },
@@ -42,17 +43,17 @@ describe("resolve-map", () => {
             }),
             { a: { b: { c: 1, d: 1, e: 10 }, c: { d: 1 } }, c: { d: 10 } }
         );
-    });
+    },
 
-    it("cycles", () => {
+    cycles: () => {
         assert.throws(() => resolve({ a: "@a" }));
         assert.throws(() => resolve({ a: { b: "@b" } }));
         assert.throws(() => resolve({ a: { b: "@/a" } }));
         assert.throws(() => resolve({ a: { b: "@/a/b" } }));
         assert.throws(() => resolve({ a: "@b", b: "@a" }));
-    });
+    },
 
-    it("function refs", () => {
+    "function refs": () => {
         assert.deepStrictEqual(
             resolve({
                 a: (x: ResolveFn) => x("b/c") * 10,
@@ -70,9 +71,9 @@ describe("resolve-map", () => {
         assert.strictEqual(res.b.c, res.e);
         assert.strictEqual(res.b.d, res.e);
         assert.strictEqual(res.e(), 1);
-    });
+    },
 
-    it("function resolves only once", () => {
+    "function resolves only once": () => {
         let n = 0;
         assert.deepStrictEqual(
             resolve({
@@ -83,9 +84,9 @@ describe("resolve-map", () => {
             { a: 1, b: { c: 1, d: 1 }, e: 1 }
         );
         assert.strictEqual(n, 1);
-    });
+    },
 
-    it("deep resolve of yet unknown refs", () => {
+    "deep resolve of yet unknown refs": () => {
         assert.deepStrictEqual(
             resolve({
                 a: "@b/c/d",
@@ -94,9 +95,9 @@ describe("resolve-map", () => {
             }),
             { a: { e: 1 }, b: { c: { d: { e: 1 } } }, x: 1 }
         );
-    });
+    },
 
-    it("destructure", () => {
+    destructure: () => {
         const stats = {
             // sequence average
             mean: ({ src: a }: any) => tx.mean(a),
@@ -144,16 +145,16 @@ describe("resolve-map", () => {
                 src: [1, 6, 7, 2, 4, 11, -3]
             }
         );
-    });
+    },
 
-    it("destructures w/ local renames", () => {
+    "destructures w/ local renames": () => {
         assert.deepStrictEqual(resolve({ a: 1, b: ({ a: aa }: any) => aa }), {
             a: 1,
             b: 1,
         });
-    });
+    },
 
-    it("destructures w/ trailing comma", () => {
+    "destructures w/ trailing comma": () => {
         assert.deepStrictEqual(
             // since prettier is running over this file
             // build function dynamically to force trailing comma
@@ -179,9 +180,9 @@ describe("resolve-map", () => {
             { a: 1, b: 2, c: 3 },
             "comma & whitespaces & rename"
         );
-    });
+    },
 
-    it("custom prefix", () => {
+    "custom prefix": () => {
         assert.deepStrictEqual(
             resolve(
                 {
@@ -195,5 +196,5 @@ describe("resolve-map", () => {
             ),
             { a: { b: { c: 1, d: 1, e: 10 }, c: { d: 1 } }, c: { d: 10 } }
         );
-    });
+    },
 });

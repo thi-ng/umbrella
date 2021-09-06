@@ -1,18 +1,19 @@
+import { group } from "@thi.ng/testament";
 import * as assert from "assert";
 import { partitionSync, step } from "../src";
 
-describe("partitionSync", () => {
-    const src = [
-        ["a", 1],
-        ["a", 2],
-        ["d", 100],
-        ["b", 10],
-        ["b", 11],
-        ["c", 0],
-        ["a", 3],
-    ];
+const src = [
+    ["a", 1],
+    ["a", 2],
+    ["d", 100],
+    ["b", 10],
+    ["b", 11],
+    ["c", 0],
+    ["a", 3],
+];
 
-    it("default behavior", () => {
+group("partitionSync", {
+    "default behavior": () => {
         assert.deepStrictEqual(
             [...partitionSync(["a", "b"], { key: (x) => x[0] }, src)],
             [
@@ -20,9 +21,9 @@ describe("partitionSync", () => {
                 { b: ["b", 11], a: ["a", 3] },
             ]
         );
-    });
+    },
 
-    it("no reset", () => {
+    "no reset": () => {
         assert.deepStrictEqual(
             [
                 ...partitionSync(
@@ -40,9 +41,9 @@ describe("partitionSync", () => {
                 { a: ["a", 3], b: ["b", 11] },
             ]
         );
-    });
+    },
 
-    it("key removal (via set only)", () => {
+    "key removal (via set only)": () => {
         const keys = new Set(["a", "b", "t"]);
         const f = step(
             partitionSync(keys, {
@@ -66,9 +67,9 @@ describe("partitionSync", () => {
             t: ["t", 2],
             b: ["b", 2],
         });
-    });
+    },
 
-    it("key add/removal (hook)", () => {
+    "key add/removal (hook)": () => {
         const keys = new Set(["a", "b", "t"]);
         const xform = partitionSync(keys, {
             key: (x: any) => x[0],
@@ -97,9 +98,9 @@ describe("partitionSync", () => {
         assert.strictEqual(f(["a", 3]), undefined);
         xform.add("a");
         assert.deepStrictEqual(f(["a", 4]), { a: ["a", 4] });
-    });
+    },
 
-    it("back pressure", () => {
+    "back pressure": () => {
         assert.deepStrictEqual(
             [
                 ...partitionSync(
@@ -124,5 +125,5 @@ describe("partitionSync", () => {
             ),
             "pressure limit",
         ]);
-    });
+    },
 });

@@ -1,3 +1,4 @@
+import { group } from "@thi.ng/testament";
 import * as assert from "assert";
 import { table, tableKeys } from "../src";
 
@@ -8,8 +9,8 @@ const result1 = `| **ID** | **Actor** | **Comment** |
 |   3003 |  Charlie  |             |
 |     44 |   Dora    | (recipient) |`;
 
-describe("markdown-table", () => {
-    it("table", () => {
+group("markdown-table", {
+    table: () => {
         assert.strictEqual(
             table(
                 ["ID", "Actor", "Comment"],
@@ -23,9 +24,9 @@ describe("markdown-table", () => {
             ),
             result1
         );
-    });
+    },
 
-    it("tableKeys", () => {
+    tableKeys: () => {
         assert.strictEqual(
             tableKeys(
                 ["ID", "Actor", "Comment"],
@@ -40,5 +41,5 @@ describe("markdown-table", () => {
             ),
             result1
         );
-    });
+    },
 });

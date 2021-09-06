@@ -1,3 +1,4 @@
+import { group } from "@thi.ng/testament";
 import { range } from "@thi.ng/transducers";
 import * as assert from "assert";
 import {
@@ -8,8 +9,8 @@ import {
     uniformDomain,
 } from "../src";
 
-describe("viz", () => {
-    it("uniformDomain", () => {
+group("viz", {
+    uniformDomain: () => {
         assert.deepStrictEqual(uniformDomain(range(5))([100, 200]), [
             [100, 0],
             [125, 1],
@@ -17,9 +18,9 @@ describe("viz", () => {
             [175, 3],
             [200, 4],
         ]);
-    });
+    },
 
-    it("svgCartesianAxisX", () => {
+    svgCartesianAxisX: () => {
         const axis = cartesianAxisX(
             linearAxis({
                 domain: [0, 4],
@@ -70,9 +71,9 @@ describe("viz", () => {
                 ["text", {}, [250, 100], "4.00"],
             ],
         ]);
-    });
+    },
 
-    it("svgCartesianAxisY", () => {
+    svgCartesianAxisY: () => {
         const axis = cartesianAxisY(
             linearAxis({
                 domain: [0, 4],
@@ -126,9 +127,9 @@ describe("viz", () => {
                 ["text", {}, [85, 5], "4.00"],
             ],
         ]);
-    });
+    },
 
-    it("linechart", () => {
+    linechart: () => {
         // const vals = [
         //     [0, 2],
         //     [1, 0.5],
@@ -136,5 +137,5 @@ describe("viz", () => {
         //     [3, 0.75],
         //     [4, 0.25],
         // ];
-    });
+    },
 });

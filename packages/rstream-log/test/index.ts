@@ -1,5 +1,6 @@
 import { LogLevel } from "@thi.ng/api";
 import { ISubscriber, State } from "@thi.ng/rstream";
+import { group } from "@thi.ng/testament";
 import * as assert from "assert";
 import { formatString, Logger } from "../src";
 
@@ -17,8 +18,8 @@ const counter = () => {
     return () => (i++, String(i));
 };
 
-describe("rstream-log", () => {
-    it("all", () => {
+group("rstream-log", {
+    all: () => {
         const logger = new Logger("foo", LogLevel.FINE);
         const acc: string[] = [];
         const sub = logger
@@ -38,5 +39,5 @@ describe("rstream-log", () => {
         ]);
         sub.unsubscribe();
         assert.strictEqual(logger.getState(), State.ACTIVE);
-    });
+    },
 });

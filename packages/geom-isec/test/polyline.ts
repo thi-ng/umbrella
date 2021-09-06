@@ -1,4 +1,5 @@
 import { IntersectionType } from "@thi.ng/geom-api";
+import { group } from "@thi.ng/testament";
 import * as assert from "assert";
 import { intersectLinePolylineAll, intersectRayPolylineAll } from "../src";
 
@@ -9,8 +10,8 @@ const pts = [
     [0, 100],
 ];
 
-describe("polyline", () => {
-    it("ray (x)", () => {
+group("polyline", {
+    "ray (x)": () => {
         assert.deepStrictEqual(
             intersectRayPolylineAll([-50, 25], [1, 0], pts, false),
             {
@@ -28,9 +29,9 @@ describe("polyline", () => {
                 ],
             }
         );
-    });
+    },
 
-    it("ray (y)", () => {
+    "ray (y)": () => {
         assert.deepStrictEqual(
             intersectRayPolylineAll([50, -50], [0, 1], pts, false),
             {
@@ -51,9 +52,9 @@ describe("polyline", () => {
                 ],
             }
         );
-    });
+    },
 
-    it("line (x)", () => {
+    "line (x)": () => {
         assert.deepStrictEqual(
             intersectLinePolylineAll([-50, 25], [50, 25], pts, false),
             {
@@ -84,9 +85,9 @@ describe("polyline", () => {
                 ],
             }
         );
-    });
+    },
 
-    it("line (y)", () => {
+    "line (y)": () => {
         assert.deepStrictEqual(
             intersectLinePolylineAll([50, -25], [50, -20], pts, false),
             {
@@ -110,9 +111,9 @@ describe("polyline", () => {
                 ],
             }
         );
-    });
+    },
 
-    it("ray minD/maxD", () => {
+    "ray minD/maxD": () => {
         const I = Infinity;
         assert.deepStrictEqual(
             intersectRayPolylineAll([50, 25], [1, 0], pts, true, -I, I),
@@ -137,5 +138,5 @@ describe("polyline", () => {
                 type: IntersectionType.NONE,
             }
         );
-    });
+    },
 });

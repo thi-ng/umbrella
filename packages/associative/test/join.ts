@@ -1,8 +1,9 @@
+import { group } from "@thi.ng/testament";
 import * as assert from "assert";
 import { ArraySet, join, joinWith } from "../src";
 
-describe("join", () => {
-    it("simple", () => {
+group("join", {
+    simple: () => {
         const a = new ArraySet([{ a: 1 }, { a: 2 }]);
         const b = new ArraySet([{ b: 1 }, { b: 2 }]);
         assert.deepStrictEqual(
@@ -14,9 +15,9 @@ describe("join", () => {
                 { a: 2, b: 2 },
             ])
         );
-    });
+    },
 
-    it("simple isec", () => {
+    "simple isec": () => {
         const a = new ArraySet([
             { id: "a", type: 1 },
             { id: "b", type: 1 },
@@ -35,9 +36,9 @@ describe("join", () => {
                 { id: "c", type: 2, label: "bar" },
             ])
         );
-    });
+    },
 
-    it("joinWith", () => {
+    joinWith: () => {
         const a = new ArraySet([
             { id: "a", type: 1 },
             { id: "b", type: 1 },
@@ -56,5 +57,5 @@ describe("join", () => {
                 { id: "c", type: 2, xyz: 2, label: "bar" },
             ])
         );
-    });
+    },
 });

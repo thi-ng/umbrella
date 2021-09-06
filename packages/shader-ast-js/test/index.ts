@@ -1,10 +1,11 @@
 import { bvec2, defn, greaterThan, ret, vec2 } from "@thi.ng/shader-ast";
+import { group } from "@thi.ng/testament";
 import { eqDelta2 } from "@thi.ng/vectors";
 import * as assert from "assert";
 import { JS_DEFAULT_ENV, targetJS } from "../src";
 
-describe("shader-ast-js", () => {
-    it("vec2", () => {
+group("shader-ast-js", {
+    vec2: () => {
         const V2 = JS_DEFAULT_ENV.vec2;
         assert.deepStrictEqual(V2.abs([-1, 2]), [1, 2]);
         assert.deepStrictEqual(V2.acos([0, 1]), [Math.PI / 2, 0]);
@@ -16,15 +17,15 @@ describe("shader-ast-js", () => {
         assert.deepStrictEqual(V2.atannn([0, 1], [1, 0]), [0, Math.PI / 2]);
         assert.deepStrictEqual(V2.ceil([-1.8, 1.2]), [-1, 2]);
         assert.deepStrictEqual(V2.cos([0, Math.PI]), [1, -1]);
-        assert.deepStrictEqual(V2.clamp([-1.8, 1.2], [-1, -1], [1, 1]), [
-            -1,
-            1,
-        ]);
+        assert.deepStrictEqual(
+            V2.clamp([-1.8, 1.2], [-1, -1], [1, 1]),
+            [-1, 1]
+        );
         assert.deepStrictEqual(V2.dec([-1, 1]), [-2, 0]);
-        assert.deepStrictEqual(V2.degrees([Math.PI / 2, -Math.PI / 4]), [
-            90,
-            -45,
-        ]);
+        assert.deepStrictEqual(
+            V2.degrees([Math.PI / 2, -Math.PI / 4]),
+            [90, -45]
+        );
         assert.deepStrictEqual(V2.distance([10, 20], [11, 19]), Math.SQRT2);
         assert.deepStrictEqual(V2.div([1, 2], [10, -10]), [0.1, -0.2], "d1");
         assert.deepStrictEqual(V2.divnv(10, [2, 4]), [5, 2.5], "d2");
@@ -67,9 +68,9 @@ describe("shader-ast-js", () => {
         //assert. deepStrictEqual(V2.subnv(), []);
         //assert. deepStrictEqual(V2.subvn(), []);
         //assert. deepStrictEqual(V2.tan(), []);
-    });
+    },
 
-    it("vec2 coerce", () => {
+    "vec2 coerce": () => {
         const emit = targetJS();
         assert.strictEqual(emit(vec2()), "env.vec2n(0)");
         assert.strictEqual(emit(vec2(bvec2())), "env.vec2b(env.bvec2n(false))");
@@ -81,5 +82,5 @@ describe("shader-ast-js", () => {
         ).foo;
         assert.deepStrictEqual(foo([0.4, 0.6]), [0, 1]);
         assert.deepStrictEqual(foo([0.6, 0.4]), [1, 0]);
-    });
+    },
 });

@@ -1,8 +1,9 @@
+import { group } from "@thi.ng/testament";
 import * as assert from "assert";
 import * as ti from "../src";
 
-describe("iterators", function () {
-    it("butLast", () => {
+group("iterators", {
+    butLast: () => {
         assert.deepStrictEqual([...ti.butLast([])], [], "empty");
         assert.deepStrictEqual([...ti.butLast([1])], [], "1");
         assert.deepStrictEqual([...ti.butLast([1, 2])], [1], "2");
@@ -17,8 +18,9 @@ describe("iterators", function () {
             [0, 1, 2, 3, 4, 5, 6, 7, 8],
             "range"
         );
-    });
-    it("cached", () => {
+    },
+
+    cached: () => {
         let cache = ti.cached(ti.range(3));
         let a = cache();
         let b = cache();
@@ -37,8 +39,9 @@ describe("iterators", function () {
             undefined,
             "a.next empty"
         );
-    });
-    it("consume", () => {
+    },
+
+    consume: () => {
         let i;
         assert.deepStrictEqual(
             [...((i = ti.range(3)), ti.consume(i), i)],
@@ -65,8 +68,9 @@ describe("iterators", function () {
             [0, 1, 2],
             "consume -2"
         );
-    });
-    it("concat", () => {
+    },
+
+    concat: () => {
         assert.deepStrictEqual([...ti.concat([])], [], "empty");
         assert.deepStrictEqual(
             [...ti.concat<any>([], "", ti.range(0))],
@@ -83,14 +87,16 @@ describe("iterators", function () {
             ["a", "b", "c", 1, 2, 3],
             "skip null"
         );
-    });
-    it("constantly", () => {
+    },
+
+    constantly: () => {
         const f = ti.constantly(1);
         assert.strictEqual(f(), 1, "no arg");
         assert.strictEqual(f(2), 1, "1 arg");
         assert.strictEqual(f(2, 3), 1, "2 args");
-    });
-    it("cycle", () => {
+    },
+
+    cycle: () => {
         assert.deepStrictEqual([...ti.cycle([])], [], "empty");
         assert.deepStrictEqual(
             [...ti.take(7, ti.cycle(ti.range(3)))],
@@ -102,8 +108,9 @@ describe("iterators", function () {
             ["a", "b", "c", "a", "b", "c", "a"],
             "cycle string"
         );
-    });
-    it("dedupe", () => {
+    },
+
+    dedupe: () => {
         assert.deepStrictEqual([...ti.dedupe([])], [], "empty");
         assert.deepStrictEqual(
             [...ti.dedupe([1, 2, 2, 3, 4, 4, 4, 3])],
@@ -115,8 +122,9 @@ describe("iterators", function () {
             ["a", "b", "c", "a", "b"],
             "string"
         );
-    });
-    it("dedupeWith", () => {
+    },
+
+    dedupeWith: () => {
         let coll = [
             { a: 1 },
             { a: 1, b: 2 },
@@ -131,14 +139,16 @@ describe("iterators", function () {
             [{ a: 1 }, { a: 2, b: 2 }, { a: 3 }],
             "array[obj]"
         );
-    });
-    it("dense", () => {
+    },
+
+    dense: () => {
         assert.deepStrictEqual(
             [...ti.dense([, 1, , 2, false, null, undefined, 0, 3])],
             [1, 2, false, 0, 3]
         );
-    });
-    it("drop", () => {
+    },
+
+    drop: () => {
         assert.deepStrictEqual([...ti.drop(100, [])], [], "empty");
         assert.deepStrictEqual([...ti.drop(4, [1, 2, 3])], [], "drop(4)");
         assert.deepStrictEqual([...ti.drop(3, [1, 2, 3])], [], "drop(3)");
@@ -150,8 +160,9 @@ describe("iterators", function () {
             [3, 4],
             "drop(3, range)"
         );
-    });
-    it("dropNth", () => {
+    },
+
+    dropNth: () => {
         assert.deepStrictEqual([...ti.dropNth(2, [])], [], "empty");
         assert.deepStrictEqual(
             [...ti.dropNth(1, ti.range(6))],
@@ -173,8 +184,9 @@ describe("iterators", function () {
             [],
             "dropNth(-1)"
         );
-    });
-    it("dropWhile", () => {
+    },
+
+    dropWhile: () => {
         assert.deepStrictEqual(
             [...ti.dropWhile((_) => false, [])],
             [],
@@ -195,15 +207,17 @@ describe("iterators", function () {
             [0, 1, 2, 3, 4, 5],
             "none"
         );
-    });
-    it("ensureIterable", () => {
+    },
+
+    ensureIterable: () => {
         assert.doesNotThrow(() => ti.ensureIterable([]), "array");
         assert.throws(() => ti.ensureIterable({}), "obj");
-    });
-    it("every", () => {
+    },
+
+    every: () => {
         let nums = ti.iterator([2, 4, 6, 8, 10]) as IterableIterator<number>;
-        assert(!ti.every((_) => true, []), "empty");
-        assert(
+        assert.ok(!ti.every((_) => true, []), "empty");
+        assert.ok(
             ti.every((x) => x % 2 === 0, nums),
             "even"
         );
@@ -213,22 +227,24 @@ describe("iterators", function () {
             "nums done"
         );
         nums = ti.iterator([2, 3, 4]) as IterableIterator<number>;
-        assert(!ti.every((x) => x % 2 === 0, nums), "not even");
+        assert.ok(!ti.every((x) => x % 2 === 0, nums), "not even");
         assert.deepStrictEqual(
             nums.next(),
             { value: 4, done: false },
             "next = 4"
         );
-    });
-    it("filter", () => {
+    },
+
+    filter: () => {
         assert.deepStrictEqual([...ti.filter((_) => true, [])], [], "empty");
         assert.deepStrictEqual(
             [...ti.filter((x) => x % 3 === 0, ti.range(10))],
             [0, 3, 6, 9],
             "mult3"
         );
-    });
-    it("flatten", () => {
+    },
+
+    flatten: () => {
         assert.deepStrictEqual([...ti.flatten([])], [], "empty");
         assert.deepStrictEqual(
             [...ti.flatten([null, [null, [undefined]]])],
@@ -250,8 +266,9 @@ describe("iterators", function () {
             [{ a: 23, b: 42, c: [1, 2, 3] }],
             "no obj"
         );
-    });
-    it("flattenWith", () => {
+    },
+
+    flattenWith: () => {
         let tx = (x: any) =>
             typeof x == "string"
                 ? ti.map((x) => x.charCodeAt(0), x)
@@ -288,8 +305,9 @@ describe("iterators", function () {
             ],
             "chars"
         );
-    });
-    it("fnil", () => {
+    },
+
+    fnil: () => {
         let f = ti.fnil(
             (x) => x + 1,
             () => 0
@@ -315,8 +333,9 @@ describe("iterators", function () {
         assert.strictEqual(f(1, 2), 103);
         assert.strictEqual(f(1, 2, 3), 6);
         assert.throws(() => ti.fnil(() => {}));
-    });
-    it("fork", () => {
+    },
+
+    fork: () => {
         const f = ti.fork([1, 2, 3, 4], 3);
         const fa = f();
         const fb = f();
@@ -327,12 +346,13 @@ describe("iterators", function () {
         assert.strictEqual(fa.next().value, 3);
         assert.strictEqual(fa.next().value, 4);
         assert.strictEqual(fb.next().value, 2);
-        assert(fa.next().done);
+        assert.ok(fa.next().done);
         assert.strictEqual(fb.next().value, 3);
         assert.strictEqual(fb.next().value, 4);
-        assert(fb.next().done);
-    });
-    it("frequencies", () => {
+        assert.ok(fb.next().done);
+    },
+
+    frequencies: () => {
         assert.deepStrictEqual(
             [
                 ...ti.frequencies([
@@ -376,21 +396,24 @@ describe("iterators", function () {
             ],
             "key fn"
         );
-    });
-    it("groupBy", () => {
+    },
+
+    groupBy: () => {
         assert.deepStrictEqual(
             ti.groupBy((x) => x & ~1, [1, 2, 3, 4, 5, 9, 3]),
             { "0": [1], "2": [2, 3, 3], "4": [4, 5], "8": [9] },
             "mult 2"
         );
-    });
-    it("identity", () => {
+    },
+
+    identity: () => {
         const x = { a: 1 };
         assert.strictEqual(ti.identity(x), x);
         assert.strictEqual(ti.identity(null), null);
         assert.strictEqual(ti.identity(undefined), undefined);
-    });
-    it("indexed", () => {
+    },
+
+    indexed: () => {
         assert.deepStrictEqual(
             [...ti.indexed([10, 20, 30])],
             [
@@ -399,8 +422,9 @@ describe("iterators", function () {
                 [2, 30],
             ]
         );
-    });
-    it("interleave", () => {
+    },
+
+    interleave: () => {
         assert.throws(() => ti.interleave().next(), "no inputs");
         assert.deepStrictEqual(
             [
@@ -413,15 +437,17 @@ describe("iterators", function () {
             [0, 100, 200, 1, 101, 201, 2, 102, 202, 3, 103, 203, 4, 104, 204],
             "ranges"
         );
-    });
-    it("interpose", () => {
+    },
+
+    interpose: () => {
         assert.deepStrictEqual(
             [...ti.interpose("/", ti.range(5))],
             [0, "/", 1, "/", 2, "/", 3, "/", 4],
             "slash"
         );
-    });
-    it("iterate", () => {
+    },
+
+    iterate: () => {
         assert.deepStrictEqual(
             [
                 ...ti.take(
@@ -432,19 +458,21 @@ describe("iterators", function () {
             [1, 2, 4, 8, 16, 32, 64, 128, 256, 512],
             "pow2"
         );
-    });
-    it("maybeIterator", () => {
-        assert(ti.maybeIterator("a") !== undefined, "str");
-        assert(ti.maybeIterator([]) !== undefined, "array");
-        assert(ti.maybeIterator(ti.range()) !== undefined, "generator");
+    },
+
+    maybeIterator: () => {
+        assert.ok(ti.maybeIterator("a") !== undefined, "str");
+        assert.ok(ti.maybeIterator([]) !== undefined, "array");
+        assert.ok(ti.maybeIterator(ti.range()) !== undefined, "generator");
         assert.strictEqual(ti.maybeIterator(undefined), undefined, "undefined");
         assert.strictEqual(ti.maybeIterator(null), undefined, "null");
         assert.strictEqual(ti.maybeIterator(0), undefined, "0");
         assert.strictEqual(ti.maybeIterator({}), undefined, "obj");
-    });
-    it("maybeObjectIterator", () => {
-        assert(ti.maybeObjectIterator({}) != undefined, "obj");
-        assert(ti.maybeObjectIterator([]) != undefined, "array");
+    },
+
+    maybeObjectIterator: () => {
+        assert.ok(ti.maybeObjectIterator({}) != undefined, "obj");
+        assert.ok(ti.maybeObjectIterator([]) != undefined, "array");
         assert.strictEqual(
             ti.maybeObjectIterator(undefined),
             undefined,
@@ -458,8 +486,9 @@ describe("iterators", function () {
             undefined,
             "generator"
         );
-    });
-    it("juxt", () => {
+    },
+
+    juxt: () => {
         let kernel = ti.juxt<number>(
             (x) => x - 1,
             (x) => x,
@@ -484,13 +513,15 @@ describe("iterators", function () {
             ],
             "map kernel"
         );
-    });
-    it("last", () => {
+    },
+
+    last: () => {
         assert.strictEqual(ti.last([]), undefined, "empty");
         assert.strictEqual(ti.last(ti.range(10)), 9, "range(10)");
         assert.strictEqual(ti.last(ti.take(10, ti.range())), 9, "range()");
-    });
-    it("map", () => {
+    },
+
+    map: () => {
         assert.deepStrictEqual([...ti.map((x) => x * 10)], [], "no input");
         assert.deepStrictEqual(
             [...ti.map((x) => x * 10, ti.range(3))],
@@ -515,8 +546,9 @@ describe("iterators", function () {
             ],
             "multi range"
         );
-    });
-    it("mapcat", () => {
+    },
+
+    mapcat: () => {
         assert.deepStrictEqual(
             [...ti.mapcat((x) => ti.repeat(x, 3), "hello")],
             [
@@ -560,8 +592,9 @@ describe("iterators", function () {
             [1, 2, 2, 3, 3, 3, 4, 4, 4, 4],
             "skip null"
         );
-    });
-    it("mapIndexed", () => {
+    },
+
+    mapIndexed: () => {
         assert.deepStrictEqual(
             [...ti.mapIndexed((i, a, b) => [i, a, b], "hello", "there")],
             [
@@ -573,8 +606,9 @@ describe("iterators", function () {
             ],
             "strings"
         );
-    });
-    it("objectIterator", () => {
+    },
+
+    objectIterator: () => {
         assert.deepStrictEqual(
             [...ti.objectIterator({ a: 23, b: 42, c: [1, 2, 3] })],
             [
@@ -584,8 +618,9 @@ describe("iterators", function () {
             ],
             "mixed"
         );
-    });
-    it("partition", () => {
+    },
+
+    partition: () => {
         assert.throws(() => ti.partition(0, 0, ti.range(3)).next(), "bad size");
         assert.throws(() => ti.partition(1, 0, ti.range(3)).next(), "bad step");
         assert.deepStrictEqual(
@@ -642,21 +677,24 @@ describe("iterators", function () {
             [[0, 1, 2], [5, 6, 7], [10]],
             "3,5 all"
         );
-    });
-    it("partitionBy", () => {
+    },
+
+    partitionBy: () => {
         assert.deepStrictEqual(
             [...ti.partitionBy((x) => (x / 5) | 0, ti.range(11))],
             [[0, 1, 2, 3, 4], [5, 6, 7, 8, 9], [10]],
             "mult5"
         );
-    });
-    it("randomSample", () => {
+    },
+
+    randomSample: () => {
         ti.run((_) => {
             let l = [...ti.randomSample(0.5, ti.range(100))].length;
-            assert(l >= 30 && l <= 70, `50% (${l})`);
+            assert.ok(l >= 30 && l <= 70, `50% (${l})`);
         }, ti.range(100));
-    });
-    it("range", () => {
+    },
+
+    range: () => {
         assert.deepStrictEqual(
             [...ti.take(5, ti.range())],
             [0, 1, 2, 3, 4],
@@ -693,8 +731,9 @@ describe("iterators", function () {
             [],
             "range(from,to,step) rev"
         );
-    });
-    it("reduce", () => {
+    },
+
+    reduce: () => {
         assert.strictEqual(
             ti.reduce((acc, x) => acc + x, -1, []),
             -1,
@@ -716,8 +755,9 @@ describe("iterators", function () {
             15,
             "sum reduced"
         );
-    });
-    it("reductions", () => {
+    },
+
+    reductions: () => {
         assert.deepStrictEqual(
             [...ti.reductions((acc, x) => acc + x, -1, [])],
             [-1],
@@ -741,8 +781,9 @@ describe("iterators", function () {
             [0, 1, 3, 6, 10, 15],
             "sum reduced"
         );
-    });
-    it("repeat", () => {
+    },
+
+    repeat: () => {
         assert.deepStrictEqual([...ti.repeat(1, 3)], [1, 1, 1], "repeat(1,3)");
         assert.deepStrictEqual(
             [...ti.take(3, ti.repeat(1))],
@@ -751,8 +792,9 @@ describe("iterators", function () {
         );
         assert.deepStrictEqual([...ti.repeat(1, 0)], [], "repeat(1,0)");
         assert.deepStrictEqual([...ti.repeat(1, -1)], [], "repeat(1,-1)");
-    });
-    it("repeatedly", () => {
+    },
+
+    repeatedly: () => {
         let f = () => 1;
         assert.deepStrictEqual(
             [...ti.repeatedly(f, 3)],
@@ -770,8 +812,9 @@ describe("iterators", function () {
             [],
             "repeatedly(f,-1)"
         );
-    });
-    it("reverse", () => {
+    },
+
+    reverse: () => {
         assert.deepStrictEqual([...ti.reverse([])], []);
         assert.deepStrictEqual([...ti.reverse(ti.range(0))], []);
         assert.deepStrictEqual([...ti.reverse("")], []);
@@ -779,8 +822,9 @@ describe("iterators", function () {
         assert.deepStrictEqual([...ti.reverse([0])], [0]);
         assert.deepStrictEqual([...ti.reverse(ti.range(3))], [2, 1, 0]);
         assert.deepStrictEqual([...ti.reverse("abc")], ["c", "b", "a"]);
-    });
-    it("some", () => {
+    },
+
+    some: () => {
         let nums = ti.iterator([1, 2, 3]) as IterableIterator<number>;
         assert.strictEqual(
             ti.some((x) => x % 2 === 0, nums),
@@ -799,8 +843,9 @@ describe("iterators", function () {
             { value: undefined, done: true },
             "no rest"
         );
-    });
-    it("take", () => {
+    },
+
+    take: () => {
         assert.deepStrictEqual(
             [...ti.take(3, [1, 2, 3, 4])],
             [1, 2, 3],
@@ -809,16 +854,18 @@ describe("iterators", function () {
         assert.deepStrictEqual([...ti.take(3, [])], [], "take(3) excess");
         assert.deepStrictEqual([...ti.take(0, [1])], [], "take(0)");
         assert.deepStrictEqual([...ti.take(-1, [1])], [], "take(-1)");
-    });
-    it("takeNth", () => {
+    },
+
+    takeNth: () => {
         assert.deepStrictEqual([...ti.takeNth(3, [])], [], "empty");
         assert.deepStrictEqual(
             [...ti.takeNth(3, ti.range(10))],
             [0, 3, 6, 9],
             "3rd"
         );
-    });
-    it("takeWhile", () => {
+    },
+
+    takeWhile: () => {
         let input = ti.range(10);
         assert.deepStrictEqual([...ti.takeWhile((_) => true, [])], [], "empty");
         assert.deepStrictEqual(
@@ -827,8 +874,9 @@ describe("iterators", function () {
             "x<5"
         );
         assert.deepStrictEqual([...input], [6, 7, 8, 9], "rest");
-    });
-    it("takeLast", () => {
+    },
+
+    takeLast: () => {
         assert.deepStrictEqual([...ti.takeLast(5, [])], [], "empty");
         assert.deepStrictEqual(
             [...ti.takeLast(5, ti.range(1000))],
@@ -840,8 +888,9 @@ describe("iterators", function () {
             [0, 1, 2],
             "excess"
         );
-    });
-    it("walk", () => {
+    },
+
+    walk: () => {
         let walk = (post: any) => {
             let res: any[] = [];
             ti.walk(
@@ -888,8 +937,9 @@ describe("iterators", function () {
                 ["3", [4]],
             ],
         ]);
-    });
-    it("walkIterator", () => {
+    },
+
+    walkIterator: () => {
         assert.deepStrictEqual(
             [
                 ...ti.walkIterator(
@@ -971,8 +1021,9 @@ describe("iterators", function () {
                 ],
             ]
         );
-    });
-    it("zip", () => {
+    },
+
+    zip: () => {
         let langs = [
             { id: "js", name: "JavaScript" },
             { id: "clj", name: "Clojure" },
@@ -1002,5 +1053,5 @@ describe("iterators", function () {
             },
             "obj"
         );
-    });
+    },
 });

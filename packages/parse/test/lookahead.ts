@@ -1,3 +1,4 @@
+import { group } from "@thi.ng/testament";
 import * as assert from "assert";
 import {
     defContext,
@@ -9,10 +10,10 @@ import {
     stringD,
 } from "../src";
 
-describe("lookahead", () => {
-    it("oneof (no capture)", () => {
+group("lookahead", {
+    "oneof (no capture)": () => {
         const ctx = defContext("ababaaabbabba");
-        assert(join(lookahead(oneOf("ab"), stringD("abba")))(ctx));
+        assert.ok(join(lookahead(oneOf("ab"), stringD("abba")))(ctx));
         assert.strictEqual(ctx.result, "ababaa");
         assert.deepStrictEqual(ctx.state, {
             p: 6,
@@ -21,13 +22,13 @@ describe("lookahead", () => {
             done: false,
             last: "a",
         });
-        assert(string("abba")(ctx));
-        assert(!ctx.done);
-    });
+        assert.ok(string("abba")(ctx));
+        assert.ok(!ctx.done);
+    },
 
-    it("oneof (capture)", () => {
+    "oneof (capture)": () => {
         const ctx = defContext("ababaaabbabba");
-        assert(join(lookahead(oneOf("ab"), string("abba"), true))(ctx));
+        assert.ok(join(lookahead(oneOf("ab"), string("abba"), true))(ctx));
         assert.strictEqual(ctx.result, "ababaaabba");
         assert.deepStrictEqual(ctx.state, {
             p: 10,
@@ -36,13 +37,13 @@ describe("lookahead", () => {
             done: false,
             last: "a",
         });
-        assert(string("bba")(ctx));
-        assert(ctx.done);
-    });
+        assert.ok(string("bba")(ctx));
+        assert.ok(ctx.done);
+    },
 
-    it("string (no capture)", () => {
+    "string (no capture)": () => {
         const ctx = defContext("abababbabba");
-        assert(join(lookahead(string("ab"), stringD("abba")))(ctx));
+        assert.ok(join(lookahead(string("ab"), stringD("abba")))(ctx));
         assert.strictEqual(ctx.result, "abab");
         assert.deepStrictEqual(ctx.state, {
             p: 4,
@@ -51,13 +52,13 @@ describe("lookahead", () => {
             done: false,
             last: "b",
         });
-        assert(string("abba")(ctx));
-        assert(!ctx.done);
-    });
+        assert.ok(string("abba")(ctx));
+        assert.ok(!ctx.done);
+    },
 
-    it("string (capture)", () => {
+    "string (capture)": () => {
         const ctx = defContext("abababbabba");
-        assert(join(lookahead(string("ab"), string("abba"), true))(ctx));
+        assert.ok(join(lookahead(string("ab"), string("abba"), true))(ctx));
         assert.strictEqual(ctx.result, "abababba");
         assert.deepStrictEqual(ctx.state, {
             p: 8,
@@ -66,15 +67,15 @@ describe("lookahead", () => {
             done: false,
             last: "a",
         });
-        assert(string("bba")(ctx));
-        assert(ctx.done);
-    });
+        assert.ok(string("bba")(ctx));
+        assert.ok(ctx.done);
+    },
 
-    it("grammar (no capture)", () => {
+    "grammar (no capture)": () => {
         const ctx = defContext("ababaaabbabba");
         const lang = defGrammar(`foo: [ab](?-"abba"!) => join ;`);
-        assert(lang);
-        assert(lang.rules.foo(ctx));
+        assert.ok(lang);
+        assert.ok(lang.rules.foo(ctx));
         assert.strictEqual(ctx.result, "ababaa");
         assert.deepStrictEqual(ctx.state, {
             p: 6,
@@ -83,15 +84,15 @@ describe("lookahead", () => {
             done: false,
             last: "a",
         });
-        assert(string("abba")(ctx));
-        assert(!ctx.done);
-    });
+        assert.ok(string("abba")(ctx));
+        assert.ok(!ctx.done);
+    },
 
-    it("grammar (capture)", () => {
+    "grammar (capture)": () => {
         const ctx = defContext("ababaaabbabba");
         const lang = defGrammar(`foo: [ab](?+"abba") => join ;`);
-        assert(lang);
-        assert(lang.rules.foo(ctx));
+        assert.ok(lang);
+        assert.ok(lang.rules.foo(ctx));
         assert.strictEqual(ctx.result, "ababaaabba");
         assert.deepStrictEqual(ctx.state, {
             p: 10,
@@ -100,7 +101,7 @@ describe("lookahead", () => {
             done: false,
             last: "a",
         });
-        assert(string("bba")(ctx));
-        assert(ctx.done);
-    });
+        assert.ok(string("bba")(ctx));
+        assert.ok(ctx.done);
+    },
 });

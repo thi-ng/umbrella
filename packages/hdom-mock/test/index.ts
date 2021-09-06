@@ -1,8 +1,9 @@
+import { group } from "@thi.ng/testament";
 import * as assert from "assert";
 import { HDOMNode, MockHDOM } from "../src";
 
-describe("hdom-mock", () => {
-    it("node", () => {
+group("hdom-mock", {
+    node: () => {
         const a = new HDOMNode("div");
         const impl = new MockHDOM(a);
         impl.createTextElement(a, "foo");
@@ -19,9 +20,9 @@ describe("hdom-mock", () => {
         a.textContent = "foobar";
         assert.strictEqual(impl.getChild(a, 0), undefined);
         assert.deepStrictEqual(a.toHiccup(), ["div", {}, "foobar"]);
-    });
+    },
 
-    it("basic diff", () => {
+    "basic diff": () => {
         const opts = { ctx: { button: { class: "bt" } } };
         const impl = new MockHDOM(new HDOMNode("root"));
 
@@ -77,5 +78,5 @@ describe("hdom-mock", () => {
                 ["div", { key: "0-0" }, ["span", { key: "0-0-0" }, "extra"]],
             ],
         ]);
-    });
+    },
 });

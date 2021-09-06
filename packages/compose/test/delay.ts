@@ -1,14 +1,14 @@
+import { group } from "@thi.ng/testament";
+import * as assert from "assert";
 import { delay } from "../src";
 
-import * as assert from "assert";
-
-describe("delay", () => {
-    it("only executes once", () => {
+group("delay", {
+    "only executes once": () => {
         let num = 0;
         const a = delay(() => ++num);
-        assert(!a.isRealized());
+        assert.ok(!a.isRealized());
         assert.strictEqual(a.deref(), 1);
         assert.strictEqual(a.deref(), 1);
-        assert(a.isRealized());
-    });
+        assert.ok(a.isRealized());
+    },
 });

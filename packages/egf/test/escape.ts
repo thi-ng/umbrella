@@ -1,32 +1,33 @@
 import * as assert from "assert";
+import { group } from "@thi.ng/testament";
 import { ParseContext, parseString } from "../src";
 
 const $ctx: Partial<ParseContext> = { opts: { prefixes: true } };
 
-describe("escape", () => {
-    it("node id", () => {
+group("escape", {
+    "node id": () => {
         assert.deepStrictEqual(parseString(`\\u0046oo`).nodes, {
             Foo: { $id: "Foo" },
         });
-    });
+    },
 
-    it("node id (qfn)", () => {
+    "node id (qfn)": () => {
         assert.deepStrictEqual(
             parseString(`@prefix foo: FOO\n\\u0066oo:\\u0062ar`, $ctx).nodes,
             {
                 FOObar: { $id: "FOObar" },
             }
         );
-    });
+    },
 
-    it("prefix decl", () => {
+    "prefix decl": () => {
         assert.strictEqual(
             parseString(`@prefix \\u0066oo: \\u0046OO`, $ctx).prefixes.foo,
             "FOO"
         );
-    });
+    },
 
-    it("prop name (qfn)", () => {
+    "prop name (qfn)": () => {
         assert.deepStrictEqual(
             parseString(`@prefix a: foo\nx\n\t\\u0061:\\u0062ar baz`, $ctx)
                 .nodes,
@@ -34,39 +35,39 @@ describe("escape", () => {
                 x: { $id: "x", foobar: "baz" },
             }
         );
-    });
+    },
 
-    it("tag id", () => {
+    "tag id": () => {
         assert.deepStrictEqual(parseString(`a\n\tfoo #\\u006eum 42`).nodes, {
             a: { $id: "a", foo: 42 },
         });
-    });
+    },
 
-    it("string value", () => {
+    "string value": () => {
         assert.deepStrictEqual(parseString(`a\n\tfoo \\u0062ar`).nodes, {
             a: { $id: "a", foo: "bar" },
         });
-    });
+    },
 
-    it("string multi-line value", () => {
+    "string multi-line value": () => {
         assert.deepStrictEqual(
             parseString(`a\n\tfoo >>>abc\\ndef\nghi<<<`).nodes,
             {
                 a: { $id: "a", foo: "abc\ndef\nghi" },
             }
         );
-    });
+    },
 
-    it("#list multi-line value", () => {
+    "#list multi-line value": () => {
         assert.deepStrictEqual(
             parseString(`a\n\tfoo #list >>>\nabc\\ndef\nghi<<<`).nodes,
             {
                 a: { $id: "a", foo: ["abc\ndef", "ghi"] },
             }
         );
-    });
+    },
 
-    it("ref", () => {
+    ref: () => {
         assert.deepStrictEqual(
             parseString(`a\n\tfoo -> \\u0062`, { opts: { resolve: true } })
                 .nodes,
@@ -75,9 +76,9 @@ describe("escape", () => {
                 b: { $id: "b" },
             }
         );
-    });
+    },
 
-    it("ref <>", () => {
+    "ref <>": () => {
         assert.deepStrictEqual(
             parseString(`a\n\tfoo -> <\\u0062:b>`, {
                 opts: { prefixes: true, resolve: true },
@@ -87,5 +88,5 @@ describe("escape", () => {
                 "b:b": { $id: "b:b" },
             }
         );
-    });
+    },
 });

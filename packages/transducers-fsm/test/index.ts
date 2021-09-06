@@ -1,9 +1,10 @@
-import * as tx from "@thi.ng/transducers";
+import { group } from "@thi.ng/testament";
+import { comp, iterator, map, range, takeNth } from "@thi.ng/transducers";
 import * as assert from "assert";
 import { fsm } from "../src";
 
-describe("transducers-fsm", () => {
-    it("readme example", () => {
+group("transducers-fsm", {
+    "readme example": () => {
         const testFSM = fsm<any, number, number>({
             states: {
                 skip: (state, x) => {
@@ -35,24 +36,24 @@ describe("transducers-fsm", () => {
             init: () => ({ state: "skip", count: 0 }),
         });
         assert.deepStrictEqual(
-            [...tx.iterator(testFSM, tx.range(100))],
+            [...iterator(testFSM, range(100))],
             [5, 6, 7, 8, 9, 15, 16, 17, 18, 19]
         );
         assert.deepStrictEqual(
-            [...tx.iterator(tx.comp(tx.takeNth(2), testFSM), tx.range(100))],
+            [...iterator(comp(takeNth(2), testFSM), range(100))],
             [10, 12, 14, 16, 18]
         );
         assert.deepStrictEqual(
             [
-                ...tx.iterator(
-                    tx.comp(
+                ...iterator(
+                    comp(
                         testFSM,
-                        tx.map((x: number) => x * 10)
+                        map((x: number) => x * 10)
                     ),
-                    tx.range(100)
+                    range(100)
                 ),
             ],
             [50, 60, 70, 80, 90, 150, 160, 170, 180, 190]
         );
-    });
+    },
 });

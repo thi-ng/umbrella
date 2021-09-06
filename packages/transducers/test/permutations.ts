@@ -1,9 +1,10 @@
 import { swizzle } from "@thi.ng/arrays";
+import { group } from "@thi.ng/testament";
 import * as assert from "assert";
 import { iterator, map, permutations, permutationsN, range } from "../src";
 
-describe("permutations", () => {
-    it("empty", () => {
+group("permutations", {
+    empty: () => {
         assert.deepStrictEqual([...permutations([])], []);
         assert.deepStrictEqual([...permutations("")], []);
         assert.deepStrictEqual([...permutations(range(0))], []);
@@ -14,8 +15,9 @@ describe("permutations", () => {
         assert.deepStrictEqual([...permutations("", "a")], []);
         assert.deepStrictEqual([...permutations("", "ab")], []);
         assert.deepStrictEqual([...permutations.apply(null, [])], []);
-    });
-    it("single", () => {
+    },
+
+    single: () => {
         assert.deepStrictEqual(
             [...permutations("a", "-", range(1))],
             [["a", "-", 0]]
@@ -36,8 +38,9 @@ describe("permutations", () => {
                 ["a", "+", 1],
             ]
         );
-    });
-    it("transformed", () => {
+    },
+
+    transformed: () => {
         assert.deepStrictEqual(
             [
                 ...iterator(
@@ -47,8 +50,9 @@ describe("permutations", () => {
             ],
             ["a-0", "a-1", "b-0", "b-1"]
         );
-    });
-    it("swizzle", () => {
+    },
+
+    swizzle: () => {
         assert.deepStrictEqual(
             [
                 ...iterator(
@@ -58,17 +62,19 @@ describe("permutations", () => {
             ],
             [...permutationsN(3)]
         );
-    });
+    },
 });
 
-describe("permutationsN", () => {
-    it("empty", () => {
+group("permutationsN", {
+    empty: () => {
         assert.deepStrictEqual([...permutationsN(0)], []);
-    });
-    it("one", () => {
+    },
+
+    one: () => {
         assert.deepStrictEqual([...permutationsN(1)], [[0]]);
-    });
-    it("two", () => {
+    },
+
+    two: () => {
         assert.deepStrictEqual(
             [...permutationsN(2)],
             [
@@ -78,8 +84,9 @@ describe("permutationsN", () => {
                 [1, 1],
             ]
         );
-    });
-    it("two/three", () => {
+    },
+
+    "two/three": () => {
         assert.deepStrictEqual(
             [...permutationsN(2, 3)],
             [
@@ -94,8 +101,9 @@ describe("permutationsN", () => {
                 [2, 2],
             ]
         );
-    });
-    it("with offsets", () => {
+    },
+
+    "with offsets": () => {
         assert.deepStrictEqual(
             [...permutationsN(2, 2, [100, 1000])],
             [
@@ -105,8 +113,9 @@ describe("permutationsN", () => {
                 [101, 1001],
             ]
         );
-    });
-    it("insufficient offsets", () => {
+    },
+
+    "insufficient offsets": () => {
         assert.throws(() => permutationsN(2, 2, [0]));
-    });
+    },
 });

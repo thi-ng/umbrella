@@ -1,38 +1,39 @@
 import * as assert from "assert";
+import { group } from "@thi.ng/testament";
 import { ArrayDiff, diffArray } from "../src";
 
-describe("array", function () {
-    const state = <ArrayDiff<number>>{
-        distance: 0,
-        adds: {},
-        dels: {},
-        const: {},
-        linear: [],
-    };
+const state = <ArrayDiff<number>>{
+    distance: 0,
+    adds: {},
+    dels: {},
+    const: {},
+    linear: [],
+};
 
-    it("simple (null,null)", () => {
+group("array", {
+    "simple (null,null)": () => {
         assert.deepStrictEqual(diffArray(null, null), state);
-    });
+    },
 
-    it("simple (null,arr)", () => {
+    "simple (null,arr)": () => {
         assert.deepStrictEqual(diffArray(null, [1, 2, 3]), <ArrayDiff<number>>{
             ...state,
             distance: 3,
             adds: { 0: 1, 1: 2, 2: 3 },
             linear: [1, 0, 1, 1, 1, 2, 1, 2, 3],
         });
-    });
+    },
 
-    it("simple (arr, null)", () => {
+    "simple (arr, null)": () => {
         assert.deepStrictEqual(diffArray([1, 2, 3], null), <ArrayDiff<number>>{
             ...state,
             distance: 3,
             dels: { 0: 1, 1: 2, 2: 3 },
             linear: [-1, 0, 1, -1, 1, 2, -1, 2, 3],
         });
-    });
+    },
 
-    it("diff last", () => {
+    "diff last": () => {
         assert.deepStrictEqual(diffArray([1, 2, 3], [1, 2, 4]), <
             ArrayDiff<number>
         >{
@@ -42,9 +43,9 @@ describe("array", function () {
             const: { 0: 1, 1: 2 },
             linear: [0, 0, 1, 0, 1, 2, -1, 2, 3, 1, 2, 4],
         });
-    });
+    },
 
-    it("diff 2nd last", () => {
+    "diff 2nd last": () => {
         assert.deepStrictEqual(diffArray([1, 2, 3, 4], [1, 2, 5, 4]), <
             ArrayDiff<number>
         >{
@@ -54,9 +55,9 @@ describe("array", function () {
             const: { 0: 1, 1: 2, 3: 4 },
             linear: [0, 0, 1, 0, 1, 2, -1, 2, 3, 1, 2, 5, 0, 3, 4],
         });
-    });
+    },
 
-    it("diff insert 2nd last", () => {
+    "diff insert 2nd last": () => {
         assert.deepStrictEqual(diffArray([1, 2, 3, 4], [1, 2, 3, 5, 4]), <
             ArrayDiff<number>
         >{
@@ -66,9 +67,9 @@ describe("array", function () {
             const: { 0: 1, 1: 2, 2: 3, 3: 4 },
             linear: [0, 0, 1, 0, 1, 2, 0, 2, 3, 1, 3, 5, 0, 3, 4],
         });
-    });
+    },
 
-    it("diff insert 2nd last (changes only)", () => {
+    "diff insert 2nd last (changes only)": () => {
         assert.deepStrictEqual(
             diffArray([1, 2, 3, 4], [1, 2, 3, 5, 4], "minimal"),
             <ArrayDiff<number>>{
@@ -79,5 +80,5 @@ describe("array", function () {
                 linear: [1, 3, 5],
             }
         );
-    });
+    },
 });

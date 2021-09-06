@@ -1,17 +1,18 @@
+import { group } from "@thi.ng/testament";
 import * as assert from "assert";
 import { dateTime } from "../src";
 
-describe("datetime", () => {
-    it("leap years", () => {
+group("datetime", {
+    "leap years": () => {
         assert.deepStrictEqual(
             [1896, 1900, 1904, 1970, 1996, 1999, 2000, 2001, 2020, 2100].map(
                 (y) => dateTime(new Date(y, 0, 2)).isLeapYear()
             ),
             [true, false, true, false, true, false, true, false, true, false]
         );
-    });
+    },
 
-    it("day in year", () => {
+    "day in year": () => {
         (<[string, number][]>[
             ["2020-01-01", 1],
             ["2021-01-01", 1],
@@ -29,9 +30,9 @@ describe("datetime", () => {
                 date
             )
         );
-    });
+    },
 
-    it("week number", () => {
+    "week number": () => {
         (<[string, number][]>[
             // start on mon & leap
             ["2024-01-01", 1],
@@ -67,5 +68,5 @@ describe("datetime", () => {
                 date
             )
         );
-    });
+    },
 });

@@ -1,10 +1,11 @@
 import { rdf, schema } from "@thi.ng/prefixes";
+import { group } from "@thi.ng/testament";
 import * as assert from "assert";
 import { writeFileSync } from "fs";
 import { toEGF } from "../src";
 
-describe("serialize", () => {
-    it("basics", () => {
+group("serialize", {
+    basics: () => {
         const res = toEGF(
             [
                 {
@@ -42,5 +43,5 @@ thi:umbrella
 \tschema:programmingLanguage TypeScript
 `
         );
-    });
+    },
 });

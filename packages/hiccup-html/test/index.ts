@@ -1,9 +1,10 @@
 import type { IDeref } from "@thi.ng/api";
+import { group } from "@thi.ng/testament";
 import * as assert from "assert";
 import { AttribVal, defElement } from "../src";
 
-describe("hiccup-html", () => {
-    it("defElement", () => {
+group("hiccup-html", {
+    defElement: () => {
         type Foo = Partial<{ b: number; c: number }>;
         const el = defElement<Foo>("a");
         const el2 = defElement<Foo>("a", { b: 1 });
@@ -48,9 +49,9 @@ describe("hiccup-html", () => {
             { b: 1 },
             "body",
         ]);
-    });
+    },
 
-    it("compile errors", () => {
+    "compile errors": () => {
         class D<T> implements IDeref<T | undefined> {
             constructor(private x?: T) {}
             deref() {
@@ -64,5 +65,5 @@ describe("hiccup-html", () => {
         // compile errors:
         // el({ b: new D("x") }); // wrong attrib type
         // el(null, "body"); // no body allowed
-    });
+    },
 });

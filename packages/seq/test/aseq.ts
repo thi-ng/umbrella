@@ -1,8 +1,9 @@
+import { group } from "@thi.ng/testament";
 import * as assert from "assert";
 import { aseq } from "../src";
 
-describe("aseq", () => {
-    it("basics", () => {
+group("aseq", {
+    basics: () => {
         assert.strictEqual(aseq(null), undefined);
         assert.strictEqual(aseq([]), undefined);
         assert.strictEqual(aseq([1])!.first(), 1);
@@ -14,9 +15,9 @@ describe("aseq", () => {
         assert.strictEqual(aseq([1, 2])!.next()!.next(), undefined);
         // prettier-ignore
         assert.strictEqual(aseq([1, 2, 3])!.next()!.next()!.first(), 3);
-    });
+    },
 
-    it("range", () => {
+    range: () => {
         assert.strictEqual(aseq([0, 1, 2, 3], 2, 2), undefined);
         assert.strictEqual(aseq([0, 1, 2, 3], 3, 2), undefined);
         assert.strictEqual(aseq([0, 1, 2, 3], 2, 4)!.first(), 2);
@@ -24,5 +25,5 @@ describe("aseq", () => {
         assert.strictEqual(aseq([0, 1, 2, 3], 2, 4)!.next()!.first(), 3);
         // prettier-ignore
         assert.strictEqual(aseq([0, 1, 2, 3], 2, 4)!.next()!.next(), undefined);
-    });
+    },
 });

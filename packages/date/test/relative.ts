@@ -1,10 +1,11 @@
+import { group } from "@thi.ng/testament";
 import * as assert from "assert";
 import { DateTime, dateTime, parseRelative } from "../src";
 
 const checkDate = (offset: string, base: DateTime, expected: number) => {
     const d = parseRelative(offset, base);
-    assert(!!d, `couldn't parse ${offset}`);
-    assert(
+    assert.ok(!!d, `couldn't parse ${offset}`);
+    assert.ok(
         d.equiv(expected),
         `no match (past): ${d.toISOString()} => ${dateTime(
             expected
@@ -29,8 +30,8 @@ const check = (
     }
 };
 
-describe("relative", () => {
-    it("parse", () => {
+group("relative", {
+    parse: () => {
         const base = Date.UTC(2021, 0, 1);
         check(
             ["ms", "milli", "millis", "millisecond", "milliseconds"],
@@ -80,9 +81,9 @@ describe("relative", () => {
             Date.UTC(2016, 0, 1),
             Date.UTC(2026, 0, 1)
         );
-    });
+    },
 
-    it("parse (weekday)", () => {
+    "parse (weekday)": () => {
         const base = dateTime(Date.UTC(2021, 0, 1));
         checkDate("sat", base, Date.UTC(2021, 0, 2));
         checkDate("sunday", base, Date.UTC(2021, 0, 3));
@@ -91,5 +92,5 @@ describe("relative", () => {
         checkDate("today", base, Date.UTC(2021, 0, 1));
         checkDate("tomorrow", base, Date.UTC(2021, 0, 2));
         checkDate("yesterday", base, Date.UTC(2020, 11, 31));
-    });
+    },
 });
