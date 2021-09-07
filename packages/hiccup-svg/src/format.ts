@@ -26,7 +26,7 @@ export const fpoints = (pts: Vec2Like[], sep = " ") =>
 export const numericAttribs = (attribs: any, ...ids: string[]) => {
     let v: any;
     for (let id of ids) {
-        (v = attribs[id]) != null && (attribs[id] = ff(v));
+        typeof (v = attribs[id]) === "number" && (attribs[id] = ff(v));
     }
     return attribs;
 };
