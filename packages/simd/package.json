@@ -24,7 +24,7 @@
     "author": "Karsten Schmidt <k+npm@thi.ng>",
     "license": "Apache-2.0",
     "scripts": {
-        "build": "yarn clean && yarn build:binary && tsc --declaration",
+        "build": "yarn clean && tsc --declaration",
         "build:binary": "tools/build-binary.sh",
         "build:check": "tsc --isolatedModules --noEmit",
         "test": "node --experimental-specifier-resolution=node --experimental-wasm-simd --loader ts-node/esm test/index.ts",
