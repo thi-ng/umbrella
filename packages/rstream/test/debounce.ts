@@ -1,6 +1,6 @@
 import { group } from "@thi.ng/testament";
 import * as assert from "assert";
-import { debounce, fromIterable, trace } from "../src";
+import { debounce, fromIterable } from "../src";
 import { TIMEOUT } from "./config";
 
 group(
@@ -10,7 +10,6 @@ group(
             const acc: number[] = [];
             fromIterable([1, 2, 3], { delay: TIMEOUT })
                 .subscribe(debounce(TIMEOUT * 1.5))
-                .subscribe(trace("debounced"))
                 .subscribe({
                     next(x) {
                         acc.push(x);
@@ -37,5 +36,5 @@ group(
             }, TIMEOUT * 5);
         },
     },
-    { maxTries: 3, timeOut: TIMEOUT * 6, stop: false }
+    { maxTries: 3, timeOut: TIMEOUT * 6 }
 );
