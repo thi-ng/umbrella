@@ -8,28 +8,28 @@ class Logger {
     }
 
     fine(...args: any[]): void {
-        this.level <= 0 && this.log("FINE", args);
+        this.level <= 0 && this.log("FINE  ", args);
     }
 
     debug(...args: any[]): void {
-        this.level <= 1 && this.log("DEBUG", args);
+        this.level <= 1 && this.log("DEBUG ", args);
     }
 
     info(...args: any[]): void {
-        this.level <= 2 && this.log("INFO", args);
+        this.level <= 2 && this.log("INFO  ", args);
     }
 
     warn(...args: any[]): void {
-        this.level <= 3 && this.log("WARN", args);
+        this.level <= 3 && this.log("WARN  ", args);
     }
 
     severe(...args: any[]): void {
         this.level <= 4 && this.log("SEVERE", args);
     }
 
-    protected log(_: string, args: any[]) {
-        // console.log(`[${level}] ${this.id}:`, ...args);
-        console.log(...args);
+    protected log(level: string, args: any[]) {
+        console.log(`[${level}]`, ...args);
+        // console.log(...args);
     }
 }
 

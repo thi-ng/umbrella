@@ -28,16 +28,18 @@ export const now: Fn0<Timestamp> =
         : () => Date.now() * 1e6;
 
 /**
- * Returns the difference in milliseconds between 2 given
+ * Returns the (rounded) difference in milliseconds between two given
  * {@link Timestamp}s.
  *
  * @remarks
- * Copied from thi.ng/bench to avoid circular deps
+ * Based on / copied from thi.ng/bench to avoid circular deps
  *
  * @param a
  * @param b
  */
 export const timeDiff: Fn2<Timestamp, Timestamp, number> = (a, b) =>
-    (typeof BigInt !== "undefined"
-        ? Number(<bigint>b - <bigint>a)
-        : <number>b - <number>a) * 1e-6;
+    Math.round(
+        (typeof BigInt !== "undefined"
+            ? Number(<bigint>b - <bigint>a)
+            : <number>b - <number>a) * 1e-6
+    );

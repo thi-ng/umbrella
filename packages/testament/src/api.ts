@@ -4,14 +4,14 @@ export type Fn2<A, B, C> = (a: A, b: B) => C;
 
 export type VoidFn = Fn0<void>;
 
-export type Task = Fn0<Promise<any>>;
+export type Task = Fn0<Promise<TestResult | TestResult[]>>;
 
 export type Timestamp = number | bigint;
 
 export interface TestOpts {
     logger: ILogger;
     timeOut: number;
-    maxTries: number;
+    maxTrials: number;
 }
 
 export interface GroupOpts extends TestOpts {
@@ -27,8 +27,10 @@ export interface TestCtx {
 }
 
 export interface TestResult {
+    group?: string;
     title: string;
-    time?: number;
+    time: number;
+    trials: number;
     error?: Error;
 }
 
@@ -42,4 +44,9 @@ export interface ILogger {
     severe(...args: any[]): void;
 }
 
-export let TIMEOUT = 1000;
+export let GLOBAL_OPTS: Partial<GroupOpts> = {
+    stop: true,
+    exit: true,
+    maxTrials: 1,
+    timeOut: 1000,
+};

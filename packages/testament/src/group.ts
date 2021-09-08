@@ -1,4 +1,4 @@
-import type { Fn, GroupOpts, TestCtx, TestResult } from "./api";
+import { Fn, GLOBAL_OPTS, GroupOpts, TestCtx, TestResult } from "./api";
 import { LOGGER } from "./logger";
 import { registerTask } from "./task";
 import { test } from "./test";
@@ -40,7 +40,7 @@ export const group = (
 ) => {
     const { logger, stop, beforeEach, afterEach } = {
         logger: LOGGER,
-        stop: true,
+        ...GLOBAL_OPTS,
         ...opts,
     };
     registerTask(async () => {
@@ -51,13 +51,14 @@ export const group = (
             logger.info("----------");
             for (let k in tests) {
                 beforeEach && beforeEach();
-                const res = await test(k, tests[k], opts);
-                results.push(res);
+                const res = await test(k, tests[k], opts)();
+                results.push({ group: title, ...res });
                 afterEach && afterEach();
                 if (res.error && stop) {
                     throw res.error;
                 }
             }
+            logger.info();
             return results;
         } catch (e) {
             if (opts.exit !== false) {

@@ -5,4 +5,4 @@ if [ "$(echo $DIR | grep '.nvm')" ]; then
 fi 
 
 # /usr/bin/env node --experimental-specifier-resolution=node --loader ts-node/esm -e 'import("@thi.ng/testament/cli")' -- $DIR $@
-/usr/bin/env node --experimental-specifier-resolution=node --loader ts-node/esm ../../node_modules/@thi.ng/testament/cli.js $DIR $@
+/usr/bin/env node --experimental-specifier-resolution=node --loader ts-node/esm ../../node_modules/@thi.ng/testament/cli.js $@
