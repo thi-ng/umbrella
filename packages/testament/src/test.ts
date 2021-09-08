@@ -63,7 +63,7 @@ export const test = async (
             });
             await p;
             const taken = ~~timeDiff(t0!, t1!);
-            logger.info(`✔︎ ${title}${taken > 0 ? ` (${taken} ms)` : ""}`);
+            logger.info(`✔︎ ${title}${taken > 10 ? ` [${taken} ms]` : ""}`);
             break;
         } catch (e) {
             clear();
@@ -71,7 +71,7 @@ export const test = async (
                 logger.warn(`✘ ${title}`);
                 return { title, error: <Error>e };
             } else {
-                logger.debug("retrying...");
+                logger.debug(`retrying '${title}'...`);
             }
         }
     }

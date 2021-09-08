@@ -4,6 +4,8 @@ export type Fn2<A, B, C> = (a: A, b: B) => C;
 
 export type VoidFn = Fn0<void>;
 
+export type Task = Fn0<Promise<any>>;
+
 export type Timestamp = number | bigint;
 
 export interface TestOpts {

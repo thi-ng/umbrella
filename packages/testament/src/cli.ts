@@ -1,26 +1,12 @@
 import { readdirSync, statSync } from "fs";
 import { resolve } from "path";
+import { LOGGER } from "./logger";
+import { executeTasks } from "./task";
 import { isString } from "./utils";
 
 // interface TestamentArgs {
 //     csv: boolean;
 // }
-
-(async () => {
-    const dirs = process.argv.slice(2);
-
-    // const cwd = process.argv[1];
-
-    for (let dir of dirs) {
-        for (let src of files(resolve(dir), ".ts")) {
-            try {
-                await import(src);
-            } catch (e) {
-                console.log(`error executing ${src}:`, (<Error>e).message);
-            }
-        }
-    }
-})();
 
 /**
  * Recursively reads given directory and yields sequence of file names matching
@@ -50,3 +36,24 @@ export function* files(
         }
     }
 }
+
+(async () => {
+    const dirs = process.argv.slice(2);
+
+    // const cwd = process.argv[1];
+
+    const imports: Promise<any>[] = [];
+    for (let dir of dirs) {
+        dir = resolve(dir);
+        if (statSync(dir).isDirectory()) {
+            for (let src of files(dir, ".ts")) {
+                imports.push(import(src));
+            }
+        } else {
+            imports.push(import(dir));
+        }
+    }
+    LOGGER.info(`importing ${imports.length} tests...`);
+    await Promise.all(imports);
+    await executeTasks();
+})();
