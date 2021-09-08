@@ -27,7 +27,7 @@
         "build": "yarn clean && tsc --declaration",
         "build:check": "tsc --isolatedModules --noEmit",
         "test": "testament test",
-        "clean": "rimraf *.js *.d.ts *.map .nyc_output build coverage doc lib api geo shaders textures",
+        "clean": "rimraf *.js *.d.ts *.map doc api geo shaders textures",
         "doc:readme": "ts-node -P ../../tools/tsconfig.json ../../tools/src/readme.ts",
         "doc": "typedoc --excludePrivate --out doc --theme ../../tools/doc/typedoc-theme src/index.ts",
         "doc:ae": "mkdir -p .ae/doc .ae/temp && node_modules/.bin/api-extractor run --local --verbose",
