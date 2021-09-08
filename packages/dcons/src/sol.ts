@@ -49,7 +49,7 @@ export class SOL<T> extends DCons<T> {
         return this;
     }
 
-    setTail(value: T) {
+    setTail(value: T): SOL<T> {
         if (this.tail) {
             this.tail.value = value;
             this._reorder(this, this.tail);
