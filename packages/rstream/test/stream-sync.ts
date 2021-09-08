@@ -248,7 +248,7 @@ group(
         },
     },
     {
-        maxTries: 3,
+        maxTrials: 3,
         timeOut: TIMEOUT * 6,
     }
 );

@@ -104,5 +104,5 @@ group(
             });
         },
     },
-    { maxTries: 3 }
+    { maxTrials: 3 }
 );

@@ -35,6 +35,9 @@ group(
                 done();
             }, TIMEOUT * 5);
         },
+        foo: () => {
+            throw new Error("Illegal number: 23");
+        },
     },
-    { maxTries: 3, timeOut: TIMEOUT * 6 }
+    { maxTrials: 3, timeOut: TIMEOUT * 6 }
 );
