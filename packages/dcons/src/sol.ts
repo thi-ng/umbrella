@@ -55,7 +55,7 @@ export class SOL<T> extends DCons<T> {
             this._reorder(this, this.tail);
             return this;
         }
-        return this.cons(value);
+        return <SOL<T>>this.cons(value);
     }
 
     find(value: T) {
