@@ -42,6 +42,10 @@
     "publishConfig": {
         "access": "public"
     },
+    "browser": {
+        "process": false,
+        "setTimeout": false
+    },
     "files": [
         "*.js",
         "*.d.ts"

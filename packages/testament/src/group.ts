@@ -1,16 +1,22 @@
 import { Fn, GLOBAL_OPTS, GroupOpts, TestCtx, TestResult } from "./api";
-import { LOGGER } from "./logger";
-import { registerTask } from "./task";
+import { register } from "./exec";
 import { test } from "./test";
 
 /**
  * Registers a new group of test cases specified in given `tests` object. The
- * tests are NOT executed immediately until {@link executeTasks} is being called
- * (done automatically when using CLI wrapper). All tests within this group will
- * share the (optionally) provided configuration options.
+ * tests are NOT executed immediately until {@link execute} is being called
+ * (done automatically when using the CLI wrapper). All tests within this group
+ * will share the (optionally) provided configuration options (which themselves
+ * will be stubbed using {@link GLOBAL_OPTS}).
  *
  * @remarks
- * If a test is async, use the passed `done` and `setTimeout` handlers.
+ * If a test is async, use the passed {@link TestCtx} handlers to ensure
+ * timeouts and any errors or test failures are handled properly.
+ *
+ * Any uncaught errors thrown in {@link GroupOpts.beforeEach} or
+ * {@link GroupOpts.afterEach} handlers will not be caught by the {@link group}
+ * either. Furthermore, if {@link GroupOpts.exit} is true, these uncaught errors
+ * will cause the entire process to terminate.
  *
  * @example
  * ```ts
@@ -39,16 +45,15 @@ export const group = (
     opts: Partial<GroupOpts> = {}
 ) => {
     const { logger, stop, beforeEach, afterEach } = {
-        logger: LOGGER,
         ...GLOBAL_OPTS,
         ...opts,
     };
-    registerTask(async () => {
+    register(async () => {
         let results: TestResult[] = [];
         try {
-            logger.info("----------");
+            logger.info("────────────────────");
             logger.info(title);
-            logger.info("----------");
+            logger.info("────────────────────");
             for (let k in tests) {
                 beforeEach && beforeEach();
                 const res = await test(k, tests[k], opts)();
@@ -63,7 +68,10 @@ export const group = (
         } catch (e) {
             if (opts.exit !== false) {
                 logger.warn((<Error>e).message);
-                process.exit(1);
+                typeof process !== "undefined" &&
+                    typeof process.exit !== "undefined" &&
+                    process.exit(1);
+                return [];
             } else {
                 throw e;
             }

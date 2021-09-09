@@ -1,4 +1,6 @@
-class Logger {
+import type { ILogger } from "./api";
+
+export class Logger implements ILogger {
     id: string;
     level: number;
 
@@ -29,8 +31,10 @@ class Logger {
 
     protected log(level: string, args: any[]) {
         console.log(`[${level}]`, ...args);
-        // console.log(...args);
     }
 }
 
-export let LOGGER = new Logger();
+/**
+ * Utility logger with no output
+ */
+export const NULL_LOGGER = new Logger("", 1000);

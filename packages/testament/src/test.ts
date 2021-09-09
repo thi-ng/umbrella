@@ -7,16 +7,62 @@ import {
     TestResult,
     Timestamp,
 } from "./api";
-import { LOGGER } from "./logger";
 import { now, timeDiff } from "./utils";
 
+/**
+ * Takes a single test case function `fn` and wraps it in an async executor
+ * (configured via provided `opts`) and eventually yielding a {@link TestResult}
+ * (regardless of any errors thrown in the user function).
+ *
+ * @remarks
+ * If a test is async, use the passed {@link TestCtx} handlers to ensure
+ * timeouts and any errors or test failures are handled properly:
+ *
+ * - done() - signals successful completion of the test
+ * - setTimeout() - use in place of native function
+ * - clearTimeout() - use in place of native function
+ *
+ * @example
+ * ```ts
+ * // test failure after multiple attempts
+ * await test("foo", () => { throw new Error(23); }, { maxTrials: 3 })();
+ * // [DEBUG ] retrying 'foo'...
+ * // [DEBUG ] retrying 'foo'...
+ * // [WARN  ] ✘ foo
+ *
+ * // {
+ * //   title: 'foo',
+ * //   error: Error: 23
+ * //   time: 0,
+ * //   trials: 3
+ * // }
+ *
+ * // test would succeed, but takes longer than configured timeout
+ * await test(
+ *   "bar",
+ *   ({ done, setTimeout }) => setTimeout(done, 1000),
+ *   { timeOut: 10 }
+ * )();
+ * // [WARN  ] ✘ bar
+ *
+ * // {
+ * //   title: 'bar',
+ * //   error: Error: timeout
+ * //   time: 12,
+ * //   trials: 1
+ * // }
+ * ```
+ *
+ * @param title
+ * @param fn
+ * @param opts
+ */
 export const test = (
     title: string,
     fn: Fn<TestCtx, void>,
     opts?: Partial<TestOpts>
 ): Fn0<Promise<TestResult>> => {
     let { logger, timeOut, maxTrials } = {
-        logger: LOGGER,
         ...GLOBAL_OPTS,
         ...opts,
     };
@@ -55,17 +101,25 @@ export const test = (
                             clear();
                             resolve();
                         },
-                        setTimeout: (f, delay) =>
-                            userIds.push(
-                                setTimeout(() => {
-                                    try {
-                                        f();
-                                    } catch (e) {
-                                        clear();
-                                        reject(e);
-                                    }
-                                }, delay)
-                            ),
+                        setTimeout: (f, delay) => {
+                            const id = setTimeout(() => {
+                                try {
+                                    f();
+                                } catch (e) {
+                                    clear();
+                                    reject(e);
+                                }
+                            }, delay);
+                            userIds.push(id);
+                            return id;
+                        },
+                        clearTimeout: (id) => {
+                            const idx = userIds.indexOf(id);
+                            if (idx !== -1) {
+                                userIds.splice(idx, 1);
+                                clearTimeout(id);
+                            }
+                        },
                     };
                     t0 = now();
                     fn(ctx);

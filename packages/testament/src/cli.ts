@@ -1,8 +1,7 @@
 import { readdirSync, statSync, writeFileSync } from "fs";
 import { resolve } from "path";
-import { GLOBAL_OPTS, TestResult } from ".";
-import { LOGGER } from "./logger";
-import { executeTasks } from "./task";
+import { GLOBAL_OPTS, TestResult } from "./api";
+import { execute } from "./exec";
 import { isString } from "./utils";
 
 interface TestamentArgs {
@@ -36,9 +35,40 @@ const parseOpts = (args: string[], i = 2) => {
                 res.out = args[i + 1];
                 i += 2;
                 break;
+            case "-t":
+            case "--timeout":
+                const val = parseInt(args[i + 1]);
+                if (!isNaN(val)) {
+                    GLOBAL_OPTS.timeOut = val;
+                } else {
+                    console.log("ignoring invalid timeout value", args[i + 1]);
+                }
+                i += 2;
+                break;
+            case "-h":
+            case "--help":
+                console.log(`
+Usage: testament [opts] path1 [path2...]
+
+Options:
+--all, -a        Run all tests (don't stop at 1st failure)
+--csv            Export results as CSV
+--json           Export results as JSON
+-o               Output file path for exported results
+--timeout, -t    Set default timeout value (milliseconds)
+
+--help, -h       Print this help and quit
+`);
+                return;
             default:
                 break outer;
         }
+    }
+    if (res.out && res.csv && res.json) {
+        console.warn(
+            "only CSV *or* JSON file output is supported, not both at the same time, exiting..."
+        );
+        return;
     }
     res.rest = args.slice(i);
     return res;
@@ -75,11 +105,11 @@ export function* files(
 
 const output = (body: string, path?: string) => {
     if (path) {
-        LOGGER.info("writing results to:", path);
+        GLOBAL_OPTS.logger.info("writing results to:", path);
         try {
             writeFileSync(path, body, "utf-8");
         } catch (e) {
-            LOGGER.warn((<Error>e).message);
+            GLOBAL_OPTS.logger.warn((<Error>e).message);
         }
     } else {
         console.log(body);
@@ -117,6 +147,8 @@ const formatJSON = (results: TestResult[]) =>
 
 (async () => {
     const opts = parseOpts(process.argv);
+    if (!opts) return;
+
     const imports: Promise<any>[] = [];
     for (let src of opts.rest) {
         src = resolve(src);
@@ -128,13 +160,13 @@ const formatJSON = (results: TestResult[]) =>
             imports.push(import(src));
         }
     }
-    LOGGER.info(`importing ${imports.length} sources...`);
+
+    GLOBAL_OPTS.logger.info(`importing ${imports.length} sources...`);
+    GLOBAL_OPTS.exit = true;
+
     await Promise.all(imports);
-    const results = await executeTasks();
-    if (opts.csv) {
-        output(formatCSV(results), opts.out);
-    }
-    if (opts.json) {
-        output(formatJSON(results), opts.out);
-    }
+    const results = await execute();
+
+    opts.csv && output(formatCSV(results), opts.out);
+    opts.json && output(formatJSON(results), opts.out);
 })();
