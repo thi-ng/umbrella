@@ -4,6 +4,7 @@
         "target": "ES2017",
         "declaration": true,
         "declarationMap": true,
+        "esModuleInterop": true,
         "experimentalDecorators": true,
         "importHelpers": true,
         "noUnusedParameters": true,
