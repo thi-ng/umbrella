@@ -28,12 +28,13 @@
         "build:check": "tsc --isolatedModules --noEmit",
         "build:convert": "../../scripts/node-esm tools/convert-icons.ts",
         "build:sheet": "../../scripts/node-esm tools/contact-sheet.ts",
-        "test": "testament test",
         "clean": "rimraf *.js *.map *.d.ts doc utils",
-        "doc:readme": "../../scripts/node-esm ../../tools/src/readme.ts",
         "doc": "typedoc --excludePrivate --out doc --theme ../../tools/doc/typedoc-theme src/index.ts",
         "doc:ae": "mkdir -p .ae/doc .ae/temp && node_modules/.bin/api-extractor run --local --verbose",
-        "pub": "yarn build:release && yarn publish --access public"
+        "doc:readme": "../../scripts/node-esm ../../tools/src/readme.ts",
+        "doc:stats": "../../scripts/node-esm ../../tools/src/module-stats.ts",
+        "pub": "yarn build:release && yarn publish --access public",
+        "test": "testament test"
     },
     "devDependencies": {
         "@thi.ng/hiccup": "^3.6.22",

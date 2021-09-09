@@ -26,17 +26,18 @@
     "scripts": {
         "build": "yarn clean && tsc --declaration",
         "build:check": "tsc --isolatedModules --noEmit",
-        "test": "testament test",
         "clean": "rimraf *.js *.d.ts *.map doc axis plot",
-        "doc:readme": "../../scripts/node-esm ../../tools/src/readme.ts",
-        "doc:ae": "mkdir -p .ae/doc .ae/temp && node_modules/.bin/api-extractor run --local --verbose",
         "doc": "typedoc --excludePrivate --out doc --theme ../../tools/doc/typedoc-theme src/index.ts",
+        "doc:ae": "mkdir -p .ae/doc .ae/temp && node_modules/.bin/api-extractor run --local --verbose",
+        "doc:readme": "../../scripts/node-esm ../../tools/src/readme.ts",
+        "doc:stats": "../../scripts/node-esm ../../tools/src/module-stats.ts",
         "pub": "yarn build:release && yarn publish --access public",
+        "test": "testament test",
         "tool:bars": "../../scripts/node-esm tools/bars.ts",
-        "tool:covid": "../../scripts/node-esm tools/covid-bars.ts",
         "tool:candles": "../../scripts/node-esm tools/candles.ts",
-        "tool:line": "../../scripts/node-esm tools/line.ts",
+        "tool:covid": "../../scripts/node-esm tools/covid-bars.ts",
         "tool:intervals": "../../scripts/node-esm tools/intervals.ts",
+        "tool:line": "../../scripts/node-esm tools/line.ts",
         "tool:tags": "../../scripts/node-esm tools/tagcloud.ts"
     },
     "dependencies": {

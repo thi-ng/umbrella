@@ -27,12 +27,13 @@
         "build": "yarn clean && tsc --declaration",
         "build:binary": "tools/build-binary.sh",
         "build:check": "tsc --isolatedModules --noEmit",
-        "test": "testament test",
         "clean": "rimraf *.js *.d.ts *.map doc",
-        "doc:readme": "../../scripts/node-esm ../../tools/src/readme.ts",
         "doc": "typedoc --excludePrivate --out doc --theme ../../tools/doc/typedoc-theme src/index.ts",
         "doc:ae": "mkdir -p .ae/doc .ae/temp && node_modules/.bin/api-extractor run --local --verbose",
-        "pub": "yarn build:release && yarn publish --access public"
+        "doc:readme": "../../scripts/node-esm ../../tools/src/readme.ts",
+        "doc:stats": "../../scripts/node-esm ../../tools/src/module-stats.ts",
+        "pub": "yarn build:release && yarn publish --access public",
+        "test": "testament test"
     },
     "dependencies": {
         "@thi.ng/checks": "^2.9.11",

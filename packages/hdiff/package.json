@@ -28,12 +28,13 @@
     "license": "Apache-2.0",
     "scripts": {
         "build": "yarn clean && tsc --declaration",
-        "test": "testament test",
         "clean": "rimraf *.js *.d.ts *.map doc",
-        "doc:readme": "../../scripts/node-esm ../../tools/src/readme.ts",
-        "doc:ae": "mkdir -p .ae/doc .ae/temp && node_modules/.bin/api-extractor run --local --verbose",
         "doc": "typedoc --excludePrivate --out doc --theme ../../tools/doc/typedoc-theme src/index.ts",
-        "pub": "yarn build:release && yarn publish --access public"
+        "doc:ae": "mkdir -p .ae/doc .ae/temp && node_modules/.bin/api-extractor run --local --verbose",
+        "doc:readme": "../../scripts/node-esm ../../tools/src/readme.ts",
+        "doc:stats": "../../scripts/node-esm ../../tools/src/module-stats.ts",
+        "pub": "yarn build:release && yarn publish --access public",
+        "test": "testament test"
     },
     "dependencies": {
         "@thi.ng/api": "^7.2.0",
