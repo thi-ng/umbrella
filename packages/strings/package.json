@@ -108,6 +108,9 @@
         "./hollerith": {
             "import": "./hollerith.js"
         },
+        "./initials": {
+            "import": "./initials.js"
+        },
         "./int": {
             "import": "./int.js"
         },

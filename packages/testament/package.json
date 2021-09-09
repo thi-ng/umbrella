@@ -61,11 +61,20 @@
         "./cli": {
             "import": "./cli.js"
         },
+        "./exec": {
+            "import": "./exec.js"
+        },
         "./group": {
             "import": "./group.js"
         },
+        "./logger": {
+            "import": "./logger.js"
+        },
         "./test": {
             "import": "./test.js"
+        },
+        "./utils": {
+            "import": "./utils.js"
         }
     },
     "thi.ng": {
