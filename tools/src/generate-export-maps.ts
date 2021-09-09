@@ -21,7 +21,7 @@ const generatePackageExportMaps = (id: string) => {
     }
     pkg.exports = exports;
     pkg = normalizePackage(pkg);
-    writeFileSync(pkgPath, JSON.stringify(pkg, null, 4));
+    writeFileSync(pkgPath, JSON.stringify(pkg, null, 4) + "\n", "utf-8");
 };
 
 const updatePackages = (parent = "packages") => {

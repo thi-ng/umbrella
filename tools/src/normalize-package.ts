@@ -4,7 +4,7 @@ import { assocObj } from "@thi.ng/transducers";
 import { readJSON } from "./io";
 
 export const normalizePackage = (pkg: any) => {
-    injectTestament(pkg);
+    pkg.name !== "@thi.ng/testament" && injectTestament(pkg);
     cleanupFiles(pkg);
 
     return selectDefinedKeysObj(pkg, [
