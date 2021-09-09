@@ -34,15 +34,23 @@ Parametric interpolated 1D lookup tables for remapping values.
 yarn add @thi.ng/ramp
 ```
 
-```html
-// ES module
-<script type="module" src="https://unpkg.com/@thi.ng/ramp?module" crossorigin></script>
+ES module import:
 
-// UMD
-<script src="https://unpkg.com/@thi.ng/ramp/lib/index.umd.js" crossorigin></script>
+```html
+<script type="module" src="https://cdn.skypack.dev/@thi.ng/ramp"></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 971 bytes / CJS: 1.01 KB / UMD: 1.12 KB
+[Skypack documentation](https://docs.skypack.dev/)
+
+For NodeJS (v14.6+):
+
+```text
+node --experimental-specifier-resolution=node --experimental-repl-await
+
+> const ramp = await import("@thi.ng/ramp");
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 971 bytes
 
 ## Dependencies
 

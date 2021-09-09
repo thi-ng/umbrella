@@ -33,15 +33,23 @@ Customizable diff implementations for arrays (sequential) & objects (associative
 yarn add @thi.ng/diff
 ```
 
-```html
-// ES module
-<script type="module" src="https://unpkg.com/@thi.ng/diff?module" crossorigin></script>
+ES module import:
 
-// UMD
-<script src="https://unpkg.com/@thi.ng/diff/lib/index.umd.js" crossorigin></script>
+```html
+<script type="module" src="https://cdn.skypack.dev/@thi.ng/diff"></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.15 KB / CJS: 1.21 KB / UMD: 1.24 KB
+[Skypack documentation](https://docs.skypack.dev/)
+
+For NodeJS (v14.6+):
+
+```text
+node --experimental-specifier-resolution=node --experimental-repl-await
+
+> const diff = await import("@thi.ng/diff");
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 1.15 KB
 
 ## Dependencies
 

@@ -77,15 +77,23 @@ for more LRU, MRU implementations based on managed `DCons` impls...
 yarn add @thi.ng/dcons
 ```
 
-```html
-// ES module
-<script type="module" src="https://unpkg.com/@thi.ng/dcons?module" crossorigin></script>
+ES module import:
 
-// UMD
-<script src="https://unpkg.com/@thi.ng/dcons/lib/index.umd.js" crossorigin></script>
+```html
+<script type="module" src="https://cdn.skypack.dev/@thi.ng/dcons"></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 2.11 KB / CJS: 2.19 KB / UMD: 2.29 KB
+[Skypack documentation](https://docs.skypack.dev/)
+
+For NodeJS (v14.6+):
+
+```text
+node --experimental-specifier-resolution=node --experimental-repl-await
+
+> const dcons = await import("@thi.ng/dcons");
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 2.11 KB
 
 ## Dependencies
 

@@ -54,15 +54,23 @@ individual values, e.g. `-a 1,2,3` equals `-a 1 -a 2 -a 3`
 yarn add @thi.ng/args
 ```
 
-```html
-// ES module
-<script type="module" src="https://unpkg.com/@thi.ng/args?module" crossorigin></script>
+ES module import:
 
-// UMD
-<script src="https://unpkg.com/@thi.ng/args/lib/index.umd.js" crossorigin></script>
+```html
+<script type="module" src="https://cdn.skypack.dev/@thi.ng/args"></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 2.40 KB / CJS: 2.53 KB / UMD: 2.44 KB
+[Skypack documentation](https://docs.skypack.dev/)
+
+For NodeJS (v14.6+):
+
+```text
+node --experimental-specifier-resolution=node --experimental-repl-await
+
+> const args = await import("@thi.ng/args");
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 2.40 KB
 
 ## Dependencies
 

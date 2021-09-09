@@ -132,15 +132,23 @@ capacity:
 yarn add @thi.ng/malloc
 ```
 
-```html
-// ES module
-<script type="module" src="https://unpkg.com/@thi.ng/malloc?module" crossorigin></script>
+ES module import:
 
-// UMD
-<script src="https://unpkg.com/@thi.ng/malloc/lib/index.umd.js" crossorigin></script>
+```html
+<script type="module" src="https://cdn.skypack.dev/@thi.ng/malloc"></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.91 KB / CJS: 1.98 KB / UMD: 1.98 KB
+[Skypack documentation](https://docs.skypack.dev/)
+
+For NodeJS (v14.6+):
+
+```text
+node --experimental-specifier-resolution=node --experimental-repl-await
+
+> const malloc = await import("@thi.ng/malloc");
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 1.91 KB
 
 ## Dependencies
 

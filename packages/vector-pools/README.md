@@ -61,15 +61,23 @@ This package might be merged with and/or superseded by
 yarn add @thi.ng/vector-pools
 ```
 
-```html
-// ES module
-<script type="module" src="https://unpkg.com/@thi.ng/vector-pools?module" crossorigin></script>
+ES module import:
 
-// UMD
-<script src="https://unpkg.com/@thi.ng/vector-pools/lib/index.umd.js" crossorigin></script>
+```html
+<script type="module" src="https://cdn.skypack.dev/@thi.ng/vector-pools"></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 3.00 KB / CJS: 3.06 KB / UMD: 3.16 KB
+[Skypack documentation](https://docs.skypack.dev/)
+
+For NodeJS (v14.6+):
+
+```text
+node --experimental-specifier-resolution=node --experimental-repl-await
+
+> const vectorPools = await import("@thi.ng/vector-pools");
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 3.00 KB
 
 ## Dependencies
 

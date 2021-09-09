@@ -45,15 +45,23 @@ highly dependent on the concavities present. YMMV!
 yarn add @thi.ng/geom-tessellate
 ```
 
-```html
-// ES module
-<script type="module" src="https://unpkg.com/@thi.ng/geom-tessellate?module" crossorigin></script>
+ES module import:
 
-// UMD
-<script src="https://unpkg.com/@thi.ng/geom-tessellate/lib/index.umd.js" crossorigin></script>
+```html
+<script type="module" src="https://cdn.skypack.dev/@thi.ng/geom-tessellate"></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 788 bytes / CJS: 877 bytes / UMD: 941 bytes
+[Skypack documentation](https://docs.skypack.dev/)
+
+For NodeJS (v14.6+):
+
+```text
+node --experimental-specifier-resolution=node --experimental-repl-await
+
+> const geomTessellate = await import("@thi.ng/geom-tessellate");
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 788 bytes
 
 ## Dependencies
 

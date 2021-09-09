@@ -160,15 +160,23 @@ reasons the same changes have been applied to this package...
 yarn add @thi.ng/vectors
 ```
 
-```html
-// ES module
-<script type="module" src="https://unpkg.com/@thi.ng/vectors?module" crossorigin></script>
+ES module import:
 
-// UMD
-<script src="https://unpkg.com/@thi.ng/vectors/lib/index.umd.js" crossorigin></script>
+```html
+<script type="module" src="https://cdn.skypack.dev/@thi.ng/vectors"></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 12.67 KB / CJS: 15.85 KB / UMD: 13.92 KB
+[Skypack documentation](https://docs.skypack.dev/)
+
+For NodeJS (v14.6+):
+
+```text
+node --experimental-specifier-resolution=node --experimental-repl-await
+
+> const vectors = await import("@thi.ng/vectors");
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 12.67 KB
 
 ## Dependencies
 

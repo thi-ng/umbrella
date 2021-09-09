@@ -51,15 +51,23 @@ References:
 yarn add @thi.ng/leb128
 ```
 
-```html
-// ES module
-<script type="module" src="https://unpkg.com/@thi.ng/leb128?module" crossorigin></script>
+ES module import:
 
-// UMD
-<script src="https://unpkg.com/@thi.ng/leb128/lib/index.umd.js" crossorigin></script>
+```html
+<script type="module" src="https://cdn.skypack.dev/@thi.ng/leb128"></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.09 KB / CJS: 1.16 KB / UMD: 1.26 KB
+[Skypack documentation](https://docs.skypack.dev/)
+
+For NodeJS (v14.6+):
+
+```text
+node --experimental-specifier-resolution=node --experimental-repl-await
+
+> const leb128 = await import("@thi.ng/leb128");
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 1.09 KB
 
 ## Dependencies
 

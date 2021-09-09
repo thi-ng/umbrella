@@ -33,15 +33,23 @@ File output handler for structured, multilevel & hierarchical loggers based on [
 yarn add @thi.ng/rstream-log-file
 ```
 
-```html
-// ES module
-<script type="module" src="https://unpkg.com/@thi.ng/rstream-log-file?module" crossorigin></script>
+ES module import:
 
-// UMD
-<script src="https://unpkg.com/@thi.ng/rstream-log-file/lib/index.umd.js" crossorigin></script>
+```html
+<script type="module" src="https://cdn.skypack.dev/@thi.ng/rstream-log-file"></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 130 bytes / CJS: 183 bytes / UMD: 301 bytes
+[Skypack documentation](https://docs.skypack.dev/)
+
+For NodeJS (v14.6+):
+
+```text
+node --experimental-specifier-resolution=node --experimental-repl-await
+
+> const rstreamLogFile = await import("@thi.ng/rstream-log-file");
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 130 bytes
 
 ## Dependencies
 

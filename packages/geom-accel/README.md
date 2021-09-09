@@ -46,15 +46,23 @@ Currently available:
 yarn add @thi.ng/geom-accel
 ```
 
-```html
-// ES module
-<script type="module" src="https://unpkg.com/@thi.ng/geom-accel?module" crossorigin></script>
+ES module import:
 
-// UMD
-<script src="https://unpkg.com/@thi.ng/geom-accel/lib/index.umd.js" crossorigin></script>
+```html
+<script type="module" src="https://cdn.skypack.dev/@thi.ng/geom-accel"></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 3.78 KB / CJS: 3.85 KB / UMD: 3.85 KB
+[Skypack documentation](https://docs.skypack.dev/)
+
+For NodeJS (v14.6+):
+
+```text
+node --experimental-specifier-resolution=node --experimental-repl-await
+
+> const geomAccel = await import("@thi.ng/geom-accel");
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 3.78 KB
 
 ## Dependencies
 

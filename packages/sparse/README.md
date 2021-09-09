@@ -39,15 +39,23 @@ Sparse vector & matrix implementations.
 yarn add @thi.ng/sparse
 ```
 
-```html
-// ES module
-<script type="module" src="https://unpkg.com/@thi.ng/sparse?module" crossorigin></script>
+ES module import:
 
-// UMD
-<script src="https://unpkg.com/@thi.ng/sparse/lib/index.umd.js" crossorigin></script>
+```html
+<script type="module" src="https://cdn.skypack.dev/@thi.ng/sparse"></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 3.54 KB / CJS: 3.64 KB / UMD: 3.71 KB
+[Skypack documentation](https://docs.skypack.dev/)
+
+For NodeJS (v14.6+):
+
+```text
+node --experimental-specifier-resolution=node --experimental-repl-await
+
+> const sparse = await import("@thi.ng/sparse");
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 3.54 KB
 
 ## Dependencies
 

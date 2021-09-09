@@ -34,15 +34,23 @@ Configurable k-means & k-medians (with k-means++ initialization) for n-D vectors
 yarn add @thi.ng/k-means
 ```
 
-```html
-// ES module
-<script type="module" src="https://unpkg.com/@thi.ng/k-means?module" crossorigin></script>
+ES module import:
 
-// UMD
-<script src="https://unpkg.com/@thi.ng/k-means/lib/index.umd.js" crossorigin></script>
+```html
+<script type="module" src="https://cdn.skypack.dev/@thi.ng/k-means"></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 937 bytes / CJS: 998 bytes / UMD: 1.08 KB
+[Skypack documentation](https://docs.skypack.dev/)
+
+For NodeJS (v14.6+):
+
+```text
+node --experimental-specifier-resolution=node --experimental-repl-await
+
+> const kMeans = await import("@thi.ng/k-means");
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 937 bytes
 
 ## Dependencies
 

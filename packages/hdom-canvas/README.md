@@ -65,15 +65,23 @@ package for better re-usability, also outside without hdom.
 yarn add @thi.ng/hdom-canvas
 ```
 
-```html
-// ES module
-<script type="module" src="https://unpkg.com/@thi.ng/hdom-canvas?module" crossorigin></script>
+ES module import:
 
-// UMD
-<script src="https://unpkg.com/@thi.ng/hdom-canvas/lib/index.umd.js" crossorigin></script>
+```html
+<script type="module" src="https://cdn.skypack.dev/@thi.ng/hdom-canvas"></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 897 bytes / CJS: 967 bytes / UMD: 1.05 KB
+[Skypack documentation](https://docs.skypack.dev/)
+
+For NodeJS (v14.6+):
+
+```text
+node --experimental-specifier-resolution=node --experimental-repl-await
+
+> const hdomCanvas = await import("@thi.ng/hdom-canvas");
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 897 bytes
 
 ## Dependencies
 

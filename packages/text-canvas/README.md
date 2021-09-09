@@ -51,15 +51,23 @@ Text based canvas, drawing, tables with arbitrary formatting (incl. ANSI/HTML).
 yarn add @thi.ng/text-canvas
 ```
 
-```html
-// ES module
-<script type="module" src="https://unpkg.com/@thi.ng/text-canvas?module" crossorigin></script>
+ES module import:
 
-// UMD
-<script src="https://unpkg.com/@thi.ng/text-canvas/lib/index.umd.js" crossorigin></script>
+```html
+<script type="module" src="https://cdn.skypack.dev/@thi.ng/text-canvas"></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 6.27 KB / CJS: 6.63 KB / UMD: 6.34 KB
+[Skypack documentation](https://docs.skypack.dev/)
+
+For NodeJS (v14.6+):
+
+```text
+node --experimental-specifier-resolution=node --experimental-repl-await
+
+> const textCanvas = await import("@thi.ng/text-canvas");
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 6.27 KB
 
 ## Dependencies
 

@@ -37,15 +37,23 @@ Current implementation is partially based on Clojure version of
 yarn add @thi.ng/geom-hull
 ```
 
-```html
-// ES module
-<script type="module" src="https://unpkg.com/@thi.ng/geom-hull?module" crossorigin></script>
+ES module import:
 
-// UMD
-<script src="https://unpkg.com/@thi.ng/geom-hull/lib/index.umd.js" crossorigin></script>
+```html
+<script type="module" src="https://cdn.skypack.dev/@thi.ng/geom-hull"></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 433 bytes / CJS: 489 bytes / UMD: 598 bytes
+[Skypack documentation](https://docs.skypack.dev/)
+
+For NodeJS (v14.6+):
+
+```text
+node --experimental-specifier-resolution=node --experimental-repl-await
+
+> const geomHull = await import("@thi.ng/geom-hull");
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 433 bytes
 
 ## Dependencies
 

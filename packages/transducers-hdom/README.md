@@ -69,15 +69,23 @@ Please also see the following hdom references for further details:
 yarn add @thi.ng/transducers-hdom
 ```
 
-```html
-// ES module
-<script type="module" src="https://unpkg.com/@thi.ng/transducers-hdom?module" crossorigin></script>
+ES module import:
 
-// UMD
-<script src="https://unpkg.com/@thi.ng/transducers-hdom/lib/index.umd.js" crossorigin></script>
+```html
+<script type="module" src="https://cdn.skypack.dev/@thi.ng/transducers-hdom"></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 291 bytes / CJS: 343 bytes / UMD: 467 bytes
+[Skypack documentation](https://docs.skypack.dev/)
+
+For NodeJS (v14.6+):
+
+```text
+node --experimental-specifier-resolution=node --experimental-repl-await
+
+> const transducersHdom = await import("@thi.ng/transducers-hdom");
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 291 bytes
 
 ## Dependencies
 

@@ -47,15 +47,23 @@ Currently, this package provides:
 yarn add @thi.ng/rdom-components
 ```
 
-```html
-// ES module
-<script type="module" src="https://unpkg.com/@thi.ng/rdom-components?module" crossorigin></script>
+ES module import:
 
-// UMD
-<script src="https://unpkg.com/@thi.ng/rdom-components/lib/index.umd.js" crossorigin></script>
+```html
+<script type="module" src="https://cdn.skypack.dev/@thi.ng/rdom-components"></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.16 KB / CJS: 1.24 KB / UMD: 1.31 KB
+[Skypack documentation](https://docs.skypack.dev/)
+
+For NodeJS (v14.6+):
+
+```text
+node --experimental-specifier-resolution=node --experimental-repl-await
+
+> const rdomComponents = await import("@thi.ng/rdom-components");
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 1.16 KB
 
 ## Dependencies
 

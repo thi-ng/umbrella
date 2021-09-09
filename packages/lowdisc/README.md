@@ -73,15 +73,23 @@ Based on Kronecker with each dimension's base automatically derived from the
 yarn add @thi.ng/lowdisc
 ```
 
-```html
-// ES module
-<script type="module" src="https://unpkg.com/@thi.ng/lowdisc?module" crossorigin></script>
+ES module import:
 
-// UMD
-<script src="https://unpkg.com/@thi.ng/lowdisc/lib/index.umd.js" crossorigin></script>
+```html
+<script type="module" src="https://cdn.skypack.dev/@thi.ng/lowdisc"></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 499 bytes / CJS: 572 bytes / UMD: 653 bytes
+[Skypack documentation](https://docs.skypack.dev/)
+
+For NodeJS (v14.6+):
+
+```text
+node --experimental-specifier-resolution=node --experimental-repl-await
+
+> const lowdisc = await import("@thi.ng/lowdisc");
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 499 bytes
 
 ## Dependencies
 

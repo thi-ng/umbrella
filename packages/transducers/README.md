@@ -161,15 +161,23 @@ package.
 yarn add @thi.ng/transducers
 ```
 
-```html
-// ES module
-<script type="module" src="https://unpkg.com/@thi.ng/transducers?module" crossorigin></script>
+ES module import:
 
-// UMD
-<script src="https://unpkg.com/@thi.ng/transducers/lib/index.umd.js" crossorigin></script>
+```html
+<script type="module" src="https://cdn.skypack.dev/@thi.ng/transducers"></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 8.53 KB / CJS: 9.11 KB / UMD: 8.28 KB
+[Skypack documentation](https://docs.skypack.dev/)
+
+For NodeJS (v14.6+):
+
+```text
+node --experimental-specifier-resolution=node --experimental-repl-await
+
+> const transducers = await import("@thi.ng/transducers");
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 8.53 KB
 
 ## Dependencies
 

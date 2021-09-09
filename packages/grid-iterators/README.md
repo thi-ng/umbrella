@@ -164,15 +164,23 @@ Additionally, the following shape iterators are available:
 yarn add @thi.ng/grid-iterators
 ```
 
-```html
-// ES module
-<script type="module" src="https://unpkg.com/@thi.ng/grid-iterators?module" crossorigin></script>
+ES module import:
 
-// UMD
-<script src="https://unpkg.com/@thi.ng/grid-iterators/lib/index.umd.js" crossorigin></script>
+```html
+<script type="module" src="https://cdn.skypack.dev/@thi.ng/grid-iterators"></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.47 KB / CJS: 1.59 KB / UMD: 1.63 KB
+[Skypack documentation](https://docs.skypack.dev/)
+
+For NodeJS (v14.6+):
+
+```text
+node --experimental-specifier-resolution=node --experimental-repl-await
+
+> const gridIterators = await import("@thi.ng/grid-iterators");
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 1.47 KB
 
 ## Dependencies
 

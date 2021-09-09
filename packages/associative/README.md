@@ -168,15 +168,23 @@ map.get([3,4], "n/a");
 yarn add @thi.ng/associative
 ```
 
-```html
-// ES module
-<script type="module" src="https://unpkg.com/@thi.ng/associative?module" crossorigin></script>
+ES module import:
 
-// UMD
-<script src="https://unpkg.com/@thi.ng/associative/lib/index.umd.js" crossorigin></script>
+```html
+<script type="module" src="https://cdn.skypack.dev/@thi.ng/associative"></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 6.29 KB / CJS: 6.49 KB / UMD: 6.26 KB
+[Skypack documentation](https://docs.skypack.dev/)
+
+For NodeJS (v14.6+):
+
+```text
+node --experimental-specifier-resolution=node --experimental-repl-await
+
+> const associative = await import("@thi.ng/associative");
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 6.30 KB
 
 ## Dependencies
 

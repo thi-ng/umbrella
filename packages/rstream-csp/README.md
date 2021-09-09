@@ -42,15 +42,23 @@ and synchronous stream subscriptions/transformations of
 yarn add @thi.ng/rstream-csp
 ```
 
-```html
-// ES module
-<script type="module" src="https://unpkg.com/@thi.ng/rstream-csp?module" crossorigin></script>
+ES module import:
 
-// UMD
-<script src="https://unpkg.com/@thi.ng/rstream-csp/lib/index.umd.js" crossorigin></script>
+```html
+<script type="module" src="https://cdn.skypack.dev/@thi.ng/rstream-csp"></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 251 bytes / CJS: 307 bytes / UMD: 422 bytes
+[Skypack documentation](https://docs.skypack.dev/)
+
+For NodeJS (v14.6+):
+
+```text
+node --experimental-specifier-resolution=node --experimental-repl-await
+
+> const rstreamCsp = await import("@thi.ng/rstream-csp");
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 251 bytes
 
 ## Dependencies
 

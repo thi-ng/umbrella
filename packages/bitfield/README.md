@@ -41,15 +41,23 @@ backing the width is always rounded to a multiple of 32.
 yarn add @thi.ng/bitfield
 ```
 
-```html
-// ES module
-<script type="module" src="https://unpkg.com/@thi.ng/bitfield?module" crossorigin></script>
+ES module import:
 
-// UMD
-<script src="https://unpkg.com/@thi.ng/bitfield/lib/index.umd.js" crossorigin></script>
+```html
+<script type="module" src="https://cdn.skypack.dev/@thi.ng/bitfield"></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.14 KB / CJS: 1.19 KB / UMD: 1.29 KB
+[Skypack documentation](https://docs.skypack.dev/)
+
+For NodeJS (v14.6+):
+
+```text
+node --experimental-specifier-resolution=node --experimental-repl-await
+
+> const bitfield = await import("@thi.ng/bitfield");
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 1.14 KB
 
 ## Dependencies
 

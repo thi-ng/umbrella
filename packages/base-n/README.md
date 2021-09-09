@@ -33,15 +33,23 @@ Arbitrary base-n conversions w/ presets for base16/32/36/58/62/64/85, support fo
 yarn add @thi.ng/base-n
 ```
 
-```html
-// ES module
-<script type="module" src="https://unpkg.com/@thi.ng/base-n?module" crossorigin></script>
+ES module import:
 
-// UMD
-<script src="https://unpkg.com/@thi.ng/base-n/lib/index.umd.js" crossorigin></script>
+```html
+<script type="module" src="https://cdn.skypack.dev/@thi.ng/base-n"></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 817 bytes / CJS: 925 bytes / UMD: 1001 bytes
+[Skypack documentation](https://docs.skypack.dev/)
+
+For NodeJS (v14.6+):
+
+```text
+node --experimental-specifier-resolution=node --experimental-repl-await
+
+> const baseN = await import("@thi.ng/base-n");
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 817 bytes
 
 ## Dependencies
 

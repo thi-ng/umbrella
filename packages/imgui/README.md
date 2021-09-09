@@ -238,15 +238,23 @@ Some of the most obvious missing features:
 yarn add @thi.ng/imgui
 ```
 
-```html
-// ES module
-<script type="module" src="https://unpkg.com/@thi.ng/imgui?module" crossorigin></script>
+ES module import:
 
-// UMD
-<script src="https://unpkg.com/@thi.ng/imgui/lib/index.umd.js" crossorigin></script>
+```html
+<script type="module" src="https://cdn.skypack.dev/@thi.ng/imgui"></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 6.75 KB / CJS: 6.96 KB / UMD: 7.00 KB
+[Skypack documentation](https://docs.skypack.dev/)
+
+For NodeJS (v14.6+):
+
+```text
+node --experimental-specifier-resolution=node --experimental-repl-await
+
+> const imgui = await import("@thi.ng/imgui");
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 6.75 KB
 
 ## Dependencies
 

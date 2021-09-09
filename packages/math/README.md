@@ -54,15 +54,23 @@ of the existing `fmod()` function...
 yarn add @thi.ng/math
 ```
 
-```html
-// ES module
-<script type="module" src="https://unpkg.com/@thi.ng/math?module" crossorigin></script>
+ES module import:
 
-// UMD
-<script src="https://unpkg.com/@thi.ng/math/lib/index.umd.js" crossorigin></script>
+```html
+<script type="module" src="https://cdn.skypack.dev/@thi.ng/math"></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 3.93 KB / CJS: 4.54 KB / UMD: 3.73 KB
+[Skypack documentation](https://docs.skypack.dev/)
+
+For NodeJS (v14.6+):
+
+```text
+node --experimental-specifier-resolution=node --experimental-repl-await
+
+> const math = await import("@thi.ng/math");
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 3.93 KB
 
 ## Dependencies
 

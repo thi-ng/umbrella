@@ -33,15 +33,23 @@ WAV file format generation. This is a support package for [@thi.ng/dsp](https://
 yarn add @thi.ng/dsp-io-wav
 ```
 
-```html
-// ES module
-<script type="module" src="https://unpkg.com/@thi.ng/dsp-io-wav?module" crossorigin></script>
+ES module import:
 
-// UMD
-<script src="https://unpkg.com/@thi.ng/dsp-io-wav/lib/index.umd.js" crossorigin></script>
+```html
+<script type="module" src="https://cdn.skypack.dev/@thi.ng/dsp-io-wav"></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 502 bytes / CJS: 562 bytes / UMD: 645 bytes
+[Skypack documentation](https://docs.skypack.dev/)
+
+For NodeJS (v14.6+):
+
+```text
+node --experimental-specifier-resolution=node --experimental-repl-await
+
+> const dspIoWav = await import("@thi.ng/dsp-io-wav");
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 502 bytes
 
 ## Dependencies
 

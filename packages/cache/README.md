@@ -60,15 +60,23 @@ strategies](https://en.wikipedia.org/wiki/Cache_replacement_policies).
 yarn add @thi.ng/cache
 ```
 
-```html
-// ES module
-<script type="module" src="https://unpkg.com/@thi.ng/cache?module" crossorigin></script>
+ES module import:
 
-// UMD
-<script src="https://unpkg.com/@thi.ng/cache/lib/index.umd.js" crossorigin></script>
+```html
+<script type="module" src="https://cdn.skypack.dev/@thi.ng/cache"></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.03 KB / CJS: 1.08 KB / UMD: 1.19 KB
+[Skypack documentation](https://docs.skypack.dev/)
+
+For NodeJS (v14.6+):
+
+```text
+node --experimental-specifier-resolution=node --experimental-repl-await
+
+> const cache = await import("@thi.ng/cache");
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 1.03 KB
 
 ## Dependencies
 

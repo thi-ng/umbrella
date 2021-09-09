@@ -178,15 +178,23 @@ status. The TL;DR list...
 yarn add @thi.ng/shader-ast
 ```
 
-```html
-// ES module
-<script type="module" src="https://unpkg.com/@thi.ng/shader-ast?module" crossorigin></script>
+ES module import:
 
-// UMD
-<script src="https://unpkg.com/@thi.ng/shader-ast/lib/index.umd.js" crossorigin></script>
+```html
+<script type="module" src="https://cdn.skypack.dev/@thi.ng/shader-ast"></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 5.51 KB / CJS: 6.05 KB / UMD: 5.41 KB
+[Skypack documentation](https://docs.skypack.dev/)
+
+For NodeJS (v14.6+):
+
+```text
+node --experimental-specifier-resolution=node --experimental-repl-await
+
+> const shaderAst = await import("@thi.ng/shader-ast");
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 5.51 KB
 
 ## Dependencies
 

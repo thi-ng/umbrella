@@ -105,15 +105,23 @@ deployed already.
 yarn add @thi.ng/egf
 ```
 
-```html
-// ES module
-<script type="module" src="https://unpkg.com/@thi.ng/egf?module" crossorigin></script>
+ES module import:
 
-// UMD
-<script src="https://unpkg.com/@thi.ng/egf/lib/index.umd.js" crossorigin></script>
+```html
+<script type="module" src="https://cdn.skypack.dev/@thi.ng/egf"></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 2.77 KB / CJS: 2.85 KB / UMD: 2.85 KB
+[Skypack documentation](https://docs.skypack.dev/)
+
+For NodeJS (v14.6+):
+
+```text
+node --experimental-specifier-resolution=node --experimental-repl-await
+
+> const egf = await import("@thi.ng/egf");
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 2.77 KB
 
 ## Dependencies
 

@@ -102,15 +102,23 @@ package.
 yarn add @thi.ng/distance
 ```
 
-```html
-// ES module
-<script type="module" src="https://unpkg.com/@thi.ng/distance?module" crossorigin></script>
+ES module import:
 
-// UMD
-<script src="https://unpkg.com/@thi.ng/distance/lib/index.umd.js" crossorigin></script>
+```html
+<script type="module" src="https://cdn.skypack.dev/@thi.ng/distance"></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.06 KB / CJS: 1.17 KB / UMD: 1.21 KB
+[Skypack documentation](https://docs.skypack.dev/)
+
+For NodeJS (v14.6+):
+
+```text
+node --experimental-specifier-resolution=node --experimental-repl-await
+
+> const distance = await import("@thi.ng/distance");
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 1.06 KB
 
 ## Dependencies
 

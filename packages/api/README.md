@@ -46,15 +46,23 @@ repository. It defines:
 yarn add @thi.ng/api
 ```
 
-```html
-// ES module
-<script type="module" src="https://unpkg.com/@thi.ng/api?module" crossorigin></script>
+ES module import:
 
-// UMD
-<script src="https://unpkg.com/@thi.ng/api/lib/index.umd.js" crossorigin></script>
+```html
+<script type="module" src="https://cdn.skypack.dev/@thi.ng/api"></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 2.18 KB / CJS: 2.35 KB / UMD: 2.27 KB
+[Skypack documentation](https://docs.skypack.dev/)
+
+For NodeJS (v14.6+):
+
+```text
+node --experimental-specifier-resolution=node --experimental-repl-await
+
+> const api = await import("@thi.ng/api");
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 2.18 KB
 
 ## Dependencies
 

@@ -57,15 +57,23 @@ supported.
 yarn add @thi.ng/resolve-map
 ```
 
-```html
-// ES module
-<script type="module" src="https://unpkg.com/@thi.ng/resolve-map?module" crossorigin></script>
+ES module import:
 
-// UMD
-<script src="https://unpkg.com/@thi.ng/resolve-map/lib/index.umd.js" crossorigin></script>
+```html
+<script type="module" src="https://cdn.skypack.dev/@thi.ng/resolve-map"></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 907 bytes / CJS: 962 bytes / UMD: 1.01 KB
+[Skypack documentation](https://docs.skypack.dev/)
+
+For NodeJS (v14.6+):
+
+```text
+node --experimental-specifier-resolution=node --experimental-repl-await
+
+> const resolveMap = await import("@thi.ng/resolve-map");
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 907 bytes
 
 ## Dependencies
 

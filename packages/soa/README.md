@@ -66,15 +66,23 @@ by
 yarn add @thi.ng/soa
 ```
 
-```html
-// ES module
-<script type="module" src="https://unpkg.com/@thi.ng/soa?module" crossorigin></script>
+ES module import:
 
-// UMD
-<script src="https://unpkg.com/@thi.ng/soa/lib/index.umd.js" crossorigin></script>
+```html
+<script type="module" src="https://cdn.skypack.dev/@thi.ng/soa"></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.41 KB / CJS: 1.49 KB / UMD: 1.59 KB
+[Skypack documentation](https://docs.skypack.dev/)
+
+For NodeJS (v14.6+):
+
+```text
+node --experimental-specifier-resolution=node --experimental-repl-await
+
+> const soa = await import("@thi.ng/soa");
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 1.41 KB
 
 ## Dependencies
 

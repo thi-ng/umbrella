@@ -46,15 +46,23 @@ Current implementations partially based on
 yarn add @thi.ng/geom-splines
 ```
 
-```html
-// ES module
-<script type="module" src="https://unpkg.com/@thi.ng/geom-splines?module" crossorigin></script>
+ES module import:
 
-// UMD
-<script src="https://unpkg.com/@thi.ng/geom-splines/lib/index.umd.js" crossorigin></script>
+```html
+<script type="module" src="https://cdn.skypack.dev/@thi.ng/geom-splines"></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 2.18 KB / CJS: 2.30 KB / UMD: 2.28 KB
+[Skypack documentation](https://docs.skypack.dev/)
+
+For NodeJS (v14.6+):
+
+```text
+node --experimental-specifier-resolution=node --experimental-repl-await
+
+> const geomSplines = await import("@thi.ng/geom-splines");
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 2.18 KB
 
 ## Dependencies
 

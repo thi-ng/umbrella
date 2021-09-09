@@ -43,15 +43,23 @@ ordering and fanout / tree arity (in case of `DHeap`) and largely unified API:
 yarn add @thi.ng/heaps
 ```
 
-```html
-// ES module
-<script type="module" src="https://unpkg.com/@thi.ng/heaps?module" crossorigin></script>
+ES module import:
 
-// UMD
-<script src="https://unpkg.com/@thi.ng/heaps/lib/index.umd.js" crossorigin></script>
+```html
+<script type="module" src="https://cdn.skypack.dev/@thi.ng/heaps"></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.97 KB / CJS: 2.04 KB / UMD: 2.12 KB
+[Skypack documentation](https://docs.skypack.dev/)
+
+For NodeJS (v14.6+):
+
+```text
+node --experimental-specifier-resolution=node --experimental-repl-await
+
+> const heaps = await import("@thi.ng/heaps");
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 1.97 KB
 
 ## Dependencies
 

@@ -123,15 +123,23 @@ are suffixed with `S` (for "scalar"): `quadraticS`, `cubicS` and `quarticS`...
 yarn add @thi.ng/dual-algebra
 ```
 
-```html
-// ES module
-<script type="module" src="https://unpkg.com/@thi.ng/dual-algebra?module" crossorigin></script>
+ES module import:
 
-// UMD
-<script src="https://unpkg.com/@thi.ng/dual-algebra/lib/index.umd.js" crossorigin></script>
+```html
+<script type="module" src="https://cdn.skypack.dev/@thi.ng/dual-algebra"></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.00 KB / CJS: 1.15 KB / UMD: 1.17 KB
+[Skypack documentation](https://docs.skypack.dev/)
+
+For NodeJS (v14.6+):
+
+```text
+node --experimental-specifier-resolution=node --experimental-repl-await
+
+> const dualAlgebra = await import("@thi.ng/dual-algebra");
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 1.00 KB
 
 ## Dependencies
 

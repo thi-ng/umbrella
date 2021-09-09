@@ -44,15 +44,23 @@ This package has been extracted from the former (now obsolete)
 yarn add @thi.ng/geom-clip-line
 ```
 
-```html
-// ES module
-<script type="module" src="https://unpkg.com/@thi.ng/geom-clip-line?module" crossorigin></script>
+ES module import:
 
-// UMD
-<script src="https://unpkg.com/@thi.ng/geom-clip-line/lib/index.umd.js" crossorigin></script>
+```html
+<script type="module" src="https://cdn.skypack.dev/@thi.ng/geom-clip-line"></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 530 bytes / CJS: 596 bytes / UMD: 694 bytes
+[Skypack documentation](https://docs.skypack.dev/)
+
+For NodeJS (v14.6+):
+
+```text
+node --experimental-specifier-resolution=node --experimental-repl-await
+
+> const geomClipLine = await import("@thi.ng/geom-clip-line");
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 530 bytes
 
 ## Dependencies
 

@@ -54,15 +54,23 @@ Reference: https://en.wikipedia.org/wiki/Zipper_(data_structure)
 yarn add @thi.ng/zipper
 ```
 
-```html
-// ES module
-<script type="module" src="https://unpkg.com/@thi.ng/zipper?module" crossorigin></script>
+ES module import:
 
-// UMD
-<script src="https://unpkg.com/@thi.ng/zipper/lib/index.umd.js" crossorigin></script>
+```html
+<script type="module" src="https://cdn.skypack.dev/@thi.ng/zipper"></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.03 KB / CJS: 1.09 KB / UMD: 1.18 KB
+[Skypack documentation](https://docs.skypack.dev/)
+
+For NodeJS (v14.6+):
+
+```text
+node --experimental-specifier-resolution=node --experimental-repl-await
+
+> const zipper = await import("@thi.ng/zipper");
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 1.03 KB
 
 ## Dependencies
 

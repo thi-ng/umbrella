@@ -39,15 +39,23 @@ This project is part of the
 yarn add @thi.ng/binary
 ```
 
-```html
-// ES module
-<script type="module" src="https://unpkg.com/@thi.ng/binary?module" crossorigin></script>
+ES module import:
 
-// UMD
-<script src="https://unpkg.com/@thi.ng/binary/lib/index.umd.js" crossorigin></script>
+```html
+<script type="module" src="https://cdn.skypack.dev/@thi.ng/binary"></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 2.06 KB / CJS: 2.40 KB / UMD: 2.04 KB
+[Skypack documentation](https://docs.skypack.dev/)
+
+For NodeJS (v14.6+):
+
+```text
+node --experimental-specifier-resolution=node --experimental-repl-await
+
+> const binary = await import("@thi.ng/binary");
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 2.06 KB
 
 ## Dependencies
 

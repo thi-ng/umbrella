@@ -48,15 +48,23 @@ these and keep any cycles async).
 yarn add @thi.ng/rstream-graph
 ```
 
-```html
-// ES module
-<script type="module" src="https://unpkg.com/@thi.ng/rstream-graph?module" crossorigin></script>
+ES module import:
 
-// UMD
-<script src="https://unpkg.com/@thi.ng/rstream-graph/lib/index.umd.js" crossorigin></script>
+```html
+<script type="module" src="https://cdn.skypack.dev/@thi.ng/rstream-graph"></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.04 KB / CJS: 1.14 KB / UMD: 1.18 KB
+[Skypack documentation](https://docs.skypack.dev/)
+
+For NodeJS (v14.6+):
+
+```text
+node --experimental-specifier-resolution=node --experimental-repl-await
+
+> const rstreamGraph = await import("@thi.ng/rstream-graph");
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 1.04 KB
 
 ## Dependencies
 

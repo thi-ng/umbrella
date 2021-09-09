@@ -61,15 +61,23 @@ be checked for validity via `.has(id)` (in constant time).
 yarn add @thi.ng/idgen
 ```
 
-```html
-// ES module
-<script type="module" src="https://unpkg.com/@thi.ng/idgen?module" crossorigin></script>
+ES module import:
 
-// UMD
-<script src="https://unpkg.com/@thi.ng/idgen/lib/index.umd.js" crossorigin></script>
+```html
+<script type="module" src="https://cdn.skypack.dev/@thi.ng/idgen"></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 857 bytes / CJS: 906 bytes / UMD: 1019 bytes
+[Skypack documentation](https://docs.skypack.dev/)
+
+For NodeJS (v14.6+):
+
+```text
+node --experimental-specifier-resolution=node --experimental-repl-await
+
+> const idgen = await import("@thi.ng/idgen");
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 857 bytes
 
 ## Dependencies
 

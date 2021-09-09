@@ -40,15 +40,23 @@ by Joe Halliwell](https://www.winterwell.com/software/compressor.php).
 yarn add @thi.ng/range-coder
 ```
 
-```html
-// ES module
-<script type="module" src="https://unpkg.com/@thi.ng/range-coder?module" crossorigin></script>
+ES module import:
 
-// UMD
-<script src="https://unpkg.com/@thi.ng/range-coder/lib/index.umd.js" crossorigin></script>
+```html
+<script type="module" src="https://cdn.skypack.dev/@thi.ng/range-coder"></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 670 bytes / CJS: 725 bytes / UMD: 782 bytes
+[Skypack documentation](https://docs.skypack.dev/)
+
+For NodeJS (v14.6+):
+
+```text
+node --experimental-specifier-resolution=node --experimental-repl-await
+
+> const rangeCoder = await import("@thi.ng/range-coder");
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 670 bytes
 
 ## Dependencies
 

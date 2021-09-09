@@ -60,15 +60,23 @@ semi-open `[1e-6,1e21)` interval can be encoded.
 yarn add @thi.ng/bencode
 ```
 
-```html
-// ES module
-<script type="module" src="https://unpkg.com/@thi.ng/bencode?module" crossorigin></script>
+ES module import:
 
-// UMD
-<script src="https://unpkg.com/@thi.ng/bencode/lib/index.umd.js" crossorigin></script>
+```html
+<script type="module" src="https://cdn.skypack.dev/@thi.ng/bencode"></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.17 KB / CJS: 1.23 KB / UMD: 1.30 KB
+[Skypack documentation](https://docs.skypack.dev/)
+
+For NodeJS (v14.6+):
+
+```text
+node --experimental-specifier-resolution=node --experimental-repl-await
+
+> const bencode = await import("@thi.ng/bencode");
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 1.17 KB
 
 ## Dependencies
 

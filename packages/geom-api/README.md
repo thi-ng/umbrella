@@ -33,15 +33,23 @@ Shared type & interface declarations for [@thi.ng/geom](https://github.com/thi-n
 yarn add @thi.ng/geom-api
 ```
 
-```html
-// ES module
-<script type="module" src="https://unpkg.com/@thi.ng/geom-api?module" crossorigin></script>
+ES module import:
 
-// UMD
-<script src="https://unpkg.com/@thi.ng/geom-api/lib/index.umd.js" crossorigin></script>
+```html
+<script type="module" src="https://cdn.skypack.dev/@thi.ng/geom-api"></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 287 bytes / CJS: 330 bytes / UMD: 453 bytes
+[Skypack documentation](https://docs.skypack.dev/)
+
+For NodeJS (v14.6+):
+
+```text
+node --experimental-specifier-resolution=node --experimental-repl-await
+
+> const geomApi = await import("@thi.ng/geom-api");
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 287 bytes
 
 ## Dependencies
 

@@ -51,15 +51,23 @@ package.
 yarn add @thi.ng/fsm
 ```
 
-```html
-// ES module
-<script type="module" src="https://unpkg.com/@thi.ng/fsm?module" crossorigin></script>
+ES module import:
 
-// UMD
-<script src="https://unpkg.com/@thi.ng/fsm/lib/index.umd.js" crossorigin></script>
+```html
+<script type="module" src="https://cdn.skypack.dev/@thi.ng/fsm"></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.38 KB / CJS: 1.50 KB / UMD: 1.52 KB
+[Skypack documentation](https://docs.skypack.dev/)
+
+For NodeJS (v14.6+):
+
+```text
+node --experimental-specifier-resolution=node --experimental-repl-await
+
+> const fsm = await import("@thi.ng/fsm");
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 1.38 KB
 
 ## Dependencies
 

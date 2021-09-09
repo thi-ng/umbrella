@@ -316,15 +316,23 @@ console.log(clusters);
 yarn add @thi.ng/pixel
 ```
 
-```html
-// ES module
-<script type="module" src="https://unpkg.com/@thi.ng/pixel?module" crossorigin></script>
+ES module import:
 
-// UMD
-<script src="https://unpkg.com/@thi.ng/pixel/lib/index.umd.js" crossorigin></script>
+```html
+<script type="module" src="https://cdn.skypack.dev/@thi.ng/pixel"></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 9.22 KB / CJS: 9.52 KB / UMD: 9.23 KB
+[Skypack documentation](https://docs.skypack.dev/)
+
+For NodeJS (v14.6+):
+
+```text
+node --experimental-specifier-resolution=node --experimental-repl-await
+
+> const pixel = await import("@thi.ng/pixel");
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 9.22 KB
 
 ## Dependencies
 

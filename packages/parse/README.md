@@ -73,15 +73,23 @@ Purely functional parser combinators & AST generation for generic inputs.
 yarn add @thi.ng/parse
 ```
 
-```html
-// ES module
-<script type="module" src="https://unpkg.com/@thi.ng/parse?module" crossorigin></script>
+ES module import:
 
-// UMD
-<script src="https://unpkg.com/@thi.ng/parse/lib/index.umd.js" crossorigin></script>
+```html
+<script type="module" src="https://cdn.skypack.dev/@thi.ng/parse"></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 5.24 KB / CJS: 5.63 KB / UMD: 5.29 KB
+[Skypack documentation](https://docs.skypack.dev/)
+
+For NodeJS (v14.6+):
+
+```text
+node --experimental-specifier-resolution=node --experimental-repl-await
+
+> const parse = await import("@thi.ng/parse");
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 5.24 KB
 
 ## Dependencies
 

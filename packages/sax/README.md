@@ -63,15 +63,23 @@ well (see SVG parsing example further below). The choice is yours!
 yarn add @thi.ng/sax
 ```
 
-```html
-// ES module
-<script type="module" src="https://unpkg.com/@thi.ng/sax?module" crossorigin></script>
+ES module import:
 
-// UMD
-<script src="https://unpkg.com/@thi.ng/sax/lib/index.umd.js" crossorigin></script>
+```html
+<script type="module" src="https://cdn.skypack.dev/@thi.ng/sax"></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.93 KB / CJS: 1.99 KB / UMD: 2.09 KB
+[Skypack documentation](https://docs.skypack.dev/)
+
+For NodeJS (v14.6+):
+
+```text
+node --experimental-specifier-resolution=node --experimental-repl-await
+
+> const sax = await import("@thi.ng/sax");
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 1.93 KB
 
 ## Dependencies
 

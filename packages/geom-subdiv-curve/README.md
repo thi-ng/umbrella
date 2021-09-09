@@ -55,15 +55,23 @@ Supplied / implemented subdivision schemes:
 yarn add @thi.ng/geom-subdiv-curve
 ```
 
-```html
-// ES module
-<script type="module" src="https://unpkg.com/@thi.ng/geom-subdiv-curve?module" crossorigin></script>
+ES module import:
 
-// UMD
-<script src="https://unpkg.com/@thi.ng/geom-subdiv-curve/lib/index.umd.js" crossorigin></script>
+```html
+<script type="module" src="https://cdn.skypack.dev/@thi.ng/geom-subdiv-curve"></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 658 bytes / CJS: 736 bytes / UMD: 791 bytes
+[Skypack documentation](https://docs.skypack.dev/)
+
+For NodeJS (v14.6+):
+
+```text
+node --experimental-specifier-resolution=node --experimental-repl-await
+
+> const geomSubdivCurve = await import("@thi.ng/geom-subdiv-curve");
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 658 bytes
 
 ## Dependencies
 

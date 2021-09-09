@@ -67,15 +67,23 @@ sensible).
 yarn add @thi.ng/matrices
 ```
 
-```html
-// ES module
-<script type="module" src="https://unpkg.com/@thi.ng/matrices?module" crossorigin></script>
+ES module import:
 
-// UMD
-<script src="https://unpkg.com/@thi.ng/matrices/lib/index.umd.js" crossorigin></script>
+```html
+<script type="module" src="https://cdn.skypack.dev/@thi.ng/matrices"></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 4.76 KB / CJS: 5.31 KB / UMD: 4.86 KB
+[Skypack documentation](https://docs.skypack.dev/)
+
+For NodeJS (v14.6+):
+
+```text
+node --experimental-specifier-resolution=node --experimental-repl-await
+
+> const matrices = await import("@thi.ng/matrices");
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 4.76 KB
 
 ## Dependencies
 

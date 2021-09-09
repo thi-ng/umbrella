@@ -56,15 +56,23 @@ Current implementations partially based on
 yarn add @thi.ng/geom-isec
 ```
 
-```html
-// ES module
-<script type="module" src="https://unpkg.com/@thi.ng/geom-isec?module" crossorigin></script>
+ES module import:
 
-// UMD
-<script src="https://unpkg.com/@thi.ng/geom-isec/lib/index.umd.js" crossorigin></script>
+```html
+<script type="module" src="https://cdn.skypack.dev/@thi.ng/geom-isec"></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 2.71 KB / CJS: 2.88 KB / UMD: 2.84 KB
+[Skypack documentation](https://docs.skypack.dev/)
+
+For NodeJS (v14.6+):
+
+```text
+node --experimental-specifier-resolution=node --experimental-repl-await
+
+> const geomIsec = await import("@thi.ng/geom-isec");
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 2.71 KB
 
 ## Dependencies
 

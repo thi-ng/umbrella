@@ -70,15 +70,23 @@ support
 yarn add @thi.ng/ksuid
 ```
 
-```html
-// ES module
-<script type="module" src="https://unpkg.com/@thi.ng/ksuid?module" crossorigin></script>
+ES module import:
 
-// UMD
-<script src="https://unpkg.com/@thi.ng/ksuid/lib/index.umd.js" crossorigin></script>
+```html
+<script type="module" src="https://cdn.skypack.dev/@thi.ng/ksuid"></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 812 bytes / CJS: 888 bytes / UMD: 983 bytes
+[Skypack documentation](https://docs.skypack.dev/)
+
+For NodeJS (v14.6+):
+
+```text
+node --experimental-specifier-resolution=node --experimental-repl-await
+
+> const ksuid = await import("@thi.ng/ksuid");
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 812 bytes
 
 ## Dependencies
 

@@ -47,15 +47,23 @@ This package is also used for shader assembly by
 yarn add @thi.ng/shader-ast-glsl
 ```
 
-```html
-// ES module
-<script type="module" src="https://unpkg.com/@thi.ng/shader-ast-glsl?module" crossorigin></script>
+ES module import:
 
-// UMD
-<script src="https://unpkg.com/@thi.ng/shader-ast-glsl/lib/index.umd.js" crossorigin></script>
+```html
+<script type="module" src="https://cdn.skypack.dev/@thi.ng/shader-ast-glsl"></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.33 KB / CJS: 1.38 KB / UMD: 1.49 KB
+[Skypack documentation](https://docs.skypack.dev/)
+
+For NodeJS (v14.6+):
+
+```text
+node --experimental-specifier-resolution=node --experimental-repl-await
+
+> const shaderAstGlsl = await import("@thi.ng/shader-ast-glsl");
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 1.33 KB
 
 ## Dependencies
 

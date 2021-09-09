@@ -43,15 +43,23 @@ applications (e.g. Rhino, Houdini, Fusion 360)
 yarn add @thi.ng/iges
 ```
 
-```html
-// ES module
-<script type="module" src="https://unpkg.com/@thi.ng/iges?module" crossorigin></script>
+ES module import:
 
-// UMD
-<script src="https://unpkg.com/@thi.ng/iges/lib/index.umd.js" crossorigin></script>
+```html
+<script type="module" src="https://cdn.skypack.dev/@thi.ng/iges"></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 2.83 KB / CJS: 2.93 KB / UMD: 2.85 KB
+[Skypack documentation](https://docs.skypack.dev/)
+
+For NodeJS (v14.6+):
+
+```text
+node --experimental-specifier-resolution=node --experimental-repl-await
+
+> const iges = await import("@thi.ng/iges");
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 2.83 KB
 
 ## Dependencies
 

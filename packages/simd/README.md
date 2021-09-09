@@ -118,15 +118,23 @@ outside our control...
 yarn add @thi.ng/simd
 ```
 
-```html
-// ES module
-<script type="module" src="https://unpkg.com/@thi.ng/simd?module" crossorigin></script>
+ES module import:
 
-// UMD
-<script src="https://unpkg.com/@thi.ng/simd/lib/index.umd.js" crossorigin></script>
+```html
+<script type="module" src="https://cdn.skypack.dev/@thi.ng/simd"></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 2.52 KB / CJS: 2.58 KB / UMD: 2.70 KB
+[Skypack documentation](https://docs.skypack.dev/)
+
+For NodeJS (v14.6+):
+
+```text
+node --experimental-specifier-resolution=node --experimental-repl-await
+
+> const simd = await import("@thi.ng/simd");
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 2.48 KB
 
 ## Dependencies
 

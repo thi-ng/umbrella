@@ -36,15 +36,23 @@ Additional error types can be defined using
 yarn add @thi.ng/errors
 ```
 
-```html
-// ES module
-<script type="module" src="https://unpkg.com/@thi.ng/errors?module" crossorigin></script>
+ES module import:
 
-// UMD
-<script src="https://unpkg.com/@thi.ng/errors/lib/index.umd.js" crossorigin></script>
+```html
+<script type="module" src="https://cdn.skypack.dev/@thi.ng/errors"></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 356 bytes / CJS: 448 bytes / UMD: 508 bytes
+[Skypack documentation](https://docs.skypack.dev/)
+
+For NodeJS (v14.6+):
+
+```text
+node --experimental-specifier-resolution=node --experimental-repl-await
+
+> const errors = await import("@thi.ng/errors");
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 356 bytes
 
 ## Dependencies
 

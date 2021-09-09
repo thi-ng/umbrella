@@ -51,15 +51,23 @@ code](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-carbon-ico
 yarn add @thi.ng/hiccup-carbon-icons
 ```
 
-```html
-// ES module
-<script type="module" src="https://unpkg.com/@thi.ng/hiccup-carbon-icons?module" crossorigin></script>
+ES module import:
 
-// UMD
-<script src="https://unpkg.com/@thi.ng/hiccup-carbon-icons/lib/index.umd.js" crossorigin></script>
+```html
+<script type="module" src="https://cdn.skypack.dev/@thi.ng/hiccup-carbon-icons"></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 99.12 KB / CJS: 102.27 KB / UMD: 96.97 KB
+[Skypack documentation](https://docs.skypack.dev/)
+
+For NodeJS (v14.6+):
+
+```text
+node --experimental-specifier-resolution=node --experimental-repl-await
+
+> const hiccupCarbonIcons = await import("@thi.ng/hiccup-carbon-icons");
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 99.12 KB
 
 ## Dependencies
 
