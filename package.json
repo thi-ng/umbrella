@@ -41,16 +41,16 @@
         "doc": "lerna run doc",
         "doc:readme": "lerna run doc:readme",
         "doc:ae": "lerna run doc:ae && scripts/collect-apis",
-        "doc:examples": "ts-node -P tools/tsconfig.json tools/src/readme-examples.ts",
+        "doc:examples": "scripts/node-esm tools/src/readme-examples.ts",
         "examples": "scripts/build-examples",
         "pub": "lerna publish --registry https://registry.npmjs.org/ && yarn doc && scripts/deploy-docs",
         "test": "yarn build && yarn test:only",
         "test:only": "lerna run test",
-        "tool:deps": "ts-node -P tools/tsconfig.json tools/src/adjacency.ts",
-        "tool:imports": "ts-node -P tools/tsconfig.json tools/src/check-imports.ts",
-        "tool:exports": "ts-node -P tools/tsconfig.json tools/src/check-exports.ts",
-        "tool:prune": "ts-node -P tools/tsconfig.json tools/src/prune-changelogs.ts",
-        "tool:searchindex": "ts-node -P tools/tsconfig.json tools/src/build-search-index.ts"
+        "tool:deps": "scripts/node-esm tools/src/adjacency.ts",
+        "tool:imports": "scripts/node-esm tools/src/check-imports.ts",
+        "tool:exports": "scripts/node-esm tools/src/check-exports.ts",
+        "tool:prune": "scripts/node-esm tools/src/prune-changelogs.ts",
+        "tool:searchindex": "scripts/node-esm tools/src/build-search-index.ts"
     },
     "resolutions": {
         "typescript": "4.4.2"

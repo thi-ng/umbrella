@@ -26,11 +26,11 @@
     "scripts": {
         "build": "yarn clean && tsc --declaration",
         "build:check": "tsc --isolatedModules --noEmit",
-        "build:convert": "ts-node -P tools/tsconfig.json tools/convert-icons.ts",
-        "build:sheet": "ts-node -P tools/tsconfig.json tools/contact-sheet.ts",
+        "build:convert": "../../scripts/node-esm tools/convert-icons.ts",
+        "build:sheet": "../../scripts/node-esm tools/contact-sheet.ts",
         "test": "testament test",
         "clean": "rimraf *.js *.map *.d.ts doc utils",
-        "doc:readme": "ts-node -P ../../tools/tsconfig.json ../../tools/src/readme.ts",
+        "doc:readme": "../../scripts/node-esm ../../tools/src/readme.ts",
         "doc": "typedoc --excludePrivate --out doc --theme ../../tools/doc/typedoc-theme src/index.ts",
         "doc:ae": "mkdir -p .ae/doc .ae/temp && node_modules/.bin/api-extractor run --local --verbose",
         "pub": "yarn build:release && yarn publish --access public"

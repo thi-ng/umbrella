@@ -28,16 +28,16 @@
         "build:check": "tsc --isolatedModules --noEmit",
         "test": "testament test",
         "clean": "rimraf *.js *.d.ts *.map doc axis plot",
-        "doc:readme": "ts-node -P ../../tools/tsconfig.json ../../tools/src/readme.ts",
+        "doc:readme": "../../scripts/node-esm ../../tools/src/readme.ts",
         "doc:ae": "mkdir -p .ae/doc .ae/temp && node_modules/.bin/api-extractor run --local --verbose",
         "doc": "typedoc --excludePrivate --out doc --theme ../../tools/doc/typedoc-theme src/index.ts",
         "pub": "yarn build:release && yarn publish --access public",
-        "tool:bars": "ts-node -P tools/tsconfig.json tools/bars.ts",
-        "tool:covid": "ts-node -P tools/tsconfig.json tools/covid-bars.ts",
-        "tool:candles": "ts-node -P tools/tsconfig.json tools/candles.ts",
-        "tool:line": "ts-node -P tools/tsconfig.json tools/line.ts",
-        "tool:intervals": "ts-node -P tools/tsconfig.json tools/intervals.ts",
-        "tool:tags": "ts-node -P tools/tsconfig.json tools/tagcloud.ts"
+        "tool:bars": "../../scripts/node-esm tools/bars.ts",
+        "tool:covid": "../../scripts/node-esm tools/covid-bars.ts",
+        "tool:candles": "../../scripts/node-esm tools/candles.ts",
+        "tool:line": "../../scripts/node-esm tools/line.ts",
+        "tool:intervals": "../../scripts/node-esm tools/intervals.ts",
+        "tool:tags": "../../scripts/node-esm tools/tagcloud.ts"
     },
     "dependencies": {
         "@thi.ng/api": "^7.2.0",
