@@ -8,8 +8,8 @@ import { clamp01 } from "@thi.ng/math/interval";
 import type { IRandom } from "@thi.ng/random";
 import { SYSTEM } from "@thi.ng/random/system";
 import { mapStridedBuffer } from "@thi.ng/vectors/buffer";
+import { declareIndex } from "@thi.ng/vectors/compile/accessors";
 import { eqDelta4 } from "@thi.ng/vectors/eqdelta";
-import { declareIndex } from "@thi.ng/vectors/internal/accessors";
 import type {
     ColorFactory,
     ColorMode,
