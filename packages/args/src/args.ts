@@ -1,5 +1,5 @@
 import type { Fn } from "@thi.ng/api";
-import { repeat } from "@thi.ng/strings";
+import { repeat } from "@thi.ng/strings/repeat";
 import type { ArgSpec, KVDict, KVMultiDict, Tuple } from "./api";
 import {
     coerceFloat,

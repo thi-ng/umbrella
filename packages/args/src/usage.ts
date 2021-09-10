@@ -1,14 +1,10 @@
 import type { IObjectOf, Pair } from "@thi.ng/api";
-import {
-    capitalize,
-    kebab,
-    lengthAnsi,
-    padRight,
-    repeat,
-    SPLIT_ANSI,
-    stringify,
-    wordWrapLines,
-} from "@thi.ng/strings";
+import { lengthAnsi } from "@thi.ng/strings/ansi";
+import { capitalize, kebab } from "@thi.ng/strings/case";
+import { padRight } from "@thi.ng/strings/pad-right";
+import { repeat } from "@thi.ng/strings/repeat";
+import { stringify } from "@thi.ng/strings/stringify";
+import { SPLIT_ANSI, wordWrapLines } from "@thi.ng/strings/word-wrap";
 import { Args, ArgSpecExt, ColorTheme, DEFAULT_THEME, UsageOpts } from "./api";
 
 export const usage = <T extends IObjectOf<any>>(
