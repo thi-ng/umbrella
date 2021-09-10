@@ -4,7 +4,11 @@ import { assocObj } from "@thi.ng/transducers";
 import { readJSON } from "./io";
 
 export const normalizePackage = (pkg: any) => {
-    pkg.name !== "@thi.ng/testament" && injectTestament(pkg);
+    pkg.type = "module";
+    delete pkg.main;
+    delete pkg["umd:main"];
+
+    injectTestament(pkg);
     cleanupFiles(pkg);
 
     return selectDefinedKeysObj(pkg, [
@@ -36,15 +40,14 @@ export const normalizePackage = (pkg: any) => {
 };
 
 const injectTestament = (pkg: any) => {
+    if (pkg.name === "@thi.ng/testament") return;
     const TinDev = "@thi.ng/testament" in (pkg.devDependencies || {});
     const TinPeer = "@thi.ng/testament" in (pkg.peerDependencies || {});
     if (!TinPeer && !TinDev) {
         !pkg.devDependencies && (pkg.devDependencies = {});
         const version = readJSON("packages/testament/package.json").version;
         pkg.devDependencies["@thi.ng/testament"] = `^${version}`;
-        pkg.devDependencies = assocObj(
-            Object.entries(pkg.devDependencies).sort(compareByKey(0))
-        );
+        pkg.devDependencies = sortObject(pkg.devDependencies);
     }
     if (pkg.scripts.test === "mocha test") {
         pkg.scripts.test = "testament test";
@@ -54,3 +57,6 @@ const injectTestament = (pkg: any) => {
 const cleanupFiles = (pkg: any) => {
     pkg.files = (<string[]>pkg.files).filter((x) => !["lib"].includes(x));
 };
+
+const sortObject = (obj: any) =>
+    assocObj(Object.entries(obj).sort(compareByKey(0)));
