@@ -1,5 +1,7 @@
 import type { FnU2 } from "@thi.ng/api";
-import { distSq, ReadonlyVec, set, Vec } from "@thi.ng/vectors";
+import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
+import { distSq } from "@thi.ng/vectors/distsq";
+import { set } from "@thi.ng/vectors/set";
 
 /**
  * Returns closest point to `p` in given point array, optionally using custom

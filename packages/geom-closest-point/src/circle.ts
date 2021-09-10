@@ -1,4 +1,6 @@
-import { add, direction, ReadonlyVec, Vec } from "@thi.ng/vectors";
+import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
+import { add } from "@thi.ng/vectors/add";
+import { direction } from "@thi.ng/vectors/direction";
 
 /**
  * Returns closest point to `p` on circle defined by origin `c` and radius `r`.

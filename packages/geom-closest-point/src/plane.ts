@@ -1,4 +1,7 @@
-import { dot, normalize, ReadonlyVec, sub, Vec } from "@thi.ng/vectors";
+import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
+import { dot } from "@thi.ng/vectors/dot";
+import { normalize } from "@thi.ng/vectors/normalize";
+import { sub } from "@thi.ng/vectors/sub";
 
 /**
  * Returns signed distance between point `p` and plane defined by normal `n` and

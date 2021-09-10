@@ -1,5 +1,6 @@
-import { clamp } from "@thi.ng/math";
-import { ReadonlyVec, setC2, setC3, Vec } from "@thi.ng/vectors";
+import { clamp } from "@thi.ng/math/interval";
+import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
+import { setC2, setC3 } from "@thi.ng/vectors/setc";
 
 export const closestPointRect = (
     p: ReadonlyVec,
