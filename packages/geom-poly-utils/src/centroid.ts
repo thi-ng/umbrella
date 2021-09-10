@@ -1,5 +1,8 @@
-import { illegalArgs } from "@thi.ng/errors";
-import { add, divN, empty, ReadonlyVec, Vec } from "@thi.ng/vectors";
+import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
+import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
+import { add } from "@thi.ng/vectors/add";
+import { divN } from "@thi.ng/vectors/divn";
+import { empty } from "@thi.ng/vectors/empty";
 
 export const centroid = (pts: ReadonlyVec[], out?: Vec) => {
     const num = pts.length;

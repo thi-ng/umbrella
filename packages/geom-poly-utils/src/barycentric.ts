@@ -1,12 +1,9 @@
-import {
-    addW3,
-    dot,
-    magSq,
-    ReadonlyVec,
-    setC3,
-    sub,
-    Vec,
-} from "@thi.ng/vectors";
+import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
+import { addW3 } from "@thi.ng/vectors/addw";
+import { dot } from "@thi.ng/vectors/dot";
+import { magSq } from "@thi.ng/vectors/magsq";
+import { setC3 } from "@thi.ng/vectors/setc";
+import { sub } from "@thi.ng/vectors/sub";
 
 export const toBarycentric = (
     a: ReadonlyVec,

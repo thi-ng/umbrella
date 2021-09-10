@@ -1,14 +1,11 @@
-import { EPS } from "@thi.ng/math";
-import {
-    add3,
-    addmN3,
-    cross3,
-    magSq3,
-    mulN3,
-    ReadonlyVec,
-    sub3,
-    Vec,
-} from "@thi.ng/vectors";
+import { EPS } from "@thi.ng/math/api";
+import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
+import { add3 } from "@thi.ng/vectors/add";
+import { addmN3 } from "@thi.ng/vectors/addmn";
+import { cross3 } from "@thi.ng/vectors/cross";
+import { magSq3 } from "@thi.ng/vectors/magsq";
+import { mulN3 } from "@thi.ng/vectors/muln";
+import { sub3 } from "@thi.ng/vectors/sub";
 
 /**
  * Computes and returns the center of the circumcircle of the given 2D

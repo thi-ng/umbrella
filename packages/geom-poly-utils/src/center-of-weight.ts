@@ -1,4 +1,5 @@
-import { cross2, ReadonlyVec, Vec } from "@thi.ng/vectors";
+import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
+import { cross2 } from "@thi.ng/vectors/cross";
 
 export const centerOfWeight2 = (pts: ReadonlyVec[], out: Vec = []) => {
     const n = pts.length - 1;

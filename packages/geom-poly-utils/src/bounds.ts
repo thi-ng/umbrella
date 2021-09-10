@@ -1,4 +1,6 @@
-import { max, min, Vec, VecPair } from "@thi.ng/vectors";
+import type { Vec, VecPair } from "@thi.ng/vectors";
+import { max } from "@thi.ng/vectors/max";
+import { min } from "@thi.ng/vectors/min";
 
 /**
  * Computes the nD bounds of given vectors. `vmin` should be initialized
