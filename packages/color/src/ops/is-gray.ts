@@ -1,5 +1,6 @@
-import { DEFAULT, defmulti } from "@thi.ng/defmulti";
-import { eqDelta } from "@thi.ng/math";
+import { DEFAULT } from "@thi.ng/defmulti/constants";
+import { defmulti } from "@thi.ng/defmulti/defmulti";
+import { eqDelta } from "@thi.ng/math/eqdelta";
 import type { ReadonlyColor, TypedColor } from "../api";
 import { EPS } from "../api/constants";
 import { rgb } from "../rgb/rgb";

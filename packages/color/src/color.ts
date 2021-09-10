@@ -1,4 +1,4 @@
-import { isString } from "@thi.ng/checks";
+import { isString } from "@thi.ng/checks/is-string";
 import type {
     Color,
     ColorFactory,

@@ -1,6 +1,9 @@
-import { Fn, typedArray, typedArrayType } from "@thi.ng/api";
-import { quickSort, sortByCachedKey, swap } from "@thi.ng/arrays";
-import { compareNumAsc, compareNumDesc } from "@thi.ng/compare";
+import type { Fn } from "@thi.ng/api";
+import { typedArray, typedArrayType } from "@thi.ng/api/api/typedarray";
+import { quickSort } from "@thi.ng/arrays/quicksort";
+import { sortByCachedKey } from "@thi.ng/arrays/sort-cached";
+import { swap } from "@thi.ng/arrays/swap";
+import { compareNumAsc, compareNumDesc } from "@thi.ng/compare/numeric";
 import type { ColorDistance, ReadonlyColor, TypedColor } from "../api";
 import { distEucledian3 } from "./distance";
 
@@ -14,10 +17,10 @@ export const selectChannel = (id: number) => (col: ReadonlyColor) => col[id];
  * @param target
  * @param dist
  */
-export const proximity = (
-    target: ReadonlyColor,
-    dist: ColorDistance = distEucledian3
-) => (col: ReadonlyColor) => dist(target, col);
+export const proximity =
+    (target: ReadonlyColor, dist: ColorDistance = distEucledian3) =>
+    (col: ReadonlyColor) =>
+        dist(target, col);
 
 export const sort = (
     colors: ReadonlyColor[],

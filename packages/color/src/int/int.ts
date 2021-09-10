@@ -1,14 +1,15 @@
 import type { ArrayLikeIterable, Fn, NumericArray } from "@thi.ng/api";
-import {
-    implementsFunction,
-    isArrayLike,
-    isNumber,
-    isString,
-} from "@thi.ng/checks";
-import { illegalArgs } from "@thi.ng/errors";
-import { clamp01 } from "@thi.ng/math";
-import { IRandom, SYSTEM } from "@thi.ng/random";
-import { declareIndex, eqDelta4, mapStridedBuffer } from "@thi.ng/vectors";
+import { implementsFunction } from "@thi.ng/checks/implements-function";
+import { isArrayLike } from "@thi.ng/checks/is-arraylike";
+import { isNumber } from "@thi.ng/checks/is-number";
+import { isString } from "@thi.ng/checks/is-string";
+import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
+import { clamp01 } from "@thi.ng/math/interval";
+import type { IRandom } from "@thi.ng/random";
+import { SYSTEM } from "@thi.ng/random/system";
+import { mapStridedBuffer } from "@thi.ng/vectors/buffer";
+import { eqDelta4 } from "@thi.ng/vectors/eqdelta";
+import { declareIndex } from "@thi.ng/vectors/internal/accessors";
 import type {
     ColorFactory,
     ColorMode,

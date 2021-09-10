@@ -1,23 +1,19 @@
 import type { NumericArray } from "@thi.ng/api";
-import {
-    implementsFunction,
-    isArrayLike,
-    isNumber,
-    isString,
-} from "@thi.ng/checks";
-import { illegalArgs } from "@thi.ng/errors";
-import { EPS } from "@thi.ng/math";
+import { implementsFunction } from "@thi.ng/checks/implements-function";
+import { isArrayLike } from "@thi.ng/checks/is-arraylike";
+import { isNumber } from "@thi.ng/checks/is-number";
+import { isString } from "@thi.ng/checks/is-string";
+import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
+import { EPS } from "@thi.ng/math/api";
 import type { IRandom } from "@thi.ng/random";
-import { vector } from "@thi.ng/strings";
-import {
-    clamp4,
-    declareIndices,
-    eqDelta4,
-    mapStridedBuffer,
-    randMinMax,
-    set4,
-    stridedValues,
-} from "@thi.ng/vectors";
+import { vector } from "@thi.ng/strings/vector";
+import { mapStridedBuffer } from "@thi.ng/vectors/buffer";
+import { clamp4 } from "@thi.ng/vectors/clamp";
+import { eqDelta4 } from "@thi.ng/vectors/eqdelta";
+import { declareIndices } from "@thi.ng/vectors/internal/accessors";
+import { stridedValues } from "@thi.ng/vectors/internal/vec-utils";
+import { randMinMax } from "@thi.ng/vectors/random";
+import { set4 } from "@thi.ng/vectors/set";
 import type {
     ChannelSpec,
     ColorFactory,

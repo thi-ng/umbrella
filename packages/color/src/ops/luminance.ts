@@ -1,4 +1,6 @@
-import { DEFAULT, defmulti, MultiFn1 } from "@thi.ng/defmulti";
+import type { MultiFn1 } from "@thi.ng/defmulti";
+import { DEFAULT } from "@thi.ng/defmulti/constants";
+import { defmulti } from "@thi.ng/defmulti/defmulti";
 import type { MaybeColor } from "../api";
 import { rgb } from "../rgb/rgb";
 import {

@@ -1,5 +1,7 @@
-import { clamp01 } from "@thi.ng/math";
-import { dotS3, dotS4, ReadonlyVec, setC4 } from "@thi.ng/vectors";
+import { clamp01 } from "@thi.ng/math/interval";
+import type { ReadonlyVec } from "@thi.ng/vectors";
+import { dotS3, dotS4 } from "@thi.ng/vectors/dots";
+import { setC4 } from "@thi.ng/vectors/setc";
 import type { Color, ColorMatrix, ReadonlyColor } from "../api";
 import { ensureAlpha } from "./ensure-alpha";
 

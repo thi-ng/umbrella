@@ -1,5 +1,5 @@
-import { clamp01 } from "@thi.ng/math";
-import { setC4 } from "@thi.ng/vectors";
+import { clamp01 } from "@thi.ng/math/interval";
+import { setC4 } from "@thi.ng/vectors/setc";
 import { SRGB, srgb } from "../srgb/srgb";
 
 const G1 = -0.6088425710866344;

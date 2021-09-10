@@ -1,5 +1,5 @@
 import type { FnU5 } from "@thi.ng/api";
-import { setC4 } from "@thi.ng/vectors";
+import { setC4 } from "@thi.ng/vectors/setc";
 import { xyzD65, XYZD65 } from "./xyz65";
 
 /**

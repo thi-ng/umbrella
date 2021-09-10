@@ -1,9 +1,14 @@
 import type { Range, Without } from "@thi.ng/api";
-import { peek } from "@thi.ng/arrays";
-import { isArray, isNumber, isString } from "@thi.ng/checks";
-import { illegalArgs } from "@thi.ng/errors";
-import { fract } from "@thi.ng/math";
-import { coin, IRandom, SYSTEM, weightedRandom } from "@thi.ng/random";
+import { peek } from "@thi.ng/arrays/peek";
+import { isArray } from "@thi.ng/checks/is-array";
+import { isNumber } from "@thi.ng/checks/is-number";
+import { isString } from "@thi.ng/checks/is-string";
+import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
+import { fract } from "@thi.ng/math/prec";
+import type { IRandom } from "@thi.ng/random";
+import { coin } from "@thi.ng/random/coin";
+import { SYSTEM } from "@thi.ng/random/system";
+import { weightedRandom } from "@thi.ng/random/weighted-random";
 import type {
     ColorRange,
     ColorRangeOpts,

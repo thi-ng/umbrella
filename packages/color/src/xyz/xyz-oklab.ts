@@ -1,4 +1,4 @@
-import { powN3 } from "@thi.ng/vectors";
+import { powN3 } from "@thi.ng/vectors/pown";
 import type { ColorOp } from "../api";
 import { OKLAB_M1, OKLAB_M2 } from "../api/constants";
 import { mulV33 } from "../internal/matrix-ops";

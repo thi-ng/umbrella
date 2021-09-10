@@ -1,5 +1,6 @@
 import type { Fn } from "@thi.ng/api";
-import { isNumber, isString } from "@thi.ng/checks";
+import { isNumber } from "@thi.ng/checks/is-number";
+import { isString } from "@thi.ng/checks/is-string";
 import type { ColorMode, IParsedColor, MaybeColor, TypedColor } from "../api";
 import { convert } from "../convert";
 import { hslCss } from "../hsl/hsl-css";

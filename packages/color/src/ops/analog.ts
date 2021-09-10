@@ -1,8 +1,11 @@
 import type { Fn3, Fn4, FnN, FnU3 } from "@thi.ng/api";
-import { DEFAULT, defmulti } from "@thi.ng/defmulti";
-import { clamp01, fract } from "@thi.ng/math";
-import { IRandom, SYSTEM } from "@thi.ng/random";
-import { setC4 } from "@thi.ng/vectors";
+import { DEFAULT } from "@thi.ng/defmulti/constants";
+import { defmulti } from "@thi.ng/defmulti/defmulti";
+import { clamp01 } from "@thi.ng/math/interval";
+import { fract } from "@thi.ng/math/prec";
+import type { IRandom } from "@thi.ng/random";
+import { SYSTEM } from "@thi.ng/random/system";
+import { setC4 } from "@thi.ng/vectors/setc";
 import type { Color, ReadonlyColor, TypedColor } from "../api";
 import { ensureAlpha } from "../internal/ensure-alpha";
 
@@ -27,14 +30,16 @@ const analogA = (a: number, delta: number, rnd: IRandom) =>
 export const defAnalog: FnU3<
     Fn3<number, number, IRandom, number>,
     Fn4<Color | null, TypedColor<any>, number, IRandom | undefined, Color>
-> = (x, y, z) => (out, src, delta, rnd = SYSTEM) =>
-    setC4(
-        out || src,
-        x(src[0], delta, rnd),
-        y(src[1], delta, rnd),
-        z(src[2], delta, rnd),
-        ensureAlpha(src[3])
-    );
+> =
+    (x, y, z) =>
+    (out, src, delta, rnd = SYSTEM) =>
+        setC4(
+            out || src,
+            x(src[0], delta, rnd),
+            y(src[1], delta, rnd),
+            z(src[2], delta, rnd),
+            ensureAlpha(src[3])
+        );
 
 /** @internal */
 const analogHNN = defAnalog(analogH, analogN, analogN);
