@@ -6,10 +6,10 @@ import { clamp01 } from "@thi.ng/math/interval";
 import type { MultiVecOpImpl, ReadonlyVec } from "@thi.ng/vectors";
 import { clockwise2 } from "@thi.ng/vectors/clockwise";
 import { distSq } from "@thi.ng/vectors/distsq";
-import { vop } from "@thi.ng/vectors/internal/vop";
 import { magSq } from "@thi.ng/vectors/magsq";
 import { mixN } from "@thi.ng/vectors/mixn";
 import { signedArea2 } from "@thi.ng/vectors/signed-area";
+import { vop } from "@thi.ng/vectors/vop";
 
 export const pointInSegment = (
     p: ReadonlyVec,
