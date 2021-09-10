@@ -1,7 +1,9 @@
 import type { FnU } from "@thi.ng/api";
 import type { SubdivKernel } from "@thi.ng/geom-api";
-import { wrapSides } from "@thi.ng/transducers";
-import { addmN, mixN, ReadonlyVec } from "@thi.ng/vectors";
+import { wrapSides } from "@thi.ng/transducers/iter/wrap-sides";
+import type { ReadonlyVec } from "@thi.ng/vectors";
+import { addmN } from "@thi.ng/vectors/addmn";
+import { mixN } from "@thi.ng/vectors/mixn";
 import { kernel3 } from "./kernels";
 
 const MIDP = ([a, b]: ReadonlyVec[]) => [a, addmN([], a, b, 0.5)];
@@ -14,11 +16,10 @@ const THIRDS = ([a, b]: ReadonlyVec[]) => [
 const wrap2 = (pts: ReadonlyVec[]) => wrapSides(pts, 0, 1);
 const wrap3 = (pts: ReadonlyVec[]) => wrapSides(pts, 1, 1);
 
-const subdivWith = (fn: FnU<ReadonlyVec[]>): SubdivKernel["fn"] => (
-    pts,
-    i,
-    n
-) => (i < n - 2 ? fn(pts) : [...fn(pts), pts[1]]);
+const subdivWith =
+    (fn: FnU<ReadonlyVec[]>): SubdivKernel["fn"] =>
+    (pts, i, n) =>
+        i < n - 2 ? fn(pts) : [...fn(pts), pts[1]];
 
 /**
  * Splits each curve / line segment into halves at midpoint. Version for
