@@ -1,6 +1,6 @@
 import type { Fn0 } from "@thi.ng/api";
-import { ConsCell, DCons } from "@thi.ng/dcons";
-import { map } from "@thi.ng/transducers";
+import { ConsCell, DCons } from "@thi.ng/dcons/dcons";
+import { map } from "@thi.ng/transducers/xform/map";
 import type { CacheEntry, CacheOpts, ICache } from "./api";
 
 export class LRUCache<K, V> implements ICache<K, V> {
