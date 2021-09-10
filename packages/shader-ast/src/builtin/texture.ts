@@ -1,4 +1,4 @@
-import { illegalArgs } from "@thi.ng/errors";
+import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import type { FnCall, Sym, Term } from "../api/nodes";
 import type {
     FloatTerm,

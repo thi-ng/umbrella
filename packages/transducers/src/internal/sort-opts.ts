@@ -1,5 +1,4 @@
-import { compare } from "@thi.ng/compare";
-import { identity } from "@thi.ng/compose";
+import { compare } from "@thi.ng/compare/compare";
 import type { SortOpts } from "../api";
 
 /**
@@ -11,7 +10,7 @@ import type { SortOpts } from "../api";
  */
 export const __sortOpts = <A, B>(opts?: Partial<SortOpts<A, B>>) =>
     <SortOpts<A, B>>{
-        key: identity,
+        key: (x: any) => x,
         compare,
         ...opts,
     };

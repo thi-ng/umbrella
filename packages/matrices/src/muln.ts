@@ -1,4 +1,4 @@
-import { mulN as _mulN, mulN4 } from "@thi.ng/vectors";
+import { mulN as _mulN, mulN4 } from "@thi.ng/vectors/muln";
 import type { MatOpMN, MultiMatOpMN } from "./api";
 import { defMathN } from "./internal/codegen";
 

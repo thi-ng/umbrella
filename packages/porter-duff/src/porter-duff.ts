@@ -1,5 +1,5 @@
 import type { Fn3, FnN2 } from "@thi.ng/api";
-import { clamp, clamp01 } from "@thi.ng/math";
+import { clamp, clamp01 } from "@thi.ng/math/interval";
 import type { Color, ReadonlyColor } from "./api";
 import {
     postmultiply,
@@ -37,39 +37,47 @@ export const ONE_MINUS_B: FnN2 = (_, b) => 1 - b;
  * @param fa - fn for src coeff
  * @param fb - fn for dest coeff
  */
-export const porterDuff = (fa: FnN2, fb: FnN2) => (
-    out: Color | null,
-    src: ReadonlyColor,
-    dest: ReadonlyColor
-) => {
-    const sa = src[3];
-    const sb = dest[3];
-    const aa = fa(sa, sb);
-    const bb = fb(sa, sb);
-    return setC4(
-        out || dest,
-        src[0] * aa + dest[0] * bb,
-        src[1] * aa + dest[1] * bb,
-        src[2] * aa + dest[2] * bb,
-        clamp01(src[3] * aa + dest[3] * bb)
-    );
-};
+export const porterDuff =
+    (fa: FnN2, fb: FnN2) =>
+    (out: Color | null, src: ReadonlyColor, dest: ReadonlyColor) => {
+        const sa = src[3];
+        const sb = dest[3];
+        const aa = fa(sa, sb);
+        const bb = fb(sa, sb);
+        return setC4(
+            out || dest,
+            src[0] * aa + dest[0] * bb,
+            src[1] * aa + dest[1] * bb,
+            src[2] * aa + dest[2] * bb,
+            clamp01(src[3] * aa + dest[3] * bb)
+        );
+    };
 
-export const porterDuffInt = (fa: FnN2, fb: FnN2): FnN2 => (a, b) => {
-    const sa = (a >>> 24) / 255;
-    const sb = (b >>> 24) / 255;
-    const aa = fa(sa, sb);
-    const bb = fb(sa, sb);
-    return (
-        (clamp(((a >>> 24) & 0xff) * aa + ((b >>> 24) & 0xff) * bb, 0, 255) <<
-            24) |
-        (clamp(((a >>> 16) & 0xff) * aa + ((b >>> 16) & 0xff) * bb, 0, 255) <<
-            16) |
-        (clamp(((a >>> 8) & 0xff) * aa + ((b >>> 8) & 0xff) * bb, 0, 255) <<
-            8) |
-        clamp((a & 0xff) * aa + (b & 0xff) * bb, 0, 255)
-    );
-};
+export const porterDuffInt =
+    (fa: FnN2, fb: FnN2): FnN2 =>
+    (a, b) => {
+        const sa = (a >>> 24) / 255;
+        const sb = (b >>> 24) / 255;
+        const aa = fa(sa, sb);
+        const bb = fb(sa, sb);
+        return (
+            (clamp(
+                ((a >>> 24) & 0xff) * aa + ((b >>> 24) & 0xff) * bb,
+                0,
+                255
+            ) <<
+                24) |
+            (clamp(
+                ((a >>> 16) & 0xff) * aa + ((b >>> 16) & 0xff) * bb,
+                0,
+                255
+            ) <<
+                16) |
+            (clamp(((a >>> 8) & 0xff) * aa + ((b >>> 8) & 0xff) * bb, 0, 255) <<
+                8) |
+            clamp((a & 0xff) * aa + (b & 0xff) * bb, 0, 255)
+        );
+    };
 
 /**
  * Higher order function. Takes existing PD operator and returns
@@ -79,21 +87,23 @@ export const porterDuffInt = (fa: FnN2, fb: FnN2): FnN2 => (a, b) => {
  *
  * @param mode -
  */
-export const porterDuffP = (
-    mode: Fn3<Color | null, ReadonlyColor, ReadonlyColor, Color>
-) => (out: Color, src: ReadonlyColor, dest: ReadonlyColor) =>
-    postmultiply(
-        null,
-        mode(null, premultiply([], src), premultiply(out, dest))
-    );
+export const porterDuffP =
+    (mode: Fn3<Color | null, ReadonlyColor, ReadonlyColor, Color>) =>
+    (out: Color, src: ReadonlyColor, dest: ReadonlyColor) =>
+        postmultiply(
+            null,
+            mode(null, premultiply([], src), premultiply(out, dest))
+        );
 
 /**
  * Like {@link porterDuffP}, but for packed integers.
  *
  * @param mode -
  */
-export const porterDuffPInt = (mode: FnN2): FnN2 => (src, dest) =>
-    postmultiplyInt(mode(premultiplyInt(src), premultiplyInt(dest)));
+export const porterDuffPInt =
+    (mode: FnN2): FnN2 =>
+    (src, dest) =>
+        postmultiplyInt(mode(premultiplyInt(src), premultiplyInt(dest)));
 
 /**
  * Porter-Duff operator. None of the terms are used. Always results in

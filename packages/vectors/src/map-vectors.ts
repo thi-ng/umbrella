@@ -6,7 +6,7 @@ import type {
     VecOpVVV,
     VecOpVVN,
 } from "./api";
-import { isNumber } from "@thi.ng/checks";
+import { isNumber } from "@thi.ng/checks/is-number";
 
 /**
  * Takes a vec op `fn`, output array (or null) and a combination of the

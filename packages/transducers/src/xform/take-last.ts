@@ -1,4 +1,4 @@
-import { isIterable } from "@thi.ng/checks";
+import { isIterable } from "@thi.ng/checks/is-iterable";
 import type { Reducer, Transducer } from "../api";
 import { __drain } from "../internal/drain";
 import { iterator } from "../iterator";

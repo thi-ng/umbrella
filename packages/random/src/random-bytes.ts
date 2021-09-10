@@ -1,4 +1,4 @@
-import { hasCrypto } from "@thi.ng/checks";
+import { hasCrypto } from "@thi.ng/checks/has-crypto";
 import type { IRandom } from "./api";
 import { SYSTEM } from "./system";
 

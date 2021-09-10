@@ -1,14 +1,12 @@
 import type { FnU2 } from "@thi.ng/api";
-import {
-    comp,
-    map,
-    mapIndexed,
-    range,
-    str,
-    take,
-    transduce,
-    zip,
-} from "@thi.ng/transducers";
+import { comp } from "@thi.ng/transducers/func/comp";
+import { range } from "@thi.ng/transducers/iter/range";
+import { zip } from "@thi.ng/transducers/iter/zip";
+import { str } from "@thi.ng/transducers/rfn/str";
+import { transduce } from "@thi.ng/transducers/transduce";
+import { map } from "@thi.ng/transducers/xform/map";
+import { mapIndexed } from "@thi.ng/transducers/xform/map-indexed";
+import { take } from "@thi.ng/transducers/xform/take";
 import type {
     MultiVecOpVN,
     MultiVecOpVV,

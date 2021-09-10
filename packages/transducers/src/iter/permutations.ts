@@ -1,5 +1,5 @@
-import { ensureArrayLike } from "@thi.ng/arrays";
-import { illegalArgs } from "@thi.ng/errors";
+import { ensureArrayLike } from "@thi.ng/arrays/ensure-array";
+import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import { range } from "./range";
 
 /**

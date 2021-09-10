@@ -1,4 +1,4 @@
-import { isString } from "@thi.ng/checks";
+import { isString } from "@thi.ng/checks/is-string";
 import { DEFAULT_SYNTAX } from "./constants";
 import { tokenize } from "./tokenize";
 import type { ASTNode, Expression, Root, SyntaxOpts, Token } from "./api";

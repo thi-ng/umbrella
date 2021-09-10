@@ -1,5 +1,6 @@
 import type { Fn0, IClear, IToHiccup } from "@thi.ng/api";
-import { set2, Vec } from "@thi.ng/vectors";
+import type { Vec } from "@thi.ng/vectors";
+import { set2 } from "@thi.ng/vectors/set";
 import {
     DEFAULT_THEME,
     GUITheme,
@@ -48,7 +49,11 @@ export class IMGUI implements IClear, IToHiccup {
         this.mouse = [-1e3, -1e3];
         this.prevMouse = [-1e3, -1e3];
         this.key = this.prevKey = "";
-        this.buttons = this.prevButtons = this.modifiers = this.prevModifiers = 0;
+        this.buttons =
+            this.prevButtons =
+            this.modifiers =
+            this.prevModifiers =
+                0;
         this.hotID = this.activeID = this.focusID = this.lastID = "";
         this.currIDs = new Set<string>();
         this.prevIDs = new Set<string>();

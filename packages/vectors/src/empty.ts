@@ -1,4 +1,4 @@
-import { implementsFunction } from "@thi.ng/checks";
+import { implementsFunction } from "@thi.ng/checks/implements-function";
 import type { ReadonlyVec, Vec } from "./api";
 import { zeroes } from "./setn";
 

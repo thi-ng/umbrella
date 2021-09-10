@@ -1,5 +1,6 @@
-import { EPS } from "@thi.ng/math";
-import { normalize, ReadonlyVec } from "@thi.ng/vectors";
+import { EPS } from "@thi.ng/math/api";
+import type { ReadonlyVec } from "@thi.ng/vectors";
+import { normalize } from "@thi.ng/vectors/normalize";
 
 /**
  * Computes a quaternion representing the rotation `theta` around

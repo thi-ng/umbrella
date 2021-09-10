@@ -1,5 +1,6 @@
-import { isArray, isFunction } from "@thi.ng/checks";
-import { compL } from "@thi.ng/compose";
+import { isArray } from "@thi.ng/checks/is-array";
+import { isFunction } from "@thi.ng/checks/is-function";
+import { compL } from "@thi.ng/compose/comp";
 import type {
     StackContext,
     StackEnv,

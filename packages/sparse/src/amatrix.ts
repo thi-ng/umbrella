@@ -1,4 +1,4 @@
-import { assert } from "@thi.ng/api";
+import { assert } from "@thi.ng/api/assert";
 import type { NzEntry } from "./api";
 
 export abstract class ASparseMatrix {

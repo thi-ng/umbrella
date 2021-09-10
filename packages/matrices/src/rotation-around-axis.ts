@@ -1,5 +1,7 @@
-import { sincos } from "@thi.ng/math";
-import { normalize as _normalize, ReadonlyVec, setC } from "@thi.ng/vectors";
+import { sincos } from "@thi.ng/math/angle";
+import type { ReadonlyVec } from "@thi.ng/vectors";
+import { normalize as _normalize } from "@thi.ng/vectors/normalize";
+import { setC } from "@thi.ng/vectors/setc";
 import type { Mat } from "./api";
 import { mat33to44 } from "./m33-m44";
 

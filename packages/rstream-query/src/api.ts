@@ -1,4 +1,5 @@
-import { Fn, ILogger, IObjectOf, NULL_LOGGER } from "@thi.ng/api";
+import type { Fn, ILogger, IObjectOf } from "@thi.ng/api";
+import { NULL_LOGGER } from "@thi.ng/api/logger";
 import type { ISubscription } from "@thi.ng/rstream";
 
 export type Pattern = [any, any, any];

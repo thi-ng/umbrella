@@ -1,8 +1,11 @@
-import { assert, NO_OP } from "@thi.ng/api";
-import { isArray, isNotStringAndIterable } from "@thi.ng/checks";
-import { diffArray } from "@thi.ng/diff";
-import { equiv, HDOMImplementation, HDOMOpts, releaseTree } from "@thi.ng/hdom";
-import { draw } from "@thi.ng/hiccup-canvas";
+import { assert } from "@thi.ng/api/assert";
+import { NO_OP } from "@thi.ng/api/constants";
+import { isArray } from "@thi.ng/checks/is-array";
+import { isNotStringAndIterable } from "@thi.ng/checks/is-not-string-iterable";
+import { diffArray } from "@thi.ng/diff/array";
+import type { HDOMImplementation, HDOMOpts } from "@thi.ng/hdom";
+import { equiv, releaseTree } from "@thi.ng/hdom/diff";
+import { draw } from "@thi.ng/hiccup-canvas/draw";
 
 const FN = "function";
 const STR = "string";

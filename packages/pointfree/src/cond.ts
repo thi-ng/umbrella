@@ -1,5 +1,5 @@
 import type { IObjectOf } from "@thi.ng/api";
-import { illegalState } from "@thi.ng/errors";
+import { illegalState } from "@thi.ng/errors/illegal-state";
 import type { StackContext, StackProc } from "./api";
 import { $ } from "./safe";
 import { nop } from "./stack";
@@ -20,9 +20,12 @@ import { $stackFn } from "./word";
  * @param _then -
  * @param _else -
  */
-export const defCond = (_then: StackProc, _else: StackProc = nop) => (
-    ctx: StackContext
-) => ($(ctx[0], 1), $stackFn(ctx[0].pop() ? _then : _else)(ctx));
+export const defCond =
+    (_then: StackProc, _else: StackProc = nop) =>
+    (ctx: StackContext) => {
+        $(ctx[0], 1);
+        return $stackFn(ctx[0].pop() ? _then : _else)(ctx);
+    };
 
 /**
  * Non-HOF version of {@link cond}, expects `test` result and both branches on
@@ -68,22 +71,21 @@ export const whenq = (ctx: StackContext) => {
  *
  * @param cases -
  */
-export const defCases = (cases: IObjectOf<StackProc>) => (
-    ctx: StackContext
-) => {
-    $(ctx[0], 1);
-    const stack = ctx[0];
-    const tos = stack.pop();
-    const cas = cases[tos];
-    if (cas !== undefined) {
-        return $stackFn(cas)(ctx);
-    }
-    if (cases.default) {
-        stack.push(tos);
-        return $stackFn(cases.default)(ctx);
-    }
-    return illegalState(`no matching case for: ${tos}`);
-};
+export const defCases =
+    (cases: IObjectOf<StackProc>) => (ctx: StackContext) => {
+        $(ctx[0], 1);
+        const stack = ctx[0];
+        const tos = stack.pop();
+        const cas = cases[tos];
+        if (cas !== undefined) {
+            return $stackFn(cas)(ctx);
+        }
+        if (cases.default) {
+            stack.push(tos);
+            return $stackFn(cases.default)(ctx);
+        }
+        return illegalState(`no matching case for: ${tos}`);
+    };
 
 export const casesq = (ctx: StackContext) => {
     const stack = ctx[0];

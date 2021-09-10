@@ -1,4 +1,5 @@
-import { IGridLayout, isLayout, LayoutBox } from "@thi.ng/layout";
+import type { IGridLayout, LayoutBox } from "@thi.ng/layout";
+import { isLayout } from "@thi.ng/layout/is-layout";
 
 export const layoutBox = (
     layout: IGridLayout | LayoutBox,

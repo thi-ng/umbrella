@@ -1,6 +1,9 @@
 import type { Fn } from "@thi.ng/api";
-import { eqDelta } from "@thi.ng/math";
-import { comp, filter, iterator, mapcat } from "@thi.ng/transducers";
+import { eqDelta } from "@thi.ng/math/eqdelta";
+import { comp } from "@thi.ng/transducers/func/comp";
+import { iterator } from "@thi.ng/transducers/iterator";
+import { filter } from "@thi.ng/transducers/xform/filter";
+import { mapcat } from "@thi.ng/transducers/xform/mapcat";
 import type { AxisSpec, VizSpec } from "./api";
 
 const gridAxis = (
@@ -98,10 +101,11 @@ export const cartesianAxisX = (spec: AxisSpec) => {
         labelOffset: [lx, ly],
         range: [r1, r2],
     } = spec;
-    const tick = (dy: number) => (x: number) => [
-        ["M", [scale(x), pos]],
-        ["v", dy],
-    ];
+    const tick = (dy: number) => (x: number) =>
+        [
+            ["M", [scale(x), pos]],
+            ["v", dy],
+        ];
     return axisCommon(
         spec,
         [
@@ -127,10 +131,11 @@ export const cartesianAxisY = (spec: AxisSpec) => {
         labelOffset: [lx, ly],
         range: [r1, r2],
     } = spec;
-    const tick = (dx: number) => (y: number) => [
-        ["M", [pos, scale(y)]],
-        ["h", dx],
-    ];
+    const tick = (dx: number) => (y: number) =>
+        [
+            ["M", [pos, scale(y)]],
+            ["h", dx],
+        ];
     return axisCommon(
         spec,
         [

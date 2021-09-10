@@ -1,4 +1,4 @@
-import { repeatedly } from "@thi.ng/transducers";
+import { repeatedly } from "@thi.ng/transducers/iter/repeatedly";
 import type { PathPattern, Pattern } from "./api";
 import { autoQVar, isQVar, qvarName } from "./qvar";
 

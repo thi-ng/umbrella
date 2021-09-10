@@ -1,7 +1,14 @@
-import { assert, SIZEOF, Type, TypedArray, typedArray } from "@thi.ng/api";
-import { align, Pow2 } from "@thi.ng/binary";
-import { isNumber } from "@thi.ng/checks";
-import { illegalArgs } from "@thi.ng/errors";
+import {
+    SIZEOF,
+    Type,
+    TypedArray,
+    typedArray,
+} from "@thi.ng/api/api/typedarray";
+import { assert } from "@thi.ng/api/assert";
+import type { Pow2 } from "@thi.ng/binary";
+import { align } from "@thi.ng/binary/align";
+import { isNumber } from "@thi.ng/checks/is-number";
+import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import type { IMemPool, MemPoolOpts, MemPoolStats } from "./api";
 
 const STATE_FREE = 0;

@@ -1,4 +1,5 @@
-import { isTransferable, isTypedArray } from "@thi.ng/checks";
+import { isTransferable } from "@thi.ng/checks/is-transferable";
+import { isTypedArray } from "@thi.ng/checks/is-typedarray";
 import { ISubscriber, LOGGER } from "../api";
 import { makeWorker } from "../utils/worker";
 

@@ -1,11 +1,9 @@
-import {
-    ISubscribable,
-    Stream,
-    StreamMerge,
-    StreamSync,
-} from "@thi.ng/rstream";
-import { truncate } from "@thi.ng/strings";
-import { map } from "@thi.ng/transducers";
+import type { ISubscribable } from "@thi.ng/rstream";
+import { Stream } from "@thi.ng/rstream/stream";
+import { StreamMerge } from "@thi.ng/rstream/stream-merge";
+import { StreamSync } from "@thi.ng/rstream/stream-sync";
+import { truncate } from "@thi.ng/strings/truncate";
+import { map } from "@thi.ng/transducers/xform/map";
 import type { DotOpts, Node, NodeType, WalkState } from "./api";
 
 export * from "./api";

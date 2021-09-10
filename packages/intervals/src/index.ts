@@ -1,15 +1,8 @@
-import {
-    DEFAULT_EPS,
-    Fn,
-    Fn2,
-    ICompare,
-    IContains,
-    ICopy,
-    IEquiv,
-} from "@thi.ng/api";
-import { isString } from "@thi.ng/checks";
+import type { Fn, Fn2, ICompare, IContains, ICopy, IEquiv } from "@thi.ng/api";
+import { DEFAULT_EPS } from "@thi.ng/api/constants";
+import { isString } from "@thi.ng/checks/is-string";
 import { and, or } from "@thi.ng/dlogic";
-import { illegalArgs } from "@thi.ng/errors";
+import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 
 export enum Classifier {
     DISJOINT_LEFT,
@@ -22,7 +15,8 @@ export enum Classifier {
 }
 
 export class Interval
-    implements ICompare<Interval>, IContains<number>, ICopy<Interval>, IEquiv {
+    implements ICompare<Interval>, IContains<number>, ICopy<Interval>, IEquiv
+{
     l: number;
     r: number;
 

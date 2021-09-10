@@ -1,6 +1,7 @@
 import type { Fn } from "@thi.ng/api";
-import { DEFAULT, defmulti } from "@thi.ng/defmulti";
-import { unsupported } from "@thi.ng/errors";
+import { DEFAULT } from "@thi.ng/defmulti/constants";
+import { defmulti } from "@thi.ng/defmulti/defmulti";
+import { unsupported } from "@thi.ng/errors/unsupported";
 import type { Term } from "./api/nodes";
 import type { TargetImpl } from "./api/target";
 

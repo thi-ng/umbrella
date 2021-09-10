@@ -1,4 +1,4 @@
-import { deg } from "@thi.ng/math";
+import { deg } from "@thi.ng/math/angle";
 import type { MultiVecOpV, VecOpV } from "./api";
 import { defHofOp } from "./internal/codegen";
 import { FN } from "./internal/templates";

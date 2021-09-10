@@ -1,10 +1,10 @@
-import {
-    isArray as isa,
-    isNotStringAndIterable as isi,
-    isString as iss,
-} from "@thi.ng/checks";
-import { css, formatPrefixes, SVG_TAGS } from "@thi.ng/hiccup";
-import { XML_SVG } from "@thi.ng/prefixes";
+import { isArray as isa } from "@thi.ng/checks/is-array";
+import { isNotStringAndIterable as isi } from "@thi.ng/checks/is-not-string-iterable";
+import { isString as iss } from "@thi.ng/checks/is-string";
+import { SVG_TAGS } from "@thi.ng/hiccup/api";
+import { css } from "@thi.ng/hiccup/css";
+import { formatPrefixes } from "@thi.ng/hiccup/prefix";
+import { XML_SVG } from "@thi.ng/prefixes/xml";
 import type { HDOMImplementation, HDOMOpts } from "./api";
 
 const isArray = isa;

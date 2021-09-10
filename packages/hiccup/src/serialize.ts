@@ -1,20 +1,18 @@
-import { deref, isDeref } from "@thi.ng/api";
-import {
-    implementsFunction,
-    isArray,
-    isFunction,
-    isNotStringAndIterable,
-    isPlainObject,
-    isString,
-} from "@thi.ng/checks";
-import { illegalArgs } from "@thi.ng/errors";
+import { deref, isDeref } from "@thi.ng/api/api/deref";
+import { implementsFunction } from "@thi.ng/checks/implements-function";
+import { isArray } from "@thi.ng/checks/is-array";
+import { isFunction } from "@thi.ng/checks/is-function";
+import { isNotStringAndIterable } from "@thi.ng/checks/is-not-string-iterable";
+import { isPlainObject } from "@thi.ng/checks/is-plain-object";
+import { isString } from "@thi.ng/checks/is-string";
+import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import {
     ATTRIB_JOIN_DELIMS,
     CDATA,
     COMMENT,
+    NO_CLOSE_EMPTY,
     NO_SPANS,
     PROC_TAGS,
-    NO_CLOSE_EMPTY,
     VOID_TAGS,
 } from "./api";
 import { css } from "./css";

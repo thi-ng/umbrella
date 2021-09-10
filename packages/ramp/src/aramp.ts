@@ -1,7 +1,9 @@
-import { binarySearch } from "@thi.ng/arrays";
-import { compareNumAsc } from "@thi.ng/compare";
-import { absDiff, clamp } from "@thi.ng/math";
-import { comparator2, ReadonlyVec, Vec } from "@thi.ng/vectors";
+import { binarySearch } from "@thi.ng/arrays/binary-search";
+import { compareNumAsc } from "@thi.ng/compare/numeric";
+import { absDiff } from "@thi.ng/math/abs";
+import { clamp } from "@thi.ng/math/interval";
+import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
+import { comparator2 } from "@thi.ng/vectors/compare";
 import type { IRamp, RampBounds } from "./api";
 
 export abstract class ARamp implements IRamp {

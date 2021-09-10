@@ -1,5 +1,5 @@
 import type { FnAny } from "@thi.ng/api";
-import { illegalArity } from "@thi.ng/errors";
+import { illegalArity } from "@thi.ng/errors/illegal-arity";
 import type { IReducible, Reducer, Transducer, TxLike } from "./api";
 import { ensureTransducer } from "./internal/ensure";
 import { reduce, reduceRight } from "./reduce";

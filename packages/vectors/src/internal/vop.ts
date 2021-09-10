@@ -1,4 +1,4 @@
-import { unsupported } from "@thi.ng/errors";
+import { unsupported } from "@thi.ng/errors/unsupported";
 
 /**
  * Specialized / optimized version of {@link @thi.ng/defmulti# | @thi.ng/defmulti} for

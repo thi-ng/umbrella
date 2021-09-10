@@ -1,11 +1,13 @@
-import type { Always, Derefed, IObjectOf } from "@thi.ng/api";
+import type { Derefed } from "@thi.ng/api";
+import type { Always } from "@thi.ng/api";
+import type { IObjectOf } from "@thi.ng/api";
+import { comp } from "@thi.ng/transducers/func/comp";
+import { labeled } from "@thi.ng/transducers/xform/labeled";
+import { mapVals } from "@thi.ng/transducers/xform/map-vals";
 import {
-    comp,
-    labeled,
-    mapVals,
     partitionSync,
     PartitionSync,
-} from "@thi.ng/transducers";
+} from "@thi.ng/transducers/xform/partition-sync";
 import { ISubscribable, ISubscription, LOGGER, TransformableOpts } from "./api";
 import { Subscription } from "./subscription";
 import { isFirstOrLastInput } from "./utils/checks";

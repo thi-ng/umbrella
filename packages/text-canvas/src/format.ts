@@ -1,5 +1,5 @@
-import { memoize1 } from "@thi.ng/memoize";
-import { U8 } from "@thi.ng/strings";
+import { memoize1 } from "@thi.ng/memoize/memoize1";
+import { U8 } from "@thi.ng/strings/radix";
 import type { HtmlFormatOpts, StringFormat } from "./api";
 import { defFormat } from "./string";
 

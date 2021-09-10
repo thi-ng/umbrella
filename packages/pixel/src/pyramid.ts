@@ -1,4 +1,4 @@
-import { assert } from "@thi.ng/api";
+import { assert } from "@thi.ng/api/assert";
 import type { KernelSpec } from "./api";
 import { convolveImage, LANCZOS } from "./convolve";
 import type { FloatBuffer } from "./float";

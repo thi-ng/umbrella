@@ -1,5 +1,5 @@
-import { isString } from "@thi.ng/checks";
-import { css } from "@thi.ng/color";
+import { isString } from "@thi.ng/checks/is-string";
+import { css } from "@thi.ng/color/css/css";
 import type { DrawState } from "./api";
 
 export const resolveColor = css;

@@ -1,5 +1,9 @@
 import type { NumericArray } from "@thi.ng/api";
-import { gvec, IVector, Vec2, Vec3, Vec4 } from "@thi.ng/vectors";
+import type { IVector } from "@thi.ng/vectors";
+import { gvec } from "@thi.ng/vectors/gvec";
+import { Vec2 } from "@thi.ng/vectors/vec2";
+import { Vec3 } from "@thi.ng/vectors/vec3";
+import { Vec4 } from "@thi.ng/vectors/vec4";
 
 export const wrap = (
     buf: NumericArray,

@@ -1,15 +1,12 @@
-import { juxt } from "@thi.ng/compose";
+import { juxt } from "@thi.ng/compose/juxt";
 import { U32, U8 } from "@thi.ng/hex";
-import {
-    $iter,
-    comp,
-    iterator,
-    map,
-    mapIndexed,
-    padLast,
-    partition,
-    Transducer,
-} from "@thi.ng/transducers";
+import type { Transducer } from "@thi.ng/transducers";
+import { comp } from "@thi.ng/transducers/func/comp";
+import { $iter, iterator } from "@thi.ng/transducers/iterator";
+import { map } from "@thi.ng/transducers/xform/map";
+import { mapIndexed } from "@thi.ng/transducers/xform/map-indexed";
+import { padLast } from "@thi.ng/transducers/xform/pad-last";
+import { partition } from "@thi.ng/transducers/xform/partition";
 import type { HexDumpOpts } from "./api";
 
 /**

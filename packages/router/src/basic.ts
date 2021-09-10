@@ -1,14 +1,10 @@
-import {
-    assert,
-    Event,
-    INotify,
-    INotifyMixin,
-    IObjectOf,
-    Listener,
-} from "@thi.ng/api";
-import { isString } from "@thi.ng/checks";
+import type { Event, INotify, IObjectOf, Listener } from "@thi.ng/api";
+import { assert } from "@thi.ng/api/assert";
+import { INotifyMixin } from "@thi.ng/api/mixins/inotify";
+import { isString } from "@thi.ng/checks/is-string";
 import { equiv } from "@thi.ng/equiv";
-import { illegalArgs, illegalArity } from "@thi.ng/errors";
+import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
+import { illegalArity } from "@thi.ng/errors/illegal-arity";
 import type {
     Route,
     RouteMatch,

@@ -1,5 +1,5 @@
 import type { FnU2 } from "@thi.ng/api";
-import { absInnerAngle } from "@thi.ng/math";
+import { absInnerAngle } from "@thi.ng/math/angle";
 import type { ReadonlyVec } from "./api";
 import { cross2 } from "./cross";
 import { dot } from "./dot";

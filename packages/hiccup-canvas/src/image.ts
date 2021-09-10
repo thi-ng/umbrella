@@ -1,5 +1,5 @@
 import type { IObjectOf } from "@thi.ng/api";
-import { implementsFunction } from "@thi.ng/checks";
+import { implementsFunction } from "@thi.ng/checks/implements-function";
 import type { IToImageData } from "@thi.ng/pixel";
 import type { ReadonlyVec } from "@thi.ng/vectors";
 

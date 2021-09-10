@@ -1,5 +1,6 @@
-import { assert, NumericArray } from "@thi.ng/api";
-import { swapLane13 } from "@thi.ng/binary";
+import type { NumericArray } from "@thi.ng/api";
+import { assert } from "@thi.ng/api/assert";
+import { swapLane13 } from "@thi.ng/binary/swizzle";
 import { Lane } from "../api";
 import { defPackedFormat } from "./packed-format";
 

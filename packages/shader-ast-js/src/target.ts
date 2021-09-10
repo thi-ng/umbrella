@@ -1,6 +1,7 @@
 import type { Fn } from "@thi.ng/api";
-import { isBoolean, isNumber } from "@thi.ng/checks";
-import { unsupported } from "@thi.ng/errors";
+import { isBoolean } from "@thi.ng/checks/is-boolean";
+import { isNumber } from "@thi.ng/checks/is-number";
+import { unsupported } from "@thi.ng/errors/unsupported";
 import {
     defTarget,
     Func,
@@ -188,9 +189,6 @@ export const targetJS = () => {
                 case "uvec2":
                 case "uvec3":
                 case "uvec4":
-                case "bvec2":
-                case "bvec3":
-                case "bvec4":
                 case "mat2":
                 case "mat3":
                 case "mat4":

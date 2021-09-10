@@ -1,4 +1,4 @@
-import { isNumber } from "@thi.ng/checks";
+import { isNumber } from "@thi.ng/checks/is-number";
 import type { CanvasContext, RawPixelBuffer } from "./api";
 
 /**

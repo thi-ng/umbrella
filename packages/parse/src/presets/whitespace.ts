@@ -1,4 +1,4 @@
-import { WS as _WS } from "@thi.ng/strings";
+import { WS as _WS } from "@thi.ng/strings/groups";
 import { oneOrMoreD, zeroOrMoreD } from "../combinators/repeat";
 import { oneOf, oneOfD } from "../prims/one-of";
 

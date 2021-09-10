@@ -1,4 +1,4 @@
-import { illegalArity } from "@thi.ng/errors";
+import { illegalArity } from "@thi.ng/errors/illegal-arity";
 import { range } from "./range";
 
 export function range3d(

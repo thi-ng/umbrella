@@ -1,21 +1,15 @@
-import {
-    addNU3,
-    addU3,
-    bitAndU3,
-    bitNotU3,
-    bitOrU3,
-    bitXorU3,
-    divNU3,
-    divU3,
-    fmod3,
-    fmodN3,
-    lshiftU3,
-    mulNU3,
-    mulU3,
-    rshiftU3,
-    subNU3,
-    subU3,
-} from "@thi.ng/vectors";
+import { addNU3, addU3 } from "@thi.ng/vectors/addi";
+import { bitAndU3 } from "@thi.ng/vectors/bit-and";
+import { bitNotU3 } from "@thi.ng/vectors/bit-not";
+import { bitOrU3 } from "@thi.ng/vectors/bit-or";
+import { bitXorU3 } from "@thi.ng/vectors/bit-xor";
+import { divNU3, divU3 } from "@thi.ng/vectors/divi";
+import { fmod3 } from "@thi.ng/vectors/fmod";
+import { fmodN3 } from "@thi.ng/vectors/fmodn";
+import { lshiftU3 } from "@thi.ng/vectors/lshift";
+import { mulNU3, mulU3 } from "@thi.ng/vectors/muli";
+import { rshiftU3 } from "@thi.ng/vectors/rshift";
+import { subNU3, subU3 } from "@thi.ng/vectors/subi";
 import type { JSBuiltinsIntVec } from "../api";
 import { VEC3 } from "./vec3";
 

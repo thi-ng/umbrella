@@ -1,11 +1,7 @@
-import {
-    compR,
-    isReduced,
-    iterator,
-    iterator1,
-    Reducer,
-    Transducer,
-} from "@thi.ng/transducers";
+import type { Reducer, Transducer } from "@thi.ng/transducers";
+import { compR } from "@thi.ng/transducers/func/compr";
+import { iterator, iterator1 } from "@thi.ng/transducers/iterator";
+import { isReduced } from "@thi.ng/transducers/reduced";
 
 /**
  * Transducer which decodes a byte input sequence into UTF-8 characters.

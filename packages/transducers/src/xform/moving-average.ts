@@ -1,5 +1,5 @@
-import { isIterable } from "@thi.ng/checks";
-import { illegalArgs } from "@thi.ng/errors";
+import { isIterable } from "@thi.ng/checks/is-iterable";
+import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import type { Reducer, Transducer } from "../api";
 import { compR } from "../func/compr";
 import { iterator1 } from "../iterator";

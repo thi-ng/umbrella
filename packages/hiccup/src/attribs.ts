@@ -1,5 +1,5 @@
-import { deref } from "@thi.ng/api";
-import { isString } from "@thi.ng/checks";
+import { deref } from "@thi.ng/api/api/deref";
+import { isString } from "@thi.ng/checks/is-string";
 
 /**
  * Takes a space separated string of existing CSS class names and merges

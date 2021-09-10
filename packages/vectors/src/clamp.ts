@@ -2,7 +2,7 @@ import {
     clamp as _clamp,
     clamp01 as _clamp01,
     clamp11 as _clamp11,
-} from "@thi.ng/math";
+} from "@thi.ng/math/interval";
 import type { MultiVecOpVVV, VecOpVVV } from "./api";
 import { ARGS_VVV, defHofOp } from "./internal/codegen";
 import { FN3 } from "./internal/templates";

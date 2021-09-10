@@ -1,8 +1,9 @@
 import { centroid, circle, polygon, Polygon, vertices } from "@thi.ng/geom";
-import { triFan } from "@thi.ng/geom-tessellate";
-import { mod } from "@thi.ng/math";
-import { mapIndexed } from "@thi.ng/transducers";
-import { add2, hash } from "@thi.ng/vectors";
+import { triFan } from "@thi.ng/geom-tessellate/tri-fan";
+import { mod } from "@thi.ng/math/prec";
+import { mapIndexed } from "@thi.ng/transducers/xform/map-indexed";
+import { add2 } from "@thi.ng/vectors/add";
+import { hash } from "@thi.ng/vectors/hash";
 import { Hash, Key } from "../api";
 import type { IMGUI } from "../gui";
 import { buttonRaw } from "./button";

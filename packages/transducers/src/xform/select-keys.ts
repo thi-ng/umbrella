@@ -1,4 +1,4 @@
-import { isIterable } from "@thi.ng/checks";
+import { isIterable } from "@thi.ng/checks/is-iterable";
 import type { Transducer } from "../api";
 import { keySelector } from "../func/key-selector";
 import { iterator1 } from "../iterator";

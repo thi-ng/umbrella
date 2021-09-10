@@ -1,4 +1,4 @@
-import { binarySearch } from "@thi.ng/arrays";
+import { binarySearch } from "@thi.ng/arrays/binary-search";
 import type { Reducer, SortOpts, Transducer } from "../api";
 import { __drain } from "../internal/drain";
 import { __sortOpts } from "../internal/sort-opts";

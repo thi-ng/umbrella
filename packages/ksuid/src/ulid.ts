@@ -1,4 +1,4 @@
-import { BASE32_CROCKFORD } from "@thi.ng/base-n";
+import { BASE32_CROCKFORD } from "@thi.ng/base-n/32";
 import { AKSUID } from "./aksuid";
 import type { KSUIDOpts } from "./api";
 

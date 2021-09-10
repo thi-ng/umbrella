@@ -1,7 +1,7 @@
 import type { Fn, Fn3, IObjectOf } from "@thi.ng/api";
 import { equivArrayLike } from "@thi.ng/equiv";
-import { IDENT22, IDENT33, IDENT44 } from "@thi.ng/matrices";
-import { ReadonlyVec, ZERO2, ZERO3, ZERO4 } from "@thi.ng/vectors";
+import { IDENT22, IDENT33, IDENT44 } from "@thi.ng/matrices/constants";
+import { ReadonlyVec, ZERO2, ZERO3, ZERO4 } from "@thi.ng/vectors/api";
 import type { GLVec } from "./api/glsl";
 import type { UniformValue } from "./api/shader";
 
@@ -23,59 +23,63 @@ type SetterV =
 
 type SetterM = "2fv" | "3fv" | "4fv";
 
-const uniformS = (fn: SetterS) => (
-    gl: WebGLRenderingContext,
-    loc: WebGLUniformLocation,
-    defaultVal = 0
-) => {
-    let prev: number;
-    return (x?: number) => {
-        x = x === undefined ? defaultVal : x;
-        if (x !== prev) {
-            (<any>gl)["uniform1" + fn](loc, x);
-            prev = x;
-        }
+const uniformS =
+    (fn: SetterS) =>
+    (gl: WebGLRenderingContext, loc: WebGLUniformLocation, defaultVal = 0) => {
+        let prev: number;
+        return (x?: number) => {
+            x = x === undefined ? defaultVal : x;
+            if (x !== prev) {
+                (<any>gl)["uniform1" + fn](loc, x);
+                prev = x;
+            }
+        };
     };
-};
 
-const uniformV = (fn: SetterV, sysDefault: ReadonlyVec) => (
-    gl: WebGLRenderingContext,
-    loc: WebGLUniformLocation,
-    defaultVal = sysDefault
-) => {
-    let prev: GLVec = [];
-    return (x?: ReadonlyVec) => {
-        x = x === undefined ? defaultVal : x;
-        if (!equivArrayLike(prev, x)) {
-            (<any>gl)["uniform" + fn](loc, x);
-            prev = [...x];
-        }
+const uniformV =
+    (fn: SetterV, sysDefault: ReadonlyVec) =>
+    (
+        gl: WebGLRenderingContext,
+        loc: WebGLUniformLocation,
+        defaultVal = sysDefault
+    ) => {
+        let prev: GLVec = [];
+        return (x?: ReadonlyVec) => {
+            x = x === undefined ? defaultVal : x;
+            if (!equivArrayLike(prev, x)) {
+                (<any>gl)["uniform" + fn](loc, x);
+                prev = [...x];
+            }
+        };
     };
-};
 
-const uniformM = (fn: SetterM, sysDefault?: ReadonlyVec) => (
-    gl: WebGLRenderingContext,
-    loc: WebGLUniformLocation,
-    defaultVal = sysDefault
-) => {
-    let prev: GLVec = [];
-    return (x?: any) => {
-        x = x === undefined ? defaultVal : x;
-        if (!equivArrayLike(prev, x)) {
-            (<any>gl)["uniformMatrix" + fn](loc, false, x);
-            prev = [...x];
-        }
+const uniformM =
+    (fn: SetterM, sysDefault?: ReadonlyVec) =>
+    (
+        gl: WebGLRenderingContext,
+        loc: WebGLUniformLocation,
+        defaultVal = sysDefault
+    ) => {
+        let prev: GLVec = [];
+        return (x?: any) => {
+            x = x === undefined ? defaultVal : x;
+            if (!equivArrayLike(prev, x)) {
+                (<any>gl)["uniformMatrix" + fn](loc, false, x);
+                prev = [...x];
+            }
+        };
     };
-};
 
 const Z1 = [0];
 
-export const UNIFORM_SETTERS: IObjectOf<Fn3<
-    WebGLRenderingContext,
-    WebGLUniformLocation,
-    number | ReadonlyVec | undefined,
-    Fn<UniformValue | undefined | null, void>
->> = <any>{
+export const UNIFORM_SETTERS: IObjectOf<
+    Fn3<
+        WebGLRenderingContext,
+        WebGLUniformLocation,
+        number | ReadonlyVec | undefined,
+        Fn<UniformValue | undefined | null, void>
+    >
+> = <any>{
     bool: uniformS("i"),
     float: uniformS("f"),
     int: uniformS("i"),

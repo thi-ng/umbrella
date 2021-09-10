@@ -1,5 +1,5 @@
 import type { Fn } from "@thi.ng/api";
-import { identity } from "@thi.ng/compose";
+import { identity } from "@thi.ng/compose/identity";
 import type { Reducer } from "../api";
 import { $$reduce } from "../reduce";
 import { groupByMap } from "./group-by-map";

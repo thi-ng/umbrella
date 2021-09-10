@@ -1,5 +1,6 @@
-import { mergeDeepObj } from "@thi.ng/associative";
-import { lens, mix, safeDiv } from "@thi.ng/math";
+import { mergeDeepObj } from "@thi.ng/associative/merge-deep";
+import { lens, mix } from "@thi.ng/math/mix";
+import { safeDiv } from "@thi.ng/math/safe-div";
 import type { AxisSpec, Domain, InitialAxisSpec, Range, ScaleFn } from "../api";
 import { axisDefaults } from "./common";
 

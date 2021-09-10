@@ -1,5 +1,6 @@
 import type { Fn } from "@thi.ng/api";
-import { isBoolean, isNumber } from "@thi.ng/checks";
+import { isBoolean } from "@thi.ng/checks/is-boolean";
+import { isNumber } from "@thi.ng/checks/is-number";
 import type { Lit, Term } from "../api/nodes";
 import type {
     BVec2Term,

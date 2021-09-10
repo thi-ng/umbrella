@@ -1,4 +1,4 @@
-import { comp as _comp } from "@thi.ng/compose";
+import { comp as _comp } from "@thi.ng/compose/comp";
 import type { Transducer, TxLike } from "../api";
 import { ensureTransducer } from "../internal/ensure";
 

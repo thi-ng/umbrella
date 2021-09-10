@@ -1,5 +1,5 @@
 import type { IHash, NumericArray } from "@thi.ng/api";
-import { EPS } from "@thi.ng/math";
+import { EPS } from "@thi.ng/math/api";
 import {
     IVector,
     MAX2,

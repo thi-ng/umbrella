@@ -1,11 +1,13 @@
 import type { Nullable, Predicate2 } from "@thi.ng/api";
-import { ALPHA_NUM } from "@thi.ng/strings";
+import { ALPHA_NUM } from "@thi.ng/strings/groups";
 import type { Parser } from "../api";
 
-export const anchor = <T>(fn: Predicate2<Nullable<T>>): Parser<T> => (ctx) => {
-    const state = ctx.state;
-    return fn(state.last, state.done ? null : ctx.reader.read(state));
-};
+export const anchor =
+    <T>(fn: Predicate2<Nullable<T>>): Parser<T> =>
+    (ctx) => {
+        const state = ctx.state;
+        return fn(state.last, state.done ? null : ctx.reader.read(state));
+    };
 
 export const inputStart: Parser<any> = (ctx) => ctx.state.last == null;
 

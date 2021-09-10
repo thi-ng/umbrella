@@ -1,12 +1,12 @@
-import { asGLType, deref, Fn3, IObjectOf } from "@thi.ng/api";
-import {
-    existsAndNotNull,
-    isArray,
-    isBoolean,
-    isFunction,
-} from "@thi.ng/checks";
-import { unsupported } from "@thi.ng/errors";
-import { doOnce } from "@thi.ng/memoize";
+import type { Fn3, IObjectOf } from "@thi.ng/api";
+import { deref } from "@thi.ng/api/api/deref";
+import { asGLType } from "@thi.ng/api/api/typedarray";
+import { existsAndNotNull } from "@thi.ng/checks/exists-not-null";
+import { isArray } from "@thi.ng/checks/is-array";
+import { isBoolean } from "@thi.ng/checks/is-boolean";
+import { isFunction } from "@thi.ng/checks/is-function";
+import { unsupported } from "@thi.ng/errors/unsupported";
+import { doOnce } from "@thi.ng/memoize/do-once";
 import {
     input,
     output,
@@ -17,8 +17,9 @@ import {
     Type,
     uniform,
 } from "@thi.ng/shader-ast";
-import { GLSLVersion, targetGLSL } from "@thi.ng/shader-ast-glsl";
-import { vals } from "@thi.ng/transducers";
+import { GLSLVersion } from "@thi.ng/shader-ast-glsl/api";
+import { targetGLSL } from "@thi.ng/shader-ast-glsl/target";
+import { vals } from "@thi.ng/transducers/iter/vals";
 import {
     ExtensionBehavior,
     ExtensionBehaviors,

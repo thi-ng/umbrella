@@ -1,5 +1,5 @@
 import type { IObjectOf, NumOrString } from "@thi.ng/api";
-import { illegalArgs } from "@thi.ng/errors";
+import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 
 const TPL = /\{(\d+)\}/g;
 const TPL_K = /\{([a-z0-9_.-]+)\}/gi;

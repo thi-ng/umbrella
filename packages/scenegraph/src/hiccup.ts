@@ -1,5 +1,6 @@
-import { deref, IToHiccup } from "@thi.ng/api";
-import { isFunction } from "@thi.ng/checks";
+import type { IToHiccup } from "@thi.ng/api";
+import { deref } from "@thi.ng/api/api/deref";
+import { isFunction } from "@thi.ng/checks/is-function";
 import type { ANode } from "./anode";
 
 /**

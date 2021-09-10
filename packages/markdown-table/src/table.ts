@@ -1,28 +1,24 @@
-import { assert, Fn, Keys } from "@thi.ng/api";
-import { isString } from "@thi.ng/checks";
-import { juxt } from "@thi.ng/compose";
-import {
-    center,
-    padLeft,
-    padRight,
-    repeat,
-    Stringer,
-    wrap,
-} from "@thi.ng/strings";
-import {
-    comp,
-    last,
-    map,
-    max,
-    multiplex,
-    repeat as $repeat,
-    repeatedly,
-    scan,
-    transduce,
-    Transducer,
-} from "@thi.ng/transducers";
-import type { Column } from ".";
-import type { Align, Row, TableOpts } from "./api";
+import type { Fn, Keys } from "@thi.ng/api";
+import { assert } from "@thi.ng/api/assert";
+import { isString } from "@thi.ng/checks/is-string";
+import { juxt } from "@thi.ng/compose/juxt";
+import type { Stringer } from "@thi.ng/strings";
+import { center } from "@thi.ng/strings/center";
+import { padLeft } from "@thi.ng/strings/pad-left";
+import { padRight } from "@thi.ng/strings/pad-right";
+import { repeat } from "@thi.ng/strings/repeat";
+import { wrap } from "@thi.ng/strings/wrap";
+import type { Transducer } from "@thi.ng/transducers";
+import { comp } from "@thi.ng/transducers/func/comp";
+import { repeat as $repeat } from "@thi.ng/transducers/iter/repeat";
+import { repeatedly } from "@thi.ng/transducers/iter/repeatedly";
+import { last } from "@thi.ng/transducers/rfn/last";
+import { max } from "@thi.ng/transducers/rfn/max";
+import { transduce } from "@thi.ng/transducers/transduce";
+import { map } from "@thi.ng/transducers/xform/map";
+import { multiplex } from "@thi.ng/transducers/xform/multiplex";
+import { scan } from "@thi.ng/transducers/xform/scan";
+import type { Align, Column, Row, TableOpts } from "./api";
 
 const PADS: Record<Align, Fn<number, Stringer<string>>> = {
     c: center,

@@ -1,4 +1,4 @@
-import { smoothStep as _step } from "@thi.ng/math";
+import { smoothStep as _step } from "@thi.ng/math/step";
 import type { MultiVecOpVVV, VecOpVVV } from "./api";
 import { DEFAULT_OUT, defHofOp } from "./internal/codegen";
 import { FN3 } from "./internal/templates";

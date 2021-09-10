@@ -1,58 +1,55 @@
-import {
-    abs2,
-    acos2,
-    add2,
-    addN2,
-    asin2,
-    atan2,
-    atan_22,
-    ceil2,
-    clamp2,
-    cos2,
-    degrees2,
-    dist,
-    div2,
-    divN2,
-    dot2,
-    eq2,
-    exp2,
-    exp_22,
-    faceForward,
-    floor2,
-    fract2,
-    gt2,
-    gte2,
-    invSqrt2,
-    log2,
-    log_22,
-    lt2,
-    lte2,
-    mag,
-    max2,
-    min2,
-    mix2,
-    mixN2,
-    mod2,
-    modN2,
-    mul2,
-    mulN2,
-    neg,
-    neq2,
-    normalize,
-    pow2,
-    radians2,
-    reflect,
-    refract,
-    sign2,
-    sin2,
-    smoothStep2,
-    sqrt2,
-    step2,
-    sub2,
-    subN2,
-    tan2,
-    ZERO2,
-} from "@thi.ng/vectors";
+import { abs2 } from "@thi.ng/vectors/abs";
+import { acos2 } from "@thi.ng/vectors/acos";
+import { add2 } from "@thi.ng/vectors/add";
+import { addN2 } from "@thi.ng/vectors/addn";
+import { ZERO2 } from "@thi.ng/vectors/api";
+import { asin2 } from "@thi.ng/vectors/asin";
+import { atan2, atan_22 } from "@thi.ng/vectors/atan";
+import { ceil2 } from "@thi.ng/vectors/ceil";
+import { clamp2 } from "@thi.ng/vectors/clamp";
+import { cos2 } from "@thi.ng/vectors/cos";
+import { degrees2 } from "@thi.ng/vectors/degrees";
+import { dist } from "@thi.ng/vectors/dist";
+import { div2 } from "@thi.ng/vectors/div";
+import { divN2 } from "@thi.ng/vectors/divn";
+import { dot2 } from "@thi.ng/vectors/dot";
+import { eq2 } from "@thi.ng/vectors/eq";
+import { exp2 } from "@thi.ng/vectors/exp";
+import { exp_22 } from "@thi.ng/vectors/exp_2";
+import { faceForward } from "@thi.ng/vectors/face-forward";
+import { floor2 } from "@thi.ng/vectors/floor";
+import { fract2 } from "@thi.ng/vectors/fract";
+import { gt2 } from "@thi.ng/vectors/gt";
+import { gte2 } from "@thi.ng/vectors/gte";
+import { invSqrt2 } from "@thi.ng/vectors/invsqrt";
+import { log2 } from "@thi.ng/vectors/log";
+import { log_22 } from "@thi.ng/vectors/log_2";
+import { lt2 } from "@thi.ng/vectors/lt";
+import { lte2 } from "@thi.ng/vectors/lte";
+import { mag } from "@thi.ng/vectors/mag";
+import { max2 } from "@thi.ng/vectors/max";
+import { min2 } from "@thi.ng/vectors/min";
+import { mix2 } from "@thi.ng/vectors/mix";
+import { mixN2 } from "@thi.ng/vectors/mixn";
+import { mod2 } from "@thi.ng/vectors/mod";
+import { modN2 } from "@thi.ng/vectors/modn";
+import { mul2 } from "@thi.ng/vectors/mul";
+import { mulN2 } from "@thi.ng/vectors/muln";
+import { neg } from "@thi.ng/vectors/neg";
+import { neq2 } from "@thi.ng/vectors/neq";
+import { normalize } from "@thi.ng/vectors/normalize";
+import { pow2 } from "@thi.ng/vectors/pow";
+import { radians2 } from "@thi.ng/vectors/radians";
+import { reflect } from "@thi.ng/vectors/reflect";
+import { refract } from "@thi.ng/vectors/refract";
+import { sign2 } from "@thi.ng/vectors/sign";
+import { sin2 } from "@thi.ng/vectors/sin";
+import { smoothStep2 } from "@thi.ng/vectors/smoothstep";
+import { sqrt2 } from "@thi.ng/vectors/sqrt";
+import { step2 } from "@thi.ng/vectors/step";
+import { sub2 } from "@thi.ng/vectors/sub";
+import { subN2 } from "@thi.ng/vectors/subn";
+import { tan2 } from "@thi.ng/vectors/tan";
 import type { JSBuiltinsVec } from "../api";
 
 export const VEC2: JSBuiltinsVec = {

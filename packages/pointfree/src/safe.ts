@@ -1,5 +1,6 @@
-import { Fn2, NO_OP } from "@thi.ng/api";
-import { illegalState } from "@thi.ng/errors";
+import type { Fn2 } from "@thi.ng/api";
+import { NO_OP } from "@thi.ng/api/constants";
+import { illegalState } from "@thi.ng/errors/illegal-state";
 import type { Stack } from "./api";
 
 // ensure stack size

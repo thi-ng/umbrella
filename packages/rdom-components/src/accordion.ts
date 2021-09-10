@@ -1,8 +1,14 @@
 import type { Fn, Fn4 } from "@thi.ng/api";
-import { Attribs, div, section } from "@thi.ng/hiccup-html";
-import { $list, $promise, ComponentLike } from "@thi.ng/rdom";
+import type { Attribs } from "@thi.ng/hiccup-html";
+import { div } from "@thi.ng/hiccup-html/blocks";
+import { section } from "@thi.ng/hiccup-html/sections";
+import type { ComponentLike } from "@thi.ng/rdom";
+import { $list } from "@thi.ng/rdom/list";
+import { $promise } from "@thi.ng/rdom/promise";
 import type { ISubscription } from "@thi.ng/rstream";
-import { dedupe, map, range } from "@thi.ng/transducers";
+import { range } from "@thi.ng/transducers/iter/range";
+import { dedupe } from "@thi.ng/transducers/xform/dedupe";
+import { map } from "@thi.ng/transducers/xform/map";
 
 export interface AccordionOpts {
     attribs: {

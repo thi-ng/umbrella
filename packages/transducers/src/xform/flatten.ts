@@ -1,5 +1,5 @@
 import type { DeepArrayValue } from "@thi.ng/api";
-import { isNotStringAndIterable } from "@thi.ng/checks";
+import { isNotStringAndIterable } from "@thi.ng/checks/is-not-string-iterable";
 import type { Transducer } from "../api";
 import { flattenWith } from "./flatten-with";
 

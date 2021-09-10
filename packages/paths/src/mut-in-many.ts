@@ -1,5 +1,5 @@
 import type { Path } from "@thi.ng/api";
-import { illegalArgs } from "@thi.ng/errors";
+import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import { mutIn } from "./mut-in";
 
 /**

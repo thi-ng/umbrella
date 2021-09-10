@@ -1,4 +1,4 @@
-import { hash } from "@thi.ng/vectors";
+import { hash } from "@thi.ng/vectors/hash";
 
 const BUF = new Array(1024);
 

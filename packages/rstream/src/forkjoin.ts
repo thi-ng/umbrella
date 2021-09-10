@@ -1,12 +1,12 @@
-import type { ArrayLikeIterable, Fn, Fn3, IObjectOf } from "@thi.ng/api";
-import {
-    assocObj,
-    comp,
-    map,
-    mapcat,
-    range,
-    transduce,
-} from "@thi.ng/transducers";
+import type { Fn, Fn3 } from "@thi.ng/api";
+import type { IObjectOf } from "@thi.ng/api";
+import type { ArrayLikeIterable } from "@thi.ng/api";
+import { comp } from "@thi.ng/transducers/func/comp";
+import { range } from "@thi.ng/transducers/iter/range";
+import { assocObj } from "@thi.ng/transducers/rfn/assoc-obj";
+import { transduce } from "@thi.ng/transducers/transduce";
+import { map } from "@thi.ng/transducers/xform/map";
+import { mapcat } from "@thi.ng/transducers/xform/mapcat";
 import type { CommonOpts, ISubscribable, ITransformable } from "./api";
 import { sync } from "./stream-sync";
 import { tunnel } from "./subs/tunnel";
@@ -195,16 +195,14 @@ type Sliceable<T> = ArrayLike<T> & {
  *
  * @param minChunkSize -
  */
-export const forkBuffer = (minChunkSize = 1) => <T extends Sliceable<any>>(
-    id: number,
-    numWorkers: number,
-    buf: T
-) => {
-    const chunkSize = Math.max(minChunkSize, (buf.length / numWorkers) | 0);
-    return id < numWorkers - 1
-        ? <T>buf.slice(id * chunkSize, (id + 1) * chunkSize)
-        : <T>buf.slice(id * chunkSize);
-};
+export const forkBuffer =
+    (minChunkSize = 1) =>
+    <T extends Sliceable<any>>(id: number, numWorkers: number, buf: T) => {
+        const chunkSize = Math.max(minChunkSize, (buf.length / numWorkers) | 0);
+        return id < numWorkers - 1
+            ? <T>buf.slice(id * chunkSize, (id + 1) * chunkSize)
+            : <T>buf.slice(id * chunkSize);
+    };
 
 /**
  * Higher-order join function for scenarios involving the split-parallel

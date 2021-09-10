@@ -1,4 +1,5 @@
-import { Fn, NO_OP } from "@thi.ng/api";
+import type { Fn } from "@thi.ng/api";
+import { NO_OP } from "@thi.ng/api/constants";
 import type { IReducible, Reducer, TxLike } from "./api";
 import { transduce } from "./transduce";
 

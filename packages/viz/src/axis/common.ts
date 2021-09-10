@@ -1,4 +1,4 @@
-import { float } from "@thi.ng/strings";
+import { float } from "@thi.ng/strings/float";
 import type { AxisSpec } from "../api";
 
 export const axisDefaults = (extra?: any): Partial<AxisSpec> => ({

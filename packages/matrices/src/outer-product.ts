@@ -1,4 +1,6 @@
-import { MultiVecOpVV, ReadonlyVec, setC, setC4, vop } from "@thi.ng/vectors";
+import type { MultiVecOpVV, ReadonlyVec } from "@thi.ng/vectors";
+import { vop } from "@thi.ng/vectors/internal/vop";
+import { setC, setC4 } from "@thi.ng/vectors/setc";
 import type { Mat } from "./api";
 
 /**

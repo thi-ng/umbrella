@@ -1,5 +1,5 @@
 import type { NumOrString } from "@thi.ng/api";
-import { peek } from "@thi.ng/arrays";
+import { peek } from "@thi.ng/arrays/peek";
 import type { Canvas } from "./canvas";
 import { hline } from "./hvline";
 import { charCode, intersectRectCircle } from "./utils";

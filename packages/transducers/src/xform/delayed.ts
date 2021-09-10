@@ -1,4 +1,4 @@
-import { delayed as _delayed } from "@thi.ng/compose";
+import { delayed as _delayed } from "@thi.ng/compose/delayed";
 import type { Transducer } from "../api";
 import { map } from "./map";
 

@@ -1,10 +1,9 @@
-import {
-    isArray as isa,
-    isNotStringAndIterable as isi,
-    isPlainObject as iso,
-} from "@thi.ng/checks";
-import { illegalArgs } from "@thi.ng/errors";
-import { mergeEmmetAttribs, NO_SPANS, RE_TAG } from "@thi.ng/hiccup";
+import { isArray as isa } from "@thi.ng/checks/is-array";
+import { isNotStringAndIterable as isi } from "@thi.ng/checks/is-not-string-iterable";
+import { isPlainObject as iso } from "@thi.ng/checks/is-plain-object";
+import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
+import { NO_SPANS, RE_TAG } from "@thi.ng/hiccup/api";
+import { mergeEmmetAttribs } from "@thi.ng/hiccup/attribs";
 import type { HDOMOpts } from "./api";
 
 const isArray = isa;

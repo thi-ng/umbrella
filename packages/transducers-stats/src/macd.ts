@@ -1,4 +1,7 @@
-import { $iter, compR, Reducer, step, Transducer } from "@thi.ng/transducers";
+import type { Reducer, Transducer } from "@thi.ng/transducers";
+import { compR } from "@thi.ng/transducers/func/compr";
+import { $iter } from "@thi.ng/transducers/iterator";
+import { step } from "@thi.ng/transducers/step";
 import { ema } from "./ema";
 
 export interface MACD {

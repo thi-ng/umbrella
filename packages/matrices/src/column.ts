@@ -1,4 +1,5 @@
-import { setS2, setS3, setS4, vop } from "@thi.ng/vectors";
+import { vop } from "@thi.ng/vectors/internal/vop";
+import { setS2, setS3, setS4 } from "@thi.ng/vectors/sets";
 import type { MultiVecOpMN, VecOpMN } from "./api";
 
 /**

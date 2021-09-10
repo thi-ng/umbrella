@@ -1,6 +1,8 @@
-import { assert, Fn, FnN3, NumericArray } from "@thi.ng/api";
-import { isFunction } from "@thi.ng/checks";
-import { clamp, lanczos } from "@thi.ng/math";
+import type { Fn, FnN3, NumericArray } from "@thi.ng/api";
+import { assert } from "@thi.ng/api/assert";
+import { isFunction } from "@thi.ng/checks/is-function";
+import { clamp } from "@thi.ng/math/interval";
+import { lanczos } from "@thi.ng/math/mix";
 import type {
     ConvolutionKernelSpec,
     ConvolveOpts,
@@ -108,7 +110,13 @@ const initKernel = (
 
 /** @internal */
 const initConvolve = (src: FloatBuffer, opts: ConvolveOpts) => {
-    const { kernel, channel, stride: sampleStride, scale, offset } = {
+    const {
+        kernel,
+        channel,
+        stride: sampleStride,
+        scale,
+        offset,
+    } = {
         channel: 0,
         offset: 0,
         scale: 1,
@@ -297,11 +305,13 @@ export const POOL_MAX: PoolTemplate = (body) => `Math.max(${body.join(",")})`;
  *
  * @param bias
  */
-export const POOL_THRESHOLD = (bias = 0): PoolTemplate => (body, w, h) => {
-    const center = POOL_NEAREST(body, w, h);
-    const mean = `(${body.join("+")})/${w * h}`;
-    return `(${center} - ${mean} + ${bias}) < 0 ? 0 : 1`;
-};
+export const POOL_THRESHOLD =
+    (bias = 0): PoolTemplate =>
+    (body, w, h) => {
+        const center = POOL_NEAREST(body, w, h);
+        const mean = `(${body.join("+")})/${w * h}`;
+        return `(${center} - ${mean} + ${bias}) < 0 ? 0 : 1`;
+    };
 
 export const SOBEL_X: KernelSpec = {
     spec: [-1, -2, -1, 0, 0, 0, 1, 2, 1],

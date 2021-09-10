@@ -1,4 +1,4 @@
-import { assert } from "@thi.ng/api";
+import { assert } from "@thi.ng/api/assert";
 
 /**
  * Asserts that `src` has at least 1 item.

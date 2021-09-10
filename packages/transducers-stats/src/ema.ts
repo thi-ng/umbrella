@@ -1,5 +1,7 @@
-import { illegalArgs } from "@thi.ng/errors";
-import { compR, iterator1, Reducer, Transducer } from "@thi.ng/transducers";
+import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
+import type { Reducer, Transducer } from "@thi.ng/transducers";
+import { compR } from "@thi.ng/transducers/func/compr";
+import { iterator1 } from "@thi.ng/transducers/iterator";
 
 /**
  * {@link https://en.wikipedia.org/wiki/Moving_average#Exponential_moving_average}

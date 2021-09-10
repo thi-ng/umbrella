@@ -40,19 +40,19 @@ import { ensureReduced, isReduced, unreduced } from "../reduced";
  *
  * @param rfn -
  */
-export const cat = <T>(): Transducer<Nullable<Iterable<T>>, T> => (
-    rfn: Reducer<any, T>
-) => {
-    const r = rfn[2];
-    return compR(rfn, (acc, x: Iterable<T> | null | undefined) => {
-        if (x) {
-            for (let y of unreduced(x)) {
-                acc = r(acc, y);
-                if (isReduced(acc)) {
-                    break;
+export const cat =
+    <T>(): Transducer<Nullable<Iterable<T>>, T> =>
+    (rfn: Reducer<any, T>) => {
+        const r = rfn[2];
+        return compR(rfn, (acc, x: Iterable<T> | null | undefined) => {
+            if (x) {
+                for (let y of unreduced(x)) {
+                    acc = r(acc, y);
+                    if (isReduced(acc)) {
+                        break;
+                    }
                 }
             }
-        }
-        return isReduced(x) ? ensureReduced(acc) : acc;
-    });
-};
+            return isReduced(x) ? ensureReduced(acc) : acc;
+        });
+    };

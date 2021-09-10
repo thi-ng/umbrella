@@ -1,11 +1,7 @@
-import {
-    $iter,
-    compR,
-    isReduced,
-    iterator,
-    Reducer,
-    Transducer,
-} from "@thi.ng/transducers";
+import type { Reducer, Transducer } from "@thi.ng/transducers";
+import { compR } from "@thi.ng/transducers/func/compr";
+import { $iter, iterator } from "@thi.ng/transducers/iterator";
+import { isReduced } from "@thi.ng/transducers/reduced";
 
 /**
  * Transforms incoming numbers into their bitstream using specified

@@ -1,5 +1,6 @@
-import { isPlainObject, isString } from "@thi.ng/checks";
-import { illegalArgs } from "@thi.ng/errors";
+import { isPlainObject } from "@thi.ng/checks/is-plain-object";
+import { isString } from "@thi.ng/checks/is-string";
+import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import { RE_TAG } from "./api";
 import { mergeEmmetAttribs } from "./attribs";
 

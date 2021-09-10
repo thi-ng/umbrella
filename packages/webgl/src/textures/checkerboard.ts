@@ -1,4 +1,5 @@
-import { ARGB8888, canvasPixels } from "@thi.ng/pixel";
+import { canvasPixels } from "@thi.ng/pixel/canvas";
+import { ARGB8888 } from "@thi.ng/pixel/format/argb8888";
 
 export interface CheckerboardOpts {
     size: number;

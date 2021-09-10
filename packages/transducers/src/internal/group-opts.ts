@@ -1,4 +1,3 @@
-import { identity } from "@thi.ng/compose";
 import type { GroupByOpts } from "../api";
 import { push } from "../rfn/push";
 
@@ -13,7 +12,7 @@ export const __groupByOpts = <SRC, KEY, GROUP>(
     opts?: Partial<GroupByOpts<SRC, PropertyKey, GROUP>>
 ) =>
     <GroupByOpts<SRC, KEY, GROUP>>{
-        key: identity,
+        key: (x: any) => x,
         group: push(),
         ...opts,
     };

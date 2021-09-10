@@ -1,4 +1,4 @@
-import { isFunction } from "@thi.ng/checks";
+import { isFunction } from "@thi.ng/checks/is-function";
 import type { Parser, PassValue } from "../api";
 
 /**
@@ -8,11 +8,10 @@ import type { Parser, PassValue } from "../api";
  * @param result -
  * @param id -
  */
-export const pass = <R = any>(
-    result: PassValue<R>,
-    id = "pass"
-): Parser<any> => (ctx) =>
-    ctx.addChild(id, isFunction(result) ? result() : result);
+export const pass =
+    <R = any>(result: PassValue<R>, id = "pass"): Parser<any> =>
+    (ctx) =>
+        ctx.addChild(id, isFunction(result) ? result() : result);
 
 /**
  * Parser which consumes no input and always succeeds. No AST creation.

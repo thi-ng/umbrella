@@ -1,4 +1,4 @@
-import { illegalArgs } from "@thi.ng/errors";
+import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import type { StackContext } from "./api";
 import { $ } from "./safe";
 
@@ -70,6 +70,8 @@ export const defLoadKey = (key: PropertyKey) => (ctx: StackContext) => {
  * @param ctx -
  * @param env -
  */
-export const defStoreKey = (key: PropertyKey) => (ctx: StackContext) => (
-    $(ctx[0], 1), (ctx[2][key] = ctx[0].pop()), ctx
-);
+export const defStoreKey = (key: PropertyKey) => (ctx: StackContext) => {
+    $(ctx[0], 1);
+    ctx[2][key] = ctx[0].pop();
+    return ctx;
+};

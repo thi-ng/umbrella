@@ -1,6 +1,8 @@
-import { DCons } from "@thi.ng/dcons";
-import { illegalArgs } from "@thi.ng/errors";
-import { compR, iterator1, Reducer, Transducer } from "@thi.ng/transducers";
+import { DCons } from "@thi.ng/dcons/dcons";
+import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
+import type { Reducer, Transducer } from "@thi.ng/transducers";
+import { compR } from "@thi.ng/transducers/func/compr";
+import { iterator1 } from "@thi.ng/transducers/iterator";
 
 /**
  * Rate of change.

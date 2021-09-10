@@ -1,5 +1,5 @@
 import type { Fn, Fn0 } from "@thi.ng/api";
-import { illegalArgs } from "@thi.ng/errors";
+import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import type { Reducer, Transducer } from "../api";
 import { range } from "../iter/range";
 import { range2d } from "../iter/range2d";

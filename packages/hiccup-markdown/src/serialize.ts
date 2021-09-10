@@ -1,14 +1,17 @@
-import {
-    implementsFunction,
-    isFunction,
-    isNotStringAndIterable,
-    isString,
-} from "@thi.ng/checks";
-import { DEFAULT, defmulti, MultiFn3 } from "@thi.ng/defmulti";
-import { illegalArgs } from "@thi.ng/errors";
-import { normalize } from "@thi.ng/hiccup";
-import { repeat, wrap } from "@thi.ng/strings";
-import { Border, tableCanvas, toString } from "@thi.ng/text-canvas";
+import { implementsFunction } from "@thi.ng/checks/implements-function";
+import { isFunction } from "@thi.ng/checks/is-function";
+import { isNotStringAndIterable } from "@thi.ng/checks/is-not-string-iterable";
+import { isString } from "@thi.ng/checks/is-string";
+import type { MultiFn3 } from "@thi.ng/defmulti";
+import { DEFAULT } from "@thi.ng/defmulti/constants";
+import { defmulti } from "@thi.ng/defmulti/defmulti";
+import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
+import { normalize } from "@thi.ng/hiccup/normalize";
+import { repeat } from "@thi.ng/strings/repeat";
+import { wrap } from "@thi.ng/strings/wrap";
+import { Border } from "@thi.ng/text-canvas/api";
+import { toString } from "@thi.ng/text-canvas/string";
+import { tableCanvas } from "@thi.ng/text-canvas/table";
 
 interface SerializeState {
     indent: number;
@@ -83,21 +86,15 @@ const serializeIter = (
     return res.join(state.sep);
 };
 
-const header = (level: number) => (
-    el: any[],
-    ctx: any,
-    state: SerializeState
-) => repeat("#", level) + " " + body(el, ctx, state) + "\n\n";
+const header =
+    (level: number) => (el: any[], ctx: any, state: SerializeState) =>
+        repeat("#", level) + " " + body(el, ctx, state) + "\n\n";
 
 const body = (el: any[], ctx: any, state: SerializeState) =>
     serializeIter(el[2], ctx, state);
 
-export const serializeElement: MultiFn3<
-    any,
-    any,
-    SerializeState,
-    string
-> = defmulti((el) => el[0]);
+export const serializeElement: MultiFn3<any, any, SerializeState, string> =
+    defmulti((el) => el[0]);
 serializeElement.add(DEFAULT, body);
 
 serializeElement.addAll({

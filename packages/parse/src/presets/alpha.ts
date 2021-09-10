@@ -1,4 +1,7 @@
-import { ALPHA as _ALPHA, ALPHA_NUM as _ALPHA_NUM } from "@thi.ng/strings";
+import {
+    ALPHA as _ALPHA,
+    ALPHA_NUM as _ALPHA_NUM,
+} from "@thi.ng/strings/groups";
 import { oneOf } from "../prims/one-of";
 import { range } from "../prims/range";
 

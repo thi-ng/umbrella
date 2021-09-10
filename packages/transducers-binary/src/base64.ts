@@ -1,13 +1,7 @@
-import {
-    $iter,
-    compR,
-    isReduced,
-    iterator,
-    iterator1,
-    reduced,
-    Reducer,
-    Transducer,
-} from "@thi.ng/transducers";
+import type { Reducer, Transducer } from "@thi.ng/transducers";
+import { compR } from "@thi.ng/transducers/func/compr";
+import { $iter, iterator, iterator1 } from "@thi.ng/transducers/iterator";
+import { isReduced, reduced } from "@thi.ng/transducers/reduced";
 
 const B64_CHARS =
     "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";

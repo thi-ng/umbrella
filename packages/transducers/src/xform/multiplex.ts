@@ -1,4 +1,4 @@
-import { juxt } from "@thi.ng/compose";
+import { juxt } from "@thi.ng/compose/juxt";
 import type { Transducer, TxLike } from "../api";
 import { step } from "../step";
 import { map } from "./map";

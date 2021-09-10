@@ -1,4 +1,4 @@
-import { mixBilinear as _mix } from "@thi.ng/math";
+import { mixBilinear as _mix } from "@thi.ng/math/mix";
 import type { MultiVecOpVVVVNN, VecOpVVVVNN } from "./api";
 import { defHofOp } from "./internal/codegen";
 

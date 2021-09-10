@@ -1,6 +1,6 @@
 import type { Fn0, NumOrString } from "@thi.ng/api";
-import { peek } from "@thi.ng/arrays";
-import { clamp } from "@thi.ng/math";
+import { peek } from "@thi.ng/arrays/peek";
+import { clamp } from "@thi.ng/math/interval";
 import { ClipRect, NONE, StrokeStyle, STYLE_ASCII } from "./api";
 import { charCode, intersectRect } from "./utils";
 

@@ -1,6 +1,6 @@
+import type { Fn } from "@thi.ng/api";
 import type {
     DeepPath,
-    Fn,
     OptPathVal,
     Path,
     Path0,
@@ -12,9 +12,10 @@ import type {
     Path6,
     Path7,
     Path8,
-    Predicate2,
 } from "@thi.ng/api";
-import { ReadonlyAtom, View } from "@thi.ng/atom";
+import type { Predicate2 } from "@thi.ng/api";
+import type { ReadonlyAtom } from "@thi.ng/atom";
+import { View } from "@thi.ng/atom/view";
 import type { CommonOpts } from "../api";
 import { Stream } from "../stream";
 import { optsWithID } from "../utils/idgen";

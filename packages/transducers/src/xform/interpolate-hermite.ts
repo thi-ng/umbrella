@@ -1,4 +1,4 @@
-import { mixHermite } from "@thi.ng/math";
+import { mixHermite } from "@thi.ng/math/mix";
 import type { Transducer } from "../api";
 import { interpolate } from "./interpolate";
 

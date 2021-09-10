@@ -29,8 +29,9 @@ import {
     Vec2Sym,
     vec4,
 } from "@thi.ng/shader-ast";
-import { ONE4, ZERO4 } from "@thi.ng/vectors";
-import { BLEND_NORMAL, GLVec4, ShaderSpec } from "@thi.ng/webgl";
+import { ONE4, ZERO4 } from "@thi.ng/vectors/api";
+import type { GLVec4, ShaderSpec } from "@thi.ng/webgl";
+import { BLEND_NORMAL } from "@thi.ng/webgl/api/blend";
 
 export interface MSDFShaderOpts {
     color: boolean;

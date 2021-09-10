@@ -1,6 +1,6 @@
 import type { Path } from "@thi.ng/api";
-import { getInUnsafe } from "@thi.ng/paths";
-import { map } from "@thi.ng/transducers";
+import { getInUnsafe } from "@thi.ng/paths/get-in";
+import { map } from "@thi.ng/transducers/xform/map";
 import type { NodeFactory } from "../api";
 import { node1 } from "../graph";
 

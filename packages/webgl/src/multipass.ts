@@ -1,4 +1,5 @@
-import { assert, IObjectOf } from "@thi.ng/api";
+import type { IObjectOf } from "@thi.ng/api";
+import { assert } from "@thi.ng/api/assert";
 import {
     $xy,
     assign,
@@ -7,7 +8,11 @@ import {
     ivec2,
     texelFetch,
 } from "@thi.ng/shader-ast";
-import { assocObj, map, range, some, transduce } from "@thi.ng/transducers";
+import { range } from "@thi.ng/transducers/iter/range";
+import { assocObj } from "@thi.ng/transducers/rfn/assoc-obj";
+import { some } from "@thi.ng/transducers/rfn/some";
+import { transduce } from "@thi.ng/transducers/transduce";
+import { map } from "@thi.ng/transducers/xform/map";
 import type { ExtensionBehaviors } from "./api/ext";
 import type { Multipass, MultipassOpts, PassOpts } from "./api/multipass";
 import type {

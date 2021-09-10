@@ -1,5 +1,7 @@
-import { Fn, Fn2, FnU, ILogger, IObjectOf, NULL_LOGGER } from "@thi.ng/api";
-import { illegalArgs, illegalState } from "@thi.ng/errors";
+import type { Fn, Fn2, FnU, ILogger, IObjectOf } from "@thi.ng/api";
+import { NULL_LOGGER } from "@thi.ng/api/logger";
+import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
+import { illegalState } from "@thi.ng/errors/illegal-state";
 import * as pf from "@thi.ng/pointfree";
 import { ALIASES, ASTNode, VisitorState } from "./api";
 import { parse, SyntaxError } from "./parser";
@@ -113,9 +115,10 @@ const resolveObject = (node: ASTNode, ctx: pf.StackContext) => {
  *
  * @param node -
  */
-const loadvar = (node: ASTNode) => (ctx: pf.StackContext) => (
-    ctx[0].push(resolveVar(node, ctx)), ctx
-);
+const loadvar = (node: ASTNode) => (ctx: pf.StackContext) => {
+    ctx[0].push(resolveVar(node, ctx));
+    return ctx;
+};
 
 /**
  * HOF word function. Pops TOS and stores value in current scope of
@@ -142,16 +145,18 @@ const storevar = (id: string) => (ctx: pf.StackContext) => {
  *
  * @param id -
  */
-const beginvar = (id: string): FnU<pf.StackContext> => (ctx) => {
-    pf.ensureStack(ctx[0], 1);
-    const v = ctx[2].__vars[id];
-    if (v === undefined) {
-        ctx[2].__vars[id] = [ctx[0].pop()];
-    } else {
-        v.unshift(ctx[0].pop());
-    }
-    return ctx;
-};
+const beginvar =
+    (id: string): FnU<pf.StackContext> =>
+    (ctx) => {
+        pf.ensureStack(ctx[0], 1);
+        const v = ctx[2].__vars[id];
+        if (v === undefined) {
+            ctx[2].__vars[id] = [ctx[0].pop()];
+        } else {
+            v.unshift(ctx[0].pop());
+        }
+        return ctx;
+    };
 
 /**
  * HOF word function used by {@link visitWord} to end local variables. Removes
@@ -161,17 +166,19 @@ const beginvar = (id: string): FnU<pf.StackContext> => (ctx) => {
  *
  * @param id -
  */
-const endvar = (id: string): FnU<pf.StackContext> => (ctx) => {
-    const v = ctx[2].__vars[id];
-    if (v === undefined || v.length === 0) {
-        illegalState(`can't end scope for var: ${id}`);
-    }
-    v.shift();
-    if (!v.length) {
-        delete ctx[2].__vars[id];
-    }
-    return ctx;
-};
+const endvar =
+    (id: string): FnU<pf.StackContext> =>
+    (ctx) => {
+        const v = ctx[2].__vars[id];
+        if (v === undefined || v.length === 0) {
+            illegalState(`can't end scope for var: ${id}`);
+        }
+        v.shift();
+        if (!v.length) {
+            delete ctx[2].__vars[id];
+        }
+        return ctx;
+    };
 
 /**
  * Main AST node visitor dispatcher.
@@ -324,20 +331,18 @@ const visitStackComment = (node: ASTNode, state: VisitorState) => {
     }
 };
 
-const visitWithResolver = (resolve: Fn2<ASTNode, pf.StackContext, any>) => (
-    node: ASTNode,
-    ctx: pf.StackContext,
-    state: VisitorState
-) => (
-    ctx[0].push(
-        state.word
-            ? (_ctx: pf.StackContext) => (
-                  _ctx[0].push(resolve(node, _ctx)), _ctx
-              )
-            : resolve(node, ctx)
-    ),
-    ctx
-);
+const visitWithResolver =
+    (resolve: Fn2<ASTNode, pf.StackContext, any>) =>
+    (node: ASTNode, ctx: pf.StackContext, state: VisitorState) => {
+        ctx[0].push(
+            state.word
+                ? (_ctx: pf.StackContext) => (
+                      _ctx[0].push(resolve(node, _ctx)), _ctx
+                  )
+                : resolve(node, ctx)
+        );
+        return ctx;
+    };
 
 /**
  * ARRAY visitor for arrays/quotations. If `state.word` is true, pushes

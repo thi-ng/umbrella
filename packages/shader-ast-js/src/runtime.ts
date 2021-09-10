@@ -1,6 +1,8 @@
-import { assert, Fn } from "@thi.ng/api";
-import { clamp, clamp01 } from "@thi.ng/math";
-import { ABGR8888, PackedBuffer } from "@thi.ng/pixel";
+import type { Fn } from "@thi.ng/api";
+import { assert } from "@thi.ng/api/assert";
+import { clamp, clamp01 } from "@thi.ng/math/interval";
+import { ABGR8888 } from "@thi.ng/pixel/format/abgr8888";
+import { PackedBuffer } from "@thi.ng/pixel/packed";
 import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
 
 const rgba2bgra = (rgba: ReadonlyVec) =>

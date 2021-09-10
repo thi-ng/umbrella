@@ -1,4 +1,4 @@
-import { add as _add, add4 } from "@thi.ng/vectors";
+import { add as _add, add4 } from "@thi.ng/vectors/add";
 import type { MatOpMM, MultiMatOpMM } from "./api";
 import { defMath } from "./internal/codegen";
 

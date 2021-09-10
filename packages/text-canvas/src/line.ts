@@ -1,6 +1,6 @@
 import type { NumOrString } from "@thi.ng/api";
-import { peek } from "@thi.ng/arrays";
-import { liangBarsky2Raw } from "@thi.ng/geom-clip-line";
+import { peek } from "@thi.ng/arrays/peek";
+import { liangBarsky2Raw } from "@thi.ng/geom-clip-line/liang-barsky";
 import type { Canvas } from "./canvas";
 import { charCode } from "./utils";
 

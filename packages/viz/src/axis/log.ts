@@ -1,14 +1,13 @@
 import type { FnN, FnU3 } from "@thi.ng/api";
-import { mergeDeepObj } from "@thi.ng/associative";
-import { inRange, mix } from "@thi.ng/math";
-import {
-    comp,
-    filter,
-    iterator,
-    map,
-    range,
-    range2d,
-} from "@thi.ng/transducers";
+import { mergeDeepObj } from "@thi.ng/associative/merge-deep";
+import { inRange } from "@thi.ng/math/interval";
+import { mix } from "@thi.ng/math/mix";
+import { comp } from "@thi.ng/transducers/func/comp";
+import { range } from "@thi.ng/transducers/iter/range";
+import { range2d } from "@thi.ng/transducers/iter/range2d";
+import { iterator } from "@thi.ng/transducers/iterator";
+import { filter } from "@thi.ng/transducers/xform/filter";
+import { map } from "@thi.ng/transducers/xform/map";
 import type { AxisSpec, Domain, InitialAxisSpec, Range, ScaleFn } from "../api";
 import { axisDefaults } from "./common";
 
@@ -51,28 +50,32 @@ export const logDomain: FnU3<number, number[]> = (d1, d2, base) => {
     return [Math.floor($(d1)), Math.ceil($(d2))];
 };
 
-export const logTicksMajor = (base = 10) => ([d1, d2]: Domain) => {
-    const [d1l, d2l] = logDomain(d1, d2, base);
-    return [
-        ...iterator(
-            comp(
-                map((x) => Math.pow(base, x)),
-                filter((x) => inRange(x, d1, d2))
+export const logTicksMajor =
+    (base = 10) =>
+    ([d1, d2]: Domain) => {
+        const [d1l, d2l] = logDomain(d1, d2, base);
+        return [
+            ...iterator(
+                comp(
+                    map((x) => Math.pow(base, x)),
+                    filter((x) => inRange(x, d1, d2))
+                ),
+                range(d1l, d2l + 1)
             ),
-            range(d1l, d2l + 1)
-        ),
-    ];
-};
+        ];
+    };
 
-export const logTicksMinor = (base = 10) => ([d1, d2]: Domain) => {
-    const [d1l, d2l] = logDomain(d1, d2, base);
-    return [
-        ...iterator(
-            comp(
-                map(([m, n]) => (m * Math.pow(base, n)) / base),
-                filter((x) => inRange(x, d1, d2))
+export const logTicksMinor =
+    (base = 10) =>
+    ([d1, d2]: Domain) => {
+        const [d1l, d2l] = logDomain(d1, d2, base);
+        return [
+            ...iterator(
+                comp(
+                    map(([m, n]) => (m * Math.pow(base, n)) / base),
+                    filter((x) => inRange(x, d1, d2))
+                ),
+                range2d(1, base, d1l, d2l + 1)
             ),
-            range2d(1, base, d1l, d2l + 1)
-        ),
-    ];
-};
+        ];
+    };

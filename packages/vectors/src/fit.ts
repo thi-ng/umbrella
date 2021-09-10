@@ -1,4 +1,8 @@
-import { fit as _fit, fit01 as _fit01, fit11 as _fit11 } from "@thi.ng/math";
+import {
+    fit as _fit,
+    fit01 as _fit01,
+    fit11 as _fit11,
+} from "@thi.ng/math/fit";
 import type {
     MultiVecOpVVV,
     MultiVecOpVVVVV,

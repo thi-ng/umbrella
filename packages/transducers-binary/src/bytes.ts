@@ -1,12 +1,15 @@
-import { bytes16, bytes24, bytes32, bytesF32, bytesF64 } from "@thi.ng/binary";
-import { unsupported } from "@thi.ng/errors";
 import {
-    iterator,
-    mapcat,
-    reduce,
-    Reducer,
-    Transducer,
-} from "@thi.ng/transducers";
+    bytes16,
+    bytes24,
+    bytes32,
+    bytesF32,
+    bytesF64,
+} from "@thi.ng/binary/bytes";
+import { unsupported } from "@thi.ng/errors/unsupported";
+import type { Reducer, Transducer } from "@thi.ng/transducers";
+import { iterator } from "@thi.ng/transducers/iterator";
+import { reduce } from "@thi.ng/transducers/reduce";
+import { mapcat } from "@thi.ng/transducers/xform/mapcat";
 import type { BinStructItem } from "./api";
 import { utf8Encode } from "./utf8";
 

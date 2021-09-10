@@ -1,4 +1,4 @@
-import { peek as _peek } from "@thi.ng/arrays";
+import { peek as _peek } from "@thi.ng/arrays/peek";
 import type { Transducer } from "../api";
 import { map } from "./map";
 

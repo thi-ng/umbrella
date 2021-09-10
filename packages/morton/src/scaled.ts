@@ -1,6 +1,8 @@
-import { assert, FnN4 } from "@thi.ng/api";
-import { MASKS } from "@thi.ng/binary";
-import { fit, fit01, inRange } from "@thi.ng/math";
+import type { FnN4 } from "@thi.ng/api";
+import { assert } from "@thi.ng/api/assert";
+import { MASKS } from "@thi.ng/binary/constants";
+import { fit, fit01 } from "@thi.ng/math/fit";
+import { inRange } from "@thi.ng/math/interval";
 import {
     decode10,
     decode16,

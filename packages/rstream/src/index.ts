@@ -1,4 +1,5 @@
 export * from "./api";
+export * from "./checks";
 export * from "./forkjoin";
 export * from "./metastream";
 export * from "./pubsub";

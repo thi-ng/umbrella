@@ -1,5 +1,6 @@
-import { assert, FnN2 } from "@thi.ng/api";
-import { ensureIndex } from "@thi.ng/errors";
+import type { FnN2 } from "@thi.ng/api";
+import { assert } from "@thi.ng/api/assert";
+import { ensureIndex } from "@thi.ng/errors/out-of-bounds";
 import type { NzEntry } from "./api";
 
 export type BinOp = FnN2;

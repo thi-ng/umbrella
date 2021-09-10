@@ -1,4 +1,4 @@
-import { HALF_PI, PI } from "@thi.ng/math";
+import { HALF_PI, PI } from "@thi.ng/math/api";
 import { addmN } from "./addmn";
 import type { ReadonlyVec, Vec, VecOpRoVV } from "./api";
 import { direction } from "./direction";

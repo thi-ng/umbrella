@@ -1,4 +1,4 @@
-import { remainder as _remainder } from "@thi.ng/math";
+import { remainder as _remainder } from "@thi.ng/math/libc";
 import type { MultiVecOpVN, VecOpVN } from "./api";
 import { ARGS_V, ARGS_VN, defHofOp } from "./internal/codegen";
 import { FN_N } from "./internal/templates";

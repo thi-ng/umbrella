@@ -1,4 +1,4 @@
-import { implementsFunction } from "@thi.ng/checks";
+import { implementsFunction } from "@thi.ng/checks/implements-function";
 import type { Transducer, TxLike } from "../api";
 
 export const ensureTransducer = <A, B>(x: TxLike<A, B>) =>

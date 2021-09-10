@@ -1,4 +1,4 @@
-import { css } from "@thi.ng/hiccup-css";
+import { css } from "@thi.ng/hiccup-css/css";
 import type { BgFg, BgFgBorder, Theme } from "./api";
 
 const block = { display: "block" };

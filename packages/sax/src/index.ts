@@ -1,6 +1,8 @@
-import { IObjectOf, NO_OP } from "@thi.ng/api";
-import { $iter, iterator, Transducer } from "@thi.ng/transducers";
+import type { IObjectOf } from "@thi.ng/api";
+import { NO_OP } from "@thi.ng/api/constants";
+import type { Transducer } from "@thi.ng/transducers";
 import { fsm, FSMState, FSMStateMap } from "@thi.ng/transducers-fsm";
+import { $iter, iterator } from "@thi.ng/transducers/iterator";
 
 export interface ParseOpts {
     /**

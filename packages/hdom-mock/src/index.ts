@@ -1,13 +1,9 @@
-import { isFunction } from "@thi.ng/checks";
-import {
-    createTree,
-    diffTree,
-    HDOMImplementation,
-    HDOMOpts,
-    hydrateTree,
-    normalizeTree,
-} from "@thi.ng/hdom";
 import type { IObjectOf } from "@thi.ng/api";
+import { isFunction } from "@thi.ng/checks/is-function";
+import type { HDOMImplementation, HDOMOpts } from "@thi.ng/hdom";
+import { diffTree } from "@thi.ng/hdom/diff";
+import { createTree, hydrateTree } from "@thi.ng/hdom/dom";
+import { normalizeTree } from "@thi.ng/hdom/normalize";
 
 export const TEXT = Symbol();
 

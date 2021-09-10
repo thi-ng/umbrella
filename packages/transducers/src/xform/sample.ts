@@ -1,4 +1,5 @@
-import { IRandom, SYSTEM } from "@thi.ng/random";
+import type { IRandom } from "@thi.ng/random";
+import { SYSTEM } from "@thi.ng/random/system";
 import type { Reducer, Transducer } from "../api";
 import { compR } from "../func/compr";
 import { $iter } from "../iterator";

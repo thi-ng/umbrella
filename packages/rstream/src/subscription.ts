@@ -1,17 +1,15 @@
-import { assert, Fn, NULL_LOGGER, SEMAPHORE } from "@thi.ng/api";
-import { peek } from "@thi.ng/arrays";
-import { isPlainObject } from "@thi.ng/checks";
-import { illegalState } from "@thi.ng/errors";
-import {
-    comp,
-    isReduced,
-    map,
-    push,
-    Reduced,
-    Reducer,
-    Transducer,
-    unreduced,
-} from "@thi.ng/transducers";
+import type { Fn } from "@thi.ng/api";
+import { assert } from "@thi.ng/api/assert";
+import { SEMAPHORE } from "@thi.ng/api/constants";
+import { NULL_LOGGER } from "@thi.ng/api/logger";
+import { peek } from "@thi.ng/arrays/peek";
+import { isPlainObject } from "@thi.ng/checks/is-plain-object";
+import { illegalState } from "@thi.ng/errors/illegal-state";
+import type { Reducer, Transducer } from "@thi.ng/transducers";
+import { comp } from "@thi.ng/transducers/func/comp";
+import { isReduced, Reduced, unreduced } from "@thi.ng/transducers/reduced";
+import { push } from "@thi.ng/transducers/rfn/push";
+import { map } from "@thi.ng/transducers/xform/map";
 import {
     CloseMode,
     CommonOpts,

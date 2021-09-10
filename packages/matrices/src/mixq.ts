@@ -1,4 +1,8 @@
-import { dot4, maddN4, mulN4, ReadonlyVec, set4, Vec } from "@thi.ng/vectors";
+import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
+import { dot4 } from "@thi.ng/vectors/dot";
+import { maddN4 } from "@thi.ng/vectors/maddn";
+import { mulN4 } from "@thi.ng/vectors/muln";
+import { set4 } from "@thi.ng/vectors/set";
 
 /**
  * Interpolates quaternion `a` to `b` by given amount `t` [0...1], using

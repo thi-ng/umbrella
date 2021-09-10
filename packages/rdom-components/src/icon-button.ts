@@ -1,5 +1,6 @@
 import type { MaybeDeref } from "@thi.ng/api";
-import { button, i, InputAttribs } from "@thi.ng/hiccup-html";
+import { button, InputAttribs } from "@thi.ng/hiccup-html/forms";
+import { i } from "@thi.ng/hiccup-html/inline";
 
 export interface IconButtonOpts {
     attribs: Partial<InputAttribs>;

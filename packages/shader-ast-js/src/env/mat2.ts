@@ -11,7 +11,7 @@ import {
     sub22,
     subN22,
 } from "@thi.ng/matrices";
-import { neg } from "@thi.ng/vectors";
+import { neg } from "@thi.ng/vectors/neg";
 import type { JSBuiltinsMat } from "../api";
 
 export const MAT2: JSBuiltinsMat = {

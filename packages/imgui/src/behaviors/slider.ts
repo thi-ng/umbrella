@@ -1,8 +1,12 @@
 import type { FnN4 } from "@thi.ng/api";
 import { pointInside } from "@thi.ng/geom";
 import type { IShape } from "@thi.ng/geom-api";
-import { clamp, roundTo } from "@thi.ng/math";
-import { add2, clamp2, roundN2, Vec } from "@thi.ng/vectors";
+import { clamp } from "@thi.ng/math/interval";
+import { roundTo } from "@thi.ng/math/prec";
+import type { Vec } from "@thi.ng/vectors";
+import { add2 } from "@thi.ng/vectors/add";
+import { clamp2 } from "@thi.ng/vectors/clamp";
+import { roundN2 } from "@thi.ng/vectors/round";
 import { Key } from "../api";
 import type { IMGUI } from "../gui";
 

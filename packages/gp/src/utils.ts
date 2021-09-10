@@ -1,5 +1,7 @@
-import { assert } from "@thi.ng/api";
-import { add, choices, range } from "@thi.ng/transducers";
+import { assert } from "@thi.ng/api/assert";
+import { choices } from "@thi.ng/transducers/iter/choices";
+import { range } from "@thi.ng/transducers/iter/range";
+import { add } from "@thi.ng/transducers/rfn/add";
 import type { GPOpts, OpGene, TerminalGene } from "./api";
 
 export const terminalNode = <T>(value: T): TerminalGene<T> => ({

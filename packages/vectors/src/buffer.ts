@@ -1,10 +1,5 @@
-import {
-    NumericArray,
-    SIZEOF,
-    Type,
-    typedArray,
-    TypedArrayTypeMap,
-} from "@thi.ng/api";
+import type { NumericArray, TypedArrayTypeMap } from "@thi.ng/api";
+import { SIZEOF, Type, typedArray } from "@thi.ng/api/api/typedarray";
 import type { ReadonlyVec, Vec, VecOpSV, VectorConstructor } from "./api";
 
 /**

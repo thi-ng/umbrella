@@ -1,6 +1,6 @@
-import { ensureArray } from "@thi.ng/arrays";
-import { illegalArgs } from "@thi.ng/errors";
-import { inRange } from "@thi.ng/math";
+import { ensureArray } from "@thi.ng/arrays/ensure-array";
+import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
+import { inRange } from "@thi.ng/math/interval";
 
 /**
  * Yields iterator of `src` with the last `numLeft` values of `src`

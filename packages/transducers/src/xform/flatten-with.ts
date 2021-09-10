@@ -1,5 +1,6 @@
 import type { DeepArrayValue, Fn, Nullable } from "@thi.ng/api";
-import { isIterable, isString } from "@thi.ng/checks";
+import { isIterable } from "@thi.ng/checks/is-iterable";
+import { isString } from "@thi.ng/checks/is-string";
 import type { Reducer, Transducer } from "../api";
 import { compR } from "../func/compr";
 import { iterator } from "../iterator";

@@ -1,7 +1,11 @@
 import type { Fn } from "@thi.ng/api";
-import { ensureArray } from "@thi.ng/arrays";
-import { mix } from "@thi.ng/math";
-import { juxtR, map, max, min, transduce } from "@thi.ng/transducers";
+import { ensureArray } from "@thi.ng/arrays/ensure-array";
+import { mix } from "@thi.ng/math/mix";
+import { max } from "@thi.ng/transducers/rfn/max";
+import { min } from "@thi.ng/transducers/rfn/min";
+import { minMax } from "@thi.ng/transducers/rfn/min-max";
+import { transduce } from "@thi.ng/transducers/transduce";
+import { map } from "@thi.ng/transducers/xform/map";
 import type { DomainValueFn } from "./api";
 
 export const uniformDomain = (src: Iterable<number>): DomainValueFn => {
@@ -13,7 +17,7 @@ export const uniformDomain = (src: Iterable<number>): DomainValueFn => {
 };
 
 export const dataBounds = <T>(fn: Fn<T, number>, src: T[], pad = 0) => {
-    const b = transduce(map(fn), juxtR(min(), max()), src);
+    const b = transduce(map(fn), minMax(), src);
     b[0] -= pad;
     b[1] += pad;
     return b;

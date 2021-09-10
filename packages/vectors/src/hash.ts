@@ -1,5 +1,6 @@
 import type { FnN2 } from "@thi.ng/api";
-import { floatToUintBits, rotateLeft } from "@thi.ng/binary";
+import { floatToUintBits } from "@thi.ng/binary/float";
+import { rotateLeft } from "@thi.ng/binary/rotate";
 import type { ReadonlyVec } from "./api";
 
 /**

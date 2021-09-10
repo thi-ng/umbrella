@@ -1,6 +1,7 @@
 import type { Fn } from "@thi.ng/api";
-import { isBoolean, isNumber } from "@thi.ng/checks";
-import { unsupported } from "@thi.ng/errors";
+import { isBoolean } from "@thi.ng/checks/is-boolean";
+import { isNumber } from "@thi.ng/checks/is-number";
+import { unsupported } from "@thi.ng/errors/unsupported";
 import {
     defTarget,
     FnCall,

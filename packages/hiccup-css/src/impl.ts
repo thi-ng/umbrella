@@ -1,22 +1,18 @@
-import {
-    isArray,
-    isFunction,
-    isIterable,
-    isPlainObject,
-    isString,
-} from "@thi.ng/checks";
-import { illegalArgs } from "@thi.ng/errors";
-import {
-    comp,
-    flatten,
-    map,
-    permutations,
-    repeat,
-    str,
-    transduce,
-    Transducer,
-} from "@thi.ng/transducers";
 import type { FnAny } from "@thi.ng/api";
+import { isArray } from "@thi.ng/checks/is-array";
+import { isFunction } from "@thi.ng/checks/is-function";
+import { isIterable } from "@thi.ng/checks/is-iterable";
+import { isPlainObject } from "@thi.ng/checks/is-plain-object";
+import { isString } from "@thi.ng/checks/is-string";
+import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
+import type { Transducer } from "@thi.ng/transducers";
+import { comp } from "@thi.ng/transducers/func/comp";
+import { permutations } from "@thi.ng/transducers/iter/permutations";
+import { repeat } from "@thi.ng/transducers/iter/repeat";
+import { str } from "@thi.ng/transducers/rfn/str";
+import { transduce } from "@thi.ng/transducers/transduce";
+import { flatten } from "@thi.ng/transducers/xform/flatten";
+import { map } from "@thi.ng/transducers/xform/map";
 import type { CSSOpts, RuleFn } from "./api";
 
 const EMPTY = new Set<string>();

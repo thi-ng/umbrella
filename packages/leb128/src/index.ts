@@ -1,6 +1,6 @@
-import { hasWASM } from "@thi.ng/checks";
-import { unsupported } from "@thi.ng/errors";
-import { base64Decode } from "@thi.ng/transducers-binary";
+import { hasWASM } from "@thi.ng/checks/has-wasm";
+import { unsupported } from "@thi.ng/errors/unsupported";
+import { base64Decode } from "@thi.ng/transducers-binary/base64";
 import { BINARY } from "./binary";
 
 interface LEB128 {
@@ -26,21 +26,19 @@ if (hasWASM()) {
 
 const ensureWASM = () => !wasm && unsupported("WASM module unavailable");
 
-const encode = (op: "leb128_encode_s_js" | "leb128_encode_u_js") => (
-    x: number
-) => {
-    ensureWASM();
-    return U8.slice(0, wasm[op](x));
-};
+const encode =
+    (op: "leb128_encode_s_js" | "leb128_encode_u_js") => (x: number) => {
+        ensureWASM();
+        return U8.slice(0, wasm[op](x));
+    };
 
-const decode = (op: "leb128_decode_s_js" | "leb128_decode_u_js") => (
-    src: Uint8Array,
-    idx = 0
-) => {
-    ensureWASM();
-    U8.set(src.subarray(idx, Math.min(idx + 10, src.length)), 0);
-    return [wasm[op](0, 0), U8[0]];
-};
+const decode =
+    (op: "leb128_decode_s_js" | "leb128_decode_u_js") =>
+    (src: Uint8Array, idx = 0) => {
+        ensureWASM();
+        U8.set(src.subarray(idx, Math.min(idx + 10, src.length)), 0);
+        return [wasm[op](0, 0), U8[0]];
+    };
 
 /**
  * Encodes signed integer `x` into LEB128 varint format and returns

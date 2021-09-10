@@ -1,11 +1,6 @@
-import {
-    assert,
-    Event,
-    IClear,
-    INotify,
-    INotifyMixin,
-    Listener,
-} from "@thi.ng/api";
+import type { Event, IClear, INotify, Listener } from "@thi.ng/api";
+import { assert } from "@thi.ng/api/assert";
+import { INotifyMixin } from "@thi.ng/api/mixins/inotify";
 
 export const EVENT_ADDED = "added";
 export const EVENT_REMOVED = "removed";

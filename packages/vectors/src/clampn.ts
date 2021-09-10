@@ -1,4 +1,4 @@
-import { clamp as _clamp } from "@thi.ng/math";
+import { clamp as _clamp } from "@thi.ng/math/interval";
 import type { MultiVecOpVNN, VecOpVNN } from "./api";
 import { defHofOp } from "./internal/codegen";
 

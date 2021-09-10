@@ -1,4 +1,4 @@
-import { isNumber } from "@thi.ng/checks";
+import { isNumber } from "@thi.ng/checks/is-number";
 import type { Index, IndexM, Sym } from "../api/nodes";
 import type { UintTerm } from "../api/terms";
 import type {

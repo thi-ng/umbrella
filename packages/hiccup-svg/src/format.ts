@@ -1,5 +1,6 @@
-import { isArrayLike, isString } from "@thi.ng/checks";
-import { css } from "@thi.ng/color";
+import { isArrayLike } from "@thi.ng/checks/is-arraylike";
+import { isString } from "@thi.ng/checks/is-string";
+import { css } from "@thi.ng/color/css/css";
 import type { Vec2Like } from "./api";
 
 let PRECISION = 2;

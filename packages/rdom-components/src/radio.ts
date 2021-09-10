@@ -1,6 +1,8 @@
 import type { Fn, Fn2 } from "@thi.ng/api";
-import { div, InputRadioAttribs, label, radio } from "@thi.ng/hiccup-html";
-import { $input, ComponentLike } from "@thi.ng/rdom";
+import { div } from "@thi.ng/hiccup-html/blocks";
+import { InputRadioAttribs, label, radio } from "@thi.ng/hiccup-html/forms";
+import type { ComponentLike } from "@thi.ng/rdom";
+import { $input } from "@thi.ng/rdom/event";
 import type { ISubscription } from "@thi.ng/rstream";
 
 export interface RadioOpts<T> {

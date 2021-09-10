@@ -1,5 +1,7 @@
-import { IObjectOf, SEMAPHORE } from "@thi.ng/api";
-import { diffArray, diffObject } from "@thi.ng/diff";
+import type { IObjectOf } from "@thi.ng/api";
+import { SEMAPHORE } from "@thi.ng/api/constants";
+import { diffArray } from "@thi.ng/diff/array";
+import { diffObject } from "@thi.ng/diff/object";
 import {
     equiv as _equiv,
     equivArrayLike,

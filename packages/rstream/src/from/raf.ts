@@ -1,4 +1,4 @@
-import { isNode } from "@thi.ng/checks";
+import { isNode } from "@thi.ng/checks/is-node";
 import type { CommonOpts } from "../api";
 import { Stream } from "../stream";
 import { optsWithID } from "../utils/idgen";

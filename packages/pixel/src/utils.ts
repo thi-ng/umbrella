@@ -1,7 +1,8 @@
-import { assert, Fn, Fn2, FnN, TypedArray, UIntArray } from "@thi.ng/api";
-import { isNumber } from "@thi.ng/checks";
-import { clamp } from "@thi.ng/math";
-import type { BlitOpts, PackedFormat, FloatFormat } from "./api";
+import type { Fn, Fn2, FnN, TypedArray, UIntArray } from "@thi.ng/api";
+import { assert } from "@thi.ng/api/assert";
+import { isNumber } from "@thi.ng/checks/is-number";
+import { clamp } from "@thi.ng/math/interval";
+import type { BlitOpts, FloatFormat, PackedFormat } from "./api";
 
 /** @internal */
 export const ensureSize = (

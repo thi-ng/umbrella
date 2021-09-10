@@ -1,25 +1,24 @@
-import { assert, deref, IObjectOf, isDeref, MaybeDeref } from "@thi.ng/api";
-import {
-    implementsFunction,
-    isArray,
-    isFunction,
-    isNotStringAndIterable,
-    isNumber,
-    isString,
-} from "@thi.ng/checks";
-import { unsupported } from "@thi.ng/errors";
+import type { IObjectOf } from "@thi.ng/api";
+import { deref, isDeref, MaybeDeref } from "@thi.ng/api/api/deref";
+import { assert } from "@thi.ng/api/assert";
+import { implementsFunction } from "@thi.ng/checks/implements-function";
+import { isArray } from "@thi.ng/checks/is-array";
+import { isFunction } from "@thi.ng/checks/is-function";
+import { isNotStringAndIterable } from "@thi.ng/checks/is-not-string-iterable";
+import { isNumber } from "@thi.ng/checks/is-number";
+import { isString } from "@thi.ng/checks/is-string";
+import { unsupported } from "@thi.ng/errors/unsupported";
 import {
     ATTRIB_JOIN_DELIMS,
-    formatPrefixes,
-    mergeClasses,
-    mergeEmmetAttribs,
     NO_SPANS,
     RE_TAG,
     SVG_TAGS,
-} from "@thi.ng/hiccup";
-import { XML_SVG, XML_XLINK, XML_XMLNS } from "@thi.ng/prefixes";
+} from "@thi.ng/hiccup/api";
+import { mergeClasses, mergeEmmetAttribs } from "@thi.ng/hiccup/attribs";
+import { formatPrefixes } from "@thi.ng/hiccup/prefix";
+import { XML_SVG, XML_XLINK, XML_XMLNS } from "@thi.ng/prefixes/xml";
 import type { NumOrElement } from "./api";
-import { isComponent } from "./utils";
+import { isComponent } from "./checks";
 
 /**
  * hdom-style DOM tree creation from hiccup format. Returns DOM element

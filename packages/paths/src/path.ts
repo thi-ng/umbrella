@@ -1,5 +1,8 @@
-import { assert, NumOrString, Path } from "@thi.ng/api";
-import { isArray, isProtoPath, isString } from "@thi.ng/checks";
+import type { NumOrString, Path } from "@thi.ng/api";
+import { assert } from "@thi.ng/api/assert";
+import { isArray } from "@thi.ng/checks/is-array";
+import { isProtoPath } from "@thi.ng/checks/is-proto-path";
+import { isString } from "@thi.ng/checks/is-string";
 
 /**
  * Converts the given key path to canonical form (array).

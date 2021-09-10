@@ -1,4 +1,4 @@
-import { min2id, min3id, min4id } from "@thi.ng/math";
+import { min2id, min3id, min4id } from "@thi.ng/math/interval";
 import type { MultiVecOpRoV } from "./api";
 import { vop } from "./internal/vop";
 

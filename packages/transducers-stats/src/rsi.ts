@@ -1,11 +1,9 @@
-import {
-    comp,
-    drop,
-    iterator1,
-    map,
-    multiplex,
-    Transducer,
-} from "@thi.ng/transducers";
+import type { Transducer } from "@thi.ng/transducers";
+import { comp } from "@thi.ng/transducers/func/comp";
+import { iterator1 } from "@thi.ng/transducers/iterator";
+import { drop } from "@thi.ng/transducers/xform/drop";
+import { map } from "@thi.ng/transducers/xform/map";
+import { multiplex } from "@thi.ng/transducers/xform/multiplex";
 import { momentum } from "./momentum";
 import { sma } from "./sma";
 

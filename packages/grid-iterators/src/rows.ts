@@ -1,4 +1,4 @@
-import { range2d } from "@thi.ng/transducers";
+import { range2d } from "@thi.ng/transducers/iter/range2d";
 
 /**
  * Yields sequence of 2D grid coordinates in row-major order. Same as

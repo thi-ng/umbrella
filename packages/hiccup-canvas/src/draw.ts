@@ -1,4 +1,5 @@
-import { implementsFunction, isArray } from "@thi.ng/checks";
+import { implementsFunction } from "@thi.ng/checks/implements-function";
+import { isArray } from "@thi.ng/checks/is-array";
 import type { DrawState } from "./api";
 import { circularArc, ellipticArc } from "./arc";
 import { defLinearGradient, defRadialGradient } from "./color";

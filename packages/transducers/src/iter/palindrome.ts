@@ -1,5 +1,6 @@
-import { ensureArray } from "@thi.ng/arrays";
-import { isArray, isString } from "@thi.ng/checks";
+import { ensureArray } from "@thi.ng/arrays/ensure-array";
+import { isArray } from "@thi.ng/checks/is-array";
+import { isString } from "@thi.ng/checks/is-string";
 import { str } from "../rfn/str";
 import { concat } from "./concat";
 import { reverse } from "./reverse";

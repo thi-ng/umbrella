@@ -21,13 +21,15 @@ import type { Parser } from "../api";
  *
  * @param pred
  */
-export const skipWhile = <T>(pred: Predicate<T>): Parser<T> => (ctx) => {
-    const state = { ...ctx.state };
-    const reader = ctx.reader;
-    while (!state.done) {
-        if (!pred(reader.read(state))) break;
-        reader.next(state);
-    }
-    ctx.state = state;
-    return true;
-};
+export const skipWhile =
+    <T>(pred: Predicate<T>): Parser<T> =>
+    (ctx) => {
+        const state = { ...ctx.state };
+        const reader = ctx.reader;
+        while (!state.done) {
+            if (!pred(reader.read(state))) break;
+            reader.next(state);
+        }
+        ctx.state = state;
+        return true;
+    };

@@ -1,4 +1,5 @@
-import type { Fn, IID } from "@thi.ng/api";
+import type { Fn } from "@thi.ng/api";
+import type { IID } from "@thi.ng/api";
 import { LOGGER, State } from "../api";
 import { Subscription } from "../subscription";
 import { optsWithID } from "../utils/idgen";

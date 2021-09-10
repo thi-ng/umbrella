@@ -1,17 +1,16 @@
-import { peek } from "@thi.ng/arrays";
-import {
-    alts,
-    fsm,
-    not,
-    repeat,
-    ResultBody,
-    seq,
-    str,
-    untilStr,
-    whitespace,
-} from "@thi.ng/fsm";
-import { comp, filter } from "@thi.ng/transducers";
 import type { Fn, Fn2 } from "@thi.ng/api";
+import { peek } from "@thi.ng/arrays/peek";
+import type { ResultBody } from "@thi.ng/fsm";
+import { alts } from "@thi.ng/fsm/alts";
+import { fsm } from "@thi.ng/fsm/fsm";
+import { not } from "@thi.ng/fsm/not";
+import { whitespace } from "@thi.ng/fsm/range";
+import { repeat } from "@thi.ng/fsm/repeat";
+import { seq } from "@thi.ng/fsm/seq";
+import { str } from "@thi.ng/fsm/str";
+import { untilStr } from "@thi.ng/fsm/until";
+import { comp } from "@thi.ng/transducers/func/comp";
+import { filter } from "@thi.ng/transducers/xform/filter";
 import type { TagFactories } from "./api";
 
 type ParseResult = ResultBody<any[]>;
@@ -97,41 +96,49 @@ const TD = "|";
 
 // state / context handling helpers
 
-const transition = (ctx: FSMCtx, id: State): ParseResult => (
-    (ctx.children = []), (ctx.body = ""), [id]
-);
-
-const push = (id: State, next: State) => (ctx: FSMCtx): ParseResult => (
-    ctx.stack.push({ id, children: ctx.children!.concat(ctx.body) }),
-    transition(ctx, next)
-);
-
-const pop = (result: Fn2<FSMCtx, string, any>) => (
-    ctx: FSMCtx,
-    body: any
-): ParseResult => {
-    const { id, children } = ctx.stack.pop();
-    children.push(result(ctx, body));
-    ctx.children = children;
+const transition = (ctx: FSMCtx, id: State): ParseResult => {
+    ctx.children = [];
     ctx.body = "";
     return [id];
 };
+
+const push =
+    (id: State, next: State) =>
+    (ctx: FSMCtx): ParseResult => {
+        ctx.stack.push({ id, children: ctx.children!.concat(ctx.body) });
+        return transition(ctx, next);
+    };
+
+const pop =
+    (result: Fn2<FSMCtx, string, any>) =>
+    (ctx: FSMCtx, body: any): ParseResult => {
+        const { id, children } = ctx.stack.pop();
+        children.push(result(ctx, body));
+        ctx.children = children;
+        ctx.body = "";
+        return [id];
+    };
 
 const collectChildren = (ctx: FSMCtx) => (
     ctx.children!.push(ctx.body), ctx.children!
 );
 
-const collect = (id: State) => (ctx: FSMCtx, buf: string[]): ParseResult => (
-    (ctx.body += buf.join("")), [id]
-);
+const collect =
+    (id: State) =>
+    (ctx: FSMCtx, buf: string[]): ParseResult => {
+        ctx.body += buf.join("");
+        return [id];
+    };
 
-const collectHeading = (tag: Fn2<number, any[], any[]>) => (
-    ctx: FSMCtx
-): ParseResult => [State.START, [tag(ctx.hd!, collectChildren(ctx))]];
+const collectHeading =
+    (tag: Fn2<number, any[], any[]>) =>
+    (ctx: FSMCtx): ParseResult =>
+        [State.START, [tag(ctx.hd!, collectChildren(ctx))]];
 
-const collectAndRestart = (tag: (xs: any[]) => any[]) => (
-    ctx: FSMCtx
-): ParseResult => [State.START, [tag(collectChildren(ctx))]];
+const collectAndRestart =
+    (tag: (xs: any[]) => any[]) =>
+    (ctx: FSMCtx): ParseResult =>
+        [State.START, [tag(collectChildren(ctx))]];
 
 const collectBlockQuote = (ctx: FSMCtx): ParseResult => (
     ctx.children!.push(ctx.body, ["br", {}]),
@@ -139,27 +146,26 @@ const collectBlockQuote = (ctx: FSMCtx): ParseResult => (
     [State.BLOCKQUOTE]
 );
 
-const collectCodeBlock = (tag: Fn2<string, string, any[]>) => (
-    ctx: FSMCtx,
-    body: string
-): ParseResult => [State.START, [tag(ctx.lang!, body)]];
+const collectCodeBlock =
+    (tag: Fn2<string, string, any[]>) =>
+    (ctx: FSMCtx, body: string): ParseResult =>
+        [State.START, [tag(ctx.lang!, body)]];
 
 const collectLi = (ctx: FSMCtx, tag: Fn<any[], any[]>) =>
     ctx.container!.push(tag(collectChildren(ctx)));
 
-const collectList = (
-    type: string,
-    list: Fn2<string, any[], any[]>,
-    item: Fn<any[], any[]>
-) => (ctx: FSMCtx): ParseResult => (
-    collectLi(ctx, item), [State.START, [list(type, ctx.container!)]]
-);
+const collectList =
+    (type: string, list: Fn2<string, any[], any[]>, item: Fn<any[], any[]>) =>
+    (ctx: FSMCtx): ParseResult => {
+        collectLi(ctx, item);
+        return [State.START, [list(type, ctx.container!)]];
+    };
 
-const collectTD = (tag: Fn2<number, any[], any[]>) => (ctx: FSMCtx) => (
-    ctx.children!.push(ctx.body),
-    ctx.container!.push(tag(peek(ctx.stack).container.length, ctx.children!)),
-    transition(ctx, State.TABLE)
-);
+const collectTD = (tag: Fn2<number, any[], any[]>) => (ctx: FSMCtx) => {
+    ctx.children!.push(ctx.body);
+    ctx.container!.push(tag(peek(ctx.stack).container.length, ctx.children!));
+    return transition(ctx, State.TABLE);
+};
 
 const collectTR = (tag: Fn2<number, any[], any[]>) => (ctx: FSMCtx) => {
     const rows = peek(ctx.stack).container;
@@ -168,11 +174,13 @@ const collectTR = (tag: Fn2<number, any[], any[]>) => (ctx: FSMCtx) => {
     return transition(ctx, State.END_TABLE);
 };
 
-const collectTable = (tag: Fn<any[], any[]>) => (ctx: FSMCtx): ParseResult => {
-    const rows = ctx.stack.pop().container;
-    rows.splice(1, 1);
-    return [State.START, [tag(rows)]];
-};
+const collectTable =
+    (tag: Fn<any[], any[]>) =>
+    (ctx: FSMCtx): ParseResult => {
+        const rows = ctx.stack.pop().container;
+        rows.splice(1, 1);
+        return [State.START, [tag(rows)]];
+    };
 
 const collectInline = (fn: Fn<string, any[]>) =>
     pop((ctx, body: string) => fn(ctx.body + body.trim()));
@@ -219,9 +227,12 @@ const newPara = (ctx: FSMCtx, buf: string[]): ParseResult => (
     (ctx.body = buf.join("")), (ctx.children = []), [State.PARA]
 );
 
-const newParaInline = (next: State) => (ctx: FSMCtx): ParseResult => (
-    ctx.stack.push({ id: State.PARA, children: [] }), transition(ctx, next)
-);
+const newParaInline =
+    (next: State) =>
+    (ctx: FSMCtx): ParseResult => {
+        ctx.stack.push({ id: State.PARA, children: [] });
+        return transition(ctx, next);
+    };
 
 const newParaCode = (ctx: FSMCtx, x: string[]): ParseResult => (
     (ctx.body = x[1]),

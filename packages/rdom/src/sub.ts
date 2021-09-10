@@ -1,7 +1,9 @@
 import type { Fn2, Path } from "@thi.ng/api";
-import { isString } from "@thi.ng/checks";
-import { defSetterUnsafe } from "@thi.ng/paths";
-import { ISubscribable, nextID, Subscription } from "@thi.ng/rstream";
+import { isString } from "@thi.ng/checks/is-string";
+import { defSetterUnsafe } from "@thi.ng/paths/setter";
+import type { ISubscribable } from "@thi.ng/rstream";
+import { Subscription } from "@thi.ng/rstream/subscription";
+import { nextID } from "@thi.ng/rstream/utils/idgen";
 import type { IComponent, IMountWithState, NumOrElement } from "./api";
 import { $attribs } from "./dom";
 import { SCHEDULER } from "./scheduler";

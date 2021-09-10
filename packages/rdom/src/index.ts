@@ -1,4 +1,5 @@
 export * from "./api";
+export * from "./checks";
 export * from "./compile";
 export * from "./component";
 export * from "./dom";
@@ -10,5 +11,4 @@ export * from "./promise";
 export * from "./scheduler";
 export * from "./sub";
 export * from "./switch";
-export * from "./utils";
 export * from "./wrap";

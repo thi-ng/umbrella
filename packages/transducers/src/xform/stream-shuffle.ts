@@ -1,4 +1,4 @@
-import { shuffle } from "@thi.ng/arrays";
+import { shuffle } from "@thi.ng/arrays/shuffle";
 import type { Reducer, Transducer } from "../api";
 import { $iter, iterator } from "../iterator";
 import { isReduced } from "../reduced";

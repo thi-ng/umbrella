@@ -11,9 +11,9 @@ import {
     diffuseLighting,
     halfLambert,
     lambert,
-    surfaceNormal,
-    transformMVP,
-} from "@thi.ng/shader-ast-stdlib";
+} from "@thi.ng/shader-ast-stdlib/light/lambert";
+import { transformMVP } from "@thi.ng/shader-ast-stdlib/matrix/mvp";
+import { surfaceNormal } from "@thi.ng/shader-ast-stdlib/matrix/normal";
 import type { Material } from "../api/material";
 import type { ShaderOpts, ShaderSpec } from "../api/shader";
 import { defMaterial } from "../material";

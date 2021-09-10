@@ -1,4 +1,4 @@
-import { mapcat } from "@thi.ng/transducers";
+import { mapcat } from "@thi.ng/transducers/xform/mapcat";
 import type { ISubscription, WithErrorHandlerOpts } from "../api";
 import { optsWithID } from "../utils/idgen";
 import { fromPromise } from "./promise";

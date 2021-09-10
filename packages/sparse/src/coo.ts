@@ -1,5 +1,5 @@
-import { ensureIndex2 } from "@thi.ng/errors";
-import { partition } from "@thi.ng/transducers";
+import { ensureIndex2 } from "@thi.ng/errors/out-of-bounds";
+import { partition } from "@thi.ng/transducers/xform/partition";
 import { ASparseMatrix } from "./amatrix";
 import type { NzEntry } from "./api";
 import { CSC } from "./csc";

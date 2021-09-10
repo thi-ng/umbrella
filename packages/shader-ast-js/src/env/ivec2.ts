@@ -1,21 +1,15 @@
-import {
-    addI2,
-    addNI2,
-    bitAndI2,
-    bitNotI2,
-    bitOrI2,
-    bitXorI2,
-    divI2,
-    divNI2,
-    fmod2,
-    fmodN2,
-    lshiftI2,
-    mulI2,
-    mulNI2,
-    rshiftI2,
-    subI2,
-    subNI2,
-} from "@thi.ng/vectors";
+import { addI2, addNI2 } from "@thi.ng/vectors/addi";
+import { bitAndI2 } from "@thi.ng/vectors/bit-and";
+import { bitNotI2 } from "@thi.ng/vectors/bit-not";
+import { bitOrI2 } from "@thi.ng/vectors/bit-or";
+import { bitXorI2 } from "@thi.ng/vectors/bit-xor";
+import { divI2, divNI2 } from "@thi.ng/vectors/divi";
+import { fmod2 } from "@thi.ng/vectors/fmod";
+import { fmodN2 } from "@thi.ng/vectors/fmodn";
+import { lshiftI2 } from "@thi.ng/vectors/lshift";
+import { mulI2, mulNI2 } from "@thi.ng/vectors/muli";
+import { rshiftI2 } from "@thi.ng/vectors/rshift";
+import { subI2, subNI2 } from "@thi.ng/vectors/subi";
 import type { JSBuiltinsIntVec } from "../api";
 import { VEC2 } from "./vec2";
 

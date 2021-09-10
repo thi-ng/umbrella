@@ -1,13 +1,12 @@
-import { mix, mixCubicHermite, norm, tangentCardinal } from "@thi.ng/math";
-import {
-    comp,
-    extendSides,
-    iterator,
-    map,
-    mapcat,
-    normRange,
-    partition,
-} from "@thi.ng/transducers";
+import { norm } from "@thi.ng/math/fit";
+import { mix, mixCubicHermite, tangentCardinal } from "@thi.ng/math/mix";
+import { comp } from "@thi.ng/transducers/func/comp";
+import { extendSides } from "@thi.ng/transducers/iter/extend-sides";
+import { normRange } from "@thi.ng/transducers/iter/norm-range";
+import { iterator } from "@thi.ng/transducers/iterator";
+import { map } from "@thi.ng/transducers/xform/map";
+import { mapcat } from "@thi.ng/transducers/xform/mapcat";
+import { partition } from "@thi.ng/transducers/xform/partition";
 import type { Vec } from "@thi.ng/vectors";
 import { ARamp } from "./aramp";
 

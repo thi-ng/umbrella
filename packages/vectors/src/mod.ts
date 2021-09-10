@@ -1,4 +1,4 @@
-import { mod as _mod } from "@thi.ng/math";
+import { mod as _mod } from "@thi.ng/math/prec";
 import type { MultiVecOpVV, VecOpVV } from "./api";
 import { ARGS_VV, defHofOp } from "./internal/codegen";
 import { FN2 } from "./internal/templates";

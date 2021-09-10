@@ -1,4 +1,4 @@
-import { serialize } from "@thi.ng/hiccup";
+import { serialize } from "@thi.ng/hiccup/serialize";
 import { DEFAULT_THEME, Theme } from "./api";
 import { compileTheme } from "./theme";
 

@@ -1,4 +1,4 @@
-import { SEMAPHORE } from "@thi.ng/api";
+import { SEMAPHORE } from "@thi.ng/api/constants";
 import { repeat } from "./repeat";
 
 /**

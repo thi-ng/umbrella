@@ -1,13 +1,11 @@
 import type { NumericArray } from "@thi.ng/api";
-import {
-    Attribs,
-    div,
-    inputNumber,
-    InputNumericAttribs,
-} from "@thi.ng/hiccup-html";
-import { $inputNum } from "@thi.ng/rdom";
+import type { Attribs } from "@thi.ng/hiccup-html";
+import { div } from "@thi.ng/hiccup-html/blocks";
+import { inputNumber, InputNumericAttribs } from "@thi.ng/hiccup-html/forms";
+import { $inputNum } from "@thi.ng/rdom/event";
 import type { ISubscription } from "@thi.ng/rstream";
-import { pluck, repeatedly } from "@thi.ng/transducers";
+import { repeatedly } from "@thi.ng/transducers/iter/repeatedly";
+import { pluck } from "@thi.ng/transducers/xform/pluck";
 
 export const inputNumeric = (
     dest: ISubscription<number, number>,

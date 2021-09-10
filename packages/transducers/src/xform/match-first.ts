@@ -1,5 +1,5 @@
 import type { Predicate } from "@thi.ng/api";
-import { isIterable } from "@thi.ng/checks";
+import { isIterable } from "@thi.ng/checks/is-iterable";
 import type { Transducer } from "../api";
 import { comp } from "../func/comp";
 import { iterator1 } from "../iterator";

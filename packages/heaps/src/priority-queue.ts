@@ -8,7 +8,7 @@ import type {
     Predicate,
     Predicate2,
 } from "@thi.ng/api";
-import { compareNumDesc } from "@thi.ng/compare";
+import { compareNumDesc } from "@thi.ng/compare/numeric";
 import { equiv } from "@thi.ng/equiv";
 import type { PriorityQueueOpts } from "./api";
 import { Heap } from "./heap";

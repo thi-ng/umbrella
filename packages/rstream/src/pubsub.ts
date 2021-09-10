@@ -1,6 +1,7 @@
-import type { Fn, Predicate2 } from "@thi.ng/api";
-import { EquivMap } from "@thi.ng/associative";
-import { unsupported } from "@thi.ng/errors";
+import type { Fn } from "@thi.ng/api";
+import type { Predicate2 } from "@thi.ng/api";
+import { EquivMap } from "@thi.ng/associative/equiv-map";
+import { unsupported } from "@thi.ng/errors/unsupported";
 import type { Transducer } from "@thi.ng/transducers";
 import {
     CloseMode,

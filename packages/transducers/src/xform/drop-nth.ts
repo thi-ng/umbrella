@@ -1,5 +1,5 @@
-import { isIterable } from "@thi.ng/checks";
-import { clamp0 } from "@thi.ng/math";
+import { isIterable } from "@thi.ng/checks/is-iterable";
+import { clamp0 } from "@thi.ng/math/interval";
 import type { Transducer } from "../api";
 import { iterator1 } from "../iterator";
 import { throttle } from "./throttle";

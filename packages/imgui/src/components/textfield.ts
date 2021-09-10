@@ -1,8 +1,8 @@
 import type { Predicate } from "@thi.ng/api";
 import { rect } from "@thi.ng/geom";
 import type { IGridLayout, LayoutBox } from "@thi.ng/layout";
-import { fitClamped } from "@thi.ng/math";
-import { hash } from "@thi.ng/vectors";
+import { fitClamped } from "@thi.ng/math/fit";
+import { hash } from "@thi.ng/vectors/hash";
 import { isHoverSlider } from "../behaviors/slider";
 import { handleTextfieldKeys } from "../behaviors/text";
 import type { IMGUI } from "../gui";

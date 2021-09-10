@@ -1,6 +1,6 @@
-import { peek } from "@thi.ng/arrays";
-import { clamp0 } from "@thi.ng/math";
-import { wordWrapLines } from "@thi.ng/strings";
+import { peek } from "@thi.ng/arrays/peek";
+import { clamp0 } from "@thi.ng/math/interval";
+import { wordWrapLines } from "@thi.ng/strings/word-wrap";
 import type { TextBoxOpts } from "./api";
 import { beginClip, beginStyle, Canvas, endClip, endStyle } from "./canvas";
 import { fillRect, strokeRect } from "./rect";

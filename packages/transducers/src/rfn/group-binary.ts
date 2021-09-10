@@ -3,12 +3,10 @@ import type { Reducer } from "../api";
 import { groupByObj } from "./group-by-obj";
 import { push } from "./push";
 
-const branchPred = <T>(
-    key: Fn<T, number>,
-    b: number,
-    l: PropertyKey,
-    r: PropertyKey
-) => (x: T) => (key(x) & b ? r : l);
+const branchPred =
+    <T>(key: Fn<T, number>, b: number, l: PropertyKey, r: PropertyKey) =>
+    (x: T) =>
+        key(x) & b ? r : l;
 
 /**
  * Creates a bottom-up, unbalanced binary tree of desired depth and

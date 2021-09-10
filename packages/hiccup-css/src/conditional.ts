@@ -1,20 +1,18 @@
-import { isString } from "@thi.ng/checks";
+import { isString } from "@thi.ng/checks/is-string";
 import { expand, indent } from "./impl";
 import type { Conditional, CSSOpts, RuleFn } from "./api";
 
-export const conditional = (
-    type: string,
-    cond: Conditional,
-    rules: any[]
-): RuleFn => (acc: string[], opts: CSSOpts) => {
-    const space = indent(opts);
-    acc.push(`${space}${type} ${formatCond(cond)}${opts.format.declStart}`);
-    opts.depth++;
-    expand(acc, [], rules, opts);
-    opts.depth--;
-    acc.push(space + opts.format.declEnd);
-    return acc;
-};
+export const conditional =
+    (type: string, cond: Conditional, rules: any[]): RuleFn =>
+    (acc: string[], opts: CSSOpts) => {
+        const space = indent(opts);
+        acc.push(`${space}${type} ${formatCond(cond)}${opts.format.declStart}`);
+        opts.depth++;
+        expand(acc, [], rules, opts);
+        opts.depth--;
+        acc.push(space + opts.format.declEnd);
+        return acc;
+    };
 
 const formatCond = (cond: any) => {
     if (isString(cond)) {

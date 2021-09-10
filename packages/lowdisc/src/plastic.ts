@@ -1,4 +1,4 @@
-import { assert } from "@thi.ng/api";
+import { assert } from "@thi.ng/api/assert";
 import { kronecker } from "./kronecker";
 import { lowDiscrepancy } from "./lowdisc";
 

@@ -3,9 +3,8 @@ import {
     ARGS_VV,
     compile,
     DEFAULT_OUT,
-    MATH,
-    MATH_N,
-} from "@thi.ng/vectors";
+} from "@thi.ng/vectors/internal/codegen";
+import { MATH, MATH_N } from "@thi.ng/vectors/internal/templates";
 import type { MultiMatOpMM, MultiMatOpMN } from "../api";
 
 const DEFAULT_SIZES = [6, 9, 16];

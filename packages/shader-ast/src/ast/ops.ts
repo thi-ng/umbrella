@@ -1,5 +1,5 @@
 import type { IObjectOf } from "@thi.ng/api";
-import { isNumber } from "@thi.ng/checks";
+import { isNumber } from "@thi.ng/checks/is-number";
 import type { Op1, Op2, Sym, Term } from "../api/nodes";
 import type { ComparisonOperator, Operator } from "../api/ops";
 import type {

@@ -1,11 +1,11 @@
-import {
-    assert,
+import type {
     NumericArray,
     Range1_32,
     Range1_64,
     RangeValueMap,
 } from "@thi.ng/api";
-import { MASKS } from "@thi.ng/binary";
+import { assert } from "@thi.ng/api/assert";
+import { MASKS } from "@thi.ng/binary/constants";
 
 type Range2_64 = Exclude<Range1_64, 1>;
 

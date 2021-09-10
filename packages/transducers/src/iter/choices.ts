@@ -1,5 +1,7 @@
-import { ensureArray } from "@thi.ng/arrays";
-import { IRandom, SYSTEM, weightedRandom } from "@thi.ng/random";
+import { ensureArray } from "@thi.ng/arrays/ensure-array";
+import type { IRandom } from "@thi.ng/random";
+import { SYSTEM } from "@thi.ng/random/system";
+import { weightedRandom } from "@thi.ng/random/weighted-random";
 import { repeatedly } from "./repeatedly";
 
 /**

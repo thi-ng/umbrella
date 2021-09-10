@@ -1,7 +1,7 @@
 import type { UIntArray } from "@thi.ng/api";
-import { peek } from "@thi.ng/arrays";
-import { isNumber } from "@thi.ng/checks";
-import { clamp0 } from "@thi.ng/math";
+import { peek } from "@thi.ng/arrays/peek";
+import { isNumber } from "@thi.ng/checks/is-number";
+import { clamp0 } from "@thi.ng/math/interval";
 import { ClipRect, ImageOpts, SHADES_BLOCK } from "./api";
 import { canvas, Canvas } from "./canvas";
 import { FMT_ANSI565 } from "./format";

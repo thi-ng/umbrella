@@ -16,7 +16,8 @@ import {
     ternary,
     vec4,
 } from "@thi.ng/shader-ast";
-import { diffuseLighting, surfaceNormal } from "@thi.ng/shader-ast-stdlib";
+import { diffuseLighting } from "@thi.ng/shader-ast-stdlib/light/lambert";
+import { surfaceNormal } from "@thi.ng/shader-ast-stdlib/matrix/normal";
 import type { Material } from "../api/material";
 import type { ShaderOpts, ShaderSpec } from "../api/shader";
 import { defMaterial } from "../material";

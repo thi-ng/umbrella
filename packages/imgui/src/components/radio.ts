@@ -1,4 +1,6 @@
-import { gridLayout, IGridLayout, isLayout, LayoutBox } from "@thi.ng/layout";
+import type { IGridLayout, LayoutBox } from "@thi.ng/layout";
+import { gridLayout } from "@thi.ng/layout/grid-layout";
+import { isLayout } from "@thi.ng/layout/is-layout";
 import type { IMGUI } from "../gui";
 import { toggle } from "./toggle";
 

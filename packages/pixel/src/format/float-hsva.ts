@@ -1,4 +1,5 @@
-import { clamp01, EPS } from "@thi.ng/math";
+import { EPS } from "@thi.ng/math/api";
+import { clamp01 } from "@thi.ng/math/interval";
 import { Lane } from "../api";
 import { defFloatFormat } from "./float-format";
 
