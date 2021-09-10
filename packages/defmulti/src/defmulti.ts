@@ -1,4 +1,4 @@
-import { unsupported } from "@thi.ng/errors";
+import { unsupported } from "@thi.ng/errors/unsupported";
 import { DEFAULT, LOGGER } from "./constants";
 import type { IObjectOf, Pair } from "@thi.ng/api";
 import type {

@@ -1,4 +1,4 @@
-import { illegalArity } from "@thi.ng/errors";
+import { illegalArity } from "@thi.ng/errors/illegal-arity";
 import { DEFAULT } from "./constants";
 import { defmulti } from "./defmulti";
 import type { Implementation } from "./api";

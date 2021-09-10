@@ -1,5 +1,5 @@
-import { illegalArgs } from "@thi.ng/errors";
 import type { IObjectOf } from "@thi.ng/api";
+import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import type { Implementation, MultiFn } from "./api";
 
 /**
