@@ -1,7 +1,7 @@
 import { mod as _mod } from "@thi.ng/math/prec";
 import type { MultiVecOpVN, VecOpVN } from "./api";
-import { ARGS_V, ARGS_VN, defHofOp } from "./internal/codegen";
-import { FN_N } from "./internal/templates";
+import { defHofOp } from "./compile/emit";
+import { ARGS_V, ARGS_VN, FN_N } from "./compile/templates";
 
 /**
  * Same as {@link mod}, but 2nd operand is a single scalar (uniform domain for

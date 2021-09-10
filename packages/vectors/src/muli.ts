@@ -1,4 +1,4 @@
-import { defBitOp, defBitOpN } from "./internal/codegen";
+import { defBitOp, defBitOpN } from "./compile/emit";
 
 export const [mulI, mulI2, mulI3, mulI4] = defBitOp("*", true);
 

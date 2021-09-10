@@ -1,5 +1,5 @@
 import type { NumericArray } from "@thi.ng/api";
-import type { VectorConstructor } from "../api";
+import type { VectorConstructor } from "./api";
 
 export function* vecIterator<T>(
     ctor: VectorConstructor<T>,

@@ -1,6 +1,6 @@
 import { mixBilinear as _mix } from "@thi.ng/math/mix";
 import type { MultiVecOpVVVVNN, VecOpVVVVNN } from "./api";
-import { defHofOp } from "./internal/codegen";
+import { defHofOp } from "./compile/emit";
 
 export const [mixBilinear, mixBilinear2, mixBilinear3, mixBilinear4] = defHofOp<
     MultiVecOpVVVVNN,

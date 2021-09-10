@@ -5,7 +5,7 @@ import { range } from "@thi.ng/transducers/iter/range";
 import { map } from "@thi.ng/transducers/xform/map";
 import type { IVector } from "./api";
 import { eqDeltaS } from "./eqdelta";
-import { stridedValues } from "./internal/vec-utils";
+import { stridedValues } from "./iterator";
 import { zeroes } from "./setn";
 import { setS } from "./sets";
 import { FORMATTER } from "./string";

@@ -1,6 +1,6 @@
 import type { MultiVecOpV, VecOpV } from "./api";
-import { defOp, NEW_OUT } from "./internal/codegen";
-import { SET } from "./internal/templates";
+import { defOp } from "./compile/emit";
+import { NEW_OUT, SET } from "./compile/templates";
 
 export const [set, set2, set3, set4] = defOp<MultiVecOpV, VecOpV>(
     SET,

@@ -1,6 +1,6 @@
 import type { VecOpSGVVV, VecOpSVVV } from "./api";
-import { ARGS_VVV, defOpS, SARGS_VVV } from "./internal/codegen";
-import { MATH2 } from "./internal/templates";
+import { defOpS } from "./compile/emit";
+import { ARGS_VVV, MATH2, SARGS_VVV } from "./compile/templates";
 
 export const [submS, submS2, submS3, submS4] = defOpS<VecOpSGVVV, VecOpSVVV>(
     MATH2("-", "*"),

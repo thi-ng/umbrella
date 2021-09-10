@@ -1,6 +1,6 @@
 import { cossin } from "@thi.ng/math/angle";
 import { MultiVecOpVO, ReadonlyVec, ZERO2, ZERO3 } from "./api";
-import { vop } from "./internal/vop";
+import { vop } from "./vop";
 import { maddN2 } from "./maddn";
 import { setC3 } from "./setc";
 

@@ -9,8 +9,8 @@ import type {
     VecOpVVV,
     VecOpVVVVV,
 } from "./api";
-import { ARGS_VVV, defHofOp } from "./internal/codegen";
-import { FN3, FN5 } from "./internal/templates";
+import { defHofOp } from "./compile/emit";
+import { ARGS_VVV, FN3, FN5 } from "./compile/templates";
 
 export const [fit, fit2, fit3, fit4] = defHofOp<MultiVecOpVVVVV, VecOpVVVVV>(
     _fit,

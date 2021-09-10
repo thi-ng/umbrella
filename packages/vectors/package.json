@@ -102,6 +102,7 @@
     "files": [
         "*.js",
         "*.d.ts",
+        "compile",
         "internal"
     ],
     "exports": {
@@ -156,6 +157,9 @@
         "./atan": {
             "import": "./atan.js"
         },
+        "./avec": {
+            "import": "./avec.js"
+        },
         "./bisect": {
             "import": "./bisect.js"
         },
@@ -194,6 +198,15 @@
         },
         "./compare": {
             "import": "./compare.js"
+        },
+        "./compile/accessors": {
+            "import": "./compile/accessors.js"
+        },
+        "./compile/emit": {
+            "import": "./compile/emit.js"
+        },
+        "./compile/templates": {
+            "import": "./compile/templates.js"
         },
         "./convert": {
             "import": "./convert.js"
@@ -359,6 +372,9 @@
         },
         "./is-nan": {
             "import": "./is-nan.js"
+        },
+        "./iterator": {
+            "import": "./iterator.js"
         },
         "./jitter": {
             "import": "./jitter.js"
@@ -701,6 +717,9 @@
         },
         "./vec4": {
             "import": "./vec4.js"
+        },
+        "./vop": {
+            "import": "./vop.js"
         },
         "./wrap": {
             "import": "./wrap.js"

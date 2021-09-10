@@ -14,41 +14,21 @@ import type {
     VecOpVN,
     VecOpVV,
 } from "../api";
+import { vop } from "../vop";
 import {
+    ARGS_V,
+    ARGS_VN,
+    ARGS_VV,
+    DEFAULT_OUT,
     FN,
     MATH,
     MATH_N,
+    SARGS_VV,
     SIGNED,
     SIGNED_N,
     UNSIGNED,
     UNSIGNED_N,
 } from "./templates";
-import { vop } from "./vop";
-
-/** @internal */
-export const ARGS_V = "o,a";
-/** @internal */
-export const ARGS_VV = "o,a,b";
-/** @internal */
-export const ARGS_VVV = "o,a,b,c";
-/** @internal */
-export const ARGS_VN = "o,a,n";
-/** @internal */
-export const ARGS_VNV = "o,a,n,b";
-/** @internal */
-export const ARGS_VVN = "o,a,b,n";
-
-/** @internal */
-export const SARGS_V = "io=0,ia=0,so=1,sa=1";
-/** @internal */
-export const SARGS_VV = "io=0,ia=0,ib=0,so=1,sa=1,sb=1";
-/** @internal */
-export const SARGS_VVV = "io=0,ia=0,ib=0,ic=0,so=1,sa=1,sb=1,sc=1";
-
-/** @internal */
-export const DEFAULT_OUT = "!o&&(o=a);";
-/** @internal */
-export const NEW_OUT = "!o&&(o=[]);";
 
 /**
  * HOF array index lookup gen to provide optimized versions of:

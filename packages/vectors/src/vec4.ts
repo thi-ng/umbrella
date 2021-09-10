@@ -1,5 +1,6 @@
 import type { IHash, NumericArray } from "@thi.ng/api";
 import { EPS } from "@thi.ng/math/api";
+import { declareIndices } from "./compile/accessors";
 import {
     IVector,
     MAX4,
@@ -12,12 +13,11 @@ import {
     Z4,
     ZERO4,
 } from "./api";
+import { AVec } from "./avec";
 import { intoStridedBuffer, mapStridedBuffer } from "./buffer";
 import { eqDelta4 } from "./eqdelta";
 import { hash } from "./hash";
-import { declareIndices } from "./internal/accessors";
-import { AVec } from "./internal/avec";
-import { stridedValues, vecIterator } from "./internal/vec-utils";
+import { stridedValues, vecIterator } from "./iterator";
 import { setS4 } from "./sets";
 
 export class Vec4 extends AVec implements IHash<number>, IVector<Vec4> {

@@ -1,7 +1,7 @@
 import { remainder as _remainder } from "@thi.ng/math/libc";
 import type { MultiVecOpVV, VecOpVV } from "./api";
-import { ARGS_VV, defHofOp } from "./internal/codegen";
-import { FN2 } from "./internal/templates";
+import { defHofOp } from "./compile/emit";
+import { ARGS_VV, FN2 } from "./compile/templates";
 
 /**
  * This version of mod uses the same logic as the standard C function

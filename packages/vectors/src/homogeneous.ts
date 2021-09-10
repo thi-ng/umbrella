@@ -1,5 +1,5 @@
 import type { MultiVecOpV } from "./api";
-import { vop } from "./internal/vop";
+import { vop } from "./vop";
 import { setC2, setC3 } from "./setc";
 
 export const fromHomogeneous: MultiVecOpV = vop(1);

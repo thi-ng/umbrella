@@ -9,7 +9,8 @@ import type {
     VecOpSVO,
     VecOpSVVO,
 } from "./api";
-import { defHofOpS, SARGS_VV } from "./internal/codegen";
+import { defHofOpS } from "./compile/emit";
+import { SARGS_VV } from "./compile/templates";
 import {
     normalizeS,
     normalizeS2,

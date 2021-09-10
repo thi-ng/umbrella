@@ -7,7 +7,8 @@ import type {
     ToBVecOpV,
     VecOpV,
 } from "./api";
-import { ARGS_V, defOp, NEW_OUT } from "./internal/codegen";
+import { defOp } from "./compile/emit";
+import { ARGS_V, NEW_OUT } from "./compile/templates";
 
 const $ = <M, V>(tpl: Template, pre = NEW_OUT) =>
     defOp<M, V>(tpl, ARGS_V, ARGS_V, "o", 1, pre);

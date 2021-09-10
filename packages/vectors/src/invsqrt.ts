@@ -1,5 +1,5 @@
 import type { MultiVecOpV, VecOpV } from "./api";
-import { defOp } from "./internal/codegen";
+import { defOp } from "./compile/emit";
 
 export const [invSqrt, invSqrt2, invSqrt3, invSqrt4] = defOp<
     MultiVecOpV,

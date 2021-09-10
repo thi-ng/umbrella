@@ -1,4 +1,4 @@
-import { defBitOp, defBitOpN } from "./internal/codegen";
+import { defBitOp, defBitOpN } from "./compile/emit";
 
 export const [rshiftI, rshiftI2, rshiftI3, rshiftI4] = defBitOp(">>", true);
 

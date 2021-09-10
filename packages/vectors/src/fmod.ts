@@ -1,4 +1,4 @@
-import { defMathOp } from "./internal/codegen";
+import { defMathOp } from "./compile/emit";
 
 /**
  * Similar to {@link mod}, {@link remainder}. This version of modulo uses the

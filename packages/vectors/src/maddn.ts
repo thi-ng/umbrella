@@ -1,6 +1,6 @@
 import type { MultiVecOpVNV, VecOpVNV } from "./api";
-import { ARGS_VNV, ARGS_VV, defOp } from "./internal/codegen";
-import { MATH2A_N } from "./internal/templates";
+import { defOp } from "./compile/emit";
+import { ARGS_VNV, ARGS_VV, MATH2A_N } from "./compile/templates";
 
 /**
  * Returns `out = a * n + b`.

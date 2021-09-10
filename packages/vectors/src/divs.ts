@@ -1,6 +1,6 @@
 import type { VecOpSGVV, VecOpSVV } from "./api";
-import { defOpS } from "./internal/codegen";
-import { MATH } from "./internal/templates";
+import { defOpS } from "./compile/emit";
+import { MATH } from "./compile/templates";
 
 export const [divS, divS2, divS3, divS4] = defOpS<VecOpSGVV, VecOpSVV>(
     MATH("/")

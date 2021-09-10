@@ -1,5 +1,5 @@
 import type { MultiBVecOpRoV } from "./api";
-import { vop } from "./internal/vop";
+import { vop } from "./vop";
 
 /**
  * Returns returns true if all vector components in `v` are truthy.

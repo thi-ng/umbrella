@@ -1,5 +1,5 @@
 import type { MultiToBVecOpV, ToBVecOpV } from "./api";
-import { defFnOp } from "./internal/codegen";
+import { defFnOp } from "./compile/emit";
 
 export const [isInf, isInf2, isInf3, isInf4] = defFnOp<
     MultiToBVecOpV,

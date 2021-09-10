@@ -1,4 +1,4 @@
-import { defBitOp, defBitOpN } from "./internal/codegen";
+import { defBitOp, defBitOpN } from "./compile/emit";
 
 export const [bitAndI, bitAndI2, bitAndI3, bitAndI4] = defBitOp("&", true);
 

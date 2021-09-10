@@ -1,5 +1,5 @@
 import type { MultiVecOpV, VecOpV } from "./api";
-import { defFnOp } from "./internal/codegen";
+import { defFnOp } from "./compile/emit";
 
 /**
  * Componentwise Math.log2
