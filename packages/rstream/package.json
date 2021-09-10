@@ -80,6 +80,9 @@
         "./api": {
             "import": "./api.js"
         },
+        "./checks": {
+            "import": "./checks.js"
+        },
         "./forkjoin": {
             "import": "./forkjoin.js"
         },

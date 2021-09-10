@@ -78,7 +78,7 @@
     "files": [
         "*.js",
         "*.d.ts",
-        "internal"
+        "compile"
     ],
     "exports": {
         ".": {

@@ -78,6 +78,9 @@
         "./api": {
             "import": "./api.js"
         },
+        "./checks": {
+            "import": "./checks.js"
+        },
         "./compile": {
             "import": "./compile.js"
         },
@@ -110,9 +113,6 @@
         },
         "./switch": {
             "import": "./switch.js"
-        },
-        "./utils": {
-            "import": "./utils.js"
         },
         "./wrap": {
             "import": "./wrap.js"
