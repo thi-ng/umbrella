@@ -1,10 +1,11 @@
 import type { Fn3, IClear, IDeref } from "@thi.ng/api";
-import { DefuzzStrategy, FuzzyFn, LVarDomain, variable } from "@thi.ng/fuzzy";
-import { serialize } from "@thi.ng/hiccup";
-import { convertTree } from "@thi.ng/hiccup-svg";
-import { fit } from "@thi.ng/math";
-import { repeat } from "@thi.ng/strings";
-import { barChartHLines } from "@thi.ng/text-canvas";
+import type { DefuzzStrategy, FuzzyFn, LVarDomain } from "@thi.ng/fuzzy";
+import { variable } from "@thi.ng/fuzzy/var";
+import { convertTree } from "@thi.ng/hiccup-svg/convert";
+import { serialize } from "@thi.ng/hiccup/serialize";
+import { fit } from "@thi.ng/math/fit";
+import { repeat } from "@thi.ng/strings/repeat";
+import { barChartHLines } from "@thi.ng/text-canvas/bars";
 import type { AsciiVizOpts, InstrumentFn, VizualizeVarOpts } from "./api";
 import { varToHiccup } from "./var";
 
@@ -71,56 +72,56 @@ export const instrumentStrategy = <T>(
     return impl;
 };
 
-export const fuzzySetToHiccup = (
-    opts?: Partial<VizualizeVarOpts>
-): InstrumentFn<any[]> => (fn, domain, res) => {
-    const tree = varToHiccup(variable(domain, { main: fn }), {
-        labels: false,
-        stroke: () => "#333",
-        fill: () => "#999",
-        ...opts,
-    });
-    const { width, height } = tree[1];
-    const x = fit(res, domain[0], domain[1], 0, width);
-    tree.push([
-        "g",
-        { translate: [x, 0] },
-        ["line", { stroke: "red" }, [0, 0], [0, height - 12]],
-        [
-            "text",
-            { align: "center", fill: "red" },
-            [0, height - 2],
-            res.toFixed(2),
-        ],
-    ]);
-    return tree;
-};
-
-export const fuzzySetToSvg = (
-    opts?: Partial<VizualizeVarOpts>
-): InstrumentFn<string> => (fn, domain, res) =>
-    serialize(convertTree(fuzzySetToHiccup(opts)(fn, domain, res)));
-
-export const fuzzySetToAscii = (
-    opts?: Partial<AsciiVizOpts>
-): InstrumentFn<string> => (fn, domain, res) => {
-    const { width, height, empty } = {
-        width: 100,
-        height: 16,
-        empty: ".",
-        ...opts,
+export const fuzzySetToHiccup =
+    (opts?: Partial<VizualizeVarOpts>): InstrumentFn<any[]> =>
+    (fn, domain, res) => {
+        const tree = varToHiccup(variable(domain, { main: fn }), {
+            labels: false,
+            stroke: () => "#333",
+            fill: () => "#999",
+            ...opts,
+        });
+        const { width, height } = tree[1];
+        const x = fit(res, domain[0], domain[1], 0, width);
+        tree.push([
+            "g",
+            { translate: [x, 0] },
+            ["line", { stroke: "red" }, [0, 0], [0, height - 12]],
+            [
+                "text",
+                { align: "center", fill: "red" },
+                [0, height - 2],
+                res.toFixed(2),
+            ],
+        ]);
+        return tree;
     };
-    const [min, max] = domain;
-    const delta = (max - min) / width;
-    const vals: number[] = [];
-    for (let i = min; i <= max; i += delta) {
-        vals.push(fn(i));
-    }
-    const index = Math.round(fit(res, min, max, 0, vals.length));
-    let chart = barChartHLines(height, vals, 0, 1)
-        .map((line) => line.substr(0, index) + "|" + line.substr(index + 1))
-        .join("\n")
-        .replace(/ /g, empty);
-    const legend = repeat(" ", index) + "^ " + res.toFixed(2);
-    return chart + "\n" + legend;
-};
+
+export const fuzzySetToSvg =
+    (opts?: Partial<VizualizeVarOpts>): InstrumentFn<string> =>
+    (fn, domain, res) =>
+        serialize(convertTree(fuzzySetToHiccup(opts)(fn, domain, res)));
+
+export const fuzzySetToAscii =
+    (opts?: Partial<AsciiVizOpts>): InstrumentFn<string> =>
+    (fn, domain, res) => {
+        const { width, height, empty } = {
+            width: 100,
+            height: 16,
+            empty: ".",
+            ...opts,
+        };
+        const [min, max] = domain;
+        const delta = (max - min) / width;
+        const vals: number[] = [];
+        for (let i = min; i <= max; i += delta) {
+            vals.push(fn(i));
+        }
+        const index = Math.round(fit(res, min, max, 0, vals.length));
+        let chart = barChartHLines(height, vals, 0, 1)
+            .map((line) => line.substr(0, index) + "|" + line.substr(index + 1))
+            .join("\n")
+            .replace(/ /g, empty);
+        const legend = repeat(" ", index) + "^ " + res.toFixed(2);
+        return chart + "\n" + legend;
+    };

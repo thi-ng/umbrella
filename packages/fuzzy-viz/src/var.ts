@@ -1,7 +1,9 @@
 import type { LVar } from "@thi.ng/fuzzy";
-import { serialize } from "@thi.ng/hiccup";
-import { convertTree, svg } from "@thi.ng/hiccup-svg";
-import { fit, inRange } from "@thi.ng/math";
+import { convertTree } from "@thi.ng/hiccup-svg/convert";
+import { svg } from "@thi.ng/hiccup-svg/svg";
+import { serialize } from "@thi.ng/hiccup/serialize";
+import { fit } from "@thi.ng/math/fit";
+import { inRange } from "@thi.ng/math/interval";
 import type { VizualizeVarOpts } from "./api";
 
 /**
@@ -17,7 +19,14 @@ export const varToHiccup = (
     { domain: [min, max], terms }: LVar<any>,
     opts: Partial<VizualizeVarOpts> = {}
 ) => {
-    const { samples, width, height, labels, stroke: strokeFn, fill: fillFn } = {
+    const {
+        samples,
+        width,
+        height,
+        labels,
+        stroke: strokeFn,
+        fill: fillFn,
+    } = {
         samples: 200,
         width: 600,
         height: 100,
