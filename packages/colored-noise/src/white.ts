@@ -1,4 +1,5 @@
-import { INorm, SYSTEM } from "@thi.ng/random";
+import type { INorm } from "@thi.ng/random";
+import { SYSTEM } from "@thi.ng/random/system";
 
 /**
  * Unfiltered noise w/ uniform distribution. Merely yields samples from
