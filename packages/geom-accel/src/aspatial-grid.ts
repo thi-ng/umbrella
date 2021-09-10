@@ -1,16 +1,13 @@
 import type { Fn, Nullable, Pair } from "@thi.ng/api";
 import type { IRegionQuery, ISpatialMap } from "@thi.ng/geom-api";
 import type { Heap } from "@thi.ng/heaps";
-import { EPS } from "@thi.ng/math";
-import { map } from "@thi.ng/transducers";
-import {
-    div,
-    equals,
-    floor,
-    ReadonlyVec,
-    subN,
-    VecOpRoVV,
-} from "@thi.ng/vectors";
+import { EPS } from "@thi.ng/math/api";
+import { map } from "@thi.ng/transducers/xform/map";
+import type { ReadonlyVec, VecOpRoVV } from "@thi.ng/vectors";
+import { div } from "@thi.ng/vectors/div";
+import { equals } from "@thi.ng/vectors/equals";
+import { floor } from "@thi.ng/vectors/floor";
+import { subN } from "@thi.ng/vectors/subn";
 import { into } from "./utils";
 
 /**
@@ -19,7 +16,8 @@ import { into } from "./utils";
  * @internal
  */
 export abstract class ASpatialGrid<K extends ReadonlyVec, V>
-    implements IRegionQuery<K, V, number>, ISpatialMap<K, V> {
+    implements IRegionQuery<K, V, number>, ISpatialMap<K, V>
+{
     protected _cells!: Nullable<Pair<K, V>[]>[];
     protected _num: number;
     protected _invSize: ReadonlyVec;

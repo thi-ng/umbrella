@@ -1,7 +1,9 @@
 import type { ICopy, IEmpty, Pair } from "@thi.ng/api";
 import type { IRegionQuery, ISpatialSet } from "@thi.ng/geom-api";
-import { EPS } from "@thi.ng/math";
-import { addmN, ReadonlyVec, submN } from "@thi.ng/vectors";
+import { EPS } from "@thi.ng/math/api";
+import type { ReadonlyVec } from "@thi.ng/vectors";
+import { addmN } from "@thi.ng/vectors/addmn";
+import { submN } from "@thi.ng/vectors/submn";
 import { NdQuadtreeMap } from "./nd-quadtree-map";
 
 export class NdQuadtreeSet<K extends ReadonlyVec>
@@ -9,7 +11,8 @@ export class NdQuadtreeSet<K extends ReadonlyVec>
         ICopy<NdQuadtreeSet<K>>,
         IEmpty<NdQuadtreeSet<K>>,
         IRegionQuery<K, K, number>,
-        ISpatialSet<K> {
+        ISpatialSet<K>
+{
     /**
      * Returns a new point-based `NdQuadtreeSet` for nD keys in given
      * region defined by `min` / `max` coordinates. The dimensionality
