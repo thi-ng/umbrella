@@ -1,5 +1,5 @@
 import type { IObjectOf } from "@thi.ng/api";
-import { illegalArity } from "@thi.ng/errors";
+import { illegalArity } from "@thi.ng/errors/illegal-arity";
 import type { Transducer } from "@thi.ng/transducers";
 import type { IWriteableChannel, TopicFn } from "./api";
 import { Channel } from "./channel";

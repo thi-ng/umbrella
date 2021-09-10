@@ -1,17 +1,13 @@
 import type { Fn, Fn0, Fn2, FnAny, Nullable, Predicate } from "@thi.ng/api";
-import { shuffle } from "@thi.ng/arrays";
-import { isFunction } from "@thi.ng/checks";
-import { DCons } from "@thi.ng/dcons";
-import { illegalArity } from "@thi.ng/errors";
-import {
-    cycle,
-    delayed,
-    isReduced,
-    range,
-    Reducer,
-    Transducer,
-    unreduced,
-} from "@thi.ng/transducers";
+import { shuffle } from "@thi.ng/arrays/shuffle";
+import { isFunction } from "@thi.ng/checks/is-function";
+import { DCons } from "@thi.ng/dcons/dcons";
+import { illegalArity } from "@thi.ng/errors/illegal-arity";
+import type { Reducer, Transducer } from "@thi.ng/transducers";
+import { cycle } from "@thi.ng/transducers/iter/cycle";
+import { range } from "@thi.ng/transducers/iter/range";
+import { isReduced, unreduced } from "@thi.ng/transducers/reduced";
+import { delayed } from "@thi.ng/transducers/xform/delayed";
 import type {
     ChannelItem,
     ErrorHandler,
