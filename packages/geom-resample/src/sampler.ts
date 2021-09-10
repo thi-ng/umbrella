@@ -2,20 +2,16 @@ import {
     closestPointPolyline,
     closestPointSegment,
     closestT,
-} from "@thi.ng/geom-closest-point";
-import { fit01 } from "@thi.ng/math";
-import {
-    dist,
-    distSq,
-    eqDelta,
-    mixN,
-    normalize,
-    ReadonlyVec,
-    set,
-    sub,
-    Vec,
-    VecPair,
-} from "@thi.ng/vectors";
+} from "@thi.ng/geom-closest-point/line";
+import { fit01 } from "@thi.ng/math/fit";
+import type { ReadonlyVec, Vec, VecPair } from "@thi.ng/vectors";
+import { dist } from "@thi.ng/vectors/dist";
+import { distSq } from "@thi.ng/vectors/distsq";
+import { eqDelta } from "@thi.ng/vectors/eqdelta";
+import { mixN } from "@thi.ng/vectors/mixn";
+import { normalize } from "@thi.ng/vectors/normalize";
+import { set } from "@thi.ng/vectors/set";
+import { sub } from "@thi.ng/vectors/sub";
 
 export class Sampler {
     points: ReadonlyVec[];
