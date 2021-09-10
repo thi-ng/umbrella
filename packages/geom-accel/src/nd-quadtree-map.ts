@@ -14,10 +14,10 @@ import { take } from "@thi.ng/transducers/xform/take";
 import type { MultiVecOpRoVV, ReadonlyVec } from "@thi.ng/vectors";
 import { addmN } from "@thi.ng/vectors/addmn";
 import { distSq } from "@thi.ng/vectors/distsq";
-import { vop } from "@thi.ng/vectors/internal/vop";
 import { madd } from "@thi.ng/vectors/madd";
 import { mulN } from "@thi.ng/vectors/muln";
 import { submN } from "@thi.ng/vectors/submn";
+import { vop } from "@thi.ng/vectors/vop";
 import { addResults, CMP, into } from "./utils";
 
 export class NdQtNode<K extends ReadonlyVec, V> {
