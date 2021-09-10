@@ -1,14 +1,13 @@
 import type { Fn2, IObjectOf } from "@thi.ng/api";
-import { illegalArgs, illegalState } from "@thi.ng/errors";
+import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
+import { illegalState } from "@thi.ng/errors/illegal-state";
+import type { Reducer, ReductionFn, Transducer } from "@thi.ng/transducers";
+import { iterator } from "@thi.ng/transducers/iterator";
 import {
     ensureReduced,
     isReduced,
-    iterator,
-    Reducer,
-    ReductionFn,
-    Transducer,
     unreduced,
-} from "@thi.ng/transducers";
+} from "@thi.ng/transducers/reduced";
 import { Match, Matcher } from "./api";
 
 /**
