@@ -1,4 +1,4 @@
-import { Z2 } from "@thi.ng/strings";
+import { Z2 } from "@thi.ng/strings/pad-left";
 import { DAY, HOUR, MINUTE, MONTH, SECOND, YEAR } from "./api";
 
 /**

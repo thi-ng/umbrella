@@ -1,6 +1,7 @@
 import type { ICompare, ICopy, IEqualsDelta, IEquiv } from "@thi.ng/api";
-import { isNumber, isString } from "@thi.ng/checks";
-import { Z2, Z3, Z4 } from "@thi.ng/strings";
+import { isNumber } from "@thi.ng/checks/is-number";
+import { isString } from "@thi.ng/checks/is-string";
+import { Z2, Z3, Z4 } from "@thi.ng/strings/pad-left";
 import { DAY, HOUR, MaybeDate, MINUTE, Period, Precision, SECOND } from "./api";
 import { defFormat } from "./format";
 import { LOCALE } from "./i18n";
