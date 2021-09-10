@@ -1,16 +1,15 @@
 import type { Fn3, FnN7, FnU4, FnU5 } from "@thi.ng/api";
-import { closestT } from "@thi.ng/geom-closest-point";
-import { clamp01, EPS, sign } from "@thi.ng/math";
-import {
-    clockwise2,
-    distSq,
-    magSq,
-    mixN,
-    MultiVecOpImpl,
-    ReadonlyVec,
-    signedArea2,
-    vop,
-} from "@thi.ng/vectors";
+import { closestT } from "@thi.ng/geom-closest-point/line";
+import { sign } from "@thi.ng/math/abs";
+import { EPS } from "@thi.ng/math/api";
+import { clamp01 } from "@thi.ng/math/interval";
+import type { MultiVecOpImpl, ReadonlyVec } from "@thi.ng/vectors";
+import { clockwise2 } from "@thi.ng/vectors/clockwise";
+import { distSq } from "@thi.ng/vectors/distsq";
+import { vop } from "@thi.ng/vectors/internal/vop";
+import { magSq } from "@thi.ng/vectors/magsq";
+import { mixN } from "@thi.ng/vectors/mixn";
+import { signedArea2 } from "@thi.ng/vectors/signed-area";
 
 export const pointInSegment = (
     p: ReadonlyVec,
@@ -187,12 +186,9 @@ export const classifyPointPolyPair: FnN7 = (px, py, ax, ay, bx, by, inside) =>
         ? inside ^ (ax + ((py - ay) / (by - ay)) * (bx - ax) < px ? 1 : 0)
         : inside;
 
-export const pointInBox: MultiVecOpImpl<Fn3<
-    ReadonlyVec,
-    ReadonlyVec,
-    ReadonlyVec,
-    boolean
->> = vop(0);
+export const pointInBox: MultiVecOpImpl<
+    Fn3<ReadonlyVec, ReadonlyVec, ReadonlyVec, boolean>
+> = vop(0);
 
 export const pointInRect = pointInBox.add(
     2,
@@ -223,12 +219,9 @@ pointInBox.default((p, boxMin, boxSize) => {
     return true;
 });
 
-export const pointInCenteredBox: MultiVecOpImpl<Fn3<
-    ReadonlyVec,
-    ReadonlyVec,
-    ReadonlyVec,
-    boolean
->> = vop(0);
+export const pointInCenteredBox: MultiVecOpImpl<
+    Fn3<ReadonlyVec, ReadonlyVec, ReadonlyVec, boolean>
+> = vop(0);
 
 export const pointInCenteredRect = pointInCenteredBox.add(
     2,

@@ -1,6 +1,12 @@
-import { IntersectionType } from "@thi.ng/geom-api";
-import { EPS, sign } from "@thi.ng/math";
-import { copy, dot, maddN, mulN, ReadonlyVec, sub } from "@thi.ng/vectors";
+import { IntersectionType } from "@thi.ng/geom-api/isec";
+import { sign } from "@thi.ng/math/abs";
+import { EPS } from "@thi.ng/math/api";
+import type { ReadonlyVec } from "@thi.ng/vectors";
+import { copy } from "@thi.ng/vectors/copy";
+import { dot } from "@thi.ng/vectors/dot";
+import { maddN } from "@thi.ng/vectors/maddn";
+import { mulN } from "@thi.ng/vectors/muln";
+import { sub } from "@thi.ng/vectors/sub";
 import { NONE } from "./api";
 
 export const intersectRayPlane = (

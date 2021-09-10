@@ -1,6 +1,7 @@
 import type { FnU4, Range } from "@thi.ng/api";
-import { IntersectionResult, IntersectionType } from "@thi.ng/geom-api";
-import { maddN, ReadonlyVec } from "@thi.ng/vectors";
+import { IntersectionResult, IntersectionType } from "@thi.ng/geom-api/isec";
+import type { ReadonlyVec } from "@thi.ng/vectors";
+import { maddN } from "@thi.ng/vectors/maddn";
 import { NONE } from "./api";
 
 const min = Math.min;
@@ -57,32 +58,32 @@ const rayBox: FnU4<ReadonlyVec, Range> = (rpos, dir, bmin, bmax) => {
     return [max(tmin, min(t1, t2)), min(tmax, max(t1, t2))];
 };
 
-const intersectWith = (
-    fn: FnU4<ReadonlyVec, Range>
-): FnU4<ReadonlyVec, IntersectionResult> => (rpos, dir, bmin, bmax) => {
-    const t = fn(rpos, dir, bmin, bmax);
-    const tmin = t[0];
-    const tmax = t[1];
-    const inside = tmin < 0;
-    return tmax > max(tmin, 0)
-        ? inside
-            ? {
-                  type: IntersectionType.INTERSECT,
-                  isec: [maddN([], dir, tmax, rpos)],
-                  alpha: tmax,
-                  inside,
-              }
-            : {
-                  type: IntersectionType.INTERSECT,
-                  isec: [
-                      maddN([], dir, tmin, rpos),
-                      maddN([], dir, tmax, rpos),
-                  ],
-                  alpha: tmin,
-                  beta: tmax,
-              }
-        : NONE;
-};
+const intersectWith =
+    (fn: FnU4<ReadonlyVec, Range>): FnU4<ReadonlyVec, IntersectionResult> =>
+    (rpos, dir, bmin, bmax) => {
+        const t = fn(rpos, dir, bmin, bmax);
+        const tmin = t[0];
+        const tmax = t[1];
+        const inside = tmin < 0;
+        return tmax > max(tmin, 0)
+            ? inside
+                ? {
+                      type: IntersectionType.INTERSECT,
+                      isec: [maddN([], dir, tmax, rpos)],
+                      alpha: tmax,
+                      inside,
+                  }
+                : {
+                      type: IntersectionType.INTERSECT,
+                      isec: [
+                          maddN([], dir, tmin, rpos),
+                          maddN([], dir, tmax, rpos),
+                      ],
+                      alpha: tmin,
+                      beta: tmax,
+                  }
+            : NONE;
+    };
 
 export const intersectRayRect = intersectWith(rayRect);
 
