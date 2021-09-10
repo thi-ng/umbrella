@@ -1,4 +1,4 @@
-import { EPS } from "@thi.ng/math";
+import { EPS } from "@thi.ng/math/api";
 import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
 
 const atan2 = Math.atan2;
