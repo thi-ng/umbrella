@@ -1,13 +1,11 @@
-import { mergeDeepObj } from "@thi.ng/associative";
+import { mergeDeepObj } from "@thi.ng/associative/merge-deep";
 import { bounds, group, offset, Rect, unmapPoint } from "@thi.ng/geom";
-import { clipLinePoly } from "@thi.ng/geom-clip-line";
-import {
-    columnEnds2d,
-    diagonalEnds2d,
-    rowEnds2d,
-} from "@thi.ng/grid-iterators";
-import { partition } from "@thi.ng/transducers";
-import { div2 } from "@thi.ng/vectors";
+import { clipLinePoly } from "@thi.ng/geom-clip-line/clip-poly";
+import { columnEnds2d } from "@thi.ng/grid-iterators/column-ends";
+import { diagonalEnds2d } from "@thi.ng/grid-iterators/diagonal-ends";
+import { rowEnds2d } from "@thi.ng/grid-iterators/row-ends";
+import { partition } from "@thi.ng/transducers/xform/partition";
+import { div2 } from "@thi.ng/vectors/div";
 import { DEFAULT_LINE, FillFn, HatchOpts } from "./api";
 import { defLine } from "./line";
 
