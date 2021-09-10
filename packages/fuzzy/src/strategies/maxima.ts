@@ -1,4 +1,4 @@
-import { eqDelta } from "@thi.ng/math";
+import { eqDelta } from "@thi.ng/math/eqdelta";
 import type { DefuzzStrategy, DefuzzStrategyOpts } from "../api";
 import { defaultOpts } from "./opts";
 

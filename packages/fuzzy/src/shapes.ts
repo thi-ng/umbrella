@@ -1,12 +1,8 @@
 import type { FnN2, FnU, FnU2, FnU3, FnU4 } from "@thi.ng/api";
-import {
-    EPS,
-    eqDelta,
-    fit,
-    fitClamped,
-    gaussian as $gaussian,
-    sigmoid as $sigmoid,
-} from "@thi.ng/math";
+import { EPS } from "@thi.ng/math/api";
+import { eqDelta } from "@thi.ng/math/eqdelta";
+import { fit, fitClamped } from "@thi.ng/math/fit";
+import { gaussian as $gaussian, sigmoid as $sigmoid } from "@thi.ng/math/mix";
 import type { FuzzyFn } from "./api";
 
 /**
@@ -15,7 +11,10 @@ import type { FuzzyFn } from "./api";
  *
  * @param x
  */
-export const constant = (x: number): FuzzyFn => () => x;
+export const constant =
+    (x: number): FuzzyFn =>
+    () =>
+        x;
 
 /**
  * HOF {@link FuzzyFn} which takes a value `p` and tolerance `eps`, then yields
@@ -24,8 +23,10 @@ export const constant = (x: number): FuzzyFn => () => x;
  * @param p
  * @param eps
  */
-export const point = (p: number, eps = EPS): FuzzyFn => (x) =>
-    eqDelta(x, p, eps) ? 1 : 0;
+export const point =
+    (p: number, eps = EPS): FuzzyFn =>
+    (x) =>
+        eqDelta(x, p, eps) ? 1 : 0;
 
 /**
  * HOF {@link FuzzyFn} yielding a rising ramp in [a,b] interval, clamped to
@@ -120,8 +121,10 @@ export const invSigmoid: FnU2<number, FuzzyFn> = (bias, steep) =>
  * @param fn
  * @param weight
  */
-export const weighted = (fn: FuzzyFn, weight: number): FuzzyFn => (x) =>
-    weight * fn(x);
+export const weighted =
+    (fn: FuzzyFn, weight: number): FuzzyFn =>
+    (x) =>
+        weight * fn(x);
 
 /**
  * Higher order function. Returns new function which selects subset of given
@@ -130,10 +133,12 @@ export const weighted = (fn: FuzzyFn, weight: number): FuzzyFn => (x) =>
  * @param fn
  * @param alpha
  */
-export const alphaCut = (fn: FuzzyFn, alpha = 0.5): FuzzyFn => (x) => {
-    const y = fn(x);
-    return y > alpha ? y : 0;
-};
+export const alphaCut =
+    (fn: FuzzyFn, alpha = 0.5): FuzzyFn =>
+    (x) => {
+        const y = fn(x);
+        return y > alpha ? y : 0;
+    };
 
 /**
  * Higher order function. Returns new function which selects subset of given
@@ -142,10 +147,12 @@ export const alphaCut = (fn: FuzzyFn, alpha = 0.5): FuzzyFn => (x) => {
  * @param fn
  * @param alpha
  */
-export const invAlphaCut = (fn: FuzzyFn, alpha = 0.5): FuzzyFn => (x) => {
-    const y = fn(x);
-    return y < alpha ? y : 0;
-};
+export const invAlphaCut =
+    (fn: FuzzyFn, alpha = 0.5): FuzzyFn =>
+    (x) => {
+        const y = fn(x);
+        return y < alpha ? y : 0;
+    };
 
 /**
  * Higher order function, complex shape generator. Takes a T-norm (or S-norm) as

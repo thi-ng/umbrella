@@ -1,5 +1,6 @@
 import type { FnN2, Range } from "@thi.ng/api";
-import { clamp0, norm } from "@thi.ng/math";
+import { norm } from "@thi.ng/math/fit";
+import { clamp0 } from "@thi.ng/math/interval";
 
 // https://en.wikipedia.org/wiki/T-norm
 
@@ -21,8 +22,10 @@ export const tnormNilpotent: FnN2 = (x, y) => (x + y > 1 ? Math.min(x, y) : 0);
  *
  * @param p - curve param [0..∞], default: 2
  */
-export const tnormHamacher = (p = 2): FnN2 => (x, y) =>
-    x === 0 && y === 0 ? 0 : (x * y) / (p + (1 - p) * (x + y - x * y));
+export const tnormHamacher =
+    (p = 2): FnN2 =>
+    (x, y) =>
+        x === 0 && y === 0 ? 0 : (x * y) / (p + (1 - p) * (x + y - x * y));
 
 /**
  * HOF T-norm. Parametric Yager with `p` controlling curvature.
@@ -62,10 +65,15 @@ export const tnormDombi = (p = 2): FnN2 =>
  *
  * @param p - curve param [0..∞], default: 2
  */
-export const tnormAczelAlsina = (p = 2): FnN2 => (x, y) =>
-    Math.exp(
-        -((Math.abs(Math.log(x)) ** p + Math.abs(Math.log(y)) ** p) ** (1 / p))
-    );
+export const tnormAczelAlsina =
+    (p = 2): FnN2 =>
+    (x, y) =>
+        Math.exp(
+            -(
+                (Math.abs(Math.log(x)) ** p + Math.abs(Math.log(y)) ** p) **
+                (1 / p)
+            )
+        );
 /**
  * S-norm (T-conorm), dual of {@link tnormMin}.
  *
@@ -122,15 +130,14 @@ export const snormEinstein: FnN2 = (x, y) => (x + y) / (1 + x * y);
  *
  * @param specs
  */
-export const ordinalSum = (specs: { domain: Range; tnorm: FnN2 }[]): FnN2 => (
-    x,
-    y
-) => {
-    for (let s of specs) {
-        const [a, b] = s.domain;
-        if (x >= a && x <= b && y >= a && y <= b) {
-            return a + (b - a) * s.tnorm(norm(x, a, b), norm(y, a, b));
+export const ordinalSum =
+    (specs: { domain: Range; tnorm: FnN2 }[]): FnN2 =>
+    (x, y) => {
+        for (let s of specs) {
+            const [a, b] = s.domain;
+            if (x >= a && x <= b && y >= a && y <= b) {
+                return a + (b - a) * s.tnorm(norm(x, a, b), norm(y, a, b));
+            }
         }
-    }
-    return Math.min(x, y);
-};
+        return Math.min(x, y);
+    };
