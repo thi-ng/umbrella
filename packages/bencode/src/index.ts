@@ -1,25 +1,18 @@
-import { assert } from "@thi.ng/api";
-import { peek } from "@thi.ng/arrays";
-import {
-    isArray,
-    isArrayLike,
-    isBoolean,
-    isNumber,
-    isPlainObject,
-    isString,
-} from "@thi.ng/checks";
-import { defmulti } from "@thi.ng/defmulti";
-import { illegalState, unsupported } from "@thi.ng/errors";
-import { mapcat } from "@thi.ng/transducers";
-import {
-    BinStructItem,
-    bytes,
-    str,
-    u8,
-    u8array,
-    utf8Decode,
-    utf8Length,
-} from "@thi.ng/transducers-binary";
+import { assert } from "@thi.ng/api/assert";
+import { peek } from "@thi.ng/arrays/peek";
+import { isArray } from "@thi.ng/checks/is-array";
+import { isArrayLike } from "@thi.ng/checks/is-arraylike";
+import { isBoolean } from "@thi.ng/checks/is-boolean";
+import { isNumber } from "@thi.ng/checks/is-number";
+import { isPlainObject } from "@thi.ng/checks/is-plain-object";
+import { isString } from "@thi.ng/checks/is-string";
+import { defmulti } from "@thi.ng/defmulti/defmulti";
+import { illegalState } from "@thi.ng/errors/illegal-state";
+import { unsupported } from "@thi.ng/errors/unsupported";
+import type { BinStructItem } from "@thi.ng/transducers-binary";
+import { bytes, str, u8, u8array } from "@thi.ng/transducers-binary/bytes";
+import { utf8Decode, utf8Length } from "@thi.ng/transducers-binary/utf8";
+import { mapcat } from "@thi.ng/transducers/xform/mapcat";
 
 const enum Type {
     INT,
