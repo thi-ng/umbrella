@@ -15,7 +15,8 @@ import type {
     Predicate2,
 } from "@thi.ng/api";
 import { equiv as _equiv } from "@thi.ng/equiv";
-import { defGetterUnsafe, toPath } from "@thi.ng/paths";
+import { defGetterUnsafe } from "@thi.ng/paths/getter";
+import { toPath } from "@thi.ng/paths/path";
 import type { IView, ReadonlyAtom } from "./api";
 import { nextID } from "./idgen";
 
