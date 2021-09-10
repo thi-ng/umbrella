@@ -1,4 +1,4 @@
-import { assert } from "@thi.ng/api";
+import { assert } from "@thi.ng/api/assert";
 import type { Vec } from "@thi.ng/vectors";
 import type { OBJFace, OBJGroup, OBJModel, ParseOpts } from "./api";
 
