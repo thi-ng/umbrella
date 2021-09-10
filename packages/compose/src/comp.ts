@@ -1,4 +1,4 @@
-import { illegalArity } from "@thi.ng/errors";
+import { illegalArity } from "@thi.ng/errors/illegal-arity";
 import type { Fn, FnAny } from "@thi.ng/api";
 
 /**
