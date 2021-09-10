@@ -1,14 +1,10 @@
-import { HALF_PI, inRange, roundTo } from "@thi.ng/math";
-import {
-    MAX2,
-    max2,
-    MIN2,
-    min2,
-    ReadonlyVec,
-    set2,
-    Vec,
-    VecPair,
-} from "@thi.ng/vectors";
+import { HALF_PI } from "@thi.ng/math/api";
+import { inRange } from "@thi.ng/math/interval";
+import { roundTo } from "@thi.ng/math/prec";
+import { MAX2, MIN2, ReadonlyVec, Vec, VecPair } from "@thi.ng/vectors/api";
+import { max2 } from "@thi.ng/vectors/max";
+import { min2 } from "@thi.ng/vectors/min";
+import { set2 } from "@thi.ng/vectors/set";
 import { pointAtTheta } from "./point-at";
 
 export const bounds = (

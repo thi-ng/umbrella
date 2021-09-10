@@ -1,18 +1,14 @@
-import { EPS, TAU } from "@thi.ng/math";
-import {
-    abs2,
-    angleBetween2,
-    div2,
-    eqDelta2,
-    mulN2,
-    neg,
-    powN2,
-    ReadonlyVec,
-    sub2,
-    submN2,
-    Vec,
-    X2,
-} from "@thi.ng/vectors";
+import { EPS, TAU } from "@thi.ng/math/api";
+import { abs2 } from "@thi.ng/vectors/abs";
+import { angleBetween2 } from "@thi.ng/vectors/angle-between";
+import { ReadonlyVec, Vec, X2 } from "@thi.ng/vectors/api";
+import { div2 } from "@thi.ng/vectors/div";
+import { eqDelta2 } from "@thi.ng/vectors/eqdelta";
+import { mulN2 } from "@thi.ng/vectors/muln";
+import { neg } from "@thi.ng/vectors/neg";
+import { powN2 } from "@thi.ng/vectors/pown";
+import { sub2 } from "@thi.ng/vectors/sub";
+import { submN2 } from "@thi.ng/vectors/submn";
 
 /**
  * Conversion from endpoint to center parameterization.

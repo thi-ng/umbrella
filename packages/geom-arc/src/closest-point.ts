@@ -1,5 +1,7 @@
-import { fit01, minError } from "@thi.ng/math";
-import { distSq2, ReadonlyVec, Vec } from "@thi.ng/vectors";
+import { fit01 } from "@thi.ng/math/fit";
+import { minError } from "@thi.ng/math/min-error";
+import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
+import { distSq2 } from "@thi.ng/vectors/distsq";
 import { pointAtTheta } from "./point-at";
 
 export const closestPoint = (

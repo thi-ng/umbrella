@@ -1,8 +1,10 @@
-import { isNumber, isPlainObject } from "@thi.ng/checks";
-import { DEFAULT_SAMPLES, SamplingOpts } from "@thi.ng/geom-api";
-import { Sampler } from "@thi.ng/geom-resample";
-import { TAU } from "@thi.ng/math";
-import { cartesian2, ReadonlyVec, Vec } from "@thi.ng/vectors";
+import { isNumber } from "@thi.ng/checks/is-number";
+import { isPlainObject } from "@thi.ng/checks/is-plain-object";
+import { DEFAULT_SAMPLES, SamplingOpts } from "@thi.ng/geom-api/sample";
+import { Sampler } from "@thi.ng/geom-resample/sampler";
+import { TAU } from "@thi.ng/math/api";
+import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
+import { cartesian2 } from "@thi.ng/vectors/cartesian";
 import { pointAtTheta } from "./point-at";
 
 export const sample = (
