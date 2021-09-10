@@ -1,16 +1,14 @@
-import {
-    assert,
-    Event,
-    INotify,
-    INotifyMixin,
-    Listener,
-    uintTypeForSize,
-} from "@thi.ng/api";
-import { bitSize } from "@thi.ng/binary";
-import { isArray, isString } from "@thi.ng/checks";
+import type { Event, INotify, Listener } from "@thi.ng/api";
+import { uintTypeForSize } from "@thi.ng/api/api/typedarray";
+import { assert } from "@thi.ng/api/assert";
+import { INotifyMixin } from "@thi.ng/api/mixins/inotify";
+import { bitSize } from "@thi.ng/binary/count";
+import { isArray } from "@thi.ng/checks/is-array";
+import { isString } from "@thi.ng/checks/is-string";
 import { IDGen } from "@thi.ng/idgen";
-import { IMemPoolArray, NativePool } from "@thi.ng/malloc";
-import { filter } from "@thi.ng/transducers";
+import type { IMemPoolArray } from "@thi.ng/malloc";
+import { NativePool } from "@thi.ng/malloc/native";
+import { filter } from "@thi.ng/transducers/xform/filter";
 import type {
     ComponentID,
     ECSOpts,

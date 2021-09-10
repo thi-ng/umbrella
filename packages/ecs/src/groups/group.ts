@@ -1,6 +1,8 @@
-import { assert, Event, FnO2, FnO3, IID } from "@thi.ng/api";
-import { intersectionR } from "@thi.ng/associative";
-import { map, transduce } from "@thi.ng/transducers";
+import type { Event, FnO2, FnO3, IID } from "@thi.ng/api";
+import { assert } from "@thi.ng/api/assert";
+import { intersectionR } from "@thi.ng/associative/intersection";
+import { transduce } from "@thi.ng/transducers/transduce";
+import { map } from "@thi.ng/transducers/xform/map";
 import type {
     ComponentID,
     GroupInfo,

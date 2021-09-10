@@ -1,11 +1,11 @@
 import {
-    assert,
-    INotifyMixin,
     Type,
     typedArray,
     TypedArray,
     UIntArray,
-} from "@thi.ng/api";
+} from "@thi.ng/api/api/typedarray";
+import { assert } from "@thi.ng/api/assert";
+import { INotifyMixin } from "@thi.ng/api/mixins/inotify";
 import type { IMemPoolArray } from "@thi.ng/malloc";
 import type { ICache, MemMappedComponentOpts } from "../api";
 import { AComponent } from "./acomponent";
