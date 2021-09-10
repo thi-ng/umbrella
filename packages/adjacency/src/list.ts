@@ -1,4 +1,4 @@
-import { DCons } from "@thi.ng/dcons";
+import { DCons } from "@thi.ng/dcons/dcons";
 import type { DegreeType, Edge, IGraph } from "./api";
 import { into, invert, toDot } from "./utils";
 

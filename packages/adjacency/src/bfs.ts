@@ -1,5 +1,5 @@
-import { BitField } from "@thi.ng/bitfield";
-import { DCons } from "@thi.ng/dcons";
+import { BitField } from "@thi.ng/bitfield/bitfield";
+import { DCons } from "@thi.ng/dcons/dcons";
 import type { CostFn, IGraph } from "./api";
 
 export class BFS {
