@@ -1,6 +1,7 @@
 import type { IReset } from "@thi.ng/api";
-import { unsupported } from "@thi.ng/errors";
-import { clamp05, PI, SQRT2, SQRT2_2 } from "@thi.ng/math";
+import { unsupported } from "@thi.ng/errors/unsupported";
+import { PI, SQRT2, SQRT2_2 } from "@thi.ng/math/api";
+import { clamp05 } from "@thi.ng/math/interval";
 import type { BiquadType, FilterConfig, IFilter } from "../api";
 import { dbMag } from "../util/convert";
 import { AProc } from "./aproc";

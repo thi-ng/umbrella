@@ -1,5 +1,5 @@
 import type { IReset } from "@thi.ng/api";
-import { clamp01 } from "@thi.ng/math";
+import { clamp01 } from "@thi.ng/math/interval";
 import type { IGen } from "../api";
 import { add } from "./add";
 import { AGen } from "./agen";

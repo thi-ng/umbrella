@@ -1,5 +1,6 @@
 import type { FnU3, NumericArray } from "@thi.ng/api";
-import { cossin, TAU } from "@thi.ng/math";
+import { cossin } from "@thi.ng/math/angle";
+import { TAU } from "@thi.ng/math/api";
 import type { FilterConfig, FilterResponse } from "../api";
 import { line } from "../gen/line";
 import { magDb } from "./convert";

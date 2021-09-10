@@ -1,5 +1,6 @@
 import type { IReset, Tuple } from "@thi.ng/api";
-import { IRandom, SYSTEM } from "@thi.ng/random";
+import type { IRandom } from "@thi.ng/random";
+import { SYSTEM } from "@thi.ng/random/system";
 import { AGen } from "./agen";
 
 type PNoiseCoeffs = Tuple<number, 5>;

@@ -1,5 +1,6 @@
 import type { IReset } from "@thi.ng/api";
-import { clamp05, PI, QUARTER_PI } from "@thi.ng/math";
+import { PI, QUARTER_PI } from "@thi.ng/math/api";
+import { clamp05 } from "@thi.ng/math/interval";
 import { AProc } from "./aproc";
 
 /**

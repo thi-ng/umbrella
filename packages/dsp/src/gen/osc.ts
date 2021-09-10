@@ -1,4 +1,4 @@
-import { isNumber } from "@thi.ng/checks";
+import { isNumber } from "@thi.ng/checks/is-number";
 import type { IGen, StatelessOscillator } from "../api";
 import { sum } from "../comp/sum";
 import { Add, add } from "./add";

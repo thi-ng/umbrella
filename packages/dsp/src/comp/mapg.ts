@@ -1,5 +1,5 @@
 import type { Fn2, Fn3, Fn4, Fn5, FnAny } from "@thi.ng/api";
-import { illegalArity } from "@thi.ng/errors";
+import { illegalArity } from "@thi.ng/errors/illegal-arity";
 import type { IGen } from "../api";
 import { AGen } from "../gen/agen";
 

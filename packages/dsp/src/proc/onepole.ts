@@ -1,5 +1,6 @@
 import type { IClear, IReset } from "@thi.ng/api";
-import { clamp05, TAU } from "@thi.ng/math";
+import { TAU } from "@thi.ng/math/api";
+import { clamp05 } from "@thi.ng/math/interval";
 import type { FilterConfig, IFilter, OnepoleType } from "../api";
 import { AProc } from "./aproc";
 
@@ -12,7 +13,8 @@ export const onepoleHP = (fc: number) => new OnePole("hp", fc);
  */
 export class OnePole
     extends AProc<number, number>
-    implements IClear, IFilter, IReset {
+    implements IClear, IFilter, IReset
+{
     protected _a0!: number;
     protected _b1!: number;
 
