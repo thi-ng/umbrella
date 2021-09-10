@@ -1,5 +1,5 @@
 import type { IObjectOf } from "@thi.ng/api";
-import { isArray } from "@thi.ng/checks";
+import { isArray } from "@thi.ng/checks/is-array";
 import type { Edge, Graph, GraphAttribs, Node } from "./api";
 
 let nextID = 0;
