@@ -1,4 +1,4 @@
-import { illegalArgs } from "@thi.ng/errors";
+import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import { BitInputStream } from "./input";
 
 const DEFAULT_BUF_SIZE = 0x10;
