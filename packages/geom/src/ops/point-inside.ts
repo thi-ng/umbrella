@@ -1,5 +1,6 @@
 import type { IObjectOf } from "@thi.ng/api";
-import { defmulti, Implementation2 } from "@thi.ng/defmulti";
+import type { Implementation2 } from "@thi.ng/defmulti";
+import { defmulti } from "@thi.ng/defmulti/defmulti";
 import type { IShape } from "@thi.ng/geom-api";
 import {
     pointInAABB,
@@ -8,8 +9,9 @@ import {
     pointInRect,
     pointInSegment,
     pointInTriangle2,
-} from "@thi.ng/geom-isec";
-import { isInArray, ReadonlyVec, Vec } from "@thi.ng/vectors";
+} from "@thi.ng/geom-isec/point";
+import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
+import { isInArray } from "@thi.ng/vectors/eqdelta";
 import type { AABB } from "../api/aabb";
 import type { Circle } from "../api/circle";
 import type { Line } from "../api/line";

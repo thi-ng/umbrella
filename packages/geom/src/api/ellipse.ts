@@ -1,6 +1,7 @@
-import { isNumber } from "@thi.ng/checks";
+import { isNumber } from "@thi.ng/checks/is-number";
 import type { Attribs, IHiccupShape } from "@thi.ng/geom-api";
-import { set, Vec } from "@thi.ng/vectors";
+import type { Vec } from "@thi.ng/vectors";
+import { set } from "@thi.ng/vectors/set";
 import { copyAttribs } from "../internal/copy-attribs";
 
 export class Ellipse implements IHiccupShape {

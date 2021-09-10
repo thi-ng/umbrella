@@ -1,9 +1,10 @@
 import type { IObjectOf } from "@thi.ng/api";
-import { defmulti, Implementation2 } from "@thi.ng/defmulti";
+import type { Implementation2 } from "@thi.ng/defmulti";
+import { defmulti } from "@thi.ng/defmulti/defmulti";
 import type { IHiccupShape, IShape } from "@thi.ng/geom-api";
-import { clipLineSegmentPoly } from "@thi.ng/geom-clip-line";
+import { clipLineSegmentPoly } from "@thi.ng/geom-clip-line/clip-poly";
 import { sutherlandHodgeman } from "@thi.ng/geom-clip-poly";
-import { centroid } from "@thi.ng/geom-poly-utils";
+import { centroid } from "@thi.ng/geom-poly-utils/centroid";
 import type { ReadonlyVec } from "@thi.ng/vectors";
 import { Group } from "../api/group";
 import { Line } from "../api/line";

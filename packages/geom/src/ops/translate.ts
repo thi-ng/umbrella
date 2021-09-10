@@ -1,7 +1,10 @@
 import type { IObjectOf } from "@thi.ng/api";
-import { defmulti, Implementation2 } from "@thi.ng/defmulti";
+import type { Implementation2 } from "@thi.ng/defmulti";
+import { defmulti } from "@thi.ng/defmulti/defmulti";
 import type { IHiccupShape, IShape } from "@thi.ng/geom-api";
-import { add2, add3, ReadonlyVec, set2, set3 } from "@thi.ng/vectors";
+import type { ReadonlyVec } from "@thi.ng/vectors";
+import { add2, add3 } from "@thi.ng/vectors/add";
+import { set2, set3 } from "@thi.ng/vectors/set";
 import { AABB } from "../api/aabb";
 import type { Arc } from "../api/arc";
 import { Circle } from "../api/circle";

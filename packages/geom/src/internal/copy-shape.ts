@@ -1,4 +1,4 @@
-import { copyVectors } from "@thi.ng/vectors";
+import { copyVectors } from "@thi.ng/vectors/copy";
 import { copyAttribs } from "./copy-attribs";
 import type { PCLike, PCLikeConstructor } from "@thi.ng/geom-api";
 

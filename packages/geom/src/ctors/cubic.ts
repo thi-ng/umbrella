@@ -1,9 +1,7 @@
 import type { Attribs } from "@thi.ng/geom-api";
-import {
-    cubicFromArc as _arc,
-    cubicFromLine as _line,
-    cubicFromQuadratic as _quad,
-} from "@thi.ng/geom-splines";
+import { cubicFromArc as _arc } from "@thi.ng/geom-splines/cubic-arc";
+import { cubicFromLine as _line } from "@thi.ng/geom-splines/cubic-line";
+import { cubicFromQuadratic as _quad } from "@thi.ng/geom-splines/cubic-quadratic";
 import type { Vec } from "@thi.ng/vectors";
 import type { Arc } from "../api/arc";
 import { Cubic } from "../api/cubic";

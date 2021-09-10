@@ -1,5 +1,6 @@
-import { peek } from "@thi.ng/arrays";
-import { isNumber, isPlainObject } from "@thi.ng/checks";
+import { peek } from "@thi.ng/arrays/peek";
+import { isNumber } from "@thi.ng/checks/is-number";
+import { isPlainObject } from "@thi.ng/checks/is-plain-object";
 
 /**
  * Takes an array of arguments, checks if last element is a plain object

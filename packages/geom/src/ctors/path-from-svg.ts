@@ -1,7 +1,7 @@
 import type { IObjectOf } from "@thi.ng/api";
-import { illegalState } from "@thi.ng/errors";
-import { rad } from "@thi.ng/math";
-import { WS } from "@thi.ng/strings";
+import { illegalState } from "@thi.ng/errors/illegal-state";
+import { rad } from "@thi.ng/math/angle";
+import { WS } from "@thi.ng/strings/groups";
 import type { Vec } from "@thi.ng/vectors";
 import { PathBuilder } from "./path-builder";
 

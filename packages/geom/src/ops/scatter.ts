@@ -1,8 +1,9 @@
-import { SYSTEM } from "@thi.ng/random";
-import { randMinMax, Vec } from "@thi.ng/vectors";
+import type { IShape } from "@thi.ng/geom-api";
+import { SYSTEM } from "@thi.ng/random/system";
+import type { Vec } from "@thi.ng/vectors";
+import { randMinMax } from "@thi.ng/vectors/random";
 import { bounds } from "./bounds";
 import { pointInside } from "./point-inside";
-import type { IShape } from "@thi.ng/geom-api";
 
 export const scatter = (
     shape: IShape,

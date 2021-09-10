@@ -1,4 +1,5 @@
-import { defmulti, MultiFn1O } from "@thi.ng/defmulti";
+import type { MultiFn1O } from "@thi.ng/defmulti";
+import { defmulti } from "@thi.ng/defmulti/defmulti";
 import type { IShape, SamplingOpts } from "@thi.ng/geom-api";
 import { Polygon } from "../api/polygon";
 import { copyAttribs } from "../internal/copy-attribs";

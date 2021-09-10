@@ -1,13 +1,12 @@
 import type { IObjectOf } from "@thi.ng/api";
-import { defmulti, Implementation2 } from "@thi.ng/defmulti";
+import type { Implementation2 } from "@thi.ng/defmulti";
+import { defmulti } from "@thi.ng/defmulti/defmulti";
 import type { IShape } from "@thi.ng/geom-api";
-import { closestT } from "@thi.ng/geom-closest-point";
-import { Sampler } from "@thi.ng/geom-resample";
-import {
-    quadraticSplitNearPoint,
-    splitCubicNearPoint,
-} from "@thi.ng/geom-splines";
-import { clamp01 } from "@thi.ng/math";
+import { closestT } from "@thi.ng/geom-closest-point/line";
+import { Sampler } from "@thi.ng/geom-resample/sampler";
+import { splitCubicNearPoint } from "@thi.ng/geom-splines/cubic-split";
+import { quadraticSplitNearPoint } from "@thi.ng/geom-splines/quadratic-split";
+import { clamp01 } from "@thi.ng/math/interval";
 import type { ReadonlyVec } from "@thi.ng/vectors";
 import { Cubic } from "../api/cubic";
 import { Line } from "../api/line";

@@ -1,18 +1,18 @@
 import type { IObjectOf } from "@thi.ng/api";
-import { defmulti, Implementation2 } from "@thi.ng/defmulti";
+import type { Implementation2 } from "@thi.ng/defmulti";
+import { defmulti } from "@thi.ng/defmulti/defmulti";
 import type { IShape } from "@thi.ng/geom-api";
-import { Sampler } from "@thi.ng/geom-resample";
-import { cossin, fit01, TAU } from "@thi.ng/math";
-import {
-    cartesian2,
-    madd2,
-    mixCubic,
-    mixN2,
-    mixQuadratic,
-    pointOnRay2,
-    pointOnRay3,
-    Vec,
-} from "@thi.ng/vectors";
+import { Sampler } from "@thi.ng/geom-resample/sampler";
+import { cossin } from "@thi.ng/math/angle";
+import { TAU } from "@thi.ng/math/api";
+import { fit01 } from "@thi.ng/math/fit";
+import type { Vec } from "@thi.ng/vectors";
+import { cartesian2 } from "@thi.ng/vectors/cartesian";
+import { madd2 } from "@thi.ng/vectors/madd";
+import { mixCubic } from "@thi.ng/vectors/mix-cubic";
+import { mixQuadratic } from "@thi.ng/vectors/mix-quadratic";
+import { mixN2 } from "@thi.ng/vectors/mixn";
+import { pointOnRay2, pointOnRay3 } from "@thi.ng/vectors/point-on-ray";
 import type { Arc } from "../api/arc";
 import type { Circle } from "../api/circle";
 import type { Cubic } from "../api/cubic";

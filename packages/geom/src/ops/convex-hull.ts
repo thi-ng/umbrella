@@ -1,7 +1,8 @@
 import type { IObjectOf } from "@thi.ng/api";
-import { defmulti, Implementation1 } from "@thi.ng/defmulti";
+import type { Implementation1 } from "@thi.ng/defmulti";
+import { defmulti } from "@thi.ng/defmulti/defmulti";
 import type { IShape, PCLike } from "@thi.ng/geom-api";
-import { grahamScan2 } from "@thi.ng/geom-hull";
+import { grahamScan2 } from "@thi.ng/geom-hull/graham-scan";
 import { Polygon } from "../api/polygon";
 import { copyAttribs } from "../internal/copy-attribs";
 import { dispatch } from "../internal/dispatch";

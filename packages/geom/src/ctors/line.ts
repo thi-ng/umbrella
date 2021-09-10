@@ -1,5 +1,5 @@
 import type { Attribs } from "@thi.ng/geom-api";
-import { liangBarsky2 } from "@thi.ng/geom-clip-line";
+import { liangBarsky2 } from "@thi.ng/geom-clip-line/liang-barsky";
 import type { Vec, VecPair } from "@thi.ng/vectors";
 import { Line } from "../api/line";
 import { Rect } from "../api/rect";

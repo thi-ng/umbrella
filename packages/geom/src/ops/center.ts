@@ -1,12 +1,11 @@
 import type { IObjectOf } from "@thi.ng/api";
-import {
-    DEFAULT,
-    defmulti,
-    Implementation1O,
-    MultiFn1O,
-} from "@thi.ng/defmulti";
+import type { Implementation1O, MultiFn1O } from "@thi.ng/defmulti";
+import { DEFAULT } from "@thi.ng/defmulti/constants";
+import { defmulti } from "@thi.ng/defmulti/defmulti";
 import type { IShape } from "@thi.ng/geom-api";
-import { ReadonlyVec, set2, set3, submN, ZERO2, ZERO3 } from "@thi.ng/vectors";
+import { ReadonlyVec, ZERO2, ZERO3 } from "@thi.ng/vectors/api";
+import { set2, set3 } from "@thi.ng/vectors/set";
+import { submN } from "@thi.ng/vectors/submn";
 import { Arc } from "../api/arc";
 import { Circle } from "../api/circle";
 import { Ellipse } from "../api/ellipse";
@@ -16,11 +15,8 @@ import { dispatch } from "../internal/dispatch";
 import { centroid } from "./centroid";
 import { translate } from "./translate";
 
-export const center: MultiFn1O<
-    IShape,
-    ReadonlyVec,
-    IShape | undefined
-> = defmulti(dispatch);
+export const center: MultiFn1O<IShape, ReadonlyVec, IShape | undefined> =
+    defmulti(dispatch);
 
 center.add(DEFAULT, ($, origin = ZERO3) => {
     const c = centroid($);

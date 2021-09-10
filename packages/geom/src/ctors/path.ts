@@ -1,7 +1,9 @@
-import { isNumber } from "@thi.ng/checks";
+import { isNumber } from "@thi.ng/checks/is-number";
 import type { Attribs, PathSegment } from "@thi.ng/geom-api";
-import { map, mapcat } from "@thi.ng/transducers";
-import { maddN2, Vec } from "@thi.ng/vectors";
+import { map } from "@thi.ng/transducers/xform/map";
+import { mapcat } from "@thi.ng/transducers/xform/mapcat";
+import type { Vec } from "@thi.ng/vectors";
+import { maddN2 } from "@thi.ng/vectors/maddn";
 import type { Cubic } from "../api/cubic";
 import { Path } from "../api/path";
 import { asCubic } from "../ops/as-cubic";

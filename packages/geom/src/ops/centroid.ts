@@ -1,11 +1,16 @@
 import type { IObjectOf } from "@thi.ng/api";
-import { defmulti, Implementation1O, MultiFn1O } from "@thi.ng/defmulti";
+import type { Implementation1O, MultiFn1O } from "@thi.ng/defmulti";
+import { defmulti } from "@thi.ng/defmulti/defmulti";
 import type { AABBLike, IShape, PCLike } from "@thi.ng/geom-api";
-import {
-    centerOfWeight2,
-    centroid as _centroid,
-} from "@thi.ng/geom-poly-utils";
-import { add, divN, maddN, mixN, mulN, set, Vec } from "@thi.ng/vectors";
+import { centerOfWeight2 } from "@thi.ng/geom-poly-utils/center-of-weight";
+import { centroid as _centroid } from "@thi.ng/geom-poly-utils/centroid";
+import type { Vec } from "@thi.ng/vectors";
+import { add } from "@thi.ng/vectors/add";
+import { divN } from "@thi.ng/vectors/divn";
+import { maddN } from "@thi.ng/vectors/maddn";
+import { mixN } from "@thi.ng/vectors/mixn";
+import { mulN } from "@thi.ng/vectors/muln";
+import { set } from "@thi.ng/vectors/set";
 import type { Circle } from "../api/circle";
 import type { Group } from "../api/group";
 import type { Line } from "../api/line";
@@ -15,9 +20,8 @@ import type { Triangle } from "../api/triangle";
 import { dispatch } from "../internal/dispatch";
 import { bounds } from "./bounds";
 
-export const centroid: MultiFn1O<IShape, Vec, Vec | undefined> = defmulti(
-    dispatch
-);
+export const centroid: MultiFn1O<IShape, Vec, Vec | undefined> =
+    defmulti(dispatch);
 
 centroid.addAll(<IObjectOf<Implementation1O<unknown, Vec, Vec>>>{
     circle: ($: Circle, out?) => set(out || [], $.pos),

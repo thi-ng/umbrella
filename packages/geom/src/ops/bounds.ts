@@ -1,24 +1,23 @@
 import type { IObjectOf } from "@thi.ng/api";
-import { defmulti, Implementation1 } from "@thi.ng/defmulti";
+import type { Implementation1 } from "@thi.ng/defmulti";
+import { defmulti } from "@thi.ng/defmulti/defmulti";
 import type { AABBLike, IShape, PathSegment, PCLike } from "@thi.ng/geom-api";
-import { bounds as arcBounds } from "@thi.ng/geom-arc";
-import { bounds as _bounds } from "@thi.ng/geom-poly-utils";
-import { cubicBounds, quadraticBounds } from "@thi.ng/geom-splines";
-import { comp, filter, iterator1, map } from "@thi.ng/transducers";
-import {
-    max,
-    MAX2,
-    MAX3,
-    min,
-    MIN2,
-    MIN3,
-    mul2,
-    mulN2,
-    set2,
-    set3,
-    sub2,
-    subN2,
-} from "@thi.ng/vectors";
+import { bounds as arcBounds } from "@thi.ng/geom-arc/bounds";
+import { bounds as _bounds } from "@thi.ng/geom-poly-utils/bounds";
+import { cubicBounds } from "@thi.ng/geom-splines/cubic-bounds";
+import { quadraticBounds } from "@thi.ng/geom-splines/quadratic-bounds";
+import { comp } from "@thi.ng/transducers/func/comp";
+import { iterator1 } from "@thi.ng/transducers/iterator";
+import { filter } from "@thi.ng/transducers/xform/filter";
+import { map } from "@thi.ng/transducers/xform/map";
+import { MAX2, MAX3, MIN2, MIN3 } from "@thi.ng/vectors/api";
+import { max } from "@thi.ng/vectors/max";
+import { min } from "@thi.ng/vectors/min";
+import { mul2 } from "@thi.ng/vectors/mul";
+import { mulN2 } from "@thi.ng/vectors/muln";
+import { set2, set3 } from "@thi.ng/vectors/set";
+import { sub2 } from "@thi.ng/vectors/sub";
+import { subN2 } from "@thi.ng/vectors/subn";
 import type { Arc } from "../api/arc";
 import type { Circle } from "../api/circle";
 import type { Cubic } from "../api/cubic";

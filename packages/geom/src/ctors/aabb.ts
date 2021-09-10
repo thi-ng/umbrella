@@ -1,15 +1,11 @@
 import type { Attribs } from "@thi.ng/geom-api";
-import { SQRT2_2 } from "@thi.ng/math";
-import {
-    add3,
-    max3,
-    min3,
-    ReadonlyVec,
-    sub3,
-    subN3,
-    Vec,
-    ZERO3,
-} from "@thi.ng/vectors";
+import { SQRT2_2 } from "@thi.ng/math/api";
+import { add3 } from "@thi.ng/vectors/add";
+import { ReadonlyVec, Vec, ZERO3 } from "@thi.ng/vectors/api";
+import { max3 } from "@thi.ng/vectors/max";
+import { min3 } from "@thi.ng/vectors/min";
+import { sub3 } from "@thi.ng/vectors/sub";
+import { subN3 } from "@thi.ng/vectors/subn";
 import { AABB } from "../api/aabb";
 import type { Sphere } from "../api/sphere";
 import { argsVV } from "../internal/args";

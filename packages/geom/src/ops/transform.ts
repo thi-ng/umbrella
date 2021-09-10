@@ -1,8 +1,10 @@
 import type { IObjectOf } from "@thi.ng/api";
-import { defmulti, Implementation2 } from "@thi.ng/defmulti";
+import type { Implementation2 } from "@thi.ng/defmulti";
+import { defmulti } from "@thi.ng/defmulti/defmulti";
 import type { IHiccupShape, IShape, PathSegment } from "@thi.ng/geom-api";
-import { mulV, ReadonlyMat } from "@thi.ng/matrices";
-import { map } from "@thi.ng/transducers";
+import type { ReadonlyMat } from "@thi.ng/matrices";
+import { mulV } from "@thi.ng/matrices/mulv";
+import { map } from "@thi.ng/transducers/xform/map";
 import { Cubic } from "../api/cubic";
 import type { Group } from "../api/group";
 import { Line } from "../api/line";

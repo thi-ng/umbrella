@@ -1,6 +1,7 @@
-import { map } from "@thi.ng/transducers";
-import { copyVectors, Vec } from "@thi.ng/vectors";
 import type { Attribs, PCLikeConstructor } from "@thi.ng/geom-api";
+import { map } from "@thi.ng/transducers/xform/map";
+import type { Vec } from "@thi.ng/vectors";
+import { copyVectors } from "@thi.ng/vectors/copy";
 
 export const pointArraysAsShapes = (
     ctor: PCLikeConstructor,

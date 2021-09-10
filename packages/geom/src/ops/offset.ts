@@ -1,15 +1,14 @@
 import type { IObjectOf } from "@thi.ng/api";
-import { defmulti, Implementation2 } from "@thi.ng/defmulti";
+import type { Implementation2 } from "@thi.ng/defmulti";
+import { defmulti } from "@thi.ng/defmulti/defmulti";
 import type { IShape } from "@thi.ng/geom-api";
-import {
-    add2,
-    addN2,
-    max2,
-    normalCW,
-    set2,
-    sub2,
-    ZERO2,
-} from "@thi.ng/vectors";
+import { add2 } from "@thi.ng/vectors/add";
+import { addN2 } from "@thi.ng/vectors/addn";
+import { ZERO2 } from "@thi.ng/vectors/api";
+import { max2 } from "@thi.ng/vectors/max";
+import { normalCW } from "@thi.ng/vectors/normal";
+import { set2 } from "@thi.ng/vectors/set";
+import { sub2 } from "@thi.ng/vectors/sub";
 import { Circle } from "../api/circle";
 import type { Line } from "../api/line";
 import { Quad } from "../api/quad";

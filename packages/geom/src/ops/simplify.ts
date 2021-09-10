@@ -1,8 +1,9 @@
 import type { IObjectOf } from "@thi.ng/api";
-import { peek } from "@thi.ng/arrays";
-import { defmulti, Implementation2 } from "@thi.ng/defmulti";
+import { peek } from "@thi.ng/arrays/peek";
+import type { Implementation2 } from "@thi.ng/defmulti";
+import { defmulti } from "@thi.ng/defmulti/defmulti";
 import type { IShape, PathSegment } from "@thi.ng/geom-api";
-import { simplify as _simplify } from "@thi.ng/geom-resample";
+import { simplify as _simplify } from "@thi.ng/geom-resample/simplify";
 import type { Vec } from "@thi.ng/vectors";
 import { Path } from "../api/path";
 import { Polygon } from "../api/polygon";

@@ -1,6 +1,8 @@
 import type { Attribs } from "@thi.ng/geom-api";
-import { circumCenter2 } from "@thi.ng/geom-poly-utils";
-import { dist, mixN2, ReadonlyVec, Vec } from "@thi.ng/vectors";
+import { circumCenter2 } from "@thi.ng/geom-poly-utils/circumcenter";
+import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
+import { dist } from "@thi.ng/vectors/dist";
+import { mixN2 } from "@thi.ng/vectors/mixn";
 import { Circle } from "../api/circle";
 import { argsVN } from "../internal/args";
 

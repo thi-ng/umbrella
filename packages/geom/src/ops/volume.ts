@@ -1,7 +1,9 @@
 import type { IObjectOf } from "@thi.ng/api";
-import { DEFAULT, defmulti, Implementation1 } from "@thi.ng/defmulti";
+import type { Implementation1 } from "@thi.ng/defmulti";
+import { DEFAULT } from "@thi.ng/defmulti/constants";
+import { defmulti } from "@thi.ng/defmulti/defmulti";
 import type { IShape } from "@thi.ng/geom-api";
-import { PI } from "@thi.ng/math";
+import { PI } from "@thi.ng/math/api";
 import type { AABB } from "../api/aabb";
 import type { Sphere } from "../api/sphere";
 import { dispatch } from "../internal/dispatch";

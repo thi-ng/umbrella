@@ -1,7 +1,13 @@
-import { peek } from "@thi.ng/arrays";
+import { peek } from "@thi.ng/arrays/peek";
 import type { Attribs } from "@thi.ng/geom-api";
-import { eqDelta } from "@thi.ng/math";
-import { add2, copy, mulN2, set2, sub2, Vec, zeroes } from "@thi.ng/vectors";
+import { eqDelta } from "@thi.ng/math/eqdelta";
+import type { Vec } from "@thi.ng/vectors";
+import { add2 } from "@thi.ng/vectors/add";
+import { copy } from "@thi.ng/vectors/copy";
+import { mulN2 } from "@thi.ng/vectors/muln";
+import { set2 } from "@thi.ng/vectors/set";
+import { zeroes } from "@thi.ng/vectors/setn";
+import { sub2 } from "@thi.ng/vectors/sub";
 import { Cubic } from "../api/cubic";
 import { Line } from "../api/line";
 import { Path } from "../api/path";

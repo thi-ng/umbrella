@@ -1,15 +1,12 @@
 import type { IShape } from "@thi.ng/geom-api";
-import { minNonZero2, minNonZero3, safeDiv } from "@thi.ng/math";
-import {
-    concat,
-    MatOpNV,
-    MatOpV,
-    scale23,
-    scale44,
-    translation23,
-    translation44,
-} from "@thi.ng/matrices";
-import { neg, ReadonlyVec, Vec } from "@thi.ng/vectors";
+import { minNonZero2, minNonZero3 } from "@thi.ng/math/interval";
+import { safeDiv } from "@thi.ng/math/safe-div";
+import type { MatOpNV, MatOpV } from "@thi.ng/matrices";
+import { concat } from "@thi.ng/matrices/concat";
+import { scale23, scale44 } from "@thi.ng/matrices/scale";
+import { translation23, translation44 } from "@thi.ng/matrices/translation";
+import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
+import { neg } from "@thi.ng/vectors/neg";
 import type { AABB } from "../api/aabb";
 import { Rect } from "../api/rect";
 import { collBounds } from "../internal/coll-bounds";

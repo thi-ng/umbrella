@@ -1,7 +1,7 @@
 import { equiv } from "@thi.ng/equiv";
-import { illegalState } from "@thi.ng/errors";
+import { illegalState } from "@thi.ng/errors/illegal-state";
 import type { Attribs, IHiccupShape, PathSegment } from "@thi.ng/geom-api";
-import { copy } from "@thi.ng/vectors";
+import { copy } from "@thi.ng/vectors/copy";
 import { copyAttribs } from "../internal/copy-attribs";
 
 export class Path implements IHiccupShape {
