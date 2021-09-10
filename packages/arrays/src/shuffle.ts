@@ -1,5 +1,7 @@
-import { assert, TypedArray } from "@thi.ng/api";
-import { IRandom, SYSTEM } from "@thi.ng/random";
+import type { TypedArray } from "@thi.ng/api";
+import { assert } from "@thi.ng/api/assert";
+import type { IRandom } from "@thi.ng/random";
+import { SYSTEM } from "@thi.ng/random/system";
 import type { AnyArray } from "./api";
 
 /**

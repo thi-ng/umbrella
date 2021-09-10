@@ -1,4 +1,4 @@
-import { illegalArgs } from "@thi.ng/errors";
+import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 
 /**
  * Attempts to obtain an iterator from `x` and throws error if `x` is
