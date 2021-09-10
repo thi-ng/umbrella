@@ -1,5 +1,5 @@
 import type { Fn2, Nullable } from "@thi.ng/api";
-import { isArray } from "@thi.ng/checks";
+import { isArray } from "@thi.ng/checks/is-array";
 import { empty } from "./utils";
 
 /**

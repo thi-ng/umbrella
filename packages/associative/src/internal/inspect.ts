@@ -1,6 +1,6 @@
-import { mixin } from "@thi.ng/api";
-import { isNode } from "@thi.ng/checks";
-import { map } from "@thi.ng/transducers";
+import { mixin } from "@thi.ng/api/mixin";
+import { isNode } from "@thi.ng/checks/is-node";
+import { map } from "@thi.ng/transducers/xform/map";
 
 let inspect:
     | ((

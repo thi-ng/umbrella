@@ -1,5 +1,6 @@
 import type { Fn, IObjectOf } from "@thi.ng/api";
-import { isFunction, isIllegalKey } from "@thi.ng/checks";
+import { isFunction } from "@thi.ng/checks/is-function";
+import { isIllegalKey } from "@thi.ng/checks/is-proto-path";
 import { copy } from "./utils";
 
 /**

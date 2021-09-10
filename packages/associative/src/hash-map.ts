@@ -8,10 +8,10 @@ import type {
     Pair,
     Predicate2,
 } from "@thi.ng/api";
-import { ceilPow2 } from "@thi.ng/binary";
-import { isPlainObject } from "@thi.ng/checks";
+import { ceilPow2 } from "@thi.ng/binary/pow";
+import { isPlainObject } from "@thi.ng/checks/is-plain-object";
 import { equiv } from "@thi.ng/equiv";
-import { map } from "@thi.ng/transducers";
+import { map } from "@thi.ng/transducers/xform/map";
 import type { HashMapOpts } from "./api";
 import { dissoc } from "./dissoc";
 import { equivMap } from "./internal/equiv";

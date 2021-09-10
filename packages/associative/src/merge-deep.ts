@@ -1,6 +1,6 @@
 import type { IObjectOf, Nullable } from "@thi.ng/api";
-import { isPlainObject } from "@thi.ng/checks";
-import { mergeObjWith, meldObjWith } from "./merge-with";
+import { isPlainObject } from "@thi.ng/checks/is-plain-object";
+import { meldObjWith, mergeObjWith } from "./merge-with";
 
 export const mergeDeepObj = (
     dest: IObjectOf<any>,

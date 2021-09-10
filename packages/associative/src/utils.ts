@@ -1,5 +1,7 @@
 import type { Pair } from "@thi.ng/api";
-import { implementsFunction, isMap, isSet } from "@thi.ng/checks";
+import { implementsFunction } from "@thi.ng/checks/implements-function";
+import { isMap } from "@thi.ng/checks/is-map";
+import { isSet } from "@thi.ng/checks/is-set";
 
 export const empty = (x: any, ctor: Function) =>
     implementsFunction(x, "empty")

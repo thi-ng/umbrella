@@ -1,6 +1,6 @@
 import type { Fn3, IEquiv, Pair, UIntArray } from "@thi.ng/api";
-import { isNumber } from "@thi.ng/checks";
-import { illegalArgs } from "@thi.ng/errors";
+import { isNumber } from "@thi.ng/checks/is-number";
+import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import type { IEquivSet } from "./api";
 import { dissoc } from "./dissoc";
 import { inspectable } from "./internal/inspect";

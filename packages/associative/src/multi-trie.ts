@@ -1,6 +1,7 @@
 import type { Fn0, IObjectOf, Nullable, Pair } from "@thi.ng/api";
-import { isArray } from "@thi.ng/checks";
-import { map, vals } from "@thi.ng/transducers";
+import { isArray } from "@thi.ng/checks/is-array";
+import { vals } from "@thi.ng/transducers/iter/vals";
+import { map } from "@thi.ng/transducers/xform/map";
 
 export interface MultiTrieOpts<V> {
     /**

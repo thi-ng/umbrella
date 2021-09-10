@@ -1,5 +1,6 @@
 import type { Fn0 } from "@thi.ng/api";
-import { reduce, Reducer } from "@thi.ng/transducers";
+import type { Reducer } from "@thi.ng/transducers";
+import { reduce } from "@thi.ng/transducers/reduce";
 import { ensureSet } from "../utils";
 
 export const xformSetOp = <T>(
