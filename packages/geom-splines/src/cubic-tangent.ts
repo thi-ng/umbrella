@@ -1,4 +1,6 @@
-import { addW4, normalize, ReadonlyVec, Vec } from "@thi.ng/vectors";
+import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
+import { addW4 } from "@thi.ng/vectors/addw";
+import { normalize } from "@thi.ng/vectors/normalize";
 
 export const cubicTangentAt = (
     out: Vec,

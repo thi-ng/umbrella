@@ -1,4 +1,4 @@
-import { mixCubic } from "@thi.ng/vectors";
+import { mixCubic } from "@thi.ng/vectors/mix-cubic";
 import { __sample, __sampleArray } from "./internal/sample";
 
 export const sampleCubic = __sample((res, [a, b, c, d], num) => {

@@ -1,5 +1,7 @@
-import { minError } from "@thi.ng/math";
-import { distSq, mixQuadratic, ReadonlyVec, Vec } from "@thi.ng/vectors";
+import { minError } from "@thi.ng/math/min-error";
+import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
+import { distSq } from "@thi.ng/vectors/distsq";
+import { mixQuadratic } from "@thi.ng/vectors/mix-quadratic";
 
 /**
  * Performs recursive search for closest point to `p` on quadratic curve

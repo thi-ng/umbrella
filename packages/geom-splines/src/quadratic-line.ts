@@ -1,5 +1,7 @@
 import type { FnU2 } from "@thi.ng/api";
-import { addmN, ReadonlyVec, set, Vec } from "@thi.ng/vectors";
+import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
+import { addmN } from "@thi.ng/vectors/addmn";
+import { set } from "@thi.ng/vectors/set";
 
 export const quadraticFromLine: FnU2<ReadonlyVec, Vec[]> = (a, b) => [
     set([], a),

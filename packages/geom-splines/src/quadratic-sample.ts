@@ -1,4 +1,4 @@
-import { mixQuadratic } from "@thi.ng/vectors";
+import { mixQuadratic } from "@thi.ng/vectors/mix-quadratic";
 import { __sample, __sampleArray } from "./internal/sample";
 
 export const sampleQuadratic = __sample((res, [a, b, c], num) => {

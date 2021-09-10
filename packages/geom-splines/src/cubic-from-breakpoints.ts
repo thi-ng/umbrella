@@ -1,15 +1,12 @@
-import {
-    corner2,
-    cornerBisector,
-    direction,
-    dist,
-    maddN,
-    mulN,
-    perpendicularCW,
-    ReadonlyVec,
-    set,
-    Vec,
-} from "@thi.ng/vectors";
+import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
+import { cornerBisector } from "@thi.ng/vectors/bisect";
+import { corner2 } from "@thi.ng/vectors/clockwise";
+import { direction } from "@thi.ng/vectors/direction";
+import { dist } from "@thi.ng/vectors/dist";
+import { maddN } from "@thi.ng/vectors/maddn";
+import { mulN } from "@thi.ng/vectors/muln";
+import { perpendicularCW } from "@thi.ng/vectors/perpendicular";
+import { set } from "@thi.ng/vectors/set";
 
 const buildSegments = (tangents: Vec[][], t: number, uniform: boolean) => {
     const res: Vec[][] = [];

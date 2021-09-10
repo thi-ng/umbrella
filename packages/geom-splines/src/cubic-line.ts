@@ -1,5 +1,7 @@
 import type { FnU2 } from "@thi.ng/api";
-import { mixN, set, Vec } from "@thi.ng/vectors";
+import type { Vec } from "@thi.ng/vectors";
+import { mixN } from "@thi.ng/vectors/mixn";
+import { set } from "@thi.ng/vectors/set";
 
 /**
  * Converts line segment `a` -> `b` into a cubic curve, which when

@@ -1,5 +1,9 @@
-import { minError } from "@thi.ng/math";
-import { distSq, mixN, mixQuadratic, ReadonlyVec, set } from "@thi.ng/vectors";
+import { minError } from "@thi.ng/math/min-error";
+import type { ReadonlyVec } from "@thi.ng/vectors";
+import { distSq } from "@thi.ng/vectors/distsq";
+import { mixQuadratic } from "@thi.ng/vectors/mix-quadratic";
+import { mixN } from "@thi.ng/vectors/mixn";
+import { set } from "@thi.ng/vectors/set";
 
 export const quadraticSplitAt = (
     a: ReadonlyVec,

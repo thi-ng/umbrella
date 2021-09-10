@@ -1,7 +1,10 @@
 import type { FnU2 } from "@thi.ng/api";
-import { pointAtTheta } from "@thi.ng/geom-arc";
-import { EPS, HALF_PI, PI, roundEps, sincos } from "@thi.ng/math";
-import { magSq2, ReadonlyVec, Vec } from "@thi.ng/vectors";
+import { pointAtTheta } from "@thi.ng/geom-arc/point-at";
+import { sincos } from "@thi.ng/math/angle";
+import { EPS, HALF_PI, PI } from "@thi.ng/math/api";
+import { roundEps } from "@thi.ng/math/prec";
+import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
+import { magSq2 } from "@thi.ng/vectors/magsq";
 import { cubicFromLine } from "./cubic-line";
 
 /**
