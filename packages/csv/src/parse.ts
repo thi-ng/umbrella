@@ -1,7 +1,12 @@
-import { compR, iterator1, Reducer, Transducer } from "@thi.ng/transducers";
-import { ESCAPES, split } from "@thi.ng/strings";
-import { isArray, isFunction, isIterable } from "@thi.ng/checks";
 import type { Nullable } from "@thi.ng/api";
+import { isArray } from "@thi.ng/checks/is-array";
+import { isFunction } from "@thi.ng/checks/is-function";
+import { isIterable } from "@thi.ng/checks/is-iterable";
+import { ESCAPES } from "@thi.ng/strings/escape";
+import { split } from "@thi.ng/strings/split";
+import type { Reducer, Transducer } from "@thi.ng/transducers";
+import { compR } from "@thi.ng/transducers/func/compr";
+import { iterator1 } from "@thi.ng/transducers/iterator";
 import type {
     ColumnSpec,
     CommonCSVOpts,
