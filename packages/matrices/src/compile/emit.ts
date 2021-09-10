@@ -1,10 +1,11 @@
+import { compile } from "@thi.ng/vectors/compile/emit";
 import {
     ARGS_VN,
     ARGS_VV,
-    compile,
     DEFAULT_OUT,
-} from "@thi.ng/vectors/internal/codegen";
-import { MATH, MATH_N } from "@thi.ng/vectors/internal/templates";
+    MATH,
+    MATH_N,
+} from "@thi.ng/vectors/compile/templates";
 import type { MultiMatOpMM, MultiMatOpMN } from "../api";
 
 const DEFAULT_SIZES = [6, 9, 16];

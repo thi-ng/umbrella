@@ -1,8 +1,8 @@
 import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
 import { dotC4, dotC6 } from "@thi.ng/vectors/dotc";
-import { vop } from "@thi.ng/vectors/internal/vop";
 import { magSq4 } from "@thi.ng/vectors/magsq";
 import { setC, setC4, setC6 } from "@thi.ng/vectors/setc";
+import { vop } from "@thi.ng/vectors/vop";
 import type { MatOpMU, MultiMatOpMU } from "./api";
 import { det44FromCoeffs, detCoeffs44 } from "./determinant";
 

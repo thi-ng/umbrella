@@ -1,6 +1,6 @@
 import { dotS2, dotS3, dotS4 } from "@thi.ng/vectors/dots";
-import { vop } from "@thi.ng/vectors/internal/vop";
 import { setC, setC4, setC6 } from "@thi.ng/vectors/setc";
+import { vop } from "@thi.ng/vectors/vop";
 import type { MultiMatOpMM } from "./api";
 
 /**

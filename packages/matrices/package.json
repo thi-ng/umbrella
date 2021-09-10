@@ -99,6 +99,9 @@
         "./column": {
             "import": "./column.js"
         },
+        "./compile/emit": {
+            "import": "./compile/emit.js"
+        },
         "./concat": {
             "import": "./concat.js"
         },

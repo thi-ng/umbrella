@@ -1,6 +1,6 @@
 export * from "./api";
 export * from "./constants";
-export * from "./internal/codegen";
+export * from "./compile/emit";
 
 export * from "./add";
 export * from "./addn";

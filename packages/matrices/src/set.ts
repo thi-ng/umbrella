@@ -1,5 +1,5 @@
-import { compile } from "@thi.ng/vectors/internal/codegen";
-import { SET } from "@thi.ng/vectors/internal/templates";
+import { compile } from "@thi.ng/vectors/compile/emit";
+import { SET } from "@thi.ng/vectors/compile/templates";
 import { set as _set, set4 } from "@thi.ng/vectors/set";
 import type { MatOpM } from "./api";
 

@@ -1,6 +1,6 @@
 import { div as _div, div4 } from "@thi.ng/vectors/div";
 import type { MatOpMM, MultiMatOpMM } from "./api";
-import { defMath } from "./internal/codegen";
+import { defMath } from "./compile/emit";
 
 /**
  * Componentwise matrix division. If `out` is not given, writes result
