@@ -1,8 +1,11 @@
 import type { ICopy, Nullable, Pair } from "@thi.ng/api";
-import { ArraySet, EquivMap, union } from "@thi.ng/associative";
+import { ArraySet } from "@thi.ng/associative/array-set";
+import { EquivMap } from "@thi.ng/associative/equiv-map";
+import { union } from "@thi.ng/associative/union";
 import { equiv } from "@thi.ng/equiv";
-import { illegalArgs } from "@thi.ng/errors";
-import { filter, reduce, reducer } from "@thi.ng/transducers";
+import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
+import { reduce, reducer } from "@thi.ng/transducers/reduce";
+import { filter } from "@thi.ng/transducers/xform/filter";
 
 /**
  * {@link DGraph} factory function using optional provided edge pairs. If given,
