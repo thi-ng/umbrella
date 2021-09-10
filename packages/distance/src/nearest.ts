@@ -1,5 +1,5 @@
 import type { IDeref } from "@thi.ng/api";
-import { clamp0 } from "@thi.ng/math";
+import { clamp0 } from "@thi.ng/math/interval";
 import type { ReadonlyVec } from "@thi.ng/vectors";
 import type { IDistance, INeighborhood, Neighbor } from "./api";
 import { DIST_SQ, DIST_SQ1, DIST_SQ2, DIST_SQ3 } from "./squared";
@@ -13,7 +13,8 @@ import { DIST_SQ, DIST_SQ1, DIST_SQ2, DIST_SQ3 } from "./squared";
  * @typeParam T - indexed value
  */
 export class Nearest<D, T>
-    implements INeighborhood<D, T>, IDeref<Neighbor<T> | undefined> {
+    implements INeighborhood<D, T>, IDeref<Neighbor<T> | undefined>
+{
     readonly radius;
     protected _currR!: number;
     value?: T;

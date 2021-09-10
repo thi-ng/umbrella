@@ -1,6 +1,7 @@
-import { assert, IDeref } from "@thi.ng/api";
-import { Heap } from "@thi.ng/heaps";
-import { clamp0 } from "@thi.ng/math";
+import type { IDeref } from "@thi.ng/api";
+import { assert } from "@thi.ng/api/assert";
+import { Heap } from "@thi.ng/heaps/heap";
+import { clamp0 } from "@thi.ng/math/interval";
 import type { ReadonlyVec } from "@thi.ng/vectors";
 import type { IDistance, INeighborhood, Neighbor } from "./api";
 import { DIST_SQ, DIST_SQ1, DIST_SQ2, DIST_SQ3 } from "./squared";
@@ -21,7 +22,8 @@ import { DIST_SQ, DIST_SQ1, DIST_SQ2, DIST_SQ3 } from "./squared";
  * @typeParam T - indexed value
  */
 export class KNearest<D, T>
-    implements INeighborhood<D, T>, IDeref<Neighbor<T>[]> {
+    implements INeighborhood<D, T>, IDeref<Neighbor<T>[]>
+{
     readonly radius;
     protected _currR!: number;
     protected _heap = new Heap<Neighbor<T>>(null, {

@@ -1,9 +1,9 @@
+import type { ReadonlyVec } from "@thi.ng/vectors";
 import {
     distManhattan,
     distManhattan2,
     distManhattan3,
-    ReadonlyVec,
-} from "@thi.ng/vectors";
+} from "@thi.ng/vectors/dist-manhattan";
 import type { IDistance, Metric } from "./api";
 
 /**
