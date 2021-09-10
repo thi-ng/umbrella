@@ -1,15 +1,21 @@
-import { assert, Fn, IObjectOf } from "@thi.ng/api";
-import { f32u16, f32u24, f32u32, f32u8 } from "@thi.ng/binary";
-import { comp, concat, iterator, map, reduce, take } from "@thi.ng/transducers";
+import type { Fn, IObjectOf } from "@thi.ng/api";
+import { assert } from "@thi.ng/api/assert";
+import { f32u16, f32u24, f32u32, f32u8 } from "@thi.ng/binary/float";
+import type { BinStructItem } from "@thi.ng/transducers-binary";
 import {
     asBytes,
-    BinStructItem,
     bytes,
     u16,
     u24,
     u32,
     u8,
-} from "@thi.ng/transducers-binary";
+} from "@thi.ng/transducers-binary/bytes";
+import { comp } from "@thi.ng/transducers/func/comp";
+import { concat } from "@thi.ng/transducers/iter/concat";
+import { iterator } from "@thi.ng/transducers/iterator";
+import { reduce } from "@thi.ng/transducers/reduce";
+import { map } from "@thi.ng/transducers/xform/map";
+import { take } from "@thi.ng/transducers/xform/take";
 import type { WavSpec } from "./api";
 
 const HEADER_SIZE = 44;
