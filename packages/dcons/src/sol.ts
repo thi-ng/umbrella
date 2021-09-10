@@ -1,5 +1,5 @@
 import type { Fn2, Predicate } from "@thi.ng/api";
-import { outOfBounds } from "@thi.ng/errors";
+import { outOfBounds } from "@thi.ng/errors/out-of-bounds";
 import { ConsCell, DCons } from "./dcons";
 
 /**

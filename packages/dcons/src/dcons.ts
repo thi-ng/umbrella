@@ -11,14 +11,17 @@ import type {
     ISeq,
     ISeqable,
     IStack,
-    Predicate
+    Predicate,
 } from "@thi.ng/api";
-import { isArrayLike } from "@thi.ng/checks";
-import { compare } from "@thi.ng/compare";
+import { isArrayLike } from "@thi.ng/checks/is-arraylike";
+import { compare } from "@thi.ng/compare/compare";
 import { equiv } from "@thi.ng/equiv";
-import { ensureIndex, illegalArgs } from "@thi.ng/errors";
-import { IRandom, SYSTEM } from "@thi.ng/random";
-import { IReducible, isReduced, ReductionFn } from "@thi.ng/transducers";
+import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
+import { ensureIndex } from "@thi.ng/errors/out-of-bounds";
+import type { IRandom } from "@thi.ng/random";
+import { SYSTEM } from "@thi.ng/random/system";
+import type { IReducible, ReductionFn } from "@thi.ng/transducers";
+import { isReduced } from "@thi.ng/transducers/reduced";
 
 export interface ConsCell<T> {
     value: T;
@@ -37,7 +40,8 @@ export class DCons<T>
         IReducible<any, T>,
         IRelease,
         ISeqable<T>,
-        IStack<T, T, DCons<T>> {
+        IStack<T, T, DCons<T>>
+{
     head: ConsCell<T> | undefined;
     tail: ConsCell<T> | undefined;
     protected _length: number = 0;
