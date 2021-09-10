@@ -1,6 +1,7 @@
-import { TrieMap } from "@thi.ng/associative";
-import { implementsFunction, isPlainObject } from "@thi.ng/checks";
-import { illegalArgs } from "@thi.ng/errors";
+import { TrieMap } from "@thi.ng/associative/trie-map";
+import { implementsFunction } from "@thi.ng/checks/implements-function";
+import { isPlainObject } from "@thi.ng/checks/is-plain-object";
+import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import type { IToEGFConvert, Node, NodeRef, Prefixes } from "./api";
 
 export const isNode = (x: any): x is Node => isPlainObject(x) && "$id" in x;
@@ -39,4 +40,7 @@ export const defPrefixer = (prefixes: Prefixes) => {
     };
 };
 
-export const defVocab = (uri: string) => (name = "") => uri + name;
+export const defVocab =
+    (uri: string) =>
+    (name = "") =>
+        uri + name;

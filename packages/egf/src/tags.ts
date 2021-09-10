@@ -1,6 +1,7 @@
 import type { IObjectOf } from "@thi.ng/api";
-import { maybeParseFloat, maybeParseInt, unescape } from "@thi.ng/strings";
-import { base64Decode } from "@thi.ng/transducers-binary";
+import { unescape } from "@thi.ng/strings/escape";
+import { maybeParseFloat, maybeParseInt } from "@thi.ng/strings/parse";
+import { base64Decode } from "@thi.ng/transducers-binary/base64";
 import { execFileSync } from "child_process";
 import { readFileSync } from "fs";
 import { resolve as resolvePath } from "path";

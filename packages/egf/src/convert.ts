@@ -1,13 +1,11 @@
 import type { Fn, Fn2 } from "@thi.ng/api";
-import {
-    isArray,
-    isDate,
-    isNumber,
-    isPlainObject,
-    isString,
-    isTypedArray,
-} from "@thi.ng/checks";
-import { base64Encode } from "@thi.ng/transducers-binary";
+import { isArray } from "@thi.ng/checks/is-array";
+import { isDate } from "@thi.ng/checks/is-date";
+import { isNumber } from "@thi.ng/checks/is-number";
+import { isPlainObject } from "@thi.ng/checks/is-plain-object";
+import { isString } from "@thi.ng/checks/is-string";
+import { isTypedArray } from "@thi.ng/checks/is-typedarray";
+import { base64Encode } from "@thi.ng/transducers-binary/base64";
 import type { Node, Prefixes } from "./api";
 import { defPrefixer, isNode, isRef, isToEGF } from "./utils";
 

@@ -1,7 +1,9 @@
-import { IObjectOf, NULL_LOGGER } from "@thi.ng/api";
-import { illegalState, unsupported } from "@thi.ng/errors";
+import type { IObjectOf } from "@thi.ng/api";
+import { NULL_LOGGER } from "@thi.ng/api/logger";
+import { illegalState } from "@thi.ng/errors/illegal-state";
+import { unsupported } from "@thi.ng/errors/unsupported";
 import * as $prefixes from "@thi.ng/prefixes";
-import { unescape } from "@thi.ng/strings";
+import { unescape } from "@thi.ng/strings/escape";
 import { readFileSync } from "fs";
 import { dirname, resolve as resolvePath } from "path";
 import { IS_NODE, Node, ParseContext, ParseOpts, TagParser } from "./api";
