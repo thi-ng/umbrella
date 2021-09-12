@@ -34,6 +34,6 @@ export const execute = async (total = true) => {
         results = results.concat(await TESTS.shift()!());
     }
     total &&
-        results.push({ title: "Total", time: timeDiff(t0, now()), trials: 1 });
+        results.push({ title: "total", time: timeDiff(t0, now()), trials: 1 });
     return results;
 };

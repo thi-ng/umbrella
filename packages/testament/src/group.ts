@@ -44,7 +44,7 @@ export const group = (
     tests: Record<string, Fn<TestCtx, void>>,
     opts: Partial<GroupOpts> = {}
 ) => {
-    const { logger, stop, beforeEach, afterEach } = {
+    const { logger, stop, exit, beforeEach, afterEach } = {
         ...GLOBAL_OPTS,
         ...opts,
     };
@@ -66,7 +66,7 @@ export const group = (
             logger.info();
             return results;
         } catch (e) {
-            if (opts.exit !== false) {
+            if (exit !== false) {
                 logger.warn((<Error>e).message);
                 typeof process !== "undefined" &&
                     typeof process.exit !== "undefined" &&

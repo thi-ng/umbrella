@@ -1,6 +1,8 @@
 import { group, NULL_LOGGER, test, TestResult } from "@thi.ng/testament";
 import * as assert from "assert";
 
+let retryResult = 0;
+
 group(
     "testament",
     {
@@ -27,9 +29,15 @@ group(
                 done();
             }, 10);
         },
+
+        retry: () => {
+            retryResult++;
+            assert.strictEqual(retryResult, 3);
+        },
     },
     {
         timeOut: 30,
+        maxTrials: 3,
     }
 );
 

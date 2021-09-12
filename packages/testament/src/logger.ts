@@ -1,13 +1,7 @@
 import type { ILogger } from "./api";
 
 export class Logger implements ILogger {
-    id: string;
-    level: number;
-
-    constructor(id = "testament", level = 0) {
-        this.id = id;
-        this.level = level;
-    }
+    constructor(public readonly id = "testament", public level = 0) {}
 
     fine(...args: any[]): void {
         this.level <= 0 && this.log("FINE  ", args);

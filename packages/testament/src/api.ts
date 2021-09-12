@@ -11,6 +11,7 @@ export type Test = Fn0<Promise<TestResult | TestResult[]>>;
 export type Timestamp = number | bigint;
 
 export interface TestOpts {
+    fmt: StatusFormatters;
     logger: ILogger;
     timeOut: number;
     maxTrials: number;
@@ -81,6 +82,21 @@ export interface TestResult {
     error?: Error;
 }
 
+export interface StatusFormatters {
+    /**
+     * Formatter for successful test case. Receives `title` of test.
+     */
+    success: Fn<string, string>;
+    /**
+     * Formatter for failed test case. Receives `title` of test.
+     */
+    fail: Fn<string, string>;
+    /**
+     * Formatter for retrying a test case...
+     */
+    retry: Fn<string, string>;
+}
+
 /**
  * Replicated from thi.ng/api to avoid circular deps
  */
@@ -103,4 +119,9 @@ export let GLOBAL_OPTS: GroupOpts = {
     maxTrials: 1,
     timeOut: 1000,
     logger: new Logger(),
+    fmt: {
+        success: (x) => `✔︎ ${x}`,
+        fail: (x) => `✘ ${x}`,
+        retry: (x) => x,
+    },
 };

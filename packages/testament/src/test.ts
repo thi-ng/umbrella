@@ -62,7 +62,7 @@ export const test = (
     fn: Fn<TestCtx, void>,
     opts?: Partial<TestOpts>
 ): Fn0<Promise<TestResult>> => {
-    let { logger, timeOut, maxTrials } = {
+    let { fmt, logger, timeOut, maxTrials } = {
         ...GLOBAL_OPTS,
         ...opts,
     };
@@ -129,12 +129,14 @@ export const test = (
                 });
                 await p;
                 const taken = timeDiff(t0!, t1!);
-                logger.info(`✔︎ ${title}${taken > 10 ? ` [${taken} ms]` : ""}`);
+                logger.info(
+                    fmt.success(title + (taken > 10 ? ` [${taken} ms]` : ""))
+                );
                 break;
             } catch (e) {
                 clear();
                 if (!maxTrials) {
-                    logger.warn(`✘ ${title}`);
+                    logger.warn(fmt.fail(title));
                     return {
                         title,
                         error: <Error>e,
@@ -142,7 +144,7 @@ export const test = (
                         trials,
                     };
                 } else {
-                    logger.debug(`retrying '${title}'...`);
+                    logger.debug(fmt.retry(`retrying '${title}'...`));
                     trials++;
                 }
             }

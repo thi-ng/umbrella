@@ -1,3 +1,4 @@
+import { watch } from "chokidar";
 import { readdirSync, statSync, writeFileSync } from "fs";
 import { resolve } from "path";
 import { GLOBAL_OPTS, TestResult } from "./api";
@@ -7,6 +8,7 @@ import { isString } from "./utils";
 interface TestamentArgs {
     csv: boolean;
     json: boolean;
+    watch: boolean;
     out?: string;
     rest: string[];
 }
@@ -45,6 +47,11 @@ const parseOpts = (args: string[], i = 2) => {
                 }
                 i += 2;
                 break;
+            case "-w":
+            case "--watch":
+                res.watch = true;
+                i++;
+                break;
             case "-h":
             case "--help":
                 console.log(`
@@ -56,6 +63,7 @@ Options:
 --json           Export results as JSON
 -o               Output file path for exported results
 --timeout, -t    Set default timeout value (milliseconds)
+--watch, -w      Watch given files/dirs for changes
 
 --help, -h       Print this help and quit
 `);
@@ -126,7 +134,7 @@ const formatCSV = (results: TestResult[]) =>
                 r.title,
                 r.time,
                 r.trials,
-                r.error ? r.error.message : "",
+                r.error ? r.error.message.split("\n")[0] : "",
             ].join(",")
         ),
     ].join("\n");
@@ -139,34 +147,91 @@ const formatJSON = (results: TestResult[]) =>
             title: r.title,
             time: r.time,
             trials: r.trials,
-            error: r.error ? r.error.message : undefined,
+            error: r.error ? r.error.message.split("\n")[0] : undefined,
         })),
         null,
         4
     );
 
-(async () => {
-    const opts = parseOpts(process.argv);
-    if (!opts) return;
+const randomID = () => `#${(Math.random() * 1e9) | 0}`;
 
+const runTests = async (opts: TestamentArgs) => {
     const imports: Promise<any>[] = [];
+    const sources: string[] = [];
+
+    const enque = (src: string) => {
+        src += randomID();
+        sources.push(src);
+        imports.push(import(src));
+    };
+
     for (let src of opts.rest) {
         src = resolve(src);
         if (statSync(src).isDirectory()) {
             for (let f of files(src, /\.[jt]s$/)) {
-                imports.push(import(f));
+                enque(f);
             }
         } else {
-            imports.push(import(src));
+            enque(src);
         }
     }
 
     GLOBAL_OPTS.logger.info(`importing ${imports.length} sources...`);
-    GLOBAL_OPTS.exit = true;
+    try {
+        await Promise.all(imports);
+        const results = await execute();
+        opts.csv && output(formatCSV(results), opts.out);
+        opts.json && output(formatJSON(results), opts.out);
+    } catch (e) {
+        if (GLOBAL_OPTS.exit) throw e;
+    }
+};
 
-    await Promise.all(imports);
-    const results = await execute();
+const watchTests = async (opts: TestamentArgs) => {
+    const watcher = watch(opts.rest, { persistent: true });
+    const files = new Set<string>();
+    let tid: NodeJS.Timeout;
 
-    opts.csv && output(formatCSV(results), opts.out);
-    opts.json && output(formatJSON(results), opts.out);
+    const rerunWith = (files: string[]) => {
+        clearTimeout(tid);
+        tid = setTimeout(() => runTests({ ...opts, rest: files }), 10);
+    };
+
+    watcher.on("all", (id, path) => {
+        switch (id) {
+            case "add":
+                files.add(path);
+                rerunWith([...files]);
+                break;
+            case "change":
+                files.add(path);
+                rerunWith([path]);
+                break;
+            case "unlink":
+                files.delete(path);
+                break;
+            default:
+        }
+    });
+};
+
+(async () => {
+    const opts = parseOpts(process.argv);
+    if (!opts) return;
+
+    // enable ANSI coloring for status messages
+    if (!process.env.NO_COLOR) {
+        GLOBAL_OPTS.fmt = {
+            success: (x) => `\x1b[32m✔︎ ${x}\x1b[0m`,
+            fail: (x) => `\x1b[31m✘ ${x}\x1b[0m`,
+            retry: (x) => `\x1b[93m${x}\x1b[0m`,
+        };
+    }
+
+    if (opts.watch) {
+        watchTests(opts);
+    } else {
+        GLOBAL_OPTS.exit = true;
+        await runTests(opts);
+    }
 })();

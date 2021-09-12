@@ -37,6 +37,9 @@
         "pub": "yarn build:release && yarn publish --access public",
         "test": "testament test"
     },
+    "dependencies": {
+        "chokidar": "^3.5.2"
+    },
     "keywords": [
         "typescript"
     ],
