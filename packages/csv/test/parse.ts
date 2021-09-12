@@ -2,7 +2,7 @@ import { group } from "@thi.ng/testament";
 import * as assert from "assert";
 import { parseCSV, parseCSVFromString } from "../src";
 
-group("csv", {
+group("parse", {
     header: () => {
         assert.deepStrictEqual(
             [...parseCSV({ header: ["a", "b", "c"] }, ["1,2,3"])],

@@ -65,6 +65,9 @@
         "./api": {
             "import": "./api.js"
         },
+        "./format": {
+            "import": "./format.js"
+        },
         "./parse": {
             "import": "./parse.js"
         },
