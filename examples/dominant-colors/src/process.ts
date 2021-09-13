@@ -1,13 +1,14 @@
-import { timed } from "@thi.ng/bench";
-import { lch, srgb } from "@thi.ng/color";
-import {
-    ABGR8888,
-    dominantColors,
-    floatBuffer,
-    FLOAT_RGB,
-    PackedBuffer,
-} from "@thi.ng/pixel";
-import { map, minMax, transduce } from "@thi.ng/transducers";
+import { timed } from "@thi.ng/bench/timed";
+import { lch } from "@thi.ng/color/lch/lch";
+import { srgb } from "@thi.ng/color/srgb/srgb";
+import { dominantColors } from "@thi.ng/pixel/dominant-colors";
+import { floatBuffer } from "@thi.ng/pixel/float";
+import { ABGR8888 } from "@thi.ng/pixel/format/abgr8888";
+import { FLOAT_RGB } from "@thi.ng/pixel/format/float-rgb";
+import { PackedBuffer } from "@thi.ng/pixel/packed";
+import { minMax } from "@thi.ng/transducers/rfn/min-max";
+import { transduce } from "@thi.ng/transducers/transduce";
+import { map } from "@thi.ng/transducers/xform/map";
 import { DominantColor, SortMode, SORT_MODES } from "./api";
 
 /**

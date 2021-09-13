@@ -1,18 +1,16 @@
-import { exposeGlobal } from "@thi.ng/api";
-import { isNumber } from "@thi.ng/checks";
-import { fromAtom } from "@thi.ng/rstream";
-import { charRange } from "@thi.ng/strings";
-import {
-    comp,
-    map,
-    mapIndexed,
-    partition,
-    permutations,
-    push,
-    range,
-    transduce,
-} from "@thi.ng/transducers";
+import { exposeGlobal } from "@thi.ng/api/expose";
+import { isNumber } from "@thi.ng/checks/is-number";
+import { fromAtom } from "@thi.ng/rstream/from/atom";
+import { charRange } from "@thi.ng/strings/range";
 import { updateDOM } from "@thi.ng/transducers-hdom";
+import { comp } from "@thi.ng/transducers/func/comp";
+import { permutations } from "@thi.ng/transducers/iter/permutations";
+import { range } from "@thi.ng/transducers/iter/range";
+import { push } from "@thi.ng/transducers/rfn/push";
+import { transduce } from "@thi.ng/transducers/transduce";
+import { map } from "@thi.ng/transducers/xform/map";
+import { mapIndexed } from "@thi.ng/transducers/xform/map-indexed";
+import { partition } from "@thi.ng/transducers/xform/partition";
 import { CELL_STYLE, MAX_COL, NUM_COLS, NUM_ROWS, UICell } from "./api";
 import {
     blurCell,

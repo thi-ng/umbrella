@@ -1,10 +1,14 @@
 import { adaptDPI } from "@thi.ng/adapt-dpi";
-import { start } from "@thi.ng/hdom";
-import { canvasWebGL } from "@thi.ng/hdom-components";
-import { fitClamped } from "@thi.ng/math";
-import { concat, lookAt, perspective, transform44 } from "@thi.ng/matrices";
-import { SYSTEM } from "@thi.ng/random";
-import { fromDOMEvent, ISubscription } from "@thi.ng/rstream";
+import { canvasWebGL } from "@thi.ng/hdom-components/canvas";
+import { start } from "@thi.ng/hdom/start";
+import { fitClamped } from "@thi.ng/math/fit";
+import { concat } from "@thi.ng/matrices/concat";
+import { lookAt } from "@thi.ng/matrices/lookat";
+import { perspective } from "@thi.ng/matrices/perspective";
+import { transform44 } from "@thi.ng/matrices/transform";
+import { SYSTEM } from "@thi.ng/random/system";
+import type { ISubscription } from "@thi.ng/rstream";
+import { fromDOMEvent } from "@thi.ng/rstream/from/event";
 import {
     $w,
     add,
@@ -21,36 +25,25 @@ import {
     vec3,
     vec4,
 } from "@thi.ng/shader-ast";
-import { map } from "@thi.ng/transducers";
-import { AttribPool } from "@thi.ng/vector-pools";
-import {
-    fit3,
-    madd3,
-    mixN,
-    mulN,
-    ReadonlyVec,
-    Y3,
-    ZERO3,
-} from "@thi.ng/vectors";
-import {
-    BLEND_NORMAL,
-    compileModel,
-    defShader,
-    defTexture,
-    draw,
-    DrawMode,
-    GLMat4,
-    ModelSpec,
-    TextureFilter,
-    TextureRepeat,
-} from "@thi.ng/webgl";
-import {
-    alignCenter,
-    convertGlyphs,
-    MSDFFont,
-    msdfShader,
-    text,
-} from "@thi.ng/webgl-msdf";
+import { map } from "@thi.ng/transducers/xform/map";
+import { AttribPool } from "@thi.ng/vector-pools/attrib-pool";
+import { ReadonlyVec, Y3, ZERO3 } from "@thi.ng/vectors/api";
+import { fit3 } from "@thi.ng/vectors/fit";
+import { madd3 } from "@thi.ng/vectors/madd";
+import { mixN } from "@thi.ng/vectors/mixn";
+import { mulN } from "@thi.ng/vectors/muln";
+import type { GLMat4 } from "@thi.ng/webgl";
+import type { MSDFFont } from "@thi.ng/webgl-msdf";
+import { convertGlyphs } from "@thi.ng/webgl-msdf/convert";
+import { msdfShader } from "@thi.ng/webgl-msdf/shader";
+import { alignCenter, text } from "@thi.ng/webgl-msdf/text";
+import { BLEND_NORMAL } from "@thi.ng/webgl/api/blend";
+import { DrawMode, ModelSpec } from "@thi.ng/webgl/api/model";
+import { TextureFilter, TextureRepeat } from "@thi.ng/webgl/api/texture";
+import { compileModel } from "@thi.ng/webgl/buffer";
+import { draw } from "@thi.ng/webgl/draw";
+import { defShader } from "@thi.ng/webgl/shader";
+import { defTexture } from "@thi.ng/webgl/texture";
 import GLYPHS from "./inputmono-extralight-msdf.json";
 import GLYPH_TEX from "./inputmono-extralight.png";
 

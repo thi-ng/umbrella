@@ -1,5 +1,6 @@
-import { div, label } from "@thi.ng/hiccup-html";
-import { inputNumeric } from "@thi.ng/rdom-components";
+import { div } from "@thi.ng/hiccup-html/blocks";
+import { label } from "@thi.ng/hiccup-html/forms";
+import { inputNumeric } from "@thi.ng/rdom-components/input";
 import type { ISubscription } from "@thi.ng/rstream";
 
 export const slider = (

@@ -1,20 +1,18 @@
 import type { Fn, IObjectOf } from "@thi.ng/api";
-import { defmulti } from "@thi.ng/defmulti";
-import { illegalArgs } from "@thi.ng/errors";
-import { fit } from "@thi.ng/math";
-import { memoize1 } from "@thi.ng/memoize";
-import { fromView } from "@thi.ng/rstream";
-import { addNode, node, NodeInputSpec, NodeSpec } from "@thi.ng/rstream-graph";
-import {
-    ASTNode,
-    Implementations,
-    parse,
-    runtime,
-    Str,
-    Sym,
-    tokenize,
-} from "@thi.ng/sexpr";
-import { charRange, maybeParseFloat, Z2 } from "@thi.ng/strings";
+import { defmulti } from "@thi.ng/defmulti/defmulti";
+import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
+import { fit } from "@thi.ng/math/fit";
+import { memoize1 } from "@thi.ng/memoize/memoize1";
+import type { NodeInputSpec, NodeSpec } from "@thi.ng/rstream-graph";
+import { addNode, node } from "@thi.ng/rstream-graph/graph";
+import { fromView } from "@thi.ng/rstream/from/view";
+import type { ASTNode, Implementations, Str, Sym } from "@thi.ng/sexpr";
+import { parse } from "@thi.ng/sexpr/parse";
+import { runtime } from "@thi.ng/sexpr/runtime";
+import { tokenize } from "@thi.ng/sexpr/tokenize";
+import { Z2 } from "@thi.ng/strings/pad-left";
+import { maybeParseFloat } from "@thi.ng/strings/parse";
+import { charRange } from "@thi.ng/strings/range";
 import {
     add,
     assocObj,
@@ -134,42 +132,41 @@ const defNode = (spec: NodeSpec, vals: ASTNode[], env: Env) => {
  *
  * @param fn
  */
-const defBuiltin = (fn: Fn<IObjectOf<number>, any>) => (
-    _: ASTNode,
-    vals: ASTNode[],
-    env: Env
-) =>
-    defNode(
-        {
-            // wrapped transformation fn
-            fn: node(map(fn)),
-            // compile all s-expr arguments into a single object of input stream defs.
-            // - cell ranges yield multiple inputs
-            // - single cell IDs yield stream of cell's value
-            // - numeric args yield a single-item stream def of the given number
-            ins: transduce(
-                comp(
-                    mapcat((i) => {
-                        try {
-                            return cellRangeInputs(i);
-                        } catch (e) {
-                            return <NodeInputSpec[]>[rt(i, env)];
-                        }
-                    }),
-                    // form pairs of [numbered-arg, input]
-                    mapIndexed(
-                        (i, input) => <[string, NodeInputSpec]>[Z2(i), input]
-                    )
+const defBuiltin =
+    (fn: Fn<IObjectOf<number>, any>) =>
+    (_: ASTNode, vals: ASTNode[], env: Env) =>
+        defNode(
+            {
+                // wrapped transformation fn
+                fn: node(map(fn)),
+                // compile all s-expr arguments into a single object of input stream defs.
+                // - cell ranges yield multiple inputs
+                // - single cell IDs yield stream of cell's value
+                // - numeric args yield a single-item stream def of the given number
+                ins: transduce(
+                    comp(
+                        mapcat((i) => {
+                            try {
+                                return cellRangeInputs(i);
+                            } catch (e) {
+                                return <NodeInputSpec[]>[rt(i, env)];
+                            }
+                        }),
+                        // form pairs of [numbered-arg, input]
+                        mapIndexed(
+                            (i, input) =>
+                                <[string, NodeInputSpec]>[Z2(i), input]
+                        )
+                    ),
+                    // build object
+                    assocObj<NodeInputSpec>(),
+                    // only process s-expr args
+                    vals.slice(1)
                 ),
-                // build object
-                assocObj<NodeInputSpec>(),
-                // only process s-expr args
-                vals.slice(1)
-            ),
-        },
-        vals,
-        env
-    );
+            },
+            vals,
+            env
+        );
 
 /**
  * Similar to `defBuiltin()`, but for reducer-based computations. Takes

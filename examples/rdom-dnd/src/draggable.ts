@@ -1,6 +1,7 @@
 import type { Fn } from "@thi.ng/api";
-import { div } from "@thi.ng/hiccup-html";
-import { Component, ComponentLike, NumOrElement } from "@thi.ng/rdom";
+import { div } from "@thi.ng/hiccup-html/blocks";
+import type { ComponentLike, NumOrElement } from "@thi.ng/rdom";
+import { Component } from "@thi.ng/rdom/component";
 
 interface DraggableOpts {
     scope?: string;

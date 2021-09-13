@@ -1,45 +1,39 @@
-import { timedResult } from "@thi.ng/bench";
-import { hueRgb } from "@thi.ng/color";
-import {
-    $x,
-    $xyz,
-    assign,
-    defn,
-    float,
-    FloatSym,
-    gte,
-    ifThen,
-    mix,
-    mul,
-    program,
-    ret,
-    sym,
-    vec2,
-    Vec2Sym,
-    vec3,
-    Vec3Sym,
-    vec4,
-} from "@thi.ng/shader-ast";
+import { timedResult } from "@thi.ng/bench/timed";
+import { hueRgb } from "@thi.ng/color/rgb/hue-rgb";
+import type { FloatSym, Vec2Sym, Vec3Sym } from "@thi.ng/shader-ast";
 import { renderPixels, targetJS } from "@thi.ng/shader-ast-js";
+import { fogExp2 } from "@thi.ng/shader-ast-stdlib/fog/exp2";
 import {
-    clamp01,
     diffuseLighting,
-    fit1101,
-    fogExp2,
     halfLambert,
-    lookat,
-    raymarchAO,
-    raymarchDir,
-    raymarchNormal,
-    raymarchScene,
-    rayPointAt,
-    sdfBox3,
-    sdfRepeat3,
-    sdfSmoothUnion,
-    sdfSphere,
-} from "@thi.ng/shader-ast-stdlib";
-import { comp, map, normRange, slidingWindow, step } from "@thi.ng/transducers";
-import { sma } from "@thi.ng/transducers-stats";
+} from "@thi.ng/shader-ast-stdlib/light/lambert";
+import { clamp01 } from "@thi.ng/shader-ast-stdlib/math/clamp";
+import { fit1101 } from "@thi.ng/shader-ast-stdlib/math/fit";
+import { lookat } from "@thi.ng/shader-ast-stdlib/matrix/lookat";
+import { raymarchAO } from "@thi.ng/shader-ast-stdlib/raymarch/ao";
+import { raymarchDir } from "@thi.ng/shader-ast-stdlib/raymarch/direction";
+import { raymarchNormal } from "@thi.ng/shader-ast-stdlib/raymarch/normal";
+import { rayPointAt } from "@thi.ng/shader-ast-stdlib/raymarch/point-at";
+import { raymarchScene } from "@thi.ng/shader-ast-stdlib/raymarch/scene";
+import { sdfBox3 } from "@thi.ng/shader-ast-stdlib/sdf/box";
+import { sdfRepeat3 } from "@thi.ng/shader-ast-stdlib/sdf/repeat";
+import { sdfSmoothUnion } from "@thi.ng/shader-ast-stdlib/sdf/smooth-union";
+import { sdfSphere } from "@thi.ng/shader-ast-stdlib/sdf/sphere";
+import { assign } from "@thi.ng/shader-ast/ast/assign";
+import { ifThen } from "@thi.ng/shader-ast/ast/controlflow";
+import { defn, ret } from "@thi.ng/shader-ast/ast/function";
+import { float, vec2, vec3, vec4 } from "@thi.ng/shader-ast/ast/lit";
+import { gte, mul } from "@thi.ng/shader-ast/ast/ops";
+import { program } from "@thi.ng/shader-ast/ast/scope";
+import { $x, $xyz } from "@thi.ng/shader-ast/ast/swizzle";
+import { sym } from "@thi.ng/shader-ast/ast/sym";
+import { mix } from "@thi.ng/shader-ast/builtin/math";
+import { sma } from "@thi.ng/transducers-stats/sma";
+import { comp } from "@thi.ng/transducers/func/comp";
+import { normRange } from "@thi.ng/transducers/iter/norm-range";
+import { step } from "@thi.ng/transducers/step";
+import { map } from "@thi.ng/transducers/xform/map";
+import { slidingWindow } from "@thi.ng/transducers/xform/sliding-window";
 import { NUM_WORKERS, WorkerJob, WorkerResult } from "./api";
 
 // color table to tint each worker's region
