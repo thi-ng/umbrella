@@ -1,24 +1,10 @@
-import {
-    $x,
-    $y,
-    $z,
-    add,
-    cos,
-    defn,
-    FloatSym,
-    mat2,
-    mat3,
-    mat4,
-    mul,
-    neg,
-    NumericF,
-    ret,
-    sin,
-    sub,
-    sym,
-    Vec2Term,
-    vec3,
-} from "@thi.ng/shader-ast";
+import type { FloatSym, NumericF, Vec2Term } from "@thi.ng/shader-ast";
+import { defn, ret } from "@thi.ng/shader-ast/ast/function";
+import { mat2, mat3, mat4, vec3 } from "@thi.ng/shader-ast/ast/lit";
+import { add, mul, neg, sub } from "@thi.ng/shader-ast/ast/ops";
+import { $x, $y, $z } from "@thi.ng/shader-ast/ast/swizzle";
+import { sym } from "@thi.ng/shader-ast/ast/sym";
+import { cos, sin } from "@thi.ng/shader-ast/builtin/math";
 import { perpendicularCCW } from "../math/orthogonal";
 import { cossin } from "../math/sincos";
 import { m33ToM44 } from "./convert";

@@ -1,4 +1,6 @@
-import { dot, vec3, Vec3Term } from "@thi.ng/shader-ast";
+import type { Vec3Term } from "@thi.ng/shader-ast";
+import { vec3 } from "@thi.ng/shader-ast/ast/lit";
+import { dot } from "@thi.ng/shader-ast/builtin/math";
 
 /**
  * Inline function. Computes luminance of given RGB color

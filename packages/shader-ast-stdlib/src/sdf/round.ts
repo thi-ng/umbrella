@@ -1,4 +1,5 @@
-import { FloatTerm, sub } from "@thi.ng/shader-ast";
+import type { FloatTerm } from "@thi.ng/shader-ast";
+import { sub } from "@thi.ng/shader-ast/ast/ops";
 
 /**
  * Inline function. Essentially an isoline offset to create:

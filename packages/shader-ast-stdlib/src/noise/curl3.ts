@@ -1,20 +1,9 @@
-import {
-    $,
-    $x,
-    $y,
-    $z,
-    add,
-    defn,
-    div,
-    mul,
-    ret,
-    sub,
-    sym,
-    vec2,
-    Vec2Sym,
-    vec3,
-    Vec3Sym,
-} from "@thi.ng/shader-ast";
+import type { Vec2Sym, Vec3Sym } from "@thi.ng/shader-ast";
+import { defn, ret } from "@thi.ng/shader-ast/ast/function";
+import { vec2, vec3 } from "@thi.ng/shader-ast/ast/lit";
+import { add, div, mul, sub } from "@thi.ng/shader-ast/ast/ops";
+import { $, $x, $y, $z } from "@thi.ng/shader-ast/ast/swizzle";
+import { sym } from "@thi.ng/shader-ast/ast/sym";
 import { snoiseVec3 } from "./simplex3";
 
 export const curlNoise3 = defn(

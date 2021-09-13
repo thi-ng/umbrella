@@ -1,11 +1,8 @@
-import {
-    $xyz,
-    Mat4Term,
-    mul,
-    normalize,
-    Vec3Term,
-    vec4,
-} from "@thi.ng/shader-ast";
+import type { Mat4Term, Vec3Term } from "@thi.ng/shader-ast";
+import { vec4 } from "@thi.ng/shader-ast/ast/lit";
+import { mul } from "@thi.ng/shader-ast/ast/ops";
+import { $xyz } from "@thi.ng/shader-ast/ast/swizzle";
+import { normalize } from "@thi.ng/shader-ast/builtin/math";
 
 /**
  * Inline function. Multiplies `normal` with given 4x4 normal matrix

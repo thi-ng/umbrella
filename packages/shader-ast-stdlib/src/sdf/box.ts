@@ -1,19 +1,9 @@
-import {
-    abs,
-    add,
-    defn,
-    FLOAT0,
-    length,
-    max,
-    min,
-    ret,
-    sub,
-    sym,
-    Vec2Sym,
-    VEC2_0,
-    Vec3Sym,
-    VEC3_0,
-} from "@thi.ng/shader-ast";
+import type { Vec2Sym, Vec3Sym } from "@thi.ng/shader-ast";
+import { defn, ret } from "@thi.ng/shader-ast/ast/function";
+import { FLOAT0, VEC2_0, VEC3_0 } from "@thi.ng/shader-ast/ast/lit";
+import { add, sub } from "@thi.ng/shader-ast/ast/ops";
+import { sym } from "@thi.ng/shader-ast/ast/sym";
+import { abs, length, max, min } from "@thi.ng/shader-ast/builtin/math";
 import { maxComp2, maxComp3 } from "../math/maxcomp";
 
 /**

@@ -1,21 +1,9 @@
-import {
-    add,
-    defn,
-    div,
-    FLOAT0,
-    FLOAT05,
-    FLOAT1,
-    FLOAT2,
-    mix,
-    mul,
-    neq,
-    PrimTerm,
-    ret,
-    sub,
-    Term,
-    TermType,
-    ternary,
-} from "@thi.ng/shader-ast";
+import type { PrimTerm, Term, TermType } from "@thi.ng/shader-ast";
+import { ternary } from "@thi.ng/shader-ast/ast/controlflow";
+import { defn, ret } from "@thi.ng/shader-ast/ast/function";
+import { FLOAT0, FLOAT05, FLOAT1, FLOAT2 } from "@thi.ng/shader-ast/ast/lit";
+import { add, div, mul, neq, sub } from "@thi.ng/shader-ast/ast/ops";
+import { mix } from "@thi.ng/shader-ast/builtin/math";
 import { clamp01 } from "./clamp";
 
 /**

@@ -1,16 +1,9 @@
-import {
-    $x,
-    $y,
-    $z,
-    defn,
-    FloatSym,
-    mul,
-    ret,
-    sym,
-    Vec2Sym,
-    Vec2Term,
-    vec3,
-} from "@thi.ng/shader-ast";
+import type { FloatSym, Vec2Sym, Vec2Term } from "@thi.ng/shader-ast";
+import { defn, ret } from "@thi.ng/shader-ast/ast/function";
+import { vec3 } from "@thi.ng/shader-ast/ast/lit";
+import { mul } from "@thi.ng/shader-ast/ast/ops";
+import { $x, $y, $z } from "@thi.ng/shader-ast/ast/swizzle";
+import { sym } from "@thi.ng/shader-ast/ast/sym";
 import { cossin } from "./sincos";
 
 /**

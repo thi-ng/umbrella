@@ -1,21 +1,15 @@
 import type { FnU } from "@thi.ng/api";
+import type { FloatTerm, NumericF } from "@thi.ng/shader-ast";
 import {
-    abs,
     float,
     FLOAT0,
     FLOAT05,
     FLOAT1,
     FLOAT2,
-    FloatTerm,
-    fract,
-    madd,
-    mul,
-    NumericF,
-    sin,
-    step,
-    sub,
     TAU,
-} from "@thi.ng/shader-ast";
+} from "@thi.ng/shader-ast/ast/lit";
+import { madd, mul, sub } from "@thi.ng/shader-ast/ast/ops";
+import { abs, fract, sin, step } from "@thi.ng/shader-ast/builtin/math";
 
 const defOsc =
     (fn: FnU<FloatTerm>) =>

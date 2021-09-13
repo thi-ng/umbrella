@@ -1,13 +1,7 @@
-import {
-    $x,
-    $y,
-    div,
-    madd,
-    modi,
-    UintTerm,
-    uvec2,
-    UVec2Term,
-} from "@thi.ng/shader-ast";
+import type { UintTerm, UVec2Term } from "@thi.ng/shader-ast";
+import { uvec2 } from "@thi.ng/shader-ast/ast/lit";
+import { div, madd, modi } from "@thi.ng/shader-ast/ast/ops";
+import { $x, $y } from "@thi.ng/shader-ast/ast/swizzle";
 
 /**
  * Inline function. Similar to {@link indexToUV}, but returns uvec2 in pixel

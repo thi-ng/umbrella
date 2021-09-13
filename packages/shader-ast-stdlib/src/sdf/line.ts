@@ -1,15 +1,8 @@
-import {
-    defn,
-    div,
-    dot,
-    length,
-    mul,
-    PrimTypeMap,
-    ret,
-    sub,
-    Sym,
-    sym,
-} from "@thi.ng/shader-ast";
+import type { PrimTypeMap, Sym } from "@thi.ng/shader-ast";
+import { defn, ret } from "@thi.ng/shader-ast/ast/function";
+import { div, mul, sub } from "@thi.ng/shader-ast/ast/ops";
+import { sym } from "@thi.ng/shader-ast/ast/sym";
+import { dot, length } from "@thi.ng/shader-ast/builtin/math";
 import { clamp01 } from "../math/clamp";
 
 /**

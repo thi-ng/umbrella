@@ -1,18 +1,10 @@
-import {
-    $x,
-    $y,
-    $z,
-    asin,
-    atan,
-    defn,
-    div,
-    FloatSym,
-    length,
-    ret,
-    sym,
-    vec2,
-    vec3,
-} from "@thi.ng/shader-ast";
+import type { FloatSym } from "@thi.ng/shader-ast";
+import { defn, ret } from "@thi.ng/shader-ast/ast/function";
+import { vec2, vec3 } from "@thi.ng/shader-ast/ast/lit";
+import { div } from "@thi.ng/shader-ast/ast/ops";
+import { $x, $y, $z } from "@thi.ng/shader-ast/ast/swizzle";
+import { sym } from "@thi.ng/shader-ast/ast/sym";
+import { asin, atan, length } from "@thi.ng/shader-ast/builtin/math";
 
 /**
  * Converts 2D cartesian vector `v` to polar coordinates, i.e. `[r,θ]`

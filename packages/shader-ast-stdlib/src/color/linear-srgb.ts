@@ -1,13 +1,6 @@
-import {
-    float,
-    FloatTerm,
-    pow,
-    Prim,
-    Term,
-    vec2,
-    vec3,
-    vec4,
-} from "@thi.ng/shader-ast";
+import type { FloatTerm, Prim, Term } from "@thi.ng/shader-ast";
+import { float, vec2, vec3, vec4 } from "@thi.ng/shader-ast/ast/lit";
+import { pow } from "@thi.ng/shader-ast/builtin/math";
 
 const GAMMA = float(2.2);
 const INV_GAMMA = float(1 / 2.2);

@@ -1,4 +1,5 @@
-import { FloatTerm, max } from "@thi.ng/shader-ast";
+import type { FloatTerm } from "@thi.ng/shader-ast";
+import { max } from "@thi.ng/shader-ast/builtin/math";
 
 /**
  * Inline function. Variadic SDF shape intersection (a & b) for any number of

@@ -1,4 +1,8 @@
-import { assign, defn, exp2, FLOAT1, mul, ret, sub } from "@thi.ng/shader-ast";
+import { assign } from "@thi.ng/shader-ast/ast/assign";
+import { defn, ret } from "@thi.ng/shader-ast/ast/function";
+import { FLOAT1 } from "@thi.ng/shader-ast/ast/lit";
+import { mul, sub } from "@thi.ng/shader-ast/ast/ops";
+import { exp2 } from "@thi.ng/shader-ast/builtin/math";
 import { clamp01 } from "../math/clamp";
 
 /**

@@ -1,4 +1,6 @@
-import { $x, $y, FloatTerm, mul, sub, Vec2Term } from "@thi.ng/shader-ast";
+import type { FloatTerm, Vec2Term } from "@thi.ng/shader-ast";
+import { mul, sub } from "@thi.ng/shader-ast/ast/ops";
+import { $x, $y } from "@thi.ng/shader-ast/ast/swizzle";
 
 /**
  * Inline function. Computes 2D "cross product" of given vectors. See

@@ -1,4 +1,6 @@
-import { defn, length, ret, sub } from "@thi.ng/shader-ast";
+import { defn, ret } from "@thi.ng/shader-ast/ast/function";
+import { sub } from "@thi.ng/shader-ast/ast/ops";
+import { length } from "@thi.ng/shader-ast/builtin/math";
 
 /**
  * Returns signed distance from `p` to centered circle of radius `r`.

@@ -1,18 +1,10 @@
-import {
-    add,
-    assign,
-    defn,
-    div,
-    mul,
-    ret,
-    Sampler2DSym,
-    sub,
-    sym,
-    texture,
-    vec2,
-    Vec2Sym,
-    Vec4Sym,
-} from "@thi.ng/shader-ast";
+import type { Sampler2DSym, Vec2Sym, Vec4Sym } from "@thi.ng/shader-ast";
+import { assign } from "@thi.ng/shader-ast/ast/assign";
+import { defn, ret } from "@thi.ng/shader-ast/ast/function";
+import { vec2 } from "@thi.ng/shader-ast/ast/lit";
+import { add, div, mul, sub } from "@thi.ng/shader-ast/ast/ops";
+import { sym } from "@thi.ng/shader-ast/ast/sym";
+import { texture } from "@thi.ng/shader-ast/builtin/texture";
 
 /**
  * Inline function. Computes single blur step for given +/- offset &

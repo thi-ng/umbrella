@@ -1,4 +1,5 @@
-import { add, defn, div, mul, ret } from "@thi.ng/shader-ast";
+import { defn, ret } from "@thi.ng/shader-ast/ast/function";
+import { add, div, mul } from "@thi.ng/shader-ast/ast/ops";
 import { clamp01 } from "../math/clamp";
 
 /**

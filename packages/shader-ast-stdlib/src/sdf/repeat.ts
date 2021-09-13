@@ -1,12 +1,8 @@
-import {
-    defn,
-    FLOAT05,
-    mod,
-    mul,
-    PrimTypeMap,
-    ret,
-    sub,
-} from "@thi.ng/shader-ast";
+import type { PrimTypeMap } from "@thi.ng/shader-ast";
+import { defn, ret } from "@thi.ng/shader-ast/ast/function";
+import { FLOAT05 } from "@thi.ng/shader-ast/ast/lit";
+import { mul, sub } from "@thi.ng/shader-ast/ast/ops";
+import { mod } from "@thi.ng/shader-ast/builtin/math";
 
 const $ = <N extends 2 | 3, T extends PrimTypeMap[N]>(n: N, type: T) =>
     defn(type, `sdTxRepeat${n}`, [type, type], (p, c) => [

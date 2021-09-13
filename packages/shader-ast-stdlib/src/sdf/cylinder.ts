@@ -1,20 +1,10 @@
-import {
-    $,
-    $y,
-    abs,
-    add,
-    defn,
-    FLOAT0,
-    length,
-    max,
-    min,
-    ret,
-    sub,
-    sym,
-    vec2,
-    Vec2Sym,
-    VEC2_0,
-} from "@thi.ng/shader-ast";
+import type { Vec2Sym } from "@thi.ng/shader-ast";
+import { defn, ret } from "@thi.ng/shader-ast/ast/function";
+import { FLOAT0, vec2, VEC2_0 } from "@thi.ng/shader-ast/ast/lit";
+import { add, sub } from "@thi.ng/shader-ast/ast/ops";
+import { $, $y } from "@thi.ng/shader-ast/ast/swizzle";
+import { sym } from "@thi.ng/shader-ast/ast/sym";
+import { abs, length, max, min } from "@thi.ng/shader-ast/builtin/math";
 import { maxComp2 } from "../math/maxcomp";
 
 /**

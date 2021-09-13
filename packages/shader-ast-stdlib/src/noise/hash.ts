@@ -1,25 +1,11 @@
-import {
-    $,
-    $x,
-    $y,
-    $z,
-    add,
-    assign,
-    defn,
-    dot,
-    FloatSym,
-    fract,
-    mat2,
-    mul,
-    ret,
-    sin,
-    sym,
-    vec2,
-    vec3,
-    Vec3Sym,
-    vec4,
-    Vec4Sym,
-} from "@thi.ng/shader-ast";
+import type { FloatSym, Vec3Sym, Vec4Sym } from "@thi.ng/shader-ast";
+import { assign } from "@thi.ng/shader-ast/ast/assign";
+import { defn, ret } from "@thi.ng/shader-ast/ast/function";
+import { mat2, vec2, vec3, vec4 } from "@thi.ng/shader-ast/ast/lit";
+import { add, mul } from "@thi.ng/shader-ast/ast/ops";
+import { $, $x, $y, $z } from "@thi.ng/shader-ast/ast/swizzle";
+import { sym } from "@thi.ng/shader-ast/ast/sym";
+import { dot, fract, sin } from "@thi.ng/shader-ast/builtin/math";
 
 /**
  * iq's hash PRNG producing 2D results.

@@ -1,16 +1,7 @@
-import {
-    $x,
-    $y,
-    add,
-    defn,
-    div,
-    float,
-    int,
-    modi,
-    mul,
-    ret,
-    vec2,
-} from "@thi.ng/shader-ast";
+import { defn, ret } from "@thi.ng/shader-ast/ast/function";
+import { float, int, vec2 } from "@thi.ng/shader-ast/ast/lit";
+import { add, div, modi, mul } from "@thi.ng/shader-ast/ast/ops";
+import { $x, $y } from "@thi.ng/shader-ast/ast/swizzle";
 
 /**
  * Converts linearized 2D index `i` into a vec2 UV coord, based on given

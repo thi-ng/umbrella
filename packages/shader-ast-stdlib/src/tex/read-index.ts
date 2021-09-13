@@ -1,12 +1,6 @@
-import {
-    $x,
-    $xy,
-    $xyz,
-    IntTerm,
-    IVec2Term,
-    Sampler2DTerm,
-    texture,
-} from "@thi.ng/shader-ast";
+import type { IntTerm, IVec2Term, Sampler2DTerm } from "@thi.ng/shader-ast";
+import { $x, $xy, $xyz } from "@thi.ng/shader-ast/ast/swizzle";
+import { texture } from "@thi.ng/shader-ast/builtin/texture";
 import { indexToUV } from "./index-uv";
 
 /**

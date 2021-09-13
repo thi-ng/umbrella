@@ -1,15 +1,9 @@
-import {
-    defn,
-    div,
-    FLOAT1,
-    FloatSym,
-    FloatTerm,
-    mix,
-    mul,
-    ret,
-    sub,
-    sym,
-} from "@thi.ng/shader-ast";
+import type { FloatSym, FloatTerm } from "@thi.ng/shader-ast";
+import { defn, ret } from "@thi.ng/shader-ast/ast/function";
+import { FLOAT1 } from "@thi.ng/shader-ast/ast/lit";
+import { div, mul, sub } from "@thi.ng/shader-ast/ast/ops";
+import { sym } from "@thi.ng/shader-ast/ast/sym";
+import { mix } from "@thi.ng/shader-ast/builtin/math";
 import { clamp01 } from "../math/clamp";
 import { fit1101 } from "../math/fit";
 

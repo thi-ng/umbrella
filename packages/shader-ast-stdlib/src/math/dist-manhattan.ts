@@ -1,15 +1,7 @@
-import {
-    $,
-    $x,
-    $y,
-    $z,
-    abs,
-    add,
-    sub,
-    Vec2Term,
-    Vec3Term,
-    Vec4Term,
-} from "@thi.ng/shader-ast";
+import type { Vec2Term, Vec3Term, Vec4Term } from "@thi.ng/shader-ast";
+import { add, sub } from "@thi.ng/shader-ast/ast/ops";
+import { $, $x, $y, $z } from "@thi.ng/shader-ast/ast/swizzle";
+import { abs } from "@thi.ng/shader-ast/builtin/math";
 
 export const distManhattan2 = (
     a: Vec2Term | Vec3Term | Vec4Term,
