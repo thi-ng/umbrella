@@ -2,20 +2,19 @@ import type { Fn } from "@thi.ng/api";
 import { isBoolean } from "@thi.ng/checks/is-boolean";
 import { isNumber } from "@thi.ng/checks/is-number";
 import { unsupported } from "@thi.ng/errors/unsupported";
-import {
-    defTarget,
+import type {
     FnCall,
     FuncArg,
     Index,
     IndexM,
-    isMat,
-    isVec,
-    itemType,
     Sym,
-    sym,
     Term,
     Type,
 } from "@thi.ng/shader-ast";
+import { isMat, isVec } from "@thi.ng/shader-ast/ast/checks";
+import { itemType } from "@thi.ng/shader-ast/ast/item";
+import { sym } from "@thi.ng/shader-ast/ast/sym";
+import { defTarget } from "@thi.ng/shader-ast/target";
 import { GLSLOpts, GLSLTarget, GLSLVersion } from "./api";
 
 const RE_SEMI = /[};]$/;
