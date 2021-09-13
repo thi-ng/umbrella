@@ -1,7 +1,11 @@
-import { peek } from "@thi.ng/arrays";
-import { isArray, isBoolean, isNumber, isPlainObject } from "@thi.ng/checks";
-import { DEFAULT, defmulti } from "@thi.ng/defmulti";
-import { repeat } from "@thi.ng/strings";
+import { peek } from "@thi.ng/arrays/peek";
+import { isArray } from "@thi.ng/checks/is-array";
+import { isBoolean } from "@thi.ng/checks/is-boolean";
+import { isNumber } from "@thi.ng/checks/is-number";
+import { isPlainObject } from "@thi.ng/checks/is-plain-object";
+import { DEFAULT } from "@thi.ng/defmulti/constants";
+import { defmulti } from "@thi.ng/defmulti/defmulti";
+import { repeat } from "@thi.ng/strings/repeat";
 
 export interface FormatOpts {
     indent: number;

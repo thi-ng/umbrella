@@ -1,30 +1,32 @@
-import { add, osc, saw, sin } from "@thi.ng/dsp";
-import { aabb, center, rect, Rect, vertices } from "@thi.ng/geom";
+import { add } from "@thi.ng/dsp/gen/add";
+import { osc } from "@thi.ng/dsp/gen/osc";
+import { saw } from "@thi.ng/dsp/osc/saw";
+import { sin } from "@thi.ng/dsp/osc/sin";
+import type { Rect } from "@thi.ng/geom";
+import { aabb } from "@thi.ng/geom/ctors/aabb";
+import { rect } from "@thi.ng/geom/ctors/rect";
+import { center } from "@thi.ng/geom/ops/center";
+import { vertices } from "@thi.ng/geom/ops/vertices";
+import { concat } from "@thi.ng/matrices/concat";
+import { lookAt } from "@thi.ng/matrices/lookat";
+import { perspective } from "@thi.ng/matrices/perspective";
+import { project3 } from "@thi.ng/matrices/project";
+import { rotationX44, rotationY44 } from "@thi.ng/matrices/rotation";
+import { viewport } from "@thi.ng/matrices/viewport";
 import {
-    concat,
-    lookAt,
-    perspective,
-    project3,
-    rotationX44,
-    rotationY44,
-    viewport,
-} from "@thi.ng/matrices";
-import {
-    beginClip,
     BG_GREEN,
     BG_LIGHT_MAGENTA,
-    Canvas,
-    circle,
-    clear,
-    endClip,
     FG_CYAN,
     FG_WHITE,
     FG_YELLOW,
-    FMT_HTML_TACHYONS,
-    line,
-    toString,
-} from "@thi.ng/text-canvas";
-import { add3 } from "@thi.ng/vectors";
+} from "@thi.ng/text-canvas/api";
+import { beginClip, Canvas, endClip } from "@thi.ng/text-canvas/canvas";
+import { circle } from "@thi.ng/text-canvas/circle";
+import { FMT_HTML_TACHYONS } from "@thi.ng/text-canvas/format";
+import { line } from "@thi.ng/text-canvas/line";
+import { clear } from "@thi.ng/text-canvas/rect";
+import { toString } from "@thi.ng/text-canvas/string";
+import { add3 } from "@thi.ng/vectors/add";
 
 const W = 64;
 const H = 32;

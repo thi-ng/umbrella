@@ -1,5 +1,5 @@
 import type { ISubscriber } from "@thi.ng/rstream";
-import { mapIndexed } from "@thi.ng/transducers";
+import { mapIndexed } from "@thi.ng/transducers/xform/map-indexed";
 import { handleTab } from "./utils";
 
 // converted from:
@@ -19,8 +19,7 @@ const ICON_COPY = [
     [
         "path",
         {
-            d:
-                "M11,4.2V8h3.8L11,4.2z M15,9h-4c-0.6,0-1-0.4-1-1V4H4.5C4.2,4,4,4.2,4,4.5v10C4,14.8,4.2,15,4.5,15h10 c0.3,0,0.5-0.2,0.5-0.5V9z M11,3c0.1,0,0.3,0.1,0.4,0.1l4.5,4.5C15.9,7.7,16,7.9,16,8v6.5c0,0.8-0.7,1.5-1.5,1.5h-10 C3.7,16,3,15.3,3,14.5v-10C3,3.7,3.7,3,4.5,3H11z",
+            d: "M11,4.2V8h3.8L11,4.2z M15,9h-4c-0.6,0-1-0.4-1-1V4H4.5C4.2,4,4,4.2,4,4.5v10C4,14.8,4.2,15,4.5,15h10 c0.3,0,0.5-0.2,0.5-0.5V9z M11,3c0.1,0,0.3,0.1,0.4,0.1l4.5,4.5C15.9,7.7,16,7.9,16,8v6.5c0,0.8-0.7,1.5-1.5,1.5h-10 C3.7,16,3,15.3,3,14.5v-10C3,3.7,3.7,3,4.5,3H11z",
         },
     ],
 ];
@@ -74,36 +73,47 @@ export const UI = {
 // transformer and receives a tuple of xml & formatted hiccup strings.
 // defined as closure to avoid using global vars. the `ctx` is the above
 // `UI.main` and `inputs` are defined in `index.ts`.
-export const app = (ctx: any, inputs: any) => ({ src, hiccup }: any) => [
-    "div.flex-ns",
-    [
-        editPane,
-        ["XML/HTML source", ["small", ctx.small, "(must be well formed!)"]],
-        {
-            ...ctx.src,
-            onkeydown: handleTab(inputs.xml),
-            // emitting a new value to the stream will
-            // re-trigger conversion & UI update
-            oninput: (e: any) => inputs.xml.next(e.target.value),
-        },
-        src,
-    ],
-    [
-        editPane,
-        ["Transformed Hiccup / JSON"],
-        hiccup.indexOf("error") < 0 ? ctx.result.success : ctx.result.error,
-        hiccup,
+export const app =
+    (ctx: any, inputs: any) =>
+    ({ src, hiccup }: any) =>
         [
-            copyButton,
-            {
-                class: hiccup.indexOf("error") < 0 ? "bg-green" : "bg-gray",
-            },
-            inputs.copyButton,
-            hiccup,
-        ],
-        [transformOpts, inputs],
-    ],
-];
+            "div.flex-ns",
+            [
+                editPane,
+                [
+                    "XML/HTML source",
+                    ["small", ctx.small, "(must be well formed!)"],
+                ],
+                {
+                    ...ctx.src,
+                    onkeydown: handleTab(inputs.xml),
+                    // emitting a new value to the stream will
+                    // re-trigger conversion & UI update
+                    oninput: (e: any) => inputs.xml.next(e.target.value),
+                },
+                src,
+            ],
+            [
+                editPane,
+                ["Transformed Hiccup / JSON"],
+                hiccup.indexOf("error") < 0
+                    ? ctx.result.success
+                    : ctx.result.error,
+                hiccup,
+                [
+                    copyButton,
+                    {
+                        class:
+                            hiccup.indexOf("error") < 0
+                                ? "bg-green"
+                                : "bg-gray",
+                    },
+                    inputs.copyButton,
+                    hiccup,
+                ],
+                [transformOpts, inputs],
+            ],
+        ];
 
 // configurable editor panel UI component
 // (uses Tachyons CSS classes for styling)

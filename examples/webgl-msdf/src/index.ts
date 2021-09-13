@@ -9,22 +9,12 @@ import { transform44 } from "@thi.ng/matrices/transform";
 import { SYSTEM } from "@thi.ng/random/system";
 import type { ISubscription } from "@thi.ng/rstream";
 import { fromDOMEvent } from "@thi.ng/rstream/from/event";
-import {
-    $w,
-    add,
-    assign,
-    defMain,
-    div,
-    float,
-    length,
-    mod,
-    mul,
-    sin,
-    smoothstep,
-    sub,
-    vec3,
-    vec4,
-} from "@thi.ng/shader-ast";
+import { assign } from "@thi.ng/shader-ast/ast/assign";
+import { defMain } from "@thi.ng/shader-ast/ast/function";
+import { float, vec3, vec4 } from "@thi.ng/shader-ast/ast/lit";
+import { add, div, mul, sub } from "@thi.ng/shader-ast/ast/ops";
+import { $w } from "@thi.ng/shader-ast/ast/swizzle";
+import { length, mod, sin, smoothstep } from "@thi.ng/shader-ast/builtin/math";
 import { map } from "@thi.ng/transducers/xform/map";
 import { AttribPool } from "@thi.ng/vector-pools/attrib-pool";
 import { ReadonlyVec, Y3, ZERO3 } from "@thi.ng/vectors/api";
