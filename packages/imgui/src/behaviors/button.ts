@@ -1,4 +1,4 @@
-import { pointInside } from "@thi.ng/geom";
+import { pointInside } from "@thi.ng/geom/ops/point-inside";
 import type { IShape } from "@thi.ng/geom-api";
 import { Key } from "../api";
 import { tooltipRaw } from "../components/tooltip";

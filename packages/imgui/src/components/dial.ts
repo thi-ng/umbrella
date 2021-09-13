@@ -1,5 +1,6 @@
 import type { Fn } from "@thi.ng/api";
-import { circle, line } from "@thi.ng/geom";
+import { circle } from "@thi.ng/geom/ctors/circle";
+import { line } from "@thi.ng/geom/ctors/line";
 import type { IGridLayout, LayoutBox } from "@thi.ng/layout";
 import { isLayout } from "@thi.ng/layout/is-layout";
 import { HALF_PI, PI, TAU } from "@thi.ng/math/api";

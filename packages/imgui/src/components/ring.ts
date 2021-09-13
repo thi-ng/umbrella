@@ -1,5 +1,5 @@
 import type { Fn, FnN2 } from "@thi.ng/api";
-import { polygon } from "@thi.ng/geom";
+import { polygon } from "@thi.ng/geom/ctors/polygon";
 import { pointInRect } from "@thi.ng/geom-isec/point";
 import type { IGridLayout, LayoutBox } from "@thi.ng/layout";
 import { isLayout } from "@thi.ng/layout/is-layout";
