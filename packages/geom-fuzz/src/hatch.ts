@@ -1,6 +1,10 @@
 import { mergeDeepObj } from "@thi.ng/associative/merge-deep";
-import { bounds, group, offset, Rect, unmapPoint } from "@thi.ng/geom";
+import type { Rect } from "@thi.ng/geom";
 import { clipLinePoly } from "@thi.ng/geom-clip-line/clip-poly";
+import { group } from "@thi.ng/geom/ctors/group";
+import { bounds } from "@thi.ng/geom/ops/bounds";
+import { offset } from "@thi.ng/geom/ops/offset";
+import { unmapPoint } from "@thi.ng/geom/ops/unmap-point";
 import { columnEnds2d } from "@thi.ng/grid-iterators/column-ends";
 import { diagonalEnds2d } from "@thi.ng/grid-iterators/diagonal-ends";
 import { rowEnds2d } from "@thi.ng/grid-iterators/row-ends";
