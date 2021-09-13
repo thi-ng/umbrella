@@ -1,23 +1,14 @@
-import {
-    $,
-    add,
-    assign,
-    defMain,
-    dot,
-    FLOAT0,
-    gt,
-    max,
-    mul,
-    normalize,
-    pow,
-    sub,
-    Sym,
-    sym,
-    ternary,
-    vec4,
-} from "@thi.ng/shader-ast";
+import type { Sym } from "@thi.ng/shader-ast";
 import { diffuseLighting } from "@thi.ng/shader-ast-stdlib/light/lambert";
 import { surfaceNormal } from "@thi.ng/shader-ast-stdlib/matrix/normal";
+import { assign } from "@thi.ng/shader-ast/ast/assign";
+import { ternary } from "@thi.ng/shader-ast/ast/controlflow";
+import { defMain } from "@thi.ng/shader-ast/ast/function";
+import { FLOAT0, vec4 } from "@thi.ng/shader-ast/ast/lit";
+import { add, gt, mul, sub } from "@thi.ng/shader-ast/ast/ops";
+import { $ } from "@thi.ng/shader-ast/ast/swizzle";
+import { sym } from "@thi.ng/shader-ast/ast/sym";
+import { dot, max, normalize, pow } from "@thi.ng/shader-ast/builtin/math";
 import type { Material } from "../api/material";
 import type { ShaderOpts, ShaderSpec } from "../api/shader";
 import { defMaterial } from "../material";

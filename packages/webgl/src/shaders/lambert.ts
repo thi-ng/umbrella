@@ -1,19 +1,17 @@
 import {
-    $,
-    assign,
-    defMain,
-    mul,
-    normalize,
-    texture,
-    vec4,
-} from "@thi.ng/shader-ast";
-import {
     diffuseLighting,
     halfLambert,
     lambert,
 } from "@thi.ng/shader-ast-stdlib/light/lambert";
 import { transformMVP } from "@thi.ng/shader-ast-stdlib/matrix/mvp";
 import { surfaceNormal } from "@thi.ng/shader-ast-stdlib/matrix/normal";
+import { assign } from "@thi.ng/shader-ast/ast/assign";
+import { defMain } from "@thi.ng/shader-ast/ast/function";
+import { vec4 } from "@thi.ng/shader-ast/ast/lit";
+import { mul } from "@thi.ng/shader-ast/ast/ops";
+import { $ } from "@thi.ng/shader-ast/ast/swizzle";
+import { normalize } from "@thi.ng/shader-ast/builtin/math";
+import { texture } from "@thi.ng/shader-ast/builtin/texture";
 import type { Material } from "../api/material";
 import type { ShaderOpts, ShaderSpec } from "../api/shader";
 import { defMaterial } from "../material";

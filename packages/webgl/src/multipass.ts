@@ -1,13 +1,10 @@
 import type { IObjectOf } from "@thi.ng/api";
 import { assert } from "@thi.ng/api/assert";
-import {
-    $xy,
-    assign,
-    defMain,
-    INT0,
-    ivec2,
-    texelFetch,
-} from "@thi.ng/shader-ast";
+import { assign } from "@thi.ng/shader-ast/ast/assign";
+import { defMain } from "@thi.ng/shader-ast/ast/function";
+import { INT0, ivec2 } from "@thi.ng/shader-ast/ast/lit";
+import { $xy } from "@thi.ng/shader-ast/ast/swizzle";
+import { texelFetch } from "@thi.ng/shader-ast/builtin/texture";
 import { range } from "@thi.ng/transducers/iter/range";
 import { assocObj } from "@thi.ng/transducers/rfn/assoc-obj";
 import { some } from "@thi.ng/transducers/rfn/some";

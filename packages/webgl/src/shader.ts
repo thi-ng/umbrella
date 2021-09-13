@@ -7,18 +7,11 @@ import { isBoolean } from "@thi.ng/checks/is-boolean";
 import { isFunction } from "@thi.ng/checks/is-function";
 import { unsupported } from "@thi.ng/errors/unsupported";
 import { doOnce } from "@thi.ng/memoize/do-once";
-import {
-    input,
-    output,
-    program,
-    Sym,
-    sym,
-    SymOpts,
-    Type,
-    uniform,
-} from "@thi.ng/shader-ast";
+import type { Sym, SymOpts, Type } from "@thi.ng/shader-ast";
 import { GLSLVersion } from "@thi.ng/shader-ast-glsl/api";
 import { targetGLSL } from "@thi.ng/shader-ast-glsl/target";
+import { program } from "@thi.ng/shader-ast/ast/scope";
+import { input, output, sym, uniform } from "@thi.ng/shader-ast/ast/sym";
 import { vals } from "@thi.ng/transducers/iter/vals";
 import {
     ExtensionBehavior,
