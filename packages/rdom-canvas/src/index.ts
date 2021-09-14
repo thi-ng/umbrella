@@ -31,7 +31,7 @@ export class $Canvas
     extends Component
     implements IMountWithState<any[] | IToHiccup>
 {
-    el?: HTMLCanvasElement;
+    declare el?: HTMLCanvasElement;
     ctx?: CanvasRenderingContext2D;
     inner?: IComponent<any>;
     size: ISubscription<any, number[]>;
