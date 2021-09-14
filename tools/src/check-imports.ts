@@ -21,7 +21,11 @@ const xform = comp(
     filter((line) => !line.startsWith(" * ")),
     map((line) => RE_IMPORT.exec(line)),
     filter((x) => !!x),
-    map((x) => x![1])
+    map((x) =>
+        x![1].indexOf("@thi.ng") === 0
+            ? x![1].split("/").slice(0, 2).join("/")
+            : x![1]
+    )
 );
 
 const usedDependencies = (rootDir: string) =>
