@@ -1,7 +1,7 @@
 {
     "compilerOptions": {
-        "module": "ES2020",
-        "target": "ES2017",
+        "module": "es2020",
+        "target": "esnext",
         "declaration": true,
         "declarationMap": true,
         "esModuleInterop": true,
