@@ -20,7 +20,6 @@
         "@thi.ng/color": "latest",
         "@thi.ng/compare": "latest",
         "@thi.ng/dl-asset": "latest",
-        "@thi.ng/hiccup-carbon-icons": "latest",
         "@thi.ng/hiccup-html": "latest",
         "@thi.ng/hiccup-svg": "latest",
         "@thi.ng/pixel": "latest",
@@ -34,7 +33,9 @@
         "last 3 Chrome versions"
     ],
     "browser": {
-        "process": false
+        "process": false,
+        "setTimeout": false,
+        "util": false
     },
     "thi.ng": {
         "readme": [

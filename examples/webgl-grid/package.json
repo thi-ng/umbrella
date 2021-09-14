@@ -25,7 +25,8 @@
     ],
     "browser": {
         "process": false,
-        "setTimeout": false
+        "setTimeout": false,
+        "util": false
     },
     "thi.ng": {
         "readme": [

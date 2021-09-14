@@ -14,6 +14,7 @@
         "@thi.ng/snowpack-env": "^2.3.3"
     },
     "dependencies": {
+        "@thi.ng/api": "latest",
         "@thi.ng/dual-algebra": "latest",
         "@thi.ng/geom": "latest",
         "@thi.ng/math": "latest",
@@ -24,7 +25,9 @@
         "last 3 Chrome versions"
     ],
     "browser": {
-        "process": false
+        "process": false,
+        "setTimeout": false,
+        "util": false
     },
     "thi.ng": {
         "readme": [

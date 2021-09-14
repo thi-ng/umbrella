@@ -17,7 +17,9 @@
         "last 3 Chrome versions"
     ],
     "browser": {
-        "process": false
+        "process": false,
+        "setTimeout": false,
+        "util": false
     },
     "devDependencies": {
         "@types/snowpack-env": "^2.3.3"
