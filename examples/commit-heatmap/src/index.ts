@@ -1,6 +1,7 @@
 import { withoutKeysObj } from "@thi.ng/associative";
 import { cosineGradient, COSINE_GRADIENTS } from "@thi.ng/color";
 import { threadLast } from "@thi.ng/compose";
+import { DAY, quarters } from "@thi.ng/date";
 import { serialize } from "@thi.ng/hiccup";
 import { defs, group, line, rect, svg, text } from "@thi.ng/hiccup-svg";
 import { fit } from "@thi.ng/math";
@@ -17,7 +18,6 @@ import {
     max,
     partition,
     pushSort,
-    range,
     sortedKeys,
     transduce,
     vals,
@@ -39,8 +39,6 @@ interface Commit {
 const BASE_DIR = "..";
 
 const SEP = "~~";
-
-const DAY = 24 * 60 * 60 * 1000;
 
 const RE_PKG = /\(([a-z-]+)\):/;
 
@@ -228,7 +226,7 @@ const timeLineLabels = () =>
             }),
             text([x + 5, 8], `${d.getFullYear()}-${Z2(d.getMonth() + 1)}`)
         );
-    }, range(MIN_DATE, MAX_DATE, 91.25 * DAY));
+    }, quarters(MIN_DATE, MAX_DATE));
 
 /**
  * Main visualization. Returns SVG group of commits for given package

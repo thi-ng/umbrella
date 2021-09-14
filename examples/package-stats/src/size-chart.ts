@@ -6,7 +6,6 @@ import {
     comp,
     filter,
     map,
-    mapcat,
     mapIndexed,
     max,
     push,
@@ -17,8 +16,11 @@ import { barChart, labeledTickX, labeledTickY } from "./viz";
 
 const BASE_DIR = "../../packages/";
 
+const IGNORE_PACKAGES = new Set(["hiccup-carbon-icons"]);
+
 const meta = transduce(
     comp(
+        filter((x) => !IGNORE_PACKAGES.has(x)),
         map((m: string) => [m, BASE_DIR + m + "/.meta/size.json"]),
         filter(([_, path]) => fs.existsSync(path)),
         map(([m, path]) => [m, JSON.parse(fs.readFileSync(path).toString())])
@@ -40,7 +42,7 @@ const fileSizeChart = (stats: any, modType: string, type: string) => {
     const width = stats.length * 16;
 
     const maxSize = transduce(
-        mapcat(([_, m]) => [m.esm[type], m.cjs[type], m.umd[type]]),
+        map(([_, m]) => m.esm[type]),
         max(),
         stats
     );
@@ -86,5 +88,5 @@ const fileSizeChart = (stats: any, modType: string, type: string) => {
 };
 
 fileSizeChart(meta, "esm", "gzip");
-fileSizeChart(meta, "cjs", "gzip");
-fileSizeChart(meta, "umd", "gzip");
+// fileSizeChart(meta, "cjs", "gzip");
+// fileSizeChart(meta, "umd", "gzip");
