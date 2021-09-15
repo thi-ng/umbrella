@@ -26,10 +26,14 @@ export function* files(
         : match;
     for (let f of readdirSync(dir)) {
         const curr = dir + "/" + f;
-        if (re.test(f)) {
-            yield curr;
-        } else if (statSync(curr).isDirectory()) {
-            yield* files(curr, match, maxDepth, depth + 1);
+        try {
+            if (re.test(f)) {
+                yield curr;
+            } else if (statSync(curr).isDirectory()) {
+                yield* files(curr, match, maxDepth, depth + 1);
+            }
+        } catch (e) {
+            console.warn("ignoring file:", f);
         }
     }
 }

@@ -11,7 +11,7 @@ const generatePackageExportMaps = (id: string) => {
     let pkg = readJSON(pkgPath);
 
     const thing = pkg["thi.ng"];
-    if (thing.exports !== false) {
+    if (!thing || thing.exports !== false) {
         const exports: Record<string, any> = {
             ".": { import: "./index.js" },
         };
@@ -33,7 +33,7 @@ const updatePackages = (parent = "packages") => {
             try {
                 generatePackageExportMaps(pkg);
             } catch (e) {
-                console.warn("\terror processing package", pkg);
+                console.warn("\terror processing package", pkg, e);
             }
         }
     }
