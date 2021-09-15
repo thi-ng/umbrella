@@ -1,7 +1,7 @@
 import type { Fn, IObjectOf } from "@thi.ng/api";
 import { isFunction } from "@thi.ng/checks/is-function";
 import { isIllegalKey } from "@thi.ng/checks/is-proto-path";
-import { copy } from "./utils";
+import { copy, copyObj } from "./utils";
 
 /**
  * Similar to {@link mergeApplyObj}, but for ES6 Maps instead of plain objects.
@@ -51,7 +51,7 @@ export const mergeApplyMap = <K, V>(
 export const mergeApplyObj = <V>(
     src: IObjectOf<V>,
     xs: IObjectOf<V | Fn<V, V>>
-) => meldApplyObj({ ...src }, xs);
+) => meldApplyObj(copyObj(src), xs);
 
 /**
  * Mutable version of {@link mergeApplyObj}. Returns modified `src`

@@ -42,7 +42,7 @@ export abstract class ASparseSet<T extends UIntArray>
         return __private.get(this)!.n;
     }
 
-    get capacity() {
+    get capacity(): number {
         return __private.get(this)!.dense.length;
     }
 

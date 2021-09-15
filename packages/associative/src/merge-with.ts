@@ -1,6 +1,6 @@
 import type { Fn2, IObjectOf, Nullable } from "@thi.ng/api";
 import { isIllegalKey } from "@thi.ng/checks/is-proto-path";
-import { copy } from "./utils";
+import { copy, copyObj } from "./utils";
 
 export const mergeMapWith = <K, V>(
     f: Fn2<V, V, V>,
@@ -35,7 +35,7 @@ export const mergeObjWith = <T>(
     f: Fn2<T, T, T>,
     dest: IObjectOf<T>,
     ...xs: Nullable<IObjectOf<T>>[]
-) => meldObjWith(f, { ...dest }, ...xs);
+) => meldObjWith(f, copyObj(dest), ...xs);
 
 /**
  * Mutable version of {@link mergeObjWith}. Returns modified `dest`
