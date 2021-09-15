@@ -1,8 +1,12 @@
-#!/usr/bin/env node
-const fs = require("fs");
-const execSync = require("child_process").execSync;
+import { execSync } from "child_process";
+import { readdirSync, readFileSync, statSync, writeFileSync } from "fs";
+import { files } from "./io";
 
 const PKG = process.argv[2];
+if (!PKG) {
+    console.warn("\nUsage: scripts/deploy-docs.js <pkg-name>");
+    process.exit(1);
+}
 
 const AWS_PROFILE = "--profile thing-umbrella";
 const S3_BUCKET = "s3://docs.thi.ng";
@@ -14,21 +18,9 @@ const CF_DISTRO = "E2855K70PVNL1D";
 const MINIFY_OPTS =
     "--file-ext html --collapse-whitespace --remove-comments --remove-optional-tags --remove-redundant-attributes --remove-script-type-attributes --remove-tag-whitespace --use-short-doctype --minify-css true";
 
-function* files(dir, ext) {
-    for (let f of fs.readdirSync(dir)) {
-        const curr = dir + "/" + f;
-        if (f.endsWith(ext)) {
-            yield curr;
-        } else if (fs.statSync(curr).isDirectory()) {
-            yield* files(curr, ext);
-        }
-    }
-}
-
-const sanitizeFile = (f) => {
+const sanitizeFile = (f: string) => {
     let updated = false;
-    const src = fs
-        .readFileSync(f, "utf-8")
+    const src = readFileSync(f, "utf-8")
         .replace(
             /\{@link @thi\.ng\/([a-z0-9-]+)(#(\w+))?\s*\|\s*([^\}]+)\}/g,
             (_, id, label) => {
@@ -57,24 +49,24 @@ const sanitizeFile = (f) => {
         });
     if (updated) {
         console.log("sanitizing:", f);
-        fs.writeFileSync(f, src, "utf-8");
+        writeFileSync(f, src, "utf-8");
     }
 };
 
-const sanitizePackage = (root) => {
+const sanitizePackage = (root: string) => {
     for (let f of files(root, ".html")) {
         sanitizeFile(f);
     }
 };
 
-const minifyPackage = (root) => {
+const minifyPackage = (root: string) => {
     console.log("minifying", root);
     execSync(
         `node_modules/.bin/html-minifier-terser ${MINIFY_OPTS} --input-dir ${root} --output-dir ${root}`
     );
 };
 
-const syncPackage = (id, root) => {
+const syncPackage = (id: string, root: string) => {
     console.log("syncing", root);
     console.log(
         execSync(
@@ -83,12 +75,12 @@ const syncPackage = (id, root) => {
     );
 };
 
-const invalidatePackage = (id) =>
+const invalidatePackage = (id: string) =>
     execSync(
         `aws cloudfront create-invalidation --distribution-id ${CF_DISTRO} --paths "${S3_PREFIX}/${id}/*" ${AWS_PROFILE}`
     );
 
-const processPackage = (id, invalidate = true) => {
+const processPackage = (id: string, invalidate = true) => {
     console.log("processing", id);
     const root = `packages/${id}/doc`;
     try {
@@ -104,13 +96,12 @@ const processPackage = (id, invalidate = true) => {
 if (PKG) {
     processPackage(PKG);
 } else {
-    const pkgs = fs.readdirSync("packages")
-        .filter((p) => fs.statSync(`packages/${p}`).isDirectory());
+    const pkgs = readdirSync("packages").filter((p) =>
+        statSync(`packages/${p}`).isDirectory()
+    );
     pkgs.forEach((pkg, i) => processPackage(pkg, i === pkgs.length - 1));
 }
 
-execSync(
-    `node_modules/.bin/ts-node -P tools/tsconfig.json tools/src/doc-table.ts`
-);
+execSync(`scripts/node-esm tools/src/doc-table.ts`);
 
 execSync(`aws s3 cp docs.html ${S3_BUCKET}/index.html ${S3_OPTS}`);

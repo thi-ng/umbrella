@@ -1,9 +1,21 @@
-#!/usr/bin/env node
-const fs = require("fs");
-const execSync = require("child_process").execSync;
-const getMime = require("@thi.ng/mime").preferredType;
+import type { Fn } from "@thi.ng/api";
+import { preferredType } from "@thi.ng/mime";
+import { execSync } from "child_process";
+import { exit } from "process";
+import { files } from "./io";
+
+interface UploadOpts {
+    ext: string;
+    gzip: boolean;
+    depth: number;
+    process: Fn<string, void>;
+}
 
 const EXAMPLE = process.argv[2];
+if (!EXAMPLE) {
+    console.warn("\nUsage: deploy-example.ts <example-name>");
+    exit(1);
+}
 
 const BUILD = `examples/${EXAMPLE}/build/`;
 const DEST_DIR = `/umbrella/${EXAMPLE}`;
@@ -20,28 +32,14 @@ console.log(args);
 
 execSync(`find examples/${EXAMPLE} -type f -name '*.DS_Store' -ls -delete`);
 
-function* files(dir, ext = "", maxDepth = Infinity, depth = 0) {
-    if (depth >= maxDepth) return;
-    try {
-        for (let f of fs.readdirSync(dir)) {
-            const curr = dir + "/" + f;
-            if (f.endsWith(ext)) {
-                yield curr;
-            } else if (fs.statSync(curr).isDirectory()) {
-                yield* files(curr, ext, maxDepth, depth + 1);
-            }
-        }
-    } catch (_) {}
-}
-
-const uploadAssets = (dir, opts) => {
+const uploadAssets = (dir: string, opts?: Partial<UploadOpts>) => {
     opts = { ext: "", gzip: true, depth: Infinity, ...opts };
-    for (let f of files(`${BUILD}${dir}`, opts.ext, opts.depth)) {
+    for (let f of files(`${BUILD}${dir}`, opts.ext!, opts.depth)) {
         const fd = `${BUCKET}/${f
             .replace(BUILD, "")
             .substr(dir === "" ? 1 : 0)}`;
         const ext = f.substr(f.lastIndexOf(".") + 1);
-        const type = getMime(ext);
+        const type = preferredType(ext);
         console.log(f, "->", fd, type);
         opts.process && opts.process(f);
         if (opts.gzip && !NEVER_GZIP.has(ext)) {
@@ -55,13 +53,13 @@ const uploadAssets = (dir, opts) => {
     }
 };
 
-const interpolateFile = (tpl) => (src) => {
-    let body = fs.readFileSync(src, "utf-8");
-    body = body.replace(/\{\{(\w+)\}\}/g, (_, id) => tpl[id]);
-    fs.writeFileSync(src, body);
-};
+// const interpolateFile = (tpl: any) => (src: string) => {
+//     let body = fs.readFileSync(src, "utf-8");
+//     body = body.replace(/\{\{(\w+)\}\}/g, (_, id) => tpl[id]);
+//     fs.writeFileSync(src, body);
+// };
 
-const include = (id) => args.has(id) || args.has("all");
+// const include = (id: string) => args.has(id) || args.has("all");
 
 uploadAssets("assets");
 
