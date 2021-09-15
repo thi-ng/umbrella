@@ -1,16 +1,25 @@
-import { AST, ASTNode, ASTOpts } from "@thi.ng/gp";
-import { roundTo } from "@thi.ng/math";
-import { IRandom, SYSTEM } from "@thi.ng/random";
+import { ConsoleLogger } from "@thi.ng/api";
+import type { ASTNode, ASTOpts } from "@thi.ng/gp";
+import { AST } from "@thi.ng/gp/ast";
+import { roundTo } from "@thi.ng/math/prec";
+import type { IRandom } from "@thi.ng/random";
+import { SYSTEM } from "@thi.ng/random/system";
+import type { Term, Vec3Sym, Vec3Term } from "@thi.ng/shader-ast";
+import { clamp11 } from "@thi.ng/shader-ast-stdlib/math/clamp";
+import { snoise3, snoiseVec3 } from "@thi.ng/shader-ast-stdlib/noise/simplex3";
+import { fragUV } from "@thi.ng/shader-ast-stdlib/screen/uv";
+import { assign } from "@thi.ng/shader-ast/ast/assign";
+import { ret } from "@thi.ng/shader-ast/ast/function";
+import { vec3, vec4 } from "@thi.ng/shader-ast/ast/lit";
+import { add, div, mul, neg, sub } from "@thi.ng/shader-ast/ast/ops";
+import { $ } from "@thi.ng/shader-ast/ast/swizzle";
+import { sym } from "@thi.ng/shader-ast/ast/sym";
 import {
-    $,
     abs,
     acos,
-    add,
     asin,
-    assign,
     cos,
     distance,
-    div,
     exp,
     fract,
     inversesqrt,
@@ -18,34 +27,22 @@ import {
     log,
     mix,
     mod,
-    mul,
-    neg,
     normalize,
     pow,
-    ret,
     sin,
     sqrt,
-    sub,
-    sym,
     tan,
-    Term,
-    vec3,
-    Vec3Sym,
-    Vec3Term,
-    vec4,
-} from "@thi.ng/shader-ast";
-import {
-    clamp11,
-    fragUV,
-    snoise3,
-    snoiseVec3,
-} from "@thi.ng/shader-ast-stdlib";
-import { glCanvas } from "@thi.ng/webgl";
+} from "@thi.ng/shader-ast/builtin/math";
+import { setLogger } from "@thi.ng/webgl";
 import {
     MainImageFn,
     shaderToy,
     ShaderToyUniforms,
 } from "@thi.ng/webgl-shadertoy";
+import { glCanvas } from "@thi.ng/webgl/canvas";
+
+// enable logging to show generated shader code
+setLogger(new ConsoleLogger("webgl"));
 
 const MAX_DEPTH = 11;
 const NORM_SCALE = 1;
@@ -119,22 +116,22 @@ const transpile = (node: ASTNode<Function, Vec3Term>): Term<any> =>
         ? node.op.apply(null, node.args.map(transpile))
         : node.value;
 
-const shaderFunction = (
-    ast: ASTNode<Function, Vec3Term>
-): MainImageFn<ShaderToyUniforms> => (gl, unis) => {
-    return [
-        UV,
-        assign(
+const shaderFunction =
+    (ast: ASTNode<Function, Vec3Term>): MainImageFn<ShaderToyUniforms> =>
+    (gl, unis) => {
+        return [
             UV,
-            vec3(
-                fragUV(gl.gl_FragCoord, unis.resolution),
-                mul(1, fract(unis.time))
-            )
-        ),
-        ret(vec4(abs(transpile(ast)), 1)),
-        // ret(vec4(fit1101(normalize(transpile(ast))), 1))
-    ];
-};
+            assign(
+                UV,
+                vec3(
+                    fragUV(gl.gl_FragCoord, unis.resolution),
+                    mul(1, fract(unis.time))
+                )
+            ),
+            ret(vec4(abs(transpile(ast)), 1)),
+            // ret(vec4(fit1101(normalize(transpile(ast))), 1))
+        ];
+    };
 
 const ast = new AST(AST_OPTS);
 let currTree = ast.randomAST();

@@ -1,22 +1,23 @@
 import type { IObjectOf } from "@thi.ng/api";
-import { isMobile, isString } from "@thi.ng/checks";
-import {
+import { isMobile } from "@thi.ng/checks/is-mobile";
+import { isString } from "@thi.ng/checks/is-string";
+import type {
     ColorRangePreset,
-    colorsFromTheme,
     ColorThemePart,
     CSSColorName,
-    distCIEDE2000,
-    lch,
-    LCH,
-    proximity,
-    sort,
 } from "@thi.ng/color";
-import { SYSTEM, XsAdd } from "@thi.ng/random";
+import { LCH, lch } from "@thi.ng/color/lch/lch";
+import { colorsFromTheme } from "@thi.ng/color/ops/color-range";
+import { distCIEDE2000 } from "@thi.ng/color/ops/distance";
+import { proximity, sort } from "@thi.ng/color/ops/sort";
+import { SYSTEM } from "@thi.ng/random/system";
+import { XsAdd } from "@thi.ng/random/xsadd";
 import { debounce, reactive, stream, Stream, sync } from "@thi.ng/rstream";
-import { map } from "@thi.ng/transducers";
+import { map } from "@thi.ng/transducers/xform/map";
 import { MainInputs, MainOutputs, RANGE_IDs } from "./api";
 import { downloadACT } from "./palette";
 import { attachSerializer, initFromHash } from "./serialize";
+
 // import { toDot, walk } from "@thi.ng/rstream-dot";
 
 const themePart = (

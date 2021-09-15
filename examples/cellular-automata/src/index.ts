@@ -1,20 +1,17 @@
-import { start } from "@thi.ng/hdom";
-import { dropdown, DropDownOption } from "@thi.ng/hdom-components";
-import {
-    buildKernel2d,
-    comp,
-    convolve2d,
-    map,
-    mapIndexed,
-    partition,
-    push,
-    range2d,
-    repeatedly,
-    step,
-    str,
-    transduce,
-} from "@thi.ng/transducers";
-import { bits } from "@thi.ng/transducers-binary";
+import { dropdown, DropDownOption } from "@thi.ng/hdom-components/dropdown";
+import { start } from "@thi.ng/hdom/start";
+import { bits } from "@thi.ng/transducers-binary/bits";
+import { comp } from "@thi.ng/transducers/func/comp";
+import { range2d } from "@thi.ng/transducers/iter/range2d";
+import { repeatedly } from "@thi.ng/transducers/iter/repeatedly";
+import { push } from "@thi.ng/transducers/rfn/push";
+import { str } from "@thi.ng/transducers/rfn/str";
+import { step } from "@thi.ng/transducers/step";
+import { transduce } from "@thi.ng/transducers/transduce";
+import { buildKernel2d, convolve2d } from "@thi.ng/transducers/xform/convolve";
+import { map } from "@thi.ng/transducers/xform/map";
+import { mapIndexed } from "@thi.ng/transducers/xform/map-indexed";
+import { partition } from "@thi.ng/transducers/xform/partition";
 
 const W = 128;
 const H = 48;

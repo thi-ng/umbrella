@@ -1,21 +1,23 @@
-import type { IObjectOf } from "@thi.ng/api";
-import { dropdown } from "@thi.ng/hdom-components";
-import { clamp } from "@thi.ng/math";
-import { ISubscriber, reactive, Stream, sync } from "@thi.ng/rstream";
-import {
-    comp,
-    map,
-    multiplex,
-    partition,
-    pluck,
-    range,
-    str,
-    transduce,
-    zip,
-} from "@thi.ng/transducers";
-import { bits } from "@thi.ng/transducers-binary";
+import { ConsoleLogger, IObjectOf } from "@thi.ng/api";
+import { dropdown } from "@thi.ng/hdom-components/dropdown";
+import { clamp } from "@thi.ng/math/interval";
+import { ISubscriber, setLogger } from "@thi.ng/rstream";
+import { reactive, Stream } from "@thi.ng/rstream/stream";
+import { sync } from "@thi.ng/rstream/stream-sync";
+import { bits } from "@thi.ng/transducers-binary/bits";
 import { updateDOM } from "@thi.ng/transducers-hdom";
+import { comp } from "@thi.ng/transducers/func/comp";
+import { range } from "@thi.ng/transducers/iter/range";
+import { zip } from "@thi.ng/transducers/iter/zip";
+import { str } from "@thi.ng/transducers/rfn/str";
+import { transduce } from "@thi.ng/transducers/transduce";
+import { map } from "@thi.ng/transducers/xform/map";
+import { multiplex } from "@thi.ng/transducers/xform/multiplex";
+import { partition } from "@thi.ng/transducers/xform/partition";
+import { pluck } from "@thi.ng/transducers/xform/pluck";
 import { FONT } from "./font";
+
+setLogger(new ConsoleLogger("rs"));
 
 const emitOnStream = (stream: ISubscriber<any>) => (e: Event) =>
     stream.next((<HTMLSelectElement>e.target).value);
@@ -114,9 +116,3 @@ const main = sync({ src: { raw: input, result: xformer } });
 main.transform(map(app), updateDOM());
 
 // input.next(transduce(map((x: number) => String.fromCharCode(x)), str(), range(32, 127)));
-
-// // HMR handling
-// if (process.env.NODE_ENV !== "production") {
-//     const hot = (<any>module).hot;
-//     hot && hot.dispose(() => main.done());
-// }

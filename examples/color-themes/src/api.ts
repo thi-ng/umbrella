@@ -1,10 +1,10 @@
 import type { IObjectOf } from "@thi.ng/api";
-import {
+import type {
     ColorRangePreset,
     ColorThemePart,
-    COLOR_RANGES,
     ReadonlyColor,
 } from "@thi.ng/color";
+import { COLOR_RANGES } from "@thi.ng/color/ops/color-range";
 
 export interface MainInputs {
     parts: IObjectOf<ColorThemePart>;
