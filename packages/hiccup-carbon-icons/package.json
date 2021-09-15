@@ -29,7 +29,7 @@
         "build:convert": "../../scripts/node-esm tools/convert-icons.ts",
         "build:sheet": "../../scripts/node-esm tools/contact-sheet.ts",
         "clean": "rimraf *.js *.map *.d.ts doc utils",
-        "doc": "typedoc --excludePrivate --out doc --theme ../../tools/doc/typedoc-theme src/index.ts",
+        "doc": "typedoc --excludePrivate --excludeInternal --out doc src/index.ts",
         "doc:ae": "mkdir -p .ae/doc .ae/temp && node_modules/.bin/api-extractor run --local --verbose",
         "doc:readme": "../../scripts/node-esm ../../tools/src/readme.ts",
         "doc:stats": "../../scripts/node-esm ../../tools/src/module-stats.ts",

@@ -27,7 +27,7 @@
         "build": "yarn clean && tsc --declaration",
         "build:check": "tsc --isolatedModules --noEmit",
         "clean": "rimraf *.js *.d.ts *.map doc api css hcy hsi hsl hsv int internal lab lch oklab ops rgb srgb xyy xyz ycc",
-        "doc": "typedoc --excludePrivate --out doc --theme ../../tools/doc/typedoc-theme src/index.ts",
+        "doc": "typedoc --excludePrivate --excludeInternal --out doc src/index.ts",
         "doc:ae": "mkdir -p .ae/doc .ae/temp && node_modules/.bin/api-extractor run --local --verbose",
         "doc:readme": "../../scripts/node-esm ../../tools/src/readme.ts",
         "doc:stats": "../../scripts/node-esm ../../tools/src/module-stats.ts",
