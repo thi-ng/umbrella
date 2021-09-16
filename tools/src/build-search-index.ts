@@ -1,6 +1,6 @@
 import { ArraySet, MultiTrie } from "@thi.ng/associative";
 // @ts-ignore
-import { serialize } from "@ygoe/msgpack";
+import msgpack from "@ygoe/msgpack";
 import { execSync } from "child_process";
 import { readFileSync, writeFileSync } from "fs";
 import { files, readJSON } from "./io";
@@ -100,7 +100,7 @@ const packed = build(
 
 writeFileSync("assets/search.json", JSON.stringify(packed));
 // msgpack'd binary version
-writeFileSync("assets/search.bin", serialize(packed));
+writeFileSync("assets/search.bin", msgpack.serialize(packed));
 execSync("gzip -9 -f assets/search.bin");
 
 console.log("uploading...");

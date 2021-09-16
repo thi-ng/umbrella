@@ -1,6 +1,7 @@
 import type { Fn } from "@thi.ng/api";
 import { preferredType } from "@thi.ng/mime";
 import { execSync } from "child_process";
+import { existsSync } from "fs";
 import { exit } from "process";
 import { files } from "./io";
 
@@ -33,8 +34,10 @@ console.log(args);
 execSync(`find examples/${EXAMPLE} -type f -name '*.DS_Store' -ls -delete`);
 
 const uploadAssets = (dir: string, opts?: Partial<UploadOpts>) => {
+    const root = `${BUILD}${dir}`;
+    if (!existsSync(root)) return;
     opts = { ext: "", gzip: true, depth: Infinity, ...opts };
-    for (let f of files(`${BUILD}${dir}`, opts.ext!, opts.depth)) {
+    for (let f of files(root, opts.ext!, opts.depth)) {
         const fd = `${BUCKET}/${f
             .replace(BUILD, "")
             .substr(dir === "" ? 1 : 0)}`;
