@@ -1,13 +1,18 @@
 import type { Fn0 } from "@thi.ng/api";
-import { sin } from "@thi.ng/dsp";
-import { group, polyline } from "@thi.ng/geom";
-import { start } from "@thi.ng/hdom";
+import { sin } from "@thi.ng/dsp/osc/sin";
+import { group } from "@thi.ng/geom/ctors/group";
+import { polyline } from "@thi.ng/geom/ctors/polyline";
 import { canvas } from "@thi.ng/hdom-canvas";
-import { mulV23 } from "@thi.ng/matrices";
-import { GRAY8, imagePromise, PackedBuffer } from "@thi.ng/pixel";
-import { Node2D } from "@thi.ng/scenegraph";
-import { map, range } from "@thi.ng/transducers";
-import { ReadonlyVec, setN2, Vec } from "@thi.ng/vectors";
+import { start } from "@thi.ng/hdom/start";
+import { mulV23 } from "@thi.ng/matrices/mulv";
+import { imagePromise } from "@thi.ng/pixel/canvas";
+import { GRAY8 } from "@thi.ng/pixel/format/gray8";
+import { PackedBuffer } from "@thi.ng/pixel/packed";
+import { Node2D } from "@thi.ng/scenegraph/node2";
+import { range } from "@thi.ng/transducers/iter/range";
+import { map } from "@thi.ng/transducers/xform/map";
+import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
+import { setN2 } from "@thi.ng/vectors/setn";
 import LOGO from "./logo-256.png";
 
 /**

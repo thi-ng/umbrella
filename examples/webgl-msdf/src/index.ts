@@ -24,7 +24,6 @@ import { mixN } from "@thi.ng/vectors/mixn";
 import { mulN } from "@thi.ng/vectors/muln";
 import type { GLMat4 } from "@thi.ng/webgl";
 import type { MSDFFont } from "@thi.ng/webgl-msdf";
-import { convertGlyphs } from "@thi.ng/webgl-msdf/convert";
 import { msdfShader } from "@thi.ng/webgl-msdf/shader";
 import { alignCenter, text } from "@thi.ng/webgl-msdf/text";
 import { BLEND_NORMAL } from "@thi.ng/webgl/api/blend";
@@ -34,8 +33,8 @@ import { compileModel } from "@thi.ng/webgl/buffer";
 import { draw } from "@thi.ng/webgl/draw";
 import { defShader } from "@thi.ng/webgl/shader";
 import { defTexture } from "@thi.ng/webgl/texture";
-import GLYPHS from "./inputmono-extralight-msdf.json";
-import GLYPH_TEX from "./inputmono-extralight.png";
+import GLYPHS from "./ibmplexsans-light-msdf-converted.json";
+import GLYPH_TEX from "./ibmplexsans-light.png";
 
 const TEXT = `Do not go gentle into that good night,
 Old age should burn and rave at close of day;
@@ -199,7 +198,9 @@ const createStarField = (gl: WebGLRenderingContext, num = 1000) => {
 };
 
 const app = () => {
-    const glyphs = convertGlyphs(GLYPHS);
+    // If using MSDF font def from https://msdf-bmfont.donmccurdy.com/
+    // const glyphs = convertGlyphs(GLYPHS);
+    const glyphs = GLYPHS;
     let stars: ModelSpec;
     let body: ModelSpec;
     let mouse: ISubscription<any, ReadonlyVec>;

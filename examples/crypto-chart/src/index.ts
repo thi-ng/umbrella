@@ -1,44 +1,40 @@
 import type { Fn, IObjectOf } from "@thi.ng/api";
-import { dropdown, DropDownOption } from "@thi.ng/hdom-components";
-import {
-    group,
-    line,
-    polygon,
-    polyline,
-    rect,
-    svg,
-    text,
-} from "@thi.ng/hiccup-svg";
-import { fit } from "@thi.ng/math";
+import { dropdown, DropDownOption } from "@thi.ng/hdom-components/dropdown";
+import { group } from "@thi.ng/hiccup-svg/group";
+import { line } from "@thi.ng/hiccup-svg/line";
+import { polygon } from "@thi.ng/hiccup-svg/polygon";
+import { polyline } from "@thi.ng/hiccup-svg/polyline";
+import { rect } from "@thi.ng/hiccup-svg/rect";
+import { svg } from "@thi.ng/hiccup-svg/svg";
+import { text } from "@thi.ng/hiccup-svg/text";
+import { fit } from "@thi.ng/math/fit";
 import { resolve } from "@thi.ng/resolve-map";
-import {
-    fromEvent,
-    fromInterval,
-    ISubscriber,
-    reactive,
-    resolve as resolvePromise,
-    stream,
-    sync,
-    trace,
-} from "@thi.ng/rstream";
-import { Z2 } from "@thi.ng/strings";
-import {
-    comp,
-    filter,
-    map,
-    mapcat,
-    mapIndexed,
-    max,
-    min,
-    pairs,
-    pluck,
-    push,
-    range,
-    transduce,
-    Transducer,
-} from "@thi.ng/transducers";
+import type { ISubscriber } from "@thi.ng/rstream";
+import { fromEvent } from "@thi.ng/rstream/from/event";
+import { fromInterval } from "@thi.ng/rstream/from/interval";
+import { reactive, stream } from "@thi.ng/rstream/stream";
+import { sync } from "@thi.ng/rstream/stream-sync";
+import { resolve as resolvePromise } from "@thi.ng/rstream/subs/resolve";
+import { trace } from "@thi.ng/rstream/subs/trace";
+import { Z2 } from "@thi.ng/strings/pad-left";
+import type { Transducer } from "@thi.ng/transducers";
 import { updateDOM } from "@thi.ng/transducers-hdom";
-import { ema, hma, sma, wma } from "@thi.ng/transducers-stats";
+import { ema } from "@thi.ng/transducers-stats/ema";
+import { hma } from "@thi.ng/transducers-stats/hma";
+import { sma } from "@thi.ng/transducers-stats/sma";
+import { wma } from "@thi.ng/transducers-stats/wma";
+import { comp } from "@thi.ng/transducers/func/comp";
+import { pairs } from "@thi.ng/transducers/iter/pairs";
+import { range } from "@thi.ng/transducers/iter/range";
+import { max } from "@thi.ng/transducers/rfn/max";
+import { min } from "@thi.ng/transducers/rfn/min";
+import { push } from "@thi.ng/transducers/rfn/push";
+import { transduce } from "@thi.ng/transducers/transduce";
+import { filter } from "@thi.ng/transducers/xform/filter";
+import { map } from "@thi.ng/transducers/xform/map";
+import { mapIndexed } from "@thi.ng/transducers/xform/map-indexed";
+import { mapcat } from "@thi.ng/transducers/xform/mapcat";
+import { pluck } from "@thi.ng/transducers/xform/pluck";
 
 // this example demonstrates how to use @thi.ng/rstream &
 // @thi.ng/transducer constructs to create a basic cryptocurrency candle
@@ -464,12 +460,10 @@ sync({
                 },
                 [
                     "div.flex",
-                    ...map((x) => ["div.w-25.ph2", x], [
-                        symbol,
-                        period,
-                        avg,
-                        themeSel,
-                    ]),
+                    ...map(
+                        (x) => ["div.w-25.ph2", x],
+                        [symbol, period, avg, themeSel]
+                    ),
                 ],
             ],
             [
@@ -493,8 +487,7 @@ sync({
                     "a",
                     {
                         class: `mr3 b link ${theme.body}`,
-                        href:
-                            "https://github.com/thi-ng/umbrella/tree/develop/examples/crypto-chart/",
+                        href: "https://github.com/thi-ng/umbrella/tree/develop/examples/crypto-chart/",
                     },
                     "Source",
                 ],
