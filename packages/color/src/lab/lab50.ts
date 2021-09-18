@@ -7,6 +7,7 @@ import { xyzLab } from "../xyz/xyz-lab";
 import { xyzXyzD65_50 } from "../xyz/xyz-xyz";
 import { labLabD65_50 } from "./lab-lab";
 import { lchLab } from "./lab-lch";
+import { labRgb } from "./lab-rgb";
 
 export declare class LabD50 implements TypedColor<LabD50> {
     buf: NumericArray;
@@ -46,4 +47,5 @@ export const labD50 = <ColorFactory<LabD50>>defColor({
         xyz50: xyzLab,
         xyz65: [xyzXyzD65_50, xyzLab],
     },
+    toRgb: labRgb,
 });

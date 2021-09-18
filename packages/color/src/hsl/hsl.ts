@@ -4,6 +4,7 @@ import type { Color, ColorFactory, ReadonlyColor, TypedColor } from "../api";
 import { defColor } from "../defcolor";
 import { hsvHsl } from "../hsv/hsv-hsl";
 import { rgbHsl } from "../rgb/rgb-hsl";
+import { hslRgb } from "./hsl-rgb";
 
 export declare class HSL implements TypedColor<HSL> {
     buf: NumericArray;
@@ -33,4 +34,5 @@ export const hsl = <ColorFactory<HSL>>defColor({
     mode: "hsl",
     order: <const>["h", "s", "l", "alpha"],
     from: { rgb: rgbHsl, srgb: rgbHsl, hsv: hsvHsl },
+    toRgb: hslRgb,
 });

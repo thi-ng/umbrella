@@ -35,7 +35,7 @@ export const defConversions = (
                     : (out, src) => d!(out, c!(out, b(out, a(out, src))));
         }
     }
-    CONVERSIONS[mode] = <Conversions>spec;
+    CONVERSIONS[mode] = { ...CONVERSIONS[mode], ...(<Conversions>spec) };
 };
 
 export const convert = <T extends Color>(

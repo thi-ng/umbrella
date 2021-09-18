@@ -3,7 +3,9 @@ import type { IRandom } from "@thi.ng/random";
 import type { Color, ColorFactory, ReadonlyColor, TypedColor } from "../api";
 import { defColor } from "../defcolor";
 import { rgbXyzD65 } from "../rgb/rgb-xyz";
+import { xyzRgbD65 } from "../xyz/xyz-rgb";
 import { xyzXyy } from "../xyz/xyz-xyy";
+import { xyyXyz } from "./xyy-xyz";
 
 export declare class XYY implements TypedColor<XYY> {
     buf: NumericArray;
@@ -41,4 +43,5 @@ export const xyy = <ColorFactory<XYY>>defColor({
         xyz50: xyzXyy,
         xyz65: xyzXyy,
     },
+    toRgb: [xyyXyz, xyzRgbD65],
 });

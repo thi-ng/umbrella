@@ -61,4 +61,5 @@ export const rgb = <ColorFactory<RGB>>defColor({
         xyz65: xyzRgbD65,
         ycc: yccRgb,
     },
+    toRgb: set4,
 });

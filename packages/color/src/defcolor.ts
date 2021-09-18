@@ -136,6 +136,7 @@ export const defColor = <M extends ColorMode, K extends string>(
 
     declareIndices($Color.prototype, <any[]>order);
     defConversions(spec.mode, spec.from);
+    defConversions("rgb", <any>{ [spec.mode]: spec.toRgb });
 
     const fromColor = (src: ReadonlyColor, mode: ColorMode, xs: any[]): any => {
         const res = new $Color(...xs);
