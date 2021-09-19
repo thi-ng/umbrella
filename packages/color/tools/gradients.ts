@@ -1,8 +1,3 @@
-import { serialize } from "@thi.ng/hiccup";
-import { svg } from "@thi.ng/hiccup-svg";
-import { schlick } from "@thi.ng/math";
-import { map, normRange, push, transduce } from "@thi.ng/transducers";
-import { writeFileSync } from "fs";
 import {
     Color,
     lch,
@@ -10,7 +5,11 @@ import {
     multiColorGradient,
     oklab,
     swatchesH,
-} from "../src";
+} from "@thi.ng/color";
+import { serialize } from "@thi.ng/hiccup";
+import { svg } from "@thi.ng/hiccup-svg";
+import { map, normRange, push, transduce } from "@thi.ng/transducers";
+import { writeFileSync } from "fs";
 
 for (let l of [0.5, 0.6, 0.7, 0.8, 0.9]) {
     const cols = transduce(
