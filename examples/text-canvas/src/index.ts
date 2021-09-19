@@ -13,19 +13,19 @@ import { perspective } from "@thi.ng/matrices/perspective";
 import { project3 } from "@thi.ng/matrices/project";
 import { rotationX44, rotationY44 } from "@thi.ng/matrices/rotation";
 import { viewport } from "@thi.ng/matrices/viewport";
+import { beginClip, Canvas, endClip } from "@thi.ng/text-canvas/canvas";
+import { circle } from "@thi.ng/text-canvas/circle";
+import { formatCanvas } from "@thi.ng/text-canvas/format";
+import { line } from "@thi.ng/text-canvas/line";
+import { clear } from "@thi.ng/text-canvas/rect";
 import {
     BG_GREEN,
     BG_LIGHT_MAGENTA,
     FG_CYAN,
     FG_WHITE,
     FG_YELLOW,
-} from "@thi.ng/text-canvas/api";
-import { beginClip, Canvas, endClip } from "@thi.ng/text-canvas/canvas";
-import { circle } from "@thi.ng/text-canvas/circle";
-import { FMT_HTML_TACHYONS } from "@thi.ng/text-canvas/format";
-import { line } from "@thi.ng/text-canvas/line";
-import { clear } from "@thi.ng/text-canvas/rect";
-import { toString } from "@thi.ng/text-canvas/string";
+} from "@thi.ng/text-format/api";
+import { FMT_HTML_TACHYONS } from "@thi.ng/text-format/html";
 import { add3 } from "@thi.ng/vectors/add";
 
 const W = 64;
@@ -123,6 +123,6 @@ requestAnimationFrame(function update() {
     endClip(canvas);
 
     // draw canvas
-    root!.innerHTML = toString(canvas, FMT_HTML_TACHYONS);
+    root!.innerHTML = formatCanvas(canvas, FMT_HTML_TACHYONS);
     requestAnimationFrame(update);
 });
