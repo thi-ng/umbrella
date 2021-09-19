@@ -10,7 +10,7 @@ import { normalize } from "@thi.ng/hiccup/normalize";
 import { repeat } from "@thi.ng/strings/repeat";
 import { wrap } from "@thi.ng/strings/wrap";
 import { Border } from "@thi.ng/text-canvas/api";
-import { toString } from "@thi.ng/text-canvas/string";
+import { formatCanvas } from "@thi.ng/text-canvas/format";
 import { tableCanvas } from "@thi.ng/text-canvas/table";
 
 interface SerializeState {
@@ -189,7 +189,7 @@ serializeElement.addAll({
         }
         return (
             "\n" +
-            toString(
+            formatCanvas(
                 tableCanvas(
                     {
                         cols: colWidths.map((width) => ({ width })),
