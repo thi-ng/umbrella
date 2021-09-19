@@ -1,0 +1,93 @@
+{
+    "name": "@thi.ng/text-format",
+    "version": "0.0.1",
+    "description": "Customizable color text formatting with presets for ANSI & HTML",
+    "type": "module",
+    "module": "./index.js",
+    "typings": "./index.d.ts",
+    "sideEffects": false,
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/thi-ng/umbrella.git"
+    },
+    "homepage": "https://github.com/thi-ng/umbrella/tree/master/packages/text-format#readme",
+    "funding": [
+        {
+            "type": "github",
+            "url": "https://github.com/sponsors/postspectacular"
+        },
+        {
+            "type": "patreon",
+            "url": "https://patreon.com/thing_umbrella"
+        }
+    ],
+    "author": "Karsten Schmidt <k+npm@thi.ng>",
+    "license": "Apache-2.0",
+    "scripts": {
+        "build": "yarn clean && tsc --declaration",
+        "build:check": "tsc --isolatedModules --noEmit",
+        "clean": "rimraf *.js *.d.ts *.map doc",
+        "doc": "typedoc --excludePrivate --excludeInternal --out doc src/index.ts",
+        "doc:ae": "mkdir -p .ae/doc .ae/temp && node_modules/.bin/api-extractor run --local --verbose",
+        "doc:readme": "../../scripts/node-esm ../../tools/src/readme.ts",
+        "doc:stats": "../../scripts/node-esm ../../tools/src/module-stats.ts",
+        "pub": "yarn build && yarn publish --access public",
+        "test": "testament test"
+    },
+    "dependencies": {
+        "@thi.ng/api": "^7.2.0",
+        "@thi.ng/hex": "^1.0.4",
+        "@thi.ng/memoize": "^2.1.21"
+    },
+    "devDependencies": {
+        "@thi.ng/testament": "^0.0.1"
+    },
+    "keywords": [
+        "4bit",
+        "8bit",
+        "16bit",
+        "ansi",
+        "color",
+        "css",
+        "format",
+        "html",
+        "rgb565",
+        "presets",
+        "text",
+        "typescript"
+    ],
+    "publishConfig": {
+        "access": "public"
+    },
+    "browser": {
+        "process": false,
+        "setTimeout": false
+    },
+    "files": [
+        "*.js",
+        "*.d.ts"
+    ],
+    "exports": {
+        ".": {
+            "import": "./index.js"
+        },
+        "./ansi": {
+            "import": "./ansi.js"
+        },
+        "./api": {
+            "import": "./api.js"
+        },
+        "./format": {
+            "import": "./format.js"
+        },
+        "./html": {
+            "import": "./html.js"
+        },
+        "./none": {
+            "import": "./none.js"
+        }
+    },
+    "thi.ng": {
+        "year": 2021
+    }
+}
