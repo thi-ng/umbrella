@@ -42,6 +42,7 @@
         "@thi.ng/math": "^4.0.6",
         "@thi.ng/memoize": "^2.1.21",
         "@thi.ng/strings": "^2.1.7",
+        "@thi.ng/text-format": "^0.0.1",
         "@thi.ng/transducers": "^7.9.2"
     },
     "devDependencies": {
@@ -113,9 +114,6 @@
         },
         "./rect": {
             "import": "./rect.js"
-        },
-        "./string": {
-            "import": "./string.js"
         },
         "./style": {
             "import": "./style.js"

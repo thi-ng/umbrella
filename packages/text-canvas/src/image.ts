@@ -2,10 +2,10 @@ import type { UIntArray } from "@thi.ng/api";
 import { peek } from "@thi.ng/arrays/peek";
 import { isNumber } from "@thi.ng/checks/is-number";
 import { clamp0 } from "@thi.ng/math/interval";
+import { FMT_ANSI565 } from "@thi.ng/text-format/ansi";
 import { ClipRect, ImageOpts, SHADES_BLOCK } from "./api";
 import { canvas, Canvas } from "./canvas";
-import { FMT_ANSI565 } from "./format";
-import { toString } from "./string";
+import { formatCanvas } from "./format";
 import { charCode, intersectRect } from "./utils";
 
 export const blit = (canvas: Canvas, x: number, y: number, src: Canvas) => {
@@ -296,7 +296,7 @@ export const imageCanvasBraille = (
 export const imageStringBraille = (
     src: { width: number; height: number; pixels: UIntArray },
     thresh: number
-) => toString(imageCanvasBraille(src, thresh, 0));
+) => formatCanvas(imageCanvasBraille(src, thresh, 0));
 
 /**
  * Syntax sugar for {@link imageRaw}. Takes a thi.ng/pixel compatible 16bit
@@ -324,8 +324,9 @@ export const imageCanvas565 = (
  */
 export const imageString565 = (
     src: { width: number; height: number; pixels: UIntArray },
-    char?: string
-) => toString(imageCanvas565(src, char), FMT_ANSI565);
+    char?: string,
+    fmt = FMT_ANSI565
+) => formatCanvas(imageCanvas565(src, char), fmt);
 
 const imgRect = (
     canvas: Canvas,
