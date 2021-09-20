@@ -6,10 +6,10 @@ import { cossin } from "@thi.ng/math/angle";
 import { HALF_PI } from "@thi.ng/math/api";
 import type { IRandom } from "@thi.ng/random";
 import { SYSTEM } from "@thi.ng/random/system";
-import { iterate } from "@thi.ng/transducers/iter/iterate";
-import { last } from "@thi.ng/transducers/rfn/last";
-import { mapcat } from "@thi.ng/transducers/xform/mapcat";
-import { take } from "@thi.ng/transducers/xform/take";
+import { iterate } from "@thi.ng/transducers/iterate";
+import { last } from "@thi.ng/transducers/last";
+import { mapcat } from "@thi.ng/transducers/mapcat";
+import { take } from "@thi.ng/transducers/take";
 import type { Vec } from "@thi.ng/vectors";
 import { add } from "@thi.ng/vectors/add";
 
