@@ -1,7 +1,7 @@
 import type { ISubscribable } from "@thi.ng/rstream";
+import { StreamMerge } from "@thi.ng/rstream/merge";
 import { Stream } from "@thi.ng/rstream/stream";
-import { StreamMerge } from "@thi.ng/rstream/stream-merge";
-import { StreamSync } from "@thi.ng/rstream/stream-sync";
+import { StreamSync } from "@thi.ng/rstream/sync";
 import { truncate } from "@thi.ng/strings/truncate";
 import { map } from "@thi.ng/transducers/map";
 import type { DotOpts, Node, NodeType, WalkState } from "./api";

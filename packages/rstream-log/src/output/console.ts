@@ -1,1 +1,1 @@
-export { trace as writeConsole } from "@thi.ng/rstream";
+export { trace as writeConsole } from "@thi.ng/rstream/trace";

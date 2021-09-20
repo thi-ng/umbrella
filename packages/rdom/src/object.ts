@@ -1,6 +1,6 @@
 import type { Fn, Keys } from "@thi.ng/api";
 import type { ISubscribable, StreamObj, StreamObjOpts } from "@thi.ng/rstream";
-import { fromObject } from "@thi.ng/rstream/from/object";
+import { fromObject } from "@thi.ng/rstream/object";
 import type {
     ComponentLike,
     IComponent,

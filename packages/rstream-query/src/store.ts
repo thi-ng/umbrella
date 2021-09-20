@@ -7,9 +7,9 @@ import { min3id } from "@thi.ng/math/interval";
 import type { Subscription } from "@thi.ng/rstream";
 import { DotOpts, IToDot, toDot, walk } from "@thi.ng/rstream-dot";
 import { CloseMode, ISubscription } from "@thi.ng/rstream/api";
+import { __nextID } from "@thi.ng/rstream/idgen";
 import { Stream } from "@thi.ng/rstream/stream";
-import { sync } from "@thi.ng/rstream/stream-sync";
-import { nextID } from "@thi.ng/rstream/utils/idgen";
+import { sync } from "@thi.ng/rstream/sync";
 import type { Transducer } from "@thi.ng/transducers";
 import { assocObj } from "@thi.ng/transducers/assoc-obj";
 import { comp } from "@thi.ng/transducers/comp";
@@ -265,7 +265,7 @@ export class TripleStore implements Iterable<Triple>, IToDot {
         if (!resolve) {
             illegalArgs("at least 1 query variable is required in pattern");
         }
-        id || (id = `query-${nextID()}`);
+        id || (id = `query-${__nextID()}`);
         const query = <Subscription<TripleIds, any>>(
             this.addPatternQuery(
                 [vs ? null : s, vp ? null : p, vo ? null : o],

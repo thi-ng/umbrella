@@ -2,7 +2,7 @@ import type { IObjectOf } from "@thi.ng/api";
 import { intersection } from "@thi.ng/associative/intersection";
 import { join } from "@thi.ng/associative/join";
 import { equiv } from "@thi.ng/equiv";
-import { LOGGER } from "@thi.ng/rstream/api";
+import { LOGGER } from "@thi.ng/rstream/logger";
 import type { Reducer, Transducer } from "@thi.ng/transducers";
 import { comp } from "@thi.ng/transducers/comp";
 import { compR } from "@thi.ng/transducers/compr";
