@@ -3,7 +3,7 @@ import { fract } from "@thi.ng/math/prec";
 import { padLeft } from "@thi.ng/strings/pad-left";
 import { padRight } from "@thi.ng/strings/pad-right";
 import { repeat } from "@thi.ng/strings/repeat";
-import { map } from "@thi.ng/transducers/xform/map";
+import { map } from "@thi.ng/transducers/map";
 import { BARS_H, BARS_V } from "./api";
 
 export const barChartHLines = (
