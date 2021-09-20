@@ -1,11 +1,11 @@
 import type { Fn } from "@thi.ng/api";
 import { ensureArray } from "@thi.ng/arrays/ensure-array";
 import { mix } from "@thi.ng/math/mix";
-import { max } from "@thi.ng/transducers/rfn/max";
-import { min } from "@thi.ng/transducers/rfn/min";
-import { minMax } from "@thi.ng/transducers/rfn/min-max";
+import { map } from "@thi.ng/transducers/map";
+import { max } from "@thi.ng/transducers/max";
+import { min } from "@thi.ng/transducers/min";
+import { minMax } from "@thi.ng/transducers/min-max";
 import { transduce } from "@thi.ng/transducers/transduce";
-import { map } from "@thi.ng/transducers/xform/map";
 import type { DomainValueFn } from "./api";
 
 export const uniformDomain = (src: Iterable<number>): DomainValueFn => {

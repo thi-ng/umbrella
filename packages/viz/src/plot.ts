@@ -1,9 +1,9 @@
 import type { Fn } from "@thi.ng/api";
 import { eqDelta } from "@thi.ng/math/eqdelta";
-import { comp } from "@thi.ng/transducers/func/comp";
+import { comp } from "@thi.ng/transducers/comp";
 import { iterator } from "@thi.ng/transducers/iterator";
-import { filter } from "@thi.ng/transducers/xform/filter";
-import { mapcat } from "@thi.ng/transducers/xform/mapcat";
+import { filter } from "@thi.ng/transducers/filter";
+import { mapcat } from "@thi.ng/transducers/mapcat";
 import type { AxisSpec, VizSpec } from "./api";
 
 const gridAxis = (

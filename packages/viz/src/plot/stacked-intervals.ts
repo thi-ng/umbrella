@@ -1,12 +1,12 @@
 import type { Fn, Fn2 } from "@thi.ng/api";
-import { comp } from "@thi.ng/transducers/func/comp";
+import { comp } from "@thi.ng/transducers/comp";
+import { filter } from "@thi.ng/transducers/filter";
 import { iterator } from "@thi.ng/transducers/iterator";
-import { push } from "@thi.ng/transducers/rfn/push";
-import { some } from "@thi.ng/transducers/rfn/some";
+import { map } from "@thi.ng/transducers/map";
+import { mapcatIndexed } from "@thi.ng/transducers/mapcat-indexed";
+import { push } from "@thi.ng/transducers/push";
+import { some } from "@thi.ng/transducers/some";
 import { transduce } from "@thi.ng/transducers/transduce";
-import { filter } from "@thi.ng/transducers/xform/filter";
-import { map } from "@thi.ng/transducers/xform/map";
-import { mapcatIndexed } from "@thi.ng/transducers/xform/mapcat-indexed";
 import type { Domain, PlotFn } from "../api";
 import { valueMapper } from "./utils";
 

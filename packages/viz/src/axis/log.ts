@@ -2,12 +2,12 @@ import type { FnN, FnU3 } from "@thi.ng/api";
 import { mergeDeepObj } from "@thi.ng/associative/merge-deep";
 import { inRange } from "@thi.ng/math/interval";
 import { mix } from "@thi.ng/math/mix";
-import { comp } from "@thi.ng/transducers/func/comp";
-import { range } from "@thi.ng/transducers/iter/range";
-import { range2d } from "@thi.ng/transducers/iter/range2d";
+import { comp } from "@thi.ng/transducers/comp";
+import { filter } from "@thi.ng/transducers/filter";
 import { iterator } from "@thi.ng/transducers/iterator";
-import { filter } from "@thi.ng/transducers/xform/filter";
-import { map } from "@thi.ng/transducers/xform/map";
+import { map } from "@thi.ng/transducers/map";
+import { range } from "@thi.ng/transducers/range";
+import { range2d } from "@thi.ng/transducers/range2d";
 import type { AxisSpec, Domain, InitialAxisSpec, Range, ScaleFn } from "../api";
 import { axisDefaults } from "./common";
 

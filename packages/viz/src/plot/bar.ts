@@ -1,6 +1,6 @@
 import type { Fn3 } from "@thi.ng/api";
 import { isFunction } from "@thi.ng/checks/is-function";
-import { map } from "@thi.ng/transducers/xform/map";
+import { map } from "@thi.ng/transducers/map";
 import type { DomainValues, PlotFn } from "../api";
 import { valueMapper } from "./utils";
 
