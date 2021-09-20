@@ -1,6 +1,6 @@
-import { CloseMode, CommonOpts } from "../api";
-import { Stream } from "../stream";
-import { optsWithID } from "../utils/idgen";
+import { CloseMode, CommonOpts } from "./api";
+import { __optsWithID } from "./idgen";
+import { stream } from "./stream";
 
 export interface FromIntervalOpts extends CommonOpts {
     /**
@@ -28,8 +28,11 @@ export const fromInterval = (
     delay: number,
     opts?: Partial<FromIntervalOpts>
 ) => {
-    opts = optsWithID("interval", <FromIntervalOpts>{ num: Infinity, ...opts });
-    return new Stream<number>((stream) => {
+    opts = __optsWithID("interval", <FromIntervalOpts>{
+        num: Infinity,
+        ...opts,
+    });
+    return stream<number>((stream) => {
         let i = 0;
         let count = opts!.num!;
         stream.next(i++);

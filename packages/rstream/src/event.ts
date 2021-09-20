@@ -1,6 +1,6 @@
-import type { CommonOpts } from "../api";
-import { Stream } from "../stream";
-import { optsWithID } from "../utils/idgen";
+import type { CommonOpts } from "./api";
+import { __optsWithID } from "./idgen";
+import { stream, Stream } from "./stream";
 
 /**
  * Creates a {@link Stream} of events attached to given element / event
@@ -18,11 +18,11 @@ export const fromEvent = (
     listenerOpts: boolean | AddEventListenerOptions = false,
     streamOpts?: Partial<CommonOpts>
 ) =>
-    new Stream<Event>((stream) => {
+    stream<Event>((stream) => {
         let listener = (e: Event) => stream.next(e);
         src.addEventListener(name, listener, listenerOpts);
         return () => src.removeEventListener(name, listener, listenerOpts);
-    }, optsWithID(`event-${name}`, streamOpts));
+    }, __optsWithID(`event-${name}`, streamOpts));
 
 /**
  * Same as {@link fromEvent}, however only supports well-known DOM event

@@ -1,6 +1,6 @@
-import type { Fn } from "@thi.ng/api";
 import type {
     DeepPath,
+    Fn,
     OptPathVal,
     Path,
     Path0,
@@ -12,13 +12,13 @@ import type {
     Path6,
     Path7,
     Path8,
+    Predicate2,
 } from "@thi.ng/api";
-import type { Predicate2 } from "@thi.ng/api";
 import type { ReadonlyAtom } from "@thi.ng/atom";
 import { View } from "@thi.ng/atom/view";
-import type { CommonOpts } from "../api";
-import { Stream } from "../stream";
-import { optsWithID } from "../utils/idgen";
+import type { CommonOpts } from "./api";
+import { __optsWithID } from "./idgen";
+import { Stream } from "./stream";
 
 export interface FromViewOpts<P, A, B> extends Partial<CommonOpts> {
     path: P;
@@ -171,7 +171,7 @@ export function fromView(
     atom: ReadonlyAtom<any>,
     opts: FromViewOpts<Path, any, any>
 ): Stream<any> {
-    opts = <FromViewUnsafeOpts<any>>optsWithID("view", opts);
+    opts = <FromViewUnsafeOpts<any>>__optsWithID("view", opts);
     return new Stream((stream) => {
         let isActive = true;
         const tx = opts.tx;

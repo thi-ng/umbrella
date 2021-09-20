@@ -1,5 +1,4 @@
-import type { Fn } from "@thi.ng/api";
-import type { Predicate2 } from "@thi.ng/api";
+import type { Fn, Predicate2 } from "@thi.ng/api";
 import { EquivMap } from "@thi.ng/associative/equiv-map";
 import { unsupported } from "@thi.ng/errors/unsupported";
 import type { Transducer } from "@thi.ng/transducers";
@@ -7,13 +6,13 @@ import {
     CloseMode,
     ISubscriber,
     ISubscription,
-    LOGGER,
     SubscriptionOpts,
     TransformableOpts,
     WithErrorHandlerOpts,
 } from "./api";
+import { __optsWithID } from "./idgen";
+import { LOGGER } from "./logger";
 import { Subscription, subscription } from "./subscription";
-import { optsWithID } from "./utils/idgen";
 
 export interface PubSubOpts<A, B, T> {
     /**
@@ -77,7 +76,7 @@ export class PubSub<A, B = A, T = any> extends Subscription<A, B> {
     constructor(opts: PubSubOpts<A, B, T>) {
         super(
             undefined,
-            optsWithID("pubsub", <Partial<SubscriptionOpts<A, B>>>{
+            __optsWithID("pubsub", <Partial<SubscriptionOpts<A, B>>>{
                 xform: opts.xform,
             })
         );
@@ -121,7 +120,7 @@ export class PubSub<A, B = A, T = any> extends Subscription<A, B> {
                 topicID,
                 (t = subscription(
                     undefined,
-                    optsWithID("topic", {
+                    __optsWithID("topic", {
                         closeOut: CloseMode.NEVER,
                     })
                 ))

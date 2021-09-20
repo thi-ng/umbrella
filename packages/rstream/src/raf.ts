@@ -1,8 +1,8 @@
 import { isNode } from "@thi.ng/checks/is-node";
-import type { CommonOpts } from "../api";
-import { Stream } from "../stream";
-import { optsWithID } from "../utils/idgen";
+import type { CommonOpts } from "./api";
+import { __optsWithID } from "./idgen";
 import { fromInterval } from "./interval";
+import { stream } from "./stream";
 
 /**
  * Yields {@link Stream} of a monotonically increasing counter,
@@ -19,7 +19,7 @@ import { fromInterval } from "./interval";
 export const fromRAF = (opts?: Partial<CommonOpts>) =>
     isNode()
         ? fromInterval(16, opts)
-        : new Stream<number>((stream) => {
+        : stream<number>((stream) => {
               let i = 0;
               let isActive = true;
               const loop = () => {
@@ -31,4 +31,4 @@ export const fromRAF = (opts?: Partial<CommonOpts>) =>
                   isActive = false;
                   cancelAnimationFrame(id);
               };
-          }, optsWithID("raf", opts));
+          }, __optsWithID("raf", opts));

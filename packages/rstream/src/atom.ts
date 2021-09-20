@@ -1,8 +1,8 @@
 import type { Predicate2 } from "@thi.ng/api";
 import type { ReadonlyAtom } from "@thi.ng/atom";
-import type { CommonOpts } from "../api";
-import { Stream } from "../stream";
-import { optsWithID } from "../utils/idgen";
+import type { CommonOpts } from "./api";
+import { __optsWithID } from "./idgen";
+import { stream } from "./stream";
 
 export interface FromAtomOpts<T> extends CommonOpts {
     /**
@@ -55,13 +55,13 @@ export interface FromAtomOpts<T> extends CommonOpts {
 export const fromAtom = <T>(
     atom: ReadonlyAtom<T>,
     opts?: Partial<FromAtomOpts<T>>
-): Stream<T> => {
-    opts = optsWithID("atom", <FromAtomOpts<T>>{
+) => {
+    opts = __optsWithID("atom", <FromAtomOpts<T>>{
         emitFirst: true,
         changed: (a, b) => a !== b,
         ...opts,
     });
-    return new Stream<T>((stream) => {
+    return stream<T>((stream) => {
         atom.addWatch(stream.id, (_, prev, curr) => {
             if (opts!.changed!(prev, curr)) {
                 stream.next(curr);

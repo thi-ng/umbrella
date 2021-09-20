@@ -15,14 +15,14 @@ import {
     CommonOpts,
     ISubscriber,
     ISubscription,
-    LOGGER,
     State,
     SubscriptionOpts,
     TransformableOpts,
     WithErrorHandlerOpts,
     WithTransform,
 } from "./api";
-import { optsWithID } from "./utils/idgen";
+import { __optsWithID } from "./idgen";
+import { LOGGER } from "./logger";
 
 /**
  * Creates a new {@link Subscription} instance, the fundamental datatype
@@ -95,7 +95,7 @@ export class Subscription<A, B> implements ISubscription<A, B> {
         protected wrapped?: Partial<ISubscriber<B>>,
         opts?: Partial<SubscriptionOpts<A, B>>
     ) {
-        opts = optsWithID(`sub`, {
+        opts = __optsWithID(`sub`, {
             closeIn: CloseMode.LAST,
             closeOut: CloseMode.LAST,
             cache: true,
@@ -198,7 +198,7 @@ export class Subscription<A, B> implements ISubscription<A, B> {
         }
         return this.subscribe(
             <any>sub,
-            optsWithID(
+            __optsWithID(
                 "xform",
                 args.length > 0
                     ? {

@@ -1,6 +1,6 @@
-import { fromIterable } from "../from/iterable";
-import { metaStream, MetaStreamOpts } from "../metastream";
-import { optsWithID } from "../utils/idgen";
+import { __optsWithID } from "./idgen";
+import { fromIterable } from "./iterable";
+import { metaStream, MetaStreamOpts } from "./metastream";
 
 /**
  * Returns a subscription which buffers any intermediate inputs arriving faster
@@ -19,7 +19,7 @@ import { optsWithID } from "../utils/idgen";
 export const debounce = <T>(delay: number, opts?: Partial<MetaStreamOpts>) =>
     metaStream(
         (x: T) => fromIterable([x], { delay }),
-        optsWithID("debounce", {
+        __optsWithID("debounce", {
             emitLast: true,
             ...opts,
         })

@@ -1,7 +1,7 @@
 import type { Predicate } from "@thi.ng/api";
-import type { ISubscriber } from "../api";
-import { PubSub } from "../pubsub";
-import { nextID } from "../utils/idgen";
+import type { ISubscriber } from "./api";
+import { __nextID } from "./idgen";
+import { PubSub } from "./pubsub";
 
 /**
  * Returns a {@link PubSub} using given predicate `pred` as boolean
@@ -52,7 +52,7 @@ export const bisect = <T>(
     truthy?: ISubscriber<T>,
     falsy?: ISubscriber<T>
 ): PubSub<T, T> => {
-    const sub = new PubSub<T, T>({ topic: pred, id: `bisect-${nextID()}` });
+    const sub = new PubSub<T, T>({ topic: pred, id: `bisect-${__nextID()}` });
     truthy && sub.subscribeTopic(true, truthy);
     falsy && sub.subscribeTopic(false, falsy);
     return sub;

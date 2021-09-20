@@ -1,8 +1,9 @@
 import type { Fn } from "@thi.ng/api";
-import { LOGGER, State } from "../api";
-import { Subscription } from "../subscription";
-import { nextID } from "../utils/idgen";
-import { makeWorker } from "../utils/worker";
+import { State } from "./api";
+import { __nextID } from "./idgen";
+import { LOGGER } from "./logger";
+import { Subscription } from "./subscription";
+import { defWorker } from "./defworker";
 
 export interface TunnelOpts<A> {
     /**
@@ -76,7 +77,7 @@ export class Tunnel<A, B> extends Subscription<A, B> {
     index: number;
 
     constructor(opts: TunnelOpts<A>) {
-        super(undefined, { id: opts.id || `tunnel-${nextID()}` });
+        super(undefined, { id: opts.id || `tunnel-${__nextID()}` });
         this.src = opts.src;
         this.workers = new Array(opts.maxWorkers || 1);
         this.transferables = opts.transferables;
@@ -97,7 +98,7 @@ export class Tunnel<A, B> extends Subscription<A, B> {
                 worker = null;
             }
             if (!worker) {
-                this.workers[this.index++] = worker = makeWorker(this.src);
+                this.workers[this.index++] = worker = defWorker(this.src);
                 this.index %= this.workers.length;
                 worker.addEventListener("message", (e: MessageEvent) =>
                     this.dispatch(e.data)

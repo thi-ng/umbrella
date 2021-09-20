@@ -1,7 +1,8 @@
-import { LOGGER, WithErrorHandlerOpts } from "../api";
-import { Stream } from "../stream";
-import { optsWithID } from "../utils/idgen";
-import { makeWorker } from "../utils/worker";
+import type { WithErrorHandlerOpts } from "./api";
+import { defWorker } from "./defworker";
+import { __optsWithID } from "./idgen";
+import { LOGGER } from "./logger";
+import { stream } from "./stream";
 
 export interface FromWorkerOpts extends WithErrorHandlerOpts {
     /**
@@ -40,9 +41,9 @@ export const fromWorker = <T>(
     worker: Worker | Blob | string,
     opts?: Partial<FromWorkerOpts>
 ) => {
-    const _worker = makeWorker(worker);
-    opts = optsWithID("worker", opts);
-    return new Stream<T>((stream) => {
+    const _worker = defWorker(worker);
+    opts = __optsWithID("worker", opts);
+    return stream<T>((stream) => {
         const msgListener = (e: MessageEvent) => {
             stream.next(e.data);
         };

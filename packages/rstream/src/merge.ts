@@ -1,7 +1,7 @@
 import { ISubscribable, ISubscription, State, TransformableOpts } from "./api";
+import { isFirstOrLastInput } from "./checks";
+import { __optsWithID } from "./idgen";
 import { Subscription } from "./subscription";
-import { isFirstOrLastInput } from "./utils/checks";
-import { optsWithID } from "./utils/idgen";
 
 export interface StreamMergeOpts<A, B> extends TransformableOpts<A, B> {
     /**
@@ -74,7 +74,7 @@ export class StreamMerge<A, B> extends Subscription<A, B> {
 
     constructor(opts?: Partial<StreamMergeOpts<A, B>>) {
         opts = opts || {};
-        super(undefined, optsWithID("streammerge", opts));
+        super(undefined, __optsWithID("streammerge", opts));
         this.sources = new Map();
         opts.src && this.addAll(opts.src);
     }

@@ -1,7 +1,8 @@
 import { isTransferable } from "@thi.ng/checks/is-transferable";
 import { isTypedArray } from "@thi.ng/checks/is-typedarray";
-import { ISubscriber, LOGGER } from "../api";
-import { makeWorker } from "../utils/worker";
+import type { ISubscriber } from "./api";
+import { LOGGER } from "./logger";
+import { defWorker } from "./defworker";
 
 /**
  * Creates a {@link ISubscriber | subscriber} which forwards received
@@ -42,7 +43,7 @@ export const postWorker = <T>(
     transfer = false,
     terminate = 0
 ): ISubscriber<T> => {
-    const _worker = makeWorker(worker);
+    const _worker = defWorker(worker);
     return {
         next(x) {
             if (x instanceof Promise) {

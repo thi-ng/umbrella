@@ -1,6 +1,6 @@
-import { CommonOpts, State } from "../api";
-import { Subscription } from "../subscription";
-import { optsWithID } from "../utils/idgen";
+import { CommonOpts, State } from "./api";
+import { __optsWithID } from "./idgen";
+import { Subscription } from "./subscription";
 
 export interface TimeoutOpts extends CommonOpts {
     /**
@@ -45,7 +45,7 @@ class Timeout<T> extends Subscription<T, T> {
     protected resetTimeout: boolean;
 
     constructor(timeoutMs: number, opts?: Partial<TimeoutOpts>) {
-        opts = optsWithID("timeout", opts);
+        opts = __optsWithID("timeout", opts);
         super(undefined, opts);
         this.timeoutMs = timeoutMs;
         this.errorObj = opts.error;

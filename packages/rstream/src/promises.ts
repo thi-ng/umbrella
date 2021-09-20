@@ -1,6 +1,6 @@
 import { mapcat } from "@thi.ng/transducers/mapcat";
-import type { ISubscription, WithErrorHandlerOpts } from "../api";
-import { optsWithID } from "../utils/idgen";
+import type { ISubscription, WithErrorHandlerOpts } from "./api";
+import { __optsWithID } from "./idgen";
 import { fromPromise } from "./promise";
 
 /**
@@ -44,6 +44,7 @@ export const fromPromises = <T>(
     promises: Iterable<T | PromiseLike<T>>,
     opts?: Partial<WithErrorHandlerOpts>
 ): ISubscription<T[], T> =>
-    fromPromise(Promise.all(promises), optsWithID("promises", opts)).transform(
-        mapcat((x: T[]) => x)
-    );
+    fromPromise(
+        Promise.all(promises),
+        __optsWithID("promises", opts)
+    ).transform(mapcat((x: T[]) => x));

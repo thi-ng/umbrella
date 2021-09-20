@@ -4,9 +4,9 @@ import { dedupe } from "@thi.ng/transducers/dedupe";
 import { reducer } from "@thi.ng/transducers/reduce";
 import { scan } from "@thi.ng/transducers/scan";
 import { CloseMode, ISubscribable } from "./api";
-import { fromInterval } from "./from/interval";
-import { fromRAF } from "./from/raf";
-import { sync } from "./stream-sync";
+import { fromInterval } from "./interval";
+import { fromRAF } from "./raf";
+import { sync } from "./sync";
 
 /**
  * Takes an existing stream/subscription `src` and attaches new

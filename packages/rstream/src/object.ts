@@ -1,8 +1,8 @@
 import type { Keys, Predicate2 } from "@thi.ng/api";
 import { dedupe } from "@thi.ng/transducers/dedupe";
-import type { CommonOpts, SubscriptionOpts } from "../api";
-import { Subscription, subscription } from "../subscription";
-import { nextID } from "../utils/idgen";
+import type { CommonOpts, SubscriptionOpts } from "./api";
+import { __nextID } from "./idgen";
+import { Subscription, subscription } from "./subscription";
 
 export type KeyStreams<T, K extends Keys<T>> = {
     [id in K]-?: Subscription<T[id], T[id]>;
@@ -133,7 +133,7 @@ export const fromObject = <T, K extends Keys<T>>(
     src: T,
     opts: Partial<StreamObjOpts<T, K>> = {}
 ) => {
-    const id = opts.id || `obj${nextID()}`;
+    const id = opts.id || `obj${__nextID()}`;
     const keys = opts.keys || <K[]>Object.keys(src);
     const _opts: Partial<SubscriptionOpts<any, any>> =
         opts.dedupe !== false

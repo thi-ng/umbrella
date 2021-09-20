@@ -6,10 +6,11 @@ import {
     partitionSync,
     PartitionSync,
 } from "@thi.ng/transducers/partition-sync";
-import { ISubscribable, ISubscription, LOGGER, TransformableOpts } from "./api";
+import type { ISubscribable, ISubscription, TransformableOpts } from "./api";
+import { isFirstOrLastInput } from "./checks";
+import { __optsWithID } from "./idgen";
+import { LOGGER } from "./logger";
 import { Subscription } from "./subscription";
-import { isFirstOrLastInput } from "./utils/checks";
-import { optsWithID } from "./utils/idgen";
 
 export type SyncTuple<T extends IObjectOf<ISubscribable<any>>> = {
     [id in keyof T]: Always<Derefed<T[id]>>;
@@ -160,7 +161,7 @@ export class StreamSync<
         const mapv = mapVals((x: [string, any]) => x[1]);
         super(
             undefined,
-            optsWithID("streamsync", <Partial<StreamSyncOpts<any, any>>>{
+            __optsWithID("streamsync", <Partial<StreamSyncOpts<any, any>>>{
                 ...opts,
                 xform: opts.xform
                     ? comp(psync, <any>mapv, opts.xform)

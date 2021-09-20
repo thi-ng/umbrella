@@ -1,8 +1,8 @@
 import type { Predicate } from "@thi.ng/api";
-import { CommonOpts, ISubscribable, State } from "../api";
-import type { Subscription } from "../subscription";
-import { optsWithID } from "../utils/idgen";
+import { CommonOpts, ISubscribable, State } from "./api";
 import { ASidechain } from "./asidechain";
+import { __optsWithID } from "./idgen";
+import type { Subscription } from "./subscription";
 
 export interface SidechainToggleOpts<T> extends CommonOpts {
     pred: Predicate<T>;
@@ -49,7 +49,7 @@ export class SidechainToggle<T, S> extends ASidechain<T, S, T> {
         side: ISubscribable<S>,
         opts?: Partial<SidechainToggleOpts<S>>
     ) {
-        opts = optsWithID("sidetoggle", opts);
+        opts = __optsWithID("sidetoggle", opts);
         super(opts);
         this.isActive = !!opts.initial;
         const pred = opts.pred || (() => true);

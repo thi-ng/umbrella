@@ -1,11 +1,11 @@
 import type { Predicate } from "@thi.ng/api";
 import { peek } from "@thi.ng/arrays/peek";
 import { map } from "@thi.ng/transducers/map";
-import { CommonOpts, ISubscribable, State } from "../api";
-import { fromRAF } from "../from/raf";
-import type { Subscription } from "../subscription";
-import { optsWithID } from "../utils/idgen";
+import { CommonOpts, ISubscribable, State } from "./api";
 import { ASidechain } from "./asidechain";
+import { __optsWithID } from "./idgen";
+import { fromRAF } from "./raf";
+import type { Subscription } from "./subscription";
 
 export interface SidechainPartitionOpts<T> extends CommonOpts {
     pred: Predicate<T>;
@@ -65,7 +65,7 @@ export class SidechainPartition<T, S> extends ASidechain<T, S, T[]> {
         side: ISubscribable<S>,
         opts?: Partial<SidechainPartitionOpts<S>>
     ) {
-        opts = optsWithID("sidepart", opts);
+        opts = __optsWithID("sidepart", opts);
         super(opts);
         this.buf = [];
         const pred = opts.pred || (() => true);

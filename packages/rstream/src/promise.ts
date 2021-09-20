@@ -1,6 +1,6 @@
-import { CloseMode, State, WithErrorHandlerOpts } from "../api";
-import { Stream } from "../stream";
-import { optsWithID } from "../utils/idgen";
+import { CloseMode, State, WithErrorHandlerOpts } from "./api";
+import { __optsWithID } from "./idgen";
+import { stream } from "./stream";
 
 /**
  * Yields a single-value {@link Stream} of the resolved promise and then
@@ -24,7 +24,7 @@ export const fromPromise = <T>(
         err = e;
         isError = true;
     });
-    return new Stream<T>((stream) => {
+    return stream<T>((stream) => {
         src.then(
             (x) => {
                 if (!canceled && stream.getState() < State.DONE) {
@@ -42,5 +42,5 @@ export const fromPromise = <T>(
         return () => {
             canceled = true;
         };
-    }, optsWithID("promise", opts));
+    }, __optsWithID("promise", opts));
 };

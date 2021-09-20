@@ -1,8 +1,8 @@
-import type { Fn } from "@thi.ng/api";
-import type { IID } from "@thi.ng/api";
-import { LOGGER, State } from "../api";
-import { Subscription } from "../subscription";
-import { optsWithID } from "../utils/idgen";
+import type { Fn, IID } from "@thi.ng/api";
+import { State } from "./api";
+import { __optsWithID } from "./idgen";
+import { LOGGER } from "./logger";
+import { Subscription } from "./subscription";
 
 export interface ResolverOpts extends IID<string> {
     /**
@@ -43,7 +43,7 @@ export class Resolver<T> extends Subscription<Promise<T>, T> {
     protected fail?: Fn<any, void>;
 
     constructor(opts: Partial<ResolverOpts> = {}) {
-        super(undefined, optsWithID("resolve"));
+        super(undefined, __optsWithID("resolve"));
         this.fail = opts.fail;
     }
 

@@ -1,6 +1,4 @@
 import type { Fn, Fn0, IDeref, IID } from "@thi.ng/api";
-import type { ILogger } from "@thi.ng/logger";
-import { NULL_LOGGER } from "@thi.ng/logger/null";
 import type { Transducer } from "@thi.ng/transducers";
 import type { Stream } from "./stream";
 
@@ -234,7 +232,3 @@ export interface IStream<T> extends ISubscriber<T> {
 
 export type StreamCancel = () => void;
 export type StreamSource<T> = (sub: Stream<T>) => StreamCancel | void;
-
-export let LOGGER = NULL_LOGGER;
-
-export const setLogger = (logger: ILogger) => (LOGGER = logger);

@@ -1,6 +1,6 @@
-import { CloseMode, CommonOpts } from "../api";
-import { Stream } from "../stream";
-import { optsWithID } from "../utils/idgen";
+import { CloseMode, CommonOpts } from "./api";
+import { __optsWithID } from "./idgen";
+import { stream } from "./stream";
 
 export interface FromIterableOpts extends CommonOpts {
     /**
@@ -31,7 +31,7 @@ export const fromIterable = <T>(
     src: Iterable<T>,
     opts: Partial<FromIterableOpts> = {}
 ) =>
-    new Stream<T>((stream) => {
+    stream<T>((stream) => {
         const iter = src[Symbol.iterator]();
         const id = setInterval(() => {
             let val: IteratorResult<T>;
@@ -43,7 +43,7 @@ export const fromIterable = <T>(
             }
         }, opts.delay || 0);
         return () => clearInterval(id);
-    }, optsWithID("iterable", opts));
+    }, __optsWithID("iterable", opts));
 
 /**
  * Creates a new {@link Stream} of given iterable which synchronously calls
@@ -59,9 +59,9 @@ export const fromIterableSync = <T>(
     src: Iterable<T>,
     opts?: Partial<CommonOpts>
 ) =>
-    new Stream<T>((stream) => {
+    stream<T>((stream) => {
         for (let s of src) {
             stream.next(s);
         }
         stream.closeIn !== CloseMode.NEVER && stream.done();
-    }, optsWithID("iterable-sync", opts));
+    }, __optsWithID("iterable-sync", opts));

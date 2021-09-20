@@ -1,4 +1,4 @@
-import type { ISubscriber } from "../api";
+import type { ISubscriber } from "./api";
 
 /**
  * Helper {@link ISubscriber} for inspection / debugging purposes.

@@ -5,14 +5,14 @@ import {
     IStream,
     ISubscriber,
     ISubscription,
-    LOGGER,
     StreamCancel,
     StreamSource,
     TransformableOpts,
     WithErrorHandlerOpts,
 } from "./api";
+import { __optsWithID } from "./idgen";
+import { LOGGER } from "./logger";
 import { Subscription } from "./subscription";
-import { optsWithID } from "./utils/idgen";
 
 /**
  * Creates a new {@link Stream} instance, optionally with given
@@ -115,7 +115,7 @@ export class Stream<T> extends Subscription<T, T> implements IStream<T> {
             : [undefined, src || {}];
         super(
             _opts.error ? { error: _opts.error } : undefined,
-            optsWithID("stream", _opts)
+            __optsWithID("stream", _opts)
         );
         this.src = _src;
         this._inited = false;

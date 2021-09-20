@@ -26,7 +26,7 @@
     "scripts": {
         "build": "yarn clean && tsc --declaration",
         "build:check": "tsc --isolatedModules --noEmit",
-        "clean": "rimraf *.js *.d.ts *.map doc from subs utils",
+        "clean": "rimraf *.js *.d.ts *.map doc",
         "doc": "typedoc --excludePrivate --excludeInternal --out doc src/index.ts",
         "doc:ae": "mkdir -p .ae/doc .ae/temp && node_modules/.bin/api-extractor run --local --verbose",
         "doc:readme": "../../scripts/node-esm ../../tools/src/readme.ts",
@@ -69,10 +69,7 @@
     },
     "files": [
         "*.js",
-        "*.d.ts",
-        "from",
-        "subs",
-        "utils"
+        "*.d.ts"
     ],
     "exports": {
         ".": {
@@ -81,107 +78,107 @@
         "./api": {
             "import": "./api.js"
         },
+        "./asidechain": {
+            "import": "./asidechain.js"
+        },
+        "./atom": {
+            "import": "./atom.js"
+        },
+        "./bisect": {
+            "import": "./bisect.js"
+        },
         "./checks": {
             "import": "./checks.js"
+        },
+        "./debounce": {
+            "import": "./debounce.js"
+        },
+        "./defworker": {
+            "import": "./defworker.js"
+        },
+        "./event": {
+            "import": "./event.js"
         },
         "./forkjoin": {
             "import": "./forkjoin.js"
         },
-        "./from/atom": {
-            "import": "./from/atom.js"
+        "./idgen": {
+            "import": "./idgen.js"
         },
-        "./from/event": {
-            "import": "./from/event.js"
+        "./interval": {
+            "import": "./interval.js"
         },
-        "./from/interval": {
-            "import": "./from/interval.js"
+        "./iterable": {
+            "import": "./iterable.js"
         },
-        "./from/iterable": {
-            "import": "./from/iterable.js"
+        "./logger": {
+            "import": "./logger.js"
         },
-        "./from/object": {
-            "import": "./from/object.js"
-        },
-        "./from/promise": {
-            "import": "./from/promise.js"
-        },
-        "./from/promises": {
-            "import": "./from/promises.js"
-        },
-        "./from/raf": {
-            "import": "./from/raf.js"
-        },
-        "./from/view": {
-            "import": "./from/view.js"
-        },
-        "./from/worker": {
-            "import": "./from/worker.js"
+        "./merge": {
+            "import": "./merge.js"
         },
         "./metastream": {
             "import": "./metastream.js"
         },
+        "./object": {
+            "import": "./object.js"
+        },
+        "./post-worker": {
+            "import": "./post-worker.js"
+        },
+        "./promise": {
+            "import": "./promise.js"
+        },
+        "./promises": {
+            "import": "./promises.js"
+        },
         "./pubsub": {
             "import": "./pubsub.js"
         },
-        "./stream-merge": {
-            "import": "./stream-merge.js"
+        "./raf": {
+            "import": "./raf.js"
         },
-        "./stream-sync": {
-            "import": "./stream-sync.js"
+        "./resolve": {
+            "import": "./resolve.js"
+        },
+        "./sidechain-partition": {
+            "import": "./sidechain-partition.js"
+        },
+        "./sidechain-toggle": {
+            "import": "./sidechain-toggle.js"
         },
         "./stream": {
             "import": "./stream.js"
         },
-        "./subs/asidechain": {
-            "import": "./subs/asidechain.js"
-        },
-        "./subs/bisect": {
-            "import": "./subs/bisect.js"
-        },
-        "./subs/debounce": {
-            "import": "./subs/debounce.js"
-        },
-        "./subs/post-worker": {
-            "import": "./subs/post-worker.js"
-        },
-        "./subs/resolve": {
-            "import": "./subs/resolve.js"
-        },
-        "./subs/sidechain-partition": {
-            "import": "./subs/sidechain-partition.js"
-        },
-        "./subs/sidechain-toggle": {
-            "import": "./subs/sidechain-toggle.js"
-        },
-        "./subs/timeout": {
-            "import": "./subs/timeout.js"
-        },
-        "./subs/trace": {
-            "import": "./subs/trace.js"
-        },
-        "./subs/transduce": {
-            "import": "./subs/transduce.js"
-        },
-        "./subs/tunnel": {
-            "import": "./subs/tunnel.js"
-        },
         "./subscription": {
             "import": "./subscription.js"
+        },
+        "./sync": {
+            "import": "./sync.js"
+        },
+        "./timeout": {
+            "import": "./timeout.js"
+        },
+        "./trace": {
+            "import": "./trace.js"
+        },
+        "./transduce": {
+            "import": "./transduce.js"
         },
         "./trigger": {
             "import": "./trigger.js"
         },
+        "./tunnel": {
+            "import": "./tunnel.js"
+        },
         "./tween": {
             "import": "./tween.js"
         },
-        "./utils/checks": {
-            "import": "./utils/checks.js"
+        "./view": {
+            "import": "./view.js"
         },
-        "./utils/idgen": {
-            "import": "./utils/idgen.js"
-        },
-        "./utils/worker": {
-            "import": "./utils/worker.js"
+        "./worker": {
+            "import": "./worker.js"
         }
     },
     "thi.ng": {

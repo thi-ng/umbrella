@@ -6,9 +6,9 @@ import { mapcat } from "@thi.ng/transducers/mapcat";
 import { range } from "@thi.ng/transducers/range";
 import { transduce } from "@thi.ng/transducers/transduce";
 import type { CommonOpts, ISubscribable, ITransformable } from "./api";
-import { sync } from "./stream-sync";
-import { tunnel } from "./subs/tunnel";
 import type { Subscription } from "./subscription";
+import { sync } from "./sync";
+import { tunnel } from "./tunnel";
 
 export interface ForkJoinOpts<IN, MSG, RES, OUT> extends Partial<CommonOpts> {
     /**
