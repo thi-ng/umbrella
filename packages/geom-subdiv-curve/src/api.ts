@@ -1,6 +1,6 @@
 import type { FnU } from "@thi.ng/api";
 import type { SubdivKernel } from "@thi.ng/geom-api";
-import { wrapSides } from "@thi.ng/transducers/iter/wrap-sides";
+import { wrapSides } from "@thi.ng/transducers/wrap-sides";
 import type { ReadonlyVec } from "@thi.ng/vectors";
 import { addmN } from "@thi.ng/vectors/addmn";
 import { mixN } from "@thi.ng/vectors/mixn";

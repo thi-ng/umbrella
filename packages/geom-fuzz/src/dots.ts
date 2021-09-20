@@ -3,7 +3,7 @@ import { points } from "@thi.ng/geom/ctors/points";
 import { bounds } from "@thi.ng/geom/ops/bounds";
 import { pointInside } from "@thi.ng/geom/ops/point-inside";
 import { unmapPoint } from "@thi.ng/geom/ops/unmap-point";
-import { range2d } from "@thi.ng/transducers/iter/range2d";
+import { range2d } from "@thi.ng/transducers/range2d";
 import type { Vec } from "@thi.ng/vectors";
 import { div2 } from "@thi.ng/vectors/div";
 import { jitter } from "@thi.ng/vectors/jitter";

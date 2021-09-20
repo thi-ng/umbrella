@@ -11,7 +11,7 @@ import {
     openCubicFromControlPoints,
 } from "@thi.ng/geom-splines/cubic-from-controlpoints";
 import { TAU } from "@thi.ng/math/api";
-import { mapcat } from "@thi.ng/transducers/xform/mapcat";
+import { mapcat } from "@thi.ng/transducers/mapcat";
 import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
 import type { Circle } from "../api/circle";
 import { Cubic } from "../api/cubic";

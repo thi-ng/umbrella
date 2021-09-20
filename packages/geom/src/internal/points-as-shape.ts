@@ -1,5 +1,5 @@
 import type { Attribs, PCLikeConstructor } from "@thi.ng/geom-api";
-import { map } from "@thi.ng/transducers/xform/map";
+import { map } from "@thi.ng/transducers/map";
 import type { Vec } from "@thi.ng/vectors";
 import { copyVectors } from "@thi.ng/vectors/copy";
 

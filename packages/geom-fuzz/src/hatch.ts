@@ -8,7 +8,7 @@ import { unmapPoint } from "@thi.ng/geom/ops/unmap-point";
 import { columnEnds2d } from "@thi.ng/grid-iterators/column-ends";
 import { diagonalEnds2d } from "@thi.ng/grid-iterators/diagonal-ends";
 import { rowEnds2d } from "@thi.ng/grid-iterators/row-ends";
-import { partition } from "@thi.ng/transducers/xform/partition";
+import { partition } from "@thi.ng/transducers/partition";
 import { div2 } from "@thi.ng/vectors/div";
 import { DEFAULT_LINE, FillFn, HatchOpts } from "./api";
 import { defLine } from "./line";

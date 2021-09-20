@@ -2,7 +2,7 @@ import type { Fn, Nullable, Pair } from "@thi.ng/api";
 import type { IRegionQuery, ISpatialMap } from "@thi.ng/geom-api";
 import type { Heap } from "@thi.ng/heaps";
 import { EPS } from "@thi.ng/math/api";
-import { map } from "@thi.ng/transducers/xform/map";
+import { map } from "@thi.ng/transducers/map";
 import type { ReadonlyVec, VecOpRoVV } from "@thi.ng/vectors";
 import { div } from "@thi.ng/vectors/div";
 import { equals } from "@thi.ng/vectors/equals";

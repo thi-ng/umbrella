@@ -3,7 +3,7 @@ import { ensureArray } from "@thi.ng/arrays/ensure-array";
 import type { IRegionQuery, ISpatialMap } from "@thi.ng/geom-api";
 import { Heap } from "@thi.ng/heaps/heap";
 import { EPS } from "@thi.ng/math/api";
-import { map } from "@thi.ng/transducers/xform/map";
+import { map } from "@thi.ng/transducers/map";
 import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
 import { distSq } from "@thi.ng/vectors/distsq";
 import { addResults, CMP, into } from "./utils";
