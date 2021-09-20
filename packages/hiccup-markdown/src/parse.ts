@@ -9,8 +9,8 @@ import { repeat } from "@thi.ng/fsm/repeat";
 import { seq } from "@thi.ng/fsm/seq";
 import { str } from "@thi.ng/fsm/str";
 import { untilStr } from "@thi.ng/fsm/until";
-import { comp } from "@thi.ng/transducers/func/comp";
-import { filter } from "@thi.ng/transducers/xform/filter";
+import { comp } from "@thi.ng/transducers/comp";
+import { filter } from "@thi.ng/transducers/filter";
 import type { TagFactories } from "./api";
 
 type ParseResult = ResultBody<any[]>;
