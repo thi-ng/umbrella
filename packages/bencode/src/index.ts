@@ -12,7 +12,7 @@ import { unsupported } from "@thi.ng/errors/unsupported";
 import type { BinStructItem } from "@thi.ng/transducers-binary";
 import { bytes, str, u8, u8array } from "@thi.ng/transducers-binary/bytes";
 import { utf8Decode, utf8Length } from "@thi.ng/transducers-binary/utf8";
-import { mapcat } from "@thi.ng/transducers/xform/mapcat";
+import { mapcat } from "@thi.ng/transducers/mapcat";
 
 const enum Type {
     INT,
