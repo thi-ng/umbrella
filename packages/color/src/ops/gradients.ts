@@ -1,5 +1,5 @@
 import type { NumericArray } from "@thi.ng/api";
-import { tween } from "@thi.ng/transducers/iter/tween";
+import { tween } from "@thi.ng/transducers/tween";
 import { setS4 } from "@thi.ng/vectors/sets";
 import type { TypedColor } from "../api";
 import type { GradientOpts } from "../api/gradients";
