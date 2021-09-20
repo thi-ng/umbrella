@@ -182,9 +182,6 @@
         "./api/watch": {
             "import": "./api/watch.js"
         },
-        "./assert": {
-            "import": "./assert.js"
-        },
         "./constants": {
             "import": "./constants.js"
         },

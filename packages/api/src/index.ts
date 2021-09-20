@@ -38,7 +38,6 @@ export * from "./api/tuple";
 export * from "./api/typedarray";
 export * from "./api/watch";
 
-export * from "./assert";
 export * from "./constants";
 export * from "./expose";
 export * from "./logger";
