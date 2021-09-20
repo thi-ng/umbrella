@@ -1,12 +1,10 @@
-import type { Fn, Fn3 } from "@thi.ng/api";
-import type { IObjectOf } from "@thi.ng/api";
-import type { ArrayLikeIterable } from "@thi.ng/api";
-import { comp } from "@thi.ng/transducers/func/comp";
-import { range } from "@thi.ng/transducers/iter/range";
-import { assocObj } from "@thi.ng/transducers/rfn/assoc-obj";
+import type { ArrayLikeIterable, Fn, Fn3, IObjectOf } from "@thi.ng/api";
+import { assocObj } from "@thi.ng/transducers/assoc-obj";
+import { comp } from "@thi.ng/transducers/comp";
+import { map } from "@thi.ng/transducers/map";
+import { mapcat } from "@thi.ng/transducers/mapcat";
+import { range } from "@thi.ng/transducers/range";
 import { transduce } from "@thi.ng/transducers/transduce";
-import { map } from "@thi.ng/transducers/xform/map";
-import { mapcat } from "@thi.ng/transducers/xform/mapcat";
 import type { CommonOpts, ISubscribable, ITransformable } from "./api";
 import { sync } from "./stream-sync";
 import { tunnel } from "./subs/tunnel";

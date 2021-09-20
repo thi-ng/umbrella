@@ -11,7 +11,7 @@ import { fromIterableSync } from "@thi.ng/rstream/from/iterable";
 import { fromViewUnsafe } from "@thi.ng/rstream/from/view";
 import { StreamSync, sync } from "@thi.ng/rstream/stream-sync";
 import type { Transducer } from "@thi.ng/transducers";
-import { map } from "@thi.ng/transducers/xform/map";
+import { map } from "@thi.ng/transducers/map";
 import type {
     Graph,
     GraphSpec,

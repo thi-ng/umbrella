@@ -1,6 +1,6 @@
 import type { Predicate } from "@thi.ng/api";
 import { peek } from "@thi.ng/arrays/peek";
-import { map } from "@thi.ng/transducers/xform/map";
+import { map } from "@thi.ng/transducers/map";
 import { CommonOpts, ISubscribable, State } from "../api";
 import { fromRAF } from "../from/raf";
 import type { Subscription } from "../subscription";

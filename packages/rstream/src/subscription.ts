@@ -6,10 +6,10 @@ import { peek } from "@thi.ng/arrays/peek";
 import { isPlainObject } from "@thi.ng/checks/is-plain-object";
 import { illegalState } from "@thi.ng/errors/illegal-state";
 import type { Reducer, Transducer } from "@thi.ng/transducers";
-import { comp } from "@thi.ng/transducers/func/comp";
+import { comp } from "@thi.ng/transducers/comp";
+import { map } from "@thi.ng/transducers/map";
+import { push } from "@thi.ng/transducers/push";
 import { isReduced, Reduced, unreduced } from "@thi.ng/transducers/reduced";
-import { push } from "@thi.ng/transducers/rfn/push";
-import { map } from "@thi.ng/transducers/xform/map";
 import {
     CloseMode,
     CommonOpts,

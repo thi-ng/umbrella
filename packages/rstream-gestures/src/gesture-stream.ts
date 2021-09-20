@@ -4,7 +4,7 @@ import { clamp } from "@thi.ng/math/interval";
 import type { Stream } from "@thi.ng/rstream";
 import { fromDOMEvent } from "@thi.ng/rstream/from/event";
 import { merge } from "@thi.ng/rstream/stream-merge";
-import { map } from "@thi.ng/transducers/xform/map";
+import { map } from "@thi.ng/transducers/map";
 import type {
     GestureEvent,
     GestureInfo,

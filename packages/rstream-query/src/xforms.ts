@@ -4,11 +4,11 @@ import { join } from "@thi.ng/associative/join";
 import { equiv } from "@thi.ng/equiv";
 import { LOGGER } from "@thi.ng/rstream/api";
 import type { Reducer, Transducer } from "@thi.ng/transducers";
-import { comp } from "@thi.ng/transducers/func/comp";
-import { compR } from "@thi.ng/transducers/func/compr";
-import { keySelector } from "@thi.ng/transducers/func/key-selector";
-import { dedupe } from "@thi.ng/transducers/xform/dedupe";
-import { map } from "@thi.ng/transducers/xform/map";
+import { comp } from "@thi.ng/transducers/comp";
+import { compR } from "@thi.ng/transducers/compr";
+import { dedupe } from "@thi.ng/transducers/dedupe";
+import { keySelector } from "@thi.ng/transducers/key-selector";
+import { map } from "@thi.ng/transducers/map";
 import type { BindFn, Edit, Solutions, Triple, TripleIds } from "./api";
 import type { TripleStore } from "./store";
 

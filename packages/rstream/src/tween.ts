@@ -1,8 +1,8 @@
 import type { Fn2 } from "@thi.ng/api";
 import { isNumber } from "@thi.ng/checks/is-number";
+import { dedupe } from "@thi.ng/transducers/dedupe";
 import { reducer } from "@thi.ng/transducers/reduce";
-import { dedupe } from "@thi.ng/transducers/xform/dedupe";
-import { scan } from "@thi.ng/transducers/xform/scan";
+import { scan } from "@thi.ng/transducers/scan";
 import { CloseMode, ISubscribable } from "./api";
 import { fromInterval } from "./from/interval";
 import { fromRAF } from "./from/raf";

@@ -4,19 +4,19 @@ import { join } from "@thi.ng/associative/join";
 import { equiv } from "@thi.ng/equiv";
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import { min3id } from "@thi.ng/math/interval";
+import type { Subscription } from "@thi.ng/rstream";
 import { DotOpts, IToDot, toDot, walk } from "@thi.ng/rstream-dot";
 import { CloseMode, ISubscription } from "@thi.ng/rstream/api";
 import { Stream } from "@thi.ng/rstream/stream";
 import { sync } from "@thi.ng/rstream/stream-sync";
-import type { Subscription } from "@thi.ng/rstream";
 import { nextID } from "@thi.ng/rstream/utils/idgen";
 import type { Transducer } from "@thi.ng/transducers";
-import { comp } from "@thi.ng/transducers/func/comp";
-import { assocObj } from "@thi.ng/transducers/rfn/assoc-obj";
+import { assocObj } from "@thi.ng/transducers/assoc-obj";
+import { comp } from "@thi.ng/transducers/comp";
+import { dedupe } from "@thi.ng/transducers/dedupe";
+import { map } from "@thi.ng/transducers/map";
+import { mapIndexed } from "@thi.ng/transducers/map-indexed";
 import { transduce } from "@thi.ng/transducers/transduce";
-import { dedupe } from "@thi.ng/transducers/xform/dedupe";
-import { map } from "@thi.ng/transducers/xform/map";
-import { mapIndexed } from "@thi.ng/transducers/xform/map-indexed";
 import type {
     Edit,
     PathPattern,

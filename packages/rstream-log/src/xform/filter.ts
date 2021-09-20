@@ -1,7 +1,7 @@
 import type { LogLevel } from "@thi.ng/api";
 import { isString } from "@thi.ng/checks/is-string";
 import type { Transducer } from "@thi.ng/transducers";
-import { filter } from "@thi.ng/transducers/xform/filter";
+import { filter } from "@thi.ng/transducers/filter";
 import type { LogEntry } from "../api";
 
 export const onlyLevel = (level: LogLevel): Transducer<LogEntry, LogEntry> =>

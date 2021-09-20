@@ -1,6 +1,5 @@
-import type { Keys } from "@thi.ng/api";
-import type { Predicate2 } from "@thi.ng/api";
-import { dedupe } from "@thi.ng/transducers/xform/dedupe";
+import type { Keys, Predicate2 } from "@thi.ng/api";
+import { dedupe } from "@thi.ng/transducers/dedupe";
 import type { CommonOpts, SubscriptionOpts } from "../api";
 import { Subscription, subscription } from "../subscription";
 import { nextID } from "../utils/idgen";
