@@ -8,8 +8,8 @@ import {
 import { unsupported } from "@thi.ng/errors/unsupported";
 import type { Reducer, Transducer } from "@thi.ng/transducers";
 import { iterator } from "@thi.ng/transducers/iterator";
+import { mapcat } from "@thi.ng/transducers/mapcat";
 import { reduce } from "@thi.ng/transducers/reduce";
-import { mapcat } from "@thi.ng/transducers/xform/mapcat";
 import type { BinStructItem } from "./api";
 import { utf8Encode } from "./utf8";
 

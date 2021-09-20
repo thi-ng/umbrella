@@ -1,5 +1,5 @@
 import type { Reducer, Transducer } from "@thi.ng/transducers";
-import { compR } from "@thi.ng/transducers/func/compr";
+import { compR } from "@thi.ng/transducers/compr";
 import { iterator, iterator1 } from "@thi.ng/transducers/iterator";
 import { isReduced } from "@thi.ng/transducers/reduced";
 

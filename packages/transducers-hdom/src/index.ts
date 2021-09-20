@@ -6,7 +6,7 @@ import {
 } from "@thi.ng/hdom";
 import { derefContext } from "@thi.ng/hiccup/deref";
 import type { Transducer } from "@thi.ng/transducers";
-import { scan } from "@thi.ng/transducers/xform/scan";
+import { scan } from "@thi.ng/transducers/scan";
 
 /**
  * Side-effecting & stateful transducer which receives {@link

@@ -1,6 +1,6 @@
 import type { Reducer, Transducer } from "@thi.ng/transducers";
-import { compR } from "@thi.ng/transducers/func/compr";
-import { $iter, iterator } from "@thi.ng/transducers/iterator";
+import { compR } from "@thi.ng/transducers/compr";
+import { iterator, __iter } from "@thi.ng/transducers/iterator";
 import { isReduced } from "@thi.ng/transducers/reduced";
 
 /**
@@ -31,7 +31,7 @@ export function bits(
 ): IterableIterator<number>;
 export function bits(...args: any[]): any {
     return (
-        $iter(bits, args, iterator) ||
+        __iter(bits, args, iterator) ||
         ((rfn: Reducer<any, number>) => {
             const reduce = rfn[2];
             const size = args[0] || 8;

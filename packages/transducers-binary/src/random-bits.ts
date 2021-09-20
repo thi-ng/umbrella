@@ -1,6 +1,6 @@
 import type { IRandom } from "@thi.ng/random";
 import { SYSTEM } from "@thi.ng/random/system";
-import { repeatedly } from "@thi.ng/transducers/iter/repeatedly";
+import { repeatedly } from "@thi.ng/transducers/repeatedly";
 
 /**
  * Returns an iterator of random bits, with 1's occurring w/ given

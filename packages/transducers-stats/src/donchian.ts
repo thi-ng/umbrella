@@ -1,8 +1,8 @@
 import type { Transducer } from "@thi.ng/transducers";
-import { comp } from "@thi.ng/transducers/func/comp";
+import { comp } from "@thi.ng/transducers/comp";
 import { iterator } from "@thi.ng/transducers/iterator";
-import { map } from "@thi.ng/transducers/xform/map";
-import { partition } from "@thi.ng/transducers/xform/partition";
+import { map } from "@thi.ng/transducers/map";
+import { partition } from "@thi.ng/transducers/partition";
 import { bounds } from "./bounds";
 
 /**

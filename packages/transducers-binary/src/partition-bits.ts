@@ -1,5 +1,5 @@
 import type { Reducer, Transducer } from "@thi.ng/transducers";
-import { $iter, iterator } from "@thi.ng/transducers/iterator";
+import { iterator, __iter } from "@thi.ng/transducers/iterator";
 import { isReduced } from "@thi.ng/transducers/reduced";
 
 /**
@@ -23,7 +23,7 @@ export function partitionBits(
 ): IterableIterator<number>;
 export function partitionBits(...args: any[]): any {
     return (
-        $iter(partitionBits, args, iterator) ||
+        __iter(partitionBits, args, iterator) ||
         ((rfn: Reducer<any, number>) => {
             const destSize = args[0];
             const srcSize = args[1] || 8;

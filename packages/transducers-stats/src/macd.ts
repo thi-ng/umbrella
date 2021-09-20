@@ -1,6 +1,6 @@
 import type { Reducer, Transducer } from "@thi.ng/transducers";
-import { compR } from "@thi.ng/transducers/func/compr";
-import { $iter } from "@thi.ng/transducers/iterator";
+import { compR } from "@thi.ng/transducers/compr";
+import { __iter } from "@thi.ng/transducers/iterator";
 import { step } from "@thi.ng/transducers/step";
 import { ema } from "./ema";
 
@@ -54,7 +54,7 @@ export function macd(
 ): IterableIterator<MACD>;
 export function macd(...args: any[]): any {
     return (
-        $iter(macd, args) ||
+        __iter(macd, args) ||
         ((rfn: Reducer<any, MACD>) => {
             const reduce = rfn[2];
             const maFast = step(ema(args[0] || 12));

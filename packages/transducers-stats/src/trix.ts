@@ -1,5 +1,5 @@
 import type { Transducer } from "@thi.ng/transducers";
-import { comp } from "@thi.ng/transducers/func/comp";
+import { comp } from "@thi.ng/transducers/comp";
 import { iterator1 } from "@thi.ng/transducers/iterator";
 import { ema } from "./ema";
 import { roc } from "./roc";

@@ -1,7 +1,7 @@
 import { DCons } from "@thi.ng/dcons/dcons";
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import type { Reducer, Transducer } from "@thi.ng/transducers";
-import { compR } from "@thi.ng/transducers/func/compr";
+import { compR } from "@thi.ng/transducers/compr";
 import { iterator1 } from "@thi.ng/transducers/iterator";
 
 /**
