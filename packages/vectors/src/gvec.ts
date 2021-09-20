@@ -1,8 +1,8 @@
 import type { NumericArray, StringOrSym } from "@thi.ng/api";
 import { EPS } from "@thi.ng/math/api";
 import { memoize1 } from "@thi.ng/memoize/memoize1";
-import { range } from "@thi.ng/transducers/iter/range";
-import { map } from "@thi.ng/transducers/xform/map";
+import { map } from "@thi.ng/transducers/map";
+import { range } from "@thi.ng/transducers/range";
 import type { IVector } from "./api";
 import { eqDeltaS } from "./eqdelta";
 import { stridedValues } from "./iterator";

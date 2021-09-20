@@ -5,7 +5,7 @@ import type { Pow2 } from "@thi.ng/binary";
 import { align } from "@thi.ng/binary/align";
 import { isNumber } from "@thi.ng/checks/is-number";
 import { MemPool } from "@thi.ng/malloc/pool";
-import { range } from "@thi.ng/transducers/iter/range";
+import { range } from "@thi.ng/transducers/range";
 import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
 import { zeroes } from "@thi.ng/vectors/setn";
 import { AttribPoolOpts, AttribSpec, LOGGER } from "./api";
