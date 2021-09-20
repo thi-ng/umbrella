@@ -3,9 +3,9 @@ import {
     typedArray,
     TypedArray,
     UIntArray,
-} from "@thi.ng/api/api/typedarray";
-import { assert } from "@thi.ng/api/assert";
+} from "@thi.ng/api/typedarray";
 import { INotifyMixin } from "@thi.ng/api/mixins/inotify";
+import { assert } from "@thi.ng/errors/assert";
 import type { IMemPoolArray } from "@thi.ng/malloc";
 import type { ICache, MemMappedComponentOpts } from "../api";
 import { AComponent } from "./acomponent";

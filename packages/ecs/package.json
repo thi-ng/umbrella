@@ -40,10 +40,11 @@
         "@thi.ng/binary": "^2.2.11",
         "@thi.ng/checks": "^2.9.11",
         "@thi.ng/dcons": "^2.3.34",
+        "@thi.ng/errors": "^1.3.4",
         "@thi.ng/idgen": "^1.0.5",
+        "@thi.ng/logger": "^0.0.1",
         "@thi.ng/malloc": "^5.0.14",
-        "@thi.ng/transducers": "^7.9.2",
-        "tslib": "^2.3.1"
+        "@thi.ng/transducers": "^7.9.2"
     },
     "devDependencies": {
         "@thi.ng/equiv": "^1.0.45",
@@ -99,14 +100,14 @@
         "./components/object-component": {
             "import": "./components/object-component.js"
         },
-        "./constants": {
-            "import": "./constants.js"
-        },
         "./ecs": {
             "import": "./ecs.js"
         },
         "./groups/group": {
             "import": "./groups/group.js"
+        },
+        "./logger": {
+            "import": "./logger.js"
         }
     },
     "thi.ng": {

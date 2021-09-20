@@ -1,10 +1,13 @@
 import type { Event, FnO2, FnO3, IID } from "@thi.ng/api";
-import { assert } from "@thi.ng/api/assert";
 import { intersectionR } from "@thi.ng/associative/intersection";
+import { assert } from "@thi.ng/errors/assert";
 import { map } from "@thi.ng/transducers/map";
 import { transduce } from "@thi.ng/transducers/transduce";
-import type {
+import {
     ComponentID,
+    EVENT_ADDED,
+    EVENT_CHANGED,
+    EVENT_PRE_DELETE,
     GroupInfo,
     GroupOpts,
     GroupTuple,
@@ -13,12 +16,7 @@ import type {
 } from "../api";
 import { UnboundedCache } from "../caches/unbounded";
 import { ObjectComponent } from "../components/object-component";
-import {
-    EVENT_ADDED,
-    EVENT_CHANGED,
-    EVENT_PRE_DELETE,
-    LOGGER,
-} from "../constants";
+import { LOGGER } from "../logger";
 
 export class Group<SPEC, K extends ComponentID<SPEC>> implements IID<string> {
     readonly id: string;
@@ -142,18 +140,18 @@ export class Group<SPEC, K extends ComponentID<SPEC>> implements IID<string> {
     }
 
     protected onAddListener(e: Event) {
-        LOGGER && LOGGER.debug(`add ${e.target.id}: ${e.value}`);
+        LOGGER.debug(`add ${e.target.id}: ${e.value}`);
         this.addID(e.value);
     }
 
     protected onDeleteListener(e: Event) {
-        LOGGER && LOGGER.debug(`delete ${e.target.id}: ${e.value}`);
+        LOGGER.debug(`delete ${e.target.id}: ${e.value}`);
         this.removeID(e.value);
     }
 
     protected onChangeListener(e: Event) {
         if (e.target instanceof ObjectComponent) {
-            LOGGER && LOGGER.debug(`invalidate ${e.target.id}: ${e.value}`);
+            LOGGER.debug(`invalidate ${e.target.id}: ${e.value}`);
             this.cache.delete(e.value);
         }
     }

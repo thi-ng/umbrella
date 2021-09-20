@@ -107,3 +107,7 @@ export interface ECSOpts {
      */
     pool: IMemPoolArray;
 }
+
+export const EVENT_ADDED = "added";
+export const EVENT_PRE_DELETE = "pre-delete";
+export const EVENT_CHANGED = "changed";
