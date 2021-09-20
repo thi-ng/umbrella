@@ -4,10 +4,10 @@ import { isFunction } from "@thi.ng/checks/is-function";
 import { DCons } from "@thi.ng/dcons/dcons";
 import { illegalArity } from "@thi.ng/errors/illegal-arity";
 import type { Reducer, Transducer } from "@thi.ng/transducers";
-import { cycle } from "@thi.ng/transducers/iter/cycle";
-import { range } from "@thi.ng/transducers/iter/range";
+import { cycle } from "@thi.ng/transducers/cycle";
+import { delayed } from "@thi.ng/transducers/delayed";
+import { range } from "@thi.ng/transducers/range";
 import { isReduced, unreduced } from "@thi.ng/transducers/reduced";
-import { delayed } from "@thi.ng/transducers/xform/delayed";
 import type {
     ChannelItem,
     ErrorHandler,
