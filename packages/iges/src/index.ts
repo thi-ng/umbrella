@@ -4,15 +4,15 @@ import { float } from "@thi.ng/strings/float";
 import { hstr } from "@thi.ng/strings/hollerith";
 import { padLeft } from "@thi.ng/strings/pad-left";
 import { padRight } from "@thi.ng/strings/pad-right";
-import { comp } from "@thi.ng/transducers/func/comp";
-import { wrapSides } from "@thi.ng/transducers/iter/wrap-sides";
-import { push } from "@thi.ng/transducers/rfn/push";
+import { comp } from "@thi.ng/transducers/comp";
+import { map } from "@thi.ng/transducers/map";
+import { mapIndexed } from "@thi.ng/transducers/map-indexed";
+import { mapcat } from "@thi.ng/transducers/mapcat";
+import { partition } from "@thi.ng/transducers/partition";
+import { push } from "@thi.ng/transducers/push";
 import { transduce } from "@thi.ng/transducers/transduce";
-import { map } from "@thi.ng/transducers/xform/map";
-import { mapIndexed } from "@thi.ng/transducers/xform/map-indexed";
-import { mapcat } from "@thi.ng/transducers/xform/mapcat";
-import { partition } from "@thi.ng/transducers/xform/partition";
-import { wordWrap } from "@thi.ng/transducers/xform/word-wrap";
+import { wordWrap } from "@thi.ng/transducers/word-wrap";
+import { wrapSides } from "@thi.ng/transducers/wrap-sides";
 import type { ReadonlyVec } from "@thi.ng/vectors";
 import {
     BooleanNode,
