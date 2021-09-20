@@ -1,8 +1,8 @@
-import { range } from "@thi.ng/transducers/iter/range";
-import { add } from "@thi.ng/transducers/rfn/add";
+import { add } from "@thi.ng/transducers/add";
+import { map } from "@thi.ng/transducers/map";
+import { mapcat } from "@thi.ng/transducers/mapcat";
+import { range } from "@thi.ng/transducers/range";
 import { transduce } from "@thi.ng/transducers/transduce";
-import { map } from "@thi.ng/transducers/xform/map";
-import { mapcat } from "@thi.ng/transducers/xform/mapcat";
 import { AttribPool } from "@thi.ng/vector-pools/attrib-pool";
 import { addm2 } from "@thi.ng/vectors/addm";
 import { ONE4 } from "@thi.ng/vectors/api";

@@ -12,7 +12,7 @@ import { GLSLVersion } from "@thi.ng/shader-ast-glsl/api";
 import { targetGLSL } from "@thi.ng/shader-ast-glsl/target";
 import { program } from "@thi.ng/shader-ast/ast/scope";
 import { input, output, sym, uniform } from "@thi.ng/shader-ast/ast/sym";
-import { vals } from "@thi.ng/transducers/iter/vals";
+import { vals } from "@thi.ng/transducers/vals";
 import {
     ExtensionBehavior,
     ExtensionBehaviors,

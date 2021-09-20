@@ -5,11 +5,11 @@ import { defMain } from "@thi.ng/shader-ast/ast/function";
 import { INT0, ivec2 } from "@thi.ng/shader-ast/ast/lit";
 import { $xy } from "@thi.ng/shader-ast/ast/swizzle";
 import { texelFetch } from "@thi.ng/shader-ast/builtin/texture";
-import { range } from "@thi.ng/transducers/iter/range";
-import { assocObj } from "@thi.ng/transducers/rfn/assoc-obj";
-import { some } from "@thi.ng/transducers/rfn/some";
+import { assocObj } from "@thi.ng/transducers/assoc-obj";
+import { map } from "@thi.ng/transducers/map";
+import { range } from "@thi.ng/transducers/range";
+import { some } from "@thi.ng/transducers/some";
 import { transduce } from "@thi.ng/transducers/transduce";
-import { map } from "@thi.ng/transducers/xform/map";
 import type { ExtensionBehaviors } from "./api/ext";
 import type { Multipass, MultipassOpts, PassOpts } from "./api/multipass";
 import type {
