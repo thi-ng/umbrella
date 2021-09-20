@@ -1,5 +1,5 @@
 import type { GroupByOpts } from "../api";
-import { push } from "../rfn/push";
+import { push } from "../push";
 
 /**
  * Shared helper function for `groupBy*` reducers
