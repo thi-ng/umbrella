@@ -65,125 +65,122 @@
         ".": {
             "import": "./index.js"
         },
-        "./api/assoc": {
-            "import": "./api/assoc.js"
+        "./assoc": {
+            "import": "./assoc.js"
         },
-        "./api/bind": {
-            "import": "./api/bind.js"
+        "./bind": {
+            "import": "./bind.js"
         },
-        "./api/buffered": {
-            "import": "./api/buffered.js"
+        "./buffered": {
+            "import": "./buffered.js"
         },
-        "./api/clear": {
-            "import": "./api/clear.js"
+        "./clear": {
+            "import": "./clear.js"
         },
-        "./api/compare": {
-            "import": "./api/compare.js"
+        "./compare": {
+            "import": "./compare.js"
         },
-        "./api/contains": {
-            "import": "./api/contains.js"
+        "./contains": {
+            "import": "./contains.js"
         },
-        "./api/copy": {
-            "import": "./api/copy.js"
+        "./copy": {
+            "import": "./copy.js"
         },
-        "./api/deref": {
-            "import": "./api/deref.js"
+        "./deref": {
+            "import": "./deref.js"
         },
-        "./api/dissoc": {
-            "import": "./api/dissoc.js"
+        "./dissoc": {
+            "import": "./dissoc.js"
         },
-        "./api/empty": {
-            "import": "./api/empty.js"
+        "./empty": {
+            "import": "./empty.js"
         },
-        "./api/enable": {
-            "import": "./api/enable.js"
+        "./enable": {
+            "import": "./enable.js"
         },
-        "./api/equiv": {
-            "import": "./api/equiv.js"
+        "./equiv": {
+            "import": "./equiv.js"
         },
-        "./api/event": {
-            "import": "./api/event.js"
+        "./event": {
+            "import": "./event.js"
         },
-        "./api/fn": {
-            "import": "./api/fn.js"
+        "./fn": {
+            "import": "./fn.js"
         },
-        "./api/get": {
-            "import": "./api/get.js"
+        "./get": {
+            "import": "./get.js"
         },
-        "./api/hash": {
-            "import": "./api/hash.js"
+        "./hash": {
+            "import": "./hash.js"
         },
-        "./api/hiccup": {
-            "import": "./api/hiccup.js"
+        "./hiccup": {
+            "import": "./hiccup.js"
         },
-        "./api/id": {
-            "import": "./api/id.js"
+        "./id": {
+            "import": "./id.js"
         },
-        "./api/indexed": {
-            "import": "./api/indexed.js"
+        "./indexed": {
+            "import": "./indexed.js"
         },
-        "./api/into": {
-            "import": "./api/into.js"
+        "./into": {
+            "import": "./into.js"
         },
-        "./api/keyval": {
-            "import": "./api/keyval.js"
+        "./keyval": {
+            "import": "./keyval.js"
         },
-        "./api/length": {
-            "import": "./api/length.js"
+        "./length": {
+            "import": "./length.js"
         },
-        "./api/logger": {
-            "import": "./api/logger.js"
+        "./meta": {
+            "import": "./meta.js"
         },
-        "./api/meta": {
-            "import": "./api/meta.js"
+        "./null": {
+            "import": "./null.js"
         },
-        "./api/null": {
-            "import": "./api/null.js"
+        "./object": {
+            "import": "./object.js"
         },
-        "./api/object": {
-            "import": "./api/object.js"
+        "./path": {
+            "import": "./path.js"
         },
-        "./api/path": {
-            "import": "./api/path.js"
+        "./predicate": {
+            "import": "./predicate.js"
         },
-        "./api/predicate": {
-            "import": "./api/predicate.js"
+        "./prim": {
+            "import": "./prim.js"
         },
-        "./api/prim": {
-            "import": "./api/prim.js"
+        "./range": {
+            "import": "./range.js"
         },
-        "./api/range": {
-            "import": "./api/range.js"
+        "./release": {
+            "import": "./release.js"
         },
-        "./api/release": {
-            "import": "./api/release.js"
+        "./reset": {
+            "import": "./reset.js"
         },
-        "./api/reset": {
-            "import": "./api/reset.js"
+        "./select": {
+            "import": "./select.js"
         },
-        "./api/select": {
-            "import": "./api/select.js"
+        "./seq": {
+            "import": "./seq.js"
         },
-        "./api/seq": {
-            "import": "./api/seq.js"
+        "./set": {
+            "import": "./set.js"
         },
-        "./api/set": {
-            "import": "./api/set.js"
+        "./stack": {
+            "import": "./stack.js"
         },
-        "./api/stack": {
-            "import": "./api/stack.js"
+        "./tuple": {
+            "import": "./tuple.js"
         },
-        "./api/tuple": {
-            "import": "./api/tuple.js"
+        "./typedarray": {
+            "import": "./typedarray.js"
         },
-        "./api/typedarray": {
-            "import": "./api/typedarray.js"
+        "./watch": {
+            "import": "./watch.js"
         },
-        "./api/watch": {
-            "import": "./api/watch.js"
-        },
-        "./constants": {
-            "import": "./constants.js"
+        "./api": {
+            "import": "./api.js"
         },
         "./decorators/configurable": {
             "import": "./decorators/configurable.js"
@@ -196,12 +193,6 @@
         },
         "./decorators/sealed": {
             "import": "./decorators/sealed.js"
-        },
-        "./expose": {
-            "import": "./expose.js"
-        },
-        "./logger": {
-            "import": "./logger.js"
         },
         "./mixin": {
             "import": "./mixin.js"

@@ -1,7 +1,7 @@
-import type { Event, INotify, Listener } from "../api/event";
-import type { IObjectOf } from "../api/object";
-import { EVENT_ALL } from "../constants";
+import { EVENT_ALL } from "../api";
+import type { Event, INotify, Listener } from "../event";
 import { mixin } from "../mixin";
+import type { IObjectOf } from "../object";
 
 interface _INotify extends INotify {
     _listeners: IObjectOf<[Listener, any][]>;
