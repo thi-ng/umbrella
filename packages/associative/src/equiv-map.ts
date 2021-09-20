@@ -2,7 +2,7 @@ import type { Fn3, ICopy, IEmpty, IEquiv, IObjectOf, Pair } from "@thi.ng/api";
 import { SEMAPHORE } from "@thi.ng/api/constants";
 import { isPlainObject } from "@thi.ng/checks/is-plain-object";
 import { equiv } from "@thi.ng/equiv";
-import { pairs } from "@thi.ng/transducers/iter/pairs";
+import { pairs } from "@thi.ng/transducers/pairs";
 import type { EquivMapOpts, IEquivSet } from "./api";
 import { ArraySet } from "./array-set";
 import { dissoc } from "./dissoc";

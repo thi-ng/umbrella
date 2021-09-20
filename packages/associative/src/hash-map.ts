@@ -11,7 +11,7 @@ import type {
 import { ceilPow2 } from "@thi.ng/binary/pow";
 import { isPlainObject } from "@thi.ng/checks/is-plain-object";
 import { equiv } from "@thi.ng/equiv";
-import { map } from "@thi.ng/transducers/xform/map";
+import { map } from "@thi.ng/transducers/map";
 import type { HashMapOpts } from "./api";
 import { dissoc } from "./dissoc";
 import { equivMap } from "./internal/equiv";

@@ -1,6 +1,6 @@
 import type { IObjectOf } from "@thi.ng/api";
 import { compareByKey } from "@thi.ng/compare/keys";
-import { assocObj } from "@thi.ng/transducers/rfn/assoc-obj";
+import { assocObj } from "@thi.ng/transducers/assoc-obj";
 
 /**
  * Takes an object and returns shallow copy with keys sorted. Useful for JSON

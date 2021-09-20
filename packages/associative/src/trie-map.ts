@@ -1,5 +1,5 @@
 import type { IObjectOf, Pair } from "@thi.ng/api";
-import { vals } from "@thi.ng/transducers/iter/vals";
+import { vals } from "@thi.ng/transducers/vals";
 
 export class TrieMap<T> {
     protected next: IObjectOf<TrieMap<T>> = {};

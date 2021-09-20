@@ -1,7 +1,7 @@
 import type { Fn3, ICompare, Pair } from "@thi.ng/api";
 import { compare } from "@thi.ng/compare/compare";
 import type { IReducible, ReductionFn } from "@thi.ng/transducers";
-import { map } from "@thi.ng/transducers/xform/map";
+import { map } from "@thi.ng/transducers/map";
 import type { IEquivSet, SortedSetOpts } from "./api";
 import { dissoc } from "./dissoc";
 import { equivSet } from "./internal/equiv";
