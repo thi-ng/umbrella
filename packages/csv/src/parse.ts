@@ -5,7 +5,7 @@ import { isIterable } from "@thi.ng/checks/is-iterable";
 import { ESCAPES } from "@thi.ng/strings/escape";
 import { split } from "@thi.ng/strings/split";
 import type { Reducer, Transducer } from "@thi.ng/transducers";
-import { compR } from "@thi.ng/transducers/func/compr";
+import { compR } from "@thi.ng/transducers/compr";
 import { iterator1 } from "@thi.ng/transducers/iterator";
 import type {
     ColumnSpec,

@@ -4,12 +4,12 @@ import { isIterable } from "@thi.ng/checks/is-iterable";
 import type { Stringer } from "@thi.ng/strings";
 import { wrap } from "@thi.ng/strings/wrap";
 import type { Reducer, Transducer } from "@thi.ng/transducers";
-import { compR } from "@thi.ng/transducers/func/compr";
+import { compR } from "@thi.ng/transducers/compr";
 import { iterator } from "@thi.ng/transducers/iterator";
 import { isReduced } from "@thi.ng/transducers/reduced";
-import { str } from "@thi.ng/transducers/rfn/str";
+import { str } from "@thi.ng/transducers/str";
 import { transduce } from "@thi.ng/transducers/transduce";
-import type { CSVRecord, CSVRow, CSVFormatOpts } from "./api";
+import type { CSVFormatOpts, CSVRecord, CSVRow } from "./api";
 
 export function formatCSV(
     opts?: Partial<CSVFormatOpts>
