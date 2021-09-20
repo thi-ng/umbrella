@@ -38,6 +38,7 @@
         "@thi.ng/testament": "^0.0.1"
     },
     "keywords": [
+        "assert",
         "error",
         "typescript"
     ],
@@ -55,6 +56,9 @@
     "exports": {
         ".": {
             "import": "./index.js"
+        },
+        "./assert": {
+            "import": "./assert.js"
         },
         "./deferror": {
             "import": "./deferror.js"
