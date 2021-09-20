@@ -10,12 +10,12 @@ import {
     u32,
     u8,
 } from "@thi.ng/transducers-binary/bytes";
-import { comp } from "@thi.ng/transducers/func/comp";
-import { concat } from "@thi.ng/transducers/iter/concat";
+import { comp } from "@thi.ng/transducers/comp";
+import { concat } from "@thi.ng/transducers/concat";
 import { iterator } from "@thi.ng/transducers/iterator";
+import { map } from "@thi.ng/transducers/map";
 import { reduce } from "@thi.ng/transducers/reduce";
-import { map } from "@thi.ng/transducers/xform/map";
-import { take } from "@thi.ng/transducers/xform/take";
+import { take } from "@thi.ng/transducers/take";
 import type { WavSpec } from "./api";
 
 const HEADER_SIZE = 44;
