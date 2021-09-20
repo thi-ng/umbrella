@@ -1,7 +1,7 @@
 import { SYSTEM } from "@thi.ng/random/system";
-import { rangeNd } from "@thi.ng/transducers/iter/range-nd";
-import { repeatedly } from "@thi.ng/transducers/iter/repeatedly";
-import { mapcat } from "@thi.ng/transducers/xform/mapcat";
+import { mapcat } from "@thi.ng/transducers/mapcat";
+import { rangeNd } from "@thi.ng/transducers/range-nd";
+import { repeatedly } from "@thi.ng/transducers/repeatedly";
 import { add } from "@thi.ng/vectors/add";
 import { random } from "@thi.ng/vectors/random";
 import type { StratifiedGridOpts } from "./api";
