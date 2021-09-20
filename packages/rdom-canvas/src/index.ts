@@ -8,7 +8,7 @@ import { $sub } from "@thi.ng/rdom/sub";
 import type { ISubscription } from "@thi.ng/rstream";
 import { isSubscribable } from "@thi.ng/rstream/checks";
 import { reactive } from "@thi.ng/rstream/stream";
-import { sideEffect } from "@thi.ng/transducers/xform/side-effect";
+import { sideEffect } from "@thi.ng/transducers/side-effect";
 
 /**
  * Reactive {@link @thi.ng/hiccup-canvas} component wrapper. Returns a

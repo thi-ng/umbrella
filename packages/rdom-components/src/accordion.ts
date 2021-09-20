@@ -6,9 +6,9 @@ import type { ComponentLike } from "@thi.ng/rdom";
 import { $list } from "@thi.ng/rdom/list";
 import { $promise } from "@thi.ng/rdom/promise";
 import type { ISubscription } from "@thi.ng/rstream";
-import { range } from "@thi.ng/transducers/iter/range";
-import { dedupe } from "@thi.ng/transducers/xform/dedupe";
-import { map } from "@thi.ng/transducers/xform/map";
+import { dedupe } from "@thi.ng/transducers/dedupe";
+import { map } from "@thi.ng/transducers/map";
+import { range } from "@thi.ng/transducers/range";
 
 export interface AccordionOpts {
     attribs: {

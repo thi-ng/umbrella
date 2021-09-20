@@ -4,8 +4,8 @@ import { div } from "@thi.ng/hiccup-html/blocks";
 import { inputNumber, InputNumericAttribs } from "@thi.ng/hiccup-html/forms";
 import { $inputNum } from "@thi.ng/rdom/event";
 import type { ISubscription } from "@thi.ng/rstream";
-import { repeatedly } from "@thi.ng/transducers/iter/repeatedly";
-import { pluck } from "@thi.ng/transducers/xform/pluck";
+import { pluck } from "@thi.ng/transducers/pluck";
+import { repeatedly } from "@thi.ng/transducers/repeatedly";
 
 export const inputNumeric = (
     dest: ISubscription<number, number>,
