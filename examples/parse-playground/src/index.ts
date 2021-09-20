@@ -25,10 +25,10 @@ import { reactive } from "@thi.ng/rstream/stream";
 import { sync } from "@thi.ng/rstream/stream-sync";
 import { interpolate } from "@thi.ng/strings/interpolate";
 import { base64Decode, base64Encode } from "@thi.ng/transducers-binary/base64";
-import { range } from "@thi.ng/transducers/iter/range";
-import { filter } from "@thi.ng/transducers/xform/filter";
-import { map } from "@thi.ng/transducers/xform/map";
-import { pluck } from "@thi.ng/transducers/xform/pluck";
+import { filter } from "@thi.ng/transducers/filter";
+import { map } from "@thi.ng/transducers/map";
+import { pluck } from "@thi.ng/transducers/pluck";
+import { range } from "@thi.ng/transducers/range";
 // @ts-ignore
 import { deserialize, serialize } from "@ygoe/msgpack";
 import type { ParseResult, Status } from "./api";

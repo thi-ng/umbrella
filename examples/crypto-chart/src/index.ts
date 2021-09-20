@@ -23,18 +23,18 @@ import { ema } from "@thi.ng/transducers-stats/ema";
 import { hma } from "@thi.ng/transducers-stats/hma";
 import { sma } from "@thi.ng/transducers-stats/sma";
 import { wma } from "@thi.ng/transducers-stats/wma";
-import { comp } from "@thi.ng/transducers/func/comp";
-import { pairs } from "@thi.ng/transducers/iter/pairs";
-import { range } from "@thi.ng/transducers/iter/range";
-import { max } from "@thi.ng/transducers/rfn/max";
-import { min } from "@thi.ng/transducers/rfn/min";
-import { push } from "@thi.ng/transducers/rfn/push";
+import { comp } from "@thi.ng/transducers/comp";
+import { filter } from "@thi.ng/transducers/filter";
+import { map } from "@thi.ng/transducers/map";
+import { mapIndexed } from "@thi.ng/transducers/map-indexed";
+import { mapcat } from "@thi.ng/transducers/mapcat";
+import { max } from "@thi.ng/transducers/max";
+import { min } from "@thi.ng/transducers/min";
+import { pairs } from "@thi.ng/transducers/pairs";
+import { pluck } from "@thi.ng/transducers/pluck";
+import { push } from "@thi.ng/transducers/push";
+import { range } from "@thi.ng/transducers/range";
 import { transduce } from "@thi.ng/transducers/transduce";
-import { filter } from "@thi.ng/transducers/xform/filter";
-import { map } from "@thi.ng/transducers/xform/map";
-import { mapIndexed } from "@thi.ng/transducers/xform/map-indexed";
-import { mapcat } from "@thi.ng/transducers/xform/mapcat";
-import { pluck } from "@thi.ng/transducers/xform/pluck";
 
 // this example demonstrates how to use @thi.ng/rstream &
 // @thi.ng/transducer constructs to create a basic cryptocurrency candle

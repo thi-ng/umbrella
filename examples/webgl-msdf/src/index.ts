@@ -15,7 +15,7 @@ import { float, vec3, vec4 } from "@thi.ng/shader-ast/ast/lit";
 import { add, div, mul, sub } from "@thi.ng/shader-ast/ast/ops";
 import { $w } from "@thi.ng/shader-ast/ast/swizzle";
 import { length, mod, sin, smoothstep } from "@thi.ng/shader-ast/builtin/math";
-import { map } from "@thi.ng/transducers/xform/map";
+import { map } from "@thi.ng/transducers/map";
 import { AttribPool } from "@thi.ng/vector-pools/attrib-pool";
 import { ReadonlyVec, Y3, ZERO3 } from "@thi.ng/vectors/api";
 import { fit3 } from "@thi.ng/vectors/fit";

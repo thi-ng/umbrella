@@ -5,11 +5,11 @@ import { setInManyUnsafe } from "@thi.ng/paths/set-in-many";
 import type { Node } from "@thi.ng/rstream-graph";
 import { removeNode } from "@thi.ng/rstream-graph/graph";
 import { charRange } from "@thi.ng/strings/range";
-import { permutations } from "@thi.ng/transducers/iter/permutations";
-import { range } from "@thi.ng/transducers/iter/range";
-import { assocObj } from "@thi.ng/transducers/rfn/assoc-obj";
+import { assocObj } from "@thi.ng/transducers/assoc-obj";
+import { map } from "@thi.ng/transducers/map";
+import { permutations } from "@thi.ng/transducers/permutations";
+import { range } from "@thi.ng/transducers/range";
 import { transduce } from "@thi.ng/transducers/transduce";
-import { map } from "@thi.ng/transducers/xform/map";
 import { Cell, MAX_COL, NUM_ROWS } from "./api";
 import { $eval } from "./dsl";
 

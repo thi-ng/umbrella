@@ -1,5 +1,5 @@
 import { Atom } from "@thi.ng/atom/atom";
-import { repeat } from "@thi.ng/transducers/iter/repeat";
+import { repeat } from "@thi.ng/transducers/repeat";
 import { makeBins, updateAudio } from "./audio";
 import { NUM_BINS, PRESETS } from "./config";
 

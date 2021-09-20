@@ -5,13 +5,13 @@ import { start } from "@thi.ng/hdom/start";
 import { css } from "@thi.ng/hiccup-css/css";
 import { injectStyleSheet } from "@thi.ng/hiccup-css/inject";
 import { U24 } from "@thi.ng/strings/radix";
-import { comp } from "@thi.ng/transducers/func/comp";
-import { range } from "@thi.ng/transducers/iter/range";
-import { push } from "@thi.ng/transducers/rfn/push";
+import { comp } from "@thi.ng/transducers/comp";
+import { map } from "@thi.ng/transducers/map";
+import { mapIndexed } from "@thi.ng/transducers/map-indexed";
+import { partition } from "@thi.ng/transducers/partition";
+import { push } from "@thi.ng/transducers/push";
+import { range } from "@thi.ng/transducers/range";
 import { transduce } from "@thi.ng/transducers/transduce";
-import { map } from "@thi.ng/transducers/xform/map";
-import { mapIndexed } from "@thi.ng/transducers/xform/map-indexed";
-import { partition } from "@thi.ng/transducers/xform/partition";
 
 const SIZE = "0.5rem";
 

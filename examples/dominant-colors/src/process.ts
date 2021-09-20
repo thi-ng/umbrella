@@ -6,9 +6,9 @@ import { floatBuffer } from "@thi.ng/pixel/float";
 import { ABGR8888 } from "@thi.ng/pixel/format/abgr8888";
 import { FLOAT_RGB } from "@thi.ng/pixel/format/float-rgb";
 import { PackedBuffer } from "@thi.ng/pixel/packed";
-import { minMax } from "@thi.ng/transducers/rfn/min-max";
+import { map } from "@thi.ng/transducers/map";
+import { minMax } from "@thi.ng/transducers/min-max";
 import { transduce } from "@thi.ng/transducers/transduce";
-import { map } from "@thi.ng/transducers/xform/map";
 import { DominantColor, SortMode, SORT_MODES } from "./api";
 
 /**

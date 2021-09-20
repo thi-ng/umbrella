@@ -3,14 +3,14 @@ import { isNumber } from "@thi.ng/checks/is-number";
 import { fromAtom } from "@thi.ng/rstream/from/atom";
 import { charRange } from "@thi.ng/strings/range";
 import { updateDOM } from "@thi.ng/transducers-hdom";
-import { comp } from "@thi.ng/transducers/func/comp";
-import { permutations } from "@thi.ng/transducers/iter/permutations";
-import { range } from "@thi.ng/transducers/iter/range";
-import { push } from "@thi.ng/transducers/rfn/push";
+import { comp } from "@thi.ng/transducers/comp";
+import { map } from "@thi.ng/transducers/map";
+import { mapIndexed } from "@thi.ng/transducers/map-indexed";
+import { partition } from "@thi.ng/transducers/partition";
+import { permutations } from "@thi.ng/transducers/permutations";
+import { push } from "@thi.ng/transducers/push";
+import { range } from "@thi.ng/transducers/range";
 import { transduce } from "@thi.ng/transducers/transduce";
-import { map } from "@thi.ng/transducers/xform/map";
-import { mapIndexed } from "@thi.ng/transducers/xform/map-indexed";
-import { partition } from "@thi.ng/transducers/xform/partition";
 import { CELL_STYLE, MAX_COL, NUM_COLS, NUM_ROWS, UICell } from "./api";
 import {
     blurCell,

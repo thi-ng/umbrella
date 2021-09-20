@@ -36,11 +36,11 @@ import { sidechainPartitionRAF } from "@thi.ng/rstream/subs/sidechain-partition"
 import { float } from "@thi.ng/strings/float";
 import { updateDOM } from "@thi.ng/transducers-hdom";
 import { sma } from "@thi.ng/transducers-stats/sma";
-import { comp } from "@thi.ng/transducers/func/comp";
+import { comp } from "@thi.ng/transducers/comp";
 import { iterator } from "@thi.ng/transducers/iterator";
+import { map } from "@thi.ng/transducers/map";
+import { mapcat } from "@thi.ng/transducers/mapcat";
 import { step } from "@thi.ng/transducers/step";
-import { map } from "@thi.ng/transducers/xform/map";
-import { mapcat } from "@thi.ng/transducers/xform/mapcat";
 import { add2 } from "@thi.ng/vectors/add";
 import { Vec, ZERO2 } from "@thi.ng/vectors/api";
 import { hash } from "@thi.ng/vectors/hash";

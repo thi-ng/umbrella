@@ -4,8 +4,8 @@ import { defCursor } from "@thi.ng/atom/cursor";
 import { defHistory } from "@thi.ng/atom/history";
 import { defView } from "@thi.ng/atom/view";
 import { start } from "@thi.ng/hdom/start";
-import { pairs } from "@thi.ng/transducers/iter/pairs";
-import { map } from "@thi.ng/transducers/xform/map";
+import { map } from "@thi.ng/transducers/map";
+import { pairs } from "@thi.ng/transducers/pairs";
 
 interface Task {
     done: boolean;

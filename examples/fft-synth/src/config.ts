@@ -1,10 +1,10 @@
 import { binFreq } from "@thi.ng/dsp/fft/fft";
 import { float } from "@thi.ng/strings/float";
 import { percent } from "@thi.ng/strings/percent";
-import { range } from "@thi.ng/transducers/iter/range";
-import { repeat } from "@thi.ng/transducers/iter/repeat";
-import { map } from "@thi.ng/transducers/xform/map";
-import { mapcat } from "@thi.ng/transducers/xform/mapcat";
+import { map } from "@thi.ng/transducers/map";
+import { mapcat } from "@thi.ng/transducers/mapcat";
+import { range } from "@thi.ng/transducers/range";
+import { repeat } from "@thi.ng/transducers/repeat";
 
 export const NUM_BINS = 64;
 export const WINDOW_LEN = NUM_BINS * 2;

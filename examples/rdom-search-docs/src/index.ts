@@ -10,7 +10,7 @@ import { $list } from "@thi.ng/rdom/list";
 import type { ISubscription } from "@thi.ng/rstream";
 import { reactive, Stream } from "@thi.ng/rstream/stream";
 import { debounce } from "@thi.ng/rstream/subs/debounce";
-import { map } from "@thi.ng/transducers/xform/map";
+import { map } from "@thi.ng/transducers/map";
 import msgpack from "@ygoe/msgpack";
 import { pageControls, Pagination } from "./pagination";
 import { search, SearchIndex } from "./search";

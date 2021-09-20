@@ -6,10 +6,10 @@ import { clamp } from "@thi.ng/math/interval";
 import type { ISubscription } from "@thi.ng/rstream";
 import { reactive, Stream } from "@thi.ng/rstream/stream";
 import { sync } from "@thi.ng/rstream/stream-sync";
-import { comp } from "@thi.ng/transducers/func/comp";
-import { dedupe } from "@thi.ng/transducers/xform/dedupe";
-import { map } from "@thi.ng/transducers/xform/map";
-import { page } from "@thi.ng/transducers/xform/page";
+import { comp } from "@thi.ng/transducers/comp";
+import { dedupe } from "@thi.ng/transducers/dedupe";
+import { map } from "@thi.ng/transducers/map";
+import { page } from "@thi.ng/transducers/page";
 
 export class Pagination<T extends any[]> implements IRelease {
     page: Stream<number>;

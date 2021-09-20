@@ -3,7 +3,7 @@ import { CLOSE_OUTLINE } from "@thi.ng/hiccup-carbon-icons/close-outline";
 import { withSize } from "@thi.ng/hiccup-carbon-icons/utils/with-size";
 import { div } from "@thi.ng/hiccup-html/blocks";
 import { $compile } from "@thi.ng/rdom/compile";
-import { cycle } from "@thi.ng/transducers/iter/cycle";
+import { cycle } from "@thi.ng/transducers/cycle";
 import { Draggable } from "./draggable";
 import { Notification, NotifyOpts } from "./notification";
 

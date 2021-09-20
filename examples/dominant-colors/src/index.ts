@@ -10,7 +10,7 @@ import { $refresh } from "@thi.ng/rdom/switch";
 import { reactive, stream } from "@thi.ng/rstream/stream";
 import { sync } from "@thi.ng/rstream/stream-sync";
 import { float } from "@thi.ng/strings/float";
-import { map } from "@thi.ng/transducers/xform/map";
+import { map } from "@thi.ng/transducers/map";
 import type { SortMode } from "./api";
 import { cssPalette } from "./components/css";
 import { PixelCanvas } from "./components/pixelcanvas";

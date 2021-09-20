@@ -13,7 +13,7 @@ import { proximity, sort } from "@thi.ng/color/ops/sort";
 import { SYSTEM } from "@thi.ng/random/system";
 import { XsAdd } from "@thi.ng/random/xsadd";
 import { debounce, reactive, stream, Stream, sync } from "@thi.ng/rstream";
-import { map } from "@thi.ng/transducers/xform/map";
+import { map } from "@thi.ng/transducers/map";
 import { MainInputs, MainOutputs, RANGE_IDs } from "./api";
 import { downloadACT } from "./palette";
 import { attachSerializer, initFromHash } from "./serialize";

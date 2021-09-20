@@ -6,9 +6,9 @@ import { svg } from "@thi.ng/hiccup-svg/svg";
 import { $compile } from "@thi.ng/rdom/compile";
 import { $list } from "@thi.ng/rdom/list";
 import { fromAtom } from "@thi.ng/rstream/from/atom";
-import { repeatedly } from "@thi.ng/transducers/iter/repeatedly";
-import { indexed } from "@thi.ng/transducers/xform/indexed";
-import { partition } from "@thi.ng/transducers/xform/partition";
+import { indexed } from "@thi.ng/transducers/indexed";
+import { partition } from "@thi.ng/transducers/partition";
+import { repeatedly } from "@thi.ng/transducers/repeatedly";
 import { random2 } from "@thi.ng/vectors/random";
 
 const WIDTH = 600;

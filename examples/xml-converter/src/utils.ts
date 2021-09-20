@@ -1,6 +1,6 @@
 import type { ISubscriber } from "@thi.ng/rstream";
 import { splice } from "@thi.ng/strings/splice";
-import { map } from "@thi.ng/transducers/xform/map";
+import { map } from "@thi.ng/transducers/map";
 
 export const asSet = (x: string) => new Set(map((x) => x.trim(), x.split(",")));
 

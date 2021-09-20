@@ -1,5 +1,5 @@
 import type { ISubscriber } from "@thi.ng/rstream";
-import { mapIndexed } from "@thi.ng/transducers/xform/map-indexed";
+import { mapIndexed } from "@thi.ng/transducers/map-indexed";
 import { handleTab } from "./utils";
 
 // converted from:

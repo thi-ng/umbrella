@@ -12,13 +12,13 @@ import { fromRAF } from "@thi.ng/rstream/from/raf";
 import { reactive, Stream } from "@thi.ng/rstream/stream";
 import { sync } from "@thi.ng/rstream/stream-sync";
 import { updateDOM } from "@thi.ng/transducers-hdom";
-import { comp } from "@thi.ng/transducers/func/comp";
+import { comp } from "@thi.ng/transducers/comp";
 import { iterator } from "@thi.ng/transducers/iterator";
+import { map } from "@thi.ng/transducers/map";
+import { mapcat } from "@thi.ng/transducers/mapcat";
+import { partition } from "@thi.ng/transducers/partition";
 import { reducer } from "@thi.ng/transducers/reduce";
-import { map } from "@thi.ng/transducers/xform/map";
-import { mapcat } from "@thi.ng/transducers/xform/mapcat";
-import { partition } from "@thi.ng/transducers/xform/partition";
-import { scan } from "@thi.ng/transducers/xform/scan";
+import { scan } from "@thi.ng/transducers/scan";
 
 const BUTTONS = {
     blue: "bg-blue white hover-bg-light-blue hover-navy",

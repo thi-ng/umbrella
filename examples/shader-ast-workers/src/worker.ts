@@ -29,11 +29,11 @@ import { $x, $xyz } from "@thi.ng/shader-ast/ast/swizzle";
 import { sym } from "@thi.ng/shader-ast/ast/sym";
 import { mix } from "@thi.ng/shader-ast/builtin/math";
 import { sma } from "@thi.ng/transducers-stats/sma";
-import { comp } from "@thi.ng/transducers/func/comp";
-import { normRange } from "@thi.ng/transducers/iter/norm-range";
+import { comp } from "@thi.ng/transducers/comp";
+import { map } from "@thi.ng/transducers/map";
+import { normRange } from "@thi.ng/transducers/norm-range";
+import { slidingWindow } from "@thi.ng/transducers/sliding-window";
 import { step } from "@thi.ng/transducers/step";
-import { map } from "@thi.ng/transducers/xform/map";
-import { slidingWindow } from "@thi.ng/transducers/xform/sliding-window";
 import { NUM_WORKERS, WorkerJob, WorkerResult } from "./api";
 
 // color table to tint each worker's region

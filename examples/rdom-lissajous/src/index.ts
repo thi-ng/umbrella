@@ -10,8 +10,8 @@ import { fromDOMEvent } from "@thi.ng/rstream/from/event";
 import { fromRAF } from "@thi.ng/rstream/from/raf";
 import { reactive } from "@thi.ng/rstream/stream";
 import { sync } from "@thi.ng/rstream/stream-sync";
-import { map } from "@thi.ng/transducers/xform/map";
-import { slidingWindow } from "@thi.ng/transducers/xform/sliding-window";
+import { map } from "@thi.ng/transducers/map";
+import { slidingWindow } from "@thi.ng/transducers/sliding-window";
 
 const slider = (
     dest: ISubscription<number, number>,

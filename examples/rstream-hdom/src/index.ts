@@ -96,7 +96,7 @@ const counter = (start: number, step: number) => {
     const s = subscription<boolean, number>(
         undefined,
         // the `scan` transducer is used to provide counter functionality
-        // see: https://github.com/thi-ng/umbrella/blob/develop/packages/transducers/src/xform/scan.ts
+        // see: https://github.com/thi-ng/umbrella/blob/develop/packages/transducers/src/scan.ts
         {
             xform: scan(
                 reducer(
@@ -141,7 +141,7 @@ const app = (ctx: any, initial: number[][]) => {
         // subsequent changes to any of the inputs will not be
         // synchronized see here for further details:
         // https://github.com/thi-ng/umbrella/blob/develop/packages/rstream/src/stream-sync.ts#L21
-        // https://github.com/thi-ng/umbrella/blob/develop/packages/transducers/src/xform/partition-sync.ts#L7
+        // https://github.com/thi-ng/umbrella/blob/develop/packages/transducers/src/partition-sync.ts#L7
         reset: false,
     });
 };
