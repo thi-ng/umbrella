@@ -1,6 +1,6 @@
-import { ConsoleLogger } from "@thi.ng/api";
 import type { ASTNode, ASTOpts } from "@thi.ng/gp";
 import { AST } from "@thi.ng/gp/ast";
+import { ConsoleLogger } from "@thi.ng/logger";
 import { roundTo } from "@thi.ng/math/prec";
 import type { IRandom } from "@thi.ng/random";
 import { SYSTEM } from "@thi.ng/random/system";

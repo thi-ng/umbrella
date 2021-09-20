@@ -782,7 +782,7 @@ bench(() => vadd([1, 2, 3], [10, 20, 30]), 1e7)
         [
             codeBlock,
             `
-vadd.add(DEFAULT, (a, b) => a.map((a, i) => a + b[i]))
+vadd.setDefault((a, b) => a.map((a, i) => a + b[i]))
 
 bench(() => add([1, 2, 3, 4, 5, 6, 7, 8], [1, 2, 3, 4, 5, 6, 7, 8]), 1e7)
 // 698ms`,

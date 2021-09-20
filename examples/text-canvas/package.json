@@ -15,6 +15,7 @@
         "@thi.ng/geom": "latest",
         "@thi.ng/matrices": "latest",
         "@thi.ng/text-canvas": "latest",
+        "@thi.ng/text-format": "latest",
         "@thi.ng/vectors": "latest"
     },
     "browserslist": [

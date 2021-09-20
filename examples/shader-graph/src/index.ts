@@ -1,4 +1,5 @@
-import { exposeGlobal, Nullable } from "@thi.ng/api";
+import type { Nullable } from "@thi.ng/api";
+import { exposeGlobal } from "@thi.ng/expose";
 import { ortho } from "@thi.ng/matrices";
 import { fromRAF } from "@thi.ng/rstream";
 import { gestureStream } from "@thi.ng/rstream-gestures";
@@ -288,9 +289,8 @@ gestureStream(CTX.canvas, { minZoom: 0.1, maxZoom: 4, smooth: 0.05 }).subscribe(
                             this.startTheta + e.active[0].delta![0] * 0.01;
                     } else {
                         const pos = add2([], this.startPos, e.active[0].delta!);
-                        this.sel.translate = this.sel.parent.mapGlobalPoint(
-                            pos
-                        );
+                        this.sel.translate =
+                            this.sel.parent.mapGlobalPoint(pos);
                     }
                     CONTENT.update();
                     break;

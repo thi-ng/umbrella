@@ -1,5 +1,6 @@
-import { exposeGlobal, Nullable, Path } from "@thi.ng/api";
+import type { Nullable, Path } from "@thi.ng/api";
 import { defAtom, defView } from "@thi.ng/atom";
+import { exposeGlobal } from "@thi.ng/expose";
 import { start } from "@thi.ng/hdom";
 import { capitalize } from "@thi.ng/strings";
 

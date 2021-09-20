@@ -12,6 +12,7 @@
     },
     "dependencies": {
         "@thi.ng/gp": "latest",
+        "@thi.ng/logger": "latest",
         "@thi.ng/math": "latest",
         "@thi.ng/random": "latest",
         "@thi.ng/shader-ast": "latest",

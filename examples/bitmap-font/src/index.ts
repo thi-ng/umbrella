@@ -1,7 +1,7 @@
-import { ConsoleLogger, IObjectOf } from "@thi.ng/api";
+import type { IObjectOf } from "@thi.ng/api";
 import { dropdown } from "@thi.ng/hdom-components/dropdown";
 import { clamp } from "@thi.ng/math/interval";
-import { ISubscriber, setLogger } from "@thi.ng/rstream";
+import type { ISubscriber } from "@thi.ng/rstream";
 import { reactive, Stream } from "@thi.ng/rstream/stream";
 import { sync } from "@thi.ng/rstream/stream-sync";
 import { bits } from "@thi.ng/transducers-binary/bits";
@@ -16,8 +16,6 @@ import { str } from "@thi.ng/transducers/str";
 import { transduce } from "@thi.ng/transducers/transduce";
 import { zip } from "@thi.ng/transducers/zip";
 import { FONT } from "./font";
-
-setLogger(new ConsoleLogger("rs"));
 
 const emitOnStream = (stream: ISubscriber<any>) => (e: Event) =>
     stream.next((<HTMLSelectElement>e.target).value);

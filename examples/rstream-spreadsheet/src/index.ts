@@ -1,5 +1,5 @@
-import { exposeGlobal } from "@thi.ng/api/expose";
 import { isNumber } from "@thi.ng/checks/is-number";
+import { exposeGlobal } from "@thi.ng/expose";
 import { fromAtom } from "@thi.ng/rstream/from/atom";
 import { charRange } from "@thi.ng/strings/range";
 import { updateDOM } from "@thi.ng/transducers-hdom";

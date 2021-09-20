@@ -14,6 +14,7 @@
         "@thi.ng/api": "latest",
         "@thi.ng/atom": "latest",
         "@thi.ng/checks": "latest",
+        "@thi.ng/expose": "latest",
         "@thi.ng/hdom": "latest",
         "@thi.ng/hiccup-svg": "latest",
         "@thi.ng/interceptors": "latest",

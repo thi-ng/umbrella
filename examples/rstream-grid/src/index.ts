@@ -1,4 +1,4 @@
-import { exposeGlobal } from "@thi.ng/api";
+import { exposeGlobal } from "@thi.ng/expose";
 import { App } from "./app";
 import { CONFIG } from "./config";
 

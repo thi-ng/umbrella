@@ -3,8 +3,7 @@ import { isArray } from "@thi.ng/checks/is-array";
 import { isBoolean } from "@thi.ng/checks/is-boolean";
 import { isNumber } from "@thi.ng/checks/is-number";
 import { isPlainObject } from "@thi.ng/checks/is-plain-object";
-import { DEFAULT } from "@thi.ng/defmulti/constants";
-import { defmulti } from "@thi.ng/defmulti/defmulti";
+import { DEFAULT, defmulti } from "@thi.ng/defmulti/defmulti";
 import { repeat } from "@thi.ng/strings/repeat";
 
 export interface FormatOpts {
@@ -155,7 +154,6 @@ format.add("obj", (opts, res, x) => {
 });
 
 // implementation for other values
-format.add(
-    DEFAULT,
+format.setDefault(
     (opts, res, x) => (res += spaces(opts.indent) + formatVal(opts, x))
 );
