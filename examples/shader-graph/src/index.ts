@@ -1,9 +1,9 @@
 import type { Nullable } from "@thi.ng/api";
 import { exposeGlobal } from "@thi.ng/expose";
-import { ortho } from "@thi.ng/matrices";
-import { fromRAF } from "@thi.ng/rstream";
+import { ortho } from "@thi.ng/matrices/ortho";
 import { gestureStream } from "@thi.ng/rstream-gestures";
-import { Node2D } from "@thi.ng/scenegraph";
+import { fromRAF } from "@thi.ng/rstream/raf";
+import { Node2D } from "@thi.ng/scenegraph/node2";
 import {
     $x,
     add,
@@ -19,20 +19,18 @@ import {
     vec3,
     vec4,
 } from "@thi.ng/shader-ast";
-import {
-    additive,
-    distManhattan2,
-    fit1101,
-    snoise3,
-} from "@thi.ng/shader-ast-stdlib";
-import { add2, copy, ReadonlyVec, Vec } from "@thi.ng/vectors";
-import {
-    compileModel,
-    defQuadModel,
-    defShader,
-    glCanvas,
-    GLMat4,
-} from "@thi.ng/webgl";
+import { additive } from "@thi.ng/shader-ast-stdlib/math/additive";
+import { distManhattan2 } from "@thi.ng/shader-ast-stdlib/math/dist-manhattan";
+import { fit1101 } from "@thi.ng/shader-ast-stdlib/math/fit";
+import { snoise3 } from "@thi.ng/shader-ast-stdlib/noise/simplex3";
+import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
+import { add2 } from "@thi.ng/vectors/add";
+import { copy } from "@thi.ng/vectors/copy";
+import type { GLMat4 } from "@thi.ng/webgl";
+import { compileModel } from "@thi.ng/webgl/buffer";
+import { glCanvas } from "@thi.ng/webgl/canvas";
+import { defQuadModel } from "@thi.ng/webgl/geo/quad";
+import { defShader } from "@thi.ng/webgl/shader";
 import type { AppCtx } from "./api";
 import { OpNode } from "./opnode";
 

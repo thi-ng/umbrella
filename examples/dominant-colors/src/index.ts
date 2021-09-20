@@ -8,7 +8,7 @@ import { $compile } from "@thi.ng/rdom/compile";
 import { $inputFile, $inputTrigger } from "@thi.ng/rdom/event";
 import { $refresh } from "@thi.ng/rdom/switch";
 import { reactive, stream } from "@thi.ng/rstream/stream";
-import { sync } from "@thi.ng/rstream/stream-sync";
+import { sync } from "@thi.ng/rstream/sync";
 import { float } from "@thi.ng/strings/float";
 import { map } from "@thi.ng/transducers/map";
 import type { SortMode } from "./api";

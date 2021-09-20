@@ -1,14 +1,14 @@
-import { delayed } from "@thi.ng/compose";
-import { SYSTEM } from "@thi.ng/random";
-import {
-    $compile,
-    $klist,
-    $refresh,
-    Component,
-    NumOrElement,
-} from "@thi.ng/rdom";
-import { fromPromise, merge, reactive } from "@thi.ng/rstream";
-import { cycle } from "@thi.ng/transducers";
+import { delayed } from "@thi.ng/compose/delayed";
+import { SYSTEM } from "@thi.ng/random/system";
+import type { NumOrElement } from "@thi.ng/rdom";
+import { $compile } from "@thi.ng/rdom/compile";
+import { Component } from "@thi.ng/rdom/component";
+import { $klist } from "@thi.ng/rdom/klist";
+import { $refresh } from "@thi.ng/rdom/switch";
+import { merge } from "@thi.ng/rstream/merge";
+import { fromPromise } from "@thi.ng/rstream/promise";
+import { reactive } from "@thi.ng/rstream/stream";
+import { cycle } from "@thi.ng/transducers/cycle";
 
 interface UserSummary {
     id: number;

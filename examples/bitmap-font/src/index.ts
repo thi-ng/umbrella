@@ -3,7 +3,7 @@ import { dropdown } from "@thi.ng/hdom-components/dropdown";
 import { clamp } from "@thi.ng/math/interval";
 import type { ISubscriber } from "@thi.ng/rstream";
 import { reactive, Stream } from "@thi.ng/rstream/stream";
-import { sync } from "@thi.ng/rstream/stream-sync";
+import { sync } from "@thi.ng/rstream/sync";
 import { bits } from "@thi.ng/transducers-binary/bits";
 import { updateDOM } from "@thi.ng/transducers-hdom";
 import { comp } from "@thi.ng/transducers/comp";

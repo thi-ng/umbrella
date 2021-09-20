@@ -1,33 +1,29 @@
-import { downloadWithMime } from "@thi.ng/dl-asset";
-import { dropdown } from "@thi.ng/hdom-components";
-import {
-    fromIterable,
-    fromRAF,
-    metaStream,
-    reactive,
-    sidechainToggle,
-    sync,
-} from "@thi.ng/rstream";
-import {
-    buildKernel1d,
-    comp,
-    convolve1d,
-    filter,
-    flatten,
-    iterator1,
-    lookup1d,
-    map,
-    range,
-    range2d,
-    reducer,
-    scan,
-    slidingWindow,
-    str,
-    transduce,
-    zip,
-} from "@thi.ng/transducers";
-import { bits, randomBits } from "@thi.ng/transducers-binary";
+import { downloadWithMime } from "@thi.ng/dl-asset/raw";
+import { dropdown } from "@thi.ng/hdom-components/dropdown";
+import { fromIterable } from "@thi.ng/rstream/iterable";
+import { metaStream } from "@thi.ng/rstream/metastream";
+import { fromRAF } from "@thi.ng/rstream/raf";
+import { sidechainToggle } from "@thi.ng/rstream/sidechain-toggle";
+import { reactive } from "@thi.ng/rstream/stream";
+import { sync } from "@thi.ng/rstream/sync";
+import { bits } from "@thi.ng/transducers-binary/bits";
+import { randomBits } from "@thi.ng/transducers-binary/random-bits";
 import { updateDOM } from "@thi.ng/transducers-hdom";
+import { comp } from "@thi.ng/transducers/comp";
+import { buildKernel1d, convolve1d } from "@thi.ng/transducers/convolve";
+import { filter } from "@thi.ng/transducers/filter";
+import { flatten } from "@thi.ng/transducers/flatten";
+import { iterator1 } from "@thi.ng/transducers/iterator";
+import { lookup1d } from "@thi.ng/transducers/lookup";
+import { map } from "@thi.ng/transducers/map";
+import { range } from "@thi.ng/transducers/range";
+import { range2d } from "@thi.ng/transducers/range2d";
+import { reducer } from "@thi.ng/transducers/reduce";
+import { scan } from "@thi.ng/transducers/scan";
+import { slidingWindow } from "@thi.ng/transducers/sliding-window";
+import { str } from "@thi.ng/transducers/str";
+import { transduce } from "@thi.ng/transducers/transduce";
+import { zip } from "@thi.ng/transducers/zip";
 
 const WIDTH = 160;
 const HEIGHT = 32;

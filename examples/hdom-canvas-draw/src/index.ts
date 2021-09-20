@@ -1,30 +1,28 @@
 import { canvas } from "@thi.ng/hdom-canvas";
-import { HALF_PI, PI } from "@thi.ng/math";
-import { CloseMode, StreamSync, sync, trigger } from "@thi.ng/rstream";
+import { HALF_PI, PI } from "@thi.ng/math/api";
 import { GestureEvent, gestureStream } from "@thi.ng/rstream-gestures";
-import {
-    filter,
-    map,
-    mapcat,
-    normRange,
-    partition,
-    repeat,
-    zip,
-} from "@thi.ng/transducers";
+import { CloseMode } from "@thi.ng/rstream/api";
+import { StreamSync, sync } from "@thi.ng/rstream/sync";
+import { trigger } from "@thi.ng/rstream/trigger";
 import { updateDOM } from "@thi.ng/transducers-hdom";
-import { dist } from "@thi.ng/vectors";
+import { filter } from "@thi.ng/transducers/filter";
+import { map } from "@thi.ng/transducers/map";
+import { mapcat } from "@thi.ng/transducers/mapcat";
+import { normRange } from "@thi.ng/transducers/norm-range";
+import { partition } from "@thi.ng/transducers/partition";
+import { repeat } from "@thi.ng/transducers/repeat";
+import { zip } from "@thi.ng/transducers/zip";
+import { dist } from "@thi.ng/vectors/dist";
 
 // canvas size
 const W = 480;
 
 // higher order line/shape component function
 // takes a tuple of 2 points and returns a component fn
-const line = ([a, b]: number[][]) => (_: any, attribs: any) => [
-    "line",
-    { ...attribs, weight: dist(a, b) / 4 },
-    a,
-    b,
-];
+const line =
+    ([a, b]: number[][]) =>
+    (_: any, attribs: any) =>
+        ["line", { ...attribs, weight: dist(a, b) / 4 }, a, b];
 
 // higher order root component function. takes a @thi.ng/rstream
 // `StreamSync` instance as argument to dynamically add a new input
@@ -125,8 +123,7 @@ const app = (main: StreamSync<any, any>) => {
         [
             "a.db.link",
             {
-                href:
-                    "https://github.com/thi-ng/umbrella/tree/develop/examples/hdom-canvas-draw",
+                href: "https://github.com/thi-ng/umbrella/tree/develop/examples/hdom-canvas-draw",
             },
             "Source code",
         ],

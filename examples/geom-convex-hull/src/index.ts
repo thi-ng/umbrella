@@ -1,17 +1,15 @@
-import {
-    area,
-    centroid,
-    clipConvex,
-    convexHull,
-    points,
-    polygon,
-    rect,
-    scatter,
-    withAttribs,
-} from "@thi.ng/geom";
 import type { IShape } from "@thi.ng/geom-api";
-import { renderOnce } from "@thi.ng/hdom";
+import { points } from "@thi.ng/geom/ctors/points";
+import { polygon } from "@thi.ng/geom/ctors/polygon";
+import { rect } from "@thi.ng/geom/ctors/rect";
+import { area } from "@thi.ng/geom/ops/area";
+import { centroid } from "@thi.ng/geom/ops/centroid";
+import { clipConvex } from "@thi.ng/geom/ops/clip-convex";
+import { convexHull } from "@thi.ng/geom/ops/convex-hull";
+import { scatter } from "@thi.ng/geom/ops/scatter";
+import { withAttribs } from "@thi.ng/geom/ops/with-attribs";
 import { canvas } from "@thi.ng/hdom-canvas";
+import { renderOnce } from "@thi.ng/hdom/render-once";
 
 // refactored version of an example by Pete Cory
 // http://www.petecorey.com/blog/2019/07/29/clipping-convex-hulls-with-thing/

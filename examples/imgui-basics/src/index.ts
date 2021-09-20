@@ -6,7 +6,7 @@ import { sliderH } from "@thi.ng/imgui/components/sliderh";
 import { IMGUI } from "@thi.ng/imgui/gui";
 import { gridLayout } from "@thi.ng/layout/grid-layout";
 import { gestureStream } from "@thi.ng/rstream-gestures";
-import { fromDOMEvent } from "@thi.ng/rstream/from/event";
+import { fromDOMEvent } from "@thi.ng/rstream/event";
 import { reactive } from "@thi.ng/rstream/stream";
 import { tweenNumber } from "@thi.ng/rstream/tween";
 

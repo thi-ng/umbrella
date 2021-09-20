@@ -1,15 +1,16 @@
-import { renderOnce } from "@thi.ng/hdom";
-import { clamp } from "@thi.ng/math";
-import {
-    fromDOMEvent,
-    fromInterval,
-    stream,
-    Stream,
-    sync,
-} from "@thi.ng/rstream";
-import { Z2 } from "@thi.ng/strings";
-import { dedupe, map, reducer, scan, sideEffect } from "@thi.ng/transducers";
+import { renderOnce } from "@thi.ng/hdom/render-once";
+import { clamp } from "@thi.ng/math/interval";
+import { fromDOMEvent } from "@thi.ng/rstream/event";
+import { fromInterval } from "@thi.ng/rstream/interval";
+import { stream, Stream } from "@thi.ng/rstream/stream";
+import { sync } from "@thi.ng/rstream/sync";
+import { Z2 } from "@thi.ng/strings/pad-left";
 import { updateDOM } from "@thi.ng/transducers-hdom";
+import { dedupe } from "@thi.ng/transducers/dedupe";
+import { map } from "@thi.ng/transducers/map";
+import { reducer } from "@thi.ng/transducers/reduce";
+import { scan } from "@thi.ng/transducers/scan";
+import { sideEffect } from "@thi.ng/transducers/side-effect";
 import { app, printApp } from "./components";
 import { ctx } from "./config";
 import { SLIDES } from "./slides";

@@ -22,7 +22,7 @@ import { $compile } from "@thi.ng/rdom/compile";
 import { CloseMode } from "@thi.ng/rstream/api";
 import { metaStream } from "@thi.ng/rstream/metastream";
 import { reactive } from "@thi.ng/rstream/stream";
-import { sync } from "@thi.ng/rstream/stream-sync";
+import { sync } from "@thi.ng/rstream/sync";
 import { interpolate } from "@thi.ng/strings/interpolate";
 import { base64Decode, base64Encode } from "@thi.ng/transducers-binary/base64";
 import { filter } from "@thi.ng/transducers/filter";

@@ -1,17 +1,18 @@
-import { isString } from "@thi.ng/checks";
-import { delayed } from "@thi.ng/compose";
-import { $compile, $list, $refresh } from "@thi.ng/rdom";
-import {
-    CloseMode,
-    fromDOMEvent,
-    fromInterval,
-    fromIterable,
-    metaStream,
-    reactive,
-    stream,
-    sync,
-} from "@thi.ng/rstream";
-import { choices, map, take } from "@thi.ng/transducers";
+import { isString } from "@thi.ng/checks/is-string";
+import { delayed } from "@thi.ng/compose/delayed";
+import { $compile } from "@thi.ng/rdom/compile";
+import { $list } from "@thi.ng/rdom/list";
+import { $refresh } from "@thi.ng/rdom/switch";
+import { CloseMode } from "@thi.ng/rstream/api";
+import { fromDOMEvent } from "@thi.ng/rstream/event";
+import { fromInterval } from "@thi.ng/rstream/interval";
+import { fromIterable } from "@thi.ng/rstream/iterable";
+import { metaStream } from "@thi.ng/rstream/metastream";
+import { reactive, stream } from "@thi.ng/rstream/stream";
+import { sync } from "@thi.ng/rstream/sync";
+import { choices } from "@thi.ng/transducers/choices";
+import { map } from "@thi.ng/transducers/map";
+import { take } from "@thi.ng/transducers/take";
 
 const blur = reactive(false);
 const body = stream<string>();

@@ -5,7 +5,7 @@ import { line } from "@thi.ng/hiccup-svg/line";
 import { svg } from "@thi.ng/hiccup-svg/svg";
 import { $compile } from "@thi.ng/rdom/compile";
 import { $list } from "@thi.ng/rdom/list";
-import { fromAtom } from "@thi.ng/rstream/from/atom";
+import { fromAtom } from "@thi.ng/rstream/atom";
 import { indexed } from "@thi.ng/transducers/indexed";
 import { partition } from "@thi.ng/transducers/partition";
 import { repeatedly } from "@thi.ng/transducers/repeatedly";

@@ -1,4 +1,4 @@
-import { polyline } from "@thi.ng/hiccup-canvas";
+import { polyline } from "@thi.ng/hiccup-canvas/polyline";
 import { fitClamped } from "@thi.ng/math/fit";
 import { canvasPixels } from "@thi.ng/pixel/canvas";
 import { forkJoin } from "@thi.ng/rstream/forkjoin";

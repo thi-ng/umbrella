@@ -1,9 +1,15 @@
 import type { FnU5 } from "@thi.ng/api";
 import { $, dot, Dual, mul, sub } from "@thi.ng/dual-algebra";
-import { asSvg, circle, cubic, line, svgDoc, text } from "@thi.ng/geom";
-import { fract } from "@thi.ng/math";
-import { vector } from "@thi.ng/strings";
-import { add2, normalize, sub2 } from "@thi.ng/vectors";
+import { circle } from "@thi.ng/geom/ctors/circle";
+import { cubic } from "@thi.ng/geom/ctors/cubic";
+import { line } from "@thi.ng/geom/ctors/line";
+import { text } from "@thi.ng/geom/ctors/text";
+import { asSvg, svgDoc } from "@thi.ng/geom/ops/as-svg";
+import { fract } from "@thi.ng/math/prec";
+import { vector } from "@thi.ng/strings/vector";
+import { add2 } from "@thi.ng/vectors/add";
+import { normalize } from "@thi.ng/vectors/normalize";
+import { sub2 } from "@thi.ng/vectors/sub";
 
 /**
  * Computes point at `t` (in [0..1] range) on given cubic curve using dual

@@ -1,4 +1,5 @@
-import { reactive, sync } from "@thi.ng/rstream";
+import { reactive } from "@thi.ng/rstream/stream";
+import { sync } from "@thi.ng/rstream/sync";
 import { percent } from "@thi.ng/strings";
 import { comp, map } from "@thi.ng/transducers";
 import { updateDOM } from "@thi.ng/transducers-hdom";

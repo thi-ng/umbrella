@@ -1,8 +1,10 @@
 import { DEFAULT_IMPL, normalizeTree, replaceChild } from "@thi.ng/hdom";
-import { memoize1 } from "@thi.ng/memoize";
-import { fromInterval, sync } from "@thi.ng/rstream";
-import { cycle, map } from "@thi.ng/transducers";
+import { memoize1 } from "@thi.ng/memoize/memoize1";
+import { fromInterval } from "@thi.ng/rstream/interval";
+import { sync } from "@thi.ng/rstream/sync";
 import { updateDOM } from "@thi.ng/transducers-hdom";
+import { cycle } from "@thi.ng/transducers/cycle";
+import { map } from "@thi.ng/transducers/map";
 
 // infinite cyclic sequence of colors
 const COLORS = cycle(["red", "blue", "green", "orange", "light-blue"]);

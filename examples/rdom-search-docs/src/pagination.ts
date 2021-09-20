@@ -5,7 +5,7 @@ import { button } from "@thi.ng/hiccup-html/forms";
 import { clamp } from "@thi.ng/math/interval";
 import type { ISubscription } from "@thi.ng/rstream";
 import { reactive, Stream } from "@thi.ng/rstream/stream";
-import { sync } from "@thi.ng/rstream/stream-sync";
+import { sync } from "@thi.ng/rstream/sync";
 import { comp } from "@thi.ng/transducers/comp";
 import { dedupe } from "@thi.ng/transducers/dedupe";
 import { map } from "@thi.ng/transducers/map";

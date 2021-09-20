@@ -1,6 +1,6 @@
 import { isNumber } from "@thi.ng/checks/is-number";
 import { exposeGlobal } from "@thi.ng/expose";
-import { fromAtom } from "@thi.ng/rstream/from/atom";
+import { fromAtom } from "@thi.ng/rstream/atom";
 import { charRange } from "@thi.ng/strings/range";
 import { updateDOM } from "@thi.ng/transducers-hdom";
 import { comp } from "@thi.ng/transducers/comp";

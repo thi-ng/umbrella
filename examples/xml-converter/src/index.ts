@@ -1,5 +1,5 @@
 import { reactive } from "@thi.ng/rstream/stream";
-import { sync } from "@thi.ng/rstream/stream-sync";
+import { sync } from "@thi.ng/rstream/sync";
 import { updateDOM } from "@thi.ng/transducers-hdom";
 import { map } from "@thi.ng/transducers/map";
 import { convertXML } from "./convert";

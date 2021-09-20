@@ -8,7 +8,7 @@ import { perspective } from "@thi.ng/matrices/perspective";
 import { transform44 } from "@thi.ng/matrices/transform";
 import { SYSTEM } from "@thi.ng/random/system";
 import type { ISubscription } from "@thi.ng/rstream";
-import { fromDOMEvent } from "@thi.ng/rstream/from/event";
+import { fromDOMEvent } from "@thi.ng/rstream/event";
 import { assign } from "@thi.ng/shader-ast/ast/assign";
 import { defMain } from "@thi.ng/shader-ast/ast/function";
 import { float, vec3, vec4 } from "@thi.ng/shader-ast/ast/lit";

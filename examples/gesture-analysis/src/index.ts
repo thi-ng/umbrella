@@ -1,20 +1,28 @@
 import { peek } from "@thi.ng/arrays";
-import { identity } from "@thi.ng/compose";
-import { polyline as gPolyline, resample, vertices } from "@thi.ng/geom";
-import { circle, group, polyline, svg } from "@thi.ng/hiccup-svg";
-import { fromIterable, merge, sync } from "@thi.ng/rstream";
+import { polyline as gPolyline } from "@thi.ng/geom/ctors/polyline";
+import { resample } from "@thi.ng/geom/ops/resample";
+import { vertices } from "@thi.ng/geom/ops/vertices";
+import { circle } from "@thi.ng/hiccup-svg/circle";
+import { group } from "@thi.ng/hiccup-svg/group";
+import { polyline } from "@thi.ng/hiccup-svg/polyline";
+import { svg } from "@thi.ng/hiccup-svg/svg";
 import { GestureEvent, gestureStream } from "@thi.ng/rstream-gestures";
-import {
-    comp,
-    filter,
-    map,
-    multiplexObj,
-    partition,
-    push,
-    transduce,
-} from "@thi.ng/transducers";
+import { fromIterable } from "@thi.ng/rstream/iterable";
+import { merge } from "@thi.ng/rstream/merge";
+import { sync } from "@thi.ng/rstream/sync";
 import { updateDOM } from "@thi.ng/transducers-hdom";
-import { angleBetween2, mixN2, sub2, Vec } from "@thi.ng/vectors";
+import { comp } from "@thi.ng/transducers/comp";
+import { filter } from "@thi.ng/transducers/filter";
+import { map } from "@thi.ng/transducers/map";
+import { multiplexObj } from "@thi.ng/transducers/multiplex-obj";
+import { noop } from "@thi.ng/transducers/noop";
+import { partition } from "@thi.ng/transducers/partition";
+import { push } from "@thi.ng/transducers/push";
+import { transduce } from "@thi.ng/transducers/transduce";
+import type { Vec } from "@thi.ng/vectors";
+import { angleBetween2 } from "@thi.ng/vectors/angle-between";
+import { mixN2 } from "@thi.ng/vectors/mixn";
+import { sub2 } from "@thi.ng/vectors/sub";
 import { CTA } from "./config";
 
 /**
@@ -100,8 +108,10 @@ const smoothPath = (smooth: number, path: Vec[]) => {
  *
  * @param thresh normalized angle threshold
  */
-const isCorner = (thresh: number) => ([a, b, c]: Vec[]) =>
-    angleBetween2(sub2([], b, a), sub2([], b, c), true) < thresh;
+const isCorner =
+    (thresh: number) =>
+    ([a, b, c]: Vec[]) =>
+        angleBetween2(sub2([], b, a), sub2([], b, c), true) < thresh;
 
 /**
  * Gesture event processor. Collects gesture event positions into an
@@ -154,7 +164,7 @@ sync({
                 map((pts: Vec[]) => smoothPath(3 / 4, pts)),
                 map((pts: Vec[]) => sampleUniform(20, pts)),
                 multiplexObj({
-                    path: map(identity),
+                    path: noop(),
                     corners: map((pts) =>
                         transduce(
                             comp(

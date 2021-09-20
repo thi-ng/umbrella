@@ -1,12 +1,17 @@
-import { Atom } from "@thi.ng/atom";
+import { defAtom } from "@thi.ng/atom/atom";
 import { equiv } from "@thi.ng/equiv";
-import { start } from "@thi.ng/hdom";
-import { getIn } from "@thi.ng/paths";
-import { fromRAF } from "@thi.ng/rstream";
+import { start } from "@thi.ng/hdom/start";
+import { getIn } from "@thi.ng/paths/get-in";
 import { toDot, walk } from "@thi.ng/rstream-dot";
 import { gestureStream } from "@thi.ng/rstream-gestures";
-import { extract, initGraph, mul, node, node1 } from "@thi.ng/rstream-graph";
-import { choices, comp, dedupe, map } from "@thi.ng/transducers";
+import { initGraph, node, node1 } from "@thi.ng/rstream-graph/graph";
+import { extract } from "@thi.ng/rstream-graph/nodes/extract";
+import { mul } from "@thi.ng/rstream-graph/nodes/math";
+import { fromRAF } from "@thi.ng/rstream/raf";
+import { choices } from "@thi.ng/transducers/choices";
+import { comp } from "@thi.ng/transducers/comp";
+import { dedupe } from "@thi.ng/transducers/dedupe";
+import { map } from "@thi.ng/transducers/map";
 import { circle } from "./circle";
 
 // infinite iterator of randomized colors (Tachyons CSS class names)
@@ -24,7 +29,7 @@ const colors = choices([
 
 // atom for storing dataflow results (optional, here only for
 // debugging/stringifying graph state)
-const db = new Atom<any>({});
+const db = defAtom<any>({});
 
 // combined mouse & touch event stream
 // this stream produces tuples of:

@@ -6,10 +6,10 @@ import { inputRange, label } from "@thi.ng/hiccup-html/forms";
 import { $canvas } from "@thi.ng/rdom-canvas";
 import { $compile } from "@thi.ng/rdom/compile";
 import type { ISubscription } from "@thi.ng/rstream";
-import { fromDOMEvent } from "@thi.ng/rstream/from/event";
-import { fromRAF } from "@thi.ng/rstream/from/raf";
+import { fromDOMEvent } from "@thi.ng/rstream/event";
+import { fromRAF } from "@thi.ng/rstream/raf";
 import { reactive } from "@thi.ng/rstream/stream";
-import { sync } from "@thi.ng/rstream/stream-sync";
+import { sync } from "@thi.ng/rstream/sync";
 import { map } from "@thi.ng/transducers/map";
 import { slidingWindow } from "@thi.ng/transducers/sliding-window";
 

@@ -1,11 +1,17 @@
 import type { IDeref } from "@thi.ng/api";
-import { sin } from "@thi.ng/dsp";
-import { start } from "@thi.ng/hdom";
-import { canvasWebGL2 } from "@thi.ng/hdom-components";
-import { lookAt, perspective, transform44 } from "@thi.ng/matrices";
-import { fromRAF, tweenNumber } from "@thi.ng/rstream";
-import { benchmark, map, movingAverage, repeatedly } from "@thi.ng/transducers";
-import { rotateY } from "@thi.ng/vectors";
+import { sin } from "@thi.ng/dsp/osc/sin";
+import { canvasWebGL2 } from "@thi.ng/hdom-components/canvas";
+import { start } from "@thi.ng/hdom/start";
+import { lookAt } from "@thi.ng/matrices/lookat";
+import { perspective } from "@thi.ng/matrices/perspective";
+import { transform44 } from "@thi.ng/matrices/transform";
+import { fromRAF } from "@thi.ng/rstream/raf";
+import { tweenNumber } from "@thi.ng/rstream/tween";
+import { benchmark } from "@thi.ng/transducers/benchmark";
+import { map } from "@thi.ng/transducers/map";
+import { movingAverage } from "@thi.ng/transducers/moving-average";
+import { repeatedly } from "@thi.ng/transducers/repeatedly";
+import { rotateY } from "@thi.ng/vectors/rotate";
 import {
     checkerboard,
     compileModel,

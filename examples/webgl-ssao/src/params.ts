@@ -1,22 +1,27 @@
 import type { IObjectOf } from "@thi.ng/api";
-import { reactive, Stream } from "@thi.ng/rstream";
-import { assocObj, map, pairs, push, transduce } from "@thi.ng/transducers";
+import { reactive, Stream } from "@thi.ng/rstream/stream";
+import { assocObj } from "@thi.ng/transducers/assoc-obj";
+import { map } from "@thi.ng/transducers/map";
+import { pairs } from "@thi.ng/transducers/pairs";
+import { push } from "@thi.ng/transducers/push";
+import { transduce } from "@thi.ng/transducers/transduce";
 
-const slider = (label: string, attribs: any, stream: Stream<number>) => () => [
-    "div.mb2",
-    ["span.dib.w4", label],
+const slider = (label: string, attribs: any, stream: Stream<number>) => () =>
     [
-        "input.w5",
-        {
-            ...attribs,
-            type: "range",
-            value: stream.deref(),
-            oninput: (e: Event) =>
-                stream.next(parseFloat((<HTMLInputElement>e.target).value)),
-        },
-    ],
-    ["span.ml3", stream.deref()],
-];
+        "div.mb2",
+        ["span.dib.w4", label],
+        [
+            "input.w5",
+            {
+                ...attribs,
+                type: "range",
+                value: stream.deref(),
+                oninput: (e: Event) =>
+                    stream.next(parseFloat((<HTMLInputElement>e.target).value)),
+            },
+        ],
+        ["span.ml3", stream.deref()],
+    ];
 
 type ParamDef = [string, any, number];
 
