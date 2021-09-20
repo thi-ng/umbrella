@@ -1,4 +1,4 @@
-import { ConsoleLogger } from "@thi.ng/api";
+import { ConsoleLogger } from "@thi.ng/logger";
 import { group } from "@thi.ng/testament";
 import * as assert from "assert";
 import {

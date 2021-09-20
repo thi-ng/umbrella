@@ -1,6 +1,5 @@
-import { unsupported } from "@thi.ng/errors/unsupported";
-import { DEFAULT, LOGGER } from "./constants";
 import type { IObjectOf, Pair } from "@thi.ng/api";
+import { unsupported } from "@thi.ng/errors/unsupported";
 import type {
     AncestorDefs,
     DispatchFn,
@@ -39,6 +38,13 @@ import type {
     MultiFn8,
     MultiFn8O,
 } from "./api";
+import { LOGGER } from "./logger";
+
+/**
+ * Unique symbol used for registering a default / fallback
+ * implementation.
+ */
+export const DEFAULT: unique symbol = Symbol();
 
 /**
  * Returns a new multi-dispatch function using the provided dispatch
@@ -107,11 +113,11 @@ export function defmulti<T>(f: any, ancestors?: AncestorDefs) {
             ? g(...args)
             : unsupported(`missing implementation for: "${id.toString()}"`);
     };
-    fn.add = (id: PropertyKey, g: Implementation<T>) => {
+    fn.add = (id: PropertyKey, _impl: Implementation<T>) => {
         if (impls[<any>id]) {
             LOGGER.warn(`overwriting '${id.toString()}' impl`);
         }
-        impls[<any>id] = g;
+        impls[<any>id] = _impl;
         return true;
     };
     fn.addAll = (_impls: IObjectOf<Implementation<T>>) => {
@@ -121,6 +127,7 @@ export function defmulti<T>(f: any, ancestors?: AncestorDefs) {
         }
         return ok;
     };
+    fn.setDefault = (impl: Implementation<T>) => fn.add(DEFAULT, impl);
     fn.remove = (id: PropertyKey) => {
         if (!impls[<any>id]) return false;
         delete impls[<any>id];
