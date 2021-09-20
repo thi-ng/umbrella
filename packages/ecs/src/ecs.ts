@@ -8,7 +8,7 @@ import { isString } from "@thi.ng/checks/is-string";
 import { IDGen } from "@thi.ng/idgen";
 import type { IMemPoolArray } from "@thi.ng/malloc";
 import { NativePool } from "@thi.ng/malloc/native";
-import { filter } from "@thi.ng/transducers/xform/filter";
+import { filter } from "@thi.ng/transducers/filter";
 import type {
     ComponentID,
     ECSOpts,
