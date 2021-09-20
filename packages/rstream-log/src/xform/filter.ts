@@ -1,4 +1,4 @@
-import type { LogLevel } from "@thi.ng/api";
+import type { LogLevel } from "@thi.ng/logger";
 import { isString } from "@thi.ng/checks/is-string";
 import type { Transducer } from "@thi.ng/transducers";
 import { filter } from "@thi.ng/transducers/filter";

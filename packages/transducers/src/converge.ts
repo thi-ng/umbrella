@@ -1,5 +1,5 @@
 import type { Predicate2 } from "@thi.ng/api";
-import { SEMAPHORE } from "@thi.ng/api/constants";
+import { SEMAPHORE } from "@thi.ng/api/api";
 import type { Reducer, Transducer } from "./api";
 import { compR } from "./compr";
 import { __iter } from "./iterator";

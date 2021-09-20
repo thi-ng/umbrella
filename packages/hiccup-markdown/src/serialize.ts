@@ -3,7 +3,6 @@ import { isFunction } from "@thi.ng/checks/is-function";
 import { isNotStringAndIterable } from "@thi.ng/checks/is-not-string-iterable";
 import { isString } from "@thi.ng/checks/is-string";
 import type { MultiFn3 } from "@thi.ng/defmulti";
-import { DEFAULT } from "@thi.ng/defmulti/constants";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import { normalize } from "@thi.ng/hiccup/normalize";
@@ -95,7 +94,7 @@ const body = (el: any[], ctx: any, state: SerializeState) =>
 
 export const serializeElement: MultiFn3<any, any, SerializeState, string> =
     defmulti((el) => el[0]);
-serializeElement.add(DEFAULT, body);
+serializeElement.setDefault(body);
 
 serializeElement.addAll({
     h1: header(1),

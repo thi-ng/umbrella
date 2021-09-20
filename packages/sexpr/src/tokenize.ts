@@ -1,5 +1,4 @@
-import { DEFAULT_SYNTAX } from "./constants";
-import type { SyntaxOpts, Token } from "./api";
+import { DEFAULT_SYNTAX, SyntaxOpts, Token } from "./api";
 
 /**
  * Yields iterator of {@link Token}s (incl. location info) from `src` string
@@ -17,7 +16,11 @@ export function* tokenize(
     src: Iterable<string>,
     opts?: Partial<SyntaxOpts>
 ): IterableIterator<Token> {
-    const { scopes: rawScopes, whiteSpace, string } = {
+    const {
+        scopes: rawScopes,
+        whiteSpace,
+        string,
+    } = {
         ...DEFAULT_SYNTAX,
         ...opts,
     };

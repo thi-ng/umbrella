@@ -1,5 +1,6 @@
-import type { Fn, Fn0, IDeref, IID, ILogger } from "@thi.ng/api";
-import { NULL_LOGGER } from "@thi.ng/api/logger";
+import type { Fn, Fn0, IDeref, IID } from "@thi.ng/api";
+import type { ILogger } from "@thi.ng/logger";
+import { NULL_LOGGER } from "@thi.ng/logger/null";
 import type { Transducer } from "@thi.ng/transducers";
 import type { Stream } from "./stream";
 

@@ -1,5 +1,5 @@
 import type { NumOrString } from "@thi.ng/api";
-import { SEMAPHORE } from "@thi.ng/api/constants";
+import { SEMAPHORE } from "@thi.ng/api/api";
 import { isArray } from "@thi.ng/checks/is-array";
 import { isFunction } from "@thi.ng/checks/is-function";
 import { isPlainObject } from "@thi.ng/checks/is-plain-object";

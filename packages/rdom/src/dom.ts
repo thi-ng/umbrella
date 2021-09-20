@@ -1,12 +1,12 @@
 import type { IObjectOf } from "@thi.ng/api";
-import { deref, isDeref, MaybeDeref } from "@thi.ng/api/api/deref";
-import { assert } from "@thi.ng/api/assert";
+import { deref, isDeref, MaybeDeref } from "@thi.ng/api/deref";
 import { implementsFunction } from "@thi.ng/checks/implements-function";
 import { isArray } from "@thi.ng/checks/is-array";
 import { isFunction } from "@thi.ng/checks/is-function";
 import { isNotStringAndIterable } from "@thi.ng/checks/is-not-string-iterable";
 import { isNumber } from "@thi.ng/checks/is-number";
 import { isString } from "@thi.ng/checks/is-string";
+import { assert } from "@thi.ng/errors/assert";
 import { unsupported } from "@thi.ng/errors/unsupported";
 import {
     ATTRIB_JOIN_DELIMS,

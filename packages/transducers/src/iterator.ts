@@ -1,5 +1,5 @@
 import type { FnAny } from "@thi.ng/api";
-import { NO_OP, SEMAPHORE } from "@thi.ng/api/constants";
+import { NO_OP, SEMAPHORE } from "@thi.ng/api/api";
 import { isIterable } from "@thi.ng/checks/is-iterable";
 import type { Reducer, Transducer, TxLike } from "./api";
 import { ensureTransducer } from "./ensure";

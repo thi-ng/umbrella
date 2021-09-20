@@ -3,7 +3,7 @@ import {
     TypedArray,
     typedArray,
     TypedArrayTypeMap,
-} from "@thi.ng/api/api/typedarray";
+} from "@thi.ng/api/typedarray";
 import type { IMemPoolArray } from "./api";
 
 /**

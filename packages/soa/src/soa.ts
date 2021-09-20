@@ -1,6 +1,6 @@
 import type { ILength } from "@thi.ng/api";
-import { SIZEOF, TypedArray, typedArray } from "@thi.ng/api/api/typedarray";
-import { assert } from "@thi.ng/api/assert";
+import { SIZEOF, TypedArray, typedArray } from "@thi.ng/api/typedarray";
+import { assert } from "@thi.ng/errors/assert";
 import { ensureIndex } from "@thi.ng/errors/out-of-bounds";
 import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
 import type { SOAAttribSpec, SOASpecs, SOATuple } from "./api";

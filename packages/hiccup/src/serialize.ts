@@ -1,4 +1,4 @@
-import { deref, isDeref } from "@thi.ng/api/api/deref";
+import { deref, isDeref } from "@thi.ng/api/deref";
 import { implementsFunction } from "@thi.ng/checks/implements-function";
 import { isArray } from "@thi.ng/checks/is-array";
 import { isFunction } from "@thi.ng/checks/is-function";

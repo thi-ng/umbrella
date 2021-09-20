@@ -4,8 +4,8 @@ import type {
     Range1_64,
     RangeValueMap,
 } from "@thi.ng/api";
-import { assert } from "@thi.ng/api/assert";
 import { MASKS } from "@thi.ng/binary/constants";
+import { assert } from "@thi.ng/errors/assert";
 
 type Range2_64 = Exclude<Range1_64, 1>;
 

@@ -1,5 +1,5 @@
-import { assert } from "@thi.ng/api/assert";
 import { isArray } from "@thi.ng/checks/is-array";
+import { assert } from "@thi.ng/errors/assert";
 import { unsupported } from "@thi.ng/errors/unsupported";
 import type {
     Color,

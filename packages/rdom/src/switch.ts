@@ -1,5 +1,5 @@
 import type { Fn, NumOrString } from "@thi.ng/api";
-import { assert } from "@thi.ng/api/assert";
+import { assert } from "@thi.ng/errors/assert";
 import type { ISubscribable } from "@thi.ng/rstream";
 import type { IComponent, IMountWithState, NumOrElement } from "./api";
 import { $compile } from "./compile";

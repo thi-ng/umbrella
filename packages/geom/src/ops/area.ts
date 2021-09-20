@@ -1,6 +1,5 @@
 import type { IObjectOf } from "@thi.ng/api";
 import type { Implementation1O, MultiFn1O } from "@thi.ng/defmulti";
-import { DEFAULT } from "@thi.ng/defmulti/constants";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
 import type { IShape } from "@thi.ng/geom-api";
 import { polyArea2 } from "@thi.ng/geom-poly-utils/area";
@@ -52,7 +51,7 @@ import { dispatch } from "../internal/dispatch";
  * @param signed - true, if signed area
  */
 export const area: MultiFn1O<IShape, boolean, number> = defmulti(dispatch);
-area.add(DEFAULT, () => 0);
+area.setDefault(() => 0);
 
 area.addAll(<IObjectOf<Implementation1O<unknown, boolean, number>>>{
     aabb: ({ size: [w, h, d] }: AABB) => 2 * (w * h + w * d + h * d),

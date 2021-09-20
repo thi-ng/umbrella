@@ -1,6 +1,5 @@
 import type { IObjectOf } from "@thi.ng/api";
 import type { Implementation1 } from "@thi.ng/defmulti";
-import { DEFAULT } from "@thi.ng/defmulti/constants";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
 import type { IShape } from "@thi.ng/geom-api";
 import { PI } from "@thi.ng/math/api";
@@ -17,7 +16,7 @@ import { dispatch } from "../internal/dispatch";
  * - Sphere
  */
 export const volume = defmulti<IShape, number>(dispatch);
-volume.add(DEFAULT, () => 0);
+volume.setDefault(() => 0);
 
 volume.addAll(<IObjectOf<Implementation1<unknown, number>>>{
     aabb: ({ size }: AABB) => size[0] * size[1] * size[2],

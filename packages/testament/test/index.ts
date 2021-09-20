@@ -1,4 +1,5 @@
-import { group, NULL_LOGGER, test, TestResult } from "@thi.ng/testament";
+import { NULL_LOGGER } from "@thi.ng/logger";
+import { group, test, TestResult } from "@thi.ng/testament";
 import * as assert from "assert";
 
 let retryResult = 0;

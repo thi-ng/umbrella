@@ -1,7 +1,7 @@
 import type { Comparator, Fn } from "@thi.ng/api";
-import { assert } from "@thi.ng/api/assert";
 import { isFunction } from "@thi.ng/checks/is-function";
 import { compare } from "@thi.ng/compare/compare";
+import { assert } from "@thi.ng/errors/assert";
 import { quickSort } from "./quicksort";
 import { multiSwap } from "./swap";
 

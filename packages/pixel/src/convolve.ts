@@ -1,6 +1,6 @@
 import type { Fn, FnN3, NumericArray } from "@thi.ng/api";
-import { assert } from "@thi.ng/api/assert";
 import { isFunction } from "@thi.ng/checks/is-function";
+import { assert } from "@thi.ng/errors/assert";
 import { clamp } from "@thi.ng/math/interval";
 import { lanczos } from "@thi.ng/math/mix";
 import type {

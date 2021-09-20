@@ -1,5 +1,5 @@
-import { assert } from "@thi.ng/api/assert";
 import { isString } from "@thi.ng/checks/is-string";
+import { assert } from "@thi.ng/errors/assert";
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import type { Lit, Sym, Term } from "../api/nodes";
 import type { SymOpts } from "../api/syms";

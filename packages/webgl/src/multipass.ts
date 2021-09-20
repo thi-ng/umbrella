@@ -1,5 +1,5 @@
 import type { IObjectOf } from "@thi.ng/api";
-import { assert } from "@thi.ng/api/assert";
+import { assert } from "@thi.ng/errors/assert";
 import { assign } from "@thi.ng/shader-ast/ast/assign";
 import { defMain } from "@thi.ng/shader-ast/ast/function";
 import { INT0, ivec2 } from "@thi.ng/shader-ast/ast/lit";

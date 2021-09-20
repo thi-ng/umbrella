@@ -1,4 +1,4 @@
-import { assert } from "@thi.ng/api/assert";
+import { assert } from "@thi.ng/errors/assert";
 import { add } from "@thi.ng/transducers/add";
 import { choices } from "@thi.ng/transducers/choices";
 import { range } from "@thi.ng/transducers/range";

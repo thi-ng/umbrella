@@ -1,4 +1,3 @@
-import { assert } from "@thi.ng/api/assert";
 import { peek } from "@thi.ng/arrays/peek";
 import { isArray } from "@thi.ng/checks/is-array";
 import { isArrayLike } from "@thi.ng/checks/is-arraylike";
@@ -7,6 +6,7 @@ import { isNumber } from "@thi.ng/checks/is-number";
 import { isPlainObject } from "@thi.ng/checks/is-plain-object";
 import { isString } from "@thi.ng/checks/is-string";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
+import { assert } from "@thi.ng/errors/assert";
 import { illegalState } from "@thi.ng/errors/illegal-state";
 import { unsupported } from "@thi.ng/errors/unsupported";
 import type { BinStructItem } from "@thi.ng/transducers-binary";

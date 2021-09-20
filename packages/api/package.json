@@ -65,6 +65,9 @@
         ".": {
             "import": "./index.js"
         },
+        "./api": {
+            "import": "./api.js"
+        },
         "./assoc": {
             "import": "./assoc.js"
         },
@@ -85,6 +88,18 @@
         },
         "./copy": {
             "import": "./copy.js"
+        },
+        "./decorators/configurable": {
+            "import": "./decorators/configurable.js"
+        },
+        "./decorators/deprecated": {
+            "import": "./decorators/deprecated.js"
+        },
+        "./decorators/nomixin": {
+            "import": "./decorators/nomixin.js"
+        },
+        "./decorators/sealed": {
+            "import": "./decorators/sealed.js"
         },
         "./deref": {
             "import": "./deref.js"
@@ -134,6 +149,21 @@
         "./meta": {
             "import": "./meta.js"
         },
+        "./mixin": {
+            "import": "./mixin.js"
+        },
+        "./mixins/ienable": {
+            "import": "./mixins/ienable.js"
+        },
+        "./mixins/inotify": {
+            "import": "./mixins/inotify.js"
+        },
+        "./mixins/iterable": {
+            "import": "./mixins/iterable.js"
+        },
+        "./mixins/iwatch": {
+            "import": "./mixins/iwatch.js"
+        },
         "./null": {
             "import": "./null.js"
         },
@@ -178,36 +208,6 @@
         },
         "./watch": {
             "import": "./watch.js"
-        },
-        "./api": {
-            "import": "./api.js"
-        },
-        "./decorators/configurable": {
-            "import": "./decorators/configurable.js"
-        },
-        "./decorators/deprecated": {
-            "import": "./decorators/deprecated.js"
-        },
-        "./decorators/nomixin": {
-            "import": "./decorators/nomixin.js"
-        },
-        "./decorators/sealed": {
-            "import": "./decorators/sealed.js"
-        },
-        "./mixin": {
-            "import": "./mixin.js"
-        },
-        "./mixins/ienable": {
-            "import": "./mixins/ienable.js"
-        },
-        "./mixins/inotify": {
-            "import": "./mixins/inotify.js"
-        },
-        "./mixins/iterable": {
-            "import": "./mixins/iterable.js"
-        },
-        "./mixins/iwatch": {
-            "import": "./mixins/iwatch.js"
         }
     }
 }

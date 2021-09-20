@@ -1,5 +1,5 @@
 import type { IObjectOf } from "@thi.ng/api";
-import { SEMAPHORE } from "@thi.ng/api/constants";
+import { SEMAPHORE } from "@thi.ng/api/api";
 import { diffArray } from "@thi.ng/diff/array";
 import { diffObject } from "@thi.ng/diff/object";
 import {

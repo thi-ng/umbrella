@@ -1,7 +1,7 @@
 import type { Fn2, ICopy, IEmpty, NumericArray } from "@thi.ng/api";
-import { assert } from "@thi.ng/api/assert";
 import { isNumber } from "@thi.ng/checks/is-number";
 import { isString } from "@thi.ng/checks/is-string";
+import { assert } from "@thi.ng/errors/assert";
 import { clamp01 } from "@thi.ng/math/interval";
 import type {
     BlendFnFloat,

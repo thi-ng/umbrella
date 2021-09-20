@@ -1,5 +1,5 @@
 import type { Comparator, Fn3, IObjectOf, Pair } from "@thi.ng/api";
-import { SEMAPHORE } from "@thi.ng/api/constants";
+import { SEMAPHORE } from "@thi.ng/api/api";
 import { isPlainObject } from "@thi.ng/checks/is-plain-object";
 import { compare } from "@thi.ng/compare/compare";
 import type { ReductionFn } from "@thi.ng/transducers";

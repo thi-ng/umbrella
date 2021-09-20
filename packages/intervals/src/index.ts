@@ -1,5 +1,5 @@
 import type { Fn, Fn2, ICompare, IContains, ICopy, IEquiv } from "@thi.ng/api";
-import { DEFAULT_EPS } from "@thi.ng/api/constants";
+import { DEFAULT_EPS } from "@thi.ng/api/api";
 import { isString } from "@thi.ng/checks/is-string";
 import { and, or } from "@thi.ng/dlogic";
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";

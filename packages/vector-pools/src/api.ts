@@ -1,13 +1,13 @@
-import {
+import type {
     GLType,
-    ILogger,
     IObjectOf,
     IRelease,
-    NULL_LOGGER,
     NumericArray,
     Type,
     TypedArray,
 } from "@thi.ng/api";
+import type { ILogger } from "@thi.ng/logger";
+import { NULL_LOGGER } from "@thi.ng/logger/null";
 import type { MemPool, MemPoolOpts } from "@thi.ng/malloc";
 import type { ReadonlyVec, StridedVec } from "@thi.ng/vectors";
 

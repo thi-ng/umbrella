@@ -40,7 +40,6 @@
         "@thi.ng/checks": "^2.9.11",
         "@thi.ng/geom-clip-line": "^1.2.45",
         "@thi.ng/math": "^4.0.6",
-        "@thi.ng/memoize": "^2.1.21",
         "@thi.ng/strings": "^2.1.7",
         "@thi.ng/text-format": "^0.0.1",
         "@thi.ng/transducers": "^7.9.2"

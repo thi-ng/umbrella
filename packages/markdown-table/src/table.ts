@@ -1,7 +1,7 @@
 import type { Fn, Keys } from "@thi.ng/api";
-import { assert } from "@thi.ng/api/assert";
 import { isString } from "@thi.ng/checks/is-string";
 import { juxt } from "@thi.ng/compose/juxt";
+import { assert } from "@thi.ng/errors/assert";
 import type { Stringer } from "@thi.ng/strings";
 import { center } from "@thi.ng/strings/center";
 import { padLeft } from "@thi.ng/strings/pad-left";

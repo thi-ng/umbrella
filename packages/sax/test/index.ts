@@ -1,4 +1,4 @@
-import { DEFAULT, defmulti } from "@thi.ng/defmulti";
+import { defmulti } from "@thi.ng/defmulti";
 import { group } from "@thi.ng/testament";
 import {
     comp,
@@ -109,7 +109,7 @@ group("sax", {
         ]);
 
         // implementation for unhandled elements (just return undefined)
-        parseElement.add(DEFAULT, () => undefined);
+        parseElement.setDefault(() => undefined);
 
         assert.deepStrictEqual(
             parseElement(<ParseElement>transduce(parse(), last(), svg)),

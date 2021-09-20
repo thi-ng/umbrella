@@ -1,4 +1,4 @@
-import { assert } from "@thi.ng/api/assert";
+import { assert } from "@thi.ng/errors/assert";
 import { SYSTEM } from "@thi.ng/random/system";
 import { iterate } from "@thi.ng/transducers/iterate";
 import { iterator } from "@thi.ng/transducers/iterator";

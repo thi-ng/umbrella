@@ -1,5 +1,5 @@
 import type { Fn } from "@thi.ng/api";
-import { assert } from "@thi.ng/api/assert";
+import { assert } from "@thi.ng/errors/assert";
 import { clamp, clamp01 } from "@thi.ng/math/interval";
 import { ABGR8888 } from "@thi.ng/pixel/format/abgr8888";
 import { PackedBuffer } from "@thi.ng/pixel/packed";

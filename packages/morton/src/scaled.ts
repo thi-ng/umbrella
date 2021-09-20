@@ -1,6 +1,6 @@
 import type { FnN4 } from "@thi.ng/api";
-import { assert } from "@thi.ng/api/assert";
 import { MASKS } from "@thi.ng/binary/constants";
+import { assert } from "@thi.ng/errors/assert";
 import { fit, fit01 } from "@thi.ng/math/fit";
 import { inRange } from "@thi.ng/math/interval";
 import {

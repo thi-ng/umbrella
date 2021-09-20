@@ -1,6 +1,6 @@
 import type { Fn, IObjectOf } from "@thi.ng/api";
-import { assert } from "@thi.ng/api/assert";
 import { f32u16, f32u24, f32u32, f32u8 } from "@thi.ng/binary/float";
+import { assert } from "@thi.ng/errors/assert";
 import type { BinStructItem } from "@thi.ng/transducers-binary";
 import {
     asBytes,

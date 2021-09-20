@@ -38,6 +38,7 @@
         "@thi.ng/api": "^7.2.0",
         "@thi.ng/checks": "^2.9.11",
         "@thi.ng/diff": "^4.0.13",
+        "@thi.ng/errors": "^1.3.4",
         "@thi.ng/hdom": "^8.2.32",
         "@thi.ng/hiccup-canvas": "^1.2.15"
     },

@@ -1,6 +1,5 @@
-import type { Fn } from "@thi.ng/api";
-import type { Nullable } from "@thi.ng/api";
-import { assert } from "@thi.ng/api/assert";
+import type { Fn, Nullable } from "@thi.ng/api";
+import { assert } from "@thi.ng/errors/assert";
 import { CloseMode, CommonOpts, ISubscription, State } from "./api";
 import { Subscription } from "./subscription";
 import { optsWithID } from "./utils/idgen";

@@ -35,7 +35,6 @@
         "test": "testament test"
     },
     "dependencies": {
-        "@thi.ng/api": "^7.2.0",
         "@thi.ng/arrays": "^1.0.3",
         "@thi.ng/checks": "^2.9.11",
         "@thi.ng/defmulti": "^1.3.17",

@@ -38,6 +38,8 @@
         "@thi.ng/api": "^7.2.0",
         "@thi.ng/binary": "^2.2.11",
         "@thi.ng/checks": "^2.9.11",
+        "@thi.ng/errors": "^1.3.4",
+        "@thi.ng/logger": "^0.0.1",
         "@thi.ng/malloc": "^5.0.14",
         "@thi.ng/transducers": "^7.9.2",
         "@thi.ng/vectors": "^6.2.0"

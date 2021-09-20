@@ -1,4 +1,4 @@
-import { ConsoleLogger } from "@thi.ng/api";
+import { ConsoleLogger } from "@thi.ng/logger";
 import { setLogger } from "../src";
 
 /**

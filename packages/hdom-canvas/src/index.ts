@@ -1,8 +1,8 @@
-import { assert } from "@thi.ng/api/assert";
-import { NO_OP } from "@thi.ng/api/constants";
+import { NO_OP } from "@thi.ng/api/api";
 import { isArray } from "@thi.ng/checks/is-array";
 import { isNotStringAndIterable } from "@thi.ng/checks/is-not-string-iterable";
 import { diffArray } from "@thi.ng/diff/array";
+import { assert } from "@thi.ng/errors/assert";
 import type { HDOMImplementation, HDOMOpts } from "@thi.ng/hdom";
 import { equiv, releaseTree } from "@thi.ng/hdom/diff";
 import { draw } from "@thi.ng/hiccup-canvas/draw";

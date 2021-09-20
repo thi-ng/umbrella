@@ -1,6 +1,6 @@
 import type { Fn, ICopy, IEmpty, Pair } from "@thi.ng/api";
-import { assert } from "@thi.ng/api/assert";
 import { equivArrayLike } from "@thi.ng/equiv";
+import { assert } from "@thi.ng/errors/assert";
 import type { IRegionQuery, ISpatialMap } from "@thi.ng/geom-api";
 import { pointInCenteredBox } from "@thi.ng/geom-isec/point";
 import { testCenteredBoxSphere } from "@thi.ng/geom-isec/rect-circle";

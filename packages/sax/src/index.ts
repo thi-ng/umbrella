@@ -1,5 +1,5 @@
 import type { IObjectOf } from "@thi.ng/api";
-import { NO_OP } from "@thi.ng/api/constants";
+import { NO_OP } from "@thi.ng/api/api";
 import type { Transducer } from "@thi.ng/transducers";
 import { fsm, FSMState, FSMStateMap } from "@thi.ng/transducers-fsm";
 import { iterator, __iter } from "@thi.ng/transducers/iterator";

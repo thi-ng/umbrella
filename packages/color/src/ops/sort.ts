@@ -1,5 +1,5 @@
 import type { Fn } from "@thi.ng/api";
-import { typedArray, typedArrayType } from "@thi.ng/api/api/typedarray";
+import { typedArray, typedArrayType } from "@thi.ng/api/typedarray";
 import { quickSort } from "@thi.ng/arrays/quicksort";
 import { sortByCachedKey } from "@thi.ng/arrays/sort-cached";
 import { swap } from "@thi.ng/arrays/swap";

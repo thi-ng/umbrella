@@ -1,4 +1,3 @@
-import { DEFAULT } from "@thi.ng/defmulti/constants";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
 import type { ReadonlyColor, TypedColor } from "../api";
 import { EPS } from "../api/constants";
@@ -27,4 +26,4 @@ isBlack.addAll({
     ycc: isBlackRgb,
 });
 
-isBlack.add(DEFAULT, (x: any) => isBlackRgb(rgb(x)));
+isBlack.setDefault((x: any) => isBlackRgb(rgb(x)));

@@ -1,12 +1,8 @@
 import type { Fn2, ICopy, IEmpty } from "@thi.ng/api";
-import {
-    typedArray,
-    UIntArray,
-    uintTypeForBits,
-} from "@thi.ng/api/api/typedarray";
-import { assert } from "@thi.ng/api/assert";
+import { typedArray, UIntArray, uintTypeForBits } from "@thi.ng/api/typedarray";
 import { isNumber } from "@thi.ng/checks/is-number";
 import { isString } from "@thi.ng/checks/is-string";
+import { assert } from "@thi.ng/errors/assert";
 import {
     isPremultipliedInt,
     postmultiplyInt,

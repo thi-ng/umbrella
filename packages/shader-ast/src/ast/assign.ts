@@ -1,4 +1,4 @@
-import { assert } from "@thi.ng/api/assert";
+import { assert } from "@thi.ng/errors/assert";
 import type { Assign, Swizzle, Term } from "../api/nodes";
 import type { Assignable, Type } from "../api/types";
 

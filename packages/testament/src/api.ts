@@ -1,4 +1,5 @@
-import { Logger } from "./logger";
+import type { ILogger } from "@thi.ng/logger";
+import { ConsoleLogger } from "@thi.ng/logger/console";
 
 export type Fn0<A> = () => A;
 export type Fn<A, B> = (a: A) => B;
@@ -98,19 +99,6 @@ export interface StatusFormatters {
 }
 
 /**
- * Replicated from thi.ng/api to avoid circular deps
- */
-export interface ILogger {
-    level: number;
-
-    fine(...args: any[]): void;
-    debug(...args: any[]): void;
-    info(...args: any[]): void;
-    warn(...args: any[]): void;
-    severe(...args: any[]): void;
-}
-
-/**
  * Global default config for {@link group} & {@link test}.
  */
 export let GLOBAL_OPTS: GroupOpts = {
@@ -118,7 +106,7 @@ export let GLOBAL_OPTS: GroupOpts = {
     exit: false,
     maxTrials: 1,
     timeOut: 1000,
-    logger: new Logger(),
+    logger: new ConsoleLogger("testament"),
     fmt: {
         success: (x) => `✔︎ ${x}`,
         fail: (x) => `✘ ${x}`,

@@ -1,7 +1,6 @@
 import type { Fn, IObjectOf } from "@thi.ng/api";
-import { LogLevel } from "@thi.ng/api/api/logger";
-import { DEFAULT } from "@thi.ng/defmulti/constants";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
+import { LogLevel } from "@thi.ng/logger/api";
 import { deg, rad } from "@thi.ng/math/angle";
 import { clamp } from "@thi.ng/math/interval";
 import { mix } from "@thi.ng/math/mix";
@@ -92,7 +91,7 @@ const BUILTINS: IObjectOf<Fn<number[], number>> = {
 
 /** @internal */
 export const foldNode = defmulti<Term<any>, boolean | undefined>((t) => t.tag);
-foldNode.add(DEFAULT, () => false);
+foldNode.setDefault(() => false);
 
 foldNode.addAll({
     op1: (node) => {

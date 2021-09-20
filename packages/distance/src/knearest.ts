@@ -1,5 +1,5 @@
 import type { IDeref } from "@thi.ng/api";
-import { assert } from "@thi.ng/api/assert";
+import { assert } from "@thi.ng/errors/assert";
 import { Heap } from "@thi.ng/heaps/heap";
 import { clamp0 } from "@thi.ng/math/interval";
 import type { ReadonlyVec } from "@thi.ng/vectors";

@@ -1,4 +1,4 @@
-import { deref } from "@thi.ng/api/api/deref";
+import { deref } from "@thi.ng/api/deref";
 import { isString } from "@thi.ng/checks/is-string";
 
 /**

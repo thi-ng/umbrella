@@ -1,5 +1,4 @@
 import type { FnN3, FnU4 } from "@thi.ng/api";
-import { DEFAULT } from "@thi.ng/defmulti/constants";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
 import { mix as $mix } from "@thi.ng/math/mix";
 import { fract } from "@thi.ng/math/prec";
@@ -109,7 +108,7 @@ export const mix = defmulti<
     Color
 >((_, a) => a.mode);
 
-mix.add(DEFAULT, mixN4);
+mix.setDefault(mixN4);
 
 mix.addAll({
     hcy: mixHNNN,

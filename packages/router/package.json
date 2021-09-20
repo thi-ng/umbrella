@@ -73,9 +73,6 @@
         "./basic": {
             "import": "./basic.js"
         },
-        "./constants": {
-            "import": "./constants.js"
-        },
         "./history": {
             "import": "./history.js"
         }

@@ -36,6 +36,7 @@
     },
     "dependencies": {
         "@thi.ng/api": "^7.2.0",
+        "@thi.ng/errors": "^1.3.4",
         "@thi.ng/math": "^4.0.6",
         "@thi.ng/random": "^2.4.8",
         "@thi.ng/transducers": "^7.9.2",

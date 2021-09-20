@@ -1,7 +1,8 @@
-import type { Fn, Fn2, FnU, ILogger, IObjectOf } from "@thi.ng/api";
-import { NULL_LOGGER } from "@thi.ng/api/logger";
+import type { Fn, Fn2, FnU, IObjectOf } from "@thi.ng/api";
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import { illegalState } from "@thi.ng/errors/illegal-state";
+import type { ILogger } from "@thi.ng/logger";
+import { NULL_LOGGER } from "@thi.ng/logger/null";
 import * as pf from "@thi.ng/pointfree";
 import { ALIASES, ASTNode, VisitorState } from "./api";
 import { parse, SyntaxError } from "./parser";

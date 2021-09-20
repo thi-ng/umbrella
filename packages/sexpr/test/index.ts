@@ -1,5 +1,5 @@
 import type { Fn2 } from "@thi.ng/api";
-import { DEFAULT, defmulti } from "@thi.ng/defmulti";
+import { defmulti } from "@thi.ng/defmulti";
 import { group } from "@thi.ng/testament";
 import * as assert from "assert";
 import {
@@ -35,7 +35,7 @@ ops.addAll({
     count: (_, [__, x]) => rt(x).length,
 });
 
-ops.add(DEFAULT, (x, [_, ...args], env) => {
+ops.setDefault((x, [_, ...args], env) => {
     const f = env[(<Sym>x).value];
     assert.ok(!!f, "missing impl");
     return f.apply(

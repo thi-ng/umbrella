@@ -1,10 +1,10 @@
 import type { Fn } from "@thi.ng/api";
-import { assert } from "@thi.ng/api/assert";
-import { SEMAPHORE } from "@thi.ng/api/constants";
-import { NULL_LOGGER } from "@thi.ng/api/logger";
+import { SEMAPHORE } from "@thi.ng/api/api";
 import { peek } from "@thi.ng/arrays/peek";
 import { isPlainObject } from "@thi.ng/checks/is-plain-object";
+import { assert } from "@thi.ng/errors/assert";
 import { illegalState } from "@thi.ng/errors/illegal-state";
+import { NULL_LOGGER } from "@thi.ng/logger/null";
 import type { Reducer, Transducer } from "@thi.ng/transducers";
 import { comp } from "@thi.ng/transducers/comp";
 import { map } from "@thi.ng/transducers/map";

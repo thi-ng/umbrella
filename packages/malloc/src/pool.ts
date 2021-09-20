@@ -1,13 +1,8 @@
-import {
-    SIZEOF,
-    Type,
-    TypedArray,
-    typedArray,
-} from "@thi.ng/api/api/typedarray";
-import { assert } from "@thi.ng/api/assert";
+import { SIZEOF, Type, TypedArray, typedArray } from "@thi.ng/api/typedarray";
 import type { Pow2 } from "@thi.ng/binary";
 import { align } from "@thi.ng/binary/align";
 import { isNumber } from "@thi.ng/checks/is-number";
+import { assert } from "@thi.ng/errors/assert";
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import type { IMemPool, MemPoolOpts, MemPoolStats } from "./api";
 

@@ -1,5 +1,5 @@
 import type { Fn3, ICopy, IEmpty, IEquiv, IObjectOf, Pair } from "@thi.ng/api";
-import { SEMAPHORE } from "@thi.ng/api/constants";
+import { SEMAPHORE } from "@thi.ng/api/api";
 import { isPlainObject } from "@thi.ng/checks/is-plain-object";
 import { equiv } from "@thi.ng/equiv";
 import { pairs } from "@thi.ng/transducers/pairs";

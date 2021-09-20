@@ -14,7 +14,7 @@ import type {
     PathVal,
     Watch,
 } from "@thi.ng/api";
-import { assert } from "@thi.ng/api/assert";
+import { assert } from "@thi.ng/errors/assert";
 import { illegalState } from "@thi.ng/errors/illegal-state";
 import { setInUnsafe } from "@thi.ng/paths/set-in";
 import { updateInUnsafe } from "@thi.ng/paths/update-in";

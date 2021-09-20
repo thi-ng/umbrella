@@ -144,6 +144,9 @@
         "./sorted-map": {
             "import": "./sorted-map.js"
         },
+        "./sorted-obj": {
+            "import": "./sorted-obj.js"
+        },
         "./sorted-set": {
             "import": "./sorted-set.js"
         },

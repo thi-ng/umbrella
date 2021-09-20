@@ -1,4 +1,4 @@
-import { NO_OP } from "@thi.ng/api/constants";
+import { NO_OP } from "@thi.ng/api/api";
 import type { Reducer } from "./api";
 import { reduce, reducer } from "./reduce";
 

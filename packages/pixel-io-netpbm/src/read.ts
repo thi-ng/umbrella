@@ -1,5 +1,5 @@
 import type { Predicate } from "@thi.ng/api";
-import { assert } from "@thi.ng/api/assert";
+import { assert } from "@thi.ng/errors/assert";
 import { unsupported } from "@thi.ng/errors/unsupported";
 import { GRAY16 } from "@thi.ng/pixel/format/gray16";
 import { GRAY8 } from "@thi.ng/pixel/format/gray8";

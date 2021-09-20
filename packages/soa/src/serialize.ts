@@ -1,4 +1,4 @@
-import { assert } from "@thi.ng/api/assert";
+import { assert } from "@thi.ng/errors/assert";
 import { utf8Decode, utf8Encode } from "@thi.ng/transducers-binary/utf8";
 import type { Vec } from "@thi.ng/vectors";
 import type {

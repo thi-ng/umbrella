@@ -1,5 +1,4 @@
 import type { Fn } from "@thi.ng/api";
-import { DEFAULT } from "@thi.ng/defmulti/constants";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import { unsupported } from "@thi.ng/errors/unsupported";
@@ -296,7 +295,7 @@ compile.addAll({
     },
 });
 
-compile.add(DEFAULT, ($) => unsupported(`unknown op: ${$.id}`));
+compile.setDefault(($) => unsupported(`unknown op: ${$.id}`));
 
 const compileRepeat = (
     parser: Parser<string>,

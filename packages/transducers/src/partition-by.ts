@@ -1,5 +1,5 @@
 import type { Fn } from "@thi.ng/api";
-import { SEMAPHORE } from "@thi.ng/api/constants";
+import { SEMAPHORE } from "@thi.ng/api/api";
 import type { Reducer, Transducer } from "./api";
 import { __iter, iterator } from "./iterator";
 import { isReduced } from "./reduced";

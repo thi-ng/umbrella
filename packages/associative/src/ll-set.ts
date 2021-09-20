@@ -1,5 +1,5 @@
 import type { Fn3, Pair, Predicate2 } from "@thi.ng/api";
-import { SEMAPHORE } from "@thi.ng/api/constants";
+import { SEMAPHORE } from "@thi.ng/api/api";
 import { DCons } from "@thi.ng/dcons/dcons";
 import { equiv } from "@thi.ng/equiv";
 import type { EquivSetOpts, IEquivSet } from "./api";

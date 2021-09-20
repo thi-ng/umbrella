@@ -1,4 +1,4 @@
-import { assert } from "@thi.ng/api/assert";
+import { assert } from "@thi.ng/errors/assert";
 
 /**
  * General purpose iterator yielding n-dimensional sequence values obtained from

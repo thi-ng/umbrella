@@ -1,6 +1,6 @@
 import type { Fn3, IObjectOf } from "@thi.ng/api";
-import { deref } from "@thi.ng/api/api/deref";
-import { asGLType } from "@thi.ng/api/api/typedarray";
+import { deref } from "@thi.ng/api/deref";
+import { asGLType } from "@thi.ng/api/typedarray";
 import { existsAndNotNull } from "@thi.ng/checks/exists-not-null";
 import { isArray } from "@thi.ng/checks/is-array";
 import { isBoolean } from "@thi.ng/checks/is-boolean";

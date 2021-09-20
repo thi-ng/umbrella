@@ -1,4 +1,4 @@
-import { LogLevel } from "@thi.ng/api";
+import { LogLevel } from "@thi.ng/logger";
 import { ISubscriber, State } from "@thi.ng/rstream";
 import { group } from "@thi.ng/testament";
 import * as assert from "assert";

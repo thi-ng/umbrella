@@ -1,6 +1,5 @@
 import type { IObjectOf } from "@thi.ng/api";
 import type { Implementation1 } from "@thi.ng/defmulti";
-import { DEFAULT } from "@thi.ng/defmulti/constants";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
 import type { IShape, PCLike } from "@thi.ng/geom-api";
 import { neg } from "@thi.ng/vectors/neg";
@@ -11,7 +10,7 @@ import type { Ray } from "../api/ray";
 import { dispatch } from "../internal/dispatch";
 
 export const flip = defmulti<IShape, IShape>(dispatch);
-flip.add(DEFAULT, ($) => $);
+flip.setDefault((x) => x);
 
 flip.addAll(<IObjectOf<Implementation1<unknown, IShape>>>{
     arc: ($: Arc) => {

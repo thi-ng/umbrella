@@ -1,6 +1,6 @@
-import { assert } from "@thi.ng/api/assert";
-import { BASE62 } from "@thi.ng/base-n/62";
 import type { BaseN } from "@thi.ng/base-n";
+import { BASE62 } from "@thi.ng/base-n/62";
+import { assert } from "@thi.ng/errors/assert";
 import type { IRandom } from "@thi.ng/random";
 import { randomBytes, randomBytesFrom } from "@thi.ng/random/random-bytes";
 import { padLeft } from "@thi.ng/strings/pad-left";

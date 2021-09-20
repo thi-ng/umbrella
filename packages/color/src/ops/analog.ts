@@ -1,5 +1,4 @@
 import type { Fn3, Fn4, FnN, FnU3 } from "@thi.ng/api";
-import { DEFAULT } from "@thi.ng/defmulti/constants";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
 import { clamp01 } from "@thi.ng/math/interval";
 import { fract } from "@thi.ng/math/prec";
@@ -63,7 +62,7 @@ export const analog = defmulti<
     Color
 >((_: Color | null, src: TypedColor<any>) => src.mode);
 
-analog.add(DEFAULT, analogNNN);
+analog.setDefault(analogNNN);
 
 analog.addAll({
     hcy: analogHNN,

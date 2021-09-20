@@ -1,5 +1,5 @@
 import type { Fn, IObjectOf, NumericArray } from "@thi.ng/api";
-import { assert } from "@thi.ng/api/assert";
+import { assert } from "@thi.ng/errors/assert";
 import { clamp } from "@thi.ng/math/interval";
 import { mixBicubic, mixBilinear } from "@thi.ng/math/mix";
 import { fract, mod } from "@thi.ng/math/prec";

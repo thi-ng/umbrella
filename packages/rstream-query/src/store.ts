@@ -1,7 +1,7 @@
 import type { IObjectOf } from "@thi.ng/api";
-import { assert } from "@thi.ng/api/assert";
 import { join } from "@thi.ng/associative/join";
 import { equiv } from "@thi.ng/equiv";
+import { assert } from "@thi.ng/errors/assert";
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import { min3id } from "@thi.ng/math/interval";
 import type { Subscription } from "@thi.ng/rstream";

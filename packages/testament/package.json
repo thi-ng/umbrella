@@ -38,6 +38,7 @@
         "test": "testament test"
     },
     "dependencies": {
+        "@thi.ng/logger": "^0.0.1",
         "chokidar": "^3.5.2"
     },
     "keywords": [
@@ -70,9 +71,6 @@
         },
         "./group": {
             "import": "./group.js"
-        },
-        "./logger": {
-            "import": "./logger.js"
         },
         "./test": {
             "import": "./test.js"
