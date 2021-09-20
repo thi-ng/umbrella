@@ -5,7 +5,7 @@ import { polygon } from "@thi.ng/geom/ctors/polygon";
 import { centroid } from "@thi.ng/geom/ops/centroid";
 import { vertices } from "@thi.ng/geom/ops/vertices";
 import { mod } from "@thi.ng/math/prec";
-import { mapIndexed } from "@thi.ng/transducers/xform/map-indexed";
+import { mapIndexed } from "@thi.ng/transducers/map-indexed";
 import { add2 } from "@thi.ng/vectors/add";
 import { hash } from "@thi.ng/vectors/hash";
 import { Hash, Key } from "../api";

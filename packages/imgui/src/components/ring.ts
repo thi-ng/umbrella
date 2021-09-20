@@ -1,13 +1,13 @@
 import type { Fn, FnN2 } from "@thi.ng/api";
-import { polygon } from "@thi.ng/geom/ctors/polygon";
 import { pointInRect } from "@thi.ng/geom-isec/point";
+import { polygon } from "@thi.ng/geom/ctors/polygon";
 import type { IGridLayout, LayoutBox } from "@thi.ng/layout";
 import { isLayout } from "@thi.ng/layout/is-layout";
 import { HALF_PI, PI, TAU } from "@thi.ng/math/api";
 import { fitClamped, norm } from "@thi.ng/math/fit";
 import { mix } from "@thi.ng/math/mix";
-import { normRange } from "@thi.ng/transducers/iter/norm-range";
-import { map } from "@thi.ng/transducers/xform/map";
+import { map } from "@thi.ng/transducers/map";
+import { normRange } from "@thi.ng/transducers/norm-range";
 import type { Vec } from "@thi.ng/vectors";
 import { cartesian2 } from "@thi.ng/vectors/cartesian";
 import { hash } from "@thi.ng/vectors/hash";
