@@ -1,3 +1,8 @@
+// FIXME https://github.com/snowpackjs/snowpack/issues/3621#issuecomment-907731004
+import.meta.hot;
+
+declare const __SNOWPACK_ENV__: any;
+
 /**
  * Exposes given `value` as `id` in global scope, iff `always = true`
  * (default: false) or if `process.env.NODE_ENV != "production"` or if the
@@ -17,15 +22,16 @@ export const exposeGlobal = (id: string, value: any, always = false) => {
     if (
         glob &&
         (always ||
-            (() => {
-                try {
-                    return (
-                        process.env.NODE_ENV !== "production" ||
-                        process.env.UMBRELLA_GLOBALS === "1"
-                    );
-                } catch (e) {}
-                return false;
-            })())
+            (() =>
+                typeof process !== "undefined" &&
+                typeof process.env !== "undefined"
+                    ? process.env.NODE_ENV !== "production" ||
+                      !!process.env.UMBRELLA_GLOBALS
+                    : typeof __SNOWPACK_ENV__ !== "undefined"
+                    ? __SNOWPACK_ENV__.MODE !== "production" ||
+                      !!__SNOWPACK_ENV__.UMBRELLA_GLOBALS ||
+                      !!__SNOWPACK_ENV__.SNOWPACK_PUBLIC_UMBRELLA_GLOBALS
+                    : true)())
     ) {
         glob[id] = value;
     }
