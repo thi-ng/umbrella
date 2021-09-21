@@ -53,7 +53,8 @@ Package sizes (gzipped, pre-treeshake): ESM: 1.15 KB
 
 ## Dependencies
 
-None
+- [@thi.ng/logger](https://github.com/thi-ng/umbrella/tree/develop/packages/logger)
+- [chokidar](https://github.com/thi-ng/umbrella/tree/develop/packages/undefined)
 
 ## API
 

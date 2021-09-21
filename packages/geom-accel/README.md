@@ -70,6 +70,7 @@ Package sizes (gzipped, pre-treeshake): ESM: 3.78 KB
 - [@thi.ng/arrays](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays)
 - [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
 - [@thi.ng/equiv](https://github.com/thi-ng/umbrella/tree/develop/packages/equiv)
+- [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
 - [@thi.ng/geom-api](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-api)
 - [@thi.ng/geom-isec](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-isec)
 - [@thi.ng/heaps](https://github.com/thi-ng/umbrella/tree/develop/packages/heaps)

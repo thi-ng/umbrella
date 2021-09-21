@@ -69,10 +69,11 @@ Package sizes (gzipped, pre-treeshake): ESM: 2.98 KB
 - [@thi.ng/binary](https://github.com/thi-ng/umbrella/tree/develop/packages/binary)
 - [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
 - [@thi.ng/dcons](https://github.com/thi-ng/umbrella/tree/develop/packages/dcons)
+- [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
 - [@thi.ng/idgen](https://github.com/thi-ng/umbrella/tree/develop/packages/idgen)
+- [@thi.ng/logger](https://github.com/thi-ng/umbrella/tree/develop/packages/logger)
 - [@thi.ng/malloc](https://github.com/thi-ng/umbrella/tree/develop/packages/malloc)
 - [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)
-- [tslib](https://github.com/thi-ng/umbrella/tree/develop/packages/undefined)
 
 ## Usage examples
 

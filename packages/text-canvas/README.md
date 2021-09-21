@@ -76,8 +76,8 @@ Package sizes (gzipped, pre-treeshake): ESM: 6.27 KB
 - [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
 - [@thi.ng/geom-clip-line](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-clip-line)
 - [@thi.ng/math](https://github.com/thi-ng/umbrella/tree/develop/packages/math)
-- [@thi.ng/memoize](https://github.com/thi-ng/umbrella/tree/develop/packages/memoize)
 - [@thi.ng/strings](https://github.com/thi-ng/umbrella/tree/develop/packages/strings)
+- [@thi.ng/text-format](https://github.com/thi-ng/umbrella/tree/develop/packages/text-format)
 - [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)
 
 ## Usage examples

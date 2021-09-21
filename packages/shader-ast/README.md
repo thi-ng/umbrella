@@ -203,6 +203,7 @@ Package sizes (gzipped, pre-treeshake): ESM: 5.51 KB
 - [@thi.ng/defmulti](https://github.com/thi-ng/umbrella/tree/develop/packages/defmulti)
 - [@thi.ng/dgraph](https://github.com/thi-ng/umbrella/tree/develop/packages/dgraph)
 - [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
+- [@thi.ng/logger](https://github.com/thi-ng/umbrella/tree/develop/packages/logger)
 - [@thi.ng/math](https://github.com/thi-ng/umbrella/tree/develop/packages/math)
 
 ## Usage examples

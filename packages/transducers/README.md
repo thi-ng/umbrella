@@ -94,7 +94,7 @@ issue](https://github.com/thi-ng/umbrella/issues/186) by
 [@gavinpc-mindgrub](https://github.com/gavinpc-mindgrub), various transducers
 functions have been fixed for the case when they're invoked with an _empty_
 string as input iterable. Furthermore,
-[`flatten()`](https://github.com/thi-ng/umbrella/blob/develop/packages/transducers/src/xform/flatten.ts)
+[`flatten()`](https://github.com/thi-ng/umbrella/blob/develop/packages/transducers/src/flatten.ts)
 is _always_ treating strings as atomic values now, whereas before top-level
 strings would be split into individual characters.
 
@@ -235,40 +235,40 @@ A selection:
 
 ```ts
 // compose transducer
-xform = tx.comp(
-    tx.filter((x) => (x & 1) > 0), // odd numbers only
-    tx.distinct(),                 // distinct numbers only
-    tx.map((x) => x * 3)           // times 3
+xform = comp(
+    filter((x) => (x & 1) > 0), // odd numbers only
+    distinct(),                 // distinct numbers only
+    map((x) => x * 3)           // times 3
 );
 
-// collect into array (tx.push)
-tx.transduce(xform, tx.push(), [1, 2, 3, 4, 5, 4, 3, 2, 1]);
+// collect into array (push)
+transduce(xform, push(), [1, 2, 3, 4, 5, 4, 3, 2, 1]);
 // [ 3, 9, 15 ]
 
 // re-use same xform, but collect into ES6 Set
-tx.transduce(xform, tx.conj(), [1, 2, 3, 4, 5, 4, 3, 2, 1]);
+transduce(xform, conj(), [1, 2, 3, 4, 5, 4, 3, 2, 1]);
 // Set { 3, 9, 15 }
 
 // or apply as transforming iterator
 // no reduction, only transformations
-[...tx.iterator(xform, [1, 2, 3, 4, 5])]
+[...iterator(xform, [1, 2, 3, 4, 5])]
 // [ 3, 9, 15]
 
 // alternatively provide an input iterable and
 // use xform as transforming iterator
-[...tx.filter((x) => /[A-Z]/.test(x), "Hello World!")]
+[...filter((x) => /[A-Z]/.test(x), "Hello World!")]
 // ["H", "W"]
 
 // single step execution
 // returns undefined if transducer returned no result for this input
 // returns array if transducer step produced multiple results
-f = tx.step(xform);
+f = step(xform);
 f(1) // 3
 f(2) // undefined
 f(3) // 9
 f(4) // undefined
 
-f = tx.step(take)
+f = step(take)
 ```
 
 ### Interpolation & SVG generation
@@ -277,7 +277,7 @@ This example uses the
 [@thi.ng/geom](https://github.com/thi-ng/umbrella/tree/develop/packages/geom)
 package for quick SVG generation.
 
-![example output](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/transducers/hermite-tx.png)
+![example output](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/transducers/hermite-png)
 
 ```ts
 import { asSvg, svgDoc, circle, polyline } from "@thi.ng/geom";
@@ -286,15 +286,15 @@ import { asSvg, svgDoc, circle, polyline } from "@thi.ng/geom";
 const values = [5, 10, 4, 8, 20, 2, 11, 7];
 
 // interpolate values and transform into 2D points
-const vertices = [...tx.iterator(
-    tx.comp(
-        tx.interpolateHermite(10),
-        tx.mapIndexed((x, y) => [x, y])
+const vertices = [...iterator(
+    comp(
+        interpolateHermite(10),
+        mapIndexed((x, y) => [x, y])
     ),
     // duplicate first & last vals (1x LHS / 2x RHS)
     // this is only needed for hermite interpolation
     // (see doc string for `interpolateHermite`)
-    tx.extendSides(values, 1, 2)
+    extendSides(values, 1, 2)
 )];
 
 // generate SVG
@@ -312,13 +312,13 @@ asSvg(
 ### Fuzzy search
 
 ```ts
-[...tx.filterFuzzy("ho", ["hello", "hallo", "hey", "heyoka"])]
+[...filterFuzzy("ho", ["hello", "hallo", "hey", "heyoka"])]
 // ["hello", "hallo", "heyoka"]
-[...tx.filterFuzzy("hlo", ["hello", "hallo", "hey", "heyoka"])]
+[...filterFuzzy("hlo", ["hello", "hallo", "hey", "heyoka"])]
 // ["hello", "hallo"]
 
 // works with any array-like values & supports custom key extractors
-[...tx.filterFuzzy(
+[...filterFuzzy(
     [1, 3],
     { key: (x) => x.tags },
     [
@@ -336,26 +336,26 @@ asSvg(
 ```ts
 // use the `frequencies` reducer to create
 // a map counting occurrence of each value
-tx.transduce(tx.map((x) => x.toUpperCase()), tx.frequencies(), "hello world");
+transduce(map((x) => x.toUpperCase()), frequencies(), "hello world");
 // Map { 'H' => 1, 'E' => 1, 'L' => 3, 'O' => 2, ' ' => 1, 'W' => 1, 'R' => 1, 'D' => 1 }
 
 // reduction only (no transform)
-tx.reduce(tx.frequencies(), [1, 1, 1, 2, 3, 4, 4]);
+reduce(frequencies(), [1, 1, 1, 2, 3, 4, 4]);
 // Map { 1 => 3, 2 => 1, 3 => 1, 4 => 2 }
 
 // direct reduction if input is given
-tx.frequencies([1, 1, 1, 2, 3, 4, 4]);
+frequencies([1, 1, 1, 2, 3, 4, 4]);
 // Map { 1 => 3, 2 => 1, 3 => 1, 4 => 2 }
 
 // with optional key function, here to bin by word length
-tx.frequencies(
+frequencies(
     (x) => x.length,
     "my camel is collapsing and needs some water".split(" ")
 );
 // Map { 2 => 2, 5 => 3, 10 => 1, 3 => 1, 4 => 1 }
 
 // actual grouping (here: by word length)
-tx.groupByMap(
+groupByMap(
     { key: (x) => x.length },
     "my camel is collapsing and needs some water".split(" ")
 );
@@ -372,21 +372,21 @@ tx.groupByMap(
 
 ```ts
 // extract only items for given page id & page length
-[...tx.page(0, 5, tx.range(12))]
+[...page(0, 5, range(12))]
 // [ 0, 1, 2, 3, 4 ]
 
 // when composing with other transducers
 // it's most efficient to place `page()` early on in the chain
 // that way only the page items will be further processed
-[...tx.iterator(tx.comp(tx.page(1, 5), tx.map(x => x * 10)), tx.range(12))]
+[...iterator(comp(page(1, 5), map(x => x * 10)), range(12))]
 // [ 50, 60, 70, 80, 90 ]
 
 // use `padLast()` to fill up missing values
-[...tx.iterator(tx.comp(tx.page(2, 5), tx.padLast(5, "n/a")), tx.range(12))]
+[...iterator(comp(page(2, 5), padLast(5, "n/a")), range(12))]
 // [ 10, 11, 'n/a', 'n/a', 'n/a' ]
 
 // no values produced for invalid pages
-[...tx.page(3, 5, tx.range(12))]
+[...page(3, 5, range(12))]
 // []
 ```
 
@@ -397,24 +397,24 @@ parallel using the provided transducers (which can be composed as usual)
 and results in a tuple or keyed object.
 
 ```ts
-tx.transduce(
-    tx.multiplex(
-        tx.map((x) => x.charAt(0)),
-        tx.map((x) => x.toUpperCase()),
-        tx.map((x) => x.length)
+transduce(
+    multiplex(
+        map((x) => x.charAt(0)),
+        map((x) => x.toUpperCase()),
+        map((x) => x.length)
     ),
-    tx.push(),
+    push(),
     ["Alice", "Bob", "Charlie"]
 );
 // [ [ "A", "ALICE", 5 ], [ "B", "BOB", 3 ], [ "C", "CHARLIE", 7 ] ]
 
-tx.transduce(
-    tx.multiplexObj({
-        initial: tx.map((x) => x.charAt(0)),
-        name: tx.map((x) => x.toUpperCase()),
-        len: tx.map((x) => x.length)
+transduce(
+    multiplexObj({
+        initial: map((x) => x.charAt(0)),
+        name: map((x) => x.toUpperCase()),
+        len: map((x) => x.length)
     }),
-    tx.push(),
+    push(),
     ["Alice", "Bob", "Charlie"]
 );
 // [ { len: 5, name: 'ALICE', initial: 'A' },
@@ -426,19 +426,19 @@ tx.transduce(
 
 ```ts
 // use nested reduce to compute window averages
-tx.transduce(
-    tx.comp(
-        tx.partition(5, 1),
-        tx.map(x => tx.reduce(tx.mean(), x))
+transduce(
+    comp(
+        partition(5, 1),
+        map(x => reduce(mean(), x))
     ),
-    tx.push(),
+    push(),
     [1, 2, 3, 3, 4, 5, 5, 6, 7, 8, 8, 9, 10]
 )
 // [ 2.6, 3.4, 4, 4.6, 5.4, 6.2, 6.8, 7.6, 8.4 ]
 
 // this combined transducer is also directly
-// available as: `tx.movingAverage(n)`
-[...tx.movingAverage(5, [1, 2, 3, 3, 4, 5, 5, 6, 7, 8, 8, 9, 10])]
+// available as: `movingAverage(n)`
+[...movingAverage(5, [1, 2, 3, 3, 4, 5, 5, 6, 7, 8, 8, 9, 10])]
 // [ 2.6, 3.4, 4, 4.6, 5.4, 6.2, 6.8, 7.6, 8.4 ]
 ```
 
@@ -455,22 +455,22 @@ fn = () => {
 };
 
 // compute the mean of 100 runs
-tx.transduce(tx.benchmark(), tx.mean(), tx.repeatedly(fn, 100));
+transduce(benchmark(), mean(), repeatedly(fn, 100));
 // 1.93 (milliseconds)
 ```
 
 ### Apply inspectors to debug transducer pipeline
 
 ```ts
-// alternatively, use tx.sideEffect() for any side fx
-tx.transduce(
-    tx.comp(
-        tx.trace("orig"),
-        tx.map((x) => x + 1),
-        tx.trace("mapped"),
-        tx.filter((x) => (x & 1) > 0)
+// alternatively, use sideEffect() for any side fx
+transduce(
+    comp(
+        trace("orig"),
+        map((x) => x + 1),
+        trace("mapped"),
+        filter((x) => (x & 1) > 0)
     ),
-    tx.push(),
+    push(),
     [1, 2, 3, 4]
 );
 // orig 1
@@ -487,7 +487,7 @@ tx.transduce(
 ### Stream parsing / structuring
 
 The `struct` transducer is simply a composition of: `partitionOf -> partition -> rename -> mapKeys`. [See code
-here](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/xform/struct.ts).
+here](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/struct.ts).
 
 ```ts
 // Higher-order transducer to convert linear input into structured objects
@@ -496,7 +496,7 @@ here](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/x
 // be used to produce the final value for this field. In the example below,
 // it is used to unwrap the ID field values, e.g. from `[0] => 0`
 [
-    ...tx.struct(
+    ...struct(
         [["id", 1, (id) => id[0]], ["pos", 2], ["vel", 2], ["color", 4]],
         [0, 100, 200, -1, 0, 1, 0.5, 0, 1, 1, 0, 0, 5, 4, 0, 0, 1, 1]
     )
@@ -514,16 +514,16 @@ here](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/x
 ### CSV parsing
 
 ```ts
-tx.transduce(
-    tx.comp(
+transduce(
+    comp(
         // split into rows
-        tx.mapcat((x) => x.split("\n")),
+        mapcat((x) => x.split("\n")),
         // split each row
-        tx.map((x) => x.split(",")),
+        map((x) => x.split(",")),
         // convert each row into object, rename array indices
-        tx.rename({ id: 0, name: 1, alias: 2, num: "length" })
+        rename({ id: 0, name: 1, alias: 2, num: "length" })
     ),
-    tx.push(),
+    push(),
     ["100,typescript\n101,clojure,clj\n110,rust,rs"]
 );
 // [ { num: 2, name: 'typescript', id: '100' },
@@ -535,7 +535,7 @@ tx.transduce(
 
 ```ts
 // result is realized after max. 7 values, irrespective of nesting
-tx.transduce(tx.comp(tx.flatten(), tx.take(7)), tx.push(), [
+transduce(comp(flatten(), take(7)), push(), [
     1,
     [2, [3, 4, [5, 6, [7, 8], 9, [10]]]]
 ]);
@@ -552,33 +552,33 @@ tx.transduce(tx.comp(tx.flatten(), tx.take(7)), tx.push(), [
 //    by the main reducer
 // IMPORTANT: since arrays are mutable we use `pushCopy` as the inner reducer
 // instead of `push` (the outer reducer)
-xform = tx.comp(
-    tx.scan(tx.count()),
-    tx.map(x => [...tx.repeat(x,x)]),
-    tx.scan(tx.pushCopy())
+xform = comp(
+    scan(count()),
+    map(x => [...repeat(x,x)]),
+    scan(pushCopy())
 )
 
-[...tx.iterator(xform, [1, 1, 1, 1])]
+[...iterator(xform, [1, 1, 1, 1])]
 // [ [ [ 1 ] ],
 //   [ [ 1 ], [ 2, 2 ] ],
 //   [ [ 1 ], [ 2, 2 ], [ 3, 3, 3 ] ],
 //   [ [ 1 ], [ 2, 2 ], [ 3, 3, 3 ], [ 4, 4, 4, 4 ] ] ]
 
 // more simple & similar to previous, but without the 2nd xform step
-tx.transduce(tx.comp(tx.scan(tx.count()), tx.scan(tx.pushCopy())), tx.push(), [1,1,1,1])
+transduce(comp(scan(count()), scan(pushCopy())), push(), [1,1,1,1])
 // [ [ 1 ], [ 1, 2 ], [ 1, 2, 3 ], [ 1, 2, 3, 4 ] ]
 ```
 
 ### Weighted random choices
 
 ```ts
-[...tx.take(10, tx.choices("abcd", [1, 0.5, 0.25, 0.125]))];
+[...take(10, choices("abcd", [1, 0.5, 0.25, 0.125]))]
 // [ 'a', 'a', 'b', 'a', 'a', 'b', 'a', 'c', 'd', 'b' ]
 
-tx.transduce(
-    tx.take(1000),
-    tx.frequencies(),
-    tx.choices("abcd", [1, 0.5, 0.25, 0.125])
+transduce(
+    take(1000),
+    frequencies(),
+    choices("abcd", [1, 0.5, 0.25, 0.125])
 );
 // Map { 'c' => 132, 'a' => 545, 'b' => 251, 'd' => 72 }
 ```
@@ -586,7 +586,7 @@ tx.transduce(
 ### Keyframe interpolation
 
 See
-[`tween()`](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/iter/tween.ts)
+[`tween()`](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/tween.ts)
 docs for details.
 
 ```ts
@@ -835,115 +835,115 @@ directly yield a transforming iterator, e.g.
 
 ```ts
 // as transducer
-tx.transduce(tx.map((x) => x*10), tx.push(), tx.range(4))
+transduce(map((x) => x*10), push(), range(4))
 // [ 0, 10, 20, 30 ]
 
 // as transforming iterator
-[...tx.map((x) => x*10, tx.range(4))]
+[...map((x) => x*10, range(4))]
 // [ 0, 10, 20, 30 ]
 ```
 
-- [benchmark](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/xform/benchmark.ts)
-- [cat](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/xform/cat.ts)
-- [converge](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/xform/converge.ts)
-- [convolve2d](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/xform/convolve.ts)
-- [dedupe](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/xform/dedupe.ts)
-- [delayed](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/xform/delayed.ts)
-- [distinct](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/xform/distinct.ts)
-- [dropNth](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/xform/drop-nth.ts)
-- [dropWhile](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/xform/drop-while.ts)
-- [drop](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/xform/drop.ts)
-- [duplicate](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/xform/duplicate.ts)
-- [filterFuzzy](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/xform/filter-fuzzy.ts)
-- [filter](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/xform/filter.ts)
-- [flattenWith](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/xform/flatten-with.ts)
-- [flatten](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/xform/flatten.ts)
-- [indexed](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/xform/indexed.ts)
-- [interleave](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/xform/interleave.ts)
-- [interpolate](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/xform/interpolate.ts)
-- [interpolate-hermite](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/xform/interpolate-hermite.ts)
-- [interpolate-linear](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/xform/interpolate-linear.ts)
-- [interpose](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/xform/interpose.ts)
-- [keep](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/xform/keep.ts)
-- [labeled](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/xform/labeled.ts)
-- [mapDeep](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/xform/map-deep.ts)
-- [mapIndexed](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/xform/map-indexed.ts)
-- [mapKeys](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/xform/map-keys.ts)
-- [mapNth](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/xform/map-nth.ts)
-- [mapVals](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/xform/map-vals.ts)
-- [map](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/xform/map.ts)
-- [mapcat](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/xform/mapcat.ts)
-- [matchFirst](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/xform/match-first.ts)
-- [matchLast](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/xform/match-last.ts)
-- [movingAverage](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/xform/moving-average.ts)
-- [movingMedian](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/xform/moving-median.ts)
-- [multiplexObj](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/xform/multiplex-obj.ts)
-- [multiplex](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/xform/multiplex.ts)
-- [noop](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/xform/noop.ts)
-- [padLast](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/xform/pad-last.ts)
-- [page](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/xform/page.ts)
-- [partitionBy](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/xform/partition-by.ts)
-- [partitionOf](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/xform/partition-of.ts)
-- [partitionSort](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/xform/partition-sort.ts)
-- [partitionSync](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/xform/partition-sync.ts)
-- [partitionTime](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/xform/partition-time.ts)
-- [partitionWhen](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/xform/partition-when.ts)
-- [partition](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/xform/partition.ts)
-- [peek](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/xform/peek.ts)
-- [pluck](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/xform/pluck.ts)
-- [rename](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/xform/rename.ts)
-- [sample](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/xform/sample.ts)
-- [scan](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/xform/scan.ts)
-- [selectKeys](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/xform/select-keys.ts)
-- [sideEffect](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/xform/side-effect.ts)
-- [slidingWindow](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/xform/sliding-window.ts)
-- [streamShuffle](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/xform/stream-shuffle.ts)
-- [streamSort](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/xform/stream-sort.ts)
-- [struct](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/xform/struct.ts)
-- [swizzle](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/xform/swizzle.ts)
-- [takeLast](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/xform/take-last.ts)
-- [takeNth](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/xform/take-nth.ts)
-- [takeWhile](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/xform/take-while.ts)
-- [take](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/xform/take.ts)
-- [throttleTime](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/xform/throttle-time.ts)
-- [throttle](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/xform/throttle.ts)
-- [toggle](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/xform/toggle.ts)
-- [trace](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/xform/trace.ts)
-- [wordWrap](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/xform/word-wrap.ts)
+- [benchmark](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/benchmark.ts)
+- [cat](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/cat.ts)
+- [converge](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/converge.ts)
+- [convolve2d](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/convolve.ts)
+- [dedupe](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/dedupe.ts)
+- [delayed](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/delayed.ts)
+- [distinct](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/distinct.ts)
+- [dropNth](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/drop-nth.ts)
+- [dropWhile](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/drop-while.ts)
+- [drop](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/drop.ts)
+- [duplicate](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/duplicate.ts)
+- [filterFuzzy](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/filter-fuzzy.ts)
+- [filter](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/filter.ts)
+- [flattenWith](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/flatten-with.ts)
+- [flatten](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/flatten.ts)
+- [indexed](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/indexed.ts)
+- [interleave](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/interleave.ts)
+- [interpolate](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/interpolate.ts)
+- [interpolate-hermite](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/interpolate-hermite.ts)
+- [interpolate-linear](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/interpolate-linear.ts)
+- [interpose](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/interpose.ts)
+- [keep](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/keep.ts)
+- [labeled](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/labeled.ts)
+- [mapDeep](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/map-deep.ts)
+- [mapIndexed](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/map-indexed.ts)
+- [mapKeys](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/map-keys.ts)
+- [mapNth](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/map-nth.ts)
+- [mapVals](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/map-vals.ts)
+- [map](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/map.ts)
+- [mapcat](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/mapcat.ts)
+- [matchFirst](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/match-first.ts)
+- [matchLast](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/match-last.ts)
+- [movingAverage](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/moving-average.ts)
+- [movingMedian](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/moving-median.ts)
+- [multiplexObj](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/multiplex-obj.ts)
+- [multiplex](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/multiplex.ts)
+- [noop](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/noop.ts)
+- [padLast](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/pad-last.ts)
+- [page](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/page.ts)
+- [partitionBy](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/partition-by.ts)
+- [partitionOf](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/partition-of.ts)
+- [partitionSort](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/partition-sort.ts)
+- [partitionSync](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/partition-sync.ts)
+- [partitionTime](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/partition-time.ts)
+- [partitionWhen](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/partition-when.ts)
+- [partition](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/partition.ts)
+- [peek](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/peek.ts)
+- [pluck](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/pluck.ts)
+- [rename](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/rename.ts)
+- [sample](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/sample.ts)
+- [scan](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/scan.ts)
+- [selectKeys](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/select-keys.ts)
+- [sideEffect](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/side-effect.ts)
+- [slidingWindow](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/sliding-window.ts)
+- [streamShuffle](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/stream-shuffle.ts)
+- [streamSort](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/stream-sort.ts)
+- [struct](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/struct.ts)
+- [swizzle](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/swizzle.ts)
+- [takeLast](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/take-last.ts)
+- [takeNth](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/take-nth.ts)
+- [takeWhile](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/take-while.ts)
+- [take](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/take.ts)
+- [throttleTime](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/throttle-time.ts)
+- [throttle](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/throttle.ts)
+- [toggle](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/toggle.ts)
+- [trace](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/trace.ts)
+- [wordWrap](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/word-wrap.ts)
 
 ### Generators / Iterators
 
-- [choices](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/iter/choices.ts)
-- [concat](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/iter/concat.ts)
-- [curve](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/iter/curve.ts)
-- [cycle](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/iter/cycle.ts)
-- [dup](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/iter/dup.ts)
-- [extendSides](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/iter/extend-sides.ts)
-- [iterate](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/iter/iterate.ts)
-- [keyPermutations](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/iter/key-permutations.ts)
-- [keys](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/iter/keys.ts)
-- [line](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/iter/line.ts)
-- [normRange](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/iter/norm-range.ts)
-- [normRange2d](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/iter/norm-range.ts)
-- [normRange3d](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/iter/norm-range.ts)
-- [padSides](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/iter/pad-sides.ts)
-- [pairs](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/iter/pairs.ts)
-- [palindrome](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/iter/palindrome.ts)
-- [permutations](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/iter/permutations.ts)
-- [permutationsN](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/iter/permutationsN.ts)
-- [range](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/iter/range.ts)
-- [range2d](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/iter/range2d.ts)
-- [range3d](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/iter/range3d.ts)
-- [rangeNd](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/iter/range-nd.ts)
-- [repeat](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/iter/repeat.ts)
-- [repeatedly](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/iter/repeatedly.ts)
-- [reverse](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/iter/reverse.ts)
-- [sortedKeys](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/iter/sorted-keys.ts)
-- [symmetric](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/iter/symmetric.ts)
-- [tween](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/iter/tween.ts)
-- [vals](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/iter/vals.ts)
-- [wrapSides](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/iter/wrap-sides.ts)
-- [zip](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/iter/zip.ts)
+- [choices](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/choices.ts)
+- [concat](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/concat.ts)
+- [curve](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/curve.ts)
+- [cycle](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/cycle.ts)
+- [dup](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/dup.ts)
+- [extendSides](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/extend-sides.ts)
+- [iterate](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/iterate.ts)
+- [keyPermutations](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/key-permutations.ts)
+- [keys](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/keys.ts)
+- [line](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/line.ts)
+- [normRange](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/norm-range.ts)
+- [normRange2d](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/norm-range.ts)
+- [normRange3d](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/norm-range.ts)
+- [padSides](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/pad-sides.ts)
+- [pairs](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/pairs.ts)
+- [palindrome](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/palindrome.ts)
+- [permutations](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/permutations.ts)
+- [permutationsN](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/permutationsN.ts)
+- [range](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/range.ts)
+- [range2d](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/range2d.ts)
+- [range3d](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/range3d.ts)
+- [rangeNd](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/range-nd.ts)
+- [repeat](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/repeat.ts)
+- [repeatedly](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/repeatedly.ts)
+- [reverse](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/reverse.ts)
+- [sortedKeys](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/sorted-keys.ts)
+- [symmetric](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/symmetric.ts)
+- [tween](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/tween.ts)
+- [vals](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/vals.ts)
+- [wrapSides](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/wrap-sides.ts)
+- [zip](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/zip.ts)
 
 ### Reducers
 
@@ -951,38 +951,38 @@ As with transducer functions, reducer functions can also given an
 optional input iterable. If done so, the function will consume the input
 and return a reduced result (as if it would be called via `reduce()`).
 
-- [add](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/rfn/add.ts)
-- [assocMap](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/rfn/assoc-map.ts)
-- [assocObj](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/rfn/assoc-obj.ts)
-- [conj](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/rfn/conj.ts)
-- [count](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/rfn/count.ts)
-- [div](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/rfn/div.ts)
-- [every](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/rfn/every.ts)
-- [fill](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/rfn/fill.ts)
-- [frequencies](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/rfn/frequencies.ts)
-- [groupBinary](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/rfn/group-binary.ts)
-- [groupByMap](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/rfn/group-by-map.ts)
-- [groupByObj](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/rfn/group-by-obj.ts)
-- [last](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/rfn/last.ts)
-- [max](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/rfn/max.ts)
-- [maxCompare](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/rfn/max-compare.ts)
-- [maxMag](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/rfn/max-mag.ts)
-- [mean](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/rfn/mean.ts)
-- [min](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/rfn/min.ts)
-- [minCompare](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/rfn/min-compare.ts)
-- [minMag](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/rfn/min-mag.ts)
-- [minMax](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/rfn/min-max.ts)
-- [mul](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/rfn/mul.ts)
-- [normCount](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/rfn/norm-count.ts)
-- [normFrequencies](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/rfn/norm-frequencies.ts)
-- [normFrequenciesAuto](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/rfn/norm-frequencies-auto.ts)
-- [push](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/rfn/push.ts)
-- [pushCopy](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/rfn/push-copy.ts)
-- [pushSort](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/rfn/push-sort.ts)
-- [reductions](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/rfn/reductions.ts)
-- [some](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/rfn/some.ts)
-- [str](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/rfn/str.ts)
-- [sub](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/rfn/sub.ts)
+- [add](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/add.ts)
+- [assocMap](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/assoc-map.ts)
+- [assocObj](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/assoc-obj.ts)
+- [conj](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/conj.ts)
+- [count](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/count.ts)
+- [div](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/div.ts)
+- [every](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/every.ts)
+- [fill](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/fill.ts)
+- [frequencies](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/frequencies.ts)
+- [groupBinary](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/group-binary.ts)
+- [groupByMap](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/group-by-map.ts)
+- [groupByObj](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/group-by-obj.ts)
+- [last](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/last.ts)
+- [max](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/max.ts)
+- [maxCompare](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/max-compare.ts)
+- [maxMag](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/max-mag.ts)
+- [mean](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/mean.ts)
+- [min](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/min.ts)
+- [minCompare](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/min-compare.ts)
+- [minMag](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/min-mag.ts)
+- [minMax](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/min-max.ts)
+- [mul](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/mul.ts)
+- [normCount](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/norm-count.ts)
+- [normFrequencies](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/norm-frequencies.ts)
+- [normFrequenciesAuto](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/norm-frequencies-auto.ts)
+- [push](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/push.ts)
+- [pushCopy](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/push-copy.ts)
+- [pushSort](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/push-sort.ts)
+- [reductions](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/reductions.ts)
+- [some](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/some.ts)
+- [str](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/str.ts)
+- [sub](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/sub.ts)
 
 ## Authors
 

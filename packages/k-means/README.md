@@ -56,6 +56,7 @@ Package sizes (gzipped, pre-treeshake): ESM: 937 bytes
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
 - [@thi.ng/distance](https://github.com/thi-ng/umbrella/tree/develop/packages/distance)
+- [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
 - [@thi.ng/random](https://github.com/thi-ng/umbrella/tree/develop/packages/random)
 - [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors)
 

@@ -94,6 +94,7 @@ Package sizes (gzipped, pre-treeshake): ESM: 1.81 KB
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
 - [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
+- [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
 - [@thi.ng/hex](https://github.com/thi-ng/umbrella/tree/develop/packages/hex)
 
 ## Usage examples

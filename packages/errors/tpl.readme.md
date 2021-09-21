@@ -13,7 +13,16 @@ This project is part of the
 
 ${pkg.description}
 
-Additional error types can be defined using
+This package defines the following error types & helper functions to throw them:
+
+- [`AssertionError`](https://github.com/thi-ng/umbrella/tree/develop/packages/errors/src/assert.ts)
+- [`IllegalArgumentError`](https://github.com/thi-ng/umbrella/tree/develop/packages/errors/src/illegal-arguments.ts)
+- [`IllegalArityError`](https://github.com/thi-ng/umbrella/tree/develop/packages/errors/src/illegal-arity.ts)
+- [`IllegalStateError`](https://github.com/thi-ng/umbrella/tree/develop/packages/errors/src/illegal-statre.ts)
+- [`OutOfBoundsError`](https://github.com/thi-ng/umbrella/tree/develop/packages/errors/src/out-of-bounds.ts)
+- [`UnsupportedOperationError`](https://github.com/thi-ng/umbrella/tree/develop/packages/errors/src/unsupported.ts)
+
+Custom error types can be easily defined using
 [`defError()`](https://github.com/thi-ng/umbrella/tree/develop/packages/errors/src/deferror.ts).
 
 ${status}
@@ -70,6 +79,14 @@ try {
 // Eeek... 23 is not allowed!
 // true
 ```
+
+### Environment variables
+
+The `UMBRELLA_ASSERTS` or `SNOWPACK_PUBLIC_UMBRELLA_ASSERTS` env variables are
+used to control the behavior of the `assert()` function in production builds: If
+either is set (to a non-empty string), the function will **always** be enabled.
+Otherwise (by default), `assert()` will be **disabled for production builds**,
+i.e. if `process.env.NODE_ENV === "production"`.
 
 ## Authors
 

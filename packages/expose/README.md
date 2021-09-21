@@ -21,6 +21,15 @@ This project is part of the
 
 Conditional global variable exposition.
 
+This package provides a single function
+[`exposeGlobal()`](https://docs.thi.ng/umbrella/expose/modules.html#exposeGlobal)
+to expose a variable in the global scope (e.g. for development/debugging
+purposes). It's behavior is controled by the `UMBRELLA_GLOBALS` or
+`SNOWPACK_PUBLIC_UMBRELLA_GLOBALS` environment variables - if either is set (to
+a non-empty string) the function will **always** be enabled. Otherwise (by
+default), `exposeGlobal()` is **disabled for production builds**, i.e. if
+`process.env.NODE_ENV === "production"`.
+
 ### Status
 
 **STABLE** - used in production
@@ -56,8 +65,6 @@ None
 ## API
 
 [Generated API docs](https://docs.thi.ng/umbrella/expose/)
-
-TODO
 
 ## Authors
 

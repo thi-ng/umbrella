@@ -42,9 +42,9 @@ unsigned integer vectors.
   are the optimized version for fixed-length vectors...
 - Extensible: Custom vector ops can be defined in a similar manner using the
   provided code generation helpers (see
-  [vop.ts](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors/src/internal/vop.ts)
+  [vop.ts](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors/src/vop.ts)
   and
-  [codegen.ts](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors/src/internal/codegen.ts)
+  [emit.ts](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors/src/codegen/emit.ts)
   for details).
 - Immutable by default: Each operation producing a vector result takes an output
   vector as first argument. If `null`, the vector given as 2nd argument will
@@ -549,9 +549,9 @@ All resulting in boolean vectors:
 
 For more information about the code generator see:
 
-- [codegen.ts](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors/src/internal/codegen.ts)
-- [templates.ts](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors/src/internal/templates.ts)
-- [vop.ts](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors/src/internal/vop.ts)
+- [emit.ts](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors/src/codegen/emit.ts)
+- [templates.ts](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors/src/codegen/templates.ts)
+- [vop.ts](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors/src/vop.ts)
 
 ## Authors
 

@@ -157,6 +157,7 @@ Package sizes (gzipped, pre-treeshake): ESM: 2.17 KB
 - [@thi.ng/atom](https://github.com/thi-ng/umbrella/tree/develop/packages/atom)
 - [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
 - [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
+- [@thi.ng/logger](https://github.com/thi-ng/umbrella/tree/develop/packages/logger)
 - [@thi.ng/paths](https://github.com/thi-ng/umbrella/tree/develop/packages/paths)
 
 ## Usage examples

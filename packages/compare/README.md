@@ -22,9 +22,8 @@ This project is part of the
 
 ## About
 
-Comparators with optional support for types implementing the
-[@thi.ng/api
-`ICompare`](https://github.com/thi-ng/umbrella/tree/develop/packages/api/src/api/compare.ts)
+Comparators with optional support for types implementing the [@thi.ng/api
+`ICompare`](https://github.com/thi-ng/umbrella/tree/develop/packages/api/src/compare.ts)
 interface.
 
 Since v1.2.0 additional higher-order comparators are included, e.g. to

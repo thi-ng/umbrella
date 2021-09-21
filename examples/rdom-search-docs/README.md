@@ -9,7 +9,7 @@ based docstring search example for the entire thi.ng/umbrella repo
 **IMPORTANT**: The search index will be dynamically loaded from the
 [docs.thi.ng](https://docs.thi.ng) website. It's a binary file created
 by [this tool
-script](https://github.com/thi-ng/umbrella/tree/develop/packages/tools/src/build-search-index.ts)
+script](https://github.com/thi-ng/umbrella/tree/develop/tools/src/build-search-index.ts)
 and encoded with [msgpack](https://msgpack.org/).
 
 ## Building

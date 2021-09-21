@@ -88,6 +88,7 @@ Package sizes (gzipped, pre-treeshake): ESM: 897 bytes
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
 - [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
 - [@thi.ng/diff](https://github.com/thi-ng/umbrella/tree/develop/packages/diff)
+- [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
 - [@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/develop/packages/hdom)
 - [@thi.ng/hiccup-canvas](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-canvas)
 

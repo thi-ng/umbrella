@@ -144,7 +144,7 @@ packages.
 of course, but will NOT be evaluated to obtain final attrib value
 
 (2) The
-[`IDeref`](https://github.com/thi-ng/umbrella/tree/develop/packages/api/src/api/deref.ts)
+[`IDeref`](https://github.com/thi-ng/umbrella/tree/develop/packages/api/src/deref.ts)
 interface is implemented by various data structures in the
 thi.ng/umbrella eco system (most relevant:
 [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream),
@@ -290,7 +290,7 @@ The `AttribVal` type wrapper is used to allow for reactive attribute
 values (in
 [@thi.ng/rdom](https://github.com/thi-ng/umbrella/tree/develop/packages/rdom))
 and [`IDeref`
-instances](https://github.com/thi-ng/umbrella/tree/develop/packages/api/src/api/deref.ts)
+instances](https://github.com/thi-ng/umbrella/tree/develop/packages/api/src/deref.ts)
 when later providing attribute values to an element.
 
 #### Element creation

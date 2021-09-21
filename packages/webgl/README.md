@@ -109,6 +109,7 @@ Package sizes (gzipped, pre-treeshake): ESM: 11.90 KB
 - [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
 - [@thi.ng/equiv](https://github.com/thi-ng/umbrella/tree/develop/packages/equiv)
 - [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
+- [@thi.ng/logger](https://github.com/thi-ng/umbrella/tree/develop/packages/logger)
 - [@thi.ng/matrices](https://github.com/thi-ng/umbrella/tree/develop/packages/matrices)
 - [@thi.ng/memoize](https://github.com/thi-ng/umbrella/tree/develop/packages/memoize)
 - [@thi.ng/pixel](https://github.com/thi-ng/umbrella/tree/develop/packages/pixel)
