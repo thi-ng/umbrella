@@ -38,15 +38,23 @@ Collection of 100 image based color palettes. This is a support package for [@th
 yarn add @thi.ng/color-palettes
 ```
 
-```html
-// ES module
-<script type="module" src="https://unpkg.com/@thi.ng/color-palettes?module" crossorigin></script>
+ES module import:
 
-// UMD
-<script src="https://unpkg.com/@thi.ng/color-palettes/lib/index.umd.js" crossorigin></script>
+```html
+<script type="module" src="https://cdn.skypack.dev/@thi.ng/color-palettes"></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 4.11 KB / CJS: 4.18 KB / UMD: 4.34 KB
+[Skypack documentation](https://docs.skypack.dev/)
+
+For NodeJS (v14.6+):
+
+```text
+node --experimental-specifier-resolution=node --experimental-repl-await
+
+> const colorPalettes = await import("@thi.ng/color-palettes");
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 4.11 KB
 
 ## Dependencies
 

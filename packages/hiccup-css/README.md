@@ -102,15 +102,23 @@ Clojure projects:
 yarn add @thi.ng/hiccup-css
 ```
 
-```html
-// ES module
-<script type="module" src="https://unpkg.com/@thi.ng/hiccup-css?module" crossorigin></script>
+ES module import:
 
-// UMD
-<script src="https://unpkg.com/@thi.ng/hiccup-css/lib/index.umd.js" crossorigin></script>
+```html
+<script type="module" src="https://cdn.skypack.dev/@thi.ng/hiccup-css"></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 2.07 KB / CJS: 2.22 KB / UMD: 2.14 KB
+[Skypack documentation](https://docs.skypack.dev/)
+
+For NodeJS (v14.6+):
+
+```text
+node --experimental-specifier-resolution=node --experimental-repl-await
+
+> const hiccupCss = await import("@thi.ng/hiccup-css");
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 2.07 KB
 
 ## Dependencies
 

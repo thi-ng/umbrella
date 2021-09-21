@@ -9,6 +9,7 @@ export * from "./float";
 export * from "./format";
 export * from "./groups";
 export * from "./hollerith";
+export * from "./initials";
 export * from "./int";
 export * from "./interpolate";
 export * from "./join";

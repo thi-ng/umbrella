@@ -1,10 +1,17 @@
-import { timed } from "@thi.ng/bench";
-import { anchor, div, inputText } from "@thi.ng/hiccup-html";
-import { $compile, $list, $text, Component, IComponent } from "@thi.ng/rdom";
-import { debounce, ISubscription, reactive, Stream } from "@thi.ng/rstream";
-import { map } from "@thi.ng/transducers";
-// @ts-ignore
-import { deserialize } from "@ygoe/msgpack";
+import { timed } from "@thi.ng/bench/timed";
+import { div } from "@thi.ng/hiccup-html/blocks";
+import { inputText } from "@thi.ng/hiccup-html/forms";
+import { anchor } from "@thi.ng/hiccup-html/inline";
+import type { IComponent } from "@thi.ng/rdom";
+import { $compile } from "@thi.ng/rdom/compile";
+import { Component } from "@thi.ng/rdom/component";
+import { $text } from "@thi.ng/rdom/dom";
+import { $list } from "@thi.ng/rdom/list";
+import type { ISubscription } from "@thi.ng/rstream";
+import { debounce } from "@thi.ng/rstream/debounce";
+import { reactive, Stream } from "@thi.ng/rstream/stream";
+import { map } from "@thi.ng/transducers/map";
+import msgpack from "@ygoe/msgpack";
 import { pageControls, Pagination } from "./pagination";
 import { search, SearchIndex } from "./search";
 
@@ -57,7 +64,7 @@ class DocSearch extends Component {
             if (resp.status >= 400)
                 throw new Error("Failed to load search index");
             const buf = await resp.arrayBuffer();
-            const index: SearchIndex = timed(() => deserialize(buf));
+            const index: SearchIndex = timed(() => msgpack.deserialize(buf));
 
             // remove preloader
             this.$remove(loader);

@@ -41,20 +41,30 @@ See related packages below for alternative solutions / approaches...
 yarn add @thi.ng/markdown-table
 ```
 
-```html
-// ES module
-<script type="module" src="https://unpkg.com/@thi.ng/markdown-table?module" crossorigin></script>
+ES module import:
 
-// UMD
-<script src="https://unpkg.com/@thi.ng/markdown-table/lib/index.umd.js" crossorigin></script>
+```html
+<script type="module" src="https://cdn.skypack.dev/@thi.ng/markdown-table"></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 536 bytes / CJS: 582 bytes / UMD: 688 bytes
+[Skypack documentation](https://docs.skypack.dev/)
+
+For NodeJS (v14.6+):
+
+```text
+node --experimental-specifier-resolution=node --experimental-repl-await
+
+> const markdownTable = await import("@thi.ng/markdown-table");
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 554 bytes
 
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
+- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
 - [@thi.ng/compose](https://github.com/thi-ng/umbrella/tree/develop/packages/compose)
+- [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
 - [@thi.ng/strings](https://github.com/thi-ng/umbrella/tree/develop/packages/strings)
 - [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)
 

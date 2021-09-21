@@ -1,6 +1,5 @@
+import { group } from "@thi.ng/testament";
 // import * as assert from "assert";
 // import * as b from "../src";
 
-describe("bitfield", () => {
-    it("tests pending");
-});
+group("bitfield", {});

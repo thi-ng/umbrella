@@ -34,15 +34,23 @@ Array / Arraylike utilities.
 yarn add @thi.ng/arrays
 ```
 
-```html
-// ES module
-<script type="module" src="https://unpkg.com/@thi.ng/arrays?module" crossorigin></script>
+ES module import:
 
-// UMD
-<script src="https://unpkg.com/@thi.ng/arrays/lib/index.umd.js" crossorigin></script>
+```html
+<script type="module" src="https://cdn.skypack.dev/@thi.ng/arrays"></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 2.08 KB / CJS: 2.27 KB / UMD: 2.23 KB
+[Skypack documentation](https://docs.skypack.dev/)
+
+For NodeJS (v14.6+):
+
+```text
+node --experimental-specifier-resolution=node --experimental-repl-await
+
+> const arrays = await import("@thi.ng/arrays");
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 2.08 KB
 
 ## Dependencies
 

@@ -43,8 +43,8 @@ Benefits:
 - Default implementation supports CSS conversion from JS objects for
   `style` attribs (also see:
   [@thi.ng/hiccup-css](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-css))
-- Auto-expansion of embedded values / types which implement the [`IToHiccup`](https://github.com/thi-ng/umbrella/tree/develop/packages/api/src/api.ts#L415) or
-  [`IDeref`](https://github.com/thi-ng/umbrella/tree/develop/packages/api/src/api.ts#L166)
+- Auto-expansion of embedded values / types which implement the [`IToHiccup`](https://github.com/thi-ng/umbrella/tree/develop/packages/api/src/hiccup.ts) or
+  [`IDeref`](https://github.com/thi-ng/umbrella/tree/develop/packages/api/src/deref.ts)
   interfaces (e.g. [atoms, cursors, derived views](https://github.com/thi-ng/umbrella/tree/develop/packages/atom), [streams](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream) etc.)
 - Fast (see [benchmark examples](#benchmarks) below)
 - Only ~6.2KB gzipped
@@ -510,9 +510,9 @@ import { map, range } from "@thi.ng/transducers";
 ### Interface support
 
 Any type implementing one of the
-[`IToHiccup`](https://github.com/thi-ng/umbrella/tree/develop/packages/api/src/api.ts#L415)
+[`IToHiccup`](https://github.com/thi-ng/umbrella/tree/develop/packages/api/src/hiccup.ts)
 or
-[`IDeref`](https://github.com/thi-ng/umbrella/tree/develop/packages/api/src/api.ts#L166)
+[`IDeref`](https://github.com/thi-ng/umbrella/tree/develop/packages/api/src/deref.ts)
 or interfaces will be auto-expanded during tree normalization.
 
 This currently includes the following types from other packages in this

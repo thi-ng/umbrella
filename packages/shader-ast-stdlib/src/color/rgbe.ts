@@ -1,18 +1,9 @@
-import {
-    $w,
-    $xyz,
-    defn,
-    exp2,
-    float,
-    gt,
-    INT0,
-    mul,
-    ret,
-    sub,
-    ternary,
-    vec3,
-    VEC3_0,
-} from "@thi.ng/shader-ast";
+import { ternary } from "@thi.ng/shader-ast/ast/controlflow";
+import { defn, ret } from "@thi.ng/shader-ast/ast/function";
+import { float, INT0, vec3, VEC3_0 } from "@thi.ng/shader-ast/ast/lit";
+import { gt, mul, sub } from "@thi.ng/shader-ast/ast/ops";
+import { $w, $xyz } from "@thi.ng/shader-ast/ast/swizzle";
+import { exp2 } from "@thi.ng/shader-ast/builtin/math";
 
 /**
  * RGBE (Radiance HDR) to linear float RGB conversion. The input vec is supposed

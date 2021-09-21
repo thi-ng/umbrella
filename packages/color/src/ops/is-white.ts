@@ -1,4 +1,4 @@
-import { DEFAULT, defmulti } from "@thi.ng/defmulti";
+import { defmulti } from "@thi.ng/defmulti/defmulti";
 import type { ReadonlyColor, TypedColor } from "../api";
 import { EPS } from "../api/constants";
 import { rgb } from "../rgb/rgb";
@@ -30,4 +30,4 @@ isWhite.addAll({
     ycc: isWhiteLch,
 });
 
-isWhite.add(DEFAULT, (x: any) => isWhiteRgb(rgb(x)));
+isWhite.setDefault((x: any) => isWhiteRgb(rgb(x)));

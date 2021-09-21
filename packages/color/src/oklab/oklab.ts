@@ -7,6 +7,7 @@ import { labXyz, labXyzD65 } from "../lab/lab-xyz";
 import { rgbOklab } from "../rgb/rgb-oklab";
 import { xyzOklab } from "../xyz/xyz-oklab";
 import { xyzXyzD50_65 } from "../xyz/xyz-xyz";
+import { oklabRgb } from "./oklab-rgb";
 
 export declare class Oklab implements TypedColor<Oklab> {
     buf: NumericArray;
@@ -53,4 +54,5 @@ export const oklab = <ColorFactory<Oklab>>defColor({
         xyz50: [xyzXyzD50_65, xyzOklab],
         xyz65: xyzOklab,
     },
+    toRgb: oklabRgb,
 });

@@ -33,15 +33,23 @@ Optimized functional composition helpers.
 yarn add @thi.ng/compose
 ```
 
-```html
-// ES module
-<script type="module" src="https://unpkg.com/@thi.ng/compose?module" crossorigin></script>
+ES module import:
 
-// UMD
-<script src="https://unpkg.com/@thi.ng/compose/lib/index.umd.js" crossorigin></script>
+```html
+<script type="module" src="https://cdn.skypack.dev/@thi.ng/compose"></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 815 bytes / CJS: 916 bytes / UMD: 955 bytes
+[Skypack documentation](https://docs.skypack.dev/)
+
+For NodeJS (v14.6+):
+
+```text
+node --experimental-specifier-resolution=node --experimental-repl-await
+
+> const compose = await import("@thi.ng/compose");
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 815 bytes
 
 ## Dependencies
 

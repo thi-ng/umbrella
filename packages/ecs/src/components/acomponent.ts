@@ -1,19 +1,19 @@
-import {
-    Event,
-    IID,
-    INotify,
-    INotifyMixin,
-    Listener,
-    UIntArray,
-} from "@thi.ng/api";
-import { isFunction } from "@thi.ng/checks";
+import type { Event, IID, INotify, Listener, UIntArray } from "@thi.ng/api";
+import { INotifyMixin } from "@thi.ng/api/mixins/inotify";
+import { isFunction } from "@thi.ng/checks/is-function";
 import type { IMemPoolArray } from "@thi.ng/malloc";
-import type { ComponentDefaultValue, IComponent } from "../api";
-import { EVENT_ADDED, EVENT_CHANGED, EVENT_PRE_DELETE } from "../constants";
+import {
+    ComponentDefaultValue,
+    EVENT_ADDED,
+    EVENT_CHANGED,
+    EVENT_PRE_DELETE,
+    IComponent,
+} from "../api";
 
 @INotifyMixin
 export abstract class AComponent<K extends string, VALUES, GET, SET>
-    implements IComponent<K, VALUES, GET, SET>, INotify {
+    implements IComponent<K, VALUES, GET, SET>, INotify
+{
     readonly id: K;
     abstract readonly size: number;
     abstract readonly stride: number;

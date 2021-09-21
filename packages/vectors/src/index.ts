@@ -1,15 +1,15 @@
 export * from "./api";
-export * from "./internal/accessors";
-export * from "./internal/avec";
-export * from "./internal/codegen";
-export * from "./internal/templates";
-export * from "./internal/vec-utils";
-export * from "./internal/vop";
+export * from "./iterator";
+export * from "./compile/accessors";
+export * from "./compile/emit";
+export * from "./compile/templates";
 
+export * from "./avec";
 export * from "./vec2";
 export * from "./vec3";
 export * from "./vec4";
 
+export * from "./vop";
 export * from "./abs";
 export * from "./acos";
 export * from "./addw";

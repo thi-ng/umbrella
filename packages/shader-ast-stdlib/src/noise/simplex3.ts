@@ -1,35 +1,27 @@
+import type { Vec3Sym, Vec4Sym } from "@thi.ng/shader-ast";
+import { assign } from "@thi.ng/shader-ast/ast/assign";
+import { defn, ret } from "@thi.ng/shader-ast/ast/function";
 import {
-    $,
-    $w,
-    $x,
-    $xy,
-    $y,
-    $z,
-    abs,
-    add,
-    assign,
-    defn,
-    dot,
     float,
     FLOAT0,
     FLOAT05,
     FLOAT1,
     FLOAT2,
+    vec3,
+    vec4,
+} from "@thi.ng/shader-ast/ast/lit";
+import { add, mul, neg, sub } from "@thi.ng/shader-ast/ast/ops";
+import { $, $w, $x, $xy, $y, $z } from "@thi.ng/shader-ast/ast/swizzle";
+import { sym } from "@thi.ng/shader-ast/ast/sym";
+import {
+    abs,
+    dot,
     floor,
     max,
     min,
     mod,
-    mul,
-    neg,
-    ret,
     step,
-    sub,
-    sym,
-    vec3,
-    Vec3Sym,
-    vec4,
-    Vec4Sym,
-} from "@thi.ng/shader-ast";
+} from "@thi.ng/shader-ast/builtin/math";
 import { permute4 } from "./permute";
 
 export const snoise3 = defn("float", "snoise3", ["vec3"], (v) => {

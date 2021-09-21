@@ -78,15 +78,23 @@ implementations) and then translates these into canvas API draw calls.
 yarn add @thi.ng/hiccup-canvas
 ```
 
-```html
-// ES module
-<script type="module" src="https://unpkg.com/@thi.ng/hiccup-canvas?module" crossorigin></script>
+ES module import:
 
-// UMD
-<script src="https://unpkg.com/@thi.ng/hiccup-canvas/lib/index.umd.js" crossorigin></script>
+```html
+<script type="module" src="https://cdn.skypack.dev/@thi.ng/hiccup-canvas"></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 2.57 KB / CJS: 2.69 KB / UMD: 2.69 KB
+[Skypack documentation](https://docs.skypack.dev/)
+
+For NodeJS (v14.6+):
+
+```text
+node --experimental-specifier-resolution=node --experimental-repl-await
+
+> const hiccupCanvas = await import("@thi.ng/hiccup-canvas");
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 2.57 KB
 
 ## Dependencies
 

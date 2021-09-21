@@ -1,31 +1,20 @@
+import type { Func2, Vec2Sym, Vec3Sym } from "@thi.ng/shader-ast";
+import { assign } from "@thi.ng/shader-ast/ast/assign";
+import { ternary } from "@thi.ng/shader-ast/ast/controlflow";
+import { defn, ret } from "@thi.ng/shader-ast/ast/function";
+import { float, vec3 } from "@thi.ng/shader-ast/ast/lit";
+import { add, lt, mul, sub } from "@thi.ng/shader-ast/ast/ops";
+import { $, $x, $xy, $y, $z } from "@thi.ng/shader-ast/ast/swizzle";
+import { sym } from "@thi.ng/shader-ast/ast/sym";
 import {
-    $,
-    $x,
-    $xy,
-    $y,
-    $z,
     abs,
-    add,
-    assign,
-    defn,
-    float,
     floor,
     fract,
-    Func2,
-    lt,
     max,
     min,
     mod,
-    mul,
-    ret,
     sqrt,
-    sub,
-    sym,
-    ternary,
-    Vec2Sym,
-    vec3,
-    Vec3Sym,
-} from "@thi.ng/shader-ast";
+} from "@thi.ng/shader-ast/builtin/math";
 import { permute3 } from "./permute";
 
 export const worleyDist = defn(

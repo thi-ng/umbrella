@@ -1,5 +1,5 @@
-import { assert } from "@thi.ng/api";
-import { ensureIndex2 } from "@thi.ng/errors";
+import { assert } from "@thi.ng/errors/assert";
+import { ensureIndex2 } from "@thi.ng/errors/out-of-bounds";
 import { ASparseMatrix } from "./amatrix";
 import type { NzEntry } from "./api";
 import { at, compress, diag, setAt } from "./compressed";

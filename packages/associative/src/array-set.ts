@@ -1,5 +1,6 @@
-import { Fn3, Pair, Predicate2, SEMAPHORE } from "@thi.ng/api";
-import { findIndex } from "@thi.ng/arrays";
+import type { Fn3, Pair, Predicate2 } from "@thi.ng/api";
+import { SEMAPHORE } from "@thi.ng/api/api";
+import { findIndex } from "@thi.ng/arrays/find";
 import { equiv } from "@thi.ng/equiv";
 import type { EquivSetOpts, IEquivSet } from "./api";
 import { dissoc } from "./dissoc";

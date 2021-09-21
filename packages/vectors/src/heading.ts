@@ -1,4 +1,4 @@
-import { atan2Abs } from "@thi.ng/math";
+import { atan2Abs } from "@thi.ng/math/angle";
 import type { ReadonlyVec } from "./api";
 
 /**

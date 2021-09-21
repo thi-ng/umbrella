@@ -41,7 +41,7 @@ distance values. The following preset metrics are provided too:
 Neighborhoods can be used to select n-D spatial items around a given target
 location and an optional catchment radius (infinite by default). Neighborhoods
 also use one of the given distance metrics and implement the widely used
-[`IDeref`](https://github.com/thi-ng/umbrella/tree/develop/packages/api/src/api/deref.ts)
+[`IDeref`](https://github.com/thi-ng/umbrella/tree/develop/packages/api/src/deref.ts)
 interface to obtain the final query results.
 
 Custom neighborhood selections can be defined via the

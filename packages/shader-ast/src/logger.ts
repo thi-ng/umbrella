@@ -1,4 +1,5 @@
-import { ILogger, NULL_LOGGER } from "@thi.ng/api";
+import type { ILogger } from "@thi.ng/logger";
+import { NULL_LOGGER } from "@thi.ng/logger/null";
 
 export let LOGGER = NULL_LOGGER;
 

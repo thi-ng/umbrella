@@ -1,13 +1,7 @@
-import {
-    $iter,
-    compR,
-    isReduced,
-    iterator,
-    iterator1,
-    reduced,
-    Reducer,
-    Transducer,
-} from "@thi.ng/transducers";
+import type { Reducer, Transducer } from "@thi.ng/transducers";
+import { compR } from "@thi.ng/transducers/compr";
+import { iterator, iterator1, __iter } from "@thi.ng/transducers/iterator";
+import { isReduced, reduced } from "@thi.ng/transducers/reduced";
 
 const B64_CHARS =
     "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
@@ -73,7 +67,7 @@ export function base64Encode(
     src: Iterable<number>
 ): string;
 export function base64Encode(...args: any[]): any {
-    const iter = $iter(base64Encode, args, iterator);
+    const iter = __iter(base64Encode, args, iterator);
     if (iter) {
         return [...iter].join("");
     }

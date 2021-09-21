@@ -1,13 +1,10 @@
 import type { Fn4, FnN3 } from "@thi.ng/api";
-import { MultiVecOpImpl, ReadonlyVec, vop } from "@thi.ng/vectors";
+import type { MultiVecOpImpl, ReadonlyVec } from "@thi.ng/vectors";
+import { vop } from "@thi.ng/vectors/vop";
 
-export const testBoxSphere: MultiVecOpImpl<Fn4<
-    ReadonlyVec,
-    ReadonlyVec,
-    ReadonlyVec,
-    number,
-    boolean
->> = vop(0);
+export const testBoxSphere: MultiVecOpImpl<
+    Fn4<ReadonlyVec, ReadonlyVec, ReadonlyVec, number, boolean>
+> = vop(0);
 
 /**
  * Returns true if given 2D rect defined by `boxMinPos` and `boxSize`
@@ -60,13 +57,9 @@ testBoxSphere.default((boxPos, boxSize, spherePos, r) => {
  * @param spherePos
  * @param r
  */
-export const testCenteredBoxSphere: MultiVecOpImpl<Fn4<
-    ReadonlyVec,
-    ReadonlyVec,
-    ReadonlyVec,
-    number,
-    boolean
->> = vop(0);
+export const testCenteredBoxSphere: MultiVecOpImpl<
+    Fn4<ReadonlyVec, ReadonlyVec, ReadonlyVec, number, boolean>
+> = vop(0);
 
 /**
  * Similar to {@link testRectCircle}, but for rects defined by centroid

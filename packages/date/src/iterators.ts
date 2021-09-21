@@ -1,5 +1,5 @@
 import type { Fn } from "@thi.ng/api";
-import { isString } from "@thi.ng/checks";
+import { isString } from "@thi.ng/checks/is-string";
 import type { EpochIterator, EpochIteratorConstructor, Precision } from "./api";
 import { DateTime } from "./datetime";
 import { floorQuarter, floorWeek } from "./round";

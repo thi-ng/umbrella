@@ -1,4 +1,5 @@
 import * as assert from "assert";
+import { group } from "@thi.ng/testament";
 import * as vm from "vm";
 import {
     existsAndNotNull,
@@ -17,8 +18,8 @@ import {
     isTypedArray,
 } from "../src";
 
-describe("checks", function () {
-    it("existsAndNotNull", () => {
+group("checks", {
+    existsAndNotNull: () => {
         assert.ok(existsAndNotNull([]), "empty array");
         assert.ok(existsAndNotNull(new Uint8Array(1)), "typedarray");
         assert.ok(existsAndNotNull({}), "obj");
@@ -27,9 +28,9 @@ describe("checks", function () {
         assert.ok(!existsAndNotNull((<any>{})["foobar"]), "prop");
         assert.ok(!existsAndNotNull(null), "null");
         assert.ok(!existsAndNotNull(undefined), "null");
-    });
+    },
 
-    it("isArray", () => {
+    isArray: () => {
         assert.ok(isArray([]), "empty array");
         assert.ok(!isArray(new Uint8Array(1)), "typedarray");
         assert.ok(!isArray({}), "obj");
@@ -37,9 +38,9 @@ describe("checks", function () {
         assert.ok(!isArray(0), "zero");
         assert.ok(!isArray(null), "null");
         assert.ok(!isArray(undefined), "null");
-    });
+    },
 
-    it("isTypedArray", () => {
+    isTypedArray: () => {
         assert.ok(isTypedArray(new Uint8Array(1)), "u8");
         assert.ok(isTypedArray(new Uint8ClampedArray(1)), "u8c");
         assert.ok(isTypedArray(new Uint16Array(1)), "u16");
@@ -55,9 +56,9 @@ describe("checks", function () {
         assert.ok(!isTypedArray(0), "zero");
         assert.ok(!isTypedArray(null), "null");
         assert.ok(!isTypedArray(undefined), "null");
-    });
+    },
 
-    it("isArrayLike", () => {
+    isArrayLike: () => {
         assert.ok(isArrayLike([]), "empty array");
         assert.ok(isArrayLike(new Uint8Array(1)), "typedarray");
         assert.ok(isArrayLike({ length: 1 }), "obj.length");
@@ -67,9 +68,9 @@ describe("checks", function () {
         assert.ok(!isArrayLike(null), "null");
         assert.ok(!isArrayLike(undefined), "null");
         assert.ok(!isArrayLike((x: any, y: any) => x + y), "null");
-    });
+    },
 
-    it("isObject", () => {
+    isObject: () => {
         class Foo {}
         assert.ok(isObject([]), "empty array");
         assert.ok(isObject(new Uint8Array(1)), "typedarray");
@@ -80,9 +81,9 @@ describe("checks", function () {
         assert.ok(!isObject(0), "zero");
         assert.ok(!isObject(null), "null");
         assert.ok(!isObject(undefined), "null");
-    });
+    },
 
-    it("isPlainObject", () => {
+    isPlainObject: () => {
         const ctxClass = vm.runInNewContext("class A {}; new A();");
         const ctxObj = vm.runInNewContext("({})");
 
@@ -105,9 +106,9 @@ describe("checks", function () {
         assert.ok(!isPlainObject(undefined), "null");
         assert.ok(isPlainObject(ctxObj), "vm ctx obj");
         assert.ok(!isPlainObject(ctxClass), "vm ctx class");
-    });
+    },
 
-    it("isString", () => {
+    isString: () => {
         assert.ok(isString(""), "empty string");
         assert.ok(isString("a"), "empty string");
         assert.ok(!isString({}), "obj");
@@ -116,9 +117,9 @@ describe("checks", function () {
         assert.ok(!isString(0), "zero");
         assert.ok(!isString(null), "null");
         assert.ok(!isString(undefined), "null");
-    });
+    },
 
-    it("isFunction", () => {
+    isFunction: () => {
         assert.ok(
             isFunction((_: any) => {}),
             "fn"
@@ -132,26 +133,26 @@ describe("checks", function () {
         assert.ok(!isFunction(0), "zero");
         assert.ok(!isFunction(null), "null");
         assert.ok(!isFunction(undefined), "undefined");
-    });
+    },
 
-    it("implementsFunction", () => {
+    implementsFunction: () => {
         assert.ok(implementsFunction({ a: () => true }, "a"), "obj");
         assert.ok(implementsFunction([], Symbol.iterator), "arr iterator");
         assert.ok(implementsFunction("", Symbol.iterator), "string iterator");
         assert.ok(!implementsFunction(0, Symbol.iterator), "zero");
         assert.ok(!implementsFunction(null, Symbol.iterator), "null");
         assert.ok(!implementsFunction(undefined, Symbol.iterator), "undefined");
-    });
+    },
 
-    it("isSymbol", () => {
+    isSymbol: () => {
         assert.ok(isSymbol(Symbol.iterator), "iterator");
         assert.ok(!isSymbol("iterator"), "string");
         assert.ok(!isFunction(0), "zero");
         assert.ok(!isFunction(null), "null");
         assert.ok(!isFunction(undefined), "undefined");
-    });
+    },
 
-    it("isTransferable", () => {
+    isTransferable: () => {
         assert.ok(isTransferable(new ArrayBuffer(4)), "arraybuffer");
         assert.ok(!isTransferable(new Uint8Array(4)), "typedarray");
         assert.ok(!isTransferable([]), "array");
@@ -159,9 +160,9 @@ describe("checks", function () {
         assert.ok(!isTransferable(0), "zero");
         assert.ok(!isTransferable(null), "null");
         assert.ok(!isTransferable(undefined), "undefined");
-    });
+    },
 
-    it("isNil", () => {
+    isNil: () => {
         assert.ok(isNil(undefined), "undefined");
         assert.ok(isNil(null), "null");
         assert.ok(!isNil("foo"), "string");
@@ -171,9 +172,9 @@ describe("checks", function () {
         assert.ok(!isNil(false), "false");
         assert.ok(!isNil(true), "true");
         assert.ok(!isNil(() => {}), "function");
-    });
+    },
 
-    it("isHexColor", () => {
+    isHexColor: () => {
         assert.ok(isHexColor("#123"), "valid 3 digits rgb");
         assert.ok(isHexColor("#ff3300"), "valid 6 digits rrggbb");
         assert.ok(isHexColor("#f30f"), "valid 4 digits rgba");
@@ -192,9 +193,9 @@ describe("checks", function () {
         assert.ok(!isHexColor("#ff3300 hi"), "invalid: #ff3300 hi");
         assert.ok(!isHexColor("hi #ff3300 hi"), "invalid: hi #ff3300 hi");
         assert.ok(!isHexColor("#123 #123"), "invalid: #123 #123");
-    });
+    },
 
-    it("isProtoPath", () => {
+    isProtoPath: () => {
         assert.ok(!isProtoPath("foo.__proto.bar"), "0");
         assert.ok(!isProtoPath("foo.bar"), "1");
         assert.ok(!isProtoPath(""), "2");
@@ -208,5 +209,5 @@ describe("checks", function () {
         assert.ok(!isProtoPath(["prototype.foo"]), "10");
         assert.ok(isProtoPath(["__proto__"]), "11");
         assert.ok(isProtoPath(["foo", "__proto__", "bar"]), "12");
-    });
+    },
 });

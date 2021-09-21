@@ -52,15 +52,23 @@ Currently does not support array fields (incl. strings).
 yarn add @thi.ng/unionstruct
 ```
 
-```html
-// ES module
-<script type="module" src="https://unpkg.com/@thi.ng/unionstruct?module" crossorigin></script>
+ES module import:
 
-// UMD
-<script src="https://unpkg.com/@thi.ng/unionstruct/lib/index.umd.js" crossorigin></script>
+```html
+<script type="module" src="https://cdn.skypack.dev/@thi.ng/unionstruct"></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.08 KB / CJS: 1.13 KB / UMD: 1.19 KB
+[Skypack documentation](https://docs.skypack.dev/)
+
+For NodeJS (v14.6+):
+
+```text
+node --experimental-specifier-resolution=node --experimental-repl-await
+
+> const unionstruct = await import("@thi.ng/unionstruct");
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 1.08 KB
 
 ## Dependencies
 

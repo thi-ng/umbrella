@@ -1,7 +1,7 @@
-import { smoothStep as _step } from "@thi.ng/math";
+import { smoothStep as _step } from "@thi.ng/math/step";
 import type { MultiVecOpVVV, VecOpVVV } from "./api";
-import { DEFAULT_OUT, defHofOp } from "./internal/codegen";
-import { FN3 } from "./internal/templates";
+import { defHofOp } from "./compile/emit";
+import { DEFAULT_OUT, FN3 } from "./compile/templates";
 
 /**
  * Like GLSL `smoothstep()`

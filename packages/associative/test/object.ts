@@ -1,8 +1,9 @@
 import * as assert from "assert";
+import { group } from "@thi.ng/testament";
 import { renameTransformedKeys } from "../src";
 
-describe("object ops", () => {
-    it("renameTransformedKeys", () => {
+group("object ops", {
+    renameTransformedKeys: () => {
         assert.deepStrictEqual(
             renameTransformedKeys(
                 { a: 1, b: 2, c: null },
@@ -15,5 +16,5 @@ describe("object ops", () => {
             { aa: 1, bb: 21 }
         );
         assert.deepStrictEqual(renameTransformedKeys(null, { a: "aa" }), {});
-    });
+    },
 });

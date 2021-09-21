@@ -1,3 +1,4 @@
+import { group } from "@thi.ng/testament";
 import * as assert from "assert";
 import {
     animation,
@@ -15,17 +16,17 @@ const rules = {
     f: { foo: (rules: any) => rules.bar, bar: 1 },
 };
 
-describe("hiccup-css", () => {
-    it("rules only", () => {
+group("hiccup-css", {
+    "rules only": () => {
         assert.throws(() => css("a"));
         assert.strictEqual(css({}), "");
         assert.strictEqual(css(rules.a), "color:red;");
         assert.strictEqual(css(rules.b), "border:0;");
         assert.strictEqual(css(rules.c), "font:14px Inconsolata,monospace;");
         assert.strictEqual(css(rules.f), "foo:1;bar:1;");
-    });
+    },
 
-    it("simple", () => {
+    simple: () => {
         assert.strictEqual(css(["a"]), "");
         assert.strictEqual(css(["a", rules.a]), "a{color:red;}");
         assert.strictEqual(
@@ -39,9 +40,9 @@ describe("hiccup-css", () => {
             css(["a", "b", rules.a, rules.b]),
             "a,b{color:red;border:0;}"
         );
-    });
+    },
 
-    it("nested", () => {
+    nested: () => {
         assert.strictEqual(
             css(["a", [":link", rules.a], [":visited", rules.b]]),
             "a:link{color:red;}a:visited{border:0;}"
@@ -58,9 +59,9 @@ describe("hiccup-css", () => {
             ]),
             "#id h1{}#id h2 div,#id h3 div{}#id h2[attr] span,#id h3[attr] span{color:red;}"
         );
-    });
+    },
 
-    it("pretty", () => {
+    pretty: () => {
         assert.strictEqual(
             css(
                 [
@@ -77,9 +78,9 @@ describe("hiccup-css", () => {
             ),
             "#id h1 {\n    color: red;\n    border: 0;\n}\n\n#id h2 div, #id h3 div {\n    border: 0;\n}\n\n#id h2[attr] span, #id h3[attr] span {\n    color: red;\n}\n"
         );
-    });
+    },
 
-    it("@import", () => {
+    "@import": () => {
         assert.strictEqual(css(at_import("foo.css")), "@import url(foo.css);");
         assert.strictEqual(
             css([at_import("foo.css"), ["div", {}]]),
@@ -93,9 +94,9 @@ describe("hiccup-css", () => {
             css(at_import("foo.css", "screen", "print")),
             "@import url(foo.css) screen,print;"
         );
-    });
+    },
 
-    it("@keyframes", () => {
+    "@keyframes": () => {
         assert.strictEqual(
             css(
                 at_keyframes("fadein", {
@@ -109,9 +110,9 @@ describe("hiccup-css", () => {
             css(at_keyframes("fadein", { opacity: 0 }, { opacity: 1 })),
             "@keyframes fadein{0%{opacity:0;}100%{opacity:1;}}"
         );
-    });
+    },
 
-    it("@media", () => {
+    "@media": () => {
         assert.strictEqual(
             css(at_media({ screen: true }, [])),
             "@media screen{}"
@@ -146,9 +147,9 @@ describe("hiccup-css", () => {
             ),
             "@media screen and print{div .foo{color:red;}@media print and (max-width:20rem){div{border:0;}}}"
         );
-    });
+    },
 
-    it("animation", () => {
+    animation: () => {
         assert.strictEqual(
             css(
                 animation(
@@ -160,5 +161,5 @@ describe("hiccup-css", () => {
             ),
             "@keyframes delayed-fade-in{0%{opacity:0;}100%{opacity:1;}}.delayed-fade-in{animation-duration:250ms;animation-name:delayed-fade-in;animation-delay:0.5s;}"
         );
-    });
+    },
 });

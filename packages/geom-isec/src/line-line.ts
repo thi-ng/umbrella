@@ -1,8 +1,10 @@
 import type { FnU4 } from "@thi.ng/api";
-import { IntersectionResult, IntersectionType } from "@thi.ng/geom-api";
-import { closestPointSegment } from "@thi.ng/geom-closest-point";
-import { EPS, eqDelta } from "@thi.ng/math";
-import { mixN2, ReadonlyVec } from "@thi.ng/vectors";
+import { IntersectionResult, IntersectionType } from "@thi.ng/geom-api/isec";
+import { closestPointSegment } from "@thi.ng/geom-closest-point/line";
+import { EPS } from "@thi.ng/math/api";
+import { eqDelta } from "@thi.ng/math/eqdelta";
+import type { ReadonlyVec } from "@thi.ng/vectors";
+import { mixN2 } from "@thi.ng/vectors/mixn";
 
 export const intersectLineLine = (
     a: ReadonlyVec,

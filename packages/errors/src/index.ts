@@ -1,4 +1,6 @@
 export * from "./deferror";
+
+export * from "./assert";
 export * from "./illegal-arguments";
 export * from "./illegal-arity";
 export * from "./illegal-state";

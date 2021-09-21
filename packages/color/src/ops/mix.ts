@@ -1,7 +1,9 @@
 import type { FnN3, FnU4 } from "@thi.ng/api";
-import { DEFAULT, defmulti } from "@thi.ng/defmulti";
-import { fract, mix as $mix } from "@thi.ng/math";
-import { mixN4, setC4 } from "@thi.ng/vectors";
+import { defmulti } from "@thi.ng/defmulti/defmulti";
+import { mix as $mix } from "@thi.ng/math/mix";
+import { fract } from "@thi.ng/math/prec";
+import { mixN4 } from "@thi.ng/vectors/mixn";
+import { setC4 } from "@thi.ng/vectors/setc";
 import type { Color, ColorMixFn, TypedColor } from "../api";
 
 /**
@@ -13,19 +15,15 @@ import type { Color, ColorMixFn, TypedColor } from "../api";
  * @param z
  * @param alpha
  */
-export const defMix: FnU4<FnN3, ColorMixFn> = (x, y, z, alpha) => (
-    out,
-    a,
-    b,
-    t
-) =>
-    setC4(
-        out || a,
-        x(a[0], b[0], t),
-        y(a[1], b[1], t),
-        z(a[2], b[2], t),
-        alpha(a[3], b[3], t)
-    );
+export const defMix: FnU4<FnN3, ColorMixFn> =
+    (x, y, z, alpha) => (out, a, b, t) =>
+        setC4(
+            out || a,
+            x(a[0], b[0], t),
+            y(a[1], b[1], t),
+            z(a[2], b[2], t),
+            alpha(a[3], b[3], t)
+        );
 
 /**
  * Single channel interpolation for (normalized) hues. Always interpolates via
@@ -110,7 +108,7 @@ export const mix = defmulti<
     Color
 >((_, a) => a.mode);
 
-mix.add(DEFAULT, mixN4);
+mix.setDefault(mixN4);
 
 mix.addAll({
     hcy: mixHNNN,

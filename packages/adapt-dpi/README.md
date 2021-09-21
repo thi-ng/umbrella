@@ -40,15 +40,23 @@ buffer itself based on DPR (e.g. 2x size).
 yarn add @thi.ng/adapt-dpi
 ```
 
-```html
-// ES module
-<script type="module" src="https://unpkg.com/@thi.ng/adapt-dpi?module" crossorigin></script>
+ES module import:
 
-// UMD
-<script src="https://unpkg.com/@thi.ng/adapt-dpi/lib/index.umd.js" crossorigin></script>
+```html
+<script type="module" src="https://cdn.skypack.dev/@thi.ng/adapt-dpi"></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 150 bytes / CJS: 198 bytes / UMD: 316 bytes
+[Skypack documentation](https://docs.skypack.dev/)
+
+For NodeJS (v14.6+):
+
+```text
+node --experimental-specifier-resolution=node --experimental-repl-await
+
+> const adaptDpi = await import("@thi.ng/adapt-dpi");
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 150 bytes
 
 ## Dependencies
 

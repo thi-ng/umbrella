@@ -1,8 +1,10 @@
 import type { IObjectOf } from "@thi.ng/api";
-import { isBoolean } from "@thi.ng/checks";
-import { clamp } from "@thi.ng/math";
-import { fromDOMEvent, merge, Stream } from "@thi.ng/rstream";
-import { map } from "@thi.ng/transducers";
+import { isBoolean } from "@thi.ng/checks/is-boolean";
+import { clamp } from "@thi.ng/math/interval";
+import type { Stream } from "@thi.ng/rstream";
+import { fromDOMEvent } from "@thi.ng/rstream/event";
+import { merge } from "@thi.ng/rstream/merge";
+import { map } from "@thi.ng/transducers/map";
 import type {
     GestureEvent,
     GestureInfo,

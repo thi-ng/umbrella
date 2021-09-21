@@ -186,6 +186,15 @@ export interface MultiFnBase<I> {
      */
     addAll(impls: IObjectOf<I>): boolean;
     /**
+     * Sets default/fallback implementation.
+     *
+     * @remarks
+     * Same as `.add(DEFAULT, impl)`
+     *
+     * @param impl
+     */
+    setDefault(impl: I): boolean;
+    /**
      * Removes implementation for dispatch value `id`. Returns true, if
      * successful.
      *

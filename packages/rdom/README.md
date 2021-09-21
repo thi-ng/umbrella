@@ -156,15 +156,23 @@ constructs, which can be used as lightweight adapters, i.e.:
 yarn add @thi.ng/rdom
 ```
 
-```html
-// ES module
-<script type="module" src="https://unpkg.com/@thi.ng/rdom?module" crossorigin></script>
+ES module import:
 
-// UMD
-<script src="https://unpkg.com/@thi.ng/rdom/lib/index.umd.js" crossorigin></script>
+```html
+<script type="module" src="https://cdn.skypack.dev/@thi.ng/rdom"></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 3.83 KB / CJS: 3.99 KB / UMD: 3.94 KB
+[Skypack documentation](https://docs.skypack.dev/)
+
+For NodeJS (v14.6+):
+
+```text
+node --experimental-specifier-resolution=node --experimental-repl-await
+
+> const rdom = await import("@thi.ng/rdom");
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 3.83 KB
 
 ## Dependencies
 

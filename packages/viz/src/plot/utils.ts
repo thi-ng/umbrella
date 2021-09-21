@@ -1,14 +1,17 @@
 import type { Fn } from "@thi.ng/api";
-import { isFunction } from "@thi.ng/checks";
-import { clamp, inRange } from "@thi.ng/math";
+import { isFunction } from "@thi.ng/checks/is-function";
+import { clamp, inRange } from "@thi.ng/math/interval";
 import type { AxisSpec, DomainValues, PlotFn, VizSpec } from "../api";
 
 /** @internal */
-export const valueMapper = (
-    { scale: scaleX }: AxisSpec,
-    { scale: scaleY, domain: [dmin, dmax] }: AxisSpec,
-    project: Fn<number[], number[]> = (x) => x
-) => ([x, y]: number[]) => project([scaleX(x), scaleY(clamp(y, dmin, dmax))]);
+export const valueMapper =
+    (
+        { scale: scaleX }: AxisSpec,
+        { scale: scaleY, domain: [dmin, dmax] }: AxisSpec,
+        project: Fn<number[], number[]> = (x) => x
+    ) =>
+    ([x, y]: number[]) =>
+        project([scaleX(x), scaleY(clamp(y, dmin, dmax))]);
 
 /** @internal */
 export function processedPoints(
@@ -41,11 +44,8 @@ export function* processedPoints(
  *
  * @internal
  */
-export const defSimplePlotFn = <T extends { attribs: any }>(shape: string) => (
-    data: DomainValues,
-    opts: Partial<T> = {}
-): PlotFn => (spec) => [
-    shape,
-    opts.attribs || {},
-    [...processedPoints(spec, data, true)],
-];
+export const defSimplePlotFn =
+    <T extends { attribs: any }>(shape: string) =>
+    (data: DomainValues, opts: Partial<T> = {}): PlotFn =>
+    (spec) =>
+        [shape, opts.attribs || {}, [...processedPoints(spec, data, true)]];

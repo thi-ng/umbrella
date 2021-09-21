@@ -1,4 +1,4 @@
-import { fract } from "@thi.ng/math";
+import { fract } from "@thi.ng/math/prec";
 import type { StatelessOscillator } from "../api";
 
 export const rect: StatelessOscillator = (
@@ -15,9 +15,7 @@ export const rect: StatelessOscillator = (
  *
  * @param duty
  */
-export const rectHOF = (duty = 0.5): StatelessOscillator => (
-    phase,
-    freq,
-    amp,
-    dc
-) => rect(phase, freq, amp, dc, duty);
+export const rectHOF =
+    (duty = 0.5): StatelessOscillator =>
+    (phase, freq, amp, dc) =>
+        rect(phase, freq, amp, dc, duty);

@@ -53,15 +53,23 @@ based on different strategies. See doc strings for further details.
 yarn add @thi.ng/memoize
 ```
 
-```html
-// ES module
-<script type="module" src="https://unpkg.com/@thi.ng/memoize?module" crossorigin></script>
+ES module import:
 
-// UMD
-<script src="https://unpkg.com/@thi.ng/memoize/lib/index.umd.js" crossorigin></script>
+```html
+<script type="module" src="https://cdn.skypack.dev/@thi.ng/memoize"></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 282 bytes / CJS: 336 bytes / UMD: 417 bytes
+[Skypack documentation](https://docs.skypack.dev/)
+
+For NodeJS (v14.6+):
+
+```text
+node --experimental-specifier-resolution=node --experimental-repl-await
+
+> const memoize = await import("@thi.ng/memoize");
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 282 bytes
 
 ## Dependencies
 

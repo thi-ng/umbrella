@@ -1,5 +1,5 @@
 import type { IObjectOf } from "@thi.ng/api";
-import { compareByKeys2 } from "@thi.ng/compare";
+import { compareByKeys2 } from "@thi.ng/compare/keys";
 
 export type PackedTrie = [IObjectOf<PackedTrie>, number[]?];
 
@@ -13,9 +13,10 @@ export interface SearchIndex {
     numVals: number;
 }
 
-const defDecoder = ([[psh, pmsk], [fsh, fmsk], [lsh, lmsk]]: number[][]) => (
-    id: number
-) => [(id >>> psh) & pmsk, (id >>> fsh) & fmsk, (id >>> lsh) & lmsk];
+const defDecoder =
+    ([[psh, pmsk], [fsh, fmsk], [lsh, lmsk]]: number[][]) =>
+    (id: number) =>
+        [(id >>> psh) & pmsk, (id >>> fsh) & fmsk, (id >>> lsh) & lmsk];
 
 const find = (node: PackedTrie, key: string) => {
     for (let i = 0, n = key.length; node && i < n; i++) {

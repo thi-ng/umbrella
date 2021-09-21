@@ -1,4 +1,6 @@
-import { assert, INotifyMixin, UIntArray } from "@thi.ng/api";
+import type { UIntArray } from "@thi.ng/api";
+import { INotifyMixin } from "@thi.ng/api/mixins/inotify";
+import { assert } from "@thi.ng/errors/assert";
 import type { IMemPoolArray } from "@thi.ng/malloc";
 import type { ObjectComponentOpts } from "../api";
 import { AComponent } from "./acomponent";

@@ -1,9 +1,10 @@
 import { comparator2, distSq } from "@thi.ng/vectors";
+import { group } from "@thi.ng/testament";
 import * as assert from "assert";
 import { mst } from "../src";
 
-describe("unionfind", () => {
-    it("mst", () => {
+group("unionfind", {
+    mst: () => {
         const verts = [
             [0, 0], // 0
             [0, 1], // 1
@@ -49,5 +50,5 @@ describe("unionfind", () => {
                 [7, 8],
             ]
         );
-    });
+    },
 });

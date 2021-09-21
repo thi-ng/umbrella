@@ -1,4 +1,5 @@
-import { dot3, setC4 } from "@thi.ng/vectors";
+import { dot3 } from "@thi.ng/vectors/dot";
+import { setC4 } from "@thi.ng/vectors/setc";
 import type { Color, ReadonlyColor } from "../api";
 import { RGB_LUMINANCE_REC709 } from "../api/constants";
 import { ensureAlpha } from "../internal/ensure-alpha";

@@ -1,29 +1,29 @@
 import { adaptDPI } from "@thi.ng/adapt-dpi";
-import { sin } from "@thi.ng/dsp";
-import { start } from "@thi.ng/hdom";
-import { canvasWebGL, dropdown } from "@thi.ng/hdom-components";
-import { concat, lookAt, perspective, transform44 } from "@thi.ng/matrices";
-import { fromPromise, metaStream, reactive } from "@thi.ng/rstream";
-import {
-    assign,
-    defMain,
-    mul,
-    normalize,
-    texture,
-    vec4,
-} from "@thi.ng/shader-ast";
-import {
-    BLEND_ADD,
-    compileModel,
-    defCubeModel,
-    defShader,
-    defTextureCubeMap,
-    draw,
-    GLMat4,
-    ModelSpec,
-    ShaderSpec,
-    TextureFilter,
-} from "@thi.ng/webgl";
+import { sin } from "@thi.ng/dsp/osc/sin";
+import { canvasWebGL } from "@thi.ng/hdom-components/canvas";
+import { dropdown } from "@thi.ng/hdom-components/dropdown";
+import { start } from "@thi.ng/hdom/start";
+import { concat } from "@thi.ng/matrices/concat";
+import { lookAt } from "@thi.ng/matrices/lookat";
+import { perspective } from "@thi.ng/matrices/perspective";
+import { transform44 } from "@thi.ng/matrices/transform";
+import { metaStream } from "@thi.ng/rstream/metastream";
+import { fromPromise } from "@thi.ng/rstream/promise";
+import { reactive } from "@thi.ng/rstream/stream";
+import { assign } from "@thi.ng/shader-ast/ast/assign";
+import { defMain } from "@thi.ng/shader-ast/ast/function";
+import { vec4 } from "@thi.ng/shader-ast/ast/lit";
+import { mul } from "@thi.ng/shader-ast/ast/ops";
+import { normalize } from "@thi.ng/shader-ast/builtin/math";
+import { texture } from "@thi.ng/shader-ast/builtin/texture";
+import type { GLMat4, ModelSpec, ShaderSpec } from "@thi.ng/webgl";
+import { BLEND_ADD } from "@thi.ng/webgl/api/blend";
+import { TextureFilter } from "@thi.ng/webgl/api/texture";
+import { compileModel } from "@thi.ng/webgl/buffer";
+import { draw } from "@thi.ng/webgl/draw";
+import { defCubeModel } from "@thi.ng/webgl/geo/cube";
+import { defShader } from "@thi.ng/webgl/shader";
+import { defTextureCubeMap } from "@thi.ng/webgl/texture";
 
 const CUBEMAP_SHADER: ShaderSpec = {
     vs: (gl, unis, ins, outs) => [

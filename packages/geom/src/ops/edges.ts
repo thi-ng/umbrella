@@ -1,5 +1,6 @@
 import type { IObjectOf } from "@thi.ng/api";
-import { defmulti, Implementation1O, MultiFn1O } from "@thi.ng/defmulti";
+import type { Implementation1O, MultiFn1O } from "@thi.ng/defmulti";
+import { defmulti } from "@thi.ng/defmulti/defmulti";
 import type { IShape, SamplingOpts } from "@thi.ng/geom-api";
 import type { VecPair } from "@thi.ng/vectors";
 import type { AABB } from "../api/aabb";

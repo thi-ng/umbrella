@@ -42,15 +42,23 @@ Datetime types, relative dates, math, iterators, composable formatters, locales.
 yarn add @thi.ng/date
 ```
 
-```html
-// ES module
-<script type="module" src="https://unpkg.com/@thi.ng/date?module" crossorigin></script>
+ES module import:
 
-// UMD
-<script src="https://unpkg.com/@thi.ng/date/lib/index.umd.js" crossorigin></script>
+```html
+<script type="module" src="https://cdn.skypack.dev/@thi.ng/date"></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 5.55 KB / CJS: 5.83 KB / UMD: 5.63 KB
+[Skypack documentation](https://docs.skypack.dev/)
+
+For NodeJS (v14.6+):
+
+```text
+node --experimental-specifier-resolution=node --experimental-repl-await
+
+> const date = await import("@thi.ng/date");
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 5.55 KB
 
 ## Dependencies
 

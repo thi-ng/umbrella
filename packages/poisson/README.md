@@ -58,15 +58,23 @@ indices are supported as well...
 yarn add @thi.ng/poisson
 ```
 
-```html
-// ES module
-<script type="module" src="https://unpkg.com/@thi.ng/poisson?module" crossorigin></script>
+ES module import:
 
-// UMD
-<script src="https://unpkg.com/@thi.ng/poisson/lib/index.umd.js" crossorigin></script>
+```html
+<script type="module" src="https://cdn.skypack.dev/@thi.ng/poisson"></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 459 bytes / CJS: 516 bytes / UMD: 633 bytes
+[Skypack documentation](https://docs.skypack.dev/)
+
+For NodeJS (v14.6+):
+
+```text
+node --experimental-specifier-resolution=node --experimental-repl-await
+
+> const poisson = await import("@thi.ng/poisson");
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 459 bytes
 
 ## Dependencies
 

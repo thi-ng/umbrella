@@ -1,6 +1,7 @@
-import { IntersectionType } from "@thi.ng/geom-api";
-import { eqDelta } from "@thi.ng/math";
-import { maddN, ReadonlyVec } from "@thi.ng/vectors";
+import { IntersectionType } from "@thi.ng/geom-api/isec";
+import { eqDelta } from "@thi.ng/math/eqdelta";
+import type { ReadonlyVec } from "@thi.ng/vectors";
+import { maddN } from "@thi.ng/vectors/maddn";
 import { NONE } from "./api";
 
 export const intersectRayLine = (

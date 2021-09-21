@@ -1,19 +1,19 @@
-import {
-    assert,
-    Event,
-    INotify,
-    INotifyMixin,
-    Listener,
-    uintTypeForSize,
-} from "@thi.ng/api";
-import { bitSize } from "@thi.ng/binary";
-import { isArray, isString } from "@thi.ng/checks";
+import type { Event, INotify, Listener } from "@thi.ng/api";
+import { INotifyMixin } from "@thi.ng/api/mixins/inotify";
+import { uintTypeForSize } from "@thi.ng/api/typedarray";
+import { bitSize } from "@thi.ng/binary/count";
+import { isArray } from "@thi.ng/checks/is-array";
+import { isString } from "@thi.ng/checks/is-string";
+import { assert } from "@thi.ng/errors/assert";
 import { IDGen } from "@thi.ng/idgen";
-import { IMemPoolArray, NativePool } from "@thi.ng/malloc";
-import { filter } from "@thi.ng/transducers";
-import type {
+import type { IMemPoolArray } from "@thi.ng/malloc";
+import { NativePool } from "@thi.ng/malloc/native";
+import { filter } from "@thi.ng/transducers/filter";
+import {
     ComponentID,
     ECSOpts,
+    EVENT_ADDED,
+    EVENT_PRE_DELETE,
     GroupOpts,
     IComponent,
     MemMappedComponentOpts,
@@ -21,7 +21,6 @@ import type {
 } from "./api";
 import { MemMappedComponent } from "./components/mem-component";
 import { ObjectComponent } from "./components/object-component";
-import { EVENT_ADDED, EVENT_PRE_DELETE } from "./constants";
 import { Group } from "./groups/group";
 
 let NEXT_GROUP_ID = 0;

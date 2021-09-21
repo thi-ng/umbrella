@@ -1,23 +1,23 @@
-import { download } from "@thi.ng/dl-asset";
-import {
-    asCubic,
-    asSvg,
-    group,
-    pathFromCubics,
-    points,
-    polygon,
-    rect,
-    svgDoc,
-    vertices,
-} from "@thi.ng/geom";
-import { simplify } from "@thi.ng/geom-resample";
+import { downloadWithMime } from "@thi.ng/dl-asset/raw";
+import { simplify } from "@thi.ng/geom-resample/simplify";
 import { DVMesh } from "@thi.ng/geom-voronoi";
+import { group } from "@thi.ng/geom/ctors/group";
+import { pathFromCubics } from "@thi.ng/geom/ctors/path";
+import { points } from "@thi.ng/geom/ctors/points";
+import { polygon } from "@thi.ng/geom/ctors/polygon";
+import { rect } from "@thi.ng/geom/ctors/rect";
+import { asCubic } from "@thi.ng/geom/ops/as-cubic";
+import { asSvg, svgDoc } from "@thi.ng/geom/ops/as-svg";
+import { vertices } from "@thi.ng/geom/ops/vertices";
 import { canvas } from "@thi.ng/hdom-canvas";
-import { PI, TAU } from "@thi.ng/math";
-import { SYSTEM } from "@thi.ng/random";
-import { map, mapcat, normRange } from "@thi.ng/transducers";
+import { PI, TAU } from "@thi.ng/math/api";
+import { SYSTEM } from "@thi.ng/random/system";
 import { updateDOM } from "@thi.ng/transducers-hdom";
-import { cartesian2, Vec } from "@thi.ng/vectors";
+import { map } from "@thi.ng/transducers/map";
+import { mapcat } from "@thi.ng/transducers/mapcat";
+import { normRange } from "@thi.ng/transducers/norm-range";
+import type { Vec } from "@thi.ng/vectors";
+import { cartesian2 } from "@thi.ng/vectors/cartesian";
 import { checkbox, slider } from "./controllers";
 import {
     animationStream,
@@ -110,7 +110,9 @@ function computeVoronoi(state: AppState) {
                 ...voronoi
             )
         );
-        download(`${new Date().getTime()}-voronoi.svg`, svg);
+        downloadWithMime(`${new Date().getTime()}-voronoi.svg`, svg, {
+            mime: "image/svg+xml",
+        });
     }
 
     return voronoi;
@@ -129,8 +131,7 @@ function appRender(state: AppState) {
                     [
                         "a",
                         {
-                            href:
-                                "https://observablehq.com/@mbostock/rotating-voronoi",
+                            href: "https://observablehq.com/@mbostock/rotating-voronoi",
                         },
                         " observablehq sketch",
                     ],
@@ -140,8 +141,7 @@ function appRender(state: AppState) {
                     [
                         "a",
                         {
-                            href:
-                                "https://www.flickr.com/photos/quasimondo/8254540763/",
+                            href: "https://www.flickr.com/photos/quasimondo/8254540763/",
                         },
                         "ornament",
                     ],

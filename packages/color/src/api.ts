@@ -81,6 +81,11 @@ export interface ColorSpec<M extends ColorMode, K extends string> {
     from: Partial<Record<ColorMode, ColorOp | Tuple<ColorOp, 2 | 3 | 4>>> & {
         rgb: ColorOp;
     };
+    /**
+     * Mandatory conversion to RGB mode. Used as fallback solution if no other
+     * direct conversion path is defined (e.g. for CSS formatting).
+     */
+    toRgb: ColorOp | Tuple<ColorOp, 2 | 3 | 4>;
 }
 
 export type Conversions = Partial<Record<ColorMode, ColorOp>> & {

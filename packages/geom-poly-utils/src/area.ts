@@ -1,4 +1,6 @@
-import { cross2, ReadonlyVec, signedArea2 } from "@thi.ng/vectors";
+import type { ReadonlyVec } from "@thi.ng/vectors";
+import { cross2 } from "@thi.ng/vectors/cross";
+import { signedArea2 } from "@thi.ng/vectors/signed-area";
 
 /**
  * Interprets given points as closed 2D polygon and computes its signed

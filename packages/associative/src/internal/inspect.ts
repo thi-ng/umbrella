@@ -1,15 +1,30 @@
-import { mixin } from "@thi.ng/api";
-import { isNode } from "@thi.ng/checks";
-import { map } from "@thi.ng/transducers";
+import { mixin } from "@thi.ng/api/mixin";
+import { isNode } from "@thi.ng/checks/is-node";
+import { map } from "@thi.ng/transducers/map";
 
-const inspect = isNode() ? require("util").inspect : null;
+let inspect:
+    | ((
+          object: any,
+          showHidden?: boolean,
+          depth?: number | null,
+          color?: boolean
+      ) => string)
+    | null = null;
+
+isNode() &&
+    import("util").then((m) => {
+        inspect = m.inspect;
+    });
 
 const inspectSet = (coll: Set<any>, opts: any) =>
-    [...map((x) => inspect(x, opts), coll)].join(", ");
+    [...map((x) => inspect!(x, opts), coll)].join(", ");
 
 const inspectMap = (coll: Map<any, any>, opts: any) =>
     [
-        ...map(([k, v]) => `${inspect(k, opts)} => ${inspect(v, opts)}`, coll),
+        ...map(
+            ([k, v]) => `${inspect!(k, opts)} => ${inspect!(v, opts)}`,
+            coll
+        ),
     ].join(", ");
 
 /**

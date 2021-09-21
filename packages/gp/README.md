@@ -69,19 +69,28 @@ References:
 yarn add @thi.ng/gp
 ```
 
-```html
-// ES module
-<script type="module" src="https://unpkg.com/@thi.ng/gp?module" crossorigin></script>
+ES module import:
 
-// UMD
-<script src="https://unpkg.com/@thi.ng/gp/lib/index.umd.js" crossorigin></script>
+```html
+<script type="module" src="https://cdn.skypack.dev/@thi.ng/gp"></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.20 KB / CJS: 1.25 KB / UMD: 1.36 KB
+[Skypack documentation](https://docs.skypack.dev/)
+
+For NodeJS (v14.6+):
+
+```text
+node --experimental-specifier-resolution=node --experimental-repl-await
+
+> const gp = await import("@thi.ng/gp");
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 1.20 KB
 
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
+- [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
 - [@thi.ng/math](https://github.com/thi-ng/umbrella/tree/develop/packages/math)
 - [@thi.ng/random](https://github.com/thi-ng/umbrella/tree/develop/packages/random)
 - [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)

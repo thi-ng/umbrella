@@ -2,10 +2,10 @@
     "name": "@thi.ng/rstream",
     "version": "6.0.21",
     "description": "Reactive streams & subscription primitives for constructing dataflow graphs / pipelines",
+    "type": "module",
     "module": "./index.js",
-    "main": "./lib/index.js",
-    "umd:main": "./lib/index.umd.js",
     "typings": "./index.d.ts",
+    "sideEffects": false,
     "repository": {
         "type": "git",
         "url": "https://github.com/thi-ng/umbrella.git"
@@ -24,18 +24,15 @@
     "author": "Karsten Schmidt <k+npm@thi.ng>",
     "license": "Apache-2.0",
     "scripts": {
-        "build": "yarn clean && yarn build:es6 && node ../../scripts/bundle-module",
-        "build:release": "yarn clean && yarn build:es6 && node ../../scripts/bundle-module all",
-        "build:es6": "tsc --declaration",
-        "build:test": "rimraf build && tsc -p test/tsconfig.json",
+        "build": "yarn clean && tsc --declaration",
         "build:check": "tsc --isolatedModules --noEmit",
-        "test": "mocha test",
-        "cover": "nyc mocha test && nyc report --reporter=lcov",
-        "clean": "rimraf *.js *.d.ts *.map .nyc_output build coverage doc lib from subs utils",
-        "doc:readme": "ts-node -P ../../tools/tsconfig.json ../../tools/src/readme.ts",
-        "doc": "typedoc --excludePrivate --out doc --theme ../../tools/doc/typedoc-theme src/index.ts",
+        "clean": "rimraf *.js *.d.ts *.map doc",
+        "doc": "typedoc --excludePrivate --excludeInternal --out doc src/index.ts",
         "doc:ae": "mkdir -p .ae/doc .ae/temp && node_modules/.bin/api-extractor run --local --verbose",
-        "pub": "yarn build:release && yarn publish --access public"
+        "doc:readme": "../../scripts/node-esm ../../tools/src/readme.ts",
+        "doc:stats": "../../scripts/node-esm ../../tools/src/module-stats.ts",
+        "pub": "yarn build:release && yarn publish --access public",
+        "test": "testament test"
     },
     "dependencies": {
         "@thi.ng/api": "^7.2.0",
@@ -44,16 +41,12 @@
         "@thi.ng/atom": "^4.1.42",
         "@thi.ng/checks": "^2.9.11",
         "@thi.ng/errors": "^1.3.4",
+        "@thi.ng/logger": "^0.0.1",
         "@thi.ng/transducers": "^7.9.2"
     },
-    "files": [
-        "*.js",
-        "*.d.ts",
-        "lib",
-        "from",
-        "subs",
-        "utils"
-    ],
+    "devDependencies": {
+        "@thi.ng/testament": "^0.0.1"
+    },
     "keywords": [
         "async",
         "datastructure",
@@ -74,7 +67,120 @@
     "publishConfig": {
         "access": "public"
     },
-    "sideEffects": false,
+    "files": [
+        "*.js",
+        "*.d.ts"
+    ],
+    "exports": {
+        ".": {
+            "import": "./index.js"
+        },
+        "./api": {
+            "import": "./api.js"
+        },
+        "./asidechain": {
+            "import": "./asidechain.js"
+        },
+        "./atom": {
+            "import": "./atom.js"
+        },
+        "./bisect": {
+            "import": "./bisect.js"
+        },
+        "./checks": {
+            "import": "./checks.js"
+        },
+        "./debounce": {
+            "import": "./debounce.js"
+        },
+        "./defworker": {
+            "import": "./defworker.js"
+        },
+        "./event": {
+            "import": "./event.js"
+        },
+        "./forkjoin": {
+            "import": "./forkjoin.js"
+        },
+        "./idgen": {
+            "import": "./idgen.js"
+        },
+        "./interval": {
+            "import": "./interval.js"
+        },
+        "./iterable": {
+            "import": "./iterable.js"
+        },
+        "./logger": {
+            "import": "./logger.js"
+        },
+        "./merge": {
+            "import": "./merge.js"
+        },
+        "./metastream": {
+            "import": "./metastream.js"
+        },
+        "./object": {
+            "import": "./object.js"
+        },
+        "./post-worker": {
+            "import": "./post-worker.js"
+        },
+        "./promise": {
+            "import": "./promise.js"
+        },
+        "./promises": {
+            "import": "./promises.js"
+        },
+        "./pubsub": {
+            "import": "./pubsub.js"
+        },
+        "./raf": {
+            "import": "./raf.js"
+        },
+        "./resolve": {
+            "import": "./resolve.js"
+        },
+        "./sidechain-partition": {
+            "import": "./sidechain-partition.js"
+        },
+        "./sidechain-toggle": {
+            "import": "./sidechain-toggle.js"
+        },
+        "./stream": {
+            "import": "./stream.js"
+        },
+        "./subscription": {
+            "import": "./subscription.js"
+        },
+        "./sync": {
+            "import": "./sync.js"
+        },
+        "./timeout": {
+            "import": "./timeout.js"
+        },
+        "./trace": {
+            "import": "./trace.js"
+        },
+        "./transduce": {
+            "import": "./transduce.js"
+        },
+        "./trigger": {
+            "import": "./trigger.js"
+        },
+        "./tunnel": {
+            "import": "./tunnel.js"
+        },
+        "./tween": {
+            "import": "./tween.js"
+        },
+        "./view": {
+            "import": "./view.js"
+        },
+        "./worker": {
+            "import": "./worker.js"
+        }
+    },
     "thi.ng": {
         "related": [
             "atom",

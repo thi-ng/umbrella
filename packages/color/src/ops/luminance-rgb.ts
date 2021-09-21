@@ -1,4 +1,4 @@
-import { dot3 } from "@thi.ng/vectors";
+import { dot3 } from "@thi.ng/vectors/dot";
 import type { ReadonlyColor } from "../api";
 import { RGB_LUMINANCE_REC709, RGB_LUMINANCE_REC601 } from "../api/constants";
 

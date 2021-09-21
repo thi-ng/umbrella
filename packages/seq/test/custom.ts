@@ -1,4 +1,5 @@
 import type { ISeqable } from "@thi.ng/api";
+import { group } from "@thi.ng/testament";
 import * as assert from "assert";
 import { concat, ensureSeq, iterator } from "../src";
 
@@ -25,8 +26,8 @@ export class Range implements ISeqable<number> {
     }
 }
 
-describe("custom", () => {
-    it("basics", () => {
+group("custom", {
+    basics: () => {
         assert.strictEqual(ensureSeq(new Range(0)), undefined);
         assert.strictEqual(new Range(0).seq(), undefined);
         assert.strictEqual(new Range(1).seq()!.first(), 0);
@@ -37,5 +38,5 @@ describe("custom", () => {
             [...iterator(concat(new Range(3), new Range(0), new Range(4)))],
             [0, 1, 2, 0, 1, 2, 3]
         );
-    });
+    },
 });

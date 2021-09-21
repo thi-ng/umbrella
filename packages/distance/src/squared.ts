@@ -1,4 +1,5 @@
-import { distSq, distSq2, distSq3, ReadonlyVec } from "@thi.ng/vectors";
+import type { ReadonlyVec } from "@thi.ng/vectors";
+import { distSq, distSq2, distSq3 } from "@thi.ng/vectors/distsq";
 import type { IDistance, Metric } from "./api";
 
 export class Squared<T> implements IDistance<T> {

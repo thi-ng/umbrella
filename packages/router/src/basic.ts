@@ -1,21 +1,17 @@
-import {
-    assert,
-    Event,
-    INotify,
-    INotifyMixin,
-    IObjectOf,
-    Listener,
-} from "@thi.ng/api";
-import { isString } from "@thi.ng/checks";
+import type { Event, INotify, IObjectOf, Listener } from "@thi.ng/api";
+import { INotifyMixin } from "@thi.ng/api/mixins/inotify";
+import { isString } from "@thi.ng/checks/is-string";
 import { equiv } from "@thi.ng/equiv";
-import { illegalArgs, illegalArity } from "@thi.ng/errors";
-import type {
+import { assert } from "@thi.ng/errors/assert";
+import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
+import { illegalArity } from "@thi.ng/errors/illegal-arity";
+import {
+    EVENT_ROUTE_CHANGED,
     Route,
     RouteMatch,
     RouteParamValidator,
     RouterConfig,
 } from "./api";
-import { EVENT_ROUTE_CHANGED } from "./constants";
 
 @INotifyMixin
 export class BasicRouter implements INotify {

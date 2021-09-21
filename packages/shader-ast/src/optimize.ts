@@ -1,6 +1,10 @@
-import { Fn, IObjectOf, LogLevel } from "@thi.ng/api";
-import { DEFAULT, defmulti } from "@thi.ng/defmulti";
-import { clamp, deg, fract, mix, mod, rad } from "@thi.ng/math";
+import type { Fn, IObjectOf } from "@thi.ng/api";
+import { defmulti } from "@thi.ng/defmulti/defmulti";
+import { LogLevel } from "@thi.ng/logger/api";
+import { deg, rad } from "@thi.ng/math/angle";
+import { clamp } from "@thi.ng/math/interval";
+import { mix } from "@thi.ng/math/mix";
+import { fract, mod } from "@thi.ng/math/prec";
 import type { FnCall, Lit, Op1, Op2, Swizzle, Term } from "./api/nodes";
 import type { Operator } from "./api/ops";
 import type { Swizzle4_1 } from "./api/swizzles";
@@ -87,7 +91,7 @@ const BUILTINS: IObjectOf<Fn<number[], number>> = {
 
 /** @internal */
 export const foldNode = defmulti<Term<any>, boolean | undefined>((t) => t.tag);
-foldNode.add(DEFAULT, () => false);
+foldNode.setDefault(() => false);
 
 foldNode.addAll({
     op1: (node) => {

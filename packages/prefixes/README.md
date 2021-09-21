@@ -43,15 +43,23 @@ This project is part of the
 yarn add @thi.ng/prefixes
 ```
 
-```html
-// ES module
-<script type="module" src="https://unpkg.com/@thi.ng/prefixes?module" crossorigin></script>
+ES module import:
 
-// UMD
-<script src="https://unpkg.com/@thi.ng/prefixes/lib/index.umd.js" crossorigin></script>
+```html
+<script type="module" src="https://cdn.skypack.dev/@thi.ng/prefixes"></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 998 bytes / CJS: 1.21 KB / UMD: 1.01 KB
+[Skypack documentation](https://docs.skypack.dev/)
+
+For NodeJS (v14.6+):
+
+```text
+node --experimental-specifier-resolution=node --experimental-repl-await
+
+> const prefixes = await import("@thi.ng/prefixes");
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 998 bytes
 
 ## Dependencies
 

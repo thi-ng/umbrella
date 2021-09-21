@@ -8,12 +8,13 @@
     "scripts": {
         "clean": "../../node_modules/.bin/rimraf build node_modules/.cache",
         "start": "../../node_modules/.bin/snowpack dev --reload",
-        "build": "../../node_modules/.bin/snowpack build"
+        "build": "yarn clean && ../../node_modules/.bin/snowpack build"
     },
     "dependencies": {
         "@thi.ng/api": "latest",
         "@thi.ng/atom": "latest",
         "@thi.ng/checks": "latest",
+        "@thi.ng/expose": "latest",
         "@thi.ng/hdom": "latest",
         "@thi.ng/hiccup-svg": "latest",
         "@thi.ng/interceptors": "latest",
@@ -23,7 +24,9 @@
         "last 3 Chrome versions"
     ],
     "browser": {
-        "process": false
+        "process": false,
+        "setTimeout": false,
+        "util": false
     },
     "thi.ng": {
         "readme": [

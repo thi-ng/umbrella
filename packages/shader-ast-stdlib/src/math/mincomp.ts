@@ -1,13 +1,6 @@
-import {
-    $w,
-    $x,
-    $y,
-    $z,
-    min,
-    Vec2Sym,
-    Vec3Sym,
-    Vec4Sym,
-} from "@thi.ng/shader-ast";
+import type { Vec2Sym, Vec3Sym, Vec4Sym } from "@thi.ng/shader-ast";
+import { $w, $x, $y, $z } from "@thi.ng/shader-ast/ast/swizzle";
+import { min } from "@thi.ng/shader-ast/builtin/math";
 
 /**
  * Inline function. Returns min(v.x, v.y)

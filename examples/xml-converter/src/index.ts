@@ -1,6 +1,7 @@
-import { reactive, sync } from "@thi.ng/rstream";
-import { map } from "@thi.ng/transducers";
+import { reactive } from "@thi.ng/rstream/stream";
+import { sync } from "@thi.ng/rstream/sync";
 import { updateDOM } from "@thi.ng/transducers-hdom";
+import { map } from "@thi.ng/transducers/map";
 import { convertXML } from "./convert";
 import { COMPACT_FORMAT, DEFAULT_FORMAT } from "./format";
 import { app, UI } from "./ui";

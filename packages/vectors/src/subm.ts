@@ -1,6 +1,6 @@
 import type { MultiVecOpVVV, VecOpVVV } from "./api";
-import { ARGS_VVV, defOp } from "./internal/codegen";
-import { MATH2 } from "./internal/templates";
+import { defOp } from "./compile/emit";
+import { ARGS_VVV, MATH2 } from "./compile/templates";
 
 /**
  * Returns `out = (a - b) * c`.

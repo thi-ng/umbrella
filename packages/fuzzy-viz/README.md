@@ -35,15 +35,23 @@ Visualization, instrumentation & introspection utils for [@thi.ng/fuzzy](https:/
 yarn add @thi.ng/fuzzy-viz
 ```
 
-```html
-// ES module
-<script type="module" src="https://unpkg.com/@thi.ng/fuzzy-viz?module" crossorigin></script>
+ES module import:
 
-// UMD
-<script src="https://unpkg.com/@thi.ng/fuzzy-viz/lib/index.umd.js" crossorigin></script>
+```html
+<script type="module" src="https://cdn.skypack.dev/@thi.ng/fuzzy-viz"></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.04 KB / CJS: 1.12 KB / UMD: 1.22 KB
+[Skypack documentation](https://docs.skypack.dev/)
+
+For NodeJS (v14.6+):
+
+```text
+node --experimental-specifier-resolution=node --experimental-repl-await
+
+> const fuzzyViz = await import("@thi.ng/fuzzy-viz");
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 1.04 KB
 
 ## Dependencies
 

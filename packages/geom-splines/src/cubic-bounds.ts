@@ -1,5 +1,5 @@
 import type { FnU4 } from "@thi.ng/api";
-import { mixCubic } from "@thi.ng/math";
+import { mixCubic } from "@thi.ng/math/mix";
 import type { ReadonlyVec, Vec, VecPair } from "@thi.ng/vectors";
 
 /**

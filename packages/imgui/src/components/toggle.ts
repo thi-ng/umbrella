@@ -1,6 +1,6 @@
-import { rect } from "@thi.ng/geom";
+import { rect } from "@thi.ng/geom/ctors/rect";
 import type { IGridLayout, LayoutBox } from "@thi.ng/layout";
-import { hash } from "@thi.ng/vectors";
+import { hash } from "@thi.ng/vectors/hash";
 import { handleButtonKeys, hoverButton } from "../behaviors/button";
 import type { IMGUI } from "../gui";
 import { layoutBox } from "../layout";

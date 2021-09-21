@@ -1,26 +1,22 @@
-import { assert, IObjectOf } from "@thi.ng/api";
-import { join } from "@thi.ng/associative";
+import type { IObjectOf } from "@thi.ng/api";
+import { join } from "@thi.ng/associative/join";
 import { equiv } from "@thi.ng/equiv";
-import { illegalArgs } from "@thi.ng/errors";
-import { min3id } from "@thi.ng/math";
-import {
-    CloseMode,
-    ISubscription,
-    nextID,
-    Stream,
-    Subscription,
-    sync,
-} from "@thi.ng/rstream";
+import { assert } from "@thi.ng/errors/assert";
+import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
+import { min3id } from "@thi.ng/math/interval";
+import type { Subscription } from "@thi.ng/rstream";
 import { DotOpts, IToDot, toDot, walk } from "@thi.ng/rstream-dot";
-import {
-    assocObj,
-    comp,
-    dedupe,
-    map,
-    mapIndexed,
-    transduce,
-    Transducer,
-} from "@thi.ng/transducers";
+import { CloseMode, ISubscription } from "@thi.ng/rstream/api";
+import { __nextID } from "@thi.ng/rstream/idgen";
+import { Stream } from "@thi.ng/rstream/stream";
+import { sync } from "@thi.ng/rstream/sync";
+import type { Transducer } from "@thi.ng/transducers";
+import { assocObj } from "@thi.ng/transducers/assoc-obj";
+import { comp } from "@thi.ng/transducers/comp";
+import { dedupe } from "@thi.ng/transducers/dedupe";
+import { map } from "@thi.ng/transducers/map";
+import { mapIndexed } from "@thi.ng/transducers/map-indexed";
+import { transduce } from "@thi.ng/transducers/transduce";
 import type {
     Edit,
     PathPattern,
@@ -269,7 +265,7 @@ export class TripleStore implements Iterable<Triple>, IToDot {
         if (!resolve) {
             illegalArgs("at least 1 query variable is required in pattern");
         }
-        id || (id = `query-${nextID()}`);
+        id || (id = `query-${__nextID()}`);
         const query = <Subscription<TripleIds, any>>(
             this.addPatternQuery(
                 [vs ? null : s, vp ? null : p, vo ? null : o],

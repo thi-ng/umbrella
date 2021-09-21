@@ -1,9 +1,10 @@
 import type { IObjectOf } from "@thi.ng/api";
-import { defmulti, Implementation1 } from "@thi.ng/defmulti";
+import type { Implementation1 } from "@thi.ng/defmulti";
+import { defmulti } from "@thi.ng/defmulti/defmulti";
 import type { IShape } from "@thi.ng/geom-api";
-import { perimeter } from "@thi.ng/geom-poly-utils";
-import { PI, TAU } from "@thi.ng/math";
-import { dist } from "@thi.ng/vectors";
+import { perimeter } from "@thi.ng/geom-poly-utils/perimeter";
+import { PI, TAU } from "@thi.ng/math/api";
+import { dist } from "@thi.ng/vectors/dist";
 import type { Circle } from "../api/circle";
 import type { Ellipse } from "../api/ellipse";
 import type { Group } from "../api/group";

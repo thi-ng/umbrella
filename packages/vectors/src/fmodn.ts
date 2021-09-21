@@ -1,4 +1,4 @@
-import { defMathOpN } from "./internal/codegen";
+import { defMathOpN } from "./compile/emit";
 
 /**
  * Same as {@link fmod}, but 2nd operand is a single scalar (uniform domain for

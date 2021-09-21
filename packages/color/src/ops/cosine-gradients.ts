@@ -1,17 +1,16 @@
 import type { FnU, FnU2, NumericArray } from "@thi.ng/api";
-import { partial } from "@thi.ng/compose";
-import { clamp01, TAU } from "@thi.ng/math";
-import {
-    comp,
-    map,
-    noop,
-    normRange,
-    push,
-    transduce,
-    tween,
-    zip,
-} from "@thi.ng/transducers";
-import { setS4 } from "@thi.ng/vectors";
+import { partial } from "@thi.ng/compose/partial";
+import { TAU } from "@thi.ng/math/api";
+import { clamp01 } from "@thi.ng/math/interval";
+import { comp } from "@thi.ng/transducers/comp";
+import { map } from "@thi.ng/transducers/map";
+import { noop } from "@thi.ng/transducers/noop";
+import { normRange } from "@thi.ng/transducers/norm-range";
+import { push } from "@thi.ng/transducers/push";
+import { transduce } from "@thi.ng/transducers/transduce";
+import { tween } from "@thi.ng/transducers/tween";
+import { zip } from "@thi.ng/transducers/zip";
+import { setS4 } from "@thi.ng/vectors/sets";
 import type { Color, ReadonlyColor } from "../api";
 import type {
     CosGradientSpec,

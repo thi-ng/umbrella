@@ -1,4 +1,4 @@
-import { asGLType, TypedArray } from "@thi.ng/api";
+import { asGLType, TypedArray } from "@thi.ng/api/typedarray";
 import type { AttribPool } from "@thi.ng/vector-pools";
 import type { IndexBufferSpec, IWebGLBuffer } from "./api/buffers";
 import {

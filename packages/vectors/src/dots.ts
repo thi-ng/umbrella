@@ -1,6 +1,6 @@
 import type { ReadonlyVec, VecOpSRoVV } from "./api";
-import { compile, SARGS_V } from "./internal/codegen";
-import { DOT } from "./internal/templates";
+import { compile } from "./compile/emit";
+import { DOT, SARGS_V } from "./compile/templates";
 
 export const dotS = (
     a: ReadonlyVec,

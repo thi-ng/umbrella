@@ -1,4 +1,4 @@
-import { base64Decode } from "@thi.ng/transducers-binary";
+import { base64Decode } from "@thi.ng/transducers-binary/base64";
 import { BINARY } from "./binary";
 import type { SIMD } from "./api";
 

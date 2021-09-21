@@ -1,6 +1,6 @@
 import type { MultiVecOpVVN, VecOpVVN } from "./api";
-import { ARGS_VVN, defOp } from "./internal/codegen";
-import { MIX_N } from "./internal/templates";
+import { defOp } from "./compile/emit";
+import { ARGS_VVN, MIX_N } from "./compile/templates";
 
 export const [mixN, mixN2, mixN3, mixN4] = defOp<MultiVecOpVVN, VecOpVVN>(
     MIX_N,

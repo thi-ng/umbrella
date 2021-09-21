@@ -1,8 +1,9 @@
+import { group } from "@thi.ng/testament";
 import * as assert from "assert";
 import * as iges from "../src";
 
-describe("iges", () => {
-    it("basic", () => {
+group("iges", {
+    basic: () => {
         const doc = iges.newDocument({
             maxCoord: 100,
             precision: 3,
@@ -39,5 +40,5 @@ describe("iges", () => {
 100.000,0.000;                                                   0000001P      3
 S0000001G0000003D0000002P0000003                                        T      1`
         );
-    });
+    },
 });

@@ -1,11 +1,9 @@
 import type { SubdivKernel } from "@thi.ng/geom-api";
-import {
-    comp,
-    mapcatIndexed,
-    partition,
-    push,
-    transduce,
-} from "@thi.ng/transducers";
+import { comp } from "@thi.ng/transducers/comp";
+import { mapcatIndexed } from "@thi.ng/transducers/mapcat-indexed";
+import { partition } from "@thi.ng/transducers/partition";
+import { push } from "@thi.ng/transducers/push";
+import { transduce } from "@thi.ng/transducers/transduce";
 import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
 
 /**

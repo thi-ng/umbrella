@@ -1,4 +1,4 @@
-import { XML_SVG, XML_XLINK } from "@thi.ng/prefixes";
+import { XML_SVG, XML_XLINK } from "@thi.ng/prefixes/xml";
 import { convertTree } from "./convert";
 import { fattribs, numericAttribs } from "./format";
 

@@ -1,14 +1,12 @@
-import { isFunction } from "@thi.ng/checks";
+import { isFunction } from "@thi.ng/checks/is-function";
 import type { Tessellator } from "@thi.ng/geom-api";
-import {
-    last,
-    mapcat,
-    push,
-    reducer,
-    repeat,
-    scan,
-    transduce,
-} from "@thi.ng/transducers";
+import { last } from "@thi.ng/transducers/last";
+import { mapcat } from "@thi.ng/transducers/mapcat";
+import { push } from "@thi.ng/transducers/push";
+import { reducer } from "@thi.ng/transducers/reduce";
+import { repeat } from "@thi.ng/transducers/repeat";
+import { scan } from "@thi.ng/transducers/scan";
+import { transduce } from "@thi.ng/transducers/transduce";
 import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
 
 export function tessellate(

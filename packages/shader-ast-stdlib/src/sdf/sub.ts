@@ -1,4 +1,6 @@
-import { FloatTerm, max, neg } from "@thi.ng/shader-ast";
+import type { FloatTerm } from "@thi.ng/shader-ast";
+import { neg } from "@thi.ng/shader-ast/ast/ops";
+import { max } from "@thi.ng/shader-ast/builtin/math";
 
 /**
  * Inline function. Variadic SDF shape subtraction (a - b) for any number of

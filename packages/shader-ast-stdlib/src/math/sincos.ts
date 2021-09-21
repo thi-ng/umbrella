@@ -1,4 +1,6 @@
-import { cos, FloatTerm, sin, vec2 } from "@thi.ng/shader-ast";
+import type { FloatTerm } from "@thi.ng/shader-ast";
+import { vec2 } from "@thi.ng/shader-ast/ast/lit";
+import { cos, sin } from "@thi.ng/shader-ast/builtin/math";
 
 /**
  * Inline function. Returns vec2(sin(x), cos(x)).

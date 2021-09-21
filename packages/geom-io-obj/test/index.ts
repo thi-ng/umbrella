@@ -1,3 +1,4 @@
+import { group } from "@thi.ng/testament";
 import * as assert from "assert";
 import { parseOBJ } from "../src";
 
@@ -48,8 +49,8 @@ const cubeFaces = [
     { v: [2, 7, 4, 1] },
 ];
 
-describe("geom-io-obj", () => {
-    it("cube (default)", () => {
+group("geom-io-obj", {
+    "cube (default)": () => {
         const model = parseOBJ(src);
         assert.deepStrictEqual(model.vertices, cubeVerts);
         assert.strictEqual(model.objects.length, 2);
@@ -71,9 +72,9 @@ describe("geom-io-obj", () => {
             },
         ]);
         assert.deepStrictEqual(model.mtlLibs, ["cube.mtl"]);
-    });
+    },
 
-    it("cube (no obj, no groups)", () => {
+    "cube (no obj, no groups)": () => {
         const model = parseOBJ(src, { objects: false, groups: false });
         assert.deepStrictEqual(model.vertices, cubeVerts);
         assert.strictEqual(model.objects.length, 1);
@@ -87,9 +88,9 @@ describe("geom-io-obj", () => {
                 faces: cubeFaces,
             },
         ]);
-    });
+    },
 
-    it("cube (tessel)", () => {
+    "cube (tessel)": () => {
         const model = parseOBJ(src, {
             objects: false,
             groups: false,
@@ -117,10 +118,10 @@ describe("geom-io-obj", () => {
                 ],
             },
         ]);
-    });
+    },
 
-    it("comments", () => {
+    comments: () => {
         const model = parseOBJ(src, { comments: true });
         assert.deepStrictEqual(model.comments, ["test cube", "quad faces"]);
-    });
+    },
 });

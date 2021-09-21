@@ -1,6 +1,7 @@
-import { isArray, isFunction } from "@thi.ng/checks";
-import { unwrap } from "./word";
+import { isArray } from "@thi.ng/checks/is-array";
+import { isFunction } from "@thi.ng/checks/is-function";
 import type { StackContext, StackProc } from "./api";
+import { unwrap } from "./word";
 
 /**
  * Executes program / quotation with given stack context (initial D/R

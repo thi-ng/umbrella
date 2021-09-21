@@ -26,9 +26,9 @@ export interface TLRUCacheEntry<K, V> extends CacheEntry<K, V> {
  * arg). If no instance TTL is given, TTL defaults to 1 hour.
  */
 export class TLRUCache<K, V> extends LRUCache<K, V> {
-    protected opts!: TLRUCacheOpts<K, V>;
-    protected map!: Map<K, ConsCell<TLRUCacheEntry<K, V>>>;
-    protected items!: DCons<TLRUCacheEntry<K, V>>;
+    protected declare opts: TLRUCacheOpts<K, V>;
+    protected declare map: Map<K, ConsCell<TLRUCacheEntry<K, V>>>;
+    protected declare items: DCons<TLRUCacheEntry<K, V>>;
 
     constructor(
         pairs?: Iterable<[K, V]> | null,

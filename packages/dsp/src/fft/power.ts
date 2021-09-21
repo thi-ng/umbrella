@@ -1,5 +1,5 @@
 import type { NumericArray } from "@thi.ng/api";
-import { isNumber } from "@thi.ng/checks";
+import { isNumber } from "@thi.ng/checks/is-number";
 import type { ComplexArray } from "../api";
 import { isComplex } from "../util/complex";
 

@@ -1,9 +1,10 @@
 import { compare, reverse } from "@thi.ng/compare";
 import * as assert from "assert";
+import { group } from "@thi.ng/testament";
 import { sortByCachedKey } from "../src";
 
-describe("sortCached", () => {
-    it("key fn", () => {
+group("sortCached", {
+    "key fn": () => {
         assert.deepStrictEqual(
             sortByCachedKey(["a", "bbbb", "ccc", "dd"], (x) => x),
             ["a", "bbbb", "ccc", "dd"]
@@ -24,15 +25,15 @@ describe("sortCached", () => {
             ),
             ["bbbb", "ccc", "dd", "a"]
         );
-    });
+    },
 
-    it("key array", () => {
+    "key array": () => {
         assert.deepStrictEqual(
             sortByCachedKey(["a", "b", "c", "d"], [3, 2, 1, 0]),
             ["d", "c", "b", "a"]
         );
-    });
+    },
 
-    it("wrong key length", () =>
-        assert.throws(() => sortByCachedKey(["a", "b", "c", "d"], [])));
+    "wrong key length": () =>
+        assert.throws(() => sortByCachedKey(["a", "b", "c", "d"], [])),
 });

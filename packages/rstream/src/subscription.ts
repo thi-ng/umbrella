@@ -1,30 +1,28 @@
-import { assert, Fn, NULL_LOGGER, SEMAPHORE } from "@thi.ng/api";
-import { peek } from "@thi.ng/arrays";
-import { isPlainObject } from "@thi.ng/checks";
-import { illegalState } from "@thi.ng/errors";
-import {
-    comp,
-    isReduced,
-    map,
-    push,
-    Reduced,
-    Reducer,
-    Transducer,
-    unreduced,
-} from "@thi.ng/transducers";
+import type { Fn } from "@thi.ng/api";
+import { SEMAPHORE } from "@thi.ng/api/api";
+import { peek } from "@thi.ng/arrays/peek";
+import { isPlainObject } from "@thi.ng/checks/is-plain-object";
+import { assert } from "@thi.ng/errors/assert";
+import { illegalState } from "@thi.ng/errors/illegal-state";
+import { NULL_LOGGER } from "@thi.ng/logger/null";
+import type { Reducer, Transducer } from "@thi.ng/transducers";
+import { comp } from "@thi.ng/transducers/comp";
+import { map } from "@thi.ng/transducers/map";
+import { push } from "@thi.ng/transducers/push";
+import { isReduced, Reduced, unreduced } from "@thi.ng/transducers/reduced";
 import {
     CloseMode,
     CommonOpts,
     ISubscriber,
     ISubscription,
-    LOGGER,
     State,
     SubscriptionOpts,
     TransformableOpts,
     WithErrorHandlerOpts,
     WithTransform,
 } from "./api";
-import { optsWithID } from "./utils/idgen";
+import { __optsWithID } from "./idgen";
+import { LOGGER } from "./logger";
 
 /**
  * Creates a new {@link Subscription} instance, the fundamental datatype
@@ -97,7 +95,7 @@ export class Subscription<A, B> implements ISubscription<A, B> {
         protected wrapped?: Partial<ISubscriber<B>>,
         opts?: Partial<SubscriptionOpts<A, B>>
     ) {
-        opts = optsWithID(`sub`, {
+        opts = __optsWithID(`sub`, {
             closeIn: CloseMode.LAST,
             closeOut: CloseMode.LAST,
             cache: true,
@@ -200,7 +198,7 @@ export class Subscription<A, B> implements ISubscription<A, B> {
         }
         return this.subscribe(
             <any>sub,
-            optsWithID(
+            __optsWithID(
                 "xform",
                 args.length > 0
                     ? {

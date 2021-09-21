@@ -1,16 +1,9 @@
-import {
-    cross,
-    defn,
-    dot,
-    mat4,
-    neg,
-    normalize,
-    ret,
-    sub,
-    sym,
-    Vec3Sym,
-    vec4,
-} from "@thi.ng/shader-ast";
+import type { Vec3Sym } from "@thi.ng/shader-ast";
+import { defn, ret } from "@thi.ng/shader-ast/ast/function";
+import { mat4, vec4 } from "@thi.ng/shader-ast/ast/lit";
+import { neg, sub } from "@thi.ng/shader-ast/ast/ops";
+import { sym } from "@thi.ng/shader-ast/ast/sym";
+import { cross, dot, normalize } from "@thi.ng/shader-ast/builtin/math";
 
 /**
  * Creates a mat4 view matrix from given `eyePos`, `target` and `up`

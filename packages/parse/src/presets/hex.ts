@@ -1,4 +1,4 @@
-import { HEX } from "@thi.ng/strings";
+import { HEX } from "@thi.ng/strings/groups";
 import { oneOrMore, repeat } from "../combinators/repeat";
 import { xform } from "../combinators/xform";
 import { oneOf } from "../prims/one-of";

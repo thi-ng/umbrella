@@ -69,15 +69,23 @@ might be ported to WASM.
 yarn add @thi.ng/dsp
 ```
 
-```html
-// ES module
-<script type="module" src="https://unpkg.com/@thi.ng/dsp?module" crossorigin></script>
+ES module import:
 
-// UMD
-<script src="https://unpkg.com/@thi.ng/dsp/lib/index.umd.js" crossorigin></script>
+```html
+<script type="module" src="https://cdn.skypack.dev/@thi.ng/dsp"></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 6.99 KB / CJS: 7.51 KB / UMD: 6.94 KB
+[Skypack documentation](https://docs.skypack.dev/)
+
+For NodeJS (v14.6+):
+
+```text
+node --experimental-specifier-resolution=node --experimental-repl-await
+
+> const dsp = await import("@thi.ng/dsp");
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 6.99 KB
 
 ## Dependencies
 

@@ -1,0 +1,86 @@
+{
+    "name": "@thi.ng/testament",
+    "version": "0.0.1",
+    "description": "Minimal, rational & TypeScript-friendly test runner",
+    "type": "module",
+    "module": "./index.js",
+    "typings": "./index.d.ts",
+    "bin": {
+        "testament": "bin/testament"
+    },
+    "sideEffects": false,
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/thi-ng/umbrella.git"
+    },
+    "homepage": "https://github.com/thi-ng/umbrella/tree/master/packages/testament#readme",
+    "funding": [
+        {
+            "type": "github",
+            "url": "https://github.com/sponsors/postspectacular"
+        },
+        {
+            "type": "patreon",
+            "url": "https://patreon.com/thing_umbrella"
+        }
+    ],
+    "author": "Karsten Schmidt <k+npm@thi.ng>",
+    "license": "Apache-2.0",
+    "scripts": {
+        "build": "yarn clean && tsc --declaration",
+        "build:check": "tsc --isolatedModules --noEmit",
+        "clean": "rimraf *.js *.d.ts *.map doc",
+        "doc": "typedoc --excludePrivate --excludeInternal --out doc src/index.ts",
+        "doc:ae": "mkdir -p .ae/doc .ae/temp && node_modules/.bin/api-extractor run --local --verbose",
+        "doc:readme": "../../scripts/node-esm ../../tools/src/readme.ts",
+        "doc:stats": "../../scripts/node-esm ../../tools/src/module-stats.ts",
+        "pub": "yarn build:release && yarn publish --access public",
+        "test": "testament test"
+    },
+    "dependencies": {
+        "@thi.ng/logger": "^0.0.1",
+        "chokidar": "^3.5.2"
+    },
+    "keywords": [
+        "typescript"
+    ],
+    "publishConfig": {
+        "access": "public"
+    },
+    "browser": {
+        "process": false,
+        "setTimeout": false
+    },
+    "files": [
+        "*.js",
+        "*.d.ts",
+        "bin"
+    ],
+    "exports": {
+        ".": {
+            "import": "./index.js"
+        },
+        "./api": {
+            "import": "./api.js"
+        },
+        "./cli": {
+            "import": "./cli.js"
+        },
+        "./exec": {
+            "import": "./exec.js"
+        },
+        "./group": {
+            "import": "./group.js"
+        },
+        "./test": {
+            "import": "./test.js"
+        },
+        "./utils": {
+            "import": "./utils.js"
+        }
+    },
+    "thi.ng": {
+        "status": "alpha",
+        "year": 2021
+    }
+}

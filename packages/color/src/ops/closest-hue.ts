@@ -1,4 +1,4 @@
-import { fract } from "@thi.ng/math";
+import { fract } from "@thi.ng/math/prec";
 import type { Hue } from "../api";
 
 /**

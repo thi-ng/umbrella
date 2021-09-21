@@ -1,6 +1,5 @@
+import { group } from "@thi.ng/testament";
 // import * as assert from "assert";
 // import * as gcp from "../src";
 
-describe("geom-closest-point", () => {
-    it("tests pending");
-});
+group("geom-closest-point", {});

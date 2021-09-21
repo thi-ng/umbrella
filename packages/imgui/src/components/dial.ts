@@ -1,8 +1,12 @@
 import type { Fn } from "@thi.ng/api";
-import { circle, line } from "@thi.ng/geom";
-import { IGridLayout, isLayout, LayoutBox } from "@thi.ng/layout";
-import { HALF_PI, norm, PI, TAU } from "@thi.ng/math";
-import { cartesian2, hash } from "@thi.ng/vectors";
+import { circle } from "@thi.ng/geom/ctors/circle";
+import { line } from "@thi.ng/geom/ctors/line";
+import type { IGridLayout, LayoutBox } from "@thi.ng/layout";
+import { isLayout } from "@thi.ng/layout/is-layout";
+import { HALF_PI, PI, TAU } from "@thi.ng/math/api";
+import { norm } from "@thi.ng/math/fit";
+import { cartesian2 } from "@thi.ng/vectors/cartesian";
+import { hash } from "@thi.ng/vectors/hash";
 import { dialVal } from "../behaviors/dial";
 import { handleSlider1Keys, isHoverSlider } from "../behaviors/slider";
 import type { IMGUI } from "../gui";

@@ -1,10 +1,8 @@
-import {
-    cross3,
-    dot3,
-    mag,
-    normalize as _normalize,
-    ReadonlyVec,
-} from "@thi.ng/vectors";
+import type { ReadonlyVec } from "@thi.ng/vectors";
+import { cross3 } from "@thi.ng/vectors/cross";
+import { dot3 } from "@thi.ng/vectors/dot";
+import { mag } from "@thi.ng/vectors/mag";
+import { normalize as _normalize } from "@thi.ng/vectors/normalize";
 import { quatFromAxisAngle } from "./quat-axis-angle";
 
 /**

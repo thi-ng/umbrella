@@ -5,7 +5,7 @@ import {
     U64HL,
     U8 as $8,
 } from "@thi.ng/hex";
-import { memoizeJ } from "@thi.ng/memoize";
+import { memoizeJ } from "@thi.ng/memoize/memoizej";
 import type { Stringer } from "./api";
 import { repeat } from "./repeat";
 

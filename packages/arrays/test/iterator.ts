@@ -1,8 +1,9 @@
 import * as assert from "assert";
+import { group } from "@thi.ng/testament";
 import { arrayIterator } from "../src";
 
-describe("arrayIterator", () => {
-    it("basics", () => {
+group("arrayIterator", {
+    basics: () => {
         assert.deepStrictEqual([...arrayIterator(null)], []);
         assert.deepStrictEqual([...arrayIterator([])], []);
         assert.deepStrictEqual([...arrayIterator([1])], [1]);
@@ -12,5 +13,5 @@ describe("arrayIterator", () => {
             [...arrayIterator([1, 2, 3, 4], 3, -1)],
             [4, 3, 2, 1]
         );
-    });
+    },
 });

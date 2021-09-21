@@ -1,6 +1,6 @@
-import { popCount as $popCount } from "@thi.ng/binary";
-import { B32 } from "@thi.ng/strings";
 import type { Fn2 } from "@thi.ng/api";
+import { popCount as $popCount } from "@thi.ng/binary/count";
+import { B32 } from "@thi.ng/strings/radix";
 
 /**
  * Converts 1D bitfield to binary string.

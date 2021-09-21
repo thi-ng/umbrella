@@ -1,4 +1,9 @@
-import { Type, TypedArray, typedArray, TypedArrayTypeMap } from "@thi.ng/api";
+import {
+    Type,
+    TypedArray,
+    typedArray,
+    TypedArrayTypeMap,
+} from "@thi.ng/api/typedarray";
 import type { IMemPoolArray } from "./api";
 
 /**

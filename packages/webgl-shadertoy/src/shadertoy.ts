@@ -1,12 +1,10 @@
-import {
-    assign,
-    defMain,
-    defn,
-    FLOAT0,
-    FLOAT1,
-    vec4,
-} from "@thi.ng/shader-ast";
-import { compileModel, defQuadModel, defShader, draw } from "@thi.ng/webgl";
+import { assign } from "@thi.ng/shader-ast/ast/assign";
+import { defMain, defn } from "@thi.ng/shader-ast/ast/function";
+import { FLOAT0, FLOAT1, vec4 } from "@thi.ng/shader-ast/ast/lit";
+import { compileModel } from "@thi.ng/webgl/buffer";
+import { draw } from "@thi.ng/webgl/draw";
+import { defQuadModel } from "@thi.ng/webgl/geo/quad";
+import { defShader } from "@thi.ng/webgl/shader";
 import type {
     MainImageFn,
     ShaderToy,

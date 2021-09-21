@@ -1,5 +1,7 @@
 import type { FnN2, FnN3 } from "@thi.ng/api";
-import { implementsFunction, isNumber, isString } from "@thi.ng/checks";
+import { implementsFunction } from "@thi.ng/checks/implements-function";
+import { isNumber } from "@thi.ng/checks/is-number";
+import { isString } from "@thi.ng/checks/is-string";
 import {
     DAYS_IN_MONTH,
     DAYS_IN_MONTH_OFFSET,

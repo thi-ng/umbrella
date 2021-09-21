@@ -1,6 +1,7 @@
-import { shuffle } from "@thi.ng/arrays";
-import { IRandom, SYSTEM } from "@thi.ng/random";
-import { range } from "@thi.ng/transducers";
+import { shuffle } from "@thi.ng/arrays/shuffle";
+import type { IRandom } from "@thi.ng/random";
+import { SYSTEM } from "@thi.ng/random/system";
+import { range } from "@thi.ng/transducers/range";
 import { asInt } from "./utils";
 
 /**

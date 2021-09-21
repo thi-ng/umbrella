@@ -1,5 +1,6 @@
 import type { Predicate } from "@thi.ng/api";
-import { isPlainObject, isSet } from "@thi.ng/checks";
+import { isPlainObject } from "@thi.ng/checks/is-plain-object";
+import { isSet } from "@thi.ng/checks/is-set";
 import type { CharSet, LitParser } from "../api";
 import { satisfy, satisfyD } from "./satisfy";
 

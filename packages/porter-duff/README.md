@@ -60,15 +60,23 @@ ints or RGBA float vectors.
 yarn add @thi.ng/porter-duff
 ```
 
-```html
-// ES module
-<script type="module" src="https://unpkg.com/@thi.ng/porter-duff?module" crossorigin></script>
+ES module import:
 
-// UMD
-<script src="https://unpkg.com/@thi.ng/porter-duff/lib/index.umd.js" crossorigin></script>
+```html
+<script type="module" src="https://cdn.skypack.dev/@thi.ng/porter-duff"></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 998 bytes / CJS: 1.16 KB / UMD: 1.14 KB
+[Skypack documentation](https://docs.skypack.dev/)
+
+For NodeJS (v14.6+):
+
+```text
+node --experimental-specifier-resolution=node --experimental-repl-await
+
+> const porterDuff = await import("@thi.ng/porter-duff");
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 998 bytes
 
 ## Dependencies
 

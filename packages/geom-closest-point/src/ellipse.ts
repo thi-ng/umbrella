@@ -1,4 +1,5 @@
-import { clamp01, SQRT2_2 } from "@thi.ng/math";
+import { SQRT2_2 } from "@thi.ng/math/api";
+import { clamp01 } from "@thi.ng/math/interval";
 import type { ReadonlyVec } from "@thi.ng/vectors";
 
 /**

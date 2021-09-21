@@ -3,6 +3,7 @@ import type { IRandom } from "@thi.ng/random";
 import type { Color, ColorFactory, ReadonlyColor, TypedColor } from "../api";
 import { defColor } from "../defcolor";
 import { rgbHcy } from "../rgb/rgb-hcy";
+import { hcyRgb } from "./hcy-rgb";
 
 export declare class HCY implements TypedColor<HCY> {
     buf: NumericArray;
@@ -32,4 +33,5 @@ export const hcy = <ColorFactory<HCY>>defColor({
     mode: "hcy",
     order: <const>["h", "c", "y", "alpha"],
     from: { rgb: rgbHcy, srgb: rgbHcy },
+    toRgb: hcyRgb,
 });

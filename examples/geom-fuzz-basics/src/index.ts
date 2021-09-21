@@ -1,5 +1,4 @@
 import { adaptDPI } from "@thi.ng/adapt-dpi";
-import { circle, group, star, vertices } from "@thi.ng/geom";
 import {
     compFill,
     defDots,
@@ -7,8 +6,12 @@ import {
     fuzzyPoly,
     jitterPoints,
 } from "@thi.ng/geom-fuzz";
+import { circle } from "@thi.ng/geom/ctors/circle";
+import { group } from "@thi.ng/geom/ctors/group";
+import { star } from "@thi.ng/geom/ctors/polygon";
+import { vertices } from "@thi.ng/geom/ops/vertices";
 import { draw } from "@thi.ng/hiccup-canvas";
-import { fromInterval } from "@thi.ng/rstream";
+import { fromInterval } from "@thi.ng/rstream/interval";
 
 const W = 300;
 

@@ -1,53 +1,52 @@
 import * as pf from "@thi.ng/pointfree";
+import { group } from "@thi.ng/testament";
 import * as assert from "assert";
-import { run, runU } from "../src";
+import { run, runU } from "@thi.ng/pointfree-lang";
 
-describe("pointfree-lang", () => {
-    it("nil", () => {
+group("pointfree-lang", {
+    nil: () => {
         assert.strictEqual(runU(`nil`), null);
         assert.deepStrictEqual(run(`nil nil`)[0], [null, null]);
         assert.deepStrictEqual(run(`'nil dup`)[0], [[null], [null]]);
-    });
+    },
 
-    it("number (hex)", () => {
-        assert.deepStrictEqual(run(`0x1 0xa 0xff 0xdecafbad`)[0], [
-            1,
-            10,
-            255,
-            0xdecafbad,
-        ]);
-    });
+    "number (hex)": () => {
+        assert.deepStrictEqual(
+            run(`0x1 0xa 0xff 0xdecafbad`)[0],
+            [1, 10, 255, 0xdecafbad]
+        );
+    },
 
-    it("number (decimal)", () => {
+    "number (decimal)": () => {
         assert.deepStrictEqual(run(`0 -1 +2`)[0], [0, -1, 2]);
         assert.deepStrictEqual(run(`-123. +12.3`)[0], [-123, 12.3]);
         assert.deepStrictEqual(run(`-123e4`)[0], [-1230000]);
         assert.deepStrictEqual(run(`+1.23e-2`)[0], [0.0123]);
         assert.deepStrictEqual(run(`+1.23e-2 0.0123 =`)[0], [true]);
-    });
+    },
 
-    it("litquote", () => {
+    litquote: () => {
         assert.deepStrictEqual(runU(`'nil`), [null]);
         assert.deepStrictEqual(runU(`'+`), [pf.add]);
         assert.deepStrictEqual(run(`1 '1`)[0], [1, [1]]);
         assert.deepStrictEqual(run(`1 2 '+`)[0], [1, 2, [pf.add]]);
         assert.deepStrictEqual(run(`1 2 '+ exec`)[0], [3]);
-    });
+    },
 
-    it("var deref (quote)", () => {
+    "var deref (quote)": () => {
         assert.deepStrictEqual(
             runU(`[@a [@a {@a: @a} {@a: [@a]}]]`, { a: 1 }),
             [1, [1, { 1: 1 }, { 1: [1] }]]
         );
-    });
+    },
 
-    it("var deref (litquote)", () => {
+    "var deref (litquote)": () => {
         assert.deepStrictEqual(runU(`'@a`, { a: 1 }), [1]);
         assert.deepStrictEqual(runU(`'[@a]`, { a: 1 }), [[1]]);
         assert.deepStrictEqual(runU(`''@a`, { a: 1 }), [[1]]);
-    });
+    },
 
-    it("var deref (word)", () => {
+    "var deref (word)": () => {
         assert.deepStrictEqual(
             runU(`: foo [@a [@a {@a: @a} {@a: [@a]}]]; foo`, { a: 1 }),
             [1, [1, { 1: 1 }, { 1: [1] }]]
@@ -61,16 +60,16 @@ describe("pointfree-lang", () => {
                 [2, [2, { 2: 2 }, { 2: [2] }]],
             ]
         );
-    });
+    },
 
-    it("line comment", () => {
+    "line comment": () => {
         assert.deepStrictEqual(
             runU(`// comment\n: foo // ignore me\n42 ; foo`),
             42
         );
-    });
+    },
 
-    it("word metadata", () => {
+    "word metadata": () => {
         const ctx = run(`
 : foo ( a b -- x ) 42 ( a -- ) 23 +;
 : bar ( -- ?) 23 ;
@@ -94,7 +93,7 @@ foo`);
             name: "baz",
             loc: [4, 1],
         });
-    });
+    },
 
     // setDebug(true);
 

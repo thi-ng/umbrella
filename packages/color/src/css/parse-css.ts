@@ -1,9 +1,12 @@
 import type { IDeref } from "@thi.ng/api";
-import { assert } from "@thi.ng/api";
-import { interleave4_12_24, interleave4_16_32 } from "@thi.ng/binary";
-import { isString } from "@thi.ng/checks";
-import { illegalArgs, unsupported } from "@thi.ng/errors";
-import { clamp01, fract, TAU } from "@thi.ng/math";
+import { interleave4_12_24, interleave4_16_32 } from "@thi.ng/binary/splat";
+import { isString } from "@thi.ng/checks/is-string";
+import { assert } from "@thi.ng/errors/assert";
+import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
+import { unsupported } from "@thi.ng/errors/unsupported";
+import { TAU } from "@thi.ng/math/api";
+import { clamp01 } from "@thi.ng/math/interval";
+import { fract } from "@thi.ng/math/prec";
 import { IParsedColor, ParsedColor } from "../api";
 import { CSS_NAMES } from "../api/names";
 import { CSS_SYSTEM_COLORS } from "../api/system";

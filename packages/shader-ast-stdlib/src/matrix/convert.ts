@@ -1,13 +1,6 @@
-import {
-    defn,
-    indexMat,
-    mat3,
-    mat4,
-    ret,
-    vec3,
-    VEC3_0,
-    vec4,
-} from "@thi.ng/shader-ast";
+import { defn, ret } from "@thi.ng/shader-ast/ast/function";
+import { indexMat } from "@thi.ng/shader-ast/ast/indexed";
+import { mat3, mat4, vec3, VEC3_0, vec4 } from "@thi.ng/shader-ast/ast/lit";
 
 export const m22ToM33 = defn("mat3", "m22ToM33", ["mat2"], (m) => {
     return [

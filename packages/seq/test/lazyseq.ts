@@ -1,9 +1,10 @@
 import type { ISeq } from "@thi.ng/api";
+import { group } from "@thi.ng/testament";
 import * as assert from "assert";
 import { cons, lazyseq } from "../src";
 
-describe("lazyseq", () => {
-    it("lazyseq", () => {
+group("lazyseq", {
+    lazyseq: () => {
         const fib = (a?: number, b?: number): ISeq<number> =>
             a !== undefined
                 ? lazyseq(() => cons(a, fib(b, a + b!)))
@@ -17,5 +18,5 @@ describe("lazyseq", () => {
         assert.strictEqual(fib().next()!.next()!.next()!.first(), 2);
         // prettier-ignore
         assert.strictEqual(fib().next()!.next()!.next()!.next()!.first(), 3);
-    });
+    },
 });

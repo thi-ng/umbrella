@@ -1,4 +1,4 @@
-import { endsWith } from "@thi.ng/arrays";
+import { endsWith } from "@thi.ng/arrays/ends-with";
 import { LitCallback, Matcher, RES_PARTIAL } from "./api";
 import { result } from "./result";
 
@@ -14,21 +14,23 @@ import { result } from "./result";
  * @param str - termination string
  * @param callback - result callback
  */
-export const untilStr = <C, R>(
-    str: string,
-    callback?: LitCallback<string, C, R>
-): Matcher<string, C, R> => () => {
-    let buf = "";
-    return (ctx, x) => {
-        buf += x;
-        return buf.endsWith(str)
-            ? result(
-                  callback &&
-                      callback(ctx, buf.substr(0, buf.length - str.length))
-              )
-            : RES_PARTIAL;
+export const untilStr =
+    <C, R>(
+        str: string,
+        callback?: LitCallback<string, C, R>
+    ): Matcher<string, C, R> =>
+    () => {
+        let buf = "";
+        return (ctx, x) => {
+            buf += x;
+            return buf.endsWith(str)
+                ? result(
+                      callback &&
+                          callback(ctx, buf.substr(0, buf.length - str.length))
+                  )
+                : RES_PARTIAL;
+        };
     };
-};
 
 /**
  * Generic array version of {@link untilStr}.
@@ -36,18 +38,17 @@ export const untilStr = <C, R>(
  * @param str - termination sequence
  * @param callback - result callback
  */
-export const until = <T, C, R>(
-    str: T[],
-    callback?: LitCallback<T[], C, R>
-): Matcher<T, C, R> => () => {
-    let buf: T[] = [];
-    return (ctx, x) => {
-        buf.push(x);
-        return endsWith(buf, str)
-            ? result(
-                  callback &&
-                      callback(ctx, buf.slice(0, buf.length - str.length))
-              )
-            : RES_PARTIAL;
+export const until =
+    <T, C, R>(str: T[], callback?: LitCallback<T[], C, R>): Matcher<T, C, R> =>
+    () => {
+        let buf: T[] = [];
+        return (ctx, x) => {
+            buf.push(x);
+            return endsWith(buf, str)
+                ? result(
+                      callback &&
+                          callback(ctx, buf.slice(0, buf.length - str.length))
+                  )
+                : RES_PARTIAL;
+        };
     };
-};

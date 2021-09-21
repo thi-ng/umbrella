@@ -162,13 +162,13 @@ ${docLink}
 ### IEquivSet
 
 All `Set` implementations in this package implement the
-[IEquivSet](https://github.com/thi-ng/umbrella/tree/develop/packages/associative/src/api.ts)
+[`IEquivSet`](https://docs.thi.ng/umbrella/associative/interfaces/IEquivSet.html)
 interface, an extension of the native ES6 Set API.
 
 ### ArraySet
 
 Simple array based `Set` implementation which by default uses
-[@thi.ng/equiv](https://github.com/thi-ng/umbrella/tree/develop/packages/equiv/src/index.ts)
+[`@thi.ng/equiv`](https://github.com/thi-ng/umbrella/tree/develop/packages/equiv)
 for value equivalence checking.
 
 ### LLSet

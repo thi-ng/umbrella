@@ -14,7 +14,6 @@ This project is part of the
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [API](#api)
-  - [Environment variables](#environment-variables)
 - [Authors](#authors)
   - [Maintainer](#maintainer)
   - [Contributors](#contributors)
@@ -24,14 +23,12 @@ This project is part of the
 
 Common, generic types, interfaces & mixins.
 
-This package is implicitly used by most other projects in this
-repository. It defines:
+This package is implicitly used by most other projects in this repository. It
+defines:
 
 - Dozens of generic, common interfaces & types
 - Class & method decorators
 - Mixins
-- Logging
-- Assert (can be disabled for production builds)
 - Typedarray utilities
 
 ### Status
@@ -46,15 +43,23 @@ repository. It defines:
 yarn add @thi.ng/api
 ```
 
-```html
-// ES module
-<script type="module" src="https://unpkg.com/@thi.ng/api?module" crossorigin></script>
+ES module import:
 
-// UMD
-<script src="https://unpkg.com/@thi.ng/api/lib/index.umd.js" crossorigin></script>
+```html
+<script type="module" src="https://cdn.skypack.dev/@thi.ng/api"></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 2.18 KB / CJS: 2.35 KB / UMD: 2.27 KB
+[Skypack documentation](https://docs.skypack.dev/)
+
+For NodeJS (v14.6+):
+
+```text
+node --experimental-specifier-resolution=node --experimental-repl-await
+
+> const api = await import("@thi.ng/api");
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 2.18 KB
 
 ## Dependencies
 
@@ -63,21 +68,6 @@ None
 ## API
 
 [Generated API docs](https://docs.thi.ng/umbrella/api/)
-
-### Environment variables
-
-The following env variables are used to control the behavior of some functions in production builds:
-
-- `UMBRELLA_ASSERTS` -  if set to `1` the
-  [assert](https://github.com/thi-ng/umbrella/tree/develop/packages/api/src/assert.ts)
-  function will **always** be enabled. By default, `assert()` is
-  disabled for production builds, i.e. if `process.env.NODE_ENV ===
-  "production"`.
-- `UMBRELLA_GLOBALS` -  if set to `1` the
-  [exposeGlobal](https://github.com/thi-ng/umbrella/tree/develop/packages/api/src/expose.ts)
-  function will **always** be enabled. By default, `exposeGlobal()` is
-  disabled for production builds, i.e. if `process.env.NODE_ENV ===
-  "production"`.
 
 ## Authors
 

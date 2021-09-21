@@ -1,20 +1,20 @@
 import type { IObjectOf } from "@thi.ng/api";
-import { dropdown } from "@thi.ng/hdom-components";
-import { clamp } from "@thi.ng/math";
-import { ISubscriber, reactive, Stream, sync } from "@thi.ng/rstream";
-import {
-    comp,
-    map,
-    multiplex,
-    partition,
-    pluck,
-    range,
-    str,
-    transduce,
-    zip,
-} from "@thi.ng/transducers";
-import { bits } from "@thi.ng/transducers-binary";
+import { dropdown } from "@thi.ng/hdom-components/dropdown";
+import { clamp } from "@thi.ng/math/interval";
+import type { ISubscriber } from "@thi.ng/rstream";
+import { reactive, Stream } from "@thi.ng/rstream/stream";
+import { sync } from "@thi.ng/rstream/sync";
+import { bits } from "@thi.ng/transducers-binary/bits";
 import { updateDOM } from "@thi.ng/transducers-hdom";
+import { comp } from "@thi.ng/transducers/comp";
+import { map } from "@thi.ng/transducers/map";
+import { multiplex } from "@thi.ng/transducers/multiplex";
+import { partition } from "@thi.ng/transducers/partition";
+import { pluck } from "@thi.ng/transducers/pluck";
+import { range } from "@thi.ng/transducers/range";
+import { str } from "@thi.ng/transducers/str";
+import { transduce } from "@thi.ng/transducers/transduce";
+import { zip } from "@thi.ng/transducers/zip";
 import { FONT } from "./font";
 
 const emitOnStream = (stream: ISubscriber<any>) => (e: Event) =>
@@ -114,9 +114,3 @@ const main = sync({ src: { raw: input, result: xformer } });
 main.transform(map(app), updateDOM());
 
 // input.next(transduce(map((x: number) => String.fromCharCode(x)), str(), range(32, 127)));
-
-// // HMR handling
-// if (process.env.NODE_ENV !== "production") {
-//     const hot = (<any>module).hot;
-//     hot && hot.dispose(() => main.done());
-// }

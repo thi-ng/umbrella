@@ -1,18 +1,9 @@
-import {
-    abs,
-    add,
-    defn,
-    dot,
-    FLOAT0,
-    FLOAT1,
-    FloatSym,
-    max,
-    mul,
-    neg,
-    ret,
-    sub,
-    sym,
-} from "@thi.ng/shader-ast";
+import type { FloatSym } from "@thi.ng/shader-ast";
+import { defn, ret } from "@thi.ng/shader-ast/ast/function";
+import { FLOAT0, FLOAT1 } from "@thi.ng/shader-ast/ast/lit";
+import { add, mul, neg, sub } from "@thi.ng/shader-ast/ast/ops";
+import { sym } from "@thi.ng/shader-ast/ast/sym";
+import { abs, dot, max } from "@thi.ng/shader-ast/builtin/math";
 
 /**
  * Tom Forsyth's Trilight lighting model.

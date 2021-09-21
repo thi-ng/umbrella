@@ -1,18 +1,17 @@
 import type { IObjectOf, Path, Tuple } from "@thi.ng/api";
 import type { IAtom } from "@thi.ng/atom";
-import { isFunction, isPlainObject, isString } from "@thi.ng/checks";
-import { illegalArgs } from "@thi.ng/errors";
-import { getInUnsafe } from "@thi.ng/paths";
+import { isFunction } from "@thi.ng/checks/is-function";
+import { isPlainObject } from "@thi.ng/checks/is-plain-object";
+import { isString } from "@thi.ng/checks/is-string";
+import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
+import { getInUnsafe } from "@thi.ng/paths/get-in";
 import { absPath, resolve, ResolveFn } from "@thi.ng/resolve-map";
-import {
-    CloseMode,
-    fromIterableSync,
-    fromViewUnsafe,
-    ISubscription,
-    StreamSync,
-    sync,
-} from "@thi.ng/rstream";
-import { map, Transducer } from "@thi.ng/transducers";
+import { CloseMode, ISubscription } from "@thi.ng/rstream/api";
+import { fromIterableSync } from "@thi.ng/rstream/iterable";
+import { StreamSync, sync } from "@thi.ng/rstream/sync";
+import { fromViewUnsafe } from "@thi.ng/rstream/view";
+import type { Transducer } from "@thi.ng/transducers";
+import { map } from "@thi.ng/transducers/map";
 import type {
     Graph,
     GraphSpec,
@@ -97,14 +96,14 @@ const isNodeSpec = (x: any): x is NodeSpec =>
  * @param spec -
  * @param id -
  */
-const nodeFromSpec = (state: IAtom<any>, spec: NodeSpec, id: string) => (
-    resolve: ResolveFn
-): Node => {
-    const ins = prepareNodeInputs(spec.ins, state, resolve);
-    const node = spec.fn(ins, id);
-    const outs = prepareNodeOutputs(spec.outs, node, state, id);
-    return { ins, node, outs };
-};
+const nodeFromSpec =
+    (state: IAtom<any>, spec: NodeSpec, id: string) =>
+    (resolve: ResolveFn): Node => {
+        const ins = prepareNodeInputs(spec.ins, state, resolve);
+        const node = spec.fn(ins, id);
+        const outs = prepareNodeOutputs(spec.outs, node, state, id);
+        return { ins, node, outs };
+    };
 
 const prepareNodeInputs = (
     ins: IObjectOf<NodeInputSpec>,
@@ -255,16 +254,19 @@ export const stop = (graph: Graph) => {
  * @param inputIDs -
  * @param reset -
  */
-export const node = (
-    xform: Transducer<IObjectOf<any>, any>,
-    inputIDs?: string[],
-    reset = false
-): NodeFactory<any> => (
-    src: IObjectOf<ISubscription<any, any>>,
-    id: string
-): StreamSync<any, any> => (
-    ensureInputs(src, inputIDs, id), sync({ src, xform, id, reset })
-);
+export const node =
+    (
+        xform: Transducer<IObjectOf<any>, any>,
+        inputIDs?: string[],
+        reset = false
+    ): NodeFactory<any> =>
+    (
+        src: IObjectOf<ISubscription<any, any>>,
+        id: string
+    ): StreamSync<any, any> => {
+        ensureInputs(src, inputIDs, id);
+        return sync({ src, xform, id, reset });
+    };
 
 /**
  * Similar to {@link node}, but optimized for nodes using only a single
@@ -275,16 +277,15 @@ export const node = (
  * @param xform -
  * @param inputID -
  */
-export const node1 = (
-    xform?: Transducer<any, any>,
-    inputID = "src"
-): NodeFactory<any> => (
-    src: IObjectOf<ISubscription<any, any>>,
-    id: string
-): ISubscription<any, any> => {
-    ensureInputs(src, [inputID], id);
-    return src[inputID].subscribe({}, { xform, id });
-};
+export const node1 =
+    (xform?: Transducer<any, any>, inputID = "src"): NodeFactory<any> =>
+    (
+        src: IObjectOf<ISubscription<any, any>>,
+        id: string
+    ): ISubscription<any, any> => {
+        ensureInputs(src, [inputID], id);
+        return src[inputID].subscribe({}, { xform, id });
+    };
 
 /**
  * Syntax sugar for `node()`, intended for nodes w/ 2 inputs, by default

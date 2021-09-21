@@ -38,15 +38,23 @@ Hex string formatters for 4/8/16/24/32/48/64bit words.
 yarn add @thi.ng/hex
 ```
 
-```html
-// ES module
-<script type="module" src="https://unpkg.com/@thi.ng/hex?module" crossorigin></script>
+ES module import:
 
-// UMD
-<script src="https://unpkg.com/@thi.ng/hex/lib/index.umd.js" crossorigin></script>
+```html
+<script type="module" src="https://cdn.skypack.dev/@thi.ng/hex"></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 358 bytes / CJS: 469 bytes / UMD: 525 bytes
+[Skypack documentation](https://docs.skypack.dev/)
+
+For NodeJS (v14.6+):
+
+```text
+node --experimental-specifier-resolution=node --experimental-repl-await
+
+> const hex = await import("@thi.ng/hex");
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 358 bytes
 
 ## Dependencies
 

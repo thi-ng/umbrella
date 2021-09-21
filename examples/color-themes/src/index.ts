@@ -1,33 +1,25 @@
-import {
-    ColorRangePreset,
-    ColorThemePart,
-    css,
-    lch,
-    LCH,
-    swatchesH,
-} from "@thi.ng/color";
+import type { ColorRangePreset, ColorThemePart } from "@thi.ng/color";
+import { css } from "@thi.ng/color/css/css";
+import { lch, LCH } from "@thi.ng/color/lch/lch";
+import { swatchesH } from "@thi.ng/color/ops/swatches";
+import { div } from "@thi.ng/hiccup-html/blocks";
 import {
     button,
     checkbox,
-    datalist,
-    div,
     inputColor,
     inputRange,
     option,
-    span,
-} from "@thi.ng/hiccup-html";
-import { svg } from "@thi.ng/hiccup-svg";
-import {
-    $compile,
-    $inputCheckbox,
-    $inputNum,
-    $inputTrigger,
-    $list,
-    $refresh,
-    ComponentLike,
-} from "@thi.ng/rdom";
-import { staticDropdown } from "@thi.ng/rdom-components";
-import { reactive } from "@thi.ng/rstream";
+} from "@thi.ng/hiccup-html/forms";
+import { span } from "@thi.ng/hiccup-html/inline";
+import { datalist } from "@thi.ng/hiccup-html/lists";
+import { svg } from "@thi.ng/hiccup-svg/svg";
+import type { ComponentLike } from "@thi.ng/rdom";
+import { staticDropdown } from "@thi.ng/rdom-components/dropdown";
+import { $compile } from "@thi.ng/rdom/compile";
+import { $inputCheckbox, $inputNum, $inputTrigger } from "@thi.ng/rdom/event";
+import { $list } from "@thi.ng/rdom/list";
+import { $refresh } from "@thi.ng/rdom/switch";
+import { reactive } from "@thi.ng/rstream/stream";
 import { MainOutputs, RANGE_IDs } from "./api";
 import {
     debouncedParts,

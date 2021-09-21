@@ -1,6 +1,5 @@
+import { group } from "@thi.ng/testament";
 // import * as assert from "assert";
 // import * as gpu from "../src";
 
-describe("geom-poly-utils", () => {
-    it("tests pending");
-});
+group("geom-poly-utils", {});

@@ -2,10 +2,10 @@
     "name": "@thi.ng/transducers",
     "version": "7.9.2",
     "description": "Lightweight transducer implementations for ES6 / TypeScript",
+    "type": "module",
     "module": "./index.js",
-    "main": "./lib/index.js",
-    "umd:main": "./lib/index.umd.js",
     "typings": "./index.d.ts",
+    "sideEffects": false,
     "repository": {
         "type": "git",
         "url": "https://github.com/thi-ng/umbrella.git"
@@ -24,18 +24,15 @@
     "author": "Karsten Schmidt <k+npm@thi.ng>",
     "license": "Apache-2.0",
     "scripts": {
-        "build": "yarn clean && yarn build:es6 && node ../../scripts/bundle-module",
-        "build:release": "yarn clean && yarn build:es6 && node ../../scripts/bundle-module all",
-        "build:es6": "tsc --declaration",
-        "build:test": "rimraf build && tsc -p test/tsconfig.json",
+        "build": "yarn clean && tsc --declaration",
         "build:check": "tsc --isolatedModules --noEmit",
-        "test": "mocha test",
-        "cover": "nyc mocha test && nyc report --reporter=lcov",
-        "clean": "rimraf *.js *.d.ts *.map .nyc_output build coverage doc lib func internal iter rfn xform",
-        "doc:readme": "ts-node -P ../../tools/tsconfig.json ../../tools/src/readme.ts",
-        "doc": "typedoc --excludePrivate --out doc --theme ../../tools/doc/typedoc-theme src/index.ts",
+        "clean": "rimraf *.js *.d.ts *.map doc internal",
+        "doc": "typedoc --excludePrivate --excludeInternal --out doc src/index.ts",
         "doc:ae": "mkdir -p .ae/doc .ae/temp && node_modules/.bin/api-extractor run --local --verbose",
-        "pub": "yarn build:release && yarn publish --access public"
+        "doc:readme": "../../scripts/node-esm ../../tools/src/readme.ts",
+        "doc:stats": "../../scripts/node-esm ../../tools/src/module-stats.ts",
+        "pub": "yarn build:release && yarn publish --access public",
+        "test": "testament test"
     },
     "dependencies": {
         "@thi.ng/api": "^7.2.0",
@@ -47,16 +44,9 @@
         "@thi.ng/math": "^4.0.6",
         "@thi.ng/random": "^2.4.8"
     },
-    "files": [
-        "*.js",
-        "*.d.ts",
-        "lib",
-        "func",
-        "internal",
-        "iter",
-        "rfn",
-        "xform"
-    ],
+    "devDependencies": {
+        "@thi.ng/testament": "^0.0.1"
+    },
     "keywords": [
         "2d",
         "3d",
@@ -96,7 +86,455 @@
     "publishConfig": {
         "access": "public"
     },
-    "sideEffects": false,
+    "files": [
+        "*.js",
+        "*.d.ts",
+        "func",
+        "internal",
+        "iter",
+        "rfn",
+        "xform"
+    ],
+    "exports": {
+        ".": {
+            "import": "./index.js"
+        },
+        "./add": {
+            "import": "./add.js"
+        },
+        "./api": {
+            "import": "./api.js"
+        },
+        "./as-iterable": {
+            "import": "./as-iterable.js"
+        },
+        "./assoc-map": {
+            "import": "./assoc-map.js"
+        },
+        "./assoc-obj": {
+            "import": "./assoc-obj.js"
+        },
+        "./auto-obj": {
+            "import": "./auto-obj.js"
+        },
+        "./benchmark": {
+            "import": "./benchmark.js"
+        },
+        "./cat": {
+            "import": "./cat.js"
+        },
+        "./choices": {
+            "import": "./choices.js"
+        },
+        "./comp": {
+            "import": "./comp.js"
+        },
+        "./compr": {
+            "import": "./compr.js"
+        },
+        "./concat": {
+            "import": "./concat.js"
+        },
+        "./conj": {
+            "import": "./conj.js"
+        },
+        "./converge": {
+            "import": "./converge.js"
+        },
+        "./convolve": {
+            "import": "./convolve.js"
+        },
+        "./count": {
+            "import": "./count.js"
+        },
+        "./curve": {
+            "import": "./curve.js"
+        },
+        "./cycle": {
+            "import": "./cycle.js"
+        },
+        "./dedupe": {
+            "import": "./dedupe.js"
+        },
+        "./deep-transform": {
+            "import": "./deep-transform.js"
+        },
+        "./delayed": {
+            "import": "./delayed.js"
+        },
+        "./distinct": {
+            "import": "./distinct.js"
+        },
+        "./div": {
+            "import": "./div.js"
+        },
+        "./drop-nth": {
+            "import": "./drop-nth.js"
+        },
+        "./drop-while": {
+            "import": "./drop-while.js"
+        },
+        "./drop": {
+            "import": "./drop.js"
+        },
+        "./dup": {
+            "import": "./dup.js"
+        },
+        "./duplicate": {
+            "import": "./duplicate.js"
+        },
+        "./ensure": {
+            "import": "./ensure.js"
+        },
+        "./every": {
+            "import": "./every.js"
+        },
+        "./extend-sides": {
+            "import": "./extend-sides.js"
+        },
+        "./fill": {
+            "import": "./fill.js"
+        },
+        "./filter-fuzzy": {
+            "import": "./filter-fuzzy.js"
+        },
+        "./filter": {
+            "import": "./filter.js"
+        },
+        "./flatten-with": {
+            "import": "./flatten-with.js"
+        },
+        "./flatten": {
+            "import": "./flatten.js"
+        },
+        "./frequencies": {
+            "import": "./frequencies.js"
+        },
+        "./group-binary": {
+            "import": "./group-binary.js"
+        },
+        "./group-by-map": {
+            "import": "./group-by-map.js"
+        },
+        "./group-by-obj": {
+            "import": "./group-by-obj.js"
+        },
+        "./indexed": {
+            "import": "./indexed.js"
+        },
+        "./interleave": {
+            "import": "./interleave.js"
+        },
+        "./interpolate-hermite": {
+            "import": "./interpolate-hermite.js"
+        },
+        "./interpolate-linear": {
+            "import": "./interpolate-linear.js"
+        },
+        "./interpolate": {
+            "import": "./interpolate.js"
+        },
+        "./interpose": {
+            "import": "./interpose.js"
+        },
+        "./iterate": {
+            "import": "./iterate.js"
+        },
+        "./iterator": {
+            "import": "./iterator.js"
+        },
+        "./juxtr": {
+            "import": "./juxtr.js"
+        },
+        "./keep": {
+            "import": "./keep.js"
+        },
+        "./key-permutations": {
+            "import": "./key-permutations.js"
+        },
+        "./key-selector": {
+            "import": "./key-selector.js"
+        },
+        "./keys": {
+            "import": "./keys.js"
+        },
+        "./labeled": {
+            "import": "./labeled.js"
+        },
+        "./last": {
+            "import": "./last.js"
+        },
+        "./line": {
+            "import": "./line.js"
+        },
+        "./lookup": {
+            "import": "./lookup.js"
+        },
+        "./map-deep": {
+            "import": "./map-deep.js"
+        },
+        "./map-indexed": {
+            "import": "./map-indexed.js"
+        },
+        "./map-keys": {
+            "import": "./map-keys.js"
+        },
+        "./map-nth": {
+            "import": "./map-nth.js"
+        },
+        "./map-vals": {
+            "import": "./map-vals.js"
+        },
+        "./map": {
+            "import": "./map.js"
+        },
+        "./mapcat-indexed": {
+            "import": "./mapcat-indexed.js"
+        },
+        "./mapcat": {
+            "import": "./mapcat.js"
+        },
+        "./match-first": {
+            "import": "./match-first.js"
+        },
+        "./match-last": {
+            "import": "./match-last.js"
+        },
+        "./max-compare": {
+            "import": "./max-compare.js"
+        },
+        "./max-mag": {
+            "import": "./max-mag.js"
+        },
+        "./max": {
+            "import": "./max.js"
+        },
+        "./mean": {
+            "import": "./mean.js"
+        },
+        "./min-compare": {
+            "import": "./min-compare.js"
+        },
+        "./min-mag": {
+            "import": "./min-mag.js"
+        },
+        "./min-max": {
+            "import": "./min-max.js"
+        },
+        "./min": {
+            "import": "./min.js"
+        },
+        "./moving-average": {
+            "import": "./moving-average.js"
+        },
+        "./moving-median": {
+            "import": "./moving-median.js"
+        },
+        "./mul": {
+            "import": "./mul.js"
+        },
+        "./multiplex-obj": {
+            "import": "./multiplex-obj.js"
+        },
+        "./multiplex": {
+            "import": "./multiplex.js"
+        },
+        "./noop": {
+            "import": "./noop.js"
+        },
+        "./norm-count": {
+            "import": "./norm-count.js"
+        },
+        "./norm-frequencies-auto": {
+            "import": "./norm-frequencies-auto.js"
+        },
+        "./norm-frequencies": {
+            "import": "./norm-frequencies.js"
+        },
+        "./norm-range": {
+            "import": "./norm-range.js"
+        },
+        "./pad-last": {
+            "import": "./pad-last.js"
+        },
+        "./pad-sides": {
+            "import": "./pad-sides.js"
+        },
+        "./page": {
+            "import": "./page.js"
+        },
+        "./pairs": {
+            "import": "./pairs.js"
+        },
+        "./palindrome": {
+            "import": "./palindrome.js"
+        },
+        "./partition-by": {
+            "import": "./partition-by.js"
+        },
+        "./partition-of": {
+            "import": "./partition-of.js"
+        },
+        "./partition-sort": {
+            "import": "./partition-sort.js"
+        },
+        "./partition-sync": {
+            "import": "./partition-sync.js"
+        },
+        "./partition-time": {
+            "import": "./partition-time.js"
+        },
+        "./partition-when": {
+            "import": "./partition-when.js"
+        },
+        "./partition": {
+            "import": "./partition.js"
+        },
+        "./peek": {
+            "import": "./peek.js"
+        },
+        "./permutations": {
+            "import": "./permutations.js"
+        },
+        "./pluck": {
+            "import": "./pluck.js"
+        },
+        "./push-copy": {
+            "import": "./push-copy.js"
+        },
+        "./push-sort": {
+            "import": "./push-sort.js"
+        },
+        "./push": {
+            "import": "./push.js"
+        },
+        "./range-nd": {
+            "import": "./range-nd.js"
+        },
+        "./range": {
+            "import": "./range.js"
+        },
+        "./range2d": {
+            "import": "./range2d.js"
+        },
+        "./range3d": {
+            "import": "./range3d.js"
+        },
+        "./reduce": {
+            "import": "./reduce.js"
+        },
+        "./reduced": {
+            "import": "./reduced.js"
+        },
+        "./reductions": {
+            "import": "./reductions.js"
+        },
+        "./rename": {
+            "import": "./rename.js"
+        },
+        "./renamer": {
+            "import": "./renamer.js"
+        },
+        "./repeat": {
+            "import": "./repeat.js"
+        },
+        "./repeatedly": {
+            "import": "./repeatedly.js"
+        },
+        "./reverse": {
+            "import": "./reverse.js"
+        },
+        "./run": {
+            "import": "./run.js"
+        },
+        "./sample": {
+            "import": "./sample.js"
+        },
+        "./scan": {
+            "import": "./scan.js"
+        },
+        "./select-keys": {
+            "import": "./select-keys.js"
+        },
+        "./side-effect": {
+            "import": "./side-effect.js"
+        },
+        "./sliding-window": {
+            "import": "./sliding-window.js"
+        },
+        "./some": {
+            "import": "./some.js"
+        },
+        "./sorted-keys": {
+            "import": "./sorted-keys.js"
+        },
+        "./step": {
+            "import": "./step.js"
+        },
+        "./str": {
+            "import": "./str.js"
+        },
+        "./stream-shuffle": {
+            "import": "./stream-shuffle.js"
+        },
+        "./stream-sort": {
+            "import": "./stream-sort.js"
+        },
+        "./struct": {
+            "import": "./struct.js"
+        },
+        "./sub": {
+            "import": "./sub.js"
+        },
+        "./swizzle": {
+            "import": "./swizzle.js"
+        },
+        "./symmetric": {
+            "import": "./symmetric.js"
+        },
+        "./take-last": {
+            "import": "./take-last.js"
+        },
+        "./take-nth": {
+            "import": "./take-nth.js"
+        },
+        "./take-while": {
+            "import": "./take-while.js"
+        },
+        "./take": {
+            "import": "./take.js"
+        },
+        "./throttle-time": {
+            "import": "./throttle-time.js"
+        },
+        "./throttle": {
+            "import": "./throttle.js"
+        },
+        "./toggle": {
+            "import": "./toggle.js"
+        },
+        "./trace": {
+            "import": "./trace.js"
+        },
+        "./transduce": {
+            "import": "./transduce.js"
+        },
+        "./tween": {
+            "import": "./tween.js"
+        },
+        "./vals": {
+            "import": "./vals.js"
+        },
+        "./word-wrap": {
+            "import": "./word-wrap.js"
+        },
+        "./wrap-sides": {
+            "import": "./wrap-sides.js"
+        },
+        "./zip": {
+            "import": "./zip.js"
+        }
+    },
     "thi.ng": {
         "blog": [
             {

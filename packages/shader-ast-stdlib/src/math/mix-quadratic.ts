@@ -1,13 +1,7 @@
-import {
-    add,
-    defn,
-    FloatSym,
-    mul,
-    PrimTypeMap,
-    ret,
-    sub,
-    sym,
-} from "@thi.ng/shader-ast";
+import type { FloatSym, PrimTypeMap } from "@thi.ng/shader-ast";
+import { defn, ret } from "@thi.ng/shader-ast/ast/function";
+import { add, mul, sub } from "@thi.ng/shader-ast/ast/ops";
+import { sym } from "@thi.ng/shader-ast/ast/sym";
 
 const $ = <N extends 1 | 2 | 3 | 4, T extends PrimTypeMap[N]>(n: N, type: T) =>
     defn(

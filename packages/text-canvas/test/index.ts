@@ -1,6 +1,5 @@
+import { group } from "@thi.ng/testament";
 // import * as assert from "assert";
 // import { } from "../src";
 
-describe("text-canvas", () => {
-    it("tests pending");
-});
+group("text-canvas", {});

@@ -1,44 +1,33 @@
-import {
-    $x,
-    $xy,
-    $xyz,
-    assign,
-    defMain,
-    defn,
-    float,
-    FloatSym,
-    gte,
-    ifThen,
-    mix,
-    mul,
-    program,
-    ret,
-    sym,
-    vec2,
-    Vec2Sym,
-    vec3,
-    Vec3Sym,
-    vec4,
-} from "@thi.ng/shader-ast";
+import type { FloatSym, Vec2Sym, Vec3Sym } from "@thi.ng/shader-ast";
 import { GLSLVersion, targetGLSL } from "@thi.ng/shader-ast-glsl";
-import { canvasRenderer, targetJS } from "@thi.ng/shader-ast-js";
+import { canvasRenderer } from "@thi.ng/shader-ast-js/runtime";
+import { targetJS } from "@thi.ng/shader-ast-js/target";
+import { fogExp2 } from "@thi.ng/shader-ast-stdlib/fog/exp2";
 import {
-    clamp01,
     diffuseLighting,
-    fit1101,
-    fogExp2,
     halfLambert,
-    lookat,
-    raymarchAO,
-    raymarchDir,
-    raymarchNormal,
-    raymarchScene,
-    rayPointAt,
-    sdfBox3,
-    sdfRepeat3,
-    sdfSmoothUnion,
-    sdfSphere,
-} from "@thi.ng/shader-ast-stdlib";
+} from "@thi.ng/shader-ast-stdlib/light/lambert";
+import { clamp01 } from "@thi.ng/shader-ast-stdlib/math/clamp";
+import { fit1101 } from "@thi.ng/shader-ast-stdlib/math/fit";
+import { lookat } from "@thi.ng/shader-ast-stdlib/matrix/lookat";
+import { raymarchAO } from "@thi.ng/shader-ast-stdlib/raymarch/ao";
+import { raymarchDir } from "@thi.ng/shader-ast-stdlib/raymarch/direction";
+import { raymarchNormal } from "@thi.ng/shader-ast-stdlib/raymarch/normal";
+import { rayPointAt } from "@thi.ng/shader-ast-stdlib/raymarch/point-at";
+import { raymarchScene } from "@thi.ng/shader-ast-stdlib/raymarch/scene";
+import { sdfBox3 } from "@thi.ng/shader-ast-stdlib/sdf/box";
+import { sdfRepeat3 } from "@thi.ng/shader-ast-stdlib/sdf/repeat";
+import { sdfSmoothUnion } from "@thi.ng/shader-ast-stdlib/sdf/smooth-union";
+import { sdfSphere } from "@thi.ng/shader-ast-stdlib/sdf/sphere";
+import { assign } from "@thi.ng/shader-ast/ast/assign";
+import { ifThen } from "@thi.ng/shader-ast/ast/controlflow";
+import { defMain, defn, ret } from "@thi.ng/shader-ast/ast/function";
+import { float, vec2, vec3, vec4 } from "@thi.ng/shader-ast/ast/lit";
+import { gte, mul } from "@thi.ng/shader-ast/ast/ops";
+import { program } from "@thi.ng/shader-ast/ast/scope";
+import { $x, $xy, $xyz } from "@thi.ng/shader-ast/ast/swizzle";
+import { sym } from "@thi.ng/shader-ast/ast/sym";
+import { mix } from "@thi.ng/shader-ast/builtin/math";
 import {
     compileModel,
     defQuadModel,

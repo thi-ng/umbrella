@@ -1,14 +1,13 @@
 import type { Tessellator } from "@thi.ng/geom-api";
-import {
-    comp,
-    map,
-    partition,
-    push,
-    transduce,
-    wrapSides,
-    zip,
-} from "@thi.ng/transducers";
-import { mixN, ReadonlyVec, Vec } from "@thi.ng/vectors";
+import { comp } from "@thi.ng/transducers/comp";
+import { map } from "@thi.ng/transducers/map";
+import { partition } from "@thi.ng/transducers/partition";
+import { push } from "@thi.ng/transducers/push";
+import { transduce } from "@thi.ng/transducers/transduce";
+import { wrapSides } from "@thi.ng/transducers/wrap-sides";
+import { zip } from "@thi.ng/transducers/zip";
+import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
+import { mixN } from "@thi.ng/vectors/mixn";
 
 export const rimTris: Tessellator = (points: ReadonlyVec[]) => {
     const edgeCentroids = transduce(

@@ -1,4 +1,5 @@
 import type { FnO } from "@thi.ng/api";
+import { group } from "@thi.ng/testament";
 import * as assert from "assert";
 import { binarySearch, bsEQ, bsGE, bsGT, bsLE, bsLT } from "../src";
 
@@ -14,20 +15,20 @@ const checkPred = (pred: FnO<number, number>, res: number[]) => {
     }
 };
 
-describe("binarySearch", () => {
-    it("lt", () => {
+group("binarySearch", {
+    lt: () => {
         checkPred(bsLT, [-1, -1, 0, 0, 1, 3]);
-    });
-    it("le", () => {
+    },
+    le: () => {
         checkPred(bsLE, [-1, 0, 0, 1, 1, 3]);
-    });
-    it("gt", () => {
+    },
+    gt: () => {
         checkPred(bsGT, [0, 1, 1, 2, 2, -1]);
-    });
-    it("ge", () => {
+    },
+    ge: () => {
         checkPred(bsGE, [0, 0, 1, 1, 2, -1]);
-    });
-    it("eq", () => {
+    },
+    eq: () => {
         checkPred(bsEQ, [-1, 0, -1, 1, -1, -1]);
-    });
+    },
 });

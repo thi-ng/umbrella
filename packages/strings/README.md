@@ -125,15 +125,23 @@ Partially based on Clojure version of [thi.ng/strf](http://thi.ng/strf).
 yarn add @thi.ng/strings
 ```
 
-```html
-// ES module
-<script type="module" src="https://unpkg.com/@thi.ng/strings?module" crossorigin></script>
+ES module import:
 
-// UMD
-<script src="https://unpkg.com/@thi.ng/strings/lib/index.umd.js" crossorigin></script>
+```html
+<script type="module" src="https://cdn.skypack.dev/@thi.ng/strings"></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 4.08 KB / CJS: 4.38 KB / UMD: 4.15 KB
+[Skypack documentation](https://docs.skypack.dev/)
+
+For NodeJS (v14.6+):
+
+```text
+node --experimental-specifier-resolution=node --experimental-repl-await
+
+> const strings = await import("@thi.ng/strings");
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 4.11 KB
 
 ## Dependencies
 

@@ -1,4 +1,5 @@
-import { DEFAULT, defmulti, MultiFn1 } from "@thi.ng/defmulti";
+import type { MultiFn1 } from "@thi.ng/defmulti";
+import { defmulti } from "@thi.ng/defmulti/defmulti";
 import type { MaybeColor } from "../api";
 import { rgb } from "../rgb/rgb";
 import {
@@ -37,4 +38,4 @@ luminance.isa("oklab", "lab");
 luminance.isa("ycc", "lab");
 luminance.isa("xyy", "hcy");
 
-luminance.add(DEFAULT, (x: any) => luminanceRgb(rgb(x)));
+luminance.setDefault((x: any) => luminanceRgb(rgb(x)));

@@ -1,5 +1,7 @@
 import { imagePromise, PackedBuffer, RGB565 } from "@thi.ng/pixel";
-import { canvas, FMT_HTML565, setAt, toString } from "@thi.ng/text-canvas";
+import { canvas, setAt } from "@thi.ng/text-canvas/canvas";
+import { formatCanvas } from "@thi.ng/text-canvas/format";
+import { FMT_HTML565 } from "@thi.ng/text-format/html";
 import IMG from "./test.png";
 
 // text canvas size
@@ -37,7 +39,7 @@ const H = 48;
             }
         }
         // format text canvas as HTML spans
-        el.innerHTML = toString(c, fmt);
+        el.innerHTML = formatCanvas(c, fmt);
         requestAnimationFrame(update);
     };
 

@@ -1,12 +1,9 @@
-import {
-    add,
-    addmN,
-    direction,
-    mixN,
-    ReadonlyVec,
-    set,
-    Vec,
-} from "@thi.ng/vectors";
+import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
+import { add } from "@thi.ng/vectors/add";
+import { addmN } from "@thi.ng/vectors/addmn";
+import { direction } from "@thi.ng/vectors/direction";
+import { mixN } from "@thi.ng/vectors/mixn";
+import { set } from "@thi.ng/vectors/set";
 
 const buildUniform = (segments: Vec[], t: number) => {
     const res: Vec[][] = [];

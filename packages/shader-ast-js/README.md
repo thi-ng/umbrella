@@ -61,15 +61,23 @@ which altogether provide ~750 optimized vector/matrix functions.
 yarn add @thi.ng/shader-ast-js
 ```
 
-```html
-// ES module
-<script type="module" src="https://unpkg.com/@thi.ng/shader-ast-js?module" crossorigin></script>
+ES module import:
 
-// UMD
-<script src="https://unpkg.com/@thi.ng/shader-ast-js/lib/index.umd.js" crossorigin></script>
+```html
+<script type="module" src="https://cdn.skypack.dev/@thi.ng/shader-ast-js"></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 5.33 KB / CJS: 4.79 KB / UMD: 4.72 KB
+[Skypack documentation](https://docs.skypack.dev/)
+
+For NodeJS (v14.6+):
+
+```text
+node --experimental-specifier-resolution=node --experimental-repl-await
+
+> const shaderAstJs = await import("@thi.ng/shader-ast-js");
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 5.33 KB
 
 ## Dependencies
 

@@ -1,5 +1,6 @@
-import { isFunction } from "@thi.ng/checks";
-import { float, floatFixedWidth, Stringer } from "@thi.ng/strings";
+import { isFunction } from "@thi.ng/checks/is-function";
+import type { Stringer } from "@thi.ng/strings";
+import { float, floatFixedWidth } from "@thi.ng/strings/float";
 import type { ToStringOpts } from "./api";
 
 /**

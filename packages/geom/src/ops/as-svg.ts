@@ -1,6 +1,8 @@
 import type { Attribs, IShape } from "@thi.ng/geom-api";
-import { serialize } from "@thi.ng/hiccup";
-import { convertTree, ff, svg } from "@thi.ng/hiccup-svg";
+import { convertTree } from "@thi.ng/hiccup-svg/convert";
+import { ff } from "@thi.ng/hiccup-svg/format";
+import { svg } from "@thi.ng/hiccup-svg/svg";
+import { serialize } from "@thi.ng/hiccup/serialize";
 import { collBounds } from "../internal/coll-bounds";
 import { bounds } from "./bounds";
 

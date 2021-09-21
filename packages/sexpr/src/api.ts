@@ -102,3 +102,9 @@ export interface Implementations<ENV, RES> {
     str: Fn2<Str, ENV, RES>;
     num: Fn2<Numeric, ENV, RES>;
 }
+
+export const DEFAULT_SYNTAX: SyntaxOpts = {
+    scopes: [["(", ")"]],
+    whiteSpace: /(\s|,)/,
+    string: '"',
+};

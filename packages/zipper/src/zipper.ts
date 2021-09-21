@@ -1,6 +1,7 @@
-import { assert, FnO } from "@thi.ng/api";
-import { peek } from "@thi.ng/arrays";
-import { isArray } from "@thi.ng/checks";
+import type { FnO } from "@thi.ng/api";
+import { peek } from "@thi.ng/arrays/peek";
+import { isArray } from "@thi.ng/checks/is-array";
+import { assert } from "@thi.ng/errors/assert";
 import type { Path, ZipperOps } from "./api";
 
 const newPath = <T>(

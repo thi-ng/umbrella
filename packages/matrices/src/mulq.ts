@@ -1,4 +1,5 @@
-import { setC4, VecOpVV } from "@thi.ng/vectors";
+import type { VecOpVV } from "@thi.ng/vectors";
+import { setC4 } from "@thi.ng/vectors/setc";
 
 /**
  * Performs quaternion multiplication of `a` and `b` and writes result

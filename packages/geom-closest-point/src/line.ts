@@ -1,16 +1,13 @@
 import type { FnU3 } from "@thi.ng/api";
-import {
-    dist,
-    distSq,
-    dot,
-    empty,
-    magSq,
-    mixN,
-    ReadonlyVec,
-    set,
-    sub,
-    Vec,
-} from "@thi.ng/vectors";
+import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
+import { dist } from "@thi.ng/vectors/dist";
+import { distSq } from "@thi.ng/vectors/distsq";
+import { dot } from "@thi.ng/vectors/dot";
+import { empty } from "@thi.ng/vectors/empty";
+import { magSq } from "@thi.ng/vectors/magsq";
+import { mixN } from "@thi.ng/vectors/mixn";
+import { set } from "@thi.ng/vectors/set";
+import { sub } from "@thi.ng/vectors/sub";
 
 /**
  * Computes the parametric distance `t` of point `p` projected onto line

@@ -16,7 +16,8 @@ import type {
     PathVal,
     Watch,
 } from "@thi.ng/api";
-import { defGetterUnsafe, defSetterUnsafe } from "@thi.ng/paths";
+import { defGetterUnsafe } from "@thi.ng/paths/getter";
+import { defSetterUnsafe } from "@thi.ng/paths/setter";
 import type { CursorOpts, IAtom, SwapFn } from "./api";
 import { Atom } from "./atom";
 import { nextID } from "./idgen";

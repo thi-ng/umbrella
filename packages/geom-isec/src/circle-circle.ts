@@ -1,15 +1,13 @@
-import { IntersectionResult, IntersectionType } from "@thi.ng/geom-api";
-import { eqDelta } from "@thi.ng/math";
-import {
-    add,
-    distSq,
-    maddN,
-    mag,
-    mulN,
-    perpendicularCCW,
-    ReadonlyVec,
-    sub,
-} from "@thi.ng/vectors";
+import { IntersectionResult, IntersectionType } from "@thi.ng/geom-api/isec";
+import { eqDelta } from "@thi.ng/math/eqdelta";
+import type { ReadonlyVec } from "@thi.ng/vectors";
+import { add } from "@thi.ng/vectors/add";
+import { distSq } from "@thi.ng/vectors/distsq";
+import { maddN } from "@thi.ng/vectors/maddn";
+import { mag } from "@thi.ng/vectors/mag";
+import { mulN } from "@thi.ng/vectors/muln";
+import { perpendicularCCW } from "@thi.ng/vectors/perpendicular";
+import { sub } from "@thi.ng/vectors/sub";
 import { NONE } from "./api";
 
 export const intersectCircleCircle = (

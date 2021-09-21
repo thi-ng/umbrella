@@ -1,5 +1,3 @@
-import { assert } from "../assert";
-
 /**
  * Method property decorator factory. Augments original method with
  * deprecation message (via console), shown when method is invoked.
@@ -16,7 +14,9 @@ export const deprecated = (msg?: string, log = console.log): MethodDecorator =>
     ) {
         const signature = `${target.constructor.name}#${prop.toString()}`;
         const fn = descriptor.value;
-        assert(typeof fn === "function", `${signature} is not a function`);
+        if (typeof fn !== "function") {
+            throw new Error(`${signature} is not a function`);
+        }
         descriptor.value = function () {
             log(`DEPRECATED ${signature}: ${msg || "will be removed soon"}`);
             return fn.apply(this, arguments);

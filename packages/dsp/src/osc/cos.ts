@@ -1,4 +1,4 @@
-import { TAU } from "@thi.ng/math";
+import { TAU } from "@thi.ng/math/api";
 import type { StatelessOscillator } from "../api";
 
 export const cos: StatelessOscillator = (phase, freq, amp = 1, dc = 0) =>

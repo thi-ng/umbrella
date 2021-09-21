@@ -1,9 +1,9 @@
 import type { NumericArray } from "@thi.ng/api";
 import { eqDelta, TAU } from "@thi.ng/math";
+import { group } from "@thi.ng/testament";
 import * as assert from "assert";
 import {
     add,
-    ComplexArray,
     copyComplex,
     cos,
     fft,
@@ -34,17 +34,17 @@ const deltaEq = (a: NumericArray, b: NumericArray, eps = 1e-3) => {
     return true;
 };
 
-const deltaEqComplex = (a: ComplexArray, b: ComplexArray, eps?: number) =>
-    deltaEq(a[0], b[0], eps) && deltaEq(a[1], b[1], eps);
+// const deltaEqComplex = (a: ComplexArray, b: ComplexArray, eps?: number) =>
+//     deltaEq(a[0], b[0], eps) && deltaEq(a[1], b[1], eps);
 
-describe("fft", () => {
-    it("roundtrip", () => {
+group("fft", {
+    roundtrip: () => {
         const src = osc(cos, 64 / 512, 1).take(512);
         const rev = ifft(fft([...src]));
-        assert(deltaEq(rev[0], src));
-    });
+        assert.ok(deltaEq(rev[0], src));
+    },
 
-    it("parseval", () => {
+    parseval: () => {
         const FC = 64;
         const FS = 512;
         const A = 0.5;
@@ -62,21 +62,21 @@ describe("fft", () => {
                 0
             ) / N;
 
-        assert(eqDelta(powerSumSquared(src), sumT), "sumT1");
-        assert(eqDelta(powerSumSquared(fwd), sumF), "sumF1");
-        assert(eqDelta(powerMeanSquared(src), sumT / N), "sumT2");
-        assert(eqDelta(powerMeanSquared(fwd), sumF / N), "sumF2");
+        assert.ok(eqDelta(powerSumSquared(src), sumT), "sumT1");
+        assert.ok(eqDelta(powerSumSquared(fwd), sumF), "sumF1");
+        assert.ok(eqDelta(powerMeanSquared(src), sumT / N), "sumT2");
+        assert.ok(eqDelta(powerMeanSquared(fwd), sumF / N), "sumF2");
 
-        assert(eqDelta(spectrumMag(fwd)[I], 2 * sumF));
-        assert(eqDelta(spectrumPow(fwd)[I], sumF));
-        assert(eqDelta(spectrumPow(fwd, true)[I], magDb(A)));
-        assert(eqDelta(spectrumPhase(fwd)[I], (1 / 12) * TAU));
+        assert.ok(eqDelta(spectrumMag(fwd)[I], 2 * sumF));
+        assert.ok(eqDelta(spectrumPow(fwd)[I], sumF));
+        assert.ok(eqDelta(spectrumPow(fwd, true)[I], magDb(A)));
+        assert.ok(eqDelta(spectrumPhase(fwd)[I], (1 / 12) * TAU));
 
         const norm = normalizeFFT(copyComplex(fwd), win);
 
-        assert(eqDelta(spectrumMag(norm)[I], A));
-        assert(eqDelta(spectrumPow(norm, false, 1)[I], A / 2));
-        assert(eqDelta(spectrumPow(norm, true, 1)[I], magDb(A)));
-        assert(eqDelta(spectrumPhase(norm)[I], (1 / 12) * TAU));
-    });
+        assert.ok(eqDelta(spectrumMag(norm)[I], A));
+        assert.ok(eqDelta(spectrumPow(norm, false, 1)[I], A / 2));
+        assert.ok(eqDelta(spectrumPow(norm, true, 1)[I], magDb(A)));
+        assert.ok(eqDelta(spectrumPhase(norm)[I], (1 / 12) * TAU));
+    },
 });

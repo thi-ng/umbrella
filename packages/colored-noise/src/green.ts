@@ -1,4 +1,5 @@
-import { INorm, SYSTEM } from "@thi.ng/random";
+import type { INorm } from "@thi.ng/random";
+import { SYSTEM } from "@thi.ng/random/system";
 import { blue } from "./blue";
 import { interleave } from "./utils";
 

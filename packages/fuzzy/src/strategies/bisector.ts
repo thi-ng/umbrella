@@ -1,4 +1,4 @@
-import { fit } from "@thi.ng/math";
+import { fit } from "@thi.ng/math/fit";
 import type { DefuzzStrategy, DefuzzStrategyOpts } from "../api";
 import { defaultOpts } from "./opts";
 

@@ -1,5 +1,5 @@
 import type { TypedArray } from "@thi.ng/api";
-import { isString } from "@thi.ng/checks";
+import { isString } from "@thi.ng/checks/is-string";
 import type { DownloadOpts } from "./api";
 
 /**

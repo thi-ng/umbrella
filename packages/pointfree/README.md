@@ -198,15 +198,23 @@ non-linear control flow.
 yarn add @thi.ng/pointfree
 ```
 
-```html
-// ES module
-<script type="module" src="https://unpkg.com/@thi.ng/pointfree?module" crossorigin></script>
+ES module import:
 
-// UMD
-<script src="https://unpkg.com/@thi.ng/pointfree/lib/index.umd.js" crossorigin></script>
+```html
+<script type="module" src="https://cdn.skypack.dev/@thi.ng/pointfree"></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 3.32 KB / CJS: 3.86 KB / UMD: 3.58 KB
+[Skypack documentation](https://docs.skypack.dev/)
+
+For NodeJS (v14.6+):
+
+```text
+node --experimental-specifier-resolution=node --experimental-repl-await
+
+> const pointfree = await import("@thi.ng/pointfree");
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 3.32 KB
 
 ## Dependencies
 

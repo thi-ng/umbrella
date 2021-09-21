@@ -1,58 +1,55 @@
-import {
-    abs4,
-    acos4,
-    add4,
-    addN4,
-    asin4,
-    atan4,
-    atan_24,
-    ceil4,
-    clamp4,
-    cos4,
-    degrees4,
-    dist,
-    div4,
-    divN4,
-    dot4,
-    eq4,
-    exp4,
-    exp_24,
-    faceForward,
-    floor4,
-    fract4,
-    gt4,
-    gte4,
-    invSqrt4,
-    log4,
-    log_24,
-    lt4,
-    lte4,
-    mag,
-    max4,
-    min4,
-    mix4,
-    mixN4,
-    mod4,
-    modN4,
-    mul4,
-    mulN4,
-    neg,
-    neq4,
-    normalize,
-    pow4,
-    radians4,
-    reflect,
-    refract,
-    sign4,
-    sin4,
-    smoothStep4,
-    sqrt4,
-    step4,
-    sub4,
-    subN4,
-    tan4,
-    ZERO4,
-} from "@thi.ng/vectors";
+import { abs4 } from "@thi.ng/vectors/abs";
+import { acos4 } from "@thi.ng/vectors/acos";
+import { add4 } from "@thi.ng/vectors/add";
+import { addN4 } from "@thi.ng/vectors/addn";
+import { ZERO4 } from "@thi.ng/vectors/api";
+import { asin4 } from "@thi.ng/vectors/asin";
+import { atan4, atan_24 } from "@thi.ng/vectors/atan";
+import { ceil4 } from "@thi.ng/vectors/ceil";
+import { clamp4 } from "@thi.ng/vectors/clamp";
+import { cos4 } from "@thi.ng/vectors/cos";
+import { degrees4 } from "@thi.ng/vectors/degrees";
+import { dist } from "@thi.ng/vectors/dist";
+import { div4 } from "@thi.ng/vectors/div";
+import { divN4 } from "@thi.ng/vectors/divn";
+import { dot4 } from "@thi.ng/vectors/dot";
+import { eq4 } from "@thi.ng/vectors/eq";
+import { exp4 } from "@thi.ng/vectors/exp";
+import { exp_24 } from "@thi.ng/vectors/exp_2";
+import { faceForward } from "@thi.ng/vectors/face-forward";
+import { floor4 } from "@thi.ng/vectors/floor";
+import { fract4 } from "@thi.ng/vectors/fract";
+import { gt4 } from "@thi.ng/vectors/gt";
+import { gte4 } from "@thi.ng/vectors/gte";
+import { invSqrt4 } from "@thi.ng/vectors/invsqrt";
+import { log4 } from "@thi.ng/vectors/log";
+import { log_24 } from "@thi.ng/vectors/log_2";
+import { lt4 } from "@thi.ng/vectors/lt";
+import { lte4 } from "@thi.ng/vectors/lte";
+import { mag } from "@thi.ng/vectors/mag";
+import { max4 } from "@thi.ng/vectors/max";
+import { min4 } from "@thi.ng/vectors/min";
+import { mix4 } from "@thi.ng/vectors/mix";
+import { mixN4 } from "@thi.ng/vectors/mixn";
+import { mod4 } from "@thi.ng/vectors/mod";
+import { modN4 } from "@thi.ng/vectors/modn";
+import { mul4 } from "@thi.ng/vectors/mul";
+import { mulN4 } from "@thi.ng/vectors/muln";
+import { neg } from "@thi.ng/vectors/neg";
+import { neq4 } from "@thi.ng/vectors/neq";
+import { normalize } from "@thi.ng/vectors/normalize";
+import { pow4 } from "@thi.ng/vectors/pow";
+import { radians4 } from "@thi.ng/vectors/radians";
+import { reflect } from "@thi.ng/vectors/reflect";
+import { refract } from "@thi.ng/vectors/refract";
+import { sign4 } from "@thi.ng/vectors/sign";
+import { sin4 } from "@thi.ng/vectors/sin";
+import { smoothStep4 } from "@thi.ng/vectors/smoothstep";
+import { sqrt4 } from "@thi.ng/vectors/sqrt";
+import { step4 } from "@thi.ng/vectors/step";
+import { sub4 } from "@thi.ng/vectors/sub";
+import { subN4 } from "@thi.ng/vectors/subn";
+import { tan4 } from "@thi.ng/vectors/tan";
 import type { JSBuiltinsVec } from "../api";
 
 export const VEC4: JSBuiltinsVec = {

@@ -60,15 +60,23 @@ thi.ng/umbrella packages, but would benefit from a more unified approach.
 yarn add @thi.ng/oquery
 ```
 
-```html
-// ES module
-<script type="module" src="https://unpkg.com/@thi.ng/oquery?module" crossorigin></script>
+ES module import:
 
-// UMD
-<script src="https://unpkg.com/@thi.ng/oquery/lib/index.umd.js" crossorigin></script>
+```html
+<script type="module" src="https://cdn.skypack.dev/@thi.ng/oquery"></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.42 KB / CJS: 1.48 KB / UMD: 1.46 KB
+[Skypack documentation](https://docs.skypack.dev/)
+
+For NodeJS (v14.6+):
+
+```text
+node --experimental-specifier-resolution=node --experimental-repl-await
+
+> const oquery = await import("@thi.ng/oquery");
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 1.42 KB
 
 ## Dependencies
 

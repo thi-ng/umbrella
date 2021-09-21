@@ -1,20 +1,23 @@
-import { assert, Fn, ICopy, IEmpty, Pair } from "@thi.ng/api";
+import type { Fn, ICopy, IEmpty, Pair } from "@thi.ng/api";
 import { equivArrayLike } from "@thi.ng/equiv";
+import { assert } from "@thi.ng/errors/assert";
 import type { IRegionQuery, ISpatialMap } from "@thi.ng/geom-api";
-import { pointInCenteredBox, testCenteredBoxSphere } from "@thi.ng/geom-isec";
-import { Heap } from "@thi.ng/heaps";
-import { EPS } from "@thi.ng/math";
-import { iterate, map, permutations, repeat, take } from "@thi.ng/transducers";
-import {
-    addmN,
-    distSq,
-    madd,
-    mulN,
-    MultiVecOpRoVV,
-    ReadonlyVec,
-    submN,
-    vop,
-} from "@thi.ng/vectors";
+import { pointInCenteredBox } from "@thi.ng/geom-isec/point";
+import { testCenteredBoxSphere } from "@thi.ng/geom-isec/rect-circle";
+import { Heap } from "@thi.ng/heaps/heap";
+import { EPS } from "@thi.ng/math/api";
+import { iterate } from "@thi.ng/transducers/iterate";
+import { map } from "@thi.ng/transducers/map";
+import { permutations } from "@thi.ng/transducers/permutations";
+import { repeat } from "@thi.ng/transducers/repeat";
+import { take } from "@thi.ng/transducers/take";
+import type { MultiVecOpRoVV, ReadonlyVec } from "@thi.ng/vectors";
+import { addmN } from "@thi.ng/vectors/addmn";
+import { distSq } from "@thi.ng/vectors/distsq";
+import { madd } from "@thi.ng/vectors/madd";
+import { mulN } from "@thi.ng/vectors/muln";
+import { submN } from "@thi.ng/vectors/submn";
+import { vop } from "@thi.ng/vectors/vop";
 import { addResults, CMP, into } from "./utils";
 
 export class NdQtNode<K extends ReadonlyVec, V> {
@@ -176,7 +179,8 @@ export class NdQuadtreeMap<K extends ReadonlyVec, V>
         ICopy<NdQuadtreeMap<K, V>>,
         IEmpty<NdQuadtreeMap<K, V>>,
         IRegionQuery<K, V, number>,
-        ISpatialMap<K, V> {
+        ISpatialMap<K, V>
+{
     static readonly MAX_DIM = 16;
 
     /**

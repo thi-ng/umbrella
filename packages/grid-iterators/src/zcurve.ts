@@ -1,5 +1,5 @@
-import { ceilPow2 } from "@thi.ng/binary";
-import { demux2 } from "@thi.ng/morton";
+import { ceilPow2 } from "@thi.ng/binary/pow";
+import { demux2 } from "@thi.ng/morton/mux";
 import { asInt } from "./utils";
 
 /**

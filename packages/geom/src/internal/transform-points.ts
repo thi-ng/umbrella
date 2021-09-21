@@ -1,6 +1,7 @@
 import type { Fn } from "@thi.ng/api";
 import type { PCLike, PCLikeConstructor } from "@thi.ng/geom-api";
-import { MatOpMV, mulV, mulV344, ReadonlyMat } from "@thi.ng/matrices";
+import type { MatOpMV, ReadonlyMat } from "@thi.ng/matrices";
+import { mulV, mulV344 } from "@thi.ng/matrices/mulv";
 import type { ReadonlyVec } from "@thi.ng/vectors";
 import { copyAttribs } from "./copy-attribs";
 
@@ -28,15 +29,14 @@ export const transformedPointsWith = (
     op: MatOpMV = mulV
 ) => pts.map((p) => op([], fn(p), p)!);
 
-export const transformedShape = (ctor: PCLikeConstructor) => (
-    $: PCLike,
-    mat: ReadonlyMat
-) => new ctor(transformedPoints($.points, mat), copyAttribs($));
+export const transformedShape =
+    (ctor: PCLikeConstructor) => ($: PCLike, mat: ReadonlyMat) =>
+        new ctor(transformedPoints($.points, mat), copyAttribs($));
 
-export const transformedShapePoints = (ctor: PCLikeConstructor) => (
-    $: PCLike,
-    fn: Fn<ReadonlyVec, ReadonlyMat>
-) => new ctor(transformedPointsWith($.points, fn), copyAttribs($));
+export const transformedShapePoints =
+    (ctor: PCLikeConstructor) =>
+    ($: PCLike, fn: Fn<ReadonlyVec, ReadonlyMat>) =>
+        new ctor(transformedPointsWith($.points, fn), copyAttribs($));
 
 // 3d versions
 
@@ -51,12 +51,11 @@ export const transformedPointsWith3 = (
     fn: Fn<ReadonlyVec, ReadonlyMat>
 ) => transformedPointsWith(pts, fn, <any>mulV344);
 
-export const transformedShape3 = (ctor: PCLikeConstructor) => (
-    $: PCLike,
-    mat: ReadonlyMat
-) => new ctor(transformedPoints3($.points, mat), copyAttribs($));
+export const transformedShape3 =
+    (ctor: PCLikeConstructor) => ($: PCLike, mat: ReadonlyMat) =>
+        new ctor(transformedPoints3($.points, mat), copyAttribs($));
 
-export const transformedShapePoints3 = (ctor: PCLikeConstructor) => (
-    $: PCLike,
-    fn: Fn<ReadonlyVec, ReadonlyMat>
-) => new ctor(transformedPointsWith3($.points, fn), copyAttribs($));
+export const transformedShapePoints3 =
+    (ctor: PCLikeConstructor) =>
+    ($: PCLike, fn: Fn<ReadonlyVec, ReadonlyMat>) =>
+        new ctor(transformedPointsWith3($.points, fn), copyAttribs($));

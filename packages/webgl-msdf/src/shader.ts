@@ -1,36 +1,22 @@
+import type { FloatSym, Vec2Sym } from "@thi.ng/shader-ast";
+import { assign } from "@thi.ng/shader-ast/ast/assign";
+import { discard, ifThen } from "@thi.ng/shader-ast/ast/controlflow";
+import { defMain, defn, ret } from "@thi.ng/shader-ast/ast/function";
 import {
-    $x,
-    $xyz,
-    $y,
-    $z,
-    add,
-    assign,
-    clamp,
-    defMain,
-    defn,
-    discard,
-    div,
     FLOAT0,
     FLOAT05,
     FLOAT1,
-    FloatSym,
-    fwidth,
-    ifThen,
-    lt,
-    max,
-    min,
-    mix,
-    mul,
-    ret,
-    sub,
-    sym,
-    texture,
     vec2,
-    Vec2Sym,
     vec4,
-} from "@thi.ng/shader-ast";
-import { ONE4, ZERO4 } from "@thi.ng/vectors";
-import { BLEND_NORMAL, GLVec4, ShaderSpec } from "@thi.ng/webgl";
+} from "@thi.ng/shader-ast/ast/lit";
+import { add, div, lt, mul, sub } from "@thi.ng/shader-ast/ast/ops";
+import { $x, $xyz, $y, $z } from "@thi.ng/shader-ast/ast/swizzle";
+import { sym } from "@thi.ng/shader-ast/ast/sym";
+import { clamp, max, min, mix } from "@thi.ng/shader-ast/builtin/math";
+import { fwidth, texture } from "@thi.ng/shader-ast/builtin/texture";
+import { ONE4, ZERO4 } from "@thi.ng/vectors/api";
+import type { GLVec4, ShaderSpec } from "@thi.ng/webgl";
+import { BLEND_NORMAL } from "@thi.ng/webgl/api/blend";
 
 export interface MSDFShaderOpts {
     color: boolean;

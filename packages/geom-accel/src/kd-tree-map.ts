@@ -1,10 +1,11 @@
 import type { Fn, ICopy, IEmpty, Pair } from "@thi.ng/api";
-import { ensureArray } from "@thi.ng/arrays";
+import { ensureArray } from "@thi.ng/arrays/ensure-array";
 import type { IRegionQuery, ISpatialMap } from "@thi.ng/geom-api";
-import { Heap } from "@thi.ng/heaps";
-import { EPS } from "@thi.ng/math";
-import { map } from "@thi.ng/transducers";
-import { distSq, ReadonlyVec, Vec } from "@thi.ng/vectors";
+import { Heap } from "@thi.ng/heaps/heap";
+import { EPS } from "@thi.ng/math/api";
+import { map } from "@thi.ng/transducers/map";
+import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
+import { distSq } from "@thi.ng/vectors/distsq";
 import { addResults, CMP, into } from "./utils";
 
 type MaybeKdNode<K extends ReadonlyVec, V> = KdNode<K, V> | undefined;
@@ -43,7 +44,8 @@ export class KdTreeMap<K extends ReadonlyVec, V>
         ICopy<KdTreeMap<K, V>>,
         IEmpty<KdTreeMap<K, V>>,
         IRegionQuery<K, V, number>,
-        ISpatialMap<K, V> {
+        ISpatialMap<K, V>
+{
     readonly dim: number;
 
     protected root: MaybeKdNode<K, V>;

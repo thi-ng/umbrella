@@ -18,9 +18,10 @@ import { safeDiv } from "./safe-div";
  * @param fn -
  * @param eps -
  */
-export const derivative = (f: (x: number) => number, eps = EPS) => (
-    x: number
-) => (f(x + eps) - f(x)) / eps;
+export const derivative =
+    (f: (x: number) => number, eps = EPS) =>
+    (x: number) =>
+        (f(x + eps) - f(x)) / eps;
 
 /**
  * Computes solution for linear equation: `ax + b = 0`.

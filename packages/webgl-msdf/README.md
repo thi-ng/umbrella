@@ -47,15 +47,23 @@ McCurdy's](https://msdf-bmfont.donmccurdy.com/).
 yarn add @thi.ng/webgl-msdf
 ```
 
-```html
-// ES module
-<script type="module" src="https://unpkg.com/@thi.ng/webgl-msdf?module" crossorigin></script>
+ES module import:
 
-// UMD
-<script src="https://unpkg.com/@thi.ng/webgl-msdf/lib/index.umd.js" crossorigin></script>
+```html
+<script type="module" src="https://cdn.skypack.dev/@thi.ng/webgl-msdf"></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.48 KB / CJS: 1.52 KB / UMD: 1.58 KB
+[Skypack documentation](https://docs.skypack.dev/)
+
+For NodeJS (v14.6+):
+
+```text
+node --experimental-specifier-resolution=node --experimental-repl-await
+
+> const webglMsdf = await import("@thi.ng/webgl-msdf");
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 1.48 KB
 
 ## Dependencies
 

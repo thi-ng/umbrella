@@ -46,15 +46,23 @@ the remaining values at their own pace.
 yarn add @thi.ng/seq
 ```
 
-```html
-// ES module
-<script type="module" src="https://unpkg.com/@thi.ng/seq?module" crossorigin></script>
+ES module import:
 
-// UMD
-<script src="https://unpkg.com/@thi.ng/seq/lib/index.umd.js" crossorigin></script>
+```html
+<script type="module" src="https://cdn.skypack.dev/@thi.ng/seq"></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 537 bytes / CJS: 623 bytes / UMD: 683 bytes
+[Skypack documentation](https://docs.skypack.dev/)
+
+For NodeJS (v14.6+):
+
+```text
+node --experimental-specifier-resolution=node --experimental-repl-await
+
+> const seq = await import("@thi.ng/seq");
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 537 bytes
 
 ## Dependencies
 

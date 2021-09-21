@@ -1,5 +1,6 @@
 import type { MultiVecOpV, VecOpV } from "./api";
-import { ARGS_V, defOp } from "./internal/codegen";
+import { defOp } from "./compile/emit";
+import { ARGS_V } from "./compile/templates";
 
 export const [bitNotI, bitNotI2, bitNotI3, bitNotI4] = defOp<
     MultiVecOpV,

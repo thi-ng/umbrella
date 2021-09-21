@@ -1,4 +1,5 @@
-import { dist, dist2, dist3, ReadonlyVec } from "@thi.ng/vectors";
+import type { ReadonlyVec } from "@thi.ng/vectors";
+import { dist, dist2, dist3 } from "@thi.ng/vectors/dist";
 import type { IDistance, Metric } from "./api";
 
 export class Eucledian<T> implements IDistance<T> {

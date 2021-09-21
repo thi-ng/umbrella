@@ -1,31 +1,24 @@
+import type {
+    FloatTerm,
+    Mat3Term,
+    Vec2Term,
+    Vec3Term,
+} from "@thi.ng/shader-ast";
+import { ternary } from "@thi.ng/shader-ast/ast/controlflow";
+import { defn, ret } from "@thi.ng/shader-ast/ast/function";
+import { indexMat } from "@thi.ng/shader-ast/ast/indexed";
 import {
-    $x,
-    $y,
-    $z,
-    defn,
     float,
     FLOAT0,
     FLOAT05,
     FLOAT1,
-    FloatTerm,
-    indexMat,
-    lt,
-    madd,
-    Mat3Term,
-    max,
-    min,
-    mul,
-    pow,
-    reciprocal,
-    ret,
-    sub,
-    ternary,
-    Vec2Term,
     vec3,
-    Vec3Term,
     VEC3_0,
     VEC3_1,
-} from "@thi.ng/shader-ast";
+} from "@thi.ng/shader-ast/ast/lit";
+import { lt, madd, mul, reciprocal, sub } from "@thi.ng/shader-ast/ast/ops";
+import { $x, $y, $z } from "@thi.ng/shader-ast/ast/swizzle";
+import { max, min, pow } from "@thi.ng/shader-ast/builtin/math";
 import { fit01, fitClamped } from "../math/fit";
 
 /**

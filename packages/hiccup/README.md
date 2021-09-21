@@ -143,15 +143,23 @@ iterable
 yarn add @thi.ng/hiccup
 ```
 
-```html
-// ES module
-<script type="module" src="https://unpkg.com/@thi.ng/hiccup?module" crossorigin></script>
+ES module import:
 
-// UMD
-<script src="https://unpkg.com/@thi.ng/hiccup/lib/index.umd.js" crossorigin></script>
+```html
+<script type="module" src="https://cdn.skypack.dev/@thi.ng/hiccup"></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 2.29 KB / CJS: 2.40 KB / UMD: 2.42 KB
+[Skypack documentation](https://docs.skypack.dev/)
+
+For NodeJS (v14.6+):
+
+```text
+node --experimental-specifier-resolution=node --experimental-repl-await
+
+> const hiccup = await import("@thi.ng/hiccup");
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 2.29 KB
 
 ## Dependencies
 

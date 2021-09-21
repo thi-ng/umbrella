@@ -1,6 +1,5 @@
+import { group } from "@thi.ng/testament";
 // import * as assert from "assert";
 // import * as pd from "../src";
 
-describe("porter-duff", () => {
-    it("tests pending");
-});
+group("porter-duff", {});

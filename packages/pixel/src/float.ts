@@ -1,6 +1,8 @@
-import { assert, Fn2, ICopy, IEmpty, NumericArray } from "@thi.ng/api";
-import { isNumber, isString } from "@thi.ng/checks";
-import { clamp01 } from "@thi.ng/math";
+import type { Fn2, ICopy, IEmpty, NumericArray } from "@thi.ng/api";
+import { isNumber } from "@thi.ng/checks/is-number";
+import { isString } from "@thi.ng/checks/is-string";
+import { assert } from "@thi.ng/errors/assert";
+import { clamp01 } from "@thi.ng/math/interval";
 import type {
     BlendFnFloat,
     BlitOpts,
@@ -57,7 +59,8 @@ export class FloatBuffer
         IBlit<FloatBuffer>,
         IInvert<FloatBuffer>,
         ICopy<FloatBuffer>,
-        IEmpty<FloatBuffer> {
+        IEmpty<FloatBuffer>
+{
     /**
      * Creates a new `FloatBuffer` from given {@link PackedBuffer} and using
      * provided {@link FloatFormat}.

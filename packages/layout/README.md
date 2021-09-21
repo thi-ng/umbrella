@@ -40,15 +40,23 @@ to define other layout types / implementations.
 yarn add @thi.ng/layout
 ```
 
-```html
-// ES module
-<script type="module" src="https://unpkg.com/@thi.ng/layout?module" crossorigin></script>
+ES module import:
 
-// UMD
-<script src="https://unpkg.com/@thi.ng/layout/lib/index.umd.js" crossorigin></script>
+```html
+<script type="module" src="https://cdn.skypack.dev/@thi.ng/layout"></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 659 bytes / CJS: 724 bytes / UMD: 802 bytes
+[Skypack documentation](https://docs.skypack.dev/)
+
+For NodeJS (v14.6+):
+
+```text
+node --experimental-specifier-resolution=node --experimental-repl-await
+
+> const layout = await import("@thi.ng/layout");
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 659 bytes
 
 ## Dependencies
 

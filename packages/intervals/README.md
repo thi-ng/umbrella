@@ -52,15 +52,23 @@ standard interfaces: `ICompare`, `IContains`, `ICopy`, `IEquiv`.
 yarn add @thi.ng/intervals
 ```
 
-```html
-// ES module
-<script type="module" src="https://unpkg.com/@thi.ng/intervals?module" crossorigin></script>
+ES module import:
 
-// UMD
-<script src="https://unpkg.com/@thi.ng/intervals/lib/index.umd.js" crossorigin></script>
+```html
+<script type="module" src="https://cdn.skypack.dev/@thi.ng/intervals"></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.63 KB / CJS: 1.78 KB / UMD: 1.73 KB
+[Skypack documentation](https://docs.skypack.dev/)
+
+For NodeJS (v14.6+):
+
+```text
+node --experimental-specifier-resolution=node --experimental-repl-await
+
+> const intervals = await import("@thi.ng/intervals");
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 1.63 KB
 
 ## Dependencies
 

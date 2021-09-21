@@ -68,15 +68,23 @@ this time built on the streaming primitives provided by
 yarn add @thi.ng/rstream-query
 ```
 
-```html
-// ES module
-<script type="module" src="https://unpkg.com/@thi.ng/rstream-query?module" crossorigin></script>
+ES module import:
 
-// UMD
-<script src="https://unpkg.com/@thi.ng/rstream-query/lib/index.umd.js" crossorigin></script>
+```html
+<script type="module" src="https://cdn.skypack.dev/@thi.ng/rstream-query"></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 2.67 KB / CJS: 2.75 KB / UMD: 2.64 KB
+[Skypack documentation](https://docs.skypack.dev/)
+
+For NodeJS (v14.6+):
+
+```text
+node --experimental-specifier-resolution=node --experimental-repl-await
+
+> const rstreamQuery = await import("@thi.ng/rstream-query");
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 2.67 KB
 
 ## Dependencies
 
@@ -85,6 +93,7 @@ Package sizes (gzipped, pre-treeshake): ESM: 2.67 KB / CJS: 2.75 KB / UMD: 2.64 
 - [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
 - [@thi.ng/equiv](https://github.com/thi-ng/umbrella/tree/develop/packages/equiv)
 - [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
+- [@thi.ng/logger](https://github.com/thi-ng/umbrella/tree/develop/packages/logger)
 - [@thi.ng/math](https://github.com/thi-ng/umbrella/tree/develop/packages/math)
 - [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream)
 - [@thi.ng/rstream-dot](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream-dot)

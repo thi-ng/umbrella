@@ -1,19 +1,22 @@
+import { group } from "@thi.ng/testament";
 import * as assert from "assert";
 import { fmod, mod, remainder } from "../src";
 
-describe("math", () => {
-    it("fmod", () => {
+group("math", {
+    fmod: () => {
         assert.strictEqual(fmod(3.75, 2), 1.75);
         assert.strictEqual(fmod(-3.75, 2), -1.75);
         assert.strictEqual(3.75 % 2, 1.75);
         assert.strictEqual(-3.75 % 2, -1.75);
-    });
-    it("mod", () => {
+    },
+
+    mod: () => {
         assert.strictEqual(mod(3.75, 2), 1.75);
         assert.strictEqual(mod(-3.75, 2), 0.25);
-    });
-    it("remainder", () => {
+    },
+
+    remainder: () => {
         assert.strictEqual(remainder(3.75, 2), -0.25);
         assert.strictEqual(remainder(-3.75, 2), 0.25);
-    });
+    },
 });

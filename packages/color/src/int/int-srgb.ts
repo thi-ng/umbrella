@@ -1,4 +1,4 @@
-import { setC4 } from "@thi.ng/vectors";
+import { setC4 } from "@thi.ng/vectors/setc";
 import type { Color } from "../api";
 import { INV8BIT } from "../api/constants";
 

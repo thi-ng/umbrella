@@ -1,18 +1,23 @@
 import type { IObjectOf } from "@thi.ng/api";
-import { defmulti, Implementation2O, MultiFn2O } from "@thi.ng/defmulti";
+import type { Implementation2O, MultiFn2O } from "@thi.ng/defmulti";
+import { defmulti } from "@thi.ng/defmulti/defmulti";
 import type { IShape, PCLike } from "@thi.ng/geom-api";
-import { closestPoint as closestPointArc } from "@thi.ng/geom-arc";
+import { closestPoint as closestPointArc } from "@thi.ng/geom-arc/closest-point";
 import {
     closestPointAABB,
-    closestPointArray,
-    closestPointCircle,
-    closestPointPlane,
-    closestPointPolyline,
     closestPointRect,
+} from "@thi.ng/geom-closest-point/box";
+import { closestPointCircle } from "@thi.ng/geom-closest-point/circle";
+import {
+    closestPointPolyline,
     closestPointSegment,
-} from "@thi.ng/geom-closest-point";
-import { closestPointCubic, closestPointQuadratic } from "@thi.ng/geom-splines";
-import { add2, add3, ReadonlyVec, Vec } from "@thi.ng/vectors";
+} from "@thi.ng/geom-closest-point/line";
+import { closestPointPlane } from "@thi.ng/geom-closest-point/plane";
+import { closestPointArray } from "@thi.ng/geom-closest-point/points";
+import { closestPointCubic } from "@thi.ng/geom-splines/cubic-closest-point";
+import { closestPointQuadratic } from "@thi.ng/geom-splines/quadratic-closest-point";
+import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
+import { add2, add3 } from "@thi.ng/vectors/add";
 import type { AABB } from "../api/aabb";
 import type { Arc } from "../api/arc";
 import type { Circle } from "../api/circle";

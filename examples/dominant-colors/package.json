@@ -8,7 +8,7 @@
     "scripts": {
         "clean": "../../node_modules/.bin/rimraf build node_modules/.cache",
         "start": "../../node_modules/.bin/snowpack dev --reload",
-        "build": "../../node_modules/.bin/snowpack build"
+        "build": "yarn clean && ../../node_modules/.bin/snowpack build"
     },
     "devDependencies": {
         "@thi.ng/snowpack-env": "^2.3.3"
@@ -20,7 +20,6 @@
         "@thi.ng/color": "latest",
         "@thi.ng/compare": "latest",
         "@thi.ng/dl-asset": "latest",
-        "@thi.ng/hiccup-carbon-icons": "latest",
         "@thi.ng/hiccup-html": "latest",
         "@thi.ng/hiccup-svg": "latest",
         "@thi.ng/pixel": "latest",
@@ -34,7 +33,9 @@
         "last 3 Chrome versions"
     ],
     "browser": {
-        "process": false
+        "process": false,
+        "setTimeout": false,
+        "util": false
     },
     "thi.ng": {
         "readme": [

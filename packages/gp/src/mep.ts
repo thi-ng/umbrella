@@ -1,6 +1,6 @@
-import { inRange } from "@thi.ng/math";
-import { SYSTEM } from "@thi.ng/random";
-import { repeatedly } from "@thi.ng/transducers";
+import { inRange } from "@thi.ng/math/interval";
+import { SYSTEM } from "@thi.ng/random/system";
+import { repeatedly } from "@thi.ng/transducers/repeatedly";
 import type { ASTNode, MEPChromosome, MEPGene, MEPOpts } from "./api";
 import { opNode, probabilities, terminalNode } from "./utils";
 

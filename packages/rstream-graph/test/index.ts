@@ -1,11 +1,12 @@
 import { Atom } from "@thi.ng/atom";
 import { fromIterable } from "@thi.ng/rstream";
+import { group } from "@thi.ng/testament";
 import { map } from "@thi.ng/transducers";
 import * as assert from "assert";
 import { add, initGraph, mul, node1 } from "../src";
 
-describe("rstream-graph", () => {
-    it("basic", (done) => {
+group("rstream-graph", {
+    basic: ({ done }) => {
         const acc: number[] = [];
         const state = new Atom<any>({ a: 1, b: 2 });
         const graph = initGraph(state, {
@@ -76,5 +77,5 @@ describe("rstream-graph", () => {
             });
             done();
         }, 30);
-    });
+    },
 });

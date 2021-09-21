@@ -1,5 +1,5 @@
 import type { Fn, Fn2 } from "@thi.ng/api";
-import { isArray } from "@thi.ng/checks";
+import { isArray } from "@thi.ng/checks/is-array";
 import { DGraph } from "@thi.ng/dgraph";
 import type {
     Assign,

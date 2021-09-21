@@ -1,4 +1,5 @@
-import { assert, Fn0 } from "@thi.ng/api";
+import type { Fn0 } from "@thi.ng/api";
+import { assert } from "@thi.ng/errors/assert";
 import type { IRandom } from "./api";
 import { SYSTEM } from "./system";
 

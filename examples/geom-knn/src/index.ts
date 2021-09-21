@@ -1,10 +1,13 @@
-import { timedResult } from "@thi.ng/bench";
-import { KdTreeMap } from "@thi.ng/geom-accel";
+import { timedResult } from "@thi.ng/bench/timed";
+import { KdTreeMap } from "@thi.ng/geom-accel/kd-tree-map";
 import { canvas } from "@thi.ng/hdom-canvas";
-import { CloseMode, StreamSync, sync, trigger } from "@thi.ng/rstream";
 import { gestureStream } from "@thi.ng/rstream-gestures";
-import { map, mapcat } from "@thi.ng/transducers";
+import { CloseMode } from "@thi.ng/rstream/api";
+import { StreamSync, sync } from "@thi.ng/rstream/sync";
+import { trigger } from "@thi.ng/rstream/trigger";
 import { updateDOM } from "@thi.ng/transducers-hdom";
+import { map } from "@thi.ng/transducers/map";
+import { mapcat } from "@thi.ng/transducers/mapcat";
 import type { Vec } from "@thi.ng/vectors";
 
 const app = (main: StreamSync<any, any>) => {

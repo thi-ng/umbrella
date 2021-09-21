@@ -1,8 +1,9 @@
+import { group } from "@thi.ng/testament";
 import * as assert from "assert";
 import { filterFuzzy } from "../src";
 
-describe("fuzzy", () => {
-    it("strings", () => {
+group("fuzzy", {
+    strings: () => {
         const opts = ["hello", "hallo", "hey", "heyoka"];
         assert.deepStrictEqual(
             [...filterFuzzy("hl", opts)],
@@ -21,8 +22,9 @@ describe("fuzzy", () => {
             ["hey", "heyoka"]
         );
         assert.deepStrictEqual([...filterFuzzy("hk", opts)], ["heyoka"]);
-    });
-    it("arrays", () => {
+    },
+
+    arrays: () => {
         const opts = [
             [1, 2, 3],
             [1, 3, 4],
@@ -46,5 +48,5 @@ describe("fuzzy", () => {
         );
         assert.deepStrictEqual([...filterFuzzy([3, 6], opts)], [[1, 3, 6]]);
         assert.deepStrictEqual([...filterFuzzy([], opts)], opts);
-    });
+    },
 });

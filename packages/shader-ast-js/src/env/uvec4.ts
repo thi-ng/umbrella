@@ -1,21 +1,15 @@
-import {
-    addNU4,
-    addU4,
-    bitAndU4,
-    bitNotU4,
-    bitOrU4,
-    bitXorU4,
-    divNU4,
-    divU4,
-    fmod4,
-    fmodN4,
-    lshiftU4,
-    mulNU4,
-    mulU4,
-    rshiftU4,
-    subNU4,
-    subU4,
-} from "@thi.ng/vectors";
+import { addNU4, addU4 } from "@thi.ng/vectors/addi";
+import { bitAndU4 } from "@thi.ng/vectors/bit-and";
+import { bitNotU4 } from "@thi.ng/vectors/bit-not";
+import { bitOrU4 } from "@thi.ng/vectors/bit-or";
+import { bitXorU4 } from "@thi.ng/vectors/bit-xor";
+import { divNU4, divU4 } from "@thi.ng/vectors/divi";
+import { fmod4 } from "@thi.ng/vectors/fmod";
+import { fmodN4 } from "@thi.ng/vectors/fmodn";
+import { lshiftU4 } from "@thi.ng/vectors/lshift";
+import { mulNU4, mulU4 } from "@thi.ng/vectors/muli";
+import { rshiftU4 } from "@thi.ng/vectors/rshift";
+import { subNU4, subU4 } from "@thi.ng/vectors/subi";
 import type { JSBuiltinsIntVec } from "../api";
 import { VEC4 } from "./vec4";
 

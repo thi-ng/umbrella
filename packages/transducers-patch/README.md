@@ -40,15 +40,23 @@ state update. By default all edits are performed non-destructively, but
 yarn add @thi.ng/transducers-patch
 ```
 
-```html
-// ES module
-<script type="module" src="https://unpkg.com/@thi.ng/transducers-patch?module" crossorigin></script>
+ES module import:
 
-// UMD
-<script src="https://unpkg.com/@thi.ng/transducers-patch/lib/index.umd.js" crossorigin></script>
+```html
+<script type="module" src="https://cdn.skypack.dev/@thi.ng/transducers-patch"></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 484 bytes / CJS: 539 bytes / UMD: 644 bytes
+[Skypack documentation](https://docs.skypack.dev/)
+
+For NodeJS (v14.6+):
+
+```text
+node --experimental-specifier-resolution=node --experimental-repl-await
+
+> const transducersPatch = await import("@thi.ng/transducers-patch");
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 484 bytes
 
 ## Dependencies
 

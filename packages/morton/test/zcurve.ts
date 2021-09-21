@@ -1,14 +1,15 @@
+import { group } from "@thi.ng/testament";
 import * as assert from "assert";
 import { ZCurve } from "../src";
 
-describe("ZCurve", () => {
-    it("ctor", () => {
+group("ZCurve", {
+    ctor: () => {
         assert.throws(() => new ZCurve(<any>1, 8));
         assert.throws(() => new ZCurve(2, <any>0));
         assert.throws(() => new ZCurve(2, <any>33));
-    });
+    },
 
-    it("range 2d (1)", () => {
+    "range 2d (1)": () => {
         const z = new ZCurve(2, 8);
         assert.deepStrictEqual(
             [...z.range([2, 2], [3, 6])],
@@ -29,9 +30,9 @@ describe("ZCurve", () => {
                 [3, 6],
             ]
         );
-    });
+    },
 
-    it("range 2d (2)", () => {
+    "range 2d (2)": () => {
         const z = new ZCurve(2, 8);
         assert.deepStrictEqual(
             [...z.range([3, 2], [4, 6])],
@@ -52,9 +53,9 @@ describe("ZCurve", () => {
                 [4, 6],
             ]
         );
-    });
+    },
 
-    it("range 3d (2)", () => {
+    "range 3d (2)": () => {
         const z = new ZCurve(3, 8);
         assert.deepStrictEqual(
             [...z.range([3, 2, 0], [4, 6, 1])],
@@ -106,5 +107,5 @@ describe("ZCurve", () => {
                 [4, 6, 1],
             ]
         );
-    });
+    },
 });

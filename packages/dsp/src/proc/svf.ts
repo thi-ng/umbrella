@@ -1,5 +1,6 @@
 import type { IReset } from "@thi.ng/api";
-import { clamp05, PI } from "@thi.ng/math";
+import { PI } from "@thi.ng/math/api";
+import { clamp05 } from "@thi.ng/math/interval";
 import type { SVFType } from "../api";
 import { AProc } from "./aproc";
 

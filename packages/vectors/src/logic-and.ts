@@ -1,6 +1,6 @@
 import type { BVecOpVN, BVecOpVV, MultiBVecOpVN, MultiBVecOpVV } from "./api";
-import { ARGS_VN, defOp } from "./internal/codegen";
-import { MATH, MATH_N } from "./internal/templates";
+import { defOp } from "./compile/emit";
+import { ARGS_VN, MATH, MATH_N } from "./compile/templates";
 
 export const [logicAnd, logicAnd2, logicAnd3, logicAnd4] = defOp<
     MultiBVecOpVV,

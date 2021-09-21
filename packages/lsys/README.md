@@ -56,15 +56,23 @@ Planned features:
 yarn add @thi.ng/lsys
 ```
 
-```html
-// ES module
-<script type="module" src="https://unpkg.com/@thi.ng/lsys?module" crossorigin></script>
+ES module import:
 
-// UMD
-<script src="https://unpkg.com/@thi.ng/lsys/lib/index.umd.js" crossorigin></script>
+```html
+<script type="module" src="https://cdn.skypack.dev/@thi.ng/lsys"></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 679 bytes / CJS: 752 bytes / UMD: 868 bytes
+[Skypack documentation](https://docs.skypack.dev/)
+
+For NodeJS (v14.6+):
+
+```text
+node --experimental-specifier-resolution=node --experimental-repl-await
+
+> const lsys = await import("@thi.ng/lsys");
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 679 bytes
 
 ## Dependencies
 

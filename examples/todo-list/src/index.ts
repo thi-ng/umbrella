@@ -1,7 +1,11 @@
 import type { IObjectOf } from "@thi.ng/api";
-import { defAtom, defCursor, defHistory, defView } from "@thi.ng/atom";
-import { start } from "@thi.ng/hdom";
-import { map, pairs } from "@thi.ng/transducers";
+import { defAtom } from "@thi.ng/atom/atom";
+import { defCursor } from "@thi.ng/atom/cursor";
+import { defHistory } from "@thi.ng/atom/history";
+import { defView } from "@thi.ng/atom/view";
+import { start } from "@thi.ng/hdom/start";
+import { map } from "@thi.ng/transducers/map";
+import { pairs } from "@thi.ng/transducers/pairs";
 
 interface Task {
     done: boolean;
@@ -18,10 +22,7 @@ interface State {
 // central app state (immutable)
 const db = defAtom<State>({ tasks: {}, nextID: 0 });
 // attach undo/redo history for `tasks` branch (arbitrary undo limit of 100 steps)
-const tasks = defHistory(
-    defCursor<State, "tasks">(db, ["tasks"]),
-    100
-);
+const tasks = defHistory(defCursor<State, "tasks">(db, ["tasks"]), 100);
 // cursor for direct access to `nextID`
 const nextID = defCursor(db, ["nextID"]);
 // create derived view of tasks transformed into components
@@ -70,10 +71,9 @@ const taskList = () => {
         : ["div", "nothing todo, get busy..."];
 };
 
-const button = (onclick: EventListener, body: string) => (
-    _: any,
-    disabled: boolean
-) => ["button", { onclick, disabled }, body];
+const button =
+    (onclick: EventListener, body: string) => (_: any, disabled: boolean) =>
+        ["button", { onclick, disabled }, body];
 
 const toolbar = () => {
     const btAdd = button(() => addNewTask(), "+ Add");
@@ -97,8 +97,7 @@ const header = [
         [
             "a",
             {
-                href:
-                    "https://github.com/thi-ng/umbrella/tree/develop/packages/hdom",
+                href: "https://github.com/thi-ng/umbrella/tree/develop/packages/hdom",
             },
             "@thi.ng/hdom",
         ],

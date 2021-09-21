@@ -1,6 +1,8 @@
-import { IObjectOf, NO_OP } from "@thi.ng/api";
-import { $iter, iterator, Transducer } from "@thi.ng/transducers";
+import type { IObjectOf } from "@thi.ng/api";
+import { NO_OP } from "@thi.ng/api/api";
+import type { Transducer } from "@thi.ng/transducers";
 import { fsm, FSMState, FSMStateMap } from "@thi.ng/transducers-fsm";
+import { iterator, __iter } from "@thi.ng/transducers/iterator";
 
 export interface ParseOpts {
     /**
@@ -167,7 +169,7 @@ export function parse(
     src: string
 ): IterableIterator<ParseEvent>;
 export function parse(...args: any[]): any {
-    const iter = $iter(parse, args, iterator);
+    const iter = __iter(parse, args, iterator);
     if (iter) {
         return iter;
     }

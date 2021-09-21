@@ -53,15 +53,23 @@ iterable for direct use.
 yarn add @thi.ng/transducers-binary
 ```
 
-```html
-// ES module
-<script type="module" src="https://unpkg.com/@thi.ng/transducers-binary?module" crossorigin></script>
+ES module import:
 
-// UMD
-<script src="https://unpkg.com/@thi.ng/transducers-binary/lib/index.umd.js" crossorigin></script>
+```html
+<script type="module" src="https://cdn.skypack.dev/@thi.ng/transducers-binary"></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 2.64 KB / CJS: 2.79 KB / UMD: 2.69 KB
+[Skypack documentation](https://docs.skypack.dev/)
+
+For NodeJS (v14.6+):
+
+```text
+node --experimental-specifier-resolution=node --experimental-repl-await
+
+> const transducersBinary = await import("@thi.ng/transducers-binary");
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 2.64 KB
 
 ## Dependencies
 

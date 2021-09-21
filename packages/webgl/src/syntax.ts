@@ -1,5 +1,5 @@
-import { isArray } from "@thi.ng/checks";
-import { GLSLVersion } from "@thi.ng/shader-ast-glsl";
+import { isArray } from "@thi.ng/checks/is-array";
+import { GLSLVersion } from "@thi.ng/shader-ast-glsl/api";
 import type { GLSL } from "./api/glsl";
 import type { GLSLDeclPrefixes, GLSLSyntax } from "./api/shader";
 

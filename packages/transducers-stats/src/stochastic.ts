@@ -1,4 +1,7 @@
-import { $iter, compR, Reducer, step, Transducer } from "@thi.ng/transducers";
+import type { Reducer, Transducer } from "@thi.ng/transducers";
+import { compR } from "@thi.ng/transducers/compr";
+import { __iter } from "@thi.ng/transducers/iterator";
+import { step } from "@thi.ng/transducers/step";
 import { donchian } from "./donchian";
 import { sma } from "./sma";
 
@@ -35,7 +38,7 @@ export function stochastic(
 ): IterableIterator<Stochastic>;
 export function stochastic(...args: any[]): any {
     return (
-        $iter(stochastic, args) ||
+        __iter(stochastic, args) ||
         ((rfn: Reducer<any, Stochastic>) => {
             const reduce = rfn[2];
             const xfD = step(donchian(args[0] || 5));

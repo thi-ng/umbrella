@@ -1,5 +1,6 @@
 import type { Fn2 } from "@thi.ng/api";
-import { DEFAULT, defmulti } from "@thi.ng/defmulti";
+import { defmulti } from "@thi.ng/defmulti";
+import { group } from "@thi.ng/testament";
 import * as assert from "assert";
 import {
     ASTNode,
@@ -8,7 +9,7 @@ import {
     runtime,
     Sym,
     SyntaxOpts,
-    tokenize
+    tokenize,
 } from "../src";
 
 const ops = defmulti<ASTNode, ASTNode[], any, any>((x) => (<Sym>x).value);
@@ -21,11 +22,10 @@ const rt = runtime<Implementations<any, any>, any, any>({
 
 const $eval = (src: string, env: any = {}) => rt(parse(src).children[0], env);
 
-const op = (fn: Fn2<number, number, number>) => (
-    _: ASTNode,
-    vals: ASTNode[],
-    env: any
-) => vals.slice(2).reduce((acc, x) => fn(acc, rt(x, env)), rt(vals[1], env));
+const op =
+    (fn: Fn2<number, number, number>) =>
+    (_: ASTNode, vals: ASTNode[], env: any) =>
+        vals.slice(2).reduce((acc, x) => fn(acc, rt(x, env)), rt(vals[1], env));
 
 ops.addAll({
     "+": op((acc, x) => acc + x),
@@ -35,17 +35,17 @@ ops.addAll({
     count: (_, [__, x]) => rt(x).length,
 });
 
-ops.add(DEFAULT, (x, [_, ...args], env) => {
+ops.setDefault((x, [_, ...args], env) => {
     const f = env[(<Sym>x).value];
-    assert(!!f, "missing impl");
+    assert.ok(!!f, "missing impl");
     return f.apply(
         null,
         args.map((a) => rt(a, env))
     );
 });
 
-describe("sexpr", () => {
-    it("basic", () => {
+group("sexpr", {
+    basic: () => {
         assert.deepStrictEqual(parse(tokenize(`(+ 1 (len "234"))`)), {
             type: "root",
             children: [
@@ -67,9 +67,9 @@ describe("sexpr", () => {
                 },
             ],
         });
-    });
+    },
 
-    it("custom syntax", () => {
+    "custom syntax": () => {
         const syntax: Partial<SyntaxOpts> = {
             scopes: [
                 ["<", ">"],
@@ -114,15 +114,15 @@ describe("sexpr", () => {
                 },
             ],
         });
-    });
+    },
 
-    it("unmatched", () => {
+    unmatched: () => {
         assert.throws(() => parse(`(`));
         assert.throws(() => parse(`((`));
         assert.throws(() => parse(`(()`));
-    });
+    },
 
-    it("math", () => {
+    math: () => {
         assert.strictEqual(
             $eval(
                 `(/
@@ -134,18 +134,18 @@ describe("sexpr", () => {
             ),
             (3 * (100 + 3 * 4 * 5) - -20) / 100
         );
-    });
+    },
 
-    it("fn in env", () => {
+    "fn in env": () => {
         assert.strictEqual(
             $eval(`(join (+ 1 2) (+ 3 4))`, {
                 join: (...xs: any[]) => xs.join(","),
             }),
             "3,7"
         );
-    });
+    },
 
-    it("missing fn in env", () => {
+    "missing fn in env": () => {
         assert.throws(() => $eval("(foo)"));
-    });
+    },
 });

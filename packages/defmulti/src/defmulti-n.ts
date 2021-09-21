@@ -1,7 +1,6 @@
-import { illegalArity } from "@thi.ng/errors";
-import { DEFAULT } from "./constants";
-import { defmulti } from "./defmulti";
+import { illegalArity } from "@thi.ng/errors/illegal-arity";
 import type { Implementation } from "./api";
+import { DEFAULT, defmulti } from "./defmulti";
 
 /**
  * Returns a multi-dispatch function which delegates to one of the

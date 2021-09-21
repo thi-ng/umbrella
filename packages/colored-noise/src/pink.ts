@@ -1,5 +1,6 @@
-import { ctz32 } from "@thi.ng/binary";
-import { INorm, SYSTEM } from "@thi.ng/random";
+import { ctz32 } from "@thi.ng/binary/count";
+import type { INorm } from "@thi.ng/random";
+import { SYSTEM } from "@thi.ng/random/system";
 import { preseed, sum } from "./utils";
 
 /**

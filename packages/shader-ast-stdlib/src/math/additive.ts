@@ -1,22 +1,11 @@
 import type { Fn } from "@thi.ng/api";
-import {
-    add,
-    assign,
-    defn,
-    float,
-    FLOAT0,
-    FLOAT05,
-    FloatSym,
-    FloatTerm,
-    forLoop,
-    inc,
-    lt,
-    mul,
-    Prim,
-    ret,
-    sym,
-    Term,
-} from "@thi.ng/shader-ast";
+import type { FloatSym, FloatTerm, Prim, Term } from "@thi.ng/shader-ast";
+import { assign } from "@thi.ng/shader-ast/ast/assign";
+import { forLoop } from "@thi.ng/shader-ast/ast/controlflow";
+import { defn, ret } from "@thi.ng/shader-ast/ast/function";
+import { float, FLOAT0, FLOAT05 } from "@thi.ng/shader-ast/ast/lit";
+import { add, inc, lt, mul } from "@thi.ng/shader-ast/ast/ops";
+import { sym } from "@thi.ng/shader-ast/ast/sym";
 
 /**
  * Higher order function. Takes an AST type ID, a single-arg scalar
@@ -50,7 +39,7 @@ export const additive = <T extends Prim>(
             (n = sym(FLOAT0)),
             (amp = sym(FLOAT05)),
             forLoop(
-                sym(float(0)),
+                sym(FLOAT0),
                 (i) => lt(i, float(oct)),
                 inc,
                 (i) => [

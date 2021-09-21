@@ -1,11 +1,12 @@
 import { equiv } from "@thi.ng/equiv";
+import { group } from "@thi.ng/testament";
 import * as assert from "assert";
 import { parseString } from "../src";
 
 const $ref = (id: string) => ({ $ref: id });
 
-describe("refs", () => {
-    it("resolve w/ prefix", () => {
+group("refs", {
+    "resolve w/ prefix": () => {
         const db = parseString(
             `
 @prefix thi: thi.ng/
@@ -22,9 +23,9 @@ thi:c
         assert.deepStrictEqual(db["thi.ng/a"].partof, { $id: "thi.ng/b" });
         assert.strictEqual(db["thi.ng/a"].knows.$id, "alt.thi.ng/c");
         assert.strictEqual(db["alt.thi.ng/c"].diff.$id, "alt.thi.ng/a");
-    });
+    },
 
-    it("resolve circular", () => {
+    "resolve circular": () => {
         const db = parseString(
             `
 a
@@ -37,10 +38,10 @@ b
         ).nodes;
         assert.strictEqual(db.a.knows.$id, "b");
         assert.strictEqual(db.b.knows.$id, "a");
-    });
+    },
 
-    it("ref array item (unresolved)", () => {
-        assert(
+    "ref array item (unresolved)": () => {
+        assert.ok(
             equiv(
                 parseString(
                     `
@@ -67,10 +68,10 @@ d
                 }
             )
         );
-    });
+    },
 
-    it("ref array item (resolved)", () => {
-        assert(
+    "ref array item (resolved)": () => {
+        assert.ok(
             equiv(
                 parseString(
                     `
@@ -105,5 +106,5 @@ d
                 }
             )
         );
-    });
+    },
 });

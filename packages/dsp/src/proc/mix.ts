@@ -1,4 +1,4 @@
-import { clamp01 } from "@thi.ng/math";
+import { clamp01 } from "@thi.ng/math/interval";
 import { AProc2 } from "./aproc";
 
 export class Mix extends AProc2<number, number, number> {

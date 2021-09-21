@@ -1,6 +1,10 @@
-import { assert, Predicate } from "@thi.ng/api";
-import { unsupported } from "@thi.ng/errors";
-import { GRAY16, GRAY8, packedBuffer, RGB888 } from "@thi.ng/pixel";
+import type { Predicate } from "@thi.ng/api";
+import { assert } from "@thi.ng/errors/assert";
+import { unsupported } from "@thi.ng/errors/unsupported";
+import { GRAY16 } from "@thi.ng/pixel/format/gray16";
+import { GRAY8 } from "@thi.ng/pixel/format/gray8";
+import { RGB888 } from "@thi.ng/pixel/format/rgb888";
+import { packedBuffer } from "@thi.ng/pixel/packed";
 
 const isLinebreak = (c: number) => c === 0xa;
 

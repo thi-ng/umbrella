@@ -1,13 +1,6 @@
-import {
-    $w,
-    $x,
-    $y,
-    $z,
-    max,
-    Vec2Sym,
-    Vec3Sym,
-    Vec4Sym,
-} from "@thi.ng/shader-ast";
+import type { Vec2Sym, Vec3Sym, Vec4Sym } from "@thi.ng/shader-ast";
+import { $w, $x, $y, $z } from "@thi.ng/shader-ast/ast/swizzle";
+import { max } from "@thi.ng/shader-ast/builtin/math";
 
 /**
  * Inline function. Returns max(v.x, v.y)

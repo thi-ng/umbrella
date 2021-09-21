@@ -1,5 +1,6 @@
-import { assert } from "@thi.ng/api";
 import { eqDelta, roundTo } from "@thi.ng/math";
+import { group } from "@thi.ng/testament";
+import * as assert from "assert";
 import {
     bisectorStrategy,
     centroidStrategy,
@@ -16,8 +17,8 @@ import {
     variable,
 } from "../src";
 
-describe("defuzz", () => {
-    it("strategies", () => {
+group("defuzz", {
+    strategies: () => {
         // https://www.researchgate.net/publication/267041266_Introduction_to_fuzzy_logic
         const inputs = {
             food: variable([0, 10], {
@@ -69,7 +70,7 @@ describe("defuzz", () => {
                         { food: i, service: j },
                         strategy
                     );
-                    assert(
+                    assert.ok(
                         eqDelta(roundTo(res.tip!, 0.01), expected[k]),
                         `${id}(${i},${j}): expected: ${expected[k]}, got: ${res.tip}`
                     );
@@ -173,5 +174,5 @@ describe("defuzz", () => {
         //     tnormAczelAlsina(2)
         // );
         // console.log(strat.deref()[0]);
-    });
+    },
 });

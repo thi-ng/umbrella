@@ -1,21 +1,34 @@
 import type { Nullable } from "@thi.ng/api";
-import { timedResult } from "@thi.ng/bench";
-import { downloadWithMime } from "@thi.ng/dl-asset";
-import { DOWNLOAD, withSize } from "@thi.ng/hiccup-carbon-icons";
-import { anchor, div, h1, main, textArea } from "@thi.ng/hiccup-html";
-import { defContext, defGrammar, Language, print } from "@thi.ng/parse";
-import { $compile } from "@thi.ng/rdom";
+import { timedResult } from "@thi.ng/bench/timed";
+import { downloadWithMime } from "@thi.ng/dl-asset/raw";
+import { DOWNLOAD } from "@thi.ng/hiccup-carbon-icons/download";
+import { withSize } from "@thi.ng/hiccup-carbon-icons/utils/with-size";
+import { div } from "@thi.ng/hiccup-html/blocks";
+import { textArea } from "@thi.ng/hiccup-html/forms";
+import { anchor } from "@thi.ng/hiccup-html/inline";
+import { h1, main } from "@thi.ng/hiccup-html/sections";
+import type { Language } from "@thi.ng/parse";
+import { defContext } from "@thi.ng/parse/context";
+import { defGrammar } from "@thi.ng/parse/grammar";
+import { print } from "@thi.ng/parse/xform/print";
 import {
     dynamicDropdown,
-    editor,
-    iconButton,
     staticDropdown,
-    tabs,
-} from "@thi.ng/rdom-components";
-import { CloseMode, metaStream, reactive, sync } from "@thi.ng/rstream";
-import { interpolate } from "@thi.ng/strings";
-import { filter, map, pluck, range } from "@thi.ng/transducers";
-import { base64Decode, base64Encode } from "@thi.ng/transducers-binary";
+} from "@thi.ng/rdom-components/dropdown";
+import { editor } from "@thi.ng/rdom-components/editor";
+import { iconButton } from "@thi.ng/rdom-components/icon-button";
+import { tabs } from "@thi.ng/rdom-components/tabs";
+import { $compile } from "@thi.ng/rdom/compile";
+import { CloseMode } from "@thi.ng/rstream/api";
+import { metaStream } from "@thi.ng/rstream/metastream";
+import { reactive } from "@thi.ng/rstream/stream";
+import { sync } from "@thi.ng/rstream/sync";
+import { interpolate } from "@thi.ng/strings/interpolate";
+import { base64Decode, base64Encode } from "@thi.ng/transducers-binary/base64";
+import { filter } from "@thi.ng/transducers/filter";
+import { map } from "@thi.ng/transducers/map";
+import { pluck } from "@thi.ng/transducers/pluck";
+import { range } from "@thi.ng/transducers/range";
 // @ts-ignore
 import { deserialize, serialize } from "@ygoe/msgpack";
 import type { ParseResult, Status } from "./api";

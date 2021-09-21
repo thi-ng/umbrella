@@ -1,4 +1,5 @@
 import type { Fn, FnN } from "@thi.ng/api";
+import { group } from "@thi.ng/testament";
 import * as assert from "assert";
 import {
     meldApplyObj,
@@ -8,8 +9,8 @@ import {
     mergeDeepObj,
 } from "../src";
 
-describe("mergeApply", () => {
-    it("map", () => {
+group("mergeApply", {
+    map: () => {
         assert.deepStrictEqual(
             mergeApplyMap(
                 new Map([
@@ -30,8 +31,9 @@ describe("mergeApply", () => {
                 ["d", 40],
             ])
         );
-    });
-    it("object", () => {
+    },
+
+    object: () => {
         const orig = { a: 1, b: 2, c: 3 };
         const src = { ...orig };
         assert.deepStrictEqual(
@@ -39,9 +41,9 @@ describe("mergeApply", () => {
             { a: 11, b: 20, c: 3, d: 40 }
         );
         assert.deepStrictEqual(src, orig);
-    });
+    },
 
-    it("pollute", () => {
+    pollute: () => {
         const inc: FnN = (x) => x + 1;
         assert.deepStrictEqual(
             mergeApplyObj(
@@ -60,11 +62,11 @@ describe("mergeApply", () => {
                 ["__proto__"]: 1,
             }
         );
-    });
+    },
 });
 
-describe("mergeDeepObj", () => {
-    it("basic", () => {
+group("mergeDeepObj", {
+    basic: () => {
         const orig = { a: { b: { c: 1 } } };
         const src = { ...orig };
         assert.deepStrictEqual(
@@ -72,11 +74,11 @@ describe("mergeDeepObj", () => {
             { a: { b: { c: 1, d: 2 }, e: { f: 3 } }, g: 4 }
         );
         assert.deepStrictEqual(src, orig);
-    });
+    },
 });
 
-describe("meldDeepObj", () => {
-    it("basic", () => {
+group("meldDeepObj", {
+    basic: () => {
         const orig = { a: { b: { c: 1 } } };
         const src = { ...orig };
         const dest = meldDeepObj(src, {
@@ -89,9 +91,9 @@ describe("meldDeepObj", () => {
         });
         assert.strictEqual(src, dest);
         assert.notDeepEqual(src, orig);
-    });
+    },
 
-    it("pollute", () => {
+    pollute: () => {
         const p1 = JSON.parse(`{ "a": 1, "__proto__": { "eek": 2 } }`);
         const p2 = JSON.parse(`{ "a": 1, "b": { "__proto__": { "eek": 2 } } }`);
         assert.deepStrictEqual(meldDeepObj({}, p1), { a: 1 }, "p1");
@@ -101,5 +103,5 @@ describe("meldDeepObj", () => {
             { a: 1, b: { c: 1 } },
             "p3"
         );
-    });
+    },
 });

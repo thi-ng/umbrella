@@ -1,9 +1,8 @@
-import {
-    intersectLinePolylineAll,
-    intersectRayPolylineAll,
-    pointInPolygon2,
-} from "@thi.ng/geom-isec";
-import { direction, ReadonlyVec, Vec } from "@thi.ng/vectors";
+import { intersectLinePolylineAll } from "@thi.ng/geom-isec/line-poly";
+import { pointInPolygon2 } from "@thi.ng/geom-isec/point";
+import { intersectRayPolylineAll } from "@thi.ng/geom-isec/ray-poly";
+import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
+import { direction } from "@thi.ng/vectors/direction";
 
 /**
  * Computes all intersection points of the infinite line defined by `a`,

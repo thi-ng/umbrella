@@ -1,5 +1,5 @@
 import type { Fn } from "@thi.ng/api";
-import { sortByCachedKey } from "@thi.ng/arrays";
+import { sortByCachedKey } from "@thi.ng/arrays/sort-cached";
 import { DisjointSet } from "./disjoint-set";
 
 /**

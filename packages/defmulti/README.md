@@ -46,20 +46,29 @@ any actual JS type relationships).
 yarn add @thi.ng/defmulti
 ```
 
-```html
-// ES module
-<script type="module" src="https://unpkg.com/@thi.ng/defmulti?module" crossorigin></script>
+ES module import:
 
-// UMD
-<script src="https://unpkg.com/@thi.ng/defmulti/lib/index.umd.js" crossorigin></script>
+```html
+<script type="module" src="https://cdn.skypack.dev/@thi.ng/defmulti"></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 801 bytes / CJS: 863 bytes / UMD: 939 bytes
+[Skypack documentation](https://docs.skypack.dev/)
+
+For NodeJS (v14.6+):
+
+```text
+node --experimental-specifier-resolution=node --experimental-repl-await
+
+> const defmulti = await import("@thi.ng/defmulti");
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 801 bytes
 
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
 - [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
+- [@thi.ng/logger](https://github.com/thi-ng/umbrella/tree/develop/packages/logger)
 
 ## Usage examples
 

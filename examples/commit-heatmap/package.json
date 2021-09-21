@@ -5,14 +5,16 @@
     "repository": "https://github.com/thi-ng/umbrella",
     "author": "Karsten Schmidt <k+npm@thi.ng>",
     "license": "Apache-2.0",
+    "type": "module",
     "scripts": {
         "clean": "../../node_modules/.bin/rimraf .cache build out",
-        "build": "../../node_modules/.bin/ts-node src/index.ts"
+        "build": "../../scripts/node-esm src/index.ts"
     },
     "dependencies": {
         "@thi.ng/associative": "latest",
         "@thi.ng/color": "latest",
         "@thi.ng/compose": "latest",
+        "@thi.ng/date": "latest",
         "@thi.ng/hiccup": "latest",
         "@thi.ng/hiccup-svg": "latest",
         "@thi.ng/math": "latest",
@@ -28,5 +30,10 @@
             "transducers"
         ],
         "screenshot": "examples/commit-heatmap.png"
+    },
+    "browser": {
+        "process": false,
+        "setTimeout": false,
+        "util": false
     }
 }

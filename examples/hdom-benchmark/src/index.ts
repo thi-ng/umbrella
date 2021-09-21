@@ -1,16 +1,15 @@
-import { start } from "@thi.ng/hdom";
-import { dropdown } from "@thi.ng/hdom-components";
+import { dropdown } from "@thi.ng/hdom-components/dropdown";
+import { start } from "@thi.ng/hdom/start";
 import { U16, U24 } from "@thi.ng/hex";
-import { fromRAF, Stream } from "@thi.ng/rstream";
-import {
-    benchmark,
-    comp,
-    map,
-    mapIndexed,
-    movingAverage,
-    partition,
-    range,
-} from "@thi.ng/transducers";
+import { fromRAF } from "@thi.ng/rstream/raf";
+import type { Stream } from "@thi.ng/rstream/stream";
+import { benchmark } from "@thi.ng/transducers/benchmark";
+import { comp } from "@thi.ng/transducers/comp";
+import { map } from "@thi.ng/transducers/map";
+import { mapIndexed } from "@thi.ng/transducers/map-indexed";
+import { movingAverage } from "@thi.ng/transducers/moving-average";
+import { partition } from "@thi.ng/transducers/partition";
+import { range } from "@thi.ng/transducers/range";
 
 /**
  * Single box component. Uses given id to switch between using `div` or

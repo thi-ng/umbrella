@@ -1,17 +1,10 @@
-import {
-    $,
-    $x,
-    add,
-    defn,
-    normalize,
-    ret,
-    sub,
-    Swizzle2_3,
-    sym,
-    vec2,
-    Vec2Sym,
-    vec3,
-} from "@thi.ng/shader-ast";
+import type { Swizzle2_3, Vec2Sym } from "@thi.ng/shader-ast";
+import { defn, ret } from "@thi.ng/shader-ast/ast/function";
+import { vec2, vec3 } from "@thi.ng/shader-ast/ast/lit";
+import { add, sub } from "@thi.ng/shader-ast/ast/ops";
+import { $, $x } from "@thi.ng/shader-ast/ast/swizzle";
+import { sym } from "@thi.ng/shader-ast/ast/sym";
+import { normalize } from "@thi.ng/shader-ast/builtin/math";
 import type { RaymarchScene } from "../api";
 
 /**

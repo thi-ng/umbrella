@@ -41,15 +41,23 @@ String diffing w/ hiccup output for further processing, e.g. with [@thi.ng/hdom]
 yarn add @thi.ng/hdiff
 ```
 
-```html
-// ES module
-<script type="module" src="https://unpkg.com/@thi.ng/hdiff?module" crossorigin></script>
+ES module import:
 
-// UMD
-<script src="https://unpkg.com/@thi.ng/hdiff/lib/index.umd.js" crossorigin></script>
+```html
+<script type="module" src="https://cdn.skypack.dev/@thi.ng/hdiff"></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.57 KB / CJS: 1.64 KB / UMD: 1.68 KB
+[Skypack documentation](https://docs.skypack.dev/)
+
+For NodeJS (v14.6+):
+
+```text
+node --experimental-specifier-resolution=node --experimental-repl-await
+
+> const hdiff = await import("@thi.ng/hdiff");
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 1.57 KB
 
 ### CLI installation & usage
 

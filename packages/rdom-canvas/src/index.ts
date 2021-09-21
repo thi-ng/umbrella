@@ -1,17 +1,14 @@
 import { adaptDPI } from "@thi.ng/adapt-dpi";
 import type { IToHiccup } from "@thi.ng/api";
-import { implementsFunction } from "@thi.ng/checks";
-import { draw } from "@thi.ng/hiccup-canvas";
-import {
-    $sub,
-    Component,
-    IComponent,
-    IMountWithState,
-    isSubscribable,
-    NumOrElement,
-} from "@thi.ng/rdom";
-import { ISubscription, reactive } from "@thi.ng/rstream";
-import { sideEffect } from "@thi.ng/transducers";
+import { implementsFunction } from "@thi.ng/checks/implements-function";
+import { draw } from "@thi.ng/hiccup-canvas/draw";
+import type { IComponent, IMountWithState, NumOrElement } from "@thi.ng/rdom";
+import { Component } from "@thi.ng/rdom/component";
+import { $sub } from "@thi.ng/rdom/sub";
+import type { ISubscription } from "@thi.ng/rstream";
+import { isSubscribable } from "@thi.ng/rstream/checks";
+import { reactive } from "@thi.ng/rstream/stream";
+import { sideEffect } from "@thi.ng/transducers/side-effect";
 
 /**
  * Reactive {@link @thi.ng/hiccup-canvas} component wrapper. Returns a
@@ -32,8 +29,9 @@ export const $canvas = (
 
 export class $Canvas
     extends Component
-    implements IMountWithState<any[] | IToHiccup> {
-    el?: HTMLCanvasElement;
+    implements IMountWithState<any[] | IToHiccup>
+{
+    declare el?: HTMLCanvasElement;
     ctx?: CanvasRenderingContext2D;
     inner?: IComponent<any>;
     size: ISubscription<any, number[]>;

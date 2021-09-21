@@ -1,18 +1,10 @@
-import {
-    $y,
-    defn,
-    div,
-    FLOAT2,
-    neg,
-    normalize,
-    radians,
-    ret,
-    sub,
-    sym,
-    tan,
-    Vec2Sym,
-    vec3,
-} from "@thi.ng/shader-ast";
+import type { Vec2Sym } from "@thi.ng/shader-ast";
+import { defn, ret } from "@thi.ng/shader-ast/ast/function";
+import { FLOAT2, vec3 } from "@thi.ng/shader-ast/ast/lit";
+import { div, neg, sub } from "@thi.ng/shader-ast/ast/ops";
+import { $y } from "@thi.ng/shader-ast/ast/swizzle";
+import { sym } from "@thi.ng/shader-ast/ast/sym";
+import { normalize, radians, tan } from "@thi.ng/shader-ast/builtin/math";
 
 /**
  * @param fragCoord - vec2

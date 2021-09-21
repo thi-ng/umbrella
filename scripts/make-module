@@ -23,22 +23,27 @@ cp packages/api/LICENSE "$MODULE"/
 
 echo "writing test skeleton..."
 cat << EOF > "$MODULE"/test/index.ts
+import { group } from "@thi.ng/testament";
 // import * as assert from "assert";
 // import { } from "../src";
 
-describe("$1", () => {
-    it("tests pending");
+group("$1", {
+
 });
 EOF
 
 echo "writing bench skeleton..."
 cat << EOF > "$MODULE"/bench/index.ts
-// import { benchmark } from "@thi.ng/bench";
+import { suite } from "@thi.ng/bench";
 // import { } from "../src";
 
-const opts = { iter: 1000, warmup: 100 };
-
-benchmark(() => {}, { title: "", ...opts });
+suite([
+    { title: "", fn: () => {}, opts: {} },
+], {
+    iter: 1000,
+    warmup: 100,
+    size: 1,
+});
 EOF
 
 echo "writing package.json..."
@@ -47,10 +52,10 @@ cat << EOF > "$MODULE"/package.json
     "name": "@thi.ng/$1",
     "version": "0.0.1",
     "description": "TODO",
+    "type": "module",
     "module": "./index.js",
-    "main": "./lib/index.js",
-    "umd:main": "./lib/index.umd.js",
     "typings": "./index.d.ts",
+    "sideEffects": false,
     "repository": {
         "type": "git",
         "url": "https://github.com/thi-ng/umbrella.git"
@@ -69,34 +74,41 @@ cat << EOF > "$MODULE"/package.json
     "author": "$AUTHOR <$EMAIL>",
     "license": "Apache-2.0",
     "scripts": {
-        "build": "yarn clean && yarn build:es6 && node ../../scripts/bundle-module",
-        "build:release": "yarn clean && yarn build:es6 && node ../../scripts/bundle-module all",
-        "build:es6": "tsc --declaration",
-        "build:test": "rimraf build && tsc -p test/tsconfig.json",
+        "build": "yarn clean && tsc --declaration",
         "build:check": "tsc --isolatedModules --noEmit",
-        "test": "mocha test",
-        "cover": "nyc mocha test && nyc report --reporter=lcov",
-        "clean": "rimraf *.js *.d.ts *.map .nyc_output build coverage doc lib",
-        "doc:readme": "ts-node -P ../../tools/tsconfig.json ../../tools/src/readme.ts",
+        "clean": "rimraf *.js *.d.ts *.map doc",
+        "doc": "typedoc --excludePrivate --excludeInternal --out doc src/index.ts",
         "doc:ae": "mkdir -p .ae/doc .ae/temp && node_modules/.bin/api-extractor run --local --verbose",
-        "doc": "typedoc --excludePrivate --out doc --theme ../../tools/doc/typedoc-theme src/index.ts",
-        "pub": "yarn build:release && yarn publish --access public"
+        "doc:readme": "../../scripts/node-esm ../../tools/src/readme.ts",
+        "doc:stats": "../../scripts/node-esm ../../tools/src/module-stats.ts",
+        "pub": "yarn build && yarn publish --access public",
+        "test": "testament test"
     },
     "dependencies": {
         "@thi.ng/api": "^7.2.0"
     },
-    "files": [
-        "*.js",
-        "*.d.ts",
-        "lib"
-    ],
+    "devDependencies": {
+        "@thi.ng/testament": "^0.0.1"
+    },
     "keywords": [
         "typescript"
     ],
     "publishConfig": {
         "access": "public"
     },
-    "sideEffects": false,
+    "browser": {
+        "process": false,
+        "setTimeout": false
+    },
+    "files": [
+        "*.js",
+        "*.d.ts"
+    ],
+    "exports": {
+        ".": {
+            "import": "./index.js"
+        }
+    },
     "thi.ng": {
         "status": "alpha",
         "year": 2021
@@ -114,49 +126,6 @@ cat << EOF > "$MODULE"/tsconfig.json
     "include": [
         "./src/**/*.ts"
     ]
-}
-EOF
-
-echo "writing test tsconfig.json..."
-cat << EOF > "$MODULE"/test/tsconfig.json
-{
-    "extends": "../../../tsconfig.json",
-    "compilerOptions": {
-        "outDir": "../build",
-        "module": "commonjs"
-    },
-    "include": [
-        "./**/*.ts",
-        "../src/**/*.ts"
-    ]
-}
-EOF
-
-echo "writing bench tsconfig.json..."
-cat << EOF > "$MODULE"/bench/tsconfig.json
-{
-    "extends": "../../../tsconfig.json",
-    "compilerOptions": {
-        "outDir": "../build",
-        "module": "commonjs",
-        "noUnusedLocals": false,
-        "noUnusedParameters": false
-    },
-    "include": ["./**/*.ts", "../src/**/*.ts"]
-}
-EOF
-
-echo "writing tools tsconfig.json..."
-cat << EOF > "$MODULE"/tools/tsconfig.json
-{
-    "extends": "../../../tsconfig.json",
-    "compilerOptions": {
-        "outDir": "../build",
-        "module": "commonjs",
-        "noUnusedLocals": false,
-        "noUnusedParameters": false
-    },
-    "include": ["./**/*.ts", "../src/**/*.ts"]
 }
 EOF
 

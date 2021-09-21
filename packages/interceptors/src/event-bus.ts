@@ -1,13 +1,13 @@
 import type { IDeref, IObjectOf } from "@thi.ng/api";
-import { Atom, IAtom } from "@thi.ng/atom";
-import {
-    implementsFunction,
-    isArray,
-    isFunction,
-    isPromise,
-} from "@thi.ng/checks";
-import { illegalArgs } from "@thi.ng/errors";
-import { setInUnsafe, updateInUnsafe } from "@thi.ng/paths";
+import type { IAtom } from "@thi.ng/atom";
+import { Atom } from "@thi.ng/atom/atom";
+import { implementsFunction } from "@thi.ng/checks/implements-function";
+import { isArray } from "@thi.ng/checks/is-array";
+import { isFunction } from "@thi.ng/checks/is-function";
+import { isPromise } from "@thi.ng/checks/is-promise";
+import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
+import { setInUnsafe } from "@thi.ng/paths/set-in";
+import { updateInUnsafe } from "@thi.ng/paths/update-in";
 import {
     EffectDef,
     EffectPriority,
@@ -601,7 +601,8 @@ export class StatelessEventBus implements IDispatch {
  */
 export class EventBus
     extends StatelessEventBus
-    implements IDeref<any>, IDispatch {
+    implements IDeref<any>, IDispatch
+{
     readonly state: IAtom<any>;
 
     /**
@@ -774,24 +775,21 @@ export class EventBus
 const asInterceptor = (i: Interceptor | InterceptorFn) =>
     isFunction(i) ? { pre: i } : i;
 
-const undoHandler = (action: string): InterceptorFn => (
-    _,
-    [__, ev],
-    bus,
-    ctx
-) => {
-    const id = ev ? ev[0] : "history";
-    if (implementsFunction(ctx[id], action)) {
-        const ok = ctx[id][action]();
-        return {
-            [FX_STATE]: bus.state.deref(),
-            [FX_DISPATCH_NOW]: ev
-                ? ok !== undefined
-                    ? ev[1]
-                    : ev[2]
-                : undefined,
-        };
-    } else {
-        LOGGER.warn("no history in context");
-    }
-};
+const undoHandler =
+    (action: string): InterceptorFn =>
+    (_, [__, ev], bus, ctx) => {
+        const id = ev ? ev[0] : "history";
+        if (implementsFunction(ctx[id], action)) {
+            const ok = ctx[id][action]();
+            return {
+                [FX_STATE]: bus.state.deref(),
+                [FX_DISPATCH_NOW]: ev
+                    ? ok !== undefined
+                        ? ev[1]
+                        : ev[2]
+                    : undefined,
+            };
+        } else {
+            LOGGER.warn("no history in context");
+        }
+    };

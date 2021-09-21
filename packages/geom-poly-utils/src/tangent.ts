@@ -1,16 +1,13 @@
-import { EPS } from "@thi.ng/math";
-import {
-    addmN,
-    direction,
-    mag,
-    mixN,
-    normalize,
-    perpendicularCCW,
-    ReadonlyVec,
-    set,
-    sub,
-    Vec,
-} from "@thi.ng/vectors";
+import { EPS } from "@thi.ng/math/api";
+import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
+import { addmN } from "@thi.ng/vectors/addmn";
+import { direction } from "@thi.ng/vectors/direction";
+import { mag } from "@thi.ng/vectors/mag";
+import { mixN } from "@thi.ng/vectors/mixn";
+import { normalize } from "@thi.ng/vectors/normalize";
+import { perpendicularCCW } from "@thi.ng/vectors/perpendicular";
+import { set } from "@thi.ng/vectors/set";
+import { sub } from "@thi.ng/vectors/sub";
 
 /**
  * Takes an array of polyline/polygon vertices and computes the tangent

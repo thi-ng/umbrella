@@ -1,11 +1,8 @@
 import { resolve as resolveMap } from "@thi.ng/resolve-map";
-import {
-    fromInterval,
-    reactive,
-    resolve as resolvePromise,
-    stream,
-    sync,
-} from "@thi.ng/rstream";
+import { fromInterval } from "@thi.ng/rstream/interval";
+import { resolve as resolvePromise } from "@thi.ng/rstream/resolve";
+import { reactive, stream } from "@thi.ng/rstream/stream";
+import { sync } from "@thi.ng/rstream/sync";
 import {
     add,
     conj,

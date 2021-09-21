@@ -43,20 +43,29 @@ Extensible 2D/3D scene graph with [@thi.ng/hiccup-canvas](https://github.com/thi
 yarn add @thi.ng/scenegraph
 ```
 
-```html
-// ES module
-<script type="module" src="https://unpkg.com/@thi.ng/scenegraph?module" crossorigin></script>
+ES module import:
 
-// UMD
-<script src="https://unpkg.com/@thi.ng/scenegraph/lib/index.umd.js" crossorigin></script>
+```html
+<script type="module" src="https://cdn.skypack.dev/@thi.ng/scenegraph"></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 900 bytes / CJS: 938 bytes / UMD: 1.03 KB
+[Skypack documentation](https://docs.skypack.dev/)
+
+For NodeJS (v14.6+):
+
+```text
+node --experimental-specifier-resolution=node --experimental-repl-await
+
+> const scenegraph = await import("@thi.ng/scenegraph");
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 900 bytes
 
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
 - [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
+- [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
 - [@thi.ng/matrices](https://github.com/thi-ng/umbrella/tree/develop/packages/matrices)
 - [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors)
 

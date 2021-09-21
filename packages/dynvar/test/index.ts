@@ -1,8 +1,9 @@
+import { group } from "@thi.ng/testament";
 import * as assert from "assert";
 import { dynvar } from "../src";
 
-describe("dynvar", () => {
-    it("basic", () => {
+group("dynvar", {
+    basic: () => {
         const a = dynvar(1);
         assert.strictEqual(a.deref(), 1);
         a.bind(2);
@@ -16,9 +17,9 @@ describe("dynvar", () => {
         a.unbind();
         assert.strictEqual(a.deref(), 1);
         assert.throws(() => a.unbind());
-    });
+    },
 
-    it("withBinding", () => {
+    withBinding: () => {
         const res: number[] = [];
         const a = dynvar(1);
 
@@ -32,9 +33,9 @@ describe("dynvar", () => {
 
         assert.deepStrictEqual(res, [1, 2, 3, 4, 40, 30, 20, 10]);
         assert.throws(() => a.unbind());
-    });
+    },
 
-    it("withBinding (error)", () => {
+    "withBinding (error)": () => {
         const a = dynvar(1);
         a.withBinding(2, () => {
             try {
@@ -45,5 +46,5 @@ describe("dynvar", () => {
             assert.strictEqual(a.deref(), 2);
         });
         assert.strictEqual(a.deref(), 1);
-    });
+    },
 });

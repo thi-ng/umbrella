@@ -1,5 +1,5 @@
-import { DEFAULT, defmulti } from "@thi.ng/defmulti";
-import { eqDelta } from "@thi.ng/math";
+import { defmulti } from "@thi.ng/defmulti/defmulti";
+import { eqDelta } from "@thi.ng/math/eqdelta";
 import type { ReadonlyColor, TypedColor } from "../api";
 import { EPS } from "../api/constants";
 import { rgb } from "../rgb/rgb";
@@ -29,4 +29,4 @@ isGray.addAll({
     ycc: isGrayLab,
 });
 
-isGray.add(DEFAULT, (x: any) => isGrayRgb(rgb(x)));
+isGray.setDefault((x: any) => isGrayRgb(rgb(x)));

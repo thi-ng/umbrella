@@ -1,7 +1,10 @@
-import { Comparator, Fn3, IObjectOf, Pair, SEMAPHORE } from "@thi.ng/api";
-import { isPlainObject } from "@thi.ng/checks";
-import { compare } from "@thi.ng/compare";
-import { isReduced, map, ReductionFn } from "@thi.ng/transducers";
+import type { Comparator, Fn3, IObjectOf, Pair } from "@thi.ng/api";
+import { SEMAPHORE } from "@thi.ng/api/api";
+import { isPlainObject } from "@thi.ng/checks/is-plain-object";
+import { compare } from "@thi.ng/compare/compare";
+import type { ReductionFn } from "@thi.ng/transducers";
+import { map } from "@thi.ng/transducers/map";
+import { isReduced } from "@thi.ng/transducers/reduced";
 import type { SortedMapOpts } from "./api";
 import { dissoc } from "./dissoc";
 import { equivMap } from "./internal/equiv";

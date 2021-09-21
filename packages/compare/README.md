@@ -22,9 +22,8 @@ This project is part of the
 
 ## About
 
-Comparators with optional support for types implementing the
-[@thi.ng/api
-`ICompare`](https://github.com/thi-ng/umbrella/tree/develop/packages/api/src/api/compare.ts)
+Comparators with optional support for types implementing the [@thi.ng/api
+`ICompare`](https://github.com/thi-ng/umbrella/tree/develop/packages/api/src/compare.ts)
 interface.
 
 Since v1.2.0 additional higher-order comparators are included, e.g. to
@@ -44,15 +43,23 @@ comparator. See examples below.
 yarn add @thi.ng/compare
 ```
 
-```html
-// ES module
-<script type="module" src="https://unpkg.com/@thi.ng/compare?module" crossorigin></script>
+ES module import:
 
-// UMD
-<script src="https://unpkg.com/@thi.ng/compare/lib/index.umd.js" crossorigin></script>
+```html
+<script type="module" src="https://cdn.skypack.dev/@thi.ng/compare"></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 396 bytes / CJS: 471 bytes / UMD: 519 bytes
+[Skypack documentation](https://docs.skypack.dev/)
+
+For NodeJS (v14.6+):
+
+```text
+node --experimental-specifier-resolution=node --experimental-repl-await
+
+> const compare = await import("@thi.ng/compare");
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 396 bytes
 
 ## Dependencies
 

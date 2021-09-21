@@ -1,21 +1,10 @@
-import {
-    $x,
-    $y,
-    defn,
-    div,
-    dot,
-    FloatSym,
-    min,
-    mul,
-    neg,
-    ret,
-    sign,
-    sqrt,
-    sub,
-    sym,
-    vec2,
-    Vec2Sym,
-} from "@thi.ng/shader-ast";
+import type { FloatSym, Vec2Sym } from "@thi.ng/shader-ast";
+import { defn, ret } from "@thi.ng/shader-ast/ast/function";
+import { vec2 } from "@thi.ng/shader-ast/ast/lit";
+import { div, mul, neg, sub } from "@thi.ng/shader-ast/ast/ops";
+import { $x, $y } from "@thi.ng/shader-ast/ast/swizzle";
+import { sym } from "@thi.ng/shader-ast/ast/sym";
+import { dot, min, sign, sqrt } from "@thi.ng/shader-ast/builtin/math";
 import { clamp01 } from "../math/clamp";
 import { cross2 } from "../math/cross2";
 

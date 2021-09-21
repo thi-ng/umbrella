@@ -51,15 +51,23 @@ Reference:
 yarn add @thi.ng/quad-edge
 ```
 
-```html
-// ES module
-<script type="module" src="https://unpkg.com/@thi.ng/quad-edge?module" crossorigin></script>
+ES module import:
 
-// UMD
-<script src="https://unpkg.com/@thi.ng/quad-edge/lib/index.umd.js" crossorigin></script>
+```html
+<script type="module" src="https://cdn.skypack.dev/@thi.ng/quad-edge"></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 495 bytes / CJS: 553 bytes / UMD: 656 bytes
+[Skypack documentation](https://docs.skypack.dev/)
+
+For NodeJS (v14.6+):
+
+```text
+node --experimental-specifier-resolution=node --experimental-repl-await
+
+> const quadEdge = await import("@thi.ng/quad-edge");
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 495 bytes
 
 ## Dependencies
 

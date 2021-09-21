@@ -1,6 +1,7 @@
 import type { Fn } from "@thi.ng/api";
-import { DEFAULT, defmulti } from "@thi.ng/defmulti";
-import { illegalArgs, unsupported } from "@thi.ng/errors";
+import { defmulti } from "@thi.ng/defmulti/defmulti";
+import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
+import { unsupported } from "@thi.ng/errors/unsupported";
 import type {
     DynamicParser,
     GrammarOpts,
@@ -237,13 +238,8 @@ compile.addAll({
     },
     alt: ($, lang, opts, flags) => {
         opts.debug && console.log(`alt: ${$.id}`, flags);
-        const [
-            term0,
-            { children: terms },
-            repeat,
-            disc,
-            lookahead,
-        ] = $.children!;
+        const [term0, { children: terms }, repeat, disc, lookahead] =
+            $.children!;
         const acc: Parser<string>[] = [compile(term0, lang, opts, flags)];
         if (terms) {
             for (let c of terms) {
@@ -299,7 +295,7 @@ compile.addAll({
     },
 });
 
-compile.add(DEFAULT, ($) => unsupported(`unknown op: ${$.id}`));
+compile.setDefault(($) => unsupported(`unknown op: ${$.id}`));
 
 const compileRepeat = (
     parser: Parser<string>,

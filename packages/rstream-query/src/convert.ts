@@ -1,5 +1,8 @@
-import { isArray, isPlainObject } from "@thi.ng/checks";
-import { concat, mapcat, pairs } from "@thi.ng/transducers";
+import { isArray } from "@thi.ng/checks/is-array";
+import { isPlainObject } from "@thi.ng/checks/is-plain-object";
+import { concat } from "@thi.ng/transducers/concat";
+import { mapcat } from "@thi.ng/transducers/mapcat";
+import { pairs } from "@thi.ng/transducers/pairs";
 
 let NEXT_ID = 0;
 
@@ -8,18 +11,22 @@ const mapBNode = (s: any, p: any, o: any): IterableIterator<any[]> => {
     return concat([[s, p, id]], asTriples(o, id));
 };
 
-const mapSubject = (subject: any) => ([p, o]: [any, any]) => {
-    if (isArray(o)) {
-        return mapcat(
-            (o) =>
-                isPlainObject(o) ? mapBNode(subject, p, o) : [[subject, p, o]],
-            o
-        );
-    } else if (isPlainObject(o)) {
-        return mapBNode(subject, p, o);
-    }
-    return [[subject, p, o]];
-};
+const mapSubject =
+    (subject: any) =>
+    ([p, o]: [any, any]) => {
+        if (isArray(o)) {
+            return mapcat(
+                (o) =>
+                    isPlainObject(o)
+                        ? mapBNode(subject, p, o)
+                        : [[subject, p, o]],
+                o
+            );
+        } else if (isPlainObject(o)) {
+            return mapBNode(subject, p, o);
+        }
+        return [[subject, p, o]];
+    };
 
 /**
  * Converts given object into an iterable of triples, with the following

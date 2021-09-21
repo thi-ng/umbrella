@@ -41,15 +41,23 @@ ES6 iterator based read/write bit streams with support for variable word widths.
 yarn add @thi.ng/bitstream
 ```
 
-```html
-// ES module
-<script type="module" src="https://unpkg.com/@thi.ng/bitstream?module" crossorigin></script>
+ES module import:
 
-// UMD
-<script src="https://unpkg.com/@thi.ng/bitstream/lib/index.umd.js" crossorigin></script>
+```html
+<script type="module" src="https://cdn.skypack.dev/@thi.ng/bitstream"></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.09 KB / CJS: 1.15 KB / UMD: 1.22 KB
+[Skypack documentation](https://docs.skypack.dev/)
+
+For NodeJS (v14.6+):
+
+```text
+node --experimental-specifier-resolution=node --experimental-repl-await
+
+> const bitstream = await import("@thi.ng/bitstream");
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 1.09 KB
 
 ## Dependencies
 

@@ -2,10 +2,10 @@
     "name": "@thi.ng/matrices",
     "version": "1.0.5",
     "description": "Matrix & quaternion operations for 2D/3D geometry processing",
+    "type": "module",
     "module": "./index.js",
-    "main": "./lib/index.js",
-    "umd:main": "./lib/index.umd.js",
     "typings": "./index.d.ts",
+    "sideEffects": false,
     "repository": {
         "type": "git",
         "url": "https://github.com/thi-ng/umbrella.git"
@@ -24,18 +24,15 @@
     "author": "Karsten Schmidt <k+npm@thi.ng>",
     "license": "Apache-2.0",
     "scripts": {
-        "build": "yarn clean && yarn build:es6 && node ../../scripts/bundle-module",
-        "build:release": "yarn clean && yarn build:es6 && node ../../scripts/bundle-module all",
-        "build:es6": "tsc --declaration",
-        "build:test": "rimraf build && tsc -p test/tsconfig.json",
+        "build": "yarn clean && tsc --declaration",
         "build:check": "tsc --isolatedModules --noEmit",
-        "test": "mocha test",
-        "cover": "nyc mocha test && nyc report --reporter=lcov",
-        "clean": "rimraf *.js *.d.ts *.map .nyc_output build coverage doc lib internal",
-        "doc:readme": "ts-node -P ../../tools/tsconfig.json ../../tools/src/readme.ts",
-        "doc": "typedoc --excludePrivate --out doc --theme ../../tools/doc/typedoc-theme src/index.ts",
+        "clean": "rimraf *.js *.d.ts *.map doc compile",
+        "doc": "typedoc --excludePrivate --excludeInternal --out doc src/index.ts",
         "doc:ae": "mkdir -p .ae/doc .ae/temp && node_modules/.bin/api-extractor run --local --verbose",
-        "pub": "yarn build:release && yarn publish --access public"
+        "doc:readme": "../../scripts/node-esm ../../tools/src/readme.ts",
+        "doc:stats": "../../scripts/node-esm ../../tools/src/module-stats.ts",
+        "pub": "yarn build:release && yarn publish --access public",
+        "test": "testament test"
     },
     "dependencies": {
         "@thi.ng/api": "^7.2.0",
@@ -43,12 +40,9 @@
         "@thi.ng/math": "^4.0.6",
         "@thi.ng/vectors": "^6.2.0"
     },
-    "files": [
-        "*.js",
-        "*.d.ts",
-        "lib",
-        "internal"
-    ],
+    "devDependencies": {
+        "@thi.ng/testament": "^0.0.1"
+    },
     "keywords": [
         "2d",
         "3d",
@@ -81,7 +75,184 @@
         "process": false,
         "setTimeout": false
     },
-    "sideEffects": false,
+    "files": [
+        "*.js",
+        "*.d.ts",
+        "compile"
+    ],
+    "exports": {
+        ".": {
+            "import": "./index.js"
+        },
+        "./add": {
+            "import": "./add.js"
+        },
+        "./addn": {
+            "import": "./addn.js"
+        },
+        "./alignment-quat": {
+            "import": "./alignment-quat.js"
+        },
+        "./api": {
+            "import": "./api.js"
+        },
+        "./column": {
+            "import": "./column.js"
+        },
+        "./compile/emit": {
+            "import": "./compile/emit.js"
+        },
+        "./concat": {
+            "import": "./concat.js"
+        },
+        "./conjugate": {
+            "import": "./conjugate.js"
+        },
+        "./constants": {
+            "import": "./constants.js"
+        },
+        "./determinant": {
+            "import": "./determinant.js"
+        },
+        "./diag": {
+            "import": "./diag.js"
+        },
+        "./div": {
+            "import": "./div.js"
+        },
+        "./divn": {
+            "import": "./divn.js"
+        },
+        "./frustum": {
+            "import": "./frustum.js"
+        },
+        "./identity": {
+            "import": "./identity.js"
+        },
+        "./invert": {
+            "import": "./invert.js"
+        },
+        "./lookat": {
+            "import": "./lookat.js"
+        },
+        "./m22-m23": {
+            "import": "./m22-m23.js"
+        },
+        "./m23-m22": {
+            "import": "./m23-m22.js"
+        },
+        "./m23-m44": {
+            "import": "./m23-m44.js"
+        },
+        "./m33-m44": {
+            "import": "./m33-m44.js"
+        },
+        "./m44-m33": {
+            "import": "./m44-m33.js"
+        },
+        "./matn": {
+            "import": "./matn.js"
+        },
+        "./matv": {
+            "import": "./matv.js"
+        },
+        "./mixq": {
+            "import": "./mixq.js"
+        },
+        "./mul": {
+            "import": "./mul.js"
+        },
+        "./mulm": {
+            "import": "./mulm.js"
+        },
+        "./muln": {
+            "import": "./muln.js"
+        },
+        "./mulq": {
+            "import": "./mulq.js"
+        },
+        "./mulv": {
+            "import": "./mulv.js"
+        },
+        "./mulvm": {
+            "import": "./mulvm.js"
+        },
+        "./normal-mat": {
+            "import": "./normal-mat.js"
+        },
+        "./orthagonal": {
+            "import": "./orthagonal.js"
+        },
+        "./ortho": {
+            "import": "./ortho.js"
+        },
+        "./outer-product": {
+            "import": "./outer-product.js"
+        },
+        "./perspective": {
+            "import": "./perspective.js"
+        },
+        "./project": {
+            "import": "./project.js"
+        },
+        "./quat-axis-angle": {
+            "import": "./quat-axis-angle.js"
+        },
+        "./quat-euler": {
+            "import": "./quat-euler.js"
+        },
+        "./quat-m33": {
+            "import": "./quat-m33.js"
+        },
+        "./quat-m44": {
+            "import": "./quat-m44.js"
+        },
+        "./rotation-around-axis": {
+            "import": "./rotation-around-axis.js"
+        },
+        "./rotation": {
+            "import": "./rotation.js"
+        },
+        "./row": {
+            "import": "./row.js"
+        },
+        "./scale-center": {
+            "import": "./scale-center.js"
+        },
+        "./scale": {
+            "import": "./scale.js"
+        },
+        "./set": {
+            "import": "./set.js"
+        },
+        "./shear": {
+            "import": "./shear.js"
+        },
+        "./skew": {
+            "import": "./skew.js"
+        },
+        "./sub": {
+            "import": "./sub.js"
+        },
+        "./subn": {
+            "import": "./subn.js"
+        },
+        "./trace": {
+            "import": "./trace.js"
+        },
+        "./transform": {
+            "import": "./transform.js"
+        },
+        "./translation": {
+            "import": "./translation.js"
+        },
+        "./transpose": {
+            "import": "./transpose.js"
+        },
+        "./viewport": {
+            "import": "./viewport.js"
+        }
+    },
     "thi.ng": {
         "related": [
             "color",

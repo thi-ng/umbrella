@@ -1,4 +1,4 @@
-import { illegalArity } from "@thi.ng/errors";
+import { illegalArity } from "@thi.ng/errors/illegal-arity";
 import { cycle } from "./cycle";
 import { iterator } from "./iterator";
 import { map } from "./map";

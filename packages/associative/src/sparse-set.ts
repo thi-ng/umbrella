@@ -1,6 +1,6 @@
 import type { Fn3, IEquiv, Pair, UIntArray } from "@thi.ng/api";
-import { isNumber } from "@thi.ng/checks";
-import { illegalArgs } from "@thi.ng/errors";
+import { isNumber } from "@thi.ng/checks/is-number";
+import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import type { IEquivSet } from "./api";
 import { dissoc } from "./dissoc";
 import { inspectable } from "./internal/inspect";
@@ -42,7 +42,7 @@ export abstract class ASparseSet<T extends UIntArray>
         return __private.get(this)!.n;
     }
 
-    get capacity() {
+    get capacity(): number {
         return __private.get(this)!.dense.length;
     }
 

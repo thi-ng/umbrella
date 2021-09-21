@@ -1,5 +1,5 @@
 import type { Fn2, FnN2, IObjectOf, NumericArray } from "@thi.ng/api";
-import { clamp01 } from "@thi.ng/math";
+import { clamp01 } from "@thi.ng/math/interval";
 import { FloatFormat, FloatFormatSpec, Lane } from "../api";
 import { luminanceABGR } from "../utils";
 

@@ -1,8 +1,9 @@
+import { group } from "@thi.ng/testament";
 import * as assert from "assert";
 import { defMTF, defTranspose } from "../src";
 
-describe("dcons (self-organizing)", () => {
-    it("mtf (n=5)", () => {
+group("dcons (self-organizing)", {
+    "mtf (n=5)": () => {
         const a = defMTF([1, 2, 3, 4, 5]);
         a.nth(3);
         assert.deepStrictEqual([...a], [4, 1, 2, 3, 5]);
@@ -18,9 +19,9 @@ describe("dcons (self-organizing)", () => {
         assert.deepStrictEqual([...a], [50, 2, 1, 3, 4]);
         a.setTail(40);
         assert.deepStrictEqual([...a], [40, 50, 2, 1, 3]);
-    });
+    },
 
-    it("transpose (n=5)", () => {
+    "transpose (n=5)": () => {
         const a = defTranspose([1, 2, 3, 4, 5]);
         a.nth(3);
         assert.deepStrictEqual([...a], [1, 2, 4, 3, 5]);
@@ -36,5 +37,5 @@ describe("dcons (self-organizing)", () => {
         assert.deepStrictEqual([...a], [1, 2, 3, 50, 4]);
         a.setTail(40);
         assert.deepStrictEqual([...a], [1, 2, 3, 40, 50]);
-    });
+    },
 });

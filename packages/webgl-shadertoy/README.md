@@ -41,15 +41,23 @@ Basic WebGL scaffolding for running interactive fragment shaders via [@thi.ng/sh
 yarn add @thi.ng/webgl-shadertoy
 ```
 
-```html
-// ES module
-<script type="module" src="https://unpkg.com/@thi.ng/webgl-shadertoy?module" crossorigin></script>
+ES module import:
 
-// UMD
-<script src="https://unpkg.com/@thi.ng/webgl-shadertoy/lib/index.umd.js" crossorigin></script>
+```html
+<script type="module" src="https://cdn.skypack.dev/@thi.ng/webgl-shadertoy"></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 681 bytes / CJS: 717 bytes / UMD: 838 bytes
+[Skypack documentation](https://docs.skypack.dev/)
+
+For NodeJS (v14.6+):
+
+```text
+node --experimental-specifier-resolution=node --experimental-repl-await
+
+> const webglShadertoy = await import("@thi.ng/webgl-shadertoy");
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 681 bytes
 
 ## Dependencies
 

@@ -2,10 +2,10 @@
     "name": "@thi.ng/checks",
     "version": "2.9.11",
     "description": "Collection of 50+ type, feature & value checks",
+    "type": "module",
     "module": "./index.js",
-    "main": "./lib/index.js",
-    "umd:main": "./lib/index.umd.js",
     "typings": "./index.d.ts",
+    "sideEffects": false,
     "repository": {
         "type": "git",
         "url": "https://github.com/thi-ng/umbrella.git"
@@ -24,27 +24,22 @@
     "author": "Karsten Schmidt <k+npm@thi.ng>",
     "license": "Apache-2.0",
     "scripts": {
-        "build": "yarn clean && yarn build:es6 && node ../../scripts/bundle-module",
-        "build:release": "yarn clean && yarn build:es6 && node ../../scripts/bundle-module all",
-        "build:es6": "tsc --declaration",
-        "build:test": "rimraf build && tsc -p test/tsconfig.json",
+        "build": "yarn clean && tsc --declaration",
         "build:check": "tsc --isolatedModules --noEmit",
-        "test": "mocha test",
-        "cover": "nyc mocha test && nyc report --reporter=lcov",
-        "clean": "rimraf *.js *.d.ts *.map .nyc_output build coverage doc lib",
-        "doc:readme": "ts-node -P ../../tools/tsconfig.json ../../tools/src/readme.ts",
-        "doc": "typedoc --excludePrivate --out doc --theme ../../tools/doc/typedoc-theme src/index.ts",
+        "clean": "rimraf *.js *.d.ts *.map doc",
+        "doc": "typedoc --excludePrivate --excludeInternal --out doc src/index.ts",
         "doc:ae": "mkdir -p .ae/doc .ae/temp && node_modules/.bin/api-extractor run --local --verbose",
-        "pub": "yarn build:release && yarn publish --access public"
+        "doc:readme": "../../scripts/node-esm ../../tools/src/readme.ts",
+        "doc:stats": "../../scripts/node-esm ../../tools/src/module-stats.ts",
+        "pub": "yarn build:release && yarn publish --access public",
+        "test": "testament test"
     },
     "dependencies": {
         "tslib": "^2.3.1"
     },
-    "files": [
-        "*.js",
-        "*.d.ts",
-        "lib"
-    ],
+    "devDependencies": {
+        "@thi.ng/testament": "^0.0.1"
+    },
     "keywords": [
         "detect",
         "feature",
@@ -59,5 +54,208 @@
         "process": false,
         "setTimeout": false
     },
-    "sideEffects": false
+    "files": [
+        "*.js",
+        "*.d.ts"
+    ],
+    "exports": {
+        ".": {
+            "import": "./index.js"
+        },
+        "./exists-not-null": {
+            "import": "./exists-not-null.js"
+        },
+        "./exists": {
+            "import": "./exists.js"
+        },
+        "./has-bigint": {
+            "import": "./has-bigint.js"
+        },
+        "./has-crypto": {
+            "import": "./has-crypto.js"
+        },
+        "./has-max-length": {
+            "import": "./has-max-length.js"
+        },
+        "./has-min-length": {
+            "import": "./has-min-length.js"
+        },
+        "./has-performance": {
+            "import": "./has-performance.js"
+        },
+        "./has-wasm": {
+            "import": "./has-wasm.js"
+        },
+        "./has-webgl": {
+            "import": "./has-webgl.js"
+        },
+        "./has-websocket": {
+            "import": "./has-websocket.js"
+        },
+        "./implements-function": {
+            "import": "./implements-function.js"
+        },
+        "./is-alphanum": {
+            "import": "./is-alphanum.js"
+        },
+        "./is-array": {
+            "import": "./is-array.js"
+        },
+        "./is-arraylike": {
+            "import": "./is-arraylike.js"
+        },
+        "./is-ascii": {
+            "import": "./is-ascii.js"
+        },
+        "./is-async-iterable": {
+            "import": "./is-async-iterable.js"
+        },
+        "./is-blob": {
+            "import": "./is-blob.js"
+        },
+        "./is-boolean": {
+            "import": "./is-boolean.js"
+        },
+        "./is-chrome": {
+            "import": "./is-chrome.js"
+        },
+        "./is-data-url": {
+            "import": "./is-data-url.js"
+        },
+        "./is-date": {
+            "import": "./is-date.js"
+        },
+        "./is-even": {
+            "import": "./is-even.js"
+        },
+        "./is-false": {
+            "import": "./is-false.js"
+        },
+        "./is-file": {
+            "import": "./is-file.js"
+        },
+        "./is-firefox": {
+            "import": "./is-firefox.js"
+        },
+        "./is-float-string": {
+            "import": "./is-float-string.js"
+        },
+        "./is-function": {
+            "import": "./is-function.js"
+        },
+        "./is-hex-color": {
+            "import": "./is-hex-color.js"
+        },
+        "./is-hex": {
+            "import": "./is-hex.js"
+        },
+        "./is-ie": {
+            "import": "./is-ie.js"
+        },
+        "./is-in-range": {
+            "import": "./is-in-range.js"
+        },
+        "./is-int-string": {
+            "import": "./is-int-string.js"
+        },
+        "./is-int32": {
+            "import": "./is-int32.js"
+        },
+        "./is-iterable": {
+            "import": "./is-iterable.js"
+        },
+        "./is-map": {
+            "import": "./is-map.js"
+        },
+        "./is-mobile": {
+            "import": "./is-mobile.js"
+        },
+        "./is-nan": {
+            "import": "./is-nan.js"
+        },
+        "./is-negative": {
+            "import": "./is-negative.js"
+        },
+        "./is-nil": {
+            "import": "./is-nil.js"
+        },
+        "./is-node": {
+            "import": "./is-node.js"
+        },
+        "./is-not-string-iterable": {
+            "import": "./is-not-string-iterable.js"
+        },
+        "./is-null": {
+            "import": "./is-null.js"
+        },
+        "./is-number": {
+            "import": "./is-number.js"
+        },
+        "./is-numeric": {
+            "import": "./is-numeric.js"
+        },
+        "./is-object": {
+            "import": "./is-object.js"
+        },
+        "./is-odd": {
+            "import": "./is-odd.js"
+        },
+        "./is-plain-object": {
+            "import": "./is-plain-object.js"
+        },
+        "./is-positive": {
+            "import": "./is-positive.js"
+        },
+        "./is-primitive": {
+            "import": "./is-primitive.js"
+        },
+        "./is-promise": {
+            "import": "./is-promise.js"
+        },
+        "./is-promiselike": {
+            "import": "./is-promiselike.js"
+        },
+        "./is-proto-path": {
+            "import": "./is-proto-path.js"
+        },
+        "./is-regexp": {
+            "import": "./is-regexp.js"
+        },
+        "./is-safari": {
+            "import": "./is-safari.js"
+        },
+        "./is-set": {
+            "import": "./is-set.js"
+        },
+        "./is-string": {
+            "import": "./is-string.js"
+        },
+        "./is-symbol": {
+            "import": "./is-symbol.js"
+        },
+        "./is-transferable": {
+            "import": "./is-transferable.js"
+        },
+        "./is-true": {
+            "import": "./is-true.js"
+        },
+        "./is-typedarray": {
+            "import": "./is-typedarray.js"
+        },
+        "./is-uint32": {
+            "import": "./is-uint32.js"
+        },
+        "./is-undefined": {
+            "import": "./is-undefined.js"
+        },
+        "./is-uuid": {
+            "import": "./is-uuid.js"
+        },
+        "./is-uuid4": {
+            "import": "./is-uuid4.js"
+        },
+        "./is-zero": {
+            "import": "./is-zero.js"
+        }
+    }
 }

@@ -1,23 +1,13 @@
-import {
-    $x,
-    add,
-    assign,
-    defn,
-    float,
-    FLOAT0,
-    FLOAT05,
-    FLOAT1,
-    FloatSym,
-    forLoop,
-    inc,
-    lte,
-    mul,
-    ret,
-    sub,
-    sym,
-} from "@thi.ng/shader-ast";
-import { clamp01 } from "../math/clamp";
+import type { FloatSym } from "@thi.ng/shader-ast";
+import { assign } from "@thi.ng/shader-ast/ast/assign";
+import { forLoop } from "@thi.ng/shader-ast/ast/controlflow";
+import { defn, ret } from "@thi.ng/shader-ast/ast/function";
+import { float, FLOAT0, FLOAT05, FLOAT1 } from "@thi.ng/shader-ast/ast/lit";
+import { add, inc, lte, mul, sub } from "@thi.ng/shader-ast/ast/ops";
+import { $x } from "@thi.ng/shader-ast/ast/swizzle";
+import { sym } from "@thi.ng/shader-ast/ast/sym";
 import type { RaymarchScene } from "../api";
+import { clamp01 } from "../math/clamp";
 
 /**
  * Higher order function returning an function to compute the Ambient
@@ -39,7 +29,7 @@ export const raymarchAO = (scene: RaymarchScene, numSamples = 5) =>
             forLoop(
                 sym(float(1)),
                 (i) => lte(i, float(numSamples)),
-                (i) => inc(i),
+                inc,
                 (i) => [
                     (d0 = sym(mul(i, 1 / numSamples))),
                     assign(

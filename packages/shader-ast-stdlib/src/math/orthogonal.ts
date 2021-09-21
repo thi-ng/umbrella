@@ -1,17 +1,10 @@
-import {
-    $x,
-    $y,
-    $z,
-    abs,
-    defn,
-    gt,
-    neg,
-    ret,
-    ternary,
-    vec2,
-    Vec2Term,
-    vec3,
-} from "@thi.ng/shader-ast";
+import type { Vec2Term } from "@thi.ng/shader-ast";
+import { ternary } from "@thi.ng/shader-ast/ast/controlflow";
+import { defn, ret } from "@thi.ng/shader-ast/ast/function";
+import { vec2, vec3 } from "@thi.ng/shader-ast/ast/lit";
+import { gt, neg } from "@thi.ng/shader-ast/ast/ops";
+import { $x, $y, $z } from "@thi.ng/shader-ast/ast/swizzle";
+import { abs } from "@thi.ng/shader-ast/builtin/math";
 
 /**
  * Inline function. Returns counter-clockwise perpendicular vector

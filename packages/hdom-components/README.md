@@ -49,15 +49,23 @@ components**. Feedback welcome!
 yarn add @thi.ng/hdom-components
 ```
 
-```html
-// ES module
-<script type="module" src="https://unpkg.com/@thi.ng/hdom-components?module" crossorigin></script>
+ES module import:
 
-// UMD
-<script src="https://unpkg.com/@thi.ng/hdom-components/lib/index.umd.js" crossorigin></script>
+```html
+<script type="module" src="https://cdn.skypack.dev/@thi.ng/hdom-components"></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 2.20 KB / CJS: 2.32 KB / UMD: 2.35 KB
+[Skypack documentation](https://docs.skypack.dev/)
+
+For NodeJS (v14.6+):
+
+```text
+node --experimental-specifier-resolution=node --experimental-repl-await
+
+> const hdomComponents = await import("@thi.ng/hdom-components");
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 2.20 KB
 
 ## Dependencies
 

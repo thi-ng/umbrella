@@ -1,6 +1,6 @@
 import type { FloatArray, Fn, FnU3, FnU4, NumericArray } from "@thi.ng/api";
-import { isNumber } from "@thi.ng/checks";
-import { PI, TAU } from "@thi.ng/math";
+import { isNumber } from "@thi.ng/checks/is-number";
+import { PI, TAU } from "@thi.ng/math/api";
 import type { WindowFn } from "../api";
 
 // https://en.wikipedia.org/wiki/Window_function
@@ -105,7 +105,9 @@ export const windowBlackmanNuttall = windowCosSum4(
     -0.0106411
 );
 
-export const windowGauss = (a = 0.4): WindowFn => (i, n) => {
-    n /= 2;
-    return Math.exp(-0.5 * ((i - n) / (a * n)) ** 2);
-};
+export const windowGauss =
+    (a = 0.4): WindowFn =>
+    (i, n) => {
+        n /= 2;
+        return Math.exp(-0.5 * ((i - n) / (a * n)) ** 2);
+    };

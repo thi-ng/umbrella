@@ -1,5 +1,5 @@
-import { ensureIndex2 } from "@thi.ng/errors";
-import { CSR } from "@thi.ng/sparse";
+import { ensureIndex2 } from "@thi.ng/errors/out-of-bounds";
+import { CSR } from "@thi.ng/sparse/csr";
 import type { DegreeType, Edge, IGraph } from "./api";
 import { into, invert, toDot } from "./utils";
 

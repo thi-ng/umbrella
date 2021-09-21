@@ -133,15 +133,23 @@ commented source code and examples for now:
 yarn add @thi.ng/interceptors
 ```
 
-```html
-// ES module
-<script type="module" src="https://unpkg.com/@thi.ng/interceptors?module" crossorigin></script>
+ES module import:
 
-// UMD
-<script src="https://unpkg.com/@thi.ng/interceptors/lib/index.umd.js" crossorigin></script>
+```html
+<script type="module" src="https://cdn.skypack.dev/@thi.ng/interceptors"></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 2.17 KB / CJS: 2.30 KB / UMD: 2.27 KB
+[Skypack documentation](https://docs.skypack.dev/)
+
+For NodeJS (v14.6+):
+
+```text
+node --experimental-specifier-resolution=node --experimental-repl-await
+
+> const interceptors = await import("@thi.ng/interceptors");
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 2.17 KB
 
 ## Dependencies
 
@@ -149,6 +157,7 @@ Package sizes (gzipped, pre-treeshake): ESM: 2.17 KB / CJS: 2.30 KB / UMD: 2.27 
 - [@thi.ng/atom](https://github.com/thi-ng/umbrella/tree/develop/packages/atom)
 - [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
 - [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
+- [@thi.ng/logger](https://github.com/thi-ng/umbrella/tree/develop/packages/logger)
 - [@thi.ng/paths](https://github.com/thi-ng/umbrella/tree/develop/packages/paths)
 
 ## Usage examples

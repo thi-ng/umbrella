@@ -1,10 +1,12 @@
 import type { Fn2, NumOrString } from "@thi.ng/api";
-import { isArray, isPlainObject } from "@thi.ng/checks";
+import { isArray } from "@thi.ng/checks/is-array";
+import { isPlainObject } from "@thi.ng/checks/is-plain-object";
+import { isSubscribable } from "@thi.ng/rstream/checks";
 import type { CompiledComponent, IComponent, NumOrElement } from "./api";
+import { isComponent } from "./checks";
 import { $el, $remove, $tree } from "./dom";
 import { SCHEDULER } from "./scheduler";
 import { $sub, $SubA } from "./sub";
-import { isComponent, isSubscribable } from "./utils";
 import { $wrapText } from "./wrap";
 
 /**

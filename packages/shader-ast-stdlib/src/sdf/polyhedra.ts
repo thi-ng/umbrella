@@ -1,21 +1,13 @@
-import {
-    abs,
-    add,
-    defn,
-    dot,
-    FLOAT0,
+import type {
     FloatTerm,
-    max,
-    PHI,
-    pow,
-    reciprocal,
-    ret,
-    sub,
     TaggedFn2,
     TaggedFn3,
-    vec3,
     Vec3Term,
 } from "@thi.ng/shader-ast";
+import { defn, ret } from "@thi.ng/shader-ast/ast/function";
+import { FLOAT0, PHI, vec3 } from "@thi.ng/shader-ast/ast/lit";
+import { add, reciprocal, sub } from "@thi.ng/shader-ast/ast/ops";
+import { abs, dot, max, pow } from "@thi.ng/shader-ast/builtin/math";
 
 // could use @thi.ng/vectors, but avoiding dependency
 const normalize = ([x, y, z]: number[]) => {

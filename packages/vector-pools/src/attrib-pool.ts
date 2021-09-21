@@ -1,16 +1,13 @@
-import {
-    assert,
-    IObjectOf,
-    IRelease,
-    sizeOf,
-    TypedArray,
-    typedArray,
-} from "@thi.ng/api";
-import { align, Pow2 } from "@thi.ng/binary";
-import { isNumber } from "@thi.ng/checks";
-import { MemPool } from "@thi.ng/malloc";
-import { range } from "@thi.ng/transducers";
-import { ReadonlyVec, Vec, zeroes } from "@thi.ng/vectors";
+import type { IObjectOf, IRelease } from "@thi.ng/api";
+import { sizeOf, TypedArray, typedArray } from "@thi.ng/api/typedarray";
+import type { Pow2 } from "@thi.ng/binary";
+import { align } from "@thi.ng/binary/align";
+import { isNumber } from "@thi.ng/checks/is-number";
+import { assert } from "@thi.ng/errors/assert";
+import { MemPool } from "@thi.ng/malloc/pool";
+import { range } from "@thi.ng/transducers/range";
+import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
+import { zeroes } from "@thi.ng/vectors/setn";
 import { AttribPoolOpts, AttribSpec, LOGGER } from "./api";
 
 /*

@@ -1,4 +1,4 @@
-import { vop } from "@thi.ng/vectors";
+import { vop } from "@thi.ng/vectors/vop";
 import type { MultiMatOp1 } from "./api";
 import { IDENT22, IDENT23, IDENT33, IDENT44 } from "./constants";
 import { set } from "./set";

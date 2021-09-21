@@ -14,7 +14,8 @@ import type {
     Path8,
     PathVal,
 } from "@thi.ng/api";
-import { isArray, isTypedArray } from "@thi.ng/checks";
+import { isArray } from "@thi.ng/checks/is-array";
+import { isTypedArray } from "@thi.ng/checks/is-typedarray";
 import { toPath } from "./path";
 
 /**
@@ -194,7 +195,9 @@ export const copy = (x: any) =>
  *
  * @internal
  */
-const compS = (k: NumOrString, f: (o: any, v: any) => any) => (
-    s: any,
-    v: any
-) => ((s = copy(s)), (s[k] = f ? f(s[k], v) : v), s);
+const compS =
+    (k: NumOrString, f: (o: any, v: any) => any) => (s: any, v: any) => {
+        s = copy(s);
+        s[k] = f ? f(s[k], v) : v;
+        return s;
+    };

@@ -11,7 +11,9 @@ import {
     sub33,
     subN33,
 } from "@thi.ng/matrices";
-import { neg, setS3, vecOf } from "@thi.ng/vectors";
+import { neg } from "@thi.ng/vectors/neg";
+import { setS3 } from "@thi.ng/vectors/sets";
+import { vecOf } from "@thi.ng/vectors/vec-of";
 import type { JSBuiltinsMat } from "../api";
 
 export const MAT3: JSBuiltinsMat = {

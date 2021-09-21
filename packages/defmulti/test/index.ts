@@ -1,4 +1,5 @@
-import { ConsoleLogger } from "@thi.ng/api";
+import { ConsoleLogger } from "@thi.ng/logger";
+import { group } from "@thi.ng/testament";
 import * as assert from "assert";
 import {
     DEFAULT,
@@ -9,37 +10,37 @@ import {
 } from "../src";
 
 // prettier-ignore
-describe("defmulti", () => {
-    it("flatten", () => {
+group("defmulti", {
+    "flatten": () => {
         const flatten = defmulti<any[]>((x) => Object.prototype.toString.call(x));
-        assert(flatten.add("[object Array]", (x, acc: any[]) => (x.forEach((y: any) => flatten(y, acc)), acc)));
-        assert(flatten.add("[object Object]", (x, acc: any[]) => { for (let k in x) flatten([k, x[k]], acc); return acc; }));
-        assert(flatten.add("[object Null]", (_, acc) => acc));
-        assert(flatten.add(DEFAULT, (x, acc: any[]) => (acc.push(x.toString()), acc)));
+        assert.ok(flatten.add("[object Array]", (x, acc: any[]) => (x.forEach((y: any) => flatten(y, acc)), acc)));
+        assert.ok(flatten.add("[object Object]", (x, acc: any[]) => { for (let k in x) flatten([k, x[k]], acc); return acc; }));
+        assert.ok(flatten.add("[object Null]", (_, acc) => acc));
+        assert.ok(flatten.add(DEFAULT, (x, acc: any[]) => (acc.push(x.toString()), acc)));
 
         assert. deepStrictEqual(flatten([{ a: 1, b: ["foo", "bar", null, 42] }], []), ['a', '1', 'b', 'foo', 'bar', '42']);
-        assert(flatten.remove(DEFAULT));
-        assert(!flatten.remove(DEFAULT));
+        assert.ok(flatten.remove(DEFAULT));
+        assert.ok(!flatten.remove(DEFAULT));
         assert.throws(() => flatten([{ a: 1, b: ["foo", "bar", null, 42] }], []));
-    });
+    },
 
-    it("sexpr", () => {
+    "sexpr": () => {
         const exec = defmulti<number>((x) => Array.isArray(x) ? x[0] : typeof x);
-        assert(exec.add("+", ([_, ...args]) => args.reduce((acc: number, n: any) => acc + exec(n), 0)));
-        assert(exec.add("*", ([_, ...args]) => args.reduce((acc: number, n: any) => acc * exec(n), 1)));
-        assert(exec.add("number", (x) => x));
-        assert(exec.add(DEFAULT, (x) => { throw new Error(`invalid expr: ${x}`); }));
+        assert.ok(exec.add("+", ([_, ...args]) => args.reduce((acc: number, n: any) => acc + exec(n), 0)));
+        assert.ok(exec.add("*", ([_, ...args]) => args.reduce((acc: number, n: any) => acc * exec(n), 1)));
+        assert.ok(exec.add("number", (x) => x));
+        assert.ok(exec.add(DEFAULT, (x) => { throw new Error(`invalid expr: ${x}`); }));
 
         assert.strictEqual(exec(["+", ["*", 10, ["+", 1, 2, 3]], 6]), 66);
 
         setLogger(new ConsoleLogger("defmulti"));
-        assert(exec.add("number", (x) => x * 2));
+        assert.ok(exec.add("number", (x) => x * 2));
         assert.strictEqual(exec(["+", ["*", 10, ["+", 1, 2, 3]], 6]), ((1*2 + 2*2 + 3*2) * 10*2) + 6*2);
 
         assert.throws(() => exec(""));
-    });
+    },
 
-    it("apr", () => {
+    "apr": () => {
         const apr = defmulti<any, number>(
             ({ type, balance }) => `${type}-${balance < 1e4 ? "low" : balance < 5e4 ? "med" : "high"}`
         );
@@ -58,9 +59,9 @@ describe("defmulti", () => {
         assert.strictEqual(~~apr({ type: "savings", balance: 10000 }), 250);
         assert.strictEqual(~~apr({ type: "savings", balance: 100000 }), 3500);
         assert.throws(() => apr({ type: "isa", balance: 10000 }));
-    });
+    },
 
-    it("defmultiN", () => {
+    "defmultiN": () => {
         const foo = defmultiN({
             0: () => "zero",
             1: (x) => `one: ${x}`,
@@ -71,9 +72,9 @@ describe("defmulti", () => {
         assert.strictEqual(foo(23), "one: 23");
         assert.strictEqual(foo(1, 2, 3), "three: 1, 2, 3");
         assert.throws(() => foo(1, 2));
-    });
+    },
 
-    it("isa", () => {
+    "isa": () => {
         const foo = defmulti((x) => x);
         foo.isa(23, "odd");
         foo.isa(42, "even");
@@ -93,9 +94,9 @@ describe("defmulti", () => {
         }, "foo rels");
         assert.strictEqual(foo(23), "odd");
         assert.strictEqual(foo(42), "number");
-        assert(foo.callable(23));
-        assert(foo.callable(42));
-        assert(!foo.callable(66));
+        assert.ok(foo.callable(23));
+        assert.ok(foo.callable(42));
+        assert.ok(!foo.callable(66));
         assert.throws(() => foo(66), "no default");
         foo.add(DEFAULT, (x) => -x);
         assert.strictEqual(foo(66), -66);
@@ -113,9 +114,9 @@ describe("defmulti", () => {
             "odd": new Set(["number"]),
             "even": new Set(["number"]),
         }, "bar rels");
-    });
+    },
 
-    it("implementations", () => {
+    "implementations": () => {
         const foo = defmulti((x) => x.id);
         const bar = defmulti((x) => x.id);
 
@@ -128,9 +129,9 @@ describe("defmulti", () => {
 
         assert.strictEqual(foo({ id: "a", val: "alice" }), "foo: alice");
         assert.strictEqual(bar({ id: "a", val: "alice" }), "bar: ALICE");
-    });
+    },
 
-    it("dependencies", () => {
+    "dependencies": () => {
         const a = defmulti((x) => x);
         assert.deepStrictEqual([...a.dependencies()], []);
         a.add("a", () => { });
@@ -149,5 +150,5 @@ describe("defmulti", () => {
                 ["d", undefined]
             ])
         );
-    });
+    },
 });

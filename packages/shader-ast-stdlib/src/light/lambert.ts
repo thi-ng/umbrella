@@ -1,12 +1,7 @@
-import {
-    dot,
-    FLOAT0,
-    FloatTerm,
-    madd,
-    max,
-    mul,
-    Vec3Term,
-} from "@thi.ng/shader-ast";
+import type { FloatTerm, Vec3Term } from "@thi.ng/shader-ast";
+import { FLOAT0 } from "@thi.ng/shader-ast/ast/lit";
+import { madd, mul } from "@thi.ng/shader-ast/ast/ops";
+import { dot, max } from "@thi.ng/shader-ast/builtin/math";
 import { fit1101 } from "../math/fit";
 
 /**

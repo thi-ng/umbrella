@@ -1,5 +1,8 @@
 import type { Pair } from "@thi.ng/api";
-import { implementsFunction, isMap, isSet } from "@thi.ng/checks";
+import { implementsFunction } from "@thi.ng/checks/implements-function";
+import { isMap } from "@thi.ng/checks/is-map";
+import { isIllegalKey } from "@thi.ng/checks/is-proto-path";
+import { isSet } from "@thi.ng/checks/is-set";
 
 export const empty = (x: any, ctor: Function) =>
     implementsFunction(x, "empty")
@@ -10,6 +13,14 @@ export const copy = (x: any, ctor: Function) =>
     implementsFunction(x, "copy")
         ? x.copy()
         : new (x[Symbol.species] || ctor)(x);
+
+export const copyObj = (x: any) => {
+    const res: any = {};
+    for (let k in x) {
+        !isIllegalKey(k) && (res[k] = x[k]);
+    }
+    return res;
+};
 
 export const first = <T>(x: Iterable<T>) => x[Symbol.iterator]().next().value;
 

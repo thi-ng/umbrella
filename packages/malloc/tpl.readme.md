@@ -204,7 +204,7 @@ and instead of byte size, expects number of elements. Returns `null`, if
 allocation failed.
 
 Types are referred to via the `Type` enum in the base
-[@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api/src/api.ts)
+[@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api/src/typedarray.ts)
 package, e.g. `Type.F64`:
 
 `U8`, `U8C`, `I8`, `U16`, `I16`, `U32`, `I32`, `F32`, `F64`

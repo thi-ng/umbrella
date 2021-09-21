@@ -1,7 +1,6 @@
-import {
+import type {
     DeepPath,
     IEquiv,
-    IWatchMixin,
     OptPathVal,
     Path,
     Path0,
@@ -17,8 +16,10 @@ import {
     Predicate,
     Watch,
 } from "@thi.ng/api";
-import { illegalState } from "@thi.ng/errors";
-import { setInUnsafe, updateInUnsafe } from "@thi.ng/paths";
+import { IWatchMixin } from "@thi.ng/api/mixins/iwatch";
+import { illegalState } from "@thi.ng/errors/illegal-state";
+import { setInUnsafe } from "@thi.ng/paths/set-in";
+import { updateInUnsafe } from "@thi.ng/paths/update-in";
 import type { IAtom, SwapFn } from "./api";
 
 export const defAtom = <T>(value: T, valid?: Predicate<T>) =>

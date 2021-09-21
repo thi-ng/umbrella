@@ -1,4 +1,4 @@
-import { swapLane13 } from "@thi.ng/binary";
+import { swapLane13 } from "@thi.ng/binary/swizzle";
 
 /**
  * Convert ARGB int to ABGR and vice versa.

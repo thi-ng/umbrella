@@ -9,7 +9,7 @@
         "clean": "../../node_modules/.bin/rimraf build node_modules/.cache",
         "start": "yarn build:worker && ../../node_modules/.bin/snowpack dev --reload",
         "build": "yarn build:worker && ../../node_modules/.bin/snowpack build",
-        "build:worker": "../../node_modules/.bin/webpack --config webpack.worker.js --mode production"
+        "build:worker": "../../node_modules/.bin/esbuild --bundle src/worker.ts --outfile=public/worker.js --minify"
     },
     "dependencies": {
         "@thi.ng/bench": "latest",
@@ -28,7 +28,9 @@
         "last 3 Chrome versions"
     ],
     "browser": {
-        "process": false
+        "process": false,
+        "setTimeout": false,
+        "util": false
     },
     "thi.ng": {
         "readme": [

@@ -1,15 +1,14 @@
 import { canvas } from "@thi.ng/hdom-canvas";
-import { fit, fitClamped } from "@thi.ng/math";
-import {
-    fromAtom,
-    fromDOMEvent,
-    merge,
-    sidechainPartitionRAF,
-    sync,
-} from "@thi.ng/rstream";
+import { fit, fitClamped } from "@thi.ng/math/fit";
 import { gestureStream } from "@thi.ng/rstream-gestures";
-import { map, mapIndexed } from "@thi.ng/transducers";
+import { fromAtom } from "@thi.ng/rstream/atom";
+import { fromDOMEvent } from "@thi.ng/rstream/event";
+import { merge } from "@thi.ng/rstream/merge";
+import { sidechainPartitionRAF } from "@thi.ng/rstream/sidechain-partition";
+import { sync } from "@thi.ng/rstream/sync";
 import { updateDOM } from "@thi.ng/transducers-hdom";
+import { map } from "@thi.ng/transducers/map";
+import { mapIndexed } from "@thi.ng/transducers/map-indexed";
 import { WINDOW_LEN } from "./config";
 import { gui, updateGUI } from "./gui";
 import { DB } from "./state";

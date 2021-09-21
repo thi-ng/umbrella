@@ -1,4 +1,4 @@
-import { swapLane13 } from "@thi.ng/binary";
+import { swapLane13 } from "@thi.ng/binary/swizzle";
 import { Lane } from "../api";
 import { defPackedFormat } from "./packed-format";
 

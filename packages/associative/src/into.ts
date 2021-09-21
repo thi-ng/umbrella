@@ -1,5 +1,5 @@
 import type { Pair } from "@thi.ng/api";
-import { isMap } from "@thi.ng/checks";
+import { isMap } from "@thi.ng/checks/is-map";
 
 /**
  * Adds elements from `src` iterable to `dest` Map or Set.

@@ -1,23 +1,17 @@
 import type { IObjectOf } from "@thi.ng/api";
-import { defmulti, Implementation2O, MultiFn2O } from "@thi.ng/defmulti";
-import {
-    IntersectionResult,
-    IntersectionType,
-    IShape,
-    PCLike,
-} from "@thi.ng/geom-api";
-import {
-    intersectCircleCircle,
-    intersectLineLine,
-    intersectPlanePlane,
-    intersectRayAABB,
-    intersectRayCircle,
-    intersectRayPlane,
-    intersectRayPolyline,
-    intersectRayRect,
-    testRectCircle,
-    testRectRect,
-} from "@thi.ng/geom-isec";
+import type { Implementation2O, MultiFn2O } from "@thi.ng/defmulti";
+import { defmulti } from "@thi.ng/defmulti/defmulti";
+import type { IntersectionResult, IShape, PCLike } from "@thi.ng/geom-api";
+import { IntersectionType } from "@thi.ng/geom-api/isec";
+import { intersectCircleCircle } from "@thi.ng/geom-isec/circle-circle";
+import { intersectLineLine } from "@thi.ng/geom-isec/line-line";
+import { intersectPlanePlane } from "@thi.ng/geom-isec/plane-plane";
+import { intersectRayCircle } from "@thi.ng/geom-isec/ray-circle";
+import { intersectRayPlane } from "@thi.ng/geom-isec/ray-plane";
+import { intersectRayPolyline } from "@thi.ng/geom-isec/ray-poly";
+import { intersectRayAABB, intersectRayRect } from "@thi.ng/geom-isec/ray-rect";
+import { testRectCircle } from "@thi.ng/geom-isec/rect-circle";
+import { testRectRect } from "@thi.ng/geom-isec/rect-rect";
 import type { AABB } from "../api/aabb";
 import type { Circle } from "../api/circle";
 import type { Line } from "../api/line";
@@ -27,12 +21,8 @@ import type { Rect } from "../api/rect";
 import type { Sphere } from "../api/sphere";
 import { dispatch2 } from "../internal/dispatch";
 
-export const intersects: MultiFn2O<
-    IShape,
-    IShape,
-    any,
-    IntersectionResult
-> = defmulti(dispatch2);
+export const intersects: MultiFn2O<IShape, IShape, any, IntersectionResult> =
+    defmulti(dispatch2);
 
 intersects.addAll(<
     IObjectOf<Implementation2O<unknown, unknown, any, IntersectionResult>>

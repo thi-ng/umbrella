@@ -1,6 +1,6 @@
-import type { IEnable } from "../api/enable";
-import type { Event } from "../api/event";
-import { EVENT_DISABLE, EVENT_ENABLE } from "../constants";
+import { EVENT_DISABLE, EVENT_ENABLE } from "../api";
+import type { IEnable } from "../enable";
+import type { Event } from "../event";
 import { mixin } from "../mixin";
 
 interface _IEnable extends IEnable<any> {

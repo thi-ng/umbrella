@@ -1,5 +1,6 @@
 import type { IObjectOf } from "@thi.ng/api";
 import { roundTo } from "@thi.ng/math";
+import { group } from "@thi.ng/testament";
 import * as assert from "assert";
 import {
     classify,
@@ -22,8 +23,8 @@ const temp = variable([-20, 40], {
     hot: sigmoid(29.99, 2),
 });
 
-describe("lvar", () => {
-    it("eval", () => {
+group("lvar", {
+    eval: () => {
         assert.deepStrictEqual(
             roundVals(evaluate(temp, 18)),
             roundVals({
@@ -42,13 +43,13 @@ describe("lvar", () => {
                 hot: 0.018,
             })
         );
-    });
+    },
 
-    it("classify", () => {
+    classify: () => {
         assert.strictEqual(classify(temp, -1), "freezing");
         assert.strictEqual(classify(temp, 0), "freezing");
         assert.strictEqual(classify(temp, 10), "cold");
         assert.strictEqual(classify(temp, 20), "warm");
         assert.strictEqual(classify(temp, 30), "hot");
-    });
+    },
 });

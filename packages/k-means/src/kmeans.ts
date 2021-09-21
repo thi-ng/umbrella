@@ -1,7 +1,15 @@
-import { assert } from "@thi.ng/api";
-import { argmin, DIST_SQ, IDistance } from "@thi.ng/distance";
-import { SYSTEM, uniqueIndices, weightedRandom } from "@thi.ng/random";
-import { add, median, mulN, ReadonlyVec, Vec, zeroes } from "@thi.ng/vectors";
+import type { IDistance } from "@thi.ng/distance";
+import { argmin } from "@thi.ng/distance/argmin";
+import { DIST_SQ } from "@thi.ng/distance/squared";
+import { assert } from "@thi.ng/errors/assert";
+import { SYSTEM } from "@thi.ng/random/system";
+import { uniqueIndices } from "@thi.ng/random/unique-indices";
+import { weightedRandom } from "@thi.ng/random/weighted-random";
+import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
+import { add } from "@thi.ng/vectors/add";
+import { median } from "@thi.ng/vectors/median";
+import { mulN } from "@thi.ng/vectors/muln";
+import { zeroes } from "@thi.ng/vectors/setn";
 import type { CentroidStrategy, Cluster, KMeansOpts } from "./api";
 
 /**

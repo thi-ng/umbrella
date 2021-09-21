@@ -1,4 +1,4 @@
-import { memoize1 } from "@thi.ng/memoize";
+import { memoize1 } from "@thi.ng/memoize/memoize1";
 import type { Stringer } from "./api";
 
 /**

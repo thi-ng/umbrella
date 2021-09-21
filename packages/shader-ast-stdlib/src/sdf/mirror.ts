@@ -1,18 +1,9 @@
-import {
-    add,
-    defn,
-    div,
-    FLOAT05,
-    floor,
-    mod,
-    mul,
-    ret,
-    sub,
-    sym,
-    Vec2Sym,
-    VEC2_1,
-    VEC2_2,
-} from "@thi.ng/shader-ast";
+import type { Vec2Sym } from "@thi.ng/shader-ast";
+import { defn, ret } from "@thi.ng/shader-ast/ast/function";
+import { FLOAT05, VEC2_1, VEC2_2 } from "@thi.ng/shader-ast/ast/lit";
+import { add, div, mul, sub } from "@thi.ng/shader-ast/ast/ops";
+import { sym } from "@thi.ng/shader-ast/ast/sym";
+import { floor, mod } from "@thi.ng/shader-ast/builtin/math";
 
 /**
  * @remarks

@@ -1,4 +1,6 @@
-import { FLOAT1, Mat4Term, mul, Vec3Term, vec4 } from "@thi.ng/shader-ast";
+import type { Mat4Term, Vec3Term } from "@thi.ng/shader-ast";
+import { FLOAT1, vec4 } from "@thi.ng/shader-ast/ast/lit";
+import { mul } from "@thi.ng/shader-ast/ast/ops";
 
 /**
  * Inline function. Multiplies `pos` with given model, view & projection

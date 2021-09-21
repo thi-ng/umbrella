@@ -1,34 +1,27 @@
+import type { Vec2Sym, Vec3Sym, Vec4Sym } from "@thi.ng/shader-ast";
+import { assign } from "@thi.ng/shader-ast/ast/assign";
+import { ternary } from "@thi.ng/shader-ast/ast/controlflow";
+import { defn, ret } from "@thi.ng/shader-ast/ast/function";
 import {
-    $,
-    $x,
-    $xy,
-    $y,
-    abs,
-    add,
-    assign,
-    defn,
-    dot,
     float,
     FLOAT05,
     FLOAT1,
-    floor,
-    fract,
-    gt,
-    max,
-    mod,
-    mul,
-    ret,
-    sub,
-    sym,
-    ternary,
     vec2,
-    Vec2Sym,
     vec3,
-    Vec3Sym,
     VEC3_0,
     vec4,
-    Vec4Sym,
-} from "@thi.ng/shader-ast";
+} from "@thi.ng/shader-ast/ast/lit";
+import { add, gt, mul, sub } from "@thi.ng/shader-ast/ast/ops";
+import { $, $x, $xy, $y } from "@thi.ng/shader-ast/ast/swizzle";
+import { sym } from "@thi.ng/shader-ast/ast/sym";
+import {
+    abs,
+    dot,
+    floor,
+    fract,
+    max,
+    mod,
+} from "@thi.ng/shader-ast/builtin/math";
 import { magSq2 } from "../math/magsq";
 import { permute3 } from "./permute";
 

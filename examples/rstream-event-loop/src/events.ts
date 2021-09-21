@@ -1,7 +1,11 @@
 import type { Fn } from "@thi.ng/api";
-import { setInManyUnsafe } from "@thi.ng/paths";
-import { ISubscriber, pubsub, stream, trace } from "@thi.ng/rstream";
-import { filter, Transducer } from "@thi.ng/transducers";
+import { setInManyUnsafe } from "@thi.ng/paths/set-in-many";
+import type { ISubscriber } from "@thi.ng/rstream";
+import { pubsub } from "@thi.ng/rstream/pubsub";
+import { stream } from "@thi.ng/rstream/stream";
+import { trace } from "@thi.ng/rstream/trace";
+import type { Transducer } from "@thi.ng/transducers";
+import { filter } from "@thi.ng/transducers/filter";
 import { Event, EventType, EventTypeMap, NEXT, PAGE_READY, PREV } from "./api";
 import { state } from "./state";
 

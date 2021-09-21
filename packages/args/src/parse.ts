@@ -1,7 +1,7 @@
 import type { IObjectOf, Nullable } from "@thi.ng/api";
-import { isArray } from "@thi.ng/checks";
-import { illegalArgs } from "@thi.ng/errors";
-import { camel } from "@thi.ng/strings";
+import { isArray } from "@thi.ng/checks/is-array";
+import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
+import { camel } from "@thi.ng/strings/case";
 import type { Args, ArgSpecExt, ParseOpts, ParseResult } from "./api";
 import { usage } from "./usage";
 

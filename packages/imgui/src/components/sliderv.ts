@@ -1,8 +1,9 @@
 import type { Fn } from "@thi.ng/api";
-import { rect } from "@thi.ng/geom";
+import { rect } from "@thi.ng/geom/ctors/rect";
 import type { IGridLayout, LayoutBox } from "@thi.ng/layout";
-import { fit, norm } from "@thi.ng/math";
-import { hash, ZERO2 } from "@thi.ng/vectors";
+import { fit, norm } from "@thi.ng/math/fit";
+import { ZERO2 } from "@thi.ng/vectors/api";
+import { hash } from "@thi.ng/vectors/hash";
 import {
     handleSlider1Keys,
     isHoverSlider,

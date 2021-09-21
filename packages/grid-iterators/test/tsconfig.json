@@ -1,9 +1,0 @@
-{
-    "extends": "../../../tsconfig.json",
-    "compilerOptions": {
-        "outDir": "../build",
-        "module": "commonjs",
-        "isolatedModules": false
-    },
-    "include": ["./**/*.ts", "../src/**/*.ts"]
-}

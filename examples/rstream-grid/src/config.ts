@@ -1,9 +1,9 @@
-import { download } from "@thi.ng/dl-asset";
-import { serialize } from "@thi.ng/hiccup";
-import { snapshot, valueSetter } from "@thi.ng/interceptors";
-import { getInUnsafe } from "@thi.ng/paths";
-import { fromIterable } from "@thi.ng/rstream";
-import { range } from "@thi.ng/transducers";
+import { downloadWithMime } from "@thi.ng/dl-asset/raw";
+import { serialize } from "@thi.ng/hiccup/serialize";
+import { snapshot, valueSetter } from "@thi.ng/interceptors/interceptors";
+import { getInUnsafe } from "@thi.ng/paths/get-in";
+import { fromIterable } from "@thi.ng/rstream/iterable";
+import { range } from "@thi.ng/transducers/range";
 import type { AppConfig } from "./api";
 import { main } from "./components/main";
 import * as fx from "./effects";
@@ -52,7 +52,9 @@ export const CONFIG: AppConfig = {
         [fx.SAVE_SVG]: (src) => {
             src = src.slice();
             src[1] = { ...src[1], width: 1000, height: 1000 };
-            download(`grid-${Date.now()}.svg`, serialize(src));
+            downloadWithMime(`grid-${Date.now()}.svg`, serialize(src), {
+                mime: "image/svg+xml",
+            });
         },
         // triggers download of 18 svg files (each delayed by 1sec),
         // each with a different rotation in the 0-90 degrees interval

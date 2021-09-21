@@ -1,7 +1,9 @@
-import { assert, SIZEOF, Type, TypedArray, typedArray } from "@thi.ng/api";
-import { align, Pow2 } from "@thi.ng/binary";
-import { isNumber } from "@thi.ng/checks";
-import { illegalArgs } from "@thi.ng/errors";
+import { SIZEOF, Type, TypedArray, typedArray } from "@thi.ng/api/typedarray";
+import type { Pow2 } from "@thi.ng/binary";
+import { align } from "@thi.ng/binary/align";
+import { isNumber } from "@thi.ng/checks/is-number";
+import { assert } from "@thi.ng/errors/assert";
+import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import type { IMemPool, MemPoolOpts, MemPoolStats } from "./api";
 
 const STATE_FREE = 0;

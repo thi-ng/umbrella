@@ -67,15 +67,23 @@ themselves too):
 yarn add @thi.ng/geom
 ```
 
-```html
-// ES module
-<script type="module" src="https://unpkg.com/@thi.ng/geom?module" crossorigin></script>
+ES module import:
 
-// UMD
-<script src="https://unpkg.com/@thi.ng/geom/lib/index.umd.js" crossorigin></script>
+```html
+<script type="module" src="https://cdn.skypack.dev/@thi.ng/geom"></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 10.29 KB / CJS: 10.52 KB / UMD: 9.95 KB
+[Skypack documentation](https://docs.skypack.dev/)
+
+For NodeJS (v14.6+):
+
+```text
+node --experimental-specifier-resolution=node --experimental-repl-await
+
+> const geom = await import("@thi.ng/geom");
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 10.29 KB
 
 ## Dependencies
 

@@ -2,10 +2,10 @@
     "name": "@thi.ng/color",
     "version": "3.2.7",
     "description": "Array-based color types, CSS parsing, conversions, transformations, declarative theme generation, gradients, presets",
+    "type": "module",
     "module": "./index.js",
-    "main": "./lib/index.js",
-    "umd:main": "./lib/index.umd.js",
     "typings": "./index.d.ts",
+    "sideEffects": false,
     "repository": {
         "type": "git",
         "url": "https://github.com/thi-ng/umbrella.git"
@@ -24,19 +24,16 @@
     "author": "Karsten Schmidt <k+npm@thi.ng>",
     "license": "Apache-2.0",
     "scripts": {
-        "build": "yarn clean && yarn build:es6 && node ../../scripts/bundle-module",
-        "build:release": "yarn clean && yarn build:es6 && node ../../scripts/bundle-module all",
-        "build:es6": "tsc --declaration",
-        "build:test": "rimraf build && tsc -p test/tsconfig.json",
+        "build": "yarn clean && tsc --declaration",
         "build:check": "tsc --isolatedModules --noEmit",
-        "test": "mocha test",
-        "cover": "nyc mocha test && nyc report --reporter=lcov",
-        "clean": "rimraf *.js *.d.ts *.map .nyc_output build coverage doc lib api css hcy hsi hsl hsv int internal lab lch oklab ops rgb srgb xyy xyz ycc",
-        "doc:readme": "ts-node -P ../../tools/tsconfig.json ../../tools/src/readme.ts",
-        "doc": "typedoc --excludePrivate --out doc --theme ../../tools/doc/typedoc-theme src/index.ts",
+        "clean": "rimraf *.js *.d.ts *.map doc api css hcy hsi hsl hsv int internal lab lch oklab ops rgb srgb xyy xyz ycc",
+        "doc": "typedoc --excludePrivate --excludeInternal --out doc src/index.ts",
         "doc:ae": "mkdir -p .ae/doc .ae/temp && node_modules/.bin/api-extractor run --local --verbose",
+        "doc:readme": "../../scripts/node-esm ../../tools/src/readme.ts",
+        "doc:stats": "../../scripts/node-esm ../../tools/src/module-stats.ts",
         "pub": "yarn build:release && yarn publish --access public",
-        "tool:swatches": "ts-node -P tools/tsconfig.json tools/index.ts"
+        "test": "testament test",
+        "tool:swatches": "../../scripts/node-esm tools/index.ts"
     },
     "dependencies": {
         "@thi.ng/api": "^7.2.0",
@@ -53,28 +50,9 @@
         "@thi.ng/transducers": "^7.9.2",
         "@thi.ng/vectors": "^6.2.0"
     },
-    "files": [
-        "*.js",
-        "*.d.ts",
-        "lib",
-        "api",
-        "css",
-        "hcy",
-        "hsi",
-        "hsl",
-        "hsv",
-        "int",
-        "internal",
-        "lab",
-        "lch",
-        "oklab",
-        "ops",
-        "rgb",
-        "srgb",
-        "xyy",
-        "xyz",
-        "ycc"
-    ],
+    "devDependencies": {
+        "@thi.ng/testament": "^0.0.1"
+    },
     "keywords": [
         "color",
         "conversion",
@@ -116,7 +94,299 @@
         "process": false,
         "setTimeout": false
     },
-    "sideEffects": false,
+    "files": [
+        "*.js",
+        "*.d.ts",
+        "api",
+        "css",
+        "hcy",
+        "hsi",
+        "hsl",
+        "hsv",
+        "int",
+        "internal",
+        "lab",
+        "lch",
+        "oklab",
+        "ops",
+        "rgb",
+        "srgb",
+        "xyy",
+        "xyz",
+        "ycc"
+    ],
+    "exports": {
+        ".": {
+            "import": "./index.js"
+        },
+        "./api/constants": {
+            "import": "./api/constants.js"
+        },
+        "./api/gradients": {
+            "import": "./api/gradients.js"
+        },
+        "./api/names": {
+            "import": "./api/names.js"
+        },
+        "./api/ranges": {
+            "import": "./api/ranges.js"
+        },
+        "./api/system": {
+            "import": "./api/system.js"
+        },
+        "./api": {
+            "import": "./api.js"
+        },
+        "./color": {
+            "import": "./color.js"
+        },
+        "./convert": {
+            "import": "./convert.js"
+        },
+        "./css/css": {
+            "import": "./css/css.js"
+        },
+        "./css/parse-css": {
+            "import": "./css/parse-css.js"
+        },
+        "./defcolor": {
+            "import": "./defcolor.js"
+        },
+        "./hcy/hcy-rgb": {
+            "import": "./hcy/hcy-rgb.js"
+        },
+        "./hcy/hcy": {
+            "import": "./hcy/hcy.js"
+        },
+        "./hsi/hsi-rgb": {
+            "import": "./hsi/hsi-rgb.js"
+        },
+        "./hsi/hsi": {
+            "import": "./hsi/hsi.js"
+        },
+        "./hsl/hsl-css": {
+            "import": "./hsl/hsl-css.js"
+        },
+        "./hsl/hsl-hsv": {
+            "import": "./hsl/hsl-hsv.js"
+        },
+        "./hsl/hsl-rgb": {
+            "import": "./hsl/hsl-rgb.js"
+        },
+        "./hsl/hsl": {
+            "import": "./hsl/hsl.js"
+        },
+        "./hsv/hsv-css": {
+            "import": "./hsv/hsv-css.js"
+        },
+        "./hsv/hsv-hsl": {
+            "import": "./hsv/hsv-hsl.js"
+        },
+        "./hsv/hsv-rgb": {
+            "import": "./hsv/hsv-rgb.js"
+        },
+        "./hsv/hsv": {
+            "import": "./hsv/hsv.js"
+        },
+        "./int/int-css": {
+            "import": "./int/int-css.js"
+        },
+        "./int/int-int": {
+            "import": "./int/int-int.js"
+        },
+        "./int/int-rgb": {
+            "import": "./int/int-rgb.js"
+        },
+        "./int/int-srgb": {
+            "import": "./int/int-srgb.js"
+        },
+        "./int/int": {
+            "import": "./int/int.js"
+        },
+        "./lab/lab-css": {
+            "import": "./lab/lab-css.js"
+        },
+        "./lab/lab-lab": {
+            "import": "./lab/lab-lab.js"
+        },
+        "./lab/lab-lch": {
+            "import": "./lab/lab-lch.js"
+        },
+        "./lab/lab-rgb": {
+            "import": "./lab/lab-rgb.js"
+        },
+        "./lab/lab-xyz": {
+            "import": "./lab/lab-xyz.js"
+        },
+        "./lab/lab50": {
+            "import": "./lab/lab50.js"
+        },
+        "./lab/lab65": {
+            "import": "./lab/lab65.js"
+        },
+        "./lch/lch-css": {
+            "import": "./lch/lch-css.js"
+        },
+        "./lch/lch": {
+            "import": "./lch/lch.js"
+        },
+        "./oklab/oklab-rgb": {
+            "import": "./oklab/oklab-rgb.js"
+        },
+        "./oklab/oklab-xyz": {
+            "import": "./oklab/oklab-xyz.js"
+        },
+        "./oklab/oklab": {
+            "import": "./oklab/oklab.js"
+        },
+        "./ops/alpha": {
+            "import": "./ops/alpha.js"
+        },
+        "./ops/analog": {
+            "import": "./ops/analog.js"
+        },
+        "./ops/clamp": {
+            "import": "./ops/clamp.js"
+        },
+        "./ops/closest-hue": {
+            "import": "./ops/closest-hue.js"
+        },
+        "./ops/color-range": {
+            "import": "./ops/color-range.js"
+        },
+        "./ops/cosine-gradients": {
+            "import": "./ops/cosine-gradients.js"
+        },
+        "./ops/distance": {
+            "import": "./ops/distance.js"
+        },
+        "./ops/gradients": {
+            "import": "./ops/gradients.js"
+        },
+        "./ops/invert": {
+            "import": "./ops/invert.js"
+        },
+        "./ops/is-black": {
+            "import": "./ops/is-black.js"
+        },
+        "./ops/is-gray": {
+            "import": "./ops/is-gray.js"
+        },
+        "./ops/is-white": {
+            "import": "./ops/is-white.js"
+        },
+        "./ops/linear": {
+            "import": "./ops/linear.js"
+        },
+        "./ops/luminance-rgb": {
+            "import": "./ops/luminance-rgb.js"
+        },
+        "./ops/luminance": {
+            "import": "./ops/luminance.js"
+        },
+        "./ops/mix": {
+            "import": "./ops/mix.js"
+        },
+        "./ops/sort": {
+            "import": "./ops/sort.js"
+        },
+        "./ops/swatches": {
+            "import": "./ops/swatches.js"
+        },
+        "./ops/transform": {
+            "import": "./ops/transform.js"
+        },
+        "./rgb/hue-rgb": {
+            "import": "./rgb/hue-rgb.js"
+        },
+        "./rgb/kelvin-rgba": {
+            "import": "./rgb/kelvin-rgba.js"
+        },
+        "./rgb/rgb-css": {
+            "import": "./rgb/rgb-css.js"
+        },
+        "./rgb/rgb-hcv": {
+            "import": "./rgb/rgb-hcv.js"
+        },
+        "./rgb/rgb-hcy": {
+            "import": "./rgb/rgb-hcy.js"
+        },
+        "./rgb/rgb-hsi": {
+            "import": "./rgb/rgb-hsi.js"
+        },
+        "./rgb/rgb-hsl": {
+            "import": "./rgb/rgb-hsl.js"
+        },
+        "./rgb/rgb-hsv": {
+            "import": "./rgb/rgb-hsv.js"
+        },
+        "./rgb/rgb-lab": {
+            "import": "./rgb/rgb-lab.js"
+        },
+        "./rgb/rgb-oklab": {
+            "import": "./rgb/rgb-oklab.js"
+        },
+        "./rgb/rgb-srgb": {
+            "import": "./rgb/rgb-srgb.js"
+        },
+        "./rgb/rgb-xyz": {
+            "import": "./rgb/rgb-xyz.js"
+        },
+        "./rgb/rgb-ycc": {
+            "import": "./rgb/rgb-ycc.js"
+        },
+        "./rgb/rgb": {
+            "import": "./rgb/rgb.js"
+        },
+        "./srgb/srgb-css": {
+            "import": "./srgb/srgb-css.js"
+        },
+        "./srgb/srgb-int": {
+            "import": "./srgb/srgb-int.js"
+        },
+        "./srgb/srgb-rgb": {
+            "import": "./srgb/srgb-rgb.js"
+        },
+        "./srgb/srgb": {
+            "import": "./srgb/srgb.js"
+        },
+        "./xyy/xyy-xyz": {
+            "import": "./xyy/xyy-xyz.js"
+        },
+        "./xyy/xyy": {
+            "import": "./xyy/xyy.js"
+        },
+        "./xyz/wavelength-xyz": {
+            "import": "./xyz/wavelength-xyz.js"
+        },
+        "./xyz/xyz-lab": {
+            "import": "./xyz/xyz-lab.js"
+        },
+        "./xyz/xyz-oklab": {
+            "import": "./xyz/xyz-oklab.js"
+        },
+        "./xyz/xyz-rgb": {
+            "import": "./xyz/xyz-rgb.js"
+        },
+        "./xyz/xyz-xyy": {
+            "import": "./xyz/xyz-xyy.js"
+        },
+        "./xyz/xyz-xyz": {
+            "import": "./xyz/xyz-xyz.js"
+        },
+        "./xyz/xyz50": {
+            "import": "./xyz/xyz50.js"
+        },
+        "./xyz/xyz65": {
+            "import": "./xyz/xyz65.js"
+        },
+        "./ycc/ycc-rgb": {
+            "import": "./ycc/ycc-rgb.js"
+        },
+        "./ycc/ycc": {
+            "import": "./ycc/ycc.js"
+        }
+    },
     "thi.ng": {
         "related": [
             "pixel",

@@ -1,6 +1,6 @@
-import { assert } from "@thi.ng/api";
-import { isString } from "@thi.ng/checks";
-import { illegalArgs } from "@thi.ng/errors";
+import { isString } from "@thi.ng/checks/is-string";
+import { assert } from "@thi.ng/errors/assert";
+import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import type { Lit, Sym, Term } from "../api/nodes";
 import type { SymOpts } from "../api/syms";
 import type { ArrayTypeMap, Type } from "../api/types";

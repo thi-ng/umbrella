@@ -1,4 +1,8 @@
-import { add, max, min, ReadonlyVec, sub, VecPair } from "@thi.ng/vectors";
+import type { ReadonlyVec, VecPair } from "@thi.ng/vectors";
+import { add } from "@thi.ng/vectors/add";
+import { max } from "@thi.ng/vectors/max";
+import { min } from "@thi.ng/vectors/min";
+import { sub } from "@thi.ng/vectors/sub";
 
 /**
  * Takes the position and size vectors of 2

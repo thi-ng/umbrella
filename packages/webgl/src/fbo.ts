@@ -1,4 +1,4 @@
-import { assert } from "@thi.ng/api";
+import { assert } from "@thi.ng/errors/assert";
 import type { FboOpts, IFbo } from "./api/buffers";
 import { ITexture, TEX_FORMATS } from "./api/texture";
 import { isGL2Context } from "./checks";

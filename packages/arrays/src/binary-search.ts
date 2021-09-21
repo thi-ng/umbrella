@@ -1,5 +1,6 @@
 import type { Comparator, Fn, FnN, FnN2 } from "@thi.ng/api";
-import { compare, compareNumAsc } from "@thi.ng/compare";
+import { compare } from "@thi.ng/compare/compare";
+import { compareNumAsc } from "@thi.ng/compare/numeric";
 
 /**
  * Returns the supposed index of `x` in pre-sorted array-like collection

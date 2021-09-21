@@ -9,6 +9,7 @@ import { labXyzD65 } from "../lab/lab-xyz";
 import { oklabXyzD65 } from "../oklab/oklab-xyz";
 import { rgbXyzD65 } from "../rgb/rgb-xyz";
 import { xyyXyz } from "../xyy/xyy-xyz";
+import { xyzRgbD65 } from "./xyz-rgb";
 
 export declare class XYZD65 implements TypedColor<XYZD65> {
     buf: NumericArray;
@@ -50,4 +51,5 @@ export const xyzD65 = <ColorFactory<XYZD65>>defColor({
         oklab: oklabXyzD65,
         xyy: xyyXyz,
     },
+    toRgb: xyzRgbD65,
 });

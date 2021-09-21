@@ -1,4 +1,4 @@
-import { sum } from "@thi.ng/vectors";
+import { sum } from "@thi.ng/vectors/sum";
 import type { ReadonlyMat } from "./api";
 import { diag } from "./diag";
 

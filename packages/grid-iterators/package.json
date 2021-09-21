@@ -2,10 +2,10 @@
     "name": "@thi.ng/grid-iterators",
     "version": "1.0.5",
     "description": "2D grid iterators w/ multiple orderings",
+    "type": "module",
     "module": "./index.js",
-    "main": "./lib/index.js",
-    "umd:main": "./lib/index.umd.js",
     "typings": "./index.d.ts",
+    "sideEffects": false,
     "repository": {
         "type": "git",
         "url": "https://github.com/thi-ng/umbrella.git"
@@ -24,19 +24,16 @@
     "author": "Karsten Schmidt <k+npm@thi.ng>",
     "license": "Apache-2.0",
     "scripts": {
-        "build": "yarn clean && yarn build:es6 && node ../../scripts/bundle-module",
-        "build:release": "yarn clean && yarn build:es6 && node ../../scripts/bundle-module all",
-        "build:es6": "tsc --declaration",
-        "build:test": "rimraf build && tsc -p test/tsconfig.json",
+        "build": "yarn clean && tsc --declaration",
         "build:assets": "node tools/build-assets",
         "build:check": "tsc --isolatedModules --noEmit",
-        "test": "mocha test",
-        "cover": "nyc mocha test && nyc report --reporter=lcov",
-        "clean": "rimraf *.js *.d.ts *.map .nyc_output build coverage doc lib",
-        "doc:readme": "ts-node -P ../../tools/tsconfig.json ../../tools/src/readme.ts",
-        "doc": "typedoc --excludePrivate --out doc --theme ../../tools/doc/typedoc-theme src/index.ts",
+        "clean": "rimraf *.js *.d.ts *.map doc",
+        "doc": "typedoc --excludePrivate --excludeInternal --out doc src/index.ts",
         "doc:ae": "mkdir -p .ae/doc .ae/temp && node_modules/.bin/api-extractor run --local --verbose",
-        "pub": "yarn build:release && yarn publish --access public"
+        "doc:readme": "../../scripts/node-esm ../../tools/src/readme.ts",
+        "doc:stats": "../../scripts/node-esm ../../tools/src/module-stats.ts",
+        "pub": "yarn build:release && yarn publish --access public",
+        "test": "testament test"
     },
     "dependencies": {
         "@thi.ng/arrays": "^1.0.3",
@@ -45,11 +42,9 @@
         "@thi.ng/random": "^2.4.8",
         "@thi.ng/transducers": "^7.9.2"
     },
-    "files": [
-        "*.js",
-        "*.d.ts",
-        "lib"
-    ],
+    "devDependencies": {
+        "@thi.ng/testament": "^0.0.1"
+    },
     "keywords": [
         "2d",
         "binary",
@@ -68,7 +63,69 @@
     "publishConfig": {
         "access": "public"
     },
-    "sideEffects": false,
+    "files": [
+        "*.js",
+        "*.d.ts"
+    ],
+    "exports": {
+        ".": {
+            "import": "./index.js"
+        },
+        "./circle": {
+            "import": "./circle.js"
+        },
+        "./column-ends": {
+            "import": "./column-ends.js"
+        },
+        "./columns": {
+            "import": "./columns.js"
+        },
+        "./diagonal-ends": {
+            "import": "./diagonal-ends.js"
+        },
+        "./diagonal": {
+            "import": "./diagonal.js"
+        },
+        "./hilbert": {
+            "import": "./hilbert.js"
+        },
+        "./hvline": {
+            "import": "./hvline.js"
+        },
+        "./interleave": {
+            "import": "./interleave.js"
+        },
+        "./line": {
+            "import": "./line.js"
+        },
+        "./random": {
+            "import": "./random.js"
+        },
+        "./row-ends": {
+            "import": "./row-ends.js"
+        },
+        "./rows": {
+            "import": "./rows.js"
+        },
+        "./spiral": {
+            "import": "./spiral.js"
+        },
+        "./utils": {
+            "import": "./utils.js"
+        },
+        "./zcurve": {
+            "import": "./zcurve.js"
+        },
+        "./zigzag-columns": {
+            "import": "./zigzag-columns.js"
+        },
+        "./zigzag-diagonal": {
+            "import": "./zigzag-diagonal.js"
+        },
+        "./zigzag-rows": {
+            "import": "./zigzag-rows.js"
+        }
+    },
     "thi.ng": {
         "related": [
             "morton",

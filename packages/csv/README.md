@@ -61,15 +61,23 @@ for more details/ideas.
 yarn add @thi.ng/csv
 ```
 
-```html
-// ES module
-<script type="module" src="https://unpkg.com/@thi.ng/csv?module" crossorigin></script>
+ES module import:
 
-// UMD
-<script src="https://unpkg.com/@thi.ng/csv/lib/index.umd.js" crossorigin></script>
+```html
+<script type="module" src="https://cdn.skypack.dev/@thi.ng/csv"></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.07 KB / CJS: 1.15 KB / UMD: 1.16 KB
+[Skypack documentation](https://docs.skypack.dev/)
+
+For NodeJS (v14.6+):
+
+```text
+node --experimental-specifier-resolution=node --experimental-repl-await
+
+> const csv = await import("@thi.ng/csv");
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 1.07 KB
 
 ## Dependencies
 

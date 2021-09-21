@@ -1,5 +1,7 @@
-import { assert, Fn2, IClear, ICopy } from "@thi.ng/api";
-import { align, bitAnd, bitNot, bitOr, bitXor } from "@thi.ng/binary";
+import type { Fn2, IClear, ICopy } from "@thi.ng/api";
+import { align } from "@thi.ng/binary/align";
+import { bitAnd, bitNot, bitOr, bitXor } from "@thi.ng/binary/logic";
+import { assert } from "@thi.ng/errors/assert";
 import { binOp, popCount, toString } from "./util";
 
 /**

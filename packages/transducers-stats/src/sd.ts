@@ -1,12 +1,10 @@
-import {
-    $iter,
-    comp,
-    drop,
-    map,
-    multiplex,
-    partition,
-    Transducer,
-} from "@thi.ng/transducers";
+import type { Transducer } from "@thi.ng/transducers";
+import { comp } from "@thi.ng/transducers/comp";
+import { drop } from "@thi.ng/transducers/drop";
+import { __iter } from "@thi.ng/transducers/iterator";
+import { map } from "@thi.ng/transducers/map";
+import { multiplex } from "@thi.ng/transducers/multiplex";
+import { partition } from "@thi.ng/transducers/partition";
 import { mse } from "./mse";
 import { sma } from "./sma";
 
@@ -31,7 +29,7 @@ export function sd(
     src: Iterable<number>
 ): IterableIterator<number>;
 export function sd(...args: any[]): any {
-    const iter = $iter(sd, args);
+    const iter = __iter(sd, args);
     if (iter) {
         return iter;
     }

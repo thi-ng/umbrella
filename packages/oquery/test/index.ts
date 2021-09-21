@@ -1,4 +1,5 @@
 import { isNumber } from "@thi.ng/checks";
+import { group } from "@thi.ng/testament";
 import * as assert from "assert";
 import { defKeyQuery, defQuery, OTerm, QueryType, SPInputTerm } from "../src";
 
@@ -25,8 +26,8 @@ const DB = {
 
 const DB_A: any[] = [{ id: 1 }, { id: 11, name: "b" }, { name: "c" }];
 
-describe("oquery", () => {
-    it("all patterns", () => {
+group("oquery", {
+    "all patterns": () => {
         const { alice, bob, charlie, dori } = DB;
         const tests: Record<
             QueryType,
@@ -247,9 +248,9 @@ describe("oquery", () => {
                 );
             }
         }
-    });
+    },
 
-    it("coerce terms (array)", () => {
+    "coerce terms (array)": () => {
         const query = defQuery({ partial: true });
         // S
         assert.deepStrictEqual(query(DB, ["alice", "bob"], "type", null), {
@@ -273,9 +274,9 @@ describe("oquery", () => {
                 alice: { type: "person", age: 33 },
             }
         );
-    });
+    },
 
-    it("coerce terms (set)", () => {
+    "coerce terms (set)": () => {
         const query = defQuery({ partial: true });
         // S
         assert.deepStrictEqual(
@@ -316,9 +317,9 @@ describe("oquery", () => {
                 alice: { type: "person", age: 33 },
             }
         );
-    });
+    },
 
-    it("full option", () => {
+    "full option": () => {
         const query = defQuery();
         // S
         assert.deepStrictEqual(query(DB, ["alice", "bob"], "type", null), {
@@ -342,9 +343,9 @@ describe("oquery", () => {
                 alice: DB.alice,
             }
         );
-    });
+    },
 
-    it("arrays", () => {
+    arrays: () => {
         const tests: Record<
             "ff" | "fl" | "fn" | "lf" | "ll" | "ln" | "nf" | "nl" | "nn",
             [SPInputTerm, OTerm, any]
@@ -372,9 +373,9 @@ describe("oquery", () => {
                 );
             }
         }
-    });
+    },
 
-    it("key query", () => {
+    "key query": () => {
         assert.deepStrictEqual(
             defKeyQuery()(DB, null, "type", "person"),
             new Set(["alice", "bob"])
@@ -393,9 +394,9 @@ describe("oquery", () => {
             defKeyQuery<any[]>()(DB_A, "name", null, res2),
             new Set([1, 2, -1])
         );
-    });
+    },
 
-    it("intersection", () => {
+    intersection: () => {
         assert.deepStrictEqual(
             defQuery({ intersect: true, cwise: true, partial: true })(
                 DB,
@@ -425,5 +426,5 @@ describe("oquery", () => {
             new Set(["alice", "charlie", "dori"]),
             "union"
         );
-    });
+    },
 });

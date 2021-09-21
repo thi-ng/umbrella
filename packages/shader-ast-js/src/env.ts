@@ -6,22 +6,18 @@ import {
     mat44n,
     mat44v,
 } from "@thi.ng/matrices";
+import { ZERO3, ZERO4 } from "@thi.ng/vectors/api";
+import { fromBVec2, fromBVec3, fromBVec4 } from "@thi.ng/vectors/convert";
+import { setVN3, setVN4 } from "@thi.ng/vectors/setvn";
+import { setVV4 } from "@thi.ng/vectors/setvv";
 import {
-    fromBVec2,
-    fromBVec3,
-    fromBVec4,
     setSwizzle2,
     setSwizzle3,
     setSwizzle4,
-    setVN3,
-    setVN4,
-    setVV4,
     swizzle2,
     swizzle3,
     swizzle4,
-    ZERO3,
-    ZERO4,
-} from "@thi.ng/vectors";
+} from "@thi.ng/vectors/swizzle";
 import type { JSBuiltinsSampler, JSEnv } from "./api";
 import { BVEC2, BVEC3, BVEC4 } from "./env/bvec";
 import { FLOAT } from "./env/float";

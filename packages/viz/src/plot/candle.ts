@@ -1,6 +1,6 @@
 import type { Fn2, Fn4, NumOrString } from "@thi.ng/api";
-import { isFunction } from "@thi.ng/checks";
-import { map } from "@thi.ng/transducers";
+import { isFunction } from "@thi.ng/checks/is-function";
+import { map } from "@thi.ng/transducers/map";
 import type { DomainValues, PlotFn } from "../api";
 import { valueMapper } from "./utils";
 
@@ -21,33 +21,35 @@ export interface CandleShapeOpts {
     width: number;
 }
 
-export const candlePlot = (
-    data: DomainValues<Candle>,
-    opts: CandlePlotOpts = { shape: candle() }
-): PlotFn => (spec) => {
-    const mapper = valueMapper(spec.xaxis, spec.yaxis, spec.project);
-    return [
-        "g",
-        {},
-        ...map(
-            ([x, candle]) => {
-                const { o, h, l, c } = candle;
-                return opts.shape(
-                    candle,
-                    {
-                        o: mapper([x, o]),
-                        h: mapper([x, h]),
-                        l: mapper([x, l]),
-                        c: mapper([x, c]),
-                    },
-                    x,
-                    c >= o
-                );
-            },
-            isFunction(data) ? data(spec.xaxis.domain) : data
-        ),
-    ];
-};
+export const candlePlot =
+    (
+        data: DomainValues<Candle>,
+        opts: CandlePlotOpts = { shape: candle() }
+    ): PlotFn =>
+    (spec) => {
+        const mapper = valueMapper(spec.xaxis, spec.yaxis, spec.project);
+        return [
+            "g",
+            {},
+            ...map(
+                ([x, candle]) => {
+                    const { o, h, l, c } = candle;
+                    return opts.shape(
+                        candle,
+                        {
+                            o: mapper([x, o]),
+                            h: mapper([x, h]),
+                            l: mapper([x, l]),
+                            c: mapper([x, c]),
+                        },
+                        x,
+                        c >= o
+                    );
+                },
+                isFunction(data) ? data(spec.xaxis.domain) : data
+            ),
+        ];
+    };
 
 export const candle = (opts?: Partial<CandleShapeOpts>) => {
     const { up, down, title, width } = {

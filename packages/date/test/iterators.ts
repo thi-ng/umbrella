@@ -1,3 +1,4 @@
+import { group } from "@thi.ng/testament";
 import * as assert from "assert";
 import {
     dateTime,
@@ -10,8 +11,8 @@ import {
     years,
 } from "../src";
 
-describe("iterators", () => {
-    it("hours", () => {
+group("iterators", {
+    hours: () => {
         const fmt = defFormat(["dd", " ", "h", ":", "mm", " ", "A"]);
         assert.deepStrictEqual(
             [
@@ -47,9 +48,9 @@ describe("iterators", () => {
                 "31 3:00 PM",
             ]
         );
-    });
+    },
 
-    it("days", () => {
+    days: () => {
         assert.deepStrictEqual(
             [...days(Date.UTC(2019, 11, 30, 15), Date.UTC(2020, 1, 1, 1))].map(
                 (x) => FMT_yyyyMMdd(x)
@@ -90,9 +91,9 @@ describe("iterators", () => {
                 "2020-02-01",
             ]
         );
-    });
+    },
 
-    it("months", () => {
+    months: () => {
         assert.deepStrictEqual(
             [
                 ...months(Date.UTC(2019, 10, 30, 15), Date.UTC(2020, 10, 1, 1)),
@@ -112,9 +113,9 @@ describe("iterators", () => {
                 "2020-11-01",
             ]
         );
-    });
+    },
 
-    it("years", () => {
+    years: () => {
         assert.deepStrictEqual(
             [
                 ...years(Date.UTC(1996, 10, 30, 15), Date.UTC(2005, 10, 1, 1)),
@@ -131,9 +132,9 @@ describe("iterators", () => {
                 "2005-01-01",
             ]
         );
-    });
+    },
 
-    it("arg coercion", () => {
+    "arg coercion": () => {
         assert.deepStrictEqual(
             [...years(dateTime(0), dateTime(YEAR))].map((x) => FMT_yyyyMMdd(x)),
             ["1970-01-01", "1971-01-01"]
@@ -142,5 +143,5 @@ describe("iterators", () => {
             [...years(new Date(0), new Date(YEAR))].map((x) => FMT_yyyyMMdd(x)),
             ["1970-01-01", "1971-01-01"]
         );
-    });
+    },
 });

@@ -1,4 +1,5 @@
 import type { Fn2, Nullable } from "@thi.ng/api";
+import type { Stringer } from "@thi.ng/strings";
 
 /**
  * Tuple representing a single CSV row/record.
@@ -103,4 +104,32 @@ export interface CSVOpts extends CommonCSVOpts {
      * (either as per 1st data row or the `header` option).
      */
     cols: Nullable<ColumnSpec>[] | Record<string, ColumnSpec>;
+}
+
+export interface CSVFormatOpts {
+    /**
+     * Column names, in order of appearance. If omitted and rows are supplied as
+     * {@link CSVRecord}, the keys of the first item will be used as column
+     * names. If `header` is omitted and rows are given as array, NO header row
+     * will be created.
+     */
+    header: string[];
+    /**
+     * Column value formatters. If given as object, and the `header` option MUST be
+     * given and the column names given in `header` need to correspond with keys
+     * in the object.
+     */
+    cols: Nullable<Stringer<any>>[] | Record<string, Stringer<any>>;
+    /**
+     * Column delimiter
+     *
+     * @defaultValue `,`
+     */
+    delim: string;
+    /**
+     * Quote char
+     *
+     * @defaultValue `"`
+     */
+    quote: string;
 }

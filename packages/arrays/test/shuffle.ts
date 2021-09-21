@@ -1,9 +1,10 @@
 import { XsAdd } from "@thi.ng/random";
+import { group } from "@thi.ng/testament";
 import * as assert from "assert";
 import { shuffle, shuffleRange } from "../src";
 
-describe("arrays", () => {
-    it("shuffle", () => {
+group("arrays", {
+    shuffle: () => {
         const src = "abcdefghijklmnopqrstuvwxyz";
         const buf = [...src];
         assert.strictEqual(shuffleRange(buf, 0, 0).join(""), src);
@@ -23,5 +24,5 @@ describe("arrays", () => {
             shuffle(buf, buf.length, rnd).join(""),
             "ovcwfhbnizgyekuqrdjslxpatm"
         );
-    });
+    },
 });

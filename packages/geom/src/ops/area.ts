@@ -1,14 +1,11 @@
 import type { IObjectOf } from "@thi.ng/api";
-import {
-    DEFAULT,
-    defmulti,
-    Implementation1O,
-    MultiFn1O,
-} from "@thi.ng/defmulti";
+import type { Implementation1O, MultiFn1O } from "@thi.ng/defmulti";
+import { defmulti } from "@thi.ng/defmulti/defmulti";
 import type { IShape } from "@thi.ng/geom-api";
-import { polyArea2 } from "@thi.ng/geom-poly-utils";
-import { PI } from "@thi.ng/math";
-import { signedArea2, Vec } from "@thi.ng/vectors";
+import { polyArea2 } from "@thi.ng/geom-poly-utils/area";
+import { PI } from "@thi.ng/math/api";
+import type { Vec } from "@thi.ng/vectors";
+import { signedArea2 } from "@thi.ng/vectors/signed-area";
 import type { AABB } from "../api/aabb";
 import type { Arc } from "../api/arc";
 import type { Circle } from "../api/circle";
@@ -54,7 +51,7 @@ import { dispatch } from "../internal/dispatch";
  * @param signed - true, if signed area
  */
 export const area: MultiFn1O<IShape, boolean, number> = defmulti(dispatch);
-area.add(DEFAULT, () => 0);
+area.setDefault(() => 0);
 
 area.addAll(<IObjectOf<Implementation1O<unknown, boolean, number>>>{
     aabb: ({ size: [w, h, d] }: AABB) => 2 * (w * h + w * d + h * d),

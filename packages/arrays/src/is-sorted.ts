@@ -1,5 +1,5 @@
 import type { Comparator } from "@thi.ng/api";
-import { compare } from "@thi.ng/compare";
+import { compare } from "@thi.ng/compare/compare";
 
 /**
  * Returns true if the given array and its elements in the selected

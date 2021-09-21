@@ -1,6 +1,8 @@
 import type { FnN3, FnU3 } from "@thi.ng/api";
-import { clamp01, inRange } from "@thi.ng/math";
-import { max, min, ReadonlyVec, VecPair } from "@thi.ng/vectors";
+import { clamp01, inRange } from "@thi.ng/math/interval";
+import type { ReadonlyVec, VecPair } from "@thi.ng/vectors";
+import { max } from "@thi.ng/vectors/max";
+import { min } from "@thi.ng/vectors/min";
 
 const solveQuadratic: FnN3 = (a, b, c) => {
     const t = clamp01((a - b) / (a - 2.0 * b + c));

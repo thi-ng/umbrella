@@ -1,7 +1,8 @@
-import { assert, Fn, Nullable } from "@thi.ng/api";
+import type { Fn, Nullable } from "@thi.ng/api";
+import { assert } from "@thi.ng/errors/assert";
 import { CloseMode, CommonOpts, ISubscription, State } from "./api";
+import { __optsWithID } from "./idgen";
 import { Subscription } from "./subscription";
-import { optsWithID } from "./utils/idgen";
 
 export interface MetaStreamOpts extends CommonOpts {
     /**
@@ -112,7 +113,7 @@ export class MetaStream<A, B> extends Subscription<A, B> {
         factory: Fn<A, Nullable<ISubscription<B, B>>>,
         opts: Partial<MetaStreamOpts> = {}
     ) {
-        super(undefined, optsWithID("metastram", opts));
+        super(undefined, __optsWithID("metastram", opts));
         this.factory = factory;
         this.emitLast = opts.emitLast === true;
         this.doneRequested = false;

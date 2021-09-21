@@ -41,15 +41,23 @@ readme & source code for visualization options.
 yarn add @thi.ng/dgraph-dot
 ```
 
-```html
-// ES module
-<script type="module" src="https://unpkg.com/@thi.ng/dgraph-dot?module" crossorigin></script>
+ES module import:
 
-// UMD
-<script src="https://unpkg.com/@thi.ng/dgraph-dot/lib/index.umd.js" crossorigin></script>
+```html
+<script type="module" src="https://cdn.skypack.dev/@thi.ng/dgraph-dot"></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 241 bytes / CJS: 292 bytes / UMD: 409 bytes
+[Skypack documentation](https://docs.skypack.dev/)
+
+For NodeJS (v14.6+):
+
+```text
+node --experimental-specifier-resolution=node --experimental-repl-await
+
+> const dgraphDot = await import("@thi.ng/dgraph-dot");
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 241 bytes
 
 ## Dependencies
 

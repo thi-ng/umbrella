@@ -8,6 +8,7 @@ import { hslRgb } from "../hsl/hsl-rgb";
 import { hsvRgb } from "../hsv/hsv-rgb";
 import { intAbgr32Srgb, intArgb32Srgb } from "../int/int-srgb";
 import { rgbSrgb } from "../rgb/rgb-srgb";
+import { srgbRgb } from "./srgb-rgb";
 
 export declare class SRGB implements TypedColor<SRGB> {
     buf: NumericArray;
@@ -45,4 +46,5 @@ export const srgb = <ColorFactory<SRGB>>defColor({
         hsv: hsvRgb,
         rgb: rgbSrgb,
     },
+    toRgb: srgbRgb,
 });

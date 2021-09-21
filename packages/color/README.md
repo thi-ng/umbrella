@@ -464,7 +464,7 @@ writeFileSync(
 - [Original article](http://www.iquilezles.org/www/articles/palettes/palettes.htm)
 - [Gradient generator](http://dev.thi.ng/gradients/)
 
-The following presets are bundled (in [`cosine-gradients.ts`](https://github.com/thi-ng/umbrella/tree/develop/packages/color/src/cosine-gradients.ts)):
+The following presets are bundled (in [`cosine-gradients.ts`](https://github.com/thi-ng/umbrella/tree/develop/packages/color/src/ops/cosine-gradients.ts)):
 
 | Preview                                                                                                                                       | Gradient ID             |
 |-----------------------------------------------------------------------------------------------------------------------------------------------|-------------------------|
@@ -545,7 +545,7 @@ multiCosineGradient({
 ### RGB color transformations
 
 RGB [color matrix
-transformations](https://github.com/thi-ng/umbrella/tree/develop/packages/color/src/transform.ts),
+transformations](https://github.com/thi-ng/umbrella/tree/develop/packages/color/src/ops/transform.ts),
 including parametric preset transforms:
 
 - brightness
@@ -584,15 +584,23 @@ concatenation (see `concat()`) for more efficient application.
 yarn add @thi.ng/color
 ```
 
-```html
-// ES module
-<script type="module" src="https://unpkg.com/@thi.ng/color?module" crossorigin></script>
+ES module import:
 
-// UMD
-<script src="https://unpkg.com/@thi.ng/color/lib/index.umd.js" crossorigin></script>
+```html
+<script type="module" src="https://cdn.skypack.dev/@thi.ng/color"></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 13.74 KB / CJS: 14.41 KB / UMD: 13.48 KB
+[Skypack documentation](https://docs.skypack.dev/)
+
+For NodeJS (v14.6+):
+
+```text
+node --experimental-specifier-resolution=node --experimental-repl-await
+
+> const color = await import("@thi.ng/color");
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 13.74 KB
 
 ## Dependencies
 

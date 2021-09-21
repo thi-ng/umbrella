@@ -1,4 +1,5 @@
-import { map, range2d } from "@thi.ng/transducers";
+import { range2d } from "@thi.ng/transducers/range2d";
+import { map } from "@thi.ng/transducers/map";
 import { swapxy } from "./utils";
 
 /**

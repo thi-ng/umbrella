@@ -108,15 +108,23 @@ have been removed.
 yarn add @thi.ng/atom
 ```
 
-```html
-// ES module
-<script type="module" src="https://unpkg.com/@thi.ng/atom?module" crossorigin></script>
+ES module import:
 
-// UMD
-<script src="https://unpkg.com/@thi.ng/atom/lib/index.umd.js" crossorigin></script>
+```html
+<script type="module" src="https://cdn.skypack.dev/@thi.ng/atom"></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.83 KB / CJS: 1.90 KB / UMD: 1.95 KB
+[Skypack documentation](https://docs.skypack.dev/)
+
+For NodeJS (v14.6+):
+
+```text
+node --experimental-specifier-resolution=node --experimental-repl-await
+
+> const atom = await import("@thi.ng/atom");
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 1.83 KB
 
 ## Dependencies
 

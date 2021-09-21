@@ -1,5 +1,5 @@
 import type { Fn2, Predicate } from "@thi.ng/api";
-import { outOfBounds } from "@thi.ng/errors";
+import { outOfBounds } from "@thi.ng/errors/out-of-bounds";
 import { ConsCell, DCons } from "./dcons";
 
 /**
@@ -49,13 +49,13 @@ export class SOL<T> extends DCons<T> {
         return this;
     }
 
-    setTail(value: T) {
+    setTail(value: T): SOL<T> {
         if (this.tail) {
             this.tail.value = value;
             this._reorder(this, this.tail);
             return this;
         }
-        return this.cons(value);
+        return <SOL<T>>this.cons(value);
     }
 
     find(value: T) {

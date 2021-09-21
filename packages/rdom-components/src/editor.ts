@@ -1,9 +1,13 @@
 import type { Fn } from "@thi.ng/api";
-import { meldDeepObj } from "@thi.ng/associative";
-import { Attribs, div, textArea, TextAreaAttribs } from "@thi.ng/hiccup-html";
-import { $compile, IComponent } from "@thi.ng/rdom";
-import { reactive, Subscription } from "@thi.ng/rstream";
-import { computeCursorPos } from "@thi.ng/strings";
+import { meldDeepObj } from "@thi.ng/associative/merge-deep";
+import type { Attribs } from "@thi.ng/hiccup-html";
+import { div } from "@thi.ng/hiccup-html/blocks";
+import { textArea, TextAreaAttribs } from "@thi.ng/hiccup-html/forms";
+import type { IComponent } from "@thi.ng/rdom";
+import { $compile } from "@thi.ng/rdom/compile";
+import type { ISubscription } from "@thi.ng/rstream";
+import { reactive } from "@thi.ng/rstream/stream";
+import { computeCursorPos } from "@thi.ng/strings/cursor";
 
 export interface EditorOpts {
     /**
@@ -30,7 +34,7 @@ export interface EditorOpts {
 }
 
 export const editor = (
-    src: Subscription<string, string>,
+    src: ISubscription<string, string>,
     opts: Partial<EditorOpts> = {}
 ) => {
     opts = meldDeepObj(

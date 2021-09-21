@@ -1,7 +1,8 @@
-import { intersectLineLine } from "@thi.ng/geom-isec";
-import { centroid } from "@thi.ng/geom-poly-utils";
-import { EPS } from "@thi.ng/math";
-import { corner2, ReadonlyVec, Vec } from "@thi.ng/vectors";
+import { intersectLineLine } from "@thi.ng/geom-isec/line-line";
+import { centroid } from "@thi.ng/geom-poly-utils/centroid";
+import { EPS } from "@thi.ng/math/api";
+import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
+import { corner2 } from "@thi.ng/vectors/clockwise";
 
 /**
  * Extended version of Sutherland-Hodgeman convex polygon clipping

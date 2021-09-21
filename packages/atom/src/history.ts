@@ -1,7 +1,6 @@
-import {
+import type {
     DeepPath,
     Event,
-    INotifyMixin,
     Listener,
     OptPathVal,
     Path,
@@ -18,8 +17,11 @@ import {
     Predicate2,
     Watch,
 } from "@thi.ng/api";
+import { INotifyMixin } from "@thi.ng/api/mixins/inotify";
 import { equiv } from "@thi.ng/equiv";
-import { defGetterUnsafe, setInUnsafe, updateInUnsafe } from "@thi.ng/paths";
+import { defGetterUnsafe } from "@thi.ng/paths/getter";
+import { setInUnsafe } from "@thi.ng/paths/set-in";
+import { updateInUnsafe } from "@thi.ng/paths/update-in";
 import type { IAtom, IHistory, SwapFn } from "./api";
 
 export const defHistory = <T>(

@@ -1,10 +1,12 @@
 import type { IObjectOf } from "@thi.ng/api";
-import { defmulti, Implementation2 } from "@thi.ng/defmulti";
+import type { Implementation2 } from "@thi.ng/defmulti";
+import { defmulti } from "@thi.ng/defmulti/defmulti";
 import type { IShape } from "@thi.ng/geom-api";
-import { Sampler } from "@thi.ng/geom-resample";
-import { cubicSplitAt, quadraticSplitAt } from "@thi.ng/geom-splines";
-import { fit01 } from "@thi.ng/math";
-import { set } from "@thi.ng/vectors";
+import { Sampler } from "@thi.ng/geom-resample/sampler";
+import { cubicSplitAt } from "@thi.ng/geom-splines/cubic-split";
+import { quadraticSplitAt } from "@thi.ng/geom-splines/quadratic-split";
+import { fit01 } from "@thi.ng/math/fit";
+import { set } from "@thi.ng/vectors/set";
 import { Arc } from "../api/arc";
 import { Cubic } from "../api/cubic";
 import { Line } from "../api/line";

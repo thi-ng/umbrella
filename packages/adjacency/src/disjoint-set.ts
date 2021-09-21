@@ -1,4 +1,4 @@
-import { fillRange } from "@thi.ng/arrays";
+import { fillRange } from "@thi.ng/arrays/fill-range";
 
 /**
  * Typed array based Disjoint Set implementation with quick union and

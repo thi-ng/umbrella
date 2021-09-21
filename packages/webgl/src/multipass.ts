@@ -1,13 +1,15 @@
-import { assert, IObjectOf } from "@thi.ng/api";
-import {
-    $xy,
-    assign,
-    defMain,
-    INT0,
-    ivec2,
-    texelFetch,
-} from "@thi.ng/shader-ast";
-import { assocObj, map, range, some, transduce } from "@thi.ng/transducers";
+import type { IObjectOf } from "@thi.ng/api";
+import { assert } from "@thi.ng/errors/assert";
+import { assign } from "@thi.ng/shader-ast/ast/assign";
+import { defMain } from "@thi.ng/shader-ast/ast/function";
+import { INT0, ivec2 } from "@thi.ng/shader-ast/ast/lit";
+import { $xy } from "@thi.ng/shader-ast/ast/swizzle";
+import { texelFetch } from "@thi.ng/shader-ast/builtin/texture";
+import { assocObj } from "@thi.ng/transducers/assoc-obj";
+import { map } from "@thi.ng/transducers/map";
+import { range } from "@thi.ng/transducers/range";
+import { some } from "@thi.ng/transducers/some";
+import { transduce } from "@thi.ng/transducers/transduce";
 import type { ExtensionBehaviors } from "./api/ext";
 import type { Multipass, MultipassOpts, PassOpts } from "./api/multipass";
 import type {

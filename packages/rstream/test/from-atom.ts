@@ -1,11 +1,12 @@
 import { Atom, Cursor, History } from "@thi.ng/atom";
+import { group } from "@thi.ng/testament";
 import * as assert from "assert";
 import { fromAtom } from "../src";
 
 // prettier-ignore
-describe("fromAtom", () => {
+group("fromAtom", {
 
-    it("works with atom", (done) => {
+    "works with atom": ({done}) => {
         let a = new Atom(0);
         let src = fromAtom(a, { emitFirst:false });
         let calledNext = false;
@@ -15,7 +16,7 @@ describe("fromAtom", () => {
                 calledNext = true;
             },
             done() {
-                assert(calledNext, "not called next()");
+                assert.ok(calledNext, "not called next()");
                 done();
             },
             error() {
@@ -24,9 +25,9 @@ describe("fromAtom", () => {
         });
         a.reset(23);
         src.done();
-    });
+    },
 
-    it("works with cursor", (done) => {
+    "works with cursor": ({done}) => {
         let state = { a: { b: {}, d: { e: 42 } } };
         let a = new Atom(state);
         let c = new Cursor(a, "a.b.c");
@@ -38,7 +39,7 @@ describe("fromAtom", () => {
                 calledNext = true;
             },
             done() {
-                assert(calledNext, "not called next()");
+                assert.ok(calledNext, "not called next()");
                 assert. deepStrictEqual(a.deref(), { a: { b: { c: 23 }, d: { e: 42 } } });
                 assert.strictEqual(a.deref().a.d, state.a.d);
                 done();
@@ -49,9 +50,9 @@ describe("fromAtom", () => {
         });
         c.reset(23);
         src.done();
-    });
+    },
 
-    it("works with history (single)", () => {
+    "works with history (single)": () => {
         let a = new Atom({});
         let c = new Cursor(a, "a.b");
         let h = new History(c);
@@ -74,9 +75,9 @@ describe("fromAtom", () => {
         assert. deepStrictEqual(a.deref(), { a: { b: undefined } });
         src.done();
         assert. deepStrictEqual(buf, [undefined, 1, 2, { c: 3 }, 2, { c: 3 }, 2, 1, undefined]);
-    });
+    },
 
-    it("works with history (multiple)", () => {
+    "works with history (multiple)": () => {
         let a = new Atom({});
         let h = new History(a);
         let c1 = new Cursor(a, "a.b");
@@ -116,6 +117,6 @@ describe("fromAtom", () => {
 
         assert. deepStrictEqual(buf1, [undefined, 1, 2, 3, 2, 3, 2, 1, undefined]);
         assert. deepStrictEqual(buf2, [undefined, 10, 20, 10, 20, 10, undefined]);
-    });
+    },
 
 });

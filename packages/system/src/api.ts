@@ -1,4 +1,6 @@
-import { Fn, ILogger, Keys, NULL_LOGGER } from "@thi.ng/api";
+import type { Fn, Keys } from "@thi.ng/api";
+import type { ILogger } from "@thi.ng/logger";
+import { NULL_LOGGER } from "@thi.ng/logger/null";
 
 export interface ILifecycle {
     /**

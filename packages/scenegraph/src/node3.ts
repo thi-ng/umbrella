@@ -1,14 +1,19 @@
 import type { ICopy, IToHiccup, Nullable } from "@thi.ng/api";
-import { isNumber } from "@thi.ng/checks";
-import { invert44, mulM44, mulV344, transform44 } from "@thi.ng/matrices";
-import { ReadonlyVec, set3, Vec } from "@thi.ng/vectors";
+import { isNumber } from "@thi.ng/checks/is-number";
+import { invert44 } from "@thi.ng/matrices/invert";
+import { mulM44 } from "@thi.ng/matrices/mulm";
+import { mulV344 } from "@thi.ng/matrices/mulv";
+import { transform44 } from "@thi.ng/matrices/transform";
+import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
+import { set3 } from "@thi.ng/vectors/set";
 import { ANode } from "./anode";
 import type { ISceneNode } from "./api";
 import { toHiccup } from "./hiccup";
 
 export class Node3D
     extends ANode<Node3D>
-    implements ICopy<Node3D>, ISceneNode<Node3D>, IToHiccup {
+    implements ICopy<Node3D>, ISceneNode<Node3D>, IToHiccup
+{
     translate: Vec;
     rotate: Vec;
     scale: Vec | number;

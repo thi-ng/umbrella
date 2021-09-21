@@ -1,6 +1,7 @@
 import type { Fn3, ICompare, Pair } from "@thi.ng/api";
-import { compare } from "@thi.ng/compare";
-import { IReducible, map, ReductionFn } from "@thi.ng/transducers";
+import { compare } from "@thi.ng/compare/compare";
+import type { IReducible, ReductionFn } from "@thi.ng/transducers";
+import { map } from "@thi.ng/transducers/map";
 import type { IEquivSet, SortedSetOpts } from "./api";
 import { dissoc } from "./dissoc";
 import { equivSet } from "./internal/equiv";
@@ -31,7 +32,8 @@ const __private = new WeakMap<SortedSet<any>, SortedMap<any, any>>();
 @inspectable
 export class SortedSet<T>
     extends Set<T>
-    implements IEquivSet<T>, ICompare<Set<T>>, IReducible<any, T> {
+    implements IEquivSet<T>, ICompare<Set<T>>, IReducible<any, T>
+{
     /**
      * Creates new instance with optional given values and/or
      * implementation options. The options are the same as used by

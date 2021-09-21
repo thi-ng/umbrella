@@ -1,18 +1,15 @@
 import type { IObjectOf } from "@thi.ng/api";
-import { defmulti, Implementation2O, MultiFn2O } from "@thi.ng/defmulti";
+import type { Implementation2O, MultiFn2O } from "@thi.ng/defmulti";
+import { defmulti } from "@thi.ng/defmulti/defmulti";
 import type { IShape, SubdivKernel } from "@thi.ng/geom-api";
-import { subdivide } from "@thi.ng/geom-subdiv-curve";
+import { subdivide } from "@thi.ng/geom-subdiv-curve/subdivide";
 import { Polygon } from "../api/polygon";
 import { Polyline } from "../api/polyline";
 import { copyAttribs } from "../internal/copy-attribs";
 import { dispatch } from "../internal/dispatch";
 
-export const subdivCurve: MultiFn2O<
-    IShape,
-    SubdivKernel,
-    number,
-    IShape
-> = defmulti(<any>dispatch);
+export const subdivCurve: MultiFn2O<IShape, SubdivKernel, number, IShape> =
+    defmulti(<any>dispatch);
 
 subdivCurve.addAll(<
     IObjectOf<Implementation2O<unknown, SubdivKernel, number, IShape>>

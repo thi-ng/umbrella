@@ -1,4 +1,5 @@
-import { map, range } from "@thi.ng/transducers";
+import { map } from "@thi.ng/transducers/map";
+import { range } from "@thi.ng/transducers/range";
 
 /**
  * Configuration options for pager components.

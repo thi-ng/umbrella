@@ -44,15 +44,23 @@ This package has been extracted from the former (now obsolete)
 yarn add @thi.ng/geom-clip-poly
 ```
 
-```html
-// ES module
-<script type="module" src="https://unpkg.com/@thi.ng/geom-clip-poly?module" crossorigin></script>
+ES module import:
 
-// UMD
-<script src="https://unpkg.com/@thi.ng/geom-clip-poly/lib/index.umd.js" crossorigin></script>
+```html
+<script type="module" src="https://cdn.skypack.dev/@thi.ng/geom-clip-poly"></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 317 bytes / CJS: 389 bytes / UMD: 517 bytes
+[Skypack documentation](https://docs.skypack.dev/)
+
+For NodeJS (v14.6+):
+
+```text
+node --experimental-specifier-resolution=node --experimental-repl-await
+
+> const geomClipPoly = await import("@thi.ng/geom-clip-poly");
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 317 bytes
 
 ## Dependencies
 

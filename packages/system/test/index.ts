@@ -1,8 +1,9 @@
+import { group } from "@thi.ng/testament";
 import * as assert from "assert";
 import { defSystem, ILifecycle } from "../src";
 
-describe("system", () => {
-    it("basic", async () => {
+group("system", {
+    basic: async () => {
         const log: string[] = [];
 
         class Logger implements ILifecycle {
@@ -90,9 +91,9 @@ describe("system", () => {
             "stop cache",
             "stop logger",
         ]);
-    });
+    },
 
-    it("non-lifecycle objects", async () => {
+    "non-lifecycle objects": async () => {
         interface Foo {
             x: number;
         }
@@ -101,8 +102,8 @@ describe("system", () => {
             foo: { factory: () => ({ x: 42 }) },
             bar: { factory: ({ foo }) => ({ foo }), deps: ["foo"] },
         });
-        assert(sys.components.foo === sys.components.bar.foo);
+        assert.ok(sys.components.foo === sys.components.bar.foo);
         await sys.start();
         await sys.stop();
-    });
+    },
 });

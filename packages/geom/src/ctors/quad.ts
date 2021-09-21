@@ -1,8 +1,10 @@
-import { isNumber } from "@thi.ng/checks";
+import { isNumber } from "@thi.ng/checks/is-number";
 import type { Attribs } from "@thi.ng/geom-api";
-import { closestPointPlane } from "@thi.ng/geom-closest-point";
-import { alignmentQuat, mulVQ } from "@thi.ng/matrices";
-import { add3, ReadonlyVec, Vec, Z3 } from "@thi.ng/vectors";
+import { closestPointPlane } from "@thi.ng/geom-closest-point/plane";
+import { alignmentQuat } from "@thi.ng/matrices/alignment-quat";
+import { mulVQ } from "@thi.ng/matrices/mulv";
+import { add3 } from "@thi.ng/vectors/add";
+import { ReadonlyVec, Vec, Z3 } from "@thi.ng/vectors/api";
 import type { Plane } from "../api/plane";
 import { Quad } from "../api/quad";
 import { Quad3 } from "../api/quad3";

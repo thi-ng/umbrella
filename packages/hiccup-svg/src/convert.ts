@@ -1,4 +1,5 @@
-import { implementsFunction, isArray } from "@thi.ng/checks";
+import { implementsFunction } from "@thi.ng/checks/implements-function";
+import { isArray } from "@thi.ng/checks/is-array";
 import { circle } from "./circle";
 import { ellipse } from "./ellipse";
 import { fattribs } from "./format";

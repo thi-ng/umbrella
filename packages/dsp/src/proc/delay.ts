@@ -1,6 +1,6 @@
 import type { Fn0, IClear, ILength, IReset } from "@thi.ng/api";
-import { isFunction } from "@thi.ng/checks";
-import { wrap } from "@thi.ng/math";
+import { isFunction } from "@thi.ng/checks/is-function";
+import { wrap } from "@thi.ng/math/interval";
 import { AProc } from "./aproc";
 
 /**

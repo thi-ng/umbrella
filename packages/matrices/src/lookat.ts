@@ -1,11 +1,9 @@
-import {
-    cross3,
-    dot3,
-    normalize,
-    ReadonlyVec,
-    setC,
-    sub3,
-} from "@thi.ng/vectors";
+import type { ReadonlyVec } from "@thi.ng/vectors";
+import { cross3 } from "@thi.ng/vectors/cross";
+import { dot3 } from "@thi.ng/vectors/dot";
+import { normalize } from "@thi.ng/vectors/normalize";
+import { setC } from "@thi.ng/vectors/setc";
+import { sub3 } from "@thi.ng/vectors/sub";
 import type { Mat } from "./api";
 
 /**

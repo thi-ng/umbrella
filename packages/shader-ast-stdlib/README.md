@@ -87,15 +87,23 @@ Reference:
 yarn add @thi.ng/shader-ast-stdlib
 ```
 
-```html
-// ES module
-<script type="module" src="https://unpkg.com/@thi.ng/shader-ast-stdlib?module" crossorigin></script>
+ES module import:
 
-// UMD
-<script src="https://unpkg.com/@thi.ng/shader-ast-stdlib/lib/index.umd.js" crossorigin></script>
+```html
+<script type="module" src="https://cdn.skypack.dev/@thi.ng/shader-ast-stdlib"></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 7.11 KB / CJS: 8.12 KB / UMD: 7.35 KB
+[Skypack documentation](https://docs.skypack.dev/)
+
+For NodeJS (v14.6+):
+
+```text
+node --experimental-specifier-resolution=node --experimental-repl-await
+
+> const shaderAstStdlib = await import("@thi.ng/shader-ast-stdlib");
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 7.11 KB
 
 ## Dependencies
 

@@ -2,10 +2,10 @@
     "name": "@thi.ng/parse",
     "version": "1.0.5",
     "description": "Purely functional parser combinators & AST generation for generic inputs",
+    "type": "module",
     "module": "./index.js",
-    "main": "./lib/index.js",
-    "umd:main": "./lib/index.umd.js",
     "typings": "./index.d.ts",
+    "sideEffects": false,
     "repository": {
         "type": "git",
         "url": "https://github.com/thi-ng/umbrella.git"
@@ -24,18 +24,15 @@
     "author": "Karsten Schmidt <k+npm@thi.ng>",
     "license": "Apache-2.0",
     "scripts": {
-        "build": "yarn clean && yarn build:es6 && node ../../scripts/bundle-module",
-        "build:release": "yarn clean && yarn build:es6 && node ../../scripts/bundle-module all",
-        "build:es6": "tsc --declaration",
-        "build:test": "rimraf build && tsc -p test/tsconfig.json",
+        "build": "yarn clean && tsc --declaration",
         "build:check": "tsc --isolatedModules --noEmit",
-        "test": "mocha test",
-        "cover": "nyc mocha test && nyc report --reporter=lcov",
-        "clean": "rimraf *.js *.d.ts *.map .nyc_output build coverage doc lib combinators presets prims readers xform",
-        "doc:readme": "ts-node -P ../../tools/tsconfig.json ../../tools/src/readme.ts",
+        "clean": "rimraf *.js *.d.ts *.map doc combinators presets prims readers xform",
+        "doc": "typedoc --excludePrivate --excludeInternal --out doc src/index.ts",
         "doc:ae": "mkdir -p .ae/doc .ae/temp && node_modules/.bin/api-extractor run --local --verbose",
-        "doc": "typedoc --excludePrivate --out doc --theme ../../tools/doc/typedoc-theme src/index.ts",
-        "pub": "yarn build:release && yarn publish --access public"
+        "doc:readme": "../../scripts/node-esm ../../tools/src/readme.ts",
+        "doc:stats": "../../scripts/node-esm ../../tools/src/module-stats.ts",
+        "pub": "yarn build:release && yarn publish --access public",
+        "test": "testament test"
     },
     "dependencies": {
         "@thi.ng/api": "^7.2.0",
@@ -44,16 +41,9 @@
         "@thi.ng/errors": "^1.3.4",
         "@thi.ng/strings": "^2.1.7"
     },
-    "files": [
-        "*.js",
-        "*.d.ts",
-        "lib",
-        "combinators",
-        "presets",
-        "prims",
-        "readers",
-        "xform"
-    ],
+    "devDependencies": {
+        "@thi.ng/testament": "^0.0.1"
+    },
     "keywords": [
         "ast",
         "combinator",
@@ -73,7 +63,170 @@
     "publishConfig": {
         "access": "public"
     },
-    "sideEffects": false,
+    "files": [
+        "*.js",
+        "*.d.ts",
+        "combinators",
+        "presets",
+        "prims",
+        "readers",
+        "xform"
+    ],
+    "exports": {
+        ".": {
+            "import": "./index.js"
+        },
+        "./api": {
+            "import": "./api.js"
+        },
+        "./combinators/alt": {
+            "import": "./combinators/alt.js"
+        },
+        "./combinators/boundary": {
+            "import": "./combinators/boundary.js"
+        },
+        "./combinators/check": {
+            "import": "./combinators/check.js"
+        },
+        "./combinators/dynamic": {
+            "import": "./combinators/dynamic.js"
+        },
+        "./combinators/expect": {
+            "import": "./combinators/expect.js"
+        },
+        "./combinators/lookahead": {
+            "import": "./combinators/lookahead.js"
+        },
+        "./combinators/maybe": {
+            "import": "./combinators/maybe.js"
+        },
+        "./combinators/not": {
+            "import": "./combinators/not.js"
+        },
+        "./combinators/repeat": {
+            "import": "./combinators/repeat.js"
+        },
+        "./combinators/seq": {
+            "import": "./combinators/seq.js"
+        },
+        "./combinators/wrap": {
+            "import": "./combinators/wrap.js"
+        },
+        "./combinators/xform": {
+            "import": "./combinators/xform.js"
+        },
+        "./context": {
+            "import": "./context.js"
+        },
+        "./error": {
+            "import": "./error.js"
+        },
+        "./grammar": {
+            "import": "./grammar.js"
+        },
+        "./presets/alpha": {
+            "import": "./presets/alpha.js"
+        },
+        "./presets/bits": {
+            "import": "./presets/bits.js"
+        },
+        "./presets/digits": {
+            "import": "./presets/digits.js"
+        },
+        "./presets/escape": {
+            "import": "./presets/escape.js"
+        },
+        "./presets/hex": {
+            "import": "./presets/hex.js"
+        },
+        "./presets/numbers": {
+            "import": "./presets/numbers.js"
+        },
+        "./presets/string": {
+            "import": "./presets/string.js"
+        },
+        "./presets/whitespace": {
+            "import": "./presets/whitespace.js"
+        },
+        "./prims/always": {
+            "import": "./prims/always.js"
+        },
+        "./prims/anchor": {
+            "import": "./prims/anchor.js"
+        },
+        "./prims/fail": {
+            "import": "./prims/fail.js"
+        },
+        "./prims/lit": {
+            "import": "./prims/lit.js"
+        },
+        "./prims/none-of": {
+            "import": "./prims/none-of.js"
+        },
+        "./prims/one-of": {
+            "import": "./prims/one-of.js"
+        },
+        "./prims/pass": {
+            "import": "./prims/pass.js"
+        },
+        "./prims/range": {
+            "import": "./prims/range.js"
+        },
+        "./prims/satisfy": {
+            "import": "./prims/satisfy.js"
+        },
+        "./prims/skip": {
+            "import": "./prims/skip.js"
+        },
+        "./prims/string": {
+            "import": "./prims/string.js"
+        },
+        "./readers/array-reader": {
+            "import": "./readers/array-reader.js"
+        },
+        "./readers/string-reader": {
+            "import": "./readers/string-reader.js"
+        },
+        "./utils": {
+            "import": "./utils.js"
+        },
+        "./xform/collect": {
+            "import": "./xform/collect.js"
+        },
+        "./xform/comp": {
+            "import": "./xform/comp.js"
+        },
+        "./xform/count": {
+            "import": "./xform/count.js"
+        },
+        "./xform/discard": {
+            "import": "./xform/discard.js"
+        },
+        "./xform/hoist": {
+            "import": "./xform/hoist.js"
+        },
+        "./xform/join": {
+            "import": "./xform/join.js"
+        },
+        "./xform/nest": {
+            "import": "./xform/nest.js"
+        },
+        "./xform/number": {
+            "import": "./xform/number.js"
+        },
+        "./xform/print": {
+            "import": "./xform/print.js"
+        },
+        "./xform/replace": {
+            "import": "./xform/replace.js"
+        },
+        "./xform/trim": {
+            "import": "./xform/trim.js"
+        },
+        "./xform/with-id": {
+            "import": "./xform/with-id.js"
+        }
+    },
     "thi.ng": {
         "related": [
             "fsm",

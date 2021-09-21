@@ -83,15 +83,23 @@ Largely declarative WebGL 1.0 / 2.0 abstraction layer, partially ported
 yarn add @thi.ng/webgl
 ```
 
-```html
-// ES module
-<script type="module" src="https://unpkg.com/@thi.ng/webgl?module" crossorigin></script>
+ES module import:
 
-// UMD
-<script src="https://unpkg.com/@thi.ng/webgl/lib/index.umd.js" crossorigin></script>
+```html
+<script type="module" src="https://cdn.skypack.dev/@thi.ng/webgl"></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 11.90 KB / CJS: 12.10 KB / UMD: 11.88 KB
+[Skypack documentation](https://docs.skypack.dev/)
+
+For NodeJS (v14.6+):
+
+```text
+node --experimental-specifier-resolution=node --experimental-repl-await
+
+> const webgl = await import("@thi.ng/webgl");
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 11.90 KB
 
 ## Dependencies
 
@@ -101,6 +109,7 @@ Package sizes (gzipped, pre-treeshake): ESM: 11.90 KB / CJS: 12.10 KB / UMD: 11.
 - [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
 - [@thi.ng/equiv](https://github.com/thi-ng/umbrella/tree/develop/packages/equiv)
 - [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
+- [@thi.ng/logger](https://github.com/thi-ng/umbrella/tree/develop/packages/logger)
 - [@thi.ng/matrices](https://github.com/thi-ng/umbrella/tree/develop/packages/matrices)
 - [@thi.ng/memoize](https://github.com/thi-ng/umbrella/tree/develop/packages/memoize)
 - [@thi.ng/pixel](https://github.com/thi-ng/umbrella/tree/develop/packages/pixel)

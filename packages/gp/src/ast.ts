@@ -1,7 +1,11 @@
-import { assert } from "@thi.ng/api";
-import { SYSTEM } from "@thi.ng/random";
-import { iterate, iterator, repeatedly, takeWhile } from "@thi.ng/transducers";
-import { Location, zipper } from "@thi.ng/zipper";
+import { assert } from "@thi.ng/errors/assert";
+import { SYSTEM } from "@thi.ng/random/system";
+import { iterate } from "@thi.ng/transducers/iterate";
+import { iterator } from "@thi.ng/transducers/iterator";
+import { repeatedly } from "@thi.ng/transducers/repeatedly";
+import { takeWhile } from "@thi.ng/transducers/take-while";
+import type { Location } from "@thi.ng/zipper";
+import { zipper } from "@thi.ng/zipper/zipper";
 import type { ASTNode, ASTOpts, OpGene } from "./api";
 import { opNode, probabilities, terminalNode } from "./utils";
 

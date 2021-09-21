@@ -1,6 +1,5 @@
-import { div, li, textArea, ul } from "@thi.ng/hiccup-html";
-import { CIRCLE_FILLED, withSize } from "@thi.ng/hiccup-carbon-icons";
-import { css } from "@thi.ng/color";
+import { css } from "@thi.ng/color/css/css";
+import { li, ul } from "@thi.ng/hiccup-html/lists";
 import type { DominantColor } from "../api";
 
 export const cssPalette = (colors: DominantColor[]) =>

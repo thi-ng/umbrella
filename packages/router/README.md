@@ -53,15 +53,23 @@ Partially based on the Clojure implementation in
 yarn add @thi.ng/router
 ```
 
-```html
-// ES module
-<script type="module" src="https://unpkg.com/@thi.ng/router?module" crossorigin></script>
+ES module import:
 
-// UMD
-<script src="https://unpkg.com/@thi.ng/router/lib/index.umd.js" crossorigin></script>
+```html
+<script type="module" src="https://cdn.skypack.dev/@thi.ng/router"></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.50 KB / CJS: 1.56 KB / UMD: 1.67 KB
+[Skypack documentation](https://docs.skypack.dev/)
+
+For NodeJS (v14.6+):
+
+```text
+node --experimental-specifier-resolution=node --experimental-repl-await
+
+> const router = await import("@thi.ng/router");
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 1.50 KB
 
 ## Dependencies
 

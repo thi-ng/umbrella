@@ -1,11 +1,12 @@
+import { group } from "@thi.ng/testament";
 import * as assert from "assert";
 import { fromObject, stream, Subscription } from "../src";
 import { assertUnsub } from "./utils";
 
 type Foo = { a?: number; b: string };
 
-describe("fromObject", () => {
-    it("basic", () => {
+group("fromObject", {
+    basic: () => {
         const obj = fromObject(
             <{ a?: number; b: string }>{
                 a: 1,
@@ -13,10 +14,10 @@ describe("fromObject", () => {
             },
             { id: "test" }
         );
-        assert(obj.streams.a instanceof Subscription);
-        assert(obj.streams.b instanceof Subscription);
-        assert(obj.streams.a.id.startsWith("test-a"));
-        assert(obj.streams.b.id.startsWith("test-b"));
+        assert.ok(obj.streams.a instanceof Subscription);
+        assert.ok(obj.streams.b instanceof Subscription);
+        assert.ok(obj.streams.a.id.startsWith("test-a"));
+        assert.ok(obj.streams.b.id.startsWith("test-b"));
 
         const acc: any = { a: [], b: [] };
         obj.streams.a.subscribe({
@@ -38,9 +39,9 @@ describe("fromObject", () => {
         });
         assertUnsub(obj.streams.a);
         assertUnsub(obj.streams.b);
-    });
+    },
 
-    it("subscriber", () => {
+    subscriber: () => {
         const acc: any = { a: [], b: [] };
         const obj = fromObject(<Foo>{}, { keys: ["a", "b"], initial: false });
         obj.streams.a.subscribe({
@@ -66,9 +67,9 @@ describe("fromObject", () => {
         });
         assertUnsub(obj.streams.a);
         assertUnsub(obj.streams.b);
-    });
+    },
 
-    it("defaults & dedupe", () => {
+    "defaults & dedupe": () => {
         const acc: any = { a: [], b: [] };
         const obj = fromObject(<Foo>{}, {
             keys: ["a", "b"],
@@ -96,5 +97,5 @@ describe("fromObject", () => {
             a: [0, 1, 0, 2, 0],
             b: ["foo", "bar", "baz"],
         });
-    });
+    },
 });

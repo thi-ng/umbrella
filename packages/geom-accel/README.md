@@ -46,15 +46,23 @@ Currently available:
 yarn add @thi.ng/geom-accel
 ```
 
-```html
-// ES module
-<script type="module" src="https://unpkg.com/@thi.ng/geom-accel?module" crossorigin></script>
+ES module import:
 
-// UMD
-<script src="https://unpkg.com/@thi.ng/geom-accel/lib/index.umd.js" crossorigin></script>
+```html
+<script type="module" src="https://cdn.skypack.dev/@thi.ng/geom-accel"></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 3.78 KB / CJS: 3.85 KB / UMD: 3.85 KB
+[Skypack documentation](https://docs.skypack.dev/)
+
+For NodeJS (v14.6+):
+
+```text
+node --experimental-specifier-resolution=node --experimental-repl-await
+
+> const geomAccel = await import("@thi.ng/geom-accel");
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 3.78 KB
 
 ## Dependencies
 
@@ -62,6 +70,7 @@ Package sizes (gzipped, pre-treeshake): ESM: 3.78 KB / CJS: 3.85 KB / UMD: 3.85 
 - [@thi.ng/arrays](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays)
 - [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
 - [@thi.ng/equiv](https://github.com/thi-ng/umbrella/tree/develop/packages/equiv)
+- [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
 - [@thi.ng/geom-api](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-api)
 - [@thi.ng/geom-isec](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-isec)
 - [@thi.ng/heaps](https://github.com/thi-ng/umbrella/tree/develop/packages/heaps)

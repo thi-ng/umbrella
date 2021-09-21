@@ -1,10 +1,10 @@
-import { Type } from "@thi.ng/api";
 import { equiv } from "@thi.ng/equiv";
+import { group } from "@thi.ng/testament";
 import * as assert from "assert";
 import { aos } from "../src";
 
-describe("aos", () => {
-    it("basic", () => {
+group("aos", {
+    basic: () => {
         const struct = aos(
             2,
             {
@@ -15,7 +15,7 @@ describe("aos", () => {
             undefined,
             0x100
         );
-        assert(
+        assert.ok(
             struct.buffers.a.buffer === struct.buffers.b.buffer &&
                 struct.buffers.b.buffer === struct.buffers.c.buffer
         );
@@ -34,7 +34,7 @@ describe("aos", () => {
             ],
             c: [[0xff], [0xfe]],
         });
-        assert(
+        assert.ok(
             equiv(
                 [...struct.values()],
                 [
@@ -46,5 +46,5 @@ describe("aos", () => {
         const x = struct.index(1);
         x.a[0] = 0xaa55;
         assert.strictEqual(struct.buffers.a[8], 0xaa55);
-    });
+    },
 });

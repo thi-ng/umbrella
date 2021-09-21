@@ -1,4 +1,4 @@
-import { isArray } from "@thi.ng/checks";
+import { isArray } from "@thi.ng/checks/is-array";
 import type { ModelSpec } from "./api/model";
 import { isGL2Context } from "./checks";
 import { error } from "./error";

@@ -1,7 +1,7 @@
 import type { CommonOpts } from "./api";
-import { fromIterableSync } from "./from/iterable";
+import { __optsWithID } from "./idgen";
+import { fromIterableSync } from "./iterable";
 import type { Stream } from "./stream";
-import { optsWithID } from "./utils/idgen";
 
 /**
  * Utility stream. Returns a new stream which emits a single value `x` (if
@@ -17,5 +17,5 @@ import { optsWithID } from "./utils/idgen";
 export function trigger(): Stream<boolean>;
 export function trigger<T>(x: T, opts?: Partial<CommonOpts>): Stream<T>;
 export function trigger(x: any = true, opts?: Partial<CommonOpts>) {
-    return fromIterableSync([x], optsWithID("trigger", opts));
+    return fromIterableSync([x], __optsWithID("trigger", opts));
 }

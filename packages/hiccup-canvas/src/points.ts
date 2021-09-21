@@ -1,5 +1,5 @@
 import type { IObjectOf } from "@thi.ng/api";
-import { TAU } from "@thi.ng/math";
+import { TAU } from "@thi.ng/math/api";
 import type { ReadonlyVec } from "@thi.ng/vectors";
 
 export const points = (

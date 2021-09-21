@@ -1,14 +1,17 @@
 import type { IObjectOf } from "@thi.ng/api";
-import { defmulti, Implementation1, MultiFn1O } from "@thi.ng/defmulti";
+import type { Implementation1, MultiFn1O } from "@thi.ng/defmulti";
+import { defmulti } from "@thi.ng/defmulti/defmulti";
 import type { CubicOpts, IShape, PCLike } from "@thi.ng/geom-api";
 import {
     closedCubicFromBreakPoints,
-    closedCubicFromControlPoints,
     openCubicFromBreakPoints,
+} from "@thi.ng/geom-splines/cubic-from-breakpoints";
+import {
+    closedCubicFromControlPoints,
     openCubicFromControlPoints,
-} from "@thi.ng/geom-splines";
-import { TAU } from "@thi.ng/math";
-import { mapcat } from "@thi.ng/transducers";
+} from "@thi.ng/geom-splines/cubic-from-controlpoints";
+import { TAU } from "@thi.ng/math/api";
+import { mapcat } from "@thi.ng/transducers/mapcat";
 import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
 import type { Circle } from "../api/circle";
 import { Cubic } from "../api/cubic";

@@ -2,13 +2,13 @@
     "name": "@thi.ng/pointfree-lang",
     "version": "1.4.38",
     "description": "Forth style syntax layer/compiler & CLI for the @thi.ng/pointfree DSL",
+    "type": "module",
     "module": "./index.js",
-    "main": "./lib/index.js",
-    "umd:main": "./lib/index.umd.js",
     "typings": "./index.d.ts",
     "bin": {
         "pointfree": "bin/pointfree.js"
     },
+    "sideEffects": false,
     "repository": {
         "type": "git",
         "url": "https://github.com/thi-ng/umbrella.git"
@@ -27,37 +27,29 @@
     "author": "Karsten Schmidt <k+npm@thi.ng>",
     "license": "Apache-2.0",
     "scripts": {
-        "build": "yarn clean && yarn build:es6 && node ../../scripts/bundle-module",
-        "build:release": "yarn clean && yarn build:es6 && node ../../scripts/bundle-module all",
-        "build:es6": "tsc --declaration && yarn peg",
-        "build:test": "rimraf build && tsc -p test/tsconfig.json && yarn pegtest",
+        "build": "yarn clean && tsc --declaration && yarn build:peg",
         "build:check": "tsc --isolatedModules --noEmit",
-        "test": "yarn build:test && mocha build/test/*.js",
-        "cover": "yarn build:test && nyc mocha build/test/*.js && nyc report --reporter=lcov",
-        "peg": "pegjs -f es -o parser.js src/grammar.pegjs",
-        "pegtest": "pegjs -o build/src/parser.js src/grammar.pegjs",
-        "clean": "rimraf *.js *.d.ts *.map .nyc_output build coverage doc lib",
-        "doc:readme": "ts-node -P ../../tools/tsconfig.json ../../tools/src/readme.ts",
-        "doc": "typedoc --excludePrivate --out doc --theme ../../tools/doc/typedoc-theme src/index.ts",
+        "build:peg": "pegjs -f es -o parser.js src/grammar.pegjs",
+        "clean": "rimraf *.js *.d.ts *.map doc",
+        "doc": "typedoc --excludePrivate --excludeInternal --out doc src/index.ts",
         "doc:ae": "mkdir -p .ae/doc .ae/temp && node_modules/.bin/api-extractor run --local --verbose",
-        "pub": "yarn build:release && yarn publish --access public"
-    },
-    "devDependencies": {
-        "pegjs": "0.11.0-master.b7b87ea"
+        "doc:readme": "../../scripts/node-esm ../../tools/src/readme.ts",
+        "doc:stats": "../../scripts/node-esm ../../tools/src/module-stats.ts",
+        "pub": "yarn build:release && yarn publish --access public",
+        "test": "testament test"
     },
     "dependencies": {
         "@thi.ng/api": "^7.2.0",
         "@thi.ng/args": "^1.1.1",
         "@thi.ng/bench": "^2.1.6",
         "@thi.ng/errors": "^1.3.4",
+        "@thi.ng/logger": "^0.0.1",
         "@thi.ng/pointfree": "^2.0.36"
     },
-    "files": [
-        "*.js",
-        "*.d.ts",
-        "lib",
-        "bin"
-    ],
+    "devDependencies": {
+        "@thi.ng/testament": "^0.0.1",
+        "pegjs": "0.11.0-master.b7b87ea"
+    },
     "keywords": [
         "ast",
         "cli",
@@ -79,7 +71,22 @@
     "publishConfig": {
         "access": "public"
     },
-    "sideEffects": false,
+    "files": [
+        "*.js",
+        "*.d.ts",
+        "bin"
+    ],
+    "exports": {
+        ".": {
+            "import": "./index.js"
+        },
+        "./api": {
+            "import": "./api.js"
+        },
+        "./parser": {
+            "import": "./parser.js"
+        }
+    },
     "thi.ng": {
         "parent": "@thi.ng/pointfree",
         "year": 2018

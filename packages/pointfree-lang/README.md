@@ -72,15 +72,23 @@ an ES6 embedded DSL for concatenative programming:
 yarn add @thi.ng/pointfree-lang
 ```
 
-```html
-// ES module
-<script type="module" src="https://unpkg.com/@thi.ng/pointfree-lang?module" crossorigin></script>
+ES module import:
 
-// UMD
-<script src="https://unpkg.com/@thi.ng/pointfree-lang/lib/index.umd.js" crossorigin></script>
+```html
+<script type="module" src="https://cdn.skypack.dev/@thi.ng/pointfree-lang"></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 4.91 KB / CJS: 5.00 KB / UMD: 4.94 KB
+[Skypack documentation](https://docs.skypack.dev/)
+
+For NodeJS (v14.6+):
+
+```text
+node --experimental-specifier-resolution=node --experimental-repl-await
+
+> const pointfreeLang = await import("@thi.ng/pointfree-lang");
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 4.91 KB
 
 ## Dependencies
 
@@ -88,6 +96,7 @@ Package sizes (gzipped, pre-treeshake): ESM: 4.91 KB / CJS: 5.00 KB / UMD: 4.94 
 - [@thi.ng/args](https://github.com/thi-ng/umbrella/tree/develop/packages/args)
 - [@thi.ng/bench](https://github.com/thi-ng/umbrella/tree/develop/packages/bench)
 - [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
+- [@thi.ng/logger](https://github.com/thi-ng/umbrella/tree/develop/packages/logger)
 - [@thi.ng/pointfree](https://github.com/thi-ng/umbrella/tree/develop/packages/pointfree)
 
 ## Usage examples

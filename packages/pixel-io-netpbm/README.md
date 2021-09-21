@@ -52,15 +52,23 @@ size and other meta data (from comments), without parsing the full image.
 yarn add @thi.ng/pixel-io-netpbm
 ```
 
-```html
-// ES module
-<script type="module" src="https://unpkg.com/@thi.ng/pixel-io-netpbm?module" crossorigin></script>
+ES module import:
 
-// UMD
-<script src="https://unpkg.com/@thi.ng/pixel-io-netpbm/lib/index.umd.js" crossorigin></script>
+```html
+<script type="module" src="https://cdn.skypack.dev/@thi.ng/pixel-io-netpbm"></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.31 KB / CJS: 1.39 KB / UMD: 1.49 KB
+[Skypack documentation](https://docs.skypack.dev/)
+
+For NodeJS (v14.6+):
+
+```text
+node --experimental-specifier-resolution=node --experimental-repl-await
+
+> const pixelIoNetpbm = await import("@thi.ng/pixel-io-netpbm");
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 1.31 KB
 
 ## Dependencies
 

@@ -1,7 +1,7 @@
 import type { Fn } from "@thi.ng/api";
-import { isString } from "@thi.ng/checks";
+import { isString } from "@thi.ng/checks/is-string";
 import { equiv } from "@thi.ng/equiv";
-import { illegalArity } from "@thi.ng/errors";
+import { illegalArity } from "@thi.ng/errors/illegal-arity";
 import type { HTMLRouterConfig, RouteMatch, RouterConfig } from "./api";
 import { BasicRouter } from "./basic";
 

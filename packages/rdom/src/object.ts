@@ -1,10 +1,6 @@
 import type { Fn, Keys } from "@thi.ng/api";
-import {
-    fromObject,
-    ISubscribable,
-    StreamObj,
-    StreamObjOpts,
-} from "@thi.ng/rstream";
+import type { ISubscribable, StreamObj, StreamObjOpts } from "@thi.ng/rstream";
+import { fromObject } from "@thi.ng/rstream/object";
 import type {
     ComponentLike,
     IComponent,
@@ -96,7 +92,8 @@ export const $subObject = <T, K extends Keys<T>>(
 
 export class $Object<T, K extends Keys<T>>
     extends Component
-    implements IMountWithState<T> {
+    implements IMountWithState<T>
+{
     protected obj: StreamObj<T, K>;
     protected inner?: IComponent;
 

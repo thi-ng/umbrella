@@ -7,8 +7,9 @@ import type {
 import {
     pointAt as arcPointAt,
     pointAtTheta as arcPointAtTheta,
-} from "@thi.ng/geom-arc";
-import { set, Vec } from "@thi.ng/vectors";
+} from "@thi.ng/geom-arc/point-at";
+import type { Vec } from "@thi.ng/vectors";
+import { set } from "@thi.ng/vectors/set";
 import { copyAttribs } from "../internal/copy-attribs";
 
 export class Arc implements IHiccupShape, IHiccupPathSegment {

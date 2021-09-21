@@ -1,6 +1,6 @@
 import type { Fn, Fn2 } from "@thi.ng/api";
-import { isArray } from "@thi.ng/checks";
-import { illegalArgs } from "@thi.ng/errors";
+import { isArray } from "@thi.ng/checks/is-array";
+import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import type { StackContext } from "./api";
 import { $, $n } from "./safe";
 
@@ -50,26 +50,26 @@ export const defOp2 = (op: Fn2<any, any, any>) => (ctx: StackContext) => {
  *
  * @param f -
  */
-export const defOp2v = (f: Fn2<any, any, any>) => (
-    ctx: StackContext
-): StackContext => {
-    $(ctx[0], 2);
-    const stack = ctx[0];
-    const b = stack.pop();
-    const n = stack.length - 1;
-    const a = stack[n];
-    const isa = isArray(a);
-    const isb = isArray(b);
-    stack[n] =
-        isa && isb
-            ? op2vAB(f, a, b)
-            : isb && !isa
-            ? op2vB(f, a, b)
-            : isa && !isb
-            ? op2vA(f, a, b)
-            : illegalArgs("at least one arg must be an array");
-    return ctx;
-};
+export const defOp2v =
+    (f: Fn2<any, any, any>) =>
+    (ctx: StackContext): StackContext => {
+        $(ctx[0], 2);
+        const stack = ctx[0];
+        const b = stack.pop();
+        const n = stack.length - 1;
+        const a = stack[n];
+        const isa = isArray(a);
+        const isb = isArray(b);
+        stack[n] =
+            isa && isb
+                ? op2vAB(f, a, b)
+                : isb && !isa
+                ? op2vB(f, a, b)
+                : isa && !isb
+                ? op2vA(f, a, b)
+                : illegalArgs("at least one arg must be an array");
+        return ctx;
+    };
 
 const op2vAB = (f: Fn2<any, any, any>, a: any, b: any) => {
     const res = new Array(Math.min(a.length, b.length));

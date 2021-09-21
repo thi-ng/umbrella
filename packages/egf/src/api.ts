@@ -1,6 +1,7 @@
-import type { Fn3, IDeref, IEquiv, ILogger, IObjectOf } from "@thi.ng/api";
-import { isNode } from "@thi.ng/checks";
-import { unsupported } from "@thi.ng/errors";
+import type { Fn3, IDeref, IEquiv, IObjectOf } from "@thi.ng/api";
+import { isNode } from "@thi.ng/checks/is-node";
+import { unsupported } from "@thi.ng/errors/unsupported";
+import type { ILogger } from "@thi.ng/logger";
 
 export interface Node {
     $id: string;

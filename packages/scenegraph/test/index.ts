@@ -1,6 +1,5 @@
+import { group } from "@thi.ng/testament";
 // import * as assert from "assert";
 // import * as s from "../src";
 
-describe("scenegraph", () => {
-    it("tests pending");
-});
+group("scenegraph", {});

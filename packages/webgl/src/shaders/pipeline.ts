@@ -1,12 +1,8 @@
-import {
-    $xy,
-    assign,
-    defMain,
-    FLOAT0,
-    FLOAT1,
-    texture,
-    vec4,
-} from "@thi.ng/shader-ast";
+import { assign } from "@thi.ng/shader-ast/ast/assign";
+import { defMain } from "@thi.ng/shader-ast/ast/function";
+import { FLOAT0, FLOAT1, vec4 } from "@thi.ng/shader-ast/ast/lit";
+import { $xy } from "@thi.ng/shader-ast/ast/swizzle";
+import { texture } from "@thi.ng/shader-ast/builtin/texture";
 import type { ShaderFn, ShaderSpec } from "../api/shader";
 
 export const PASSTHROUGH_VS: ShaderFn = (gl, _, ins) => [

@@ -1,6 +1,8 @@
-import { isNumber } from "@thi.ng/checks";
+import { isNumber } from "@thi.ng/checks/is-number";
 import type { AABBLike, Attribs, IHiccupShape } from "@thi.ng/geom-api";
-import { add2, set, Vec } from "@thi.ng/vectors";
+import type { Vec } from "@thi.ng/vectors";
+import { add2 } from "@thi.ng/vectors/add";
+import { set2 } from "@thi.ng/vectors/set";
 import { copyAttribs } from "../internal/copy-attribs";
 
 export class Rect implements AABBLike, IHiccupShape {
@@ -20,8 +22,8 @@ export class Rect implements AABBLike, IHiccupShape {
 
     copy(): Rect {
         return new Rect(
-            set([], this.pos),
-            set([], this.size),
+            set2([], this.pos),
+            set2([], this.size),
             copyAttribs(this)
         );
     }

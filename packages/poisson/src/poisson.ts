@@ -1,6 +1,7 @@
-import { isNumber } from "@thi.ng/checks";
-import { SYSTEM } from "@thi.ng/random";
-import { jitter as _jitter, Vec } from "@thi.ng/vectors";
+import { isNumber } from "@thi.ng/checks/is-number";
+import { SYSTEM } from "@thi.ng/random/system";
+import type { Vec } from "@thi.ng/vectors";
+import { jitter as _jitter } from "@thi.ng/vectors/jitter";
 import type { PoissonOpts } from "./api";
 
 /**

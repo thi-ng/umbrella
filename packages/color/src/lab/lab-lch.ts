@@ -1,5 +1,6 @@
-import { atan2Abs, INV_TAU, TAU } from "@thi.ng/math";
-import { setC4 } from "@thi.ng/vectors";
+import { atan2Abs } from "@thi.ng/math/angle";
+import { INV_TAU, TAU } from "@thi.ng/math/api";
+import { setC4 } from "@thi.ng/vectors/setc";
 import type { ColorOp } from "../api";
 import { ensureAlpha } from "../internal/ensure-alpha";
 

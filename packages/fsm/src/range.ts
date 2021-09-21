@@ -1,4 +1,4 @@
-import { ALPHA, DIGITS, WS } from "@thi.ng/strings";
+import { ALPHA, DIGITS, WS } from "@thi.ng/strings/groups";
 import { altsLitObj } from "./alts-lit";
 import type { LitCallback, Matcher } from "./api";
 import { result } from "./result";
@@ -12,15 +12,18 @@ import { result } from "./result";
  * @param success - success callback
  * @param fail - failure callback
  */
-export const range = <T extends number | string, C, R>(
-    min: T,
-    max: T,
-    success?: LitCallback<T, C, R>,
-    fail?: LitCallback<T, C, R>
-): Matcher<T, C, R> => () => (ctx, x) =>
-    x >= min && x <= max
-        ? result(success && success(ctx, x))
-        : result(fail && fail(ctx, x));
+export const range =
+    <T extends number | string, C, R>(
+        min: T,
+        max: T,
+        success?: LitCallback<T, C, R>,
+        fail?: LitCallback<T, C, R>
+    ): Matcher<T, C, R> =>
+    () =>
+    (ctx, x) =>
+        x >= min && x <= max
+            ? result(success && success(ctx, x))
+            : result(fail && fail(ctx, x));
 
 /**
  * Matcher for single digit characters (0-9).

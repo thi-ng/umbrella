@@ -41,20 +41,29 @@ Clojure/ClojureScript.
 yarn add @thi.ng/system
 ```
 
-```html
-// ES module
-<script type="module" src="https://unpkg.com/@thi.ng/system?module" crossorigin></script>
+ES module import:
 
-// UMD
-<script src="https://unpkg.com/@thi.ng/system/lib/index.umd.js" crossorigin></script>
+```html
+<script type="module" src="https://cdn.skypack.dev/@thi.ng/system"></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 414 bytes / CJS: 475 bytes / UMD: 584 bytes
+[Skypack documentation](https://docs.skypack.dev/)
+
+For NodeJS (v14.6+):
+
+```text
+node --experimental-specifier-resolution=node --experimental-repl-await
+
+> const system = await import("@thi.ng/system");
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 414 bytes
 
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
 - [@thi.ng/dgraph](https://github.com/thi-ng/umbrella/tree/develop/packages/dgraph)
+- [@thi.ng/logger](https://github.com/thi-ng/umbrella/tree/develop/packages/logger)
 
 ## API
 

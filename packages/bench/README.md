@@ -51,15 +51,23 @@ still only sourced via `Date.now()`.
 yarn add @thi.ng/bench
 ```
 
-```html
-// ES module
-<script type="module" src="https://unpkg.com/@thi.ng/bench?module" crossorigin></script>
+ES module import:
 
-// UMD
-<script src="https://unpkg.com/@thi.ng/bench/lib/index.umd.js" crossorigin></script>
+```html
+<script type="module" src="https://cdn.skypack.dev/@thi.ng/bench"></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.37 KB / CJS: 1.47 KB / UMD: 1.47 KB
+[Skypack documentation](https://docs.skypack.dev/)
+
+For NodeJS (v14.6+):
+
+```text
+node --experimental-specifier-resolution=node --experimental-repl-await
+
+> const bench = await import("@thi.ng/bench");
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 1.39 KB
 
 ## Dependencies
 

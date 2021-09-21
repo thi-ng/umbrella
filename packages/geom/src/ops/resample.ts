@@ -1,7 +1,8 @@
 import type { IObjectOf } from "@thi.ng/api";
-import { defmulti, Implementation2 } from "@thi.ng/defmulti";
+import type { Implementation2 } from "@thi.ng/defmulti";
+import { defmulti } from "@thi.ng/defmulti/defmulti";
 import type { IShape, PCLike, SamplingOpts } from "@thi.ng/geom-api";
-import { resample as _resample } from "@thi.ng/geom-resample";
+import { resample as _resample } from "@thi.ng/geom-resample/resample";
 import { Polygon } from "../api/polygon";
 import { Polyline } from "../api/polyline";
 import { copyAttribs } from "../internal/copy-attribs";

@@ -1,8 +1,9 @@
+import { group } from "@thi.ng/testament";
 import * as assert from "assert";
 import { range2d, rangeNd } from "../src";
 
-describe("range2d", () => {
-    it("forward", () => {
+group("range2d", {
+    forward: () => {
         assert.deepStrictEqual(
             [...range2d(0, 3, 1, 3)],
             [
@@ -14,8 +15,9 @@ describe("range2d", () => {
                 [2, 2],
             ]
         );
-    });
-    it("forward w/ step", () => {
+    },
+
+    "forward w/ step": () => {
         assert.deepStrictEqual(
             [...range2d(0, 5, 1, 6, 2, 3)],
             [
@@ -27,8 +29,9 @@ describe("range2d", () => {
                 [4, 4],
             ]
         );
-    });
-    it("reverse", () => {
+    },
+
+    reverse: () => {
         assert.deepStrictEqual(
             [...range2d(3, 0, 3, 1)],
             [
@@ -40,8 +43,9 @@ describe("range2d", () => {
                 [1, 2],
             ]
         );
-    });
-    it("reverse w/ step", () => {
+    },
+
+    "reverse w/ step": () => {
         assert.deepStrictEqual(
             [...range2d(5, 0, 6, 1, -2, -3)],
             [
@@ -53,29 +57,32 @@ describe("range2d", () => {
                 [1, 3],
             ]
         );
-    });
-    it("empty w/ wrong step sign (x)", () => {
+    },
+
+    "empty w/ wrong step sign (x)": () => {
         assert.deepStrictEqual([...range2d(0, 1, 0, 1, -1, 1)], []);
-    });
-    it("empty w/ wrong step sign (y)", () => {
+    },
+
+    "empty w/ wrong step sign (y)": () => {
         assert.deepStrictEqual([...range2d(0, 1, 0, 1, 1, -1)], []);
-    });
-    it("single output", () => {
+    },
+
+    "single output": () => {
         assert.deepStrictEqual([...range2d(0, 1, 0, 1)], [[0, 0]]);
-    });
+    },
 });
 
-describe("rangeNd", () => {
-    it("0d", () => {
+group("rangeNd", {
+    "0d": () => {
         assert.deepStrictEqual([...rangeNd([])], []);
-    });
+    },
 
-    it("1d", () => {
+    "1d": () => {
         assert.deepStrictEqual([...rangeNd([2])], [[0], [1]]);
         assert.deepStrictEqual([...rangeNd([-2], [2])], [[-2], [-1], [0], [1]]);
-    });
+    },
 
-    it("2d", () => {
+    "2d": () => {
         assert.deepStrictEqual(
             [...rangeNd([2, -2])],
             [
@@ -106,9 +113,9 @@ describe("rangeNd", () => {
                 [1, 1],
             ]
         );
-    });
+    },
 
-    it("3d", () => {
+    "3d": () => {
         assert.deepStrictEqual(
             [...rangeNd([2, 2, 2])],
             [
@@ -122,5 +129,5 @@ describe("rangeNd", () => {
                 [1, 1, 1],
             ]
         );
-    });
+    },
 });

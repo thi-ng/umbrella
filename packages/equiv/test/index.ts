@@ -1,21 +1,22 @@
+import { group } from "@thi.ng/testament";
 import * as assert from "assert";
 import { equiv } from "../src";
 
-describe("equiv", () => {
-    it("null", () => {
+group("equiv", {
+    null: () => {
         assert.ok(equiv(null, null));
         assert.ok(equiv(null, undefined));
         assert.ok(equiv(undefined, null));
-    });
+    },
 
-    it("boolean", () => {
+    boolean: () => {
         assert.ok(!equiv(null, false));
         assert.ok(!equiv(false, null));
         assert.ok(!equiv(undefined, false));
         assert.ok(!equiv(false, undefined));
-    });
+    },
 
-    it("number", () => {
+    number: () => {
         assert.ok(!equiv(null, 0));
         assert.ok(!equiv(0, null));
         assert.ok(!equiv(0, undefined));
@@ -29,25 +30,25 @@ describe("equiv", () => {
         assert.ok(!equiv("0", 0));
         assert.ok(!equiv(0, [0]));
         assert.ok(!equiv([0], 0));
-    });
+    },
 
-    it("string", () => {
+    string: () => {
         assert.ok(!equiv(null, ""));
         assert.ok(!equiv("", null));
         assert.ok(equiv("a", "a"));
         assert.ok(!equiv("a", "ab"));
-    });
+    },
 
-    it("array", () => {
+    array: () => {
         assert.ok(equiv([], []));
         assert.ok(equiv([], []));
         assert.ok(equiv([], { length: 0 }));
         assert.ok(equiv({ length: 0 }, []));
         assert.ok(equiv(["a"], ["a"]));
         assert.ok(!equiv(["a"], ["b"]));
-    });
+    },
 
-    it("object", () => {
+    object: () => {
         assert.ok(!equiv(undefined, {}));
         assert.ok(!equiv({}, undefined));
         assert.ok(!equiv(null, {}));
@@ -60,9 +61,9 @@ describe("equiv", () => {
         assert.ok(equiv({ a: 0, b: { c: 1 } }, { a: 0, b: { c: 1 } }));
         assert.ok(!equiv({ a: 0, b: { c: 1 } }, { a: 0, b: { c: 2 } }));
         assert.ok(!equiv({ a: 0, b: { c: 1 } }, { a: 0, b: {} }));
-    });
+    },
 
-    it("equiv impl", () => {
+    "equiv impl": () => {
         class A {
             a: any;
             constructor(a: any) {
@@ -100,9 +101,9 @@ describe("equiv", () => {
         );
         assert.ok(!equiv(new A(1), new A(2)));
         assert.ok(!equiv(new A(1), 2));
-    });
+    },
 
-    it("set", () => {
+    set: () => {
         const a = new Set([1, 2, 3]);
         assert.ok(equiv(a, a));
         assert.ok(equiv(a, new Set([3, 2, 1])));
@@ -126,20 +127,20 @@ describe("equiv", () => {
         );
         assert.ok(!equiv(a, null));
         assert.ok(!equiv(null, a));
-    });
+    },
 
-    it("date", () => {
+    date: () => {
         const a = new Date(123456);
         assert.ok(equiv(a, a));
         assert.ok(equiv(a, new Date(123456)));
         assert.ok(!equiv(a, new Date(123)));
-    });
+    },
 
-    it("regexp", () => {
+    regexp: () => {
         const a = /(\w+)/g;
         assert.ok(equiv(a, a));
         assert.ok(equiv(a, /(\w+)/g));
         assert.ok(!equiv(a, /(\w+)/));
         assert.ok(!equiv(a, /(\w*)/g));
-    });
+    },
 });

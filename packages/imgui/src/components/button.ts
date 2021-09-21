@@ -1,8 +1,9 @@
 import type { Fn5 } from "@thi.ng/api";
-import { rect } from "@thi.ng/geom";
+import { rect } from "@thi.ng/geom/ctors/rect";
 import type { IShape } from "@thi.ng/geom-api";
 import type { IGridLayout, LayoutBox } from "@thi.ng/layout";
-import { hash, ZERO2 } from "@thi.ng/vectors";
+import { ZERO2 } from "@thi.ng/vectors/api";
+import { hash } from "@thi.ng/vectors/hash";
 import type { GUITheme, Hash } from "../api";
 import { handleButtonKeys, hoverButton } from "../behaviors/button";
 import type { IMGUI } from "../gui";

@@ -72,15 +72,23 @@ Fuzzy logic operators & configurable rule inferencing engine.
 yarn add @thi.ng/fuzzy
 ```
 
-```html
-// ES module
-<script type="module" src="https://unpkg.com/@thi.ng/fuzzy?module" crossorigin></script>
+ES module import:
 
-// UMD
-<script src="https://unpkg.com/@thi.ng/fuzzy/lib/index.umd.js" crossorigin></script>
+```html
+<script type="module" src="https://cdn.skypack.dev/@thi.ng/fuzzy"></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.64 KB / CJS: 1.82 KB / UMD: 1.74 KB
+[Skypack documentation](https://docs.skypack.dev/)
+
+For NodeJS (v14.6+):
+
+```text
+node --experimental-specifier-resolution=node --experimental-repl-await
+
+> const fuzzy = await import("@thi.ng/fuzzy");
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 1.64 KB
 
 ## Dependencies
 

@@ -1,4 +1,4 @@
-import { clamp01 } from "@thi.ng/math";
+import { clamp01 } from "@thi.ng/math/interval";
 import { Delay } from "./delay";
 
 /**

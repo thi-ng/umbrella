@@ -9,7 +9,7 @@ import type {
     Predicate,
     Predicate2,
 } from "@thi.ng/api";
-import { compare } from "@thi.ng/compare";
+import { compare } from "@thi.ng/compare/compare";
 import { equiv } from "@thi.ng/equiv";
 import type { HeapOpts } from "./api";
 

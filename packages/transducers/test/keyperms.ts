@@ -1,8 +1,9 @@
+import { group } from "@thi.ng/testament";
 import * as assert from "assert";
 import { keyPermutations } from "../src";
 
-describe("keyPermutations", () => {
-    it("basic", () => {
+group("keyPermutations", {
+    basic: () => {
         assert.deepStrictEqual(
             new Set([
                 ...keyPermutations({
@@ -22,5 +23,5 @@ describe("keyPermutations", () => {
                 { a: 2, b: false, c: "Y" },
             ])
         );
-    });
+    },
 });

@@ -64,15 +64,23 @@ transforming ES6 iterator (generator) instead of a transducer.
 yarn add @thi.ng/transducers-stats
 ```
 
-```html
-// ES module
-<script type="module" src="https://unpkg.com/@thi.ng/transducers-stats?module" crossorigin></script>
+ES module import:
 
-// UMD
-<script src="https://unpkg.com/@thi.ng/transducers-stats/lib/index.umd.js" crossorigin></script>
+```html
+<script type="module" src="https://cdn.skypack.dev/@thi.ng/transducers-stats"></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.15 KB / CJS: 1.28 KB / UMD: 1.31 KB
+[Skypack documentation](https://docs.skypack.dev/)
+
+For NodeJS (v14.6+):
+
+```text
+node --experimental-specifier-resolution=node --experimental-repl-await
+
+> const transducersStats = await import("@thi.ng/transducers-stats");
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 1.15 KB
 
 ## Dependencies
 

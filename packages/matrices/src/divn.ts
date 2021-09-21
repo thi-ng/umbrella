@@ -1,6 +1,6 @@
-import { divN as _divN, divN4 } from "@thi.ng/vectors";
+import { divN as _divN, divN4 } from "@thi.ng/vectors/divn";
 import type { MatOpMN, MultiMatOpMN } from "./api";
-import { defMathN } from "./internal/codegen";
+import { defMathN } from "./compile/emit";
 
 /**
  * Componentwise matrix division by single scalar. If `out` is not

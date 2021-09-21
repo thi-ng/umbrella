@@ -1,6 +1,5 @@
+import { group } from "@thi.ng/testament";
 // import * as assert from "assert";
 // import * as hc from "../src";
 
-describe("hdom-components", () => {
-    it("tests pending");
-});
+group("hdom-components", {});

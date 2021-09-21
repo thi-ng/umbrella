@@ -1,5 +1,5 @@
 import type { IObjectOf } from "@thi.ng/api";
-import { TAU } from "@thi.ng/math";
+import { TAU } from "@thi.ng/math/api";
 
 export const packedPoints = (
     ctx: CanvasRenderingContext2D,

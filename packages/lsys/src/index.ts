@@ -1,10 +1,17 @@
 import type { Fn2, IObjectOf } from "@thi.ng/api";
-import { partial, threadLast } from "@thi.ng/compose";
-import { illegalState } from "@thi.ng/errors";
-import { cossin, HALF_PI } from "@thi.ng/math";
-import { IRandom, SYSTEM } from "@thi.ng/random";
-import { iterate, last, mapcat, take } from "@thi.ng/transducers";
-import { add, Vec } from "@thi.ng/vectors";
+import { partial } from "@thi.ng/compose/partial";
+import { threadLast } from "@thi.ng/compose/thread-last";
+import { illegalState } from "@thi.ng/errors/illegal-state";
+import { cossin } from "@thi.ng/math/angle";
+import { HALF_PI } from "@thi.ng/math/api";
+import type { IRandom } from "@thi.ng/random";
+import { SYSTEM } from "@thi.ng/random/system";
+import { iterate } from "@thi.ng/transducers/iterate";
+import { last } from "@thi.ng/transducers/last";
+import { mapcat } from "@thi.ng/transducers/mapcat";
+import { take } from "@thi.ng/transducers/take";
+import type { Vec } from "@thi.ng/vectors";
+import { add } from "@thi.ng/vectors/add";
 
 export type LSysSymbol = string | number;
 export type ProductionRules = IObjectOf<

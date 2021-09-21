@@ -1,4 +1,4 @@
-import { BitMatrix } from "@thi.ng/bitfield";
+import { BitMatrix } from "@thi.ng/bitfield/bitmatrix";
 import type { DegreeType, Edge, IGraph } from "./api";
 import { into, invert, toDot } from "./utils";
 

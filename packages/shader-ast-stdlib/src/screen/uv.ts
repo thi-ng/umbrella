@@ -1,24 +1,11 @@
-import {
-    $x,
-    $xy,
-    $y,
-    add,
-    assign,
-    bvec4,
-    defn,
-    div,
-    greaterThan,
-    lessThan,
-    mul,
-    ret,
-    sym,
-    vec2,
-    Vec2Sym,
-    Vec2Term,
-    VEC2_1,
-    Vec4Term,
-    _any,
-} from "@thi.ng/shader-ast";
+import type { Vec2Sym, Vec2Term, Vec4Term } from "@thi.ng/shader-ast";
+import { assign } from "@thi.ng/shader-ast/ast/assign";
+import { defn, ret } from "@thi.ng/shader-ast/ast/function";
+import { bvec4, vec2, VEC2_1 } from "@thi.ng/shader-ast/ast/lit";
+import { add, div, mul } from "@thi.ng/shader-ast/ast/ops";
+import { $x, $xy, $y } from "@thi.ng/shader-ast/ast/swizzle";
+import { sym } from "@thi.ng/shader-ast/ast/sym";
+import { greaterThan, lessThan, _any } from "@thi.ng/shader-ast/builtin/bvec";
 import { fit0111 } from "../math/fit";
 
 /**

@@ -1,5 +1,5 @@
 import type { TimingResult } from "./api";
-import { now } from "./now";
+import { now, timeDiff } from "./now";
 
 /**
  * Calls function `fn` without args, prints elapsed time and returns
@@ -25,10 +25,5 @@ export const timedResult = <T>(fn: () => T): TimingResult<T> => {
     const t0 = now();
     const res = fn();
     const t1 = now();
-    return [
-        res,
-        (typeof BigInt !== "undefined"
-            ? Number(<bigint>t1 - <bigint>t0)
-            : <number>t1 - <number>t0) * 1e-6,
-    ];
+    return [res, timeDiff(t0, t1)];
 };

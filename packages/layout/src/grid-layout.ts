@@ -1,4 +1,4 @@
-import { isNumber } from "@thi.ng/checks";
+import { isNumber } from "@thi.ng/checks/is-number";
 import type { IGridLayout, LayoutBox } from "./api";
 
 const DEFAULT_SPANS: [number, number] = [1, 1];

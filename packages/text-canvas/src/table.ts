@@ -1,6 +1,6 @@
-import { peek } from "@thi.ng/arrays";
-import { isString } from "@thi.ng/checks";
-import { wordWrapLines } from "@thi.ng/strings";
+import { peek } from "@thi.ng/arrays/peek";
+import { isString } from "@thi.ng/checks/is-string";
+import { wordWrapLines } from "@thi.ng/strings/word-wrap";
 import { Border, TableOpts } from "./api";
 import {
     beginClip,

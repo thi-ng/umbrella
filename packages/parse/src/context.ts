@@ -1,4 +1,5 @@
-import { isArrayLike, isString } from "@thi.ng/checks";
+import { isArrayLike } from "@thi.ng/checks/is-arraylike";
+import { isString } from "@thi.ng/checks/is-string";
 import type { ContextOpts, IReader, ParseScope, ParseState } from "./api";
 import { parseError } from "./error";
 import { defArrayReader } from "./readers/array-reader";

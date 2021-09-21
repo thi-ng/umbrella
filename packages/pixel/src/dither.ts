@@ -1,5 +1,5 @@
 import type { NumericArray } from "@thi.ng/api";
-import { clamp } from "@thi.ng/math";
+import { clamp } from "@thi.ng/math/interval";
 import type { BayerMatrix, BayerSize } from "./api";
 
 const init = (

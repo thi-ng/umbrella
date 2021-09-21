@@ -1,21 +1,22 @@
-import { partial } from "@thi.ng/compose";
-import {
-    arcLength,
-    asPolygon,
-    centroid,
-    circle,
-    Polygon,
-    polygon,
-    tessellate,
-} from "@thi.ng/geom";
+import { partial } from "@thi.ng/compose/partial";
+import type { Polygon } from "@thi.ng/geom";
 import type { IShape, Tessellator } from "@thi.ng/geom-api";
 import { edgeSplit, quadFan, triFan } from "@thi.ng/geom-tessellate";
+import { circle } from "@thi.ng/geom/ctors/circle";
+import { polygon } from "@thi.ng/geom/ctors/polygon";
+import { arcLength } from "@thi.ng/geom/ops/arc-length";
+import { asPolygon } from "@thi.ng/geom/ops/as-polygon";
+import { centroid } from "@thi.ng/geom/ops/centroid";
+import { tessellate } from "@thi.ng/geom/ops/tessellate";
 import { canvas } from "@thi.ng/hdom-canvas";
-import { deg, fit01, fit11 } from "@thi.ng/math";
-import { fromInterval, sync } from "@thi.ng/rstream";
-import { map } from "@thi.ng/transducers";
+import { deg } from "@thi.ng/math/angle";
+import { fit01, fit11 } from "@thi.ng/math/fit";
+import { fromInterval } from "@thi.ng/rstream/interval";
+import { sync } from "@thi.ng/rstream/sync";
 import { updateDOM } from "@thi.ng/transducers-hdom";
-import { polar, Vec } from "@thi.ng/vectors";
+import { map } from "@thi.ng/transducers/map";
+import type { Vec } from "@thi.ng/vectors";
+import { polar } from "@thi.ng/vectors/polar";
 
 type Tint = (p: Polygon) => string;
 

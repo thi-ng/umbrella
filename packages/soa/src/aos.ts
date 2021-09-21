@@ -1,5 +1,6 @@
-import { SIZEOF } from "@thi.ng/api";
-import { align, Pow2 } from "@thi.ng/binary";
+import { SIZEOF } from "@thi.ng/api/typedarray";
+import type { Pow2 } from "@thi.ng/binary";
+import { align } from "@thi.ng/binary/align";
 import type { AOSSpecs, SOASpecs } from "./api";
 import { SOA } from "./soa";
 import { prepareSpec } from "./utils";

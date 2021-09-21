@@ -1,6 +1,6 @@
 import type { VecOpSGN, VecOpSN } from "./api";
-import { defOpS } from "./internal/codegen";
-import { SET_N } from "./internal/templates";
+import { defOpS } from "./compile/emit";
+import { SET_N } from "./compile/templates";
 
 export const [setNS, setNS2, setNS3, setNS4] = defOpS<VecOpSGN, VecOpSN>(
     SET_N,

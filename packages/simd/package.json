@@ -2,10 +2,10 @@
     "name": "@thi.ng/simd",
     "version": "0.4.41",
     "description": "WASM based SIMD vector operations for batch processing",
+    "type": "module",
     "module": "./index.js",
-    "main": "./lib/index.js",
-    "umd:main": "./lib/index.umd.js",
     "typings": "./index.d.ts",
+    "sideEffects": false,
     "repository": {
         "type": "git",
         "url": "https://github.com/thi-ng/umbrella.git"
@@ -24,32 +24,24 @@
     "author": "Karsten Schmidt <k+npm@thi.ng>",
     "license": "Apache-2.0",
     "scripts": {
-        "build": "yarn clean && yarn build:wasm && yarn build:es6 && node ../../scripts/bundle-module",
-        "build:release": "yarn clean && yarn build:wasm && yarn build:es6 && node ../../scripts/bundle-module all",
-        "build:es6": "tsc --declaration",
-        "build:test": "rimraf build && tsc -p test/tsconfig.json",
-        "build:wasm": "asc assembly/index.ts -b simd.wasm -t simd.wat --optimize --enable simd --runtime stub --importMemory --memoryBase 0 && yarn build:binary",
-        "build:binary": "echo \"/** @internal */\nexport const BINARY = \\\"$(../../scripts/base64 simd.wasm)\\\";\" > src/binary.ts",
+        "build": "yarn clean && tsc --declaration",
+        "build:binary": "tools/build-binary.sh",
         "build:check": "tsc --isolatedModules --noEmit",
-        "test": "yarn build:test && node --experimental-wasm-simd build/test/index.js",
-        "cover": "yarn build:test && nyc node --experimental-wasm-simd build/test/*.js && nyc report --reporter=lcov",
-        "clean": "rimraf *.js *.d.ts *.map .nyc_output build coverage doc lib",
-        "doc:readme": "ts-node -P ../../tools/tsconfig.json ../../tools/src/readme.ts",
-        "doc": "typedoc --excludePrivate --out doc --theme ../../tools/doc/typedoc-theme src/index.ts",
+        "clean": "rimraf *.js *.d.ts *.map doc",
+        "doc": "typedoc --excludePrivate --excludeInternal --out doc src/index.ts",
         "doc:ae": "mkdir -p .ae/doc .ae/temp && node_modules/.bin/api-extractor run --local --verbose",
-        "pub": "yarn build:release && yarn publish --access public"
-    },
-    "devDependencies": {
-        "assemblyscript": "0.19.11"
+        "doc:readme": "../../scripts/node-esm ../../tools/src/readme.ts",
+        "doc:stats": "../../scripts/node-esm ../../tools/src/module-stats.ts",
+        "pub": "yarn build:release && yarn publish --access public",
+        "test": "node --experimental-specifier-resolution=node --experimental-wasm-simd --loader ts-node/esm test/index.ts"
     },
     "dependencies": {
         "@thi.ng/transducers-binary": "^1.0.5"
     },
-    "files": [
-        "*.js",
-        "*.d.ts",
-        "lib"
-    ],
+    "devDependencies": {
+        "@thi.ng/testament": "^0.0.1",
+        "assemblyscript": "0.19.11"
+    },
     "keywords": [
         "acceleration",
         "array",
@@ -66,7 +58,21 @@
     "publishConfig": {
         "access": "public"
     },
-    "sideEffects": false,
+    "files": [
+        "*.js",
+        "*.d.ts"
+    ],
+    "exports": {
+        ".": {
+            "import": "./index.js"
+        },
+        "./api": {
+            "import": "./api.js"
+        },
+        "./binary": {
+            "import": "./binary.js"
+        }
+    },
     "thi.ng": {
         "related": [
             "malloc",

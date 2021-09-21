@@ -52,15 +52,23 @@ package.
 yarn add @thi.ng/transducers-fsm
 ```
 
-```html
-// ES module
-<script type="module" src="https://unpkg.com/@thi.ng/transducers-fsm?module" crossorigin></script>
+ES module import:
 
-// UMD
-<script src="https://unpkg.com/@thi.ng/transducers-fsm/lib/index.umd.js" crossorigin></script>
+```html
+<script type="module" src="https://cdn.skypack.dev/@thi.ng/transducers-fsm"></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 221 bytes / CJS: 270 bytes / UMD: 386 bytes
+[Skypack documentation](https://docs.skypack.dev/)
+
+For NodeJS (v14.6+):
+
+```text
+node --experimental-specifier-resolution=node --experimental-repl-await
+
+> const transducersFsm = await import("@thi.ng/transducers-fsm");
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 221 bytes
 
 ## Dependencies
 

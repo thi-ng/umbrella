@@ -1,3 +1,4 @@
+import { group } from "@thi.ng/testament";
 import * as assert from "assert";
 import {
     BASE32_HEX,
@@ -10,8 +11,8 @@ import {
     IBase,
 } from "../src";
 
-describe("base-n", () => {
-    it("roundtrip", () => {
+group("base-n", {
+    roundtrip: () => {
         const X = BigInt(2) ** BigInt(128) - BigInt(1);
 
         const check = (
@@ -30,5 +31,5 @@ describe("base-n", () => {
         check(BASE62, "7n42DGM5Tflk9n8mt7Fhc7");
         check(BASE64, "3/////////////////////");
         check(BASE85, "=r54lj&NUUO~Hi%c2ym0");
-    });
+    },
 });

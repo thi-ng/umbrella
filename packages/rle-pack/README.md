@@ -67,15 +67,23 @@ Then per value:
 yarn add @thi.ng/rle-pack
 ```
 
-```html
-// ES module
-<script type="module" src="https://unpkg.com/@thi.ng/rle-pack?module" crossorigin></script>
+ES module import:
 
-// UMD
-<script src="https://unpkg.com/@thi.ng/rle-pack/lib/index.umd.js" crossorigin></script>
+```html
+<script type="module" src="https://cdn.skypack.dev/@thi.ng/rle-pack"></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 676 bytes / CJS: 730 bytes / UMD: 839 bytes
+[Skypack documentation](https://docs.skypack.dev/)
+
+For NodeJS (v14.6+):
+
+```text
+node --experimental-specifier-resolution=node --experimental-repl-await
+
+> const rlePack = await import("@thi.ng/rle-pack");
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 676 bytes
 
 ## Dependencies
 

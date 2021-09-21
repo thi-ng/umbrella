@@ -1,14 +1,13 @@
 import type { Tessellator } from "@thi.ng/geom-api";
-import { centroid } from "@thi.ng/geom-poly-utils";
-import {
-    comp,
-    map,
-    partition,
-    push,
-    transduce,
-    wrapSides,
-} from "@thi.ng/transducers";
-import { mixN, ReadonlyVec, Vec } from "@thi.ng/vectors";
+import { centroid } from "@thi.ng/geom-poly-utils/centroid";
+import { comp } from "@thi.ng/transducers/comp";
+import { map } from "@thi.ng/transducers/map";
+import { partition } from "@thi.ng/transducers/partition";
+import { push } from "@thi.ng/transducers/push";
+import { transduce } from "@thi.ng/transducers/transduce";
+import { wrapSides } from "@thi.ng/transducers/wrap-sides";
+import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
+import { mixN } from "@thi.ng/vectors/mixn";
 
 export const quadFan: Tessellator = (points: ReadonlyVec[]) => {
     const p = centroid(points);

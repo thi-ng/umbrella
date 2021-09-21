@@ -94,15 +94,23 @@ more composable & efficient transducers via
 yarn add @thi.ng/iterators
 ```
 
-```html
-// ES module
-<script type="module" src="https://unpkg.com/@thi.ng/iterators?module" crossorigin></script>
+ES module import:
 
-// UMD
-<script src="https://unpkg.com/@thi.ng/iterators/lib/index.umd.js" crossorigin></script>
+```html
+<script type="module" src="https://cdn.skypack.dev/@thi.ng/iterators"></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 2.47 KB / CJS: 2.68 KB / UMD: 2.52 KB
+[Skypack documentation](https://docs.skypack.dev/)
+
+For NodeJS (v14.6+):
+
+```text
+node --experimental-specifier-resolution=node --experimental-repl-await
+
+> const iterators = await import("@thi.ng/iterators");
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 2.47 KB
 
 ## Dependencies
 

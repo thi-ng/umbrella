@@ -46,15 +46,23 @@ Supports:
 yarn add @thi.ng/equiv
 ```
 
-```html
-// ES module
-<script type="module" src="https://unpkg.com/@thi.ng/equiv?module" crossorigin></script>
+ES module import:
 
-// UMD
-<script src="https://unpkg.com/@thi.ng/equiv/lib/index.umd.js" crossorigin></script>
+```html
+<script type="module" src="https://cdn.skypack.dev/@thi.ng/equiv"></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 487 bytes / CJS: 543 bytes / UMD: 614 bytes
+[Skypack documentation](https://docs.skypack.dev/)
+
+For NodeJS (v14.6+):
+
+```text
+node --experimental-specifier-resolution=node --experimental-repl-await
+
+> const equiv = await import("@thi.ng/equiv");
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 487 bytes
 
 ## Dependencies
 

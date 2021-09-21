@@ -1,5 +1,5 @@
 import type { Fn2 } from "@thi.ng/api";
-import { PI } from "@thi.ng/math";
+import { PI } from "@thi.ng/math/api";
 import { AProc } from "./aproc";
 
 export type WaveShaperFn = Fn2<number, number, number>;

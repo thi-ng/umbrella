@@ -1,6 +1,6 @@
-import { isNumber } from "@thi.ng/checks";
+import { isNumber } from "@thi.ng/checks/is-number";
 import type { Attribs } from "@thi.ng/geom-api";
-import { fromEndPoints } from "@thi.ng/geom-arc";
+import { fromEndPoints } from "@thi.ng/geom-arc/from-endpoints";
 import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
 import { Arc } from "../api/arc";
 

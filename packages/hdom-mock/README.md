@@ -38,15 +38,23 @@ custom target implementations.
 yarn add @thi.ng/hdom-mock
 ```
 
-```html
-// ES module
-<script type="module" src="https://unpkg.com/@thi.ng/hdom-mock?module" crossorigin></script>
+ES module import:
 
-// UMD
-<script src="https://unpkg.com/@thi.ng/hdom-mock/lib/index.umd.js" crossorigin></script>
+```html
+<script type="module" src="https://cdn.skypack.dev/@thi.ng/hdom-mock"></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.04 KB / CJS: 1.09 KB / UMD: 1.19 KB
+[Skypack documentation](https://docs.skypack.dev/)
+
+For NodeJS (v14.6+):
+
+```text
+node --experimental-specifier-resolution=node --experimental-repl-await
+
+> const hdomMock = await import("@thi.ng/hdom-mock");
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 1.04 KB
 
 ## Dependencies
 

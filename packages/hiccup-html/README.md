@@ -144,7 +144,7 @@ packages.
 of course, but will NOT be evaluated to obtain final attrib value
 
 (2) The
-[`IDeref`](https://github.com/thi-ng/umbrella/tree/develop/packages/api/src/api/deref.ts)
+[`IDeref`](https://github.com/thi-ng/umbrella/tree/develop/packages/api/src/deref.ts)
 interface is implemented by various data structures in the
 thi.ng/umbrella eco system (most relevant:
 [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream),
@@ -172,15 +172,23 @@ welcome!
 yarn add @thi.ng/hiccup-html
 ```
 
-```html
-// ES module
-<script type="module" src="https://unpkg.com/@thi.ng/hiccup-html?module" crossorigin></script>
+ES module import:
 
-// UMD
-<script src="https://unpkg.com/@thi.ng/hiccup-html/lib/index.umd.js" crossorigin></script>
+```html
+<script type="module" src="https://cdn.skypack.dev/@thi.ng/hiccup-html"></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.48 KB / CJS: 1.89 KB / UMD: 1.79 KB
+[Skypack documentation](https://docs.skypack.dev/)
+
+For NodeJS (v14.6+):
+
+```text
+node --experimental-specifier-resolution=node --experimental-repl-await
+
+> const hiccupHtml = await import("@thi.ng/hiccup-html");
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 1.48 KB
 
 ## Dependencies
 
@@ -282,7 +290,7 @@ The `AttribVal` type wrapper is used to allow for reactive attribute
 values (in
 [@thi.ng/rdom](https://github.com/thi-ng/umbrella/tree/develop/packages/rdom))
 and [`IDeref`
-instances](https://github.com/thi-ng/umbrella/tree/develop/packages/api/src/api/deref.ts)
+instances](https://github.com/thi-ng/umbrella/tree/develop/packages/api/src/deref.ts)
 when later providing attribute values to an element.
 
 #### Element creation

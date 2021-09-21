@@ -1,5 +1,5 @@
 import type { FnN, FnN2 } from "@thi.ng/api";
-import { TAU } from "@thi.ng/math";
+import { TAU } from "@thi.ng/math/api";
 
 /**
  * Returns frequency `f` normalized to sample rate `fs`:

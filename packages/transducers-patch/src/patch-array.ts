@@ -1,6 +1,8 @@
-import { isString } from "@thi.ng/checks";
-import { illegalArgs, illegalArity } from "@thi.ng/errors";
-import { reduce, reducer, Reducer } from "@thi.ng/transducers";
+import { isString } from "@thi.ng/checks/is-string";
+import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
+import { illegalArity } from "@thi.ng/errors/illegal-arity";
+import type { Reducer } from "@thi.ng/transducers";
+import { reduce, reducer } from "@thi.ng/transducers/reduce";
 import type { PatchArrayOp } from "./api";
 
 /**

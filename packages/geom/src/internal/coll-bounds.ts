@@ -1,4 +1,3 @@
-import { mixCubic as _mixCubic } from "@thi.ng/math";
 import { unionBounds } from "./union-bounds";
 import type { Fn } from "@thi.ng/api";
 import type { AABBLike, IShape } from "@thi.ng/geom-api";

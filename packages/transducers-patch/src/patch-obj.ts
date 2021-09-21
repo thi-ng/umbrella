@@ -1,7 +1,10 @@
-import { isString } from "@thi.ng/checks";
-import { illegalArgs } from "@thi.ng/errors";
-import { deleteInUnsafe, setInUnsafe, updateInUnsafe } from "@thi.ng/paths";
-import { reduce, reducer, Reducer } from "@thi.ng/transducers";
+import { isString } from "@thi.ng/checks/is-string";
+import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
+import { deleteInUnsafe } from "@thi.ng/paths/delete-in";
+import { setInUnsafe } from "@thi.ng/paths/set-in";
+import { updateInUnsafe } from "@thi.ng/paths/update-in";
+import type { Reducer } from "@thi.ng/transducers";
+import { reduce, reducer } from "@thi.ng/transducers/reduce";
 import type { PatchObjOp } from "./api";
 
 /**

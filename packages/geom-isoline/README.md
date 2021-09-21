@@ -37,15 +37,23 @@ the Clojure version of
 yarn add @thi.ng/geom-isoline
 ```
 
-```html
-// ES module
-<script type="module" src="https://unpkg.com/@thi.ng/geom-isoline?module" crossorigin></script>
+ES module import:
 
-// UMD
-<script src="https://unpkg.com/@thi.ng/geom-isoline/lib/index.umd.js" crossorigin></script>
+```html
+<script type="module" src="https://cdn.skypack.dev/@thi.ng/geom-isoline"></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 810 bytes / CJS: 874 bytes / UMD: 926 bytes
+[Skypack documentation](https://docs.skypack.dev/)
+
+For NodeJS (v14.6+):
+
+```text
+node --experimental-specifier-resolution=node --experimental-repl-await
+
+> const geomIsoline = await import("@thi.ng/geom-isoline");
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 810 bytes
 
 ## Dependencies
 

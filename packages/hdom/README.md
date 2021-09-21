@@ -90,8 +90,8 @@ Benefits:
 - Default implementation supports CSS conversion from JS objects for
   `style` attribs (also see:
   [@thi.ng/hiccup-css](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-css))
-- Auto-expansion of embedded values / types which implement the [`IToHiccup`](https://github.com/thi-ng/umbrella/tree/develop/packages/api/src/api.ts#L415) or
-  [`IDeref`](https://github.com/thi-ng/umbrella/tree/develop/packages/api/src/api.ts#L166)
+- Auto-expansion of embedded values / types which implement the [`IToHiccup`](https://github.com/thi-ng/umbrella/tree/develop/packages/api/src/hiccup.ts) or
+  [`IDeref`](https://github.com/thi-ng/umbrella/tree/develop/packages/api/src/deref.ts)
   interfaces (e.g. [atoms, cursors, derived views](https://github.com/thi-ng/umbrella/tree/develop/packages/atom), [streams](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream) etc.)
 - Fast (see [benchmark examples](#benchmarks) below)
 - Only ~6.2KB gzipped
@@ -119,12 +119,20 @@ Benefits:
 yarn add @thi.ng/hdom
 ```
 
-```html
-// ES module
-<script type="module" src="https://unpkg.com/@thi.ng/hdom?module" crossorigin></script>
+ES module import:
 
-// UMD
-<script src="https://unpkg.com/@thi.ng/hdom/lib/index.umd.js" crossorigin></script>
+```html
+<script type="module" src="https://cdn.skypack.dev/@thi.ng/hdom"></script>
+```
+
+[Skypack documentation](https://docs.skypack.dev/)
+
+For NodeJS (v14.6+):
+
+```text
+node --experimental-specifier-resolution=node --experimental-repl-await
+
+> const hdom = await import("@thi.ng/hdom");
 ```
 
 You can use the
@@ -142,7 +150,7 @@ yarn install
 yarn start
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 3.62 KB / CJS: 3.72 KB / UMD: 3.66 KB
+Package sizes (gzipped, pre-treeshake): ESM: 3.62 KB
 
 ## Dependencies
 
@@ -152,6 +160,7 @@ Package sizes (gzipped, pre-treeshake): ESM: 3.62 KB / CJS: 3.72 KB / UMD: 3.66 
 - [@thi.ng/equiv](https://github.com/thi-ng/umbrella/tree/develop/packages/equiv)
 - [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
 - [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup)
+- [@thi.ng/logger](https://github.com/thi-ng/umbrella/tree/develop/packages/logger)
 - [@thi.ng/prefixes](https://github.com/thi-ng/umbrella/tree/develop/packages/prefixes)
 
 ## Usage examples
@@ -620,9 +629,9 @@ import { map, range } from "@thi.ng/transducers";
 ### Interface support
 
 Any type implementing one of the
-[`IToHiccup`](https://github.com/thi-ng/umbrella/tree/develop/packages/api/src/api.ts#L415)
+[`IToHiccup`](https://github.com/thi-ng/umbrella/tree/develop/packages/api/src/hiccup.ts)
 or
-[`IDeref`](https://github.com/thi-ng/umbrella/tree/develop/packages/api/src/api.ts#L166)
+[`IDeref`](https://github.com/thi-ng/umbrella/tree/develop/packages/api/src/deref.ts)
 or interfaces will be auto-expanded during tree normalization.
 
 This currently includes the following types from other packages in this

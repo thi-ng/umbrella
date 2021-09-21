@@ -1,4 +1,4 @@
-import { ESCAPES } from "@thi.ng/strings";
+import { ESCAPES } from "@thi.ng/strings/escape";
 import { repeat } from "../combinators/repeat";
 import { seq } from "../combinators/seq";
 import { xform } from "../combinators/xform";

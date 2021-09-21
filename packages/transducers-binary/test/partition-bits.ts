@@ -1,4 +1,5 @@
 import { radix } from "@thi.ng/strings";
+import { group } from "@thi.ng/testament";
 import {
     comp,
     iterator,
@@ -30,10 +31,10 @@ const check = (n: number) =>
         `bits=${n}`
     );
 
-describe("partitionBits", () => {
-    it("all sizes", () =>
+group("partitionBits", {
+    "all sizes": () =>
         run(
             map((n: number) => check(n)),
             range(1, 33)
-        ));
+        ),
 });

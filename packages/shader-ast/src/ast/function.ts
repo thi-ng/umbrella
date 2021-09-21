@@ -1,5 +1,6 @@
-import { assert, Nullable } from "@thi.ng/api";
-import { isString } from "@thi.ng/checks";
+import type { Nullable } from "@thi.ng/api";
+import { isString } from "@thi.ng/checks/is-string";
+import { assert } from "@thi.ng/errors/assert";
 import type {
     Arg,
     Arg1,

@@ -38,19 +38,28 @@ References:
 yarn add @thi.ng/dynvar
 ```
 
-```html
-// ES module
-<script type="module" src="https://unpkg.com/@thi.ng/dynvar?module" crossorigin></script>
+ES module import:
 
-// UMD
-<script src="https://unpkg.com/@thi.ng/dynvar/lib/index.umd.js" crossorigin></script>
+```html
+<script type="module" src="https://cdn.skypack.dev/@thi.ng/dynvar"></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 300 bytes / CJS: 354 bytes / UMD: 455 bytes
+[Skypack documentation](https://docs.skypack.dev/)
+
+For NodeJS (v14.6+):
+
+```text
+node --experimental-specifier-resolution=node --experimental-repl-await
+
+> const dynvar = await import("@thi.ng/dynvar");
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 300 bytes
 
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
+- [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
 
 ## API
 

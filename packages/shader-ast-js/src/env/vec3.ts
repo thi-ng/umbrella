@@ -1,59 +1,56 @@
-import {
-    abs3,
-    acos3,
-    add3,
-    addN3,
-    asin3,
-    atan3,
-    atan_23,
-    ceil3,
-    clamp3,
-    cos3,
-    cross3,
-    degrees3,
-    dist,
-    div3,
-    divN3,
-    dot3,
-    eq3,
-    exp3,
-    exp_23,
-    faceForward,
-    floor3,
-    fract3,
-    gt3,
-    gte3,
-    invSqrt3,
-    log3,
-    log_23,
-    lt3,
-    lte3,
-    mag,
-    max3,
-    min3,
-    mix3,
-    mixN3,
-    mod3,
-    modN3,
-    mul3,
-    mulN3,
-    neg,
-    neq3,
-    normalize,
-    pow3,
-    radians3,
-    reflect,
-    refract,
-    sign3,
-    sin3,
-    smoothStep3,
-    sqrt3,
-    step3,
-    sub3,
-    subN3,
-    tan3,
-    ZERO3,
-} from "@thi.ng/vectors";
+import { cross3 } from "@thi.ng/vectors/cross";
+import { abs3 } from "@thi.ng/vectors/abs";
+import { acos3 } from "@thi.ng/vectors/acos";
+import { add3 } from "@thi.ng/vectors/add";
+import { addN3 } from "@thi.ng/vectors/addn";
+import { ZERO3 } from "@thi.ng/vectors/api";
+import { asin3 } from "@thi.ng/vectors/asin";
+import { atan3, atan_23 } from "@thi.ng/vectors/atan";
+import { ceil3 } from "@thi.ng/vectors/ceil";
+import { clamp3 } from "@thi.ng/vectors/clamp";
+import { cos3 } from "@thi.ng/vectors/cos";
+import { degrees3 } from "@thi.ng/vectors/degrees";
+import { dist } from "@thi.ng/vectors/dist";
+import { div3 } from "@thi.ng/vectors/div";
+import { divN3 } from "@thi.ng/vectors/divn";
+import { dot3 } from "@thi.ng/vectors/dot";
+import { eq3 } from "@thi.ng/vectors/eq";
+import { exp3 } from "@thi.ng/vectors/exp";
+import { exp_23 } from "@thi.ng/vectors/exp_2";
+import { faceForward } from "@thi.ng/vectors/face-forward";
+import { floor3 } from "@thi.ng/vectors/floor";
+import { fract3 } from "@thi.ng/vectors/fract";
+import { gt3 } from "@thi.ng/vectors/gt";
+import { gte3 } from "@thi.ng/vectors/gte";
+import { invSqrt3 } from "@thi.ng/vectors/invsqrt";
+import { log3 } from "@thi.ng/vectors/log";
+import { log_23 } from "@thi.ng/vectors/log_2";
+import { lt3 } from "@thi.ng/vectors/lt";
+import { lte3 } from "@thi.ng/vectors/lte";
+import { mag } from "@thi.ng/vectors/mag";
+import { max3 } from "@thi.ng/vectors/max";
+import { min3 } from "@thi.ng/vectors/min";
+import { mix3 } from "@thi.ng/vectors/mix";
+import { mixN3 } from "@thi.ng/vectors/mixn";
+import { mod3 } from "@thi.ng/vectors/mod";
+import { modN3 } from "@thi.ng/vectors/modn";
+import { mul3 } from "@thi.ng/vectors/mul";
+import { mulN3 } from "@thi.ng/vectors/muln";
+import { neg } from "@thi.ng/vectors/neg";
+import { neq3 } from "@thi.ng/vectors/neq";
+import { normalize } from "@thi.ng/vectors/normalize";
+import { pow3 } from "@thi.ng/vectors/pow";
+import { radians3 } from "@thi.ng/vectors/radians";
+import { reflect } from "@thi.ng/vectors/reflect";
+import { refract } from "@thi.ng/vectors/refract";
+import { sign3 } from "@thi.ng/vectors/sign";
+import { sin3 } from "@thi.ng/vectors/sin";
+import { smoothStep3 } from "@thi.ng/vectors/smoothstep";
+import { sqrt3 } from "@thi.ng/vectors/sqrt";
+import { step3 } from "@thi.ng/vectors/step";
+import { sub3 } from "@thi.ng/vectors/sub";
+import { subN3 } from "@thi.ng/vectors/subn";
+import { tan3 } from "@thi.ng/vectors/tan";
 import type { JSBuiltinsVec3 } from "../api";
 
 export const VEC3: JSBuiltinsVec3 = {

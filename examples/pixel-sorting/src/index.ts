@@ -1,21 +1,29 @@
-import { timed } from "@thi.ng/bench";
-import { abgr32, luminanceAbgr32, sortMapped } from "@thi.ng/color";
+import { timed } from "@thi.ng/bench/timed";
+import { abgr32 } from "@thi.ng/color/int/int";
+import { luminanceAbgr32 } from "@thi.ng/color/ops/luminance-rgb";
+import { sortMapped } from "@thi.ng/color/ops/sort";
+import { div } from "@thi.ng/hiccup-html/blocks";
 import {
     checkbox,
-    div,
-    h1,
     inputFile,
     inputNumber,
     InputNumericAttribs,
     inputRange,
     label,
-} from "@thi.ng/hiccup-html";
+} from "@thi.ng/hiccup-html/forms";
+import { h1 } from "@thi.ng/hiccup-html/sections";
 import { closedOpen, intersection } from "@thi.ng/intervals";
-import { ABGR8888, PackedBuffer } from "@thi.ng/pixel";
-import { SYSTEM } from "@thi.ng/random";
-import { $compile, $refresh, Component, NumOrElement } from "@thi.ng/rdom";
-import { CloseMode, reactive, Stream, stream, sync } from "@thi.ng/rstream";
-import { map } from "@thi.ng/transducers";
+import { ABGR8888 } from "@thi.ng/pixel/format/abgr8888";
+import { PackedBuffer } from "@thi.ng/pixel/packed";
+import { SYSTEM } from "@thi.ng/random/system";
+import type { NumOrElement } from "@thi.ng/rdom";
+import { $compile } from "@thi.ng/rdom/compile";
+import { Component } from "@thi.ng/rdom/component";
+import { $refresh } from "@thi.ng/rdom/switch";
+import { CloseMode } from "@thi.ng/rstream/api";
+import { reactive, Stream, stream } from "@thi.ng/rstream/stream";
+import { sync } from "@thi.ng/rstream/sync";
+import { map } from "@thi.ng/transducers/map";
 
 interface ProcessParams {
     iter: number;

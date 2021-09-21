@@ -1,6 +1,6 @@
 import type { VecOpSGVVV, VecOpSVVV } from "./api";
-import { ARGS_VVV, defOpS, SARGS_VVV } from "./internal/codegen";
-import { MIX } from "./internal/templates";
+import { defOpS } from "./compile/emit";
+import { ARGS_VVV, MIX, SARGS_VVV } from "./compile/templates";
 
 export const [mixS, mixS2, mixS3, mixS4] = defOpS<VecOpSGVVV, VecOpSVVV>(
     MIX,

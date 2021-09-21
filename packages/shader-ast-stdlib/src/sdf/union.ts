@@ -1,4 +1,9 @@
-import { $x, defn, FloatTerm, lt, min, ret, ternary } from "@thi.ng/shader-ast";
+import type { FloatTerm } from "@thi.ng/shader-ast";
+import { ternary } from "@thi.ng/shader-ast/ast/controlflow";
+import { defn, ret } from "@thi.ng/shader-ast/ast/function";
+import { lt } from "@thi.ng/shader-ast/ast/ops";
+import { $x } from "@thi.ng/shader-ast/ast/swizzle";
+import { min } from "@thi.ng/shader-ast/builtin/math";
 
 /**
  * Inline function. Variadic SDF shape union (a || b) for any number of terms

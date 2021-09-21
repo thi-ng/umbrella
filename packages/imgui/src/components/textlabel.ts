@@ -1,5 +1,5 @@
 import type { Fn } from "@thi.ng/api";
-import { isPlainObject } from "@thi.ng/checks";
+import { isPlainObject } from "@thi.ng/checks/is-plain-object";
 import type { IGridLayout, LayoutBox } from "@thi.ng/layout";
 import type { ReadonlyVec } from "@thi.ng/vectors";
 import type { Color, GUITheme } from "../api";

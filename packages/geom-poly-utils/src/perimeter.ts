@@ -1,4 +1,5 @@
-import { dist, ReadonlyVec } from "@thi.ng/vectors";
+import type { ReadonlyVec } from "@thi.ng/vectors";
+import { dist } from "@thi.ng/vectors/dist";
 
 export const perimeter = (
     pts: ReadonlyVec[],

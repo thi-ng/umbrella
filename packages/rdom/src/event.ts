@@ -1,5 +1,5 @@
 import type { ISubscriber } from "@thi.ng/rstream";
-import { maybeParseFloat } from "@thi.ng/strings";
+import { maybeParseFloat } from "@thi.ng/strings/parse";
 
 /**
  * HOF DOM event listener to emit element's value on given stream.

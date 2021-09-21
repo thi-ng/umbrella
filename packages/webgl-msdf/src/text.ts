@@ -1,6 +1,14 @@
-import { add, map, mapcat, range, transduce } from "@thi.ng/transducers";
-import { AttribPool } from "@thi.ng/vector-pools";
-import { addm2, invert2, madd2, mul2, ONE4 } from "@thi.ng/vectors";
+import { add } from "@thi.ng/transducers/add";
+import { map } from "@thi.ng/transducers/map";
+import { mapcat } from "@thi.ng/transducers/mapcat";
+import { range } from "@thi.ng/transducers/range";
+import { transduce } from "@thi.ng/transducers/transduce";
+import { AttribPool } from "@thi.ng/vector-pools/attrib-pool";
+import { addm2 } from "@thi.ng/vectors/addm";
+import { ONE4 } from "@thi.ng/vectors/api";
+import { invert2 } from "@thi.ng/vectors/invert";
+import { madd2 } from "@thi.ng/vectors/madd";
+import { mul2 } from "@thi.ng/vectors/mul";
 import type { GLVec4, ModelSpec } from "@thi.ng/webgl";
 import type { MSDFFont, TextAlign, TextOpts } from "./api";
 

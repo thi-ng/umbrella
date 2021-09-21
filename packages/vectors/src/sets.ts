@@ -1,6 +1,6 @@
 import type { VecOpSGV, VecOpSV } from "./api";
-import { defOpS, NEW_OUT, SARGS_V } from "./internal/codegen";
-import { SET } from "./internal/templates";
+import { defOpS } from "./compile/emit";
+import { NEW_OUT, SARGS_V, SET } from "./compile/templates";
 
 export const [setS, setS2, setS3, setS4] = defOpS<VecOpSGV, VecOpSV>(
     SET,

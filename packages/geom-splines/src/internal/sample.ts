@@ -1,8 +1,10 @@
-import { isNumber, isPlainObject } from "@thi.ng/checks";
-import { DEFAULT_SAMPLES, SamplingOpts } from "@thi.ng/geom-api";
-import { Sampler } from "@thi.ng/geom-resample";
-import { ReadonlyVec, set, Vec } from "@thi.ng/vectors";
-import type { Fn3, Fn2 } from "@thi.ng/api";
+import type { Fn2, Fn3 } from "@thi.ng/api";
+import { isNumber } from "@thi.ng/checks/is-number";
+import { isPlainObject } from "@thi.ng/checks/is-plain-object";
+import { DEFAULT_SAMPLES, SamplingOpts } from "@thi.ng/geom-api/sample";
+import { Sampler } from "@thi.ng/geom-resample/sampler";
+import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
+import { set } from "@thi.ng/vectors/set";
 
 export const __sample = (sample: Fn3<Vec[], ReadonlyVec[], number, void>) =>
     function $(
@@ -32,20 +34,20 @@ export const __sample = (sample: Fn3<Vec[], ReadonlyVec[], number, void>) =>
         return res;
     };
 
-export const __sampleArray = (
-    fn: Fn2<ReadonlyVec[], Partial<SamplingOpts>, Vec[]>
-) => (
-    segments: ReadonlyVec[][],
-    closed = false,
-    opts: number | Partial<SamplingOpts>
-) => {
-    const _opts = isNumber(opts) ? { num: opts } : opts;
-    const n = segments.length - 1;
-    return Array.prototype.concat.apply(
-        [],
-        segments.map((seg, i) => {
-            const last = !closed && i === n;
-            return fn(seg, { ..._opts, last });
-        })
-    );
-};
+export const __sampleArray =
+    (fn: Fn2<ReadonlyVec[], Partial<SamplingOpts>, Vec[]>) =>
+    (
+        segments: ReadonlyVec[][],
+        closed = false,
+        opts: number | Partial<SamplingOpts>
+    ) => {
+        const _opts = isNumber(opts) ? { num: opts } : opts;
+        const n = segments.length - 1;
+        return Array.prototype.concat.apply(
+            [],
+            segments.map((seg, i) => {
+                const last = !closed && i === n;
+                return fn(seg, { ..._opts, last });
+            })
+        );
+    };

@@ -51,15 +51,23 @@ details.
 yarn add @thi.ng/dot
 ```
 
-```html
-// ES module
-<script type="module" src="https://unpkg.com/@thi.ng/dot?module" crossorigin></script>
+ES module import:
 
-// UMD
-<script src="https://unpkg.com/@thi.ng/dot/lib/index.umd.js" crossorigin></script>
+```html
+<script type="module" src="https://cdn.skypack.dev/@thi.ng/dot"></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 768 bytes / CJS: 829 bytes / UMD: 897 bytes
+[Skypack documentation](https://docs.skypack.dev/)
+
+For NodeJS (v14.6+):
+
+```text
+node --experimental-specifier-resolution=node --experimental-repl-await
+
+> const dot = await import("@thi.ng/dot");
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 768 bytes
 
 ## Dependencies
 

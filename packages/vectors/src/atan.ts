@@ -1,6 +1,6 @@
 import type { MultiVecOpV, MultiVecOpVV, VecOpV, VecOpVV } from "./api";
-import { ARGS_VV, defFnOp, defOp } from "./internal/codegen";
-import { FN2 } from "./internal/templates";
+import { defFnOp, defOp } from "./compile/emit";
+import { ARGS_VV, FN2 } from "./compile/templates";
 
 export const [atan, atan2, atan3, atan4] = defFnOp<MultiVecOpV, VecOpV>(
     "Math.atan"

@@ -1,4 +1,4 @@
-import { clamp } from "@thi.ng/math";
+import { clamp } from "@thi.ng/math/interval";
 import { FloatFormat, Lane } from "../api";
 
 const from = (x: number) => x / 127.5 - 1;

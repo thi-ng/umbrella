@@ -75,15 +75,14 @@ export type ButtonGroup = (
  *
  * @param opts -
  */
-export const buttonGroup = (opts: ButtonGroupOpts): ButtonGroup => (
-    _,
-    args: ButtonGroupArgs,
-    ...buttons: ButtonGroupItem[]
-) => [
-    "div",
-    mergeAttribs(opts.attribs, args.attribs),
-    ...groupBody(opts, args.disabled, buttons),
-];
+export const buttonGroup =
+    (opts: ButtonGroupOpts): ButtonGroup =>
+    (_, args: ButtonGroupArgs, ...buttons: ButtonGroupItem[]) =>
+        [
+            "div",
+            mergeAttribs(opts.attribs, args.attribs),
+            ...groupBody(opts, args.disabled, buttons),
+        ];
 
 const groupBody = (
     opts: ButtonGroupOpts,

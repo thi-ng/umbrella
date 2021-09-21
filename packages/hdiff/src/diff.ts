@@ -1,6 +1,6 @@
-import { diffArray } from "@thi.ng/diff";
-import { escape } from "@thi.ng/hiccup";
-import { padLeft } from "@thi.ng/strings";
+import { diffArray } from "@thi.ng/diff/array";
+import { escape } from "@thi.ng/hiccup/escape";
+import { padLeft } from "@thi.ng/strings/pad-left";
 
 const FMT_LN = padLeft(4, " ");
 

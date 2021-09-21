@@ -1,6 +1,7 @@
-import { Convexity } from "@thi.ng/geom-api";
-import { EPS } from "@thi.ng/math";
-import { corner2, ReadonlyVec } from "@thi.ng/vectors";
+import { Convexity } from "@thi.ng/geom-api/convex";
+import { EPS } from "@thi.ng/math/api";
+import type { ReadonlyVec } from "@thi.ng/vectors";
+import { corner2 } from "@thi.ng/vectors/clockwise";
 
 export const convexity = (pts: ReadonlyVec[], eps = EPS) => {
     let n = pts.length;

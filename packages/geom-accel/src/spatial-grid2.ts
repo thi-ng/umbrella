@@ -1,8 +1,11 @@
 import type { Fn, Nullable, Pair } from "@thi.ng/api";
-import { isNumber } from "@thi.ng/checks";
-import { Heap } from "@thi.ng/heaps";
-import { clamp } from "@thi.ng/math";
-import { addN2, distSq2, ReadonlyVec, subN2, Vec } from "@thi.ng/vectors";
+import { isNumber } from "@thi.ng/checks/is-number";
+import { Heap } from "@thi.ng/heaps/heap";
+import { clamp } from "@thi.ng/math/interval";
+import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
+import { addN2 } from "@thi.ng/vectors/addn";
+import { distSq2 } from "@thi.ng/vectors/distsq";
+import { subN2 } from "@thi.ng/vectors/subn";
 import { ASpatialGrid } from "./aspatial-grid";
 import { addResults, CMP } from "./utils";
 

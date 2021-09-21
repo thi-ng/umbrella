@@ -1,10 +1,11 @@
 import { EquivMap } from "@thi.ng/associative";
 import { LRUCache } from "@thi.ng/cache";
+import { group } from "@thi.ng/testament";
 import * as assert from "assert";
 import { memoize1 } from "../src";
 
-describe("memoize", () => {
-    it("memoize1", () => {
+group("memoize", {
+    memoize1: () => {
         const calls: number[] = [];
         const f = memoize1<number, number>((x) => (calls.push(x), x * 10));
         assert.strictEqual(f(1), 10);
@@ -13,9 +14,9 @@ describe("memoize", () => {
         assert.strictEqual(f(1), 10);
         assert.strictEqual(f(3), 30);
         assert.deepStrictEqual(calls, [1, 2, 3]);
-    });
+    },
 
-    it("memoize1 (equivmap)", () => {
+    "memoize1 (equivmap)": () => {
         const calls: number[][] = [];
         const f = memoize1<number[], number>(
             (x) => (calls.push(x), x[0] + x[1]),
@@ -31,9 +32,9 @@ describe("memoize", () => {
             [3, 4],
             [5, 6],
         ]);
-    });
+    },
 
-    it("memoize1 (lru)", () => {
+    "memoize1 (lru)": () => {
         const calls: number[][] = [];
         const cache = new LRUCache(null, {
             maxlen: 3,
@@ -65,5 +66,5 @@ describe("memoize", () => {
                 [3, 4],
             ]
         );
-    });
+    },
 });

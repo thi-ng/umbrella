@@ -1,35 +1,36 @@
+import { group } from "@thi.ng/testament";
 import * as assert from "assert";
 import { EVENT_ADDED, EVENT_REMOVED, IDGen } from "../src";
 
-describe("idgen", () => {
-    it("re-use (versioned)", () => {
+group("idgen", {
+    "re-use (versioned)": () => {
         const g = new IDGen(8);
         assert.strictEqual(g.next(), 0);
         assert.strictEqual(g.next(), 1);
         assert.strictEqual(g.next(), 2);
-        assert(g.free(1));
-        assert(g.free(2));
+        assert.ok(g.free(1));
+        assert.ok(g.free(2));
         assert.strictEqual(g.next(), 0x102);
         assert.strictEqual(g.next(), 0x101);
         assert.strictEqual(g.next(), 3);
-        assert(g.free(0));
-        assert(!g.free(0));
+        assert.ok(g.free(0));
+        assert.ok(!g.free(0));
         assert.strictEqual(g.next(), 0x100);
-        assert(g.free(0x100));
-        assert(g.free(3));
+        assert.ok(g.free(0x100));
+        assert.ok(g.free(3));
         assert.strictEqual((<any>g).freeID, 0x103);
-        assert(g.free(0x101));
-        assert(g.free(0x102));
+        assert.ok(g.free(0x101));
+        assert.ok(g.free(0x102));
         assert.strictEqual((<any>g).freeID, 0x202);
         assert.deepStrictEqual((<any>g).ids, [-1, 0x103, 0x201, 0x200]);
-    });
+    },
 
-    it("has (unversioned)", () => {
+    "has (unversioned)": () => {
         const check = (expected: boolean[]) => {
             for (let i = 0; i < 4; i++) {
-                i > 0 && assert(!g.has(-i), String(-i));
+                i > 0 && assert.ok(!g.has(-i), String(-i));
                 assert.strictEqual(g.has(i), expected[i], String(i));
-                assert(!g.has(i + 4), String(i + 4));
+                assert.ok(!g.has(i + 4), String(i + 4));
             }
         };
 
@@ -62,9 +63,9 @@ describe("idgen", () => {
         g.next();
         check([true, true, true, true]);
         assert.throws(() => g.next(), "max cap 2");
-    });
+    },
 
-    it("has (versioned)", () => {
+    "has (versioned)": () => {
         const check = (ids: number[], expected: boolean[]) => {
             for (let i = 0; i < 4; i++) {
                 assert.strictEqual(g.has(ids[i]), expected[i], String(i));
@@ -109,9 +110,9 @@ describe("idgen", () => {
         check([0, 1, 2, 3], [false, false, false, false]);
         check([0 + 4, 1 + 4, 2 + 4, 3 + 4], [false, false, false, false]);
         assert.strictEqual((<any>g).freeID, 3 + 4);
-    });
+    },
 
-    it("notify", () => {
+    notify: () => {
         const added: number[] = [];
         const removed: number[] = [];
         const g = new IDGen(8);
@@ -127,9 +128,9 @@ describe("idgen", () => {
         g.free(0x101);
         assert.deepStrictEqual(added, [0, 1, 0x101, 0x100]);
         assert.deepStrictEqual(removed, [0, 1, 0x100, 0x101]);
-    });
+    },
 
-    it("grow capacity", () => {
+    "grow capacity": () => {
         const g = new IDGen(1, 0);
         g.next();
         g.next();
@@ -143,9 +144,9 @@ describe("idgen", () => {
         assert.strictEqual((<any>g).shift, 2);
         const g2 = new IDGen(1);
         assert.throws(() => (g2.capacity = 4));
-    });
+    },
 
-    it("clear", () => {
+    clear: () => {
         const g = new IDGen(8, 0, 256, 128);
         assert.strictEqual(g.available, 128);
         assert.strictEqual(g.next(), 128);
@@ -155,5 +156,5 @@ describe("idgen", () => {
         assert.strictEqual(g.available, 128);
         assert.strictEqual(g.used, 0);
         assert.strictEqual(g.next(), 128);
-    });
+    },
 });

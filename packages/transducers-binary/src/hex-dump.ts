@@ -1,15 +1,12 @@
-import { juxt } from "@thi.ng/compose";
+import { juxt } from "@thi.ng/compose/juxt";
 import { U32, U8 } from "@thi.ng/hex";
-import {
-    $iter,
-    comp,
-    iterator,
-    map,
-    mapIndexed,
-    padLast,
-    partition,
-    Transducer,
-} from "@thi.ng/transducers";
+import type { Transducer } from "@thi.ng/transducers";
+import { comp } from "@thi.ng/transducers/comp";
+import { iterator, __iter } from "@thi.ng/transducers/iterator";
+import { map } from "@thi.ng/transducers/map";
+import { mapIndexed } from "@thi.ng/transducers/map-indexed";
+import { padLast } from "@thi.ng/transducers/pad-last";
+import { partition } from "@thi.ng/transducers/partition";
 import type { HexDumpOpts } from "./api";
 
 /**
@@ -40,7 +37,7 @@ export function hexDump(
     src: Iterable<number>
 ): IterableIterator<string>;
 export function hexDump(...args: any[]): any {
-    const iter = $iter(hexDump, args, iterator);
+    const iter = __iter(hexDump, args, iterator);
     if (iter) {
         return iter;
     }

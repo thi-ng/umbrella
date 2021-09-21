@@ -1,4 +1,6 @@
-import { defn, dot, ret, TaggedFn1 } from "@thi.ng/shader-ast";
+import type { TaggedFn1 } from "@thi.ng/shader-ast";
+import { defn, ret } from "@thi.ng/shader-ast/ast/function";
+import { dot } from "@thi.ng/shader-ast/builtin/math";
 
 const $ = (n: 2 | 3 | 4) =>
     defn("float", `magSq${n}`, [<any>`vec${n}`], (v) => [ret(dot(v, v))]);

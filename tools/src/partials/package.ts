@@ -1,4 +1,4 @@
-import { bytes } from "@thi.ng/strings";
+import { bytes, camel } from "@thi.ng/strings";
 import { execSync } from "child_process";
 import { readdirSync } from "fs";
 import { META_FIELD, Package, RE_PKG } from "../api";
@@ -97,13 +97,22 @@ export const packageInstallation = (pkg: Package) => `\`\`\`bash
 yarn add ${pkg.name}
 \`\`\`
 
-\`\`\`html
-// ES module
-<script type="module" src="https://unpkg.com/${pkg.name}?module" crossorigin></script>
+ES module import:
 
-// UMD
-<script src="https://unpkg.com/${pkg.name}/lib/index.umd.js" crossorigin></script>
-\`\`\``;
+\`\`\`html
+<script type="module" src="https://cdn.skypack.dev/${pkg.name}"></script>
+\`\`\`
+
+[Skypack documentation](https://docs.skypack.dev/)
+
+For NodeJS (v14.6+):
+
+\`\`\`text
+node --experimental-specifier-resolution=node --experimental-repl-await
+
+> const ${camel(shortName(pkg.name))} = await import("${pkg.name}");
+\`\`\`
+`;
 
 export const packageCitation = (name: string) => {
     let hasAuthors = false;

@@ -1,3 +1,4 @@
+import { group } from "@thi.ng/testament";
 import * as assert from "assert";
 import {
     bvec2,
@@ -15,8 +16,8 @@ import {
     vec3,
 } from "../src";
 
-describe("shader-ast", () => {
-    it("op2 type infer mulvv", () => {
+group("shader-ast", {
+    "op2 type infer mulvv": () => {
         assert.deepStrictEqual(mul(vec2(), vec2()), {
             tag: "op2",
             type: "vec2",
@@ -35,9 +36,9 @@ describe("shader-ast", () => {
                 val: [{ tag: "lit", type: "float", info: undefined, val: 0 }],
             },
         });
-    });
+    },
 
-    it("op2 type infer mulnv", () => {
+    "op2 type infer mulnv": () => {
         assert.deepStrictEqual(mul(1, vec2()), {
             tag: "op2",
             type: "vec2",
@@ -51,9 +52,9 @@ describe("shader-ast", () => {
                 val: [{ tag: "lit", type: "float", info: undefined, val: 0 }],
             },
         });
-    });
+    },
 
-    it("op2 type infer mulvn", () => {
+    "op2 type infer mulvn": () => {
         assert.deepStrictEqual(mul(vec2(), 1), {
             tag: "op2",
             type: "vec2",
@@ -67,25 +68,25 @@ describe("shader-ast", () => {
             },
             r: { tag: "lit", type: "float", info: undefined, val: 1 },
         });
-    });
+    },
 
-    it("isTerm", () => {
+    isTerm: () => {
         assert.ok(isTerm({ tag: "lit", type: "float", val: 1 }));
         assert.ok(isTerm(float(1)));
         assert.ok(!isTerm(null));
         assert.ok(!isTerm(undefined));
         assert.ok(!isTerm({}));
         assert.ok(!isTerm(1));
-    });
+    },
 
-    it("defn deps", () => {
+    "defn deps": () => {
         const foo = defn("bool", "foo", [], () => [ret(TRUE)]);
         const bar = defn("float", "bar", [], () => [ret(float(foo()))]);
         assert.strictEqual(bar.deps.length, 1);
         assert.strictEqual(bar.deps[0].id, "foo");
-    });
+    },
 
-    it("vec2 ctor", () => {
+    "vec2 ctor": () => {
         assert.deepStrictEqual(vec2(), <Lit<"vec2">>{
             tag: "lit",
             type: "vec2",
@@ -171,9 +172,9 @@ describe("shader-ast", () => {
                 },
             ],
         });
-    });
+    },
 
-    it("texture", () => {
+    texture: () => {
         const s2d = sym("sampler2D", "tex");
         const s3d = sym("sampler3D", "tex");
         const args2d = [
@@ -257,5 +258,5 @@ describe("shader-ast", () => {
             },
             "3d"
         );
-    });
+    },
 });

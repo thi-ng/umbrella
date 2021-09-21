@@ -40,15 +40,23 @@ for binary versions of most of the ops provided by this package.
 yarn add @thi.ng/dlogic
 ```
 
-```html
-// ES module
-<script type="module" src="https://unpkg.com/@thi.ng/dlogic?module" crossorigin></script>
+ES module import:
 
-// UMD
-<script src="https://unpkg.com/@thi.ng/dlogic/lib/index.umd.js" crossorigin></script>
+```html
+<script type="module" src="https://cdn.skypack.dev/@thi.ng/dlogic"></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 378 bytes / CJS: 478 bytes / UMD: 529 bytes
+[Skypack documentation](https://docs.skypack.dev/)
+
+For NodeJS (v14.6+):
+
+```text
+node --experimental-specifier-resolution=node --experimental-repl-await
+
+> const dlogic = await import("@thi.ng/dlogic");
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 378 bytes
 
 ## Dependencies
 

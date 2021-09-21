@@ -1,3 +1,4 @@
+import { group } from "@thi.ng/testament";
 import * as assert from "assert";
 import * as tx from "../src";
 
@@ -8,8 +9,8 @@ const early = tx.reducer<number, number>(
     (acc, x) => (acc + x < 6 ? acc + x : tx.reduced(acc))
 );
 
-describe("juxtR", () => {
-    it("arity-1", () => {
+group("juxtR", {
+    "arity-1": () => {
         assert.deepStrictEqual(tx.reduce(tx.juxtR(tx.str("-")), src), [
             "1-2-3-4",
         ]);
@@ -18,8 +19,9 @@ describe("juxtR", () => {
             tx.transduce(tx.take(2), tx.juxtR(tx.str("-")), src),
             ["1-2"]
         );
-    });
-    it("arity-2", () => {
+    },
+
+    "arity-2": () => {
         assert.deepStrictEqual(
             tx.reduce(tx.juxtR(tx.push(), tx.str("-")), src),
             [[1, 2, 3, 4], "1-2-3-4"]
@@ -32,8 +34,9 @@ describe("juxtR", () => {
             tx.transduce(tx.take(2), tx.juxtR(early, tx.str("-")), src),
             [3, "1-2"]
         );
-    });
-    it("arity-3", () => {
+    },
+
+    "arity-3": () => {
         assert.deepStrictEqual(
             tx.reduce(
                 tx.juxtR(tx.add(), tx.reductions(tx.add()), tx.str("-")),
@@ -53,8 +56,9 @@ describe("juxtR", () => {
             ),
             [3, [1, 2], "1-2"]
         );
-    });
-    it("arity-4", () => {
+    },
+
+    "arity-4": () => {
         assert.deepStrictEqual(
             tx.reduce(
                 tx.juxtR(
@@ -82,5 +86,5 @@ describe("juxtR", () => {
             ),
             [3, 3, [1, 2], "1-2"]
         );
-    });
+    },
 });

@@ -26,7 +26,7 @@ e.g. `withSize(DOWNLOAD, "12px")`.
 
 All icons can be previewed here: [contact
 sheet](https://demo.thi.ng/umbrella/hiccup-carbon-icons/). ([Source
-code](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-carbon-icons/test/contact-sheet.ts))
+code](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-carbon-icons/tools/contact-sheet.ts))
 
 ${status}
 

@@ -8,10 +8,11 @@
     "scripts": {
         "clean": "../../node_modules/.bin/rimraf build node_modules/.cache",
         "start": "../../node_modules/.bin/snowpack dev --reload",
-        "build": "../../node_modules/.bin/snowpack build"
+        "build": "yarn clean && ../../node_modules/.bin/snowpack build"
     },
     "dependencies": {
         "@thi.ng/gp": "latest",
+        "@thi.ng/logger": "latest",
         "@thi.ng/math": "latest",
         "@thi.ng/random": "latest",
         "@thi.ng/shader-ast": "latest",
@@ -23,7 +24,9 @@
         "last 3 Chrome versions"
     ],
     "browser": {
-        "process": false
+        "process": false,
+        "setTimeout": false,
+        "util": false
     },
     "thi.ng": {
         "readme": [

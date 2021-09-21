@@ -1,6 +1,8 @@
 import type { Fn0, FnAny } from "@thi.ng/api";
-import { implementsFunction, isArrayLike, isIterable } from "@thi.ng/checks";
-import { illegalArity } from "@thi.ng/errors";
+import { implementsFunction } from "@thi.ng/checks/implements-function";
+import { isArrayLike } from "@thi.ng/checks/is-arraylike";
+import { isIterable } from "@thi.ng/checks/is-iterable";
+import { illegalArity } from "@thi.ng/errors/illegal-arity";
 import type { IReducible, Reducer, ReductionFn } from "./api";
 import { isReduced, unreduced } from "./reduced";
 

@@ -1,13 +1,8 @@
-import {
-    add,
-    defn,
-    float,
-    FLOAT1,
-    mod,
-    mul,
-    Prim,
-    ret,
-} from "@thi.ng/shader-ast";
+import type { Prim } from "@thi.ng/shader-ast";
+import { defn, ret } from "@thi.ng/shader-ast/ast/function";
+import { float, FLOAT1 } from "@thi.ng/shader-ast/ast/lit";
+import { add, mul } from "@thi.ng/shader-ast/ast/ops";
+import { mod } from "@thi.ng/shader-ast/builtin/math";
 
 const __permute = <T extends Prim>(type: T, suffix = "") =>
     defn(type, `permute${suffix}`, [type], (v) => [

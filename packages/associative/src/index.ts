@@ -19,6 +19,7 @@ export * from "./multi-trie";
 export * from "./rename-keys";
 export * from "./select-keys";
 export * from "./sorted-map";
+export * from "./sorted-obj";
 export * from "./sorted-set";
 export * from "./sparse-set";
 export * from "./trie-map";

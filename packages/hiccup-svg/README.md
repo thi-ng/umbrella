@@ -145,15 +145,23 @@ therefore need to be complete, e.g. `{ rotate: "rotate(60)" }`
 yarn add @thi.ng/hiccup-svg
 ```
 
-```html
-// ES module
-<script type="module" src="https://unpkg.com/@thi.ng/hiccup-svg?module" crossorigin></script>
+ES module import:
 
-// UMD
-<script src="https://unpkg.com/@thi.ng/hiccup-svg/lib/index.umd.js" crossorigin></script>
+```html
+<script type="module" src="https://cdn.skypack.dev/@thi.ng/hiccup-svg"></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 2.56 KB / CJS: 2.68 KB / UMD: 2.60 KB
+[Skypack documentation](https://docs.skypack.dev/)
+
+For NodeJS (v14.6+):
+
+```text
+node --experimental-specifier-resolution=node --experimental-repl-await
+
+> const hiccupSvg = await import("@thi.ng/hiccup-svg");
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 2.56 KB
 
 ## Dependencies
 

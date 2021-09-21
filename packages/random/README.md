@@ -72,20 +72,29 @@ Partially ported from C implementations taken from [c.thi.ng](http://c.thi.ng).
 yarn add @thi.ng/random
 ```
 
-```html
-// ES module
-<script type="module" src="https://unpkg.com/@thi.ng/random?module" crossorigin></script>
+ES module import:
 
-// UMD
-<script src="https://unpkg.com/@thi.ng/random/lib/index.umd.js" crossorigin></script>
+```html
+<script type="module" src="https://cdn.skypack.dev/@thi.ng/random"></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.81 KB / CJS: 1.95 KB / UMD: 1.91 KB
+[Skypack documentation](https://docs.skypack.dev/)
+
+For NodeJS (v14.6+):
+
+```text
+node --experimental-specifier-resolution=node --experimental-repl-await
+
+> const random = await import("@thi.ng/random");
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 1.81 KB
 
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
 - [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
+- [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
 - [@thi.ng/hex](https://github.com/thi-ng/umbrella/tree/develop/packages/hex)
 
 ## Usage examples

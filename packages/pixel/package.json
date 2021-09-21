@@ -2,10 +2,10 @@
     "name": "@thi.ng/pixel",
     "version": "1.0.5",
     "description": "Typedarray integer & float pixel buffers w/ customizable formats, blitting, dithering, convolution",
+    "type": "module",
     "module": "./index.js",
-    "main": "./lib/index.js",
-    "umd:main": "./lib/index.umd.js",
     "typings": "./index.d.ts",
+    "sideEffects": false,
     "repository": {
         "type": "git",
         "url": "https://github.com/thi-ng/umbrella.git"
@@ -24,33 +24,28 @@
     "author": "Karsten Schmidt <k+npm@thi.ng>",
     "license": "Apache-2.0",
     "scripts": {
-        "build": "yarn clean && yarn build:es6 && node ../../scripts/bundle-module",
-        "build:release": "yarn clean && yarn build:es6 && node ../../scripts/bundle-module all",
-        "build:es6": "tsc --declaration",
-        "build:test": "rimraf build && tsc -p test/tsconfig.json",
+        "build": "yarn clean && tsc --declaration",
         "build:check": "tsc --isolatedModules --noEmit",
-        "test": "mocha test",
-        "cover": "nyc mocha test && nyc report --reporter=lcov",
-        "clean": "rimraf *.js *.d.ts *.map .nyc_output build coverage doc lib",
-        "doc:readme": "ts-node -P ../../tools/tsconfig.json ../../tools/src/readme.ts",
-        "doc": "typedoc --excludePrivate --out doc --theme ../../tools/doc/typedoc-theme src/index.ts",
+        "clean": "rimraf *.js *.d.ts *.map doc",
+        "doc": "typedoc --excludePrivate --excludeInternal --out doc src/index.ts",
         "doc:ae": "mkdir -p .ae/doc .ae/temp && node_modules/.bin/api-extractor run --local --verbose",
-        "pub": "yarn build:release && yarn publish --access public"
+        "doc:readme": "../../scripts/node-esm ../../tools/src/readme.ts",
+        "doc:stats": "../../scripts/node-esm ../../tools/src/module-stats.ts",
+        "pub": "yarn build:release && yarn publish --access public",
+        "test": "testament test"
     },
     "dependencies": {
         "@thi.ng/api": "^7.2.0",
         "@thi.ng/binary": "^2.2.11",
         "@thi.ng/checks": "^2.9.11",
+        "@thi.ng/errors": "^1.3.4",
         "@thi.ng/k-means": "^0.3.6",
         "@thi.ng/math": "^4.0.6",
         "@thi.ng/porter-duff": "^1.0.2"
     },
-    "files": [
-        "*.js",
-        "*.d.ts",
-        "lib",
-        "format"
-    ],
+    "devDependencies": {
+        "@thi.ng/testament": "^0.0.1"
+    },
     "keywords": [
         "8bit",
         "16bit",
@@ -89,7 +84,115 @@
     "publishConfig": {
         "access": "public"
     },
-    "sideEffects": false,
+    "files": [
+        "*.js",
+        "*.d.ts",
+        "format"
+    ],
+    "exports": {
+        ".": {
+            "import": "./index.js"
+        },
+        "./api": {
+            "import": "./api.js"
+        },
+        "./canvas": {
+            "import": "./canvas.js"
+        },
+        "./codegen": {
+            "import": "./codegen.js"
+        },
+        "./convolve": {
+            "import": "./convolve.js"
+        },
+        "./dither": {
+            "import": "./dither.js"
+        },
+        "./dominant-colors": {
+            "import": "./dominant-colors.js"
+        },
+        "./float": {
+            "import": "./float.js"
+        },
+        "./format/abgr8888": {
+            "import": "./format/abgr8888.js"
+        },
+        "./format/alpha8": {
+            "import": "./format/alpha8.js"
+        },
+        "./format/argb1555": {
+            "import": "./format/argb1555.js"
+        },
+        "./format/argb4444": {
+            "import": "./format/argb4444.js"
+        },
+        "./format/argb8888": {
+            "import": "./format/argb8888.js"
+        },
+        "./format/bgr888": {
+            "import": "./format/bgr888.js"
+        },
+        "./format/float-format": {
+            "import": "./format/float-format.js"
+        },
+        "./format/float-gray-alpha": {
+            "import": "./format/float-gray-alpha.js"
+        },
+        "./format/float-gray": {
+            "import": "./format/float-gray.js"
+        },
+        "./format/float-hsva": {
+            "import": "./format/float-hsva.js"
+        },
+        "./format/float-norm": {
+            "import": "./format/float-norm.js"
+        },
+        "./format/float-rgb": {
+            "import": "./format/float-rgb.js"
+        },
+        "./format/float-rgba": {
+            "import": "./format/float-rgba.js"
+        },
+        "./format/gray-alpha16": {
+            "import": "./format/gray-alpha16.js"
+        },
+        "./format/gray-alpha8": {
+            "import": "./format/gray-alpha8.js"
+        },
+        "./format/gray16": {
+            "import": "./format/gray16.js"
+        },
+        "./format/gray8": {
+            "import": "./format/gray8.js"
+        },
+        "./format/indexed": {
+            "import": "./format/indexed.js"
+        },
+        "./format/packed-format": {
+            "import": "./format/packed-format.js"
+        },
+        "./format/rgb565": {
+            "import": "./format/rgb565.js"
+        },
+        "./format/rgb888": {
+            "import": "./format/rgb888.js"
+        },
+        "./normal-map": {
+            "import": "./normal-map.js"
+        },
+        "./packed": {
+            "import": "./packed.js"
+        },
+        "./pyramid": {
+            "import": "./pyramid.js"
+        },
+        "./sample": {
+            "import": "./sample.js"
+        },
+        "./utils": {
+            "import": "./utils.js"
+        }
+    },
     "thi.ng": {
         "related": [
             "color",

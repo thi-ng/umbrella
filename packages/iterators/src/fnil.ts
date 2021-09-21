@@ -1,5 +1,5 @@
 import type { Fn0, FnAny } from "@thi.ng/api";
-import { illegalArity } from "@thi.ng/errors";
+import { illegalArity } from "@thi.ng/errors/illegal-arity";
 
 export const fnil = (fn: FnAny<any>, ...ctors: Fn0<any>[]) => {
     let [cta, ctb, ctc] = ctors;

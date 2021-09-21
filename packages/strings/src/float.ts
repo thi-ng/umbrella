@@ -1,4 +1,4 @@
-import { memoizeJ } from "@thi.ng/memoize";
+import { memoizeJ } from "@thi.ng/memoize/memoizej";
 import type { Stringer } from "./api";
 import { padLeft } from "./pad-left";
 
@@ -12,14 +12,12 @@ import { padLeft } from "./pad-left";
  * @param len - number of fractional digits
  * @param special - true, if special handling for NaN/Infinity values
  */
-export const float: (
-    prec: number,
-    special?: boolean
-) => Stringer<number> = memoizeJ((prec, special = false) =>
-    special
-        ? (x: number) => nanOrInf(x) || x.toFixed(prec)
-        : (x: number) => x.toFixed(prec)
-);
+export const float: (prec: number, special?: boolean) => Stringer<number> =
+    memoizeJ((prec, special = false) =>
+        special
+            ? (x: number) => nanOrInf(x) || x.toFixed(prec)
+            : (x: number) => x.toFixed(prec)
+    );
 
 /**
  * Similar to `float`, returns {@link Stringer} which formats numbers to given

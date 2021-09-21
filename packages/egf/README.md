@@ -105,15 +105,23 @@ deployed already.
 yarn add @thi.ng/egf
 ```
 
-```html
-// ES module
-<script type="module" src="https://unpkg.com/@thi.ng/egf?module" crossorigin></script>
+ES module import:
 
-// UMD
-<script src="https://unpkg.com/@thi.ng/egf/lib/index.umd.js" crossorigin></script>
+```html
+<script type="module" src="https://cdn.skypack.dev/@thi.ng/egf"></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 2.77 KB / CJS: 2.85 KB / UMD: 2.85 KB
+[Skypack documentation](https://docs.skypack.dev/)
+
+For NodeJS (v14.6+):
+
+```text
+node --experimental-specifier-resolution=node --experimental-repl-await
+
+> const egf = await import("@thi.ng/egf");
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 2.77 KB
 
 ## Dependencies
 
@@ -122,6 +130,7 @@ Package sizes (gzipped, pre-treeshake): ESM: 2.77 KB / CJS: 2.85 KB / UMD: 2.85 
 - [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
 - [@thi.ng/dot](https://github.com/thi-ng/umbrella/tree/develop/packages/dot)
 - [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
+- [@thi.ng/logger](https://github.com/thi-ng/umbrella/tree/develop/packages/logger)
 - [@thi.ng/prefixes](https://github.com/thi-ng/umbrella/tree/develop/packages/prefixes)
 - [@thi.ng/strings](https://github.com/thi-ng/umbrella/tree/develop/packages/strings)
 - [@thi.ng/transducers-binary](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers-binary)

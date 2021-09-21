@@ -1,6 +1,6 @@
 import type { VecOpSGVN, VecOpSVN } from "./api";
-import { ARGS_V, ARGS_VN, defOpS, SARGS_V } from "./internal/codegen";
-import { MATH_N } from "./internal/templates";
+import { defOpS } from "./compile/emit";
+import { ARGS_V, ARGS_VN, MATH_N, SARGS_V } from "./compile/templates";
 
 export const [subNS, subNS2, subNS3, subNS4] = defOpS<VecOpSGVN, VecOpSVN>(
     MATH_N("-"),

@@ -1,4 +1,5 @@
-import { BitInputStream, BitOutputStream } from "@thi.ng/bitstream";
+import { BitInputStream } from "@thi.ng/bitstream/input";
+import { BitOutputStream } from "@thi.ng/bitstream/output";
 
 const HIGH = 0x7fffff;
 const HALF = 0x400000;

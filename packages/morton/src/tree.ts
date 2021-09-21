@@ -1,4 +1,4 @@
-import { ceilPow2 } from "@thi.ng/binary";
+import { ceilPow2 } from "@thi.ng/binary/pow";
 
 export const treeToMorton = (t: number[], dim: number) => {
     let n = 0;

@@ -44,15 +44,23 @@ Entity Component System based around typed arrays & sparse sets.
 yarn add @thi.ng/ecs
 ```
 
-```html
-// ES module
-<script type="module" src="https://unpkg.com/@thi.ng/ecs?module" crossorigin></script>
+ES module import:
 
-// UMD
-<script src="https://unpkg.com/@thi.ng/ecs/lib/index.umd.js" crossorigin></script>
+```html
+<script type="module" src="https://cdn.skypack.dev/@thi.ng/ecs"></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 2.98 KB / CJS: 3.06 KB / UMD: 3.15 KB
+[Skypack documentation](https://docs.skypack.dev/)
+
+For NodeJS (v14.6+):
+
+```text
+node --experimental-specifier-resolution=node --experimental-repl-await
+
+> const ecs = await import("@thi.ng/ecs");
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 2.98 KB
 
 ## Dependencies
 
@@ -61,10 +69,11 @@ Package sizes (gzipped, pre-treeshake): ESM: 2.98 KB / CJS: 3.06 KB / UMD: 3.15 
 - [@thi.ng/binary](https://github.com/thi-ng/umbrella/tree/develop/packages/binary)
 - [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
 - [@thi.ng/dcons](https://github.com/thi-ng/umbrella/tree/develop/packages/dcons)
+- [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
 - [@thi.ng/idgen](https://github.com/thi-ng/umbrella/tree/develop/packages/idgen)
+- [@thi.ng/logger](https://github.com/thi-ng/umbrella/tree/develop/packages/logger)
 - [@thi.ng/malloc](https://github.com/thi-ng/umbrella/tree/develop/packages/malloc)
 - [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)
-- [tslib](https://github.com/thi-ng/umbrella/tree/develop/packages/undefined)
 
 ## Usage examples
 

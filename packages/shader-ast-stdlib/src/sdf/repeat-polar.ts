@@ -1,20 +1,10 @@
-import {
-    $x,
-    $y,
-    add,
-    atan,
-    defn,
-    div,
-    FLOAT05,
-    FloatSym,
-    length,
-    mod,
-    mul,
-    ret,
-    sub,
-    sym,
-    TAU,
-} from "@thi.ng/shader-ast";
+import type { FloatSym } from "@thi.ng/shader-ast";
+import { defn, ret } from "@thi.ng/shader-ast/ast/function";
+import { FLOAT05, TAU } from "@thi.ng/shader-ast/ast/lit";
+import { add, div, mul, sub } from "@thi.ng/shader-ast/ast/ops";
+import { $x, $y } from "@thi.ng/shader-ast/ast/swizzle";
+import { sym } from "@thi.ng/shader-ast/ast/sym";
+import { atan, length, mod } from "@thi.ng/shader-ast/builtin/math";
 import { cossin } from "../math/sincos";
 
 /**

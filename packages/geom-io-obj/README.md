@@ -54,19 +54,28 @@ Wavefront OBJ parser (& exporter soon). This is a support package for [@thi.ng/g
 yarn add @thi.ng/geom-io-obj
 ```
 
-```html
-// ES module
-<script type="module" src="https://unpkg.com/@thi.ng/geom-io-obj?module" crossorigin></script>
+ES module import:
 
-// UMD
-<script src="https://unpkg.com/@thi.ng/geom-io-obj/lib/index.umd.js" crossorigin></script>
+```html
+<script type="module" src="https://cdn.skypack.dev/@thi.ng/geom-io-obj"></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.03 KB / CJS: 1.08 KB / UMD: 1.18 KB
+[Skypack documentation](https://docs.skypack.dev/)
+
+For NodeJS (v14.6+):
+
+```text
+node --experimental-specifier-resolution=node --experimental-repl-await
+
+> const geomIoObj = await import("@thi.ng/geom-io-obj");
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 1.03 KB
 
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
+- [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
 - [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors)
 
 ## API

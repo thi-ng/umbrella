@@ -42,15 +42,23 @@ This project is part of the
 yarn add @thi.ng/rdom-canvas
 ```
 
-```html
-// ES module
-<script type="module" src="https://unpkg.com/@thi.ng/rdom-canvas?module" crossorigin></script>
+ES module import:
 
-// UMD
-<script src="https://unpkg.com/@thi.ng/rdom-canvas/lib/index.umd.js" crossorigin></script>
+```html
+<script type="module" src="https://cdn.skypack.dev/@thi.ng/rdom-canvas"></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 554 bytes / CJS: 626 bytes / UMD: 745 bytes
+[Skypack documentation](https://docs.skypack.dev/)
+
+For NodeJS (v14.6+):
+
+```text
+node --experimental-specifier-resolution=node --experimental-repl-await
+
+> const rdomCanvas = await import("@thi.ng/rdom-canvas");
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 554 bytes
 
 ## Dependencies
 

@@ -1,5 +1,7 @@
 import type { Fn, FnO, Path } from "@thi.ng/api";
-import { defSetterUnsafe, defUpdaterUnsafe, getInUnsafe } from "@thi.ng/paths";
+import { getInUnsafe } from "@thi.ng/paths/get-in";
+import { defSetterUnsafe } from "@thi.ng/paths/setter";
+import { defUpdaterUnsafe } from "@thi.ng/paths/updater";
 import {
     Event,
     FX_CANCEL,
@@ -22,10 +24,9 @@ export const trace: InterceptorFn = (_, e) => console.log("event:", e);
  *
  * @param fxID - side effect ID
  */
-export const forwardSideFx = (fxID: string): InterceptorFn => (
-    _,
-    [__, body]
-) => ({ [fxID]: body !== undefined ? body : true });
+export const forwardSideFx =
+    (fxID: string): InterceptorFn =>
+    (_, [__, body]) => ({ [fxID]: body !== undefined ? body : true });
 
 /**
  * Higher-order interceptor. Returns interceptor which assigns given
@@ -33,9 +34,11 @@ export const forwardSideFx = (fxID: string): InterceptorFn => (
  *
  * @param event -
  */
-export const dispatch = (event: Event): InterceptorFn => () => ({
-    [FX_DISPATCH]: event,
-});
+export const dispatch =
+    (event: Event): InterceptorFn =>
+    () => ({
+        [FX_DISPATCH]: event,
+    });
 
 /**
  * Higher-order interceptor. Returns interceptor which assigns given
@@ -43,9 +46,11 @@ export const dispatch = (event: Event): InterceptorFn => () => ({
  *
  * @param event -
  */
-export const dispatchNow = (event: Event): InterceptorFn => () => ({
-    [FX_DISPATCH_NOW]: event,
-});
+export const dispatchNow =
+    (event: Event): InterceptorFn =>
+    () => ({
+        [FX_DISPATCH_NOW]: event,
+    });
 
 /**
  * Higher-order interceptor. Returns interceptor which calls
@@ -78,8 +83,10 @@ export const dispatchNow = (event: Event): InterceptorFn => () => ({
  *
  * @param id -
  */
-export const snapshot = (id = "history"): InterceptorFn => (_, __, ___, ctx) =>
-    ctx[id].record();
+export const snapshot =
+    (id = "history"): InterceptorFn =>
+    (_, __, ___, ctx) =>
+        ctx[id].record();
 
 /**
  * Higher-order interceptor for validation purposes. Takes a predicate
@@ -120,16 +127,15 @@ export const snapshot = (id = "history"): InterceptorFn => (_, __, ___, ctx) =>
  * @param pred - predicate applied to given state & event
  * @param err - interceptor triggered on predicate failure
  */
-export const ensurePred = (
-    pred: InterceptorPredicate,
-    err?: InterceptorFn
-): InterceptorFn => (state, e, bus, ctx) =>
-    !pred(state, e, bus, ctx)
-        ? {
-              [FX_CANCEL]: true,
-              ...(err ? err(state, e, bus, ctx) : null),
-          }
-        : undefined;
+export const ensurePred =
+    (pred: InterceptorPredicate, err?: InterceptorFn): InterceptorFn =>
+    (state, e, bus, ctx) =>
+        !pred(state, e, bus, ctx)
+            ? {
+                  [FX_CANCEL]: true,
+                  ...(err ? err(state, e, bus, ctx) : null),
+              }
+            : undefined;
 
 const eventPathState = (
     state: any,

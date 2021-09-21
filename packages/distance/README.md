@@ -54,7 +54,7 @@ distance values. The following preset metrics are provided too:
 Neighborhoods can be used to select n-D spatial items around a given target
 location and an optional catchment radius (infinite by default). Neighborhoods
 also use one of the given distance metrics and implement the widely used
-[`IDeref`](https://github.com/thi-ng/umbrella/tree/develop/packages/api/src/api/deref.ts)
+[`IDeref`](https://github.com/thi-ng/umbrella/tree/develop/packages/api/src/deref.ts)
 interface to obtain the final query results.
 
 Custom neighborhood selections can be defined via the
@@ -102,19 +102,28 @@ package.
 yarn add @thi.ng/distance
 ```
 
-```html
-// ES module
-<script type="module" src="https://unpkg.com/@thi.ng/distance?module" crossorigin></script>
+ES module import:
 
-// UMD
-<script src="https://unpkg.com/@thi.ng/distance/lib/index.umd.js" crossorigin></script>
+```html
+<script type="module" src="https://cdn.skypack.dev/@thi.ng/distance"></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.06 KB / CJS: 1.17 KB / UMD: 1.21 KB
+[Skypack documentation](https://docs.skypack.dev/)
+
+For NodeJS (v14.6+):
+
+```text
+node --experimental-specifier-resolution=node --experimental-repl-await
+
+> const distance = await import("@thi.ng/distance");
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 1.06 KB
 
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
+- [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
 - [@thi.ng/heaps](https://github.com/thi-ng/umbrella/tree/develop/packages/heaps)
 - [@thi.ng/math](https://github.com/thi-ng/umbrella/tree/develop/packages/math)
 - [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors)

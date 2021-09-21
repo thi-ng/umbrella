@@ -1,5 +1,5 @@
-import { withoutKeysObj } from "@thi.ng/associative";
-import { isArray } from "@thi.ng/checks";
+import { withoutKeysObj } from "@thi.ng/associative/without-keys";
+import { isArray } from "@thi.ng/checks/is-array";
 import {
     ITexture,
     TextureFilter,

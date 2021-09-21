@@ -1,5 +1,5 @@
-import { DEG2RAD } from "@thi.ng/math";
-import { setC } from "@thi.ng/vectors";
+import { DEG2RAD } from "@thi.ng/math/api";
+import { setC } from "@thi.ng/vectors/setc";
 import type { Mat } from "./api";
 
 /**

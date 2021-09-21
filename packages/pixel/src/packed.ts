@@ -1,18 +1,13 @@
-import {
-    assert,
-    Fn2,
-    ICopy,
-    IEmpty,
-    typedArray,
-    UIntArray,
-    uintTypeForBits,
-} from "@thi.ng/api";
-import { isNumber, isString } from "@thi.ng/checks";
+import type { Fn2, ICopy, IEmpty } from "@thi.ng/api";
+import { typedArray, UIntArray, uintTypeForBits } from "@thi.ng/api/typedarray";
+import { isNumber } from "@thi.ng/checks/is-number";
+import { isString } from "@thi.ng/checks/is-string";
+import { assert } from "@thi.ng/errors/assert";
 import {
     isPremultipliedInt,
     postmultiplyInt,
     premultiplyInt,
-} from "@thi.ng/porter-duff";
+} from "@thi.ng/porter-duff/premultiply";
 import {
     BayerMatrix,
     BayerSize,
@@ -87,7 +82,8 @@ export class PackedBuffer
         IBlit<PackedBuffer>,
         IInvert<PackedBuffer>,
         ICopy<PackedBuffer>,
-        IEmpty<PackedBuffer> {
+        IEmpty<PackedBuffer>
+{
     /**
      * Creates a new pixel buffer from given HTML image element with optional
      * support for format conversion (default: {@link ABGR8888} & resizing.

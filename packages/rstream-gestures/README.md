@@ -52,15 +52,23 @@ rewrite of `gestureStream()` and new event data formats.
 yarn add @thi.ng/rstream-gestures
 ```
 
-```html
-// ES module
-<script type="module" src="https://unpkg.com/@thi.ng/rstream-gestures?module" crossorigin></script>
+ES module import:
 
-// UMD
-<script src="https://unpkg.com/@thi.ng/rstream-gestures/lib/index.umd.js" crossorigin></script>
+```html
+<script type="module" src="https://cdn.skypack.dev/@thi.ng/rstream-gestures"></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.18 KB / CJS: 1.24 KB / UMD: 1.30 KB
+[Skypack documentation](https://docs.skypack.dev/)
+
+For NodeJS (v14.6+):
+
+```text
+node --experimental-specifier-resolution=node --experimental-repl-await
+
+> const rstreamGestures = await import("@thi.ng/rstream-gestures");
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 1.18 KB
 
 ## Dependencies
 

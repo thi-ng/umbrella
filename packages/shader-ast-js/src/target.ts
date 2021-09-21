@@ -1,14 +1,9 @@
 import type { Fn } from "@thi.ng/api";
-import { isBoolean, isNumber } from "@thi.ng/checks";
-import { unsupported } from "@thi.ng/errors";
-import {
-    defTarget,
+import { isBoolean } from "@thi.ng/checks/is-boolean";
+import { isNumber } from "@thi.ng/checks/is-number";
+import { unsupported } from "@thi.ng/errors/unsupported";
+import type {
     Func,
-    isBool,
-    isInt,
-    isMat,
-    isUint,
-    isVec,
     Lit,
     Operator,
     Scope,
@@ -16,6 +11,14 @@ import {
     Sym,
     Term,
 } from "@thi.ng/shader-ast";
+import {
+    isBool,
+    isInt,
+    isMat,
+    isUint,
+    isVec,
+} from "@thi.ng/shader-ast/ast/checks";
+import { defTarget } from "@thi.ng/shader-ast/target";
 import type { JSTarget } from "./api";
 import { JS_DEFAULT_ENV } from "./env";
 
@@ -188,9 +191,6 @@ export const targetJS = () => {
                 case "uvec2":
                 case "uvec3":
                 case "uvec4":
-                case "bvec2":
-                case "bvec3":
-                case "bvec4":
                 case "mat2":
                 case "mat3":
                 case "mat4":

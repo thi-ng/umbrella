@@ -1,4 +1,5 @@
-import { IRandom, SYSTEM } from "@thi.ng/random";
+import type { IRandom } from "@thi.ng/random";
+import { SYSTEM } from "@thi.ng/random/system";
 import type {
     VecOpSGOO,
     VecOpSGOOO,
@@ -8,7 +9,8 @@ import type {
     VecOpSVO,
     VecOpSVVO,
 } from "./api";
-import { defHofOpS, SARGS_VV } from "./internal/codegen";
+import { defHofOpS } from "./compile/emit";
+import { SARGS_VV } from "./compile/templates";
 import {
     normalizeS,
     normalizeS2,

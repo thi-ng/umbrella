@@ -56,15 +56,23 @@ maps & sets as backend.
 yarn add @thi.ng/dgraph
 ```
 
-```html
-// ES module
-<script type="module" src="https://unpkg.com/@thi.ng/dgraph?module" crossorigin></script>
+ES module import:
 
-// UMD
-<script src="https://unpkg.com/@thi.ng/dgraph/lib/index.umd.js" crossorigin></script>
+```html
+<script type="module" src="https://cdn.skypack.dev/@thi.ng/dgraph"></script>
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 804 bytes / CJS: 865 bytes / UMD: 985 bytes
+[Skypack documentation](https://docs.skypack.dev/)
+
+For NodeJS (v14.6+):
+
+```text
+node --experimental-specifier-resolution=node --experimental-repl-await
+
+> const dgraph = await import("@thi.ng/dgraph");
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 804 bytes
 
 ## Dependencies
 

@@ -1,9 +1,10 @@
 import type { Fn2 } from "@thi.ng/api";
+import { group } from "@thi.ng/testament";
 import * as assert from "assert";
 import { alt, defContext, FLOAT, oneOf, WS0, xform, zeroOrMore } from "../src";
 
-describe("parse", () => {
-    it("RPN calc", () => {
+group("parse", {
+    "RPN calc": () => {
         const stack: number[] = [];
         const ops: Record<string, Fn2<number, number, number>> = {
             "+": (a, b) => a + b,
@@ -23,8 +24,8 @@ describe("parse", () => {
         });
         const program = zeroOrMore(alt([value, op, WS0]));
         const ctx = defContext("10 5 3 * + -2 * 10 /");
-        assert(program(ctx));
-        assert(ctx.done);
+        assert.ok(program(ctx));
+        assert.ok(ctx.done);
         assert.deepStrictEqual(stack, [-5]);
-    });
+    },
 });

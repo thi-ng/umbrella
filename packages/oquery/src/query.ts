@@ -1,6 +1,8 @@
 import type { Fn2, Predicate } from "@thi.ng/api";
-import { isArray, isFunction, isSet } from "@thi.ng/checks";
-import { defmulti } from "@thi.ng/defmulti";
+import { isArray } from "@thi.ng/checks/is-array";
+import { isFunction } from "@thi.ng/checks/is-function";
+import { isSet } from "@thi.ng/checks/is-set";
+import { defmulti } from "@thi.ng/defmulti/defmulti";
 import { equiv } from "@thi.ng/equiv";
 import type {
     FTerm,

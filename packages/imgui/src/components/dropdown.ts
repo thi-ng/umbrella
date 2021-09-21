@@ -1,7 +1,9 @@
-import { polygon } from "@thi.ng/geom";
-import { gridLayout, IGridLayout, isLayout, LayoutBox } from "@thi.ng/layout";
-import { clamp0 } from "@thi.ng/math";
-import { hash } from "@thi.ng/vectors";
+import { polygon } from "@thi.ng/geom/ctors/polygon";
+import type { IGridLayout, LayoutBox } from "@thi.ng/layout";
+import { gridLayout } from "@thi.ng/layout/grid-layout";
+import { isLayout } from "@thi.ng/layout/is-layout";
+import { clamp0 } from "@thi.ng/math/interval";
+import { hash } from "@thi.ng/vectors/hash";
 import { Key } from "../api";
 import type { IMGUI } from "../gui";
 import { buttonH } from "./button";
