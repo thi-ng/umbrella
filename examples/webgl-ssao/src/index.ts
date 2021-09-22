@@ -1,5 +1,5 @@
 import type { IDeref } from "@thi.ng/api";
-import { sin } from "@thi.ng/dsp/osc/sin";
+import { sin } from "@thi.ng/dsp/osc-sin";
 import { canvasWebGL2 } from "@thi.ng/hdom-components/canvas";
 import { start } from "@thi.ng/hdom/start";
 import { lookAt } from "@thi.ng/matrices/lookat";

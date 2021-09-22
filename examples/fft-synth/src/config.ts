@@ -1,4 +1,4 @@
-import { binFreq } from "@thi.ng/dsp/fft/fft";
+import { binFreq } from "@thi.ng/dsp/fft";
 import { float } from "@thi.ng/strings/float";
 import { percent } from "@thi.ng/strings/percent";
 import { map } from "@thi.ng/transducers/map";

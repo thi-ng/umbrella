@@ -1,5 +1,5 @@
 import { adaptDPI } from "@thi.ng/adapt-dpi";
-import { sin } from "@thi.ng/dsp/osc/sin";
+import { sin } from "@thi.ng/dsp/osc-sin";
 import { canvasWebGL } from "@thi.ng/hdom-components/canvas";
 import { dropdown } from "@thi.ng/hdom-components/dropdown";
 import { start } from "@thi.ng/hdom/start";

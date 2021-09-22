@@ -1,4 +1,4 @@
-import { sin } from "@thi.ng/dsp/osc/sin";
+import { sin } from "@thi.ng/dsp/osc-sin";
 import { circle } from "@thi.ng/geom/ctors/circle";
 import { group } from "@thi.ng/geom/ctors/group";
 import { line } from "@thi.ng/geom/ctors/line";

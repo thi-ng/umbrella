@@ -1,7 +1,7 @@
-import { add } from "@thi.ng/dsp/gen/add";
-import { osc } from "@thi.ng/dsp/gen/osc";
-import { saw } from "@thi.ng/dsp/osc/saw";
-import { sin } from "@thi.ng/dsp/osc/sin";
+import { add } from "@thi.ng/dsp/add";
+import { osc } from "@thi.ng/dsp/osc";
+import { saw } from "@thi.ng/dsp/osc-saw";
+import { sin } from "@thi.ng/dsp/osc-sin";
 import type { Rect } from "@thi.ng/geom";
 import { aabb } from "@thi.ng/geom/ctors/aabb";
 import { rect } from "@thi.ng/geom/ctors/rect";
