@@ -26,7 +26,7 @@
     "scripts": {
         "build": "yarn clean && tsc --declaration",
         "build:check": "tsc --isolatedModules --noEmit",
-        "clean": "rimraf *.js *.d.ts *.map doc comp fft gen osc proc util",
+        "clean": "rimraf *.js *.d.ts *.map doc",
         "doc": "typedoc --excludePrivate --excludeInternal --out doc src/index.ts",
         "doc:ae": "mkdir -p .ae/doc .ae/temp && node_modules/.bin/api-extractor run --local --verbose",
         "doc:readme": "../../scripts/node-esm ../../tools/src/readme.ts",
@@ -92,173 +92,173 @@
         ".": {
             "import": "./index.js"
         },
+        "./add": {
+            "import": "./add.js"
+        },
+        "./addg": {
+            "import": "./addg.js"
+        },
+        "./adsr": {
+            "import": "./adsr.js"
+        },
+        "./agen": {
+            "import": "./agen.js"
+        },
+        "./allpass": {
+            "import": "./allpass.js"
+        },
+        "./alt": {
+            "import": "./alt.js"
+        },
+        "./anti-alias": {
+            "import": "./anti-alias.js"
+        },
         "./api": {
             "import": "./api.js"
         },
-        "./comp/addg": {
-            "import": "./comp/addg.js"
+        "./aproc": {
+            "import": "./aproc.js"
         },
-        "./comp/compp": {
-            "import": "./comp/compp.js"
+        "./biquad": {
+            "import": "./biquad.js"
         },
-        "./comp/mapg": {
-            "import": "./comp/mapg.js"
+        "./complex": {
+            "import": "./complex.js"
         },
-        "./comp/multiplex": {
-            "import": "./comp/multiplex.js"
+        "./const": {
+            "import": "./const.js"
         },
-        "./comp/pipe": {
-            "import": "./comp/pipe.js"
+        "./convert": {
+            "import": "./convert.js"
         },
-        "./comp/product": {
-            "import": "./comp/product.js"
+        "./cosine": {
+            "import": "./cosine.js"
         },
-        "./comp/sum": {
-            "import": "./comp/sum.js"
+        "./curve": {
+            "import": "./curve.js"
         },
-        "./fft/fft": {
-            "import": "./fft/fft.js"
+        "./dcblock": {
+            "import": "./dcblock.js"
         },
-        "./fft/power": {
-            "import": "./fft/power.js"
+        "./delay": {
+            "import": "./delay.js"
         },
-        "./fft/window": {
-            "import": "./fft/window.js"
+        "./feedback-delay": {
+            "import": "./feedback-delay.js"
         },
-        "./gen/add": {
-            "import": "./gen/add.js"
+        "./fft": {
+            "import": "./fft.js"
         },
-        "./gen/adsr": {
-            "import": "./gen/adsr.js"
+        "./filter-response": {
+            "import": "./filter-response.js"
         },
-        "./gen/agen": {
-            "import": "./gen/agen.js"
+        "./foldback": {
+            "import": "./foldback.js"
         },
-        "./gen/alt": {
-            "import": "./gen/alt.js"
+        "./impulse-train": {
+            "import": "./impulse-train.js"
         },
-        "./gen/const": {
-            "import": "./gen/const.js"
+        "./impulse": {
+            "import": "./impulse.js"
         },
-        "./gen/cosine": {
-            "import": "./gen/cosine.js"
+        "./integrator": {
+            "import": "./integrator.js"
         },
-        "./gen/curve": {
-            "import": "./gen/curve.js"
+        "./iterable": {
+            "import": "./iterable.js"
         },
-        "./gen/impulse-train": {
-            "import": "./gen/impulse-train.js"
+        "./line": {
+            "import": "./line.js"
         },
-        "./gen/impulse": {
-            "import": "./gen/impulse.js"
+        "./madd": {
+            "import": "./madd.js"
         },
-        "./gen/iterable": {
-            "import": "./gen/iterable.js"
+        "./mapg": {
+            "import": "./mapg.js"
         },
-        "./gen/line": {
-            "import": "./gen/line.js"
+        "./mix": {
+            "import": "./mix.js"
         },
-        "./gen/madd": {
-            "import": "./gen/madd.js"
+        "./mul": {
+            "import": "./mul.js"
         },
-        "./gen/mul": {
-            "import": "./gen/mul.js"
+        "./multiplex": {
+            "import": "./multiplex.js"
         },
-        "./gen/osc": {
-            "import": "./gen/osc.js"
+        "./onepole": {
+            "import": "./onepole.js"
         },
-        "./gen/pink-noise": {
-            "import": "./gen/pink-noise.js"
+        "./osc-additive": {
+            "import": "./osc-additive.js"
         },
-        "./gen/reciprocal": {
-            "import": "./gen/reciprocal.js"
+        "./osc-cos": {
+            "import": "./osc-cos.js"
         },
-        "./gen/sincos": {
-            "import": "./gen/sincos.js"
+        "./osc-dsf": {
+            "import": "./osc-dsf.js"
         },
-        "./gen/sweep": {
-            "import": "./gen/sweep.js"
+        "./osc-mix": {
+            "import": "./osc-mix.js"
         },
-        "./gen/white-noise": {
-            "import": "./gen/white-noise.js"
+        "./osc-parabolic": {
+            "import": "./osc-parabolic.js"
         },
-        "./osc/additive": {
-            "import": "./osc/additive.js"
+        "./osc-rect": {
+            "import": "./osc-rect.js"
         },
-        "./osc/cos": {
-            "import": "./osc/cos.js"
+        "./osc-saw": {
+            "import": "./osc-saw.js"
         },
-        "./osc/dsf": {
-            "import": "./osc/dsf.js"
+        "./osc-sin": {
+            "import": "./osc-sin.js"
         },
-        "./osc/mix": {
-            "import": "./osc/mix.js"
+        "./osc-tri": {
+            "import": "./osc-tri.js"
         },
-        "./osc/parabolic": {
-            "import": "./osc/parabolic.js"
+        "./osc-wavetable": {
+            "import": "./osc-wavetable.js"
         },
-        "./osc/rect": {
-            "import": "./osc/rect.js"
+        "./osc": {
+            "import": "./osc.js"
         },
-        "./osc/saw": {
-            "import": "./osc/saw.js"
+        "./pink-noise": {
+            "import": "./pink-noise.js"
         },
-        "./osc/sin": {
-            "import": "./osc/sin.js"
+        "./pipe": {
+            "import": "./pipe.js"
         },
-        "./osc/tri": {
-            "import": "./osc/tri.js"
+        "./power": {
+            "import": "./power.js"
         },
-        "./osc/wavetable": {
-            "import": "./osc/wavetable.js"
+        "./product": {
+            "import": "./product.js"
         },
-        "./proc/allpass": {
-            "import": "./proc/allpass.js"
+        "./reciprocal": {
+            "import": "./reciprocal.js"
         },
-        "./proc/aproc": {
-            "import": "./proc/aproc.js"
+        "./serial": {
+            "import": "./serial.js"
         },
-        "./proc/biquad": {
-            "import": "./proc/biquad.js"
+        "./sincos": {
+            "import": "./sincos.js"
         },
-        "./proc/dcblock": {
-            "import": "./proc/dcblock.js"
+        "./sum": {
+            "import": "./sum.js"
         },
-        "./proc/delay": {
-            "import": "./proc/delay.js"
+        "./svf": {
+            "import": "./svf.js"
         },
-        "./proc/feedback-delay": {
-            "import": "./proc/feedback-delay.js"
+        "./sweep": {
+            "import": "./sweep.js"
         },
-        "./proc/foldback": {
-            "import": "./proc/foldback.js"
+        "./waveshaper": {
+            "import": "./waveshaper.js"
         },
-        "./proc/integrator": {
-            "import": "./proc/integrator.js"
+        "./white-noise": {
+            "import": "./white-noise.js"
         },
-        "./proc/mix": {
-            "import": "./proc/mix.js"
-        },
-        "./proc/onepole": {
-            "import": "./proc/onepole.js"
-        },
-        "./proc/svf": {
-            "import": "./proc/svf.js"
-        },
-        "./proc/waveshaper": {
-            "import": "./proc/waveshaper.js"
-        },
-        "./util/anti-alias": {
-            "import": "./util/anti-alias.js"
-        },
-        "./util/complex": {
-            "import": "./util/complex.js"
-        },
-        "./util/convert": {
-            "import": "./util/convert.js"
-        },
-        "./util/filter-response": {
-            "import": "./util/filter-response.js"
+        "./window": {
+            "import": "./window.js"
         }
     },
     "thi.ng": {

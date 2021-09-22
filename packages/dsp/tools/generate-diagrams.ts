@@ -50,10 +50,12 @@ import {
     svfNotch,
     svfPeak,
     tri,
+    waveShaper,
+    waveshapeSin,
+    waveshapeTan,
     wavetable,
     whiteNoise,
 } from "../src";
-import { waveShaper, waveshapeSin, waveshapeTan } from "../src/proc/waveshaper";
 
 const FS = 48000;
 

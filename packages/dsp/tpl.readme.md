@@ -117,36 +117,36 @@ import { take } from "@thi.ng/transducers";
 // ]
 ```
 
-- [add](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/gen/add.ts) - adder
-- [adsr](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/gen/add.ts) - timebased ADSR / AD envelope generator
-- [alt](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/gen/alt.ts) - alternating values
-- [constant](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/gen/const.ts) - constant value
-- [cosine](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/gen/cosp.ts) - trig-free cosine osc
-- [curve](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/gen/curve.ts) - timebased exponential gain/decay (factory for `madd`)
-- [impulse](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/gen/impulse.ts) - impulse gen
-- [impulseTrain](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/gen/impulse-train.ts) - timebased cyclic impulse
-- [line](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/gen/line.ts) - timebased line gen (factory for `add`)
-- [madd](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/gen/madd.ts) - multiply-adder
-- [mul](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/gen/mul.ts) - multiplier (exponential gain/decay)
-- [pinkNoise](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/gen/pink-noise.ts) - configurable pink noise (1/f power spectrum)
-- [reciprocal](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/gen/reciprocal.ts) - fractional sequence (1, 1/2, 1/3, 1/4 etc.)
-- [sincos](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/gen/sincos.ts) - trig-free sin/cos LFO
-- [sweep](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/gen/sweep.ts) - freq sweep gen w/ phase accumulation for oscillators
-- [whiteNoise](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/gen/pink-noise.ts) - white noise
+- [add](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/add.ts) - adder
+- [adsr](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/add.ts) - timebased ADSR / AD envelope generator
+- [alt](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/alt.ts) - alternating values
+- [constant](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/const.ts) - constant value
+- [cosine](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/cosp.ts) - trig-free cosine osc
+- [curve](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/curve.ts) - timebased exponential gain/decay (factory for `madd`)
+- [impulse](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/impulse.ts) - impulse gen
+- [impulseTrain](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/impulse-train.ts) - timebased cyclic impulse
+- [line](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/line.ts) - timebased line gen (factory for `add`)
+- [madd](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/madd.ts) - multiply-adder
+- [mul](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/mul.ts) - multiplier (exponential gain/decay)
+- [pinkNoise](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/pink-noise.ts) - configurable pink noise (1/f power spectrum)
+- [reciprocal](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/reciprocal.ts) - fractional sequence (1, 1/2, 1/3, 1/4 etc.)
+- [sincos](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/sincos.ts) - trig-free sin/cos LFO
+- [sweep](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/sweep.ts) - freq sweep gen w/ phase accumulation for oscillators
+- [whiteNoise](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/pink-noise.ts) - white noise
 
 #### Higher order generators
 
-- [mapG](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/comp/mapg.ts) - `IGen` composition / transformation (1-4 inputs)
-- [addG](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/comp/addg.ts) - higher-order adder
-- [product](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/comp/product.ts) - product of input gens
-- [sum](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/comp/sum.ts) - sum of input gens
+- [mapG](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/mapg.ts) - `IGen` composition / transformation (1-4 inputs)
+- [addG](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/addg.ts) - higher-order adder
+- [product](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/product.ts) - product of input gens
+- [sum](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/sum.ts) - sum of input gens
 
 #### Oscillators
 
 ##### IGen wrappers
 
-- [osc](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/gen/osc.ts) - arbitrary function oscillator w/ modulation support
-- [modOsc](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/gen/osc.ts) - FM / FMAM oscillator builder
+- [osc](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/osc.ts) - arbitrary function oscillator w/ modulation support
+- [modOsc](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/osc.ts) - FM / FMAM oscillator builder
 
 ```ts
 const FS = 44100;
@@ -180,17 +180,17 @@ Diagram of the FM/AM osc with some low pass filters applied:
 
 ##### Stateless oscillator functions
 
-- [additive](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/osc/additive.ts)
-- [dsf](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/osc/dsf.ts)
-- [mix](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/osc/mix.ts)
-- [parabolic](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/osc/parabolic.ts)
-- [rect](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/osc/rect.ts)
-- [saw](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/osc/saw.ts)
-- [sawAdditive](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/osc/additive.ts)
-- [squareAdditive](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/osc/additive.ts)
-- [sin](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/osc/sin.ts)
-- [tri](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/osc/tri.ts)
-- [wavetable](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/osc/wavetable.ts)
+- [additive](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/osc-additive.ts)
+- [dsf](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/osc-dsf.ts)
+- [mix](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/osc-mix.ts)
+- [parabolic](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/osc-parabolic.ts)
+- [rect](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/osc-rect.ts)
+- [saw](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/osc-saw.ts)
+- [sawAdditive](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/osc-additive.ts)
+- [squareAdditive](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/osc-additive.ts)
+- [sin](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/osc-sin.ts)
+- [tri](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/osc-tri.ts)
+- [wavetable](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/osc-wavetable.ts)
 
 ### IProc
 
@@ -261,9 +261,9 @@ The following filter types / functions are available:
 
 ##### 1-pole
 
-- [`onepoleLP`](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/proc/onepole.ts) - low pass, 6dB/oct falloff
-- [`dcBlock`](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/proc/dcblock.ts) - high pass, 6dB/oct falloff
-- [`allpass`](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/proc/allpass.ts) - allpass (-90° phase shift @ center freq)
+- [`onepoleLP`](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/onepole.ts) - low pass, 6dB/oct falloff
+- [`dcBlock`](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/dcblock.ts) - high pass, 6dB/oct falloff
+- [`allpass`](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/allpass.ts) - allpass (-90° phase shift @ center freq)
 
 Low pass:
 
@@ -279,7 +279,7 @@ Allpass:
 
 ##### Biquad
 
-[Source](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/proc/biquad.ts)
+[Source](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/biquad.ts)
 
 - `biquadLP` - low pass, 12dB/oct falloff, resonance
 - `biquadHP` - high pass, 12dB/oct falloff, resonance
@@ -321,7 +321,7 @@ High shelf (gain = -6dB):
 
 ##### State variable filter
 
-[Source](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/proc/biquad.ts)
+[Source](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/biquad.ts)
 
 - `svfLP` - low pass, resonance
 - `svfHP` - high pass, resonance
@@ -359,7 +359,7 @@ Allpass:
 #### Filter responses
 
 Using the [Filter response
-utils](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/util/filter-response.ts),
+utils](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/filter-response.ts),
 the following filter types can be evaluated for analyzing their impact
 on specific frequencies (or frequency bands). Any type implementing
 [`IFilter`](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/api.ts#L50)
@@ -402,7 +402,7 @@ Basic filter response plot:
 
 #### Delay
 
-[Source](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/proc/delay.ts)
+[Source](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/delay.ts)
 
 Ringbuffer / delay line for arbitrary values and support for single &
 multi-taps at any relative positions. Useful fundamental building block
@@ -410,14 +410,14 @@ for various other effects, filters etc.
 
 #### Feedback delay
 
-[Source](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/proc/feedback-delay.ts)
+[Source](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/feedback-delay.ts)
 
 Variation of `delay()` which adds a portion of the delayed value to each
 new input and stores result in delay line.
 
 #### Wave shaping
 
-[Source](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/proc/waveshaper.ts)
+[Source](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/waveshaper.ts)
 
 This operator remaps inputs via a user provided function. The following shaping functions are provided:
 
@@ -442,7 +442,7 @@ Sine:
 
 #### Foldback distortion
 
-[Source](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/proc/waveshaper.ts)
+[Source](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/waveshaper.ts)
 
 Recursively folds input into `[-thresh .. +thresh]` interval and amplifies it with `amp` (default: 1/thresh).
 
@@ -453,7 +453,7 @@ Desmos](https://www.desmos.com/calculator/lkyf2ag3ta) to experiment.
 
 ### FFT
 
-[Source](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/fft/fft.ts)
+[Source](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/fft.ts)
 
 - `fft()`
 - `ifft()`
@@ -476,7 +476,7 @@ Desmos](https://www.desmos.com/calculator/lkyf2ag3ta) to experiment.
 
 #### Window functions
 
-[Source](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/fft/window.ts)
+[Source](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/window.ts)
 
 - `window()`
 - `applyWindow()`
@@ -496,8 +496,8 @@ Desmos](https://www.desmos.com/calculator/lkyf2ag3ta) to experiment.
 
 ### Utilities
 
-- [Unit conversions](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/util/convert.ts)
-- [Filter response](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/util/filter-response.ts)
+- [Unit conversions](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/convert.ts)
+- [Filter response](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/filter-response.ts)
 
 ## Authors
 
