@@ -1,4 +1,4 @@
-export const defError = <T>(
+export const defError = <T = string>(
     prefix: (msg?: T) => string,
     suffix: (msg?: T) => string = (msg) => (msg !== undefined ? ": " + msg : "")
 ) =>
