@@ -67,12 +67,7 @@ export const slideToggleDot = (opts: Partial<ToggleDotOpts> = {}) => {
         ...(vertical ? { cy: width + margin - br } : { cx }),
         ..._opts.fgOff,
     };
-    return (_: any, attribs: any, state: boolean) => [
-        "svg",
-        { ...svgSize, ...attribs },
-        ["rect", state ? bgOn : bgOff],
-        ["circle", state ? shapeOn : shapeOff],
-    ];
+    return $toggle("circle", svgSize, bgOn, bgOff, shapeOn, shapeOff);
 };
 
 export const slideToggleRect = (opts: Partial<ToggleRectOpts> = {}) => {
@@ -111,10 +106,22 @@ export const slideToggleRect = (opts: Partial<ToggleRectOpts> = {}) => {
         ...(vertical ? { y: height + margin - pad - h } : { x: pm }),
         ..._opts.fgOff,
     };
-    return (_: any, attribs: any, state: boolean) => [
-        "svg",
-        { ...svgSize, ...attribs },
-        ["rect", state ? bgOn : bgOff],
-        ["rect", state ? shapeOn : shapeOff],
-    ];
+    return $toggle("rect", svgSize, bgOn, bgOff, shapeOn, shapeOff);
 };
+
+const $toggle =
+    (
+        shape: string,
+        size: any,
+        bgOn: any,
+        bgOff: any,
+        shapeOn: any,
+        shapeOff: any
+    ) =>
+    (_: any, attribs: any, state: boolean) =>
+        [
+            "svg",
+            { ...size, ...attribs },
+            ["rect", state ? bgOn : bgOff],
+            [shape, state ? shapeOn : shapeOff],
+        ];
