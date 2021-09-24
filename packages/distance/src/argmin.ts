@@ -1,8 +1,9 @@
-import type { Fn } from "@thi.ng/api";
+import type { Fn, NumericArray } from "@thi.ng/api";
+import { isFunction } from "@thi.ng/checks/is-function";
 import type { ReadonlyVec } from "@thi.ng/vectors";
-import type { IDistance } from "./api";
+import type { IDistance, Metric } from "./api";
 import { knearest } from "./knearest";
-import { DIST_SQ } from "./squared";
+import { DIST_SQ, DIST_SQ1 } from "./squared";
 
 /**
  * Takes a vector `p`, array of `samples` and a `dist`ance function. Computes
@@ -21,12 +22,31 @@ import { DIST_SQ } from "./squared";
 export const argmin = (
     p: ReadonlyVec,
     samples: ReadonlyVec[],
-    { metric: dist }: IDistance<ReadonlyVec> = DIST_SQ
+    dist: Metric<ReadonlyVec> | IDistance<ReadonlyVec> = DIST_SQ
 ) => {
+    const distFn = isFunction(dist) ? dist : dist.metric;
     let minD = Infinity;
     let minArg = -1;
     for (let i = 0, n = samples.length; i < n; i++) {
-        const d = dist(p, samples[i]);
+        const d = distFn(p, samples[i]);
+        if (d < minD) {
+            minD = d;
+            minArg = i;
+        }
+    }
+    return minArg;
+};
+
+export const argminN = (
+    p: number,
+    samples: NumericArray,
+    dist: Metric<number> | IDistance<number> = DIST_SQ1
+) => {
+    const distFn = isFunction(dist) ? dist : dist.metric;
+    let minD = Infinity;
+    let minArg = -1;
+    for (let i = 0, n = samples.length; i < n; i++) {
+        const d = distFn(p, samples[i]);
         if (d < minD) {
             minD = d;
             minArg = i;
@@ -53,7 +73,7 @@ export const argminT = <T>(
     p: T,
     samples: T[],
     key: Fn<T, ReadonlyVec>,
-    dist?: IDistance<ReadonlyVec>
+    dist?: Metric<ReadonlyVec> | IDistance<ReadonlyVec>
 ) => argmin(key(p), samples.map(key), dist);
 
 /**
