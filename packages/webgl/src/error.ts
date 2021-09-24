@@ -1,9 +1,7 @@
-export class WebGLError extends Error {
-    constructor(msg?: string) {
-        super(`WebGL error ${msg ? ": " + msg : ""}`);
-    }
-}
+import { defError } from "@thi.ng/errors";
 
-export const error = (msg?: string) => {
+export const WebGLError = defError(() => "WebGL");
+
+export const error = (msg?: string): never => {
     throw new WebGLError(msg);
 };

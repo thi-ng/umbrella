@@ -20,7 +20,6 @@ import {
     GL_EXT_INFO,
 } from "./api/ext";
 import type { GLSL } from "./api/glsl";
-import { LOGGER } from "./api/logger";
 import type { ModelAttributeSpecs, ModelSpec } from "./api/model";
 import {
     DEFAULT_OUTPUT,
@@ -44,6 +43,7 @@ import {
 import { getExtensions } from "./canvas";
 import { isGL2Context } from "./checks";
 import { error } from "./error";
+import { LOGGER } from "./logger";
 import { GLSL_HEADER, NO_PREFIXES, SYNTAX } from "./syntax";
 import { UNIFORM_SETTERS } from "./uniforms";
 
@@ -57,10 +57,15 @@ export class Shader implements IShader {
     state: Partial<ShaderState>;
 
     protected warnAttrib = doOnce((id: string) =>
-        LOGGER.warn(`unknown attrib: ${id}`)
+        LOGGER.warn(
+            `unknown attrib: ${id} (no further warnings will be shown...)`
+        )
     );
+
     protected warnUni = doOnce((id: string) =>
-        LOGGER.warn(`unknown uniform: ${id}`)
+        LOGGER.warn(
+            `unknown uniform: ${id} (no further warnings will be shown...)`
+        )
     );
 
     constructor(
