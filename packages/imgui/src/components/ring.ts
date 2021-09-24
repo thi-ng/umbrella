@@ -175,24 +175,16 @@ export const ringRaw = (
         const r2 = r * rscale;
         // adaptive arc resolution
         const numV = fitClamped(r, 15, 80, 12, 30);
-        const bgShape = gui.resource(id, key, () =>
+        const shape = (max: number) => () =>
             polygon(
                 [
-                    ...arcVerts(pos, r, startTheta, endTheta, numV),
-                    ...arcVerts(pos, r2, endTheta, startTheta, numV),
+                    ...arcVerts(pos, r, startTheta, max, numV),
+                    ...arcVerts(pos, r2, max, startTheta, numV),
                 ],
                 {}
-            )
-        );
-        const valShape = gui.resource(id, v, () =>
-            polygon(
-                [
-                    ...arcVerts(pos, r, startTheta, valTheta, numV),
-                    ...arcVerts(pos, r2, valTheta, startTheta, numV),
-                ],
-                {}
-            )
-        );
+            );
+        const bgShape = gui.resource(id, key, shape(endTheta));
+        const valShape = gui.resource(id, v, shape(valTheta));
         const valLabel = dialValueLabel(
             gui,
             id,
