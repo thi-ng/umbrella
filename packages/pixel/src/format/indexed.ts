@@ -1,5 +1,6 @@
 import type { NumericArray } from "@thi.ng/api";
 import { swapLane13 } from "@thi.ng/binary/swizzle";
+import { argminN } from "@thi.ng/distance/argmin";
 import { assert } from "@thi.ng/errors/assert";
 import { Lane } from "../api";
 import { defPackedFormat } from "./packed-format";
@@ -24,7 +25,7 @@ export const defIndexed = (palette: NumericArray, isABGR = false) => {
         type: "u8",
         size: 8,
         channels: [{ size: 8, lane: Lane.RED }],
-        fromABGR: (x) => closestColor(x, palette),
+        fromABGR: (x) => argminN(x, palette, distBGR),
         toABGR: (x) => palette[x],
     });
 };
@@ -35,16 +36,3 @@ const distBGR = (a: number, b: number) =>
         ((a >> 8) & 0xff) - ((b >> 8) & 0xff),
         (a & 0xff) - (b & 0xff)
     );
-
-const closestColor = (col: number, palette: NumericArray) => {
-    let closest = 0;
-    let minD = Infinity;
-    for (let i = palette.length; --i >= 0; ) {
-        const d = distBGR(col, palette[i]);
-        if (d < minD) {
-            closest = i;
-            minD = d;
-        }
-    }
-    return closest;
-};
