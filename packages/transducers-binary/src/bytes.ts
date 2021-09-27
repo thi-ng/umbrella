@@ -94,7 +94,7 @@ export const str = (x: string): BinStructItem => ["str", x];
  * ```
  */
 export function asBytes(): Transducer<BinStructItem, number>;
-export function asBytes(src: Iterable<BinStructItem>): IterableIterator<number>;
+export function asBytes(src: Iterable<BinStructItem>): Iterable<number>;
 export function asBytes(src?: Iterable<BinStructItem>): any {
     return src
         ? iterator(asBytes(), src)
@@ -275,7 +275,7 @@ export function bytes(cap = 1024, src?: Iterable<BinStructItem>) {
                           acc = setArray("setFloat64", 8, acc, x, le);
                           break;
                       case "str": {
-                          let utf = [...utf8Encode(<string>x)];
+                          let utf = utf8Encode(<string>x);
                           acc = ensure(acc, utf.length);
                           acc.set(utf, pos);
                           pos += utf.length;

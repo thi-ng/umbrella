@@ -12,10 +12,10 @@ const B64_SAFE = B64_CHARS.substr(0, 62) + "-_";
  * Supports URL safe & unsafe flavors.
  */
 export function base64Decode(): Transducer<string, number>;
-export function base64Decode(src: string): IterableIterator<number>;
+export function base64Decode(src: string): Uint8Array;
 export function base64Decode(src?: string): any {
     return src
-        ? iterator1(base64Decode(), src)
+        ? new Uint8Array([...iterator1(base64Decode(), src)])
         : (rfn: Reducer<any, number>) => {
               const r = rfn[2];
               let bc = 0,
@@ -32,7 +32,7 @@ export function base64Decode(src?: string): any {
                           return reduced(acc);
                       default:
                   }
-                  let y = B64_CHARS.indexOf(x);
+                  const y = B64_CHARS.indexOf(x);
                   bs = bc & 3 ? (bs << 6) + y : y;
                   if (bc++ & 3) {
                       acc = r(acc, 255 & (bs >> ((-2 * bc) & 6)));

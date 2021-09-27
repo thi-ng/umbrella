@@ -124,10 +124,10 @@ export function utf8Decode(src?: Iterable<number>): any {
  * ```
  */
 export function utf8Encode(): Transducer<string, number>;
-export function utf8Encode(src: string): IterableIterator<number>;
+export function utf8Encode(src: string): Uint8Array;
 export function utf8Encode(src?: string): any {
     return src != null
-        ? iterator(utf8Encode(), src)
+        ? new Uint8Array([...iterator(utf8Encode(), src)])
         : (rfn: Reducer<any, number>) => {
               const r = rfn[2];
               return compR(rfn, (acc, x: string) => {
