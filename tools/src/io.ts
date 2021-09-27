@@ -3,7 +3,7 @@ import { readdirSync, readFileSync, statSync } from "fs";
 
 export const readJSON = (path: string) => JSON.parse(<any>readFileSync(path));
 
-export const readText = (path: string) => readFileSync(path).toString();
+export const readText = (path: string) => readFileSync(path, "utf-8");
 
 /**
  * Recursively reads given directory and yields sequence of file names matching

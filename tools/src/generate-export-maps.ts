@@ -1,5 +1,5 @@
 import { readdirSync, statSync, writeFileSync } from "fs";
-import { files, readJSON } from "./io";
+import { files, readJSON, readText } from "./io";
 import { normalizePackage } from "./normalize-package";
 
 const generatePackageExportMaps = (id: string) => {
@@ -17,6 +17,8 @@ const generatePackageExportMaps = (id: string) => {
         };
         for (let f of files(srcRoot, ".ts")) {
             if (/\/internal\/|\/index\.ts/.test(f)) continue;
+            const src = readText(f);
+            if (src.indexOf("// thing:no-export") !== -1) continue;
             // if (/\/index\.ts$/.test(f)) continue;
             const local = f.replace(srcRoot, ".").replace(".ts", "");
             exports[local] = { import: `${local}.js` };
