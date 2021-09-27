@@ -65,9 +65,6 @@
     "exports": {
         ".": {
             "import": "./index.js"
-        },
-        "./binary": {
-            "import": "./binary.js"
         }
     },
     "thi.ng": {
