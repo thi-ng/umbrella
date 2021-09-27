@@ -8,6 +8,7 @@ wasm-dis opt.wasm -o opt.wat
 
 # encode as base64
 cat << EOF > src/binary.ts
+// thing:no-export
 /**
  * Generated @ $(date -u +"%Y-%m-%dT%H:%M:%SZ")
  *

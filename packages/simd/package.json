@@ -68,9 +68,6 @@
         },
         "./api": {
             "import": "./api.js"
-        },
-        "./binary": {
-            "import": "./binary.js"
         }
     },
     "thi.ng": {
