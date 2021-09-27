@@ -17,7 +17,7 @@ let U8: Uint8Array;
 
 if (hasWASM()) {
     const inst = new WebAssembly.Instance(
-        new WebAssembly.Module(new Uint8Array([...base64Decode(BINARY)]))
+        new WebAssembly.Module(base64Decode(BINARY))
     );
     wasm = <any>inst.exports;
     // mapped view of the data buffer
