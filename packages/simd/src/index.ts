@@ -1,6 +1,6 @@
 import { base64Decode } from "@thi.ng/transducers-binary/base64";
-import { BINARY } from "./binary";
 import type { SIMD } from "./api";
+import { BINARY } from "./binary";
 
 export * from "./api";
 
@@ -30,7 +30,7 @@ export const init = (memory: WebAssembly.Memory): SIMD | undefined => {
     const buf = memory.buffer;
     return <SIMD>{
         ...new WebAssembly.Instance(
-            new WebAssembly.Module(new Uint8Array([...base64Decode(BINARY)])),
+            new WebAssembly.Module(base64Decode(BINARY)),
             {
                 env: {
                     memory,
