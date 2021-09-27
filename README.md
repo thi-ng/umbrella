@@ -16,57 +16,46 @@
 **Please visit [thi.ng](https://thi.ng) for additional information & topic based
 search of packages relevant to your use cases...**
 
-Mono-repository for 153+ thi.ng TypeScript/ES6 projects, a wide collection of
-largely data transformation oriented packages and building blocks for
-(non-exhaustive list of topics):
+This mono-repository is home to 157+ thi.ng TypeScript/ES6 projects, a wide and jointly
+developed collection of packages and building blocks for (non-exhaustive list of
+topics):
 
-- Functional programming (composition, memoization, transducers, multi-methods)
-- Data structures & data transformations for wide range of use cases (list,
-  sets, maps, joins, spatial indexing, clocks)
-- ES6 iterators/generators
-- Immutable data handling, state containers, transacted state updates, Undo-Redo
-  history
-- Vector & matrix implementations with optional support for strided layouts,
-  SIMD etc.
-- Value-based equivalence
-- Data driven UI component toolkits (multiple approaches)
+- Functional programming (ES6 iterators/generators, composition, memoization, transducers, multi-methods)
 - Reactive programming, stream / transducer based dataflow graphs / pipelines
-- WebWorker workflow abstractions
-- DSP building blocks: oscillators, noise generators, filters, 1D FFT/IFFT,
-  muxers, rate converters
-- 2D geometry generation, shape primitives, processing, conversion &
-  visualization
-- Canvas abstractions & SVG conversion
+- Data structures & data transformations for wide range of use cases (maps, sets, heaps, queues, graphs etc.)
+- 2D geometry generation, shape primitives, math, manipulation, intersections, conversions & visualizations
+- Canvas abstractions & SVG serialization/conversion
+- Vector, matrix (dense & sparse), ECS implementations with optional support for strided memory layouts
 - Semi-declarative WebGL 1/2 abstraction layer
-- DSL for shader functions defined in TypeScript and cross-compilation to GLSL,
-  JS, VEX etc.
-- Date/time iterators, formatters, math
-- PEG-style parser combinators, FSM primitives
-- Forth-style pointfree DSL for functional composition
-- S-expression parser & runtime infrastructure for custom DSL creation
+- DSL for shader functions defined in TypeScript and cross-compilation to GLSL, JS, VEX etc.
+- Value-based equivalence
+- DSP building blocks: oscillators, noise generators, filters, 1D FFT/IFFT, muxers, rate converters
+- Immutable data handling, state containers, transacted state updates, Undo-Redo history
+- Data driven UI component toolkits (DOM-based, canvas-based, immediate-mode, multiple approaches...)
 - Multi-format pixel buffers, conversions, Porter-Duff alpha-blending operators
-- Color space/format conversions, matrix based color manipulation, cosine
-  gradients
-- Canvas-based Immediate mode GUI components
+- Color space/format conversions, matrix based color manipulation, cosine gradients
+- Date-time abstraction, relative dates, iterators, formatters, math
+- WebWorker workflow abstractions
+- PEG-style functional parser combinators w/ (optional) custom grammar definition language
+- Forth-style pointfree DSL for functional composition and DSL development/extension
+- S-expression parser & runtime infrastructure for custom DSL creation
 - Low-level tooling for binary data, shared memory/WASM/WebGL interop
+- SIMD batch-processing of vector data
+- Various interpolations, math helpers, automatic differentiation (Dual numbers)
 - etc. (see package overview below)
 
-**...all with a keen eye on simplicity, re-use & minimalism without
-sacrificing flexibility.**
-
-**This project is NOT a framework**, provides no turn-key,
-one-size-fits-all approach and instead encourages a mix & match
-philosophy for various key aspects of application design (in & outside
-the browser). Most customization points only expect certain
-interfaces/type signatures rather than concrete implementations.
+**This project is NOT a framework**, provides no turn-key, one-size-fits-all
+approach and instead encourages a mix & match philosophy for various key aspects
+of application design (in & outside the browser). Most customization points only
+expect certain interfaces/type signatures rather than concrete implementations.
 
 All packages:
 
 - are versioned independently
-- distributed in ES2017 syntax and multiple formats (ESM, CommonJS, UMD)
-  with TypeScript typings & change logs
-- highly modular with largely only a few closely related functions or
-  single function / class per file to help w/ tree shaking
+- distributed as ESM modules (ES2020 syntax) with export maps, TypeScript
+  typings & change logs
+- highly modular with largely only single function / class (only closely related
+  functions) per file to help w/ selective imports and tree shaking
 - provide re-exports of all their publics for full library imports
 - have either none or only @thi.ng internal runtime dependencies
 - declare public interfaces, enums & types in an `api.ts` and/or
@@ -74,10 +63,13 @@ All packages:
 - have auto-generated online documentation at [docs.thi.ng](http://docs.thi.ng)
 - licensed under Apache Software License 2.0
 
-Most packages:
+## Getting started
 
-- have been used in production
-- have detailed, individual README files w/ small usage examples
+The sheer number and varied nature & purpose of these packages makes it
+impossible to provide traditional "Getting started" tutorials. To compensate,
+this repo provides a large number of example projects, detailed readmes (at the
+very least for all the larger and/or more important packages) and smaller usage
+examples in the docstrings.
 
 ## Examples
 
@@ -103,22 +95,18 @@ packages) in the [**examples**](./examples/README.md) directory.
 
 ## Community, contributing, getting help
 
-Join our little community on our [Discord
-server](https://discord.gg/JhYcmBw) or get in touch via
-[Twitter](https://twitter.com/thing_umbrella) or the [issue
+Join our little community on our [Discord server](https://discord.gg/JhYcmBw) or
+get in touch via [Twitter](https://twitter.com/thing_umbrella) or the [issue
 tracker](https://github.com/thi-ng/umbrella/issues). If you'd like to
 contribute, please first read [this document](./CONTRIBUTING.md).
 
-In general, we welcome contributions of all kinds (docs, examples, bug
-fixes, feature requests, financial contributions etc.). You can find a
-fairly detailed overview for contributors here:
+In general, we welcome contributions of all kinds (docs, examples, bug fixes,
+feature requests, financial contributions etc.). You can find a fairly detailed
+overview for contributors here:
 [CONTRIBUTING.md](https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md).
 
-**Note:** The default branch for this repo is `develop`. As of 2020-12-08,
-we've also renamed `master` to the more suitable `main` branch. If you have
-local clones, please follow the [advice & short instructions in this
-article](https://www.hanselman.com/blog/easily-rename-your-git-default-branch-from-master-to-main)
-to update your local version.
+**Note: The default branch for this repo is `develop` and all PRs should be
+created based on this branch.**
 
 Also please be sure to check the [wiki](https://github.com/thi-ng/umbrella/wiki)
 for other project-wide information, tidbits, useful snippets etc.
@@ -145,37 +133,42 @@ feature or `develop` branches)
 | [`@thi.ng/geom-isoline`](./packages/geom-isoline)           | [![version](https://img.shields.io/npm/v/@thi.ng/geom-isoline.svg)](https://www.npmjs.com/package/@thi.ng/geom-isoline)           | [changelog](./packages/geom-isoline/CHANGELOG.md)      | 2D contour line extraction                             |
 | [`@thi.ng/k-means`](./packages/k-means)                     | [![version](https://img.shields.io/npm/v/@thi.ng/k-means.svg)](https://www.npmjs.com/package/@thi.ng/k-means)                     | [changelog](./packages/k-means/CHANGELOG.md)           | K-means clustering of n-D data                         |
 | [`@thi.ng/ksuid`](./packages/ksuid)                         | [![version](https://img.shields.io/npm/v/@thi.ng/ksuid.svg)](https://www.npmjs.com/package/@thi.ng/ksuid)                         | [changelog](./packages/ksuid/CHANGELOG.md)             | K-sortable unique identifiers, binary & base-N encoded |
+| [`@thi.ng/logger`](./packages/logger)                       | [![version](https://img.shields.io/npm/v/@thi.ng/logger.svg)](https://www.npmjs.com/package/@thi.ng/logger)                       | [changelog](./packages/logger/CHANGELOG.md)            | Basis infrastructure for arbitrary logging             |
 | [`@thi.ng/markdown-table`](./packages/markdown-table)       | [![version](https://img.shields.io/npm/v/@thi.ng/markdown-table.svg)](https://www.npmjs.com/package/@thi.ng/markdown-table)       | [changelog](./packages/markdown-table/CHANGELOG.md)    | Markdown table generator / formatter                   |
 | [`@thi.ng/pixel`](./packages/pixel)                         | [![version](https://img.shields.io/npm/v/@thi.ng/pixel.svg)](https://www.npmjs.com/package/@thi.ng/pixel)                         | [changelog](./packages/pixel/CHANGELOG.md)             | Multi-format pixel buffers                             |
 | [`@thi.ng/rdom`](./packages/rdom)                           | [![version](https://img.shields.io/npm/v/@thi.ng/rdom.svg)](https://www.npmjs.com/package/@thi.ng/rdom)                           | [changelog](./packages/rdom/CHANGELOG.md)              | Reactive, diff-less, async UI components               |
 | [`@thi.ng/rdom-components`](./packages/rdom-components)     | [![version](https://img.shields.io/npm/v/@thi.ng/rdom-components.svg)](https://www.npmjs.com/package/@thi.ng/rdom-components)     | [changelog](./packages/rdom-components/CHANGELOG.md)   | Unstyled, customizable component collection            |
 | [`@thi.ng/shader-ast`](./packages/shader-ast)               | [![version](https://img.shields.io/npm/v/@thi.ng/shader-ast.svg)](https://www.npmjs.com/package/@thi.ng/shader-ast)               | [changelog](./packages/shader-ast/CHANGELOG.md)        | AST DSL for x-platform shader code                     |
 | [`@thi.ng/shader-ast-stdlib`](./packages/shader-ast-stdlib) | [![version](https://img.shields.io/npm/v/@thi.ng/shader-ast-stdlib.svg)](https://www.npmjs.com/package/@thi.ng/shader-ast-stdlib) | [changelog](./packages/shader-ast-stdlib/CHANGELOG.md) | 100+ useful AST shader functions                       |
+| [`@thi.ng/testament`](./packages/testament)                 | [![version](https://img.shields.io/npm/v/@thi.ng/testament.svg)](https://www.npmjs.com/package/@thi.ng/testament)                 | [changelog](./packages/testament/CHANGELOG.md)         | Minimal test runner                                    |
+| [`@thi.ng/text-format`](./packages/text-format)             | [![version](https://img.shields.io/npm/v/@thi.ng/text-format.svg)](https://www.npmjs.com/package/@thi.ng/text-format)             | [changelog](./packages/text-format/CHANGELOG.md)       | Color text formatting w/ ANSI & HTML presets           |
 | [`@thi.ng/transducers`](./packages/transducers)             | [![version](https://img.shields.io/npm/v/@thi.ng/transducers.svg)](https://www.npmjs.com/package/@thi.ng/transducers)             | [changelog](./packages/transducers/CHANGELOG.md)       | Composable data transformations                        |
 | [`@thi.ng/vectors`](./packages/vectors)                     | [![version](https://img.shields.io/npm/v/@thi.ng/vectors.svg)](https://www.npmjs.com/package/@thi.ng/vectors)                     | [changelog](./packages/vectors/CHANGELOG.md)           | Fixed & arbitrary-length vector ops                    |
 
 ### Fundamentals
 
-| Project                                   | Version                                                                                                         | Changelog                                     | Description                                              |
-|-------------------------------------------|-----------------------------------------------------------------------------------------------------------------|-----------------------------------------------|----------------------------------------------------------|
-| [`@thi.ng/args`](./packages/args)         | [![version](https://img.shields.io/npm/v/@thi.ng/args.svg)](https://www.npmjs.com/package/@thi.ng/args)         | [changelog](./packages/args/CHANGELOG.md)     | Declarative & functional CLI arg parsing & coercions     |
-| [`@thi.ng/api`](./packages/api)           | [![version](https://img.shields.io/npm/v/@thi.ng/api.svg)](https://www.npmjs.com/package/@thi.ng/api)           | [changelog](./packages/api/CHANGELOG.md)      | Common types, decorators, mixins                         |
-| [`@thi.ng/bench`](./packages/bench)       | [![version](https://img.shields.io/npm/v/@thi.ng/bench.svg)](https://www.npmjs.com/package/@thi.ng/bench)       | [changelog](./packages/bench/CHANGELOG.md)    | Basic benchmarking helpers                               |
-| [`@thi.ng/checks`](./packages/checks)     | [![version](https://img.shields.io/npm/v/@thi.ng/checks.svg)](https://www.npmjs.com/package/@thi.ng/checks)     | [changelog](./packages/checks/CHANGELOG.md)   | Type & value checks                                      |
-| [`@thi.ng/compare`](./packages/compare)   | [![version](https://img.shields.io/npm/v/@thi.ng/compare.svg)](https://www.npmjs.com/package/@thi.ng/compare)   | [changelog](./packages/compare/CHANGELOG.md)  | Comparators                                              |
-| [`@thi.ng/compose`](./packages/compose)   | [![version](https://img.shields.io/npm/v/@thi.ng/compose.svg)](https://www.npmjs.com/package/@thi.ng/compose)   | [changelog](./packages/compose/CHANGELOG.md)  | Functional composition helpers                           |
-| [`@thi.ng/date`](./packages/date)         | [![version](https://img.shields.io/npm/v/@thi.ng/date.svg)](https://www.npmjs.com/package/@thi.ng/date)         | [changelog](./packages/date/CHANGELOG.md)     | Date/time iterators, formatters, rounding                |
-| [`@thi.ng/defmulti`](./packages/defmulti) | [![version](https://img.shields.io/npm/v/@thi.ng/defmulti.svg)](https://www.npmjs.com/package/@thi.ng/defmulti) | [changelog](./packages/defmulti/CHANGELOG.md) | Dynamic multiple dispatch                                |
-| [`@thi.ng/distance`](./packages/distance) | [![version](https://img.shields.io/npm/v/@thi.ng/distance.svg)](https://www.npmjs.com/package/@thi.ng/distance) | [changelog](./packages/distance/CHANGELOG.md) | n-D distance metrics & K-nearest neighborhoods           |
-| [`@thi.ng/equiv`](./packages/equiv)       | [![version](https://img.shields.io/npm/v/@thi.ng/equiv.svg)](https://www.npmjs.com/package/@thi.ng/equiv)       | [changelog](./packages/equiv/CHANGELOG.md)    | Deep value equivalence checking                          |
-| [`@thi.ng/errors`](./packages/errors)     | [![version](https://img.shields.io/npm/v/@thi.ng/errors.svg)](https://www.npmjs.com/package/@thi.ng/errors)     | [changelog](./packages/errors/CHANGELOG.md)   | Custom error types                                       |
-| [`@thi.ng/hex`](./packages/hex)           | [![version](https://img.shields.io/npm/v/@thi.ng/hex.svg)](https://www.npmjs.com/package/@thi.ng/hex)           | [changelog](./packages/hex/CHANGELOG.md)      | Hex value formatters for U4-64 words                     |
-| [`@thi.ng/memoize`](./packages/memoize)   | [![version](https://img.shields.io/npm/v/@thi.ng/memoize.svg)](https://www.npmjs.com/package/@thi.ng/memoize)   | [changelog](./packages/memoize/CHANGELOG.md)  | Function memoization w/ customizable caching             |
-| [`@thi.ng/oquery`](./packages/oquery)     | [![version](https://img.shields.io/npm/v/@thi.ng/oquery.svg)](https://www.npmjs.com/package/@thi.ng/oquery)     | [changelog](./packages/oquery/CHANGELOG.md)   | Pattern based query engine for JS objects                |
-| [`@thi.ng/parse`](./packages/parse)       | [![version](https://img.shields.io/npm/v/@thi.ng/parse.svg)](https://www.npmjs.com/package/@thi.ng/parse)       | [changelog](./packages/parse/CHANGELOG.md)    | Parser combinators & AST generator/transformer           |
-| [`@thi.ng/paths`](./packages/paths)       | [![version](https://img.shields.io/npm/v/@thi.ng/paths.svg)](https://www.npmjs.com/package/@thi.ng/paths)       | [changelog](./packages/paths/CHANGELOG.md)    | Immutable nested object accessors                        |
-| [`@thi.ng/strings`](./packages/strings)   | [![version](https://img.shields.io/npm/v/@thi.ng/strings.svg)](https://www.npmjs.com/package/@thi.ng/strings)   | [changelog](./packages/strings/CHANGELOG.md)  | Higher-order string formatting utils                     |
-| [`@thi.ng/system`](./packages/system)     | [![version](https://img.shields.io/npm/v/@thi.ng/system.svg)](https://www.npmjs.com/package/@thi.ng/system)     | [changelog](./packages/system/CHANGELOG.md)   | Minimal life cycle container for stateful app components |
+| Project                                     | Version                                                                                                           | Changelog                                      | Description                                              |
+|---------------------------------------------|-------------------------------------------------------------------------------------------------------------------|------------------------------------------------|----------------------------------------------------------|
+| [`@thi.ng/args`](./packages/args)           | [![version](https://img.shields.io/npm/v/@thi.ng/args.svg)](https://www.npmjs.com/package/@thi.ng/args)           | [changelog](./packages/args/CHANGELOG.md)      | Declarative & functional CLI arg parsing & coercions     |
+| [`@thi.ng/api`](./packages/api)             | [![version](https://img.shields.io/npm/v/@thi.ng/api.svg)](https://www.npmjs.com/package/@thi.ng/api)             | [changelog](./packages/api/CHANGELOG.md)       | Common types, decorators, mixins                         |
+| [`@thi.ng/bench`](./packages/bench)         | [![version](https://img.shields.io/npm/v/@thi.ng/bench.svg)](https://www.npmjs.com/package/@thi.ng/bench)         | [changelog](./packages/bench/CHANGELOG.md)     | Basic benchmarking helpers                               |
+| [`@thi.ng/checks`](./packages/checks)       | [![version](https://img.shields.io/npm/v/@thi.ng/checks.svg)](https://www.npmjs.com/package/@thi.ng/checks)       | [changelog](./packages/checks/CHANGELOG.md)    | Type & value checks                                      |
+| [`@thi.ng/compare`](./packages/compare)     | [![version](https://img.shields.io/npm/v/@thi.ng/compare.svg)](https://www.npmjs.com/package/@thi.ng/compare)     | [changelog](./packages/compare/CHANGELOG.md)   | Comparators                                              |
+| [`@thi.ng/compose`](./packages/compose)     | [![version](https://img.shields.io/npm/v/@thi.ng/compose.svg)](https://www.npmjs.com/package/@thi.ng/compose)     | [changelog](./packages/compose/CHANGELOG.md)   | Functional composition helpers                           |
+| [`@thi.ng/date`](./packages/date)           | [![version](https://img.shields.io/npm/v/@thi.ng/date.svg)](https://www.npmjs.com/package/@thi.ng/date)           | [changelog](./packages/date/CHANGELOG.md)      | Date/time iterators, formatters, rounding                |
+| [`@thi.ng/defmulti`](./packages/defmulti)   | [![version](https://img.shields.io/npm/v/@thi.ng/defmulti.svg)](https://www.npmjs.com/package/@thi.ng/defmulti)   | [changelog](./packages/defmulti/CHANGELOG.md)  | Dynamic multiple dispatch                                |
+| [`@thi.ng/distance`](./packages/distance)   | [![version](https://img.shields.io/npm/v/@thi.ng/distance.svg)](https://www.npmjs.com/package/@thi.ng/distance)   | [changelog](./packages/distance/CHANGELOG.md)  | n-D distance metrics & K-nearest neighborhoods           |
+| [`@thi.ng/equiv`](./packages/equiv)         | [![version](https://img.shields.io/npm/v/@thi.ng/equiv.svg)](https://www.npmjs.com/package/@thi.ng/equiv)         | [changelog](./packages/equiv/CHANGELOG.md)     | Deep value equivalence checking                          |
+| [`@thi.ng/errors`](./packages/errors)       | [![version](https://img.shields.io/npm/v/@thi.ng/errors.svg)](https://www.npmjs.com/package/@thi.ng/errors)       | [changelog](./packages/errors/CHANGELOG.md)    | Custom error types                                       |
+| [`@thi.ng/hex`](./packages/hex)             | [![version](https://img.shields.io/npm/v/@thi.ng/hex.svg)](https://www.npmjs.com/package/@thi.ng/hex)             | [changelog](./packages/hex/CHANGELOG.md)       | Hex value formatters for U4-64 words                     |
+| [`@thi.ng/logger`](./packages/logger)       | [![version](https://img.shields.io/npm/v/@thi.ng/logger.svg)](https://www.npmjs.com/package/@thi.ng/logger)       | [changelog](./packages/logger/CHANGELOG.md)    | Basis infrastructure for arbitrary logging               |
+| [`@thi.ng/memoize`](./packages/memoize)     | [![version](https://img.shields.io/npm/v/@thi.ng/memoize.svg)](https://www.npmjs.com/package/@thi.ng/memoize)     | [changelog](./packages/memoize/CHANGELOG.md)   | Function memoization w/ customizable caching             |
+| [`@thi.ng/oquery`](./packages/oquery)       | [![version](https://img.shields.io/npm/v/@thi.ng/oquery.svg)](https://www.npmjs.com/package/@thi.ng/oquery)       | [changelog](./packages/oquery/CHANGELOG.md)    | Pattern based query engine for JS objects                |
+| [`@thi.ng/parse`](./packages/parse)         | [![version](https://img.shields.io/npm/v/@thi.ng/parse.svg)](https://www.npmjs.com/package/@thi.ng/parse)         | [changelog](./packages/parse/CHANGELOG.md)     | Parser combinators & AST generator/transformer           |
+| [`@thi.ng/paths`](./packages/paths)         | [![version](https://img.shields.io/npm/v/@thi.ng/paths.svg)](https://www.npmjs.com/package/@thi.ng/paths)         | [changelog](./packages/paths/CHANGELOG.md)     | Immutable nested object accessors                        |
+| [`@thi.ng/strings`](./packages/strings)     | [![version](https://img.shields.io/npm/v/@thi.ng/strings.svg)](https://www.npmjs.com/package/@thi.ng/strings)     | [changelog](./packages/strings/CHANGELOG.md)   | Higher-order string formatting utils                     |
+| [`@thi.ng/system`](./packages/system)       | [![version](https://img.shields.io/npm/v/@thi.ng/system.svg)](https://www.npmjs.com/package/@thi.ng/system)       | [changelog](./packages/system/CHANGELOG.md)    | Minimal life cycle container for stateful app components |
+| [`@thi.ng/testament`](./packages/testament) | [![version](https://img.shields.io/npm/v/@thi.ng/testament.svg)](https://www.npmjs.com/package/@thi.ng/testament) | [changelog](./packages/testament/CHANGELOG.md) | Minimal test runner                                      |
 
 ### Maths
 
@@ -294,6 +287,7 @@ feature or `develop` branches)
 | [`@thi.ng/rdom-components`](./packages/rdom-components)         | [![version](https://img.shields.io/npm/v/@thi.ng/rdom-components.svg)](https://www.npmjs.com/package/@thi.ng/rdom-components)         | [changelog](./packages/rdom-components/CHANGELOG.md)     | Unstyled, customizable component collection      |
 | [`@thi.ng/router`](./packages/router)                           | [![version](https://img.shields.io/npm/v/@thi.ng/router.svg)](https://www.npmjs.com/package/@thi.ng/router)                           | [changelog](./packages/router/CHANGELOG.md)              | Customizable browser & non-browser router        |
 | [`@thi.ng/text-canvas`](./packages/text-canvas)                 | [![version](https://img.shields.io/npm/v/@thi.ng/text-canvas.svg)](https://www.npmjs.com/package/@thi.ng/text-canvas)                 | [changelog](./packages/text-canvas/CHANGELOG.md)         | Text-mode canvas, drawing, tables, charts        |
+| [`@thi.ng/text-format`](./packages/text-format)                 | [![version](https://img.shields.io/npm/v/@thi.ng/text-format.svg)](https://www.npmjs.com/package/@thi.ng/text-format)                 | [changelog](./packages/text-format/CHANGELOG.md)         | Color text formatting w/ ANSI & HTML presets     |
 
 ### Geometry, image & visualization
 
@@ -380,6 +374,10 @@ individual packages can then be (re)built like so:
 
 ```bash
 lerna run build --scope @thi.ng/transducers
+
+# or
+
+(cd packages/transducers && yarn build)
 ```
 
 ### Building example projects
@@ -390,21 +388,17 @@ in the wiki for further details.
 
 ### Testing
 
-(most, but not all packages have tests)
+(Most, but not all packages have tests)
+
+Due to various build/config issues/complexities, we're now using our own test
+runner
+[@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/develop/packages/testament)
 
 ```bash
 yarn test
 
 # or individually
 lerna run test --scope @thi.ng/rstream
-```
-
-### Coverage
-
-The resulting reports will be saved under `/packages/*/coverage/lcov-report/`.
-
-```bash
-yarn cover
 ```
 
 ### Documentation
