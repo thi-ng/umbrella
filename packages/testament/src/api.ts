@@ -7,6 +7,8 @@ export type Fn2<A, B, C> = (a: A, b: B) => C;
 
 export type VoidFn = Fn0<void>;
 
+export type LifecycleHandler = Fn<LifecycleCtx, void | Promise<void>>;
+
 export type Test = Fn0<Promise<TestResult | TestResult[]>>;
 
 export type Timestamp = number | bigint;
@@ -18,17 +20,7 @@ export interface TestOpts {
     maxTrials: number;
 }
 
-export interface GroupOpts extends TestOpts {
-    /**
-     * Lifecycle hook to prepare/reset user state before each test case in the
-     * group.
-     */
-    beforeEach?: VoidFn;
-    /**
-     * Lifecycle hook to cleanup user state after each test case in the
-     * group.
-     */
-    afterEach?: VoidFn;
+export interface GroupOpts extends TestOpts, LifecycleHandlers {
     /**
      * Unless false, the first uncaught error (test failure) will cause the
      * entire group to fail.
@@ -45,6 +37,33 @@ export interface GroupOpts extends TestOpts {
     exit: boolean;
 }
 
+export interface LifecycleHandlers {
+    /**
+     * Lifecycle hook to prepare user state and/or execute side effects before
+     * **all** test cases in the group.
+     */
+    before?: LifecycleHandler;
+    /**
+     * Lifecycle hook to cleanup user state and/or execute side effects after
+     * **all** test cases in the group.
+     */
+    after?: LifecycleHandler;
+    /**
+     * Lifecycle hook to prepare/reset user state and/or execute side effects
+     * before **each** test case in the group.
+     */
+    beforeEach?: LifecycleHandler;
+    /**
+     * Lifecycle hook to cleanup user state and/or execute side effects after
+     * **each** test case in the group.
+     */
+    afterEach?: LifecycleHandler;
+}
+
+export interface LifecycleCtx {
+    logger: ILogger;
+}
+
 export interface TestCtx {
     /**
      * Successful completion signal/handler.
@@ -58,6 +77,11 @@ export interface TestCtx {
      * Use in place of native clearTimeout function
      */
     clearTimeout: Fn<any, void>;
+    /**
+     * Logger instance (i.e. the one given via {@link GroupOpts} or
+     * {@link TestOpts} or default logger from {@link GLOBAL_OPTS}).
+     */
+    logger: ILogger;
 }
 
 export interface TestResult {

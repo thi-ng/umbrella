@@ -120,6 +120,7 @@ export const test = (
                                 clearTimeout(id);
                             }
                         },
+                        logger,
                     };
                     t0 = now();
                     fn(ctx);

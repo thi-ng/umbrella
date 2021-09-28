@@ -47,13 +47,30 @@ let state = 0;
 group(
     "testament lifecycle",
     {
-        basic: () => {
-            assert.strictEqual(state, 1);
-            state = 2;
+        basic: ({ logger, done }) => {
+            assert.ok(logger);
+            assert.strictEqual(state, 110);
+            state++;
+            done();
         },
     },
     {
-        beforeEach: () => (state = 1),
-        afterEach: () => assert.strictEqual(state, 2),
+        before: ({ logger }) => {
+            assert.ok(logger);
+            state = 100;
+        },
+        beforeEach: ({ logger }) => {
+            assert.ok(logger);
+            state += 10;
+        },
+        afterEach: ({ logger }) => {
+            assert.ok(logger);
+            assert.strictEqual(state, 111);
+        },
+        after: ({ logger }) => {
+            assert.ok(logger);
+            state += 1000;
+            assert.strictEqual(state, 1111);
+        },
     }
 );

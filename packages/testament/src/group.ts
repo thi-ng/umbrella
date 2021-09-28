@@ -1,4 +1,11 @@
-import { Fn, GLOBAL_OPTS, GroupOpts, TestCtx, TestResult } from "./api";
+import {
+    Fn,
+    GLOBAL_OPTS,
+    GroupOpts,
+    LifecycleCtx,
+    TestCtx,
+    TestResult,
+} from "./api";
 import { register } from "./exec";
 import { test } from "./test";
 
@@ -10,27 +17,34 @@ import { test } from "./test";
  * will be stubbed using {@link GLOBAL_OPTS}).
  *
  * @remarks
- * If a test is async, use the passed {@link TestCtx} handlers to ensure
- * timeouts and any errors or test failures are handled properly.
+ * If a test is async, use the passed {@link TestCtx} handlers (esp.
+ * {@link TestCtx.done} and {@link TestCtx.setTimeout}) to ensure timeouts and
+ * any errors or test failures are handled properly.
  *
- * Any uncaught errors thrown in {@link GroupOpts.beforeEach} or
- * {@link GroupOpts.afterEach} handlers will not be caught by the {@link group}
- * either. Furthermore, if {@link GroupOpts.exit} is true, these uncaught errors
- * will cause the entire process to terminate.
+ * If a test case function makes use of the {@link TestCtx} arg in any capacity,
+ * it MUST call {@link TestCtx.done}, since testament assumes it is an async
+ * case.
+ *
+ * Any uncaught errors thrown in the group's {@link LifecycleHandlers} will not
+ * be caught by the {@link group} wrapper. Furthermore, if
+ * {@link GroupOpts.exit} is true, these uncaught errors will cause the entire
+ * process to terminate (unless running a browser).
  *
  * @example
  * ```ts
  * group(
  *   "basics",
  *   {
- *     add: () => { assert(1 + 1 === 2); }
+ *     add: () => { assert(1 + 1 === 2); },
  *     sub: ({ done, setTimeout }) => {
  *       setTimeout(() => { assert(3 - 1 === 1); done(); }, 50);
  *     }
  *   },
  *   {
  *     maxTries: 3,
- *     timeOut: 100
+ *     timeOut: 100,
+ *     beforeEach: ({ logger }) => logger.info("before"),
+ *     afterEach: ({ logger }) => logger.info("after"),
  *   }
  * );
  * ```
@@ -44,9 +58,12 @@ export const group = (
     tests: Record<string, Fn<TestCtx, void>>,
     opts: Partial<GroupOpts> = {}
 ) => {
-    const { logger, stop, exit, beforeEach, afterEach } = {
+    const { logger, stop, exit, before, after, beforeEach, afterEach } = {
         ...GLOBAL_OPTS,
         ...opts,
+    };
+    const ctx: LifecycleCtx = {
+        logger,
     };
     register(async () => {
         let results: TestResult[] = [];
@@ -54,14 +71,24 @@ export const group = (
             logger.info("────────────────────");
             logger.info(title);
             logger.info("────────────────────");
+            if (before) {
+                await before(ctx);
+            }
             for (let k in tests) {
-                beforeEach && beforeEach();
+                if (beforeEach) {
+                    await beforeEach(ctx);
+                }
                 const res = await test(k, tests[k], opts)();
                 results.push({ group: title, ...res });
-                afterEach && afterEach();
+                if (afterEach) {
+                    await afterEach(ctx);
+                }
                 if (res.error && stop) {
                     throw res.error;
                 }
+            }
+            if (after) {
+                await after(ctx);
             }
             logger.info();
             return results;
