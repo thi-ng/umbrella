@@ -1,7 +1,7 @@
 {
     "name": "@thi.ng/testament",
     "version": "0.0.1",
-    "description": "Minimal, rational & TypeScript-friendly test runner",
+    "description": "Minimal, rational & TypeScript-friendly test runner, result export as CSV/JSON, watch mode",
     "type": "module",
     "module": "./index.js",
     "typings": "./index.d.ts",
@@ -63,9 +63,6 @@
         "./api": {
             "import": "./api.js"
         },
-        "./cli": {
-            "import": "./cli.js"
-        },
         "./exec": {
             "import": "./exec.js"
         },
@@ -74,9 +71,6 @@
         },
         "./test": {
             "import": "./test.js"
-        },
-        "./utils": {
-            "import": "./utils.js"
         }
     },
     "thi.ng": {

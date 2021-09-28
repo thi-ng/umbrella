@@ -1,3 +1,4 @@
+// thing:no-export
 import type { Fn0, Fn2, Timestamp } from "./api";
 
 /**
@@ -17,6 +18,8 @@ export const isString = (x: any): x is string => typeof x === "string";
  *
  * @remarks
  * Copied from thi.ng/bench to avoid circular deps
+ *
+ * @internal
  */
 export const now: Fn0<Timestamp> =
     typeof BigInt !== "undefined"
@@ -36,6 +39,8 @@ export const now: Fn0<Timestamp> =
  *
  * @param a
  * @param b
+ *
+ * @internal
  */
 export const timeDiff: Fn2<Timestamp, Timestamp, number> = (a, b) =>
     Math.round(

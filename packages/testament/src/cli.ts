@@ -1,3 +1,4 @@
+// thing:no-export
 import { watch } from "chokidar";
 import { readdirSync, statSync, writeFileSync } from "fs";
 import { resolve } from "path";
