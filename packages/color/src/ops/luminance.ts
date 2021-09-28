@@ -1,5 +1,4 @@
-import type { MultiFn1 } from "@thi.ng/defmulti";
-import { defmulti } from "@thi.ng/defmulti/defmulti";
+import { DEFAULT, defmulti } from "@thi.ng/defmulti/defmulti";
 import type { MaybeColor } from "../api";
 import { rgb } from "../rgb/rgb";
 import {
@@ -19,23 +18,17 @@ import {
  * unless a direct implementation is available, colors will first be converted
  * to linear RGB.
  */
-export const luminance: MultiFn1<MaybeColor, number> = defmulti(
-    (col: any) => col.mode
+export const luminance = defmulti<MaybeColor, number>(
+    (col: any) => col.mode,
+    { lch: "lab", oklab: "lab", ycc: "lab", xyy: "hcy" },
+    {
+        argb32: <any>luminanceArgb32,
+        abgr32: <any>luminanceAbgr32,
+        hcy: (x: any) => x[2],
+        lab: (x: any) => x[0],
+        rgb: <any>luminanceRgb,
+        srgb: <any>luminanceSrgb,
+        xyz: (x: any) => x[1],
+        [DEFAULT]: (x: any) => luminanceRgb(rgb(x)),
+    }
 );
-
-luminance.addAll({
-    argb32: <any>luminanceArgb32,
-    abgr32: <any>luminanceAbgr32,
-    hcy: (x: any) => x[2],
-    lab: (x: any) => x[0],
-    rgb: <any>luminanceRgb,
-    srgb: <any>luminanceSrgb,
-    xyz: (x: any) => x[1],
-});
-
-luminance.isa("lch", "lab");
-luminance.isa("oklab", "lab");
-luminance.isa("ycc", "lab");
-luminance.isa("xyy", "hcy");
-
-luminance.setDefault((x: any) => luminanceRgb(rgb(x)));

@@ -1,5 +1,5 @@
 import type { Fn3, Fn4, FnN, FnU3 } from "@thi.ng/api";
-import { defmulti } from "@thi.ng/defmulti/defmulti";
+import { DEFAULT, defmulti } from "@thi.ng/defmulti/defmulti";
 import { clamp01 } from "@thi.ng/math/interval";
 import { fract } from "@thi.ng/math/prec";
 import type { IRandom } from "@thi.ng/random";
@@ -60,20 +60,21 @@ export const analog = defmulti<
     number,
     IRandom | undefined,
     Color
->((_: Color | null, src: TypedColor<any>) => src.mode);
-
-analog.setDefault(analogNNN);
-
-analog.addAll({
-    hcy: analogHNN,
-    hsi: analogHNN,
-    hsl: analogHNN,
-    hsv: analogHNN,
-    lab50: analogNUU,
-    lab65: analogNUU,
-    lch: defAnalog(analogN, analogN, analogH),
-    ycc: analogNUU,
-});
+>(
+    (_: Color | null, src: TypedColor<any>) => src.mode,
+    {},
+    {
+        hcy: analogHNN,
+        hsi: analogHNN,
+        hsl: analogHNN,
+        hsv: analogHNN,
+        lab50: analogNUU,
+        lab65: analogNUU,
+        lch: defAnalog(analogN, analogN, analogH),
+        ycc: analogNUU,
+        [DEFAULT]: analogNNN,
+    }
+);
 
 /**
  * Similar to {@link analogRGB}. Returns an analog color based on given HSVA

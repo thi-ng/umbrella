@@ -1,4 +1,4 @@
-import { defmulti } from "@thi.ng/defmulti/defmulti";
+import { DEFAULT, defmulti } from "@thi.ng/defmulti/defmulti";
 import { eqDelta } from "@thi.ng/math/eqdelta";
 import type { ReadonlyColor, TypedColor } from "../api";
 import { EPS } from "../api/constants";
@@ -13,20 +13,19 @@ const isGrayLab = (x: ReadonlyColor, eps = EPS) =>
     eqDelta(x[1], 0, eps) && eqDelta(x[2], 0, eps);
 
 export const isGray = defmulti<TypedColor<any>, number | undefined, boolean>(
-    (x) => x.mode
+    (x) => x.mode,
+    {},
+    {
+        hcy: isGrayHsv,
+        hsi: isGrayHsv,
+        hsl: isGrayHsv,
+        hsv: isGrayHsv,
+        labD50: isGrayLab,
+        labD65: isGrayLab,
+        lch: isGrayHsv,
+        rgb: isGrayRgb,
+        srgb: isGrayRgb,
+        ycc: isGrayLab,
+        [DEFAULT]: (x: any) => isGrayRgb(rgb(x)),
+    }
 );
-
-isGray.addAll({
-    hcy: isGrayHsv,
-    hsi: isGrayHsv,
-    hsl: isGrayHsv,
-    hsv: isGrayHsv,
-    labD50: isGrayLab,
-    labD65: isGrayLab,
-    lch: isGrayHsv,
-    rgb: isGrayRgb,
-    srgb: isGrayRgb,
-    ycc: isGrayLab,
-});
-
-isGray.setDefault((x: any) => isGrayRgb(rgb(x)));

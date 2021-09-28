@@ -1,4 +1,4 @@
-import { defmulti } from "@thi.ng/defmulti/defmulti";
+import { DEFAULT, defmulti } from "@thi.ng/defmulti/defmulti";
 import type { ReadonlyColor, TypedColor } from "../api";
 import { EPS } from "../api/constants";
 import { rgb } from "../rgb/rgb";
@@ -11,19 +11,18 @@ const isBlackRgb = (x: ReadonlyColor, eps = EPS) =>
 const isBlackLch = (x: ReadonlyColor, eps = EPS) => x[0] <= eps;
 
 export const isBlack = defmulti<TypedColor<any>, number | undefined, boolean>(
-    (x) => x.mode
+    (x) => x.mode,
+    {},
+    {
+        hcy: isBlackHsv,
+        hsi: isBlackHsv,
+        hsl: isBlackHsv,
+        hsv: isBlackHsv,
+        labD50: isBlackLch,
+        labD65: isBlackLch,
+        lch: isBlackLch,
+        rgb: isBlackRgb,
+        ycc: isBlackRgb,
+        [DEFAULT]: (x: any) => isBlackRgb(rgb(x)),
+    }
 );
-
-isBlack.addAll({
-    hcy: isBlackHsv,
-    hsi: isBlackHsv,
-    hsl: isBlackHsv,
-    hsv: isBlackHsv,
-    labD50: isBlackLch,
-    labD65: isBlackLch,
-    lch: isBlackLch,
-    rgb: isBlackRgb,
-    ycc: isBlackRgb,
-});
-
-isBlack.setDefault((x: any) => isBlackRgb(rgb(x)));
