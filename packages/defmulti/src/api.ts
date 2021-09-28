@@ -319,4 +319,6 @@ export interface MultiFn8O<A, B, C, D, E, F, G, H, I, T>
     extends Implementation8O<A, B, C, D, E, F, G, H, I, T>,
         MultiFnBase<Implementation8O<A, B, C, D, E, F, G, H, I, T>> {}
 
-export type AncestorDefs = IObjectOf<Iterable<PropertyKey>>;
+export type AncestorDefs = IObjectOf<
+    PropertyKey | PropertyKey[] | Set<PropertyKey>
+>;

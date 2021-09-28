@@ -20,6 +20,22 @@ import type {
     DispatchFn8,
     DispatchFn8O,
     Implementation,
+    Implementation1,
+    Implementation1O,
+    Implementation2,
+    Implementation2O,
+    Implementation3,
+    Implementation3O,
+    Implementation4,
+    Implementation4O,
+    Implementation5,
+    Implementation5O,
+    Implementation6,
+    Implementation6O,
+    Implementation7,
+    Implementation7O,
+    Implementation8,
+    Implementation8O,
     MultiFn,
     MultiFn1,
     MultiFn1O,
@@ -47,65 +63,117 @@ import { LOGGER } from "./logger";
 export const DEFAULT: unique symbol = Symbol();
 
 /**
- * Returns a new multi-dispatch function using the provided dispatch
- * value function.
+ * Returns a new multi-dispatch function using the provided dispatch value
+ * function. Additionally, optional ancestor relationships (`rels`) and set of
+ * implementations (`impls`) can be given.
  *
  * @remarks
- * The dispatcher can take any number of arguments and must produce a
- * dispatch value (string, number or symbol) used to lookup an
- * implementation. If found, the impl is called with the same args and
- * its return value used as own return value. If no matching
- * implementation is available, attempts to dispatch to DEFAULT impl. If
- * none is registered, an error is thrown.
+ * The dispatcher can take any number of arguments and must produce a dispatch
+ * value (string, number or symbol) used to lookup an implementation. If found,
+ * the impl is called with the same args and its return value used as own return
+ * value. If no matching implementation is available, attempts to dispatch to
+ * DEFAULT impl. If none is registered, an error is thrown.
  *
- * `defmulti` provides generics for type checking up to 8 args (plus the
- * return type) and the generics will also apply to all implementations.
- * If more than 8 args are required, `defmulti` will fall back to an
- * untyped varargs solution.
+ * `defmulti` provides generics for type checking up to 8 args (plus the return
+ * type) and the generics will also apply to all implementations. If more than 8
+ * args are required, `defmulti` will fall back to an untyped varargs solution.
  *
- * Implementations for different dispatch values can be added and
- * removed dynamically by calling `.add(id, fn)` or `.remove(id)` on the
- * returned function. Each returns `true` if the operation was
- * successful.
+ * Implementations for different dispatch values can be added and removed
+ * dynamically by calling `.add(id, fn)`, `.addAll(impls)` or `.remove(id)` on
+ * the returned function. Each returns `true` if the operation was successful.
  */
-export function defmulti<T>(f: DispatchFn, rels?: AncestorDefs): MultiFn<T>;
-// prettier-ignore
-export function defmulti<A, T>(f: DispatchFn1<A>, rels?: AncestorDefs): MultiFn1<A, T>;
-// prettier-ignore
-export function defmulti<A, B, T>(f: DispatchFn2<A, B>, rels?: AncestorDefs): MultiFn2<A, B, T>;
-// prettier-ignore
-export function defmulti<A, B, T>(f: DispatchFn1O<A, B>, rels?: AncestorDefs): MultiFn1O<A, B, T>;
-// prettier-ignore
-export function defmulti<A, B, C, T>(f: DispatchFn3<A, B, C>, rels?: AncestorDefs): MultiFn3<A, B, C, T>;
-// prettier-ignore
-export function defmulti<A, B, C, T>(f: DispatchFn2O<A, B, C>, rels?: AncestorDefs): MultiFn2O<A, B, C, T>;
-// prettier-ignore
-export function defmulti<A, B, C, D, T>(f: DispatchFn4<A, B, C, D>, rels?: AncestorDefs): MultiFn4<A, B, C, D, T>;
-// prettier-ignore
-export function defmulti<A, B, C, D, T>(f: DispatchFn3O<A, B, C, D>, rels?: AncestorDefs): MultiFn3O<A, B, C, D, T>;
-// prettier-ignore
-export function defmulti<A, B, C, D, E, T>(f: DispatchFn5<A, B, C, D, E>, rels?: AncestorDefs): MultiFn5<A, B, C, D, E, T>;
-// prettier-ignore
-export function defmulti<A, B, C, D, E, T>(f: DispatchFn4O<A, B, C, D, E>, rels?: AncestorDefs): MultiFn4O<A, B, C, D, E, T>;
-// prettier-ignore
-export function defmulti<A, B, C, D, E, F, T>(f: DispatchFn6<A, B, C, D, E, F>, rels?: AncestorDefs): MultiFn6<A, B, C, D, E, F, T>;
-// prettier-ignore
-export function defmulti<A, B, C, D, E, F, T>(f: DispatchFn5O<A, B, C, D, E, F>, rels?: AncestorDefs): MultiFn5O<A, B, C, D, E, F, T>;
-// prettier-ignore
-export function defmulti<A, B, C, D, E, F, G, T>(f: DispatchFn7<A, B, C, D, E, F, G>, rels?: AncestorDefs): MultiFn7<A, B, C, D, E, F, G, T>;
-// prettier-ignore
-export function defmulti<A, B, C, D, E, F, G, T>(f: DispatchFn6O<A, B, C, D, E, F, G>, rels?: AncestorDefs): MultiFn6O<A, B, C, D, E, F, G, T>;
-// prettier-ignore
-export function defmulti<A, B, C, D, E, F, G, H, T>(f: DispatchFn8<A, B, C, D, E, F, G, H>, rels?: AncestorDefs): MultiFn8<A, B, C, D, E, F, G, H, T>;
-// prettier-ignore
-export function defmulti<A, B, C, D, E, F, G, H, T>(f: DispatchFn7O<A, B, C, D, E, F, G, H>, rels?: AncestorDefs): MultiFn7O<A, B, C, D, E, F, G, H, T>;
-// prettier-ignore
-export function defmulti<A, B, C, D, E, F, G, H, I, T>(f: DispatchFn8O<A, B, C, D, E, F, G, H, I>, rels?: AncestorDefs): MultiFn8O<A, B, C, D, E, F, G, H, I, T>;
-export function defmulti<T>(f: any, ancestors?: AncestorDefs) {
+export function defmulti<T>(
+    f: DispatchFn,
+    rels?: AncestorDefs,
+    impls?: IObjectOf<Implementation<T>>
+): MultiFn<T>;
+export function defmulti<A, T>(
+    f: DispatchFn1<A>,
+    rels?: AncestorDefs,
+    impls?: IObjectOf<Implementation1<A, T>>
+): MultiFn1<A, T>;
+export function defmulti<A, B, T>(
+    f: DispatchFn2<A, B>,
+    rels?: AncestorDefs,
+    impls?: IObjectOf<Implementation2<A, B, T>>
+): MultiFn2<A, B, T>;
+export function defmulti<A, B, T>(
+    f: DispatchFn1O<A, B>,
+    rels?: AncestorDefs,
+    impls?: IObjectOf<Implementation1O<A, B, T>>
+): MultiFn1O<A, B, T>;
+export function defmulti<A, B, C, T>(
+    f: DispatchFn3<A, B, C>,
+    rels?: AncestorDefs,
+    impls?: IObjectOf<Implementation3<A, B, C, T>>
+): MultiFn3<A, B, C, T>;
+export function defmulti<A, B, C, T>(
+    f: DispatchFn2O<A, B, C>,
+    rels?: AncestorDefs,
+    impls?: IObjectOf<Implementation2O<A, B, C, T>>
+): MultiFn2O<A, B, C, T>;
+export function defmulti<A, B, C, D, T>(
+    f: DispatchFn4<A, B, C, D>,
+    rels?: AncestorDefs,
+    impls?: IObjectOf<Implementation4<A, B, C, D, T>>
+): MultiFn4<A, B, C, D, T>;
+export function defmulti<A, B, C, D, T>(
+    f: DispatchFn3O<A, B, C, D>,
+    rels?: AncestorDefs,
+    impls?: IObjectOf<Implementation3O<A, B, C, D, T>>
+): MultiFn3O<A, B, C, D, T>;
+export function defmulti<A, B, C, D, E, T>(
+    f: DispatchFn5<A, B, C, D, E>,
+    rels?: AncestorDefs,
+    impls?: IObjectOf<Implementation5<A, B, C, D, E, T>>
+): MultiFn5<A, B, C, D, E, T>;
+export function defmulti<A, B, C, D, E, T>(
+    f: DispatchFn4O<A, B, C, D, E>,
+    rels?: AncestorDefs,
+    impls?: IObjectOf<Implementation4O<A, B, C, D, E, T>>
+): MultiFn4O<A, B, C, D, E, T>;
+export function defmulti<A, B, C, D, E, F, T>(
+    f: DispatchFn6<A, B, C, D, E, F>,
+    rels?: AncestorDefs,
+    impls?: IObjectOf<Implementation6<A, B, C, D, E, F, T>>
+): MultiFn6<A, B, C, D, E, F, T>;
+export function defmulti<A, B, C, D, E, F, T>(
+    f: DispatchFn5O<A, B, C, D, E, F>,
+    rels?: AncestorDefs,
+    impls?: IObjectOf<Implementation5O<A, B, C, D, E, F, T>>
+): MultiFn5O<A, B, C, D, E, F, T>;
+export function defmulti<A, B, C, D, E, F, G, T>(
+    f: DispatchFn7<A, B, C, D, E, F, G>,
+    rels?: AncestorDefs,
+    impls?: IObjectOf<Implementation7<A, B, C, D, E, F, G, T>>
+): MultiFn7<A, B, C, D, E, F, G, T>;
+export function defmulti<A, B, C, D, E, F, G, T>(
+    f: DispatchFn6O<A, B, C, D, E, F, G>,
+    rels?: AncestorDefs,
+    impls?: IObjectOf<Implementation6O<A, B, C, D, E, F, G, T>>
+): MultiFn6O<A, B, C, D, E, F, G, T>;
+export function defmulti<A, B, C, D, E, F, G, H, T>(
+    f: DispatchFn8<A, B, C, D, E, F, G, H>,
+    rels?: AncestorDefs,
+    impls?: IObjectOf<Implementation8<A, B, C, D, E, F, G, H, T>>
+): MultiFn8<A, B, C, D, E, F, G, H, T>;
+export function defmulti<A, B, C, D, E, F, G, H, T>(
+    f: DispatchFn7O<A, B, C, D, E, F, G, H>,
+    rels?: AncestorDefs,
+    impls?: IObjectOf<Implementation7O<A, B, C, D, E, F, G, H, T>>
+): MultiFn7O<A, B, C, D, E, F, G, H, T>;
+export function defmulti<A, B, C, D, E, F, G, H, I, T>(
+    f: DispatchFn8O<A, B, C, D, E, F, G, H, I>,
+    rels?: AncestorDefs,
+    impls?: IObjectOf<Implementation8O<A, B, C, D, E, F, G, H, I, T>>
+): MultiFn8O<A, B, C, D, E, F, G, H, I, T>;
+export function defmulti<T>(
+    f: any,
+    _rels?: AncestorDefs,
+    _impls?: IObjectOf<Implementation<T>>
+) {
     const impls: IObjectOf<Implementation<T>> = {};
-    const rels: IObjectOf<Set<PropertyKey>> = ancestors
-        ? makeRels(ancestors)
-        : {};
+    const rels: IObjectOf<Set<PropertyKey>> = _rels ? makeRels(_rels) : {};
     const fn: any = (...args: any[]) => {
         const id = f(...args);
         const g = impls[id] || findImpl(impls, rels, id) || impls[<any>DEFAULT];
@@ -168,6 +236,8 @@ export function defmulti<T>(f: any, ancestors?: AncestorDefs) {
             !rels[id] && (yield [id, undefined]);
         }
     };
+
+    _impls && fn.addAll(_impls);
     return fn;
 }
 
@@ -204,7 +274,12 @@ const makeRels = (spec: AncestorDefs) => {
     const rels: IObjectOf<Set<PropertyKey>> = {};
     for (let k in spec) {
         const val = spec[k];
-        rels[k] = val instanceof Set ? val : new Set(val);
+        rels[k] =
+            val instanceof Set
+                ? val
+                : Array.isArray(val)
+                ? new Set(val)
+                : new Set([val]);
     }
     return rels;
 };
