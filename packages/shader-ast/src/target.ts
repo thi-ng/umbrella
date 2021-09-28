@@ -1,5 +1,5 @@
 import type { Fn } from "@thi.ng/api";
-import { defmulti } from "@thi.ng/defmulti/defmulti";
+import { DEFAULT, defmulti } from "@thi.ng/defmulti/defmulti";
 import { unsupported } from "@thi.ng/errors/unsupported";
 import type { Term } from "./api/nodes";
 import type { TargetImpl } from "./api/target";
@@ -13,11 +13,13 @@ import type { TargetImpl } from "./api/target";
  *
  * @param impls -
  */
-export const defTarget = <T>(impls: TargetImpl<T>): Fn<Term<any>, T> => {
-    const emit = defmulti<Term<any>, T>((x) => x.tag);
-    emit.setDefault((t) =>
-        unsupported(`no impl for AST node type: '${t.tag}'`)
+export const defTarget = <T>(impls: TargetImpl<T>): Fn<Term<any>, T> =>
+    defmulti<Term<any>, T>(
+        (x) => x.tag,
+        {},
+        {
+            [DEFAULT]: (t: Term<any>) =>
+                unsupported(`no impl for AST node type: '${t.tag}'`),
+            ...(<any>impls),
+        }
     );
-    emit.addAll(<any>impls);
-    return emit;
-};

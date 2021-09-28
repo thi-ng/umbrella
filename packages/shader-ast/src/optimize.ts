@@ -1,5 +1,5 @@
 import type { Fn, IObjectOf } from "@thi.ng/api";
-import { defmulti } from "@thi.ng/defmulti/defmulti";
+import { DEFAULT, defmulti } from "@thi.ng/defmulti/defmulti";
 import { LogLevel } from "@thi.ng/logger/api";
 import { deg, rad } from "@thi.ng/math/angle";
 import { clamp } from "@thi.ng/math/interval";
@@ -90,71 +90,74 @@ const BUILTINS: IObjectOf<Fn<number[], number>> = {
 };
 
 /** @internal */
-export const foldNode = defmulti<Term<any>, boolean | undefined>((t) => t.tag);
-foldNode.setDefault(() => false);
+export const foldNode = defmulti<Term<any>, boolean | undefined>(
+    (t) => t.tag,
+    {},
+    {
+        [DEFAULT]: () => false,
 
-foldNode.addAll({
-    op1: (node) => {
-        const $node = <Op1<any>>node;
-        if ($node.op == "-" && isLitNumericConst($node.val)) {
-            (<Lit<"float">>$node.val).val *= -1;
-            return replaceNode(node, <Lit<"float">>$node.val);
-        }
-    },
+        op1: (node) => {
+            const $node = <Op1<any>>node;
+            if ($node.op == "-" && isLitNumericConst($node.val)) {
+                (<Lit<"float">>$node.val).val *= -1;
+                return replaceNode(node, <Lit<"float">>$node.val);
+            }
+        },
 
-    op2: (node) => {
-        const $node = <Op2<any>>node;
-        if (isLitNumericConst($node.l) && isLitNumericConst($node.r)) {
-            const l: number = $node.l.val;
-            const r: number = $node.r.val;
-            let res = maybeFoldMath($node.op, l, r);
-            if (res !== undefined) {
-                return replaceNumericNode(node, res);
+        op2: (node) => {
+            const $node = <Op2<any>>node;
+            if (isLitNumericConst($node.l) && isLitNumericConst($node.r)) {
+                const l: number = $node.l.val;
+                const r: number = $node.r.val;
+                let res = maybeFoldMath($node.op, l, r);
+                if (res !== undefined) {
+                    return replaceNumericNode(node, res);
+                }
             }
-        }
-    },
+        },
 
-    call_i: (node) => {
-        const $node = <FnCall<any>>node;
-        if ($node.args.every((x) => isLitNumericConst(x))) {
-            const op = BUILTINS[$node.id];
-            if (op !== undefined) {
-                return replaceNumericNode(
-                    node,
-                    op($node.args.map((x) => (<Lit<any>>x).val))
-                );
+        call_i: (node) => {
+            const $node = <FnCall<any>>node;
+            if ($node.args.every((x) => isLitNumericConst(x))) {
+                const op = BUILTINS[$node.id];
+                if (op !== undefined) {
+                    return replaceNumericNode(
+                        node,
+                        op($node.args.map((x) => (<Lit<any>>x).val))
+                    );
+                }
             }
-        }
-    },
+        },
 
-    lit: (node) => {
-        const $node = <Lit<any>>node;
-        if (isLitNumericConst($node.val)) {
-            if (isFloat($node.val)) {
-                return replaceNode(node, float($node.val.val));
+        lit: (node) => {
+            const $node = <Lit<any>>node;
+            if (isLitNumericConst($node.val)) {
+                if (isFloat($node.val)) {
+                    return replaceNode(node, float($node.val.val));
+                }
+                if (isInt($node.val)) {
+                    return replaceNode(node, int($node.val.val));
+                }
+                if (isUint($node.val)) {
+                    return replaceNode(node, uint($node.val.val));
+                }
             }
-            if (isInt($node.val)) {
-                return replaceNode(node, int($node.val.val));
-            }
-            if (isUint($node.val)) {
-                return replaceNode(node, uint($node.val.val));
-            }
-        }
-    },
+        },
 
-    swizzle: (node) => {
-        const $node = <Swizzle<any>>node;
-        const val = $node.val;
-        if (isLitVecConst(val)) {
-            if (isFloat(node)) {
-                return replaceNode(
-                    node,
-                    float(val.val[COMPS[<Swizzle4_1>$node.id]])
-                );
+        swizzle: (node) => {
+            const $node = <Swizzle<any>>node;
+            const val = $node.val;
+            if (isLitVecConst(val)) {
+                if (isFloat(node)) {
+                    return replaceNode(
+                        node,
+                        float(val.val[COMPS[<Swizzle4_1>$node.id]])
+                    );
+                }
             }
-        }
-    },
-});
+        },
+    }
+);
 
 /**
  * Traverses given AST (potentially several times) and applies constant folding
