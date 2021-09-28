@@ -64,6 +64,12 @@
     "exports": {
         ".": {
             "import": "./index.js"
+        },
+        "./decode": {
+            "import": "./decode.js"
+        },
+        "./encode": {
+            "import": "./encode.js"
         }
     }
 }

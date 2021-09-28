@@ -8,7 +8,6 @@ const src2 = { foo: new Uint8Array([0, 1, 2, 3, 255, 254, 253]) };
 
 // prettier-ignore
 group("bencode", {
-
     "roundtrip (utf8)": () => {
         let bytes;
         assert.deepStrictEqual(
@@ -19,7 +18,6 @@ group("bencode", {
                 0x33, 0x65, 0x65, 0x65, 0x65,
             ]
         );
-
         assert.deepStrictEqual(decode(bytes), src);
     },
 
