@@ -49,6 +49,8 @@ group(
         },
     },
     {
-        beforeEach: () => (ecs = new ECS({ capacity: 16 })),
+        beforeEach: () => {
+            ecs = new ECS({ capacity: 16 });
+        },
     }
 );
