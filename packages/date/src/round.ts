@@ -1,5 +1,5 @@
 import { DAY, HOUR, MINUTE, RoundingFn, SECOND, WEEK } from "./api";
-import { ensureDate } from "./utils";
+import { ensureDate } from "./checks";
 
 /**
  * Rounds down `epoch` to minute precision.

@@ -75,6 +75,9 @@
         "./api": {
             "import": "./api.js"
         },
+        "./checks": {
+            "import": "./checks.js"
+        },
         "./datetime": {
             "import": "./datetime.js"
         },
@@ -111,8 +114,8 @@
         "./timecode": {
             "import": "./timecode.js"
         },
-        "./utils": {
-            "import": "./utils.js"
+        "./units": {
+            "import": "./units.js"
         }
     },
     "thi.ng": {

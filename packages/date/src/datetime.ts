@@ -3,17 +3,11 @@ import { isNumber } from "@thi.ng/checks/is-number";
 import { isString } from "@thi.ng/checks/is-string";
 import { Z2, Z3, Z4 } from "@thi.ng/strings/pad-left";
 import { DAY, HOUR, MaybeDate, MINUTE, Period, Precision, SECOND } from "./api";
+import { ensureDate, ensureEpoch, isLeapYear } from "./checks";
 import { defFormat } from "./format";
 import { LOCALE } from "./i18n";
-import {
-    dayInYear,
-    daysInMonth,
-    ensureDate,
-    ensureEpoch,
-    isLeapYear,
-    precisionToID,
-    weekInYear,
-} from "./utils";
+import { precisionToID } from "./internal/precision";
+import { dayInYear, daysInMonth, weekInYear } from "./units";
 
 export const dateTime = (epoch?: MaybeDate, prec?: Precision) =>
     new DateTime(epoch, prec);

@@ -2,8 +2,9 @@ import { isFunction } from "@thi.ng/checks/is-function";
 import { isString } from "@thi.ng/checks/is-string";
 import { Z2, Z3, Z4 } from "@thi.ng/strings/pad-left";
 import { FormatFn, MaybeDate, MINUTE } from "./api";
+import { ensureDate } from "./checks";
 import { LOCALE } from "./i18n";
-import { ensureDate, weekInYear } from "./utils";
+import { weekInYear } from "./units";
 
 export const FORMATTERS: Record<string, FormatFn> = {
     /**

@@ -9,10 +9,11 @@ import {
     SECOND,
     YEAR,
 } from "./api";
+import { ensureEpoch } from "./checks";
 import { DateTime, dateTime, ensureDateTime } from "./datetime";
 import { LOCALE, tense, units, unitsLessThan } from "./i18n";
 import { EN_LONG, EN_SHORT } from "./i18n/en";
-import { ensureEpoch, idToPrecision, precisionToID } from "./utils";
+import { idToPrecision, precisionToID } from "./internal/precision";
 
 /**
  * Takes a relative time `offset` string in plain english and an optional `base`
