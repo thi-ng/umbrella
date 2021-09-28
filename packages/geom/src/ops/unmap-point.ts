@@ -1,5 +1,4 @@
-import type { IObjectOf } from "@thi.ng/api";
-import type { Implementation2O, MultiFn2O } from "@thi.ng/defmulti";
+import type { MultiFn2O } from "@thi.ng/defmulti";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
 import type { IShape } from "@thi.ng/geom-api";
 import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
@@ -25,25 +24,30 @@ import { dispatch } from "../internal/dispatch";
  * @param uv - point to map in UV space
  * @param out - result
  */
-export const unmapPoint: MultiFn2O<IShape, ReadonlyVec, Vec, Vec> = defmulti(
-    <any>dispatch
+export const unmapPoint: MultiFn2O<IShape, ReadonlyVec, Vec, Vec> = defmulti<
+    any,
+    ReadonlyVec,
+    Vec | undefined,
+    Vec
+>(
+    dispatch,
+    {
+        aabb: "rect",
+        quad3: "quad",
+    },
+    {
+        quad: ({ points }: Quad, uv, out = []) =>
+            mixBilinear(
+                out,
+                points[0],
+                points[1],
+                points[3],
+                points[2],
+                uv[0],
+                uv[1]
+            ),
+
+        rect: ($: Rect, uvw: ReadonlyVec, out = []) =>
+            madd(out, $.size, uvw, $.pos),
+    }
 );
-
-unmapPoint.addAll(<IObjectOf<Implementation2O<unknown, ReadonlyVec, Vec, Vec>>>{
-    quad: ({ points }: Quad, uv, out = []) =>
-        mixBilinear(
-            out,
-            points[0],
-            points[1],
-            points[3],
-            points[2],
-            uv[0],
-            uv[1]
-        ),
-
-    rect: ($: Rect, uvw: ReadonlyVec, out = []) =>
-        madd(out, $.size, uvw, $.pos),
-});
-
-unmapPoint.isa("aabb", "rect");
-unmapPoint.isa("quad3", "quad");

@@ -1,5 +1,4 @@
-import type { IObjectOf } from "@thi.ng/api";
-import type { Implementation2 } from "@thi.ng/defmulti";
+import type { MultiFn2 } from "@thi.ng/defmulti";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
 import type { IShape } from "@thi.ng/geom-api";
 import { add2 } from "@thi.ng/vectors/add";
@@ -18,28 +17,35 @@ import { copyAttribs } from "../internal/copy-attribs";
 import { dispatch } from "../internal/dispatch";
 import { centroid } from "./centroid";
 
-export const offset = defmulti<IShape, number, IShape>(dispatch);
+export const offset: MultiFn2<IShape, number, IShape> = defmulti<
+    any,
+    number,
+    IShape
+>(
+    dispatch,
+    {},
+    {
+        circle: ($: Circle, n) =>
+            new Circle(set2([], $.pos), Math.max($.r + n, 0)),
 
-offset.addAll(<IObjectOf<Implementation2<unknown, number, IShape>>>{
-    circle: ($: Circle, n) => new Circle(set2([], $.pos), Math.max($.r + n, 0)),
+        line: ({ points: [a, b], attribs }: Line, n) => {
+            const norm = normalCW([], a, b, n);
+            return new Quad(
+                [
+                    add2([], a, norm),
+                    add2([], b, norm),
+                    sub2([], b, norm),
+                    sub2([], a, norm),
+                ],
+                { ...attribs }
+            );
+        },
 
-    line: ({ points: [a, b], attribs }: Line, n) => {
-        const norm = normalCW([], a, b, n);
-        return new Quad(
-            [
-                add2([], a, norm),
-                add2([], b, norm),
-                sub2([], b, norm),
-                sub2([], a, norm),
-            ],
-            { ...attribs }
-        );
-    },
-
-    rect: ($: Rect, n) =>
-        rectFromCentroid(
-            centroid($)!,
-            max2(null, addN2([], $.size, n), ZERO2),
-            copyAttribs($)
-        ),
-});
+        rect: ($: Rect, n) =>
+            rectFromCentroid(
+                centroid($)!,
+                max2(null, addN2([], $.size, n), ZERO2),
+                copyAttribs($)
+            ),
+    }
+);

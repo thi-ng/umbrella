@@ -1,5 +1,4 @@
-import type { IObjectOf } from "@thi.ng/api";
-import type { Implementation2 } from "@thi.ng/defmulti";
+import type { MultiFn2 } from "@thi.ng/defmulti";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
 import type { IShape } from "@thi.ng/geom-api";
 import { closestT } from "@thi.ng/geom-closest-point/line";
@@ -32,36 +31,40 @@ import { splitLine } from "../internal/split";
  * @param shape - shape to operate on
  * @param p - split point
  */
-export const splitNearPoint = defmulti<
+export const splitNearPoint: MultiFn2<
     IShape,
     ReadonlyVec,
     IShape[] | undefined
->(dispatch);
+> = defmulti<any, ReadonlyVec, IShape[] | undefined>(
+    dispatch,
+    {},
+    {
+        cubic: ({ points, attribs }: Cubic, p) =>
+            splitCubicNearPoint(
+                p,
+                points[0],
+                points[1],
+                points[2],
+                points[3]
+            ).map((pts) => new Cubic(pts, { ...attribs })),
 
-splitNearPoint.addAll(<
-    IObjectOf<Implementation2<unknown, ReadonlyVec, IShape[]>>
->{
-    cubic: ({ points, attribs }: Cubic, p) =>
-        splitCubicNearPoint(p, points[0], points[1], points[2], points[3]).map(
-            (pts) => new Cubic(pts, { ...attribs })
-        ),
+        line: ($: Line, p) => {
+            const t = closestT(p, $.points[0], $.points[1]) || 0;
+            return splitLine($.points[0], $.points[1], clamp01(t)).map(
+                (pts) => new Line(pts, copyAttribs($))
+            );
+        },
 
-    line: ($: Line, p) => {
-        const t = closestT(p, $.points[0], $.points[1]) || 0;
-        return splitLine($.points[0], $.points[1], clamp01(t)).map(
-            (pts) => new Line(pts, copyAttribs($))
-        );
-    },
+        polyline: ($: Polyline, p) =>
+            pointArraysAsShapes(
+                Polyline,
+                new Sampler($.points).splitNear(p),
+                $.attribs
+            ),
 
-    polyline: ($: Polyline, p) =>
-        pointArraysAsShapes(
-            Polyline,
-            new Sampler($.points).splitNear(p),
-            $.attribs
-        ),
-
-    quadratic: ({ points, attribs }: Quadratic, p) =>
-        quadraticSplitNearPoint(p, points[0], points[1], points[2]).map(
-            (pts) => new Quadratic(pts, { ...attribs })
-        ),
-});
+        quadratic: ({ points, attribs }: Quadratic, p) =>
+            quadraticSplitNearPoint(p, points[0], points[1], points[2]).map(
+                (pts) => new Quadratic(pts, { ...attribs })
+            ),
+    }
+);

@@ -1,5 +1,4 @@
-import type { IObjectOf } from "@thi.ng/api";
-import type { Implementation2 } from "@thi.ng/defmulti";
+import type { MultiFn2 } from "@thi.ng/defmulti";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
 import type { IShape, PCLike, SamplingOpts } from "@thi.ng/geom-api";
 import { resample as _resample } from "@thi.ng/geom-resample/resample";
@@ -9,26 +8,29 @@ import { copyAttribs } from "../internal/copy-attribs";
 import { dispatch } from "../internal/dispatch";
 import { asPolygon } from "./as-polygon";
 
-export const resample = defmulti<
+export const resample: MultiFn2<
     IShape,
     number | Partial<SamplingOpts>,
     IShape
->(dispatch);
+> = defmulti<any, number | Partial<SamplingOpts>, IShape>(
+    dispatch,
+    {
+        ellipse: "circle",
+        line: "polyline",
+        quad: "poly",
+        tri: "poly",
+        rect: "circle",
+    },
+    {
+        circle: ($: IShape, opts) => asPolygon($, opts),
 
-resample.addAll(<
-    IObjectOf<Implementation2<unknown, number | Partial<SamplingOpts>, IShape>>
->{
-    circle: ($: IShape, opts) => asPolygon($, opts),
+        poly: ($: PCLike, opts) =>
+            new Polygon(_resample($.points, opts, true, true), copyAttribs($)),
 
-    poly: ($: PCLike, opts) =>
-        new Polygon(_resample($.points, opts, true, true), copyAttribs($)),
-
-    polyline: ($: PCLike, opts) =>
-        new Polyline(_resample($.points, opts, false, true), copyAttribs($)),
-});
-
-resample.isa("ellipse", "circle");
-resample.isa("line", "polyline");
-resample.isa("quad", "poly");
-resample.isa("tri", "poly");
-resample.isa("rect", "circle");
+        polyline: ($: PCLike, opts) =>
+            new Polyline(
+                _resample($.points, opts, false, true),
+                copyAttribs($)
+            ),
+    }
+);

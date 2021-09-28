@@ -1,6 +1,5 @@
-import type { IObjectOf } from "@thi.ng/api";
-import type { Implementation1O, MultiFn1O } from "@thi.ng/defmulti";
-import { defmulti } from "@thi.ng/defmulti/defmulti";
+import type { MultiFn1O } from "@thi.ng/defmulti";
+import { DEFAULT, defmulti } from "@thi.ng/defmulti/defmulti";
 import type { IShape } from "@thi.ng/geom-api";
 import { ReadonlyVec, ZERO2, ZERO3 } from "@thi.ng/vectors/api";
 import { set2, set3 } from "@thi.ng/vectors/set";
@@ -15,34 +14,33 @@ import { centroid } from "./centroid";
 import { translate } from "./translate";
 
 export const center: MultiFn1O<IShape, ReadonlyVec, IShape | undefined> =
-    defmulti(dispatch);
+    defmulti<any, ReadonlyVec | undefined, IShape | undefined>(
+        dispatch,
+        {},
+        {
+            [DEFAULT]: ($, origin = ZERO3) => {
+                const c = centroid($);
+                return c ? translate($, submN(null, c, origin, -1)) : undefined;
+            },
+            arc: ($: Arc, origin = ZERO2) =>
+                new Arc(
+                    set2([], origin),
+                    set2([], $.r),
+                    $.axis,
+                    $.start,
+                    $.end,
+                    $.xl,
+                    $.cw,
+                    copyAttribs($)
+                ),
 
-center.setDefault(($, origin = ZERO3) => {
-    const c = centroid($);
-    return c ? translate($, submN(null, c, origin, -1)) : undefined;
-});
+            circle: ($: Circle, origin = ZERO2) =>
+                new Circle(set2([], origin), $.r, copyAttribs($)),
 
-center.addAll(<
-    IObjectOf<Implementation1O<unknown, ReadonlyVec, IShape | undefined>>
->{
-    arc: ($: Arc, origin = ZERO2) =>
-        new Arc(
-            set2([], origin),
-            set2([], $.r),
-            $.axis,
-            $.start,
-            $.end,
-            $.xl,
-            $.cw,
-            copyAttribs($)
-        ),
+            ellipse: ($: Ellipse, origin = ZERO2) =>
+                new Ellipse(set2([], origin), set2([], $.r), copyAttribs($)),
 
-    circle: ($: Circle, origin = ZERO2) =>
-        new Circle(set2([], origin), $.r, copyAttribs($)),
-
-    ellipse: ($: Ellipse, origin = ZERO2) =>
-        new Ellipse(set2([], origin), set2([], $.r), copyAttribs($)),
-
-    sphere: ($: Sphere, origin = ZERO3) =>
-        new Sphere(set3([], origin), $.r, copyAttribs($)),
-});
+            sphere: ($: Sphere, origin = ZERO3) =>
+                new Sphere(set3([], origin), $.r, copyAttribs($)),
+        }
+    );

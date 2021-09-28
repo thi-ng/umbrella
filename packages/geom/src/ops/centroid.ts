@@ -1,5 +1,4 @@
-import type { IObjectOf } from "@thi.ng/api";
-import type { Implementation1O, MultiFn1O } from "@thi.ng/defmulti";
+import type { MultiFn1O } from "@thi.ng/defmulti";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
 import type { AABBLike, IShape, PCLike } from "@thi.ng/geom-api";
 import { centerOfWeight2 } from "@thi.ng/geom-poly-utils/center-of-weight";
@@ -20,43 +19,48 @@ import type { Triangle } from "../api/triangle";
 import { dispatch } from "../internal/dispatch";
 import { bounds } from "./bounds";
 
-export const centroid: MultiFn1O<IShape, Vec, Vec | undefined> =
-    defmulti(dispatch);
-
-centroid.addAll(<IObjectOf<Implementation1O<unknown, Vec, Vec>>>{
-    circle: ($: Circle, out?) => set(out || [], $.pos),
-
-    group: ($: Group) => {
-        const b = bounds($);
-        return b ? centroid(b) : undefined;
+export const centroid: MultiFn1O<IShape, Vec, Vec | undefined> = defmulti<
+    any,
+    Vec | undefined,
+    Vec | undefined
+>(
+    dispatch,
+    {
+        arc: "circle",
+        aabb: "rect",
+        ellipse: "circle",
+        line3: "line",
+        points3: "points",
+        polyline: "points",
+        quad: "poly",
+        sphere: "circle",
+        text: "circle",
+        tri3: "tri",
     },
+    {
+        circle: ($: Circle, out?) => set(out || [], $.pos),
 
-    line: ({ points }: Line, out?) =>
-        mixN(out || [], points[0], points[1], 0.5),
+        group: ($: Group) => {
+            const b = bounds($);
+            return b ? centroid(b) : undefined;
+        },
 
-    points: ($: PCLike, out?) => _centroid($.points, out),
+        line: ({ points }: Line, out?) =>
+            mixN(out || [], points[0], points[1], 0.5),
 
-    plane: ($: Plane, out?) => mulN(out || [], $.normal, $.w),
+        points: ($: PCLike, out?) => _centroid($.points, out),
 
-    poly: ($: Polygon, out?) => centerOfWeight2($.points, out),
+        plane: ($: Plane, out?) => mulN(out || [], $.normal, $.w),
 
-    rect: ($: AABBLike, out?) => maddN(out || [], $.size, 0.5, $.pos),
+        poly: ($: Polygon, out?) => centerOfWeight2($.points, out),
 
-    tri: ({ points }: Triangle, out?) =>
-        divN(
-            null,
-            add(null, add(out || [], points[0], points[1]), points[2]),
-            3
-        ),
-});
+        rect: ($: AABBLike, out?) => maddN(out || [], $.size, 0.5, $.pos),
 
-centroid.isa("arc", "circle");
-centroid.isa("aabb", "rect");
-centroid.isa("ellipse", "circle");
-centroid.isa("line3", "line");
-centroid.isa("points3", "points");
-centroid.isa("polyline", "points");
-centroid.isa("quad", "poly");
-centroid.isa("sphere", "circle");
-centroid.isa("text", "circle");
-centroid.isa("tri3", "tri");
+        tri: ({ points }: Triangle, out?) =>
+            divN(
+                null,
+                add(null, add(out || [], points[0], points[1]), points[2]),
+                3
+            ),
+    }
+);

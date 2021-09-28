@@ -1,7 +1,6 @@
-import type { IObjectOf } from "@thi.ng/api";
 import { isArray } from "@thi.ng/checks/is-array";
 import { isNumber } from "@thi.ng/checks/is-number";
-import type { Implementation1O, MultiFn1O } from "@thi.ng/defmulti";
+import type { MultiFn1O } from "@thi.ng/defmulti";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
 import type { IShape } from "@thi.ng/geom-api";
 import { DEFAULT_SAMPLES, SamplingOpts } from "@thi.ng/geom-api/sample";
@@ -34,104 +33,111 @@ export const vertices: MultiFn1O<
     IShape,
     number | Partial<SamplingOpts>,
     Vec[]
-> = defmulti(dispatch);
-
-vertices.addAll(<
-    IObjectOf<Implementation1O<unknown, number | Partial<SamplingOpts>, Vec[]>>
->{
-    // e +----+ h
-    //   |\   :\
-    //   |f+----+ g
-    //   | |  : |
-    // a +-|--+d|
-    //    \|   \|
-    //   b +----+ c
-    //
-    aabb: ({ pos, size }: AABB) => {
-        const [px, py, pz] = pos;
-        const [qx, qy, qz] = add3([], pos, size);
-        return [
-            [px, py, pz], // a
-            [px, py, qz], // b
-            [qx, py, qz], // c
-            [qx, py, pz], // d
-            [px, qy, pz], // e
-            [px, qy, qz], // f
-            [qx, qy, qz], // g
-            [qx, qy, pz], // h
-        ];
+> = defmulti<any, number | Partial<SamplingOpts> | undefined, Vec[]>(
+    dispatch,
+    {
+        line: "polyline",
+        points3: "points",
+        quad: "poly",
+        tri: "poly",
     },
+    {
+        // e +----+ h
+        //   |\   :\
+        //   |f+----+ g
+        //   | |  : |
+        // a +-|--+d|
+        //    \|   \|
+        //   b +----+ c
+        //
+        aabb: ({ pos, size }: AABB) => {
+            const [px, py, pz] = pos;
+            const [qx, qy, qz] = add3([], pos, size);
+            return [
+                [px, py, pz], // a
+                [px, py, qz], // b
+                [qx, py, qz], // c
+                [qx, py, pz], // d
+                [px, qy, pz], // e
+                [px, qy, qz], // f
+                [qx, qy, qz], // g
+                [qx, qy, pz], // h
+            ];
+        },
 
-    arc: ($: Arc, opts?: number | Partial<SamplingOpts>): Vec[] =>
-        _arcVertices($.pos, $.r, $.axis, $.start, $.end, opts),
+        arc: ($: Arc, opts?: number | Partial<SamplingOpts>): Vec[] =>
+            _arcVertices($.pos, $.r, $.axis, $.start, $.end, opts),
 
-    circle: ($: Circle, opts = DEFAULT_SAMPLES) => {
-        const pos = $.pos;
-        const r = $.r;
-        let [num, last] = circleOpts(opts, r);
-        const delta = TAU / num;
-        last && num++;
-        const buf: Vec[] = new Array(num);
-        for (let i = 0; i < num; i++) {
-            buf[i] = cartesian2(null, [r, i * delta], pos);
-        }
-        return buf;
-    },
-
-    cubic: ($: Cubic, opts?: number | Partial<SamplingOpts>) =>
-        sampleCubic($.points, opts),
-
-    ellipse: ($: Ellipse, opts = DEFAULT_SAMPLES) => {
-        const buf: Vec[] = [];
-        const pos = $.pos;
-        const r = $.r;
-        let [num, last] = circleOpts(opts, Math.max($.r[0], $.r[1]));
-        const delta = TAU / num;
-        last && num++;
-        for (let i = 0; i < num; i++) {
-            buf[i] = madd2([], cossin(i * delta), r, pos);
-        }
-        return buf;
-    },
-
-    group: ({ children }: Group) =>
-        children.reduce((acc, $) => acc.concat(vertices($)), <Vec[]>[]),
-
-    path: ($: Path, opts?: number | Partial<SamplingOpts>) => {
-        const _opts = isNumber(opts) ? { num: opts } : opts;
-        let verts: Vec[] = [];
-        for (let segs = $.segments, n = segs.length - 1, i = 0; i <= n; i++) {
-            const s = segs[i];
-            if (s.geo) {
-                verts = verts.concat(
-                    vertices(s.geo, { ..._opts, last: i === n && !$.closed })
-                );
+        circle: ($: Circle, opts = DEFAULT_SAMPLES) => {
+            const pos = $.pos;
+            const r = $.r;
+            let [num, last] = circleOpts(opts, r);
+            const delta = TAU / num;
+            last && num++;
+            const buf: Vec[] = new Array(num);
+            for (let i = 0; i < num; i++) {
+                buf[i] = cartesian2(null, [r, i * delta], pos);
             }
-        }
-        return verts;
-    },
+            return buf;
+        },
 
-    points: ($: Points) => $.points,
+        cubic: ($: Cubic, opts?: number | Partial<SamplingOpts>) =>
+            sampleCubic($.points, opts),
 
-    poly: ($: Polygon, opts?) => resample($.points, opts, true),
+        ellipse: ($: Ellipse, opts = DEFAULT_SAMPLES) => {
+            const buf: Vec[] = [];
+            const pos = $.pos;
+            const r = $.r;
+            let [num, last] = circleOpts(opts, Math.max($.r[0], $.r[1]));
+            const delta = TAU / num;
+            last && num++;
+            for (let i = 0; i < num; i++) {
+                buf[i] = madd2([], cossin(i * delta), r, pos);
+            }
+            return buf;
+        },
 
-    polyline: ($: Polyline, opts?) => resample($.points, opts),
+        group: ({ children }: Group) =>
+            children.reduce((acc, $) => acc.concat(vertices($)), <Vec[]>[]),
 
-    quadratic: ($: Quadratic, opts?: number | Partial<SamplingOpts>) =>
-        sampleQuadratic($.points, opts),
+        path: ($: Path, opts?: number | Partial<SamplingOpts>) => {
+            const _opts = isNumber(opts) ? { num: opts } : opts;
+            let verts: Vec[] = [];
+            for (
+                let segs = $.segments, n = segs.length - 1, i = 0;
+                i <= n;
+                i++
+            ) {
+                const s = segs[i];
+                if (s.geo) {
+                    verts = verts.concat(
+                        vertices(s.geo, {
+                            ..._opts,
+                            last: i === n && !$.closed,
+                        })
+                    );
+                }
+            }
+            return verts;
+        },
 
-    rect: ($: Rect, opts) => {
-        const p = $.pos;
-        const q = add2([], p, $.size);
-        const verts = [set2([], p), [q[0], p[1]], q, [p[0], q[1]]];
-        return opts != null ? vertices(new Polygon(verts), opts) : verts;
-    },
-});
+        points: ($: Points) => $.points,
 
-vertices.isa("line", "polyline");
-vertices.isa("points3", "points");
-vertices.isa("quad", "poly");
-vertices.isa("tri", "poly");
+        poly: ($: Polygon, opts?) => resample($.points, opts, true),
+
+        polyline: ($: Polyline, opts?) => resample($.points, opts),
+
+        quadratic: ($: Quadratic, opts?: number | Partial<SamplingOpts>) =>
+            sampleQuadratic($.points, opts),
+
+        rect: ($: Rect, opts) => {
+            const p = $.pos;
+            const q = add2([], p, $.size);
+            const verts = [set2([], p), [q[0], p[1]], q, [p[0], q[1]]];
+            return opts != null ? vertices(new Polygon(verts), opts) : verts;
+        },
+    }
+);
 
 /**
  * Takes array of vectors or an `IShape`. If the latter, calls {@link vertices}

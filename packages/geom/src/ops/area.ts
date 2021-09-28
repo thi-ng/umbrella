@@ -1,6 +1,5 @@
-import type { IObjectOf } from "@thi.ng/api";
-import type { Implementation1O, MultiFn1O } from "@thi.ng/defmulti";
-import { defmulti } from "@thi.ng/defmulti/defmulti";
+import type { MultiFn1O } from "@thi.ng/defmulti";
+import { DEFAULT, defmulti } from "@thi.ng/defmulti/defmulti";
 import type { IShape } from "@thi.ng/geom-api";
 import { polyArea2 } from "@thi.ng/geom-poly-utils/area";
 import { PI } from "@thi.ng/math/api";
@@ -50,38 +49,39 @@ import { dispatch } from "../internal/dispatch";
  * @param shape - shape to operate on
  * @param signed - true, if signed area
  */
-export const area: MultiFn1O<IShape, boolean, number> = defmulti(dispatch);
-area.setDefault(() => 0);
+export const area: MultiFn1O<IShape, boolean, number> = defmulti(
+    dispatch,
+    { quad: "poly" },
+    {
+        aabb: ({ size: [w, h, d] }: AABB) => 2 * (w * h + w * d + h * d),
 
-area.addAll(<IObjectOf<Implementation1O<unknown, boolean, number>>>{
-    aabb: ({ size: [w, h, d] }: AABB) => 2 * (w * h + w * d + h * d),
+        arc:
+            // http://cut-the-knot.org/Generalization/Cavalieri2.shtml
+            ($: Arc) => 0.5 * Math.abs($.start - $.end) * $.r[0] * $.r[1],
 
-    arc:
-        // http://cut-the-knot.org/Generalization/Cavalieri2.shtml
-        ($: Arc) => 0.5 * Math.abs($.start - $.end) * $.r[0] * $.r[1],
+        circle: ($: Circle) => PI * $.r ** 2,
 
-    circle: ($: Circle) => PI * $.r ** 2,
+        ellipse: ($: Ellipse) => PI * $.r[0] * $.r[1],
 
-    ellipse: ($: Ellipse) => PI * $.r[0] * $.r[1],
+        group: ({ children }: Group) =>
+            children.reduce((sum, $) => sum + area($, false), 0),
 
-    group: ({ children }: Group) =>
-        children.reduce((sum, $) => sum + area($, false), 0),
+        plane: () => Infinity,
 
-    plane: () => Infinity,
+        poly: ($: Polygon, signed?) => {
+            const area = polyArea2($.points);
+            return signed ? area : Math.abs(area);
+        },
 
-    poly: ($: Polygon, signed?) => {
-        const area = polyArea2($.points);
-        return signed ? area : Math.abs(area);
-    },
+        rect: ($: Rect) => $.size[0] * $.size[1],
 
-    rect: ($: Rect) => $.size[0] * $.size[1],
+        sphere: ($: Sphere) => 4 * PI * $.r ** 2,
 
-    sphere: ($: Sphere) => 4 * PI * $.r ** 2,
+        tri: ($: Triangle, signed?) => {
+            const area = 0.5 * signedArea2(...(<[Vec, Vec, Vec]>$.points));
+            return signed ? area : Math.abs(area);
+        },
 
-    tri: ($: Triangle, signed?) => {
-        const area = 0.5 * signedArea2(...(<[Vec, Vec, Vec]>$.points));
-        return signed ? area : Math.abs(area);
-    },
-});
-
-area.isa("quad", "poly");
+        [DEFAULT]: () => 0,
+    }
+);

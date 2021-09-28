@@ -1,5 +1,4 @@
-import type { IObjectOf } from "@thi.ng/api";
-import type { Implementation2 } from "@thi.ng/defmulti";
+import type { MultiFn2 } from "@thi.ng/defmulti";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
 import type { IHiccupShape, IShape, PathSegment } from "@thi.ng/geom-api";
 import type { ReadonlyMat } from "@thi.ng/matrices";
@@ -37,57 +36,63 @@ import { asPolygon } from "./as-polygon";
  * - Ellipse => Path (cubics)
  * - Rect => Polygon
  */
-export const transform = defmulti<IShape, ReadonlyMat, IShape>(dispatch);
+export const transform: MultiFn2<IShape, ReadonlyMat, IShape> = defmulti<
+    any,
+    ReadonlyMat,
+    IShape
+>(
+    dispatch,
+    {
+        circle: "arc",
+        ellipse: "circle",
+    },
+    {
+        arc: ($: IShape, mat) => transform(asPath($), mat),
 
-transform.addAll(<IObjectOf<Implementation2<unknown, ReadonlyMat, IShape>>>{
-    arc: ($: IShape, mat) => transform(asPath($), mat),
+        cubic: tx(Cubic),
 
-    cubic: tx(Cubic),
+        group: ($: Group, mat) =>
+            $.copyTransformed((x) => <IHiccupShape>transform(x, mat)),
 
-    group: ($: Group, mat) =>
-        $.copyTransformed((x) => <IHiccupShape>transform(x, mat)),
+        line: tx(Line),
 
-    line: tx(Line),
+        path: ($: Path, mat) =>
+            new Path(
+                [
+                    ...map(
+                        (s) =>
+                            s.type === "m"
+                                ? <PathSegment>{
+                                      type: s.type,
+                                      point: mulV([], mat, s.point!),
+                                  }
+                                : <PathSegment>{
+                                      type: s.type,
+                                      geo: transform(s.geo!, mat),
+                                  },
+                        $.segments
+                    ),
+                ],
+                copyAttribs($)
+            ),
 
-    path: ($: Path, mat) =>
-        new Path(
-            [
-                ...map(
-                    (s) =>
-                        s.type === "m"
-                            ? <PathSegment>{
-                                  type: s.type,
-                                  point: mulV([], mat, s.point!),
-                              }
-                            : <PathSegment>{
-                                  type: s.type,
-                                  geo: transform(s.geo!, mat),
-                              },
-                    $.segments
-                ),
-            ],
-            copyAttribs($)
-        ),
+        points: tx(Points),
 
-    points: tx(Points),
+        points3: tx3(Points3),
 
-    points3: tx3(Points3),
+        poly: tx(Polygon),
 
-    poly: tx(Polygon),
+        polyline: tx(Polyline),
 
-    polyline: tx(Polyline),
+        quad: tx(Quad),
 
-    quad: tx(Quad),
+        quadratic: tx(Quadratic),
 
-    quadratic: tx(Quadratic),
+        rect: ($: Rect, mat) => transform(asPolygon($), mat),
 
-    rect: ($: Rect, mat) => transform(asPolygon($), mat),
+        text: ($: Text, mat) =>
+            new Text(mulV([], mat, $.pos!), $.body, copyAttribs($)),
 
-    text: ($: Text, mat) =>
-        new Text(mulV([], mat, $.pos!), $.body, copyAttribs($)),
-
-    tri: tx(Triangle),
-});
-
-transform.isa("circle", "arc");
-transform.isa("ellipse", "circle");
+        tri: tx(Triangle),
+    }
+);

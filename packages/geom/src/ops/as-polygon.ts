@@ -10,18 +10,20 @@ export const asPolygon: MultiFn1O<
     IShape,
     number | Partial<SamplingOpts>,
     Polygon
-> = defmulti(dispatch);
-
-asPolygon.addAll({
-    points: ($, opts) => new Polygon(vertices($, opts), copyAttribs($)),
-});
-
-asPolygon.isa("circle", "points");
-asPolygon.isa("ellipse", "points");
-asPolygon.isa("line", "points");
-asPolygon.isa("path", "points");
-asPolygon.isa("poly", "points");
-asPolygon.isa("polyline", "points");
-asPolygon.isa("quad", "points");
-asPolygon.isa("rect", "points");
-asPolygon.isa("tri", "points");
+> = defmulti<IShape, number | Partial<SamplingOpts> | undefined, Polygon>(
+    dispatch,
+    {
+        circle: "points",
+        ellipse: "points",
+        line: "points",
+        path: "points",
+        poly: "points",
+        polyline: "points",
+        quad: "points",
+        rect: "points",
+        tri: "points",
+    },
+    {
+        points: ($, opts) => new Polygon(vertices($, opts), copyAttribs($)),
+    }
+);

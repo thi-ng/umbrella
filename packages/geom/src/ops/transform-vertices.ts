@@ -1,5 +1,5 @@
-import type { Fn, IObjectOf } from "@thi.ng/api";
-import type { Implementation2 } from "@thi.ng/defmulti";
+import type { Fn } from "@thi.ng/api";
+import type { MultiFn2 } from "@thi.ng/defmulti";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
 import type { IHiccupShape, IShape, PathSegment } from "@thi.ng/geom-api";
 import type { ReadonlyMat } from "@thi.ng/matrices";
@@ -39,60 +39,60 @@ import { asPolyline } from "./as-polyline";
  * - Ellipse => Path (cubics)
  * - Rect => Polygon
  */
-export const transformVertices = defmulti<
+export const transformVertices: MultiFn2<
     IShape,
     Fn<ReadonlyVec, ReadonlyMat>,
     IShape
->(dispatch);
+> = defmulti<any, Fn<ReadonlyVec, ReadonlyMat>, IShape>(
+    dispatch,
+    {
+        circle: "rect",
+        ellipse: "circle",
+    },
+    {
+        arc: ($: IShape, fn) => transformVertices(asPolyline($), fn),
 
-transformVertices.addAll(<
-    IObjectOf<Implementation2<unknown, Fn<ReadonlyVec, ReadonlyMat>, IShape>>
->{
-    arc: ($: IShape, fn) => transformVertices(asPolyline($), fn),
+        cubic: tx(Cubic),
 
-    cubic: tx(Cubic),
+        group: ($: Group, fn) =>
+            $.copyTransformed((x) => <IHiccupShape>transformVertices(x, fn)),
 
-    group: ($: Group, fn) =>
-        $.copyTransformed((x) => <IHiccupShape>transformVertices(x, fn)),
+        line: tx(Line),
 
-    line: tx(Line),
+        path: ($: Path, fn) =>
+            new Path(
+                [
+                    ...map(
+                        (s) =>
+                            s.type === "m"
+                                ? <PathSegment>{
+                                      type: s.type,
+                                      point: mulV([], fn(s.point!), s.point!),
+                                  }
+                                : <PathSegment>{
+                                      type: s.type,
+                                      geo: transformVertices(s.geo!, fn),
+                                  },
+                        $.segments
+                    ),
+                ],
+                copyAttribs($)
+            ),
 
-    path: ($: Path, fn) =>
-        new Path(
-            [
-                ...map(
-                    (s) =>
-                        s.type === "m"
-                            ? <PathSegment>{
-                                  type: s.type,
-                                  point: mulV([], fn(s.point!), s.point!),
-                              }
-                            : <PathSegment>{
-                                  type: s.type,
-                                  geo: transformVertices(s.geo!, fn),
-                              },
-                    $.segments
-                ),
-            ],
-            copyAttribs($)
-        ),
+        points: tx(Points),
 
-    points: tx(Points),
+        points3: tx3(Points3),
 
-    points3: tx3(Points3),
+        poly: tx(Polygon),
 
-    poly: tx(Polygon),
+        polyline: tx(Polyline),
 
-    polyline: tx(Polyline),
+        quad: tx(Quad),
 
-    quad: tx(Quad),
+        quadratic: tx(Quadratic),
 
-    quadratic: tx(Quadratic),
+        rect: ($: Rect, fn) => transformVertices(asPolygon($), fn),
 
-    rect: ($: Rect, fn) => transformVertices(asPolygon($), fn),
-
-    tri: tx(Triangle),
-});
-
-transformVertices.isa("circle", "rect");
-transformVertices.isa("ellipse", "circle");
+        tri: tx(Triangle),
+    }
+);

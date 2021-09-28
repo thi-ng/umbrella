@@ -1,9 +1,7 @@
-import type { IObjectOf } from "@thi.ng/api";
-import type { Implementation1O, MultiFn1O } from "@thi.ng/defmulti";
+import type { MultiFn1O } from "@thi.ng/defmulti";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
 import type { IShape, SamplingOpts } from "@thi.ng/geom-api";
 import { set } from "@thi.ng/vectors/set";
-import type { Cubic } from "../api/cubic";
 import type { Path } from "../api/path";
 import { Polyline } from "../api/polyline";
 import { copyAttribs } from "../internal/copy-attribs";
@@ -14,37 +12,33 @@ export const asPolyline: MultiFn1O<
     IShape,
     number | Partial<SamplingOpts>,
     Polyline
-> = defmulti(dispatch);
-
-asPolyline.addAll(<
-    IObjectOf<
-        Implementation1O<unknown, number | Partial<SamplingOpts>, Polyline>
-    >
->{
-    cubic: ($: Cubic, opts) => new Polyline(vertices($, opts)),
-
-    points: ($: IShape, opts) =>
-        new Polyline(vertices($, opts), copyAttribs($)),
-
-    path: ($: Path, opts) => {
-        const pts = vertices($, opts);
-        $.closed && pts.push(set([], pts[0]));
-        return new Polyline(pts, copyAttribs($));
+> = defmulti<any, number | Partial<SamplingOpts> | undefined, Polyline>(
+    dispatch,
+    {
+        arc: "points",
+        circle: "poly",
+        cubic: "points",
+        ellipse: "poly",
+        line: "points",
+        polyline: "points",
+        quad: "poly",
+        quadratic: "points",
+        rect: "poly",
+        tri: "poly",
     },
+    {
+        points: ($, opts) => new Polyline(vertices($, opts), copyAttribs($)),
 
-    poly: ($: IShape, opts) => {
-        const pts = vertices($, opts);
-        pts.push(set([], pts[0]));
-        return new Polyline(pts, copyAttribs($));
-    },
-});
+        path: ($: Path, opts) => {
+            const pts = vertices($, opts);
+            $.closed && pts.push(set([], pts[0]));
+            return new Polyline(pts, copyAttribs($));
+        },
 
-asPolyline.isa("arc", "cubic");
-asPolyline.isa("circle", "poly");
-asPolyline.isa("ellipse", "poly");
-asPolyline.isa("line", "points");
-asPolyline.isa("polyline", "points");
-asPolyline.isa("quad", "poly");
-asPolyline.isa("quadratic", "cubic");
-asPolyline.isa("rect", "poly");
-asPolyline.isa("tri", "poly");
+        poly: ($, opts) => {
+            const pts = vertices($, opts);
+            pts.push(set([], pts[0]));
+            return new Polyline(pts, copyAttribs($));
+        },
+    }
+);

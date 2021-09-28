@@ -1,5 +1,4 @@
-import type { IObjectOf } from "@thi.ng/api";
-import type { Implementation2 } from "@thi.ng/defmulti";
+import type { MultiFn2 } from "@thi.ng/defmulti";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
 import type { IShape } from "@thi.ng/geom-api";
 import {
@@ -21,25 +20,31 @@ import type { Rect } from "../api/rect";
 import type { Triangle } from "../api/triangle";
 import { dispatch } from "../internal/dispatch";
 
-export const pointInside = defmulti<IShape, ReadonlyVec, boolean>(dispatch);
+export const pointInside: MultiFn2<IShape, ReadonlyVec, boolean> = defmulti<
+    any,
+    ReadonlyVec,
+    boolean
+>(
+    dispatch,
+    {
+        points3: "points",
+        quad: "poly",
+        sphere: "circle",
+    },
+    {
+        aabb: ($: AABB, p: ReadonlyVec) => pointInAABB(p, $.pos, $.size),
 
-pointInside.addAll(<IObjectOf<Implementation2<unknown, ReadonlyVec, boolean>>>{
-    aabb: ($: AABB, p: ReadonlyVec) => pointInAABB(p, $.pos, $.size),
+        circle: ($: Circle, p) => pointInCircle(p, $.pos, $.r),
 
-    circle: ($: Circle, p) => pointInCircle(p, $.pos, $.r),
+        line: ($: Line, p) => pointInSegment(p, $.points[0], $.points[1]),
 
-    line: ($: Line, p) => pointInSegment(p, $.points[0], $.points[1]),
+        points: ({ points }: Points, p) => isInArray(p, points),
 
-    points: ({ points }: Points, p) => isInArray(p, points),
+        poly: ($: Polygon, p) => pointInPolygon2(p, $.points) > 0,
 
-    poly: ($: Polygon, p) => pointInPolygon2(p, $.points) > 0,
+        rect: ($: Rect, p: ReadonlyVec) => pointInRect(p, $.pos, $.size),
 
-    rect: ($: Rect, p: ReadonlyVec) => pointInRect(p, $.pos, $.size),
-
-    tri: (tri: Triangle, p: ReadonlyVec) =>
-        pointInTriangle2(p, ...(<[Vec, Vec, Vec]>tri.points)),
-});
-
-pointInside.isa("points3", "points");
-pointInside.isa("quad", "poly");
-pointInside.isa("sphere", "circle");
+        tri: (tri: Triangle, p: ReadonlyVec) =>
+            pointInTriangle2(p, ...(<[Vec, Vec, Vec]>tri.points)),
+    }
+);

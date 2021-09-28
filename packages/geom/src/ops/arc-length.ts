@@ -1,5 +1,4 @@
-import type { IObjectOf } from "@thi.ng/api";
-import type { Implementation1 } from "@thi.ng/defmulti";
+import type { MultiFn1 } from "@thi.ng/defmulti";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
 import type { IShape } from "@thi.ng/geom-api";
 import { perimeter } from "@thi.ng/geom-poly-utils/perimeter";
@@ -32,32 +31,34 @@ import { dispatch } from "../internal/dispatch";
  * - Triangle
  *
  */
-export const arcLength = defmulti<IShape, number>(dispatch);
+export const arcLength: MultiFn1<IShape, number> = defmulti(
+    dispatch,
+    {
+        quad: "poly",
+        tri: "poly",
+    },
+    {
+        circle: ($: Circle) => TAU * $.r,
 
-arcLength.addAll(<IObjectOf<Implementation1<unknown, number>>>{
-    circle: ($: Circle) => TAU * $.r,
+        ellipse: ({ r: [a, b] }: Ellipse) =>
+            // Ramanujan approximation
+            // https://www.mathsisfun.com/geometry/ellipse-perimeter.html
+            PI * (3 * (a + b) - Math.sqrt((3 * a + b) * (3 * b + a))),
 
-    ellipse: ({ r: [a, b] }: Ellipse) =>
-        // Ramanujan approximation
-        // https://www.mathsisfun.com/geometry/ellipse-perimeter.html
-        PI * (3 * (a + b) - Math.sqrt((3 * a + b) * (3 * b + a))),
+        group: ({ children }: Group) =>
+            children.reduce((sum, $) => sum + arcLength($), 0),
 
-    group: ({ children }: Group) =>
-        children.reduce((sum, $) => sum + arcLength($), 0),
+        line: ({ points }: Line) => dist(points[0], points[1]),
 
-    line: ({ points }: Line) => dist(points[0], points[1]),
+        poly: ({ points }: Polygon) => perimeter(points, points.length, true),
 
-    poly: ({ points }: Polygon) => perimeter(points, points.length, true),
+        polyline: ({ points }: Polygon) => perimeter(points, points.length),
 
-    polyline: ({ points }: Polygon) => perimeter(points, points.length),
+        rect: ({ size }: Rect) => 2 * (size[0] + size[1]),
 
-    rect: ({ size }: Rect) => 2 * (size[0] + size[1]),
-
-    tri: ({ points }: Triangle) =>
-        dist(points[0], points[1]) +
-        dist(points[1], points[2]) +
-        dist(points[2], points[0]),
-});
-
-arcLength.isa("quad", "poly");
-arcLength.isa("tri", "poly");
+        tri: ({ points }: Triangle) =>
+            dist(points[0], points[1]) +
+            dist(points[1], points[2]) +
+            dist(points[2], points[0]),
+    }
+);

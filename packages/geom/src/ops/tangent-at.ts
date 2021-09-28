@@ -1,5 +1,4 @@
-import type { IObjectOf } from "@thi.ng/api";
-import type { Implementation2 } from "@thi.ng/defmulti";
+import type { MultiFn2 } from "@thi.ng/defmulti";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
 import type { IShape, PCLike } from "@thi.ng/geom-api";
 import { Sampler } from "@thi.ng/geom-resample/sampler";
@@ -15,25 +14,31 @@ import type { Rect } from "../api/rect";
 import { dispatch } from "../internal/dispatch";
 import { vertices } from "./vertices";
 
-export const tangentAt = defmulti<IShape, number, Vec>(dispatch);
+export const tangentAt: MultiFn2<IShape, number, Vec | undefined> = defmulti<
+    any,
+    number,
+    Vec | undefined
+>(
+    dispatch,
+    {
+        quad: "poly",
+        tri: "poly",
+    },
+    {
+        circle: (_, t) => cossin(TAU * t + HALF_PI),
 
-tangentAt.addAll(<IObjectOf<Implementation2<unknown, number, Vec>>>{
-    circle: (_, t) => cossin(TAU * t + HALF_PI),
+        cubic: ({ points }: Cubic, t) =>
+            cubicTangentAt([], points[0], points[1], points[2], points[3], t),
 
-    cubic: ({ points }: Cubic, t) =>
-        cubicTangentAt([], points[0], points[1], points[2], points[3], t),
+        line: ({ points }: Line) => direction([], points[0], points[1]),
 
-    line: ({ points }: Line) => direction([], points[0], points[1]),
+        poly: ($: PCLike, t) => new Sampler($.points, true).tangentAt(t),
 
-    poly: ($: PCLike, t) => new Sampler($.points, true).tangentAt(t),
+        polyline: ($: PCLike, t) => new Sampler($.points).tangentAt(t),
 
-    polyline: ($: PCLike, t) => new Sampler($.points).tangentAt(t),
+        quadratic: ({ points }: Cubic, t) =>
+            quadraticTangentAt([], points[0], points[1], points[2], t),
 
-    quadratic: ({ points }: Cubic, t) =>
-        quadraticTangentAt([], points[0], points[1], points[2], t),
-
-    rect: ($: Rect, t) => new Sampler(vertices($), true).tangentAt(t),
-});
-
-tangentAt.isa("quad", "poly");
-tangentAt.isa("tri", "poly");
+        rect: ($: Rect, t) => new Sampler(vertices($), true).tangentAt(t),
+    }
+);

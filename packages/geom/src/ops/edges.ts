@@ -1,5 +1,4 @@
-import type { IObjectOf } from "@thi.ng/api";
-import type { Implementation1O, MultiFn1O } from "@thi.ng/defmulti";
+import type { MultiFn1O } from "@thi.ng/defmulti";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
 import type { IShape, SamplingOpts } from "@thi.ng/geom-api";
 import type { VecPair } from "@thi.ng/vectors";
@@ -15,42 +14,40 @@ export const edges: MultiFn1O<
     IShape,
     number | Partial<SamplingOpts>,
     Iterable<VecPair>
-> = defmulti(dispatch);
-
-edges.addAll(<
-    IObjectOf<
-        Implementation1O<
-            unknown,
-            number | Partial<SamplingOpts>,
-            Iterable<VecPair>
-        >
-    >
->{
-    aabb: ($: AABB) => {
-        const [a, b, c, d, e, f, g, h] = vertices($);
-        return [
-            [a, b],
-            [b, c],
-            [c, d],
-            [d, a], // bottom
-            [e, f],
-            [f, g],
-            [g, h],
-            [h, e], // top
-            [a, e],
-            [b, f], // left
-            [c, g],
-            [d, h], // right
-        ];
+> = defmulti<
+    any,
+    number | Partial<SamplingOpts> | undefined,
+    Iterable<VecPair>
+>(
+    dispatch,
+    {
+        line: "polyline",
+        quad: "poly",
+        tri: "poly",
     },
+    {
+        aabb: ($: AABB) => {
+            const [a, b, c, d, e, f, g, h] = vertices($);
+            return [
+                [a, b],
+                [b, c],
+                [c, d],
+                [d, a], // bottom
+                [e, f],
+                [f, g],
+                [g, h],
+                [h, e], // top
+                [a, e],
+                [b, f], // left
+                [c, g],
+                [d, h], // right
+            ];
+        },
 
-    poly: ($: Polygon) => edgeIterator($.points, true),
+        poly: ($: Polygon) => edgeIterator($.points, true),
 
-    polyline: ($: Polyline) => edgeIterator($.points),
+        polyline: ($: Polyline) => edgeIterator($.points),
 
-    rect: ($: Rect) => edgeIterator(vertices($), true),
-});
-
-edges.isa("line", "polyline");
-edges.isa("quad", "poly");
-edges.isa("tri", "poly");
+        rect: ($: Rect) => edgeIterator(vertices($), true),
+    }
+);
