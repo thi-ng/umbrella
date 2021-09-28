@@ -13,29 +13,28 @@ interface TestamentArgs {
     rest: string[];
 }
 
-const parseOpts = (args: string[], i = 2) => {
+const parseOpts = (args: string[], i = 2): TestamentArgs | number => {
     const res = <TestamentArgs>{
         csv: false,
         json: false,
+        watch: false,
+        rest: [],
     };
-    outer: for (; i < args.length; ) {
+    for (; i < args.length; i++) {
         switch (args[i]) {
             case "-a":
             case "--all":
                 GLOBAL_OPTS.stop = false;
-                i++;
                 break;
             case "--csv":
                 res.csv = true;
-                i++;
                 break;
             case "--json":
                 res.json = true;
-                i++;
                 break;
             case "-o":
                 res.out = args[i + 1];
-                i += 2;
+                i++;
                 break;
             case "-t":
             case "--timeout":
@@ -43,19 +42,19 @@ const parseOpts = (args: string[], i = 2) => {
                 if (!isNaN(val)) {
                     GLOBAL_OPTS.timeOut = val;
                 } else {
-                    console.log("ignoring invalid timeout value", args[i + 1]);
+                    console.warn("invalid timeout value", args[i + 1]);
+                    return 1;
                 }
-                i += 2;
+                i++;
                 break;
             case "-w":
             case "--watch":
                 res.watch = true;
-                i++;
                 break;
             case "-h":
             case "--help":
                 console.log(`
-Usage: testament [opts] path1 [path2...]
+Usage: testament [opts] path1 [path2...] [opts]
 
 Options:
 --all, -a        Run all tests (don't stop at 1st failure)
@@ -67,18 +66,22 @@ Options:
 
 --help, -h       Print this help and quit
 `);
-                return;
+                return 0;
             default:
-                break outer;
+                if (/^--?/.test(args[i])) {
+                    console.warn(`unknown option: ${args[i]}`);
+                    return 1;
+                }
+                res.rest.push(args[i]);
+                break;
         }
     }
     if (res.out && res.csv && res.json) {
         console.warn(
             "only CSV *or* JSON file output is supported, not both at the same time, exiting..."
         );
-        return;
+        return 1;
     }
-    res.rest = args.slice(i);
     return res;
 };
 
@@ -197,6 +200,8 @@ const watchTests = async (opts: TestamentArgs) => {
         tid = setTimeout(() => runTests({ ...opts, rest: files }), 10);
     };
 
+    GLOBAL_OPTS.logger.info("watching files... Press <Ctrl+C> to abort");
+
     watcher.on("all", (id, path) => {
         switch (id) {
             case "add":
@@ -217,7 +222,7 @@ const watchTests = async (opts: TestamentArgs) => {
 
 (async () => {
     const opts = parseOpts(process.argv);
-    if (!opts) return;
+    if (typeof opts === "number") process.exit(opts);
 
     // enable ANSI coloring for status messages
     if (!process.env.NO_COLOR) {
