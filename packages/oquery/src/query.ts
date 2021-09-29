@@ -373,8 +373,7 @@ const impl = defmulti<
     OTerm,
     QueryOpts,
     void
->((_, __, s, p, o) => classify(s) + classify(p) + classify(o));
-impl.addAll(IMPLS);
+>((_, __, s, p, o) => classify(s) + classify(p) + classify(o), {}, IMPLS);
 
 const objQuery = (src: QueryObj[], opts: QueryOpts, args: any[]) => {
     const isIsec = opts.cwise && opts.intersect;
