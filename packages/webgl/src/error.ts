@@ -1,4 +1,4 @@
-import { defError } from "@thi.ng/errors";
+import { defError } from "@thi.ng/errors/deferror";
 
 export const WebGLError = defError(() => "WebGL");
 

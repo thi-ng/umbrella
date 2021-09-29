@@ -104,9 +104,6 @@
         "./api/glsl": {
             "import": "./api/glsl.js"
         },
-        "./api/logger": {
-            "import": "./api/logger.js"
-        },
         "./api/material": {
             "import": "./api/material.js"
         },
@@ -148,6 +145,9 @@
         },
         "./geo/quad": {
             "import": "./geo/quad.js"
+        },
+        "./logger": {
+            "import": "./logger.js"
         },
         "./material": {
             "import": "./material.js"
