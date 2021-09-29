@@ -87,9 +87,6 @@
         "./css": {
             "import": "./css.js"
         },
-        "./impl": {
-            "import": "./impl.js"
-        },
         "./import": {
             "import": "./import.js"
         },

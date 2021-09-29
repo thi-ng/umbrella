@@ -1,3 +1,4 @@
+// thing:no-export
 import type { FnAny } from "@thi.ng/api";
 import { isArray } from "@thi.ng/checks/is-array";
 import { isFunction } from "@thi.ng/checks/is-function";
