@@ -193,6 +193,7 @@ export function defmulti<T>(
         for (let id in _impls) {
             ok = fn.add(id, _impls[id]) && ok;
         }
+        DEFAULT in _impls && fn.setDefault(_impls[<any>DEFAULT]);
         return ok;
     };
     fn.setDefault = (impl: Implementation<T>) => fn.add(DEFAULT, impl);
