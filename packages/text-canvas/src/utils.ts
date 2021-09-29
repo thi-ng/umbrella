@@ -1,3 +1,4 @@
+// thing:no-export
 import type { FnN3, FnU2, FnU7, NumOrString } from "@thi.ng/api";
 import type { ClipRect } from "./api";
 

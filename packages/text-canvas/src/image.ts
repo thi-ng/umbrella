@@ -200,7 +200,7 @@ export const imageRaw = (
  *
  * @remarks
  * For best results, it's recommended to pre-dither the image (e.g. using
- * thi.ng/pixel or other dither tools).
+ * thi.ng/pixel-dither or other dither tools).
  *
  * Reference:
  * https://en.wikipedia.org/wiki/Braille_Patterns#Identifying.2C_naming_and_ordering
