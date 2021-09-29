@@ -63,13 +63,18 @@ export const newDocument = (
 ): IGESDocument => {
     const globals = <GlobalParams>{ ...DEFAULT_GLOBALS, ...g };
     const $FF = float(globals.precision);
-    const $PARAM = defmulti<any[], string>((x) => x[1]);
-    $PARAM.add(Type.INT, (x) => x[0].toString());
-    $PARAM.add(Type.POINTER, (x) => (-x[0]).toString());
-    $PARAM.add(Type.FLOAT, (x) => $FF(x[0]));
-    $PARAM.add(Type.STR, (x) => x[0]);
-    $PARAM.add(Type.HSTR, (x) => hstr(x[0]));
-    $PARAM.add(Type.DATE, (x) => $DATE(x[0]));
+    const $PARAM = defmulti<any[], string>(
+        (x) => x[1],
+        {},
+        {
+            [Type.INT]: (x) => x[0].toString(),
+            [Type.POINTER]: (x) => (-x[0]).toString(),
+            [Type.FLOAT]: (x) => $FF(x[0]),
+            [Type.STR]: (x) => x[0],
+            [Type.HSTR]: (x) => hstr(x[0]),
+            [Type.DATE]: (x) => $DATE(x[0]),
+        }
+    );
 
     return {
         globals,
