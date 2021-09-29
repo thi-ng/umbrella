@@ -1,6 +1,6 @@
 import type { IObjectOf } from "@thi.ng/api";
 import type { ReadonlyVec } from "@thi.ng/vectors";
-import { endShape } from "./end-shape";
+import { endShape } from "./internal/end-shape";
 
 export const polygon = (
     ctx: CanvasRenderingContext2D,
@@ -18,6 +18,8 @@ export const polygon = (
  *
  * @param ctx - canvas context
  * @param pts - poly vertices
+ *
+ * @internal
  */
 export const __drawPoly = (
     ctx: CanvasRenderingContext2D,

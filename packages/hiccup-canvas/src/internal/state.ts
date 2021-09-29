@@ -1,7 +1,7 @@
 import type { IObjectOf } from "@thi.ng/api";
 import { isArrayLike } from "@thi.ng/checks/is-arraylike";
-import type { DrawState } from "./api";
-import { resolveGradientOrColor } from "./color";
+import type { DrawState } from "../api";
+import { resolveGradientOrColor } from "../color";
 
 const DEFAULTS: any = {
     align: "left",

@@ -4,6 +4,7 @@ import type { DrawState } from "./api";
 import { circularArc, ellipticArc } from "./arc";
 import { defLinearGradient, defRadialGradient } from "./color";
 import { image } from "./image";
+import { mergeState, registerGradient, restoreState } from "./internal/state";
 import { line, lines } from "./line";
 import { packedPoints } from "./packed-points";
 import { path } from "./path";
@@ -11,7 +12,6 @@ import { points } from "./points";
 import { polygon } from "./polygon";
 import { polyline } from "./polyline";
 import { rect } from "./rect";
-import { mergeState, registerGradient, restoreState } from "./state";
 import { text } from "./text";
 
 export const draw = (

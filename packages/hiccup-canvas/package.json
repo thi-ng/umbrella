@@ -86,9 +86,6 @@
         "./draw": {
             "import": "./draw.js"
         },
-        "./end-shape": {
-            "import": "./end-shape.js"
-        },
         "./image": {
             "import": "./image.js"
         },
@@ -112,9 +109,6 @@
         },
         "./rect": {
             "import": "./rect.js"
-        },
-        "./state": {
-            "import": "./state.js"
         },
         "./text": {
             "import": "./text.js"
