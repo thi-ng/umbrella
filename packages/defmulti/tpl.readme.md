@@ -61,6 +61,8 @@ function, but also exposes the following operations:
 
 - `.add(id, fn)` - adds/overrides implementation for given dispatch
   value
+- `.addAll(impls)` - add/override multiple implementations (given as object,
+  with keys referring to dispatch values)
 - `.remove(id)` - removes implementation for dispatch value
 - `.callable(...args)` - takes same args as if calling the
   multi-function, but only checks if an implementation exists for the
@@ -92,7 +94,7 @@ causes issues to people, parents could be implemented as sorted list
 impact... please open an issue if you run into problems!
 
 ```ts
-const foo = defmulti((x )=> x);
+const foo = defmulti((x) => x);
 foo.isa(23, "odd");
 foo.isa(42, "even");
 foo.isa("odd", "number");
@@ -123,10 +125,10 @@ Same example, but with relationships provided as argument to `defmulti`:
 
 ```ts
 const foo = defmulti((x) => x, {
-    23: ["odd"],
-    42: ["even"],
-    "odd": ["number"],
-    "even": ["number"],
+    23: "odd",
+    42: "even",
+    "odd": "number",
+    "even": "number",
 });
 
 foo.rels();

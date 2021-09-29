@@ -122,6 +122,9 @@
         "./biquad": {
             "import": "./biquad.js"
         },
+        "./bounce": {
+            "import": "./bounce.js"
+        },
         "./complex": {
             "import": "./complex.js"
         },
