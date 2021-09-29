@@ -1,15 +1,6 @@
 import { TrieMap } from "@thi.ng/associative/trie-map";
-import { implementsFunction } from "@thi.ng/checks/implements-function";
-import { isPlainObject } from "@thi.ng/checks/is-plain-object";
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
-import type { IToEGFConvert, Node, NodeRef, Prefixes } from "./api";
-
-export const isNode = (x: any): x is Node => isPlainObject(x) && "$id" in x;
-
-export const isRef = (x: any): x is NodeRef => isPlainObject(x) && "$ref" in x;
-
-export const isToEGF = (x: any): x is IToEGFConvert =>
-    implementsFunction(x, "toEGF");
+import type { Prefixes } from "./api";
 
 const RE_QFN = /^([a-z0-9-_$]*):([a-z0-9-_$.+]+)$/i;
 

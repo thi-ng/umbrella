@@ -72,6 +72,9 @@
         "./api": {
             "import": "./api.js"
         },
+        "./checks": {
+            "import": "./checks.js"
+        },
         "./convert": {
             "import": "./convert.js"
         },
@@ -81,11 +84,11 @@
         "./parser": {
             "import": "./parser.js"
         },
+        "./prefix": {
+            "import": "./prefix.js"
+        },
         "./tags": {
             "import": "./tags.js"
-        },
-        "./utils": {
-            "import": "./utils.js"
         }
     },
     "thi.ng": {

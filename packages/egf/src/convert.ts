@@ -7,7 +7,8 @@ import { isString } from "@thi.ng/checks/is-string";
 import { isTypedArray } from "@thi.ng/checks/is-typedarray";
 import { base64Encode } from "@thi.ng/transducers-binary/base64";
 import type { Node, Prefixes } from "./api";
-import { defPrefixer, isNode, isRef, isToEGF } from "./utils";
+import { isNode, isRef, isToEGF } from "./checks";
+import { defPrefixer } from "./prefix";
 
 export const toEGF = (
     nodes: Iterable<Node>,
