@@ -13,6 +13,7 @@ import {
 } from "../src";
 
 const ops = defmulti<ASTNode, ASTNode[], any, any>((x) => (<Sym>x).value);
+
 const rt = runtime<Implementations<any, any>, any, any>({
     expr: (x, env) => ops(x.children[0], x.children, env),
     sym: (x, env) => env[x.value],
@@ -32,7 +33,7 @@ ops.addAll({
     "*": op((acc, x) => acc * x),
     "-": op((acc, x) => acc - x),
     "/": op((acc, x) => acc / x),
-    count: (_, [__, x]) => rt(x).length,
+    count: (_, [__, x]) => rt(x, {}).length,
 });
 
 ops.setDefault((x, [_, ...args], env) => {
