@@ -73,17 +73,17 @@
         "./api": {
             "import": "./api.js"
         },
+        "./console": {
+            "import": "./console.js"
+        },
+        "./filter": {
+            "import": "./filter.js"
+        },
+        "./format": {
+            "import": "./format.js"
+        },
         "./logger": {
             "import": "./logger.js"
-        },
-        "./output/console": {
-            "import": "./output/console.js"
-        },
-        "./xform/filter": {
-            "import": "./xform/filter.js"
-        },
-        "./xform/format": {
-            "import": "./xform/format.js"
         }
     },
     "thi.ng": {
