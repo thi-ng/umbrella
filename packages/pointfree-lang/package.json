@@ -83,8 +83,14 @@
         "./api": {
             "import": "./api.js"
         },
+        "./logger": {
+            "import": "./logger.js"
+        },
         "./parser": {
             "import": "./parser.js"
+        },
+        "./runtime": {
+            "import": "./runtime.js"
         }
     },
     "thi.ng": {
