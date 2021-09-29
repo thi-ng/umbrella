@@ -93,9 +93,6 @@
         },
         "./vec-pool": {
             "import": "./vec-pool.js"
-        },
-        "./wrap": {
-            "import": "./wrap.js"
         }
     },
     "thi.ng": {
