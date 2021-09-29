@@ -1,5 +1,5 @@
 import { Lane } from "../api";
-import { luminanceABGR } from "../utils";
+import { luminanceABGR } from "../internal/utils";
 import { defPackedFormat } from "./packed-format";
 
 export const GRAY_ALPHA8 = defPackedFormat({

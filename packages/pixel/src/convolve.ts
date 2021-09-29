@@ -13,7 +13,7 @@ import type {
 } from "./api";
 import { FloatBuffer } from "./float";
 import { FLOAT_GRAY } from "./format/float-gray";
-import { asIntVec, ensureChannel, range } from "./utils";
+import { asIntVec, ensureChannel, range } from "./internal/utils";
 
 /**
  * Convolves a single channel from given `src` float buffer with provided

@@ -2,7 +2,7 @@ import type { NormalMapOpts } from "./api";
 import { convolveChannel } from "./convolve";
 import { FloatBuffer } from "./float";
 import { FLOAT_NORMAL } from "./format/float-norm";
-import { asVec, ensureChannel } from "./utils";
+import { asVec, ensureChannel } from "./internal/utils";
 
 /**
  * Computes normal map image (aka gradient in X & Y directions and a static Z

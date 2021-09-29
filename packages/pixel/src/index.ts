@@ -1,15 +1,12 @@
 export * from "./api";
 export * from "./canvas";
-export * from "./codegen";
 export * from "./convolve";
-export * from "./dither";
 export * from "./dominant-colors";
 export * from "./float";
 export * from "./normal-map";
 export * from "./packed";
 export * from "./pyramid";
 export * from "./sample";
-export * from "./utils";
 
 export * from "./format/packed-format";
 export * from "./format/abgr8888";

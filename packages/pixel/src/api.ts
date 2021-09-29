@@ -85,6 +85,10 @@ export interface PackedChannel {
      */
     size: number;
     /**
+     * Number of possible values in channel (i.e. `1 << size`)
+     */
+    num: number;
+    /**
      * Bit shift offset (in bits, not shifted value)
      */
     shift: number;
@@ -120,16 +124,6 @@ export interface PackedChannel {
      * Normalized float accessor
      */
     setFloat: ChannelSetter<number>;
-    /**
-     * Applies ordered dithering to given channel value.
-     */
-    dither: (
-        mat: BayerMatrix,
-        steps: number,
-        x: number,
-        y: number,
-        val: number
-    ) => number;
 }
 
 /**
@@ -351,14 +345,6 @@ export interface BlitOpts {
      * @defaultValue buffer height
      */
     h: number;
-}
-
-export type BayerSize = 1 | 2 | 4 | 8 | 16 | 32 | 64;
-
-export interface BayerMatrix {
-    mat: number[][];
-    invSize: number;
-    mask: number;
 }
 
 export type PoolTemplate = Fn3<string[], number, number, string>;

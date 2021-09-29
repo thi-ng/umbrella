@@ -20,9 +20,14 @@ import type {
 } from "./api";
 import { defFloatFormat } from "./format/float-format";
 import { FLOAT_GRAY } from "./format/float-gray";
+import {
+    clampRegion,
+    ensureChannel,
+    ensureSize,
+    prepRegions,
+} from "./internal/utils";
 import { PackedBuffer } from "./packed";
 import { defSampler } from "./sample";
-import { clampRegion, ensureChannel, ensureSize, prepRegions } from "./utils";
 
 /**
  * Syntax sugar for {@link FloatBuffer} ctor.

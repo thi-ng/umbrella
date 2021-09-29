@@ -26,7 +26,7 @@
     "scripts": {
         "build": "yarn clean && tsc --declaration",
         "build:check": "tsc --isolatedModules --noEmit",
-        "clean": "rimraf *.js *.d.ts *.map doc",
+        "clean": "rimraf *.js *.d.ts *.map doc format internal",
         "doc": "typedoc --excludePrivate --excludeInternal --out doc src/index.ts",
         "doc:ae": "mkdir -p .ae/doc .ae/temp && node_modules/.bin/api-extractor run --local --verbose",
         "doc:readme": "../../scripts/node-esm ../../tools/src/readme.ts",
@@ -100,14 +100,8 @@
         "./canvas": {
             "import": "./canvas.js"
         },
-        "./codegen": {
-            "import": "./codegen.js"
-        },
         "./convolve": {
             "import": "./convolve.js"
-        },
-        "./dither": {
-            "import": "./dither.js"
         },
         "./dominant-colors": {
             "import": "./dominant-colors.js"
@@ -189,9 +183,6 @@
         },
         "./sample": {
             "import": "./sample.js"
-        },
-        "./utils": {
-            "import": "./utils.js"
         }
     },
     "thi.ng": {

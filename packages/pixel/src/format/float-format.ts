@@ -1,7 +1,7 @@
 import type { Fn2, FnN2, IObjectOf, NumericArray } from "@thi.ng/api";
 import { clamp01 } from "@thi.ng/math/interval";
 import { FloatFormat, FloatFormatSpec, Lane } from "../api";
-import { luminanceABGR } from "../utils";
+import { luminanceABGR } from "../internal/utils";
 
 export const defFloatFormat = (fmt: FloatFormatSpec) => {
     const chan = fmt.channels;

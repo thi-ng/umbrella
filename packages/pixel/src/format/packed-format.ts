@@ -7,8 +7,7 @@ import type {
     PackedFormat,
     PackedFormatSpec,
 } from "../api";
-import { compileFromABGR, compileToABGR } from "../codegen";
-import { orderedDither } from "../dither";
+import { compileFromABGR, compileToABGR } from "../internal/codegen";
 
 const defChannel = (
     ch: PackedChannelSpec,
@@ -24,6 +23,7 @@ const defChannel = (
     const setInt: FnN2 = (src, x) => (src & invMask) | ((x & mask0) << shift);
     return {
         size: ch.size,
+        num,
         abgrShift: 24 - lane * 8 - shift,
         lane,
         shift,
@@ -33,8 +33,6 @@ const defChannel = (
         setInt,
         float: (x) => int(x) / mask0,
         setFloat: (src, x) => setInt(src, clamp01(x) * mask0),
-        dither: (mat, steps, x, y, val) =>
-            orderedDither(mat, steps, num, num, x, y, val),
     };
 };
 
