@@ -1,6 +1,6 @@
 import { rect } from "@thi.ng/geom/ctors/rect";
 import type { IGridLayout, LayoutBox } from "@thi.ng/layout";
-import { isLayout } from "@thi.ng/layout/is-layout";
+import { isLayout } from "@thi.ng/layout/checks";
 import { hash } from "@thi.ng/vectors/hash";
 import type { IMGUI } from "../gui";
 import { mixHash } from "../hash";

@@ -2,7 +2,7 @@ import type { Fn } from "@thi.ng/api";
 import { circle } from "@thi.ng/geom/ctors/circle";
 import { line } from "@thi.ng/geom/ctors/line";
 import type { IGridLayout, LayoutBox } from "@thi.ng/layout";
-import { isLayout } from "@thi.ng/layout/is-layout";
+import { isLayout } from "@thi.ng/layout/checks";
 import { HALF_PI, PI, TAU } from "@thi.ng/math/api";
 import { norm } from "@thi.ng/math/fit";
 import { cartesian2 } from "@thi.ng/vectors/cartesian";

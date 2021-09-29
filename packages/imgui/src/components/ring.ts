@@ -2,7 +2,7 @@ import type { Fn, FnN2 } from "@thi.ng/api";
 import { pointInRect } from "@thi.ng/geom-isec/point";
 import { polygon } from "@thi.ng/geom/ctors/polygon";
 import type { IGridLayout, LayoutBox } from "@thi.ng/layout";
-import { isLayout } from "@thi.ng/layout/is-layout";
+import { isLayout } from "@thi.ng/layout/checks";
 import { HALF_PI, PI, TAU } from "@thi.ng/math/api";
 import { fitClamped, norm } from "@thi.ng/math/fit";
 import { mix } from "@thi.ng/math/mix";

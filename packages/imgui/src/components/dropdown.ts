@@ -1,7 +1,7 @@
 import { polygon } from "@thi.ng/geom/ctors/polygon";
 import type { IGridLayout, LayoutBox } from "@thi.ng/layout";
+import { isLayout } from "@thi.ng/layout/checks";
 import { gridLayout } from "@thi.ng/layout/grid-layout";
-import { isLayout } from "@thi.ng/layout/is-layout";
 import { clamp0 } from "@thi.ng/math/interval";
 import { hash } from "@thi.ng/vectors/hash";
 import { Key } from "../api";
