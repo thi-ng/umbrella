@@ -187,9 +187,6 @@
         "./readers/string-reader": {
             "import": "./readers/string-reader.js"
         },
-        "./utils": {
-            "import": "./utils.js"
-        },
         "./xform/collect": {
             "import": "./xform/collect.js"
         },

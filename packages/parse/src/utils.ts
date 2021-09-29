@@ -1,3 +1,5 @@
+// thing:no-export
+
 const cache: string[] = [];
 
 /**

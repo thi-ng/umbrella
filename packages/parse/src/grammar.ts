@@ -1,5 +1,6 @@
 import type { Fn } from "@thi.ng/api";
-import { defmulti } from "@thi.ng/defmulti/defmulti";
+import type { MultiFn4 } from "@thi.ng/defmulti";
+import { DEFAULT, defmulti } from "@thi.ng/defmulti/defmulti";
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import { unsupported } from "@thi.ng/errors/unsupported";
 import type {
@@ -154,148 +155,152 @@ interface CompileFlags {
     discard?: boolean;
 }
 
-const compile = defmulti<
+const compile: MultiFn4<
     ParseScope<string>,
     Language,
     GrammarOpts,
     CompileFlags,
     any
->((scope) => scope.id, {
-    unicode: ["char"],
-});
-
-compile.addAll({
-    root: ($, lang, opts, flags) => {
-        const rules = first($).children!;
-        rules.reduce(
-            (acc, r) => ((acc[first(r).result] = dynamic()), acc),
-            lang.rules
-        );
-        for (let r of rules) {
-            const id = first(r).result;
-            (<DynamicParser<string>>lang.rules[id]).set(
-                compile(r, lang, opts, flags)
+> = defmulti<ParseScope<string>, Language, GrammarOpts, CompileFlags, any>(
+    (scope) => scope.id,
+    {
+        unicode: "char",
+    },
+    {
+        [DEFAULT]: ($) => unsupported(`unknown op: ${$.id}`),
+        root: ($, lang, opts, flags) => {
+            const rules = first($).children!;
+            rules.reduce(
+                (acc, r) => ((acc[first(r).result] = dynamic()), acc),
+                lang.rules
             );
-        }
-        return lang;
-    },
-    rule: ($, lang, opts, flags) => {
-        const [id, body, xf] = $.children!;
-        opts.debug && console.log(`rule: ${id.result}`, xf);
-        const acc: Parser<string>[] = [];
-        for (let b of body.children!) {
-            const c = compile(b, lang, opts, flags);
-            c && acc.push(c);
-        }
-        let parser =
-            acc.length > 1 ? seq(acc, id.result) : withID(id.result, acc[0]);
-        if (xf.id === "sym") {
-            const $xf = lang.env[xf.result];
-            if (!$xf) illegalArgs(`missing xform: ${xf.result}`);
-            parser = xform(parser, $xf);
-        } else if (xf.id === "ref") {
-            const $id = first(xf).result;
-            if ($id === id) illegalArgs(`self-referential: ${$id}`);
-            const $xf = lang.rules[$id];
-            if (!$xf) illegalArgs(`missing xform rule: ${$id}`);
-            parser = nest(parser, $xf);
-        } else if (xf.id === "string") {
-            parser = xform(parser, xfReplace(xf.result));
-        }
-        return parser;
-    },
-    ref: ($, lang, opts, flags) => {
-        const id = first($).result;
-        opts.debug && console.log(`ref: ${id}`, flags);
-        const ref = lang.rules[id];
-        return ref
-            ? flags.discard
-                ? discard(ref)
-                : ref
-            : illegalArgs(`invalid rule ref: ${id}`);
-    },
-    term: ($, lang, opts, flags) => {
-        const [term, repeat, discard, lookahead] = $!.children!;
-        opts.debug && console.log(`term: ${term.id}`, flags);
-        return compileRDL(
-            (discard) => compile(term, lang, opts, { ...flags, discard }),
-            repeat,
-            discard,
-            lookahead,
-            lang,
-            opts
-        );
-    },
-    lhterm: ($, lang, opts, flags) => {
-        const [term, repeat, discard] = $.children!;
-        opts.debug && console.log(`lhterm: ${term.id}`);
-        return compileRD(
-            (discard) => compile(term, lang, opts, { ...flags, discard }),
-            repeat,
-            discard,
-            opts
-        );
-    },
-    alt: ($, lang, opts, flags) => {
-        opts.debug && console.log(`alt: ${$.id}`, flags);
-        const [term0, { children: terms }, repeat, disc, lookahead] =
-            $.children!;
-        const acc: Parser<string>[] = [compile(term0, lang, opts, flags)];
-        if (terms) {
-            for (let c of terms) {
-                acc.push(compile(first(c), lang, opts, flags));
+            for (let r of rules) {
+                const id = first(r).result;
+                (<DynamicParser<string>>lang.rules[id]).set(
+                    compile(r, lang, opts, flags)
+                );
             }
-        }
-        return compileRDL(
-            (optimize) =>
-                optimize || flags.discard
-                    ? acc.length > 1
-                        ? altD(acc)
-                        : discard(acc[0])
-                    : acc.length > 1
-                    ? alt(acc)
-                    : acc[0],
-            repeat,
-            disc,
-            lookahead,
-            lang,
-            opts
-        );
-    },
-    any: (_, __, opts, flags) => {
-        opts.debug && console.log(`any`, flags);
-        return flags.discard ? alwaysD() : always("any");
-    },
-    char: ($, _, opts, flags) => {
-        const x = $.result;
-        opts.debug && console.log(`lit: '${x}'`, flags);
-        return (flags.discard ? litD : lit)(x);
-    },
-    string: ($, _, opts, flags) => {
-        const x = $.result;
-        opts.debug && console.log(`string: "${x}"`, flags);
-        return (flags.discard ? stringD : string)(x);
-    },
-    charRange: ($, _, opts, flags) => {
-        const [a, b] = $.children!;
-        opts.debug && console.log(`range: ${a.result} - ${b.result}`, flags);
-        return (flags.discard ? rangeD : range)(a.result, b.result);
-    },
-    charSel: ($, lang, opts, flags) => {
-        opts.debug && console.log("charSel", flags);
-        const choices = nth($, 1).children!.map((c) =>
-            compile(c, lang, opts, flags)
-        );
-        const invert = first($).result;
-        const parser = choices.length > 1 ? alt(choices) : choices[0];
-        opts.debug && console.log(`invert: ${invert}`);
-        return invert
-            ? not(parser, flags.discard ? alwaysD() : always())
-            : parser;
-    },
-});
-
-compile.setDefault(($) => unsupported(`unknown op: ${$.id}`));
+            return lang;
+        },
+        rule: ($, lang, opts, flags) => {
+            const [id, body, xf] = $.children!;
+            opts.debug && console.log(`rule: ${id.result}`, xf);
+            const acc: Parser<string>[] = [];
+            for (let b of body.children!) {
+                const c = compile(b, lang, opts, flags);
+                c && acc.push(c);
+            }
+            let parser =
+                acc.length > 1
+                    ? seq(acc, id.result)
+                    : withID(id.result, acc[0]);
+            if (xf.id === "sym") {
+                const $xf = lang.env[xf.result];
+                if (!$xf) illegalArgs(`missing xform: ${xf.result}`);
+                parser = xform(parser, $xf);
+            } else if (xf.id === "ref") {
+                const $id = first(xf).result;
+                if ($id === id) illegalArgs(`self-referential: ${$id}`);
+                const $xf = lang.rules[$id];
+                if (!$xf) illegalArgs(`missing xform rule: ${$id}`);
+                parser = nest(parser, $xf);
+            } else if (xf.id === "string") {
+                parser = xform(parser, xfReplace(xf.result));
+            }
+            return parser;
+        },
+        ref: ($, lang, opts, flags) => {
+            const id = first($).result;
+            opts.debug && console.log(`ref: ${id}`, flags);
+            const ref = lang.rules[id];
+            return ref
+                ? flags.discard
+                    ? discard(ref)
+                    : ref
+                : illegalArgs(`invalid rule ref: ${id}`);
+        },
+        term: ($, lang, opts, flags) => {
+            const [term, repeat, discard, lookahead] = $!.children!;
+            opts.debug && console.log(`term: ${term.id}`, flags);
+            return compileRDL(
+                (discard) => compile(term, lang, opts, { ...flags, discard }),
+                repeat,
+                discard,
+                lookahead,
+                lang,
+                opts
+            );
+        },
+        lhterm: ($, lang, opts, flags) => {
+            const [term, repeat, discard] = $.children!;
+            opts.debug && console.log(`lhterm: ${term.id}`);
+            return compileRD(
+                (discard) => compile(term, lang, opts, { ...flags, discard }),
+                repeat,
+                discard,
+                opts
+            );
+        },
+        alt: ($, lang, opts, flags) => {
+            opts.debug && console.log(`alt: ${$.id}`, flags);
+            const [term0, { children: terms }, repeat, disc, lookahead] =
+                $.children!;
+            const acc: Parser<string>[] = [compile(term0, lang, opts, flags)];
+            if (terms) {
+                for (let c of terms) {
+                    acc.push(compile(first(c), lang, opts, flags));
+                }
+            }
+            return compileRDL(
+                (optimize) =>
+                    optimize || flags.discard
+                        ? acc.length > 1
+                            ? altD(acc)
+                            : discard(acc[0])
+                        : acc.length > 1
+                        ? alt(acc)
+                        : acc[0],
+                repeat,
+                disc,
+                lookahead,
+                lang,
+                opts
+            );
+        },
+        any: (_, __, opts, flags) => {
+            opts.debug && console.log(`any`, flags);
+            return flags.discard ? alwaysD() : always("any");
+        },
+        char: ($, _, opts, flags) => {
+            const x = $.result;
+            opts.debug && console.log(`lit: '${x}'`, flags);
+            return (flags.discard ? litD : lit)(x);
+        },
+        string: ($, _, opts, flags) => {
+            const x = $.result;
+            opts.debug && console.log(`string: "${x}"`, flags);
+            return (flags.discard ? stringD : string)(x);
+        },
+        charRange: ($, _, opts, flags) => {
+            const [a, b] = $.children!;
+            opts.debug &&
+                console.log(`range: ${a.result} - ${b.result}`, flags);
+            return (flags.discard ? rangeD : range)(a.result, b.result);
+        },
+        charSel: ($, lang, opts, flags) => {
+            opts.debug && console.log("charSel", flags);
+            const choices = nth($, 1).children!.map((c) =>
+                compile(c, lang, opts, flags)
+            );
+            const invert = first($).result;
+            const parser = choices.length > 1 ? alt(choices) : choices[0];
+            opts.debug && console.log(`invert: ${invert}`);
+            return invert
+                ? not(parser, flags.discard ? alwaysD() : always())
+                : parser;
+        },
+    }
+);
 
 const compileRepeat = (
     parser: Parser<string>,
