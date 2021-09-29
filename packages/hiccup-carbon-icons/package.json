@@ -28,7 +28,7 @@
         "build:check": "tsc --isolatedModules --noEmit",
         "build:convert": "../../scripts/node-esm tools/convert-icons.ts",
         "build:sheet": "../../scripts/node-esm tools/contact-sheet.ts",
-        "clean": "rimraf *.js *.map *.d.ts doc utils",
+        "clean": "rimraf *.js *.map *.d.ts doc",
         "doc": "typedoc --excludePrivate --excludeInternal --out doc src/index.ts",
         "doc:ae": "mkdir -p .ae/doc .ae/temp && node_modules/.bin/api-extractor run --local --verbose",
         "doc:readme": "../../scripts/node-esm ../../tools/src/readme.ts",
@@ -3146,9 +3146,6 @@
         "./user": {
             "import": "./user.js"
         },
-        "./utils/with-size": {
-            "import": "./utils/with-size.js"
-        },
         "./uv-index-filled": {
             "import": "./uv-index-filled.js"
         },
@@ -3304,6 +3301,9 @@
         },
         "./wireless-checkout": {
             "import": "./wireless-checkout.js"
+        },
+        "./with-size": {
+            "import": "./with-size.js"
         },
         "./wmv": {
             "import": "./wmv.js"

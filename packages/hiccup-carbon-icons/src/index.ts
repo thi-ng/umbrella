@@ -1,4 +1,4 @@
-export * from "./utils/with-size";
+export * from "./with-size";
 export * from "./api-1";
 export * from "./cad";
 export * from "./cda";

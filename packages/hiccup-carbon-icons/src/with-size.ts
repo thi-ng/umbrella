@@ -1,5 +1,4 @@
-const ensureString = (x: number | string) =>
-    typeof x === "string" ? x : x + "px";
+const px = (x: number | string) => (typeof x === "string" ? x : x + "px");
 
 /**
  * Returns shallow copy of `icon` with `width` & `height` attribs set to given
@@ -20,8 +19,8 @@ export const withSize = (
     icon[0],
     {
         ...icon[1],
-        width: ensureString(width),
-        height: ensureString(height),
+        width: px(width),
+        height: px(height),
         ...attribs,
     },
     ...icon.slice(2),

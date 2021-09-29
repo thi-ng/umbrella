@@ -6,7 +6,7 @@ const CONVERT = `../../examples/xml-converter/bin/hiccup --var {0} --attribs "xm
 
 const [destDir, srcDir] = process.argv.slice(2);
 
-const files = ["utils/with-size"];
+const files = ["with-size"];
 
 for (let src of readdirSync(srcDir)) {
     if (statSync(`${srcDir}/${src}`).isDirectory() || !/^[a-z]/i.test(src))
