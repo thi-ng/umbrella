@@ -69,11 +69,11 @@
         "./box": {
             "import": "./box.js"
         },
+        "./checks": {
+            "import": "./checks.js"
+        },
         "./grid-layout": {
             "import": "./grid-layout.js"
-        },
-        "./is-layout": {
-            "import": "./is-layout.js"
         }
     },
     "thi.ng": {
