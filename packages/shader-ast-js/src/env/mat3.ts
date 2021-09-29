@@ -1,16 +1,14 @@
-import {
-    add33,
-    addN33,
-    div33,
-    divN33,
-    mul33,
-    mulM33,
-    mulN33,
-    mulV33,
-    mulVM33,
-    sub33,
-    subN33,
-} from "@thi.ng/matrices";
+import { add33 } from "@thi.ng/matrices/add";
+import { addN33 } from "@thi.ng/matrices/addn";
+import { div33 } from "@thi.ng/matrices/div";
+import { divN33 } from "@thi.ng/matrices/divn";
+import { mul33 } from "@thi.ng/matrices/mul";
+import { mulM33 } from "@thi.ng/matrices/mulm";
+import { mulN33 } from "@thi.ng/matrices/muln";
+import { mulV33 } from "@thi.ng/matrices/mulv";
+import { mulVM33 } from "@thi.ng/matrices/mulvm";
+import { sub33 } from "@thi.ng/matrices/sub";
+import { subN33 } from "@thi.ng/matrices/subn";
 import { neg } from "@thi.ng/vectors/neg";
 import { setS3 } from "@thi.ng/vectors/sets";
 import { vecOf } from "@thi.ng/vectors/vec-of";

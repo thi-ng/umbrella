@@ -1,16 +1,14 @@
-import {
-    add44,
-    addN44,
-    div44,
-    divN44,
-    mul44,
-    mulM44,
-    mulN44,
-    mulV44,
-    mulVM44,
-    sub44,
-    subN44,
-} from "@thi.ng/matrices";
+import { add44 } from "@thi.ng/matrices/add";
+import { addN44 } from "@thi.ng/matrices/addn";
+import { div44 } from "@thi.ng/matrices/div";
+import { divN44 } from "@thi.ng/matrices/divn";
+import { mul44 } from "@thi.ng/matrices/mul";
+import { mulM44 } from "@thi.ng/matrices/mulm";
+import { mulN44 } from "@thi.ng/matrices/muln";
+import { mulV44 } from "@thi.ng/matrices/mulv";
+import { mulVM44 } from "@thi.ng/matrices/mulvm";
+import { sub44 } from "@thi.ng/matrices/sub";
+import { subN44 } from "@thi.ng/matrices/subn";
 import { neg } from "@thi.ng/vectors/neg";
 import { setS4 } from "@thi.ng/vectors/sets";
 import { vecOf } from "@thi.ng/vectors/vec-of";

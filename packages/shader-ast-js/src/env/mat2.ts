@@ -1,16 +1,14 @@
-import {
-    add22,
-    addN22,
-    div22,
-    divN22,
-    mul22,
-    mulM22,
-    mulN22,
-    mulV22,
-    mulVM22,
-    sub22,
-    subN22,
-} from "@thi.ng/matrices";
+import { add22 } from "@thi.ng/matrices/add";
+import { addN22 } from "@thi.ng/matrices/addn";
+import { div22 } from "@thi.ng/matrices/div";
+import { divN22 } from "@thi.ng/matrices/divn";
+import { mul22 } from "@thi.ng/matrices/mul";
+import { mulM22 } from "@thi.ng/matrices/mulm";
+import { mulN22 } from "@thi.ng/matrices/muln";
+import { mulV22 } from "@thi.ng/matrices/mulv";
+import { mulVM22 } from "@thi.ng/matrices/mulvm";
+import { sub22 } from "@thi.ng/matrices/sub";
+import { subN22 } from "@thi.ng/matrices/subn";
 import { neg } from "@thi.ng/vectors/neg";
 import type { JSBuiltinsMat } from "../api";
 

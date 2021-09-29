@@ -1,13 +1,8 @@
-import {
-    clamp,
-    deg,
-    fract,
-    mix,
-    mod,
-    rad,
-    smoothStep,
-    step,
-} from "@thi.ng/math";
+import { deg, rad } from "@thi.ng/math/angle";
+import { clamp } from "@thi.ng/math/interval";
+import { mix } from "@thi.ng/math/mix";
+import { fract, mod } from "@thi.ng/math/prec";
+import { smoothStep, step } from "@thi.ng/math/step";
 import type { JSBuiltinsFloat } from "../api";
 
 export const FLOAT: JSBuiltinsFloat<number> = {
