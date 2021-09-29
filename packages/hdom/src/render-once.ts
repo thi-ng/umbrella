@@ -1,7 +1,7 @@
 import { derefContext } from "@thi.ng/hiccup/deref";
 import type { HDOMImplementation, HDOMOpts } from "./api";
 import { DEFAULT_IMPL } from "./default";
-import { resolveRoot } from "./utils";
+import { resolveRoot } from "./resolve";
 
 /**
  * One-off hdom tree conversion & target DOM application. Takes same

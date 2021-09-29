@@ -97,11 +97,11 @@
         "./render-once": {
             "import": "./render-once.js"
         },
+        "./resolve": {
+            "import": "./resolve.js"
+        },
         "./start": {
             "import": "./start.js"
-        },
-        "./utils": {
-            "import": "./utils.js"
         }
     },
     "thi.ng": {

@@ -5,6 +5,5 @@ export * from "./dom";
 export * from "./logger";
 export * from "./normalize";
 export * from "./render-once";
+export * from "./resolve";
 export * from "./start";
-
-export * from "./utils";
