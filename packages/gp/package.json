@@ -82,9 +82,6 @@
         },
         "./mep": {
             "import": "./mep.js"
-        },
-        "./utils": {
-            "import": "./utils.js"
         }
     },
     "thi.ng": {

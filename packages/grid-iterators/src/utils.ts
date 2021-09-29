@@ -1,3 +1,4 @@
+// thing:no-export
 /**
  * Swaps XY in-place.
  *

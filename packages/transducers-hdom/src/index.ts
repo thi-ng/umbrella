@@ -1,9 +1,6 @@
-import {
-    DEFAULT_IMPL,
-    HDOMImplementation,
-    HDOMOpts,
-    resolveRoot,
-} from "@thi.ng/hdom";
+import type { HDOMImplementation, HDOMOpts } from "@thi.ng/hdom";
+import { DEFAULT_IMPL } from "@thi.ng/hdom/default";
+import { resolveRoot } from "@thi.ng/hdom/resolve";
 import { derefContext } from "@thi.ng/hiccup/deref";
 import type { Transducer } from "@thi.ng/transducers";
 import { scan } from "@thi.ng/transducers/scan";

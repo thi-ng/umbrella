@@ -1,5 +1,4 @@
-import type { TestResult } from ".";
-import type { Test } from "./api";
+import type { Test, TestResult } from "./api";
 import { now, timeDiff } from "./utils";
 
 const TESTS: Test[] = [];

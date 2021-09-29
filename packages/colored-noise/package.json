@@ -86,9 +86,6 @@
         "./red": {
             "import": "./red.js"
         },
-        "./utils": {
-            "import": "./utils.js"
-        },
         "./violet": {
             "import": "./violet.js"
         },

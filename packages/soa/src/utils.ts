@@ -1,3 +1,4 @@
+// thing:no-export
 import type { SOAAttribSpec } from "./api";
 
 export const prepareSpec = (spec: Partial<SOAAttribSpec>) => {

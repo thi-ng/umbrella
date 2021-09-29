@@ -1,3 +1,4 @@
+// thing:no-export
 import type { Fn2 } from "@thi.ng/api";
 import { popCount as $popCount } from "@thi.ng/binary/count";
 import { B32 } from "@thi.ng/strings/radix";

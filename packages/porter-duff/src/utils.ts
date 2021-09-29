@@ -1,3 +1,4 @@
+// thing:no-export
 import type { Color, ReadonlyColor } from "./api";
 
 /** @internal */

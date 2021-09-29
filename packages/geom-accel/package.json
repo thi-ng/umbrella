@@ -101,9 +101,6 @@
         },
         "./spatial-grid3": {
             "import": "./spatial-grid3.js"
-        },
-        "./utils": {
-            "import": "./utils.js"
         }
     },
     "thi.ng": {

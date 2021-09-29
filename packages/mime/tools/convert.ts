@@ -95,7 +95,8 @@ for (let gid of Object.keys(dest).sort()) {
         .reduce((acc, id) => ((acc[id] = group[id]), acc), <any>{});
 }
 
-const body = `/**
+const body = `// thing:no-export
+/**
  * generated @ ${new Date().toISOString()} - DO NOT EDIT!
  *
  * @internal

@@ -104,9 +104,6 @@
         },
         "./sparse": {
             "import": "./sparse.js"
-        },
-        "./utils": {
-            "import": "./utils.js"
         }
     },
     "thi.ng": {

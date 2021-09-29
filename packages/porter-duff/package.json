@@ -72,9 +72,6 @@
         },
         "./premultiply": {
             "import": "./premultiply.js"
-        },
-        "./utils": {
-            "import": "./utils.js"
         }
     },
     "thi.ng": {

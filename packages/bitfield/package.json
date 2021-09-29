@@ -72,9 +72,6 @@
         },
         "./bitmatrix": {
             "import": "./bitmatrix.js"
-        },
-        "./util": {
-            "import": "./util.js"
         }
     },
     "thi.ng": {

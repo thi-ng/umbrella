@@ -1,3 +1,4 @@
+// thing:no-export
 import type { Pair } from "@thi.ng/api";
 import type { Edge, IGraph } from "./api";
 

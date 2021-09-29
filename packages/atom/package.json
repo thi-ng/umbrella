@@ -85,9 +85,6 @@
         "./history": {
             "import": "./history.js"
         },
-        "./idgen": {
-            "import": "./idgen.js"
-        },
         "./transacted": {
             "import": "./transacted.js"
         },

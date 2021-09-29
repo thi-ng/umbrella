@@ -1,4 +1,4 @@
-import { defmulti } from "@thi.ng/defmulti";
+import { DEFAULT, defmulti, MultiFn1 } from "@thi.ng/defmulti";
 import { group } from "@thi.ng/testament";
 import {
     comp,
@@ -87,29 +87,31 @@ group("sax", {
             );
 
         // define multiple dispatch function, based on element tag name
-        const parseElement = defmulti<ParseElement, any>((e) => e.tag);
+        const parseElement: MultiFn1<ParseElement, any> = defmulti<
+            ParseElement,
+            any
+        >(
+            (e) => e.tag,
+            {},
+            {
+                circle: (e) => [e.tag, numericAttribs(e, "cx", "cy", "r")],
 
-        // implementations
-        parseElement.add("circle", (e) => [
-            e.tag,
-            numericAttribs(e, "cx", "cy", "r"),
-        ]);
+                rect: (e) => [
+                    e.tag,
+                    numericAttribs(e, "x", "y", "width", "height"),
+                ],
 
-        parseElement.add("rect", (e) => [
-            e.tag,
-            numericAttribs(e, "x", "y", "width", "height"),
-        ]);
+                g: (e) => [e.tag, e.attribs, ...parsedChildren(e)],
 
-        parseElement.add("g", (e) => [e.tag, e.attribs, ...parsedChildren(e)]);
+                svg: (e) => [
+                    e.tag,
+                    numericAttribs(e, "width", "height"),
+                    ...parsedChildren(e),
+                ],
 
-        parseElement.add("svg", (e) => [
-            e.tag,
-            numericAttribs(e, "width", "height"),
-            ...parsedChildren(e),
-        ]);
-
-        // implementation for unhandled elements (just return undefined)
-        parseElement.setDefault(() => undefined);
+                [DEFAULT]: () => undefined,
+            }
+        );
 
         assert.deepStrictEqual(
             parseElement(<ParseElement>transduce(parse(), last(), svg)),

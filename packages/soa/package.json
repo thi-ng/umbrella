@@ -84,9 +84,6 @@
         },
         "./soa": {
             "import": "./soa.js"
-        },
-        "./utils": {
-            "import": "./utils.js"
         }
     },
     "thi.ng": {

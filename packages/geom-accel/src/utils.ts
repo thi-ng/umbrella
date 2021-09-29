@@ -1,3 +1,4 @@
+// thing:no-export
 import type { Fn, Fn3, Nullable, Pair } from "@thi.ng/api";
 
 /** @internal */

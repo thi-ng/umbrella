@@ -58,9 +58,6 @@
     "exports": {
         ".": {
             "import": "./index.js"
-        },
-        "./generated": {
-            "import": "./generated.js"
         }
     },
     "thi.ng": {

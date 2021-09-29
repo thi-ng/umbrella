@@ -110,9 +110,6 @@
         "./spiral": {
             "import": "./spiral.js"
         },
-        "./utils": {
-            "import": "./utils.js"
-        },
         "./zcurve": {
             "import": "./zcurve.js"
         },
