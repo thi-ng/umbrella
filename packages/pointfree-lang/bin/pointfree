@@ -1,7 +1,12 @@
-#!/bin/bash 
-DIR="$( cd "$( dirname "$0" )" &> /dev/null && pwd )"
-if [ "$(echo $DIR | grep '.nvm')" ]; then
-    DIR="$(dirname "$(readlink -f "$0")")"
-fi 
+#!/usr/bin/env bash
 
-/usr/bin/env node --experimental-specifier-resolution=node --loader ts-node/esm node_modules/@thi.ng/pointfree-lang/cli.js "$@"
+# https://stackoverflow.com/a/246128/294515
+SOURCE="${BASH_SOURCE[0]}"
+while [ -h "$SOURCE" ]; do
+  DIR="$( cd -P "$( dirname "$SOURCE" )" >/dev/null 2>&1 && pwd )"
+  SOURCE="$(readlink "$SOURCE")"
+  [[ $SOURCE != /* ]] && SOURCE="$DIR/$SOURCE"
+done
+DIR="$( cd -P "$( dirname "$SOURCE" )" >/dev/null 2>&1 && pwd )"
+
+/usr/bin/env node --no-warnings --experimental-specifier-resolution=node --loader ts-node/esm "$DIR/../cli.js" "$@"

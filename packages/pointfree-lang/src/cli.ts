@@ -25,7 +25,7 @@ const argOpts: Args<CLIOpts> = {
 };
 
 const result = parse(argOpts, process.argv);
-if (!result) showUsage();
+if (!result) process.exit(1);
 
 const { result: opts, rest } = result!;
 if (!(opts.exec || rest.length)) showUsage();
