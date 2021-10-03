@@ -2,7 +2,7 @@ import type { Fn } from "@thi.ng/api";
 import { assert } from "@thi.ng/errors/assert";
 import { clamp, clamp01 } from "@thi.ng/math/interval";
 import { ABGR8888 } from "@thi.ng/pixel/format/abgr8888";
-import { PackedBuffer } from "@thi.ng/pixel/packed";
+import { PackedBuffer, packedBufferFromCanvas } from "@thi.ng/pixel/packed";
 import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
 
 const rgba2bgra = (rgba: ReadonlyVec) =>
@@ -127,7 +127,7 @@ export const renderBuffer = (
  * @param canvas -
  */
 export const canvasRenderer = (canvas: HTMLCanvasElement) => {
-    const buf = PackedBuffer.fromCanvas(canvas);
+    const buf = packedBufferFromCanvas(canvas);
     return (
         fn: Fn<ReadonlyVec, Vec>,
         x = 0,
