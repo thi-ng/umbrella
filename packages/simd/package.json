@@ -33,14 +33,14 @@
         "doc:readme": "../../scripts/node-esm ../../tools/src/readme.ts",
         "doc:stats": "../../scripts/node-esm ../../tools/src/module-stats.ts",
         "pub": "yarn build:release && yarn publish --access public",
-        "test": "node --experimental-specifier-resolution=node --experimental-wasm-simd --loader ts-node/esm test/index.ts"
+        "test": "node --no-warnings --experimental-specifier-resolution=node --experimental-wasm-simd --loader ts-node/esm test/index.ts"
     },
     "dependencies": {
         "@thi.ng/transducers-binary": "^1.0.5"
     },
     "devDependencies": {
         "@thi.ng/testament": "^0.0.1",
-        "assemblyscript": "0.19.11"
+        "assemblyscript": "0.19.17"
     },
     "keywords": [
         "acceleration",

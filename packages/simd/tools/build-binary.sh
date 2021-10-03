@@ -1,7 +1,7 @@
 yarn asc assembly/index.ts -b simd.wasm -t simd.wat --optimize --enable simd --runtime stub --importMemory --memoryBase 0
 
 # apply binaryen optimizer
-wasm-opt simd.wasm -o opt.wasm -Oz
+wasm-opt simd.wasm -o opt.wasm -Oz --enable-simd
 
 # display as .wat text format
 wasm-dis opt.wasm -o opt.wat
