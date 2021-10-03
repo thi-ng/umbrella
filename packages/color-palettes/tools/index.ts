@@ -55,7 +55,7 @@ type ThemeStat = { id: string; sortKey: number; key: number; theme: string[] };
 const themeStats = transduce(
     map(([id, theme]) => {
         const lchTheme = THEMES[<keyof typeof THEMES>id].map((x) => lch(x));
-        const [minC, maxC] = transduce(pluck("c"), minMax(), lchTheme);
+        const [_, maxC] = transduce(pluck("c"), minMax(), lchTheme);
         // const meanC = transduce(pluck("c"), mean(), lchTheme);
         // const hue = transduce(pluck("h"), mean(), lchTheme);
         const median = <number>[...pluck("c", lchTheme)].sort()[3];
