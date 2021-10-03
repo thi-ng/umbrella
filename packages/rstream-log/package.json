@@ -62,9 +62,7 @@
     },
     "files": [
         "*.js",
-        "*.d.ts",
-        "output",
-        "xform"
+        "*.d.ts"
     ],
     "exports": {
         ".": {

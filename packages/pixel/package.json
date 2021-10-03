@@ -88,7 +88,8 @@
     "files": [
         "*.js",
         "*.d.ts",
-        "format"
+        "format",
+        "internal"
     ],
     "exports": {
         ".": {

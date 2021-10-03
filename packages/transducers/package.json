@@ -89,11 +89,7 @@
     "files": [
         "*.js",
         "*.d.ts",
-        "func",
-        "internal",
-        "iter",
-        "rfn",
-        "xform"
+        "internal"
     ],
     "exports": {
         ".": {

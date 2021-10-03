@@ -35,7 +35,6 @@
         "test": "testament test"
     },
     "dependencies": {
-        "@thi.ng/api": "^7.2.0",
         "@thi.ng/checks": "^2.9.11",
         "@thi.ng/math": "^4.0.6",
         "@thi.ng/pixel": "^1.0.5"
