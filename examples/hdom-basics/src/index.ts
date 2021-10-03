@@ -1,4 +1,4 @@
-import { start } from "@thi.ng/hdom";
+import { start } from "@thi.ng/hdom/start";
 
 // stateless component w/ params
 // the first arg is an auto-injected context object

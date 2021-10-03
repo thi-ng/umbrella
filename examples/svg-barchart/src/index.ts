@@ -1,6 +1,8 @@
-import { clearDOM, renderOnce } from "@thi.ng/hdom";
-import { fit } from "@thi.ng/math";
-import { map, mapcat, range } from "@thi.ng/transducers";
+import { renderOnce } from "@thi.ng/hdom/render-once";
+import { fit } from "@thi.ng/math/fit";
+import { map } from "@thi.ng/transducers/map";
+import { mapcat } from "@thi.ng/transducers/mapcat";
+import { range } from "@thi.ng/transducers/range";
 
 // iterator of range mapped tuples: `[mapped, orig]`
 const mappedRange = (
@@ -29,12 +31,16 @@ const tick = (
 ) => [line(x1, y1, x2, y2), ["text", { x: tx, y: ty, stroke: "none" }, label]];
 
 // mapping fn for x-axis ticks
-const tickX = (y: number) => ([x, n]: any) =>
-    tick(x, y, x, y + 10, x, y + 20, n);
+const tickX =
+    (y: number) =>
+    ([x, n]: any) =>
+        tick(x, y, x, y + 10, x, y + 20, n);
 
 // mapping fn for y-axis ticks
-const tickY = (x: number) => ([y, n]: any) =>
-    tick(x - 10, y, x, y, x - 15, y, n);
+const tickY =
+    (x: number) =>
+    ([y, n]: any) =>
+        tick(x - 10, y, x, y, x - 15, y, n);
 
 // x-axis with ticks as SVG group
 const axisX = ({ axis: a, domain: d, range: r }: any) => [
@@ -53,21 +59,20 @@ const axisY = ({ axis: a, domain: d, range: r }: any) => [
 ];
 
 // mapping fn to create a single bar from `[domainPos, value]`
-const bar = (
-    { domain: xd, range: xr }: any,
-    { domain: yd, range: yr }: any
-) => ([xx, yy]: number[]) => {
-    const y = fit(yy, yd[0], yd[1], yr[0], yr[1]);
-    return [
-        "rect",
-        {
-            x: fit(xx, xd[0], xd[1], xr[0], xr[1]) - 5,
-            y,
-            width: 10,
-            height: yr[0] - y,
-        },
-    ];
-};
+const bar =
+    ({ domain: xd, range: xr }: any, { domain: yd, range: yr }: any) =>
+    ([xx, yy]: number[]) => {
+        const y = fit(yy, yd[0], yd[1], yr[0], yr[1]);
+        return [
+            "rect",
+            {
+                x: fit(xx, xd[0], xd[1], xr[0], xr[1]) - 5,
+                y,
+                width: 10,
+                height: yr[0] - y,
+            },
+        ];
+    };
 
 // complete bar chart component
 const barChart = (_: any, opts: any, values: any) => [

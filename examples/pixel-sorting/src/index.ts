@@ -14,7 +14,7 @@ import {
 import { h1 } from "@thi.ng/hiccup-html/sections";
 import { closedOpen, intersection } from "@thi.ng/intervals";
 import { ABGR8888 } from "@thi.ng/pixel/format/abgr8888";
-import { PackedBuffer } from "@thi.ng/pixel/packed";
+import { PackedBuffer, packedBufferFromImage } from "@thi.ng/pixel/packed";
 import { SYSTEM } from "@thi.ng/random/system";
 import type { NumOrElement } from "@thi.ng/rdom";
 import { $compile } from "@thi.ng/rdom/compile";
@@ -84,7 +84,7 @@ const pixelSortBuffer = (
 };
 
 const processImage = (img: HTMLImageElement, opts: ProcessParams) =>
-    timed(() => pixelSortBuffer(PackedBuffer.fromImage(img, ABGR8888), opts));
+    timed(() => pixelSortBuffer(packedBufferFromImage(img, ABGR8888), opts));
 
 // stream of input files
 const file = stream<File>();

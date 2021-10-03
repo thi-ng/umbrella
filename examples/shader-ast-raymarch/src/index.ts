@@ -28,13 +28,11 @@ import { program } from "@thi.ng/shader-ast/ast/scope";
 import { $x, $xy, $xyz } from "@thi.ng/shader-ast/ast/swizzle";
 import { sym } from "@thi.ng/shader-ast/ast/sym";
 import { mix } from "@thi.ng/shader-ast/builtin/math";
-import {
-    compileModel,
-    defQuadModel,
-    defShader,
-    draw,
-    GLVec3,
-} from "@thi.ng/webgl";
+import type { GLVec3 } from "@thi.ng/webgl";
+import { compileModel } from "@thi.ng/webgl/buffer";
+import { draw } from "@thi.ng/webgl/draw";
+import { defQuadModel } from "@thi.ng/webgl/geo/quad";
+import { defShader } from "@thi.ng/webgl/shader";
 
 // set URL hash to "#2d" to enable JS Canvas2D version
 const JS_MODE = location.hash.indexOf("2d") >= 0;

@@ -1,4 +1,5 @@
-import { convolveChannel, FloatBuffer, POOL_THRESHOLD } from "@thi.ng/pixel";
+import type { FloatBuffer } from "@thi.ng/pixel";
+import { convolveChannel, POOL_THRESHOLD } from "@thi.ng/pixel/convolve";
 
 /**
  * Adaptive threshold computation: uses `convolveChannel` with a custom pooling

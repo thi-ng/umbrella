@@ -1,4 +1,6 @@
-import { DEFAULT_IMPL, normalizeTree, replaceChild } from "@thi.ng/hdom";
+import { DEFAULT_IMPL } from "@thi.ng/hdom/default";
+import { replaceChild } from "@thi.ng/hdom/dom";
+import { normalizeTree } from "@thi.ng/hdom/normalize";
 import { memoize1 } from "@thi.ng/memoize/memoize1";
 import { fromInterval } from "@thi.ng/rstream/interval";
 import { sync } from "@thi.ng/rstream/sync";

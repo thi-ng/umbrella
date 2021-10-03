@@ -1,4 +1,5 @@
-import { ILifecycle, start } from "@thi.ng/hdom";
+import type { ILifecycle } from "@thi.ng/hdom";
+import { start } from "@thi.ng/hdom/start";
 
 interface Counter extends ILifecycle {
     id: number;

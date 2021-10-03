@@ -1,27 +1,34 @@
-import { withoutKeysObj } from "@thi.ng/associative";
-import { cosineGradient, COSINE_GRADIENTS } from "@thi.ng/color";
-import { threadLast } from "@thi.ng/compose";
-import { DAY, quarters } from "@thi.ng/date";
-import { serialize } from "@thi.ng/hiccup";
-import { defs, group, line, rect, svg, text } from "@thi.ng/hiccup-svg";
-import { fit } from "@thi.ng/math";
-import { Z2 } from "@thi.ng/strings";
+import { withoutKeysObj } from "@thi.ng/associative/without-keys";
 import {
-    add,
-    comp,
-    filter,
-    groupByObj,
-    keep,
-    map,
-    mapcat,
-    mapIndexed,
-    max,
-    partition,
-    pushSort,
-    sortedKeys,
-    transduce,
-    vals,
-} from "@thi.ng/transducers";
+    cosineGradient,
+    COSINE_GRADIENTS,
+} from "@thi.ng/color/ops/cosine-gradients";
+import { threadLast } from "@thi.ng/compose/thread-last";
+import { DAY } from "@thi.ng/date/api";
+import { quarters } from "@thi.ng/date/iterators";
+import { defs } from "@thi.ng/hiccup-svg/defs";
+import { group } from "@thi.ng/hiccup-svg/group";
+import { line } from "@thi.ng/hiccup-svg/line";
+import { rect } from "@thi.ng/hiccup-svg/rect";
+import { svg } from "@thi.ng/hiccup-svg/svg";
+import { text } from "@thi.ng/hiccup-svg/text";
+import { serialize } from "@thi.ng/hiccup/serialize";
+import { fit } from "@thi.ng/math/fit";
+import { Z2 } from "@thi.ng/strings/pad-left";
+import { add } from "@thi.ng/transducers/add";
+import { comp } from "@thi.ng/transducers/comp";
+import { filter } from "@thi.ng/transducers/filter";
+import { groupByObj } from "@thi.ng/transducers/group-by-obj";
+import { keep } from "@thi.ng/transducers/keep";
+import { map } from "@thi.ng/transducers/map";
+import { mapIndexed } from "@thi.ng/transducers/map-indexed";
+import { mapcat } from "@thi.ng/transducers/mapcat";
+import { max } from "@thi.ng/transducers/max";
+import { partition } from "@thi.ng/transducers/partition";
+import { pushSort } from "@thi.ng/transducers/push-sort";
+import { sortedKeys } from "@thi.ng/transducers/sorted-keys";
+import { transduce } from "@thi.ng/transducers/transduce";
+import { vals } from "@thi.ng/transducers/vals";
 import { execSync } from "child_process";
 import * as fs from "fs";
 import { resolve } from "path";

@@ -1,18 +1,18 @@
-import { Atom } from "@thi.ng/atom";
-import { start } from "@thi.ng/hdom";
+import { defAtom } from "@thi.ng/atom/atom";
+import { start } from "@thi.ng/hdom/start";
 import {
     dispatchNow,
     EventBus,
     FX_STATE,
     valueUpdater,
 } from "@thi.ng/interceptors";
-import { choices } from "@thi.ng/transducers";
+import { choices } from "@thi.ng/transducers/choices";
 
 // infinite iterator of random color choices
 const colors = choices(["cyan", "yellow", "magenta", "chartreuse"]);
 
 // central app state (initially empty)
-const db = new Atom({});
+const db = defAtom({});
 
 // event bus w/ handlers
 // see @thi.ng/interceptors for more details

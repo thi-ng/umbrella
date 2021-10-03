@@ -1,4 +1,5 @@
-import { map, mapcat } from "@thi.ng/transducers";
+import { map } from "@thi.ng/transducers/map";
+import { mapcat } from "@thi.ng/transducers/mapcat";
 import type { AppContext } from "../api";
 
 const thead = (ctx: AppContext, head: Iterable<any>) => [

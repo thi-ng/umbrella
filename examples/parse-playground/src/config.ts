@@ -8,27 +8,13 @@ export const SRC_URL = REPO_URL + "examples/parse-playground";
 
 export const CODE_TEMPLATES: IObjectOf<CodeTemplate> = {
     js: {
-        name: "JavaScript (CommonJS)",
-        ext: "js",
-        code: `// downloaded from {0} @ {1}
-const { defContext, defGrammar } = require("@thi.ng/parse");
-
-const lang = defGrammar(\`\n{2}\n\`);
-
-module.exports = {
-    lang,
-    parse: (src, opts) => {
-        const ctx = defContext(src, opts);
-        return { result: lang.rules.{3}(ctx), ctx };
-    }
-};`,
-    },
-
-    esm: {
         name: "JavaScript (ESM)",
         ext: "js",
-        code: `// downloaded from {0} @ {1}
-import { defContext, defGrammar } from "@thi.ng/parse";
+        code: `// Downloaded @ {1}
+// Source: {0}
+
+import { defContext } from "@thi.ng/parse/context";
+import { defGrammar } from "@thi.ng/parse/grammar";
 
 export const lang = defGrammar(\`\n{2}\n\`);
 
@@ -41,8 +27,12 @@ export const parse = (src, opts) => {
     ts: {
         name: "TypeScript",
         ext: "ts",
-        code: `// downloaded from {0} @ {1}
-import { ContextOpts, defContext, defGrammar } from "@thi.ng/parse";
+        code: `// Downloaded @ {1}
+// Source: {0}
+
+import type { ContextOpts } from "@thi.ng/parse";
+import { defContext } from "@thi.ng/parse/context";
+import { defGrammar } from "@thi.ng/parse/grammar";
 
 export const lang = defGrammar(\`\n{2}\n\`);
 
@@ -81,8 +71,7 @@ export const EDITOR_OPTS: Partial<EditorOpts> = {
     editor: { attribs: { class: PANEL_CLASSES + " editor", rows: 16 } },
     cursor: {
         attribs: {
-            class:
-                "absolute top-0 right-0 z1 pa2 br3 br--left br--bottom bg-light-gray gray tr f7",
+            class: "absolute top-0 right-0 z1 pa2 br3 br--left br--bottom bg-light-gray gray tr f7",
         },
     },
 };

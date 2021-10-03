@@ -1,7 +1,9 @@
 import type { Fn, IObjectOf } from "@thi.ng/api";
-import { defAtom, defCursor, defView } from "@thi.ng/atom";
 import type { IAtom } from "@thi.ng/atom";
-import { start } from "@thi.ng/hdom";
+import { defAtom } from "@thi.ng/atom/atom";
+import { defCursor } from "@thi.ng/atom/cursor";
+import { defView } from "@thi.ng/atom/view";
+import { start } from "@thi.ng/hdom/start";
 
 type CardFn = (state: IAtom<any>) => any;
 

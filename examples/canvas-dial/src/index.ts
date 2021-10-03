@@ -1,8 +1,9 @@
 import { reactive } from "@thi.ng/rstream/stream";
 import { sync } from "@thi.ng/rstream/sync";
-import { percent } from "@thi.ng/strings";
-import { comp, map } from "@thi.ng/transducers";
+import { percent } from "@thi.ng/strings/percent";
 import { updateDOM } from "@thi.ng/transducers-hdom";
+import { comp } from "@thi.ng/transducers/comp";
+import { map } from "@thi.ng/transducers/map";
 import { dial } from "./dial";
 
 // hdom context & app state object

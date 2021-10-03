@@ -1,6 +1,6 @@
-import { getInUnsafe } from "@thi.ng/paths";
 import type { Path } from "@thi.ng/api";
 import type { IView } from "@thi.ng/atom";
+import { getInUnsafe } from "@thi.ng/paths/get-in";
 
 export interface InputArgs {
     state: IView<any>;

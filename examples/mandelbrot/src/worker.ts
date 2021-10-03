@@ -1,4 +1,4 @@
-import { fit01 } from "@thi.ng/math";
+import { fit01 } from "@thi.ng/math/fit";
 import { GRADIENTS } from "./gradient";
 
 // host message listener & responder

@@ -1,4 +1,4 @@
-import { title } from "@thi.ng/hdom-components";
+import { title } from "@thi.ng/hdom-components/title";
 
 const h1 = title({ subAttribs: { class: "moon-gray" } });
 

@@ -1,21 +1,16 @@
-import { mergeDeepObj } from "@thi.ng/associative";
-import {
-    $x,
-    $xyz,
-    assign,
-    defMain,
-    mul,
-    sub,
-    texture,
-    vec4,
-} from "@thi.ng/shader-ast";
-import { clamp01 } from "@thi.ng/shader-ast-stdlib";
+import { mergeDeepObj } from "@thi.ng/associative/merge-deep";
+import { clamp01 } from "@thi.ng/shader-ast-stdlib/math/clamp";
+import { assign } from "@thi.ng/shader-ast/ast/assign";
+import { defMain } from "@thi.ng/shader-ast/ast/function";
+import { vec4 } from "@thi.ng/shader-ast/ast/lit";
+import { mul, sub } from "@thi.ng/shader-ast/ast/ops";
+import { $x, $xyz } from "@thi.ng/shader-ast/ast/swizzle";
+import { texture } from "@thi.ng/shader-ast/builtin/texture";
+import type { ShaderFn, ShaderSpec } from "@thi.ng/webgl";
 import {
     FX_SHADER_SPEC,
     FX_SHADER_SPEC_UV,
-    ShaderFn,
-    ShaderSpec,
-} from "@thi.ng/webgl";
+} from "@thi.ng/webgl/shaders/pipeline";
 
 export const LIGHT_SHADER: ShaderSpec = {
     vs: `void main() {

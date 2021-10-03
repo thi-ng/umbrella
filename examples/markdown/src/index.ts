@@ -1,5 +1,6 @@
 import { timedResult } from "@thi.ng/bench/timed";
-import { parse, TagFactories } from "@thi.ng/hiccup-markdown";
+import type { TagFactories } from "@thi.ng/hiccup-markdown";
+import { parse } from "@thi.ng/hiccup-markdown/parse";
 import { reactive, Stream } from "@thi.ng/rstream/stream";
 import { updateDOM } from "@thi.ng/transducers-hdom";
 import { iterator } from "@thi.ng/transducers/iterator";

@@ -1,6 +1,6 @@
-import { peek } from "@thi.ng/arrays";
+import { peek } from "@thi.ng/arrays/peek";
 import type { IRamp } from "@thi.ng/ramp";
-import { map } from "@thi.ng/transducers";
+import { map } from "@thi.ng/transducers/map";
 
 const tick = (x: number) => [
     "polygon",

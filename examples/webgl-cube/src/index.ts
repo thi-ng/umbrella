@@ -1,24 +1,18 @@
-import { start } from "@thi.ng/hdom";
-import { canvasWebGL } from "@thi.ng/hdom-components";
-import {
-    concat,
-    lookAt,
-    perspective,
-    rotationX44,
-    rotationY44,
-} from "@thi.ng/matrices";
-import { SOA } from "@thi.ng/soa";
-import { permutations, repeat } from "@thi.ng/transducers";
-import { normalize } from "@thi.ng/vectors";
-import {
-    compileModel,
-    defShader,
-    draw,
-    GLMat4,
-    GLVec3,
-    LAMBERT,
-    ModelSpec,
-} from "@thi.ng/webgl";
+import { canvasWebGL } from "@thi.ng/hdom-components/canvas";
+import { start } from "@thi.ng/hdom/start";
+import { concat } from "@thi.ng/matrices/concat";
+import { lookAt } from "@thi.ng/matrices/lookat";
+import { perspective } from "@thi.ng/matrices/perspective";
+import { rotationX44, rotationY44 } from "@thi.ng/matrices/rotation";
+import { SOA } from "@thi.ng/soa/soa";
+import { permutations } from "@thi.ng/transducers/permutations";
+import { repeat } from "@thi.ng/transducers/repeat";
+import { normalize } from "@thi.ng/vectors/normalize";
+import type { GLMat4, GLVec3, ModelSpec } from "@thi.ng/webgl";
+import { compileModel } from "@thi.ng/webgl/buffer";
+import { draw } from "@thi.ng/webgl/draw";
+import { defShader } from "@thi.ng/webgl/shader";
+import { LAMBERT } from "@thi.ng/webgl/shaders/lambert";
 
 const cube = (): Partial<ModelSpec> => {
     const soa = new SOA(36, {

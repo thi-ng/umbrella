@@ -1,6 +1,8 @@
 import type { Fn } from "@thi.ng/api";
-import { setIn } from "@thi.ng/paths";
-import { floatBuffer, FLOAT_GRAY, PackedBuffer } from "@thi.ng/pixel";
+import { setIn } from "@thi.ng/paths/set-in";
+import { floatBuffer } from "@thi.ng/pixel/float";
+import { FLOAT_GRAY } from "@thi.ng/pixel/format/float-gray";
+import { packedBufferFromImage } from "@thi.ng/pixel/packed";
 import type { ISubscriber } from "@thi.ng/rstream";
 import { pubsub } from "@thi.ng/rstream/pubsub";
 import { stream } from "@thi.ng/rstream/stream";
@@ -83,7 +85,7 @@ defHandler(SET_IMAGE, ([_, file]) => {
             setIn(
                 state.deref()!,
                 ["srcImg"],
-                floatBuffer(PackedBuffer.fromImage(img), FLOAT_GRAY)
+                floatBuffer(packedBufferFromImage(img), FLOAT_GRAY)
             )
         );
         dispatch([UPDATE_IMAGE]);

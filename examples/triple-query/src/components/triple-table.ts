@@ -1,4 +1,4 @@
-import { pager } from "@thi.ng/hdom-components";
+import { pager } from "@thi.ng/hdom-components/pager";
 import type { AppContext } from "../api";
 import { SET_PAGE, SET_SORT } from "../events";
 import { PAGE_LEN } from "../handlers";

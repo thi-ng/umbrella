@@ -1,5 +1,6 @@
-import { setIn, updateIn } from "@thi.ng/paths";
-import { Z3 } from "@thi.ng/strings";
+import { setIn } from "@thi.ng/paths/set-in";
+import { updateIn } from "@thi.ng/paths/update-in";
+import { Z3 } from "@thi.ng/strings/pad-left";
 import { DEC, DEFER, INC, RANDOM } from "./api";
 import { mount } from "./elm";
 

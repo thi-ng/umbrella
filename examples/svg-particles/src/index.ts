@@ -1,6 +1,6 @@
-import { start } from "@thi.ng/hdom";
-import { U24 } from "@thi.ng/strings";
-import { repeatedly } from "@thi.ng/transducers";
+import { start } from "@thi.ng/hdom/start";
+import { U24 } from "@thi.ng/strings/radix";
+import { repeatedly } from "@thi.ng/transducers/repeatedly";
 
 const width = window.innerWidth;
 const height = window.innerHeight;

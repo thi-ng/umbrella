@@ -1,7 +1,10 @@
 import type { Fn, IObjectOf } from "@thi.ng/api";
-import { Atom, Cursor, defViewUnsafe, History } from "@thi.ng/atom";
-import { isArray } from "@thi.ng/checks";
-import { start } from "@thi.ng/hdom";
+import { Atom, defAtom } from "@thi.ng/atom/atom";
+import { defCursorUnsafe } from "@thi.ng/atom/cursor";
+import { defHistory, History } from "@thi.ng/atom/history";
+import { defViewUnsafe } from "@thi.ng/atom/view";
+import { isArray } from "@thi.ng/checks/is-array";
+import { start } from "@thi.ng/hdom/start";
 import { EventBus } from "@thi.ng/interceptors";
 import type { AppConfig, AppContext, AppViews, ViewSpec } from "./api";
 import { initDataflow } from "./dataflow";
@@ -23,14 +26,14 @@ export class App {
 
     constructor(config: AppConfig) {
         this.config = config;
-        this.state = new Atom(config.initialState || {});
+        this.state = defAtom(config.initialState || {});
         // note: the undo history only records the `PARAM_BASE` branch
         // in the app state atom. this is so we don't include the generated
         // SVG in the history and therefore save a lot of RAM
         // furthermore, the param changes trigger updates in the dataflow graph
         // (see `init()` method below) and will regenerate the SVG anyway
-        this.history = new History<any>(
-            new Cursor<any>(this.state, PARAM_BASE),
+        this.history = defHistory<any>(
+            defCursorUnsafe(this.state, PARAM_BASE),
             1000
         );
         // define context object passed to all UI component functions

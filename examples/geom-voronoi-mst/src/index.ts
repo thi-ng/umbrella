@@ -16,7 +16,7 @@ import { canvas } from "@thi.ng/hdom-canvas";
 import { clearDOM } from "@thi.ng/hdom/dom";
 import { renderOnce } from "@thi.ng/hdom/render-once";
 import { fit } from "@thi.ng/math/fit";
-import { samplePoisson } from "@thi.ng/poisson";
+import { samplePoisson } from "@thi.ng/poisson/poisson";
 import { comp } from "@thi.ng/transducers/comp";
 import { map } from "@thi.ng/transducers/map";
 import { mapIndexed } from "@thi.ng/transducers/map-indexed";

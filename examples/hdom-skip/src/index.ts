@@ -1,4 +1,4 @@
-import { start } from "@thi.ng/hdom";
+import { start } from "@thi.ng/hdom/start";
 
 const timer = (period: number, name = `${period}ms`) => {
     return <any>{
@@ -45,8 +45,7 @@ const app = <any>{
             [
                 "a.db.mt3.link",
                 {
-                    href:
-                        "https://github.com/thi-ng/umbrella/tree/develop/examples/hdom-skip",
+                    href: "https://github.com/thi-ng/umbrella/tree/develop/examples/hdom-skip",
                 },
                 "Source code",
             ],

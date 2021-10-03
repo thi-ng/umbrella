@@ -1,14 +1,12 @@
-import {
-    assocObj,
-    comp,
-    filter,
-    iterator,
-    map,
-    mapcat,
-    partitionBy,
-    transduce,
-    zip,
-} from "@thi.ng/transducers";
+import { assocObj } from "@thi.ng/transducers/assoc-obj";
+import { comp } from "@thi.ng/transducers/comp";
+import { filter } from "@thi.ng/transducers/filter";
+import { iterator } from "@thi.ng/transducers/iterator";
+import { map } from "@thi.ng/transducers/map";
+import { mapcat } from "@thi.ng/transducers/mapcat";
+import { partitionBy } from "@thi.ng/transducers/partition-by";
+import { transduce } from "@thi.ng/transducers/transduce";
+import { zip } from "@thi.ng/transducers/zip";
 import { execSync } from "child_process";
 import { resolve } from "path";
 import type { Commit } from "../common/api";

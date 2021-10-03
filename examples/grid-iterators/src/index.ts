@@ -1,4 +1,5 @@
-import { hueRgb, srgbCss } from "@thi.ng/color";
+import { hueRgb } from "@thi.ng/color/rgb/hue-rgb";
+import { srgbCss } from "@thi.ng/color/srgb/srgb-css";
 import {
     diagonal2d,
     hilbert2d,
@@ -11,8 +12,9 @@ import {
     zigzagDiagonal2d,
     zigzagRows2d,
 } from "@thi.ng/grid-iterators";
-import { createElement } from "@thi.ng/hdom";
-import { concat, cycle } from "@thi.ng/transducers";
+import { createElement } from "@thi.ng/hdom/dom";
+import { concat } from "@thi.ng/transducers/concat";
+import { cycle } from "@thi.ng/transducers/cycle";
 
 const W = 256;
 const H = 256;

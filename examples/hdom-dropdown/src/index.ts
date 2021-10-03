@@ -1,10 +1,10 @@
-import { Atom } from "@thi.ng/atom";
-import { start } from "@thi.ng/hdom";
+import { defAtom } from "@thi.ng/atom/atom";
+import { start } from "@thi.ng/hdom/start";
 import { EventBus, trace } from "@thi.ng/interceptors";
 import { state, theme } from "./config";
 import { dropdown, dropdownListeners } from "./dropdown";
 
-const bus = new EventBus(new Atom(state));
+const bus = new EventBus(defAtom(state));
 bus.instrumentWith([trace]);
 
 const dd = dropdown("theme.dd");

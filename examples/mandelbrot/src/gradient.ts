@@ -1,13 +1,12 @@
-import { partial } from "@thi.ng/compose";
-import { clamp01, TAU } from "@thi.ng/math";
-import {
-    comp,
-    map,
-    normRange,
-    push,
-    transduce,
-    zip,
-} from "@thi.ng/transducers";
+import { partial } from "@thi.ng/compose/partial";
+import { TAU } from "@thi.ng/math/api";
+import { clamp01 } from "@thi.ng/math/interval";
+import { comp } from "@thi.ng/transducers/comp";
+import { map } from "@thi.ng/transducers/map";
+import { normRange } from "@thi.ng/transducers/norm-range";
+import { push } from "@thi.ng/transducers/push";
+import { transduce } from "@thi.ng/transducers/transduce";
+import { zip } from "@thi.ng/transducers/zip";
 
 // see http://dev.thi.ng/gradients/
 

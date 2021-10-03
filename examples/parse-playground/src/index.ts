@@ -2,7 +2,7 @@ import type { Nullable } from "@thi.ng/api";
 import { timedResult } from "@thi.ng/bench/timed";
 import { downloadWithMime } from "@thi.ng/dl-asset/raw";
 import { DOWNLOAD } from "@thi.ng/hiccup-carbon-icons/download";
-import { withSize } from "@thi.ng/hiccup-carbon-icons/utils/with-size";
+import { withSize } from "@thi.ng/hiccup-carbon-icons/with-size";
 import { div } from "@thi.ng/hiccup-html/blocks";
 import { textArea } from "@thi.ng/hiccup-html/forms";
 import { anchor } from "@thi.ng/hiccup-html/inline";

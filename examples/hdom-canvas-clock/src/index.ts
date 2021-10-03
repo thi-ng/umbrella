@@ -1,8 +1,9 @@
-import { start } from "@thi.ng/hdom";
 import { canvas } from "@thi.ng/hdom-canvas";
-import { HALF_PI, TAU } from "@thi.ng/math";
-import { mapcat, range } from "@thi.ng/transducers";
-import { cartesian2 } from "@thi.ng/vectors";
+import { start } from "@thi.ng/hdom/start";
+import { HALF_PI, TAU } from "@thi.ng/math/api";
+import { mapcat } from "@thi.ng/transducers/mapcat";
+import { range } from "@thi.ng/transducers/range";
+import { cartesian2 } from "@thi.ng/vectors/cartesian";
 
 const WEEKDAYS = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
 
@@ -117,8 +118,7 @@ start(() => {
         [
             "a.link",
             {
-                href:
-                    "https://github.com/thi-ng/umbrella/tree/develop/examples/hdom-canvas-clock",
+                href: "https://github.com/thi-ng/umbrella/tree/develop/examples/hdom-canvas-clock",
             },
             "Source code",
         ],

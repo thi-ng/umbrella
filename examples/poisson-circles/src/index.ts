@@ -2,7 +2,7 @@ import { KdTreeSet } from "@thi.ng/geom-accel/kd-tree-set";
 import { circle } from "@thi.ng/geom/ctors/circle";
 import { asSvg, svgDoc } from "@thi.ng/geom/ops/as-svg";
 import { fit01 } from "@thi.ng/math/fit";
-import { samplePoisson } from "@thi.ng/poisson";
+import { samplePoisson } from "@thi.ng/poisson/poisson";
 import { dist } from "@thi.ng/vectors/dist";
 import { randMinMax2 } from "@thi.ng/vectors/random";
 

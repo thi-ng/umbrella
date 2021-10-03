@@ -10,7 +10,7 @@ import { circle } from "@thi.ng/geom/ctors/circle";
 import { group } from "@thi.ng/geom/ctors/group";
 import { star } from "@thi.ng/geom/ctors/polygon";
 import { vertices } from "@thi.ng/geom/ops/vertices";
-import { draw } from "@thi.ng/hiccup-canvas";
+import { draw } from "@thi.ng/hiccup-canvas/draw";
 import { fromInterval } from "@thi.ng/rstream/interval";
 
 const W = 300;

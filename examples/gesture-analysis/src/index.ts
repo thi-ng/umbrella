@@ -1,4 +1,4 @@
-import { peek } from "@thi.ng/arrays";
+import { peek } from "@thi.ng/arrays/peek";
 import { polyline as gPolyline } from "@thi.ng/geom/ctors/polyline";
 import { resample } from "@thi.ng/geom/ops/resample";
 import { vertices } from "@thi.ng/geom/ops/vertices";

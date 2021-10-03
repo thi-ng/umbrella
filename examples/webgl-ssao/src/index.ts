@@ -12,25 +12,22 @@ import { map } from "@thi.ng/transducers/map";
 import { movingAverage } from "@thi.ng/transducers/moving-average";
 import { repeatedly } from "@thi.ng/transducers/repeatedly";
 import { rotateY } from "@thi.ng/vectors/rotate";
+import type { GLMat4, GLVec3, ModelSpec } from "@thi.ng/webgl";
 import {
-    checkerboard,
-    compileModel,
-    defCubeModel,
-    defFBO,
-    defQuadModel,
-    defRBO,
-    defShader,
-    defTexture,
-    draw,
-    FBO,
-    GLMat4,
-    GLVec3,
-    ModelSpec,
     TextureFilter,
     TextureFormat,
     TextureOpts,
     TextureRepeat,
-} from "@thi.ng/webgl";
+} from "@thi.ng/webgl/api/texture";
+import { compileModel } from "@thi.ng/webgl/buffer";
+import { draw } from "@thi.ng/webgl/draw";
+import { defFBO, FBO } from "@thi.ng/webgl/fbo";
+import { defCubeModel } from "@thi.ng/webgl/geo/cube";
+import { defQuadModel } from "@thi.ng/webgl/geo/quad";
+import { defRBO } from "@thi.ng/webgl/rbo";
+import { defShader } from "@thi.ng/webgl/shader";
+import { defTexture } from "@thi.ng/webgl/texture";
+import { checkerboard } from "@thi.ng/webgl/textures/checkerboard";
 import { CONTROLS, PARAMS, PARAM_DEFS } from "./params";
 import { FINAL_SHADER, LIGHT_SHADER, SSAO_SHADER } from "./shaders";
 

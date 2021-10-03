@@ -1,7 +1,9 @@
 import type { Fn, IObjectOf } from "@thi.ng/api";
-import { Atom, defViewUnsafe, History } from "@thi.ng/atom";
-import { isArray } from "@thi.ng/checks";
-import { start } from "@thi.ng/hdom";
+import { Atom, defAtom } from "@thi.ng/atom/atom";
+import { defHistory, History } from "@thi.ng/atom/history";
+import { defViewUnsafe } from "@thi.ng/atom/view";
+import { isArray } from "@thi.ng/checks/is-array";
+import { start } from "@thi.ng/hdom/start";
 import { EventBus } from "@thi.ng/interceptors";
 import type { AppConfig, AppContext, AppViews, ViewSpec } from "./api";
 import * as ev from "./events";
@@ -25,8 +27,8 @@ export class App {
 
     constructor(config: AppConfig) {
         this.config = config;
-        this.state = new Atom(config.initialState || {});
-        this.history = new History(this.state, 1000);
+        this.state = defAtom(config.initialState || {});
+        this.history = defHistory(this.state, 1000);
         this.ctx = {
             bus: new EventBus(this.state, config.events, config.effects),
             views: <AppViews>{},

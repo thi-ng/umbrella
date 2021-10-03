@@ -1,6 +1,6 @@
-import { sidechainPartitionRAF } from "@thi.ng/rstream";
-import { map } from "@thi.ng/transducers";
+import { sidechainPartitionRAF } from "@thi.ng/rstream/sidechain-partition";
 import { updateDOM } from "@thi.ng/transducers-hdom";
+import { map } from "@thi.ng/transducers/map";
 import { AppState, NEXT, PREV } from "./api";
 import { dispatch } from "./events";
 import { state } from "./state";

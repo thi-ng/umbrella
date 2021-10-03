@@ -3,15 +3,13 @@ import { fromInterval } from "@thi.ng/rstream/interval";
 import { resolve as resolvePromise } from "@thi.ng/rstream/resolve";
 import { reactive, stream } from "@thi.ng/rstream/stream";
 import { sync } from "@thi.ng/rstream/sync";
-import {
-    add,
-    conj,
-    map,
-    pluck,
-    throttleTime,
-    transduce,
-} from "@thi.ng/transducers";
 import { updateDOM } from "@thi.ng/transducers-hdom";
+import { add } from "@thi.ng/transducers/add";
+import { conj } from "@thi.ng/transducers/conj";
+import { map } from "@thi.ng/transducers/map";
+import { pluck } from "@thi.ng/transducers/pluck";
+import { throttleTime } from "@thi.ng/transducers/throttle-time";
+import { transduce } from "@thi.ng/transducers/transduce";
 import type { AppContext, Commit } from "../common/api";
 import { header } from "../common/components/header";
 import { link } from "../common/components/link";

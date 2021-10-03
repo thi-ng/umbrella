@@ -1,4 +1,4 @@
-import { hsv } from "@thi.ng/color";
+import { hsv } from "@thi.ng/color/hsv/hsv";
 import { downloadWithMime } from "@thi.ng/dl-asset/raw";
 import { pathBuilder } from "@thi.ng/geom/ctors/path-builder";
 import { points } from "@thi.ng/geom/ctors/points";
@@ -8,7 +8,9 @@ import { svg } from "@thi.ng/hiccup-svg/svg";
 import { COMMENT } from "@thi.ng/hiccup/api";
 import { serialize } from "@thi.ng/hiccup/serialize";
 import { sincos } from "@thi.ng/math/angle";
-import { concat, skewX23, translation23 } from "@thi.ng/matrices";
+import { concat } from "@thi.ng/matrices/concat";
+import { skewX23 } from "@thi.ng/matrices/skew";
+import { translation23 } from "@thi.ng/matrices/translation";
 import type { ISubscriber } from "@thi.ng/rstream";
 import { fromRAF } from "@thi.ng/rstream/raf";
 import { stream } from "@thi.ng/rstream/stream";

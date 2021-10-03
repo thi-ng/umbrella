@@ -1,4 +1,4 @@
-import { fract } from "@thi.ng/math";
+import { fract } from "@thi.ng/math/prec";
 import type { IRamp } from "@thi.ng/ramp";
 
 let actx: AudioContext | undefined;

@@ -1,5 +1,6 @@
-import { defAtom, defView } from "@thi.ng/atom";
-import { start } from "@thi.ng/hdom";
+import { defAtom } from "@thi.ng/atom/atom";
+import { defView } from "@thi.ng/atom/view";
+import { start } from "@thi.ng/hdom/start";
 import { EventBus, trace } from "@thi.ng/interceptors";
 import { state, theme } from "./config";
 import { dropdown } from "./dropdown";

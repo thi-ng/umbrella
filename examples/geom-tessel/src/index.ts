@@ -1,7 +1,9 @@
 import { partial } from "@thi.ng/compose/partial";
 import type { Polygon } from "@thi.ng/geom";
 import type { IShape, Tessellator } from "@thi.ng/geom-api";
-import { edgeSplit, quadFan, triFan } from "@thi.ng/geom-tessellate";
+import { edgeSplit } from "@thi.ng/geom-tessellate/edge-split";
+import { quadFan } from "@thi.ng/geom-tessellate/quad-fan";
+import { triFan } from "@thi.ng/geom-tessellate/tri-fan";
 import { circle } from "@thi.ng/geom/ctors/circle";
 import { polygon } from "@thi.ng/geom/ctors/polygon";
 import { arcLength } from "@thi.ng/geom/ops/arc-length";

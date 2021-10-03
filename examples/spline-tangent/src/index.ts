@@ -1,5 +1,7 @@
 import type { FnU5 } from "@thi.ng/api";
-import { $, dot, Dual, mul, sub } from "@thi.ng/dual-algebra";
+import type { Dual } from "@thi.ng/dual-algebra";
+import { $, mul, sub } from "@thi.ng/dual-algebra/ops";
+import { dot } from "@thi.ng/dual-algebra/vector";
 import { circle } from "@thi.ng/geom/ctors/circle";
 import { cubic } from "@thi.ng/geom/ctors/cubic";
 import { line } from "@thi.ng/geom/ctors/line";
