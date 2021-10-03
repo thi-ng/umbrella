@@ -1,6 +1,6 @@
 import { CHECKMARK_FILLED } from "@thi.ng/hiccup-carbon-icons/checkmark-filled";
 import { INFORMATION_FILLED } from "@thi.ng/hiccup-carbon-icons/information-filled";
-import { withSize } from "@thi.ng/hiccup-carbon-icons/utils/with-size";
+import { withSize } from "@thi.ng/hiccup-carbon-icons/with-size";
 import { WARNING_ALT_FILLED } from "@thi.ng/hiccup-carbon-icons/warning-alt-filled";
 import { div } from "@thi.ng/hiccup-html/blocks";
 import { span } from "@thi.ng/hiccup-html/inline";

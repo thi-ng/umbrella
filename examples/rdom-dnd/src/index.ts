@@ -1,6 +1,6 @@
 import { ADD_ALT } from "@thi.ng/hiccup-carbon-icons/add-alt";
 import { CLOSE_OUTLINE } from "@thi.ng/hiccup-carbon-icons/close-outline";
-import { withSize } from "@thi.ng/hiccup-carbon-icons/utils/with-size";
+import { withSize } from "@thi.ng/hiccup-carbon-icons/with-size";
 import { div } from "@thi.ng/hiccup-html/blocks";
 import { $compile } from "@thi.ng/rdom/compile";
 import { cycle } from "@thi.ng/transducers/cycle";

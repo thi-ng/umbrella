@@ -65,13 +65,13 @@ const updateParticles = (particles: Particle[]) => {
 
 const particle = (p: Particle) => {
     // compute point on cubic bezier
-    const pos = pointAt(p.curve, p.pos);
+    const pos = pointAt(p.curve, p.pos)!;
     // need to use translate here only because of gradient
     return [
         "line",
         { translate: pos },
         // compute 2nd end point in local space
-        sub2(null, pointAt(p.curve, p.pos - 0.05), pos),
+        sub2(null, pointAt(p.curve, p.pos - 0.05)!, pos),
         ZERO2,
     ];
 };

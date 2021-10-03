@@ -1,6 +1,6 @@
 import type { IDeref } from "@thi.ng/api";
 import { INFORMATION } from "@thi.ng/hiccup-carbon-icons/information";
-import { withSize } from "@thi.ng/hiccup-carbon-icons/utils/with-size";
+import { withSize } from "@thi.ng/hiccup-carbon-icons/with-size";
 import { div } from "@thi.ng/hiccup-html/blocks";
 import { inputRange, label } from "@thi.ng/hiccup-html/forms";
 import { $canvas } from "@thi.ng/rdom-canvas";
