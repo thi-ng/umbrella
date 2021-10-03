@@ -1,0 +1,7 @@
+#!/bin/bash 
+DIR="$( cd "$( dirname "$0" )" &> /dev/null && pwd )"
+if [ "$(echo $DIR | grep '.nvm')" ]; then
+    DIR="$(dirname "$(readlink -f "$0")")"
+fi 
+
+/usr/bin/env node --experimental-specifier-resolution=node --loader ts-node/esm node_modules/@thi.ng/pointfree-lang/cli.js "$@"
