@@ -66,9 +66,48 @@ export function packedBuffer(...args: any[]) {
 }
 
 /**
- * @deprecated use {@link packedBuffer} instead.
+ * Creates a new pixel buffer from given HTML image element with optional
+ * support for format conversion (default: {@link ABGR8888} & resizing.
+ *
+ * @param img
+ * @param fmt
+ * @param width
+ * @param height
  */
-export const buffer = packedBuffer;
+export const packedBufferFromImage = (
+    img: HTMLImageElement,
+    fmt?: PackedFormat,
+    width?: number,
+    height = width
+) => packedBufferFromCanvas(imageCanvas(img, width, height).canvas, fmt);
+
+/**
+ * Creates a new pixel buffer from given HTML canvas element with optional
+ * support for format conversion (default: {@link ABGR8888}.
+ *
+ * @param canvas
+ * @param fmt
+ */
+export const packedBufferFromCanvas = (
+    canvas: HTMLCanvasElement,
+    fmt: PackedFormat = ABGR8888
+) => {
+    const ctx = canvasPixels(canvas);
+    const w = canvas.width;
+    const h = canvas.height;
+    let dest: UIntArray | undefined;
+    if (fmt === ABGR8888) {
+        dest = ctx.pixels;
+    } else {
+        dest = typedArray(fmt.type, w * h);
+        const src = ctx.pixels;
+        const from = fmt.fromABGR;
+        for (let i = dest.length; --i >= 0; ) {
+            dest[i] = from(src[i]);
+        }
+    }
+    return new PackedBuffer(w, h, fmt, dest);
+};
 
 export class PackedBuffer
     implements
@@ -81,45 +120,6 @@ export class PackedBuffer
         ICopy<PackedBuffer>,
         IEmpty<PackedBuffer>
 {
-    /**
-     * Creates a new pixel buffer from given HTML image element with optional
-     * support for format conversion (default: {@link ABGR8888} & resizing.
-     *
-     * @param img
-     * @param fmt
-     * @param width
-     * @param height
-     */
-    static fromImage(
-        img: HTMLImageElement,
-        fmt?: PackedFormat,
-        width?: number,
-        height = width
-    ) {
-        return PackedBuffer.fromCanvas(
-            imageCanvas(img, width, height).canvas,
-            fmt
-        );
-    }
-
-    static fromCanvas(canvas: HTMLCanvasElement, fmt: PackedFormat = ABGR8888) {
-        const ctx = canvasPixels(canvas);
-        const w = canvas.width;
-        const h = canvas.height;
-        let dest: UIntArray | undefined;
-        if (fmt === ABGR8888) {
-            dest = ctx.pixels;
-        } else {
-            dest = typedArray(fmt.type, w * h);
-            const src = ctx.pixels;
-            const from = fmt.fromABGR;
-            for (let i = dest.length; --i >= 0; ) {
-                dest[i] = from(src[i]);
-            }
-        }
-        return new PackedBuffer(w, h, fmt, dest);
-    }
-
     readonly width: number;
     readonly height: number;
     readonly format: PackedFormat;
