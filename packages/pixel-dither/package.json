@@ -1,7 +1,7 @@
 {
     "name": "@thi.ng/pixel-dither",
     "version": "0.0.1",
-    "description": "TODO",
+    "description": "Extensible image dithering w/ various algorithm presets",
     "type": "module",
     "module": "./index.js",
     "typings": "./index.d.ts",
@@ -63,8 +63,35 @@
         "./api": {
             "import": "./api.js"
         },
+        "./atkinson": {
+            "import": "./atkinson.js"
+        },
+        "./burkes": {
+            "import": "./burkes.js"
+        },
+        "./diffusion": {
+            "import": "./diffusion.js"
+        },
+        "./dither": {
+            "import": "./dither.js"
+        },
+        "./floyd-steinberg": {
+            "import": "./floyd-steinberg.js"
+        },
+        "./jarvis": {
+            "import": "./jarvis.js"
+        },
         "./ordered": {
             "import": "./ordered.js"
+        },
+        "./sierra2": {
+            "import": "./sierra2.js"
+        },
+        "./stucki": {
+            "import": "./stucki.js"
+        },
+        "./threshold": {
+            "import": "./threshold.js"
         }
     },
     "thi.ng": {

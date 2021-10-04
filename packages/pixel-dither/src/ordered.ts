@@ -51,8 +51,10 @@ export const defBayer = (size: BayerSize): BayerMatrix => ({
  * @param x - x pos
  * @param y - y pos
  * @param val - src value
+ *
+ * @internal
  */
-export const orderedDither1 = (
+const orderedDither1 = (
     { mat, mask, invSize }: BayerMatrix,
     dsteps: number,
     drange: number,
@@ -79,17 +81,18 @@ export const orderedDither1 = (
  * channel. The `numColors` value(s) MUST be in the `[0 ..
  * numColorsInChannel]` interval.
  *
- * Also see: {@link defBayer}, {@link ditherPixels}.
+ * Also see: {@link defBayer}
  *
- * @param size - dither matrix/size
+ * @param img - pixel buffer
+ * @param size - bayer dither matrix/size
  * @param numColors - num target colors/steps
  */
 export const orderedDither = (
-    buf: PackedBuffer,
+    img: PackedBuffer,
     size: BayerSize | BayerMatrix,
     numColors: number | number[]
 ) => {
-    const { pixels, format, width } = buf;
+    const { pixels, format, width } = img;
     const steps = isNumber(numColors)
         ? new Array<number>(format.channels.length).fill(numColors)
         : numColors;
@@ -116,5 +119,5 @@ export const orderedDither = (
             y++;
         }
     }
-    return buf;
+    return img;
 };
