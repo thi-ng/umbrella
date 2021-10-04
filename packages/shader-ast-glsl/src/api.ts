@@ -7,10 +7,26 @@ export enum GLSLVersion {
 }
 
 export interface GLSLOpts {
+    /**
+     * Shader type: vertex / fragment
+     */
     type: "vs" | "fs";
+    /**
+     * Syntax version (default GLES_300)
+     */
     version: GLSLVersion;
+    /**
+     * If true (default), emit `#version` pragma
+     */
     versionPragma: boolean;
+    /**
+     * Additional user define source code to prepend
+     */
     prelude: string;
+    /**
+     * Float precision (number of fractional digits).
+     */
+    prec?: number;
 }
 
 export interface GLSLTarget extends Fn<Term<any>, string> {

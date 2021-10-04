@@ -45,6 +45,11 @@ export const targetGLSL = (opts?: Partial<GLSLOpts>) => {
     };
     const isVS = _opts.type === "vs";
 
+    const ff =
+        _opts.prec !== undefined
+            ? (x: number) => (x === (x | 0) ? x + ".0" : x.toFixed(_opts.prec))
+            : (x: number) => (x === (x | 0) ? x + ".0" : String(x));
+
     // TODO update once we have struct support
     const $type = (t: Type) => t;
 
@@ -142,11 +147,7 @@ export const targetGLSL = (opts?: Partial<GLSLOpts>) => {
                 case "bool":
                     return isBoolean(v) ? String(v) : `bool(${emit(v)})`;
                 case "float":
-                    return isNumber(v)
-                        ? v === Math.trunc(v)
-                            ? v + ".0"
-                            : String(v)
-                        : `float(${emit(v)})`;
+                    return isNumber(v) ? ff(v) : `float(${emit(v)})`;
                 case "int":
                 case "uint":
                     return isNumber(v) ? String(v) : `${t.type}(${emit(v)})`;
