@@ -248,3 +248,10 @@ export interface JSEnv {
     sampler2DShadow: JSBuiltinsSampler;
     samplerCubeShadow: JSBuiltinsSampler;
 }
+
+export interface JSTargetOpts {
+    /**
+     * Float precision (number of fractional digits).
+     */
+    prec: number;
+}

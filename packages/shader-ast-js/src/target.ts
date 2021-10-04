@@ -19,6 +19,7 @@ import {
     isVec,
 } from "@thi.ng/shader-ast/ast/checks";
 import { defTarget } from "@thi.ng/shader-ast/target";
+import type { JSTargetOpts } from ".";
 import type { JSTarget } from "./api";
 import { JS_DEFAULT_ENV } from "./env";
 
@@ -101,7 +102,14 @@ const buildExports = (tree: Term<any>) =>
         ? `${(<Func<any>>tree).id}: ${(<Func<any>>tree).id}`
         : "";
 
-export const targetJS = () => {
+export const targetJS = (opts?: Partial<JSTargetOpts>) => {
+    opts = { ...opts };
+
+    const ff =
+        opts.prec !== undefined
+            ? (x: number) => (x === (x | 0) ? x : x.toFixed(opts!.prec))
+            : String;
+
     const $list = (body: Term<any>[], sep = ", ") => body.map(emit).join(sep);
 
     const $fn = (name: string, args: Term<any>[]) => `${name}(${$list(args)})`;
@@ -111,6 +119,8 @@ export const targetJS = () => {
 
     const $num = (v: any, f: Fn<any, string>) =>
         isNumber(v) ? String(v) : f(v);
+
+    const $float = (v: any, f: Fn<any, string>) => (isNumber(v) ? ff(v) : f(v));
 
     const emit: Fn<Term<any>, string> = defTarget({
         arg: (t) => t.id,
@@ -172,7 +182,7 @@ export const targetJS = () => {
                 case "bool":
                     return isBoolean(v) ? String(v) : `!!(${emit(v)})`;
                 case "float":
-                    return $num(v, () =>
+                    return $float(v, () =>
                         isBool(v) ? `(${emit(v)} & 1)` : emit(v)
                     );
                 case "int":
