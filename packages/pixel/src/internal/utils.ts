@@ -1,23 +1,7 @@
-import type { Fn, Fn2, FnN, TypedArray, UIntArray } from "@thi.ng/api";
+import type { Fn, Fn2, FnN, UIntArray } from "@thi.ng/api";
 import { isNumber } from "@thi.ng/checks/is-number";
-import { assert } from "@thi.ng/errors/assert";
 import { clamp } from "@thi.ng/math/interval";
-import type { BlitOpts, FloatFormat, PackedFormat } from "../api";
-
-/** @internal */
-export const ensureSize = (
-    pixels: TypedArray,
-    width: number,
-    height: number,
-    stride = 1
-) => assert(pixels.length >= width * height * stride, "pixel buffer too small");
-
-/** @internal */
-export const ensureChannel = (fmt: PackedFormat | FloatFormat, id: number) => {
-    const chan = fmt.channels[id];
-    assert(chan != null, `invalid channel ID: ${id}`);
-    return chan;
-};
+import type { BlitOpts, PackedFormat } from "../api";
 
 export const luminanceABGR: FnN = (c) =>
     (((c >>> 16) & 0xff) * 29 + ((c >>> 8) & 0xff) * 150 + (c & 0xff) * 76) /
@@ -133,6 +117,3 @@ export const asIntVec = (x: number | [number, number]) => {
     const v = asVec(x);
     return [v[0] | 0, v[1] | 0];
 };
-
-/** @internal */
-export const range = (n: number) => new Uint8Array(n).map((_, i) => i);

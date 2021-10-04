@@ -6,6 +6,7 @@ export * from "./float";
 export * from "./normal-map";
 export * from "./packed";
 export * from "./pyramid";
+export * from "./range";
 export * from "./sample";
 
 export * from "./format/packed-format";

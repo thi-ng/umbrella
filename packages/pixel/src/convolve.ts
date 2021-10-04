@@ -11,9 +11,11 @@ import type {
     PoolKernelSpec,
     PoolTemplate,
 } from "./api";
+import { ensureChannel } from "./checks";
 import { FloatBuffer } from "./float";
 import { FLOAT_GRAY } from "./format/float-gray";
-import { asIntVec, ensureChannel, range } from "./internal/utils";
+import { asIntVec } from "./internal/utils";
+import { range } from "./range";
 
 /**
  * Convolves a single channel from given `src` float buffer with provided

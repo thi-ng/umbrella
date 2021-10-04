@@ -18,14 +18,10 @@ import type {
     IToImageData,
     PackedFormat,
 } from "./api";
+import { ensureChannel, ensureSize } from "./checks";
 import { defFloatFormat } from "./format/float-format";
 import { FLOAT_GRAY } from "./format/float-gray";
-import {
-    clampRegion,
-    ensureChannel,
-    ensureSize,
-    prepRegions,
-} from "./internal/utils";
+import { clampRegion, prepRegions } from "./internal/utils";
 import { PackedBuffer } from "./packed";
 import { defSampler } from "./sample";
 

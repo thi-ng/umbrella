@@ -25,13 +25,12 @@ import {
     PackedFormatSpec,
 } from "./api";
 import { canvasPixels, imageCanvas } from "./canvas";
+import { ensureChannel, ensureSize } from "./checks";
 import { ABGR8888 } from "./format/abgr8888";
 import { defPackedFormat } from "./format/packed-format";
 import { compileGrayFromABGR, compileGrayToABGR } from "./internal/codegen";
 import {
     clampRegion,
-    ensureChannel,
-    ensureSize,
     prepRegions,
     setChannelConvert,
     setChannelSame,

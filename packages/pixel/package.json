@@ -101,6 +101,9 @@
         "./canvas": {
             "import": "./canvas.js"
         },
+        "./checks": {
+            "import": "./checks.js"
+        },
         "./convolve": {
             "import": "./convolve.js"
         },
@@ -181,6 +184,9 @@
         },
         "./pyramid": {
             "import": "./pyramid.js"
+        },
+        "./range": {
+            "import": "./range.js"
         },
         "./sample": {
             "import": "./sample.js"
