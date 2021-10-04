@@ -13,6 +13,7 @@ export * from "./ast/assign";
 export * from "./ast/checks";
 export * from "./ast/controlflow";
 export * from "./ast/function";
+export * from "./ast/idgen";
 export * from "./ast/indexed";
 export * from "./ast/item";
 export * from "./ast/lit";
