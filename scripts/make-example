@@ -84,7 +84,7 @@ cat << EOF > "$MODULE"/package.json
         "build": "../../node_modules/.bin/snowpack build"
     },
     "devDependencies": {
-        "@thi.ng/snowpack-env": "^2.3.3"
+        "@types/snowpack-env": "^2.3.4"
     },
     "dependencies": {
         "@thi.ng/api": "latest",
