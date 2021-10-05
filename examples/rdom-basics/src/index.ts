@@ -2,7 +2,7 @@ import { isString } from "@thi.ng/checks/is-string";
 import { delayed } from "@thi.ng/compose/delayed";
 import { $compile } from "@thi.ng/rdom/compile";
 import { $list } from "@thi.ng/rdom/list";
-import { $refresh } from "@thi.ng/rdom/switch";
+import { $replace } from "@thi.ng/rdom/replace";
 import { CloseMode } from "@thi.ng/rstream/api";
 import { fromDOMEvent } from "@thi.ng/rstream/event";
 import { fromInterval } from "@thi.ng/rstream/interval";
@@ -74,16 +74,16 @@ const root = $compile([
                 map(([x, y]) => ({ left: x + "px", top: y + "px" }))
             ),
         },
-        $refresh<{ body: string; mpos: number[] }>(
+        $replace(
             sync({
                 src: { body, mpos },
-            }),
-            async (x) => [
-                "span",
-                {},
-                x.body,
-                ["span.ml2.light-green", {}, `[${x.mpos}]`],
-            ]
+                xform: map((x) => [
+                    "span",
+                    {},
+                    x.body,
+                    ["span.ml2.light-green", {}, `[${x.mpos}]`],
+                ]),
+            })
         ),
     ],
     [

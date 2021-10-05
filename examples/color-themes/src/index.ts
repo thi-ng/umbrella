@@ -18,7 +18,7 @@ import { staticDropdown } from "@thi.ng/rdom-components/dropdown";
 import { $compile } from "@thi.ng/rdom/compile";
 import { $inputCheckbox, $inputNum, $inputTrigger } from "@thi.ng/rdom/event";
 import { $list } from "@thi.ng/rdom/list";
-import { $refresh } from "@thi.ng/rdom/switch";
+import { $replace } from "@thi.ng/rdom/replace";
 import { reactive } from "@thi.ng/rstream/stream";
 import { MainOutputs, RANGE_IDs } from "./api";
 import {
@@ -92,7 +92,7 @@ const control = (label: string, ...body: ComponentLike[]) =>
  *
  * @param state
  */
-const svgSwatches = async ({ colors, num }: MainOutputs) => <ComponentLike>svg(
+const svgSwatches = ({ colors, num }: MainOutputs) => <ComponentLike>svg(
         {
             width: "100vw",
             height: "100vh",
@@ -109,7 +109,7 @@ $compile(
     div(
         {},
         // color swatches
-        $refresh<MainOutputs>(main, svgSwatches),
+        $replace(main.map(svgSwatches)),
         // theme controls in HUD UI
         div(
             ".z-1.fixed.top-0.left-0.bg-white-80.ma3-m.ma3-l.pa3.w-100.w-50-m.w-33-l",

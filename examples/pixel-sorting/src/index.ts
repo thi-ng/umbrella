@@ -19,7 +19,7 @@ import { SYSTEM } from "@thi.ng/random/system";
 import type { NumOrElement } from "@thi.ng/rdom";
 import { $compile } from "@thi.ng/rdom/compile";
 import { Component } from "@thi.ng/rdom/component";
-import { $refresh } from "@thi.ng/rdom/switch";
+import { $replace } from "@thi.ng/rdom/replace";
 import { CloseMode } from "@thi.ng/rstream/api";
 import { reactive, Stream, stream } from "@thi.ng/rstream/stream";
 import { sync } from "@thi.ng/rstream/sync";
@@ -234,9 +234,6 @@ $compile(
         }),
         labeledCheckbox(horizontal, "horizontal", "Horizontal"),
         labeledCheckbox(reverse, "order", "Reverse order"),
-        div(
-            {},
-            $refresh<PackedBuffer>(result, async (buf) => new PixelCanvas(buf))
-        )
+        div({}, $replace(result.map((buf) => new PixelCanvas(buf))))
     )
 ).mount(document.getElementById("app")!);

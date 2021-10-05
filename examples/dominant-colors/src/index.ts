@@ -6,7 +6,7 @@ import { h1 } from "@thi.ng/hiccup-html/sections";
 import { staticRadio } from "@thi.ng/rdom-components/radio";
 import { $compile } from "@thi.ng/rdom/compile";
 import { $inputFile, $inputTrigger } from "@thi.ng/rdom/event";
-import { $refresh } from "@thi.ng/rdom/switch";
+import { $replace } from "@thi.ng/rdom/replace";
 import { reactive, stream } from "@thi.ng/rstream/stream";
 import { sync } from "@thi.ng/rstream/sync";
 import { float } from "@thi.ng/strings/float";
@@ -107,10 +107,9 @@ $compile(
                 ),
         }),
         button(".db.mv3", { onclick: $inputTrigger(update) }, "update"),
-        div(
-            {},
-            // this part of the UI will be replaced for each new processed image
-            $refresh(result, async (res) =>
+        // this part of the UI will be replaced for each new processed image
+        $replace(
+            result.map((res) =>
                 div(
                     {},
                     cssPalette(res.colors),
