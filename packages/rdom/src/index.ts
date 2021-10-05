@@ -8,6 +8,7 @@ export * from "./klist";
 export * from "./list";
 export * from "./object";
 export * from "./promise";
+export * from "./replace";
 export * from "./scheduler";
 export * from "./sub";
 export * from "./switch";

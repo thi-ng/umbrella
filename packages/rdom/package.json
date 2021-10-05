@@ -105,6 +105,9 @@
         "./promise": {
             "import": "./promise.js"
         },
+        "./replace": {
+            "import": "./replace.js"
+        },
         "./scheduler": {
             "import": "./scheduler.js"
         },
