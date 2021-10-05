@@ -1,11 +1,11 @@
-import type { DitherKernelFactory } from "./api";
+import type { DitherKernel } from "./api";
 
 /**
  * Basic 1x1 thresold dither kernel
  */
-export const THRESHOLD: DitherKernelFactory = () => ({
+export const THRESHOLD: DitherKernel = {
     ox: [],
     oy: [],
     weights: [],
     shift: 0,
-});
+};

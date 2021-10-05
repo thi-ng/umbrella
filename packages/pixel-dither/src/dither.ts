@@ -1,10 +1,20 @@
 import type { PackedBuffer } from "@thi.ng/pixel";
 import { range } from "@thi.ng/pixel/range";
-import type { DitherKernelFactory, DitherOpts } from "./api";
+import type { DitherKernel, DitherOpts } from "./api";
 
-export const ditherWithKernel = (
+/**
+ * Generic kernel-based dithering. Takes a {@link DitherKernelFactory} and
+ * integer pixel buffer (multiple channels supported). Applies dithering to all
+ * (or configured) channels using provided options. Returns modified pixel
+ * buffer.
+ *
+ * @param kernel
+ * @param img
+ * @param opts
+ */
+export const ditherWith = (
+    kernel: DitherKernel,
     img: PackedBuffer,
-    kernel: DitherKernelFactory,
     opts?: Partial<DitherOpts>
 ) => {
     const { channels, bleed, threshold } = {
@@ -13,22 +23,16 @@ export const ditherWithKernel = (
         ...opts,
     };
     const { format, width, height } = img;
+    const { ox, oy, weights, shift } = kernel;
+    let p: number, err: number;
     for (let cid of channels || range(format.channels.length)) {
         const cimg = img.getChannel(cid);
         const chan = format.channels[cid];
         const $thresh = chan.num * threshold;
         const $max = chan.mask0;
         const pixels = new Int32Array(cimg.pixels);
-        const { x1, x2, y1, y2, ox, oy, weights, shift } = {
-            x1: 0,
-            x2: width,
-            y1: 0,
-            y2: height,
-            ...kernel(cimg),
-        };
-        let p: number, err: number;
-        for (let y = y1; y < y2; y++) {
-            for (let x = x1, i = x + y * width; x < width; x++, i++) {
+        for (let y = 0; y < height; y++) {
+            for (let x = 0, i = x + y * width; x < width; x++, i++) {
                 p = pixels[i] < $thresh ? 0 : $max;
                 err = (pixels[i] - p) * bleed;
                 pixels[i] = p;
@@ -36,7 +40,7 @@ export const ditherWithKernel = (
                 for (let j = ox.length; j-- > 0; ) {
                     const xx = x + ox[j];
                     const yy = y + oy[j];
-                    if (yy >= 0 && yy < y2 && xx >= 0 && xx < x2) {
+                    if (yy >= 0 && yy < height && xx >= 0 && xx < width) {
                         pixels[yy * width + xx] += (err * weights[j]) >> shift;
                     }
                 }

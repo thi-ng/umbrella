@@ -1,22 +1,15 @@
-import type { Fn } from "@thi.ng/api";
-import type { PackedBuffer } from "@thi.ng/pixel";
-
-export type DitherKernelFactory = Fn<PackedBuffer, DitherKernel>;
-
 export interface DitherKernel {
     ox: number[];
     oy: number[];
     weights: number[];
     shift: number;
-    x1?: number;
-    x2?: number;
-    y1?: number;
-    y2?: number;
 }
 
 export interface DitherOpts {
     /**
-     * Normalized threshold
+     * Normalized threshold (will be scaled to actual value range of each image
+     * channel). Mainly intended for {@link THRESHOLD}. Due to error diffusion,
+     * for most other dither configuration the theshold can be > 1.
      *
      * @defaultValue 0.5
      */
