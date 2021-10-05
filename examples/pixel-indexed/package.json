@@ -11,12 +11,13 @@
         "build": "yarn clean && ../../node_modules/.bin/snowpack build"
     },
     "devDependencies": {
-        "@thi.ng/snowpack-env": "^2.3.3"
+        "@types/snowpack-env": "^2.3.4"
     },
     "dependencies": {
         "@thi.ng/color": "latest",
         "@thi.ng/color-palettes": "latest",
-        "@thi.ng/pixel": "latest"
+        "@thi.ng/pixel": "latest",
+        "@thi.ng/pixel-dither": "latest"
     },
     "browserslist": [
         "last 3 Chrome versions"
@@ -27,7 +28,13 @@
         "util": false
     },
     "thi.ng": {
-        "readme": true,
+        "readme": [
+            "color",
+            "color-palettes",
+            "k-means",
+            "pixel",
+            "pixel-dither"
+        ],
         "screenshot": "examples/pixel-indexed.jpg"
     }
 }

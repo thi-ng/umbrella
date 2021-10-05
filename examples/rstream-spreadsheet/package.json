@@ -16,6 +16,7 @@
         "@thi.ng/checks": "latest",
         "@thi.ng/defmulti": "latest",
         "@thi.ng/errors": "latest",
+        "@thi.ng/expose": "latest",
         "@thi.ng/hdom": "latest",
         "@thi.ng/math": "latest",
         "@thi.ng/memoize": "latest",

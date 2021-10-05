@@ -1,6 +1,6 @@
 import { canvas2d } from "@thi.ng/pixel/canvas";
 import { GRAY8 } from "@thi.ng/pixel/format/gray8";
-import { PackedBuffer } from "@thi.ng/pixel/packed";
+import { packedBuffer } from "@thi.ng/pixel/packed";
 import type { Vec2Sym, Vec4Sym } from "@thi.ng/shader-ast";
 import { clamp01 } from "@thi.ng/shader-ast-stdlib/math/clamp";
 import { fit1101 } from "@thi.ng/shader-ast-stdlib/math/fit";
@@ -101,7 +101,7 @@ toy.update(0);
 
 const canv = canvas2d(32, 32);
 document.body.appendChild(canv.canvas);
-new PackedBuffer(
+packedBuffer(
     32,
     32,
     GRAY8,

@@ -12,7 +12,6 @@
     },
     "dependencies": {
         "@thi.ng/arrays": "latest",
-        "@thi.ng/compose": "latest",
         "@thi.ng/geom": "latest",
         "@thi.ng/hiccup-svg": "latest",
         "@thi.ng/rstream": "latest",
