@@ -149,8 +149,9 @@ export const targetGLSL = (opts?: Partial<GLSLOpts>) => {
                 case "float":
                     return isNumber(v) ? ff(v) : `float(${emit(v)})`;
                 case "int":
-                case "uint":
                     return isNumber(v) ? String(v) : `${t.type}(${emit(v)})`;
+                case "uint":
+                    return isNumber(v) ? `${v}u` : `${t.type}(${emit(v)})`;
                 default: {
                     if (isVec(t) || isMat(t)) {
                         return `${t.type}(${$list(v)})`;

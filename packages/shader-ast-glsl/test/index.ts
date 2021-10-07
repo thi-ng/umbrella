@@ -1,5 +1,6 @@
 import {
     $,
+    bool,
     FALSE,
     float,
     input,
@@ -42,15 +43,24 @@ group("shader-ast (glsl)", {
     lit: () => {
         assert.strictEqual(fs300(TRUE), "true");
         assert.strictEqual(fs300(FALSE), "false");
+        assert.strictEqual(fs300(bool(1)), "true");
+        assert.strictEqual(fs300(bool(int(1))), "bool(1)");
+        assert.strictEqual(fs300(bool(uint(1))), "bool(1u)");
+        assert.strictEqual(fs300(bool(float(1))), "bool(1.0)");
         assert.strictEqual(fs300(float(0)), "0.0");
         assert.strictEqual(fs300(float(-1)), "-1.0");
+        assert.strictEqual(fs300(float(uint(1))), "float(1u)");
         assert.strictEqual(fs300(float(3.1415)), "3.1415");
+        assert.strictEqual(fs300(int(false)), "0");
+        assert.strictEqual(fs300(int(true)), "1");
         assert.strictEqual(fs300(int(0)), "0");
         assert.strictEqual(fs300(int(-1)), "-1");
         assert.strictEqual(fs300(int(3.1415)), "3");
-        assert.strictEqual(fs300(uint(0)), "0");
-        assert.strictEqual(fs300(uint(-1)), "4294967295");
-        assert.strictEqual(fs300(uint(3.1415)), "3");
+        assert.strictEqual(fs300(uint(false)), "0u");
+        assert.strictEqual(fs300(uint(true)), "1u");
+        assert.strictEqual(fs300(uint(0)), "0u");
+        assert.strictEqual(fs300(uint(-1)), "4294967295u");
+        assert.strictEqual(fs300(uint(3.1415)), "3u");
     },
 
     vec2: () => {
