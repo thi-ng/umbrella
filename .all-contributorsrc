@@ -354,6 +354,15 @@
         "bug",
         "code"
       ]
+    },
+    {
+      "login": "ruigil",
+      "name": "Rui Gil",
+      "avatar_url": "https://avatars.githubusercontent.com/u/656535?v=4",
+      "profile": "https://github.com/ruigil",
+      "contributions": [
+        "bug"
+      ]
     }
   ],
   "contributorsPerLine": 7,

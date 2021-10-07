@@ -475,6 +475,9 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://github.com/ZYinMD"><img src="https://avatars.githubusercontent.com/u/32368482?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Z Yin</b></sub></a><br /><a href="https://github.com/thi-ng/umbrella/issues?q=author%3AZYinMD" title="Bug reports">🐛</a></td>
     <td align="center"><a href="https://dmnsgn.me"><img src="https://avatars.githubusercontent.com/u/1636460?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Damien Seguin</b></sub></a><br /><a href="https://github.com/thi-ng/umbrella/issues?q=author%3Admnsgn" title="Bug reports">🐛</a> <a href="https://github.com/thi-ng/umbrella/commits?author=dmnsgn" title="Code">💻</a></td>
   </tr>
+  <tr>
+    <td align="center"><a href="https://github.com/ruigil"><img src="https://avatars.githubusercontent.com/u/656535?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Rui Gil</b></sub></a><br /><a href="https://github.com/thi-ng/umbrella/issues?q=author%3Aruigil" title="Bug reports">🐛</a></td>
+  </tr>
 </table>
 
 <!-- markdownlint-restore -->
