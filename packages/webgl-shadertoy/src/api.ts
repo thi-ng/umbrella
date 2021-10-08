@@ -1,7 +1,12 @@
 import type { Fn2 } from "@thi.ng/api";
 import type { FloatSym, IntSym, ScopeBody, Vec2Sym } from "@thi.ng/shader-ast";
 import type { GLSLTarget } from "@thi.ng/shader-ast-glsl";
-import type { ITexture, ModelSpec, UniformDecl } from "@thi.ng/webgl";
+import type {
+    DefShaderOpts,
+    ITexture,
+    ModelSpec,
+    UniformDecl,
+} from "@thi.ng/webgl";
 
 export type MainImageFn<U extends ShaderToyUniforms> = Fn2<
     GLSLTarget,
@@ -31,12 +36,16 @@ export interface ShaderToyOpts<U extends ShaderToyUniforms> {
      * Optional textures to bind
      */
     textures?: ITexture[];
+    /**
+     * Options for {@link @thi.ng/webgl#defShader}.
+     */
+    opts?: Partial<DefShaderOpts>;
 }
 
 export interface ShaderToy<U extends ShaderToyUniforms> {
     start(): void;
     stop(): void;
     update(time?: number): void;
-    recompile(main: MainImageFn<U>): void;
+    recompile(main: MainImageFn<U>, opts?: Partial<DefShaderOpts>): void;
     model: ModelSpec;
 }

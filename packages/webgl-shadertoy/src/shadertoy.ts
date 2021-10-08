@@ -1,6 +1,7 @@
 import { assign } from "@thi.ng/shader-ast/ast/assign";
 import { defMain, defn } from "@thi.ng/shader-ast/ast/function";
 import { FLOAT0, FLOAT1, vec4 } from "@thi.ng/shader-ast/ast/lit";
+import type { DefShaderOpts } from "@thi.ng/webgl";
 import { compileModel } from "@thi.ng/webgl/buffer";
 import { draw } from "@thi.ng/webgl/draw";
 import { defQuadModel } from "@thi.ng/webgl/geo/quad";
@@ -66,40 +67,44 @@ export const shaderToy = <U extends ShaderToyUniforms>(
         update(time: number) {
             update(time);
         },
-        recompile(main: MainImageFn<U>) {
+        recompile(main: MainImageFn<U>, shaderOpts?: Partial<DefShaderOpts>) {
             if (model.shader) {
                 model.shader.release();
             }
-            model.shader = defShader(gl, {
-                vs: (gl, _, ins) => [
-                    defMain(() => [
-                        assign(
-                            gl.gl_Position,
-                            vec4(ins.position, FLOAT0, FLOAT1)
-                        ),
-                    ]),
-                ],
-                fs: (gl, unis, _, outputs) => [
-                    defMain(() => [
-                        assign(
-                            outputs.fragColor,
-                            defn("vec4", "mainImage", [], () =>
-                                main(gl, <any>unis)
-                            )()
-                        ),
-                    ]),
-                ],
-                attribs: {
-                    position: "vec2",
+            model.shader = defShader(
+                gl,
+                {
+                    vs: (gl, _, ins) => [
+                        defMain(() => [
+                            assign(
+                                gl.gl_Position,
+                                vec4(ins.position, FLOAT0, FLOAT1)
+                            ),
+                        ]),
+                    ],
+                    fs: (gl, unis, _, outputs) => [
+                        defMain(() => [
+                            assign(
+                                outputs.fragColor,
+                                defn("vec4", "mainImage", [], () =>
+                                    main(gl, <any>unis)
+                                )()
+                            ),
+                        ]),
+                    ],
+                    attribs: {
+                        position: "vec2",
+                    },
+                    uniforms: {
+                        resolution: "vec2",
+                        mouse: ["vec2", [0, 0]],
+                        mouseButtons: ["int", 0],
+                        time: "float",
+                        ...opts.uniforms,
+                    },
                 },
-                uniforms: {
-                    resolution: "vec2",
-                    mouse: ["vec2", [0, 0]],
-                    mouseButtons: ["int", 0],
-                    time: "float",
-                    ...opts.uniforms,
-                },
-            });
+                shaderOpts || opts.opts
+            );
         },
         model,
     };
