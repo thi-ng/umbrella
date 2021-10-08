@@ -2,9 +2,9 @@ import { atan2Abs, cossin } from "@thi.ng/math/angle";
 import { DEG2RAD, PI, SIXTH_PI, TAU, THIRD_PI } from "@thi.ng/math/api";
 import { ONE3, ReadonlyVec } from "@thi.ng/vectors/api";
 import { dist3, dist4 } from "@thi.ng/vectors/dist";
-import type { ColorDistance } from "../api";
-import { labD50 } from "../lab/lab50";
-import { labD65 } from "../lab/lab65";
+import type { ColorDistance } from "./api";
+import { labD50 } from "./lab/lab50";
+import { labD65 } from "./lab/lab65";
 import { luminanceRgb, luminanceSrgb } from "./luminance-rgb";
 
 const { abs, cos, hypot, sin, sqrt } = Math;

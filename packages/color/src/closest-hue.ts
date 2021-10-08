@@ -1,5 +1,5 @@
 import { fract } from "@thi.ng/math/prec";
-import type { Hue } from "../api";
+import type { Hue } from "./api";
 
 /**
  * Returns the {@link Hue} constant of the closest of 12 defined hues.

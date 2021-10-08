@@ -1,7 +1,7 @@
 import { setC4 } from "@thi.ng/vectors/setc";
 import type { ColorOp } from "../api";
 import { ensureAlpha } from "../internal/ensure-alpha";
-import { srgbLinear } from "../ops/linear";
+import { srgbLinear } from "../linear";
 
 /**
  * Converts sRGB to linear RGB.

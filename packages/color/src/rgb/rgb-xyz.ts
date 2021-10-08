@@ -1,6 +1,6 @@
 import type { Color, ColorOp, ReadonlyColor } from "../api";
-import { clamp } from "../ops/clamp";
 import { RGB_XYZ_D50, RGB_XYZ_D65 } from "../api/constants";
+import { clamp } from "../clamp";
 import { mulV33 } from "../internal/matrix-ops";
 
 /**

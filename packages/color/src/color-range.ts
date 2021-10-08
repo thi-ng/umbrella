@@ -15,10 +15,10 @@ import type {
     ColorRangePreset,
     ColorThemePart,
     ColorThemePartTuple,
-} from "../api/ranges";
-import { parseCss } from "../css/parse-css";
-import { ensureAlpha } from "../internal/ensure-alpha";
-import { LCH, lch } from "../lch/lch";
+} from "./api/ranges";
+import { parseCss } from "./css/parse-css";
+import { ensureAlpha } from "./internal/ensure-alpha";
+import { LCH, lch } from "./lch/lch";
 import { analog } from "./analog";
 import { isBlack } from "./is-black";
 import { isGray } from "./is-gray";

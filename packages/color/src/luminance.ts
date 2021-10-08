@@ -1,6 +1,6 @@
 import { DEFAULT, defmulti } from "@thi.ng/defmulti/defmulti";
-import type { MaybeColor } from "../api";
-import { rgb } from "../rgb/rgb";
+import type { MaybeColor } from "./api";
+import { rgb } from "./rgb/rgb";
 import {
     luminanceAbgr32,
     luminanceArgb32,

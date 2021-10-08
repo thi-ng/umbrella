@@ -11,13 +11,13 @@ import { transduce } from "@thi.ng/transducers/transduce";
 import { tween } from "@thi.ng/transducers/tween";
 import { zip } from "@thi.ng/transducers/zip";
 import { setS4 } from "@thi.ng/vectors/sets";
-import type { Color, ReadonlyColor } from "../api";
+import type { Color, ReadonlyColor } from "./api";
 import type {
     CosGradientSpec,
     CosineCoeffs,
     CosineGradientOpts,
     CosineGradientPreset,
-} from "../api/gradients";
+} from "./api/gradients";
 import { clamp } from "./clamp";
 
 /**

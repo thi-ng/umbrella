@@ -25,7 +25,7 @@
     "license": "Apache-2.0",
     "scripts": {
         "build": "yarn clean && tsc --declaration",
-        "clean": "rimraf *.js *.d.ts *.map doc api css hcy hsi hsl hsv int internal lab lch oklab ops rgb srgb xyy xyz ycc",
+        "clean": "rimraf *.js *.d.ts *.map doc api css hcy hsi hsl hsv int internal lab lch oklab rgb srgb xyy xyz ycc",
         "doc": "typedoc --excludePrivate --excludeInternal --out doc src/index.ts",
         "doc:ae": "mkdir -p .ae/doc .ae/temp && node_modules/.bin/api-extractor run --local --verbose",
         "doc:readme": "yarn doc:stats && ../../scripts/node-esm ../../tools/src/readme.ts",
@@ -118,6 +118,12 @@
         ".": {
             "import": "./index.js"
         },
+        "./alpha": {
+            "import": "./alpha.js"
+        },
+        "./analog": {
+            "import": "./analog.js"
+        },
         "./api/constants": {
             "import": "./api/constants.js"
         },
@@ -136,11 +142,23 @@
         "./api": {
             "import": "./api.js"
         },
+        "./clamp": {
+            "import": "./clamp.js"
+        },
+        "./closest-hue": {
+            "import": "./closest-hue.js"
+        },
+        "./color-range": {
+            "import": "./color-range.js"
+        },
         "./color": {
             "import": "./color.js"
         },
         "./convert": {
             "import": "./convert.js"
+        },
+        "./cosine-gradients": {
+            "import": "./cosine-gradients.js"
         },
         "./css/css": {
             "import": "./css/css.js"
@@ -150,6 +168,12 @@
         },
         "./defcolor": {
             "import": "./defcolor.js"
+        },
+        "./distance": {
+            "import": "./distance.js"
+        },
+        "./gradients": {
+            "import": "./gradients.js"
         },
         "./hcy/hcy-rgb": {
             "import": "./hcy/hcy-rgb.js"
@@ -202,6 +226,18 @@
         "./int/int": {
             "import": "./int/int.js"
         },
+        "./invert": {
+            "import": "./invert.js"
+        },
+        "./is-black": {
+            "import": "./is-black.js"
+        },
+        "./is-gray": {
+            "import": "./is-gray.js"
+        },
+        "./is-white": {
+            "import": "./is-white.js"
+        },
         "./lab/lab-css": {
             "import": "./lab/lab-css.js"
         },
@@ -229,6 +265,18 @@
         "./lch/lch": {
             "import": "./lch/lch.js"
         },
+        "./linear": {
+            "import": "./linear.js"
+        },
+        "./luminance-rgb": {
+            "import": "./luminance-rgb.js"
+        },
+        "./luminance": {
+            "import": "./luminance.js"
+        },
+        "./mix": {
+            "import": "./mix.js"
+        },
         "./oklab/oklab-rgb": {
             "import": "./oklab/oklab-rgb.js"
         },
@@ -237,63 +285,6 @@
         },
         "./oklab/oklab": {
             "import": "./oklab/oklab.js"
-        },
-        "./ops/alpha": {
-            "import": "./ops/alpha.js"
-        },
-        "./ops/analog": {
-            "import": "./ops/analog.js"
-        },
-        "./ops/clamp": {
-            "import": "./ops/clamp.js"
-        },
-        "./ops/closest-hue": {
-            "import": "./ops/closest-hue.js"
-        },
-        "./ops/color-range": {
-            "import": "./ops/color-range.js"
-        },
-        "./ops/cosine-gradients": {
-            "import": "./ops/cosine-gradients.js"
-        },
-        "./ops/distance": {
-            "import": "./ops/distance.js"
-        },
-        "./ops/gradients": {
-            "import": "./ops/gradients.js"
-        },
-        "./ops/invert": {
-            "import": "./ops/invert.js"
-        },
-        "./ops/is-black": {
-            "import": "./ops/is-black.js"
-        },
-        "./ops/is-gray": {
-            "import": "./ops/is-gray.js"
-        },
-        "./ops/is-white": {
-            "import": "./ops/is-white.js"
-        },
-        "./ops/linear": {
-            "import": "./ops/linear.js"
-        },
-        "./ops/luminance-rgb": {
-            "import": "./ops/luminance-rgb.js"
-        },
-        "./ops/luminance": {
-            "import": "./ops/luminance.js"
-        },
-        "./ops/mix": {
-            "import": "./ops/mix.js"
-        },
-        "./ops/sort": {
-            "import": "./ops/sort.js"
-        },
-        "./ops/swatches": {
-            "import": "./ops/swatches.js"
-        },
-        "./ops/transform": {
-            "import": "./ops/transform.js"
         },
         "./rgb/hue-rgb": {
             "import": "./rgb/hue-rgb.js"
@@ -337,6 +328,9 @@
         "./rgb/rgb": {
             "import": "./rgb/rgb.js"
         },
+        "./sort": {
+            "import": "./sort.js"
+        },
         "./srgb/srgb-css": {
             "import": "./srgb/srgb-css.js"
         },
@@ -348,6 +342,12 @@
         },
         "./srgb/srgb": {
             "import": "./srgb/srgb.js"
+        },
+        "./swatches": {
+            "import": "./swatches.js"
+        },
+        "./transform": {
+            "import": "./transform.js"
         },
         "./xyy/xyy-xyz": {
             "import": "./xyy/xyy-xyz.js"

@@ -2,7 +2,7 @@ import { EPS } from "@thi.ng/math/api";
 import { clamp01 } from "@thi.ng/math/interval";
 import { setC3 } from "@thi.ng/vectors/setc";
 import type { ColorOp } from "../api";
-import { clamp } from "../ops/clamp";
+import { clamp } from "../clamp";
 
 /**
  * Based on:
