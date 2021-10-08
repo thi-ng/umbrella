@@ -4,6 +4,7 @@ import { ConsoleLogger } from "@thi.ng/logger/console";
 import type { IRandom } from "@thi.ng/random";
 import { SYSTEM } from "@thi.ng/random/system";
 import type { Term, Vec3Sym, Vec3Term } from "@thi.ng/shader-ast";
+import { constantFolding } from "@thi.ng/shader-ast-optimize/contant-folding";
 import { clamp11 } from "@thi.ng/shader-ast-stdlib/math/clamp";
 import { snoise3, snoiseVec3 } from "@thi.ng/shader-ast-stdlib/noise/simplex3";
 import { fragUV } from "@thi.ng/shader-ast-stdlib/screen/uv";
@@ -127,7 +128,8 @@ const shaderFunction =
                     mul(1, fract(unis.time))
                 )
             ),
-            ret(vec4(abs(transpile(ast)), 1)),
+            // transpile & optimize generated AST
+            ret(vec4(abs(constantFolding(transpile(ast))), 1)),
             // ret(vec4(fit1101(normalize(transpile(ast))), 1))
         ];
     };

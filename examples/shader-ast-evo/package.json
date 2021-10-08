@@ -13,9 +13,9 @@
     "dependencies": {
         "@thi.ng/gp": "latest",
         "@thi.ng/logger": "latest",
-        "@thi.ng/math": "latest",
         "@thi.ng/random": "latest",
         "@thi.ng/shader-ast": "latest",
+        "@thi.ng/shader-ast-optimize": "latest",
         "@thi.ng/shader-ast-stdlib": "latest",
         "@thi.ng/webgl": "latest",
         "@thi.ng/webgl-shadertoy": "latest"
@@ -32,6 +32,7 @@
         "readme": [
             "gp",
             "shader-ast",
+            "shader-ast-optimize",
             "shader-ast-stdlib",
             "random",
             "webgl",
