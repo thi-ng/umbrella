@@ -113,6 +113,21 @@ for other project-wide information, tidbits, useful snippets etc.
 
 ## Projects
 
+### Important changes (10/2021)
+
+**All packages are now only published in ESM format (ES2020 syntax) with
+TypeScript typings.** You can find more details & rationale in issue
+[#315](https://github.com/thi-ng/umbrella/issues/315).
+
+As a result, many packages have undergone internal restructuring and now fully
+support deep-imports (based on declared [export
+maps](https://docs.skypack.dev/package-authors/package-checks#export-map)),
+leading to drastically smaller userland bundle sizes.
+
+Previously we also created & published CommonJS & UMD formats, but deemed them
+an unnecessary burden & hindrance, since all important JS tooling/platforms do
+support ES modules by now.
+
 <!--
 ### New / unreleased packages in development
 
@@ -120,30 +135,17 @@ for other project-wide information, tidbits, useful snippets etc.
 feature or `develop` branches)
 -->
 
-### Latest additions / updates (since 08/2021)
+### Latest package additions (since 09/2021)
 
-| Project                                                     | Version                                                                                                                           | Changelog                                              | Description                                            |
-|-------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------|--------------------------------------------------------|
-| [`@thi.ng/args`](./packages/args)                           | [![version](https://img.shields.io/npm/v/@thi.ng/args.svg)](https://www.npmjs.com/package/@thi.ng/args)                           | [changelog](./packages/args/CHANGELOG.md)              | Declarative & functional CLI arg parsing & coercions   |
-| [`@thi.ng/atom`](./packages/atom)                           | [![version](https://img.shields.io/npm/v/@thi.ng/atom.svg)](https://www.npmjs.com/package/@thi.ng/atom)                           | [changelog](./packages/atom/CHANGELOG.md)              | Immutable value wrappers, views, history               |
-| [`@thi.ng/color-palettes`](./packages/color-palettes)       | [![version](https://img.shields.io/npm/v/@thi.ng/color-palettes.svg)](https://www.npmjs.com/package/@thi.ng/color-palettes)       | [changelog](./packages/color-palettes/CHANGELOG.md)    | Collection of color palettes                           |
-| [`@thi.ng/date`](./packages/date)                           | [![version](https://img.shields.io/npm/v/@thi.ng/date.svg)](https://www.npmjs.com/package/@thi.ng/date)                           | [changelog](./packages/date/CHANGELOG.md)              | Date/time iterators, formatters, rounding              |
-| [`@thi.ng/dual-algebra`](./packages/dual-algebra)           | [![version](https://img.shields.io/npm/v/@thi.ng/dual-algebra.svg)](https://www.npmjs.com/package/@thi.ng/dual-algebra)           | [changelog](./packages/dual-algebra/CHANGELOG.md)      | Dual number algebra / automatic differentiation        |
-| [`@thi.ng/heaps`](./packages/heaps)                         | [![version](https://img.shields.io/npm/v/@thi.ng/heaps.svg)](https://www.npmjs.com/package/@thi.ng/heaps)                         | [changelog](./packages/heaps/CHANGELOG.md)             | Binary & d-ary heap impls                              |
-| [`@thi.ng/geom-isoline`](./packages/geom-isoline)           | [![version](https://img.shields.io/npm/v/@thi.ng/geom-isoline.svg)](https://www.npmjs.com/package/@thi.ng/geom-isoline)           | [changelog](./packages/geom-isoline/CHANGELOG.md)      | 2D contour line extraction                             |
-| [`@thi.ng/k-means`](./packages/k-means)                     | [![version](https://img.shields.io/npm/v/@thi.ng/k-means.svg)](https://www.npmjs.com/package/@thi.ng/k-means)                     | [changelog](./packages/k-means/CHANGELOG.md)           | K-means clustering of n-D data                         |
-| [`@thi.ng/ksuid`](./packages/ksuid)                         | [![version](https://img.shields.io/npm/v/@thi.ng/ksuid.svg)](https://www.npmjs.com/package/@thi.ng/ksuid)                         | [changelog](./packages/ksuid/CHANGELOG.md)             | K-sortable unique identifiers, binary & base-N encoded |
-| [`@thi.ng/logger`](./packages/logger)                       | [![version](https://img.shields.io/npm/v/@thi.ng/logger.svg)](https://www.npmjs.com/package/@thi.ng/logger)                       | [changelog](./packages/logger/CHANGELOG.md)            | Basis infrastructure for arbitrary logging             |
-| [`@thi.ng/markdown-table`](./packages/markdown-table)       | [![version](https://img.shields.io/npm/v/@thi.ng/markdown-table.svg)](https://www.npmjs.com/package/@thi.ng/markdown-table)       | [changelog](./packages/markdown-table/CHANGELOG.md)    | Markdown table generator / formatter                   |
-| [`@thi.ng/pixel`](./packages/pixel)                         | [![version](https://img.shields.io/npm/v/@thi.ng/pixel.svg)](https://www.npmjs.com/package/@thi.ng/pixel)                         | [changelog](./packages/pixel/CHANGELOG.md)             | Multi-format pixel buffers                             |
-| [`@thi.ng/rdom`](./packages/rdom)                           | [![version](https://img.shields.io/npm/v/@thi.ng/rdom.svg)](https://www.npmjs.com/package/@thi.ng/rdom)                           | [changelog](./packages/rdom/CHANGELOG.md)              | Reactive, diff-less, async UI components               |
-| [`@thi.ng/rdom-components`](./packages/rdom-components)     | [![version](https://img.shields.io/npm/v/@thi.ng/rdom-components.svg)](https://www.npmjs.com/package/@thi.ng/rdom-components)     | [changelog](./packages/rdom-components/CHANGELOG.md)   | Unstyled, customizable component collection            |
-| [`@thi.ng/shader-ast`](./packages/shader-ast)               | [![version](https://img.shields.io/npm/v/@thi.ng/shader-ast.svg)](https://www.npmjs.com/package/@thi.ng/shader-ast)               | [changelog](./packages/shader-ast/CHANGELOG.md)        | AST DSL for x-platform shader code                     |
-| [`@thi.ng/shader-ast-stdlib`](./packages/shader-ast-stdlib) | [![version](https://img.shields.io/npm/v/@thi.ng/shader-ast-stdlib.svg)](https://www.npmjs.com/package/@thi.ng/shader-ast-stdlib) | [changelog](./packages/shader-ast-stdlib/CHANGELOG.md) | 100+ useful AST shader functions                       |
-| [`@thi.ng/testament`](./packages/testament)                 | [![version](https://img.shields.io/npm/v/@thi.ng/testament.svg)](https://www.npmjs.com/package/@thi.ng/testament)                 | [changelog](./packages/testament/CHANGELOG.md)         | Minimal test runner                                    |
-| [`@thi.ng/text-format`](./packages/text-format)             | [![version](https://img.shields.io/npm/v/@thi.ng/text-format.svg)](https://www.npmjs.com/package/@thi.ng/text-format)             | [changelog](./packages/text-format/CHANGELOG.md)       | Color text formatting w/ ANSI & HTML presets           |
-| [`@thi.ng/transducers`](./packages/transducers)             | [![version](https://img.shields.io/npm/v/@thi.ng/transducers.svg)](https://www.npmjs.com/package/@thi.ng/transducers)             | [changelog](./packages/transducers/CHANGELOG.md)       | Composable data transformations                        |
-| [`@thi.ng/vectors`](./packages/vectors)                     | [![version](https://img.shields.io/npm/v/@thi.ng/vectors.svg)](https://www.npmjs.com/package/@thi.ng/vectors)                     | [changelog](./packages/vectors/CHANGELOG.md)           | Fixed & arbitrary-length vector ops                    |
+| Project                                                         | Version                                                                                                                               | Changelog                                                | Description                                  |
+|-----------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------|----------------------------------------------|
+| [`@thi.ng/expose`](./packages/expose)                           | [![version](https://img.shields.io/npm/v/@thi.ng/expose.svg)](https://www.npmjs.com/package/@thi.ng/expose)                           | [changelog](./packages/expose/CHANGELOG.md)              | Conditional global variable exposition       |
+| [`@thi.ng/logger`](./packages/logger)                           | [![version](https://img.shields.io/npm/v/@thi.ng/logger.svg)](https://www.npmjs.com/package/@thi.ng/logger)                           | [changelog](./packages/logger/CHANGELOG.md)              | Basis infrastructure for arbitrary logging   |
+| [`@thi.ng/markdown-table`](./packages/markdown-table)           | [![version](https://img.shields.io/npm/v/@thi.ng/markdown-table.svg)](https://www.npmjs.com/package/@thi.ng/markdown-table)           | [changelog](./packages/markdown-table/CHANGELOG.md)      | Markdown table generator / formatter         |
+| [`@thi.ng/pixel-dither`](./packages/pixel-dither)               | [![version](https://img.shields.io/npm/v/@thi.ng/pixel-dither.svg)](https://www.npmjs.com/package/@thi.ng/pixel-dither)               | [changelog](./packages/pixel-dither/CHANGELOG.md)        | Image dithering w/ various algorithm presets |
+| [`@thi.ng/shader-ast-optimize`](./packages/shader-ast-optimize) | [![version](https://img.shields.io/npm/v/@thi.ng/shader-ast-optimize.svg)](https://www.npmjs.com/package/@thi.ng/shader-ast-optimize) | [changelog](./packages/shader-ast-optimize/CHANGELOG.md) | AST code optimization strategies             |
+| [`@thi.ng/testament`](./packages/testament)                     | [![version](https://img.shields.io/npm/v/@thi.ng/testament.svg)](https://www.npmjs.com/package/@thi.ng/testament)                     | [changelog](./packages/testament/CHANGELOG.md)           | Minimal test runner                          |
+| [`@thi.ng/text-format`](./packages/text-format)                 | [![version](https://img.shields.io/npm/v/@thi.ng/text-format.svg)](https://www.npmjs.com/package/@thi.ng/text-format)                 | [changelog](./packages/text-format/CHANGELOG.md)         | Color text formatting w/ ANSI & HTML presets |
 
 ### Fundamentals
 
@@ -160,6 +162,7 @@ feature or `develop` branches)
 | [`@thi.ng/distance`](./packages/distance)   | [![version](https://img.shields.io/npm/v/@thi.ng/distance.svg)](https://www.npmjs.com/package/@thi.ng/distance)   | [changelog](./packages/distance/CHANGELOG.md)  | n-D distance metrics & K-nearest neighborhoods           |
 | [`@thi.ng/equiv`](./packages/equiv)         | [![version](https://img.shields.io/npm/v/@thi.ng/equiv.svg)](https://www.npmjs.com/package/@thi.ng/equiv)         | [changelog](./packages/equiv/CHANGELOG.md)     | Deep value equivalence checking                          |
 | [`@thi.ng/errors`](./packages/errors)       | [![version](https://img.shields.io/npm/v/@thi.ng/errors.svg)](https://www.npmjs.com/package/@thi.ng/errors)       | [changelog](./packages/errors/CHANGELOG.md)    | Custom error types                                       |
+| [`@thi.ng/expose`](./packages/expose)       | [![version](https://img.shields.io/npm/v/@thi.ng/expose.svg)](https://www.npmjs.com/package/@thi.ng/expose)       | [changelog](./packages/expose/CHANGELOG.md)    | Conditional global variable exposition                   |
 | [`@thi.ng/hex`](./packages/hex)             | [![version](https://img.shields.io/npm/v/@thi.ng/hex.svg)](https://www.npmjs.com/package/@thi.ng/hex)             | [changelog](./packages/hex/CHANGELOG.md)       | Hex value formatters for U4-64 words                     |
 | [`@thi.ng/logger`](./packages/logger)       | [![version](https://img.shields.io/npm/v/@thi.ng/logger.svg)](https://www.npmjs.com/package/@thi.ng/logger)       | [changelog](./packages/logger/CHANGELOG.md)    | Basis infrastructure for arbitrary logging               |
 | [`@thi.ng/memoize`](./packages/memoize)     | [![version](https://img.shields.io/npm/v/@thi.ng/memoize.svg)](https://www.npmjs.com/package/@thi.ng/memoize)     | [changelog](./packages/memoize/CHANGELOG.md)   | Function memoization w/ customizable caching             |
@@ -316,6 +319,7 @@ feature or `develop` branches)
 | [`@thi.ng/geom-voronoi`](./packages/geom-voronoi)             | [![version](https://img.shields.io/npm/v/@thi.ng/geom-voronoi.svg)](https://www.npmjs.com/package/@thi.ng/geom-voronoi)             | [changelog](./packages/geom-voronoi/CHANGELOG.md)       | 2D iterative delaunay/voronoi                       |
 | [`@thi.ng/lsys`](./packages/lsys)                             | [![version](https://img.shields.io/npm/v/@thi.ng/lsys.svg)](https://www.npmjs.com/package/@thi.ng/lsys)                             | [changelog](./packages/lsys/CHANGELOG.md)               | Extensible L-System architecture                    |
 | [`@thi.ng/pixel`](./packages/pixel)                           | [![version](https://img.shields.io/npm/v/@thi.ng/pixel.svg)](https://www.npmjs.com/package/@thi.ng/pixel)                           | [changelog](./packages/pixel/CHANGELOG.md)              | Multi-format pixel buffers                          |
+| [`@thi.ng/pixel-dither`](./packages/pixel-dither)             | [![version](https://img.shields.io/npm/v/@thi.ng/pixel-dither.svg)](https://www.npmjs.com/package/@thi.ng/pixel-dither)             | [changelog](./packages/pixel-dither/CHANGELOG.md)       | Image dithering w/ various algorithm presets        |
 | [`@thi.ng/poisson`](./packages/poisson)                       | [![version](https://img.shields.io/npm/v/@thi.ng/poisson.svg)](https://www.npmjs.com/package/@thi.ng/poisson)                       | [changelog](./packages/poisson/CHANGELOG.md)            | nD Poisson disk sampling                            |
 | [`@thi.ng/porter-duff`](./packages/porter-duff)               | [![version](https://img.shields.io/npm/v/@thi.ng/porter-duff.svg)](https://www.npmjs.com/package/@thi.ng/porter-duff)               | [changelog](./packages/porter-duff/CHANGELOG.md)        | Alpha blending / compositing ops                    |
 | [`@thi.ng/scenegraph`](./packages/scenegraph)                 | [![version](https://img.shields.io/npm/v/@thi.ng/scenegraph.svg)](https://www.npmjs.com/package/@thi.ng/scenegraph)                 | [changelog](./packages/scenegraph/CHANGELOG.md)         | Extensible 2D/3D scenegraph                         |
@@ -324,15 +328,16 @@ feature or `develop` branches)
 
 ### WebGL / GPGPU
 
-| Project                                                     | Version                                                                                                                           | Changelog                                              | Description                        |
-|-------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------|------------------------------------|
-| [`@thi.ng/shader-ast`](./packages/shader-ast)               | [![version](https://img.shields.io/npm/v/@thi.ng/shader-ast.svg)](https://www.npmjs.com/package/@thi.ng/shader-ast)               | [changelog](./packages/shader-ast/CHANGELOG.md)        | AST DSL for x-platform shader code |
-| [`@thi.ng/shader-ast-glsl`](./packages/shader-ast-glsl)     | [![version](https://img.shields.io/npm/v/@thi.ng/shader-ast-glsl.svg)](https://www.npmjs.com/package/@thi.ng/shader-ast-glsl)     | [changelog](./packages/shader-ast-glsl/CHANGELOG.md)   | GLSL code generator                |
-| [`@thi.ng/shader-ast-js`](./packages/shader-ast-js)         | [![version](https://img.shields.io/npm/v/@thi.ng/shader-ast-js.svg)](https://www.npmjs.com/package/@thi.ng/shader-ast-js)         | [changelog](./packages/shader-ast-js/CHANGELOG.md)     | JS code generator                  |
-| [`@thi.ng/shader-ast-stdlib`](./packages/shader-ast-stdlib) | [![version](https://img.shields.io/npm/v/@thi.ng/shader-ast-stdlib.svg)](https://www.npmjs.com/package/@thi.ng/shader-ast-stdlib) | [changelog](./packages/shader-ast-stdlib/CHANGELOG.md) | 100+ useful AST shader functions   |
-| [`@thi.ng/webgl`](./packages/webgl)                         | [![version](https://img.shields.io/npm/v/@thi.ng/webgl.svg)](https://www.npmjs.com/package/@thi.ng/webgl)                         | [changelog](./packages/webgl/CHANGELOG.md)             | WebGL 1/2 / GPGPU facilities       |
-| [`@thi.ng/webgl-msdf`](./packages/webgl-msdf)               | [![version](https://img.shields.io/npm/v/@thi.ng/webgl-msdf.svg)](https://www.npmjs.com/package/@thi.ng/webgl-msdf)               | [changelog](./packages/webgl-msdf/CHANGELOG.md)        | MSDF font rendering                |
-| [`@thi.ng/webgl-shadertoy`](./packages/webgl-shadertoy)     | [![version](https://img.shields.io/npm/v/@thi.ng/webgl-shadertoy.svg)](https://www.npmjs.com/package/@thi.ng/webgl-shadertoy)     | [changelog](./packages/webgl-shadertoy/CHANGELOG.md)   | Shadertoy-like WebGL setup         |
+| Project                                                         | Version                                                                                                                               | Changelog                                                | Description                        |
+|-----------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------|------------------------------------|
+| [`@thi.ng/shader-ast`](./packages/shader-ast)                   | [![version](https://img.shields.io/npm/v/@thi.ng/shader-ast.svg)](https://www.npmjs.com/package/@thi.ng/shader-ast)                   | [changelog](./packages/shader-ast/CHANGELOG.md)          | AST DSL for x-platform shader code |
+| [`@thi.ng/shader-ast-glsl`](./packages/shader-ast-glsl)         | [![version](https://img.shields.io/npm/v/@thi.ng/shader-ast-glsl.svg)](https://www.npmjs.com/package/@thi.ng/shader-ast-glsl)         | [changelog](./packages/shader-ast-glsl/CHANGELOG.md)     | GLSL code generator                |
+| [`@thi.ng/shader-ast-js`](./packages/shader-ast-js)             | [![version](https://img.shields.io/npm/v/@thi.ng/shader-ast-js.svg)](https://www.npmjs.com/package/@thi.ng/shader-ast-js)             | [changelog](./packages/shader-ast-js/CHANGELOG.md)       | JS code generator                  |
+| [`@thi.ng/shader-ast-optimize`](./packages/shader-ast-optimize) | [![version](https://img.shields.io/npm/v/@thi.ng/shader-ast-optimize.svg)](https://www.npmjs.com/package/@thi.ng/shader-ast-optimize) | [changelog](./packages/shader-ast-optimize/CHANGELOG.md) | AST code optimization strategies   |
+| [`@thi.ng/shader-ast-stdlib`](./packages/shader-ast-stdlib)     | [![version](https://img.shields.io/npm/v/@thi.ng/shader-ast-stdlib.svg)](https://www.npmjs.com/package/@thi.ng/shader-ast-stdlib)     | [changelog](./packages/shader-ast-stdlib/CHANGELOG.md)   | 100+ useful AST shader functions   |
+| [`@thi.ng/webgl`](./packages/webgl)                             | [![version](https://img.shields.io/npm/v/@thi.ng/webgl.svg)](https://www.npmjs.com/package/@thi.ng/webgl)                             | [changelog](./packages/webgl/CHANGELOG.md)               | WebGL 1/2 / GPGPU facilities       |
+| [`@thi.ng/webgl-msdf`](./packages/webgl-msdf)                   | [![version](https://img.shields.io/npm/v/@thi.ng/webgl-msdf.svg)](https://www.npmjs.com/package/@thi.ng/webgl-msdf)                   | [changelog](./packages/webgl-msdf/CHANGELOG.md)          | MSDF font rendering                |
+| [`@thi.ng/webgl-shadertoy`](./packages/webgl-shadertoy)         | [![version](https://img.shields.io/npm/v/@thi.ng/webgl-shadertoy.svg)](https://www.npmjs.com/package/@thi.ng/webgl-shadertoy)         | [changelog](./packages/webgl-shadertoy/CHANGELOG.md)     | Shadertoy-like WebGL setup         |
 
 ### Low-level, binary, memory management
 
