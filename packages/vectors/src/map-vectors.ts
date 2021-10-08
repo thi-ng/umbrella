@@ -73,36 +73,48 @@ export function mapVectors(
 ): Vec[] {
     const num = a.length;
     !out && (out = new Array(num));
-    if (c !== undefined) {
-        if (isNumber(c)) {
-            for (let i = 0; i < num; i++) {
-                out[i] = (<VecOpVVN>fn)(
-                    out[i] || [],
-                    a[i],
-                    (<ReadonlyVec[]>b)[i],
-                    c
-                );
-            }
-        } else {
-            for (let i = 0; i < num; i++) {
-                out[i] = (<VecOpVVV>fn)(
-                    out[i] || [],
-                    a[i],
-                    (<ReadonlyVec[]>b)[i],
-                    c[i]
-                );
-            }
-        }
-    } else {
-        if (isNumber(b)) {
-            for (let i = 0; i < num; i++) {
-                out[i] = (<VecOpVN>fn)(out[i] || [], a[i], b);
-            }
-        } else {
-            for (let i = 0; i < num; i++) {
-                out[i] = (<VecOpVV>fn)(out[i] || [], a[i], b[i]);
-            }
-        }
-    }
+    c !== undefined
+        ? isNumber(c)
+            ? mapVVN(<VecOpVVN>fn, out, a, <ReadonlyVec[]>b, c)
+            : mapVVV(<VecOpVVV>fn, out, a, <ReadonlyVec[]>b, c)
+        : isNumber(b)
+        ? mapVN(<VecOpVN>fn, out, a, b)
+        : mapVV(<VecOpVV>fn, out, a, b);
     return out;
 }
+
+const mapVN = (fn: VecOpVN, out: Vec[], a: ReadonlyVec[], b: number) => {
+    for (let i = 0, num = a.length; i < num; i++) {
+        out[i] = fn(out[i] || [], a[i], b);
+    }
+};
+
+const mapVV = (fn: VecOpVV, out: Vec[], a: ReadonlyVec[], b: ReadonlyVec[]) => {
+    for (let i = 0, num = a.length; i < num; i++) {
+        out[i] = fn(out[i] || [], a[i], b[i]);
+    }
+};
+
+const mapVVN = (
+    fn: VecOpVVN,
+    out: Vec[],
+    a: ReadonlyVec[],
+    b: ReadonlyVec[],
+    c: number
+) => {
+    for (let i = 0, num = a.length; i < num; i++) {
+        out[i] = fn(out[i] || [], a[i], b[i], c);
+    }
+};
+
+const mapVVV = (
+    fn: VecOpVVV,
+    out: Vec[],
+    a: ReadonlyVec[],
+    b: ReadonlyVec[],
+    c: ReadonlyVec[]
+) => {
+    for (let i = 0, num = a.length; i < num; i++) {
+        out[i] = fn(out[i] || [], a[i], b[i], c[i]);
+    }
+};
