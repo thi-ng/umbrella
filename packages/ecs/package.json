@@ -43,7 +43,8 @@
         "@thi.ng/idgen": "^1.0.5",
         "@thi.ng/logger": "^0.0.1",
         "@thi.ng/malloc": "^5.0.14",
-        "@thi.ng/transducers": "^7.9.2"
+        "@thi.ng/transducers": "^7.9.2",
+        "tslib": "^2.3.1"
     },
     "devDependencies": {
         "@thi.ng/equiv": "^1.0.45",
