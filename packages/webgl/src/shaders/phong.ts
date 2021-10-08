@@ -10,12 +10,12 @@ import { $ } from "@thi.ng/shader-ast/ast/swizzle";
 import { sym } from "@thi.ng/shader-ast/ast/sym";
 import { dot, max, normalize, pow } from "@thi.ng/shader-ast/builtin/math";
 import type { Material } from "../api/material";
-import type { ShaderOpts, ShaderSpec } from "../api/shader";
+import type { ShaderPresetOpts, ShaderSpec } from "../api/shader";
 import { defMaterial } from "../material";
 import { autoNormalMatrix1 } from "../matrices";
 import { colorAttrib, positionAttrib } from "../utils";
 
-export type PhongOpts = ShaderOpts<
+export type PhongOpts = ShaderPresetOpts<
     Pick<Material, "ambientCol" | "diffuseCol" | "specularCol">
 >;
 

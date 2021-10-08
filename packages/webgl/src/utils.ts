@@ -1,10 +1,10 @@
 import type { IObjectOf } from "@thi.ng/api";
 import type { Sym, Term } from "@thi.ng/shader-ast";
 import { add, mul } from "@thi.ng/shader-ast/ast/ops";
-import type { ShaderOpts } from "./api/shader";
+import type { ShaderPresetOpts } from "./api/shader";
 
 export const positionAttrib = (
-    opts: Partial<ShaderOpts<any>>,
+    opts: Partial<ShaderPresetOpts<any>>,
     attribs: IObjectOf<Sym<any>>,
     pos = "position"
 ) =>
@@ -13,7 +13,7 @@ export const positionAttrib = (
         : attribs[pos];
 
 export const colorAttrib = (
-    opts: Partial<ShaderOpts<any>>,
+    opts: Partial<ShaderPresetOpts<any>>,
     attribs: IObjectOf<Sym<any>>,
     fallback: Sym<"vec3">
 ): Term<"vec3"> =>

@@ -23,6 +23,7 @@ import type { GLSL } from "./api/glsl";
 import type { ModelAttributeSpecs, ModelSpec } from "./api/model";
 import {
     DEFAULT_OUTPUT,
+    DefShaderOpts,
     GLSLDeclPrefixes,
     IShader,
     ShaderAttrib,
@@ -203,15 +204,19 @@ export class Shader implements IShader {
     }
 }
 
-export const defShader = (gl: WebGLRenderingContext, spec: ShaderSpec) => {
+export const defShader = (
+    gl: WebGLRenderingContext,
+    spec: ShaderSpec,
+    opts?: Partial<DefShaderOpts>
+) => {
     const version = isGL2Context(gl)
         ? GLSLVersion.GLES_300
         : GLSLVersion.GLES_100;
     const srcVS = isFunction(spec.vs)
-        ? shaderSourceFromAST(spec, "vs", version)
+        ? shaderSourceFromAST(spec, "vs", version, opts)
         : prepareShaderSource(spec, "vs", version);
     const srcFS = isFunction(spec.fs)
-        ? shaderSourceFromAST(spec, "fs", version)
+        ? shaderSourceFromAST(spec, "fs", version, opts)
         : prepareShaderSource(spec, "fs", version);
     LOGGER.debug(srcVS);
     LOGGER.debug(srcFS);
@@ -342,7 +347,8 @@ const compileUniformDecls = (spec: ShaderSpec, acc: IObjectOf<Sym<any>>) => {
 export const shaderSourceFromAST = (
     spec: ShaderSpec,
     type: ShaderType,
-    version: GLSLVersion
+    version: GLSLVersion,
+    opts: Partial<DefShaderOpts> = {}
 ) => {
     let prelude = compilePrelude(spec, version);
     const inputs: IObjectOf<Sym<any>> = {};
@@ -374,6 +380,7 @@ export const shaderSourceFromAST = (
         type,
         version,
         prelude,
+        prec: opts.prec,
     });
     return (
         target(

@@ -284,13 +284,20 @@ export interface ShaderState {
     stencilMask: number;
 }
 
-export interface ShaderOpts<T> {
+export interface ShaderPresetOpts<T> {
     instancePos: string;
     instanceColor: string;
     color: string;
     uv: string;
     material: Partial<T>;
     state: Partial<ShaderState>;
+}
+
+export interface DefShaderOpts {
+    /**
+     * Number of fractional digits for GLSL float literals
+     */
+    prec: number;
 }
 
 export interface IShader extends IBind<ModelSpec>, IRelease {

@@ -13,13 +13,13 @@ import { $ } from "@thi.ng/shader-ast/ast/swizzle";
 import { normalize } from "@thi.ng/shader-ast/builtin/math";
 import { texture } from "@thi.ng/shader-ast/builtin/texture";
 import type { Material } from "../api/material";
-import type { ShaderOpts, ShaderSpec } from "../api/shader";
+import type { ShaderPresetOpts, ShaderSpec } from "../api/shader";
 import { defMaterial } from "../material";
 import { autoNormalMatrix2 } from "../matrices";
 import { colorAttrib, positionAttrib } from "../utils";
 
 export interface LambertOpts
-    extends ShaderOpts<Pick<Material, "ambientCol" | "diffuseCol">> {
+    extends ShaderPresetOpts<Pick<Material, "ambientCol" | "diffuseCol">> {
     bidir: boolean;
 }
 
