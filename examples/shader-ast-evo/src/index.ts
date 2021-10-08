@@ -1,7 +1,6 @@
 import type { ASTNode, ASTOpts } from "@thi.ng/gp";
 import { AST } from "@thi.ng/gp/ast";
 import { ConsoleLogger } from "@thi.ng/logger/console";
-import { roundTo } from "@thi.ng/math/prec";
 import type { IRandom } from "@thi.ng/random";
 import { SYSTEM } from "@thi.ng/random/system";
 import type { Term, Vec3Sym, Vec3Term } from "@thi.ng/shader-ast";
@@ -33,13 +32,13 @@ import {
     sqrt,
     tan,
 } from "@thi.ng/shader-ast/builtin/math";
-import { setLogger } from "@thi.ng/webgl/logger";
 import {
     MainImageFn,
     shaderToy,
     ShaderToyUniforms,
 } from "@thi.ng/webgl-shadertoy";
 import { glCanvas } from "@thi.ng/webgl/canvas";
+import { setLogger } from "@thi.ng/webgl/logger";
 
 // enable logging to show generated shader code
 setLogger(new ConsoleLogger("webgl"));
@@ -98,9 +97,9 @@ const AST_OPTS: ASTOpts<Function, Vec3Term> = {
         rnd.float() < 0.5
             ? UV
             : vec3(
-                  roundTo(rnd.norm(NORM_SCALE), 0.01),
-                  roundTo(rnd.norm(NORM_SCALE), 0.01),
-                  roundTo(rnd.norm(NORM_SCALE), 0.01)
+                  rnd.norm(NORM_SCALE),
+                  rnd.norm(NORM_SCALE),
+                  rnd.norm(NORM_SCALE)
               ),
     ops: [
         { fn: randomFn(OP1), arity: 1, prob: 0.4 },
@@ -158,7 +157,7 @@ const update = () => {
         SYSTEM.float() < 0.9
             ? ast.mutate(currTree, SYSTEM.minmax(1, 4))
             : ast.crossoverSingle(currTree, ast.randomAST())[0];
-    toy.recompile(shaderFunction(currTree));
+    toy.recompile(shaderFunction(currTree), { prec: 4 });
 };
 
 setInterval(update, 500);

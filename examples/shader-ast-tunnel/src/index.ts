@@ -1,4 +1,7 @@
 import { intAbgr32Srgb } from "@thi.ng/color/int/int-srgb";
+import { ABGR8888 } from "@thi.ng/pixel/format/abgr8888";
+import { packedBuffer } from "@thi.ng/pixel/packed";
+import { defSampler } from "@thi.ng/pixel/sample";
 import type { FloatSym, Vec2Sym } from "@thi.ng/shader-ast";
 import { GLSLVersion, targetGLSL } from "@thi.ng/shader-ast-glsl";
 import {
@@ -100,23 +103,23 @@ if (JS_MODE) {
         // since texture sampling is not (yet) supported for the JS
         // codegen target, we're patching in a simple wrap-around 2D
         // lookup ourselves...
-        JS_DEFAULT_ENV.sampler2D.texture = (_, uv) => {
-            let x = ((uv[0] * TW) | 0) % TW;
-            let y = ((uv[1] * TH) | 0) % TH;
-            x < 0 && (x += TW);
-            y < 0 && (y += TH);
-            return intAbgr32Srgb([], texData[y * TW + x]);
-        };
+        // JS_DEFAULT_ENV.sampler2D.texture = (_, uv) => {
+        //     let x = ((uv[0] * TW) | 0) % TW;
+        //     let y = ((uv[1] * TH) | 0) % TH;
+        //     x < 0 && (x += TW);
+        //     y < 0 && (y += TH);
+        //     return intAbgr32Srgb([], texData[y * TW + x]);
+        // };
 
         // alternatively use custom image sampler to perform
         // filtered texture lookups:
-        // const sampler = defSampler(
-        //     packedBuffer(TW, TH, ABGR8888, texData),
-        //     "linear",
-        //     "wrap"
-        // );
-        // JS_DEFAULT_ENV.sampler2D.texture = (_, uv) =>
-        //     intAbgr32Srgb([], sampler(uv[0] * TW, uv[1] * TH));
+        const sampler = defSampler(
+            packedBuffer(TW, TH, ABGR8888, texData),
+            "nearest",
+            "wrap"
+        );
+        JS_DEFAULT_ENV.sampler2D.texture = (_, uv) =>
+            intAbgr32Srgb([], sampler(uv[0] * TW, uv[1] * TH));
 
         // compile AST to actual JS:
         // under the hood all vector & matrix operations delegate to

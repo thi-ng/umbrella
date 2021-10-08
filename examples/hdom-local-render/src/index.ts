@@ -3,7 +3,6 @@ import { replaceChild } from "@thi.ng/hdom/dom";
 import { normalizeTree } from "@thi.ng/hdom/normalize";
 import { memoize1 } from "@thi.ng/memoize/memoize1";
 import { fromInterval } from "@thi.ng/rstream/interval";
-import { sync } from "@thi.ng/rstream/sync";
 import { updateDOM } from "@thi.ng/transducers-hdom";
 import { cycle } from "@thi.ng/transducers/cycle";
 import { map } from "@thi.ng/transducers/map";
@@ -101,8 +100,8 @@ class Foo extends LocalReRenderable {
 const foo = memoize1((id: string) => new Foo(id));
 
 // trigger full DOM updates every 2 secs
-sync({ src: { time: fromInterval(2000) } }).transform(
-    map(({ time }) => [
+fromInterval(2000).transform(
+    map((time) => [
         "div",
         {},
         // use memoized components (lazy invocation): the `foo(id)` calls

@@ -1,9 +1,9 @@
-import { Atom } from "@thi.ng/atom/atom";
+import { defAtom } from "@thi.ng/atom/atom";
 import { repeat } from "@thi.ng/transducers/repeat";
 import { makeBins, updateAudio } from "./audio";
 import { NUM_BINS, PRESETS } from "./config";
 
-export const DB = new Atom({
+export const DB = defAtom({
     auto: <any>null,
     gain: 0.5,
     decay: 0.999,
