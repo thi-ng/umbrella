@@ -73,10 +73,11 @@ directory are using this package.
 
 A selection:
 
-| Screenshot                                                                                                          | Description                                               | Live demo                                              | Source                                                                              |
-|:--------------------------------------------------------------------------------------------------------------------|:----------------------------------------------------------|:-------------------------------------------------------|:------------------------------------------------------------------------------------|
-|                                                                                                                     | Full umbrella repo doc string search w/ paginated results | [Demo](https://demo.thi.ng/umbrella/rdom-search-docs/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rdom-search-docs) |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/triple-query.png" width="240"/> | Triple store query results & sortable table               | [Demo](https://demo.thi.ng/umbrella/triple-query/)     | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/triple-query)     |
+| Screenshot                                                                                                             | Description                                                                 | Live demo                                              | Source                                                                              |
+|:-----------------------------------------------------------------------------------------------------------------------|:----------------------------------------------------------------------------|:-------------------------------------------------------|:------------------------------------------------------------------------------------|
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/dominant-colors.png" width="240"/> | Color palette generation via dominant color extraction from uploaded images | [Demo](https://demo.thi.ng/umbrella/dominant-colors/)  | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/dominant-colors)  |
+|                                                                                                                        | Full umbrella repo doc string search w/ paginated results                   | [Demo](https://demo.thi.ng/umbrella/rdom-search-docs/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rdom-search-docs) |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/triple-query.png" width="240"/>    | Triple store query results & sortable table                                 | [Demo](https://demo.thi.ng/umbrella/triple-query/)     | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/triple-query)     |
 
 ## API
 

@@ -188,7 +188,7 @@ node --experimental-specifier-resolution=node --experimental-repl-await
 > const hiccupHtml = await import("@thi.ng/hiccup-html");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.48 KB
+Package sizes (gzipped, pre-treeshake): ESM: 1.47 KB
 
 ## Dependencies
 
@@ -202,11 +202,15 @@ directory are using this package.
 
 A selection:
 
-| Screenshot                                                                                                              | Description                                                      | Live demo                                              | Source                                                                              |
-|:------------------------------------------------------------------------------------------------------------------------|:-----------------------------------------------------------------|:-------------------------------------------------------|:------------------------------------------------------------------------------------|
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/color-themes.png" width="240"/>     | Probabilistic color theme generator                              | [Demo](https://demo.thi.ng/umbrella/color-themes/)     | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/color-themes)     |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/parse-playground.png" width="240"/> | Parser grammar livecoding editor/playground & codegen            | [Demo](https://demo.thi.ng/umbrella/parse-playground/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/parse-playground) |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/pixel-sorting.png" width="240"/>    | Interactive pixel sorting tool using thi.ng/color & thi.ng/pixel | [Demo](https://demo.thi.ng/umbrella/pixel-sorting/)    | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/pixel-sorting)    |
+| Screenshot                                                                                                              | Description                                                                 | Live demo                                              | Source                                                                              |
+|:------------------------------------------------------------------------------------------------------------------------|:----------------------------------------------------------------------------|:-------------------------------------------------------|:------------------------------------------------------------------------------------|
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/color-themes.png" width="240"/>     | Probabilistic color theme generator                                         | [Demo](https://demo.thi.ng/umbrella/color-themes/)     | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/color-themes)     |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/dominant-colors.png" width="240"/>  | Color palette generation via dominant color extraction from uploaded images | [Demo](https://demo.thi.ng/umbrella/dominant-colors/)  | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/dominant-colors)  |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/parse-playground.png" width="240"/> | Parser grammar livecoding editor/playground & codegen                       | [Demo](https://demo.thi.ng/umbrella/parse-playground/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/parse-playground) |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/pixel-sorting.png" width="240"/>    | Interactive pixel sorting tool using thi.ng/color & thi.ng/pixel            | [Demo](https://demo.thi.ng/umbrella/pixel-sorting/)    | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/pixel-sorting)    |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rdom-dnd.png" width="240"/>         | rdom drag & drop example                                                    | [Demo](https://demo.thi.ng/umbrella/rdom-dnd/)         | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rdom-dnd)         |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rdom-lissajous.png" width="240"/>   | rdom & hiccup-canvas interop test                                           | [Demo](https://demo.thi.ng/umbrella/rdom-lissajous/)   | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rdom-lissajous)   |
+|                                                                                                                         | Full umbrella repo doc string search w/ paginated results                   | [Demo](https://demo.thi.ng/umbrella/rdom-search-docs/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rdom-search-docs) |
 
 ## API
 

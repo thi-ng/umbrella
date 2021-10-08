@@ -89,7 +89,7 @@ node --experimental-specifier-resolution=node --experimental-repl-await
 > const lowdisc = await import("@thi.ng/lowdisc");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 499 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 502 bytes
 
 ## Dependencies
 

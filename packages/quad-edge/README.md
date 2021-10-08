@@ -67,7 +67,7 @@ node --experimental-specifier-resolution=node --experimental-repl-await
 > const quadEdge = await import("@thi.ng/quad-edge");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 495 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 505 bytes
 
 ## Dependencies
 

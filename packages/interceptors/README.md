@@ -149,7 +149,7 @@ node --experimental-specifier-resolution=node --experimental-repl-await
 > const interceptors = await import("@thi.ng/interceptors");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 2.17 KB
+Package sizes (gzipped, pre-treeshake): ESM: 2.23 KB
 
 ## Dependencies
 
@@ -171,6 +171,7 @@ A selection:
 | Screenshot                                                                                                           | Description                                                            | Live demo                                                 | Source                                                                                 |
 |:---------------------------------------------------------------------------------------------------------------------|:-----------------------------------------------------------------------|:----------------------------------------------------------|:---------------------------------------------------------------------------------------|
 |                                                                                                                      | Minimal demo using interceptors with an async side effect              | [Demo](https://demo.thi.ng/umbrella/async-effect/)        | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/async-effect)        |
+|                                                                                                                      | Custom dropdown UI component for hdom                                  | [Demo](https://demo.thi.ng/umbrella/hdom-dropdown/)       | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/hdom-dropdown)       |
 |                                                                                                                      | Custom dropdown UI component w/ fuzzy search                           | [Demo](https://demo.thi.ng/umbrella/hdom-dropdown-fuzzy/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/hdom-dropdown-fuzzy) |
 |                                                                                                                      | Event handling w/ interceptors and side effects                        | [Demo](https://demo.thi.ng/umbrella/interceptor-basics/)  | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/interceptor-basics)  |
 |                                                                                                                      | Event handling w/ interceptors and side effects                        | [Demo](https://demo.thi.ng/umbrella/interceptor-basics2/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/interceptor-basics2) |

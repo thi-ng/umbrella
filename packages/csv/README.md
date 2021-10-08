@@ -77,7 +77,7 @@ node --experimental-specifier-resolution=node --experimental-repl-await
 > const csv = await import("@thi.ng/csv");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.07 KB
+Package sizes (gzipped, pre-treeshake): ESM: 1.44 KB
 
 ## Dependencies
 

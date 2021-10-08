@@ -91,7 +91,7 @@ node --experimental-specifier-resolution=node --experimental-repl-await
 > const paths = await import("@thi.ng/paths");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.15 KB
+Package sizes (gzipped, pre-treeshake): ESM: 1.17 KB
 
 ## Dependencies
 
@@ -110,6 +110,8 @@ A selection:
 | Screenshot                                                                                                                | Description                                                                      | Live demo                                                 | Source                                                                                 |
 |:--------------------------------------------------------------------------------------------------------------------------|:---------------------------------------------------------------------------------|:----------------------------------------------------------|:---------------------------------------------------------------------------------------|
 |                                                                                                                           | Using hdom in an Elm-like manner                                                 | [Demo](https://demo.thi.ng/umbrella/hdom-elm/)            | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/hdom-elm)            |
+|                                                                                                                           | UI component w/ local state stored in hdom context                               | [Demo](https://demo.thi.ng/umbrella/hdom-localstate/)     | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/hdom-localstate)     |
+|                                                                                                                           | Example for themed components proposal                                           | [Demo](https://demo.thi.ng/umbrella/hdom-theme/)          | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/hdom-theme)          |
 |                                                                                                                           | Event handling w/ interceptors and side effects                                  | [Demo](https://demo.thi.ng/umbrella/interceptor-basics2/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/interceptor-basics2) |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rstream-event-loop.png" width="240"/> | Minimal demo of using rstream constructs to form an interceptor-style event loop | [Demo](https://demo.thi.ng/umbrella/rstream-event-loop/)  | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rstream-event-loop)  |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/todo-list.png" width="240"/>          | Obligatory to-do list example with undo/redo                                     | [Demo](https://demo.thi.ng/umbrella/todo-list/)           | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/todo-list)           |

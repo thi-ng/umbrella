@@ -77,7 +77,7 @@ node --experimental-specifier-resolution=node --experimental-repl-await
 > const idgen = await import("@thi.ng/idgen");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 857 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 897 bytes
 
 ## Dependencies
 

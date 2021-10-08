@@ -134,7 +134,7 @@ node --experimental-specifier-resolution=node --experimental-repl-await
 > const simd = await import("@thi.ng/simd");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 2.48 KB
+Package sizes (gzipped, pre-treeshake): ESM: 2.44 KB
 
 ## Dependencies
 

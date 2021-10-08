@@ -80,7 +80,7 @@ node --experimental-specifier-resolution=node --experimental-repl-await
 > const transducersStats = await import("@thi.ng/transducers-stats");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.15 KB
+Package sizes (gzipped, pre-treeshake): ESM: 1.21 KB
 
 ## Dependencies
 

@@ -63,7 +63,7 @@ node --experimental-specifier-resolution=node --experimental-repl-await
 > const shaderAstGlsl = await import("@thi.ng/shader-ast-glsl");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.33 KB
+Package sizes (gzipped, pre-treeshake): ESM: 1.39 KB
 
 ## Dependencies
 

@@ -76,7 +76,7 @@ node --experimental-specifier-resolution=node --experimental-repl-await
 > const porterDuff = await import("@thi.ng/porter-duff");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 998 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 1006 bytes
 
 ## Dependencies
 

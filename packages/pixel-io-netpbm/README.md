@@ -68,7 +68,7 @@ node --experimental-specifier-resolution=node --experimental-repl-await
 > const pixelIoNetpbm = await import("@thi.ng/pixel-io-netpbm");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.31 KB
+Package sizes (gzipped, pre-treeshake): ESM: 1.36 KB
 
 ## Dependencies
 

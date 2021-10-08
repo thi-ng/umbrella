@@ -63,7 +63,7 @@ node --experimental-specifier-resolution=node --experimental-repl-await
 > const geomPolyUtils = await import("@thi.ng/geom-poly-utils");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.44 KB
+Package sizes (gzipped, pre-treeshake): ESM: 1.57 KB
 
 ## Dependencies
 

@@ -54,7 +54,7 @@ node --experimental-specifier-resolution=node --experimental-repl-await
 > const dynvar = await import("@thi.ng/dynvar");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 300 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 304 bytes
 
 ## Dependencies
 

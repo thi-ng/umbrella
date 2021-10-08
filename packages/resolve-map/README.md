@@ -73,7 +73,7 @@ node --experimental-specifier-resolution=node --experimental-repl-await
 > const resolveMap = await import("@thi.ng/resolve-map");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 907 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 958 bytes
 
 ## Dependencies
 

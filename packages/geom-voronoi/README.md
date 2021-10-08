@@ -68,7 +68,7 @@ node --experimental-specifier-resolution=node --experimental-repl-await
 > const geomVoronoi = await import("@thi.ng/geom-voronoi");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.30 KB
+Package sizes (gzipped, pre-treeshake): ESM: 1.35 KB
 
 ## Dependencies
 

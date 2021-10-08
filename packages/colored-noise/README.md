@@ -373,7 +373,7 @@ node --experimental-specifier-resolution=node --experimental-repl-await
 > const coloredNoise = await import("@thi.ng/colored-noise");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 496 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 506 bytes
 
 ## Dependencies
 

@@ -58,7 +58,7 @@ node --experimental-specifier-resolution=node --experimental-repl-await
 > const rstreamCsp = await import("@thi.ng/rstream-csp");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 251 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 268 bytes
 
 ## Dependencies
 

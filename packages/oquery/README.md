@@ -76,7 +76,7 @@ node --experimental-specifier-resolution=node --experimental-repl-await
 > const oquery = await import("@thi.ng/oquery");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.42 KB
+Package sizes (gzipped, pre-treeshake): ESM: 1.39 KB
 
 ## Dependencies
 

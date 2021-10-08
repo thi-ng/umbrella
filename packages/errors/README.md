@@ -62,7 +62,7 @@ node --experimental-specifier-resolution=node --experimental-repl-await
 > const errors = await import("@thi.ng/errors");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 356 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 538 bytes
 
 ## Dependencies
 

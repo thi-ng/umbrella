@@ -60,7 +60,7 @@ node --experimental-specifier-resolution=node --experimental-repl-await
 > const geomClosestPoint = await import("@thi.ng/geom-closest-point");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.01 KB
+Package sizes (gzipped, pre-treeshake): ESM: 1.07 KB
 
 ## Dependencies
 

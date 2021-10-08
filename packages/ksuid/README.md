@@ -86,7 +86,7 @@ node --experimental-specifier-resolution=node --experimental-repl-await
 > const ksuid = await import("@thi.ng/ksuid");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 812 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 846 bytes
 
 ## Dependencies
 

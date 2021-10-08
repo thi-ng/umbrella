@@ -59,7 +59,7 @@ node --experimental-specifier-resolution=node --experimental-repl-await
 > const scenegraph = await import("@thi.ng/scenegraph");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 900 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 971 bytes
 
 ## Dependencies
 

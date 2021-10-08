@@ -88,7 +88,7 @@ node --experimental-specifier-resolution=node --experimental-repl-await
 > const pointfreeLang = await import("@thi.ng/pointfree-lang");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 4.91 KB
+Package sizes (gzipped, pre-treeshake): ESM: 4.97 KB
 
 ## Dependencies
 

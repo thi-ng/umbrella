@@ -57,7 +57,7 @@ node --experimental-specifier-resolution=node --experimental-repl-await
 > const bitstream = await import("@thi.ng/bitstream");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.09 KB
+Package sizes (gzipped, pre-treeshake): ESM: 1.13 KB
 
 ## Dependencies
 

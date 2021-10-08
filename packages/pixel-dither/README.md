@@ -66,6 +66,8 @@ node --experimental-specifier-resolution=node --experimental-repl-await
 > const pixelDither = await import("@thi.ng/pixel-dither");
 ```
 
+Package sizes (gzipped, pre-treeshake): ESM: 1.07 KB
+
 ## Dependencies
 
 - [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)

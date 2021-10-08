@@ -77,7 +77,7 @@ node --experimental-specifier-resolution=node --experimental-repl-await
 > const shaderAstJs = await import("@thi.ng/shader-ast-js");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 5.33 KB
+Package sizes (gzipped, pre-treeshake): ESM: 5.76 KB
 
 ## Dependencies
 

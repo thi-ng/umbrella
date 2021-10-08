@@ -61,7 +61,7 @@ node --experimental-specifier-resolution=node --experimental-repl-await
 > const geomTessellate = await import("@thi.ng/geom-tessellate");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 788 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 875 bytes
 
 ## Dependencies
 

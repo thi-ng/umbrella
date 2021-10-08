@@ -67,7 +67,7 @@ node --experimental-specifier-resolution=node --experimental-repl-await
 > const hiccupCarbonIcons = await import("@thi.ng/hiccup-carbon-icons");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 99.12 KB
+Package sizes (gzipped, pre-treeshake): ESM: 99.08 KB
 
 ## Dependencies
 

@@ -51,7 +51,7 @@ node --experimental-specifier-resolution=node --experimental-repl-await
 > const testament = await import("@thi.ng/testament");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.15 KB
+Package sizes (gzipped, pre-treeshake): ESM: 1.04 KB
 
 ## Dependencies
 

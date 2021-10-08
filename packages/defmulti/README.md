@@ -62,7 +62,7 @@ node --experimental-specifier-resolution=node --experimental-repl-await
 > const defmulti = await import("@thi.ng/defmulti");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 861 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 876 bytes
 
 ## Dependencies
 

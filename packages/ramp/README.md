@@ -50,7 +50,7 @@ node --experimental-specifier-resolution=node --experimental-repl-await
 > const ramp = await import("@thi.ng/ramp");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 971 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 1.02 KB
 
 ## Dependencies
 

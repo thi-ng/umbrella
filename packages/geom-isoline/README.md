@@ -53,7 +53,7 @@ node --experimental-specifier-resolution=node --experimental-repl-await
 > const geomIsoline = await import("@thi.ng/geom-isoline");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 810 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 812 bytes
 
 ## Dependencies
 

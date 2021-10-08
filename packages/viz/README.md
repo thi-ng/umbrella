@@ -87,7 +87,7 @@ node --experimental-specifier-resolution=node --experimental-repl-await
 > const viz = await import("@thi.ng/viz");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 2.52 KB
+Package sizes (gzipped, pre-treeshake): ESM: 2.61 KB
 
 ## Dependencies
 

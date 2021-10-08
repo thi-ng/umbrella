@@ -121,7 +121,7 @@ node --experimental-specifier-resolution=node --experimental-repl-await
 > const egf = await import("@thi.ng/egf");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 2.77 KB
+Package sizes (gzipped, pre-treeshake): ESM: 2.83 KB
 
 ## Dependencies
 

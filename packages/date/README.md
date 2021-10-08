@@ -13,6 +13,7 @@ This project is part of the
   - [Status](#status)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
+- [Usage examples](#usage-examples)
 - [API](#api)
   - [DateTime](#datetime)
   - [Math & comparison](#math--comparison)
@@ -58,13 +59,25 @@ node --experimental-specifier-resolution=node --experimental-repl-await
 > const date = await import("@thi.ng/date");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 5.55 KB
+Package sizes (gzipped, pre-treeshake): ESM: 5.58 KB
 
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
 - [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
 - [@thi.ng/strings](https://github.com/thi-ng/umbrella/tree/develop/packages/strings)
+
+## Usage examples
+
+Several demos in this repo's
+[/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
+directory are using this package.
+
+A selection:
+
+| Screenshot                                                                                                            | Description                                       | Live demo | Source                                                                            |
+|:----------------------------------------------------------------------------------------------------------------------|:--------------------------------------------------|:----------|:----------------------------------------------------------------------------------|
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/commit-heatmap.png" width="240"/> | Heatmap visualization of this mono-repo's commits |           | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/commit-heatmap) |
 
 ## API
 

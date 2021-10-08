@@ -63,7 +63,7 @@ node --experimental-specifier-resolution=node --experimental-repl-await
 > const webglMsdf = await import("@thi.ng/webgl-msdf");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.48 KB
+Package sizes (gzipped, pre-treeshake): ESM: 1.59 KB
 
 ## Dependencies
 

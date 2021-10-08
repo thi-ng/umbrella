@@ -57,7 +57,7 @@ node --experimental-specifier-resolution=node --experimental-repl-await
 > const bitfield = await import("@thi.ng/bitfield");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.14 KB
+Package sizes (gzipped, pre-treeshake): ESM: 1.18 KB
 
 ## Dependencies
 

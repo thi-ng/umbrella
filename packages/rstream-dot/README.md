@@ -14,6 +14,7 @@ This project is part of the
   - [Related packages](#related-packages)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
+- [Usage examples](#usage-examples)
 - [API](#api)
 - [Authors](#authors)
 - [License](#license)
@@ -55,13 +56,25 @@ node --experimental-specifier-resolution=node --experimental-repl-await
 > const rstreamDot = await import("@thi.ng/rstream-dot");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 864 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 870 bytes
 
 ## Dependencies
 
 - [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream)
 - [@thi.ng/strings](https://github.com/thi-ng/umbrella/tree/develop/packages/strings)
 - [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)
+
+## Usage examples
+
+Several demos in this repo's
+[/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
+directory are using this package.
+
+A selection:
+
+| Description                    | Live demo                                              | Source                                                                              |
+|:-------------------------------|:-------------------------------------------------------|:------------------------------------------------------------------------------------|
+| Minimal rstream dataflow graph | [Demo](https://demo.thi.ng/umbrella/rstream-dataflow/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rstream-dataflow) |
 
 ## API
 

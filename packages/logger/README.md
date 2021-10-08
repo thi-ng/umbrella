@@ -54,6 +54,8 @@ node --experimental-specifier-resolution=node --experimental-repl-await
 > const logger = await import("@thi.ng/logger");
 ```
 
+Package sizes (gzipped, pre-treeshake): ESM: 365 bytes
+
 ## Dependencies
 
 None

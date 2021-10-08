@@ -67,7 +67,7 @@ node --experimental-specifier-resolution=node --experimental-repl-await
 > const textCanvas = await import("@thi.ng/text-canvas");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 6.27 KB
+Package sizes (gzipped, pre-treeshake): ESM: 5.00 KB
 
 ## Dependencies
 

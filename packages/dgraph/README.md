@@ -72,7 +72,7 @@ node --experimental-specifier-resolution=node --experimental-repl-await
 > const dgraph = await import("@thi.ng/dgraph");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 804 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 848 bytes
 
 ## Dependencies
 

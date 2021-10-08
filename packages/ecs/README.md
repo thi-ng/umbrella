@@ -60,7 +60,7 @@ node --experimental-specifier-resolution=node --experimental-repl-await
 > const ecs = await import("@thi.ng/ecs");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 2.98 KB
+Package sizes (gzipped, pre-treeshake): ESM: 3.12 KB
 
 ## Dependencies
 

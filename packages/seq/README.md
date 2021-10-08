@@ -62,7 +62,7 @@ node --experimental-specifier-resolution=node --experimental-repl-await
 > const seq = await import("@thi.ng/seq");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 537 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 553 bytes
 
 ## Dependencies
 

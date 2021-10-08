@@ -49,7 +49,7 @@ node --experimental-specifier-resolution=node --experimental-repl-await
 > const geomArc = await import("@thi.ng/geom-arc");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.15 KB
+Package sizes (gzipped, pre-treeshake): ESM: 1.28 KB
 
 ## Dependencies
 

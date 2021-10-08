@@ -59,7 +59,7 @@ node --experimental-specifier-resolution=node --experimental-repl-await
 > const api = await import("@thi.ng/api");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 2.18 KB
+Package sizes (gzipped, pre-treeshake): ESM: 1.73 KB
 
 ## Dependencies
 

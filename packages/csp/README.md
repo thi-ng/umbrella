@@ -77,7 +77,7 @@ node --experimental-specifier-resolution=node --experimental-repl-await
 > const csp = await import("@thi.ng/csp");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 2.61 KB
+Package sizes (gzipped, pre-treeshake): ESM: 2.69 KB
 
 ## Dependencies
 

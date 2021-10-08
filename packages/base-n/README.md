@@ -49,7 +49,7 @@ node --experimental-specifier-resolution=node --experimental-repl-await
 > const baseN = await import("@thi.ng/base-n");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 817 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 823 bytes
 
 ## Dependencies
 

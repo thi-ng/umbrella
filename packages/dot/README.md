@@ -67,7 +67,7 @@ node --experimental-specifier-resolution=node --experimental-repl-await
 > const dot = await import("@thi.ng/dot");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 768 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 773 bytes
 
 ## Dependencies
 

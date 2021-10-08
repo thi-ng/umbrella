@@ -77,7 +77,7 @@ node --experimental-specifier-resolution=node --experimental-repl-await
 > const vectorPools = await import("@thi.ng/vector-pools");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 3.00 KB
+Package sizes (gzipped, pre-treeshake): ESM: 3.13 KB
 
 ## Dependencies
 

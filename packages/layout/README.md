@@ -56,7 +56,7 @@ node --experimental-specifier-resolution=node --experimental-repl-await
 > const layout = await import("@thi.ng/layout");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 659 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 709 bytes
 
 ## Dependencies
 

@@ -15,6 +15,7 @@ This project is part of the
   - [Status](#status)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
+- [Usage examples](#usage-examples)
 - [API](#api)
   - [IEquivSet](#iequivset)
   - [ArraySet](#arrayset)
@@ -184,7 +185,7 @@ node --experimental-specifier-resolution=node --experimental-repl-await
 > const associative = await import("@thi.ng/associative");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 6.30 KB
+Package sizes (gzipped, pre-treeshake): ESM: 6.45 KB
 
 ## Dependencies
 
@@ -198,6 +199,18 @@ Package sizes (gzipped, pre-treeshake): ESM: 6.30 KB
 - [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
 - [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)
 - [tslib](https://github.com/thi-ng/umbrella/tree/develop/packages/undefined)
+
+## Usage examples
+
+Several demos in this repo's
+[/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
+directory are using this package.
+
+A selection:
+
+| Screenshot                                                                                                            | Description                                       | Live demo | Source                                                                            |
+|:----------------------------------------------------------------------------------------------------------------------|:--------------------------------------------------|:----------|:----------------------------------------------------------------------------------|
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/commit-heatmap.png" width="240"/> | Heatmap visualization of this mono-repo's commits |           | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/commit-heatmap) |
 
 ## API
 

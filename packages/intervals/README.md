@@ -68,7 +68,7 @@ node --experimental-specifier-resolution=node --experimental-repl-await
 > const intervals = await import("@thi.ng/intervals");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.63 KB
+Package sizes (gzipped, pre-treeshake): ESM: 1.66 KB
 
 ## Dependencies
 
