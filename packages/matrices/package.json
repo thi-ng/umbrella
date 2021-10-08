@@ -25,13 +25,12 @@
     "license": "Apache-2.0",
     "scripts": {
         "build": "yarn clean && tsc --declaration",
-        "build:check": "tsc --isolatedModules --noEmit",
         "clean": "rimraf *.js *.d.ts *.map doc compile",
         "doc": "typedoc --excludePrivate --excludeInternal --out doc src/index.ts",
         "doc:ae": "mkdir -p .ae/doc .ae/temp && node_modules/.bin/api-extractor run --local --verbose",
-        "doc:readme": "../../scripts/node-esm ../../tools/src/readme.ts",
+        "doc:readme": "yarn doc:stats && ../../scripts/node-esm ../../tools/src/readme.ts",
         "doc:stats": "../../scripts/node-esm ../../tools/src/module-stats.ts",
-        "pub": "yarn build:release && yarn publish --access public",
+        "pub": "yarn build && yarn publish --access public",
         "test": "testament test"
     },
     "dependencies": {
