@@ -86,6 +86,11 @@
     },
     "thi.ng": {
         "parent": "@thi.ng/rstream",
+        "related": [
+            "dot",
+            "resolve-map",
+            "rstream-dot"
+        ],
         "year": 2018
     }
 }

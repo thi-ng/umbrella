@@ -23,7 +23,7 @@ This project is part of the
 
 ![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/pixel-dither.jpg)
 
-Extensible image dithering w/ various algorithm presets.
+Extensible image dithering w/ various algorithm presets. This is a support package for [@thi.ng/pixel](https://github.com/thi-ng/umbrella/tree/develop/packages/pixel).
 
 The package provides the following dithering algorithm presets (can also be
 very easily extended via definition of custom kernels):
@@ -40,7 +40,7 @@ very easily extended via definition of custom kernels):
 
 ### Status
 
-**ALPHA** - bleeding edge / work-in-progress
+**STABLE** - used in production
 
 [Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bpixel-dither%5D+in%3Atitle)
 

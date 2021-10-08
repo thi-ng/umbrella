@@ -11,6 +11,7 @@ This project is part of the
 
 - [About](#about)
   - [Status](#status)
+  - [Related packages](#related-packages)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
@@ -27,6 +28,10 @@ Customizable color text formatting with presets for ANSI & HTML.
 **STABLE** - used in production
 
 [Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Btext-format%5D+in%3Atitle)
+
+### Related packages
+
+- [@thi.ng/text-canvas](https://github.com/thi-ng/umbrella/tree/develop/packages/text-canvas) - Text based canvas, drawing, tables with arbitrary formatting (incl. ANSI/HTML)
 
 ## Installation
 
@@ -88,10 +93,10 @@ If this project contributes to an academic publication, please cite it as:
   title = "@thi.ng/text-format",
   author = "Karsten Schmidt",
   note = "https://thi.ng/text-format",
-  year = 2021
+  year = 2020
 }
 ```
 
 ## License
 
-&copy; 2021 Karsten Schmidt // Apache Software License 2.0
+&copy; 2020 - 2021 Karsten Schmidt // Apache Software License 2.0

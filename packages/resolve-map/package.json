@@ -63,7 +63,8 @@
     },
     "thi.ng": {
         "related": [
-            "dgraph"
+            "dgraph",
+            "rstream-graph"
         ],
         "year": 2018
     }

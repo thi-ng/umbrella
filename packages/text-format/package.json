@@ -87,6 +87,9 @@
         }
     },
     "thi.ng": {
-        "year": 2021
+        "related": [
+            "text-canvas"
+        ],
+        "year": 2020
     }
 }

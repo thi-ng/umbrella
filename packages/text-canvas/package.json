@@ -124,6 +124,9 @@
         }
     },
     "thi.ng": {
+        "related": [
+            "text-format"
+        ],
         "year": 2020
     }
 }

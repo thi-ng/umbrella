@@ -74,6 +74,7 @@ Package sizes (gzipped, pre-treeshake): ESM: 3.12 KB
 - [@thi.ng/logger](https://github.com/thi-ng/umbrella/tree/develop/packages/logger)
 - [@thi.ng/malloc](https://github.com/thi-ng/umbrella/tree/develop/packages/malloc)
 - [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)
+- [tslib](https://github.com/thi-ng/umbrella/tree/develop/packages/undefined)
 
 ## Usage examples
 

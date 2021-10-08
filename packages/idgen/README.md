@@ -83,6 +83,7 @@ Package sizes (gzipped, pre-treeshake): ESM: 897 bytes
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
 - [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
+- [tslib](https://github.com/thi-ng/umbrella/tree/develop/packages/undefined)
 
 ## API
 

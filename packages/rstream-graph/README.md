@@ -11,6 +11,7 @@ This project is part of the
 
 - [About](#about)
   - [Status](#status)
+  - [Related packages](#related-packages)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
@@ -42,6 +43,12 @@ these and keep any cycles async).
 
 [Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Brstream-graph%5D+in%3Atitle)
 
+### Related packages
+
+- [@thi.ng/dot](https://github.com/thi-ng/umbrella/tree/develop/packages/dot) - Graphviz document abstraction & serialization to DOT format
+- [@thi.ng/resolve-map](https://github.com/thi-ng/umbrella/tree/develop/packages/resolve-map) - DAG resolution of vanilla objects & arrays with internally linked values
+- [@thi.ng/rstream-dot](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream-dot) - Graphviz DOT conversion of [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream) dataflow graph topologies
+
 ## Installation
 
 ```bash
@@ -64,7 +71,7 @@ node --experimental-specifier-resolution=node --experimental-repl-await
 > const rstreamGraph = await import("@thi.ng/rstream-graph");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.09 KB
+Package sizes (gzipped, pre-treeshake): ESM: 1.10 KB
 
 ## Dependencies
 

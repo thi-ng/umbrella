@@ -11,6 +11,7 @@ This project is part of the
 
 - [About](#about)
   - [Status](#status)
+  - [Related packages](#related-packages)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
@@ -44,6 +45,10 @@ Text based canvas, drawing, tables with arbitrary formatting (incl. ANSI/HTML).
 **STABLE** - used in production
 
 [Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Btext-canvas%5D+in%3Atitle)
+
+### Related packages
+
+- [@thi.ng/text-format](https://github.com/thi-ng/umbrella/tree/develop/packages/text-format) - Customizable color text formatting with presets for ANSI & HTML
 
 ## Installation
 

@@ -200,7 +200,7 @@ node --experimental-specifier-resolution=node --experimental-repl-await
 > const rstream = await import("@thi.ng/rstream");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 5.89 KB
+Package sizes (gzipped, pre-treeshake): ESM: 5.92 KB
 
 ## Dependencies
 

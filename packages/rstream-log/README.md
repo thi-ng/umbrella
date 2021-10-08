@@ -12,6 +12,7 @@ This project is part of the
 - [About](#about)
   - [Status](#status)
   - [Support packages](#support-packages)
+  - [Related packages](#related-packages)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [API](#api)
@@ -41,6 +42,10 @@ filtering.
 ### Support packages
 
 - [@thi.ng/rstream-log-file](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream-log-file) - File output handler for structured, multilevel & hierarchical loggers based on [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream)
+
+### Related packages
+
+- [@thi.ng/logger](https://github.com/thi-ng/umbrella/tree/develop/packages/logger) - Types & basis infrastructure for arbitrary logging (w/ default impls)
 
 ## Installation
 
