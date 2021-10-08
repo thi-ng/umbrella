@@ -1,4 +1,4 @@
-import { group } from "@thi.ng/geom/ctors/group";
+import { group } from "@thi.ng/geom/group";
 import type { FillFn } from "./api";
 
 export const compFill =
