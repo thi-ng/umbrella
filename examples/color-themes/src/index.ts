@@ -1,7 +1,7 @@
 import type { ColorRangePreset, ColorThemePart } from "@thi.ng/color";
 import { css } from "@thi.ng/color/css/css";
 import { lch, LCH } from "@thi.ng/color/lch/lch";
-import { swatchesH } from "@thi.ng/color/ops/swatches";
+import { swatchesH } from "@thi.ng/color/swatches";
 import { div } from "@thi.ng/hiccup-html/blocks";
 import {
     button,

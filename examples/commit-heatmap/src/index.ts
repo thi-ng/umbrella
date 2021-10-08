@@ -2,7 +2,7 @@ import { withoutKeysObj } from "@thi.ng/associative/without-keys";
 import {
     cosineGradient,
     COSINE_GRADIENTS,
-} from "@thi.ng/color/ops/cosine-gradients";
+} from "@thi.ng/color/cosine-gradients";
 import { threadLast } from "@thi.ng/compose/thread-last";
 import { DAY } from "@thi.ng/date/api";
 import { quarters } from "@thi.ng/date/iterators";

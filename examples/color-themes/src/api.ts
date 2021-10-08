@@ -4,7 +4,7 @@ import type {
     ColorThemePart,
     ReadonlyColor,
 } from "@thi.ng/color";
-import { COLOR_RANGES } from "@thi.ng/color/ops/color-range";
+import { COLOR_RANGES } from "@thi.ng/color/color-range";
 
 export interface MainInputs {
     parts: IObjectOf<ColorThemePart>;

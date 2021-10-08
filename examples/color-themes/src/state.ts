@@ -6,10 +6,10 @@ import type {
     ColorThemePart,
     CSSColorName,
 } from "@thi.ng/color";
+import { colorsFromTheme } from "@thi.ng/color/color-range";
+import { distCIEDE2000 } from "@thi.ng/color/distance";
 import { LCH, lch } from "@thi.ng/color/lch/lch";
-import { colorsFromTheme } from "@thi.ng/color/ops/color-range";
-import { distCIEDE2000 } from "@thi.ng/color/ops/distance";
-import { proximity, sort } from "@thi.ng/color/ops/sort";
+import { proximity, sort } from "@thi.ng/color/sort";
 import { SYSTEM } from "@thi.ng/random/system";
 import { XsAdd } from "@thi.ng/random/xsadd";
 import { debounce } from "@thi.ng/rstream/debounce";

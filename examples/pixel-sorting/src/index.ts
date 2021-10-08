@@ -1,7 +1,7 @@
 import { timed } from "@thi.ng/bench/timed";
 import { abgr32 } from "@thi.ng/color/int/int";
-import { luminanceAbgr32 } from "@thi.ng/color/ops/luminance-rgb";
-import { sortMapped } from "@thi.ng/color/ops/sort";
+import { luminanceAbgr32 } from "@thi.ng/color/luminance-rgb";
+import { sortMapped } from "@thi.ng/color/sort";
 import { div } from "@thi.ng/hiccup-html/blocks";
 import {
     checkbox,
