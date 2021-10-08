@@ -1,4 +1,4 @@
-import { polygon } from "@thi.ng/geom/ctors/polygon";
+import { polygon } from "@thi.ng/geom/polygon";
 import type { IGridLayout, LayoutBox } from "@thi.ng/layout";
 import { isLayout } from "@thi.ng/layout/checks";
 import { gridLayout } from "@thi.ng/layout/grid-layout";

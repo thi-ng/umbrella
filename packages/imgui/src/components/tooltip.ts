@@ -1,4 +1,4 @@
-import { rect } from "@thi.ng/geom/ctors/rect";
+import { rect } from "@thi.ng/geom/rect";
 import { add2 } from "@thi.ng/vectors/add";
 import type { IMGUI } from "../gui";
 import { textLabelRaw } from "./textlabel";

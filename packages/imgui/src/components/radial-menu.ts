@@ -1,8 +1,8 @@
 import type { Polygon } from "@thi.ng/geom";
 import { triFan } from "@thi.ng/geom-tessellate/tri-fan";
-import { circle } from "@thi.ng/geom/ctors/circle";
-import { polygon } from "@thi.ng/geom/ctors/polygon";
 import { centroid } from "@thi.ng/geom/centroid";
+import { circle } from "@thi.ng/geom/circle";
+import { polygon } from "@thi.ng/geom/polygon";
 import { vertices } from "@thi.ng/geom/vertices";
 import { mod } from "@thi.ng/math/prec";
 import { mapIndexed } from "@thi.ng/transducers/map-indexed";

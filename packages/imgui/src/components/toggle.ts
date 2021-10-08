@@ -1,4 +1,4 @@
-import { rect } from "@thi.ng/geom/ctors/rect";
+import { rect } from "@thi.ng/geom/rect";
 import type { IGridLayout, LayoutBox } from "@thi.ng/layout";
 import { hash } from "@thi.ng/vectors/hash";
 import { handleButtonKeys, hoverButton } from "../behaviors/button";

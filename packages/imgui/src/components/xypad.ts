@@ -1,6 +1,6 @@
 import type { Fn } from "@thi.ng/api";
-import { line } from "@thi.ng/geom/ctors/line";
-import { rect } from "@thi.ng/geom/ctors/rect";
+import { line } from "@thi.ng/geom/line";
+import { rect } from "@thi.ng/geom/rect";
 import type { IGridLayout, LayoutBox } from "@thi.ng/layout";
 import type { Vec } from "@thi.ng/vectors";
 import { fit2 } from "@thi.ng/vectors/fit";

@@ -1,6 +1,6 @@
 import type { Fn5 } from "@thi.ng/api";
-import { rect } from "@thi.ng/geom/ctors/rect";
 import type { IShape } from "@thi.ng/geom-api";
+import { rect } from "@thi.ng/geom/rect";
 import type { IGridLayout, LayoutBox } from "@thi.ng/layout";
 import { ZERO2 } from "@thi.ng/vectors/api";
 import { hash } from "@thi.ng/vectors/hash";
