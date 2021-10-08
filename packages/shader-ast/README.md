@@ -47,7 +47,6 @@ This project is part of the
   - [Compilation & execution](#compilation--execution)
   - [AST tooling, traversal, optimization](#ast-tooling-traversal-optimization)
     - [Tree traversals](#tree-traversals)
-    - [Tree optimization: Constant folding](#tree-optimization-constant-folding)
 - [Authors](#authors)
   - [Maintainer](#maintainer)
   - [Contributors](#contributors)
@@ -164,11 +163,11 @@ status. The TL;DR list...
 
 - [@thi.ng/shader-ast-glsl](https://github.com/thi-ng/umbrella/tree/develop/packages/shader-ast-glsl) - Customizable GLSL codegen for [@thi.ng/shader-ast](https://github.com/thi-ng/umbrella/tree/develop/packages/shader-ast)
 - [@thi.ng/shader-ast-js](https://github.com/thi-ng/umbrella/tree/develop/packages/shader-ast-js) - Customizable JS codegen, compiler & runtime for [@thi.ng/shader-ast](https://github.com/thi-ng/umbrella/tree/develop/packages/shader-ast)
+- [@thi.ng/shader-ast-optimize](https://github.com/thi-ng/umbrella/tree/develop/packages/shader-ast-optimize) - Shader AST code optimization passes/strategies
 - [@thi.ng/shader-ast-stdlib](https://github.com/thi-ng/umbrella/tree/develop/packages/shader-ast-stdlib) - Function collection for modular GPGPU / shader programming with [@thi.ng/shader-ast](https://github.com/thi-ng/umbrella/tree/develop/packages/shader-ast)
 
 ### Related packages
 
-- [@thi.ng/gp](https://github.com/thi-ng/umbrella/tree/develop/packages/gp) - Genetic programming helpers & strategies (tree based & multi-expression programming)
 - [@thi.ng/webgl](https://github.com/thi-ng/umbrella/tree/develop/packages/webgl) - WebGL & GLSL abstraction layer
 - [@thi.ng/webgl-shadertoy](https://github.com/thi-ng/umbrella/tree/develop/packages/webgl-shadertoy) - Basic WebGL scaffolding for running interactive fragment shaders via [@thi.ng/shader-ast](https://github.com/thi-ng/umbrella/tree/develop/packages/shader-ast)
 
@@ -194,7 +193,7 @@ node --experimental-specifier-resolution=node --experimental-repl-await
 > const shaderAst = await import("@thi.ng/shader-ast");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 5.60 KB
+Package sizes (gzipped, pre-treeshake): ESM: 4.84 KB
 
 ## Dependencies
 
@@ -204,7 +203,6 @@ Package sizes (gzipped, pre-treeshake): ESM: 5.60 KB
 - [@thi.ng/dgraph](https://github.com/thi-ng/umbrella/tree/develop/packages/dgraph)
 - [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
 - [@thi.ng/logger](https://github.com/thi-ng/umbrella/tree/develop/packages/logger)
-- [@thi.ng/math](https://github.com/thi-ng/umbrella/tree/develop/packages/math)
 
 ## Usage examples
 
@@ -575,54 +573,9 @@ execute shader-ast trees/programs:
 - `allChildren`
 - `scopeChildren`
 
-#### Tree optimization: Constant folding
-
-Currently, only the following operations are supported / considered:
-
-- scalar math operators
-- scalar math built-in functions
-- single component vector swizzling
-- literal hoisting
-
-```ts
-const foo = defn("float", "foo", ["float"], (x) => [
-  ret(mul(x, add(neg(float(10)), float(42))))
-]);
-
-const bar = vec2(100, 200);
-
-const prog = scope([
-  foo,
-  foo(add(float(1), float(2))),
-  foo(add($x(bar), $y(bar)))
-], true);
-
-// unoptimized AST as GLSL (see section above)
-glsl(prog);
-
-// float foo(in float _sym0) {
-//   return (_sym0 * (-10.0 + 42.0));
-// };
-// foo((1.0 + 2.0));
-// foo((vec2(100.0, 200.0).x + vec2(100.0, 200.0).y));
-
-// same tree after constant folding optimizations
-glsl(constantFolding(prog))
-
-// float foo(in float _sym0) {
-//   return (_sym0 * 32.0);
-// };
-// foo(3.0);
-// foo(300.0);
-
-const expr = mul(float(4), $x(vec2(2)))
-
-glsl(expr)
-// (4.0 * vec2(2.0).x)
-
-glsl(constantFolding(expr))
-// 8.0
-```
+See
+[@thi.ng/shader-ast-optimize](https://github.com/thi-ng/umbrella/tree/develop/packages/shader-ast-optimize)
+for AST optimization strategies.
 
 ## Authors
 

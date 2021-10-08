@@ -27,5 +27,4 @@ export * from "./builtin/math";
 export * from "./builtin/texture";
 
 export * from "./logger";
-export * from "./optimize";
 export * from "./target";
