@@ -35,11 +35,16 @@
     },
     "thi.ng": {
         "readme": [
+            "atom",
             "dsp",
             "hdom-canvas",
             "imgui",
             "layout",
-            "random"
+            "random",
+            "rstream",
+            "rstream-gestures",
+            "transducers",
+            "transducers-hdom"
         ],
         "screenshot": "examples/fft-synth.png"
     },

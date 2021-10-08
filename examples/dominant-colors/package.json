@@ -40,12 +40,16 @@
     "thi.ng": {
         "readme": [
             "color",
+            "compare",
             "dl-asset",
+            "hiccup-html",
             "hiccup-svg",
             "k-means",
             "pixel",
             "rdom",
-            "rstream"
+            "rdom-components",
+            "rstream",
+            "transducers"
         ],
         "screenshot": "examples/dominant-colors.png"
     }

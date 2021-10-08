@@ -23,5 +23,10 @@
     },
     "devDependencies": {
         "@types/snowpack-env": "^2.3.3"
+    },
+    "thi.ng": {
+        "readme": [
+            "hdom"
+        ]
     }
 }

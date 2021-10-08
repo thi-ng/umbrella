@@ -34,6 +34,7 @@
     "thi.ng": {
         "readme": [
             "adjacency",
+            "bench",
             "geom",
             "geom-accel",
             "geom-voronoi",

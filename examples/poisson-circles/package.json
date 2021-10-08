@@ -27,6 +27,7 @@
     },
     "thi.ng": {
         "readme": [
+            "geom",
             "geom-accel",
             "poisson"
         ],

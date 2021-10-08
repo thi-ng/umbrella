@@ -38,6 +38,7 @@
     },
     "thi.ng": {
         "readme": [
+            "atom",
             "geom",
             "hdom",
             "hdom-canvas",
@@ -46,7 +47,9 @@
             "layout",
             "rstream",
             "rstream-gestures",
-            "transducers-hdom"
+            "transducers",
+            "transducers-hdom",
+            "vectors"
         ],
         "screenshot": "imgui/imgui-all.png"
     },

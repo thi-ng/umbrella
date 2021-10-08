@@ -28,6 +28,7 @@
     },
     "thi.ng": {
         "readme": [
+            "hdom-canvas",
             "imgui",
             "layout",
             "rstream-gestures"

@@ -27,8 +27,9 @@
     },
     "thi.ng": {
         "readme": [
-            "rdom",
-            "hiccup-carbon-icons"
+            "hiccup-carbon-icons",
+            "hiccup-html",
+            "rdom"
         ],
         "screenshot": "examples/rdom-dnd.png"
     },

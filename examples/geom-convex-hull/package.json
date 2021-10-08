@@ -27,7 +27,8 @@
     "thi.ng": {
         "readme": [
             "geom",
-            "geom-hull"
+            "geom-hull",
+            "hdom-canvas"
         ],
         "screenshot": "examples/geom-convex-hull.png"
     },

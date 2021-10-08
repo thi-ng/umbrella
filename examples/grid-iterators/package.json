@@ -27,7 +27,8 @@
     "thi.ng": {
         "readme": [
             "color",
-            "grid-iterators"
+            "grid-iterators",
+            "transducers"
         ],
         "screenshot": "examples/grid-iterators.png"
     },

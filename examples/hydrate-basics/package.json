@@ -27,6 +27,7 @@
     },
     "thi.ng": {
         "readme": [
+            "atom",
             "hdom",
             "hiccup"
         ]

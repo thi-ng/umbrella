@@ -12,6 +12,7 @@
     },
     "dependencies": {
         "@thi.ng/color": "latest",
+        "@thi.ng/pixel": "latest",
         "@thi.ng/shader-ast": "latest",
         "@thi.ng/shader-ast-glsl": "latest",
         "@thi.ng/shader-ast-js": "latest",
@@ -27,6 +28,7 @@
     },
     "thi.ng": {
         "readme": [
+            "pixel",
             "shader-ast",
             "shader-ast-glsl",
             "shader-ast-js",

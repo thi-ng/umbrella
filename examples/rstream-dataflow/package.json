@@ -33,7 +33,10 @@
         "readme": [
             "atom",
             "hdom",
-            "rstream-graph"
+            "rstream-dot",
+            "rstream-gestures",
+            "rstream-graph",
+            "transducers"
         ]
     },
     "devDependencies": {

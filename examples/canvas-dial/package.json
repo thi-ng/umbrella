@@ -34,7 +34,9 @@
     "thi.ng": {
         "readme": [
             "hdom-components",
+            "rstream",
             "rstream-gestures",
+            "transducers-hdom",
             "vectors"
         ],
         "screenshot": "examples/canvas-dial.png"

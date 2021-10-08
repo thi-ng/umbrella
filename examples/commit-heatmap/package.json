@@ -24,7 +24,9 @@
     "thi.ng": {
         "online": false,
         "readme": [
+            "associative",
             "color",
+            "date",
             "hiccup",
             "hiccup-svg",
             "transducers"

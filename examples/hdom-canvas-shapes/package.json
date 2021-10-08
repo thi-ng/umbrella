@@ -35,6 +35,7 @@
     },
     "thi.ng": {
         "readme": [
+            "color",
             "dl-asset",
             "hdom",
             "hdom-canvas",
@@ -42,6 +43,8 @@
             "hiccup",
             "hiccup-canvas",
             "hiccup-svg",
+            "matrices",
+            "rstream",
             "transducers",
             "transducers-hdom",
             "vectors"

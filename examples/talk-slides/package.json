@@ -30,6 +30,7 @@
         "readme": [
             "hdom",
             "rstream",
+            "transducers",
             "transducers-hdom"
         ],
         "screenshot": "examples/talk-slides.png"

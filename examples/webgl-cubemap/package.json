@@ -31,7 +31,10 @@
     "thi.ng": {
         "readme": [
             "adapt-dpi",
+            "dsp",
+            "hdom-components",
             "matrices",
+            "rstream",
             "shader-ast",
             "webgl"
         ],

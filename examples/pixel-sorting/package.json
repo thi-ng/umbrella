@@ -34,6 +34,7 @@
     },
     "thi.ng": {
         "readme": [
+            "bench",
             "color",
             "hiccup-html",
             "intervals",

@@ -35,6 +35,7 @@
     },
     "thi.ng": {
         "readme": [
+            "bench",
             "dl-asset",
             "hiccup-carbon-icons",
             "hiccup-html",
@@ -42,6 +43,7 @@
             "rdom",
             "rdom-components",
             "rstream",
+            "transducers",
             "transducers-binary"
         ],
         "screenshot": "examples/parse-playground.png"

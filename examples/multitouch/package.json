@@ -30,6 +30,7 @@
         "readme": [
             "hdom-canvas",
             "memoize",
+            "rstream",
             "rstream-gestures",
             "transducers-hdom"
         ]

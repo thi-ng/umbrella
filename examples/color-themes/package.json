@@ -38,6 +38,7 @@
     "thi.ng": {
         "readme": [
             "color",
+            "dl-asset",
             "hiccup-html",
             "hiccup-svg",
             "random",

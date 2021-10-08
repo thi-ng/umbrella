@@ -30,7 +30,8 @@
     },
     "thi.ng": {
         "readme": [
-            "rdom"
+            "rdom",
+            "rstream"
         ],
         "screenshot": "examples/rdom-delayed-update.jpg"
     }

@@ -27,6 +27,7 @@
     },
     "thi.ng": {
         "readme": [
+            "bench",
             "fsm",
             "hiccup-markdown",
             "rstream",

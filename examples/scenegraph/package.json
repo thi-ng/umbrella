@@ -36,6 +36,7 @@
             "math",
             "matrices",
             "scenegraph",
+            "transducers",
             "vectors"
         ],
         "screenshot": "examples/scenegraph.png"

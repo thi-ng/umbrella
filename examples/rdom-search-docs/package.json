@@ -32,7 +32,9 @@
     },
     "thi.ng": {
         "readme": [
+            "bench",
             "compare",
+            "hiccup-html",
             "rdom",
             "rstream",
             "transducers"

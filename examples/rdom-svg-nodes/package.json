@@ -30,8 +30,10 @@
     "thi.ng": {
         "readme": [
             "atom",
+            "hiccup-svg",
             "rdom",
-            "rstream"
+            "rstream",
+            "transducers"
         ],
         "screenshot": "examples/rdom-svg-nodes.png"
     },

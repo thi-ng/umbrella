@@ -35,6 +35,7 @@
         "readme": [
             "atom",
             "compare",
+            "expose",
             "hdom",
             "hdom-components",
             "paths",

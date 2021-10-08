@@ -29,6 +29,7 @@
     },
     "thi.ng": {
         "readme": [
+            "hiccup-html",
             "rdom",
             "rdom-canvas",
             "rstream",

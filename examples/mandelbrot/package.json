@@ -33,6 +33,7 @@
     },
     "thi.ng": {
         "readme": [
+            "dl-asset",
             "hdom-components",
             "math",
             "rstream",

@@ -29,6 +29,7 @@
     },
     "thi.ng": {
         "readme": [
+            "hdom-components",
             "rstream",
             "transducers",
             "transducers-binary",

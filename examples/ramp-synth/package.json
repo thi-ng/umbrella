@@ -33,7 +33,8 @@
             "hdom-canvas",
             "math",
             "ramp",
-            "transducers"
+            "transducers",
+            "vectors"
         ],
         "screenshot": "examples/ramp-synth.png"
     },

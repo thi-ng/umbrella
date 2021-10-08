@@ -33,6 +33,7 @@
             "rdom",
             "rdom-canvas",
             "rstream-gestures",
+            "transducers",
             "vectors"
         ],
         "screenshot": "examples/ellipse-proximity.png"

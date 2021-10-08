@@ -30,6 +30,7 @@
             "hdom",
             "hdom-canvas",
             "hiccup-canvas",
+            "transducers",
             "vectors"
         ],
         "screenshot": "examples/hdom-canvas-clock.png"

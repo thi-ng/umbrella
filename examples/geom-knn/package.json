@@ -30,9 +30,11 @@
     },
     "thi.ng": {
         "readme": [
+            "bench",
             "geom-accel",
             "hdom-canvas",
             "rstream-gestures",
+            "transducers-hdom",
             "vectors"
         ],
         "screenshot": "examples/geom-knn.jpg"

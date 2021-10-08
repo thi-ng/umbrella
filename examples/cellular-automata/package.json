@@ -27,7 +27,9 @@
     "thi.ng": {
         "readme": [
             "hdom",
-            "transducers"
+            "hdom-components",
+            "transducers",
+            "transducers-binary"
         ],
         "screenshot": "examples/cellular-automata.png"
     },

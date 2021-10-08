@@ -37,6 +37,7 @@
         "readme": [
             "atom",
             "dl-asset",
+            "expose",
             "hdom",
             "hiccup",
             "hiccup-svg",

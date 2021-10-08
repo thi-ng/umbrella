@@ -31,6 +31,8 @@
     "thi.ng": {
         "readme": [
             "geom",
+            "hiccup-svg",
+            "rstream",
             "rstream-gestures",
             "transducers-hdom",
             "vectors"

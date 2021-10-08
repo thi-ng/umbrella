@@ -35,6 +35,7 @@
             "hdom-canvas",
             "hiccup-canvas",
             "math",
+            "random",
             "vectors"
         ],
         "screenshot": "examples/hdom-canvas-particles.jpg"

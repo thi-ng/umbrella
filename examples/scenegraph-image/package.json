@@ -37,6 +37,7 @@
             "hdom-canvas",
             "math",
             "matrices",
+            "pixel",
             "scenegraph",
             "vectors"
         ],
