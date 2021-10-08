@@ -114,22 +114,29 @@ const prepareNodeInputs = (
     if (!ins) return res;
     for (let id in ins) {
         const i = ins[id];
-        const src: ISubscription<any, any> = i.path
-            ? fromViewUnsafe(state, { path: i.path })
-            : i.stream
-            ? isString(i.stream)
-                ? resolve(i.stream)
-                : i.stream(resolve)
-            : i.const !== undefined
-            ? fromIterableSync(
-                  [isFunction(i.const) ? i.const(resolve) : i.const],
-                  { closeIn: CloseMode.NEVER }
-              )
-            : illegalArgs(`invalid node input: ${id}`);
+        const src = getNodeInput(i, id, state, resolve);
         res[id] = i.xform ? src.transform(i.xform, { id }) : src;
     }
     return res;
 };
+
+const getNodeInput = (
+    i: NodeInputSpec,
+    id: string,
+    state: IAtom<any>,
+    resolve: ResolveFn
+): ISubscription<any, any> =>
+    i.path
+        ? fromViewUnsafe(state, { path: i.path })
+        : i.stream
+        ? isString(i.stream)
+            ? resolve(i.stream)
+            : i.stream(resolve)
+        : i.const !== undefined
+        ? fromIterableSync([isFunction(i.const) ? i.const(resolve) : i.const], {
+              closeIn: CloseMode.NEVER,
+          })
+        : illegalArgs(`invalid node input: ${id}`);
 
 const prepareNodeOutputs = (
     outs: IObjectOf<NodeOutputSpec> | undefined,
