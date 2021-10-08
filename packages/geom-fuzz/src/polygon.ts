@@ -1,7 +1,7 @@
 import { group } from "@thi.ng/geom/ctors/group";
 import { pathFromCubics } from "@thi.ng/geom/ctors/path";
 import { polygon } from "@thi.ng/geom/ctors/polygon";
-import { asCubic } from "@thi.ng/geom/ops/as-cubic";
+import { asCubic } from "@thi.ng/geom/as-cubic";
 import type { ReadonlyVec } from "@thi.ng/vectors";
 import type { FuzzyPolygonOpts } from "./api";
 import { jitterPoints } from "./points";
