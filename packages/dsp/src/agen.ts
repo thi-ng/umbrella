@@ -1,4 +1,5 @@
 import type { IGen } from "./api";
+import { __take } from "./internal/take";
 
 /**
  * Abstract base class for unit gens in this package. Provides
@@ -16,11 +17,8 @@ export abstract class AGen<T> implements IGen<T> {
         while (true) yield this.next();
     }
 
-    take(num: number, out: T[] = [], idx = 0) {
-        for (; --num >= 0; ) {
-            out[idx++] = this.next();
-        }
-        return out;
+    take(num: number, out: T[] = [], idx = 0): T[] {
+        return __take(this, num, out, idx);
     }
 
     abstract next(): T;

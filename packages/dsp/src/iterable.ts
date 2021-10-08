@@ -1,4 +1,5 @@
 import type { IGen } from "./api";
+import { __take } from "./internal/take";
 
 /**
  * Wraps given ES6 iterable to provide full {@link IGen} implementation.
@@ -46,10 +47,7 @@ export class $Iterable<T> implements IGen<T> {
         return this._val;
     }
 
-    take(num: number, out: T[] = [], idx = 0) {
-        for (; --num >= 0; ) {
-            out[idx++] = this.next();
-        }
-        return out;
+    take(num: number, out: T[] = [], idx = 0): T[] {
+        return __take(this, num, out, idx);
     }
 }
