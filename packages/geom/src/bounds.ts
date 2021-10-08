@@ -17,6 +17,7 @@ import { mulN2 } from "@thi.ng/vectors/muln";
 import { set2, set3 } from "@thi.ng/vectors/set";
 import { sub2 } from "@thi.ng/vectors/sub";
 import { subN2 } from "@thi.ng/vectors/subn";
+import { aabbFromMinMax } from "./aabb";
 import type { Arc } from "./api/arc";
 import type { Circle } from "./api/circle";
 import type { Cubic } from "./api/cubic";
@@ -27,10 +28,9 @@ import type { Path } from "./api/path";
 import type { Quadratic } from "./api/quadratic";
 import { Rect } from "./api/rect";
 import type { Text } from "./api/text";
-import { aabbFromMinMax } from "./ctors/aabb";
-import { rectFromMinMax } from "./ctors/rect";
 import { collBounds } from "./internal/coll-bounds";
 import { dispatch } from "./internal/dispatch";
+import { rectFromMinMax } from "./rect";
 
 export const bounds: MultiFn1<IShape, AABBLike | undefined> = defmulti<
     any,

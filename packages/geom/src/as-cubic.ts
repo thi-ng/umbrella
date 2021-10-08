@@ -21,11 +21,11 @@ import type { Polygon } from "./api/polygon";
 import type { Polyline } from "./api/polyline";
 import type { Quadratic } from "./api/quadratic";
 import type { Rect } from "./api/rect";
-import { arc } from "./ctors/arc";
-import { cubicFromArc, cubicFromLine, cubicFromQuadratic } from "./ctors/cubic";
+import { arc } from "./arc";
+import { asPolygon } from "./as-polygon";
+import { cubicFromArc, cubicFromLine, cubicFromQuadratic } from "./cubic";
 import { copyAttribs } from "./internal/copy-attribs";
 import { dispatch } from "./internal/dispatch";
-import { asPolygon } from "./as-polygon";
 
 export const asCubic: MultiFn1O<IShape, Partial<CubicOpts>, Cubic[]> = defmulti(
     dispatch,

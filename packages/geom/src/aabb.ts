@@ -6,9 +6,9 @@ import { max3 } from "@thi.ng/vectors/max";
 import { min3 } from "@thi.ng/vectors/min";
 import { sub3 } from "@thi.ng/vectors/sub";
 import { subN3 } from "@thi.ng/vectors/subn";
-import { AABB } from "../api/aabb";
-import type { Sphere } from "../api/sphere";
-import { argsVV } from "../internal/args";
+import { AABB } from "./api/aabb";
+import type { Sphere } from "./api/sphere";
+import { argsVV } from "./internal/args";
 
 export function aabb(pos: Vec, size: number | Vec, attribs?: Attribs): AABB;
 export function aabb(size: number | Vec, attribs?: Attribs): AABB;

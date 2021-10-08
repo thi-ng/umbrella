@@ -12,10 +12,10 @@ import { Circle } from "./api/circle";
 import type { Line } from "./api/line";
 import { Quad } from "./api/quad";
 import type { Rect } from "./api/rect";
-import { rectFromCentroid } from "./ctors/rect";
+import { centroid } from "./centroid";
 import { copyAttribs } from "./internal/copy-attribs";
 import { dispatch } from "./internal/dispatch";
-import { centroid } from "./centroid";
+import { rectFromCentroid } from "./rect";
 
 export const offset: MultiFn2<IShape, number, IShape> = defmulti<
     any,

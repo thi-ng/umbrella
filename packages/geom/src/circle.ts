@@ -3,8 +3,8 @@ import { circumCenter2 } from "@thi.ng/geom-poly-utils/circumcenter";
 import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
 import { dist } from "@thi.ng/vectors/dist";
 import { mixN2 } from "@thi.ng/vectors/mixn";
-import { Circle } from "../api/circle";
-import { argsVN } from "../internal/args";
+import { Circle } from "./api/circle";
+import { argsVN } from "./internal/args";
 
 export function circle(pos: Vec, r: number, attribs?: Attribs): Circle;
 export function circle(pos: Vec, attribs?: Attribs): Circle;
