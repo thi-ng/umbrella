@@ -1,6 +1,6 @@
 import type { Fn } from "@thi.ng/api";
 import { isolines, setBorder } from "@thi.ng/geom-isoline";
-import { polygon } from "@thi.ng/geom/ctors/polygon";
+import { polygon } from "@thi.ng/geom/polygon";
 import { canvas } from "@thi.ng/hdom-canvas";
 import { start } from "@thi.ng/hdom/start";
 import { TAU } from "@thi.ng/math/api";

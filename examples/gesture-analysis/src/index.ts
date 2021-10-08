@@ -1,7 +1,7 @@
 import { peek } from "@thi.ng/arrays/peek";
-import { polyline as gPolyline } from "@thi.ng/geom/ctors/polyline";
-import { resample } from "@thi.ng/geom/ops/resample";
-import { vertices } from "@thi.ng/geom/ops/vertices";
+import { polyline as gPolyline } from "@thi.ng/geom/polyline";
+import { resample } from "@thi.ng/geom/resample";
+import { vertices } from "@thi.ng/geom/vertices";
 import { circle } from "@thi.ng/hiccup-svg/circle";
 import { group } from "@thi.ng/hiccup-svg/group";
 import { polyline } from "@thi.ng/hiccup-svg/polyline";

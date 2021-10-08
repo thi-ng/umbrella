@@ -1,7 +1,7 @@
 import { partial } from "@thi.ng/compose/partial";
 import type { Cubic } from "@thi.ng/geom";
-import { cubic } from "@thi.ng/geom/ctors/cubic";
-import { pointAt } from "@thi.ng/geom/ops/point-at";
+import { cubic } from "@thi.ng/geom/cubic";
+import { pointAt } from "@thi.ng/geom/point-at";
 import { canvas } from "@thi.ng/hdom-canvas";
 import { start } from "@thi.ng/hdom/start";
 import { cossin } from "@thi.ng/math/angle";

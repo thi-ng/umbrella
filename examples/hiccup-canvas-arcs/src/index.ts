@@ -1,9 +1,9 @@
 import { hsl } from "@thi.ng/color/hsl/hsl";
-import { arc } from "@thi.ng/geom/ctors/arc";
-import { group } from "@thi.ng/geom/ctors/group";
-import { pathFromCubics } from "@thi.ng/geom/ctors/path";
-import { asCubic } from "@thi.ng/geom/ops/as-cubic";
-import { closestPoint } from "@thi.ng/geom/ops/closest-point";
+import { arc } from "@thi.ng/geom/arc";
+import { asCubic } from "@thi.ng/geom/as-cubic";
+import { closestPoint } from "@thi.ng/geom/closest-point";
+import { group } from "@thi.ng/geom/group";
+import { pathFromCubics } from "@thi.ng/geom/path";
 import { draw } from "@thi.ng/hiccup-canvas/draw";
 import { TAU } from "@thi.ng/math/api";
 import { fit01 } from "@thi.ng/math/fit";

@@ -1,7 +1,7 @@
 import type { Fn0 } from "@thi.ng/api";
 import { sin } from "@thi.ng/dsp/osc-sin";
-import { group } from "@thi.ng/geom/ctors/group";
-import { polyline } from "@thi.ng/geom/ctors/polyline";
+import { group } from "@thi.ng/geom/group";
+import { polyline } from "@thi.ng/geom/polyline";
 import { canvas } from "@thi.ng/hdom-canvas";
 import { start } from "@thi.ng/hdom/start";
 import { mulV23 } from "@thi.ng/matrices/mulv";

@@ -1,13 +1,13 @@
 import type { IShape } from "@thi.ng/geom-api";
-import { points } from "@thi.ng/geom/ctors/points";
-import { polygon } from "@thi.ng/geom/ctors/polygon";
-import { rect } from "@thi.ng/geom/ctors/rect";
-import { area } from "@thi.ng/geom/ops/area";
-import { centroid } from "@thi.ng/geom/ops/centroid";
-import { clipConvex } from "@thi.ng/geom/ops/clip-convex";
-import { convexHull } from "@thi.ng/geom/ops/convex-hull";
-import { scatter } from "@thi.ng/geom/ops/scatter";
-import { withAttribs } from "@thi.ng/geom/ops/with-attribs";
+import { area } from "@thi.ng/geom/area";
+import { centroid } from "@thi.ng/geom/centroid";
+import { clipConvex } from "@thi.ng/geom/clip-convex";
+import { convexHull } from "@thi.ng/geom/convex-hull";
+import { points } from "@thi.ng/geom/points";
+import { polygon } from "@thi.ng/geom/polygon";
+import { rect } from "@thi.ng/geom/rect";
+import { scatter } from "@thi.ng/geom/scatter";
+import { withAttribs } from "@thi.ng/geom/with-attribs";
 import { canvas } from "@thi.ng/hdom-canvas";
 import { renderOnce } from "@thi.ng/hdom/render-once";
 

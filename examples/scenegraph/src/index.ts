@@ -1,8 +1,8 @@
 import type { IShape } from "@thi.ng/geom-api";
-import { circle } from "@thi.ng/geom/ctors/circle";
-import { rect } from "@thi.ng/geom/ctors/rect";
-import { asPolygon } from "@thi.ng/geom/ops/as-polygon";
-import { pointInside } from "@thi.ng/geom/ops/point-inside";
+import { asPolygon } from "@thi.ng/geom/as-polygon";
+import { circle } from "@thi.ng/geom/circle";
+import { pointInside } from "@thi.ng/geom/point-inside";
+import { rect } from "@thi.ng/geom/rect";
 import { canvas } from "@thi.ng/hdom-canvas";
 import { start } from "@thi.ng/hdom/start";
 import { HALF_PI, PI } from "@thi.ng/math/api";

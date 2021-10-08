@@ -1,9 +1,9 @@
 import { Atom } from "@thi.ng/atom/atom";
 import { History } from "@thi.ng/atom/history";
 import { timedResult } from "@thi.ng/bench/timed";
-import { line } from "@thi.ng/geom/ctors/line";
-import { normalizedPath } from "@thi.ng/geom/ctors/path";
-import { pathFromSvg } from "@thi.ng/geom/ctors/path-from-svg";
+import { line } from "@thi.ng/geom/line";
+import { normalizedPath } from "@thi.ng/geom/path";
+import { pathFromSvg } from "@thi.ng/geom/path-from-svg";
 import { canvas } from "@thi.ng/hdom-canvas";
 import { DOWNLOAD } from "@thi.ng/hiccup-carbon-icons/download";
 import { RESTART } from "@thi.ng/hiccup-carbon-icons/restart";

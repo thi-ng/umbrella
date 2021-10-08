@@ -1,7 +1,7 @@
 import { hsv } from "@thi.ng/color/hsv/hsv";
 import { downloadWithMime } from "@thi.ng/dl-asset/raw";
-import { pathBuilder } from "@thi.ng/geom/ctors/path-builder";
-import { points } from "@thi.ng/geom/ctors/points";
+import { pathBuilder } from "@thi.ng/geom/path-builder";
+import { points } from "@thi.ng/geom/points";
 import { canvas, normalizeTree } from "@thi.ng/hdom-canvas";
 import { dropdown } from "@thi.ng/hdom-components/dropdown";
 import { svg } from "@thi.ng/hiccup-svg/svg";
