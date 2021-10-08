@@ -100,6 +100,9 @@
         ".": {
             "import": "./index.js"
         },
+        "./aabb": {
+            "import": "./aabb.js"
+        },
         "./api/aabb": {
             "import": "./api/aabb.js"
         },
@@ -166,6 +169,9 @@
         "./arc-length": {
             "import": "./arc-length.js"
         },
+        "./arc": {
+            "import": "./arc.js"
+        },
         "./area": {
             "import": "./area.js"
         },
@@ -193,6 +199,9 @@
         "./centroid": {
             "import": "./centroid.js"
         },
+        "./circle": {
+            "import": "./circle.js"
+        },
         "./classify-point": {
             "import": "./classify-point.js"
         },
@@ -205,71 +214,14 @@
         "./convex-hull": {
             "import": "./convex-hull.js"
         },
-        "./ctors/aabb": {
-            "import": "./ctors/aabb.js"
-        },
-        "./ctors/arc": {
-            "import": "./ctors/arc.js"
-        },
-        "./ctors/circle": {
-            "import": "./ctors/circle.js"
-        },
-        "./ctors/cubic": {
-            "import": "./ctors/cubic.js"
-        },
-        "./ctors/ellipse": {
-            "import": "./ctors/ellipse.js"
-        },
-        "./ctors/group": {
-            "import": "./ctors/group.js"
-        },
-        "./ctors/line": {
-            "import": "./ctors/line.js"
-        },
-        "./ctors/path-builder": {
-            "import": "./ctors/path-builder.js"
-        },
-        "./ctors/path-from-svg": {
-            "import": "./ctors/path-from-svg.js"
-        },
-        "./ctors/path": {
-            "import": "./ctors/path.js"
-        },
-        "./ctors/plane": {
-            "import": "./ctors/plane.js"
-        },
-        "./ctors/points": {
-            "import": "./ctors/points.js"
-        },
-        "./ctors/polygon": {
-            "import": "./ctors/polygon.js"
-        },
-        "./ctors/polyline": {
-            "import": "./ctors/polyline.js"
-        },
-        "./ctors/quad": {
-            "import": "./ctors/quad.js"
-        },
-        "./ctors/quadratic": {
-            "import": "./ctors/quadratic.js"
-        },
-        "./ctors/ray": {
-            "import": "./ctors/ray.js"
-        },
-        "./ctors/rect": {
-            "import": "./ctors/rect.js"
-        },
-        "./ctors/sphere": {
-            "import": "./ctors/sphere.js"
-        },
-        "./ctors/text": {
-            "import": "./ctors/text.js"
-        },
-        "./ctors/triangle": {
-            "import": "./ctors/triangle.js"
+        "./cubic": {
+            "import": "./cubic.js"
         },
         "./edges": {
             "import": "./edges.js"
+        },
+        "./ellipse": {
+            "import": "./ellipse.js"
         },
         "./fit-into-bounds": {
             "import": "./fit-into-bounds.js"
@@ -277,8 +229,14 @@
         "./flip": {
             "import": "./flip.js"
         },
+        "./group": {
+            "import": "./group.js"
+        },
         "./intersects": {
             "import": "./intersects.js"
+        },
+        "./line": {
+            "import": "./line.js"
         },
         "./map-point": {
             "import": "./map-point.js"
@@ -286,11 +244,44 @@
         "./offset": {
             "import": "./offset.js"
         },
+        "./path-builder": {
+            "import": "./path-builder.js"
+        },
+        "./path-from-svg": {
+            "import": "./path-from-svg.js"
+        },
+        "./path": {
+            "import": "./path.js"
+        },
+        "./plane": {
+            "import": "./plane.js"
+        },
         "./point-at": {
             "import": "./point-at.js"
         },
         "./point-inside": {
             "import": "./point-inside.js"
+        },
+        "./points": {
+            "import": "./points.js"
+        },
+        "./polygon": {
+            "import": "./polygon.js"
+        },
+        "./polyline": {
+            "import": "./polyline.js"
+        },
+        "./quad": {
+            "import": "./quad.js"
+        },
+        "./quadratic": {
+            "import": "./quadratic.js"
+        },
+        "./ray": {
+            "import": "./ray.js"
+        },
+        "./rect": {
+            "import": "./rect.js"
         },
         "./resample": {
             "import": "./resample.js"
@@ -300,6 +291,9 @@
         },
         "./simplify": {
             "import": "./simplify.js"
+        },
+        "./sphere": {
+            "import": "./sphere.js"
         },
         "./split-at": {
             "import": "./split-at.js"
@@ -316,6 +310,9 @@
         "./tessellate": {
             "import": "./tessellate.js"
         },
+        "./text": {
+            "import": "./text.js"
+        },
         "./transform-vertices": {
             "import": "./transform-vertices.js"
         },
@@ -324,6 +321,9 @@
         },
         "./translate": {
             "import": "./translate.js"
+        },
+        "./triangle": {
+            "import": "./triangle.js"
         },
         "./union": {
             "import": "./union.js"
