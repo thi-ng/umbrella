@@ -68,7 +68,8 @@
     },
     "files": [
         "*.js",
-        "*.d.ts"
+        "*.d.ts",
+        "internal"
     ],
     "exports": {
         ".": {

@@ -9,6 +9,7 @@ import {
 import type { ISubscribable, ISubscription, TransformableOpts } from "./api";
 import { isFirstOrLastInput } from "./checks";
 import { __optsWithID } from "./idgen";
+import { __removeAllIDs } from "./internal/remove";
 import { LOGGER } from "./logger";
 import { Subscription } from "./subscription";
 
@@ -245,11 +246,7 @@ export class StreamSync<
     }
 
     removeAllIDs(ids: Iterable<string>) {
-        let ok = true;
-        for (let id of ids) {
-            ok = this.removeID(id) && ok;
-        }
-        return ok;
+        return __removeAllIDs(this, ids);
     }
 
     getSourceForID(id: string) {
