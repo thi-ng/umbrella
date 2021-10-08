@@ -1,7 +1,8 @@
 import type { Reducer } from "@thi.ng/transducers";
-import { xformSetOp } from "./internal/xform-setop";
+import { copy } from "./copy";
+import { empty } from "./empty";
+import { __combineSet } from "./internal/combine";
 import { into } from "./into";
-import { copy, empty } from "./utils";
 
 /**
  * Computes the difference of sets `a - b` and writes results to new set
@@ -34,5 +35,5 @@ export const difference = <T>(a: Set<T>, b: Set<T>, out?: Set<T>): Set<T> => {
 export function differenceR<T>(): Reducer<Set<T>, Iterable<T>>;
 export function differenceR<T>(src: Iterable<Iterable<T>>): Set<T>;
 export function differenceR<T>(src?: Iterable<Iterable<T>>) {
-    return xformSetOp<T>(differenceR, difference, src);
+    return __combineSet<T>(differenceR, difference, src);
 }

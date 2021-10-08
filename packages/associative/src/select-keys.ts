@@ -1,4 +1,4 @@
-import { empty } from "./utils";
+import { empty } from "./empty";
 
 /**
  * Returns a new map of same type as input only containing given keys

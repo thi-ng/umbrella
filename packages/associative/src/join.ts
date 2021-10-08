@@ -1,10 +1,11 @@
 import { commonKeysObj } from "./common-keys";
+import { empty } from "./empty";
+import { first } from "./first";
 import { indexed } from "./indexed";
 import { invertObj } from "./invert";
 import { mergeObj } from "./merge";
 import { renameKeysObj } from "./rename-keys";
 import { selectKeysObj } from "./select-keys";
-import { empty, first, objValues } from "./utils";
 
 /**
  * Computes the natural join between the two sets of relations. Each set
@@ -108,7 +109,7 @@ export const joinWith = <A, B>(
             bb = a;
             k = kmap;
         }
-        const idx = indexed(aa, objValues(k));
+        const idx = indexed(aa, Object.values(k));
         const ks = Object.keys(k);
         const res: Set<any> = empty(a, Set);
         for (let x of bb) {

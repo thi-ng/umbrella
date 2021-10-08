@@ -1,6 +1,6 @@
+import { empty } from "./empty";
 import { EquivMap } from "./equiv-map";
 import { selectKeysObj } from "./select-keys";
-import { empty } from "./utils";
 
 /**
  * Takes an iterable of plain objects and array of indexing keys. Calls

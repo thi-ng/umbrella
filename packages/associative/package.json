@@ -86,8 +86,14 @@
         "./array-set": {
             "import": "./array-set.js"
         },
+        "./checks": {
+            "import": "./checks.js"
+        },
         "./common-keys": {
             "import": "./common-keys.js"
+        },
+        "./copy": {
+            "import": "./copy.js"
         },
         "./difference": {
             "import": "./difference.js"
@@ -95,8 +101,14 @@
         "./dissoc": {
             "import": "./dissoc.js"
         },
+        "./empty": {
+            "import": "./empty.js"
+        },
         "./equiv-map": {
             "import": "./equiv-map.js"
+        },
+        "./first": {
+            "import": "./first.js"
         },
         "./hash-map": {
             "import": "./hash-map.js"
@@ -157,9 +169,6 @@
         },
         "./union": {
             "import": "./union.js"
-        },
-        "./utils": {
-            "import": "./utils.js"
         },
         "./without-keys": {
             "import": "./without-keys.js"
