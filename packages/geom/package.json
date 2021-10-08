@@ -26,7 +26,7 @@
     "scripts": {
         "build": "yarn clean && tsc --declaration",
         "build:check": "tsc --isolatedModules --noEmit",
-        "clean": "rimraf *.js *.d.ts *.map doc api ctors internal ops",
+        "clean": "rimraf *.js *.d.ts *.map doc api ctors internal",
         "doc": "typedoc --excludePrivate --excludeInternal --out doc src/index.ts",
         "doc:ae": "mkdir -p .ae/doc .ae/temp && node_modules/.bin/api-extractor run --local --verbose",
         "doc:readme": "../../scripts/node-esm ../../tools/src/readme.ts",
@@ -95,8 +95,7 @@
         "*.d.ts",
         "api",
         "ctors",
-        "internal",
-        "ops"
+        "internal"
     ],
     "exports": {
         ".": {
@@ -165,6 +164,48 @@
         "./api/triangle": {
             "import": "./api/triangle.js"
         },
+        "./arc-length": {
+            "import": "./arc-length.js"
+        },
+        "./area": {
+            "import": "./area.js"
+        },
+        "./as-cubic": {
+            "import": "./as-cubic.js"
+        },
+        "./as-path": {
+            "import": "./as-path.js"
+        },
+        "./as-polygon": {
+            "import": "./as-polygon.js"
+        },
+        "./as-polyline": {
+            "import": "./as-polyline.js"
+        },
+        "./as-svg": {
+            "import": "./as-svg.js"
+        },
+        "./bounds": {
+            "import": "./bounds.js"
+        },
+        "./center": {
+            "import": "./center.js"
+        },
+        "./centroid": {
+            "import": "./centroid.js"
+        },
+        "./classify-point": {
+            "import": "./classify-point.js"
+        },
+        "./clip-convex": {
+            "import": "./clip-convex.js"
+        },
+        "./closest-point": {
+            "import": "./closest-point.js"
+        },
+        "./convex-hull": {
+            "import": "./convex-hull.js"
+        },
         "./ctors/aabb": {
             "import": "./ctors/aabb.js"
         },
@@ -228,122 +269,80 @@
         "./ctors/triangle": {
             "import": "./ctors/triangle.js"
         },
-        "./ops/arc-length": {
-            "import": "./ops/arc-length.js"
+        "./edges": {
+            "import": "./edges.js"
         },
-        "./ops/area": {
-            "import": "./ops/area.js"
+        "./fit-into-bounds": {
+            "import": "./fit-into-bounds.js"
         },
-        "./ops/as-cubic": {
-            "import": "./ops/as-cubic.js"
+        "./flip": {
+            "import": "./flip.js"
         },
-        "./ops/as-path": {
-            "import": "./ops/as-path.js"
+        "./intersects": {
+            "import": "./intersects.js"
         },
-        "./ops/as-polygon": {
-            "import": "./ops/as-polygon.js"
+        "./map-point": {
+            "import": "./map-point.js"
         },
-        "./ops/as-polyline": {
-            "import": "./ops/as-polyline.js"
+        "./offset": {
+            "import": "./offset.js"
         },
-        "./ops/as-svg": {
-            "import": "./ops/as-svg.js"
+        "./point-at": {
+            "import": "./point-at.js"
         },
-        "./ops/bounds": {
-            "import": "./ops/bounds.js"
+        "./point-inside": {
+            "import": "./point-inside.js"
         },
-        "./ops/center": {
-            "import": "./ops/center.js"
+        "./resample": {
+            "import": "./resample.js"
         },
-        "./ops/centroid": {
-            "import": "./ops/centroid.js"
+        "./scatter": {
+            "import": "./scatter.js"
         },
-        "./ops/classify-point": {
-            "import": "./ops/classify-point.js"
+        "./simplify": {
+            "import": "./simplify.js"
         },
-        "./ops/clip-convex": {
-            "import": "./ops/clip-convex.js"
+        "./split-at": {
+            "import": "./split-at.js"
         },
-        "./ops/closest-point": {
-            "import": "./ops/closest-point.js"
+        "./split-near": {
+            "import": "./split-near.js"
         },
-        "./ops/convex-hull": {
-            "import": "./ops/convex-hull.js"
+        "./subdiv-curve": {
+            "import": "./subdiv-curve.js"
         },
-        "./ops/edges": {
-            "import": "./ops/edges.js"
+        "./tangent-at": {
+            "import": "./tangent-at.js"
         },
-        "./ops/fit-into-bounds": {
-            "import": "./ops/fit-into-bounds.js"
+        "./tessellate": {
+            "import": "./tessellate.js"
         },
-        "./ops/flip": {
-            "import": "./ops/flip.js"
+        "./transform-vertices": {
+            "import": "./transform-vertices.js"
         },
-        "./ops/intersects": {
-            "import": "./ops/intersects.js"
+        "./transform": {
+            "import": "./transform.js"
         },
-        "./ops/map-point": {
-            "import": "./ops/map-point.js"
+        "./translate": {
+            "import": "./translate.js"
         },
-        "./ops/offset": {
-            "import": "./ops/offset.js"
+        "./union": {
+            "import": "./union.js"
         },
-        "./ops/point-at": {
-            "import": "./ops/point-at.js"
+        "./unmap-point": {
+            "import": "./unmap-point.js"
         },
-        "./ops/point-inside": {
-            "import": "./ops/point-inside.js"
+        "./vertices": {
+            "import": "./vertices.js"
         },
-        "./ops/resample": {
-            "import": "./ops/resample.js"
+        "./volume": {
+            "import": "./volume.js"
         },
-        "./ops/scatter": {
-            "import": "./ops/scatter.js"
+        "./warp-points": {
+            "import": "./warp-points.js"
         },
-        "./ops/simplify": {
-            "import": "./ops/simplify.js"
-        },
-        "./ops/split-at": {
-            "import": "./ops/split-at.js"
-        },
-        "./ops/split-near": {
-            "import": "./ops/split-near.js"
-        },
-        "./ops/subdiv-curve": {
-            "import": "./ops/subdiv-curve.js"
-        },
-        "./ops/tangent-at": {
-            "import": "./ops/tangent-at.js"
-        },
-        "./ops/tessellate": {
-            "import": "./ops/tessellate.js"
-        },
-        "./ops/transform-vertices": {
-            "import": "./ops/transform-vertices.js"
-        },
-        "./ops/transform": {
-            "import": "./ops/transform.js"
-        },
-        "./ops/translate": {
-            "import": "./ops/translate.js"
-        },
-        "./ops/union": {
-            "import": "./ops/union.js"
-        },
-        "./ops/unmap-point": {
-            "import": "./ops/unmap-point.js"
-        },
-        "./ops/vertices": {
-            "import": "./ops/vertices.js"
-        },
-        "./ops/volume": {
-            "import": "./ops/volume.js"
-        },
-        "./ops/warp-points": {
-            "import": "./ops/warp-points.js"
-        },
-        "./ops/with-attribs": {
-            "import": "./ops/with-attribs.js"
+        "./with-attribs": {
+            "import": "./with-attribs.js"
         }
     },
     "thi.ng": {
