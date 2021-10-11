@@ -106,7 +106,10 @@ overview for contributors here:
 [CONTRIBUTING.md](https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md).
 
 **Note: The default branch for this repo is `develop` and all PRs should be
-created based on this branch.**
+created based on this branch. This too means, the README files on this branch
+_might_ refer to yet-unreleased features or packages. Please use the
+[main](https://github.com/thi-ng/umbrella/tree/main) branch for viewing the most
+recently released version(s)!**.
 
 Also please be sure to check the [wiki](https://github.com/thi-ng/umbrella/wiki)
 for other project-wide information, tidbits, useful snippets etc.
@@ -119,8 +122,9 @@ for other project-wide information, tidbits, useful snippets etc.
 TypeScript typings.** You can find more details & rationale in issue
 [#315](https://github.com/thi-ng/umbrella/issues/315).
 
-As a result, many packages have undergone internal restructuring and now fully
-support deep-imports (based on declared [export
+As a result (and opportunity), many packages have undergone internal
+restructuring, some have been split up. All are now fully supporting
+deep-imports (based on declared [export
 maps](https://docs.skypack.dev/package-authors/package-checks#export-map)),
 leading to drastically smaller userland bundle sizes.
 
@@ -395,7 +399,7 @@ in the wiki for further details.
 
 (Most, but not all packages have tests)
 
-Due to various build/config issues/complexities, we're now using our own test
+Due to various build/config issues/complexities, we're now using our own minimal test
 runner
 [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/develop/packages/testament)
 
