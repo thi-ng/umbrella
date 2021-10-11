@@ -5,14 +5,14 @@
         "packages/*"
     ],
     "devDependencies": {
-        "@microsoft/api-documenter": "^7.13.54",
-        "@microsoft/api-extractor": "^7.18.11",
+        "@microsoft/api-documenter": "^7.13.62",
+        "@microsoft/api-extractor": "^7.18.15",
         "@snowpack/plugin-typescript": "^1.2.1",
         "@snowpack/plugin-webpack": "^3.0.0",
-        "@types/node": "^16.10.2",
+        "@types/node": "^16.10.3",
         "@types/snowpack-env": "^2.3.4",
-        "browserslist": "^4.17.2",
-        "esbuild": "^0.13.3",
+        "browserslist": "^4.17.3",
+        "esbuild": "^0.13.4",
         "gzip-size": "^6.0.0",
         "html-minifier-terser": "^6.0.2",
         "lerna": "^4.0.0",
@@ -49,6 +49,6 @@
         "tool:searchindex": "scripts/node-esm tools/src/build-search-index.ts"
     },
     "resolutions": {
-        "typescript": "4.4.2"
+        "typescript": "4.4.3"
     }
 }
