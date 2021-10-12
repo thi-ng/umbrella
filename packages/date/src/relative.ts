@@ -13,7 +13,7 @@ import { ensureEpoch } from "./checks";
 import { DateTime, dateTime, ensureDateTime } from "./datetime";
 import { LOCALE, tense, units, unitsLessThan } from "./i18n";
 import { EN_LONG, EN_SHORT } from "./i18n/en";
-import { idToPrecision, precisionToID } from "./internal/precision";
+import { __idToPrecision, __precisionToID } from "./internal/precision";
 
 /**
  * Takes a relative time `offset` string in plain english and an optional `base`
@@ -319,7 +319,7 @@ export const formatRelativeParts = (
     base = ensureEpoch(base);
     if (Math.abs(date - base) < eps) return LOCALE.now;
     const [sign, ...parts] = decomposeDifference(date, base);
-    const precID = precisionToID(prec);
+    const precID = __precisionToID(prec);
     let maxID = precID;
     while (!parts[maxID] && maxID > 0) maxID--;
     let minID = parts.findIndex((x) => x > 0);
@@ -333,7 +333,7 @@ export const formatRelativeParts = (
     const res = parts
         .slice(0, maxID + 1)
         .map((x, i) => {
-            let unit = LOCALE.units[idToPrecision(i)];
+            let unit = LOCALE.units[__idToPrecision(i)];
             return x > 0
                 ? units(x, unit, true)
                 : i === maxID && maxID < 6

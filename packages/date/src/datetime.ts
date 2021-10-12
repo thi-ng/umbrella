@@ -6,7 +6,7 @@ import { DAY, HOUR, MaybeDate, MINUTE, Period, Precision, SECOND } from "./api";
 import { ensureDate, ensureEpoch, isLeapYear } from "./checks";
 import { defFormat } from "./format";
 import { LOCALE } from "./i18n";
-import { precisionToID } from "./internal/precision";
+import { __precisionToID } from "./internal/precision";
 import { dayInYear, daysInMonth, weekInYear } from "./units";
 
 export const dateTime = (epoch?: MaybeDate, prec?: Precision) =>
@@ -33,7 +33,7 @@ export class DateTime
 
     constructor(epoch: MaybeDate = Date.now(), prec: Precision = "t") {
         const x = ensureDate(epoch);
-        const id = precisionToID(prec);
+        const id = __precisionToID(prec);
         this.y = x.getUTCFullYear();
         this.M = id >= 1 ? x.getUTCMonth() : 0;
         this.d = id >= 2 ? x.getUTCDate() : 1;
@@ -88,7 +88,7 @@ export class DateTime
     }
 
     setPrecision(prec: Precision) {
-        const precID = precisionToID(prec);
+        const precID = __precisionToID(prec);
         precID < 6 && (this.t = 0);
         precID < 5 && (this.s = 0);
         precID < 4 && (this.m = 0);
@@ -312,7 +312,7 @@ export class DateTime
         if (prec === "w") return this.add(x * 7, "d");
         if (prec === "q") return this.add(x * 3, "M");
         const res = this.copy();
-        const precID = precisionToID(prec);
+        const precID = __precisionToID(prec);
         if (precID >= 2) {
             res.set(
                 res.getTime() + x * [DAY, HOUR, MINUTE, SECOND, 1][precID - 2]

@@ -7,13 +7,13 @@ import type { Precision } from "../api";
  *
  * @internal
  */
-export const precisionToID = (prec: Precision) => "yMdhmst".indexOf(prec);
+export const __precisionToID = (prec: Precision) => "yMdhmst".indexOf(prec);
 
 /**
- * Inverse op of {@link precisionToID}.
+ * Inverse op of {@link __precisionToID}.
  *
  * @param id
  *
  * @internal
  */
-export const idToPrecision = (id: number) => <Precision>"yMdhmst".charAt(id);
+export const __idToPrecision = (id: number) => <Precision>"yMdhmst".charAt(id);
