@@ -1,6 +1,6 @@
 import { add } from "./add";
 import type { ReadonlyVec, Vec } from "./api";
-import { ensureInputs } from "./internal/ensure";
+import { __ensureInputs } from "./internal/ensure";
 import { mulN } from "./muln";
 import { set } from "./set";
 import { sum } from "./sum";
@@ -22,7 +22,7 @@ import { sum } from "./sum";
  * @param src
  */
 export const mean = (out: Vec | null, src: ReadonlyVec[]) => {
-    ensureInputs(src);
+    __ensureInputs(src);
     out = set(out || [], src[0]);
     for (let i = src.length; --i >= 1; ) {
         add(out, out, src[i]);
