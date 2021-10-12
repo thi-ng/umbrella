@@ -3,12 +3,12 @@ import { isNumber } from "@thi.ng/checks/is-number";
 import { clamp } from "@thi.ng/math/interval";
 import type { BlitOpts, PackedFormat } from "../api";
 
-export const luminanceABGR: FnN = (c) =>
+export const __luminanceABGR: FnN = (c) =>
     (((c >>> 16) & 0xff) * 29 + ((c >>> 8) & 0xff) * 150 + (c & 0xff) * 76) /
     255;
 
 /** @internal */
-export const clampRegion = (
+export const __clampRegion = (
     sx: number,
     sy: number,
     w: number,
@@ -28,7 +28,7 @@ export const clampRegion = (
 };
 
 /** @internal */
-export const prepRegions = (
+export const __prepRegions = (
     src: { width: number; height: number },
     dest: { width: number; height: number },
     opts: Partial<BlitOpts> = {}
@@ -38,7 +38,7 @@ export const prepRegions = (
     let sx: number, sy: number;
     let dx: number, dy: number;
     let rw: number, rh: number;
-    [sx, sy, rw, rh] = clampRegion(
+    [sx, sy, rw, rh] = __clampRegion(
         opts.sx || 0,
         opts.sy || 0,
         opts.w || sw,
@@ -46,7 +46,7 @@ export const prepRegions = (
         sw,
         src.height
     );
-    [dx, dy, rw, rh, sx, sy] = clampRegion(
+    [dx, dy, rw, rh, sx, sy] = __clampRegion(
         opts.dx || 0,
         opts.dy || 0,
         rw,
@@ -60,7 +60,7 @@ export const prepRegions = (
 };
 
 /** @internal */
-export const setChannelUni = (
+export const __setChannelUni = (
     dbuf: UIntArray,
     src: number,
     set: Fn2<number, number, number>
@@ -71,7 +71,7 @@ export const setChannelUni = (
 };
 
 /** @internal */
-export const setChannelSame = (
+export const __setChannelSame = (
     dbuf: UIntArray,
     sbuf: UIntArray,
     get: Fn<number, number>,
@@ -83,7 +83,7 @@ export const setChannelSame = (
 };
 
 /** @internal */
-export const setChannelConvert = (
+export const __setChannelConvert = (
     dbuf: UIntArray,
     sbuf: UIntArray,
     from: Fn<number, number>,
@@ -96,7 +96,7 @@ export const setChannelConvert = (
     }
 };
 
-export const transformABGR = (
+export const __transformABGR = (
     pix: UIntArray,
     format: PackedFormat,
     fn: Fn<number, number>
@@ -109,11 +109,11 @@ export const transformABGR = (
 };
 
 /** @internal */
-export const asVec = (x: number | [number, number]) =>
+export const __asVec = (x: number | [number, number]) =>
     isNumber(x) ? [x, x] : x;
 
 /** @internal */
-export const asIntVec = (x: number | [number, number]) => {
-    const v = asVec(x);
+export const __asIntVec = (x: number | [number, number]) => {
+    const v = __asVec(x);
     return [v[0] | 0, v[1] | 0];
 };

@@ -1,7 +1,7 @@
 import type { Fn2, FnN2, IObjectOf, NumericArray } from "@thi.ng/api";
 import { clamp01 } from "@thi.ng/math/interval";
 import { FloatFormat, FloatFormatSpec, Lane } from "../api";
-import { luminanceABGR } from "../internal/utils";
+import { __luminanceABGR } from "../internal/utils";
 
 export const defFloatFormat = (fmt: FloatFormatSpec) => {
     const chan = fmt.channels;
@@ -59,7 +59,7 @@ const defConvert1Gray = (res: FloatFormat) => {
     res.toABGR = (col) =>
         ((((clamp01(col[0]) * 0xff + 0.5) | 0) * 0x010101) | 0xff000000) >>> 0;
     res.fromABGR = (col, out = []) => (
-        (out[0] = luminanceABGR(col) / 0xff), out
+        (out[0] = __luminanceABGR(col) / 0xff), out
     );
 };
 
@@ -90,7 +90,7 @@ const defConvert2Gray = (res: FloatFormat, from: FnN2) => {
         return out >>> 0;
     };
     res.fromABGR = (col, out = []) => {
-        out[gray] = luminanceABGR(col) / 0xff;
+        out[gray] = __luminanceABGR(col) / 0xff;
         out[alpha] = from(col, alpha);
         return out;
     };

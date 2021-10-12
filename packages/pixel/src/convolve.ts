@@ -14,7 +14,7 @@ import type {
 import { ensureChannel } from "./checks";
 import { FloatBuffer } from "./float";
 import { FLOAT_GRAY } from "./format/float-gray";
-import { asIntVec } from "./internal/utils";
+import { __asIntVec } from "./internal/utils";
 import { range } from "./range";
 
 /**
@@ -126,9 +126,9 @@ const initConvolve = (src: FloatBuffer, opts: ConvolveOpts) => {
         ...opts,
     };
     const size = kernel.size;
-    const [kw, kh] = asIntVec(size);
-    const [strideX, strideY] = asIntVec(sampleStride);
-    const [offsetX, offsetY] = asIntVec(offset);
+    const [kw, kh] = __asIntVec(size);
+    const [strideX, strideY] = __asIntVec(sampleStride);
+    const [offsetX, offsetY] = __asIntVec(offset);
     assert(strideX >= 1 && strideY >= 1, `illegal stride: ${sampleStride}`);
     const { width, height, stride: srcStride, rowStride } = src;
     const dwidth = Math.floor(width / strideX);

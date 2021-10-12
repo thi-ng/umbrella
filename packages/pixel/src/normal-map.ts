@@ -3,7 +3,7 @@ import { ensureChannel } from "./checks";
 import { convolveChannel } from "./convolve";
 import { FloatBuffer } from "./float";
 import { FLOAT_NORMAL } from "./format/float-norm";
-import { asVec } from "./internal/utils";
+import { __asVec } from "./internal/utils";
 
 /**
  * Computes normal map image (aka gradient in X & Y directions and a static Z
@@ -33,7 +33,7 @@ export const normalMap = (src: FloatBuffer, opts?: Partial<NormalMapOpts>) => {
     };
     ensureChannel(src.format, channel);
     const spec = [-1, ...new Array(step).fill(0), 1];
-    const [sx, sy] = asVec(scale);
+    const [sx, sy] = __asVec(scale);
     const dest = new FloatBuffer(src.width, src.height, FLOAT_NORMAL);
     dest.setChannel(
         0,

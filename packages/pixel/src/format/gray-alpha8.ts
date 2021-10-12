@@ -1,5 +1,5 @@
 import { Lane } from "../api";
-import { luminanceABGR } from "../internal/utils";
+import { __luminanceABGR } from "../internal/utils";
 import { defPackedFormat } from "./packed-format";
 
 export const GRAY_ALPHA8 = defPackedFormat({
@@ -10,6 +10,6 @@ export const GRAY_ALPHA8 = defPackedFormat({
         { size: 8, lane: Lane.ALPHA },
         { size: 8, lane: Lane.RED },
     ],
-    fromABGR: (x) => luminanceABGR(x) | ((x >>> 16) & 0xff00),
+    fromABGR: (x) => __luminanceABGR(x) | ((x >>> 16) & 0xff00),
     toABGR: (x) => (((x & 0xff00) << 16) | ((x & 0xff) * 0x010101)) >>> 0,
 });

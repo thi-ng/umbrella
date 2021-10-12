@@ -21,7 +21,7 @@ import type {
 import { ensureChannel, ensureSize } from "./checks";
 import { defFloatFormat } from "./format/float-format";
 import { FLOAT_GRAY } from "./format/float-gray";
-import { clampRegion, prepRegions } from "./internal/utils";
+import { __clampRegion, __prepRegions } from "./internal/utils";
 import { PackedBuffer } from "./packed";
 import { defSampler } from "./sample";
 
@@ -204,7 +204,7 @@ export class FloatBuffer
 
     blend(op: BlendFnFloat, dest: FloatBuffer, opts?: Partial<BlitOpts>) {
         this.ensureFormat(dest);
-        const { sx, sy, dx, dy, rw, rh } = prepRegions(this, dest, opts);
+        const { sx, sy, dx, dy, rw, rh } = __prepRegions(this, dest, opts);
         if (rw < 1 || rh < 1) return dest;
         const sbuf = this.pixels;
         const dbuf = dest.pixels;
@@ -232,7 +232,7 @@ export class FloatBuffer
 
     blit(dest: FloatBuffer, opts?: Partial<BlitOpts>) {
         this.ensureFormat(dest);
-        const { sx, sy, dx, dy, rw, rh } = prepRegions(this, dest, opts);
+        const { sx, sy, dx, dy, rw, rh } = __prepRegions(this, dest, opts);
         if (rw < 1 || rh < 1) return dest;
         const sbuf = this.pixels;
         const dbuf = dest.pixels;
@@ -274,7 +274,7 @@ export class FloatBuffer
     }
 
     getRegion(x: number, y: number, width: number, height: number) {
-        const [sx, sy, w, h] = clampRegion(
+        const [sx, sy, w, h] = __clampRegion(
             x,
             y,
             width,

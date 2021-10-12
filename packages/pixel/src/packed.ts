@@ -28,14 +28,14 @@ import { canvasPixels, imageCanvas } from "./canvas";
 import { ensureChannel, ensureSize } from "./checks";
 import { ABGR8888 } from "./format/abgr8888";
 import { defPackedFormat } from "./format/packed-format";
-import { compileGrayFromABGR, compileGrayToABGR } from "./internal/codegen";
+import { __compileGrayFromABGR, __compileGrayToABGR } from "./internal/codegen";
 import {
-    clampRegion,
-    prepRegions,
-    setChannelConvert,
-    setChannelSame,
-    setChannelUni,
-    transformABGR,
+    __clampRegion,
+    __prepRegions,
+    __setChannelConvert,
+    __setChannelSame,
+    __setChannelUni,
+    __transformABGR,
 } from "./internal/utils";
 import { defSampler } from "./sample";
 
@@ -193,7 +193,7 @@ export class PackedBuffer
     blend(op: BlendFnInt, dest: PackedBuffer, opts?: Partial<BlitOpts>) {
         let sw = this.width;
         let dw = dest.width;
-        const { sx, sy, dx, dy, rw, rh } = prepRegions(this, dest, opts);
+        const { sx, sy, dx, dy, rw, rh } = __prepRegions(this, dest, opts);
         if (rw < 1 || rh < 1) return dest;
         const sbuf = this.pixels;
         const dbuf = dest.pixels;
@@ -217,7 +217,7 @@ export class PackedBuffer
     blit(dest: PackedBuffer, opts?: Partial<BlitOpts>) {
         let sw = this.width;
         let dw = dest.width;
-        const { sx, sy, dx, dy, rw, rh } = prepRegions(this, dest, opts);
+        const { sx, sy, dx, dy, rw, rh } = __prepRegions(this, dest, opts);
         if (rw < 1 || rh < 1) return dest;
         const sbuf = this.pixels;
         const dbuf = dest.pixels;
@@ -274,7 +274,7 @@ export class PackedBuffer
         height: number,
         fmt?: PackedFormat
     ) {
-        const [sx, sy, w, h] = clampRegion(
+        const [sx, sy, w, h] = __clampRegion(
             x,
             y,
             width,
@@ -296,8 +296,8 @@ export class PackedBuffer
             type: uintTypeForBits(chan.size),
             size: chan.size,
             channels: [{ size: chan.size, lane: Lane.RED }],
-            fromABGR: compileGrayFromABGR(chan.size),
-            toABGR: compileGrayToABGR(chan.size),
+            fromABGR: __compileGrayFromABGR(chan.size),
+            toABGR: __compileGrayToABGR(chan.size),
         });
         const src = this.pixels;
         const dest = buf.pixels;
@@ -313,15 +313,15 @@ export class PackedBuffer
         const dbuf = this.pixels;
         const set = chan.setInt;
         if (isNumber(src)) {
-            setChannelUni(dbuf, src, set);
+            __setChannelUni(dbuf, src, set);
         } else {
             const sbuf = src.pixels;
             const schan = src.format.channels[0];
             ensureSize(sbuf, this.width, this.height);
             if (chan.size === schan.size) {
-                setChannelSame(dbuf, sbuf, schan.int, set);
+                __setChannelSame(dbuf, sbuf, schan.int, set);
             } else {
-                setChannelConvert(
+                __setChannelConvert(
                     dbuf,
                     sbuf,
                     this.format.fromABGR,
@@ -343,12 +343,12 @@ export class PackedBuffer
     }
 
     premultiply() {
-        transformABGR(this.pixels, this.format, premultiplyInt);
+        __transformABGR(this.pixels, this.format, premultiplyInt);
         return this;
     }
 
     postmultiply() {
-        transformABGR(this.pixels, this.format, postmultiplyInt);
+        __transformABGR(this.pixels, this.format, postmultiplyInt);
         return this;
     }
 

@@ -7,7 +7,7 @@ import type {
     PackedFormat,
     PackedFormatSpec,
 } from "../api";
-import { compileFromABGR, compileToABGR } from "../internal/codegen";
+import { __compileFromABGR, __compileToABGR } from "../internal/codegen";
 
 const defChannel = (
     ch: PackedChannelSpec,
@@ -52,7 +52,7 @@ export const defPackedFormat = (fmt: PackedFormatSpec): PackedFormat => {
         size: fmt.size,
         alpha: fmt.alpha || 0,
         channels,
-        fromABGR: fmt.fromABGR || compileFromABGR(channels),
-        toABGR: fmt.toABGR || compileToABGR(channels, !!fmt.alpha),
+        fromABGR: fmt.fromABGR || __compileFromABGR(channels),
+        toABGR: fmt.toABGR || __compileToABGR(channels, !!fmt.alpha),
     };
 };

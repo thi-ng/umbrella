@@ -1,6 +1,6 @@
 import type { Fn } from "@thi.ng/api";
 import type { PackedChannel } from "../api";
-import { luminanceABGR } from "./utils";
+import { __luminanceABGR } from "./utils";
 
 const compileLShift = (x: string, shift: number) =>
     shift > 0
@@ -14,19 +14,19 @@ const compileRShift = (x: string, shift: number) => compileLShift(x, -shift);
 const hex = (x: number) => `0x${x.toString(16)}`;
 
 /** @internal */
-export const compileGrayFromABGR = (size: number) => {
+export const __compileGrayFromABGR = (size: number) => {
     const shift = 8 - size;
     const mask = (1 << size) - 1;
     return <Fn<number, number>>(
         new Function(
             "luma",
             `return (x) => ${compileRShift("luma(x)", shift)} & ${mask};`
-        )(luminanceABGR)
+        )(__luminanceABGR)
     );
 };
 
 /** @internal */
-export const compileGrayToABGR = (size: number) => {
+export const __compileGrayToABGR = (size: number) => {
     let body: string;
     if (size !== 8) {
         const mask = (1 << size) - 1;
@@ -42,7 +42,7 @@ export const compileGrayToABGR = (size: number) => {
 };
 
 /** @internal */
-export const compileFromABGR = (chans: PackedChannel[]) =>
+export const __compileFromABGR = (chans: PackedChannel[]) =>
     <Fn<number, number>>new Function(
         "x",
         "return (" +
@@ -56,7 +56,7 @@ export const compileFromABGR = (chans: PackedChannel[]) =>
     );
 
 /** @internal */
-export const compileToABGR = (chans: PackedChannel[], hasAlpha: boolean) => {
+export const __compileToABGR = (chans: PackedChannel[], hasAlpha: boolean) => {
     const body = chans
         .map((ch) => {
             if (ch.size !== 8) {
