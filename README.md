@@ -16,7 +16,7 @@
 **Please visit [thi.ng](https://thi.ng) for additional information & topic based
 search of packages relevant to your use cases...**
 
-This mono-repository is home to 157+ thi.ng TypeScript/ES6 projects, a wide and jointly
+This mono-repository is home to 159+ thi.ng TypeScript/ES6 projects, a wide and jointly
 developed collection of packages and building blocks for (non-exhaustive list of
 topics):
 
@@ -32,13 +32,13 @@ topics):
 - DSP building blocks: oscillators, noise generators, filters, 1D FFT/IFFT, muxers, rate converters
 - Immutable data handling, state containers, transacted state updates, Undo-Redo history
 - Data driven UI component toolkits (DOM-based, canvas-based, immediate-mode, multiple approaches...)
-- Multi-format pixel buffers, conversions, Porter-Duff alpha-blending operators
-- Color space/format conversions, matrix based color manipulation, cosine gradients
+- Multi-format, multi-channel pixel buffers (int & float based), conversions, dithering, Porter-Duff alpha-blending operators
+- Color space/format conversions, matrix based color manipulation, gradient generators, color palettes
 - Date-time abstraction, relative dates, iterators, formatters, math
 - WebWorker workflow abstractions
 - PEG-style functional parser combinators w/ (optional) custom grammar definition language
 - Forth-style pointfree DSL for functional composition and DSL development/extension
-- S-expression parser & runtime infrastructure for custom DSL creation
+- S-expression parser & runtime (interpreter) infrastructure for custom DSL creation
 - Low-level tooling for binary data, shared memory/WASM/WebGL interop
 - SIMD batch-processing of vector data
 - Various interpolations, math helpers, automatic differentiation (Dual numbers)

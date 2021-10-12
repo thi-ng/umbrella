@@ -333,7 +333,7 @@ node --experimental-specifier-resolution=node --experimental-repl-await
 > const pixel = await import("@thi.ng/pixel");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 8.83 KB
+Package sizes (gzipped, pre-treeshake): ESM: 8.85 KB
 
 ## Dependencies
 

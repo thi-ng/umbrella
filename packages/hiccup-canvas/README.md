@@ -94,7 +94,7 @@ node --experimental-specifier-resolution=node --experimental-repl-await
 > const hiccupCanvas = await import("@thi.ng/hiccup-canvas");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 2.58 KB
+Package sizes (gzipped, pre-treeshake): ESM: 2.59 KB
 
 ## Dependencies
 
