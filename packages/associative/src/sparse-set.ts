@@ -3,7 +3,7 @@ import { isNumber } from "@thi.ng/checks/is-number";
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import type { IEquivSet } from "./api";
 import { dissoc } from "./dissoc";
-import { inspectable } from "./internal/inspect";
+import { __inspectable } from "./internal/inspect";
 import { into } from "./into";
 
 interface SparseSetProps {
@@ -24,7 +24,7 @@ const fail = () => illegalArgs(`dense & sparse arrays must be of same size`);
  * - {@link https://programmingpraxis.com/2012/03/09/sparse-sets/}
  * - {@link https://blog.molecular-matters.com/2013/07/24/adventures-in-data-oriented-design-part-3c-external-references/}
  */
-@inspectable
+@__inspectable
 export abstract class ASparseSet<T extends UIntArray>
     extends Set<number>
     implements IEquiv

@@ -36,7 +36,7 @@ const inspectMap = (coll: Map<any, any>, opts: any) =>
  *
  * @internal
  */
-export const inspectable = mixin({
+export const __inspectable = mixin({
     [Symbol.for("nodejs.util.inspect.custom")](depth: number, opts: any) {
         const name = this[Symbol.toStringTag];
         const childOpts = {

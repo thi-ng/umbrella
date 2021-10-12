@@ -1,6 +1,6 @@
 import { equiv } from "@thi.ng/equiv";
 
-export const equivMap = (a: Map<any, any>, b: any) => {
+export const __equivMap = (a: Map<any, any>, b: any) => {
     if (a === b) {
         return true;
     }
@@ -15,7 +15,7 @@ export const equivMap = (a: Map<any, any>, b: any) => {
     return true;
 };
 
-export const equivSet = (a: Set<any>, b: any) => {
+export const __equivSet = (a: Set<any>, b: any) => {
     if (a === b) {
         return true;
     }

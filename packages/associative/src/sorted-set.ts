@@ -4,8 +4,8 @@ import type { IReducible, ReductionFn } from "@thi.ng/transducers";
 import { map } from "@thi.ng/transducers/map";
 import type { IEquivSet, SortedSetOpts } from "./api";
 import { dissoc } from "./dissoc";
-import { equivSet } from "./internal/equiv";
-import { inspectable } from "./internal/inspect";
+import { __equivSet } from "./internal/equiv";
+import { __inspectable } from "./internal/inspect";
 import { into } from "./into";
 import { SortedMap } from "./sorted-map";
 
@@ -29,7 +29,7 @@ const __private = new WeakMap<SortedSet<any>, SortedMap<any, any>>();
  * This set uses a {@link SortedMap} as backing store and therefore has
  * the same resizing characteristics.
  */
-@inspectable
+@__inspectable
 export class SortedSet<T>
     extends Set<T>
     implements IEquivSet<T>, ICompare<Set<T>>, IReducible<any, T>
@@ -98,7 +98,7 @@ export class SortedSet<T>
     }
 
     equiv(o: any) {
-        return equivSet(this, o);
+        return __equivSet(this, o);
     }
 
     $reduce(rfn: ReductionFn<any, T>, acc: any): any {

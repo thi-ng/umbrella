@@ -7,8 +7,8 @@ import { map } from "@thi.ng/transducers/map";
 import { isReduced } from "@thi.ng/transducers/reduced";
 import type { SortedMapOpts } from "./api";
 import { dissoc } from "./dissoc";
-import { equivMap } from "./internal/equiv";
-import { inspectable } from "./internal/inspect";
+import { __equivMap } from "./internal/equiv";
+import { __inspectable } from "./internal/inspect";
 import { into } from "./into";
 
 interface SortedMapState<K, V> {
@@ -37,7 +37,7 @@ class Node<K, V> {
 // http://fitzgeraldnick.com/2014/01/13/hiding-implementation-details-with-e6-weakmaps.html
 const __private = new WeakMap<SortedMap<any, any>, SortedMapState<any, any>>();
 
-@inspectable
+@__inspectable
 export class SortedMap<K, V> extends Map<K, V> {
     static DEFAULT_CAP = 8;
     static DEFAULT_P = 1 / Math.E;
@@ -151,7 +151,7 @@ export class SortedMap<K, V> extends Map<K, V> {
     }
 
     equiv(o: any) {
-        return equivMap(this, o);
+        return __equivMap(this, o);
     }
 
     first(): Pair<K, V> | undefined {

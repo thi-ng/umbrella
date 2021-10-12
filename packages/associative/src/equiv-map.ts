@@ -6,8 +6,8 @@ import { pairs } from "@thi.ng/transducers/pairs";
 import type { EquivMapOpts, IEquivSet } from "./api";
 import { ArraySet } from "./array-set";
 import { dissoc } from "./dissoc";
-import { equivMap } from "./internal/equiv";
-import { inspectable } from "./internal/inspect";
+import { __equivMap } from "./internal/equiv";
+import { __inspectable } from "./internal/inspect";
 import { into } from "./into";
 
 interface MapProps<K, V> {
@@ -20,7 +20,7 @@ const __private = new WeakMap<EquivMap<any, any>, MapProps<any, any>>();
 
 const __map = (map: EquivMap<any, any>) => __private.get(map)!.map;
 
-@inspectable
+@__inspectable
 export class EquivMap<K, V>
     extends Map<K, V>
     implements
@@ -92,7 +92,7 @@ export class EquivMap<K, V>
     }
 
     equiv(o: any) {
-        return equivMap(this, o);
+        return __equivMap(this, o);
     }
 
     delete(key: K) {

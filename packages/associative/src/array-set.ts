@@ -4,8 +4,8 @@ import { findIndex } from "@thi.ng/arrays/find";
 import { equiv } from "@thi.ng/equiv";
 import type { EquivSetOpts, IEquivSet } from "./api";
 import { dissoc } from "./dissoc";
-import { equivSet } from "./internal/equiv";
-import { inspectable } from "./internal/inspect";
+import { __equivSet } from "./internal/equiv";
+import { __inspectable } from "./internal/inspect";
 import { into } from "./into";
 
 interface ArraySetProps<T> {
@@ -28,7 +28,7 @@ const __vals = (inst: ArraySet<any>) => __private.get(inst)!.vals;
  * {@link @thi.ng/api#IEmpty} and {@link @thi.ng/api#IEquiv} interfaces
  * itself.
  */
-@inspectable
+@__inspectable
 export class ArraySet<T> extends Set<T> implements IEquivSet<T> {
     constructor(
         vals?: Iterable<T> | null,
@@ -118,7 +118,7 @@ export class ArraySet<T> extends Set<T> implements IEquivSet<T> {
     }
 
     equiv(o: any) {
-        return equivSet(this, o);
+        return __equivSet(this, o);
     }
 
     /**
