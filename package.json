@@ -39,7 +39,7 @@
         "doc:readme": "lerna run doc:readme",
         "doc:stats": "lerna run doc:stats",
         "examples": "scripts/build-examples",
-        "pub": "lerna publish --registry https://registry.npmjs.org/ && yarn doc && scripts/deploy-docs",
+        "pub": "lerna publish --registry https://registry.npmjs.org/ && yarn doc && scripts/node-esm tools/src/deploy-docs.ts",
         "test": "yarn build && yarn test:only",
         "test:only": "lerna run test",
         "tool:deps": "scripts/node-esm tools/src/adjacency.ts",
