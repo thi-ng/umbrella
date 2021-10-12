@@ -27,7 +27,7 @@ import type {
 import { convert, defConversions } from "./convert";
 import { parseCss } from "./css/parse-css";
 import { intArgb32Rgb } from "./int/int-rgb";
-import { ensureArgs } from "./internal/ensure-args";
+import { __ensureArgs } from "./internal/ensure";
 
 type $DefColor<M extends ColorMode, K extends string> = {
     [k in K]: number;
@@ -158,7 +158,7 @@ export const defColor = <M extends ColorMode, K extends string>(
             ? fromColor(src.deref(), (<IColor>src).mode, xs)
             : isNumber(src)
             ? xs.length && xs.every(isNumber)
-                ? <any>new $Color(...ensureArgs([src, ...xs]))
+                ? <any>new $Color(...__ensureArgs([src, ...xs]))
                 : fromColor(intArgb32Rgb([], src), "rgb", xs)
             : illegalArgs(`can't create a ${spec.mode} color from: ${src}`);
 

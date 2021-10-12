@@ -1,7 +1,7 @@
 import { setC4 } from "@thi.ng/vectors/setc";
 import type { Color, ReadonlyColor } from "../api";
 import { RGB_LUMINANCE_REC709 } from "../api/constants";
-import { ensureAlpha } from "../internal/ensure-alpha";
+import { __ensureAlpha } from "../internal/ensure";
 
 /**
  * @remarks
@@ -30,6 +30,6 @@ export const yccRgb = (
         y + rr,
         y - (luma[2] / luma[1]) * bb - (luma[0] / luma[1]) * rr,
         y + bb,
-        ensureAlpha(src[3])
+        __ensureAlpha(src[3])
     );
 };

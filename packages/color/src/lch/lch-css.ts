@@ -2,7 +2,7 @@ import { clamp0 } from "@thi.ng/math/interval";
 import { fract } from "@thi.ng/math/prec";
 import type { ReadonlyColor } from "../api";
 import { FF, PC } from "../api/constants";
-import { ensureAlpha } from "../internal/ensure-alpha";
+import { __ensureAlpha } from "../internal/ensure";
 
 /**
  * @remarks
@@ -16,6 +16,6 @@ export const lchCss = (src: ReadonlyColor) => {
     const l = PC(clamp0(src[0]));
     const c = FF(clamp0(src[1]) * 100);
     const h = FF(fract(src[2]) * 360);
-    const a = ensureAlpha(src[3]);
+    const a = __ensureAlpha(src[3]);
     return `lch(${l} ${c} ${h}` + (a < 1 ? `/${FF(a)})` : ")");
 };

@@ -17,7 +17,7 @@ import type {
     ColorThemePartTuple,
 } from "./api/ranges";
 import { parseCss } from "./css/parse-css";
-import { ensureAlpha } from "./internal/ensure-alpha";
+import { __ensureAlpha } from "./internal/ensure";
 import { LCH, lch } from "./lch/lch";
 import { analog } from "./analog";
 import { isBlack } from "./is-black";
@@ -151,7 +151,7 @@ export const colorFromRange = (
     if (base) {
         const col = lch(base);
         h = col[2];
-        a = ensureAlpha(col[3]);
+        a = __ensureAlpha(col[3]);
         if (isBlack(col, eps)) {
             c = 0;
             l = $rnd(range.b!, rnd);

@@ -1,7 +1,7 @@
 import { setC4 } from "@thi.ng/vectors/setc";
 import type { Color, ColorOp, ReadonlyColor } from "../api";
 import { D50, D65 } from "../api/constants";
-import { ensureAlpha } from "../internal/ensure-alpha";
+import { __ensureAlpha } from "../internal/ensure";
 
 const transform = (x: number) => {
     const y = x ** 3;
@@ -23,7 +23,7 @@ export const labXyz = (out: Color | null, src: ReadonlyColor, white = D50) => {
         transform(src[1] / 5.0 + y) * white[0],
         transform(y) * white[1],
         transform(y - src[2] / 2.0) * white[2],
-        ensureAlpha(src[3])
+        __ensureAlpha(src[3])
     );
 };
 

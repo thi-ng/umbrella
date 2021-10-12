@@ -1,7 +1,7 @@
 import { mix } from "@thi.ng/math/mix";
 import type { ColorMatrix, ReadonlyColor } from "./api";
 import { RGB_LUMINANCE_REC709, WHITE } from "./api/constants";
-import { mulM45, mulV45 } from "./internal/matrix-ops";
+import { __mulM45, __mulV45 } from "./internal/matrix-ops";
 
 // https://drafts.fxtf.org/filter-effects/#feColorMatrixElement
 
@@ -26,7 +26,7 @@ const S8 = 0.283;
  * @param src - source color
  * @param clampOut - true, if result should be clamped to [0..1]
  */
-export const transform = mulV45;
+export const transform = __mulV45;
 
 /**
  * Concatenates given color matrices by pairwise multiplying them in
@@ -45,7 +45,7 @@ export const transform = mulV45;
  * @param xs - other matrices
  */
 export const concat = (mat: ColorMatrix, ...xs: ColorMatrix[]) =>
-    xs.reduce(mulM45, mat);
+    xs.reduce(__mulM45, mat);
 
 // prettier-ignore
 export const IDENTITY: ColorMatrix = [

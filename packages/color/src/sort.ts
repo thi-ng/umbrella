@@ -6,13 +6,15 @@ import { swap } from "@thi.ng/arrays/swap";
 import { compareNumAsc, compareNumDesc } from "@thi.ng/compare/numeric";
 import type { ColorDistance, ReadonlyColor, TypedColor } from "./api";
 import { distEucledian3 } from "./distance";
+import { intAbgr32Srgb } from "./int/int-srgb";
 
 export const selectChannel = (id: number) => (col: ReadonlyColor) => col[id];
 
 /**
- * Takes a `target` color and optional `distance` function. Returns a new
- * function which can be used as `key` function for {@link sort} to compute the
- * distance metric of a color to the given `target`.
+ * Takes a `target` color and optional `distance` function (default:
+ * {@link distEucledian3}). Returns a new function which can be used as `key`
+ * function for {@link sort} to compute the distance metric of a color to the
+ * given `target`.
  *
  * @param target
  * @param dist
@@ -21,6 +23,20 @@ export const proximity =
     (target: ReadonlyColor, dist: ColorDistance = distEucledian3) =>
     (col: ReadonlyColor) =>
         dist(target, col);
+
+/**
+ * Similar to {@link proximity}, but intended as syntax sugar for {@link ABGR}
+ * input colors. The proximity will still be computed using given distance
+ * function (default: {@link distEucledian3}) and will be in sRGB space. Hence
+ * given `target` color should be provided in the same space too.
+ *
+ * @param target
+ * @param dist
+ */
+export const proximityABGR32 =
+    (target: ReadonlyColor, dist: ColorDistance = distEucledian3) =>
+    (col: ReadonlyColor) =>
+        dist(target, intAbgr32Srgb([], col[0]));
 
 export const sort = (
     colors: ReadonlyColor[],

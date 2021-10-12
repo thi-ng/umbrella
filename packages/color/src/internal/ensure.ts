@@ -1,5 +1,11 @@
+import { clamp01 } from "@thi.ng/math/interval";
+
 /** @internal */
-export const ensureArgs = (args: any[]) => {
+export const __ensureAlpha = (x: number, def = 1) =>
+    x != undefined ? clamp01(x) : def;
+
+/** @internal */
+export const __ensureArgs = (args: any[]) => {
     if (typeof args[0] === "number") {
         switch (args.length) {
             case 1:

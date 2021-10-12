@@ -1,14 +1,14 @@
-import { clamp01 } from "@thi.ng/math/interval";
 import { U24 } from "@thi.ng/strings/radix";
 import type { ReadonlyColor } from "../api";
 import { FF } from "../api/constants";
-import { ensureAlpha } from "../internal/ensure-alpha";
+import { __ensureAlpha } from "../internal/ensure";
+import { __scale8bit } from "../internal/scale";
 
 export const srgbCss = (src: ReadonlyColor) => {
-    const r = (clamp01(src[0]) * 0xff + 0.5) | 0;
-    const g = (clamp01(src[1]) * 0xff + 0.5) | 0;
-    const b = (clamp01(src[2]) * 0xff + 0.5) | 0;
-    const a = ensureAlpha(src[3]);
+    const r = __scale8bit(src[0]);
+    const g = __scale8bit(src[1]);
+    const b = __scale8bit(src[2]);
+    const a = __ensureAlpha(src[3]);
     // TODO update to `rgb(${r} ${g} ${b}/${FF(a)})` (CSS L4 syntax)
     return a < 1
         ? `rgba(${r},${g},${b},${FF(a)})`

@@ -1,7 +1,7 @@
 import { clamp01 } from "@thi.ng/math/interval";
 import { setC3 } from "@thi.ng/vectors/setc";
 import type { ColorOp } from "../api";
-import { ensureAlpha } from "../internal/ensure-alpha";
+import { __ensureAlpha } from "../internal/ensure";
 import { luminanceRgb } from "../luminance-rgb";
 import { hueRgb } from "../rgb/hue-rgb";
 
@@ -9,7 +9,7 @@ export const hcyRgb: ColorOp = (out, src) => {
     const h = src[0];
     let c = src[1];
     const y = src[2];
-    const rgb = hueRgb(out || src, h, ensureAlpha(src[3]));
+    const rgb = hueRgb(out || src, h, __ensureAlpha(src[3]));
     const lum = luminanceRgb(rgb);
     if (y < lum) {
         c *= y / lum;

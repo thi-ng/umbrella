@@ -1,6 +1,6 @@
 import type { Color, ColorOp, ReadonlyColor } from "../api";
 import { XYZ_RGB_D50, XYZ_RGB_D65 } from "../api/constants";
-import { mulV33 } from "../internal/matrix-ops";
+import { __mulV33 } from "../internal/matrix-ops";
 
 /**
  * Converts CIE XYZ to RGB using provided transformation/whitepoint matrix
@@ -15,7 +15,7 @@ export const xyzRgb = (
     out: Color | null,
     src: ReadonlyColor,
     mat = XYZ_RGB_D50
-) => mulV33(out, mat, src);
+) => __mulV33(out, mat, src);
 
 /**
  * Same as {@link xyzRgb}, but hard coded to use {@link D65} white point (via

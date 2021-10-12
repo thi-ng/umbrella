@@ -2,7 +2,7 @@ import { dot3 } from "@thi.ng/vectors/dot";
 import { setC4 } from "@thi.ng/vectors/setc";
 import type { Color, ReadonlyColor } from "../api";
 import { RGB_LUMINANCE_REC709 } from "../api/constants";
-import { ensureAlpha } from "../internal/ensure-alpha";
+import { __ensureAlpha } from "../internal/ensure";
 
 /**
  * @remarks
@@ -29,6 +29,6 @@ export const rgbYcc = (
         y,
         (0.5 * (src[2] - y)) / (1 - luma[2]),
         (0.5 * (src[0] - y)) / (1 - luma[0]),
-        ensureAlpha(src[3])
+        __ensureAlpha(src[3])
     );
 };

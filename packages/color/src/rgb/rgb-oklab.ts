@@ -1,7 +1,7 @@
 import { powN3 } from "@thi.ng/vectors/pown";
 import type { ColorOp } from "../api";
 import { OKLAB_M2 } from "../api/constants";
-import { mulV33 } from "../internal/matrix-ops";
+import { __mulV33 } from "../internal/matrix-ops";
 
 const CONE_LMS = [
     0.412165612, 0.211859107, 0.0883097947, 0.536275208, 0.6807189584,
@@ -16,4 +16,4 @@ const CONE_LMS = [
  * @param src
  */
 export const rgbOklab: ColorOp = (out, src) =>
-    mulV33(null, OKLAB_M2, powN3(null, mulV33(out, CONE_LMS, src), 1 / 3));
+    __mulV33(null, OKLAB_M2, powN3(null, __mulV33(out, CONE_LMS, src), 1 / 3));

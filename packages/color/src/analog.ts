@@ -6,7 +6,7 @@ import type { IRandom } from "@thi.ng/random";
 import { SYSTEM } from "@thi.ng/random/system";
 import { setC4 } from "@thi.ng/vectors/setc";
 import type { Color, ReadonlyColor, TypedColor } from "./api";
-import { ensureAlpha } from "./internal/ensure-alpha";
+import { __ensureAlpha } from "./internal/ensure";
 
 /** @internal */
 const analogU = (x: number, delta: number, rnd: IRandom) =>
@@ -24,7 +24,7 @@ const analogH = (x: number, delta: number, rnd: IRandom) =>
 const analogA = (a: number, delta: number, rnd: IRandom) =>
     delta !== 0
         ? clamp01((a !== undefined ? a : 1) + rnd.norm(delta))
-        : ensureAlpha(a);
+        : __ensureAlpha(a);
 
 export const defAnalog: FnU3<
     Fn3<number, number, IRandom, number>,
@@ -37,7 +37,7 @@ export const defAnalog: FnU3<
             x(src[0], delta, rnd),
             y(src[1], delta, rnd),
             z(src[2], delta, rnd),
-            ensureAlpha(src[3])
+            __ensureAlpha(src[3])
         );
 
 /** @internal */

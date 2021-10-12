@@ -1,7 +1,7 @@
 import type { Color, ColorOp, ReadonlyColor } from "../api";
 import { RGB_XYZ_D50, RGB_XYZ_D65 } from "../api/constants";
 import { clamp } from "../clamp";
-import { mulV33 } from "../internal/matrix-ops";
+import { __mulV33 } from "../internal/matrix-ops";
 
 /**
  * Converts RGB to XYZ using provided transformation matrix (default:
@@ -17,7 +17,7 @@ export const rgbXyz = (
     out: Color | null,
     src: ReadonlyColor,
     mat = RGB_XYZ_D50
-) => mulV33(null, mat, clamp(out, src));
+) => __mulV33(null, mat, clamp(out, src));
 
 /**
  * Same as {@link rgbXyz}, but hard coded to use {@link D65} white point (via
