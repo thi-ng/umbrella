@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/soa",
-    "version": "0.2.25",
+    "version": "0.3.0",
     "description": "SOA & AOS memory mapped structured views with optional & extensible serialization",
     "type": "module",
     "module": "./index.js",
@@ -34,15 +34,15 @@
         "test": "testament test"
     },
     "dependencies": {
-        "@thi.ng/api": "^7.2.0",
-        "@thi.ng/binary": "^2.2.11",
-        "@thi.ng/errors": "^1.3.4",
-        "@thi.ng/transducers-binary": "^1.0.5",
-        "@thi.ng/vectors": "^6.2.0"
+        "@thi.ng/api": "^8.0.0",
+        "@thi.ng/binary": "^3.0.0",
+        "@thi.ng/errors": "^2.0.0",
+        "@thi.ng/transducers-binary": "^2.0.0",
+        "@thi.ng/vectors": "^7.0.0"
     },
     "devDependencies": {
-        "@thi.ng/equiv": "^1.0.45",
-        "@thi.ng/testament": "^0.0.1"
+        "@thi.ng/equiv": "^2.0.0",
+        "@thi.ng/testament": "^0.1.0"
     },
     "keywords": [
         "acceleration",

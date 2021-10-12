@@ -1,6 +1,36 @@
-#  Change Log 
+# Change Log
 
-All notable changes to this project will be documented in this file. See [Conventional Commits](https://conventionalcommits.org) for commit guidelines. 
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# [0.6.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/ecs@0.5.26...@thi.ng/ecs@0.6.0) (2021-10-12)
+
+
+### Build System
+
+* major update of ALL pkgs (export maps, ESM only) ([0d1d6ea](https://github.com/thi-ng/umbrella/commit/0d1d6ea9fab2a645d6c5f2bf2591459b939c09b6))
+
+
+### BREAKING CHANGES
+
+* discontinue CommonJS & UMD versions
+
+- only ESM modules will be published from now on
+- CJS obsolete due to ESM support in recent versions of node:
+  - i.e. launch NodeJS via:
+  - `node --experimental-specifier-resolution=node --experimental-repl-await`
+  - in the node REPL use `await import(...)` instead of `require()`
+- UMD obsolete due to widespread browser support for ESM
+
+Also:
+- normalize/restructure/reorg all package.json files
+- cleanup all build scripts, remove obsolete
+- switch from mocha to @thi.ng/testament for all tests
+
+
+
+
+
 
 #  [0.5.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/ecs@0.4.9...@thi.ng/ecs@0.5.0) (2021-02-20) 
 
@@ -51,4 +81,4 @@ All notable changes to this project will be documented in this file. See [Conven
 - **ecs:** add UnboundedCache, update Component & Group ctors/opts ([5c36892](https://github.com/thi-ng/umbrella/commit/5c36892ef9ed62f973a726277750c5845c9a859e)) 
 - **ecs:** add/update types, new components, update Group, ECS, add tests ([fdae8a7](https://github.com/thi-ng/umbrella/commit/fdae8a794093e42f71165f7552231d9af744dfcd)) 
 - **ecs:** initial refactor & import as new package (MBP2010) ([ad0b566](https://github.com/thi-ng/umbrella/commit/ad0b56629dc6133b3bcde429fa7df26f627ba0c1)) 
-- **ecs:** update Group, Component, cache behavior, IDGen, iteration ([e8c72d5](https://github.com/thi-ng/umbrella/commit/e8c72d587e58ad6dbc7e6961e6daa098b5b7e614)) 
+- **ecs:** update Group, Component, cache behavior, IDGen, iteration ([e8c72d5](https://github.com/thi-ng/umbrella/commit/e8c72d587e58ad6dbc7e6961e6daa098b5b7e614))

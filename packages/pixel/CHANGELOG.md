@@ -1,6 +1,52 @@
-#  Change Log 
+# Change Log
 
-All notable changes to this project will be documented in this file. See [Conventional Commits](https://conventionalcommits.org) for commit guidelines. 
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# [2.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/pixel@1.0.5...@thi.ng/pixel@2.0.0) (2021-10-12)
+
+
+### Build System
+
+* major update of ALL pkgs (export maps, ESM only) ([0d1d6ea](https://github.com/thi-ng/umbrella/commit/0d1d6ea9fab2a645d6c5f2bf2591459b939c09b6))
+
+
+### Code Refactoring
+
+* **pixel:** replace static PackedBuffer methods ([8e5d2db](https://github.com/thi-ng/umbrella/commit/8e5d2db6815ad1bf0e20cbbf7ab6628340125e10))
+* **pixel:** restructure package ([698130a](https://github.com/thi-ng/umbrella/commit/698130acf10056c30f0d7caae259df366a2484ce))
+
+
+### BREAKING CHANGES
+
+* **pixel:** replace static PackedBuffer methods w/ standalone functions
+
+- add packedBufferFromImage()
+- add packedBufferFromCanvas()
+- remove deprecated buffer() ctor fn
+* **pixel:** migrate dither ops to new pkg thi.ng/pixel-dither
+
+- remove dither related types & functions
+- remove PackedBuffer.dither()
+- move internal helpers
+* discontinue CommonJS & UMD versions
+
+- only ESM modules will be published from now on
+- CJS obsolete due to ESM support in recent versions of node:
+  - i.e. launch NodeJS via:
+  - `node --experimental-specifier-resolution=node --experimental-repl-await`
+  - in the node REPL use `await import(...)` instead of `require()`
+- UMD obsolete due to widespread browser support for ESM
+
+Also:
+- normalize/restructure/reorg all package.json files
+- cleanup all build scripts, remove obsolete
+- switch from mocha to @thi.ng/testament for all tests
+
+
+
+
+
 
 ##  [1.0.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/pixel@1.0.4...@thi.ng/pixel@1.0.5) (2021-09-03) 
 
@@ -127,4 +173,4 @@ All notable changes to this project will be documented in this file. See [Conven
 - **pixel:** complete rewrite/simplify/extend using format descriptors ([cde7bf9](https://github.com/thi-ng/umbrella/commit/cde7bf9)) 
 - **pixel:** initial import pixel buffer pkg ([1836ea7](https://github.com/thi-ng/umbrella/commit/1836ea7)) 
 - **pixel:** updat setChannel, add ALPHA8, update readme ([899f1a3](https://github.com/thi-ng/umbrella/commit/899f1a3)) 
-- **pixel:** update canvasPixels() ([5ea200d](https://github.com/thi-ng/umbrella/commit/5ea200d)) 
+- **pixel:** update canvasPixels() ([5ea200d](https://github.com/thi-ng/umbrella/commit/5ea200d))

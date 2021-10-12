@@ -1,6 +1,36 @@
-#  Change Log 
+# Change Log
 
-All notable changes to this project will be documented in this file. See [Conventional Commits](https://conventionalcommits.org) for commit guidelines. 
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# [0.5.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/egf@0.4.18...@thi.ng/egf@0.5.0) (2021-10-12)
+
+
+### Build System
+
+* major update of ALL pkgs (export maps, ESM only) ([0d1d6ea](https://github.com/thi-ng/umbrella/commit/0d1d6ea9fab2a645d6c5f2bf2591459b939c09b6))
+
+
+### BREAKING CHANGES
+
+* discontinue CommonJS & UMD versions
+
+- only ESM modules will be published from now on
+- CJS obsolete due to ESM support in recent versions of node:
+  - i.e. launch NodeJS via:
+  - `node --experimental-specifier-resolution=node --experimental-repl-await`
+  - in the node REPL use `await import(...)` instead of `require()`
+- UMD obsolete due to widespread browser support for ESM
+
+Also:
+- normalize/restructure/reorg all package.json files
+- cleanup all build scripts, remove obsolete
+- switch from mocha to @thi.ng/testament for all tests
+
+
+
+
+
 
 #  [0.4.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/egf@0.3.21...@thi.ng/egf@0.4.0) (2021-03-27) 
 
@@ -24,4 +54,4 @@ All notable changes to this project will be documented in this file. See [Conven
 - **egf:** fix [#235](https://github.com/thi-ng/umbrella/issues/235), replace #ref tag w/ `->` form ([0dd2f2d](https://github.com/thi-ng/umbrella/commit/0dd2f2d4efe21afce28a00191ee1047a7fe462b6)) 
 - **egf:** import as new package ([76b472d](https://github.com/thi-ng/umbrella/commit/76b472d017f3bf456db8204158de6ac4746447b3)) 
 - **egf:** update DOT export prop filter ([41a70ee](https://github.com/thi-ng/umbrella/commit/41a70eeaada5b91d7507a52b6b45083548002cda)) 
-- **egf:** update tag parser handling ([55b119c](https://github.com/thi-ng/umbrella/commit/55b119ce497f67e939ba865c25930348aaaad380)) 
+- **egf:** update tag parser handling ([55b119c](https://github.com/thi-ng/umbrella/commit/55b119ce497f67e939ba865c25930348aaaad380))

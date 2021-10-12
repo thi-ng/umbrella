@@ -1,6 +1,47 @@
-#  Change Log 
+# Change Log
 
-All notable changes to this project will be documented in this file. See [Conventional Commits](https://conventionalcommits.org) for commit guidelines. 
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# [4.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/dsp@3.0.31...@thi.ng/dsp@4.0.0) (2021-10-12)
+
+
+### Build System
+
+* major update of ALL pkgs (export maps, ESM only) ([0d1d6ea](https://github.com/thi-ng/umbrella/commit/0d1d6ea9fab2a645d6c5f2bf2591459b939c09b6))
+
+
+### Features
+
+* **dsp:** restructure/flatten /src folder, add ops ([c001e6f](https://github.com/thi-ng/umbrella/commit/c001e6f86bcb132323bde974a23cf1e69421142f))
+
+
+### BREAKING CHANGES
+
+* **dsp:** restructure pkg, add/rename ops
+
+- dissolve all subfolders
+- add bounce()
+- rename `compP()` => `serial()`
+- add docs
+* discontinue CommonJS & UMD versions
+
+- only ESM modules will be published from now on
+- CJS obsolete due to ESM support in recent versions of node:
+  - i.e. launch NodeJS via:
+  - `node --experimental-specifier-resolution=node --experimental-repl-await`
+  - in the node REPL use `await import(...)` instead of `require()`
+- UMD obsolete due to widespread browser support for ESM
+
+Also:
+- normalize/restructure/reorg all package.json files
+- cleanup all build scripts, remove obsolete
+- switch from mocha to @thi.ng/testament for all tests
+
+
+
+
+
 
 #  [3.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/dsp@2.1.5...@thi.ng/dsp@3.0.0) (2020-12-22) 
 
@@ -88,4 +129,4 @@ All notable changes to this project will be documented in this file. See [Conven
 
 ###  Features 
 
-- **dsp:** add oscillators as [@thi](https://github.com/thi).ng/dsp package (from synstack / VEX) ([889730f](https://github.com/thi-ng/umbrella/commit/889730f)) 
+- **dsp:** add oscillators as [@thi](https://github.com/thi).ng/dsp package (from synstack / VEX) ([889730f](https://github.com/thi-ng/umbrella/commit/889730f))

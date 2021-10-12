@@ -1,6 +1,42 @@
-#  Change Log 
+# Change Log
 
-All notable changes to this project will be documented in this file. See [Conventional Commits](https://conventionalcommits.org) for commit guidelines. 
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# [4.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/color@3.2.7...@thi.ng/color@4.0.0) (2021-10-12)
+
+
+### Build System
+
+* major update of ALL pkgs (export maps, ESM only) ([0d1d6ea](https://github.com/thi-ng/umbrella/commit/0d1d6ea9fab2a645d6c5f2bf2591459b939c09b6))
+
+
+### Features
+
+* **color:** add mandatory toRgb conversions ([6c4c13b](https://github.com/thi-ng/umbrella/commit/6c4c13b375857d886dbfa819ef3e5d530ad9fecb))
+* **color:** Int32/ABGR/ARGB updates/fixes ([d20e77c](https://github.com/thi-ng/umbrella/commit/d20e77c48b4ec5b979e687c01cc457fc3c5ace51))
+
+
+### BREAKING CHANGES
+
+* discontinue CommonJS & UMD versions
+
+- only ESM modules will be published from now on
+- CJS obsolete due to ESM support in recent versions of node:
+  - i.e. launch NodeJS via:
+  - `node --experimental-specifier-resolution=node --experimental-repl-await`
+  - in the node REPL use `await import(...)` instead of `require()`
+- UMD obsolete due to widespread browser support for ESM
+
+Also:
+- normalize/restructure/reorg all package.json files
+- cleanup all build scripts, remove obsolete
+- switch from mocha to @thi.ng/testament for all tests
+
+
+
+
+
 
 #  [3.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/color@3.1.18...@thi.ng/color@3.2.0) (2021-08-04) 
 
@@ -247,4 +283,4 @@ All notable changes to this project will be documented in this file. See [Conven
 
 ###  Performance Improvements 
 
-- **color:** refactor porterDiff as HOF, update all PD ops, add docs ([714381d](https://github.com/thi-ng/umbrella/commit/714381d)) 
+- **color:** refactor porterDiff as HOF, update all PD ops, add docs ([714381d](https://github.com/thi-ng/umbrella/commit/714381d))

@@ -1,6 +1,41 @@
-#  Change Log 
+# Change Log
 
-All notable changes to this project will be documented in this file. See [Conventional Commits](https://conventionalcommits.org) for commit guidelines. 
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# [0.6.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/shader-ast-js@0.5.49...@thi.ng/shader-ast-js@0.6.0) (2021-10-12)
+
+
+### Build System
+
+* major update of ALL pkgs (export maps, ESM only) ([0d1d6ea](https://github.com/thi-ng/umbrella/commit/0d1d6ea9fab2a645d6c5f2bf2591459b939c09b6))
+
+
+### Features
+
+* **shader-ast-js:** add float precision option ([a9abcfe](https://github.com/thi-ng/umbrella/commit/a9abcfe7304fd6f8273ed1c2c7d190abedeaca13))
+
+
+### BREAKING CHANGES
+
+* discontinue CommonJS & UMD versions
+
+- only ESM modules will be published from now on
+- CJS obsolete due to ESM support in recent versions of node:
+  - i.e. launch NodeJS via:
+  - `node --experimental-specifier-resolution=node --experimental-repl-await`
+  - in the node REPL use `await import(...)` instead of `require()`
+- UMD obsolete due to widespread browser support for ESM
+
+Also:
+- normalize/restructure/reorg all package.json files
+- cleanup all build scripts, remove obsolete
+- switch from mocha to @thi.ng/testament for all tests
+
+
+
+
+
 
 ##  [0.5.45](https://github.com/thi-ng/umbrella/compare/@thi.ng/shader-ast-js@0.5.44...@thi.ng/shader-ast-js@0.5.45) (2021-08-17) 
 
@@ -55,4 +90,4 @@ All notable changes to this project will be documented in this file. See [Conven
 - **shader-ast-js:** add post-inc/dec support, update op1 handler ([8073edd](https://github.com/thi-ng/umbrella/commit/8073edd)) 
 - **shader-ast-js:** add uvec ops, update imports ([5dcd39f](https://github.com/thi-ng/umbrella/commit/5dcd39f)) 
 - **shader-ast-js:** extract JS codegen & runtime as own pkg ([8177469](https://github.com/thi-ng/umbrella/commit/8177469)) 
-- **shader-ast-js:** int/uint/ivec support, while loop, fix bool ([003069e](https://github.com/thi-ng/umbrella/commit/003069e)) 
+- **shader-ast-js:** int/uint/ivec support, while loop, fix bool ([003069e](https://github.com/thi-ng/umbrella/commit/003069e))

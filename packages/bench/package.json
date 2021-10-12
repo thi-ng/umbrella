@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/bench",
-    "version": "2.1.6",
+    "version": "3.0.0",
     "description": "Benchmarking utilities w/ various statistics & formatters (CSV, Markdown etc.)",
     "type": "module",
     "module": "./index.js",
@@ -34,10 +34,10 @@
         "test": "testament test"
     },
     "dependencies": {
-        "@thi.ng/api": "^7.2.0"
+        "@thi.ng/api": "^8.0.0"
     },
     "devDependencies": {
-        "@thi.ng/testament": "^0.0.1"
+        "@thi.ng/testament": "^0.1.0"
     },
     "keywords": [
         "benchmark",

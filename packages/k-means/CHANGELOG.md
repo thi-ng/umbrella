@@ -1,6 +1,36 @@
-#  Change Log 
+# Change Log
 
-All notable changes to this project will be documented in this file. See [Conventional Commits](https://conventionalcommits.org) for commit guidelines. 
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# [0.4.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/k-means@0.3.6...@thi.ng/k-means@0.4.0) (2021-10-12)
+
+
+### Build System
+
+* major update of ALL pkgs (export maps, ESM only) ([0d1d6ea](https://github.com/thi-ng/umbrella/commit/0d1d6ea9fab2a645d6c5f2bf2591459b939c09b6))
+
+
+### BREAKING CHANGES
+
+* discontinue CommonJS & UMD versions
+
+- only ESM modules will be published from now on
+- CJS obsolete due to ESM support in recent versions of node:
+  - i.e. launch NodeJS via:
+  - `node --experimental-specifier-resolution=node --experimental-repl-await`
+  - in the node REPL use `await import(...)` instead of `require()`
+- UMD obsolete due to widespread browser support for ESM
+
+Also:
+- normalize/restructure/reorg all package.json files
+- cleanup all build scripts, remove obsolete
+- switch from mocha to @thi.ng/testament for all tests
+
+
+
+
+
 
 #  [0.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/k-means@0.2.5...@thi.ng/k-means@0.3.0) (2021-08-04) 
 
@@ -30,4 +60,4 @@ All notable changes to this project will be documented in this file. See [Conven
 
 - **k-means:** add k-medians support ([6bc450b](https://github.com/thi-ng/umbrella/commit/6bc450b95e1ed93ab18a9045ce1d4ba324a61eb3)) 
 - **k-means:** add kmeans++ initialization, update opts ([fcc2dcc](https://github.com/thi-ng/umbrella/commit/fcc2dcc9624dc77e99dc69bd54c466ea0d1f3988)) 
-- **k-means:** import as new pkg ([a32aaf6](https://github.com/thi-ng/umbrella/commit/a32aaf63b703993adfb61766e36f9817aae1ed62)) 
+- **k-means:** import as new pkg ([a32aaf6](https://github.com/thi-ng/umbrella/commit/a32aaf63b703993adfb61766e36f9817aae1ed62))

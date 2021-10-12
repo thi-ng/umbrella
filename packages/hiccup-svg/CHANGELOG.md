@@ -1,6 +1,41 @@
-#  Change Log 
+# Change Log
 
-All notable changes to this project will be documented in this file. See [Conventional Commits](https://conventionalcommits.org) for commit guidelines. 
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# [4.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-svg@3.8.1...@thi.ng/hiccup-svg@4.0.0) (2021-10-12)
+
+
+### Bug Fixes
+
+* **hiccup-svg:** check values passed to numericAttribs are actually numeric ([dbd51c3](https://github.com/thi-ng/umbrella/commit/dbd51c301dbd32430ae00d34521b6e1c2f32c7cc))
+
+
+### Build System
+
+* major update of ALL pkgs (export maps, ESM only) ([0d1d6ea](https://github.com/thi-ng/umbrella/commit/0d1d6ea9fab2a645d6c5f2bf2591459b939c09b6))
+
+
+### BREAKING CHANGES
+
+* discontinue CommonJS & UMD versions
+
+- only ESM modules will be published from now on
+- CJS obsolete due to ESM support in recent versions of node:
+  - i.e. launch NodeJS via:
+  - `node --experimental-specifier-resolution=node --experimental-repl-await`
+  - in the node REPL use `await import(...)` instead of `require()`
+- UMD obsolete due to widespread browser support for ESM
+
+Also:
+- normalize/restructure/reorg all package.json files
+- cleanup all build scripts, remove obsolete
+- switch from mocha to @thi.ng/testament for all tests
+
+
+
+
+
 
 #  [3.8.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-svg@3.7.33...@thi.ng/hiccup-svg@3.8.0) (2021-08-22) 
 
@@ -137,4 +172,4 @@ All notable changes to this project will be documented in this file. See [Conven
 
 ###  Features 
 
-- **hiccup-svg:** re-add svg fns as new [@thi](https://github.com/thi).ng/hiccup-svg package ([afccabd](https://github.com/thi-ng/umbrella/commit/afccabd)) 
+- **hiccup-svg:** re-add svg fns as new [@thi](https://github.com/thi).ng/hiccup-svg package ([afccabd](https://github.com/thi-ng/umbrella/commit/afccabd))

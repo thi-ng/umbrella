@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/hdom-mock",
-    "version": "1.1.64",
+    "version": "2.0.0",
     "description": "Mock base implementation for @thi.ng/hdom API",
     "type": "module",
     "module": "./index.js",
@@ -34,12 +34,12 @@
         "test": "testament test"
     },
     "dependencies": {
-        "@thi.ng/api": "^7.2.0",
-        "@thi.ng/checks": "^2.9.11",
-        "@thi.ng/hdom": "^8.2.32"
+        "@thi.ng/api": "^8.0.0",
+        "@thi.ng/checks": "^3.0.0",
+        "@thi.ng/hdom": "^9.0.0"
     },
     "devDependencies": {
-        "@thi.ng/testament": "^0.0.1"
+        "@thi.ng/testament": "^0.1.0"
     },
     "keywords": [
         "datastructure",

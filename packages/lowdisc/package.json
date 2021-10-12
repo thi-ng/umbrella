@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/lowdisc",
-    "version": "0.1.7",
+    "version": "0.2.0",
     "description": "n-dimensional low-discrepancy sequence generators/iterators",
     "type": "module",
     "module": "./index.js",
@@ -34,10 +34,10 @@
         "test": "testament test"
     },
     "dependencies": {
-        "@thi.ng/errors": "^1.3.4"
+        "@thi.ng/errors": "^2.0.0"
     },
     "devDependencies": {
-        "@thi.ng/testament": "^0.0.1"
+        "@thi.ng/testament": "^0.1.0"
     },
     "keywords": [
         "discrepancy",

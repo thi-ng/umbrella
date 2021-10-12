@@ -1,6 +1,58 @@
-#  Change Log 
+# Change Log
 
-All notable changes to this project will be documented in this file. See [Conventional Commits](https://conventionalcommits.org) for commit guidelines. 
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# [8.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@7.2.0...@thi.ng/api@8.0.0) (2021-10-12)
+
+
+### Build System
+
+* major update of ALL pkgs (export maps, ESM only) ([0d1d6ea](https://github.com/thi-ng/umbrella/commit/0d1d6ea9fab2a645d6c5f2bf2591459b939c09b6))
+
+
+### chore
+
+* **api:** remove obsolete assert() ([5f6ec5c](https://github.com/thi-ng/umbrella/commit/5f6ec5c37d9268c2b40d74011219529e146a0aca))
+
+
+### Code Refactoring
+
+* **api:** major pkg restructure ([98e286d](https://github.com/thi-ng/umbrella/commit/98e286dbf173dc8fe1daba7113b36bdc69a9bace))
+
+
+### BREAKING CHANGES
+
+* **api:** major pkg restructure, migrations
+
+- migrate logging related types/classes to new thi.ng/logger pkg
+  - see e0399a8f6 for details
+- migrate `exposeGlobal()` to new thi.ng/expose pkg
+  - see 323995fd7 for details
+- lift /api source files to main /src folder for easier import
+- this pkg now only contains type defs, constants, decorators and mixins
+  all other functionality migrated to other packages...
+* **api:** assert() moved to thi.ng/errors pkg
+
+- see 7030a6aec for details
+* discontinue CommonJS & UMD versions
+
+- only ESM modules will be published from now on
+- CJS obsolete due to ESM support in recent versions of node:
+  - i.e. launch NodeJS via:
+  - `node --experimental-specifier-resolution=node --experimental-repl-await`
+  - in the node REPL use `await import(...)` instead of `require()`
+- UMD obsolete due to widespread browser support for ESM
+
+Also:
+- normalize/restructure/reorg all package.json files
+- cleanup all build scripts, remove obsolete
+- switch from mocha to @thi.ng/testament for all tests
+
+
+
+
+
 
 #  [7.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@7.1.9...@thi.ng/api@7.2.0) (2021-09-03) 
 
@@ -304,4 +356,4 @@ All notable changes to this project will be documented in this file. See [Conven
 
 ###  Features 
 
-- **api:** add StatefulPredicate ([c74353b](https://github.com/thi-ng/umbrella/commit/c74353b)) 
+- **api:** add StatefulPredicate ([c74353b](https://github.com/thi-ng/umbrella/commit/c74353b))

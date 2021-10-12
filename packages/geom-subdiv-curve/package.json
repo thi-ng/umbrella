@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/geom-subdiv-curve",
-    "version": "1.0.5",
+    "version": "2.0.0",
     "description": "Freely customizable, iterative nD subdivision curves for open / closed geometries",
     "type": "module",
     "module": "./index.js",
@@ -34,13 +34,13 @@
         "test": "testament test"
     },
     "dependencies": {
-        "@thi.ng/api": "^7.2.0",
-        "@thi.ng/geom-api": "^2.0.31",
-        "@thi.ng/transducers": "^7.9.2",
-        "@thi.ng/vectors": "^6.2.0"
+        "@thi.ng/api": "^8.0.0",
+        "@thi.ng/geom-api": "^3.0.0",
+        "@thi.ng/transducers": "^8.0.0",
+        "@thi.ng/vectors": "^7.0.0"
     },
     "devDependencies": {
-        "@thi.ng/testament": "^0.0.1"
+        "@thi.ng/testament": "^0.1.0"
     },
     "keywords": [
         "2d",

@@ -1,6 +1,46 @@
-#  Change Log 
+# Change Log
 
-All notable changes to this project will be documented in this file. See [Conventional Commits](https://conventionalcommits.org) for commit guidelines. 
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# [2.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/text-canvas@1.1.4...@thi.ng/text-canvas@2.0.0) (2021-10-12)
+
+
+### Build System
+
+* major update of ALL pkgs (export maps, ESM only) ([0d1d6ea](https://github.com/thi-ng/umbrella/commit/0d1d6ea9fab2a645d6c5f2bf2591459b939c09b6))
+
+
+### Code Refactoring
+
+* **text-canvas:** update to use thi.ng/text-format ([aa67a5a](https://github.com/thi-ng/umbrella/commit/aa67a5a27197b4c751bb5959cdcd2a238af2a825))
+
+
+### BREAKING CHANGES
+
+* **text-canvas:** migrate formatting consts/functions to new pkg
+
+- see 8c28655d1 for details
+- rename `toString()` => `formatCanvas()`
+- update dependencies
+* discontinue CommonJS & UMD versions
+
+- only ESM modules will be published from now on
+- CJS obsolete due to ESM support in recent versions of node:
+  - i.e. launch NodeJS via:
+  - `node --experimental-specifier-resolution=node --experimental-repl-await`
+  - in the node REPL use `await import(...)` instead of `require()`
+- UMD obsolete due to widespread browser support for ESM
+
+Also:
+- normalize/restructure/reorg all package.json files
+- cleanup all build scripts, remove obsolete
+- switch from mocha to @thi.ng/testament for all tests
+
+
+
+
+
 
 #  [1.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/text-canvas@1.0.3...@thi.ng/text-canvas@1.1.0) (2021-08-13) 
 
@@ -58,5 +98,4 @@ All notable changes to this project will be documented in this file. See [Conven
 
 #  [0.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/text-canvas@0.2.36...@thi.ng/text-canvas@0.3.0) (2021-01-02) 
 
-###  Features 
-
+###  Features

@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/expose",
-    "version": "0.0.1",
+    "version": "0.1.0",
     "description": "Conditional global variable exposition",
     "type": "module",
     "module": "./index.js",
@@ -34,7 +34,7 @@
         "test": "testament test"
     },
     "devDependencies": {
-        "@thi.ng/testament": "^0.0.1"
+        "@thi.ng/testament": "^0.1.0"
     },
     "keywords": [
         "global",

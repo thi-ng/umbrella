@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/bitfield",
-    "version": "1.0.3",
+    "version": "2.0.0",
     "description": "1D / 2D bit field implementations",
     "type": "module",
     "module": "./index.js",
@@ -34,13 +34,13 @@
         "test": "testament test"
     },
     "dependencies": {
-        "@thi.ng/api": "^7.2.0",
-        "@thi.ng/binary": "^2.2.11",
-        "@thi.ng/errors": "^1.3.4",
-        "@thi.ng/strings": "^2.1.7"
+        "@thi.ng/api": "^8.0.0",
+        "@thi.ng/binary": "^3.0.0",
+        "@thi.ng/errors": "^2.0.0",
+        "@thi.ng/strings": "^3.0.0"
     },
     "devDependencies": {
-        "@thi.ng/testament": "^0.0.1"
+        "@thi.ng/testament": "^0.1.0"
     },
     "keywords": [
         "1d",

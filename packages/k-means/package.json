@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/k-means",
-    "version": "0.3.6",
+    "version": "0.4.0",
     "description": "Configurable k-means & k-medians (with k-means++ initialization) for n-D vectors",
     "type": "module",
     "module": "./index.js",
@@ -34,14 +34,14 @@
         "test": "testament test"
     },
     "dependencies": {
-        "@thi.ng/api": "^7.2.0",
-        "@thi.ng/distance": "^1.0.7",
-        "@thi.ng/errors": "^1.3.4",
-        "@thi.ng/random": "^2.4.8",
-        "@thi.ng/vectors": "^6.2.0"
+        "@thi.ng/api": "^8.0.0",
+        "@thi.ng/distance": "^2.0.0",
+        "@thi.ng/errors": "^2.0.0",
+        "@thi.ng/random": "^3.0.0",
+        "@thi.ng/vectors": "^7.0.0"
     },
     "devDependencies": {
-        "@thi.ng/testament": "^0.0.1"
+        "@thi.ng/testament": "^0.1.0"
     },
     "keywords": [
         "cluster",

@@ -1,6 +1,41 @@
-#  Change Log 
+# Change Log
 
-All notable changes to this project will be documented in this file. See [Conventional Commits](https://conventionalcommits.org) for commit guidelines. 
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# [0.7.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/rdom@0.6.9...@thi.ng/rdom@0.7.0) (2021-10-12)
+
+
+### Build System
+
+* major update of ALL pkgs (export maps, ESM only) ([0d1d6ea](https://github.com/thi-ng/umbrella/commit/0d1d6ea9fab2a645d6c5f2bf2591459b939c09b6))
+
+
+### Features
+
+* **rdom:** add $replace() control/wrapper ([6096357](https://github.com/thi-ng/umbrella/commit/609635729a7d92d087a59684e00d19e609c5927f))
+
+
+### BREAKING CHANGES
+
+* discontinue CommonJS & UMD versions
+
+- only ESM modules will be published from now on
+- CJS obsolete due to ESM support in recent versions of node:
+  - i.e. launch NodeJS via:
+  - `node --experimental-specifier-resolution=node --experimental-repl-await`
+  - in the node REPL use `await import(...)` instead of `require()`
+- UMD obsolete due to widespread browser support for ESM
+
+Also:
+- normalize/restructure/reorg all package.json files
+- cleanup all build scripts, remove obsolete
+- switch from mocha to @thi.ng/testament for all tests
+
+
+
+
+
 
 #  [0.6.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/rdom@0.5.0...@thi.ng/rdom@0.6.0) (2021-08-04) 
 
@@ -50,4 +85,4 @@ All notable changes to this project will be documented in this file. See [Conven
 - **rdom:** add RDFa `prefix` attrib support, update prefix handling ([b589da5](https://github.com/thi-ng/umbrella/commit/b589da51385957a5defffb66307bd3d750814e4c)) 
 - **rdom:** add support for namespaced el/attribs ([9d16ef0](https://github.com/thi-ng/umbrella/commit/9d16ef0a2f6d6a062bf164ca38813290d7660149)) 
 - **rdom:** rename hdom2020 => rdom, update pkg ([1224706](https://github.com/thi-ng/umbrella/commit/1224706fa2fbca82afb73afeda3c3075c9b35f91)) 
-- **rdom:** update $tree() span handling, update $moveTo() ([6d90187](https://github.com/thi-ng/umbrella/commit/6d9018763af7f0f2096cdc1d79889791193a01e0)) 
+- **rdom:** update $tree() span handling, update $moveTo() ([6d90187](https://github.com/thi-ng/umbrella/commit/6d9018763af7f0f2096cdc1d79889791193a01e0))

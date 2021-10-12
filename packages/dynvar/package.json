@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/dynvar",
-    "version": "0.1.41",
+    "version": "0.2.0",
     "description": "Dynamically scoped variable bindings",
     "type": "module",
     "module": "./index.js",
@@ -34,11 +34,11 @@
         "test": "testament test"
     },
     "dependencies": {
-        "@thi.ng/api": "^7.2.0",
-        "@thi.ng/errors": "^1.3.4"
+        "@thi.ng/api": "^8.0.0",
+        "@thi.ng/errors": "^2.0.0"
     },
     "devDependencies": {
-        "@thi.ng/testament": "^0.0.1"
+        "@thi.ng/testament": "^0.1.0"
     },
     "keywords": [
         "clojure",

@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/viz",
-    "version": "0.2.42",
+    "version": "0.3.0",
     "description": "Declarative, functional & multi-format data visualization toolkit based around @thi.ng/hiccup",
     "type": "module",
     "module": "./index.js",
@@ -40,17 +40,17 @@
         "tool:tags": "../../scripts/node-esm tools/tagcloud.ts"
     },
     "dependencies": {
-        "@thi.ng/api": "^7.2.0",
-        "@thi.ng/arrays": "^1.0.3",
-        "@thi.ng/associative": "^5.2.16",
-        "@thi.ng/checks": "^2.9.11",
-        "@thi.ng/math": "^4.0.6",
-        "@thi.ng/strings": "^2.1.7",
-        "@thi.ng/transducers": "^7.9.2"
+        "@thi.ng/api": "^8.0.0",
+        "@thi.ng/arrays": "^2.0.0",
+        "@thi.ng/associative": "^6.0.0",
+        "@thi.ng/checks": "^3.0.0",
+        "@thi.ng/math": "^5.0.0",
+        "@thi.ng/strings": "^3.0.0",
+        "@thi.ng/transducers": "^8.0.0"
     },
     "devDependencies": {
-        "@thi.ng/date": "^1.0.6",
-        "@thi.ng/testament": "^0.0.1"
+        "@thi.ng/date": "^2.0.0",
+        "@thi.ng/testament": "^0.1.0"
     },
     "keywords": [
         "2d",

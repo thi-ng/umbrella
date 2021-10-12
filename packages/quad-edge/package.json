@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/quad-edge",
-    "version": "1.0.1",
+    "version": "2.0.0",
     "description": "Quadedge data structure after Guibas & Stolfi",
     "type": "module",
     "module": "./index.js",
@@ -34,7 +34,7 @@
         "test": "testament test"
     },
     "devDependencies": {
-        "@thi.ng/testament": "^0.0.1"
+        "@thi.ng/testament": "^0.1.0"
     },
     "keywords": [
         "2d",

@@ -1,6 +1,36 @@
-#  Change Log 
+# Change Log
 
-All notable changes to this project will be documented in this file. See [Conventional Commits](https://conventionalcommits.org) for commit guidelines. 
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# [2.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/args@1.1.1...@thi.ng/args@2.0.0) (2021-10-12)
+
+
+### Build System
+
+* major update of ALL pkgs (export maps, ESM only) ([0d1d6ea](https://github.com/thi-ng/umbrella/commit/0d1d6ea9fab2a645d6c5f2bf2591459b939c09b6))
+
+
+### BREAKING CHANGES
+
+* discontinue CommonJS & UMD versions
+
+- only ESM modules will be published from now on
+- CJS obsolete due to ESM support in recent versions of node:
+  - i.e. launch NodeJS via:
+  - `node --experimental-specifier-resolution=node --experimental-repl-await`
+  - in the node REPL use `await import(...)` instead of `require()`
+- UMD obsolete due to widespread browser support for ESM
+
+Also:
+- normalize/restructure/reorg all package.json files
+- cleanup all build scripts, remove obsolete
+- switch from mocha to @thi.ng/testament for all tests
+
+
+
+
+
 
 #  [1.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/args@1.0.4...@thi.ng/args@1.1.0) (2021-08-19) 
 
@@ -67,4 +97,4 @@ All notable changes to this project will be documented in this file. See [Conven
 - **args:** add tuple arg type support ([a05dde9](https://github.com/thi-ng/umbrella/commit/a05dde957be54ae7ed6aeab8233bff0d8573c675)) 
 - **args:** import as new package ([af5d943](https://github.com/thi-ng/umbrella/commit/af5d943153b3012be04ed0e9a044ee944465d035)) 
 - **args:** major general package update ([26ec49a](https://github.com/thi-ng/umbrella/commit/26ec49afc0fa389b7a2551b116a85d95df4aaeee)) 
-- **args:** update multi arg specs, parse ([dbdf913](https://github.com/thi-ng/umbrella/commit/dbdf913b4ed730c2c07246c24ecbafb32d9dc37e)) 
+- **args:** update multi arg specs, parse ([dbdf913](https://github.com/thi-ng/umbrella/commit/dbdf913b4ed730c2c07246c24ecbafb32d9dc37e))
