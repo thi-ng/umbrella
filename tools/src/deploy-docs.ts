@@ -3,10 +3,6 @@ import { readdirSync, readFileSync, statSync, writeFileSync } from "fs";
 import { files } from "./io";
 
 const PKG = process.argv[2];
-if (!PKG) {
-    console.warn("\nUsage: scripts/deploy-docs.js <pkg-name>");
-    process.exit(1);
-}
 
 const AWS_PROFILE = "--profile thing-umbrella";
 const S3_BUCKET = "s3://docs.thi.ng";
