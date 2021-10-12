@@ -28,15 +28,15 @@ import type { Path } from "./api/path";
 import type { Quadratic } from "./api/quadratic";
 import { Rect } from "./api/rect";
 import type { Text } from "./api/text";
-import { collBounds } from "./internal/coll-bounds";
-import { dispatch } from "./internal/dispatch";
+import { __collBounds } from "./internal/bounds";
+import { __dispatch } from "./internal/dispatch";
 import { rectFromMinMax } from "./rect";
 
 export const bounds: MultiFn1<IShape, AABBLike | undefined> = defmulti<
     any,
     AABBLike | undefined
 >(
-    dispatch,
+    __dispatch,
     {
         aabb: "rect",
         poly: "points",
@@ -60,7 +60,7 @@ export const bounds: MultiFn1<IShape, AABBLike | undefined> = defmulti<
             new Rect(sub2([], $.pos, $.r), mul2(null, [2, 2], $.r)),
 
         group: ($: Group) => {
-            const res = collBounds($.children, bounds);
+            const res = __collBounds($.children, bounds);
             return res ? new Rect(...res) : undefined;
         },
 
@@ -68,7 +68,7 @@ export const bounds: MultiFn1<IShape, AABBLike | undefined> = defmulti<
             rectFromMinMax(min([], a, b), max([], a, b)),
 
         path: (path: Path) => {
-            const b = collBounds(
+            const b = __collBounds(
                 [
                     ...iterator1(
                         comp(

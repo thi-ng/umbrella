@@ -11,17 +11,17 @@ import { Cubic } from "./api/cubic";
 import { Line } from "./api/line";
 import { Polyline } from "./api/polyline";
 import { Quadratic } from "./api/quadratic";
-import { copyAttribs } from "./internal/copy-attribs";
-import { dispatch } from "./internal/dispatch";
-import { pointArraysAsShapes } from "./internal/points-as-shape";
-import { splitLine } from "./internal/split";
+import { __copyAttribs } from "./internal/copy";
+import { __dispatch } from "./internal/dispatch";
+import { __pointArraysAsShapes } from "./internal/points-as-shape";
+import { __splitLine } from "./internal/split";
 
 export const splitAt: MultiFn2<IShape, number, IShape[] | undefined> = defmulti<
     any,
     number,
     IShape[] | undefined
 >(
-    dispatch,
+    __dispatch,
     {},
     {
         arc: ($: Arc, t: number) => {
@@ -35,7 +35,7 @@ export const splitAt: MultiFn2<IShape, number, IShape[] | undefined> = defmulti<
                     theta,
                     $.xl,
                     $.cw,
-                    copyAttribs($)
+                    __copyAttribs($)
                 ),
                 new Arc(
                     set([], $.pos),
@@ -45,7 +45,7 @@ export const splitAt: MultiFn2<IShape, number, IShape[] | undefined> = defmulti<
                     $.end,
                     $.xl,
                     $.cw,
-                    copyAttribs($)
+                    __copyAttribs($)
                 ),
             ];
         },
@@ -56,12 +56,12 @@ export const splitAt: MultiFn2<IShape, number, IShape[] | undefined> = defmulti<
             ),
 
         line: ({ attribs, points }: Line, t) =>
-            splitLine(points[0], points[1], t).map(
+            __splitLine(points[0], points[1], t).map(
                 (pts) => new Line(pts, { ...attribs })
             ),
 
         polyline: ($: Polyline, t) =>
-            pointArraysAsShapes(
+            __pointArraysAsShapes(
                 Polyline,
                 new Sampler($.points).splitAt(t),
                 $.attribs

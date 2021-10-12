@@ -4,8 +4,8 @@ import type { IShape, SamplingOpts } from "@thi.ng/geom-api";
 import { set } from "@thi.ng/vectors/set";
 import type { Path } from "./api/path";
 import { Polyline } from "./api/polyline";
-import { copyAttribs } from "./internal/copy-attribs";
-import { dispatch } from "./internal/dispatch";
+import { __copyAttribs } from "./internal/copy";
+import { __dispatch } from "./internal/dispatch";
 import { vertices } from "./vertices";
 
 export const asPolyline: MultiFn1O<
@@ -13,7 +13,7 @@ export const asPolyline: MultiFn1O<
     number | Partial<SamplingOpts>,
     Polyline
 > = defmulti<any, number | Partial<SamplingOpts> | undefined, Polyline>(
-    dispatch,
+    __dispatch,
     {
         arc: "points",
         circle: "poly",
@@ -27,18 +27,18 @@ export const asPolyline: MultiFn1O<
         tri: "poly",
     },
     {
-        points: ($, opts) => new Polyline(vertices($, opts), copyAttribs($)),
+        points: ($, opts) => new Polyline(vertices($, opts), __copyAttribs($)),
 
         path: ($: Path, opts) => {
             const pts = vertices($, opts);
             $.closed && pts.push(set([], pts[0]));
-            return new Polyline(pts, copyAttribs($));
+            return new Polyline(pts, __copyAttribs($));
         },
 
         poly: ($, opts) => {
             const pts = vertices($, opts);
             pts.push(set([], pts[0]));
-            return new Polyline(pts, copyAttribs($));
+            return new Polyline(pts, __copyAttribs($));
         },
     }
 );

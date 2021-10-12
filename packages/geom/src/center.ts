@@ -8,14 +8,14 @@ import { Arc } from "./api/arc";
 import { Circle } from "./api/circle";
 import { Ellipse } from "./api/ellipse";
 import { Sphere } from "./api/sphere";
-import { copyAttribs } from "./internal/copy-attribs";
-import { dispatch } from "./internal/dispatch";
 import { centroid } from "./centroid";
+import { __copyAttribs } from "./internal/copy";
+import { __dispatch } from "./internal/dispatch";
 import { translate } from "./translate";
 
 export const center: MultiFn1O<IShape, ReadonlyVec, IShape | undefined> =
     defmulti<any, ReadonlyVec | undefined, IShape | undefined>(
-        dispatch,
+        __dispatch,
         {},
         {
             [DEFAULT]: ($, origin = ZERO3) => {
@@ -31,16 +31,16 @@ export const center: MultiFn1O<IShape, ReadonlyVec, IShape | undefined> =
                     $.end,
                     $.xl,
                     $.cw,
-                    copyAttribs($)
+                    __copyAttribs($)
                 ),
 
             circle: ($: Circle, origin = ZERO2) =>
-                new Circle(set2([], origin), $.r, copyAttribs($)),
+                new Circle(set2([], origin), $.r, __copyAttribs($)),
 
             ellipse: ($: Ellipse, origin = ZERO2) =>
-                new Ellipse(set2([], origin), set2([], $.r), copyAttribs($)),
+                new Ellipse(set2([], origin), set2([], $.r), __copyAttribs($)),
 
             sphere: ($: Sphere, origin = ZERO3) =>
-                new Sphere(set3([], origin), $.r, copyAttribs($)),
+                new Sphere(set3([], origin), $.r, __copyAttribs($)),
         }
     );

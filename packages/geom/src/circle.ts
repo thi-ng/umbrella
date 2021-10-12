@@ -4,14 +4,14 @@ import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
 import { dist } from "@thi.ng/vectors/dist";
 import { mixN2 } from "@thi.ng/vectors/mixn";
 import { Circle } from "./api/circle";
-import { argsVN } from "./internal/args";
+import { __argsVN } from "./internal/args";
 
 export function circle(pos: Vec, r: number, attribs?: Attribs): Circle;
 export function circle(pos: Vec, attribs?: Attribs): Circle;
 export function circle(r: number, attribs?: Attribs): Circle;
 export function circle(attribs?: Attribs): Circle;
 export function circle(...args: any[]) {
-    return new Circle(...argsVN(args));
+    return new Circle(...__argsVN(args));
 }
 
 export const circleFrom2Points = (

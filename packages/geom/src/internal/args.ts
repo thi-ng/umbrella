@@ -11,7 +11,7 @@ import { isPlainObject } from "@thi.ng/checks/is-plain-object";
  *
  * @internal
  */
-export const argAttribs = (args: any[]) =>
+export const __argAttribs = (args: any[]) =>
     isPlainObject(peek(args)) ? args.pop() : undefined;
 
 /**
@@ -22,8 +22,8 @@ export const argAttribs = (args: any[]) =>
  *
  * @internal
  */
-export const argsVV = (args: any[]) => {
-    const attr = argAttribs(args);
+export const __argsVV = (args: any[]) => {
+    const attr = __argAttribs(args);
     return args.length
         ? args.length === 2
             ? [args[0], args[1], attr]
@@ -39,8 +39,8 @@ export const argsVV = (args: any[]) => {
  *
  * @internal
  */
-export const argsVN = (args: any[]) => {
-    const attr = argAttribs(args);
+export const __argsVN = (args: any[]) => {
+    const attr = __argAttribs(args);
     return args.length
         ? args.length === 2
             ? [args[0], args[1], attr]

@@ -21,7 +21,7 @@ import type { Polygon } from "./api/polygon";
 import type { Quadratic } from "./api/quadratic";
 import type { Ray } from "./api/ray";
 import type { Rect } from "./api/rect";
-import { dispatch } from "./internal/dispatch";
+import { __dispatch } from "./internal/dispatch";
 import { vertices } from "./vertices";
 
 export const pointAt: MultiFn2<IShape, number, Vec | undefined> = defmulti<
@@ -29,7 +29,7 @@ export const pointAt: MultiFn2<IShape, number, Vec | undefined> = defmulti<
     number,
     Vec | undefined
 >(
-    dispatch,
+    __dispatch,
     {
         quad: "poly",
         tri: "poly",

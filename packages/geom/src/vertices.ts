@@ -27,14 +27,14 @@ import { Polygon } from "./api/polygon";
 import type { Polyline } from "./api/polyline";
 import type { Quadratic } from "./api/quadratic";
 import type { Rect } from "./api/rect";
-import { dispatch } from "./internal/dispatch";
+import { __dispatch } from "./internal/dispatch";
 
 export const vertices: MultiFn1O<
     IShape,
     number | Partial<SamplingOpts>,
     Vec[]
 > = defmulti<any, number | Partial<SamplingOpts> | undefined, Vec[]>(
-    dispatch,
+    __dispatch,
     {
         line: "polyline",
         points3: "points",

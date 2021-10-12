@@ -11,7 +11,7 @@ import type { Line } from "./api/line";
 import type { Polygon } from "./api/polygon";
 import type { Rect } from "./api/rect";
 import type { Triangle } from "./api/triangle";
-import { dispatch } from "./internal/dispatch";
+import { __dispatch } from "./internal/dispatch";
 
 /**
  * Returns the arc length / perimeter / circumference of the given
@@ -32,7 +32,7 @@ import { dispatch } from "./internal/dispatch";
  *
  */
 export const arcLength: MultiFn1<IShape, number> = defmulti(
-    dispatch,
+    __dispatch,
     {
         quad: "poly",
         tri: "poly",

@@ -11,7 +11,7 @@ import { direction } from "@thi.ng/vectors/direction";
 import type { Cubic } from "./api/cubic";
 import type { Line } from "./api/line";
 import type { Rect } from "./api/rect";
-import { dispatch } from "./internal/dispatch";
+import { __dispatch } from "./internal/dispatch";
 import { vertices } from "./vertices";
 
 export const tangentAt: MultiFn2<IShape, number, Vec | undefined> = defmulti<
@@ -19,7 +19,7 @@ export const tangentAt: MultiFn2<IShape, number, Vec | undefined> = defmulti<
     number,
     Vec | undefined
 >(
-    dispatch,
+    __dispatch,
     {
         quad: "poly",
         tri: "poly",

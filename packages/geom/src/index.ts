@@ -80,14 +80,3 @@ export * from "./vertices";
 export * from "./volume";
 export * from "./warp-points";
 export * from "./with-attribs";
-
-export * from "./internal/coll-bounds";
-export * from "./internal/copy-attribs";
-export * from "./internal/copy-shape";
-export * from "./internal/edges";
-export * from "./internal/pclike";
-export * from "./internal/points-as-shape";
-export * from "./internal/split";
-export * from "./internal/transform-points";
-export * from "./internal/translate-points";
-export * from "./internal/union-bounds";

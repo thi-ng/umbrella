@@ -4,7 +4,7 @@ import type { IShape } from "@thi.ng/geom-api";
 import { PI } from "@thi.ng/math/api";
 import type { AABB } from "./api/aabb";
 import type { Sphere } from "./api/sphere";
-import { dispatch } from "./internal/dispatch";
+import { __dispatch } from "./internal/dispatch";
 
 /**
  * Returns the volume of given 3D shape. Returns 0 for all others.
@@ -15,7 +15,7 @@ import { dispatch } from "./internal/dispatch";
  * - Sphere
  */
 export const volume: MultiFn1<IShape, number> = defmulti<any, number>(
-    dispatch,
+    __dispatch,
     {},
     {
         [DEFAULT]: () => 0,

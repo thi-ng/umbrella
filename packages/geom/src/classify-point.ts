@@ -12,11 +12,11 @@ import { dot } from "@thi.ng/vectors/dot";
 import type { Circle } from "./api/circle";
 import type { Plane } from "./api/plane";
 import type { Triangle } from "./api/triangle";
-import { dispatch } from "./internal/dispatch";
+import { __dispatch } from "./internal/dispatch";
 
 export const classifyPoint: MultiFn2O<IShape, ReadonlyVec, number, number> =
     defmulti<any, ReadonlyVec, number | undefined, number>(
-        dispatch,
+        __dispatch,
         { sphere: "circle" },
         {
             circle: ($: Circle, p, eps = EPS) =>

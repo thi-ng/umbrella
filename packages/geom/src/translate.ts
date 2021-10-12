@@ -22,20 +22,24 @@ import { Rect } from "./api/rect";
 import { Sphere } from "./api/sphere";
 import { Text } from "./api/text";
 import { Triangle } from "./api/triangle";
-import { copyAttribs } from "./internal/copy-attribs";
-import { dispatch } from "./internal/dispatch";
-import { translatedShape as tx } from "./internal/translate-points";
+import { __copyAttribs } from "./internal/copy";
+import { __dispatch } from "./internal/dispatch";
+import { __translatedShape as tx } from "./internal/translate";
 
 export const translate: MultiFn2<IShape, ReadonlyVec, IShape> = defmulti<
     any,
     ReadonlyVec,
     IShape
 >(
-    dispatch,
+    __dispatch,
     {},
     {
         aabb: ($: AABB, delta) =>
-            new AABB(add3([], $.pos, delta), set3([], $.size), copyAttribs($)),
+            new AABB(
+                add3([], $.pos, delta),
+                set3([], $.size),
+                __copyAttribs($)
+            ),
 
         arc: ($: Arc, delta) => {
             const a = $.copy();
@@ -44,12 +48,16 @@ export const translate: MultiFn2<IShape, ReadonlyVec, IShape> = defmulti<
         },
 
         circle: ($: Circle, delta) =>
-            new Circle(add2([], $.pos, delta), $.r, copyAttribs($)),
+            new Circle(add2([], $.pos, delta), $.r, __copyAttribs($)),
 
         cubic: tx(Cubic),
 
         ellipse: ($: Ellipse, delta) =>
-            new Ellipse(add2([], $.pos, delta), set2([], $.r), copyAttribs($)),
+            new Ellipse(
+                add2([], $.pos, delta),
+                set2([], $.r),
+                __copyAttribs($)
+            ),
 
         group: ($: Group, delta) =>
             $.copyTransformed((x) => <IHiccupShape>translate(x, delta)),
@@ -69,7 +77,7 @@ export const translate: MultiFn2<IShape, ReadonlyVec, IShape> = defmulti<
                               point: add2([], s.point!, delta),
                           }
                 ),
-                copyAttribs($)
+                __copyAttribs($)
             ),
 
         points: tx(Points),
@@ -85,16 +93,20 @@ export const translate: MultiFn2<IShape, ReadonlyVec, IShape> = defmulti<
         quadratic: tx(Quadratic),
 
         ray: ($: Ray, delta) =>
-            new Ray(add2([], $.pos, delta), $.dir, copyAttribs($)),
+            new Ray(add2([], $.pos, delta), $.dir, __copyAttribs($)),
 
         rect: ($: Rect, delta) =>
-            new Rect(add2([], $.pos, delta), set2([], $.size), copyAttribs($)),
+            new Rect(
+                add2([], $.pos, delta),
+                set2([], $.size),
+                __copyAttribs($)
+            ),
 
         sphere: ($: Sphere, delta) =>
-            new Sphere(add3([], $.pos, delta), $.r, copyAttribs($)),
+            new Sphere(add3([], $.pos, delta), $.r, __copyAttribs($)),
 
         text: ($: Text, delta) =>
-            new Text(add2([], $.pos, delta), $.body, copyAttribs($)),
+            new Text(add2([], $.pos, delta), $.body, __copyAttribs($)),
 
         tri: tx(Triangle),
     }

@@ -6,10 +6,10 @@ import type { Arc } from "./api/arc";
 import type { Group } from "./api/group";
 import type { Path } from "./api/path";
 import type { Ray } from "./api/ray";
-import { dispatch } from "./internal/dispatch";
+import { __dispatch } from "./internal/dispatch";
 
 export const flip: MultiFn1<IShape, IShape> = defmulti<any, IShape>(
-    dispatch,
+    __dispatch,
     {
         cubic: "points",
         line: "points",

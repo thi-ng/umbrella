@@ -8,8 +8,8 @@ import type { ReadonlyVec } from "@thi.ng/vectors";
 import { Group } from "./api/group";
 import { Line } from "./api/line";
 import { Polygon } from "./api/polygon";
-import { copyAttribs } from "./internal/copy-attribs";
-import { dispatch } from "./internal/dispatch";
+import { __copyAttribs } from "./internal/copy";
+import { __dispatch } from "./internal/dispatch";
 import { ensureVertices, vertices } from "./vertices";
 
 export const clipConvex: MultiFn2<
@@ -17,7 +17,7 @@ export const clipConvex: MultiFn2<
     IShape | ReadonlyVec[],
     IShape | undefined
 > = defmulti<any, IShape | ReadonlyVec[], IShape | undefined>(
-    dispatch,
+    __dispatch,
     {
         circle: "rect",
         ellipse: "rect",
@@ -43,7 +43,7 @@ export const clipConvex: MultiFn2<
                 ensureVertices(boundary)
             );
             return segments && segments.length
-                ? new Line(segments[0], copyAttribs($))
+                ? new Line(segments[0], __copyAttribs($))
                 : undefined;
         },
 
@@ -54,7 +54,7 @@ export const clipConvex: MultiFn2<
                 boundary,
                 centroid(boundary)
             );
-            return pts.length ? new Polygon(pts, copyAttribs($)) : undefined;
+            return pts.length ? new Polygon(pts, __copyAttribs($)) : undefined;
         },
 
         rect: ($: IShape, boundary) => {
@@ -64,7 +64,7 @@ export const clipConvex: MultiFn2<
                 boundary,
                 centroid(boundary)
             );
-            return pts.length ? new Polygon(pts, copyAttribs($)) : undefined;
+            return pts.length ? new Polygon(pts, __copyAttribs($)) : undefined;
         },
     }
 );

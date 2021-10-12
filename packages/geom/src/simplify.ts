@@ -7,8 +7,8 @@ import type { Vec } from "@thi.ng/vectors";
 import { Path } from "./api/path";
 import { Polygon } from "./api/polygon";
 import { Polyline } from "./api/polyline";
-import { copyAttribs } from "./internal/copy-attribs";
-import { dispatch } from "./internal/dispatch";
+import { __copyAttribs } from "./internal/copy";
+import { __dispatch } from "./internal/dispatch";
 import { vertices } from "./vertices";
 
 export const simplify: MultiFn2<IShape, number, IShape> = defmulti<
@@ -16,7 +16,7 @@ export const simplify: MultiFn2<IShape, number, IShape> = defmulti<
     number,
     IShape
 >(
-    dispatch,
+    __dispatch,
     {},
     {
         path: ($: Path, eps = 0.1) => {
@@ -50,13 +50,13 @@ export const simplify: MultiFn2<IShape, number, IShape> = defmulti<
                     type: "p",
                 });
             }
-            return new Path(res, copyAttribs($));
+            return new Path(res, __copyAttribs($));
         },
 
         poly: ($: Polygon, eps = 0.1) =>
-            new Polygon(_simplify($.points, eps, true), copyAttribs($)),
+            new Polygon(_simplify($.points, eps, true), __copyAttribs($)),
 
         polyline: ($: Polyline, eps = 0.1) =>
-            new Polyline(_simplify($.points, eps), copyAttribs($)),
+            new Polyline(_simplify($.points, eps), __copyAttribs($)),
     }
 );

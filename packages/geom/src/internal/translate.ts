@@ -1,11 +1,11 @@
 import type { PCLike, PCLikeConstructor } from "@thi.ng/geom-api";
 import type { ReadonlyVec } from "@thi.ng/vectors";
 import { add } from "@thi.ng/vectors/add";
-import { copyAttribs } from "./copy-attribs";
+import { __copyAttribs } from "./copy";
 
-export const translatedPoints = (pts: ReadonlyVec[], delta: ReadonlyVec) =>
+export const __translatedPoints = (pts: ReadonlyVec[], delta: ReadonlyVec) =>
     pts.map((x) => add([], x, delta));
 
-export const translatedShape =
+export const __translatedShape =
     (ctor: PCLikeConstructor) => ($: PCLike, delta: ReadonlyVec) =>
-        new ctor(translatedPoints($.points, delta), copyAttribs($));
+        new ctor(__translatedPoints($.points, delta), __copyAttribs($));

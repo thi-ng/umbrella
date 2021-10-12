@@ -6,7 +6,7 @@ import { madd } from "@thi.ng/vectors/madd";
 import { mixBilinear } from "@thi.ng/vectors/mix-bilinear";
 import type { Quad } from "./api/quad";
 import type { Rect } from "./api/rect";
-import { dispatch } from "./internal/dispatch";
+import { __dispatch } from "./internal/dispatch";
 
 /**
  * Projects given point `uv` (normalized coords) into the target space
@@ -30,7 +30,7 @@ export const unmapPoint: MultiFn2O<IShape, ReadonlyVec, Vec, Vec> = defmulti<
     Vec | undefined,
     Vec
 >(
-    dispatch,
+    __dispatch,
     {
         aabb: "rect",
         quad3: "quad",

@@ -9,7 +9,7 @@ import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
 import { neg } from "@thi.ng/vectors/neg";
 import type { AABB } from "./api/aabb";
 import { Rect } from "./api/rect";
-import { collBounds } from "./internal/coll-bounds";
+import { __collBounds } from "./internal/bounds";
 import { bounds } from "./bounds";
 import { center } from "./center";
 import { centroid } from "./centroid";
@@ -68,7 +68,7 @@ export const fitIntoBounds3 = (shape: IShape, dest: AABB) => {
 };
 
 export const fitAllIntoBounds2 = (shapes: IShape[], dest: Rect) => {
-    const sbraw = collBounds(shapes, bounds);
+    const sbraw = __collBounds(shapes, bounds);
     if (!sbraw) return;
     const src = new Rect(...sbraw);
     const sx = safeDiv(dest.size[0], src.size[0]);

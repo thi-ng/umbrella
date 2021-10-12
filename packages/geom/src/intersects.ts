@@ -18,11 +18,11 @@ import type { Plane } from "./api/plane";
 import type { Ray } from "./api/ray";
 import type { Rect } from "./api/rect";
 import type { Sphere } from "./api/sphere";
-import { dispatch2 } from "./internal/dispatch";
+import { __dispatch2 } from "./internal/dispatch";
 
 export const intersects: MultiFn2O<IShape, IShape, any, IntersectionResult> =
     defmulti(
-        dispatch2,
+        __dispatch2,
         {
             "ray-sphere": "ray-circle",
             "ray-quad": "ray-poly",

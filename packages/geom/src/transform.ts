@@ -16,14 +16,14 @@ import { Quadratic } from "./api/quadratic";
 import type { Rect } from "./api/rect";
 import { Text } from "./api/text";
 import { Triangle } from "./api/triangle";
-import { copyAttribs } from "./internal/copy-attribs";
-import { dispatch } from "./internal/dispatch";
-import {
-    transformedShape as tx,
-    transformedShape3 as tx3,
-} from "./internal/transform-points";
 import { asPath } from "./as-path";
 import { asPolygon } from "./as-polygon";
+import { __copyAttribs } from "./internal/copy";
+import { __dispatch } from "./internal/dispatch";
+import {
+    __transformedShape as tx,
+    __transformedShape3 as tx3,
+} from "./internal/transform";
 
 /**
  * Transforms given shape with provided matrix. Some shape types will be
@@ -41,7 +41,7 @@ export const transform: MultiFn2<IShape, ReadonlyMat, IShape> = defmulti<
     ReadonlyMat,
     IShape
 >(
-    dispatch,
+    __dispatch,
     {
         circle: "arc",
         ellipse: "circle",
@@ -73,7 +73,7 @@ export const transform: MultiFn2<IShape, ReadonlyMat, IShape> = defmulti<
                         $.segments
                     ),
                 ],
-                copyAttribs($)
+                __copyAttribs($)
             ),
 
         points: tx(Points),
@@ -91,7 +91,7 @@ export const transform: MultiFn2<IShape, ReadonlyMat, IShape> = defmulti<
         rect: ($: Rect, mat) => transform(asPolygon($), mat),
 
         text: ($: Text, mat) =>
-            new Text(mulV([], mat, $.pos!), $.body, copyAttribs($)),
+            new Text(mulV([], mat, $.pos!), $.body, __copyAttribs($)),
 
         tri: tx(Triangle),
     }

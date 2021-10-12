@@ -12,13 +12,13 @@ import { subN2 } from "@thi.ng/vectors/subn";
 import type { Circle } from "./api/circle";
 import type { Polygon } from "./api/polygon";
 import { Rect } from "./api/rect";
-import { argsVV } from "./internal/args";
+import { __argsVV } from "./internal/args";
 
 export function rect(pos: Vec, size: number | Vec, attribs?: Attribs): Rect;
 export function rect(size: number | Vec, attribs?: Attribs): Rect;
 export function rect(attribs?: Attribs): Rect;
 export function rect(...args: any[]) {
-    return new Rect(...argsVV(args));
+    return new Rect(...__argsVV(args));
 }
 
 export const rectFromMinMax = (min: Vec, max: Vec, attribs?: Attribs) =>

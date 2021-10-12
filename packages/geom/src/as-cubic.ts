@@ -24,11 +24,11 @@ import type { Rect } from "./api/rect";
 import { arc } from "./arc";
 import { asPolygon } from "./as-polygon";
 import { cubicFromArc, cubicFromLine, cubicFromQuadratic } from "./cubic";
-import { copyAttribs } from "./internal/copy-attribs";
-import { dispatch } from "./internal/dispatch";
+import { __copyAttribs } from "./internal/copy";
+import { __dispatch } from "./internal/dispatch";
 
 export const asCubic: MultiFn1O<IShape, Partial<CubicOpts>, Cubic[]> = defmulti(
-    dispatch,
+    __dispatch,
     {
         ellipse: "circle",
         quad: "poly",
@@ -87,5 +87,5 @@ const polyCubic = (
     return (opts.breakPoints
         ? breakPoints($.points, opts.scale, opts.uniform)
         : controlPoints($.points, opts.scale, opts.uniform)
-    ).map((pts) => new Cubic(pts, copyAttribs($)));
+    ).map((pts) => new Cubic(pts, __copyAttribs($)));
 };

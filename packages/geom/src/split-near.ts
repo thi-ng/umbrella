@@ -11,10 +11,10 @@ import { Cubic } from "./api/cubic";
 import { Line } from "./api/line";
 import { Polyline } from "./api/polyline";
 import { Quadratic } from "./api/quadratic";
-import { copyAttribs } from "./internal/copy-attribs";
-import { dispatch } from "./internal/dispatch";
-import { pointArraysAsShapes } from "./internal/points-as-shape";
-import { splitLine } from "./internal/split";
+import { __copyAttribs } from "./internal/copy";
+import { __dispatch } from "./internal/dispatch";
+import { __pointArraysAsShapes } from "./internal/points-as-shape";
+import { __splitLine } from "./internal/split";
 
 /**
  * Similar to {@link splitAt}, but instead of taking a normalized parametric
@@ -36,7 +36,7 @@ export const splitNearPoint: MultiFn2<
     ReadonlyVec,
     IShape[] | undefined
 > = defmulti<any, ReadonlyVec, IShape[] | undefined>(
-    dispatch,
+    __dispatch,
     {},
     {
         cubic: ({ points, attribs }: Cubic, p) =>
@@ -50,13 +50,13 @@ export const splitNearPoint: MultiFn2<
 
         line: ($: Line, p) => {
             const t = closestT(p, $.points[0], $.points[1]) || 0;
-            return splitLine($.points[0], $.points[1], clamp01(t)).map(
-                (pts) => new Line(pts, copyAttribs($))
+            return __splitLine($.points[0], $.points[1], clamp01(t)).map(
+                (pts) => new Line(pts, __copyAttribs($))
             );
         },
 
         polyline: ($: Polyline, p) =>
-            pointArraysAsShapes(
+            __pointArraysAsShapes(
                 Polyline,
                 new Sampler($.points).splitNear(p),
                 $.attribs

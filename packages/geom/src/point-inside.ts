@@ -18,14 +18,14 @@ import type { Points } from "./api/points";
 import type { Polygon } from "./api/polygon";
 import type { Rect } from "./api/rect";
 import type { Triangle } from "./api/triangle";
-import { dispatch } from "./internal/dispatch";
+import { __dispatch } from "./internal/dispatch";
 
 export const pointInside: MultiFn2<IShape, ReadonlyVec, boolean> = defmulti<
     any,
     ReadonlyVec,
     boolean
 >(
-    dispatch,
+    __dispatch,
     {
         points3: "points",
         quad: "poly",

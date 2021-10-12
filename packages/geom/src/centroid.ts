@@ -16,15 +16,15 @@ import type { Line } from "./api/line";
 import type { Plane } from "./api/plane";
 import type { Polygon } from "./api/polygon";
 import type { Triangle } from "./api/triangle";
-import { dispatch } from "./internal/dispatch";
 import { bounds } from "./bounds";
+import { __dispatch } from "./internal/dispatch";
 
 export const centroid: MultiFn1O<IShape, Vec, Vec | undefined> = defmulti<
     any,
     Vec | undefined,
     Vec | undefined
 >(
-    dispatch,
+    __dispatch,
     {
         arc: "circle",
         aabb: "rect",

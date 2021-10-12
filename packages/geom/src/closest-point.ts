@@ -25,7 +25,7 @@ import type { Line } from "./api/line";
 import type { Plane } from "./api/plane";
 import type { Quadratic } from "./api/quadratic";
 import type { Rect } from "./api/rect";
-import { dispatch } from "./internal/dispatch";
+import { __dispatch } from "./internal/dispatch";
 
 export const closestPoint: MultiFn2O<
     IShape,
@@ -33,7 +33,7 @@ export const closestPoint: MultiFn2O<
     Vec,
     Vec | undefined
 > = defmulti<any, ReadonlyVec, Vec | undefined, Vec | undefined>(
-    dispatch,
+    __dispatch,
     {
         quad: "poly",
         sphere: "circle",

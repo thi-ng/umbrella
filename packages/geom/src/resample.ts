@@ -4,16 +4,16 @@ import type { IShape, PCLike, SamplingOpts } from "@thi.ng/geom-api";
 import { resample as _resample } from "@thi.ng/geom-resample/resample";
 import { Polygon } from "./api/polygon";
 import { Polyline } from "./api/polyline";
-import { copyAttribs } from "./internal/copy-attribs";
-import { dispatch } from "./internal/dispatch";
 import { asPolygon } from "./as-polygon";
+import { __copyAttribs } from "./internal/copy";
+import { __dispatch } from "./internal/dispatch";
 
 export const resample: MultiFn2<
     IShape,
     number | Partial<SamplingOpts>,
     IShape
 > = defmulti<any, number | Partial<SamplingOpts>, IShape>(
-    dispatch,
+    __dispatch,
     {
         ellipse: "circle",
         line: "polyline",
@@ -25,12 +25,15 @@ export const resample: MultiFn2<
         circle: ($: IShape, opts) => asPolygon($, opts),
 
         poly: ($: PCLike, opts) =>
-            new Polygon(_resample($.points, opts, true, true), copyAttribs($)),
+            new Polygon(
+                _resample($.points, opts, true, true),
+                __copyAttribs($)
+            ),
 
         polyline: ($: PCLike, opts) =>
             new Polyline(
                 _resample($.points, opts, false, true),
-                copyAttribs($)
+                __copyAttribs($)
             ),
     }
 );

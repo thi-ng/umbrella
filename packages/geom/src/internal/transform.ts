@@ -3,59 +3,59 @@ import type { PCLike, PCLikeConstructor } from "@thi.ng/geom-api";
 import type { MatOpMV, ReadonlyMat } from "@thi.ng/matrices";
 import { mulV, mulV344 } from "@thi.ng/matrices/mulv";
 import type { ReadonlyVec } from "@thi.ng/vectors";
-import { copyAttribs } from "./copy-attribs";
+import { __copyAttribs } from "./copy";
 
-export const transformPoints = (
+export const __transformPoints = (
     pts: ReadonlyVec[],
     mat: ReadonlyMat,
     op: MatOpMV = mulV
 ) => (pts.forEach((p) => op(null, mat, p)), pts);
 
-export const transformedPoints = (
+export const __transformedPoints = (
     pts: ReadonlyVec[],
     mat: ReadonlyMat,
     op: MatOpMV = mulV
 ) => pts.map((p) => op([], mat, p));
 
-export const transformPointsWith = (
+export const __transformPointsWith = (
     pts: ReadonlyVec[],
     fn: Fn<ReadonlyVec, ReadonlyMat>,
     op: MatOpMV = mulV
 ) => (pts.forEach((p) => op(null, fn(p), p)!), pts);
 
-export const transformedPointsWith = (
+export const __transformedPointsWith = (
     pts: ReadonlyVec[],
     fn: Fn<ReadonlyVec, ReadonlyMat>,
     op: MatOpMV = mulV
 ) => pts.map((p) => op([], fn(p), p)!);
 
-export const transformedShape =
+export const __transformedShape =
     (ctor: PCLikeConstructor) => ($: PCLike, mat: ReadonlyMat) =>
-        new ctor(transformedPoints($.points, mat), copyAttribs($));
+        new ctor(__transformedPoints($.points, mat), __copyAttribs($));
 
-export const transformedShapePoints =
+export const __transformedShapePoints =
     (ctor: PCLikeConstructor) =>
     ($: PCLike, fn: Fn<ReadonlyVec, ReadonlyMat>) =>
-        new ctor(transformedPointsWith($.points, fn), copyAttribs($));
+        new ctor(__transformedPointsWith($.points, fn), __copyAttribs($));
 
 // 3d versions
 
-export const transformPoints3 = (pts: ReadonlyVec[], mat: ReadonlyMat) =>
-    transformPoints(pts, mat, <any>mulV344);
+export const __transformPoints3 = (pts: ReadonlyVec[], mat: ReadonlyMat) =>
+    __transformPoints(pts, mat, <any>mulV344);
 
-export const transformedPoints3 = (pts: ReadonlyVec[], mat: ReadonlyMat) =>
-    transformedPoints(pts, mat, <any>mulV344);
+export const __transformedPoints3 = (pts: ReadonlyVec[], mat: ReadonlyMat) =>
+    __transformedPoints(pts, mat, <any>mulV344);
 
-export const transformedPointsWith3 = (
+export const __transformedPointsWith3 = (
     pts: ReadonlyVec[],
     fn: Fn<ReadonlyVec, ReadonlyMat>
-) => transformedPointsWith(pts, fn, <any>mulV344);
+) => __transformedPointsWith(pts, fn, <any>mulV344);
 
-export const transformedShape3 =
+export const __transformedShape3 =
     (ctor: PCLikeConstructor) => ($: PCLike, mat: ReadonlyMat) =>
-        new ctor(transformedPoints3($.points, mat), copyAttribs($));
+        new ctor(__transformedPoints3($.points, mat), __copyAttribs($));
 
-export const transformedShapePoints3 =
+export const __transformedShapePoints3 =
     (ctor: PCLikeConstructor) =>
     ($: PCLike, fn: Fn<ReadonlyVec, ReadonlyMat>) =>
-        new ctor(transformedPointsWith3($.points, fn), copyAttribs($));
+        new ctor(__transformedPointsWith3($.points, fn), __copyAttribs($));

@@ -17,14 +17,14 @@ import { Quad } from "./api/quad";
 import { Quadratic } from "./api/quadratic";
 import type { Rect } from "./api/rect";
 import { Triangle } from "./api/triangle";
-import { copyAttribs } from "./internal/copy-attribs";
-import { dispatch } from "./internal/dispatch";
-import {
-    transformedShapePoints as tx,
-    transformedShapePoints3 as tx3,
-} from "./internal/transform-points";
 import { asPolygon } from "./as-polygon";
 import { asPolyline } from "./as-polyline";
+import { __copyAttribs } from "./internal/copy";
+import { __dispatch } from "./internal/dispatch";
+import {
+    __transformedShapePoints as tx,
+    __transformedShapePoints3 as tx3,
+} from "./internal/transform";
 
 /**
  * Transforms vertices of given shape with provided function, which is
@@ -44,7 +44,7 @@ export const transformVertices: MultiFn2<
     Fn<ReadonlyVec, ReadonlyMat>,
     IShape
 > = defmulti<any, Fn<ReadonlyVec, ReadonlyMat>, IShape>(
-    dispatch,
+    __dispatch,
     {
         circle: "rect",
         ellipse: "circle",
@@ -76,7 +76,7 @@ export const transformVertices: MultiFn2<
                         $.segments
                     ),
                 ],
-                copyAttribs($)
+                __copyAttribs($)
             ),
 
         points: tx(Points),

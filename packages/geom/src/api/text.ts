@@ -1,7 +1,7 @@
 import type { Attribs, IHiccupShape } from "@thi.ng/geom-api";
 import type { Vec } from "@thi.ng/vectors";
 import { set } from "@thi.ng/vectors/set";
-import { copyAttribs } from "../internal/copy-attribs";
+import { __copyAttribs } from "../internal/copy";
 
 /**
  * Basic stub for text elements. Currently, only a minimal set of geometry
@@ -17,7 +17,7 @@ export class Text implements IHiccupShape {
     }
 
     copy(): Text {
-        return new Text(set([], this.pos), this.body, copyAttribs(this));
+        return new Text(set([], this.pos), this.body, __copyAttribs(this));
     }
 
     toHiccup() {

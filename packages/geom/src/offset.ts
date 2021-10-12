@@ -13,8 +13,8 @@ import type { Line } from "./api/line";
 import { Quad } from "./api/quad";
 import type { Rect } from "./api/rect";
 import { centroid } from "./centroid";
-import { copyAttribs } from "./internal/copy-attribs";
-import { dispatch } from "./internal/dispatch";
+import { __copyAttribs } from "./internal/copy";
+import { __dispatch } from "./internal/dispatch";
 import { rectFromCentroid } from "./rect";
 
 export const offset: MultiFn2<IShape, number, IShape> = defmulti<
@@ -22,7 +22,7 @@ export const offset: MultiFn2<IShape, number, IShape> = defmulti<
     number,
     IShape
 >(
-    dispatch,
+    __dispatch,
     {},
     {
         circle: ($: Circle, n) =>
@@ -45,7 +45,7 @@ export const offset: MultiFn2<IShape, number, IShape> = defmulti<
             rectFromCentroid(
                 centroid($)!,
                 max2(null, addN2([], $.size, n), ZERO2),
-                copyAttribs($)
+                __copyAttribs($)
             ),
     }
 );

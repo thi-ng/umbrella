@@ -3,7 +3,7 @@ import { map } from "@thi.ng/transducers/map";
 import type { Vec } from "@thi.ng/vectors";
 import { copyVectors } from "@thi.ng/vectors/copy";
 
-export const pointArraysAsShapes = (
+export const __pointArraysAsShapes = (
     ctor: PCLikeConstructor,
     src?: Iterable<Vec[]>,
     attribs?: Attribs

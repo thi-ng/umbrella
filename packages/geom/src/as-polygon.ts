@@ -2,8 +2,8 @@ import type { MultiFn1O } from "@thi.ng/defmulti";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
 import type { IShape, SamplingOpts } from "@thi.ng/geom-api";
 import { Polygon } from "./api/polygon";
-import { copyAttribs } from "./internal/copy-attribs";
-import { dispatch } from "./internal/dispatch";
+import { __copyAttribs } from "./internal/copy";
+import { __dispatch } from "./internal/dispatch";
 import { vertices } from "./vertices";
 
 export const asPolygon: MultiFn1O<
@@ -11,7 +11,7 @@ export const asPolygon: MultiFn1O<
     number | Partial<SamplingOpts>,
     Polygon
 > = defmulti<IShape, number | Partial<SamplingOpts> | undefined, Polygon>(
-    dispatch,
+    __dispatch,
     {
         circle: "points",
         ellipse: "points",
@@ -24,6 +24,6 @@ export const asPolygon: MultiFn1O<
         tri: "points",
     },
     {
-        points: ($, opts) => new Polygon(vertices($, opts), copyAttribs($)),
+        points: ($, opts) => new Polygon(vertices($, opts), __copyAttribs($)),
     }
 );

@@ -1,5 +1,5 @@
 import type { IHiccupPathSegment, IHiccupShape } from "@thi.ng/geom-api";
-import { copyShape } from "../internal/copy-shape";
+import { __copyShape } from "../internal/copy";
 import { APC } from "./apc";
 
 export class Polyline extends APC implements IHiccupShape, IHiccupPathSegment {
@@ -8,7 +8,7 @@ export class Polyline extends APC implements IHiccupShape, IHiccupPathSegment {
     }
 
     copy(): Polyline {
-        return <Polyline>copyShape(Polyline, this);
+        return <Polyline>__copyShape(Polyline, this);
     }
 
     toHiccup() {

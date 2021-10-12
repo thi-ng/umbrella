@@ -2,7 +2,7 @@ import { equiv } from "@thi.ng/equiv";
 import { illegalState } from "@thi.ng/errors/illegal-state";
 import type { Attribs, IHiccupShape, PathSegment } from "@thi.ng/geom-api";
 import { copy } from "@thi.ng/vectors/copy";
-import { copyAttribs } from "../internal/copy-attribs";
+import { __copyAttribs } from "../internal/copy";
 
 export class Path implements IHiccupShape {
     closed = false;
@@ -28,7 +28,7 @@ export class Path implements IHiccupShape {
                 s.geo && (d.geo = <any>s.geo.copy());
                 return d;
             }),
-            copyAttribs(this)
+            __copyAttribs(this)
         );
         p.closed = this.closed;
         return p;

@@ -6,8 +6,8 @@ import type { AABB } from "./api/aabb";
 import type { Polygon } from "./api/polygon";
 import type { Polyline } from "./api/polyline";
 import type { Rect } from "./api/rect";
-import { dispatch } from "./internal/dispatch";
-import { edgeIterator } from "./internal/edges";
+import { __dispatch } from "./internal/dispatch";
+import { __edges } from "./internal/edges";
 import { vertices } from "./vertices";
 
 export const edges: MultiFn1O<
@@ -19,7 +19,7 @@ export const edges: MultiFn1O<
     number | Partial<SamplingOpts> | undefined,
     Iterable<VecPair>
 >(
-    dispatch,
+    __dispatch,
     {
         line: "polyline",
         quad: "poly",
@@ -44,10 +44,10 @@ export const edges: MultiFn1O<
             ];
         },
 
-        poly: ($: Polygon) => edgeIterator($.points, true),
+        poly: ($: Polygon) => __edges($.points, true),
 
-        polyline: ($: Polyline) => edgeIterator($.points),
+        polyline: ($: Polyline) => __edges($.points),
 
-        rect: ($: Rect) => edgeIterator(vertices($), true),
+        rect: ($: Rect) => __edges(vertices($), true),
     }
 );

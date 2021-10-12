@@ -14,7 +14,7 @@ import type { Polygon } from "./api/polygon";
 import type { Rect } from "./api/rect";
 import type { Sphere } from "./api/sphere";
 import type { Triangle } from "./api/triangle";
-import { dispatch } from "./internal/dispatch";
+import { __dispatch } from "./internal/dispatch";
 
 /**
  * Returns the possibly signed (unsigned by default) surface area of given
@@ -50,7 +50,7 @@ import { dispatch } from "./internal/dispatch";
  * @param signed - true, if signed area
  */
 export const area: MultiFn1O<IShape, boolean, number> = defmulti(
-    dispatch,
+    __dispatch,
     { quad: "poly" },
     {
         aabb: ({ size: [w, h, d] }: AABB) => 2 * (w * h + w * d + h * d),

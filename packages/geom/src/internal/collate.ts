@@ -8,7 +8,7 @@ export interface CollateOpts {
     estride: number;
 }
 
-export const remap = (
+export const __remapBuffer = (
     buf: NumericArray,
     pts: StridedVec[],
     start: number,
@@ -24,7 +24,7 @@ export const remap = (
     return buf;
 };
 
-export const collateWith = (
+export const __collateWith = (
     fn: (
         buf: NumericArray,
         src: Iterable<Readonly<StridedVec>>,
@@ -43,7 +43,7 @@ export const collateWith = (
         ...opts,
     };
     const { start, cstride, estride } = opts;
-    return remap(
+    return __remapBuffer(
         fn(
             opts.buf || new Array(start! + pts.length * estride!).fill(0),
             pts,
