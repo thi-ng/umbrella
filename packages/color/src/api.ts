@@ -1,4 +1,11 @@
-import type { FnU2, IDeref, NumericArray, Range, Tuple } from "@thi.ng/api";
+import type {
+    FnU2,
+    IDeref,
+    IEqualsDelta,
+    NumericArray,
+    Range,
+    Tuple,
+} from "@thi.ng/api";
 import type { IRandom } from "@thi.ng/random";
 import type { IVector, ReadonlyVec, Vec } from "@thi.ng/vectors";
 
@@ -151,7 +158,12 @@ export interface TypedColorConstructor<T extends TypedColor<any>> {
     new (buf?: NumericArray, offset?: number, stride?: number): T;
 }
 
-export interface TypedColor<T> extends IColor, IDeref<Color>, IVector<T> {
+export interface TypedColor<T>
+    extends IColor,
+        IDeref<Color>,
+        IEqualsDelta<T>,
+        IVector<T>,
+        Iterable<number> {
     /**
      * Backing array / memory
      */

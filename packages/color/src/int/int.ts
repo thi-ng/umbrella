@@ -4,7 +4,6 @@ import { isArrayLike } from "@thi.ng/checks/is-arraylike";
 import { isNumber } from "@thi.ng/checks/is-number";
 import { isString } from "@thi.ng/checks/is-string";
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
-import { clamp01 } from "@thi.ng/math/interval";
 import type { IRandom } from "@thi.ng/random";
 import { SYSTEM } from "@thi.ng/random/system";
 import { mapStridedBuffer } from "@thi.ng/vectors/buffer";
@@ -19,17 +18,35 @@ import type {
     TypedColor,
 } from "../api";
 import { parseCss } from "../css/parse-css";
+import { __scale8bit } from "../internal/scale";
 import { srgb } from "../srgb/srgb";
 import { srgbIntAbgr32, srgbIntArgb32 } from "../srgb/srgb-int";
-import { intAbgr32Srgb, intArgb32Srgb } from "./int-srgb";
+import { intArgb32Srgb } from "./int-srgb";
 
-export abstract class Int32 {
+export abstract class Int32<T extends TypedColor<T>> implements TypedColor<T> {
     buf: NumericArray;
     value!: number;
     [id: number]: number;
 
     constructor(buf?: NumericArray, public offset = 0, public stride = 1) {
         this.buf = buf || [0];
+    }
+
+    abstract get mode(): ColorMode;
+
+    abstract copy(): T;
+
+    abstract copyView(): T;
+
+    abstract empty(): T;
+
+    eqDelta(o: T, eps?: number): boolean {
+        return eqDelta4(
+            // channel order irrelevant here...
+            intArgb32Srgb([], this[0]),
+            intArgb32Srgb([], o[0]),
+            eps
+        );
     }
 
     get length() {
@@ -44,8 +61,8 @@ export abstract class Int32 {
         return (this[0] >>> 24) / 255;
     }
 
-    set alpha(a: number) {
-        this[0] = (this[0] & 0xffffff) | ((clamp01(a) * 0xff + 0.5) << 24);
+    set alpha(x: number) {
+        this[0] = (this[0] & 0xffffff) | __scale8bit(x, 24);
     }
 
     *[Symbol.iterator]() {
@@ -76,12 +93,35 @@ export abstract class Int32 {
     }
 }
 
-export class ARGB extends Int32 implements TypedColor<ARGB> {
-    argb!: number;
+export class ARGB extends Int32<ARGB> implements TypedColor<ARGB> {
     [id: number]: number;
 
     get mode(): ColorMode {
         return "argb32";
+    }
+
+    get r() {
+        return ((this[0] >> 16) & 0xff) / 255;
+    }
+
+    set r(x: number) {
+        this[0] = (this[0] & 0xff00ffff) | __scale8bit(x, 16);
+    }
+
+    get g() {
+        return ((this[0] >> 8) & 0xff) / 255;
+    }
+
+    set g(x: number) {
+        this[0] = (this[0] & 0xffff00ff) | __scale8bit(x, 8);
+    }
+
+    get b() {
+        return (this[0] & 0xff) / 255;
+    }
+
+    set b(x: number) {
+        this[0] = (this[0] & 0xffffff00) | __scale8bit(x);
     }
 
     copy(): ARGB {
@@ -95,44 +135,51 @@ export class ARGB extends Int32 implements TypedColor<ARGB> {
     empty(): ARGB {
         return new ARGB();
     }
-
-    eqDelta(o: ARGB, eps = 0): boolean {
-        return eqDelta4(
-            intArgb32Srgb([], this[0]),
-            intArgb32Srgb([], o[0]),
-            eps
-        );
-    }
 }
 
 declareIndex(ARGB.prototype, "value", 0);
 
-export class ABGR extends Int32 implements TypedColor<ARGB> {
-    argb!: number;
+export class ABGR extends Int32<ABGR> implements TypedColor<ABGR> {
     [id: number]: number;
 
     get mode(): ColorMode {
         return "abgr32";
     }
 
-    copy(): ABGR {
+    get r() {
+        return (this[0] & 0xff) / 255;
+    }
+
+    set r(x: number) {
+        this[0] = (this[0] & 0xffffff00) | __scale8bit(x);
+    }
+
+    get g() {
+        return ((this[0] >> 8) & 0xff) / 255;
+    }
+
+    set g(x: number) {
+        this[0] = (this[0] & 0xffff00ff) | __scale8bit(x, 8);
+    }
+
+    get b() {
+        return ((this[0] >> 16) & 0xff) / 255;
+    }
+
+    set b(x: number) {
+        this[0] = (this[0] & 0xff00ffff) | __scale8bit(x, 16);
+    }
+
+    copy() {
         return new ABGR([this[0]]);
     }
 
-    copyView(): ABGR {
+    copyView() {
         return new ABGR(this.buf, this.offset, this.stride);
     }
 
-    empty(): ABGR {
+    empty() {
         return new ABGR();
-    }
-
-    eqDelta(o: ABGR, eps = 0): boolean {
-        return eqDelta4(
-            intAbgr32Srgb([], this[0]),
-            intAbgr32Srgb([], o[0]),
-            eps
-        );
     }
 }
 
@@ -142,13 +189,13 @@ interface Int32Constructor<T> {
     new (buf?: NumericArray, offset?: number, stride?: number): T;
 }
 
-const defInt = <T extends Int32>(
+const defInt = <T extends Int32<T>>(
     ctor: Int32Constructor<T>,
     fromSrgb: Fn<ReadonlyColor, number>
-): ColorFactory<ARGB> => {
+): ColorFactory<T> => {
     const factory = (src?: MaybeColor, ...xs: any[]): any =>
         src == null
-            ? new ARGB()
+            ? new ctor()
             : isNumber(src)
             ? xs.length && xs.every(isNumber)
                 ? new ctor([srgbIntArgb32([src, ...xs])])
@@ -185,7 +232,7 @@ const defInt = <T extends Int32>(
         start = 0,
         cstride = 1,
         estride = 1
-    ) => mapStridedBuffer(ARGB, buf, num, start, cstride, estride);
+    ) => mapStridedBuffer(ctor, buf, num, start, cstride, estride);
 
     return factory;
 };
