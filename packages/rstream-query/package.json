@@ -80,6 +80,9 @@
         "./convert": {
             "import": "./convert.js"
         },
+        "./logger": {
+            "import": "./logger.js"
+        },
         "./pattern": {
             "import": "./pattern.js"
         },

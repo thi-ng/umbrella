@@ -85,7 +85,9 @@
     },
     "thi.ng": {
         "parent": "@thi.ng/rstream",
-        "related": ["logger"],
+        "related": [
+            "logger"
+        ],
         "year": 2017
     }
 }
