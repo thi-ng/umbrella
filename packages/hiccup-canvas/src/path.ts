@@ -1,6 +1,6 @@
 import type { IObjectOf } from "@thi.ng/api";
 import type { ReadonlyVec } from "@thi.ng/vectors";
-import { endShape } from "./internal/end-shape";
+import { __endShape } from "./internal/end-shape";
 
 export const path = (
     ctx: CanvasRenderingContext2D,
@@ -109,5 +109,5 @@ export const path = (
                 ctx.closePath();
         }
     }
-    endShape(ctx, attribs);
+    __endShape(ctx, attribs);
 };

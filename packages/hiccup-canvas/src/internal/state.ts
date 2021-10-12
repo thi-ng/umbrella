@@ -50,7 +50,8 @@ const CTX_ATTRIBS: IObjectOf<string> = {
     weight: "lineWidth",
 };
 
-const newState = (state: DrawState, restore = false) => ({
+/** @internal */
+const __newState = (state: DrawState, restore = false) => ({
     attribs: { ...state.attribs },
     grads: { ...state.grads },
     edits: [],
@@ -58,7 +59,7 @@ const newState = (state: DrawState, restore = false) => ({
 });
 
 /** @internal */
-export const mergeState = (
+export const __mergeState = (
     ctx: CanvasRenderingContext2D,
     state: DrawState,
     attribs: IObjectOf<any>
@@ -66,14 +67,14 @@ export const mergeState = (
     let res: DrawState | undefined;
     if (!attribs) return;
     if (applyTransform(ctx, attribs)) {
-        res = newState(state, true);
+        res = __newState(state, true);
     }
     for (let id in attribs) {
         const k = CTX_ATTRIBS[id];
         if (k) {
             const v = attribs[id];
             if (v != null && state.attribs[id] !== v) {
-                !res && (res = newState(state));
+                !res && (res = __newState(state));
                 res.attribs[id] = v;
                 res.edits!.push(id);
                 setAttrib(ctx, state, id, k, v);
@@ -84,7 +85,7 @@ export const mergeState = (
 };
 
 /** @internal */
-export const restoreState = (
+export const __restoreState = (
     ctx: CanvasRenderingContext2D,
     prev: DrawState,
     curr: DrawState
@@ -103,7 +104,7 @@ export const restoreState = (
 };
 
 /** @internal */
-export const registerGradient = (
+export const __registerGradient = (
     state: DrawState,
     id: string,
     g: CanvasGradient

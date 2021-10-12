@@ -4,7 +4,11 @@ import type { DrawState } from "./api";
 import { circularArc, ellipticArc } from "./arc";
 import { defLinearGradient, defRadialGradient } from "./color";
 import { image } from "./image";
-import { mergeState, registerGradient, restoreState } from "./internal/state";
+import {
+    __mergeState,
+    __registerGradient,
+    __restoreState,
+} from "./internal/state";
 import { line, lines } from "./line";
 import { packedPoints } from "./packed-points";
 import { path } from "./path";
@@ -30,7 +34,7 @@ export const draw = (
         }
         return;
     }
-    const state = mergeState(ctx, pstate, shape[1]);
+    const state = __mergeState(ctx, pstate, shape[1]);
     const attribs = state ? state.attribs : pstate.attribs;
     if (attribs.__skip) return;
     switch (shape[0]) {
@@ -39,14 +43,14 @@ export const draw = (
             defs(ctx, state, pstate, shape);
             break;
         case "linearGradient":
-            registerGradient(
+            __registerGradient(
                 pstate,
                 shape[1].id,
                 defLinearGradient(ctx, shape[1], shape[2])
             );
             break;
         case "radialGradient":
-            registerGradient(
+            __registerGradient(
                 pstate,
                 shape[1].id,
                 defRadialGradient(ctx, shape[1], shape[2])
@@ -114,7 +118,7 @@ export const draw = (
             );
         default:
     }
-    state && restoreState(ctx, pstate, state);
+    state && __restoreState(ctx, pstate, state);
 };
 
 const defs = (

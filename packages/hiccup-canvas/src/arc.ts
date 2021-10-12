@@ -1,7 +1,7 @@
 import type { IObjectOf } from "@thi.ng/api";
 import { TAU } from "@thi.ng/math/api";
 import type { ReadonlyVec } from "@thi.ng/vectors";
-import { endShape } from "./internal/end-shape";
+import { __endShape } from "./internal/end-shape";
 
 export const circularArc = (
     ctx: CanvasRenderingContext2D,
@@ -14,7 +14,7 @@ export const circularArc = (
 ) => {
     ctx.beginPath();
     ctx.arc(pos[0], pos[1], r, start, end, antiCCW);
-    endShape(ctx, attribs);
+    __endShape(ctx, attribs);
 };
 
 export const ellipticArc = (
@@ -29,5 +29,5 @@ export const ellipticArc = (
 ) => {
     ctx.beginPath();
     ctx.ellipse(pos[0], pos[1], r[0], r[1], axis, start, end, ccw);
-    endShape(ctx, attribs);
+    __endShape(ctx, attribs);
 };
