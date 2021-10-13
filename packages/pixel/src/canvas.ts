@@ -79,12 +79,22 @@ export const imageCanvas = (
 };
 
 /**
- * Async function. Loads image from given `src` URL.
+ * Async function. Loads image from given `src` URL. By default, the image will
+ * have its `crossorigin` HTML attribute set to 'anonymous' to avoid errors with
+ * tainted image data in canvas elements. Can be reconfigured via optional
+ * `cors` arg.
+ *
+ * @remarks
+ * Reference:
+ * - https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/crossorigin
+ * - https://stackoverflow.com/a/55136314/294515
  *
  * @param src -
+ * @param cors -
  */
-export const imagePromise = async (src: string) => {
+export const imagePromise = async (src: string, cors = "anonymous") => {
     const img = new Image();
+    img.crossOrigin = cors;
     img.src = src;
     await img.decode();
     return img;
