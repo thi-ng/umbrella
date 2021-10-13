@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/color-palettes",
-    "version": "0.4.0",
+    "version": "0.4.1",
     "description": "Collection of 100 image based color palettes",
     "type": "module",
     "module": "./index.js",
@@ -35,7 +35,7 @@
         "tool:swatches": "../../scripts/node-esm tools/index.ts"
     },
     "devDependencies": {
-        "@thi.ng/testament": "^0.1.0"
+        "@thi.ng/testament": "^0.1.1"
     },
     "keywords": [
         "css",

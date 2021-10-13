@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/fuzzy-viz",
-    "version": "2.0.0",
+    "version": "2.0.1",
     "description": "Visualization, instrumentation & introspection utils for @thi.ng/fuzzy",
     "type": "module",
     "module": "./index.js",
@@ -34,16 +34,16 @@
         "test": "testament test"
     },
     "dependencies": {
-        "@thi.ng/api": "^8.0.0",
-        "@thi.ng/fuzzy": "^2.0.0",
-        "@thi.ng/hiccup": "^4.0.0",
-        "@thi.ng/hiccup-svg": "^4.0.0",
-        "@thi.ng/math": "^5.0.0",
-        "@thi.ng/strings": "^3.0.0",
-        "@thi.ng/text-canvas": "^2.0.0"
+        "@thi.ng/api": "^8.0.1",
+        "@thi.ng/fuzzy": "^2.0.1",
+        "@thi.ng/hiccup": "^4.0.1",
+        "@thi.ng/hiccup-svg": "^4.0.1",
+        "@thi.ng/math": "^5.0.1",
+        "@thi.ng/strings": "^3.0.1",
+        "@thi.ng/text-canvas": "^2.0.1"
     },
     "devDependencies": {
-        "@thi.ng/testament": "^0.1.0"
+        "@thi.ng/testament": "^0.1.1"
     },
     "keywords": [
         "area plot",

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/testament@0.1.0...@thi.ng/testament@0.1.1) (2021-10-13)
+
+
+### Bug Fixes
+
+* **testament:** update CLI wrapper ([8daaf38](https://github.com/thi-ng/umbrella/commit/8daaf3884f6b836ac75ac9ad2f341c1fdd246a66))
+
+
+
+
+
 # 0.1.0 (2021-10-12)
 
 

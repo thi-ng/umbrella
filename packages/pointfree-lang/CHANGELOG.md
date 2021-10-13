@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/pointfree-lang@2.0.0...@thi.ng/pointfree-lang@2.0.1) (2021-10-13)
+
+
+### Bug Fixes
+
+* **pointfree-lang:** update CLI wrapper ([4da9a50](https://github.com/thi-ng/umbrella/commit/4da9a503230868f0cf8513179ecf75ef826cb126))
+
+
+
+
+
 # [2.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/pointfree-lang@1.4.38...@thi.ng/pointfree-lang@2.0.0) (2021-10-12)
 
 

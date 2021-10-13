@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/ecs",
-    "version": "0.6.0",
+    "version": "0.6.1",
     "description": "Entity Component System based around typed arrays & sparse sets",
     "type": "module",
     "module": "./index.js",
@@ -34,21 +34,21 @@
         "test": "testament test"
     },
     "dependencies": {
-        "@thi.ng/api": "^8.0.0",
-        "@thi.ng/associative": "^6.0.0",
-        "@thi.ng/binary": "^3.0.0",
-        "@thi.ng/checks": "^3.0.0",
-        "@thi.ng/dcons": "^3.0.0",
-        "@thi.ng/errors": "^2.0.0",
-        "@thi.ng/idgen": "^2.0.0",
-        "@thi.ng/logger": "^1.0.0",
-        "@thi.ng/malloc": "^6.0.0",
-        "@thi.ng/transducers": "^8.0.0",
+        "@thi.ng/api": "^8.0.1",
+        "@thi.ng/associative": "^6.0.1",
+        "@thi.ng/binary": "^3.0.1",
+        "@thi.ng/checks": "^3.0.1",
+        "@thi.ng/dcons": "^3.0.1",
+        "@thi.ng/errors": "^2.0.1",
+        "@thi.ng/idgen": "^2.0.1",
+        "@thi.ng/logger": "^1.0.1",
+        "@thi.ng/malloc": "^6.0.1",
+        "@thi.ng/transducers": "^8.0.1",
         "tslib": "^2.3.1"
     },
     "devDependencies": {
-        "@thi.ng/equiv": "^2.0.0",
-        "@thi.ng/testament": "^0.1.0"
+        "@thi.ng/equiv": "^2.0.1",
+        "@thi.ng/testament": "^0.1.1"
     },
     "keywords": [
         "acceleration",
