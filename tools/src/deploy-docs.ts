@@ -1,6 +1,6 @@
 import { execSync } from "child_process";
 import { readdirSync, readFileSync, statSync, writeFileSync } from "fs";
-import { files } from "./io";
+import { files } from "./io.js";
 
 const PKG = process.argv[2];
 

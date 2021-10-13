@@ -3,8 +3,8 @@ import { ArraySet, MultiTrie } from "@thi.ng/associative";
 import msgpack from "@ygoe/msgpack";
 import { execSync } from "child_process";
 import { readFileSync, writeFileSync } from "fs";
-import { files, readJSON } from "./io";
-import { build, defEncoder } from "./search";
+import { files, readJSON } from "./io.js";
+import { build, defEncoder } from "./search.js";
 
 const RE_DOC_START = /^\s*\/\*\*$/;
 const RE_DOC_END = /^\s+\*\/$/;

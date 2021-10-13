@@ -1,6 +1,6 @@
 import { readdirSync, statSync, writeFileSync } from "fs";
-import { files, readJSON, readText } from "./io";
-import { normalizePackage } from "./normalize-package";
+import { files, readJSON, readText } from "./io.js";
+import { normalizePackage } from "./normalize-package.js";
 
 const generatePackageExportMaps = (id: string) => {
     console.log("updating pkg:", id);

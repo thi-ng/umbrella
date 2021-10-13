@@ -1,9 +1,9 @@
 import { serialize } from "@thi.ng/hiccup";
 import { comp, filter, map, push, transduce } from "@thi.ng/transducers";
 import { existsSync, readdirSync, writeFileSync } from "fs";
-import { META_FIELD, Package } from "./api";
-import { readJSON } from "./io";
-import { shortName } from "./partials/package";
+import { META_FIELD, Package } from "./api.js";
+import { readJSON } from "./io.js";
+import { shortName } from "./partials/package.js";
 
 const REPO_URL = "https://github.com/thi-ng/umbrella/blob/develop/packages";
 const NPM_URL = "https://www.npmjs.com/package";
@@ -71,8 +71,7 @@ writeFileSync(
                 [
                     "link",
                     {
-                        href:
-                            "https://unpkg.com/tachyons@4/css/tachyons.min.css",
+                        href: "https://unpkg.com/tachyons@4/css/tachyons.min.css",
                         rel: "stylesheet",
                     },
                 ],
@@ -92,8 +91,7 @@ writeFileSync(
                     "img.db.mt3",
                     {
                         alt: "docs.thi.ng",
-                        src:
-                            "https://media.thi.ng/umbrella/banners/docsthing.svg",
+                        src: "https://media.thi.ng/umbrella/banners/docsthing.svg",
                     },
                 ],
                 [

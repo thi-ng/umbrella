@@ -15,8 +15,8 @@ import { XML_SVG } from "@thi.ng/prefixes";
 import { comp, filter, iterator, map, range } from "@thi.ng/transducers";
 import { execSync } from "child_process";
 import { writeFileSync } from "fs";
-import { files, readJSON } from "./io";
-import { shortName } from "./partials/package";
+import { files, readJSON } from "./io.js";
+import { shortName } from "./partials/package.js";
 
 const W = 16;
 const LW = 150;

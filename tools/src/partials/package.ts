@@ -1,11 +1,11 @@
 import { bytes, camel } from "@thi.ng/strings";
 import { execSync } from "child_process";
 import { readdirSync } from "fs";
-import { META_FIELD, Package, RE_PKG } from "../api";
-import { CONFIG } from "../config";
-import { readJSON, readText } from "../io";
-import { link } from "./link";
-import { list } from "./list";
+import { META_FIELD, Package, RE_PKG } from "../api.js";
+import { CONFIG } from "../config.js";
+import { readJSON, readText } from "../io.js";
+import { link } from "./link.js";
+import { list } from "./list.js";
 
 export const shortName = (name: string) => name.split("/")[1];
 
@@ -105,10 +105,11 @@ ES module import:
 
 [Skypack documentation](https://docs.skypack.dev/)
 
-For NodeJS (v14.6+):
+For Node.js REPL:
 
 \`\`\`text
-node --experimental-specifier-resolution=node --experimental-repl-await
+# with flag only for < v16
+node --experimental-repl-await
 
 > const ${camel(shortName(pkg.name))} = await import("${pkg.name}");
 \`\`\`

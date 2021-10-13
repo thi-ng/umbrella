@@ -1,4 +1,4 @@
-import { CONFIG } from "../config";
+import { CONFIG } from "../config.js";
 
 export const asset = (file: string, alt = "", prefix = CONFIG.assetURL) =>
     `![${alt}](${prefix}/${file})`;

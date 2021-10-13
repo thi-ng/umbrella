@@ -1,12 +1,12 @@
 import type { Fn0, IObjectOf, Nullable } from "@thi.ng/api";
 import { writeFileSync } from "fs";
-import { RE_PARTIAL } from "./api";
-import { CONFIG, initConfig } from "./config";
-import { readText } from "./io";
-import { blogPosts } from "./partials/blog";
-import { docLink } from "./partials/docs";
-import { examplesTable } from "./partials/examples";
-import { copyright } from "./partials/license";
+import { RE_PARTIAL } from "./api.js";
+import { CONFIG, initConfig } from "./config.js";
+import { readText } from "./io.js";
+import { blogPosts } from "./partials/blog.js";
+import { docLink } from "./partials/docs.js";
+import { examplesTable } from "./partials/examples.js";
+import { copyright } from "./partials/license.js";
 import {
     packageBanner,
     packageCitation,
@@ -17,9 +17,9 @@ import {
     packageStatus,
     relatedPackages,
     supportPackages,
-} from "./partials/package";
-import { authors } from "./partials/user";
-import { injectTOC } from "./toc";
+} from "./partials/package.js";
+import { authors } from "./partials/user.js";
+import { injectTOC } from "./toc.js";
 
 try {
     initConfig("../../tools/config.json", "./package.json");

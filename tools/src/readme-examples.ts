@@ -11,10 +11,10 @@ import {
     transduce,
 } from "@thi.ng/transducers";
 import { existsSync, readdirSync, writeFileSync } from "fs";
-import { META_FIELD } from "./api";
-import { initConfig } from "./config";
-import { readJSON } from "./io";
-import { thumb } from "./partials/asset";
+import { META_FIELD } from "./api.js";
+import { initConfig } from "./config.js";
+import { readJSON } from "./io.js";
+import { thumb } from "./partials/asset.js";
 
 interface Example extends IObjectOf<string> {
     id: string;

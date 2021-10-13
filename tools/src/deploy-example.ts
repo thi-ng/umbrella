@@ -3,7 +3,7 @@ import { preferredType } from "@thi.ng/mime";
 import { execSync } from "child_process";
 import { existsSync } from "fs";
 import { exit } from "process";
-import { files } from "./io";
+import { files } from "./io.js";
 
 interface UploadOpts {
     ext: string;

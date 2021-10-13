@@ -3,9 +3,9 @@ import {
     PATTERN_NO_TOC,
     PATTERN_TOC,
     RE_HEADING,
-    RE_IS_HEADING
-} from "./api";
-import { link } from "./partials/link";
+    RE_IS_HEADING,
+} from "./api.js";
+import { link } from "./partials/link.js";
 
 export const injectTOC = (readme: string) => {
     const toc = readme

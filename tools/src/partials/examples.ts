@@ -1,11 +1,11 @@
 import { tableKeys } from "@thi.ng/markdown-table";
 import { readdirSync } from "fs";
-import { META_FIELD } from "../api";
-import { CONFIG } from "../config";
-import { readJSON } from "../io";
-import { thumb } from "./asset";
-import { link } from "./link";
-import { shortName } from "./package";
+import { META_FIELD } from "../api.js";
+import { CONFIG } from "../config.js";
+import { readJSON } from "../io.js";
+import { thumb } from "./asset.js";
+import { link } from "./link.js";
+import { shortName } from "./package.js";
 
 export const examplesTable = (pkgName: string) => {
     const examples = [];

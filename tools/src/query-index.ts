@@ -1,6 +1,6 @@
 import { timed } from "@thi.ng/bench";
-import { readJSON } from "./io";
-import { search } from "./search";
+import { readJSON } from "./io.js";
+import { search } from "./search.js";
 
 const idx = timed(() => readJSON("search.json"));
 

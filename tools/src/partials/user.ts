@@ -1,7 +1,7 @@
-import { RE_USER } from "../api";
-import { CONFIG } from "../config";
-import { readText } from "../io";
-import { link } from "./link";
+import { RE_USER } from "../api.js";
+import { CONFIG } from "../config.js";
+import { readText } from "../io.js";
+import { link } from "./link.js";
 
 export const userLink = (id: string): string =>
     link(`@${id}`, `${CONFIG.userURL}/${id}`);

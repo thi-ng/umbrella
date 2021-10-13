@@ -1,5 +1,5 @@
-import type { BaseConfig, Config, Package, PackageMeta } from "./api";
-import { readJSON } from "./io";
+import type { BaseConfig, Config, Package, PackageMeta } from "./api.js";
+import { readJSON } from "./io.js";
 
 export let CONFIG: Config;
 

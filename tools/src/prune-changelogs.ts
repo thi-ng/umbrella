@@ -11,7 +11,7 @@ import {
     transduce,
 } from "@thi.ng/transducers";
 import { writeFileSync } from "fs";
-import { files, readText } from "./io";
+import { files, readText } from "./io.js";
 
 const isBumpOnly = (entry: any[]) =>
     entry &&

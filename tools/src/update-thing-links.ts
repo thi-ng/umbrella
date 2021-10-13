@@ -1,7 +1,7 @@
 import { getIn } from "@thi.ng/paths";
 import { execSync } from "child_process";
 import { readdirSync, statSync, unlinkSync, writeFileSync } from "fs";
-import { readJSON } from "./io";
+import { readJSON } from "./io.js";
 
 const baseDir = "./packages/";
 const tmpFile = `./temp-${Date.now()}`;
