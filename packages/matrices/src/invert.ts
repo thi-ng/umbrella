@@ -3,8 +3,8 @@ import { dotC4, dotC6 } from "@thi.ng/vectors/dotc";
 import { magSq4 } from "@thi.ng/vectors/magsq";
 import { setC, setC4, setC6 } from "@thi.ng/vectors/setc";
 import { vop } from "@thi.ng/vectors/vop";
-import type { MatOpMU, MultiMatOpMU } from "./api";
-import { det44FromCoeffs, detCoeffs44 } from "./determinant";
+import type { MatOpMU, MultiMatOpMU } from "./api.js";
+import { det44FromCoeffs, detCoeffs44 } from "./determinant.js";
 
 const dp4 = dotC4;
 const dp6 = dotC6;

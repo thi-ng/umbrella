@@ -1,5 +1,5 @@
-import type { IRandom } from "../api";
-import { SYSTEM } from "../system";
+import type { IRandom } from "../api.js";
+import { SYSTEM } from "../system.js";
 
 /**
  * Higher order function. Returns no-arg function, yielding values in

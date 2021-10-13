@@ -1,6 +1,6 @@
 import { XML_SVG, XML_XLINK } from "@thi.ng/prefixes/xml";
-import { convertTree } from "./convert";
-import { fattribs, numericAttribs } from "./format";
+import { convertTree } from "./convert.js";
+import { fattribs, numericAttribs } from "./format.js";
 
 /**
  * Defines an <svg> root element with default XML namespaces. By default

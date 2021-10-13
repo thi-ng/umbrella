@@ -1,5 +1,5 @@
-import type { VecOpVN } from "./api";
-import { setC3, setC4 } from "./setc";
+import type { VecOpVN } from "./api.js";
+import { setC3, setC4 } from "./setc.js";
 
 /**
  * Sets `out` to `[a.x, a.y, n]`

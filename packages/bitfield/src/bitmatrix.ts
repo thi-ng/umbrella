@@ -3,8 +3,8 @@ import { align } from "@thi.ng/binary/align";
 import { bitAnd, bitNot, bitOr, bitXor } from "@thi.ng/binary/logic";
 import { assert } from "@thi.ng/errors/assert";
 import { ensureIndex } from "@thi.ng/errors/out-of-bounds";
-import { BitField } from "./bitfield";
-import { binOp, popCount, toString } from "./util";
+import { BitField } from "./bitfield.js";
+import { binOp, popCount, toString } from "./util.js";
 
 /**
  * MxN row-major 2D bit matrix, backed by a Uint32Array. Hence the width

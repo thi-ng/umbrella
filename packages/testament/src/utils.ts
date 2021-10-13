@@ -1,5 +1,5 @@
 // thing:no-export
-import type { Fn0, Fn2, Timestamp } from "./api";
+import type { Fn0, Fn2, Timestamp } from "./api.js";
 
 /**
  * @remarks

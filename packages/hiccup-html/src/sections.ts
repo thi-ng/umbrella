@@ -1,5 +1,5 @@
-import type { Attribs, EventAttribs, StringAttrib } from "./api";
-import { defElement, defElements } from "./def";
+import type { Attribs, EventAttribs, StringAttrib } from "./api.js";
+import { defElement, defElements } from "./def.js";
 
 export interface HtmlAttribs extends Attribs {
     xmlns: StringAttrib;

@@ -1,8 +1,8 @@
 import { isIterable } from "@thi.ng/checks/is-iterable";
-import type { Reducer, Transducer } from "./api";
-import { compR } from "./compr";
-import { iterator } from "./iterator";
-import { ensureReduced, reduced } from "./reduced";
+import type { Reducer, Transducer } from "./api.js";
+import { compR } from "./compr.js";
+import { iterator } from "./iterator.js";
+import { ensureReduced, reduced } from "./reduced.js";
 
 /**
  * Transducer which only yields the first `n` values and then terminates

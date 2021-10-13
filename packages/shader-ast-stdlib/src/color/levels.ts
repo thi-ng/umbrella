@@ -19,7 +19,7 @@ import {
 import { lt, madd, mul, reciprocal, sub } from "@thi.ng/shader-ast/ast/ops";
 import { $x, $y, $z } from "@thi.ng/shader-ast/ast/swizzle";
 import { max, min, pow } from "@thi.ng/shader-ast/builtin/math";
-import { fit01, fitClamped } from "../math/fit";
+import { fit01, fitClamped } from "../math/fit.js";
 
 /**
  * Takes normalized `mid` level and converts it into an exponent for gamma

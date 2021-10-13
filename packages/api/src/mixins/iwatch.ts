@@ -1,6 +1,6 @@
-import { mixin } from "../mixin";
-import type { IObjectOf } from "../object";
-import type { IWatch, Watch } from "../watch";
+import { mixin } from "../mixin.js";
+import type { IObjectOf } from "../object.js";
+import type { IWatch, Watch } from "../watch.js";
 
 interface _IWatch extends IWatch<any> {
     _watches: IObjectOf<Watch<any>>;

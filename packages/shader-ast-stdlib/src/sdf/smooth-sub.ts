@@ -4,8 +4,8 @@ import { FLOAT1 } from "@thi.ng/shader-ast/ast/lit";
 import { add, div, mul, neg, sub } from "@thi.ng/shader-ast/ast/ops";
 import { sym } from "@thi.ng/shader-ast/ast/sym";
 import { mix } from "@thi.ng/shader-ast/builtin/math";
-import { clamp01 } from "../math/clamp";
-import { fit1101 } from "../math/fit";
+import { clamp01 } from "../math/clamp.js";
+import { fit1101 } from "../math/fit.js";
 
 /**
  * @param d1 - float

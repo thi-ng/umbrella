@@ -1,7 +1,7 @@
-import type { MultiVecOpRoVV } from "./api";
-import { compile, compileG } from "./compile/emit";
-import { DOT, DOT_G } from "./compile/templates";
-import { vop } from "./vop";
+import type { MultiVecOpRoVV } from "./api.js";
+import { compile, compileG } from "./compile/emit.js";
+import { DOT, DOT_G } from "./compile/templates.js";
+import { vop } from "./vop.js";
 
 const $ = (dim: number) =>
     dot.add(dim, compile(dim, DOT, "a,b", undefined, "", "+", "return ", ";"));

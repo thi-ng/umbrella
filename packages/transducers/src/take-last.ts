@@ -1,7 +1,7 @@
 import { isIterable } from "@thi.ng/checks/is-iterable";
-import type { Reducer, Transducer } from "./api";
-import { __drain } from "./internal/drain";
-import { iterator } from "./iterator";
+import type { Reducer, Transducer } from "./api.js";
+import { __drain } from "./internal/drain.js";
+import { iterator } from "./iterator.js";
 
 /**
  * Transducer which only yields the last `n` values. Assumes

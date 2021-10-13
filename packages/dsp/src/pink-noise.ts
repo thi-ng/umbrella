@@ -1,7 +1,7 @@
 import type { IReset, Tuple } from "@thi.ng/api";
 import type { IRandom } from "@thi.ng/random";
 import { SYSTEM } from "@thi.ng/random/system";
-import { AGen } from "./agen";
+import { AGen } from "./agen.js";
 
 type PNoiseCoeffs = Tuple<number, 5>;
 const AMP = <PNoiseCoeffs>[3.8024, 2.9694, 2.597, 3.087, 3.4006];

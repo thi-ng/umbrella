@@ -3,7 +3,7 @@ import { cross3 } from "@thi.ng/vectors/cross";
 import { dot3 } from "@thi.ng/vectors/dot";
 import { mag } from "@thi.ng/vectors/mag";
 import { normalize as _normalize } from "@thi.ng/vectors/normalize";
-import { quatFromAxisAngle } from "./quat-axis-angle";
+import { quatFromAxisAngle } from "./quat-axis-angle.js";
 
 /**
  * Returns quaternion describing the rotation from direction vector

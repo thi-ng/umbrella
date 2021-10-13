@@ -1,4 +1,4 @@
-import type { FnCall, Sym, Term } from "../api/nodes";
+import type { FnCall, Sym, Term } from "../api/nodes.js";
 import type {
     BoolTerm,
     BVec2Term,
@@ -16,24 +16,29 @@ import type {
     Vec2Term,
     Vec3Term,
     Vec4Term,
-} from "../api/terms";
-import type { Mat, Prim, Vec } from "../api/types";
-import { builtinCall } from "../ast/function";
-import { matchingBoolType, matchingPrimFor } from "../ast/item";
+} from "../api/terms.js";
+import type { Mat, Prim, Vec } from "../api/types.js";
+import { builtinCall } from "../ast/function.js";
+import { matchingBoolType, matchingPrimFor } from "../ast/item.js";
 
-const primOp1 = (name: string) => <T extends Prim>(a: Term<T>) =>
-    builtinCall(name, a.type, a);
+const primOp1 =
+    (name: string) =>
+    <T extends Prim>(a: Term<T>) =>
+        builtinCall(name, a.type, a);
 
-const primOp2 = (name: string) => <A extends Prim, B extends A>(
-    a: Term<A>,
-    b: Term<B>
-) => builtinCall(name, a.type, a, b);
+const primOp2 =
+    (name: string) =>
+    <A extends Prim, B extends A>(a: Term<A>, b: Term<B>) =>
+        builtinCall(name, a.type, a, b);
 
-const primOp3 = (name: string) => <A extends Prim, B extends A, C extends B>(
-    a: Term<A>,
-    b: Term<B>,
-    c: Term<C>
-) => builtinCall(name, a.type, a, b, c);
+const primOp3 =
+    (name: string) =>
+    <A extends Prim, B extends A, C extends B>(
+        a: Term<A>,
+        b: Term<B>,
+        c: Term<C>
+    ) =>
+        builtinCall(name, a.type, a, b, c);
 
 /**
  * Returns normalized version of given vector.

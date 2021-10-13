@@ -1,6 +1,6 @@
-import { CloseMode, State, WithErrorHandlerOpts } from "./api";
-import { __optsWithID } from "./idgen";
-import { stream } from "./stream";
+import { CloseMode, State, WithErrorHandlerOpts } from "./api.js";
+import { __optsWithID } from "./idgen.js";
+import { stream } from "./stream.js";
 
 /**
  * Yields a single-value {@link Stream} of the resolved promise and then

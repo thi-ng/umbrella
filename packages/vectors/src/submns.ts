@@ -1,6 +1,6 @@
-import type { VecOpSGVNV, VecOpSVNV } from "./api";
-import { defOpS } from "./compile/emit";
-import { ARGS_VVN, MATH2_N, SARGS_VV } from "./compile/templates";
+import type { VecOpSGVNV, VecOpSVNV } from "./api.js";
+import { defOpS } from "./compile/emit.js";
+import { ARGS_VVN, MATH2_N, SARGS_VV } from "./compile/templates.js";
 
 export const [submNS, submNS2, submNS3, submNS4] = defOpS<
     VecOpSGVNV,

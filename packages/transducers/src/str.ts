@@ -1,5 +1,5 @@
-import type { Reducer } from "./api";
-import { reducer } from "./reduce";
+import type { Reducer } from "./api.js";
+import { reducer } from "./reduce.js";
 
 export function str(sep?: string): Reducer<string, any>;
 export function str(sep: string, xs: Iterable<any>): string;

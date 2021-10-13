@@ -1,9 +1,9 @@
 import type { NumericArray } from "@thi.ng/api";
 import type { IRandom } from "@thi.ng/random";
-import type { Color, ColorFactory, ReadonlyColor, TypedColor } from "../api";
-import { defColor } from "../defcolor";
-import { rgbYcc } from "../rgb/rgb-ycc";
-import { yccRgb } from "./ycc-rgb";
+import type { Color, ColorFactory, ReadonlyColor, TypedColor } from "../api.js";
+import { defColor } from "../defcolor.js";
+import { rgbYcc } from "../rgb/rgb-ycc.js";
+import { yccRgb } from "./ycc-rgb.js";
 
 export declare class YCC implements TypedColor<YCC> {
     buf: NumericArray;

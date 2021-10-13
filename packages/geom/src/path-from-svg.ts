@@ -3,7 +3,7 @@ import { illegalState } from "@thi.ng/errors/illegal-state";
 import { rad } from "@thi.ng/math/angle";
 import { WS } from "@thi.ng/strings/groups";
 import type { Vec } from "@thi.ng/vectors";
-import { PathBuilder } from "./path-builder";
+import { PathBuilder } from "./path-builder.js";
 
 const CMD_RE = /[achlmqstvz]/i;
 const WSC: IObjectOf<boolean> = { ...WS, ",": true };

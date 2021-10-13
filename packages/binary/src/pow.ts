@@ -1,5 +1,5 @@
 import type { FnN } from "@thi.ng/api";
-import type { Pow2 } from "./api";
+import type { Pow2 } from "./api.js";
 
 // http://graphics.stanford.edu/~seander/bithacks.html
 

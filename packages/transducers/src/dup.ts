@@ -1,7 +1,7 @@
 import { ensureArray } from "@thi.ng/arrays/ensure-array";
 import { isArray } from "@thi.ng/checks/is-array";
 import { isString } from "@thi.ng/checks/is-string";
-import { concat } from "./concat";
+import { concat } from "./concat.js";
 
 /**
  * Returns the concatentation of `x` with itself. If input is an

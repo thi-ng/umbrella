@@ -1,7 +1,7 @@
 import { deref, MaybeDeref } from "@thi.ng/api/deref";
-import type { Reducer, Transducer } from "./api";
-import { compR } from "./compr";
-import { __iter } from "./iterator";
+import type { Reducer, Transducer } from "./api.js";
+import { compR } from "./compr.js";
+import { __iter } from "./iterator.js";
 
 /**
  * Sliding window transducer, similar to `partition(size, 1)`, but

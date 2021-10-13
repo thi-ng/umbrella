@@ -3,7 +3,7 @@ import type { PCLike, PCLikeConstructor } from "@thi.ng/geom-api";
 import type { MatOpMV, ReadonlyMat } from "@thi.ng/matrices";
 import { mulV, mulV344 } from "@thi.ng/matrices/mulv";
 import type { ReadonlyVec } from "@thi.ng/vectors";
-import { __copyAttribs } from "./copy";
+import { __copyAttribs } from "./copy.js";
 
 export const __transformPoints = (
     pts: ReadonlyVec[],

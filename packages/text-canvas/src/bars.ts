@@ -4,7 +4,7 @@ import { padLeft } from "@thi.ng/strings/pad-left";
 import { padRight } from "@thi.ng/strings/pad-right";
 import { repeat } from "@thi.ng/strings/repeat";
 import { map } from "@thi.ng/transducers/map";
-import { BARS_H, BARS_V } from "./api";
+import { BARS_H, BARS_V } from "./api.js";
 
 export const barChartHLines = (
     height: number,

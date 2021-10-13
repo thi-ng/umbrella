@@ -1,5 +1,5 @@
-import type { Fn } from "./fn";
-import type { IID } from "./id";
+import type { Fn } from "./fn.js";
+import type { IID } from "./id.js";
 
 /**
  * Event listener.

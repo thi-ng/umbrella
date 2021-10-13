@@ -1,2 +1,2 @@
-export * from "./api";
-export * from "./gesture-stream";
+export * from "./api.js";
+export * from "./gesture-stream.js";

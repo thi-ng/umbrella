@@ -1,4 +1,4 @@
-import type { IRandom } from "./api";
+import type { IRandom } from "./api.js";
 
 const INV_MAX = 1 / 0xffffffff;
 

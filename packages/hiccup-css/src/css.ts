@@ -3,8 +3,8 @@ import { isFunction } from "@thi.ng/checks/is-function";
 import { isNotStringAndIterable } from "@thi.ng/checks/is-not-string-iterable";
 import { isPlainObject } from "@thi.ng/checks/is-plain-object";
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
-import { COMPACT, CSSOpts, DEFAULT_VENDORS } from "./api";
-import { expand, formatDecls } from "./impl";
+import { COMPACT, CSSOpts, DEFAULT_VENDORS } from "./api.js";
+import { expand, formatDecls } from "./impl.js";
 
 export const css = (rules: any, opts?: Partial<CSSOpts>) => {
     opts = {

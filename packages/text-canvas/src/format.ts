@@ -1,5 +1,5 @@
 import type { StringFormat } from "@thi.ng/text-format";
-import type { Canvas } from "./canvas";
+import type { Canvas } from "./canvas.js";
 
 /**
  * Returns string representation of canvas, optionally using given string

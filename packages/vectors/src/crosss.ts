@@ -1,5 +1,5 @@
-import type { ReadonlyVec, Vec } from "./api";
-import { setCS3 } from "./setcs";
+import type { ReadonlyVec, Vec } from "./api.js";
+import { setCS3 } from "./setcs.js";
 
 export const crossS2 = (
     a: ReadonlyVec,

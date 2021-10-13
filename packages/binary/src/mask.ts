@@ -1,5 +1,5 @@
 import type { FnU2 } from "@thi.ng/api";
-import { MASKS } from "./constants";
+import { MASKS } from "./constants.js";
 
 /**
  * Creates bit mask by enabling bit `a` to bit `b-1`, both in range

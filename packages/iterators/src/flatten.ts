@@ -1,6 +1,6 @@
-import { flattenWith } from "./flatten-with";
-import { maybeIterator } from "./iterator";
-import { maybeObjectIterator } from "./object-iterator";
+import { flattenWith } from "./flatten-with.js";
+import { maybeIterator } from "./iterator.js";
+import { maybeObjectIterator } from "./object-iterator.js";
 
 export const flatten = (input: Iterable<any>, includeObjects = true) =>
     flattenWith(

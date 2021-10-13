@@ -9,10 +9,10 @@ import {
     SubscriptionOpts,
     TransformableOpts,
     WithErrorHandlerOpts,
-} from "./api";
-import { __optsWithID } from "./idgen";
-import { LOGGER } from "./logger";
-import { Subscription, subscription } from "./subscription";
+} from "./api.js";
+import { __optsWithID } from "./idgen.js";
+import { LOGGER } from "./logger.js";
+import { Subscription, subscription } from "./subscription.js";
 
 export interface PubSubOpts<A, B, T> {
     /**

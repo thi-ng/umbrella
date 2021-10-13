@@ -1,5 +1,5 @@
-import type { Index, Swizzle, Sym } from "./nodes";
-import type { BoolTerm, FloatTerm, IntTerm, UintTerm } from "./terms";
+import type { Index, Swizzle, Sym } from "./nodes.js";
+import type { BoolTerm, FloatTerm, IntTerm, UintTerm } from "./terms.js";
 
 export type Type =
     | "void"

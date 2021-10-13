@@ -1,4 +1,4 @@
-import { lowDiscrepancy } from "./lowdisc";
+import { lowDiscrepancy } from "./lowdisc.js";
 
 /** @internal */
 const fract = (x: number) => x - Math.floor(x);

@@ -1,5 +1,5 @@
 import type { FnN, FnU, Tuple } from "@thi.ng/api";
-import type { Color, ColorMixFn, ReadonlyColor } from "../api";
+import type { Color, ColorMixFn, ReadonlyColor } from "../api.js";
 
 export type CosineGradientPreset =
     | "blue-cyan"

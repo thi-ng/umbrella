@@ -8,7 +8,7 @@ import { div } from "@thi.ng/vectors/div";
 import { equals } from "@thi.ng/vectors/equals";
 import { floor } from "@thi.ng/vectors/floor";
 import { subN } from "@thi.ng/vectors/subn";
-import { into } from "./utils";
+import { into } from "./utils.js";
 
 /**
  * Common base class for {@link SpatialGrid2} and {@link SpatialGrid3}.

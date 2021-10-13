@@ -9,7 +9,7 @@ import { iterator } from "@thi.ng/transducers/iterator";
 import { isReduced } from "@thi.ng/transducers/reduced";
 import { str } from "@thi.ng/transducers/str";
 import { transduce } from "@thi.ng/transducers/transduce";
-import type { CSVFormatOpts, CSVRecord, CSVRow } from "./api";
+import type { CSVFormatOpts, CSVRecord, CSVRow } from "./api.js";
 
 export function formatCSV(
     opts?: Partial<CSVFormatOpts>

@@ -9,9 +9,9 @@ import type {
     IntSampler,
     IPixelBuffer,
     Wrap,
-} from "./api";
-import type { FloatBuffer } from "./float";
-import type { PackedBuffer } from "./packed";
+} from "./api.js";
+import type { FloatBuffer } from "./float.js";
+import type { PackedBuffer } from "./packed.js";
 
 export function defSampler(
     src: PackedBuffer,

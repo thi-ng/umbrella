@@ -1,8 +1,8 @@
 import type { Fn, Nullable } from "@thi.ng/api";
 import { assert } from "@thi.ng/errors/assert";
-import { CloseMode, CommonOpts, ISubscription, State } from "./api";
-import { __optsWithID } from "./idgen";
-import { Subscription } from "./subscription";
+import { CloseMode, CommonOpts, ISubscription, State } from "./api.js";
+import { __optsWithID } from "./idgen.js";
+import { Subscription } from "./subscription.js";
 
 export interface MetaStreamOpts extends CommonOpts {
     /**

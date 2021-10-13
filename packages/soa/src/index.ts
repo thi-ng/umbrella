@@ -1,5 +1,5 @@
-export * from "./api";
+export * from "./api.js";
 
-export * from "./aos";
-export * from "./soa";
-export * from "./serialize";
+export * from "./aos.js";
+export * from "./soa.js";
+export * from "./serialize.js";

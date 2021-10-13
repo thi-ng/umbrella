@@ -1,8 +1,8 @@
 import type { Predicate } from "@thi.ng/api";
 import { isPlainObject } from "@thi.ng/checks/is-plain-object";
 import { isSet } from "@thi.ng/checks/is-set";
-import type { CharSet, LitParser } from "../api";
-import { satisfy, satisfyD } from "./satisfy";
+import type { CharSet, LitParser } from "../api.js";
+import { satisfy, satisfyD } from "./satisfy.js";
 
 /**
  * HOF predicate for matching single char against given options. Returns

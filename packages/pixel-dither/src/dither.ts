@@ -1,6 +1,6 @@
 import type { PackedBuffer } from "@thi.ng/pixel";
 import { range } from "@thi.ng/pixel/range";
-import type { DitherKernel, DitherOpts } from "./api";
+import type { DitherKernel, DitherOpts } from "./api.js";
 
 /**
  * Generic kernel-based dithering. Takes a {@link DitherKernelFactory} and

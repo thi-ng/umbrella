@@ -17,13 +17,13 @@ import type {
     IResizable,
     IToImageData,
     PackedFormat,
-} from "./api";
-import { ensureChannel, ensureSize } from "./checks";
-import { defFloatFormat } from "./format/float-format";
-import { FLOAT_GRAY } from "./format/float-gray";
-import { __clampRegion, __prepRegions } from "./internal/utils";
-import { PackedBuffer } from "./packed";
-import { defSampler } from "./sample";
+} from "./api.js";
+import { ensureChannel, ensureSize } from "./checks.js";
+import { defFloatFormat } from "./format/float-format.js";
+import { FLOAT_GRAY } from "./format/float-gray.js";
+import { __clampRegion, __prepRegions } from "./internal/utils.js";
+import { PackedBuffer } from "./packed.js";
+import { defSampler } from "./sample.js";
 
 /**
  * Syntax sugar for {@link FloatBuffer} ctor.

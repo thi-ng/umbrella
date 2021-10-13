@@ -1,6 +1,6 @@
 import { uuid as $uuid } from "@thi.ng/hex";
-import type { IRandom } from "./api";
-import { randomBytes, randomBytesFrom } from "./random-bytes";
+import type { IRandom } from "./api.js";
+import { randomBytes, randomBytesFrom } from "./random-bytes.js";
 
 /**
  * Depending on if `rnd` is given, uses {@link randomBytesFrom} or

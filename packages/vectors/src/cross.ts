@@ -1,6 +1,6 @@
 import type { FnU2 } from "@thi.ng/api";
-import type { ReadonlyVec, Vec } from "./api";
-import { setC3 } from "./setc";
+import type { ReadonlyVec, Vec } from "./api.js";
+import { setC3 } from "./setc.js";
 
 export const cross2: FnU2<ReadonlyVec, number> = (a, b) =>
     a[0] * b[1] - a[1] * b[0];

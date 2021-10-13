@@ -1,4 +1,4 @@
-import { ARandom } from "./arandom";
+import { ARandom } from "./arandom.js";
 
 const random = Math.random;
 

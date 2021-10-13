@@ -1,6 +1,6 @@
-import type { MultiVecOpV } from "./api";
-import { vop } from "./vop";
-import { setC2, setC3 } from "./setc";
+import type { MultiVecOpV } from "./api.js";
+import { vop } from "./vop.js";
+import { setC2, setC3 } from "./setc.js";
 
 export const fromHomogeneous: MultiVecOpV = vop(1);
 

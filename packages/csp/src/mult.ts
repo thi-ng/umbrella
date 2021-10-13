@@ -1,8 +1,8 @@
 import { DCons } from "@thi.ng/dcons/dcons";
 import { illegalArity } from "@thi.ng/errors/illegal-arity";
 import type { Transducer } from "@thi.ng/transducers";
-import type { IWriteableChannel } from "./api";
-import { Channel } from "./channel";
+import type { IWriteableChannel } from "./api.js";
+import { Channel } from "./channel.js";
 
 export class Mult<T> implements IWriteableChannel<T> {
     protected static nextID = 0;

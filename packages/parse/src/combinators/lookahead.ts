@@ -1,4 +1,4 @@
-import type { Parser } from "../api";
+import type { Parser } from "../api.js";
 
 /**
  * Repeatedly runs `main` and look-`ahead` parsers for as long as the
@@ -63,22 +63,24 @@ import type { Parser } from "../api";
  * @param capture
  * @param id
  */
-export const lookahead = <T>(
-    parser: Parser<T>,
-    ahead: Parser<T>,
-    capture = false,
-    id = "lookahead"
-): Parser<T> => (ctx) => {
-    if (ctx.done) return false;
-    ctx.start(id);
-    let pass = false;
-    while (true) {
-        const state = capture ? null : { ...ctx.state };
-        if (ahead(ctx)) {
-            !capture && (ctx.state = state!);
-            return pass ? ctx.end() : ctx.discard();
+export const lookahead =
+    <T>(
+        parser: Parser<T>,
+        ahead: Parser<T>,
+        capture = false,
+        id = "lookahead"
+    ): Parser<T> =>
+    (ctx) => {
+        if (ctx.done) return false;
+        ctx.start(id);
+        let pass = false;
+        while (true) {
+            const state = capture ? null : { ...ctx.state };
+            if (ahead(ctx)) {
+                !capture && (ctx.state = state!);
+                return pass ? ctx.end() : ctx.discard();
+            }
+            if (!parser(ctx)) return ctx.discard();
+            pass = true;
         }
-        if (!parser(ctx)) return ctx.discard();
-        pass = true;
-    }
-};
+    };

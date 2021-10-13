@@ -1,7 +1,7 @@
 import type { NumericArray } from "@thi.ng/api";
 import { isNumber } from "@thi.ng/checks/is-number";
-import type { ComplexArray } from "./api";
-import { isComplex } from "./complex";
+import type { ComplexArray } from "./api.js";
+import { isComplex } from "./complex.js";
 
 /**
  * Computes the sum of the given array.

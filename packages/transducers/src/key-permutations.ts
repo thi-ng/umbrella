@@ -1,10 +1,10 @@
 import type { IObjectOf, Pair } from "@thi.ng/api";
-import { assocObj } from "./assoc-obj";
-import { map } from "./map";
-import { mapcat } from "./mapcat";
-import { pairs } from "./pairs";
-import { partition } from "./partition";
-import { permutations } from "./permutations";
+import { assocObj } from "./assoc-obj.js";
+import { map } from "./map.js";
+import { mapcat } from "./mapcat.js";
+import { pairs } from "./pairs.js";
+import { partition } from "./partition.js";
+import { permutations } from "./permutations.js";
 
 /**
  * Similar to {@link permutations}, however takes an object with each

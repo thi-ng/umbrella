@@ -3,9 +3,9 @@ import {
     clamp01 as _clamp01,
     clamp11 as _clamp11,
 } from "@thi.ng/math/interval";
-import type { MultiVecOpVVV, VecOpVVV } from "./api";
-import { defHofOp } from "./compile/emit";
-import { ARGS_VVV, FN3 } from "./compile/templates";
+import type { MultiVecOpVVV, VecOpVVV } from "./api.js";
+import { defHofOp } from "./compile/emit.js";
+import { ARGS_VVV, FN3 } from "./compile/templates.js";
 
 export const [clamp, clamp2, clamp3, clamp4] = defHofOp<
     MultiVecOpVVV,

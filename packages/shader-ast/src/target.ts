@@ -1,8 +1,8 @@
 import type { Fn } from "@thi.ng/api";
 import { DEFAULT, defmulti } from "@thi.ng/defmulti/defmulti";
 import { unsupported } from "@thi.ng/errors/unsupported";
-import type { Term } from "./api/nodes";
-import type { TargetImpl } from "./api/target";
+import type { Term } from "./api/nodes.js";
+import type { TargetImpl } from "./api/target.js";
 
 /**
  * Takes an object of code generator functions and returns a new code

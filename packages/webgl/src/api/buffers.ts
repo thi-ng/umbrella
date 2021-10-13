@@ -1,5 +1,5 @@
 import type { IBind, IRelease } from "@thi.ng/api";
-import type { ITexture } from "./texture";
+import type { ITexture } from "./texture.js";
 
 export type IndexBufferData = Uint16Array | Uint32Array;
 

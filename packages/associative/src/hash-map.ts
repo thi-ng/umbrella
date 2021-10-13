@@ -12,11 +12,11 @@ import { ceilPow2 } from "@thi.ng/binary/pow";
 import { isPlainObject } from "@thi.ng/checks/is-plain-object";
 import { equiv } from "@thi.ng/equiv";
 import { map } from "@thi.ng/transducers/map";
-import type { HashMapOpts } from "./api";
-import { dissoc } from "./dissoc";
-import { __equivMap } from "./internal/equiv";
-import { __inspectable } from "./internal/inspect";
-import { into } from "./into";
+import type { HashMapOpts } from "./api.js";
+import { dissoc } from "./dissoc.js";
+import { __equivMap } from "./internal/equiv.js";
+import { __inspectable } from "./internal/inspect.js";
+import { into } from "./into.js";
 
 interface HashMapState<K, V> {
     hash: Fn<K, number>;

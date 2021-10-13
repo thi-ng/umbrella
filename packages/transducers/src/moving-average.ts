@@ -1,8 +1,8 @@
 import { isIterable } from "@thi.ng/checks/is-iterable";
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
-import type { Reducer, Transducer } from "./api";
-import { compR } from "./compr";
-import { iterator1 } from "./iterator";
+import type { Reducer, Transducer } from "./api.js";
+import { compR } from "./compr.js";
+import { iterator1 } from "./iterator.js";
 
 /**
  * Computes the

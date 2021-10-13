@@ -1,4 +1,4 @@
-import { OnePole } from "./onepole";
+import { OnePole } from "./onepole.js";
 
 /**
  * One-pole DC blocker based on {@link OnePole}.

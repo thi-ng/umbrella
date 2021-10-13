@@ -1,7 +1,7 @@
 import type { Fn, IObjectOf } from "@thi.ng/api";
 import { isFunction } from "@thi.ng/checks/is-function";
 import { isIllegalKey } from "@thi.ng/checks/is-proto-path";
-import { copy, copyObj } from "./copy";
+import { copy, copyObj } from "./copy.js";
 
 /**
  * Similar to {@link mergeApplyObj}, but for ES6 Maps instead of plain objects.

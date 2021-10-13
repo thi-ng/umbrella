@@ -10,8 +10,8 @@ import { lshiftI3 } from "@thi.ng/vectors/lshift";
 import { mulI3, mulNI3 } from "@thi.ng/vectors/muli";
 import { rshiftI3 } from "@thi.ng/vectors/rshift";
 import { subI3, subNI3 } from "@thi.ng/vectors/subi";
-import type { JSBuiltinsIntVec } from "../api";
-import { VEC3 } from "./vec3";
+import type { JSBuiltinsIntVec } from "../api.js";
+import { VEC3 } from "./vec3.js";
 
 export const IVEC3: JSBuiltinsIntVec = {
     ...VEC3,

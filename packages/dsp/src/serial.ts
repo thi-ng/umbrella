@@ -1,5 +1,5 @@
-import type { IProc } from "./api";
-import { AProc } from "./aproc";
+import type { IProc } from "./api.js";
+import { AProc } from "./aproc.js";
 
 /**
  * Composes the given {@link IProc}s into a single new processor instance. The

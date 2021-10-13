@@ -1,7 +1,7 @@
 import { mapcat } from "@thi.ng/transducers/mapcat";
-import type { ISubscription, WithErrorHandlerOpts } from "./api";
-import { __optsWithID } from "./idgen";
-import { fromPromise } from "./promise";
+import type { ISubscription, WithErrorHandlerOpts } from "./api.js";
+import { __optsWithID } from "./idgen.js";
+import { fromPromise } from "./promise.js";
 
 /**
  * Wraps given iterable in `Promise.all()` to yield {@link Stream} of

@@ -1,9 +1,9 @@
 import type { Fn } from "@thi.ng/api";
 import { identity } from "@thi.ng/compose/identity";
-import type { Reducer } from "./api";
-import { groupByMap } from "./group-by-map";
-import { normCount } from "./norm-count";
-import { $$reduce } from "./reduce";
+import type { Reducer } from "./api.js";
+import { groupByMap } from "./group-by-map.js";
+import { normCount } from "./norm-count.js";
+import { $$reduce } from "./reduce.js";
 
 /**
  * Similar to {@link frequencies}, but with each bin value normalized to given

@@ -20,7 +20,7 @@ import { IWatchMixin } from "@thi.ng/api/mixins/iwatch";
 import { illegalState } from "@thi.ng/errors/illegal-state";
 import { setInUnsafe } from "@thi.ng/paths/set-in";
 import { updateInUnsafe } from "@thi.ng/paths/update-in";
-import type { IAtom, SwapFn } from "./api";
+import type { IAtom, SwapFn } from "./api.js";
 
 export const defAtom = <T>(value: T, valid?: Predicate<T>) =>
     new Atom<T>(value, valid);

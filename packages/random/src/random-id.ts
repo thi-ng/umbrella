@@ -1,5 +1,5 @@
-import type { IRandom } from "./api";
-import { SYSTEM } from "./system";
+import type { IRandom } from "./api.js";
+import { SYSTEM } from "./system.js";
 
 /**
  * Generates and returns a random string of `len` characters (default 4), plus

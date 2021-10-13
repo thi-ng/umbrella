@@ -1,6 +1,6 @@
 // thing:no-export
 import type { FnN3, FnU2, FnU7, NumOrString } from "@thi.ng/api";
-import type { ClipRect } from "./api";
+import type { ClipRect } from "./api.js";
 
 export const charCode = (x: NumOrString, format: number) =>
     (typeof x === "string" ? x.charCodeAt(0) : x) | (format << 16);

@@ -1,6 +1,6 @@
 import { endsWith } from "@thi.ng/arrays/ends-with";
-import { LitCallback, Matcher, RES_PARTIAL } from "./api";
-import { result } from "./result";
+import { LitCallback, Matcher, RES_PARTIAL } from "./api.js";
+import { result } from "./result.js";
 
 /**
  * String version of {@link until}. Returns a matcher which consumes

@@ -1,4 +1,4 @@
-import { asInt } from "./utils";
+import { asInt } from "./utils.js";
 
 /**
  * Similar to {@link diagonal2d}, but yields 2D grid coordinates in zigzag

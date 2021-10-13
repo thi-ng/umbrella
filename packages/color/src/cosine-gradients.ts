@@ -11,14 +11,14 @@ import { transduce } from "@thi.ng/transducers/transduce";
 import { tween } from "@thi.ng/transducers/tween";
 import { zip } from "@thi.ng/transducers/zip";
 import { setS4 } from "@thi.ng/vectors/sets";
-import type { Color, ReadonlyColor } from "./api";
+import type { Color, ReadonlyColor } from "./api.js";
 import type {
     CosGradientSpec,
     CosineCoeffs,
     CosineGradientOpts,
     CosineGradientPreset,
-} from "./api/gradients";
-import { clamp } from "./clamp";
+} from "./api/gradients.js";
+import { clamp } from "./clamp.js";
 
 /**
  * Preset cosine gradient definitions. See previews at:

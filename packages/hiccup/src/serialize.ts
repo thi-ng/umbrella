@@ -14,11 +14,11 @@ import {
     NO_SPANS,
     PROC_TAGS,
     VOID_TAGS,
-} from "./api";
-import { css } from "./css";
-import { escape } from "./escape";
-import { normalize } from "./normalize";
-import { formatPrefixes } from "./prefix";
+} from "./api.js";
+import { css } from "./css.js";
+import { escape } from "./escape.js";
+import { normalize } from "./normalize.js";
+import { formatPrefixes } from "./prefix.js";
 
 /**
  * Recursively normalizes and serializes given tree as HTML/SVG/XML

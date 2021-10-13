@@ -4,10 +4,10 @@ import { defSetterUnsafe } from "@thi.ng/paths/setter";
 import type { ISubscribable } from "@thi.ng/rstream";
 import { __nextID } from "@thi.ng/rstream/idgen";
 import { Subscription } from "@thi.ng/rstream/subscription";
-import type { IComponent, IMountWithState, NumOrElement } from "./api";
-import { $attribs } from "./dom";
-import { SCHEDULER } from "./scheduler";
-import { $wrapText } from "./wrap";
+import type { IComponent, IMountWithState, NumOrElement } from "./api.js";
+import { $attribs } from "./dom.js";
+import { SCHEDULER } from "./scheduler.js";
+import { $wrapText } from "./wrap.js";
 
 /**
  * Takes an {@link @thi.ng/rstream#ISubscribable} and creates a simple component

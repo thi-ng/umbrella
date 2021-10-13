@@ -1,8 +1,12 @@
 import type { Fn } from "@thi.ng/api";
 import { isString } from "@thi.ng/checks/is-string";
-import type { EpochIterator, EpochIteratorConstructor, Precision } from "./api";
-import { DateTime } from "./datetime";
-import { floorQuarter, floorWeek } from "./round";
+import type {
+    EpochIterator,
+    EpochIteratorConstructor,
+    Precision,
+} from "./api.js";
+import { DateTime } from "./datetime.js";
+import { floorQuarter, floorWeek } from "./round.js";
 
 /**
  * Higher-order epoch iterator factory. Returns iterator with configured

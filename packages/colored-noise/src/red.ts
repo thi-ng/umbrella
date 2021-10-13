@@ -1,6 +1,6 @@
 import type { INorm } from "@thi.ng/random";
 import { SYSTEM } from "@thi.ng/random/system";
-import { preseed, sum } from "./utils";
+import { preseed, sum } from "./utils.js";
 
 /**
  * Low-pass filtered noise (same as brown noise). Opposite of {@link blue}.

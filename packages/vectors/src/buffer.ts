@@ -1,6 +1,6 @@
 import type { NumericArray, TypedArrayTypeMap } from "@thi.ng/api";
 import { SIZEOF, Type, typedArray } from "@thi.ng/api/typedarray";
-import type { ReadonlyVec, Vec, VecOpSV, VectorConstructor } from "./api";
+import type { ReadonlyVec, Vec, VecOpSV, VectorConstructor } from "./api.js";
 
 /**
  * Takes an `ArrayBuffer` and creates a number of typed array vector

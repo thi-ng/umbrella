@@ -1,5 +1,5 @@
 import type { ISeq, ISeqable, Nullable } from "@thi.ng/api";
-import { ensureSeq } from "./ensure";
+import { ensureSeq } from "./ensure.js";
 
 /**
  * Yields an ES6 iterable for given seq or seqable.

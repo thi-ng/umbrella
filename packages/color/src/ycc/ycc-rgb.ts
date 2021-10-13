@@ -1,7 +1,7 @@
 import { setC4 } from "@thi.ng/vectors/setc";
-import type { Color, ReadonlyColor } from "../api";
-import { RGB_LUMINANCE_REC709 } from "../api/constants";
-import { __ensureAlpha } from "../internal/ensure";
+import type { Color, ReadonlyColor } from "../api.js";
+import { RGB_LUMINANCE_REC709 } from "../api/constants.js";
+import { __ensureAlpha } from "../internal/ensure.js";
 
 /**
  * @remarks

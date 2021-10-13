@@ -2,7 +2,7 @@ import type { Reducer, Transducer } from "@thi.ng/transducers";
 import { compR } from "@thi.ng/transducers/compr";
 import { __iter } from "@thi.ng/transducers/iterator";
 import { step } from "@thi.ng/transducers/step";
-import { ema } from "./ema";
+import { ema } from "./ema.js";
 
 export interface MACD {
     /**

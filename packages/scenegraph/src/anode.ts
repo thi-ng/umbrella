@@ -2,7 +2,7 @@ import type { Nullable } from "@thi.ng/api";
 import { assert } from "@thi.ng/errors/assert";
 import type { Mat } from "@thi.ng/matrices";
 import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
-import type { ISceneNode, NodeInfo } from "./api";
+import type { ISceneNode, NodeInfo } from "./api.js";
 
 export abstract class ANode<T extends ISceneNode<any>> {
     id: string;

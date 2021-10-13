@@ -1,6 +1,6 @@
 import type { FnN5 } from "@thi.ng/api";
-import type { ReadonlyVec } from "./api";
-import { radians2 } from "./radians";
+import type { ReadonlyVec } from "./api.js";
+import { radians2 } from "./radians.js";
 
 /**
  * Returns distance between 2 points along a great circle on a sphere, using the

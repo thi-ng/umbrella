@@ -5,7 +5,7 @@ import { EPS, HALF_PI, PI } from "@thi.ng/math/api";
 import { roundEps } from "@thi.ng/math/prec";
 import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
 import { magSq2 } from "@thi.ng/vectors/magsq";
-import { cubicFromLine } from "./cubic-line";
+import { cubicFromLine } from "./cubic-line.js";
 
 /**
  * Converts elliptic arc into a 1-4 cubic curve segments, depending on

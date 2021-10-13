@@ -1,4 +1,4 @@
-import type { StringFormat } from "./api";
+import type { StringFormat } from "./api.js";
 
 /**
  * Convenience {@link StringFormat} which ignores any formatting and results in

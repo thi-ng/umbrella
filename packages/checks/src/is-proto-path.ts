@@ -1,5 +1,5 @@
-import { isArray } from "./is-array";
-import { isString } from "./is-string";
+import { isArray } from "./is-array.js";
+import { isString } from "./is-string.js";
 
 const ILLEGAL_KEYS = new Set(["__proto__", "prototype", "constructor"]);
 

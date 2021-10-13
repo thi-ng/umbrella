@@ -1,6 +1,6 @@
 import { BitMatrix } from "@thi.ng/bitfield/bitmatrix";
-import type { DegreeType, Edge, IGraph } from "./api";
-import { into, invert, toDot } from "./utils";
+import type { DegreeType, Edge, IGraph } from "./api.js";
+import { into, invert, toDot } from "./utils.js";
 
 /**
  * Adjacency matrix representation for both directed and undirected graphs and

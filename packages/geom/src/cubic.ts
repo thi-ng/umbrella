@@ -3,10 +3,10 @@ import { cubicFromArc as _arc } from "@thi.ng/geom-splines/cubic-arc";
 import { cubicFromLine as _line } from "@thi.ng/geom-splines/cubic-line";
 import { cubicFromQuadratic as _quad } from "@thi.ng/geom-splines/cubic-quadratic";
 import type { Vec } from "@thi.ng/vectors";
-import type { Arc } from "./api/arc";
-import { Cubic } from "./api/cubic";
-import { __copyAttribs } from "./internal/copy";
-import { __pclike } from "./internal/pclike";
+import type { Arc } from "./api/arc.js";
+import { Cubic } from "./api/cubic.js";
+import { __copyAttribs } from "./internal/copy.js";
+import { __pclike } from "./internal/pclike.js";
 
 export function cubic(a: Vec, b: Vec, c: Vec, d: Vec, attribs?: Attribs): Cubic;
 export function cubic(pts: Vec[], attribs?: Attribs): Cubic;

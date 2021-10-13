@@ -6,9 +6,9 @@ import { mulV344 } from "@thi.ng/matrices/mulv";
 import { transform44 } from "@thi.ng/matrices/transform";
 import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
 import { set3 } from "@thi.ng/vectors/set";
-import { ANode } from "./anode";
-import type { ISceneNode } from "./api";
-import { toHiccup } from "./hiccup";
+import { ANode } from "./anode.js";
+import type { ISceneNode } from "./api.js";
+import { toHiccup } from "./hiccup.js";
 
 export class Node3D
     extends ANode<Node3D>

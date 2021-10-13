@@ -1,6 +1,6 @@
 import type { Fn } from "@thi.ng/api";
-import type { ComponentLike, IComponent, NumOrElement } from "./api";
-import { Component } from "./component";
+import type { ComponentLike, IComponent, NumOrElement } from "./api.js";
+import { Component } from "./component.js";
 
 /**
  * Simple component wrapper for {@link ComponentLike} promises. When this

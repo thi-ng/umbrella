@@ -1,9 +1,9 @@
 import { isArrayLike } from "@thi.ng/checks/is-arraylike";
 import { isNumber } from "@thi.ng/checks/is-number";
 import { isPlainObject } from "@thi.ng/checks/is-plain-object";
-import type { Lit, Term } from "../api/nodes";
-import type { BoolTerm, FloatTerm, IntTerm, UintTerm } from "../api/terms";
-import type { BVec, IVec, UVec, Vec } from "../api/types";
+import type { Lit, Term } from "../api/nodes.js";
+import type { BoolTerm, FloatTerm, IntTerm, UintTerm } from "../api/terms.js";
+import type { BVec, IVec, UVec, Vec } from "../api/types.js";
 
 const RE_VEC = /^[iub]?vec[234]$/;
 const RE_MAT = /^mat[234]$/;

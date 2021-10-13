@@ -17,8 +17,8 @@ import type {
     Without7,
     Without8,
 } from "@thi.ng/api";
-import { toPath } from "./path";
-import { updateIn } from "./update-in";
+import { toPath } from "./path.js";
+import { updateIn } from "./update-in.js";
 
 /**
  * Unchecked version of {@link deleteIn}. Path can be given as string or

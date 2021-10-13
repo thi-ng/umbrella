@@ -6,8 +6,8 @@ import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
 import { addN2 } from "@thi.ng/vectors/addn";
 import { distSq2 } from "@thi.ng/vectors/distsq";
 import { subN2 } from "@thi.ng/vectors/subn";
-import { ASpatialGrid } from "./aspatial-grid";
-import { addResults, CMP } from "./utils";
+import { ASpatialGrid } from "./aspatial-grid.js";
+import { addResults, CMP } from "./utils.js";
 
 const TMP: Vec = [];
 

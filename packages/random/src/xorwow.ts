@@ -1,7 +1,7 @@
 import type { IBuffered, ICopy } from "@thi.ng/api";
-import type { ISeedable } from "./api";
-import { ARandom } from "./arandom";
-import { DEFAULT_SEED_160 } from "./constants";
+import type { ISeedable } from "./api.js";
+import { ARandom } from "./arandom.js";
+import { DEFAULT_SEED_160 } from "./constants.js";
 
 /**
  * @remarks
@@ -12,7 +12,8 @@ export class XorWow
     implements
         IBuffered<Uint32Array>,
         ICopy<XorWow>,
-        ISeedable<ArrayLike<number>> {
+        ISeedable<ArrayLike<number>>
+{
     buffer: Uint32Array;
 
     constructor(seed: ArrayLike<number> = DEFAULT_SEED_160) {

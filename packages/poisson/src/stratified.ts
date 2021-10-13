@@ -4,7 +4,7 @@ import { rangeNd } from "@thi.ng/transducers/range-nd";
 import { repeatedly } from "@thi.ng/transducers/repeatedly";
 import { add } from "@thi.ng/vectors/add";
 import { random } from "@thi.ng/vectors/random";
-import type { StratifiedGridOpts } from "./api";
+import type { StratifiedGridOpts } from "./api.js";
 
 /**
  * Yields iterator of nD point samples of for given stratified grid

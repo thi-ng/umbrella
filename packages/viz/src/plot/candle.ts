@@ -1,8 +1,8 @@
 import type { Fn2, Fn4, NumOrString } from "@thi.ng/api";
 import { isFunction } from "@thi.ng/checks/is-function";
 import { map } from "@thi.ng/transducers/map";
-import type { DomainValues, PlotFn } from "../api";
-import { valueMapper } from "./utils";
+import type { DomainValues, PlotFn } from "../api.js";
+import { valueMapper } from "./utils.js";
 
 export type Candle = { o: number; h: number; l: number; c: number };
 

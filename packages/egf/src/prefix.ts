@@ -1,6 +1,6 @@
 import { TrieMap } from "@thi.ng/associative/trie-map";
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
-import type { Prefixes } from "./api";
+import type { Prefixes } from "./api.js";
 
 const RE_QFN = /^([a-z0-9-_$]*):([a-z0-9-_$.+]+)$/i;
 

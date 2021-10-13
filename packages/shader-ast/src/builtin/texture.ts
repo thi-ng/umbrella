@@ -1,5 +1,5 @@
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
-import type { FnCall, Sym, Term } from "../api/nodes";
+import type { FnCall, Sym, Term } from "../api/nodes.js";
 import type {
     FloatTerm,
     IntTerm,
@@ -17,10 +17,10 @@ import type {
     Vec2Term,
     Vec3Term,
     Vec4Term,
-} from "../api/terms";
-import type { IVec, Prim, Sampler, Vec } from "../api/types";
-import { isVec } from "../ast/checks";
-import { builtinCall } from "../ast/function";
+} from "../api/terms.js";
+import type { IVec, Prim, Sampler, Vec } from "../api/types.js";
+import { isVec } from "../ast/checks.js";
+import { builtinCall } from "../ast/function.js";
 
 const texRetType = (sampler: Term<Sampler>) => {
     const t = sampler.type[0];

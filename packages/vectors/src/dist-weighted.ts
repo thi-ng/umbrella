@@ -1,5 +1,5 @@
-import type { DistanceFn, ReadonlyVec } from "./api";
-import { mul } from "./mul";
+import type { DistanceFn, ReadonlyVec } from "./api.js";
+import { mul } from "./mul.js";
 
 /**
  * Higher order distance function. Takes an existing {@link DistanceFn} `fn` and
@@ -23,7 +23,7 @@ import { mul } from "./mul";
  * @param fn
  * @param weights
  */
-export const weightedDistance = (
-    fn: DistanceFn,
-    weights: ReadonlyVec
-): DistanceFn => (a, b) => fn(mul([], a, weights), mul([], b, weights));
+export const weightedDistance =
+    (fn: DistanceFn, weights: ReadonlyVec): DistanceFn =>
+    (a, b) =>
+        fn(mul([], a, weights), mul([], b, weights));

@@ -1,5 +1,5 @@
 import type { FnN3, FnN5 } from "@thi.ng/api";
-import { clamp01, clamp11 } from "./interval";
+import { clamp01, clamp11 } from "./interval.js";
 
 /**
  * Returns normalized value of `x` WRT to interval `a .. b`. If `a`

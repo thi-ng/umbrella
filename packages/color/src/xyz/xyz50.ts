@@ -1,15 +1,15 @@
 import type { NumericArray } from "@thi.ng/api";
 import type { IRandom } from "@thi.ng/random";
-import type { Color, ColorFactory, ReadonlyColor, TypedColor } from "../api";
-import { D50 } from "../api/constants";
-import { defColor } from "../defcolor";
-import { lchLab } from "../lab/lab-lch";
-import { labXyz, labXyzD65 } from "../lab/lab-xyz";
-import { oklabXyzD65 } from "../oklab/oklab-xyz";
-import { rgbXyz } from "../rgb/rgb-xyz";
-import { xyyXyz } from "../xyy/xyy-xyz";
-import { xyzRgb } from "./xyz-rgb";
-import { xyzXyzD65_50 } from "./xyz-xyz";
+import type { Color, ColorFactory, ReadonlyColor, TypedColor } from "../api.js";
+import { D50 } from "../api/constants.js";
+import { defColor } from "../defcolor.js";
+import { lchLab } from "../lab/lab-lch.js";
+import { labXyz, labXyzD65 } from "../lab/lab-xyz.js";
+import { oklabXyzD65 } from "../oklab/oklab-xyz.js";
+import { rgbXyz } from "../rgb/rgb-xyz.js";
+import { xyyXyz } from "../xyy/xyy-xyz.js";
+import { xyzRgb } from "./xyz-rgb.js";
+import { xyzXyzD65_50 } from "./xyz-xyz.js";
 
 export declare class XYZD50 implements TypedColor<XYZD50> {
     buf: NumericArray;

@@ -1,6 +1,6 @@
 import type { FnU2 } from "@thi.ng/api";
-import type { Dual, Op2, OpV2 } from "./api";
-import { add, div, dual, mul, sub } from "./ops";
+import type { Dual, Op2, OpV2 } from "./api.js";
+import { add, div, dual, mul, sub } from "./ops.js";
 
 const defVecOp2 =
     (op: Op2): OpV2 =>

@@ -1,4 +1,4 @@
-import { iterator } from "./iterator";
+import { iterator } from "./iterator.js";
 
 export function* takeLast<T>(n: number, input: Iterable<T>) {
     let iter = iterator(input);

@@ -1,8 +1,8 @@
 import { isIterable } from "@thi.ng/checks/is-iterable";
-import type { Transducer } from "./api";
-import { keySelector } from "./key-selector";
-import { iterator1 } from "./iterator";
-import { map } from "./map";
+import type { Transducer } from "./api.js";
+import { keySelector } from "./key-selector.js";
+import { iterator1 } from "./iterator.js";
+import { map } from "./map.js";
 
 /**
  * Transducer which yields sequence of transformed objects, each only

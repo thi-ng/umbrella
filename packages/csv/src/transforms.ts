@@ -1,6 +1,6 @@
 import { padLeft } from "@thi.ng/strings/pad-left";
 import { maybeParseFloat, maybeParseInt } from "@thi.ng/strings/parse";
-import type { CellTransform } from "./api";
+import type { CellTransform } from "./api.js";
 
 export const upper: CellTransform = (x) => x.toUpperCase();
 

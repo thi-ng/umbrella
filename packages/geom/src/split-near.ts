@@ -7,14 +7,14 @@ import { splitCubicNearPoint } from "@thi.ng/geom-splines/cubic-split";
 import { quadraticSplitNearPoint } from "@thi.ng/geom-splines/quadratic-split";
 import { clamp01 } from "@thi.ng/math/interval";
 import type { ReadonlyVec } from "@thi.ng/vectors";
-import { Cubic } from "./api/cubic";
-import { Line } from "./api/line";
-import { Polyline } from "./api/polyline";
-import { Quadratic } from "./api/quadratic";
-import { __copyAttribs } from "./internal/copy";
-import { __dispatch } from "./internal/dispatch";
-import { __pointArraysAsShapes } from "./internal/points-as-shape";
-import { __splitLine } from "./internal/split";
+import { Cubic } from "./api/cubic.js";
+import { Line } from "./api/line.js";
+import { Polyline } from "./api/polyline.js";
+import { Quadratic } from "./api/quadratic.js";
+import { __copyAttribs } from "./internal/copy.js";
+import { __dispatch } from "./internal/dispatch.js";
+import { __pointArraysAsShapes } from "./internal/points-as-shape.js";
+import { __splitLine } from "./internal/split.js";
 
 /**
  * Similar to {@link splitAt}, but instead of taking a normalized parametric

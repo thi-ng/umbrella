@@ -1,4 +1,4 @@
-import type { RuleFn } from "./api";
+import type { RuleFn } from "./api.js";
 
 export function at_namespace(url: string): RuleFn;
 export function at_namespace(prefix: string, url: string): RuleFn;

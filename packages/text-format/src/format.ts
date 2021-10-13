@@ -1,4 +1,4 @@
-import { FormatPresets, PresetID, PRESETS_TPL, StringFormat } from "./api";
+import { FormatPresets, PresetID, PRESETS_TPL, StringFormat } from "./api.js";
 
 /**
  * HOF format function. Returns a single-arg function which wraps a given value

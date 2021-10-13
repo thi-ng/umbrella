@@ -7,9 +7,9 @@ import type {
     StackFn,
     StackProc,
     StackProgram,
-} from "./api";
-import { $ } from "./safe";
-import { tos } from "./stack";
+} from "./api.js";
+import { $ } from "./safe.js";
+import { tos } from "./stack.js";
 
 export const $stackFn = (f: StackProc) => (isArray(f) ? defWord(f) : f);
 

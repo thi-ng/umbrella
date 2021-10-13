@@ -1,3 +1,3 @@
-export * from "./api";
-export * from "./porter-duff";
-export * from "./premultiply";
+export * from "./api.js";
+export * from "./porter-duff.js";
+export * from "./premultiply.js";

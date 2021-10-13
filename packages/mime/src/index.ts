@@ -1,5 +1,5 @@
 import type { IObjectOf } from "@thi.ng/api";
-import { DB } from "./generated";
+import { DB } from "./generated.js";
 
 // https://www.iana.org/assignments/media-types/
 

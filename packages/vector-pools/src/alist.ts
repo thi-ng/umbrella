@@ -1,7 +1,7 @@
 import type { NumericArray } from "@thi.ng/api";
 import type { StridedVec, Vec } from "@thi.ng/vectors";
-import type { VecFactory } from "./api";
-import { wrap } from "./wrap";
+import type { VecFactory } from "./api.js";
+import { wrap } from "./wrap.js";
 
 export abstract class AVecList<T extends StridedVec> {
     buffer: NumericArray;

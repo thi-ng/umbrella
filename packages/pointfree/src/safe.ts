@@ -1,7 +1,7 @@
 import type { Fn2 } from "@thi.ng/api";
 import { NO_OP } from "@thi.ng/api/api";
 import { illegalState } from "@thi.ng/errors/illegal-state";
-import type { Stack } from "./api";
+import type { Stack } from "./api.js";
 
 // ensure stack size
 export let $: Fn2<Stack, number, void>;

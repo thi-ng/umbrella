@@ -1,5 +1,5 @@
-import { fattribs, fpoints } from "./format";
-import type { Vec2Like } from "./api";
+import { fattribs, fpoints } from "./format.js";
+import type { Vec2Like } from "./api.js";
 
 export const polygon = (
     pts: Vec2Like[],

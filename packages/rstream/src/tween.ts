@@ -3,10 +3,10 @@ import { isNumber } from "@thi.ng/checks/is-number";
 import { dedupe } from "@thi.ng/transducers/dedupe";
 import { reducer } from "@thi.ng/transducers/reduce";
 import { scan } from "@thi.ng/transducers/scan";
-import { CloseMode, ISubscribable } from "./api";
-import { fromInterval } from "./interval";
-import { fromRAF } from "./raf";
-import { sync } from "./sync";
+import { CloseMode, ISubscribable } from "./api.js";
+import { fromInterval } from "./interval.js";
+import { fromRAF } from "./raf.js";
+import { sync } from "./sync.js";
 
 /**
  * Takes an existing stream/subscription `src` and attaches new

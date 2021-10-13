@@ -11,7 +11,7 @@ import {
     RouteMatch,
     RouteParamValidator,
     RouterConfig,
-} from "./api";
+} from "./api.js";
 
 @INotifyMixin
 export class BasicRouter implements INotify {

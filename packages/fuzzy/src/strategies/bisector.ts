@@ -1,6 +1,6 @@
 import { fit } from "@thi.ng/math/fit";
-import type { DefuzzStrategy, DefuzzStrategyOpts } from "../api";
-import { defaultOpts } from "./opts";
+import type { DefuzzStrategy, DefuzzStrategyOpts } from "../api.js";
+import { defaultOpts } from "./opts.js";
 
 /**
  * Higher-order function: Bisector-of-Area defuzzification strategy. Returns

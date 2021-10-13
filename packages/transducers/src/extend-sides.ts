@@ -1,5 +1,5 @@
 import { SEMAPHORE } from "@thi.ng/api/api";
-import { repeat } from "./repeat";
+import { repeat } from "./repeat.js";
 
 /**
  * Yields iterator of given iterable which repeats the first and/or last

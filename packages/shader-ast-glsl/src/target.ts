@@ -15,7 +15,7 @@ import { isMat, isVec } from "@thi.ng/shader-ast/ast/checks";
 import { itemType } from "@thi.ng/shader-ast/ast/item";
 import { sym } from "@thi.ng/shader-ast/ast/sym";
 import { defTarget } from "@thi.ng/shader-ast/target";
-import { GLSLOpts, GLSLTarget, GLSLVersion } from "./api";
+import { GLSLOpts, GLSLTarget, GLSLVersion } from "./api.js";
 
 const RE_SEMI = /[};]$/;
 

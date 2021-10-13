@@ -10,7 +10,7 @@ import { invert2 } from "@thi.ng/vectors/invert";
 import { madd2 } from "@thi.ng/vectors/madd";
 import { mul2 } from "@thi.ng/vectors/mul";
 import type { GLVec4, ModelSpec } from "@thi.ng/webgl";
-import type { MSDFFont, TextAlign, TextOpts } from "./api";
+import type { MSDFFont, TextAlign, TextOpts } from "./api.js";
 
 export const text = (
     glyphs: MSDFFont,

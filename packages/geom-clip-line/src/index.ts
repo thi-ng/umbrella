@@ -1,2 +1,2 @@
-export * from "./clip-poly";
-export * from "./liang-barsky";
+export * from "./clip-poly.js";
+export * from "./liang-barsky.js";

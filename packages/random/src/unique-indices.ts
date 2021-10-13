@@ -1,7 +1,7 @@
 import type { Fn0 } from "@thi.ng/api";
 import { assert } from "@thi.ng/errors/assert";
-import type { IRandom } from "./api";
-import { SYSTEM } from "./system";
+import type { IRandom } from "./api.js";
+import { SYSTEM } from "./system.js";
 
 /**
  * Attempts to draw `k` unique values from given zero-arg function `fn`

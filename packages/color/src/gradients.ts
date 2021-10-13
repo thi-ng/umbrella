@@ -1,9 +1,9 @@
 import type { NumericArray } from "@thi.ng/api";
 import { tween } from "@thi.ng/transducers/tween";
 import { setS4 } from "@thi.ng/vectors/sets";
-import type { TypedColor } from "./api";
-import type { GradientOpts } from "./api/gradients";
-import { mix as $mix } from "./mix";
+import type { TypedColor } from "./api.js";
+import type { GradientOpts } from "./api/gradients.js";
+import { mix as $mix } from "./mix.js";
 
 /**
  * Similar to {@link multiCosineGradient}, but using any number of gradient

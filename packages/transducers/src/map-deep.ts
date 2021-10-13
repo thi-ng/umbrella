@@ -1,8 +1,8 @@
 import { isIterable } from "@thi.ng/checks/is-iterable";
-import type { Transducer, TransformSpec } from "./api";
-import { deepTransform } from "./deep-transform";
-import { iterator1 } from "./iterator";
-import { map } from "./map";
+import type { Transducer, TransformSpec } from "./api.js";
+import { deepTransform } from "./deep-transform.js";
+import { iterator1 } from "./iterator.js";
+import { map } from "./map.js";
 
 /**
  * Transducer. Same as `map(deepTransform(spec))`

@@ -1,8 +1,8 @@
-import type { VecOpVVN } from "./api";
-import { dot } from "./dot";
-import { maddN } from "./maddn";
-import { mulN } from "./muln";
-import { zero } from "./setn";
+import type { VecOpVVN } from "./api.js";
+import { dot } from "./dot.js";
+import { maddN } from "./maddn.js";
+import { mulN } from "./muln.js";
+import { zero } from "./setn.js";
 
 export const refract: VecOpVVN = (out, a, n, eta) => {
     !out && (out = a);

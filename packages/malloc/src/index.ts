@@ -1,3 +1,3 @@
-export * from "./api";
-export * from "./native";
-export * from "./pool";
+export * from "./api.js";
+export * from "./native.js";
+export * from "./pool.js";

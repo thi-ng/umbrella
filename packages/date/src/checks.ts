@@ -1,7 +1,7 @@
 import { implementsFunction } from "@thi.ng/checks/implements-function";
 import { isNumber } from "@thi.ng/checks/is-number";
 import { isString } from "@thi.ng/checks/is-string";
-import type { MaybeDate } from "./api";
+import type { MaybeDate } from "./api.js";
 
 /**
  * Coerces `x` to a native JS `Date` instance.

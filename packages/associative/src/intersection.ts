@@ -1,7 +1,7 @@
 import type { Reducer } from "@thi.ng/transducers";
-import { empty } from "./empty";
-import { __combineSet } from "./internal/combine";
-import { into } from "./into";
+import { empty } from "./empty.js";
+import { __combineSet } from "./internal/combine.js";
+import { into } from "./into.js";
 
 /**
  * Computes the intersection of sets `a` and `b` and writes results into

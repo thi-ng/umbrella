@@ -1,4 +1,4 @@
-import type { Task, IScheduler } from "./api";
+import type { Task, IScheduler } from "./api.js";
 
 /**
  * {@link IScheduler} implementation which queues component updates (or other

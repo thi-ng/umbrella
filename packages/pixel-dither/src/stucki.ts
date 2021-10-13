@@ -1,4 +1,4 @@
-import type { DitherKernel } from "./api";
+import type { DitherKernel } from "./api.js";
 
 const A = 64 / 42;
 const B = 2 * A;

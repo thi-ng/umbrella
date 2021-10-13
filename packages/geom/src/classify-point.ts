@@ -9,10 +9,10 @@ import { sign } from "@thi.ng/math/abs";
 import { EPS } from "@thi.ng/math/api";
 import type { ReadonlyVec } from "@thi.ng/vectors";
 import { dot } from "@thi.ng/vectors/dot";
-import type { Circle } from "./api/circle";
-import type { Plane } from "./api/plane";
-import type { Triangle } from "./api/triangle";
-import { __dispatch } from "./internal/dispatch";
+import type { Circle } from "./api/circle.js";
+import type { Plane } from "./api/plane.js";
+import type { Triangle } from "./api/triangle.js";
+import { __dispatch } from "./internal/dispatch.js";
 
 export const classifyPoint: MultiFn2O<IShape, ReadonlyVec, number, number> =
     defmulti<any, ReadonlyVec, number | undefined, number>(

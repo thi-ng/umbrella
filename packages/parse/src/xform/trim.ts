@@ -1,5 +1,5 @@
-import type { Parser, ScopeTransform } from "../api";
-import { xform } from "../combinators/xform";
+import type { Parser, ScopeTransform } from "../api.js";
+import { xform } from "../combinators/xform.js";
 
 /**
  * Uses `String.trim()` to remove leading and trailing white space and

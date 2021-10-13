@@ -4,12 +4,12 @@ import { rect } from "@thi.ng/geom/rect";
 import type { IGridLayout, LayoutBox } from "@thi.ng/layout";
 import { ZERO2 } from "@thi.ng/vectors/api";
 import { hash } from "@thi.ng/vectors/hash";
-import type { GUITheme, Hash } from "../api";
-import { handleButtonKeys, hoverButton } from "../behaviors/button";
-import type { IMGUI } from "../gui";
-import { labelHash } from "../hash";
-import { layoutBox } from "../layout";
-import { textLabelRaw, textTransformH, textTransformV } from "./textlabel";
+import type { GUITheme, Hash } from "../api.js";
+import { handleButtonKeys, hoverButton } from "../behaviors/button.js";
+import type { IMGUI } from "../gui.js";
+import { labelHash } from "../hash.js";
+import { layoutBox } from "../layout.js";
+import { textLabelRaw, textTransformH, textTransformV } from "./textlabel.js";
 
 const mkLabel = (
     gui: IMGUI,

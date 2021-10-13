@@ -18,9 +18,9 @@ import {
     ExtensionBehaviors,
     ExtensionName,
     GL_EXT_INFO,
-} from "./api/ext";
-import type { GLSL } from "./api/glsl";
-import type { ModelAttributeSpecs, ModelSpec } from "./api/model";
+} from "./api/ext.js";
+import type { GLSL } from "./api/glsl.js";
+import type { ModelAttributeSpecs, ModelSpec } from "./api/model.js";
 import {
     DEFAULT_OUTPUT,
     DefShaderOpts,
@@ -40,13 +40,13 @@ import {
     ShaderVaryingSpec,
     UniformValue,
     UniformValues,
-} from "./api/shader";
-import { getExtensions } from "./canvas";
-import { isGL2Context } from "./checks";
-import { error } from "./error";
-import { LOGGER } from "./logger";
-import { GLSL_HEADER, NO_PREFIXES, SYNTAX } from "./syntax";
-import { UNIFORM_SETTERS } from "./uniforms";
+} from "./api/shader.js";
+import { getExtensions } from "./canvas.js";
+import { isGL2Context } from "./checks.js";
+import { error } from "./error.js";
+import { LOGGER } from "./logger.js";
+import { GLSL_HEADER, NO_PREFIXES, SYNTAX } from "./syntax.js";
+import { UNIFORM_SETTERS } from "./uniforms.js";
 
 const ERROR_REGEXP = /ERROR: \d+:(\d+): (.*)/;
 

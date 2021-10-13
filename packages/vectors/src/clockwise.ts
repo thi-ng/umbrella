@@ -1,7 +1,7 @@
 import { sign } from "@thi.ng/math/abs";
 import { EPS } from "@thi.ng/math/api";
-import type { ReadonlyVec } from "./api";
-import { signedArea2 } from "./signed-area";
+import type { ReadonlyVec } from "./api.js";
+import { signedArea2 } from "./signed-area.js";
 
 /**
  * Syntax sugar for `sign(signedArea2(a, b, c))`.

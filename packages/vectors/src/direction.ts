@@ -1,6 +1,6 @@
-import type { ReadonlyVec, Vec } from "./api";
-import { normalize } from "./normalize";
-import { sub } from "./sub";
+import type { ReadonlyVec, Vec } from "./api.js";
+import { normalize } from "./normalize.js";
+import { sub } from "./sub.js";
 
 /**
  * Computes direction vector `a` -> `b`, normalized to length `n`

@@ -1,12 +1,12 @@
 import type { Fn2 } from "@thi.ng/api";
 import { isIterable } from "@thi.ng/checks/is-iterable";
-import type { Transducer } from "./api";
-import { comp } from "./comp";
-import { iterator } from "./iterator";
-import { map } from "./map";
-import { mapcat } from "./mapcat";
-import { normRange } from "./norm-range";
-import { partition } from "./partition";
+import type { Transducer } from "./api.js";
+import { comp } from "./comp.js";
+import { iterator } from "./iterator.js";
+import { map } from "./map.js";
+import { mapcat } from "./mapcat.js";
+import { normRange } from "./norm-range.js";
+import { partition } from "./partition.js";
 
 /**
  * Higher order interpolation transducer. The resulting transducer forms

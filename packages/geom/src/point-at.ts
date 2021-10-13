@@ -12,17 +12,17 @@ import { mixCubic } from "@thi.ng/vectors/mix-cubic";
 import { mixQuadratic } from "@thi.ng/vectors/mix-quadratic";
 import { mixN2 } from "@thi.ng/vectors/mixn";
 import { pointOnRay2, pointOnRay3 } from "@thi.ng/vectors/point-on-ray";
-import type { Arc } from "./api/arc";
-import type { Circle } from "./api/circle";
-import type { Cubic } from "./api/cubic";
-import type { Ellipse } from "./api/ellipse";
-import type { Line } from "./api/line";
-import type { Polygon } from "./api/polygon";
-import type { Quadratic } from "./api/quadratic";
-import type { Ray } from "./api/ray";
-import type { Rect } from "./api/rect";
-import { __dispatch } from "./internal/dispatch";
-import { vertices } from "./vertices";
+import type { Arc } from "./api/arc.js";
+import type { Circle } from "./api/circle.js";
+import type { Cubic } from "./api/cubic.js";
+import type { Ellipse } from "./api/ellipse.js";
+import type { Line } from "./api/line.js";
+import type { Polygon } from "./api/polygon.js";
+import type { Quadratic } from "./api/quadratic.js";
+import type { Ray } from "./api/ray.js";
+import type { Rect } from "./api/rect.js";
+import { __dispatch } from "./internal/dispatch.js";
+import { vertices } from "./vertices.js";
 
 export const pointAt: MultiFn2<IShape, number, Vec | undefined> = defmulti<
     any,

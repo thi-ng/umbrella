@@ -1,5 +1,5 @@
 import type { Select4 } from "@thi.ng/api";
-import type { Swizzle, Term } from "../api/nodes";
+import type { Swizzle, Term } from "../api/nodes.js";
 import type {
     Swizzle2,
     Swizzle2_1,
@@ -13,7 +13,7 @@ import type {
     Swizzle4_1,
     Swizzle4_2,
     Swizzle4_3,
-} from "../api/swizzles";
+} from "../api/swizzles.js";
 import type {
     BVec2Term,
     BVec3Term,
@@ -27,8 +27,8 @@ import type {
     Vec2Term,
     Vec3Term,
     Vec4Term,
-} from "../api/terms";
-import type { BVec, IVec, Type, UVec, Vec } from "../api/types";
+} from "../api/terms.js";
+import type { BVec, IVec, Type, UVec, Vec } from "../api/types.js";
 
 // prettier-ignore
 export function $<T extends Swizzle2>(a: Vec2Term, id: T): Swizzle<Select4<T, Swizzle2_1, Swizzle2_2, Swizzle2_3, "float", "vec2", "vec3", "vec4">>;

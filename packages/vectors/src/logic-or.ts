@@ -1,6 +1,11 @@
-import type { BVecOpVN, BVecOpVV, MultiBVecOpVN, MultiBVecOpVV } from "./api";
-import { defOp } from "./compile/emit";
-import { ARGS_VN, MATH, MATH_N } from "./compile/templates";
+import type {
+    BVecOpVN,
+    BVecOpVV,
+    MultiBVecOpVN,
+    MultiBVecOpVV,
+} from "./api.js";
+import { defOp } from "./compile/emit.js";
+import { ARGS_VN, MATH, MATH_N } from "./compile/templates.js";
 
 export const [logicOr, logicOr2, logicOr3, logicOr4] = defOp<
     MultiBVecOpVV,

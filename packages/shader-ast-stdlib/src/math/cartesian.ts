@@ -4,7 +4,7 @@ import { vec3 } from "@thi.ng/shader-ast/ast/lit";
 import { mul } from "@thi.ng/shader-ast/ast/ops";
 import { $x, $y, $z } from "@thi.ng/shader-ast/ast/swizzle";
 import { sym } from "@thi.ng/shader-ast/ast/sym";
-import { cossin } from "./sincos";
+import { cossin } from "./sincos.js";
 
 /**
  * Converts 2D polar vector `v`, i.e. `[r,θ]` (angle in radians) to

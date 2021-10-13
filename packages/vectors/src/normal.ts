@@ -1,6 +1,6 @@
-import type { ReadonlyVec, Vec } from "./api";
-import { direction } from "./direction";
-import { perpendicularCCW, perpendicularCW } from "./perpendicular";
+import type { ReadonlyVec, Vec } from "./api.js";
+import { direction } from "./direction.js";
+import { perpendicularCCW, perpendicularCW } from "./perpendicular.js";
 
 /**
  * Computes 2D normal by rotating direction vector `a` -> `b`, 90 deg

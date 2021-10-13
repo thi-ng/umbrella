@@ -4,7 +4,7 @@ import { assert } from "@thi.ng/errors/assert";
 import type { IRandom } from "@thi.ng/random";
 import { randomBytes, randomBytesFrom } from "@thi.ng/random/random-bytes";
 import { padLeft } from "@thi.ng/strings/pad-left";
-import type { IKSUID, KSUIDOpts } from "./api";
+import type { IKSUID, KSUIDOpts } from "./api.js";
 
 /**
  * Abstract base class for both 32 & 64bit implementations. See {@link KSUID}

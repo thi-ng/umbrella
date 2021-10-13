@@ -1,4 +1,4 @@
-import { floatToUintBits, floatToUintBits64 } from "./float";
+import { floatToUintBits, floatToUintBits64 } from "./float.js";
 
 export const bytes16 = (x: number, le = false) => {
     const b0 = x & 0xff;

@@ -1,5 +1,5 @@
-import type { StackContext } from "./api";
-import { $n, $ } from "./safe";
+import type { StackContext } from "./api.js";
+import { $n, $ } from "./safe.js";
 
 /**
  * Takes a string and stringified regexp (w/o flags), returns true if

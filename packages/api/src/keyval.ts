@@ -1,4 +1,4 @@
-import type { Head, Tail } from "./tuple";
+import type { Head, Tail } from "./tuple.js";
 
 /**
  * Extracts from A all keys which have values assignable to type B.
@@ -11,11 +11,9 @@ export type NumericKeys<T> = TypedKeys<T, number>;
 
 export type StringKeys<T> = TypedKeys<T, string>;
 
-export type DeepPartial<T> = Partial<
-    {
-        [k in keyof T]: DeepPartial<T[k]>;
-    }
->;
+export type DeepPartial<T> = Partial<{
+    [k in keyof T]: DeepPartial<T[k]>;
+}>;
 
 /*
  * Utilities for extracting key types of nested objects.
@@ -188,8 +186,7 @@ export type Without<T, A extends Keys<T>> = Omit<T, A>;
 export type Without2<T, A extends Keys<T>, B extends Keys1<T, A>> = Without<
     T,
     A
-> &
-    { [id in A]: Without<Val1<T, A>, B> };
+> & { [id in A]: Without<Val1<T, A>, B> };
 export type Without3<
     T,
     A extends Keys<T>,
@@ -274,8 +271,7 @@ export type Replace<T, A extends Keys<T>, V> = Without<T, A> & { [id in A]: V };
 export type Replace2<T, A extends Keys<T>, B extends Keys1<T, A>, V> = Without<
     T,
     A
-> &
-    { [id in A]: Replace<Val1<T, A>, B, V> };
+> & { [id in A]: Replace<Val1<T, A>, B, V> };
 export type Replace3<
     T,
     A extends Keys<T>,

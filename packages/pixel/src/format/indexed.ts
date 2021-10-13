@@ -2,8 +2,8 @@ import type { NumericArray } from "@thi.ng/api";
 import { swapLane13 } from "@thi.ng/binary/swizzle";
 import { argminN } from "@thi.ng/distance/argmin";
 import { assert } from "@thi.ng/errors/assert";
-import { Lane } from "../api";
-import { defPackedFormat } from "./packed-format";
+import { Lane } from "../api.js";
+import { defPackedFormat } from "./packed-format.js";
 
 /**
  * Creates an indexed color {@link PackedFormat} using the provided palette (in

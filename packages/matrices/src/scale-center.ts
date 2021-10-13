@@ -1,9 +1,9 @@
 import type { ReadonlyVec } from "@thi.ng/vectors";
 import { neg } from "@thi.ng/vectors/neg";
-import type { Mat } from "./api";
-import { concat } from "./concat";
-import { scale23, scale44 } from "./scale";
-import { translation23, translation44 } from "./translation";
+import type { Mat } from "./api.js";
+import { concat } from "./concat.js";
+import { scale23, scale44 } from "./scale.js";
+import { translation23, translation44 } from "./translation.js";
 
 /**
  * Computes a 2x3 matrix representing a scale operation with origin `p`

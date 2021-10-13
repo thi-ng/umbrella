@@ -10,7 +10,7 @@ import { add } from "@thi.ng/vectors/add";
 import { median } from "@thi.ng/vectors/median";
 import { mulN } from "@thi.ng/vectors/muln";
 import { zeroes } from "@thi.ng/vectors/setn";
-import type { CentroidStrategy, Cluster, KMeansOpts } from "./api";
+import type { CentroidStrategy, Cluster, KMeansOpts } from "./api.js";
 
 /**
  * Takes an array of n-dimensional `samples` and attempts to assign them to up

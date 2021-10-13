@@ -1,8 +1,8 @@
 import type { Reducer } from "@thi.ng/transducers";
-import { copy } from "./copy";
-import { empty } from "./empty";
-import { __combineSet } from "./internal/combine";
-import { into } from "./into";
+import { copy } from "./copy.js";
+import { empty } from "./empty.js";
+import { __combineSet } from "./internal/combine.js";
+import { into } from "./into.js";
 
 /**
  * Computes the difference of sets `a - b` and writes results to new set

@@ -1,7 +1,7 @@
 import type { Fn2 } from "@thi.ng/api";
 import type { KMeansOpts } from "@thi.ng/k-means";
 import { kmeans } from "@thi.ng/k-means/kmeans";
-import type { FloatBuffer } from "./float";
+import type { FloatBuffer } from "./float.js";
 
 export interface DominantColorOpts extends KMeansOpts {
     /**

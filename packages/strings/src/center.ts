@@ -1,7 +1,7 @@
 import { memoizeJ } from "@thi.ng/memoize/memoizej";
-import type { Stringer } from "./api";
-import { repeat } from "./repeat";
-import { truncate } from "./truncate";
+import type { Stringer } from "./api.js";
+import { repeat } from "./repeat.js";
+import { truncate } from "./truncate.js";
 
 /**
  * Returns stringer which pads given input with `ch` (default: space) on

@@ -6,7 +6,7 @@ import { max } from "@thi.ng/transducers/max";
 import { min } from "@thi.ng/transducers/min";
 import { minMax } from "@thi.ng/transducers/min-max";
 import { transduce } from "@thi.ng/transducers/transduce";
-import type { DomainValueFn } from "./api";
+import type { DomainValueFn } from "./api.js";
 
 export const uniformDomain = (src: Iterable<number>): DomainValueFn => {
     const vals = ensureArray(src);

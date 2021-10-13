@@ -4,7 +4,7 @@ import { wrapSides } from "@thi.ng/transducers/wrap-sides";
 import type { ReadonlyVec } from "@thi.ng/vectors";
 import { addmN } from "@thi.ng/vectors/addmn";
 import { mixN } from "@thi.ng/vectors/mixn";
-import { kernel3 } from "./kernels";
+import { kernel3 } from "./kernels.js";
 
 const MIDP = ([a, b]: ReadonlyVec[]) => [a, addmN([], a, b, 0.5)];
 const THIRDS = ([a, b]: ReadonlyVec[]) => [

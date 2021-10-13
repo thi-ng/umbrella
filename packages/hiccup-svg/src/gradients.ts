@@ -1,7 +1,8 @@
-import { fattribs, fcolor, ff } from "./format";
-import type { GradientStop, Vec2Like } from "./api";
+import { fattribs, fcolor, ff } from "./format.js";
+import type { GradientStop, Vec2Like } from "./api.js";
 
-const RE_ALPHA_COLOR = /(rgb|hsl)a\(([a-z0-9.-]+),([0-9.%]+),([0-9.%]+),([0-9.]+)\)/;
+const RE_ALPHA_COLOR =
+    /(rgb|hsl)a\(([a-z0-9.-]+),([0-9.%]+),([0-9.%]+),([0-9.]+)\)/;
 
 const gradient = (type: string, attribs: any, stops: GradientStop[]): any[] => [
     type,

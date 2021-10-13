@@ -2,7 +2,7 @@ import type { TypedArray } from "@thi.ng/api";
 import { assert } from "@thi.ng/errors/assert";
 import type { IRandom } from "@thi.ng/random";
 import { SYSTEM } from "@thi.ng/random/system";
-import type { AnyArray } from "./api";
+import type { AnyArray } from "./api.js";
 
 /**
  * Shuffles the items in the given index range of array `buf` using

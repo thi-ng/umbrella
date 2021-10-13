@@ -1,5 +1,5 @@
-import type { IRenderBuffer, RboOpts } from "./api/buffers";
-import { error } from "./error";
+import type { IRenderBuffer, RboOpts } from "./api/buffers.js";
+import { error } from "./error.js";
 
 export class RBO implements IRenderBuffer {
     gl: WebGLRenderingContext;

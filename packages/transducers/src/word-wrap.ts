@@ -1,6 +1,6 @@
-import type { Transducer } from "./api";
-import { __iter, iterator } from "./iterator";
-import { partitionBy } from "./partition-by";
+import type { Transducer } from "./api.js";
+import { __iter, iterator } from "./iterator.js";
+import { partitionBy } from "./partition-by.js";
 
 export interface WordWrapOpts {
     delim: number;

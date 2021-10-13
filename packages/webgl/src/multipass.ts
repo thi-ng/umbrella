@@ -10,23 +10,23 @@ import { map } from "@thi.ng/transducers/map";
 import { range } from "@thi.ng/transducers/range";
 import { some } from "@thi.ng/transducers/some";
 import { transduce } from "@thi.ng/transducers/transduce";
-import type { ExtensionBehaviors } from "./api/ext";
-import type { Multipass, MultipassOpts, PassOpts } from "./api/multipass";
+import type { ExtensionBehaviors } from "./api/ext.js";
+import type { Multipass, MultipassOpts, PassOpts } from "./api/multipass.js";
 import type {
     ShaderOutputSpec,
     ShaderSpec,
     ShaderUniformSpecs,
     UniformDecl,
-} from "./api/shader";
-import type { ITexture } from "./api/texture";
-import { compileModel } from "./buffer";
-import { isFloatTexture, isGL2Context } from "./checks";
-import { draw } from "./draw";
-import { defFBO } from "./fbo";
-import { defQuadModel } from "./geo/quad";
-import { defShader } from "./shader";
-import { PASSTHROUGH_VS } from "./shaders/pipeline";
-import { defTexture } from "./texture";
+} from "./api/shader.js";
+import type { ITexture } from "./api/texture.js";
+import { compileModel } from "./buffer.js";
+import { isFloatTexture, isGL2Context } from "./checks.js";
+import { draw } from "./draw.js";
+import { defFBO } from "./fbo.js";
+import { defQuadModel } from "./geo/quad.js";
+import { defShader } from "./shader.js";
+import { PASSTHROUGH_VS } from "./shaders/pipeline.js";
+import { defTexture } from "./texture.js";
 
 export const defMultiPass = (opts: MultipassOpts) => {
     const gl = opts.gl;

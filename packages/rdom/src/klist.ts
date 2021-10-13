@@ -1,10 +1,10 @@
 import type { Fn, Fn2, NumOrString } from "@thi.ng/api";
 import type { ISubscribable } from "@thi.ng/rstream";
-import type { IComponent, IMountWithState, NumOrElement } from "./api";
-import { $compile } from "./compile";
-import { Component } from "./component";
-import { $moveTo } from "./dom";
-import { $sub } from "./sub";
+import type { IComponent, IMountWithState, NumOrElement } from "./api.js";
+import { $compile } from "./compile.js";
+import { Component } from "./component.js";
+import { $moveTo } from "./dom.js";
+import { $sub } from "./sub.js";
 
 interface KListItem {
     k: NumOrString;

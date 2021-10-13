@@ -10,8 +10,8 @@ import { diagonalEnds2d } from "@thi.ng/grid-iterators/diagonal-ends";
 import { rowEnds2d } from "@thi.ng/grid-iterators/row-ends";
 import { partition } from "@thi.ng/transducers/partition";
 import { div2 } from "@thi.ng/vectors/div";
-import { DEFAULT_LINE, FillFn, HatchOpts } from "./api";
-import { defLine } from "./line";
+import { DEFAULT_LINE, FillFn, HatchOpts } from "./api.js";
+import { defLine } from "./line.js";
 
 const HATCH_DIRS = {
     d: diagonalEnds2d,

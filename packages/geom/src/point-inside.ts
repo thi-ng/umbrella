@@ -11,14 +11,14 @@ import {
 } from "@thi.ng/geom-isec/point";
 import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
 import { isInArray } from "@thi.ng/vectors/eqdelta";
-import type { AABB } from "./api/aabb";
-import type { Circle } from "./api/circle";
-import type { Line } from "./api/line";
-import type { Points } from "./api/points";
-import type { Polygon } from "./api/polygon";
-import type { Rect } from "./api/rect";
-import type { Triangle } from "./api/triangle";
-import { __dispatch } from "./internal/dispatch";
+import type { AABB } from "./api/aabb.js";
+import type { Circle } from "./api/circle.js";
+import type { Line } from "./api/line.js";
+import type { Points } from "./api/points.js";
+import type { Polygon } from "./api/polygon.js";
+import type { Rect } from "./api/rect.js";
+import type { Triangle } from "./api/triangle.js";
+import { __dispatch } from "./internal/dispatch.js";
 
 export const pointInside: MultiFn2<IShape, ReadonlyVec, boolean> = defmulti<
     any,

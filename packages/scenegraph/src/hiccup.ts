@@ -1,7 +1,7 @@
 import type { IToHiccup } from "@thi.ng/api";
 import { deref } from "@thi.ng/api/deref";
 import { isFunction } from "@thi.ng/checks/is-function";
-import type { ANode } from "./anode";
+import type { ANode } from "./anode.js";
 
 /**
  * `IToHiccup` implementation Node2D/3D

@@ -1,5 +1,5 @@
-import type { IGen } from "./api";
-import { __take } from "./internal/take";
+import type { IGen } from "./api.js";
+import { __take } from "./internal/take.js";
 
 /**
  * Wraps given ES6 iterable to provide full {@link IGen} implementation.

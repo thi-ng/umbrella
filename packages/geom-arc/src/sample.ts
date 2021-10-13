@@ -5,7 +5,7 @@ import { Sampler } from "@thi.ng/geom-resample/sampler";
 import { TAU } from "@thi.ng/math/api";
 import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
 import { cartesian2 } from "@thi.ng/vectors/cartesian";
-import { pointAtTheta } from "./point-at";
+import { pointAtTheta } from "./point-at.js";
 
 export const sample = (
     pos: ReadonlyVec,

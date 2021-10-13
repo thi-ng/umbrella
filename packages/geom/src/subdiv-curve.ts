@@ -2,10 +2,10 @@ import type { MultiFn2O } from "@thi.ng/defmulti";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
 import type { IShape, SubdivKernel } from "@thi.ng/geom-api";
 import { subdivide } from "@thi.ng/geom-subdiv-curve/subdivide";
-import { Polygon } from "./api/polygon";
-import { Polyline } from "./api/polyline";
-import { __copyAttribs } from "./internal/copy";
-import { __dispatch } from "./internal/dispatch";
+import { Polygon } from "./api/polygon.js";
+import { Polyline } from "./api/polyline.js";
+import { __copyAttribs } from "./internal/copy.js";
+import { __dispatch } from "./internal/dispatch.js";
 
 export const subdivCurve: MultiFn2O<IShape, SubdivKernel, number, IShape> =
     defmulti<any, SubdivKernel, number | undefined, IShape>(

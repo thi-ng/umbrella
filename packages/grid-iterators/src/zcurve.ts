@@ -1,6 +1,6 @@
 import { ceilPow2 } from "@thi.ng/binary/pow";
 import { demux2 } from "@thi.ng/morton/mux";
-import { asInt } from "./utils";
+import { asInt } from "./utils.js";
 
 /**
  * Yields 2D grid coordinates in Z-curve (Morton) order. A perfect

@@ -4,10 +4,10 @@ import { map } from "@thi.ng/transducers/map";
 import { mapcat } from "@thi.ng/transducers/mapcat";
 import type { Vec } from "@thi.ng/vectors";
 import { maddN2 } from "@thi.ng/vectors/maddn";
-import type { Cubic } from "./api/cubic";
-import { Path } from "./api/path";
-import { asCubic } from "./as-cubic";
-import { PathBuilder } from "./path-builder";
+import type { Cubic } from "./api/cubic.js";
+import { Path } from "./api/path.js";
+import { asCubic } from "./as-cubic.js";
+import { PathBuilder } from "./path-builder.js";
 
 export const path = (segments: PathSegment[], attribs?: Attribs) =>
     new Path(segments, attribs);

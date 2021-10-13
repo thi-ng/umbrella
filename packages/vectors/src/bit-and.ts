@@ -1,4 +1,4 @@
-import { defBitOp, defBitOpN } from "./compile/emit";
+import { defBitOp, defBitOpN } from "./compile/emit.js";
 
 export const [bitAndI, bitAndI2, bitAndI3, bitAndI4] = defBitOp("&", true);
 

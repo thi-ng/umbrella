@@ -1,1 +1,1 @@
-export * from "./contant-folding";
+export * from "./contant-folding.js";

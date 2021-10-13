@@ -1,11 +1,11 @@
-import { commonKeysObj } from "./common-keys";
-import { empty } from "./empty";
-import { first } from "./first";
-import { indexed } from "./indexed";
-import { invertObj } from "./invert";
-import { mergeObj } from "./merge";
-import { renameKeysObj } from "./rename-keys";
-import { selectKeysObj } from "./select-keys";
+import { commonKeysObj } from "./common-keys.js";
+import { empty } from "./empty.js";
+import { first } from "./first.js";
+import { indexed } from "./indexed.js";
+import { invertObj } from "./invert.js";
+import { mergeObj } from "./merge.js";
+import { renameKeysObj } from "./rename-keys.js";
+import { selectKeysObj } from "./select-keys.js";
 
 /**
  * Computes the natural join between the two sets of relations. Each set

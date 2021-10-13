@@ -1,7 +1,7 @@
 import type { Fn } from "@thi.ng/api";
-import type { Reducer } from "./api";
-import { frequencies } from "./frequencies";
-import { $$reduce } from "./reduce";
+import type { Reducer } from "./api.js";
+import { frequencies } from "./frequencies.js";
+import { $$reduce } from "./reduce.js";
 
 /**
  * Similar to {@link normFrequencies}, but automatically computes normalization

@@ -1,5 +1,5 @@
 import type { Fn } from "@thi.ng/api";
-import type { MapLike } from "./api";
+import type { MapLike } from "./api.js";
 
 /**
  * Optimized memoization for single arg functions. If the function

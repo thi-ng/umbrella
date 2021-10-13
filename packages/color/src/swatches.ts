@@ -1,5 +1,5 @@
 import type { Fn2, IObjectOf } from "@thi.ng/api";
-import type { ReadonlyColor } from "./api";
+import type { ReadonlyColor } from "./api.js";
 
 export const swatches = (
     cols: (ReadonlyColor | string)[],

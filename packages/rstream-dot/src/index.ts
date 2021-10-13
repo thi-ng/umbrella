@@ -4,9 +4,9 @@ import { Stream } from "@thi.ng/rstream/stream";
 import { StreamSync } from "@thi.ng/rstream/sync";
 import { truncate } from "@thi.ng/strings/truncate";
 import { map } from "@thi.ng/transducers/map";
-import type { DotOpts, Node, NodeType, WalkState } from "./api";
+import type { DotOpts, Node, NodeType, WalkState } from "./api.js";
 
-export * from "./api";
+export * from "./api.js";
 
 const getNodeType = (sub: ISubscribable<any>) =>
     sub instanceof Stream

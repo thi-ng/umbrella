@@ -1,7 +1,7 @@
 import { step as _step } from "@thi.ng/math/step";
-import type { MultiVecOpVV, VecOpVV } from "./api";
-import { defHofOp } from "./compile/emit";
-import { DEFAULT_OUT, FN2 } from "./compile/templates";
+import type { MultiVecOpVV, VecOpVV } from "./api.js";
+import { defHofOp } from "./compile/emit.js";
+import { DEFAULT_OUT, FN2 } from "./compile/templates.js";
 
 /**
  * Like GLSL `step()`

@@ -1,4 +1,4 @@
-import type { StrokeStyle } from "./api";
+import type { StrokeStyle } from "./api.js";
 
 export const horizontalOnly = ({ hl, dot }: StrokeStyle): StrokeStyle => ({
     hl: hl,

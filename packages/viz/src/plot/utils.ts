@@ -1,7 +1,7 @@
 import type { Fn } from "@thi.ng/api";
 import { isFunction } from "@thi.ng/checks/is-function";
 import { clamp, inRange } from "@thi.ng/math/interval";
-import type { AxisSpec, DomainValues, PlotFn, VizSpec } from "../api";
+import type { AxisSpec, DomainValues, PlotFn, VizSpec } from "../api.js";
 
 /** @internal */
 export const valueMapper =

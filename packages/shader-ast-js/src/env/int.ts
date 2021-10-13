@@ -1,5 +1,5 @@
 import { clamp } from "@thi.ng/math/interval";
-import type { JSBuiltinsInt } from "../api";
+import type { JSBuiltinsInt } from "../api.js";
 
 export const INT: JSBuiltinsInt<number> = {
     abs: Math.abs,

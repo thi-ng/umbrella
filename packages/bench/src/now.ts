@@ -1,5 +1,5 @@
 import type { Fn0, FnU2 } from "@thi.ng/api";
-import type { Timestamp } from "./api";
+import type { Timestamp } from "./api.js";
 
 /**
  * If available, returns wrapper for `process.hrtime.bigint()` else

@@ -1,5 +1,5 @@
-import type { ReadonlyVec, Vec, VecOpVV, VecOpVVV } from "./api";
-import { setC, setC4, setC6 } from "./setc";
+import type { ReadonlyVec, Vec, VecOpVV, VecOpVVV } from "./api.js";
+import { setC, setC4, setC6 } from "./setc.js";
 
 /**
  * Sets `out` to `[a.x, a.y, b.x, b.y]`

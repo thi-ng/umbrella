@@ -1,5 +1,5 @@
 import { foldback as _foldback } from "@thi.ng/math/interval";
-import { AProc } from "./aproc";
+import { AProc } from "./aproc.js";
 
 /**
  * Recursively folds input into `[-thresh .. +thresh]` interval and

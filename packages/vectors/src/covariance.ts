@@ -1,7 +1,7 @@
-import type { ReadonlyVec } from "./api";
-import { center } from "./center";
-import { mul } from "./mul";
-import { sum } from "./sum";
+import type { ReadonlyVec } from "./api.js";
+import { center } from "./center.js";
+import { mul } from "./mul.js";
+import { sum } from "./sum.js";
 
 /**
  * Computes the covariance coefficient between the two given vectors.

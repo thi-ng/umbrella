@@ -1,5 +1,5 @@
 import type { IReset } from "@thi.ng/api";
-import { AGen } from "./agen";
+import { AGen } from "./agen.js";
 
 /**
  * Numeric version of {@link impulseT}, using given `on` (default: 1) as

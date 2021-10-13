@@ -1,4 +1,4 @@
-import { defBitOp, defBitOpN } from "./compile/emit";
+import { defBitOp, defBitOpN } from "./compile/emit.js";
 
 export const [divI, divI2, divI3, divI4] = defBitOp("/", true);
 

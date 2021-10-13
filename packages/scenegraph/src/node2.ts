@@ -6,9 +6,9 @@ import { mulV23 } from "@thi.ng/matrices/mulv";
 import { transform23 } from "@thi.ng/matrices/transform";
 import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
 import { set2 } from "@thi.ng/vectors/set";
-import { ANode } from "./anode";
-import type { ISceneNode } from "./api";
-import { toHiccup } from "./hiccup";
+import { ANode } from "./anode.js";
+import type { ISceneNode } from "./api.js";
+import { toHiccup } from "./hiccup.js";
 
 export class Node2D
     extends ANode<Node2D>

@@ -9,10 +9,10 @@ import {
     StreamSource,
     TransformableOpts,
     WithErrorHandlerOpts,
-} from "./api";
-import { __optsWithID } from "./idgen";
-import { LOGGER } from "./logger";
-import { Subscription } from "./subscription";
+} from "./api.js";
+import { __optsWithID } from "./idgen.js";
+import { LOGGER } from "./logger.js";
+import { Subscription } from "./subscription.js";
 
 /**
  * Creates a new {@link Stream} instance, optionally with given

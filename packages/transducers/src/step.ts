@@ -1,7 +1,7 @@
-import type { TxLike } from "./api";
-import { ensureTransducer } from "./ensure";
-import { push } from "./push";
-import { isReduced } from "./reduced";
+import type { TxLike } from "./api.js";
+import { ensureTransducer } from "./ensure.js";
+import { push } from "./push.js";
+import { isReduced } from "./reduced.js";
 
 /**
  * Single-step transducer execution wrapper.

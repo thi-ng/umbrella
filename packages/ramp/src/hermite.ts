@@ -8,7 +8,7 @@ import { mapcat } from "@thi.ng/transducers/mapcat";
 import { normRange } from "@thi.ng/transducers/norm-range";
 import { partition } from "@thi.ng/transducers/partition";
 import type { Vec } from "@thi.ng/vectors";
-import { ARamp } from "./aramp";
+import { ARamp } from "./aramp.js";
 
 export const hermite = (stops?: Vec[]) => new HermiteRamp(stops);
 

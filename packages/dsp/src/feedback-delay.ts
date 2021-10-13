@@ -1,5 +1,5 @@
 import { clamp01 } from "@thi.ng/math/interval";
-import { Delay } from "./delay";
+import { Delay } from "./delay.js";
 
 /**
  * Extension of {@link Delay} which adds sum delayed value multiplied

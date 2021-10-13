@@ -1,7 +1,7 @@
 import type { Fn0 } from "@thi.ng/api";
 import { isString } from "@thi.ng/checks/is-string";
-import type { Locale, LocaleSpec, LocaleUnit, Precision } from "./api";
-import { EN_SHORT } from "./i18n/en";
+import type { Locale, LocaleSpec, LocaleUnit, Precision } from "./api.js";
+import { EN_SHORT } from "./i18n/en.js";
 
 const prepLocale = (spec: LocaleSpec): Locale => {
     const locale = <Locale>{

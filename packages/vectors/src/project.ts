@@ -1,7 +1,7 @@
-import type { ReadonlyVec, Vec } from "./api";
-import { dot } from "./dot";
-import { magSq } from "./magsq";
-import { mulN } from "./muln";
+import type { ReadonlyVec, Vec } from "./api.js";
+import { dot } from "./dot.js";
+import { magSq } from "./magsq.js";
+import { mulN } from "./muln.js";
 
 /**
  * Returns vector projection of `v` onto `dir`.

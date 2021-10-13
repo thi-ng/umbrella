@@ -4,7 +4,7 @@ import { align } from "@thi.ng/binary/align";
 import { isNumber } from "@thi.ng/checks/is-number";
 import { assert } from "@thi.ng/errors/assert";
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
-import type { IMemPool, MemPoolOpts, MemPoolStats } from "./api";
+import type { IMemPool, MemPoolOpts, MemPoolStats } from "./api.js";
 
 const STATE_FREE = 0;
 const STATE_USED = 1;

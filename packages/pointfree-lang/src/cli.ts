@@ -5,7 +5,7 @@ import { timedResult } from "@thi.ng/bench";
 import { ConsoleLogger, NULL_LOGGER } from "@thi.ng/logger";
 import { ensureStack, StackContext } from "@thi.ng/pointfree";
 import { readdirSync, readFileSync, writeFileSync } from "fs";
-import { ffi, run, runU } from "./runtime";
+import { ffi, run, runU } from "./runtime.js";
 
 interface CLIOpts {
     debug: boolean;

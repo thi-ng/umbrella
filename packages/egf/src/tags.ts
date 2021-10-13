@@ -5,7 +5,7 @@ import { base64Decode } from "@thi.ng/transducers-binary/base64";
 import { execFileSync } from "child_process";
 import { readFileSync } from "fs";
 import { resolve as resolvePath } from "path";
-import { IS_NODE, NODE_ONLY, TagParser } from "./api";
+import { IS_NODE, NODE_ONLY, TagParser } from "./api.js";
 
 export const BUILTINS: IObjectOf<TagParser> = {
     base64: IS_NODE

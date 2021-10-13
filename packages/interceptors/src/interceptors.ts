@@ -10,7 +10,7 @@ import {
     FX_STATE,
     InterceptorFn,
     InterceptorPredicate,
-} from "./api";
+} from "./api.js";
 
 /**
  * Debug interceptor to log the current event to the console.

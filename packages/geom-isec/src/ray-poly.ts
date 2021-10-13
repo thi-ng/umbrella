@@ -1,8 +1,8 @@
 import { IntersectionResult, IntersectionType } from "@thi.ng/geom-api/isec";
 import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
 import { maddN2 } from "@thi.ng/vectors/maddn";
-import { NONE } from "./api";
-import { intersectRayLine } from "./ray-line";
+import { NONE } from "./api.js";
+import { intersectRayLine } from "./ray-line.js";
 
 const startPoints = (pts: ReadonlyVec[], closed: boolean) =>
     closed ? [pts[pts.length - 1], pts[0]] : [pts[0], pts[1]];

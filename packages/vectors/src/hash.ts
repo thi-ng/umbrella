@@ -1,7 +1,7 @@
 import type { FnN2 } from "@thi.ng/api";
 import { floatToUintBits } from "@thi.ng/binary/float";
 import { rotateLeft } from "@thi.ng/binary/rotate";
-import type { ReadonlyVec } from "./api";
+import type { ReadonlyVec } from "./api.js";
 
 /**
  * Returns an unsigned 32-bit hash code for the given vector.

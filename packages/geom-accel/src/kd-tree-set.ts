@@ -1,14 +1,15 @@
 import type { ICopy, IEmpty, Pair } from "@thi.ng/api";
 import type { IRegionQuery, ISpatialSet } from "@thi.ng/geom-api";
 import type { ReadonlyVec } from "@thi.ng/vectors";
-import { KdTreeMap } from "./kd-tree-map";
+import { KdTreeMap } from "./kd-tree-map.js";
 
 export class KdTreeSet<K extends ReadonlyVec>
     implements
         ICopy<KdTreeSet<K>>,
         IEmpty<KdTreeSet<K>>,
         IRegionQuery<K, K, number>,
-        ISpatialSet<K> {
+        ISpatialSet<K>
+{
     protected tree: KdTreeMap<K, K>;
 
     constructor(dim: number, keys?: Iterable<K>) {

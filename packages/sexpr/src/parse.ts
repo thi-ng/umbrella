@@ -6,8 +6,8 @@ import {
     Root,
     SyntaxOpts,
     Token,
-} from "./api";
-import { tokenize } from "./tokenize";
+} from "./api.js";
+import { tokenize } from "./tokenize.js";
 
 export class ParseError extends Error {
     line: number;

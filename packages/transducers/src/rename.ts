@@ -1,12 +1,12 @@
 import type { IObjectOf } from "@thi.ng/api";
 import { isArray } from "@thi.ng/checks/is-array";
-import type { Reducer, Transducer } from "./api";
-import { comp } from "./comp";
-import { filter } from "./filter";
-import { __iter } from "./iterator";
-import { map } from "./map";
-import { renamer } from "./renamer";
-import { transduce } from "./transduce";
+import type { Reducer, Transducer } from "./api.js";
+import { comp } from "./comp.js";
+import { filter } from "./filter.js";
+import { __iter } from "./iterator.js";
+import { map } from "./map.js";
+import { renamer } from "./renamer.js";
+import { transduce } from "./transduce.js";
 
 export function rename<A, B>(
     kmap: IObjectOf<PropertyKey> | Array<PropertyKey>,

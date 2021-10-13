@@ -23,12 +23,15 @@ import {
     PackedChannel,
     PackedFormat,
     PackedFormatSpec,
-} from "./api";
-import { canvasPixels, imageCanvas } from "./canvas";
-import { ensureChannel, ensureSize } from "./checks";
-import { ABGR8888 } from "./format/abgr8888";
-import { defPackedFormat } from "./format/packed-format";
-import { __compileGrayFromABGR, __compileGrayToABGR } from "./internal/codegen";
+} from "./api.js";
+import { canvasPixels, imageCanvas } from "./canvas.js";
+import { ensureChannel, ensureSize } from "./checks.js";
+import { ABGR8888 } from "./format/abgr8888.js";
+import { defPackedFormat } from "./format/packed-format.js";
+import {
+    __compileGrayFromABGR,
+    __compileGrayToABGR,
+} from "./internal/codegen.js";
 import {
     __clampRegion,
     __prepRegions,
@@ -36,8 +39,8 @@ import {
     __setChannelSame,
     __setChannelUni,
     __transformABGR,
-} from "./internal/utils";
-import { defSampler } from "./sample";
+} from "./internal/utils.js";
+import { defSampler } from "./sample.js";
 
 /**
  * Syntax sugar for {@link PackedBuffer} ctor.

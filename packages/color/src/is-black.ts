@@ -1,7 +1,7 @@
 import { DEFAULT, defmulti } from "@thi.ng/defmulti/defmulti";
-import type { ReadonlyColor, TypedColor } from "./api";
-import { EPS } from "./api/constants";
-import { rgb } from "./rgb/rgb";
+import type { ReadonlyColor, TypedColor } from "./api.js";
+import { EPS } from "./api/constants.js";
+import { rgb } from "./rgb/rgb.js";
 
 const isBlackHsv = (x: ReadonlyColor, eps = EPS) => x[2] <= eps;
 

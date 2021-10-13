@@ -17,15 +17,15 @@ import { closestPointCubic } from "@thi.ng/geom-splines/cubic-closest-point";
 import { closestPointQuadratic } from "@thi.ng/geom-splines/quadratic-closest-point";
 import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
 import { add2, add3 } from "@thi.ng/vectors/add";
-import type { AABB } from "./api/aabb";
-import type { Arc } from "./api/arc";
-import type { Circle } from "./api/circle";
-import type { Cubic } from "./api/cubic";
-import type { Line } from "./api/line";
-import type { Plane } from "./api/plane";
-import type { Quadratic } from "./api/quadratic";
-import type { Rect } from "./api/rect";
-import { __dispatch } from "./internal/dispatch";
+import type { AABB } from "./api/aabb.js";
+import type { Arc } from "./api/arc.js";
+import type { Circle } from "./api/circle.js";
+import type { Cubic } from "./api/cubic.js";
+import type { Line } from "./api/line.js";
+import type { Plane } from "./api/plane.js";
+import type { Quadratic } from "./api/quadratic.js";
+import type { Rect } from "./api/rect.js";
+import { __dispatch } from "./internal/dispatch.js";
 
 export const closestPoint: MultiFn2O<
     IShape,

@@ -1,11 +1,11 @@
 import type { FnN2, FnN3 } from "@thi.ng/api";
-import { decode10, decode16, encode10, encode16 } from "./raw";
+import { decode10, decode16, encode10, encode16 } from "./raw.js";
 import {
     decodeScaled10,
     decodeScaled16,
     encodeScaled10,
     encodeScaled16,
-} from "./scaled";
+} from "./scaled.js";
 
 const MIN = [0, 0, 0];
 const MAX = [1, 1, 1];

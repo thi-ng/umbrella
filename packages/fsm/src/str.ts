@@ -1,5 +1,5 @@
-import { LitCallback, Match, Matcher, RES_PARTIAL } from "./api";
-import { result } from "./result";
+import { LitCallback, Match, Matcher, RES_PARTIAL } from "./api.js";
+import { result } from "./result.js";
 
 /**
  * String-only version of {@link seq}. Returns `Match.FULL` once the

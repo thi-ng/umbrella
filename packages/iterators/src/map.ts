@@ -1,4 +1,4 @@
-import { iterator } from "./iterator";
+import { iterator } from "./iterator.js";
 
 export function* map<T>(fn: (...args: any[]) => T, ...inputs: Iterable<any>[]) {
     let v: IteratorResult<T>;

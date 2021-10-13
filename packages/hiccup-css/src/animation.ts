@@ -1,4 +1,4 @@
-import { at_keyframes } from "./keyframes";
+import { at_keyframes } from "./keyframes.js";
 
 export interface AnimationOpts {
     delay: string;

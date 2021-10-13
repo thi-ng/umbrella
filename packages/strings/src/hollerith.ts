@@ -1,4 +1,4 @@
-import type { Stringer } from "./api";
+import type { Stringer } from "./api.js";
 
 /**
  * Formats given value `x` as Fortran style Hollerith string.

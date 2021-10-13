@@ -1,7 +1,7 @@
 import { assert } from "@thi.ng/errors/assert";
-import type { KernelSpec } from "./api";
-import { convolveImage, LANCZOS } from "./convolve";
-import type { FloatBuffer } from "./float";
+import type { KernelSpec } from "./api.js";
+import { convolveImage, LANCZOS } from "./convolve.js";
+import type { FloatBuffer } from "./float.js";
 
 /**
  * Yields an iterator of progressively downsampled versions of `src` (using

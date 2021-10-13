@@ -1,5 +1,5 @@
 import type { FnN2 } from "@thi.ng/api";
-import { EPS } from "./api";
+import { EPS } from "./api.js";
 
 export const absDiff: FnN2 = (x, y) => Math.abs(x - y);
 

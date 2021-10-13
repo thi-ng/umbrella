@@ -1,9 +1,9 @@
-import type { SortOpts, Transducer } from "./api";
-import { comp } from "./comp";
-import { __sortOpts } from "./internal/sort-opts";
-import { __iter, iterator } from "./iterator";
-import { mapcat } from "./mapcat";
-import { partition } from "./partition";
+import type { SortOpts, Transducer } from "./api.js";
+import { comp } from "./comp.js";
+import { __sortOpts } from "./internal/sort-opts.js";
+import { __iter, iterator } from "./iterator.js";
+import { mapcat } from "./mapcat.js";
+import { partition } from "./partition.js";
 
 /**
  * Transducer. Composition of {@link (partition:1)} and

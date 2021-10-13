@@ -1,6 +1,6 @@
-import type { Reducer, Transducer } from "./api";
-import { __iter, iterator } from "./iterator";
-import { ensureReduced, isReduced, unreduced } from "./reduced";
+import type { Reducer, Transducer } from "./api.js";
+import { __iter, iterator } from "./iterator.js";
+import { ensureReduced, isReduced, unreduced } from "./reduced.js";
 
 /**
  * Transducer which performs "scan" operation via given reducer.

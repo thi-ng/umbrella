@@ -10,12 +10,12 @@ import type {
     KernelSpec,
     PoolKernelSpec,
     PoolTemplate,
-} from "./api";
-import { ensureChannel } from "./checks";
-import { FloatBuffer } from "./float";
-import { FLOAT_GRAY } from "./format/float-gray";
-import { __asIntVec } from "./internal/utils";
-import { range } from "./range";
+} from "./api.js";
+import { ensureChannel } from "./checks.js";
+import { FloatBuffer } from "./float.js";
+import { FLOAT_GRAY } from "./format/float-gray.js";
+import { __asIntVec } from "./internal/utils.js";
+import { range } from "./range.js";
 
 /**
  * Convolves a single channel from given `src` float buffer with provided

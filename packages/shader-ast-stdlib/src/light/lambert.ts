@@ -2,7 +2,7 @@ import type { FloatTerm, Vec3Term } from "@thi.ng/shader-ast";
 import { FLOAT0 } from "@thi.ng/shader-ast/ast/lit";
 import { madd, mul } from "@thi.ng/shader-ast/ast/ops";
 import { dot, max } from "@thi.ng/shader-ast/builtin/math";
-import { fit1101 } from "../math/fit";
+import { fit1101 } from "../math/fit.js";
 
 /**
  * Inline function. Computes Lambert term, i.e. `max(dot(n, l), 0)`.

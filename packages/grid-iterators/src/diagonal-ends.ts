@@ -1,5 +1,5 @@
-import { diagonal2d } from "./diagonal";
-import { asInt } from "./utils";
+import { diagonal2d } from "./diagonal.js";
+import { asInt } from "./utils.js";
 
 /**
  * Filtered version of {@link diagonal2d}, only including end points of

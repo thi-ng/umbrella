@@ -1,5 +1,5 @@
 import type { Range0_31 } from "@thi.ng/api";
-import { clz32 } from "./count";
+import { clz32 } from "./count.js";
 
 /**
  * Converts binary `x` to one-hot format.

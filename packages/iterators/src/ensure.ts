@@ -1,5 +1,5 @@
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
-import { iterator } from "./iterator";
+import { iterator } from "./iterator.js";
 
 export const ensureIterable = (x: any): IterableIterator<any> =>
     !(x != null && x[Symbol.iterator])

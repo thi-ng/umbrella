@@ -1,7 +1,7 @@
 import { ctz32 } from "@thi.ng/binary/count";
 import type { INorm } from "@thi.ng/random";
 import { SYSTEM } from "@thi.ng/random/system";
-import { preseed, sum } from "./utils";
+import { preseed, sum } from "./utils.js";
 
 /**
  * Exponential decay (1/f) noise, based on Voss-McCarthy algorithm.

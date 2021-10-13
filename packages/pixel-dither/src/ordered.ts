@@ -1,7 +1,7 @@
 import { isNumber } from "@thi.ng/checks/is-number";
 import { clamp } from "@thi.ng/math/interval";
 import type { PackedBuffer } from "@thi.ng/pixel/packed";
-import type { BayerMatrix, BayerSize } from "./api";
+import type { BayerMatrix, BayerSize } from "./api.js";
 
 const init = (
     x: number,

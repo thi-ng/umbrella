@@ -1,5 +1,5 @@
 import type { Vec } from "@thi.ng/vectors";
-import type { IShape } from "./shape";
+import type { IShape } from "./shape.js";
 
 export type SegmentType =
     | "m" // move

@@ -1,7 +1,7 @@
 import { EPS } from "@thi.ng/math/api";
 import { clamp01 } from "@thi.ng/math/interval";
-import { Lane } from "../api";
-import { defFloatFormat } from "./float-format";
+import { Lane } from "../api.js";
+import { defFloatFormat } from "./float-format.js";
 
 const abs = Math.abs;
 const min = Math.min;

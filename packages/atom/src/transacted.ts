@@ -18,8 +18,8 @@ import { assert } from "@thi.ng/errors/assert";
 import { illegalState } from "@thi.ng/errors/illegal-state";
 import { setInUnsafe } from "@thi.ng/paths/set-in";
 import { updateInUnsafe } from "@thi.ng/paths/update-in";
-import type { IAtom, SwapFn } from "./api";
-import { nextID } from "./idgen";
+import type { IAtom, SwapFn } from "./api.js";
+import { nextID } from "./idgen.js";
 
 /**
  * Return a new {@link Transacted} state wrapper.

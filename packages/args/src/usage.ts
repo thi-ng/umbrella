@@ -5,7 +5,13 @@ import { padRight } from "@thi.ng/strings/pad-right";
 import { repeat } from "@thi.ng/strings/repeat";
 import { stringify } from "@thi.ng/strings/stringify";
 import { SPLIT_ANSI, wordWrapLines } from "@thi.ng/strings/word-wrap";
-import { Args, ArgSpecExt, ColorTheme, DEFAULT_THEME, UsageOpts } from "./api";
+import {
+    Args,
+    ArgSpecExt,
+    ColorTheme,
+    DEFAULT_THEME,
+    UsageOpts,
+} from "./api.js";
 
 export const usage = <T extends IObjectOf<any>>(
     specs: Args<T>,

@@ -1,8 +1,8 @@
 import { cossin } from "@thi.ng/math/angle";
-import { MultiVecOpVO, ReadonlyVec, ZERO2, ZERO3 } from "./api";
-import { vop } from "./vop";
-import { maddN2 } from "./maddn";
-import { setC3 } from "./setc";
+import { MultiVecOpVO, ReadonlyVec, ZERO2, ZERO3 } from "./api.js";
+import { vop } from "./vop.js";
+import { maddN2 } from "./maddn.js";
+import { setC3 } from "./setc.js";
 
 const cos = Math.cos;
 const sin = Math.sin;

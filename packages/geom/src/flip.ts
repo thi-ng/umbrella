@@ -2,11 +2,11 @@ import type { MultiFn1 } from "@thi.ng/defmulti";
 import { DEFAULT, defmulti } from "@thi.ng/defmulti/defmulti";
 import type { IShape, PCLike } from "@thi.ng/geom-api";
 import { neg } from "@thi.ng/vectors/neg";
-import type { Arc } from "./api/arc";
-import type { Group } from "./api/group";
-import type { Path } from "./api/path";
-import type { Ray } from "./api/ray";
-import { __dispatch } from "./internal/dispatch";
+import type { Arc } from "./api/arc.js";
+import type { Group } from "./api/group.js";
+import type { Path } from "./api/path.js";
+import type { Ray } from "./api/ray.js";
+import { __dispatch } from "./internal/dispatch.js";
 
 export const flip: MultiFn1<IShape, IShape> = defmulti<any, IShape>(
     __dispatch,

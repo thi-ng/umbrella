@@ -6,8 +6,8 @@ import { float, FLOAT0, FLOAT05, FLOAT1 } from "@thi.ng/shader-ast/ast/lit";
 import { add, inc, lte, mul, sub } from "@thi.ng/shader-ast/ast/ops";
 import { $x } from "@thi.ng/shader-ast/ast/swizzle";
 import { sym } from "@thi.ng/shader-ast/ast/sym";
-import type { RaymarchScene } from "../api";
-import { clamp01 } from "../math/clamp";
+import type { RaymarchScene } from "../api.js";
+import { clamp01 } from "../math/clamp.js";
 
 /**
  * Higher order function returning an function to compute the Ambient

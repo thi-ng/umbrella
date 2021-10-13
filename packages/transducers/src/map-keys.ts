@@ -1,7 +1,7 @@
 import type { Fn2, IObjectOf } from "@thi.ng/api";
-import type { Transducer } from "./api";
-import { __iter } from "./iterator";
-import { map } from "./map";
+import type { Transducer } from "./api.js";
+import { __iter } from "./iterator.js";
+import { map } from "./map.js";
 
 /**
  * Takes a `keys` object of transformation functions and returns a

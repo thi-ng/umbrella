@@ -1,8 +1,8 @@
 import type { Transducer } from "@thi.ng/transducers";
 import { comp } from "@thi.ng/transducers/comp";
 import { iterator1 } from "@thi.ng/transducers/iterator";
-import { ema } from "./ema";
-import { roc } from "./roc";
+import { ema } from "./ema.js";
+import { roc } from "./roc.js";
 
 /**
  * {@link https://en.wikipedia.org/wiki/Trix_(technical_analysis)}

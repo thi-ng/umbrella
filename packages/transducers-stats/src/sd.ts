@@ -5,8 +5,8 @@ import { __iter } from "@thi.ng/transducers/iterator";
 import { map } from "@thi.ng/transducers/map";
 import { multiplex } from "@thi.ng/transducers/multiplex";
 import { partition } from "@thi.ng/transducers/partition";
-import { mse } from "./mse";
-import { sma } from "./sma";
+import { mse } from "./mse.js";
+import { sma } from "./sma.js";
 
 /**
  * Moving standard deviation, calculates mean square error to SMA and

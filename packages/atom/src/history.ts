@@ -22,7 +22,7 @@ import { equiv } from "@thi.ng/equiv";
 import { defGetterUnsafe } from "@thi.ng/paths/getter";
 import { setInUnsafe } from "@thi.ng/paths/set-in";
 import { updateInUnsafe } from "@thi.ng/paths/update-in";
-import type { IAtom, IHistory, SwapFn } from "./api";
+import type { IAtom, IHistory, SwapFn } from "./api.js";
 
 export const defHistory = <T>(
     state: IAtom<T>,

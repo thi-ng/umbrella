@@ -1,4 +1,4 @@
-import type { DitherKernel } from "./api";
+import type { DitherKernel } from "./api.js";
 
 /**
  * (Frankie) Sierra's 2-row dither kernel.

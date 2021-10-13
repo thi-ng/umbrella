@@ -12,8 +12,8 @@ import type {
 import type { Func, Sym } from "@thi.ng/shader-ast";
 import type { GLSLTarget } from "@thi.ng/shader-ast-glsl";
 import type { ReadonlyVec } from "@thi.ng/vectors";
-import type { BlendEquation, BlendFunc } from "./blend";
-import type { ExtensionBehaviors } from "./ext";
+import type { BlendEquation, BlendFunc } from "./blend.js";
+import type { ExtensionBehaviors } from "./ext.js";
 import type {
     GLIntVec,
     GLIntVec2,
@@ -30,9 +30,9 @@ import type {
     GLVec2,
     GLVec3,
     GLVec4,
-} from "./glsl";
-import type { ModelAttributeSpecs, ModelSpec } from "./model";
-import type { StencilFnParams, StencilOpParams } from "./stencil";
+} from "./glsl.js";
+import type { ModelAttributeSpecs, ModelSpec } from "./model.js";
+import type { StencilFnParams, StencilOpParams } from "./stencil.js";
 
 export interface GLSLSyntax {
     number: number;

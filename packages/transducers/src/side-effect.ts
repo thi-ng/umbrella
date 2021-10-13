@@ -1,6 +1,6 @@
 import type { Fn } from "@thi.ng/api";
-import type { Transducer } from "./api";
-import { map } from "./map";
+import type { Transducer } from "./api.js";
+import { map } from "./map.js";
 
 /**
  * Helper transducer. Applies given `fn` to each input value, presumably

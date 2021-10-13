@@ -1,6 +1,6 @@
 import type { FnN2 } from "@thi.ng/api";
-import type { LVarKeySet, LVarSet, Rule } from "./api";
-import { snormMax, tnormMin, tnormProduct } from "./tnorms";
+import type { LVarKeySet, LVarSet, Rule } from "./api.js";
+import { snormMax, tnormMin, tnormProduct } from "./tnorms.js";
 
 /**
  * Defines and returns a new rule object. Takes a T-norm (or S-norm) `op`, an

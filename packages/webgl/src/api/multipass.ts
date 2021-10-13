@@ -1,7 +1,11 @@
 import type { IObjectOf } from "@thi.ng/api";
 import type { AttribPool } from "@thi.ng/vector-pools";
-import type { IFbo, IndexBufferSpec } from "./buffers";
-import type { InstancingSpec, ModelAttributeSpecs, ModelSpec } from "./model";
+import type { IFbo, IndexBufferSpec } from "./buffers.js";
+import type {
+    InstancingSpec,
+    ModelAttributeSpecs,
+    ModelSpec,
+} from "./model.js";
 import type {
     ShaderAttribSpecs,
     ShaderFn,
@@ -9,8 +13,8 @@ import type {
     ShaderVaryingSpecs,
     UniformDecl,
     UniformValues,
-} from "./shader";
-import type { ITexture, TextureOpts } from "./texture";
+} from "./shader.js";
+import type { ITexture, TextureOpts } from "./texture.js";
 
 export interface Multipass {
     start(): void;

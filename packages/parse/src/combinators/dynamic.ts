@@ -1,6 +1,6 @@
 import type { Nullable } from "@thi.ng/api";
-import type { DynamicParser, Parser } from "../api";
-import type { ParseContext } from "../context";
+import type { DynamicParser, Parser } from "../api.js";
+import type { ParseContext } from "../context.js";
 
 /**
  * Returns a parser function placeholder, whose implementation can be

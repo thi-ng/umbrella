@@ -1,7 +1,7 @@
-import type { ReadonlyVec, Vec } from "./api";
-import { mag } from "./mag";
-import { mulN } from "./muln";
-import { set } from "./set";
+import type { ReadonlyVec, Vec } from "./api.js";
+import { mag } from "./mag.js";
+import { mulN } from "./muln.js";
+import { set } from "./set.js";
 
 export const limit = (out: Vec, v: ReadonlyVec, n: number) => {
     !out && (out = v);

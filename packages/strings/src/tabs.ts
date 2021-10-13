@@ -1,4 +1,4 @@
-import { repeat } from "./repeat";
+import { repeat } from "./repeat.js";
 
 const nextTab = (x: number, tabSize: number) =>
     Math.floor((x + tabSize) / tabSize) * tabSize;

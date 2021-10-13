@@ -1,5 +1,5 @@
-import { ensureIterable } from "./ensure";
-import { map } from "./map";
+import { ensureIterable } from "./ensure.js";
+import { map } from "./map.js";
 
 export function* mapcat<T>(
     fn: (...args: any[]) => Iterable<T> | undefined | null,

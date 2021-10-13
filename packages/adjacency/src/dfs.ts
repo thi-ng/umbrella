@@ -1,6 +1,6 @@
 import { BitField } from "@thi.ng/bitfield/bitfield";
 import { DCons } from "@thi.ng/dcons/dcons";
-import type { IGraph } from "./api";
+import type { IGraph } from "./api.js";
 
 export class DFS {
     graph: IGraph;

@@ -1,6 +1,6 @@
 import { EPS } from "@thi.ng/math/api";
-import type { ColorOp } from "../api";
-import { rgbHcv } from "./rgb-hcv";
+import type { ColorOp } from "../api.js";
+import { rgbHcv } from "./rgb-hcv.js";
 
 export const rgbHsl: ColorOp = (out, src) => {
     out = rgbHcv(out, src);

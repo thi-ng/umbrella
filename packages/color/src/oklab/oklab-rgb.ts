@@ -1,5 +1,5 @@
-import type { ColorOp } from "../api";
-import { __mulV33 } from "../internal/matrix-ops";
+import type { ColorOp } from "../api.js";
+import { __mulV33 } from "../internal/matrix-ops.js";
 
 const LMS_CONE = [
     4.0767245293, -1.2681437731, -0.0041119885, -3.3072168827, 2.6093323231,

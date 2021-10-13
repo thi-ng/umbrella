@@ -1,8 +1,8 @@
 import type { IClear, IReset } from "@thi.ng/api";
 import { TAU } from "@thi.ng/math/api";
 import { clamp05 } from "@thi.ng/math/interval";
-import type { FilterConfig, IFilter, OnepoleType } from "./api";
-import { AProc } from "./aproc";
+import type { FilterConfig, IFilter, OnepoleType } from "./api.js";
+import { AProc } from "./aproc.js";
 
 export const onepoleLP = (fc: number) => new OnePole("lp", fc);
 

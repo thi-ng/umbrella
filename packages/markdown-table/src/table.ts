@@ -18,7 +18,7 @@ import { repeat as $repeat } from "@thi.ng/transducers/repeat";
 import { repeatedly } from "@thi.ng/transducers/repeatedly";
 import { scan } from "@thi.ng/transducers/scan";
 import { transduce } from "@thi.ng/transducers/transduce";
-import type { Align, Column, Row, TableOpts } from "./api";
+import type { Align, Column, Row, TableOpts } from "./api.js";
 
 const PADS: Record<Align, Fn<number, Stringer<string>>> = {
     c: center,

@@ -1,4 +1,4 @@
-import type { Term } from "./nodes";
+import type { Term } from "./nodes.js";
 
 export type BoolTerm = Term<"bool">;
 export type FloatTerm = Term<"float">;

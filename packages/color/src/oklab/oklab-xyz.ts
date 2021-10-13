@@ -1,6 +1,6 @@
 import { powN3 } from "@thi.ng/vectors/pown";
-import type { ColorOp } from "../api";
-import { __mulV33 } from "../internal/matrix-ops";
+import type { ColorOp } from "../api.js";
+import { __mulV33 } from "../internal/matrix-ops.js";
 
 // inverted version of OKLAB_M1
 const M1I = [

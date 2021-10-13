@@ -2,12 +2,20 @@ import type { ICompare, ICopy, IEqualsDelta, IEquiv } from "@thi.ng/api";
 import { isNumber } from "@thi.ng/checks/is-number";
 import { isString } from "@thi.ng/checks/is-string";
 import { Z2, Z3, Z4 } from "@thi.ng/strings/pad-left";
-import { DAY, HOUR, MaybeDate, MINUTE, Period, Precision, SECOND } from "./api";
-import { ensureDate, ensureEpoch, isLeapYear } from "./checks";
-import { defFormat } from "./format";
-import { LOCALE } from "./i18n";
-import { __precisionToID } from "./internal/precision";
-import { dayInYear, daysInMonth, weekInYear } from "./units";
+import {
+    DAY,
+    HOUR,
+    MaybeDate,
+    MINUTE,
+    Period,
+    Precision,
+    SECOND,
+} from "./api.js";
+import { ensureDate, ensureEpoch, isLeapYear } from "./checks.js";
+import { defFormat } from "./format.js";
+import { LOCALE } from "./i18n.js";
+import { __precisionToID } from "./internal/precision.js";
+import { dayInYear, daysInMonth, weekInYear } from "./units.js";
 
 export const dateTime = (epoch?: MaybeDate, prec?: Precision) =>
     new DateTime(epoch, prec);

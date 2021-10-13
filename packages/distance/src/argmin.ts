@@ -1,9 +1,9 @@
 import type { Fn, NumericArray } from "@thi.ng/api";
 import { isFunction } from "@thi.ng/checks/is-function";
 import type { ReadonlyVec } from "@thi.ng/vectors";
-import type { IDistance, Metric } from "./api";
-import { knearest } from "./knearest";
-import { DIST_SQ, DIST_SQ1 } from "./squared";
+import type { IDistance, Metric } from "./api.js";
+import { knearest } from "./knearest.js";
+import { DIST_SQ, DIST_SQ1 } from "./squared.js";
 
 /**
  * Takes a vector `p`, array of `samples` and a `dist`ance function. Computes

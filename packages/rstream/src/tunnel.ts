@@ -1,9 +1,9 @@
 import type { Fn } from "@thi.ng/api";
-import { State } from "./api";
-import { __nextID } from "./idgen";
-import { LOGGER } from "./logger";
-import { Subscription } from "./subscription";
-import { defWorker } from "./defworker";
+import { State } from "./api.js";
+import { __nextID } from "./idgen.js";
+import { LOGGER } from "./logger.js";
+import { Subscription } from "./subscription.js";
+import { defWorker } from "./defworker.js";
 
 export interface TunnelOpts<A> {
     /**

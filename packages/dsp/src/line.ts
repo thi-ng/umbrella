@@ -1,4 +1,4 @@
-import { Add } from "./add";
+import { Add } from "./add.js";
 
 /**
  * Timebased version of {@link add}. Creates a new `Add` gen based on

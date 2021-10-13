@@ -1,4 +1,4 @@
-import { iterator } from "./iterator";
+import { iterator } from "./iterator.js";
 
 export const cached = <T>(input: Iterable<T>) => {
     let cache: T[] = [];

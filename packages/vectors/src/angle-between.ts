@@ -1,9 +1,9 @@
 import type { FnU2 } from "@thi.ng/api";
 import { absInnerAngle } from "@thi.ng/math/angle";
-import type { ReadonlyVec } from "./api";
-import { cross2 } from "./cross";
-import { dot } from "./dot";
-import { mag } from "./mag";
+import type { ReadonlyVec } from "./api.js";
+import { cross2 } from "./cross.js";
+import { dot } from "./dot.js";
+import { mag } from "./mag.js";
 
 export const angleRatio: FnU2<ReadonlyVec, number> = (a, b) =>
     dot(a, b) / (mag(a) * mag(b));

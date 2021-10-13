@@ -1,6 +1,6 @@
-import type { Parser } from "../api";
-import { inputEnd, inputStart, lineEnd, lineStart } from "../prims/anchor";
-import { seq } from "./seq";
+import type { Parser } from "../api.js";
+import { inputEnd, inputStart, lineEnd, lineStart } from "../prims/anchor.js";
+import { seq } from "./seq.js";
 
 export const startsWith = <T>(parser: Parser<T>) => seq([inputStart, parser]);
 

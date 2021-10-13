@@ -13,7 +13,7 @@ import type {
     Path7,
     Path8,
 } from "@thi.ng/api";
-import { toPath } from "./path";
+import { toPath } from "./path.js";
 
 /**
  * Unchecked version of {@link defGetter}.

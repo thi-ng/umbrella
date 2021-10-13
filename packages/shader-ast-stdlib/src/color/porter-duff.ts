@@ -4,7 +4,7 @@ import { defn, ret } from "@thi.ng/shader-ast/ast/function";
 import { FLOAT0, FLOAT1, vec4 } from "@thi.ng/shader-ast/ast/lit";
 import { add, mul, sub } from "@thi.ng/shader-ast/ast/ops";
 import { $w } from "@thi.ng/shader-ast/ast/swizzle";
-import { clamp01 } from "../math/clamp";
+import { clamp01 } from "../math/clamp.js";
 
 const coeff = (
     f: Fn2<FloatTerm, FloatTerm, FloatTerm>,

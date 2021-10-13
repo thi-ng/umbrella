@@ -1,5 +1,5 @@
 import { setC } from "@thi.ng/vectors/setc";
-import type { MatOpM } from "./api";
+import type { MatOpM } from "./api.js";
 
 /**
  * Converts 3x3 to 4x4 matrix and writes result to `out`. Creates new

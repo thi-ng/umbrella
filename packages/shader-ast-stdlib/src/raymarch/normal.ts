@@ -5,7 +5,7 @@ import { add, sub } from "@thi.ng/shader-ast/ast/ops";
 import { $, $x } from "@thi.ng/shader-ast/ast/swizzle";
 import { sym } from "@thi.ng/shader-ast/ast/sym";
 import { normalize } from "@thi.ng/shader-ast/builtin/math";
-import type { RaymarchScene } from "../api";
+import type { RaymarchScene } from "../api.js";
 
 /**
  * Higher order function producing a function to compute the raymarched

@@ -13,8 +13,8 @@ import type {
     Template,
     VecOpVN,
     VecOpVV,
-} from "../api";
-import { vop } from "../vop";
+} from "../api.js";
+import { vop } from "../vop.js";
 import {
     ARGS_V,
     ARGS_VN,
@@ -28,7 +28,7 @@ import {
     SIGNED_N,
     UNSIGNED,
     UNSIGNED_N,
-} from "./templates";
+} from "./templates.js";
 
 /**
  * HOF array index lookup gen to provide optimized versions of:

@@ -1,8 +1,8 @@
 import type { IRandom } from "@thi.ng/random";
 import { SYSTEM } from "@thi.ng/random/system";
-import { add } from "./add";
-import type { ReadonlyVec, Vec } from "./api";
-import { randNorm } from "./random";
+import { add } from "./add.js";
+import type { ReadonlyVec, Vec } from "./api.js";
+import { randNorm } from "./random.js";
 
 export const jitter = (
     out: Vec | null,

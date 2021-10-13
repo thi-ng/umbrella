@@ -21,7 +21,7 @@ import {
     smoothstep,
     sqrt,
 } from "@thi.ng/shader-ast/builtin/math";
-import { hash32 } from "./hash";
+import { hash32 } from "./hash.js";
 
 /**
  * IQ's parametric 2D voronoise. Depending on `u` and `v`, this function

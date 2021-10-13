@@ -7,8 +7,8 @@ import type { Vec } from "@thi.ng/vectors";
 import { add2 } from "@thi.ng/vectors/add";
 import { clamp2 } from "@thi.ng/vectors/clamp";
 import { roundN2 } from "@thi.ng/vectors/round";
-import { Key } from "../api";
-import type { IMGUI } from "../gui";
+import { Key } from "../api.js";
+import type { IMGUI } from "../gui.js";
 
 export const isHoverSlider = (
     gui: IMGUI,

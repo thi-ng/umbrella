@@ -1,11 +1,11 @@
-import type { Color } from "../api";
-import { srgbRgb } from "../srgb/srgb-rgb";
+import type { Color } from "../api.js";
+import { srgbRgb } from "../srgb/srgb-rgb.js";
 import {
     intAbgr32Srgb,
     intArgb32Srgb,
     intBgr24Srgb,
     intRgb24Srgb,
-} from "./int-srgb";
+} from "./int-srgb.js";
 
 export const intArgb32Rgb = (out: Color | null, src: number) =>
     srgbRgb(null, intArgb32Srgb(out, src));

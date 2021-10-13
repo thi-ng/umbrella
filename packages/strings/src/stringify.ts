@@ -1,4 +1,4 @@
-import type { Stringer } from "./api";
+import type { Stringer } from "./api.js";
 
 /**
  * Higher order version of `JSON.stringify()` with the option to treat strings
@@ -9,7 +9,9 @@ import type { Stringer } from "./api";
  * @param all
  * @param indent
  */
-export const stringify = (all = false, indent?: number): Stringer<any> => (x) =>
-    all || (typeof x !== "string" && typeof x !== "number")
-        ? JSON.stringify(x, null, indent)
-        : String(x);
+export const stringify =
+    (all = false, indent?: number): Stringer<any> =>
+    (x) =>
+        all || (typeof x !== "string" && typeof x !== "number")
+            ? JSON.stringify(x, null, indent)
+            : String(x);

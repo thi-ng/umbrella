@@ -4,7 +4,7 @@ import { defn, ret } from "@thi.ng/shader-ast/ast/function";
 import { FLOAT0, FLOAT05, FLOAT1, FLOAT2 } from "@thi.ng/shader-ast/ast/lit";
 import { add, div, mul, neq, sub } from "@thi.ng/shader-ast/ast/ops";
 import { mix } from "@thi.ng/shader-ast/builtin/math";
-import { clamp01 } from "./clamp";
+import { clamp01 } from "./clamp.js";
 
 /**
  * Returns normalized value of `x` WRT to interval [a,b]. Returns 0, if

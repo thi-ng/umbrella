@@ -1,6 +1,6 @@
 import type { Fn2 } from "@thi.ng/api";
-import { iterator } from "./iterator";
-import { ReducedValue } from "./reduce";
+import { iterator } from "./iterator.js";
+import { ReducedValue } from "./reduce.js";
 
 export function* reductions<A, B>(
     rfn: Fn2<B, A, B | ReducedValue<B>>,

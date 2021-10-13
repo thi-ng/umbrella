@@ -1,7 +1,7 @@
-import type { Parser, ScopeTransform } from "../api";
-import { xform } from "../combinators/xform";
-import { defContext } from "../context";
-import { xfJoin } from "./join";
+import type { Parser, ScopeTransform } from "../api.js";
+import { xform } from "../combinators/xform.js";
+import { defContext } from "../context.js";
+import { xfJoin } from "./join.js";
 
 /**
  * HOF scope transform which applies given parser to result of given scope's
@@ -18,25 +18,24 @@ import { xfJoin } from "./join";
  *
  * @param parser
  */
-export const xfNest = (parser: Parser<string>): ScopeTransform<string> => (
-    scope,
-    ctx
-) => {
-    if (!scope) return;
-    const src = scope.result || xfJoin({ ...scope })!.result;
-    const inner = defContext(src, ctx.opts);
-    const state = scope.state;
-    if (state) {
-        const istate = inner.scope.state!;
-        istate.l = state.l;
-        istate.c = state.c;
-    }
-    if (parser(inner)) {
-        scope.result = null;
-        scope.children = inner.children;
-    }
-    return scope;
-};
+export const xfNest =
+    (parser: Parser<string>): ScopeTransform<string> =>
+    (scope, ctx) => {
+        if (!scope) return;
+        const src = scope.result || xfJoin({ ...scope })!.result;
+        const inner = defContext(src, ctx.opts);
+        const state = scope.state;
+        if (state) {
+            const istate = inner.scope.state!;
+            istate.l = state.l;
+            istate.c = state.c;
+        }
+        if (parser(inner)) {
+            scope.result = null;
+            scope.children = inner.children;
+        }
+        return scope;
+    };
 
 export const nest = (outer: Parser<string>, inner: Parser<string>) =>
     xform(outer, xfNest(inner));

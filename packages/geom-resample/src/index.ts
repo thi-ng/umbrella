@@ -1,3 +1,3 @@
-export * from "./resample";
-export * from "./sampler";
-export * from "./simplify";
+export * from "./resample.js";
+export * from "./sampler.js";
+export * from "./simplify.js";

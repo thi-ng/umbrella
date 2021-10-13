@@ -1,7 +1,7 @@
 import type { Fn } from "@thi.ng/api";
 import { equiv } from "@thi.ng/equiv";
 import type { Attribs, IHiccupShape } from "@thi.ng/geom-api";
-import { __copyAttribs } from "../internal/copy";
+import { __copyAttribs } from "../internal/copy.js";
 
 export class Group implements IHiccupShape {
     constructor(

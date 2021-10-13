@@ -1,2 +1,2 @@
-export * from "./api";
-export * from "./shadertoy";
+export * from "./api.js";
+export * from "./shadertoy.js";

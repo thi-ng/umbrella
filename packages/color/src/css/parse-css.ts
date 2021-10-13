@@ -7,10 +7,10 @@ import { unsupported } from "@thi.ng/errors/unsupported";
 import { TAU } from "@thi.ng/math/api";
 import { clamp01 } from "@thi.ng/math/interval";
 import { fract } from "@thi.ng/math/prec";
-import { IParsedColor, ParsedColor } from "../api";
-import { CSS_NAMES } from "../api/names";
-import { CSS_SYSTEM_COLORS } from "../api/system";
-import { intArgb32Srgb } from "../int/int-srgb";
+import { IParsedColor, ParsedColor } from "../api.js";
+import { CSS_NAMES } from "../api/names.js";
+import { CSS_SYSTEM_COLORS } from "../api/system.js";
+import { intArgb32Srgb } from "../int/int-srgb.js";
 
 /**
  * Attempts to parse given CSS color into an interim {@link ParsedColor} type

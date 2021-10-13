@@ -3,7 +3,7 @@ import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import { illegalArity } from "@thi.ng/errors/illegal-arity";
 import type { Reducer } from "@thi.ng/transducers";
 import { reduce, reducer } from "@thi.ng/transducers/reduce";
-import type { PatchArrayOp } from "./api";
+import type { PatchArrayOp } from "./api.js";
 
 /**
  * Reducer for {@link Patch} based array edits. Only numeric indices are

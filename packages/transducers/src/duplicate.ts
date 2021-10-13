@@ -1,8 +1,8 @@
 import { isIterable } from "@thi.ng/checks/is-iterable";
-import type { Reducer, Transducer } from "./api";
-import { compR } from "./compr";
-import { iterator } from "./iterator";
-import { isReduced } from "./reduced";
+import type { Reducer, Transducer } from "./api.js";
+import { compR } from "./compr.js";
+import { iterator } from "./iterator.js";
+import { isReduced } from "./reduced.js";
 
 export function duplicate<T>(n?: number): Transducer<T, T>;
 export function duplicate<T>(n: number, src: Iterable<T>): IterableIterator<T>;

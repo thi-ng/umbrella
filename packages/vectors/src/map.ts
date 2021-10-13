@@ -5,7 +5,7 @@ import type {
     VecOpVV,
     VecOpVVN,
     VecOpVVV,
-} from "./api";
+} from "./api.js";
 
 /**
  * Vec2/3/4 view based buffer transformation for {@link VecOpVV} type

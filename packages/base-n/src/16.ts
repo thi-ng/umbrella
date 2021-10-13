@@ -1,4 +1,4 @@
-import { defBase } from "./base";
+import { defBase } from "./base.js";
 
 /**
  * Digits: 0-9 A-F

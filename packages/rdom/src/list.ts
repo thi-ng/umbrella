@@ -1,9 +1,9 @@
 import type { Fn, Predicate2 } from "@thi.ng/api";
 import type { ISubscribable } from "@thi.ng/rstream";
-import type { IComponent, IMountWithState, NumOrElement } from "./api";
-import { $compile } from "./compile";
-import { Component } from "./component";
-import { $sub } from "./sub";
+import type { IComponent, IMountWithState, NumOrElement } from "./api.js";
+import { $compile } from "./compile.js";
+import { Component } from "./component.js";
+import { $sub } from "./sub.js";
 
 /**
  * Creates a generalized and dynamically updating list component from items of

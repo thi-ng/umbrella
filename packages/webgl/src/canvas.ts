@@ -1,8 +1,8 @@
 import { adaptDPI } from "@thi.ng/adapt-dpi";
 import { isString } from "@thi.ng/checks/is-string";
-import type { WeblGLCanvasOpts } from "./api/canvas";
-import type { WebGLExtensionMap } from "./api/ext";
-import { error } from "./error";
+import type { WeblGLCanvasOpts } from "./api/canvas.js";
+import type { WebGLExtensionMap } from "./api/ext.js";
+import { error } from "./error.js";
 
 const defaultOpts: WebGLContextAttributes = {
     alpha: true,

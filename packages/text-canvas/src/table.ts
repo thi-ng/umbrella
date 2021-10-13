@@ -1,7 +1,7 @@
 import { peek } from "@thi.ng/arrays/peek";
 import { isString } from "@thi.ng/checks/is-string";
 import { wordWrapLines } from "@thi.ng/strings/word-wrap";
-import { Border, TableOpts } from "./api";
+import { Border, TableOpts } from "./api.js";
 import {
     beginClip,
     beginStyle,
@@ -10,11 +10,11 @@ import {
     endClip,
     endStyle,
     setAt,
-} from "./canvas";
-import { hline, vline } from "./hvline";
-import { fillRect, strokeRect } from "./rect";
-import { horizontalOnly, verticalOnly } from "./style";
-import { textLines } from "./text";
+} from "./canvas.js";
+import { hline, vline } from "./hvline.js";
+import { fillRect, strokeRect } from "./rect.js";
+import { horizontalOnly, verticalOnly } from "./style.js";
+import { textLines } from "./text.js";
 
 type RawCell = {
     body: string;

@@ -2,8 +2,8 @@ import { sincos } from "@thi.ng/math/angle";
 import type { ReadonlyVec } from "@thi.ng/vectors";
 import { normalize as _normalize } from "@thi.ng/vectors/normalize";
 import { setC } from "@thi.ng/vectors/setc";
-import type { Mat } from "./api";
-import { mat33to44 } from "./m33-m44";
+import type { Mat } from "./api.js";
+import { mat33to44 } from "./m33-m44.js";
 
 /**
  * Constructs a 3x3 matrix representing a rotation of `theta` around

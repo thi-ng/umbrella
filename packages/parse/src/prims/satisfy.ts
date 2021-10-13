@@ -1,5 +1,5 @@
 import type { Predicate } from "@thi.ng/api";
-import type { LitParser } from "../api";
+import type { LitParser } from "../api.js";
 
 export const satisfy = <T>(pred: Predicate<T>, id = "satisfy") =>
     <LitParser<T>>((ctx) => {

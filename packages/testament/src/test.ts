@@ -6,8 +6,8 @@ import {
     TestOpts,
     TestResult,
     Timestamp,
-} from "./api";
-import { now, timeDiff } from "./utils";
+} from "./api.js";
+import { now, timeDiff } from "./utils.js";
 
 /**
  * Takes a single test case function `fn` and wraps it in an async executor

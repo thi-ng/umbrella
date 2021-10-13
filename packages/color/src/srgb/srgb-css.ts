@@ -1,8 +1,8 @@
 import { U24 } from "@thi.ng/strings/radix";
-import type { ReadonlyColor } from "../api";
-import { FF } from "../api/constants";
-import { __ensureAlpha } from "../internal/ensure";
-import { __scale8bit } from "../internal/scale";
+import type { ReadonlyColor } from "../api.js";
+import { FF } from "../api/constants.js";
+import { __ensureAlpha } from "../internal/ensure.js";
+import { __scale8bit } from "../internal/scale.js";
 
 export const srgbCss = (src: ReadonlyColor) => {
     const r = __scale8bit(src[0]);

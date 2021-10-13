@@ -1,7 +1,7 @@
 import type { IObjectOf } from "@thi.ng/api";
 import { isNumber } from "@thi.ng/checks/is-number";
-import type { Op1, Op2, Sym, Term } from "../api/nodes";
-import type { ComparisonOperator, Operator } from "../api/ops";
+import type { Op1, Op2, Sym, Term } from "../api/nodes.js";
+import type { ComparisonOperator, Operator } from "../api/ops.js";
 import type {
     BoolTerm,
     FloatTerm,
@@ -13,7 +13,7 @@ import type {
     Vec2Term,
     Vec3Term,
     Vec4Term,
-} from "../api/terms";
+} from "../api/terms.js";
 import type {
     Comparable,
     Int,
@@ -26,10 +26,10 @@ import type {
     Type,
     UVec,
     Vec,
-} from "../api/types";
-import { isMat, isVec } from "./checks";
-import { numberWithMatchingType } from "./item";
-import { float } from "./lit";
+} from "../api/types.js";
+import { isMat, isVec } from "./checks.js";
+import { numberWithMatchingType } from "./item.js";
+import { float } from "./lit.js";
 
 export const op1 = <T extends Type>(
     op: Operator,

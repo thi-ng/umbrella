@@ -1,7 +1,7 @@
 import type { Fn } from "@thi.ng/api";
-import type { Reducer, Transducer } from "./api";
-import { compR } from "./compr";
-import { __iter } from "./iterator";
+import type { Reducer, Transducer } from "./api.js";
+import { compR } from "./compr.js";
+import { __iter } from "./iterator.js";
 
 /**
  * Transducer. Similar to {@link (map:1)}, but only transforms every

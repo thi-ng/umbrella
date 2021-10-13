@@ -1,7 +1,7 @@
 import type { Reducer, Transducer } from "@thi.ng/transducers";
 import { isReduced, Reduced } from "@thi.ng/transducers/reduced";
-import type { ISubscription } from "./api";
-import type { Subscription } from "./subscription";
+import type { ISubscription } from "./api.js";
+import type { Subscription } from "./subscription.js";
 
 /**
  * Returns a promise which subscribes to given input and transforms

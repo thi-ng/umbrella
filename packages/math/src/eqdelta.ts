@@ -1,4 +1,4 @@
-import { EPS } from "./api";
+import { EPS } from "./api.js";
 
 const abs = Math.abs;
 const max = Math.max;

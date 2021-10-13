@@ -1,6 +1,6 @@
 import { EPS } from "@thi.ng/math/api";
 import { eqDelta } from "@thi.ng/math/eqdelta";
-import type { ReadonlyMat } from "./api";
+import type { ReadonlyMat } from "./api.js";
 
 /**
  * Returns true, if given square matrix of size `n` is orthagonal, i.e.

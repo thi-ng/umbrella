@@ -1,10 +1,10 @@
 import type { NumericArray } from "@thi.ng/api";
 import type { IRandom } from "@thi.ng/random";
-import type { Color, ColorFactory, ReadonlyColor, TypedColor } from "../api";
-import { defColor } from "../defcolor";
-import { hslHsv } from "../hsl/hsl-hsv";
-import { rgbHsv } from "../rgb/rgb-hsv";
-import { hsvRgb } from "./hsv-rgb";
+import type { Color, ColorFactory, ReadonlyColor, TypedColor } from "../api.js";
+import { defColor } from "../defcolor.js";
+import { hslHsv } from "../hsl/hsl-hsv.js";
+import { rgbHsv } from "../rgb/rgb-hsv.js";
+import { hsvRgb } from "./hsv-rgb.js";
 
 export declare class HSV implements TypedColor<HSV> {
     buf: NumericArray;

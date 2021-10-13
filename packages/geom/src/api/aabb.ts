@@ -3,7 +3,7 @@ import type { AABBLike, Attribs } from "@thi.ng/geom-api";
 import type { Vec } from "@thi.ng/vectors";
 import { add3 } from "@thi.ng/vectors/add";
 import { set } from "@thi.ng/vectors/set";
-import { __copyAttribs } from "../internal/copy";
+import { __copyAttribs } from "../internal/copy.js";
 
 export class AABB implements AABBLike {
     size: Vec;

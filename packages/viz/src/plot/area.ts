@@ -1,6 +1,6 @@
 import { ensureArray } from "@thi.ng/arrays/ensure-array";
-import type { DomainValues, PlotFn } from "../api";
-import { processedPoints, valueMapper } from "./utils";
+import type { DomainValues, PlotFn } from "../api.js";
+import { processedPoints, valueMapper } from "./utils.js";
 
 export interface AreaPlotOpts {
     attribs: any;

@@ -1,5 +1,5 @@
-import type { IRandom } from "../api";
-import { SYSTEM } from "../system";
+import type { IRandom } from "../api.js";
+import { SYSTEM } from "../system.js";
 
 /**
  * HOF. Returns zero-arg function, yielding uniformly distributed values in the
@@ -12,5 +12,7 @@ import { SYSTEM } from "../system";
  * @param min
  * @param max
  */
-export const uniform = (rnd: IRandom = SYSTEM, min = 0, max = 1) => () =>
-    rnd.minmax(min, max);
+export const uniform =
+    (rnd: IRandom = SYSTEM, min = 0, max = 1) =>
+    () =>
+        rnd.minmax(min, max);

@@ -1,5 +1,5 @@
 import type { Fn, Fn2 } from "@thi.ng/api";
-import type { DateTime } from "./datetime";
+import type { DateTime } from "./datetime.js";
 
 /**
  * Days per month LUT (non-leap year)

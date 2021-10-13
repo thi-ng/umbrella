@@ -1,6 +1,6 @@
 import type { FnU4 } from "@thi.ng/api";
-import { Crossing, EPS } from "./api";
-import { eqDelta } from "./eqdelta";
+import { Crossing, EPS } from "./api.js";
+import { eqDelta } from "./eqdelta.js";
 
 /**
  * Returns true if line A rises up over B.

@@ -1,6 +1,6 @@
-import type { MultiVecOpN, Vec, VecOpN } from "./api";
-import { defOp } from "./compile/emit";
-import { SET_N } from "./compile/templates";
+import type { MultiVecOpN, Vec, VecOpN } from "./api.js";
+import { defOp } from "./compile/emit.js";
+import { SET_N } from "./compile/templates.js";
 
 export const [setN, setN2, setN3, setN4] = defOp<MultiVecOpN, VecOpN>(
     SET_N,

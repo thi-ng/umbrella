@@ -1,4 +1,4 @@
-import type { CommonOpts } from "./api";
+import type { CommonOpts } from "./api.js";
 
 let NEXT_ID = 0;
 

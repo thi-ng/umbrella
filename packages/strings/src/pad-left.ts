@@ -1,6 +1,6 @@
 import { memoizeJ } from "@thi.ng/memoize/memoizej";
-import type { Stringer } from "./api";
-import { repeat } from "./repeat";
+import type { Stringer } from "./api.js";
+import { repeat } from "./repeat.js";
 
 /**
  * @param n - target length

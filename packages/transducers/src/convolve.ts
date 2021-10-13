@@ -1,13 +1,13 @@
 import type { Fn, Fn0 } from "@thi.ng/api";
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
-import { add } from "./add";
-import type { Reducer, Transducer } from "./api";
-import { iterator1 } from "./iterator";
-import { map } from "./map";
-import { range } from "./range";
-import { range2d } from "./range2d";
-import { transduce } from "./transduce";
-import { zip } from "./zip";
+import { add } from "./add.js";
+import type { Reducer, Transducer } from "./api.js";
+import { iterator1 } from "./iterator.js";
+import { map } from "./map.js";
+import { range } from "./range.js";
+import { range2d } from "./range2d.js";
+import { transduce } from "./transduce.js";
+import { zip } from "./zip.js";
 
 export type ConvolutionKernel1D = [number, number][];
 export type ConvolutionKernel2D = [number, [number, number]][];

@@ -11,7 +11,7 @@ import type {
 } from "@thi.ng/api";
 import { compare } from "@thi.ng/compare/compare";
 import { equiv } from "@thi.ng/equiv";
-import type { HeapOpts } from "./api";
+import type { HeapOpts } from "./api.js";
 
 export const defHeap = <T>(
     values?: Iterable<T> | null,

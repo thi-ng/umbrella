@@ -4,12 +4,12 @@ import { defmulti } from "@thi.ng/defmulti/defmulti";
 import type { IShape, PathSegment } from "@thi.ng/geom-api";
 import { simplify as _simplify } from "@thi.ng/geom-resample/simplify";
 import type { Vec } from "@thi.ng/vectors";
-import { Path } from "./api/path";
-import { Polygon } from "./api/polygon";
-import { Polyline } from "./api/polyline";
-import { __copyAttribs } from "./internal/copy";
-import { __dispatch } from "./internal/dispatch";
-import { vertices } from "./vertices";
+import { Path } from "./api/path.js";
+import { Polygon } from "./api/polygon.js";
+import { Polyline } from "./api/polyline.js";
+import { __copyAttribs } from "./internal/copy.js";
+import { __dispatch } from "./internal/dispatch.js";
+import { vertices } from "./vertices.js";
 
 export const simplify: MultiFn2<IShape, number, IShape> = defmulti<
     any,

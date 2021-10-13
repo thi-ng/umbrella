@@ -1,5 +1,5 @@
-export * from "./api";
-export * from "./graph";
+export * from "./api.js";
+export * from "./graph.js";
 
-export * from "./nodes/extract";
-export * from "./nodes/math";
+export * from "./nodes/extract.js";
+export * from "./nodes/math.js";

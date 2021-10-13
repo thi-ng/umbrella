@@ -1,7 +1,7 @@
-import type { CommonOpts } from "./api";
-import { __optsWithID } from "./idgen";
-import { fromIterableSync } from "./iterable";
-import type { Stream } from "./stream";
+import type { CommonOpts } from "./api.js";
+import { __optsWithID } from "./idgen.js";
+import { fromIterableSync } from "./iterable.js";
+import type { Stream } from "./stream.js";
 
 /**
  * Utility stream. Returns a new stream which emits a single value `x` (if

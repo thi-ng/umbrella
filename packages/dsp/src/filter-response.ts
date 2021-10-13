@@ -1,9 +1,9 @@
 import type { FnU3, NumericArray } from "@thi.ng/api";
 import { cossin } from "@thi.ng/math/angle";
 import { TAU } from "@thi.ng/math/api";
-import type { FilterConfig, FilterResponse } from "./api";
-import { magDb } from "./convert";
-import { line } from "./line";
+import type { FilterConfig, FilterResponse } from "./api.js";
+import { magDb } from "./convert.js";
+import { line } from "./line.js";
 
 /**
  * Returns filter response for given filter coefficients at normalized

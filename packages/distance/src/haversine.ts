@@ -3,7 +3,7 @@ import {
     distHaversineLatLon,
     distHaversineLonLat,
 } from "@thi.ng/vectors/dist-haversine";
-import { Eucledian } from "./eucledian";
+import { Eucledian } from "./eucledian.js";
 
 /**
  * Distance metric for geo locations given as [lat,lon] vectors.

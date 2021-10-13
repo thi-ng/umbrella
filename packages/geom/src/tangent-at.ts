@@ -8,11 +8,11 @@ import { cossin } from "@thi.ng/math/angle";
 import { HALF_PI, TAU } from "@thi.ng/math/api";
 import type { Vec } from "@thi.ng/vectors";
 import { direction } from "@thi.ng/vectors/direction";
-import type { Cubic } from "./api/cubic";
-import type { Line } from "./api/line";
-import type { Rect } from "./api/rect";
-import { __dispatch } from "./internal/dispatch";
-import { vertices } from "./vertices";
+import type { Cubic } from "./api/cubic.js";
+import type { Line } from "./api/line.js";
+import type { Rect } from "./api/rect.js";
+import { __dispatch } from "./internal/dispatch.js";
+import { vertices } from "./vertices.js";
 
 export const tangentAt: MultiFn2<IShape, number, Vec | undefined> = defmulti<
     any,

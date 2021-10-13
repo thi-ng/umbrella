@@ -3,8 +3,8 @@ import type {
     AttribVal,
     MultiStringAttrib,
     NumericAttrib,
-} from "./api";
-import { defElement, defElements } from "./def";
+} from "./api.js";
+import { defElement, defElements } from "./def.js";
 
 export const [table, tbody, tfoot, thead, tr, caption] = defElements([
     "table",

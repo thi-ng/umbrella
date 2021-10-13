@@ -1,6 +1,6 @@
 import type { Fn } from "@thi.ng/api";
-import { iterator, maybeIterator } from "./iterator";
-import { maybeObjectIterator } from "./object-iterator";
+import { iterator, maybeIterator } from "./iterator.js";
+import { maybeObjectIterator } from "./object-iterator.js";
 
 export const walkable = (x: any) =>
     typeof x !== "string"

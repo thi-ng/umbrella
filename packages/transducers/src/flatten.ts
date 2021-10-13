@@ -1,7 +1,7 @@
 import type { DeepArrayValue } from "@thi.ng/api";
 import { isNotStringAndIterable } from "@thi.ng/checks/is-not-string-iterable";
-import type { Transducer } from "./api";
-import { flattenWith } from "./flatten-with";
+import type { Transducer } from "./api.js";
+import { flattenWith } from "./flatten-with.js";
 
 /**
  * Transducer. Recursively flattens input iff it is iterable and NOT a

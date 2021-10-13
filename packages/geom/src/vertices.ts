@@ -15,19 +15,19 @@ import { add2, add3 } from "@thi.ng/vectors/add";
 import { cartesian2 } from "@thi.ng/vectors/cartesian";
 import { madd2 } from "@thi.ng/vectors/madd";
 import { set2 } from "@thi.ng/vectors/set";
-import type { AABB } from "./api/aabb";
-import type { Arc } from "./api/arc";
-import type { Circle } from "./api/circle";
-import type { Cubic } from "./api/cubic";
-import type { Ellipse } from "./api/ellipse";
-import type { Group } from "./api/group";
-import type { Path } from "./api/path";
-import type { Points } from "./api/points";
-import { Polygon } from "./api/polygon";
-import type { Polyline } from "./api/polyline";
-import type { Quadratic } from "./api/quadratic";
-import type { Rect } from "./api/rect";
-import { __dispatch } from "./internal/dispatch";
+import type { AABB } from "./api/aabb.js";
+import type { Arc } from "./api/arc.js";
+import type { Circle } from "./api/circle.js";
+import type { Cubic } from "./api/cubic.js";
+import type { Ellipse } from "./api/ellipse.js";
+import type { Group } from "./api/group.js";
+import type { Path } from "./api/path.js";
+import type { Points } from "./api/points.js";
+import { Polygon } from "./api/polygon.js";
+import type { Polyline } from "./api/polyline.js";
+import type { Quadratic } from "./api/quadratic.js";
+import type { Rect } from "./api/rect.js";
+import { __dispatch } from "./internal/dispatch.js";
 
 export const vertices: MultiFn1O<
     IShape,

@@ -4,8 +4,14 @@ import { inRange } from "@thi.ng/math/interval";
 import { roundTo } from "@thi.ng/math/prec";
 import { filter } from "@thi.ng/transducers/filter";
 import { range } from "@thi.ng/transducers/range";
-import type { AxisSpec, Domain, InitialAxisSpec, Range, ScaleFn } from "../api";
-import { axisDefaults } from "./common";
+import type {
+    AxisSpec,
+    Domain,
+    InitialAxisSpec,
+    Range,
+    ScaleFn,
+} from "../api.js";
+import { axisDefaults } from "./common.js";
 
 export const linearScale =
     ([d1, d2]: Domain, [r1, r2]: Range): ScaleFn =>

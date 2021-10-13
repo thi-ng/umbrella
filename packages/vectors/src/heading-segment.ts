@@ -1,6 +1,6 @@
 import type { FnU2 } from "@thi.ng/api";
 import { atan2Abs } from "@thi.ng/math/angle";
-import type { ReadonlyVec } from "./api";
+import type { ReadonlyVec } from "./api.js";
 
 const $ =
     (u: number, v: number): FnU2<ReadonlyVec, number> =>

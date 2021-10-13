@@ -3,12 +3,12 @@ import { SEMAPHORE } from "@thi.ng/api/api";
 import { isPlainObject } from "@thi.ng/checks/is-plain-object";
 import { equiv } from "@thi.ng/equiv";
 import { pairs } from "@thi.ng/transducers/pairs";
-import type { EquivMapOpts, IEquivSet } from "./api";
-import { ArraySet } from "./array-set";
-import { dissoc } from "./dissoc";
-import { __equivMap } from "./internal/equiv";
-import { __inspectable } from "./internal/inspect";
-import { into } from "./into";
+import type { EquivMapOpts, IEquivSet } from "./api.js";
+import { ArraySet } from "./array-set.js";
+import { dissoc } from "./dissoc.js";
+import { __equivMap } from "./internal/equiv.js";
+import { __inspectable } from "./internal/inspect.js";
+import { into } from "./into.js";
 
 interface MapProps<K, V> {
     keys: IEquivSet<K>;

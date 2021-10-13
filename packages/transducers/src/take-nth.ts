@@ -1,8 +1,8 @@
 import { isIterable } from "@thi.ng/checks/is-iterable";
 import { clamp0 } from "@thi.ng/math/interval";
-import type { Transducer } from "./api";
-import { iterator1 } from "./iterator";
-import { throttle } from "./throttle";
+import type { Transducer } from "./api.js";
+import { iterator1 } from "./iterator.js";
+import { throttle } from "./throttle.js";
 
 /**
  * Transducer which only yields every `n`-th value from the input

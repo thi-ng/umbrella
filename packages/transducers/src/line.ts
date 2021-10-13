@@ -1,5 +1,5 @@
-import { map } from "./map";
-import { normRange } from "./norm-range";
+import { map } from "./map.js";
+import { normRange } from "./norm-range.js";
 
 /**
  * Iterator yielding `steps` + 1 interpolated values on a line in the

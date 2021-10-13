@@ -2,7 +2,7 @@ import type { ReadonlyVec, Vec, VecOpVV } from "@thi.ng/vectors";
 import { dotS2, dotS3, dotS4 } from "@thi.ng/vectors/dots";
 import { setC2, setC3, setC4 } from "@thi.ng/vectors/setc";
 import { vop } from "@thi.ng/vectors/vop";
-import type { MatOpMV, MultiMatOpMV, ReadonlyMat } from "./api";
+import type { MatOpMV, MultiMatOpMV, ReadonlyMat } from "./api.js";
 
 /**
  * Matrix-vector multiplication. Supports in-place modification, i.e. if

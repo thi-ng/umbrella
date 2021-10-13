@@ -6,9 +6,9 @@ import { isPlainObject } from "@thi.ng/checks/is-plain-object";
 import { isString } from "@thi.ng/checks/is-string";
 import { isTypedArray } from "@thi.ng/checks/is-typedarray";
 import { base64Encode } from "@thi.ng/transducers-binary/base64";
-import type { Node, Prefixes } from "./api";
-import { isNode, isRef, isToEGF } from "./checks";
-import { defPrefixer } from "./prefix";
+import type { Node, Prefixes } from "./api.js";
+import { isNode, isRef, isToEGF } from "./checks.js";
+import { defPrefixer } from "./prefix.js";
 
 export const toEGF = (
     nodes: Iterable<Node>,

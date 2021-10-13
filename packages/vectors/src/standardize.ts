@@ -1,7 +1,7 @@
-import type { ReadonlyVec, Vec } from "./api";
-import { center } from "./center";
-import { magSq } from "./magsq";
-import { mulN } from "./muln";
+import type { ReadonlyVec, Vec } from "./api.js";
+import { center } from "./center.js";
+import { magSq } from "./magsq.js";
+import { mulN } from "./muln.js";
 
 /**
  * Returns standardized version of `a`, i.e. `a' / sd(a')`, where `a'` is the

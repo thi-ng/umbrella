@@ -1,8 +1,8 @@
 import type { NumOrString } from "@thi.ng/api";
 import { peek } from "@thi.ng/arrays/peek";
-import type { Canvas } from "./canvas";
-import { hline, vline } from "./hvline";
-import { charCode } from "./utils";
+import type { Canvas } from "./canvas.js";
+import { hline, vline } from "./hvline.js";
+import { charCode } from "./utils.js";
 
 /**
  * Clears/fills the canvas' current clip rect with given char (default:

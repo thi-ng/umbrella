@@ -1,4 +1,4 @@
-import { defBitOp, defBitOpN } from "./compile/emit";
+import { defBitOp, defBitOpN } from "./compile/emit.js";
 
 export const [lshiftI, lshiftI2, lshiftI3, lshiftI4] = defBitOp("<<", true);
 

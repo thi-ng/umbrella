@@ -1,5 +1,5 @@
-import type { Color, HatchDir } from "./api";
-import { defHatch } from "./hatch";
+import type { Color, HatchDir } from "./api.js";
+import { defHatch } from "./hatch.js";
 
 export const defHatchPen = (
     color: Color,

@@ -1,4 +1,4 @@
-import { lowDiscrepancy } from "./lowdisc";
+import { lowDiscrepancy } from "./lowdisc.js";
 
 /**
  * Iterator yielding 1D Halton sequence for given `base` (preferably a prime).

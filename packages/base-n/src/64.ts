@@ -1,5 +1,5 @@
-import { B62_CHARS } from "./62";
-import { defBase } from "./base";
+import { B62_CHARS } from "./62.js";
+import { defBase } from "./base.js";
 
 export const B64_CHARS = B62_CHARS + "+/";
 

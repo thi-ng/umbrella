@@ -19,8 +19,8 @@ import type {
     Sym,
     Ternary,
     WhileLoop,
-} from "./nodes";
-import type { Tag } from "./tags";
+} from "./nodes.js";
+import type { Tag } from "./tags.js";
 
 export interface TargetImpl<T> extends Record<Tag, Fn<any, T>> {
     arg: Fn<FuncArg<any>, T>;

@@ -1,8 +1,8 @@
 import { inRange } from "@thi.ng/math/interval";
 import { SYSTEM } from "@thi.ng/random/system";
 import { repeatedly } from "@thi.ng/transducers/repeatedly";
-import type { ASTNode, MEPChromosome, MEPGene, MEPOpts } from "./api";
-import { opNode, probabilities, terminalNode } from "./utils";
+import type { ASTNode, MEPChromosome, MEPGene, MEPOpts } from "./api.js";
+import { opNode, probabilities, terminalNode } from "./utils.js";
 
 export class MEP<OP, T> {
     opts: MEPOpts<OP, T>;

@@ -3,8 +3,8 @@ import { isTypedArray } from "@thi.ng/checks/is-typedarray";
 import type { MemPoolOpts, MemPoolStats } from "@thi.ng/malloc";
 import { MemPool } from "@thi.ng/malloc/pool";
 import type { StridedVec } from "@thi.ng/vectors";
-import type { IVecPool } from "./api";
-import { wrap } from "./wrap";
+import type { IVecPool } from "./api.js";
+import { wrap } from "./wrap.js";
 
 export class VecPool implements IVecPool {
     pool: MemPool;

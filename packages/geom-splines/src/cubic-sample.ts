@@ -1,5 +1,5 @@
 import { mixCubic } from "@thi.ng/vectors/mix-cubic";
-import { __sample, __sampleArray } from "./internal/sample";
+import { __sample, __sampleArray } from "./internal/sample.js";
 
 export const sampleCubic = __sample((res, [a, b, c, d], num) => {
     const delta = 1 / num;

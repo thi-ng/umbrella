@@ -1,5 +1,5 @@
-import { addW3 } from "./addw";
-import type { ReadonlyVec, Vec } from "./api";
+import { addW3 } from "./addw.js";
+import type { ReadonlyVec, Vec } from "./api.js";
 
 /**
  * Vector version of {@link @thi.ng/math#mixQuadratic}.

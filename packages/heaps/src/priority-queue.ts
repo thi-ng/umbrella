@@ -10,8 +10,8 @@ import type {
 } from "@thi.ng/api";
 import { compareNumDesc } from "@thi.ng/compare/numeric";
 import { equiv } from "@thi.ng/equiv";
-import type { PriorityQueueOpts } from "./api";
-import { Heap } from "./heap";
+import type { PriorityQueueOpts } from "./api.js";
+import { Heap } from "./heap.js";
 
 /**
  * Returns a new {@link PriorityQueue} instance, a thin veneer wrapper for a

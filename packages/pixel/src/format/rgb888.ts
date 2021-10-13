@@ -1,5 +1,5 @@
-import { Lane } from "../api";
-import { defPackedFormat } from "./packed-format";
+import { Lane } from "../api.js";
+import { defPackedFormat } from "./packed-format.js";
 
 export const RGB888 = defPackedFormat({
     type: "u32",

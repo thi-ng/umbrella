@@ -1,8 +1,8 @@
 import { clamp0 } from "@thi.ng/math/interval";
 import { fract } from "@thi.ng/math/prec";
-import type { ReadonlyColor } from "../api";
-import { FF, PC } from "../api/constants";
-import { __ensureAlpha } from "../internal/ensure";
+import type { ReadonlyColor } from "../api.js";
+import { FF, PC } from "../api/constants.js";
+import { __ensureAlpha } from "../internal/ensure.js";
 
 /**
  * @remarks

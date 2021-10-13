@@ -1,6 +1,6 @@
-import type { MultiVecOpVVN, VecOpVVN } from "./api";
-import { defOp } from "./compile/emit";
-import { ARGS_VVN, MATH2_N } from "./compile/templates";
+import type { MultiVecOpVVN, VecOpVVN } from "./api.js";
+import { defOp } from "./compile/emit.js";
+import { ARGS_VVN, MATH2_N } from "./compile/templates.js";
 
 /**
  * Returns `out = (a - b) * n`.

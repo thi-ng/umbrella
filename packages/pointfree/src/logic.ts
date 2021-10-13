@@ -1,5 +1,5 @@
 import { equiv as _equiv } from "@thi.ng/equiv";
-import { defOp1, defOp2 } from "./ops";
+import { defOp1, defOp2 } from "./ops.js";
 
 //////////////////// Logic ops ////////////////////
 

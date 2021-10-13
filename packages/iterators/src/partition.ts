@@ -1,6 +1,6 @@
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
-import { consume } from "./consume";
-import { iterator } from "./iterator";
+import { consume } from "./consume.js";
+import { iterator } from "./iterator.js";
 
 export function* partition<T>(
     n: number,

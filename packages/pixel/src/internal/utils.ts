@@ -1,7 +1,7 @@
 import type { Fn, Fn2, FnN, UIntArray } from "@thi.ng/api";
 import { isNumber } from "@thi.ng/checks/is-number";
 import { clamp } from "@thi.ng/math/interval";
-import type { BlitOpts, PackedFormat } from "../api";
+import type { BlitOpts, PackedFormat } from "../api.js";
 
 export const __luminanceABGR: FnN = (c) =>
     (((c >>> 16) & 0xff) * 29 + ((c >>> 8) & 0xff) * 150 + (c & 0xff) * 76) /

@@ -1,8 +1,8 @@
-import type { ReadonlyVec, Vec } from "./api";
-import { __ensureInputs } from "./internal/ensure";
-import { max } from "./max";
-import { setN } from "./setn";
-import { vecOf } from "./vec-of";
+import type { ReadonlyVec, Vec } from "./api.js";
+import { __ensureInputs } from "./internal/ensure.js";
+import { max } from "./max.js";
+import { setN } from "./setn.js";
+import { vecOf } from "./vec-of.js";
 
 /**
  * Takes an array of vectors and computes componentwise maximum. Writes result

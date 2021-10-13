@@ -1,6 +1,6 @@
 import type { Fn2, Nullable } from "@thi.ng/api";
 import { isArray } from "@thi.ng/checks/is-array";
-import { empty } from "./empty";
+import { empty } from "./empty.js";
 
 /**
  * Renames keys in `src` using mapping provided by key map `km`. Does

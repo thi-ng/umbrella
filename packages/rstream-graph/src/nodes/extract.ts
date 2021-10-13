@@ -1,8 +1,8 @@
 import type { Path } from "@thi.ng/api";
 import { getInUnsafe } from "@thi.ng/paths/get-in";
 import { map } from "@thi.ng/transducers/map";
-import type { NodeFactory } from "../api";
-import { node1 } from "../graph";
+import type { NodeFactory } from "../api.js";
+import { node1 } from "../graph.js";
 
 /**
  * Nested value extraction node. Higher order function.

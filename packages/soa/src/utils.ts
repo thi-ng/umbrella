@@ -1,5 +1,5 @@
 // thing:no-export
-import type { SOAAttribSpec } from "./api";
+import type { SOAAttribSpec } from "./api.js";
 
 export const prepareSpec = (spec: Partial<SOAAttribSpec>) => {
     spec = { type: "f32", size: 1, ...spec };

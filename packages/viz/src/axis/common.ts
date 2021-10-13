@@ -1,5 +1,5 @@
 import { float } from "@thi.ng/strings/float";
-import type { AxisSpec } from "../api";
+import type { AxisSpec } from "../api.js";
 
 export const axisDefaults = (extra?: any): Partial<AxisSpec> => ({
     attribs: { stroke: "#000" },

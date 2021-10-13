@@ -1,7 +1,7 @@
 import type { Predicate } from "@thi.ng/api";
-import type { Parser, ParseScope } from "../api";
-import { parseError } from "../error";
-import { xform } from "./xform";
+import type { Parser, ParseScope } from "../api.js";
+import { parseError } from "../error.js";
+import { xform } from "./xform.js";
 
 export const check = <T>(
     parser: Parser<T>,

@@ -5,12 +5,12 @@ import { clipLineSegmentPoly } from "@thi.ng/geom-clip-line/clip-poly";
 import { sutherlandHodgeman } from "@thi.ng/geom-clip-poly";
 import { centroid } from "@thi.ng/geom-poly-utils/centroid";
 import type { ReadonlyVec } from "@thi.ng/vectors";
-import { Group } from "./api/group";
-import { Line } from "./api/line";
-import { Polygon } from "./api/polygon";
-import { __copyAttribs } from "./internal/copy";
-import { __dispatch } from "./internal/dispatch";
-import { ensureVertices, vertices } from "./vertices";
+import { Group } from "./api/group.js";
+import { Line } from "./api/line.js";
+import { Polygon } from "./api/polygon.js";
+import { __copyAttribs } from "./internal/copy.js";
+import { __dispatch } from "./internal/dispatch.js";
+import { ensureVertices, vertices } from "./vertices.js";
 
 export const clipConvex: MultiFn2<
     IShape,

@@ -8,14 +8,14 @@ import { max2 } from "@thi.ng/vectors/max";
 import { normalCW } from "@thi.ng/vectors/normal";
 import { set2 } from "@thi.ng/vectors/set";
 import { sub2 } from "@thi.ng/vectors/sub";
-import { Circle } from "./api/circle";
-import type { Line } from "./api/line";
-import { Quad } from "./api/quad";
-import type { Rect } from "./api/rect";
-import { centroid } from "./centroid";
-import { __copyAttribs } from "./internal/copy";
-import { __dispatch } from "./internal/dispatch";
-import { rectFromCentroid } from "./rect";
+import { Circle } from "./api/circle.js";
+import type { Line } from "./api/line.js";
+import { Quad } from "./api/quad.js";
+import type { Rect } from "./api/rect.js";
+import { centroid } from "./centroid.js";
+import { __copyAttribs } from "./internal/copy.js";
+import { __dispatch } from "./internal/dispatch.js";
+import { rectFromCentroid } from "./rect.js";
 
 export const offset: MultiFn2<IShape, number, IShape> = defmulti<
     any,

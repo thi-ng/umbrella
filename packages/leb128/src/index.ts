@@ -1,7 +1,7 @@
 import { hasWASM } from "@thi.ng/checks/has-wasm";
 import { unsupported } from "@thi.ng/errors/unsupported";
 import { base64Decode } from "@thi.ng/transducers-binary/base64";
-import { BINARY } from "./binary";
+import { BINARY } from "./binary.js";
 
 interface LEB128 {
     memory: WebAssembly.Memory;

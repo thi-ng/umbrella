@@ -1,4 +1,4 @@
-import type { DefuzzStrategyOpts } from "../api";
+import type { DefuzzStrategyOpts } from "../api.js";
 
 export const defaultOpts = (
     opts?: Partial<DefuzzStrategyOpts>

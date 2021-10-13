@@ -1,5 +1,5 @@
-import type { MultiBVecOpRoV } from "./api";
-import { vop } from "./vop";
+import type { MultiBVecOpRoV } from "./api.js";
+import { vop } from "./vop.js";
 
 /**
  * Returns returns true if all vector components in `v` are truthy.

@@ -1,2 +1,2 @@
-export * from "./bitfield";
-export * from "./bitmatrix";
+export * from "./bitfield.js";
+export * from "./bitmatrix.js";

@@ -1,6 +1,6 @@
 import { peek as _peek } from "@thi.ng/arrays/peek";
-import type { Transducer } from "./api";
-import { map } from "./map";
+import type { Transducer } from "./api.js";
+import { map } from "./map.js";
 
 /**
  * Transducer version of {@link @thi.ng/api#peek}, i.e. extracts the

@@ -1,7 +1,7 @@
 import type { TypedArray } from "@thi.ng/api";
 import { preferredType } from "@thi.ng/mime";
-import type { DownloadOpts } from "./api";
-import { downloadWithMime } from "./raw";
+import type { DownloadOpts } from "./api.js";
+import { downloadWithMime } from "./raw.js";
 
 /**
  * Similar to (and wrapping) {@link downloadWithMime} with additional

@@ -6,7 +6,7 @@ import type {
     Serializer,
     SerializerPair,
     SerializerSpecs,
-} from "./api";
+} from "./api.js";
 
 /**
  * Identity serializer pair (no op).

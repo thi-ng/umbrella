@@ -1,17 +1,22 @@
 import type { Fn } from "@thi.ng/api";
 import { isNumber } from "@thi.ng/checks/is-number";
 import { isString } from "@thi.ng/checks/is-string";
-import type { ColorMode, IParsedColor, MaybeColor, TypedColor } from "../api";
-import { convert } from "../convert";
-import { hslCss } from "../hsl/hsl-css";
-import { hsvCss } from "../hsv/hsv-css";
-import { intArgb32Css } from "../int/int-css";
-import { intAbgr32Argb32 } from "../int/int-int";
-import { lchLab } from "../lab/lab-lch";
-import { labRgb, labRgbD65 } from "../lab/lab-rgb";
-import { rgbCss } from "../rgb/rgb-css";
-import { rgbSrgb } from "../rgb/rgb-srgb";
-import { srgbCss } from "../srgb/srgb-css";
+import type {
+    ColorMode,
+    IParsedColor,
+    MaybeColor,
+    TypedColor,
+} from "../api.js";
+import { convert } from "../convert.js";
+import { hslCss } from "../hsl/hsl-css.js";
+import { hsvCss } from "../hsv/hsv-css.js";
+import { intArgb32Css } from "../int/int-css.js";
+import { intAbgr32Argb32 } from "../int/int-int.js";
+import { lchLab } from "../lab/lab-lch.js";
+import { labRgb, labRgbD65 } from "../lab/lab-rgb.js";
+import { rgbCss } from "../rgb/rgb-css.js";
+import { rgbSrgb } from "../rgb/rgb-srgb.js";
+import { srgbCss } from "../srgb/srgb-css.js";
 
 /** @internal */
 const CSS_CONVERSIONS: Partial<Record<ColorMode, Fn<any, string>>> = {

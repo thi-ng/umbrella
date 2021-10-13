@@ -1,9 +1,9 @@
 import type { FnAny } from "@thi.ng/api";
 import { illegalArity } from "@thi.ng/errors/illegal-arity";
-import type { IReducible, Reducer, Transducer, TxLike } from "./api";
-import { ensureTransducer } from "./ensure";
-import { map } from "./map";
-import { reduce, reduceRight } from "./reduce";
+import type { IReducible, Reducer, Transducer, TxLike } from "./api.js";
+import { ensureTransducer } from "./ensure.js";
+import { map } from "./map.js";
+import { reduce, reduceRight } from "./reduce.js";
 
 export function transduce<A, B, C>(
     tx: TxLike<A, B>,

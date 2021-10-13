@@ -1,6 +1,6 @@
 import { sincos } from "@thi.ng/math/angle";
 import { setC, setC4, setC6 } from "@thi.ng/vectors/setc";
-import type { MatOpN } from "./api";
+import type { MatOpN } from "./api.js";
 
 /**
  * Constructs a 2x2 matrix rotation matrix for given `theta`.

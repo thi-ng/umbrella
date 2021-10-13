@@ -1,4 +1,4 @@
-import type { IObjectOf } from "./object";
+import type { IObjectOf } from "./object.js";
 
 /**
  * Generic interface for reference types (value wrappers).

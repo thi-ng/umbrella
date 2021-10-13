@@ -4,14 +4,14 @@ import type { IShape } from "@thi.ng/geom-api";
 import { perimeter } from "@thi.ng/geom-poly-utils/perimeter";
 import { PI, TAU } from "@thi.ng/math/api";
 import { dist } from "@thi.ng/vectors/dist";
-import type { Circle } from "./api/circle";
-import type { Ellipse } from "./api/ellipse";
-import type { Group } from "./api/group";
-import type { Line } from "./api/line";
-import type { Polygon } from "./api/polygon";
-import type { Rect } from "./api/rect";
-import type { Triangle } from "./api/triangle";
-import { __dispatch } from "./internal/dispatch";
+import type { Circle } from "./api/circle.js";
+import type { Ellipse } from "./api/ellipse.js";
+import type { Group } from "./api/group.js";
+import type { Line } from "./api/line.js";
+import type { Polygon } from "./api/polygon.js";
+import type { Rect } from "./api/rect.js";
+import type { Triangle } from "./api/triangle.js";
+import { __dispatch } from "./internal/dispatch.js";
 
 /**
  * Returns the arc length / perimeter / circumference of the given

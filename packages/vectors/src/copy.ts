@@ -1,6 +1,6 @@
 import { implementsFunction } from "@thi.ng/checks/implements-function";
-import type { ReadonlyVec, Vec } from "./api";
-import { set } from "./set";
+import type { ReadonlyVec, Vec } from "./api.js";
+import { set } from "./set.js";
 
 export const copy = (v: ReadonlyVec): Vec =>
     implementsFunction(v, "copy") ? v.copy() : set([], v);

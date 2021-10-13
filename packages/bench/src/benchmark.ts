@@ -1,6 +1,6 @@
-import type { BenchmarkOpts, BenchmarkResult } from "./api";
-import { benchResult } from "./bench";
-import { FORMAT_DEFAULT } from "./format/default";
+import type { BenchmarkOpts, BenchmarkResult } from "./api.js";
+import { benchResult } from "./bench.js";
+import { FORMAT_DEFAULT } from "./format/default.js";
 
 export const DEFAULT_OPTS: BenchmarkOpts = {
     title: "benchmark",

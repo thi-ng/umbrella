@@ -1,12 +1,12 @@
 import { HALF_PI, PI } from "@thi.ng/math/api";
-import { addmN } from "./addmn";
-import type { ReadonlyVec, Vec, VecOpRoVV } from "./api";
-import { direction } from "./direction";
-import { headingXY } from "./heading";
-import { mixN2 } from "./mixn";
-import { normalize } from "./normalize";
-import { perpendicularCCW } from "./perpendicular";
-import { sub } from "./sub";
+import { addmN } from "./addmn.js";
+import type { ReadonlyVec, Vec, VecOpRoVV } from "./api.js";
+import { direction } from "./direction.js";
+import { headingXY } from "./heading.js";
+import { mixN2 } from "./mixn.js";
+import { normalize } from "./normalize.js";
+import { perpendicularCCW } from "./perpendicular.js";
+import { sub } from "./sub.js";
 
 export const bisect2: VecOpRoVV<number> = (a, b) => {
     const theta = (headingXY(a) + headingXY(b)) / 2;

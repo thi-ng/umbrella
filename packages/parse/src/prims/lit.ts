@@ -1,11 +1,14 @@
-import { satisfyD, satisfy } from "./satisfy";
+import { satisfyD, satisfy } from "./satisfy.js";
 
 /**
  * HOF predicate for matching given single char literal.
  *
  * @param c
  */
-export const litP = <T>(c: T) => (x: T) => x === c;
+export const litP =
+    <T>(c: T) =>
+    (x: T) =>
+        x === c;
 
 /**
  * Matches single char/value `c`.

@@ -1,10 +1,10 @@
 import type { Fn3, IEquiv, Pair, UIntArray } from "@thi.ng/api";
 import { isNumber } from "@thi.ng/checks/is-number";
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
-import type { IEquivSet } from "./api";
-import { dissoc } from "./dissoc";
-import { __inspectable } from "./internal/inspect";
-import { into } from "./into";
+import type { IEquivSet } from "./api.js";
+import { dissoc } from "./dissoc.js";
+import { __inspectable } from "./internal/inspect.js";
+import { into } from "./into.js";
 
 interface SparseSetProps {
     dense: UIntArray;

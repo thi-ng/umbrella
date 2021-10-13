@@ -1,6 +1,6 @@
-import type { StackContext, StackProc } from "./api";
-import { $ } from "./safe";
-import { $stackFn } from "./word";
+import type { StackContext, StackProc } from "./api.js";
+import { $ } from "./safe.js";
+import { $stackFn } from "./word.js";
 
 //////////////////// Loop constructs  ////////////////////
 

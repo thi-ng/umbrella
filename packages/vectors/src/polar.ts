@@ -1,7 +1,7 @@
-import type { MultiVecOpV } from "./api";
-import { vop } from "./vop";
-import { mag } from "./mag";
-import { setC2, setC3 } from "./setc";
+import type { MultiVecOpV } from "./api.js";
+import { vop } from "./vop.js";
+import { mag } from "./mag.js";
+import { setC2, setC3 } from "./setc.js";
 
 const sqrt = Math.sqrt;
 const asin = Math.asin;

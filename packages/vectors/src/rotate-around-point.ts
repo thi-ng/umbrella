@@ -1,5 +1,5 @@
-import type { VecOpVVN } from "./api";
-import { setC2 } from "./setc";
+import type { VecOpVVN } from "./api.js";
+import { setC2 } from "./setc.js";
 
 export const rotateAroundPoint2: VecOpVVN = (out, v, p, theta) => {
     const x = v[0] - p[0];

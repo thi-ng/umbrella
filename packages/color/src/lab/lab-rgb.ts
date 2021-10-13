@@ -1,6 +1,6 @@
-import type { ColorOp } from "../api";
-import { labXyz, labXyzD65 } from "./lab-xyz";
-import { xyzRgb, xyzRgbD65 } from "../xyz/xyz-rgb";
+import type { ColorOp } from "../api.js";
+import { labXyz, labXyzD65 } from "./lab-xyz.js";
+import { xyzRgb, xyzRgbD65 } from "../xyz/xyz-rgb.js";
 
 /**
  * Converts Lab to linear RGB (via XYZ) using {@link D50} white point.

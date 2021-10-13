@@ -1,4 +1,4 @@
-import type { IInto } from "./into";
+import type { IInto } from "./into.js";
 
 /**
  * Generic interface for set collection types.

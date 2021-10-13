@@ -1,4 +1,4 @@
-import { DEFAULT_SYNTAX, SyntaxOpts, Token } from "./api";
+import { DEFAULT_SYNTAX, SyntaxOpts, Token } from "./api.js";
 
 /**
  * Yields iterator of {@link Token}s (incl. location info) from `src` string

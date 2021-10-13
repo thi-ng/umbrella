@@ -5,7 +5,7 @@ import type {
     VecOpVN,
     VecOpVVV,
     VecOpVVN,
-} from "./api";
+} from "./api.js";
 import { isNumber } from "@thi.ng/checks/is-number";
 
 /**

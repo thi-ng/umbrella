@@ -3,8 +3,8 @@ import { SIZEOF, TypedArray, typedArray } from "@thi.ng/api/typedarray";
 import { assert } from "@thi.ng/errors/assert";
 import { ensureIndex } from "@thi.ng/errors/out-of-bounds";
 import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
-import type { SOAAttribSpec, SOASpecs, SOATuple } from "./api";
-import { prepareSpec } from "./utils";
+import type { SOAAttribSpec, SOASpecs, SOATuple } from "./api.js";
+import { prepareSpec } from "./utils.js";
 
 export class SOA<K extends string> implements ILength {
     length: number;

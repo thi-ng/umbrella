@@ -1,8 +1,8 @@
 import type { IReset } from "@thi.ng/api";
 import { PI } from "@thi.ng/math/api";
 import { clamp05 } from "@thi.ng/math/interval";
-import type { SVFType } from "./api";
-import { AProc } from "./aproc";
+import type { SVFType } from "./api.js";
+import { AProc } from "./aproc.js";
 
 export const svfLP = (fc: number, q?: number) => new SVF("lp", fc, q);
 

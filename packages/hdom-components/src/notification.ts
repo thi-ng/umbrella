@@ -1,4 +1,4 @@
-import { appLink } from "./link";
+import { appLink } from "./link.js";
 import type { IObjectOf } from "@thi.ng/api";
 
 export interface NotificationOpts {

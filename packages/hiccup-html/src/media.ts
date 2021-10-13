@@ -9,8 +9,8 @@ import type {
     MultiStringAttrib,
     ReferrerAttribs,
     StringAttrib,
-} from "./api";
-import { defElement } from "./def";
+} from "./api.js";
+import { defElement } from "./def.js";
 
 export interface CanvasAttribs extends Attribs, DimensionAttribs {}
 

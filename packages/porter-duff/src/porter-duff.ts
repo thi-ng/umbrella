@@ -1,13 +1,13 @@
 import type { Fn3, FnN2 } from "@thi.ng/api";
 import { clamp, clamp01 } from "@thi.ng/math/interval";
-import type { Color, ReadonlyColor } from "./api";
+import type { Color, ReadonlyColor } from "./api.js";
 import {
     postmultiply,
     postmultiplyInt,
     premultiply,
     premultiplyInt,
-} from "./premultiply";
-import { setC4, setN4 } from "./utils";
+} from "./premultiply.js";
+import { setC4, setN4 } from "./utils.js";
 
 const min = Math.min;
 

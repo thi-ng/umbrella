@@ -1,4 +1,4 @@
-import type { IAssoc, IAssocIn } from "./assoc";
+import type { IAssoc, IAssocIn } from "./assoc.js";
 
 /**
  * Extension of `IAssoc` for types supporting key removals.

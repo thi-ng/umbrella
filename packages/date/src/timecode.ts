@@ -1,5 +1,5 @@
 import { Z2 } from "@thi.ng/strings/pad-left";
-import { DAY, HOUR, MINUTE, MONTH, SECOND, YEAR } from "./api";
+import { DAY, HOUR, MINUTE, MONTH, SECOND, YEAR } from "./api.js";
 
 /**
  * Returns a time formatter for given FPS (frames / second, in [1..1000] range),

@@ -1,4 +1,4 @@
-import type { NumOrString } from "./prim";
+import type { NumOrString } from "./prim.js";
 import type {
     Keys,
     Keys1,
@@ -9,8 +9,8 @@ import type {
     Keys6,
     Keys7,
     ValN,
-} from "./keyval";
-import type { Head, Tail, IsEmpty } from "./tuple";
+} from "./keyval.js";
+import type { Head, Tail, IsEmpty } from "./tuple.js";
 
 /**
  * Unchecked lookup path for nested data structures.

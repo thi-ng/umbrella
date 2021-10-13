@@ -1,8 +1,8 @@
 import type { Fn, Fn2 } from "@thi.ng/api";
 import { isArray } from "@thi.ng/checks/is-array";
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
-import type { StackContext } from "./api";
-import { $, $n } from "./safe";
+import type { StackContext } from "./api.js";
+import { $, $n } from "./safe.js";
 
 //////////////////// Operator generators ////////////////////
 

@@ -1,17 +1,17 @@
 import { implementsFunction } from "@thi.ng/checks/implements-function";
 import { isArray } from "@thi.ng/checks/is-array";
-import { circle } from "./circle";
-import { ellipse } from "./ellipse";
-import { fattribs } from "./format";
-import { linearGradient, radialGradient } from "./gradients";
-import { image } from "./image";
-import { hline, line, vline } from "./line";
-import { path } from "./path";
-import { packedPoints, points } from "./points";
-import { polygon } from "./polygon";
-import { polyline } from "./polyline";
-import { roundedRect } from "./rect";
-import { text } from "./text";
+import { circle } from "./circle.js";
+import { ellipse } from "./ellipse.js";
+import { fattribs } from "./format.js";
+import { linearGradient, radialGradient } from "./gradients.js";
+import { image } from "./image.js";
+import { hline, line, vline } from "./line.js";
+import { path } from "./path.js";
+import { packedPoints, points } from "./points.js";
+import { polygon } from "./polygon.js";
+import { polyline } from "./polyline.js";
+import { roundedRect } from "./rect.js";
+import { text } from "./text.js";
 
 const ATTRIB_ALIASES: Record<string, string> = {
     alpha: "opacity",

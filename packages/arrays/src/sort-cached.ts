@@ -2,8 +2,8 @@ import type { Comparator, Fn } from "@thi.ng/api";
 import { isFunction } from "@thi.ng/checks/is-function";
 import { compare } from "@thi.ng/compare/compare";
 import { assert } from "@thi.ng/errors/assert";
-import { quickSort } from "./quicksort";
-import { multiSwap } from "./swap";
+import { quickSort } from "./quicksort.js";
+import { multiSwap } from "./swap.js";
 
 /**
  * Takes a `src` array and `key` array of function to provide the sort key of

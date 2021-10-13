@@ -1,6 +1,6 @@
 import type { FnN2, FnN3 } from "@thi.ng/api";
-import { DAYS_IN_MONTH, DAYS_IN_MONTH_OFFSET } from "./api";
-import { isLeapYear } from "./checks";
+import { DAYS_IN_MONTH, DAYS_IN_MONTH_OFFSET } from "./api.js";
+import { isLeapYear } from "./checks.js";
 
 export const daysInMonth: FnN2 = (year, month) => {
     const days = DAYS_IN_MONTH[month];

@@ -1,5 +1,5 @@
 import { mixQuadratic } from "@thi.ng/vectors/mix-quadratic";
-import { __sample, __sampleArray } from "./internal/sample";
+import { __sample, __sampleArray } from "./internal/sample.js";
 
 export const sampleQuadratic = __sample((res, [a, b, c], num) => {
     const delta = 1 / num;

@@ -1,4 +1,4 @@
-import { iterator } from "./iterator";
+import { iterator } from "./iterator.js";
 
 export function* randomSample<T>(prob: number, input: Iterable<T>) {
     let iter = iterator(input);

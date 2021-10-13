@@ -1,10 +1,10 @@
 import type { FnAny } from "@thi.ng/api";
 import { NO_OP, SEMAPHORE } from "@thi.ng/api/api";
 import { isIterable } from "@thi.ng/checks/is-iterable";
-import type { Reducer, Transducer, TxLike } from "./api";
-import { ensureTransducer } from "./ensure";
-import { push } from "./push";
-import { isReduced, unreduced } from "./reduced";
+import type { Reducer, Transducer, TxLike } from "./api.js";
+import { ensureTransducer } from "./ensure.js";
+import { push } from "./push.js";
+import { isReduced, unreduced } from "./reduced.js";
 
 /**
  * Takes a transducer and input iterable. Returns iterator of

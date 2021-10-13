@@ -9,9 +9,9 @@ import {
     TextureTarget,
     TextureType,
     TEX_FORMATS,
-} from "./api/texture";
-import { isGL2Context } from "./checks";
-import { error } from "./error";
+} from "./api/texture.js";
+import { isGL2Context } from "./checks.js";
+import { error } from "./error.js";
 
 const $bind = (op: "bind" | "unbind") => (textures?: ITexture[]) => {
     if (!textures) return;

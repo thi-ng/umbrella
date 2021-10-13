@@ -1,6 +1,6 @@
 import { delayed as _delayed } from "@thi.ng/compose/delayed";
-import type { Transducer } from "./api";
-import { map } from "./map";
+import type { Transducer } from "./api.js";
+import { map } from "./map.js";
 
 /**
  * Yields transducer which wraps incoming values in promises, which each

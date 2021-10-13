@@ -1,5 +1,5 @@
 import type { IReset } from "@thi.ng/api";
-import { AGen } from "./agen";
+import { AGen } from "./agen.js";
 
 export const alt = (n = 1) => new Alt(n, -n);
 

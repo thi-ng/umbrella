@@ -1,9 +1,9 @@
 import type { NumericArray } from "@thi.ng/api";
 import type { IRandom } from "@thi.ng/random";
-import type { Color, ColorFactory, ReadonlyColor, TypedColor } from "../api";
-import { defColor } from "../defcolor";
-import { rgbHcy } from "../rgb/rgb-hcy";
-import { hcyRgb } from "./hcy-rgb";
+import type { Color, ColorFactory, ReadonlyColor, TypedColor } from "../api.js";
+import { defColor } from "../defcolor.js";
+import { rgbHcy } from "../rgb/rgb-hcy.js";
+import { hcyRgb } from "./hcy-rgb.js";
 
 export declare class HCY implements TypedColor<HCY> {
     buf: NumericArray;

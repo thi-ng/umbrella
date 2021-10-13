@@ -1,9 +1,9 @@
-import type { NormalMapOpts } from "./api";
-import { ensureChannel } from "./checks";
-import { convolveChannel } from "./convolve";
-import { FloatBuffer } from "./float";
-import { FLOAT_NORMAL } from "./format/float-norm";
-import { __asVec } from "./internal/utils";
+import type { NormalMapOpts } from "./api.js";
+import { ensureChannel } from "./checks.js";
+import { convolveChannel } from "./convolve.js";
+import { FloatBuffer } from "./float.js";
+import { FLOAT_NORMAL } from "./format/float-norm.js";
+import { __asVec } from "./internal/utils.js";
 
 /**
  * Computes normal map image (aka gradient in X & Y directions and a static Z

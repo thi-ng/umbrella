@@ -1,7 +1,7 @@
 import type { NumericArray } from "@thi.ng/api";
 import type { StridedVec } from "@thi.ng/vectors";
-import { AVecList } from "./alist";
-import type { VecFactory } from "./api";
+import { AVecList } from "./alist.js";
+import type { VecFactory } from "./api.js";
 
 interface Cell<T extends StridedVec> {
     prev: CellVec<T> | null;

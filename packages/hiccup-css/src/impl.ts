@@ -14,7 +14,7 @@ import { permutations } from "@thi.ng/transducers/permutations";
 import { repeat } from "@thi.ng/transducers/repeat";
 import { str } from "@thi.ng/transducers/str";
 import { transduce } from "@thi.ng/transducers/transduce";
-import type { CSSOpts, RuleFn } from "./api";
+import type { CSSOpts, RuleFn } from "./api.js";
 
 const EMPTY = new Set<string>();
 

@@ -5,11 +5,11 @@ import { alignmentQuat } from "@thi.ng/matrices/alignment-quat";
 import { mulVQ } from "@thi.ng/matrices/mulv";
 import { add3 } from "@thi.ng/vectors/add";
 import { ReadonlyVec, Vec, Z3 } from "@thi.ng/vectors/api";
-import type { Plane } from "./api/plane";
-import { Quad } from "./api/quad";
-import { Quad3 } from "./api/quad3";
-import { __argAttribs } from "./internal/args";
-import { __pclike } from "./internal/pclike";
+import type { Plane } from "./api/plane.js";
+import { Quad } from "./api/quad.js";
+import { Quad3 } from "./api/quad3.js";
+import { __argAttribs } from "./internal/args.js";
+import { __pclike } from "./internal/pclike.js";
 
 export function quad(a: Vec, b: Vec, c: Vec, d: Vec, attribs?: Attribs): Quad;
 export function quad(pts: Vec[], attribs?: Attribs): Quad;

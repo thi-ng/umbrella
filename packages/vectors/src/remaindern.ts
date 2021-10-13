@@ -1,7 +1,7 @@
 import { remainder as _remainder } from "@thi.ng/math/libc";
-import type { MultiVecOpVN, VecOpVN } from "./api";
-import { defHofOp } from "./compile/emit";
-import { ARGS_V, ARGS_VN, FN_N } from "./compile/templates";
+import type { MultiVecOpVN, VecOpVN } from "./api.js";
+import { defHofOp } from "./compile/emit.js";
+import { ARGS_V, ARGS_VN, FN_N } from "./compile/templates.js";
 
 /**
  * Same as {@link remainder}, but 2nd operand is a single scalar (uniform domain

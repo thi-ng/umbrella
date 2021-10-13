@@ -1,5 +1,5 @@
-import { consume } from "./consume";
-import { iterator } from "./iterator";
+import { consume } from "./consume.js";
+import { iterator } from "./iterator.js";
 
 export function* takeNth<T>(n: number, input: Iterable<T>) {
     let iter = iterator(input);

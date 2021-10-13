@@ -1,6 +1,6 @@
 import { eqDelta } from "@thi.ng/math/eqdelta";
-import type { DefuzzStrategy, DefuzzStrategyOpts } from "../api";
-import { defaultOpts } from "./opts";
+import type { DefuzzStrategy, DefuzzStrategyOpts } from "../api.js";
+import { defaultOpts } from "./opts.js";
 
 /**
  * Higher-order function. Returns Mean-of-Maxima defuzzification strategy,

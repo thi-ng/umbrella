@@ -4,7 +4,7 @@ import { drop } from "@thi.ng/transducers/drop";
 import { iterator1 } from "@thi.ng/transducers/iterator";
 import { map } from "@thi.ng/transducers/map";
 import { multiplex } from "@thi.ng/transducers/multiplex";
-import { wma } from "./wma";
+import { wma } from "./wma.js";
 
 /**
  * {@link https://www.fidelity.com/learning-center/trading-investing/technical-analysis/technical-indicator-guide/hull-moving-average}

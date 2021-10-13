@@ -1,6 +1,6 @@
 import type { Fn2, IObjectOf, Nullable } from "@thi.ng/api";
 import { isIllegalKey } from "@thi.ng/checks/is-proto-path";
-import { copy, copyObj } from "./copy";
+import { copy, copyObj } from "./copy.js";
 
 export const mergeMapWith = <K, V>(
     f: Fn2<V, V, V>,

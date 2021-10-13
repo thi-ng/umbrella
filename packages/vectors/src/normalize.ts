@@ -1,8 +1,8 @@
 import { EPS } from "@thi.ng/math/api";
-import type { VecOpVO } from "./api";
-import { mag } from "./mag";
-import { mulN } from "./muln";
-import { set } from "./set";
+import type { VecOpVO } from "./api.js";
+import { mag } from "./mag.js";
+import { mulN } from "./muln.js";
+import { set } from "./set.js";
 
 /**
  * Normalizes vector to given (optional) length (default: 1). If `out`

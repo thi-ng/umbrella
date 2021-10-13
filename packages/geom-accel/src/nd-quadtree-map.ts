@@ -18,7 +18,7 @@ import { madd } from "@thi.ng/vectors/madd";
 import { mulN } from "@thi.ng/vectors/muln";
 import { submN } from "@thi.ng/vectors/submn";
 import { vop } from "@thi.ng/vectors/vop";
-import { addResults, CMP, into } from "./utils";
+import { addResults, CMP, into } from "./utils.js";
 
 export class NdQtNode<K extends ReadonlyVec, V> {
     pos: ReadonlyVec;

@@ -1,5 +1,5 @@
-import type { GroupByOpts } from "../api";
-import { push } from "../push";
+import type { GroupByOpts } from "../api.js";
+import { push } from "../push.js";
 
 /**
  * Shared helper function for `groupBy*` reducers

@@ -1,5 +1,5 @@
 import { DCons } from "@thi.ng/dcons/dcons";
-import { iterator } from "./iterator";
+import { iterator } from "./iterator.js";
 
 export const fork = <T>(src: Iterable<T>, cacheLimit = 16) => {
     const iter = iterator(src);

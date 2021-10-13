@@ -7,7 +7,7 @@ import { map } from "@thi.ng/transducers/map";
 import { mapIndexed } from "@thi.ng/transducers/map-indexed";
 import { padLast } from "@thi.ng/transducers/pad-last";
 import { partition } from "@thi.ng/transducers/partition";
-import type { HexDumpOpts } from "./api";
+import type { HexDumpOpts } from "./api.js";
 
 /**
  * Transforms bytes into a sequence of hexdump lines with configurable

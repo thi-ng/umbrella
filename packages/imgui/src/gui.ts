@@ -10,7 +10,7 @@ import {
     KeyModifier,
     MouseButton,
     NONE,
-} from "./api";
+} from "./api.js";
 
 export class IMGUI implements IClear, IToHiccup {
     attribs!: any;

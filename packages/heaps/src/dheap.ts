@@ -1,6 +1,6 @@
 import type { ICopy, IEmpty, IStack } from "@thi.ng/api";
-import type { DHeapOpts } from "./api";
-import { Heap } from "./heap";
+import type { DHeapOpts } from "./api.js";
+import { Heap } from "./heap.js";
 
 export const defDHeap = <T>(
     values?: Iterable<T> | null,

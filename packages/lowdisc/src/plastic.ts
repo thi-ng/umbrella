@@ -1,6 +1,6 @@
 import { assert } from "@thi.ng/errors/assert";
-import { kronecker } from "./kronecker";
-import { lowDiscrepancy } from "./lowdisc";
+import { kronecker } from "./kronecker.js";
+import { lowDiscrepancy } from "./lowdisc.js";
 
 /**
  * Computes the `d`-th Harmonious number, with:

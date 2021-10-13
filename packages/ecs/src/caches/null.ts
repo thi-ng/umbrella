@@ -1,5 +1,5 @@
 import type { Fn0 } from "@thi.ng/api";
-import type { ICache } from "../api";
+import type { ICache } from "../api.js";
 
 export class NullCache<T> implements ICache<T> {
     clear() {}

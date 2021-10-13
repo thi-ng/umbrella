@@ -7,8 +7,8 @@ import type {
     NumericAttrib,
     RelAttribs,
     StringAttrib,
-} from "./api";
-import { defElement } from "./def";
+} from "./api.js";
+import { defElement } from "./def.js";
 
 export interface FormAttribs extends RelAttribs {
     "accept-charset": MultiStringAttrib;

@@ -1,5 +1,5 @@
 import type { ISeq, ISeqable, Nullable } from "@thi.ng/api";
-import { ensureSeq } from "./ensure";
+import { ensureSeq } from "./ensure.js";
 
 /**
  * Returns the concatenation sequence of given nullable

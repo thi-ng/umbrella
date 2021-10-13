@@ -1,5 +1,5 @@
-import type { Reducer } from "./api";
-import { reduce } from "./reduce";
+import type { Reducer } from "./api.js";
+import { reduce } from "./reduce.js";
 
 /**
  * Reducer computing mean of received inputs. Returns 0 if no inputs

@@ -1,4 +1,4 @@
-import { implementsFunction } from "./implements-function";
+import { implementsFunction } from "./implements-function.js";
 
 export const isPromiseLike = (x: any): x is Promise<any> =>
     x instanceof Promise ||

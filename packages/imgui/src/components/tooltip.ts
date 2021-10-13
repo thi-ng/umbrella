@@ -1,7 +1,7 @@
 import { rect } from "@thi.ng/geom/rect";
 import { add2 } from "@thi.ng/vectors/add";
-import type { IMGUI } from "../gui";
-import { textLabelRaw } from "./textlabel";
+import type { IMGUI } from "../gui.js";
+import { textLabelRaw } from "./textlabel.js";
 
 export const tooltipRaw = (gui: IMGUI, tooltip: string) => {
     const theme = gui.theme;

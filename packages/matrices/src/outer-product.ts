@@ -1,7 +1,7 @@
 import type { MultiVecOpVV, ReadonlyVec } from "@thi.ng/vectors";
 import { setC, setC4 } from "@thi.ng/vectors/setc";
 import { vop } from "@thi.ng/vectors/vop";
-import type { Mat } from "./api";
+import type { Mat } from "./api.js";
 
 /**
  * Computes outer/tensor product of vectors `u` and `v`. Returns square

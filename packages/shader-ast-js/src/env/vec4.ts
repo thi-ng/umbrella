@@ -50,7 +50,7 @@ import { step4 } from "@thi.ng/vectors/step";
 import { sub4 } from "@thi.ng/vectors/sub";
 import { subN4 } from "@thi.ng/vectors/subn";
 import { tan4 } from "@thi.ng/vectors/tan";
-import type { JSBuiltinsVec } from "../api";
+import type { JSBuiltinsVec } from "../api.js";
 
 export const VEC4: JSBuiltinsVec = {
     abs: (a) => abs4([], a),

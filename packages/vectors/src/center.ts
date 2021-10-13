@@ -1,6 +1,6 @@
-import type { ReadonlyVec, Vec } from "./api";
-import { vmean } from "./mean";
-import { subN } from "./subn";
+import type { ReadonlyVec, Vec } from "./api.js";
+import { vmean } from "./mean.js";
+import { subN } from "./subn.js";
 
 /**
  * Creates a mean-centered version of `a`, i.e. subtracts {@link vmean} of `a`

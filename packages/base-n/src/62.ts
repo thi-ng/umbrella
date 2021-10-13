@@ -1,5 +1,5 @@
-import { B36_CHARS } from "./36";
-import { defBase } from "./base";
+import { B36_CHARS } from "./36.js";
+import { defBase } from "./base.js";
 
 export const B62_CHARS = B36_CHARS + "abcdefghijklmnopqrstuvwxyz";
 

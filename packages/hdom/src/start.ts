@@ -1,7 +1,7 @@
 import { derefContext } from "@thi.ng/hiccup/deref";
-import type { HDOMImplementation, HDOMOpts } from "./api";
-import { DEFAULT_IMPL } from "./default";
-import { resolveRoot } from "./resolve";
+import type { HDOMImplementation, HDOMOpts } from "./api.js";
+import { DEFAULT_IMPL } from "./default.js";
+import { resolveRoot } from "./resolve.js";
 
 /**
  * Takes an hiccup tree (array, function or component object w/ life

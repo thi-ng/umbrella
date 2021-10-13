@@ -1,4 +1,4 @@
-import { defMathOpN } from "./compile/emit";
+import { defMathOpN } from "./compile/emit.js";
 
 /**
  * Same as {@link fmod}, but 2nd operand is a single scalar (uniform domain for

@@ -1,4 +1,4 @@
-import type { DitherKernel } from "./api";
+import type { DitherKernel } from "./api.js";
 
 /**
  * Burkes dither kernel (similar/improved version of {@link STUCKI}).

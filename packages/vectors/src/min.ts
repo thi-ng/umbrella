@@ -1,6 +1,6 @@
-import type { MultiVecOpVV, VecOpVV } from "./api";
-import { defOp } from "./compile/emit";
-import { FN2 } from "./compile/templates";
+import type { MultiVecOpVV, VecOpVV } from "./api.js";
+import { defOp } from "./compile/emit.js";
+import { FN2 } from "./compile/templates.js";
 
 export const [min, min2, min3, min4] = defOp<MultiVecOpVV, VecOpVV>(
     FN2("Math.min")

@@ -10,14 +10,14 @@ import { maddN } from "@thi.ng/vectors/maddn";
 import { mixN } from "@thi.ng/vectors/mixn";
 import { mulN } from "@thi.ng/vectors/muln";
 import { set } from "@thi.ng/vectors/set";
-import type { Circle } from "./api/circle";
-import type { Group } from "./api/group";
-import type { Line } from "./api/line";
-import type { Plane } from "./api/plane";
-import type { Polygon } from "./api/polygon";
-import type { Triangle } from "./api/triangle";
-import { bounds } from "./bounds";
-import { __dispatch } from "./internal/dispatch";
+import type { Circle } from "./api/circle.js";
+import type { Group } from "./api/group.js";
+import type { Line } from "./api/line.js";
+import type { Plane } from "./api/plane.js";
+import type { Polygon } from "./api/polygon.js";
+import type { Triangle } from "./api/triangle.js";
+import { bounds } from "./bounds.js";
+import { __dispatch } from "./internal/dispatch.js";
 
 export const centroid: MultiFn1O<IShape, Vec, Vec | undefined> = defmulti<
     any,

@@ -3,12 +3,12 @@ import { EPS } from "@thi.ng/math/api";
 import { memoize1 } from "@thi.ng/memoize/memoize1";
 import { map } from "@thi.ng/transducers/map";
 import { range } from "@thi.ng/transducers/range";
-import type { IVector } from "./api";
-import { eqDeltaS } from "./eqdelta";
-import { stridedValues } from "./iterator";
-import { zeroes } from "./setn";
-import { setS } from "./sets";
-import { FORMATTER } from "./string";
+import type { IVector } from "./api.js";
+import { eqDeltaS } from "./eqdelta.js";
+import { stridedValues } from "./iterator.js";
+import { zeroes } from "./setn.js";
+import { setS } from "./sets.js";
+import { FORMATTER } from "./string.js";
 
 const SYM_B = "buf";
 const SYM_L = "length";

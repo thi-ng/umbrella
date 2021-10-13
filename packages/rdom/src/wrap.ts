@@ -1,7 +1,7 @@
 import type { Fn2 } from "@thi.ng/api";
-import type { IMountWithState, NumOrElement } from "./api";
-import { $el, $html, $remove, $text } from "./dom";
-import { SCHEDULER } from "./scheduler";
+import type { IMountWithState, NumOrElement } from "./api.js";
+import { $el, $html, $remove, $text } from "./dom.js";
+import { SCHEDULER } from "./scheduler.js";
 
 const wrapper =
     <T>(update: Fn2<HTMLElement, T, void>) =>

@@ -1,5 +1,5 @@
 import type { Predicate } from "@thi.ng/api";
-import type { Parser } from "../api";
+import type { Parser } from "../api.js";
 
 /**
  * Consumes input, but ignores it as long as given `pred` predicate fn

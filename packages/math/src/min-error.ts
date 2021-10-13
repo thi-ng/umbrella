@@ -1,4 +1,4 @@
-import { EPS } from "./api";
+import { EPS } from "./api.js";
 
 /**
  * Recursively evaluates function `fn` for `res` uniformly spaced values

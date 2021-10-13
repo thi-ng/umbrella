@@ -5,7 +5,7 @@ import { add, div, mul, sub } from "@thi.ng/shader-ast/ast/ops";
 import { $x, $y } from "@thi.ng/shader-ast/ast/swizzle";
 import { sym } from "@thi.ng/shader-ast/ast/sym";
 import { atan, length, mod } from "@thi.ng/shader-ast/builtin/math";
-import { cossin } from "../math/sincos";
+import { cossin } from "../math/sincos.js";
 
 /**
  * @remarks

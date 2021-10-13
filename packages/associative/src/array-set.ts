@@ -2,11 +2,11 @@ import type { Fn3, Pair, Predicate2 } from "@thi.ng/api";
 import { SEMAPHORE } from "@thi.ng/api/api";
 import { findIndex } from "@thi.ng/arrays/find";
 import { equiv } from "@thi.ng/equiv";
-import type { EquivSetOpts, IEquivSet } from "./api";
-import { dissoc } from "./dissoc";
-import { __equivSet } from "./internal/equiv";
-import { __inspectable } from "./internal/inspect";
-import { into } from "./into";
+import type { EquivSetOpts, IEquivSet } from "./api.js";
+import { dissoc } from "./dissoc.js";
+import { __equivSet } from "./internal/equiv.js";
+import { __inspectable } from "./internal/inspect.js";
+import { into } from "./into.js";
 
 interface ArraySetProps<T> {
     vals: T[];

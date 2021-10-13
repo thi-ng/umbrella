@@ -1,9 +1,9 @@
 import type { Fn } from "@thi.ng/api";
 import { identity } from "@thi.ng/compose/identity";
-import type { Reducer } from "./api";
-import { count } from "./count";
-import { groupByMap } from "./group-by-map";
-import { $$reduce } from "./reduce";
+import type { Reducer } from "./api.js";
+import { count } from "./count.js";
+import { groupByMap } from "./group-by-map.js";
+import { $$reduce } from "./reduce.js";
 
 export function frequencies<A>(): Reducer<Map<A, number>, A>;
 export function frequencies<A>(xs: Iterable<A>): Map<A, number>;

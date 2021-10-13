@@ -1,7 +1,7 @@
-import type { StackContext } from "./api";
-import { defOp1, defOp2 } from "./ops";
-import { swap } from "./stack";
-import { defWord } from "./word";
+import type { StackContext } from "./api.js";
+import { defOp1, defOp2 } from "./ops.js";
+import { swap } from "./stack.js";
+import { defWord } from "./word.js";
 
 //////////////////// Math ops ////////////////////
 

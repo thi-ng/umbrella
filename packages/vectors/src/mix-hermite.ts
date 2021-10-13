@@ -1,7 +1,7 @@
-import { addmN } from "./addmn";
-import { addW4 } from "./addw";
-import type { ReadonlyVec, Vec } from "./api";
-import { submN } from "./submn";
+import { addmN } from "./addmn.js";
+import { addW4 } from "./addw.js";
+import type { ReadonlyVec, Vec } from "./api.js";
+import { submN } from "./submn.js";
 
 /**
  * Vector version of {@link @thi.ng/math#mixCubicHermite}.

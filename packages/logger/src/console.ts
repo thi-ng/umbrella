@@ -1,4 +1,4 @@
-import { ILogger, LogLevel } from "./api";
+import { ILogger, LogLevel } from "./api.js";
 
 /**
  * {@link ILogger} implementation writing messages via `console.log`.

@@ -1,4 +1,4 @@
-import type { Pow2 } from "./api";
+import type { Pow2 } from "./api.js";
 
 /**
  * Aligns `addr` to next multiple of `size`. The latter must be a power

@@ -1,8 +1,8 @@
 import { binarySearch } from "@thi.ng/arrays/binary-search";
-import type { Reducer, SortOpts, Transducer } from "./api";
-import { __drain } from "./internal/drain";
-import { __sortOpts } from "./internal/sort-opts";
-import { __iter, iterator } from "./iterator";
+import type { Reducer, SortOpts, Transducer } from "./api.js";
+import { __drain } from "./internal/drain.js";
+import { __sortOpts } from "./internal/sort-opts.js";
+import { __iter, iterator } from "./iterator.js";
 
 /**
  * Transducer. Similar to {@link (partitionSort:1)}, however uses proper

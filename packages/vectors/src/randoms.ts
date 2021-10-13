@@ -8,15 +8,15 @@ import type {
     VecOpSOOO,
     VecOpSVO,
     VecOpSVVO,
-} from "./api";
-import { defHofOpS } from "./compile/emit";
-import { SARGS_VV } from "./compile/templates";
+} from "./api.js";
+import { defHofOpS } from "./compile/emit.js";
+import { SARGS_VV } from "./compile/templates.js";
 import {
     normalizeS,
     normalizeS2,
     normalizeS3,
     normalizeS4,
-} from "./normalizes";
+} from "./normalizes.js";
 
 /**
  * Randomizes `v` with each component in interval `[n..m)`. If no `rnd`

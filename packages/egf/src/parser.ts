@@ -6,9 +6,9 @@ import * as $prefixes from "@thi.ng/prefixes";
 import { unescape } from "@thi.ng/strings/escape";
 import { readFileSync } from "fs";
 import { dirname, resolve as resolvePath } from "path";
-import { IS_NODE, Node, ParseContext, ParseOpts, TagParser } from "./api";
-import { qualifiedID } from "./prefix";
-import { BUILTINS } from "./tags";
+import { IS_NODE, Node, ParseContext, ParseOpts, TagParser } from "./api.js";
+import { qualifiedID } from "./prefix.js";
+import { BUILTINS } from "./tags.js";
 
 const INCLUDE = "@include ";
 const PREFIX = "@prefix ";

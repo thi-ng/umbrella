@@ -1,5 +1,5 @@
-import type { TimingResult } from "./api";
-import { now, timeDiff } from "./now";
+import type { TimingResult } from "./api.js";
+import { now, timeDiff } from "./now.js";
 
 /**
  * Calls function `fn` without args, prints elapsed time and returns

@@ -4,7 +4,7 @@ import { dot3 } from "@thi.ng/vectors/dot";
 import { normalize } from "@thi.ng/vectors/normalize";
 import { setC } from "@thi.ng/vectors/setc";
 import { sub3 } from "@thi.ng/vectors/sub";
-import type { Mat } from "./api";
+import type { Mat } from "./api.js";
 
 /**
  * Constructs a 4x4 camera matrix for given `eye` position, look-at

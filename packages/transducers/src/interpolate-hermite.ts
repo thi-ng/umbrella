@@ -1,6 +1,6 @@
 import { mixHermite } from "@thi.ng/math/mix";
-import type { Transducer } from "./api";
-import { interpolate } from "./interpolate";
+import type { Transducer } from "./api.js";
+import { interpolate } from "./interpolate.js";
 
 /**
  * Pre-configured version of {@link (interpolate:1)} for numeric values

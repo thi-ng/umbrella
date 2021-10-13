@@ -1,5 +1,5 @@
-import { fattribs, ff, fpoint, fpoints } from "./format";
-import type { PathSegment } from "./api";
+import { fattribs, ff, fpoint, fpoints } from "./format.js";
+import type { PathSegment } from "./api.js";
 
 const DEG = 180 / Math.PI;
 

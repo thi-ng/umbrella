@@ -1,6 +1,6 @@
 import { implementsFunction } from "@thi.ng/checks/implements-function";
 import { isPlainObject } from "@thi.ng/checks/is-plain-object";
-import type { IToEGFConvert, Node, NodeRef } from "./api";
+import type { IToEGFConvert, Node, NodeRef } from "./api.js";
 
 export const isNode = (x: any): x is Node => isPlainObject(x) && "$id" in x;
 

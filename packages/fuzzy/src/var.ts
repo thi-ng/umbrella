@@ -1,4 +1,4 @@
-import type { LVar, LVarDomain } from "./api";
+import type { LVar, LVarDomain } from "./api.js";
 
 /**
  * Takes a `domain` interval and on object of named fuzzy sets and returns a new

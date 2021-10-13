@@ -1,6 +1,6 @@
 import type { IObjectOf } from "@thi.ng/api";
 import type { ReadonlyVec } from "@thi.ng/vectors";
-import { __endShape } from "./internal/end-shape";
+import { __endShape } from "./internal/end-shape.js";
 
 export const path = (
     ctx: CanvasRenderingContext2D,

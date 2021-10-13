@@ -1,4 +1,4 @@
-import { svg } from "./_svg";
+import { svg } from "./_svg.js";
 
 /**
  * https://demo.thi.ng/umbrella/hiccup-carbon-icons/#DIRECTION_STRAIGHT_RIGHT

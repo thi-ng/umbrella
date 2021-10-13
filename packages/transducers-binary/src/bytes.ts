@@ -10,8 +10,8 @@ import type { Reducer, Transducer } from "@thi.ng/transducers";
 import { iterator } from "@thi.ng/transducers/iterator";
 import { mapcat } from "@thi.ng/transducers/mapcat";
 import { reduce } from "@thi.ng/transducers/reduce";
-import type { BinStructItem } from "./api";
-import { utf8Encode } from "./utf8";
+import type { BinStructItem } from "./api.js";
+import { utf8Encode } from "./utf8.js";
 
 export const i8 = (x: number): BinStructItem => ["i8", x];
 export const i8array = (x: ArrayLike<number>): BinStructItem => ["i8a", x];

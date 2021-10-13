@@ -2,9 +2,9 @@ import type { Fn, Fn2, FnU, IObjectOf } from "@thi.ng/api";
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import { illegalState } from "@thi.ng/errors/illegal-state";
 import * as pf from "@thi.ng/pointfree";
-import { ALIASES, ASTNode, VisitorState } from "./api";
-import { LOGGER } from "./logger";
-import { parse, SyntaxError } from "./parser";
+import { ALIASES, ASTNode, VisitorState } from "./api.js";
+import { LOGGER } from "./logger.js";
+import { parse, SyntaxError } from "./parser.js";
 
 const nodeLoc = (node: ASTNode) =>
     node.loc ? `line ${node.loc.join(":")} -` : "";

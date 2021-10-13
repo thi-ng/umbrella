@@ -16,12 +16,12 @@ import type {
     MaybeColor,
     ReadonlyColor,
     TypedColor,
-} from "../api";
-import { parseCss } from "../css/parse-css";
-import { __scale8bit } from "../internal/scale";
-import { srgb } from "../srgb/srgb";
-import { srgbIntAbgr32, srgbIntArgb32 } from "../srgb/srgb-int";
-import { intArgb32Srgb } from "./int-srgb";
+} from "../api.js";
+import { parseCss } from "../css/parse-css.js";
+import { __scale8bit } from "../internal/scale.js";
+import { srgb } from "../srgb/srgb.js";
+import { srgbIntAbgr32, srgbIntArgb32 } from "../srgb/srgb-int.js";
+import { intArgb32Srgb } from "./int-srgb.js";
 
 export abstract class Int32<T extends TypedColor<T>> implements TypedColor<T> {
     buf: NumericArray;

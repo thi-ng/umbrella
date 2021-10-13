@@ -1,7 +1,7 @@
 import type { Fn } from "@thi.ng/api";
-import type { Parser, ScopeTransform } from "../api";
-import { xform } from "../combinators/xform";
-import { indent } from "../utils";
+import type { Parser, ScopeTransform } from "../api.js";
+import { xform } from "../combinators/xform.js";
+import { indent } from "../utils.js";
 
 /**
  * Side effect only. Higher order scope transform. Traverses current AST

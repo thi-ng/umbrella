@@ -1,6 +1,6 @@
-import type { IVector } from "./api";
-import { mapV } from "./map";
-import { set } from "./set";
+import type { IVector } from "./api.js";
+import { mapV } from "./map.js";
+import { set } from "./set.js";
 
 /**
  * Fills Vec2/3/4 view based buffer, supporting arbitrary component and

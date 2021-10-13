@@ -1,15 +1,15 @@
-import { alt } from "../combinators/alt";
-import { maybe } from "../combinators/maybe";
-import { zeroOrMore } from "../combinators/repeat";
-import { seq } from "../combinators/seq";
-import { xform } from "../combinators/xform";
-import { lit } from "../prims/lit";
-import { oneOf } from "../prims/one-of";
-import { comp } from "../xform/comp";
-import { join } from "../xform/join";
-import { xfFloat, xfInt } from "../xform/number";
-import { xfID } from "../xform/with-id";
-import { DIGIT, DIGITS } from "./digits";
+import { alt } from "../combinators/alt.js";
+import { maybe } from "../combinators/maybe.js";
+import { zeroOrMore } from "../combinators/repeat.js";
+import { seq } from "../combinators/seq.js";
+import { xform } from "../combinators/xform.js";
+import { lit } from "../prims/lit.js";
+import { oneOf } from "../prims/one-of.js";
+import { comp } from "../xform/comp.js";
+import { join } from "../xform/join.js";
+import { xfFloat, xfInt } from "../xform/number.js";
+import { xfID } from "../xform/with-id.js";
+import { DIGIT, DIGITS } from "./digits.js";
 
 /**
  * Matches single `+` or `-` char.

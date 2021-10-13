@@ -1,6 +1,6 @@
 import { U8 } from "@thi.ng/hex";
 import { memoize1 } from "@thi.ng/memoize/memoize1";
-import type { HtmlFormatOpts, StringFormat } from "./api";
+import type { HtmlFormatOpts, StringFormat } from "./api.js";
 
 const F5 = 255 / 31;
 const F6 = 255 / 63;

@@ -1,7 +1,7 @@
 import { dotS2, dotS3, dotS4 } from "@thi.ng/vectors/dots";
 import { setC, setC4, setC6 } from "@thi.ng/vectors/setc";
 import { vop } from "@thi.ng/vectors/vop";
-import type { MultiMatOpMM } from "./api";
+import type { MultiMatOpMM } from "./api.js";
 
 /**
  * Multi-method. Performs matrix-matrix multiplication. If `out` is not

@@ -5,11 +5,11 @@ import { compare } from "@thi.ng/compare/compare";
 import type { ReductionFn } from "@thi.ng/transducers";
 import { map } from "@thi.ng/transducers/map";
 import { isReduced } from "@thi.ng/transducers/reduced";
-import type { SortedMapOpts } from "./api";
-import { dissoc } from "./dissoc";
-import { __equivMap } from "./internal/equiv";
-import { __inspectable } from "./internal/inspect";
-import { into } from "./into";
+import type { SortedMapOpts } from "./api.js";
+import { dissoc } from "./dissoc.js";
+import { __equivMap } from "./internal/equiv.js";
+import { __inspectable } from "./internal/inspect.js";
+import { into } from "./into.js";
 
 interface SortedMapState<K, V> {
     head: Node<K, V>;

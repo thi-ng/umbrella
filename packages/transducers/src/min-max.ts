@@ -1,6 +1,6 @@
-import { juxtR } from "./juxtr";
-import { max } from "./max";
-import { min } from "./min";
+import { juxtR } from "./juxtr.js";
+import { max } from "./max.js";
+import { min } from "./min.js";
 
 /**
  * Returns a reducer which computes both the min and max values of given inputs.

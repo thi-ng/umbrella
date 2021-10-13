@@ -1,3 +1,3 @@
-export * from "./api";
-export * from "./kernels";
-export * from "./subdivide";
+export * from "./api.js";
+export * from "./kernels.js";
+export * from "./subdivide.js";

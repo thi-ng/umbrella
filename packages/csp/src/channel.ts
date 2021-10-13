@@ -13,8 +13,8 @@ import type {
     ErrorHandler,
     IBuffer,
     IReadWriteableChannel,
-} from "./api";
-import { FixedBuffer } from "./buffer";
+} from "./api.js";
+import { FixedBuffer } from "./buffer.js";
 
 const enum State {
     OPEN,

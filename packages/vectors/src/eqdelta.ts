@@ -1,9 +1,9 @@
 import { implementsFunction } from "@thi.ng/checks/implements-function";
 import { EPS } from "@thi.ng/math/api";
 import { eqDelta as _eq } from "@thi.ng/math/eqdelta";
-import type { MultiVecOpRoVVO, ReadonlyVec } from "./api";
-import { compileHOF } from "./compile/emit";
-import { vop } from "./vop";
+import type { MultiVecOpRoVVO, ReadonlyVec } from "./api.js";
+import { compileHOF } from "./compile/emit.js";
+import { vop } from "./vop.js";
 
 const $ = (dim: number) =>
     eqDelta.add(

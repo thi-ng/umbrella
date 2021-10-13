@@ -15,9 +15,9 @@ import type {
     Sym,
     Term,
     Ternary,
-} from "../api/nodes";
-import type { Type } from "../api/types";
-import { isMat, isTerm, isVec } from "./checks";
+} from "../api/nodes.js";
+import type { Type } from "../api/types.js";
+import { isMat, isTerm, isVec } from "./checks.js";
 
 /**
  * Helper function for {@link walk}. Returns child nodes for any control

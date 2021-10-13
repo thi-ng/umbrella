@@ -1,8 +1,8 @@
-import type { WithErrorHandlerOpts } from "./api";
-import { defWorker } from "./defworker";
-import { __optsWithID } from "./idgen";
-import { LOGGER } from "./logger";
-import { stream } from "./stream";
+import type { WithErrorHandlerOpts } from "./api.js";
+import { defWorker } from "./defworker.js";
+import { __optsWithID } from "./idgen.js";
+import { LOGGER } from "./logger.js";
+import { stream } from "./stream.js";
 
 export interface FromWorkerOpts extends WithErrorHandlerOpts {
     /**

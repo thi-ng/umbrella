@@ -1,8 +1,8 @@
 import type { NumOrString } from "@thi.ng/api";
 import { peek } from "@thi.ng/arrays/peek";
 import { liangBarsky2Raw } from "@thi.ng/geom-clip-line/liang-barsky";
-import type { Canvas } from "./canvas";
-import { charCode } from "./utils";
+import type { Canvas } from "./canvas.js";
+import { charCode } from "./utils.js";
 
 /**
  * Draws a line between `ax`,`ay` and `bx`,`by`, using `char` and taking

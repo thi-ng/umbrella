@@ -5,16 +5,16 @@ import { polyArea2 } from "@thi.ng/geom-poly-utils/area";
 import { PI } from "@thi.ng/math/api";
 import type { Vec } from "@thi.ng/vectors";
 import { signedArea2 } from "@thi.ng/vectors/signed-area";
-import type { AABB } from "./api/aabb";
-import type { Arc } from "./api/arc";
-import type { Circle } from "./api/circle";
-import type { Ellipse } from "./api/ellipse";
-import type { Group } from "./api/group";
-import type { Polygon } from "./api/polygon";
-import type { Rect } from "./api/rect";
-import type { Sphere } from "./api/sphere";
-import type { Triangle } from "./api/triangle";
-import { __dispatch } from "./internal/dispatch";
+import type { AABB } from "./api/aabb.js";
+import type { Arc } from "./api/arc.js";
+import type { Circle } from "./api/circle.js";
+import type { Ellipse } from "./api/ellipse.js";
+import type { Group } from "./api/group.js";
+import type { Polygon } from "./api/polygon.js";
+import type { Rect } from "./api/rect.js";
+import type { Sphere } from "./api/sphere.js";
+import type { Triangle } from "./api/triangle.js";
+import { __dispatch } from "./internal/dispatch.js";
 
 /**
  * Returns the possibly signed (unsigned by default) surface area of given

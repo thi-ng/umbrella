@@ -1,4 +1,4 @@
-import { iterator } from "./iterator";
+import { iterator } from "./iterator.js";
 
 export const zip = (keys: Iterable<any>, vals: Iterable<any>, target?: any) => {
     let kiter = iterator(keys);

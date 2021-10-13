@@ -2,13 +2,13 @@ import type { MultiFn1O } from "@thi.ng/defmulti";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
 import type { IShape, SamplingOpts } from "@thi.ng/geom-api";
 import type { VecPair } from "@thi.ng/vectors";
-import type { AABB } from "./api/aabb";
-import type { Polygon } from "./api/polygon";
-import type { Polyline } from "./api/polyline";
-import type { Rect } from "./api/rect";
-import { __dispatch } from "./internal/dispatch";
-import { __edges } from "./internal/edges";
-import { vertices } from "./vertices";
+import type { AABB } from "./api/aabb.js";
+import type { Polygon } from "./api/polygon.js";
+import type { Polyline } from "./api/polyline.js";
+import type { Rect } from "./api/rect.js";
+import { __dispatch } from "./internal/dispatch.js";
+import { __edges } from "./internal/edges.js";
+import { vertices } from "./vertices.js";
 
 export const edges: MultiFn1O<
     IShape,

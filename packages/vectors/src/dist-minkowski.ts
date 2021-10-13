@@ -1,4 +1,4 @@
-import type { ReadonlyVec } from "./api";
+import type { ReadonlyVec } from "./api.js";
 
 /**
  * @remarks

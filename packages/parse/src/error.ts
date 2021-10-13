@@ -1,5 +1,5 @@
 import { defError } from "@thi.ng/errors/deferror";
-import type { ParseContext } from "./context";
+import type { ParseContext } from "./context.js";
 
 const ParseError = defError(() => `ParseError`);
 

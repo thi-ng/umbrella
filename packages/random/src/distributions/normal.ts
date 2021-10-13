@@ -1,6 +1,6 @@
 import type { Nullable } from "@thi.ng/api";
-import type { IRandom } from "../api";
-import { SYSTEM } from "../system";
+import type { IRandom } from "../api.js";
+import { SYSTEM } from "../system.js";
 
 /**
  * HOF. Returns zero-arg function, yielding values with normal distribution

@@ -8,8 +8,14 @@ import { iterator } from "@thi.ng/transducers/iterator";
 import { map } from "@thi.ng/transducers/map";
 import { range } from "@thi.ng/transducers/range";
 import { range2d } from "@thi.ng/transducers/range2d";
-import type { AxisSpec, Domain, InitialAxisSpec, Range, ScaleFn } from "../api";
-import { axisDefaults } from "./common";
+import type {
+    AxisSpec,
+    Domain,
+    InitialAxisSpec,
+    Range,
+    ScaleFn,
+} from "../api.js";
+import { axisDefaults } from "./common.js";
 
 /** @internal */
 export const log = (base: number): FnN => {

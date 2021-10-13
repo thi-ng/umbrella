@@ -12,23 +12,23 @@ import {
     swizzle3,
     swizzle4,
 } from "@thi.ng/vectors/swizzle";
-import type { JSBuiltinsSampler, JSEnv } from "./api";
-import { BVEC2, BVEC3, BVEC4 } from "./env/bvec";
-import { FLOAT } from "./env/float";
-import { INT } from "./env/int";
-import { IVEC2 } from "./env/ivec2";
-import { IVEC3 } from "./env/ivec3";
-import { IVEC4 } from "./env/ivec4";
-import { MAT2 } from "./env/mat2";
-import { MAT3 } from "./env/mat3";
-import { MAT4 } from "./env/mat4";
-import { UINT } from "./env/uint";
-import { UVEC2 } from "./env/uvec2";
-import { UVEC3 } from "./env/uvec3";
-import { UVEC4 } from "./env/uvec4";
-import { VEC2 } from "./env/vec2";
-import { VEC3 } from "./env/vec3";
-import { VEC4 } from "./env/vec4";
+import type { JSBuiltinsSampler, JSEnv } from "./api.js";
+import { BVEC2, BVEC3, BVEC4 } from "./env/bvec.js";
+import { FLOAT } from "./env/float.js";
+import { INT } from "./env/int.js";
+import { IVEC2 } from "./env/ivec2.js";
+import { IVEC3 } from "./env/ivec3.js";
+import { IVEC4 } from "./env/ivec4.js";
+import { MAT2 } from "./env/mat2.js";
+import { MAT3 } from "./env/mat3.js";
+import { MAT4 } from "./env/mat4.js";
+import { UINT } from "./env/uint.js";
+import { UVEC2 } from "./env/uvec2.js";
+import { UVEC3 } from "./env/uvec3.js";
+import { UVEC4 } from "./env/uvec4.js";
+import { VEC2 } from "./env/vec2.js";
+import { VEC3 } from "./env/vec3.js";
+import { VEC4 } from "./env/vec4.js";
 
 // TODO texture lookups
 // all texture fns currently return [0,0,0,0] or 0

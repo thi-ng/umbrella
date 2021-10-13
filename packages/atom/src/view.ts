@@ -17,8 +17,8 @@ import type {
 import { equiv as _equiv } from "@thi.ng/equiv";
 import { defGetterUnsafe } from "@thi.ng/paths/getter";
 import { toPath } from "@thi.ng/paths/path";
-import type { IView, ReadonlyAtom } from "./api";
-import { nextID } from "./idgen";
+import type { IView, ReadonlyAtom } from "./api.js";
+import { nextID } from "./idgen.js";
 
 export function defView<T, R = undefined>(
     parent: ReadonlyAtom<T>,

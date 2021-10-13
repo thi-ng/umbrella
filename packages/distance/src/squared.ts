@@ -1,6 +1,6 @@
 import type { ReadonlyVec } from "@thi.ng/vectors";
 import { distSq, distSq2, distSq3 } from "@thi.ng/vectors/distsq";
-import type { IDistance, Metric } from "./api";
+import type { IDistance, Metric } from "./api.js";
 
 export class Squared<T> implements IDistance<T> {
     constructor(public readonly metric: Metric<T>) {}

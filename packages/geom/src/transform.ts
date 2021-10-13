@@ -4,26 +4,26 @@ import type { IHiccupShape, IShape, PathSegment } from "@thi.ng/geom-api";
 import type { ReadonlyMat } from "@thi.ng/matrices";
 import { mulV } from "@thi.ng/matrices/mulv";
 import { map } from "@thi.ng/transducers/map";
-import { Cubic } from "./api/cubic";
-import type { Group } from "./api/group";
-import { Line } from "./api/line";
-import { Path } from "./api/path";
-import { Points, Points3 } from "./api/points";
-import { Polygon } from "./api/polygon";
-import { Polyline } from "./api/polyline";
-import { Quad } from "./api/quad";
-import { Quadratic } from "./api/quadratic";
-import type { Rect } from "./api/rect";
-import { Text } from "./api/text";
-import { Triangle } from "./api/triangle";
-import { asPath } from "./as-path";
-import { asPolygon } from "./as-polygon";
-import { __copyAttribs } from "./internal/copy";
-import { __dispatch } from "./internal/dispatch";
+import { Cubic } from "./api/cubic.js";
+import type { Group } from "./api/group.js";
+import { Line } from "./api/line.js";
+import { Path } from "./api/path.js";
+import { Points, Points3 } from "./api/points.js";
+import { Polygon } from "./api/polygon.js";
+import { Polyline } from "./api/polyline.js";
+import { Quad } from "./api/quad.js";
+import { Quadratic } from "./api/quadratic.js";
+import type { Rect } from "./api/rect.js";
+import { Text } from "./api/text.js";
+import { Triangle } from "./api/triangle.js";
+import { asPath } from "./as-path.js";
+import { asPolygon } from "./as-polygon.js";
+import { __copyAttribs } from "./internal/copy.js";
+import { __dispatch } from "./internal/dispatch.js";
 import {
     __transformedShape as tx,
     __transformedShape3 as tx3,
-} from "./internal/transform";
+} from "./internal/transform.js";
 
 /**
  * Transforms given shape with provided matrix. Some shape types will be

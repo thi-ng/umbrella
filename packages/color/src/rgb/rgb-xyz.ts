@@ -1,7 +1,7 @@
-import type { Color, ColorOp, ReadonlyColor } from "../api";
-import { RGB_XYZ_D50, RGB_XYZ_D65 } from "../api/constants";
-import { clamp } from "../clamp";
-import { __mulV33 } from "../internal/matrix-ops";
+import type { Color, ColorOp, ReadonlyColor } from "../api.js";
+import { RGB_XYZ_D50, RGB_XYZ_D65 } from "../api/constants.js";
+import { clamp } from "../clamp.js";
+import { __mulV33 } from "../internal/matrix-ops.js";
 
 /**
  * Converts RGB to XYZ using provided transformation matrix (default:

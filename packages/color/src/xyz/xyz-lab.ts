@@ -1,7 +1,7 @@
 import { setC4 } from "@thi.ng/vectors/setc";
-import type { Color, ColorOp, ReadonlyColor } from "../api";
-import { D50, D65 } from "../api/constants";
-import { __ensureAlpha } from "../internal/ensure";
+import type { Color, ColorOp, ReadonlyColor } from "../api.js";
+import { D50, D65 } from "../api/constants.js";
+import { __ensureAlpha } from "../internal/ensure.js";
 
 /** @internal */
 const transform = (x: number) =>

@@ -2,7 +2,7 @@ import { isNumber } from "@thi.ng/checks/is-number";
 import { SYSTEM } from "@thi.ng/random/system";
 import type { Vec } from "@thi.ng/vectors";
 import { jitter as _jitter } from "@thi.ng/vectors/jitter";
-import type { PoissonOpts } from "./api";
+import type { PoissonOpts } from "./api.js";
 
 /**
  * Produces a number of Poisson-disk samples based on given

@@ -1,5 +1,5 @@
 import { setC } from "@thi.ng/vectors/setc";
-import type { MatOpV } from "./api";
+import type { MatOpV } from "./api.js";
 
 /**
  * Converts quaternion into 3x3 matrix and writes result to `out`.

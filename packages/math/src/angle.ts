@@ -1,5 +1,5 @@
 import type { FnN, FnN2, FnN3 } from "@thi.ng/api";
-import { DEG2RAD, HALF_PI, INV_HALF_PI, PI, RAD2DEG, TAU } from "./api";
+import { DEG2RAD, HALF_PI, INV_HALF_PI, PI, RAD2DEG, TAU } from "./api.js";
 
 /**
  * Returns vector of `[sin(theta)*n, cos(theta)*n]`.

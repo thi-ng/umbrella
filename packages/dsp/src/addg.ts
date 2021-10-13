@@ -1,5 +1,5 @@
-import type { IGen } from "./api";
-import { MapG1 } from "./mapg";
+import type { IGen } from "./api.js";
+import { MapG1 } from "./mapg.js";
 
 /**
  * Creates a new {@link IGen} using given `step` gen and `start

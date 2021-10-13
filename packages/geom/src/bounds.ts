@@ -17,20 +17,20 @@ import { mulN2 } from "@thi.ng/vectors/muln";
 import { set2, set3 } from "@thi.ng/vectors/set";
 import { sub2 } from "@thi.ng/vectors/sub";
 import { subN2 } from "@thi.ng/vectors/subn";
-import { aabbFromMinMax } from "./aabb";
-import type { Arc } from "./api/arc";
-import type { Circle } from "./api/circle";
-import type { Cubic } from "./api/cubic";
-import type { Ellipse } from "./api/ellipse";
-import type { Group } from "./api/group";
-import type { Line } from "./api/line";
-import type { Path } from "./api/path";
-import type { Quadratic } from "./api/quadratic";
-import { Rect } from "./api/rect";
-import type { Text } from "./api/text";
-import { __collBounds } from "./internal/bounds";
-import { __dispatch } from "./internal/dispatch";
-import { rectFromMinMax } from "./rect";
+import { aabbFromMinMax } from "./aabb.js";
+import type { Arc } from "./api/arc.js";
+import type { Circle } from "./api/circle.js";
+import type { Cubic } from "./api/cubic.js";
+import type { Ellipse } from "./api/ellipse.js";
+import type { Group } from "./api/group.js";
+import type { Line } from "./api/line.js";
+import type { Path } from "./api/path.js";
+import type { Quadratic } from "./api/quadratic.js";
+import { Rect } from "./api/rect.js";
+import type { Text } from "./api/text.js";
+import { __collBounds } from "./internal/bounds.js";
+import { __dispatch } from "./internal/dispatch.js";
+import { rectFromMinMax } from "./rect.js";
 
 export const bounds: MultiFn1<IShape, AABBLike | undefined> = defmulti<
     any,

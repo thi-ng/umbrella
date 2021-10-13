@@ -1,10 +1,10 @@
 import { isArrayLike } from "@thi.ng/checks/is-arraylike";
 import { isString } from "@thi.ng/checks/is-string";
-import type { ContextOpts, IReader, ParseScope, ParseState } from "./api";
-import { parseError } from "./error";
-import { defArrayReader } from "./readers/array-reader";
-import { defStringReader } from "./readers/string-reader";
-import { indent } from "./utils";
+import type { ContextOpts, IReader, ParseScope, ParseState } from "./api.js";
+import { parseError } from "./error.js";
+import { defArrayReader } from "./readers/array-reader.js";
+import { defStringReader } from "./readers/string-reader.js";
+import { indent } from "./utils.js";
 
 export class ParseContext<T> {
     public opts: ContextOpts;

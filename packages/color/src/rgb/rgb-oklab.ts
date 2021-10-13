@@ -1,7 +1,7 @@
 import { powN3 } from "@thi.ng/vectors/pown";
-import type { ColorOp } from "../api";
-import { OKLAB_M2 } from "../api/constants";
-import { __mulV33 } from "../internal/matrix-ops";
+import type { ColorOp } from "../api.js";
+import { OKLAB_M2 } from "../api/constants.js";
+import { __mulV33 } from "../internal/matrix-ops.js";
 
 const CONE_LMS = [
     0.412165612, 0.211859107, 0.0883097947, 0.536275208, 0.6807189584,

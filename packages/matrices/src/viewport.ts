@@ -1,7 +1,7 @@
-import type { Mat } from "./api";
-import { mulM23 } from "./mulm";
-import { scale23 } from "./scale";
-import { translation23 } from "./translation";
+import type { Mat } from "./api.js";
+import { mulM23 } from "./mulm.js";
+import { scale23 } from "./scale.js";
+import { translation23 } from "./translation.js";
 
 /**
  * Produces a 2x3 viewport matrix to transform projected coordinates to

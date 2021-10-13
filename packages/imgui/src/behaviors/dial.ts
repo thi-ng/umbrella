@@ -3,7 +3,7 @@ import { fit } from "@thi.ng/math/fit";
 import type { ReadonlyVec } from "@thi.ng/vectors";
 import { heading } from "@thi.ng/vectors/heading";
 import { sub2 } from "@thi.ng/vectors/sub";
-import { slider1Val } from "./slider";
+import { slider1Val } from "./slider.js";
 
 export const dialVal = (
     p: ReadonlyVec,

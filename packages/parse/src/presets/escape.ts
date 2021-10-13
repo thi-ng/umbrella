@@ -1,12 +1,12 @@
 import { ESCAPES } from "@thi.ng/strings/escape";
-import { repeat } from "../combinators/repeat";
-import { seq } from "../combinators/seq";
-import { xform } from "../combinators/xform";
-import { always } from "../prims/always";
-import { litD } from "../prims/lit";
-import { stringD } from "../prims/string";
-import { xfInt } from "../xform/number";
-import { HEX_DIGIT } from "./hex";
+import { repeat } from "../combinators/repeat.js";
+import { seq } from "../combinators/seq.js";
+import { xform } from "../combinators/xform.js";
+import { always } from "../prims/always.js";
+import { litD } from "../prims/lit.js";
+import { stringD } from "../prims/string.js";
+import { xfInt } from "../xform/number.js";
+import { HEX_DIGIT } from "./hex.js";
 
 export const ESC = xform(seq([litD("\\"), always()], "esc"), ($) => {
     const id = $!.children![0].result;

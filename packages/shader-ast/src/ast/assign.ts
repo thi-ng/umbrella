@@ -1,6 +1,6 @@
 import { assert } from "@thi.ng/errors/assert";
-import type { Assign, Swizzle, Term } from "../api/nodes";
-import type { Assignable, Type } from "../api/types";
+import type { Assign, Swizzle, Term } from "../api/nodes.js";
+import type { Assignable, Type } from "../api/types.js";
 
 export const assign = <L extends Type, R extends L>(
     l: Assignable<L>,

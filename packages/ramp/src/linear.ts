@@ -1,6 +1,6 @@
 import { fit } from "@thi.ng/math/fit";
 import type { Vec } from "@thi.ng/vectors";
-import { ARamp } from "./aramp";
+import { ARamp } from "./aramp.js";
 
 export const linear = (stops?: Vec[]) => new LinearRamp(stops);
 

@@ -23,7 +23,7 @@ import type {
     NodeOutputSpec,
     NodeResolver,
     NodeSpec,
-} from "./api";
+} from "./api.js";
 
 /**
  * Dataflow graph initialization function. Takes a state Atom (or `null`

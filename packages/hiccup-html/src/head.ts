@@ -9,8 +9,8 @@ import type {
     ReferrerAttribs,
     RelAttribs,
     StringAttrib,
-} from "./api";
-import { defElement, defElements } from "./def";
+} from "./api.js";
+import { defElement, defElements } from "./def.js";
 
 export const [head, title] = defElements(["head", "title"]);
 

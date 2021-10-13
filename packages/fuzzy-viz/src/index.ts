@@ -1,2 +1,2 @@
-export * from "./strategy";
-export * from "./var";
+export * from "./strategy.js";
+export * from "./var.js";

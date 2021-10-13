@@ -1,6 +1,6 @@
 import { memoizeJ } from "@thi.ng/memoize/memoizej";
-import type { Stringer } from "./api";
-import { float } from "./float";
+import type { Stringer } from "./api.js";
+import { float } from "./float.js";
 
 /**
  * Higher order formatter for n-D vectors, with each element formatted using

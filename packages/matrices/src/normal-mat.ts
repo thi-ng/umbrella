@@ -1,7 +1,7 @@
-import type { MatOpMU } from "./api";
-import { invert33, invert44 } from "./invert";
-import { mat44to33 } from "./m44-m33";
-import { transpose33, transpose44 } from "./transpose";
+import type { MatOpMU } from "./api.js";
+import { invert33, invert44 } from "./invert.js";
+import { mat44to33 } from "./m44-m33.js";
+import { transpose33, transpose44 } from "./transpose.js";
 
 /**
  * Converts given 4x4 matrix to a 3x3 normal matrix, i.e. the transposed

@@ -1,4 +1,4 @@
-import { asInt } from "./utils";
+import { asInt } from "./utils.js";
 
 /**
  * Filtered version of {@link rows2d}, only including end points of

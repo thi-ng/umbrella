@@ -1,5 +1,5 @@
 import { set4 } from "@thi.ng/vectors/set";
-import type { MatOpM } from "./api";
+import type { MatOpM } from "./api.js";
 
 /**
  * Converts 2x3 to 2x2 matrix and writes result to `out`. Creates new

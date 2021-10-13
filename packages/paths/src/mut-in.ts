@@ -12,7 +12,7 @@ import type {
     Path8,
     PathVal,
 } from "@thi.ng/api";
-import { defMutator } from "./mutator";
+import { defMutator } from "./mutator.js";
 
 /**
  * Unchecked version of {@link mutIn}.

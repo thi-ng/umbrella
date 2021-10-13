@@ -1,6 +1,6 @@
 import type { FnAny } from "@thi.ng/api";
-import type { IGen, IProc } from "./api";
-import { MapG1 } from "./mapg";
+import type { IGen, IProc } from "./api.js";
+import { MapG1 } from "./mapg.js";
 
 /**
  * Higher order generator. Composes a new {@link IGen} from given source gen and

@@ -1,4 +1,4 @@
-import { DrawMode, ModelSpec } from "../api/model";
+import { DrawMode, ModelSpec } from "../api/model.js";
 
 export interface CubeOpts {
     size: number;

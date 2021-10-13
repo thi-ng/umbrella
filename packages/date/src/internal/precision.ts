@@ -1,4 +1,4 @@
-import type { Precision } from "../api";
+import type { Precision } from "../api.js";
 
 /**
  * Converts a {@link Precision} into a numeric ID.

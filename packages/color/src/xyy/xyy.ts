@@ -1,11 +1,11 @@
 import type { NumericArray } from "@thi.ng/api";
 import type { IRandom } from "@thi.ng/random";
-import type { Color, ColorFactory, ReadonlyColor, TypedColor } from "../api";
-import { defColor } from "../defcolor";
-import { rgbXyzD65 } from "../rgb/rgb-xyz";
-import { xyzRgbD65 } from "../xyz/xyz-rgb";
-import { xyzXyy } from "../xyz/xyz-xyy";
-import { xyyXyz } from "./xyy-xyz";
+import type { Color, ColorFactory, ReadonlyColor, TypedColor } from "../api.js";
+import { defColor } from "../defcolor.js";
+import { rgbXyzD65 } from "../rgb/rgb-xyz.js";
+import { xyzRgbD65 } from "../xyz/xyz-rgb.js";
+import { xyzXyy } from "../xyz/xyz-xyy.js";
+import { xyyXyz } from "./xyy-xyz.js";
 
 export declare class XYY implements TypedColor<XYY> {
     buf: NumericArray;

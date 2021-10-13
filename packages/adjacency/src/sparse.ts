@@ -1,7 +1,7 @@
 import { ensureIndex2 } from "@thi.ng/errors/out-of-bounds";
 import { CSR } from "@thi.ng/sparse/csr";
-import type { DegreeType, Edge, IGraph } from "./api";
-import { into, invert, toDot } from "./utils";
+import type { DegreeType, Edge, IGraph } from "./api.js";
+import { into, invert, toDot } from "./utils.js";
 
 export class AdjacencyMatrix extends CSR implements IGraph<number> {
     undirected: boolean;

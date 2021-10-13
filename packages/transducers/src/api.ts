@@ -1,5 +1,5 @@
 import type { Comparator, Fn, IObjectOf } from "@thi.ng/api";
-import type { Reduced } from "./reduced";
+import type { Reduced } from "./reduced.js";
 
 export type Transducer<A, B> = (rfn: Reducer<any, B>) => Reducer<any, A>;
 

@@ -18,10 +18,10 @@ import {
     IComponent,
     MemMappedComponentOpts,
     ObjectComponentOpts,
-} from "./api";
-import { MemMappedComponent } from "./components/mem-component";
-import { ObjectComponent } from "./components/object-component";
-import { Group } from "./groups/group";
+} from "./api.js";
+import { MemMappedComponent } from "./components/mem-component.js";
+import { ObjectComponent } from "./components/object-component.js";
+import { Group } from "./groups/group.js";
 
 let NEXT_GROUP_ID = 0;
 

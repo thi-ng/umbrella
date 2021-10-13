@@ -1,4 +1,4 @@
-import { defError } from "./deferror";
+import { defError } from "./deferror.js";
 
 // FIXME https://github.com/snowpackjs/snowpack/issues/3621#issuecomment-907731004
 import.meta.hot;

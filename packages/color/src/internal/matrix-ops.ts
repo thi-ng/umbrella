@@ -2,8 +2,8 @@ import { clamp01 } from "@thi.ng/math/interval";
 import type { ReadonlyVec } from "@thi.ng/vectors";
 import { dotS3, dotS4 } from "@thi.ng/vectors/dots";
 import { setC4 } from "@thi.ng/vectors/setc";
-import type { Color, ColorMatrix, ReadonlyColor } from "../api";
-import { __ensureAlpha } from "./ensure";
+import type { Color, ColorMatrix, ReadonlyColor } from "../api.js";
+import { __ensureAlpha } from "./ensure.js";
 
 /** @internal */
 export const __mulV33 = (

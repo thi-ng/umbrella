@@ -53,8 +53,8 @@ import type {
     MultiFn7O,
     MultiFn8,
     MultiFn8O,
-} from "./api";
-import { LOGGER } from "./logger";
+} from "./api.js";
+import { LOGGER } from "./logger.js";
 
 /**
  * Unique symbol used for registering a default / fallback

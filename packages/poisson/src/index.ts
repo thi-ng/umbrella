@@ -1,3 +1,3 @@
-export * from "./api";
-export * from "./poisson";
-export * from "./stratified";
+export * from "./api.js";
+export * from "./poisson.js";
+export * from "./stratified.js";

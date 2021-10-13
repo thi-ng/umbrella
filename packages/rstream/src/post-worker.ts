@@ -1,8 +1,8 @@
 import { isTransferable } from "@thi.ng/checks/is-transferable";
 import { isTypedArray } from "@thi.ng/checks/is-typedarray";
-import type { ISubscriber } from "./api";
-import { LOGGER } from "./logger";
-import { defWorker } from "./defworker";
+import type { ISubscriber } from "./api.js";
+import { LOGGER } from "./logger.js";
+import { defWorker } from "./defworker.js";
 
 /**
  * Creates a {@link ISubscriber | subscriber} which forwards received

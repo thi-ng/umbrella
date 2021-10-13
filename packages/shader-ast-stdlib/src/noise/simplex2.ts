@@ -22,8 +22,8 @@ import {
     max,
     mod,
 } from "@thi.ng/shader-ast/builtin/math";
-import { magSq2 } from "../math/magsq";
-import { permute3 } from "./permute";
+import { magSq2 } from "../math/magsq.js";
+import { permute3 } from "./permute.js";
 
 /**
  * Array and textureless GLSL 2D simplex noise function. Ported from

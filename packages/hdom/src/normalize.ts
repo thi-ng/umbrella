@@ -4,7 +4,7 @@ import { isPlainObject as iso } from "@thi.ng/checks/is-plain-object";
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import { NO_SPANS, RE_TAG } from "@thi.ng/hiccup/api";
 import { mergeEmmetAttribs } from "@thi.ng/hiccup/attribs";
-import type { HDOMOpts } from "./api";
+import type { HDOMOpts } from "./api.js";
 
 const isArray = isa;
 const isNotStringAndIterable = isi;

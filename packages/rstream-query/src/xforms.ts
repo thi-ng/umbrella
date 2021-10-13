@@ -9,8 +9,8 @@ import { compR } from "@thi.ng/transducers/compr";
 import { dedupe } from "@thi.ng/transducers/dedupe";
 import { keySelector } from "@thi.ng/transducers/key-selector";
 import { map } from "@thi.ng/transducers/map";
-import type { BindFn, Edit, Solutions, Triple, TripleIds } from "./api";
-import type { TripleStore } from "./store";
+import type { BindFn, Edit, Solutions, Triple, TripleIds } from "./api.js";
+import type { TripleStore } from "./store.js";
 
 export const intersect2: Transducer<IObjectOf<TripleIds>, TripleIds> = comp(
     map(({ a, b }) => intersection(a, b)),

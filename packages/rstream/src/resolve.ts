@@ -1,8 +1,8 @@
 import type { Fn, IID } from "@thi.ng/api";
-import { State } from "./api";
-import { __optsWithID } from "./idgen";
-import { LOGGER } from "./logger";
-import { Subscription } from "./subscription";
+import { State } from "./api.js";
+import { __optsWithID } from "./idgen.js";
+import { LOGGER } from "./logger.js";
+import { Subscription } from "./subscription.js";
 
 export interface ResolverOpts extends IID<string> {
     /**

@@ -1,5 +1,5 @@
 import { assert } from "@thi.ng/errors/assert";
-import type { NzEntry } from "./api";
+import type { NzEntry } from "./api.js";
 
 export abstract class ASparseMatrix {
     m: number;

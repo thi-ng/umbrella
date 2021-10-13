@@ -2,7 +2,7 @@ import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
 import { dot2, dot3, dot4 } from "@thi.ng/vectors/dot";
 import { dotS2, dotS3, dotS4 } from "@thi.ng/vectors/dots";
 import { setC2, setC3, setC4 } from "@thi.ng/vectors/setc";
-import type { ReadonlyMat } from "./api";
+import type { ReadonlyMat } from "./api.js";
 
 /**
  * Same as:

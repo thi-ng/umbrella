@@ -2,9 +2,9 @@ import type { MultiFn1 } from "@thi.ng/defmulti";
 import { DEFAULT, defmulti } from "@thi.ng/defmulti/defmulti";
 import type { IShape } from "@thi.ng/geom-api";
 import { PI } from "@thi.ng/math/api";
-import type { AABB } from "./api/aabb";
-import type { Sphere } from "./api/sphere";
-import { __dispatch } from "./internal/dispatch";
+import type { AABB } from "./api/aabb.js";
+import type { Sphere } from "./api/sphere.js";
+import { __dispatch } from "./internal/dispatch.js";
 
 /**
  * Returns the volume of given 3D shape. Returns 0 for all others.

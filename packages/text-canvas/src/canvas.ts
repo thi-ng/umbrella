@@ -2,8 +2,8 @@ import type { Fn0, NumOrString } from "@thi.ng/api";
 import { peek } from "@thi.ng/arrays/peek";
 import { clamp } from "@thi.ng/math/interval";
 import { NONE } from "@thi.ng/text-format/api";
-import { ClipRect, StrokeStyle, STYLE_ASCII } from "./api";
-import { charCode, intersectRect } from "./utils";
+import { ClipRect, StrokeStyle, STYLE_ASCII } from "./api.js";
+import { charCode, intersectRect } from "./utils.js";
 
 export class Canvas {
     buf: Uint32Array;

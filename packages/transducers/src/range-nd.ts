@@ -1,8 +1,8 @@
 import type { ArrayLikeIterable } from "@thi.ng/api";
-import { map } from "./map";
-import { permutations } from "./permutations";
-import { range, Range } from "./range";
-import { zip } from "./zip";
+import { map } from "./map.js";
+import { permutations } from "./permutations.js";
+import { range, Range } from "./range.js";
+import { zip } from "./zip.js";
 
 /**
  * If called with one vector, yields an iterator for the n-dimensional

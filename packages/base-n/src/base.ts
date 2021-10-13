@@ -1,5 +1,5 @@
 import { U8 } from "@thi.ng/hex";
-import type { IBase } from "./api";
+import type { IBase } from "./api.js";
 
 export const defBase = (chars: string) => new BaseN(chars);
 

@@ -1,7 +1,7 @@
 import type { Attribs, IHiccupShape } from "@thi.ng/geom-api";
 import type { Vec } from "@thi.ng/vectors";
 import { set3 } from "@thi.ng/vectors/set";
-import { __copyAttribs } from "../internal/copy";
+import { __copyAttribs } from "../internal/copy.js";
 
 export class Sphere implements IHiccupShape {
     constructor(

@@ -1,4 +1,4 @@
-import { asInt } from "./utils";
+import { asInt } from "./utils.js";
 
 /**
  * Yields sequence of 2D grid coordinates along 2D Hilbert curve using

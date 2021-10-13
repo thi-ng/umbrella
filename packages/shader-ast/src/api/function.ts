@@ -1,7 +1,7 @@
 import type { Fn, Fn0, Fn2, Fn3, Fn4, Fn5, Fn6, Fn7, Fn8 } from "@thi.ng/api";
-import type { FnCall, Sym, Term } from "./nodes";
-import type { SymOpts } from "./syms";
-import type { Type } from "./types";
+import type { FnCall, Sym, Term } from "./nodes.js";
+import type { SymOpts } from "./syms.js";
+import type { Type } from "./types.js";
 
 export type ScopeBody = (Term<any> | null | undefined)[];
 

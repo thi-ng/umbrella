@@ -1,5 +1,5 @@
-import type { ReadonlyVec, Vec, VecOpV } from "./api";
-import { setC2, setC3, setC4 } from "./setc";
+import type { ReadonlyVec, Vec, VecOpV } from "./api.js";
+import { setC2, setC3, setC4 } from "./setc.js";
 
 /**
  * Places a re-ordered 2D version of vector `a` into `out`. The given

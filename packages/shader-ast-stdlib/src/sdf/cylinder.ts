@@ -5,7 +5,7 @@ import { add, sub } from "@thi.ng/shader-ast/ast/ops";
 import { $, $y } from "@thi.ng/shader-ast/ast/swizzle";
 import { sym } from "@thi.ng/shader-ast/ast/sym";
 import { abs, length, max, min } from "@thi.ng/shader-ast/builtin/math";
-import { maxComp2 } from "../math/maxcomp";
+import { maxComp2 } from "../math/maxcomp.js";
 
 /**
  * Returns signed distance from `p` to cylinder centered around Y-axis

@@ -6,15 +6,15 @@ import { cubicSplitAt } from "@thi.ng/geom-splines/cubic-split";
 import { quadraticSplitAt } from "@thi.ng/geom-splines/quadratic-split";
 import { fit01 } from "@thi.ng/math/fit";
 import { set } from "@thi.ng/vectors/set";
-import { Arc } from "./api/arc";
-import { Cubic } from "./api/cubic";
-import { Line } from "./api/line";
-import { Polyline } from "./api/polyline";
-import { Quadratic } from "./api/quadratic";
-import { __copyAttribs } from "./internal/copy";
-import { __dispatch } from "./internal/dispatch";
-import { __pointArraysAsShapes } from "./internal/points-as-shape";
-import { __splitLine } from "./internal/split";
+import { Arc } from "./api/arc.js";
+import { Cubic } from "./api/cubic.js";
+import { Line } from "./api/line.js";
+import { Polyline } from "./api/polyline.js";
+import { Quadratic } from "./api/quadratic.js";
+import { __copyAttribs } from "./internal/copy.js";
+import { __dispatch } from "./internal/dispatch.js";
+import { __pointArraysAsShapes } from "./internal/points-as-shape.js";
+import { __splitLine } from "./internal/split.js";
 
 export const splitAt: MultiFn2<IShape, number, IShape[] | undefined> = defmulti<
     any,

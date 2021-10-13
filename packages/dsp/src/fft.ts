@@ -1,9 +1,9 @@
 import type { FnN3, NumericArray } from "@thi.ng/api";
-import type { ComplexArray } from "./api";
-import { isComplex } from "./complex";
-import { magDb } from "./convert";
-import { invPowerScale, powerScale } from "./power";
-import { applyWindow } from "./window";
+import type { ComplexArray } from "./api.js";
+import { isComplex } from "./complex.js";
+import { magDb } from "./convert.js";
+import { invPowerScale, powerScale } from "./power.js";
+import { applyWindow } from "./window.js";
 
 /**
  * Returns a new tuple of real/img F64 buffers of given size.

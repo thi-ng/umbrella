@@ -1,5 +1,5 @@
-import { map } from "./map";
-import { range } from "./range";
+import { map } from "./map.js";
+import { range } from "./range.js";
 
 export const mapIndexed = <T>(
     fn: (i: number, ...args: any[]) => T[],

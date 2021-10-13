@@ -1,8 +1,8 @@
 import { atan2Abs } from "@thi.ng/math/angle";
 import { INV_TAU, TAU } from "@thi.ng/math/api";
 import { setC4 } from "@thi.ng/vectors/setc";
-import type { ColorOp } from "../api";
-import { __ensureAlpha } from "../internal/ensure";
+import type { ColorOp } from "../api.js";
+import { __ensureAlpha } from "../internal/ensure.js";
 
 export const labLch: ColorOp = (out, src) => {
     const { 1: a, 2: b } = src;

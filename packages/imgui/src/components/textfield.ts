@@ -3,12 +3,12 @@ import { rect } from "@thi.ng/geom/rect";
 import type { IGridLayout, LayoutBox } from "@thi.ng/layout";
 import { fitClamped } from "@thi.ng/math/fit";
 import { hash } from "@thi.ng/vectors/hash";
-import { isHoverSlider } from "../behaviors/slider";
-import { handleTextfieldKeys } from "../behaviors/text";
-import type { IMGUI } from "../gui";
-import { layoutBox } from "../layout";
-import { textLabelRaw } from "./textlabel";
-import { tooltipRaw } from "./tooltip";
+import { isHoverSlider } from "../behaviors/slider.js";
+import { handleTextfieldKeys } from "../behaviors/text.js";
+import type { IMGUI } from "../gui.js";
+import { layoutBox } from "../layout.js";
+import { textLabelRaw } from "./textlabel.js";
+import { tooltipRaw } from "./tooltip.js";
 
 export const textField = (
     gui: IMGUI,

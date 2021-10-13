@@ -1,7 +1,7 @@
-import type { ReadonlyVec, Vec } from "./api";
-import { cross3 } from "./cross";
-import { normalize } from "./normalize";
-import { sub3 } from "./sub";
+import type { ReadonlyVec, Vec } from "./api.js";
+import { cross3 } from "./cross.js";
+import { normalize } from "./normalize.js";
+import { sub3 } from "./sub.js";
 
 /**
  * Produces a vector which is perpendicular/normal to the plane spanned

@@ -1,5 +1,5 @@
-import type { Reducer } from "./api";
-import { reduce, reducer } from "./reduce";
+import type { Reducer } from "./api.js";
+import { reduce, reducer } from "./reduce.js";
 
 /**
  * Reducer to compute successive division of values using given `init`

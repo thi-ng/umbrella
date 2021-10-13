@@ -1,9 +1,9 @@
 import { isNumber } from "@thi.ng/checks/is-number";
-import { Add, add } from "./add";
-import { AGen } from "./agen";
-import type { IGen, StatelessOscillator } from "./api";
-import { Const } from "./const";
-import { sum } from "./sum";
+import { Add, add } from "./add.js";
+import { AGen } from "./agen.js";
+import type { IGen, StatelessOscillator } from "./api.js";
+import { Const } from "./const.js";
+import { sum } from "./sum.js";
 
 /**
  * Higher order oscillator gen, wrapping a {@link StatelessOscillator}

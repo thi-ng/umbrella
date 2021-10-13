@@ -1,6 +1,6 @@
 import { setC4 } from "@thi.ng/vectors/setc";
-import type { Color } from "../api";
-import { INV8BIT } from "../api/constants";
+import type { Color } from "../api.js";
+import { INV8BIT } from "../api/constants.js";
 
 export const intArgb32Srgb = (out: Color | null, src: number) =>
     setC4(

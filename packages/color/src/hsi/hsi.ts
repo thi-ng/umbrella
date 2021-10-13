@@ -1,9 +1,9 @@
 import type { NumericArray } from "@thi.ng/api";
 import type { IRandom } from "@thi.ng/random";
-import type { Color, ColorFactory, ReadonlyColor, TypedColor } from "../api";
-import { defColor } from "../defcolor";
-import { rgbHsi } from "../rgb/rgb-hsi";
-import { hsiRgb } from "./hsi-rgb";
+import type { Color, ColorFactory, ReadonlyColor, TypedColor } from "../api.js";
+import { defColor } from "../defcolor.js";
+import { rgbHsi } from "../rgb/rgb-hsi.js";
+import { hsiRgb } from "./hsi-rgb.js";
 
 export declare class HSI implements TypedColor<HSI> {
     buf: NumericArray;

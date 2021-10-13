@@ -2,7 +2,7 @@ import type { Fn2, IClear, ICopy } from "@thi.ng/api";
 import { align } from "@thi.ng/binary/align";
 import { bitAnd, bitNot, bitOr, bitXor } from "@thi.ng/binary/logic";
 import { assert } from "@thi.ng/errors/assert";
-import { binOp, popCount, toString } from "./util";
+import { binOp, popCount, toString } from "./util.js";
 
 /**
  * 1D bit field, backed by a Uint32Array. Hence size is always rounded

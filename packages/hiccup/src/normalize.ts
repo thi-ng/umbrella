@@ -1,8 +1,8 @@
 import { isPlainObject } from "@thi.ng/checks/is-plain-object";
 import { isString } from "@thi.ng/checks/is-string";
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
-import { RE_TAG } from "./api";
-import { mergeEmmetAttribs } from "./attribs";
+import { RE_TAG } from "./api.js";
+import { mergeEmmetAttribs } from "./attribs.js";
 
 export const normalize = (tag: any[]) => {
     let name = tag[0];

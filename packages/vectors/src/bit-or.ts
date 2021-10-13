@@ -1,4 +1,4 @@
-import { defBitOp, defBitOpN } from "./compile/emit";
+import { defBitOp, defBitOpN } from "./compile/emit.js";
 
 export const [bitOrI, bitOrI2, bitOrI3, bitOrI4] = defBitOp("|", true);
 

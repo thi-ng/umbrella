@@ -8,11 +8,11 @@ import { mulN2 } from "@thi.ng/vectors/muln";
 import { set2 } from "@thi.ng/vectors/set";
 import { zeroes } from "@thi.ng/vectors/setn";
 import { sub2 } from "@thi.ng/vectors/sub";
-import { Cubic } from "./api/cubic";
-import { Line } from "./api/line";
-import { Path } from "./api/path";
-import { Quadratic } from "./api/quadratic";
-import { arcFrom2Points } from "./arc";
+import { Cubic } from "./api/cubic.js";
+import { Line } from "./api/line.js";
+import { Path } from "./api/path.js";
+import { Quadratic } from "./api/quadratic.js";
+import { arcFrom2Points } from "./arc.js";
 
 export interface PathBuilderOpts {
     /**

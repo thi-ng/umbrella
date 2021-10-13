@@ -4,7 +4,7 @@ import { absDiff } from "@thi.ng/math/abs";
 import { clamp } from "@thi.ng/math/interval";
 import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
 import { comparator2 } from "@thi.ng/vectors/compare";
-import type { IRamp, RampBounds } from "./api";
+import type { IRamp, RampBounds } from "./api.js";
 
 export abstract class ARamp implements IRamp {
     stops: Vec[];

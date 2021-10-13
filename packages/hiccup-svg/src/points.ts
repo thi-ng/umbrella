@@ -1,5 +1,5 @@
-import { fattribs, ff, withoutKeys } from "./format";
-import type { Vec2Like } from "./api";
+import { fattribs, ff, withoutKeys } from "./format.js";
+import type { Vec2Like } from "./api.js";
 
 /**
  * Shape instancing group.

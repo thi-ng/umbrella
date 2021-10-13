@@ -1,7 +1,7 @@
 import type { Reducer } from "@thi.ng/transducers";
-import { copy } from "./copy";
-import { __combineSet } from "./internal/combine";
-import { into } from "./into";
+import { copy } from "./copy.js";
+import { __combineSet } from "./internal/combine.js";
+import { into } from "./into.js";
 
 /**
  * Computes union of sets `a` and `b` and writes results to new set or

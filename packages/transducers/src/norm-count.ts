@@ -1,5 +1,5 @@
-import type { Reducer } from "./api";
-import { $$reduce } from "./reduce";
+import type { Reducer } from "./api.js";
+import { $$reduce } from "./reduce.js";
 
 /**
  * Similar to {@link count}, a reducer which ignores incoming values and instead

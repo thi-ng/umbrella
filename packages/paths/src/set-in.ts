@@ -12,7 +12,7 @@ import type {
     Path8,
     PathVal,
 } from "@thi.ng/api";
-import { defSetter } from "./setter";
+import { defSetter } from "./setter.js";
 
 /**
  * Unchecked version of {@link setIn}.

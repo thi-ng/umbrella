@@ -9,10 +9,10 @@ import {
     handleSlider2Keys,
     isHoverSlider,
     slider2Val,
-} from "../behaviors/slider";
-import type { IMGUI } from "../gui";
-import { textLabelRaw } from "./textlabel";
-import { tooltipRaw } from "./tooltip";
+} from "../behaviors/slider.js";
+import type { IMGUI } from "../gui.js";
+import { textLabelRaw } from "./textlabel.js";
+import { tooltipRaw } from "./tooltip.js";
 
 /**
  * `mode` interpretation:

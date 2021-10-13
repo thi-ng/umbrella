@@ -1,7 +1,7 @@
 import type { INorm } from "@thi.ng/random";
 import { SYSTEM } from "@thi.ng/random/system";
-import { red } from "./red";
-import { interleave } from "./utils";
+import { red } from "./red.js";
+import { interleave } from "./utils.js";
 
 /**
  * Band-stop filtered noise (interleaved red noise). Opposite of {@link green}.

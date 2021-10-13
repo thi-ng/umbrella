@@ -1,8 +1,8 @@
-import type { StackContext } from "./api";
-import { and, or } from "./logic";
-import { $ } from "./safe";
-import { dup, dup2, dup3, over, swap } from "./stack";
-import { $stackFn, defWord, exec } from "./word";
+import type { StackContext } from "./api.js";
+import { and, or } from "./logic.js";
+import { $ } from "./safe.js";
+import { dup, dup2, dup3, over, swap } from "./stack.js";
+import { $stackFn, defWord, exec } from "./word.js";
 
 //////////////////// Dataflow combinators  ////////////////////
 

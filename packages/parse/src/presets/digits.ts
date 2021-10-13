@@ -1,5 +1,5 @@
-import { oneOrMore } from "../combinators/repeat";
-import { range } from "../prims/range";
+import { oneOrMore } from "../combinators/repeat.js";
+import { range } from "../prims/range.js";
 
 /**
  * Matches single decimal digit.

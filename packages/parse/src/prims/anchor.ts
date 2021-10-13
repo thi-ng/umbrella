@@ -1,6 +1,6 @@
 import type { Nullable, Predicate2 } from "@thi.ng/api";
 import { ALPHA_NUM } from "@thi.ng/strings/groups";
-import type { Parser } from "../api";
+import type { Parser } from "../api.js";
 
 export const anchor =
     <T>(fn: Predicate2<Nullable<T>>): Parser<T> =>

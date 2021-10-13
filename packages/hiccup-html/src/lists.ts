@@ -1,5 +1,10 @@
-import type { Attribs, AttribVal, BooleanAttrib, NumericAttrib } from "./api";
-import { defElement, defElements } from "./def";
+import type {
+    Attribs,
+    AttribVal,
+    BooleanAttrib,
+    NumericAttrib,
+} from "./api.js";
+import { defElement, defElements } from "./def.js";
 
 export interface OrderedListAttribs extends Attribs {
     reversed: BooleanAttrib;

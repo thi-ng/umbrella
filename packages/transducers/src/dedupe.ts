@@ -1,8 +1,8 @@
 import type { Predicate2 } from "@thi.ng/api";
 import { SEMAPHORE } from "@thi.ng/api/api";
-import type { Reducer, Transducer } from "./api";
-import { compR } from "./compr";
-import { __iter } from "./iterator";
+import type { Reducer, Transducer } from "./api.js";
+import { compR } from "./compr.js";
+import { __iter } from "./iterator.js";
 
 export function dedupe<T>(equiv?: Predicate2<T>): Transducer<T, T>;
 export function dedupe<T>(src: Iterable<T>): IterableIterator<T>;

@@ -1,5 +1,5 @@
-import type { Sym } from "./nodes";
-import type { Interpolation, Precision } from "./precision";
+import type { Sym } from "./nodes.js";
+import type { Interpolation, Precision } from "./precision.js";
 
 export type SymQualifier = "in" | "out" | "inout";
 

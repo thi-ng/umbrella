@@ -6,8 +6,8 @@ import { float, int, INT0, vec2 } from "@thi.ng/shader-ast/ast/lit";
 import { gt, inc, lt, madd } from "@thi.ng/shader-ast/ast/ops";
 import { $x, $y } from "@thi.ng/shader-ast/ast/swizzle";
 import { sym } from "@thi.ng/shader-ast/ast/sym";
-import type { RaymarchOpts, RaymarchScene } from "../api";
-import { rayPointAt } from "./point-at";
+import type { RaymarchOpts, RaymarchScene } from "../api.js";
+import { rayPointAt } from "./point-at.js";
 
 /**
  * Higher order function producing a function to perform a raymarch

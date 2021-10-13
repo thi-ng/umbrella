@@ -6,12 +6,12 @@ import {
     partitionSync,
     PartitionSync,
 } from "@thi.ng/transducers/partition-sync";
-import type { ISubscribable, ISubscription, TransformableOpts } from "./api";
-import { isFirstOrLastInput } from "./checks";
-import { __optsWithID } from "./idgen";
-import { __removeAllIDs } from "./internal/remove";
-import { LOGGER } from "./logger";
-import { Subscription } from "./subscription";
+import type { ISubscribable, ISubscription, TransformableOpts } from "./api.js";
+import { isFirstOrLastInput } from "./checks.js";
+import { __optsWithID } from "./idgen.js";
+import { __removeAllIDs } from "./internal/remove.js";
+import { LOGGER } from "./logger.js";
+import { Subscription } from "./subscription.js";
 
 export type SyncTuple<T extends IObjectOf<ISubscribable<any>>> = {
     [id in keyof T]: Always<Derefed<T[id]>>;

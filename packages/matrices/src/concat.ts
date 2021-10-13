@@ -1,5 +1,5 @@
-import type { Mat, ReadonlyMat } from "./api";
-import { mulM } from "./mulm";
+import type { Mat, ReadonlyMat } from "./api.js";
+import { mulM } from "./mulm.js";
 
 /**
  * Concatenates / multiplies given matrices in left-to-right order. A

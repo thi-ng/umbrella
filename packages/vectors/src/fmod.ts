@@ -1,4 +1,4 @@
-import { defMathOp } from "./compile/emit";
+import { defMathOp } from "./compile/emit.js";
 
 /**
  * Similar to {@link mod}, {@link remainder}. This version of modulo uses the

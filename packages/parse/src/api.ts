@@ -1,5 +1,5 @@
 import type { Fn, Fn0, IObjectOf, Nullable } from "@thi.ng/api";
-import type { ParseContext } from "./context";
+import type { ParseContext } from "./context.js";
 
 export interface ParseScope<T> {
     id: string;

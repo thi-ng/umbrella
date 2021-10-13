@@ -1,20 +1,20 @@
 import type { NumericArray } from "@thi.ng/api";
 import type { IRandom } from "@thi.ng/random";
 import { set4 } from "@thi.ng/vectors/set";
-import type { Color, ColorFactory, ReadonlyColor, TypedColor } from "../api";
-import { defColor } from "../defcolor";
-import { hcyRgb } from "../hcy/hcy-rgb";
-import { hsiRgb } from "../hsi/hsi-rgb";
-import { hslRgb } from "../hsl/hsl-rgb";
-import { hsvRgb } from "../hsv/hsv-rgb";
-import { intAbgr32Rgb, intArgb32Rgb } from "../int/int-rgb";
-import { lchLab } from "../lab/lab-lch";
-import { labRgb, labRgbD65 } from "../lab/lab-rgb";
-import { oklabRgb } from "../oklab/oklab-rgb";
-import { srgbRgb } from "../srgb/srgb-rgb";
-import { xyyXyz } from "../xyy/xyy-xyz";
-import { xyzRgb, xyzRgbD65 } from "../xyz/xyz-rgb";
-import { yccRgb } from "../ycc/ycc-rgb";
+import type { Color, ColorFactory, ReadonlyColor, TypedColor } from "../api.js";
+import { defColor } from "../defcolor.js";
+import { hcyRgb } from "../hcy/hcy-rgb.js";
+import { hsiRgb } from "../hsi/hsi-rgb.js";
+import { hslRgb } from "../hsl/hsl-rgb.js";
+import { hsvRgb } from "../hsv/hsv-rgb.js";
+import { intAbgr32Rgb, intArgb32Rgb } from "../int/int-rgb.js";
+import { lchLab } from "../lab/lab-lch.js";
+import { labRgb, labRgbD65 } from "../lab/lab-rgb.js";
+import { oklabRgb } from "../oklab/oklab-rgb.js";
+import { srgbRgb } from "../srgb/srgb-rgb.js";
+import { xyyXyz } from "../xyy/xyy-xyz.js";
+import { xyzRgb, xyzRgbD65 } from "../xyz/xyz-rgb.js";
+import { yccRgb } from "../ycc/ycc-rgb.js";
 
 export declare class RGB implements TypedColor<RGB> {
     buf: NumericArray;

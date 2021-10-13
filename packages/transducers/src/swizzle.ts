@@ -1,8 +1,8 @@
 import { swizzle as _swizzle } from "@thi.ng/arrays/swizzle";
 import { isIterable } from "@thi.ng/checks/is-iterable";
-import type { Transducer } from "./api";
-import { iterator1 } from "./iterator";
-import { map } from "./map";
+import type { Transducer } from "./api.js";
+import { iterator1 } from "./iterator.js";
+import { map } from "./map.js";
 
 /**
  * Transducer which performs value reordering on inputs using provided

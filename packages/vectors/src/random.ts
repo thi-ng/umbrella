@@ -1,8 +1,8 @@
 import type { IRandom } from "@thi.ng/random";
 import { SYSTEM } from "@thi.ng/random/system";
-import type { MultiVecOpOOO, ReadonlyVec, Vec, VecOpOOO } from "./api";
-import { defHofOp } from "./compile/emit";
-import { normalize } from "./normalize";
+import type { MultiVecOpOOO, ReadonlyVec, Vec, VecOpOOO } from "./api.js";
+import { defHofOp } from "./compile/emit.js";
+import { normalize } from "./normalize.js";
 
 /**
  * Sets `v` to random vector, with each component in interval `[n..m)`.

@@ -1,5 +1,5 @@
-import { ensureIterable } from "./ensure";
-import { iterator } from "./iterator";
+import { ensureIterable } from "./ensure.js";
+import { iterator } from "./iterator.js";
 
 export function* concat<T>(...inputs: (Iterable<T> | undefined | null)[]) {
     let iter = iterator(inputs);

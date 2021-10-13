@@ -9,10 +9,10 @@ import { max2 } from "@thi.ng/vectors/max";
 import { min2 } from "@thi.ng/vectors/min";
 import { sub2 } from "@thi.ng/vectors/sub";
 import { subN2 } from "@thi.ng/vectors/subn";
-import type { Circle } from "./api/circle";
-import type { Polygon } from "./api/polygon";
-import { Rect } from "./api/rect";
-import { __argsVV } from "./internal/args";
+import type { Circle } from "./api/circle.js";
+import type { Polygon } from "./api/polygon.js";
+import { Rect } from "./api/rect.js";
+import { __argsVV } from "./internal/args.js";
 
 export function rect(pos: Vec, size: number | Vec, attribs?: Attribs): Rect;
 export function rect(size: number | Vec, attribs?: Attribs): Rect;

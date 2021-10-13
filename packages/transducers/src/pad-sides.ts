@@ -1,5 +1,5 @@
-import { concat } from "./concat";
-import { repeat } from "./repeat";
+import { concat } from "./concat.js";
+import { repeat } from "./repeat.js";
 
 /**
  * Returns iterator of `src` padded with value `x`, repeated

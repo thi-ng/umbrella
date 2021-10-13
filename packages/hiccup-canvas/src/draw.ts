@@ -1,22 +1,22 @@
 import { implementsFunction } from "@thi.ng/checks/implements-function";
 import { isArray } from "@thi.ng/checks/is-array";
-import type { DrawState } from "./api";
-import { circularArc, ellipticArc } from "./arc";
-import { defLinearGradient, defRadialGradient } from "./color";
-import { image } from "./image";
+import type { DrawState } from "./api.js";
+import { circularArc, ellipticArc } from "./arc.js";
+import { defLinearGradient, defRadialGradient } from "./color.js";
+import { image } from "./image.js";
 import {
     __mergeState,
     __registerGradient,
     __restoreState,
-} from "./internal/state";
-import { line, lines } from "./line";
-import { packedPoints } from "./packed-points";
-import { path } from "./path";
-import { points } from "./points";
-import { polygon } from "./polygon";
-import { polyline } from "./polyline";
-import { rect } from "./rect";
-import { text } from "./text";
+} from "./internal/state.js";
+import { line, lines } from "./line.js";
+import { packedPoints } from "./packed-points.js";
+import { path } from "./path.js";
+import { points } from "./points.js";
+import { polygon } from "./polygon.js";
+import { polyline } from "./polyline.js";
+import { rect } from "./rect.js";
+import { text } from "./text.js";
 
 export const draw = (
     ctx: CanvasRenderingContext2D,

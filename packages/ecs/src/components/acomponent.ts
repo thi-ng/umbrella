@@ -8,7 +8,7 @@ import {
     EVENT_CHANGED,
     EVENT_PRE_DELETE,
     IComponent,
-} from "../api";
+} from "../api.js";
 
 @INotifyMixin
 export abstract class AComponent<K extends string, VALUES, GET, SET>

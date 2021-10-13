@@ -8,12 +8,12 @@ import {
     Precision,
     SECOND,
     YEAR,
-} from "./api";
-import { ensureEpoch } from "./checks";
-import { DateTime, dateTime, ensureDateTime } from "./datetime";
-import { LOCALE, tense, units, unitsLessThan } from "./i18n";
-import { EN_LONG, EN_SHORT } from "./i18n/en";
-import { __idToPrecision, __precisionToID } from "./internal/precision";
+} from "./api.js";
+import { ensureEpoch } from "./checks.js";
+import { DateTime, dateTime, ensureDateTime } from "./datetime.js";
+import { LOCALE, tense, units, unitsLessThan } from "./i18n.js";
+import { EN_LONG, EN_SHORT } from "./i18n/en.js";
+import { __idToPrecision, __precisionToID } from "./internal/precision.js";
 
 /**
  * Takes a relative time `offset` string in plain english and an optional `base`

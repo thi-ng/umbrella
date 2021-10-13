@@ -1,9 +1,9 @@
-import { add } from "./add";
-import type { ReadonlyVec, Vec } from "./api";
-import { __ensureInputs } from "./internal/ensure";
-import { mulN } from "./muln";
-import { set } from "./set";
-import { sum } from "./sum";
+import { add } from "./add.js";
+import type { ReadonlyVec, Vec } from "./api.js";
+import { __ensureInputs } from "./internal/ensure.js";
+import { mulN } from "./muln.js";
+import { set } from "./set.js";
+import { sum } from "./sum.js";
 
 /**
  * Takes an array of vectors (of uniform dimensions) and computes the

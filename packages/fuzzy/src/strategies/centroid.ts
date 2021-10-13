@@ -1,5 +1,5 @@
-import type { DefuzzStrategy, DefuzzStrategyOpts } from "../api";
-import { defaultOpts } from "./opts";
+import type { DefuzzStrategy, DefuzzStrategyOpts } from "../api.js";
+import { defaultOpts } from "./opts.js";
 
 /**
  * Higher-order function: Centre-of-gravity defuzzification strategy, yielding

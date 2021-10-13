@@ -1,5 +1,5 @@
 import { TAU } from "@thi.ng/math/api";
-import type { StatelessOscillator } from "./api";
+import type { StatelessOscillator } from "./api.js";
 
 /**
  * Oscillator using Discrete Summation Formula:

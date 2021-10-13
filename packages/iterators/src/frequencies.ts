@@ -1,5 +1,5 @@
 import type { Fn, IObjectOf } from "@thi.ng/api";
-import { iterator } from "./iterator";
+import { iterator } from "./iterator.js";
 
 export interface FrequencyPair<T> {
     [0]: T;

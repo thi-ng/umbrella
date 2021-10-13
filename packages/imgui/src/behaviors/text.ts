@@ -1,7 +1,7 @@
 import type { Predicate } from "@thi.ng/api";
 import { clamp0 } from "@thi.ng/math/interval";
-import { Key } from "../api";
-import type { IMGUI } from "../gui";
+import { Key } from "../api.js";
+import type { IMGUI } from "../gui.js";
 
 const WS = /\s/;
 

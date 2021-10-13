@@ -1,6 +1,6 @@
 import { DCons } from "@thi.ng/dcons/dcons";
-import type { DegreeType, Edge, IGraph } from "./api";
-import { into, invert, toDot } from "./utils";
+import type { DegreeType, Edge, IGraph } from "./api.js";
+import { into, invert, toDot } from "./utils.js";
 
 export class AdjacencyList implements IGraph<number> {
     vertices: DCons<number>[] = [];

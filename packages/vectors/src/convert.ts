@@ -6,9 +6,9 @@ import type {
     Template,
     ToBVecOpV,
     VecOpV,
-} from "./api";
-import { defOp } from "./compile/emit";
-import { ARGS_V, NEW_OUT } from "./compile/templates";
+} from "./api.js";
+import { defOp } from "./compile/emit.js";
+import { ARGS_V, NEW_OUT } from "./compile/templates.js";
 
 const $ = <M, V>(tpl: Template, pre = NEW_OUT) =>
     defOp<M, V>(tpl, ARGS_V, ARGS_V, "o", 1, pre);

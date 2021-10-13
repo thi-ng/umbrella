@@ -1,5 +1,5 @@
-import type { Parser, ScopeTransform } from "../api";
-import { xform } from "../combinators/xform";
+import type { Parser, ScopeTransform } from "../api.js";
+import { xform } from "../combinators/xform.js";
 
 /**
  * Stores number of children as result, then discards children. Also see

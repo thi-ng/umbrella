@@ -1,4 +1,4 @@
-import type { ReadonlyVec, Vec } from "./api";
+import type { ReadonlyVec, Vec } from "./api.js";
 
 /**
  * Computes tensor product (aka outer product) of `a` and `b` and writes result

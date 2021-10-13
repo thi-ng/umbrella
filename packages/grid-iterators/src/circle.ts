@@ -1,5 +1,5 @@
-import { hline } from "./hvline";
-import { asInt } from "./utils";
+import { hline } from "./hvline.js";
+import { asInt } from "./utils.js";
 
 export function* circle(cx: number, cy: number, r: number, fill = true) {
     [cx, cy, r] = asInt(cx, cy, r);

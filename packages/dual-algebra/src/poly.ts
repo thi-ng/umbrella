@@ -1,6 +1,6 @@
 import type { FnU4, FnU5, FnU6 } from "@thi.ng/api";
-import type { Dual, Op4, Op5 } from "./api";
-import { add, mul } from "./ops";
+import type { Dual, Op4, Op5 } from "./api.js";
+import { add, mul } from "./ops.js";
 
 /**
  * Computes: `ax^2 + bx + c`. All args must have same size/arity.

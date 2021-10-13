@@ -1,7 +1,7 @@
 import type { IObjectOf } from "@thi.ng/api";
-import type { GroupByOpts, Reducer } from "./api";
-import { __groupByOpts } from "./internal/group-opts";
-import { $$reduce } from "./reduce";
+import type { GroupByOpts, Reducer } from "./api.js";
+import { __groupByOpts } from "./internal/group-opts.js";
+import { $$reduce } from "./reduce.js";
 
 export function groupByObj<SRC, GROUP>(
     opts?: Partial<GroupByOpts<SRC, PropertyKey, GROUP>>

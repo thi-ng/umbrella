@@ -11,11 +11,11 @@ import { normRange } from "@thi.ng/transducers/norm-range";
 import type { Vec } from "@thi.ng/vectors";
 import { cartesian2 } from "@thi.ng/vectors/cartesian";
 import { hash } from "@thi.ng/vectors/hash";
-import { dialVal } from "../behaviors/dial";
-import { handleSlider1Keys } from "../behaviors/slider";
-import type { IMGUI } from "../gui";
-import { dialValueLabel } from "./textlabel";
-import { tooltipRaw } from "./tooltip";
+import { dialVal } from "../behaviors/dial.js";
+import { handleSlider1Keys } from "../behaviors/slider.js";
+import type { IMGUI } from "../gui.js";
+import { dialValueLabel } from "./textlabel.js";
+import { tooltipRaw } from "./tooltip.js";
 
 const ringHeight: FnN2 = (w, thetaGap) =>
     (w / 2) * (1 + Math.sin(HALF_PI + thetaGap / 2));

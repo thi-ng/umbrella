@@ -1,4 +1,4 @@
-import type { Dual, Op1, Op1N, Op2, Op3, Op4 } from "./api";
+import type { Dual, Op1, Op1N, Op2, Op3, Op4 } from "./api.js";
 
 /**
  * Creates a multivariate dual number.

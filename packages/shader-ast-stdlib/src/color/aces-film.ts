@@ -1,6 +1,6 @@
 import { defn, ret } from "@thi.ng/shader-ast/ast/function";
 import { add, div, mul } from "@thi.ng/shader-ast/ast/ops";
-import { clamp01 } from "../math/clamp";
+import { clamp01 } from "../math/clamp.js";
 
 /**
  * Filmic HDR -> LDR mapping based on ACES.

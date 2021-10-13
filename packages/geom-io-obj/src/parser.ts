@@ -1,6 +1,6 @@
 import { assert } from "@thi.ng/errors/assert";
 import type { Vec } from "@thi.ng/vectors";
-import type { OBJFace, OBJGroup, OBJModel, ParseOpts } from "./api";
+import type { OBJFace, OBJGroup, OBJModel, ParseOpts } from "./api.js";
 
 export const parseOBJ = (src: string, opts?: Partial<ParseOpts>) => {
     opts = {

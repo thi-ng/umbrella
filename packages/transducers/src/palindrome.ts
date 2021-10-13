@@ -1,9 +1,9 @@
 import { ensureArray } from "@thi.ng/arrays/ensure-array";
 import { isArray } from "@thi.ng/checks/is-array";
 import { isString } from "@thi.ng/checks/is-string";
-import { concat } from "./concat";
-import { reverse } from "./reverse";
-import { str } from "./str";
+import { concat } from "./concat.js";
+import { reverse } from "./reverse.js";
+import { str } from "./str.js";
 
 /**
  * Returns the concatentation of `x` with its own duplicate in reverse

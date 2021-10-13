@@ -1,5 +1,5 @@
 import type { Comparator, Fn, Keys, Val1 } from "@thi.ng/api";
-import { compare } from "./compare";
+import { compare } from "./compare.js";
 
 const getKey = (k: string | Fn<any, any>) =>
     typeof k === "function" ? k : (x: any) => x[k];

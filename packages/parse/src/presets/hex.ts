@@ -1,8 +1,8 @@
 import { HEX } from "@thi.ng/strings/groups";
-import { oneOrMore, repeat } from "../combinators/repeat";
-import { xform } from "../combinators/xform";
-import { oneOf } from "../prims/one-of";
-import { xfInt } from "../xform/number";
+import { oneOrMore, repeat } from "../combinators/repeat.js";
+import { xform } from "../combinators/xform.js";
+import { oneOf } from "../prims/one-of.js";
+import { xfInt } from "../xform/number.js";
 
 /**
  * Matches single hex digit (case insensitive).

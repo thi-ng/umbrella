@@ -1,6 +1,6 @@
-import type { MultiVecOpRoVV } from "./api";
-import { compile } from "./compile/emit";
-import { vop } from "./vop";
+import type { MultiVecOpRoVV } from "./api.js";
+import { compile } from "./compile/emit.js";
+import { vop } from "./vop.js";
 
 const $ = (dim: number) =>
     distChebyshev.add(

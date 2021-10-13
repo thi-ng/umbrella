@@ -3,7 +3,7 @@ import { EPS } from "@thi.ng/math/api";
 import { eqDelta } from "@thi.ng/math/eqdelta";
 import { fit, fitClamped } from "@thi.ng/math/fit";
 import { gaussian as $gaussian, sigmoid as $sigmoid } from "@thi.ng/math/mix";
-import type { FuzzyFn } from "./api";
+import type { FuzzyFn } from "./api.js";
 
 /**
  * HOF {@link FuzzyFn} always yielding given `x` (should be in [0,1]

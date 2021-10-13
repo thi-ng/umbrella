@@ -1,5 +1,5 @@
 import type { FnN, FnN2, FnN3, FnN4, FnN5, FnU3, FnU4 } from "@thi.ng/api";
-import { maskL } from "./mask";
+import { maskL } from "./mask.js";
 
 export const bitNot: FnN = (x) => ~x;
 

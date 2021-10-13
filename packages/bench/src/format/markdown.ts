@@ -1,5 +1,5 @@
 import type { NumOrString } from "@thi.ng/api";
-import { BenchmarkFormatter, EMPTY, FLOAT } from "../api";
+import { BenchmarkFormatter, EMPTY, FLOAT } from "../api.js";
 
 const $n = (n: number, char = "-") => new Array(n).fill(char).join("");
 

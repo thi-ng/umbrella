@@ -1,8 +1,8 @@
 import { clamp01 } from "@thi.ng/math/interval";
 import { fract } from "@thi.ng/math/prec";
 import { setC4 } from "@thi.ng/vectors/setc";
-import type { Color, ReadonlyColor } from "./api";
-import { __ensureAlpha } from "./internal/ensure";
+import type { Color, ReadonlyColor } from "./api.js";
+import { __ensureAlpha } from "./internal/ensure.js";
 
 /**
  * Clamps all color channels to [0,1] interval and calls `ensureAlpha`

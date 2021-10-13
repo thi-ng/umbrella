@@ -1,5 +1,5 @@
-import type { ReadonlyVec, Vec } from "./api";
-import { __ensureInputs } from "./internal/ensure";
+import type { ReadonlyVec, Vec } from "./api.js";
+import { __ensureInputs } from "./internal/ensure.js";
 
 /**
  * Takes an array of vectors (of uniform dimensions) and computes the

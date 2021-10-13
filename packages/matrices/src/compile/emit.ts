@@ -6,7 +6,7 @@ import {
     MATH,
     MATH_N,
 } from "@thi.ng/vectors/compile/templates";
-import type { MultiMatOpMM, MultiMatOpMN } from "../api";
+import type { MultiMatOpMM, MultiMatOpMN } from "../api.js";
 
 const DEFAULT_SIZES = [6, 9, 16];
 

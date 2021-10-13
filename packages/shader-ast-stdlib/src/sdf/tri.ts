@@ -5,8 +5,8 @@ import { div, mul, neg, sub } from "@thi.ng/shader-ast/ast/ops";
 import { $x, $y } from "@thi.ng/shader-ast/ast/swizzle";
 import { sym } from "@thi.ng/shader-ast/ast/sym";
 import { dot, min, sign, sqrt } from "@thi.ng/shader-ast/builtin/math";
-import { clamp01 } from "../math/clamp";
-import { cross2 } from "../math/cross2";
+import { clamp01 } from "../math/clamp.js";
+import { cross2 } from "../math/cross2.js";
 
 /**
  * @param p - vec2

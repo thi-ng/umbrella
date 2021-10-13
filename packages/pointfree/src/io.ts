@@ -1,5 +1,5 @@
-import type { StackContext } from "./api";
-import { $ } from "./safe";
+import type { StackContext } from "./api.js";
+import { $ } from "./safe.js";
 
 //////////////////// I/O  ////////////////////
 

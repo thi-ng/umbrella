@@ -7,7 +7,7 @@ import { range2d } from "@thi.ng/transducers/range2d";
 import type { Vec } from "@thi.ng/vectors";
 import { div2 } from "@thi.ng/vectors/div";
 import { jitter } from "@thi.ng/vectors/jitter";
-import type { DotFillOpts, FillFn } from "./api";
+import type { DotFillOpts, FillFn } from "./api.js";
 
 export const defDots = (opts: Partial<DotFillOpts> = {}): FillFn => {
     opts = mergeDeepObj(

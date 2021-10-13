@@ -1,6 +1,6 @@
 import { max2id, max3id, max4id } from "@thi.ng/math/interval";
-import type { MultiVecOpRoV } from "./api";
-import { vop } from "./vop";
+import type { MultiVecOpRoV } from "./api.js";
+import { vop } from "./vop.js";
 
 const abs = Math.abs;
 

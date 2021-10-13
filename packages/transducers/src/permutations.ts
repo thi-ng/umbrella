@@ -1,6 +1,6 @@
 import { ensureArrayLike } from "@thi.ng/arrays/ensure-array";
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
-import { range } from "./range";
+import { range } from "./range.js";
 
 /**
  * Iterator yielding the Cartesian Product of the given iterables.

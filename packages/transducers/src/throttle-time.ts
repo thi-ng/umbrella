@@ -1,7 +1,7 @@
 import { isIterable } from "@thi.ng/checks/is-iterable";
-import type { Transducer } from "./api";
-import { iterator1 } from "./iterator";
-import { throttle } from "./throttle";
+import type { Transducer } from "./api.js";
+import { iterator1 } from "./iterator.js";
+import { throttle } from "./throttle.js";
 
 /**
  * Time-based version of {@link (throttle:1)}. Ignores any new values in

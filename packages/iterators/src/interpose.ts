@@ -1,4 +1,4 @@
-import { iterator } from "./iterator";
+import { iterator } from "./iterator.js";
 
 export function* interpose(x: any, input: Iterable<any>) {
     let iter = iterator(input);

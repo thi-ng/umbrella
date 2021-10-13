@@ -51,7 +51,7 @@ import { step3 } from "@thi.ng/vectors/step";
 import { sub3 } from "@thi.ng/vectors/sub";
 import { subN3 } from "@thi.ng/vectors/subn";
 import { tan3 } from "@thi.ng/vectors/tan";
-import type { JSBuiltinsVec3 } from "../api";
+import type { JSBuiltinsVec3 } from "../api.js";
 
 export const VEC3: JSBuiltinsVec3 = {
     abs: (a) => abs3([], a),

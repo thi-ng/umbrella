@@ -16,9 +16,9 @@ import type {
 } from "@thi.ng/api";
 import type { ReadonlyAtom } from "@thi.ng/atom";
 import { View } from "@thi.ng/atom/view";
-import type { CommonOpts } from "./api";
-import { __optsWithID } from "./idgen";
-import { Stream } from "./stream";
+import type { CommonOpts } from "./api.js";
+import { __optsWithID } from "./idgen.js";
+import { Stream } from "./stream.js";
 
 export interface FromViewOpts<P, A, B> extends Partial<CommonOpts> {
     path: P;

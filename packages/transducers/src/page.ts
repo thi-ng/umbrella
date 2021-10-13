@@ -1,8 +1,8 @@
-import type { Transducer } from "./api";
-import { comp } from "./comp";
-import { drop } from "./drop";
-import { __iter } from "./iterator";
-import { take } from "./take";
+import type { Transducer } from "./api.js";
+import { comp } from "./comp.js";
+import { drop } from "./drop.js";
+import { __iter } from "./iterator.js";
+import { take } from "./take.js";
 
 /**
  * Pagination helper. Returns transducer which extracts only items for

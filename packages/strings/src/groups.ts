@@ -1,5 +1,5 @@
 import type { IObjectOf } from "@thi.ng/api";
-import { charRange } from "./range";
+import { charRange } from "./range.js";
 
 const defGroup = (...xs: Iterable<string>[]) => {
     const acc: IObjectOf<boolean> = {};

@@ -1,6 +1,6 @@
-import type { ReadonlyVec } from "./api";
-import { center } from "./center";
-import { magSq } from "./magsq";
+import type { ReadonlyVec } from "./api.js";
+import { center } from "./center.js";
+import { magSq } from "./magsq.js";
 
 export const variance = (a: ReadonlyVec) =>
     magSq(center([], a)) / (a.length - 1);

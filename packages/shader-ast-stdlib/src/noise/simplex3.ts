@@ -22,7 +22,7 @@ import {
     mod,
     step,
 } from "@thi.ng/shader-ast/builtin/math";
-import { permute4 } from "./permute";
+import { permute4 } from "./permute.js";
 
 export const snoise3 = defn("float", "snoise3", ["vec3"], (v) => {
     let g: Vec3Sym;

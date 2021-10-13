@@ -5,8 +5,8 @@ import { mulM44 } from "@thi.ng/matrices/mulm";
 import { normal44 } from "@thi.ng/matrices/normal-mat";
 import { ortho } from "@thi.ng/matrices/ortho";
 import type { ReadonlyVec } from "@thi.ng/vectors";
-import type { GLMat4 } from "./api/glsl";
-import type { ShaderUniforms } from "./api/shader";
+import type { GLMat4 } from "./api/glsl.js";
+import type { ShaderUniforms } from "./api/shader.js";
 
 const $ = (a: any, b: any, id: string) => a[id] || b[id].defaultVal || IDENT44;
 

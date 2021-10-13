@@ -1,6 +1,6 @@
-import { Lane } from "../api";
-import { __luminanceABGR } from "../internal/utils";
-import { defPackedFormat } from "./packed-format";
+import { Lane } from "../api.js";
+import { __luminanceABGR } from "../internal/utils.js";
+import { defPackedFormat } from "./packed-format.js";
 
 export const GRAY16 = defPackedFormat({
     type: "u16",

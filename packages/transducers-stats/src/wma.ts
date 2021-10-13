@@ -5,7 +5,7 @@ import { iterator1 } from "@thi.ng/transducers/iterator";
 import { map } from "@thi.ng/transducers/map";
 import { partition } from "@thi.ng/transducers/partition";
 import { range } from "@thi.ng/transducers/range";
-import { dot } from "./dot";
+import { dot } from "./dot.js";
 
 /**
  * {@link https://en.wikipedia.org/wiki/Moving_average#Weighted_moving_average}

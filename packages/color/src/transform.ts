@@ -1,7 +1,7 @@
 import { mix } from "@thi.ng/math/mix";
-import type { ColorMatrix, ReadonlyColor } from "./api";
-import { RGB_LUMINANCE_REC709, WHITE } from "./api/constants";
-import { __mulM45, __mulV45 } from "./internal/matrix-ops";
+import type { ColorMatrix, ReadonlyColor } from "./api.js";
+import { RGB_LUMINANCE_REC709, WHITE } from "./api/constants.js";
+import { __mulM45, __mulV45 } from "./internal/matrix-ops.js";
 
 // https://drafts.fxtf.org/filter-effects/#feColorMatrixElement
 

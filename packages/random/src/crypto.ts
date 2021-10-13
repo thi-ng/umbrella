@@ -1,6 +1,6 @@
 import type { IBuffered, ICopy } from "@thi.ng/api";
-import { ARandom } from "./arandom";
-import { randomBytes } from "./random-bytes";
+import { ARandom } from "./arandom.js";
+import { randomBytes } from "./random-bytes.js";
 
 /**
  * Currently browser only, a `window.crypto` backed {@link IRandom}
@@ -14,7 +14,8 @@ import { randomBytes } from "./random-bytes";
  */
 export class Crypto
     extends ARandom
-    implements IBuffered<Uint8Array>, ICopy<Crypto> {
+    implements IBuffered<Uint8Array>, ICopy<Crypto>
+{
     buffer: Uint8Array;
     protected u32: Uint32Array;
     protected i: number;

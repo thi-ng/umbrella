@@ -1,5 +1,5 @@
 import type { Fn, IObjectOf } from "@thi.ng/api";
-import { iterator } from "./iterator";
+import { iterator } from "./iterator.js";
 
 export const groupBy = <T>(
     key: Fn<T, any>,

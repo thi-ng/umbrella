@@ -1,10 +1,10 @@
-import { alt } from "../combinators/alt";
-import { zeroOrMore } from "../combinators/repeat";
-import { seq } from "../combinators/seq";
-import { litD } from "../prims/lit";
-import { noneOf } from "../prims/none-of";
-import { join } from "../xform/join";
-import { ESC, UNICODE } from "./escape";
+import { alt } from "../combinators/alt.js";
+import { zeroOrMore } from "../combinators/repeat.js";
+import { seq } from "../combinators/seq.js";
+import { litD } from "../prims/lit.js";
+import { noneOf } from "../prims/none-of.js";
+import { join } from "../xform/join.js";
+import { ESC, UNICODE } from "./escape.js";
 
 const quote = litD('"');
 

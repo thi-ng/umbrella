@@ -2,8 +2,8 @@ import type { IObjectOf, Nullable } from "@thi.ng/api";
 import { isArray } from "@thi.ng/checks/is-array";
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import { camel } from "@thi.ng/strings/case";
-import type { Args, ArgSpecExt, ParseOpts, ParseResult } from "./api";
-import { usage } from "./usage";
+import type { Args, ArgSpecExt, ParseOpts, ParseResult } from "./api.js";
+import { usage } from "./usage.js";
 
 export const parse = <T extends IObjectOf<any>>(
     specs: Args<T>,

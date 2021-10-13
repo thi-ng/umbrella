@@ -10,7 +10,7 @@ import {
 } from "@thi.ng/geom-arc/point-at";
 import type { Vec } from "@thi.ng/vectors";
 import { set } from "@thi.ng/vectors/set";
-import { __copyAttribs } from "../internal/copy";
+import { __copyAttribs } from "../internal/copy.js";
 
 export class Arc implements IHiccupShape, IHiccupPathSegment {
     constructor(

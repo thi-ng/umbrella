@@ -8,7 +8,7 @@ import { MemPool } from "@thi.ng/malloc/pool";
 import { range } from "@thi.ng/transducers/range";
 import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
 import { zeroes } from "@thi.ng/vectors/setn";
-import { AttribPoolOpts, AttribSpec, LOGGER } from "./api";
+import { AttribPoolOpts, AttribSpec, LOGGER } from "./api.js";
 
 /*
  *              0x00            0x08            0x10            0x18

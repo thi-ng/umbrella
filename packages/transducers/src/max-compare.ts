@@ -1,7 +1,7 @@
 import type { Comparator, Fn0 } from "@thi.ng/api";
 import { compare } from "@thi.ng/compare/compare";
-import type { Reducer } from "./api";
-import { $$reduce, reducer } from "./reduce";
+import type { Reducer } from "./api.js";
+import { $$reduce, reducer } from "./reduce.js";
 
 export function maxCompare<T>(init: Fn0<T>, cmp?: Comparator<T>): Reducer<T, T>;
 export function maxCompare<T>(init: Fn0<T>, xs: Iterable<T>): T;

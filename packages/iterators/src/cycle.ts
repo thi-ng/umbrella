@@ -1,4 +1,4 @@
-import { iterator } from "./iterator";
+import { iterator } from "./iterator.js";
 
 export function* cycle<T>(input: Iterable<T>) {
     let cache: T[] = [];

@@ -1,5 +1,5 @@
 import { compare } from "@thi.ng/compare/compare";
-import type { SortOpts } from "../api";
+import type { SortOpts } from "../api.js";
 
 /**
  * Helper function to inject default {@link SortOpts}.

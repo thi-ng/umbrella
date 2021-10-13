@@ -1,6 +1,6 @@
 import { X3, Y3, Z3 } from "@thi.ng/vectors/api";
-import { mulQ } from "./mulq";
-import { quatFromAxisAngle } from "./quat-axis-angle";
+import { mulQ } from "./mulq.js";
+import { quatFromAxisAngle } from "./quat-axis-angle.js";
 
 const axisOrder = {
     xyz: [X3, Y3, Z3],

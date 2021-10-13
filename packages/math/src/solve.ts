@@ -1,6 +1,6 @@
 import type { FnN2 } from "@thi.ng/api";
-import { EPS } from "./api";
-import { safeDiv } from "./safe-div";
+import { EPS } from "./api.js";
+import { safeDiv } from "./safe-div.js";
 
 /**
  * Produces a new function which computes derivative of the given

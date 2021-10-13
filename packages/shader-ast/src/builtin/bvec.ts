@@ -1,6 +1,6 @@
-import type { FnCall, Term } from "../api/nodes";
-import type { BVec } from "../api/types";
-import { builtinCall } from "../ast/function";
+import type { FnCall, Term } from "../api/nodes.js";
+import type { BVec } from "../api/types.js";
+import { builtinCall } from "../ast/function.js";
 
 const $bvec = (t: string) => <any>("bvec" + t[t.length - 1]);
 

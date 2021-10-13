@@ -1,6 +1,6 @@
 import type { TypedArray } from "@thi.ng/api";
 import { isString } from "@thi.ng/checks/is-string";
-import type { DownloadOpts } from "./api";
+import type { DownloadOpts } from "./api.js";
 
 /**
  * Triggers download of given `src` blob (or typed array or string) as

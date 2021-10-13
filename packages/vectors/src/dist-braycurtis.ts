@@ -1,4 +1,4 @@
-import type { DistanceFn } from "./api";
+import type { DistanceFn } from "./api.js";
 
 /**
  * Bray-Curtis **dissimilarity** metric. Result always in [0..1] interval.

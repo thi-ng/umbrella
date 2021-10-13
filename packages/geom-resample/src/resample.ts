@@ -2,7 +2,7 @@ import { isPlainObject } from "@thi.ng/checks/is-plain-object";
 import { DEFAULT_SAMPLES, SamplingOpts } from "@thi.ng/geom-api/sample";
 import type { ReadonlyVec } from "@thi.ng/vectors";
 import { copyVectors } from "@thi.ng/vectors/copy";
-import { Sampler } from "./sampler";
+import { Sampler } from "./sampler.js";
 
 export const resample = (
     pts: ReadonlyVec[],

@@ -1,13 +1,13 @@
 import type { NumericArray } from "@thi.ng/api";
 import type { IRandom } from "@thi.ng/random";
-import type { Color, ColorFactory, ReadonlyColor, TypedColor } from "../api";
-import { defColor } from "../defcolor";
-import { lchLab } from "../lab/lab-lch";
-import { labXyz, labXyzD65 } from "../lab/lab-xyz";
-import { rgbOklab } from "../rgb/rgb-oklab";
-import { xyzOklab } from "../xyz/xyz-oklab";
-import { xyzXyzD50_65 } from "../xyz/xyz-xyz";
-import { oklabRgb } from "./oklab-rgb";
+import type { Color, ColorFactory, ReadonlyColor, TypedColor } from "../api.js";
+import { defColor } from "../defcolor.js";
+import { lchLab } from "../lab/lab-lch.js";
+import { labXyz, labXyzD65 } from "../lab/lab-xyz.js";
+import { rgbOklab } from "../rgb/rgb-oklab.js";
+import { xyzOklab } from "../xyz/xyz-oklab.js";
+import { xyzXyzD50_65 } from "../xyz/xyz-xyz.js";
+import { oklabRgb } from "./oklab-rgb.js";
 
 export declare class Oklab implements TypedColor<Oklab> {
     buf: NumericArray;

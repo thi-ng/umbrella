@@ -21,7 +21,7 @@ import type {
     FnBody7,
     FnBody8,
     ScopeBody,
-} from "../api/function";
+} from "../api/function.js";
 import type {
     FnCall,
     Func,
@@ -38,12 +38,12 @@ import type {
     TaggedFn7,
     TaggedFn8,
     Term,
-} from "../api/nodes";
-import type { SymOpts } from "../api/syms";
-import type { Type } from "../api/types";
-import { gensym } from "./idgen";
-import { allChildren, scope, scopedChildren, walk } from "./scope";
-import { sym } from "./sym";
+} from "../api/nodes.js";
+import type { SymOpts } from "../api/syms.js";
+import type { Type } from "../api/types.js";
+import { gensym } from "./idgen.js";
+import { allChildren, scope, scopedChildren, walk } from "./scope.js";
+import { sym } from "./sym.js";
 
 const defArg = <T extends Type>(a: Arg<T>): FuncArg<T> => {
     const [type, id, opts] = isString(a) ? <[T, string?, SymOpts?]>[a] : a;

@@ -1,5 +1,5 @@
 import { atan2Abs } from "@thi.ng/math/angle";
-import type { ReadonlyVec } from "./api";
+import type { ReadonlyVec } from "./api.js";
 
 /**
  * Returns orientation angle (in radians) of vector `a` in XY plane.

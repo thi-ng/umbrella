@@ -3,7 +3,7 @@ import { assert } from "@thi.ng/errors/assert";
 import { add } from "@thi.ng/transducers/add";
 import { choices } from "@thi.ng/transducers/choices";
 import { range } from "@thi.ng/transducers/range";
-import type { GPOpts, OpGene, TerminalGene } from "./api";
+import type { GPOpts, OpGene, TerminalGene } from "./api.js";
 
 export const terminalNode = <T>(value: T): TerminalGene<T> => ({
     type: "term",

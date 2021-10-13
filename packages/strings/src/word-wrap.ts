@@ -1,6 +1,6 @@
-import { lengthAnsi } from "./ansi";
-import type { IWordSplit, WordWrapOpts } from "./api";
-import { split } from "./split";
+import { lengthAnsi } from "./ansi.js";
+import type { IWordSplit, WordWrapOpts } from "./api.js";
+import { split } from "./split.js";
 
 /**
  * Internal representation of a single line (for word wrapping purposes). A thin

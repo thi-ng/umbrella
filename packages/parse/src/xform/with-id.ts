@@ -1,5 +1,5 @@
-import type { ScopeTransform, Parser } from "../api";
-import { xform } from "../combinators/xform";
+import type { ScopeTransform, Parser } from "../api.js";
+import { xform } from "../combinators/xform.js";
 
 /**
  * Assigns given `id` to AST node. E.g. used for re-labeling parser

@@ -1,5 +1,5 @@
 import { illegalArity } from "@thi.ng/errors/illegal-arity";
-import { range } from "./range";
+import { range } from "./range.js";
 
 export function range2d(
     toX: number,

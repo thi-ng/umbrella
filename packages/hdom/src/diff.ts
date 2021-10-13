@@ -9,7 +9,7 @@ import {
     equivObject,
     equivSet,
 } from "@thi.ng/equiv";
-import type { HDOMImplementation, HDOMOpts } from "./api";
+import type { HDOMImplementation, HDOMOpts } from "./api.js";
 
 const isArray = Array.isArray;
 const max = Math.max;

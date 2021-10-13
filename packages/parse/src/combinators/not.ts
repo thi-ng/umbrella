@@ -1,5 +1,5 @@
-import type { Parser } from "../api";
-import { always } from "../prims/always";
+import type { Parser } from "../api.js";
+import { always } from "../prims/always.js";
 
 /**
  * Runs `parser`, discards its result and if it passed returns false,
@@ -11,13 +11,12 @@ import { always } from "../prims/always";
  * @param parser -
  * @param fail -
  */
-export const not = <T>(
-    parser: Parser<T>,
-    fail: Parser<T> = always()
-): Parser<T> => (ctx) => {
-    if (ctx.done) return false;
-    ctx.start("");
-    const res = parser(ctx);
-    ctx.discard();
-    return res ? false : fail(ctx);
-};
+export const not =
+    <T>(parser: Parser<T>, fail: Parser<T> = always()): Parser<T> =>
+    (ctx) => {
+        if (ctx.done) return false;
+        ctx.start("");
+        const res = parser(ctx);
+        ctx.discard();
+        return res ? false : fail(ctx);
+    };

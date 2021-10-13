@@ -1,4 +1,4 @@
-import type { TypedArray } from "./typedarray";
+import type { TypedArray } from "./typedarray.js";
 
 /**
  * Returns an array's value type. Assumes array is homogeneous (only type of

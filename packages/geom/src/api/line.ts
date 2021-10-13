@@ -1,6 +1,6 @@
 import type { IHiccupPathSegment, IHiccupShape } from "@thi.ng/geom-api";
-import { __copyShape } from "../internal/copy";
-import { APC } from "./apc";
+import { __copyShape } from "../internal/copy.js";
+import { APC } from "./apc.js";
 
 export class Line extends APC implements IHiccupShape, IHiccupPathSegment {
     get type() {

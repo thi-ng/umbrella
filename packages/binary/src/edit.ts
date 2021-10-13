@@ -1,6 +1,6 @@
 import type { FnU3 } from "@thi.ng/api";
-import type { Bit } from "./api";
-import { defMask } from "./mask";
+import type { Bit } from "./api.js";
+import { defMask } from "./mask.js";
 
 /**
  * Clears bit in given uint `x`.

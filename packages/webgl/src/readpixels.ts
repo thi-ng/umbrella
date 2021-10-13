@@ -2,8 +2,8 @@ import type {
     ITexture,
     ReadableTextureFormat,
     TextureType,
-} from "./api/texture";
-import { FBO } from "./fbo";
+} from "./api/texture.js";
+import { FBO } from "./fbo.js";
 
 export const readPixels = <
     T extends Uint8Array | Uint16Array | Uint32Array | Float32Array

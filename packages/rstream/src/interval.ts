@@ -1,6 +1,6 @@
-import { CloseMode, CommonOpts } from "./api";
-import { __optsWithID } from "./idgen";
-import { stream } from "./stream";
+import { CloseMode, CommonOpts } from "./api.js";
+import { __optsWithID } from "./idgen.js";
+import { stream } from "./stream.js";
 
 export interface FromIntervalOpts extends CommonOpts {
     /**

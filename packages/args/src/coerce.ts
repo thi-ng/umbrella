@@ -2,7 +2,7 @@ import type { Fn } from "@thi.ng/api";
 import { isHex } from "@thi.ng/checks/is-hex";
 import { isNumericFloat, isNumericInt } from "@thi.ng/checks/is-numeric";
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
-import { KVDict, KVMultiDict, Tuple } from "./api";
+import { KVDict, KVMultiDict, Tuple } from "./api.js";
 
 export const coerceString = (x: string) => x;
 

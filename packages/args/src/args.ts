@@ -1,6 +1,6 @@
 import type { Fn } from "@thi.ng/api";
 import { repeat } from "@thi.ng/strings/repeat";
-import type { ArgSpec, KVDict, KVMultiDict, Tuple } from "./api";
+import type { ArgSpec, KVDict, KVMultiDict, Tuple } from "./api.js";
 import {
     coerceFloat,
     coerceFloats,
@@ -12,7 +12,7 @@ import {
     coerceKV,
     coerceOneOf,
     coerceTuple,
-} from "./coerce";
+} from "./coerce.js";
 
 const $single =
     <T = number>(coerce: Fn<string, T>, hint: string) =>

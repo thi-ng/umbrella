@@ -1,6 +1,6 @@
 import { comp as _comp } from "@thi.ng/compose/comp";
-import type { Transducer, TxLike } from "./api";
-import { ensureTransducer } from "./ensure";
+import type { Transducer, TxLike } from "./api.js";
+import { ensureTransducer } from "./ensure.js";
 
 /**
  * Transducer composition. Returns new transducer which applies given

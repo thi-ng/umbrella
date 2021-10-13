@@ -1,4 +1,4 @@
-import { defPackedFormat } from "./packed-format";
+import { defPackedFormat } from "./packed-format.js";
 
 export const ALPHA8 = defPackedFormat({
     type: "u8",

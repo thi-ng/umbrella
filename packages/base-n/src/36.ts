@@ -1,4 +1,4 @@
-import { defBase } from "./base";
+import { defBase } from "./base.js";
 
 export const B36_CHARS = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 

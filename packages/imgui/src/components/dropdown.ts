@@ -4,9 +4,9 @@ import { isLayout } from "@thi.ng/layout/checks";
 import { gridLayout } from "@thi.ng/layout/grid-layout";
 import { clamp0 } from "@thi.ng/math/interval";
 import { hash } from "@thi.ng/vectors/hash";
-import { Key } from "../api";
-import type { IMGUI } from "../gui";
-import { buttonH } from "./button";
+import { Key } from "../api.js";
+import type { IMGUI } from "../gui.js";
+import { buttonH } from "./button.js";
 
 /**
  *

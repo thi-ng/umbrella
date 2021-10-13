@@ -1,5 +1,5 @@
-import type { ReadonlyVec, Vec } from "./api";
-import { maddN, maddN2, maddN3 } from "./maddn";
+import type { ReadonlyVec, Vec } from "./api.js";
+import { maddN, maddN2, maddN3 } from "./maddn.js";
 
 /**
  * Calculates the nD point laying on ray at given distance. `rayDir` MUST be

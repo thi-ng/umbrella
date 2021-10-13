@@ -1,6 +1,6 @@
 import { clamp01 } from "@thi.ng/math/interval";
-import type { ReadonlyColor } from "../api";
-import { __ensureAlpha } from "../internal/ensure";
+import type { ReadonlyColor } from "../api.js";
+import { __ensureAlpha } from "../internal/ensure.js";
 
 export const srgbIntArgb32 = (src: ReadonlyColor) =>
     (((__ensureAlpha(src[3]) * 0xff + 0.5) << 24) |

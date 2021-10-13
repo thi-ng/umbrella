@@ -1,4 +1,4 @@
-import { defOp1, defOp2 } from "./ops";
+import { defOp1, defOp2 } from "./ops.js";
 
 //////////////////// Binary ops ////////////////////
 

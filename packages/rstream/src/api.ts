@@ -1,6 +1,6 @@
 import type { Fn, Fn0, IDeref, IID } from "@thi.ng/api";
 import type { Transducer } from "@thi.ng/transducers";
-import type { Stream } from "./stream";
+import type { Stream } from "./stream.js";
 
 export enum State {
     IDLE,

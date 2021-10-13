@@ -4,7 +4,7 @@ import { mix as $mix } from "@thi.ng/math/mix";
 import { fract } from "@thi.ng/math/prec";
 import { mixN4 } from "@thi.ng/vectors/mixn";
 import { setC4 } from "@thi.ng/vectors/setc";
-import type { Color, ColorMixFn, TypedColor } from "./api";
+import type { Color, ColorMixFn, TypedColor } from "./api.js";
 
 /**
  * HOF color mix function. Takes 4 scalar mix fns (one per color channel) and

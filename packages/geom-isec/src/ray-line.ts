@@ -2,7 +2,7 @@ import { IntersectionType } from "@thi.ng/geom-api/isec";
 import { eqDelta } from "@thi.ng/math/eqdelta";
 import type { ReadonlyVec } from "@thi.ng/vectors";
 import { maddN } from "@thi.ng/vectors/maddn";
-import { NONE } from "./api";
+import { NONE } from "./api.js";
 
 export const intersectRayLine = (
     rpos: ReadonlyVec,

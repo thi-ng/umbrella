@@ -1,5 +1,5 @@
-import type { ColorOp } from "../api";
-import { clampH } from "../clamp";
+import type { ColorOp } from "../api.js";
+import { clampH } from "../clamp.js";
 
 export const hsvHsl: ColorOp = (out, src) => {
     out = clampH(out || src, src);

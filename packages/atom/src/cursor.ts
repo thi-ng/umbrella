@@ -18,9 +18,9 @@ import type {
 } from "@thi.ng/api";
 import { defGetterUnsafe } from "@thi.ng/paths/getter";
 import { defSetterUnsafe } from "@thi.ng/paths/setter";
-import type { CursorOpts, IAtom, SwapFn } from "./api";
-import { Atom } from "./atom";
-import { nextID } from "./idgen";
+import type { CursorOpts, IAtom, SwapFn } from "./api.js";
+import { Atom } from "./atom.js";
+import { nextID } from "./idgen.js";
 
 export function defCursor<T, A>(
     parent: IAtom<T>,

@@ -4,7 +4,7 @@ import { comp } from "@thi.ng/transducers/comp";
 import { iterator } from "@thi.ng/transducers/iterator";
 import { filter } from "@thi.ng/transducers/filter";
 import { mapcat } from "@thi.ng/transducers/mapcat";
-import type { AxisSpec, VizSpec } from "./api";
+import type { AxisSpec, VizSpec } from "./api.js";
 
 const gridAxis = (
     { domain, major, minor }: AxisSpec,

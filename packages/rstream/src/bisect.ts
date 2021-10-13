@@ -1,7 +1,7 @@
 import type { Predicate } from "@thi.ng/api";
-import type { ISubscriber } from "./api";
-import { __nextID } from "./idgen";
-import { PubSub } from "./pubsub";
+import type { ISubscriber } from "./api.js";
+import { __nextID } from "./idgen.js";
+import { PubSub } from "./pubsub.js";
 
 /**
  * Returns a {@link PubSub} using given predicate `pred` as boolean

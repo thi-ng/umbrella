@@ -1,4 +1,4 @@
-import type { Stack, StackContext, StackEnv } from "./api";
+import type { Stack, StackContext, StackEnv } from "./api.js";
 
 /**
  * Creates a new StackContext tuple from given d-stack and/or

@@ -1,5 +1,5 @@
-import { B62_CHARS } from "./62";
-import { defBase } from "./base";
+import { B62_CHARS } from "./62.js";
+import { defBase } from "./base.js";
 
 const B85_CHARS = B62_CHARS + "!#$%&()*+-;<=>?@^_`{|}~";
 

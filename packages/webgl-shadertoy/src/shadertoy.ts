@@ -11,7 +11,7 @@ import type {
     ShaderToy,
     ShaderToyOpts,
     ShaderToyUniforms,
-} from "./api";
+} from "./api.js";
 
 export const shaderToy = <U extends ShaderToyUniforms>(
     opts: ShaderToyOpts<U>

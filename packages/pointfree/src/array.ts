@@ -2,11 +2,11 @@ import { isArray } from "@thi.ng/checks/is-array";
 import { isPlainObject } from "@thi.ng/checks/is-plain-object";
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import { illegalState } from "@thi.ng/errors/illegal-state";
-import type { StackContext, StackFn } from "./api";
-import { defOp1, defOp2, defOp2v } from "./ops";
-import { $, $n } from "./safe";
-import { invrot, swap } from "./stack";
-import { $stackFn, defWord } from "./word";
+import type { StackContext, StackFn } from "./api.js";
+import { defOp1, defOp2, defOp2v } from "./ops.js";
+import { $, $n } from "./safe.js";
+import { invrot, swap } from "./stack.js";
+import { $stackFn, defWord } from "./word.js";
 
 //////////////////// Array / list ops  ////////////////////
 

@@ -1,5 +1,5 @@
-import type { Reducer, Transducer } from "./api";
-import { __iter, iterator } from "./iterator";
+import type { Reducer, Transducer } from "./api.js";
+import { __iter, iterator } from "./iterator.js";
 
 /**
  * Transducer to create overlapping and non-overlapping sliding windows

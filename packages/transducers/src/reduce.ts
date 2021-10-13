@@ -3,8 +3,8 @@ import { implementsFunction } from "@thi.ng/checks/implements-function";
 import { isArrayLike } from "@thi.ng/checks/is-arraylike";
 import { isIterable } from "@thi.ng/checks/is-iterable";
 import { illegalArity } from "@thi.ng/errors/illegal-arity";
-import type { IReducible, Reducer, ReductionFn } from "./api";
-import { isReduced, unreduced } from "./reduced";
+import type { IReducible, Reducer, ReductionFn } from "./api.js";
+import { isReduced, unreduced } from "./reduced.js";
 
 const parseArgs = (args: any[]) =>
     args.length === 2

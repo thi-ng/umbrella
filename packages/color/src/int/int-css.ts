@@ -1,5 +1,5 @@
 import { U24 } from "@thi.ng/strings/radix";
-import { FF, INV8BIT } from "../api/constants";
+import { FF, INV8BIT } from "../api/constants.js";
 
 export const intArgb32Css = (src: number) => {
     const a = src >>> 24;

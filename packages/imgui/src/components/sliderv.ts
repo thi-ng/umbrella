@@ -8,12 +8,12 @@ import {
     handleSlider1Keys,
     isHoverSlider,
     slider1Val,
-} from "../behaviors/slider";
-import type { IMGUI } from "../gui";
-import { valHash } from "../hash";
-import { layoutBox } from "../layout";
-import { textLabelRaw, textTransformV } from "./textlabel";
-import { tooltipRaw } from "./tooltip";
+} from "../behaviors/slider.js";
+import type { IMGUI } from "../gui.js";
+import { valHash } from "../hash.js";
+import { layoutBox } from "../layout.js";
+import { textLabelRaw, textTransformV } from "./textlabel.js";
+import { tooltipRaw } from "./tooltip.js";
 
 export const sliderV = (
     gui: IMGUI,

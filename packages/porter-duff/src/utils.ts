@@ -1,5 +1,5 @@
 // thing:no-export
-import type { Color, ReadonlyColor } from "./api";
+import type { Color, ReadonlyColor } from "./api.js";
 
 /** @internal */
 export const setC4 = (

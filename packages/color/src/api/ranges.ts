@@ -1,7 +1,7 @@
 import type { Range } from "@thi.ng/api";
 import type { IRandom } from "@thi.ng/random";
-import type { ReadonlyColor } from "../api";
-import type { CSSColorName } from "./names";
+import type { ReadonlyColor } from "../api.js";
+import type { CSSColorName } from "./names.js";
 
 export type ColorRangePreset =
     | "light"

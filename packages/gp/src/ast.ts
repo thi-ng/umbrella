@@ -6,8 +6,8 @@ import { repeatedly } from "@thi.ng/transducers/repeatedly";
 import { takeWhile } from "@thi.ng/transducers/take-while";
 import type { Location } from "@thi.ng/zipper";
 import { zipper } from "@thi.ng/zipper/zipper";
-import type { ASTNode, ASTOpts, OpGene } from "./api";
-import { opNode, probabilities, terminalNode } from "./utils";
+import type { ASTNode, ASTOpts, OpGene } from "./api.js";
+import { opNode, probabilities, terminalNode } from "./utils.js";
 
 export class AST<OP, T> {
     opts: ASTOpts<OP, T>;

@@ -1,5 +1,5 @@
-import type { LitCallback, Matcher } from "./api";
-import { result } from "./result";
+import type { LitCallback, Matcher } from "./api.js";
+import { result } from "./result.js";
 
 /**
  * Returns a matcher which always succeeds (produces a `Match.FULL` result) for
@@ -7,6 +7,8 @@ import { result } from "./result";
  *
  * @param callback -
  */
-export const always = <T, C, R>(
-    callback?: LitCallback<T, C, R>
-): Matcher<T, C, R> => () => (ctx, x) => result(callback && callback(ctx, x));
+export const always =
+    <T, C, R>(callback?: LitCallback<T, C, R>): Matcher<T, C, R> =>
+    () =>
+    (ctx, x) =>
+        result(callback && callback(ctx, x));

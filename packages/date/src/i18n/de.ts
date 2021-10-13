@@ -1,4 +1,4 @@
-import type { LocaleSpec } from "../api";
+import type { LocaleSpec } from "../api.js";
 
 /**
  * @remarks

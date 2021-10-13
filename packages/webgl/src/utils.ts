@@ -1,7 +1,7 @@
 import type { IObjectOf } from "@thi.ng/api";
 import type { Sym, Term } from "@thi.ng/shader-ast";
 import { add, mul } from "@thi.ng/shader-ast/ast/ops";
-import type { ShaderPresetOpts } from "./api/shader";
+import type { ShaderPresetOpts } from "./api/shader.js";
 
 export const positionAttrib = (
     opts: Partial<ShaderPresetOpts<any>>,

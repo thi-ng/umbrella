@@ -1,4 +1,4 @@
-import { repeat } from "./repeat";
+import { repeat } from "./repeat.js";
 
 /**
  * Returns a ruler-like string of given `width`, using `a` character for major

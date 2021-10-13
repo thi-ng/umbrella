@@ -1,14 +1,14 @@
 import type { NumericArray } from "@thi.ng/api";
 import type { IRandom } from "@thi.ng/random";
-import type { Color, ColorFactory, ReadonlyColor, TypedColor } from "../api";
-import { defColor } from "../defcolor";
-import { hcyRgb } from "../hcy/hcy-rgb";
-import { hsiRgb } from "../hsi/hsi-rgb";
-import { hslRgb } from "../hsl/hsl-rgb";
-import { hsvRgb } from "../hsv/hsv-rgb";
-import { intAbgr32Srgb, intArgb32Srgb } from "../int/int-srgb";
-import { rgbSrgb } from "../rgb/rgb-srgb";
-import { srgbRgb } from "./srgb-rgb";
+import type { Color, ColorFactory, ReadonlyColor, TypedColor } from "../api.js";
+import { defColor } from "../defcolor.js";
+import { hcyRgb } from "../hcy/hcy-rgb.js";
+import { hsiRgb } from "../hsi/hsi-rgb.js";
+import { hslRgb } from "../hsl/hsl-rgb.js";
+import { hsvRgb } from "../hsv/hsv-rgb.js";
+import { intAbgr32Srgb, intArgb32Srgb } from "../int/int-srgb.js";
+import { rgbSrgb } from "../rgb/rgb-srgb.js";
+import { srgbRgb } from "./srgb-rgb.js";
 
 export declare class SRGB implements TypedColor<SRGB> {
     buf: NumericArray;

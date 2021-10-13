@@ -1,6 +1,6 @@
-import type { Reducer } from "./api";
-import { reduce } from "./reduce";
-import { isReduced, reduced } from "./reduced";
+import type { Reducer } from "./api.js";
+import { reduce } from "./reduce.js";
+import { isReduced, reduced } from "./reduced.js";
 
 export function reductions<A, B>(rfn: Reducer<A, B>): Reducer<A[], B>;
 export function reductions<A, B>(rfn: Reducer<A, B>, xs: Iterable<B>): A[];

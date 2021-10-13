@@ -1,12 +1,12 @@
 import { DEFAULT, defmulti } from "@thi.ng/defmulti/defmulti";
-import type { MaybeColor } from "./api";
-import { rgb } from "./rgb/rgb";
+import type { MaybeColor } from "./api.js";
+import { rgb } from "./rgb/rgb.js";
 import {
     luminanceAbgr32,
     luminanceArgb32,
     luminanceRgb,
     luminanceSrgb,
-} from "./luminance-rgb";
+} from "./luminance-rgb.js";
 
 /**
  * Multi-method to compute relative luminance from any supported input color

@@ -16,7 +16,7 @@ import { iterator } from "@thi.ng/transducers/iterator";
 import { map } from "@thi.ng/transducers/map";
 import { reduce } from "@thi.ng/transducers/reduce";
 import { take } from "@thi.ng/transducers/take";
-import type { WavSpec } from "./api";
+import type { WavSpec } from "./api.js";
 
 const HEADER_SIZE = 44;
 

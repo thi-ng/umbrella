@@ -19,8 +19,8 @@ import {
     isVec,
 } from "@thi.ng/shader-ast/ast/checks";
 import { defTarget } from "@thi.ng/shader-ast/target";
-import type { JSTarget, JSTargetOpts } from "./api";
-import { JS_DEFAULT_ENV } from "./env";
+import type { JSTarget, JSTargetOpts } from "./api.js";
+import { JS_DEFAULT_ENV } from "./env.js";
 
 const CMP_OPS: Partial<Record<Operator, string>> = {
     "!": "not",

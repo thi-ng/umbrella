@@ -1,5 +1,5 @@
 import type { FnN6, FnU3 } from "@thi.ng/api";
-import type { ReadonlyVec } from "./api";
+import type { ReadonlyVec } from "./api.js";
 
 /**
  * Returns 2x the signed area of the 2D triangle defined by the given points.

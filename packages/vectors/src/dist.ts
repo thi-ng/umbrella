@@ -1,5 +1,5 @@
-import type { DistanceFn } from "./api";
-import { distSq, distSq2, distSq3, distSq4 } from "./distsq";
+import type { DistanceFn } from "./api.js";
+import { distSq, distSq2, distSq3, distSq4 } from "./distsq.js";
 
 export const dist: DistanceFn = (a, b) => Math.sqrt(distSq(a, b));
 

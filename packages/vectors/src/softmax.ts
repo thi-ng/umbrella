@@ -1,7 +1,7 @@
-import type { ReadonlyVec, Vec } from "./api";
-import { divN } from "./divn";
-import { exp } from "./exp";
-import { sum } from "./sum";
+import type { ReadonlyVec, Vec } from "./api.js";
+import { divN } from "./divn.js";
+import { exp } from "./exp.js";
+import { sum } from "./sum.js";
 
 /**
  * Computes softmax (aka normalized exp) of input vector `src` and writes

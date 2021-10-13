@@ -7,8 +7,8 @@ import type {
     LoadingAttribs,
     ReferrerAttribs,
     StringAttrib,
-} from "./api";
-import { defElement, defElements } from "./def";
+} from "./api.js";
+import { defElement, defElements } from "./def.js";
 
 export interface BlockquoteAttribs extends Attribs {
     cite: StringAttrib;

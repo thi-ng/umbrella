@@ -1,6 +1,6 @@
 import { assert } from "@thi.ng/errors/assert";
-import type { IRandom } from "./api";
-import { SYSTEM } from "./system";
+import type { IRandom } from "./api.js";
+import { SYSTEM } from "./system.js";
 
 /**
  * Returns a no-arg function which produces a random choice of given weighted

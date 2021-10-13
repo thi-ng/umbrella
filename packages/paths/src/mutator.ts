@@ -13,7 +13,7 @@ import type {
     Path8,
     PathVal,
 } from "@thi.ng/api";
-import { disallowProtoPath, toPath } from "./path";
+import { disallowProtoPath, toPath } from "./path.js";
 
 /**
  * Unchecked version of {@link defMutator}.

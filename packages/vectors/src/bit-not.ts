@@ -1,6 +1,6 @@
-import type { MultiVecOpV, VecOpV } from "./api";
-import { defOp } from "./compile/emit";
-import { ARGS_V } from "./compile/templates";
+import type { MultiVecOpV, VecOpV } from "./api.js";
+import { defOp } from "./compile/emit.js";
+import { ARGS_V } from "./compile/templates.js";
 
 export const [bitNotI, bitNotI2, bitNotI3, bitNotI4] = defOp<
     MultiVecOpV,

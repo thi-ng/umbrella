@@ -7,11 +7,11 @@ import { HALF_PI, PI, TAU } from "@thi.ng/math/api";
 import { norm } from "@thi.ng/math/fit";
 import { cartesian2 } from "@thi.ng/vectors/cartesian";
 import { hash } from "@thi.ng/vectors/hash";
-import { dialVal } from "../behaviors/dial";
-import { handleSlider1Keys, isHoverSlider } from "../behaviors/slider";
-import type { IMGUI } from "../gui";
-import { dialValueLabel } from "./textlabel";
-import { tooltipRaw } from "./tooltip";
+import { dialVal } from "../behaviors/dial.js";
+import { handleSlider1Keys, isHoverSlider } from "../behaviors/slider.js";
+import type { IMGUI } from "../gui.js";
+import { dialValueLabel } from "./textlabel.js";
+import { tooltipRaw } from "./tooltip.js";
 
 export const dial = (
     gui: IMGUI,

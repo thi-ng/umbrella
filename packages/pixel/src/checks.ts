@@ -1,6 +1,6 @@
 import type { TypedArray } from "@thi.ng/api";
 import { assert } from "@thi.ng/errors/assert";
-import type { FloatFormat, PackedFormat } from "./api";
+import type { FloatFormat, PackedFormat } from "./api.js";
 
 /** @internal */
 export const ensureSize = (

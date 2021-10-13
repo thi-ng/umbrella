@@ -1,4 +1,4 @@
-import { mergeAttribs } from "./utils/merge-attribs";
+import { mergeAttribs } from "./utils/merge-attribs.js";
 import type { IObjectOf } from "@thi.ng/api";
 
 export interface ButtonOpts {

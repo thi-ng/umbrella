@@ -1,4 +1,4 @@
-import type { RuleFn } from "./api";
+import type { RuleFn } from "./api.js";
 
 export const at_import = (url: string, ...queries: string[]): RuleFn => (
     acc,

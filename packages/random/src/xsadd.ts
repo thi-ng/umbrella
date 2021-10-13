@@ -1,7 +1,7 @@
 import type { IBuffered, ICopy } from "@thi.ng/api";
-import type { ISeedable } from "./api";
-import { ARandom } from "./arandom";
-import { DEFAULT_SEED_32 } from "./constants";
+import type { ISeedable } from "./api.js";
+import { ARandom } from "./arandom.js";
+import { DEFAULT_SEED_32 } from "./constants.js";
 
 /**
  * @remarks
@@ -9,7 +9,8 @@ import { DEFAULT_SEED_32 } from "./constants";
  */
 export class XsAdd
     extends ARandom
-    implements IBuffered<Uint32Array>, ICopy<XsAdd>, ISeedable<number> {
+    implements IBuffered<Uint32Array>, ICopy<XsAdd>, ISeedable<number>
+{
     buffer: Uint32Array;
 
     constructor(seed: number = DEFAULT_SEED_32) {

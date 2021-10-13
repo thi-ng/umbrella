@@ -1,5 +1,5 @@
 import { memoizeJ } from "@thi.ng/memoize/memoizej";
-import type { Stringer } from "./api";
+import type { Stringer } from "./api.js";
 
 type UnitDefs = [number, string, number?][];
 

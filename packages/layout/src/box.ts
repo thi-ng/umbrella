@@ -1,4 +1,4 @@
-import type { LayoutBox } from "./api";
+import type { LayoutBox } from "./api.js";
 
 export const layoutBox = (
     x: number,

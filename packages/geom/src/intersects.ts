@@ -11,14 +11,14 @@ import { intersectRayPolyline } from "@thi.ng/geom-isec/ray-poly";
 import { intersectRayAABB, intersectRayRect } from "@thi.ng/geom-isec/ray-rect";
 import { testRectCircle } from "@thi.ng/geom-isec/rect-circle";
 import { testRectRect } from "@thi.ng/geom-isec/rect-rect";
-import type { AABB } from "./api/aabb";
-import type { Circle } from "./api/circle";
-import type { Line } from "./api/line";
-import type { Plane } from "./api/plane";
-import type { Ray } from "./api/ray";
-import type { Rect } from "./api/rect";
-import type { Sphere } from "./api/sphere";
-import { __dispatch2 } from "./internal/dispatch";
+import type { AABB } from "./api/aabb.js";
+import type { Circle } from "./api/circle.js";
+import type { Line } from "./api/line.js";
+import type { Plane } from "./api/plane.js";
+import type { Ray } from "./api/ray.js";
+import type { Rect } from "./api/rect.js";
+import type { Sphere } from "./api/sphere.js";
+import { __dispatch2 } from "./internal/dispatch.js";
 
 export const intersects: MultiFn2O<IShape, IShape, any, IntersectionResult> =
     defmulti(

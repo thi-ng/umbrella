@@ -1,4 +1,4 @@
-import type { Stringer } from "./api";
+import type { Stringer } from "./api.js";
 
 const src = "àáäâãåèéëêìíïîòóöôùúüûñçßÿœæŕśńṕẃǵǹḿǘẍźḧ·/_,:;";
 const dest = "aaaaaaeeeeiiiioooouuuuncsyoarsnpwgnmuxzh------";

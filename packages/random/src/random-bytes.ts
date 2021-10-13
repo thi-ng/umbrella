@@ -1,6 +1,6 @@
 import { hasCrypto } from "@thi.ng/checks/has-crypto";
-import type { IRandom } from "./api";
-import { SYSTEM } from "./system";
+import type { IRandom } from "./api.js";
+import { SYSTEM } from "./system.js";
 
 /**
  * Fills given byte array with random values sourced from given {@link IRandom}

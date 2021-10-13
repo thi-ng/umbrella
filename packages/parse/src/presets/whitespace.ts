@@ -1,6 +1,6 @@
 import { WS as _WS } from "@thi.ng/strings/groups";
-import { oneOrMoreD, zeroOrMoreD } from "../combinators/repeat";
-import { oneOf, oneOfD } from "../prims/one-of";
+import { oneOrMoreD, zeroOrMoreD } from "../combinators/repeat.js";
+import { oneOf, oneOfD } from "../prims/one-of.js";
 
 /**
  * Matches & discards single whitespace char: ` \t\n\r`.

@@ -29,7 +29,7 @@ import {
     SectionType,
     Type,
     Unit,
-} from "./api";
+} from "./api.js";
 
 // https://wiki.eclipse.org/IGES_file_Specification
 // http://paulbourke.net/dataformats/iges/IGES.pdf
@@ -413,4 +413,4 @@ export const addCSGCylinder = (
 //     doc; degree; pts; closed;
 // };
 
-export * from "./api";
+export * from "./api.js";

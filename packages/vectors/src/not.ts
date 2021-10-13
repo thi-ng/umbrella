@@ -1,6 +1,6 @@
-import type { BVecOpV, MultiBVecOpV } from "./api";
-import { defOp } from "./compile/emit";
-import { ARGS_V, NEW_OUT } from "./compile/templates";
+import type { BVecOpV, MultiBVecOpV } from "./api.js";
+import { defOp } from "./compile/emit.js";
+import { ARGS_V, NEW_OUT } from "./compile/templates.js";
 
 export const [not, not2, not3, not4] = defOp<MultiBVecOpV, BVecOpV>(
     ([o, a]) => `${o}=!${a};`,

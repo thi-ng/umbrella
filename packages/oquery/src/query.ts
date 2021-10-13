@@ -17,7 +17,7 @@ import type {
     QueryType,
     SPInputTerm,
     SPTerm,
-} from "./api";
+} from "./api.js";
 
 /**
  * Classifies a single S,P,O term. See {@link QueryType} for explanations.

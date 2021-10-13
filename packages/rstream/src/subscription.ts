@@ -20,9 +20,9 @@ import {
     TransformableOpts,
     WithErrorHandlerOpts,
     WithTransform,
-} from "./api";
-import { __optsWithID } from "./idgen";
-import { LOGGER } from "./logger";
+} from "./api.js";
+import { __optsWithID } from "./idgen.js";
+import { LOGGER } from "./logger.js";
 
 /**
  * Creates a new {@link Subscription} instance, the fundamental datatype

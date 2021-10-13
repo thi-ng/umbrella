@@ -1,4 +1,4 @@
-import { map } from "./map";
+import { map } from "./map.js";
 
 /**
  * Yields sequence of `n+1` monotonically increasing numbers in the

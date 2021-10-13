@@ -3,10 +3,10 @@ import { peek } from "@thi.ng/arrays/peek";
 import { isNumber } from "@thi.ng/checks/is-number";
 import { clamp0 } from "@thi.ng/math/interval";
 import { FMT_ANSI565 } from "@thi.ng/text-format/ansi";
-import { ClipRect, ImageOpts, SHADES_BLOCK } from "./api";
-import { canvas, Canvas } from "./canvas";
-import { formatCanvas } from "./format";
-import { charCode, intersectRect } from "./utils";
+import { ClipRect, ImageOpts, SHADES_BLOCK } from "./api.js";
+import { canvas, Canvas } from "./canvas.js";
+import { formatCanvas } from "./format.js";
+import { charCode, intersectRect } from "./utils.js";
 
 export const blit = (canvas: Canvas, x: number, y: number, src: Canvas) => {
     x |= 0;

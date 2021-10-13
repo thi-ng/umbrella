@@ -1,6 +1,6 @@
 import type { MaybeDeref } from "@thi.ng/api";
-import type { IComponent, NumOrElement } from "./api";
-import { $compile } from "./compile";
+import type { IComponent, NumOrElement } from "./api.js";
+import { $compile } from "./compile.js";
 import {
     $attribs,
     $clear,
@@ -11,7 +11,7 @@ import {
     $style,
     $text,
     $tree,
-} from "./dom";
+} from "./dom.js";
 
 /**
  * Abstract base class / {@link IComponent} implementation. Provides

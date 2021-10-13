@@ -1,8 +1,13 @@
-import { ISubscribable, ISubscription, State, TransformableOpts } from "./api";
-import { isFirstOrLastInput } from "./checks";
-import { __optsWithID } from "./idgen";
-import { __removeAllIDs } from "./internal/remove";
-import { Subscription } from "./subscription";
+import {
+    ISubscribable,
+    ISubscription,
+    State,
+    TransformableOpts,
+} from "./api.js";
+import { isFirstOrLastInput } from "./checks.js";
+import { __optsWithID } from "./idgen.js";
+import { __removeAllIDs } from "./internal/remove.js";
+import { Subscription } from "./subscription.js";
 
 export interface StreamMergeOpts<A, B> extends TransformableOpts<A, B> {
     /**

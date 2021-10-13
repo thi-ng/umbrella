@@ -5,7 +5,7 @@ import { setInUnsafe } from "@thi.ng/paths/set-in";
 import { updateInUnsafe } from "@thi.ng/paths/update-in";
 import type { Reducer } from "@thi.ng/transducers";
 import { reduce, reducer } from "@thi.ng/transducers/reduce";
-import type { PatchObjOp } from "./api";
+import type { PatchObjOp } from "./api.js";
 
 /**
  * Reducer for {@link Patch} based immutable object updates.

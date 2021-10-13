@@ -1,8 +1,8 @@
 import { assert } from "@thi.ng/errors/assert";
 import { ensureIndex2 } from "@thi.ng/errors/out-of-bounds";
-import { ASparseMatrix } from "./amatrix";
-import type { NzEntry } from "./api";
-import { at, compress, diag, remove, setAt } from "./compressed";
+import { ASparseMatrix } from "./amatrix.js";
+import type { NzEntry } from "./api.js";
+import { at, compress, diag, remove, setAt } from "./compressed.js";
 
 export class CSR extends ASparseMatrix {
     /**

@@ -1,7 +1,7 @@
 import { safeDiv } from "@thi.ng/math/safe-div";
 import { setC4 } from "@thi.ng/vectors/setc";
-import type { ColorOp } from "../api";
-import { __ensureAlpha } from "../internal/ensure";
+import type { ColorOp } from "../api.js";
+import { __ensureAlpha } from "../internal/ensure.js";
 
 /**
  * @remarks

@@ -5,9 +5,9 @@ import { add, mul, neg, sub } from "@thi.ng/shader-ast/ast/ops";
 import { $x, $y, $z } from "@thi.ng/shader-ast/ast/swizzle";
 import { sym } from "@thi.ng/shader-ast/ast/sym";
 import { cos, sin } from "@thi.ng/shader-ast/builtin/math";
-import { perpendicularCCW } from "../math/orthogonal";
-import { cossin } from "../math/sincos";
-import { m33ToM44 } from "./convert";
+import { perpendicularCCW } from "../math/orthogonal.js";
+import { cossin } from "../math/sincos.js";
+import { m33ToM44 } from "./convert.js";
 
 export const rotation2 = defn("mat2", "rotation2", ["float"], (theta) => {
     let cs: Vec2Term;

@@ -1,8 +1,8 @@
 import { EPS } from "@thi.ng/math/api";
-import type { VecOpSGVO, VecOpSVO } from "./api";
-import { magS, magS2, magS3, magS4 } from "./mags";
-import { mulNS, mulNS2, mulNS3, mulNS4 } from "./mulns";
-import { setS, setS2, setS3, setS4 } from "./sets";
+import type { VecOpSGVO, VecOpSVO } from "./api.js";
+import { magS, magS2, magS3, magS4 } from "./mags.js";
+import { mulNS, mulNS2, mulNS3, mulNS4 } from "./mulns.js";
+import { setS, setS2, setS3, setS4 } from "./sets.js";
 
 /**
  * Normalizes strided vector to given (optional) length (default: 1). If `out`

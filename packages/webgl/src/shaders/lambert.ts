@@ -12,11 +12,11 @@ import { mul } from "@thi.ng/shader-ast/ast/ops";
 import { $ } from "@thi.ng/shader-ast/ast/swizzle";
 import { normalize } from "@thi.ng/shader-ast/builtin/math";
 import { texture } from "@thi.ng/shader-ast/builtin/texture";
-import type { Material } from "../api/material";
-import type { ShaderPresetOpts, ShaderSpec } from "../api/shader";
-import { defMaterial } from "../material";
-import { autoNormalMatrix2 } from "../matrices";
-import { colorAttrib, positionAttrib } from "../utils";
+import type { Material } from "../api/material.js";
+import type { ShaderPresetOpts, ShaderSpec } from "../api/shader.js";
+import { defMaterial } from "../material.js";
+import { autoNormalMatrix2 } from "../matrices.js";
+import { colorAttrib, positionAttrib } from "../utils.js";
 
 export interface LambertOpts
     extends ShaderPresetOpts<Pick<Material, "ambientCol" | "diffuseCol">> {

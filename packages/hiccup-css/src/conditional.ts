@@ -1,6 +1,6 @@
 import { isString } from "@thi.ng/checks/is-string";
-import { expand, indent } from "./impl";
-import type { Conditional, CSSOpts, RuleFn } from "./api";
+import { expand, indent } from "./impl.js";
+import type { Conditional, CSSOpts, RuleFn } from "./api.js";
 
 export const conditional =
     (type: string, cond: Conditional, rules: any[]): RuleFn =>

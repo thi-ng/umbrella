@@ -1,6 +1,6 @@
 import type { IObjectOf, Predicate2 } from "@thi.ng/api";
 import { equiv } from "@thi.ng/equiv";
-import type { ObjectDiff } from "./api";
+import type { ObjectDiff } from "./api.js";
 
 export const diffObject = <T>(
     a: IObjectOf<T> | undefined | null,

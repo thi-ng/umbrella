@@ -1,4 +1,4 @@
-import { defSimplePlotFn } from "./utils";
+import { defSimplePlotFn } from "./utils.js";
 
 export interface LinePlotOpts {
     attribs: any;

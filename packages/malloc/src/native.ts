@@ -4,7 +4,7 @@ import {
     typedArray,
     TypedArrayTypeMap,
 } from "@thi.ng/api/typedarray";
-import type { IMemPoolArray } from "./api";
+import type { IMemPoolArray } from "./api.js";
 
 /**
  * Stub/polyfill implementation of {@link IMemPoolArray}, merely delegating to

@@ -1,6 +1,6 @@
-import type { GroupByOpts, Reducer } from "./api";
-import { __groupByOpts } from "./internal/group-opts";
-import { $$reduce } from "./reduce";
+import type { GroupByOpts, Reducer } from "./api.js";
+import { __groupByOpts } from "./internal/group-opts.js";
+import { $$reduce } from "./reduce.js";
 
 export function groupByMap<SRC, KEY, GROUP>(
     opts?: Partial<GroupByOpts<SRC, KEY, GROUP>>

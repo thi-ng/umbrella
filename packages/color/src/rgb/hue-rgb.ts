@@ -1,7 +1,7 @@
 import { clamp01 } from "@thi.ng/math/interval";
 import { fract } from "@thi.ng/math/prec";
 import { setC4 } from "@thi.ng/vectors/setc";
-import type { Color, Hue } from "../api";
+import type { Color, Hue } from "../api.js";
 
 /**
  * Converts a normalized hue to RGBA with given optional `alpha`

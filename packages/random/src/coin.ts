@@ -1,5 +1,5 @@
-import type { IRandom } from "./api";
-import { SYSTEM } from "./system";
+import type { IRandom } from "./api.js";
+import { SYSTEM } from "./system.js";
 
 /**
  * Returns true w/ a (theoretical) probability of 50% (obviously depending on

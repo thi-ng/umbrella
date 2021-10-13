@@ -4,7 +4,7 @@ import { vec2, vec3 } from "@thi.ng/shader-ast/ast/lit";
 import { add, div, mul, sub } from "@thi.ng/shader-ast/ast/ops";
 import { $, $x, $y, $z } from "@thi.ng/shader-ast/ast/swizzle";
 import { sym } from "@thi.ng/shader-ast/ast/sym";
-import { snoiseVec3 } from "./simplex3";
+import { snoiseVec3 } from "./simplex3.js";
 
 export const curlNoise3 = defn(
     "vec3",

@@ -1,6 +1,6 @@
 import { serialize } from "@thi.ng/hiccup/serialize";
-import { DEFAULT_THEME, Theme } from "./api";
-import { compileTheme } from "./theme";
+import { DEFAULT_THEME, Theme } from "./api.js";
+import { compileTheme } from "./theme.js";
 
 export const generateHtml = (
     diff: any[],

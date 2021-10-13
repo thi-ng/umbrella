@@ -3,8 +3,8 @@ import { convertTree } from "@thi.ng/hiccup-svg/convert";
 import { ff } from "@thi.ng/hiccup-svg/format";
 import { svg } from "@thi.ng/hiccup-svg/svg";
 import { serialize } from "@thi.ng/hiccup/serialize";
-import { bounds } from "./bounds";
-import { __collBounds } from "./internal/bounds";
+import { bounds } from "./bounds.js";
+import { __collBounds } from "./internal/bounds.js";
 
 export const asSvg = (...args: any[]) =>
     args.map((x) => serialize(convertTree(x))).join("");

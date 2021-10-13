@@ -1,12 +1,12 @@
 import type { Fn } from "@thi.ng/api";
 import { isIterable } from "@thi.ng/checks/is-iterable";
-import type { Transducer } from "./api";
-import { comp } from "./comp";
-import { iterator } from "./iterator";
-import { mapKeys } from "./map-keys";
-import { partition } from "./partition";
-import { partitionOf } from "./partition-of";
-import { rename } from "./rename";
+import type { Transducer } from "./api.js";
+import { comp } from "./comp.js";
+import { iterator } from "./iterator.js";
+import { mapKeys } from "./map-keys.js";
+import { partition } from "./partition.js";
+import { partitionOf } from "./partition-of.js";
+import { rename } from "./rename.js";
 
 export interface StructField extends Array<any> {
     [0]: string;

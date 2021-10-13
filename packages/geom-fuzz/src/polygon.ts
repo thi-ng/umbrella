@@ -3,8 +3,8 @@ import { group } from "@thi.ng/geom/group";
 import { pathFromCubics } from "@thi.ng/geom/path";
 import { polygon } from "@thi.ng/geom/polygon";
 import type { ReadonlyVec } from "@thi.ng/vectors";
-import type { FuzzyPolygonOpts } from "./api";
-import { jitterPoints } from "./points";
+import type { FuzzyPolygonOpts } from "./api.js";
+import { jitterPoints } from "./points.js";
 
 export const fuzzyPoly = (
     pts: ReadonlyVec[],

@@ -1,8 +1,8 @@
 import type { IGridLayout, LayoutBox } from "@thi.ng/layout";
 import { isLayout } from "@thi.ng/layout/checks";
 import { gridLayout } from "@thi.ng/layout/grid-layout";
-import type { IMGUI } from "../gui";
-import { toggle } from "./toggle";
+import type { IMGUI } from "../gui.js";
+import { toggle } from "./toggle.js";
 
 export const radio = (
     gui: IMGUI,

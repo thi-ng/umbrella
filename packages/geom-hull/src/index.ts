@@ -1,1 +1,1 @@
-export * from "./graham-scan";
+export * from "./graham-scan.js";

@@ -1,6 +1,6 @@
-import type { ReadonlyVec, Vec } from "./api";
-import { maddN } from "./maddn";
-import { mulN } from "./muln";
+import type { ReadonlyVec, Vec } from "./api.js";
+import { maddN } from "./maddn.js";
+import { mulN } from "./muln.js";
 
 export const addW2 = (
     out: Vec | null,

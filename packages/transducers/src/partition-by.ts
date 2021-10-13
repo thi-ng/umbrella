@@ -1,8 +1,8 @@
 import type { Fn } from "@thi.ng/api";
 import { SEMAPHORE } from "@thi.ng/api/api";
-import type { Reducer, Transducer } from "./api";
-import { __iter, iterator } from "./iterator";
-import { isReduced } from "./reduced";
+import type { Reducer, Transducer } from "./api.js";
+import { __iter, iterator } from "./iterator.js";
+import { isReduced } from "./reduced.js";
 
 /**
  * Transducer. Applies given `fn` to each incoming value and collects

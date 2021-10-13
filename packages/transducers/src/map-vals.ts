@@ -1,7 +1,7 @@
 import type { Fn, IObjectOf } from "@thi.ng/api";
-import type { Transducer } from "./api";
-import { __iter } from "./iterator";
-import { map } from "./map";
+import type { Transducer } from "./api.js";
+import { __iter } from "./iterator.js";
+import { map } from "./map.js";
 
 /**
  * Transducer. Similar to {@link (map:1)}, but expects object values and

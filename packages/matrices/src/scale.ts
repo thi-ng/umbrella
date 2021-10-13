@@ -1,6 +1,6 @@
 import { isNumber } from "@thi.ng/checks/is-number";
 import { setC, setC4, setC6 } from "@thi.ng/vectors/setc";
-import type { MatOpNV } from "./api";
+import type { MatOpNV } from "./api.js";
 
 /**
  * Computes 2x2 matrix scale matrix and writes result to `out`. If `s`

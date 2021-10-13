@@ -1,4 +1,4 @@
-import { AGen } from "./agen";
+import { AGen } from "./agen.js";
 
 /**
  * Returns new gen yielding always the same given value `x`.

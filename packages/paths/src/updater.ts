@@ -14,9 +14,9 @@ import type {
     Path8,
     PathVal,
 } from "@thi.ng/api";
-import type { UpdateFn } from "./api";
-import { defGetter } from "./getter";
-import { defSetter } from "./setter";
+import type { UpdateFn } from "./api.js";
+import { defGetter } from "./getter.js";
+import { defSetter } from "./setter.js";
 
 /**
  * Similar to {@link defSetterUnsafe}, returns a function to update

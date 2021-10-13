@@ -1,5 +1,5 @@
 import type { Fn2 } from "@thi.ng/api";
-import { iterator } from "./iterator";
+import { iterator } from "./iterator.js";
 
 export class ReducedValue<T> {
     public value: T;

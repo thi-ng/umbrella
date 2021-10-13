@@ -1,4 +1,4 @@
-import { BenchmarkFormatter, EMPTY, FLOAT } from "../api";
+import { BenchmarkFormatter, EMPTY, FLOAT } from "../api.js";
 
 export const FORMAT_DEFAULT: BenchmarkFormatter = {
     prefix: EMPTY,

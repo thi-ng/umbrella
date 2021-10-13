@@ -1,5 +1,5 @@
-import type { TimingResult } from "./api";
-import { timed, timedResult } from "./timed";
+import type { TimingResult } from "./api.js";
+import { timed, timedResult } from "./timed.js";
 
 /**
  * Executes given function `n` times, prints elapsed time to console and

@@ -1,5 +1,5 @@
 import type { Predicate } from "@thi.ng/api";
-import { ensureIterator } from "./ensure";
+import { ensureIterator } from "./ensure.js";
 
 export function* dropWhile<T>(pred: Predicate<T>, input: Iterable<T>) {
     let iter = ensureIterator(input);

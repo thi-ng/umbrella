@@ -1,4 +1,4 @@
-import { empty } from "./empty";
+import { empty } from "./empty.js";
 
 /**
  * Returns a new map of same type as input only containing given keys

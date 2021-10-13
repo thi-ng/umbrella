@@ -1,7 +1,7 @@
 import { every2, every3, every4 } from "@thi.ng/vectors/every";
 import { not2, not3, not4 } from "@thi.ng/vectors/not";
 import { some2, some3, some4 } from "@thi.ng/vectors/some";
-import type { JSBuiltinsBool } from "../api";
+import type { JSBuiltinsBool } from "../api.js";
 
 export const BVEC2: JSBuiltinsBool = {
     all: every2,

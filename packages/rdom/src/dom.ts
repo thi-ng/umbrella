@@ -17,8 +17,8 @@ import {
 import { mergeClasses, mergeEmmetAttribs } from "@thi.ng/hiccup/attribs";
 import { formatPrefixes } from "@thi.ng/hiccup/prefix";
 import { XML_SVG, XML_XLINK, XML_XMLNS } from "@thi.ng/prefixes/xml";
-import type { NumOrElement } from "./api";
-import { isComponent } from "./checks";
+import type { NumOrElement } from "./api.js";
+import { isComponent } from "./checks.js";
 
 /**
  * hdom-style DOM tree creation from hiccup format. Returns DOM element

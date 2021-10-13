@@ -4,7 +4,7 @@ import {
     distManhattan2,
     distManhattan3,
 } from "@thi.ng/vectors/dist-manhattan";
-import type { IDistance, Metric } from "./api";
+import type { IDistance, Metric } from "./api.js";
 
 /**
  * Manhattan distance metric and conversion to/from Eucledian distances.

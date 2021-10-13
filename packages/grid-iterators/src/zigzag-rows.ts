@@ -1,4 +1,4 @@
-import { asInt } from "./utils";
+import { asInt } from "./utils.js";
 
 /**
  * Yields sequence of 2D grid coordinates in zigzag row order starting

@@ -4,9 +4,9 @@ import type { IShape } from "@thi.ng/geom-api";
 import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
 import { madd } from "@thi.ng/vectors/madd";
 import { mixBilinear } from "@thi.ng/vectors/mix-bilinear";
-import type { Quad } from "./api/quad";
-import type { Rect } from "./api/rect";
-import { __dispatch } from "./internal/dispatch";
+import type { Quad } from "./api/quad.js";
+import type { Rect } from "./api/rect.js";
+import { __dispatch } from "./internal/dispatch.js";
 
 /**
  * Projects given point `uv` (normalized coords) into the target space

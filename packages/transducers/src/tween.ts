@@ -1,6 +1,6 @@
 import type { Fn2, FnN } from "@thi.ng/api";
-import { normRange } from "./norm-range";
-import { repeat } from "./repeat";
+import { normRange } from "./norm-range.js";
+import { repeat } from "./repeat.js";
 
 export interface TweenOpts<A, B, C> {
     /**

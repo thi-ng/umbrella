@@ -1,4 +1,4 @@
-import type { ReadonlyVec } from "./api";
-import { magSq } from "./magsq";
+import type { ReadonlyVec } from "./api.js";
+import { magSq } from "./magsq.js";
 
 export const mag = (v: ReadonlyVec) => Math.sqrt(magSq(v));

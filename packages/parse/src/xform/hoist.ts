@@ -1,5 +1,5 @@
-import type { Parser, ScopeTransform } from "../api";
-import { xform } from "../combinators/xform";
+import type { Parser, ScopeTransform } from "../api.js";
+import { xform } from "../combinators/xform.js";
 
 /**
  * Replace AST node with its first child node. Also see {@link hoist}.

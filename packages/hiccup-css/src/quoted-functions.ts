@@ -1,9 +1,9 @@
-import { comment } from "./comment";
-import { at_import } from "./import";
-import { at_keyframes } from "./keyframes";
-import { at_media } from "./media";
-import { at_namespace } from "./namespace";
-import { at_supports } from "./supports";
+import { comment } from "./comment.js";
+import { at_import } from "./import.js";
+import { at_keyframes } from "./keyframes.js";
+import { at_media } from "./media.js";
+import { at_namespace } from "./namespace.js";
+import { at_supports } from "./supports.js";
 
 /** @internal */
 export const QUOTED_FNS = {

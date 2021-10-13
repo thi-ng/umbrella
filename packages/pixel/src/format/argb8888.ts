@@ -1,6 +1,6 @@
 import { swapLane13 } from "@thi.ng/binary/swizzle";
-import { Lane } from "../api";
-import { defPackedFormat } from "./packed-format";
+import { Lane } from "../api.js";
+import { defPackedFormat } from "./packed-format.js";
 
 export const ARGB8888 = defPackedFormat({
     type: "u32",

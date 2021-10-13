@@ -1,4 +1,4 @@
-import type { FnS, Stringer } from "./api";
+import type { FnS, Stringer } from "./api.js";
 
 /**
  * Uppercase string formatter.

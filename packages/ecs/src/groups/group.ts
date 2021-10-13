@@ -13,10 +13,10 @@ import {
     GroupTuple,
     ICache,
     IComponent,
-} from "../api";
-import { UnboundedCache } from "../caches/unbounded";
-import { ObjectComponent } from "../components/object-component";
-import { LOGGER } from "../logger";
+} from "../api.js";
+import { UnboundedCache } from "../caches/unbounded.js";
+import { ObjectComponent } from "../components/object-component.js";
+import { LOGGER } from "../logger.js";
 
 export class Group<SPEC, K extends ComponentID<SPEC>> implements IID<string> {
     readonly id: string;

@@ -10,7 +10,7 @@ import {
     encode10,
     encode16,
     encode5,
-} from "./raw";
+} from "./raw.js";
 
 const prescale: FnN4 = (x, min, max, bits) => {
     assert(inRange(x, min, max), `value ${x} not in range [${min}..${max}]`);

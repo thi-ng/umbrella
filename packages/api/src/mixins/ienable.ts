@@ -1,7 +1,7 @@
-import { EVENT_DISABLE, EVENT_ENABLE } from "../api";
-import type { IEnable } from "../enable";
-import type { Event } from "../event";
-import { mixin } from "../mixin";
+import { EVENT_DISABLE, EVENT_ENABLE } from "../api.js";
+import type { IEnable } from "../enable.js";
+import type { Event } from "../event.js";
+import { mixin } from "../mixin.js";
 
 interface _IEnable extends IEnable<any> {
     _enabled: boolean;

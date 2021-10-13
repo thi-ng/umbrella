@@ -1,4 +1,4 @@
-import { defError } from "./deferror";
+import { defError } from "./deferror.js";
 
 export const IllegalArgumentError = defError<any>(() => "illegal argument(s)");
 

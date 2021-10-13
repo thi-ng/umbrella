@@ -1,6 +1,6 @@
 import type { FnU3, Nullable } from "@thi.ng/api";
 import { equiv as _equiv } from "@thi.ng/equiv";
-import type { ArrayDiff, DiffKeyMap, DiffMode, EditLog } from "./api";
+import type { ArrayDiff, DiffKeyMap, DiffMode, EditLog } from "./api.js";
 
 let _cachedFP: Nullable<Int32Array>;
 let _cachedPath: Nullable<Int32Array>;

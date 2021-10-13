@@ -3,7 +3,7 @@ import { defn, ret } from "@thi.ng/shader-ast/ast/function";
 import { div, mul, sub } from "@thi.ng/shader-ast/ast/ops";
 import { sym } from "@thi.ng/shader-ast/ast/sym";
 import { dot, length } from "@thi.ng/shader-ast/builtin/math";
-import { clamp01 } from "../math/clamp";
+import { clamp01 } from "../math/clamp.js";
 
 /**
  * Shared impl for sdLine2/3

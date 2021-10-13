@@ -1,5 +1,5 @@
-import type { ScopeTransform } from "../api";
-import { xfJoin } from "./join";
+import type { ScopeTransform } from "../api.js";
+import { xfJoin } from "./join.js";
 
 /**
  * Higher order transform. First joins all children via {@link xfJoin},
@@ -7,10 +7,12 @@ import { xfJoin } from "./join";
  *
  * @param radix
  */
-export const xfInt = (radix = 10): ScopeTransform<string> => (scope) => {
-    scope!.result = parseInt(xfJoin(scope)!.result, radix);
-    return scope;
-};
+export const xfInt =
+    (radix = 10): ScopeTransform<string> =>
+    (scope) => {
+        scope!.result = parseInt(xfJoin(scope)!.result, radix);
+        return scope;
+    };
 
 /**
  * First joins all children via {@link xfJoin}, then parses resulting

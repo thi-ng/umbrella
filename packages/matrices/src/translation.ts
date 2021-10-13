@@ -1,6 +1,6 @@
 import type { ReadonlyVec } from "@thi.ng/vectors";
 import { setC, setC6 } from "@thi.ng/vectors/setc";
-import type { Mat } from "./api";
+import type { Mat } from "./api.js";
 
 /**
  * Constructs a 2x3 translation matrix.

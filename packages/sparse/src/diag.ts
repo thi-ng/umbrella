@@ -1,10 +1,10 @@
 import { assert } from "@thi.ng/errors/assert";
 import { ensureIndex2 } from "@thi.ng/errors/out-of-bounds";
-import { ASparseMatrix } from "./amatrix";
-import type { NzEntry } from "./api";
-import { CSC } from "./csc";
-import { CSR } from "./csr";
-import { SparseVec } from "./vec";
+import { ASparseMatrix } from "./amatrix.js";
+import type { NzEntry } from "./api.js";
+import { CSC } from "./csc.js";
+import { CSR } from "./csr.js";
+import { SparseVec } from "./vec.js";
 
 export class Diag extends ASparseMatrix {
     static identity(m: number) {

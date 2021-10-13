@@ -6,8 +6,8 @@ import type {
     ReferrerAttribs,
     RelAttribs,
     StringAttrib,
-} from "./api";
-import { defElement, defElements } from "./def";
+} from "./api.js";
+import { defElement, defElements } from "./def.js";
 
 interface AnchorAttribs extends RelAttribs, ReferrerAttribs {
     download: StringAttrib;
@@ -36,31 +36,20 @@ export const time = defElement<{ datetime: StringAttrib } & Partial<Attribs>>(
     "time"
 );
 
-export const [
-    cite,
-    code,
-    em,
-    i,
-    kbd,
-    mark,
-    small,
-    span,
-    strong,
-    sub,
-    sup,
-] = defElements([
-    "cite",
-    "code",
-    "em",
-    "i",
-    "kbd",
-    "mark",
-    "small",
-    "span",
-    "strong",
-    "sub",
-    "sup",
-]);
+export const [cite, code, em, i, kbd, mark, small, span, strong, sub, sup] =
+    defElements([
+        "cite",
+        "code",
+        "em",
+        "i",
+        "kbd",
+        "mark",
+        "small",
+        "span",
+        "strong",
+        "sub",
+        "sup",
+    ]);
 
 export interface EditAttribs extends Attribs {
     cite: StringAttrib;

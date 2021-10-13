@@ -6,7 +6,7 @@ import { EPS } from "@thi.ng/math/api";
 import { map } from "@thi.ng/transducers/map";
 import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
 import { distSq } from "@thi.ng/vectors/distsq";
-import { addResults, CMP, into } from "./utils";
+import { addResults, CMP, into } from "./utils.js";
 
 type MaybeKdNode<K extends ReadonlyVec, V> = KdNode<K, V> | undefined;
 

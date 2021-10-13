@@ -12,7 +12,7 @@ import type {
     Path7,
     Path8,
 } from "@thi.ng/api";
-import { defGetter } from "./getter";
+import { defGetter } from "./getter.js";
 
 /**
  * Unchecked version of {@link getIn}. Returns `undefined` if path is

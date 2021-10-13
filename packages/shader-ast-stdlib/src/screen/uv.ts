@@ -6,7 +6,7 @@ import { add, div, mul } from "@thi.ng/shader-ast/ast/ops";
 import { $x, $xy, $y } from "@thi.ng/shader-ast/ast/swizzle";
 import { sym } from "@thi.ng/shader-ast/ast/sym";
 import { greaterThan, lessThan, _any } from "@thi.ng/shader-ast/builtin/bvec";
-import { fit0111 } from "../math/fit";
+import { fit0111 } from "../math/fit.js";
 
 /**
  * Computes UV coord in [0..1] interval from given `fragCoord` and screen `res`.

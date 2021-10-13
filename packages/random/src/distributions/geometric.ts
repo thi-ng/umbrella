@@ -1,5 +1,5 @@
-import type { IRandom } from "../api";
-import { SYSTEM } from "../system";
+import type { IRandom } from "../api.js";
+import { SYSTEM } from "../system.js";
 
 /**
  * HOF. Returns zero-arg function, yielding values in geometric distribution,

@@ -14,7 +14,7 @@ import type {
     CSVRecord,
     CSVRow,
     SimpleCSVOpts,
-} from "./api";
+} from "./api.js";
 
 /** @internal */
 type IndexEntry = { i: number; spec: ColumnSpec };

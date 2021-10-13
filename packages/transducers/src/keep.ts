@@ -1,8 +1,8 @@
 import type { Fn, Nullable } from "@thi.ng/api";
 import { identity } from "@thi.ng/compose/identity";
-import type { Reducer, Transducer } from "./api";
-import { compR } from "./compr";
-import { __iter } from "./iterator";
+import type { Reducer, Transducer } from "./api.js";
+import { compR } from "./compr.js";
+import { __iter } from "./iterator.js";
 
 /**
  * Transducer. Only keeps values for which (optional) predicate returns a

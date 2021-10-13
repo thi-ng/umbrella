@@ -1,4 +1,4 @@
-import type { DistanceFn } from "./api";
+import type { DistanceFn } from "./api.js";
 
 /**
  * Normalized Hamming distance between `a` and `b`, i.e. number of differing

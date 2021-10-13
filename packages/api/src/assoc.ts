@@ -1,4 +1,4 @@
-import type { Fn } from "./fn";
+import type { Fn } from "./fn.js";
 
 /**
  * A key-value pair / tuple.

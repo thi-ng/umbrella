@@ -6,8 +6,8 @@ import type {
     PackedChannelSpec,
     PackedFormat,
     PackedFormatSpec,
-} from "../api";
-import { __compileFromABGR, __compileToABGR } from "../internal/codegen";
+} from "../api.js";
+import { __compileFromABGR, __compileToABGR } from "../internal/codegen.js";
 
 const defChannel = (
     ch: PackedChannelSpec,

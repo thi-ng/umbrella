@@ -1,6 +1,6 @@
 import type { IObjectOf } from "@thi.ng/api";
 import type { ReadonlyVec } from "@thi.ng/vectors";
-import { __drawPoly } from "./polygon";
+import { __drawPoly } from "./polygon.js";
 
 export const polyline = (
     ctx: CanvasRenderingContext2D,

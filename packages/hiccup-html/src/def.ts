@@ -1,5 +1,5 @@
 import type { Nullable } from "@thi.ng/api";
-import type { Attribs } from "./api";
+import type { Attribs } from "./api.js";
 
 /**
  * Variadic element factory function. Takes an element specific attrib
@@ -31,20 +31,22 @@ export interface ElementFactory<T, B> {
  * @param tag
  * @param baseAttribs
  */
-export const defElement = <T = Partial<Attribs>, B = any>(
-    tag: string,
-    baseAttribs?: Partial<T>
-): ElementFactory<T, B> => (...args: any[]): any => {
-    const $tag = typeof args[0] === "string" ? tag + args.shift() : tag;
-    const n = args.length;
-    const attribs =
-        n > 0
-            ? baseAttribs
-                ? { ...baseAttribs, ...args[0] }
-                : args[0]
-            : baseAttribs || null;
-    return n > 1 ? [$tag, attribs, ...args.slice(1)] : [$tag, attribs];
-};
+export const defElement =
+    <T = Partial<Attribs>, B = any>(
+        tag: string,
+        baseAttribs?: Partial<T>
+    ): ElementFactory<T, B> =>
+    (...args: any[]): any => {
+        const $tag = typeof args[0] === "string" ? tag + args.shift() : tag;
+        const n = args.length;
+        const attribs =
+            n > 0
+                ? baseAttribs
+                    ? { ...baseAttribs, ...args[0] }
+                    : args[0]
+                : baseAttribs || null;
+        return n > 1 ? [$tag, attribs, ...args.slice(1)] : [$tag, attribs];
+    };
 
 /**
  * @internal

@@ -15,14 +15,14 @@ import type {
     ColorRangePreset,
     ColorThemePart,
     ColorThemePartTuple,
-} from "./api/ranges";
-import { parseCss } from "./css/parse-css";
-import { __ensureAlpha } from "./internal/ensure";
-import { LCH, lch } from "./lch/lch";
-import { analog } from "./analog";
-import { isBlack } from "./is-black";
-import { isGray } from "./is-gray";
-import { isWhite } from "./is-white";
+} from "./api/ranges.js";
+import { parseCss } from "./css/parse-css.js";
+import { __ensureAlpha } from "./internal/ensure.js";
+import { LCH, lch } from "./lch/lch.js";
+import { analog } from "./analog.js";
+import { isBlack } from "./is-black.js";
+import { isGray } from "./is-gray.js";
+import { isWhite } from "./is-white.js";
 
 /**
  * Preset {@link ColorRange}s for use with {@link colorsFromRange},

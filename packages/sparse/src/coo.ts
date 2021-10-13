@@ -1,9 +1,9 @@
 import { ensureIndex2 } from "@thi.ng/errors/out-of-bounds";
 import { partition } from "@thi.ng/transducers/partition";
-import { ASparseMatrix } from "./amatrix";
-import type { NzEntry } from "./api";
-import { CSC } from "./csc";
-import { CSR } from "./csr";
+import { ASparseMatrix } from "./amatrix.js";
+import type { NzEntry } from "./api.js";
+import { CSC } from "./csc.js";
+import { CSR } from "./csr.js";
 
 export class COO extends ASparseMatrix {
     static fromDense(m: number, n: number, data: ArrayLike<number>) {

@@ -1,5 +1,5 @@
 import type { IReset } from "@thi.ng/api";
-import { AGen } from "./agen";
+import { AGen } from "./agen.js";
 
 /**
  * Creates a new `Add` gen using given `step` (default: 1.0) and `start`

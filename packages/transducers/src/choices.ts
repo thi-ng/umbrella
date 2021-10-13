@@ -2,7 +2,7 @@ import { ensureArray } from "@thi.ng/arrays/ensure-array";
 import type { IRandom } from "@thi.ng/random";
 import { SYSTEM } from "@thi.ng/random/system";
 import { weightedRandom } from "@thi.ng/random/weighted-random";
-import { repeatedly } from "./repeatedly";
+import { repeatedly } from "./repeatedly.js";
 
 /**
  * Returns an infinite iterator of random choices and their (optional)

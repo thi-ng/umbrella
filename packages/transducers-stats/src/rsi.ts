@@ -4,8 +4,8 @@ import { drop } from "@thi.ng/transducers/drop";
 import { iterator1 } from "@thi.ng/transducers/iterator";
 import { map } from "@thi.ng/transducers/map";
 import { multiplex } from "@thi.ng/transducers/multiplex";
-import { momentum } from "./momentum";
-import { sma } from "./sma";
+import { momentum } from "./momentum.js";
+import { sma } from "./sma.js";
 
 /**
  * {@link https://en.wikipedia.org/wiki/Relative_strength_index}

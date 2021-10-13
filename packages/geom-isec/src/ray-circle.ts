@@ -4,7 +4,7 @@ import { dot } from "@thi.ng/vectors/dot";
 import { maddN } from "@thi.ng/vectors/maddn";
 import { magSq } from "@thi.ng/vectors/magsq";
 import { sub } from "@thi.ng/vectors/sub";
-import { NONE } from "./api";
+import { NONE } from "./api.js";
 
 export const intersectRayCircle = (
     rpos: ReadonlyVec,

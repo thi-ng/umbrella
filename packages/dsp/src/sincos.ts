@@ -1,6 +1,6 @@
 import type { IReset } from "@thi.ng/api";
 import { TAU } from "@thi.ng/math/api";
-import { AGen } from "./agen";
+import { AGen } from "./agen.js";
 
 /**
  * Generator of sine & cosine values of given frequency in the form of

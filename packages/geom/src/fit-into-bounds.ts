@@ -7,15 +7,15 @@ import { scale23, scale44 } from "@thi.ng/matrices/scale";
 import { translation23, translation44 } from "@thi.ng/matrices/translation";
 import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
 import { neg } from "@thi.ng/vectors/neg";
-import type { AABB } from "./api/aabb";
-import { Rect } from "./api/rect";
-import { __collBounds } from "./internal/bounds";
-import { bounds } from "./bounds";
-import { center } from "./center";
-import { centroid } from "./centroid";
-import { mapPoint } from "./map-point";
-import { transform } from "./transform";
-import { unmapPoint } from "./unmap-point";
+import type { AABB } from "./api/aabb.js";
+import { Rect } from "./api/rect.js";
+import { __collBounds } from "./internal/bounds.js";
+import { bounds } from "./bounds.js";
+import { center } from "./center.js";
+import { centroid } from "./centroid.js";
+import { mapPoint } from "./map-point.js";
+import { transform } from "./transform.js";
+import { unmapPoint } from "./unmap-point.js";
 
 const translateScale = (
     tmat: MatOpV,

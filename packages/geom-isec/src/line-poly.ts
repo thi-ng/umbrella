@@ -3,7 +3,7 @@ import type { ReadonlyVec } from "@thi.ng/vectors";
 import { mag } from "@thi.ng/vectors/mag";
 import { normalize } from "@thi.ng/vectors/normalize";
 import { sub } from "@thi.ng/vectors/sub";
-import { intersectRayPolylineAll } from "./ray-poly";
+import { intersectRayPolylineAll } from "./ray-poly.js";
 
 export const intersectLinePolylineAll = (
     a: ReadonlyVec,

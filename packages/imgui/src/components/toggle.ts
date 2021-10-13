@@ -1,10 +1,10 @@
 import { rect } from "@thi.ng/geom/rect";
 import type { IGridLayout, LayoutBox } from "@thi.ng/layout";
 import { hash } from "@thi.ng/vectors/hash";
-import { handleButtonKeys, hoverButton } from "../behaviors/button";
-import type { IMGUI } from "../gui";
-import { layoutBox } from "../layout";
-import { textLabelRaw } from "./textlabel";
+import { handleButtonKeys, hoverButton } from "../behaviors/button.js";
+import type { IMGUI } from "../gui.js";
+import { layoutBox } from "../layout.js";
+import { textLabelRaw } from "./textlabel.js";
 
 /**
  * If `square` is true, the clickable area will not fill the entire

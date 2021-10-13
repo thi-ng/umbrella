@@ -1,8 +1,8 @@
-export * from "./deferror";
+export * from "./deferror.js";
 
-export * from "./assert";
-export * from "./illegal-arguments";
-export * from "./illegal-arity";
-export * from "./illegal-state";
-export * from "./out-of-bounds";
-export * from "./unsupported";
+export * from "./assert.js";
+export * from "./illegal-arguments.js";
+export * from "./illegal-arity.js";
+export * from "./illegal-state.js";
+export * from "./out-of-bounds.js";
+export * from "./unsupported.js";

@@ -1,7 +1,7 @@
 import { isFunction } from "@thi.ng/checks/is-function";
 import type { Stringer } from "@thi.ng/strings";
 import { float, floatFixedWidth } from "@thi.ng/strings/float";
-import type { ToStringOpts } from "./api";
+import type { ToStringOpts } from "./api.js";
 
 /**
  * Returns a new generic vector formatter for given options (all optional). The

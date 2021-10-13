@@ -1,5 +1,5 @@
-import type { VecOpV } from "./api";
-import { setC2 } from "./setc";
+import type { VecOpV } from "./api.js";
+import { setC2 } from "./setc.js";
 
 /**
  * 2D only. Produces a perpendicular vector to `v`, i.e. `[-y,x]`.

@@ -4,7 +4,7 @@ import { svg } from "@thi.ng/hiccup-svg/svg";
 import { serialize } from "@thi.ng/hiccup/serialize";
 import { fit } from "@thi.ng/math/fit";
 import { inRange } from "@thi.ng/math/interval";
-import type { VizualizeVarOpts } from "./api";
+import type { VizualizeVarOpts } from "./api.js";
 
 /**
  * Takes an {@link @thi.ng/fuzzy#LVar} and visualization options. Evaluates all

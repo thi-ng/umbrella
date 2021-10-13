@@ -1,5 +1,5 @@
 import type { Fn, FnU2 } from "@thi.ng/api";
-import type { Template } from "../api";
+import type { Template } from "../api.js";
 
 type HOFTpl = Fn<string, Template>;
 type HOFTpl2 = FnU2<string, Template>;

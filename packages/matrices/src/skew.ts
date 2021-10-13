@@ -1,4 +1,4 @@
-import type { MatOpN } from "./api";
+import type { MatOpN } from "./api.js";
 import {
     shearX22,
     shearX23,
@@ -16,9 +16,12 @@ import {
     shearZX44,
     shearZY33,
     shearZY44,
-} from "./shear";
+} from "./shear.js";
 
-const $ = (f: MatOpN): MatOpN => (m, theta) => f(m, Math.tan(theta));
+const $ =
+    (f: MatOpN): MatOpN =>
+    (m, theta) =>
+        f(m, Math.tan(theta));
 
 export const skewX22 = $(shearX22);
 export const skewY22 = $(shearY22);

@@ -2,8 +2,8 @@ import type { Reducer, Transducer } from "@thi.ng/transducers";
 import { compR } from "@thi.ng/transducers/compr";
 import { __iter } from "@thi.ng/transducers/iterator";
 import { step } from "@thi.ng/transducers/step";
-import { donchian } from "./donchian";
-import { sma } from "./sma";
+import { donchian } from "./donchian.js";
+import { sma } from "./sma.js";
 
 export interface Stochastic {
     k: number;

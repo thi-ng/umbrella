@@ -1,4 +1,4 @@
-import { isChrome } from "./is-chrome";
+import { isChrome } from "./is-chrome.js";
 
 export const isSafari = () =>
     typeof navigator !== "undefined" &&

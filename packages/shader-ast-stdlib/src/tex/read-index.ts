@@ -1,7 +1,7 @@
 import type { IntTerm, IVec2Term, Sampler2DTerm } from "@thi.ng/shader-ast";
 import { $x, $xy, $xyz } from "@thi.ng/shader-ast/ast/swizzle";
 import { texture } from "@thi.ng/shader-ast/builtin/texture";
-import { indexToUV } from "./index-uv";
+import { indexToUV } from "./index-uv.js";
 
 /**
  * Inline function. Returns x component at index `i` in `tex`.

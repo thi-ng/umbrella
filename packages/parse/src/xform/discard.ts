@@ -1,5 +1,5 @@
-import type { Parser } from "../api";
-import { xform } from "../combinators/xform";
+import type { Parser } from "../api.js";
+import { xform } from "../combinators/xform.js";
 
 /**
  * Discards AST node and any of its children.

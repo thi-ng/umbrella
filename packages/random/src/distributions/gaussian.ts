@@ -1,5 +1,5 @@
-import type { IRandom } from "../api";
-import { SYSTEM } from "../system";
+import type { IRandom } from "../api.js";
+import { SYSTEM } from "../system.js";
 
 /**
  * Higher order function. Takes a {@link IRandom} instance and returns a no-arg
@@ -17,14 +17,11 @@ import { SYSTEM } from "../system";
  * @param offset - center offset / bias, default 0
  * @param scale - scale, default 1
  */
-export const gaussian = (
-    rnd: IRandom = SYSTEM,
-    n = 24,
-    offset = 0,
-    scale = 1
-) => () => {
-    let sum = 0;
-    let m = n;
-    while (m-- > 0) sum += rnd.norm(scale);
-    return sum / n + offset;
-};
+export const gaussian =
+    (rnd: IRandom = SYSTEM, n = 24, offset = 0, scale = 1) =>
+    () => {
+        let sum = 0;
+        let m = n;
+        while (m-- > 0) sum += rnd.norm(scale);
+        return sum / n + offset;
+    };

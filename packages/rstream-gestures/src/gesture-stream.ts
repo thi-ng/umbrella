@@ -13,7 +13,7 @@ import type {
     GestureType,
     UIEvent,
     UIEventID,
-} from "./api";
+} from "./api.js";
 
 const START_EVENTS = new Set([
     "mousedown",

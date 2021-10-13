@@ -1,7 +1,7 @@
 import { mod as _mod } from "@thi.ng/math/prec";
-import type { MultiVecOpVV, VecOpVV } from "./api";
-import { defHofOp } from "./compile/emit";
-import { ARGS_VV, FN2 } from "./compile/templates";
+import type { MultiVecOpVV, VecOpVV } from "./api.js";
+import { defHofOp } from "./compile/emit.js";
+import { ARGS_VV, FN2 } from "./compile/templates.js";
 
 /**
  * Similar to {@link fmod}, {@link remainder}. This version of modulo uses the

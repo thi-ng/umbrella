@@ -1,6 +1,6 @@
 import { isArray } from "@thi.ng/checks/is-array";
 import { isArrayLike } from "@thi.ng/checks/is-arraylike";
-import { ensureIterable } from "./ensure-iterable";
+import { ensureIterable } from "./ensure-iterable.js";
 
 /**
  * Helper function to avoid unnecessary copying if `x` is already an

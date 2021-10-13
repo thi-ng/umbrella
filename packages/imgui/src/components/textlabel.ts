@@ -2,10 +2,10 @@ import type { Fn } from "@thi.ng/api";
 import { isPlainObject } from "@thi.ng/checks/is-plain-object";
 import type { IGridLayout, LayoutBox } from "@thi.ng/layout";
 import type { ReadonlyVec } from "@thi.ng/vectors";
-import type { Color, GUITheme } from "../api";
-import type { IMGUI } from "../gui";
-import { valHash } from "../hash";
-import { layoutBox } from "../layout";
+import type { Color, GUITheme } from "../api.js";
+import type { IMGUI } from "../gui.js";
+import { valHash } from "../hash.js";
+import { layoutBox } from "../layout.js";
 
 export const textLabel = (
     gui: IMGUI,

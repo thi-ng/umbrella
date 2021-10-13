@@ -1,6 +1,6 @@
 import type { Fn2, Predicate } from "@thi.ng/api";
 import { outOfBounds } from "@thi.ng/errors/out-of-bounds";
-import { ConsCell, DCons } from "./dcons";
+import { ConsCell, DCons } from "./dcons.js";
 
 /**
  * Self-organization function/handler. Attempts to re-order given list cell and

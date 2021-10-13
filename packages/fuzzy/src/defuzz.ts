@@ -1,8 +1,8 @@
 import type { IObjectOf } from "@thi.ng/api";
-import type { FuzzyFn, LVarSet, Rule } from "./api";
-import { constant, intersect, union, weighted } from "./shapes";
-import { centroidStrategy } from "./strategies/centroid";
-import { snormMax, tnormMin } from "./tnorms";
+import type { FuzzyFn, LVarSet, Rule } from "./api.js";
+import { constant, intersect, union, weighted } from "./shapes.js";
+import { centroidStrategy } from "./strategies/centroid.js";
+import { snormMax, tnormMin } from "./tnorms.js";
 
 /**
  * Takes an object of input {@link variable}s, an object of output variable,

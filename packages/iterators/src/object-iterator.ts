@@ -1,4 +1,4 @@
-import { map } from "./map";
+import { map } from "./map.js";
 
 export const objectIterator = (x: any) => map((k) => [k, x[k]], Object.keys(x));
 

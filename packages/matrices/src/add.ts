@@ -1,6 +1,6 @@
 import { add as _add, add4 } from "@thi.ng/vectors/add";
-import type { MatOpMM, MultiMatOpMM } from "./api";
-import { defMath } from "./compile/emit";
+import type { MatOpMM, MultiMatOpMM } from "./api.js";
+import { defMath } from "./compile/emit.js";
 
 /**
  * Componentwise matrix addition. If `out` is not given, writes result

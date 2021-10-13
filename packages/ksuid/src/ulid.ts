@@ -1,6 +1,6 @@
 import { BASE32_CROCKFORD } from "@thi.ng/base-n/32";
-import { AKSUID } from "./aksuid";
-import type { KSUIDOpts } from "./api";
+import { AKSUID } from "./aksuid.js";
+import type { KSUIDOpts } from "./api.js";
 
 export class ULID extends AKSUID {
     constructor(opts?: Partial<KSUIDOpts>) {

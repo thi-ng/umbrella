@@ -8,12 +8,12 @@ import type {
     Func6,
     Func7,
     Func8,
-} from "./function";
-import type { Operator } from "./ops";
-import type { SymOpts } from "./syms";
-import type { Tag } from "./tags";
-import type { BoolTerm } from "./terms";
-import type { Assignable, Indexable, Mat, Type, Vec } from "./types";
+} from "./function.js";
+import type { Operator } from "./ops.js";
+import type { SymOpts } from "./syms.js";
+import type { Tag } from "./tags.js";
+import type { BoolTerm } from "./terms.js";
+import type { Assignable, Indexable, Mat, Type, Vec } from "./types.js";
 
 export interface Term<T extends Type> {
     tag: Tag;

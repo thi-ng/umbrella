@@ -1,8 +1,8 @@
 import { isArray } from "@thi.ng/checks/is-array";
-import type { ModelSpec } from "./api/model";
-import { isGL2Context } from "./checks";
-import { error } from "./error";
-import { bindTextures, unbindTextures } from "./texture";
+import type { ModelSpec } from "./api/model.js";
+import { isGL2Context } from "./checks.js";
+import { error } from "./error.js";
+import { bindTextures, unbindTextures } from "./texture.js";
 
 export interface DrawFlags {
     /**

@@ -1,5 +1,5 @@
-import { AKSUID } from "./aksuid";
-import type { KSUIDOpts } from "./api";
+import { AKSUID } from "./aksuid.js";
+import type { KSUIDOpts } from "./api.js";
 
 export class KSUID32 extends AKSUID {
     constructor(opts?: Partial<KSUIDOpts>) {

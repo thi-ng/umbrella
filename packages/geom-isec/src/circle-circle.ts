@@ -8,7 +8,7 @@ import { mag } from "@thi.ng/vectors/mag";
 import { mulN } from "@thi.ng/vectors/muln";
 import { perpendicularCCW } from "@thi.ng/vectors/perpendicular";
 import { sub } from "@thi.ng/vectors/sub";
-import { NONE } from "./api";
+import { NONE } from "./api.js";
 
 export const intersectCircleCircle = (
     a: ReadonlyVec,

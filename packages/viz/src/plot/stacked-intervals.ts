@@ -7,8 +7,8 @@ import { mapcatIndexed } from "@thi.ng/transducers/mapcat-indexed";
 import { push } from "@thi.ng/transducers/push";
 import { some } from "@thi.ng/transducers/some";
 import { transduce } from "@thi.ng/transducers/transduce";
-import type { Domain, PlotFn } from "../api";
-import { valueMapper } from "./utils";
+import type { Domain, PlotFn } from "../api.js";
+import { valueMapper } from "./utils.js";
 
 export interface StackedIntervalOpts<T> {
     attribs?: any;

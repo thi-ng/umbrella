@@ -1,5 +1,5 @@
-import type { Reducer } from "./api";
-import { __mathop } from "./internal/mathop";
+import type { Reducer } from "./api.js";
+import { __mathop } from "./internal/mathop.js";
 
 /**
  * Reducer to compute product of values with optional `init` value

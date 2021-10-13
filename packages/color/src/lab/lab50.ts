@@ -1,13 +1,13 @@
 import type { NumericArray } from "@thi.ng/api";
 import type { IRandom } from "@thi.ng/random";
-import type { Color, ColorFactory, ReadonlyColor, TypedColor } from "../api";
-import { defColor } from "../defcolor";
-import { rgbLab } from "../rgb/rgb-lab";
-import { xyzLab } from "../xyz/xyz-lab";
-import { xyzXyzD65_50 } from "../xyz/xyz-xyz";
-import { labLabD65_50 } from "./lab-lab";
-import { lchLab } from "./lab-lch";
-import { labRgb } from "./lab-rgb";
+import type { Color, ColorFactory, ReadonlyColor, TypedColor } from "../api.js";
+import { defColor } from "../defcolor.js";
+import { rgbLab } from "../rgb/rgb-lab.js";
+import { xyzLab } from "../xyz/xyz-lab.js";
+import { xyzXyzD65_50 } from "../xyz/xyz-xyz.js";
+import { labLabD65_50 } from "./lab-lab.js";
+import { lchLab } from "./lab-lch.js";
+import { labRgb } from "./lab-rgb.js";
 
 export declare class LabD50 implements TypedColor<LabD50> {
     buf: NumericArray;

@@ -10,48 +10,48 @@ import type {
     Parser,
     ParseScope,
     RuleTransforms,
-} from "./api";
-import { alt, altD } from "./combinators/alt";
-import { dynamic } from "./combinators/dynamic";
-import { lookahead } from "./combinators/lookahead";
-import { maybe } from "./combinators/maybe";
-import { not } from "./combinators/not";
-import { oneOrMore, repeat, zeroOrMore } from "./combinators/repeat";
-import { seq, seqD } from "./combinators/seq";
-import { xform } from "./combinators/xform";
-import { defContext } from "./context";
-import { ALPHA, ALPHA_NUM } from "./presets/alpha";
-import { BIT } from "./presets/bits";
-import { DIGIT } from "./presets/digits";
-import { ESC, UNICODE } from "./presets/escape";
-import { HEX_DIGIT } from "./presets/hex";
-import { FLOAT, INT, UINT } from "./presets/numbers";
-import { STRING } from "./presets/string";
-import { DNL, NL, WS, WS0, WS1 } from "./presets/whitespace";
-import { always, alwaysD } from "./prims/always";
+} from "./api.js";
+import { alt, altD } from "./combinators/alt.js";
+import { dynamic } from "./combinators/dynamic.js";
+import { lookahead } from "./combinators/lookahead.js";
+import { maybe } from "./combinators/maybe.js";
+import { not } from "./combinators/not.js";
+import { oneOrMore, repeat, zeroOrMore } from "./combinators/repeat.js";
+import { seq, seqD } from "./combinators/seq.js";
+import { xform } from "./combinators/xform.js";
+import { defContext } from "./context.js";
+import { ALPHA, ALPHA_NUM } from "./presets/alpha.js";
+import { BIT } from "./presets/bits.js";
+import { DIGIT } from "./presets/digits.js";
+import { ESC, UNICODE } from "./presets/escape.js";
+import { HEX_DIGIT } from "./presets/hex.js";
+import { FLOAT, INT, UINT } from "./presets/numbers.js";
+import { STRING } from "./presets/string.js";
+import { DNL, NL, WS, WS0, WS1 } from "./presets/whitespace.js";
+import { always, alwaysD } from "./prims/always.js";
 import {
     inputEnd,
     inputStart,
     lineEnd,
     lineStart,
     wordBoundary,
-} from "./prims/anchor";
-import { lit, litD } from "./prims/lit";
-import { noneOf } from "./prims/none-of";
-import { oneOf } from "./prims/one-of";
-import { range, rangeD } from "./prims/range";
-import { string, stringD } from "./prims/string";
-import { collect, xfCollect } from "./xform/collect";
-import { xfCount } from "./xform/count";
-import { discard, xfDiscard } from "./xform/discard";
-import { hoist, hoistResult, xfHoist, xfHoistResult } from "./xform/hoist";
-import { join, xfJoin } from "./xform/join";
-import { nest } from "./xform/nest";
-import { xfFloat, xfInt } from "./xform/number";
-import { print, xfPrint } from "./xform/print";
-import { xfReplace } from "./xform/replace";
-import { xfTrim } from "./xform/trim";
-import { withID } from "./xform/with-id";
+} from "./prims/anchor.js";
+import { lit, litD } from "./prims/lit.js";
+import { noneOf } from "./prims/none-of.js";
+import { oneOf } from "./prims/one-of.js";
+import { range, rangeD } from "./prims/range.js";
+import { string, stringD } from "./prims/string.js";
+import { collect, xfCollect } from "./xform/collect.js";
+import { xfCount } from "./xform/count.js";
+import { discard, xfDiscard } from "./xform/discard.js";
+import { hoist, hoistResult, xfHoist, xfHoistResult } from "./xform/hoist.js";
+import { join, xfJoin } from "./xform/join.js";
+import { nest } from "./xform/nest.js";
+import { xfFloat, xfInt } from "./xform/number.js";
+import { print, xfPrint } from "./xform/print.js";
+import { xfReplace } from "./xform/replace.js";
+import { xfTrim } from "./xform/trim.js";
+import { withID } from "./xform/with-id.js";
 
 const apos = litD("'");
 const dash = litD("-");

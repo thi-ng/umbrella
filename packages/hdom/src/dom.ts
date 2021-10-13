@@ -5,7 +5,7 @@ import { SVG_TAGS } from "@thi.ng/hiccup/api";
 import { css } from "@thi.ng/hiccup/css";
 import { formatPrefixes } from "@thi.ng/hiccup/prefix";
 import { XML_SVG } from "@thi.ng/prefixes/xml";
-import type { HDOMImplementation, HDOMOpts } from "./api";
+import type { HDOMImplementation, HDOMOpts } from "./api.js";
 
 const isArray = isa;
 const isNotStringAndIterable = isi;

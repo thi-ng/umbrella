@@ -1,4 +1,4 @@
-import type { IGen } from "../api";
+import type { IGen } from "../api.js";
 
 export const __take = <T>(
     src: IGen<T>,

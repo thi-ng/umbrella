@@ -2,9 +2,9 @@ import type { IReset } from "@thi.ng/api";
 import { unsupported } from "@thi.ng/errors/unsupported";
 import { PI, SQRT2, SQRT2_2 } from "@thi.ng/math/api";
 import { clamp05 } from "@thi.ng/math/interval";
-import type { BiquadType, FilterConfig, IFilter } from "./api";
-import { AProc } from "./aproc";
-import { dbMag } from "./convert";
+import type { BiquadType, FilterConfig, IFilter } from "./api.js";
+import { AProc } from "./aproc.js";
+import { dbMag } from "./convert.js";
 
 export const biquad = (
     type: BiquadType,

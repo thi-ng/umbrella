@@ -23,11 +23,11 @@ import type {
     MaybeColor,
     ReadonlyColor,
     TypedColor,
-} from "./api";
-import { convert, defConversions } from "./convert";
-import { parseCss } from "./css/parse-css";
-import { intArgb32Rgb } from "./int/int-rgb";
-import { __ensureArgs } from "./internal/ensure";
+} from "./api.js";
+import { convert, defConversions } from "./convert.js";
+import { parseCss } from "./css/parse-css.js";
+import { intArgb32Rgb } from "./int/int-rgb.js";
+import { __ensureArgs } from "./internal/ensure.js";
 
 type $DefColor<M extends ColorMode, K extends string> = {
     [k in K]: number;

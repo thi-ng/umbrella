@@ -1,4 +1,4 @@
-import { asInt } from "./utils";
+import { asInt } from "./utils.js";
 
 export function* line(ax: number, ay: number, bx: number, by: number) {
     [ax, ay, bx, by] = asInt(ax, ay, bx, by);

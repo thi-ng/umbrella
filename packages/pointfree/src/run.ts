@@ -1,7 +1,7 @@
 import { isArray } from "@thi.ng/checks/is-array";
 import { isFunction } from "@thi.ng/checks/is-function";
-import type { StackContext, StackProc } from "./api";
-import { unwrap } from "./word";
+import type { StackContext, StackProc } from "./api.js";
+import { unwrap } from "./word.js";
 
 /**
  * Executes program / quotation with given stack context (initial D/R

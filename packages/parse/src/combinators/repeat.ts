@@ -1,26 +1,28 @@
-import type { Parser } from "../api";
-import { discard } from "../xform/discard";
+import type { Parser } from "../api.js";
+import { discard } from "../xform/discard.js";
 
-export const repeat = <T>(
-    parser: Parser<T>,
-    min: number,
-    max: number,
-    id = "repeat"
-): Parser<T> => (ctx) => {
-    if (ctx.done) {
-        return min < 1 ? ctx.addChild(id) : false;
-    }
-    ctx.start(id);
-    for (let i = 0; i < max; i++) {
-        if (!parser(ctx)) {
-            if (i < min) {
-                return ctx.discard();
-            }
-            break;
+export const repeat =
+    <T>(
+        parser: Parser<T>,
+        min: number,
+        max: number,
+        id = "repeat"
+    ): Parser<T> =>
+    (ctx) => {
+        if (ctx.done) {
+            return min < 1 ? ctx.addChild(id) : false;
         }
-    }
-    return ctx.end();
-};
+        ctx.start(id);
+        for (let i = 0; i < max; i++) {
+            if (!parser(ctx)) {
+                if (i < min) {
+                    return ctx.discard();
+                }
+                break;
+            }
+        }
+        return ctx.end();
+    };
 
 export const zeroOrMore = <T>(
     parser: Parser<T>,

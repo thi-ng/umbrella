@@ -10,8 +10,8 @@ import { lshiftI2 } from "@thi.ng/vectors/lshift";
 import { mulI2, mulNI2 } from "@thi.ng/vectors/muli";
 import { rshiftI2 } from "@thi.ng/vectors/rshift";
 import { subI2, subNI2 } from "@thi.ng/vectors/subi";
-import type { JSBuiltinsIntVec } from "../api";
-import { VEC2 } from "./vec2";
+import type { JSBuiltinsIntVec } from "../api.js";
+import { VEC2 } from "./vec2.js";
 
 export const IVEC2: JSBuiltinsIntVec = {
     ...VEC2,

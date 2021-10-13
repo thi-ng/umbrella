@@ -1,9 +1,9 @@
 import type { IObjectOf } from "@thi.ng/api";
-import type { Reducer, Transducer, TxLike } from "./api";
-import { comp } from "./comp";
-import { __iter } from "./iterator";
-import { multiplex } from "./multiplex";
-import { rename } from "./rename";
+import type { Reducer, Transducer, TxLike } from "./api.js";
+import { comp } from "./comp.js";
+import { __iter } from "./iterator.js";
+import { multiplex } from "./multiplex.js";
+import { rename } from "./rename.js";
 
 /**
  * Transducer. Similar to (and building on) {@link (multiplex:1)}, but takes an

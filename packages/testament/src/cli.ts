@@ -2,9 +2,9 @@
 import { watch } from "chokidar";
 import { readdirSync, statSync, writeFileSync } from "fs";
 import { resolve } from "path";
-import { GLOBAL_OPTS, TestResult } from "./api";
-import { execute } from "./exec";
-import { isString } from "./utils";
+import { GLOBAL_OPTS, TestResult } from "./api.js";
+import { execute } from "./exec.js";
+import { isString } from "./utils.js";
 
 interface TestamentArgs {
     csv: boolean;

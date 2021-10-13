@@ -1,5 +1,5 @@
-import type { Benchmark, BenchmarkResult, BenchmarkSuiteOpts } from "./api";
-import { benchmark, DEFAULT_OPTS, outputString } from "./benchmark";
+import type { Benchmark, BenchmarkResult, BenchmarkSuiteOpts } from "./api.js";
+import { benchmark, DEFAULT_OPTS, outputString } from "./benchmark.js";
 
 export const suite = (
     cases: Benchmark[],

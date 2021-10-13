@@ -4,9 +4,9 @@ import { quickSort } from "@thi.ng/arrays/quicksort";
 import { sortByCachedKey } from "@thi.ng/arrays/sort-cached";
 import { swap } from "@thi.ng/arrays/swap";
 import { compareNumAsc, compareNumDesc } from "@thi.ng/compare/numeric";
-import type { ColorDistance, ReadonlyColor, TypedColor } from "./api";
-import { distEucledian3 } from "./distance";
-import { intAbgr32Srgb } from "./int/int-srgb";
+import type { ColorDistance, ReadonlyColor, TypedColor } from "./api.js";
+import { distEucledian3 } from "./distance.js";
+import { intAbgr32Srgb } from "./int/int-srgb.js";
 
 export const selectChannel = (id: number) => (col: ReadonlyColor) => col[id];
 

@@ -1,8 +1,8 @@
 import { clamp01 } from "@thi.ng/math/interval";
 import { setC3 } from "@thi.ng/vectors/setc";
-import type { ColorOp } from "../api";
-import { hueRgb } from "../rgb/hue-rgb";
-import { __ensureAlpha } from "../internal/ensure";
+import type { ColorOp } from "../api.js";
+import { hueRgb } from "../rgb/hue-rgb.js";
+import { __ensureAlpha } from "../internal/ensure.js";
 
 export const hslRgb: ColorOp = (out, src) => {
     const s = clamp01(src[1]);

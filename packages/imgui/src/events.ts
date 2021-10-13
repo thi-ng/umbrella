@@ -1,5 +1,5 @@
-import { MouseButton } from "./api";
-import type { IMGUI } from "./gui";
+import { MouseButton } from "./api.js";
+import type { IMGUI } from "./gui.js";
 
 /**
  * Injects default mouse & touch event handlers into `gui.attribs` and

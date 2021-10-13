@@ -1,5 +1,5 @@
-import type { ReadonlyVec, Vec } from "./api";
-import { setC3 } from "./setc";
+import type { ReadonlyVec, Vec } from "./api.js";
+import { setC3 } from "./setc.js";
 
 export const rotateAroundAxis3 = (
     out: Vec,

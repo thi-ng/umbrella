@@ -1,7 +1,7 @@
 import { roundTo as _round } from "@thi.ng/math/prec";
-import type { MultiVecOpVO, MultiVecOpVV, VecOpVO, VecOpVV } from "./api";
-import { defHofOp } from "./compile/emit";
-import { ARGS_VV, FN2, FN_N } from "./compile/templates";
+import type { MultiVecOpVO, MultiVecOpVV, VecOpVO, VecOpVV } from "./api.js";
+import { defHofOp } from "./compile/emit.js";
+import { ARGS_VV, FN2, FN_N } from "./compile/templates.js";
 
 /**
  * Rounds components of the first input to multiples of the 2nd input vector.

@@ -1,8 +1,8 @@
 import type { GLType, IObjectOf, Type } from "@thi.ng/api";
 import type { AttribPool } from "@thi.ng/vector-pools";
-import type { IndexBufferSpec, IWebGLBuffer } from "./buffers";
-import type { AttribBufferData, IShader, UniformValues } from "./shader";
-import type { ITexture } from "./texture";
+import type { IndexBufferSpec, IWebGLBuffer } from "./buffers.js";
+import type { AttribBufferData, IShader, UniformValues } from "./shader.js";
+import type { ITexture } from "./texture.js";
 
 export enum DrawMode {
     POINTS = 0,

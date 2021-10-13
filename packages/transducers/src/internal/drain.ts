@@ -1,6 +1,6 @@
 import type { Fn } from "@thi.ng/api";
-import type { ReductionFn } from "../api";
-import { isReduced } from "../reduced";
+import type { ReductionFn } from "../api.js";
+import { isReduced } from "../reduced.js";
 
 /**
  * Helper HOF yielding a buffer drain completion function for some

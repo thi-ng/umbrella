@@ -1,4 +1,4 @@
-import type { Fn2 } from "./fn";
+import type { Fn2 } from "./fn.js";
 
 /**
  * Generic 2-element comparator function type alias.

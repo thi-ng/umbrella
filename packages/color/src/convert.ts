@@ -7,7 +7,7 @@ import type {
     ColorSpec,
     Conversions,
     ReadonlyColor,
-} from "./api";
+} from "./api.js";
 
 export const CONVERSIONS: Partial<Record<ColorMode, Conversions>> = {};
 

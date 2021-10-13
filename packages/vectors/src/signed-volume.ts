@@ -1,5 +1,5 @@
 import type { FnU4 } from "@thi.ng/api";
-import type { ReadonlyVec } from "./api";
+import type { ReadonlyVec } from "./api.js";
 
 /**
  * Returns 6x the signed volume of the tetrahedron defined by given 3D points.

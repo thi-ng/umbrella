@@ -1,3 +1,3 @@
-export * from "./api";
-export * from "./array";
-export * from "./object";
+export * from "./api.js";
+export * from "./array.js";
+export * from "./object.js";

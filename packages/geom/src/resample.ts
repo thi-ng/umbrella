@@ -2,11 +2,11 @@ import type { MultiFn2 } from "@thi.ng/defmulti";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
 import type { IShape, PCLike, SamplingOpts } from "@thi.ng/geom-api";
 import { resample as _resample } from "@thi.ng/geom-resample/resample";
-import { Polygon } from "./api/polygon";
-import { Polyline } from "./api/polyline";
-import { asPolygon } from "./as-polygon";
-import { __copyAttribs } from "./internal/copy";
-import { __dispatch } from "./internal/dispatch";
+import { Polygon } from "./api/polygon.js";
+import { Polyline } from "./api/polyline.js";
+import { asPolygon } from "./as-polygon.js";
+import { __copyAttribs } from "./internal/copy.js";
+import { __dispatch } from "./internal/dispatch.js";
 
 export const resample: MultiFn2<
     IShape,

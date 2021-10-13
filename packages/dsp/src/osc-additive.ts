@@ -1,7 +1,7 @@
 import type { Fn } from "@thi.ng/api";
-import { gibbs } from "./anti-alias";
-import type { StatelessOscillator } from "./api";
-import { sin } from "./osc-sin";
+import { gibbs } from "./anti-alias.js";
+import type { StatelessOscillator } from "./api.js";
+import { sin } from "./osc-sin.js";
 
 /**
  * Higher order function to produce an additive version of given

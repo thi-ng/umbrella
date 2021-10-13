@@ -1,4 +1,4 @@
-import { __argAttribs } from "./args";
+import { __argAttribs } from "./args.js";
 import type { PCLikeConstructor } from "@thi.ng/geom-api";
 
 export const __pclike = (ctor: PCLikeConstructor, args: any[]) => {

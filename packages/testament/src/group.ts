@@ -5,9 +5,9 @@ import {
     LifecycleCtx,
     TestCtx,
     TestResult,
-} from "./api";
-import { register } from "./exec";
-import { test } from "./test";
+} from "./api.js";
+import { register } from "./exec.js";
+import { test } from "./test.js";
 
 /**
  * Registers a new group of test cases specified in given `tests` object. The

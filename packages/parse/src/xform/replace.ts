@@ -1,5 +1,5 @@
-import type { Parser, ScopeTransform } from "../api";
-import { xform } from "../combinators/xform";
+import type { Parser, ScopeTransform } from "../api.js";
+import { xform } from "../combinators/xform.js";
 
 /**
  * HOF scope transform which replaces a node's result with given pre-configured
@@ -7,11 +7,13 @@ import { xform } from "../combinators/xform";
  *
  * @param result - replacement value
  */
-export const xfReplace = <T>(result: any): ScopeTransform<T> => (scope) => {
-    scope!.result = result;
-    scope!.children = null;
-    return scope;
-};
+export const xfReplace =
+    <T>(result: any): ScopeTransform<T> =>
+    (scope) => {
+        scope!.result = result;
+        scope!.children = null;
+        return scope;
+    };
 
 /**
  * Syntax sugar for `xform(parser, xfReplace(result))`.

@@ -1,9 +1,9 @@
-import type { SortOpts, Transducer } from "./api";
-import { comp } from "./comp";
-import { __sortOpts } from "./internal/sort-opts";
-import { __iter } from "./iterator";
-import { map } from "./map";
-import { partition } from "./partition";
+import type { SortOpts, Transducer } from "./api.js";
+import { comp } from "./comp.js";
+import { __sortOpts } from "./internal/sort-opts.js";
+import { __iter } from "./iterator.js";
+import { map } from "./map.js";
+import { partition } from "./partition.js";
 
 /**
  * Transducer. Similar to {@link (movingAverage:1)}, but yields median

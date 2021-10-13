@@ -1,9 +1,9 @@
-export * from "./api";
-export * from "./binary";
-export * from "./disjoint-set";
-export * from "./list";
-export * from "./sparse";
+export * from "./api.js";
+export * from "./binary.js";
+export * from "./disjoint-set.js";
+export * from "./list.js";
+export * from "./sparse.js";
 
-export * from "./bfs";
-export * from "./dfs";
-export * from "./mst";
+export * from "./bfs.js";
+export * from "./dfs.js";
+export * from "./mst.js";

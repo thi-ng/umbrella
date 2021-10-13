@@ -2,11 +2,11 @@ import type { MultiFn1O } from "@thi.ng/defmulti";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
 import type { IShape, SamplingOpts } from "@thi.ng/geom-api";
 import { set } from "@thi.ng/vectors/set";
-import type { Path } from "./api/path";
-import { Polyline } from "./api/polyline";
-import { __copyAttribs } from "./internal/copy";
-import { __dispatch } from "./internal/dispatch";
-import { vertices } from "./vertices";
+import type { Path } from "./api/path.js";
+import { Polyline } from "./api/polyline.js";
+import { __copyAttribs } from "./internal/copy.js";
+import { __dispatch } from "./internal/dispatch.js";
+import { vertices } from "./vertices.js";
 
 export const asPolyline: MultiFn1O<
     IShape,

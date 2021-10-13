@@ -1,4 +1,4 @@
-import { MAdd } from "./madd";
+import { MAdd } from "./madd.js";
 
 /**
  * Returns new {@link MAdd} gen, producing an exponential curve (with

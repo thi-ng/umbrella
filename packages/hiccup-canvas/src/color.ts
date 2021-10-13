@@ -1,6 +1,6 @@
 import { isString } from "@thi.ng/checks/is-string";
 import { css } from "@thi.ng/color/css/css";
-import type { DrawState } from "./api";
+import type { DrawState } from "./api.js";
 
 export const resolveColor = css;
 

@@ -1,7 +1,7 @@
 import { ONE3 } from "@thi.ng/vectors/api";
 import { sub3 } from "@thi.ng/vectors/sub";
-import type { ColorOp } from "./api";
-import { clamp } from "./clamp";
+import type { ColorOp } from "./api.js";
+import { clamp } from "./clamp.js";
 
 /**
  * Inverts the RGB channels of an RGBA color.

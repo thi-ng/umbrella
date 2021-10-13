@@ -1,5 +1,5 @@
 import type { NumericArray } from "@thi.ng/api";
-import { AProc } from "./aproc";
+import { AProc } from "./aproc.js";
 
 /**
  * Returns a new {@link Bounce} processor, which receives a multi-track tuple

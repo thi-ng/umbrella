@@ -1,7 +1,7 @@
 import type { FnN2 } from "@thi.ng/api";
 import { assert } from "@thi.ng/errors/assert";
 import { ensureIndex } from "@thi.ng/errors/out-of-bounds";
-import type { NzEntry } from "./api";
+import type { NzEntry } from "./api.js";
 
 export type BinOp = FnN2;
 

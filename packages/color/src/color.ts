@@ -5,22 +5,22 @@ import type {
     ColorMode,
     ParsedColor,
     TypedColor,
-} from "./api";
-import { hcy } from "./hcy/hcy";
-import { hsi } from "./hsi/hsi";
-import { hsl } from "./hsl/hsl";
-import { hsv } from "./hsv/hsv";
-import { argb32, abgr32 } from "./int/int";
-import { labD50 } from "./lab/lab50";
-import { labD65 } from "./lab/lab65";
-import { lch } from "./lch/lch";
-import { oklab } from "./oklab/oklab";
-import { rgb } from "./rgb/rgb";
-import { srgb } from "./srgb/srgb";
-import { xyy } from "./xyy/xyy";
-import { xyzD50 } from "./xyz/xyz50";
-import { xyzD65 } from "./xyz/xyz65";
-import { ycc } from "./ycc/ycc";
+} from "./api.js";
+import { hcy } from "./hcy/hcy.js";
+import { hsi } from "./hsi/hsi.js";
+import { hsl } from "./hsl/hsl.js";
+import { hsv } from "./hsv/hsv.js";
+import { argb32, abgr32 } from "./int/int.js";
+import { labD50 } from "./lab/lab50.js";
+import { labD65 } from "./lab/lab65.js";
+import { lch } from "./lch/lch.js";
+import { oklab } from "./oklab/oklab.js";
+import { rgb } from "./rgb/rgb.js";
+import { srgb } from "./srgb/srgb.js";
+import { xyy } from "./xyy/xyy.js";
+import { xyzD50 } from "./xyz/xyz50.js";
+import { xyzD65 } from "./xyz/xyz65.js";
+import { ycc } from "./ycc/ycc.js";
 
 const FACTORIES: Record<ColorMode, ColorFactory<any>> = {
     argb32,

@@ -1,5 +1,5 @@
 import type { FnN, FnN2 } from "@thi.ng/api";
-import { EPS } from "./api";
+import { EPS } from "./api.js";
 
 /**
  * Similar to {@link fmod}, {@link remainder}. Returns `a - b * floor(a / b)`

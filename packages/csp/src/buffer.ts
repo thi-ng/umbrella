@@ -1,5 +1,5 @@
 import { DCons } from "@thi.ng/dcons/dcons";
-import type { ChannelItem, IBuffer } from "./api";
+import type { ChannelItem, IBuffer } from "./api.js";
 
 export class FixedBuffer<T> implements IBuffer<T> {
     buf: DCons<ChannelItem<T>>;

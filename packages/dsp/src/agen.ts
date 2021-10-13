@@ -1,5 +1,5 @@
-import type { IGen } from "./api";
-import { __take } from "./internal/take";
+import type { IGen } from "./api.js";
+import { __take } from "./internal/take.js";
 
 /**
  * Abstract base class for unit gens in this package. Provides

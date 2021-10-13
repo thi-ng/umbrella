@@ -7,7 +7,7 @@ import { dot } from "@thi.ng/vectors/dot";
 import { maddN } from "@thi.ng/vectors/maddn";
 import { mulN } from "@thi.ng/vectors/muln";
 import { sub } from "@thi.ng/vectors/sub";
-import { NONE } from "./api";
+import { NONE } from "./api.js";
 
 export const intersectRayPlane = (
     rpos: ReadonlyVec,

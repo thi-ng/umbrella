@@ -6,9 +6,9 @@ import type {
     IComponent,
     IMountWithState,
     NumOrElement,
-} from "./api";
-import { Component } from "./component";
-import { $sub } from "./sub";
+} from "./api.js";
+import { Component } from "./component.js";
+import { $sub } from "./sub.js";
 
 /**
  * Creates a control component wrapper with an internal stream setup for user

@@ -1,9 +1,9 @@
 import type { Fn2 } from "@thi.ng/api";
-import type { Transducer } from "./api";
-import { cat } from "./cat";
-import { comp } from "./comp";
-import { __iter, iterator } from "./iterator";
-import { mapIndexed } from "./map-indexed";
+import type { Transducer } from "./api.js";
+import { cat } from "./cat.js";
+import { comp } from "./comp.js";
+import { __iter, iterator } from "./iterator.js";
+import { mapIndexed } from "./map-indexed.js";
 
 /**
  * Transducer. Similar to {@link (mapcat:1)}, but given `fn` takes two

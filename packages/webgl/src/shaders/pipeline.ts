@@ -3,7 +3,7 @@ import { defMain } from "@thi.ng/shader-ast/ast/function";
 import { FLOAT0, FLOAT1, vec4 } from "@thi.ng/shader-ast/ast/lit";
 import { $xy } from "@thi.ng/shader-ast/ast/swizzle";
 import { texture } from "@thi.ng/shader-ast/builtin/texture";
-import type { ShaderFn, ShaderSpec } from "../api/shader";
+import type { ShaderFn, ShaderSpec } from "../api/shader.js";
 
 export const PASSTHROUGH_VS: ShaderFn = (gl, _, ins) => [
     defMain(() => [assign(gl.gl_Position, vec4(ins.position, FLOAT0, FLOAT1))]),

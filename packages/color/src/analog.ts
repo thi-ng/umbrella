@@ -5,8 +5,8 @@ import { fract } from "@thi.ng/math/prec";
 import type { IRandom } from "@thi.ng/random";
 import { SYSTEM } from "@thi.ng/random/system";
 import { setC4 } from "@thi.ng/vectors/setc";
-import type { Color, ReadonlyColor, TypedColor } from "./api";
-import { __ensureAlpha } from "./internal/ensure";
+import type { Color, ReadonlyColor, TypedColor } from "./api.js";
+import { __ensureAlpha } from "./internal/ensure.js";
 
 /** @internal */
 const analogU = (x: number, delta: number, rnd: IRandom) =>

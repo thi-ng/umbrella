@@ -29,9 +29,9 @@ import type {
     TripleIds,
     Triples,
     WhereQuerySpec,
-} from "./api";
-import { patternVars, resolvePathPattern } from "./pattern";
-import { isQVar, qvarResolver } from "./qvar";
+} from "./api.js";
+import { patternVars, resolvePathPattern } from "./pattern.js";
+import { isQVar, qvarResolver } from "./qvar.js";
 import {
     bindVars,
     filterSolutions,
@@ -41,7 +41,7 @@ import {
     joinSolutions,
     limitSolutions,
     resultTriples,
-} from "./xforms";
+} from "./xforms.js";
 
 export class TripleStore implements Iterable<Triple>, IToDot {
     NEXT_ID: number;

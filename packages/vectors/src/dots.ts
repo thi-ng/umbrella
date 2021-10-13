@@ -1,6 +1,6 @@
-import type { ReadonlyVec, VecOpSRoVV } from "./api";
-import { compile } from "./compile/emit";
-import { DOT, SARGS_V } from "./compile/templates";
+import type { ReadonlyVec, VecOpSRoVV } from "./api.js";
+import { compile } from "./compile/emit.js";
+import { DOT, SARGS_V } from "./compile/templates.js";
 
 export const dotS = (
     a: ReadonlyVec,

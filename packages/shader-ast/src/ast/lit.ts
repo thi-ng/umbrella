@@ -1,7 +1,7 @@
 import type { Fn } from "@thi.ng/api";
 import { isBoolean } from "@thi.ng/checks/is-boolean";
 import { isNumber } from "@thi.ng/checks/is-number";
-import type { Lit, Term } from "../api/nodes";
+import type { Lit, Term } from "../api/nodes.js";
 import type {
     BVec2Term,
     BVec3Term,
@@ -15,9 +15,9 @@ import type {
     Vec2Term,
     Vec3Term,
     Vec4Term,
-} from "../api/terms";
-import type { NumericB, NumericF, Type } from "../api/types";
-import { isVec } from "./checks";
+} from "../api/terms.js";
+import type { NumericB, NumericF, Type } from "../api/types.js";
+import { isVec } from "./checks.js";
 
 export const lit = <T extends Type>(type: T, val: any, info?: string): Lit<T> =>
     type === val.type && info === val.info

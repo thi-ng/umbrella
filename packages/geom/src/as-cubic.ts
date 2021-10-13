@@ -12,20 +12,20 @@ import {
 import { TAU } from "@thi.ng/math/api";
 import { mapcat } from "@thi.ng/transducers/mapcat";
 import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
-import type { Circle } from "./api/circle";
-import { Cubic } from "./api/cubic";
-import type { Group } from "./api/group";
-import type { Line } from "./api/line";
-import type { Path } from "./api/path";
-import type { Polygon } from "./api/polygon";
-import type { Polyline } from "./api/polyline";
-import type { Quadratic } from "./api/quadratic";
-import type { Rect } from "./api/rect";
-import { arc } from "./arc";
-import { asPolygon } from "./as-polygon";
-import { cubicFromArc, cubicFromLine, cubicFromQuadratic } from "./cubic";
-import { __copyAttribs } from "./internal/copy";
-import { __dispatch } from "./internal/dispatch";
+import type { Circle } from "./api/circle.js";
+import { Cubic } from "./api/cubic.js";
+import type { Group } from "./api/group.js";
+import type { Line } from "./api/line.js";
+import type { Path } from "./api/path.js";
+import type { Polygon } from "./api/polygon.js";
+import type { Polyline } from "./api/polyline.js";
+import type { Quadratic } from "./api/quadratic.js";
+import type { Rect } from "./api/rect.js";
+import { arc } from "./arc.js";
+import { asPolygon } from "./as-polygon.js";
+import { cubicFromArc, cubicFromLine, cubicFromQuadratic } from "./cubic.js";
+import { __copyAttribs } from "./internal/copy.js";
+import { __dispatch } from "./internal/dispatch.js";
 
 export const asCubic: MultiFn1O<IShape, Partial<CubicOpts>, Cubic[]> = defmulti(
     __dispatch,

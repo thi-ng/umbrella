@@ -6,8 +6,8 @@ import { serialize } from "@thi.ng/hiccup/serialize";
 import { fit } from "@thi.ng/math/fit";
 import { repeat } from "@thi.ng/strings/repeat";
 import { barChartHLines } from "@thi.ng/text-canvas/bars";
-import type { AsciiVizOpts, InstrumentFn, VizualizeVarOpts } from "./api";
-import { varToHiccup } from "./var";
+import type { AsciiVizOpts, InstrumentFn, VizualizeVarOpts } from "./api.js";
+import { varToHiccup } from "./var.js";
 
 /**
  * Higher order function. Takes an existing {@link @thi.ng/fuzzy#DefuzzStrategy}

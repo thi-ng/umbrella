@@ -31,7 +31,7 @@ import {
     InterceptorFn,
     LOGGER,
     SideEffect,
-} from "./api";
+} from "./api.js";
 
 /**
  * Batched event processor for using composable interceptors for event

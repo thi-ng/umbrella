@@ -5,7 +5,7 @@ import { MAX2, MIN2, ReadonlyVec, Vec, VecPair } from "@thi.ng/vectors/api";
 import { max2 } from "@thi.ng/vectors/max";
 import { min2 } from "@thi.ng/vectors/min";
 import { set2 } from "@thi.ng/vectors/set";
-import { pointAtTheta } from "./point-at";
+import { pointAtTheta } from "./point-at.js";
 
 export const bounds = (
     pos: ReadonlyVec,

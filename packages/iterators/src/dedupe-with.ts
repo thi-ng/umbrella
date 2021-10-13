@@ -1,5 +1,5 @@
 import type { Predicate2 } from "@thi.ng/api";
-import { iterator } from "./iterator";
+import { iterator } from "./iterator.js";
 
 export function* dedupeWith<T>(equiv: Predicate2<T>, input: Iterable<T>) {
     let iter = iterator(input);

@@ -1,6 +1,6 @@
 import type { Path } from "@thi.ng/api";
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
-import { setIn } from "./set-in";
+import { setIn } from "./set-in.js";
 
 /**
  * Similar to {@link setInUnsafe}, but takes any number of path-value

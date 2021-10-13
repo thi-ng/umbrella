@@ -1,19 +1,19 @@
-export * from "./api";
+export * from "./api.js";
 
-export * from "./delete-in";
+export * from "./delete-in.js";
 
-export * from "./getter";
-export * from "./get-in";
+export * from "./getter.js";
+export * from "./get-in.js";
 
-export * from "./mut-in";
-export * from "./mut-in-many";
-export * from "./mutator";
+export * from "./mut-in.js";
+export * from "./mut-in-many.js";
+export * from "./mutator.js";
 
-export * from "./path";
+export * from "./path.js";
 
-export * from "./setter";
-export * from "./set-in";
-export * from "./set-in-many";
+export * from "./setter.js";
+export * from "./set-in.js";
+export * from "./set-in-many.js";
 
-export * from "./updater";
-export * from "./update-in";
+export * from "./updater.js";
+export * from "./update-in.js";

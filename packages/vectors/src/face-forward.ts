@@ -1,7 +1,7 @@
-import type { VecOpVVV } from "./api";
-import { dot } from "./dot";
-import { mulN } from "./muln";
-import { set } from "./set";
+import type { VecOpVVV } from "./api.js";
+import { dot } from "./dot.js";
+import { mulN } from "./muln.js";
+import { set } from "./set.js";
 
 export const faceForward: VecOpVVV = (out, n, i, nref) => {
     !out && (out = n);

@@ -1,4 +1,4 @@
-import { U16, U32 } from "./radix";
+import { U16, U32 } from "./radix.js";
 
 export const ESCAPES: Record<string, string> = {
     0: "\0",

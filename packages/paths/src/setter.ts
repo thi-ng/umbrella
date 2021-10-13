@@ -16,7 +16,7 @@ import type {
 } from "@thi.ng/api";
 import { isArray } from "@thi.ng/checks/is-array";
 import { isTypedArray } from "@thi.ng/checks/is-typedarray";
-import { toPath } from "./path";
+import { toPath } from "./path.js";
 
 /**
  * Composes a setter function for given nested update path. Optimized

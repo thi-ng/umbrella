@@ -15,7 +15,7 @@ import {
     mod,
     sqrt,
 } from "@thi.ng/shader-ast/builtin/math";
-import { permute3 } from "./permute";
+import { permute3 } from "./permute.js";
 
 export const worleyDist = defn(
     "vec3",

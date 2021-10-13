@@ -1,6 +1,6 @@
 import type { IObjectOf } from "@thi.ng/api";
-import type { Reducer } from "./api";
-import { reduce, reducer } from "./reduce";
+import type { Reducer } from "./api.js";
+import { reduce, reducer } from "./reduce.js";
 
 /**
  * Reducer accepting values of any type and assigning them to auto-labeled keys

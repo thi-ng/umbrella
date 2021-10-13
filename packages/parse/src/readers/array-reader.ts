@@ -1,4 +1,4 @@
-import type { ParseState, IReader } from "../api";
+import type { ParseState, IReader } from "../api.js";
 
 class ArrayReader<T> implements IReader<T> {
     constructor(protected _src: ArrayLike<T>) {}

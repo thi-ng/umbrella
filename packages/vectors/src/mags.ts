@@ -1,5 +1,5 @@
-import type { VecOpSGRoV, VecOpSRoV } from "./api";
-import { dotS, dotS2, dotS3, dotS4 } from "./dots";
+import type { VecOpSGRoV, VecOpSRoV } from "./api.js";
+import { dotS, dotS2, dotS3, dotS4 } from "./dots.js";
 
 export const magS: VecOpSGRoV<number> = (a, num, ia, sa) =>
     Math.sqrt(dotS(a, a, num, ia, ia, sa, sa));

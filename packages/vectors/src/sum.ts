@@ -1,7 +1,7 @@
 import { add } from "@thi.ng/transducers/add";
 import { reduce } from "@thi.ng/transducers/reduce";
-import type { MultiVecOpRoV } from "./api";
-import { vop } from "./vop";
+import type { MultiVecOpRoV } from "./api.js";
+import { vop } from "./vop.js";
 
 /**
  * Returns component sum of vector `v`.

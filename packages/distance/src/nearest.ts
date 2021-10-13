@@ -1,8 +1,8 @@
 import type { IDeref } from "@thi.ng/api";
 import { clamp0 } from "@thi.ng/math/interval";
 import type { ReadonlyVec } from "@thi.ng/vectors";
-import type { IDistance, INeighborhood, Neighbor } from "./api";
-import { DIST_SQ, DIST_SQ1, DIST_SQ2, DIST_SQ3 } from "./squared";
+import type { IDistance, INeighborhood, Neighbor } from "./api.js";
+import { DIST_SQ, DIST_SQ1, DIST_SQ2, DIST_SQ3 } from "./squared.js";
 
 /**
  * A {@link INeighborhood} implementation for nearest neighbor queries around a

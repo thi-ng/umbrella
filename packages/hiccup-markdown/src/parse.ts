@@ -11,7 +11,7 @@ import { str } from "@thi.ng/fsm/str";
 import { untilStr } from "@thi.ng/fsm/until";
 import { comp } from "@thi.ng/transducers/comp";
 import { filter } from "@thi.ng/transducers/filter";
-import type { TagFactories } from "./api";
+import type { TagFactories } from "./api.js";
 
 type ParseResult = ResultBody<any[]>;
 

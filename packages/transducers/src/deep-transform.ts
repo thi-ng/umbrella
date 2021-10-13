@@ -1,5 +1,5 @@
 import { isFunction } from "@thi.ng/checks/is-function";
-import type { TransformSpec } from "./api";
+import type { TransformSpec } from "./api.js";
 
 /**
  * Higher-order deep object transformer used by {@link (mapDeep:1)}.

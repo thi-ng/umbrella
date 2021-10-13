@@ -3,7 +3,7 @@ import type { AABBLike, Attribs, IHiccupShape } from "@thi.ng/geom-api";
 import type { Vec } from "@thi.ng/vectors";
 import { add2 } from "@thi.ng/vectors/add";
 import { set2 } from "@thi.ng/vectors/set";
-import { __copyAttribs } from "../internal/copy";
+import { __copyAttribs } from "../internal/copy.js";
 
 export class Rect implements AABBLike, IHiccupShape {
     size: Vec;

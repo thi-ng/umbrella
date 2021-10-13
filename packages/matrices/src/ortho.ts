@@ -1,5 +1,5 @@
 import { setC } from "@thi.ng/vectors/setc";
-import type { Mat } from "./api";
+import type { Mat } from "./api.js";
 
 /**
  * Creates a 4x4 matrix orthographic projection matrix and writes result

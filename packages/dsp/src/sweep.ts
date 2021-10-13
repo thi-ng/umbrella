@@ -1,5 +1,5 @@
-import { addG } from "./addg";
-import { curve } from "./curve";
+import { addG } from "./addg.js";
+import { curve } from "./curve.js";
 
 /**
  * Similar to {@link curve}, but with added accumulation (via
