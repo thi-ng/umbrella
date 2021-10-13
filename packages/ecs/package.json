@@ -41,7 +41,7 @@
         "@thi.ng/dcons": "^3.0.0",
         "@thi.ng/errors": "^2.0.0",
         "@thi.ng/idgen": "^2.0.0",
-        "@thi.ng/logger": "^0.1.0",
+        "@thi.ng/logger": "^1.0.0",
         "@thi.ng/malloc": "^6.0.0",
         "@thi.ng/transducers": "^8.0.0",
         "tslib": "^2.3.1"

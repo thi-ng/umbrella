@@ -42,7 +42,7 @@
         "@thi.ng/args": "^2.0.0",
         "@thi.ng/bench": "^3.0.0",
         "@thi.ng/errors": "^2.0.0",
-        "@thi.ng/logger": "^0.1.0",
+        "@thi.ng/logger": "^1.0.0",
         "@thi.ng/pointfree": "^3.0.0"
     },
     "devDependencies": {

@@ -36,7 +36,7 @@
     "dependencies": {
         "@thi.ng/api": "^8.0.0",
         "@thi.ng/dgraph": "^2.0.0",
-        "@thi.ng/logger": "^0.1.0"
+        "@thi.ng/logger": "^1.0.0"
     },
     "devDependencies": {
         "@thi.ng/testament": "^0.1.0"

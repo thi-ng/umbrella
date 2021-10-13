@@ -40,7 +40,7 @@
         "@thi.ng/geom-clip-line": "^2.0.0",
         "@thi.ng/math": "^5.0.0",
         "@thi.ng/strings": "^3.0.0",
-        "@thi.ng/text-format": "^0.1.0",
+        "@thi.ng/text-format": "^1.0.0",
         "@thi.ng/transducers": "^8.0.0"
     },
     "devDependencies": {

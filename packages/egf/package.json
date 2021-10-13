@@ -34,7 +34,7 @@
         "@thi.ng/checks": "^3.0.0",
         "@thi.ng/dot": "^2.0.0",
         "@thi.ng/errors": "^2.0.0",
-        "@thi.ng/logger": "^0.1.0",
+        "@thi.ng/logger": "^1.0.0",
         "@thi.ng/prefixes": "^2.0.0",
         "@thi.ng/strings": "^3.0.0",
         "@thi.ng/transducers-binary": "^2.0.0"

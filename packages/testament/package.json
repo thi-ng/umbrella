@@ -37,7 +37,7 @@
         "test": "testament test"
     },
     "dependencies": {
-        "@thi.ng/logger": "^0.1.0",
+        "@thi.ng/logger": "^1.0.0",
         "chokidar": "^3.5.2"
     },
     "keywords": [

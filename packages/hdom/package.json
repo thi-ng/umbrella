@@ -40,7 +40,7 @@
         "@thi.ng/equiv": "^2.0.0",
         "@thi.ng/errors": "^2.0.0",
         "@thi.ng/hiccup": "^4.0.0",
-        "@thi.ng/logger": "^0.1.0",
+        "@thi.ng/logger": "^1.0.0",
         "@thi.ng/prefixes": "^2.0.0"
     },
     "devDependencies": {

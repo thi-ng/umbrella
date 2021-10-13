@@ -39,7 +39,7 @@
         "@thi.ng/checks": "^3.0.0",
         "@thi.ng/equiv": "^2.0.0",
         "@thi.ng/errors": "^2.0.0",
-        "@thi.ng/logger": "^0.1.0",
+        "@thi.ng/logger": "^1.0.0",
         "@thi.ng/math": "^5.0.0",
         "@thi.ng/rstream": "^7.0.0",
         "@thi.ng/rstream-dot": "^2.0.0",
