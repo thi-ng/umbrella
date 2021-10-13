@@ -54,6 +54,9 @@
     "publishConfig": {
         "access": "public"
     },
+    "engines": {
+        "node": ">=12.7"
+    },
     "files": [
         "*.js",
         "*.d.ts"

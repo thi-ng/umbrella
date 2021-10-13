@@ -50,6 +50,9 @@
         "process": false,
         "setTimeout": false
     },
+    "engines": {
+        "node": ">=12.7"
+    },
     "files": [
         "*.js",
         "*.d.ts",

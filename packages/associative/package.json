@@ -71,6 +71,9 @@
     "browser": {
         "util": false
     },
+    "engines": {
+        "node": ">=12.7"
+    },
     "files": [
         "*.js",
         "*.d.ts",
