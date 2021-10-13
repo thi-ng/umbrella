@@ -9,4 +9,4 @@ while [ -h "$SOURCE" ]; do
 done
 DIR="$( cd -P "$( dirname "$SOURCE" )" >/dev/null 2>&1 && pwd )"
 
-/usr/bin/env node --no-warnings --experimental-specifier-resolution=node --loader ts-node/esm "$DIR/../cli.js" "$@"
+/usr/bin/env node "$DIR/../cli.js" "$@"
