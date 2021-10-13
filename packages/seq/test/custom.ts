@@ -1,7 +1,7 @@
 import type { ISeqable } from "@thi.ng/api";
 import { group } from "@thi.ng/testament";
 import * as assert from "assert";
-import { concat, ensureSeq, iterator } from "../src";
+import { concat, ensureSeq, iterator } from "../src/index.js"
 
 export class Range implements ISeqable<number> {
     n: number;

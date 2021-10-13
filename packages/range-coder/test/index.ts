@@ -1,7 +1,7 @@
 import { group } from "@thi.ng/testament";
 import { repeat, repeatedly } from "@thi.ng/transducers";
 import * as assert from "assert";
-import { decodeBytes, encodeBytes } from "../src";
+import { decodeBytes, encodeBytes } from "../src/index.js"
 
 group("range-coder", {
     fixed: () => {

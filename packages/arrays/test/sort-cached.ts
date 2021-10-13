@@ -1,7 +1,7 @@
 import { compare, reverse } from "@thi.ng/compare";
 import * as assert from "assert";
 import { group } from "@thi.ng/testament";
-import { sortByCachedKey } from "../src";
+import { sortByCachedKey } from "../src/index.js"
 
 group("sortCached", {
     "key fn": () => {

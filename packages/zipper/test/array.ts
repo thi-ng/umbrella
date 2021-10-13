@@ -1,6 +1,6 @@
 import { group } from "@thi.ng/testament";
 import * as assert from "assert";
-import { arrayZipper, Location } from "../src";
+import { arrayZipper, Location } from "../src/index.js"
 
 let src: any[];
 let a: Location<number | number[] | (number | number[])[]>;

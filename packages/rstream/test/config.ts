@@ -1,5 +1,5 @@
 import { ConsoleLogger } from "@thi.ng/logger";
-import { setLogger } from "../src";
+import { setLogger } from "../src/index.js"
 
 /**
  * Default base delay for time based tests

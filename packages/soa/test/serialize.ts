@@ -1,6 +1,6 @@
 import { group } from "@thi.ng/testament";
 import * as assert from "assert";
-import { scalar, serializer, soa, utf8z } from "../src";
+import { scalar, serializer, soa, utf8z } from "../src/index.js"
 
 group("serialize", {
     scalar: () => {

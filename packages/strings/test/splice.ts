@@ -1,6 +1,6 @@
 import { group } from "@thi.ng/testament";
 import * as assert from "assert";
-import { splice } from "../src";
+import { splice } from "../src/index.js"
 
 const SRC = "abc";
 

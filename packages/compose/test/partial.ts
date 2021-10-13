@@ -1,6 +1,6 @@
 import * as assert from "assert";
 import { group } from "@thi.ng/testament";
-import { partial } from "../src";
+import { partial } from "../src/index.js"
 
 const fn = (
     a: any,

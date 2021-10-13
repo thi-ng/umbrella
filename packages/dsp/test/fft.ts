@@ -19,7 +19,7 @@ import {
     spectrumPow,
     window,
     windowRect,
-} from "../src";
+} from "../src/index.js"
 
 const deltaEq = (a: NumericArray, b: NumericArray, eps = 1e-3) => {
     if (a.length != b.length) return false;

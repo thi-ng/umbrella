@@ -1,6 +1,6 @@
 import { group } from "@thi.ng/testament";
 import * as assert from "assert";
-import { defContext, defGrammar, ParseScope } from "../src";
+import { defContext, defGrammar, ParseScope } from "../src/index.js"
 
 const grammar = `
 list: '('! <expr> ')'! ;

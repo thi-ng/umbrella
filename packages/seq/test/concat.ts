@@ -1,6 +1,6 @@
 import { group } from "@thi.ng/testament";
 import * as assert from "assert";
-import { aseq, concat, concatA, iterator, rseq } from "../src";
+import { aseq, concat, concatA, iterator, rseq } from "../src/index.js"
 
 group("concat / iterator", {
     concat: () => {

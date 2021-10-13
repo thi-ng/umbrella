@@ -10,9 +10,9 @@ import {
     stream,
     Stream,
     subscription,
-} from "../src";
-import { TIMEOUT } from "./config";
-import { assertActive, assertError, assertIdle, assertUnsub } from "./utils";
+} from "../src/index.js"
+import { TIMEOUT } from "./config.js";
+import { assertActive, assertError, assertIdle, assertUnsub } from "./utils.js";
 
 let src: Stream<number>;
 

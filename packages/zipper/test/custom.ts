@@ -1,6 +1,6 @@
 import { group } from "@thi.ng/testament";
 import * as assert from "assert";
-import { Location, zipper } from "../src";
+import { Location, zipper } from "../src/index.js"
 
 interface Branch {
     type: "root" | "branch";

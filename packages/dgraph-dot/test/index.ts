@@ -1,7 +1,7 @@
 import { defDGraph } from "@thi.ng/dgraph";
 import { group } from "@thi.ng/testament";
 import * as assert from "assert";
-import { toDot } from "../src";
+import { toDot } from "../src/index.js"
 
 group("dgraph-dot", {
     basic: () => {

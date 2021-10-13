@@ -1,6 +1,6 @@
 import { group } from "@thi.ng/testament";
 import * as assert from "assert";
-import { partitionSync, step } from "../src";
+import { partitionSync, step } from "../src/index.js"
 
 const src = [
     ["a", 1],

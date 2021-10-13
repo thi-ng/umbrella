@@ -1,6 +1,6 @@
 import { group } from "@thi.ng/testament";
 import * as assert from "assert";
-import { EVENT_ADDED, EVENT_REMOVED, IDGen } from "../src";
+import { EVENT_ADDED, EVENT_REMOVED, IDGen } from "../src/index.js"
 
 group("idgen", {
     "re-use (versioned)": () => {

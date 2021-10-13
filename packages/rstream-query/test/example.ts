@@ -1,5 +1,5 @@
 import { trace } from "@thi.ng/rstream";
-import * as q from "../src";
+import * as q from "../src/index.js"
 
 const store = new q.TripleStore([
     ["london", "type", "city"],

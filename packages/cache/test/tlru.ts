@@ -1,6 +1,6 @@
 import * as assert from "assert";
 import { group } from "@thi.ng/testament";
-import { TLRUCache } from "../src";
+import { TLRUCache } from "../src/index.js"
 
 let c: TLRUCache<string, number>;
 let evicts: any[];

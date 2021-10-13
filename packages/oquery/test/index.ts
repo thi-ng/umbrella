@@ -1,7 +1,7 @@
 import { isNumber } from "@thi.ng/checks";
 import { group } from "@thi.ng/testament";
 import * as assert from "assert";
-import { defKeyQuery, defQuery, OTerm, QueryType, SPInputTerm } from "../src";
+import { defKeyQuery, defQuery, OTerm, QueryType, SPInputTerm } from "../src/index.js"
 
 const DB = {
     alice: {

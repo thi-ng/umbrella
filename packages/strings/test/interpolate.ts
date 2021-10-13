@@ -1,6 +1,6 @@
 import { group } from "@thi.ng/testament";
 import * as assert from "assert";
-import { interpolateKeys } from "../src";
+import { interpolateKeys } from "../src/index.js"
 
 group("interpolateKeys", {
     basic: () => {

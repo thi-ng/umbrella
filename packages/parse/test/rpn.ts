@@ -1,7 +1,7 @@
 import type { Fn2 } from "@thi.ng/api";
 import { group } from "@thi.ng/testament";
 import * as assert from "assert";
-import { alt, defContext, FLOAT, oneOf, WS0, xform, zeroOrMore } from "../src";
+import { alt, defContext, FLOAT, oneOf, WS0, xform, zeroOrMore } from "../src/index.js"
 
 group("parse", {
     "RPN calc": () => {

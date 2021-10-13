@@ -1,6 +1,6 @@
 import { group } from "@thi.ng/testament";
 import * as assert from "assert";
-import { range, take } from "../src";
+import { range, take } from "../src/index.js"
 
 group("take", {
     "iterates up to N items": () => {

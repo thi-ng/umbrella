@@ -11,7 +11,7 @@ import {
     units,
     unitsLessThan,
     withLocale,
-} from "../src";
+} from "../src/index.js"
 
 interface I18NTestSpec {
     year1: string;

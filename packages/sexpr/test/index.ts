@@ -10,7 +10,7 @@ import {
     Sym,
     SyntaxOpts,
     tokenize,
-} from "../src";
+} from "../src/index.js"
 
 const ops = defmulti<ASTNode, ASTNode[], any, any>((x) => (<Sym>x).value);
 

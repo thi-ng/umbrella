@@ -1,7 +1,7 @@
 import { Atom, Cursor, History } from "@thi.ng/atom";
 import { group } from "@thi.ng/testament";
 import * as assert from "assert";
-import { fromAtom } from "../src";
+import { fromAtom } from "../src/index.js"
 
 // prettier-ignore
 group("fromAtom", {

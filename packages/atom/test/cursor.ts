@@ -1,7 +1,7 @@
 import { isNumber } from "@thi.ng/checks";
 import { group } from "@thi.ng/testament";
 import * as assert from "assert";
-import { Atom, Cursor, defAtom, defCursor } from "../src";
+import { Atom, Cursor, defAtom, defCursor } from "../src/index.js"
 
 interface State {
     a: {

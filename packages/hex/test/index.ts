@@ -18,7 +18,7 @@ import {
     U64BE,
     U64HL,
     U64LE,
-} from "../src";
+} from "../src/index.js"
 
 const BUF = [1, 2, 3, 4, 0x10, 0x20, 0x30, 0x40];
 

@@ -1,6 +1,6 @@
 import { group } from "@thi.ng/testament";
 import * as assert from "assert";
-import { drop, range } from "../src";
+import { drop, range } from "../src/index.js"
 
 group("drop", {
     "starts iterating after N items": () => {

@@ -1,7 +1,7 @@
 import { equiv } from "@thi.ng/equiv";
 import { group } from "@thi.ng/testament";
 import * as assert from "assert";
-import { ECS, MemMappedComponent } from "../src";
+import { ECS, MemMappedComponent } from "../src/index.js"
 
 let ecs: ECS<any>;
 

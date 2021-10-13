@@ -10,7 +10,7 @@ import {
     EUCLEDIAN3,
     knearestN,
     nearestN,
-} from "../src";
+} from "../src/index.js"
 
 group("distance", {
     eucledian1: () => {

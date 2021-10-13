@@ -1,7 +1,7 @@
 import { equiv } from "@thi.ng/equiv";
 import { group } from "@thi.ng/testament";
 import * as assert from "assert";
-import { soa } from "../src";
+import { soa } from "../src/index.js"
 
 group("soa", {
     basic: () => {

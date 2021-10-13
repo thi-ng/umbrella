@@ -2,7 +2,7 @@ import { bvec2, defn, greaterThan, ret, vec2 } from "@thi.ng/shader-ast";
 import { group } from "@thi.ng/testament";
 import { eqDelta2 } from "@thi.ng/vectors";
 import * as assert from "assert";
-import { JS_DEFAULT_ENV, targetJS } from "../src";
+import { JS_DEFAULT_ENV, targetJS } from "../src/index.js"
 
 group("shader-ast-js", {
     vec2: () => {

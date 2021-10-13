@@ -7,7 +7,7 @@ import {
     defmultiN,
     implementations,
     setLogger,
-} from "../src";
+} from "../src/index.js"
 
 group("defmulti", {
     flatten: () => {

@@ -9,7 +9,7 @@ import {
     months,
     YEAR,
     years,
-} from "../src";
+} from "../src/index.js"
 
 group("iterators", {
     hours: () => {

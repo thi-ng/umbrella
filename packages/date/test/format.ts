@@ -8,7 +8,7 @@ import {
     HOUR,
     MINUTE,
     SECOND,
-} from "../src";
+} from "../src/index.js"
 
 group("date", {
     formatters: () => {

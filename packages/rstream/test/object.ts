@@ -1,7 +1,7 @@
 import { group } from "@thi.ng/testament";
 import * as assert from "assert";
-import { fromObject, stream, Subscription } from "../src";
-import { assertUnsub } from "./utils";
+import { fromObject, stream, Subscription } from "../src/index.js"
+import { assertUnsub } from "./utils.js";
 
 type Foo = { a?: number; b: string };
 

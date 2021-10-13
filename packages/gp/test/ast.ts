@@ -1,7 +1,7 @@
 import { group } from "@thi.ng/testament";
 import { XsAdd } from "@thi.ng/random";
 import * as assert from "assert";
-import { AST } from "../src";
+import { AST } from "../src/index.js"
 
 let ast: AST<string, number>;
 

@@ -14,7 +14,7 @@ import {
     TRUE,
     vec2,
     vec3,
-} from "../src";
+} from "../src/index.js"
 
 group("shader-ast", {
     "op2 type infer mulvv": () => {

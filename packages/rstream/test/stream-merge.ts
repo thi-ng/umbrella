@@ -8,8 +8,8 @@ import {
     merge,
     State,
     StreamMerge,
-} from "../src";
-import { assertActive, assertUnsub } from "./utils";
+} from "../src/index.js"
+import { assertActive, assertUnsub } from "./utils.js";
 
 let src: StreamMerge<number, number>;
 

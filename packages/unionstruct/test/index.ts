@@ -1,6 +1,6 @@
 import { group } from "@thi.ng/testament";
 import * as assert from "assert";
-import { Field, struct, union } from "../src";
+import { Field, struct, union } from "../src/index.js"
 
 let i = <Field[]>[
     ["f64", "f64"],

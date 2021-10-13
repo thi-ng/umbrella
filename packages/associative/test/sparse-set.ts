@@ -2,7 +2,7 @@ import { isSet } from "@thi.ng/checks";
 import { equiv } from "@thi.ng/equiv";
 import { group } from "@thi.ng/testament";
 import * as assert from "assert";
-import { defSparseSet, SparseSet16, SparseSet32, SparseSet8 } from "../src";
+import { defSparseSet, SparseSet16, SparseSet32, SparseSet8 } from "../src/index.js"
 
 let set: SparseSet8;
 

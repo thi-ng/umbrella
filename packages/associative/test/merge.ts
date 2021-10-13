@@ -7,7 +7,7 @@ import {
     mergeApplyMap,
     mergeApplyObj,
     mergeDeepObj,
-} from "../src";
+} from "../src/index.js"
 
 group("mergeApply", {
     map: () => {

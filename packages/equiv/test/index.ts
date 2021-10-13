@@ -1,6 +1,6 @@
 import { group } from "@thi.ng/testament";
 import * as assert from "assert";
-import { equiv } from "../src";
+import { equiv } from "../src/index.js"
 
 group("equiv", {
     null: () => {

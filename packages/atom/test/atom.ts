@@ -1,7 +1,7 @@
 import { isNumber } from "@thi.ng/checks";
 import { group } from "@thi.ng/testament";
 import * as assert from "assert";
-import { Atom } from "../src";
+import { Atom } from "../src/index.js"
 
 let a: Atom<any>;
 

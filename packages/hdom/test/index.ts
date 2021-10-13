@@ -3,7 +3,7 @@ import { derefContext } from "@thi.ng/hiccup";
 import { map, range } from "@thi.ng/iterators";
 import { group } from "@thi.ng/testament";
 import * as assert from "assert";
-import { normalizeTree } from "../src";
+import { normalizeTree } from "../src/index.js"
 
 const _check = (a: any, b: any, ctx: any = null) =>
     assert.deepStrictEqual(

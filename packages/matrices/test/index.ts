@@ -1,7 +1,7 @@
 import { group } from "@thi.ng/testament";
 import { range } from "@thi.ng/transducers";
 import * as assert from "assert";
-import * as m from "../src";
+import * as m from "../src/index.js"
 
 group("matrices", {
     "identity (fixed)": () => {

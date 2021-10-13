@@ -1,6 +1,6 @@
 import { group } from "@thi.ng/testament";
 import * as assert from "assert";
-import { serialize } from "../src";
+import { serialize } from "../src/index.js"
 
 group("hiccup-markdown", {
     serialize: () => {

@@ -1,6 +1,6 @@
 import * as assert from "assert";
 import { group } from "@thi.ng/testament";
-import { ArraySet, union } from "../src";
+import { ArraySet, union } from "../src/index.js"
 
 group("union", {
     "native (numbers)": () => {

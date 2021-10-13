@@ -1,8 +1,8 @@
 import { group } from "@thi.ng/testament";
 import * as assert from "assert";
-import { CloseMode, fromIterable, metaStream, reactive } from "../src";
-import { TIMEOUT } from "./config";
-import { assertActive, assertUnsub } from "./utils";
+import { CloseMode, fromIterable, metaStream, reactive } from "../src/index.js"
+import { TIMEOUT } from "./config.js";
+import { assertActive, assertUnsub } from "./utils.js";
 
 group(
     "MetaStream",

@@ -1,6 +1,6 @@
 import * as assert from "assert";
 import { group } from "@thi.ng/testament";
-import { TrieMap } from "../src";
+import { TrieMap } from "../src/index.js"
 
 let root: TrieMap<string>;
 

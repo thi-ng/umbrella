@@ -2,7 +2,7 @@ import { centroidStrategy, gaussian } from "@thi.ng/fuzzy";
 import { eqDelta } from "@thi.ng/math";
 import { group } from "@thi.ng/testament";
 import * as assert from "assert";
-import { fuzzySetToAscii, instrumentStrategy } from "../src";
+import { fuzzySetToAscii, instrumentStrategy } from "../src/index.js"
 
 group("fuzzy-viz", {
     "strategy (ascii)": () => {

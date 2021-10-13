@@ -15,7 +15,7 @@ import {
     ramp,
     triangle,
     variable,
-} from "../src";
+} from "../src/index.js"
 
 group("defuzz", {
     strategies: () => {

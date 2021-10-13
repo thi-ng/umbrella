@@ -1,6 +1,6 @@
 import * as assert from "assert";
 import { group } from "@thi.ng/testament";
-import { MultiTrie } from "../src";
+import { MultiTrie } from "../src/index.js"
 
 let root: MultiTrie<string, string>;
 

@@ -1,6 +1,6 @@
 import { group } from "@thi.ng/testament";
 import * as assert from "assert";
-import { filter, range } from "../src";
+import { filter, range } from "../src/index.js"
 
 const identity = (x: any) => x;
 const always = () => true;

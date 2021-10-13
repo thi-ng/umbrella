@@ -1,7 +1,7 @@
 import { group } from "@thi.ng/testament";
 import { map } from "@thi.ng/transducers";
 import * as assert from "assert";
-import { bisect, fromIterable, Stream, subscription } from "../src";
+import { bisect, fromIterable, Stream, subscription } from "../src/index.js"
 
 let src: Stream<number>;
 

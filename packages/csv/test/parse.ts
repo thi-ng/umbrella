@@ -1,6 +1,6 @@
 import { group } from "@thi.ng/testament";
 import * as assert from "assert";
-import { parseCSV, parseCSVFromString } from "../src";
+import { parseCSV, parseCSVFromString } from "../src/index.js"
 
 group("parse", {
     header: () => {

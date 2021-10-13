@@ -1,6 +1,6 @@
 import { group } from "@thi.ng/testament";
 import * as assert from "assert";
-import { uuid, uuidv4Bytes, Xoshiro128 } from "../src";
+import { uuid, uuidv4Bytes, Xoshiro128 } from "../src/index.js"
 
 group("uuid", {
     "from seeded rnd": () => {

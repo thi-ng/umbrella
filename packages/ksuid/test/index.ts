@@ -1,7 +1,7 @@
 import { XsAdd } from "@thi.ng/random";
 import { group } from "@thi.ng/testament";
 import * as assert from "assert";
-import { defKSUID32, defKSUID64, defULID, IKSUID } from "../src";
+import { defKSUID32, defKSUID64, defULID, IKSUID } from "../src/index.js"
 
 const check = (id: IKSUID, eps: number, buf: Uint8Array) => {
     const t = Date.now();

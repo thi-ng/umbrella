@@ -1,7 +1,7 @@
 import { XsAdd } from "@thi.ng/random";
 import { group } from "@thi.ng/testament";
 import * as assert from "assert";
-import { MEP } from "../src";
+import { MEP } from "../src/index.js"
 
 let ast: MEP<string, number>;
 

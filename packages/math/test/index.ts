@@ -1,6 +1,6 @@
 import { group } from "@thi.ng/testament";
 import * as assert from "assert";
-import { fmod, mod, remainder } from "../src";
+import { fmod, mod, remainder } from "../src/index.js"
 
 group("math", {
     fmod: () => {

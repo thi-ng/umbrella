@@ -7,7 +7,7 @@ import {
     linearAxis,
     linearTicks,
     uniformDomain,
-} from "../src";
+} from "../src/index.js"
 
 group("viz", {
     uniformDomain: () => {

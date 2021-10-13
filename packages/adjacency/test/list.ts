@@ -1,6 +1,6 @@
 import * as assert from "assert";
 import { group } from "@thi.ng/testament";
-import { defAdjList } from "../src";
+import { defAdjList } from "../src/index.js"
 
 group("adjacency (list)", {
     directed: () => {

@@ -1,6 +1,6 @@
 import * as assert from "assert";
 import { group } from "@thi.ng/testament";
-import * as bits from "../src";
+import * as bits from "../src/index.js"
 
 let src = new Uint8Array([
     0xbe, 0xef, 0xde, 0xca, 0xfb, 0xad, 0xf0, 0x0b, 0xaa,

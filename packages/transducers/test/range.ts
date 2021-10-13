@@ -1,6 +1,6 @@
 import { group } from "@thi.ng/testament";
 import * as assert from "assert";
-import { range2d, rangeNd } from "../src";
+import { range2d, rangeNd } from "../src/index.js"
 
 group("range2d", {
     forward: () => {

@@ -8,7 +8,7 @@ import {
     oneOf,
     string,
     stringD,
-} from "../src";
+} from "../src/index.js"
 
 group("lookahead", {
     "oneof (no capture)": () => {

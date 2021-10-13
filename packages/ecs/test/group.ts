@@ -1,7 +1,7 @@
 import { equiv } from "@thi.ng/equiv";
 import { group } from "@thi.ng/testament";
 import * as assert from "assert";
-import { ECS, Group } from "../src";
+import { ECS, Group } from "../src/index.js"
 
 const collect = (g: Group<any, any>) => {
     let res: any[] = [];

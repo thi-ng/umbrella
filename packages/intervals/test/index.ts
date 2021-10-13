@@ -9,7 +9,7 @@ import {
     interval as i,
     samples,
     union,
-} from "../src";
+} from "../src/index.js"
 
 group("intervals", {
     classify: () => {

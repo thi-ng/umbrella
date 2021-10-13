@@ -2,7 +2,7 @@ import type { TypedArray } from "@thi.ng/api";
 import { align } from "@thi.ng/binary";
 import { group } from "@thi.ng/testament";
 import * as assert from "assert";
-import { MemPool } from "../src";
+import { MemPool } from "../src/index.js"
 
 const POOL_OVERHEAD = 7 * 4;
 const BLOCK_OVERHEAD = 2 * 4;

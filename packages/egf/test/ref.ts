@@ -1,7 +1,7 @@
 import { equiv } from "@thi.ng/equiv";
 import { group } from "@thi.ng/testament";
 import * as assert from "assert";
-import { parseString } from "../src";
+import { parseString } from "../src/index.js"
 
 const $ref = (id: string) => ({ $ref: id });
 

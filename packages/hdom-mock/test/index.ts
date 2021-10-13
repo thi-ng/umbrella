@@ -1,6 +1,6 @@
 import { group } from "@thi.ng/testament";
 import * as assert from "assert";
-import { HDOMNode, MockHDOM } from "../src";
+import { HDOMNode, MockHDOM } from "../src/index.js"
 
 group("hdom-mock", {
     node: () => {

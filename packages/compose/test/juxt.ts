@@ -1,6 +1,6 @@
 import { group } from "@thi.ng/testament";
 import * as assert from "assert";
-import { juxt } from "../src";
+import { juxt } from "../src/index.js"
 
 group("juxt", {
     "2-args": () => {

@@ -18,7 +18,7 @@ import {
     string,
     tuple,
     Tuple,
-} from "../src";
+} from "../src/index.js"
 
 group("args", {
     "basic / string": () => {

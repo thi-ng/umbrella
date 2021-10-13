@@ -1,7 +1,7 @@
 import { group } from "@thi.ng/testament";
 import { reduce, reductions } from "@thi.ng/transducers";
 import * as assert from "assert";
-import { patchArray, patchObj } from "../src";
+import { patchArray, patchObj } from "../src/index.js"
 
 group("transducers-patch", {
     patchArray: () => {

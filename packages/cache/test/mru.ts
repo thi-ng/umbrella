@@ -1,6 +1,6 @@
 import * as assert from "assert";
 import { group } from "@thi.ng/testament";
-import { MRUCache } from "../src";
+import { MRUCache } from "../src/index.js"
 
 let c: MRUCache<string, number>;
 let evicts: any[];

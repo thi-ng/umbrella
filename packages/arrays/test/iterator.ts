@@ -1,6 +1,6 @@
 import * as assert from "assert";
 import { group } from "@thi.ng/testament";
-import { arrayIterator } from "../src";
+import { arrayIterator } from "../src/index.js"
 
 group("arrayIterator", {
     basics: () => {

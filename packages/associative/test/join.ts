@@ -1,6 +1,6 @@
 import { group } from "@thi.ng/testament";
 import * as assert from "assert";
-import { ArraySet, join, joinWith } from "../src";
+import { ArraySet, join, joinWith } from "../src/index.js"
 
 group("join", {
     simple: () => {

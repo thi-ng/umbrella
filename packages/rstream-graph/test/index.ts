@@ -3,7 +3,7 @@ import { fromIterable } from "@thi.ng/rstream";
 import { group } from "@thi.ng/testament";
 import { map } from "@thi.ng/transducers";
 import * as assert from "assert";
-import { add, initGraph, mul, node1 } from "../src";
+import { add, initGraph, mul, node1 } from "../src/index.js"
 
 group("rstream-graph", {
     basic: ({ done }) => {

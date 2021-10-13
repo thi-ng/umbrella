@@ -1,6 +1,6 @@
 import * as assert from "assert";
 import { group } from "@thi.ng/testament";
-import { wavByteArray } from "../src";
+import { wavByteArray } from "../src/index.js"
 
 group("dsp-io-wav", {
     "mono 48kHz/16 bits": () => {

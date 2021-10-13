@@ -1,7 +1,7 @@
 import { group } from "@thi.ng/testament";
 import { iterator } from "@thi.ng/transducers";
 import * as assert from "assert";
-import { parse } from "../src";
+import { parse } from "../src/index.js"
 
 const check = (src: string, expected: any[]) =>
     assert.deepStrictEqual([...iterator(parse(), src)], expected);

@@ -13,7 +13,7 @@ import {
     PackedFormat,
     RGB565,
     RGB888,
-} from "../src";
+} from "../src/index.js"
 // import { equiv } from "@thi.ng/equiv";
 
 const testFromABGR = (fmt: PackedFormat, specs: number[]) => {

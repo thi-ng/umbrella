@@ -2,7 +2,7 @@ import * as csp from "@thi.ng/csp";
 import * as rs from "@thi.ng/rstream";
 import { group } from "@thi.ng/testament";
 import * as assert from "assert";
-import { fromChannel } from "../src";
+import { fromChannel } from "../src/index.js"
 
 group("fromChannel", {
     "receives all values": ({ done }) => {

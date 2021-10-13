@@ -1,6 +1,6 @@
 import { group } from "@thi.ng/testament";
 import * as assert from "assert";
-import * as ti from "../src";
+import * as ti from "../src/index.js"
 
 group("iterators", {
     butLast: () => {

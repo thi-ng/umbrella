@@ -1,6 +1,6 @@
 import { group } from "@thi.ng/testament";
 import * as assert from "assert";
-import { ArraySet, intersection } from "../src";
+import { ArraySet, intersection } from "../src/index.js"
 
 group("intersection", {
     "native (numbers)": () => {

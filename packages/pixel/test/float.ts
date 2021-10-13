@@ -1,6 +1,6 @@
 import { group } from "@thi.ng/testament";
 import * as assert from "assert";
-import { FLOAT_GRAY, FLOAT_GRAY_ALPHA, FLOAT_RGB, FLOAT_RGBA } from "../src";
+import { FLOAT_GRAY, FLOAT_GRAY_ALPHA, FLOAT_RGB, FLOAT_RGBA } from "../src/index.js"
 
 group("float", {
     FLOAT_GRAY: () => {

@@ -1,6 +1,6 @@
 import { group } from "@thi.ng/testament";
 import * as assert from "assert";
-import { NativePool } from "../src";
+import { NativePool } from "../src/index.js"
 
 const pool = new NativePool();
 

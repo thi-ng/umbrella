@@ -1,6 +1,6 @@
 import * as assert from "assert";
 import { group } from "@thi.ng/testament";
-import { ArrayDiff, diffArray } from "../src";
+import { ArrayDiff, diffArray } from "../src/index.js"
 
 const state = <ArrayDiff<number>>{
     distance: 0,

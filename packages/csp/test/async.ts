@@ -1,5 +1,5 @@
 import * as tx from "@thi.ng/transducers";
-import { Channel, PubSub } from "../src";
+import { Channel, PubSub } from "../src/index.js"
 
 async function pingpong() {
     async function ping(ch: Channel<number>) {

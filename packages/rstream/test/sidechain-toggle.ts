@@ -1,7 +1,7 @@
 import type { Predicate } from "@thi.ng/api";
 import * as assert from "assert";
-import { sidechainToggle, Stream, stream } from "../src";
-import { assertUnsub } from "./utils";
+import { sidechainToggle, Stream, stream } from "../src/index.js"
+import { assertUnsub } from "./utils.js";
 import { group } from "@thi.ng/testament";
 
 let src: Stream<any>, side: Stream<any>, buf: any[];

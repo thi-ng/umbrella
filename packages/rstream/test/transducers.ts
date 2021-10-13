@@ -8,7 +8,7 @@ import {
     take,
 } from "@thi.ng/transducers";
 import * as assert from "assert";
-import { fromIterable, ISubscriber, Stream } from "../src";
+import { fromIterable, ISubscriber, Stream } from "../src/index.js"
 
 let src: Stream<number>;
 let data = [10, 20, 30];

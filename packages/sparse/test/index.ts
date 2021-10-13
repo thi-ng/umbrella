@@ -1,6 +1,6 @@
 import { group } from "@thi.ng/testament";
 import * as assert from "assert";
-import { SparseVec } from "../src";
+import { SparseVec } from "../src/index.js"
 
 group("sparsevec", {
     fromDense: () => {

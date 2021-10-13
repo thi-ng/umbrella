@@ -1,6 +1,6 @@
 import * as assert from "assert";
 import { group } from "@thi.ng/testament";
-import { Atom, defCursor, defView, IView, View } from "../src";
+import { Atom, defCursor, defView, IView, View } from "../src/index.js"
 
 interface State {
     a: number;

@@ -1,7 +1,7 @@
 import { group } from "@thi.ng/testament";
 import * as assert from "assert";
-import { debounce, fromIterable } from "../src";
-import { TIMEOUT } from "./config";
+import { debounce, fromIterable } from "../src/index.js"
+import { TIMEOUT } from "./config.js";
 
 group(
     "debounce",

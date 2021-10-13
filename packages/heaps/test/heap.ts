@@ -1,7 +1,7 @@
 import { compare } from "@thi.ng/compare";
 import { group } from "@thi.ng/testament";
 import * as assert from "assert";
-import { Heap } from "../src";
+import { Heap } from "../src/index.js"
 
 const rcmp: (a: number, b: number) => number = (a, b) => b - a;
 

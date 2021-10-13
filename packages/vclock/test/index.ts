@@ -8,7 +8,7 @@ import {
     remove,
     signedSkew,
     VClock,
-} from "../src";
+} from "../src/index.js"
 
 group("vclock", {
     inc: () => {

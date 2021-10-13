@@ -1,6 +1,6 @@
 import { group } from "@thi.ng/testament";
 import * as assert from "assert";
-import { DGraph } from "../src";
+import { DGraph } from "../src/index.js"
 
 let g: DGraph<any>;
 

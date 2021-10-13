@@ -8,7 +8,7 @@ import {
     seq,
     WS,
     zeroOrMore,
-} from "../src";
+} from "../src/index.js"
 
 const check = (
     parser: Parser<string>,

@@ -1,6 +1,6 @@
 import { group } from "@thi.ng/testament";
 import * as assert from "assert";
-import * as tx from "../src";
+import * as tx from "../src/index.js"
 
 const src = [1, 2, 3, 4];
 

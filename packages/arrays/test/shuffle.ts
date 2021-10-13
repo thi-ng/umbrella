@@ -1,7 +1,7 @@
 import { XsAdd } from "@thi.ng/random";
 import { group } from "@thi.ng/testament";
 import * as assert from "assert";
-import { shuffle, shuffleRange } from "../src";
+import { shuffle, shuffleRange } from "../src/index.js"
 
 group("arrays", {
     shuffle: () => {

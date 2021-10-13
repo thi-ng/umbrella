@@ -12,7 +12,7 @@ import {
     parseCss,
     rgb,
     srgb,
-} from "../src";
+} from "../src/index.js"
 
 group("color", {
     srgb: () => {

@@ -1,7 +1,7 @@
 import { comparator2, distSq } from "@thi.ng/vectors";
 import { group } from "@thi.ng/testament";
 import * as assert from "assert";
-import { mst } from "../src";
+import { mst } from "../src/index.js"
 
 group("unionfind", {
     mst: () => {

@@ -1,6 +1,6 @@
 import { group } from "@thi.ng/testament";
 import * as assert from "assert";
-import { pointInSegment } from "../src";
+import { pointInSegment } from "../src/index.js"
 
 group("pointInSegment", {
     "2d": () => {

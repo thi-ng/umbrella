@@ -1,6 +1,6 @@
 import { group } from "@thi.ng/testament";
 import * as assert from "assert";
-import { flatten, range } from "../src";
+import { flatten, range } from "../src/index.js"
 
 group("flatten", {
     "empty arrays": () => {

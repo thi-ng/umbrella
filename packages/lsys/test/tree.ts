@@ -2,7 +2,7 @@ import * as g from "@thi.ng/geom";
 import { PI } from "@thi.ng/math";
 import { XsAdd } from "@thi.ng/random";
 import * as fs from "fs";
-import * as lsys from "../src";
+import * as lsys from "../src/index.js"
 
 const impl = lsys.TURTLE_IMPL_2D;
 

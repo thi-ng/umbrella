@@ -1,8 +1,8 @@
 import { group } from "@thi.ng/testament";
 import * as assert from "assert";
-import { fromIterable, fromPromise, ISubscribable, resolve } from "../src";
-import { TIMEOUT } from "./config";
-import { assertActive } from "./utils";
+import { fromIterable, fromPromise, ISubscribable, resolve } from "../src/index.js"
+import { TIMEOUT } from "./config.js";
+import { assertActive } from "./utils.js";
 
 const dummySub = (src: ISubscribable<any>) => {
     const state = { err: undefined, called: false };

@@ -1,6 +1,6 @@
 import { group } from "@thi.ng/testament";
 import * as assert from "assert";
-import { defContext, FLOAT } from "../src";
+import { defContext, FLOAT } from "../src/index.js"
 
 group("parse", {
     float: () => {

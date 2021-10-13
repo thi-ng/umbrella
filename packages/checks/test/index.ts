@@ -16,7 +16,7 @@ import {
     isSymbol,
     isTransferable,
     isTypedArray,
-} from "../src";
+} from "../src/index.js";
 
 group("checks", {
     existsAndNotNull: () => {

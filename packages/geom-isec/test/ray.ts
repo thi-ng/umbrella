@@ -1,7 +1,7 @@
 import { group } from "@thi.ng/testament";
 import { eqDelta, maddN3, mulN3, normalize, Vec } from "@thi.ng/vectors";
 import * as assert from "assert";
-import { intersectRayAABB } from "../src";
+import { intersectRayAABB } from "../src/index.js"
 
 group("ray intersection", {
     "rayBox inside": () => {

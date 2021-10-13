@@ -1,6 +1,6 @@
 import { group } from "@thi.ng/testament";
 import * as assert from "assert";
-import { table, tableKeys } from "../src";
+import { table, tableKeys } from "../src/index.js"
 
 const result1 = `| **ID** | **Actor** | **Comment** |
 |-------:|:---------:|:------------|

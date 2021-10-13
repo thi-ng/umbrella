@@ -9,7 +9,7 @@ import {
     sigmoid,
     trapezoid,
     variable,
-} from "../src";
+} from "../src/index.js"
 
 const roundVals = (obj: IObjectOf<number>) => {
     for (let k in obj) obj[k] = roundTo(obj[k], 1e-3);

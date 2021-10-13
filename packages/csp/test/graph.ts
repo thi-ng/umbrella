@@ -1,5 +1,5 @@
 import type { IObjectOf } from "@thi.ng/api";
-import { Channel, Mult } from "../src";
+import { Channel, Mult } from "../src/index.js"
 
 export interface Node {
     ins: IObjectOf<Channel<any>>;

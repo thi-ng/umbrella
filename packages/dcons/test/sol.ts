@@ -1,6 +1,6 @@
 import { group } from "@thi.ng/testament";
 import * as assert from "assert";
-import { defMTF, defTranspose } from "../src";
+import { defMTF, defTranspose } from "../src/index.js"
 
 group("dcons (self-organizing)", {
     "mtf (n=5)": () => {

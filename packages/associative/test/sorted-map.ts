@@ -3,7 +3,7 @@ import { equiv } from "@thi.ng/equiv";
 import { range, repeat, zip } from "@thi.ng/transducers";
 import { group } from "@thi.ng/testament";
 import * as assert from "assert";
-import { defSortedMap, SortedMap } from "../src";
+import { defSortedMap, SortedMap } from "../src/index.js"
 
 let m: SortedMap<any, any>;
 

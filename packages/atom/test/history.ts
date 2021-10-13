@@ -1,6 +1,6 @@
 import * as assert from "assert";
 import { group } from "@thi.ng/testament";
-import { Atom, defCursor, defHistory } from "../src";
+import { Atom, defCursor, defHistory } from "../src/index.js"
 
 let a: Atom<any>;
 let add = (x: number) => x + 1;

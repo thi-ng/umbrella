@@ -1,7 +1,7 @@
 import { equiv } from "@thi.ng/equiv";
 import { group } from "@thi.ng/testament";
 import * as assert from "assert";
-import { ArraySet, difference } from "../src";
+import { ArraySet, difference } from "../src/index.js"
 
 group("difference", {
     "native (numbers)": () => {

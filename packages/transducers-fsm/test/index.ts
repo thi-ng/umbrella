@@ -1,7 +1,7 @@
 import { group } from "@thi.ng/testament";
 import { comp, iterator, map, range, takeNth } from "@thi.ng/transducers";
 import * as assert from "assert";
-import { fsm } from "../src";
+import { fsm } from "../src/index.js"
 
 group("transducers-fsm", {
     "readme example": () => {

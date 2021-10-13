@@ -1,7 +1,7 @@
 import { equiv } from "@thi.ng/equiv";
 import { group } from "@thi.ng/testament";
 import * as assert from "assert";
-import { decode, encode } from "../src";
+import { decode, encode } from "../src/index.js"
 
 const src = { foo: [1, "a", { bar: "baz" }, [42.123]] };
 const src2 = { foo: new Uint8Array([0, 1, 2, 3, 255, 254, 253]) };

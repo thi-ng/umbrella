@@ -12,9 +12,9 @@ import {
     stream,
     sync,
     transduce,
-} from "../src";
-import { TIMEOUT } from "./config";
-import { assertActive, assertUnsub } from "./utils";
+} from "../src/index.js"
+import { TIMEOUT } from "./config.js";
+import { assertActive, assertUnsub } from "./utils.js";
 
 const adder = () =>
     map((ports: any) => {

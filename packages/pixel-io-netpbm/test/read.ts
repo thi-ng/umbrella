@@ -1,6 +1,6 @@
 import { group } from "@thi.ng/testament";
 import * as assert from "assert";
-import { parseHeader, read } from "../src";
+import { parseHeader, read } from "../src/index.js"
 
 group("pixel-io-netpbm", {
     "parse header": () => {

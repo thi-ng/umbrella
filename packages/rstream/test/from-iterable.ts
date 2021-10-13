@@ -6,8 +6,8 @@ import {
     State,
     Stream,
     Subscription,
-} from "../src";
-import { TIMEOUT } from "./config";
+} from "../src/index.js"
+import { TIMEOUT } from "./config.js";
 
 let src: Stream<number>;
 let data = [10, 20, 30];

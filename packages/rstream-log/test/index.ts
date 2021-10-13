@@ -2,7 +2,7 @@ import { LogLevel } from "@thi.ng/logger";
 import { ISubscriber, State } from "@thi.ng/rstream";
 import { group } from "@thi.ng/testament";
 import * as assert from "assert";
-import { formatString, Logger } from "../src";
+import { formatString, Logger } from "../src/index.js"
 
 const collect = (acc: string[]) => {
     return <ISubscriber<string>>{

@@ -1,6 +1,6 @@
 import { group } from "@thi.ng/testament";
 import * as assert from "assert";
-import { dateTime } from "../src";
+import { dateTime } from "../src/index.js"
 
 group("datetime", {
     "leap years": () => {

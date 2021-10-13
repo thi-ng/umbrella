@@ -1,7 +1,7 @@
 import { group } from "@thi.ng/testament";
 import * as assert from "assert";
-import * as pf from "../src";
-import type { StackContext } from "../src";
+import * as pf from "../src/index.js"
+import type { StackContext } from "../src/index.js"
 
 const $ = pf.ctx;
 

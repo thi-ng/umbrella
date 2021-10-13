@@ -1,7 +1,7 @@
 import type { FnO } from "@thi.ng/api";
 import { group } from "@thi.ng/testament";
 import * as assert from "assert";
-import { binarySearch, bsEQ, bsGE, bsGT, bsLE, bsLT } from "../src";
+import { binarySearch, bsEQ, bsGE, bsGT, bsLE, bsLT } from "../src/index.js"
 
 const src = [10, 20, 30, 40];
 const tests = [5, 10, 15, 20, 25, 45];

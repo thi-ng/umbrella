@@ -1,6 +1,6 @@
 import { group } from "@thi.ng/testament";
 import * as assert from "assert";
-import { escape, unescape } from "../src";
+import { escape, unescape } from "../src/index.js"
 
 const SRC = "\ta\nb😎c£\\\x00";
 

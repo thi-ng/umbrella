@@ -7,7 +7,7 @@ import {
     at_media,
     css,
     PRETTY,
-} from "../src";
+} from "../src/index.js"
 
 const rules = {
     a: { color: "red" },

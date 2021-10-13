@@ -1,7 +1,7 @@
 import { equiv } from "@thi.ng/equiv";
 import { group } from "@thi.ng/testament";
 import * as assert from "assert";
-import { AttribPool } from "../src/attrib-pool";
+import { AttribPool } from "../src/index.js";
 
 group("vector-pools", {
     attribs: () => {

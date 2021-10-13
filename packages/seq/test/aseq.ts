@@ -1,6 +1,6 @@
 import { group } from "@thi.ng/testament";
 import * as assert from "assert";
-import { aseq } from "../src";
+import { aseq } from "../src/index.js"
 
 group("aseq", {
     basics: () => {

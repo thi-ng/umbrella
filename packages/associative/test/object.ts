@@ -1,6 +1,6 @@
 import * as assert from "assert";
 import { group } from "@thi.ng/testament";
-import { renameTransformedKeys } from "../src";
+import { renameTransformedKeys } from "../src/index.js"
 
 group("object ops", {
     renameTransformedKeys: () => {

@@ -5,7 +5,7 @@ import {
     mortonToTree,
     treeToCartesian,
     treeToMorton,
-} from "../src";
+} from "../src/index.js"
 
 group(
     "morton",

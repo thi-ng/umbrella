@@ -1,7 +1,7 @@
 import { group } from "@thi.ng/testament";
 import * as tx from "@thi.ng/transducers";
 import * as assert from "assert";
-import { resolve, ResolveFn } from "../src";
+import { resolve, ResolveFn } from "../src/index.js"
 
 group("resolve-map", {
     simple: () => {

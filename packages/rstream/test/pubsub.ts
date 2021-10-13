@@ -2,9 +2,9 @@ import { EquivMap } from "@thi.ng/associative";
 import { group } from "@thi.ng/testament";
 import { map, mapIndexed } from "@thi.ng/transducers";
 import * as assert from "assert";
-import { fromIterable, fromIterableSync, PubSub, pubsub } from "../src";
-import { TIMEOUT } from "./config";
-import { assertUnsub } from "./utils";
+import { fromIterable, fromIterableSync, PubSub, pubsub } from "../src/index.js"
+import { TIMEOUT } from "./config.js";
+import { assertUnsub } from "./utils.js";
 
 let pub: PubSub<any, any>;
 

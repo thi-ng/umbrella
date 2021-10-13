@@ -1,6 +1,6 @@
 import { group } from "@thi.ng/testament";
 import * as assert from "assert";
-import { padLast } from "../src";
+import { padLast } from "../src/index.js"
 
 group("padLast", {
     all: () => {

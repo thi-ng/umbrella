@@ -1,6 +1,6 @@
 import { group } from "@thi.ng/testament";
 import * as assert from "assert";
-import { map, range } from "../src";
+import { map, range } from "../src/index.js"
 
 const identity = <T>(t: T): T => t;
 const upper = (s: string) => s.toUpperCase();

@@ -1,6 +1,6 @@
 import { group } from "@thi.ng/testament";
 import * as assert from "assert";
-import { ZCurve } from "../src";
+import { ZCurve } from "../src/index.js"
 
 group("ZCurve", {
     ctor: () => {

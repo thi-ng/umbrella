@@ -1,7 +1,7 @@
 import type { Pair } from "@thi.ng/api";
 import { group } from "@thi.ng/testament";
 import * as assert from "assert";
-import { defAdjMatrix } from "../src";
+import { defAdjMatrix } from "../src/index.js"
 
 const edges: Pair<number, number>[] = [
     [2, 3],

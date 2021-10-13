@@ -1,6 +1,6 @@
 import { equiv } from "@thi.ng/equiv";
 import { eqDelta } from "@thi.ng/vectors";
-import { init } from "../src";
+import { init } from "../src/index.js"
 
 const DEST = 0x400;
 

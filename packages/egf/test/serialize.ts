@@ -2,7 +2,7 @@ import { rdf, schema } from "@thi.ng/prefixes";
 import { group } from "@thi.ng/testament";
 import * as assert from "assert";
 import { writeFileSync } from "fs";
-import { toEGF } from "../src";
+import { toEGF } from "../src/index.js"
 
 group("serialize", {
     basics: () => {

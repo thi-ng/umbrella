@@ -15,7 +15,7 @@ import {
     StackFn,
     StackProgram,
     swap,
-} from "../src";
+} from "../src/index.js"
 
 /**
  * This higher order word defines a 2D loop construct, executing a user

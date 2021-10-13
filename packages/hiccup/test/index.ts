@@ -2,7 +2,7 @@ import { Atom } from "@thi.ng/atom";
 import { foaf } from "@thi.ng/prefixes";
 import { group } from "@thi.ng/testament";
 import * as assert from "assert";
-import { serialize } from "../src";
+import { serialize } from "../src/index.js"
 
 const _check = (a: any, b: any) => assert.strictEqual(serialize(a), b);
 

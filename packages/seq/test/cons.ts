@@ -1,6 +1,6 @@
 import { group } from "@thi.ng/testament";
 import * as assert from "assert";
-import { cons } from "../src";
+import { cons } from "../src/index.js"
 
 group("cons", {
     cons: () => {

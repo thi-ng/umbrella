@@ -12,7 +12,7 @@ import {
     WS0,
     xform,
     zeroOrMore,
-} from "../src";
+} from "../src/index.js"
 
 const check = (
     parser: Parser<string>,

@@ -1,6 +1,6 @@
 import { group } from "@thi.ng/testament";
 import * as assert from "assert";
-import { exists, getIn, getInUnsafe, mutIn, setIn, setInUnsafe } from "../src";
+import { exists, getIn, getInUnsafe, mutIn, setIn, setInUnsafe } from "../src/index.js"
 
 group("paths", {
     getIn: () => {

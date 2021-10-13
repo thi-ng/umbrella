@@ -1,6 +1,6 @@
 import { group } from "@thi.ng/testament";
 import * as assert from "assert";
-import { defSystem, ILifecycle } from "../src";
+import { defSystem, ILifecycle } from "../src/index.js"
 
 group("system", {
     basic: async () => {

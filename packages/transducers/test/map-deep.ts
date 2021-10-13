@@ -1,6 +1,6 @@
 import { group } from "@thi.ng/testament";
 import * as assert from "assert";
-import { deepTransform } from "../src";
+import { deepTransform } from "../src/index.js"
 
 group("deepTransform", {
     "transforms hiccup": () => {

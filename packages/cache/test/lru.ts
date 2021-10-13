@@ -1,6 +1,6 @@
 import * as assert from "assert";
 import { group } from "@thi.ng/testament";
-import { LRUCache } from "../src";
+import { LRUCache } from "../src/index.js"
 
 let c: LRUCache<string, number>;
 let evicts: any[];

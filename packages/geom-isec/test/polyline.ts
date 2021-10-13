@@ -1,7 +1,7 @@
 import { IntersectionType } from "@thi.ng/geom-api";
 import { group } from "@thi.ng/testament";
 import * as assert from "assert";
-import { intersectLinePolylineAll, intersectRayPolylineAll } from "../src";
+import { intersectLinePolylineAll, intersectRayPolylineAll } from "../src/index.js"
 
 const pts = [
     [0, 0],

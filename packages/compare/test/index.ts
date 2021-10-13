@@ -5,7 +5,7 @@ import {
     compareByKeys2,
     compareByKeys3,
     compareByKeys4,
-} from "../src";
+} from "../src/index.js"
 
 group("compare", {
     compareByKey: () => {

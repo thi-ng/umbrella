@@ -1,7 +1,7 @@
 import { group } from "@thi.ng/testament";
 import * as assert from "assert";
-import { timeout } from "../src";
-import { TIMEOUT } from "./config";
+import { timeout } from "../src/index.js"
+import { TIMEOUT } from "./config.js";
 
 group(
     "Timeout",

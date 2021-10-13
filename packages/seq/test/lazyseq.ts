@@ -1,7 +1,7 @@
 import type { ISeq } from "@thi.ng/api";
 import { group } from "@thi.ng/testament";
 import * as assert from "assert";
-import { cons, lazyseq } from "../src";
+import { cons, lazyseq } from "../src/index.js"
 
 group("lazyseq", {
     lazyseq: () => {

@@ -1,6 +1,6 @@
 import { group } from "@thi.ng/testament";
 import * as assert from "assert";
-import { formatCSV, formatFloat, zeroPad } from "../src";
+import { formatCSV, formatFloat, zeroPad } from "../src/index.js"
 
 group("format array", {
     header: () =>

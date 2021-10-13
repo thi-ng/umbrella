@@ -10,7 +10,7 @@ import {
     run,
 } from "@thi.ng/transducers";
 import * as assert from "assert";
-import { bits, partitionBits } from "../src";
+import { bits, partitionBits } from "../src/index.js"
 
 const src = [0xff, 0xa5, 0xfe, 0xf7];
 

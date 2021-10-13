@@ -6,7 +6,7 @@ import {
     decodeULEB128,
     encodeSLEB128,
     encodeULEB128,
-} from "../src";
+} from "../src/index.js"
 
 if (hasWASM()) {
     group("leb128", {

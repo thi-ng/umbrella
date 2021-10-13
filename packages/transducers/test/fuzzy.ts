@@ -1,6 +1,6 @@
 import { group } from "@thi.ng/testament";
 import * as assert from "assert";
-import { filterFuzzy } from "../src";
+import { filterFuzzy } from "../src/index.js"
 
 group("fuzzy", {
     strings: () => {

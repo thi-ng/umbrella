@@ -1,6 +1,6 @@
 import * as assert from "assert";
-import { sidechainPartition, Stream, stream } from "../src";
-import { assertUnsub } from "./utils";
+import { sidechainPartition, Stream, stream } from "../src/index.js"
+import { assertUnsub } from "./utils.js";
 import { group } from "@thi.ng/testament";
 
 let src: Stream<any>, side: Stream<any>, buf: any[];

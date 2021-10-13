@@ -1,7 +1,7 @@
 import { swizzle } from "@thi.ng/arrays";
 import { group } from "@thi.ng/testament";
 import * as assert from "assert";
-import { iterator, map, permutations, permutationsN, range } from "../src";
+import { iterator, map, permutations, permutationsN, range } from "../src/index.js"
 
 group("permutations", {
     empty: () => {

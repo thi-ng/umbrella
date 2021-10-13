@@ -20,7 +20,7 @@ import {
 } from "@thi.ng/shader-ast";
 import { group } from "@thi.ng/testament";
 import * as assert from "assert";
-import { GLSLVersion, targetGLSL } from "../src";
+import { GLSLVersion, targetGLSL } from "../src/index.js"
 
 const vs100 = targetGLSL({
     type: "vs",
