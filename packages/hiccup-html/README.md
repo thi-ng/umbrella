@@ -180,10 +180,11 @@ ES module import:
 
 [Skypack documentation](https://docs.skypack.dev/)
 
-For NodeJS (v14.6+):
+For Node.js REPL:
 
 ```text
-node --experimental-specifier-resolution=node --experimental-repl-await
+# with flag only for < v16
+node --experimental-repl-await
 
 > const hiccupHtml = await import("@thi.ng/hiccup-html");
 ```
