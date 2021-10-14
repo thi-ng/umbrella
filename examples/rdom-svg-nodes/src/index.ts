@@ -44,7 +44,7 @@ $compile(
             // list wrapper element & its attribs
             "g",
             { stroke: "#00f" },
-            // list item contructor (here an SVG line)
+            // list item constructor (here an SVG line)
             ([a, b]) => line(a, b),
             // value based equivalence predicate
             // applied to raw values from stream (here point pairs)
