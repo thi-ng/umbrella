@@ -47,29 +47,30 @@ const c = canvas(width, height, format?, style?);
 
 The text canvas stores all characters in a `Uint32Array` with the lower 16 bits
 used for the UTF-16 code and the upper 16 bits for **abitrary** formatting data.
-The package [provides its own format
-IDs](https://github.com/thi-ng/umbrella/blob/develop/packages/text-canvas/src/api.ts#L146)
-which are tailored for the bundled ANSI & HTML formatters, but users are free to
+The package utilizes [format identifier constants and formatters from the
+@thi.ng/text-format
+package](https://github.com/thi-ng/umbrella/blob/develop/packages/text-format/),
+which are tailored for the included ANSI & HTML formatters, but users are free to
 choose use any other system (but then will also need to implement a custom
 string formatter impl).
 
-The default format ID layout is as shown:
+The default format ID layout used by text canvas is as shown:
 
 ![format bit layout](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/text-canvas/format-layout.png)
 
 Most drawing functions accept an optional `format` arg, but a default
 format can also be set via `setFormat(canvas, formatID)`.
 
-The following built-in format IDs are only compatible with these formatters:
+The format IDs defined in @thi.ng/text-format are only compatible with these
+formatters (also supplied by that package):
 
 - `FMT_ANSI16`
 - `FMT_HTML_INLINE_CSS`
 - `FMT_HTML_TACHYONS`
 
-Custom formatters are discussed further below:
-
-- [`FMT_ANSI256`](#256-color-ansi-format)
-- [`FMT_HTML_565`](#16bit-color-html-format)
+**All constants and other formatters are also discussed in detail in the
+[@thi.ng/text-format
+readme](https://github.com/thi-ng/umbrella/blob/develop/packages/text-format/README.md).**
 
 #### Colors
 
@@ -110,101 +111,31 @@ setFormat(canvas, FG_BLACK | BG_LIGHT_CYAN | BOLD | UNDERLINE);
 ### String conversion format presets
 
 Canvas-to-string conversion is completely customizable via the [`StringFormat`
-interface](https://github.com/thi-ng/umbrella/blob/develop/packages/text-canvas/src/api.ts#L78)
-and the following presets are supplied:
+interface](https://docs.thi.ng/umbrella/text-format/interfaces/StringFormat.html).
+Currently the following presets are supplied (in the
+[@thi.ng/text-format](https://github.com/thi-ng/umbrella/tree/develop/packages/text-format)
+package):
 
-- `FMT_ANSI16` - translate built-in format IDs to 4bit ANSI escape sequences
+- `FMT_ANSI16` - translate built-in format IDs to 4-bit ANSI escape sequences
 - `FMT_ANSI256` - uses all 16 format bits for fg & bg colors (ANSI esc sequences)
+- `FMT_ANSI565` - uses all 16 format bits for RGB565 fg colors (ANSI esc sequences)
 - `FMT_ANSI_RAW` - verbatim use of format IDs to ANSI sequences
 - `FMT_HTML_INLINE_CSS` - HTML `<span>` elements with inline CSS
 - `FMT_HTML_TACHYONS` - HTML `<span>` elements with [Tachyons
   CSS](http://tachyons.io/) class names
+- `FMT_HTML565` - HTML `<span>` elements with RGB565 color coding
 - `FMT_NONE` - dummy formatter outputting plain text only (all format
-  information discarded)
+  information discarded, e.g. for [`NO_COLOR`](https://no-color.org/) support)
 
 ```ts
 // Terminal
-console.log(toString(canvas, FMT_ANSI16));
+console.log(formatCanvas(canvas, FMT_ANSI16));
 // or
-console.log(toString(canvas, FMT_ANSI256));
+console.log(formatCanvas(canvas, FMT_ANSI256));
 
 // Browser
 const el = document.createElement("pre");
-el.innerHTML = toString(canvas, FMT_HTML_TACHYONS);
-```
-
-### 256 color ANSI format
-
-If targeting this output format, all 16 bits available for formatting
-information are used to encode 2x 8bit foreground/background colors. Therefore,
-none of the above mentioned preset color names and/or any additional formatting
-flags (e.g. bold, underline etc.) **cannot be used**. Instead, use the
-`format256()` function to compute a format ID based on given FG, BG colors.
-
-```ts
-// deep purple on yellow bg
-textLine(canvas, 1, 1, "hello color!", format256(19, 226));
-```
-
-![ANSI256 color pallette](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/text-canvas/ansi256.png)
-
-Source: [Wikipedia](https://en.wikipedia.org/wiki/ANSI_escape_code#8-bit)
-
-### 16bit color ANSI & HTML formats
-
-Similar to the above custom ANSI format, here all available 16 bits are used to
-store color information, in the standard [RGB565
-format](https://en.wikipedia.org/wiki/High_color) (5bits red, 6bits green, 5bits
-blue). This also means, only either the text or background color<sup>(1)</sup> can be
-controlled and no other formatting flag (bold, underline etc.) are available.
-
-<sup>(1)</sup> In the ANSI version it's always only the text color.
-
-```ts
-const el = document.createElement("pre");
-// format and assign text colors
-el.innerHTML = toString(canvas, FMT_HTML565());
-
-// assign bg colors
-el.innerHTML = toString(canvas, FMT_HTML565("background"));
-```
-
-These formats are primarily intended for image display, see
-[section](#image-functions) below for examples...
-
-### Ad-hoc formatting of strings
-
-String formatters can also be used in an ad-hoc manner, without requiring any of
-the other text canvas functionality.
-
-```ts
-// create & use a HTML formatter
-defFormat(FMT_HTML_INLINE_CSS, FG_LIGHT_RED | BG_GRAY)("hello")
-// "<span style="color:#f55;background:#555;">hello</span>"
-
-// create & use an ANSI formatter
-defFormat(FMT_ANSI16, FG_LIGHT_RED | BG_GRAY)("hello")
-// "\x1B[91;100mhello\x1B[0m"
-
-// ANSI syntax sugar (same result as above)
-defAnsi16(FG_LIGHT_RED | BG_GRAY)("hello")
-// "\x1B[91;100mhello\x1B[0m"
-```
-
-Furthermore, `defFormatPresets()` can be used to create formatting functions for
-all 16 preset [foreground color IDs](#colors) for a given string format
-strategy:
-
-```ts
-const ansi = defFormatPresets(FMT_ANSI16);
-
-`${ansi.green("hello")} ${ansi.lightRed("world")}!`;
-// '\x1B[32mhello\x1B[0m \x1B[91mworld\x1B[0m!'
-
-const html = defFormatPresets(FMT_HTML_TACHYONS);
-
-`${html.green("hello")} ${html.lightRed("world")}!`;
-// '<span class="dark-green ">hello</span> <span class="red ">world</span>!'
+el.innerHTML = formatCanvas(canvas, FMT_HTML_TACHYONS);
 ```
 
 ### Stroke styles
@@ -319,6 +250,7 @@ enabling the `hard` option (see example below).
 ```ts
 import { repeatedly } from "@thi.ng/transducers";
 import * as tc from "@thi.ng/text-canvas";
+import * as tf from "@thi.ng/text-format";
 
 // generate 20 random values
 const data = repeatedly(() => Math.random(), 20)
@@ -337,9 +269,9 @@ tc.table(
         // column defs
         cols: [{ width: 4 }, { width: 20 }, { width: 8 }],
         // default cell format
-        format: tc.FG_BLACK | tc.BG_LIGHT_CYAN,
+        format: tf.FG_BLACK | tf.BG_LIGHT_CYAN,
         // default format for header cells (1st row)
-        formatHead: tc.FG_RED | tc.BG_LIGHT_CYAN | tc.BOLD | tc.UNDERLINE,
+        formatHead: tf.FG_RED | tf.BG_LIGHT_CYAN | tf.BOLD | tf.UNDERLINE,
         // border line style
         style: tc.STYLE_DASHED_ROUNDED,
         // border mode
@@ -355,7 +287,7 @@ tc.table(
         ["ID", "Main", "Comment"],
         [
             "0001",
-            { body: chart, format: tc.FG_BLUE | tc.BG_LIGHT_CYAN },
+            { body: chart, format: tf.FG_BLUE | tf.BG_LIGHT_CYAN },
             "This is a test!"
         ],
         ["0002", "Random data plot", "Word wrapped content"],
@@ -364,7 +296,7 @@ tc.table(
 );
 
 // output as ANSI formatted string
-console.log(tc.toString(canvas, tc.FMT_ANSI16));
+console.log(tc.formatCanvas(canvas, tf.FMT_ANSI16));
 ```
 
 For even more detailed control, tables can also be pre-initialized prior
@@ -423,12 +355,13 @@ Code for this above example output (CLI version):
 import * as geom from "@thi.ng/geom";
 import * as mat from "@thi.ng/matrices";
 import * as tc from "@thi.ng/text-canvas";
+import * as tf from "@thi.ng/text-format";
 
 const W = 64;
 const H = 32;
 
 // create text canvas
-const canvas = new tc.Canvas(W, H, tc.BG_BLACK, tc.STYLE_THIN);
+const canvas = new tc.Canvas(W, H, tf.BG_BLACK, tf.STYLE_THIN);
 
 // cube corner vertices
 const cube = geom.vertices(geom.center(geom.aabb(1))!);
@@ -465,10 +398,10 @@ setInterval(() => {
     for (let e of edges) {
         const a = pts[e[0]];
         const b = pts[e[1]];
-        tc.line(canvas, a[0], a[1], b[0], b[1], "+", tc.FG_WHITE | tc.BG_RED);
+        tc.line(canvas, a[0], a[1], b[0], b[1], "+", tf.FG_WHITE | tf.BG_RED);
     }
     // draw vertex labels
-    canvas.format = tc.FG_WHITE | tc.BG_BLUE;
+    canvas.format = tf.FG_WHITE | tf.BG_BLUE;
     for (let i = 0; i < 8; i++) {
         const p = pts[i];
         tc.textBox(canvas, p[0] - 1, p[1] - 1, 5, 3, ` ${i} `);
@@ -478,16 +411,16 @@ setInterval(() => {
         2, 1, 24, -1,
         `@thi.ng/text-canvas wireframe cube\n\nx: ${rotx.toFixed(2)}\ny: ${roty.toFixed(2)}`,
         {
-            format: tc.FG_BLACK | tc.BG_LIGHT_CYAN,
+            format: tf.FG_BLACK | tf.BG_LIGHT_CYAN,
             padding: [1, 0]
         }
     );
     // draw canvas
     console.clear();
     // output as ANSI formatted string
-    console.log(tc.toString(canvas, tc.FMT_ANSI16));
+    console.log(tc.formatCanvas(canvas, tf.FMT_ANSI16));
     // output as plain text
-    // console.log(tc.toString(canvas));
+    // console.log(tc.formatCanvas(canvas));
 }, 15);
 ```
 
