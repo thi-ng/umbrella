@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/logger",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "description": "Types & basis infrastructure for arbitrary logging (w/ default impls)",
     "type": "module",
     "module": "./index.js",
@@ -70,5 +70,6 @@
         "related": [
             "rstream-log"
         ]
-    }
+    },
+    "gitHead": "3c5f903104da150588946a94bb118ad559ad395d"
 }

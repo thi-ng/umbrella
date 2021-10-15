@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/hiccup",
-    "version": "4.0.2",
+    "version": "4.0.3",
     "description": "HTML/SVG/XML serialization of nested data structures, iterables & closures",
     "type": "module",
     "module": "./index.js",
@@ -34,13 +34,13 @@
         "test": "testament test"
     },
     "dependencies": {
-        "@thi.ng/api": "^8.0.2",
-        "@thi.ng/checks": "^3.0.2",
-        "@thi.ng/errors": "^2.0.2"
+        "@thi.ng/api": "^8.0.3",
+        "@thi.ng/checks": "^3.0.3",
+        "@thi.ng/errors": "^2.0.3"
     },
     "devDependencies": {
-        "@thi.ng/atom": "^5.0.2",
-        "@thi.ng/testament": "^0.1.2"
+        "@thi.ng/atom": "^5.0.3",
+        "@thi.ng/testament": "^0.1.3"
     },
     "keywords": [
         "array",
@@ -116,5 +116,6 @@
             "rdom-canvas"
         ],
         "year": 2016
-    }
+    },
+    "gitHead": "3c5f903104da150588946a94bb118ad559ad395d"
 }

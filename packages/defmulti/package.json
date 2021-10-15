@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/defmulti",
-    "version": "2.0.2",
+    "version": "2.0.3",
     "description": "Dynamic, extensible multiple dispatch via user supplied dispatch function.",
     "type": "module",
     "module": "./index.js",
@@ -34,12 +34,12 @@
         "test": "testament test"
     },
     "dependencies": {
-        "@thi.ng/api": "^8.0.2",
-        "@thi.ng/errors": "^2.0.2",
-        "@thi.ng/logger": "^1.0.2"
+        "@thi.ng/api": "^8.0.3",
+        "@thi.ng/errors": "^2.0.3",
+        "@thi.ng/logger": "^1.0.3"
     },
     "devDependencies": {
-        "@thi.ng/testament": "^0.1.2"
+        "@thi.ng/testament": "^0.1.3"
     },
     "keywords": [
         "agent",
@@ -84,5 +84,6 @@
     },
     "thi.ng": {
         "year": 2018
-    }
+    },
+    "gitHead": "3c5f903104da150588946a94bb118ad559ad395d"
 }

@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/dgraph",
-    "version": "2.0.2",
+    "version": "2.0.3",
     "description": "Type-agnostic directed acyclic graph (DAG) & graph operations",
     "type": "module",
     "module": "./index.js",
@@ -34,14 +34,14 @@
         "test": "testament test"
     },
     "dependencies": {
-        "@thi.ng/api": "^8.0.2",
-        "@thi.ng/associative": "^6.0.2",
-        "@thi.ng/equiv": "^2.0.2",
-        "@thi.ng/errors": "^2.0.2",
-        "@thi.ng/transducers": "^8.0.2"
+        "@thi.ng/api": "^8.0.3",
+        "@thi.ng/associative": "^6.0.3",
+        "@thi.ng/equiv": "^2.0.3",
+        "@thi.ng/errors": "^2.0.3",
+        "@thi.ng/transducers": "^8.0.3"
     },
     "devDependencies": {
-        "@thi.ng/testament": "^0.1.2"
+        "@thi.ng/testament": "^0.1.3"
     },
     "keywords": [
         "adjacency",
@@ -76,5 +76,6 @@
             "system"
         ],
         "year": 2015
-    }
+    },
+    "gitHead": "3c5f903104da150588946a94bb118ad559ad395d"
 }

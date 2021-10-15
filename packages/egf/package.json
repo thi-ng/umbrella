@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/egf",
-    "version": "0.5.2",
+    "version": "0.5.3",
     "description": "Extensible Graph Format",
     "type": "module",
     "module": "./index.js",
@@ -29,19 +29,19 @@
         "test": "testament test"
     },
     "dependencies": {
-        "@thi.ng/api": "^8.0.2",
-        "@thi.ng/associative": "^6.0.2",
-        "@thi.ng/checks": "^3.0.2",
-        "@thi.ng/dot": "^2.0.2",
-        "@thi.ng/errors": "^2.0.2",
-        "@thi.ng/logger": "^1.0.2",
-        "@thi.ng/prefixes": "^2.0.2",
-        "@thi.ng/strings": "^3.0.2",
-        "@thi.ng/transducers-binary": "^2.0.2"
+        "@thi.ng/api": "^8.0.3",
+        "@thi.ng/associative": "^6.0.3",
+        "@thi.ng/checks": "^3.0.3",
+        "@thi.ng/dot": "^2.0.3",
+        "@thi.ng/errors": "^2.0.3",
+        "@thi.ng/logger": "^1.0.3",
+        "@thi.ng/prefixes": "^2.0.3",
+        "@thi.ng/strings": "^3.0.3",
+        "@thi.ng/transducers-binary": "^2.0.3"
     },
     "devDependencies": {
-        "@thi.ng/equiv": "^2.0.2",
-        "@thi.ng/testament": "^0.1.2"
+        "@thi.ng/equiv": "^2.0.3",
+        "@thi.ng/testament": "^0.1.3"
     },
     "keywords": [
         "conversion",
@@ -96,5 +96,6 @@
     "thi.ng": {
         "status": "alpha",
         "year": 2020
-    }
+    },
+    "gitHead": "3c5f903104da150588946a94bb118ad559ad395d"
 }

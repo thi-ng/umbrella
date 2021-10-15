@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/transducers-fsm",
-    "version": "2.0.2",
+    "version": "2.0.3",
     "description": "Transducer-based Finite State Machine transformer",
     "type": "module",
     "module": "./index.js",
@@ -34,11 +34,11 @@
         "test": "testament test"
     },
     "dependencies": {
-        "@thi.ng/api": "^8.0.2",
-        "@thi.ng/transducers": "^8.0.2"
+        "@thi.ng/api": "^8.0.3",
+        "@thi.ng/transducers": "^8.0.3"
     },
     "devDependencies": {
-        "@thi.ng/testament": "^0.1.2"
+        "@thi.ng/testament": "^0.1.3"
     },
     "keywords": [
         "fsm",
@@ -68,5 +68,6 @@
         ],
         "status": "deprecated",
         "year": 2018
-    }
+    },
+    "gitHead": "3c5f903104da150588946a94bb118ad559ad395d"
 }

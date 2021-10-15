@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/geom-accel",
-    "version": "3.0.2",
+    "version": "3.0.3",
     "description": "n-D spatial indexing data structures with a shared ES6 Map/Set-like API",
     "type": "module",
     "module": "./index.js",
@@ -35,20 +35,20 @@
         "test": "testament test"
     },
     "dependencies": {
-        "@thi.ng/api": "^8.0.2",
-        "@thi.ng/arrays": "^2.0.2",
-        "@thi.ng/checks": "^3.0.2",
-        "@thi.ng/equiv": "^2.0.2",
-        "@thi.ng/errors": "^2.0.2",
-        "@thi.ng/geom-api": "^3.0.2",
-        "@thi.ng/geom-isec": "^2.0.2",
-        "@thi.ng/heaps": "^2.0.2",
-        "@thi.ng/math": "^5.0.2",
-        "@thi.ng/transducers": "^8.0.2",
-        "@thi.ng/vectors": "^7.0.2"
+        "@thi.ng/api": "^8.0.3",
+        "@thi.ng/arrays": "^2.0.3",
+        "@thi.ng/checks": "^3.0.3",
+        "@thi.ng/equiv": "^2.0.3",
+        "@thi.ng/errors": "^2.0.3",
+        "@thi.ng/geom-api": "^3.0.3",
+        "@thi.ng/geom-isec": "^2.0.3",
+        "@thi.ng/heaps": "^2.0.3",
+        "@thi.ng/math": "^5.0.3",
+        "@thi.ng/transducers": "^8.0.3",
+        "@thi.ng/vectors": "^7.0.3"
     },
     "devDependencies": {
-        "@thi.ng/testament": "^0.1.2"
+        "@thi.ng/testament": "^0.1.3"
     },
     "keywords": [
         "2d",
@@ -107,5 +107,6 @@
     },
     "thi.ng": {
         "year": 2013
-    }
+    },
+    "gitHead": "3c5f903104da150588946a94bb118ad559ad395d"
 }
