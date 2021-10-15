@@ -13,7 +13,6 @@
     "dependencies": {
         "@thi.ng/dsp": "latest",
         "@thi.ng/geom": "latest",
-        "@thi.ng/hiccup-svg": "latest",
         "@thi.ng/rstream": "latest",
         "@thi.ng/transducers": "latest",
         "@thi.ng/transducers-hdom": "latest"
