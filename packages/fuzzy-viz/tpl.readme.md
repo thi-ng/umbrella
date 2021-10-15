@@ -63,7 +63,7 @@ writeFileSync("temperature.svg", varToSvg(temp, { samples: 200 }));
 ```
 
 See
-[`VizualizeVarOpts`](https://github.com/thi-ng/umbrella/blob/develop/packages/fuzzy-viz/src/api.ts)
+[`VisualizeVarOpts`](https://docs.thi.ng/umbrella/fuzzy-viz/interfaces/VisualizeVarOpts.html)
 for further options to configure the visualization.
 
 ### Instrument a DefuzzStrategy

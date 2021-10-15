@@ -24,7 +24,7 @@ The Poisson disc sampler requires a spatial index and we recommend using
 `KdTreeSet` from the
 [@thi.ng/geom-accel](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-accel)
 package to speed up the sampling process, but other
-[`ISpatialSet`-compatible](https://github.com/thi-ng/umbrella/blob/develop/packages/geom-api/src/accel.ts#L25)
+[`ISpatialSet`-compatible](https://docs.thi.ng/umbrella/geom-api/interfaces/ISpatialSet.html)
 indices are supported as well...
 
 ${status}

@@ -56,7 +56,7 @@ node --experimental-repl-await
 > const adjacency = await import("@thi.ng/adjacency");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 2.38 KB
+Package sizes (gzipped, pre-treeshake): ESM: 2.34 KB
 
 ## Dependencies
 

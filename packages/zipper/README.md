@@ -71,7 +71,7 @@ node --experimental-repl-await
 > const zipper = await import("@thi.ng/zipper");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.03 KB
+Package sizes (gzipped, pre-treeshake): ESM: 1.02 KB
 
 ## Dependencies
 

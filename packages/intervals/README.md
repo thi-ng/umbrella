@@ -30,8 +30,8 @@ Supports point & range queries and set operations with other intervals
 
 Furthermore, a parser for [ISO 80000-2 / ISO 31-11 interval
 notation](https://en.wikipedia.org/wiki/ISO_31-11#Sets) is provided. See
-[`parse()`](https://github.com/thi-ng/umbrella/blob/develop/packages/intervals/src/index.ts#L108)
-for details.
+[`parse()`](https://docs.thi.ng/umbrella/intervals/modules.html#parse) for
+details.
 
 ### Status
 
@@ -69,7 +69,7 @@ node --experimental-repl-await
 > const intervals = await import("@thi.ng/intervals");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.66 KB
+Package sizes (gzipped, pre-treeshake): ESM: 1.65 KB
 
 ## Dependencies
 

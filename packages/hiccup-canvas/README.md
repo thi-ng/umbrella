@@ -54,11 +54,11 @@ This project is part of the
 
 Hiccup shape tree renderer for vanilla Canvas 2D contexts. This is a support package for [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup).
 
-This package provides a simple `draw()` function, which accepts a scene
-tree of different shape types in
+This package provides a simple `draw()` function, which accepts a scene tree of
+different shape types in
 [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup)
 syntax/format (i.e. nested arrays,
-[`IToHiccup`](https://github.com/thi-ng/umbrella/blob/develop/packages/api/src/api/hiccup.ts)
+[`IToHiccup`](https://docs.thi.ng/umbrella/api/interfaces/IToHiccup.html)
 implementations) and then translates these into canvas API draw calls.
 
 ### Status

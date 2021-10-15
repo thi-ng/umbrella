@@ -149,7 +149,7 @@ node --experimental-repl-await
 > const malloc = await import("@thi.ng/malloc");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.95 KB
+Package sizes (gzipped, pre-treeshake): ESM: 1.94 KB
 
 ## Dependencies
 
@@ -164,9 +164,8 @@ Package sizes (gzipped, pre-treeshake): ESM: 1.95 KB
 
 ### MemPool
 
-The `MemPool` constructor takes an object of optional configuration
-options. See
-[`MemPoolOpts`](https://github.com/thi-ng/umbrella/blob/develop/packages/malloc/src/api.ts#L9)
+The `MemPool` constructor takes an object of optional configuration options. See
+[`MemPoolOpts`](https://docs.thi.ng/umbrella/malloc/interfaces/MemPoolOpts.html)
 for further reference:
 
 ```ts

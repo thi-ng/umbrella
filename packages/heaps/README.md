@@ -60,7 +60,7 @@ node --experimental-repl-await
 > const heaps = await import("@thi.ng/heaps");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 2.00 KB
+Package sizes (gzipped, pre-treeshake): ESM: 1.98 KB
 
 ## Dependencies
 

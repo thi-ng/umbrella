@@ -78,7 +78,7 @@ node --experimental-repl-await
 > const csp = await import("@thi.ng/csp");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 2.69 KB
+Package sizes (gzipped, pre-treeshake): ESM: 2.64 KB
 
 ## Dependencies
 

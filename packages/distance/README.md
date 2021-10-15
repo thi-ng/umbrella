@@ -29,7 +29,7 @@ N-dimensional distance metrics & K-nearest neighborhoods for point queries.
 ### Distance metrics
 
 The package provides the
-[`IDistance`](https://github.com/thi-ng/umbrella/blob/develop/packages/distance/src/api.ts)
+[`IDistance`](https://docs.thi.ng/umbrella/distance/interfaces/IDistance.html)
 interface for custom distance metric implementations & conversions from/to raw
 distance values. The following preset metrics are provided too:
 
@@ -58,7 +58,7 @@ also use one of the given distance metrics and implement the widely used
 interface to obtain the final query results.
 
 Custom neighborhood selections can be defined via the
-[`INeighborhood`](https://github.com/thi-ng/umbrella/blob/develop/packages/distance/src/api.ts)
+[`INeighborhood`](https://docs.thi.ng/umbrella/distance/interfaces/INeighborhood.html)
 interface. Currently, there are two different implementations available, each
 providing several factory functions to instantiate and provide defaults for
 different dimensions. See documentation and examples below.
@@ -119,7 +119,7 @@ node --experimental-repl-await
 > const distance = await import("@thi.ng/distance");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.16 KB
+Package sizes (gzipped, pre-treeshake): ESM: 1.13 KB
 
 ## Dependencies
 

@@ -71,7 +71,7 @@ node --experimental-repl-await
 > const args = await import("@thi.ng/args");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 2.45 KB
+Package sizes (gzipped, pre-treeshake): ESM: 2.44 KB
 
 ## Dependencies
 

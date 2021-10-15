@@ -13,11 +13,10 @@ This project is part of the
 
 ${pkg.description}
 
-Attempts to determine display pixel density via
-`window.devicePixelRatio` (default 1.0) and resizes canvas accordingly.
-I.e. If DPR != 1.0, attaches explicit `width` and `height` CSS
-properties to force canvas to given pixel size, and resizes canvas pixel
-buffer itself based on DPR (e.g. 2x size).
+Attempts to determine display pixel density via `window.devicePixelRatio`
+(default 1.0) and resizes canvas accordingly. I.e. If DPR != 1.0, attaches
+explicit `width` and `height` CSS properties to force canvas to given CSS pixel
+size, and resizes canvas pixel buffer itself based on DPR (e.g. 2x size).
 
 ${status}
 
@@ -44,11 +43,15 @@ ${examples}
 ${docLink}
 
 ```ts
-import { adaptDPI } from "@thi.ng/adapt-dpi";
+import { adaptDPI, isHighDPI } from "@thi.ng/adapt-dpi";
 
 const canvas = document.createElement("canvas");
 
 adaptDPI(canvas, 640, 480);
+
+if (isHighDPI()) {
+    // ...
+}
 ```
 
 ## Authors

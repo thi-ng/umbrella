@@ -120,9 +120,8 @@ ${docLink}
 
 ### MemPool
 
-The `MemPool` constructor takes an object of optional configuration
-options. See
-[`MemPoolOpts`](https://github.com/thi-ng/umbrella/blob/develop/packages/malloc/src/api.ts#L9)
+The `MemPool` constructor takes an object of optional configuration options. See
+[`MemPoolOpts`](https://docs.thi.ng/umbrella/malloc/interfaces/MemPoolOpts.html)
 for further reference:
 
 ```ts

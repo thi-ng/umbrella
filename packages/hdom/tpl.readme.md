@@ -835,7 +835,7 @@ The following functions are the core parts of the `HDOMImplementation`
 interface, the abstraction layer used by hdom to support different
 targets.
 
-- [interface definition](https://github.com/thi-ng/umbrella/blob/develop/packages/hdom/src/api.ts#L127)
+- [interface definition](https://docs.thi.ng/umbrella/hdom/interfaces/HDOMImplementation.html)
 - [default implementation](https://github.com/thi-ng/umbrella/blob/develop/packages/hdom/src/default.ts)
 
 ### normalizeTree()

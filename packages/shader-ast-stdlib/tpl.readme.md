@@ -201,12 +201,12 @@ usually seen in shader code and not easily achievable via the usual
 string templating approach used by most other GLSL libraries.
 
 For example, the
-[`additive()`](https://github.com/thi-ng/umbrella/blob/develop/packages/shader-ast-stdlib/src/math/additive.ts#L21)
-HOF takes a single-arg scalar function and a number of octaves. It
-returns a new function which computes the summed value of `fn` over the
-given number octaves, with a user defined phase shift & decay factor
-(per octave). This can be used for additive wave synthesis, multi-octave
-noise or any other similar use cases...
+[`additive()`](https://docs.thi.ng/umbrella/shader-ast-stdlib/modules.html#additive)
+HOF takes a single-arg scalar function and a number of octaves. It returns a new
+function which computes the summed value of `fn` over the given number octaves,
+with a user defined phase shift & decay factor (per octave). This can be used
+for additive wave synthesis, multi-octave noise or any other similar use
+cases...
 
 Due to the way user defined AST functions keep track of their own call
 graph, the anonymous function returned by `additive` does not need to be

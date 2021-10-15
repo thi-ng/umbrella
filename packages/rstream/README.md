@@ -201,7 +201,7 @@ node --experimental-repl-await
 > const rstream = await import("@thi.ng/rstream");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 5.92 KB
+Package sizes (gzipped, pre-treeshake): ESM: 5.78 KB
 
 ## Dependencies
 
@@ -349,7 +349,7 @@ b.next(42);
 
 `Stream` (like all other types of `Subscription`) implements the
 [@thi.ng/api
-`IDeref`](https://github.com/thi-ng/umbrella/blob/develop/packages/api/src/api/deref.ts)
+`IDeref`](https://docs.thi.ng/umbrella/api/interfaces/IDeref.html)
 interface which provides read access to a stream's last received value.
 This is useful for various purposes, e.g. in combination with
 @thi.ng/hdom, which supports direct embedding of streams (i.e. their
@@ -412,7 +412,7 @@ s.next(42);
 
 ### Meta streams
 
-Source: [metaStream()](https://github.com/thi-ng/umbrella/blob/develop/packages/rstream/src/metastream.ts)
+Source: [metaStream()](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream/src/metastream.ts)
 
 `MetaStream`s are streams of streams. A `MetaStream` is a subscription
 type which transforms each incoming value into a new stream, subscribes

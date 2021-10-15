@@ -248,11 +248,11 @@ $compile(
 
 ### defElement
 
-All element functions are created via the higher-order function
-`defElement` which produces the typed, variadic factories. `defElement`
-takes an element name and optional set of default attributes. It also
-uses generics to enforce types for the element's attributes (default:
-[`Attribs`](https://github.com/thi-ng/umbrella/blob/develop/packages/hiccup-html/src/api.ts#L119)
+All element functions are created via the higher-order function `defElement`
+which produces the typed, variadic factories. `defElement` takes an element name
+and optional set of default attributes. It also uses generics to enforce types
+for the element's attributes (default:
+[`Attribs`](https://docs.thi.ng/umbrella/hiccup-html/interfaces/Attribs.html)
 and/or children/body (default: `any`).
 
 Define element with defaults:
@@ -301,7 +301,7 @@ when later providing attribute values to an element.
 #### Element creation
 
 The function returned by `defElement` has the [following
-signatures](https://github.com/thi-ng/umbrella/blob/develop/packages/hiccup-html/src/def.ts#L4):
+signatures](https://docs.thi.ng/umbrella/hiccup-html/modules.html#defElement):
 
 ```ts
 (attribs?: Nullable<T>, ...body: B[]) => [string, Nullable<T>, ...B[]];

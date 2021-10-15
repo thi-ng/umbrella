@@ -118,9 +118,9 @@ css(rgb(labD50("#ff0")))
 ```
 
 Additionally, colors can be created from black body temperatures
-([`kelvinRgb()`](https://github.com/thi-ng/umbrella/blob/develop/packages/color/src/rgb/kelvin-rgba.ts))
+([`kelvinRgb()`](https://docs.thi.ng/umbrella/color/modules.html#kelvinRgb))
 or wavelengths
-([`wavelengthXyz()`](https://github.com/thi-ng/umbrella/blob/develop/packages/color/src/xyz/wavelength-xyz.ts)).
+([`wavelengthXyz()`](https://docs.thi.ng/umbrella/color/modules.html#wavelengthXyz)).
 
 ![kelvinRgb() result swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/blackbody.svg)
 
@@ -444,7 +444,7 @@ writeFileSync(
 - [Original article](http://www.iquilezles.org/www/articles/palettes/palettes.htm)
 - [Gradient generator](http://dev.thi.ng/gradients/)
 
-The following presets are bundled (in [`cosine-gradients.ts`](https://github.com/thi-ng/umbrella/tree/develop/packages/color/src/ops/cosine-gradients.ts)):
+The following presets are bundled (in [`cosine-gradients.ts`](https://github.com/thi-ng/umbrella/tree/develop/packages/color/src/cosine-gradients.ts)):
 
 | Preview                                                                                                                                       | Gradient ID             |
 |-----------------------------------------------------------------------------------------------------------------------------------------------|-------------------------|
@@ -525,7 +525,7 @@ multiCosineGradient({
 ### RGB color transformations
 
 RGB [color matrix
-transformations](https://github.com/thi-ng/umbrella/tree/develop/packages/color/src/ops/transform.ts),
+transformations](https://github.com/thi-ng/umbrella/tree/develop/packages/color/src/transform.ts),
 including parametric preset transforms:
 
 - brightness

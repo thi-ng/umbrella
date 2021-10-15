@@ -321,7 +321,7 @@ violet32
 ### White noise
 
 Uniform distribution (unfiltered output from source PRNG) -
-[Source](https://github.com/thi-ng/umbrella/blob/develop/packages/colored-noise/src/blue.ts)
+[Source](https://github.com/thi-ng/umbrella/blob/develop/packages/colored-noise/src/white.ts)
 
 ```text
 white

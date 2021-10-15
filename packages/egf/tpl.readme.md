@@ -437,7 +437,7 @@ Parsing the `main.egf` file (with node resolution/inlining and pruning) produces
 
 Complying JS objects can be converted to EGF using the `toEGF()` function. This
 function takes an iterable of
-[Node](https://github.com/thi-ng/umbrella/blob/develop/packages/egf/src/api.ts#L5)
+[Node](https://docs.thi.ng/umbrella/egf/interfaces/Node.html)
 objects, optional prefix mappings and an optional property serialization
 function to deal with custom tagged values. The default property formatter
 (`toEGFProp()`) handles various values for built-in tags and can be used in

@@ -369,9 +369,9 @@ console.log(tc.toString(canvas, tc.FMT_ANSI16));
 
 For even more detailed control, tables can also be pre-initialized prior
 to creation of the canvas via
-[`initTable()`](https://github.com/thi-ng/umbrella/blob/develop/packages/text-canvas/src/table.ts#L20)
+[`initTable()`](https://github.com/thi-ng/umbrella/blob/develop/packages/text-canvas/src/table.ts#L29)
 and then drawn via
-[`drawTable()`](https://github.com/thi-ng/umbrella/blob/develop/packages/text-canvas/src/table.ts#L80).
+[`drawTable()`](https://github.com/thi-ng/umbrella/blob/develop/packages/text-canvas/src/table.ts#L97).
 The `initTable` function returns an object also containing the computed
 table size (`width`, `height` keys) which can then be used to create a
 canvas with the required size...

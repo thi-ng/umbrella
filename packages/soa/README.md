@@ -83,7 +83,7 @@ node --experimental-repl-await
 > const soa = await import("@thi.ng/soa");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.44 KB
+Package sizes (gzipped, pre-treeshake): ESM: 1.43 KB
 
 ## Dependencies
 

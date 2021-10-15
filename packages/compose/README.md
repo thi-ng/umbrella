@@ -50,7 +50,7 @@ node --experimental-repl-await
 > const compose = await import("@thi.ng/compose");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 836 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 825 bytes
 
 ## Dependencies
 

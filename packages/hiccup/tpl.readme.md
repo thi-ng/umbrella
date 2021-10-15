@@ -566,7 +566,7 @@ Signature: `escape(str: string): string`
 Helper function. Applies HTML entity replacement on given string. If
 `serialize()` is called with `true` as 2nd argument, entity encoding is
 done automatically ([list of entities
-considered](https://github.com/thi-ng/umbrella/blob/develop/packages/hiccup/src/api.ts)).
+considered](https://github.com/thi-ng/umbrella/blob/develop/packages/hiccup/src/api.ts#L11)).
 
 ## Authors
 

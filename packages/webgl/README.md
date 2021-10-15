@@ -100,7 +100,7 @@ node --experimental-repl-await
 > const webgl = await import("@thi.ng/webgl");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 12.21 KB
+Package sizes (gzipped, pre-treeshake): ESM: 12.14 KB
 
 ## Dependencies
 

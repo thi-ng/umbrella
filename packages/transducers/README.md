@@ -94,9 +94,9 @@ issue](https://github.com/thi-ng/umbrella/issues/186) by
 [@gavinpc-mindgrub](https://github.com/gavinpc-mindgrub), various transducers
 functions have been fixed for the case when they're invoked with an _empty_
 string as input iterable. Furthermore,
-[`flatten()`](https://github.com/thi-ng/umbrella/blob/develop/packages/transducers/src/flatten.ts)
-is _always_ treating strings as atomic values now, whereas before top-level
-strings would be split into individual characters.
+[`flatten()`](https://docs.thi.ng/umbrella/transducers/modules.html#flatten) is
+_always_ treating strings as atomic values now, whereas before top-level strings
+would be split into individual characters.
 
 ### 6.0.0 release
 
@@ -178,7 +178,7 @@ node --experimental-repl-await
 > const transducers = await import("@thi.ng/transducers");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 8.68 KB
+Package sizes (gzipped, pre-treeshake): ESM: 8.67 KB
 
 ## Dependencies
 

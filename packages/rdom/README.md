@@ -134,8 +134,8 @@ integration has been removed in favor of using relevant
 [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream)
 constructs, which can be used as lightweight adapters, i.e.:
 
-- [`fromAtom()`](https://github.com/thi-ng/umbrella/blob/develop/packages/rstream/src/from/atom.ts)
-- [`fromView()`](https://github.com/thi-ng/umbrella/blob/develop/packages/rstream/src/from/view.ts)
+- [`fromAtom()`](https://docs.thi.ng/umbrella/rstream/modules.html#fromAtom)
+- [`fromView()`](https://docs.thi.ng/umbrella/rstream/modules.html#fromView)
 
 ### Support packages
 
@@ -173,7 +173,7 @@ node --experimental-repl-await
 > const rdom = await import("@thi.ng/rdom");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 4.07 KB
+Package sizes (gzipped, pre-treeshake): ESM: 3.98 KB
 
 ## Dependencies
 

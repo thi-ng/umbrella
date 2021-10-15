@@ -100,7 +100,7 @@ essentially `onchange` event handlers which are called from `reset` /
 `swap` and receive both the old and new atom values.
 
 Note: The [`IDeref`
-interface](https://github.com/thi-ng/umbrella/blob/develop/packages/api/src/api/deref.ts)
+interface](https://docs.thi.ng/umbrella/api/interfaces/IDeref.html)
 is widely supported across many thi.ng/umbrella packages and implemented
 by most value wrapper types.
 
@@ -194,9 +194,9 @@ Transactions can also be canceled, thus not impacting the parent state
 at all.
 
 `Transacted` can wrap any existing
-[IAtom](https://github.com/thi-ng/umbrella/blob/develop/packages/atom/src/api.ts#L29)
-implementation, e.g. `Atom`, `Cursor` or `History` instances.
-`Transacted` also implements `IAtom` itself...
+[IAtom](https://docs.thi.ng/umbrella/atom/interfaces/IAtom.html) implementation,
+e.g. `Atom`, `Cursor` or `History` instances. `Transacted` also implements
+`IAtom` itself...
 
 ```ts
 const db = defAtom<any>({ a: 1, b: 2 });
