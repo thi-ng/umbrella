@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/geom-fuzz",
-    "version": "2.0.1",
+    "version": "2.0.2",
     "description": "Highly configurable, fuzzy line & polygon creation with presets and composable fill & stroke styles. Canvas & SVG support",
     "type": "module",
     "module": "./index.js",
@@ -34,19 +34,19 @@
         "test": "testament test"
     },
     "dependencies": {
-        "@thi.ng/api": "^8.0.1",
-        "@thi.ng/associative": "^6.0.1",
-        "@thi.ng/color": "^4.0.1",
-        "@thi.ng/geom": "^3.0.1",
-        "@thi.ng/geom-api": "^3.0.1",
-        "@thi.ng/geom-clip-line": "^2.0.1",
-        "@thi.ng/geom-resample": "^2.0.1",
-        "@thi.ng/grid-iterators": "^2.0.1",
-        "@thi.ng/transducers": "^8.0.1",
-        "@thi.ng/vectors": "^7.0.1"
+        "@thi.ng/api": "^8.0.2",
+        "@thi.ng/associative": "^6.0.2",
+        "@thi.ng/color": "^4.0.2",
+        "@thi.ng/geom": "^3.0.2",
+        "@thi.ng/geom-api": "^3.0.2",
+        "@thi.ng/geom-clip-line": "^2.0.2",
+        "@thi.ng/geom-resample": "^2.0.2",
+        "@thi.ng/grid-iterators": "^2.0.2",
+        "@thi.ng/transducers": "^8.0.2",
+        "@thi.ng/vectors": "^7.0.2"
     },
     "devDependencies": {
-        "@thi.ng/testament": "^0.1.1"
+        "@thi.ng/testament": "^0.1.2"
     },
     "keywords": [
         "2d",

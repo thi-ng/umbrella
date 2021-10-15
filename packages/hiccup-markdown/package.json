@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/hiccup-markdown",
-    "version": "2.0.1",
+    "version": "2.0.2",
     "description": "Markdown parser & serializer from/to Hiccup format",
     "type": "module",
     "module": "./index.js",
@@ -34,19 +34,19 @@
         "test": "testament test"
     },
     "dependencies": {
-        "@thi.ng/api": "^8.0.1",
-        "@thi.ng/arrays": "^2.0.1",
-        "@thi.ng/checks": "^3.0.1",
-        "@thi.ng/defmulti": "^2.0.1",
-        "@thi.ng/errors": "^2.0.1",
-        "@thi.ng/fsm": "^3.0.1",
-        "@thi.ng/hiccup": "^4.0.1",
-        "@thi.ng/strings": "^3.0.1",
-        "@thi.ng/text-canvas": "^2.0.1",
-        "@thi.ng/transducers": "^8.0.1"
+        "@thi.ng/api": "^8.0.2",
+        "@thi.ng/arrays": "^2.0.2",
+        "@thi.ng/checks": "^3.0.2",
+        "@thi.ng/defmulti": "^2.0.2",
+        "@thi.ng/errors": "^2.0.2",
+        "@thi.ng/fsm": "^3.0.2",
+        "@thi.ng/hiccup": "^4.0.2",
+        "@thi.ng/strings": "^3.0.2",
+        "@thi.ng/text-canvas": "^2.0.2",
+        "@thi.ng/transducers": "^8.0.2"
     },
     "devDependencies": {
-        "@thi.ng/testament": "^0.1.1"
+        "@thi.ng/testament": "^0.1.2"
     },
     "keywords": [
         "ast",
