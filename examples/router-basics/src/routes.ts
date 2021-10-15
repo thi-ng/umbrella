@@ -6,8 +6,8 @@ import type { Route } from "@thi.ng/router";
 
 // the `match` arrays specify the individual route elements
 // docs here:
-// https://github.com/thi-ng/umbrella/blob/develop/packages/router/
-// https://github.com/thi-ng/umbrella/blob/develop/packages/router/src/api.ts#L31
+// https://docs.thi.ng/umbrella/router/
+// https://docs.thi.ng/umbrella/router/interfaces/Route.html
 
 export const HOME: Route = {
     id: "home",

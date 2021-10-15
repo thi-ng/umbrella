@@ -28,8 +28,8 @@ interface DemoUniforms extends ShaderToyUniforms {
 // the 2 args given are objects containing GLSL builtin vars and uniforms
 //
 // see:
-// https://github.com/thi-ng/umbrella/blob/develop/packages/shader-ast-glsl/src/api.ts#L22
-// https://github.com/thi-ng/umbrella/blob/develop/packages/webgl-shadertoy/src/api.ts#L13
+// - https://docs.thi.ng/umbrella/shader-ast-glsl/interfaces/GLSLTarget.html
+// - https://docs.thi.ng/umbrella/webgl-shadertoy/modules.html#MainImageFn
 const mainImage: MainImageFn<DemoUniforms> = (gl, unis) => {
     // predeclare local vars / symbols
     let uv: Vec2Sym;

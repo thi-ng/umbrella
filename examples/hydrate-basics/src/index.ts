@@ -19,7 +19,7 @@ const setFreq = (x: number) => state.resetIn(["freq"], x);
 const app = () => {
     // HOF canvas component w/ life cycle methods see for further
     // reference:
-    // https://github.com/thi-ng/umbrella/blob/develop/packages/hdom-components/src/canvas.ts
+    // https://docs.thi.ng/umbrella/hdom-components/modules.html#canvas2D
     //
     // when serializing to html only the component's `render` method
     // will be invoked. the component's `init` is invoked later when

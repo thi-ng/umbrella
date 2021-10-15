@@ -16,7 +16,7 @@ export const CONFIG: AppConfig = {
     // and only side effect functions execute any "real" work.
 
     // Docs here:
-    // https://github.com/thi-ng/umbrella/blob/develop/packages/interceptors/src/event-bus.ts#L14
+    // https://docs.thi.ng/umbrella/interceptors/#event-bus-interceptors-side-effects
 
     events: {
         // generate event handlers from imported slider definitions
@@ -75,8 +75,7 @@ export const CONFIG: AppConfig = {
     // re-skinning of the whole app
     ui: {
         button: {
-            class:
-                "pointer bg-black hover-bg-blue bg-animate white pa2 mr1 w-100 ttu b tracked-tight",
+            class: "pointer bg-black hover-bg-blue bg-animate white pa2 mr1 w-100 ttu b tracked-tight",
         },
         buttongroup: { class: "flex mb2" },
         footer: { class: "absolute bottom-1" },

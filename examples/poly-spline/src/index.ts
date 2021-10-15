@@ -7,7 +7,6 @@ import { line } from "@thi.ng/geom/line";
 import { pathFromCubics } from "@thi.ng/geom/path";
 import { star } from "@thi.ng/geom/polygon";
 import { withAttribs } from "@thi.ng/geom/with-attribs";
-import { convertTree } from "@thi.ng/hiccup-svg/convert";
 import { fromRAF } from "@thi.ng/rstream/raf";
 import { reactive, Stream } from "@thi.ng/rstream/stream";
 import { sync } from "@thi.ng/rstream/sync";
@@ -132,33 +131,28 @@ const app =
             ],
             [
                 "div",
-                // all @thi.ng/geom shapes implement the `IToHiccup`
-                // interface and so can be used directly in
-                // @thi.ng/hdom-canvas visualizations. However, here we're
-                // using SVG and hence will need to call `convertTree()` to
-                // transform the hiccup format into a SVG compatible format
-                // see:
-                // https://github.com/thi-ng/umbrella/blob/develop/packages/hiccup-svg/src/convert.ts#L34
-                convertTree(
-                    svgDoc(
-                        {
-                            width: 480,
-                            height: 480,
-                            viewBox: "-150 -150 300 300",
-                            fill: "none",
-                            stroke: "#ccc",
-                            "stroke-width": 0.25,
-                        },
-                        poly,
-                        withAttribs(pathFromCubics(cubics), {
-                            stroke: mode ? "blue" : "red",
-                            "stroke-width": 1,
-                        }),
-                        group({ stroke: "#333" }, [
-                            ...controlPoints,
-                            ...handles,
-                        ])
-                    )
+                // all @thi.ng/geom shapes implement the `IToHiccup` interface
+                // and so can be used directly in @thi.ng/hdom-canvas
+                // visualizations. However, here we're using SVG and hence will
+                // need to provide a `convert` attribute to transform the hiccup
+                // format into a hiccup-svg compatible format see:
+                // https://docs.thi.ng/umbrella/hiccup-svg/modules.html#convertTree
+                svgDoc(
+                    {
+                        convert: true,
+                        width: 480,
+                        height: 480,
+                        viewBox: "-150 -150 300 300",
+                        fill: "none",
+                        stroke: "#ccc",
+                        "stroke-width": 0.25,
+                    },
+                    poly,
+                    withAttribs(pathFromCubics(cubics), {
+                        stroke: mode ? "blue" : "red",
+                        "stroke-width": 1,
+                    }),
+                    group({ stroke: "#333" }, [...controlPoints, ...handles])
                 ),
             ],
         ];

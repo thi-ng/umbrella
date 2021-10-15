@@ -71,7 +71,7 @@ start(() => {
             // applied in a nested manner...
             //
             // see here for a list of all supported attribs:
-            // https://github.com/thi-ng/umbrella/blob/develop/packages/hdom-canvas/src/index.ts#L35
+            // https://docs.thi.ng/umbrella/hiccup-canvas/#attributes
             [
                 "g",
                 {

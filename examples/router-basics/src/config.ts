@@ -19,7 +19,7 @@ import * as routes from "./routes";
 export const CONFIG: AppConfig = {
     // router configuration
     // docs here:
-    // https://github.com/thi-ng/umbrella/blob/develop/packages/router/src/api.ts#L100
+    // https://docs.thi.ng/umbrella/router/
     router: {
         // use URI hash for routes (KISS)
         useFragment: true,
@@ -44,7 +44,7 @@ export const CONFIG: AppConfig = {
     // and only side effect functions execute any "real" work.
 
     // see EventBus docs here:
-    // https://github.com/thi-ng/umbrella/blob/develop/packages/atom/src/event-bus.ts#L14
+    // https://docs.thi.ng/umbrella/interceptors/#event-bus-interceptors-side-effects
 
     events: {
         // sets status to "done"
@@ -198,8 +198,7 @@ export const CONFIG: AppConfig = {
         bodyLink: { class: "link dim black" },
         card: {
             container: {
-                class:
-                    "mw5 center bg-white br3 pa3 pa4-ns mv3 ba b--black-10 tc",
+                class: "mw5 center bg-white br3 pa3 pa4-ns mv3 ba b--black-10 tc",
             },
             thumb: { class: "br-100 h3 w3 dib" },
             title: { class: "ma1" },

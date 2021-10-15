@@ -260,7 +260,7 @@ const packageCommits = (i: number, pkg: string) =>
 /**
  * Assemble & output full SVG document using hiccup-svg primitives.
  *
- * See: https://github.com/thi-ng/umbrella/blob/develop/packages/compose/src/thread-last.ts
+ * See: https://docs.thi.ng/umbrella/compose/modules.html#threadLast
  */
 threadLast(
     commitsByPackage,
