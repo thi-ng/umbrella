@@ -4,6 +4,7 @@ export * from "./ansi.js";
 export * from "./case.js";
 export * from "./center.js";
 export * from "./cursor.js";
+export * from "./entities.js";
 export * from "./escape.js";
 export * from "./float.js";
 export * from "./format.js";
