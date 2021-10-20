@@ -8,18 +8,7 @@ export const PROC_TAGS: { [id: string]: string } = {
 };
 
 /** @internal */
-export const ENTITIES: { [id: string]: string } = {
-    "&": "&amp;",
-    "<": "&lt;",
-    ">": "&gt;",
-    '"': "&quot;",
-    "'": "&apos;",
-};
-
-/** @internal */
 export const RE_TAG = /^([^\s\.#]+)(?:#([^\s\.#]+))?(?:\.([^\s#]+))?$/;
-/** @internal */
-export const RE_ENTITY = new RegExp(`[${Object.keys(ENTITIES).join("")}]`, "g");
 
 /** @internal */
 export const COMMENT = "__COMMENT__";

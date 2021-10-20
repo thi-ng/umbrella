@@ -36,7 +36,8 @@
     "dependencies": {
         "@thi.ng/api": "^8.0.3",
         "@thi.ng/checks": "^3.0.3",
-        "@thi.ng/errors": "^2.0.3"
+        "@thi.ng/errors": "^2.0.3",
+        "@thi.ng/strings": "^3.0.3"
     },
     "devDependencies": {
         "@thi.ng/atom": "^5.0.3",

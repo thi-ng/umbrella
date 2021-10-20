@@ -6,6 +6,7 @@ import { isNotStringAndIterable } from "@thi.ng/checks/is-not-string-iterable";
 import { isPlainObject } from "@thi.ng/checks/is-plain-object";
 import { isString } from "@thi.ng/checks/is-string";
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
+import { escapeEntities } from "@thi.ng/strings/entities";
 import {
     ATTRIB_JOIN_DELIMS,
     CDATA,
@@ -16,7 +17,6 @@ import {
     VOID_TAGS,
 } from "./api.js";
 import { css } from "./css.js";
-import { escape } from "./escape.js";
 import { normalize } from "./normalize.js";
 import { formatPrefixes } from "./prefix.js";
 
@@ -179,7 +179,7 @@ const _serialize = (
         ? _serialize(tree.deref(), ctx, esc, span, keys, path)
         : isNotStringAndIterable(tree)
         ? serializeIter(tree, ctx, esc, span, keys, path)
-        : ((tree = esc ? escape(String(tree)) : String(tree)), span)
+        : ((tree = esc ? escapeEntities(String(tree)) : String(tree)), span)
         ? `<span${keys ? ` key="${path.join("-")}"` : ""}>${tree}</span>`
         : tree;
 
@@ -277,7 +277,7 @@ const attribPair = (a: string, v: any, esc: boolean) => {
             : isArray(v)
             ? v.join(ATTRIB_JOIN_DELIMS[a] || " ")
             : v.toString();
-    return v.length ? ` ${a}="${esc ? escape(v) : v}"` : null;
+    return v.length ? ` ${a}="${esc ? escapeEntities(v) : v}"` : null;
 };
 
 const serializeDataAttribs = (data: any, esc: boolean) => {
@@ -285,7 +285,7 @@ const serializeDataAttribs = (data: any, esc: boolean) => {
     for (let id in data) {
         let v = deref(data[id]);
         isFunction(v) && (v = v(data));
-        v != null && (res += ` data-${id}="${esc ? escape(v) : v}"`);
+        v != null && (res += ` data-${id}="${esc ? escapeEntities(v) : v}"`);
     }
     return res;
 };
