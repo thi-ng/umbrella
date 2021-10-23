@@ -96,7 +96,6 @@
         "*.js",
         "*.d.ts",
         "api",
-        "ctors",
         "internal"
     ],
     "exports": {
@@ -349,6 +348,5 @@
     },
     "thi.ng": {
         "year": 2013
-    },
-    "gitHead": "3c5f903104da150588946a94bb118ad559ad395d"
+    }
 }
