@@ -1,5 +1,5 @@
 import { diffArray } from "@thi.ng/diff/array";
-import { escape } from "@thi.ng/hiccup/escape";
+import { escapeEntities } from "@thi.ng/strings/entities";
 import { padLeft } from "@thi.ng/strings/pad-left";
 
 const FMT_LN = padLeft(4, " ");
@@ -57,7 +57,7 @@ const codeLine = (edits: any[], i: number, body = false): any[] => [
         "data-diff": ["-", " ", "+"][edits[i] + 1],
         "data-lnum": FMT_LN(edits[i + 1] + 1),
     },
-    body ? escape(edits[i + 2]) : null,
+    body ? escapeEntities(edits[i + 2]) : null,
 ];
 
 const foldedBlock = (edits: any[], i: number, j: number): any[] => {
