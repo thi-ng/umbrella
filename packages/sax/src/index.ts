@@ -1,5 +1,7 @@
 import type { IObjectOf } from "@thi.ng/api";
 import { NO_OP } from "@thi.ng/api/api";
+import { unescapeEntities } from "@thi.ng/strings/entities";
+import { ESCAPES } from "@thi.ng/strings/escape";
 import type { Transducer } from "@thi.ng/transducers";
 import { fsm, FSMState, FSMStateMap } from "@thi.ng/transducers-fsm";
 import { iterator, __iter } from "@thi.ng/transducers/iterator";
@@ -132,28 +134,6 @@ const enum State {
     // U_CHAR,
 }
 
-const ENTITIES: IObjectOf<string> = {
-    "&amp;": "&",
-    "&lt;": "<",
-    "&gt;": ">",
-    "&quot;": '"',
-    "&apos;": "'",
-};
-
-const ENTITY_RE = new RegExp(`(${Object.keys(ENTITIES).join("|")})`, "g");
-
-const ESCAPE_SEQS: IObjectOf<string> = {
-    n: "\n",
-    r: "\r",
-    t: "\t",
-    v: "\v",
-    f: "\f",
-    b: "\b",
-    '"': '"',
-    "'": "'",
-    "\\": "\\",
-};
-
 /**
  * Returns XML parser transducer, optionally configured with given
  * options. If `src` is also given, returns an iterator instead.
@@ -223,8 +203,6 @@ const illegalEscape = (s: ParseState, ch: string) =>
 
 const unexpected = (s: ParseState, x: string) =>
     error(s, `unexpected char: '${x}' @ pos ${s.pos}`);
-
-const replaceEntities = (x: string) => x.replace(ENTITY_RE, (y) => ENTITIES[y]);
 
 const PARSER: FSMStateMap<ParseState, string, ParseEvent[]> = {
     [State.ERROR]: NO_OP,
@@ -338,7 +316,7 @@ const PARSER: FSMStateMap<ParseState, string, ParseEvent[]> = {
                     }
                 }
                 if (state.opts.entities) {
-                    b = replaceEntities(b);
+                    b = unescapeEntities(b);
                 }
                 state.scope[state.scope.length - 1].body = b;
                 res = [{ type: Type.ELEM_BODY, tag: t, body: b }];
@@ -346,7 +324,7 @@ const PARSER: FSMStateMap<ParseState, string, ParseEvent[]> = {
             return res;
         } else {
             if (b.charAt(b.length - 1) === "\\") {
-                const e = ESCAPE_SEQS[ch];
+                const e = ESCAPES[ch];
                 if (e !== undefined) {
                     state.body = b.substr(0, b.length - 1) + e;
                     return;
@@ -425,7 +403,7 @@ const PARSER: FSMStateMap<ParseState, string, ParseEvent[]> = {
         state.pos++;
         let v = state.val!;
         if (v.charAt(v.length - 1) == "\\") {
-            const e = ESCAPE_SEQS[ch];
+            const e = ESCAPES[ch];
             if (e !== undefined) {
                 state.val = v.substr(0, v.length - 1) + e;
                 return;
@@ -438,7 +416,7 @@ const PARSER: FSMStateMap<ParseState, string, ParseEvent[]> = {
             return;
         }
         if (state.opts.entities) {
-            v = replaceEntities(v);
+            v = unescapeEntities(v);
         }
         state.attribs[state.name!] = v;
         state.state = State.MAYBE_ATTRIB;
