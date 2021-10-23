@@ -36,6 +36,7 @@
     "dependencies": {
         "@thi.ng/adapt-dpi": "^2.0.3",
         "@thi.ng/api": "^8.0.3",
+        "@thi.ng/associative": "^6.0.3",
         "@thi.ng/checks": "^3.0.3",
         "@thi.ng/hiccup-canvas": "^2.0.4",
         "@thi.ng/rdom": "^0.7.3",
@@ -83,6 +84,5 @@
         ],
         "status": "alpha",
         "year": 2020
-    },
-    "gitHead": "3c5f903104da150588946a94bb118ad559ad395d"
+    }
 }
