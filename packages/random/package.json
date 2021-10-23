@@ -105,6 +105,9 @@
         "./distributions/uniform": {
             "import": "./distributions/uniform.js"
         },
+        "./pick-random": {
+            "import": "./pick-random.js"
+        },
         "./random-bytes": {
             "import": "./random-bytes.js"
         },
@@ -144,6 +147,5 @@
         "related": [
             "ksuid"
         ]
-    },
-    "gitHead": "3c5f903104da150588946a94bb118ad559ad395d"
+    }
 }
