@@ -17,16 +17,25 @@ export const fpoint = (p: Vec2Like) => ff(p[0]) + "," + ff(p[1]);
 export const fpoints = (pts: Vec2Like[], sep = " ") =>
     pts ? pts.map(fpoint).join(sep) : "";
 
+const DEFAULT_NUMERIC_IDS = [
+    "font-size",
+    "opacity",
+    "stroke-width",
+    "stroke-miterlimit",
+];
+
 /**
  * Takes an attributes object and a number of attrib IDs whose values should be
  * formatted using {@link ff}. Mutates and returns `attribs` object.
  *
  * @param attribs
  * @param ids
+ *
+ * @internal
  */
-export const numericAttribs = (attribs: any, ...ids: string[]) => {
+const numericAttribs = (attribs: any, ids: string[]) => {
     let v: any;
-    for (let id of ids) {
+    for (let id of DEFAULT_NUMERIC_IDS.concat(ids)) {
         typeof (v = attribs[id]) === "number" && (attribs[id] = ff(v));
     }
     return attribs;
@@ -56,19 +65,24 @@ export const numericAttribs = (attribs: any, ...ids: string[]) => {
  * String color attribs prefixed with `$` are replaced with `url(#...)` refs
  * (used for referencing gradients).
  *
+ * Additional attribute names given (via rest args) will be formatted as numeric
+ * values (using configured precision, see {@link setPrecision}). Formatting is
+ * done via {@link numericAttribs}.
+ *
  * Returns updated attribs or `undefined` if `attribs` itself is null-ish.
  *
  * @param attribs - attributes object
+ * @param numericIDs - numeric attribute names
  *
  * @internal
  */
-export const fattribs = (attribs: any) => {
+export const fattribs = (attribs: any, ...numericIDs: string[]) => {
     if (!attribs) return;
     const res: any = ftransforms(attribs);
     let v: any;
     (v = attribs.fill) && (res.fill = fcolor(v));
     (v = attribs.stroke) && (res.stroke = fcolor(v));
-    return res;
+    return numericAttribs(attribs, numericIDs);
 };
 
 /**
@@ -102,6 +116,9 @@ const ftransforms = (attribs: any) => {
     return attribs;
 };
 
+/**
+ * @internal
+ */
 const buildTransform = (attribs: any) => {
     const tx: string[] = [];
     let v: any;
@@ -143,6 +160,7 @@ export const fcolor = (col: any) =>
             : col
         : css(col);
 
+/** @internal */
 export const withoutKeys = (src: any, keys: Set<PropertyKey>) => {
     const dest: any = {};
     for (let k in src) {
