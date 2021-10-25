@@ -1,5 +1,6 @@
 // FIXME https://github.com/snowpackjs/snowpack/issues/3621#issuecomment-907731004
-import.meta.hot;
+// FIXME https://github.com/snowpackjs/snowpack/issues/3768
+/* imports meta.hot method */
 
 declare const __SNOWPACK_ENV__: any;
 
