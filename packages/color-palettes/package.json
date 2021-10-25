@@ -1,7 +1,7 @@
 {
     "name": "@thi.ng/color-palettes",
     "version": "0.4.3",
-    "description": "Collection of 100 image based color palettes",
+    "description": "Collection of 132 image based color palettes",
     "type": "module",
     "module": "./index.js",
     "typings": "./index.d.ts",

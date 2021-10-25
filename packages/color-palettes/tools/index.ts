@@ -16,7 +16,7 @@ import {
     vals,
 } from "@thi.ng/transducers";
 import { writeFileSync } from "fs";
-import { THEMES } from "../src";
+import { THEMES } from "../src/index.js";
 
 const BASE_URL =
     process.argv[2] !== "--local"
