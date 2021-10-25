@@ -6,7 +6,7 @@
     "module": "./index.js",
     "typings": "./index.d.ts",
     "bin": {
-        "hdiff": "bin/cli.js"
+        "hdiff": "bin/hdiff"
     },
     "sideEffects": false,
     "repository": {
