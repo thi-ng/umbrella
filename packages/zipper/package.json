@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/zipper",
-    "version": "2.0.3",
+    "version": "2.0.4",
     "description": "Functional tree editing, manipulation & navigation",
     "type": "module",
     "module": "./index.js",
@@ -34,13 +34,13 @@
         "test": "testament test"
     },
     "dependencies": {
-        "@thi.ng/api": "^8.0.3",
-        "@thi.ng/arrays": "^2.0.3",
-        "@thi.ng/checks": "^3.0.3",
-        "@thi.ng/errors": "^2.0.3"
+        "@thi.ng/api": "^8.0.4",
+        "@thi.ng/arrays": "^2.0.4",
+        "@thi.ng/checks": "^3.0.4",
+        "@thi.ng/errors": "^2.0.4"
     },
     "devDependencies": {
-        "@thi.ng/testament": "^0.1.3"
+        "@thi.ng/testament": "^0.1.4"
     },
     "keywords": [
         "adjacency",

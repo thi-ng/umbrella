@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/random@3.0.3...@thi.ng/random@3.1.0) (2021-10-25)
+
+
+### Features
+
+* **random:** add pickRandom() ([0899aed](https://github.com/thi-ng/umbrella/commit/0899aed89fd691df4ddc5273995a579414f506d8))
+
+
+
+
+
 ## [3.0.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/random@3.0.2...@thi.ng/random@3.0.3) (2021-10-15)
 
 **Note:** Version bump only for package @thi.ng/random

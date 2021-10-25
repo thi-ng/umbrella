@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/rdom-canvas@0.2.4...@thi.ng/rdom-canvas@0.3.0) (2021-10-25)
+
+
+### Features
+
+* **rdom-canvas:** add lifecycle events, canvas opts ([a579904](https://github.com/thi-ng/umbrella/commit/a5799040ae6244ffe2695623f400962285cc5df0))
+
+
+
+
+
 ## [0.2.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/rdom-canvas@0.2.3...@thi.ng/rdom-canvas@0.2.4) (2021-10-15)
 
 **Note:** Version bump only for package @thi.ng/rdom-canvas

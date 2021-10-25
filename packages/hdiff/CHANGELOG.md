@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdiff@0.2.3...@thi.ng/hdiff@0.2.4) (2021-10-25)
+
+
+### Bug Fixes
+
+* **hdiff:** migrate CLI to TS, update wrapper ([32d77cf](https://github.com/thi-ng/umbrella/commit/32d77cf0954986d2acc4487c81780cce41c2eeb0))
+
+
+
+
+
 ## [0.2.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdiff@0.2.2...@thi.ng/hdiff@0.2.3) (2021-10-15)
 
 **Note:** Version bump only for package @thi.ng/hdiff

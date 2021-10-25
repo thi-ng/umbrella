@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/imgui",
-    "version": "2.0.3",
+    "version": "2.0.4",
     "description": "Immediate mode GUI with flexible state handling & data only shape output",
     "type": "module",
     "module": "./index.js",
@@ -34,19 +34,19 @@
         "test": "testament test"
     },
     "dependencies": {
-        "@thi.ng/api": "^8.0.3",
-        "@thi.ng/checks": "^3.0.3",
-        "@thi.ng/geom": "^3.0.3",
-        "@thi.ng/geom-api": "^3.0.3",
-        "@thi.ng/geom-isec": "^2.0.3",
-        "@thi.ng/geom-tessellate": "^2.0.3",
-        "@thi.ng/layout": "^2.0.3",
-        "@thi.ng/math": "^5.0.3",
-        "@thi.ng/transducers": "^8.0.3",
-        "@thi.ng/vectors": "^7.0.3"
+        "@thi.ng/api": "^8.0.4",
+        "@thi.ng/checks": "^3.0.4",
+        "@thi.ng/geom": "^3.0.4",
+        "@thi.ng/geom-api": "^3.0.4",
+        "@thi.ng/geom-isec": "^2.0.4",
+        "@thi.ng/geom-tessellate": "^2.0.4",
+        "@thi.ng/layout": "^2.0.4",
+        "@thi.ng/math": "^5.0.4",
+        "@thi.ng/transducers": "^8.0.4",
+        "@thi.ng/vectors": "^7.0.4"
     },
     "devDependencies": {
-        "@thi.ng/testament": "^0.1.3"
+        "@thi.ng/testament": "^0.1.4"
     },
     "keywords": [
         "browser",

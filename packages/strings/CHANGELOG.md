@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/strings@3.0.3...@thi.ng/strings@3.1.0) (2021-10-25)
+
+
+### Features
+
+* **strings:** migrate/add entities, regexes, fns ([57c246d](https://github.com/thi-ng/umbrella/commit/57c246df06279a2e70cfb28ce34ff8d9666b0199))
+
+
+
+
+
 ## [3.0.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/strings@3.0.2...@thi.ng/strings@3.0.3) (2021-10-15)
 
 **Note:** Version bump only for package @thi.ng/strings

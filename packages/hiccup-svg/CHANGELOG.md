@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-svg@4.0.3...@thi.ng/hiccup-svg@4.1.0) (2021-10-25)
+
+
+### Features
+
+* **hiccup-svg:** update numericAttribs() ([bf06b65](https://github.com/thi-ng/umbrella/commit/bf06b655393f1d08f8bab6d451ca8171ee71796f))
+
+
+
+
+
 ## [4.0.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-svg@4.0.2...@thi.ng/hiccup-svg@4.0.3) (2021-10-15)
 
 **Note:** Version bump only for package @thi.ng/hiccup-svg

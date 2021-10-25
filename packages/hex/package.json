@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/hex",
-    "version": "2.0.3",
+    "version": "2.0.4",
     "description": "Hex string formatters for 4/8/16/24/32/48/64bit words",
     "type": "module",
     "module": "./index.js",
@@ -34,7 +34,7 @@
         "test": "testament test"
     },
     "devDependencies": {
-        "@thi.ng/testament": "^0.1.3"
+        "@thi.ng/testament": "^0.1.4"
     },
     "keywords": [
         "binary",

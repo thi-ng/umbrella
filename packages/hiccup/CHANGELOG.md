@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup@4.0.3...@thi.ng/hiccup@4.1.0) (2021-10-25)
+
+
+### Features
+
+* **hiccup:** replace entity handling w/ thi.ng/strings ([04154b8](https://github.com/thi-ng/umbrella/commit/04154b89f3440052dfccfd6a633e73bc140cc615))
+
+
+
+
+
 ## [4.0.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup@4.0.2...@thi.ng/hiccup@4.0.3) (2021-10-15)
 
 **Note:** Version bump only for package @thi.ng/hiccup
