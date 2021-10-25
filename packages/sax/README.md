@@ -80,11 +80,12 @@ node --experimental-repl-await
 > const sax = await import("@thi.ng/sax");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.92 KB
+Package sizes (gzipped, pre-treeshake): ESM: 1.79 KB
 
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
+- [@thi.ng/strings](https://github.com/thi-ng/umbrella/tree/develop/packages/strings)
 - [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)
 - [@thi.ng/transducers-fsm](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers-fsm)
 

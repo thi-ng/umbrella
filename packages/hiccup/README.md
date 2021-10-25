@@ -160,13 +160,14 @@ node --experimental-repl-await
 > const hiccup = await import("@thi.ng/hiccup");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 2.33 KB
+Package sizes (gzipped, pre-treeshake): ESM: 2.26 KB
 
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
 - [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
 - [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
+- [@thi.ng/strings](https://github.com/thi-ng/umbrella/tree/develop/packages/strings)
 
 ## Usage examples
 

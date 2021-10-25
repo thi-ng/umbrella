@@ -59,12 +59,13 @@ node --experimental-repl-await
 > const rdomCanvas = await import("@thi.ng/rdom-canvas");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 588 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 724 bytes
 
 ## Dependencies
 
 - [@thi.ng/adapt-dpi](https://github.com/thi-ng/umbrella/tree/develop/packages/adapt-dpi)
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
+- [@thi.ng/associative](https://github.com/thi-ng/umbrella/tree/develop/packages/associative)
 - [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
 - [@thi.ng/hiccup-canvas](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-canvas)
 - [@thi.ng/rdom](https://github.com/thi-ng/umbrella/tree/develop/packages/rdom)
