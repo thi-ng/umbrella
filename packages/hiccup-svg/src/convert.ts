@@ -181,11 +181,11 @@ const convertAttrib = (res: any, id: string, v: any) => {
         case "baseline":
             res["dominant-baseline"] = BASE_LINE[v] || v;
             break;
-        case "filter":
-            // TODO needs to be translated into <filter> def first
-            // https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/filter
-            // https://developer.mozilla.org/en-US/docs/Web/SVG/Element/filter
-            break;
+        // case "filter":
+        // TODO needs to be translated into <filter> def first
+        // https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/filter
+        // https://developer.mozilla.org/en-US/docs/Web/SVG/Element/filter
+        // break;
         default:
             res[id] = v;
     }
