@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.1.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-svg@4.1.0...@thi.ng/hiccup-svg@4.1.1) (2021-10-27)
+
+
+### Bug Fixes
+
+* **hiccup-svg:** re-enable `filter` attrib in conversion ([7c75fbe](https://github.com/thi-ng/umbrella/commit/7c75fbe48e9a1c57c79c2ac770f967d5b725c622))
+
+
+
+
+
 # [4.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-svg@4.0.3...@thi.ng/hiccup-svg@4.1.0) (2021-10-25)
 
 

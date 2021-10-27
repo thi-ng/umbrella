@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/gp@0.3.4...@thi.ng/gp@0.3.5) (2021-10-27)
+
+
+### Bug Fixes
+
+* **gp:** limit AST.mutate() to max tree depth ([afcdda0](https://github.com/thi-ng/umbrella/commit/afcdda0e10bd7d824af68dd4e79ceb749d16181b))
+
+
+
+
+
 ## [0.3.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/gp@0.3.3...@thi.ng/gp@0.3.4) (2021-10-25)
 
 **Note:** Version bump only for package @thi.ng/gp

@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/gp",
-    "version": "0.3.4",
+    "version": "0.3.5",
     "description": "Genetic programming helpers & strategies (tree based & multi-expression programming)",
     "type": "module",
     "module": "./index.js",
