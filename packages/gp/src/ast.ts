@@ -52,20 +52,29 @@ export class AST<OP, T> {
     }
 
     /**
-     * Probilistically replaces randomly chosen tree nodes with a new
-     * random AST of given `maxDepth` (default: 1). Never mutates root.
+     * Probilistically replaces randomly chosen tree nodes with a new random AST
+     * of given `maxDepth` (default: 1). Never mutates root.
+     *
+     * @remarks
+     * The AST's pre-configured max tree depth will always be respected, so
+     * depending on the depth of the selected mutation location, the randomly
+     * inserted/replaced subtree might be more shallow than given `maxDepth`.
+     * I.e. if a tree node at max depth is selected for mutation, it will always
+     * result in a randomly chosen terminal node only.
      *
      * @param tree -
      * @param maxDepth -
      */
     mutate(tree: ASTNode<OP, T>, maxDepth = 1) {
-        const { rnd, probMutate } = this.opts;
+        const { rnd, probMutate, maxDepth: limit } = this.opts;
         let loc = this.asZipper(tree).next!;
         if (!loc) return tree;
         while (true) {
             let nextLoc: Location<ASTNode<OP, T>> | undefined;
             if (rnd!.float() < probMutate) {
-                loc = loc.replace(this.randomASTNode(0, maxDepth));
+                loc = loc.replace(
+                    this.randomASTNode(0, Math.min(limit - loc.depth, maxDepth))
+                );
                 nextLoc = loc.right;
                 if (!nextLoc) {
                     nextLoc = loc.up;
