@@ -510,7 +510,10 @@ export class DCons<T>
     shuffle(iter?: number, rnd: IRandom = SYSTEM) {
         if (this._length < 2) return this;
         for (
-            iter = iter ?? Math.ceil(1.5 * Math.log2(this._length));
+            iter =
+                iter !== undefined
+                    ? iter
+                    : Math.ceil(1.5 * Math.log2(this._length));
             iter > 0;
             iter--
         ) {
