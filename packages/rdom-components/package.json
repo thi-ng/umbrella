@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/rdom-components",
-    "version": "0.3.6",
+    "version": "0.3.7",
     "description": "Collection of unstyled, customizable components for @thi.ng/rdom",
     "type": "module",
     "module": "./index.js",
@@ -34,16 +34,16 @@
         "test": "testament test"
     },
     "dependencies": {
-        "@thi.ng/api": "^8.0.5",
-        "@thi.ng/associative": "^6.0.6",
-        "@thi.ng/hiccup-html": "^2.0.5",
-        "@thi.ng/rdom": "^0.7.6",
-        "@thi.ng/rstream": "^7.0.6",
-        "@thi.ng/strings": "^3.1.1",
-        "@thi.ng/transducers": "^8.0.5"
+        "@thi.ng/api": "^8.0.6",
+        "@thi.ng/associative": "^6.0.7",
+        "@thi.ng/hiccup-html": "^2.0.6",
+        "@thi.ng/rdom": "^0.7.7",
+        "@thi.ng/rstream": "^7.0.7",
+        "@thi.ng/strings": "^3.1.2",
+        "@thi.ng/transducers": "^8.0.6"
     },
     "devDependencies": {
-        "@thi.ng/testament": "^0.1.5"
+        "@thi.ng/testament": "^0.1.6"
     },
     "keywords": [
         "browser",

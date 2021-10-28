@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/color",
-    "version": "4.0.5",
+    "version": "4.0.6",
     "description": "Array-based color types, CSS parsing, conversions, transformations, declarative theme generation, gradients, presets",
     "type": "module",
     "module": "./index.js",
@@ -35,22 +35,22 @@
         "tool:swatches": "../../scripts/node-esm tools/index.ts"
     },
     "dependencies": {
-        "@thi.ng/api": "^8.0.5",
-        "@thi.ng/arrays": "^2.0.5",
-        "@thi.ng/binary": "^3.0.5",
-        "@thi.ng/checks": "^3.0.5",
-        "@thi.ng/compare": "^2.0.5",
-        "@thi.ng/compose": "^2.0.5",
-        "@thi.ng/defmulti": "^2.0.5",
-        "@thi.ng/errors": "^2.0.5",
-        "@thi.ng/math": "^5.0.5",
-        "@thi.ng/random": "^3.1.1",
-        "@thi.ng/strings": "^3.1.1",
-        "@thi.ng/transducers": "^8.0.5",
-        "@thi.ng/vectors": "^7.0.5"
+        "@thi.ng/api": "^8.0.6",
+        "@thi.ng/arrays": "^2.0.6",
+        "@thi.ng/binary": "^3.0.6",
+        "@thi.ng/checks": "^3.0.6",
+        "@thi.ng/compare": "^2.0.6",
+        "@thi.ng/compose": "^2.0.6",
+        "@thi.ng/defmulti": "^2.0.6",
+        "@thi.ng/errors": "^2.0.6",
+        "@thi.ng/math": "^5.0.6",
+        "@thi.ng/random": "^3.1.2",
+        "@thi.ng/strings": "^3.1.2",
+        "@thi.ng/transducers": "^8.0.6",
+        "@thi.ng/vectors": "^7.0.6"
     },
     "devDependencies": {
-        "@thi.ng/testament": "^0.1.5"
+        "@thi.ng/testament": "^0.1.6"
     },
     "keywords": [
         "color",

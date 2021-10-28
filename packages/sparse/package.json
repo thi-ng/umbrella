@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/sparse",
-    "version": "0.2.5",
+    "version": "0.2.6",
     "description": "Sparse vector & matrix implementations",
     "type": "module",
     "module": "./index.js",
@@ -33,12 +33,12 @@
         "test": "testament test"
     },
     "dependencies": {
-        "@thi.ng/api": "^8.0.5",
-        "@thi.ng/errors": "^2.0.5",
-        "@thi.ng/transducers": "^8.0.5"
+        "@thi.ng/api": "^8.0.6",
+        "@thi.ng/errors": "^2.0.6",
+        "@thi.ng/transducers": "^8.0.6"
     },
     "devDependencies": {
-        "@thi.ng/testament": "^0.1.5"
+        "@thi.ng/testament": "^0.1.6"
     },
     "keywords": [
         "adjacency",

@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/hiccup-html",
-    "version": "2.0.5",
+    "version": "2.0.6",
     "description": "100+ type-checked HTML5 element functions for @thi.ng/hiccup related infrastructure",
     "type": "module",
     "module": "./index.js",
@@ -34,10 +34,10 @@
         "test": "testament test"
     },
     "dependencies": {
-        "@thi.ng/api": "^8.0.5"
+        "@thi.ng/api": "^8.0.6"
     },
     "devDependencies": {
-        "@thi.ng/testament": "^0.1.5"
+        "@thi.ng/testament": "^0.1.6"
     },
     "keywords": [
         "browser",
