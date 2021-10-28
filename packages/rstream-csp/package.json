@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/rstream-csp",
-    "version": "3.0.4",
+    "version": "3.0.5",
     "description": "@thi.ng/csp bridge module for @thi.ng/rstream",
     "type": "module",
     "module": "./index.js",
@@ -34,8 +34,8 @@
         "test": "testament test"
     },
     "dependencies": {
-        "@thi.ng/csp": "^2.0.4",
-        "@thi.ng/rstream": "^7.0.4"
+        "@thi.ng/csp": "^2.0.5",
+        "@thi.ng/rstream": "^7.0.5"
     },
     "devDependencies": {
         "@thi.ng/testament": "^0.1.4"

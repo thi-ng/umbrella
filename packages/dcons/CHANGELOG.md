@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/dcons@3.0.4...@thi.ng/dcons@3.0.5) (2021-10-28)
+
+
+### Bug Fixes
+
+* **dcons:** [#325](https://github.com/thi-ng/umbrella/issues/325) replace nullish coalescing operator ([b8ddad7](https://github.com/thi-ng/umbrella/commit/b8ddad7c8735e2f2e4be6f2ba4c7b03b86959631))
+
+
+
+
+
 ## [3.0.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/dcons@3.0.3...@thi.ng/dcons@3.0.4) (2021-10-25)
 
 **Note:** Version bump only for package @thi.ng/dcons

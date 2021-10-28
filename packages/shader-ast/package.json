@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/shader-ast",
-    "version": "0.11.4",
+    "version": "0.11.5",
     "description": "DSL to define shader code in TypeScript and cross-compile to GLSL, JS and other targets",
     "type": "module",
     "module": "./index.js",
@@ -37,7 +37,7 @@
         "@thi.ng/api": "^8.0.4",
         "@thi.ng/checks": "^3.0.4",
         "@thi.ng/defmulti": "^2.0.4",
-        "@thi.ng/dgraph": "^2.0.4",
+        "@thi.ng/dgraph": "^2.0.5",
         "@thi.ng/errors": "^2.0.4",
         "@thi.ng/logger": "^1.0.4"
     },

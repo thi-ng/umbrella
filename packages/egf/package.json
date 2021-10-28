@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/egf",
-    "version": "0.5.4",
+    "version": "0.5.5",
     "description": "Extensible Graph Format",
     "type": "module",
     "module": "./index.js",
@@ -30,7 +30,7 @@
     },
     "dependencies": {
         "@thi.ng/api": "^8.0.4",
-        "@thi.ng/associative": "^6.0.4",
+        "@thi.ng/associative": "^6.0.5",
         "@thi.ng/checks": "^3.0.4",
         "@thi.ng/dot": "^2.0.4",
         "@thi.ng/errors": "^2.0.4",

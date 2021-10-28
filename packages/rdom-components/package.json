@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/rdom-components",
-    "version": "0.3.4",
+    "version": "0.3.5",
     "description": "Collection of unstyled, customizable components for @thi.ng/rdom",
     "type": "module",
     "module": "./index.js",
@@ -35,10 +35,10 @@
     },
     "dependencies": {
         "@thi.ng/api": "^8.0.4",
-        "@thi.ng/associative": "^6.0.4",
+        "@thi.ng/associative": "^6.0.5",
         "@thi.ng/hiccup-html": "^2.0.4",
-        "@thi.ng/rdom": "^0.7.4",
-        "@thi.ng/rstream": "^7.0.4",
+        "@thi.ng/rdom": "^0.7.5",
+        "@thi.ng/rstream": "^7.0.5",
         "@thi.ng/strings": "^3.1.0",
         "@thi.ng/transducers": "^8.0.4"
     },
