@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/hiccup-carbon-icons",
-    "version": "3.0.4",
+    "version": "3.0.5",
     "description": "Full set of IBM's Carbon icons in hiccup format",
     "type": "module",
     "module": "./index.js",
@@ -36,8 +36,8 @@
         "test": "testament test"
     },
     "devDependencies": {
-        "@thi.ng/hiccup": "^4.1.0",
-        "@thi.ng/testament": "^0.1.4"
+        "@thi.ng/hiccup": "^4.1.1",
+        "@thi.ng/testament": "^0.1.5"
     },
     "keywords": [
         "graphics",

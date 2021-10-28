@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/rstream-log-file",
-    "version": "2.0.5",
+    "version": "2.0.6",
     "description": "File output handler for structured, multilevel & hierarchical loggers based on @thi.ng/rstream",
     "type": "module",
     "module": "./index.js",
@@ -34,10 +34,10 @@
         "test": "testament test"
     },
     "dependencies": {
-        "@thi.ng/rstream": "^7.0.5"
+        "@thi.ng/rstream": "^7.0.6"
     },
     "devDependencies": {
-        "@thi.ng/testament": "^0.1.4"
+        "@thi.ng/testament": "^0.1.5"
     },
     "keywords": [
         "file",
@@ -65,5 +65,6 @@
     "thi.ng": {
         "parent": "@thi.ng/rstream-log",
         "year": 2017
-    }
+    },
+    "gitHead": "27b6c95523c645be6421bedb04bfcf160d02343f"
 }

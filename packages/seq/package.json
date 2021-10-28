@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/seq",
-    "version": "0.3.4",
+    "version": "0.3.5",
     "description": "Various implementations of the @thi.ng/api `ISeq` interface / sequence abstraction",
     "type": "module",
     "module": "./index.js",
@@ -34,11 +34,11 @@
         "test": "testament test"
     },
     "dependencies": {
-        "@thi.ng/api": "^8.0.4",
-        "@thi.ng/checks": "^3.0.4"
+        "@thi.ng/api": "^8.0.5",
+        "@thi.ng/checks": "^3.0.5"
     },
     "devDependencies": {
-        "@thi.ng/testament": "^0.1.4"
+        "@thi.ng/testament": "^0.1.5"
     },
     "keywords": [
         "clojure",

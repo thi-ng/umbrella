@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/text-canvas",
-    "version": "2.0.4",
+    "version": "2.0.5",
     "description": "Text based canvas, drawing, tables with arbitrary formatting (incl. ANSI/HTML)",
     "type": "module",
     "module": "./index.js",
@@ -34,17 +34,17 @@
         "test": "testament test"
     },
     "dependencies": {
-        "@thi.ng/api": "^8.0.4",
-        "@thi.ng/arrays": "^2.0.4",
-        "@thi.ng/checks": "^3.0.4",
-        "@thi.ng/geom-clip-line": "^2.0.4",
-        "@thi.ng/math": "^5.0.4",
-        "@thi.ng/strings": "^3.1.0",
-        "@thi.ng/text-format": "^1.0.4",
-        "@thi.ng/transducers": "^8.0.4"
+        "@thi.ng/api": "^8.0.5",
+        "@thi.ng/arrays": "^2.0.5",
+        "@thi.ng/checks": "^3.0.5",
+        "@thi.ng/geom-clip-line": "^2.0.5",
+        "@thi.ng/math": "^5.0.5",
+        "@thi.ng/strings": "^3.1.1",
+        "@thi.ng/text-format": "^1.0.5",
+        "@thi.ng/transducers": "^8.0.5"
     },
     "devDependencies": {
-        "@thi.ng/testament": "^0.1.4"
+        "@thi.ng/testament": "^0.1.5"
     },
     "keywords": [
         "4bit",

@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/rstream-log",
-    "version": "4.0.5",
+    "version": "4.0.6",
     "description": "Structured, multilevel & hierarchical loggers based on @thi.ng/rstream",
     "type": "module",
     "module": "./index.js",
@@ -34,16 +34,16 @@
         "test": "testament test"
     },
     "dependencies": {
-        "@thi.ng/api": "^8.0.4",
-        "@thi.ng/checks": "^3.0.4",
-        "@thi.ng/errors": "^2.0.4",
-        "@thi.ng/logger": "^1.0.4",
-        "@thi.ng/rstream": "^7.0.5",
-        "@thi.ng/strings": "^3.1.0",
-        "@thi.ng/transducers": "^8.0.4"
+        "@thi.ng/api": "^8.0.5",
+        "@thi.ng/checks": "^3.0.5",
+        "@thi.ng/errors": "^2.0.5",
+        "@thi.ng/logger": "^1.0.5",
+        "@thi.ng/rstream": "^7.0.6",
+        "@thi.ng/strings": "^3.1.1",
+        "@thi.ng/transducers": "^8.0.5"
     },
     "devDependencies": {
-        "@thi.ng/testament": "^0.1.4"
+        "@thi.ng/testament": "^0.1.5"
     },
     "keywords": [
         "datastructure",
@@ -92,5 +92,6 @@
             "logger"
         ],
         "year": 2017
-    }
+    },
+    "gitHead": "27b6c95523c645be6421bedb04bfcf160d02343f"
 }

@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/dl-asset",
-    "version": "2.0.4",
+    "version": "2.0.5",
     "description": "Local asset download for web apps, with automatic MIME type detection",
     "type": "module",
     "module": "./index.js",
@@ -34,12 +34,12 @@
         "test": "testament test"
     },
     "dependencies": {
-        "@thi.ng/api": "^8.0.4",
-        "@thi.ng/checks": "^3.0.4",
-        "@thi.ng/mime": "^2.0.4"
+        "@thi.ng/api": "^8.0.5",
+        "@thi.ng/checks": "^3.0.5",
+        "@thi.ng/mime": "^2.0.5"
     },
     "devDependencies": {
-        "@thi.ng/testament": "^0.1.4"
+        "@thi.ng/testament": "^0.1.5"
     },
     "keywords": [
         "browser",
