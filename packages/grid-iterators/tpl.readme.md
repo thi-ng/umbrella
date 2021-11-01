@@ -13,8 +13,8 @@ This project is part of the
 
 ${pkg.description}
 
-Provides the 15 following orderings to generate grid coordinates and
-additional iterators for shape rasterization:
+Provides the 20 following orderings to generate grid coordinates and additional
+iterators for shape rasterization, drawing, filling, processing in general:
 
 ### Columns
 
@@ -114,6 +114,45 @@ renderer](https://sunflow.sf.net).
 For more basic 2D/3D grid iteration, also see `range2d()` & `range3d()`
 in
 [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers).
+
+### Flood filling
+
+The `floodFill()` iterator can be used to iterate arbitrary 2D grids using an
+user-provided predicate function. It yields coordinates which would flood fill
+the space in `[0,0]..(width,height)` range, starting at a given point. Any
+eligible 90-degree connected regions will be found and iterated recursively. The
+predicate function is used to select eligible grid indices (e.g. pixels of
+sorts).
+
+```ts
+// source "image"
+const img = [
+    "█", " ", " ", " ", "█",
+    "█", " ", "█", " ", " ",
+    " ", " ", "█", " ", "█",
+    " ", "█", "█", " ", " ",
+    " ", " ", " ", "█", "█",
+];
+
+// flood fill iterator from point (1,0)
+// only accept " " as source pixel value
+// image size is 5x5
+const region = floodFill((i) => img[i] === " ", 1, 0, 5, 5);
+
+// label filled pixels using increasing ASCII values
+let ascii = 65; // "A"
+for(let [x,y] of region) img[x + y * 5] = String.fromCharCode(ascii++);
+
+// result image showing fill order
+img
+// [
+//   "█", "A", "B", "C", "█",
+//   "█", "I", "█", "D", "E",
+//   "K", "J", "█", "F", "█",
+//   "L", "█", "█", "G", "H",
+//   "M", "N", "O", "█", "█"
+// ]
+```
 
 ### Miscellaneous
 

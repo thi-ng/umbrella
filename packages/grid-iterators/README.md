@@ -22,6 +22,7 @@ This project is part of the
   - [Zigzag columns](#zigzag-columns)
   - [Zigzag diagonal](#zigzag-diagonal)
   - [Zigzag rows](#zigzag-rows)
+  - [Flood filling](#flood-filling)
   - [Miscellaneous](#miscellaneous)
   - [Status](#status)
   - [Related packages](#related-packages)
@@ -36,8 +37,8 @@ This project is part of the
 
 2D grid iterators w/ multiple orderings.
 
-Provides the 15 following orderings to generate grid coordinates and
-additional iterators for shape rasterization:
+Provides the 20 following orderings to generate grid coordinates and additional
+iterators for shape rasterization, drawing, filling, processing in general:
 
 ### Columns
 
@@ -138,6 +139,45 @@ For more basic 2D/3D grid iteration, also see `range2d()` & `range3d()`
 in
 [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers).
 
+### Flood filling
+
+The `floodFill()` iterator can be used to iterate arbitrary 2D grids using an
+user-provided predicate function. It yields coordinates which would flood fill
+the space in `[0,0]..(width,height)` range, starting at a given point. Any
+eligible 90-degree connected regions will be found and iterated recursively. The
+predicate function is used to select eligible grid indices (e.g. pixels of
+sorts).
+
+```ts
+// source "image"
+const img = [
+    "█", " ", " ", " ", "█",
+    "█", " ", "█", " ", " ",
+    " ", " ", "█", " ", "█",
+    " ", "█", "█", " ", " ",
+    " ", " ", " ", "█", "█",
+];
+
+// flood fill iterator from point (1,0)
+// only accept " " as source pixel value
+// image size is 5x5
+const region = floodFill((i) => img[i] === " ", 1, 0, 5, 5);
+
+// label filled pixels using increasing ASCII values
+let ascii = 65; // "A"
+for(let [x,y] of region) img[x + y * 5] = String.fromCharCode(ascii++);
+
+// result image showing fill order
+img
+// [
+//   "█", "A", "B", "C", "█",
+//   "█", "I", "█", "D", "E",
+//   "K", "J", "█", "F", "█",
+//   "L", "█", "█", "G", "H",
+//   "M", "N", "O", "█", "█"
+// ]
+```
+
 ### Miscellaneous
 
 Additionally, the following shape iterators are available:
@@ -181,12 +221,14 @@ node --experimental-repl-await
 > const gridIterators = await import("@thi.ng/grid-iterators");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.50 KB
+Package sizes (gzipped, pre-treeshake): ESM: 1.72 KB
 
 ## Dependencies
 
+- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
 - [@thi.ng/arrays](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays)
 - [@thi.ng/binary](https://github.com/thi-ng/umbrella/tree/develop/packages/binary)
+- [@thi.ng/bitfield](https://github.com/thi-ng/umbrella/tree/develop/packages/bitfield)
 - [@thi.ng/morton](https://github.com/thi-ng/umbrella/tree/develop/packages/morton)
 - [@thi.ng/random](https://github.com/thi-ng/umbrella/tree/develop/packages/random)
 - [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)
