@@ -1,3 +1,4 @@
+import { clipped } from "./clipped.js";
 import { hline } from "./hvline.js";
 import { asInt } from "./utils.js";
 
@@ -45,3 +46,27 @@ export function* circle(cx: number, cy: number, r: number, fill = true) {
         dx2 += 2;
     }
 }
+
+/**
+ * Version of {@link circle} yielding only coordinates in rect defined by
+ * `left,top`..`right,bottom`.
+ *
+ * @param cx
+ * @param cy
+ * @param r
+ * @param left
+ * @param top
+ * @param right
+ * @param bottom
+ * @param fill
+ */
+export const circleClipped = (
+    cx: number,
+    cy: number,
+    r: number,
+    left: number,
+    top: number,
+    right: number,
+    bottom: number,
+    fill = true
+) => clipped(circle(cx, cy, r, fill), left, top, right, bottom);
