@@ -1,7 +1,7 @@
 {
     "name": "@thi.ng/grid-iterators",
     "version": "2.0.6",
-    "description": "2D grid iterators w/ multiple orderings",
+    "description": "2D grid and shape iterators w/ multiple orderings",
     "type": "module",
     "module": "./index.js",
     "typings": "./index.d.ts",
@@ -50,10 +50,13 @@
         "2d",
         "binary",
         "circle",
+        "clipping",
         "diagonal",
+        "floodfill",
         "grid",
         "hilbert",
         "iterator",
+        "line",
         "morton",
         "random",
         "spiral",
@@ -77,6 +80,9 @@
         },
         "./circle": {
             "import": "./circle.js"
+        },
+        "./clipped": {
+            "import": "./clipped.js"
         },
         "./column-ends": {
             "import": "./column-ends.js"
