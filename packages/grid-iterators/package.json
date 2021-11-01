@@ -35,8 +35,10 @@
         "test": "testament test"
     },
     "dependencies": {
+        "@thi.ng/api": "^8.0.6",
         "@thi.ng/arrays": "^2.0.6",
         "@thi.ng/binary": "^3.0.6",
+        "@thi.ng/bitfield": "^2.0.6",
         "@thi.ng/morton": "^3.0.6",
         "@thi.ng/random": "^3.1.2",
         "@thi.ng/transducers": "^8.0.6"
@@ -87,6 +89,9 @@
         },
         "./diagonal": {
             "import": "./diagonal.js"
+        },
+        "./flood-fill": {
+            "import": "./flood-fill.js"
         },
         "./hilbert": {
             "import": "./hilbert.js"

@@ -3,6 +3,7 @@ export * from "./column-ends.js";
 export * from "./columns.js";
 export * from "./diagonal.js";
 export * from "./diagonal-ends.js";
+export * from "./flood-fill.js";
 export * from "./hilbert.js";
 export * from "./hvline.js";
 export * from "./interleave.js";
