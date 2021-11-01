@@ -1,5 +1,5 @@
 import type { Predicate } from "@thi.ng/api";
-import { BitField, defBitField } from "@thi.ng/bitfield";
+import { BitField, defBitField } from "@thi.ng/bitfield/bitfield";
 
 /**
  * Yields an iterator of 2D coordinates which would flood fill the space in

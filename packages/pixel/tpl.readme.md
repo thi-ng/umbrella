@@ -38,9 +38,8 @@ ${pkg.description}
 - Customizable normal map generation (i.e. X/Y gradients plus static Z component)
 - XY full pixel & channel-only accessors
 - 12 packed integer and 6 floating point preset formats (see table below)
-- Ordered dithering w/ customizable Bayer matrix size and target color
-  steps (int formats only)
 - Declarative custom format & optimized code generation
+- Flood filling (solid or pattern)
 - HTML canvas creation & `ImageData` utilities
 
 ### Packed integer pixel formats
