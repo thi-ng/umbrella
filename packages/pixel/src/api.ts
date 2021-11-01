@@ -211,6 +211,14 @@ export interface IPixelBuffer<T extends TypedArray = TypedArray, P = any> {
     getAt(x: number, y: number): P;
 
     /**
+     * Non-boundschecked version of {@link IPixelBuffer.getAt}.
+     *
+     * @param x
+     * @param y
+     */
+    getAtUnsafe(x: number, y: number): P;
+
+    /**
      * Writes pixel value at given position. Has no effect if outside of
      * the defined region.
      *
@@ -219,6 +227,14 @@ export interface IPixelBuffer<T extends TypedArray = TypedArray, P = any> {
      * @param col -
      */
     setAt(x: number, y: number, col: P): this;
+
+    /**
+     * Non-boundschecked version of {@link IPixelBuffer.setAt}.
+     *
+     * @param x
+     * @param y
+     */
+    setAtUnsafe(x: number, y: number, col: P): this;
 
     /**
      * Extracts region as new pixel buffer in same format.

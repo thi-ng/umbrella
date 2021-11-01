@@ -132,12 +132,15 @@ export class FloatBuffer
     }
 
     getAt(x: number, y: number) {
-        const { width, stride } = this;
-        if (x >= 0 && x < width && y >= 0 && y < this.height) {
-            const idx = (x | 0) * stride + (y | 0) * this.rowStride;
-            return this.pixels.subarray(idx, idx + stride);
-        }
-        return this.__empty;
+        return x >= 0 && x < this.width && y >= 0 && y < this.height
+            ? this.getAtUnsafe(x, y)
+            : this.__empty;
+    }
+
+    getAtUnsafe(x: number, y: number) {
+        const stride = this.stride;
+        const idx = (x | 0) * stride + (y | 0) * this.rowStride;
+        return this.pixels.subarray(idx, idx + stride);
     }
 
     setAt(x: number, y: number, col: NumericArray) {
@@ -149,6 +152,11 @@ export class FloatBuffer
                 col,
                 (x | 0) * this.stride + (y | 0) * this.rowStride
             );
+        return this;
+    }
+
+    setAtUnsafe(x: number, y: number, col: NumericArray) {
+        this.pixels.set(col, (x | 0) * this.stride + (y | 0) * this.rowStride);
         return this;
     }
 

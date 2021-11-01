@@ -165,12 +165,21 @@ export class PackedBuffer
             : 0;
     }
 
+    getAtUnsafe(x: number, y: number) {
+        return this.pixels[(x | 0) + (y | 0) * this.width];
+    }
+
     setAt(x: number, y: number, col: number) {
         x >= 0 &&
             x < this.width &&
             y >= 0 &&
             y < this.height &&
             (this.pixels[(x | 0) + (y | 0) * this.width] = col);
+        return this;
+    }
+
+    setAtUnsafe(x: number, y: number, col: number) {
+        this.pixels[(x | 0) + (y | 0) * this.width] = col;
         return this;
     }
 
