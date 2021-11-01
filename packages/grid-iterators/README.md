@@ -35,10 +35,11 @@ This project is part of the
 
 ## About
 
-2D grid iterators w/ multiple orderings.
+2D grid and shape iterators w/ multiple orderings.
 
-Provides the 20 following orderings to generate grid coordinates and additional
-iterators for shape rasterization, drawing, filling, processing in general:
+Provides the altogether 25 following orderings to generate grid coordinates,
+including iterators for shape rasterization, drawing, clipping, filling,
+processing in general:
 
 ### Columns
 
@@ -180,7 +181,8 @@ img
 
 ### Miscellaneous
 
-Additionally, the following shape iterators are available:
+Additionally, the following shape iterators are available, all also with
+optional clipping:
 
 - [circle](https://github.com/thi-ng/umbrella/tree/develop/packages/grid-iterators/src/circle.ts) (Bresenham)
 - [hline](https://github.com/thi-ng/umbrella/tree/develop/packages/grid-iterators/src/hvline.ts)
@@ -221,7 +223,7 @@ node --experimental-repl-await
 > const gridIterators = await import("@thi.ng/grid-iterators");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.72 KB
+Package sizes (gzipped, pre-treeshake): ESM: 1.88 KB
 
 ## Dependencies
 

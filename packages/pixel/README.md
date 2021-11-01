@@ -30,7 +30,7 @@ This project is part of the
 
 ## About
 
-Typedarray integer & float pixel buffers w/ customizable formats, blitting, dithering, convolution.
+Typedarray integer & float pixel buffers w/ customizable formats, blitting, drawing, convolution.
 
 ![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/pixel/pixel-basics.png)
 
@@ -58,6 +58,7 @@ Typedarray integer & float pixel buffers w/ customizable formats, blitting, dith
 - XY full pixel & channel-only accessors
 - 12 packed integer and 6 floating point preset formats (see table below)
 - Declarative custom format & optimized code generation
+- Basic shape drawing/filling (circle, line, rect)
 - Flood filling (solid or pattern)
 - HTML canvas creation & `ImageData` utilities
 
@@ -333,7 +334,7 @@ node --experimental-repl-await
 > const pixel = await import("@thi.ng/pixel");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 9.00 KB
+Package sizes (gzipped, pre-treeshake): ESM: 9.30 KB
 
 ## Dependencies
 
@@ -342,9 +343,11 @@ Package sizes (gzipped, pre-treeshake): ESM: 9.00 KB
 - [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
 - [@thi.ng/distance](https://github.com/thi-ng/umbrella/tree/develop/packages/distance)
 - [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
+- [@thi.ng/grid-iterators](https://github.com/thi-ng/umbrella/tree/develop/packages/grid-iterators)
 - [@thi.ng/k-means](https://github.com/thi-ng/umbrella/tree/develop/packages/k-means)
 - [@thi.ng/math](https://github.com/thi-ng/umbrella/tree/develop/packages/math)
 - [@thi.ng/porter-duff](https://github.com/thi-ng/umbrella/tree/develop/packages/porter-duff)
+- [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)
 
 ## Usage examples
 

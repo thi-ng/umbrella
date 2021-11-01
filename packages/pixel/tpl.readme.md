@@ -39,6 +39,7 @@ ${pkg.description}
 - XY full pixel & channel-only accessors
 - 12 packed integer and 6 floating point preset formats (see table below)
 - Declarative custom format & optimized code generation
+- Basic shape drawing/filling (circle, line, rect)
 - Flood filling (solid or pattern)
 - HTML canvas creation & `ImageData` utilities
 
