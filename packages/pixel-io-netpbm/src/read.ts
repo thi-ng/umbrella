@@ -121,11 +121,11 @@ export const readPBM = (
     height: number
 ) => {
     const buf = packedBuffer(width, height, GRAY8);
-    const pixels = buf.pixels;
+    const data = buf.data;
     const w1 = width - 1;
     for (let y = 0, j = 0; y < height; y++) {
         for (let x = 0; x < width; x++, j++) {
-            pixels[j] = src[i] & (1 << (~x & 7)) ? 0 : 0xff;
+            data[j] = src[i] & (1 << (~x & 7)) ? 0 : 0xff;
             if ((x & 7) === 7 || x === w1) i++;
         }
     }
@@ -155,13 +155,13 @@ export const readPGM8 = (
     max = 0xff
 ) => {
     const buf = packedBuffer(width, height, GRAY8);
-    const pixels = buf.pixels;
+    const data = buf.data;
     if (max === 0xff) {
-        pixels.set(src.subarray(i));
+        data.set(src.subarray(i));
     } else {
         max = 0xff / max;
-        for (let j = 0, n = pixels.length; j < n; i++, j++) {
-            pixels[j] = (src[i] * max) | 0;
+        for (let j = 0, n = data.length; j < n; i++, j++) {
+            data[j] = (src[i] * max) | 0;
         }
     }
     return buf;
@@ -189,10 +189,10 @@ export const readPGM16 = (
     max = 0xffff
 ) => {
     const buf = packedBuffer(width, height, GRAY16);
-    const pixels = buf.pixels;
+    const data = buf.data;
     max = 0xffff / max;
-    for (let j = 0, n = pixels.length; j < n; i += 2, j++) {
-        pixels[j] = (((src[i] << 8) | src[i + 1]) * max) | 0;
+    for (let j = 0, n = data.length; j < n; i += 2, j++) {
+        data[j] = (((src[i] << 8) | src[i + 1]) * max) | 0;
     }
     return buf;
 };
@@ -220,16 +220,16 @@ export const readPPM = (
     max = 0xff
 ) => {
     const buf = packedBuffer(width, height, RGB888);
-    const pixels = buf.pixels;
+    const data = buf.data;
     assert(max <= 0xff, `unsupported max value: ${max}`);
     if (max === 0xff) {
-        for (let j = 0, n = pixels.length; j < n; i += 3, j++) {
-            pixels[j] = (src[i] << 16) | (src[i + 1] << 8) | src[i + 2];
+        for (let j = 0, n = data.length; j < n; i += 3, j++) {
+            data[j] = (src[i] << 16) | (src[i + 1] << 8) | src[i + 2];
         }
     } else {
         max = 0xff / max;
-        for (let j = 0, n = pixels.length; j < n; i += 3, j++) {
-            pixels[j] =
+        for (let j = 0, n = data.length; j < n; i += 3, j++) {
+            data[j] =
                 ((src[i] * max) << 16) |
                 ((src[i + 1] * max) << 8) |
                 (src[i + 2] * max);

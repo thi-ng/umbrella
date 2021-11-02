@@ -44,7 +44,7 @@ const initHeader = (
  * @param comments
  */
 export const asPBM = (buf: PackedBuffer, comments?: string[]) => {
-    const { pixels, width, height } = buf;
+    const { data, width, height } = buf;
     const { dest, start, abgr } = initHeader(
         "P4",
         0,
@@ -56,7 +56,7 @@ export const asPBM = (buf: PackedBuffer, comments?: string[]) => {
     for (let y = 0, i = start, j = 0; y < height; y++) {
         for (let x = 0, b = 0; x <= w1; x++, j++) {
             const xx = ~x & 7;
-            if (luminance(abgr(pixels[j])) < 128) {
+            if (luminance(abgr(data[j])) < 128) {
                 b |= 1 << xx;
             }
             if (xx === 0 || x === w1) {
@@ -79,7 +79,7 @@ export const asPBM = (buf: PackedBuffer, comments?: string[]) => {
  * @param comments
  */
 export const asPGM = (buf: PackedBuffer, comments?: string[]) => {
-    const { pixels, width, height } = buf;
+    const { data, width, height } = buf;
     const { dest, start, abgr } = initHeader(
         "P5",
         0xff,
@@ -87,8 +87,8 @@ export const asPGM = (buf: PackedBuffer, comments?: string[]) => {
         buf,
         comments
     );
-    for (let i = start, j = 0; j < pixels.length; i++, j++) {
-        dest[i] = luminance(abgr(pixels[j]));
+    for (let i = start, j = 0; j < data.length; i++, j++) {
+        dest[i] = luminance(abgr(data[j]));
     }
     return dest;
 };
@@ -105,7 +105,7 @@ export const asPGM = (buf: PackedBuffer, comments?: string[]) => {
  */
 export const asPGM16 = (buf: PackedBuffer, comments?: string[]) => {
     if (buf.format !== GRAY16) buf = buf.as(GRAY16);
-    const { pixels, width, height } = buf;
+    const { data, width, height } = buf;
     const { dest, start } = initHeader(
         "P5",
         0xffff,
@@ -113,9 +113,9 @@ export const asPGM16 = (buf: PackedBuffer, comments?: string[]) => {
         buf,
         comments
     );
-    for (let i = start, j = 0; j < pixels.length; i += 2, j++) {
-        dest[i] = pixels[j] >> 8;
-        dest[i + 1] = pixels[j] & 0xff;
+    for (let i = start, j = 0; j < data.length; i += 2, j++) {
+        dest[i] = data[j] >> 8;
+        dest[i + 1] = data[j] & 0xff;
     }
     return dest;
 };
@@ -130,7 +130,7 @@ export const asPGM16 = (buf: PackedBuffer, comments?: string[]) => {
  * @param comments
  */
 export const asPPM = (buf: PackedBuffer, comments?: string[]) => {
-    const { pixels, width, height } = buf;
+    const { data, width, height } = buf;
     const { dest, start, abgr } = initHeader(
         "P6",
         255,
@@ -138,8 +138,8 @@ export const asPPM = (buf: PackedBuffer, comments?: string[]) => {
         buf,
         comments
     );
-    for (let i = start, j = 0; j < pixels.length; i += 3, j++) {
-        const col = abgr(pixels[j]);
+    for (let i = start, j = 0; j < data.length; i += 3, j++) {
+        const col = abgr(data[j]);
         dest[i] = col & 0xff;
         dest[i + 1] = (col >> 8) & 0xff;
         dest[i + 2] = (col >> 16) & 0xff;
