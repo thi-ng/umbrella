@@ -119,11 +119,12 @@ in
 ### Flood filling
 
 The `floodFill()` iterator can be used to iterate arbitrary 2D grids using an
-user-provided predicate function. It yields coordinates which would flood fill
-the space in `[0,0]..(width,height)` range, starting at a given point. Any
-eligible 90-degree connected regions will be found and iterated recursively. The
-predicate function is used to select eligible grid indices (e.g. pixels of
-sorts).
+user-provided predicate function. The function recursively explores (in a
+row-major manner) the space in the `[0,0]..(width,height)` interval, starting at
+given `x,y` and continues as long given predicate function returns a truthy
+value. Any eligible 90-degree connected regions will be found and iterated
+recursively. The predicate function is used to select eligible grid cells
+(e.g. "pixels" of sorts).
 
 ```ts
 // source "image"
@@ -138,7 +139,7 @@ const img = [
 // flood fill iterator from point (1,0)
 // only accept " " as source pixel value
 // image size is 5x5
-const region = floodFill((i) => img[i] === " ", 1, 0, 5, 5);
+const region = floodFill((x, y) => img[x + y * 5] === " ", 1, 0, 5, 5);
 
 // label filled pixels using increasing ASCII values
 let ascii = 65; // "A"

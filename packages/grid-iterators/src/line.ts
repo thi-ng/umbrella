@@ -1,5 +1,5 @@
 import { asInt } from "@thi.ng/api/typedarray";
-import { liangBarsky } from "./clipping";
+import { liangBarsky } from "./clipping.js";
 
 export function* line(ax: number, ay: number, bx: number, by: number) {
     [ax, ay, bx, by] = asInt(ax, ay, bx, by);
