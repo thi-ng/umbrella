@@ -30,23 +30,23 @@ export const ditherWith = (
         const chan = format.channels[cid];
         const $thresh = chan.num * threshold;
         const $max = chan.mask0;
-        const pixels = new Int32Array(cimg.pixels);
+        const data = new Int32Array(cimg.data);
         for (let y = 0; y < height; y++) {
             for (let x = 0, i = x + y * width; x < width; x++, i++) {
-                p = pixels[i] < $thresh ? 0 : $max;
-                err = (pixels[i] - p) * bleed;
-                pixels[i] = p;
+                p = data[i] < $thresh ? 0 : $max;
+                err = (data[i] - p) * bleed;
+                data[i] = p;
                 if (!err) continue;
                 for (let j = ox.length; j-- > 0; ) {
                     const xx = x + ox[j];
                     const yy = y + oy[j];
                     if (yy >= 0 && yy < height && xx >= 0 && xx < width) {
-                        pixels[yy * width + xx] += (err * weights[j]) >> shift;
+                        data[yy * width + xx] += (err * weights[j]) >> shift;
                     }
                 }
             }
         }
-        cimg.pixels.set(pixels);
+        cimg.data.set(data);
         img.setChannel(cid, cimg);
     }
     return img;

@@ -92,17 +92,17 @@ export const orderedDither = (
     size: BayerSize | BayerMatrix,
     numColors: number | number[]
 ) => {
-    const { pixels, format, width } = img;
+    const { data, format, width } = img;
     const steps = isNumber(numColors)
         ? new Array<number>(format.channels.length).fill(numColors)
         : numColors;
     const mat = isNumber(size) ? defBayer(size) : size;
     for (
-        let i = 0, n = pixels.length, nc = format.channels.length, x = 0, y = 0;
+        let i = 0, n = data.length, nc = format.channels.length, x = 0, y = 0;
         i < n;
         i++
     ) {
-        let col = pixels[i];
+        let col = data[i];
         for (let j = 0; j < nc; j++) {
             const ch = format.channels[j];
             const num = ch.num;
@@ -113,7 +113,7 @@ export const orderedDither = (
                     orderedDither1(mat, cs, num, num, x, y, ch.int(col))
                 ));
         }
-        pixels[i] = col;
+        data[i] = col;
         if (++x === width) {
             x = 0;
             y++;
