@@ -1,5 +1,5 @@
 export * from "./circle.js";
-export * from "./clipped.js";
+export * from "./clipping.js";
 export * from "./column-ends.js";
 export * from "./columns.js";
 export * from "./diagonal.js";

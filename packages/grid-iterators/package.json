@@ -81,8 +81,8 @@
         "./circle": {
             "import": "./circle.js"
         },
-        "./clipped": {
-            "import": "./clipped.js"
+        "./clipping": {
+            "import": "./clipping.js"
         },
         "./column-ends": {
             "import": "./column-ends.js"

@@ -1,6 +1,6 @@
-import { clipped } from "./clipped.js";
+import { asInt } from "@thi.ng/api/typedarray";
+import { clipped, intersectRectCircle } from "./clipping.js";
 import { hline } from "./hvline.js";
-import { asInt } from "./utils.js";
 
 export function* circle(cx: number, cy: number, r: number, fill = true) {
     [cx, cy, r] = asInt(cx, cy, r);
@@ -49,7 +49,8 @@ export function* circle(cx: number, cy: number, r: number, fill = true) {
 
 /**
  * Version of {@link circle} yielding only coordinates in rect defined by
- * `left,top`..`right,bottom`.
+ * `left,top`..`right,bottom`. Returns undefined if circle lies completely
+ * outside given clip rectangle.
  *
  * @param cx
  * @param cy
@@ -69,4 +70,8 @@ export const circleClipped = (
     right: number,
     bottom: number,
     fill = true
-) => clipped(circle(cx, cy, r, fill), left, top, right, bottom);
+) => {
+    return intersectRectCircle(left, top, right, bottom, cx, cy, r)
+        ? clipped(circle(cx, cy, r, fill), left, top, right, bottom)
+        : undefined;
+};

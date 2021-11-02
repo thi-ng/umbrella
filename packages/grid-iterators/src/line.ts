@@ -1,5 +1,5 @@
-import { clipped } from "./clipped.js";
-import { asInt } from "./utils.js";
+import { asInt } from "@thi.ng/api/typedarray";
+import { liangBarsky } from "./clipping";
 
 export function* line(ax: number, ay: number, bx: number, by: number) {
     [ax, ay, bx, by] = asInt(ax, ay, bx, by);
@@ -26,7 +26,8 @@ export function* line(ax: number, ay: number, bx: number, by: number) {
 
 /**
  * Version of {@link line} yielding only coordinates in rect defined by
- * `left,top`..`right,bottom`.
+ * `left,top`..`right,bottom`. Returns undefined if circle lies completely
+ * outside given clip rectangle.
  *
  * @param x1
  * @param y1
@@ -46,4 +47,7 @@ export const lineClipped = (
     top: number,
     right: number,
     bottom: number
-) => clipped(line(x1, y1, x2, y2), left, top, right, bottom);
+) => {
+    const res = liangBarsky(x1, y1, x2, y2, left, top, right, bottom);
+    return res ? line(res[0], res[1], res[2], res[3]) : undefined;
+};
