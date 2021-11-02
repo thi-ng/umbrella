@@ -1,6 +1,6 @@
 import type { IGrid2D, TypedArray } from "@thi.ng/api";
 import { circleClipped } from "@thi.ng/grid-iterators/circle";
-import { draw2D } from "./draw";
+import { draw2D } from "./draw.js";
 
 export const drawCircle = <T extends any[] | TypedArray, P>(
     grid: IGrid2D<T, P>,
