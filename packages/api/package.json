@@ -126,6 +126,9 @@
         "./get": {
             "import": "./get.js"
         },
+        "./grid": {
+            "import": "./grid.js"
+        },
         "./hash": {
             "import": "./hash.js"
         },

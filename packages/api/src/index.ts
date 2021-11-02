@@ -13,6 +13,7 @@ export * from "./equiv.js";
 export * from "./event.js";
 export * from "./fn.js";
 export * from "./get.js";
+export * from "./grid.js";
 export * from "./hash.js";
 export * from "./hiccup.js";
 export * from "./id.js";
