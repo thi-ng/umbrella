@@ -1,4 +1,4 @@
-import { asInt } from "./utils.js";
+import { asInt } from "@thi.ng/api/typedarray";
 
 /**
  * Filtered version of {@link rows2d}, only including end points of

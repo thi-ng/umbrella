@@ -1,4 +1,4 @@
-import { asInt } from "./utils.js";
+import { asInt } from "@thi.ng/api/typedarray";
 
 /**
  * Similar to {@link diagonal2d}, but yields 2D grid coordinates in zigzag

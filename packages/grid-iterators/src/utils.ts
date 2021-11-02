@@ -12,6 +12,3 @@ export const swapxy = (p: number[]) => {
     p[1] = t;
     return p;
 };
-
-/** @internal */
-export const asInt = (...args: number[]) => args.map((x) => x | 0);

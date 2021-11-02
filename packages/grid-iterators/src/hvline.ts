@@ -1,4 +1,4 @@
-import { asInt } from "./utils.js";
+import { asInt } from "@thi.ng/api/typedarray";
 
 export function* hline(x: number, y: number, len: number) {
     [x, y, len] = asInt(x, y, len);

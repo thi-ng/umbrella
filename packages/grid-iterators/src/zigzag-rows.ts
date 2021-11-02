@@ -1,4 +1,4 @@
-import { asInt } from "./utils.js";
+import { asInt } from "@thi.ng/api/typedarray";
 
 /**
  * Yields sequence of 2D grid coordinates in zigzag row order starting

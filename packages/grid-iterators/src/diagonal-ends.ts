@@ -1,5 +1,5 @@
+import { asInt } from "@thi.ng/api/typedarray";
 import { diagonal2d } from "./diagonal.js";
-import { asInt } from "./utils.js";
 
 /**
  * Filtered version of {@link diagonal2d}, only including end points of
