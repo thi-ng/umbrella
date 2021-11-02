@@ -1,4 +1,5 @@
 import type { IObjectOf, Pair } from "@thi.ng/api";
+import { BitField, defBitField } from "@thi.ng/bitfield/bitfield";
 import { isNumber } from "@thi.ng/checks/is-number";
 import { liangBarsky2 } from "@thi.ng/geom-clip-line/liang-barsky";
 import { sutherlandHodgeman } from "@thi.ng/geom-clip-poly";
@@ -10,15 +11,15 @@ import {
 import { centroid } from "@thi.ng/geom-poly-utils/centroid";
 import { circumCenter2 } from "@thi.ng/geom-poly-utils/circumcenter";
 import { EPS } from "@thi.ng/math/api";
-import { Edge } from "@thi.ng/quad-edge";
+import { defEdge, Edge } from "@thi.ng/quad-edge";
 import { ReadonlyVec, Vec, VecPair, ZERO2 } from "@thi.ng/vectors/api";
 import { eqDelta2 } from "@thi.ng/vectors/eqdelta";
 import { signedArea2 } from "@thi.ng/vectors/signed-area";
 
 export type Visitor<T> = (
     e: Edge<Vertex<T>>,
-    visted?: IObjectOf<boolean>,
-    processed?: IObjectOf<boolean>
+    vistedEdges: BitField,
+    visitedVerts: BitField
 ) => void;
 
 const rightOf = (p: ReadonlyVec, e: Edge<Vertex<any>>) =>
@@ -32,20 +33,22 @@ export interface Vertex<T> {
 
 export class DVMesh<T> {
     first: Edge<Vertex<T>>;
-    nextID: number;
+    nextEID: number;
+    nextVID: number;
 
     constructor(pts?: ReadonlyVec[] | Pair<ReadonlyVec, T>[], size = 1e5) {
         const a: Vertex<T> = { pos: [0, -size], id: 0 };
         const b: Vertex<T> = { pos: [size, size], id: 1 };
         const c: Vertex<T> = { pos: [-size, size], id: 2 };
-        const eab = Edge.create(a, b);
-        const ebc = Edge.create(b, c);
-        const eca = Edge.create(c, a);
+        const eab = defEdge(0, a, b);
+        const ebc = defEdge(4, b, c);
+        const eca = defEdge(8, c, a);
         eab.sym.splice(ebc);
         ebc.sym.splice(eca);
         eca.sym.splice(eab);
         this.first = eab;
-        this.nextID = 3;
+        this.nextEID = 12;
+        this.nextVID = 3;
         if (pts && pts.length) {
             isNumber(pts[0][0])
                 ? this.addKeys(<ReadonlyVec[]>pts)
@@ -77,16 +80,18 @@ export class DVMesh<T> {
             e = e.oprev;
             e.onext.remove();
         }
-        let base = Edge.create<Vertex<T>>(e.origin, {
+        let base = defEdge<Vertex<T>>(this.nextEID, e.origin, {
             pos: p,
-            id: this.nextID++,
+            id: this.nextVID++,
             val,
         });
         base.splice(e);
+        this.nextEID += 4;
         const first = base;
         do {
-            base = e.connect(base.sym);
+            base = e.connect(base.sym, this.nextEID);
             e = base.oprev;
+            this.nextEID += 4;
         } while (e.lnext !== first);
         // enforce delaunay constraints
         do {
@@ -169,7 +174,7 @@ export class DVMesh<T> {
                 t = t.lnext;
                 const c = t.origin.pos;
                 isBoundary = isBoundary && t.origin.id < 3;
-                const id = this.nextID++;
+                const id = this.nextVID++;
                 e.origin = {
                     pos: !isBoundary ? circumCenter2(a, b, c)! : ZERO2,
                     id,
@@ -182,10 +187,10 @@ export class DVMesh<T> {
 
     delaunay(bounds?: ReadonlyVec[]) {
         const cells: Vec[][] = [];
-        const usedEdges: IObjectOf<boolean> = {};
+        const usedEdges = defBitField(this.nextEID);
         const bc = bounds && centroid(bounds);
         this.traverse((eab) => {
-            if (!usedEdges[eab.id]) {
+            if (!usedEdges.at(eab.id)) {
                 const ebc = eab.lnext;
                 const eca = ebc.lnext;
                 const va = eab.origin.pos;
@@ -207,10 +212,9 @@ export class DVMesh<T> {
                 } else {
                     cells.push(verts);
                 }
-                usedEdges[eab.id] =
-                    usedEdges[ebc.id] =
-                    usedEdges[eca.id] =
-                        true;
+                usedEdges.setAt(eab.id);
+                usedEdges.setAt(ebc.id);
+                usedEdges.setAt(eca.id);
             }
         });
         return cells;
@@ -252,10 +256,9 @@ export class DVMesh<T> {
 
     edges(voronoi = false, boundsMinMax?: VecPair) {
         const edges: VecPair[] = [];
-        const visitedEdges: IObjectOf<boolean> = {};
         this.traverse(
-            (e) => {
-                if (visitedEdges[e.id] || visitedEdges[e.sym.id]) return;
+            (e, visitedEdges) => {
+                if (visitedEdges.at(e.sym.id)) return;
                 if (e.origin.id > 2 && e.dest.id > 2) {
                     const a = e.origin.pos;
                     const b = e.dest.pos;
@@ -271,7 +274,7 @@ export class DVMesh<T> {
                         edges.push([a, b]);
                     }
                 }
-                visitedEdges[e.id] = true;
+                visitedEdges.setAt(e.id);
             },
             true,
             voronoi ? this.first.rot : this.first
@@ -281,16 +284,16 @@ export class DVMesh<T> {
 
     traverse(proc: Visitor<T>, edges = true, e: Edge<Vertex<T>> = this.first) {
         const work = [e];
-        const visitedEdges: IObjectOf<boolean> = {};
-        const visitedVerts: IObjectOf<boolean> = {};
+        const visitedEdges = defBitField(this.nextEID);
+        const visitedVerts = defBitField(this.nextVID);
         while (work.length) {
             e = work.pop()!;
-            if (visitedEdges[e.id]) continue;
-            visitedEdges[e.id] = true;
+            if (visitedEdges.at(e.id)) continue;
+            visitedEdges.setAt(e.id);
             const eoID = e.origin.id;
             if (eoID > 2 && e.rot.origin.id > 2) {
-                if (edges || !visitedVerts[eoID]) {
-                    visitedVerts[eoID] = true;
+                if (edges || !visitedVerts.at(eoID)) {
+                    visitedVerts.setAt(eoID);
                     proc(e, visitedEdges, visitedVerts);
                 }
             }
