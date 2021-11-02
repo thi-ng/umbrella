@@ -1,0 +1,96 @@
+{
+    "name": "@thi.ng/rasterize",
+    "version": "0.0.1",
+    "description": "2D shape drawing & rasterization",
+    "type": "module",
+    "module": "./index.js",
+    "typings": "./index.d.ts",
+    "sideEffects": false,
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/thi-ng/umbrella.git"
+    },
+    "homepage": "https://github.com/thi-ng/umbrella/tree/master/packages/rasterize#readme",
+    "funding": [
+        {
+            "type": "github",
+            "url": "https://github.com/sponsors/postspectacular"
+        },
+        {
+            "type": "patreon",
+            "url": "https://patreon.com/thing_umbrella"
+        }
+    ],
+    "author": "Karsten Schmidt <k+npm@thi.ng>",
+    "license": "Apache-2.0",
+    "scripts": {
+        "build": "yarn clean && tsc --declaration",
+        "clean": "rimraf *.js *.d.ts *.map doc",
+        "doc": "typedoc --excludePrivate --excludeInternal --out doc src/index.ts",
+        "doc:ae": "mkdir -p .ae/doc .ae/temp && node_modules/.bin/api-extractor run --local --verbose",
+        "doc:readme": "yarn doc:stats && ../../scripts/node-esm ../../tools/src/readme.ts",
+        "doc:stats": "../../scripts/node-esm ../../tools/src/module-stats.ts",
+        "pub": "yarn build && yarn publish --access public",
+        "test": "testament test"
+    },
+    "dependencies": {
+        "@thi.ng/api": "^8.0.6",
+        "@thi.ng/grid-iterators": "^2.0.6",
+        "@thi.ng/transducers": "^8.0.6"
+    },
+    "devDependencies": {
+        "@thi.ng/testament": "^0.1.6"
+    },
+    "keywords": [
+        "2d",
+        "bitmap",
+        "circle",
+        "clipping",
+        "draw",
+        "floodfill",
+        "grid",
+        "line",
+        "pattern",
+        "shape",
+        "rect",
+        "typescript"
+    ],
+    "publishConfig": {
+        "access": "public"
+    },
+    "browser": {
+        "process": false,
+        "setTimeout": false
+    },
+    "engines": {
+        "node": ">=14"
+    },
+    "files": [
+        "*.js",
+        "*.d.ts"
+    ],
+    "exports": {
+        ".": {
+            "import": "./index.js"
+        },
+        "./checks": {
+            "import": "./checks.js"
+        },
+        "./circle": {
+            "import": "./circle.js"
+        },
+        "./flood-fill": {
+            "import": "./flood-fill.js"
+        },
+        "./line": {
+            "import": "./line.js"
+        },
+        "./rect": {
+            "import": "./rect.js"
+        }
+    },
+    "thi.ng": {
+        "status": "alpha",
+        "year": 2021
+    }
+}
