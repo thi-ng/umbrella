@@ -4,11 +4,11 @@ import type { FloatFormat, PackedFormat } from "./api.js";
 
 /** @internal */
 export const ensureSize = (
-    pixels: TypedArray,
+    data: TypedArray,
     width: number,
     height: number,
     stride = 1
-) => assert(pixels.length >= width * height * stride, "pixel buffer too small");
+) => assert(data.length >= width * height * stride, "pixel buffer too small");
 
 /** @internal */
 export const ensureChannel = (fmt: PackedFormat | FloatFormat, id: number) => {

@@ -48,13 +48,13 @@ import { defSampler } from "./sample.js";
  * @param w -
  * @param h -
  * @param fmt -
- * @param pixels -
+ * @param data -
  */
 export function packedBuffer(
     w: number,
     h: number,
     fmt: PackedFormat | PackedFormatSpec,
-    pixels?: UIntArray
+    data?: UIntArray
 ): PackedBuffer;
 export function packedBuffer(
     src: PackedBuffer,
@@ -99,10 +99,10 @@ export const packedBufferFromCanvas = (
     const h = canvas.height;
     let dest: UIntArray | undefined;
     if (fmt === ABGR8888) {
-        dest = ctx.pixels;
+        dest = ctx.data;
     } else {
         dest = typedArray(fmt.type, w * h);
-        const src = ctx.pixels;
+        const src = ctx.data;
         const from = fmt.fromABGR;
         for (let i = dest.length; --i >= 0; ) {
             dest[i] = from(src[i]);
@@ -125,24 +125,33 @@ export class PackedBuffer
     readonly width: number;
     readonly height: number;
     readonly format: PackedFormat;
-    readonly pixels: UIntArray;
+    readonly data: UIntArray;
 
     constructor(
         w: number,
         h: number,
         fmt: PackedFormat | PackedFormatSpec,
-        pixels?: UIntArray
+        data?: UIntArray
     ) {
         this.width = w;
         this.height = h;
         this.format = (<any>fmt).__packed
             ? <PackedFormat>fmt
             : defPackedFormat(fmt);
-        this.pixels = pixels || typedArray(fmt.type, w * h);
+        this.data = data || typedArray(fmt.type, w * h);
+    }
+
+    /** @deprecated use `.data` instead */
+    get pixels() {
+        return this.data;
     }
 
     get stride() {
         return 1;
+    }
+
+    get rowStride() {
+        return this.width;
     }
 
     as(fmt: PackedFormat) {
@@ -151,7 +160,7 @@ export class PackedBuffer
 
     copy() {
         const dest = this.empty();
-        dest.pixels.set(this.pixels);
+        dest.data.set(this.data);
         return dest;
     }
 
@@ -161,12 +170,12 @@ export class PackedBuffer
 
     getAt(x: number, y: number) {
         return x >= 0 && x < this.width && y >= 0 && y < this.height
-            ? this.pixels[(x | 0) + (y | 0) * this.width]
+            ? this.data[(x | 0) + (y | 0) * this.width]
             : 0;
     }
 
     getAtUnsafe(x: number, y: number) {
-        return this.pixels[(x | 0) + (y | 0) * this.width];
+        return this.data[(x | 0) + (y | 0) * this.width];
     }
 
     setAt(x: number, y: number, col: number) {
@@ -174,12 +183,12 @@ export class PackedBuffer
             x < this.width &&
             y >= 0 &&
             y < this.height &&
-            (this.pixels[(x | 0) + (y | 0) * this.width] = col);
+            (this.data[(x | 0) + (y | 0) * this.width] = col);
         return this;
     }
 
     setAtUnsafe(x: number, y: number, col: number) {
-        this.pixels[(x | 0) + (y | 0) * this.width] = col;
+        this.data[(x | 0) + (y | 0) * this.width] = col;
         return this;
     }
 
@@ -207,8 +216,8 @@ export class PackedBuffer
         let dw = dest.width;
         const { sx, sy, dx, dy, rw, rh } = __prepRegions(this, dest, opts);
         if (rw < 1 || rh < 1) return dest;
-        const sbuf = this.pixels;
-        const dbuf = dest.pixels;
+        const sbuf = this.data;
+        const dbuf = dest.data;
         const sf = this.format.toABGR;
         const df1 = dest.format.toABGR;
         const df2 = dest.format.fromABGR;
@@ -231,8 +240,8 @@ export class PackedBuffer
         let dw = dest.width;
         const { sx, sy, dx, dy, rw, rh } = __prepRegions(this, dest, opts);
         if (rw < 1 || rh < 1) return dest;
-        const sbuf = this.pixels;
-        const dbuf = dest.pixels;
+        const sbuf = this.data;
+        const dbuf = dest.data;
         const sf = this.format.toABGR;
         const df = dest.format.fromABGR;
         const blitRow =
@@ -271,7 +280,7 @@ export class PackedBuffer
     toImageData() {
         const idata = new ImageData(this.width, this.height);
         const dest = new Uint32Array(idata.data.buffer);
-        const src = this.pixels;
+        const src = this.data;
         const fmt = this.format.toABGR;
         for (let i = dest.length; --i >= 0; ) {
             dest[i] = fmt(src[i]);
@@ -311,8 +320,8 @@ export class PackedBuffer
             fromABGR: __compileGrayFromABGR(chan.size),
             toABGR: __compileGrayToABGR(chan.size),
         });
-        const src = this.pixels;
-        const dest = buf.pixels;
+        const src = this.data;
+        const dest = buf.data;
         const get = chan.int;
         for (let i = src.length; --i >= 0; ) {
             dest[i] = get(src[i]);
@@ -322,12 +331,12 @@ export class PackedBuffer
 
     setChannel(id: number, src: PackedBuffer | number) {
         const chan = <PackedChannel>ensureChannel(this.format, id);
-        const dbuf = this.pixels;
+        const dbuf = this.data;
         const set = chan.setInt;
         if (isNumber(src)) {
             __setChannelUni(dbuf, src, set);
         } else {
-            const sbuf = src.pixels;
+            const sbuf = src.data;
             const schan = src.format.channels[0];
             ensureSize(sbuf, this.width, this.height);
             if (chan.size === schan.size) {
@@ -346,26 +355,26 @@ export class PackedBuffer
     }
 
     invert() {
-        const { format, pixels } = this;
+        const { data, format } = this;
         const mask = Math.pow(2, format.size - format.alpha) - 1;
-        for (let i = pixels.length; --i >= 0; ) {
-            pixels[i] ^= mask;
+        for (let i = data.length; --i >= 0; ) {
+            data[i] ^= mask;
         }
         return this;
     }
 
     premultiply() {
-        __transformABGR(this.pixels, this.format, premultiplyInt);
+        __transformABGR(this.data, this.format, premultiplyInt);
         return this;
     }
 
     postmultiply() {
-        __transformABGR(this.pixels, this.format, postmultiplyInt);
+        __transformABGR(this.data, this.format, postmultiplyInt);
         return this;
     }
 
     isPremultiplied() {
-        const pix = this.pixels;
+        const pix = this.data;
         const to = this.format.toABGR;
         for (let i = pix.length; --i >= 0; ) {
             if (!isPremultipliedInt(to(pix[i]))) {
@@ -376,7 +385,7 @@ export class PackedBuffer
     }
 
     forEach(f: Fn2<number, number, number>) {
-        const pix = this.pixels;
+        const pix = this.data;
         for (let i = pix.length; --i >= 0; ) {
             pix[i] = f(pix[i], i);
         }
@@ -387,16 +396,16 @@ export class PackedBuffer
      * Flips image vertically.
      */
     flipY() {
-        const { pixels, width } = this;
+        const { data, width } = this;
         const tmp = typedArray(this.format.type, width);
         for (
-            let i = 0, j = pixels.length - width;
+            let i = 0, j = data.length - width;
             i < j;
             i += width, j -= width
         ) {
-            tmp.set(pixels.subarray(i, i + width));
-            pixels.copyWithin(i, j, j + width);
-            pixels.set(tmp, j);
+            tmp.set(data.subarray(i, i + width));
+            data.copyWithin(i, j, j + width);
+            data.set(tmp, j);
         }
         return this;
     }
@@ -418,7 +427,7 @@ export class PackedBuffer
         h |= 0;
         assert(w > 0 && h > 0, `target width & height must be > 0`);
         const dest = packedBuffer(w, h, this.format);
-        const dpix = dest.pixels;
+        const dpix = dest.data;
         const scaleX = w > 0 ? this.width / w : 0;
         const scaleY = h > 0 ? this.height / h : 0;
         sampler = isString(sampler)
@@ -434,12 +443,12 @@ export class PackedBuffer
     }
 
     upsize() {
-        const { width, height, pixels } = this;
+        const { width, height, data } = this;
         const dest = new PackedBuffer(width * 2, height * 2, this.format);
-        const dpix = dest.pixels;
+        const dpix = dest.data;
         for (let y = 0, si = 0; y < height; y++) {
             for (let x = 0, di = y * width * 4; x < width; x++, si++, di += 2) {
-                dpix[di] = pixels[si];
+                dpix[di] = data[si];
             }
         }
         return dest;

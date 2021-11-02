@@ -45,12 +45,12 @@ export function canvasPixels(width: HTMLCanvasElement | number, height?: number)
         ctx = canvas.getContext("2d")!;
     }
     const img = ctx.getImageData(0, 0, canvas.width, canvas.height);
-    const pixels = new Uint32Array(img.data.buffer);
+    const data = new Uint32Array(img.data.buffer);
     return {
         canvas,
         ctx,
         img,
-        pixels
+        data
     };
 }
 

@@ -79,42 +79,42 @@ export function defSampler(
 }
 
 const sampleINC =
-    ({ pixels, width, height }: IPixelBuffer): IntSampler =>
+    ({ data, width, height }: IPixelBuffer): IntSampler =>
     (x, y) =>
         x >= 0 && x < width && y >= 0 && y < height
-            ? pixels[(y | 0) * width + (x | 0)]
+            ? data[(y | 0) * width + (x | 0)]
             : 0;
 
 const sampleINW =
-    ({ pixels, width, height }: IPixelBuffer): IntSampler =>
+    ({ data, width, height }: IPixelBuffer): IntSampler =>
     (x, y) =>
-        pixels[mod(y | 0, height) * width + mod(x | 0, width)];
+        data[mod(y | 0, height) * width + mod(x | 0, width)];
 
-const sampleINR = ({ pixels, width, height }: IPixelBuffer): IntSampler => {
+const sampleINR = ({ data, width, height }: IPixelBuffer): IntSampler => {
     const w1 = width - 1;
     const h1 = height - 1;
-    return (x, y) => pixels[clamp(y | 0, 0, h1) * width + clamp(x | 0, 0, w1)];
+    return (x, y) => data[clamp(y | 0, 0, h1) * width + clamp(x | 0, 0, w1)];
 };
 
 const sampleFNC =
-    ({ pixels, width, height, rowStride, stride }: FloatBuffer): FloatSampler =>
+    ({ data, width, height, rowStride, stride }: FloatBuffer): FloatSampler =>
     (x, y) => {
         let i: number;
         return x >= 0 && x < width && y >= 0 && y < height
             ? ((i = (y | 0) * rowStride + (x | 0) * stride),
-              pixels.slice(i, i + stride))
+              data.slice(i, i + stride))
             : [0];
     };
 
 const sampleFNW =
-    ({ pixels, width, height, rowStride, stride }: FloatBuffer): FloatSampler =>
+    ({ data, width, height, rowStride, stride }: FloatBuffer): FloatSampler =>
     (x, y) => {
         let i = mod(y | 0, height) * rowStride + mod(x | 0, width) * stride;
-        return pixels.slice(i, i + stride);
+        return data.slice(i, i + stride);
     };
 
 const sampleFNR = ({
-    pixels,
+    data,
     width,
     height,
     rowStride,
@@ -124,7 +124,7 @@ const sampleFNR = ({
     const h1 = height - 1;
     return (x, y) => {
         let i = clamp(y | 0, 0, h1) * rowStride + clamp(x | 0, 0, w1) * stride;
-        return pixels.slice(i, i + stride);
+        return data.slice(i, i + stride);
     };
 };
 

@@ -75,7 +75,7 @@ const convolve = ({
     strideY,
 }: ReturnType<typeof initConvolve>) => {
     ensureChannel(src.format, channel);
-    const dpix = dest.pixels;
+    const dpix = dest.data;
     const stepX = strideX * srcStride;
     const stepY = strideY * rowStride;
     for (
@@ -229,7 +229,7 @@ export const defKernel = (
     const fnBody = [
         decls,
         "const { min, max } = Math;",
-        "const { pixels: pix, stride, rowStride } = src;",
+        "const { data: pix, stride, rowStride } = src;",
         "const maxX = (src.width - 1) * stride;",
         "const maxY = (src.height - 1) * rowStride;",
         "return (x, y, channel) => {",
@@ -255,7 +255,7 @@ export const defLargeKernel = (
     h: number
 ): Fn<FloatBuffer, FnN3> => {
     return (src) => {
-        const { pixels, rowStride, stride } = src;
+        const { data, rowStride, stride } = src;
         const x0 = -(w >> 1) * stride;
         const x1 = -x0 + (w & 1 ? stride : 0);
         const y0 = -(h >> 1) * rowStride;
@@ -276,7 +276,7 @@ export const defLargeKernel = (
                     x += stride, k++
                 ) {
                     sum +=
-                        kernel[k] * pixels[row + clamp(xx + x, channel, $maxX)];
+                        kernel[k] * data[row + clamp(xx + x, channel, $maxX)];
                 }
             }
             return sum;

@@ -5,6 +5,7 @@ import type {
     Fn3,
     FnN,
     FnU2,
+    IGrid2D,
     IObjectOf,
     NumericArray,
     TypedArray,
@@ -191,50 +192,12 @@ export interface CanvasContext {
 
 export interface RawPixelBuffer extends CanvasContext {
     img: ImageData;
-    pixels: Uint32Array;
+    data: Uint32Array;
 }
 
-export interface IPixelBuffer<T extends TypedArray = TypedArray, P = any> {
-    readonly width: number;
-    readonly height: number;
+export interface IPixelBuffer<T extends TypedArray = TypedArray, P = any>
+    extends IGrid2D<T, P> {
     readonly format: IABGRConvert<any>;
-    readonly stride: number;
-    readonly pixels: T;
-
-    /**
-     * Returns pixel value at given position. If pos is outside the
-     * defined region, returns a suitable zero value.
-     *
-     * @param x -
-     * @param y -
-     */
-    getAt(x: number, y: number): P;
-
-    /**
-     * Non-boundschecked version of {@link IPixelBuffer.getAt}.
-     *
-     * @param x
-     * @param y
-     */
-    getAtUnsafe(x: number, y: number): P;
-
-    /**
-     * Writes pixel value at given position. Has no effect if outside of
-     * the defined region.
-     *
-     * @param x -
-     * @param y -
-     * @param col -
-     */
-    setAt(x: number, y: number, col: P): this;
-
-    /**
-     * Non-boundschecked version of {@link IPixelBuffer.setAt}.
-     *
-     * @param x
-     * @param y
-     */
-    setAtUnsafe(x: number, y: number, col: P): this;
 
     /**
      * Extracts region as new pixel buffer in same format.
