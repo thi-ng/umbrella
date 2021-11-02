@@ -18,11 +18,11 @@ export const stripes = (opts: Partial<StripeOpts>) => {
     const size = opts.size!;
     const col1 = ARGB8888.toABGR(opts.col1!);
     const col2 = ARGB8888.toABGR(opts.col2!);
-    const { canvas, ctx, img, pixels } = opts.horizontal
+    const { canvas, ctx, img, data } = opts.horizontal
         ? canvasPixels(1, size)
         : canvasPixels(size, 1);
     for (let x = size; --x >= 0; ) {
-        pixels[x] = x & 1 ? col1 : col2;
+        data[x] = x & 1 ? col1 : col2;
     }
     ctx.putImageData(img, 0, 0);
     return canvas;
