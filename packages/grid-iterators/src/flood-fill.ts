@@ -1,10 +1,33 @@
-import type { Predicate } from "@thi.ng/api";
+import type { Predicate2 } from "@thi.ng/api";
 import { BitField, defBitField } from "@thi.ng/bitfield/bitfield";
 
 /**
- * Yields an iterator of 2D coordinates which would flood fill the space in
- * [0,0]..(width,height) interval, starting at given `x,y`. The given predicate
- * function is used to select eligible grid indices (e.g. pixels of sorts)
+ * Yields an iterator of 2D coordinates of the connected region around `x,y` for
+ * which the given predicate succeeds. I.e. The function recursively explores
+ * (in a row-major manner) the space in the `[0,0]..(width,height)` interval,
+ * starting at given `x,y` and continues as long given predicate function
+ * returns a truthy value.
+ *
+ * @remarks
+ * Only the behavior is recursive, not the actual implementation (stack based).
+ * Grid cells are visited max. once. A bit field is used to mark visited cells.
+ *
+ * @example
+ * ```ts
+ * const img = [
+ *   1,0,1,0,
+ *   0,0,0,0,
+ *   0,1,1,0,
+ *   0,1,1,1,
+ * ];
+ *
+ * // flood fill connected region from point (2,1)
+ * [...floodFill((x, y) => img[y * 4 + x] === 0, 2, 1, 4, 4)]
+ * // [
+ * //   [2, 1], [1, 1], [0, 1], [3, 1], [3, 2],
+ * //   [3, 0], [0, 2], [0, 3], [1, 0]
+ * // ]
+ * ```
  *
  * @param pred
  * @param x
@@ -13,7 +36,7 @@ import { BitField, defBitField } from "@thi.ng/bitfield/bitfield";
  * @param height
  */
 export function* floodFill(
-    pred: Predicate<number>,
+    pred: Predicate2<number>,
     x: number,
     y: number,
     width: number,
@@ -21,7 +44,7 @@ export function* floodFill(
 ) {
     x |= 0;
     y |= 0;
-    if (!pred(y * width + x)) return;
+    if (!pred(x, y)) return;
     const queue: number[][] = [[x, y]];
     const visited = defBitField(width * height);
     height--;
@@ -34,43 +57,39 @@ export function* floodFill(
 
 /** @internal */
 function* partialRow(
-    pred: Predicate<number>,
+    pred: Predicate2<number>,
     queue: number[][],
     visited: BitField,
     x: number,
     y: number,
     width: number,
     height1: number,
-    dir: number
+    step: number
 ) {
     let idx = y * width + x;
     if (visited.at(idx)) return;
-    let idxUp = idx - width;
-    let idxDown = idx + width;
     let scanUp = false;
     let scanDown = false;
-    while (x >= 0 && x < width && pred(idx)) {
+    while (x >= 0 && x < width && pred(x, y)) {
         visited.setAt(idx);
         yield [x, y];
         if (y > 0) {
-            if (pred(idxUp) && !scanUp) {
+            if (pred(x, y - 1) && !scanUp) {
                 queue.push([x, y - 1]);
                 scanUp = true;
             } else {
                 scanUp = false;
             }
-            idxUp += dir;
         }
         if (y < height1) {
-            if (pred(idxDown) && !scanDown) {
+            if (pred(x, y + 1) && !scanDown) {
                 queue.push([x, y + 1]);
                 scanDown = true;
             } else {
                 scanDown = false;
             }
-            idxDown += dir;
         }
-        x += dir;
-        idx += dir;
+        x += step;
+        idx += step;
     }
 }
