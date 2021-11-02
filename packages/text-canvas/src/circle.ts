@@ -45,14 +45,14 @@ export const circle = (
     let dx2 = 1;
     let dy2 = 2 * r - 1;
 
-    const { buf, width } = canvas;
+    const { data, width } = canvas;
 
     const $ = (ox: number, oy: number) =>
         ox >= x1 &&
         oy >= y1 &&
         ox < x2 &&
         oy < y2 &&
-        (buf[ox + oy * width] = <number>char!);
+        (data[ox + oy * width] = <number>char!);
 
     while (x <= y) {
         if (fill) {

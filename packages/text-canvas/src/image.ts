@@ -11,8 +11,8 @@ import { charCode, intersectRect } from "./utils.js";
 export const blit = (canvas: Canvas, x: number, y: number, src: Canvas) => {
     x |= 0;
     y |= 0;
-    const { buf: sbuf, width: sw, height: sh } = src;
-    const { buf: dbuf, width: dw } = canvas;
+    const { data: sbuf, width: sw, height: sh } = src;
+    const { data: dbuf, width: dw } = canvas;
     const {
         x1,
         y1,
@@ -36,9 +36,9 @@ export const blit = (canvas: Canvas, x: number, y: number, src: Canvas) => {
 export const resize = (canvas: Canvas, newWidth: number, newHeight: number) => {
     if (canvas.width === newWidth && canvas.height === newHeight) return;
     const dest = new Canvas(newWidth, newHeight);
-    dest.buf.fill(charCode(0x20, canvas.format));
+    dest.data.fill(charCode(0x20, canvas.format));
     blit(dest, 0, 0, canvas);
-    canvas.buf = dest.buf;
+    canvas.data = dest.data;
     canvas.width = newWidth;
     canvas.height = newHeight;
     canvas.clipRects = [
@@ -75,15 +75,15 @@ export const extract = (
  * @param clear
  */
 export const scrollV = (canvas: Canvas, dy: number, clear = 0x20) => {
-    const { buf, width } = canvas;
+    const { data, width } = canvas;
     const ch = charCode(clear, canvas.format);
     dy *= width;
     if (dy < 0) {
-        buf.copyWithin(-dy, 0, dy);
-        buf.fill(ch, 0, -dy);
+        data.copyWithin(-dy, 0, dy);
+        data.fill(ch, 0, -dy);
     } else if (dy > 0) {
-        buf.copyWithin(0, dy);
-        buf.fill(ch, -dy);
+        data.copyWithin(0, dy);
+        data.fill(ch, -dy);
     }
 };
 
@@ -110,7 +110,7 @@ export const image = (
     y |= 0;
     w |= 0;
     h |= 0;
-    const { buf, width } = canvas;
+    const { data, width } = canvas;
     const {
         x1,
         y1,
@@ -140,7 +140,7 @@ export const image = (
         let didx = x1 + dy * width;
         for (let xx = sx, dx = x1; dx < x2; xx++, dx++) {
             const col = Math.pow((pixels[sidx++] ^ mask) * norm, gamma);
-            buf[didx++] = charCode(chars[(col * num + 0.5) | 0], fmt(col));
+            data[didx++] = charCode(chars[(col * num + 0.5) | 0], fmt(col));
         }
     }
 };
@@ -170,7 +170,7 @@ export const imageRaw = (
     y |= 0;
     w |= 0;
     h |= 0;
-    const { buf, width } = canvas;
+    const { data, width } = canvas;
     const {
         x1,
         y1,
@@ -187,7 +187,7 @@ export const imageRaw = (
         let sidx = sx + yy * w;
         let didx = x1 + dy * width;
         for (let xx = sx, dx = x1; dx < x2; xx++, dx++) {
-            buf[didx++] = code | ((pixels[sidx++] & 0xffff) << 16);
+            data[didx++] = code | ((pixels[sidx++] & 0xffff) << 16);
         }
     }
 };
@@ -228,7 +228,7 @@ export const imageBraille = (
     y |= 0;
     w |= 0;
     h |= 0;
-    const { buf, width } = canvas;
+    const { data, width } = canvas;
     const fmt = (format !== undefined ? format : canvas.format) << 16;
     const {
         x1,
@@ -259,7 +259,7 @@ export const imageBraille = (
         let sidx = sx + yy * w;
         let didx = x1 + dy * width;
         for (let xx = sx, dx = x1; dx < x2; xx += 2, dx++, sidx += 2) {
-            buf[didx++] = braille(sidx) | fmt;
+            data[didx++] = braille(sidx) | fmt;
         }
     }
 };

@@ -30,7 +30,7 @@ export const hline = (
     const { x1, y1, x2, y2 } = peek(canvas.clipRects);
     if (len < 1 || y < y1 || y >= y2 || x >= x2) return;
     _hvline(
-        canvas.buf,
+        canvas.data,
         x,
         y,
         1,
@@ -73,7 +73,7 @@ export const vline = (
     const { x1, x2, y1, y2 } = peek(canvas.clipRects);
     if (len < 1 || x < x1 || x >= x2 || y >= y2) return;
     _hvline(
-        canvas.buf,
+        canvas.data,
         y,
         x,
         canvas.width,

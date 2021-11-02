@@ -1,12 +1,12 @@
-import type { Fn0, NumOrString } from "@thi.ng/api";
+import type { Fn0, IGrid2D, NumOrString } from "@thi.ng/api";
 import { peek } from "@thi.ng/arrays/peek";
 import { clamp } from "@thi.ng/math/interval";
 import { NONE } from "@thi.ng/text-format/api";
 import { ClipRect, StrokeStyle, STYLE_ASCII } from "./api.js";
 import { charCode, intersectRect } from "./utils.js";
 
-export class Canvas {
-    buf: Uint32Array;
+export class Canvas implements IGrid2D<Uint32Array, number> {
+    data: Uint32Array;
     width: number;
     height: number;
     format: number;
@@ -23,11 +23,44 @@ export class Canvas {
         this.width = width;
         this.height = height;
         this.format = this.defaultFormat = format;
-        this.buf = new Uint32Array(width * height).fill(charCode(0x20, format));
+        this.data = new Uint32Array(width * height).fill(
+            charCode(0x20, format)
+        );
         this.styles = [style];
         this.clipRects = [
             { x1: 0, y1: 0, x2: width, y2: height, w: width, h: height },
         ];
+    }
+
+    get stride() {
+        return 1;
+    }
+    get rowStride() {
+        return this.width;
+    }
+
+    getAt(x: number, y: number) {
+        return x >= 0 && x < this.width && y >= 0 && y < this.height
+            ? this.data[(x | 0) + (y | 0) * this.width]
+            : 0;
+    }
+
+    getAtUnsafe(x: number, y: number) {
+        return this.data[(x | 0) + (y | 0) * this.width];
+    }
+
+    setAt(x: number, y: number, col: number) {
+        x >= 0 &&
+            x < this.width &&
+            y >= 0 &&
+            y < this.height &&
+            (this.data[(x | 0) + (y | 0) * this.width] = col);
+        return this;
+    }
+
+    setAtUnsafe(x: number, y: number, col: number) {
+        this.data[x + y * this.width] = col;
+        return this;
     }
 }
 
@@ -105,7 +138,7 @@ export const getAt = (canvas: Canvas, x: number, y: number) => {
     x |= 0;
     y |= 0;
     return x >= 0 && y >= 0 && x < canvas.width && y < canvas.height
-        ? canvas.buf[x + y * canvas.width]
+        ? canvas.data[x + y * canvas.width]
         : 0;
 };
 
@@ -120,5 +153,5 @@ export const setAt = (
     y |= 0;
     const { x1, y1, x2, y2 } = peek(canvas.clipRects);
     if (x < x1 || y < y1 || x >= x2 || y >= y2) return;
-    canvas.buf[x + y * canvas.width] = charCode(code, format);
+    canvas.data[x + y * canvas.width] = charCode(code, format);
 };

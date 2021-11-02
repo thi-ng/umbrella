@@ -31,11 +31,11 @@ export const textLine = (
         i = x1 - x;
         x = x1;
     }
-    const { buf, width } = canvas;
+    const { data, width } = canvas;
     const n = line.length;
     format <<= 16;
     for (let idx = x + y * width; i < n && x < x2; i++, x++, idx++) {
-        buf[idx] = line.charCodeAt(i) | format;
+        data[idx] = line.charCodeAt(i) | format;
     }
 };
 

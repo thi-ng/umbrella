@@ -28,7 +28,7 @@ export const clear = (
         const { x1, y1, w, h } = peek(rects);
         fillRect(canvas, x1, y1, w, h, code);
     } else {
-        canvas.buf.fill(code);
+        canvas.data.fill(code);
     }
 };
 
@@ -65,14 +65,14 @@ export const fillRect = (
         h += y - y1;
         y = y1;
     }
-    const { buf, width } = canvas;
+    const { data, width } = canvas;
     if (w < 1 || h < 1 || x >= x2 || y >= y2) return;
     w = Math.min(w, x2 - x);
     h = Math.min(h, y2 - y);
     char = charCode(char, format);
     for (; --h >= 0; y++) {
         const idx = x + y * width;
-        buf.fill(char, idx, idx + w);
+        data.fill(char, idx, idx + w);
     }
 };
 

@@ -10,7 +10,7 @@ import type { Canvas } from "./canvas.js";
  * @param format
  */
 export const formatCanvas = (canvas: Canvas, format?: StringFormat) => {
-    const { buf, width, height } = canvas;
+    const { data, width, height } = canvas;
     const res: string[] = [];
     if (format) {
         const { start, end, prefix, suffix, zero } = format;
@@ -20,7 +20,7 @@ export const formatCanvas = (canvas: Canvas, format?: StringFormat) => {
             prevID = zero ? -1 : 0;
             res.push(prefix);
             for (let x = 0; x < width; x++, i++) {
-                ch = buf[i];
+                ch = data[i];
                 id = ch >>> 16;
                 if (id != prevID) {
                     check() && res.push(end);
@@ -36,7 +36,7 @@ export const formatCanvas = (canvas: Canvas, format?: StringFormat) => {
     } else {
         for (let y = 0, i = 0; y < height; y++) {
             for (let x = 0; x < width; x++, i++) {
-                res.push(String.fromCharCode(buf[i] & 0xffff));
+                res.push(String.fromCharCode(data[i] & 0xffff));
             }
             res.push("\n");
         }

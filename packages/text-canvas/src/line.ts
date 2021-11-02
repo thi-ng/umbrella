@@ -46,7 +46,7 @@ export const line = (
     );
 
     while (true) {
-        canvas.buf[ax + ay * w] = char;
+        canvas.data[ax + ay * w] = char;
         if (ax === bx && ay === by) return;
         let t = err << 1;
         if (t < dx) {
