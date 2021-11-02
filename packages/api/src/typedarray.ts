@@ -208,6 +208,11 @@ export const asGLType = (type: GLType | Type): GLType => {
 };
 
 /**
+ * Coerces given numeric args to integer values.
+ */
+export const asInt = (...args: number[]) => args.map((x) => x | 0);
+
+/**
  * Returns byte size for given {@link Type} ID or {@link GLType} enum.
  *
  * @param type
