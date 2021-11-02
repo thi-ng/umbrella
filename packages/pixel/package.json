@@ -39,11 +39,9 @@
         "@thi.ng/checks": "^3.0.6",
         "@thi.ng/distance": "^2.0.6",
         "@thi.ng/errors": "^2.0.6",
-        "@thi.ng/grid-iterators": "^2.0.6",
         "@thi.ng/k-means": "^0.4.6",
         "@thi.ng/math": "^5.0.6",
-        "@thi.ng/porter-duff": "^2.0.6",
-        "@thi.ng/transducers": "^8.0.6"
+        "@thi.ng/porter-duff": "^2.0.6"
     },
     "devDependencies": {
         "@thi.ng/testament": "^0.1.6"
@@ -62,26 +60,21 @@
         "blur",
         "canvas",
         "channel",
-        "circle",
-        "clipping",
         "color",
         "conversion",
         "convolution",
         "datastructure",
         "draw",
         "float",
-        "floodfill",
         "format",
         "gaussian",
         "grayscale",
         "image",
         "interval",
         "k-means",
-        "line",
         "multiformat",
         "normal",
         "pixel",
-        "rect",
         "resize",
         "rgb565",
         "sharpen",
@@ -119,14 +112,8 @@
         "./dominant-colors": {
             "import": "./dominant-colors.js"
         },
-        "./draw": {
-            "import": "./draw.js"
-        },
         "./float": {
             "import": "./float.js"
-        },
-        "./flood-fill": {
-            "import": "./flood-fill.js"
         },
         "./format/abgr8888": {
             "import": "./format/abgr8888.js"
