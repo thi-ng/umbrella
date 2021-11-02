@@ -33,6 +33,9 @@
         "pub": "yarn build && yarn publish --access public",
         "test": "testament test"
     },
+    "dependencies": {
+        "@thi.ng/errors": "^2.0.6"
+    },
     "devDependencies": {
         "@thi.ng/testament": "^0.1.6"
     },

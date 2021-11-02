@@ -1,16 +1,41 @@
-let NEXT_ID = 0;
-
-/**
- * Helper function to set / reset edge ID counter.
- *
- * @param id -
- */
-export const setNextID = (id: number) => (NEXT_ID = (id + 3) & -4);
+import { assert } from "@thi.ng/errors/assert";
 
 /**
  * Type alias for a 4-tuple of {@link Edge} instances.
  */
 export type QuadEdge<T> = [Edge<T>, Edge<T>, Edge<T>, Edge<T>];
+
+/**
+ * Main edge / quadedge factory function. Use this in preference of direct
+ * invocation of the {@link Edge} constructor.
+ *
+ * Creates new {@link QuadEdge} with 4 child edges and returns the first
+ * child/primary edge. If `src` and `dest` are given, they will be associated
+ * with that new edge as end points.
+ *
+ * @remarks
+ * The given `id` MUST be a multiple of 4.
+ *
+ * @param id -
+ * @param src -
+ * @param dest -
+ */
+export function defEdge<T>(id: number): Edge<T>;
+export function defEdge<T>(id: number, src: T, dest: T): Edge<T>;
+export function defEdge<T>(id: number, src?: T, dest?: T): Edge<T> {
+    assert((id & 3) === 0, `id must be multiple of 4`);
+    const quad = <QuadEdge<T>>new Array(4);
+    const a = (quad[0] = new Edge(quad, id));
+    const b = (quad[1] = new Edge(quad, id + 1));
+    const c = (quad[2] = new Edge(quad, id + 2));
+    const d = (quad[3] = new Edge(quad, id + 3));
+    a.onext = a;
+    c.onext = c;
+    b.onext = d;
+    d.onext = b;
+    src && dest && a.setEnds(src, dest);
+    return a;
+}
 
 /**
  * Quad-edge implementation after Guibas & Stolfi. Based on C++ versions
@@ -22,32 +47,6 @@ export type QuadEdge<T> = [Edge<T>, Edge<T>, Edge<T>, Edge<T>];
  * - {@link http://www.cs.cmu.edu/afs/andrew/scs/cs/15-463/2001/pub/src/a2/lischinski/114.ps}
  */
 export class Edge<T> {
-    /**
-     * Main edge / quadedge factory function. Use this in preference of
-     * direct invocation of the {@link Edge} constructor.
-     *
-     * Creates new {@link QuadEdge} with 4 child edges and returns the first
-     * child/primary edge. If `src` and `dest` are not `null`ish, the
-     * given args will be associated with that new edge as end points.
-     *
-     * @param src -
-     * @param dest -
-     */
-    static create<T>(src?: T, dest?: T) {
-        const quad = <QuadEdge<T>>new Array(4);
-        const a = (quad[0] = new Edge(quad, NEXT_ID));
-        const b = (quad[1] = new Edge(quad, NEXT_ID + 1));
-        const c = (quad[2] = new Edge(quad, NEXT_ID + 2));
-        const d = (quad[3] = new Edge(quad, NEXT_ID + 3));
-        a.onext = a;
-        c.onext = c;
-        b.onext = d;
-        d.onext = b;
-        NEXT_ID += 4;
-        src && dest && a.setEnds(src, dest);
-        return a;
-    }
-
     id: number;
     parent: QuadEdge<T>;
     origin!: T;
@@ -157,8 +156,8 @@ export class Edge<T> {
         this.sym.origin = d;
     }
 
-    connect(e: Edge<T>): Edge<T> {
-        const n = Edge.create<T>();
+    connect(e: Edge<T>, id: number): Edge<T> {
+        const n = defEdge<T>(id);
         n.splice(this.lnext);
         n.sym.splice(e);
         n.setEnds(this.dest, e.origin);
