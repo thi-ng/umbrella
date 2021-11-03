@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/text-canvas@2.0.6...@thi.ng/text-canvas@2.1.0) (2021-11-03)
+
+
+### Features
+
+* **text-canvas:** add IGrid2D impl, minor updates ([6e51c11](https://github.com/thi-ng/umbrella/commit/6e51c11bba65829ccedd6a6351565d4c8541f7dd))
+
+
+
+
+
 # [2.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/text-canvas@1.1.4...@thi.ng/text-canvas@2.0.0) (2021-10-12)
 
 

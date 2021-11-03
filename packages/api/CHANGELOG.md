@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [8.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@8.0.6...@thi.ng/api@8.1.0) (2021-11-03)
+
+
+### Features
+
+* **api:** add asInt() coercion helper ([49cd772](https://github.com/thi-ng/umbrella/commit/49cd772a328b7c71fb16ed3041e03832ebd1f884))
+* **api:** add IGrid2D/3D interfaces ([e57ad7e](https://github.com/thi-ng/umbrella/commit/e57ad7e8139512bf4146c4c70ef693b810eee24a))
+
+
+
+
+
 # [8.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@7.2.0...@thi.ng/api@8.0.0) (2021-10-12)
 
 

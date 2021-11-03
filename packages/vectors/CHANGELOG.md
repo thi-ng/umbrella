@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.0.7](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@7.0.6...@thi.ng/vectors@7.0.7) (2021-11-03)
+
+
+### Bug Fixes
+
+* **vectors:** arg types `limit()`, add docs ([d9e8404](https://github.com/thi-ng/umbrella/commit/d9e8404ace40c6b3047167de5f5f1db2e302152c))
+
+
+
+
+
 # [7.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@6.2.0...@thi.ng/vectors@7.0.0) (2021-10-12)
 
 

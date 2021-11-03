@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/grid-iterators@2.0.6...@thi.ng/grid-iterators@2.1.0) (2021-11-03)
+
+
+### Bug Fixes
+
+* **grid-iterators:** fix imports, readme ([adff976](https://github.com/thi-ng/umbrella/commit/adff976f8b370108fbc29796a39f243513bc5504))
+
+
+### Features
+
+* **grid-iterators:** add clipped shape iterators ([611f0da](https://github.com/thi-ng/umbrella/commit/611f0da940ab05e1e88b3daafb6cacb8297580a5))
+* **grid-iterators:** add floodFill(), update deps ([4634cf1](https://github.com/thi-ng/umbrella/commit/4634cf14aed00837068ffa6a77735f5ab04faf73))
+* **pixel:** add flood fill functions ([65796b9](https://github.com/thi-ng/umbrella/commit/65796b96fe77d5c4b999dd8cedfd142ea243a200))
+
+
+
+
+
 # [2.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/grid-iterators@1.0.5...@thi.ng/grid-iterators@2.0.0) (2021-10-12)
 
 

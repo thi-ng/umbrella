@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/pixel@2.1.5...@thi.ng/pixel@2.2.0) (2021-11-03)
+
+
+### Features
+
+* **pixel:** add flood fill functions ([65796b9](https://github.com/thi-ng/umbrella/commit/65796b96fe77d5c4b999dd8cedfd142ea243a200))
+* **pixel:** add shape drawing fns ([d1e284b](https://github.com/thi-ng/umbrella/commit/d1e284bfceabda62048500d42dbff19a3b1df1e8))
+* **pixel:** add unsafe getters/setters ([714d6f7](https://github.com/thi-ng/umbrella/commit/714d6f7fc8bfffa37c09dfc2c4251b1041935a24))
+
+
+
+
+
 # [2.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/pixel@2.0.1...@thi.ng/pixel@2.1.0) (2021-10-13)
 
 

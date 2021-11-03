@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/quad-edge@2.0.6...@thi.ng/quad-edge@3.0.0) (2021-11-03)
+
+
+### Features
+
+* **quad-edge:** restructure Edge & ID handling ([9e12172](https://github.com/thi-ng/umbrella/commit/9e121721c2d2b575e38ca21a7824f35438909122))
+
+
+### BREAKING CHANGES
+
+* **quad-edge:** require explict ID args, add defEdge()
+
+- replace static Edge.create() with defEdge()
+- remove automatic ID generation and require explicit ID args for:
+  - defEdge()
+  - Edge.connect()
+
+
+
+
+
 # [2.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/quad-edge@1.0.1...@thi.ng/quad-edge@2.0.0) (2021-10-12)
 
 

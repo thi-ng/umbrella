@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.7](https://github.com/thi-ng/umbrella/compare/@thi.ng/markdown-table@0.2.6...@thi.ng/markdown-table@0.2.7) (2021-11-03)
+
+**Note:** Version bump only for package @thi.ng/markdown-table
+
+
+
+
+
 # [0.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/markdown-table@0.1.1...@thi.ng/markdown-table@0.2.0) (2021-10-12)
 
 

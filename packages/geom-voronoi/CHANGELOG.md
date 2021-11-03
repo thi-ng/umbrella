@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-voronoi@2.0.6...@thi.ng/geom-voronoi@2.1.0) (2021-11-03)
+
+
+### Features
+
+* **geom-voronoi:** update visitor impls, edge ID handling ([e7b3c4c](https://github.com/thi-ng/umbrella/commit/e7b3c4cd1a4e92163db75191637eec852b9fabc6))
+
+
+
+
+
 # [2.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-voronoi@1.0.5...@thi.ng/geom-voronoi@2.0.0) (2021-10-12)
 
 

@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.0.8](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream@7.0.7...@thi.ng/rstream@7.0.8) (2021-11-03)
+
+**Note:** Version bump only for package @thi.ng/rstream
+
+
+
+
+
 # [7.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream@6.0.21...@thi.ng/rstream@7.0.0) (2021-10-12)
 
 
