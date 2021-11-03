@@ -334,7 +334,7 @@ node --experimental-repl-await
 > const pixel = await import("@thi.ng/pixel");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 9.30 KB
+Package sizes (gzipped, pre-treeshake): ESM: 8.87 KB
 
 ## Dependencies
 
@@ -343,11 +343,9 @@ Package sizes (gzipped, pre-treeshake): ESM: 9.30 KB
 - [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
 - [@thi.ng/distance](https://github.com/thi-ng/umbrella/tree/develop/packages/distance)
 - [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
-- [@thi.ng/grid-iterators](https://github.com/thi-ng/umbrella/tree/develop/packages/grid-iterators)
 - [@thi.ng/k-means](https://github.com/thi-ng/umbrella/tree/develop/packages/k-means)
 - [@thi.ng/math](https://github.com/thi-ng/umbrella/tree/develop/packages/math)
 - [@thi.ng/porter-duff](https://github.com/thi-ng/umbrella/tree/develop/packages/porter-duff)
-- [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)
 
 ## Usage examples
 

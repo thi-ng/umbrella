@@ -69,11 +69,12 @@ node --experimental-repl-await
 > const geomVoronoi = await import("@thi.ng/geom-voronoi");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.35 KB
+Package sizes (gzipped, pre-treeshake): ESM: 1.41 KB
 
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
+- [@thi.ng/bitfield](https://github.com/thi-ng/umbrella/tree/develop/packages/bitfield)
 - [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
 - [@thi.ng/geom-clip-line](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-clip-line)
 - [@thi.ng/geom-clip-poly](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-clip-poly)

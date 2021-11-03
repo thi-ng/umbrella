@@ -68,11 +68,11 @@ node --experimental-repl-await
 > const quadEdge = await import("@thi.ng/quad-edge");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 495 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 510 bytes
 
 ## Dependencies
 
-None
+- [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
 
 ## API
 
