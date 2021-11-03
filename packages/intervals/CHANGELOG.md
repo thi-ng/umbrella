@@ -3,54 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [4.0.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/intervals@4.0.5...@thi.ng/intervals@4.0.6) (2021-10-28)
-
-**Note:** Version bump only for package @thi.ng/intervals
-
-
-
-
-
-## [4.0.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/intervals@4.0.4...@thi.ng/intervals@4.0.5) (2021-10-28)
-
-**Note:** Version bump only for package @thi.ng/intervals
-
-
-
-
-
-## [4.0.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/intervals@4.0.3...@thi.ng/intervals@4.0.4) (2021-10-25)
-
-**Note:** Version bump only for package @thi.ng/intervals
-
-
-
-
-
-## [4.0.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/intervals@4.0.2...@thi.ng/intervals@4.0.3) (2021-10-15)
-
-**Note:** Version bump only for package @thi.ng/intervals
-
-
-
-
-
-## [4.0.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/intervals@4.0.1...@thi.ng/intervals@4.0.2) (2021-10-15)
-
-**Note:** Version bump only for package @thi.ng/intervals
-
-
-
-
-
-## [4.0.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/intervals@4.0.0...@thi.ng/intervals@4.0.1) (2021-10-13)
-
-**Note:** Version bump only for package @thi.ng/intervals
-
-
-
-
-
 # [4.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/intervals@3.0.13...@thi.ng/intervals@4.0.0) (2021-10-12)
 
 
@@ -80,63 +32,63 @@ Also:
 
 
 
-#  [3.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/intervals@2.1.5...@thi.ng/intervals@3.0.0) (2021-02-20) 
+#  [3.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/intervals@2.1.5...@thi.ng/intervals@3.0.0) (2021-02-20)
 
-###  Code Refactoring 
+###  Code Refactoring
 
-- **intervals:** restructure for functional API ([e05d723](https://github.com/thi-ng/umbrella/commit/e05d723c044f4fe544143afe4263ed936f0d11a0)) 
+- **intervals:** restructure for functional API ([e05d723](https://github.com/thi-ng/umbrella/commit/e05d723c044f4fe544143afe4263ed936f0d11a0))
 
-###  BREAKING CHANGES 
+###  BREAKING CHANGES
 
-- **intervals:** the API has been updated to be largely functional 
-    - replace all static and most instance methods w/ standalone functions 
-    - only class methods remaining are to implement these standard interfaces:   `ICompare`, `IContains`, `ICopy`, `IEquiv` 
-    - add samples() iterator 
-    - update/replace values() iterator 
-    - add doc strings 
-    - add/update tests 
+- **intervals:** the API has been updated to be largely functional
+    - replace all static and most instance methods w/ standalone functions
+    - only class methods remaining are to implement these standard interfaces:   `ICompare`, `IContains`, `ICopy`, `IEquiv`
+    - add samples() iterator
+    - update/replace values() iterator
+    - add doc strings
+    - add/update tests
 
-#  [2.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/intervals@2.0.25...@thi.ng/intervals@2.1.0) (2020-11-24) 
+#  [2.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/intervals@2.0.25...@thi.ng/intervals@2.1.0) (2020-11-24)
 
-###  Features 
+###  Features
 
-- **intervals:** add min/max/clamp() impls ([2747f9c](https://github.com/thi-ng/umbrella/commit/2747f9c5282c29fa39ac9d8aac1aaefbd683eb44)) 
+- **intervals:** add min/max/clamp() impls ([2747f9c](https://github.com/thi-ng/umbrella/commit/2747f9c5282c29fa39ac9d8aac1aaefbd683eb44))
 
-#  [2.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/intervals@1.0.15...@thi.ng/intervals@2.0.0) (2019-11-30) 
+#  [2.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/intervals@1.0.15...@thi.ng/intervals@2.0.0) (2019-11-30)
 
-###  Bug Fixes 
+###  Bug Fixes
 
-- **intervals:** add union/intersection tests ([d301628](https://github.com/thi-ng/umbrella/commit/d301628bf0f9c3c7c09ebe2eb8e98a98b899d5c4)) 
-- **intervals:** update compare() to consider openness, add tests ([995b32a](https://github.com/thi-ng/umbrella/commit/995b32ac5fb4c4ecfa978555dc99d7c6e1264b0f)) 
+- **intervals:** add union/intersection tests ([d301628](https://github.com/thi-ng/umbrella/commit/d301628bf0f9c3c7c09ebe2eb8e98a98b899d5c4))
+- **intervals:** update compare() to consider openness, add tests ([995b32a](https://github.com/thi-ng/umbrella/commit/995b32ac5fb4c4ecfa978555dc99d7c6e1264b0f))
 
-###  Features 
+###  Features
 
-- **intervals:** fix [#171](https://github.com/thi-ng/umbrella/issues/171), various fixes, additions, add tests ([2d13c71](https://github.com/thi-ng/umbrella/commit/2d13c7169f978918af444d89fcd50420761a6401)) 
+- **intervals:** fix [#171](https://github.com/thi-ng/umbrella/issues/171), various fixes, additions, add tests ([2d13c71](https://github.com/thi-ng/umbrella/commit/2d13c7169f978918af444d89fcd50420761a6401))
 
-###  BREAKING CHANGES 
+###  BREAKING CHANGES
 
-- **intervals:** inverted meaning of isBefore/isAfter() to be more understandable 
+- **intervals:** inverted meaning of isBefore/isAfter() to be more understandable
 
-#  [1.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/intervals@0.2.0...@thi.ng/intervals@1.0.0) (2019-01-21) 
+#  [1.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/intervals@0.2.0...@thi.ng/intervals@1.0.0) (2019-01-21)
 
-###  Build System 
+###  Build System
 
-- update package build scripts & outputs, imports in ~50 packages ([b54b703](https://github.com/thi-ng/umbrella/commit/b54b703)) 
+- update package build scripts & outputs, imports in ~50 packages ([b54b703](https://github.com/thi-ng/umbrella/commit/b54b703))
 
-###  BREAKING CHANGES 
+###  BREAKING CHANGES
 
-- enabled multi-outputs (ES6 modules, CJS, UMD) 
-- build scripts now first build ES6 modules in package root, then call   `scripts/bundle-module` to build minified CJS & UMD bundles in `/lib` 
-- all imports MUST be updated to only refer to package level   (not individual files anymore). tree shaking in user land will get rid of   all unused imported symbols. 
+- enabled multi-outputs (ES6 modules, CJS, UMD)
+- build scripts now first build ES6 modules in package root, then call   `scripts/bundle-module` to build minified CJS & UMD bundles in `/lib`
+- all imports MUST be updated to only refer to package level   (not individual files anymore). tree shaking in user land will get rid of   all unused imported symbols.
 
-#  [0.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/intervals@0.1.0...@thi.ng/intervals@0.2.0) (2018-12-19) 
+#  [0.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/intervals@0.1.0...@thi.ng/intervals@0.2.0) (2018-12-19)
 
-###  Features 
+###  Features
 
-- **intervals:** add Interval.parse(), update docs, readme, deps ([a78c6a7](https://github.com/thi-ng/umbrella/commit/a78c6a7)) 
+- **intervals:** add Interval.parse(), update docs, readme, deps ([a78c6a7](https://github.com/thi-ng/umbrella/commit/a78c6a7))
 
-#  0.1.0 (2018-12-18) 
+#  0.1.0 (2018-12-18)
 
-###  Features 
+###  Features
 
 - **intervals:** add new package ([b0a3142](https://github.com/thi-ng/umbrella/commit/b0a3142))

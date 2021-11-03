@@ -3,54 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [0.2.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/lowdisc@0.2.5...@thi.ng/lowdisc@0.2.6) (2021-10-28)
-
-**Note:** Version bump only for package @thi.ng/lowdisc
-
-
-
-
-
-## [0.2.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/lowdisc@0.2.4...@thi.ng/lowdisc@0.2.5) (2021-10-28)
-
-**Note:** Version bump only for package @thi.ng/lowdisc
-
-
-
-
-
-## [0.2.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/lowdisc@0.2.3...@thi.ng/lowdisc@0.2.4) (2021-10-25)
-
-**Note:** Version bump only for package @thi.ng/lowdisc
-
-
-
-
-
-## [0.2.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/lowdisc@0.2.2...@thi.ng/lowdisc@0.2.3) (2021-10-15)
-
-**Note:** Version bump only for package @thi.ng/lowdisc
-
-
-
-
-
-## [0.2.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/lowdisc@0.2.1...@thi.ng/lowdisc@0.2.2) (2021-10-15)
-
-**Note:** Version bump only for package @thi.ng/lowdisc
-
-
-
-
-
-## [0.2.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/lowdisc@0.2.0...@thi.ng/lowdisc@0.2.1) (2021-10-13)
-
-**Note:** Version bump only for package @thi.ng/lowdisc
-
-
-
-
-
 # [0.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/lowdisc@0.1.7...@thi.ng/lowdisc@0.2.0) (2021-10-12)
 
 
@@ -80,12 +32,12 @@ Also:
 
 
 
-##  [0.1.7](https://github.com/thi-ng/umbrella/compare/@thi.ng/lowdisc@0.1.6...@thi.ng/lowdisc@0.1.7) (2021-09-03) 
+##  [0.1.7](https://github.com/thi-ng/umbrella/compare/@thi.ng/lowdisc@0.1.6...@thi.ng/lowdisc@0.1.7) (2021-09-03)
 
-**Note:** Version bump only for package @thi.ng/lowdisc 
+**Note:** Version bump only for package @thi.ng/lowdisc
 
-#  0.1.0 (2021-04-19) 
+#  0.1.0 (2021-04-19)
 
-###  Features 
+###  Features
 
 - **lowdisc:** import as pkg, update assets/readme ([3ad6672](https://github.com/thi-ng/umbrella/commit/3ad66723a23561de5611a00fa9bf3a50032af079))

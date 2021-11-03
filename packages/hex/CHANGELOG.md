@@ -3,54 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [2.0.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/hex@2.0.5...@thi.ng/hex@2.0.6) (2021-10-28)
-
-**Note:** Version bump only for package @thi.ng/hex
-
-
-
-
-
-## [2.0.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/hex@2.0.4...@thi.ng/hex@2.0.5) (2021-10-28)
-
-**Note:** Version bump only for package @thi.ng/hex
-
-
-
-
-
-## [2.0.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/hex@2.0.3...@thi.ng/hex@2.0.4) (2021-10-25)
-
-**Note:** Version bump only for package @thi.ng/hex
-
-
-
-
-
-## [2.0.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/hex@2.0.2...@thi.ng/hex@2.0.3) (2021-10-15)
-
-**Note:** Version bump only for package @thi.ng/hex
-
-
-
-
-
-## [2.0.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/hex@2.0.1...@thi.ng/hex@2.0.2) (2021-10-15)
-
-**Note:** Version bump only for package @thi.ng/hex
-
-
-
-
-
-## [2.0.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/hex@2.0.0...@thi.ng/hex@2.0.1) (2021-10-13)
-
-**Note:** Version bump only for package @thi.ng/hex
-
-
-
-
-
 # [2.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/hex@1.0.4...@thi.ng/hex@2.0.0) (2021-10-12)
 
 
@@ -80,14 +32,14 @@ Also:
 
 
 
-#  [0.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/hex@0.1.3...@thi.ng/hex@0.2.0) (2021-02-20) 
+#  [0.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/hex@0.1.3...@thi.ng/hex@0.2.0) (2021-02-20)
 
-###  Features 
+###  Features
 
-- **hex:** add uuid() ([c8417b4](https://github.com/thi-ng/umbrella/commit/c8417b4c2fe3eeb664b4131aabe592d612573703)) 
+- **hex:** add uuid() ([c8417b4](https://github.com/thi-ng/umbrella/commit/c8417b4c2fe3eeb664b4131aabe592d612573703))
 
-#  0.1.0 (2020-11-24) 
+#  0.1.0 (2020-11-24)
 
-###  Features 
+###  Features
 
 - **hex:** import as new package ([1c2f331](https://github.com/thi-ng/umbrella/commit/1c2f331bfbdc01fd0153e01dcecbab79307a7598))

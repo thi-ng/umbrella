@@ -3,54 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [0.3.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers-patch@0.3.5...@thi.ng/transducers-patch@0.3.6) (2021-10-28)
-
-**Note:** Version bump only for package @thi.ng/transducers-patch
-
-
-
-
-
-## [0.3.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers-patch@0.3.4...@thi.ng/transducers-patch@0.3.5) (2021-10-28)
-
-**Note:** Version bump only for package @thi.ng/transducers-patch
-
-
-
-
-
-## [0.3.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers-patch@0.3.3...@thi.ng/transducers-patch@0.3.4) (2021-10-25)
-
-**Note:** Version bump only for package @thi.ng/transducers-patch
-
-
-
-
-
-## [0.3.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers-patch@0.3.2...@thi.ng/transducers-patch@0.3.3) (2021-10-15)
-
-**Note:** Version bump only for package @thi.ng/transducers-patch
-
-
-
-
-
-## [0.3.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers-patch@0.3.1...@thi.ng/transducers-patch@0.3.2) (2021-10-15)
-
-**Note:** Version bump only for package @thi.ng/transducers-patch
-
-
-
-
-
-## [0.3.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers-patch@0.3.0...@thi.ng/transducers-patch@0.3.1) (2021-10-13)
-
-**Note:** Version bump only for package @thi.ng/transducers-patch
-
-
-
-
-
 # [0.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers-patch@0.2.30...@thi.ng/transducers-patch@0.3.0) (2021-10-12)
 
 
@@ -80,25 +32,25 @@ Also:
 
 
 
-#  [0.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers-patch@0.1.33...@thi.ng/transducers-patch@0.2.0) (2020-12-22) 
+#  [0.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers-patch@0.1.33...@thi.ng/transducers-patch@0.2.0) (2020-12-22)
 
-###  Code Refactoring 
+###  Code Refactoring
 
-- **transducers-patch:** fix [#256](https://github.com/thi-ng/umbrella/issues/256) replace enum ([5086a33](https://github.com/thi-ng/umbrella/commit/5086a330698992fc65ce2e774fc495e0d2e3e58a)) 
+- **transducers-patch:** fix [#256](https://github.com/thi-ng/umbrella/issues/256) replace enum ([5086a33](https://github.com/thi-ng/umbrella/commit/5086a330698992fc65ce2e774fc495e0d2e3e58a))
 
-###  BREAKING CHANGES 
+###  BREAKING CHANGES
 
-- **transducers-patch:** replace Patch enum w/ type alias, update PatchArrayOp/PatchObjOp 
+- **transducers-patch:** replace Patch enum w/ type alias, update PatchArrayOp/PatchObjOp
 
-##  [0.1.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers-patch@0.1.4...@thi.ng/transducers-patch@0.1.5) (2020-03-28) 
+##  [0.1.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers-patch@0.1.4...@thi.ng/transducers-patch@0.1.5) (2020-03-28)
 
-###  Bug Fixes 
+###  Bug Fixes
 
-- **transducers-patch:** update deps & imports ([71d73c3](https://github.com/thi-ng/umbrella/commit/71d73c3acc41d6cf2c5a4a91432bc85afa38980b)) 
+- **transducers-patch:** update deps & imports ([71d73c3](https://github.com/thi-ng/umbrella/commit/71d73c3acc41d6cf2c5a4a91432bc85afa38980b))
 
-#  0.1.0 (2020-02-25) 
+#  0.1.0 (2020-02-25)
 
-###  Features 
+###  Features
 
-- **transducers-patch:** add transaction support ([77fbb77](https://github.com/thi-ng/umbrella/commit/77fbb774083c38e660644d7ee54b517e2521c3b5)) 
+- **transducers-patch:** add transaction support ([77fbb77](https://github.com/thi-ng/umbrella/commit/77fbb774083c38e660644d7ee54b517e2521c3b5))
 - **transducers-patch:** import as new pkg ([274fde1](https://github.com/thi-ng/umbrella/commit/274fde1721d478d70d90c720a819361fbc8af836))

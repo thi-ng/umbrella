@@ -3,52 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [1.0.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/expose@1.0.5...@thi.ng/expose@1.0.6) (2021-10-28)
-
-**Note:** Version bump only for package @thi.ng/expose
-
-
-
-
-
-## [1.0.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/expose@1.0.4...@thi.ng/expose@1.0.5) (2021-10-28)
-
-**Note:** Version bump only for package @thi.ng/expose
-
-
-
-
-
 ## [1.0.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/expose@1.0.3...@thi.ng/expose@1.0.4) (2021-10-25)
 
 
 ### Bug Fixes
 
 * [#324](https://github.com/thi-ng/umbrella/issues/324) update snowpack issue workaround ([6dfbf71](https://github.com/thi-ng/umbrella/commit/6dfbf7120faaea7ef6af4f755e1a609cb49d902a)), closes [snowpackjs/snowpack#3621](https://github.com/snowpackjs/snowpack/issues/3621)
-
-
-
-
-
-## [1.0.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/expose@1.0.2...@thi.ng/expose@1.0.3) (2021-10-15)
-
-**Note:** Version bump only for package @thi.ng/expose
-
-
-
-
-
-## [1.0.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/expose@1.0.1...@thi.ng/expose@1.0.2) (2021-10-15)
-
-**Note:** Version bump only for package @thi.ng/expose
-
-
-
-
-
-## [1.0.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/expose@0.1.0...@thi.ng/expose@1.0.1) (2021-10-13)
-
-**Note:** Version bump only for package @thi.ng/expose
 
 
 

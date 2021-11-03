@@ -3,54 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [2.0.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-clip-line@2.0.5...@thi.ng/geom-clip-line@2.0.6) (2021-10-28)
-
-**Note:** Version bump only for package @thi.ng/geom-clip-line
-
-
-
-
-
-## [2.0.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-clip-line@2.0.4...@thi.ng/geom-clip-line@2.0.5) (2021-10-28)
-
-**Note:** Version bump only for package @thi.ng/geom-clip-line
-
-
-
-
-
-## [2.0.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-clip-line@2.0.3...@thi.ng/geom-clip-line@2.0.4) (2021-10-25)
-
-**Note:** Version bump only for package @thi.ng/geom-clip-line
-
-
-
-
-
-## [2.0.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-clip-line@2.0.2...@thi.ng/geom-clip-line@2.0.3) (2021-10-15)
-
-**Note:** Version bump only for package @thi.ng/geom-clip-line
-
-
-
-
-
-## [2.0.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-clip-line@2.0.1...@thi.ng/geom-clip-line@2.0.2) (2021-10-15)
-
-**Note:** Version bump only for package @thi.ng/geom-clip-line
-
-
-
-
-
-## [2.0.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-clip-line@2.0.0...@thi.ng/geom-clip-line@2.0.1) (2021-10-13)
-
-**Note:** Version bump only for package @thi.ng/geom-clip-line
-
-
-
-
-
 # [2.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-clip-line@1.2.45...@thi.ng/geom-clip-line@2.0.0) (2021-10-12)
 
 
@@ -80,38 +32,38 @@ Also:
 
 
 
-##  [1.2.42](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-clip-line@1.2.41...@thi.ng/geom-clip-line@1.2.42) (2021-08-17) 
+##  [1.2.42](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-clip-line@1.2.41...@thi.ng/geom-clip-line@1.2.42) (2021-08-17)
 
-###  Bug Fixes 
+###  Bug Fixes
 
-- **geom-clip-line:** off-by-one error in clipLinePoly() ([7898810](https://github.com/thi-ng/umbrella/commit/7898810244a7a4e4cba43c7ec0bedc095e1f4be4)) 
+- **geom-clip-line:** off-by-one error in clipLinePoly() ([7898810](https://github.com/thi-ng/umbrella/commit/7898810244a7a4e4cba43c7ec0bedc095e1f4be4))
 
-#  [1.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-clip-line@1.1.4...@thi.ng/geom-clip-line@1.2.0) (2020-07-17) 
+#  [1.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-clip-line@1.1.4...@thi.ng/geom-clip-line@1.2.0) (2020-07-17)
 
-###  Features 
+###  Features
 
-- **geom-clip-line:** add clipLineSegmentPoly() ([bec7b93](https://github.com/thi-ng/umbrella/commit/bec7b93f13450a02ca62995992d1f488d2ff24be)) 
+- **geom-clip-line:** add clipLineSegmentPoly() ([bec7b93](https://github.com/thi-ng/umbrella/commit/bec7b93f13450a02ca62995992d1f488d2ff24be))
 
-#  [1.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-clip-line@1.0.19...@thi.ng/geom-clip-line@1.1.0) (2020-06-20) 
+#  [1.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-clip-line@1.0.19...@thi.ng/geom-clip-line@1.1.0) (2020-06-20)
 
-###  Features 
+###  Features
 
-- **geom-clip-line:** add clipLinePoly(), update deps ([e096efd](https://github.com/thi-ng/umbrella/commit/e096efdbe71549a781daa5b154c47e5e0eea33d1)) 
+- **geom-clip-line:** add clipLinePoly(), update deps ([e096efd](https://github.com/thi-ng/umbrella/commit/e096efdbe71549a781daa5b154c47e5e0eea33d1))
 
-#  1.0.0 (2020-02-25) 
+#  1.0.0 (2020-02-25)
 
-###  Bug Fixes 
+###  Bug Fixes
 
-- **geom-clip-line:** fix internal clip edge classifier ([c0cc9af](https://github.com/thi-ng/umbrella/commit/c0cc9af93293b3e68e9d5724874039e16bd6835e)) 
+- **geom-clip-line:** fix internal clip edge classifier ([c0cc9af](https://github.com/thi-ng/umbrella/commit/c0cc9af93293b3e68e9d5724874039e16bd6835e))
 
-###  Documentation 
+###  Documentation
 
-- **geom-clip-line:** update readme ([f78374b](https://github.com/thi-ng/umbrella/commit/f78374bec7dfe6227faaf699ab51e9a129ade922)) 
+- **geom-clip-line:** update readme ([f78374b](https://github.com/thi-ng/umbrella/commit/f78374bec7dfe6227faaf699ab51e9a129ade922))
 
-###  Features 
+###  Features
 
-- **geom-clip-line:** extract as own pkg (from [@thi](https://github.com/thi).ng/geom-clip) ([34e3262](https://github.com/thi-ng/umbrella/commit/34e3262f8784df44f4adb729110d37513fccdfb3)) 
+- **geom-clip-line:** extract as own pkg (from [@thi](https://github.com/thi).ng/geom-clip) ([34e3262](https://github.com/thi-ng/umbrella/commit/34e3262f8784df44f4adb729110d37513fccdfb3))
 
-###  BREAKING CHANGES 
+###  BREAKING CHANGES
 
 - **geom-clip-line:** extract as own pkg (formerly @thi.ng/geom-clip)

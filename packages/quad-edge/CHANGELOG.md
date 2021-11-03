@@ -3,54 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [2.0.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/quad-edge@2.0.5...@thi.ng/quad-edge@2.0.6) (2021-10-28)
-
-**Note:** Version bump only for package @thi.ng/quad-edge
-
-
-
-
-
-## [2.0.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/quad-edge@2.0.4...@thi.ng/quad-edge@2.0.5) (2021-10-28)
-
-**Note:** Version bump only for package @thi.ng/quad-edge
-
-
-
-
-
-## [2.0.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/quad-edge@2.0.3...@thi.ng/quad-edge@2.0.4) (2021-10-25)
-
-**Note:** Version bump only for package @thi.ng/quad-edge
-
-
-
-
-
-## [2.0.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/quad-edge@2.0.2...@thi.ng/quad-edge@2.0.3) (2021-10-15)
-
-**Note:** Version bump only for package @thi.ng/quad-edge
-
-
-
-
-
-## [2.0.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/quad-edge@2.0.1...@thi.ng/quad-edge@2.0.2) (2021-10-15)
-
-**Note:** Version bump only for package @thi.ng/quad-edge
-
-
-
-
-
-## [2.0.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/quad-edge@2.0.0...@thi.ng/quad-edge@2.0.1) (2021-10-13)
-
-**Note:** Version bump only for package @thi.ng/quad-edge
-
-
-
-
-
 # [2.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/quad-edge@1.0.1...@thi.ng/quad-edge@2.0.0) (2021-10-12)
 
 
@@ -80,14 +32,14 @@ Also:
 
 
 
-#  [0.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/quad-edge@0.1.4...@thi.ng/quad-edge@0.2.0) (2019-07-07) 
+#  [0.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/quad-edge@0.1.4...@thi.ng/quad-edge@0.2.0) (2019-07-07)
 
-###  Features 
+###  Features
 
-- **quad-edge:** enable TS strict compiler flags (refactor) ([5a6cec1](https://github.com/thi-ng/umbrella/commit/5a6cec1)) 
+- **quad-edge:** enable TS strict compiler flags (refactor) ([5a6cec1](https://github.com/thi-ng/umbrella/commit/5a6cec1))
 
-#  0.1.0 (2019-02-05) 
+#  0.1.0 (2019-02-05)
 
-###  Features 
+###  Features
 
 - **quad-edge:** re-import & update quad edge impl (MBP2010) ([ee76797](https://github.com/thi-ng/umbrella/commit/ee76797))

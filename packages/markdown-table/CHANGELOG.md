@@ -3,54 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [0.2.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/markdown-table@0.2.5...@thi.ng/markdown-table@0.2.6) (2021-10-28)
-
-**Note:** Version bump only for package @thi.ng/markdown-table
-
-
-
-
-
-## [0.2.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/markdown-table@0.2.4...@thi.ng/markdown-table@0.2.5) (2021-10-28)
-
-**Note:** Version bump only for package @thi.ng/markdown-table
-
-
-
-
-
-## [0.2.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/markdown-table@0.2.3...@thi.ng/markdown-table@0.2.4) (2021-10-25)
-
-**Note:** Version bump only for package @thi.ng/markdown-table
-
-
-
-
-
-## [0.2.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/markdown-table@0.2.2...@thi.ng/markdown-table@0.2.3) (2021-10-15)
-
-**Note:** Version bump only for package @thi.ng/markdown-table
-
-
-
-
-
-## [0.2.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/markdown-table@0.2.1...@thi.ng/markdown-table@0.2.2) (2021-10-15)
-
-**Note:** Version bump only for package @thi.ng/markdown-table
-
-
-
-
-
-## [0.2.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/markdown-table@0.2.0...@thi.ng/markdown-table@0.2.1) (2021-10-13)
-
-**Note:** Version bump only for package @thi.ng/markdown-table
-
-
-
-
-
 # [0.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/markdown-table@0.1.1...@thi.ng/markdown-table@0.2.0) (2021-10-12)
 
 
@@ -85,12 +37,12 @@ Also:
 
 
 
-##  [0.1.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/markdown-table@0.1.0...@thi.ng/markdown-table@0.1.1) (2021-09-03) 
+##  [0.1.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/markdown-table@0.1.0...@thi.ng/markdown-table@0.1.1) (2021-09-03)
 
-**Note:** Version bump only for package @thi.ng/markdown-table 
+**Note:** Version bump only for package @thi.ng/markdown-table
 
-#  0.1.0 (2021-08-24) 
+#  0.1.0 (2021-08-24)
 
-###  Features 
+###  Features
 
 - **markdown-table:** import as new pkg ([4c8597e](https://github.com/thi-ng/umbrella/commit/4c8597ef271d5ccbd69e01b8abae3b0fa18e3ee3))

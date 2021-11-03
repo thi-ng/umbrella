@@ -3,54 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [2.0.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/dsp-io-wav@2.0.5...@thi.ng/dsp-io-wav@2.0.6) (2021-10-28)
-
-**Note:** Version bump only for package @thi.ng/dsp-io-wav
-
-
-
-
-
-## [2.0.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/dsp-io-wav@2.0.4...@thi.ng/dsp-io-wav@2.0.5) (2021-10-28)
-
-**Note:** Version bump only for package @thi.ng/dsp-io-wav
-
-
-
-
-
-## [2.0.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/dsp-io-wav@2.0.3...@thi.ng/dsp-io-wav@2.0.4) (2021-10-25)
-
-**Note:** Version bump only for package @thi.ng/dsp-io-wav
-
-
-
-
-
-## [2.0.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/dsp-io-wav@2.0.2...@thi.ng/dsp-io-wav@2.0.3) (2021-10-15)
-
-**Note:** Version bump only for package @thi.ng/dsp-io-wav
-
-
-
-
-
-## [2.0.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/dsp-io-wav@2.0.1...@thi.ng/dsp-io-wav@2.0.2) (2021-10-15)
-
-**Note:** Version bump only for package @thi.ng/dsp-io-wav
-
-
-
-
-
-## [2.0.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/dsp-io-wav@2.0.0...@thi.ng/dsp-io-wav@2.0.1) (2021-10-13)
-
-**Note:** Version bump only for package @thi.ng/dsp-io-wav
-
-
-
-
-
 # [2.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/dsp-io-wav@1.0.7...@thi.ng/dsp-io-wav@2.0.0) (2021-10-12)
 
 
@@ -80,13 +32,13 @@ Also:
 
 
 
-##  [1.0.7](https://github.com/thi-ng/umbrella/compare/@thi.ng/dsp-io-wav@1.0.6...@thi.ng/dsp-io-wav@1.0.7) (2021-09-03) 
+##  [1.0.7](https://github.com/thi-ng/umbrella/compare/@thi.ng/dsp-io-wav@1.0.6...@thi.ng/dsp-io-wav@1.0.7) (2021-09-03)
 
-**Note:** Version bump only for package @thi.ng/dsp-io-wav 
+**Note:** Version bump only for package @thi.ng/dsp-io-wav
 
-#  0.1.0 (2020-02-25) 
+#  0.1.0 (2020-02-25)
 
-###  Features 
+###  Features
 
-- **dsp-io-wav:** add waveBytes() iterator ([bde667f](https://github.com/thi-ng/umbrella/commit/bde667fe4b08f03a7bbf4fa95d8e71c296d5bfb7)) 
+- **dsp-io-wav:** add waveBytes() iterator ([bde667f](https://github.com/thi-ng/umbrella/commit/bde667fe4b08f03a7bbf4fa95d8e71c296d5bfb7))
 - **dsp-io-wav:** initial import ([e9fb42e](https://github.com/thi-ng/umbrella/commit/e9fb42e5cb260997ff38055e713aebd82aaf3843))

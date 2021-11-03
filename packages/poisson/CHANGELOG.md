@@ -3,54 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [2.0.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/poisson@2.0.5...@thi.ng/poisson@2.0.6) (2021-10-28)
-
-**Note:** Version bump only for package @thi.ng/poisson
-
-
-
-
-
-## [2.0.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/poisson@2.0.4...@thi.ng/poisson@2.0.5) (2021-10-28)
-
-**Note:** Version bump only for package @thi.ng/poisson
-
-
-
-
-
-## [2.0.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/poisson@2.0.3...@thi.ng/poisson@2.0.4) (2021-10-25)
-
-**Note:** Version bump only for package @thi.ng/poisson
-
-
-
-
-
-## [2.0.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/poisson@2.0.2...@thi.ng/poisson@2.0.3) (2021-10-15)
-
-**Note:** Version bump only for package @thi.ng/poisson
-
-
-
-
-
-## [2.0.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/poisson@2.0.1...@thi.ng/poisson@2.0.2) (2021-10-15)
-
-**Note:** Version bump only for package @thi.ng/poisson
-
-
-
-
-
-## [2.0.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/poisson@2.0.0...@thi.ng/poisson@2.0.1) (2021-10-13)
-
-**Note:** Version bump only for package @thi.ng/poisson
-
-
-
-
-
 # [2.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/poisson@1.1.53...@thi.ng/poisson@2.0.0) (2021-10-12)
 
 
@@ -80,30 +32,30 @@ Also:
 
 
 
-#  [1.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/poisson@1.0.17...@thi.ng/poisson@1.1.0) (2020-05-29) 
+#  [1.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/poisson@1.0.17...@thi.ng/poisson@1.1.0) (2020-05-29)
 
-###  Features 
+###  Features
 
-- **poisson:** add stratifiedGrid(), restructure pkg ([62cd31a](https://github.com/thi-ng/umbrella/commit/62cd31a87236daaf4089543aa49e847827bb8b55)) 
+- **poisson:** add stratifiedGrid(), restructure pkg ([62cd31a](https://github.com/thi-ng/umbrella/commit/62cd31a87236daaf4089543aa49e847827bb8b55))
 
-#  [1.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/poisson@0.2.27...@thi.ng/poisson@1.0.0) (2020-01-24) 
+#  [1.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/poisson@0.2.27...@thi.ng/poisson@1.0.0) (2020-01-24)
 
-###  Features 
+###  Features
 
-- **poisson:** update to use ISpatialSet ([32a20fe](https://github.com/thi-ng/umbrella/commit/32a20fee6dadeed62610ef7d83c1824775cb28af)) 
+- **poisson:** update to use ISpatialSet ([32a20fe](https://github.com/thi-ng/umbrella/commit/32a20fee6dadeed62610ef7d83c1824775cb28af))
 
-###  BREAKING CHANGES 
+###  BREAKING CHANGES
 
-- **poisson:** update to use latest geom-accel API 
+- **poisson:** update to use latest geom-accel API
 
-#  [0.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/poisson@0.1.2...@thi.ng/poisson@0.2.0) (2019-02-05) 
+#  [0.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/poisson@0.1.2...@thi.ng/poisson@0.2.0) (2019-02-05)
 
-###  Features 
+###  Features
 
-- **poisson:** add geom-api dep, optimize search ([bee1c89](https://github.com/thi-ng/umbrella/commit/bee1c89)) 
+- **poisson:** add geom-api dep, optimize search ([bee1c89](https://github.com/thi-ng/umbrella/commit/bee1c89))
 
-#  0.1.0 (2019-01-21) 
+#  0.1.0 (2019-01-21)
 
-###  Features 
+###  Features
 
 - **poisson:** re-import & update poisson package (MBP2010) ([193f9d4](https://github.com/thi-ng/umbrella/commit/193f9d4))

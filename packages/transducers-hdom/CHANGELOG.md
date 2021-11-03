@@ -3,54 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [3.0.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers-hdom@3.0.5...@thi.ng/transducers-hdom@3.0.6) (2021-10-28)
-
-**Note:** Version bump only for package @thi.ng/transducers-hdom
-
-
-
-
-
-## [3.0.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers-hdom@3.0.4...@thi.ng/transducers-hdom@3.0.5) (2021-10-28)
-
-**Note:** Version bump only for package @thi.ng/transducers-hdom
-
-
-
-
-
-## [3.0.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers-hdom@3.0.3...@thi.ng/transducers-hdom@3.0.4) (2021-10-25)
-
-**Note:** Version bump only for package @thi.ng/transducers-hdom
-
-
-
-
-
-## [3.0.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers-hdom@3.0.2...@thi.ng/transducers-hdom@3.0.3) (2021-10-15)
-
-**Note:** Version bump only for package @thi.ng/transducers-hdom
-
-
-
-
-
-## [3.0.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers-hdom@3.0.1...@thi.ng/transducers-hdom@3.0.2) (2021-10-15)
-
-**Note:** Version bump only for package @thi.ng/transducers-hdom
-
-
-
-
-
-## [3.0.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers-hdom@3.0.0...@thi.ng/transducers-hdom@3.0.1) (2021-10-13)
-
-**Note:** Version bump only for package @thi.ng/transducers-hdom
-
-
-
-
-
 # [3.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers-hdom@2.0.105...@thi.ng/transducers-hdom@3.0.0) (2021-10-12)
 
 
@@ -80,58 +32,58 @@ Also:
 
 
 
-#  [2.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers-hdom@1.2.16...@thi.ng/transducers-hdom@2.0.0) (2019-01-21) 
+#  [2.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers-hdom@1.2.16...@thi.ng/transducers-hdom@2.0.0) (2019-01-21)
 
-###  Build System 
+###  Build System
 
-- update package build scripts & outputs, imports in ~50 packages ([b54b703](https://github.com/thi-ng/umbrella/commit/b54b703)) 
-- update package scripts, outputs, imports in remaining packages ([f912a84](https://github.com/thi-ng/umbrella/commit/f912a84)) 
+- update package build scripts & outputs, imports in ~50 packages ([b54b703](https://github.com/thi-ng/umbrella/commit/b54b703))
+- update package scripts, outputs, imports in remaining packages ([f912a84](https://github.com/thi-ng/umbrella/commit/f912a84))
 
-###  BREAKING CHANGES 
+###  BREAKING CHANGES
 
-- enable multi-outputs (ES6 modules, CJS, UMD) 
-- build scripts now first build ES6 modules in package root, then call   `scripts/bundle-module` to build minified CJS & UMD bundles in `/lib` 
-- all imports MUST be updated to only refer to package level   (not individual files anymore). tree shaking in user land will get rid of   all unused imported symbols 
-- enabled multi-outputs (ES6 modules, CJS, UMD) 
-- build scripts now first build ES6 modules in package root, then call   `scripts/bundle-module` to build minified CJS & UMD bundles in `/lib` 
-- all imports MUST be updated to only refer to package level   (not individual files anymore). tree shaking in user land will get rid of   all unused imported symbols. 
+- enable multi-outputs (ES6 modules, CJS, UMD)
+- build scripts now first build ES6 modules in package root, then call   `scripts/bundle-module` to build minified CJS & UMD bundles in `/lib`
+- all imports MUST be updated to only refer to package level   (not individual files anymore). tree shaking in user land will get rid of   all unused imported symbols
+- enabled multi-outputs (ES6 modules, CJS, UMD)
+- build scripts now first build ES6 modules in package root, then call   `scripts/bundle-module` to build minified CJS & UMD bundles in `/lib`
+- all imports MUST be updated to only refer to package level   (not individual files anymore). tree shaking in user land will get rid of   all unused imported symbols.
 
-##  [1.2.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers-hdom@1.2.5...@thi.ng/transducers-hdom@1.2.6) (2018-12-13) 
+##  [1.2.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers-hdom@1.2.5...@thi.ng/transducers-hdom@1.2.6) (2018-12-13)
 
-###  Bug Fixes 
+###  Bug Fixes
 
-- **transducers-hdom:** integrate recent hdom updates ([6db3170](https://github.com/thi-ng/umbrella/commit/6db3170)) 
+- **transducers-hdom:** integrate recent hdom updates ([6db3170](https://github.com/thi-ng/umbrella/commit/6db3170))
 
-#  [1.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers-hdom@1.1.9...@thi.ng/transducers-hdom@1.2.0) (2018-11-06) 
+#  [1.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers-hdom@1.1.9...@thi.ng/transducers-hdom@1.2.0) (2018-11-06)
 
-###  Features 
+###  Features
 
-- **transducers-hdom:** add support for dynamic user context vals ([e91dbbc](https://github.com/thi-ng/umbrella/commit/e91dbbc)) 
+- **transducers-hdom:** add support for dynamic user context vals ([e91dbbc](https://github.com/thi-ng/umbrella/commit/e91dbbc))
 
-#  [1.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers-hdom@1.1.0-alpha.2...@thi.ng/transducers-hdom@1.1.0) (2018-09-22) 
+#  [1.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers-hdom@1.1.0-alpha.2...@thi.ng/transducers-hdom@1.1.0) (2018-09-22)
 
-###  Bug Fixes 
+###  Bug Fixes
 
-- **transducers-hdom:** add missing type annotation ([78b1f4a](https://github.com/thi-ng/umbrella/commit/78b1f4a)) 
+- **transducers-hdom:** add missing type annotation ([78b1f4a](https://github.com/thi-ng/umbrella/commit/78b1f4a))
 
-#  [1.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers-hdom@0.1.5...@thi.ng/transducers-hdom@1.0.0) (2018-08-31) 
+#  [1.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers-hdom@0.1.5...@thi.ng/transducers-hdom@1.0.0) (2018-08-31)
 
-###  Features 
+###  Features
 
-- **transducers-hdom:** add DOM hydration support, rename ([#39](https://github.com/thi-ng/umbrella/issues/39)) ([0f39694](https://github.com/thi-ng/umbrella/commit/0f39694)) 
+- **transducers-hdom:** add DOM hydration support, rename ([#39](https://github.com/thi-ng/umbrella/issues/39)) ([0f39694](https://github.com/thi-ng/umbrella/commit/0f39694))
 
-###  BREAKING CHANGES 
+###  BREAKING CHANGES
 
-- **transducers-hdom:** rename transducer: `updateUI` => `updateDOM`, new API 
+- **transducers-hdom:** rename transducer: `updateUI` => `updateDOM`, new API
 
-##  [0.1.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers-hdom@0.1.0...@thi.ng/transducers-hdom@0.1.1) (2018-08-02) 
+##  [0.1.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers-hdom@0.1.0...@thi.ng/transducers-hdom@0.1.1) (2018-08-02)
 
-###  Bug Fixes 
+###  Bug Fixes
 
-- **transducers-hdom:** support hdom user context ([949a5d4](https://github.com/thi-ng/umbrella/commit/949a5d4)) 
+- **transducers-hdom:** support hdom user context ([949a5d4](https://github.com/thi-ng/umbrella/commit/949a5d4))
 
-#  0.1.0 (2018-08-02) 
+#  0.1.0 (2018-08-02)
 
-###  Features 
+###  Features
 
 - **transducers-hdom:** add new package [@thi](https://github.com/thi).ng/transducers-hdom ([7efce7a](https://github.com/thi-ng/umbrella/commit/7efce7a))

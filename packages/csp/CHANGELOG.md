@@ -3,62 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [2.0.7](https://github.com/thi-ng/umbrella/compare/@thi.ng/csp@2.0.6...@thi.ng/csp@2.0.7) (2021-10-28)
-
-**Note:** Version bump only for package @thi.ng/csp
-
-
-
-
-
-## [2.0.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/csp@2.0.5...@thi.ng/csp@2.0.6) (2021-10-28)
-
-**Note:** Version bump only for package @thi.ng/csp
-
-
-
-
-
-## [2.0.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/csp@2.0.4...@thi.ng/csp@2.0.5) (2021-10-28)
-
-**Note:** Version bump only for package @thi.ng/csp
-
-
-
-
-
-## [2.0.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/csp@2.0.3...@thi.ng/csp@2.0.4) (2021-10-25)
-
-**Note:** Version bump only for package @thi.ng/csp
-
-
-
-
-
-## [2.0.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/csp@2.0.2...@thi.ng/csp@2.0.3) (2021-10-15)
-
-**Note:** Version bump only for package @thi.ng/csp
-
-
-
-
-
-## [2.0.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/csp@2.0.1...@thi.ng/csp@2.0.2) (2021-10-15)
-
-**Note:** Version bump only for package @thi.ng/csp
-
-
-
-
-
-## [2.0.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/csp@2.0.0...@thi.ng/csp@2.0.1) (2021-10-13)
-
-**Note:** Version bump only for package @thi.ng/csp
-
-
-
-
-
 # [2.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/csp@1.1.74...@thi.ng/csp@2.0.0) (2021-10-12)
 
 
@@ -88,42 +32,42 @@ Also:
 
 
 
-#  [1.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/csp@1.0.19...@thi.ng/csp@1.1.0) (2019-07-07) 
+#  [1.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/csp@1.0.19...@thi.ng/csp@1.1.0) (2019-07-07)
 
-###  Bug Fixes 
+###  Bug Fixes
 
-- **csp:** TS strictNullChecks, update various return types ([da909ac](https://github.com/thi-ng/umbrella/commit/da909ac)) 
+- **csp:** TS strictNullChecks, update various return types ([da909ac](https://github.com/thi-ng/umbrella/commit/da909ac))
 
-###  Features 
+###  Features
 
-- **csp:** enable TS strict compiler flags (refactor) ([3d7fba2](https://github.com/thi-ng/umbrella/commit/3d7fba2)) 
-- **csp:** update Mult.tap() to use set semantics ([c9bc953](https://github.com/thi-ng/umbrella/commit/c9bc953)) 
+- **csp:** enable TS strict compiler flags (refactor) ([3d7fba2](https://github.com/thi-ng/umbrella/commit/3d7fba2))
+- **csp:** update Mult.tap() to use set semantics ([c9bc953](https://github.com/thi-ng/umbrella/commit/c9bc953))
 
-#  [1.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/csp@0.3.79...@thi.ng/csp@1.0.0) (2019-01-21) 
+#  [1.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/csp@0.3.79...@thi.ng/csp@1.0.0) (2019-01-21)
 
-###  Bug Fixes 
+###  Bug Fixes
 
-- **csp:** disable __State reverse enum lookup ([3b8576f](https://github.com/thi-ng/umbrella/commit/3b8576f)) 
+- **csp:** disable __State reverse enum lookup ([3b8576f](https://github.com/thi-ng/umbrella/commit/3b8576f))
 
-###  Build System 
+###  Build System
 
-- update package build scripts & outputs, imports in ~50 packages ([b54b703](https://github.com/thi-ng/umbrella/commit/b54b703)) 
+- update package build scripts & outputs, imports in ~50 packages ([b54b703](https://github.com/thi-ng/umbrella/commit/b54b703))
 
-###  BREAKING CHANGES 
+###  BREAKING CHANGES
 
-- enabled multi-outputs (ES6 modules, CJS, UMD) 
-- build scripts now first build ES6 modules in package root, then call   `scripts/bundle-module` to build minified CJS & UMD bundles in `/lib` 
-- all imports MUST be updated to only refer to package level   (not individual files anymore). tree shaking in user land will get rid of   all unused imported symbols. 
+- enabled multi-outputs (ES6 modules, CJS, UMD)
+- build scripts now first build ES6 modules in package root, then call   `scripts/bundle-module` to build minified CJS & UMD bundles in `/lib`
+- all imports MUST be updated to only refer to package level   (not individual files anymore). tree shaking in user land will get rid of   all unused imported symbols.
 
-##  [0.3.64](https://github.com/thi-ng/umbrella/compare/@thi.ng/csp@0.3.63...@thi.ng/csp@0.3.64) (2018-09-24) 
+##  [0.3.64](https://github.com/thi-ng/umbrella/compare/@thi.ng/csp@0.3.63...@thi.ng/csp@0.3.64) (2018-09-24)
 
-###  Performance Improvements 
+###  Performance Improvements
 
-- **csp:** `State` => const enum ([c3e8d68](https://github.com/thi-ng/umbrella/commit/c3e8d68)) 
+- **csp:** `State` => const enum ([c3e8d68](https://github.com/thi-ng/umbrella/commit/c3e8d68))
 
-##  [0.3.11](https://github.com/thi-ng/umbrella/compare/@thi.ng/csp@0.3.10...@thi.ng/csp@0.3.11) (2018-02-08) 
+##  [0.3.11](https://github.com/thi-ng/umbrella/compare/@thi.ng/csp@0.3.10...@thi.ng/csp@0.3.11) (2018-02-08)
 
-###  Bug Fixes 
+###  Bug Fixes
 
-- **csp:** fix [#5](https://github.com/thi-ng/umbrella/issues/5), example in readme ([a10a487](https://github.com/thi-ng/umbrella/commit/a10a487)) 
+- **csp:** fix [#5](https://github.com/thi-ng/umbrella/issues/5), example in readme ([a10a487](https://github.com/thi-ng/umbrella/commit/a10a487))
 - **csp:** fix [#5](https://github.com/thi-ng/umbrella/issues/5), more example fixes (rfn calls) ([080c2ee](https://github.com/thi-ng/umbrella/commit/080c2ee))

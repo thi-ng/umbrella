@@ -3,54 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [2.0.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/defmulti@2.0.5...@thi.ng/defmulti@2.0.6) (2021-10-28)
-
-**Note:** Version bump only for package @thi.ng/defmulti
-
-
-
-
-
-## [2.0.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/defmulti@2.0.4...@thi.ng/defmulti@2.0.5) (2021-10-28)
-
-**Note:** Version bump only for package @thi.ng/defmulti
-
-
-
-
-
-## [2.0.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/defmulti@2.0.3...@thi.ng/defmulti@2.0.4) (2021-10-25)
-
-**Note:** Version bump only for package @thi.ng/defmulti
-
-
-
-
-
-## [2.0.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/defmulti@2.0.2...@thi.ng/defmulti@2.0.3) (2021-10-15)
-
-**Note:** Version bump only for package @thi.ng/defmulti
-
-
-
-
-
-## [2.0.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/defmulti@2.0.1...@thi.ng/defmulti@2.0.2) (2021-10-15)
-
-**Note:** Version bump only for package @thi.ng/defmulti
-
-
-
-
-
-## [2.0.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/defmulti@2.0.0...@thi.ng/defmulti@2.0.1) (2021-10-13)
-
-**Note:** Version bump only for package @thi.ng/defmulti
-
-
-
-
-
 # [2.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/defmulti@1.3.17...@thi.ng/defmulti@2.0.0) (2021-10-12)
 
 
@@ -91,86 +43,86 @@ Also:
 
 
 
-##  [1.3.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/defmulti@1.3.5...@thi.ng/defmulti@1.3.6) (2021-03-03) 
+##  [1.3.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/defmulti@1.3.5...@thi.ng/defmulti@1.3.6) (2021-03-03)
 
-###  Bug Fixes 
+###  Bug Fixes
 
-- **defmulti:** add missing type anno (TS4.2) ([bc74d21](https://github.com/thi-ng/umbrella/commit/bc74d21264f2d3b76fc288eeccab398ad66f76da)) 
+- **defmulti:** add missing type anno (TS4.2) ([bc74d21](https://github.com/thi-ng/umbrella/commit/bc74d21264f2d3b76fc288eeccab398ad66f76da))
 
-#  [1.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/defmulti@1.2.26...@thi.ng/defmulti@1.3.0) (2020-11-24) 
+#  [1.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/defmulti@1.2.26...@thi.ng/defmulti@1.3.0) (2020-11-24)
 
-###  Features 
+###  Features
 
-- **defmulti:** add .dependencies(), add tests ([d15a159](https://github.com/thi-ng/umbrella/commit/d15a1594750ac171b1ab93da18d908f1ca6c3897)) 
+- **defmulti:** add .dependencies(), add tests ([d15a159](https://github.com/thi-ng/umbrella/commit/d15a1594750ac171b1ab93da18d908f1ca6c3897))
 
-#  [1.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/defmulti@1.1.4...@thi.ng/defmulti@1.2.0) (2019-11-09) 
+#  [1.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/defmulti@1.1.4...@thi.ng/defmulti@1.2.0) (2019-11-09)
 
-###  Features 
+###  Features
 
-- **defmulti:** allow .add() to overwrite existing impl, add logger ([e387622](https://github.com/thi-ng/umbrella/commit/e387622d3ad44bc0df029c5ba641244dc12c6353)) 
+- **defmulti:** allow .add() to overwrite existing impl, add logger ([e387622](https://github.com/thi-ng/umbrella/commit/e387622d3ad44bc0df029c5ba641244dc12c6353))
 
-#  [1.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/defmulti@1.0.9...@thi.ng/defmulti@1.1.0) (2019-07-07) 
+#  [1.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/defmulti@1.0.9...@thi.ng/defmulti@1.1.0) (2019-07-07)
 
-###  Features 
+###  Features
 
-- **defmulti:** enable TS strict compiler flags (refactor) ([d51ecf9](https://github.com/thi-ng/umbrella/commit/d51ecf9)) 
+- **defmulti:** enable TS strict compiler flags (refactor) ([d51ecf9](https://github.com/thi-ng/umbrella/commit/d51ecf9))
 
-#  [1.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/defmulti@0.7.0...@thi.ng/defmulti@1.0.0) (2019-01-21) 
+#  [1.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/defmulti@0.7.0...@thi.ng/defmulti@1.0.0) (2019-01-21)
 
-###  Build System 
+###  Build System
 
-- update package build scripts & outputs, imports in ~50 packages ([b54b703](https://github.com/thi-ng/umbrella/commit/b54b703)) 
+- update package build scripts & outputs, imports in ~50 packages ([b54b703](https://github.com/thi-ng/umbrella/commit/b54b703))
 
-###  Features 
+###  Features
 
-- **defmulti:** add callable() & implementations(), update readme ([fde2db2](https://github.com/thi-ng/umbrella/commit/fde2db2)) 
-- **defmulti:** add relations() ([4066c80](https://github.com/thi-ng/umbrella/commit/4066c80)) 
-- **defmulti:** add versions w/ 1 optional typed arg, add .impls() ([125c784](https://github.com/thi-ng/umbrella/commit/125c784)) 
+- **defmulti:** add callable() & implementations(), update readme ([fde2db2](https://github.com/thi-ng/umbrella/commit/fde2db2))
+- **defmulti:** add relations() ([4066c80](https://github.com/thi-ng/umbrella/commit/4066c80))
+- **defmulti:** add versions w/ 1 optional typed arg, add .impls() ([125c784](https://github.com/thi-ng/umbrella/commit/125c784))
 
-###  BREAKING CHANGES 
+###  BREAKING CHANGES
 
-- enabled multi-outputs (ES6 modules, CJS, UMD) 
-- build scripts now first build ES6 modules in package root, then call   `scripts/bundle-module` to build minified CJS & UMD bundles in `/lib` 
-- all imports MUST be updated to only refer to package level   (not individual files anymore). tree shaking in user land will get rid of   all unused imported symbols. 
+- enabled multi-outputs (ES6 modules, CJS, UMD)
+- build scripts now first build ES6 modules in package root, then call   `scripts/bundle-module` to build minified CJS & UMD bundles in `/lib`
+- all imports MUST be updated to only refer to package level   (not individual files anymore). tree shaking in user land will get rid of   all unused imported symbols.
 
-#  [0.7.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/defmulti@0.6.0...@thi.ng/defmulti@0.7.0) (2019-01-02) 
+#  [0.7.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/defmulti@0.6.0...@thi.ng/defmulti@0.7.0) (2019-01-02)
 
-###  Features 
+###  Features
 
-- **defmulti:** add opt fallback arg for defmultiN(), update docs ([1d29153](https://github.com/thi-ng/umbrella/commit/1d29153)) 
+- **defmulti:** add opt fallback arg for defmultiN(), update docs ([1d29153](https://github.com/thi-ng/umbrella/commit/1d29153))
 
-#  [0.6.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/defmulti@0.5.1...@thi.ng/defmulti@0.6.0) (2019-01-01) 
+#  [0.6.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/defmulti@0.5.1...@thi.ng/defmulti@0.6.0) (2019-01-01)
 
-###  Features 
+###  Features
 
-- **defmulti:** add addAll(), add/update doc strings ([488698a](https://github.com/thi-ng/umbrella/commit/488698a)) 
+- **defmulti:** add addAll(), add/update doc strings ([488698a](https://github.com/thi-ng/umbrella/commit/488698a))
 
-#  [0.5.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/defmulti@0.4.1...@thi.ng/defmulti@0.5.0) (2018-10-24) 
+#  [0.5.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/defmulti@0.4.1...@thi.ng/defmulti@0.5.0) (2018-10-24)
 
-###  Features 
+###  Features
 
-- **defmulti:** add support for dispatch value relationships / hierarchy ([a8c3898](https://github.com/thi-ng/umbrella/commit/a8c3898)) 
+- **defmulti:** add support for dispatch value relationships / hierarchy ([a8c3898](https://github.com/thi-ng/umbrella/commit/a8c3898))
 
-#  [0.4.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/defmulti@0.3.11...@thi.ng/defmulti@0.4.0) (2018-10-17) 
+#  [0.4.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/defmulti@0.3.11...@thi.ng/defmulti@0.4.0) (2018-10-17)
 
-###  Features 
+###  Features
 
-- **defmulti:** add varargs support ([6094738](https://github.com/thi-ng/umbrella/commit/6094738)) 
+- **defmulti:** add varargs support ([6094738](https://github.com/thi-ng/umbrella/commit/6094738))
 
-#  [0.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/defmulti@0.2.0...@thi.ng/defmulti@0.3.0) (2018-05-11) 
+#  [0.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/defmulti@0.2.0...@thi.ng/defmulti@0.3.0) (2018-05-11)
 
-###  Features 
+###  Features
 
-- **defmulti:** add generics, update docs & readme ([eeed25e](https://github.com/thi-ng/umbrella/commit/eeed25e)) 
+- **defmulti:** add generics, update docs & readme ([eeed25e](https://github.com/thi-ng/umbrella/commit/eeed25e))
 
-#  [0.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/defmulti@0.1.0...@thi.ng/defmulti@0.2.0) (2018-05-10) 
+#  [0.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/defmulti@0.1.0...@thi.ng/defmulti@0.2.0) (2018-05-10)
 
-###  Features 
+###  Features
 
-- **defmulti:** add defmultiN(), update readme, add tests ([126ecf3](https://github.com/thi-ng/umbrella/commit/126ecf3)) 
+- **defmulti:** add defmultiN(), update readme, add tests ([126ecf3](https://github.com/thi-ng/umbrella/commit/126ecf3))
 
-#  0.1.0 (2018-05-10) 
+#  0.1.0 (2018-05-10)
 
-###  Features 
+###  Features
 
 - **defmulti:** add [@thi](https://github.com/thi).ng/defmulti package ([edc66bf](https://github.com/thi-ng/umbrella/commit/edc66bf))

@@ -3,52 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [0.2.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdiff@0.2.5...@thi.ng/hdiff@0.2.6) (2021-10-28)
-
-**Note:** Version bump only for package @thi.ng/hdiff
-
-
-
-
-
-## [0.2.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdiff@0.2.4...@thi.ng/hdiff@0.2.5) (2021-10-28)
-
-**Note:** Version bump only for package @thi.ng/hdiff
-
-
-
-
-
 ## [0.2.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdiff@0.2.3...@thi.ng/hdiff@0.2.4) (2021-10-25)
 
 
 ### Bug Fixes
 
 * **hdiff:** migrate CLI to TS, update wrapper ([32d77cf](https://github.com/thi-ng/umbrella/commit/32d77cf0954986d2acc4487c81780cce41c2eeb0))
-
-
-
-
-
-## [0.2.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdiff@0.2.2...@thi.ng/hdiff@0.2.3) (2021-10-15)
-
-**Note:** Version bump only for package @thi.ng/hdiff
-
-
-
-
-
-## [0.2.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdiff@0.2.1...@thi.ng/hdiff@0.2.2) (2021-10-15)
-
-**Note:** Version bump only for package @thi.ng/hdiff
-
-
-
-
-
-## [0.2.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdiff@0.2.0...@thi.ng/hdiff@0.2.1) (2021-10-13)
-
-**Note:** Version bump only for package @thi.ng/hdiff
 
 
 
@@ -83,12 +43,12 @@ Also:
 
 
 
-##  [0.1.53](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdiff@0.1.52...@thi.ng/hdiff@0.1.53) (2021-09-03) 
+##  [0.1.53](https://github.com/thi-ng/umbrella/compare/@thi.ng/hdiff@0.1.52...@thi.ng/hdiff@0.1.53) (2021-09-03)
 
-**Note:** Version bump only for package @thi.ng/hdiff 
+**Note:** Version bump only for package @thi.ng/hdiff
 
-#  0.1.0 (2020-06-14) 
+#  0.1.0 (2020-06-14)
 
-###  Features 
+###  Features
 
 - **hdiff:** import as new pkg ([40e1075](https://github.com/thi-ng/umbrella/commit/40e10755ca520d5d850da98d07b40f9339310318))

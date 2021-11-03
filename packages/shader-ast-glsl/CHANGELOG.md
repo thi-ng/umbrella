@@ -3,62 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [0.3.7](https://github.com/thi-ng/umbrella/compare/@thi.ng/shader-ast-glsl@0.3.6...@thi.ng/shader-ast-glsl@0.3.7) (2021-10-28)
-
-**Note:** Version bump only for package @thi.ng/shader-ast-glsl
-
-
-
-
-
-## [0.3.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/shader-ast-glsl@0.3.5...@thi.ng/shader-ast-glsl@0.3.6) (2021-10-28)
-
-**Note:** Version bump only for package @thi.ng/shader-ast-glsl
-
-
-
-
-
-## [0.3.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/shader-ast-glsl@0.3.4...@thi.ng/shader-ast-glsl@0.3.5) (2021-10-28)
-
-**Note:** Version bump only for package @thi.ng/shader-ast-glsl
-
-
-
-
-
-## [0.3.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/shader-ast-glsl@0.3.3...@thi.ng/shader-ast-glsl@0.3.4) (2021-10-25)
-
-**Note:** Version bump only for package @thi.ng/shader-ast-glsl
-
-
-
-
-
-## [0.3.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/shader-ast-glsl@0.3.2...@thi.ng/shader-ast-glsl@0.3.3) (2021-10-15)
-
-**Note:** Version bump only for package @thi.ng/shader-ast-glsl
-
-
-
-
-
-## [0.3.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/shader-ast-glsl@0.3.1...@thi.ng/shader-ast-glsl@0.3.2) (2021-10-15)
-
-**Note:** Version bump only for package @thi.ng/shader-ast-glsl
-
-
-
-
-
-## [0.3.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/shader-ast-glsl@0.3.0...@thi.ng/shader-ast-glsl@0.3.1) (2021-10-13)
-
-**Note:** Version bump only for package @thi.ng/shader-ast-glsl
-
-
-
-
-
 # [0.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/shader-ast-glsl@0.2.48...@thi.ng/shader-ast-glsl@0.3.0) (2021-10-12)
 
 
@@ -98,23 +42,23 @@ Also:
 
 
 
-#  [0.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/shader-ast-glsl@0.1.39...@thi.ng/shader-ast-glsl@0.2.0) (2020-07-28) 
+#  [0.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/shader-ast-glsl@0.1.39...@thi.ng/shader-ast-glsl@0.2.0) (2020-07-28)
 
-###  Features 
+###  Features
 
-- **shader-ast-glsl:** add interpolation qualifier support ([bb1c566](https://github.com/thi-ng/umbrella/commit/bb1c56621701bd66cc56062cd258a63c64c029d2)) 
+- **shader-ast-glsl:** add interpolation qualifier support ([bb1c566](https://github.com/thi-ng/umbrella/commit/bb1c56621701bd66cc56062cd258a63c64c029d2))
 
-#  0.1.0 (2019-07-07) 
+#  0.1.0 (2019-07-07)
 
-###  Bug Fixes 
+###  Bug Fixes
 
-- **shader-ast-glsl:** avoid extraneous semicolons ([f2ba0d6](https://github.com/thi-ng/umbrella/commit/f2ba0d6)) 
+- **shader-ast-glsl:** avoid extraneous semicolons ([f2ba0d6](https://github.com/thi-ng/umbrella/commit/f2ba0d6))
 
-###  Features 
+###  Features
 
-- **shader-ast-glsl:** add array init code gen ([afaee5f](https://github.com/thi-ng/umbrella/commit/afaee5f)) 
-- **shader-ast-glsl:** add global input/output var support, update GLSLOpts, add tests ([27003c9](https://github.com/thi-ng/umbrella/commit/27003c9)) 
-- **shader-ast-glsl:** add post-inc/dec support ([a554192](https://github.com/thi-ng/umbrella/commit/a554192)) 
-- **shader-ast-glsl:** add while loop, ivec support, fix bool ([882c560](https://github.com/thi-ng/umbrella/commit/882c560)) 
-- **shader-ast-glsl:** add/update opts, update `scope` code gen, refactor `lit` ([d1ddaf2](https://github.com/thi-ng/umbrella/commit/d1ddaf2)) 
+- **shader-ast-glsl:** add array init code gen ([afaee5f](https://github.com/thi-ng/umbrella/commit/afaee5f))
+- **shader-ast-glsl:** add global input/output var support, update GLSLOpts, add tests ([27003c9](https://github.com/thi-ng/umbrella/commit/27003c9))
+- **shader-ast-glsl:** add post-inc/dec support ([a554192](https://github.com/thi-ng/umbrella/commit/a554192))
+- **shader-ast-glsl:** add while loop, ivec support, fix bool ([882c560](https://github.com/thi-ng/umbrella/commit/882c560))
+- **shader-ast-glsl:** add/update opts, update `scope` code gen, refactor `lit` ([d1ddaf2](https://github.com/thi-ng/umbrella/commit/d1ddaf2))
 - **shader-ast-glsl:** extract GLSL codegen as separate pkg ([a1db3fc](https://github.com/thi-ng/umbrella/commit/a1db3fc))

@@ -3,54 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [0.3.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/seq@0.3.5...@thi.ng/seq@0.3.6) (2021-10-28)
-
-**Note:** Version bump only for package @thi.ng/seq
-
-
-
-
-
-## [0.3.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/seq@0.3.4...@thi.ng/seq@0.3.5) (2021-10-28)
-
-**Note:** Version bump only for package @thi.ng/seq
-
-
-
-
-
-## [0.3.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/seq@0.3.3...@thi.ng/seq@0.3.4) (2021-10-25)
-
-**Note:** Version bump only for package @thi.ng/seq
-
-
-
-
-
-## [0.3.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/seq@0.3.2...@thi.ng/seq@0.3.3) (2021-10-15)
-
-**Note:** Version bump only for package @thi.ng/seq
-
-
-
-
-
-## [0.3.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/seq@0.3.1...@thi.ng/seq@0.3.2) (2021-10-15)
-
-**Note:** Version bump only for package @thi.ng/seq
-
-
-
-
-
-## [0.3.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/seq@0.3.0...@thi.ng/seq@0.3.1) (2021-10-13)
-
-**Note:** Version bump only for package @thi.ng/seq
-
-
-
-
-
 # [0.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/seq@0.2.43...@thi.ng/seq@0.3.0) (2021-10-12)
 
 
@@ -80,18 +32,18 @@ Also:
 
 
 
-#  [0.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/seq@0.1.0...@thi.ng/seq@0.2.0) (2020-01-24) 
+#  [0.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/seq@0.1.0...@thi.ng/seq@0.2.0) (2020-01-24)
 
-###  Features 
+###  Features
 
-- **seq:** add lazyseq() & cons(), tests, update readme ([d25584e](https://github.com/thi-ng/umbrella/commit/d25584ed9b9600629d13f8f59217a3777372bb16)) 
+- **seq:** add lazyseq() & cons(), tests, update readme ([d25584e](https://github.com/thi-ng/umbrella/commit/d25584ed9b9600629d13f8f59217a3777372bb16))
 
-#  0.1.0 (2019-11-30) 
+#  0.1.0 (2019-11-30)
 
-###  Features 
+###  Features
 
-- **seq:** import as new pkg ([25ebbb0](https://github.com/thi-ng/umbrella/commit/25ebbb00d8f992beaf4eaa0c855337c5932d6c1c)) 
+- **seq:** import as new pkg ([25ebbb0](https://github.com/thi-ng/umbrella/commit/25ebbb00d8f992beaf4eaa0c855337c5932d6c1c))
 
-###  Performance Improvements 
+###  Performance Improvements
 
 - **seq:** update most functions, add docs/tests, update readme ([552ed64](https://github.com/thi-ng/umbrella/commit/552ed646b5527569777500d0235de8e6d19ec67a))

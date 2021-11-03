@@ -3,54 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [2.0.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/adapt-dpi@2.0.5...@thi.ng/adapt-dpi@2.0.6) (2021-10-28)
-
-**Note:** Version bump only for package @thi.ng/adapt-dpi
-
-
-
-
-
-## [2.0.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/adapt-dpi@2.0.4...@thi.ng/adapt-dpi@2.0.5) (2021-10-28)
-
-**Note:** Version bump only for package @thi.ng/adapt-dpi
-
-
-
-
-
-## [2.0.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/adapt-dpi@2.0.3...@thi.ng/adapt-dpi@2.0.4) (2021-10-25)
-
-**Note:** Version bump only for package @thi.ng/adapt-dpi
-
-
-
-
-
-## [2.0.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/adapt-dpi@2.0.2...@thi.ng/adapt-dpi@2.0.3) (2021-10-15)
-
-**Note:** Version bump only for package @thi.ng/adapt-dpi
-
-
-
-
-
-## [2.0.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/adapt-dpi@2.0.1...@thi.ng/adapt-dpi@2.0.2) (2021-10-15)
-
-**Note:** Version bump only for package @thi.ng/adapt-dpi
-
-
-
-
-
-## [2.0.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/adapt-dpi@2.0.0...@thi.ng/adapt-dpi@2.0.1) (2021-10-13)
-
-**Note:** Version bump only for package @thi.ng/adapt-dpi
-
-
-
-
-
 # [2.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/adapt-dpi@1.0.23...@thi.ng/adapt-dpi@2.0.0) (2021-10-12)
 
 
@@ -80,12 +32,12 @@ Also:
 
 
 
-#  1.0.0 (2020-06-07) 
+#  1.0.0 (2020-06-07)
 
-###  Features 
+###  Features
 
-- **adapt-dpi:** extract as new pkg ([7250041](https://github.com/thi-ng/umbrella/commit/7250041e30995844ac20295bdb36b351f5b2ccc8)) 
+- **adapt-dpi:** extract as new pkg ([7250041](https://github.com/thi-ng/umbrella/commit/7250041e30995844ac20295bdb36b351f5b2ccc8))
 
-###  BREAKING CHANGES 
+###  BREAKING CHANGES
 
 - **adapt-dpi:** extracted from hdom-components pkg for better re-use

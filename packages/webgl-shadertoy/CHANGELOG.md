@@ -3,70 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [0.3.8](https://github.com/thi-ng/umbrella/compare/@thi.ng/webgl-shadertoy@0.3.7...@thi.ng/webgl-shadertoy@0.3.8) (2021-10-28)
-
-**Note:** Version bump only for package @thi.ng/webgl-shadertoy
-
-
-
-
-
-## [0.3.7](https://github.com/thi-ng/umbrella/compare/@thi.ng/webgl-shadertoy@0.3.6...@thi.ng/webgl-shadertoy@0.3.7) (2021-10-28)
-
-**Note:** Version bump only for package @thi.ng/webgl-shadertoy
-
-
-
-
-
-## [0.3.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/webgl-shadertoy@0.3.5...@thi.ng/webgl-shadertoy@0.3.6) (2021-10-28)
-
-**Note:** Version bump only for package @thi.ng/webgl-shadertoy
-
-
-
-
-
-## [0.3.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/webgl-shadertoy@0.3.4...@thi.ng/webgl-shadertoy@0.3.5) (2021-10-25)
-
-**Note:** Version bump only for package @thi.ng/webgl-shadertoy
-
-
-
-
-
-## [0.3.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/webgl-shadertoy@0.3.3...@thi.ng/webgl-shadertoy@0.3.4) (2021-10-15)
-
-**Note:** Version bump only for package @thi.ng/webgl-shadertoy
-
-
-
-
-
-## [0.3.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/webgl-shadertoy@0.3.2...@thi.ng/webgl-shadertoy@0.3.3) (2021-10-15)
-
-**Note:** Version bump only for package @thi.ng/webgl-shadertoy
-
-
-
-
-
-## [0.3.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/webgl-shadertoy@0.3.1...@thi.ng/webgl-shadertoy@0.3.2) (2021-10-13)
-
-**Note:** Version bump only for package @thi.ng/webgl-shadertoy
-
-
-
-
-
-## [0.3.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/webgl-shadertoy@0.3.0...@thi.ng/webgl-shadertoy@0.3.1) (2021-10-13)
-
-**Note:** Version bump only for package @thi.ng/webgl-shadertoy
-
-
-
-
-
 # [0.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/webgl-shadertoy@0.2.91...@thi.ng/webgl-shadertoy@0.3.0) (2021-10-12)
 
 
@@ -101,24 +37,24 @@ Also:
 
 
 
-#  [0.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/webgl-shadertoy@0.1.4...@thi.ng/webgl-shadertoy@0.2.0) (2020-02-25) 
+#  [0.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/webgl-shadertoy@0.1.4...@thi.ng/webgl-shadertoy@0.2.0) (2020-02-25)
 
-###  Features 
+###  Features
 
-- **webgl-shadertoy:** fix [#199](https://github.com/thi-ng/umbrella/issues/199), add generics ([e392774](https://github.com/thi-ng/umbrella/commit/e392774945e4d29f145dba2fd17f99919b2c5fd5)) 
+- **webgl-shadertoy:** fix [#199](https://github.com/thi-ng/umbrella/issues/199), add generics ([e392774](https://github.com/thi-ng/umbrella/commit/e392774945e4d29f145dba2fd17f99919b2c5fd5))
 
-#  0.1.0 (2019-09-21) 
+#  0.1.0 (2019-09-21)
 
-###  Bug Fixes 
+###  Bug Fixes
 
-- **webgl-shadertoy:** update imports ([7d6ed77](https://github.com/thi-ng/umbrella/commit/7d6ed77)) 
-- **webgl-shadertoy:** update texture/sampler & FBO handling ([25845e5](https://github.com/thi-ng/umbrella/commit/25845e5)) 
+- **webgl-shadertoy:** update imports ([7d6ed77](https://github.com/thi-ng/umbrella/commit/7d6ed77))
+- **webgl-shadertoy:** update texture/sampler & FBO handling ([25845e5](https://github.com/thi-ng/umbrella/commit/25845e5))
 
-###  Features 
+###  Features
 
-- **webgl-shadertoy:** add optional per-pass ModelSpec & vert shader support ([a45725a](https://github.com/thi-ng/umbrella/commit/a45725a)) 
-- **webgl-shadertoy:** fix & update drawPass viewport, add update() method ([5d2c17e](https://github.com/thi-ng/umbrella/commit/5d2c17e)) 
-- **webgl-shadertoy:** import new pkg ([35d9b68](https://github.com/thi-ng/umbrella/commit/35d9b68)) 
-- **webgl-shadertoy:** initial multipass skeleton ([c287dab](https://github.com/thi-ng/umbrella/commit/c287dab)) 
-- **webgl-shadertoy:** simplify mainImage user fn handling, update types & readme ([bd1b88e](https://github.com/thi-ng/umbrella/commit/bd1b88e)) 
+- **webgl-shadertoy:** add optional per-pass ModelSpec & vert shader support ([a45725a](https://github.com/thi-ng/umbrella/commit/a45725a))
+- **webgl-shadertoy:** fix & update drawPass viewport, add update() method ([5d2c17e](https://github.com/thi-ng/umbrella/commit/5d2c17e))
+- **webgl-shadertoy:** import new pkg ([35d9b68](https://github.com/thi-ng/umbrella/commit/35d9b68))
+- **webgl-shadertoy:** initial multipass skeleton ([c287dab](https://github.com/thi-ng/umbrella/commit/c287dab))
+- **webgl-shadertoy:** simplify mainImage user fn handling, update types & readme ([bd1b88e](https://github.com/thi-ng/umbrella/commit/bd1b88e))
 - **webgl-shadertoy:** update multipass uniform handling ([2071133](https://github.com/thi-ng/umbrella/commit/2071133))

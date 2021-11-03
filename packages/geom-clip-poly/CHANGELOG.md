@@ -3,54 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [2.0.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-clip-poly@2.0.5...@thi.ng/geom-clip-poly@2.0.6) (2021-10-28)
-
-**Note:** Version bump only for package @thi.ng/geom-clip-poly
-
-
-
-
-
-## [2.0.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-clip-poly@2.0.4...@thi.ng/geom-clip-poly@2.0.5) (2021-10-28)
-
-**Note:** Version bump only for package @thi.ng/geom-clip-poly
-
-
-
-
-
-## [2.0.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-clip-poly@2.0.3...@thi.ng/geom-clip-poly@2.0.4) (2021-10-25)
-
-**Note:** Version bump only for package @thi.ng/geom-clip-poly
-
-
-
-
-
-## [2.0.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-clip-poly@2.0.2...@thi.ng/geom-clip-poly@2.0.3) (2021-10-15)
-
-**Note:** Version bump only for package @thi.ng/geom-clip-poly
-
-
-
-
-
-## [2.0.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-clip-poly@2.0.1...@thi.ng/geom-clip-poly@2.0.2) (2021-10-15)
-
-**Note:** Version bump only for package @thi.ng/geom-clip-poly
-
-
-
-
-
-## [2.0.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-clip-poly@2.0.0...@thi.ng/geom-clip-poly@2.0.1) (2021-10-13)
-
-**Note:** Version bump only for package @thi.ng/geom-clip-poly
-
-
-
-
-
 # [2.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-clip-poly@1.0.70...@thi.ng/geom-clip-poly@2.0.0) (2021-10-12)
 
 
@@ -80,26 +32,26 @@ Also:
 
 
 
-##  [1.0.70](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-clip-poly@1.0.69...@thi.ng/geom-clip-poly@1.0.70) (2021-09-03) 
+##  [1.0.70](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-clip-poly@1.0.69...@thi.ng/geom-clip-poly@1.0.70) (2021-09-03)
 
-**Note:** Version bump only for package @thi.ng/geom-clip-poly 
+**Note:** Version bump only for package @thi.ng/geom-clip-poly
 
-#  1.0.0 (2020-02-25) 
+#  1.0.0 (2020-02-25)
 
-###  Documentation 
+###  Documentation
 
-- **geom-clip-poly:** update readme ([c7ca79b](https://github.com/thi-ng/umbrella/commit/c7ca79b7e5e3d6badca2baa79fef8870ad9f9309)) 
+- **geom-clip-poly:** update readme ([c7ca79b](https://github.com/thi-ng/umbrella/commit/c7ca79b7e5e3d6badca2baa79fef8870ad9f9309))
 
-###  Features 
+###  Features
 
-- **geom-clip-poly:** extract sutherland-hodgeman as own pkg (formerly [@thi](https://github.com/thi).ng/geom-clip) ([782193f](https://github.com/thi-ng/umbrella/commit/782193f2fc06c18a564d5b983839f55b9143b4f7)) 
+- **geom-clip-poly:** extract sutherland-hodgeman as own pkg (formerly [@thi](https://github.com/thi).ng/geom-clip) ([782193f](https://github.com/thi-ng/umbrella/commit/782193f2fc06c18a564d5b983839f55b9143b4f7))
 
-###  BREAKING CHANGES 
+###  BREAKING CHANGES
 
-- **geom-clip-poly:** extract as own pkg (formerly @thi.ng/geom-clip) 
+- **geom-clip-poly:** extract as own pkg (formerly @thi.ng/geom-clip)
 
-#  [0.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-clip@0.0.19...@thi.ng/geom-clip@0.1.0) (2019-07-07) 
+#  [0.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-clip@0.0.19...@thi.ng/geom-clip@0.1.0) (2019-07-07)
 
-###  Features 
+###  Features
 
 - **geom-clip:** enable TS strict compiler flags (refactor) ([9b6a2ae](https://github.com/thi-ng/umbrella/commit/9b6a2ae))

@@ -3,68 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [0.3.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/rdom-canvas@0.3.2...@thi.ng/rdom-canvas@0.3.3) (2021-10-28)
-
-**Note:** Version bump only for package @thi.ng/rdom-canvas
-
-
-
-
-
-## [0.3.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/rdom-canvas@0.3.1...@thi.ng/rdom-canvas@0.3.2) (2021-10-28)
-
-**Note:** Version bump only for package @thi.ng/rdom-canvas
-
-
-
-
-
-## [0.3.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/rdom-canvas@0.3.0...@thi.ng/rdom-canvas@0.3.1) (2021-10-28)
-
-**Note:** Version bump only for package @thi.ng/rdom-canvas
-
-
-
-
-
 # [0.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/rdom-canvas@0.2.4...@thi.ng/rdom-canvas@0.3.0) (2021-10-25)
 
 
 ### Features
 
 * **rdom-canvas:** add lifecycle events, canvas opts ([a579904](https://github.com/thi-ng/umbrella/commit/a5799040ae6244ffe2695623f400962285cc5df0))
-
-
-
-
-
-## [0.2.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/rdom-canvas@0.2.3...@thi.ng/rdom-canvas@0.2.4) (2021-10-15)
-
-**Note:** Version bump only for package @thi.ng/rdom-canvas
-
-
-
-
-
-## [0.2.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/rdom-canvas@0.2.2...@thi.ng/rdom-canvas@0.2.3) (2021-10-15)
-
-**Note:** Version bump only for package @thi.ng/rdom-canvas
-
-
-
-
-
-## [0.2.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/rdom-canvas@0.2.1...@thi.ng/rdom-canvas@0.2.2) (2021-10-13)
-
-**Note:** Version bump only for package @thi.ng/rdom-canvas
-
-
-
-
-
-## [0.2.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/rdom-canvas@0.2.0...@thi.ng/rdom-canvas@0.2.1) (2021-10-13)
-
-**Note:** Version bump only for package @thi.ng/rdom-canvas
 
 
 
@@ -104,14 +48,14 @@ Also:
 
 
 
-##  [0.1.9](https://github.com/thi-ng/umbrella/compare/@thi.ng/rdom-canvas@0.1.8...@thi.ng/rdom-canvas@0.1.9) (2020-07-28) 
+##  [0.1.9](https://github.com/thi-ng/umbrella/compare/@thi.ng/rdom-canvas@0.1.8...@thi.ng/rdom-canvas@0.1.9) (2020-07-28)
 
-###  Bug Fixes 
+###  Bug Fixes
 
-- **rdom-canvas:** static canvas size handling ([1a03c70](https://github.com/thi-ng/umbrella/commit/1a03c70e3e9fe6c8b096f78084dc590102d96893)) 
+- **rdom-canvas:** static canvas size handling ([1a03c70](https://github.com/thi-ng/umbrella/commit/1a03c70e3e9fe6c8b096f78084dc590102d96893))
 
-#  0.1.0 (2020-07-02) 
+#  0.1.0 (2020-07-02)
 
-###  Features 
+###  Features
 
 - **rdom-canvas:** import as new pkg ([369d4de](https://github.com/thi-ng/umbrella/commit/369d4de29c0b0c1ff3092126902f1835ac61870e))

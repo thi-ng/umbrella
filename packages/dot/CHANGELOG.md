@@ -3,54 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [2.0.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/dot@2.0.5...@thi.ng/dot@2.0.6) (2021-10-28)
-
-**Note:** Version bump only for package @thi.ng/dot
-
-
-
-
-
-## [2.0.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/dot@2.0.4...@thi.ng/dot@2.0.5) (2021-10-28)
-
-**Note:** Version bump only for package @thi.ng/dot
-
-
-
-
-
-## [2.0.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/dot@2.0.3...@thi.ng/dot@2.0.4) (2021-10-25)
-
-**Note:** Version bump only for package @thi.ng/dot
-
-
-
-
-
-## [2.0.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/dot@2.0.2...@thi.ng/dot@2.0.3) (2021-10-15)
-
-**Note:** Version bump only for package @thi.ng/dot
-
-
-
-
-
-## [2.0.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/dot@2.0.1...@thi.ng/dot@2.0.2) (2021-10-15)
-
-**Note:** Version bump only for package @thi.ng/dot
-
-
-
-
-
-## [2.0.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/dot@2.0.0...@thi.ng/dot@2.0.1) (2021-10-13)
-
-**Note:** Version bump only for package @thi.ng/dot
-
-
-
-
-
 # [2.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/dot@1.2.38...@thi.ng/dot@2.0.0) (2021-10-12)
 
 
@@ -80,32 +32,32 @@ Also:
 
 
 
-#  [1.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/dot@1.1.14...@thi.ng/dot@1.2.0) (2020-04-03) 
+#  [1.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/dot@1.1.14...@thi.ng/dot@1.2.0) (2020-04-03)
 
-###  Features 
+###  Features
 
-- **dot:** support includes, update subgraph handling ([ed53c90](https://github.com/thi-ng/umbrella/commit/ed53c909f7eb41c85c04f55de279e0d82cfed307)) 
+- **dot:** support includes, update subgraph handling ([ed53c90](https://github.com/thi-ng/umbrella/commit/ed53c909f7eb41c85c04f55de279e0d82cfed307))
 
-#  [1.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/dot@1.0.12...@thi.ng/dot@1.1.0) (2019-07-07) 
+#  [1.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/dot@1.0.12...@thi.ng/dot@1.1.0) (2019-07-07)
 
-###  Features 
+###  Features
 
-- **dot:** enable TS strict compiler flags (refactor) ([29e0cb4](https://github.com/thi-ng/umbrella/commit/29e0cb4)) 
+- **dot:** enable TS strict compiler flags (refactor) ([29e0cb4](https://github.com/thi-ng/umbrella/commit/29e0cb4))
 
-#  [1.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/dot@0.1.18...@thi.ng/dot@1.0.0) (2019-01-21) 
+#  [1.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/dot@0.1.18...@thi.ng/dot@1.0.0) (2019-01-21)
 
-###  Build System 
+###  Build System
 
-- update package build scripts & outputs, imports in ~50 packages ([b54b703](https://github.com/thi-ng/umbrella/commit/b54b703)) 
+- update package build scripts & outputs, imports in ~50 packages ([b54b703](https://github.com/thi-ng/umbrella/commit/b54b703))
 
-###  BREAKING CHANGES 
+###  BREAKING CHANGES
 
-- enabled multi-outputs (ES6 modules, CJS, UMD) 
-- build scripts now first build ES6 modules in package root, then call   `scripts/bundle-module` to build minified CJS & UMD bundles in `/lib` 
-- all imports MUST be updated to only refer to package level   (not individual files anymore). tree shaking in user land will get rid of   all unused imported symbols. 
+- enabled multi-outputs (ES6 modules, CJS, UMD)
+- build scripts now first build ES6 modules in package root, then call   `scripts/bundle-module` to build minified CJS & UMD bundles in `/lib`
+- all imports MUST be updated to only refer to package level   (not individual files anymore). tree shaking in user land will get rid of   all unused imported symbols.
 
-#  0.1.0 (2018-05-09) 
+#  0.1.0 (2018-05-09)
 
-###  Features 
+###  Features
 
 - **dot:** initial import [@thi](https://github.com/thi).ng/dot ([500dfa3](https://github.com/thi-ng/umbrella/commit/500dfa3))

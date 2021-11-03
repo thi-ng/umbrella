@@ -3,54 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [8.0.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@8.0.5...@thi.ng/api@8.0.6) (2021-10-28)
-
-**Note:** Version bump only for package @thi.ng/api
-
-
-
-
-
-## [8.0.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@8.0.4...@thi.ng/api@8.0.5) (2021-10-28)
-
-**Note:** Version bump only for package @thi.ng/api
-
-
-
-
-
-## [8.0.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@8.0.3...@thi.ng/api@8.0.4) (2021-10-25)
-
-**Note:** Version bump only for package @thi.ng/api
-
-
-
-
-
-## [8.0.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@8.0.2...@thi.ng/api@8.0.3) (2021-10-15)
-
-**Note:** Version bump only for package @thi.ng/api
-
-
-
-
-
-## [8.0.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@8.0.1...@thi.ng/api@8.0.2) (2021-10-15)
-
-**Note:** Version bump only for package @thi.ng/api
-
-
-
-
-
-## [8.0.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@8.0.0...@thi.ng/api@8.0.1) (2021-10-13)
-
-**Note:** Version bump only for package @thi.ng/api
-
-
-
-
-
 # [8.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@7.2.0...@thi.ng/api@8.0.0) (2021-10-12)
 
 
@@ -102,31 +54,31 @@ Also:
 
 
 
-#  [7.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@7.1.9...@thi.ng/api@7.2.0) (2021-09-03) 
+#  [7.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@7.1.9...@thi.ng/api@7.2.0) (2021-09-03)
 
-###  Features 
+###  Features
 
-- **api:** add DeepArrayValue type ([a309fac](https://github.com/thi-ng/umbrella/commit/a309faca831651f611b9b056d9c7587f85b60087)) 
+- **api:** add DeepArrayValue type ([a309fac](https://github.com/thi-ng/umbrella/commit/a309faca831651f611b9b056d9c7587f85b60087))
 
-#  [7.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@7.0.0...@thi.ng/api@7.1.0) (2021-03-03) 
+#  [7.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@7.0.0...@thi.ng/api@7.1.0) (2021-03-03)
 
-###  Features 
+###  Features
 
-- **api:** add StringOrSym type alias ([fb92c9d](https://github.com/thi-ng/umbrella/commit/fb92c9d93b4e795f60118e1167d5adb1bb108380)) 
+- **api:** add StringOrSym type alias ([fb92c9d](https://github.com/thi-ng/umbrella/commit/fb92c9d93b4e795f60118e1167d5adb1bb108380))
 
-#  [7.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@6.13.6...@thi.ng/api@7.0.0) (2021-02-20) 
+#  [7.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@6.13.6...@thi.ng/api@7.0.0) (2021-02-20)
 
-###  Features 
+###  Features
 
-- **api:** add Range type ([5d94974](https://github.com/thi-ng/umbrella/commit/5d94974c34ca81513d40743f2a9b9a3ed20146d3)) 
-- **api:** add typedArrayType() classifier ([5c81fd8](https://github.com/thi-ng/umbrella/commit/5c81fd859514401c2c419b2ed3ec0f12025356c3)) 
-- **api:** more finely grained typedarray types ([8316d05](https://github.com/thi-ng/umbrella/commit/8316d058f0b5f760afd89e8590619670210a970a)) 
-- **api:** replace Type enum w/ strings consts ([a333d41](https://github.com/thi-ng/umbrella/commit/a333d418222972373cc1f9b256def2f79610d3fa)) 
+- **api:** add Range type ([5d94974](https://github.com/thi-ng/umbrella/commit/5d94974c34ca81513d40743f2a9b9a3ed20146d3))
+- **api:** add typedArrayType() classifier ([5c81fd8](https://github.com/thi-ng/umbrella/commit/5c81fd859514401c2c419b2ed3ec0f12025356c3))
+- **api:** more finely grained typedarray types ([8316d05](https://github.com/thi-ng/umbrella/commit/8316d058f0b5f760afd89e8590619670210a970a))
+- **api:** replace Type enum w/ strings consts ([a333d41](https://github.com/thi-ng/umbrella/commit/a333d418222972373cc1f9b256def2f79610d3fa))
 
-###  BREAKING CHANGES 
+###  BREAKING CHANGES
 
-- **api:** replace Type enum w/ string consts 
-    - update Type, UintType, IntType, FloatType aliases 
+- **api:** replace Type enum w/ string consts
+    - update Type, UintType, IntType, FloatType aliases
     - update GL2TYPE, TYPE2GL, SIZEOF, TYPEDARRAY_CTORS tables
 - add asNativeType(), asGLType() conversions
 - add sizeOf()
@@ -252,156 +204,156 @@ Also:
 ### Features
 
 - **api:** add common logging types & default impls ([4578604](https://github.com/thi-ng/umbrella/commit/4578604))
-- **api:** update ILogger, freeze NULL_LOGGER ([27ff8de](https://github.com/thi-ng/umbrella/commit/27ff8de)) 
+- **api:** update ILogger, freeze NULL_LOGGER ([27ff8de](https://github.com/thi-ng/umbrella/commit/27ff8de))
 
-#  [6.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@5.1.0...@thi.ng/api@6.0.0) (2019-03-28) 
+#  [6.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@5.1.0...@thi.ng/api@6.0.0) (2019-03-28)
 
-###  Features 
+###  Features
 
-- **api:** add new types, update existing ([560eb90](https://github.com/thi-ng/umbrella/commit/560eb90)) 
+- **api:** add new types, update existing ([560eb90](https://github.com/thi-ng/umbrella/commit/560eb90))
 
-###  BREAKING CHANGES 
+###  BREAKING CHANGES
 
-- **api:** split up, remove & update various interfaces 
-    - split IAssociative => IAssoc, IAssocIn 
-    - update IDissoc, add IDissocIn 
-    - split IGet => IGet, IGetIn 
-    - update IInto generics & return type 
-    - update ISet, remove IImmutableSet 
-    - update IStack, remove IImmutableStack 
+- **api:** split up, remove & update various interfaces
+    - split IAssociative => IAssoc, IAssocIn
+    - update IDissoc, add IDissocIn
+    - split IGet => IGet, IGetIn
+    - update IInto generics & return type
+    - update ISet, remove IImmutableSet
+    - update IStack, remove IImmutableStack
 
-#  [5.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@5.0.3...@thi.ng/api@5.1.0) (2019-03-10) 
+#  [5.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@5.0.3...@thi.ng/api@5.1.0) (2019-03-10)
 
-###  Features 
+###  Features
 
-- **api:** add additional Fn arities ([33c7dfe](https://github.com/thi-ng/umbrella/commit/33c7dfe)) 
-- **api:** add more Fn type aliases, update existing ([3707e61](https://github.com/thi-ng/umbrella/commit/3707e61)) 
+- **api:** add additional Fn arities ([33c7dfe](https://github.com/thi-ng/umbrella/commit/33c7dfe))
+- **api:** add more Fn type aliases, update existing ([3707e61](https://github.com/thi-ng/umbrella/commit/3707e61))
 
-#  [5.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@4.2.4...@thi.ng/api@5.0.0) (2019-01-21) 
+#  [5.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@4.2.4...@thi.ng/api@5.0.0) (2019-01-21)
 
-###  Bug Fixes 
+###  Bug Fixes
 
-- **api:** update assert(), re-export mixin() ([9f91cfa](https://github.com/thi-ng/umbrella/commit/9f91cfa)) 
+- **api:** update assert(), re-export mixin() ([9f91cfa](https://github.com/thi-ng/umbrella/commit/9f91cfa))
 
-###  Build System 
+###  Build System
 
-- **api:** update package build scripts / outputs ([f913d7b](https://github.com/thi-ng/umbrella/commit/f913d7b)) 
+- **api:** update package build scripts / outputs ([f913d7b](https://github.com/thi-ng/umbrella/commit/f913d7b))
 
-###  Features 
+###  Features
 
-- **api:** add assert() ([d381ace](https://github.com/thi-ng/umbrella/commit/d381ace)) 
+- **api:** add assert() ([d381ace](https://github.com/thi-ng/umbrella/commit/d381ace))
 
-###  BREAKING CHANGES 
+###  BREAKING CHANGES
 
-- **api:** rename mixins to avoid name clashes, update decorators 
-    - append `Mixin` suffix to all mixins (i.e. `INotify` => `INotifyMixin`) 
-    - update re-exports of mixins & decorators (no more nested child namespace) 
+- **api:** rename mixins to avoid name clashes, update decorators
+    - append `Mixin` suffix to all mixins (i.e. `INotify` => `INotifyMixin`)
+    - update re-exports of mixins & decorators (no more nested child namespace)
 
-#  [4.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@4.1.1...@thi.ng/api@4.2.0) (2018-09-22) 
+#  [4.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@4.1.1...@thi.ng/api@4.2.0) (2018-09-22)
 
-###  Features 
+###  Features
 
-- **api:** add `IToHiccup` interface ([e390a54](https://github.com/thi-ng/umbrella/commit/e390a54)) 
+- **api:** add `IToHiccup` interface ([e390a54](https://github.com/thi-ng/umbrella/commit/e390a54))
 
-#  [4.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@4.0.6...@thi.ng/api@4.1.0) (2018-08-24) 
+#  [4.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@4.0.6...@thi.ng/api@4.1.0) (2018-08-24)
 
-###  Features 
+###  Features
 
-- **api:** add new/move type aliases into api.ts ([cf30ba2](https://github.com/thi-ng/umbrella/commit/cf30ba2)) 
-- **api:** add NumericArray and TypedArray types ([519394b](https://github.com/thi-ng/umbrella/commit/519394b)) 
+- **api:** add new/move type aliases into api.ts ([cf30ba2](https://github.com/thi-ng/umbrella/commit/cf30ba2))
+- **api:** add NumericArray and TypedArray types ([519394b](https://github.com/thi-ng/umbrella/commit/519394b))
 
-#  [4.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@3.0.1...@thi.ng/api@4.0.0) (2018-05-12) 
+#  [4.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@3.0.1...@thi.ng/api@4.0.0) (2018-05-12)
 
-###  Code Refactoring 
+###  Code Refactoring
 
-- **api:** update interfaces, add docs ([9b38860](https://github.com/thi-ng/umbrella/commit/9b38860)) 
+- **api:** update interfaces, add docs ([9b38860](https://github.com/thi-ng/umbrella/commit/9b38860))
 
-###  BREAKING CHANGES 
+###  BREAKING CHANGES
 
-- **api:** IBind, IEnable now include generics, update IIndexed, IMeta, ISet, IStack 
-    - add IInto 
-    - add IImmutableSet 
-    - add IImmutableStack 
-    - minor update IEnabled mixin 
+- **api:** IBind, IEnable now include generics, update IIndexed, IMeta, ISet, IStack
+    - add IInto
+    - add IImmutableSet
+    - add IImmutableStack
+    - minor update IEnabled mixin
 
-#  [3.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@2.3.2...@thi.ng/api@3.0.0) (2018-05-10) 
+#  [3.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@2.3.2...@thi.ng/api@3.0.0) (2018-05-10)
 
-###  Code Refactoring 
+###  Code Refactoring
 
-- **api:** remove obsolete files from package ([f051ca3](https://github.com/thi-ng/umbrella/commit/f051ca3)) 
+- **api:** remove obsolete files from package ([f051ca3](https://github.com/thi-ng/umbrella/commit/f051ca3))
 
-###  BREAKING CHANGES 
+###  BREAKING CHANGES
 
-- **api:** @thi.ng/api now only contains type declarations, decorators and mixins. All other features have been moved to new dedicated packages: 
-    - @thi.ng/bench 
-    - @thi.ng/compare 
-    - @thi.ng/equiv 
-    - @thi.ng/errors 
+- **api:** @thi.ng/api now only contains type declarations, decorators and mixins. All other features have been moved to new dedicated packages:
+    - @thi.ng/bench
+    - @thi.ng/compare
+    - @thi.ng/equiv
+    - @thi.ng/errors
 
-##  [2.3.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@2.3.0...@thi.ng/api@2.3.1) (2018-04-29) 
+##  [2.3.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@2.3.0...@thi.ng/api@2.3.1) (2018-04-29)
 
-###  Performance Improvements 
+###  Performance Improvements
 
-- **api:** major speedup equivObject(), update equivSet() ([7fdf172](https://github.com/thi-ng/umbrella/commit/7fdf172)) 
+- **api:** major speedup equivObject(), update equivSet() ([7fdf172](https://github.com/thi-ng/umbrella/commit/7fdf172))
 
-#  [2.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@2.2.0...@thi.ng/api@2.3.0) (2018-04-26) 
+#  [2.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@2.2.0...@thi.ng/api@2.3.0) (2018-04-26)
 
-###  Features 
+###  Features
 
-- **api:** support more types in equiv(), add tests ([2ac8bff](https://github.com/thi-ng/umbrella/commit/2ac8bff)) 
+- **api:** support more types in equiv(), add tests ([2ac8bff](https://github.com/thi-ng/umbrella/commit/2ac8bff))
 
-#  [2.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@2.1.3...@thi.ng/api@2.2.0) (2018-04-08) 
+#  [2.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@2.1.3...@thi.ng/api@2.2.0) (2018-04-08)
 
-###  Features 
+###  Features
 
-- **api:** add bench() & timed() utils ([d310345](https://github.com/thi-ng/umbrella/commit/d310345)) 
+- **api:** add bench() & timed() utils ([d310345](https://github.com/thi-ng/umbrella/commit/d310345))
 
-##  [2.1.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@2.1.0...@thi.ng/api@2.1.1) (2018-03-28) 
+##  [2.1.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@2.1.0...@thi.ng/api@2.1.1) (2018-03-28)
 
-###  Bug Fixes 
+###  Bug Fixes
 
-- **api:** illegalState() creates IllegalStateError ([2b7e99b](https://github.com/thi-ng/umbrella/commit/2b7e99b)) 
+- **api:** illegalState() creates IllegalStateError ([2b7e99b](https://github.com/thi-ng/umbrella/commit/2b7e99b))
 
-#  [2.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@2.0.4...@thi.ng/api@2.1.0) (2018-03-21) 
+#  [2.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@2.0.4...@thi.ng/api@2.1.0) (2018-03-21)
 
-###  Features 
+###  Features
 
-- **api:** add error types & ctor fns ([4d3785f](https://github.com/thi-ng/umbrella/commit/4d3785f)) 
+- **api:** add error types & ctor fns ([4d3785f](https://github.com/thi-ng/umbrella/commit/4d3785f))
 
-##  [2.0.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@2.0.0...@thi.ng/api@2.0.1) (2018-02-02) 
+##  [2.0.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@2.0.0...@thi.ng/api@2.0.1) (2018-02-02)
 
-###  Bug Fixes 
+###  Bug Fixes
 
-- **api:** update compare() & equiv() ([110a9de](https://github.com/thi-ng/umbrella/commit/110a9de)) 
+- **api:** update compare() & equiv() ([110a9de](https://github.com/thi-ng/umbrella/commit/110a9de))
 
-#  [2.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@1.5.0...@thi.ng/api@2.0.0) (2018-02-01) 
+#  [2.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@1.5.0...@thi.ng/api@2.0.0) (2018-02-01)
 
-###  Bug Fixes 
+###  Bug Fixes
 
-- **api:** fix equiv string handling, update tests ([1354e29](https://github.com/thi-ng/umbrella/commit/1354e29)) 
+- **api:** fix equiv string handling, update tests ([1354e29](https://github.com/thi-ng/umbrella/commit/1354e29))
 
-###  Features 
+###  Features
 
-- **api:** update equiv() null handling, add tests ([878520e](https://github.com/thi-ng/umbrella/commit/878520e)) 
+- **api:** update equiv() null handling, add tests ([878520e](https://github.com/thi-ng/umbrella/commit/878520e))
 
-###  BREAKING CHANGES 
+###  BREAKING CHANGES
 
-- **api:** equiv now treats null & undefined as equal 
+- **api:** equiv now treats null & undefined as equal
 
-#  [1.5.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@1.4.2...@thi.ng/api@1.5.0) (2018-01-31) 
+#  [1.5.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@1.4.2...@thi.ng/api@1.5.0) (2018-01-31)
 
-###  Features 
+###  Features
 
-- **api:** add Predicate2 & StatefulPredicate2 types ([fbf8453](https://github.com/thi-ng/umbrella/commit/fbf8453)) 
+- **api:** add Predicate2 & StatefulPredicate2 types ([fbf8453](https://github.com/thi-ng/umbrella/commit/fbf8453))
 
-#  [1.4.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@1.3.0...@thi.ng/api@1.4.0) (2018-01-29) 
+#  [1.4.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@1.3.0...@thi.ng/api@1.4.0) (2018-01-29)
 
-###  Features 
+###  Features
 
-- **api:** update IWatch & mixin, boolean returns ([bddd5ce](https://github.com/thi-ng/umbrella/commit/bddd5ce)) 
+- **api:** update IWatch & mixin, boolean returns ([bddd5ce](https://github.com/thi-ng/umbrella/commit/bddd5ce))
 
-#  [1.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@1.2.1...@thi.ng/api@1.3.0) (2018-01-28) 
+#  [1.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@1.2.1...@thi.ng/api@1.3.0) (2018-01-28)
 
-###  Features 
+###  Features
 
 - **api:** add StatefulPredicate ([c74353b](https://github.com/thi-ng/umbrella/commit/c74353b))

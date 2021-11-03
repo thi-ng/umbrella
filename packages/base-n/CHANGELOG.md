@@ -3,54 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [2.0.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/base-n@2.0.5...@thi.ng/base-n@2.0.6) (2021-10-28)
-
-**Note:** Version bump only for package @thi.ng/base-n
-
-
-
-
-
-## [2.0.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/base-n@2.0.4...@thi.ng/base-n@2.0.5) (2021-10-28)
-
-**Note:** Version bump only for package @thi.ng/base-n
-
-
-
-
-
-## [2.0.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/base-n@2.0.3...@thi.ng/base-n@2.0.4) (2021-10-25)
-
-**Note:** Version bump only for package @thi.ng/base-n
-
-
-
-
-
-## [2.0.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/base-n@2.0.2...@thi.ng/base-n@2.0.3) (2021-10-15)
-
-**Note:** Version bump only for package @thi.ng/base-n
-
-
-
-
-
-## [2.0.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/base-n@2.0.1...@thi.ng/base-n@2.0.2) (2021-10-15)
-
-**Note:** Version bump only for package @thi.ng/base-n
-
-
-
-
-
-## [2.0.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/base-n@2.0.0...@thi.ng/base-n@2.0.1) (2021-10-13)
-
-**Note:** Version bump only for package @thi.ng/base-n
-
-
-
-
-
 # [2.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/base-n@1.0.5...@thi.ng/base-n@2.0.0) (2021-10-12)
 
 
@@ -80,15 +32,15 @@ Also:
 
 
 
-##  [1.0.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/base-n@1.0.4...@thi.ng/base-n@1.0.5) (2021-08-24) 
+##  [1.0.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/base-n@1.0.4...@thi.ng/base-n@1.0.5) (2021-08-24)
 
-###  Bug Fixes 
+###  Bug Fixes
 
-- **base-n:** fix [#308](https://github.com/thi-ng/umbrella/issues/308), remove unintentional int cast ([27a0d7e](https://github.com/thi-ng/umbrella/commit/27a0d7e5052d6c40b247bfe4ef8c1611b9907a6a)) 
+- **base-n:** fix [#308](https://github.com/thi-ng/umbrella/issues/308), remove unintentional int cast ([27a0d7e](https://github.com/thi-ng/umbrella/commit/27a0d7e5052d6c40b247bfe4ef8c1611b9907a6a))
 
-#  [0.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/base-n@0.1.8...@thi.ng/base-n@0.2.0) (2021-08-07) 
+#  [0.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/base-n@0.1.8...@thi.ng/base-n@0.2.0) (2021-08-07)
 
-###  Features 
+###  Features
 
 - **base-n:** add BASE32_CROCKFORD preset ([7d1cad9](https://github.com/thi-ng/umbrella/commit/7d1cad9430746efe80cd70482906b6f03b262d8a))
 
@@ -96,5 +48,5 @@ Also:
 
 ### Features
 
-- **base-n:** add en/decodeBytes(), add BASE16_XX ([d6205d7](https://github.com/thi-ng/umbrella/commit/d6205d72331bf038ebdc95c221763e2f794c10a9)) 
+- **base-n:** add en/decodeBytes(), add BASE16_XX ([d6205d7](https://github.com/thi-ng/umbrella/commit/d6205d72331bf038ebdc95c221763e2f794c10a9))
 - **base-n:** import as new pkg (MBP2010) ([f5763b3](https://github.com/thi-ng/umbrella/commit/f5763b3c6be87eb0e27a9239527283323c3e774c))

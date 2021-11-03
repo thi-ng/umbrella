@@ -3,54 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [2.0.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/prefixes@2.0.5...@thi.ng/prefixes@2.0.6) (2021-10-28)
-
-**Note:** Version bump only for package @thi.ng/prefixes
-
-
-
-
-
-## [2.0.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/prefixes@2.0.4...@thi.ng/prefixes@2.0.5) (2021-10-28)
-
-**Note:** Version bump only for package @thi.ng/prefixes
-
-
-
-
-
-## [2.0.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/prefixes@2.0.3...@thi.ng/prefixes@2.0.4) (2021-10-25)
-
-**Note:** Version bump only for package @thi.ng/prefixes
-
-
-
-
-
-## [2.0.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/prefixes@2.0.2...@thi.ng/prefixes@2.0.3) (2021-10-15)
-
-**Note:** Version bump only for package @thi.ng/prefixes
-
-
-
-
-
-## [2.0.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/prefixes@2.0.1...@thi.ng/prefixes@2.0.2) (2021-10-15)
-
-**Note:** Version bump only for package @thi.ng/prefixes
-
-
-
-
-
-## [2.0.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/prefixes@2.0.0...@thi.ng/prefixes@2.0.1) (2021-10-13)
-
-**Note:** Version bump only for package @thi.ng/prefixes
-
-
-
-
-
 # [2.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/prefixes@1.0.2...@thi.ng/prefixes@2.0.0) (2021-10-12)
 
 
@@ -80,9 +32,9 @@ Also:
 
 
 
-#  0.1.0 (2020-07-02) 
+#  0.1.0 (2020-07-02)
 
-###  Features 
+###  Features
 
-- **prefixes:** add/update prefixes ([9051342](https://github.com/thi-ng/umbrella/commit/905134278b6a9d832669f2007b48142718ee964c)) 
+- **prefixes:** add/update prefixes ([9051342](https://github.com/thi-ng/umbrella/commit/905134278b6a9d832669f2007b48142718ee964c))
 - **prefixes:** import as new pkg ([0fbab43](https://github.com/thi-ng/umbrella/commit/0fbab43c9acbd89f01615672cadd964df7f9a5a3))

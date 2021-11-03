@@ -3,54 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [2.0.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/ramp@2.0.5...@thi.ng/ramp@2.0.6) (2021-10-28)
-
-**Note:** Version bump only for package @thi.ng/ramp
-
-
-
-
-
-## [2.0.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/ramp@2.0.4...@thi.ng/ramp@2.0.5) (2021-10-28)
-
-**Note:** Version bump only for package @thi.ng/ramp
-
-
-
-
-
-## [2.0.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/ramp@2.0.3...@thi.ng/ramp@2.0.4) (2021-10-25)
-
-**Note:** Version bump only for package @thi.ng/ramp
-
-
-
-
-
-## [2.0.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/ramp@2.0.2...@thi.ng/ramp@2.0.3) (2021-10-15)
-
-**Note:** Version bump only for package @thi.ng/ramp
-
-
-
-
-
-## [2.0.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/ramp@2.0.1...@thi.ng/ramp@2.0.2) (2021-10-15)
-
-**Note:** Version bump only for package @thi.ng/ramp
-
-
-
-
-
-## [2.0.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/ramp@2.0.0...@thi.ng/ramp@2.0.1) (2021-10-13)
-
-**Note:** Version bump only for package @thi.ng/ramp
-
-
-
-
-
 # [2.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/ramp@1.0.7...@thi.ng/ramp@2.0.0) (2021-10-12)
 
 
@@ -80,13 +32,13 @@ Also:
 
 
 
-##  [1.0.7](https://github.com/thi-ng/umbrella/compare/@thi.ng/ramp@1.0.6...@thi.ng/ramp@1.0.7) (2021-09-03) 
+##  [1.0.7](https://github.com/thi-ng/umbrella/compare/@thi.ng/ramp@1.0.6...@thi.ng/ramp@1.0.7) (2021-09-03)
 
-**Note:** Version bump only for package @thi.ng/ramp 
+**Note:** Version bump only for package @thi.ng/ramp
 
-#  0.1.0 (2020-01-24) 
+#  0.1.0 (2020-01-24)
 
-###  Features 
+###  Features
 
-- **ramp:** add ARamp.bounds(), factory fns, optimize timeIndex(), add benchmarks ([83d3670](https://github.com/thi-ng/umbrella/commit/83d3670c7322fd2b47c27e0bda896b9ab83ffd7c)) 
+- **ramp:** add ARamp.bounds(), factory fns, optimize timeIndex(), add benchmarks ([83d3670](https://github.com/thi-ng/umbrella/commit/83d3670c7322fd2b47c27e0bda896b9ab83ffd7c))
 - **ramp:** import as new pkg ([d58ba4e](https://github.com/thi-ng/umbrella/commit/d58ba4ed4d2ba76ca9c748cf23fcd86a0ff9cca7))

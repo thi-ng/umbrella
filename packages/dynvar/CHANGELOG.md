@@ -3,54 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [0.2.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/dynvar@0.2.5...@thi.ng/dynvar@0.2.6) (2021-10-28)
-
-**Note:** Version bump only for package @thi.ng/dynvar
-
-
-
-
-
-## [0.2.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/dynvar@0.2.4...@thi.ng/dynvar@0.2.5) (2021-10-28)
-
-**Note:** Version bump only for package @thi.ng/dynvar
-
-
-
-
-
-## [0.2.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/dynvar@0.2.3...@thi.ng/dynvar@0.2.4) (2021-10-25)
-
-**Note:** Version bump only for package @thi.ng/dynvar
-
-
-
-
-
-## [0.2.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/dynvar@0.2.2...@thi.ng/dynvar@0.2.3) (2021-10-15)
-
-**Note:** Version bump only for package @thi.ng/dynvar
-
-
-
-
-
-## [0.2.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/dynvar@0.2.1...@thi.ng/dynvar@0.2.2) (2021-10-15)
-
-**Note:** Version bump only for package @thi.ng/dynvar
-
-
-
-
-
-## [0.2.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/dynvar@0.2.0...@thi.ng/dynvar@0.2.1) (2021-10-13)
-
-**Note:** Version bump only for package @thi.ng/dynvar
-
-
-
-
-
 # [0.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/dynvar@0.1.41...@thi.ng/dynvar@0.2.0) (2021-10-12)
 
 
@@ -80,12 +32,12 @@ Also:
 
 
 
-##  [0.1.41](https://github.com/thi-ng/umbrella/compare/@thi.ng/dynvar@0.1.40...@thi.ng/dynvar@0.1.41) (2021-09-03) 
+##  [0.1.41](https://github.com/thi-ng/umbrella/compare/@thi.ng/dynvar@0.1.40...@thi.ng/dynvar@0.1.41) (2021-09-03)
 
-**Note:** Version bump only for package @thi.ng/dynvar 
+**Note:** Version bump only for package @thi.ng/dynvar
 
-#  0.1.0 (2020-01-24) 
+#  0.1.0 (2020-01-24)
 
-###  Features 
+###  Features
 
 - **dynvar:** re-import & refactor as own pkg (MBP2010) ([0fabb57](https://github.com/thi-ng/umbrella/commit/0fabb57f386ad92ce81970c53d02993a8fb102c0))

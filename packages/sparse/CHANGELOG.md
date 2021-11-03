@@ -3,54 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [0.2.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/sparse@0.2.5...@thi.ng/sparse@0.2.6) (2021-10-28)
-
-**Note:** Version bump only for package @thi.ng/sparse
-
-
-
-
-
-## [0.2.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/sparse@0.2.4...@thi.ng/sparse@0.2.5) (2021-10-28)
-
-**Note:** Version bump only for package @thi.ng/sparse
-
-
-
-
-
-## [0.2.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/sparse@0.2.3...@thi.ng/sparse@0.2.4) (2021-10-25)
-
-**Note:** Version bump only for package @thi.ng/sparse
-
-
-
-
-
-## [0.2.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/sparse@0.2.2...@thi.ng/sparse@0.2.3) (2021-10-15)
-
-**Note:** Version bump only for package @thi.ng/sparse
-
-
-
-
-
-## [0.2.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/sparse@0.2.1...@thi.ng/sparse@0.2.2) (2021-10-15)
-
-**Note:** Version bump only for package @thi.ng/sparse
-
-
-
-
-
-## [0.2.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/sparse@0.2.0...@thi.ng/sparse@0.2.1) (2021-10-13)
-
-**Note:** Version bump only for package @thi.ng/sparse
-
-
-
-
-
 # [0.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/sparse@0.1.89...@thi.ng/sparse@0.2.0) (2021-10-12)
 
 
@@ -80,13 +32,13 @@ Also:
 
 
 
-##  [0.1.89](https://github.com/thi-ng/umbrella/compare/@thi.ng/sparse@0.1.88...@thi.ng/sparse@0.1.89) (2021-09-03) 
+##  [0.1.89](https://github.com/thi-ng/umbrella/compare/@thi.ng/sparse@0.1.88...@thi.ng/sparse@0.1.89) (2021-09-03)
 
-**Note:** Version bump only for package @thi.ng/sparse 
+**Note:** Version bump only for package @thi.ng/sparse
 
-#  0.1.0 (2019-02-17) 
+#  0.1.0 (2019-02-17)
 
-###  Features 
+###  Features
 
-- **sparse:** add CSC, update all other matrix impls, remove adjacency ([cd773c9](https://github.com/thi-ng/umbrella/commit/cd773c9)) 
+- **sparse:** add CSC, update all other matrix impls, remove adjacency ([cd773c9](https://github.com/thi-ng/umbrella/commit/cd773c9))
 - **sparse:** re-import & update [@thi](https://github.com/thi).ng/sparse (MBP2010) ([a2d1cc9](https://github.com/thi-ng/umbrella/commit/a2d1cc9))

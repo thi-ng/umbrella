@@ -3,62 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [0.1.7](https://github.com/thi-ng/umbrella/compare/@thi.ng/shader-ast-optimize@0.1.6...@thi.ng/shader-ast-optimize@0.1.7) (2021-10-28)
-
-**Note:** Version bump only for package @thi.ng/shader-ast-optimize
-
-
-
-
-
-## [0.1.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/shader-ast-optimize@0.1.5...@thi.ng/shader-ast-optimize@0.1.6) (2021-10-28)
-
-**Note:** Version bump only for package @thi.ng/shader-ast-optimize
-
-
-
-
-
-## [0.1.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/shader-ast-optimize@0.1.4...@thi.ng/shader-ast-optimize@0.1.5) (2021-10-28)
-
-**Note:** Version bump only for package @thi.ng/shader-ast-optimize
-
-
-
-
-
-## [0.1.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/shader-ast-optimize@0.1.3...@thi.ng/shader-ast-optimize@0.1.4) (2021-10-25)
-
-**Note:** Version bump only for package @thi.ng/shader-ast-optimize
-
-
-
-
-
-## [0.1.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/shader-ast-optimize@0.1.2...@thi.ng/shader-ast-optimize@0.1.3) (2021-10-15)
-
-**Note:** Version bump only for package @thi.ng/shader-ast-optimize
-
-
-
-
-
-## [0.1.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/shader-ast-optimize@0.1.1...@thi.ng/shader-ast-optimize@0.1.2) (2021-10-15)
-
-**Note:** Version bump only for package @thi.ng/shader-ast-optimize
-
-
-
-
-
-## [0.1.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/shader-ast-optimize@0.1.0...@thi.ng/shader-ast-optimize@0.1.1) (2021-10-13)
-
-**Note:** Version bump only for package @thi.ng/shader-ast-optimize
-
-
-
-
-
 # 0.1.0 (2021-10-12)
 
 

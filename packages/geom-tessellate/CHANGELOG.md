@@ -3,54 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [2.0.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-tessellate@2.0.5...@thi.ng/geom-tessellate@2.0.6) (2021-10-28)
-
-**Note:** Version bump only for package @thi.ng/geom-tessellate
-
-
-
-
-
-## [2.0.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-tessellate@2.0.4...@thi.ng/geom-tessellate@2.0.5) (2021-10-28)
-
-**Note:** Version bump only for package @thi.ng/geom-tessellate
-
-
-
-
-
-## [2.0.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-tessellate@2.0.3...@thi.ng/geom-tessellate@2.0.4) (2021-10-25)
-
-**Note:** Version bump only for package @thi.ng/geom-tessellate
-
-
-
-
-
-## [2.0.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-tessellate@2.0.2...@thi.ng/geom-tessellate@2.0.3) (2021-10-15)
-
-**Note:** Version bump only for package @thi.ng/geom-tessellate
-
-
-
-
-
-## [2.0.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-tessellate@2.0.1...@thi.ng/geom-tessellate@2.0.2) (2021-10-15)
-
-**Note:** Version bump only for package @thi.ng/geom-tessellate
-
-
-
-
-
-## [2.0.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-tessellate@2.0.0...@thi.ng/geom-tessellate@2.0.1) (2021-10-13)
-
-**Note:** Version bump only for package @thi.ng/geom-tessellate
-
-
-
-
-
 # [2.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-tessellate@1.0.5...@thi.ng/geom-tessellate@2.0.0) (2021-10-12)
 
 
@@ -80,24 +32,24 @@ Also:
 
 
 
-##  [1.0.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-tessellate@1.0.4...@thi.ng/geom-tessellate@1.0.5) (2021-09-03) 
+##  [1.0.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-tessellate@1.0.4...@thi.ng/geom-tessellate@1.0.5) (2021-09-03)
 
-**Note:** Version bump only for package @thi.ng/geom-tessellate 
+**Note:** Version bump only for package @thi.ng/geom-tessellate
 
-#  [0.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-tessellate@0.1.17...@thi.ng/geom-tessellate@0.2.0) (2019-07-07) 
+#  [0.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-tessellate@0.1.17...@thi.ng/geom-tessellate@0.2.0) (2019-07-07)
 
-###  Features 
+###  Features
 
-- **geom-tessellate:** enable TS strict compiler flags (refactor) ([8d610c3](https://github.com/thi-ng/umbrella/commit/8d610c3)) 
+- **geom-tessellate:** enable TS strict compiler flags (refactor) ([8d610c3](https://github.com/thi-ng/umbrella/commit/8d610c3))
 
-##  [0.1.12](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-tessellate@0.1.11...@thi.ng/geom-tessellate@0.1.12) (2019-04-02) 
+##  [0.1.12](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-tessellate@0.1.11...@thi.ng/geom-tessellate@0.1.12) (2019-04-02)
 
-###  Bug Fixes 
+###  Bug Fixes
 
-- **geom-tesselate:** TS3.4 type inference ([800c1c7](https://github.com/thi-ng/umbrella/commit/800c1c7)) 
+- **geom-tesselate:** TS3.4 type inference ([800c1c7](https://github.com/thi-ng/umbrella/commit/800c1c7))
 
-#  0.1.0 (2019-02-05) 
+#  0.1.0 (2019-02-05)
 
-###  Features 
+###  Features
 
 - **geom-tessellate:** extract from geom as new package ([cb2429c](https://github.com/thi-ng/umbrella/commit/cb2429c))
