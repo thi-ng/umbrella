@@ -1,7 +1,7 @@
 import { Lane } from "../api.js";
-import { defPackedFormat } from "./packed-format.js";
+import { defIntFormat } from "./int-format.js";
 
-export const ABGR8888 = defPackedFormat({
+export const ABGR8888 = defIntFormat({
     type: "u32",
     size: 32,
     alpha: 8,

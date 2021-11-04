@@ -15,19 +15,19 @@ import {
     IBlend,
     IBlit,
     IInvert,
+    IntChannel,
+    IntFormat,
+    IntFormatSpec,
     IntSampler,
     IPixelBuffer,
     IResizable,
     IToImageData,
     Lane,
-    PackedChannel,
-    PackedFormat,
-    PackedFormatSpec,
 } from "./api.js";
 import { canvasPixels, imageCanvas } from "./canvas.js";
 import { ensureChannel, ensureSize } from "./checks.js";
 import { ABGR8888 } from "./format/abgr8888.js";
-import { defPackedFormat } from "./format/packed-format.js";
+import { defIntFormat } from "./format/int-format.js";
 import {
     __compileGrayFromABGR,
     __compileGrayToABGR,
@@ -43,28 +43,28 @@ import {
 import { defSampler } from "./sample.js";
 
 /**
- * Syntax sugar for {@link PackedBuffer} ctor.
+ * Syntax sugar for {@link IntBuffer} ctor.
  *
  * @param w -
  * @param h -
  * @param fmt -
  * @param data -
  */
-export function packedBuffer(
+export function intBuffer(
     w: number,
     h: number,
-    fmt: PackedFormat | PackedFormatSpec,
+    fmt: IntFormat | IntFormatSpec,
     data?: UIntArray
-): PackedBuffer;
-export function packedBuffer(
-    src: PackedBuffer,
-    fmt: PackedFormat | PackedFormatSpec
-): PackedBuffer;
-export function packedBuffer(...args: any[]) {
-    return args[0] instanceof PackedBuffer
+): IntBuffer;
+export function intBuffer(
+    src: IntBuffer,
+    fmt: IntFormat | IntFormatSpec
+): IntBuffer;
+export function intBuffer(...args: any[]) {
+    return args[0] instanceof IntBuffer
         ? args[0].as(args[1])
         : // @ts-ignore
-          new PackedBuffer(...args);
+          new IntBuffer(...args);
 }
 
 /**
@@ -76,12 +76,12 @@ export function packedBuffer(...args: any[]) {
  * @param width
  * @param height
  */
-export const packedBufferFromImage = (
+export const intBufferFromImage = (
     img: HTMLImageElement,
-    fmt?: PackedFormat,
+    fmt?: IntFormat,
     width?: number,
     height = width
-) => packedBufferFromCanvas(imageCanvas(img, width, height).canvas, fmt);
+) => intBufferFromCanvas(imageCanvas(img, width, height).canvas, fmt);
 
 /**
  * Creates a new pixel buffer from given HTML canvas element with optional
@@ -90,9 +90,9 @@ export const packedBufferFromImage = (
  * @param canvas
  * @param fmt
  */
-export const packedBufferFromCanvas = (
+export const intBufferFromCanvas = (
     canvas: HTMLCanvasElement,
-    fmt: PackedFormat = ABGR8888
+    fmt: IntFormat = ABGR8888
 ) => {
     const ctx = canvasPixels(canvas);
     const w = canvas.width;
@@ -108,36 +108,34 @@ export const packedBufferFromCanvas = (
             dest[i] = from(src[i]);
         }
     }
-    return new PackedBuffer(w, h, fmt, dest);
+    return new IntBuffer(w, h, fmt, dest);
 };
 
-export class PackedBuffer
+export class IntBuffer
     implements
         IPixelBuffer<UIntArray, number>,
         IToImageData,
-        IResizable<PackedBuffer, IntSampler>,
-        IBlend<PackedBuffer, BlendFnInt>,
-        IBlit<PackedBuffer>,
-        IInvert<PackedBuffer>,
-        ICopy<PackedBuffer>,
-        IEmpty<PackedBuffer>
+        IResizable<IntBuffer, IntSampler>,
+        IBlend<IntBuffer, BlendFnInt>,
+        IBlit<IntBuffer>,
+        IInvert<IntBuffer>,
+        ICopy<IntBuffer>,
+        IEmpty<IntBuffer>
 {
     readonly width: number;
     readonly height: number;
-    readonly format: PackedFormat;
+    readonly format: IntFormat;
     readonly data: UIntArray;
 
     constructor(
         w: number,
         h: number,
-        fmt: PackedFormat | PackedFormatSpec,
+        fmt: IntFormat | IntFormatSpec,
         data?: UIntArray
     ) {
         this.width = w;
         this.height = h;
-        this.format = (<any>fmt).__packed
-            ? <PackedFormat>fmt
-            : defPackedFormat(fmt);
+        this.format = (<any>fmt).__packed ? <IntFormat>fmt : defIntFormat(fmt);
         this.data = data || typedArray(fmt.type, w * h);
     }
 
@@ -154,7 +152,7 @@ export class PackedBuffer
         return this.width;
     }
 
-    as(fmt: PackedFormat) {
+    as(fmt: IntFormat) {
         return this.getRegion(0, 0, this.width, this.height, fmt);
     }
 
@@ -165,7 +163,7 @@ export class PackedBuffer
     }
 
     empty() {
-        return new PackedBuffer(this.width, this.height, this.format);
+        return new IntBuffer(this.width, this.height, this.format);
     }
 
     getAt(x: number, y: number) {
@@ -193,7 +191,7 @@ export class PackedBuffer
     }
 
     getChannelAt(x: number, y: number, id: number, normalized = false) {
-        const chan = <PackedChannel>ensureChannel(this.format, id);
+        const chan = <IntChannel>ensureChannel(this.format, id);
         const col = this.getAt(x, y);
         return normalized ? chan.float(col) : chan.int(col);
     }
@@ -205,13 +203,13 @@ export class PackedBuffer
         col: number,
         normalized = false
     ) {
-        const chan = <PackedChannel>ensureChannel(this.format, id);
+        const chan = <IntChannel>ensureChannel(this.format, id);
         const src = this.getAt(x, y);
         normalized ? chan.setFloat(src, col) : chan.setInt(src, col);
         return this;
     }
 
-    blend(op: BlendFnInt, dest: PackedBuffer, opts?: Partial<BlitOpts>) {
+    blend(op: BlendFnInt, dest: IntBuffer, opts?: Partial<BlitOpts>) {
         let sw = this.width;
         let dw = dest.width;
         const { sx, sy, dx, dy, rw, rh } = __prepRegions(this, dest, opts);
@@ -235,7 +233,7 @@ export class PackedBuffer
         return dest;
     }
 
-    blit(dest: PackedBuffer, opts?: Partial<BlitOpts>) {
+    blit(dest: IntBuffer, opts?: Partial<BlitOpts>) {
         let sw = this.width;
         let dw = dest.width;
         const { sx, sy, dx, dy, rw, rh } = __prepRegions(this, dest, opts);
@@ -293,7 +291,7 @@ export class PackedBuffer
         y: number,
         width: number,
         height: number,
-        fmt?: PackedFormat
+        fmt?: IntFormat
     ) {
         const [sx, sy, w, h] = __clampRegion(
             x,
@@ -303,7 +301,7 @@ export class PackedBuffer
             this.width,
             this.height
         );
-        return this.blit(new PackedBuffer(w, h, fmt || this.format), {
+        return this.blit(new IntBuffer(w, h, fmt || this.format), {
             sx,
             sy,
             w,
@@ -312,8 +310,8 @@ export class PackedBuffer
     }
 
     getChannel(id: number) {
-        const chan = <PackedChannel>ensureChannel(this.format, id);
-        const buf = new PackedBuffer(this.width, this.height, {
+        const chan = <IntChannel>ensureChannel(this.format, id);
+        const buf = new IntBuffer(this.width, this.height, {
             type: uintTypeForBits(chan.size),
             size: chan.size,
             channels: [{ size: chan.size, lane: Lane.RED }],
@@ -329,8 +327,8 @@ export class PackedBuffer
         return buf;
     }
 
-    setChannel(id: number, src: PackedBuffer | number) {
-        const chan = <PackedChannel>ensureChannel(this.format, id);
+    setChannel(id: number, src: IntBuffer | number) {
+        const chan = <IntChannel>ensureChannel(this.format, id);
         const dbuf = this.data;
         const set = chan.setInt;
         if (isNumber(src)) {
@@ -413,7 +411,7 @@ export class PackedBuffer
     /**
      * Returns scaled version of this buffer using given sampler or filter
      * (default: `"linear"`) for interpolation. Syntax sugar for
-     * {@link PackedBuffer.resize}.
+     * {@link IntBuffer.resize}.
      *
      * @param scale
      */
@@ -426,7 +424,7 @@ export class PackedBuffer
         w |= 0;
         h |= 0;
         assert(w > 0 && h > 0, `target width & height must be > 0`);
-        const dest = packedBuffer(w, h, this.format);
+        const dest = intBuffer(w, h, this.format);
         const dpix = dest.data;
         const scaleX = w > 0 ? this.width / w : 0;
         const scaleY = h > 0 ? this.height / h : 0;
@@ -444,7 +442,7 @@ export class PackedBuffer
 
     upsize() {
         const { width, height, data } = this;
-        const dest = new PackedBuffer(width * 2, height * 2, this.format);
+        const dest = new IntBuffer(width * 2, height * 2, this.format);
         const dpix = dest.data;
         for (let y = 0, si = 0; y < height; y++) {
             for (let x = 0, di = y * width * 4; x < width; x++, si++, di += 2) {

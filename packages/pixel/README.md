@@ -10,7 +10,7 @@ This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
 - [About](#about)
-  - [Packed integer pixel formats](#packed-integer-pixel-formats)
+  - [Integer pixel formats](#integer-pixel-formats)
   - [Floating point pixel formats](#floating-point-pixel-formats)
   - [Filtered image sampling and resizing](#filtered-image-sampling-and-resizing)
     - [Filters](#filters)
@@ -58,24 +58,22 @@ Typedarray integer & float pixel buffers w/ customizable formats, blitting, draw
 - XY full pixel & channel-only accessors
 - 12 packed integer and 6 floating point preset formats (see table below)
 - Declarative custom format & optimized code generation
-- Basic shape drawing/filling (circle, line, rect)
-- Flood filling (solid or pattern)
 - HTML canvas creation & `ImageData` utilities
 
-### Packed integer pixel formats
+### Integer pixel formats
 
-All packed integer formats use the canvas native ABGR 32bit format as
-common intermediate for conversions. During conversion to ABGR, channels
-with sizes smaller than 8 bits will be scaled appropriately to ensure an
-as full-range and as linear as possible mapping. E.g. a 4 bit channel
-will be scaled by 255 / 15 = 17.
+All integer formats use the canvas native ABGR 32bit format as common
+intermediate for conversions. During conversion to ABGR, channels with sizes
+smaller than 8 bits will be scaled appropriately to ensure an as full-range and
+as linear as possible mapping. E.g. a 4 bit channel will be scaled by 255 / 15 =
+17.
 
 Format specs can freely control channel layout within current limits:
 
 - Channel sizes: 1 - 32 bits.
 - Storage: 8, 16 or 32 bits per pixel
 
-New formats can be defined via `defPackedFormat()`.
+New formats can be defined via `defIntFormat()`.
 
 | Format ID      | Bits per pixel    | Description                                          |
 |----------------|-------------------|------------------------------------------------------|
@@ -134,7 +132,7 @@ samplers can be created with the following filters & wrap modes:
 - `"repeat"` - edge pixels are repeated
 
 ```ts
-const src = packedBuffer(4, 4, ABGR8888);
+const src = intBuffer(4, 4, ABGR8888);
 
 // fill w/ random colors
 src.forEach((_,i) => 0xff000000 | Math.random() * 0xffffff);
@@ -308,6 +306,7 @@ console.log(clusters);
 
 - [@thi.ng/color](https://github.com/thi-ng/umbrella/tree/develop/packages/color) - Array-based color types, CSS parsing, conversions, transformations, declarative theme generation, gradients, presets
 - [@thi.ng/porter-duff](https://github.com/thi-ng/umbrella/tree/develop/packages/porter-duff) - Porter-Duff operators for packed ints & float-array alpha compositing
+- [@thi.ng/rasterize](https://github.com/thi-ng/umbrella/tree/develop/packages/rasterize) - 2D shape drawing & rasterization
 - [@thi.ng/shader-ast](https://github.com/thi-ng/umbrella/tree/develop/packages/shader-ast) - DSL to define shader code in TypeScript and cross-compile to GLSL, JS and other targets
 - [@thi.ng/webgl](https://github.com/thi-ng/umbrella/tree/develop/packages/webgl) - WebGL & GLSL abstraction layer
 
@@ -334,7 +333,7 @@ node --experimental-repl-await
 > const pixel = await import("@thi.ng/pixel");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 8.87 KB
+Package sizes (gzipped, pre-treeshake): ESM: 8.91 KB
 
 ## Dependencies
 
@@ -386,12 +385,12 @@ Promise
     .then(([img, logo]) => {
 
         // init 16 bit packed RGB pixel buffer from image (resized to 256x256)
-        const buf = pix.PackedBuffer.fromImage(img, pix.RGB565, 256, 256);
+        const buf = intBufferFromImage(img, pix.RGB565, 256, 256);
 
         // create grayscale buffer for logo and use Porter-Duff operator to
         // composite with main image. Since the logo has transparency, we need
         // to premultiply alpha first...
-        pix.PackedBuffer.fromImage(logo, pix.GRAY_ALPHA88)
+        pix.intBufferFromImage(logo, pix.GRAY_ALPHA88)
             .premultiply()
             .blend(SRC_OVER_I, buf, {
                 dx: 10,
@@ -408,7 +407,7 @@ Promise
 
         // create html canvas
         // (returns obj of canvas & 2d context)
-        const ctx = pix.canvas2d(buf.width, buf.height * 3);
+        const ctx = pix.canvas2d(buf.width, buf.height * 3, document.body);
 
         // write pixel buffer to canvas
         buf.blitCanvas(ctx.canvas);
@@ -431,8 +430,6 @@ Promise
 
         // create & write grayscale version
         buf.as(GRAY8).blitCanvas(ctx.canvas, 0, buf.height * 2);
-
-        document.body.appendChild(ctx.canvas);
 });
 ```
 

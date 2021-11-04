@@ -1,6 +1,6 @@
 import type { TypedArray } from "@thi.ng/api";
 import { assert } from "@thi.ng/errors/assert";
-import type { FloatFormat, PackedFormat } from "./api.js";
+import type { FloatFormat, IntFormat } from "./api.js";
 
 /** @internal */
 export const ensureSize = (
@@ -11,12 +11,12 @@ export const ensureSize = (
 ) => assert(data.length >= width * height * stride, "pixel buffer too small");
 
 /** @internal */
-export const ensureChannel = (fmt: PackedFormat | FloatFormat, id: number) => {
+export const ensureChannel = (fmt: IntFormat | FloatFormat, id: number) => {
     const chan = fmt.channels[id];
     assert(chan != null, `invalid channel ID: ${id}`);
     return chan;
 };
 
 /** @internal */
-export const ensureSingleChannel = (fmt: PackedFormat | FloatFormat) =>
+export const ensureSingleChannel = (fmt: IntFormat | FloatFormat) =>
     assert(fmt.channels.length === 1, `require single channel buffer`);

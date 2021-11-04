@@ -1,7 +1,7 @@
 import { Lane } from "../api.js";
-import { defPackedFormat } from "./packed-format.js";
+import { defIntFormat } from "./int-format.js";
 
-export const RGB565 = defPackedFormat({
+export const RGB565 = defIntFormat({
     type: "u16",
     size: 16,
     channels: [

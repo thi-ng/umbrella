@@ -1,7 +1,7 @@
 import type { Fn, Fn2, FnN, UIntArray } from "@thi.ng/api";
 import { isNumber } from "@thi.ng/checks/is-number";
 import { clamp } from "@thi.ng/math/interval";
-import type { BlitOpts, PackedFormat } from "../api.js";
+import type { BlitOpts, IntFormat } from "../api.js";
 
 export const __luminanceABGR: FnN = (c) =>
     (((c >>> 16) & 0xff) * 29 + ((c >>> 8) & 0xff) * 150 + (c & 0xff) * 76) /
@@ -98,7 +98,7 @@ export const __setChannelConvert = (
 
 export const __transformABGR = (
     pix: UIntArray,
-    format: PackedFormat,
+    format: IntFormat,
     fn: Fn<number, number>
 ) => {
     const from = format.fromABGR;

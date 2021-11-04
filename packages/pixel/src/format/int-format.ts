@@ -2,18 +2,18 @@ import type { FnN, FnN2 } from "@thi.ng/api";
 import { assert } from "@thi.ng/errors/assert";
 import { clamp01 } from "@thi.ng/math/interval";
 import type {
-    PackedChannel,
-    PackedChannelSpec,
-    PackedFormat,
-    PackedFormatSpec,
+    IntChannel,
+    IntChannelSpec,
+    IntFormat,
+    IntFormatSpec,
 } from "../api.js";
 import { __compileFromABGR, __compileToABGR } from "../internal/codegen.js";
 
 const defChannel = (
-    ch: PackedChannelSpec,
+    ch: IntChannelSpec,
     idx: number,
     shift: number
-): PackedChannel => {
+): IntChannel => {
     const num = 1 << ch.size;
     const mask0 = num - 1;
     const maskA = (mask0 << shift) >>> 0;
@@ -36,15 +36,15 @@ const defChannel = (
     };
 };
 
-export const defPackedFormat = (fmt: PackedFormatSpec): PackedFormat => {
+export const defIntFormat = (fmt: IntFormatSpec): IntFormat => {
     assert(fmt.channels.length > 0, "no channel specs given");
     const channels = fmt.channels.reduce(
         ([defs, shift], ch, i) => {
             shift -= ch.size;
             defs.push(defChannel(ch, i, shift));
-            return <[PackedChannel[], number]>[defs, shift];
+            return <[IntChannel[], number]>[defs, shift];
         },
-        <[PackedChannel[], number]>[[], fmt.size]
+        <[IntChannel[], number]>[[], fmt.size]
     )[0];
     return {
         __packed: true,

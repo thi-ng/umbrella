@@ -53,6 +53,7 @@
         "32bit",
         "alpha",
         "array",
+        "abgr",
         "argb",
         "binary",
         "blend",
@@ -64,19 +65,20 @@
         "conversion",
         "convolution",
         "datastructure",
-        "draw",
         "float",
         "format",
         "gaussian",
         "grayscale",
         "image",
-        "interval",
+        "interpolation",
         "k-means",
         "multiformat",
         "normal",
         "pixel",
+        "pyramid",
         "resize",
         "rgb565",
+        "sample",
         "sharpen",
         "typedarray",
         "typescript"
@@ -169,8 +171,8 @@
         "./format/indexed": {
             "import": "./format/indexed.js"
         },
-        "./format/packed-format": {
-            "import": "./format/packed-format.js"
+        "./format/int-format": {
+            "import": "./format/int-format.js"
         },
         "./format/rgb565": {
             "import": "./format/rgb565.js"
@@ -178,11 +180,11 @@
         "./format/rgb888": {
             "import": "./format/rgb888.js"
         },
+        "./int": {
+            "import": "./int.js"
+        },
         "./normal-map": {
             "import": "./normal-map.js"
-        },
-        "./packed": {
-            "import": "./packed.js"
         },
         "./pyramid": {
             "import": "./pyramid.js"
@@ -198,6 +200,7 @@
         "related": [
             "color",
             "porter-duff",
+            "rasterize",
             "shader-ast",
             "webgl"
         ],

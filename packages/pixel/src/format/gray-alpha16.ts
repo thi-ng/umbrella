@@ -1,8 +1,8 @@
 import { Lane } from "../api.js";
 import { __luminanceABGR } from "../internal/utils.js";
-import { defPackedFormat } from "./packed-format.js";
+import { defIntFormat } from "./int-format.js";
 
-export const GRAY_ALPHA16 = defPackedFormat({
+export const GRAY_ALPHA16 = defIntFormat({
     type: "u32",
     size: 32,
     channels: [

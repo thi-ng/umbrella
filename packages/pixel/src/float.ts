@@ -13,16 +13,17 @@ import type {
     IBlend,
     IBlit,
     IInvert,
+    IntFormat,
     IPixelBuffer,
     IResizable,
     IToImageData,
-    PackedFormat,
 } from "./api.js";
 import { ensureChannel, ensureSize } from "./checks.js";
 import { defFloatFormat } from "./format/float-format.js";
 import { FLOAT_GRAY } from "./format/float-gray.js";
+import { FLOAT_RGBA } from "./index.js";
+import { IntBuffer, intBufferFromCanvas, intBufferFromImage } from "./int.js";
 import { __clampRegion, __prepRegions } from "./internal/utils.js";
-import { PackedBuffer } from "./packed.js";
 import { defSampler } from "./sample.js";
 
 /**
@@ -40,16 +41,51 @@ export function floatBuffer(
     data?: Float32Array
 ): FloatBuffer;
 export function floatBuffer(
-    src: PackedBuffer,
+    src: IntBuffer,
     fmt: FloatFormat | FloatFormatSpec
 ): FloatBuffer;
 export function floatBuffer(...args: any[]) {
-    return args[0] instanceof PackedBuffer
+    return args[0] instanceof IntBuffer
         ? // @ts-ignore
-          FloatBuffer.fromPacked(...args)
+          floatBufferFromInt(...args)
         : // @ts-ignore
           new FloatBuffer(...args);
 }
+
+/**
+ * Creates a new `FloatBuffer` from given {@link IntBuffer} and using
+ * provided {@link FloatFormat}.
+ *
+ * @remarks
+ * See {@link FloatBuffer.as} for reverse operation.
+ *
+ * @param src
+ * @param fmt
+ */
+export const floatBufferFromInt = (
+    src: IntBuffer,
+    fmt: FloatFormat | FloatFormatSpec
+) => {
+    const dest = new FloatBuffer(src.width, src.height, fmt);
+    const { data: dbuf, format: dfmt, stride } = dest;
+    const { data: sbuf, format: sfmt } = src;
+    for (let i = sbuf.length; --i >= 0; ) {
+        dbuf.set(dfmt.fromABGR(sfmt.toABGR(sbuf[i])), i * stride);
+    }
+    return dest;
+};
+
+export const floatBufferFromImage = (
+    img: HTMLImageElement,
+    fmt: FloatFormat | FloatFormatSpec = FLOAT_RGBA,
+    width?: number,
+    height = width
+) => floatBufferFromInt(intBufferFromImage(img, undefined, width, height), fmt);
+
+export const floatBufferFromCanvas = (
+    canvas: HTMLCanvasElement,
+    fmt: FloatFormat = FLOAT_RGBA
+) => floatBufferFromInt(intBufferFromCanvas(canvas), fmt);
 
 export class FloatBuffer
     implements
@@ -62,26 +98,6 @@ export class FloatBuffer
         ICopy<FloatBuffer>,
         IEmpty<FloatBuffer>
 {
-    /**
-     * Creates a new `FloatBuffer` from given {@link PackedBuffer} and using
-     * provided {@link FloatFormat}.
-     *
-     * @remarks
-     * See {@link FloatBuffer.as} for reverse operation.
-     *
-     * @param src
-     * @param fmt
-     */
-    static fromPacked(src: PackedBuffer, fmt: FloatFormat | FloatFormatSpec) {
-        const dest = new FloatBuffer(src.width, src.height, fmt);
-        const { data: dbuf, format: dfmt, stride } = dest;
-        const { data: sbuf, format: sfmt } = src;
-        for (let i = sbuf.length; --i >= 0; ) {
-            dbuf.set(dfmt.fromABGR(sfmt.toABGR(sbuf[i])), i * stride);
-        }
-        return dest;
-    }
-
     readonly width: number;
     readonly height: number;
     readonly stride: number;
@@ -114,9 +130,9 @@ export class FloatBuffer
         return this.data;
     }
 
-    as(fmt: PackedFormat) {
+    as(fmt: IntFormat) {
         const { width, height, stride, data, format: sfmt } = this;
-        const dest = new PackedBuffer(width, height, fmt);
+        const dest = new IntBuffer(width, height, fmt);
         const dpixels = dest.data;
         for (let i = 0, j = 0, n = data.length; i < n; i += stride, j++) {
             dpixels[j] = fmt.fromABGR(

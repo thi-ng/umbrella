@@ -1,5 +1,5 @@
 import type { Fn } from "@thi.ng/api";
-import type { PackedChannel } from "../api.js";
+import type { IntChannel } from "../api.js";
 import { __luminanceABGR } from "./utils.js";
 
 const compileLShift = (x: string, shift: number) =>
@@ -42,7 +42,7 @@ export const __compileGrayToABGR = (size: number) => {
 };
 
 /** @internal */
-export const __compileFromABGR = (chans: PackedChannel[]) =>
+export const __compileFromABGR = (chans: IntChannel[]) =>
     <Fn<number, number>>new Function(
         "x",
         "return (" +
@@ -56,7 +56,7 @@ export const __compileFromABGR = (chans: PackedChannel[]) =>
     );
 
 /** @internal */
-export const __compileToABGR = (chans: PackedChannel[], hasAlpha: boolean) => {
+export const __compileToABGR = (chans: IntChannel[], hasAlpha: boolean) => {
     const body = chans
         .map((ch) => {
             if (ch.size !== 8) {

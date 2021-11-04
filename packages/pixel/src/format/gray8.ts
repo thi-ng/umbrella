@@ -1,8 +1,8 @@
 import { Lane } from "../api.js";
 import { __luminanceABGR } from "../internal/utils.js";
-import { defPackedFormat } from "./packed-format.js";
+import { defIntFormat } from "./int-format.js";
 
-export const GRAY8 = defPackedFormat({
+export const GRAY8 = defIntFormat({
     type: "u8",
     size: 8,
     channels: [{ size: 8, lane: Lane.RED }],

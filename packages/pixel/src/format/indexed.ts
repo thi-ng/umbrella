@@ -3,10 +3,10 @@ import { swapLane13 } from "@thi.ng/binary/swizzle";
 import { argminN } from "@thi.ng/distance/argmin";
 import { assert } from "@thi.ng/errors/assert";
 import { Lane } from "../api.js";
-import { defPackedFormat } from "./packed-format.js";
+import { defIntFormat } from "./int-format.js";
 
 /**
- * Creates an indexed color {@link PackedFormat} using the provided palette (in
+ * Creates an indexed color {@link IntFormat} using the provided palette (in
  * {@link ARGB8888} or {@link ABGR8888} formats, max. 256 colors).
  *
  * @remarks
@@ -21,7 +21,7 @@ export const defIndexed = (palette: NumericArray, isABGR = false) => {
     const n = palette.length;
     assert(n > 0 && n <= 256, `invalid palette size: ${n}`);
     palette = isABGR ? palette : palette.map(swapLane13);
-    return defPackedFormat({
+    return defIntFormat({
         type: "u8",
         size: 8,
         channels: [{ size: 8, lane: Lane.RED }],

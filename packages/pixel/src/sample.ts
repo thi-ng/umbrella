@@ -11,18 +11,18 @@ import type {
     Wrap,
 } from "./api.js";
 import type { FloatBuffer } from "./float.js";
-import type { PackedBuffer } from "./packed.js";
+import type { IntBuffer } from "./int.js";
 
-export function defSampler(
-    src: PackedBuffer,
-    filter?: Filter,
-    wrap?: Wrap
-): IntSampler;
 export function defSampler(
     src: FloatBuffer,
     filter?: Filter,
     wrap?: Wrap
 ): FloatSampler;
+export function defSampler(
+    src: IntBuffer,
+    filter?: Filter,
+    wrap?: Wrap
+): IntSampler;
 export function defSampler(
     src: IPixelBuffer,
     filter: Filter = "linear",
@@ -53,7 +53,7 @@ export function defSampler(
                   cw: (src) => bicubicFloat(src, sampleFNW(src)),
                   cr: (src) => bicubicFloat(src, sampleFNR(src)),
               }
-            : <IObjectOf<Fn<PackedBuffer, IntSampler>>>{
+            : <IObjectOf<Fn<IntBuffer, IntSampler>>>{
                   nc1: sampleINC,
                   nw1: sampleINW,
                   nr1: sampleINR,
@@ -156,7 +156,7 @@ const bilinearGrayF = (sample: IntSampler): FloatSampler => {
     return (x, y) => [sample(x, y)];
 };
 
-const bilinearABGR = (src: PackedBuffer, sample1: IntSampler): IntSampler => {
+const bilinearABGR = (src: IntBuffer, sample1: IntSampler): IntSampler => {
     const { fromABGR, toABGR } = src.format;
     const u32 = new Uint32Array(4);
     const u8 = new Uint8Array(u32.buffer);
@@ -235,7 +235,7 @@ const bicubicGray =
         );
     };
 
-const bicubicGrayI = (src: PackedBuffer, sample: IntSampler): IntSampler => {
+const bicubicGrayI = (src: IntBuffer, sample: IntSampler): IntSampler => {
     const max = src.format.channels[0].mask0;
     sample = bicubicGray(sample);
     return (x, y) => clamp(sample(x, y), 0, max);
@@ -282,7 +282,7 @@ const mixBicubicChanClamped = (
     s = 4
 ) => clamp(mixBicubicChan(buf, u, v, i, s), 0, 255);
 
-const bicubicABGR = (src: PackedBuffer, sample: IntSampler): IntSampler => {
+const bicubicABGR = (src: IntBuffer, sample: IntSampler): IntSampler => {
     const { fromABGR, toABGR } = src.format;
     const u32 = new Uint32Array(16);
     const u8 = new Uint8Array(u32.buffer);

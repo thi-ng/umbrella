@@ -10,20 +10,20 @@ import {
     GRAY8,
     GRAY_ALPHA16,
     GRAY_ALPHA8,
-    PackedFormat,
+    IntFormat,
     RGB565,
     RGB888,
-} from "../src/index.js"
+} from "../src/index.js";
 // import { equiv } from "@thi.ng/equiv";
 
-const testFromABGR = (fmt: PackedFormat, specs: number[]) => {
+const testFromABGR = (fmt: IntFormat, specs: number[]) => {
     assert.strictEqual(fmt.fromABGR(0xff000000) >>> 0, specs[0], "from_a");
     assert.strictEqual(fmt.fromABGR(0xffff0000) >>> 0, specs[1], "from_b");
     assert.strictEqual(fmt.fromABGR(0xff00ff00) >>> 0, specs[2], "from_g");
     assert.strictEqual(fmt.fromABGR(0xff0000ff) >>> 0, specs[3], "from_r");
 };
 
-const testToABGR = (fmt: PackedFormat, specs: number[]) => {
+const testToABGR = (fmt: IntFormat, specs: number[]) => {
     assert.strictEqual(fmt.toABGR(specs[0]) >>> 0, 0xff000000, "to_a");
     assert.strictEqual(fmt.toABGR(specs[1]) >>> 0, 0xffff0000, "to_b");
     assert.strictEqual(fmt.toABGR(specs[2]) >>> 0, 0xff00ff00, "to_g");
@@ -93,26 +93,26 @@ group("pixel", {
 
     // "ABGR.getChannel": () => {
     //     const buf = new ABGRBuffer(1, 1, new Uint32Array([0xffaabbcc]));
-    //     assert.strictEqual(buf.getChannel(Channel.RED).pixels[0], 0xcc, "red");
-    //     assert.strictEqual(buf.getChannel(Channel.GREEN).pixels[0], 0xbb, "green");
-    //     assert.strictEqual(buf.getChannel(Channel.BLUE).pixels[0], 0xaa, "blue");
-    //     assert.strictEqual(buf.getChannel(Channel.ALPHA).pixels[0], 0xff, "alpha");
+    //     assert.strictEqual(buf.getChannel(Channel.RED).data[0], 0xcc, "red");
+    //     assert.strictEqual(buf.getChannel(Channel.GREEN).data[0], 0xbb, "green");
+    //     assert.strictEqual(buf.getChannel(Channel.BLUE).data[0], 0xaa, "blue");
+    //     assert.strictEqual(buf.getChannel(Channel.ALPHA).data[0], 0xff, "alpha");
     // },
 
     // "ARGB.getChannel": () => {
     //     const buf = new ARGBBuffer(1, 1, new Uint32Array([0xffaabbcc]));
-    //     assert.strictEqual(buf.getChannel(Channel.RED).pixels[0], 0xaa, "red");
-    //     assert.strictEqual(buf.getChannel(Channel.GREEN).pixels[0], 0xbb, "green");
-    //     assert.strictEqual(buf.getChannel(Channel.BLUE).pixels[0], 0xcc, "blue");
-    //     assert.strictEqual(buf.getChannel(Channel.ALPHA).pixels[0], 0xff, "alpha");
+    //     assert.strictEqual(buf.getChannel(Channel.RED).data[0], 0xaa, "red");
+    //     assert.strictEqual(buf.getChannel(Channel.GREEN).data[0], 0xbb, "green");
+    //     assert.strictEqual(buf.getChannel(Channel.BLUE).data[0], 0xcc, "blue");
+    //     assert.strictEqual(buf.getChannel(Channel.ALPHA).data[0], 0xff, "alpha");
     // },
 
     // "RGBAFloat.getChannel": () => {
     //     const buf = new RGBAFloatBuffer(1, 1, new Float32Array([1, 2, 3, 4]));
-    //     assert.strictEqual(buf.getChannel(Channel.RED).pixels[0], 1, "red");
-    //     assert.strictEqual(buf.getChannel(Channel.GREEN).pixels[0], 2, "green");
-    //     assert.strictEqual(buf.getChannel(Channel.BLUE).pixels[0], 3, "blue");
-    //     assert.strictEqual(buf.getChannel(Channel.ALPHA).pixels[0], 4, "alpha");
+    //     assert.strictEqual(buf.getChannel(Channel.RED).data[0], 1, "red");
+    //     assert.strictEqual(buf.getChannel(Channel.GREEN).data[0], 2, "green");
+    //     assert.strictEqual(buf.getChannel(Channel.BLUE).data[0], 3, "blue");
+    //     assert.strictEqual(buf.getChannel(Channel.ALPHA).data[0], 4, "alpha");
     // },
 
     // "ABGR.setChannel": () => {
@@ -122,13 +122,13 @@ group("pixel", {
     //     const b = new Uint8Buffer(1, 1, new Uint8Array([0x33]));
     //     const a = new Uint8Buffer(1, 1, new Uint8Array([0x44]));
     //     // prettier-ignore
-    //     assert.strictEqual(buf.setChannel(Channel.RED,r).pixels[0], 0xffaabb11, "red");
+    //     assert.strictEqual(buf.setChannel(Channel.RED,r).data[0], 0xffaabb11, "red");
     //     // prettier-ignore
-    //     assert.strictEqual(buf.setChannel(Channel.GREEN,g).pixels[0], 0xffaa2211, "green");
+    //     assert.strictEqual(buf.setChannel(Channel.GREEN,g).data[0], 0xffaa2211, "green");
     //     // prettier-ignore
-    //     assert.strictEqual(buf.setChannel(Channel.BLUE,b).pixels[0], 0xff332211, "blue");
+    //     assert.strictEqual(buf.setChannel(Channel.BLUE,b).data[0], 0xff332211, "blue");
     //     // prettier-ignore
-    //     assert.strictEqual(buf.setChannel(Channel.ALPHA,a).pixels[0], 0x44332211, "alpha");
+    //     assert.strictEqual(buf.setChannel(Channel.ALPHA,a).data[0], 0x44332211, "alpha");
     // },
 
     // "ARGB.setChannel": () => {
@@ -138,13 +138,13 @@ group("pixel", {
     //     const b = new Uint8Buffer(1, 1, new Uint8Array([0x33]));
     //     const a = new Uint8Buffer(1, 1, new Uint8Array([0x44]));
     //     // prettier-ignore
-    //     assert.strictEqual(buf.setChannel(Channel.RED,r).pixels[0], 0xff11bbcc, "red");
+    //     assert.strictEqual(buf.setChannel(Channel.RED,r).data[0], 0xff11bbcc, "red");
     //     // prettier-ignore
-    //     assert.strictEqual(buf.setChannel(Channel.GREEN,g).pixels[0], 0xff1122cc, "green");
+    //     assert.strictEqual(buf.setChannel(Channel.GREEN,g).data[0], 0xff1122cc, "green");
     //     // prettier-ignore
-    //     assert.strictEqual(buf.setChannel(Channel.BLUE,b).pixels[0], 0xff112233, "blue");
+    //     assert.strictEqual(buf.setChannel(Channel.BLUE,b).data[0], 0xff112233, "blue");
     //     // prettier-ignore
-    //     assert.strictEqual(buf.setChannel(Channel.ALPHA,a).pixels[0], 0x44112233, "alpha");
+    //     assert.strictEqual(buf.setChannel(Channel.ALPHA,a).data[0], 0x44112233, "alpha");
     // },
 
     // "RGBAFloat.setChannel": () => {
@@ -154,12 +154,12 @@ group("pixel", {
     //     const b = new FloatBuffer(1, 1, new Float32Array([0x33]));
     //     const a = new FloatBuffer(1, 1, new Float32Array([0x44]));
     //     // prettier-ignore
-    //     assert.ok(equiv(buf.setChannel(Channel.RED,r).pixels, [0x11,2,3,4]), "red");
+    //     assert.ok(equiv(buf.setChannel(Channel.RED,r).data, [0x11,2,3,4]), "red");
     //     // prettier-ignore
-    //     assert.ok(equiv(buf.setChannel(Channel.GREEN,g).pixels, [0x11,0x22,3,4]), "green");
+    //     assert.ok(equiv(buf.setChannel(Channel.GREEN,g).data, [0x11,0x22,3,4]), "green");
     //     // prettier-ignore
-    //     assert.ok(equiv(buf.setChannel(Channel.BLUE,b).pixels, [0x11,0x22,0x33,4]), "blue");
+    //     assert.ok(equiv(buf.setChannel(Channel.BLUE,b).data, [0x11,0x22,0x33,4]), "blue");
     //     // prettier-ignore
-    //     assert.ok(equiv(buf.setChannel(Channel.ALPHA,a).pixels, [0x11,0x22,0x33,0x44]), "alpha");
+    //     assert.ok(equiv(buf.setChannel(Channel.ALPHA,a).data, [0x11,0x22,0x33,0x44]), "alpha");
     // },
 });

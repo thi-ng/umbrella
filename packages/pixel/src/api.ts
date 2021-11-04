@@ -66,7 +66,7 @@ export interface IABGRConvert<T> {
     toABGR: Fn<T, number>;
 }
 
-export interface PackedChannelSpec {
+export interface IntChannelSpec {
     /**
      * Channel size in bits (1-8)
      */
@@ -75,12 +75,12 @@ export interface PackedChannelSpec {
      * Related ABGR lane this channel is mapped from/to. Only used if
      * parent format uses auto-generated {@link IABGRConvert} implementation
      * (i.e. only if no-user defined converters are given to
-     * {@link PackedFormatSpec}).
+     * {@link IntFormatSpec}).
      */
     lane?: Lane;
 }
 
-export interface PackedChannel {
+export interface IntChannel {
     /**
      * Channel size in bits (1-8)
      */
@@ -128,9 +128,9 @@ export interface PackedChannel {
 }
 
 /**
- * Format configuration passed to {@link defPackedFormat}.
+ * Format configuration passed to {@link defIntFormat}.
  */
-export interface PackedFormatSpec extends Partial<IABGRConvert<number>> {
+export interface IntFormatSpec extends Partial<IABGRConvert<number>> {
     /**
      * Storage / typed array type
      */
@@ -149,17 +149,17 @@ export interface PackedFormatSpec extends Partial<IABGRConvert<number>> {
     /**
      * Individual channel configurations
      */
-    channels: PackedChannelSpec[];
+    channels: IntChannelSpec[];
 }
 
 /**
- * Compiled format object returned by {@link defPackedFormat}.
+ * Compiled format object returned by {@link defIntFormat}.
  */
-export interface PackedFormat extends IABGRConvert<number> {
+export interface IntFormat extends IABGRConvert<number> {
     type: UintType;
     size: number;
     alpha: number;
-    channels: PackedChannel[];
+    channels: IntChannel[];
     // internal marker only
     readonly __packed: true;
 }

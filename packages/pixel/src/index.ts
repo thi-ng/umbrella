@@ -3,13 +3,13 @@ export * from "./canvas.js";
 export * from "./convolve.js";
 export * from "./dominant-colors.js";
 export * from "./float.js";
+export * from "./int.js";
 export * from "./normal-map.js";
-export * from "./packed.js";
 export * from "./pyramid.js";
 export * from "./range.js";
 export * from "./sample.js";
 
-export * from "./format/packed-format.js";
+export * from "./format/int-format.js";
 export * from "./format/abgr8888.js";
 export * from "./format/alpha8.js";
 export * from "./format/argb1555.js";
