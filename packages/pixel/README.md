@@ -198,7 +198,7 @@ and
 [`convolveImage()`](https://docs.thi.ng/umbrella/pixel/modules.html#convolveImage).
 
 See
-[ConvolveOpts](https://docs.thi.ng/umbrella/pixel/interfaces/convolveopts.html)
+[ConvolveOpts](https://docs.thi.ng/umbrella/pixel/interfaces/ConvolveOpts.html)
 for config options.
 
 ```js

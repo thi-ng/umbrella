@@ -14,7 +14,7 @@ This project is part of the
 ${pkg.description}
 
 The functions in this package can be used with any
-[`IGrid2D`](https://docs.thi.ng/umbrella/api/interfaces/igrid2d.html) compatible
+[`IGrid2D`](https://docs.thi.ng/umbrella/api/interfaces/IGrid2D.html) compatible
 grid/image type (e.g. those provided by
 [@thi.ng/pixel](https://github.com/thi-ng/umbrella/tree/develop/packages/pixel)
 or

@@ -112,7 +112,7 @@ elements of the given array/set must match for the query to succeed (see
 examples/differences further below).
 
 The behavior can be chosen via the [`intersect` query
-option](https://docs.thi.ng/umbrella/oquery/interfaces/queryopts.html#intersect).
+option](https://docs.thi.ng/umbrella/oquery/interfaces/QueryOpts.html#intersect).
 
 ### Query patterns
 

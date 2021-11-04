@@ -68,9 +68,9 @@ value is used as (text) body of an element (or an element/component itself),
 only that body/subtree in the target DOM will be impacted/updated directly...
 
 The package provides an interface
-[`IComponent`](https://docs.thi.ng/umbrella/rdom/interfaces/icomponent.html)
+[`IComponent`](https://docs.thi.ng/umbrella/rdom/interfaces/IComponent.html)
 (with a super simple life cycle API), a base component class
-[`Component`](https://docs.thi.ng/umbrella/rdom/classes/component.html) for stubbing and a
+[`Component`](https://docs.thi.ng/umbrella/rdom/classes/Component.html) for stubbing and a
 number of fundamental control constructs & component-wrappers for composing more
 complex components and to reduce boilerplate for various situations. Whilst
 targetting a standard JS DOM by default, each component can decide for itself
@@ -89,7 +89,7 @@ draw calls.
 Since there's no central coordination in _rdom_ (neither explicitly nor
 implicitly), each component can (and does) update whenever its state value has
 changed. Likewise, components are free to directly manipulate the DOM through
-other means, as hinted at earlier. Various _rdom_ control constructs are dispatching component updates via a central scheduler. By default this is only a dummy implementation which processes tasks immediately. However, as usual _rdom_ only relies on the [`IScheduler`](https://docs.thi.ng/umbrella/rdom/interfaces/ischeduler.html) interface and so supports other implementations, like [`RAFScheduler`](https://docs.thi.ng/umbrella/rdom/classes/rafscheduler.html).
+other means, as hinted at earlier. Various _rdom_ control constructs are dispatching component updates via a central scheduler. By default this is only a dummy implementation which processes tasks immediately. However, as usual _rdom_ only relies on the [`IScheduler`](https://docs.thi.ng/umbrella/rdom/interfaces/IScheduler.html) interface and so supports other implementations, like [`RAFScheduler`](https://docs.thi.ng/umbrella/rdom/classes/RAFScheduler.html).
 
 The [`IComponent`](https://docs.thi.ng/umbrella/rdom/interfaces/icomponent.html)
 interface is at the heart of _rdom_. It defines three lifecycle methods to:

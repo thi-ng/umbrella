@@ -129,7 +129,7 @@ try {
 
 Usage information can be generated via `usage()` and is automatically triggered
 via the special `--help` option (configurable, see
-[ParseOpts](https://docs.thi.ng/umbrella/args/interfaces/parseopts.html)).
+[ParseOpts](https://docs.thi.ng/umbrella/args/interfaces/ParseOpts.html)).
 
 Each arg can be associated with arbitrary group IDs, which are then used to
 segment usage output. By default, `flag()` args are assigned to a `"flags"`
@@ -139,7 +139,7 @@ factory function.
 
 By default, ANSI colors are used to format the result string of `usage()`, but
 can be disabled (see
-[`UsageOpts`](https://docs.thi.ng/umbrella/args/interfaces/usageopts.html)).
+[`UsageOpts`](https://docs.thi.ng/umbrella/args/interfaces/UsageOpts.html)).
 
 ```text
 ts-node index.ts --help
