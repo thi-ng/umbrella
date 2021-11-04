@@ -1,6 +1,7 @@
 import type {
     ArrayLikeIterable,
     Fn,
+    Fn0,
     Fn2,
     Fn3,
     Fn4,
@@ -124,6 +125,8 @@ export type VecOpNNO<T> = (out: Vec | null, a: number, b: number, c?: T) => Vec;
 export type VecOpRoV<T> = Fn<ReadonlyVec, T>;
 export type VecOpRoVV<T> = FnU2<ReadonlyVec, T>;
 export type VecOpRoVVO<T, O> = (a: ReadonlyVec, b: ReadonlyVec, c?: O) => T;
+
+export type VecOpFN = (out: Vec | null, fn: Fn0<number>, n?: number) => Vec;
 
 export type VecOpSV = (
     out: Vec | null,
@@ -380,6 +383,22 @@ export type VecOpSGVVO<O> = (
     sb?: number
 ) => Vec;
 
+export type VecOpSGFN = (
+    out: Vec | null,
+    num: number,
+    fn: Fn0<number>,
+    n?: number,
+    io?: number,
+    so?: number
+) => Vec;
+export type VecOpSFN = (
+    out: Vec | null,
+    fn: Fn0<number>,
+    n?: number,
+    io?: number,
+    so?: number
+) => Vec;
+
 export type MultiVecOpImpl<T> = T & MultiVecOp<T>;
 
 export type MultiVecOpV = MultiVecOpImpl<VecOpV>;
@@ -401,6 +420,9 @@ export type MultiVecOpNNO<T> = MultiVecOpImpl<VecOpNNO<T>>;
 export type MultiVecOpRoV<T> = MultiVecOpImpl<VecOpRoV<T>>;
 export type MultiVecOpRoVV<T> = MultiVecOpImpl<VecOpRoVV<T>>;
 export type MultiVecOpRoVVO<T, O> = MultiVecOpImpl<VecOpRoVVO<T, O>>;
+
+export type MultiVecOpFN = MultiVecOpImpl<VecOpFN>;
+export type MultiVecOpSFN = MultiVecOpImpl<VecOpSFN>;
 
 export type BVecOpRoV<T> = Fn<ReadonlyBVec, T>;
 export type BVecOpV = Fn2<BVec | null, ReadonlyBVec, BVec>;

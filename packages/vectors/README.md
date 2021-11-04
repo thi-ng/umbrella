@@ -177,7 +177,7 @@ node --experimental-repl-await
 > const vectors = await import("@thi.ng/vectors");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 12.85 KB
+Package sizes (gzipped, pre-treeshake): ESM: 13.07 KB
 
 ## Dependencies
 
@@ -542,12 +542,14 @@ All ops support custom PRNG impls based on the
 [@thi.ng/random](https://github.com/thi-ng/umbrella/tree/develop/packages/random)
 `IRandom` interface and use `Math.random` by default:
 
-| Function     | Generic | Fixed | Strided | Int | Comments |
-|--------------|---------|-------|---------|-----|----------|
-| `jitter`     | ✓       |       |         |     |          |
-| `randMinMax` | ✓       | 2-4   | S2-S4   |     |          |
-| `randNorm`   | ✓       | 2-4   | S2-S4   |     |          |
-| `random`     | ✓       | 2-4   | S2-S4   |     |          |
+| Function          | Generic | Fixed | Strided | Int | Comments |
+|-------------------|---------|-------|---------|-----|----------|
+| `jitter`          | ✓       |       |         |     |          |
+| `randMinMax`      | ✓       | 2-4   | S2-S4   |     |          |
+| `randNorm`        | ✓       | 2-4   | S2-S4   |     |          |
+| `randNormDistrib` | ✓       | 2-4   | S2-S4   |     |          |
+| `random`          | ✓       | 2-4   | S2-S4   |     |          |
+| `randomDistrib`   | ✓       | 2-4   | S2-S4   |     |          |
 
 ### Unary vector math ops
 

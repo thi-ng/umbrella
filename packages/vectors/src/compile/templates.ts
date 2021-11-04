@@ -28,6 +28,8 @@ export const SARGS_VVV = "io=0,ia=0,ib=0,ic=0,so=1,sa=1,sb=1,sc=1";
 export const DEFAULT_OUT = "!o&&(o=a);";
 /** @internal */
 export const NEW_OUT = "!o&&(o=[]);";
+/** @internal */
+export const NEW_OUT_A = "!a&&(a=[]);";
 
 /** @internal */
 // prettier-ignore
