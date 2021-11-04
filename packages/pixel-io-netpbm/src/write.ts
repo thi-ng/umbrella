@@ -1,4 +1,4 @@
-import type { PackedBuffer } from "@thi.ng/pixel";
+import type { IntBuffer } from "@thi.ng/pixel";
 import { GRAY16 } from "@thi.ng/pixel/format/gray16";
 
 const formatComments = (
@@ -6,7 +6,7 @@ const formatComments = (
 ) => comments.map((x) => `# ${x}`).join("\n");
 
 /**
- * Initializes byte array & PBM header for given {@link PackedBuffer} and format
+ * Initializes byte array & PBM header for given {@link IntBuffer} and format
  * details.
  *
  * @param magic
@@ -20,7 +20,7 @@ const initHeader = (
     magic: string,
     limits: number,
     size: number,
-    buf: PackedBuffer,
+    buf: IntBuffer,
     comments?: string[]
 ) => {
     const { width, height } = buf;
@@ -35,7 +35,7 @@ const initHeader = (
 };
 
 /**
- * Converts a {@link PackedBuffer} into a 1bit PBM byte array (binary format).
+ * Converts a {@link IntBuffer} into a 1bit PBM byte array (binary format).
  *
  * @remarks
  * Reference: http://netpbm.sourceforge.net/doc/pbm.html
@@ -43,7 +43,7 @@ const initHeader = (
  * @param buf
  * @param comments
  */
-export const asPBM = (buf: PackedBuffer, comments?: string[]) => {
+export const asPBM = (buf: IntBuffer, comments?: string[]) => {
     const { data, width, height } = buf;
     const { dest, start, abgr } = initHeader(
         "P4",
@@ -69,7 +69,7 @@ export const asPBM = (buf: PackedBuffer, comments?: string[]) => {
 };
 
 /**
- * Converts a {@link PackedBuffer} into a 8bit grayscale PGM byte array (binary
+ * Converts a {@link IntBuffer} into a 8bit grayscale PGM byte array (binary
  * format).
  *
  * @remarks
@@ -78,7 +78,7 @@ export const asPBM = (buf: PackedBuffer, comments?: string[]) => {
  * @param buf
  * @param comments
  */
-export const asPGM = (buf: PackedBuffer, comments?: string[]) => {
+export const asPGM = (buf: IntBuffer, comments?: string[]) => {
     const { data, width, height } = buf;
     const { dest, start, abgr } = initHeader(
         "P5",
@@ -94,7 +94,7 @@ export const asPGM = (buf: PackedBuffer, comments?: string[]) => {
 };
 
 /**
- * Converts a {@link PackedBuffer} into a 16bit grayscale PGM byte array (binary
+ * Converts a {@link IntBuffer} into a 16bit grayscale PGM byte array (binary
  * format).
  *
  * @remarks
@@ -103,7 +103,7 @@ export const asPGM = (buf: PackedBuffer, comments?: string[]) => {
  * @param buf
  * @param comments
  */
-export const asPGM16 = (buf: PackedBuffer, comments?: string[]) => {
+export const asPGM16 = (buf: IntBuffer, comments?: string[]) => {
     if (buf.format !== GRAY16) buf = buf.as(GRAY16);
     const { data, width, height } = buf;
     const { dest, start } = initHeader(
@@ -121,7 +121,7 @@ export const asPGM16 = (buf: PackedBuffer, comments?: string[]) => {
 };
 
 /**
- * Converts a {@link PackedBuffer} into a 24bit PPM byte array (binary format).
+ * Converts a {@link IntBuffer} into a 24bit PPM byte array (binary format).
  *
  * @remarks
  * Reference: http://netpbm.sourceforge.net/doc/ppm.html
@@ -129,7 +129,7 @@ export const asPGM16 = (buf: PackedBuffer, comments?: string[]) => {
  * @param buf
  * @param comments
  */
-export const asPPM = (buf: PackedBuffer, comments?: string[]) => {
+export const asPPM = (buf: IntBuffer, comments?: string[]) => {
     const { data, width, height } = buf;
     const { dest, start, abgr } = initHeader(
         "P6",

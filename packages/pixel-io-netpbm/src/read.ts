@@ -4,7 +4,7 @@ import { unsupported } from "@thi.ng/errors/unsupported";
 import { GRAY16 } from "@thi.ng/pixel/format/gray16";
 import { GRAY8 } from "@thi.ng/pixel/format/gray8";
 import { RGB888 } from "@thi.ng/pixel/format/rgb888";
-import { packedBuffer } from "@thi.ng/pixel/packed";
+import { intBuffer } from "@thi.ng/pixel/int";
 
 const isLinebreak = (c: number) => c === 0xa;
 
@@ -73,7 +73,7 @@ export const parseHeader = (src: Uint8Array) => {
 
 /**
  * Takes a PBM/PGM/PPM file as byte array and parses it into a
- * {@link @thi.ng/pixel#PackedBuffer} of corresponding format.
+ * {@link @thi.ng/pixel#IntBuffer} of corresponding format.
  *
  * @remarks
  * Depending on header information, the following rules apply:
@@ -106,7 +106,7 @@ export const read = (src: Uint8Array) => {
 
 /**
  * Reads pixels from given 1bit PBM file byte buffer, starting at index `i` and
- * returns {@link @thi.ng/pixel#PackedBuffer} in `GRAY8` format (due to current
+ * returns {@link @thi.ng/pixel#IntBuffer} in `GRAY8` format (due to current
  * lack of true 1bit format).
  *
  * @param src
@@ -120,7 +120,7 @@ export const readPBM = (
     width: number,
     height: number
 ) => {
-    const buf = packedBuffer(width, height, GRAY8);
+    const buf = intBuffer(width, height, GRAY8);
     const data = buf.data;
     const w1 = width - 1;
     for (let y = 0, j = 0; y < height; y++) {
@@ -134,7 +134,7 @@ export const readPBM = (
 
 /**
  * Reads pixels from given 8bit PGM file byte buffer, starting at index `i` and
- * returns {@link @thi.ng/pixel#PackedBuffer} in `GRAY8` format. If needed,
+ * returns {@link @thi.ng/pixel#IntBuffer} in `GRAY8` format. If needed,
  * pixel values are rescaled given `max` value defined in PGM header (MUST
  * be <= 0xff).
  *
@@ -154,7 +154,7 @@ export const readPGM8 = (
     height: number,
     max = 0xff
 ) => {
-    const buf = packedBuffer(width, height, GRAY8);
+    const buf = intBuffer(width, height, GRAY8);
     const data = buf.data;
     if (max === 0xff) {
         data.set(src.subarray(i));
@@ -169,7 +169,7 @@ export const readPGM8 = (
 
 /**
  * Reads pixels from given 16bit PGM file byte buffer, starting at index `i` and
- * returns {@link @thi.ng/pixel#PackedBuffer} in `GRAY16` format. Pixel values
+ * returns {@link @thi.ng/pixel#IntBuffer} in `GRAY16` format. Pixel values
  * are rescaled given `max` value defined in PGM header (MUST be <= 0xffff).
  *
  * @remarks
@@ -188,7 +188,7 @@ export const readPGM16 = (
     height: number,
     max = 0xffff
 ) => {
-    const buf = packedBuffer(width, height, GRAY16);
+    const buf = intBuffer(width, height, GRAY16);
     const data = buf.data;
     max = 0xffff / max;
     for (let j = 0, n = data.length; j < n; i += 2, j++) {
@@ -199,7 +199,7 @@ export const readPGM16 = (
 
 /**
  * Reads pixels from given 24bit PPM file byte buffer, starting at index `i` and
- * returns {@link @thi.ng/pixel#PackedBuffer} in `RGB888` format. Color channel
+ * returns {@link @thi.ng/pixel#IntBuffer} in `RGB888` format. Color channel
  * values are rescaled given `max` value defined in PGM header (MUST be <=
  * 0xff).
  *
@@ -219,7 +219,7 @@ export const readPPM = (
     height: number,
     max = 0xff
 ) => {
-    const buf = packedBuffer(width, height, RGB888);
+    const buf = intBuffer(width, height, RGB888);
     const data = buf.data;
     assert(max <= 0xff, `unsupported max value: ${max}`);
     if (max === 0xff) {

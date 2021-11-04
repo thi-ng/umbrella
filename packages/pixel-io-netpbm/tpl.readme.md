@@ -77,11 +77,11 @@ pbm.parseHeader(src)
 
 
 const img = pbm.read(src);
-// PackedBuffer {
+// IntBuffer {
 //   width: 12,
 //   height: 8,
 //   format: [Object],
-//   pixels: Uint8Array(96) [
+//   data: Uint8Array(96) [
 //     255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255,
 //     255, 255, 255,   0,   0, 255, 255, 255, 255, 255,   0, 255,
 //     255, 255,   0,   0,   0,   0, 255, 255, 255,   0,   0, 255,
