@@ -277,12 +277,12 @@ export const imageBraille = (
  * @param format
  */
 export const imageCanvasBraille = (
-    src: { width: number; height: number; pixels: UIntArray },
+    src: { width: number; height: number; data: UIntArray },
     thresh: number,
     format = 0
 ) => {
     const dest = canvas(src.width >> 1, src.height >> 2);
-    imageBraille(dest, 0, 0, src.width, src.height, src.pixels, thresh, format);
+    imageBraille(dest, 0, 0, src.width, src.height, src.data, thresh, format);
     return dest;
 };
 
@@ -294,7 +294,7 @@ export const imageCanvasBraille = (
  * @param thresh
  */
 export const imageStringBraille = (
-    src: { width: number; height: number; pixels: UIntArray },
+    src: { width: number; height: number; data: UIntArray },
     thresh: number
 ) => formatCanvas(imageCanvasBraille(src, thresh, 0));
 
@@ -307,11 +307,11 @@ export const imageStringBraille = (
  * @param char
  */
 export const imageCanvas565 = (
-    src: { width: number; height: number; pixels: UIntArray },
+    src: { width: number; height: number; data: UIntArray },
     char?: string
 ) => {
     const dest = canvas(src.width, src.height);
-    imageRaw(dest, 0, 0, src.width, src.height, src.pixels, char);
+    imageRaw(dest, 0, 0, src.width, src.height, src.data, char);
     return dest;
 };
 
@@ -323,7 +323,7 @@ export const imageCanvas565 = (
  * @param char
  */
 export const imageString565 = (
-    src: { width: number; height: number; pixels: UIntArray },
+    src: { width: number; height: number; data: UIntArray },
     char?: string,
     fmt = FMT_ANSI565
 ) => formatCanvas(imageCanvas565(src, char), fmt);
