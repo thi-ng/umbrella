@@ -1,6 +1,6 @@
 import { isNumber } from "@thi.ng/checks/is-number";
 import { clamp } from "@thi.ng/math/interval";
-import type { PackedBuffer } from "@thi.ng/pixel/packed";
+import type { IntBuffer } from "@thi.ng/pixel";
 import type { BayerMatrix, BayerSize } from "./api.js";
 
 const init = (
@@ -88,7 +88,7 @@ const orderedDither1 = (
  * @param numColors - num target colors/steps
  */
 export const orderedDither = (
-    img: PackedBuffer,
+    img: IntBuffer,
     size: BayerSize | BayerMatrix,
     numColors: number | number[]
 ) => {

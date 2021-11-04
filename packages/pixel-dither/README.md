@@ -93,10 +93,10 @@ A selection:
 [Generated API docs](https://docs.thi.ng/umbrella/pixel-dither/)
 
 ```ts
-import { packedBufferFromImage, GRAY8 } from "@thi.ng/pixel";
+import { intBufferFromImage, GRAY8 } from "@thi.ng/pixel";
 import { ditherWith, ATKINSON } from "@thi.ng/pixel-dither";
 
-const img = packedBufferFromImage("foo.jpg");
+const img = intBufferFromImage("foo.jpg");
 
 // apply dithering to all channels in given pixel buffer
 ditherWith(ATKINSON, img);
@@ -104,7 +104,7 @@ ditherWith(ATKINSON, img);
 // first convert to 8-bit gray before dithering
 ditherWith(ATKINSON, img.as(GRAY8));
 
-// apply dithering to select channels only
+// ...or apply dithering to select channels only
 // use custom threshold & error spillage/bleed factor
 ditherWith(ATKINSON, img, { channels: [1, 2, 3], threshold: 0.66, bleed: 0.75 });
 ```

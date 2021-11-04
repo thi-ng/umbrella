@@ -1,4 +1,4 @@
-import type { PackedBuffer } from "@thi.ng/pixel";
+import type { IntBuffer } from "@thi.ng/pixel";
 import { range } from "@thi.ng/pixel/range";
 import type { DitherKernel, DitherOpts } from "./api.js";
 
@@ -14,7 +14,7 @@ import type { DitherKernel, DitherOpts } from "./api.js";
  */
 export const ditherWith = (
     kernel: DitherKernel,
-    img: PackedBuffer,
+    img: IntBuffer,
     opts?: Partial<DitherOpts>
 ) => {
     const { channels, bleed, threshold } = {
