@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/adjacency",
-    "version": "2.0.8",
+    "version": "2.0.9",
     "description": "Sparse & bitwise adjacency matrices and related functions for directed & undirected graphs",
     "type": "module",
     "module": "./index.js",
@@ -43,7 +43,7 @@
     },
     "devDependencies": {
         "@thi.ng/testament": "^0.1.6",
-        "@thi.ng/vectors": "^7.0.7"
+        "@thi.ng/vectors": "^7.1.0"
     },
     "keywords": [
         "adjacency",

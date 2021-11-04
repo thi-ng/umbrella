@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/grid-iterators",
-    "version": "2.1.0",
+    "version": "2.1.1",
     "description": "2D grid and shape iterators w/ multiple orderings",
     "type": "module",
     "module": "./index.js",

@@ -3,6 +3,32 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/pixel@2.2.0...@thi.ng/pixel@3.0.0) (2021-11-04)
+
+
+### Features
+
+* **pixel:** rename int buffer/format types ([6be02f1](https://github.com/thi-ng/umbrella/commit/6be02f10e5797c101dd0ce1869553d90c1ac6df5))
+
+
+### BREAKING CHANGES
+
+* **pixel:** rename int buffer/format types
+
+- rename:
+  - PackedBuffer => IntBuffer
+  - PackedFormat/Spec => IntFormat/Spec
+  - PackedChannel/Spec => IntChannel/Spec
+- replace static FloatBuffer.fromInt() with
+  standalone fn floatBufferFromInt()
+- add floatBufferFromImage()
+- add floatBufferFromCanvas()
+- update readme
+
+
+
+
+
 # [2.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/pixel@2.1.5...@thi.ng/pixel@2.2.0) (2021-11-03)
 
 

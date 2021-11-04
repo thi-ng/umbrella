@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [7.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@7.0.7...@thi.ng/vectors@7.1.0) (2021-11-04)
+
+
+### Bug Fixes
+
+* **vectors:** update defHofOp() ([effa433](https://github.com/thi-ng/umbrella/commit/effa4331e035a76ced0d008085a43154a978ce48))
+
+
+### Features
+
+* **vectors:** add randomDistrib/randNormDistrib() ([e21b17d](https://github.com/thi-ng/umbrella/commit/e21b17dc5ca68dbe0b24d01ad18b2c7e38ba4f2e))
+
+
+
+
+
 ## [7.0.7](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@7.0.6...@thi.ng/vectors@7.0.7) (2021-11-03)
 
 
