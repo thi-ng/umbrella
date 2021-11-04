@@ -2,7 +2,7 @@ import type { Fn } from "@thi.ng/api";
 import { assert } from "@thi.ng/errors/assert";
 import { clamp, clamp01 } from "@thi.ng/math/interval";
 import { ABGR8888 } from "@thi.ng/pixel/format/abgr8888";
-import { PackedBuffer, packedBufferFromCanvas } from "@thi.ng/pixel/packed";
+import { IntBuffer, intBufferFromCanvas } from "@thi.ng/pixel/int";
 import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
 
 const rgba2bgra = (rgba: ReadonlyVec) =>
@@ -68,7 +68,7 @@ export const renderPixels = (
 };
 
 /**
- * Takes a {@link @thi.ng/pixel#PackedBuffer} pixel buffer from
+ * Takes a {@link @thi.ng/pixel#IntBuffer} pixel buffer from
  * thi.ng/pixel w/ {@link @thi.ng/pixel#ABGR8888} format, an optional
  * buffer local region defined by `x`, `y`, `w`, `h` and applies shader
  * function `fn` to each pixel in that region (or full buffer by
@@ -90,7 +90,7 @@ export const renderPixels = (
  */
 export const renderBuffer = (
     fn: Fn<ReadonlyVec, Vec>,
-    buf: PackedBuffer,
+    buf: IntBuffer,
     x = 0,
     y = 0,
     w?: number,
@@ -102,7 +102,7 @@ export const renderBuffer = (
     assert(buf.format === ABGR8888, `invalid buffer pixel format`);
     renderPixels(
         fn,
-        <Uint32Array>buf.pixels,
+        <Uint32Array>buf.data,
         buf.width,
         buf.height,
         x,
@@ -127,7 +127,7 @@ export const renderBuffer = (
  * @param canvas -
  */
 export const canvasRenderer = (canvas: HTMLCanvasElement) => {
-    const buf = packedBufferFromCanvas(canvas);
+    const buf = intBufferFromCanvas(canvas);
     return (
         fn: Fn<ReadonlyVec, Vec>,
         x = 0,
