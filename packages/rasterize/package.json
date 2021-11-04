@@ -90,6 +90,11 @@
         }
     },
     "thi.ng": {
+        "related": [
+            "grid-iterators",
+            "pixel",
+            "text-canvas"
+        ],
         "status": "alpha",
         "year": 2021
     }

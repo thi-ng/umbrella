@@ -139,6 +139,7 @@
     "thi.ng": {
         "related": [
             "morton",
+            "rasterize",
             "transducers"
         ],
         "year": 2019
