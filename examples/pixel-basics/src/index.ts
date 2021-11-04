@@ -2,24 +2,22 @@ import { canvas2d, imagePromise } from "@thi.ng/pixel/canvas";
 import { GRAY_ALPHA8 } from "@thi.ng/pixel/format/gray-alpha8";
 import { GRAY8 } from "@thi.ng/pixel/format/gray8";
 import { RGB565 } from "@thi.ng/pixel/format/rgb565";
-import { packedBufferFromImage } from "@thi.ng/pixel/packed";
+import { intBufferFromImage } from "@thi.ng/pixel/int";
 import { SRC_OVER_I } from "@thi.ng/porter-duff/porter-duff";
 import IMG from "./haystack.jpg";
 import LOGO from "./logo-64.png";
 
-Promise.all([IMG, LOGO].map(imagePromise)).then(([img, logo]) => {
-    // init 16bit packed RGB pixel buffer from image (resized to 256x256)
-    const buf = packedBufferFromImage(img, RGB565, 256, 256);
+Promise.all([IMG, LOGO].map((x) => imagePromise(x))).then(([img, logo]) => {
+    // init 16bit int RGB pixel buffer from image (resized to 256x256)
+    const buf = intBufferFromImage(img, RGB565, 256, 256);
 
     // create grayscale buffer for logo and use Porter-Duff operator to
     // composite with main image. Since the logo has transparency, we
     // need to premultiply alpha first...
-    packedBufferFromImage(logo, GRAY_ALPHA8)
-        .premultiply()
-        .blend(SRC_OVER_I, buf, {
-            dx: 10,
-            dy: 10,
-        });
+    intBufferFromImage(logo, GRAY_ALPHA8).premultiply().blend(SRC_OVER_I, buf, {
+        dx: 10,
+        dy: 10,
+    });
 
     // extract sub-image
     const region = buf.getRegion(32, 96, 128, 64);

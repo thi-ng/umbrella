@@ -3,9 +3,8 @@ import { lch } from "@thi.ng/color/lch/lch";
 import { srgb } from "@thi.ng/color/srgb/srgb";
 import { dominantColors } from "@thi.ng/pixel/dominant-colors";
 import { floatBuffer } from "@thi.ng/pixel/float";
-import { ABGR8888 } from "@thi.ng/pixel/format/abgr8888";
 import { FLOAT_RGB } from "@thi.ng/pixel/format/float-rgb";
-import { packedBufferFromImage } from "@thi.ng/pixel/packed";
+import { intBufferFromImage } from "@thi.ng/pixel/int";
 import { map } from "@thi.ng/transducers/map";
 import { minMax } from "@thi.ng/transducers/min-max";
 import { transduce } from "@thi.ng/transducers/transduce";
@@ -26,7 +25,7 @@ export const processImage = (
     minChroma: number
 ) =>
     timed(() => {
-        let buf = packedBufferFromImage(img, ABGR8888);
+        let buf = intBufferFromImage(img);
         buf = buf.scale(256 / Math.max(buf.width, buf.height), "nearest");
         const colors = dominantColors(floatBuffer(buf, FLOAT_RGB), num, {
             // use min chroma as pre-filter criteria

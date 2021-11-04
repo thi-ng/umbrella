@@ -1,6 +1,6 @@
 import { imagePromise } from "@thi.ng/pixel/canvas";
 import { RGB565 } from "@thi.ng/pixel/format/rgb565";
-import { packedBufferFromImage } from "@thi.ng/pixel/packed";
+import { intBufferFromImage } from "@thi.ng/pixel/int";
 import { canvas, setAt } from "@thi.ng/text-canvas/canvas";
 import { formatCanvas } from "@thi.ng/text-canvas/format";
 import { FMT_HTML565 } from "@thi.ng/text-format/html";
@@ -16,7 +16,7 @@ const H = 48;
     const iw = img.width;
     const ih = img.height;
     // create 16bit color buffer from image
-    const buf = packedBufferFromImage(img, RGB565);
+    const buf = intBufferFromImage(img, RGB565);
     // create text canvas
     const c = canvas(W, H, 0xffff);
     // define 16bit formatter

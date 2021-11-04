@@ -1,6 +1,6 @@
 import { intAbgr32Srgb } from "@thi.ng/color/int/int-srgb";
 import { ABGR8888 } from "@thi.ng/pixel/format/abgr8888";
-import { packedBuffer } from "@thi.ng/pixel/packed";
+import { intBuffer } from "@thi.ng/pixel/int";
 import { defSampler } from "@thi.ng/pixel/sample";
 import type { FloatSym, Vec2Sym } from "@thi.ng/shader-ast";
 import { GLSLVersion, targetGLSL } from "@thi.ng/shader-ast-glsl";
@@ -114,7 +114,7 @@ if (JS_MODE) {
         // alternatively use custom image sampler to perform
         // filtered texture lookups:
         const sampler = defSampler(
-            packedBuffer(TW, TH, ABGR8888, texData),
+            intBuffer(TW, TH, ABGR8888, texData),
             "nearest",
             "wrap"
         );

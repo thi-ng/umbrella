@@ -7,7 +7,7 @@ import { start } from "@thi.ng/hdom/start";
 import { mulV23 } from "@thi.ng/matrices/mulv";
 import { imagePromise } from "@thi.ng/pixel/canvas";
 import { GRAY8 } from "@thi.ng/pixel/format/gray8";
-import { packedBufferFromImage } from "@thi.ng/pixel/packed";
+import { intBufferFromImage } from "@thi.ng/pixel/int";
 import { Node2D } from "@thi.ng/scenegraph/node2";
 import { map } from "@thi.ng/transducers/map";
 import { range } from "@thi.ng/transducers/range";
@@ -51,8 +51,6 @@ class ImgNode extends Node2D {
     }
 }
 
-let cancel: Fn0<void>;
-
 imagePromise(LOGO).then((img) => {
     // mouse pos
     let mouse: Vec = [0, 0];
@@ -65,7 +63,7 @@ imagePromise(LOGO).then((img) => {
     const imgRoot = new Node2D("imgroot", main, [0, 0], 0, 2);
     const geom = new Node2D("waves", main, [0, 0], 0, 1, <any>null);
 
-    const imgMap = packedBufferFromImage(img, GRAY8, 256, 256);
+    const imgMap = intBufferFromImage(img, GRAY8, 256, 256);
     const imgNode = new ImgNode(
         "img",
         imgRoot,

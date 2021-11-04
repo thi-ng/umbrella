@@ -8,7 +8,7 @@ import { floatBuffer } from "@thi.ng/pixel/float";
 import { ARGB8888 } from "@thi.ng/pixel/format/argb8888";
 import { FLOAT_RGB } from "@thi.ng/pixel/format/float-rgb";
 import { defIndexed } from "@thi.ng/pixel/format/indexed";
-import { PackedBuffer, packedBufferFromImage } from "@thi.ng/pixel/packed";
+import { IntBuffer, intBufferFromImage } from "@thi.ng/pixel/int";
 
 (async () => {
     const img = await imagePromise("assets/test.jpg");
@@ -16,13 +16,13 @@ import { PackedBuffer, packedBufferFromImage } from "@thi.ng/pixel/packed";
     const root = document.getElementById("app")!;
     root.appendChild(img);
 
-    const processImage = (buf: PackedBuffer, palette: number[]) =>
+    const processImage = (buf: IntBuffer, palette: number[]) =>
         orderedDither(buf.copy(), 8, 3)
             .as(defIndexed(palette))
             .blitCanvas(canvas2d(buf.width, buf.height, root).canvas);
 
     // dither image and convert to indexed color using given palette
-    const buf = packedBufferFromImage(img, ARGB8888);
+    const buf = intBufferFromImage(img, ARGB8888);
 
     // extract palette from image and use it
     // to create indexed color version

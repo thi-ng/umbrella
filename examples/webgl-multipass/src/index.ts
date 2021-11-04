@@ -1,6 +1,6 @@
 import { canvas2d } from "@thi.ng/pixel/canvas";
 import { GRAY8 } from "@thi.ng/pixel/format/gray8";
-import { packedBuffer } from "@thi.ng/pixel/packed";
+import { intBuffer } from "@thi.ng/pixel/int";
 import type { Vec2Sym, Vec4Sym } from "@thi.ng/shader-ast";
 import { clamp01 } from "@thi.ng/shader-ast-stdlib/math/clamp";
 import { fit1101 } from "@thi.ng/shader-ast-stdlib/math/fit";
@@ -99,9 +99,8 @@ const toy = defMultiPass({
 
 toy.update(0);
 
-const canv = canvas2d(32, 32);
-document.body.appendChild(canv.canvas);
-packedBuffer(
+const canv = canvas2d(32, 32, document.body);
+intBuffer(
     32,
     32,
     GRAY8,

@@ -15,7 +15,7 @@ import {
 } from "@thi.ng/pixel-dither";
 import type { DitherKernel } from "@thi.ng/pixel-dither/api";
 import { canvas2d, imagePromise } from "@thi.ng/pixel/canvas";
-import { PackedBuffer, packedBufferFromImage } from "@thi.ng/pixel/packed";
+import { IntBuffer, intBufferFromImage } from "@thi.ng/pixel/int";
 
 (async () => {
     const img = await imagePromise("assets/michelangelo.png");
@@ -23,11 +23,7 @@ import { PackedBuffer, packedBufferFromImage } from "@thi.ng/pixel/packed";
     const root = document.getElementById("app")!;
     root.appendChild(img);
 
-    const processImage = (
-        buf: PackedBuffer,
-        id: string,
-        kernel: DitherKernel
-    ) => {
+    const processImage = (buf: IntBuffer, id: string, kernel: DitherKernel) => {
         const { canvas, ctx } = canvas2d(buf.width, buf.height, root);
         ditherWith(kernel, buf.copy()).blitCanvas(canvas);
         ctx.fillStyle = "white";
@@ -36,7 +32,7 @@ import { PackedBuffer, packedBufferFromImage } from "@thi.ng/pixel/packed";
         ctx.fillText(id, 4, buf.height - 2);
     };
 
-    const buf = packedBufferFromImage(img, GRAY8);
+    const buf = intBufferFromImage(img, GRAY8);
 
     Object.entries(<IObjectOf<DitherKernel>>{
         ATKINSON: ATKINSON,

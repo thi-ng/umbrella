@@ -1,9 +1,6 @@
 import { canvas2d, imagePromise } from "@thi.ng/pixel/canvas";
 import { ABGR8888 } from "@thi.ng/pixel/format/abgr8888";
-import {
-    packedBufferFromCanvas,
-    packedBufferFromImage,
-} from "@thi.ng/pixel/packed";
+import { intBufferFromCanvas, intBufferFromImage } from "@thi.ng/pixel/int";
 import {
     DEST_ATOP_I,
     DEST_I,
@@ -38,15 +35,15 @@ const MODES: any = {
 
 const IDS = Object.keys(MODES);
 
-Promise.all([IMG, IMG2].map(imagePromise))
+Promise.all([IMG, IMG2].map((x) => imagePromise(x)))
     .then(([circle, plus]) => {
-        const srcBuf = packedBufferFromImage(circle, ABGR8888).premultiply();
-        const destBuf = packedBufferFromImage(plus, ABGR8888).premultiply();
+        const srcBuf = intBufferFromImage(circle, ABGR8888).premultiply();
+        const destBuf = intBufferFromImage(plus, ABGR8888).premultiply();
 
         const ctx = canvas2d(destBuf.width * 4, (destBuf.height + 20) * 3);
         document.getElementById("app")!.appendChild(ctx.canvas);
 
-        const res = packedBufferFromCanvas(ctx.canvas);
+        const res = intBufferFromCanvas(ctx.canvas);
 
         for (let y = 0, i = 0; y < 3; y++) {
             for (let x = 0; x < 4; x++, i++) {

@@ -1,4 +1,4 @@
-import type { PackedBuffer } from "@thi.ng/pixel";
+import type { IntBuffer } from "@thi.ng/pixel";
 import { sidechainPartitionRAF } from "@thi.ng/rstream/sidechain-partition";
 import { map } from "@thi.ng/transducers/map";
 import { updateDOM } from "@thi.ng/transducers-hdom";
@@ -16,11 +16,11 @@ import { state } from "./state";
  * Canvas component w/ life cycle methods
  */
 const canvas = <any>{
-    init(el: HTMLCanvasElement, _: any, pix: PackedBuffer) {
+    init(el: HTMLCanvasElement, _: any, pix: IntBuffer) {
         this.el = el;
         this.render(null, pix);
     },
-    render(_: any, pix: PackedBuffer) {
+    render(_: any, pix: IntBuffer) {
         // delay blitting until just after DOM update. this is needed
         // due to setting canvas size also clears content...
         this.el && setTimeout(() => pix.blitCanvas(this.el), 0);

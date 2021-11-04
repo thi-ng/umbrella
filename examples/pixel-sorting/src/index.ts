@@ -14,7 +14,7 @@ import {
 import { h1 } from "@thi.ng/hiccup-html/sections";
 import { closedOpen, intersection } from "@thi.ng/intervals";
 import { ABGR8888 } from "@thi.ng/pixel/format/abgr8888";
-import { PackedBuffer, packedBufferFromImage } from "@thi.ng/pixel/packed";
+import { IntBuffer, intBufferFromImage } from "@thi.ng/pixel/int";
 import { SYSTEM } from "@thi.ng/random/system";
 import type { NumOrElement } from "@thi.ng/rdom";
 import { $compile } from "@thi.ng/rdom/compile";
@@ -41,7 +41,7 @@ interface ProcessParams {
  * @param param1
  */
 const pixelSortBuffer = (
-    buf: PackedBuffer,
+    buf: IntBuffer,
     { iter, horizontal, reverse, min, max }: ProcessParams
 ) => {
     const { pixels, width, height } = buf;
@@ -84,7 +84,7 @@ const pixelSortBuffer = (
 };
 
 const processImage = (img: HTMLImageElement, opts: ProcessParams) =>
-    timed(() => pixelSortBuffer(packedBufferFromImage(img, ABGR8888), opts));
+    timed(() => pixelSortBuffer(intBufferFromImage(img, ABGR8888), opts));
 
 // stream of input files
 const file = stream<File>();
@@ -135,7 +135,7 @@ file.subscribe({
 // creates a canvas element and blits given pixel buffer into it
 // when the component mounts
 class PixelCanvas extends Component {
-    constructor(protected buffer: PackedBuffer) {
+    constructor(protected buffer: IntBuffer) {
         super();
     }
 
