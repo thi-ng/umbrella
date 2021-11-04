@@ -289,9 +289,12 @@ export const defHofOp = <MULTI, FIXED>(
     const _tpl = tpl || FN("op");
     syms = syms || args;
     pre = pre != null ? pre : defaultOut(ret, args);
-    const $ = (dim: number) =>
-        compileHOF(dim, [op], _tpl, "op", args, syms, ret, "", pre);
     const fn: any = vop(dispatch);
+    const $ = (dim: number) =>
+        fn.add(
+            dim,
+            compileHOF(dim, [op], _tpl, "op", args, syms, ret, "", pre)
+        );
     fn.default(compileGHOF([op], _tpl, "op", args, syms, ret, pre));
     return [fn, $(2), $(3), $(4)];
 };
