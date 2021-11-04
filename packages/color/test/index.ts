@@ -12,7 +12,7 @@ import {
     parseCss,
     rgb,
     srgb,
-} from "../src/index.js"
+} from "../src/index.js";
 
 group("color", {
     srgb: () => {
@@ -77,12 +77,12 @@ group("color", {
         assert.ok(
             rgb
                 .random(new XsAdd(0xdecafbad))
-                .eqDelta(rgb(0.4379, 0.1376, 0.0615), 1e-3)
+                .eqDelta(rgb(0.274, 0.0615, 0.1377), 1e-3)
         );
         assert.ok(
             labD50
                 .random(new XsAdd(0xdecafbad))
-                .eqDelta(labD50(0.4379, -0.5549, -0.994), 1e-3)
+                .eqDelta(labD50(0.274, -0.6866, -0.8375), 1e-3)
         );
     },
 
