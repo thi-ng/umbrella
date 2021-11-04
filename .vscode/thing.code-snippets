@@ -19,7 +19,7 @@
         "scope": "markdown",
         "prefix": "@docc",
         "body": [
-            "[`${2:name}`](https://docs.thi.ng/umbrella/${1:pkg}/classes/${2/(.*)/${1:/downcase}/}.html)"
+            "[`${2:name}`](https://docs.thi.ng/umbrella/${1:pkg}/classes/${2:name}.html)"
         ],
         "description": "thi.ng umbrella doc link (class)"
     },
@@ -27,7 +27,7 @@
         "scope": "markdown",
         "prefix": "@doci",
         "body": [
-            "[`${2:name}`](https://docs.thi.ng/umbrella/${1:pkg}/interfaces/${2/(.*)/${1:/downcase}/}.html)"
+            "[`${2:name}`](https://docs.thi.ng/umbrella/${1:pkg}/interfaces/${2:name}.html)"
         ],
         "description": "thi.ng umbrella doc link (interface)"
     },
