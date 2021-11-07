@@ -159,6 +159,9 @@
         "./mixins/ienable": {
             "import": "./mixins/ienable.js"
         },
+        "./mixins/igrid": {
+            "import": "./mixins/igrid.js"
+        },
         "./mixins/inotify": {
             "import": "./mixins/inotify.js"
         },
