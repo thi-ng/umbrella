@@ -1,4 +1,5 @@
 import type { Fn2, ICopy, IEmpty } from "@thi.ng/api";
+import { IGrid2DMixin } from "@thi.ng/api/mixins/igrid";
 import { typedArray, UIntArray, uintTypeForBits } from "@thi.ng/api/typedarray";
 import { isNumber } from "@thi.ng/checks/is-number";
 import { isString } from "@thi.ng/checks/is-string";
@@ -53,12 +54,12 @@ import { defSampler } from "./sample.js";
 export function intBuffer(
     w: number,
     h: number,
-    fmt: IntFormat | IntFormatSpec,
+    fmt?: IntFormat | IntFormatSpec,
     data?: UIntArray
 ): IntBuffer;
 export function intBuffer(
     src: IntBuffer,
-    fmt: IntFormat | IntFormatSpec
+    fmt?: IntFormat | IntFormatSpec
 ): IntBuffer;
 export function intBuffer(...args: any[]) {
     return args[0] instanceof IntBuffer
@@ -111,6 +112,7 @@ export const intBufferFromCanvas = (
     return new IntBuffer(w, h, fmt, dest);
 };
 
+@IGrid2DMixin
 export class IntBuffer
     implements
         IPixelBuffer<UIntArray, number>,
@@ -122,19 +124,19 @@ export class IntBuffer
         ICopy<IntBuffer>,
         IEmpty<IntBuffer>
 {
-    readonly width: number;
-    readonly height: number;
+    readonly size: [number, number];
+    readonly stride: [number, number];
     readonly format: IntFormat;
     readonly data: UIntArray;
 
     constructor(
         w: number,
         h: number,
-        fmt: IntFormat | IntFormatSpec,
+        fmt: IntFormat | IntFormatSpec = ABGR8888,
         data?: UIntArray
     ) {
-        this.width = w;
-        this.height = h;
+        this.size = [w, h];
+        this.stride = [1, w];
         this.format = (<any>fmt).__packed ? <IntFormat>fmt : defIntFormat(fmt);
         this.data = data || typedArray(fmt.type, w * h);
     }
@@ -144,12 +146,20 @@ export class IntBuffer
         return this.data;
     }
 
-    get stride() {
-        return 1;
+    get width() {
+        return this.size[0];
     }
 
-    get rowStride() {
-        return this.width;
+    get height() {
+        return this.size[1];
+    }
+
+    get offset() {
+        return 0;
+    }
+
+    get dim(): 2 {
+        return 2;
     }
 
     as(fmt: IntFormat) {
@@ -166,28 +176,42 @@ export class IntBuffer
         return new IntBuffer(this.width, this.height, this.format);
     }
 
+    // @ts-ignore mixin
+    order(): number[] {}
+
+    // @ts-ignore mixin
+    includes(x: number, y: number) {
+        return false;
+    }
+
+    // @ts-ignore mixin
+    indexAt(x: number, y: number) {
+        return 0;
+    }
+
+    // @ts-ignore mixin
+    indexAtUnsafe(x: number, y: number) {
+        return 0;
+    }
+
+    // @ts-ignore mixin
     getAt(x: number, y: number) {
-        return x >= 0 && x < this.width && y >= 0 && y < this.height
-            ? this.data[(x | 0) + (y | 0) * this.width]
-            : 0;
+        return 0;
     }
 
+    // @ts-ignore mixin
     getAtUnsafe(x: number, y: number) {
-        return this.data[(x | 0) + (y | 0) * this.width];
+        return 0;
     }
 
+    // @ts-ignore mixin
     setAt(x: number, y: number, col: number) {
-        x >= 0 &&
-            x < this.width &&
-            y >= 0 &&
-            y < this.height &&
-            (this.data[(x | 0) + (y | 0) * this.width] = col);
-        return this;
+        return true;
     }
 
+    // @ts-ignore mixin
     setAtUnsafe(x: number, y: number, col: number) {
-        this.data[(x | 0) + (y | 0) * this.width] = col;
-        return this;
+        return true;
     }
 
     getChannelAt(x: number, y: number, id: number, normalized = false) {

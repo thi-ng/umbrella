@@ -37,7 +37,7 @@ export const dominantColors = (
     const n = img.width * img.height;
     const mapped: Float32Array[] = [];
     const filter = opts.filter || (() => true);
-    for (let i = 0, j = 0, s = img.stride; i < n; i++, j += s) {
+    for (let i = 0, j = 0, s = img.stride[0]; i < n; i++, j += s) {
         const p = img.data.subarray(j, j + s);
         if (filter(p, i)) mapped.push(p);
     }

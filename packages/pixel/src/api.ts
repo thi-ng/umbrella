@@ -197,6 +197,8 @@ export interface RawPixelBuffer extends CanvasContext {
 
 export interface IPixelBuffer<T extends TypedArray = TypedArray, P = any>
     extends IGrid2D<T, P> {
+    readonly width: number;
+    readonly height: number;
     readonly format: IABGRConvert<any>;
 
     /**

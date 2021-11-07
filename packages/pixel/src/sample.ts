@@ -97,7 +97,12 @@ const sampleINR = ({ data, width, height }: IPixelBuffer): IntSampler => {
 };
 
 const sampleFNC =
-    ({ data, width, height, rowStride, stride }: FloatBuffer): FloatSampler =>
+    ({
+        data,
+        width,
+        height,
+        stride: [stride, rowStride],
+    }: FloatBuffer): FloatSampler =>
     (x, y) => {
         let i: number;
         return x >= 0 && x < width && y >= 0 && y < height
@@ -107,7 +112,12 @@ const sampleFNC =
     };
 
 const sampleFNW =
-    ({ data, width, height, rowStride, stride }: FloatBuffer): FloatSampler =>
+    ({
+        data,
+        width,
+        height,
+        stride: [stride, rowStride],
+    }: FloatBuffer): FloatSampler =>
     (x, y) => {
         let i = mod(y | 0, height) * rowStride + mod(x | 0, width) * stride;
         return data.slice(i, i + stride);
@@ -117,8 +127,7 @@ const sampleFNR = ({
     data,
     width,
     height,
-    rowStride,
-    stride,
+    stride: [stride, rowStride],
 }: FloatBuffer): FloatSampler => {
     const w1 = width - 1;
     const h1 = height - 1;
@@ -181,7 +190,7 @@ const bilinearABGR = (src: IntBuffer, sample1: IntSampler): IntSampler => {
 };
 
 const bilinearFloat = (
-    { stride }: FloatBuffer,
+    { stride: [stride] }: FloatBuffer,
     sample1: FloatSampler
 ): FloatSampler => {
     const f32 = new Float32Array(stride * 4);
@@ -325,7 +334,7 @@ const bicubicABGR = (src: IntBuffer, sample: IntSampler): IntSampler => {
 };
 
 const bicubicFloat = (
-    { stride }: FloatBuffer,
+    { stride: [stride] }: FloatBuffer,
     sample: FloatSampler
 ): FloatSampler => {
     const f32 = new Float32Array(stride * 16);

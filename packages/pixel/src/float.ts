@@ -1,4 +1,6 @@
 import type { Fn2, ICopy, IEmpty, NumericArray } from "@thi.ng/api";
+import { nomixin } from "@thi.ng/api/decorators/nomixin";
+import { IGrid2DMixin } from "@thi.ng/api/mixins/igrid";
 import { isNumber } from "@thi.ng/checks/is-number";
 import { isString } from "@thi.ng/checks/is-string";
 import { assert } from "@thi.ng/errors/assert";
@@ -37,12 +39,12 @@ import { defSampler } from "./sample.js";
 export function floatBuffer(
     w: number,
     h: number,
-    fmt: FloatFormat | FloatFormatSpec,
+    fmt?: FloatFormat | FloatFormatSpec,
     data?: Float32Array
 ): FloatBuffer;
 export function floatBuffer(
     src: IntBuffer,
-    fmt: FloatFormat | FloatFormatSpec
+    fmt?: FloatFormat | FloatFormatSpec
 ): FloatBuffer;
 export function floatBuffer(...args: any[]) {
     return args[0] instanceof IntBuffer
@@ -64,10 +66,14 @@ export function floatBuffer(...args: any[]) {
  */
 export const floatBufferFromInt = (
     src: IntBuffer,
-    fmt: FloatFormat | FloatFormatSpec
+    fmt?: FloatFormat | FloatFormatSpec
 ) => {
     const dest = new FloatBuffer(src.width, src.height, fmt);
-    const { data: dbuf, format: dfmt, stride } = dest;
+    const {
+        data: dbuf,
+        format: dfmt,
+        stride: [stride],
+    } = dest;
     const { data: sbuf, format: sfmt } = src;
     for (let i = sbuf.length; --i >= 0; ) {
         dbuf.set(dfmt.fromABGR(sfmt.toABGR(sbuf[i])), i * stride);
@@ -77,16 +83,17 @@ export const floatBufferFromInt = (
 
 export const floatBufferFromImage = (
     img: HTMLImageElement,
-    fmt: FloatFormat | FloatFormatSpec = FLOAT_RGBA,
+    fmt?: FloatFormat | FloatFormatSpec,
     width?: number,
     height = width
 ) => floatBufferFromInt(intBufferFromImage(img, undefined, width, height), fmt);
 
 export const floatBufferFromCanvas = (
     canvas: HTMLCanvasElement,
-    fmt: FloatFormat = FLOAT_RGBA
+    fmt?: FloatFormat
 ) => floatBufferFromInt(intBufferFromCanvas(canvas), fmt);
 
+@IGrid2DMixin
 export class FloatBuffer
     implements
         IPixelBuffer<Float32Array, NumericArray>,
@@ -98,10 +105,8 @@ export class FloatBuffer
         ICopy<FloatBuffer>,
         IEmpty<FloatBuffer>
 {
-    readonly width: number;
-    readonly height: number;
-    readonly stride: number;
-    readonly rowStride: number;
+    readonly size: [number, number];
+    readonly stride: [number, number];
     readonly data: Float32Array;
     readonly format: FloatFormat;
     protected __empty: NumericArray;
@@ -109,19 +114,18 @@ export class FloatBuffer
     constructor(
         w: number,
         h: number,
-        fmt: FloatFormat | FloatFormatSpec,
+        fmt: FloatFormat | FloatFormatSpec = FLOAT_RGBA,
         data?: Float32Array
     ) {
-        this.width = w;
-        this.height = h;
+        this.size = [w, h];
         this.format = (<any>fmt).__float
             ? <FloatFormat>fmt
             : defFloatFormat(fmt);
-        this.stride = fmt.channels.length;
-        this.rowStride = w * this.stride;
-        this.data = data || new Float32Array(w * h * this.stride);
+        const stride = this.format.channels.length;
+        this.stride = [stride, w * stride];
+        this.data = data || new Float32Array(w * h * stride);
         this.__empty = <NumericArray>(
-            Object.freeze(new Array<number>(this.stride).fill(0))
+            Object.freeze(new Array<number>(stride).fill(0))
         );
     }
 
@@ -130,8 +134,30 @@ export class FloatBuffer
         return this.data;
     }
 
+    get width() {
+        return this.size[0];
+    }
+
+    get height() {
+        return this.size[1];
+    }
+
+    get offset() {
+        return 0;
+    }
+
+    get dim(): 2 {
+        return 2;
+    }
+
     as(fmt: IntFormat) {
-        const { width, height, stride, data, format: sfmt } = this;
+        const {
+            width,
+            height,
+            stride: [stride],
+            data,
+            format: sfmt,
+        } = this;
         const dest = new IntBuffer(width, height, fmt);
         const dpixels = dest.data;
         for (let i = 0, j = 0, n = data.length; i < n; i += stride, j++) {
@@ -152,55 +178,67 @@ export class FloatBuffer
         return new FloatBuffer(this.width, this.height, this.format);
     }
 
+    // @ts-ignore mixin
+    order(): number[] {}
+
+    // @ts-ignore mixin
+    includes(x: number, y: number) {
+        return false;
+    }
+
+    // @ts-ignore mixin
+    indexAt(x: number, y: number) {
+        return 0;
+    }
+
+    // @ts-ignore mixin
+    indexAtUnsafe(x: number, y: number) {
+        return 0;
+    }
+
+    @nomixin
     getAt(x: number, y: number) {
-        return x >= 0 && x < this.width && y >= 0 && y < this.height
-            ? this.getAtUnsafe(x, y)
-            : this.__empty;
+        return this.includes(x, y) ? this.getAtUnsafe(x, y) : this.__empty;
     }
 
+    @nomixin
     getAtUnsafe(x: number, y: number) {
-        const stride = this.stride;
-        const idx = (x | 0) * stride + (y | 0) * this.rowStride;
-        return this.data.subarray(idx, idx + stride);
+        const idx = this.indexAtUnsafe(x, y);
+        return this.data.subarray(idx, idx + this.stride[0]);
     }
 
+    @nomixin
     setAt(x: number, y: number, col: NumericArray) {
-        x >= 0 &&
-            x < this.width &&
-            y >= 0 &&
-            y < this.height &&
-            this.data.set(
-                col,
-                (x | 0) * this.stride + (y | 0) * this.rowStride
-            );
-        return this;
+        return this.includes(x, y)
+            ? (this.data.set(col, this.indexAtUnsafe(x, y)), true)
+            : false;
     }
 
+    @nomixin
     setAtUnsafe(x: number, y: number, col: NumericArray) {
-        this.data.set(col, (x | 0) * this.stride + (y | 0) * this.rowStride);
-        return this;
+        this.data.set(col, this.indexAtUnsafe(x, y));
+        return true;
     }
 
     getChannelAt(x: number, y: number, id: number) {
         ensureChannel(this.format, id);
-        const { width, stride } = this;
-        if (x >= 0 && x < width && y >= 0 && y < this.height) {
-            return this.data[(x | 0) * stride + (y | 0) * this.rowStride + id];
-        }
+        return this.includes(x, y)
+            ? this.data[this.indexAtUnsafe(x, y) + id]
+            : undefined;
     }
 
     setChannelAt(x: number, y: number, id: number, col: number) {
         ensureChannel(this.format, id);
-        const { width, stride } = this;
-        if (x >= 0 && x < width && y >= 0 && y < this.height) {
-            this.data[(x | 0) * stride + (y | 0) * this.rowStride + id] = col;
-        }
+        this.includes(x, y) && (this.data[this.indexAtUnsafe(x, y) + id] = col);
         return this;
     }
 
     getChannel(id: number) {
         ensureChannel(this.format, id);
-        const { data, stride } = this;
+        const {
+            data,
+            stride: [stride],
+        } = this;
         const dest = new Float32Array(this.width * this.height);
         for (let i = id, j = 0, n = data.length; i < n; i += stride, j++) {
             dest[j] = clamp01(data[i]);
@@ -210,13 +248,19 @@ export class FloatBuffer
 
     setChannel(id: number, src: FloatBuffer | number) {
         ensureChannel(this.format, id);
-        const { data: dest, stride } = this;
+        const {
+            data: dest,
+            stride: [stride],
+        } = this;
         if (isNumber(src)) {
             for (let i = id, n = dest.length; i < n; i += stride) {
                 dest[i] = src;
             }
         } else {
-            const { data: sbuf, stride: sstride } = src;
+            const {
+                data: sbuf,
+                stride: [sstride],
+            } = src;
             ensureSize(sbuf, this.width, this.height, sstride);
             for (
                 let i = id, j = 0, n = dest.length;
@@ -235,9 +279,8 @@ export class FloatBuffer
         if (rw < 1 || rh < 1) return dest;
         const sbuf = this.data;
         const dbuf = dest.data;
-        const sw = this.rowStride;
-        const dw = dest.rowStride;
-        const stride = this.stride;
+        const [stride, sw] = this.stride;
+        const dw = dest.stride[1];
         for (
             let si = (sx | 0) * stride + (sy | 0) * sw,
                 di = (dx | 0) * stride + (dy | 0) * dw,
@@ -263,12 +306,12 @@ export class FloatBuffer
         if (rw < 1 || rh < 1) return dest;
         const sbuf = this.data;
         const dbuf = dest.data;
-        const sw = this.rowStride;
-        const dw = dest.rowStride;
-        const rww = rw * this.stride;
+        const [stride, sw] = this.stride;
+        const dw = dest.stride[1];
+        const rww = rw * stride;
         for (
-            let si = (sx | 0) * this.stride + (sy | 0) * sw,
-                di = (dx | 0) * this.stride + (dy | 0) * dw,
+            let si = (sx | 0) * stride + (sy | 0) * sw,
+                di = (dx | 0) * stride + (dy | 0) * dw,
                 yy = 0;
             yy < rh;
             yy++, si += sw, di += dw
@@ -293,7 +336,11 @@ export class FloatBuffer
     toImageData() {
         const idata = new ImageData(this.width, this.height);
         const dest = new Uint32Array(idata.data.buffer);
-        const { stride, data, format } = this;
+        const {
+            stride: [stride],
+            data,
+            format,
+        } = this;
         for (let i = 0, j = 0, n = data.length; i < n; i += stride, j++) {
             dest[j] = format.toABGR(data.subarray(i, i + stride));
         }
@@ -318,7 +365,10 @@ export class FloatBuffer
     }
 
     forEach(f: Fn2<NumericArray, number, NumericArray>) {
-        const { data, stride } = this;
+        const {
+            data,
+            stride: [stride],
+        } = this;
         for (let i = 0, j = 0, n = data.length; i < n; i += stride, j++) {
             data.set(f(data.subarray(i, i + stride), j), i);
         }
@@ -335,7 +385,10 @@ export class FloatBuffer
 
     clampChannel(id: number) {
         ensureChannel(this.format, id);
-        const { data, stride } = this;
+        const {
+            data,
+            stride: [stride],
+        } = this;
         for (let i = id, n = data.length; i < n; i += stride) {
             data[i] = clamp01(data[i]);
         }
@@ -345,7 +398,8 @@ export class FloatBuffer
      * Flips image vertically.
      */
     flipY() {
-        const { data, rowStride } = this;
+        const data = this.data;
+        const rowStride = this.stride[1];
         const tmp = new Float32Array(rowStride);
         for (
             let i = 0, j = data.length - rowStride;
@@ -360,7 +414,11 @@ export class FloatBuffer
     }
 
     invert() {
-        const { data, format, stride } = this;
+        const {
+            data,
+            format,
+            stride: [stride],
+        } = this;
         for (
             let i = 0, n = data.length, m = format.alpha ? stride - 1 : stride;
             i < n;
@@ -384,7 +442,7 @@ export class FloatBuffer
         const dpix = dest.data;
         const scaleX = w > 0 ? this.width / w : 0;
         const scaleY = h > 0 ? this.height / h : 0;
-        const stride = this.stride;
+        const stride = this.stride[0];
         sampler = isString(sampler)
             ? defSampler(this, sampler, "repeat")
             : sampler;
@@ -398,15 +456,20 @@ export class FloatBuffer
     }
 
     upsize() {
-        const { width, height, data, stride, rowStride } = this;
-        const dstride = stride * 2;
+        const {
+            width,
+            height,
+            data,
+            stride: [stride, rowStride],
+        } = this;
+        const stride2x = stride * 2;
         const dest = floatBuffer(width * 2, height * 2, this.format);
         const dpix = dest.data;
         for (let y = 0, si = 0; y < height; y++) {
             for (
                 let x = 0, di = y * rowStride * 4;
                 x < width;
-                x++, si += stride, di += dstride
+                x++, si += stride, di += stride2x
             ) {
                 dpix.set(data.subarray(si, si + stride), di);
             }

@@ -130,7 +130,10 @@ const initConvolve = (src: FloatBuffer, opts: ConvolveOpts) => {
     const [strideX, strideY] = __asIntVec(sampleStride);
     const [offsetX, offsetY] = __asIntVec(offset);
     assert(strideX >= 1 && strideY >= 1, `illegal stride: ${sampleStride}`);
-    const { width, height, stride: srcStride, rowStride } = src;
+    const {
+        size: [width, height],
+        stride: [srcStride, rowStride],
+    } = src;
     const dwidth = Math.floor(width / strideX);
     const dheight = Math.floor(height / strideY);
     assert(dwidth > 0 && dheight > 0, `too large stride(s) for given image`);
@@ -229,7 +232,7 @@ export const defKernel = (
     const fnBody = [
         decls,
         "const { min, max } = Math;",
-        "const { data: pix, stride, rowStride } = src;",
+        "const { data: pix, stride: [stride, rowStride] } = src;",
         "const maxX = (src.width - 1) * stride;",
         "const maxY = (src.height - 1) * rowStride;",
         "return (x, y, channel) => {",
@@ -255,7 +258,10 @@ export const defLargeKernel = (
     h: number
 ): Fn<FloatBuffer, FnN3> => {
     return (src) => {
-        const { data, rowStride, stride } = src;
+        const {
+            data,
+            stride: [stride, rowStride],
+        } = src;
         const x0 = -(w >> 1) * stride;
         const x1 = -x0 + (w & 1 ? stride : 0);
         const y0 = -(h >> 1) * rowStride;

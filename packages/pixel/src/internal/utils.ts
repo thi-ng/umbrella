@@ -33,8 +33,8 @@ export const __prepRegions = (
     dest: { width: number; height: number },
     opts: Partial<BlitOpts> = {}
 ) => {
-    let sw = src.width;
-    let dw = dest.width;
+    const sw = src.width;
+    const dw = dest.width;
     let sx: number, sy: number;
     let dx: number, dy: number;
     let rw: number, rh: number;
