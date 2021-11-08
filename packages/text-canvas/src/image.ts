@@ -39,8 +39,8 @@ export const resize = (canvas: Canvas, newWidth: number, newHeight: number) => {
     dest.data.fill(charCode(0x20, canvas.format));
     blit(dest, 0, 0, canvas);
     canvas.data = dest.data;
-    canvas.width = newWidth;
-    canvas.height = newHeight;
+    canvas.size[0] = newWidth;
+    canvas.size[1] = newHeight;
     canvas.clipRects = [
         {
             x1: 0,

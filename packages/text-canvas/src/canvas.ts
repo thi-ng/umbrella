@@ -1,14 +1,16 @@
 import type { Fn0, IGrid2D, NumOrString } from "@thi.ng/api";
+import { IGrid2DMixin } from "@thi.ng/api/mixins/igrid";
 import { peek } from "@thi.ng/arrays/peek";
 import { clamp } from "@thi.ng/math/interval";
 import { NONE } from "@thi.ng/text-format/api";
 import { ClipRect, StrokeStyle, STYLE_ASCII } from "./api.js";
 import { charCode, intersectRect } from "./utils.js";
 
+@IGrid2DMixin
 export class Canvas implements IGrid2D<Uint32Array, number> {
     data: Uint32Array;
-    width: number;
-    height: number;
+    size: [number, number];
+    stride: [number, number];
     format: number;
     defaultFormat: number;
     styles: StrokeStyle[];
@@ -20,8 +22,8 @@ export class Canvas implements IGrid2D<Uint32Array, number> {
         format = NONE,
         style = STYLE_ASCII
     ) {
-        this.width = width;
-        this.height = height;
+        this.size = [width, height];
+        this.stride = [1, this.width];
         this.format = this.defaultFormat = format;
         this.data = new Uint32Array(width * height).fill(
             charCode(0x20, format)
@@ -32,36 +34,45 @@ export class Canvas implements IGrid2D<Uint32Array, number> {
         ];
     }
 
-    get stride() {
-        return 1;
-    }
-    get rowStride() {
-        return this.width;
+    get width() {
+        return this.size[0];
     }
 
-    getAt(x: number, y: number) {
-        return x >= 0 && x < this.width && y >= 0 && y < this.height
-            ? this.data[(x | 0) + (y | 0) * this.width]
-            : 0;
+    get height() {
+        return this.size[1];
     }
 
-    getAtUnsafe(x: number, y: number) {
-        return this.data[(x | 0) + (y | 0) * this.width];
+    get offset() {
+        return 0;
     }
 
-    setAt(x: number, y: number, col: number) {
-        x >= 0 &&
-            x < this.width &&
-            y >= 0 &&
-            y < this.height &&
-            (this.data[(x | 0) + (y | 0) * this.width] = col);
-        return this;
+    get dim(): 2 {
+        return 2;
     }
 
-    setAtUnsafe(x: number, y: number, col: number) {
-        this.data[x + y * this.width] = col;
-        return this;
-    }
+    // @ts-ignore mixin
+    order(): number[] {}
+
+    // @ts-ignore mixin
+    includes(d0: number, d1: number): boolean {}
+
+    // @ts-ignore mixin
+    indexAt(d0: number, d1: number): number {}
+
+    // @ts-ignore mixin
+    indexAtUnsafe(d0: number, d1: number): number {}
+
+    // @ts-ignore mixin
+    getAt(x: number, y: number): number {}
+
+    // @ts-ignore mixin
+    getAtUnsafe(x: number, y: number): number {}
+
+    // @ts-ignore mixin
+    setAt(x: number, y: number, col: number): boolean {}
+
+    // @ts-ignore mixin
+    setAtUnsafe(x: number, y: number, col: number): boolean {}
 }
 
 export const canvas = (
