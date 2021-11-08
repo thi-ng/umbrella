@@ -23,9 +23,10 @@ const INPUT_OPTS = {
 };
 
 const TERSER_OPTS: MinifyOptions = {
+    module: true,
     compress: true,
     mangle: true,
-    ecma: 2017,
+    ecma: 2020,
 };
 
 const buildVersion = async (opts: any, write = true, compressed = false) => {
