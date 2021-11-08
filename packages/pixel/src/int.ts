@@ -136,6 +136,7 @@ export class IntBuffer
         data?: UIntArray
     ) {
         this.size = [w, h];
+        // TODO support custom strides (via ctor arg)
         this.stride = [1, w];
         this.format = (<any>fmt).__packed ? <IntFormat>fmt : defIntFormat(fmt);
         this.data = data || typedArray(fmt.type, w * h);
@@ -154,6 +155,7 @@ export class IntBuffer
         return this.size[1];
     }
 
+    // TODO support custom offsets (via ctor arg)
     get offset() {
         return 0;
     }
@@ -180,39 +182,25 @@ export class IntBuffer
     order(): number[] {}
 
     // @ts-ignore mixin
-    includes(x: number, y: number) {
-        return false;
-    }
+    includes(x: number, y: number): boolean {}
 
     // @ts-ignore mixin
-    indexAt(x: number, y: number) {
-        return 0;
-    }
+    indexAt(x: number, y: number): number {}
 
     // @ts-ignore mixin
-    indexAtUnsafe(x: number, y: number) {
-        return 0;
-    }
+    indexAtUnsafe(x: number, y: number): number {}
 
     // @ts-ignore mixin
-    getAt(x: number, y: number) {
-        return 0;
-    }
+    getAt(x: number, y: number): number {}
 
     // @ts-ignore mixin
-    getAtUnsafe(x: number, y: number) {
-        return 0;
-    }
+    getAtUnsafe(x: number, y: number): number {}
 
     // @ts-ignore mixin
-    setAt(x: number, y: number, col: number) {
-        return true;
-    }
+    setAt(x: number, y: number, col: number): boolean {}
 
     // @ts-ignore mixin
-    setAtUnsafe(x: number, y: number, col: number) {
-        return true;
-    }
+    setAtUnsafe(x: number, y: number, col: number): boolean {}
 
     getChannelAt(x: number, y: number, id: number, normalized = false) {
         const chan = <IntChannel>ensureChannel(this.format, id);

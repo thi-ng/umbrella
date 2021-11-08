@@ -121,6 +121,7 @@ export class FloatBuffer
         this.format = (<any>fmt).__float
             ? <FloatFormat>fmt
             : defFloatFormat(fmt);
+        // TODO support custom strides (via ctor arg)
         const stride = this.format.channels.length;
         this.stride = [stride, w * stride];
         this.data = data || new Float32Array(w * h * stride);
@@ -142,6 +143,7 @@ export class FloatBuffer
         return this.size[1];
     }
 
+    // TODO support custom offsets (via ctor arg)
     get offset() {
         return 0;
     }
@@ -182,19 +184,13 @@ export class FloatBuffer
     order(): number[] {}
 
     // @ts-ignore mixin
-    includes(x: number, y: number) {
-        return false;
-    }
+    includes(x: number, y: number): boolean {}
 
     // @ts-ignore mixin
-    indexAt(x: number, y: number) {
-        return 0;
-    }
+    indexAt(x: number, y: number): number {}
 
     // @ts-ignore mixin
-    indexAtUnsafe(x: number, y: number) {
-        return 0;
-    }
+    indexAtUnsafe(x: number, y: number): number {}
 
     @nomixin
     getAt(x: number, y: number) {
