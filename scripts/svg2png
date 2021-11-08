@@ -1,0 +1,6 @@
+#!/bin/sh
+for src in "$@"; do
+    dest="${src%.svg}.png"
+    echo "$src -> $dest"
+    rsvg-convert -b white -z 2 "$src" > "$dest";
+done
