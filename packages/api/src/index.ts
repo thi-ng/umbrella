@@ -47,6 +47,7 @@ export * from "./decorators/nomixin.js";
 export * from "./decorators/sealed.js";
 
 export * from "./mixins/ienable.js";
+export * from "./mixins/igrid.js";
 export * from "./mixins/inotify.js";
 export * from "./mixins/iterable.js";
 export * from "./mixins/iwatch.js";
