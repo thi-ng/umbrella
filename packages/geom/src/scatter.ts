@@ -15,7 +15,7 @@ export const scatter = (
     if (!b) return;
     const mi = b.pos;
     const mx = b.max();
-    for (; --num >= 0; ) {
+    for (; num-- > 0; ) {
         while (true) {
             const p = randMinMax([], mi, mx, rnd);
             if (pointInside(shape, p)) {

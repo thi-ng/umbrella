@@ -87,7 +87,7 @@ const findMin = (pts: ReadonlyVec[]) => {
     let minID = n;
     let [minX, minY] = pts[n];
     let p, y;
-    for (; --n >= 0; ) {
+    for (; n-- > 0; ) {
         p = pts[n];
         y = p[1];
         if (y < minY || (y === minY && p[0] < minX)) {

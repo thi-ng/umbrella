@@ -37,7 +37,7 @@ const initCurves = () => [
 ];
 
 const updateCurves = (curves: Cubic[], t: number) => {
-    for (let i = curves.length; --i >= 0; ) {
+    for (let i = curves.length; i-- > 0; ) {
         const crv = curves[i];
         const pts = crv.points;
         const id = crv.attribs!.id;
@@ -57,7 +57,7 @@ const makeParticle = (curves: Cubic[]) => ({
 });
 
 const updateParticles = (particles: Particle[]) => {
-    for (let i = particles.length; --i >= 0; ) {
+    for (let i = particles.length; i-- > 0; ) {
         const p = particles[i];
         p.pos = wrap01(p.pos + p.vel);
     }

@@ -59,7 +59,7 @@ export abstract class ASparseSet<T extends UIntArray>
         }
         const $this = __private.get(this)!;
         const d = $this.dense;
-        for (let i = $this.n; --i >= 0; ) {
+        for (let i = $this.n; i-- > 0; ) {
             if (!o.has(d[i])) {
                 return false;
             }

@@ -14,6 +14,6 @@ import { vecOf } from "./vec-of.js";
 export const minBounds = (out: Vec | null, src: ReadonlyVec[]) => {
     __ensureInputs(src);
     out = out ? setN(out, Infinity) : vecOf(src[0].length, Infinity);
-    for (let i = src.length; --i >= 0; ) min(out, out, src[i]);
+    for (let i = src.length; i-- > 0; ) min(out, out, src[i]);
     return out;
 };

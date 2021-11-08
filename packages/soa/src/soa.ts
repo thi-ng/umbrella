@@ -98,7 +98,7 @@ export class SOA<K extends string> implements ILength {
     indexUnsafe(i: number, ids?: K[]): any {
         const res = <SOATuple<K, Vec>>{};
         if (ids) {
-            for (let i = ids.length; --i >= 0; ) {
+            for (let i = ids.length; i-- > 0; ) {
                 const id = ids[i];
                 res[id] = this.attribValueUnsafe(id, i);
             }
@@ -145,7 +145,7 @@ export class SOA<K extends string> implements ILength {
         ensureIndex(destFrom, 0, dest.length);
         ensureIndex(destFrom + num, destFrom, dest.length + 1);
         ids = ids || <K[]>Object.keys(this.specs);
-        for (let k = ids.length; --k >= 0; ) {
+        for (let k = ids.length; k-- > 0; ) {
             const id = ids[k];
             for (let i = srcFrom, j = destFrom; i < srcTo; i++, j++) {
                 dest.setAttribValueUnsafe(id, j, this.attribValueUnsafe(id, i));

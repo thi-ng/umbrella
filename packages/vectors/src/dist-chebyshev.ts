@@ -25,7 +25,7 @@ export const distChebyshev: MultiVecOpRoVV<number> = vop();
 
 distChebyshev.default((a, b) => {
     let max = 0;
-    for (let i = a.length; --i >= 0; ) {
+    for (let i = a.length; i-- > 0; ) {
         max = Math.max(max, Math.abs(a[i] - b[i]));
     }
     return max;

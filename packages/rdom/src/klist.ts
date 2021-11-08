@@ -95,10 +95,10 @@ export class KList<T> extends Component<T[]> implements IMountWithState<T[]> {
         let numCurr = curr.length;
 
         let i: number;
-        for (i = numPrev; --i >= 0; ) {
+        for (i = numPrev; i-- > 0; ) {
             offsets.set(items![i].k, i);
         }
-        for (i = numCurr; --i >= 0; ) {
+        for (i = numCurr; i-- > 0; ) {
             const val = curr[i];
             const key = keyFn(val, i);
             let item = cache!.get(key);

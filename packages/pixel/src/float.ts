@@ -75,7 +75,7 @@ export const floatBufferFromInt = (
         stride: [stride],
     } = dest;
     const { data: sbuf, format: sfmt } = src;
-    for (let i = sbuf.length; --i >= 0; ) {
+    for (let i = sbuf.length; i-- > 0; ) {
         dbuf.set(dfmt.fromABGR(sfmt.toABGR(sbuf[i])), i * stride);
     }
     return dest;
@@ -286,7 +286,7 @@ export class FloatBuffer
         ) {
             for (
                 let xx = rw, sii = si, dii = di;
-                --xx >= 0;
+                xx-- > 0;
                 sii += stride, dii += stride
             ) {
                 const out = dbuf.subarray(dii, dii + stride);
@@ -373,7 +373,7 @@ export class FloatBuffer
 
     clamp() {
         const data = this.data;
-        for (let i = data.length; --i >= 0; ) {
+        for (let i = data.length; i-- > 0; ) {
             data[i] = clamp01(data[i]);
         }
         return this;

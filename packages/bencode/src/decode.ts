@@ -155,7 +155,7 @@ const readFloat = (iter: Iterator<number>) => {
 const readBytes = (iter: Iterator<number>, len: number) => {
     let i: IteratorResult<number>;
     let buf: number[] = [];
-    while (--len >= 0 && !(i = iter.next()).done) {
+    while (len-- > 0 && !(i = iter.next()).done) {
         buf.push(i.value);
     }
     return len < 0 ? buf : illegalState(`expected string, reached EOF`);

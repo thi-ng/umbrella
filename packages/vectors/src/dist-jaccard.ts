@@ -10,7 +10,7 @@ import type { DistanceFn } from "./api.js";
 export const distJaccard: DistanceFn = (a, b) => {
     let numNZ = 0;
     let numEQ = 0;
-    for (let i = a.length; --i >= 0; ) {
+    for (let i = a.length; i-- > 0; ) {
         const aa = a[i] !== 0;
         const bb = b[i] !== 0;
         numNZ += ~~(aa || bb);

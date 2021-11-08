@@ -30,7 +30,7 @@ export class RAFScheduler implements IScheduler {
 
     update() {
         for (let tasks of this.tasks.values()) {
-            for (let i = tasks.length; --i >= 0; tasks[i]());
+            for (let i = tasks.length; i-- > 0; tasks[i]());
         }
         this.tasks.clear();
         this.raf = -1;

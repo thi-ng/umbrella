@@ -38,7 +38,7 @@ export const mapBuffer = <T extends Type>(
     byteStride = size * SIZEOF[type]
 ) => {
     const res: TypedArrayTypeMap[T][] = [];
-    for (; --num >= 0; byteOffset += byteStride) {
+    for (; num-- > 0; byteOffset += byteStride) {
         res.push(typedArray(type, buf, byteOffset, size));
     }
     return res;
@@ -82,7 +82,7 @@ export const mapStridedBuffer = <T>(
     estride: number
 ) => {
     const res: T[] = [];
-    while (--num >= 0) {
+    while (num-- > 0) {
         res.push(new ctor(buf, start, cstride));
         start += estride;
     }

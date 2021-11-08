@@ -10,7 +10,7 @@ export const addResults = <A, B>(
     sel: [number, Nullable<A>?][],
     acc: B[]
 ) => {
-    for (let n = sel.sort(CMP).length; --n >= 0; ) {
+    for (let n = sel.sort(CMP).length; n-- > 0; ) {
         const s = sel[n][1];
         s && acc.push(fn(s));
     }

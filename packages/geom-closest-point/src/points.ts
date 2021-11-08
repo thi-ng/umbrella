@@ -20,7 +20,7 @@ export const closestPointArray = (
 ) => {
     let minD = Infinity;
     let closest: Vec | undefined;
-    for (let i = pts.length; --i >= 0; ) {
+    for (let i = pts.length; i-- > 0; ) {
         const d = dist(pts[i], p);
         if (d < minD) {
             minD = d;

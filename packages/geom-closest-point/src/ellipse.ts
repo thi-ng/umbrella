@@ -29,7 +29,7 @@ export const closestPointEllipse = (
     const ba = (ry * ry - rx * rx) / ry;
     let tx = SQRT2_2;
     let ty = tx;
-    for (; --n >= 0; ) {
+    for (; n-- > 0; ) {
         const _ex = ab * tx * tx * tx;
         const _ey = ba * ty * ty * ty;
         const qx = apx - _ex;

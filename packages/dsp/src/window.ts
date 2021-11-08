@@ -40,7 +40,7 @@ export const applyWindow = (
     window: NumericArray,
     out = signal
 ) => {
-    for (let i = signal.length; --i >= 0; ) {
+    for (let i = signal.length; i-- > 0; ) {
         out[i] = signal[i] * window[i];
     }
     return out;

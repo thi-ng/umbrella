@@ -189,7 +189,7 @@ export function* colorsFromRange(
     opts: Partial<ColorRangeOpts> = {}
 ) {
     let num = opts.num != undefined ? opts.num : Infinity;
-    while (--num >= 0) yield colorFromRange(range, opts);
+    while (num-- > 0) yield colorFromRange(range, opts);
 }
 
 /** @internal */

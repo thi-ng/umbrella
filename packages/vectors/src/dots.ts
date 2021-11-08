@@ -12,7 +12,7 @@ export const dotS = (
     sb = 1
 ) => {
     let sum = 0;
-    for (; --n >= 0; ia += sa, ib += sb) sum += a[ia] * b[ib];
+    for (; n-- > 0; ia += sa, ib += sb) sum += a[ia] * b[ib];
     return sum;
 };
 

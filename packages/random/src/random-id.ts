@@ -30,7 +30,7 @@ export const randomID = (
     rnd: IRandom = SYSTEM
 ) => {
     const n = syms.length;
-    for (; --len >= 0; ) {
+    for (; len-- > 0; ) {
         prefix += syms[rnd.int() % n];
     }
     return prefix;

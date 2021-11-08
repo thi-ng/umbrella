@@ -96,7 +96,7 @@ export class Group<SPEC, K extends ComponentID<SPEC>> implements IID<string> {
         return this.cache.getSet(id, () => {
             const tuple = <GroupTuple<SPEC, K>>{ id: id };
             const comps = this.components;
-            for (let j = comps.length; --j >= 0; ) {
+            for (let j = comps.length; j-- > 0; ) {
                 const c = comps[j];
                 tuple[c.id] = <any>c.getIndex(c.sparse[id])!;
             }
@@ -184,7 +184,7 @@ export class Group<SPEC, K extends ComponentID<SPEC>> implements IID<string> {
         if (!owned.length) return;
         const id2 = owned[0].dense[n];
         let swapped = false;
-        for (let i = owned.length; --i >= 0; ) {
+        for (let i = owned.length; i-- > 0; ) {
             const comp = owned[i];
             // console.log(`moving id: ${id} in ${comp.id}...`);
             swapped = comp.swapIndices(comp.sparse[id], n) || swapped;
@@ -198,7 +198,7 @@ export class Group<SPEC, K extends ComponentID<SPEC>> implements IID<string> {
     protected *ownedValues() {
         const comps = this.components;
         const ref = comps[0].dense;
-        for (let i = this.n; --i >= 0; ) {
+        for (let i = this.n; i-- > 0; ) {
             yield this.getEntityUnsafe(ref[i]);
         }
     }

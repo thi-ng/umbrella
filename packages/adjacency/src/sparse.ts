@@ -96,17 +96,17 @@ export class AdjacencyMatrix extends CSR implements IGraph<number> {
         switch (deg) {
             case "out":
             default:
-                for (let i = this.m; --i >= 0; ) {
+                for (let i = this.m; i-- > 0; ) {
                     res.setAt(i, i, this.nnzRow(i));
                 }
                 break;
             case "in":
-                for (let i = this.m; --i >= 0; ) {
+                for (let i = this.m; i-- > 0; ) {
                     res.setAt(i, i, this.nnzCol(i));
                 }
                 break;
             case "inout":
-                for (let i = this.m; --i >= 0; ) {
+                for (let i = this.m; i-- > 0; ) {
                     res.setAt(i, i, this.nnzRow(i) + this.nnzCol(i));
                 }
                 break;

@@ -269,7 +269,7 @@ export class CSR extends ASparseMatrix {
         }
         const res = this.copy();
         const a = res.data;
-        for (let i = a.length; --i >= 0; ) {
+        for (let i = a.length; i-- > 0; ) {
             a[i] *= n;
         }
         return res;

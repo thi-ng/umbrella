@@ -105,7 +105,7 @@ export const intBufferFromCanvas = (
         dest = typedArray(fmt.type, w * h);
         const src = ctx.data;
         const from = fmt.fromABGR;
-        for (let i = dest.length; --i >= 0; ) {
+        for (let i = dest.length; i-- > 0; ) {
             dest[i] = from(src[i]);
         }
     }
@@ -292,7 +292,7 @@ export class IntBuffer
         const dest = new Uint32Array(idata.data.buffer);
         const src = this.data;
         const fmt = this.format.toABGR;
-        for (let i = dest.length; --i >= 0; ) {
+        for (let i = dest.length; i-- > 0; ) {
             dest[i] = fmt(src[i]);
         }
         return idata;
@@ -333,7 +333,7 @@ export class IntBuffer
         const src = this.data;
         const dest = buf.data;
         const get = chan.int;
-        for (let i = src.length; --i >= 0; ) {
+        for (let i = src.length; i-- > 0; ) {
             dest[i] = get(src[i]);
         }
         return buf;
@@ -367,7 +367,7 @@ export class IntBuffer
     invert() {
         const { data, format } = this;
         const mask = Math.pow(2, format.size - format.alpha) - 1;
-        for (let i = data.length; --i >= 0; ) {
+        for (let i = data.length; i-- > 0; ) {
             data[i] ^= mask;
         }
         return this;
@@ -386,7 +386,7 @@ export class IntBuffer
     isPremultiplied() {
         const pix = this.data;
         const to = this.format.toABGR;
-        for (let i = pix.length; --i >= 0; ) {
+        for (let i = pix.length; i-- > 0; ) {
             if (!isPremultipliedInt(to(pix[i]))) {
                 return false;
             }
@@ -396,7 +396,7 @@ export class IntBuffer
 
     forEach(f: Fn2<number, number, number>) {
         const pix = this.data;
-        for (let i = pix.length; --i >= 0; ) {
+        for (let i = pix.length; i-- > 0; ) {
             pix[i] = f(pix[i], i);
         }
         return this;

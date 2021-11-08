@@ -24,7 +24,7 @@ export const binOp = (
     src: Uint32Array,
     op: Fn2<number, number, number>
 ) => {
-    for (let i = src.length; --i >= 0; ) dest[i] = op(src[i], dest[i]);
+    for (let i = src.length; i-- > 0; ) dest[i] = op(src[i], dest[i]);
 };
 
 /**

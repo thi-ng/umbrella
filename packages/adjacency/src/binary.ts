@@ -22,7 +22,7 @@ export class AdjacencyBitMatrix implements IGraph<number> {
 
     *edges() {
         const directed = !this.undirected;
-        for (let i = this.mat.n; --i >= 0; ) {
+        for (let i = this.mat.n; i-- > 0; ) {
             for (let n of this.neighbors(i)) {
                 if (directed || n > i) {
                     yield <Edge>[i, n];

@@ -198,7 +198,7 @@ const buildFullLog = <T>(
         aID = 1;
         dID = -1;
     }
-    for (; --i >= 0; ) {
+    for (; i-- > 0; ) {
         const e = epc[i];
         const ppx = pathPos[e];
         const ppy = pathPos[e + 1];
@@ -235,7 +235,7 @@ const buildLinearLog = <T>(
     let i = epc.length,
         px = 0,
         py = 0;
-    for (; --i >= 0; ) {
+    for (; i-- > 0; ) {
         const e = epc[i];
         const ppx = pathPos[e];
         const ppy = pathPos[e + 1];

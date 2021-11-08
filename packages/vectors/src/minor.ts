@@ -15,7 +15,7 @@ export const minor: MultiVecOpRoV<number> = vop();
 minor.default((a) => {
     let id = -1;
     let min = Infinity;
-    for (let i = a.length; --i >= 0; ) {
+    for (let i = a.length; i-- > 0; ) {
         const x = abs(a[i]);
         if (x < min) {
             min = x;

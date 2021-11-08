@@ -162,7 +162,7 @@ export class CSC extends ASparseMatrix {
     nnzRow(m: number) {
         const rows = this.rows;
         let res = 0;
-        for (let i = rows.length; --i >= 0; ) {
+        for (let i = rows.length; i-- > 0; ) {
             if (rows[i] === m) {
                 res++;
             }

@@ -5,7 +5,7 @@ export const treeToMorton = (t: number[], dim: number) => {
     let m = 0;
     let l = t.length;
     dim = 1 << dim;
-    while (--l >= 0) {
+    while (l-- > 0) {
         m += (t[l] - 1) * Math.pow(dim, n);
         n++;
     }

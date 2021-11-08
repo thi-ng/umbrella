@@ -404,7 +404,7 @@ const nodeDist = <K extends ReadonlyVec, V>(
     q: K,
     p: K
 ) => {
-    for (let i = dims, d = node.d; --i >= 0; ) {
+    for (let i = dims, d = node.d; i-- > 0; ) {
         TMP[i] = i === d ? q[i] : p[i];
     }
     return distSq(TMP, p);

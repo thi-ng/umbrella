@@ -154,7 +154,7 @@ export class Heap<T>
 
     remove(val: T) {
         const { values, equiv } = this;
-        for (let i = values.length; --i >= 0; ) {
+        for (let i = values.length; i-- > 0; ) {
             if (equiv(values[i], val)) {
                 this.values.splice(i, 1);
                 this.heapify();
@@ -166,7 +166,7 @@ export class Heap<T>
 
     find(val: T) {
         const { values, equiv } = this;
-        for (let i = values.length; --i >= 0; ) {
+        for (let i = values.length; i-- > 0; ) {
             if (equiv(values[i], val)) {
                 return values[i];
             }
@@ -175,7 +175,7 @@ export class Heap<T>
 
     findWith(pred: Predicate<T>) {
         const values = this.values;
-        for (let i = values.length; --i >= 0; ) {
+        for (let i = values.length; i-- > 0; ) {
             if (pred(values[i])) return values[i];
         }
     }

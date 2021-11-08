@@ -47,7 +47,7 @@ export function* curve(
     );
     const offset = (start < end ? end + rate : end - rate) * (1 - c);
     steps > 0 && (yield start);
-    for (let x = start; --steps >= 0; ) {
+    for (let x = start; steps-- > 0; ) {
         yield (x = offset + x * c);
     }
 }

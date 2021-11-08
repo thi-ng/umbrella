@@ -160,7 +160,7 @@ export class PairingHeap<T>
         if (fn(root.v!)) {
             const children = root.c;
             let ok = true;
-            for (let i = children.length; ok && --i >= 0; ) {
+            for (let i = children.length; ok && i-- > 0; ) {
                 ok = this.doVisit(fn, children[i]);
             }
             return ok;
@@ -186,7 +186,7 @@ export class PairingHeap<T>
         const n = heaps.length - 1;
         let root = heaps[n];
         if (n > 0) {
-            for (let i = n; --i >= 0; ) {
+            for (let i = n; i-- > 0; ) {
                 root = this.merge(root, heaps[i]);
             }
         }

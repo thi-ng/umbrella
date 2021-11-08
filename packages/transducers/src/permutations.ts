@@ -101,7 +101,7 @@ export const permutationsN = (
         illegalArgs(`insufficient offsets, got ${offsets.length}, needed ${n}`);
     }
     const seqs = [];
-    while (--n >= 0) {
+    while (n-- > 0) {
         const o = offsets ? offsets[n] : 0;
         seqs[n] = range(o, o + m);
     }

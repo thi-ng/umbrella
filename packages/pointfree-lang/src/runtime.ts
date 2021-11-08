@@ -270,7 +270,7 @@ const pushLocals = (
     locals: string[]
 ) => {
     if (locals) {
-        for (let stack = wctx[0], i = locals.length; --i >= 0; ) {
+        for (let stack = wctx[0], i = locals.length; i-- > 0; ) {
             stack.push(fn(locals[i]));
         }
     }

@@ -137,7 +137,7 @@ format.add("obj", (opts, res, x) => {
     } else {
         const outer = spaces(opts.indent);
         res += opts.prefix + "{" + opts.lineSep;
-        for (let i = keys.length; --i >= 0; ) {
+        for (let i = keys.length; i-- > 0; ) {
             const k = keys[i];
             res += formatPair(
                 k === "style"

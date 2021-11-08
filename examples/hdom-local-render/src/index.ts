@@ -41,7 +41,7 @@ abstract class LocalReRenderable {
     localRender(...args: any[]) {
         const el = this.el!;
         const children = el.parentElement!.children;
-        for (let i = children.length; --i >= 0; ) {
+        for (let i = children.length; i-- > 0; ) {
             if (children[i] === el) {
                 replaceChild(
                     {},

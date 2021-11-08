@@ -26,7 +26,7 @@ export const bounds = (
     vmin: Vec,
     vmax: Vec
 ): VecPair => {
-    for (let i = pts.length; --i >= 0; ) {
+    for (let i = pts.length; i-- > 0; ) {
         const p = pts[i];
         min(null, vmin, p);
         max(null, vmax, p);

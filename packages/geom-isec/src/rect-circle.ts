@@ -42,7 +42,7 @@ export const testAABBSphere = testBoxSphere.add(
 
 testBoxSphere.default((boxPos, boxSize, spherePos, r) => {
     let sum = 0;
-    for (let i = boxPos.length; --i >= 0; ) {
+    for (let i = boxPos.length; i-- > 0; ) {
         sum += axis(spherePos[i], boxPos[i], boxSize[i]);
     }
     return sum <= r * r;
@@ -98,7 +98,7 @@ export const testCenteredAABBSphere = testCenteredBoxSphere.add(
 
 testCenteredBoxSphere.default((boxPos, boxExtent, spherePos, r) => {
     let sum = 0;
-    for (let i = boxPos.length; --i >= 0; ) {
+    for (let i = boxPos.length; i-- > 0; ) {
         sum += axis(spherePos[i], boxPos[i] - boxExtent[i], boxExtent[i] * 2);
     }
     return sum <= r * r;

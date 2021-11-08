@@ -77,7 +77,7 @@ export const mul = defOp<Op2>(
         const ar = a[0];
         const br = b[0];
         const out = [ar * br];
-        for (let i = a.length; --i >= 1; ) {
+        for (let i = a.length; i-- > 1; ) {
             out[i] = ar * b[i] + a[i] * br;
         }
         return out;
@@ -91,7 +91,7 @@ export const div = defOp<Op2>(
         const br = b[0];
         const ibr = 1 / (br * br);
         const out = [ar / br];
-        for (let i = a.length; --i >= 1; ) {
+        for (let i = a.length; i-- > 1; ) {
             out[i] = (a[i] * br - ar * b[i]) * ibr;
         }
         return out;
@@ -103,7 +103,7 @@ export const abs = defOp<Op1>(
     (a) => {
         const s = Math.sign(a[0]);
         const out = [Math.abs(a[0])];
-        for (let i = a.length; --i >= 1; ) {
+        for (let i = a.length; i-- > 1; ) {
             out[i] = s * a[i];
         }
         return out;
@@ -119,7 +119,7 @@ export const sqrt = defOp<Op1>(
         const s = Math.sqrt(a[0]);
         const si = 0.5 / s;
         const out = [s];
-        for (let i = a.length; --i >= 1; ) {
+        for (let i = a.length; i-- > 1; ) {
             out[i] = si * a[i];
         }
         return out;
@@ -134,7 +134,7 @@ export const exp = defOp<Op1>(
     (a) => {
         const ar = Math.exp(a[0]);
         const out = [ar];
-        for (let i = a.length; --i >= 1; ) {
+        for (let i = a.length; i-- > 1; ) {
             out[i] = ar * a[i];
         }
         return out;
@@ -147,7 +147,7 @@ export const log = defOp<Op1>(
         const ar = Math.log(a[0]);
         const iar = 1 / ar;
         const out = [ar];
-        for (let i = a.length; --i >= 1; ) {
+        for (let i = a.length; i-- > 1; ) {
             out[i] = iar * a[i];
         }
         return out;
@@ -159,7 +159,7 @@ export const pow = defOp<Op1N>(
     (a, k) => {
         const f = k * a[0] ** (k - 1);
         const out = [a[0] ** k];
-        for (let i = a.length; --i >= 1; ) {
+        for (let i = a.length; i-- > 1; ) {
             out[i] = f * a[i];
         }
         return out;
@@ -171,7 +171,7 @@ export const sin = defOp<Op1>(
     (a) => {
         const c = Math.cos(a[0]);
         const out = [Math.sin(a[0])];
-        for (let i = a.length; --i >= 1; ) {
+        for (let i = a.length; i-- > 1; ) {
             out[i] = c * a[i];
         }
         return out;
@@ -183,7 +183,7 @@ export const cos = defOp<Op1>(
     (a) => {
         const s = -Math.sin(a[0]);
         const out = [Math.cos(a[0])];
-        for (let i = a.length; --i >= 1; ) {
+        for (let i = a.length; i-- > 1; ) {
             out[i] = s * a[i];
         }
         return out;
@@ -199,7 +199,7 @@ export const tan = defOp<Op1>(
         const c = Math.cos(a[0]);
         const ic = 1 / (c * c);
         const out = [Math.tan(a[0])];
-        for (let i = a.length; --i >= 1; ) {
+        for (let i = a.length; i-- > 1; ) {
             out[i] = ic * a[i];
         }
         return out;
@@ -212,7 +212,7 @@ export const atan = defOp<Op1>(
         const ar = a[0];
         const iar = 1 / (1 + ar * ar);
         const out = [Math.atan(ar)];
-        for (let i = a.length; --i >= 1; ) {
+        for (let i = a.length; i-- > 1; ) {
             out[i] = iar * a[i];
         }
         return out;

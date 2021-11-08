@@ -33,7 +33,7 @@ const buildIndex = (n: number) => {
         return INDEX.slice(0, n);
     }
     const res = new Array(n);
-    while (--n >= 2) {
+    while (n-- > 2) {
         res[n] = n - 2;
     }
     return res;
@@ -238,7 +238,7 @@ export const diffAttributes = <T>(
             ? impl.setAttrib(el, e, edits[i + 1], curr)
             : (val = edits[i + 1]);
     }
-    for (edits = delta.adds!, i = edits.length; --i >= 0; ) {
+    for (edits = delta.adds!, i = edits.length; i-- > 0; ) {
         e = edits[i];
         e !== "value" ? impl.setAttrib(el, e, curr[e], curr) : (val = curr[e]);
     }
@@ -267,7 +267,7 @@ export const releaseTree = (tree: any) => {
             (<any>tree).__release.apply((<any>tree).__this, (<any>tree).__args);
             delete (<any>tree).__release;
         }
-        for (x = tree.length; --x >= 2; ) {
+        for (x = tree.length; x-- > 2; ) {
             releaseTree(tree[x]);
         }
     }

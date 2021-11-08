@@ -10,7 +10,7 @@ import { vop } from "./vop.js";
 export const some: MultiBVecOpRoV<boolean> = vop();
 
 some.default((v) => {
-    for (let i = v.length; --i >= 0; ) {
+    for (let i = v.length; i-- > 0; ) {
         if (v[i]) return true;
     }
     return false;

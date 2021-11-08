@@ -24,7 +24,7 @@ import { sum } from "./sum.js";
 export const mean = (out: Vec | null, src: ReadonlyVec[]) => {
     __ensureInputs(src);
     out = set(out || [], src[0]);
-    for (let i = src.length; --i >= 1; ) {
+    for (let i = src.length; i-- > 1; ) {
         add(out, out, src[i]);
     }
     return mulN(out, out, 1 / src.length);

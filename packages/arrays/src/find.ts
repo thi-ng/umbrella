@@ -31,7 +31,7 @@ export const findIndex = <T>(
     x: T,
     equiv: Predicate2<T> = _equiv
 ) => {
-    for (let i = buf.length; --i >= 0; ) {
+    for (let i = buf.length; i-- > 0; ) {
         if (equiv(x, buf[i])) return i;
     }
     return -1;

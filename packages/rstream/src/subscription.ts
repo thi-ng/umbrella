@@ -313,7 +313,7 @@ export class Subscription<A, B> implements ISubscription<A, B> {
         }
         // process other child subs
         const subs = type === "next" ? this.subs : [...this.subs];
-        for (let i = subs.length; --i >= 0; ) {
+        for (let i = subs.length; i-- > 0; ) {
             s = subs[i];
             try {
                 s[type] && s[type]!(x!);

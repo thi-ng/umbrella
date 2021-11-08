@@ -106,7 +106,7 @@ export class MEP<OP, T> {
     mutate(chromo: MEPChromosome<OP, T>) {
         const { rnd, probMutate } = this.opts;
         const res: MEPChromosome<OP, T> = new Array(chromo.length);
-        for (let i = chromo.length; --i >= 0; ) {
+        for (let i = chromo.length; i-- > 0; ) {
             res[i] = rnd!.float() < probMutate ? this.randomGene(i) : chromo[i];
         }
         return res;

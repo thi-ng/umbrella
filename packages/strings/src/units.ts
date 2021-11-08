@@ -28,7 +28,7 @@ export const units: (
             return `0${base}`;
         }
         const absX = Math.abs(x);
-        for (let i = groups.length; --i >= 0; ) {
+        for (let i = groups.length; i-- > 0; ) {
             const g = groups[i];
             if (absX >= g[0] || i === 0) {
                 return (x / g[0]).toFixed(g[1]) + g[2];

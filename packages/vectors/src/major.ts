@@ -15,7 +15,7 @@ export const major: MultiVecOpRoV<number> = vop();
 major.default((a) => {
     let id = -1;
     let max = -Infinity;
-    for (let i = a.length; --i >= 0; ) {
+    for (let i = a.length; i-- > 0; ) {
         const x = abs(a[i]);
         if (x > max) {
             max = x;

@@ -15,7 +15,7 @@ import { ensureArray } from "@thi.ng/arrays/ensure-array";
 export function* reverse<T>(input: Iterable<T>): IterableIterator<T> {
     const _input = ensureArray(input);
     let n = _input.length;
-    while (--n >= 0) {
+    while (n-- > 0) {
         yield _input[n];
     }
 }

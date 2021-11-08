@@ -69,7 +69,7 @@ export const multiSwap = (...xs: AnyArray[]): SwapFn => {
         default:
             return (a, x, y) => {
                 swap(a, x, y);
-                for (let i = n; --i >= 0; ) swap(xs[i], x, y);
+                for (let i = n; i-- > 0; ) swap(xs[i], x, y);
             };
     }
 };

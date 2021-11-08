@@ -102,7 +102,7 @@ export class IDGen implements Iterable<number>, IClear, INotify {
 
     *[Symbol.iterator]() {
         const { ids, mask } = this;
-        for (let i = this.nextID; --i >= 0; ) {
+        for (let i = this.nextID; i-- > 0; ) {
             const id = ids[i];
             if ((id & mask) === i) yield id;
         }

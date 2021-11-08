@@ -11,7 +11,7 @@ const solveQuadratic: FnN3 = (a, b, c) => {
 };
 
 const inBounds: FnU3<ReadonlyVec, boolean> = (p, min, max) => {
-    for (let i = p.length; --i >= 0; ) {
+    for (let i = p.length; i-- > 0; ) {
         if (!inRange(p[i], min[i], max[i])) return false;
     }
     return true;
@@ -22,7 +22,7 @@ export const quadraticBounds: FnU3<ReadonlyVec, VecPair> = (a, b, c) => {
     const ma = max([], a, c);
     if (!inBounds(b, mi, ma)) {
         const q = [];
-        for (let i = a.length; --i >= 0; ) {
+        for (let i = a.length; i-- > 0; ) {
             q[i] = solveQuadratic(a[i], b[i], c[i]);
         }
         min(null, mi, q);

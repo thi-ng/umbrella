@@ -15,7 +15,7 @@ import { error } from "./error.js";
 
 const $bind = (op: "bind" | "unbind") => (textures?: ITexture[]) => {
     if (!textures) return;
-    for (let i = textures.length, tex; --i >= 0; ) {
+    for (let i = textures.length, tex; i-- > 0; ) {
         (tex = textures[i]) && tex[op](i);
     }
 };

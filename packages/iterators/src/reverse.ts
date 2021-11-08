@@ -3,7 +3,7 @@ export function* reverse<T>(input: Iterable<T>) {
         input = [...input];
     }
     let n = (<T[]>input).length;
-    while (--n >= 0) {
+    while (n-- > 0) {
         yield (<any>input)[n];
     }
 }

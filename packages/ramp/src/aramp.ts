@@ -28,7 +28,7 @@ export abstract class ARamp implements IRamp {
         if (!n) return { min: 0, max: 0, minT: 0, maxT: 0 };
         let min = Infinity;
         let max = -Infinity;
-        for (let i = n; --i >= 0; ) {
+        for (let i = n; i-- > 0; ) {
             const y = stops[i][1];
             min = Math.min(min, y);
             max = Math.max(max, y);
@@ -58,7 +58,7 @@ export abstract class ARamp implements IRamp {
 
     closestIndex(t: number, eps = 0.01) {
         const stops = this.stops;
-        for (let i = stops.length; --i >= 0; ) {
+        for (let i = stops.length; i-- > 0; ) {
             if (absDiff(t, stops[i][0]) < eps) return i;
         }
         return -1;
@@ -87,7 +87,7 @@ export abstract class ARamp implements IRamp {
         const stops = this.stops;
         const n = stops.length;
         if (n < 256) {
-            for (let i = n; --i >= 0; ) {
+            for (let i = n; i-- > 0; ) {
                 if (t >= stops[i][0]) return i;
             }
             return -1;

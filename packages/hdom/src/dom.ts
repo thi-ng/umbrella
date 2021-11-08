@@ -304,7 +304,7 @@ export const updateValueAttrib = (el: HTMLInputElement, value: any) => {
 };
 
 export const removeAttribs = (el: Element, attribs: string[], prev: any) => {
-    for (let i = attribs.length; --i >= 0; ) {
+    for (let i = attribs.length; i-- > 0; ) {
         const a = attribs[i];
         if (a[0] === "o" && a[1] === "n") {
             removeListener(el, a.substr(2), prev[a]);

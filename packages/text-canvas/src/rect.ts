@@ -70,7 +70,7 @@ export const fillRect = (
     w = Math.min(w, x2 - x);
     h = Math.min(h, y2 - y);
     char = charCode(char, format);
-    for (; --h >= 0; y++) {
+    for (; h-- > 0; y++) {
         const idx = x + y * width;
         data.fill(char, idx, idx + w);
     }

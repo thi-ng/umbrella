@@ -68,7 +68,7 @@ export class BaseN implements IBase {
         let y = this.decodeBigInt(x);
         const M = BigInt(255);
         const SHIFT = BigInt(8);
-        for (let i = buf.length; --i >= 0; ) {
+        for (let i = buf.length; i-- > 0; ) {
             buf[i] = Number(y & M);
             y >>= SHIFT;
         }

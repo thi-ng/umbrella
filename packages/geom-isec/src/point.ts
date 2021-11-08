@@ -211,7 +211,7 @@ export const pointInAABB = pointInBox.add(
 );
 
 pointInBox.default((p, boxMin, boxSize) => {
-    for (let i = p.length; --i >= 0; ) {
+    for (let i = p.length; i-- > 0; ) {
         const x = p[i];
         const y = boxMin[i];
         if (x < y || x > y + boxSize[i]) return false;
@@ -244,7 +244,7 @@ export const pointInCenteredAABB = pointInCenteredBox.add(
 );
 
 pointInCenteredBox.default((p, boxCenter, boxExtent) => {
-    for (let i = p.length; --i >= 0; ) {
+    for (let i = p.length; i-- > 0; ) {
         const x = p[i];
         const y = boxCenter[i];
         const z = boxExtent[i];

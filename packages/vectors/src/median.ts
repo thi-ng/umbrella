@@ -19,7 +19,7 @@ export const median = (out: Vec | null, src: ReadonlyVec[]) => {
     __ensureInputs(src);
     out = out || [];
     const m = src.length >> 1;
-    for (let i = src[0].length; --i >= 0; ) {
+    for (let i = src[0].length; i-- > 0; ) {
         out[i] = src.map((x) => x[i]).sort((a, b) => a - b)[m];
     }
     return out;

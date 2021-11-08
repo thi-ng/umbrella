@@ -18,7 +18,7 @@ export const subdivide = (
     { fn, pre, size }: SubdivKernel,
     iter = 1
 ) => {
-    while (--iter >= 0) {
+    while (iter-- > 0) {
         const nump = pts.length;
         pts = transduce<ReadonlyVec, ReadonlyVec, Vec[]>(
             comp(

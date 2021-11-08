@@ -71,7 +71,7 @@ export abstract class ANode<T extends ISceneNode<any>> {
     childForPoint(p: ReadonlyVec): NodeInfo<T> | undefined {
         if (this.enabled) {
             const children = this.children;
-            for (let i = children.length; --i >= 0; ) {
+            for (let i = children.length; i-- > 0; ) {
                 const n = children[i].childForPoint(p);
                 if (n) {
                     return n;

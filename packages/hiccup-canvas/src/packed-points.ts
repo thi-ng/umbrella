@@ -35,14 +35,14 @@ const __drawPoints = (
             ? opts.num
             : ((pts.length - start) / estride) | 0;
     if (opts.shape === "circle") {
-        for (let i = start; --num >= 0; i += estride) {
+        for (let i = start; num-- > 0; i += estride) {
             ctx.beginPath();
             ctx.arc(pts[i], pts[i + cstride], size, 0, TAU);
             ctx[cmd]();
         }
     } else {
         const r = size / 2;
-        for (let i = start; --num >= 0; i += estride) {
+        for (let i = start; num-- > 0; i += estride) {
             ctx[cmdR](pts[i] - r, pts[i + cstride] - r, size, size);
         }
     }

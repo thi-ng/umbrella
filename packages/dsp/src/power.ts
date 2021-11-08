@@ -10,7 +10,7 @@ import { isComplex } from "./complex.js";
  */
 export const integralT = (window: NumericArray) => {
     let sum = 0;
-    for (let i = window.length; --i >= 0; ) {
+    for (let i = window.length; i-- > 0; ) {
         sum += window[i];
     }
     return sum;
@@ -23,7 +23,7 @@ export const integralT = (window: NumericArray) => {
  */
 export const integralTSquared = (window: NumericArray) => {
     let sum = 0;
-    for (let i = window.length; --i >= 0; ) {
+    for (let i = window.length; i-- > 0; ) {
         sum += window[i] ** 2;
     }
     return sum;
@@ -36,7 +36,7 @@ export const integralTSquared = (window: NumericArray) => {
  */
 export const integralF = ([real, img]: ComplexArray) => {
     let sum = 0;
-    for (let i = real.length; --i >= 0; ) {
+    for (let i = real.length; i-- > 0; ) {
         sum += Math.hypot(real[i], img[i]);
     }
     return sum;
@@ -49,7 +49,7 @@ export const integralF = ([real, img]: ComplexArray) => {
  */
 export const integralFSquared = ([real, img]: ComplexArray) => {
     let sum = 0;
-    for (let i = real.length; --i >= 0; ) {
+    for (let i = real.length; i-- > 0; ) {
         sum += real[i] ** 2 + img[i] ** 2;
     }
     return sum;

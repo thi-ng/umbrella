@@ -24,7 +24,7 @@ export const __collBounds = (
     let b = bounds(shapes[n]);
     if (!b) return;
     let { pos, size } = b;
-    for (; --n >= 0; ) {
+    for (; n-- > 0; ) {
         b = bounds(shapes[n]);
         if (!b) continue;
         [pos, size] = __unionBounds(pos, size, b.pos, b.size);

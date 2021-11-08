@@ -55,7 +55,7 @@ export class System<T extends SystemMap<T>> implements ILifecycle {
      */
     async stop() {
         const topo = this.topology;
-        for (let i = topo.length; --i >= 0; ) {
+        for (let i = topo.length; i-- > 0; ) {
             const id = topo[i];
             const comp = this.components[id];
             if (comp.stop && !(await comp.stop())) {

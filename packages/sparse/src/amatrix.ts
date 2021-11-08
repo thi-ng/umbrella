@@ -35,7 +35,7 @@ export abstract class ASparseMatrix {
     trace() {
         assert(this.m === this.n, "matrix is non-square");
         let trace = 0;
-        for (let i = this.m; --i >= 0; ) {
+        for (let i = this.m; i-- > 0; ) {
             trace += this.at(i, i, false);
         }
         return trace;

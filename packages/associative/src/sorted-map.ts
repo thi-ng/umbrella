@@ -187,7 +187,7 @@ export class SortedMap<K, V> extends Map<K, V> {
             if (node.next[level] && code === 0) {
                 do {
                     node.next[level].v = v;
-                } while (--level >= 0);
+                } while (level-- > 0);
                 return this;
             }
             stack[level--] = node;

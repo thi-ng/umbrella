@@ -80,7 +80,7 @@ export function juxt<T>(...fns: Fn<any, any>[]) {
         default:
             return (x: T) => {
                 let res = new Array(fns.length);
-                for (let i = fns.length; --i >= 0; ) {
+                for (let i = fns.length; i-- > 0; ) {
                     res[i] = fns[i](x);
                 }
                 return res;

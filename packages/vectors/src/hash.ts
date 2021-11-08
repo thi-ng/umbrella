@@ -53,7 +53,7 @@ import type { ReadonlyVec } from "./api.js";
  */
 export const hash = (v: ReadonlyVec, H = 0x9e3779b1) => {
     let hash = -1;
-    for (let i = v.length; --i >= 0; ) {
+    for (let i = v.length; i-- > 0; ) {
         hash = (Math.imul(H, hash) + mix(hash, floatToUintBits(v[i]))) >>> 0;
     }
     return hash;

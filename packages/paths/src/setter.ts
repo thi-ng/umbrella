@@ -172,7 +172,7 @@ export function defSetter(path: Path): Fn2<any, any, any> {
             };
         default:
             let f: any;
-            for (let i = ks.length; --i >= 0; ) {
+            for (let i = ks.length; i-- > 0; ) {
                 f = compS(ks[i], f);
             }
             return f;

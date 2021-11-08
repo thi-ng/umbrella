@@ -38,6 +38,6 @@ export const lowDiscrepancy = (dims: Iterator<number>[], offset = 0) => {
             : (function* () {
                   while (true) yield dims.map((d) => <number>d.next().value);
               })();
-    for (; --offset >= 0; ) iter.next();
+    for (; offset-- > 0; ) iter.next();
     return iter;
 };

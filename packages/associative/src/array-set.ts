@@ -104,7 +104,7 @@ export class ArraySet<T> extends Set<T> implements IEquivSet<T> {
 
     delete(key: T) {
         const { equiv, vals } = __private.get(this)!;
-        for (let i = vals.length; --i >= 0; ) {
+        for (let i = vals.length; i-- > 0; ) {
             if (equiv(vals[i], key)) {
                 vals.splice(i, 1);
                 return true;
@@ -131,7 +131,7 @@ export class ArraySet<T> extends Set<T> implements IEquivSet<T> {
      */
     forEach(fn: Fn3<T, T, Set<T>, void>, thisArg?: any) {
         const vals = __vals(this);
-        for (let i = vals.length; --i >= 0; ) {
+        for (let i = vals.length; i-- > 0; ) {
             const v = vals[i];
             fn.call(thisArg, v, v, this);
         }

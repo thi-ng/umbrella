@@ -76,7 +76,7 @@ export class BitInputStream {
 
     readWords(n: number, wordSize = 8) {
         let out = [];
-        while (--n >= 0) {
+        while (n-- > 0) {
             out.push(this.read(wordSize));
         }
         return out;

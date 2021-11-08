@@ -80,7 +80,7 @@ export const eqDeltaS = (
 export const eqDeltaArray = (a: ReadonlyVec[], b: ReadonlyVec[], eps = EPS) => {
     if (a === b) return true;
     if (a.length !== b.length) return false;
-    for (let i = a.length; --i >= 0; ) {
+    for (let i = a.length; i-- > 0; ) {
         if (!eqDelta(a[i], b[i], eps)) {
             return false;
         }
@@ -89,7 +89,7 @@ export const eqDeltaArray = (a: ReadonlyVec[], b: ReadonlyVec[], eps = EPS) => {
 };
 
 export const isInArray = (p: ReadonlyVec, pts: ReadonlyVec[], eps = EPS) => {
-    for (let i = pts.length; --i >= 0; ) {
+    for (let i = pts.length; i-- > 0; ) {
         if (eqDelta(p, pts[i], eps)) {
             return true;
         }

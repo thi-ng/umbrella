@@ -60,7 +60,7 @@ export const INotifyMixin = mixin(<INotify>{
 
     __listener(listeners: [Listener, any][], f: Listener, scope: any) {
         let i = listeners.length;
-        while (--i >= 0) {
+        while (i-- > 0) {
             const l = listeners[i];
             if (l[0] === f && l[1] === scope) {
                 break;

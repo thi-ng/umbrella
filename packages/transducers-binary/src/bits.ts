@@ -40,7 +40,7 @@ export function bits(...args: any[]): any {
                 rfn,
                 msb
                     ? (acc, x: number) => {
-                          for (let i = size; --i >= 0 && !isReduced(acc); ) {
+                          for (let i = size; i-- > 0 && !isReduced(acc); ) {
                               acc = reduce(acc, (x >>> i) & 1);
                           }
                           return acc;

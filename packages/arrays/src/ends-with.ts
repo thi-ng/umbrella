@@ -24,6 +24,6 @@ export const endsWith = <T>(
     let i = buf.length;
     let j = needle.length;
     if (i < j) return false;
-    while ((--i, --j >= 0 && equiv(buf[i], needle[j]))) {}
+    while ((--i, j-- > 0 && equiv(buf[i], needle[j]))) {}
     return j < 0;
 };

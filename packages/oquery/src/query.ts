@@ -50,7 +50,7 @@ const intersect = (src: any[] | Set<any>) => {
     const num = a.length;
     return (b: any) => {
         const $b = ensureSet(b);
-        for (let i = num; --i >= 0; ) {
+        for (let i = num; i-- > 0; ) {
             if (!$b.has(a[i])) return false;
         }
         return true;

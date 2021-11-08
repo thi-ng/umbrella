@@ -6,7 +6,7 @@ export const __take = <T>(
     out: T[] = [],
     idx = 0
 ) => {
-    for (; --num >= 0; ) {
+    for (; num-- > 0; ) {
         out[idx++] = src.next();
     }
     return out;

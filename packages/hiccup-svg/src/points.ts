@@ -83,7 +83,7 @@ export const packedPoints = (
         ...body,
     ];
     const href = buildSymbol(group, shape, size);
-    for (let i = start; --num >= 0; i += estride) {
+    for (let i = start; num-- > 0; i += estride) {
         // TODO replace w/ SVG2 `href` once Safari supports it
         group.push([
             "use",

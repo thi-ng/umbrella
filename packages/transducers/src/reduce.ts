@@ -48,7 +48,7 @@ export function reduceRight<A, B>(...args: any[]): A {
     args = parseArgs(args);
     let acc: A = args[0] == null ? init() : args[0];
     const xs: Array<B> = args[1];
-    for (let i = xs.length; --i >= 0; ) {
+    for (let i = xs.length; i-- > 0; ) {
         acc = <any>reduce(acc, xs[i]);
         if (isReduced(acc)) {
             acc = (<any>acc).deref();

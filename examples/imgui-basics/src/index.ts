@@ -78,7 +78,7 @@ const smoothedVolume = tweenNumber(volume, 0, 0.2);
 
 // derived view for slider label
 const volumeLabel = smoothedVolume.map((x) => {
-    for (let i = PRESETS.length; --i >= 0; ) {
+    for (let i = PRESETS.length; i-- > 0; ) {
         if (x >= PRESETS[i][1]) return `${Math.round(x)} (${PRESETS[i][0]})`;
     }
     return "";

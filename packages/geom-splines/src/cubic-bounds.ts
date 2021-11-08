@@ -52,7 +52,7 @@ const axisBounds = (
 export const cubicBounds: FnU4<ReadonlyVec, VecPair> = (a, b, c, d) => {
     const min: Vec = [];
     const max: Vec = [];
-    for (let i = a.length; --i >= 0; ) {
+    for (let i = a.length; i-- > 0; ) {
         axisBounds(min, max, i, a[i], b[i], c[i], d[i]);
     }
     return [min, max];

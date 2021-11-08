@@ -49,7 +49,7 @@ export const swizzle = <T>(order: string | PropertyKey[]): Fn<T, any[]> => {
         default:
             return (x: any) => {
                 const res = [];
-                for (let i = order.length; --i >= 0; ) {
+                for (let i = order.length; i-- > 0; ) {
                     res[i] = x[order[i]];
                 }
                 return res;

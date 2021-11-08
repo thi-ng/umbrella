@@ -79,7 +79,7 @@ export const fitAllIntoBounds2 = (shapes: IShape[], dest: Rect) => {
     const c1: Vec = [];
     const c2: Vec = [];
     const res: IShape[] = [];
-    for (let i = shapes.length; --i >= 0; ) {
+    for (let i = shapes.length; i-- > 0; ) {
         const s = shapes[i];
         const sc = centroid(s, c1);
         if (sc) {

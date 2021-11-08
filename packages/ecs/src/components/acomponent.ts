@@ -39,7 +39,7 @@ export abstract class AComponent<K extends string, VALUES, GET, SET>
     }
 
     *values() {
-        for (let i = this.n; --i >= 0; ) {
+        for (let i = this.n; i-- > 0; ) {
             yield this.getIndex(i)!;
         }
     }

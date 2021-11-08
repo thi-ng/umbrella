@@ -35,7 +35,7 @@ export class ZCurve<T extends Range2_64> {
         offset: number,
         out: bigint = ZERO
     ) {
-        for (let j = bits; --j >= 0; ) {
+        for (let j = bits; j-- > 0; ) {
             if ((x >>> j) & 1) {
                 out |= ONE << BigInt(j * dims + offset);
             }
@@ -58,7 +58,7 @@ export class ZCurve<T extends Range2_64> {
         offset: number
     ) {
         let res = 0;
-        for (let j = bits; --j >= 0; ) {
+        for (let j = bits; j-- > 0; ) {
             if ((z >> BigInt(j * dims + offset)) & ONE) {
                 res |= 1 << j;
             }
@@ -98,7 +98,7 @@ export class ZCurve<T extends Range2_64> {
     encode(p: ArrayLike<number>) {
         let res = ZERO;
         const { dim, bits, order } = this;
-        for (let i = dim; --i >= 0; ) {
+        for (let i = dim; i-- > 0; ) {
             res = ZCurve.encodeComponent(p[i], bits, dim, order[i], res);
         }
         return res;
@@ -112,7 +112,7 @@ export class ZCurve<T extends Range2_64> {
      */
     decode(z: bigint, out: NumericArray = []) {
         const { dim, bits, order } = this;
-        for (let i = dim; --i >= 0; ) {
+        for (let i = dim; i-- > 0; ) {
             out[i] = ZCurve.decodeComponent(z, bits, dim, order[i]);
         }
         return out;
@@ -129,7 +129,7 @@ export class ZCurve<T extends Range2_64> {
      * @param out -
      */
     split(z: bigint, out: bigint[] = []) {
-        for (let i = this.dim; --i >= 0; ) {
+        for (let i = this.dim; i-- > 0; ) {
             out[i] = z & this.masks[i];
         }
         return out;
@@ -137,7 +137,7 @@ export class ZCurve<T extends Range2_64> {
 
     merge(zparts: bigint[]) {
         let res = ZERO;
-        for (let i = zparts.length; --i >= 0; ) {
+        for (let i = zparts.length; i-- > 0; ) {
             res |= zparts[i];
         }
         return res;
@@ -230,7 +230,7 @@ export class ZCurve<T extends Range2_64> {
         rmin: ArrayLike<number>,
         rmax: ArrayLike<number>
     ) {
-        for (let i = this.dim; --i >= 0; ) {
+        for (let i = this.dim; i-- > 0; ) {
             const x = p[i];
             if (x < rmin[i] || x > rmax[i]) return false;
         }
@@ -240,7 +240,7 @@ export class ZCurve<T extends Range2_64> {
     protected initMasks() {
         const { bits, dim, order } = this;
         this.masks = [];
-        for (let i = dim; --i >= 0; ) {
+        for (let i = dim; i-- > 0; ) {
             this.masks[i] = ZCurve.encodeComponent(
                 MASKS[bits],
                 bits,
@@ -250,7 +250,7 @@ export class ZCurve<T extends Range2_64> {
         }
         this.wipeMasks = [];
         const fullMask = (ONE << BigInt(dim * bits)) - ONE;
-        for (let i = dim * bits; --i >= 0; ) {
+        for (let i = dim * bits; i-- > 0; ) {
             this.wipeMasks[i] =
                 ZCurve.encodeComponent(
                     MASKS[bits] >>> (bits - (((i / dim) | 0) + 1)),

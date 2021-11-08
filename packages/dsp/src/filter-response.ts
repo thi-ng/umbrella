@@ -47,7 +47,7 @@ export const freqRange: FnU3<number, number[]> = (fstart, fend, num) =>
 const convolve = (coeffs: NumericArray, w0: number) => {
     let c = 0;
     let s = 0;
-    for (let i = coeffs.length; --i >= 0; ) {
+    for (let i = coeffs.length; i-- > 0; ) {
         const k = cossin(w0 * i, coeffs[i]);
         c += k[0];
         s += k[1];

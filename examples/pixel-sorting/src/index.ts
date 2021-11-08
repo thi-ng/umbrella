@@ -47,7 +47,7 @@ const pixelSortBuffer = (
     const { pixels, width, height } = buf;
     const row = closedOpen(0, width);
     const column = closedOpen(0, height);
-    for (let i = iter; --i >= 0; ) {
+    for (let i = iter; i-- > 0; ) {
         const num = SYSTEM.minmax(min, max) | 0;
         const n2 = num >> 1;
         // random start/pixel position in image

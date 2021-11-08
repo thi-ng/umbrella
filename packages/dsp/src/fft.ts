@@ -152,7 +152,7 @@ const transform = (real: NumericArray, img: NumericArray, n: number) => {
     let ur: number, ui: number;
     let wr: number, wi: number;
     let t: number;
-    for (let b = Math.ceil(Math.log2(n)); --b >= 0; ) {
+    for (let b = Math.ceil(Math.log2(n)); b-- > 0; ) {
         prevStep = step;
         step <<= 1;
         ur = 1;

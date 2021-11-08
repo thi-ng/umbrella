@@ -96,7 +96,7 @@ export const __restoreState = (
     }
     const edits = curr.edits;
     const attribs = prev.attribs;
-    for (let i = edits.length; --i >= 0; ) {
+    for (let i = edits.length; i-- > 0; ) {
         const id = edits[i];
         const v = attribs[id];
         setAttrib(ctx, prev, id, CTX_ATTRIBS[id], v != null ? v : DEFAULTS[id]);

@@ -9,7 +9,7 @@ import type { DistanceFn } from "./api.js";
  */
 export const distCanberra: DistanceFn = (a, b) => {
     let delta = 0;
-    for (let i = a.length; --i >= 0; ) {
+    for (let i = a.length; i-- > 0; ) {
         const aa = a[i];
         const bb = b[i];
         const d = Math.abs(aa) + Math.abs(bb);

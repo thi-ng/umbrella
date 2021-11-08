@@ -47,7 +47,7 @@ export const alts =
                 let i = alts.length,
                     a: MatcherInst<T, C, R> | null,
                     next: MatchResult<R>;
-                --i >= 0;
+                i-- > 0;
 
             ) {
                 if (!(a = alts[i])) continue;

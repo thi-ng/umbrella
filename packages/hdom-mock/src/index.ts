@@ -233,7 +233,7 @@ export class MockHDOM implements HDOMImplementation<HDOMNode> {
     }
 
     removeAttribs(el: HDOMNode, attribs: string[], prev: any) {
-        for (let i = attribs.length; --i >= 0; ) {
+        for (let i = attribs.length; i-- > 0; ) {
             const a = attribs[i];
             if (a.indexOf("on") === 0) {
                 const listeners = el.listeners[a.substr(2)];

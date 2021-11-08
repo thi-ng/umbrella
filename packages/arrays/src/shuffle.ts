@@ -31,7 +31,7 @@ export const shuffleRange = <T extends AnyArray>(
     let n = end - start;
     const l = n;
     if (l > 1) {
-        while (--n >= 0) {
+        while (n-- > 0) {
             const a = (start + rnd.float(l)) | 0;
             const b = (start + rnd.float(l)) | 0;
             const t = buf[a];

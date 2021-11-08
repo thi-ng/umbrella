@@ -469,7 +469,7 @@ export class StatelessEventBus implements IDispatch {
         iceps: Interceptor[],
         e: Event
     ) {
-        for (let i = iceps.length; --i >= 0 && !ctx[FX_CANCEL]; ) {
+        for (let i = iceps.length; i-- > 0 && !ctx[FX_CANCEL]; ) {
             const icep = iceps[i];
             if (icep.post) {
                 this.mergeEffects(ctx, icep.post(ctx[FX_STATE], e, this, ctx));

@@ -21,7 +21,7 @@ export const stripes = (opts: Partial<StripeOpts>) => {
     const { canvas, ctx, img, data } = opts.horizontal
         ? canvasPixels(1, size)
         : canvasPixels(size, 1);
-    for (let x = size; --x >= 0; ) {
+    for (let x = size; x-- > 0; ) {
         data[x] = x & 1 ? col1 : col2;
     }
     ctx.putImageData(img, 0, 0);

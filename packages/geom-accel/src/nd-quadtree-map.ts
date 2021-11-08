@@ -137,7 +137,7 @@ export class NdQtNode<K extends ReadonlyVec, V> {
             } else if (this.children) {
                 for (
                     let i = MAX_CHILDREN[this.pos.length], j = this.numC;
-                    --i >= 0 && j > 0;
+                    i-- > 0 && j > 0;
 
                 ) {
                     if (this.children[i]) {

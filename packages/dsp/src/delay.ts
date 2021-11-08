@@ -50,7 +50,7 @@ export class Delay<T> extends AProc<T, T> implements IClear, ILength, IReset {
     clear() {
         const { _buf, _empty } = this;
         if (isFunction(_empty)) {
-            for (let i = _buf.length; --i >= 0; ) {
+            for (let i = _buf.length; i-- > 0; ) {
                 this._buf[i] = _empty();
             }
         } else {
@@ -92,7 +92,7 @@ export class Delay<T> extends AProc<T, T> implements IClear, ILength, IReset {
      * returns it.
      */
     multiTap(t: ArrayLike<number>, out: T[] = []) {
-        for (let i = t.length; --i >= 0; ) {
+        for (let i = t.length; i-- > 0; ) {
             out[i] = this.tap(t[i]);
         }
         return out;

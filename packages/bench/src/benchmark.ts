@@ -21,7 +21,7 @@ export const benchmark = (
     const t = benchResult(fn, warmup * size)[1];
     output && outputString(format!.warmup(t, _opts));
     const samples: number[] = [];
-    for (let i = iter!; --i >= 0; ) {
+    for (let i = iter!; i-- > 0; ) {
         samples.push(benchResult(fn, size)[1]);
     }
     samples.sort((a, b) => a - b);

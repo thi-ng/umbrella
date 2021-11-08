@@ -61,7 +61,7 @@ export const equivArrayLike = (
 ) => {
     let l = a.length;
     if (l === b.length) {
-        while (--l >= 0 && _equiv(a[l], b[l]));
+        while (l-- > 0 && _equiv(a[l], b[l]));
     }
     return l < 0;
 };

@@ -40,7 +40,7 @@ export abstract class ASpatialGrid<K extends ReadonlyVec, V>
 
     *[Symbol.iterator](): IterableIterator<Pair<K, V>> {
         const cells = this._cells;
-        for (let i = cells.length; --i >= 0; ) {
+        for (let i = cells.length; i-- > 0; ) {
             if (cells[i]) yield* cells[i]!;
         }
     }
@@ -58,7 +58,7 @@ export abstract class ASpatialGrid<K extends ReadonlyVec, V>
         copy._num = this._num;
         const src = this._cells;
         const dest = copy._cells;
-        for (let i = src.length; --i >= 0; ) {
+        for (let i = src.length; i-- > 0; ) {
             dest[i] = src[i] ? src[i]!.slice() : null;
         }
         return copy;
@@ -101,7 +101,7 @@ export abstract class ASpatialGrid<K extends ReadonlyVec, V>
         const id = this.findIndex(k);
         const cell = this._cells[id];
         if (!cell) return false;
-        for (let i = cell.length; --i >= 0; ) {
+        for (let i = cell.length; i-- > 0; ) {
             if (equals(cell[i][0], k)) {
                 cell.splice(i, 1);
                 this._num--;
@@ -143,7 +143,7 @@ export abstract class ASpatialGrid<K extends ReadonlyVec, V>
         k: K,
         limit: number
     ) {
-        for (let i = c.length; --i >= 0; ) {
+        for (let i = c.length; i-- > 0; ) {
             const d = dist(c[i][0], k);
             if (d <= heap.values[0][0]) {
                 heap.length >= limit
@@ -160,7 +160,7 @@ export abstract class ASpatialGrid<K extends ReadonlyVec, V>
         }
         const cell = this._cells[this.findIndex(k)];
         if (cell) {
-            for (let i = cell.length; --i >= 0; ) {
+            for (let i = cell.length; i-- > 0; ) {
                 if (equals(cell[i][0], k)) return cell[i];
             }
         }

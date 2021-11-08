@@ -65,7 +65,7 @@ export const __setChannelUni = (
     src: number,
     set: Fn2<number, number, number>
 ) => {
-    for (let i = dbuf.length; --i >= 0; ) {
+    for (let i = dbuf.length; i-- > 0; ) {
         dbuf[i] = set(dbuf[i], src);
     }
 };
@@ -77,7 +77,7 @@ export const __setChannelSame = (
     get: Fn<number, number>,
     set: Fn2<number, number, number>
 ) => {
-    for (let i = dbuf.length; --i >= 0; ) {
+    for (let i = dbuf.length; i-- > 0; ) {
         dbuf[i] = set(dbuf[i], get(sbuf[i]));
     }
 };
@@ -91,7 +91,7 @@ export const __setChannelConvert = (
     mask: number
 ) => {
     const invMask = ~mask;
-    for (let i = dbuf.length; --i >= 0; ) {
+    for (let i = dbuf.length; i-- > 0; ) {
         dbuf[i] = (dbuf[i] & invMask) | (from(sto(sbuf[i])) & mask);
     }
 };
@@ -103,7 +103,7 @@ export const __transformABGR = (
 ) => {
     const from = format.fromABGR;
     const to = format.toABGR;
-    for (let i = pix.length; --i >= 0; ) {
+    for (let i = pix.length; i-- > 0; ) {
         pix[i] = from(fn(to(pix[i])));
     }
 };
