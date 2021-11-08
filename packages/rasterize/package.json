@@ -35,6 +35,8 @@
     },
     "dependencies": {
         "@thi.ng/api": "^8.1.0",
+        "@thi.ng/checks": "^3.0.6",
+        "@thi.ng/equiv": "^2.0.6",
         "@thi.ng/grid-iterators": "^2.1.1",
         "@thi.ng/transducers": "^8.0.7"
     },
