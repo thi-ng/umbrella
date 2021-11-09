@@ -1,65 +1,40 @@
-import { existsSync, mkdirSync, readFileSync, writeFileSync } from "fs";
-import { sync } from "gzip-size";
-import { rollup } from "rollup";
-import cleanup from "rollup-plugin-cleanup";
-import { minify, MinifyOptions } from "terser";
+import { execFileSync } from "child_process";
+import { existsSync, mkdirSync, writeFileSync } from "fs";
+import { readJSON } from "./io.js";
 
-const camelCase = (x: string) =>
-    x.replace(/\-+(\w)/g, (_, c) => c.toUpperCase());
+const pkg = readJSON("package.json");
+const deps = [
+    "tslib",
+    "fs",
+    "child_process",
+    "path",
+    ...Object.keys(pkg.dependencies || {}),
+];
+const opts = [
+    "--bundle",
+    "--target=es2020",
+    "--format=esm",
+    ...deps.map((x) => `--external:${x}`),
+    "index.js",
+];
+const raw = execFileSync(
+    "../../node_modules/esbuild/bin/esbuild",
+    opts
+).toString();
+const min = execFileSync("../../node_modules/esbuild/bin/esbuild", [
+    "--minify",
+    ...opts,
+]).toString();
+const gzip = execFileSync("gzip", { input: min });
 
-const size = (x: number) => (x / 1024).toFixed(2) + "KB";
-
-const pkg = JSON.parse(readFileSync("./package.json").toString());
-
-const deps = Object.keys(pkg.dependencies || {}).reduce(
-    (acc, x) => ((acc[x] = `thi.ng.${camelCase(x.substr(8))}`), acc),
-    <any>{}
-);
-
-const INPUT_OPTS = {
-    external: Object.keys(deps),
-    input: "./index.js",
-    plugins: [cleanup({ comments: "none" })],
+const stats = {
+    raw: raw.length,
+    min: min.length,
+    gzip: gzip.byteLength,
 };
 
-const TERSER_OPTS: MinifyOptions = {
-    module: true,
-    compress: true,
-    mangle: true,
-    ecma: 2020,
-};
-
-const buildVersion = async (opts: any, write = true, compressed = false) => {
-    console.log(`bundling (${opts.format}): ${opts.file}`);
-
-    const bundle = await rollup(INPUT_OPTS);
-    const bundleOut = (await bundle.generate(opts)).output[0];
-    const bundleCode = bundleOut.code;
-    const terserOut = (await minify(bundleCode, TERSER_OPTS)).code!;
-    const gzSize = sync(terserOut);
-
-    write && writeFileSync(opts.file, compressed ? terserOut : bundleCode);
-    opts.sourcemap &&
-        writeFileSync(opts.file + ".map", bundleOut.map!.toString());
-
-    console.log(`\tsize: ${size(terserOut.length)} / gzipped: ${size(gzSize)}`);
-    return { raw: bundleCode.length, min: terserOut.length, gzip: gzSize };
-};
-
-(async () => {
-    try {
-        !existsSync(".meta") && mkdirSync(".meta");
-        const esm = await buildVersion(
-            {
-                file: "lib/index.esm.js",
-                format: "esm",
-                interop: false,
-            },
-            false
-        );
-        writeFileSync(".meta/size.json", JSON.stringify({ esm }));
-    } catch (e) {
-        console.warn(e);
-        process.exit(1);
-    }
-})();
+!existsSync(".meta") && mkdirSync(".meta");
+writeFileSync(".meta/raw.js", raw);
+writeFileSync(".meta/min.js", min);
+writeFileSync(".meta/size.json", JSON.stringify({ esm: stats }));
+console.log(stats);
