@@ -17,7 +17,7 @@ import {
     zip,
 } from "@thi.ng/transducers";
 import * as fs from "fs";
-import { barChart, labeledTickX, labeledTickY } from "./viz";
+import { barChart, labeledTickX, labeledTickY } from "./viz.js";
 
 const BASE_DIR = "../../packages/";
 

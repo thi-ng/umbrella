@@ -1,2 +1,2 @@
-import "./dep-chart";
-import "./size-chart";
+import "./dep-chart.js";
+import "./size-chart.js";
