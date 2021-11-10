@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.7](https://github.com/thi-ng/umbrella/compare/@thi.ng/checks@3.0.6...@thi.ng/checks@3.0.7) (2021-11-10)
+
+
+### Bug Fixes
+
+* **checks:** add boolean to isPrimitive() ([fde4d2b](https://github.com/thi-ng/umbrella/commit/fde4d2b6aab02887e12f14c75fccf37b686844ae))
+
+
+
+
+
 # [3.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/checks@2.9.11...@thi.ng/checks@3.0.0) (2021-10-12)
 
 

@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/equiv",
-    "version": "2.0.6",
+    "version": "2.0.7",
     "description": "Extensible deep value equivalence checking for any data types",
     "type": "module",
     "module": "./index.js",

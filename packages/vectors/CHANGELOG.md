@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.1.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@7.1.0...@thi.ng/vectors@7.1.1) (2021-11-10)
+
+**Note:** Version bump only for package @thi.ng/vectors
+
+
+
+
+
 # [7.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/vectors@7.0.7...@thi.ng/vectors@7.1.0) (2021-11-04)
 
 

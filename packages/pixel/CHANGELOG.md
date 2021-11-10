@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/pixel@3.0.0...@thi.ng/pixel@3.1.0) (2021-11-10)
+
+
+### Features
+
+* **pixel:** add IGrid2D impls, update ctors ([3ac0327](https://github.com/thi-ng/umbrella/commit/3ac032784d35ff180451550f976abd563c0928ef))
+
+
+
+
+
 # [3.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/pixel@2.2.0...@thi.ng/pixel@3.0.0) (2021-11-04)
 
 

@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [8.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@8.1.0...@thi.ng/api@8.2.0) (2021-11-10)
+
+
+### Bug Fixes
+
+* **api:** add missing module exports ([fc8805e](https://github.com/thi-ng/umbrella/commit/fc8805eb26a828d4ee9683c714a73a7ad35ef16c))
+
+
+### Features
+
+* **api:** update IGrid types, add mixins ([f0f3236](https://github.com/thi-ng/umbrella/commit/f0f3236448e7277e089654c725d2b9335bd4706a))
+
+
+
+
+
 # [8.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/api@8.0.6...@thi.ng/api@8.1.0) (2021-11-03)
 
 
