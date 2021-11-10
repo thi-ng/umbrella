@@ -64,6 +64,9 @@
         "./api": {
             "import": "./api.js"
         },
+        "./canvas": {
+            "import": "./canvas.js"
+        },
         "./download": {
             "import": "./download.js"
         },
