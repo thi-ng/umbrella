@@ -3,6 +3,8 @@ import { isPrimitive } from "@thi.ng/checks";
 import { hlineClipped, vlineClipped } from "@thi.ng/grid-iterators/hvline";
 import { rows2d } from "@thi.ng/grid-iterators/rows";
 import { concat } from "@thi.ng/transducers/concat";
+import type { Shader2D } from "./api.js";
+import { ensureShader2D } from "./checks.js";
 import { __draw2D } from "./draw.js";
 
 export const drawRect = <T extends any[] | TypedArray, P>(
@@ -11,7 +13,7 @@ export const drawRect = <T extends any[] | TypedArray, P>(
     y: number,
     w: number,
     h: number,
-    val: P,
+    val: P | Shader2D<P>,
     fill = false
 ) => {
     x |= 0;
@@ -34,25 +36,30 @@ export const drawRect = <T extends any[] | TypedArray, P>(
             y = 0;
         }
         const pts = rows2d(Math.min(w, width - x), Math.min(h, height - y));
+        const shader = ensureShader2D(val);
         if (isPrimitive(val)) {
-            for (let p of pts) {
-                data[offset + (p[0] + x) * sx + (y + p[1]) * sy] = val;
+            for (let { 0: xx, 1: yy } of pts) {
+                xx += x;
+                yy += y;
+                data[offset + xx * sx + yy * sy] = shader(xx, yy);
             }
         } else {
-            for (let p of pts) {
-                grid.setAtUnsafe(x + p[0], y + p[1], val);
+            for (let { 0: xx, 1: yy } of pts) {
+                xx += x;
+                yy += y;
+                grid.setAtUnsafe(xx, yy, shader(xx, yy));
             }
         }
         return grid;
     }
     return __draw2D(
-        grid,
-        val,
         concat(
             hlineClipped(x, y, w, 0, 0, width, height),
             vlineClipped(x, y + 1, h - 2, 0, 0, width, height),
             hlineClipped(x, y + h - 1, w, 0, 0, width, height),
             vlineClipped(x + w - 1, y + 1, h - 2, 0, 0, width, height)
-        )
+        ),
+        grid,
+        val
     );
 };
