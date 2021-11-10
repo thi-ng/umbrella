@@ -16,15 +16,15 @@
 **Please visit [thi.ng](https://thi.ng) for additional information & topic based
 search of packages relevant to your use cases...**
 
-This mono-repository is home to 159+ thi.ng TypeScript/ES6 projects, a wide and jointly
-developed collection of packages and building blocks for (non-exhaustive list of
-topics):
+This mono-repository is home to 160+ thi.ng TypeScript/ES6 projects, a wide and
+jointly developed collection of packages and building blocks for (non-exhaustive
+list of topics):
 
 - Functional programming (ES6 iterators/generators, composition, memoization, transducers, multi-methods)
 - Reactive programming, stream / transducer based dataflow graphs / pipelines
 - Data structures & data transformations for wide range of use cases (maps, sets, heaps, queues, graphs etc.)
 - 2D geometry generation, shape primitives, math, manipulation, intersections, conversions & visualizations
-- Canvas abstractions & SVG serialization/conversion
+- Canvas abstractions, pixel buffers & SVG serialization/conversion
 - Vector, matrix (dense & sparse), ECS implementations with optional support for strided memory layouts
 - Semi-declarative WebGL 1/2 abstraction layer
 - DSL for shader functions defined in TypeScript and cross-compilation to GLSL, JS, VEX etc.
@@ -77,11 +77,11 @@ There's a steadily growing number (100+) of standalone examples
 (different complexities, often combining functionality from several
 packages) in the [**examples**](./examples/README.md) directory.
 
-| Example screenshots                                               | (small selection)                                           |                                                                      |
-|-------------------------------------------------------------------|-------------------------------------------------------------|----------------------------------------------------------------------|
-| <img src="./assets/examples/svg-waveform.jpg" width="240"/>       | <img src="./assets/imgui/imgui-all.png" width="240"/>       | <img src="./assets/shader-ast/shader-ast-raymarch.jpg" width="240"/> |
-| <img src="./assets/examples/adaptive-threshold.png" width="240"/> | <img src="./assets/examples/crypto-chart.png" width="240"/> | <img src="./assets/examples/commit-table-ssr.png" width="240"/>      |
-| <img src="./assets/examples/text-canvas.png" width="240"/>        | <img src="./assets/geom/tessel.png" width="240"/>           | <img src="./assets/examples/soa-ecs-100k.png" width="240"/>          |
+| Example screenshots                                           | (small selection)                                                 |                                                                      |
+|---------------------------------------------------------------|-------------------------------------------------------------------|----------------------------------------------------------------------|
+| <img src="./assets/examples/svg-waveform.jpg" width="240"/>   | <img src="./assets/imgui/imgui-all.png" width="240"/>             | <img src="./assets/shader-ast/shader-ast-raymarch.jpg" width="240"/> |
+| <img src="./assets/examples/shader-ast-evo.jpg" width="240"/> | <img src="./assets/examples/adaptive-threshold.png" width="240"/> | <img src="./assets/examples/crypto-chart.png" width="240"/>          |
+| <img src="./assets/examples/text-canvas.png" width="240"/>    | <img src="./assets/geom/tessel.png" width="240"/>                 | <img src="./assets/examples/soa-ecs-100k.png" width="240"/>          |
 
 ## Blog posts
 
@@ -139,18 +139,18 @@ support ES modules by now.
 feature or `develop` branches)
 -->
 
-### Latest package additions (since 09/2021)
+### Latest updates
 
-| Project                                                         | Version                                                                                                                               | Changelog                                                | Description                                  |
-|-----------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------|----------------------------------------------|
-| [`@thi.ng/expose`](./packages/expose)                           | [![version](https://img.shields.io/npm/v/@thi.ng/expose.svg)](https://www.npmjs.com/package/@thi.ng/expose)                           | [changelog](./packages/expose/CHANGELOG.md)              | Conditional global variable exposition       |
-| [`@thi.ng/logger`](./packages/logger)                           | [![version](https://img.shields.io/npm/v/@thi.ng/logger.svg)](https://www.npmjs.com/package/@thi.ng/logger)                           | [changelog](./packages/logger/CHANGELOG.md)              | Basis infrastructure for arbitrary logging   |
-| [`@thi.ng/markdown-table`](./packages/markdown-table)           | [![version](https://img.shields.io/npm/v/@thi.ng/markdown-table.svg)](https://www.npmjs.com/package/@thi.ng/markdown-table)           | [changelog](./packages/markdown-table/CHANGELOG.md)      | Markdown table generator / formatter         |
-| [`@thi.ng/pixel-dither`](./packages/pixel-dither)               | [![version](https://img.shields.io/npm/v/@thi.ng/pixel-dither.svg)](https://www.npmjs.com/package/@thi.ng/pixel-dither)               | [changelog](./packages/pixel-dither/CHANGELOG.md)        | Image dithering w/ various algorithm presets |
-| [`@thi.ng/rasterize`](./packages/rasterize)                     | [![version](https://img.shields.io/npm/v/@thi.ng/rasterize.svg)](https://www.npmjs.com/package/@thi.ng/rasterize)                     | [changelog](./packages/rasterize/CHANGELOG.md)           | Shape drawing, filling & rasterization       |
-| [`@thi.ng/shader-ast-optimize`](./packages/shader-ast-optimize) | [![version](https://img.shields.io/npm/v/@thi.ng/shader-ast-optimize.svg)](https://www.npmjs.com/package/@thi.ng/shader-ast-optimize) | [changelog](./packages/shader-ast-optimize/CHANGELOG.md) | AST code optimization strategies             |
-| [`@thi.ng/testament`](./packages/testament)                     | [![version](https://img.shields.io/npm/v/@thi.ng/testament.svg)](https://www.npmjs.com/package/@thi.ng/testament)                     | [changelog](./packages/testament/CHANGELOG.md)           | Minimal test runner                          |
-| [`@thi.ng/text-format`](./packages/text-format)                 | [![version](https://img.shields.io/npm/v/@thi.ng/text-format.svg)](https://www.npmjs.com/package/@thi.ng/text-format)                 | [changelog](./packages/text-format/CHANGELOG.md)         | Color text formatting w/ ANSI & HTML presets |
+As of: 2021-11-10
+
+| Project                                         | Version                                                                                                               | Changelog                                        | Description                               |
+|-------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------|--------------------------------------------------|-------------------------------------------|
+| [`@thi.ng/api`](./packages/api)                 | [![version](https://img.shields.io/npm/v/@thi.ng/api.svg)](https://www.npmjs.com/package/@thi.ng/api)                 | [changelog](./packages/api/CHANGELOG.md)         | Common types, decorators, mixins          |
+| [`@thi.ng/checks`](./packages/checks)           | [![version](https://img.shields.io/npm/v/@thi.ng/checks.svg)](https://www.npmjs.com/package/@thi.ng/checks)           | [changelog](./packages/checks/CHANGELOG.md)      | Type & value checks                       |
+| [`@thi.ng/dl-asset`](./packages/dl-asset)       | [![version](https://img.shields.io/npm/v/@thi.ng/dl-asset.svg)](https://www.npmjs.com/package/@thi.ng/dl-asset)       | [changelog](./packages/download/CHANGELOG.md)    | Asset download trigger helper             |
+| [`@thi.ng/pixel`](./packages/pixel)             | [![version](https://img.shields.io/npm/v/@thi.ng/pixel.svg)](https://www.npmjs.com/package/@thi.ng/pixel)             | [changelog](./packages/pixel/CHANGELOG.md)       | Multi-format pixel buffers                |
+| [`@thi.ng/rasterize`](./packages/rasterize)     | [![version](https://img.shields.io/npm/v/@thi.ng/rasterize.svg)](https://www.npmjs.com/package/@thi.ng/rasterize)     | [changelog](./packages/rasterize/CHANGELOG.md)   | Shape drawing, filling & rasterization    |
+| [`@thi.ng/text-canvas`](./packages/text-canvas) | [![version](https://img.shields.io/npm/v/@thi.ng/text-canvas.svg)](https://www.npmjs.com/package/@thi.ng/text-canvas) | [changelog](./packages/text-canvas/CHANGELOG.md) | Text-mode canvas, drawing, tables, charts |
 
 ### Fundamentals
 
