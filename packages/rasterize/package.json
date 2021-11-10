@@ -38,6 +38,7 @@
         "@thi.ng/checks": "^3.0.6",
         "@thi.ng/equiv": "^2.0.6",
         "@thi.ng/grid-iterators": "^2.1.1",
+        "@thi.ng/random": "^3.1.3",
         "@thi.ng/transducers": "^8.0.7"
     },
     "devDependencies": {
@@ -75,6 +76,9 @@
         ".": {
             "import": "./index.js"
         },
+        "./api": {
+            "import": "./api.js"
+        },
         "./checks": {
             "import": "./checks.js"
         },
@@ -87,8 +91,17 @@
         "./line": {
             "import": "./line.js"
         },
+        "./poly": {
+            "import": "./poly.js"
+        },
+        "./polyline": {
+            "import": "./polyline.js"
+        },
         "./rect": {
             "import": "./rect.js"
+        },
+        "./shader": {
+            "import": "./shader.js"
         }
     },
     "thi.ng": {

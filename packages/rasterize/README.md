@@ -12,8 +12,10 @@ This project is part of the
 - [About](#about)
   - [Circle](#circle)
   - [Line](#line)
+  - [Polygon / polyline](#polygon--polyline)
   - [Rect](#rect)
   - [Flood fill](#flood-fill)
+- [Custom shaders](#custom-shaders)
   - [Status](#status)
   - [Related packages](#related-packages)
 - [Installation](#installation)
@@ -33,13 +35,14 @@ grid/image type (e.g. those provided by
 or
 [@thi.ng/text-canvas](https://github.com/thi-ng/umbrella/tree/develop/packages/text-canvas)).
 
-Currently the following functions are available:
+Currently the following functions are available. All of them support [custom
+shader-like](#custom-shaders) functions to produce "pixel" values.
 
 ### Circle
 
 Filled or outline implementation of [Bresenham's circle
-algorithm](https://en.wikipedia.org/wiki/Midpoint_circle_algorithm). A clipping
-check is pre-applied to see if the circle lies entirely outside the target grid.
+algorithm](https://en.wikipedia.org/wiki/Midpoint_circle_algorithm), with
+clipping.
 
 ### Line
 
@@ -48,8 +51,15 @@ algorithm](https://en.wikipedia.org/wiki/Bresenham%27s_line_algorithm) with
 pre-applied [Liang-Barsky
 clipping](https://en.wikipedia.org/wiki/Liang%E2%80%93Barsky_algorithm). The
 higher-order function
-[`drawLineWith()`](https://docs.thi.ng/umbrella/rasterize/modules.html#drawLineWith)
-can be used to apply custom brushes to trace the line.
+[`traceLine()`](https://docs.thi.ng/umbrella/rasterize/modules.html#traceLine)
+can be used to apply custom functions to trace the line.
+
+### Polygon / polyline
+
+Filled or outline drawing of polygons (without holes):
+
+- [`drawPolyline()`](https://docs.thi.ng/umbrella/rasterize/modules.html#drawPolyline)
+- [`fillPoly()`](https://docs.thi.ng/umbrella/rasterize/modules.html#fillPoly)
 
 ### Rect
 
@@ -57,10 +67,50 @@ Filled or outline implementation with pre-applied clipping against the target gr
 
 ### Flood fill
 
-Fills grid in the connected region around `x,y` with given value or pattern. See
+Fills grid in the connected region around `x,y` with given value or shader. See
 [`floodFill()` in the @thi.ng/grid-iterators
 package](https://docs.thi.ng/umbrella/grid-iterators/modules.html#floodFill) for
 further details.
+
+## Custom shaders
+
+Conceptually similar, but **not** to be equaled with actual WebGL fragement
+shaders, many functions in this package support shader-like functions to produce
+per-pixel fill/color values for each individual pixel processed. These simple
+functions take an `x` and `y` arg (in grid-space, **not** normalized!) and
+produce a fill value for that location. A pixel is processed at most once per
+draw call.
+
+The following shader functions are provided:
+
+- [`defPattern()`](https://docs.thi.ng/umbrella/rasterize/modules.html#defPattern):
+  pattern fill (must be same format as target grid)
+- [`defStripes()`](https://docs.thi.ng/umbrella/rasterize/modules.html#defStripes):
+  procedural stripes (configurable)
+- [`defNoise()`](https://docs.thi.ng/umbrella/rasterize/modules.html#defNoise):
+  random noise stripes (configurable)
+
+As an example, here's a simple custom UV gradient shader for drawing into a
+[float RGBA](https://docs.thi.ng/umbrella/pixel/modules.html#floatBuffer)
+buffer:
+
+```ts
+import type { Shader2D } from "@thi.ng/rasterize";
+import { floatBuffer } from "@thi.ng/pixel";
+import { drawCircle } from "@thi.ng/rasterize";
+
+const defUVGradient = (width: number, height: number): Shader2D<number[]> => (x, y) => [x/width, y/height, 0.5, 1];
+
+const W = 256;
+
+// create float RGBA pixel buffer
+const img = floatBuffer(W, W);
+
+// draw filled circle using gradient shader
+drawCircle(img, W/2, W/2, W/2 - 4, defUVGradient(W, W), true);
+```
+
+![result image: circle with gradient fill](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/rasterize/uv-circle.png)
 
 ### Status
 
@@ -97,12 +147,15 @@ node --experimental-repl-await
 > const rasterize = await import("@thi.ng/rasterize");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 669 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 1.45 KB
 
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
+- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
+- [@thi.ng/equiv](https://github.com/thi-ng/umbrella/tree/develop/packages/equiv)
 - [@thi.ng/grid-iterators](https://github.com/thi-ng/umbrella/tree/develop/packages/grid-iterators)
+- [@thi.ng/random](https://github.com/thi-ng/umbrella/tree/develop/packages/random)
 - [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)
 
 ## API
