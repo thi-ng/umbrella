@@ -55,7 +55,7 @@ node --experimental-repl-await
 > const hdomMock = await import("@thi.ng/hdom-mock");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.05 KB
+Package sizes (gzipped, pre-treeshake): ESM: 1.06 KB
 
 ## Dependencies
 

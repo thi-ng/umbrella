@@ -72,7 +72,7 @@ node --experimental-repl-await
 > const geomSubdivCurve = await import("@thi.ng/geom-subdiv-curve");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 704 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 697 bytes
 
 ## Dependencies
 

@@ -149,7 +149,7 @@ node --experimental-repl-await
 > const malloc = await import("@thi.ng/malloc");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.94 KB
+Package sizes (gzipped, pre-treeshake): ESM: 1.88 KB
 
 ## Dependencies
 

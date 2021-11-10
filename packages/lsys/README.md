@@ -73,7 +73,7 @@ node --experimental-repl-await
 > const lsys = await import("@thi.ng/lsys");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 728 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 743 bytes
 
 ## Dependencies
 

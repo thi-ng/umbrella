@@ -77,7 +77,7 @@ node --experimental-repl-await
 > const cache = await import("@thi.ng/cache");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.03 KB
+Package sizes (gzipped, pre-treeshake): ESM: 1.05 KB
 
 ## Dependencies
 

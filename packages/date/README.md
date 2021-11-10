@@ -60,7 +60,7 @@ node --experimental-repl-await
 > const date = await import("@thi.ng/date");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 5.57 KB
+Package sizes (gzipped, pre-treeshake): ESM: 5.59 KB
 
 ## Dependencies
 

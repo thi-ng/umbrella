@@ -60,7 +60,7 @@ node --experimental-repl-await
 > const expose = await import("@thi.ng/expose");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 243 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 245 bytes
 
 ## Dependencies
 

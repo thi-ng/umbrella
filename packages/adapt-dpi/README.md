@@ -56,7 +56,7 @@ node --experimental-repl-await
 > const adaptDpi = await import("@thi.ng/adapt-dpi");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 168 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 173 bytes
 
 ## Dependencies
 

@@ -58,7 +58,7 @@ node --experimental-repl-await
 > const markdownTable = await import("@thi.ng/markdown-table");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 633 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 643 bytes
 
 ## Dependencies
 

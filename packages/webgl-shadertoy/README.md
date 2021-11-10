@@ -58,7 +58,7 @@ node --experimental-repl-await
 > const webglShadertoy = await import("@thi.ng/webgl-shadertoy");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 722 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 735 bytes
 
 ## Dependencies
 

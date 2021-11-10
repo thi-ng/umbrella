@@ -51,7 +51,7 @@ node --experimental-repl-await
 > const arrays = await import("@thi.ng/arrays");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 2.12 KB
+Package sizes (gzipped, pre-treeshake): ESM: 2.24 KB
 
 ## Dependencies
 

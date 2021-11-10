@@ -63,7 +63,7 @@ node --experimental-repl-await
 > const geomSplines = await import("@thi.ng/geom-splines");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 2.32 KB
+Package sizes (gzipped, pre-treeshake): ESM: 2.58 KB
 
 ## Dependencies
 

@@ -61,7 +61,7 @@ node --experimental-repl-await
 > const geomClipPoly = await import("@thi.ng/geom-clip-poly");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 337 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 347 bytes
 
 ## Dependencies
 

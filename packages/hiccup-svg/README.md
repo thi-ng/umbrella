@@ -162,7 +162,7 @@ node --experimental-repl-await
 > const hiccupSvg = await import("@thi.ng/hiccup-svg");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 2.61 KB
+Package sizes (gzipped, pre-treeshake): ESM: 2.53 KB
 
 ## Dependencies
 

@@ -90,7 +90,7 @@ node --experimental-repl-await
 > const lowdisc = await import("@thi.ng/lowdisc");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 502 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 498 bytes
 
 ## Dependencies
 

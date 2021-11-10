@@ -90,7 +90,7 @@ node --experimental-repl-await
 > const parse = await import("@thi.ng/parse");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 5.28 KB
+Package sizes (gzipped, pre-treeshake): ESM: 5.41 KB
 
 ## Dependencies
 

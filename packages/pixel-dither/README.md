@@ -67,7 +67,7 @@ node --experimental-repl-await
 > const pixelDither = await import("@thi.ng/pixel-dither");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.07 KB
+Package sizes (gzipped, pre-treeshake): ESM: 1.13 KB
 
 ## Dependencies
 

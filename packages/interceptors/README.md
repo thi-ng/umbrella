@@ -150,7 +150,7 @@ node --experimental-repl-await
 > const interceptors = await import("@thi.ng/interceptors");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 2.21 KB
+Package sizes (gzipped, pre-treeshake): ESM: 2.23 KB
 
 ## Dependencies
 

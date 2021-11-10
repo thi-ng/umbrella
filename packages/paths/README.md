@@ -92,7 +92,7 @@ node --experimental-repl-await
 > const paths = await import("@thi.ng/paths");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.17 KB
+Package sizes (gzipped, pre-treeshake): ESM: 1.20 KB
 
 ## Dependencies
 

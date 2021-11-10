@@ -63,7 +63,7 @@ node --experimental-repl-await
 > const geomAccel = await import("@thi.ng/geom-accel");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 3.89 KB
+Package sizes (gzipped, pre-treeshake): ESM: 3.96 KB
 
 ## Dependencies
 

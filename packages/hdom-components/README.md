@@ -66,7 +66,7 @@ node --experimental-repl-await
 > const hdomComponents = await import("@thi.ng/hdom-components");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 2.21 KB
+Package sizes (gzipped, pre-treeshake): ESM: 2.24 KB
 
 ## Dependencies
 

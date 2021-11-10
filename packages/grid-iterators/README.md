@@ -225,7 +225,7 @@ node --experimental-repl-await
 > const gridIterators = await import("@thi.ng/grid-iterators");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 2.08 KB
+Package sizes (gzipped, pre-treeshake): ESM: 2.22 KB
 
 ## Dependencies
 

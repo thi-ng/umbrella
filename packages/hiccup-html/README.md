@@ -189,7 +189,7 @@ node --experimental-repl-await
 > const hiccupHtml = await import("@thi.ng/hiccup-html");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.47 KB
+Package sizes (gzipped, pre-treeshake): ESM: 1.68 KB
 
 ## Dependencies
 

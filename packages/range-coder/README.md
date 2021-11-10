@@ -57,7 +57,7 @@ node --experimental-repl-await
 > const rangeCoder = await import("@thi.ng/range-coder");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 678 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 668 bytes
 
 ## Dependencies
 

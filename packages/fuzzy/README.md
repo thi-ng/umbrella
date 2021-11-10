@@ -89,7 +89,7 @@ node --experimental-repl-await
 > const fuzzy = await import("@thi.ng/fuzzy");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.66 KB
+Package sizes (gzipped, pre-treeshake): ESM: 1.73 KB
 
 ## Dependencies
 

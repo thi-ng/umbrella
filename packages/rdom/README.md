@@ -173,7 +173,7 @@ node --experimental-repl-await
 > const rdom = await import("@thi.ng/rdom");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 3.98 KB
+Package sizes (gzipped, pre-treeshake): ESM: 4.05 KB
 
 ## Dependencies
 

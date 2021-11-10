@@ -110,7 +110,7 @@ node --experimental-repl-await
 > const shaderAstOptimize = await import("@thi.ng/shader-ast-optimize");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.00 KB
+Package sizes (gzipped, pre-treeshake): ESM: 999 bytes
 
 ## Dependencies
 

@@ -73,7 +73,7 @@ node --experimental-repl-await
 > const geomIsec = await import("@thi.ng/geom-isec");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 2.81 KB
+Package sizes (gzipped, pre-treeshake): ESM: 3.13 KB
 
 ## Dependencies
 

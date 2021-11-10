@@ -57,7 +57,7 @@ node --experimental-repl-await
 > const transducersPatch = await import("@thi.ng/transducers-patch");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 519 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 567 bytes
 
 ## Dependencies
 

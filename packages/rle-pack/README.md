@@ -84,7 +84,7 @@ node --experimental-repl-await
 > const rlePack = await import("@thi.ng/rle-pack");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 696 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 687 bytes
 
 ## Dependencies
 

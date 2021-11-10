@@ -75,7 +75,7 @@ node --experimental-repl-await
 > const poisson = await import("@thi.ng/poisson");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 493 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 509 bytes
 
 ## Dependencies
 

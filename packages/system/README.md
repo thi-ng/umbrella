@@ -58,7 +58,7 @@ node --experimental-repl-await
 > const system = await import("@thi.ng/system");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 419 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 426 bytes
 
 ## Dependencies
 

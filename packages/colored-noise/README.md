@@ -374,7 +374,7 @@ node --experimental-repl-await
 > const coloredNoise = await import("@thi.ng/colored-noise");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 506 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 538 bytes
 
 ## Dependencies
 

@@ -151,7 +151,7 @@ yarn install
 yarn start
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 3.70 KB
+Package sizes (gzipped, pre-treeshake): ESM: 3.71 KB
 
 ## Dependencies
 

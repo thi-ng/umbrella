@@ -60,7 +60,7 @@ node --experimental-repl-await
 > const iges = await import("@thi.ng/iges");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 2.89 KB
+Package sizes (gzipped, pre-treeshake): ESM: 2.70 KB
 
 ## Dependencies
 

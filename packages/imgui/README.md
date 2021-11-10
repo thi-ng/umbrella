@@ -255,7 +255,7 @@ node --experimental-repl-await
 > const imgui = await import("@thi.ng/imgui");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 6.90 KB
+Package sizes (gzipped, pre-treeshake): ESM: 7.29 KB
 
 ## Dependencies
 

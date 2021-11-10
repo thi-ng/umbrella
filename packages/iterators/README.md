@@ -111,7 +111,7 @@ node --experimental-repl-await
 > const iterators = await import("@thi.ng/iterators");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 2.48 KB
+Package sizes (gzipped, pre-treeshake): ESM: 2.56 KB
 
 ## Dependencies
 

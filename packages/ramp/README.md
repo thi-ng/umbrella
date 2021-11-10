@@ -51,7 +51,7 @@ node --experimental-repl-await
 > const ramp = await import("@thi.ng/ramp");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.02 KB
+Package sizes (gzipped, pre-treeshake): ESM: 1.06 KB
 
 ## Dependencies
 
