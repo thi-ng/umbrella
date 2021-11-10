@@ -1,4 +1,4 @@
-import { downloadWithMime } from "@thi.ng/dl-asset/raw";
+import { downloadCanvas } from "@thi.ng/dl-asset/canvas";
 import { equiv } from "@thi.ng/equiv";
 import { canvas2D } from "@thi.ng/hdom-components/canvas";
 import { fit } from "@thi.ng/math/fit";
@@ -114,13 +114,7 @@ const app = () => {
                         ctx.putImageData(img, 0, 0);
                         // frame export & auto zoom out
                         if (AUTO_ZOOM) {
-                            el.toBlob((b) =>
-                                downloadWithMime(
-                                    `frame-${Z4(frame++)}.png`,
-                                    b!,
-                                    { mime: "image/png" }
-                                )
-                            );
+                            downloadCanvas(el, `frame-${Z4(frame++)}`);
                             setTimeout(() => updateZoom(-0.02), 100);
                         }
                     },
