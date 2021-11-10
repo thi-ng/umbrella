@@ -38,5 +38,13 @@
             "![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/$1/$2)"
         ],
         "description": "thi.ng umbrella image link"
+    },
+    "pkgtable_entry": {
+        "scope": "markdown",
+        "prefix": "@pkgtable",
+        "body": [
+            "| [`@thi.ng/$1`](./packages/$1) | [![version](https://img.shields.io/npm/v/@thi.ng/$1.svg)](https://www.npmjs.com/package/@thi.ng/$1) | [changelog](./packages/$1/CHANGELOG.md) | $2 |"
+        ],
+        "description": "thi.ng pkg table entry"
     }
 }
