@@ -34,7 +34,7 @@ const stats = {
 };
 
 !existsSync(".meta") && mkdirSync(".meta");
-writeFileSync(".meta/raw.js", raw);
-writeFileSync(".meta/min.js", min);
+// writeFileSync(".meta/raw.js", raw);
+// writeFileSync(".meta/min.js", min);
 writeFileSync(".meta/size.json", JSON.stringify({ esm: stats }));
 console.log(stats);
