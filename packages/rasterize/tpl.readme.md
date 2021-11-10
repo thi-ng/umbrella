@@ -25,19 +25,20 @@ shader-like](#custom-shaders) functions to produce "pixel" values.
 
 ### Circle
 
-Filled or outline implementation of [Bresenham's circle
-algorithm](https://en.wikipedia.org/wiki/Midpoint_circle_algorithm), with
-clipping.
+- [`drawCircle()`](https://docs.thi.ng/umbrella/rasterize/modules.html#drawCircle):
+  Filled or outline implementation of [Bresenham's circle
+  algorithm](https://en.wikipedia.org/wiki/Midpoint_circle_algorithm), with
+  clipping.
 
 ### Line
 
-Implementation of [Bresenham's line
-algorithm](https://en.wikipedia.org/wiki/Bresenham%27s_line_algorithm) with
-pre-applied [Liang-Barsky
-clipping](https://en.wikipedia.org/wiki/Liang%E2%80%93Barsky_algorithm). The
-higher-order function
-[`traceLine()`](https://docs.thi.ng/umbrella/rasterize/modules.html#traceLine)
-can be used to apply custom functions to trace the line.
+- [`drawLine()`](https://docs.thi.ng/umbrella/rasterize/modules.html#drawLine):
+  Implementation of [Bresenham's line
+  algorithm](https://en.wikipedia.org/wiki/Bresenham%27s_line_algorithm) with
+  pre-applied [Liang-Barsky
+  clipping](https://en.wikipedia.org/wiki/Liang%E2%80%93Barsky_algorithm)
+- [`traceLine()`](https://docs.thi.ng/umbrella/rasterize/modules.html#traceLine):
+  Apply custom functions to trace the line
 
 ### Polygon / polyline
 
@@ -48,14 +49,17 @@ Filled or outline drawing of polygons (without holes):
 
 ### Rect
 
-Filled or outline implementation with pre-applied clipping against the target grid.
+- [`drawRect()`](https://docs.thi.ng/umbrella/rasterize/modules.html#drawRect):
+  Filled or outline implementation with pre-applied clipping against the target
+  grid.
 
 ### Flood fill
 
-Fills grid in the connected region around `x,y` with given value or shader. See
-[`floodFill()` in the @thi.ng/grid-iterators
-package](https://docs.thi.ng/umbrella/grid-iterators/modules.html#floodFill) for
-further details.
+- [`floodFill()`](https://docs.thi.ng/umbrella/rasterize/modules.html#floodFill):
+  Fills grid in the connected region around `x,y` with given value or shader
+
+Also see corresponding function in
+[@thi.ng/grid-iterators](https://docs.thi.ng/umbrella/grid-iterators/modules.html#floodFill).
 
 
 ## Custom shaders
@@ -74,7 +78,7 @@ The following shader functions are provided:
 - [`defStripes()`](https://docs.thi.ng/umbrella/rasterize/modules.html#defStripes):
   procedural stripes (configurable)
 - [`defNoise()`](https://docs.thi.ng/umbrella/rasterize/modules.html#defNoise):
-  random noise stripes (configurable)
+  random noise pattern (configurable)
 
 As an example, here's a simple custom UV gradient shader for drawing into a
 [float RGBA](https://docs.thi.ng/umbrella/pixel/modules.html#floatBuffer)
@@ -85,7 +89,9 @@ import type { Shader2D } from "@thi.ng/rasterize";
 import { floatBuffer } from "@thi.ng/pixel";
 import { drawCircle } from "@thi.ng/rasterize";
 
-const defUVGradient = (width: number, height: number): Shader2D<number[]> => (x, y) => [x/width, y/height, 0.5, 1];
+// custom gradient shader
+const defUVGradient = (width: number, height: number): Shader2D<number[]> =>
+  (x, y) => [x/width, y/height, 0.5, 1];
 
 const W = 256;
 
