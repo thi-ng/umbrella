@@ -44,7 +44,9 @@
     "keywords": [
         "browser",
         "canvas",
+        "download",
         "file",
+        "mime",
         "typescript"
     ],
     "publishConfig": {

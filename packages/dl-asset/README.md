@@ -16,6 +16,8 @@ This project is part of the
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
 - [API](#api)
+  - [Basic usage](#basic-usage)
+  - [Simplified canvas downloads](#simplified-canvas-downloads)
 - [Authors](#authors)
 - [License](#license)
 
@@ -56,7 +58,7 @@ node --experimental-repl-await
 > const dlAsset = await import("@thi.ng/dl-asset");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 427 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 516 bytes
 
 ## Dependencies
 
@@ -87,6 +89,8 @@ A selection:
 
 [Generated API docs](https://docs.thi.ng/umbrella/dl-asset/)
 
+### Basic usage
+
 ```ts
 import { download } from "@thi.ng/dl-asset";
 
@@ -110,13 +114,31 @@ download("hello.txt", src, {
 [@thi.ng/mime](https://github.com/thi-ng/umbrella/tree/develop/packages/mime).
 
 ```ts
-import { MIME_TYPES } from "@thi.ng/mime";
+import { preferredType } from "@thi.ng/mime";
 
-download("hello.txt", src, {
-    mime: MIME_TYPES.text,
+downloadWithMime("hello.txt", src, {
+    // here mandatory to provide MIME type
+    mime: preferredType("txt"), // text/plain
     utf8: true,
     expire: 1000
 });
+```
+
+### Simplified canvas downloads
+
+Since v2.1.0, HTML canvas downloads can be simplified using
+[`downloadCanvas()`](https://docs.thi.ng/umbrella/dl-asset/modules.html#downloadCanvas):
+
+```ts
+import { downloadCanvas } from "@thi.ng/dl-asset";
+
+// download as PNG (default)
+downloadCanvas(canvas, "file-name-without-ext");
+
+// download as JPG or WebP with given quality
+downloadCanvas(canvas, "file-name-without-ext", "jpeg", 0.9);
+
+downloadCanvas(canvas, "file-name-without-ext", "webp", 0.9);
 ```
 
 ## Authors
