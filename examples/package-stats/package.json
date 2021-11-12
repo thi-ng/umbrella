@@ -15,14 +15,14 @@
         "typescript": "4.2.4"
     },
     "dependencies": {
-        "@thi.ng/checks": "latest",
-        "@thi.ng/dgraph": "latest",
-        "@thi.ng/hiccup": "latest",
-        "@thi.ng/hiccup-svg": "latest",
-        "@thi.ng/math": "latest",
-        "@thi.ng/paths": "latest",
-        "@thi.ng/strings": "latest",
-        "@thi.ng/transducers": "latest"
+        "@thi.ng/checks": "workspace:^",
+        "@thi.ng/dgraph": "workspace:^",
+        "@thi.ng/hiccup": "workspace:^",
+        "@thi.ng/hiccup-svg": "workspace:^",
+        "@thi.ng/math": "workspace:^",
+        "@thi.ng/paths": "workspace:^",
+        "@thi.ng/strings": "workspace:^",
+        "@thi.ng/transducers": "workspace:^"
     },
     "browserslist": [
         "last 3 Chrome versions"

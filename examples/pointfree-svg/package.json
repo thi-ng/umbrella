@@ -11,10 +11,10 @@
         "build": "yarn clean && ../../scripts/node-esm src/index.ts"
     },
     "dependencies": {
-        "@thi.ng/hiccup": "latest",
-        "@thi.ng/hiccup-svg": "latest",
-        "@thi.ng/pointfree": "latest",
-        "@thi.ng/pointfree-lang": "latest"
+        "@thi.ng/hiccup": "workspace:^",
+        "@thi.ng/hiccup-svg": "workspace:^",
+        "@thi.ng/pointfree": "workspace:^",
+        "@thi.ng/pointfree-lang": "workspace:^"
     },
     "devDependencies": {
         "ts-node": "^10.0.0",

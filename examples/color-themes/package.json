@@ -6,26 +6,28 @@
     "author": "Karsten Schmidt <k+npm@thi.ng>",
     "license": "Apache-2.0",
     "scripts": {
-        "clean": "../../node_modules/.bin/rimraf build node_modules/.cache",
-        "start": "../../node_modules/.bin/snowpack dev --reload",
-        "build": "yarn clean && ../../node_modules/.bin/snowpack build"
+        "clean": "rimraf build node_modules/.cache",
+        "start": "snowpack dev --reload",
+        "build": "yarn clean && snowpack build"
     },
     "devDependencies": {
-        "@types/snowpack-env": "^2.3.4"
+        "@types/snowpack-env": "^2.3.4",
+        "rimraf": "^3.0.2",
+        "snowpack": "^3.8.8"
     },
     "dependencies": {
-        "@thi.ng/api": "latest",
-        "@thi.ng/checks": "latest",
-        "@thi.ng/color": "latest",
-        "@thi.ng/dl-asset": "latest",
-        "@thi.ng/hiccup-html": "latest",
-        "@thi.ng/hiccup-svg": "latest",
-        "@thi.ng/random": "latest",
-        "@thi.ng/rdom": "latest",
-        "@thi.ng/rdom-components": "latest",
-        "@thi.ng/rstream": "latest",
-        "@thi.ng/rstream-dot": "latest",
-        "@thi.ng/transducers": "latest"
+        "@thi.ng/api": "workspace:^",
+        "@thi.ng/checks": "workspace:^",
+        "@thi.ng/color": "workspace:^",
+        "@thi.ng/dl-asset": "workspace:^",
+        "@thi.ng/hiccup-html": "workspace:^",
+        "@thi.ng/hiccup-svg": "workspace:^",
+        "@thi.ng/random": "workspace:^",
+        "@thi.ng/rdom": "workspace:^",
+        "@thi.ng/rdom-components": "workspace:^",
+        "@thi.ng/rstream": "workspace:^",
+        "@thi.ng/rstream-dot": "workspace:^",
+        "@thi.ng/transducers": "workspace:^"
     },
     "browserslist": [
         "last 3 Chrome versions"

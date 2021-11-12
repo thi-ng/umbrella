@@ -7,19 +7,19 @@
     "license": "Apache-2.0",
     "type": "module",
     "scripts": {
-        "clean": "../../node_modules/.bin/rimraf .cache build out",
+        "clean": "rimraf .cache build out",
         "build": "../../scripts/node-esm src/index.ts"
     },
     "dependencies": {
-        "@thi.ng/associative": "latest",
-        "@thi.ng/color": "latest",
-        "@thi.ng/compose": "latest",
-        "@thi.ng/date": "latest",
-        "@thi.ng/hiccup": "latest",
-        "@thi.ng/hiccup-svg": "latest",
-        "@thi.ng/math": "latest",
-        "@thi.ng/strings": "latest",
-        "@thi.ng/transducers": "latest"
+        "@thi.ng/associative": "workspace:^",
+        "@thi.ng/color": "workspace:^",
+        "@thi.ng/compose": "workspace:^",
+        "@thi.ng/date": "workspace:^",
+        "@thi.ng/hiccup": "workspace:^",
+        "@thi.ng/hiccup-svg": "workspace:^",
+        "@thi.ng/math": "workspace:^",
+        "@thi.ng/strings": "workspace:^",
+        "@thi.ng/transducers": "workspace:^"
     },
     "thi.ng": {
         "online": false,
@@ -37,5 +37,8 @@
         "process": false,
         "setTimeout": false,
         "util": false
+    },
+    "devDependencies": {
+        "rimraf": "^3.0.2"
     }
 }
