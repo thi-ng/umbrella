@@ -85,7 +85,7 @@ template and then re-generate the actual readme like so:
 
 ```bash
 cd umbrella
-lerna run doc:readme --scope @thi.ng/<package-name>
+yarn workspace @thi.ng/<package-name> run doc:readme
 ```
 
 ### Wiki additions, blog posts, examples
@@ -216,7 +216,7 @@ there.
 Tests can be run via:
 
 ```bash
-lerna run test --scope @thi.ng/<package-name>
+yarn workspace @thi.ng/<package-name> run test
 
 # or
 (cd packages/<package-name> && yarn test)

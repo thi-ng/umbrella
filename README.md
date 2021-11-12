@@ -384,7 +384,7 @@ Once the entire mono-repo has been fully built at least once before,
 individual packages can then be (re)built like so:
 
 ```bash
-lerna run build --scope @thi.ng/transducers
+yarn workspace @thi.ng/transducers run build
 
 # or
 
@@ -409,7 +409,7 @@ runner
 yarn test
 
 # or individually
-lerna run test --scope @thi.ng/rstream
+yarn workspace @thi.ng/rstream run test
 ```
 
 ### Documentation
