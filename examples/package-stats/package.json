@@ -23,7 +23,8 @@
         "@thi.ng/math": "workspace:^",
         "@thi.ng/paths": "workspace:^",
         "@thi.ng/strings": "workspace:^",
-        "@thi.ng/transducers": "workspace:^"
+        "@thi.ng/transducers": "workspace:^",
+        "@types/node": "^16.11.7"
     },
     "browserslist": [
         "last 3 Chrome versions"
