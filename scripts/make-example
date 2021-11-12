@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 readonly MODULE="examples/$1"
 readonly AUTHOR="Karsten Schmidt"
@@ -79,16 +79,18 @@ cat << EOF > "$MODULE"/package.json
     "author": "$AUTHOR <$EMAIL>",
     "license": "Apache-2.0",
     "scripts": {
-        "clean": "../../node_modules/.bin/rimraf build node_modules/.cache",
-        "start": "../../node_modules/.bin/snowpack dev --reload",
-        "build": "../../node_modules/.bin/snowpack build"
+        "clean": "rimraf build node_modules/.cache",
+        "start": "snowpack dev --reload",
+        "build": "snowpack build"
     },
     "devDependencies": {
-        "@types/snowpack-env": "^2.3.4"
+        "@types/snowpack-env": "^2.3.4",
+        "rimraf": "^3.0.2",
+        "snowpack": "^3.8.8"
     },
     "dependencies": {
-        "@thi.ng/api": "latest",
-        "@thi.ng/rdom": "latest"
+        "@thi.ng/api": "workspace:^",
+        "@thi.ng/rdom": "workspace:^"
     },
     "browserslist": [
         "last 3 Chrome versions"
