@@ -5,9 +5,7 @@
     "type": "module",
     "module": "./index.js",
     "typings": "./index.d.ts",
-    "bin": {
-        "hdiff": "bin/hdiff"
-    },
+    "bin": "bin/hdiff",
     "sideEffects": false,
     "repository": {
         "type": "git",

@@ -5,9 +5,7 @@
     "type": "module",
     "module": "./index.js",
     "typings": "./index.d.ts",
-    "bin": {
-        "testament": "bin/testament"
-    },
+    "bin": "bin/testament",
     "sideEffects": false,
     "repository": {
         "type": "git",

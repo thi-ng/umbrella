@@ -43,5 +43,6 @@
         "tool:imports": "scripts/node-esm tools/src/check-imports.ts",
         "tool:prune": "scripts/node-esm tools/src/prune-changelogs.ts",
         "tool:searchindex": "scripts/node-esm tools/src/build-search-index.ts"
-    }
+    },
+    "packageManager": "yarn@3.1.0"
 }
