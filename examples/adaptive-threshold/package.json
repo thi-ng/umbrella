@@ -1,5 +1,6 @@
 {
     "name": "adaptive-threshold",
+    "private": true,
     "version": "0.0.1",
     "description": "Interactive image processing (adaptive threshold)",
     "repository": "https://github.com/thi-ng/umbrella",

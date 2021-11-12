@@ -1,5 +1,6 @@
 {
     "name": "pixel-dither",
+    "private": true,
     "version": "0.0.1",
     "description": "Showcase of various dithering algorithms",
     "repository": "https://github.com/thi-ng/umbrella",

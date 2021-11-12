@@ -1,5 +1,6 @@
 {
     "name": "crypto-chart",
+    "private": true,
     "version": "0.0.1",
     "description": "Basic crypto-currency candle chart with multiple moving averages plots",
     "repository": "https://github.com/thi-ng/umbrella",

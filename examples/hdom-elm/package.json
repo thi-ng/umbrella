@@ -1,5 +1,6 @@
 {
     "name": "hdom-elm",
+    "private": true,
     "version": "0.0.1",
     "description": "Using hdom in an Elm-like manner",
     "repository": "https://github.com/thi-ng/umbrella",

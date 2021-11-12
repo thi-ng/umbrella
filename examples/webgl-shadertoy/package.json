@@ -1,5 +1,6 @@
 {
     "name": "webgl-shadertoy",
+    "private": true,
     "description": "Shadertoy-like WebGL setup",
     "version": "0.0.1",
     "repository": "https://github.com/thi-ng/umbrella",

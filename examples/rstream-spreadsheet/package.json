@@ -1,5 +1,6 @@
 {
     "name": "rstream-spreadsheet",
+    "private": true,
     "description": "rstream based spreadsheet w/ S-expression formula DSL",
     "version": "0.0.1",
     "repository": "https://github.com/thi-ng/umbrella",

@@ -1,5 +1,6 @@
 {
     "name": "shader-ast-noise",
+    "private": true,
     "description": "HOF shader procedural noise function composition",
     "version": "0.0.1",
     "repository": "https://github.com/thi-ng/umbrella",

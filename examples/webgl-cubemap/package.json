@@ -1,5 +1,6 @@
 {
     "name": "webgl-cubemap",
+    "private": true,
     "description": "WebGL cube maps with async texture loading",
     "version": "0.0.1",
     "repository": "https://github.com/thi-ng/umbrella",

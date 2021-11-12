@@ -1,5 +1,6 @@
 {
     "name": "svg-particles",
+    "private": true,
     "description": "Basic 2D particle system w/ SVG shapes",
     "version": "0.0.1",
     "repository": "https://github.com/thi-ng/umbrella",

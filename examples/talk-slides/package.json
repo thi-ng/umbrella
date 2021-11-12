@@ -1,5 +1,6 @@
 {
     "name": "talk-slides",
+    "private": true,
     "description": "hdom based slide deck viewer & slides from my ClojureX 2018 keynote",
     "version": "0.0.1",
     "repository": "https://github.com/thi-ng/umbrella",

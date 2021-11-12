@@ -1,5 +1,6 @@
 {
     "name": "spline-tangent",
+    "private": true,
     "version": "0.0.1",
     "description": "Compute cubic spline position & tangent using Dual Numbers",
     "repository": "https://github.com/thi-ng/umbrella",

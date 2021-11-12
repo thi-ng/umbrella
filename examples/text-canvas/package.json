@@ -1,5 +1,6 @@
 {
     "name": "text-canvas",
+    "private": true,
     "version": "0.0.1",
     "description": "3D wireframe textmode demo",
     "repository": "https://github.com/thi-ng/umbrella",

@@ -1,5 +1,6 @@
 {
     "name": "login-form",
+    "private": true,
     "description": "Basic SPA example with atom-based UI router",
     "version": "0.0.1",
     "repository": "https://github.com/thi-ng/umbrella",

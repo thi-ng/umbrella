@@ -1,5 +1,6 @@
 {
     "name": "markdown",
+    "private": true,
     "version": "0.0.1",
     "description": "Minimal Markdown to Hiccup to HTML parser / transformer",
     "repository": "https://github.com/thi-ng/umbrella",

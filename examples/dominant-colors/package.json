@@ -1,5 +1,6 @@
 {
     "name": "dominant-colors",
+    "private": true,
     "version": "0.0.1",
     "description": "Color palette generation via dominant color extraction from uploaded images",
     "repository": "https://github.com/thi-ng/umbrella",

@@ -1,5 +1,6 @@
 {
     "name": "parse-playground",
+    "private": true,
     "version": "0.0.1",
     "description": "Parser grammar livecoding editor/playground & codegen",
     "repository": "https://github.com/thi-ng/umbrella",

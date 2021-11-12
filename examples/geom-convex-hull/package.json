@@ -1,5 +1,6 @@
 {
     "name": "geom-convex-hull",
+    "private": true,
     "description": "Convex hull & shape clipping of 2D polygons",
     "version": "0.0.1",
     "repository": "https://github.com/thi-ng/umbrella",

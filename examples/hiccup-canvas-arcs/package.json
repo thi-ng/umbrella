@@ -1,5 +1,6 @@
 {
     "name": "hiccup-canvas-arcs",
+    "private": true,
     "version": "0.0.1",
     "description": "Animated arcs & drawing using hiccup-canvas",
     "repository": "https://github.com/thi-ng/umbrella",

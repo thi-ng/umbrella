@@ -1,5 +1,6 @@
 {
     "name": "rstream-grid",
+    "private": true,
     "version": "0.0.1",
     "description": "Interactive grid generator, SVG generation & export, undo/redo support",
     "repository": "https://github.com/[your-gh-username]/rs-undo",

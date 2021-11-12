@@ -1,5 +1,6 @@
 {
     "name": "soa-ecs",
+    "private": true,
     "description": "Entity Component System w/ 100k 3D particles",
     "version": "0.0.1",
     "repository": "https://github.com/thi-ng/umbrella",

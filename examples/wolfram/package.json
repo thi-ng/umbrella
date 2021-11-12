@@ -1,5 +1,6 @@
 {
     "name": "wolfram",
+    "private": true,
     "description": "1D Wolfram automata with OBJ point cloud export",
     "version": "0.0.1",
     "repository": "https://github.com/thi-ng/umbrella",

@@ -1,5 +1,6 @@
 {
     "name": "pixel-sorting",
+    "private": true,
     "version": "0.0.1",
     "description": "Interactive pixel sorting tool using thi.ng/color & thi.ng/pixel",
     "repository": "https://github.com/thi-ng/umbrella",

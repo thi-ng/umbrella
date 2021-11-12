@@ -1,5 +1,6 @@
 {
     "name": "poly-spline",
+    "private": true,
     "description": "Polygon to cubic curve conversion & visualization",
     "version": "0.0.1",
     "repository": "https://github.com/thi-ng/umbrella",

@@ -1,5 +1,6 @@
 {
     "name": "shader-ast-canvas2d",
+    "private": true,
     "description": "2D canvas shader emulation",
     "version": "0.0.1",
     "repository": "https://github.com/thi-ng/umbrella",

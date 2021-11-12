@@ -1,5 +1,6 @@
 {
     "name": "rdom-search-docs",
+    "private": true,
     "version": "0.0.1",
     "description": "Full umbrella repo doc string search w/ paginated results",
     "repository": "https://github.com/thi-ng/umbrella",

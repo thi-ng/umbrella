@@ -1,5 +1,6 @@
 {
     "name": "hdom-canvas-particles",
+    "private": true,
     "description": "2D Bezier curve-guided particle system",
     "version": "0.0.1",
     "repository": "https://github.com/thi-ng/umbrella",

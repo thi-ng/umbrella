@@ -1,5 +1,6 @@
 {
     "name": "hdom-basics",
+    "private": true,
     "description": "Minimal hdom usage example",
     "version": "0.0.1",
     "repository": "https://github.com/thi-ng/umbrella",

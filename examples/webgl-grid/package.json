@@ -1,5 +1,6 @@
 {
     "name": "webgl-grid",
+    "private": true,
     "description": "WebGL instancing, animated grid",
     "version": "0.0.1",
     "repository": "https://github.com/thi-ng/umbrella",

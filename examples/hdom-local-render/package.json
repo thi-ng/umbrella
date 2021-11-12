@@ -1,5 +1,6 @@
 {
     "name": "hdom-local-render",
+    "private": true,
     "description": "Isolated, component-local DOM updates",
     "version": "0.0.1",
     "repository": "https://github.com/thi-ng/umbrella",

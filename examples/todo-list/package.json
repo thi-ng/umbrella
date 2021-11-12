@@ -1,5 +1,6 @@
 {
     "name": "todo-list",
+    "private": true,
     "description": "Obligatory to-do list example with undo/redo",
     "version": "0.0.1",
     "repository": "https://github.com/thi-ng/umbrella",

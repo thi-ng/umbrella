@@ -1,5 +1,6 @@
 {
     "name": "hydrate-basics",
+    "private": true,
     "description": "Hiccup / hdom DOM hydration example",
     "version": "0.0.1",
     "repository": "https://github.com/thi-ng/umbrella",

@@ -1,5 +1,6 @@
 {
     "name": "multitouch",
+    "private": true,
     "version": "0.0.1",
     "description": "Basic rstream-gestures multi-touch demo",
     "repository": "https://github.com/thi-ng/umbrella",

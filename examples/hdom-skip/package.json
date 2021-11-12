@@ -1,5 +1,6 @@
 {
     "name": "hdom-skip",
+    "private": true,
     "description": "Skipping UI updates for selected component(s)",
     "version": "0.0.1",
     "repository": "https://github.com/thi-ng/umbrella",

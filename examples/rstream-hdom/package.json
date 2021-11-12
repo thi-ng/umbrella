@@ -1,5 +1,6 @@
 {
     "name": "rstream-hdom",
+    "private": true,
     "description": "rstream based UI updates & state handling",
     "version": "0.0.1",
     "repository": "https://github.com/thi-ng/umbrella",

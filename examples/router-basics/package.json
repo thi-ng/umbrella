@@ -1,5 +1,6 @@
 {
     "name": "router-basics",
+    "private": true,
     "version": "0.0.1",
     "description": "Complete mini SPA app w/ router & async content loading",
     "repository": "https://github.com/thi-ng/umbrella",

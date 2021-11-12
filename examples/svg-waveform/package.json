@@ -1,5 +1,6 @@
 {
     "name": "svg-waveform",
+    "private": true,
     "version": "0.0.1",
     "description": "Additive waveform synthesis & SVG visualization with undo/redo",
     "repository": "https://github.com/[your-gh-username]/rs-icep",

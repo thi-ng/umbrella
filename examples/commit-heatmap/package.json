@@ -1,5 +1,6 @@
 {
     "name": "commit-heatmap",
+    "private": true,
     "version": "0.0.1",
     "description": "Heatmap visualization of this mono-repo's commits",
     "repository": "https://github.com/thi-ng/umbrella",

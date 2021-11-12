@@ -1,5 +1,6 @@
 {
     "name": "imgui-basics",
+    "private": true,
     "version": "0.0.1",
     "description": "Minimal IMGUI usage example",
     "repository": "https://github.com/thi-ng/umbrella",

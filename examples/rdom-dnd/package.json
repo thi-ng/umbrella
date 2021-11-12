@@ -1,5 +1,6 @@
 {
     "name": "rdom-dnd",
+    "private": true,
     "version": "0.0.1",
     "description": "rdom drag & drop example",
     "repository": "https://github.com/thi-ng/umbrella",

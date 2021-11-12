@@ -73,6 +73,7 @@ echo "writing package.json..."
 cat << EOF > "$MODULE"/package.json
 {
     "name": "$1",
+    "private": true,
     "version": "0.0.1",
     "description": "TODO",
     "repository": "https://github.com/thi-ng/umbrella",

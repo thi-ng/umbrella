@@ -1,5 +1,6 @@
 {
     "name": "hdom-benchmark2",
+    "private": true,
     "description": "hdom update performance benchmark w/ config options",
     "version": "0.0.1",
     "repository": "https://github.com/thi-ng/umbrella",

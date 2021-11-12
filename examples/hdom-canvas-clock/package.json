@@ -1,5 +1,6 @@
 {
     "name": "hdom-canvas-clock",
+    "private": true,
     "version": "0.0.1",
     "description": "Realtime analog clock demo",
     "repository": "https://github.com/thi-ng/umbrella",

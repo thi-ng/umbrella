@@ -1,5 +1,6 @@
 {
     "name": "rdom-delayed-update",
+    "private": true,
     "version": "0.0.1",
     "description": "Dynamically loaded images w/ preloader state",
     "repository": "https://github.com/thi-ng/umbrella",

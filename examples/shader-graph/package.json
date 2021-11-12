@@ -1,5 +1,6 @@
 {
     "name": "shader-graph",
+    "private": true,
     "version": "0.0.1",
     "description": "Minimal shader graph developed during livestream #2",
     "repository": "https://github.com/thi-ng/umbrella",

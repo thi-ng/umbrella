@@ -1,5 +1,6 @@
 {
     "name": "canvas-dial",
+    "private": true,
     "version": "0.0.1",
     "description": "Canvas based dial widget",
     "repository": "https://github.com/thi-ng/umbrella",

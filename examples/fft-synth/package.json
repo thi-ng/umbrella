@@ -1,5 +1,6 @@
 {
     "name": "fft-synth",
+    "private": true,
     "version": "0.0.1",
     "description": "Interactive inverse FFT toy synth",
     "repository": "https://github.com/thi-ng/umbrella",

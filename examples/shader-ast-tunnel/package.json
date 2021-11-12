@@ -1,5 +1,6 @@
 {
     "name": "shader-ast-tunnel",
+    "private": true,
     "description": "WebGL & Canvas2D textured tunnel shader",
     "version": "0.0.1",
     "repository": "https://github.com/thi-ng/umbrella",

@@ -1,5 +1,6 @@
 {
     "name": "geom-voronoi-mst",
+    "private": true,
     "version": "0.0.1",
     "description": "Poisson-disk shape-aware sampling, Voronoi & Minimum Spanning Tree visualization",
     "repository": "https://github.com/thi-ng/umbrella",

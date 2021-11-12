@@ -1,5 +1,6 @@
 {
     "name": "webgl-ssao",
+    "private": true,
     "description": "WebGL screenspace ambient occlusion",
     "version": "0.0.1",
     "repository": "https://github.com/thi-ng/umbrella",

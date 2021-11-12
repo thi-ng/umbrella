@@ -1,5 +1,6 @@
 {
     "name": "text-canvas-image",
+    "private": true,
     "version": "0.0.1",
     "description": "Textmode image warping w/ 16bit color output",
     "repository": "https://github.com/thi-ng/umbrella",

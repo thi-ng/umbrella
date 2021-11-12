@@ -1,5 +1,6 @@
 {
     "name": "interceptor-basics2",
+    "private": true,
     "description": "Event handling w/ interceptors and side effects",
     "version": "0.0.1",
     "repository": "https://github.com/thi-ng/umbrella",

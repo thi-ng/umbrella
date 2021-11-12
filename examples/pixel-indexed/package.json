@@ -1,5 +1,6 @@
 {
     "name": "pixel-indexed",
+    "private": true,
     "version": "0.0.1",
     "description": "Image dithering and remapping using indexed palettes",
     "repository": "https://github.com/thi-ng/umbrella",

@@ -1,5 +1,6 @@
 {
     "name": "imgui",
+    "private": true,
     "version": "0.0.1",
     "description": "Canvas based Immediate Mode GUI components",
     "repository": "https://github.com/thi-ng/umbrella",

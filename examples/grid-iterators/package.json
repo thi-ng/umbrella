@@ -1,5 +1,6 @@
 {
     "name": "grid-iterators",
+    "private": true,
     "description": "Visualization of different grid iterator strategies",
     "version": "0.0.1",
     "repository": "https://github.com/thi-ng/umbrella",

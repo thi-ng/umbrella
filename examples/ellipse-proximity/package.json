@@ -1,5 +1,6 @@
 {
     "name": "ellipse-proximity",
+    "private": true,
     "version": "0.0.1",
     "description": "Interactive visualization of closest points on ellipses",
     "repository": "https://github.com/thi-ng/umbrella",

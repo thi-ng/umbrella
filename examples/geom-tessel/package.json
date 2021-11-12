@@ -1,5 +1,6 @@
 {
     "name": "geom-tessel",
+    "private": true,
     "description": "Animated, recursive polygon tessellations",
     "version": "0.0.1",
     "repository": "https://github.com/thi-ng/umbrella",

@@ -1,5 +1,6 @@
 {
     "name": "hdom-theme",
+    "private": true,
     "description": "Example for themed components proposal",
     "version": "0.0.1",
     "repository": "https://github.com/thi-ng/umbrella",

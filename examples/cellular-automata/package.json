@@ -1,5 +1,6 @@
 {
     "name": "cellular-automata",
+    "private": true,
     "version": "0.0.1",
     "description": "2D transducer based cellular automata",
     "repository": "https://github.com/thi-ng/umbrella",

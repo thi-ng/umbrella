@@ -1,5 +1,6 @@
 {
     "name": "hdom-inner-html",
+    "private": true,
     "description": "Higher-order component for rendering HTML strings",
     "version": "0.0.1",
     "repository": "https://github.com/thi-ng/umbrella",

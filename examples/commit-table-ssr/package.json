@@ -1,5 +1,6 @@
 {
     "name": "commit-table-ssr",
+    "private": true,
     "version": "0.0.1",
     "description": "Filterable commit log UI w/ minimal server to provide commit history",
     "repository": "https://github.com/thi-ng/umbrella",

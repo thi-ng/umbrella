@@ -1,5 +1,6 @@
 {
     "name": "iso-plasma",
+    "private": true,
     "version": "0.0.1",
     "description": "Animated sine plasma effect visualized using contour lines",
     "repository": "https://github.com/thi-ng/umbrella",

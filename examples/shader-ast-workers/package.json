@@ -1,5 +1,6 @@
 {
     "name": "shader-ast-workers",
+    "private": true,
     "description": "Fork-join worker-based raymarch renderer (JS/CPU only)",
     "version": "0.0.1",
     "repository": "https://github.com/thi-ng/umbrella",

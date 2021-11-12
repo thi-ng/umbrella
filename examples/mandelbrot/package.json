@@ -1,5 +1,6 @@
 {
     "name": "mandelbrot",
+    "private": true,
     "version": "0.0.1",
     "description": "Worker based, interactive Mandelbrot visualization",
     "repository": "https://github.com/thi-ng/umbrella",

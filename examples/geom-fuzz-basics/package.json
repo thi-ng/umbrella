@@ -1,5 +1,6 @@
 {
     "name": "geom-fuzz-basics",
+    "private": true,
     "version": "0.0.1",
     "description": "geom-fuzz basic shape & fill examples",
     "repository": "https://github.com/thi-ng/umbrella",

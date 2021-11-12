@@ -1,5 +1,6 @@
 {
     "name": "package-stats",
+    "private": true,
     "description": "CLI util to visualize umbrella pkg stats",
     "version": "0.0.1",
     "repository": "https://github.com/thi-ng/umbrella",

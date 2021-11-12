@@ -1,5 +1,6 @@
 {
     "name": "rstream-dataflow",
+    "private": true,
     "description": "Minimal rstream dataflow graph",
     "version": "0.0.1",
     "repository": "https://github.com/thi-ng/umbrella",
