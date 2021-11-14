@@ -53,8 +53,8 @@ node_modules
 tachyons.min.css
 zig-cache
 
+.pnp.*
 .yarn/*
-!.yarn/cache
 !.yarn/patches
 !.yarn/plugins
 !.yarn/releases
