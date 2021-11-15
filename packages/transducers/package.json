@@ -418,6 +418,9 @@
         "./range3d": {
             "import": "./range3d.js"
         },
+        "./rechunk": {
+            "import": "./rechunk.js"
+        },
         "./reduce": {
             "import": "./reduce.js"
         },

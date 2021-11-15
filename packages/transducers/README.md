@@ -178,7 +178,7 @@ node --experimental-repl-await
 > const transducers = await import("@thi.ng/transducers");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 9.42 KB
+Package sizes (gzipped, pre-treeshake): ESM: 9.53 KB
 
 ## Dependencies
 
@@ -906,6 +906,7 @@ transduce(map((x) => x*10), push(), range(4))
 - [partition](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/partition.ts)
 - [peek](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/peek.ts)
 - [pluck](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/pluck.ts)
+- [rechunk](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/rechunk.ts)
 - [rename](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/rename.ts)
 - [sample](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/sample.ts)
 - [scan](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/scan.ts)

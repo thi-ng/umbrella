@@ -104,6 +104,7 @@ export * from "./partition-when.js";
 export * from "./partition.js";
 export * from "./peek.js";
 export * from "./pluck.js";
+export * from "./rechunk.js";
 export * from "./rename.js";
 export * from "./sample.js";
 export * from "./scan.js";
