@@ -123,6 +123,9 @@
         "./metastream": {
             "import": "./metastream.js"
         },
+        "./nodejs": {
+            "import": "./nodejs.js"
+        },
         "./object": {
             "import": "./object.js"
         },

@@ -201,7 +201,7 @@ node --experimental-repl-await
 > const rstream = await import("@thi.ng/rstream");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 6.02 KB
+Package sizes (gzipped, pre-treeshake): ESM: 6.12 KB
 
 ## Dependencies
 
@@ -402,6 +402,7 @@ s.next(42);
 - [fromDOMEvent()](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream/src/event.ts#L25) - DOM events
 - [fromInterval()](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream/src/interval.ts) - interval based counters
 - [fromIterable()](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream/src/iterable.ts) - arrays, iterators / generators (async & sync)
+- [fromNodeJS() / linesFromNodeJS()](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream/src/nodejs.ts) - NodeJS streams adapters
 - [fromObject()](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream/src/object.ts) - object property streams
 - [fromPromise()](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream/src/promise.ts) - single value stream from promise
 - [fromPromises()](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream/src/promises.ts) - results from multiple promise

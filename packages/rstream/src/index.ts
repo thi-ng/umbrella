@@ -13,6 +13,7 @@ export * from "./iterable.js";
 export * from "./logger.js";
 export * from "./merge.js";
 export * from "./metastream.js";
+export * from "./nodejs.js";
 export * from "./object.js";
 export * from "./post-worker.js";
 export * from "./promise.js";
