@@ -31,7 +31,7 @@
         "doc:readme": "yarn doc:stats && ../../scripts/node-esm ../../tools/src/readme.ts",
         "doc:stats": "../../scripts/node-esm ../../tools/src/module-stats.ts",
         "pub": "yarn build && yarn npm publish --access public",
-        "test": "yarn exec $(yarn bin testament) test",
+        "test": "NODE_OPTIONS='--no-warnings --loader ts-node/esm' testament test",
         "testasync": "tsc -p test && node build/test/async.js",
         "testfile": "tsc -p test && node build/test/file.js",
         "testgraph": "tsc -p test && node build/test/graph.js",
