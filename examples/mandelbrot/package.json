@@ -10,7 +10,7 @@
         "clean": "rimraf build node_modules/.cache",
         "start": "yarn build:worker && snowpack dev --reload",
         "build": "yarn build:worker && snowpack build",
-        "build:worker": "../../node_modules/.bin/esbuild --bundle src/worker.ts --outfile=public/worker.js --minify"
+        "build:worker": "esbuild --bundle src/worker.ts --outfile=public/worker.js --minify"
     },
     "dependencies": {
         "@thi.ng/compose": "workspace:^",
@@ -45,6 +45,7 @@
         "screenshot": "examples/mandelbrot.jpg"
     },
     "devDependencies": {
+        "esbuild": "^0.13.14",
         "rimraf": "^3.0.2",
         "snowpack": "^3.8.8"
     }

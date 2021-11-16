@@ -10,7 +10,7 @@
         "clean": "rimraf build node_modules/.cache",
         "start": "snowpack dev --reload",
         "build": "yarn clean && snowpack build",
-        "build:cli": "../../node_modules/.bin/tsc -p tsconfig-cli.json"
+        "build:cli": "tsc -p tsconfig-cli.json"
     },
     "dependencies": {
         "@thi.ng/arrays": "workspace:^",
@@ -43,6 +43,7 @@
     "devDependencies": {
         "@types/snowpack-env": "^2.3.3",
         "rimraf": "^3.0.2",
-        "snowpack": "^3.8.8"
+        "snowpack": "^3.8.8",
+        "typescript": "^4.4.4"
     }
 }

@@ -8,15 +8,16 @@
     "license": "Apache-2.0",
     "scripts": {
         "clean": "rimraf node_modules/.cache build out",
-        "build-static": "../../node_modules/.bin/ts-node src/server/static.ts",
-        "build:webpack": "../../node_modules/.bin/webpack --mode production",
-        "start": "../../node_modules/.bin/ts-node src/server/index.ts"
+        "build-static": "ts-node src/server/static.ts",
+        "build:webpack": "webpack --mode production",
+        "start": "ts-node src/server/index.ts"
     },
     "devDependencies": {
         "@types/node": "^16.11.7",
         "rimraf": "^3.0.2",
-        "ts-node": "^10.0.0",
-        "typescript": "4.2.4"
+        "ts-node": "^10.4.0",
+        "typescript": "4.2.4",
+        "webpack": "^5.64.1"
     },
     "dependencies": {
         "@thi.ng/api": "workspace:^",
