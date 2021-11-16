@@ -208,3 +208,7 @@ Please refer to the [example build instructions](https://github.com/thi-ng/umbre
 
 &copy; 2021 $AUTHOR // Apache Software License 2.0
 EOF
+
+echo "refreshing monorepo index..."
+yarn install &>/dev/null
+echo "DONE"
