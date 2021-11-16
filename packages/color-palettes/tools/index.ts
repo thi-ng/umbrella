@@ -107,3 +107,15 @@ for (let gid of [...grouped.keys()].sort(compareNumDesc)) {
 }
 
 writeFileSync(`export/table.md`, sections.join("\n\n"));
+
+const RECENT_ID = "00sz5Uxo4ByGDH6tQ";
+
+const recents = Object.keys(THEMES)
+    .sort()
+    .filter((x) => x >= RECENT_ID)
+    .map((id) => [`\`${id}\``, `![](${BASE_URL}/${id}.svg)`]);
+
+writeFileSync(
+    `export/table-recents.md`,
+    table(["Preset", "Swatches"], recents)
+);

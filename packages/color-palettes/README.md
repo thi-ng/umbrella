@@ -10,82 +10,42 @@ This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
 - [About](#about)
+- [Recent additions](#recent-additions)
+- [All themes](#all-themes)
+  - [Strong](#strong)
+  - [Medium](#medium)
+  - [Soft](#soft)
   - [Status](#status)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
 - [Available palettes](#available-palettes)
   - [Usage](#usage)
-  - [Strong](#strong)
-  - [Medium](#medium)
-  - [Soft](#soft)
 - [Authors](#authors)
 - [License](#license)
 
 ## About
 
-Collection of 132 image based color palettes. This is a support package for [@thi.ng/color](https://github.com/thi-ng/umbrella/tree/develop/packages/color).
+Collection of 142 image based color palettes. This is a support package for [@thi.ng/color](https://github.com/thi-ng/umbrella/tree/develop/packages/color).
 
-### Status
+## Recent additions
 
-**STABLE** - used in production
+| Preset              | Swatches                                                                                                   |
+|:--------------------|:-----------------------------------------------------------------------------------------------------------|
+| `00sz5Uxo4ByGDH6tQ` | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/00sz5Uxo4ByGDH6tQ.svg) |
+| `00sz7CFkl88HCRtUW` | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/00sz7CFkl88HCRtUW.svg) |
+| `00sz9mhhmiZmgR9r6` | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/00sz9mhhmiZmgR9r6.svg) |
+| `00t03UwzLJ4HO8u5o` | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/00t03UwzLJ4HO8u5o.svg) |
+| `00tAmMznURg0qH4jp` | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/00tAmMznURg0qH4jp.svg) |
+| `00tAnftt5xsJlMhDZ` | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/00tAnftt5xsJlMhDZ.svg) |
+| `00tAq6qSD1erL65L8` | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/00tAq6qSD1erL65L8.svg) |
+| `00tAsz6uflx4ciwdA` | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/00tAsz6uflx4ciwdA.svg) |
+| `00tAuOG3R9ivBX2gO` | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/00tAuOG3R9ivBX2gO.svg) |
+| `00tAvqx4Pm26XfKhx` | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/00tAvqx4Pm26XfKhx.svg) |
 
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bcolor-palettes%5D+in%3Atitle)
+## All themes
 
-## Installation
-
-```bash
-yarn add @thi.ng/color-palettes
-```
-
-ES module import:
-
-```html
-<script type="module" src="https://cdn.skypack.dev/@thi.ng/color-palettes"></script>
-```
-
-[Skypack documentation](https://docs.skypack.dev/)
-
-For Node.js REPL:
-
-```text
-# with flag only for < v16
-node --experimental-repl-await
-
-> const colorPalettes = await import("@thi.ng/color-palettes");
-```
-
-Package sizes (gzipped, pre-treeshake): ESM: 5.34 KB
-
-## Dependencies
-
-None
-
-## Usage examples
-
-Several demos in this repo's
-[/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
-directory are using this package.
-
-A selection:
-
-| Screenshot                                                                                                           | Description                                          | Live demo                                           | Source                                                                           |
-|:---------------------------------------------------------------------------------------------------------------------|:-----------------------------------------------------|:----------------------------------------------------|:---------------------------------------------------------------------------------|
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/pixel-indexed.jpg" width="240"/> | Image dithering and remapping using indexed palettes | [Demo](https://demo.thi.ng/umbrella/pixel-indexed/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/pixel-indexed) |
-
-## Available palettes
-
-### Usage
-
-```ts
-import { THEMES } from "@thi.ng/color-palettes";
-
-const theme = THEMES["00bYahDYU6E7wDJwL"];
-```
-
-Also see the [swatch generator](https://github.com/thi-ng/umbrella/blob/develop/packages/color-palettes/tools/index.ts) as usage example...
-
-Below the color themes are shown **sorted by median LCH chromacity**:
+Below all color palettes are shown **sorted by median LCH chromacity**:
 
 (Please note that for some reason (likely color profile related) Google Chrome
 shows the more saturated colors much more muted than they actually are/should
@@ -98,6 +58,7 @@ be. Any pointers to workarounds/solutions are appreciated...):
 | `00Q9Yxm7DrZXqTkyS`  | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/00Q9Yxm7DrZXqTkyS.svg)  |
 | `00QMA8h2BH69zyEk0`  | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/00QMA8h2BH69zyEk0.svg)  |
 | `00QLn7G59JhKtuUs0`  | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/00QLn7G59JhKtuUs0.svg)  |
+| `00tAuOG3R9ivBX2gO`  | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/00tAuOG3R9ivBX2gO.svg)  |
 | `00QLNIQXmbJgghRXg`  | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/00QLNIQXmbJgghRXg.svg)  |
 | `00QLNHv6JW1bL031O`  | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/00QLNHv6JW1bL031O.svg)  |
 | `00qIR1FROo31bNduE`  | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/00qIR1FROo31bNduE.svg)  |
@@ -131,6 +92,7 @@ be. Any pointers to workarounds/solutions are appreciated...):
 | `00qAPJgQvoDkRkQTN`  | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/00qAPJgQvoDkRkQTN.svg)  |
 | `00iGNInM4y8vS5Aon`  | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/00iGNInM4y8vS5Aon.svg)  |
 | `00PhGSfzpeU5Bkh47a` | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/00PhGSfzpeU5Bkh47a.svg) |
+| `00sz7CFkl88HCRtUW`  | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/00sz7CFkl88HCRtUW.svg)  |
 | `00RlTJrw94KFOF3zL`  | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/00RlTJrw94KFOF3zL.svg)  |
 | `00RGly9mkWt6i3suLa` | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/00RGly9mkWt6i3suLa.svg) |
 | `00bYahKZ8LbVgx54y`  | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/00bYahKZ8LbVgx54y.svg)  |
@@ -155,8 +117,10 @@ be. Any pointers to workarounds/solutions are appreciated...):
 | `00QMEZhEMNGnZZxL4` | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/00QMEZhEMNGnZZxL4.svg) |
 | `00QLfPusSpy3uFOpb` | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/00QLfPusSpy3uFOpb.svg) |
 | `00QMA8iIbk7Biajay` | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/00QMA8iIbk7Biajay.svg) |
+| `00t03UwzLJ4HO8u5o` | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/00t03UwzLJ4HO8u5o.svg) |
 | `00bYah8QOLZNgszuV` | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/00bYah8QOLZNgszuV.svg) |
 | `00qIIS5LLApenMByv` | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/00qIIS5LLApenMByv.svg) |
+| `00tAvqx4Pm26XfKhx` | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/00tAvqx4Pm26XfKhx.svg) |
 | `00i0iHXq6xPzf1pt0` | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/00i0iHXq6xPzf1pt0.svg) |
 | `00qIG1KwWOlIJkB81` | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/00qIG1KwWOlIJkB81.svg) |
 | `00RYyJ25i8zFwOJGh` | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/00RYyJ25i8zFwOJGh.svg) |
@@ -165,7 +129,9 @@ be. Any pointers to workarounds/solutions are appreciated...):
 | `00bYcixZkofJhLJ8w` | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/00bYcixZkofJhLJ8w.svg) |
 | `00RTRDOtbFF8KFNH9` | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/00RTRDOtbFF8KFNH9.svg) |
 | `00QMA8tedClukB7IL` | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/00QMA8tedClukB7IL.svg) |
+| `00tAq6qSD1erL65L8` | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/00tAq6qSD1erL65L8.svg) |
 | `00QMSSEJXJOUdMoSj` | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/00QMSSEJXJOUdMoSj.svg) |
+| `00sz9mhhmiZmgR9r6` | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/00sz9mhhmiZmgR9r6.svg) |
 | `00RYyJ4jHYfMF6yfy` | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/00RYyJ4jHYfMF6yfy.svg) |
 | `00qHzDGNbubSeZXrS` | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/00qHzDGNbubSeZXrS.svg) |
 | `00QMSSK2AEOwErS5M` | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/00QMSSK2AEOwErS5M.svg) |
@@ -173,6 +139,7 @@ be. Any pointers to workarounds/solutions are appreciated...):
 | `00QMEZSYbyUNt0041` | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/00QMEZSYbyUNt0041.svg) |
 | `00bYcivY8Jqx8nsiR` | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/00bYcivY8Jqx8nsiR.svg) |
 | `00OkEXVdMQmQ1oQTp` | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/00OkEXVdMQmQ1oQTp.svg) |
+| `00sz5Uxo4ByGDH6tQ` | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/00sz5Uxo4ByGDH6tQ.svg) |
 | `00i0iHUSVMHOENQof` | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/00i0iHUSVMHOENQof.svg) |
 | `00RlTJxJZ16ivgKBw` | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/00RlTJxJZ16ivgKBw.svg) |
 | `00RGlyFVinQl5cj21` | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/00RGlyFVinQl5cj21.svg) |
@@ -201,7 +168,9 @@ be. Any pointers to workarounds/solutions are appreciated...):
 | `00QMEZzTrk06iVgaK`  | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/00QMEZzTrk06iVgaK.svg)  |
 | `00QLNIKFhjs5rJCjr`  | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/00QLNIKFhjs5rJCjr.svg)  |
 | `00QLj3PylHkh8qY2R`  | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/00QLj3PylHkh8qY2R.svg)  |
+| `00tAsz6uflx4ciwdA`  | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/00tAsz6uflx4ciwdA.svg)  |
 | `00bYcj0VC9wmmKNm5`  | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/00bYcj0VC9wmmKNm5.svg)  |
+| `00tAmMznURg0qH4jp`  | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/00tAmMznURg0qH4jp.svg)  |
 | `00bYiYyzA6ODPIC8V`  | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/00bYiYyzA6ODPIC8V.svg)  |
 | `00QMxewR6IS5vyatN`  | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/00QMxewR6IS5vyatN.svg)  |
 | `00qAZjyY6S1ycz77W`  | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/00qAZjyY6S1ycz77W.svg)  |
@@ -215,6 +184,7 @@ be. Any pointers to workarounds/solutions are appreciated...):
 | `00qHekwxmgUGlfAWi`  | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/00qHekwxmgUGlfAWi.svg)  |
 | `00RTRDIzyUse2qJ9N`  | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/00RTRDIzyUse2qJ9N.svg)  |
 | `00QLn7oETUQZKKr34`  | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/00QLn7oETUQZKKr34.svg)  |
+| `00tAnftt5xsJlMhDZ`  | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/00tAnftt5xsJlMhDZ.svg)  |
 | `00QMSSCjsJpojbpYza` | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/00QMSSCjsJpojbpYza.svg) |
 | `00qAPJgiiIyY8shVo`  | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/00qAPJgiiIyY8shVo.svg)  |
 | `00QLslJAGNA8YREKh`  | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/00QLslJAGNA8YREKh.svg)  |
@@ -237,6 +207,65 @@ be. Any pointers to workarounds/solutions are appreciated...):
 | `00QN31G5AB2FTftCe`  | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/00QN31G5AB2FTftCe.svg)  |
 | `00qAZk070SYGij58C`  | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/00qAZk070SYGij58C.svg)  |
 | `00QLfPkuNx1jE7sMm`  | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/00QLfPkuNx1jE7sMm.svg)  |
+
+### Status
+
+**STABLE** - used in production
+
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bcolor-palettes%5D+in%3Atitle)
+
+## Installation
+
+```bash
+yarn add @thi.ng/color-palettes
+```
+
+ES module import:
+
+```html
+<script type="module" src="https://cdn.skypack.dev/@thi.ng/color-palettes"></script>
+```
+
+[Skypack documentation](https://docs.skypack.dev/)
+
+For Node.js REPL:
+
+```text
+# with flag only for < v16
+node --experimental-repl-await
+
+> const colorPalettes = await import("@thi.ng/color-palettes");
+```
+
+Package sizes (gzipped, pre-treeshake): ESM: 5.75 KB
+
+## Dependencies
+
+None
+
+## Usage examples
+
+Several demos in this repo's
+[/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
+directory are using this package.
+
+A selection:
+
+| Screenshot                                                                                                           | Description                                          | Live demo                                           | Source                                                                           |
+|:---------------------------------------------------------------------------------------------------------------------|:-----------------------------------------------------|:----------------------------------------------------|:---------------------------------------------------------------------------------|
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/pixel-indexed.jpg" width="240"/> | Image dithering and remapping using indexed palettes | [Demo](https://demo.thi.ng/umbrella/pixel-indexed/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/pixel-indexed) |
+
+## Available palettes
+
+### Usage
+
+```ts
+import { THEMES } from "@thi.ng/color-palettes";
+
+const theme = THEMES["00bYahDYU6E7wDJwL"];
+```
+
+Also see the [swatch generator](https://github.com/thi-ng/umbrella/blob/develop/packages/color-palettes/tools/index.ts) as usage example...
 
 ## Authors
 
