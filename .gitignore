@@ -24,6 +24,9 @@ coverage
 dev
 doc
 docs
+
+!examples/**/snowpack.config.js
+!examples/**/*.d.ts
 examples/crdt
 examples/delaunay-draw
 examples/diagram

@@ -73,8 +73,8 @@ echo "writing package.json..."
 cat << EOF > "$MODULE"/package.json
 {
     "name": "$1",
-    "private": true,
     "version": "0.0.1",
+    "private": true,
     "description": "TODO",
     "repository": "https://github.com/thi-ng/umbrella",
     "author": "$AUTHOR <$EMAIL>",
@@ -155,16 +155,6 @@ module.exports = {
     },
     workspaceRoot: "../..",
 };
-EOF
-
-echo "writing .gitignore..."
-cat << EOF > "$MODULE"/.gitignore
-build
-dev
-node_modules
-yarn.lock
-!snowpack.config.js
-!*.d.ts
 EOF
 
 echo "writing index.html..."
