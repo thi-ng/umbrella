@@ -9,7 +9,7 @@
     "type": "module",
     "scripts": {
         "clean": "rimraf .cache build out",
-        "build": "../../scripts/node-esm src/index.ts"
+        "build": "tools:node-esm src/index.ts"
     },
     "dependencies": {
         "@thi.ng/associative": "workspace:^",
@@ -40,6 +40,7 @@
         "util": false
     },
     "devDependencies": {
-        "rimraf": "^3.0.2"
+        "rimraf": "^3.0.2",
+        "tools": "workspace:^"
     }
 }

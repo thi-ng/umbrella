@@ -3,7 +3,8 @@
     "type": "module",
     "workspaces": [
         "packages/*",
-        "examples/*"
+        "examples/*",
+        "tools"
     ],
     "devDependencies": {
         "@microsoft/api-documenter": "^7.13.68",
@@ -17,6 +18,7 @@
         "html-minifier-terser": "^6.0.2",
         "rimraf": "^3.0.2",
         "snowpack": "^3.8.8",
+        "tools": "workspace:^",
         "ts-node": "^10.4.0",
         "typedoc": "^0.22.8",
         "typescript": "4.4.4"
@@ -32,16 +34,16 @@
         "doc:ae": "yarn @thi.ng run doc:ae && scripts/collect-apis",
         "doc:readme": "yarn @thi.ng run doc:readme",
         "doc:stats": "yarn @thi.ng run doc:stats",
-        "doc:examples": "scripts/node-esm tools/src/readme-examples.ts",
+        "doc:examples": "tools:node-esm tools/src/readme-examples.ts",
         "examples": "scripts/build-examples",
-        "pub": "yarn @thi.ng npm publish --tolerate-republish && yarn doc && scripts/node-esm tools/src/deploy-docs.ts",
+        "pub": "yarn @thi.ng npm publish --tolerate-republish && yarn doc && tools:node-esm tools/src/deploy-docs.ts",
         "test": "yarn build && yarn test:only",
         "test:only": "yarn @thi.ng run test",
-        "tool:deps": "scripts/node-esm tools/src/adjacency.ts",
-        "tool:exports": "scripts/node-esm tools/src/check-exports.ts",
-        "tool:imports": "scripts/node-esm tools/src/check-imports.ts",
-        "tool:prune": "scripts/node-esm tools/src/prune-changelogs.ts",
-        "tool:searchindex": "scripts/node-esm tools/src/build-search-index.ts"
+        "tool:deps": "tools:node-esm tools/src/adjacency.ts",
+        "tool:exports": "tools:node-esm tools/src/check-exports.ts",
+        "tool:imports": "tools:node-esm tools/src/check-imports.ts",
+        "tool:prune": "tools:node-esm tools/src/prune-changelogs.ts",
+        "tool:searchindex": "tools:node-esm tools/src/build-search-index.ts"
     },
     "packageManager": "yarn@3.1.0"
 }

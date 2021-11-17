@@ -9,13 +9,12 @@
     "type": "module",
     "scripts": {
         "clean": "rimraf '*.js' '*.svg' lib",
-        "build": "yarn clean && ../../scripts/node-esm src/index.ts"
+        "build": "yarn clean && tools:node-esm src/index.ts"
     },
     "devDependencies": {
-        "@types/node": "^16.11.7",
         "@types/rimraf": "^3",
         "rimraf": "^3.0.2",
-        "ts-node": "^10.0.0",
+        "tools": "workspace:^",
         "typescript": "4.2.4"
     },
     "dependencies": {
