@@ -1,22 +1,23 @@
 {
     "name": "wolfram",
+    "private": true,
     "description": "1D Wolfram automata with OBJ point cloud export",
     "version": "0.0.1",
     "repository": "https://github.com/thi-ng/umbrella",
     "author": "Karsten Schmidt <k+npm@thi.ng>",
     "license": "Apache-2.0",
     "scripts": {
-        "clean": "../../node_modules/.bin/rimraf build node_modules/.cache",
-        "start": "../../node_modules/.bin/snowpack dev --reload",
-        "build": "yarn clean && ../../node_modules/.bin/snowpack build"
+        "clean": "rimraf build node_modules/.cache",
+        "start": "snowpack dev --reload",
+        "build": "yarn clean && snowpack build"
     },
     "dependencies": {
-        "@thi.ng/dl-asset": "latest",
-        "@thi.ng/hdom-components": "latest",
-        "@thi.ng/rstream": "latest",
-        "@thi.ng/transducers": "latest",
-        "@thi.ng/transducers-binary": "latest",
-        "@thi.ng/transducers-hdom": "latest"
+        "@thi.ng/dl-asset": "workspace:^",
+        "@thi.ng/hdom-components": "workspace:^",
+        "@thi.ng/rstream": "workspace:^",
+        "@thi.ng/transducers": "workspace:^",
+        "@thi.ng/transducers-binary": "workspace:^",
+        "@thi.ng/transducers-hdom": "workspace:^"
     },
     "browserslist": [
         "last 3 Chrome versions"
@@ -35,6 +36,8 @@
         "screenshot": "examples/wolfram.png"
     },
     "devDependencies": {
-        "@types/snowpack-env": "^2.3.3"
+        "@types/snowpack-env": "^2.3.3",
+        "rimraf": "^3.0.2",
+        "snowpack": "^3.8.8"
     }
 }

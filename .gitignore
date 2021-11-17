@@ -24,6 +24,9 @@ coverage
 dev
 doc
 docs
+
+!examples/**/snowpack.config.js
+!examples/**/*.d.ts
 examples/crdt
 examples/delaunay-draw
 examples/diagram
@@ -52,3 +55,11 @@ lib
 node_modules
 tachyons.min.css
 zig-cache
+
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions

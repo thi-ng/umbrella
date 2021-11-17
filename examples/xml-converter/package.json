@@ -1,25 +1,26 @@
 {
     "name": "xml-converter",
+    "private": true,
     "description": "XML/HTML/SVG to hiccup/JS conversion",
     "version": "0.0.1",
     "repository": "https://github.com/thi-ng/umbrella",
     "author": "Karsten Schmidt <k+npm@thi.ng>",
     "license": "Apache-2.0",
     "scripts": {
-        "clean": "../../node_modules/.bin/rimraf build node_modules/.cache",
-        "start": "../../node_modules/.bin/snowpack dev --reload",
-        "build": "yarn clean && ../../node_modules/.bin/snowpack build",
-        "build:cli": "../../node_modules/.bin/tsc -p tsconfig-cli.json"
+        "clean": "rimraf build node_modules/.cache",
+        "start": "snowpack dev --reload",
+        "build": "yarn clean && snowpack build",
+        "build:cli": "tsc -p tsconfig-cli.json"
     },
     "dependencies": {
-        "@thi.ng/arrays": "latest",
-        "@thi.ng/checks": "latest",
-        "@thi.ng/defmulti": "latest",
-        "@thi.ng/rstream": "latest",
-        "@thi.ng/sax": "latest",
-        "@thi.ng/strings": "latest",
-        "@thi.ng/transducers": "latest",
-        "@thi.ng/transducers-hdom": "latest",
+        "@thi.ng/arrays": "workspace:^",
+        "@thi.ng/checks": "workspace:^",
+        "@thi.ng/defmulti": "workspace:^",
+        "@thi.ng/rstream": "workspace:^",
+        "@thi.ng/sax": "workspace:^",
+        "@thi.ng/strings": "workspace:^",
+        "@thi.ng/transducers": "workspace:^",
+        "@thi.ng/transducers-hdom": "workspace:^",
         "commander": "^6.2.0"
     },
     "browserslist": [
@@ -40,6 +41,9 @@
         "screenshot": "examples/xml-converter.png"
     },
     "devDependencies": {
-        "@types/snowpack-env": "^2.3.3"
+        "@types/snowpack-env": "^2.3.3",
+        "rimraf": "^3.0.2",
+        "snowpack": "^3.8.8",
+        "typescript": "^4.4.4"
     }
 }

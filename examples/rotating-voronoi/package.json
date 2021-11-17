@@ -1,5 +1,6 @@
 {
     "name": "rotating-voronoi",
+    "private": true,
     "description": "Animated Voronoi diagram, cubic splines & SVG download",
     "version": "0.0.1",
     "repository": "https://github.com/thi-ng/umbrella",
@@ -14,22 +15,22 @@
         "rstream"
     ],
     "scripts": {
-        "clean": "../../node_modules/.bin/rimraf build node_modules/.cache",
-        "start": "../../node_modules/.bin/snowpack dev --reload",
-        "build": "yarn clean && ../../node_modules/.bin/snowpack build"
+        "clean": "rimraf build node_modules/.cache",
+        "start": "snowpack dev --reload",
+        "build": "yarn clean && snowpack build"
     },
     "dependencies": {
-        "@thi.ng/dl-asset": "latest",
-        "@thi.ng/geom": "latest",
-        "@thi.ng/geom-resample": "latest",
-        "@thi.ng/geom-voronoi": "latest",
-        "@thi.ng/hdom-canvas": "latest",
-        "@thi.ng/math": "latest",
-        "@thi.ng/random": "latest",
-        "@thi.ng/rstream": "latest",
-        "@thi.ng/transducers": "latest",
-        "@thi.ng/transducers-hdom": "latest",
-        "@thi.ng/vectors": "latest"
+        "@thi.ng/dl-asset": "workspace:^",
+        "@thi.ng/geom": "workspace:^",
+        "@thi.ng/geom-resample": "workspace:^",
+        "@thi.ng/geom-voronoi": "workspace:^",
+        "@thi.ng/hdom-canvas": "workspace:^",
+        "@thi.ng/math": "workspace:^",
+        "@thi.ng/random": "workspace:^",
+        "@thi.ng/rstream": "workspace:^",
+        "@thi.ng/transducers": "workspace:^",
+        "@thi.ng/transducers-hdom": "workspace:^",
+        "@thi.ng/vectors": "workspace:^"
     },
     "browserslist": [
         "last 3 Chrome versions"
@@ -55,6 +56,8 @@
         "screenshot": "examples/rotating-voronoi.jpg"
     },
     "devDependencies": {
-        "@types/snowpack-env": "^2.3.3"
+        "@types/snowpack-env": "^2.3.3",
+        "rimraf": "^3.0.2",
+        "snowpack": "^3.8.8"
     }
 }

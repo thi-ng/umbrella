@@ -25,12 +25,12 @@
     "license": "Apache-2.0",
     "scripts": {
         "build": "yarn clean && tsc --declaration",
-        "clean": "rimraf *.js *.d.ts *.map doc behaviors components",
+        "clean": "rimraf '*.js' '*.d.ts' '*.map' doc behaviors components",
         "doc": "typedoc --excludePrivate --excludeInternal --out doc src/index.ts",
-        "doc:ae": "mkdir -p .ae/doc .ae/temp && node_modules/.bin/api-extractor run --local --verbose",
-        "doc:readme": "yarn doc:stats && ../../scripts/node-esm ../../tools/src/readme.ts",
-        "doc:stats": "../../scripts/node-esm ../../tools/src/module-stats.ts",
-        "pub": "yarn build && yarn publish --access public",
+        "doc:ae": "mkdir -p .ae/doc .ae/temp && api-extractor run --local --verbose",
+        "doc:readme": "yarn doc:stats && tools:readme",
+        "doc:stats": "tools:module-stats",
+        "pub": "yarn build && yarn npm publish --access public",
         "test": "testament test"
     },
     "dependencies": {
@@ -46,7 +46,12 @@
         "@thi.ng/vectors": "^7.1.1"
     },
     "devDependencies": {
-        "@thi.ng/testament": "^0.1.6"
+        "@microsoft/api-extractor": "^7.18.19",
+        "@thi.ng/testament": "^0.1.6",
+        "rimraf": "^3.0.2",
+        "tools": "workspace:^",
+        "typedoc": "^0.22.8",
+        "typescript": "^4.4.4"
     },
     "keywords": [
         "browser",

@@ -1,24 +1,25 @@
 {
     "name": "iso-plasma",
+    "private": true,
     "version": "0.0.1",
     "description": "Animated sine plasma effect visualized using contour lines",
     "repository": "https://github.com/thi-ng/umbrella",
     "author": "Karsten Schmidt <k+npm@thi.ng>",
     "license": "Apache-2.0",
     "scripts": {
-        "clean": "../../node_modules/.bin/rimraf build node_modules/.cache",
-        "start": "../../node_modules/.bin/snowpack dev --reload",
-        "build": "yarn clean && ../../node_modules/.bin/snowpack build"
+        "clean": "rimraf build node_modules/.cache",
+        "start": "snowpack dev --reload",
+        "build": "yarn clean && snowpack build"
     },
     "dependencies": {
-        "@thi.ng/api": "latest",
-        "@thi.ng/geom": "latest",
-        "@thi.ng/geom-isoline": "latest",
-        "@thi.ng/hdom": "latest",
-        "@thi.ng/hdom-canvas": "latest",
-        "@thi.ng/math": "latest",
-        "@thi.ng/transducers": "latest",
-        "@thi.ng/vectors": "latest"
+        "@thi.ng/api": "workspace:^",
+        "@thi.ng/geom": "workspace:^",
+        "@thi.ng/geom-isoline": "workspace:^",
+        "@thi.ng/hdom": "workspace:^",
+        "@thi.ng/hdom-canvas": "workspace:^",
+        "@thi.ng/math": "workspace:^",
+        "@thi.ng/transducers": "workspace:^",
+        "@thi.ng/vectors": "workspace:^"
     },
     "browserslist": [
         "last 3 Chrome versions"
@@ -41,6 +42,8 @@
         "screenshot": "geom/geom-isoline.png"
     },
     "devDependencies": {
-        "@types/snowpack-env": "^2.3.3"
+        "@types/snowpack-env": "^2.3.3",
+        "rimraf": "^3.0.2",
+        "snowpack": "^3.8.8"
     }
 }

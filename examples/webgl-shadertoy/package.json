@@ -1,20 +1,21 @@
 {
     "name": "webgl-shadertoy",
+    "private": true,
     "description": "Shadertoy-like WebGL setup",
     "version": "0.0.1",
     "repository": "https://github.com/thi-ng/umbrella",
     "author": "Karsten Schmidt <k+npm@thi.ng>",
     "license": "Apache-2.0",
     "scripts": {
-        "clean": "../../node_modules/.bin/rimraf build node_modules/.cache",
-        "start": "../../node_modules/.bin/snowpack dev --reload",
-        "build": "yarn clean && ../../node_modules/.bin/snowpack build"
+        "clean": "rimraf build node_modules/.cache",
+        "start": "snowpack dev --reload",
+        "build": "yarn clean && snowpack build"
     },
     "dependencies": {
-        "@thi.ng/shader-ast": "latest",
-        "@thi.ng/shader-ast-stdlib": "latest",
-        "@thi.ng/webgl": "latest",
-        "@thi.ng/webgl-shadertoy": "latest"
+        "@thi.ng/shader-ast": "workspace:^",
+        "@thi.ng/shader-ast-stdlib": "workspace:^",
+        "@thi.ng/webgl": "workspace:^",
+        "@thi.ng/webgl-shadertoy": "workspace:^"
     },
     "browserslist": [
         "last 3 Chrome versions"
@@ -29,6 +30,8 @@
         "screenshot": "examples/webgl-shadertoy.jpg"
     },
     "devDependencies": {
-        "@types/snowpack-env": "^2.3.3"
+        "@types/snowpack-env": "^2.3.3",
+        "rimraf": "^3.0.2",
+        "snowpack": "^3.8.8"
     }
 }

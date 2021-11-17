@@ -1,20 +1,21 @@
 {
     "name": "geom-convex-hull",
+    "private": true,
     "description": "Convex hull & shape clipping of 2D polygons",
     "version": "0.0.1",
     "repository": "https://github.com/thi-ng/umbrella",
     "author": "Karsten Schmidt <k+npm@thi.ng>",
     "license": "Apache-2.0",
     "scripts": {
-        "clean": "../../node_modules/.bin/rimraf build node_modules/.cache",
-        "start": "../../node_modules/.bin/snowpack dev --reload",
-        "build": "yarn clean && ../../node_modules/.bin/snowpack build"
+        "clean": "rimraf build node_modules/.cache",
+        "start": "snowpack dev --reload",
+        "build": "yarn clean && snowpack build"
     },
     "dependencies": {
-        "@thi.ng/geom": "latest",
-        "@thi.ng/geom-api": "latest",
-        "@thi.ng/hdom": "latest",
-        "@thi.ng/hdom-canvas": "latest"
+        "@thi.ng/geom": "workspace:^",
+        "@thi.ng/geom-api": "workspace:^",
+        "@thi.ng/hdom": "workspace:^",
+        "@thi.ng/hdom-canvas": "workspace:^"
     },
     "browserslist": [
         "last 3 Chrome versions"
@@ -33,6 +34,8 @@
         "screenshot": "examples/geom-convex-hull.png"
     },
     "devDependencies": {
-        "@types/snowpack-env": "^2.3.3"
+        "@types/snowpack-env": "^2.3.3",
+        "rimraf": "^3.0.2",
+        "snowpack": "^3.8.8"
     }
 }

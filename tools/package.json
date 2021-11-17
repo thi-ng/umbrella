@@ -1,0 +1,12 @@
+{
+    "name": "tools",
+    "version": "0.0.1",
+    "private": true,
+    "description": "This module provides some build-related tools for @thi.ng/umbrella",
+    "type": "module",
+    "bin": {
+        "tools:module-stats": "bin/module-stats.mjs",
+        "tools:node-esm": "bin/node-esm.mjs",
+        "tools:readme": "bin/readme.mjs"
+    }
+}

@@ -1,17 +1,18 @@
 {
     "name": "hdom-skip-nested",
+    "private": true,
     "description": "Skipping UI updates for nested component(s)",
     "version": "0.0.1",
     "repository": "https://github.com/thi-ng/umbrella",
     "author": "Karsten Schmidt <k+npm@thi.ng>",
     "license": "Apache-2.0",
     "scripts": {
-        "clean": "../../node_modules/.bin/rimraf build node_modules/.cache",
-        "start": "../../node_modules/.bin/snowpack dev --reload",
-        "build": "yarn clean && ../../node_modules/.bin/snowpack build"
+        "clean": "rimraf build node_modules/.cache",
+        "start": "snowpack dev --reload",
+        "build": "yarn clean && snowpack build"
     },
     "dependencies": {
-        "@thi.ng/hdom": "latest"
+        "@thi.ng/hdom": "workspace:^"
     },
     "browserslist": [
         "last 3 Chrome versions"
@@ -22,7 +23,9 @@
         "util": false
     },
     "devDependencies": {
-        "@types/snowpack-env": "^2.3.3"
+        "@types/snowpack-env": "^2.3.3",
+        "rimraf": "^3.0.2",
+        "snowpack": "^3.8.8"
     },
     "thi.ng": {
         "readme": true

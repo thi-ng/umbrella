@@ -1,22 +1,23 @@
 {
     "name": "text-canvas",
+    "private": true,
     "version": "0.0.1",
     "description": "3D wireframe textmode demo",
     "repository": "https://github.com/thi-ng/umbrella",
     "author": "Karsten Schmidt <k+npm@thi.ng>",
     "license": "Apache-2.0",
     "scripts": {
-        "clean": "../../node_modules/.bin/rimraf build node_modules/.cache",
-        "start": "../../node_modules/.bin/snowpack dev --reload",
-        "build": "yarn clean && ../../node_modules/.bin/snowpack build"
+        "clean": "rimraf build node_modules/.cache",
+        "start": "snowpack dev --reload",
+        "build": "yarn clean && snowpack build"
     },
     "dependencies": {
-        "@thi.ng/dsp": "latest",
-        "@thi.ng/geom": "latest",
-        "@thi.ng/matrices": "latest",
-        "@thi.ng/text-canvas": "latest",
-        "@thi.ng/text-format": "latest",
-        "@thi.ng/vectors": "latest"
+        "@thi.ng/dsp": "workspace:^",
+        "@thi.ng/geom": "workspace:^",
+        "@thi.ng/matrices": "workspace:^",
+        "@thi.ng/text-canvas": "workspace:^",
+        "@thi.ng/text-format": "workspace:^",
+        "@thi.ng/vectors": "workspace:^"
     },
     "browserslist": [
         "last 3 Chrome versions"
@@ -37,6 +38,8 @@
         "screenshot": "examples/text-canvas.png"
     },
     "devDependencies": {
-        "@types/snowpack-env": "^2.3.3"
+        "@types/snowpack-env": "^2.3.3",
+        "rimraf": "^3.0.2",
+        "snowpack": "^3.8.8"
     }
 }

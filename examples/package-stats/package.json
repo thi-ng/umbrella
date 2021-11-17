@@ -1,5 +1,6 @@
 {
     "name": "package-stats",
+    "private": true,
     "description": "CLI util to visualize umbrella pkg stats",
     "version": "0.0.1",
     "repository": "https://github.com/thi-ng/umbrella",
@@ -7,22 +8,24 @@
     "license": "Apache-2.0",
     "type": "module",
     "scripts": {
-        "clean": "rm -rf *.js *.svg lib",
-        "build": "yarn clean && ../../scripts/node-esm src/index.ts"
+        "clean": "rimraf '*.js' '*.svg' lib",
+        "build": "yarn clean && tools:node-esm src/index.ts"
     },
     "devDependencies": {
-        "ts-node": "^10.0.0",
+        "@types/rimraf": "^3",
+        "rimraf": "^3.0.2",
+        "tools": "workspace:^",
         "typescript": "4.2.4"
     },
     "dependencies": {
-        "@thi.ng/checks": "latest",
-        "@thi.ng/dgraph": "latest",
-        "@thi.ng/hiccup": "latest",
-        "@thi.ng/hiccup-svg": "latest",
-        "@thi.ng/math": "latest",
-        "@thi.ng/paths": "latest",
-        "@thi.ng/strings": "latest",
-        "@thi.ng/transducers": "latest"
+        "@thi.ng/checks": "workspace:^",
+        "@thi.ng/dgraph": "workspace:^",
+        "@thi.ng/hiccup": "workspace:^",
+        "@thi.ng/hiccup-svg": "workspace:^",
+        "@thi.ng/math": "workspace:^",
+        "@thi.ng/paths": "workspace:^",
+        "@thi.ng/strings": "workspace:^",
+        "@thi.ng/transducers": "workspace:^"
     },
     "browserslist": [
         "last 3 Chrome versions"

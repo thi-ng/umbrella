@@ -1,5 +1,6 @@
 {
     "name": "pointfree-svg",
+    "private": true,
     "description": "Generate SVG using pointfree DSL",
     "version": "0.0.1",
     "repository": "https://github.com/thi-ng/umbrella",
@@ -7,17 +8,19 @@
     "license": "Apache-2.0",
     "type": "module",
     "scripts": {
-        "clean": "rm -rf *.js",
-        "build": "yarn clean && ../../scripts/node-esm src/index.ts"
+        "clean": "rimraf '*.js'",
+        "build": "yarn clean && tools:node-esm src/index.ts"
     },
     "dependencies": {
-        "@thi.ng/hiccup": "latest",
-        "@thi.ng/hiccup-svg": "latest",
-        "@thi.ng/pointfree": "latest",
-        "@thi.ng/pointfree-lang": "latest"
+        "@thi.ng/hiccup": "workspace:^",
+        "@thi.ng/hiccup-svg": "workspace:^",
+        "@thi.ng/pointfree": "workspace:^",
+        "@thi.ng/pointfree-lang": "workspace:^"
     },
     "devDependencies": {
-        "ts-node": "^10.0.0",
+        "@types/rimraf": "^3",
+        "rimraf": "^3.0.2",
+        "tools": "workspace:^",
         "typescript": "4.2.4"
     },
     "thi.ng": {

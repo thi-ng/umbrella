@@ -1,22 +1,23 @@
 {
     "name": "hdom-benchmark2",
+    "private": true,
     "description": "hdom update performance benchmark w/ config options",
     "version": "0.0.1",
     "repository": "https://github.com/thi-ng/umbrella",
     "author": "Karsten Schmidt <k+npm@thi.ng>",
     "license": "Apache-2.0",
     "scripts": {
-        "clean": "../../node_modules/.bin/rimraf build node_modules/.cache",
-        "start": "../../node_modules/.bin/snowpack dev --reload",
-        "build": "yarn clean && ../../node_modules/.bin/snowpack build"
+        "clean": "rimraf build node_modules/.cache",
+        "start": "snowpack dev --reload",
+        "build": "yarn clean && snowpack build"
     },
     "dependencies": {
-        "@thi.ng/binary": "latest",
-        "@thi.ng/hdom": "latest",
-        "@thi.ng/hdom-components": "latest",
-        "@thi.ng/hiccup-css": "latest",
-        "@thi.ng/strings": "latest",
-        "@thi.ng/transducers": "latest"
+        "@thi.ng/binary": "workspace:^",
+        "@thi.ng/hdom": "workspace:^",
+        "@thi.ng/hdom-components": "workspace:^",
+        "@thi.ng/hiccup-css": "workspace:^",
+        "@thi.ng/strings": "workspace:^",
+        "@thi.ng/transducers": "workspace:^"
     },
     "browserslist": [
         "last 3 Chrome versions"
@@ -37,6 +38,8 @@
         "screenshot": "examples/hdom-benchmark2.png"
     },
     "devDependencies": {
-        "@types/snowpack-env": "^2.3.3"
+        "@types/snowpack-env": "^2.3.3",
+        "rimraf": "^3.0.2",
+        "snowpack": "^3.8.8"
     }
 }

@@ -1,27 +1,28 @@
 {
     "name": "mandelbrot",
+    "private": true,
     "version": "0.0.1",
     "description": "Worker based, interactive Mandelbrot visualization",
     "repository": "https://github.com/thi-ng/umbrella",
     "author": "Karsten Schmidt <k+npm@thi.ng>",
     "license": "Apache-2.0",
     "scripts": {
-        "clean": "../../node_modules/.bin/rimraf build node_modules/.cache",
-        "start": "yarn build:worker && ../../node_modules/.bin/snowpack dev --reload",
-        "build": "yarn build:worker && ../../node_modules/.bin/snowpack build",
-        "build:worker": "../../node_modules/.bin/esbuild --bundle src/worker.ts --outfile=public/worker.js --minify"
+        "clean": "rimraf build node_modules/.cache",
+        "start": "yarn build:worker && snowpack dev --reload",
+        "build": "yarn build:worker && snowpack build",
+        "build:worker": "esbuild --bundle src/worker.ts --outfile=public/worker.js --minify"
     },
     "dependencies": {
-        "@thi.ng/compose": "latest",
-        "@thi.ng/dl-asset": "latest",
-        "@thi.ng/equiv": "latest",
-        "@thi.ng/hdom-components": "latest",
-        "@thi.ng/math": "latest",
-        "@thi.ng/rstream": "latest",
-        "@thi.ng/rstream-gestures": "latest",
-        "@thi.ng/strings": "latest",
-        "@thi.ng/transducers": "latest",
-        "@thi.ng/transducers-hdom": "latest"
+        "@thi.ng/compose": "workspace:^",
+        "@thi.ng/dl-asset": "workspace:^",
+        "@thi.ng/equiv": "workspace:^",
+        "@thi.ng/hdom-components": "workspace:^",
+        "@thi.ng/math": "workspace:^",
+        "@thi.ng/rstream": "workspace:^",
+        "@thi.ng/rstream-gestures": "workspace:^",
+        "@thi.ng/strings": "workspace:^",
+        "@thi.ng/transducers": "workspace:^",
+        "@thi.ng/transducers-hdom": "workspace:^"
     },
     "browserslist": [
         "last 3 Chrome versions"
@@ -42,5 +43,10 @@
             "transducers-hdom"
         ],
         "screenshot": "examples/mandelbrot.jpg"
+    },
+    "devDependencies": {
+        "esbuild": "^0.13.14",
+        "rimraf": "^3.0.2",
+        "snowpack": "^3.8.8"
     }
 }

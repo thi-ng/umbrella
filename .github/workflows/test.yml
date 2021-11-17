@@ -21,4 +21,5 @@ jobs:
             - uses: actions/setup-node@v1
               with:
                   node-version: ">=16.9.0"
+            - run: yarn install
             - run: yarn test

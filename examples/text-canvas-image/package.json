@@ -1,22 +1,25 @@
 {
     "name": "text-canvas-image",
+    "private": true,
     "version": "0.0.1",
     "description": "Textmode image warping w/ 16bit color output",
     "repository": "https://github.com/thi-ng/umbrella",
     "author": "Karsten Schmidt <k+npm@thi.ng>",
     "license": "Apache-2.0",
     "scripts": {
-        "clean": "../../node_modules/.bin/rimraf build node_modules/.cache",
-        "start": "../../node_modules/.bin/snowpack dev --reload",
-        "build": "yarn clean && ../../node_modules/.bin/snowpack build"
+        "clean": "rimraf build node_modules/.cache",
+        "start": "snowpack dev --reload",
+        "build": "yarn clean && snowpack build"
     },
     "devDependencies": {
-        "@types/snowpack-env": "^2.3.4"
+        "@types/snowpack-env": "^2.3.4",
+        "rimraf": "^3.0.2",
+        "snowpack": "^3.8.8"
     },
     "dependencies": {
-        "@thi.ng/pixel": "latest",
-        "@thi.ng/text-canvas": "latest",
-        "@thi.ng/text-format": "latest"
+        "@thi.ng/pixel": "workspace:^",
+        "@thi.ng/text-canvas": "workspace:^",
+        "@thi.ng/text-format": "workspace:^"
     },
     "browserslist": [
         "last 3 Chrome versions"

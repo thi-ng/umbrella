@@ -1,6 +1,0 @@
-build
-dev
-node_modules
-yarn.lock
-!snowpack.config.js
-!*.d.ts
