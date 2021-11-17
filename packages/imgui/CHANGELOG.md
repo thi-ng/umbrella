@@ -1,12 +1,13 @@
 # Change Log
 
-Last updated: 2021-11-17T23:24:59Z
+- **Last updated**: 2021-11-17T23:56:32Z
+- **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org/) for commit guidelines.
 
-**Note:** Unlisted _patch_ versions only involve non-code changes and/or
-version bumps of transitive dependencies.
+**Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
+and/or version bumps of transitive dependencies.
 
 ## [2.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/imgui@2.1.0) (2021-11-17)
 
@@ -125,7 +126,7 @@ version bumps of transitive dependencies.
 
 - update deps, imports, use new Fn types ([7921929](https://github.com/thi-ng/umbrella/commit/7921929))
 
-### [0.2.36](https://github.com/thi-ng/umbrella/tree/@thi.ng/imgui@0.2.36) (2020-08-20)
+### [0.2.36](https://github.com/thi-ng/umbrella/tree/@thi.ng/imgui@0.2.36) (2020-08-19)
 
 #### 🩹 Bug fixes
 

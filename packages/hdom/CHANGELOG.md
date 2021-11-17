@@ -1,12 +1,13 @@
 # Change Log
 
-Last updated: 2021-11-17T23:24:59Z
+- **Last updated**: 2021-11-17T23:56:32Z
+- **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org/) for commit guidelines.
 
-**Note:** Unlisted _patch_ versions only involve non-code changes and/or
-version bumps of transitive dependencies.
+**Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
+and/or version bumps of transitive dependencies.
 
 ## [9.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/hdom@9.1.0) (2021-11-17)
 
@@ -292,7 +293,7 @@ version bumps of transitive dependencies.
   - reformat all sub-modules
   - update docs & tests
 
-### [5.0.3](https://github.com/thi-ng/umbrella/tree/@thi.ng/hdom@5.0.3) (2018-09-25)
+### [5.0.3](https://github.com/thi-ng/umbrella/tree/@thi.ng/hdom@5.0.3) (2018-09-24)
 
 #### 🩹 Bug fixes
 
@@ -321,7 +322,7 @@ version bumps of transitive dependencies.
 
 - allow HDOMOpts extensions ([6d6fae3](https://github.com/thi-ng/umbrella/commit/6d6fae3))
 
-### [5.0.0-alpha](https://github.com/thi-ng/umbrella/tree/@thi.ng/hdom@5.0.0-alpha) (2018-09-17)
+### [5.0.0-alpha](https://github.com/thi-ng/umbrella/tree/@thi.ng/hdom@5.0.0-alpha) (2018-09-16)
 
 #### 🚀 Features
 
@@ -445,7 +446,7 @@ version bumps of transitive dependencies.
   - fixes issue when patching <input type=range> elements
     with changed min/max limits
 
-### [3.0.23](https://github.com/thi-ng/umbrella/tree/@thi.ng/hdom@3.0.23) (2018-05-16)
+### [3.0.23](https://github.com/thi-ng/umbrella/tree/@thi.ng/hdom@3.0.23) (2018-05-15)
 
 #### 🩹 Bug fixes
 

@@ -1,12 +1,13 @@
 # Change Log
 
-Last updated: 2021-11-17T23:24:59Z
+- **Last updated**: 2021-11-17T23:56:32Z
+- **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org/) for commit guidelines.
 
-**Note:** Unlisted _patch_ versions only involve non-code changes and/or
-version bumps of transitive dependencies.
+**Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
+and/or version bumps of transitive dependencies.
 
 ## [0.11.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/shader-ast-stdlib@0.11.0) (2021-11-17)
 
@@ -65,7 +66,7 @@ version bumps of transitive dependencies.
 
 - add level correction fns ([54963e7](https://github.com/thi-ng/umbrella/commit/54963e7))
 
-## [0.8.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/shader-ast-stdlib@0.8.0) (2021-08-14)
+## [0.8.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/shader-ast-stdlib@0.8.0) (2021-08-13)
 
 #### 🚀 Features
 

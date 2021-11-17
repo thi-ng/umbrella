@@ -1,12 +1,13 @@
 # Change Log
 
-Last updated: 2021-11-17T23:24:59Z
+- **Last updated**: 2021-11-17T23:56:32Z
+- **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org/) for commit guidelines.
 
-**Note:** Unlisted _patch_ versions only involve non-code changes and/or
-version bumps of transitive dependencies.
+**Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
+and/or version bumps of transitive dependencies.
 
 ## [3.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/pointfree@3.1.0) (2021-11-17)
 
@@ -170,7 +171,7 @@ version bumps of transitive dependencies.
 
 - add execjs for host calls, update readme ([373701b](https://github.com/thi-ng/umbrella/commit/373701b))
 
-### [0.7.9](https://github.com/thi-ng/umbrella/tree/@thi.ng/pointfree@0.7.9) (2018-05-11)
+### [0.7.9](https://github.com/thi-ng/umbrella/tree/@thi.ng/pointfree@0.7.9) (2018-05-10)
 
 #### 🩹 Bug fixes
 

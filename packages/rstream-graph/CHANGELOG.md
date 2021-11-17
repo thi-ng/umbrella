@@ -1,12 +1,13 @@
 # Change Log
 
-Last updated: 2021-11-17T23:24:59Z
+- **Last updated**: 2021-11-17T23:56:32Z
+- **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org/) for commit guidelines.
 
-**Note:** Unlisted _patch_ versions only involve non-code changes and/or
-version bumps of transitive dependencies.
+**Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
+and/or version bumps of transitive dependencies.
 
 ## [4.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/rstream-graph@4.1.0) (2021-11-17)
 
@@ -188,13 +189,13 @@ version bumps of transitive dependencies.
 - update NodeOutput, support multiple handlers ([be21c4c](https://github.com/thi-ng/umbrella/commit/be21c4c))
   - extract prepareNodeOutputs()
 
-### [1.1.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/rstream-graph@1.1.1) (2018-05-20)
+### [1.1.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/rstream-graph@1.1.1) (2018-05-21)
 
 #### ♻️ Refactoring
 
 - allow fn vals in GraphSpec too, update test ([ad56421](https://github.com/thi-ng/umbrella/commit/ad56421))
 
-## [1.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/rstream-graph@1.1.0) (2018-05-20)
+## [1.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/rstream-graph@1.1.0) (2018-05-21)
 
 #### 🚀 Features
 
@@ -212,7 +213,7 @@ version bumps of transitive dependencies.
 
 - update deps & imports in all packages due to [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/main/packages/api) split ([bc45636](https://github.com/thi-ng/umbrella/commit/bc45636))
 
-# [1.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/rstream-graph@1.0.0) (2018-04-25)
+# [1.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/rstream-graph@1.0.0) (2018-04-24)
 
 #### 🛑 Breaking changes
 

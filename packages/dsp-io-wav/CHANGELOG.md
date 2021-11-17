@@ -1,12 +1,13 @@
 # Change Log
 
-Last updated: 2021-11-17T23:24:59Z
+- **Last updated**: 2021-11-17T23:56:32Z
+- **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org/) for commit guidelines.
 
-**Note:** Unlisted _patch_ versions only involve non-code changes and/or
-version bumps of transitive dependencies.
+**Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
+and/or version bumps of transitive dependencies.
 
 ## [2.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/dsp-io-wav@2.1.0) (2021-11-17)
 
@@ -65,7 +66,7 @@ version bumps of transitive dependencies.
 - update all tests in _all_ pkgs ([8b582bc](https://github.com/thi-ng/umbrella/commit/8b582bc))
   - update all to use [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament)
 
-### [0.1.22](https://github.com/thi-ng/umbrella/tree/@thi.ng/dsp-io-wav@0.1.22) (2020-07-09)
+### [0.1.22](https://github.com/thi-ng/umbrella/tree/@thi.ng/dsp-io-wav@0.1.22) (2020-07-08)
 
 #### ♻️ Refactoring
 

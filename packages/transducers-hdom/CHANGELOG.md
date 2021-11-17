@@ -1,12 +1,13 @@
 # Change Log
 
-Last updated: 2021-11-17T23:24:59Z
+- **Last updated**: 2021-11-17T23:56:32Z
+- **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org/) for commit guidelines.
 
-**Note:** Unlisted _patch_ versions only involve non-code changes and/or
-version bumps of transitive dependencies.
+**Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
+and/or version bumps of transitive dependencies.
 
 ## [3.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/transducers-hdom@3.1.0) (2021-11-17)
 
@@ -112,7 +113,7 @@ version bumps of transitive dependencies.
 
 - add missing type annotation ([78b1f4a](https://github.com/thi-ng/umbrella/commit/78b1f4a))
 
-### [1.1.0-alpha](https://github.com/thi-ng/umbrella/tree/@thi.ng/transducers-hdom@1.1.0-alpha) (2018-09-17)
+### [1.1.0-alpha](https://github.com/thi-ng/umbrella/tree/@thi.ng/transducers-hdom@1.1.0-alpha) (2018-09-16)
 
 #### 🩹 Bug fixes
 
@@ -128,7 +129,7 @@ version bumps of transitive dependencies.
   - reflect same logic as w/ hdom `start()` re: null values
 - BREAKING CHANGE: rename transducer: `updateUI` => `updateDOM`, new API
 
-### [0.1.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/transducers-hdom@0.1.1) (2018-08-03)
+### [0.1.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/transducers-hdom@0.1.1) (2018-08-02)
 
 #### 🩹 Bug fixes
 

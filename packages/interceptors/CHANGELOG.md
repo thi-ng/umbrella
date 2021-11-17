@@ -1,12 +1,13 @@
 # Change Log
 
-Last updated: 2021-11-17T23:24:59Z
+- **Last updated**: 2021-11-17T23:56:32Z
+- **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org/) for commit guidelines.
 
-**Note:** Unlisted _patch_ versions only involve non-code changes and/or
-version bumps of transitive dependencies.
+**Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
+and/or version bumps of transitive dependencies.
 
 ## [3.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/interceptors@3.1.0) (2021-11-17)
 
@@ -191,7 +192,7 @@ version bumps of transitive dependencies.
 
 - multiple sidefx value assignment ([c4d8851](https://github.com/thi-ng/umbrella/commit/c4d8851))
 
-## [1.6.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/interceptors@1.6.0) (2018-04-28)
+## [1.6.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/interceptors@1.6.0) (2018-04-27)
 
 #### 🚀 Features
 
@@ -241,7 +242,7 @@ version bumps of transitive dependencies.
   - remove FX_UNDO/REDO
 - also pass ctx to sidefx handlers ([ba0c876](https://github.com/thi-ng/umbrella/commit/ba0c876))
 
-## [1.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/interceptors@1.2.0) (2018-04-14)
+## [1.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/interceptors@1.2.0) (2018-04-13)
 
 #### 🚀 Features
 

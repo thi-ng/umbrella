@@ -1,12 +1,13 @@
 # Change Log
 
-Last updated: 2021-11-17T23:24:59Z
+- **Last updated**: 2021-11-17T23:56:32Z
+- **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org/) for commit guidelines.
 
-**Note:** Unlisted _patch_ versions only involve non-code changes and/or
-version bumps of transitive dependencies.
+**Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
+and/or version bumps of transitive dependencies.
 
 ## [0.12.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/shader-ast@0.12.0) (2021-11-17)
 
@@ -90,7 +91,7 @@ version bumps of transitive dependencies.
 - avoid nested literals ([998cf35](https://github.com/thi-ng/umbrella/commit/998cf35))
   - update `lit()` to avoid nesting if already same type & info
 
-## [0.9.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/shader-ast@0.9.0) (2021-08-14)
+## [0.9.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/shader-ast@0.9.0) (2021-08-13)
 
 #### 🚀 Features
 
@@ -167,13 +168,13 @@ version bumps of transitive dependencies.
     - v = vec
   - add tests
 
-### [0.5.2](https://github.com/thi-ng/umbrella/tree/@thi.ng/shader-ast@0.5.2) (2020-08-09)
+### [0.5.2](https://github.com/thi-ng/umbrella/tree/@thi.ng/shader-ast@0.5.2) (2020-08-08)
 
 #### 🩹 Bug fixes
 
 - fix typo in isTerm(), add tests ([615c8d2](https://github.com/thi-ng/umbrella/commit/615c8d2))
 
-### [0.5.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/shader-ast@0.5.1) (2020-08-09)
+### [0.5.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/shader-ast@0.5.1) (2020-08-08)
 
 #### 🩹 Bug fixes
 

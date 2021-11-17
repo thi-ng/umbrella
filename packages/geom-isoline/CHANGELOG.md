@@ -1,12 +1,13 @@
 # Change Log
 
-Last updated: 2021-11-17T23:24:59Z
+- **Last updated**: 2021-11-17T23:56:32Z
+- **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org/) for commit guidelines.
 
-**Note:** Unlisted _patch_ versions only involve non-code changes and/or
-version bumps of transitive dependencies.
+**Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
+and/or version bumps of transitive dependencies.
 
 ## [2.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom-isoline@2.1.0) (2021-11-17)
 
@@ -74,7 +75,7 @@ version bumps of transitive dependencies.
 
 - update type-only imports in various tests/pkgs ([3fd9c24](https://github.com/thi-ng/umbrella/commit/3fd9c24))
 
-### [0.1.55](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom-isoline@0.1.55) (2020-07-09)
+### [0.1.55](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom-isoline@0.1.55) (2020-07-08)
 
 #### ♻️ Refactoring
 
