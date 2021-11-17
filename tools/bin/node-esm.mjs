@@ -6,7 +6,7 @@ const [node, _, ...args] = process.argv;
 
 const p = spawn(node, ["--loader", "ts-node/esm", ...args]);
 
-p.stdout.on('data', d => console.log(d.toString().trim()));
+p.stdout.pipe(process.stdout);
 p.stderr.on('data', d => {
   const dStr = d.toString().trim();
   !dStr.includes("ExperimentalWarning") ? console.log(dStr) : "";
