@@ -1,4 +1,4 @@
-# ![thi.ng/umbrella](https://media.thi.ng/umbrella/banners/thing-umbrella.svg?1581297779)
+![thi.ng/umbrella](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-umbrella-masthead.jpg)
 
 [![Build status](https://img.shields.io/github/workflow/status/thi-ng/umbrella/test-all)](https://github.com/thi-ng/umbrella/actions?query=workflow%3Atest-all)
 [![Code Climate](https://api.codeclimate.com/v1/badges/592940419adb5bf8abaf/maintainability)](https://codeclimate.com/github/thi-ng/umbrella/maintainability)
