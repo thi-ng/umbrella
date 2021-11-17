@@ -1,84 +1,123 @@
 # Change Log
 
+Last updated: 2021-11-17T23:24:59Z
+
 All notable changes to this project will be documented in this file.
-See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+See [Conventional Commits](https://conventionalcommits.org/) for commit guidelines.
 
-## [0.3.9](https://github.com/thi-ng/umbrella/compare/@thi.ng/soa@0.3.8...@thi.ng/soa@0.3.9) (2021-11-10)
+**Note:** Unlisted _patch_ versions only involve non-code changes and/or
+version bumps of transitive dependencies.
 
-**Note:** Version bump only for package @thi.ng/soa
+## [0.4.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/soa@0.4.0) (2021-11-17)
 
+#### 🚀 Features
 
+- Using workspaces for local tools ([bf7a404](https://github.com/thi-ng/umbrella/commit/bf7a404))
+  Improving the overall build ergonomics
+  - introduced a tools workspaces
+  - imported it in all needed packages/examples
+  - inclusive project root
 
+#### ♻️ Refactoring
 
+- testrunner to binary ([4ebbbb2](https://github.com/thi-ng/umbrella/commit/4ebbbb2))
+  this commit reverts (partly) changes made in:
+  ef346d7a8753590dc9094108a3d861a8dbd5dd2c
+  overall purpose is better testament ergonomics:
+  instead of having to pass NODE_OPTIONS with every invocation
+  having a binary to handle this for us.
 
-## [0.3.8](https://github.com/thi-ng/umbrella/compare/@thi.ng/soa@0.3.7...@thi.ng/soa@0.3.8) (2021-11-04)
+### [0.3.9](https://github.com/thi-ng/umbrella/tree/@thi.ng/soa@0.3.9) (2021-11-10)
 
-**Note:** Version bump only for package @thi.ng/soa
+#### ♻️ Refactoring
 
+- update all countdown loops ([a5f374b](https://github.com/thi-ng/umbrella/commit/a5f374b))
 
+### [0.3.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/soa@0.3.1) (2021-10-13)
 
+#### ♻️ Refactoring
 
+- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
+- update imports in all pkgs ([5fa2b6f](https://github.com/thi-ng/umbrella/commit/5fa2b6f))
+  - add .js suffix for all relative imports
 
-## [0.3.7](https://github.com/thi-ng/umbrella/compare/@thi.ng/soa@0.3.6...@thi.ng/soa@0.3.7) (2021-11-03)
+## [0.3.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/soa@0.3.0) (2021-10-12)
 
-**Note:** Version bump only for package @thi.ng/soa
+#### 🛑 Breaking changes
 
+- major update of ALL pkgs (export maps, ESM only) ([0d1d6ea](https://github.com/thi-ng/umbrella/commit/0d1d6ea))
+- BREAKING CHANGE: discontinue CommonJS & UMD versions
+  - only ESM modules will be published from now on
+  - CJS obsolete due to ESM support in recent versions of node:
+    - i.e. launch NodeJS via:
+    - `node --experimental-specifier-resolution=node --experimental-repl-await`
+    - in the node REPL use `await import(...)` instead of `require()`
+  - UMD obsolete due to widespread browser support for ESM
+  Also:
+  - normalize/restructure/reorg all package.json files
+  - cleanup all build scripts, remove obsolete
+  - switch from mocha to [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament) for all tests
 
+#### ♻️ Refactoring
 
+- minor pkg restructure (various) ([47f88d2](https://github.com/thi-ng/umbrella/commit/47f88d2))
+- update deps & imports in various pkgs ([e1cf29e](https://github.com/thi-ng/umbrella/commit/e1cf29e))
+  - largely related to recent updates/restructuring of these packages:
+    - api
+    - defmulti
+    - errors
+    - logger
+- update imports ([138571a](https://github.com/thi-ng/umbrella/commit/138571a))
+- update all tests in _all_ pkgs ([8b582bc](https://github.com/thi-ng/umbrella/commit/8b582bc))
+  - update all to use [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament)
 
+### [0.2.7](https://github.com/thi-ng/umbrella/tree/@thi.ng/soa@0.2.7) (2021-03-17)
 
-# [0.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/soa@0.2.25...@thi.ng/soa@0.3.0) (2021-10-12)
+#### ♻️ Refactoring
 
+- dedupe OOB error handling ([1988ccd](https://github.com/thi-ng/umbrella/commit/1988ccd))
 
-### Build System
+## [0.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/soa@0.2.0) (2021-02-20)
 
-* major update of ALL pkgs (export maps, ESM only) ([0d1d6ea](https://github.com/thi-ng/umbrella/commit/0d1d6ea9fab2a645d6c5f2bf2591459b939c09b6))
+#### 🛑 Breaking changes
 
+- update attrib type handling ([274dadf](https://github.com/thi-ng/umbrella/commit/274dadf))
+- BREAKING CHANGE: attrib buffer data type use string consts
+  - part of unified umbrella-wide changes to [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/main/packages/api) Type alias
+    (see [a333d4182](https://github.com/thi-ng/umbrella/commit/a333d4182))
 
-### BREAKING CHANGES
+### [0.1.36](https://github.com/thi-ng/umbrella/tree/@thi.ng/soa@0.1.36) (2020-09-13)
 
-* discontinue CommonJS & UMD versions
+#### ♻️ Refactoring
 
-- only ESM modules will be published from now on
-- CJS obsolete due to ESM support in recent versions of node:
-  - i.e. launch NodeJS via:
-  - `node --experimental-specifier-resolution=node --experimental-repl-await`
-  - in the node REPL use `await import(...)` instead of `require()`
-- UMD obsolete due to widespread browser support for ESM
+- update imports ([8c888c0](https://github.com/thi-ng/umbrella/commit/8c888c0))
 
-Also:
-- normalize/restructure/reorg all package.json files
-- cleanup all build scripts, remove obsolete
-- switch from mocha to @thi.ng/testament for all tests
+### [0.1.4](https://github.com/thi-ng/umbrella/tree/@thi.ng/soa@0.1.4) (2020-02-25)
 
+#### ♻️ Refactoring
 
+- update imports ([863e4f6](https://github.com/thi-ng/umbrella/commit/863e4f6))
 
+## [0.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/soa@0.1.0) (2019-11-09)
 
+#### 🚀 Features
 
+- update SOAAttribSpec.buf to use ArrayBuffer w/ opt offset ([2759570](https://github.com/thi-ng/umbrella/commit/2759570))
+  - update aos() buffer handling
+  - update SOA.initSpecs()
+  - update tests
+- add/update types, update aos(), add SOA.setValues(), tests ([b8e0780](https://github.com/thi-ng/umbrella/commit/b8e0780))
+- add new pkg [@thi.ng/soa](https://github.com/thi-ng/umbrella/tree/main/packages/soa) ([5f8ffa1](https://github.com/thi-ng/umbrella/commit/5f8ffa1))
 
-#  [0.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/soa@0.1.47...@thi.ng/soa@0.2.0) (2021-02-20)
+#### 🩹 Bug fixes
 
-###  Code Refactoring
+- remove obsolete imports ([2309ccd](https://github.com/thi-ng/umbrella/commit/2309ccd))
 
-- **soa:** update attrib type handling ([274dadf](https://github.com/thi-ng/umbrella/commit/274dadf2507ac4daeea59c53a0f408343d582d8e))
+#### ⏱ Performance improvements
 
-###  BREAKING CHANGES
+- update attribValues() impl ([786a02f](https://github.com/thi-ng/umbrella/commit/786a02f))
 
-- **soa:** attrib buffer data type use string consts
-    - part of unified umbrella-wide changes to thi.ng/api Type alias   (see a333d4182)
+#### ♻️ Refactoring
 
-#  0.1.0 (2019-11-09)
-
-###  Bug Fixes
-
-- **soa:** remove obsolete imports ([2309ccd](https://github.com/thi-ng/umbrella/commit/2309ccd6e581b6f385f4a2720fd2ad5cfb8a0d79))
-
-###  Features
-
-- **soa:** add new pkg [@thi](https://github.com/thi).ng/soa ([5f8ffa1](https://github.com/thi-ng/umbrella/commit/5f8ffa175fabc4518f6b931c8c57473ea8ab1a74))
-- **soa:** add/update types, update aos(), add SOA.setValues(), tests ([b8e0780](https://github.com/thi-ng/umbrella/commit/b8e07806427041a7ef3413ca47357e3360f6a4c8))
-- **soa:** update SOAAttribSpec.buf to use ArrayBuffer w/ opt offset ([2759570](https://github.com/thi-ng/umbrella/commit/27595700ce0df21258dad58e18abf98b8ddb7c30))
-
-###  Performance Improvements
-
-- **soa:** update attribValues() impl ([786a02f](https://github.com/thi-ng/umbrella/commit/786a02f66fd0f50e678f3eb048964fadf293db3f))
+- rename SOA.initSpecs() => addSpecs(), make public ([470714d](https://github.com/thi-ng/umbrella/commit/470714d))
+- update attribValues(), add indexUnsafe() ([21c1ef6](https://github.com/thi-ng/umbrella/commit/21c1ef6))

@@ -1,95 +1,110 @@
 # Change Log
 
+Last updated: 2021-11-17T23:24:59Z
+
 All notable changes to this project will be documented in this file.
-See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+See [Conventional Commits](https://conventionalcommits.org/) for commit guidelines.
 
-## [0.5.8](https://github.com/thi-ng/umbrella/compare/@thi.ng/simd@0.5.7...@thi.ng/simd@0.5.8) (2021-11-10)
+**Note:** Unlisted _patch_ versions only involve non-code changes and/or
+version bumps of transitive dependencies.
 
-**Note:** Version bump only for package @thi.ng/simd
+## [0.6.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/simd@0.6.0) (2021-11-17)
 
+#### 🚀 Features
 
+- Using workspaces for local tools ([bf7a404](https://github.com/thi-ng/umbrella/commit/bf7a404))
+  Improving the overall build ergonomics
+  - introduced a tools workspaces
+  - imported it in all needed packages/examples
+  - inclusive project root
 
+### [0.5.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/simd@0.5.1) (2021-10-13)
 
+#### ♻️ Refactoring
 
-## [0.5.7](https://github.com/thi-ng/umbrella/compare/@thi.ng/simd@0.5.6...@thi.ng/simd@0.5.7) (2021-11-03)
+- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
+- update imports in all pkgs ([5fa2b6f](https://github.com/thi-ng/umbrella/commit/5fa2b6f))
+  - add .js suffix for all relative imports
 
-**Note:** Version bump only for package @thi.ng/simd
+## [0.5.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/simd@0.5.0) (2021-10-12)
 
+#### 🛑 Breaking changes
 
+- major update of ALL pkgs (export maps, ESM only) ([0d1d6ea](https://github.com/thi-ng/umbrella/commit/0d1d6ea))
+- BREAKING CHANGE: discontinue CommonJS & UMD versions
+  - only ESM modules will be published from now on
+  - CJS obsolete due to ESM support in recent versions of node:
+    - i.e. launch NodeJS via:
+    - `node --experimental-specifier-resolution=node --experimental-repl-await`
+    - in the node REPL use `await import(...)` instead of `require()`
+  - UMD obsolete due to widespread browser support for ESM
+  Also:
+  - normalize/restructure/reorg all package.json files
+  - cleanup all build scripts, remove obsolete
+  - switch from mocha to [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament) for all tests
 
+#### ♻️ Refactoring
 
+- update b64 WASM init ([75c83e5](https://github.com/thi-ng/umbrella/commit/75c83e5))
+- update imports ([138571a](https://github.com/thi-ng/umbrella/commit/138571a))
 
-# [0.5.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/simd@0.4.41...@thi.ng/simd@0.5.0) (2021-10-12)
+## [0.4.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/simd@0.4.0) (2020-07-25)
 
+#### 🛑 Breaking changes
 
-### Build System
+- prepare re-publish 1.0.0 ([e528129](https://github.com/thi-ng/umbrella/commit/e528129))
+- BREAKING CHANGE: add readme notes about opcode renumbering
 
-* major update of ALL pkgs (export maps, ESM only) ([0d1d6ea](https://github.com/thi-ng/umbrella/commit/0d1d6ea9fab2a645d6c5f2bf2591459b939c09b6))
+## [0.3.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/simd@0.3.0) (2020-07-17)
 
+#### 🚀 Features
 
-### BREAKING CHANGES
+- update & enable swizzle4_u32_aos() ([ae1ad77](https://github.com/thi-ng/umbrella/commit/ae1ad77))
+  - fix swizzle impl (byte lane order)
+  - add/update tests
 
-* discontinue CommonJS & UMD versions
+#### ♻️ Refactoring
 
-- only ESM modules will be published from now on
-- CJS obsolete due to ESM support in recent versions of node:
-  - i.e. launch NodeJS via:
-  - `node --experimental-specifier-resolution=node --experimental-repl-await`
-  - in the node REPL use `await import(...)` instead of `require()`
-- UMD obsolete due to widespread browser support for ESM
+- update eps value in test harness ([93b427f](https://github.com/thi-ng/umbrella/commit/93b427f))
 
-Also:
-- normalize/restructure/reorg all package.json files
-- cleanup all build scripts, remove obsolete
-- switch from mocha to @thi.ng/testament for all tests
+## [0.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/simd@0.2.0) (2020-05-14)
 
+#### 🚀 Features
 
+- enable new ops supported in node 14/V8 8.3 ([5c46468](https://github.com/thi-ng/umbrella/commit/5c46468))
+  - previously unsupported in V8 impl (f32x4.div & f32x4.sqrt ops):
+    - div4_f32
+    - divn4_f32
+    - sqrt4_f32
+    - invsqrt4_f32
 
+### [0.1.4](https://github.com/thi-ng/umbrella/tree/@thi.ng/simd@0.1.4) (2020-02-25)
 
+#### ♻️ Refactoring
 
+- update imports ([6aa73ca](https://github.com/thi-ng/umbrella/commit/6aa73ca))
 
-#  [0.4.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/simd@0.3.1...@thi.ng/simd@0.4.0) (2020-07-25)
+## [0.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/simd@0.1.0) (2019-11-09)
 
-###  Bug Fixes
+#### 🚀 Features
 
-- **simd:** prepare re-publish 1.0.0 ([e528129](https://github.com/thi-ng/umbrella/commit/e52812952017ea2a29cad1d1bd081f49f5a1bf9d))
+- add mag2/4, magsq2/4, move/extract inline fns, update tests, readme ([00ce05b](https://github.com/thi-ng/umbrella/commit/00ce05b))
+- add mix4_f32, mixn4_f32, mul_m22v2_aos, update test & readme ([d09f09e](https://github.com/thi-ng/umbrella/commit/d09f09e))
+- add swizzle fns (disabled) ([a47ec4d](https://github.com/thi-ng/umbrella/commit/a47ec4d))
+- add hadd* inline fns, update dot, normalize, mulv, sum ([a1011ea](https://github.com/thi-ng/umbrella/commit/a1011ea))
+- add clampn4_f32, sum4_f32 ([0e0dfde](https://github.com/thi-ng/umbrella/commit/0e0dfde))
+- add more vector fns ([4f4cea4](https://github.com/thi-ng/umbrella/commit/4f4cea4))
+- add new fns, switch to f32x4 namespaced ops, update readme ([4023a8f](https://github.com/thi-ng/umbrella/commit/4023a8f))
+- add matrix-vec mult fns, no async init, inline binary as b64 ([761dd98](https://github.com/thi-ng/umbrella/commit/761dd98))
+- add new dot fns, tests, rename ([50bc9fc](https://github.com/thi-ng/umbrella/commit/50bc9fc))
+- add new package ([eedb895](https://github.com/thi-ng/umbrella/commit/eedb895))
 
-###  Documentation
+#### 🩹 Bug fixes
 
-- **simd:** update readme ([740e742](https://github.com/thi-ng/umbrella/commit/740e74239a8ad6ee0fd54c68016fcf97374054c9))
+- add missing wasm exports ([f998f88](https://github.com/thi-ng/umbrella/commit/f998f88))
 
-###  BREAKING CHANGES
+#### ♻️ Refactoring
 
-- **simd:** add readme notes about opcode renumbering
-- **simd:** add notes about opcode renumbering
-
-#  [0.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/simd@0.2.9...@thi.ng/simd@0.3.0) (2020-07-17)
-
-###  Features
-
-- **simd:** update & enable swizzle4_u32_aos() ([ae1ad77](https://github.com/thi-ng/umbrella/commit/ae1ad77a7e5e117bfe8a01f3b33526c6ef6633fe))
-
-#  [0.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/simd@0.1.16...@thi.ng/simd@0.2.0) (2020-05-14)
-
-###  Features
-
-- **simd:** enable new ops supported in node 14/V8 8.3 ([5c46468](https://github.com/thi-ng/umbrella/commit/5c464682ef1a720cbfca3d79b76a94fc7444b781))
-
-#  0.1.0 (2019-11-09)
-
-###  Bug Fixes
-
-- **simd:** add missing wasm exports ([f998f88](https://github.com/thi-ng/umbrella/commit/f998f883a10e1a663da7213fed49948c005fcdf1))
-
-###  Features
-
-- **simd:** add clampn4_f32, sum4_f32 ([0e0dfde](https://github.com/thi-ng/umbrella/commit/0e0dfde150856ea62c0b316a3a6391dccd3646a8))
-- **simd:** add hadd* inline fns, update dot, normalize, mulv, sum ([a1011ea](https://github.com/thi-ng/umbrella/commit/a1011ead5ee1d55adbea1da1efcea2829b037210))
-- **simd:** add mag2/4, magsq2/4, move/extract inline fns, update tests, readme ([00ce05b](https://github.com/thi-ng/umbrella/commit/00ce05b5ec54e4ba1542e671de8dcd61b396a783))
-- **simd:** add matrix-vec mult fns, no async init, inline binary as b64 ([761dd98](https://github.com/thi-ng/umbrella/commit/761dd9822c4f78d3581a533385763cdc09154da9))
-- **simd:** add mix4_f32, mixn4_f32, mul_m22v2_aos, update test & readme ([d09f09e](https://github.com/thi-ng/umbrella/commit/d09f09ecd519c41db72e68a06d566190e57f647c))
-- **simd:** add more vector fns ([4f4cea4](https://github.com/thi-ng/umbrella/commit/4f4cea4ed912236aeacb19e0d50f171bf9dde15b))
-- **simd:** add new dot fns, tests, rename ([50bc9fc](https://github.com/thi-ng/umbrella/commit/50bc9fc85b141c11cedf66f4384561259f93fff9))
-- **simd:** add new fns, switch to f32x4 namespaced ops, update readme ([4023a8f](https://github.com/thi-ng/umbrella/commit/4023a8f02b9759bb0d3b11036de578e37b82493e))
-- **simd:** add new package ([eedb895](https://github.com/thi-ng/umbrella/commit/eedb89530555332103e3a32147c318592edf830b))
-- **simd:** add swizzle fns (disabled) ([a47ec4d](https://github.com/thi-ng/umbrella/commit/a47ec4dbc16271103a7b4aaca730677136275e9d))
+- fix [#162](https://github.com/thi-ng/umbrella/issues/162), update normalize2_f32_aos() ([74dab9a](https://github.com/thi-ng/umbrella/commit/74dab9a))
+  - extract inline $norm() helper
+- extract SIMD API, update readme ([8b7287e](https://github.com/thi-ng/umbrella/commit/8b7287e))

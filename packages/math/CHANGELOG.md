@@ -1,236 +1,264 @@
 # Change Log
 
+Last updated: 2021-11-17T23:24:59Z
+
 All notable changes to this project will be documented in this file.
-See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+See [Conventional Commits](https://conventionalcommits.org/) for commit guidelines.
 
-## [5.0.8](https://github.com/thi-ng/umbrella/compare/@thi.ng/math@5.0.7...@thi.ng/math@5.0.8) (2021-11-10)
+**Note:** Unlisted _patch_ versions only involve non-code changes and/or
+version bumps of transitive dependencies.
 
-**Note:** Version bump only for package @thi.ng/math
+## [5.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/math@5.1.0) (2021-11-17)
 
+#### 🚀 Features
 
+- Using workspaces for local tools ([bf7a404](https://github.com/thi-ng/umbrella/commit/bf7a404))
+  Improving the overall build ergonomics
+  - introduced a tools workspaces
+  - imported it in all needed packages/examples
+  - inclusive project root
 
+#### ♻️ Refactoring
 
+- testrunner to binary ([4ebbbb2](https://github.com/thi-ng/umbrella/commit/4ebbbb2))
+  this commit reverts (partly) changes made in:
+  ef346d7a8753590dc9094108a3d861a8dbd5dd2c
+  overall purpose is better testament ergonomics:
+  instead of having to pass NODE_OPTIONS with every invocation
+  having a binary to handle this for us.
 
-## [5.0.7](https://github.com/thi-ng/umbrella/compare/@thi.ng/math@5.0.6...@thi.ng/math@5.0.7) (2021-11-03)
+### [5.0.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/math@5.0.1) (2021-10-13)
 
-**Note:** Version bump only for package @thi.ng/math
+#### ♻️ Refactoring
 
+- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
+- update imports in all pkgs ([5fa2b6f](https://github.com/thi-ng/umbrella/commit/5fa2b6f))
+  - add .js suffix for all relative imports
 
+# [5.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/math@5.0.0) (2021-10-12)
 
+#### 🛑 Breaking changes
 
+- major update of ALL pkgs (export maps, ESM only) ([0d1d6ea](https://github.com/thi-ng/umbrella/commit/0d1d6ea))
+- BREAKING CHANGE: discontinue CommonJS & UMD versions
+  - only ESM modules will be published from now on
+  - CJS obsolete due to ESM support in recent versions of node:
+    - i.e. launch NodeJS via:
+    - `node --experimental-specifier-resolution=node --experimental-repl-await`
+    - in the node REPL use `await import(...)` instead of `require()`
+  - UMD obsolete due to widespread browser support for ESM
+  Also:
+  - normalize/restructure/reorg all package.json files
+  - cleanup all build scripts, remove obsolete
+  - switch from mocha to [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament) for all tests
 
-# [5.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/math@4.0.6...@thi.ng/math@5.0.0) (2021-10-12)
+#### ♻️ Refactoring
 
+- update imports ([138571a](https://github.com/thi-ng/umbrella/commit/138571a))
+- update all tests in _all_ pkgs ([8b582bc](https://github.com/thi-ng/umbrella/commit/8b582bc))
+  - update all to use [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament)
 
-### Build System
+### [4.0.6](https://github.com/thi-ng/umbrella/tree/@thi.ng/math@4.0.6) (2021-09-03)
 
-* major update of ALL pkgs (export maps, ESM only) ([0d1d6ea](https://github.com/thi-ng/umbrella/commit/0d1d6ea9fab2a645d6c5f2bf2591459b939c09b6))
+#### 🩹 Bug fixes
 
+- removing deprecated eqDeltaFixed() ([1de245b](https://github.com/thi-ng/umbrella/commit/1de245b))
 
-### BREAKING CHANGES
+# [4.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/math@4.0.0) (2021-04-24)
 
-* discontinue CommonJS & UMD versions
+#### 🛑 Breaking changes
 
-- only ESM modules will be published from now on
-- CJS obsolete due to ESM support in recent versions of node:
-  - i.e. launch NodeJS via:
-  - `node --experimental-specifier-resolution=node --experimental-repl-await`
-  - in the node REPL use `await import(...)` instead of `require()`
-- UMD obsolete due to widespread browser support for ESM
+- add/update modulo functions ([be7b02b](https://github.com/thi-ng/umbrella/commit/be7b02b))
+- BREAKING CHANGE: Introduction of standard libc math functions causes
+  behavior change of existing `fmod()` function...
+  - rename `fmod()` => `mod()` to align w/ GLSL counterpart
+  - add new `fmod()` w/ standard libc behavior (same as JS % op)
+  - add `remainder()` w/ standard libc behavior
+  - update doc strings
 
-Also:
-- normalize/restructure/reorg all package.json files
-- cleanup all build scripts, remove obsolete
-- switch from mocha to @thi.ng/testament for all tests
+#### 🚀 Features
 
+- add libc math fns ([28b41a8](https://github.com/thi-ng/umbrella/commit/28b41a8))
+  - add copysign()
+  - add exp2()
+  - add fdim()
+  - add fma()
+  - add frexp()
+  - add ldexp()
 
+## [3.4.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/math@3.4.0) (2021-04-03)
 
+#### 🚀 Features
 
+- add lanczos(), fix/update/add sinc ([e661b7a](https://github.com/thi-ng/umbrella/commit/e661b7a))
+  - replace broken sinc() fn w/ non-normalized real sinc
+  - add sincNormalized()
+  - add lanczos()
 
+#### 🩹 Bug fixes
 
-##  [4.0.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/math@4.0.5...@thi.ng/math@4.0.6) (2021-09-03)
+- fix sigmoid01() signature ([378cb17](https://github.com/thi-ng/umbrella/commit/378cb17))
 
-###  Bug Fixes
+## [3.3.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/math@3.3.0) (2021-03-17)
 
-- **math:** removing deprecated eqDeltaFixed() ([1de245b](https://github.com/thi-ng/umbrella/commit/1de245bff0d2c1d9436e39240ecd648cef744488))
+#### 🚀 Features
 
-#  [4.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/math@3.4.0...@thi.ng/math@4.0.0) (2021-04-24)
+- add mixBicubic(), mixCubicHermiteFromPoints() ([30dda42](https://github.com/thi-ng/umbrella/commit/30dda42))
 
-###  Features
+#### ⏱ Performance improvements
 
-- **math:** add libc math fns ([28b41a8](https://github.com/thi-ng/umbrella/commit/28b41a824758b83cea09c29f48e6f14f56368c40))
-- **math:** add/update modulo functions ([be7b02b](https://github.com/thi-ng/umbrella/commit/be7b02beaf4ab1ab1030597a5f4eb94d43e1469b))
+- replace mixBilinear() w/ inline impl ([bb16dc5](https://github.com/thi-ng/umbrella/commit/bb16dc5))
+  - new impl ~1.7x faster
 
-###  BREAKING CHANGES
+## [3.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/math@3.2.0) (2021-02-20)
 
-- **math:** Introduction of standard libc math functions causes behavior change of existing `fmod()` function...
-    - rename `fmod()` => `mod()` to align w/ GLSL counterpart
-    - add new `fmod()` w/ standard libc behavior (same as JS % op)
-    - add `remainder()` w/ standard libc behavior
-    - update doc strings
+#### 🚀 Features
 
-#  [3.4.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/math@3.3.0...@thi.ng/math@3.4.0) (2021-04-03)
+- add clamp0() ([d18c869](https://github.com/thi-ng/umbrella/commit/d18c869))
 
-###  Bug Fixes
+## [3.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/math@3.1.0) (2021-01-10)
 
-- **math:** fix sigmoid01() signature ([378cb17](https://github.com/thi-ng/umbrella/commit/378cb17d4ad2ef2f301039e067af251c867d7da8))
+#### 🚀 Features
 
-###  Features
+- add floorTo/ceilTo() ([595fe83](https://github.com/thi-ng/umbrella/commit/595fe83))
 
-- **math:** add lanczos(), fix/update/add sinc ([e661b7a](https://github.com/thi-ng/umbrella/commit/e661b7a8e8ce49e4d34ae572818d6b0e8e7a292d))
+# [3.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/math@3.0.0) (2020-12-22)
 
-#  [3.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/math@3.2.5...@thi.ng/math@3.3.0) (2021-03-17)
+#### 🛑 Breaking changes
 
-###  Features
+- fix [#256](https://github.com/thi-ng/umbrella/issues/256) replace enum w/ type alias ([8f00375](https://github.com/thi-ng/umbrella/commit/8f00375))
+  - update comparison order in classifyCrossing()
+- BREAKING CHANGE: replace Crossing enum w/ type alias
+- update/fix sigmoid() behavior ([07a278f](https://github.com/thi-ng/umbrella/commit/07a278f))
+- BREAKING CHANGE: add new bias arg for sigmoid() to satisfy more use cases.
+  Use sigmoid01() for old behavior.
+  - add/update docstrings
+  - add desmos links
 
-- **math:** add mixBicubic(), mixCubicHermiteFromPoints() ([30dda42](https://github.com/thi-ng/umbrella/commit/30dda424cc1a433a71dfa762f0b8c453114466a0))
+#### 🚀 Features
 
-###  Performance Improvements
+- add more parametric T-norms ([38bd40e](https://github.com/thi-ng/umbrella/commit/38bd40e))
+- add gaussian() ([138befe](https://github.com/thi-ng/umbrella/commit/138befe))
+- add various T-norm functions ([ab4a810](https://github.com/thi-ng/umbrella/commit/ab4a810))
 
-- **math:** replace mixBilinear() w/ inline impl ([bb16dc5](https://github.com/thi-ng/umbrella/commit/bb16dc591dd9455b8d0061a664375a9dc8c74a36))
+### [2.2.2](https://github.com/thi-ng/umbrella/tree/@thi.ng/math@2.2.2) (2020-12-07)
 
-#  [3.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/math@3.1.0...@thi.ng/math@3.2.0) (2021-02-20)
+#### ♻️ Refactoring
 
-###  Features
+- update type-only imports in various tests/pkgs ([3fd9c24](https://github.com/thi-ng/umbrella/commit/3fd9c24))
 
-- **math:** add clamp0() ([d18c869](https://github.com/thi-ng/umbrella/commit/d18c869b59499ee081bee7c75e6ed0ebd4720efb))
+## [2.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/math@2.2.0) (2020-11-24)
 
-#  [3.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/math@3.0.1...@thi.ng/math@3.1.0) (2021-01-10)
+#### 🚀 Features
 
-###  Features
+- add generalized schlick curve ([4b6eb84](https://github.com/thi-ng/umbrella/commit/4b6eb84))
 
-- **math:** add floorTo/ceilTo() ([595fe83](https://github.com/thi-ng/umbrella/commit/595fe83475f4a4080408033d3448fd4c36ef1652))
+## [2.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/math@2.1.0) (2020-09-13)
 
-#  [3.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/math@2.2.2...@thi.ng/math@3.0.0) (2020-12-22)
+#### 🚀 Features
 
-###  Bug Fixes
+- add lens(), invCircular() interpolators ([56dce17](https://github.com/thi-ng/umbrella/commit/56dce17))
 
-- **math:** fix [#256](https://github.com/thi-ng/umbrella/issues/256) replace enum w/ type alias ([8f00375](https://github.com/thi-ng/umbrella/commit/8f00375722ff3e207f1711229acff69c3bd1343f))
+#### ♻️ Refactoring
 
-###  Code Refactoring
+- update deps, imports, use new Fn types ([a40840d](https://github.com/thi-ng/umbrella/commit/a40840d))
+- use new function aliases, update deps ([dd0337f](https://github.com/thi-ng/umbrella/commit/dd0337f))
 
-- **math:** update/fix sigmoid() behavior ([07a278f](https://github.com/thi-ng/umbrella/commit/07a278fdd82004610aa9b7acb585c3c841af24ba))
+### [1.7.5](https://github.com/thi-ng/umbrella/tree/@thi.ng/math@1.7.5) (2020-04-05)
 
-###  Features
+#### ♻️ Refactoring
 
-- **math:** add gaussian() ([138befe](https://github.com/thi-ng/umbrella/commit/138befe1f2d14eb9a4fb3829179b8d03d49e6bbc))
-- **math:** add more parametric T-norms ([38bd40e](https://github.com/thi-ng/umbrella/commit/38bd40e1595e318c6472a526e03c8c8a06ebf396))
-- **math:** add various T-norm functions ([ab4a810](https://github.com/thi-ng/umbrella/commit/ab4a810981c08c54365d5ea3212cd465d2589cf0))
+- switch to non-const enums ([783e5e3](https://github.com/thi-ng/umbrella/commit/783e5e3))
 
-###  BREAKING CHANGES
+## [1.7.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/math@1.7.0) (2020-02-25)
 
-- **math:** replace Crossing enum w/ type alias
-- **math:** add new bias arg for sigmoid() to satisfy more use cases. Use sigmoid01() for old behavior.
-    - add/update docstrings
-    - add desmos links
+#### 🚀 Features
 
-#  [2.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/math@2.1.1...@thi.ng/math@2.2.0) (2020-11-24)
+- add minNonZero2/3() ([49c88d9](https://github.com/thi-ng/umbrella/commit/49c88d9))
+- add safeDiv() (from @nkint PR [#206](https://github.com/thi-ng/umbrella/issues/206)) ([0567b93](https://github.com/thi-ng/umbrella/commit/0567b93))
 
-###  Features
+## [1.6.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/math@1.6.0) (2020-01-24)
 
-- **math:** add generalized schlick curve ([4b6eb84](https://github.com/thi-ng/umbrella/commit/4b6eb844f3588679ee78d0e7d60b52cfcec8eb87))
+#### 🚀 Features
 
-#  [2.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/math@2.0.4...@thi.ng/math@2.1.0) (2020-09-13)
+- add clamp05, update wrapOnce, wrap01, wrap11 ([19af252](https://github.com/thi-ng/umbrella/commit/19af252))
+  - add clamp05()
+  - wrap fns now consistently use *closed* intervals
+- add expFactor(), update wrap/wrapOnce() ([bb07348](https://github.com/thi-ng/umbrella/commit/bb07348))
+  - rename wrap => wrapOnce()
+  - add new wrap() which wraps any value, regardless of
+  dist to interval border
+  - update docs
 
-###  Features
+## [1.5.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/math@1.5.0) (2019-11-09)
 
-- **math:** add lens(), invCircular() interpolators ([56dce17](https://github.com/thi-ng/umbrella/commit/56dce1779ee314179771fa14f31d0f36e1ec6a12))
+#### 🚀 Features
 
-#  [2.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/math@1.7.13...@thi.ng/math@2.0.0) (2020-07-17)
+- add mixCubicHermite & tangent fns ([d6b4b37](https://github.com/thi-ng/umbrella/commit/d6b4b37))
 
-###  Code Refactoring
+## [1.4.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/math@1.4.0) (2019-07-07)
 
-- **math:** swap `eqDelta()` impls, rename ([5404a56](https://github.com/thi-ng/umbrella/commit/5404a5699a44d7ef6c2ccb5804f2b099a4358eb1))
+#### 🚀 Features
 
-###  BREAKING CHANGES
+- add signed/unsigned int math ops ([518d79a](https://github.com/thi-ng/umbrella/commit/518d79a))
 
-- **math:** Revert/rename `eqDeltaFixed()` => `eqDelta()`. Rename curr `eqDelta()` => `eqDeltaScaled()`
-    - this is essentially a revert to 5018009
-    - also keep, but deprecate `eqDeltaFixed()` (synonym for `eqDelta` now)
+## [1.3.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/math@1.3.0) (2019-05-22)
 
-#  [1.7.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/math@1.6.0...@thi.ng/math@1.7.0) (2020-02-25)
+#### 🚀 Features
 
-###  Features
+- add sigmoid / sigmoid11 fns ([3f085a3](https://github.com/thi-ng/umbrella/commit/3f085a3))
+- add extrema & crossing fns and Crossing enum ([e102f39](https://github.com/thi-ng/umbrella/commit/e102f39))
 
-- **math:** add minNonZero2/3() ([49c88d9](https://github.com/thi-ng/umbrella/commit/49c88d917ca7089841f5c26ca92293582d80f148))
-- **math:** add safeDiv() (from [@nkint](https://github.com/nkint) PR [#206](https://github.com/thi-ng/umbrella/issues/206)) ([0567b93](https://github.com/thi-ng/umbrella/commit/0567b93b881467c634fc4723cad986432faecd83))
+## [1.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/math@1.2.0) (2019-03-18)
 
-#  [1.6.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/math@1.5.1...@thi.ng/math@1.6.0) (2020-01-24)
+#### 🚀 Features
 
-###  Features
+- add cos/sin approximations, loc(), add docstrings ([78ed751](https://github.com/thi-ng/umbrella/commit/78ed751))
+- add consts ([28e9898](https://github.com/thi-ng/umbrella/commit/28e9898))
+- more trigonometry ([b5e1c02](https://github.com/thi-ng/umbrella/commit/b5e1c02))
 
-- **math:** add clamp05, update wrapOnce, wrap01, wrap11 ([19af252](https://github.com/thi-ng/umbrella/commit/19af2527a3c7afee4f829e36bf06acaeaf045be7))
-- **math:** add expFactor(), update wrap/wrapOnce() ([bb07348](https://github.com/thi-ng/umbrella/commit/bb07348da2e252641c1bc4de1e577451ead3607b))
+## [1.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/math@1.1.0) (2019-02-05)
 
-#  [1.5.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/math@1.4.2...@thi.ng/math@1.5.0) (2019-11-09)
+#### 🚀 Features
 
-###  Features
+- add PHI const ([57d4488](https://github.com/thi-ng/umbrella/commit/57d4488))
 
-- **math:** add mixCubicHermite & tangent fns ([d6b4b37](https://github.com/thi-ng/umbrella/commit/d6b4b3710b80fa1366cb40c193ad745bc63d4253))
+# [1.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/math@1.0.0) (2019-01-21)
 
-#  [1.4.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/math@1.3.0...@thi.ng/math@1.4.0) (2019-07-07)
-
-###  Features
-
-- **math:** add signed/unsigned int math ops ([518d79a](https://github.com/thi-ng/umbrella/commit/518d79a))
-
-#  [1.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/math@1.2.3...@thi.ng/math@1.3.0) (2019-05-22)
-
-###  Features
-
-- **math:** add extrema & crossing fns and Crossing enum ([e102f39](https://github.com/thi-ng/umbrella/commit/e102f39))
-- **math:** add sigmoid / sigmoid11 fns ([3f085a3](https://github.com/thi-ng/umbrella/commit/3f085a3))
-
-#  [1.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/math@1.1.1...@thi.ng/math@1.2.0) (2019-03-18)
-
-###  Features
-
-- **math:** add consts ([28e9898](https://github.com/thi-ng/umbrella/commit/28e9898))
-- **math:** add cos/sin approximations, loc(), add docstrings ([78ed751](https://github.com/thi-ng/umbrella/commit/78ed751))
-- **math:** more trigonometry ([b5e1c02](https://github.com/thi-ng/umbrella/commit/b5e1c02))
-
-#  [1.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/math@1.0.1...@thi.ng/math@1.1.0) (2019-02-05)
-
-###  Features
-
-- **math:** add minError() search ([cae8394](https://github.com/thi-ng/umbrella/commit/cae8394))
-- **math:** add PHI const ([57d4488](https://github.com/thi-ng/umbrella/commit/57d4488))
-- **math:** add simplifyRatio() ([31e369b](https://github.com/thi-ng/umbrella/commit/31e369b))
-
-#  [1.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/math@0.2.2...@thi.ng/math@1.0.0) (2019-01-21)
-
-###  Build System
+#### 🛑 Breaking changes
 
 - update package build scripts & outputs, imports in ~50 packages ([b54b703](https://github.com/thi-ng/umbrella/commit/b54b703))
+- BREAKING CHANGE: enabled multi-outputs (ES6 modules, CJS, UMD)
+  - build scripts now first build ES6 modules in package root, then call
+    `scripts/bundle-module` to build minified CJS & UMD bundles in `/lib`
+  - all imports MUST be updated to only refer to package level
+    (not individual files anymore). tree shaking in user land will get rid of
+    all unused imported symbols.
 
-###  Features
+#### 🚀 Features
 
-- **math:** add absInnerAngle() ([a78bd87](https://github.com/thi-ng/umbrella/commit/a78bd87))
-- **math:** add constants ([8fa05c3](https://github.com/thi-ng/umbrella/commit/8fa05c3))
-- **math:** add cossin(), add opt scale arg for sincos() ([0043fb5](https://github.com/thi-ng/umbrella/commit/0043fb5))
-- **math:** update eqDelta w/ adaptive eps, rename old => eqDeltaFixed ([5018009](https://github.com/thi-ng/umbrella/commit/5018009))
+- add absInnerAngle() ([a78bd87](https://github.com/thi-ng/umbrella/commit/a78bd87))
+- update eqDelta w/ adaptive eps, rename old => eqDeltaFixed ([5018009](https://github.com/thi-ng/umbrella/commit/5018009))
 
-###  BREAKING CHANGES
+#### ♻️ Refactoring
 
-- enabled multi-outputs (ES6 modules, CJS, UMD)
-- build scripts now first build ES6 modules in package root, then call   `scripts/bundle-module` to build minified CJS & UMD bundles in `/lib`
-- all imports MUST be updated to only refer to package level   (not individual files anymore). tree shaking in user land will get rid of   all unused imported symbols.
+- use arrow fns ([560207a](https://github.com/thi-ng/umbrella/commit/560207a))
 
-##  [0.2.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/math@0.2.0...@thi.ng/math@0.2.1) (2018-11-20)
+### [0.2.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/math@0.2.1) (2018-11-19)
 
-###  Bug Fixes
+#### 🩹 Bug fixes
 
-- **math:** fix [#60](https://github.com/thi-ng/umbrella/issues/60), add range check for norm() ([143c47c](https://github.com/thi-ng/umbrella/commit/143c47c))
+- fix [#60](https://github.com/thi-ng/umbrella/issues/60), add range check for norm() ([143c47c](https://github.com/thi-ng/umbrella/commit/143c47c))
 
-#  [0.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/math@0.1.0...@thi.ng/math@0.2.0) (2018-10-21)
+## [0.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/math@0.2.0) (2018-10-21)
 
-###  Features
+#### 🚀 Features
 
-- **math:** add sincos() & roundEps() ([f891c41](https://github.com/thi-ng/umbrella/commit/f891c41))
-- **math:** migrate mixCubic()/mixQuadratic() from geom package ([4a47daa](https://github.com/thi-ng/umbrella/commit/4a47daa))
+- migrate mixCubic()/mixQuadratic() from geom package ([4a47daa](https://github.com/thi-ng/umbrella/commit/4a47daa))
+- add sincos() & roundEps() ([f891c41](https://github.com/thi-ng/umbrella/commit/f891c41))
 
-#  0.1.0 (2018-10-17)
+## [0.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/math@0.1.0) (2018-10-17)
 
-###  Features
+#### 🚀 Features
 
-- **math:** extract maths fns from [@thi](https://github.com/thi).ng/vectors as new package ([4af1fba](https://github.com/thi-ng/umbrella/commit/4af1fba))
+- extract maths fns from [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/main/packages/vectors) as new package ([4af1fba](https://github.com/thi-ng/umbrella/commit/4af1fba))

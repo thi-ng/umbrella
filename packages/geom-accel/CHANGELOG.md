@@ -1,142 +1,225 @@
 # Change Log
 
+Last updated: 2021-11-17T23:24:59Z
+
 All notable changes to this project will be documented in this file.
-See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+See [Conventional Commits](https://conventionalcommits.org/) for commit guidelines.
 
-## [3.0.9](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-accel@3.0.8...@thi.ng/geom-accel@3.0.9) (2021-11-10)
+**Note:** Unlisted _patch_ versions only involve non-code changes and/or
+version bumps of transitive dependencies.
 
-**Note:** Version bump only for package @thi.ng/geom-accel
+## [3.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom-accel@3.1.0) (2021-11-17)
 
+#### 🚀 Features
 
+- Using workspaces for local tools ([bf7a404](https://github.com/thi-ng/umbrella/commit/bf7a404))
+  Improving the overall build ergonomics
+  - introduced a tools workspaces
+  - imported it in all needed packages/examples
+  - inclusive project root
 
+#### ♻️ Refactoring
 
+- testrunner to binary ([4ebbbb2](https://github.com/thi-ng/umbrella/commit/4ebbbb2))
+  this commit reverts (partly) changes made in:
+  ef346d7a8753590dc9094108a3d861a8dbd5dd2c
+  overall purpose is better testament ergonomics:
+  instead of having to pass NODE_OPTIONS with every invocation
+  having a binary to handle this for us.
 
-## [3.0.8](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-accel@3.0.7...@thi.ng/geom-accel@3.0.8) (2021-11-04)
+### [3.0.9](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom-accel@3.0.9) (2021-11-10)
 
-**Note:** Version bump only for package @thi.ng/geom-accel
+#### ♻️ Refactoring
 
+- update all countdown loops ([a5f374b](https://github.com/thi-ng/umbrella/commit/a5f374b))
 
+### [3.0.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom-accel@3.0.1) (2021-10-13)
 
+#### ♻️ Refactoring
 
+- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
+- update imports in all pkgs ([5fa2b6f](https://github.com/thi-ng/umbrella/commit/5fa2b6f))
+  - add .js suffix for all relative imports
 
-## [3.0.7](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-accel@3.0.6...@thi.ng/geom-accel@3.0.7) (2021-11-03)
+# [3.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom-accel@3.0.0) (2021-10-12)
 
-**Note:** Version bump only for package @thi.ng/geom-accel
+#### 🛑 Breaking changes
 
+- major update of ALL pkgs (export maps, ESM only) ([0d1d6ea](https://github.com/thi-ng/umbrella/commit/0d1d6ea))
+- BREAKING CHANGE: discontinue CommonJS & UMD versions
+  - only ESM modules will be published from now on
+  - CJS obsolete due to ESM support in recent versions of node:
+    - i.e. launch NodeJS via:
+    - `node --experimental-specifier-resolution=node --experimental-repl-await`
+    - in the node REPL use `await import(...)` instead of `require()`
+  - UMD obsolete due to widespread browser support for ESM
+  Also:
+  - normalize/restructure/reorg all package.json files
+  - cleanup all build scripts, remove obsolete
+  - switch from mocha to [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament) for all tests
 
+#### ♻️ Refactoring
 
+- minor pkg restructure (various) ([47f88d2](https://github.com/thi-ng/umbrella/commit/47f88d2))
+- update deps & imports in various pkgs ([e1cf29e](https://github.com/thi-ng/umbrella/commit/e1cf29e))
+  - largely related to recent updates/restructuring of these packages:
+    - api
+    - defmulti
+    - errors
+    - logger
+- update imports (transducers) ([25b674f](https://github.com/thi-ng/umbrella/commit/25b674f))
+- update various benchmarks ([53e8a6a](https://github.com/thi-ng/umbrella/commit/53e8a6a))
+- update imports ([b5368f0](https://github.com/thi-ng/umbrella/commit/b5368f0))
+- update imports ([ec7199d](https://github.com/thi-ng/umbrella/commit/ec7199d))
+- update all test stubs ([f2d6d53](https://github.com/thi-ng/umbrella/commit/f2d6d53))
+- update all tests in _all_ pkgs ([8b582bc](https://github.com/thi-ng/umbrella/commit/8b582bc))
+  - update all to use [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament)
 
+### [2.1.33](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom-accel@2.1.33) (2021-01-21)
 
-# [3.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-accel@2.1.60...@thi.ng/geom-accel@3.0.0) (2021-10-12)
+#### 🩹 Bug fixes
 
+- size update in ASpatialGrid.set() ([b41f7ba](https://github.com/thi-ng/umbrella/commit/b41f7ba))
 
-### Build System
+### [2.1.28](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom-accel@2.1.28) (2020-12-07)
 
-* major update of ALL pkgs (export maps, ESM only) ([0d1d6ea](https://github.com/thi-ng/umbrella/commit/0d1d6ea9fab2a645d6c5f2bf2591459b939c09b6))
+#### ♻️ Refactoring
 
+- update type-only imports ([cd893cd](https://github.com/thi-ng/umbrella/commit/cd893cd))
+- update type-only imports in various tests/pkgs ([3fd9c24](https://github.com/thi-ng/umbrella/commit/3fd9c24))
 
-### BREAKING CHANGES
+### [2.1.24](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom-accel@2.1.24) (2020-09-22)
 
-* discontinue CommonJS & UMD versions
+#### ♻️ Refactoring
 
-- only ESM modules will be published from now on
-- CJS obsolete due to ESM support in recent versions of node:
-  - i.e. launch NodeJS via:
-  - `node --experimental-specifier-resolution=node --experimental-repl-await`
-  - in the node REPL use `await import(...)` instead of `require()`
-- UMD obsolete due to widespread browser support for ESM
+- dedupe into() impls ([83b8cbd](https://github.com/thi-ng/umbrella/commit/83b8cbd))
 
-Also:
-- normalize/restructure/reorg all package.json files
-- cleanup all build scripts, remove obsolete
-- switch from mocha to @thi.ng/testament for all tests
+### [2.1.23](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom-accel@2.1.23) (2020-09-13)
 
+#### ♻️ Refactoring
 
+- update imports ([4064e01](https://github.com/thi-ng/umbrella/commit/4064e01))
 
+## [2.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom-accel@2.1.0) (2020-04-23)
 
+#### 🚀 Features
 
+- add 2d/3d spatial grids ([e34c44d](https://github.com/thi-ng/umbrella/commit/e34c44d))
 
-##  [2.1.33](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-accel@2.1.32...@thi.ng/geom-accel@2.1.33) (2021-01-21)
+#### ♻️ Refactoring
 
-###  Bug Fixes
+- extract addResults(), update imports ([b322d95](https://github.com/thi-ng/umbrella/commit/b322d95))
 
-- **geom-accel:** size update in ASpatialGrid.set() ([b41f7ba](https://github.com/thi-ng/umbrella/commit/b41f7ba38b454f6790c640d9363faa56ebe2190e))
+### [2.0.2](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom-accel@2.0.2) (2020-02-25)
 
-#  [2.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-accel@2.0.11...@thi.ng/geom-accel@2.1.0) (2020-04-23)
+#### ♻️ Refactoring
 
-###  Features
+- update imports ([401da1b](https://github.com/thi-ng/umbrella/commit/401da1b))
 
-- **geom-accel:** add 2d/3d spatial grids ([e34c44d](https://github.com/thi-ng/umbrella/commit/e34c44d624026bbce946d904c5b861f7a48fd484))
+# [2.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom-accel@2.0.0) (2020-01-24)
 
-#  [2.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-accel@1.2.10...@thi.ng/geom-accel@2.0.0) (2020-01-24)
+#### 🛑 Breaking changes
 
-###  Bug Fixes
+- add NdQuadTreeMap/Set, update/add KdTreeMap/Set ([7c6f7d2](https://github.com/thi-ng/umbrella/commit/7c6f7d2))
+- BREAKING CHANGE: replace KdTree with KdTreeMap/Set
 
-- **geom-accel:** use Heap in NdQtNode.query to select closest ([5fd6726](https://github.com/thi-ng/umbrella/commit/5fd67260eeb85cfce8216bc3a3d9e5d304f3d846))
+#### 🚀 Features
 
-###  Features
+- add IEmpty & clear() impls ([af747d0](https://github.com/thi-ng/umbrella/commit/af747d0))
+- add initial nD quadtree impl & tests ([6f59869](https://github.com/thi-ng/umbrella/commit/6f59869))
 
-- **geom-accel:** add IEmpty & clear() impls ([af747d0](https://github.com/thi-ng/umbrella/commit/af747d0e607f193b02e2e9d561d66ce588a8bdc8))
-- **geom-accel:** add initial nD quadtree impl & tests ([6f59869](https://github.com/thi-ng/umbrella/commit/6f59869f80222d200c68083b2dad5c1a8da731a0))
-- **geom-accel:** add NdQuadTreeMap/Set, update/add KdTreeMap/Set ([7c6f7d2](https://github.com/thi-ng/umbrella/commit/7c6f7d249780dbfcabd60e3f8f6369fb1b42998d))
+#### 🩹 Bug fixes
 
-###  Performance Improvements
+- use Heap in NdQtNode.query to select closest ([5fd6726](https://github.com/thi-ng/umbrella/commit/5fd6726))
+  - NdQuadtreeMap.set/remove to update .size
+  - minor updates KdTreeMap
 
-- **geom-accel:** add benchmark ([a09bcba](https://github.com/thi-ng/umbrella/commit/a09bcbacae2cd7f1e284baaa47f40f64ed6a327e))
+#### ⏱ Performance improvements
 
-###  BREAKING CHANGES
+- add benchmark ([a09bcba](https://github.com/thi-ng/umbrella/commit/a09bcba))
 
-- **geom-accel:** replace KdTree with KdTreeMap/Set
+#### ♻️ Refactoring
 
-#  [1.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-accel@1.1.17...@thi.ng/geom-accel@1.2.0) (2019-07-07)
+- minor updates NdQuadtreeSet ([1df4ab5](https://github.com/thi-ng/umbrella/commit/1df4ab5))
+- update fromMinMax factories, tests, minor updates ([7f30ee0](https://github.com/thi-ng/umbrella/commit/7f30ee0))
 
-###  Features
+### [1.2.7](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom-accel@1.2.7) (2019-08-21)
 
-- **geom-accel:** enable TS strict compiler flags (refactor) ([e19e6bc](https://github.com/thi-ng/umbrella/commit/e19e6bc))
+#### ♻️ Refactoring
 
-##  [1.1.7](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-accel@1.1.6...@thi.ng/geom-accel@1.1.7) (2019-03-10)
+- simplify select*() methods, extract doSelect() ([002e3d1](https://github.com/thi-ng/umbrella/commit/002e3d1))
+- simplify nearest()/nearest1(), dedupe/extract common ([1678b69](https://github.com/thi-ng/umbrella/commit/1678b69))
 
-###  Bug Fixes
+## [1.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom-accel@1.2.0) (2019-07-07)
 
-- **geom-accel:** fix/update existing point search in add()/select*() ([8186f12](https://github.com/thi-ng/umbrella/commit/8186f12))
+#### 🚀 Features
 
-##  [1.1.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-accel@1.1.1...@thi.ng/geom-accel@1.1.2) (2019-02-15)
+- enable TS strict compiler flags (refactor) ([e19e6bc](https://github.com/thi-ng/umbrella/commit/e19e6bc))
 
-###  Bug Fixes
+#### ♻️ Refactoring
 
-- **geom-accel:** fix addAll(), addKeys() ([51959b7](https://github.com/thi-ng/umbrella/commit/51959b7))
+- address TS strictNullChecks flag ([e6e777f](https://github.com/thi-ng/umbrella/commit/e6e777f))
 
-#  [1.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-accel@1.0.2...@thi.ng/geom-accel@1.1.0) (2019-02-05)
+### [1.1.7](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom-accel@1.1.7) (2019-03-10)
 
-###  Features
+#### 🩹 Bug fixes
 
-- **geom-accel:** add selectVals() impl ([bd1754d](https://github.com/thi-ng/umbrella/commit/bd1754d))
+- fix/update existing point search in add()/select*() ([8186f12](https://github.com/thi-ng/umbrella/commit/8186f12))
 
-###  Performance Improvements
+### [1.1.2](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom-accel@1.1.2) (2019-02-15)
 
-- **geom-accel:** optimize single nearest point search, fix select() ([9022d5b](https://github.com/thi-ng/umbrella/commit/9022d5b))
+#### 🩹 Bug fixes
 
-##  [1.0.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-accel@1.0.0...@thi.ng/geom-accel@1.0.1) (2019-01-21)
+- fix addAll(), addKeys() ([51959b7](https://github.com/thi-ng/umbrella/commit/51959b7))
 
-###  Bug Fixes
+#### ♻️ Refactoring
 
-- **geom-accel:** add root null check for select/selectKeys() ([8fd5728](https://github.com/thi-ng/umbrella/commit/8fd5728))
+- update to use [@thi.ng/arrays](https://github.com/thi-ng/umbrella/tree/main/packages/arrays) ([5efda38](https://github.com/thi-ng/umbrella/commit/5efda38))
 
-#  [1.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-accel@0.1.11...@thi.ng/geom-accel@1.0.0) (2019-01-21)
+## [1.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom-accel@1.1.0) (2019-02-05)
 
-###  Build System
+#### 🚀 Features
+
+- add selectVals() impl ([bd1754d](https://github.com/thi-ng/umbrella/commit/bd1754d))
+
+### [1.0.2](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom-accel@1.0.2) (2019-01-31)
+
+#### ⏱ Performance improvements
+
+- optimize single nearest point search, fix select() ([9022d5b](https://github.com/thi-ng/umbrella/commit/9022d5b))
+  - add nearest1() for single nearest point search
+  - update select()/selectKeys() to use nearest1
+  - fix buildSelection() to always use heap
+
+### [1.0.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom-accel@1.0.1) (2019-01-21)
+
+#### 🩹 Bug fixes
+
+- add root null check for select/selectKeys() ([8fd5728](https://github.com/thi-ng/umbrella/commit/8fd5728))
+
+# [1.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom-accel@1.0.0) (2019-01-21)
+
+#### 🛑 Breaking changes
 
 - update package build scripts & outputs, imports in ~50 packages ([b54b703](https://github.com/thi-ng/umbrella/commit/b54b703))
+- BREAKING CHANGE: enabled multi-outputs (ES6 modules, CJS, UMD)
+  - build scripts now first build ES6 modules in package root, then call
+    `scripts/bundle-module` to build minified CJS & UMD bundles in `/lib`
+  - all imports MUST be updated to only refer to package level
+    (not individual files anymore). tree shaking in user land will get rid of
+    all unused imported symbols.
 
-###  BREAKING CHANGES
+#### ♻️ Refactoring
 
-- enabled multi-outputs (ES6 modules, CJS, UMD)
-- build scripts now first build ES6 modules in package root, then call   `scripts/bundle-module` to build minified CJS & UMD bundles in `/lib`
-- all imports MUST be updated to only refer to package level   (not individual files anymore). tree shaking in user land will get rid of   all unused imported symbols.
+- update to use new vectors package ([485051d](https://github.com/thi-ng/umbrella/commit/485051d))
 
-#  0.1.0 (2018-10-21)
+## [0.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom-accel@0.1.0) (2018-10-21)
 
-###  Features
+#### 🚀 Features
 
-- **geom-accel:** add KV support, update select/selectKeys() ([b47e641](https://github.com/thi-ng/umbrella/commit/b47e641))
-- **geom-accel:** re-import geom-accel skeleton (MBP2010) ([e14ac8b](https://github.com/thi-ng/umbrella/commit/e14ac8b))
+- add KV support, update select/selectKeys() ([b47e641](https://github.com/thi-ng/umbrella/commit/b47e641))
+- re-import geom-accel skeleton (MBP2010) ([e14ac8b](https://github.com/thi-ng/umbrella/commit/e14ac8b))
+
+#### ♻️ Refactoring
+
+- move iterator into KdNode ([0c76c02](https://github.com/thi-ng/umbrella/commit/0c76c02))

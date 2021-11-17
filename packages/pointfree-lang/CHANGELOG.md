@@ -1,149 +1,258 @@
 # Change Log
 
+Last updated: 2021-11-17T23:24:59Z
+
 All notable changes to this project will be documented in this file.
-See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+See [Conventional Commits](https://conventionalcommits.org/) for commit guidelines.
 
-## [2.0.8](https://github.com/thi-ng/umbrella/compare/@thi.ng/pointfree-lang@2.0.7...@thi.ng/pointfree-lang@2.0.8) (2021-11-10)
+**Note:** Unlisted _patch_ versions only involve non-code changes and/or
+version bumps of transitive dependencies.
 
-**Note:** Version bump only for package @thi.ng/pointfree-lang
+## [2.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/pointfree-lang@2.1.0) (2021-11-17)
 
+#### 🚀 Features
 
+- Using workspaces for local tools ([bf7a404](https://github.com/thi-ng/umbrella/commit/bf7a404))
+  Improving the overall build ergonomics
+  - introduced a tools workspaces
+  - imported it in all needed packages/examples
+  - inclusive project root
 
+#### ♻️ Refactoring
 
+- testrunner to binary ([4ebbbb2](https://github.com/thi-ng/umbrella/commit/4ebbbb2))
+  this commit reverts (partly) changes made in:
+  ef346d7a8753590dc9094108a3d861a8dbd5dd2c
+  overall purpose is better testament ergonomics:
+  instead of having to pass NODE_OPTIONS with every invocation
+  having a binary to handle this for us.
 
-## [2.0.7](https://github.com/thi-ng/umbrella/compare/@thi.ng/pointfree-lang@2.0.6...@thi.ng/pointfree-lang@2.0.7) (2021-11-03)
+### [2.0.8](https://github.com/thi-ng/umbrella/tree/@thi.ng/pointfree-lang@2.0.8) (2021-11-10)
 
-**Note:** Version bump only for package @thi.ng/pointfree-lang
+#### ♻️ Refactoring
 
+- update all countdown loops ([a5f374b](https://github.com/thi-ng/umbrella/commit/a5f374b))
 
+### [2.0.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/pointfree-lang@2.0.1) (2021-10-13)
 
+#### ♻️ Refactoring
 
+- update imports in all pkgs ([5fa2b6f](https://github.com/thi-ng/umbrella/commit/5fa2b6f))
+  - add .js suffix for all relative imports
 
-## [2.0.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/pointfree-lang@2.0.0...@thi.ng/pointfree-lang@2.0.1) (2021-10-13)
+# [2.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/pointfree-lang@2.0.0) (2021-10-12)
 
+#### 🛑 Breaking changes
 
-### Bug Fixes
+- major update of ALL pkgs (export maps, ESM only) ([0d1d6ea](https://github.com/thi-ng/umbrella/commit/0d1d6ea))
+- BREAKING CHANGE: discontinue CommonJS & UMD versions
+  - only ESM modules will be published from now on
+  - CJS obsolete due to ESM support in recent versions of node:
+    - i.e. launch NodeJS via:
+    - `node --experimental-specifier-resolution=node --experimental-repl-await`
+    - in the node REPL use `await import(...)` instead of `require()`
+  - UMD obsolete due to widespread browser support for ESM
+  Also:
+  - normalize/restructure/reorg all package.json files
+  - cleanup all build scripts, remove obsolete
+  - switch from mocha to [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament) for all tests
 
-* **pointfree-lang:** update CLI wrapper ([4da9a50](https://github.com/thi-ng/umbrella/commit/4da9a503230868f0cf8513179ecf75ef826cb126))
+#### 🩹 Bug fixes
 
+- update bash wrapper ([4170b4b](https://github.com/thi-ng/umbrella/commit/4170b4b))
 
+#### ♻️ Refactoring
 
+- migrate CLI to TS ([9381d83](https://github.com/thi-ng/umbrella/commit/9381d83))
+- minor pkg restructure ([73ea3d1](https://github.com/thi-ng/umbrella/commit/73ea3d1))
+- update deps & imports in various pkgs ([e1cf29e](https://github.com/thi-ng/umbrella/commit/e1cf29e))
+  - largely related to recent updates/restructuring of these packages:
+    - api
+    - defmulti
+    - errors
+    - logger
+- update imports ([138571a](https://github.com/thi-ng/umbrella/commit/138571a))
+- update all tests in _all_ pkgs ([8b582bc](https://github.com/thi-ng/umbrella/commit/8b582bc))
+  - update all to use [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament)
 
+### [1.4.18](https://github.com/thi-ng/umbrella/tree/@thi.ng/pointfree-lang@1.4.18) (2020-12-22)
 
-# [2.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/pointfree-lang@1.4.38...@thi.ng/pointfree-lang@2.0.0) (2021-10-12)
+#### ♻️ Refactoring
 
+- fix [#256](https://github.com/thi-ng/umbrella/issues/256) replace enum w/ type alias ([7ae9e27](https://github.com/thi-ng/umbrella/commit/7ae9e27))
+  - replace NodeType enum w/ type alias
+  - update grammar & compiler
 
-### Bug Fixes
+### [1.4.17](https://github.com/thi-ng/umbrella/tree/@thi.ng/pointfree-lang@1.4.17) (2020-12-07)
 
-* **pointfree-lang:** update bash wrapper ([4170b4b](https://github.com/thi-ng/umbrella/commit/4170b4b0f025281ca5ce5140a049490ada300ce0))
+#### ♻️ Refactoring
 
+- update type-only imports in various tests/pkgs ([3fd9c24](https://github.com/thi-ng/umbrella/commit/3fd9c24))
 
-### Build System
+### [1.4.14](https://github.com/thi-ng/umbrella/tree/@thi.ng/pointfree-lang@1.4.14) (2020-09-22)
 
-* major update of ALL pkgs (export maps, ESM only) ([0d1d6ea](https://github.com/thi-ng/umbrella/commit/0d1d6ea9fab2a645d6c5f2bf2591459b939c09b6))
+#### ♻️ Refactoring
 
+- update visitWord(), extract pushLocals() ([13a68e7](https://github.com/thi-ng/umbrella/commit/13a68e7))
 
-### BREAKING CHANGES
+### [1.4.3](https://github.com/thi-ng/umbrella/tree/@thi.ng/pointfree-lang@1.4.3) (2020-05-14)
 
-* discontinue CommonJS & UMD versions
+#### ♻️ Refactoring
 
-- only ESM modules will be published from now on
-- CJS obsolete due to ESM support in recent versions of node:
-  - i.e. launch NodeJS via:
-  - `node --experimental-specifier-resolution=node --experimental-repl-await`
-  - in the node REPL use `await import(...)` instead of `require()`
-- UMD obsolete due to widespread browser support for ESM
+- minor updates to visitors ([c9f3f18](https://github.com/thi-ng/umbrella/commit/c9f3f18))
 
-Also:
-- normalize/restructure/reorg all package.json files
-- cleanup all build scripts, remove obsolete
-- switch from mocha to @thi.ng/testament for all tests
+## [1.4.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/pointfree-lang@1.4.0) (2020-04-27)
 
+#### 🚀 Features
 
+- add word metadata ([7343116](https://github.com/thi-ng/umbrella/commit/7343116))
+  - store word name, source loc, stack comment & arities in
+    `__meta` key of compiled functions
+- update grammar (add line comments) ([a8cdbe8](https://github.com/thi-ng/umbrella/commit/a8cdbe8))
+  - update readme
 
+#### ♻️ Refactoring
 
+- word metadata, tests & readme ([3aeb5d7](https://github.com/thi-ng/umbrella/commit/3aeb5d7))
 
+## [1.3.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/pointfree-lang@1.3.0) (2020-04-16)
 
-#  [1.4.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/pointfree-lang@1.3.0...@thi.ng/pointfree-lang@1.4.0) (2020-04-27)
+#### 🚀 Features
 
-###  Features
+- add `>word`, update pkg & readme ([4fe2f7f](https://github.com/thi-ng/umbrella/commit/4fe2f7f))
 
-- **pointfree-lang:** add word metadata ([7343116](https://github.com/thi-ng/umbrella/commit/7343116d2e94191b468a37f8c21dc9ef08f0e49c))
-- **pointfree-lang:** update grammar (add line comments) ([a8cdbe8](https://github.com/thi-ng/umbrella/commit/a8cdbe86a96df0b63682d3f7628ff77f75f23ced))
+#### ♻️ Refactoring
 
-#  [1.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/pointfree-lang@1.2.3...@thi.ng/pointfree-lang@1.3.0) (2020-04-16)
+- update renamed words ([0a9f5ec](https://github.com/thi-ng/umbrella/commit/0a9f5ec))
 
-###  Features
+### [1.2.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/pointfree-lang@1.2.1) (2020-04-05)
 
-- **pointfree-lang:** add `>word`, update pkg & readme ([4fe2f7f](https://github.com/thi-ng/umbrella/commit/4fe2f7f97b234f92141c2a455aad50d4732de75a))
+#### ♻️ Refactoring
 
-#  [1.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/pointfree-lang@1.1.14...@thi.ng/pointfree-lang@1.2.0) (2020-03-29)
+- switch to non-const enums ([7a8a3b1](https://github.com/thi-ng/umbrella/commit/7a8a3b1))
 
-###  Features
+## [1.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/pointfree-lang@1.2.0) (2020-03-29)
 
-- **pointfree-lang:** add `try` alias, fix `include` cli word ([ab61e5b](https://github.com/thi-ng/umbrella/commit/ab61e5b428fbb98d2edfcd69c2582a98ca70779d))
-- **pointfree-lang:** add initial CLI tooling, add new aliases, update deps ([90c9d96](https://github.com/thi-ng/umbrella/commit/90c9d96197d3f84d0c1069f998cf90521a260d11))
+#### 🚀 Features
 
-##  [1.1.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/pointfree-lang@1.1.4...@thi.ng/pointfree-lang@1.1.5) (2019-09-21)
+- add `try` alias, fix `include` cli word ([ab61e5b](https://github.com/thi-ng/umbrella/commit/ab61e5b))
+- add initial CLI tooling, add new aliases, update deps ([90c9d96](https://github.com/thi-ng/umbrella/commit/90c9d96))
 
-###  Bug Fixes
+### [1.1.10](https://github.com/thi-ng/umbrella/tree/@thi.ng/pointfree-lang@1.1.10) (2020-02-25)
 
-- **pointfree-lang:** update imports ([8de1366](https://github.com/thi-ng/umbrella/commit/8de1366))
+#### ♻️ Refactoring
 
-#  [1.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/pointfree-lang@1.0.14...@thi.ng/pointfree-lang@1.1.0) (2019-07-07)
+- update imports ([fad6887](https://github.com/thi-ng/umbrella/commit/fad6887))
 
-###  Features
+### [1.1.5](https://github.com/thi-ng/umbrella/tree/@thi.ng/pointfree-lang@1.1.5) (2019-09-21)
 
-- **pointfree:** enable TS strict compiler flags (refactor) ([1f9d155](https://github.com/thi-ng/umbrella/commit/1f9d155))
+#### 🩹 Bug fixes
 
-#  [1.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/pointfree-lang@0.2.27...@thi.ng/pointfree-lang@1.0.0) (2019-01-21)
+- update imports ([8de1366](https://github.com/thi-ng/umbrella/commit/8de1366))
 
-###  Bug Fixes
+## [1.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/pointfree-lang@1.1.0) (2019-07-07)
 
-- **pointfree-lang:** update NodeType handling ([227be4b](https://github.com/thi-ng/umbrella/commit/227be4b))
+#### 🚀 Features
 
-###  Build System
+- enable TS strict compiler flags (refactor) ([1f9d155](https://github.com/thi-ng/umbrella/commit/1f9d155))
+
+#### ♻️ Refactoring
+
+- address TS strictNullChecks flag ([50bf59a](https://github.com/thi-ng/umbrella/commit/50bf59a))
+
+### [1.0.12](https://github.com/thi-ng/umbrella/tree/@thi.ng/pointfree-lang@1.0.12) (2019-04-24)
+
+#### ♻️ Refactoring
+
+- replace DEBUG w/ LOGGER ([abec897](https://github.com/thi-ng/umbrella/commit/abec897))
+
+# [1.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/pointfree-lang@1.0.0) (2019-01-21)
+
+#### 🛑 Breaking changes
 
 - update package build scripts & outputs, imports in ~50 packages ([b54b703](https://github.com/thi-ng/umbrella/commit/b54b703))
+- BREAKING CHANGE: enabled multi-outputs (ES6 modules, CJS, UMD)
+  - build scripts now first build ES6 modules in package root, then call
+    `scripts/bundle-module` to build minified CJS & UMD bundles in `/lib`
+  - all imports MUST be updated to only refer to package level
+    (not individual files anymore). tree shaking in user land will get rid of
+    all unused imported symbols.
 
-###  BREAKING CHANGES
+#### 🩹 Bug fixes
 
-- enabled multi-outputs (ES6 modules, CJS, UMD)
-- build scripts now first build ES6 modules in package root, then call   `scripts/bundle-module` to build minified CJS & UMD bundles in `/lib`
-- all imports MUST be updated to only refer to package level   (not individual files anymore). tree shaking in user land will get rid of   all unused imported symbols.
+- update NodeType handling ([227be4b](https://github.com/thi-ng/umbrella/commit/227be4b))
 
-##  [0.2.26](https://github.com/thi-ng/umbrella/compare/@thi.ng/pointfree-lang@0.2.25...@thi.ng/pointfree-lang@0.2.26) (2018-12-15)
+### [0.2.26](https://github.com/thi-ng/umbrella/tree/@thi.ng/pointfree-lang@0.2.26) (2018-12-15)
 
-###  Bug Fixes
+#### 🩹 Bug fixes
 
-- **pointfree-lang:** update parser stubs (TS3.2.x) ([3b3e503](https://github.com/thi-ng/umbrella/commit/3b3e503))
+- update parser stubs (TS3.2.x) ([3b3e503](https://github.com/thi-ng/umbrella/commit/3b3e503))
 
-##  [0.2.22](https://github.com/thi-ng/umbrella/compare/@thi.ng/pointfree-lang@0.2.21...@thi.ng/pointfree-lang@0.2.22) (2018-09-24)
+### [0.2.22](https://github.com/thi-ng/umbrella/tree/@thi.ng/pointfree-lang@0.2.22) (2018-09-24)
 
-###  Performance Improvements
+#### ⏱ Performance improvements
 
-- **pointfree-lang:** `NodeType` => const enum ([a7b9a42](https://github.com/thi-ng/umbrella/commit/a7b9a42))
+- `NodeType` => const enum ([a7b9a42](https://github.com/thi-ng/umbrella/commit/a7b9a42))
+  - export `__NodeType` for reverse lookups
 
-#  [0.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/pointfree-lang@0.1.3...@thi.ng/pointfree-lang@0.2.0) (2018-04-03)
+### [0.2.8](https://github.com/thi-ng/umbrella/tree/@thi.ng/pointfree-lang@0.2.8) (2018-05-10)
 
-###  Bug Fixes
+#### ♻️ Refactoring
 
-- **pointfree-lang:** update grammar (parse order), add tests ([5450e50](https://github.com/thi-ng/umbrella/commit/5450e50))
+- update deps & imports in all packages due to [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/main/packages/api) split ([bc45636](https://github.com/thi-ng/umbrella/commit/bc45636))
 
-###  Features
+## [0.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/pointfree-lang@0.2.0) (2018-04-03)
 
-- **pointfree-lang:** implement dynamic var scoping & local var grammar ([3310ec3](https://github.com/thi-ng/umbrella/commit/3310ec3))
-- **pointfree-lang:** overhaul visitor quote/array & map handling, grammar ([769e84d](https://github.com/thi-ng/umbrella/commit/769e84d))
-- **pointfree-lang:** update grammar, aliases, ASTNode, NodeType ([ee684c7](https://github.com/thi-ng/umbrella/commit/ee684c7))
+#### 🚀 Features
 
-##  [0.1.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/pointfree-lang@0.1.2...@thi.ng/pointfree-lang@0.1.3) (2018-04-01)
+- implement dynamic var scoping & local var grammar ([3310ec3](https://github.com/thi-ng/umbrella/commit/3310ec3))
+  - add loadvar/storevar/beginvar/endvar word fns
+  - add `^{ x y }` syntax to autobind word local vars
+  - update var lookups/updates to use scope/binding stack (per var)
+  - update visitWord() to inject local var handling (if needed)
+  - update ensureEnv() to prepare var stacks
+  - add finalizeEnv() to resolve final var results and remove var stacks
+  - fix aliases
+  - add docs
+- overhaul visitor quote/array & map handling, grammar ([769e84d](https://github.com/thi-ng/umbrella/commit/769e84d))
+  - revert / remove NodeType.VAR_DEREF_IMM
+  - add resolveNode, resolveArray, resolveMap
+  - update resolveVar to use hasOwnProperty() check
+  - simplify VisitorState and handling
+  - add source location handling (for improved error msg)
+  - update aliases
+- update grammar, aliases, ASTNode, NodeType ([ee684c7](https://github.com/thi-ng/umbrella/commit/ee684c7))
+  - add VAR_DEREF_IMM node type (immediate/non-defered var deref)
+  - add node source location info
+  - add VarDerefImmediate and NonWordExpr grammar rules
+  - add more aliases for built-ins
 
-###  Bug Fixes
+#### 🩹 Bug fixes
 
-- **pointfree-lang:** object literal grammar rule (allow initial WS) ([208b5c3](https://github.com/thi-ng/umbrella/commit/208b5c3))
+- update grammar (parse order), add tests ([5450e50](https://github.com/thi-ng/umbrella/commit/5450e50))
 
-##  [0.1.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/pointfree-lang@0.1.1...@thi.ng/pointfree-lang@0.1.2) (2018-03-31)
+#### ♻️ Refactoring
 
-###  Bug Fixes
+- rename grammar rule / nodetype MAP=>OBJ, add docs ([1c899a1](https://github.com/thi-ng/umbrella/commit/1c899a1))
+  - rename resolveMap => resolveObject
+  - rename visitMap => visitObject
 
-- **pointfree-lang:** add ensureEnv, update re-exports, update readme ([659cce9](https://github.com/thi-ng/umbrella/commit/659cce9))
+### [0.1.3](https://github.com/thi-ng/umbrella/tree/@thi.ng/pointfree-lang@0.1.3) (2018-04-01)
+
+#### 🩹 Bug fixes
+
+- object literal grammar rule (allow initial WS) ([208b5c3](https://github.com/thi-ng/umbrella/commit/208b5c3))
+
+### [0.1.2](https://github.com/thi-ng/umbrella/tree/@thi.ng/pointfree-lang@0.1.2) (2018-03-31)
+
+#### 🩹 Bug fixes
+
+- add ensureEnv, update re-exports, update readme ([659cce9](https://github.com/thi-ng/umbrella/commit/659cce9))
+  - add ensureEnv to avoid errors if `__words` key is missing
+  - minor formatting fix in grammar
+
+### [0.1.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/pointfree-lang@0.1.1) (2018-03-31)
+
+#### 🚀 Features
+
+- initial import [@thi.ng/pointfree-lang](https://github.com/thi-ng/umbrella/tree/main/packages/pointfree-lang) ([3dec35a](https://github.com/thi-ng/umbrella/commit/3dec35a))

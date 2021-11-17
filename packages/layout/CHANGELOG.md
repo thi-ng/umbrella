@@ -1,51 +1,71 @@
 # Change Log
 
+Last updated: 2021-11-17T23:24:59Z
+
 All notable changes to this project will be documented in this file.
-See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+See [Conventional Commits](https://conventionalcommits.org/) for commit guidelines.
 
-## [2.0.7](https://github.com/thi-ng/umbrella/compare/@thi.ng/layout@2.0.6...@thi.ng/layout@2.0.7) (2021-11-10)
+**Note:** Unlisted _patch_ versions only involve non-code changes and/or
+version bumps of transitive dependencies.
 
-**Note:** Version bump only for package @thi.ng/layout
+## [2.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/layout@2.1.0) (2021-11-17)
 
+#### 🚀 Features
 
+- Using workspaces for local tools ([bf7a404](https://github.com/thi-ng/umbrella/commit/bf7a404))
+  Improving the overall build ergonomics
+  - introduced a tools workspaces
+  - imported it in all needed packages/examples
+  - inclusive project root
 
+#### ♻️ Refactoring
 
+- testrunner to binary ([4ebbbb2](https://github.com/thi-ng/umbrella/commit/4ebbbb2))
+  this commit reverts (partly) changes made in:
+  ef346d7a8753590dc9094108a3d861a8dbd5dd2c
+  overall purpose is better testament ergonomics:
+  instead of having to pass NODE_OPTIONS with every invocation
+  having a binary to handle this for us.
 
-# [2.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/layout@1.0.2...@thi.ng/layout@2.0.0) (2021-10-12)
+### [2.0.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/layout@2.0.1) (2021-10-13)
 
+#### ♻️ Refactoring
 
-### Build System
+- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
+- update imports in all pkgs ([5fa2b6f](https://github.com/thi-ng/umbrella/commit/5fa2b6f))
+  - add .js suffix for all relative imports
 
-* major update of ALL pkgs (export maps, ESM only) ([0d1d6ea](https://github.com/thi-ng/umbrella/commit/0d1d6ea9fab2a645d6c5f2bf2591459b939c09b6))
+# [2.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/layout@2.0.0) (2021-10-12)
 
+#### 🛑 Breaking changes
 
-### BREAKING CHANGES
+- major update of ALL pkgs (export maps, ESM only) ([0d1d6ea](https://github.com/thi-ng/umbrella/commit/0d1d6ea))
+- BREAKING CHANGE: discontinue CommonJS & UMD versions
+  - only ESM modules will be published from now on
+  - CJS obsolete due to ESM support in recent versions of node:
+    - i.e. launch NodeJS via:
+    - `node --experimental-specifier-resolution=node --experimental-repl-await`
+    - in the node REPL use `await import(...)` instead of `require()`
+  - UMD obsolete due to widespread browser support for ESM
+  Also:
+  - normalize/restructure/reorg all package.json files
+  - cleanup all build scripts, remove obsolete
+  - switch from mocha to [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament) for all tests
 
-* discontinue CommonJS & UMD versions
+#### ♻️ Refactoring
 
-- only ESM modules will be published from now on
-- CJS obsolete due to ESM support in recent versions of node:
-  - i.e. launch NodeJS via:
-  - `node --experimental-specifier-resolution=node --experimental-repl-await`
-  - in the node REPL use `await import(...)` instead of `require()`
-- UMD obsolete due to widespread browser support for ESM
+- minor pkg restructure ([2bdebe6](https://github.com/thi-ng/umbrella/commit/2bdebe6))
+- update imports ([138571a](https://github.com/thi-ng/umbrella/commit/138571a))
+- update all test stubs ([f2d6d53](https://github.com/thi-ng/umbrella/commit/f2d6d53))
+- update all tests in _all_ pkgs ([8b582bc](https://github.com/thi-ng/umbrella/commit/8b582bc))
+  - update all to use [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament)
 
-Also:
-- normalize/restructure/reorg all package.json files
-- cleanup all build scripts, remove obsolete
-- switch from mocha to @thi.ng/testament for all tests
+## [0.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/layout@0.1.0) (2020-02-25)
 
+#### 🚀 Features
 
+- import as new pkg (extracted from [@thi.ng/imgui](https://github.com/thi-ng/umbrella/tree/main/packages/imgui)) ([e5efc16](https://github.com/thi-ng/umbrella/commit/e5efc16))
 
+#### ♻️ Refactoring
 
-
-
-##  [1.0.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/layout@1.0.1...@thi.ng/layout@1.0.2) (2021-09-03)
-
-**Note:** Version bump only for package @thi.ng/layout
-
-#  0.1.0 (2020-02-25)
-
-###  Features
-
-- **layout:** import as new pkg (extracted from [@thi](https://github.com/thi).ng/imgui) ([e5efc16](https://github.com/thi-ng/umbrella/commit/e5efc165253480aff8068e4cde31bba4aec018d1))
+- update imports ([f833b4d](https://github.com/thi-ng/umbrella/commit/f833b4d))

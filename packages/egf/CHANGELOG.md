@@ -1,73 +1,99 @@
 # Change Log
 
+Last updated: 2021-11-17T23:24:59Z
+
 All notable changes to this project will be documented in this file.
-See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+See [Conventional Commits](https://conventionalcommits.org/) for commit guidelines.
 
-## [0.5.9](https://github.com/thi-ng/umbrella/compare/@thi.ng/egf@0.5.8...@thi.ng/egf@0.5.9) (2021-11-10)
+**Note:** Unlisted _patch_ versions only involve non-code changes and/or
+version bumps of transitive dependencies.
 
-**Note:** Version bump only for package @thi.ng/egf
+## [0.6.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/egf@0.6.0) (2021-11-17)
 
+#### 🚀 Features
 
+- Using workspaces for local tools ([bf7a404](https://github.com/thi-ng/umbrella/commit/bf7a404))
+  Improving the overall build ergonomics
+  - introduced a tools workspaces
+  - imported it in all needed packages/examples
+  - inclusive project root
 
+#### ♻️ Refactoring
 
+- testrunner to binary ([4ebbbb2](https://github.com/thi-ng/umbrella/commit/4ebbbb2))
+  this commit reverts (partly) changes made in:
+  ef346d7a8753590dc9094108a3d861a8dbd5dd2c
+  overall purpose is better testament ergonomics:
+  instead of having to pass NODE_OPTIONS with every invocation
+  having a binary to handle this for us.
 
-## [0.5.8](https://github.com/thi-ng/umbrella/compare/@thi.ng/egf@0.5.7...@thi.ng/egf@0.5.8) (2021-11-03)
+### [0.5.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/egf@0.5.1) (2021-10-13)
 
-**Note:** Version bump only for package @thi.ng/egf
+#### ♻️ Refactoring
 
+- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
+- update imports in all pkgs ([5fa2b6f](https://github.com/thi-ng/umbrella/commit/5fa2b6f))
+  - add .js suffix for all relative imports
 
+## [0.5.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/egf@0.5.0) (2021-10-12)
 
+#### 🛑 Breaking changes
 
+- major update of ALL pkgs (export maps, ESM only) ([0d1d6ea](https://github.com/thi-ng/umbrella/commit/0d1d6ea))
+- BREAKING CHANGE: discontinue CommonJS & UMD versions
+  - only ESM modules will be published from now on
+  - CJS obsolete due to ESM support in recent versions of node:
+    - i.e. launch NodeJS via:
+    - `node --experimental-specifier-resolution=node --experimental-repl-await`
+    - in the node REPL use `await import(...)` instead of `require()`
+  - UMD obsolete due to widespread browser support for ESM
+  Also:
+  - normalize/restructure/reorg all package.json files
+  - cleanup all build scripts, remove obsolete
+  - switch from mocha to [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament) for all tests
 
-# [0.5.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/egf@0.4.18...@thi.ng/egf@0.5.0) (2021-10-12)
+#### ♻️ Refactoring
 
+- minor pkg restructure ([98c05d8](https://github.com/thi-ng/umbrella/commit/98c05d8))
+- update base64 tag handler ([768492f](https://github.com/thi-ng/umbrella/commit/768492f))
+- update deps & imports in various pkgs ([e1cf29e](https://github.com/thi-ng/umbrella/commit/e1cf29e))
+  - largely related to recent updates/restructuring of these packages:
+    - api
+    - defmulti
+    - errors
+    - logger
+- update imports ([629e169](https://github.com/thi-ng/umbrella/commit/629e169))
+- update all tests in _all_ pkgs ([8b582bc](https://github.com/thi-ng/umbrella/commit/8b582bc))
+  - update all to use [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament)
 
-### Build System
+## [0.4.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/egf@0.4.0) (2021-03-27)
 
-* major update of ALL pkgs (export maps, ESM only) ([0d1d6ea](https://github.com/thi-ng/umbrella/commit/0d1d6ea9fab2a645d6c5f2bf2591459b939c09b6))
+#### 🚀 Features
 
+- update readme ([8a36395](https://github.com/thi-ng/umbrella/commit/8a36395))
+  - add note about GPG security issue fix
 
-### BREAKING CHANGES
+#### 🩹 Bug fixes
 
-* discontinue CommonJS & UMD versions
+- update GPG invocation to avoid arb code exec ([3e14765](https://github.com/thi-ng/umbrella/commit/3e14765))
+  - use `execFileSync()` to avoid shell and pass encrypted body
 
-- only ESM modules will be published from now on
-- CJS obsolete due to ESM support in recent versions of node:
-  - i.e. launch NodeJS via:
-  - `node --experimental-specifier-resolution=node --experimental-repl-await`
-  - in the node REPL use `await import(...)` instead of `require()`
-- UMD obsolete due to widespread browser support for ESM
+### [0.3.4](https://github.com/thi-ng/umbrella/tree/@thi.ng/egf@0.3.4) (2020-12-07)
 
-Also:
-- normalize/restructure/reorg all package.json files
-- cleanup all build scripts, remove obsolete
-- switch from mocha to @thi.ng/testament for all tests
+#### ♻️ Refactoring
 
+- update type-only imports in various tests/pkgs ([3fd9c24](https://github.com/thi-ng/umbrella/commit/3fd9c24))
 
+## [0.3.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/egf@0.3.0) (2020-09-22)
 
+#### 🚀 Features
 
-
-
-#  [0.4.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/egf@0.3.21...@thi.ng/egf@0.4.0) (2021-03-27)
-
-###  Bug Fixes
-
-- **egf:** update GPG invocation to avoid arb code exec ([3e14765](https://github.com/thi-ng/umbrella/commit/3e14765d6bfd8006742c9e7860bc7d58ae94dfa5))
-
-###  Features
-
-- **egf:** update readme ([8a36395](https://github.com/thi-ng/umbrella/commit/8a36395db3d31041c71d49cb58945909b8ee7ee2))
-
-#  0.3.0 (2020-09-22)
-
-###  Features
-
-- **egf:** add <> escape hatch for prefix IDs ([5aca174](https://github.com/thi-ng/umbrella/commit/5aca174cd4ceef7c03c08cb27d736eb5dd1fd35c))
-- **egf:** add escape seq support in parser ([c7fe807](https://github.com/thi-ng/umbrella/commit/c7fe807fb726388d707e839140249a09028533db))
-- **egf:** add include cycle breaker, prop merge logic ([eb4d7d1](https://github.com/thi-ng/umbrella/commit/eb4d7d138524fca7421c414a743824ae40807338)), closes [#237](https://github.com/thi-ng/umbrella/issues/237)
-- **egf:** add prune option & pruneNodes() ([634a118](https://github.com/thi-ng/umbrella/commit/634a118e2b612d5979fca7b897ed3d8bf512f28b))
-- **egf:** add toEGF() implementation ([ed6d3a8](https://github.com/thi-ng/umbrella/commit/ed6d3a8d0e7140ed12a5948057f736aa634ca7f6))
-- **egf:** fix [#235](https://github.com/thi-ng/umbrella/issues/235), replace #ref tag w/ `->` form ([0dd2f2d](https://github.com/thi-ng/umbrella/commit/0dd2f2d4efe21afce28a00191ee1047a7fe462b6))
-- **egf:** import as new package ([76b472d](https://github.com/thi-ng/umbrella/commit/76b472d017f3bf456db8204158de6ac4746447b3))
-- **egf:** update DOT export prop filter ([41a70ee](https://github.com/thi-ng/umbrella/commit/41a70eeaada5b91d7507a52b6b45083548002cda))
-- **egf:** update tag parser handling ([55b119c](https://github.com/thi-ng/umbrella/commit/55b119ce497f67e939ba865c25930348aaaad380))
+- add escape seq support in parser ([c7fe807](https://github.com/thi-ng/umbrella/commit/c7fe807))
+  - escape sequences supported in:
+    - subjects/node and property IDs
+    - tags names
+    - string values
+    - @include paths
+    - @prefix IDs and values
+    - tagged #file values
+    - tagged #list values

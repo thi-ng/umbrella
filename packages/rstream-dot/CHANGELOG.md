@@ -1,87 +1,136 @@
 # Change Log
 
+Last updated: 2021-11-17T23:24:59Z
+
 All notable changes to this project will be documented in this file.
-See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+See [Conventional Commits](https://conventionalcommits.org/) for commit guidelines.
 
-## [2.0.9](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-dot@2.0.8...@thi.ng/rstream-dot@2.0.9) (2021-11-10)
+**Note:** Unlisted _patch_ versions only involve non-code changes and/or
+version bumps of transitive dependencies.
 
-**Note:** Version bump only for package @thi.ng/rstream-dot
+## [2.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/rstream-dot@2.1.0) (2021-11-17)
 
+#### 🚀 Features
 
+- Using workspaces for local tools ([bf7a404](https://github.com/thi-ng/umbrella/commit/bf7a404))
+  Improving the overall build ergonomics
+  - introduced a tools workspaces
+  - imported it in all needed packages/examples
+  - inclusive project root
 
+#### ♻️ Refactoring
 
+- testrunner to binary ([4ebbbb2](https://github.com/thi-ng/umbrella/commit/4ebbbb2))
+  this commit reverts (partly) changes made in:
+  ef346d7a8753590dc9094108a3d861a8dbd5dd2c
+  overall purpose is better testament ergonomics:
+  instead of having to pass NODE_OPTIONS with every invocation
+  having a binary to handle this for us.
 
-## [2.0.8](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-dot@2.0.7...@thi.ng/rstream-dot@2.0.8) (2021-11-03)
+### [2.0.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/rstream-dot@2.0.1) (2021-10-13)
 
-**Note:** Version bump only for package @thi.ng/rstream-dot
+#### ♻️ Refactoring
 
+- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
+- update imports in all pkgs ([5fa2b6f](https://github.com/thi-ng/umbrella/commit/5fa2b6f))
+  - add .js suffix for all relative imports
 
+# [2.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/rstream-dot@2.0.0) (2021-10-12)
 
+#### 🛑 Breaking changes
 
+- major update of ALL pkgs (export maps, ESM only) ([0d1d6ea](https://github.com/thi-ng/umbrella/commit/0d1d6ea))
+- BREAKING CHANGE: discontinue CommonJS & UMD versions
+  - only ESM modules will be published from now on
+  - CJS obsolete due to ESM support in recent versions of node:
+    - i.e. launch NodeJS via:
+    - `node --experimental-specifier-resolution=node --experimental-repl-await`
+    - in the node REPL use `await import(...)` instead of `require()`
+  - UMD obsolete due to widespread browser support for ESM
+  Also:
+  - normalize/restructure/reorg all package.json files
+  - cleanup all build scripts, remove obsolete
+  - switch from mocha to [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament) for all tests
 
-# [2.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-dot@1.2.29...@thi.ng/rstream-dot@2.0.0) (2021-10-12)
+#### ♻️ Refactoring
 
+- update imports in various pkgs (rstream) ([342cf54](https://github.com/thi-ng/umbrella/commit/342cf54))
+- update imports (transducers) ([7fc60cd](https://github.com/thi-ng/umbrella/commit/7fc60cd))
+- update imports ([138571a](https://github.com/thi-ng/umbrella/commit/138571a))
+- update all test stubs ([f2d6d53](https://github.com/thi-ng/umbrella/commit/f2d6d53))
+- update all tests in _all_ pkgs ([8b582bc](https://github.com/thi-ng/umbrella/commit/8b582bc))
+  - update all to use [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament)
 
-### Build System
+## [1.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/rstream-dot@1.2.0) (2021-02-22)
 
-* major update of ALL pkgs (export maps, ESM only) ([0d1d6ea](https://github.com/thi-ng/umbrella/commit/0d1d6ea9fab2a645d6c5f2bf2591459b939c09b6))
+#### 🚀 Features
 
+- update opts, deps & value handling ([be0b146](https://github.com/thi-ng/umbrella/commit/be0b146))
+  - truncate node values if > 64 chars
+  - make color opts partial
+  - update default opts (top-bottom ranks, sans-serif font)
+  - various internal refactorings
+  - update deps
 
-### BREAKING CHANGES
+### [1.1.52](https://github.com/thi-ng/umbrella/tree/@thi.ng/rstream-dot@1.1.52) (2020-12-07)
 
-* discontinue CommonJS & UMD versions
+#### ♻️ Refactoring
 
-- only ESM modules will be published from now on
-- CJS obsolete due to ESM support in recent versions of node:
-  - i.e. launch NodeJS via:
-  - `node --experimental-specifier-resolution=node --experimental-repl-await`
-  - in the node REPL use `await import(...)` instead of `require()`
-- UMD obsolete due to widespread browser support for ESM
+- update type-only imports in various tests/pkgs ([3fd9c24](https://github.com/thi-ng/umbrella/commit/3fd9c24))
 
-Also:
-- normalize/restructure/reorg all package.json files
-- cleanup all build scripts, remove obsolete
-- switch from mocha to @thi.ng/testament for all tests
+### [1.1.10](https://github.com/thi-ng/umbrella/tree/@thi.ng/rstream-dot@1.1.10) (2020-02-25)
 
+#### ♻️ Refactoring
 
+- update imports ([c900e63](https://github.com/thi-ng/umbrella/commit/c900e63))
 
+## [1.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/rstream-dot@1.1.0) (2019-07-07)
 
+#### 🚀 Features
 
+- enable TS strict compiler flags (refactor) ([acfe75e](https://github.com/thi-ng/umbrella/commit/acfe75e))
 
-#  [1.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-dot@1.1.59...@thi.ng/rstream-dot@1.2.0) (2021-02-22)
+#### ♻️ Refactoring
 
-###  Features
+- TS strictNullChecks ([efca49c](https://github.com/thi-ng/umbrella/commit/efca49c))
 
-- **rstream-dot:** update opts, deps & value handling ([be0b146](https://github.com/thi-ng/umbrella/commit/be0b146b2daeeff560f704bc5771ce5390e2ecf3))
+# [1.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/rstream-dot@1.0.0) (2019-01-21)
 
-#  [1.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-dot@1.0.26...@thi.ng/rstream-dot@1.1.0) (2019-07-07)
-
-###  Features
-
-- **rstream-dot:** enable TS strict compiler flags (refactor) ([acfe75e](https://github.com/thi-ng/umbrella/commit/acfe75e))
-
-#  [1.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-dot@0.2.64...@thi.ng/rstream-dot@1.0.0) (2019-01-21)
-
-###  Build System
+#### 🛑 Breaking changes
 
 - update package scripts, outputs, imports in remaining packages ([f912a84](https://github.com/thi-ng/umbrella/commit/f912a84))
+- BREAKING CHANGE: enable multi-outputs (ES6 modules, CJS, UMD)
+  - build scripts now first build ES6 modules in package root, then call
+    `scripts/bundle-module` to build minified CJS & UMD bundles in `/lib`
+  - all imports MUST be updated to only refer to package level
+    (not individual files anymore). tree shaking in user land will get rid of
+    all unused imported symbols
 
-###  BREAKING CHANGES
+### [0.2.31](https://github.com/thi-ng/umbrella/tree/@thi.ng/rstream-dot@0.2.31) (2018-08-01)
 
-- enable multi-outputs (ES6 modules, CJS, UMD)
-- build scripts now first build ES6 modules in package root, then call   `scripts/bundle-module` to build minified CJS & UMD bundles in `/lib`
-- all imports MUST be updated to only refer to package level   (not individual files anymore). tree shaking in user land will get rid of   all unused imported symbols
+#### ♻️ Refactoring
 
-#  [0.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/rstream-dot@0.1.2...@thi.ng/rstream-dot@0.2.0) (2018-04-26)
+- cleanup imports ([c169017](https://github.com/thi-ng/umbrella/commit/c169017))
 
-###  Features
+### [0.2.4](https://github.com/thi-ng/umbrella/tree/@thi.ng/rstream-dot@0.2.4) (2018-05-10)
 
-- **rstream-dot:** add option to include stream values in diag ([d057d95](https://github.com/thi-ng/umbrella/commit/d057d95))
+#### ♻️ Refactoring
 
-#  0.1.0 (2018-04-24)
+- update deps & imports in all packages due to [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/main/packages/api) split ([bc45636](https://github.com/thi-ng/umbrella/commit/bc45636))
 
-###  Features
+## [0.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/rstream-dot@0.2.0) (2018-04-26)
 
-- **rstream-dot:** add xform edge labels, extract types to api.ts ([7ffaa61](https://github.com/thi-ng/umbrella/commit/7ffaa61))
-- **rstream-dot:** initial import [@thi](https://github.com/thi).ng/rstream-dot package ([e72478a](https://github.com/thi-ng/umbrella/commit/e72478a))
-- **rstream-dot:** support multiple roots in walk() ([704025a](https://github.com/thi-ng/umbrella/commit/704025a))
+#### 🚀 Features
+
+- add option to include stream values in diag ([d057d95](https://github.com/thi-ng/umbrella/commit/d057d95))
+  - add DotOpts.values option
+  - update walk() to accept optional DotOpts arg
+  - update dotNode()
+
+## [0.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/rstream-dot@0.1.0) (2018-04-25)
+
+#### 🚀 Features
+
+- add xform edge labels, extract types to api.ts ([7ffaa61](https://github.com/thi-ng/umbrella/commit/7ffaa61))
+- support multiple roots in walk() ([704025a](https://github.com/thi-ng/umbrella/commit/704025a))
+- initial import [@thi.ng/rstream-dot](https://github.com/thi-ng/umbrella/tree/main/packages/rstream-dot) package ([e72478a](https://github.com/thi-ng/umbrella/commit/e72478a))

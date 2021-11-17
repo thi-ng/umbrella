@@ -1,104 +1,161 @@
 # Change Log
 
+Last updated: 2021-11-17T23:24:59Z
+
 All notable changes to this project will be documented in this file.
-See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+See [Conventional Commits](https://conventionalcommits.org/) for commit guidelines.
 
-## [0.7.9](https://github.com/thi-ng/umbrella/compare/@thi.ng/rdom@0.7.8...@thi.ng/rdom@0.7.9) (2021-11-10)
+**Note:** Unlisted _patch_ versions only involve non-code changes and/or
+version bumps of transitive dependencies.
 
-**Note:** Version bump only for package @thi.ng/rdom
+## [0.8.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/rdom@0.8.0) (2021-11-17)
 
+#### 🚀 Features
 
+- Using workspaces for local tools ([bf7a404](https://github.com/thi-ng/umbrella/commit/bf7a404))
+  Improving the overall build ergonomics
+  - introduced a tools workspaces
+  - imported it in all needed packages/examples
+  - inclusive project root
 
+#### ♻️ Refactoring
 
+- testrunner to binary ([4ebbbb2](https://github.com/thi-ng/umbrella/commit/4ebbbb2))
+  this commit reverts (partly) changes made in:
+  ef346d7a8753590dc9094108a3d861a8dbd5dd2c
+  overall purpose is better testament ergonomics:
+  instead of having to pass NODE_OPTIONS with every invocation
+  having a binary to handle this for us.
 
-## [0.7.8](https://github.com/thi-ng/umbrella/compare/@thi.ng/rdom@0.7.7...@thi.ng/rdom@0.7.8) (2021-11-03)
+### [0.7.9](https://github.com/thi-ng/umbrella/tree/@thi.ng/rdom@0.7.9) (2021-11-10)
 
-**Note:** Version bump only for package @thi.ng/rdom
+#### ♻️ Refactoring
 
+- update all countdown loops ([a5f374b](https://github.com/thi-ng/umbrella/commit/a5f374b))
 
+### [0.7.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/rdom@0.7.1) (2021-10-13)
 
+#### ♻️ Refactoring
 
+- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
+- update imports in all pkgs ([5fa2b6f](https://github.com/thi-ng/umbrella/commit/5fa2b6f))
+  - add .js suffix for all relative imports
 
-# [0.7.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/rdom@0.6.9...@thi.ng/rdom@0.7.0) (2021-10-12)
+## [0.7.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/rdom@0.7.0) (2021-10-12)
 
+#### 🛑 Breaking changes
 
-### Build System
+- major update of ALL pkgs (export maps, ESM only) ([0d1d6ea](https://github.com/thi-ng/umbrella/commit/0d1d6ea))
+- BREAKING CHANGE: discontinue CommonJS & UMD versions
+  - only ESM modules will be published from now on
+  - CJS obsolete due to ESM support in recent versions of node:
+    - i.e. launch NodeJS via:
+    - `node --experimental-specifier-resolution=node --experimental-repl-await`
+    - in the node REPL use `await import(...)` instead of `require()`
+  - UMD obsolete due to widespread browser support for ESM
+  Also:
+  - normalize/restructure/reorg all package.json files
+  - cleanup all build scripts, remove obsolete
+  - switch from mocha to [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament) for all tests
 
-* major update of ALL pkgs (export maps, ESM only) ([0d1d6ea](https://github.com/thi-ng/umbrella/commit/0d1d6ea9fab2a645d6c5f2bf2591459b939c09b6))
+#### 🚀 Features
 
+- add $replace() control/wrapper ([6096357](https://github.com/thi-ng/umbrella/commit/6096357))
 
-### Features
+#### ♻️ Refactoring
 
-* **rdom:** add $replace() control/wrapper ([6096357](https://github.com/thi-ng/umbrella/commit/609635729a7d92d087a59684e00d19e609c5927f))
+- update imports in various pkgs (rstream) ([342cf54](https://github.com/thi-ng/umbrella/commit/342cf54))
+- update deps & imports in various pkgs ([e1cf29e](https://github.com/thi-ng/umbrella/commit/e1cf29e))
+  - largely related to recent updates/restructuring of these packages:
+    - api
+    - defmulti
+    - errors
+    - logger
+- update imports ([138571a](https://github.com/thi-ng/umbrella/commit/138571a))
+- update all test stubs ([f2d6d53](https://github.com/thi-ng/umbrella/commit/f2d6d53))
+- update all tests in _all_ pkgs ([8b582bc](https://github.com/thi-ng/umbrella/commit/8b582bc))
+  - update all to use [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament)
 
+### [0.6.9](https://github.com/thi-ng/umbrella/tree/@thi.ng/rdom@0.6.9) (2021-09-03)
 
-### BREAKING CHANGES
+#### ♻️ Refactoring
 
-* discontinue CommonJS & UMD versions
+- fix up TS4.4 changes ([40caddc](https://github.com/thi-ng/umbrella/commit/40caddc))
 
-- only ESM modules will be published from now on
-- CJS obsolete due to ESM support in recent versions of node:
-  - i.e. launch NodeJS via:
-  - `node --experimental-specifier-resolution=node --experimental-repl-await`
-  - in the node REPL use `await import(...)` instead of `require()`
-- UMD obsolete due to widespread browser support for ESM
+## [0.6.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/rdom@0.6.0) (2021-08-04)
 
-Also:
-- normalize/restructure/reorg all package.json files
-- cleanup all build scripts, remove obsolete
-- switch from mocha to @thi.ng/testament for all tests
+#### 🚀 Features
 
+- add $inputFile/Files() handlers ([7f8888b](https://github.com/thi-ng/umbrella/commit/7f8888b))
 
+## [0.5.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/rdom@0.5.0) (2021-07-27)
 
+#### 🚀 Features
 
+- relax return types for $switch() ([71c334b](https://github.com/thi-ng/umbrella/commit/71c334b))
+  - update return types for $switch/$refresh component factories (any)
+  - add/update docs
 
+#### 🩹 Bug fixes
 
-#  [0.6.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/rdom@0.5.0...@thi.ng/rdom@0.6.0) (2021-08-04)
+- fix [#304](https://github.com/thi-ng/umbrella/issues/304), update Switch.update() ([a2899c0](https://github.com/thi-ng/umbrella/commit/a2899c0))
+  - remove extraneous & wrong same-value check which was causing
+    component to unmount if same value is received in succession
 
-###  Features
+### [0.4.5](https://github.com/thi-ng/umbrella/tree/@thi.ng/rdom@0.4.5) (2021-03-12)
 
-- **rdom:** add $inputFile/Files() handlers ([7f8888b](https://github.com/thi-ng/umbrella/commit/7f8888b0f0857aa9abde8ca6ea666a6f37bb64f2))
+#### ♻️ Refactoring
 
-#  [0.5.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/rdom@0.4.17...@thi.ng/rdom@0.5.0) (2021-07-27)
+- simplify $sub() ([1f11cdf](https://github.com/thi-ng/umbrella/commit/1f11cdf))
 
-###  Bug Fixes
+## [0.4.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/rdom@0.4.0) (2021-02-24)
 
-- **rdom:** fix [#304](https://github.com/thi-ng/umbrella/issues/304), update Switch.update() ([a2899c0](https://github.com/thi-ng/umbrella/commit/a2899c09b62458edd75dd785b64db0519b85eb6d))
+#### 🚀 Features
 
-###  Features
+- add $inputCheckbox, $inputTrigger ([99c569e](https://github.com/thi-ng/umbrella/commit/99c569e))
 
-- **rdom:** relax return types for $switch() ([71c334b](https://github.com/thi-ng/umbrella/commit/71c334bfc5715e58296750e9d118927dce53406a))
+### [0.3.9](https://github.com/thi-ng/umbrella/tree/@thi.ng/rdom@0.3.9) (2021-02-22)
 
-#  [0.4.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/rdom@0.3.9...@thi.ng/rdom@0.4.0) (2021-02-24)
+#### 🩹 Bug fixes
 
-###  Features
+- add stream IDs for $Sub/$SubA ([e8b8fd4](https://github.com/thi-ng/umbrella/commit/e8b8fd4))
 
-- **rdom:** add $inputCheckbox, $inputTrigger ([99c569e](https://github.com/thi-ng/umbrella/commit/99c569e629018d679bae0f9d07fbde8ddd4f16cc))
+## [0.3.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/rdom@0.3.0) (2020-12-07)
 
-##  [0.3.9](https://github.com/thi-ng/umbrella/compare/@thi.ng/rdom@0.3.8...@thi.ng/rdom@0.3.9) (2021-02-22)
+#### 🚀 Features
 
-###  Bug Fixes
+- add $subObject() wrapper, add docs ([cd5cf08](https://github.com/thi-ng/umbrella/commit/cd5cf08))
 
-- **rdom:** add stream IDs for $Sub/$SubA ([e8b8fd4](https://github.com/thi-ng/umbrella/commit/e8b8fd4785f9836f0270bbc01dc216c2c87d2e8d))
+### [0.2.12](https://github.com/thi-ng/umbrella/tree/@thi.ng/rdom@0.2.12) (2020-09-22)
 
-#  [0.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/rdom@0.2.16...@thi.ng/rdom@0.3.0) (2020-12-07)
+#### ♻️ Refactoring
 
-###  Features
+- split $compile() ([45156b2](https://github.com/thi-ng/umbrella/commit/45156b2))
+  - extract complexComponent(), basicComponent()
+- split $tree() ([de159e0](https://github.com/thi-ng/umbrella/commit/de159e0))
+- simplify $el() attrib handling ([b777cf1](https://github.com/thi-ng/umbrella/commit/b777cf1))
 
-- **rdom:** add $subObject() wrapper, add docs ([cd5cf08](https://github.com/thi-ng/umbrella/commit/cd5cf08d6ae0ffb5ff8a89a19918a563fb889cbd))
+## [0.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/rdom@0.2.0) (2020-07-08)
 
-#  [0.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/rdom@0.1.2...@thi.ng/rdom@0.2.0) (2020-07-08)
+#### 🚀 Features
 
-###  Features
+- add $promise() wrapper ([53f9688](https://github.com/thi-ng/umbrella/commit/53f9688))
+- add $input, $inputNum event listeners ([c29fb49](https://github.com/thi-ng/umbrella/commit/c29fb49))
 
-- **rdom:** add $input, $inputNum event listeners ([c29fb49](https://github.com/thi-ng/umbrella/commit/c29fb49824429ba1175deca30fbfe693d6fd689d))
-- **rdom:** add $promise() wrapper ([53f9688](https://github.com/thi-ng/umbrella/commit/53f96881094603b885a409b8965b491468a3c247))
+## [0.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/rdom@0.1.0) (2020-07-02)
 
-#  0.1.0 (2020-07-02)
+#### 🚀 Features
 
-###  Features
+- add RDFa `prefix` attrib support, update prefix handling ([b589da5](https://github.com/thi-ng/umbrella/commit/b589da5))
+  - add XML_XMLNS to default prefixes
+  - update `registerPrefixes()` to error if attempting to overwrite prefix
+- add support for namespaced el/attribs ([9d16ef0](https://github.com/thi-ng/umbrella/commit/9d16ef0))
+  - add deps ([@thi.ng/prefixes](https://github.com/thi-ng/umbrella/tree/main/packages/prefixes))
+  - add `registerPrefix()` helper
+  - update `$el()` and `setAttrib()` to check for prefixed names
+- update $tree() span handling, update $moveTo() ([6d90187](https://github.com/thi-ng/umbrella/commit/6d90187))
+- rename hdom2020 => rdom, update pkg ([1224706](https://github.com/thi-ng/umbrella/commit/1224706))
 
-- **rdom:** add RDFa `prefix` attrib support, update prefix handling ([b589da5](https://github.com/thi-ng/umbrella/commit/b589da51385957a5defffb66307bd3d750814e4c))
-- **rdom:** add support for namespaced el/attribs ([9d16ef0](https://github.com/thi-ng/umbrella/commit/9d16ef0a2f6d6a062bf164ca38813290d7660149))
-- **rdom:** rename hdom2020 => rdom, update pkg ([1224706](https://github.com/thi-ng/umbrella/commit/1224706fa2fbca82afb73afeda3c3075c9b35f91))
-- **rdom:** update $tree() span handling, update $moveTo() ([6d90187](https://github.com/thi-ng/umbrella/commit/6d9018763af7f0f2096cdc1d79889791193a01e0))
+#### ♻️ Refactoring
+
+- update IMountWith, $SubA ([c93efad](https://github.com/thi-ng/umbrella/commit/c93efad))

@@ -1,63 +1,87 @@
 # Change Log
 
+Last updated: 2021-11-17T23:24:59Z
+
 All notable changes to this project will be documented in this file.
-See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+See [Conventional Commits](https://conventionalcommits.org/) for commit guidelines.
 
-# [0.5.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/color-palettes@0.4.3...@thi.ng/color-palettes@0.5.0) (2021-10-25)
+**Note:** Unlisted _patch_ versions only involve non-code changes and/or
+version bumps of transitive dependencies.
 
+## [0.6.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/color-palettes@0.6.0) (2021-11-17)
 
-### Features
+#### 🚀 Features
 
-* **color-palettes:** add 30+ new palettes ([a33ea48](https://github.com/thi-ng/umbrella/commit/a33ea48822e6e6fd4da5da40f719b2f19d1adfaa))
+- Using workspaces for local tools ([bf7a404](https://github.com/thi-ng/umbrella/commit/bf7a404))
+  Improving the overall build ergonomics
+  - introduced a tools workspaces
+  - imported it in all needed packages/examples
+  - inclusive project root
+- add new themes, update swatch gen ([69f269a](https://github.com/thi-ng/umbrella/commit/69f269a))
+  - update readme, add table w/ recent additions
 
+#### ♻️ Refactoring
 
+- testrunner to binary ([4ebbbb2](https://github.com/thi-ng/umbrella/commit/4ebbbb2))
+  this commit reverts (partly) changes made in:
+  ef346d7a8753590dc9094108a3d861a8dbd5dd2c
+  overall purpose is better testament ergonomics:
+  instead of having to pass NODE_OPTIONS with every invocation
+  having a binary to handle this for us.
 
+## [0.5.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/color-palettes@0.5.0) (2021-10-25)
 
+#### 🚀 Features
 
-# [0.4.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/color-palettes@0.3.0...@thi.ng/color-palettes@0.4.0) (2021-10-12)
+- add 30+ new palettes ([a33ea48](https://github.com/thi-ng/umbrella/commit/a33ea48))
 
+### [0.4.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/color-palettes@0.4.1) (2021-10-13)
 
-### Build System
+#### ♻️ Refactoring
 
-* major update of ALL pkgs (export maps, ESM only) ([0d1d6ea](https://github.com/thi-ng/umbrella/commit/0d1d6ea9fab2a645d6c5f2bf2591459b939c09b6))
+- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
 
+## [0.4.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/color-palettes@0.4.0) (2021-10-12)
 
-### BREAKING CHANGES
+#### 🛑 Breaking changes
 
-* discontinue CommonJS & UMD versions
+- major update of ALL pkgs (export maps, ESM only) ([0d1d6ea](https://github.com/thi-ng/umbrella/commit/0d1d6ea))
+- BREAKING CHANGE: discontinue CommonJS & UMD versions
+  - only ESM modules will be published from now on
+  - CJS obsolete due to ESM support in recent versions of node:
+    - i.e. launch NodeJS via:
+    - `node --experimental-specifier-resolution=node --experimental-repl-await`
+    - in the node REPL use `await import(...)` instead of `require()`
+  - UMD obsolete due to widespread browser support for ESM
+  Also:
+  - normalize/restructure/reorg all package.json files
+  - cleanup all build scripts, remove obsolete
+  - switch from mocha to [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament) for all tests
 
-- only ESM modules will be published from now on
-- CJS obsolete due to ESM support in recent versions of node:
-  - i.e. launch NodeJS via:
-  - `node --experimental-specifier-resolution=node --experimental-repl-await`
-  - in the node REPL use `await import(...)` instead of `require()`
-- UMD obsolete due to widespread browser support for ESM
+#### ♻️ Refactoring
 
-Also:
-- normalize/restructure/reorg all package.json files
-- cleanup all build scripts, remove obsolete
-- switch from mocha to @thi.ng/testament for all tests
+- update all test stubs ([f2d6d53](https://github.com/thi-ng/umbrella/commit/f2d6d53))
+- update all tests in _all_ pkgs ([8b582bc](https://github.com/thi-ng/umbrella/commit/8b582bc))
+  - update all to use [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament)
 
+## [0.3.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/color-palettes@0.3.0) (2021-08-24)
 
+#### 🚀 Features
 
+- add new palettes, update readme ([14f2952](https://github.com/thi-ng/umbrella/commit/14f2952))
+- update/simplify swatch gen ([3187949](https://github.com/thi-ng/umbrella/commit/3187949))
 
+## [0.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/color-palettes@0.2.0) (2021-08-22)
 
+#### 🚀 Features
 
-#  [0.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/color-palettes@0.2.0...@thi.ng/color-palettes@0.3.0) (2021-08-24)
+- add more palettes, update gen ([ba4057c](https://github.com/thi-ng/umbrella/commit/ba4057c))
+  - add more themes from various collections
+  - sort all themes by their KSUID
+  - minor refactor swatch gen
 
-###  Features
+## [0.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/color-palettes@0.1.0) (2021-08-21)
 
-- **color-palettes:** add new palettes, update readme ([14f2952](https://github.com/thi-ng/umbrella/commit/14f29523554b82540bba020d52d6fffde8347348))
-- **color-palettes:** update/simplify swatch gen ([3187949](https://github.com/thi-ng/umbrella/commit/31879491ed4b59e4d91c818939f9c9beee980779))
+#### 🚀 Features
 
-#  [0.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/color-palettes@0.1.0...@thi.ng/color-palettes@0.2.0) (2021-08-22)
-
-###  Features
-
-- **color-palettes:** add more palettes, update gen ([ba4057c](https://github.com/thi-ng/umbrella/commit/ba4057c4f1bfe4d093674c953080ae84fd92a531))
-
-#  0.1.0 (2021-08-21)
-
-###  Features
-
-- **color-palettes:** add as new pkg, add assets & swatch gen ([9d1bb17](https://github.com/thi-ng/umbrella/commit/9d1bb17b4373a0cbe43705a41a4cbce353999c7e))
+- add as new pkg, add assets & swatch gen ([9d1bb17](https://github.com/thi-ng/umbrella/commit/9d1bb17))

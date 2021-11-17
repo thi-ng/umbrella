@@ -1,237 +1,399 @@
 # Change Log
 
+Last updated: 2021-11-17T23:24:59Z
+
 All notable changes to this project will be documented in this file.
-See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+See [Conventional Commits](https://conventionalcommits.org/) for commit guidelines.
 
-# [3.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/pixel@3.0.0...@thi.ng/pixel@3.1.0) (2021-11-10)
+**Note:** Unlisted _patch_ versions only involve non-code changes and/or
+version bumps of transitive dependencies.
 
+## [3.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/pixel@3.2.0) (2021-11-17)
 
-### Features
+#### 🚀 Features
 
-* **pixel:** add IGrid2D impls, update ctors ([3ac0327](https://github.com/thi-ng/umbrella/commit/3ac032784d35ff180451550f976abd563c0928ef))
+- Using workspaces for local tools ([bf7a404](https://github.com/thi-ng/umbrella/commit/bf7a404))
+  Improving the overall build ergonomics
+  - introduced a tools workspaces
+  - imported it in all needed packages/examples
+  - inclusive project root
 
+#### ♻️ Refactoring
 
+- testrunner to binary ([4ebbbb2](https://github.com/thi-ng/umbrella/commit/4ebbbb2))
+  this commit reverts (partly) changes made in:
+  ef346d7a8753590dc9094108a3d861a8dbd5dd2c
+  overall purpose is better testament ergonomics:
+  instead of having to pass NODE_OPTIONS with every invocation
+  having a binary to handle this for us.
+
+## [3.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/pixel@3.1.0) (2021-11-10)
+
+#### 🚀 Features
+
+- add IGrid2D impls, update ctors ([3ac0327](https://github.com/thi-ng/umbrella/commit/3ac0327))
+
+#### ♻️ Refactoring
+
+- update all countdown loops ([a5f374b](https://github.com/thi-ng/umbrella/commit/a5f374b))
+- minor update mixin sites ([6980c3a](https://github.com/thi-ng/umbrella/commit/6980c3a))
+
+# [3.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/pixel@3.0.0) (2021-11-04)
 
+#### 🛑 Breaking changes
 
+- rename int buffer/format types ([6be02f1](https://github.com/thi-ng/umbrella/commit/6be02f1))
+- BREAKING CHANGE: rename int buffer/format types
+  - rename:
+    - PackedBuffer => IntBuffer
+    - PackedFormat/Spec => IntFormat/Spec
+    - PackedChannel/Spec => IntChannel/Spec
+  - replace static FloatBuffer.fromInt() with
+    standalone fn floatBufferFromInt()
+  - add floatBufferFromImage()
+  - add floatBufferFromCanvas()
+  - update readme
 
-# [3.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/pixel@2.2.0...@thi.ng/pixel@3.0.0) (2021-11-04)
+## [2.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/pixel@2.2.0) (2021-11-03)
 
+#### 🚀 Features
 
-### Features
+- add shape drawing fns ([d1e284b](https://github.com/thi-ng/umbrella/commit/d1e284b))
+  - add drawLine(), drawLineWith()
+  - add drawCircle()
+  - add drawRect()
+- add unsafe getters/setters ([714d6f7](https://github.com/thi-ng/umbrella/commit/714d6f7))
+  - update IPixelBuffer and all impls
+- add flood fill functions ([65796b9](https://github.com/thi-ng/umbrella/commit/65796b9))
 
-* **pixel:** rename int buffer/format types ([6be02f1](https://github.com/thi-ng/umbrella/commit/6be02f10e5797c101dd0ce1869553d90c1ac6df5))
+#### ♻️ Refactoring
 
+- update types (IGrid2D) ([2fe8d4f](https://github.com/thi-ng/umbrella/commit/2fe8d4f))
+  - update `IPixelBuffer` to extend new `IGrid2D`
+  - deprecate `.pixels` property (use `.data`)
+  - add `.rowStride` getter for PackedBuffer
 
-### BREAKING CHANGES
+## [2.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/pixel@2.1.0) (2021-10-13)
 
-* **pixel:** rename int buffer/format types
+#### 🚀 Features
 
-- rename:
-  - PackedBuffer => IntBuffer
-  - PackedFormat/Spec => IntFormat/Spec
-  - PackedChannel/Spec => IntChannel/Spec
-- replace static FloatBuffer.fromInt() with
-  standalone fn floatBufferFromInt()
-- add floatBufferFromImage()
-- add floatBufferFromCanvas()
-- update readme
+- add CORS config for imagePromise() ([a5a2058](https://github.com/thi-ng/umbrella/commit/a5a2058))
 
+### [2.0.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/pixel@2.0.1) (2021-10-13)
 
+#### ♻️ Refactoring
 
+- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
+- update imports in all pkgs ([5fa2b6f](https://github.com/thi-ng/umbrella/commit/5fa2b6f))
+  - add .js suffix for all relative imports
 
+# [2.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/pixel@2.0.0) (2021-10-12)
 
-# [2.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/pixel@2.1.5...@thi.ng/pixel@2.2.0) (2021-11-03)
+#### 🛑 Breaking changes
 
+- replace static PackedBuffer methods ([8e5d2db](https://github.com/thi-ng/umbrella/commit/8e5d2db))
+- BREAKING CHANGE: replace static PackedBuffer methods w/ standalone functions
+  - add packedBufferFromImage()
+  - add packedBufferFromCanvas()
+  - remove deprecated buffer() ctor fn
+- restructure package ([698130a](https://github.com/thi-ng/umbrella/commit/698130a))
+- BREAKING CHANGE: migrate dither ops to new pkg [@thi.ng/pixel-dither](https://github.com/thi-ng/umbrella/tree/main/packages/pixel-dither)
+  - remove dither related types & functions
+  - remove PackedBuffer.dither()
+  - move internal helpers
+- major update of ALL pkgs (export maps, ESM only) ([0d1d6ea](https://github.com/thi-ng/umbrella/commit/0d1d6ea))
+- BREAKING CHANGE: discontinue CommonJS & UMD versions
+  - only ESM modules will be published from now on
+  - CJS obsolete due to ESM support in recent versions of node:
+    - i.e. launch NodeJS via:
+    - `node --experimental-specifier-resolution=node --experimental-repl-await`
+    - in the node REPL use `await import(...)` instead of `require()`
+  - UMD obsolete due to widespread browser support for ESM
+  Also:
+  - normalize/restructure/reorg all package.json files
+  - cleanup all build scripts, remove obsolete
+  - switch from mocha to [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament) for all tests
 
-### Features
+#### ♻️ Refactoring
 
-* **pixel:** add flood fill functions ([65796b9](https://github.com/thi-ng/umbrella/commit/65796b96fe77d5c4b999dd8cedfd142ea243a200))
-* **pixel:** add shape drawing fns ([d1e284b](https://github.com/thi-ng/umbrella/commit/d1e284bfceabda62048500d42dbff19a3b1df1e8))
-* **pixel:** add unsafe getters/setters ([714d6f7](https://github.com/thi-ng/umbrella/commit/714d6f7fc8bfffa37c09dfc2c4251b1041935a24))
+- rename internals ([055e799](https://github.com/thi-ng/umbrella/commit/055e799))
+- internal restructure ([8a7ec9c](https://github.com/thi-ng/umbrella/commit/8a7ec9c))
+- dedupe defIndexed() internals ([a4a3e61](https://github.com/thi-ng/umbrella/commit/a4a3e61))
+  - replace closestColor() w/ argmin() from [@thi.ng/distance](https://github.com/thi-ng/umbrella/tree/main/packages/distance)
+  - update deps
+- update deps & imports in various pkgs ([e1cf29e](https://github.com/thi-ng/umbrella/commit/e1cf29e))
+  - largely related to recent updates/restructuring of these packages:
+    - api
+    - defmulti
+    - errors
+    - logger
+- update imports ([138571a](https://github.com/thi-ng/umbrella/commit/138571a))
+- update all tests in _all_ pkgs ([8b582bc](https://github.com/thi-ng/umbrella/commit/8b582bc))
+  - update all to use [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament)
+
+## [0.11.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/pixel@0.11.0) (2021-08-04)
+
+#### 🚀 Features
+
+- add DominantColorOpts ([a57882b](https://github.com/thi-ng/umbrella/commit/a57882b))
+  - add `filter` option to pre-filter eligible pixels
+
+### [0.10.3](https://github.com/thi-ng/umbrella/tree/@thi.ng/pixel@0.10.3) (2021-06-08)
+
+#### ♻️ Refactoring
+
+- dedupe defKernel() internals ([084c84a](https://github.com/thi-ng/umbrella/commit/084c84a))
+  - extract declOffset() helper to dedupe offset var declarations
+
+### [0.10.2](https://github.com/thi-ng/umbrella/tree/@thi.ng/pixel@0.10.2) (2021-04-24)
+
+#### ♻️ Refactoring
+
+- modulo handling in samplers ([6fcea12](https://github.com/thi-ng/umbrella/commit/6fcea12))
+  - reflecting change in [@thi.ng/math](https://github.com/thi-ng/umbrella/tree/main/packages/math)
+
+## [0.10.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/pixel@0.10.0) (2021-04-19)
+
+#### 🚀 Features
+
+- add dominantColors(), update deps ([ad0617e](https://github.com/thi-ng/umbrella/commit/ad0617e))
+  - add [@thi.ng/k-means](https://github.com/thi-ng/umbrella/tree/main/packages/k-means) dependency
+
+## [0.9.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/pixel@0.9.0) (2021-04-03)
+
+#### 🚀 Features
+
+- add .upsize() impls, fix convolve() ([08f0d7c](https://github.com/thi-ng/umbrella/commit/08f0d7c))
+  - add Packed/FloatBuffer.upsize()
+  - fix channel offset handling in convolve()
+- add imagePyramid() iterator ([7f77e07](https://github.com/thi-ng/umbrella/commit/7f77e07))
+- update/fix convolution, add LANCZOS ([eadefda](https://github.com/thi-ng/umbrella/commit/eadefda))
+  - remove `pad` option (now always enabled)
+  - add `offset` option
+  - update defKernel() codegen to consider/repeat edge pixels
+  - update/fix defLargeKernel() for even sized kernels and consider edges
+  - add LANCZOS kernel gen
+- add IToImageData & impls ([3172e1e](https://github.com/thi-ng/umbrella/commit/3172e1e))
 
+### [0.8.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/pixel@0.8.1) (2021-03-20)
+
+#### 🩹 Bug fixes
 
+- update convolve() for even kernel sizes ([b086224](https://github.com/thi-ng/umbrella/commit/b086224))
+  - since even kernel sizes are more left/top centric, update
+    max iteration limits to ensure right colum & bottom row
+    will be processed
 
+#### ♻️ Refactoring
 
+- dedupe sampling functions ([2643bdd](https://github.com/thi-ng/umbrella/commit/2643bdd))
 
-# [2.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/pixel@2.0.1...@thi.ng/pixel@2.1.0) (2021-10-13)
+## [0.8.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/pixel@0.8.0) (2021-03-17)
 
+#### 🚀 Features
 
-### Features
+- add float format samplers, update various types ([6f9dae6](https://github.com/thi-ng/umbrella/commit/6f9dae6))
+  - add IResizable and implement for Packed/FloatBuffer
+  - add FloatBuffer.invert()
+  - fix .forEach() impls (esp. FloatBuffer), use return values
+  - update IBlit, IBlend, IInvert generics
+- add bicubic samplers, fix resize() ([951fa9e](https://github.com/thi-ng/umbrella/commit/951fa9e))
+- add defSampler(), resize() ([aa71eb7](https://github.com/thi-ng/umbrella/commit/aa71eb7))
+  - replace `Filter` & `Wrap` enums w/ type aliases ([#256](https://github.com/thi-ng/umbrella/issues/256))
+  - add HOF `defSampler()` w/ impls for PackedBuffer only (so far)
+  - add `resize()` (also PackedBuffer only)
+- add defIndexed() HOF pixel format ([c13a568](https://github.com/thi-ng/umbrella/commit/c13a568))
 
-* **pixel:** add CORS config for imagePromise() ([a5a2058](https://github.com/thi-ng/umbrella/commit/a5a2058ef1dbdf9fc15c12f70398b7af207233a1))
+#### ♻️ Refactoring
 
+- simplify bilinearABGR() ([1ec724c](https://github.com/thi-ng/umbrella/commit/1ec724c))
+- convert resize() into class method ([1c4dcaa](https://github.com/thi-ng/umbrella/commit/1c4dcaa))
+  - move `IntSampler`, `FloatSampler` types to api.ts
+  - migrate `resize()` to `PackedBuffer.resize()`
+  - replace `PackedBuffer.downsample()` w/ new `PackedBuffer.scale()`
+  - update resize filter arg to also accept custom sampler
 
+## [0.7.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/pixel@0.7.0) (2021-03-03)
 
+#### 🚀 Features
 
+- add defLargeKernel(), conv presets ([9c71165](https://github.com/thi-ng/umbrella/commit/9c71165))
+  - add HOF GAUSSIAN kernel factory
+  - fix internal K var naming in defKernelx
+- update PackedBuffer.fromCanvas() ([3bdb086](https://github.com/thi-ng/umbrella/commit/3bdb086))
+  - add support for format conversion
+  - simplify .fromImage()
+- add POOL_THRESHOLD preset ([5f1c1de](https://github.com/thi-ng/umbrella/commit/5f1c1de))
+- add/update buffer factory fns ([ba38e13](https://github.com/thi-ng/umbrella/commit/ba38e13))
+  - add fn overrides to simplify userland API
+- add IEmpty impls for Float/PackedBuffer ([46ac1a1](https://github.com/thi-ng/umbrella/commit/46ac1a1))
+- update/extend/refactor convolveChannel/Image() ([6692865](https://github.com/thi-ng/umbrella/commit/6692865))
+  - add new convolution related types
+  - add pooling & stride support (convolve(), defKernel())
+  - add POOL_* filter presets
+  - update normalMap()
+- add 5x5 kernel presets ([56f96f4](https://github.com/thi-ng/umbrella/commit/56f96f4))
+- add step size support for normalMap() ([ab72a79](https://github.com/thi-ng/umbrella/commit/ab72a79))
+- add defKernel() kernel fn codegen ([25b97a3](https://github.com/thi-ng/umbrella/commit/25b97a3))
+- add normalMap(), add more kernels ([f32686d](https://github.com/thi-ng/umbrella/commit/f32686d))
+  - replace gradientImage() w/ normalMap()
+  - add GRADIENT_X/Y, HIGHPASS3 preset kernels
+- add convolve() & preset kernels ([6a31dc3](https://github.com/thi-ng/umbrella/commit/6a31dc3))
+- add gradientImage() & FLOAT_NORMAL format ([78683b7](https://github.com/thi-ng/umbrella/commit/78683b7))
 
-# [2.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/pixel@1.0.5...@thi.ng/pixel@2.0.0) (2021-10-12)
+#### 🩹 Bug fixes
 
+- fix POOL_NEAREST index ([b98d05d](https://github.com/thi-ng/umbrella/commit/b98d05d))
+- add clamping for float->ABGR conversion ([41540e0](https://github.com/thi-ng/umbrella/commit/41540e0))
 
-### Build System
+#### ♻️ Refactoring
 
-* major update of ALL pkgs (export maps, ESM only) ([0d1d6ea](https://github.com/thi-ng/umbrella/commit/0d1d6ea9fab2a645d6c5f2bf2591459b939c09b6))
+- migrate interfaces to api.ts ([0e3a742](https://github.com/thi-ng/umbrella/commit/0e3a742))
 
+### [0.6.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/pixel@0.6.1) (2021-02-20)
 
-### Code Refactoring
+#### ♻️ Refactoring
 
-* **pixel:** replace static PackedBuffer methods ([8e5d2db](https://github.com/thi-ng/umbrella/commit/8e5d2db6815ad1bf0e20cbbf7ab6628340125e10))
-* **pixel:** restructure package ([698130a](https://github.com/thi-ng/umbrella/commit/698130acf10056c30f0d7caae259df366a2484ce))
+- split defFloatFormat(), extract helpers ([c9ade11](https://github.com/thi-ng/umbrella/commit/c9ade11))
+- update ARGB8888, update deps ([9b86922](https://github.com/thi-ng/umbrella/commit/9b86922))
+  - re-use swapLane13() from [@thi.ng/binary](https://github.com/thi-ng/umbrella/tree/main/packages/binary)
+  - update readme
+- update format defs, typed array handling ([2b06774](https://github.com/thi-ng/umbrella/commit/2b06774))
+- update IPixelBuffer, extract format defs ([3416ff7](https://github.com/thi-ng/umbrella/commit/3416ff7))
+  - make IPixelBuffer fields readonly, expose stride
+  - move all format related defs to /format subdir
 
+## [0.6.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/pixel@0.6.0) (2021-01-13)
 
-### BREAKING CHANGES
+#### 🚀 Features
 
-* **pixel:** replace static PackedBuffer methods w/ standalone functions
+- add downsample() for both buffer types ([0b9b0fa](https://github.com/thi-ng/umbrella/commit/0b9b0fa))
 
-- add packedBufferFromImage()
-- add packedBufferFromCanvas()
-- remove deprecated buffer() ctor fn
-* **pixel:** migrate dither ops to new pkg thi.ng/pixel-dither
+## [0.5.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/pixel@0.5.0) (2021-01-02)
 
-- remove dither related types & functions
-- remove PackedBuffer.dither()
-- move internal helpers
-* discontinue CommonJS & UMD versions
+#### 🚀 Features
 
-- only ESM modules will be published from now on
-- CJS obsolete due to ESM support in recent versions of node:
-  - i.e. launch NodeJS via:
-  - `node --experimental-specifier-resolution=node --experimental-repl-await`
-  - in the node REPL use `await import(...)` instead of `require()`
-- UMD obsolete due to widespread browser support for ESM
+- add FloatBuffer.fromPacked() ([abd1ca8](https://github.com/thi-ng/umbrella/commit/abd1ca8))
+  - implement IPixelBuffer
+- add FLOAT_HSVA format, update FloatFormatSpec ([118c4ed](https://github.com/thi-ng/umbrella/commit/118c4ed))
+  - update FloatFormatSpec & defFloatFormat() to support manual conversions
 
-Also:
-- normalize/restructure/reorg all package.json files
-- cleanup all build scripts, remove obsolete
-- switch from mocha to @thi.ng/testament for all tests
+#### ♻️ Refactoring
 
+- implement IPixelBuffer for PackedBuffer ([2dcbde5](https://github.com/thi-ng/umbrella/commit/2dcbde5))
 
+### [0.4.9](https://github.com/thi-ng/umbrella/tree/@thi.ng/pixel@0.4.9) (2020-12-07)
 
+#### ♻️ Refactoring
 
+- update type-only imports in remaining pkgs ([b22aa30](https://github.com/thi-ng/umbrella/commit/b22aa30))
+- update type-only imports in various tests/pkgs ([3fd9c24](https://github.com/thi-ng/umbrella/commit/3fd9c24))
 
+### [0.4.7](https://github.com/thi-ng/umbrella/tree/@thi.ng/pixel@0.4.7) (2020-11-24)
 
-##  [1.0.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/pixel@1.0.4...@thi.ng/pixel@1.0.5) (2021-09-03)
+#### ♻️ Refactoring
 
-**Note:** Version bump only for package @thi.ng/pixel
+- update destructuring ([01aebd8](https://github.com/thi-ng/umbrella/commit/01aebd8))
 
-#  [0.11.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/pixel@0.10.5...@thi.ng/pixel@0.11.0) (2021-08-04)
+### [0.4.5](https://github.com/thi-ng/umbrella/tree/@thi.ng/pixel@0.4.5) (2020-09-13)
 
-###  Features
+#### ♻️ Refactoring
 
-- **pixel:** add DominantColorOpts ([a57882b](https://github.com/thi-ng/umbrella/commit/a57882bbbf2f3520eb5ec849d548fb47c08c3bff))
+- update imports, use new Fn types ([213ec33](https://github.com/thi-ng/umbrella/commit/213ec33))
 
-#  [0.10.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/pixel@0.9.0...@thi.ng/pixel@0.10.0) (2021-04-19)
+## [0.4.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/pixel@0.4.0) (2020-07-22)
 
-###  Features
+#### 🚀 Features
 
-- **pixel:** add dominantColors(), update deps ([ad0617e](https://github.com/thi-ng/umbrella/commit/ad0617e6ed3077d8d0c1549416afc27df261edc9))
+- add flipY() ([a5593c0](https://github.com/thi-ng/umbrella/commit/a5593c0))
 
-#  [0.9.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/pixel@0.8.1...@thi.ng/pixel@0.9.0) (2021-04-03)
+## [0.3.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/pixel@0.3.0) (2020-05-29)
 
-###  Features
+#### 🚀 Features
 
-- **pixel:** add .upsize() impls, fix convolve() ([08f0d7c](https://github.com/thi-ng/umbrella/commit/08f0d7c200fa03bc4fb017d3dbc9237581af19ee))
-- **pixel:** add imagePyramid() iterator ([7f77e07](https://github.com/thi-ng/umbrella/commit/7f77e07089eca68b5825715c3709312d4374c37a))
-- **pixel:** add IToImageData & impls ([3172e1e](https://github.com/thi-ng/umbrella/commit/3172e1eb8582901bddf12281e65df618e4d4f476))
-- **pixel:** update/fix convolution, add LANCZOS ([eadefda](https://github.com/thi-ng/umbrella/commit/eadefda5f119ee8453edb3df3109ebcba692b429))
+- add/update float formats, tests ([6eb1f67](https://github.com/thi-ng/umbrella/commit/6eb1f67))
+- add dither support for int buffers/formats ([4475fc1](https://github.com/thi-ng/umbrella/commit/4475fc1))
+- add FloatBuffer and float format support ([d6c490f](https://github.com/thi-ng/umbrella/commit/d6c490f))
 
-##  [0.8.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/pixel@0.8.0...@thi.ng/pixel@0.8.1) (2021-03-20)
+## [0.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/pixel@0.2.0) (2020-05-19)
 
-###  Bug Fixes
+#### 🚀 Features
 
-- **pixel:** update convolve() for even kernel sizes ([b086224](https://github.com/thi-ng/umbrella/commit/b086224a51c0dd23b4cae1d158c1e1236328d445))
+- add .copy(), update .blitCanvas() ([f4b2c3e](https://github.com/thi-ng/umbrella/commit/f4b2c3e))
+- update canvas2d(), imageCanvas() ([65929a2](https://github.com/thi-ng/umbrella/commit/65929a2))
+  - add opt parent arg to append canvas as child node
 
-#  [0.8.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/pixel@0.7.4...@thi.ng/pixel@0.8.0) (2021-03-17)
+### [0.1.14](https://github.com/thi-ng/umbrella/tree/@thi.ng/pixel@0.1.14) (2020-04-05)
 
-###  Features
+#### ♻️ Refactoring
 
-- **pixel:** add bicubic samplers, fix resize() ([951fa9e](https://github.com/thi-ng/umbrella/commit/951fa9e1263db6f165dcaee3c951c09b43e42fef))
-- **pixel:** add defIndexed() HOF pixel format ([c13a568](https://github.com/thi-ng/umbrella/commit/c13a5687fac6d08c14d80f380b5c664422b18a3e))
-- **pixel:** add defSampler(), resize() ([aa71eb7](https://github.com/thi-ng/umbrella/commit/aa71eb7a2ccf02fa543c68308371143882ae5e5f)), closes [#256](https://github.com/thi-ng/umbrella/issues/256)
-- **pixel:** add float format samplers, update various types ([6f9dae6](https://github.com/thi-ng/umbrella/commit/6f9dae6010118e491ed161fa4a5bd40ec4719ad4))
+- switch to non-const enums ([99fb1e6](https://github.com/thi-ng/umbrella/commit/99fb1e6))
 
-#  [0.7.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/pixel@0.6.1...@thi.ng/pixel@0.7.0) (2021-03-03)
+### [0.1.9](https://github.com/thi-ng/umbrella/tree/@thi.ng/pixel@0.1.9) (2020-02-25)
 
-###  Bug Fixes
+#### ♻️ Refactoring
 
-- **pixel:** add clamping for float->ABGR conversion ([41540e0](https://github.com/thi-ng/umbrella/commit/41540e085b2261208e44e6f25b327e3371eae2df))
-- **pixel:** fix POOL_NEAREST index ([b98d05d](https://github.com/thi-ng/umbrella/commit/b98d05d7827d98d3971bdbcd562735b96fa9b7ec))
+- update imports ([7857750](https://github.com/thi-ng/umbrella/commit/7857750))
 
-### Features
+### [0.1.4](https://github.com/thi-ng/umbrella/tree/@thi.ng/pixel@0.1.4) (2019-09-21)
 
-- **pixel:** add 5x5 kernel presets ([56f96f4](https://github.com/thi-ng/umbrella/commit/56f96f4842e6a57087a565a8e5ce82e590da7d66))
-- **pixel:** add convolve() & preset kernels ([6a31dc3](https://github.com/thi-ng/umbrella/commit/6a31dc38f3f0ae48853d899420d0fbebcc6b8678))
-- **pixel:** add defKernel() kernel fn codegen ([25b97a3](https://github.com/thi-ng/umbrella/commit/25b97a341fa54ee8a82e3083fcb85a8061db8b1f))
-- **pixel:** add defLargeKernel(), conv presets ([9c71165](https://github.com/thi-ng/umbrella/commit/9c71165adb71103fa88a5486987f270fecd2f439))
-- **pixel:** add gradientImage() & FLOAT_NORMAL format ([78683b7](https://github.com/thi-ng/umbrella/commit/78683b701418bf184b2a1327cfd5e50397d687e0))
-- **pixel:** add IEmpty impls for Float/PackedBuffer ([46ac1a1](https://github.com/thi-ng/umbrella/commit/46ac1a1906b256eefab0934efea300c67db7ea28))
-- **pixel:** add normalMap(), add more kernels ([f32686d](https://github.com/thi-ng/umbrella/commit/f32686d463ffcb49b37e9b1b811ff5de06b58fed))
-- **pixel:** add POOL_THRESHOLD preset ([5f1c1de](https://github.com/thi-ng/umbrella/commit/5f1c1dea87251f8a584cbe94d83784e7e4cc31a5))
-- **pixel:** add step size support for normalMap() ([ab72a79](https://github.com/thi-ng/umbrella/commit/ab72a79532baab3f07f53419cb5970e90e97e0dd))
-- **pixel:** add/update buffer factory fns ([ba38e13](https://github.com/thi-ng/umbrella/commit/ba38e137c6913d048bb4d678137241ee179d160c))
-- **pixel:** update PackedBuffer.fromCanvas() ([3bdb086](https://github.com/thi-ng/umbrella/commit/3bdb0860bcd35a0475e83ebe948847f1ecd42db6))
-- **pixel:** update/extend/refactor convolveChannel/Image() ([6692865](https://github.com/thi-ng/umbrella/commit/6692865d5facb75bf667056afa9cfee93ade2da6))
+#### 🩹 Bug fixes
 
-# [0.6.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/pixel@0.5.1...@thi.ng/pixel@0.6.0) (2021-01-13)
+- clamp values in PackedChannel.setFloat() ([ce78467](https://github.com/thi-ng/umbrella/commit/ce78467))
 
-### Features
+### [0.1.3](https://github.com/thi-ng/umbrella/tree/@thi.ng/pixel@0.1.3) (2019-08-21)
 
-- **pixel:** add downsample() for both buffer types ([0b9b0fa](https://github.com/thi-ng/umbrella/commit/0b9b0fad5ce7edcfaf50be767a73f8cc3fe7ebfe))
+#### ♻️ Refactoring
 
-# [0.5.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/pixel@0.4.10...@thi.ng/pixel@0.5.0) (2021-01-02)
+- update setChannel(), pre/postmultiply(), extract & re-use ([17e5f3d](https://github.com/thi-ng/umbrella/commit/17e5f3d))
 
-### Features
+## [0.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/pixel@0.1.0) (2019-07-31)
 
-- **pixel:** add FLOAT_HSVA format, update FloatFormatSpec ([118c4ed](https://github.com/thi-ng/umbrella/commit/118c4edbacd75249262f26962153f614148cedec))
-- **pixel:** add FloatBuffer.fromPacked() ([abd1ca8](https://github.com/thi-ng/umbrella/commit/abd1ca80d455999dd8c3af87d24b4f1905d7806d))
+#### 🚀 Features
 
-#  [0.4.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/pixel@0.3.6...@thi.ng/pixel@0.4.0) (2020-07-22)
+- add 16bit formats, add docs, update readme ([5d72c37](https://github.com/thi-ng/umbrella/commit/5d72c37))
+- add buffer() syntax sugar, PackedBuffer.forEach ([bc17ac9](https://github.com/thi-ng/umbrella/commit/bc17ac9))
+- add PackedBuffer.fromCanvas(), update readme ([ac283ee](https://github.com/thi-ng/umbrella/commit/ac283ee))
+- updat setChannel, add ALPHA8, update readme ([899f1a3](https://github.com/thi-ng/umbrella/commit/899f1a3))
+  - setChannel now supports format conversion
+- add pre/postmultiply & isPremultiplied checks ([969d6b8](https://github.com/thi-ng/umbrella/commit/969d6b8))
+  - add porter-duff dep
+  - update readme
+- add channel float accessors, update PackedChannel ([b4168f8](https://github.com/thi-ng/umbrella/commit/b4168f8))
+  - add precomputed masks and get/setFloat to PackedChannel
+  - refactor code gens
+  - add PackedBuffer.get/setChannelAt()
+  - add ensureChannel() helper
+- complete rewrite/simplify/extend using format descriptors ([cde7bf9](https://github.com/thi-ng/umbrella/commit/cde7bf9))
+  - remove all existing buffer impls
+  - add PackedBuffer as currently only buffer type
+  - add preset buffer formats:
+    - GRAY8
+    - GRAY_ALPHA88
+    - ARGB4444
+    - ARGB1555
+    - RGB565
+    - RGB888
+    - ARGB8888
+    - BGR888
+    - ABGR8888
+  - add defPackedFormat() to define & compile new formats
+  - add various codegen utils
+  - add new types / interfaces
+- update canvasPixels() ([5ea200d](https://github.com/thi-ng/umbrella/commit/5ea200d))
+- ([#106](https://github.com/thi-ng/umbrella/issues/106)) add Uint16Buffer, update IColorChannel, add Channel.GRAY ([3088646](https://github.com/thi-ng/umbrella/commit/3088646))
+- ([#106](https://github.com/thi-ng/umbrella/issues/106)) add IBlend interface/impls, refactor IBlit ([e068f46](https://github.com/thi-ng/umbrella/commit/e068f46))
+  - add BlitOpts, update .blit() args
+  - add IBlend impls for ABGRBuffer, ARGBBuffer, RGBAFloatBuffer
+  - update blit1(), blitStrided()
+  - add blendInt(), blendFloat()
+- add invert, add/split interfaces, refactor blit fns ([22a456a](https://github.com/thi-ng/umbrella/commit/22a456a))
+- initial import pixel buffer pkg ([1836ea7](https://github.com/thi-ng/umbrella/commit/1836ea7))
 
-###  Features
+#### 🩹 Bug fixes
 
-- **pixel:** add flipY() ([a5593c0](https://github.com/thi-ng/umbrella/commit/a5593c06a6ae61eccb9ecbaa4b3828ce0b29fbc0))
-
-#  [0.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/pixel@0.2.0...@thi.ng/pixel@0.3.0) (2020-05-29)
-
-###  Features
-
-- **pixel:** add dither support for int buffers/formats ([4475fc1](https://github.com/thi-ng/umbrella/commit/4475fc14c65029e88a7216519350527fa3d2c3dc))
-- **pixel:** add FloatBuffer and float format support ([d6c490f](https://github.com/thi-ng/umbrella/commit/d6c490fb22b3d43f188f85662bb431f59daa7f32))
-- **pixel:** add/update float formats, tests ([6eb1f67](https://github.com/thi-ng/umbrella/commit/6eb1f671858c234e53f231ad8af0f07f2a423d96))
-
-#  [0.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/pixel@0.1.20...@thi.ng/pixel@0.2.0) (2020-05-19)
-
-###  Features
-
-- **pixel:** add .copy(), update .blitCanvas() ([f4b2c3e](https://github.com/thi-ng/umbrella/commit/f4b2c3e374b45bd26396e436f3e71e9d3afbc131))
-- **pixel:** update canvas2d(), imageCanvas() ([65929a2](https://github.com/thi-ng/umbrella/commit/65929a2ee6be9915e14bf69389520739073af5ee))
-
-##  [0.1.4](https://github.com/thi-ng/umbrella/compare/@thi.ng/pixel@0.1.3...@thi.ng/pixel@0.1.4) (2019-09-21)
-
-###  Bug Fixes
-
-- **pixel:** clamp values in PackedChannel.setFloat() ([ce78467](https://github.com/thi-ng/umbrella/commit/ce78467))
-
-#  0.1.0 (2019-07-31)
-
-###  Bug Fixes
-
-- **pixel:** byte order fixes, extract luminance fns ([b3c79e3](https://github.com/thi-ng/umbrella/commit/b3c79e3))
-- **pixel:** fast-route check in setChannel() ([b59069a](https://github.com/thi-ng/umbrella/commit/b59069a))
-- **pixel:** update 16bit formats & handling in getChannel ([aa15179](https://github.com/thi-ng/umbrella/commit/aa15179))
-- **pixel:** update clampRegion(), adjust src pos if dest is outside ([bb6ba47](https://github.com/thi-ng/umbrella/commit/bb6ba47))
-- **pixel:** update prepRegions() ([ad8d2d7](https://github.com/thi-ng/umbrella/commit/ad8d2d7))
-
-###  Features
-
-- **pixel:** ([#106](https://github.com/thi-ng/umbrella/issues/106)) add IBlend interface/impls, refactor IBlit ([e068f46](https://github.com/thi-ng/umbrella/commit/e068f46))
-- **pixel:** ([#106](https://github.com/thi-ng/umbrella/issues/106)) add Uint16Buffer, update IColorChannel, add Channel.GRAY ([3088646](https://github.com/thi-ng/umbrella/commit/3088646))
-- **pixel:** add 16bit formats, add docs, update readme ([5d72c37](https://github.com/thi-ng/umbrella/commit/5d72c37))
-- **pixel:** add buffer() syntax sugar, PackedBuffer.forEach ([bc17ac9](https://github.com/thi-ng/umbrella/commit/bc17ac9))
-- **pixel:** add channel float accessors, update PackedChannel ([b4168f8](https://github.com/thi-ng/umbrella/commit/b4168f8))
-- **pixel:** add invert, add/split interfaces, refactor blit fns ([22a456a](https://github.com/thi-ng/umbrella/commit/22a456a))
-- **pixel:** add PackedBuffer.fromCanvas(), update readme ([ac283ee](https://github.com/thi-ng/umbrella/commit/ac283ee))
-- **pixel:** add pre/postmultiply & isPremultiplied checks ([969d6b8](https://github.com/thi-ng/umbrella/commit/969d6b8))
-- **pixel:** complete rewrite/simplify/extend using format descriptors ([cde7bf9](https://github.com/thi-ng/umbrella/commit/cde7bf9))
-- **pixel:** initial import pixel buffer pkg ([1836ea7](https://github.com/thi-ng/umbrella/commit/1836ea7))
-- **pixel:** updat setChannel, add ALPHA8, update readme ([899f1a3](https://github.com/thi-ng/umbrella/commit/899f1a3))
-- **pixel:** update canvasPixels() ([5ea200d](https://github.com/thi-ng/umbrella/commit/5ea200d))
+- update 16bit formats & handling in getChannel ([aa15179](https://github.com/thi-ng/umbrella/commit/aa15179))
+- fast-route check in setChannel() ([b59069a](https://github.com/thi-ng/umbrella/commit/b59069a))
+- update prepRegions() ([ad8d2d7](https://github.com/thi-ng/umbrella/commit/ad8d2d7))
+- update clampRegion(), adjust src pos if dest is outside ([bb6ba47](https://github.com/thi-ng/umbrella/commit/bb6ba47))
+- byte order fixes, extract luminance fns ([b3c79e3](https://github.com/thi-ng/umbrella/commit/b3c79e3))

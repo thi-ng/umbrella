@@ -1,132 +1,226 @@
 # Change Log
 
+Last updated: 2021-11-17T23:24:59Z
+
 All notable changes to this project will be documented in this file.
-See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+See [Conventional Commits](https://conventionalcommits.org/) for commit guidelines.
 
-## [3.0.9](https://github.com/thi-ng/umbrella/compare/@thi.ng/dcons@3.0.8...@thi.ng/dcons@3.0.9) (2021-11-10)
+**Note:** Unlisted _patch_ versions only involve non-code changes and/or
+version bumps of transitive dependencies.
 
-**Note:** Version bump only for package @thi.ng/dcons
+## [3.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/dcons@3.1.0) (2021-11-17)
 
+#### 🚀 Features
 
+- Using workspaces for local tools ([bf7a404](https://github.com/thi-ng/umbrella/commit/bf7a404))
+  Improving the overall build ergonomics
+  - introduced a tools workspaces
+  - imported it in all needed packages/examples
+  - inclusive project root
 
+#### ♻️ Refactoring
 
+- testrunner to binary ([4ebbbb2](https://github.com/thi-ng/umbrella/commit/4ebbbb2))
+  this commit reverts (partly) changes made in:
+  ef346d7a8753590dc9094108a3d861a8dbd5dd2c
+  overall purpose is better testament ergonomics:
+  instead of having to pass NODE_OPTIONS with every invocation
+  having a binary to handle this for us.
 
-## [3.0.8](https://github.com/thi-ng/umbrella/compare/@thi.ng/dcons@3.0.7...@thi.ng/dcons@3.0.8) (2021-11-03)
+### [3.0.5](https://github.com/thi-ng/umbrella/tree/@thi.ng/dcons@3.0.5) (2021-10-28)
 
-**Note:** Version bump only for package @thi.ng/dcons
+#### 🩹 Bug fixes
 
+- [#325](https://github.com/thi-ng/umbrella/issues/325) replace nullish coalescing operator ([b8ddad7](https://github.com/thi-ng/umbrella/commit/b8ddad7))
+  - refactor using ternary op
+  - AFAICT only occurrence in entire umbrella repo
 
+### [3.0.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/dcons@3.0.1) (2021-10-13)
 
+#### ♻️ Refactoring
 
+- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
+- update imports in all pkgs ([5fa2b6f](https://github.com/thi-ng/umbrella/commit/5fa2b6f))
+  - add .js suffix for all relative imports
 
-## [3.0.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/dcons@3.0.4...@thi.ng/dcons@3.0.5) (2021-10-28)
+# [3.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/dcons@3.0.0) (2021-10-12)
 
+#### 🛑 Breaking changes
 
-### Bug Fixes
+- major update of ALL pkgs (export maps, ESM only) ([0d1d6ea](https://github.com/thi-ng/umbrella/commit/0d1d6ea))
+- BREAKING CHANGE: discontinue CommonJS & UMD versions
+  - only ESM modules will be published from now on
+  - CJS obsolete due to ESM support in recent versions of node:
+    - i.e. launch NodeJS via:
+    - `node --experimental-specifier-resolution=node --experimental-repl-await`
+    - in the node REPL use `await import(...)` instead of `require()`
+  - UMD obsolete due to widespread browser support for ESM
+  Also:
+  - normalize/restructure/reorg all package.json files
+  - cleanup all build scripts, remove obsolete
+  - switch from mocha to [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament) for all tests
 
-* **dcons:** [#325](https://github.com/thi-ng/umbrella/issues/325) replace nullish coalescing operator ([b8ddad7](https://github.com/thi-ng/umbrella/commit/b8ddad7c8735e2f2e4be6f2ba4c7b03b86959631))
+#### 🩹 Bug fixes
 
+- add missing explicit return type (TS4.4) ([98a5c5b](https://github.com/thi-ng/umbrella/commit/98a5c5b))
+- add missing explicit return type (TS4.4) ([7eba2ca](https://github.com/thi-ng/umbrella/commit/7eba2ca))
 
+#### ♻️ Refactoring
 
+- update imports ([045f2d9](https://github.com/thi-ng/umbrella/commit/045f2d9))
+- update all tests in _all_ pkgs ([8b582bc](https://github.com/thi-ng/umbrella/commit/8b582bc))
+  - update all to use [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament)
 
+### [2.3.17](https://github.com/thi-ng/umbrella/tree/@thi.ng/dcons@2.3.17) (2021-03-17)
 
-# [3.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/dcons@2.3.34...@thi.ng/dcons@3.0.0) (2021-10-12)
+#### ♻️ Refactoring
 
+- dedupe OOB error handling ([c14a8fb](https://github.com/thi-ng/umbrella/commit/c14a8fb))
 
-### Bug Fixes
+### [2.3.3](https://github.com/thi-ng/umbrella/tree/@thi.ng/dcons@2.3.3) (2020-12-07)
 
-* **dcons:** add missing explicit return type (TS4.4) ([98a5c5b](https://github.com/thi-ng/umbrella/commit/98a5c5b10e5a2ff592e5c6a956ce4c85182f46f9))
-* **dcons:** add missing explicit return type (TS4.4) ([7eba2ca](https://github.com/thi-ng/umbrella/commit/7eba2ca400653c389e335e257c389dce6ed889d1))
+#### ♻️ Refactoring
 
+- update type-only imports in various tests/pkgs ([3fd9c24](https://github.com/thi-ng/umbrella/commit/3fd9c24))
 
-### Build System
+### [2.3.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/dcons@2.3.1) (2020-11-24)
 
-* major update of ALL pkgs (export maps, ESM only) ([0d1d6ea](https://github.com/thi-ng/umbrella/commit/0d1d6ea9fab2a645d6c5f2bf2591459b939c09b6))
+#### ♻️ Refactoring
 
+- simplify toString() impl, add test ([2bf8b92](https://github.com/thi-ng/umbrella/commit/2bf8b92))
 
-### BREAKING CHANGES
+## [2.3.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/dcons@2.3.0) (2020-10-19)
 
-* discontinue CommonJS & UMD versions
+#### 🚀 Features
 
-- only ESM modules will be published from now on
-- CJS obsolete due to ESM support in recent versions of node:
-  - i.e. launch NodeJS via:
-  - `node --experimental-specifier-resolution=node --experimental-repl-await`
-  - in the node REPL use `await import(...)` instead of `require()`
-- UMD obsolete due to widespread browser support for ESM
+- add self-organizing list types, add tests ([d7fd88f](https://github.com/thi-ng/umbrella/commit/d7fd88f))
 
-Also:
-- normalize/restructure/reorg all package.json files
-- cleanup all build scripts, remove obsolete
-- switch from mocha to @thi.ng/testament for all tests
+#### ♻️ Refactoring
 
+- unify MTF/Transpose into SOL type ([4f14e45](https://github.com/thi-ng/umbrella/commit/4f14e45))
 
+### [2.2.32](https://github.com/thi-ng/umbrella/tree/@thi.ng/dcons@2.2.32) (2020-09-22)
 
+#### ♻️ Refactoring
 
+- minor update equiv() ([520fa76](https://github.com/thi-ng/umbrella/commit/520fa76))
 
+### [2.2.31](https://github.com/thi-ng/umbrella/tree/@thi.ng/dcons@2.2.31) (2020-09-13)
 
-#  [2.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/dcons@2.2.32...@thi.ng/dcons@2.3.0) (2020-10-19)
+#### ♻️ Refactoring
 
-###  Features
+- update imports, use new Fn types in various pkgs ([ced1e5d](https://github.com/thi-ng/umbrella/commit/ced1e5d))
 
-- **dcons:** add self-organizing list types, add tests ([d7fd88f](https://github.com/thi-ng/umbrella/commit/d7fd88fe37d3fcc758c632395b2e354e3fbdbcae))
+### [2.2.30](https://github.com/thi-ng/umbrella/tree/@thi.ng/dcons@2.2.30) (2020-08-28)
 
-#  [2.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/dcons@2.1.6...@thi.ng/dcons@2.2.0) (2019-11-30)
+#### ♻️ Refactoring
 
-###  Features
+- update delete op (TS4.0) ([5482bf4](https://github.com/thi-ng/umbrella/commit/5482bf4))
 
-- **dcons:** add dcons() factory fn (syntax sugar) ([6e09446](https://github.com/thi-ng/umbrella/commit/6e0944661d92effea2b117d09a5b24facd61fc42))
-- **dcons:** add ISeqable impl (seq()) & tests ([1cfb02a](https://github.com/thi-ng/umbrella/commit/1cfb02a828db3670a745e7d4e30867614f594881))
-- **dcons:** add sort(), update shuffle(), add tests ([f6bbcd5](https://github.com/thi-ng/umbrella/commit/f6bbcd57a04cf71389eb8045773275748ef0c50c))
+### [2.2.3](https://github.com/thi-ng/umbrella/tree/@thi.ng/dcons@2.2.3) (2020-02-25)
 
-#  [2.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/dcons@2.0.19...@thi.ng/dcons@2.1.0) (2019-07-07)
+#### ♻️ Refactoring
 
-###  Bug Fixes
+- update imports ([832585f](https://github.com/thi-ng/umbrella/commit/832585f))
 
-- **dcons:** .toString() impl, use String() conv for values ([d6b1f11](https://github.com/thi-ng/umbrella/commit/d6b1f11))
+### [2.2.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/dcons@2.2.1) (2020-01-24)
 
-###  Features
+#### ♻️ Refactoring
 
-- **dcons:** address TS strictNullChecks flag, minor optimizations ([cb5ad93](https://github.com/thi-ng/umbrella/commit/cb5ad93))
-- **dcons:** enable TS strict compiler flags (refactor) ([4e73667](https://github.com/thi-ng/umbrella/commit/4e73667))
+- add IClear decl ([b58f92b](https://github.com/thi-ng/umbrella/commit/b58f92b))
 
-#  [2.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/dcons@1.1.23...@thi.ng/dcons@2.0.0) (2019-01-21)
+## [2.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/dcons@2.2.0) (2019-11-30)
 
-###  Build System
+#### 🚀 Features
+
+- add sort(), update shuffle(), add tests ([f6bbcd5](https://github.com/thi-ng/umbrella/commit/f6bbcd5))
+  - add [@thi.ng/random](https://github.com/thi-ng/umbrella/tree/main/packages/random) dep
+  - rewrite & optimize shuffle() w/ support for IRandom
+  - update readme
+- add dcons() factory fn (syntax sugar) ([6e09446](https://github.com/thi-ng/umbrella/commit/6e09446))
+- add ISeqable impl (seq()) & tests ([1cfb02a](https://github.com/thi-ng/umbrella/commit/1cfb02a))
+
+## [2.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/dcons@2.1.0) (2019-07-07)
+
+#### 🚀 Features
+
+- address TS strictNullChecks flag, minor optimizations ([cb5ad93](https://github.com/thi-ng/umbrella/commit/cb5ad93))
+  - extract esnureIndex() & nthCellUnsafe()
+  - update pop() to return undefined rather than throw error
+- enable TS strict compiler flags (refactor) ([4e73667](https://github.com/thi-ng/umbrella/commit/4e73667))
+
+#### 🩹 Bug fixes
+
+- .toString() impl, use String() conv for values ([d6b1f11](https://github.com/thi-ng/umbrella/commit/d6b1f11))
+
+### [2.0.9](https://github.com/thi-ng/umbrella/tree/@thi.ng/dcons@2.0.9) (2019-03-10)
+
+#### ♻️ Refactoring
+
+- update Fn args in various packages ([e453ac3](https://github.com/thi-ng/umbrella/commit/e453ac3))
+
+# [2.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/dcons@2.0.0) (2019-01-21)
+
+#### 🛑 Breaking changes
 
 - update package build scripts & outputs, imports in ~50 packages ([b54b703](https://github.com/thi-ng/umbrella/commit/b54b703))
+- BREAKING CHANGE: enabled multi-outputs (ES6 modules, CJS, UMD)
+  - build scripts now first build ES6 modules in package root, then call
+    `scripts/bundle-module` to build minified CJS & UMD bundles in `/lib`
+  - all imports MUST be updated to only refer to package level
+    (not individual files anymore). tree shaking in user land will get rid of
+    all unused imported symbols.
 
-###  BREAKING CHANGES
+## [1.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/dcons@1.1.0) (2018-08-24)
 
-- enabled multi-outputs (ES6 modules, CJS, UMD)
-- build scripts now first build ES6 modules in package root, then call   `scripts/bundle-module` to build minified CJS & UMD bundles in `/lib`
-- all imports MUST be updated to only refer to package level   (not individual files anymore). tree shaking in user land will get rid of   all unused imported symbols.
+#### 🚀 Features
 
-#  [1.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/dcons@1.0.7...@thi.ng/dcons@1.1.0) (2018-08-24)
+- add IReducible impl, update deps & imports ([1280cfd](https://github.com/thi-ng/umbrella/commit/1280cfd))
 
-###  Features
+# [1.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/dcons@1.0.0) (2018-05-12)
 
-- **dcons:** add IReducible impl, update deps & imports ([1280cfd](https://github.com/thi-ng/umbrella/commit/1280cfd))
+#### 🛑 Breaking changes
 
-#  [1.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/dcons@0.3.6...@thi.ng/dcons@1.0.0) (2018-05-12)
+- update pop() ([67f0e54](https://github.com/thi-ng/umbrella/commit/67f0e54))
+- BREAKING CHANGE: due to [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/main/packages/api)/IStack update, pop() now returns
+  popped value instead of the list itself
+  - minor other refactoring
 
-###  Code Refactoring
+### [0.3.5](https://github.com/thi-ng/umbrella/tree/@thi.ng/dcons@0.3.5) (2018-05-10)
 
-- **dcons:** update pop() ([67f0e54](https://github.com/thi-ng/umbrella/commit/67f0e54))
+#### ♻️ Refactoring
 
-###  BREAKING CHANGES
+- update deps & imports in all packages due to [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/main/packages/api) split ([bc45636](https://github.com/thi-ng/umbrella/commit/bc45636))
 
-- **dcons:** due to @thi.ng/api/IStack update, pop() now returns popped value instead of the list itself
-    - minor other refactoring
+## [0.3.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/dcons@0.3.0) (2018-04-22)
 
-#  [0.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/dcons@0.2.0...@thi.ng/dcons@0.3.0) (2018-04-22)
+#### 🚀 Features
 
-###  Features
+- add asHead()/asTail() ([19f7e76](https://github.com/thi-ng/umbrella/commit/19f7e76))
 
-- **dcons:** add asHead()/asTail() ([19f7e76](https://github.com/thi-ng/umbrella/commit/19f7e76))
+## [0.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/dcons@0.2.0) (2018-04-10)
 
-#  [0.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/dcons@0.1.19...@thi.ng/dcons@0.2.0) (2018-04-10)
+#### 🚀 Features
 
-###  Features
+- add IEmpty impl, minor refactoring ([10c089a](https://github.com/thi-ng/umbrella/commit/10c089a))
+  - add empty()
+  - add clear()
+  - remove obsolete `public` method prefixes
 
-- **dcons:** add IEmpty impl, minor refactoring ([10c089a](https://github.com/thi-ng/umbrella/commit/10c089a))
+### [0.1.15](https://github.com/thi-ng/umbrella/tree/@thi.ng/dcons@0.1.15) (2018-03-21)
+
+#### ♻️ Refactoring
+
+- update error handling ([a046b28](https://github.com/thi-ng/umbrella/commit/a046b28))
+
+### [0.1.9](https://github.com/thi-ng/umbrella/tree/@thi.ng/dcons@0.1.9) (2018-01-31)
+
+#### ♻️ Refactoring
+
+- use Predicate ([79989e5](https://github.com/thi-ng/umbrella/commit/79989e5))
+
+### [0.1.4](https://github.com/thi-ng/umbrella/tree/@thi.ng/dcons@0.1.4) (2018-01-24)
+
+#### 🚀 Features
+
+- initial re-import as monorepo, update readme files, cleanup imports ([04ff6e9](https://github.com/thi-ng/umbrella/commit/04ff6e9))

@@ -1,60 +1,85 @@
 # Change Log
 
+Last updated: 2021-11-17T23:24:59Z
+
 All notable changes to this project will be documented in this file.
-See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+See [Conventional Commits](https://conventionalcommits.org/) for commit guidelines.
 
-## [2.0.7](https://github.com/thi-ng/umbrella/compare/@thi.ng/base-n@2.0.6...@thi.ng/base-n@2.0.7) (2021-11-10)
+**Note:** Unlisted _patch_ versions only involve non-code changes and/or
+version bumps of transitive dependencies.
 
-**Note:** Version bump only for package @thi.ng/base-n
+## [2.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/base-n@2.1.0) (2021-11-17)
 
+#### 🚀 Features
 
+- Using workspaces for local tools ([bf7a404](https://github.com/thi-ng/umbrella/commit/bf7a404))
+  Improving the overall build ergonomics
+  - introduced a tools workspaces
+  - imported it in all needed packages/examples
+  - inclusive project root
 
+#### ♻️ Refactoring
 
+- testrunner to binary ([4ebbbb2](https://github.com/thi-ng/umbrella/commit/4ebbbb2))
+  this commit reverts (partly) changes made in:
+  ef346d7a8753590dc9094108a3d861a8dbd5dd2c
+  overall purpose is better testament ergonomics:
+  instead of having to pass NODE_OPTIONS with every invocation
+  having a binary to handle this for us.
 
-# [2.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/base-n@1.0.5...@thi.ng/base-n@2.0.0) (2021-10-12)
+### [2.0.7](https://github.com/thi-ng/umbrella/tree/@thi.ng/base-n@2.0.7) (2021-11-10)
 
+#### ♻️ Refactoring
 
-### Build System
+- update all countdown loops ([a5f374b](https://github.com/thi-ng/umbrella/commit/a5f374b))
 
-* major update of ALL pkgs (export maps, ESM only) ([0d1d6ea](https://github.com/thi-ng/umbrella/commit/0d1d6ea9fab2a645d6c5f2bf2591459b939c09b6))
+### [2.0.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/base-n@2.0.1) (2021-10-13)
 
+#### ♻️ Refactoring
 
-### BREAKING CHANGES
+- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
+- update imports in all pkgs ([5fa2b6f](https://github.com/thi-ng/umbrella/commit/5fa2b6f))
+  - add .js suffix for all relative imports
 
-* discontinue CommonJS & UMD versions
+# [2.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/base-n@2.0.0) (2021-10-12)
 
-- only ESM modules will be published from now on
-- CJS obsolete due to ESM support in recent versions of node:
-  - i.e. launch NodeJS via:
-  - `node --experimental-specifier-resolution=node --experimental-repl-await`
-  - in the node REPL use `await import(...)` instead of `require()`
-- UMD obsolete due to widespread browser support for ESM
+#### 🛑 Breaking changes
 
-Also:
-- normalize/restructure/reorg all package.json files
-- cleanup all build scripts, remove obsolete
-- switch from mocha to @thi.ng/testament for all tests
+- major update of ALL pkgs (export maps, ESM only) ([0d1d6ea](https://github.com/thi-ng/umbrella/commit/0d1d6ea))
+- BREAKING CHANGE: discontinue CommonJS & UMD versions
+  - only ESM modules will be published from now on
+  - CJS obsolete due to ESM support in recent versions of node:
+    - i.e. launch NodeJS via:
+    - `node --experimental-specifier-resolution=node --experimental-repl-await`
+    - in the node REPL use `await import(...)` instead of `require()`
+  - UMD obsolete due to widespread browser support for ESM
+  Also:
+  - normalize/restructure/reorg all package.json files
+  - cleanup all build scripts, remove obsolete
+  - switch from mocha to [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament) for all tests
 
+#### ♻️ Refactoring
 
+- update all tests in _all_ pkgs ([8b582bc](https://github.com/thi-ng/umbrella/commit/8b582bc))
+  - update all to use [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament)
 
+### [1.0.5](https://github.com/thi-ng/umbrella/tree/@thi.ng/base-n@1.0.5) (2021-08-24)
 
+#### 🩹 Bug fixes
 
+- fix [#308](https://github.com/thi-ng/umbrella/issues/308), remove unintentional int cast ([27a0d7e](https://github.com/thi-ng/umbrella/commit/27a0d7e))
+  - use Math.floor() in BaseN.encode() to avoid casting intermediate
+    values to 32 bit int range
 
-##  [1.0.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/base-n@1.0.4...@thi.ng/base-n@1.0.5) (2021-08-24)
+## [0.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/base-n@0.2.0) (2021-08-07)
 
-###  Bug Fixes
+#### 🚀 Features
 
-- **base-n:** fix [#308](https://github.com/thi-ng/umbrella/issues/308), remove unintentional int cast ([27a0d7e](https://github.com/thi-ng/umbrella/commit/27a0d7e5052d6c40b247bfe4ef8c1611b9907a6a))
+- add BASE32_CROCKFORD preset ([7d1cad9](https://github.com/thi-ng/umbrella/commit/7d1cad9))
 
-#  [0.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/base-n@0.1.8...@thi.ng/base-n@0.2.0) (2021-08-07)
+## [0.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/base-n@0.1.0) (2021-01-13)
 
-###  Features
+#### 🚀 Features
 
-- **base-n:** add BASE32_CROCKFORD preset ([7d1cad9](https://github.com/thi-ng/umbrella/commit/7d1cad9430746efe80cd70482906b6f03b262d8a))
-
-# 0.1.0 (2021-01-13)
-
-### Features
-
-- **base-n:** add en/decodeBytes(), add BASE16_XX ([d6205d7](https://github.com/thi-ng/umbrella/commit/d6205d72331bf038ebdc95c221763e2f794c10a9))
-- **base-n:** import as new pkg (MBP2010) ([f5763b3](https://github.com/thi-ng/umbrella/commit/f5763b3c6be87eb0e27a9239527283323c3e774c))
+- add en/decodeBytes(), add BASE16_XX ([d6205d7](https://github.com/thi-ng/umbrella/commit/d6205d7))
+- import as new pkg (MBP2010) ([f5763b3](https://github.com/thi-ng/umbrella/commit/f5763b3))

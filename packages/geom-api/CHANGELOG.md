@@ -1,105 +1,124 @@
 # Change Log
 
+Last updated: 2021-11-17T23:24:59Z
+
 All notable changes to this project will be documented in this file.
-See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+See [Conventional Commits](https://conventionalcommits.org/) for commit guidelines.
 
-## [3.0.9](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-api@3.0.8...@thi.ng/geom-api@3.0.9) (2021-11-10)
+**Note:** Unlisted _patch_ versions only involve non-code changes and/or
+version bumps of transitive dependencies.
 
-**Note:** Version bump only for package @thi.ng/geom-api
+## [3.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom-api@3.1.0) (2021-11-17)
 
+#### 🚀 Features
 
+- Using workspaces for local tools ([bf7a404](https://github.com/thi-ng/umbrella/commit/bf7a404))
+  Improving the overall build ergonomics
+  - introduced a tools workspaces
+  - imported it in all needed packages/examples
+  - inclusive project root
 
+#### ♻️ Refactoring
 
+- testrunner to binary ([4ebbbb2](https://github.com/thi-ng/umbrella/commit/4ebbbb2))
+  this commit reverts (partly) changes made in:
+  ef346d7a8753590dc9094108a3d861a8dbd5dd2c
+  overall purpose is better testament ergonomics:
+  instead of having to pass NODE_OPTIONS with every invocation
+  having a binary to handle this for us.
 
-## [3.0.8](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-api@3.0.7...@thi.ng/geom-api@3.0.8) (2021-11-04)
+### [3.0.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom-api@3.0.1) (2021-10-13)
 
-**Note:** Version bump only for package @thi.ng/geom-api
+#### ♻️ Refactoring
 
+- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
+- update imports in all pkgs ([5fa2b6f](https://github.com/thi-ng/umbrella/commit/5fa2b6f))
+  - add .js suffix for all relative imports
 
+# [3.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom-api@3.0.0) (2021-10-12)
 
+#### 🛑 Breaking changes
 
+- major update of ALL pkgs (export maps, ESM only) ([0d1d6ea](https://github.com/thi-ng/umbrella/commit/0d1d6ea))
+- BREAKING CHANGE: discontinue CommonJS & UMD versions
+  - only ESM modules will be published from now on
+  - CJS obsolete due to ESM support in recent versions of node:
+    - i.e. launch NodeJS via:
+    - `node --experimental-specifier-resolution=node --experimental-repl-await`
+    - in the node REPL use `await import(...)` instead of `require()`
+  - UMD obsolete due to widespread browser support for ESM
+  Also:
+  - normalize/restructure/reorg all package.json files
+  - cleanup all build scripts, remove obsolete
+  - switch from mocha to [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament) for all tests
 
-## [3.0.7](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-api@3.0.6...@thi.ng/geom-api@3.0.7) (2021-11-03)
+#### ♻️ Refactoring
 
-**Note:** Version bump only for package @thi.ng/geom-api
+- update all test stubs ([f2d6d53](https://github.com/thi-ng/umbrella/commit/f2d6d53))
+- update all tests in _all_ pkgs ([8b582bc](https://github.com/thi-ng/umbrella/commit/8b582bc))
+  - update all to use [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament)
 
+# [2.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom-api@2.0.0) (2020-12-22)
 
+#### 🛑 Breaking changes
 
+- fix [#256](https://github.com/thi-ng/umbrella/issues/256) remove Type enum ([e2cd24a](https://github.com/thi-ng/umbrella/commit/e2cd24a))
+- BREAKING CHANGE: remove obsolete shape Type enum
+- fix [#256](https://github.com/thi-ng/umbrella/issues/256) replace enum w/ type alias ([c079a2a](https://github.com/thi-ng/umbrella/commit/c079a2a))
+- BREAKING CHANGE: replace SegmentType enum w/ type alias
 
+### [1.1.4](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom-api@1.1.4) (2020-12-07)
 
-# [3.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-api@2.0.31...@thi.ng/geom-api@3.0.0) (2021-10-12)
+#### ♻️ Refactoring
 
+- update type-only imports in various tests/pkgs ([3fd9c24](https://github.com/thi-ng/umbrella/commit/3fd9c24))
 
-### Build System
+## [1.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom-api@1.1.0) (2020-09-22)
 
-* major update of ALL pkgs (export maps, ESM only) ([0d1d6ea](https://github.com/thi-ng/umbrella/commit/0d1d6ea9fab2a645d6c5f2bf2591459b939c09b6))
+#### 🚀 Features
 
+- add Type.TEXT/3 ([0a45ef8](https://github.com/thi-ng/umbrella/commit/0a45ef8))
 
-### BREAKING CHANGES
+### [1.0.8](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom-api@1.0.8) (2020-04-05)
 
-* discontinue CommonJS & UMD versions
+#### ♻️ Refactoring
 
-- only ESM modules will be published from now on
-- CJS obsolete due to ESM support in recent versions of node:
-  - i.e. launch NodeJS via:
-  - `node --experimental-specifier-resolution=node --experimental-repl-await`
-  - in the node REPL use `await import(...)` instead of `require()`
-- UMD obsolete due to widespread browser support for ESM
+- switch to non-const enums ([f25bfa4](https://github.com/thi-ng/umbrella/commit/f25bfa4))
 
-Also:
-- normalize/restructure/reorg all package.json files
-- cleanup all build scripts, remove obsolete
-- switch from mocha to @thi.ng/testament for all tests
+### [1.0.2](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom-api@1.0.2) (2020-02-25)
 
+#### ♻️ Refactoring
 
+- update imports ([aa0f356](https://github.com/thi-ng/umbrella/commit/aa0f356))
 
+# [1.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom-api@1.0.0) (2020-01-24)
 
+#### 🛑 Breaking changes
 
+- replace ISpatialAccel w/ new interfaces ([baa05d1](https://github.com/thi-ng/umbrella/commit/baa05d1))
+- BREAKING CHANGE: replace ISpatialAccel with new interfaces:
+  ISpatialMap, ISpatialSet, IRegionQuery
 
-#  [2.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-api@1.1.4...@thi.ng/geom-api@2.0.0) (2020-12-22)
+#### ♻️ Refactoring
 
-###  Code Refactoring
+- update ISpatialMap/Set ([7015512](https://github.com/thi-ng/umbrella/commit/7015512))
+  - add IClear, ICopy, IEmpty
+  - add keys()/values() map-like iterators
 
-- **geom-api:** fix [#256](https://github.com/thi-ng/umbrella/issues/256) remove Type enum ([e2cd24a](https://github.com/thi-ng/umbrella/commit/e2cd24a7fc24af4c2541cd426e5b03431cc8fe86))
-- **geom-api:** fix [#256](https://github.com/thi-ng/umbrella/issues/256) replace enum w/ type alias ([c079a2a](https://github.com/thi-ng/umbrella/commit/c079a2ac620ef731429501d88580b4baada98ab6))
+## [0.3.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom-api@0.3.0) (2019-07-12)
 
-###  BREAKING CHANGES
+#### 🚀 Features
 
-- **geom-api:** remove obsolete shape Type enum
-- **geom-api:** replace SegmentType enum w/ type alias
+- add CubicOpts ([81ac728](https://github.com/thi-ng/umbrella/commit/81ac728))
 
-#  [1.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-api@1.0.34...@thi.ng/geom-api@1.1.0) (2020-09-22)
+## [0.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom-api@0.2.0) (2019-04-15)
 
-###  Features
+#### 🚀 Features
 
-- **geom-api:** add Type.TEXT/3 ([0a45ef8](https://github.com/thi-ng/umbrella/commit/0a45ef8aa99d3dab1bb98c503cf87d1bef0ab8e2))
+- add more Type enums ([90e8b50](https://github.com/thi-ng/umbrella/commit/90e8b50))
 
-#  [1.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-api@0.3.8...@thi.ng/geom-api@1.0.0) (2020-01-24)
+## [0.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom-api@0.1.0) (2019-02-05)
 
-###  Features
+#### 🚀 Features
 
-- **geom-api:** replace ISpatialAccel w/ new interfaces ([baa05d1](https://github.com/thi-ng/umbrella/commit/baa05d1908a940115690cb3d1dd403173061d63a))
-
-###  BREAKING CHANGES
-
-- **geom-api:** replace ISpatialAccel with new interfaces: ISpatialMap, ISpatialSet, IRegionQuery
-
-#  [0.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-api@0.2.5...@thi.ng/geom-api@0.3.0) (2019-07-12)
-
-###  Features
-
-- **geom-api:** add CubicOpts ([81ac728](https://github.com/thi-ng/umbrella/commit/81ac728))
-
-#  [0.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom-api@0.1.12...@thi.ng/geom-api@0.2.0) (2019-04-15)
-
-###  Features
-
-- **geom-api:** add more Type enums ([90e8b50](https://github.com/thi-ng/umbrella/commit/90e8b50))
-
-#  0.1.0 (2019-02-05)
-
-###  Features
-
-- **geom-api:** add ISpatialAccel.selectVals() ([4bde37e](https://github.com/thi-ng/umbrella/commit/4bde37e))
-- **geom-api:** extract from geom as new package ([4e53293](https://github.com/thi-ng/umbrella/commit/4e53293))
-- **geom-api:** re-add Convexity enum ([6ee03eb](https://github.com/thi-ng/umbrella/commit/6ee03eb))
+- add ISpatialAccel.selectVals() ([4bde37e](https://github.com/thi-ng/umbrella/commit/4bde37e))

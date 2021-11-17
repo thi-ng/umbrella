@@ -1,628 +1,910 @@
 # Change Log
 
+Last updated: 2021-11-17T23:24:59Z
+
 All notable changes to this project will be documented in this file.
-See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+See [Conventional Commits](https://conventionalcommits.org/) for commit guidelines.
 
-## [8.0.8](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@8.0.7...@thi.ng/transducers@8.0.8) (2021-11-10)
+**Note:** Unlisted _patch_ versions only involve non-code changes and/or
+version bumps of transitive dependencies.
 
-**Note:** Version bump only for package @thi.ng/transducers
+## [8.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/transducers@8.1.0) (2021-11-17)
 
+#### 🚀 Features
 
+- Using workspaces for local tools ([bf7a404](https://github.com/thi-ng/umbrella/commit/bf7a404))
+  Improving the overall build ergonomics
+  - introduced a tools workspaces
+  - imported it in all needed packages/examples
+  - inclusive project root
+- add rechunk() xform ([10d0e9f](https://github.com/thi-ng/umbrella/commit/10d0e9f))
+  - update readme
 
+#### ♻️ Refactoring
 
+- testrunner to binary ([4ebbbb2](https://github.com/thi-ng/umbrella/commit/4ebbbb2))
+  this commit reverts (partly) changes made in:
+  ef346d7a8753590dc9094108a3d861a8dbd5dd2c
+  overall purpose is better testament ergonomics:
+  instead of having to pass NODE_OPTIONS with every invocation
+  having a binary to handle this for us.
 
-## [8.0.7](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@8.0.6...@thi.ng/transducers@8.0.7) (2021-11-03)
+### [8.0.8](https://github.com/thi-ng/umbrella/tree/@thi.ng/transducers@8.0.8) (2021-11-10)
 
-**Note:** Version bump only for package @thi.ng/transducers
+#### ♻️ Refactoring
 
+- update all countdown loops ([a5f374b](https://github.com/thi-ng/umbrella/commit/a5f374b))
 
+### [8.0.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/transducers@8.0.1) (2021-10-13)
 
+#### ♻️ Refactoring
 
+- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
+- update imports in all pkgs ([5fa2b6f](https://github.com/thi-ng/umbrella/commit/5fa2b6f))
+  - add .js suffix for all relative imports
 
-# [8.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@7.9.2...@thi.ng/transducers@8.0.0) (2021-10-12)
+# [8.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/transducers@8.0.0) (2021-10-12)
 
+#### 🛑 Breaking changes
 
-### Build System
+- restructure package ([4d643f5](https://github.com/thi-ng/umbrella/commit/4d643f5))
+- BREAKING CHANGE: restructure/flatten pkg, remove sub folders
+  - migrate all /func, /iter, /rfn, /xform files to main /src folder
+- major update of ALL pkgs (export maps, ESM only) ([0d1d6ea](https://github.com/thi-ng/umbrella/commit/0d1d6ea))
+- BREAKING CHANGE: discontinue CommonJS & UMD versions
+  - only ESM modules will be published from now on
+  - CJS obsolete due to ESM support in recent versions of node:
+    - i.e. launch NodeJS via:
+    - `node --experimental-specifier-resolution=node --experimental-repl-await`
+    - in the node REPL use `await import(...)` instead of `require()`
+  - UMD obsolete due to widespread browser support for ESM
+  Also:
+  - normalize/restructure/reorg all package.json files
+  - cleanup all build scripts, remove obsolete
+  - switch from mocha to [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament) for all tests
 
-* major update of ALL pkgs (export maps, ESM only) ([0d1d6ea](https://github.com/thi-ng/umbrella/commit/0d1d6ea9fab2a645d6c5f2bf2591459b939c09b6))
+#### ♻️ Refactoring
 
+- update deps & imports in various pkgs ([e1cf29e](https://github.com/thi-ng/umbrella/commit/e1cf29e))
+  - largely related to recent updates/restructuring of these packages:
+    - api
+    - defmulti
+    - errors
+    - logger
+- update imports ([138571a](https://github.com/thi-ng/umbrella/commit/138571a))
+- update all tests in _all_ pkgs ([8b582bc](https://github.com/thi-ng/umbrella/commit/8b582bc))
+  - update all to use [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament)
 
-### Code Refactoring
+### [7.9.2](https://github.com/thi-ng/umbrella/tree/@thi.ng/transducers@7.9.2) (2021-09-03)
 
-* **transducers:** restructure package ([4d643f5](https://github.com/thi-ng/umbrella/commit/4d643f57a276ddd73e6214f9ea78d3302076d466))
+#### 🩹 Bug fixes
 
+- fix [#310](https://github.com/thi-ng/umbrella/issues/310), update flatten/flattenWith ([bfbd726](https://github.com/thi-ng/umbrella/commit/bfbd726))
+  - fix `flatten()`/`flattenWith()` return types
+  - update generics to allow specifying explicit result type, but
+    use new `DeepArrayValue<A>` mapped type as default
+  - update `flattenWith()` predicate arg type to `any` since current
+    restriction on top-level input type was (potentially) wrong for
+    deeper levels. Also lift restriction and update pred's return type
+    to `MaybeIterable<any>` (for same reason).
 
-### BREAKING CHANGES
+### [7.9.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/transducers@7.9.1) (2021-08-19)
 
-* **transducers:** restructure/flatten pkg, remove sub folders
+#### 🩹 Bug fixes
 
-- migrate all /func, /iter, /rfn, /xform files to main /src folder
-* discontinue CommonJS & UMD versions
+- update normFrequenciesAuto() ([5b5200b](https://github.com/thi-ng/umbrella/commit/5b5200b))
+  - actually use `key` fn arg (if given)
 
-- only ESM modules will be published from now on
-- CJS obsolete due to ESM support in recent versions of node:
-  - i.e. launch NodeJS via:
-  - `node --experimental-specifier-resolution=node --experimental-repl-await`
-  - in the node REPL use `await import(...)` instead of `require()`
-- UMD obsolete due to widespread browser support for ESM
+## [7.9.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/transducers@7.9.0) (2021-08-19)
 
-Also:
-- normalize/restructure/reorg all package.json files
-- cleanup all build scripts, remove obsolete
-- switch from mocha to @thi.ng/testament for all tests
+#### 🚀 Features
 
+- add normalized frequencies() reducers ([d09db8d](https://github.com/thi-ng/umbrella/commit/d09db8d))
+  - add normCount()
+  - add normFrequencies()
+  - add normFrequenciesAuto()
+  - update readme
 
+## [7.8.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/transducers@7.8.0) (2021-08-04)
 
+#### 🚀 Features
 
+- add minMax() reducer ([5f8a722](https://github.com/thi-ng/umbrella/commit/5f8a722))
+- update repeatedly(), iterate() ([b7d9ba4](https://github.com/thi-ng/umbrella/commit/b7d9ba4))
+  - add iteration counter arg for repeatedly()
+  - minor refactor iterate()
 
+## [7.7.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/transducers@7.7.0) (2021-04-07)
 
-##  [7.9.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@7.9.1...@thi.ng/transducers@7.9.2) (2021-09-03)
+#### 🚀 Features
 
-###  Bug Fixes
+- add partitionWhen() xform ([d2dd4d9](https://github.com/thi-ng/umbrella/commit/d2dd4d9))
 
-- **transducers:** fix [#310](https://github.com/thi-ng/umbrella/issues/310), update flatten/flattenWith ([bfbd726](https://github.com/thi-ng/umbrella/commit/bfbd7269fe506c0f40c109f1701a1ea50dc944e9))
+### [7.6.10](https://github.com/thi-ng/umbrella/tree/@thi.ng/transducers@7.6.10) (2021-04-03)
 
-##  [7.9.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@7.9.0...@thi.ng/transducers@7.9.1) (2021-08-19)
+#### ♻️ Refactoring
 
-###  Bug Fixes
+- minor updates ([c582a1a](https://github.com/thi-ng/umbrella/commit/c582a1a))
 
-- **transducers:** update normFrequenciesAuto() ([5b5200b](https://github.com/thi-ng/umbrella/commit/5b5200b6d4e61df6c2e6458b99b8b10ea9f3bb65))
+### [7.6.2](https://github.com/thi-ng/umbrella/tree/@thi.ng/transducers@7.6.2) (2021-03-03)
 
-#  [7.9.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@7.8.4...@thi.ng/transducers@7.9.0) (2021-08-19)
+#### 🩹 Bug fixes
 
-###  Features
+- add missing type anno (TS4.2) ([7ced9be](https://github.com/thi-ng/umbrella/commit/7ced9be))
 
-- **transducers:** add normalized frequencies() reducers ([d09db8d](https://github.com/thi-ng/umbrella/commit/d09db8d47be81e78dea1f4e16917249924b65e35))
+## [7.6.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/transducers@7.6.0) (2021-02-20)
 
-#  [7.8.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@7.7.5...@thi.ng/transducers@7.8.0) (2021-08-04)
+#### 🚀 Features
 
-###  Features
+- add TweenOpts.easing, update tween() ([f3a50f4](https://github.com/thi-ng/umbrella/commit/f3a50f4))
 
-- **transducers:** add minMax() reducer ([5f8a722](https://github.com/thi-ng/umbrella/commit/5f8a72215010645cce039cedab3313fae722e363))
-- **transducers:** update repeatedly(), iterate() ([b7d9ba4](https://github.com/thi-ng/umbrella/commit/b7d9ba42b812c3b39909e86be5eebfa4e235f535))
+#### ♻️ Refactoring
 
-#  [7.7.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@7.6.10...@thi.ng/transducers@7.7.0) (2021-04-07)
+- use clamp0() ([47d5e54](https://github.com/thi-ng/umbrella/commit/47d5e54))
 
-###  Features
+### [7.5.2](https://github.com/thi-ng/umbrella/tree/@thi.ng/transducers@7.5.2) (2020-12-07)
 
-- **transducers:** add partitionWhen() xform ([d2dd4d9](https://github.com/thi-ng/umbrella/commit/d2dd4d92895622bfa38d8458472d86f9e89e8952))
+#### ♻️ Refactoring
 
-##  [7.6.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@7.6.1...@thi.ng/transducers@7.6.2) (2021-03-03)
+- update type-only imports ([6407f7d](https://github.com/thi-ng/umbrella/commit/6407f7d))
+- update type-only imports in various tests/pkgs ([3fd9c24](https://github.com/thi-ng/umbrella/commit/3fd9c24))
 
-###  Bug Fixes
+## [7.5.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/transducers@7.5.0) (2020-11-24)
 
-- **transducers:** add missing type anno (TS4.2) ([7ced9be](https://github.com/thi-ng/umbrella/commit/7ced9be6b0dc41567c4b65517e8caba1d0bfffe2))
+#### 🚀 Features
 
-#  [7.6.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@7.5.8...@thi.ng/transducers@7.6.0) (2021-02-20)
+- add minMag/maxMag() reducers ([f7496b3](https://github.com/thi-ng/umbrella/commit/f7496b3))
+- add reduceRight/transduceRight() ([b71ff9c](https://github.com/thi-ng/umbrella/commit/b71ff9c))
+  - update readme
 
-###  Features
+#### ♻️ Refactoring
 
-- **transducers:** add TweenOpts.easing, update tween() ([f3a50f4](https://github.com/thi-ng/umbrella/commit/f3a50f46c800c23e8aa3e42ebd90e6b028c6a0db))
+- dedupe transduce/transduceRight() internals ([2246ef4](https://github.com/thi-ng/umbrella/commit/2246ef4))
+- update destructuring ([d944b54](https://github.com/thi-ng/umbrella/commit/d944b54))
 
-#  [7.5.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@7.4.0...@thi.ng/transducers@7.5.0) (2020-11-24)
+## [7.4.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/transducers@7.4.0) (2020-09-22)
 
-###  Features
+#### 🚀 Features
 
-- **transducers:** add minMag/maxMag() reducers ([f7496b3](https://github.com/thi-ng/umbrella/commit/f7496b3989c0209f51c561cdba9b50d19f976357))
-- **transducers:** add reduceRight/transduceRight() ([b71ff9c](https://github.com/thi-ng/umbrella/commit/b71ff9c63ea158d44187b1ab5b25d1833eebde3c))
+- add mapcatIndexed() xform ([4f3d6e0](https://github.com/thi-ng/umbrella/commit/4f3d6e0))
 
-#  [7.4.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@7.3.1...@thi.ng/transducers@7.4.0) (2020-09-22)
+### [7.3.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/transducers@7.3.1) (2020-09-13)
 
-###  Features
+#### ♻️ Refactoring
 
-- **transducers:** add mapcatIndexed() xform ([4f3d6e0](https://github.com/thi-ng/umbrella/commit/4f3d6e02a0ff3fe7307cd03404277c03123f83e9))
+- update imports ([e166cda](https://github.com/thi-ng/umbrella/commit/e166cda))
 
-#  [7.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@7.2.2...@thi.ng/transducers@7.3.0) (2020-08-28)
+## [7.3.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/transducers@7.3.0) (2020-08-28)
 
-###  Bug Fixes
+#### 🚀 Features
 
-- **transducers:** type ([dedce3f](https://github.com/thi-ng/umbrella/commit/dedce3fe874960769c4f6e178fd591bfd6eef263))
+- fix normRange2d, add normRange3d ([db75605](https://github.com/thi-ng/umbrella/commit/db75605))
+- add normRange2 ([1125930](https://github.com/thi-ng/umbrella/commit/1125930))
 
-###  Features
+#### 🩹 Bug fixes
 
-- **tranducers:** fix normRange2d, add normRange3d ([db75605](https://github.com/thi-ng/umbrella/commit/db75605a65a7ca47fae146935b78d20ec3569d11))
-- **transducers:** add normRange2 ([1125930](https://github.com/thi-ng/umbrella/commit/1125930e3ea32d80793876daa98729e7ee51fe76))
+- type ([dedce3f](https://github.com/thi-ng/umbrella/commit/dedce3f))
 
-#  [7.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@7.1.6...@thi.ng/transducers@7.2.0) (2020-07-28)
+#### ♻️ Refactoring
 
-###  Features
+- update/fix normRange2d/3d() ([d40c4a7](https://github.com/thi-ng/umbrella/commit/d40c4a7))
 
-- **transducers:** add autoObj() reducer ([26ad12a](https://github.com/thi-ng/umbrella/commit/26ad12a1ae73c563a944baf1db643930bba3fdb0))
+## [7.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/transducers@7.2.0) (2020-07-28)
 
-#  [7.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@7.0.0...@thi.ng/transducers@7.1.0) (2020-06-14)
+#### 🚀 Features
 
-###  Features
+- add autoObj() reducer ([26ad12a](https://github.com/thi-ng/umbrella/commit/26ad12a))
 
-- **transducers:** add keyPermutations, tests, update readme ([5110d50](https://github.com/thi-ng/umbrella/commit/5110d50ba0c499c48c288820b9fb73ee42f9142f))
+## [7.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/transducers@7.1.0) (2020-06-14)
 
-#  [7.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@6.7.0...@thi.ng/transducers@7.0.0) (2020-06-01)
+#### 🚀 Features
 
-###  Bug Fixes
+- add keyPermutations, tests, update readme ([5110d50](https://github.com/thi-ng/umbrella/commit/5110d50))
 
-- **transducers:** [#186](https://github.com/thi-ng/umbrella/issues/186), Fix crash when using empty string as source for several transducers. ([ef7a798](https://github.com/thi-ng/umbrella/commit/ef7a798d35c172d50b2f4453f4522260d0fe81e4))
+# [7.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/transducers@7.0.0) (2020-06-01)
 
-###  Documentation
+#### 🛑 Breaking changes
 
-- **transducers:** update readme ([47b6cef](https://github.com/thi-ng/umbrella/commit/47b6cefe2344d0e33a9d597b4bb758f2a2f7512e))
+- update readme ([47b6cef](https://github.com/thi-ng/umbrella/commit/47b6cef))
+- BREAKING CHANGE: `flatten` string handling now *always* atomic
 
-###  BREAKING CHANGES
+#### 🩹 Bug fixes
 
-- **transducers:** `flatten` string handling now *always* atomic
+- [#186](https://github.com/thi-ng/umbrella/issues/186), Fix crash when using empty string as source for several transducers. ([ef7a798](https://github.com/thi-ng/umbrella/commit/ef7a798))
 
-#  [6.7.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@6.6.0...@thi.ng/transducers@6.7.0) (2020-06-01)
+#### ♻️ Refactoring
 
-###  Features
+- update flatten & flattenWith ([35c2aaf](https://github.com/thi-ng/umbrella/commit/35c2aaf))
 
-- **transducers:** add IDeref support slidingWindow() ([13f4184](https://github.com/thi-ng/umbrella/commit/13f4184f755fadb0a585b7e443c1218a7e2df5db))
+## [6.7.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/transducers@6.7.0) (2020-06-01)
 
-#  [6.6.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@6.5.0...@thi.ng/transducers@6.6.0) (2020-05-29)
+#### 🚀 Features
 
-###  Features
+- add IDeref support slidingWindow() ([13f4184](https://github.com/thi-ng/umbrella/commit/13f4184))
+  (cherry picked from commit [c75175689544f172acde856b4261ca9dc128d1dd](https://github.com/thi-ng/umbrella/commit/c75175689544f172acde856b4261ca9dc128d1dd))
+- add IDeref support slidingWindow() ([c751756](https://github.com/thi-ng/umbrella/commit/c751756))
 
-- **transducers:** add rangeNd(), add/update tests ([9239d6f](https://github.com/thi-ng/umbrella/commit/9239d6fbf4de66300ed924b9de9a0fa67df0235c))
+## [6.6.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/transducers@6.6.0) (2020-05-29)
 
-#  [6.5.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@6.4.9...@thi.ng/transducers@6.5.0) (2020-05-14)
+#### 🚀 Features
 
-###  Features
+- add rangeNd(), add/update tests ([9239d6f](https://github.com/thi-ng/umbrella/commit/9239d6f))
 
-- **transducers:** [#221](https://github.com/thi-ng/umbrella/issues/221), add partitionSync() key add/removal ops ([2ab4bf5](https://github.com/thi-ng/umbrella/commit/2ab4bf5858b1c0162f8adb8780507a05cf16a831))
+#### ♻️ Refactoring
 
-#  [6.4.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@6.3.2...@thi.ng/transducers@6.4.0) (2020-03-01)
+- update rangeNd() arg types ([d5aab14](https://github.com/thi-ng/umbrella/commit/d5aab14))
 
-###  Features
+## [6.5.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/transducers@6.5.0) (2020-05-14)
 
-- **transducers:** add partitionTime() transducer ([efafd0b](https://github.com/thi-ng/umbrella/commit/efafd0ba3f5cfc52a42bb39819caadf35d6b2f42))
-- **transducers:** update mapKeys() key fns to accept 2nd arg ([749d2cd](https://github.com/thi-ng/umbrella/commit/749d2cd2fef29f6991bde75a775d6715600c3b34))
+#### 🚀 Features
 
-#  [6.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@6.2.1...@thi.ng/transducers@6.3.0) (2020-02-25)
+- [#221](https://github.com/thi-ng/umbrella/issues/221), add partitionSync() key add/removal ops ([2ab4bf5](https://github.com/thi-ng/umbrella/commit/2ab4bf5))
+  - add PartitionSync type
+  - attach ops to dynamically manipulate & query input set
+  - make input removal cleanup optional (enabled by default)
+  - add/update tests
 
-###  Features
+## [6.4.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/transducers@6.4.0) (2020-03-01)
 
-- **transducers:** add peek() xform, update readme ([26aa228](https://github.com/thi-ng/umbrella/commit/26aa2284309dcf07cca3714dec23a799efd44f30))
+#### 🚀 Features
 
-#  [6.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@6.1.0...@thi.ng/transducers@6.2.0) (2020-01-24)
+- update mapKeys() key fns to accept 2nd arg ([749d2cd](https://github.com/thi-ng/umbrella/commit/749d2cd))
+  - pass original input value as 2nd arg to each key transform fn
+  - this allows creating new keys based on other values in the object
+- add partitionTime() transducer ([efafd0b](https://github.com/thi-ng/umbrella/commit/efafd0b))
 
-###  Bug Fixes
+## [6.3.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/transducers@6.3.0) (2020-02-25)
 
-- **transducers:** update keep() xform to accept nullable ([1bc561b](https://github.com/thi-ng/umbrella/commit/1bc561bde02f116a5b1e2aff7a3d432d737fc4ae))
-- **transducers:** use child reducer completion step in groupByMap/Obj() ([ff44fcb](https://github.com/thi-ng/umbrella/commit/ff44fcbc877d75a5d7458459656f3b86ab6a0399))
+#### 🚀 Features
 
-###  Features
+- add peek() xform, update readme ([26aa228](https://github.com/thi-ng/umbrella/commit/26aa228))
 
-- **transducers:** add dup() & palindrome(), update readme ([546bf9f](https://github.com/thi-ng/umbrella/commit/546bf9ffaa25c926f3e8af365049723bc9fe5877))
-- **transducers:** add IXform interface & TxLike type alias, update related functions ([49c62b7](https://github.com/thi-ng/umbrella/commit/49c62b7932eb943a8db472c3e1de0f18a35c43c6))
-- **transducers:** add line(), curve() ([31bd5b9](https://github.com/thi-ng/umbrella/commit/31bd5b9758a8da828cb9cc79820333279f810345))
-- **transducers:** add opt limit for cycle() ([186daff](https://github.com/thi-ng/umbrella/commit/186daff00edeb9b3a7e1475e3f903f3b1f0b75c2))
-- **transducers:** add pushSort() reducer ([444d2ee](https://github.com/thi-ng/umbrella/commit/444d2ee6b5111e4855b8cb3f2417738ccd934861))
-- **transducers:** add sortedKeys() iterator ([fa9343c](https://github.com/thi-ng/umbrella/commit/fa9343c8028c3f02e0322362db97a126f5c8a564))
-- **transducers:** update curve(), line(), iterate() ([3581a9d](https://github.com/thi-ng/umbrella/commit/3581a9d7c9eba9e3fa6cf8ec6a0a63e662157e83))
+#### ♻️ Refactoring
 
-###  Performance Improvements
+- update imports ([f081687](https://github.com/thi-ng/umbrella/commit/f081687))
 
-- **transducers:** update string version of palindrome() ([315cbf8](https://github.com/thi-ng/umbrella/commit/315cbf80b577966e19f6a135d2c4256205c4a251))
+## [6.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/transducers@6.2.0) (2020-01-24)
 
-#  [6.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@6.0.0...@thi.ng/transducers@6.1.0) (2019-11-30)
+#### 🚀 Features
 
-###  Bug Fixes
+- add IXform interface & TxLike type alias, update related functions ([49c62b7](https://github.com/thi-ng/umbrella/commit/49c62b7))
+  - update all fns expecting Transducer args
+  - add internal ensureTransducer() helper
+- update curve(), line(), iterate() ([3581a9d](https://github.com/thi-ng/umbrella/commit/3581a9d))
+  - curve(): use new/improved logic from [@thi.ng/dsp](https://github.com/thi-ng/umbrella/tree/main/packages/dsp)
+  - iterate(): add opt step count
+- add opt limit for cycle() ([186daff](https://github.com/thi-ng/umbrella/commit/186daff))
+- add line(), curve() ([31bd5b9](https://github.com/thi-ng/umbrella/commit/31bd5b9))
+- add dup() & palindrome(), update readme ([546bf9f](https://github.com/thi-ng/umbrella/commit/546bf9f))
+- add sortedKeys() iterator ([fa9343c](https://github.com/thi-ng/umbrella/commit/fa9343c))
+- add pushSort() reducer ([444d2ee](https://github.com/thi-ng/umbrella/commit/444d2ee))
 
-- **transducers:** add type hints ([651e281](https://github.com/thi-ng/umbrella/commit/651e281df6ca7f713e78d17c656bb59bea52f877))
+#### 🩹 Bug fixes
 
-###  Features
+- update keep() xform to accept nullable ([1bc561b](https://github.com/thi-ng/umbrella/commit/1bc561b))
+- use child reducer completion step in groupByMap/Obj() ([ff44fcb](https://github.com/thi-ng/umbrella/commit/ff44fcb))
 
-- **transducers:** add back pressure support for partitionSync() ([6e14952](https://github.com/thi-ng/umbrella/commit/6e1495229c3e9527c168ffe573533124088c3006))
+#### ⏱ Performance improvements
 
-#  [6.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@5.4.5...@thi.ng/transducers@6.0.0) (2019-11-09)
+- update string version of palindrome() ([315cbf8](https://github.com/thi-ng/umbrella/commit/315cbf8))
+  - avoid char-wise iteration of original input
 
-###  Code Refactoring
+#### ♻️ Refactoring
 
-- **transducers:** rename old `interpolate` => `tween` ([918721d](https://github.com/thi-ng/umbrella/commit/918721dada9bab8045e397f13a2f77290eea2c88))
-- **transducers:** simplify args for extendSides, padSides, wrapSides ([a36651a](https://github.com/thi-ng/umbrella/commit/a36651a3aadb951a3d8bd117ddfa0dddf48d36ac))
-- **transducers:** update tween() args ([5523582](https://github.com/thi-ng/umbrella/commit/552358207cdf1dfdcb2ca78deac326ecad895fa9))
+- update ConvolutionOpts ([0748d97](https://github.com/thi-ng/umbrella/commit/0748d97))
 
-###  Features
+## [6.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/transducers@6.1.0) (2019-11-30)
 
-- **transducers:** add new iterators: extendSides/padSides/symmetric() ([47001fc](https://github.com/thi-ng/umbrella/commit/47001fc9c16f53af427e872b04929113d69463aa))
-- **transducers:** add new transducers: interpolate, interpolateHermite/Linear ([c3fa9ab](https://github.com/thi-ng/umbrella/commit/c3fa9ab90797af1d89e05f1c3821a87f9aa8a543))
+#### 🩹 Bug fixes
 
-###  BREAKING CHANGES
+- add type hints ([651e281](https://github.com/thi-ng/umbrella/commit/651e281))
 
-- **transducers:** replace tween() args w/ `TweenOpts` config object
-- **transducers:** rename `interpolate` iterator  => `tween`
-- **transducers:** Rename wrap() => wrapSides(), update signature to be aligned w/ related iterators
+# [6.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/transducers@6.0.0) (2019-11-09)
 
-##  [5.4.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@5.4.4...@thi.ng/transducers@5.4.5) (2019-09-21)
+#### 🛑 Breaking changes
 
-###  Bug Fixes
+- update tween() args ([5523582](https://github.com/thi-ng/umbrella/commit/5523582))
+  - add TweenOpts
+  - add/update docstrings
+- BREAKING CHANGE: replace tween() args w/ `TweenOpts` config object
+- rename old `interpolate` => `tween` ([918721d](https://github.com/thi-ng/umbrella/commit/918721d))
+- BREAKING CHANGE: rename `interpolate` iterator  => `tween`
+- simplify args for extendSides, padSides, wrapSides ([a36651a](https://github.com/thi-ng/umbrella/commit/a36651a))
+  - rename wrap() => wrapSides()
+  - remove obsolete & deprecated wrapLeft/Right/Both
+- BREAKING CHANGE: Rename wrap() => wrapSides(), update signature to be
+  aligned w/ related iterators
 
-- **transducers:** fix mean() for reduce w/ init value ([d993bf2](https://github.com/thi-ng/umbrella/commit/d993bf2))
+#### 🚀 Features
 
-#  [5.4.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@5.3.7...@thi.ng/transducers@5.4.0) (2019-07-07)
+- add new transducers: interpolate, interpolateHermite/Linear ([c3fa9ab](https://github.com/thi-ng/umbrella/commit/c3fa9ab))
+- add new iterators: extendSides/padSides/symmetric() ([47001fc](https://github.com/thi-ng/umbrella/commit/47001fc))
 
-###  Bug Fixes
+#### ♻️ Refactoring
 
-- **transducers:** fix cat/mapcat arg types ([0d9b7cb](https://github.com/thi-ng/umbrella/commit/0d9b7cb))
+- fix [#166](https://github.com/thi-ng/umbrella/issues/166), update wrapSides() bounds check ([963c73a](https://github.com/thi-ng/umbrella/commit/963c73a))
+- add type hints (TS 3.6.4) ([a1582c0](https://github.com/thi-ng/umbrella/commit/a1582c0))
 
-###  Features
+### [5.4.5](https://github.com/thi-ng/umbrella/tree/@thi.ng/transducers@5.4.5) (2019-09-21)
 
-- **transducers:** enable TS strict compiler flags (refactor) ([2f8ec89](https://github.com/thi-ng/umbrella/commit/2f8ec89))
+#### 🚀 Features
 
-##  [5.3.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@5.3.2...@thi.ng/transducers@5.3.3) (2019-04-03)
+- add back pressure support for partitionSync() ([6e14952](https://github.com/thi-ng/umbrella/commit/6e14952))
 
-###  Bug Fixes
+#### 🩹 Bug fixes
 
-- **transducers:** fix [#82](https://github.com/thi-ng/umbrella/issues/82), update partitionSync required key checks, add tests ([8b2f3fe](https://github.com/thi-ng/umbrella/commit/8b2f3fe))
+- fix mean() for reduce w/ init value ([d993bf2](https://github.com/thi-ng/umbrella/commit/d993bf2))
 
-#  [5.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@5.2.2...@thi.ng/transducers@5.3.0) (2019-03-21)
+### [5.4.4](https://github.com/thi-ng/umbrella/tree/@thi.ng/transducers@5.4.4) (2019-08-21)
 
-###  Bug Fixes
+#### ♻️ Refactoring
 
-- **transducers:** update mean() completion step to avoid div by zero ([f644ecd](https://github.com/thi-ng/umbrella/commit/f644ecd))
+- extract internal helpers, update rfns & xforms ([7772f9b](https://github.com/thi-ng/umbrella/commit/7772f9b))
+  Impacted reducers:
+  - add/mul/sub
+  - groupByMap/Obj
+  Xforms:
+  - movingMedian
+  - partitionSort / streamSort
+  - takeLast
+- update/split reduce() ([820e7c7](https://github.com/thi-ng/umbrella/commit/820e7c7))
+- update kernelLookup destructuring ([acaa38e](https://github.com/thi-ng/umbrella/commit/acaa38e))
+- extract common logic for add/mul/sub reducers ([7caa71a](https://github.com/thi-ng/umbrella/commit/7caa71a))
 
-###  Features
+## [5.4.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/transducers@5.4.0) (2019-07-07)
 
-- **transducers:** add toggle() xform ([b5c744e](https://github.com/thi-ng/umbrella/commit/b5c744e))
+#### 🚀 Features
 
-#  [5.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@5.1.2...@thi.ng/transducers@5.2.0) (2019-03-10)
+- enable TS strict compiler flags (refactor) ([2f8ec89](https://github.com/thi-ng/umbrella/commit/2f8ec89))
 
-###  Features
+#### 🩹 Bug fixes
 
-- **transducers:** add / update convolution fns ([31e594b](https://github.com/thi-ng/umbrella/commit/31e594b))
+- fix cat/mapcat arg types ([0d9b7cb](https://github.com/thi-ng/umbrella/commit/0d9b7cb))
 
-##  [5.1.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@5.1.1...@thi.ng/transducers@5.1.2) (2019-03-03)
+#### ♻️ Refactoring
 
-###  Bug Fixes
+- address TS strictNullChecks flag ([c681aae](https://github.com/thi-ng/umbrella/commit/c681aae))
 
-- **transducers:** update dedupe() w/ predicate arg ([c414423](https://github.com/thi-ng/umbrella/commit/c414423))
+### [5.3.3](https://github.com/thi-ng/umbrella/tree/@thi.ng/transducers@5.3.3) (2019-04-03)
 
-#  [5.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@5.0.0...@thi.ng/transducers@5.1.0) (2019-02-26)
+#### 🩹 Bug fixes
 
-###  Bug Fixes
+- fix [#82](https://github.com/thi-ng/umbrella/issues/82), update partitionSync required key checks, add tests ([8b2f3fe](https://github.com/thi-ng/umbrella/commit/8b2f3fe))
 
-- **transducers:** update converge() & update readme ([9aca912](https://github.com/thi-ng/umbrella/commit/9aca912))
+## [5.3.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/transducers@5.3.0) (2019-03-21)
 
-###  Features
+#### 🚀 Features
 
-- **transducers:** add converge() xform, add iter arg to iterate() ([8393a95](https://github.com/thi-ng/umbrella/commit/8393a95))
+- add toggle() xform ([b5c744e](https://github.com/thi-ng/umbrella/commit/b5c744e))
 
-#  [5.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@4.0.1...@thi.ng/transducers@5.0.0) (2019-02-15)
+#### 🩹 Bug fixes
 
-###  Code Refactoring
+- update mean() completion step to avoid div by zero ([f644ecd](https://github.com/thi-ng/umbrella/commit/f644ecd))
 
-- **transducers:** remove obsolete fns, update to use [@thi](https://github.com/thi).ng/arrays ([83cb816](https://github.com/thi-ng/umbrella/commit/83cb816))
-- **transducers:** remove obsolete randomID() & weightedRandom() ([4b0eec6](https://github.com/thi-ng/umbrella/commit/4b0eec6))
-- **transducers:** restructure, migrate / remove various functions ([05bf213](https://github.com/thi-ng/umbrella/commit/05bf213))
+## [5.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/transducers@5.2.0) (2019-03-10)
 
-###  BREAKING CHANGES
+#### 🚀 Features
 
-- **transducers:** migrate / remove various functions to other packages
-    - constantly(), delay(), identity() => @thi.ng/compose
-    - randomID(), weightedRandom() => @thi.ng/random
-    - remove re-exports:
-        - even(), odd() (from @thi.ng/checks)
-        - juxt() (from @thi.ng/compose)
-    - remove obsolete hex() fn (use @thi.ng/strings fns instead)
-- **transducers:** migrate randomID() & weightedRandom() to @thi.ng/random
-    - update choices() iterator
-- **transducers:** migrate various support fns to @thi.ng/arrays
-    - remove/migrate functions:
-        - binarySearch()
-        - ensureArray() / ensureIterable()
-        - fuzzyMatch()
-        - peek()
-        - shuffleN()
-        - swizzler()
-    - add support for IRandom in:
-        - randomID()
-        - choices()
-        - weightedRandom()
-        - sample()
-    - update deps / readme
+- add / update convolution fns ([31e594b](https://github.com/thi-ng/umbrella/commit/31e594b))
+  - add buildKernel1d, convolve1d
 
-#  [4.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@3.0.2...@thi.ng/transducers@4.0.0) (2019-02-05)
+#### ♻️ Refactoring
 
-###  Bug Fixes
+- re-use type aliases from [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/main/packages/api) ([0d2fdff](https://github.com/thi-ng/umbrella/commit/0d2fdff))
 
-- **transducers:** ensure all vals in hexDump iterator version ([ae83bb2](https://github.com/thi-ng/umbrella/commit/ae83bb2))
+### [5.1.2](https://github.com/thi-ng/umbrella/tree/@thi.ng/transducers@5.1.2) (2019-03-03)
 
-###  Code Refactoring
+#### 🩹 Bug fixes
 
-- **transducers:** migrate binary related ops to new package ([a7c1ef7](https://github.com/thi-ng/umbrella/commit/a7c1ef7))
+- update dedupe() w/ predicate arg ([c414423](https://github.com/thi-ng/umbrella/commit/c414423))
+  - if pred is given, do not call pred for 1st value (always passes)
 
-###  BREAKING CHANGES
+## [5.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/transducers@5.1.0) (2019-02-26)
 
-- **transducers:** migrate all binary data related ops to new package @thi.ng/transducers-binary
+#### 🚀 Features
 
-Removed: - bits - base64Encode/Decode - hexDump - partitionBits - utf8Encode/Decode
+- add converge() xform, add iter arg to iterate() ([8393a95](https://github.com/thi-ng/umbrella/commit/8393a95))
 
-#  [3.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@2.3.2...@thi.ng/transducers@3.0.0) (2019-01-21)
+#### 🩹 Bug fixes
 
-###  Bug Fixes
+- update converge() & update readme ([9aca912](https://github.com/thi-ng/umbrella/commit/9aca912))
 
-- **transducers:** update juxt re-export ([a894a24](https://github.com/thi-ng/umbrella/commit/a894a24))
+# [5.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/transducers@5.0.0) (2019-02-15)
 
-###  Build System
+#### 🛑 Breaking changes
+
+- restructure, migrate / remove various functions ([05bf213](https://github.com/thi-ng/umbrella/commit/05bf213))
+- BREAKING CHANGE: migrate / remove various functions to other packages
+  - constantly(), delay(), identity() => [@thi.ng/compose](https://github.com/thi-ng/umbrella/tree/main/packages/compose)
+  - randomID(), weightedRandom() => [@thi.ng/random](https://github.com/thi-ng/umbrella/tree/main/packages/random)
+  - remove re-exports:
+    - even(), odd() (from [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/main/packages/checks))
+    - juxt() (from [@thi.ng/compose](https://github.com/thi-ng/umbrella/tree/main/packages/compose))
+  - remove obsolete hex() fn (use [@thi.ng/strings](https://github.com/thi-ng/umbrella/tree/main/packages/strings) fns instead)
+- remove obsolete randomID() & weightedRandom() ([4b0eec6](https://github.com/thi-ng/umbrella/commit/4b0eec6))
+- BREAKING CHANGE: migrate randomID() & weightedRandom() to [@thi.ng/random](https://github.com/thi-ng/umbrella/tree/main/packages/random)
+  - update choices() iterator
+- remove obsolete fns, update to use [@thi.ng/arrays](https://github.com/thi-ng/umbrella/tree/main/packages/arrays) ([83cb816](https://github.com/thi-ng/umbrella/commit/83cb816))
+- BREAKING CHANGE: migrate various support fns to [@thi.ng/arrays](https://github.com/thi-ng/umbrella/tree/main/packages/arrays)
+  - remove/migrate functions:
+    - binarySearch()
+    - ensureArray() / ensureIterable()
+    - fuzzyMatch()
+    - peek()
+    - shuffleN()
+    - swizzler()
+  - add support for IRandom in:
+    - randomID()
+    - choices()
+    - weightedRandom()
+    - sample()
+  - update deps / readme
+
+#### ♻️ Refactoring
+
+- update [@thi.ng/arrays](https://github.com/thi-ng/umbrella/tree/main/packages/arrays) call sites ([f95ab38](https://github.com/thi-ng/umbrella/commit/f95ab38))
+
+# [4.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/transducers@4.0.0) (2019-02-05)
+
+#### 🛑 Breaking changes
+
+- migrate binary related ops to new package ([a7c1ef7](https://github.com/thi-ng/umbrella/commit/a7c1ef7))
+  - update readme
+- BREAKING CHANGE: migrate all binary data related ops to new package [@thi.ng/transducers-binary](https://github.com/thi-ng/umbrella/tree/main/packages/transducers-binary)
+  Removed:
+  - bits
+  - base64Encode/Decode
+  - hexDump
+  - partitionBits
+  - utf8Encode/Decode
+
+#### 🩹 Bug fixes
+
+- ensure all vals in hexDump iterator version ([ae83bb2](https://github.com/thi-ng/umbrella/commit/ae83bb2))
+
+#### ♻️ Refactoring
+
+- deprecate & rename tuples() => zip() ([d1151ce](https://github.com/thi-ng/umbrella/commit/d1151ce))
+  - update refs / re-exports
+
+# [3.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/transducers@3.0.0) (2019-01-21)
+
+#### 🛑 Breaking changes
 
 - update package build scripts & outputs, imports in ~50 packages ([b54b703](https://github.com/thi-ng/umbrella/commit/b54b703))
+- BREAKING CHANGE: enabled multi-outputs (ES6 modules, CJS, UMD)
+  - build scripts now first build ES6 modules in package root, then call
+    `scripts/bundle-module` to build minified CJS & UMD bundles in `/lib`
+  - all imports MUST be updated to only refer to package level
+    (not individual files anymore). tree shaking in user land will get rid of
+    all unused imported symbols.
 
-###  BREAKING CHANGES
+#### 🩹 Bug fixes
 
-- enabled multi-outputs (ES6 modules, CJS, UMD)
-- build scripts now first build ES6 modules in package root, then call   `scripts/bundle-module` to build minified CJS & UMD bundles in `/lib`
-- all imports MUST be updated to only refer to package level   (not individual files anymore). tree shaking in user land will get rid of   all unused imported symbols.
+- update juxt re-export ([a894a24](https://github.com/thi-ng/umbrella/commit/a894a24))
 
-##  [2.3.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@2.3.1...@thi.ng/transducers@2.3.2) (2019-01-02)
+#### ♻️ Refactoring
 
-###  Bug Fixes
+- use arrow fns ([e9f0542](https://github.com/thi-ng/umbrella/commit/e9f0542))
 
-- **transducers:** add reduced() handling for cat() ([cd17586](https://github.com/thi-ng/umbrella/commit/cd17586))
+### [2.3.2](https://github.com/thi-ng/umbrella/tree/@thi.ng/transducers@2.3.2) (2019-01-02)
 
-##  [2.3.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@2.3.0...@thi.ng/transducers@2.3.1) (2018-12-29)
+#### 🩹 Bug fixes
 
-###  Bug Fixes
+- add reduced() handling for cat() ([cd17586](https://github.com/thi-ng/umbrella/commit/cd17586))
 
-- **transducers:** interpolate() interval selection, add minPos/maxPos ([a90a712](https://github.com/thi-ng/umbrella/commit/a90a712))
+### [2.3.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/transducers@2.3.1) (2018-12-29)
 
-#  [2.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@2.2.8...@thi.ng/transducers@2.3.0) (2018-12-28)
+#### 🩹 Bug fixes
 
-###  Features
+- interpolate() interval selection, add minPos/maxPos ([a90a712](https://github.com/thi-ng/umbrella/commit/a90a712))
 
-- **transducers:** add interpolate() iterator, update readme ([846ab5c](https://github.com/thi-ng/umbrella/commit/846ab5c))
+## [2.3.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/transducers@2.3.0) (2018-12-28)
 
-##  [2.2.7](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@2.2.6...@thi.ng/transducers@2.2.7) (2018-12-17)
+#### 🚀 Features
 
-###  Bug Fixes
+- add interpolate() iterator, update readme ([846ab5c](https://github.com/thi-ng/umbrella/commit/846ab5c))
 
-- **transducers:** add return type for range() ([0470505](https://github.com/thi-ng/umbrella/commit/0470505))
+### [2.2.7](https://github.com/thi-ng/umbrella/tree/@thi.ng/transducers@2.2.7) (2018-12-17)
 
-#  [2.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@2.1.6...@thi.ng/transducers@2.2.0) (2018-10-17)
+#### 🩹 Bug fixes
 
-###  Bug Fixes
+- add return type for range() ([0470505](https://github.com/thi-ng/umbrella/commit/0470505))
 
-- **transducers:** minor TS3.1 fixes ([1ef2361](https://github.com/thi-ng/umbrella/commit/1ef2361))
+### [2.2.3](https://github.com/thi-ng/umbrella/tree/@thi.ng/transducers@2.2.3) (2018-12-01)
 
-###  Features
+#### ♻️ Refactoring
 
-- **transducers:** update wrap*() fns to accept iterables ([515e5ba](https://github.com/thi-ng/umbrella/commit/515e5ba))
+- implement range() as class w/ IReducible impl ([0e77d2c](https://github.com/thi-ng/umbrella/commit/0e77d2c))
 
-##  [2.1.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@2.1.5...@thi.ng/transducers@2.1.6) (2018-09-26)
+## [2.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/transducers@2.2.0) (2018-10-17)
 
-###  Bug Fixes
+#### 🚀 Features
 
-- **transducers:** fix matchLast(), fix & update return match*() types ([823d828](https://github.com/thi-ng/umbrella/commit/823d828))
+- update wrap*() fns to accept iterables ([515e5ba](https://github.com/thi-ng/umbrella/commit/515e5ba))
 
-##  [2.1.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@2.1.2-alpha.1...@thi.ng/transducers@2.1.2) (2018-09-22)
+#### 🩹 Bug fixes
 
-###  Bug Fixes
+- minor TS3.1 fixes ([1ef2361](https://github.com/thi-ng/umbrella/commit/1ef2361))
 
-- **transducers:** add missing type annotation ([022101f](https://github.com/thi-ng/umbrella/commit/022101f))
+#### ♻️ Refactoring
 
-##  [2.1.2-alpha.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@2.1.2-alpha.0...@thi.ng/transducers@2.1.2-alpha.1) (2018-09-17)
+- add ensureArrayLike(), update permutations() ([f257330](https://github.com/thi-ng/umbrella/commit/f257330))
+- update Infinity consts in various packages ([296e1e0](https://github.com/thi-ng/umbrella/commit/296e1e0))
 
-###  Bug Fixes
+### [2.1.6](https://github.com/thi-ng/umbrella/tree/@thi.ng/transducers@2.1.6) (2018-09-26)
 
-- **transducers:** str() initial result handling ([f001314](https://github.com/thi-ng/umbrella/commit/f001314))
-- **transducers:** update arg types for choices() & weightedRandom() ([eb67426](https://github.com/thi-ng/umbrella/commit/eb67426))
+#### 🩹 Bug fixes
 
-###  Features
+- fix matchLast(), fix & update return match*() types ([823d828](https://github.com/thi-ng/umbrella/commit/823d828))
+  - use iterator() instead of iterator1() for matchLast()
+  - fix return type decls for both matchFirst() / matchLast()
+  - update doc strings
 
-- **transducers:** add randomID() ([b488d2b](https://github.com/thi-ng/umbrella/commit/b488d2b))
+### [2.1.2](https://github.com/thi-ng/umbrella/tree/@thi.ng/transducers@2.1.2) (2018-09-22)
 
-#  [2.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@2.0.4...@thi.ng/transducers@2.1.0) (2018-09-08)
+#### 🩹 Bug fixes
 
-###  Features
+- add missing type annotation ([022101f](https://github.com/thi-ng/umbrella/commit/022101f))
 
-- **transducers:** add window() xform ([2f0f3d4](https://github.com/thi-ng/umbrella/commit/2f0f3d4))
-- **transducers:** rename window() => slidingWindow(), update readme ([1f22867](https://github.com/thi-ng/umbrella/commit/1f22867))
-- **transducers:** update partitionSync() xform & PartitionSyncOpts ([d8fdc01](https://github.com/thi-ng/umbrella/commit/d8fdc01))
+### [2.1.2-alpha.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/transducers@2.1.2-alpha.1) (2018-09-17)
 
-#  [2.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@1.16.0...@thi.ng/transducers@2.0.0) (2018-08-24)
+#### 🚀 Features
 
-###  Bug Fixes
+- add randomID() ([b488d2b](https://github.com/thi-ng/umbrella/commit/b488d2b))
 
-- **transducers:** arg handling in rename() ([7a5be21](https://github.com/thi-ng/umbrella/commit/7a5be21))
-- **transducers:** copy&paste error (push) ([832e57f](https://github.com/thi-ng/umbrella/commit/832e57f))
-- **transducers:** hex type decl ([723da5b](https://github.com/thi-ng/umbrella/commit/723da5b))
-- **transducers:** iterator1() final reduced value handling ([d861bdd](https://github.com/thi-ng/umbrella/commit/d861bdd))
+#### 🩹 Bug fixes
 
-###  Code Refactoring
+- str() initial result handling ([f001314](https://github.com/thi-ng/umbrella/commit/f001314))
+- update arg types for choices() & weightedRandom() ([eb67426](https://github.com/thi-ng/umbrella/commit/eb67426))
 
-- **transducers:** rename inspect() => trace() ([e713704](https://github.com/thi-ng/umbrella/commit/e713704))
+## [2.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/transducers@2.1.0) (2018-09-08)
 
-###  Features
+#### 🚀 Features
 
-- **transducers:** add fill() & fillN() reducers ([0bd860e](https://github.com/thi-ng/umbrella/commit/0bd860e))
-- **transducers:** add GroupByOpts interface, update groupBy* reducers ([2c3a114](https://github.com/thi-ng/umbrella/commit/2c3a114))
-- **transducers:** update all reducers to accept opt iterables ([89b4ad5](https://github.com/thi-ng/umbrella/commit/89b4ad5))
-- **transducers:** update all xforms to also work as iterator ([bae8a1d](https://github.com/thi-ng/umbrella/commit/bae8a1d))
-- **transducers:** update base64Encode() to return string if input given ([599f2b6](https://github.com/thi-ng/umbrella/commit/599f2b6))
+- rename window() => slidingWindow(), update readme ([1f22867](https://github.com/thi-ng/umbrella/commit/1f22867))
+- update partitionSync() xform & PartitionSyncOpts ([d8fdc01](https://github.com/thi-ng/umbrella/commit/d8fdc01))
+  - add `mergeOnly` option to allow partially populated result tuples
+- add window() xform ([2f0f3d4](https://github.com/thi-ng/umbrella/commit/2f0f3d4))
 
-###  Performance Improvements
+### [2.0.3](https://github.com/thi-ng/umbrella/tree/@thi.ng/transducers@2.0.3) (2018-09-03)
 
-- **transducers:** add IReducible, update reduce() ([9d83255](https://github.com/thi-ng/umbrella/commit/9d83255))
-- **transducers:** add iterator1(), update various xforms ([ab662d8](https://github.com/thi-ng/umbrella/commit/ab662d8))
+#### ♻️ Refactoring
 
-###  BREAKING CHANGES
+- update normRange() ([4a16bd5](https://github.com/thi-ng/umbrella/commit/4a16bd5))
+  - add opt flag to exclude last value
 
-- **transducers:** groupByMap() & groupByObj() args now given as options object
-- **transducers:** replace some xform args with options objects, impacted are:
-    - convolve2d()
-    - filterFuzzy()
-    - hexDump()
-    - movingMedian()
-    - partitionSort()
-    - partitionSync()
-    - streamSort()
-    - wordWrap()
-- **transducers:** rename inspect() => trace()
+# [2.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/transducers@2.0.0) (2018-08-24)
 
-#  [1.16.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@1.15.0...@thi.ng/transducers@1.16.0) (2018-08-08)
+#### 🛑 Breaking changes
 
-###  Features
+- add GroupByOpts interface, update groupBy* reducers ([2c3a114](https://github.com/thi-ng/umbrella/commit/2c3a114))
+  - add support for direct reduction if optional iterable is provided
+- BREAKING CHANGE: groupByMap() & groupByObj() args now given as
+  options object
+- update all xforms to also work as iterator ([bae8a1d](https://github.com/thi-ng/umbrella/commit/bae8a1d))
+  - if input iterable is provided, return iterator version
+  - add opt initial result arg for scan()
+  - utf8Decode() w/ input returns string
+  - update tests
+- BREAKING CHANGE: replace some xform args with options objects, impacted are:
+  - convolve2d()
+  - filterFuzzy()
+  - hexDump()
+  - movingMedian()
+  - partitionSort()
+  - partitionSync()
+  - streamSort()
+  - wordWrap()
+- rename inspect() => trace() ([e713704](https://github.com/thi-ng/umbrella/commit/e713704))
+- BREAKING CHANGE: rename inspect() => trace()
 
-- **transducers:** add partitionBits() xform & tests ([a5e2c28](https://github.com/thi-ng/umbrella/commit/a5e2c28))
+#### 🚀 Features
 
-#  [1.15.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@1.14.3...@thi.ng/transducers@1.15.0) (2018-08-02)
+- update base64Encode() to return string if input given ([599f2b6](https://github.com/thi-ng/umbrella/commit/599f2b6))
+- update all reducers to accept opt iterables ([89b4ad5](https://github.com/thi-ng/umbrella/commit/89b4ad5))
+  - add $$reduce helper
+  - fix str() to use string concatenation (instead of Array.join())
+  - add opt init vals for add() & mul()
+  - add sub() & div() reducers
+- add fill() & fillN() reducers ([0bd860e](https://github.com/thi-ng/umbrella/commit/0bd860e))
 
-###  Features
+#### 🩹 Bug fixes
 
-- **transducers:** add peek() helper fn ([e50fd10](https://github.com/thi-ng/umbrella/commit/e50fd10))
+- arg handling in rename() ([7a5be21](https://github.com/thi-ng/umbrella/commit/7a5be21))
+- copy&paste error (push) ([832e57f](https://github.com/thi-ng/umbrella/commit/832e57f))
+- iterator1() final reduced value handling ([d861bdd](https://github.com/thi-ng/umbrella/commit/d861bdd))
+- hex type decl ([723da5b](https://github.com/thi-ng/umbrella/commit/723da5b))
 
-#  [1.14.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@1.13.0...@thi.ng/transducers@1.14.0) (2018-07-19)
+#### ⏱ Performance improvements
 
-###  Features
+- add IReducible, update reduce() ([9d83255](https://github.com/thi-ng/umbrella/commit/9d83255))
+  - add IReducible interface for custom/optimized iteration
+    and source value provision for reduce()
+  - add array-like check to reduce() and switch to version without
+    forcing array iterator (`for..of..`)
+- add iterator1(), update various xforms ([ab662d8](https://github.com/thi-ng/umbrella/commit/ab662d8))
+  - iterator1() is speed optimized for 0-or-1 result xforms
+    w/o completion step
+  - update $iter to accept iterator impl
 
-- **transducer:** add asIterable() helper ([ccc37c6](https://github.com/thi-ng/umbrella/commit/ccc37c6))
-- **transducers:** add juxtR() for multiplexed reductions from same src ([9b07d12](https://github.com/thi-ng/umbrella/commit/9b07d12))
-- **transducers:** allow key arrays for rename(), simplify call sites ([092154c](https://github.com/thi-ng/umbrella/commit/092154c))
+#### ♻️ Refactoring
 
-###  Performance Improvements
+- replace local types w/ external defs ([3a8bd08](https://github.com/thi-ng/umbrella/commit/3a8bd08))
+  - re-use Fn & SEMAPHORE ([@thi.ng/api](https://github.com/thi-ng/umbrella/tree/main/packages/api))
+  - replace comp() and juxt() ([@thi.ng/compose](https://github.com/thi-ng/umbrella/tree/main/packages/compose))
+- add shared SortOpts, update xforms ([8a111ef](https://github.com/thi-ng/umbrella/commit/8a111ef))
+  - replace opts for movingMedian(), partitionSort(), streamSort()
+  - move convolution types to src/xform/convole.ts
+  - move StructField to src/xform/struct.ts
+- add ReductionFn type alias, update Reducer ([45e4993](https://github.com/thi-ng/umbrella/commit/45e4993))
 
-- **transducers:** update movingAverage() xform, add docs ([9874ace](https://github.com/thi-ng/umbrella/commit/9874ace))
+## [1.16.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/transducers@1.16.0) (2018-08-08)
 
-#  [1.13.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@1.12.2...@thi.ng/transducers@1.13.0) (2018-07-13)
+#### 🚀 Features
 
-###  Features
+- add partitionBits() xform & tests ([a5e2c28](https://github.com/thi-ng/umbrella/commit/a5e2c28))
 
-- **transducers:** add wordWrap() xform ([81223dc](https://github.com/thi-ng/umbrella/commit/81223dc))
+#### ♻️ Refactoring
 
-##  [1.12.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@1.12.1...@thi.ng/transducers@1.12.2) (2018-07-09)
+- deprecate hex(), update hexDump() xform & deps ([b1ea9a5](https://github.com/thi-ng/umbrella/commit/b1ea9a5))
 
-###  Bug Fixes
+## [1.15.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/transducers@1.15.0) (2018-08-03)
 
-- **transducers:** revert mean() from regression introduced in 095e6ef ([03543ee](https://github.com/thi-ng/umbrella/commit/03543ee))
+#### 🚀 Features
 
-#  [1.12.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@1.11.1...@thi.ng/transducers@1.12.0) (2018-07-03)
+- add peek() helper fn ([e50fd10](https://github.com/thi-ng/umbrella/commit/e50fd10))
 
-###  Features
+## [1.14.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/transducers@1.14.0) (2018-07-19)
 
-- **transducers:** add ensureArray(), refactor reverse() ([677c7cc](https://github.com/thi-ng/umbrella/commit/677c7cc))
+#### 🚀 Features
 
-#  [1.11.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@1.10.3...@thi.ng/transducers@1.11.0) (2018-06-19)
+- add asIterable() helper ([ccc37c6](https://github.com/thi-ng/umbrella/commit/ccc37c6))
+- allow key arrays for rename(), simplify call sites ([092154c](https://github.com/thi-ng/umbrella/commit/092154c))
+  - update multiplexObj() & struct() xforms
+- add juxtR() for multiplexed reductions from same src ([9b07d12](https://github.com/thi-ng/umbrella/commit/9b07d12))
+  - add tests & docs
 
-###  Features
+#### ⏱ Performance improvements
 
-- **transducers:** add matchFirst()/matchLast() xforms, update readme ([bc261e5](https://github.com/thi-ng/umbrella/commit/bc261e5))
+- update movingAverage() xform, add docs ([9874ace](https://github.com/thi-ng/umbrella/commit/9874ace))
 
-#  [1.10.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@1.9.4...@thi.ng/transducers@1.10.0) (2018-05-14)
+## [1.13.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/transducers@1.13.0) (2018-07-13)
 
-###  Features
+#### 🚀 Features
 
-- **transducers:** add filterFuzzy() xform ([2bebba2](https://github.com/thi-ng/umbrella/commit/2bebba2))
-- **transducers:** add wrap*() iterators ([306625d](https://github.com/thi-ng/umbrella/commit/306625d))
+- add wordWrap() xform ([81223dc](https://github.com/thi-ng/umbrella/commit/81223dc))
 
-#  [1.9.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@1.8.6...@thi.ng/transducers@1.9.0) (2018-05-10)
+### [1.12.2](https://github.com/thi-ng/umbrella/tree/@thi.ng/transducers@1.12.2) (2018-07-09)
 
-###  Features
+#### 🩹 Bug fixes
 
-- **transducers:** add normRange() iterator ([55f29b8](https://github.com/thi-ng/umbrella/commit/55f29b8))
+- revert mean() from regression introduced in [095e6ef](https://github.com/thi-ng/umbrella/commit/095e6ef) ([03543ee](https://github.com/thi-ng/umbrella/commit/03543ee))
 
-##  [1.8.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@1.8.0...@thi.ng/transducers@1.8.1) (2018-04-18)
+### [1.12.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/transducers@1.12.1) (2018-07-09)
 
-###  Bug Fixes
+#### ♻️ Refactoring
 
-- **transducers:** add generics for compR(), fix types in mapNth() ([3b7c9d9](https://github.com/thi-ng/umbrella/commit/3b7c9d9))
-- **transducers:** Provide argument types for compR() and deepTransform() ([de89f00](https://github.com/thi-ng/umbrella/commit/de89f00))
+- add reducer() helper, update existing reducers ([095e6ef](https://github.com/thi-ng/umbrella/commit/095e6ef))
 
-#  [1.8.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@1.7.5...@thi.ng/transducers@1.8.0) (2018-04-11)
+## [1.12.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/transducers@1.12.0) (2018-07-03)
 
-###  Features
+#### 🚀 Features
 
-- **transducers:** add run() for executing side effects only, update readme ([52c7508](https://github.com/thi-ng/umbrella/commit/52c7508))
+- add ensureArray(), refactor reverse() ([677c7cc](https://github.com/thi-ng/umbrella/commit/677c7cc))
 
-#  [1.7.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@1.6.2...@thi.ng/transducers@1.7.0) (2018-03-19)
+## [1.11.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/transducers@1.11.0) (2018-06-19)
 
-###  Features
+#### 🚀 Features
 
-- **transducers:** add mapVals() xform ([abc195a](https://github.com/thi-ng/umbrella/commit/abc195a))
-- **transducers:** add partitionSync() xform ([bebd118](https://github.com/thi-ng/umbrella/commit/bebd118))
+- add matchFirst()/matchLast() xforms, update readme ([bc261e5](https://github.com/thi-ng/umbrella/commit/bc261e5))
 
-#  [1.6.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@1.5.1...@thi.ng/transducers@1.6.0) (2018-03-03)
+### [1.10.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/transducers@1.10.1) (2018-05-14)
 
-###  Features
+#### ♻️ Refactoring
 
-- **transducers:** add permutations()/permutationsN() generators ([91938ed](https://github.com/thi-ng/umbrella/commit/91938ed))
+- replace wrapBoth/Left/Right w/ wrap() ([e238541](https://github.com/thi-ng/umbrella/commit/e238541))
+  - deprecate existing wrap*() iters
+  - update docs & readme
 
-##  [1.5.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@1.5.0...@thi.ng/transducers@1.5.1) (2018-03-02)
+## [1.10.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/transducers@1.10.0) (2018-05-14)
 
-###  Bug Fixes
+#### 🚀 Features
 
-- **transducers:** flattenWith() ([3d8aa32](https://github.com/thi-ng/umbrella/commit/3d8aa32))
+- add filterFuzzy() xform ([2bebba2](https://github.com/thi-ng/umbrella/commit/2bebba2))
+  - add fuzzyMatch() predicate
+- add wrap*() iterators ([306625d](https://github.com/thi-ng/umbrella/commit/306625d))
+  - add wrapBoth()
+  - add wrapLeft()
+  - add wrapRight()
 
-#  [1.5.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@1.4.0...@thi.ng/transducers@1.5.0) (2018-02-26)
+## [1.9.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/transducers@1.9.0) (2018-05-10)
 
-###  Features
+#### 🚀 Features
 
-- **transducers:** add keys()/vals() iterators, refactor pairs() ([9824844](https://github.com/thi-ng/umbrella/commit/9824844))
+- add normRange() iterator ([55f29b8](https://github.com/thi-ng/umbrella/commit/55f29b8))
 
-#  [1.4.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@1.3.0...@thi.ng/transducers@1.4.0) (2018-02-23)
+### [1.8.6](https://github.com/thi-ng/umbrella/tree/@thi.ng/transducers@1.8.6) (2018-05-10)
 
-###  Features
+#### ♻️ Refactoring
 
-- **transducers:** add deepTransform & mapDeep xform ([f0fdfa1](https://github.com/thi-ng/umbrella/commit/f0fdfa1))
+- update deps & imports in all packages due to [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/main/packages/api) split ([bc45636](https://github.com/thi-ng/umbrella/commit/bc45636))
 
-#  [1.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@1.2.0...@thi.ng/transducers@1.3.0) (2018-02-19)
+### [1.8.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/transducers@1.8.1) (2018-04-18)
 
-###  Features
+#### 🩹 Bug fixes
 
-- **transducers:** add lookup1d/2d/3d helpers, update re-exports ([193058d](https://github.com/thi-ng/umbrella/commit/193058d))
+- add generics for compR(), fix types in mapNth() ([3b7c9d9](https://github.com/thi-ng/umbrella/commit/3b7c9d9))
 
-#  [1.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@1.1.0...@thi.ng/transducers@1.2.0) (2018-02-18)
+## [1.8.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/transducers@1.8.0) (2018-04-11)
 
-###  Bug Fixes
+#### 🚀 Features
 
-- **transducers:** update imports `step()` ([48f8bb8](https://github.com/thi-ng/umbrella/commit/48f8bb8))
+- add run() for executing side effects only, update readme ([52c7508](https://github.com/thi-ng/umbrella/commit/52c7508))
 
-###  Features
+### [1.7.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/transducers@1.7.1) (2018-03-21)
 
-- **transducers:** add convolve2d xform & types ([ab8a855](https://github.com/thi-ng/umbrella/commit/ab8a855))
-- **transducers:** add movingMedian() xform ([d7b1d0d](https://github.com/thi-ng/umbrella/commit/d7b1d0d))
-- **transducers:** add range2d / range3d generators ([722042b](https://github.com/thi-ng/umbrella/commit/722042b))
+#### ♻️ Refactoring
 
-#  [1.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@1.0.7...@thi.ng/transducers@1.1.0) (2018-02-08)
+- update error handling ([ca099e5](https://github.com/thi-ng/umbrella/commit/ca099e5))
 
-###  Features
+## [1.7.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/transducers@1.7.0) (2018-03-19)
 
-- **transducers:** add page() xform, update readme ([855d803](https://github.com/thi-ng/umbrella/commit/855d803))
+#### 🚀 Features
 
-##  [1.0.6](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@1.0.5...@thi.ng/transducers@1.0.6) (2018-02-01)
+- add mapVals() xform ([abc195a](https://github.com/thi-ng/umbrella/commit/abc195a))
+- add partitionSync() xform ([bebd118](https://github.com/thi-ng/umbrella/commit/bebd118))
 
-###  Bug Fixes
+#### ♻️ Refactoring
 
-- **transducers:** update comp() for typescript 2.7.* ([febe39f](https://github.com/thi-ng/umbrella/commit/febe39f))
+- update labeled(), mapIndexed(), partition() ([3bc8d54](https://github.com/thi-ng/umbrella/commit/3bc8d54))
+  - labeled() - add support for label fn instead of just static label
+  - mapIndexed() - add optional start index arg
+  - partition() - minor update in completing reducer
 
-##  [1.0.2](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@1.0.1...@thi.ng/transducers@1.0.2) (2018-01-29)
+## [1.6.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/transducers@1.6.0) (2018-03-03)
 
-###  Performance Improvements
+#### 🚀 Features
 
-- **transducers:** avoid result object cloning in struct() xform ([d774e32](https://github.com/thi-ng/umbrella/commit/d774e32))
+- add permutations()/permutationsN() generators ([91938ed](https://github.com/thi-ng/umbrella/commit/91938ed))
 
-#  [1.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/transducers@0.11.2...@thi.ng/transducers@1.0.0) (2018-01-28)
+#### ♻️ Refactoring
 
-###  Bug Fixes
+- extract compR() into its own file, update refs, update readme ([8c180bc](https://github.com/thi-ng/umbrella/commit/8c180bc))
+- update swizzler() arg types ([2f5abce](https://github.com/thi-ng/umbrella/commit/2f5abce))
+- update permutations()/permutationsN(), add tests ([488462e](https://github.com/thi-ng/umbrella/commit/488462e))
 
-- **transducers:** add "complete" step handling in scan() ([8e5204d](https://github.com/thi-ng/umbrella/commit/8e5204d))
-- **transducers:** scan() complete handling ([44db970](https://github.com/thi-ng/umbrella/commit/44db970))
+### [1.5.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/transducers@1.5.1) (2018-03-02)
 
-###  Code Refactoring
+#### 🩹 Bug fixes
 
-- **transducers:** rename join() => str() rfn ([e268e35](https://github.com/thi-ng/umbrella/commit/e268e35))
+- flattenWith() ([3d8aa32](https://github.com/thi-ng/umbrella/commit/3d8aa32))
 
-###  Features
+## [1.5.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/transducers@1.5.0) (2018-02-26)
 
-- **transducers:** add every(), some() rfns ([63344e4](https://github.com/thi-ng/umbrella/commit/63344e4))
-- **transducers:** add labeled() xform ([0b3c786](https://github.com/thi-ng/umbrella/commit/0b3c786))
-- **transducers:** add multiplex() xform & docs ([beb2cee](https://github.com/thi-ng/umbrella/commit/beb2cee))
-- **transducers:** add multiplexObj() ([931b67f](https://github.com/thi-ng/umbrella/commit/931b67f))
-- **transducers:** add noop() xform, update readme ([7b21aa6](https://github.com/thi-ng/umbrella/commit/7b21aa6))
-- **transducers:** add utf8Encode()/utf8Decode() xforms ([e50fa26](https://github.com/thi-ng/umbrella/commit/e50fa26))
-- **transducers:** update frequencies() & groupByMap() ([4b8d037](https://github.com/thi-ng/umbrella/commit/4b8d037))
-- **transducers:** update re-exports, extract throttleTime() into own file ([45d6bc6](https://github.com/thi-ng/umbrella/commit/45d6bc6))
-- **transducers:** update re-exports, minor update reductions() ([e555ff5](https://github.com/thi-ng/umbrella/commit/e555ff5))
-- **transducers:** update step() to support multiple results ([1f32fc0](https://github.com/thi-ng/umbrella/commit/1f32fc0))
-- **transducers:** update throttle(), refactor take/dropNth ([e1a282c](https://github.com/thi-ng/umbrella/commit/e1a282c))
+#### 🚀 Features
 
-###  BREAKING CHANGES
+- add keys()/vals() iterators, refactor pairs() ([9824844](https://github.com/thi-ng/umbrella/commit/9824844))
 
-- **transducers:** throttle() requires stateful predicate now
-- **transducers:** rename join() => str() reduer in prep for actual set join() op
-- **transducers:** now possibly returns array instead of single value if wrapped transducer produced multiple results
+## [1.4.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/transducers@1.4.0) (2018-02-23)
+
+#### 🚀 Features
+
+- add deepTransform & mapDeep xform ([f0fdfa1](https://github.com/thi-ng/umbrella/commit/f0fdfa1))
+
+#### ♻️ Refactoring
+
+- add TransformSubSpec, fix test, minor update docs ([2a11ff6](https://github.com/thi-ng/umbrella/commit/2a11ff6))
+
+## [1.3.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/transducers@1.3.0) (2018-02-19)
+
+#### 🚀 Features
+
+- add lookup1d/2d/3d helpers, update re-exports ([193058d](https://github.com/thi-ng/umbrella/commit/193058d))
+
+## [1.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/transducers@1.2.0) (2018-02-18)
+
+#### 🚀 Features
+
+- add convolve2d xform & types ([ab8a855](https://github.com/thi-ng/umbrella/commit/ab8a855))
+- add movingMedian() xform ([d7b1d0d](https://github.com/thi-ng/umbrella/commit/d7b1d0d))
+- add range2d / range3d generators ([722042b](https://github.com/thi-ng/umbrella/commit/722042b))
+
+#### 🩹 Bug fixes
+
+- update imports `step()` ([48f8bb8](https://github.com/thi-ng/umbrella/commit/48f8bb8))
+
+#### ♻️ Refactoring
+
+- add/update range2d/range3d arity handling ([63a4953](https://github.com/thi-ng/umbrella/commit/63a4953))
+
+## [1.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/transducers@1.1.0) (2018-02-08)
+
+#### 🚀 Features
+
+- add page() xform, update readme ([855d803](https://github.com/thi-ng/umbrella/commit/855d803))
+
+#### ♻️ Refactoring
+
+- re-use even/odd from [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/main/packages/checks) ([445c857](https://github.com/thi-ng/umbrella/commit/445c857))
+
+### [1.0.6](https://github.com/thi-ng/umbrella/tree/@thi.ng/transducers@1.0.6) (2018-02-01)
+
+#### 🩹 Bug fixes
+
+- update comp() for typescript 2.7.* ([febe39f](https://github.com/thi-ng/umbrella/commit/febe39f))
+
+### [1.0.5](https://github.com/thi-ng/umbrella/tree/@thi.ng/transducers@1.0.5) (2018-01-31)
+
+#### ♻️ Refactoring
+
+- use Predicate2 ([4753afb](https://github.com/thi-ng/umbrella/commit/4753afb))
+
+### [1.0.2](https://github.com/thi-ng/umbrella/tree/@thi.ng/transducers@1.0.2) (2018-01-29)
+
+#### ⏱ Performance improvements
+
+- avoid result object cloning in struct() xform ([d774e32](https://github.com/thi-ng/umbrella/commit/d774e32))
+  - disable copying in mapKeys() step
+
+# [1.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/transducers@1.0.0) (2018-01-28)
+
+#### 🛑 Breaking changes
+
+- update throttle(), refactor take/dropNth ([e1a282c](https://github.com/thi-ng/umbrella/commit/e1a282c))
+  - throttle() requires stateful predicate now
+  - add throttleTime() as replacement for prev throttle() impl
+  - refactor takeNth()/dropNth() to use throttle()
+- BREAKING CHANGE: throttle() requires stateful predicate now
+- rename join() => str() rfn ([e268e35](https://github.com/thi-ng/umbrella/commit/e268e35))
+- BREAKING CHANGE:
+  rename join() => str() reduer in prep for actual set join() op
+- update step() to support multiple results ([1f32fc0](https://github.com/thi-ng/umbrella/commit/1f32fc0))
+  - respect reduced value termination
+  - internal use of push() vs. last() to support multiple results per transduction step
+  - add docs
+- BREAKING CHANGE:
+  now possibly returns array instead of single value if wrapped transducer produced multiple results
+
+#### 🚀 Features
+
+- add noop() xform, update readme ([7b21aa6](https://github.com/thi-ng/umbrella/commit/7b21aa6))
+- update re-exports, extract throttleTime() into own file ([45d6bc6](https://github.com/thi-ng/umbrella/commit/45d6bc6))
+- add labeled() xform ([0b3c786](https://github.com/thi-ng/umbrella/commit/0b3c786))
+- add multiplexObj() ([931b67f](https://github.com/thi-ng/umbrella/commit/931b67f))
+- add every(), some() rfns ([63344e4](https://github.com/thi-ng/umbrella/commit/63344e4))
+- update re-exports, minor update reductions() ([e555ff5](https://github.com/thi-ng/umbrella/commit/e555ff5))
+- update frequencies() & groupByMap() ([4b8d037](https://github.com/thi-ng/umbrella/commit/4b8d037))
+  - add opt key fn for frequencies(), delegate to groupByMap()
+  - use identity as default key fn
+- add multiplex() xform & docs ([beb2cee](https://github.com/thi-ng/umbrella/commit/beb2cee))
+- add utf8Encode()/utf8Decode() xforms ([e50fa26](https://github.com/thi-ng/umbrella/commit/e50fa26))
+
+#### 🩹 Bug fixes
+
+- scan() complete handling ([44db970](https://github.com/thi-ng/umbrella/commit/44db970))
+  - pass final inner result to outer complete only if different
+- add "complete" step handling in scan() ([8e5204d](https://github.com/thi-ng/umbrella/commit/8e5204d))
+
+#### ♻️ Refactoring
+
+- udate cat() to accept iterables, not just arrays ([58f1477](https://github.com/thi-ng/umbrella/commit/58f1477))
+
+### [0.11.2](https://github.com/thi-ng/umbrella/tree/@thi.ng/transducers@0.11.2) (2018-01-25)
+
+#### 🩹 Bug fixes
+
+- include 1st val in benchmark() ([b3ce275](https://github.com/thi-ng/umbrella/commit/b3ce275))
+- base64 imports ([75bb161](https://github.com/thi-ng/umbrella/commit/75bb161))
+- project links in readme files ([e290d75](https://github.com/thi-ng/umbrella/commit/e290d75))
+
+#### ♻️ Refactoring
+
+- update reverse(), add deps ([a2c3bc4](https://github.com/thi-ng/umbrella/commit/a2c3bc4))
+- simplify concat(), add docs ([0c116c1](https://github.com/thi-ng/umbrella/commit/0c116c1))
+
+### [0.11.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/transducers@0.11.1) (2018-01-24)
+
+#### 🚀 Features
+
+- initial re-import as monorepo, update readme files, cleanup imports ([04ff6e9](https://github.com/thi-ng/umbrella/commit/04ff6e9))

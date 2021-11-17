@@ -1,66 +1,84 @@
 # Change Log
 
+Last updated: 2021-11-17T23:24:59Z
+
 All notable changes to this project will be documented in this file.
-See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+See [Conventional Commits](https://conventionalcommits.org/) for commit guidelines.
 
-# [3.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/quad-edge@2.0.6...@thi.ng/quad-edge@3.0.0) (2021-11-03)
+**Note:** Unlisted _patch_ versions only involve non-code changes and/or
+version bumps of transitive dependencies.
 
+## [3.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/quad-edge@3.1.0) (2021-11-17)
 
-### Features
+#### 🚀 Features
 
-* **quad-edge:** restructure Edge & ID handling ([9e12172](https://github.com/thi-ng/umbrella/commit/9e121721c2d2b575e38ca21a7824f35438909122))
+- Using workspaces for local tools ([bf7a404](https://github.com/thi-ng/umbrella/commit/bf7a404))
+  Improving the overall build ergonomics
+  - introduced a tools workspaces
+  - imported it in all needed packages/examples
+  - inclusive project root
 
+#### ♻️ Refactoring
 
-### BREAKING CHANGES
+- testrunner to binary ([4ebbbb2](https://github.com/thi-ng/umbrella/commit/4ebbbb2))
+  this commit reverts (partly) changes made in:
+  ef346d7a8753590dc9094108a3d861a8dbd5dd2c
+  overall purpose is better testament ergonomics:
+  instead of having to pass NODE_OPTIONS with every invocation
+  having a binary to handle this for us.
 
-* **quad-edge:** require explict ID args, add defEdge()
+# [3.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/quad-edge@3.0.0) (2021-11-03)
 
-- replace static Edge.create() with defEdge()
-- remove automatic ID generation and require explicit ID args for:
-  - defEdge()
-  - Edge.connect()
+#### 🛑 Breaking changes
 
+- restructure Edge & ID handling ([9e12172](https://github.com/thi-ng/umbrella/commit/9e12172))
+- BREAKING CHANGE: require explict ID args, add defEdge()
+  - replace static Edge.create() with defEdge()
+  - remove automatic ID generation and require explicit ID args for:
+    - defEdge()
+    - Edge.connect()
 
+### [2.0.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/quad-edge@2.0.1) (2021-10-13)
 
+#### ♻️ Refactoring
 
+- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
 
-# [2.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/quad-edge@1.0.1...@thi.ng/quad-edge@2.0.0) (2021-10-12)
+# [2.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/quad-edge@2.0.0) (2021-10-12)
 
+#### 🛑 Breaking changes
 
-### Build System
+- major update of ALL pkgs (export maps, ESM only) ([0d1d6ea](https://github.com/thi-ng/umbrella/commit/0d1d6ea))
+- BREAKING CHANGE: discontinue CommonJS & UMD versions
+  - only ESM modules will be published from now on
+  - CJS obsolete due to ESM support in recent versions of node:
+    - i.e. launch NodeJS via:
+    - `node --experimental-specifier-resolution=node --experimental-repl-await`
+    - in the node REPL use `await import(...)` instead of `require()`
+  - UMD obsolete due to widespread browser support for ESM
+  Also:
+  - normalize/restructure/reorg all package.json files
+  - cleanup all build scripts, remove obsolete
+  - switch from mocha to [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament) for all tests
 
-* major update of ALL pkgs (export maps, ESM only) ([0d1d6ea](https://github.com/thi-ng/umbrella/commit/0d1d6ea9fab2a645d6c5f2bf2591459b939c09b6))
+#### ♻️ Refactoring
 
+- update all test stubs ([f2d6d53](https://github.com/thi-ng/umbrella/commit/f2d6d53))
+- update all tests in _all_ pkgs ([8b582bc](https://github.com/thi-ng/umbrella/commit/8b582bc))
+  - update all to use [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament)
 
-### BREAKING CHANGES
+### [0.2.22](https://github.com/thi-ng/umbrella/tree/@thi.ng/quad-edge@0.2.22) (2020-08-28)
 
-* discontinue CommonJS & UMD versions
+#### ♻️ Refactoring
 
-- only ESM modules will be published from now on
-- CJS obsolete due to ESM support in recent versions of node:
-  - i.e. launch NodeJS via:
-  - `node --experimental-specifier-resolution=node --experimental-repl-await`
-  - in the node REPL use `await import(...)` instead of `require()`
-- UMD obsolete due to widespread browser support for ESM
+- update delete op (TS4.0) ([591c924](https://github.com/thi-ng/umbrella/commit/591c924))
 
-Also:
-- normalize/restructure/reorg all package.json files
-- cleanup all build scripts, remove obsolete
-- switch from mocha to @thi.ng/testament for all tests
+## [0.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/quad-edge@0.2.0) (2019-07-07)
 
+#### 🚀 Features
 
+- enable TS strict compiler flags (refactor) ([5a6cec1](https://github.com/thi-ng/umbrella/commit/5a6cec1))
 
+#### ♻️ Refactoring
 
-
-
-#  [0.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/quad-edge@0.1.4...@thi.ng/quad-edge@0.2.0) (2019-07-07)
-
-###  Features
-
-- **quad-edge:** enable TS strict compiler flags (refactor) ([5a6cec1](https://github.com/thi-ng/umbrella/commit/5a6cec1))
-
-#  0.1.0 (2019-02-05)
-
-###  Features
-
-- **quad-edge:** re-import & update quad edge impl (MBP2010) ([ee76797](https://github.com/thi-ng/umbrella/commit/ee76797))
+- address TS strictNullChecks flag ([c95bc8f](https://github.com/thi-ng/umbrella/commit/c95bc8f))

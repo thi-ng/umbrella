@@ -1,83 +1,100 @@
 # Change Log
 
+Last updated: 2021-11-17T23:24:59Z
+
 All notable changes to this project will be documented in this file.
-See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+See [Conventional Commits](https://conventionalcommits.org/) for commit guidelines.
 
-## [2.0.10](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-canvas@2.0.9...@thi.ng/hiccup-canvas@2.0.10) (2021-11-10)
+**Note:** Unlisted _patch_ versions only involve non-code changes and/or
+version bumps of transitive dependencies.
 
-**Note:** Version bump only for package @thi.ng/hiccup-canvas
+## [2.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/hiccup-canvas@2.1.0) (2021-11-17)
 
+#### 🚀 Features
 
+- Using workspaces for local tools ([bf7a404](https://github.com/thi-ng/umbrella/commit/bf7a404))
+  Improving the overall build ergonomics
+  - introduced a tools workspaces
+  - imported it in all needed packages/examples
+  - inclusive project root
 
+#### ♻️ Refactoring
 
+- testrunner to binary ([4ebbbb2](https://github.com/thi-ng/umbrella/commit/4ebbbb2))
+  this commit reverts (partly) changes made in:
+  ef346d7a8753590dc9094108a3d861a8dbd5dd2c
+  overall purpose is better testament ergonomics:
+  instead of having to pass NODE_OPTIONS with every invocation
+  having a binary to handle this for us.
 
-## [2.0.9](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-canvas@2.0.8...@thi.ng/hiccup-canvas@2.0.9) (2021-11-04)
+### [2.0.10](https://github.com/thi-ng/umbrella/tree/@thi.ng/hiccup-canvas@2.0.10) (2021-11-10)
 
-**Note:** Version bump only for package @thi.ng/hiccup-canvas
+#### ♻️ Refactoring
 
+- update all countdown loops ([a5f374b](https://github.com/thi-ng/umbrella/commit/a5f374b))
 
+### [2.0.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/hiccup-canvas@2.0.1) (2021-10-13)
 
+#### ♻️ Refactoring
 
+- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
+- update imports in all pkgs ([5fa2b6f](https://github.com/thi-ng/umbrella/commit/5fa2b6f))
+  - add .js suffix for all relative imports
 
-## [2.0.8](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-canvas@2.0.7...@thi.ng/hiccup-canvas@2.0.8) (2021-11-03)
+# [2.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/hiccup-canvas@2.0.0) (2021-10-12)
 
-**Note:** Version bump only for package @thi.ng/hiccup-canvas
+#### 🛑 Breaking changes
 
+- major update of ALL pkgs (export maps, ESM only) ([0d1d6ea](https://github.com/thi-ng/umbrella/commit/0d1d6ea))
+- BREAKING CHANGE: discontinue CommonJS & UMD versions
+  - only ESM modules will be published from now on
+  - CJS obsolete due to ESM support in recent versions of node:
+    - i.e. launch NodeJS via:
+    - `node --experimental-specifier-resolution=node --experimental-repl-await`
+    - in the node REPL use `await import(...)` instead of `require()`
+  - UMD obsolete due to widespread browser support for ESM
+  Also:
+  - normalize/restructure/reorg all package.json files
+  - cleanup all build scripts, remove obsolete
+  - switch from mocha to [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament) for all tests
 
+#### ♻️ Refactoring
 
+- rename internals ([043e3eb](https://github.com/thi-ng/umbrella/commit/043e3eb))
+- minor pkg restructure ([459596c](https://github.com/thi-ng/umbrella/commit/459596c))
+- update imports ([138571a](https://github.com/thi-ng/umbrella/commit/138571a))
+- update all test stubs ([f2d6d53](https://github.com/thi-ng/umbrella/commit/f2d6d53))
+- update all tests in _all_ pkgs ([8b582bc](https://github.com/thi-ng/umbrella/commit/8b582bc))
+  - update all to use [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament)
 
+## [1.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/hiccup-canvas@1.2.0) (2021-04-03)
 
-# [2.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-canvas@1.2.15...@thi.ng/hiccup-canvas@2.0.0) (2021-10-12)
+#### 🚀 Features
 
+- add IToImageData support ([7cc4709](https://github.com/thi-ng/umbrella/commit/7cc4709))
+  - update image() to accept ImageData & IToImageData
+  - add [@thi.ng/pixel](https://github.com/thi-ng/umbrella/tree/main/packages/pixel) as dev dependency
 
-### Build System
+### [1.1.21](https://github.com/thi-ng/umbrella/tree/@thi.ng/hiccup-canvas@1.1.21) (2021-02-20)
 
-* major update of ALL pkgs (export maps, ESM only) ([0d1d6ea](https://github.com/thi-ng/umbrella/commit/0d1d6ea9fab2a645d6c5f2bf2591459b939c09b6))
+#### ♻️ Refactoring
 
+- update color attrib resolution/conversion ([a9ca280](https://github.com/thi-ng/umbrella/commit/a9ca280))
+- update resolveColor() ([66e9a40](https://github.com/thi-ng/umbrella/commit/66e9a40))
 
-### BREAKING CHANGES
+## [1.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/hiccup-canvas@1.1.0) (2020-07-17)
 
-* discontinue CommonJS & UMD versions
+#### 🚀 Features
 
-- only ESM modules will be published from now on
-- CJS obsolete due to ESM support in recent versions of node:
-  - i.e. launch NodeJS via:
-  - `node --experimental-specifier-resolution=node --experimental-repl-await`
-  - in the node REPL use `await import(...)` instead of `require()`
-- UMD obsolete due to widespread browser support for ESM
+- add lines() ([817b54d](https://github.com/thi-ng/umbrella/commit/817b54d))
 
-Also:
-- normalize/restructure/reorg all package.json files
-- cleanup all build scripts, remove obsolete
-- switch from mocha to @thi.ng/testament for all tests
+# [1.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/hiccup-canvas@1.0.0) (2020-06-05)
 
+#### 🛑 Breaking changes
 
+- extract as new package ([4b3c516](https://github.com/thi-ng/umbrella/commit/4b3c516))
+- BREAKING CHANGE: extract as new package from former [@thi.ng/hdom-canvas](https://github.com/thi-ng/umbrella/tree/main/packages/hdom-canvas)
 
+#### 🚀 Features
 
-
-
-#  [1.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-canvas@1.1.34...@thi.ng/hiccup-canvas@1.2.0) (2021-04-03)
-
-###  Features
-
-- **hiccup-canvas:** add IToImageData support ([7cc4709](https://github.com/thi-ng/umbrella/commit/7cc4709386c99337702d5788b04d14d13618e56b))
-
-#  [1.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/hiccup-canvas@1.0.6...@thi.ng/hiccup-canvas@1.1.0) (2020-07-17)
-
-###  Features
-
-- **hiccup-canvas:** add lines() ([817b54d](https://github.com/thi-ng/umbrella/commit/817b54d6758cf8c74e5d1b450be7d9f8dc2356fc))
-
-#  1.0.0 (2020-06-05)
-
-###  Features
-
-- **hdom-canvas:** rename package, add text support, refactor ([f41014e](https://github.com/thi-ng/umbrella/commit/f41014ebffa8d4051fccbf04080d814fd62a474b))
-- **hiccup-canvas:** add canvas comp, createTree impl, update deps ([60f12c5](https://github.com/thi-ng/umbrella/commit/60f12c5da7a7803e00846da6c316f65952097067))
-- **hiccup-canvas:** add hiccup-canvas package ([eb284f0](https://github.com/thi-ng/umbrella/commit/eb284f0129118e5ef180383a3cd4a31915a5d82a))
-- **hiccup-canvas:** add IToHiccup support in draw ([a59bb09](https://github.com/thi-ng/umbrella/commit/a59bb0923f37677d6579aede0dbe9958b0150d81))
-- **hiccup-canvas:** extract as new package ([4b3c516](https://github.com/thi-ng/umbrella/commit/4b3c516573dc9cb247dedc211210151575709925))
-
-###  BREAKING CHANGES
-
-- **hiccup-canvas:** extract as new package from former @thi.ng/hdom-canvas
+- add IToHiccup support in draw ([a59bb09](https://github.com/thi-ng/umbrella/commit/a59bb09))

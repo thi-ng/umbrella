@@ -1,73 +1,97 @@
 # Change Log
 
+Last updated: 2021-11-17T23:24:59Z
+
 All notable changes to this project will be documented in this file.
-See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+See [Conventional Commits](https://conventionalcommits.org/) for commit guidelines.
 
-## [2.0.8](https://github.com/thi-ng/umbrella/compare/@thi.ng/idgen@2.0.7...@thi.ng/idgen@2.0.8) (2021-11-10)
+**Note:** Unlisted _patch_ versions only involve non-code changes and/or
+version bumps of transitive dependencies.
 
-**Note:** Version bump only for package @thi.ng/idgen
+## [2.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/idgen@2.1.0) (2021-11-17)
 
+#### 🚀 Features
 
+- Using workspaces for local tools ([bf7a404](https://github.com/thi-ng/umbrella/commit/bf7a404))
+  Improving the overall build ergonomics
+  - introduced a tools workspaces
+  - imported it in all needed packages/examples
+  - inclusive project root
 
+#### ♻️ Refactoring
 
+- testrunner to binary ([4ebbbb2](https://github.com/thi-ng/umbrella/commit/4ebbbb2))
+  this commit reverts (partly) changes made in:
+  ef346d7a8753590dc9094108a3d861a8dbd5dd2c
+  overall purpose is better testament ergonomics:
+  instead of having to pass NODE_OPTIONS with every invocation
+  having a binary to handle this for us.
 
-## [2.0.7](https://github.com/thi-ng/umbrella/compare/@thi.ng/idgen@2.0.6...@thi.ng/idgen@2.0.7) (2021-11-03)
+### [2.0.8](https://github.com/thi-ng/umbrella/tree/@thi.ng/idgen@2.0.8) (2021-11-10)
 
-**Note:** Version bump only for package @thi.ng/idgen
+#### ♻️ Refactoring
 
+- update all countdown loops ([a5f374b](https://github.com/thi-ng/umbrella/commit/a5f374b))
 
+### [2.0.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/idgen@2.0.1) (2021-10-13)
 
+#### ♻️ Refactoring
 
+- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
 
-# [2.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/idgen@1.0.5...@thi.ng/idgen@2.0.0) (2021-10-12)
+# [2.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/idgen@2.0.0) (2021-10-12)
 
+#### 🛑 Breaking changes
 
-### Build System
+- major update of ALL pkgs (export maps, ESM only) ([0d1d6ea](https://github.com/thi-ng/umbrella/commit/0d1d6ea))
+- BREAKING CHANGE: discontinue CommonJS & UMD versions
+  - only ESM modules will be published from now on
+  - CJS obsolete due to ESM support in recent versions of node:
+    - i.e. launch NodeJS via:
+    - `node --experimental-specifier-resolution=node --experimental-repl-await`
+    - in the node REPL use `await import(...)` instead of `require()`
+  - UMD obsolete due to widespread browser support for ESM
+  Also:
+  - normalize/restructure/reorg all package.json files
+  - cleanup all build scripts, remove obsolete
+  - switch from mocha to [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament) for all tests
 
-* major update of ALL pkgs (export maps, ESM only) ([0d1d6ea](https://github.com/thi-ng/umbrella/commit/0d1d6ea9fab2a645d6c5f2bf2591459b939c09b6))
+#### ♻️ Refactoring
 
+- update deps & imports in various pkgs ([e1cf29e](https://github.com/thi-ng/umbrella/commit/e1cf29e))
+  - largely related to recent updates/restructuring of these packages:
+    - api
+    - defmulti
+    - errors
+    - logger
+- update imports ([138571a](https://github.com/thi-ng/umbrella/commit/138571a))
+- update all tests in _all_ pkgs ([8b582bc](https://github.com/thi-ng/umbrella/commit/8b582bc))
+  - update all to use [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament)
 
-### BREAKING CHANGES
+### [0.2.29](https://github.com/thi-ng/umbrella/tree/@thi.ng/idgen@0.2.29) (2021-01-02)
 
-* discontinue CommonJS & UMD versions
+#### ⏱ Performance improvements
 
-- only ESM modules will be published from now on
-- CJS obsolete due to ESM support in recent versions of node:
-  - i.e. launch NodeJS via:
-  - `node --experimental-specifier-resolution=node --experimental-repl-await`
-  - in the node REPL use `await import(...)` instead of `require()`
-- UMD obsolete due to widespread browser support for ESM
+- minor updates IDGen, add doc strings ([1c0e284](https://github.com/thi-ng/umbrella/commit/1c0e284))
 
-Also:
-- normalize/restructure/reorg all package.json files
-- cleanup all build scripts, remove obsolete
-- switch from mocha to @thi.ng/testament for all tests
+## [0.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/idgen@0.2.0) (2020-01-24)
 
+#### 🚀 Features
 
+- add IClear impl, fix available() getter, add tests ([e467978](https://github.com/thi-ng/umbrella/commit/e467978))
+  - available() now takes start offset into account
+- support increasing ID range capacity ([f040eb5](https://github.com/thi-ng/umbrella/commit/f040eb5))
+  - add `capacity` getter / setter
+  - increasing capacity only supported if unversioned
 
+## [0.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/idgen@0.1.0) (2019-11-30)
 
+#### 🚀 Features
 
+- add INotify impl, add tests ([7aec9b7](https://github.com/thi-ng/umbrella/commit/7aec9b7))
+- import as new pkg ([bff5f5b](https://github.com/thi-ng/umbrella/commit/bff5f5b))
 
-##  [1.0.5](https://github.com/thi-ng/umbrella/compare/@thi.ng/idgen@1.0.4...@thi.ng/idgen@1.0.5) (2021-09-03)
+#### ♻️ Refactoring
 
-**Note:** Version bump only for package @thi.ng/idgen
-
-##  [0.2.29](https://github.com/thi-ng/umbrella/compare/@thi.ng/idgen@0.2.28...@thi.ng/idgen@0.2.29) (2021-01-02)
-
-###  Performance Improvements
-
-- **idgen:** minor updates IDGen, add doc strings ([1c0e284](https://github.com/thi-ng/umbrella/commit/1c0e284e9f48d4a37a55f74db0fb2b6eade9dc89))
-
-#  [0.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/idgen@0.1.0...@thi.ng/idgen@0.2.0) (2020-01-24)
-
-###  Features
-
-- **idgen:** add IClear impl, fix available() getter, add tests ([e467978](https://github.com/thi-ng/umbrella/commit/e467978f7cd3e82b188ce40631f7367d8e9cebdd))
-- **idgen:** support increasing ID range capacity ([f040eb5](https://github.com/thi-ng/umbrella/commit/f040eb5cb04e458e753fb37fa4dc2fc32a3e0e8c))
-
-#  0.1.0 (2019-11-30)
-
-###  Features
-
-- **idgen:** add INotify impl, add tests ([7aec9b7](https://github.com/thi-ng/umbrella/commit/7aec9b7e7cd0d335e90bd50f5fb47c7b72188fbf))
-- **idgen:** import as new pkg ([bff5f5b](https://github.com/thi-ng/umbrella/commit/bff5f5b66d05449c79e5087385bdecc43594a700))
+- add readonly acces to `ids`, `freeID` getter ([9a2637c](https://github.com/thi-ng/umbrella/commit/9a2637c))
+- expose capacity,  available, used getters ([70d0dc9](https://github.com/thi-ng/umbrella/commit/70d0dc9))

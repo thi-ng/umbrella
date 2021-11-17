@@ -1,252 +1,459 @@
 # Change Log
 
+Last updated: 2021-11-17T23:24:59Z
+
 All notable changes to this project will be documented in this file.
-See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+See [Conventional Commits](https://conventionalcommits.org/) for commit guidelines.
 
-## [3.0.10](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom@3.0.9...@thi.ng/geom@3.0.10) (2021-11-10)
+**Note:** Unlisted _patch_ versions only involve non-code changes and/or
+version bumps of transitive dependencies.
 
-**Note:** Version bump only for package @thi.ng/geom
+## [3.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom@3.1.0) (2021-11-17)
 
+#### 🚀 Features
 
+- Using workspaces for local tools ([bf7a404](https://github.com/thi-ng/umbrella/commit/bf7a404))
+  Improving the overall build ergonomics
+  - introduced a tools workspaces
+  - imported it in all needed packages/examples
+  - inclusive project root
 
+#### ♻️ Refactoring
 
+- testrunner to binary ([4ebbbb2](https://github.com/thi-ng/umbrella/commit/4ebbbb2))
+  this commit reverts (partly) changes made in:
+  ef346d7a8753590dc9094108a3d861a8dbd5dd2c
+  overall purpose is better testament ergonomics:
+  instead of having to pass NODE_OPTIONS with every invocation
+  having a binary to handle this for us.
 
-## [3.0.9](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom@3.0.8...@thi.ng/geom@3.0.9) (2021-11-04)
+### [3.0.10](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom@3.0.10) (2021-11-10)
 
-**Note:** Version bump only for package @thi.ng/geom
+#### ♻️ Refactoring
 
+- update all countdown loops ([a5f374b](https://github.com/thi-ng/umbrella/commit/a5f374b))
 
+### [3.0.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom@3.0.1) (2021-10-13)
 
+#### ♻️ Refactoring
 
+- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
+- update imports in all pkgs ([5fa2b6f](https://github.com/thi-ng/umbrella/commit/5fa2b6f))
+  - add .js suffix for all relative imports
 
-## [3.0.8](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom@3.0.7...@thi.ng/geom@3.0.8) (2021-11-03)
+# [3.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom@3.0.0) (2021-10-12)
 
-**Note:** Version bump only for package @thi.ng/geom
+#### 🛑 Breaking changes
 
+- major update of ALL pkgs (export maps, ESM only) ([0d1d6ea](https://github.com/thi-ng/umbrella/commit/0d1d6ea))
+- BREAKING CHANGE: discontinue CommonJS & UMD versions
+  - only ESM modules will be published from now on
+  - CJS obsolete due to ESM support in recent versions of node:
+    - i.e. launch NodeJS via:
+    - `node --experimental-specifier-resolution=node --experimental-repl-await`
+    - in the node REPL use `await import(...)` instead of `require()`
+  - UMD obsolete due to widespread browser support for ESM
+  Also:
+  - normalize/restructure/reorg all package.json files
+  - cleanup all build scripts, remove obsolete
+  - switch from mocha to [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament) for all tests
 
+#### ♻️ Refactoring
 
+- rename/restructure internals ([94622fe](https://github.com/thi-ng/umbrella/commit/94622fe))
+  - remove internal fns from pkg exports
+- restructure package ([ca56975](https://github.com/thi-ng/umbrella/commit/ca56975))
+  - migrate/lift `/src/ctors` source files to `/src` for easier use
+- restructure package ([2439102](https://github.com/thi-ng/umbrella/commit/2439102))
+  - migrate/lift `/src/ops` source files to `/src` for easier use
+- sideeffect-free defmulti specs ([2721c1d](https://github.com/thi-ng/umbrella/commit/2721c1d))
+- update deps & imports in various pkgs ([e1cf29e](https://github.com/thi-ng/umbrella/commit/e1cf29e))
+  - largely related to recent updates/restructuring of these packages:
+    - api
+    - defmulti
+    - errors
+    - logger
+- update imports (transducers) ([25b674f](https://github.com/thi-ng/umbrella/commit/25b674f))
+- remove obsolete import ([7893fd0](https://github.com/thi-ng/umbrella/commit/7893fd0))
+- update imports ([5ef5559](https://github.com/thi-ng/umbrella/commit/5ef5559))
+- update all test stubs ([f2d6d53](https://github.com/thi-ng/umbrella/commit/f2d6d53))
+- update all tests in _all_ pkgs ([8b582bc](https://github.com/thi-ng/umbrella/commit/8b582bc))
+  - update all to use [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament)
 
+### [2.1.29](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom@2.1.29) (2021-09-03)
 
-# [3.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom@2.1.29...@thi.ng/geom@3.0.0) (2021-10-12)
+#### ♻️ Refactoring
 
+- fix up TS4.4 changes ([863fa33](https://github.com/thi-ng/umbrella/commit/863fa33))
 
-### Build System
+## [2.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom@2.1.0) (2021-02-20)
 
-* major update of ALL pkgs (export maps, ESM only) ([0d1d6ea](https://github.com/thi-ng/umbrella/commit/0d1d6ea9fab2a645d6c5f2bf2591459b939c09b6))
+#### 🚀 Features
 
+- add tangentAt() support for cubic/quadratic ([4302f58](https://github.com/thi-ng/umbrella/commit/4302f58))
 
-### BREAKING CHANGES
+#### 🩹 Bug fixes
 
-* discontinue CommonJS & UMD versions
+- fix regression/update buffer arg types ([9cf5e5d](https://github.com/thi-ng/umbrella/commit/9cf5e5d))
+  - switch from Vec => NumericArray for backing buffers
+  - update remap() / collateWith()
 
-- only ESM modules will be published from now on
-- CJS obsolete due to ESM support in recent versions of node:
-  - i.e. launch NodeJS via:
-  - `node --experimental-specifier-resolution=node --experimental-repl-await`
-  - in the node REPL use `await import(...)` instead of `require()`
-- UMD obsolete due to widespread browser support for ESM
+# [2.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom@2.0.0) (2020-12-22)
 
-Also:
-- normalize/restructure/reorg all package.json files
-- cleanup all build scripts, remove obsolete
-- switch from mocha to @thi.ng/testament for all tests
+#### 🛑 Breaking changes
 
+- fix [#256](https://github.com/thi-ng/umbrella/issues/256) replace Type enum w/ alias ([ef7ba74](https://github.com/thi-ng/umbrella/commit/ef7ba74))
+- BREAKING CHANGE: replace Type enum returned by IShape.type w/ string consts
+  - update all shape classes
+  - update all ops/multimethod dispatches
+- fix [#256](https://github.com/thi-ng/umbrella/issues/256) replace enum w/ type alias ([67988ad](https://github.com/thi-ng/umbrella/commit/67988ad))
+- BREAKING CHANGE: replace SegmentType w/ type alias
 
+#### 🩹 Bug fixes
 
+- fix [#268](https://github.com/thi-ng/umbrella/issues/268) add Group.copyTransformed() ([2da6c63](https://github.com/thi-ng/umbrella/commit/2da6c63))
+  - update transformVertices(), transform(), translate() impls
 
+### [1.13.3](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom@1.13.3) (2020-12-07)
 
+#### ♻️ Refactoring
 
-#  [2.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom@2.0.6...@thi.ng/geom@2.1.0) (2021-02-20)
+- update type-only imports ([b8e96cc](https://github.com/thi-ng/umbrella/commit/b8e96cc))
+- update type-only imports in various tests/pkgs ([3fd9c24](https://github.com/thi-ng/umbrella/commit/3fd9c24))
 
-###  Bug Fixes
+### [1.13.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom@1.13.1) (2020-11-24)
 
-- **geom:** fix regression/update buffer arg types ([9cf5e5d](https://github.com/thi-ng/umbrella/commit/9cf5e5d43d648eecfdcba861f44acc4d3e9fd17c))
+#### 🩹 Bug fixes
 
-###  Features
+- add missing translate() impls for Cubic/Quadratic ([fe4c027](https://github.com/thi-ng/umbrella/commit/fe4c027))
+- update whitespace check in pathFromSvg() ([2ce5ec1](https://github.com/thi-ng/umbrella/commit/2ce5ec1))
 
-- **geom:** add tangentAt() support for cubic/quadratic ([4302f58](https://github.com/thi-ng/umbrella/commit/4302f58dd4d490fbb0b97754ae7d54f28a8fa269))
+## [1.13.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom@1.13.0) (2020-10-03)
 
-#  [2.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom@1.13.4...@thi.ng/geom@2.0.0) (2020-12-22)
+#### 🩹 Bug fixes
 
-###  Bug Fixes
+- arg order pointAt() impl (RAY/RAY3) ([6ec9b46](https://github.com/thi-ng/umbrella/commit/6ec9b46))
 
-- **geom:** fix [#268](https://github.com/thi-ng/umbrella/issues/268) add Group.copyTransformed() ([2da6c63](https://github.com/thi-ng/umbrella/commit/2da6c63b5a2dbc45bc1272eaf592d3d74d8ce74e))
+## [1.12.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom@1.12.0) (2020-09-22)
 
-###  Code Refactoring
+#### 🚀 Features
 
-- **geom:** fix [#256](https://github.com/thi-ng/umbrella/issues/256) replace enum w/ type alias ([67988ad](https://github.com/thi-ng/umbrella/commit/67988ad31f478b28de85e40d8ab7c51501ef4acb))
-- **geom:** fix [#256](https://github.com/thi-ng/umbrella/issues/256) replace Type enum w/ alias ([ef7ba74](https://github.com/thi-ng/umbrella/commit/ef7ba74c189755d760d84c700b0c970a281a3b04))
+- add basic text support ([9d1424d](https://github.com/thi-ng/umbrella/commit/9d1424d))
 
-###  BREAKING CHANGES
+#### ♻️ Refactoring
 
-- **geom:** replace Type enum returned by IShape.type w/ string consts
-    - update all shape classes
-    - update all ops/multimethod dispatches
-- **geom:** replace SegmentType w/ type alias
+- update fitIntoBounds() fns ([19095b0](https://github.com/thi-ng/umbrella/commit/19095b0))
+- de-dupe asCubic() for polygon/polyline ([65ea389](https://github.com/thi-ng/umbrella/commit/65ea389))
 
-##  [1.13.1](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom@1.13.0...@thi.ng/geom@1.13.1) (2020-11-24)
+### [1.11.7](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom@1.11.7) (2020-08-28)
 
-###  Bug Fixes
+#### 🩹 Bug fixes
 
-- **geom:** add missing translate() impls for Cubic/Quadratic ([fe4c027](https://github.com/thi-ng/umbrella/commit/fe4c027e8a652ccd7bf7513e9348f21560f50b9c))
-- **geom:** update whitespace check in pathFromSvg() ([2ce5ec1](https://github.com/thi-ng/umbrella/commit/2ce5ec178bce371f3b8029ea1041f89e10500ead))
+- update asPolyline() for PATH/POLYGON ([243962c](https://github.com/thi-ng/umbrella/commit/243962c))
+  - ensure last point is unique (copy of 1st)
 
-#  [1.13.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom@1.12.0...@thi.ng/geom@1.13.0) (2020-10-03)
+## [1.11.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom@1.11.0) (2020-07-17)
 
-###  Bug Fixes
+#### 🚀 Features
 
-- **geom:** arg order pointAt() impl (RAY/RAY3) ([6ec9b46](https://github.com/thi-ng/umbrella/commit/6ec9b462ff4f6aaa0da8634f303ff37c329c8fdf))
+- add PathBuilderOpts, update Path.toHiccup() ([deb9892](https://github.com/thi-ng/umbrella/commit/deb9892))
+  - add support to disable auto-splitting paths in PathBuilder
+  - update toHiccup() impl to support multiple `M` cmds
+- add/update clipVertex() impls ([a87c31c](https://github.com/thi-ng/umbrella/commit/a87c31c))
+  - add support for `Line` and `Group` shape types
+  - update boundary arg type to support raw point arrays
+    (rather than only `IShape`). this allows for certain optimizations,
+    esp. for group impl.
 
-###  Features
+#### 🩹 Bug fixes
 
-- **vectors, geom:** point on ray at distance ([0b04b80](https://github.com/thi-ng/umbrella/commit/0b04b80f1eaa700e262f99d4726651c90d4fed2b))
+- update svgDoc() attrib inject (add null check) ([6898975](https://github.com/thi-ng/umbrella/commit/6898975))
 
-#  [1.12.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom@1.11.8...@thi.ng/geom@1.12.0) (2020-09-22)
+#### ♻️ Refactoring
 
-###  Features
+- update various shape ctors ([8b63f9d](https://github.com/thi-ng/umbrella/commit/8b63f9d))
 
-- **geom:** add basic text support ([9d1424d](https://github.com/thi-ng/umbrella/commit/9d1424d1c57e4d2c55fb6cfdd507f3ca7cd85dc3))
+## [1.10.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom@1.10.0) (2020-06-20)
 
-##  [1.11.7](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom@1.11.6...@thi.ng/geom@1.11.7) (2020-08-28)
+#### 🚀 Features
 
-###  Bug Fixes
+- add offset() & initial impls ([819afd1](https://github.com/thi-ng/umbrella/commit/819afd1))
+  - add impls for circle, line, rect
+- add rectFromCentroid() ([7837961](https://github.com/thi-ng/umbrella/commit/7837961))
 
-- **geom:** update asPolyline() for PATH/POLYGON ([243962c](https://github.com/thi-ng/umbrella/commit/243962ce4b2a690eb84e540f9d55d52d355edc39))
+#### ♻️ Refactoring
 
-#  [1.11.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom@1.10.7...@thi.ng/geom@1.11.0) (2020-07-17)
+- update offset() line impl ([6958280](https://github.com/thi-ng/umbrella/commit/6958280))
 
-###  Bug Fixes
+### [1.9.3](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom@1.9.3) (2020-05-14)
 
-- **geom:** update svgDoc() attrib inject (add null check) ([6898975](https://github.com/thi-ng/umbrella/commit/6898975f9d1604486add067904ac284d3837dba6))
+#### 🩹 Bug fixes
 
-###  Features
+- Path.copy() deep-clone behavior ([2ade10e](https://github.com/thi-ng/umbrella/commit/2ade10e))
 
-- **geom:** add PathBuilderOpts, update Path.toHiccup() ([deb9892](https://github.com/thi-ng/umbrella/commit/deb98927bd08f717abbee4d9a171bd3e3236cb00))
-- **geom:** add/update clipVertex() impls ([a87c31c](https://github.com/thi-ng/umbrella/commit/a87c31cbb5be4ddd9c6159362386204f396d1f2e))
+## [1.9.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom@1.9.0) (2020-04-27)
 
-#  [1.10.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom@1.9.8...@thi.ng/geom@1.10.0) (2020-06-20)
+#### 🚀 Features
 
-###  Features
+- update asPolyline() impls ([cca8574](https://github.com/thi-ng/umbrella/commit/cca8574))
+  - add arc & quadratic support
+- add transformVertices() op ([ef68a27](https://github.com/thi-ng/umbrella/commit/ef68a27))
 
-- **geom:** add offset() & initial impls ([819afd1](https://github.com/thi-ng/umbrella/commit/819afd13896661266653a3b71b96ed0549b406ba))
-- **geom:** add rectFromCentroid() ([7837961](https://github.com/thi-ng/umbrella/commit/78379612addef0563d09fccb3ed8bb9addd739fc))
+### [1.8.4](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom@1.8.4) (2020-03-06)
 
-##  [1.9.3](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom@1.9.2...@thi.ng/geom@1.9.3) (2020-05-14)
+#### ♻️ Refactoring
 
-###  Bug Fixes
+- update skipWS() helper for pathFromSVG() ([ec07ddd](https://github.com/thi-ng/umbrella/commit/ec07ddd))
 
-- **geom:** Path.copy() deep-clone behavior ([2ade10e](https://github.com/thi-ng/umbrella/commit/2ade10e86e83076fd9499ad7ee863caf7c3b463d))
+## [1.8.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom@1.8.0) (2020-02-25)
 
-#  [1.9.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom@1.8.12...@thi.ng/geom@1.9.0) (2020-04-27)
+#### 🚀 Features
 
-###  Features
+- add cubic polyline impls ([263f2f9](https://github.com/thi-ng/umbrella/commit/263f2f9))
+- add fitIntoBounds3, fix [#202](https://github.com/thi-ng/umbrella/issues/202), [#206](https://github.com/thi-ng/umbrella/issues/206) ([19be3fa](https://github.com/thi-ng/umbrella/commit/19be3fa))
+- add Points3 and supporting ops ([7e1adb7](https://github.com/thi-ng/umbrella/commit/7e1adb7))
+  - points3() ctor
+  - area()
+  - bounds()
+  - centroid()
+  - flip()
+  - pointInside()
+  - transform()
+  - translate()
+  - vertices()
+- add edges() impl for AABB ([b800686](https://github.com/thi-ng/umbrella/commit/b800686))
+- add intersectionAABB/Rect() ([ecc9706](https://github.com/thi-ng/umbrella/commit/ecc9706))
 
-- **geom:** add transformVertices() op ([ef68a27](https://github.com/thi-ng/umbrella/commit/ef68a2703aab83cf1b520a832a6b1c8268759a3b))
-- **geom:** update asPolyline() impls ([cca8574](https://github.com/thi-ng/umbrella/commit/cca85744377c9957af82695236230bc75a005473))
+#### 🩹 Bug fixes
 
-#  [1.8.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom@1.7.10...@thi.ng/geom@1.8.0) (2020-02-25)
+- add missing type annotation (asCubic) ([c4f7eae](https://github.com/thi-ng/umbrella/commit/c4f7eae))
 
-###  Bug Fixes
+#### ♻️ Refactoring
 
-- **geom:** add missing type annotation (asCubic) ([c4f7eae](https://github.com/thi-ng/umbrella/commit/c4f7eae7fe45a7e48e43420afe273a06d56ae936))
+- update imports ([69e9ed1](https://github.com/thi-ng/umbrella/commit/69e9ed1))
+- update geom-clip deps & imports ([4fe4bfe](https://github.com/thi-ng/umbrella/commit/4fe4bfe))
 
-###  Features
+### [1.7.7](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom@1.7.7) (2019-11-09)
 
-- **geom:** add cubic polyline impls ([263f2f9](https://github.com/thi-ng/umbrella/commit/263f2f9709045c40defcd79804a6b10dd44cb6b4))
-- **geom:** add edges() impl for AABB ([b800686](https://github.com/thi-ng/umbrella/commit/b800686d42acf105764dddb6591eabc1ea72bcf8))
-- **geom:** add fitIntoBounds3, fix [#202](https://github.com/thi-ng/umbrella/issues/202), [#206](https://github.com/thi-ng/umbrella/issues/206) ([19be3fa](https://github.com/thi-ng/umbrella/commit/19be3fa516147a7612515e80c11dfc9ebcff50b3))
-- **geom:** add intersectionAABB/Rect() ([ecc9706](https://github.com/thi-ng/umbrella/commit/ecc9706c13d2bf7929b63fb8bf023d8ce2477268))
-- **geom:** add Points3 and supporting ops ([7e1adb7](https://github.com/thi-ng/umbrella/commit/7e1adb7b0d4e78dc6988fe3c32e1fd6170914dc8))
+#### ♻️ Refactoring
 
-#  [1.7.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom@1.6.1...@thi.ng/geom@1.7.0) (2019-07-12)
+- update wrapSides/tween call sites in various pkgs ([ee8200c](https://github.com/thi-ng/umbrella/commit/ee8200c))
 
-###  Bug Fixes
+### [1.7.5](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom@1.7.5) (2019-08-21)
 
-- **geom:** update asCubic() circle impl (only 99.99% closed) ([36cdb4f](https://github.com/thi-ng/umbrella/commit/36cdb4f))
+#### ♻️ Refactoring
 
-###  Features
+- update PCLike copy() impls, add copyShape() helper ([bc20135](https://github.com/thi-ng/umbrella/commit/bc20135))
+- asCubic() Arc impl (re-use cubicFromArc) ([df5c881](https://github.com/thi-ng/umbrella/commit/df5c881))
+- add pclike(), simplify shape factory fns ([ef0d102](https://github.com/thi-ng/umbrella/commit/ef0d102))
+- add internal helpers for improved re-use ([b3dc83f](https://github.com/thi-ng/umbrella/commit/b3dc83f))
+  - add copyAttribs()
+  - add pointArraysAsShapes()
+- improve internal re-use PathBuilder ([c8ef0cf](https://github.com/thi-ng/umbrella/commit/c8ef0cf))
+- split api.ts, extract PathBuilder / pathFromSVG ([071c346](https://github.com/thi-ng/umbrella/commit/071c346))
 
-- **geom:** add asCubic() impls for circle, group, rect ([5ca4166](https://github.com/thi-ng/umbrella/commit/5ca4166))
-- **geom:** add asPath(), update pathFromCubics() to accept opt attribs ([980af9f](https://github.com/thi-ng/umbrella/commit/980af9f))
-- **geom:** add ellipse support for asCubic() ([4247801](https://github.com/thi-ng/umbrella/commit/4247801))
-- **geom:** add polygon impl for asCubic(), add pathFromCubics() ([2faec7f](https://github.com/thi-ng/umbrella/commit/2faec7f))
-- **geom:** add/update transform impls: arc, circle, ellipse, path, rect ([e77e7c2](https://github.com/thi-ng/umbrella/commit/e77e7c2))
+### [1.7.3](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom@1.7.3) (2019-08-16)
 
-#  [1.6.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom@1.5.0...@thi.ng/geom@1.6.0) (2019-07-07)
+#### ♻️ Refactoring
 
-###  Bug Fixes
+- update pathFromSVG() arc parsing, add readFlag ([2a36128](https://github.com/thi-ng/umbrella/commit/2a36128))
 
-- **geom:** update madd/maddN call sites ([#95](https://github.com/thi-ng/umbrella/issues/95)) ([a96e028](https://github.com/thi-ng/umbrella/commit/a96e028))
+### [1.7.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom@1.7.1) (2019-07-31)
 
-###  Features
+#### ♻️ Refactoring
 
-- **geom:** enable TS strict compiler flags (refactor) ([aa10de0](https://github.com/thi-ng/umbrella/commit/aa10de0))
-- **geom:** TS strictNullChecks, update various classes & ops ([636dea7](https://github.com/thi-ng/umbrella/commit/636dea7))
+- update asCubic for circle ([b890838](https://github.com/thi-ng/umbrella/commit/b890838))
+  - use full 0..TAU range
 
-#  [1.5.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom@1.4.2...@thi.ng/geom@1.5.0) (2019-05-22)
+## [1.7.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom@1.7.0) (2019-07-12)
 
-###  Features
+#### 🚀 Features
 
-- **geom:** add Plane, Quad3 factories & ops ([2079bfe](https://github.com/thi-ng/umbrella/commit/2079bfe))
+- add/update transform impls: arc, circle, ellipse, path, rect ([e77e7c2](https://github.com/thi-ng/umbrella/commit/e77e7c2))
+  - arc, circle, ellipse now converted to paths, instead of polygons
+- add ellipse support for asCubic() ([4247801](https://github.com/thi-ng/umbrella/commit/4247801))
+- add asPath(), update pathFromCubics() to accept opt attribs ([980af9f](https://github.com/thi-ng/umbrella/commit/980af9f))
+- add asCubic() impls for circle, group, rect ([5ca4166](https://github.com/thi-ng/umbrella/commit/5ca4166))
+  - re-use arc impl from geom-splines
+- add polygon impl for asCubic(), add pathFromCubics() ([2faec7f](https://github.com/thi-ng/umbrella/commit/2faec7f))
 
-#  [1.4.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom@1.3.0...@thi.ng/geom@1.4.0) (2019-04-15)
+#### 🩹 Bug fixes
 
-###  Features
+- update asCubic() circle impl (only 99.99% closed) ([36cdb4f](https://github.com/thi-ng/umbrella/commit/36cdb4f))
 
-- **geom:** add new shape factories & impls ([1a5ead1](https://github.com/thi-ng/umbrella/commit/1a5ead1))
+## [1.6.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom@1.6.0) (2019-07-07)
 
-#  [1.3.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom@1.2.21...@thi.ng/geom@1.3.0) (2019-04-11)
+#### 🚀 Features
 
-###  Features
+- TS strictNullChecks, update various classes & ops ([636dea7](https://github.com/thi-ng/umbrella/commit/636dea7))
+  - make attribs field optional in all shape types
+  - update return types of various fns to potentially return undefined
+- enable TS strict compiler flags (refactor) ([aa10de0](https://github.com/thi-ng/umbrella/commit/aa10de0))
 
-- **geom:** add AABB impls for vertices() & volume() ([a9ba010](https://github.com/thi-ng/umbrella/commit/a9ba010))
-- **geom:** add inscribedSquare*() fns ([b1790b3](https://github.com/thi-ng/umbrella/commit/b1790b3))
+#### 🩹 Bug fixes
 
-#  [1.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom@1.1.1...@thi.ng/geom@1.2.0) (2019-02-05)
+- update madd/maddN call sites ([#95](https://github.com/thi-ng/umbrella/issues/95)) ([a96e028](https://github.com/thi-ng/umbrella/commit/a96e028))
 
-###  Features
+## [1.5.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom@1.5.0) (2019-05-22)
 
-- **geom:** add ray-rect/aabb impls for intersects() ([5f7dd63](https://github.com/thi-ng/umbrella/commit/5f7dd63))
+#### 🚀 Features
 
-#  [1.1.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom@1.0.1...@thi.ng/geom@1.1.0) (2019-01-22)
+- add Plane, Quad3 factories & ops ([2079bfe](https://github.com/thi-ng/umbrella/commit/2079bfe))
 
-###  Bug Fixes
+## [1.4.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom@1.4.0) (2019-04-15)
 
-- **geom:** update Rect.toHiccup() format (separate widht/height vals) ([8c1df49](https://github.com/thi-ng/umbrella/commit/8c1df49))
+#### 🚀 Features
 
-###  Features
+- add new shape factories & impls ([1a5ead1](https://github.com/thi-ng/umbrella/commit/1a5ead1))
+  - add AABB, Plane, Sphere factories
+  - add closestPoint() impls
 
-- **geom:** add asPolyline() multi-fn ([c602379](https://github.com/thi-ng/umbrella/commit/c602379))
-- **geom:** add attrib support to PathBuilder ([a017b10](https://github.com/thi-ng/umbrella/commit/a017b10))
+## [1.3.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom@1.3.0) (2019-04-11)
 
-#  [1.0.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom@0.2.11...@thi.ng/geom@1.0.0) (2019-01-21)
+#### 🚀 Features
 
-###  Build System
+- add inscribedSquare*() fns ([b1790b3](https://github.com/thi-ng/umbrella/commit/b1790b3))
+- add AABB impls for vertices() & volume() ([a9ba010](https://github.com/thi-ng/umbrella/commit/a9ba010))
+
+### [1.2.2](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom@1.2.2) (2019-02-15)
+
+#### ♻️ Refactoring
+
+- update to use [@thi.ng/arrays](https://github.com/thi-ng/umbrella/tree/main/packages/arrays) ([78095f4](https://github.com/thi-ng/umbrella/commit/78095f4))
+
+## [1.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom@1.2.0) (2019-02-05)
+
+#### ♻️ Refactoring
+
+- update imports (zip) ([5204a7f](https://github.com/thi-ng/umbrella/commit/5204a7f))
+
+### [1.1.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom@1.1.1) (2019-01-31)
+
+#### 🚀 Features
+
+- add ray-rect/aabb impls for intersects() ([5f7dd63](https://github.com/thi-ng/umbrella/commit/5f7dd63))
+
+#### ♻️ Refactoring
+
+- minor update clippedLine() ([4b85288](https://github.com/thi-ng/umbrella/commit/4b85288))
+- swap Group ctor & factory arg order ([6d14f2b](https://github.com/thi-ng/umbrella/commit/6d14f2b))
+  - first attribs, then children...
+- update pointInside & classifyPoint impls (delegate) ([226645f](https://github.com/thi-ng/umbrella/commit/226645f))
+- remove obsolete/migrated fns, update deps, readme ([df8332d](https://github.com/thi-ng/umbrella/commit/df8332d))
+- update to use geom-api types ([b223603](https://github.com/thi-ng/umbrella/commit/b223603))
+- remove obsolete/extracted internal ops, update publics ([fb532b8](https://github.com/thi-ng/umbrella/commit/fb532b8))
+
+## [1.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom@1.1.0) (2019-01-22)
+
+#### 🚀 Features
+
+- add asPolyline() multi-fn ([c602379](https://github.com/thi-ng/umbrella/commit/c602379))
+- add attrib support to PathBuilder ([a017b10](https://github.com/thi-ng/umbrella/commit/a017b10))
+
+#### 🩹 Bug fixes
+
+- update Rect.toHiccup() format (separate widht/height vals) ([8c1df49](https://github.com/thi-ng/umbrella/commit/8c1df49))
+
+### [1.0.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom@1.0.1) (2019-01-21)
+
+#### ♻️ Refactoring
+
+- update tangentAt(), use direction() from vectors pkg ([3d499ad](https://github.com/thi-ng/umbrella/commit/3d499ad))
+
+# [1.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom@1.0.0) (2019-01-21)
+
+#### 🛑 Breaking changes
 
 - update package build scripts & outputs, imports in ~50 packages ([b54b703](https://github.com/thi-ng/umbrella/commit/b54b703))
+- BREAKING CHANGE: enabled multi-outputs (ES6 modules, CJS, UMD)
+  - build scripts now first build ES6 modules in package root, then call
+    `scripts/bundle-module` to build minified CJS & UMD bundles in `/lib`
+  - all imports MUST be updated to only refer to package level
+    (not individual files anymore). tree shaking in user land will get rid of
+    all unused imported symbols.
 
-###  BREAKING CHANGES
+#### 🚀 Features
 
-- enabled multi-outputs (ES6 modules, CJS, UMD)
-- build scripts now first build ES6 modules in package root, then call   `scripts/bundle-module` to build minified CJS & UMD bundles in `/lib`
-- all imports MUST be updated to only refer to package level   (not individual files anymore). tree shaking in user land will get rid of   all unused imported symbols.
+- re-add barycentric conversions, collation mappers (still unused) ([db4a201](https://github.com/thi-ng/umbrella/commit/db4a201))
+- update closestPoint(), add support for Arc ([63b3a5d](https://github.com/thi-ng/umbrella/commit/63b3a5d))
+- add arcPointAt() helper, refactor Arc, minor other updates ([0e5e776](https://github.com/thi-ng/umbrella/commit/0e5e776))
+- add splitNearPoint() for line & polyline, update Sampler ([910529d](https://github.com/thi-ng/umbrella/commit/910529d))
+- add splitNearPoint(), Sampler.closestT(), internal restructure ([1d754eb](https://github.com/thi-ng/umbrella/commit/1d754eb))
+- add flip() impls ([56f6037](https://github.com/thi-ng/umbrella/commit/56f6037))
+- add pointAt() impls for Cubic/Quadratic ([ebc9a98](https://github.com/thi-ng/umbrella/commit/ebc9a98))
+- add closestPoint() impls for splines, line, polygons, polyline ([eaf1a1b](https://github.com/thi-ng/umbrella/commit/eaf1a1b))
+- add transform() impls for Cubic/Quadratic ([627e20d](https://github.com/thi-ng/umbrella/commit/627e20d))
+- add clippedLine(), minor update liangBarsky() ([d763621](https://github.com/thi-ng/umbrella/commit/d763621))
+- add/update edges(), pointInside() & classifyPoint() impls ([e834597](https://github.com/thi-ng/umbrella/commit/e834597))
+- re-add vertices() impls for Cubic/Quadratic ([f5a53ca](https://github.com/thi-ng/umbrella/commit/f5a53ca))
+- re-add pathFromSvg() ([3c9a7b0](https://github.com/thi-ng/umbrella/commit/3c9a7b0))
+- add intersection checks & intersects() multi-fn ([66267e2](https://github.com/thi-ng/umbrella/commit/66267e2))
+- re-add tessellators ([f1f428a](https://github.com/thi-ng/umbrella/commit/f1f428a))
+- add clipConvex, scatter, warpPoints ([d09cc79](https://github.com/thi-ng/umbrella/commit/d09cc79))
+- add path builder, path & arc op impls ([61cfb0f](https://github.com/thi-ng/umbrella/commit/61cfb0f))
+- re-add arc, cubic, quadratic ops, splitAt & other ops ([fea8fbe](https://github.com/thi-ng/umbrella/commit/fea8fbe))
+- add temp geom3 package (another refactored version of geom2) ([c0e3a0b](https://github.com/thi-ng/umbrella/commit/c0e3a0b))
 
-#  [0.2.0](https://github.com/thi-ng/umbrella/compare/@thi.ng/geom@0.1.0...@thi.ng/geom@0.2.0) (2018-10-21)
+#### 🩹 Bug fixes
 
-###  Features
+- update arcFrom2Points() ([62ec49f](https://github.com/thi-ng/umbrella/commit/62ec49f))
 
-- **geom:** add IToCubic, add/update impls ([ce131d4](https://github.com/thi-ng/umbrella/commit/ce131d4))
+#### ⏱ Performance improvements
 
-#  0.1.0 (2018-10-17)
+- use squared dist for classifyPoint() (circle) ([cd59f66](https://github.com/thi-ng/umbrella/commit/cd59f66))
 
-###  Features
+#### ♻️ Refactoring
 
-- **geom:** add ICollate & ICopy impls, re-add/update convexHull2 ([3b1bf64](https://github.com/thi-ng/umbrella/commit/3b1bf64))
-- **geom:** add/update factory fns, arg handling, tessel, poly area ([555fc51](https://github.com/thi-ng/umbrella/commit/555fc51))
-- **geom:** add/update interfaces & impls ([2657df6](https://github.com/thi-ng/umbrella/commit/2657df6))
-- **geom:** add/update tessellate() impls ([fa87f1e](https://github.com/thi-ng/umbrella/commit/fa87f1e))
-- **geom:** add/update various shape impls & ops ([3a20ef3](https://github.com/thi-ng/umbrella/commit/3a20ef3))
-- **geom:** import (updated) old thi.ng/geom package (minus vectors) ([c03259c](https://github.com/thi-ng/umbrella/commit/c03259c))
-- **geom:** re-add Arc2, update Circle2, update helper fns ([aa6b120](https://github.com/thi-ng/umbrella/commit/aa6b120))
-- **geom:** re-import & refactor partial port of thi.ng/geom (clojure) ([d655ec2](https://github.com/thi-ng/umbrella/commit/d655ec2))
-- **geom:** update all shape types, add interfaces & ops, update tests ([9c27c77](https://github.com/thi-ng/umbrella/commit/9c27c77))
+- update withAttribs() return type ([8e2c8b5](https://github.com/thi-ng/umbrella/commit/8e2c8b5))
+- add tessellate() multi-fn, move/rename tessellators ([499e14b](https://github.com/thi-ng/umbrella/commit/499e14b))
+- update imports, fix tests ([c41b96f](https://github.com/thi-ng/umbrella/commit/c41b96f))
+
+### [0.2.11](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom@0.2.11) (2019-01-02)
+
+#### 🚀 Features
+
+- add/rename type ids, add sphere, isec fns ([161199f](https://github.com/thi-ng/umbrella/commit/161199f))
+
+### [0.2.3](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom@0.2.3) (2018-12-01)
+
+#### 🚀 Features
+
+- re-add arcLength() impls, update imports ([896855d](https://github.com/thi-ng/umbrella/commit/896855d))
+
+#### ♻️ Refactoring
+
+- update everything to use new vectors package ([d4172ee](https://github.com/thi-ng/umbrella/commit/d4172ee))
+
+## [0.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom@0.2.0) (2018-10-21)
+
+#### 🚀 Features
+
+- add IToCubic, add/update impls ([ce131d4](https://github.com/thi-ng/umbrella/commit/ce131d4))
+  - add/update .toCubic() impls for Arc2, Line2, Polyline2
+  - add Path2.normalize() to convert all segments to cubics
+  - remove mixCubic/mixQuadratic()
+
+## [0.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom@0.1.0) (2018-10-17)
+
+#### 🚀 Features
+
+- add/update tessellate() impls ([fa87f1e](https://github.com/thi-ng/umbrella/commit/fa87f1e))
+- add/update factory fns, arg handling, tessel, poly area ([555fc51](https://github.com/thi-ng/umbrella/commit/555fc51))
+- add/update various shape impls & ops ([3a20ef3](https://github.com/thi-ng/umbrella/commit/3a20ef3))
+- re-import & refactor partial port of [@thi.ng/geom](https://github.com/thi-ng/umbrella/tree/main/packages/geom) (clojure) ([d655ec2](https://github.com/thi-ng/umbrella/commit/d655ec2))
+- add/update interfaces & impls ([2657df6](https://github.com/thi-ng/umbrella/commit/2657df6))
+  - add CollateOpts, update collate() in both containers
+  - add generics for IVertices
+  - add ArcSamplingOpts
+  - update edges(), vertices() for Arc2 & Circle2
+  - add .toJSON() impls
+  - add [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/main/packages/checks) dep
+- re-add Arc2, update Circle2, update helper fns ([aa6b120](https://github.com/thi-ng/umbrella/commit/aa6b120))
+- add ICollate & ICopy impls, re-add/update convexHull2 ([3b1bf64](https://github.com/thi-ng/umbrella/commit/3b1bf64))
+- update all shape types, add interfaces & ops, update tests ([9c27c77](https://github.com/thi-ng/umbrella/commit/9c27c77))
+
+#### ♻️ Refactoring
+
+- update deps & [@thi.ng/math](https://github.com/thi-ng/umbrella/tree/main/packages/math) imports ([ffea836](https://github.com/thi-ng/umbrella/commit/ffea836))
+- update arg handling, update readme ([2e9f048](https://github.com/thi-ng/umbrella/commit/2e9f048))
+- add interfaces, split out common.ts into /func folder ([9fb2091](https://github.com/thi-ng/umbrella/commit/9fb2091))
