@@ -363,6 +363,17 @@
       "contributions": [
         "bug"
       ]
+    },
+    {
+      "login": "ja0nz",
+      "name": "Ja|nz",
+      "avatar_url": "https://avatars.githubusercontent.com/u/19622393?v=4",
+      "profile": "https://twitter.com/ja0nz",
+      "contributions": [
+        "code",
+        "infra",
+        "maintenance"
+      ]
     }
   ],
   "contributorsPerLine": 7,
