@@ -113,8 +113,7 @@ cat << EOF > "$MODULE"/tsconfig.json
     "extends": "../tsconfig.json",
     "include": ["src"],
     "compilerOptions": {
-        "baseUrl": "./",
-        "paths": { "*": ["web_modules/.types/*"] }
+        "baseUrl": "./"
     }
 }
 EOF
