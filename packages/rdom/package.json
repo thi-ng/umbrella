@@ -32,7 +32,7 @@
         "doc:stats": "tools:module-stats",
         "pub": "yarn build && yarn npm publish --access public",
         "pub:wip": "yarn npm publish --access public --no-git-tag-version",
-        "test": "NODE_OPTIONS='--no-warnings --loader ts-node/esm' testament test"
+        "test": "testament test"
     },
     "dependencies": {
         "@thi.ng/api": "^8.2.0",

@@ -5,7 +5,7 @@
     "type": "module",
     "module": "./index.js",
     "typings": "./index.d.ts",
-    "bin": "cli.js",
+    "bin": "bin/testament.mjs",
     "sideEffects": false,
     "repository": {
         "type": "git",
@@ -32,7 +32,7 @@
         "doc:readme": "yarn doc:stats && tools:readme",
         "doc:stats": "tools:module-stats",
         "pub": "yarn build && yarn npm publish --access public",
-        "test": "NODE_OPTIONS='--no-warnings --loader ts-node/esm' testament test"
+        "test": "testament test"
     },
     "dependencies": {
         "@thi.ng/logger": "^1.0.6",
