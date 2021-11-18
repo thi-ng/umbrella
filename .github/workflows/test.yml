@@ -9,6 +9,7 @@ on:
             - "packages/**"
             - ".github/workflows/**"
             - "package.json"
+            - "yarn.lock"
             - "!**.md"
     pull_request:
         branches:
