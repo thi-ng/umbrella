@@ -32,7 +32,7 @@
         "doc:ae": "mkdir -p .ae/doc .ae/temp && api-extractor run --local --verbose",
         "doc:readme": "yarn doc:stats && tools:readme",
         "doc:stats": "tools:module-stats",
-        "pub": "yarn build && yarn npm publish --access public",
+        "pub": "yarn npm publish --access public",
         "test": "testament test"
     },
     "devDependencies": {
