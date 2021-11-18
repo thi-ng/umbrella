@@ -171,20 +171,26 @@ export const $clear = (el: Element) => ((el.innerHTML = ""), el);
 
 /**
  * Same as `el.innerText = body`, however if `body` is an
- * {@link @thi.ng/api#IDeref} it'll be automatically deref'd.
+ * {@link @thi.ng/api#IDeref} it'll be automatically deref'd. For SVG elements a
+ * new child text DOM node will be created.
  *
  * @param el
  * @param body
  */
 export const $text = (el: HTMLElement, body: any) => {
-    el.innerText = String(deref(body));
+    body = String(deref(body));
+    if (el.namespaceURI === XML_SVG) {
+        $clear(el).appendChild(document.createTextNode(body));
+    } else {
+        el.innerText = body;
+    }
 };
 
 /**
  * Same as `el.innerHtml = body`, use with caution! If `body` is an
  * {@link @thi.ng/api#IDeref} it'll be automatically deref'd.
  *
- * @param elß
+ * @param el
  * @param body
  */
 
