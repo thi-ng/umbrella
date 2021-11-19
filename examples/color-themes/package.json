@@ -1,5 +1,5 @@
 {
-    "name": "color-themes",
+    "name": "@example/color-themes",
     "private": true,
     "version": "0.0.1",
     "description": "Probabilistic color theme generator",

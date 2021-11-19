@@ -1,5 +1,5 @@
 {
-    "name": "canvas-dial",
+    "name": "@example/canvas-dial",
     "private": true,
     "version": "0.0.1",
     "description": "Canvas based dial widget",

@@ -1,5 +1,5 @@
 {
-    "name": "rdom-lissajous",
+    "name": "@example/rdom-lissajous",
     "private": true,
     "version": "0.0.1",
     "description": "rdom & hiccup-canvas interop test",

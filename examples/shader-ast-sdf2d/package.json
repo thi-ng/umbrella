@@ -1,5 +1,5 @@
 {
-    "name": "shader-ast-sdf2d",
+    "name": "@example/shader-ast-sdf2d",
     "private": true,
     "description": "WebGL & JS canvas 2D SDF",
     "version": "0.0.1",

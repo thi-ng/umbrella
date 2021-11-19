@@ -1,5 +1,5 @@
 {
-    "name": "geom-voronoi-mst",
+    "name": "@example/geom-voronoi-mst",
     "private": true,
     "version": "0.0.1",
     "description": "Poisson-disk shape-aware sampling, Voronoi & Minimum Spanning Tree visualization",

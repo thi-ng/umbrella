@@ -1,5 +1,5 @@
 {
-    "name": "hdom-dropdown-fuzzy",
+    "name": "@example/hdom-dropdown-fuzzy",
     "private": true,
     "description": "Custom dropdown UI component w/ fuzzy search",
     "version": "0.0.1",

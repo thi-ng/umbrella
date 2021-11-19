@@ -1,5 +1,5 @@
 {
-    "name": "json-components",
+    "name": "@example/json-components",
     "private": true,
     "description": "Transforming JSON into UI components",
     "version": "0.0.1",

@@ -1,5 +1,5 @@
 {
-    "name": "triple-query",
+    "name": "@example/triple-query",
     "private": true,
     "description": "Triple store query results & sortable table",
     "version": "0.0.1",

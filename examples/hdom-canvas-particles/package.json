@@ -1,5 +1,5 @@
 {
-    "name": "hdom-canvas-particles",
+    "name": "@example/hdom-canvas-particles",
     "private": true,
     "description": "2D Bezier curve-guided particle system",
     "version": "0.0.1",

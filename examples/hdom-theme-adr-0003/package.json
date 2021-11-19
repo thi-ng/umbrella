@@ -1,5 +1,5 @@
 {
-    "name": "hdom-theme",
+    "name": "@example/hdom-theme",
     "private": true,
     "description": "Example for themed components proposal",
     "version": "0.0.1",

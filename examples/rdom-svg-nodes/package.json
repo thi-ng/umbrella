@@ -1,5 +1,5 @@
 {
-    "name": "rdom-svg-nodes",
+    "name": "@example/rdom-svg-nodes",
     "private": true,
     "version": "0.0.1",
     "description": "rdom powered SVG graph with draggable nodes",

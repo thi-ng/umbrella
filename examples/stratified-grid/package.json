@@ -1,5 +1,5 @@
 {
-    "name": "stratified-grid",
+    "name": "@example/stratified-grid",
     "private": true,
     "version": "0.0.1",
     "description": "2D Stratified grid sampling example",

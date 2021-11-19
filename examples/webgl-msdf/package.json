@@ -1,5 +1,5 @@
 {
-    "name": "webgl-msdf",
+    "name": "@example/webgl-msdf",
     "private": true,
     "description": "WebGL MSDF text rendering & particle system",
     "version": "0.0.1",

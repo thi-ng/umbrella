@@ -1,5 +1,5 @@
 {
-    "name": "login-form",
+    "name": "@example/login-form",
     "private": true,
     "description": "Basic SPA example with atom-based UI router",
     "version": "0.0.1",

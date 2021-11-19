@@ -1,5 +1,5 @@
 {
-    "name": "rstream-dataflow",
+    "name": "@example/rstream-dataflow",
     "private": true,
     "description": "Minimal rstream dataflow graph",
     "version": "0.0.1",

@@ -1,5 +1,5 @@
 {
-    "name": "pixel-basics",
+    "name": "@example/pixel-basics",
     "private": true,
     "description": "Pixel buffer manipulations",
     "version": "0.0.1",

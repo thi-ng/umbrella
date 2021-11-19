@@ -1,5 +1,5 @@
 {
-    "name": "pointfree-svg",
+    "name": "@example/pointfree-svg",
     "private": true,
     "description": "Generate SVG using pointfree DSL",
     "version": "0.0.1",

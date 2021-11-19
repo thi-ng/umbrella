@@ -1,5 +1,5 @@
 {
-    "name": "porter-duff",
+    "name": "@example/porter-duff",
     "private": true,
     "description": "Port-Duff image compositing / alpha blending",
     "version": "0.0.1",

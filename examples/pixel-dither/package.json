@@ -1,5 +1,5 @@
 {
-    "name": "pixel-dither",
+    "name": "@example/pixel-dither",
     "private": true,
     "version": "0.0.1",
     "description": "Showcase of various dithering algorithms",

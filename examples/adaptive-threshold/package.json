@@ -1,5 +1,5 @@
 {
-    "name": "adaptive-threshold",
+    "name": "@example/adaptive-threshold",
     "private": true,
     "version": "0.0.1",
     "description": "Interactive image processing (adaptive threshold)",

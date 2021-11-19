@@ -1,5 +1,5 @@
 {
-    "name": "cellular-automata",
+    "name": "@example/cellular-automata",
     "private": true,
     "version": "0.0.1",
     "description": "2D transducer based cellular automata",

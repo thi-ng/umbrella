@@ -1,5 +1,5 @@
 {
-    "name": "svg-barchart",
+    "name": "@example/svg-barchart",
     "private": true,
     "description": "Simplistic SVG bar chart component",
     "version": "0.0.1",

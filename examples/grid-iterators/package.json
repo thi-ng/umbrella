@@ -1,5 +1,5 @@
 {
-    "name": "grid-iterators",
+    "name": "@example/grid-iterators",
     "private": true,
     "description": "Visualization of different grid iterator strategies",
     "version": "0.0.1",

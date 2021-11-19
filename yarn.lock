@@ -21,6 +21,1660 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@example/adaptive-threshold@workspace:examples/adaptive-threshold":
+  version: 0.0.0-use.local
+  resolution: "@example/adaptive-threshold@workspace:examples/adaptive-threshold"
+  dependencies:
+    "@thi.ng/api": "workspace:^"
+    "@thi.ng/paths": "workspace:^"
+    "@thi.ng/pixel": "workspace:^"
+    "@thi.ng/rstream": "workspace:^"
+    "@thi.ng/transducers": "workspace:^"
+    "@thi.ng/transducers-hdom": "workspace:^"
+    typescript: ^4.5.2
+    vite: ^2.6.14
+  languageName: unknown
+  linkType: soft
+
+"@example/async-effect@workspace:examples/async-effect":
+  version: 0.0.0-use.local
+  resolution: "@example/async-effect@workspace:examples/async-effect"
+  dependencies:
+    "@thi.ng/api": "workspace:^"
+    "@thi.ng/hdom": "workspace:^"
+    "@thi.ng/interceptors": "workspace:^"
+    typescript: ^4.5.2
+    vite: ^2.6.14
+  languageName: unknown
+  linkType: soft
+
+"@example/bitmap-font@workspace:examples/bitmap-font":
+  version: 0.0.0-use.local
+  resolution: "@example/bitmap-font@workspace:examples/bitmap-font"
+  dependencies:
+    "@thi.ng/api": "workspace:^"
+    "@thi.ng/hdom-components": "workspace:^"
+    "@thi.ng/math": "workspace:^"
+    "@thi.ng/rstream": "workspace:^"
+    "@thi.ng/transducers": "workspace:^"
+    "@thi.ng/transducers-binary": "workspace:^"
+    "@thi.ng/transducers-hdom": "workspace:^"
+    typescript: ^4.5.2
+    vite: ^2.6.14
+  languageName: unknown
+  linkType: soft
+
+"@example/canvas-dial@workspace:examples/canvas-dial":
+  version: 0.0.0-use.local
+  resolution: "@example/canvas-dial@workspace:examples/canvas-dial"
+  dependencies:
+    "@thi.ng/api": "workspace:^"
+    "@thi.ng/arrays": "workspace:^"
+    "@thi.ng/checks": "workspace:^"
+    "@thi.ng/hdom-components": "workspace:^"
+    "@thi.ng/math": "workspace:^"
+    "@thi.ng/rstream": "workspace:^"
+    "@thi.ng/rstream-gestures": "workspace:^"
+    "@thi.ng/strings": "workspace:^"
+    "@thi.ng/transducers": "workspace:^"
+    "@thi.ng/transducers-hdom": "workspace:^"
+    "@thi.ng/vectors": "workspace:^"
+    typescript: ^4.5.2
+    vite: ^2.6.14
+  languageName: unknown
+  linkType: soft
+
+"@example/cellular-automata@workspace:examples/cellular-automata":
+  version: 0.0.0-use.local
+  resolution: "@example/cellular-automata@workspace:examples/cellular-automata"
+  dependencies:
+    "@thi.ng/hdom": "workspace:^"
+    "@thi.ng/hdom-components": "workspace:^"
+    "@thi.ng/transducers": "workspace:^"
+    "@thi.ng/transducers-binary": "workspace:^"
+    typescript: ^4.5.2
+    vite: ^2.6.14
+  languageName: unknown
+  linkType: soft
+
+"@example/color-themes@workspace:examples/color-themes":
+  version: 0.0.0-use.local
+  resolution: "@example/color-themes@workspace:examples/color-themes"
+  dependencies:
+    "@thi.ng/api": "workspace:^"
+    "@thi.ng/checks": "workspace:^"
+    "@thi.ng/color": "workspace:^"
+    "@thi.ng/dl-asset": "workspace:^"
+    "@thi.ng/hiccup-html": "workspace:^"
+    "@thi.ng/hiccup-svg": "workspace:^"
+    "@thi.ng/random": "workspace:^"
+    "@thi.ng/rdom": "workspace:^"
+    "@thi.ng/rdom-components": "workspace:^"
+    "@thi.ng/rstream": "workspace:^"
+    "@thi.ng/rstream-dot": "workspace:^"
+    "@thi.ng/transducers": "workspace:^"
+    typescript: ^4.5.2
+    vite: ^2.6.14
+  languageName: unknown
+  linkType: soft
+
+"@example/commit-heatmap@workspace:examples/commit-heatmap":
+  version: 0.0.0-use.local
+  resolution: "@example/commit-heatmap@workspace:examples/commit-heatmap"
+  dependencies:
+    "@thi.ng/associative": "workspace:^"
+    "@thi.ng/color": "workspace:^"
+    "@thi.ng/compose": "workspace:^"
+    "@thi.ng/date": "workspace:^"
+    "@thi.ng/hiccup": "workspace:^"
+    "@thi.ng/hiccup-svg": "workspace:^"
+    "@thi.ng/math": "workspace:^"
+    "@thi.ng/strings": "workspace:^"
+    "@thi.ng/transducers": "workspace:^"
+    tools: "workspace:^"
+    typescript: ^4.5.2
+  languageName: unknown
+  linkType: soft
+
+"@example/commit-table-ssr@workspace:examples/commit-table-ssr":
+  version: 0.0.0-use.local
+  resolution: "@example/commit-table-ssr@workspace:examples/commit-table-ssr"
+  dependencies:
+    "@thi.ng/api": "workspace:^"
+    "@thi.ng/associative": "workspace:^"
+    "@thi.ng/cache": "workspace:^"
+    "@thi.ng/hiccup": "workspace:^"
+    "@thi.ng/resolve-map": "workspace:^"
+    "@thi.ng/rstream": "workspace:^"
+    "@thi.ng/transducers": "workspace:^"
+    "@thi.ng/transducers-hdom": "workspace:^"
+    "@types/express": ^4.17.7
+    "@types/node": ^16.11.7
+    express: ^4.17.1
+    ts-node: ^10.4.0
+    typescript: ^4.5.2
+    vite: ^2.6.14
+  languageName: unknown
+  linkType: soft
+
+"@example/crypto-chart@workspace:examples/crypto-chart":
+  version: 0.0.0-use.local
+  resolution: "@example/crypto-chart@workspace:examples/crypto-chart"
+  dependencies:
+    "@thi.ng/api": "workspace:^"
+    "@thi.ng/hdom-components": "workspace:^"
+    "@thi.ng/hiccup-svg": "workspace:^"
+    "@thi.ng/math": "workspace:^"
+    "@thi.ng/resolve-map": "workspace:^"
+    "@thi.ng/rstream": "workspace:^"
+    "@thi.ng/strings": "workspace:^"
+    "@thi.ng/transducers": "workspace:^"
+    "@thi.ng/transducers-hdom": "workspace:^"
+    "@thi.ng/transducers-stats": "workspace:^"
+    typescript: ^4.5.2
+    vite: ^2.6.14
+  languageName: unknown
+  linkType: soft
+
+"@example/devcards@workspace:examples/devcards":
+  version: 0.0.0-use.local
+  resolution: "@example/devcards@workspace:examples/devcards"
+  dependencies:
+    "@thi.ng/api": "workspace:^"
+    "@thi.ng/atom": "workspace:^"
+    "@thi.ng/hdom": "workspace:^"
+    typescript: ^4.5.2
+    vite: ^2.6.14
+  languageName: unknown
+  linkType: soft
+
+"@example/dominant-colors@workspace:examples/dominant-colors":
+  version: 0.0.0-use.local
+  resolution: "@example/dominant-colors@workspace:examples/dominant-colors"
+  dependencies:
+    "@thi.ng/api": "workspace:^"
+    "@thi.ng/bench": "workspace:^"
+    "@thi.ng/checks": "workspace:^"
+    "@thi.ng/color": "workspace:^"
+    "@thi.ng/compare": "workspace:^"
+    "@thi.ng/dl-asset": "workspace:^"
+    "@thi.ng/hiccup-html": "workspace:^"
+    "@thi.ng/hiccup-svg": "workspace:^"
+    "@thi.ng/pixel": "workspace:^"
+    "@thi.ng/rdom": "workspace:^"
+    "@thi.ng/rdom-components": "workspace:^"
+    "@thi.ng/rstream": "workspace:^"
+    "@thi.ng/strings": "workspace:^"
+    "@thi.ng/transducers": "workspace:^"
+    typescript: ^4.5.2
+    vite: ^2.6.14
+  languageName: unknown
+  linkType: soft
+
+"@example/ellipse-proximity@workspace:examples/ellipse-proximity":
+  version: 0.0.0-use.local
+  resolution: "@example/ellipse-proximity@workspace:examples/ellipse-proximity"
+  dependencies:
+    "@thi.ng/geom-closest-point": "workspace:^"
+    "@thi.ng/rdom": "workspace:^"
+    "@thi.ng/rdom-canvas": "workspace:^"
+    "@thi.ng/rstream": "workspace:^"
+    "@thi.ng/rstream-gestures": "workspace:^"
+    "@thi.ng/transducers": "workspace:^"
+    "@thi.ng/vectors": "workspace:^"
+    typescript: ^4.5.2
+    vite: ^2.6.14
+  languageName: unknown
+  linkType: soft
+
+"@example/fft-synth@workspace:examples/fft-synth":
+  version: 0.0.0-use.local
+  resolution: "@example/fft-synth@workspace:examples/fft-synth"
+  dependencies:
+    "@thi.ng/api": "workspace:^"
+    "@thi.ng/atom": "workspace:^"
+    "@thi.ng/dsp": "workspace:^"
+    "@thi.ng/hdom-canvas": "workspace:^"
+    "@thi.ng/imgui": "workspace:^"
+    "@thi.ng/layout": "workspace:^"
+    "@thi.ng/math": "workspace:^"
+    "@thi.ng/random": "workspace:^"
+    "@thi.ng/rstream": "workspace:^"
+    "@thi.ng/rstream-gestures": "workspace:^"
+    "@thi.ng/strings": "workspace:^"
+    "@thi.ng/transducers": "workspace:^"
+    "@thi.ng/transducers-hdom": "workspace:^"
+    typescript: ^4.5.2
+    vite: ^2.6.14
+  languageName: unknown
+  linkType: soft
+
+"@example/geom-convex-hull@workspace:examples/geom-convex-hull":
+  version: 0.0.0-use.local
+  resolution: "@example/geom-convex-hull@workspace:examples/geom-convex-hull"
+  dependencies:
+    "@thi.ng/geom": "workspace:^"
+    "@thi.ng/geom-api": "workspace:^"
+    "@thi.ng/hdom": "workspace:^"
+    "@thi.ng/hdom-canvas": "workspace:^"
+    typescript: ^4.5.2
+    vite: ^2.6.14
+  languageName: unknown
+  linkType: soft
+
+"@example/geom-fuzz-basics@workspace:examples/geom-fuzz-basics":
+  version: 0.0.0-use.local
+  resolution: "@example/geom-fuzz-basics@workspace:examples/geom-fuzz-basics"
+  dependencies:
+    "@thi.ng/adapt-dpi": "workspace:^"
+    "@thi.ng/geom": "workspace:^"
+    "@thi.ng/geom-fuzz": "workspace:^"
+    "@thi.ng/hiccup-canvas": "workspace:^"
+    "@thi.ng/rstream": "workspace:^"
+    typescript: ^4.5.2
+    vite: ^2.6.14
+  languageName: unknown
+  linkType: soft
+
+"@example/geom-knn@workspace:examples/geom-knn":
+  version: 0.0.0-use.local
+  resolution: "@example/geom-knn@workspace:examples/geom-knn"
+  dependencies:
+    "@thi.ng/bench": "workspace:^"
+    "@thi.ng/geom-accel": "workspace:^"
+    "@thi.ng/hdom-canvas": "workspace:^"
+    "@thi.ng/rstream": "workspace:^"
+    "@thi.ng/rstream-gestures": "workspace:^"
+    "@thi.ng/transducers": "workspace:^"
+    "@thi.ng/transducers-hdom": "workspace:^"
+    "@thi.ng/vectors": "workspace:^"
+    typescript: ^4.5.2
+    vite: ^2.6.14
+  languageName: unknown
+  linkType: soft
+
+"@example/geom-tessel@workspace:examples/geom-tessel":
+  version: 0.0.0-use.local
+  resolution: "@example/geom-tessel@workspace:examples/geom-tessel"
+  dependencies:
+    "@thi.ng/compose": "workspace:^"
+    "@thi.ng/geom": "workspace:^"
+    "@thi.ng/geom-api": "workspace:^"
+    "@thi.ng/geom-tessellate": "workspace:^"
+    "@thi.ng/hdom-canvas": "workspace:^"
+    "@thi.ng/math": "workspace:^"
+    "@thi.ng/rstream": "workspace:^"
+    "@thi.ng/transducers": "workspace:^"
+    "@thi.ng/transducers-hdom": "workspace:^"
+    "@thi.ng/vectors": "workspace:^"
+    typescript: ^4.5.2
+    vite: ^2.6.14
+  languageName: unknown
+  linkType: soft
+
+"@example/geom-voronoi-mst@workspace:examples/geom-voronoi-mst":
+  version: 0.0.0-use.local
+  resolution: "@example/geom-voronoi-mst@workspace:examples/geom-voronoi-mst"
+  dependencies:
+    "@thi.ng/adjacency": "workspace:^"
+    "@thi.ng/bench": "workspace:^"
+    "@thi.ng/geom": "workspace:^"
+    "@thi.ng/geom-accel": "workspace:^"
+    "@thi.ng/geom-voronoi": "workspace:^"
+    "@thi.ng/hdom": "workspace:^"
+    "@thi.ng/hdom-canvas": "workspace:^"
+    "@thi.ng/math": "workspace:^"
+    "@thi.ng/poisson": "workspace:^"
+    "@thi.ng/transducers": "workspace:^"
+    "@thi.ng/vectors": "workspace:^"
+    typescript: ^4.5.2
+    vite: ^2.6.14
+  languageName: unknown
+  linkType: soft
+
+"@example/gesture-analysis@workspace:examples/gesture-analysis":
+  version: 0.0.0-use.local
+  resolution: "@example/gesture-analysis@workspace:examples/gesture-analysis"
+  dependencies:
+    "@thi.ng/arrays": "workspace:^"
+    "@thi.ng/geom": "workspace:^"
+    "@thi.ng/hiccup-svg": "workspace:^"
+    "@thi.ng/rstream": "workspace:^"
+    "@thi.ng/rstream-gestures": "workspace:^"
+    "@thi.ng/transducers": "workspace:^"
+    "@thi.ng/transducers-hdom": "workspace:^"
+    "@thi.ng/vectors": "workspace:^"
+    typescript: ^4.5.2
+    vite: ^2.6.14
+  languageName: unknown
+  linkType: soft
+
+"@example/grid-iterators@workspace:examples/grid-iterators":
+  version: 0.0.0-use.local
+  resolution: "@example/grid-iterators@workspace:examples/grid-iterators"
+  dependencies:
+    "@thi.ng/color": "workspace:^"
+    "@thi.ng/grid-iterators": "workspace:^"
+    "@thi.ng/pixel": "workspace:^"
+    "@thi.ng/transducers": "workspace:^"
+    typescript: ^4.5.2
+    vite: ^2.6.14
+  languageName: unknown
+  linkType: soft
+
+"@example/hdom-basics@workspace:examples/hdom-basics":
+  version: 0.0.0-use.local
+  resolution: "@example/hdom-basics@workspace:examples/hdom-basics"
+  dependencies:
+    "@thi.ng/hdom": "workspace:^"
+    typescript: ^4.5.2
+    vite: ^2.6.14
+  languageName: unknown
+  linkType: soft
+
+"@example/hdom-benchmark2@workspace:examples/hdom-benchmark2":
+  version: 0.0.0-use.local
+  resolution: "@example/hdom-benchmark2@workspace:examples/hdom-benchmark2"
+  dependencies:
+    "@thi.ng/binary": "workspace:^"
+    "@thi.ng/hdom": "workspace:^"
+    "@thi.ng/hdom-components": "workspace:^"
+    "@thi.ng/hiccup-css": "workspace:^"
+    "@thi.ng/strings": "workspace:^"
+    "@thi.ng/transducers": "workspace:^"
+    typescript: ^4.5.2
+    vite: ^2.6.14
+  languageName: unknown
+  linkType: soft
+
+"@example/hdom-benchmark@workspace:examples/hdom-benchmark":
+  version: 0.0.0-use.local
+  resolution: "@example/hdom-benchmark@workspace:examples/hdom-benchmark"
+  dependencies:
+    "@thi.ng/hdom": "workspace:^"
+    "@thi.ng/hdom-components": "workspace:^"
+    "@thi.ng/hex": "workspace:^"
+    "@thi.ng/rstream": "workspace:^"
+    "@thi.ng/transducers": "workspace:^"
+    typescript: ^4.5.2
+    vite: ^2.6.14
+  languageName: unknown
+  linkType: soft
+
+"@example/hdom-canvas-clock@workspace:examples/hdom-canvas-clock":
+  version: 0.0.0-use.local
+  resolution: "@example/hdom-canvas-clock@workspace:examples/hdom-canvas-clock"
+  dependencies:
+    "@thi.ng/hdom": "workspace:^"
+    "@thi.ng/hdom-canvas": "workspace:^"
+    "@thi.ng/math": "workspace:^"
+    "@thi.ng/transducers": "workspace:^"
+    "@thi.ng/vectors": "workspace:^"
+    typescript: ^4.5.2
+    vite: ^2.6.14
+  languageName: unknown
+  linkType: soft
+
+"@example/hdom-canvas-draw@workspace:examples/hdom-canvas-draw":
+  version: 0.0.0-use.local
+  resolution: "@example/hdom-canvas-draw@workspace:examples/hdom-canvas-draw"
+  dependencies:
+    "@thi.ng/hdom-canvas": "workspace:^"
+    "@thi.ng/math": "workspace:^"
+    "@thi.ng/rstream": "workspace:^"
+    "@thi.ng/rstream-gestures": "workspace:^"
+    "@thi.ng/transducers": "workspace:^"
+    "@thi.ng/transducers-hdom": "workspace:^"
+    "@thi.ng/vectors": "workspace:^"
+    typescript: ^4.5.2
+    vite: ^2.6.14
+  languageName: unknown
+  linkType: soft
+
+"@example/hdom-canvas-particles@workspace:examples/hdom-canvas-particles":
+  version: 0.0.0-use.local
+  resolution: "@example/hdom-canvas-particles@workspace:examples/hdom-canvas-particles"
+  dependencies:
+    "@thi.ng/compose": "workspace:^"
+    "@thi.ng/geom": "workspace:^"
+    "@thi.ng/hdom": "workspace:^"
+    "@thi.ng/hdom-canvas": "workspace:^"
+    "@thi.ng/math": "workspace:^"
+    "@thi.ng/random": "workspace:^"
+    "@thi.ng/transducers": "workspace:^"
+    "@thi.ng/vectors": "workspace:^"
+    typescript: ^4.5.2
+    vite: ^2.6.14
+  languageName: unknown
+  linkType: soft
+
+"@example/hdom-canvas-shapes@workspace:examples/hdom-canvas-shapes":
+  version: 0.0.0-use.local
+  resolution: "@example/hdom-canvas-shapes@workspace:examples/hdom-canvas-shapes"
+  dependencies:
+    "@thi.ng/color": "workspace:^"
+    "@thi.ng/dl-asset": "workspace:^"
+    "@thi.ng/geom": "workspace:^"
+    "@thi.ng/hdom-canvas": "workspace:^"
+    "@thi.ng/hdom-components": "workspace:^"
+    "@thi.ng/hiccup": "workspace:^"
+    "@thi.ng/hiccup-svg": "workspace:^"
+    "@thi.ng/math": "workspace:^"
+    "@thi.ng/matrices": "workspace:^"
+    "@thi.ng/rstream": "workspace:^"
+    "@thi.ng/transducers": "workspace:^"
+    "@thi.ng/transducers-hdom": "workspace:^"
+    "@thi.ng/vectors": "workspace:^"
+    typescript: ^4.5.2
+    vite: ^2.6.14
+  languageName: unknown
+  linkType: soft
+
+"@example/hdom-dropdown-fuzzy@workspace:examples/hdom-dropdown-fuzzy":
+  version: 0.0.0-use.local
+  resolution: "@example/hdom-dropdown-fuzzy@workspace:examples/hdom-dropdown-fuzzy"
+  dependencies:
+    "@thi.ng/api": "workspace:^"
+    "@thi.ng/atom": "workspace:^"
+    "@thi.ng/checks": "workspace:^"
+    "@thi.ng/hdom": "workspace:^"
+    "@thi.ng/hdom-components": "workspace:^"
+    "@thi.ng/interceptors": "workspace:^"
+    "@thi.ng/paths": "workspace:^"
+    "@thi.ng/transducers": "workspace:^"
+    typescript: ^4.5.2
+    vite: ^2.6.14
+  languageName: unknown
+  linkType: soft
+
+"@example/hdom-dropdown@workspace:examples/hdom-dropdown":
+  version: 0.0.0-use.local
+  resolution: "@example/hdom-dropdown@workspace:examples/hdom-dropdown"
+  dependencies:
+    "@thi.ng/api": "workspace:^"
+    "@thi.ng/atom": "workspace:^"
+    "@thi.ng/hdom": "workspace:^"
+    "@thi.ng/hdom-components": "workspace:^"
+    "@thi.ng/interceptors": "workspace:^"
+    "@thi.ng/paths": "workspace:^"
+    typescript: ^4.5.2
+    vite: ^2.6.14
+  languageName: unknown
+  linkType: soft
+
+"@example/hdom-dyn-context@workspace:examples/hdom-dyn-context":
+  version: 0.0.0-use.local
+  resolution: "@example/hdom-dyn-context@workspace:examples/hdom-dyn-context"
+  dependencies:
+    "@thi.ng/atom": "workspace:^"
+    "@thi.ng/hdom": "workspace:^"
+    typescript: ^4.5.2
+    vite: ^2.6.14
+  languageName: unknown
+  linkType: soft
+
+"@example/hdom-elm@workspace:examples/hdom-elm":
+  version: 0.0.0-use.local
+  resolution: "@example/hdom-elm@workspace:examples/hdom-elm"
+  dependencies:
+    "@thi.ng/api": "workspace:^"
+    "@thi.ng/hdom": "workspace:^"
+    "@thi.ng/hiccup": "workspace:^"
+    "@thi.ng/paths": "workspace:^"
+    "@thi.ng/strings": "workspace:^"
+    typescript: ^4.5.2
+    vite: ^2.6.14
+  languageName: unknown
+  linkType: soft
+
+"@example/hdom-inner-html@workspace:examples/hdom-inner-html":
+  version: 0.0.0-use.local
+  resolution: "@example/hdom-inner-html@workspace:examples/hdom-inner-html"
+  dependencies:
+    "@thi.ng/hdom": "workspace:^"
+    typescript: ^4.5.2
+    vite: ^2.6.14
+  languageName: unknown
+  linkType: soft
+
+"@example/hdom-local-render@workspace:examples/hdom-local-render":
+  version: 0.0.0-use.local
+  resolution: "@example/hdom-local-render@workspace:examples/hdom-local-render"
+  dependencies:
+    "@thi.ng/hdom": "workspace:^"
+    "@thi.ng/memoize": "workspace:^"
+    "@thi.ng/rstream": "workspace:^"
+    "@thi.ng/transducers": "workspace:^"
+    "@thi.ng/transducers-hdom": "workspace:^"
+    typescript: ^4.5.2
+    vite: ^2.6.14
+  languageName: unknown
+  linkType: soft
+
+"@example/hdom-localstate@workspace:examples/hdom-localstate":
+  version: 0.0.0-use.local
+  resolution: "@example/hdom-localstate@workspace:examples/hdom-localstate"
+  dependencies:
+    "@thi.ng/hdom": "workspace:^"
+    "@thi.ng/paths": "workspace:^"
+    typescript: ^4.5.2
+    vite: ^2.6.14
+  languageName: unknown
+  linkType: soft
+
+"@example/hdom-skip-nested@workspace:examples/hdom-skip-nested":
+  version: 0.0.0-use.local
+  resolution: "@example/hdom-skip-nested@workspace:examples/hdom-skip-nested"
+  dependencies:
+    "@thi.ng/hdom": "workspace:^"
+    typescript: ^4.5.2
+    vite: ^2.6.14
+  languageName: unknown
+  linkType: soft
+
+"@example/hdom-skip@workspace:examples/hdom-skip":
+  version: 0.0.0-use.local
+  resolution: "@example/hdom-skip@workspace:examples/hdom-skip"
+  dependencies:
+    "@thi.ng/hdom": "workspace:^"
+    typescript: ^4.5.2
+    vite: ^2.6.14
+  languageName: unknown
+  linkType: soft
+
+"@example/hdom-theme@workspace:examples/hdom-theme-adr-0003":
+  version: 0.0.0-use.local
+  resolution: "@example/hdom-theme@workspace:examples/hdom-theme-adr-0003"
+  dependencies:
+    "@thi.ng/api": "workspace:^"
+    "@thi.ng/hdom": "workspace:^"
+    "@thi.ng/paths": "workspace:^"
+    typescript: ^4.5.2
+    vite: ^2.6.14
+  languageName: unknown
+  linkType: soft
+
+"@example/hdom-toggle@workspace:examples/hdom-toggle":
+  version: 0.0.0-use.local
+  resolution: "@example/hdom-toggle@workspace:examples/hdom-toggle"
+  dependencies:
+    "@thi.ng/hdom": "workspace:^"
+    "@thi.ng/hdom-components": "workspace:^"
+    typescript: ^4.5.2
+    vite: ^2.6.14
+  languageName: unknown
+  linkType: soft
+
+"@example/hdom-vscroller@workspace:examples/hdom-vscroller":
+  version: 0.0.0-use.local
+  resolution: "@example/hdom-vscroller@workspace:examples/hdom-vscroller"
+  dependencies:
+    "@thi.ng/api": "workspace:^"
+    "@thi.ng/hdom": "workspace:^"
+    "@thi.ng/transducers": "workspace:^"
+    typescript: ^4.5.2
+    vite: ^2.6.14
+  languageName: unknown
+  linkType: soft
+
+"@example/hiccup-canvas-arcs@workspace:examples/hiccup-canvas-arcs":
+  version: 0.0.0-use.local
+  resolution: "@example/hiccup-canvas-arcs@workspace:examples/hiccup-canvas-arcs"
+  dependencies:
+    "@thi.ng/color": "workspace:^"
+    "@thi.ng/geom": "workspace:^"
+    "@thi.ng/hiccup-canvas": "workspace:^"
+    "@thi.ng/math": "workspace:^"
+    "@thi.ng/random": "workspace:^"
+    "@thi.ng/rstream": "workspace:^"
+    "@thi.ng/transducers": "workspace:^"
+    "@thi.ng/vectors": "workspace:^"
+    typescript: ^4.5.2
+    vite: ^2.6.14
+  languageName: unknown
+  linkType: soft
+
+"@example/hydrate-basics@workspace:examples/hydrate-basics":
+  version: 0.0.0-use.local
+  resolution: "@example/hydrate-basics@workspace:examples/hydrate-basics"
+  dependencies:
+    "@thi.ng/api": "workspace:^"
+    "@thi.ng/atom": "workspace:^"
+    "@thi.ng/hdom": "workspace:^"
+    "@thi.ng/hdom-components": "workspace:^"
+    "@thi.ng/hiccup": "workspace:^"
+    typescript: ^4.5.2
+    vite: ^2.6.14
+  languageName: unknown
+  linkType: soft
+
+"@example/imgui-basics@workspace:examples/imgui-basics":
+  version: 0.0.0-use.local
+  resolution: "@example/imgui-basics@workspace:examples/imgui-basics"
+  dependencies:
+    "@thi.ng/hdom": "workspace:^"
+    "@thi.ng/hdom-canvas": "workspace:^"
+    "@thi.ng/imgui": "workspace:^"
+    "@thi.ng/layout": "workspace:^"
+    "@thi.ng/rstream": "workspace:^"
+    "@thi.ng/rstream-gestures": "workspace:^"
+    typescript: ^4.5.2
+    vite: ^2.6.14
+  languageName: unknown
+  linkType: soft
+
+"@example/imgui@workspace:examples/imgui":
+  version: 0.0.0-use.local
+  resolution: "@example/imgui@workspace:examples/imgui"
+  dependencies:
+    "@thi.ng/atom": "workspace:^"
+    "@thi.ng/bench": "workspace:^"
+    "@thi.ng/geom": "workspace:^"
+    "@thi.ng/hdom-canvas": "workspace:^"
+    "@thi.ng/hiccup-carbon-icons": "workspace:^"
+    "@thi.ng/imgui": "workspace:^"
+    "@thi.ng/layout": "workspace:^"
+    "@thi.ng/math": "workspace:^"
+    "@thi.ng/paths": "workspace:^"
+    "@thi.ng/rstream": "workspace:^"
+    "@thi.ng/rstream-gestures": "workspace:^"
+    "@thi.ng/strings": "workspace:^"
+    "@thi.ng/transducers": "workspace:^"
+    "@thi.ng/transducers-hdom": "workspace:^"
+    "@thi.ng/transducers-stats": "workspace:^"
+    "@thi.ng/vectors": "workspace:^"
+    typescript: ^4.5.2
+    vite: ^2.6.14
+  languageName: unknown
+  linkType: soft
+
+"@example/interceptor-basics2@workspace:examples/interceptor-basics2":
+  version: 0.0.0-use.local
+  resolution: "@example/interceptor-basics2@workspace:examples/interceptor-basics2"
+  dependencies:
+    "@thi.ng/api": "workspace:^"
+    "@thi.ng/atom": "workspace:^"
+    "@thi.ng/hdom": "workspace:^"
+    "@thi.ng/interceptors": "workspace:^"
+    typescript: ^4.5.2
+    vite: ^2.6.14
+  languageName: unknown
+  linkType: soft
+
+"@example/interceptor-basics@workspace:examples/interceptor-basics":
+  version: 0.0.0-use.local
+  resolution: "@example/interceptor-basics@workspace:examples/interceptor-basics"
+  dependencies:
+    "@thi.ng/atom": "workspace:^"
+    "@thi.ng/hdom": "workspace:^"
+    "@thi.ng/interceptors": "workspace:^"
+    "@thi.ng/transducers": "workspace:^"
+    typescript: ^4.5.2
+    vite: ^2.6.14
+  languageName: unknown
+  linkType: soft
+
+"@example/iso-plasma@workspace:examples/iso-plasma":
+  version: 0.0.0-use.local
+  resolution: "@example/iso-plasma@workspace:examples/iso-plasma"
+  dependencies:
+    "@thi.ng/api": "workspace:^"
+    "@thi.ng/geom": "workspace:^"
+    "@thi.ng/geom-isoline": "workspace:^"
+    "@thi.ng/hdom": "workspace:^"
+    "@thi.ng/hdom-canvas": "workspace:^"
+    "@thi.ng/math": "workspace:^"
+    "@thi.ng/transducers": "workspace:^"
+    "@thi.ng/vectors": "workspace:^"
+    typescript: ^4.5.2
+    vite: ^2.6.14
+  languageName: unknown
+  linkType: soft
+
+"@example/json-components@workspace:examples/json-components":
+  version: 0.0.0-use.local
+  resolution: "@example/json-components@workspace:examples/json-components"
+  dependencies:
+    "@thi.ng/hdom": "workspace:^"
+    "@thi.ng/transducers": "workspace:^"
+    typescript: ^4.5.2
+    vite: ^2.6.14
+  languageName: unknown
+  linkType: soft
+
+"@example/login-form@workspace:examples/login-form":
+  version: 0.0.0-use.local
+  resolution: "@example/login-form@workspace:examples/login-form"
+  dependencies:
+    "@thi.ng/api": "workspace:^"
+    "@thi.ng/atom": "workspace:^"
+    "@thi.ng/expose": "workspace:^"
+    "@thi.ng/hdom": "workspace:^"
+    "@thi.ng/strings": "workspace:^"
+    typescript: ^4.5.2
+    vite: ^2.6.14
+  languageName: unknown
+  linkType: soft
+
+"@example/mandelbrot@workspace:examples/mandelbrot":
+  version: 0.0.0-use.local
+  resolution: "@example/mandelbrot@workspace:examples/mandelbrot"
+  dependencies:
+    "@thi.ng/compose": "workspace:^"
+    "@thi.ng/dl-asset": "workspace:^"
+    "@thi.ng/equiv": "workspace:^"
+    "@thi.ng/hdom-components": "workspace:^"
+    "@thi.ng/math": "workspace:^"
+    "@thi.ng/rstream": "workspace:^"
+    "@thi.ng/rstream-gestures": "workspace:^"
+    "@thi.ng/strings": "workspace:^"
+    "@thi.ng/transducers": "workspace:^"
+    "@thi.ng/transducers-hdom": "workspace:^"
+    typescript: ^4.5.2
+    vite: ^2.6.14
+  languageName: unknown
+  linkType: soft
+
+"@example/markdown@workspace:examples/markdown":
+  version: 0.0.0-use.local
+  resolution: "@example/markdown@workspace:examples/markdown"
+  dependencies:
+    "@thi.ng/bench": "workspace:^"
+    "@thi.ng/hiccup-markdown": "workspace:^"
+    "@thi.ng/rstream": "workspace:^"
+    "@thi.ng/transducers": "workspace:^"
+    "@thi.ng/transducers-hdom": "workspace:^"
+    typescript: ^4.5.2
+    vite: ^2.6.14
+  languageName: unknown
+  linkType: soft
+
+"@example/multitouch@workspace:examples/multitouch":
+  version: 0.0.0-use.local
+  resolution: "@example/multitouch@workspace:examples/multitouch"
+  dependencies:
+    "@thi.ng/hdom-canvas": "workspace:^"
+    "@thi.ng/memoize": "workspace:^"
+    "@thi.ng/rstream": "workspace:^"
+    "@thi.ng/rstream-gestures": "workspace:^"
+    "@thi.ng/transducers": "workspace:^"
+    "@thi.ng/transducers-hdom": "workspace:^"
+    typescript: ^4.5.2
+    vite: ^2.6.14
+  languageName: unknown
+  linkType: soft
+
+"@example/package-stats@workspace:examples/package-stats":
+  version: 0.0.0-use.local
+  resolution: "@example/package-stats@workspace:examples/package-stats"
+  dependencies:
+    "@thi.ng/checks": "workspace:^"
+    "@thi.ng/dgraph": "workspace:^"
+    "@thi.ng/hiccup": "workspace:^"
+    "@thi.ng/hiccup-svg": "workspace:^"
+    "@thi.ng/math": "workspace:^"
+    "@thi.ng/paths": "workspace:^"
+    "@thi.ng/strings": "workspace:^"
+    "@thi.ng/transducers": "workspace:^"
+    tools: "workspace:^"
+    typescript: ^4.5.2
+  languageName: unknown
+  linkType: soft
+
+"@example/parse-playground@workspace:examples/parse-playground":
+  version: 0.0.0-use.local
+  resolution: "@example/parse-playground@workspace:examples/parse-playground"
+  dependencies:
+    "@thi.ng/api": "workspace:^"
+    "@thi.ng/bench": "workspace:^"
+    "@thi.ng/dl-asset": "workspace:^"
+    "@thi.ng/hiccup-carbon-icons": "workspace:^"
+    "@thi.ng/hiccup-html": "workspace:^"
+    "@thi.ng/parse": "workspace:^"
+    "@thi.ng/rdom": "workspace:^"
+    "@thi.ng/rdom-components": "workspace:^"
+    "@thi.ng/rstream": "workspace:^"
+    "@thi.ng/strings": "workspace:^"
+    "@thi.ng/transducers": "workspace:^"
+    "@thi.ng/transducers-binary": "workspace:^"
+    "@ygoe/msgpack": ^1.0.3
+    typescript: ^4.5.2
+    vite: ^2.6.14
+  languageName: unknown
+  linkType: soft
+
+"@example/pixel-basics@workspace:examples/pixel-basics":
+  version: 0.0.0-use.local
+  resolution: "@example/pixel-basics@workspace:examples/pixel-basics"
+  dependencies:
+    "@thi.ng/pixel": "workspace:^"
+    "@thi.ng/porter-duff": "workspace:^"
+    typescript: ^4.5.2
+    vite: ^2.6.14
+  languageName: unknown
+  linkType: soft
+
+"@example/pixel-dither@workspace:examples/pixel-dither":
+  version: 0.0.0-use.local
+  resolution: "@example/pixel-dither@workspace:examples/pixel-dither"
+  dependencies:
+    "@thi.ng/api": "workspace:^"
+    "@thi.ng/pixel": "workspace:^"
+    "@thi.ng/pixel-dither": "workspace:^"
+    typescript: ^4.5.2
+    vite: ^2.6.14
+  languageName: unknown
+  linkType: soft
+
+"@example/pixel-indexed@workspace:examples/pixel-indexed":
+  version: 0.0.0-use.local
+  resolution: "@example/pixel-indexed@workspace:examples/pixel-indexed"
+  dependencies:
+    "@thi.ng/color": "workspace:^"
+    "@thi.ng/color-palettes": "workspace:^"
+    "@thi.ng/pixel": "workspace:^"
+    "@thi.ng/pixel-dither": "workspace:^"
+    typescript: ^4.5.2
+    vite: ^2.6.14
+  languageName: unknown
+  linkType: soft
+
+"@example/pixel-sorting@workspace:examples/pixel-sorting":
+  version: 0.0.0-use.local
+  resolution: "@example/pixel-sorting@workspace:examples/pixel-sorting"
+  dependencies:
+    "@thi.ng/bench": "workspace:^"
+    "@thi.ng/color": "workspace:^"
+    "@thi.ng/hiccup-html": "workspace:^"
+    "@thi.ng/intervals": "workspace:^"
+    "@thi.ng/pixel": "workspace:^"
+    "@thi.ng/random": "workspace:^"
+    "@thi.ng/rdom": "workspace:^"
+    "@thi.ng/rstream": "workspace:^"
+    "@thi.ng/transducers": "workspace:^"
+    typescript: ^4.5.2
+    vite: ^2.6.14
+  languageName: unknown
+  linkType: soft
+
+"@example/pointfree-svg@workspace:examples/pointfree-svg":
+  version: 0.0.0-use.local
+  resolution: "@example/pointfree-svg@workspace:examples/pointfree-svg"
+  dependencies:
+    "@thi.ng/hiccup": "workspace:^"
+    "@thi.ng/hiccup-svg": "workspace:^"
+    "@thi.ng/pointfree": "workspace:^"
+    "@thi.ng/pointfree-lang": "workspace:^"
+    tools: "workspace:^"
+    typescript: ^4.5.2
+  languageName: unknown
+  linkType: soft
+
+"@example/poisson-circles@workspace:examples/poisson-circles":
+  version: 0.0.0-use.local
+  resolution: "@example/poisson-circles@workspace:examples/poisson-circles"
+  dependencies:
+    "@thi.ng/geom": "workspace:^"
+    "@thi.ng/geom-accel": "workspace:^"
+    "@thi.ng/math": "workspace:^"
+    "@thi.ng/poisson": "workspace:^"
+    "@thi.ng/vectors": "workspace:^"
+    typescript: ^4.5.2
+    vite: ^2.6.14
+  languageName: unknown
+  linkType: soft
+
+"@example/poly-spline@workspace:examples/poly-spline":
+  version: 0.0.0-use.local
+  resolution: "@example/poly-spline@workspace:examples/poly-spline"
+  dependencies:
+    "@thi.ng/dsp": "workspace:^"
+    "@thi.ng/geom": "workspace:^"
+    "@thi.ng/rstream": "workspace:^"
+    "@thi.ng/transducers": "workspace:^"
+    "@thi.ng/transducers-hdom": "workspace:^"
+    typescript: ^4.5.2
+    vite: ^2.6.14
+  languageName: unknown
+  linkType: soft
+
+"@example/porter-duff@workspace:examples/porter-duff":
+  version: 0.0.0-use.local
+  resolution: "@example/porter-duff@workspace:examples/porter-duff"
+  dependencies:
+    "@thi.ng/pixel": "workspace:^"
+    "@thi.ng/porter-duff": "workspace:^"
+    typescript: ^4.5.2
+    vite: ^2.6.14
+  languageName: unknown
+  linkType: soft
+
+"@example/ramp-synth@workspace:examples/ramp-synth":
+  version: 0.0.0-use.local
+  resolution: "@example/ramp-synth@workspace:examples/ramp-synth"
+  dependencies:
+    "@thi.ng/arrays": "workspace:^"
+    "@thi.ng/hdom": "workspace:^"
+    "@thi.ng/hdom-canvas": "workspace:^"
+    "@thi.ng/math": "workspace:^"
+    "@thi.ng/ramp": "workspace:^"
+    "@thi.ng/transducers": "workspace:^"
+    "@thi.ng/vectors": "workspace:^"
+    typescript: ^4.5.2
+    vite: ^2.6.14
+  languageName: unknown
+  linkType: soft
+
+"@example/rdom-basics@workspace:examples/rdom-basics":
+  version: 0.0.0-use.local
+  resolution: "@example/rdom-basics@workspace:examples/rdom-basics"
+  dependencies:
+    "@thi.ng/checks": "workspace:^"
+    "@thi.ng/compose": "workspace:^"
+    "@thi.ng/rdom": "workspace:^"
+    "@thi.ng/rstream": "workspace:^"
+    "@thi.ng/transducers": "workspace:^"
+    typescript: ^4.5.2
+    vite: ^2.6.14
+  languageName: unknown
+  linkType: soft
+
+"@example/rdom-delayed-update@workspace:examples/rdom-delayed-update":
+  version: 0.0.0-use.local
+  resolution: "@example/rdom-delayed-update@workspace:examples/rdom-delayed-update"
+  dependencies:
+    "@thi.ng/compose": "workspace:^"
+    "@thi.ng/random": "workspace:^"
+    "@thi.ng/rdom": "workspace:^"
+    "@thi.ng/rstream": "workspace:^"
+    "@thi.ng/transducers": "workspace:^"
+    typescript: ^4.5.2
+    vite: ^2.6.14
+  languageName: unknown
+  linkType: soft
+
+"@example/rdom-dnd@workspace:examples/rdom-dnd":
+  version: 0.0.0-use.local
+  resolution: "@example/rdom-dnd@workspace:examples/rdom-dnd"
+  dependencies:
+    "@thi.ng/api": "workspace:^"
+    "@thi.ng/hiccup-carbon-icons": "workspace:^"
+    "@thi.ng/hiccup-html": "workspace:^"
+    "@thi.ng/rdom": "workspace:^"
+    "@thi.ng/transducers": "workspace:^"
+    typescript: ^4.5.2
+    vite: ^2.6.14
+  languageName: unknown
+  linkType: soft
+
+"@example/rdom-lissajous@workspace:examples/rdom-lissajous":
+  version: 0.0.0-use.local
+  resolution: "@example/rdom-lissajous@workspace:examples/rdom-lissajous"
+  dependencies:
+    "@thi.ng/api": "workspace:^"
+    "@thi.ng/hiccup-carbon-icons": "workspace:^"
+    "@thi.ng/hiccup-html": "workspace:^"
+    "@thi.ng/rdom": "workspace:^"
+    "@thi.ng/rdom-canvas": "workspace:^"
+    "@thi.ng/rstream": "workspace:^"
+    "@thi.ng/transducers": "workspace:^"
+    typescript: ^4.5.2
+    vite: ^2.6.14
+  languageName: unknown
+  linkType: soft
+
+"@example/rdom-search-docs@workspace:examples/rdom-search-docs":
+  version: 0.0.0-use.local
+  resolution: "@example/rdom-search-docs@workspace:examples/rdom-search-docs"
+  dependencies:
+    "@thi.ng/api": "workspace:^"
+    "@thi.ng/bench": "workspace:^"
+    "@thi.ng/compare": "workspace:^"
+    "@thi.ng/equiv": "workspace:^"
+    "@thi.ng/hiccup-html": "workspace:^"
+    "@thi.ng/math": "workspace:^"
+    "@thi.ng/rdom": "workspace:^"
+    "@thi.ng/rstream": "workspace:^"
+    "@thi.ng/transducers": "workspace:^"
+    "@ygoe/msgpack": ^1.0.3
+    typescript: ^4.5.2
+    vite: ^2.6.14
+  languageName: unknown
+  linkType: soft
+
+"@example/rdom-svg-nodes@workspace:examples/rdom-svg-nodes":
+  version: 0.0.0-use.local
+  resolution: "@example/rdom-svg-nodes@workspace:examples/rdom-svg-nodes"
+  dependencies:
+    "@thi.ng/atom": "workspace:^"
+    "@thi.ng/equiv": "workspace:^"
+    "@thi.ng/hiccup-svg": "workspace:^"
+    "@thi.ng/rdom": "workspace:^"
+    "@thi.ng/rstream": "workspace:^"
+    "@thi.ng/transducers": "workspace:^"
+    "@thi.ng/vectors": "workspace:^"
+    typescript: ^4.5.2
+    vite: ^2.6.14
+  languageName: unknown
+  linkType: soft
+
+"@example/rotating-voronoi@workspace:examples/rotating-voronoi":
+  version: 0.0.0-use.local
+  resolution: "@example/rotating-voronoi@workspace:examples/rotating-voronoi"
+  dependencies:
+    "@thi.ng/dl-asset": "workspace:^"
+    "@thi.ng/geom": "workspace:^"
+    "@thi.ng/geom-resample": "workspace:^"
+    "@thi.ng/geom-voronoi": "workspace:^"
+    "@thi.ng/hdom-canvas": "workspace:^"
+    "@thi.ng/math": "workspace:^"
+    "@thi.ng/random": "workspace:^"
+    "@thi.ng/rstream": "workspace:^"
+    "@thi.ng/transducers": "workspace:^"
+    "@thi.ng/transducers-hdom": "workspace:^"
+    "@thi.ng/vectors": "workspace:^"
+    typescript: ^4.5.2
+    vite: ^2.6.14
+  languageName: unknown
+  linkType: soft
+
+"@example/router-basics@workspace:examples/router-basics":
+  version: 0.0.0-use.local
+  resolution: "@example/router-basics@workspace:examples/router-basics"
+  dependencies:
+    "@thi.ng/api": "workspace:^"
+    "@thi.ng/atom": "workspace:^"
+    "@thi.ng/checks": "workspace:^"
+    "@thi.ng/hdom": "workspace:^"
+    "@thi.ng/interceptors": "workspace:^"
+    "@thi.ng/router": "workspace:^"
+    typescript: ^4.5.2
+    vite: ^2.6.14
+  languageName: unknown
+  linkType: soft
+
+"@example/rstream-dataflow@workspace:examples/rstream-dataflow":
+  version: 0.0.0-use.local
+  resolution: "@example/rstream-dataflow@workspace:examples/rstream-dataflow"
+  dependencies:
+    "@thi.ng/atom": "workspace:^"
+    "@thi.ng/equiv": "workspace:^"
+    "@thi.ng/hdom": "workspace:^"
+    "@thi.ng/paths": "workspace:^"
+    "@thi.ng/rstream": "workspace:^"
+    "@thi.ng/rstream-dot": "workspace:^"
+    "@thi.ng/rstream-gestures": "workspace:^"
+    "@thi.ng/rstream-graph": "workspace:^"
+    "@thi.ng/transducers": "workspace:^"
+    typescript: ^4.5.2
+    vite: ^2.6.14
+  languageName: unknown
+  linkType: soft
+
+"@example/rstream-event-loop@workspace:examples/rstream-event-loop":
+  version: 0.0.0-use.local
+  resolution: "@example/rstream-event-loop@workspace:examples/rstream-event-loop"
+  dependencies:
+    "@thi.ng/api": "workspace:^"
+    "@thi.ng/paths": "workspace:^"
+    "@thi.ng/rstream": "workspace:^"
+    "@thi.ng/transducers": "workspace:^"
+    "@thi.ng/transducers-hdom": "workspace:^"
+    typescript: ^4.5.2
+    vite: ^2.6.14
+  languageName: unknown
+  linkType: soft
+
+"@example/rstream-grid@workspace:examples/rstream-grid":
+  version: 0.0.0-use.local
+  resolution: "@example/rstream-grid@workspace:examples/rstream-grid"
+  dependencies:
+    "@thi.ng/api": "workspace:^"
+    "@thi.ng/atom": "workspace:^"
+    "@thi.ng/checks": "workspace:^"
+    "@thi.ng/dl-asset": "workspace:^"
+    "@thi.ng/expose": "workspace:^"
+    "@thi.ng/hdom": "workspace:^"
+    "@thi.ng/hiccup": "workspace:^"
+    "@thi.ng/hiccup-svg": "workspace:^"
+    "@thi.ng/interceptors": "workspace:^"
+    "@thi.ng/paths": "workspace:^"
+    "@thi.ng/rstream": "workspace:^"
+    "@thi.ng/rstream-graph": "workspace:^"
+    "@thi.ng/transducers": "workspace:^"
+    typescript: ^4.5.2
+    vite: ^2.6.14
+  languageName: unknown
+  linkType: soft
+
+"@example/rstream-hdom@workspace:examples/rstream-hdom":
+  version: 0.0.0-use.local
+  resolution: "@example/rstream-hdom@workspace:examples/rstream-hdom"
+  dependencies:
+    "@thi.ng/rstream": "workspace:^"
+    "@thi.ng/transducers": "workspace:^"
+    "@thi.ng/transducers-hdom": "workspace:^"
+    typescript: ^4.5.2
+    vite: ^2.6.14
+  languageName: unknown
+  linkType: soft
+
+"@example/rstream-spreadsheet@workspace:examples/rstream-spreadsheet":
+  version: 0.0.0-use.local
+  resolution: "@example/rstream-spreadsheet@workspace:examples/rstream-spreadsheet"
+  dependencies:
+    "@thi.ng/api": "workspace:^"
+    "@thi.ng/atom": "workspace:^"
+    "@thi.ng/checks": "workspace:^"
+    "@thi.ng/defmulti": "workspace:^"
+    "@thi.ng/errors": "workspace:^"
+    "@thi.ng/expose": "workspace:^"
+    "@thi.ng/hdom": "workspace:^"
+    "@thi.ng/math": "workspace:^"
+    "@thi.ng/memoize": "workspace:^"
+    "@thi.ng/paths": "workspace:^"
+    "@thi.ng/rstream": "workspace:^"
+    "@thi.ng/rstream-graph": "workspace:^"
+    "@thi.ng/sexpr": "workspace:^"
+    "@thi.ng/strings": "workspace:^"
+    "@thi.ng/transducers": "workspace:^"
+    "@thi.ng/transducers-hdom": "workspace:^"
+    typescript: ^4.5.2
+    vite: ^2.6.14
+  languageName: unknown
+  linkType: soft
+
+"@example/scenegraph-image@workspace:examples/scenegraph-image":
+  version: 0.0.0-use.local
+  resolution: "@example/scenegraph-image@workspace:examples/scenegraph-image"
+  dependencies:
+    "@thi.ng/api": "workspace:^"
+    "@thi.ng/dsp": "workspace:^"
+    "@thi.ng/geom": "workspace:^"
+    "@thi.ng/hdom": "workspace:^"
+    "@thi.ng/hdom-canvas": "workspace:^"
+    "@thi.ng/matrices": "workspace:^"
+    "@thi.ng/pixel": "workspace:^"
+    "@thi.ng/scenegraph": "workspace:^"
+    "@thi.ng/transducers": "workspace:^"
+    "@thi.ng/vectors": "workspace:^"
+    typescript: ^4.5.2
+    vite: ^2.6.14
+  languageName: unknown
+  linkType: soft
+
+"@example/scenegraph@workspace:examples/scenegraph":
+  version: 0.0.0-use.local
+  resolution: "@example/scenegraph@workspace:examples/scenegraph"
+  dependencies:
+    "@thi.ng/geom": "workspace:^"
+    "@thi.ng/geom-api": "workspace:^"
+    "@thi.ng/hdom": "workspace:^"
+    "@thi.ng/hdom-canvas": "workspace:^"
+    "@thi.ng/math": "workspace:^"
+    "@thi.ng/scenegraph": "workspace:^"
+    "@thi.ng/transducers": "workspace:^"
+    "@thi.ng/vectors": "workspace:^"
+    typescript: ^4.5.2
+    vite: ^2.6.14
+  languageName: unknown
+  linkType: soft
+
+"@example/shader-ast-canvas2d@workspace:examples/shader-ast-canvas2d":
+  version: 0.0.0-use.local
+  resolution: "@example/shader-ast-canvas2d@workspace:examples/shader-ast-canvas2d"
+  dependencies:
+    "@thi.ng/shader-ast": "workspace:^"
+    "@thi.ng/shader-ast-glsl": "workspace:^"
+    "@thi.ng/shader-ast-js": "workspace:^"
+    "@thi.ng/shader-ast-stdlib": "workspace:^"
+    typescript: ^4.5.2
+    vite: ^2.6.14
+  languageName: unknown
+  linkType: soft
+
+"@example/shader-ast-evo@workspace:examples/shader-ast-evo":
+  version: 0.0.0-use.local
+  resolution: "@example/shader-ast-evo@workspace:examples/shader-ast-evo"
+  dependencies:
+    "@thi.ng/gp": "workspace:^"
+    "@thi.ng/logger": "workspace:^"
+    "@thi.ng/random": "workspace:^"
+    "@thi.ng/shader-ast": "workspace:^"
+    "@thi.ng/shader-ast-optimize": "workspace:^"
+    "@thi.ng/shader-ast-stdlib": "workspace:^"
+    "@thi.ng/webgl": "workspace:^"
+    "@thi.ng/webgl-shadertoy": "workspace:^"
+    typescript: ^4.5.2
+    vite: ^2.6.14
+  languageName: unknown
+  linkType: soft
+
+"@example/shader-ast-noise@workspace:examples/shader-ast-noise":
+  version: 0.0.0-use.local
+  resolution: "@example/shader-ast-noise@workspace:examples/shader-ast-noise"
+  dependencies:
+    "@thi.ng/shader-ast": "workspace:^"
+    "@thi.ng/shader-ast-glsl": "workspace:^"
+    "@thi.ng/shader-ast-js": "workspace:^"
+    "@thi.ng/shader-ast-stdlib": "workspace:^"
+    "@thi.ng/webgl": "workspace:^"
+    typescript: ^4.5.2
+    vite: ^2.6.14
+  languageName: unknown
+  linkType: soft
+
+"@example/shader-ast-raymarch@workspace:examples/shader-ast-raymarch":
+  version: 0.0.0-use.local
+  resolution: "@example/shader-ast-raymarch@workspace:examples/shader-ast-raymarch"
+  dependencies:
+    "@thi.ng/shader-ast": "workspace:^"
+    "@thi.ng/shader-ast-glsl": "workspace:^"
+    "@thi.ng/shader-ast-js": "workspace:^"
+    "@thi.ng/shader-ast-stdlib": "workspace:^"
+    "@thi.ng/webgl": "workspace:^"
+    typescript: ^4.5.2
+    vite: ^2.6.14
+  languageName: unknown
+  linkType: soft
+
+"@example/shader-ast-sdf2d@workspace:examples/shader-ast-sdf2d":
+  version: 0.0.0-use.local
+  resolution: "@example/shader-ast-sdf2d@workspace:examples/shader-ast-sdf2d"
+  dependencies:
+    "@thi.ng/shader-ast": "workspace:^"
+    "@thi.ng/shader-ast-glsl": "workspace:^"
+    "@thi.ng/shader-ast-js": "workspace:^"
+    "@thi.ng/shader-ast-stdlib": "workspace:^"
+    "@thi.ng/webgl": "workspace:^"
+    typescript: ^4.5.2
+    vite: ^2.6.14
+  languageName: unknown
+  linkType: soft
+
+"@example/shader-ast-tunnel@workspace:examples/shader-ast-tunnel":
+  version: 0.0.0-use.local
+  resolution: "@example/shader-ast-tunnel@workspace:examples/shader-ast-tunnel"
+  dependencies:
+    "@thi.ng/color": "workspace:^"
+    "@thi.ng/pixel": "workspace:^"
+    "@thi.ng/shader-ast": "workspace:^"
+    "@thi.ng/shader-ast-glsl": "workspace:^"
+    "@thi.ng/shader-ast-js": "workspace:^"
+    "@thi.ng/webgl": "workspace:^"
+    typescript: ^4.5.2
+    vite: ^2.6.14
+  languageName: unknown
+  linkType: soft
+
+"@example/shader-ast-workers@workspace:examples/shader-ast-workers":
+  version: 0.0.0-use.local
+  resolution: "@example/shader-ast-workers@workspace:examples/shader-ast-workers"
+  dependencies:
+    "@thi.ng/bench": "workspace:^"
+    "@thi.ng/color": "workspace:^"
+    "@thi.ng/hiccup-canvas": "workspace:^"
+    "@thi.ng/math": "workspace:^"
+    "@thi.ng/pixel": "workspace:^"
+    "@thi.ng/rstream": "workspace:^"
+    "@thi.ng/shader-ast": "workspace:^"
+    "@thi.ng/shader-ast-js": "workspace:^"
+    "@thi.ng/shader-ast-stdlib": "workspace:^"
+    "@thi.ng/transducers": "workspace:^"
+    "@thi.ng/transducers-stats": "workspace:^"
+    esbuild: ^0.13.14
+    typescript: ^4.5.2
+    vite: ^2.6.14
+  languageName: unknown
+  linkType: soft
+
+"@example/shader-graph@workspace:examples/shader-graph":
+  version: 0.0.0-use.local
+  resolution: "@example/shader-graph@workspace:examples/shader-graph"
+  dependencies:
+    "@thi.ng/api": "workspace:^"
+    "@thi.ng/expose": "workspace:^"
+    "@thi.ng/matrices": "workspace:^"
+    "@thi.ng/rstream": "workspace:^"
+    "@thi.ng/rstream-gestures": "workspace:^"
+    "@thi.ng/scenegraph": "workspace:^"
+    "@thi.ng/shader-ast": "workspace:^"
+    "@thi.ng/shader-ast-glsl": "workspace:^"
+    "@thi.ng/shader-ast-stdlib": "workspace:^"
+    "@thi.ng/vectors": "workspace:^"
+    "@thi.ng/webgl": "workspace:^"
+    typescript: ^4.5.2
+    vite: ^2.6.14
+  languageName: unknown
+  linkType: soft
+
+"@example/soa-ecs@workspace:examples/soa-ecs":
+  version: 0.0.0-use.local
+  resolution: "@example/soa-ecs@workspace:examples/soa-ecs"
+  dependencies:
+    "@thi.ng/adapt-dpi": "workspace:^"
+    "@thi.ng/ecs": "workspace:^"
+    "@thi.ng/hdom": "workspace:^"
+    "@thi.ng/hdom-components": "workspace:^"
+    "@thi.ng/math": "workspace:^"
+    "@thi.ng/matrices": "workspace:^"
+    "@thi.ng/shader-ast": "workspace:^"
+    "@thi.ng/vectors": "workspace:^"
+    "@thi.ng/webgl": "workspace:^"
+    typescript: ^4.5.2
+    vite: ^2.6.14
+  languageName: unknown
+  linkType: soft
+
+"@example/spline-tangent@workspace:examples/spline-tangent":
+  version: 0.0.0-use.local
+  resolution: "@example/spline-tangent@workspace:examples/spline-tangent"
+  dependencies:
+    "@thi.ng/api": "workspace:^"
+    "@thi.ng/dual-algebra": "workspace:^"
+    "@thi.ng/geom": "workspace:^"
+    "@thi.ng/math": "workspace:^"
+    "@thi.ng/strings": "workspace:^"
+    "@thi.ng/vectors": "workspace:^"
+    typescript: ^4.5.2
+    vite: ^2.6.14
+  languageName: unknown
+  linkType: soft
+
+"@example/stratified-grid@workspace:examples/stratified-grid":
+  version: 0.0.0-use.local
+  resolution: "@example/stratified-grid@workspace:examples/stratified-grid"
+  dependencies:
+    "@thi.ng/geom": "workspace:^"
+    "@thi.ng/geom-accel": "workspace:^"
+    "@thi.ng/poisson": "workspace:^"
+    "@thi.ng/transducers": "workspace:^"
+    "@thi.ng/vectors": "workspace:^"
+    typescript: ^4.5.2
+    vite: ^2.6.14
+  languageName: unknown
+  linkType: soft
+
+"@example/svg-barchart@workspace:examples/svg-barchart":
+  version: 0.0.0-use.local
+  resolution: "@example/svg-barchart@workspace:examples/svg-barchart"
+  dependencies:
+    "@thi.ng/hdom": "workspace:^"
+    "@thi.ng/math": "workspace:^"
+    "@thi.ng/transducers": "workspace:^"
+    typescript: ^4.5.2
+    vite: ^2.6.14
+  languageName: unknown
+  linkType: soft
+
+"@example/svg-particles@workspace:examples/svg-particles":
+  version: 0.0.0-use.local
+  resolution: "@example/svg-particles@workspace:examples/svg-particles"
+  dependencies:
+    "@thi.ng/hdom": "workspace:^"
+    "@thi.ng/strings": "workspace:^"
+    "@thi.ng/transducers": "workspace:^"
+    typescript: ^4.5.2
+    vite: ^2.6.14
+  languageName: unknown
+  linkType: soft
+
+"@example/svg-waveform@workspace:examples/svg-waveform":
+  version: 0.0.0-use.local
+  resolution: "@example/svg-waveform@workspace:examples/svg-waveform"
+  dependencies:
+    "@thi.ng/api": "workspace:^"
+    "@thi.ng/atom": "workspace:^"
+    "@thi.ng/checks": "workspace:^"
+    "@thi.ng/expose": "workspace:^"
+    "@thi.ng/hdom": "workspace:^"
+    "@thi.ng/hiccup-svg": "workspace:^"
+    "@thi.ng/interceptors": "workspace:^"
+    "@thi.ng/transducers": "workspace:^"
+    typescript: ^4.5.2
+    vite: ^2.6.14
+  languageName: unknown
+  linkType: soft
+
+"@example/talk-slides@workspace:examples/talk-slides":
+  version: 0.0.0-use.local
+  resolution: "@example/talk-slides@workspace:examples/talk-slides"
+  dependencies:
+    "@thi.ng/hdom": "workspace:^"
+    "@thi.ng/math": "workspace:^"
+    "@thi.ng/rstream": "workspace:^"
+    "@thi.ng/strings": "workspace:^"
+    "@thi.ng/transducers": "workspace:^"
+    "@thi.ng/transducers-hdom": "workspace:^"
+    typescript: ^4.5.2
+    vite: ^2.6.14
+  languageName: unknown
+  linkType: soft
+
+"@example/text-canvas-image@workspace:examples/text-canvas-image":
+  version: 0.0.0-use.local
+  resolution: "@example/text-canvas-image@workspace:examples/text-canvas-image"
+  dependencies:
+    "@thi.ng/pixel": "workspace:^"
+    "@thi.ng/text-canvas": "workspace:^"
+    "@thi.ng/text-format": "workspace:^"
+    typescript: ^4.5.2
+    vite: ^2.6.14
+  languageName: unknown
+  linkType: soft
+
+"@example/text-canvas@workspace:examples/text-canvas":
+  version: 0.0.0-use.local
+  resolution: "@example/text-canvas@workspace:examples/text-canvas"
+  dependencies:
+    "@thi.ng/dsp": "workspace:^"
+    "@thi.ng/geom": "workspace:^"
+    "@thi.ng/matrices": "workspace:^"
+    "@thi.ng/text-canvas": "workspace:^"
+    "@thi.ng/text-format": "workspace:^"
+    "@thi.ng/vectors": "workspace:^"
+    typescript: ^4.5.2
+    vite: ^2.6.14
+  languageName: unknown
+  linkType: soft
+
+"@example/todo-list@workspace:examples/todo-list":
+  version: 0.0.0-use.local
+  resolution: "@example/todo-list@workspace:examples/todo-list"
+  dependencies:
+    "@thi.ng/api": "workspace:^"
+    "@thi.ng/atom": "workspace:^"
+    "@thi.ng/hdom": "workspace:^"
+    "@thi.ng/transducers": "workspace:^"
+    typescript: ^4.5.2
+    vite: ^2.6.14
+  languageName: unknown
+  linkType: soft
+
+"@example/transducers-hdom@workspace:examples/transducers-hdom":
+  version: 0.0.0-use.local
+  resolution: "@example/transducers-hdom@workspace:examples/transducers-hdom"
+  dependencies:
+    "@thi.ng/rstream": "workspace:^"
+    "@thi.ng/transducers": "workspace:^"
+    "@thi.ng/transducers-hdom": "workspace:^"
+    typescript: ^4.5.2
+    vite: ^2.6.14
+  languageName: unknown
+  linkType: soft
+
+"@example/triple-query@workspace:examples/triple-query":
+  version: 0.0.0-use.local
+  resolution: "@example/triple-query@workspace:examples/triple-query"
+  dependencies:
+    "@thi.ng/api": "workspace:^"
+    "@thi.ng/atom": "workspace:^"
+    "@thi.ng/checks": "workspace:^"
+    "@thi.ng/compare": "workspace:^"
+    "@thi.ng/expose": "workspace:^"
+    "@thi.ng/hdom": "workspace:^"
+    "@thi.ng/hdom-components": "workspace:^"
+    "@thi.ng/interceptors": "workspace:^"
+    "@thi.ng/paths": "workspace:^"
+    "@thi.ng/rstream-query": "workspace:^"
+    "@thi.ng/transducers": "workspace:^"
+    typescript: ^4.5.2
+    vite: ^2.6.14
+  languageName: unknown
+  linkType: soft
+
+"@example/webgl-cube@workspace:examples/webgl-cube":
+  version: 0.0.0-use.local
+  resolution: "@example/webgl-cube@workspace:examples/webgl-cube"
+  dependencies:
+    "@thi.ng/hdom": "workspace:^"
+    "@thi.ng/hdom-components": "workspace:^"
+    "@thi.ng/matrices": "workspace:^"
+    "@thi.ng/soa": "workspace:^"
+    "@thi.ng/transducers": "workspace:^"
+    "@thi.ng/vectors": "workspace:^"
+    "@thi.ng/webgl": "workspace:^"
+    typescript: ^4.5.2
+    vite: ^2.6.14
+  languageName: unknown
+  linkType: soft
+
+"@example/webgl-cubemap@workspace:examples/webgl-cubemap":
+  version: 0.0.0-use.local
+  resolution: "@example/webgl-cubemap@workspace:examples/webgl-cubemap"
+  dependencies:
+    "@thi.ng/adapt-dpi": "workspace:^"
+    "@thi.ng/dsp": "workspace:^"
+    "@thi.ng/hdom": "workspace:^"
+    "@thi.ng/hdom-components": "workspace:^"
+    "@thi.ng/matrices": "workspace:^"
+    "@thi.ng/rstream": "workspace:^"
+    "@thi.ng/shader-ast": "workspace:^"
+    "@thi.ng/webgl": "workspace:^"
+    typescript: ^4.5.2
+    vite: ^2.6.14
+  languageName: unknown
+  linkType: soft
+
+"@example/webgl-grid@workspace:examples/webgl-grid":
+  version: 0.0.0-use.local
+  resolution: "@example/webgl-grid@workspace:examples/webgl-grid"
+  dependencies:
+    "@thi.ng/adapt-dpi": "workspace:^"
+    "@thi.ng/hdom": "workspace:^"
+    "@thi.ng/hdom-components": "workspace:^"
+    "@thi.ng/math": "workspace:^"
+    "@thi.ng/matrices": "workspace:^"
+    "@thi.ng/transducers": "workspace:^"
+    "@thi.ng/vectors": "workspace:^"
+    "@thi.ng/webgl": "workspace:^"
+    typescript: ^4.5.2
+    vite: ^2.6.14
+  languageName: unknown
+  linkType: soft
+
+"@example/webgl-msdf@workspace:examples/webgl-msdf":
+  version: 0.0.0-use.local
+  resolution: "@example/webgl-msdf@workspace:examples/webgl-msdf"
+  dependencies:
+    "@thi.ng/adapt-dpi": "workspace:^"
+    "@thi.ng/hdom": "workspace:^"
+    "@thi.ng/hdom-components": "workspace:^"
+    "@thi.ng/math": "workspace:^"
+    "@thi.ng/matrices": "workspace:^"
+    "@thi.ng/random": "workspace:^"
+    "@thi.ng/rstream": "workspace:^"
+    "@thi.ng/shader-ast": "workspace:^"
+    "@thi.ng/transducers": "workspace:^"
+    "@thi.ng/vector-pools": "workspace:^"
+    "@thi.ng/vectors": "workspace:^"
+    "@thi.ng/webgl": "workspace:^"
+    "@thi.ng/webgl-msdf": "workspace:^"
+    typescript: ^4.5.2
+    vite: ^2.6.14
+  languageName: unknown
+  linkType: soft
+
+"@example/webgl-multipass@workspace:examples/webgl-multipass":
+  version: 0.0.0-use.local
+  resolution: "@example/webgl-multipass@workspace:examples/webgl-multipass"
+  dependencies:
+    "@thi.ng/pixel": "workspace:^"
+    "@thi.ng/shader-ast": "workspace:^"
+    "@thi.ng/shader-ast-stdlib": "workspace:^"
+    "@thi.ng/webgl": "workspace:^"
+    typescript: ^4.5.2
+    vite: ^2.6.14
+  languageName: unknown
+  linkType: soft
+
+"@example/webgl-shadertoy@workspace:examples/webgl-shadertoy":
+  version: 0.0.0-use.local
+  resolution: "@example/webgl-shadertoy@workspace:examples/webgl-shadertoy"
+  dependencies:
+    "@thi.ng/shader-ast": "workspace:^"
+    "@thi.ng/shader-ast-stdlib": "workspace:^"
+    "@thi.ng/webgl": "workspace:^"
+    "@thi.ng/webgl-shadertoy": "workspace:^"
+    typescript: ^4.5.2
+    vite: ^2.6.14
+  languageName: unknown
+  linkType: soft
+
+"@example/webgl-ssao@workspace:examples/webgl-ssao":
+  version: 0.0.0-use.local
+  resolution: "@example/webgl-ssao@workspace:examples/webgl-ssao"
+  dependencies:
+    "@thi.ng/api": "workspace:^"
+    "@thi.ng/associative": "workspace:^"
+    "@thi.ng/dsp": "workspace:^"
+    "@thi.ng/hdom": "workspace:^"
+    "@thi.ng/hdom-components": "workspace:^"
+    "@thi.ng/matrices": "workspace:^"
+    "@thi.ng/rstream": "workspace:^"
+    "@thi.ng/shader-ast": "workspace:^"
+    "@thi.ng/shader-ast-stdlib": "workspace:^"
+    "@thi.ng/transducers": "workspace:^"
+    "@thi.ng/vectors": "workspace:^"
+    "@thi.ng/webgl": "workspace:^"
+    typescript: ^4.5.2
+    vite: ^2.6.14
+  languageName: unknown
+  linkType: soft
+
+"@example/wolfram@workspace:examples/wolfram":
+  version: 0.0.0-use.local
+  resolution: "@example/wolfram@workspace:examples/wolfram"
+  dependencies:
+    "@thi.ng/dl-asset": "workspace:^"
+    "@thi.ng/hdom-components": "workspace:^"
+    "@thi.ng/rstream": "workspace:^"
+    "@thi.ng/transducers": "workspace:^"
+    "@thi.ng/transducers-binary": "workspace:^"
+    "@thi.ng/transducers-hdom": "workspace:^"
+    typescript: ^4.5.2
+    vite: ^2.6.14
+  languageName: unknown
+  linkType: soft
+
+"@example/xml-converter@workspace:examples/xml-converter":
+  version: 0.0.0-use.local
+  resolution: "@example/xml-converter@workspace:examples/xml-converter"
+  dependencies:
+    "@thi.ng/arrays": "workspace:^"
+    "@thi.ng/checks": "workspace:^"
+    "@thi.ng/defmulti": "workspace:^"
+    "@thi.ng/rstream": "workspace:^"
+    "@thi.ng/sax": "workspace:^"
+    "@thi.ng/strings": "workspace:^"
+    "@thi.ng/transducers": "workspace:^"
+    "@thi.ng/transducers-hdom": "workspace:^"
+    commander: ^6.2.0
+    typescript: ^4.5.2
+    vite: ^2.6.14
+  languageName: unknown
+  linkType: soft
+
 "@gar/promisify@npm:^1.0.1":
   version: 1.1.2
   resolution: "@gar/promisify@npm:1.1.2"
@@ -3149,21 +4803,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"adaptive-threshold@workspace:examples/adaptive-threshold":
-  version: 0.0.0-use.local
-  resolution: "adaptive-threshold@workspace:examples/adaptive-threshold"
-  dependencies:
-    "@thi.ng/api": "workspace:^"
-    "@thi.ng/paths": "workspace:^"
-    "@thi.ng/pixel": "workspace:^"
-    "@thi.ng/rstream": "workspace:^"
-    "@thi.ng/transducers": "workspace:^"
-    "@thi.ng/transducers-hdom": "workspace:^"
-    typescript: ^4.5.2
-    vite: ^2.6.14
-  languageName: unknown
-  linkType: soft
-
 "agent-base@npm:6, agent-base@npm:^6.0.2":
   version: 6.0.2
   resolution: "agent-base@npm:6.0.2"
@@ -3284,18 +4923,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"async-effect@workspace:examples/async-effect":
-  version: 0.0.0-use.local
-  resolution: "async-effect@workspace:examples/async-effect"
-  dependencies:
-    "@thi.ng/api": "workspace:^"
-    "@thi.ng/hdom": "workspace:^"
-    "@thi.ng/interceptors": "workspace:^"
-    typescript: ^4.5.2
-    vite: ^2.6.14
-  languageName: unknown
-  linkType: soft
-
 "balanced-match@npm:^1.0.0":
   version: 1.0.2
   resolution: "balanced-match@npm:1.0.2"
@@ -3318,22 +4945,6 @@ __metadata:
   checksum: d360de0f21e35b73e868837278161ae0d3ccca4a2f87bd02c1cf28750ab355e3469a6a56664ca078f3ed5c2baade6575871b63cc61c9f98f101e55fbbe4ff024
   languageName: node
   linkType: hard
-
-"bitmap-font@workspace:examples/bitmap-font":
-  version: 0.0.0-use.local
-  resolution: "bitmap-font@workspace:examples/bitmap-font"
-  dependencies:
-    "@thi.ng/api": "workspace:^"
-    "@thi.ng/hdom-components": "workspace:^"
-    "@thi.ng/math": "workspace:^"
-    "@thi.ng/rstream": "workspace:^"
-    "@thi.ng/transducers": "workspace:^"
-    "@thi.ng/transducers-binary": "workspace:^"
-    "@thi.ng/transducers-hdom": "workspace:^"
-    typescript: ^4.5.2
-    vite: ^2.6.14
-  languageName: unknown
-  linkType: soft
 
 "body-parser@npm:1.19.0":
   version: 1.19.0
@@ -3444,39 +5055,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"canvas-dial@workspace:examples/canvas-dial":
-  version: 0.0.0-use.local
-  resolution: "canvas-dial@workspace:examples/canvas-dial"
-  dependencies:
-    "@thi.ng/api": "workspace:^"
-    "@thi.ng/arrays": "workspace:^"
-    "@thi.ng/checks": "workspace:^"
-    "@thi.ng/hdom-components": "workspace:^"
-    "@thi.ng/math": "workspace:^"
-    "@thi.ng/rstream": "workspace:^"
-    "@thi.ng/rstream-gestures": "workspace:^"
-    "@thi.ng/strings": "workspace:^"
-    "@thi.ng/transducers": "workspace:^"
-    "@thi.ng/transducers-hdom": "workspace:^"
-    "@thi.ng/vectors": "workspace:^"
-    typescript: ^4.5.2
-    vite: ^2.6.14
-  languageName: unknown
-  linkType: soft
-
-"cellular-automata@workspace:examples/cellular-automata":
-  version: 0.0.0-use.local
-  resolution: "cellular-automata@workspace:examples/cellular-automata"
-  dependencies:
-    "@thi.ng/hdom": "workspace:^"
-    "@thi.ng/hdom-components": "workspace:^"
-    "@thi.ng/transducers": "workspace:^"
-    "@thi.ng/transducers-binary": "workspace:^"
-    typescript: ^4.5.2
-    vite: ^2.6.14
-  languageName: unknown
-  linkType: soft
-
 "chokidar@npm:^3.5.2":
   version: 3.5.2
   resolution: "chokidar@npm:3.5.2"
@@ -3526,27 +5104,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"color-themes@workspace:examples/color-themes":
-  version: 0.0.0-use.local
-  resolution: "color-themes@workspace:examples/color-themes"
-  dependencies:
-    "@thi.ng/api": "workspace:^"
-    "@thi.ng/checks": "workspace:^"
-    "@thi.ng/color": "workspace:^"
-    "@thi.ng/dl-asset": "workspace:^"
-    "@thi.ng/hiccup-html": "workspace:^"
-    "@thi.ng/hiccup-svg": "workspace:^"
-    "@thi.ng/random": "workspace:^"
-    "@thi.ng/rdom": "workspace:^"
-    "@thi.ng/rdom-components": "workspace:^"
-    "@thi.ng/rstream": "workspace:^"
-    "@thi.ng/rstream-dot": "workspace:^"
-    "@thi.ng/transducers": "workspace:^"
-    typescript: ^4.5.2
-    vite: ^2.6.14
-  languageName: unknown
-  linkType: soft
-
 "colors@npm:~1.2.1":
   version: 1.2.5
   resolution: "colors@npm:1.2.5"
@@ -3574,45 +5131,6 @@ __metadata:
   checksum: 0f82321821fc27b83bd409510bb9deeebcfa799ff0bf5d102128b500b7af22872c0c92cb6a0ebc5a4cf19c6b550fba9cedfa7329d18c6442a625f851377bacf0
   languageName: node
   linkType: hard
-
-"commit-heatmap@workspace:examples/commit-heatmap":
-  version: 0.0.0-use.local
-  resolution: "commit-heatmap@workspace:examples/commit-heatmap"
-  dependencies:
-    "@thi.ng/associative": "workspace:^"
-    "@thi.ng/color": "workspace:^"
-    "@thi.ng/compose": "workspace:^"
-    "@thi.ng/date": "workspace:^"
-    "@thi.ng/hiccup": "workspace:^"
-    "@thi.ng/hiccup-svg": "workspace:^"
-    "@thi.ng/math": "workspace:^"
-    "@thi.ng/strings": "workspace:^"
-    "@thi.ng/transducers": "workspace:^"
-    tools: "workspace:^"
-    typescript: ^4.5.2
-  languageName: unknown
-  linkType: soft
-
-"commit-table-ssr@workspace:examples/commit-table-ssr":
-  version: 0.0.0-use.local
-  resolution: "commit-table-ssr@workspace:examples/commit-table-ssr"
-  dependencies:
-    "@thi.ng/api": "workspace:^"
-    "@thi.ng/associative": "workspace:^"
-    "@thi.ng/cache": "workspace:^"
-    "@thi.ng/hiccup": "workspace:^"
-    "@thi.ng/resolve-map": "workspace:^"
-    "@thi.ng/rstream": "workspace:^"
-    "@thi.ng/transducers": "workspace:^"
-    "@thi.ng/transducers-hdom": "workspace:^"
-    "@types/express": ^4.17.7
-    "@types/node": ^16.11.7
-    express: ^4.17.1
-    ts-node: ^10.4.0
-    typescript: ^4.5.2
-    vite: ^2.6.14
-  languageName: unknown
-  linkType: soft
 
 "concat-map@npm:0.0.1":
   version: 0.0.1
@@ -3672,25 +5190,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"crypto-chart@workspace:examples/crypto-chart":
-  version: 0.0.0-use.local
-  resolution: "crypto-chart@workspace:examples/crypto-chart"
-  dependencies:
-    "@thi.ng/api": "workspace:^"
-    "@thi.ng/hdom-components": "workspace:^"
-    "@thi.ng/hiccup-svg": "workspace:^"
-    "@thi.ng/math": "workspace:^"
-    "@thi.ng/resolve-map": "workspace:^"
-    "@thi.ng/rstream": "workspace:^"
-    "@thi.ng/strings": "workspace:^"
-    "@thi.ng/transducers": "workspace:^"
-    "@thi.ng/transducers-hdom": "workspace:^"
-    "@thi.ng/transducers-stats": "workspace:^"
-    typescript: ^4.5.2
-    vite: ^2.6.14
-  languageName: unknown
-  linkType: soft
-
 "debug@npm:2.6.9":
   version: 2.6.9
   resolution: "debug@npm:2.6.9"
@@ -3733,47 +5232,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"devcards@workspace:examples/devcards":
-  version: 0.0.0-use.local
-  resolution: "devcards@workspace:examples/devcards"
-  dependencies:
-    "@thi.ng/api": "workspace:^"
-    "@thi.ng/atom": "workspace:^"
-    "@thi.ng/hdom": "workspace:^"
-    typescript: ^4.5.2
-    vite: ^2.6.14
-  languageName: unknown
-  linkType: soft
-
 "diff@npm:^4.0.1":
   version: 4.0.2
   resolution: "diff@npm:4.0.2"
   checksum: f2c09b0ce4e6b301c221addd83bf3f454c0bc00caa3dd837cf6c127d6edf7223aa2bbe3b688feea110b7f262adbfc845b757c44c8a9f8c0c5b15d8fa9ce9d20d
   languageName: node
   linkType: hard
-
-"dominant-colors@workspace:examples/dominant-colors":
-  version: 0.0.0-use.local
-  resolution: "dominant-colors@workspace:examples/dominant-colors"
-  dependencies:
-    "@thi.ng/api": "workspace:^"
-    "@thi.ng/bench": "workspace:^"
-    "@thi.ng/checks": "workspace:^"
-    "@thi.ng/color": "workspace:^"
-    "@thi.ng/compare": "workspace:^"
-    "@thi.ng/dl-asset": "workspace:^"
-    "@thi.ng/hiccup-html": "workspace:^"
-    "@thi.ng/hiccup-svg": "workspace:^"
-    "@thi.ng/pixel": "workspace:^"
-    "@thi.ng/rdom": "workspace:^"
-    "@thi.ng/rdom-components": "workspace:^"
-    "@thi.ng/rstream": "workspace:^"
-    "@thi.ng/strings": "workspace:^"
-    "@thi.ng/transducers": "workspace:^"
-    typescript: ^4.5.2
-    vite: ^2.6.14
-  languageName: unknown
-  linkType: soft
 
 "dot-case@npm:^3.0.4":
   version: 3.0.4
@@ -3798,22 +5262,6 @@ __metadata:
   checksum: a28c2817e4260c4b85cce56682b92e9e4f83ff89de26ace7ee0ec646e538db683e502444014b57d09cac051db6822800f9fd483ceb1455a140a520c5b4c9ed49
   languageName: node
   linkType: hard
-
-"ellipse-proximity@workspace:examples/ellipse-proximity":
-  version: 0.0.0-use.local
-  resolution: "ellipse-proximity@workspace:examples/ellipse-proximity"
-  dependencies:
-    "@thi.ng/geom-closest-point": "workspace:^"
-    "@thi.ng/rdom": "workspace:^"
-    "@thi.ng/rdom-canvas": "workspace:^"
-    "@thi.ng/rstream": "workspace:^"
-    "@thi.ng/rstream-gestures": "workspace:^"
-    "@thi.ng/transducers": "workspace:^"
-    "@thi.ng/vectors": "workspace:^"
-    typescript: ^4.5.2
-    vite: ^2.6.14
-  languageName: unknown
-  linkType: soft
 
 "emoji-regex@npm:^8.0.0":
   version: 8.0.0
@@ -4116,28 +5564,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"fft-synth@workspace:examples/fft-synth":
-  version: 0.0.0-use.local
-  resolution: "fft-synth@workspace:examples/fft-synth"
-  dependencies:
-    "@thi.ng/api": "workspace:^"
-    "@thi.ng/atom": "workspace:^"
-    "@thi.ng/dsp": "workspace:^"
-    "@thi.ng/hdom-canvas": "workspace:^"
-    "@thi.ng/imgui": "workspace:^"
-    "@thi.ng/layout": "workspace:^"
-    "@thi.ng/math": "workspace:^"
-    "@thi.ng/random": "workspace:^"
-    "@thi.ng/rstream": "workspace:^"
-    "@thi.ng/rstream-gestures": "workspace:^"
-    "@thi.ng/strings": "workspace:^"
-    "@thi.ng/transducers": "workspace:^"
-    "@thi.ng/transducers-hdom": "workspace:^"
-    typescript: ^4.5.2
-    vite: ^2.6.14
-  languageName: unknown
-  linkType: soft
-
 "fill-range@npm:^7.0.1":
   version: 7.0.1
   resolution: "fill-range@npm:7.0.1"
@@ -4245,106 +5671,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"geom-convex-hull@workspace:examples/geom-convex-hull":
-  version: 0.0.0-use.local
-  resolution: "geom-convex-hull@workspace:examples/geom-convex-hull"
-  dependencies:
-    "@thi.ng/geom": "workspace:^"
-    "@thi.ng/geom-api": "workspace:^"
-    "@thi.ng/hdom": "workspace:^"
-    "@thi.ng/hdom-canvas": "workspace:^"
-    typescript: ^4.5.2
-    vite: ^2.6.14
-  languageName: unknown
-  linkType: soft
-
-"geom-fuzz-basics@workspace:examples/geom-fuzz-basics":
-  version: 0.0.0-use.local
-  resolution: "geom-fuzz-basics@workspace:examples/geom-fuzz-basics"
-  dependencies:
-    "@thi.ng/adapt-dpi": "workspace:^"
-    "@thi.ng/geom": "workspace:^"
-    "@thi.ng/geom-fuzz": "workspace:^"
-    "@thi.ng/hiccup-canvas": "workspace:^"
-    "@thi.ng/rstream": "workspace:^"
-    typescript: ^4.5.2
-    vite: ^2.6.14
-  languageName: unknown
-  linkType: soft
-
-"geom-knn@workspace:examples/geom-knn":
-  version: 0.0.0-use.local
-  resolution: "geom-knn@workspace:examples/geom-knn"
-  dependencies:
-    "@thi.ng/bench": "workspace:^"
-    "@thi.ng/geom-accel": "workspace:^"
-    "@thi.ng/hdom-canvas": "workspace:^"
-    "@thi.ng/rstream": "workspace:^"
-    "@thi.ng/rstream-gestures": "workspace:^"
-    "@thi.ng/transducers": "workspace:^"
-    "@thi.ng/transducers-hdom": "workspace:^"
-    "@thi.ng/vectors": "workspace:^"
-    typescript: ^4.5.2
-    vite: ^2.6.14
-  languageName: unknown
-  linkType: soft
-
-"geom-tessel@workspace:examples/geom-tessel":
-  version: 0.0.0-use.local
-  resolution: "geom-tessel@workspace:examples/geom-tessel"
-  dependencies:
-    "@thi.ng/compose": "workspace:^"
-    "@thi.ng/geom": "workspace:^"
-    "@thi.ng/geom-api": "workspace:^"
-    "@thi.ng/geom-tessellate": "workspace:^"
-    "@thi.ng/hdom-canvas": "workspace:^"
-    "@thi.ng/math": "workspace:^"
-    "@thi.ng/rstream": "workspace:^"
-    "@thi.ng/transducers": "workspace:^"
-    "@thi.ng/transducers-hdom": "workspace:^"
-    "@thi.ng/vectors": "workspace:^"
-    typescript: ^4.5.2
-    vite: ^2.6.14
-  languageName: unknown
-  linkType: soft
-
-"geom-voronoi-mst@workspace:examples/geom-voronoi-mst":
-  version: 0.0.0-use.local
-  resolution: "geom-voronoi-mst@workspace:examples/geom-voronoi-mst"
-  dependencies:
-    "@thi.ng/adjacency": "workspace:^"
-    "@thi.ng/bench": "workspace:^"
-    "@thi.ng/geom": "workspace:^"
-    "@thi.ng/geom-accel": "workspace:^"
-    "@thi.ng/geom-voronoi": "workspace:^"
-    "@thi.ng/hdom": "workspace:^"
-    "@thi.ng/hdom-canvas": "workspace:^"
-    "@thi.ng/math": "workspace:^"
-    "@thi.ng/poisson": "workspace:^"
-    "@thi.ng/transducers": "workspace:^"
-    "@thi.ng/vectors": "workspace:^"
-    typescript: ^4.5.2
-    vite: ^2.6.14
-  languageName: unknown
-  linkType: soft
-
-"gesture-analysis@workspace:examples/gesture-analysis":
-  version: 0.0.0-use.local
-  resolution: "gesture-analysis@workspace:examples/gesture-analysis"
-  dependencies:
-    "@thi.ng/arrays": "workspace:^"
-    "@thi.ng/geom": "workspace:^"
-    "@thi.ng/hiccup-svg": "workspace:^"
-    "@thi.ng/rstream": "workspace:^"
-    "@thi.ng/rstream-gestures": "workspace:^"
-    "@thi.ng/transducers": "workspace:^"
-    "@thi.ng/transducers-hdom": "workspace:^"
-    "@thi.ng/vectors": "workspace:^"
-    typescript: ^4.5.2
-    vite: ^2.6.14
-  languageName: unknown
-  linkType: soft
-
 "glob-parent@npm:~5.1.2":
   version: 5.1.2
   resolution: "glob-parent@npm:5.1.2"
@@ -4375,19 +5701,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"grid-iterators@workspace:examples/grid-iterators":
-  version: 0.0.0-use.local
-  resolution: "grid-iterators@workspace:examples/grid-iterators"
-  dependencies:
-    "@thi.ng/color": "workspace:^"
-    "@thi.ng/grid-iterators": "workspace:^"
-    "@thi.ng/pixel": "workspace:^"
-    "@thi.ng/transducers": "workspace:^"
-    typescript: ^4.5.2
-    vite: ^2.6.14
-  languageName: unknown
-  linkType: soft
-
 "has-unicode@npm:^2.0.0":
   version: 2.0.1
   resolution: "has-unicode@npm:2.0.1"
@@ -4404,261 +5717,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"hdom-basics@workspace:examples/hdom-basics":
-  version: 0.0.0-use.local
-  resolution: "hdom-basics@workspace:examples/hdom-basics"
-  dependencies:
-    "@thi.ng/hdom": "workspace:^"
-    typescript: ^4.5.2
-    vite: ^2.6.14
-  languageName: unknown
-  linkType: soft
-
-"hdom-benchmark2@workspace:examples/hdom-benchmark2":
-  version: 0.0.0-use.local
-  resolution: "hdom-benchmark2@workspace:examples/hdom-benchmark2"
-  dependencies:
-    "@thi.ng/binary": "workspace:^"
-    "@thi.ng/hdom": "workspace:^"
-    "@thi.ng/hdom-components": "workspace:^"
-    "@thi.ng/hiccup-css": "workspace:^"
-    "@thi.ng/strings": "workspace:^"
-    "@thi.ng/transducers": "workspace:^"
-    typescript: ^4.5.2
-    vite: ^2.6.14
-  languageName: unknown
-  linkType: soft
-
-"hdom-benchmark@workspace:examples/hdom-benchmark":
-  version: 0.0.0-use.local
-  resolution: "hdom-benchmark@workspace:examples/hdom-benchmark"
-  dependencies:
-    "@thi.ng/hdom": "workspace:^"
-    "@thi.ng/hdom-components": "workspace:^"
-    "@thi.ng/hex": "workspace:^"
-    "@thi.ng/rstream": "workspace:^"
-    "@thi.ng/transducers": "workspace:^"
-    typescript: ^4.5.2
-    vite: ^2.6.14
-  languageName: unknown
-  linkType: soft
-
-"hdom-canvas-clock@workspace:examples/hdom-canvas-clock":
-  version: 0.0.0-use.local
-  resolution: "hdom-canvas-clock@workspace:examples/hdom-canvas-clock"
-  dependencies:
-    "@thi.ng/hdom": "workspace:^"
-    "@thi.ng/hdom-canvas": "workspace:^"
-    "@thi.ng/math": "workspace:^"
-    "@thi.ng/transducers": "workspace:^"
-    "@thi.ng/vectors": "workspace:^"
-    typescript: ^4.5.2
-    vite: ^2.6.14
-  languageName: unknown
-  linkType: soft
-
-"hdom-canvas-draw@workspace:examples/hdom-canvas-draw":
-  version: 0.0.0-use.local
-  resolution: "hdom-canvas-draw@workspace:examples/hdom-canvas-draw"
-  dependencies:
-    "@thi.ng/hdom-canvas": "workspace:^"
-    "@thi.ng/math": "workspace:^"
-    "@thi.ng/rstream": "workspace:^"
-    "@thi.ng/rstream-gestures": "workspace:^"
-    "@thi.ng/transducers": "workspace:^"
-    "@thi.ng/transducers-hdom": "workspace:^"
-    "@thi.ng/vectors": "workspace:^"
-    typescript: ^4.5.2
-    vite: ^2.6.14
-  languageName: unknown
-  linkType: soft
-
-"hdom-canvas-particles@workspace:examples/hdom-canvas-particles":
-  version: 0.0.0-use.local
-  resolution: "hdom-canvas-particles@workspace:examples/hdom-canvas-particles"
-  dependencies:
-    "@thi.ng/compose": "workspace:^"
-    "@thi.ng/geom": "workspace:^"
-    "@thi.ng/hdom": "workspace:^"
-    "@thi.ng/hdom-canvas": "workspace:^"
-    "@thi.ng/math": "workspace:^"
-    "@thi.ng/random": "workspace:^"
-    "@thi.ng/transducers": "workspace:^"
-    "@thi.ng/vectors": "workspace:^"
-    typescript: ^4.5.2
-    vite: ^2.6.14
-  languageName: unknown
-  linkType: soft
-
-"hdom-canvas-shapes@workspace:examples/hdom-canvas-shapes":
-  version: 0.0.0-use.local
-  resolution: "hdom-canvas-shapes@workspace:examples/hdom-canvas-shapes"
-  dependencies:
-    "@thi.ng/color": "workspace:^"
-    "@thi.ng/dl-asset": "workspace:^"
-    "@thi.ng/geom": "workspace:^"
-    "@thi.ng/hdom-canvas": "workspace:^"
-    "@thi.ng/hdom-components": "workspace:^"
-    "@thi.ng/hiccup": "workspace:^"
-    "@thi.ng/hiccup-svg": "workspace:^"
-    "@thi.ng/math": "workspace:^"
-    "@thi.ng/matrices": "workspace:^"
-    "@thi.ng/rstream": "workspace:^"
-    "@thi.ng/transducers": "workspace:^"
-    "@thi.ng/transducers-hdom": "workspace:^"
-    "@thi.ng/vectors": "workspace:^"
-    typescript: ^4.5.2
-    vite: ^2.6.14
-  languageName: unknown
-  linkType: soft
-
-"hdom-dropdown-fuzzy@workspace:examples/hdom-dropdown-fuzzy":
-  version: 0.0.0-use.local
-  resolution: "hdom-dropdown-fuzzy@workspace:examples/hdom-dropdown-fuzzy"
-  dependencies:
-    "@thi.ng/api": "workspace:^"
-    "@thi.ng/atom": "workspace:^"
-    "@thi.ng/checks": "workspace:^"
-    "@thi.ng/hdom": "workspace:^"
-    "@thi.ng/hdom-components": "workspace:^"
-    "@thi.ng/interceptors": "workspace:^"
-    "@thi.ng/paths": "workspace:^"
-    "@thi.ng/transducers": "workspace:^"
-    typescript: ^4.5.2
-    vite: ^2.6.14
-  languageName: unknown
-  linkType: soft
-
-"hdom-dropdown@workspace:examples/hdom-dropdown":
-  version: 0.0.0-use.local
-  resolution: "hdom-dropdown@workspace:examples/hdom-dropdown"
-  dependencies:
-    "@thi.ng/api": "workspace:^"
-    "@thi.ng/atom": "workspace:^"
-    "@thi.ng/hdom": "workspace:^"
-    "@thi.ng/hdom-components": "workspace:^"
-    "@thi.ng/interceptors": "workspace:^"
-    "@thi.ng/paths": "workspace:^"
-    typescript: ^4.5.2
-    vite: ^2.6.14
-  languageName: unknown
-  linkType: soft
-
-"hdom-dyn-context@workspace:examples/hdom-dyn-context":
-  version: 0.0.0-use.local
-  resolution: "hdom-dyn-context@workspace:examples/hdom-dyn-context"
-  dependencies:
-    "@thi.ng/atom": "workspace:^"
-    "@thi.ng/hdom": "workspace:^"
-    typescript: ^4.5.2
-    vite: ^2.6.14
-  languageName: unknown
-  linkType: soft
-
-"hdom-elm@workspace:examples/hdom-elm":
-  version: 0.0.0-use.local
-  resolution: "hdom-elm@workspace:examples/hdom-elm"
-  dependencies:
-    "@thi.ng/api": "workspace:^"
-    "@thi.ng/hdom": "workspace:^"
-    "@thi.ng/hiccup": "workspace:^"
-    "@thi.ng/paths": "workspace:^"
-    "@thi.ng/strings": "workspace:^"
-    typescript: ^4.5.2
-    vite: ^2.6.14
-  languageName: unknown
-  linkType: soft
-
-"hdom-inner-html@workspace:examples/hdom-inner-html":
-  version: 0.0.0-use.local
-  resolution: "hdom-inner-html@workspace:examples/hdom-inner-html"
-  dependencies:
-    "@thi.ng/hdom": "workspace:^"
-    typescript: ^4.5.2
-    vite: ^2.6.14
-  languageName: unknown
-  linkType: soft
-
-"hdom-local-render@workspace:examples/hdom-local-render":
-  version: 0.0.0-use.local
-  resolution: "hdom-local-render@workspace:examples/hdom-local-render"
-  dependencies:
-    "@thi.ng/hdom": "workspace:^"
-    "@thi.ng/memoize": "workspace:^"
-    "@thi.ng/rstream": "workspace:^"
-    "@thi.ng/transducers": "workspace:^"
-    "@thi.ng/transducers-hdom": "workspace:^"
-    typescript: ^4.5.2
-    vite: ^2.6.14
-  languageName: unknown
-  linkType: soft
-
-"hdom-localstate@workspace:examples/hdom-localstate":
-  version: 0.0.0-use.local
-  resolution: "hdom-localstate@workspace:examples/hdom-localstate"
-  dependencies:
-    "@thi.ng/hdom": "workspace:^"
-    "@thi.ng/paths": "workspace:^"
-    typescript: ^4.5.2
-    vite: ^2.6.14
-  languageName: unknown
-  linkType: soft
-
-"hdom-skip-nested@workspace:examples/hdom-skip-nested":
-  version: 0.0.0-use.local
-  resolution: "hdom-skip-nested@workspace:examples/hdom-skip-nested"
-  dependencies:
-    "@thi.ng/hdom": "workspace:^"
-    typescript: ^4.5.2
-    vite: ^2.6.14
-  languageName: unknown
-  linkType: soft
-
-"hdom-skip@workspace:examples/hdom-skip":
-  version: 0.0.0-use.local
-  resolution: "hdom-skip@workspace:examples/hdom-skip"
-  dependencies:
-    "@thi.ng/hdom": "workspace:^"
-    typescript: ^4.5.2
-    vite: ^2.6.14
-  languageName: unknown
-  linkType: soft
-
-"hdom-theme@workspace:examples/hdom-theme-adr-0003":
-  version: 0.0.0-use.local
-  resolution: "hdom-theme@workspace:examples/hdom-theme-adr-0003"
-  dependencies:
-    "@thi.ng/api": "workspace:^"
-    "@thi.ng/hdom": "workspace:^"
-    "@thi.ng/paths": "workspace:^"
-    typescript: ^4.5.2
-    vite: ^2.6.14
-  languageName: unknown
-  linkType: soft
-
-"hdom-toggle@workspace:examples/hdom-toggle":
-  version: 0.0.0-use.local
-  resolution: "hdom-toggle@workspace:examples/hdom-toggle"
-  dependencies:
-    "@thi.ng/hdom": "workspace:^"
-    "@thi.ng/hdom-components": "workspace:^"
-    typescript: ^4.5.2
-    vite: ^2.6.14
-  languageName: unknown
-  linkType: soft
-
-"hdom-vscroller@workspace:examples/hdom-vscroller":
-  version: 0.0.0-use.local
-  resolution: "hdom-vscroller@workspace:examples/hdom-vscroller"
-  dependencies:
-    "@thi.ng/api": "workspace:^"
-    "@thi.ng/hdom": "workspace:^"
-    "@thi.ng/transducers": "workspace:^"
-    typescript: ^4.5.2
-    vite: ^2.6.14
-  languageName: unknown
-  linkType: soft
-
 "he@npm:^1.2.0":
   version: 1.2.0
   resolution: "he@npm:1.2.0"
@@ -4667,23 +5725,6 @@ __metadata:
   checksum: 3d4d6babccccd79c5c5a3f929a68af33360d6445587d628087f39a965079d84f18ce9c3d3f917ee1e3978916fc833bb8b29377c3b403f919426f91bc6965e7a7
   languageName: node
   linkType: hard
-
-"hiccup-canvas-arcs@workspace:examples/hiccup-canvas-arcs":
-  version: 0.0.0-use.local
-  resolution: "hiccup-canvas-arcs@workspace:examples/hiccup-canvas-arcs"
-  dependencies:
-    "@thi.ng/color": "workspace:^"
-    "@thi.ng/geom": "workspace:^"
-    "@thi.ng/hiccup-canvas": "workspace:^"
-    "@thi.ng/math": "workspace:^"
-    "@thi.ng/random": "workspace:^"
-    "@thi.ng/rstream": "workspace:^"
-    "@thi.ng/transducers": "workspace:^"
-    "@thi.ng/vectors": "workspace:^"
-    typescript: ^4.5.2
-    vite: ^2.6.14
-  languageName: unknown
-  linkType: soft
 
 "html-minifier-terser@npm:^6.0.2":
   version: 6.0.2
@@ -4765,20 +5806,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"hydrate-basics@workspace:examples/hydrate-basics":
-  version: 0.0.0-use.local
-  resolution: "hydrate-basics@workspace:examples/hydrate-basics"
-  dependencies:
-    "@thi.ng/api": "workspace:^"
-    "@thi.ng/atom": "workspace:^"
-    "@thi.ng/hdom": "workspace:^"
-    "@thi.ng/hdom-components": "workspace:^"
-    "@thi.ng/hiccup": "workspace:^"
-    typescript: ^4.5.2
-    vite: ^2.6.14
-  languageName: unknown
-  linkType: soft
-
 "iconv-lite@npm:0.4.24":
   version: 0.4.24
   resolution: "iconv-lite@npm:0.4.24"
@@ -4796,46 +5823,6 @@ __metadata:
   checksum: 3f60d47a5c8fc3313317edfd29a00a692cc87a19cac0159e2ce711d0ebc9019064108323b5e493625e25594f11c6236647d8e256fbe7a58f4a3b33b89e6d30bf
   languageName: node
   linkType: hard
-
-"imgui-basics@workspace:examples/imgui-basics":
-  version: 0.0.0-use.local
-  resolution: "imgui-basics@workspace:examples/imgui-basics"
-  dependencies:
-    "@thi.ng/hdom": "workspace:^"
-    "@thi.ng/hdom-canvas": "workspace:^"
-    "@thi.ng/imgui": "workspace:^"
-    "@thi.ng/layout": "workspace:^"
-    "@thi.ng/rstream": "workspace:^"
-    "@thi.ng/rstream-gestures": "workspace:^"
-    typescript: ^4.5.2
-    vite: ^2.6.14
-  languageName: unknown
-  linkType: soft
-
-"imgui@workspace:examples/imgui":
-  version: 0.0.0-use.local
-  resolution: "imgui@workspace:examples/imgui"
-  dependencies:
-    "@thi.ng/atom": "workspace:^"
-    "@thi.ng/bench": "workspace:^"
-    "@thi.ng/geom": "workspace:^"
-    "@thi.ng/hdom-canvas": "workspace:^"
-    "@thi.ng/hiccup-carbon-icons": "workspace:^"
-    "@thi.ng/imgui": "workspace:^"
-    "@thi.ng/layout": "workspace:^"
-    "@thi.ng/math": "workspace:^"
-    "@thi.ng/paths": "workspace:^"
-    "@thi.ng/rstream": "workspace:^"
-    "@thi.ng/rstream-gestures": "workspace:^"
-    "@thi.ng/strings": "workspace:^"
-    "@thi.ng/transducers": "workspace:^"
-    "@thi.ng/transducers-hdom": "workspace:^"
-    "@thi.ng/transducers-stats": "workspace:^"
-    "@thi.ng/vectors": "workspace:^"
-    typescript: ^4.5.2
-    vite: ^2.6.14
-  languageName: unknown
-  linkType: soft
 
 "import-lazy@npm:~4.0.0":
   version: 4.0.0
@@ -4888,32 +5875,6 @@ __metadata:
   checksum: 78cb8d7d850d20a5e9a7f3620db31483aa00ad5f722ce03a55b110e5a723539b3716a3b463e2b96ce3fe286f33afc7c131fa2f91407528ba80cea98a7545d4c0
   languageName: node
   linkType: hard
-
-"interceptor-basics2@workspace:examples/interceptor-basics2":
-  version: 0.0.0-use.local
-  resolution: "interceptor-basics2@workspace:examples/interceptor-basics2"
-  dependencies:
-    "@thi.ng/api": "workspace:^"
-    "@thi.ng/atom": "workspace:^"
-    "@thi.ng/hdom": "workspace:^"
-    "@thi.ng/interceptors": "workspace:^"
-    typescript: ^4.5.2
-    vite: ^2.6.14
-  languageName: unknown
-  linkType: soft
-
-"interceptor-basics@workspace:examples/interceptor-basics":
-  version: 0.0.0-use.local
-  resolution: "interceptor-basics@workspace:examples/interceptor-basics"
-  dependencies:
-    "@thi.ng/atom": "workspace:^"
-    "@thi.ng/hdom": "workspace:^"
-    "@thi.ng/interceptors": "workspace:^"
-    "@thi.ng/transducers": "workspace:^"
-    typescript: ^4.5.2
-    vite: ^2.6.14
-  languageName: unknown
-  linkType: soft
 
 "ip@npm:^1.1.5":
   version: 1.1.5
@@ -5007,23 +5968,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"iso-plasma@workspace:examples/iso-plasma":
-  version: 0.0.0-use.local
-  resolution: "iso-plasma@workspace:examples/iso-plasma"
-  dependencies:
-    "@thi.ng/api": "workspace:^"
-    "@thi.ng/geom": "workspace:^"
-    "@thi.ng/geom-isoline": "workspace:^"
-    "@thi.ng/hdom": "workspace:^"
-    "@thi.ng/hdom-canvas": "workspace:^"
-    "@thi.ng/math": "workspace:^"
-    "@thi.ng/transducers": "workspace:^"
-    "@thi.ng/vectors": "workspace:^"
-    typescript: ^4.5.2
-    vite: ^2.6.14
-  languageName: unknown
-  linkType: soft
-
 "jju@npm:~1.4.0":
   version: 1.4.0
   resolution: "jju@npm:1.4.0"
@@ -5042,17 +5986,6 @@ __metadata:
   checksum: 7511b764abb66d8aa963379f7d2a404f078457d106552d05a7b556d204f7932384e8477513c124749fa2de52eb328961834562bd09924902c6432e40daa408bc
   languageName: node
   linkType: hard
-
-"json-components@workspace:examples/json-components":
-  version: 0.0.0-use.local
-  resolution: "json-components@workspace:examples/json-components"
-  dependencies:
-    "@thi.ng/hdom": "workspace:^"
-    "@thi.ng/transducers": "workspace:^"
-    typescript: ^4.5.2
-    vite: ^2.6.14
-  languageName: unknown
-  linkType: soft
 
 "json-schema-traverse@npm:^0.4.1":
   version: 0.4.1
@@ -5100,20 +6033,6 @@ __metadata:
   checksum: eb835a2e51d381e561e508ce932ea50a8e5a68f4ebdd771ea240d3048244a8d13658acbd502cd4829768c56f2e16bdd4340b9ea141297d472517b83868e677f7
   languageName: node
   linkType: hard
-
-"login-form@workspace:examples/login-form":
-  version: 0.0.0-use.local
-  resolution: "login-form@workspace:examples/login-form"
-  dependencies:
-    "@thi.ng/api": "workspace:^"
-    "@thi.ng/atom": "workspace:^"
-    "@thi.ng/expose": "workspace:^"
-    "@thi.ng/hdom": "workspace:^"
-    "@thi.ng/strings": "workspace:^"
-    typescript: ^4.5.2
-    vite: ^2.6.14
-  languageName: unknown
-  linkType: soft
 
 "long@npm:^5.1.0":
   version: 5.1.0
@@ -5186,39 +6105,6 @@ __metadata:
   checksum: 0eb371c85fdd0b1584fcfdf3dc3c62395761b3c14658be02620c310305a9a7ecf1617a5e6fb30c1d081c5c8aaf177fa133ee225024313afabb7aa6a10f1e3d04
   languageName: node
   linkType: hard
-
-"mandelbrot@workspace:examples/mandelbrot":
-  version: 0.0.0-use.local
-  resolution: "mandelbrot@workspace:examples/mandelbrot"
-  dependencies:
-    "@thi.ng/compose": "workspace:^"
-    "@thi.ng/dl-asset": "workspace:^"
-    "@thi.ng/equiv": "workspace:^"
-    "@thi.ng/hdom-components": "workspace:^"
-    "@thi.ng/math": "workspace:^"
-    "@thi.ng/rstream": "workspace:^"
-    "@thi.ng/rstream-gestures": "workspace:^"
-    "@thi.ng/strings": "workspace:^"
-    "@thi.ng/transducers": "workspace:^"
-    "@thi.ng/transducers-hdom": "workspace:^"
-    typescript: ^4.5.2
-    vite: ^2.6.14
-  languageName: unknown
-  linkType: soft
-
-"markdown@workspace:examples/markdown":
-  version: 0.0.0-use.local
-  resolution: "markdown@workspace:examples/markdown"
-  dependencies:
-    "@thi.ng/bench": "workspace:^"
-    "@thi.ng/hiccup-markdown": "workspace:^"
-    "@thi.ng/rstream": "workspace:^"
-    "@thi.ng/transducers": "workspace:^"
-    "@thi.ng/transducers-hdom": "workspace:^"
-    typescript: ^4.5.2
-    vite: ^2.6.14
-  languageName: unknown
-  linkType: soft
 
 "marked@npm:^3.0.8":
   version: 3.0.8
@@ -5391,21 +6277,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"multitouch@workspace:examples/multitouch":
-  version: 0.0.0-use.local
-  resolution: "multitouch@workspace:examples/multitouch"
-  dependencies:
-    "@thi.ng/hdom-canvas": "workspace:^"
-    "@thi.ng/memoize": "workspace:^"
-    "@thi.ng/rstream": "workspace:^"
-    "@thi.ng/rstream-gestures": "workspace:^"
-    "@thi.ng/transducers": "workspace:^"
-    "@thi.ng/transducers-hdom": "workspace:^"
-    typescript: ^4.5.2
-    vite: ^2.6.14
-  languageName: unknown
-  linkType: soft
-
 "nanoid@npm:^3.1.30":
   version: 3.1.30
   resolution: "nanoid@npm:3.1.30"
@@ -5539,23 +6410,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"package-stats@workspace:examples/package-stats":
-  version: 0.0.0-use.local
-  resolution: "package-stats@workspace:examples/package-stats"
-  dependencies:
-    "@thi.ng/checks": "workspace:^"
-    "@thi.ng/dgraph": "workspace:^"
-    "@thi.ng/hiccup": "workspace:^"
-    "@thi.ng/hiccup-svg": "workspace:^"
-    "@thi.ng/math": "workspace:^"
-    "@thi.ng/paths": "workspace:^"
-    "@thi.ng/strings": "workspace:^"
-    "@thi.ng/transducers": "workspace:^"
-    tools: "workspace:^"
-    typescript: ^4.5.2
-  languageName: unknown
-  linkType: soft
-
 "param-case@npm:^3.0.4":
   version: 3.0.4
   resolution: "param-case@npm:3.0.4"
@@ -5565,28 +6419,6 @@ __metadata:
   checksum: b34227fd0f794e078776eb3aa6247442056cb47761e9cd2c4c881c86d84c64205f6a56ef0d70b41ee7d77da02c3f4ed2f88e3896a8fefe08bdfb4deca037c687
   languageName: node
   linkType: hard
-
-"parse-playground@workspace:examples/parse-playground":
-  version: 0.0.0-use.local
-  resolution: "parse-playground@workspace:examples/parse-playground"
-  dependencies:
-    "@thi.ng/api": "workspace:^"
-    "@thi.ng/bench": "workspace:^"
-    "@thi.ng/dl-asset": "workspace:^"
-    "@thi.ng/hiccup-carbon-icons": "workspace:^"
-    "@thi.ng/hiccup-html": "workspace:^"
-    "@thi.ng/parse": "workspace:^"
-    "@thi.ng/rdom": "workspace:^"
-    "@thi.ng/rdom-components": "workspace:^"
-    "@thi.ng/rstream": "workspace:^"
-    "@thi.ng/strings": "workspace:^"
-    "@thi.ng/transducers": "workspace:^"
-    "@thi.ng/transducers-binary": "workspace:^"
-    "@ygoe/msgpack": ^1.0.3
-    typescript: ^4.5.2
-    vite: ^2.6.14
-  languageName: unknown
-  linkType: soft
 
 "parseurl@npm:~1.3.3":
   version: 1.3.3
@@ -5649,112 +6481,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"pixel-basics@workspace:examples/pixel-basics":
-  version: 0.0.0-use.local
-  resolution: "pixel-basics@workspace:examples/pixel-basics"
-  dependencies:
-    "@thi.ng/pixel": "workspace:^"
-    "@thi.ng/porter-duff": "workspace:^"
-    typescript: ^4.5.2
-    vite: ^2.6.14
-  languageName: unknown
-  linkType: soft
-
-"pixel-dither@workspace:examples/pixel-dither":
-  version: 0.0.0-use.local
-  resolution: "pixel-dither@workspace:examples/pixel-dither"
-  dependencies:
-    "@thi.ng/api": "workspace:^"
-    "@thi.ng/pixel": "workspace:^"
-    "@thi.ng/pixel-dither": "workspace:^"
-    typescript: ^4.5.2
-    vite: ^2.6.14
-  languageName: unknown
-  linkType: soft
-
-"pixel-indexed@workspace:examples/pixel-indexed":
-  version: 0.0.0-use.local
-  resolution: "pixel-indexed@workspace:examples/pixel-indexed"
-  dependencies:
-    "@thi.ng/color": "workspace:^"
-    "@thi.ng/color-palettes": "workspace:^"
-    "@thi.ng/pixel": "workspace:^"
-    "@thi.ng/pixel-dither": "workspace:^"
-    typescript: ^4.5.2
-    vite: ^2.6.14
-  languageName: unknown
-  linkType: soft
-
-"pixel-sorting@workspace:examples/pixel-sorting":
-  version: 0.0.0-use.local
-  resolution: "pixel-sorting@workspace:examples/pixel-sorting"
-  dependencies:
-    "@thi.ng/bench": "workspace:^"
-    "@thi.ng/color": "workspace:^"
-    "@thi.ng/hiccup-html": "workspace:^"
-    "@thi.ng/intervals": "workspace:^"
-    "@thi.ng/pixel": "workspace:^"
-    "@thi.ng/random": "workspace:^"
-    "@thi.ng/rdom": "workspace:^"
-    "@thi.ng/rstream": "workspace:^"
-    "@thi.ng/transducers": "workspace:^"
-    typescript: ^4.5.2
-    vite: ^2.6.14
-  languageName: unknown
-  linkType: soft
-
-"pointfree-svg@workspace:examples/pointfree-svg":
-  version: 0.0.0-use.local
-  resolution: "pointfree-svg@workspace:examples/pointfree-svg"
-  dependencies:
-    "@thi.ng/hiccup": "workspace:^"
-    "@thi.ng/hiccup-svg": "workspace:^"
-    "@thi.ng/pointfree": "workspace:^"
-    "@thi.ng/pointfree-lang": "workspace:^"
-    tools: "workspace:^"
-    typescript: ^4.5.2
-  languageName: unknown
-  linkType: soft
-
-"poisson-circles@workspace:examples/poisson-circles":
-  version: 0.0.0-use.local
-  resolution: "poisson-circles@workspace:examples/poisson-circles"
-  dependencies:
-    "@thi.ng/geom": "workspace:^"
-    "@thi.ng/geom-accel": "workspace:^"
-    "@thi.ng/math": "workspace:^"
-    "@thi.ng/poisson": "workspace:^"
-    "@thi.ng/vectors": "workspace:^"
-    typescript: ^4.5.2
-    vite: ^2.6.14
-  languageName: unknown
-  linkType: soft
-
-"poly-spline@workspace:examples/poly-spline":
-  version: 0.0.0-use.local
-  resolution: "poly-spline@workspace:examples/poly-spline"
-  dependencies:
-    "@thi.ng/dsp": "workspace:^"
-    "@thi.ng/geom": "workspace:^"
-    "@thi.ng/rstream": "workspace:^"
-    "@thi.ng/transducers": "workspace:^"
-    "@thi.ng/transducers-hdom": "workspace:^"
-    typescript: ^4.5.2
-    vite: ^2.6.14
-  languageName: unknown
-  linkType: soft
-
-"porter-duff@workspace:examples/porter-duff":
-  version: 0.0.0-use.local
-  resolution: "porter-duff@workspace:examples/porter-duff"
-  dependencies:
-    "@thi.ng/pixel": "workspace:^"
-    "@thi.ng/porter-duff": "workspace:^"
-    typescript: ^4.5.2
-    vite: ^2.6.14
-  languageName: unknown
-  linkType: soft
-
 "postcss@npm:^8.3.8":
   version: 8.3.11
   resolution: "postcss@npm:8.3.11"
@@ -5814,22 +6540,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ramp-synth@workspace:examples/ramp-synth":
-  version: 0.0.0-use.local
-  resolution: "ramp-synth@workspace:examples/ramp-synth"
-  dependencies:
-    "@thi.ng/arrays": "workspace:^"
-    "@thi.ng/hdom": "workspace:^"
-    "@thi.ng/hdom-canvas": "workspace:^"
-    "@thi.ng/math": "workspace:^"
-    "@thi.ng/ramp": "workspace:^"
-    "@thi.ng/transducers": "workspace:^"
-    "@thi.ng/vectors": "workspace:^"
-    typescript: ^4.5.2
-    vite: ^2.6.14
-  languageName: unknown
-  linkType: soft
-
 "range-parser@npm:~1.2.1":
   version: 1.2.1
   resolution: "range-parser@npm:1.2.1"
@@ -5848,99 +6558,6 @@ __metadata:
   checksum: 6343906939e018c6e633a34a938a5d6d1e93ffcfa48646e00207d53b418e941953b521473950c079347220944dc75ba10e7b3c08bf97e3ac72c7624882db09bb
   languageName: node
   linkType: hard
-
-"rdom-basics@workspace:examples/rdom-basics":
-  version: 0.0.0-use.local
-  resolution: "rdom-basics@workspace:examples/rdom-basics"
-  dependencies:
-    "@thi.ng/checks": "workspace:^"
-    "@thi.ng/compose": "workspace:^"
-    "@thi.ng/rdom": "workspace:^"
-    "@thi.ng/rstream": "workspace:^"
-    "@thi.ng/transducers": "workspace:^"
-    typescript: ^4.5.2
-    vite: ^2.6.14
-  languageName: unknown
-  linkType: soft
-
-"rdom-delayed-update@workspace:examples/rdom-delayed-update":
-  version: 0.0.0-use.local
-  resolution: "rdom-delayed-update@workspace:examples/rdom-delayed-update"
-  dependencies:
-    "@thi.ng/compose": "workspace:^"
-    "@thi.ng/random": "workspace:^"
-    "@thi.ng/rdom": "workspace:^"
-    "@thi.ng/rstream": "workspace:^"
-    "@thi.ng/transducers": "workspace:^"
-    typescript: ^4.5.2
-    vite: ^2.6.14
-  languageName: unknown
-  linkType: soft
-
-"rdom-dnd@workspace:examples/rdom-dnd":
-  version: 0.0.0-use.local
-  resolution: "rdom-dnd@workspace:examples/rdom-dnd"
-  dependencies:
-    "@thi.ng/api": "workspace:^"
-    "@thi.ng/hiccup-carbon-icons": "workspace:^"
-    "@thi.ng/hiccup-html": "workspace:^"
-    "@thi.ng/rdom": "workspace:^"
-    "@thi.ng/transducers": "workspace:^"
-    typescript: ^4.5.2
-    vite: ^2.6.14
-  languageName: unknown
-  linkType: soft
-
-"rdom-lissajous@workspace:examples/rdom-lissajous":
-  version: 0.0.0-use.local
-  resolution: "rdom-lissajous@workspace:examples/rdom-lissajous"
-  dependencies:
-    "@thi.ng/api": "workspace:^"
-    "@thi.ng/hiccup-carbon-icons": "workspace:^"
-    "@thi.ng/hiccup-html": "workspace:^"
-    "@thi.ng/rdom": "workspace:^"
-    "@thi.ng/rdom-canvas": "workspace:^"
-    "@thi.ng/rstream": "workspace:^"
-    "@thi.ng/transducers": "workspace:^"
-    typescript: ^4.5.2
-    vite: ^2.6.14
-  languageName: unknown
-  linkType: soft
-
-"rdom-search-docs@workspace:examples/rdom-search-docs":
-  version: 0.0.0-use.local
-  resolution: "rdom-search-docs@workspace:examples/rdom-search-docs"
-  dependencies:
-    "@thi.ng/api": "workspace:^"
-    "@thi.ng/bench": "workspace:^"
-    "@thi.ng/compare": "workspace:^"
-    "@thi.ng/equiv": "workspace:^"
-    "@thi.ng/hiccup-html": "workspace:^"
-    "@thi.ng/math": "workspace:^"
-    "@thi.ng/rdom": "workspace:^"
-    "@thi.ng/rstream": "workspace:^"
-    "@thi.ng/transducers": "workspace:^"
-    "@ygoe/msgpack": ^1.0.3
-    typescript: ^4.5.2
-    vite: ^2.6.14
-  languageName: unknown
-  linkType: soft
-
-"rdom-svg-nodes@workspace:examples/rdom-svg-nodes":
-  version: 0.0.0-use.local
-  resolution: "rdom-svg-nodes@workspace:examples/rdom-svg-nodes"
-  dependencies:
-    "@thi.ng/atom": "workspace:^"
-    "@thi.ng/equiv": "workspace:^"
-    "@thi.ng/hiccup-svg": "workspace:^"
-    "@thi.ng/rdom": "workspace:^"
-    "@thi.ng/rstream": "workspace:^"
-    "@thi.ng/transducers": "workspace:^"
-    "@thi.ng/vectors": "workspace:^"
-    typescript: ^4.5.2
-    vite: ^2.6.14
-  languageName: unknown
-  linkType: soft
 
 "readable-stream@npm:^2.0.6":
   version: 2.3.7
@@ -6082,132 +6699,6 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"rotating-voronoi@workspace:examples/rotating-voronoi":
-  version: 0.0.0-use.local
-  resolution: "rotating-voronoi@workspace:examples/rotating-voronoi"
-  dependencies:
-    "@thi.ng/dl-asset": "workspace:^"
-    "@thi.ng/geom": "workspace:^"
-    "@thi.ng/geom-resample": "workspace:^"
-    "@thi.ng/geom-voronoi": "workspace:^"
-    "@thi.ng/hdom-canvas": "workspace:^"
-    "@thi.ng/math": "workspace:^"
-    "@thi.ng/random": "workspace:^"
-    "@thi.ng/rstream": "workspace:^"
-    "@thi.ng/transducers": "workspace:^"
-    "@thi.ng/transducers-hdom": "workspace:^"
-    "@thi.ng/vectors": "workspace:^"
-    typescript: ^4.5.2
-    vite: ^2.6.14
-  languageName: unknown
-  linkType: soft
-
-"router-basics@workspace:examples/router-basics":
-  version: 0.0.0-use.local
-  resolution: "router-basics@workspace:examples/router-basics"
-  dependencies:
-    "@thi.ng/api": "workspace:^"
-    "@thi.ng/atom": "workspace:^"
-    "@thi.ng/checks": "workspace:^"
-    "@thi.ng/hdom": "workspace:^"
-    "@thi.ng/interceptors": "workspace:^"
-    "@thi.ng/router": "workspace:^"
-    typescript: ^4.5.2
-    vite: ^2.6.14
-  languageName: unknown
-  linkType: soft
-
-"rstream-dataflow@workspace:examples/rstream-dataflow":
-  version: 0.0.0-use.local
-  resolution: "rstream-dataflow@workspace:examples/rstream-dataflow"
-  dependencies:
-    "@thi.ng/atom": "workspace:^"
-    "@thi.ng/equiv": "workspace:^"
-    "@thi.ng/hdom": "workspace:^"
-    "@thi.ng/paths": "workspace:^"
-    "@thi.ng/rstream": "workspace:^"
-    "@thi.ng/rstream-dot": "workspace:^"
-    "@thi.ng/rstream-gestures": "workspace:^"
-    "@thi.ng/rstream-graph": "workspace:^"
-    "@thi.ng/transducers": "workspace:^"
-    typescript: ^4.5.2
-    vite: ^2.6.14
-  languageName: unknown
-  linkType: soft
-
-"rstream-event-loop@workspace:examples/rstream-event-loop":
-  version: 0.0.0-use.local
-  resolution: "rstream-event-loop@workspace:examples/rstream-event-loop"
-  dependencies:
-    "@thi.ng/api": "workspace:^"
-    "@thi.ng/paths": "workspace:^"
-    "@thi.ng/rstream": "workspace:^"
-    "@thi.ng/transducers": "workspace:^"
-    "@thi.ng/transducers-hdom": "workspace:^"
-    typescript: ^4.5.2
-    vite: ^2.6.14
-  languageName: unknown
-  linkType: soft
-
-"rstream-grid@workspace:examples/rstream-grid":
-  version: 0.0.0-use.local
-  resolution: "rstream-grid@workspace:examples/rstream-grid"
-  dependencies:
-    "@thi.ng/api": "workspace:^"
-    "@thi.ng/atom": "workspace:^"
-    "@thi.ng/checks": "workspace:^"
-    "@thi.ng/dl-asset": "workspace:^"
-    "@thi.ng/expose": "workspace:^"
-    "@thi.ng/hdom": "workspace:^"
-    "@thi.ng/hiccup": "workspace:^"
-    "@thi.ng/hiccup-svg": "workspace:^"
-    "@thi.ng/interceptors": "workspace:^"
-    "@thi.ng/paths": "workspace:^"
-    "@thi.ng/rstream": "workspace:^"
-    "@thi.ng/rstream-graph": "workspace:^"
-    "@thi.ng/transducers": "workspace:^"
-    typescript: ^4.5.2
-    vite: ^2.6.14
-  languageName: unknown
-  linkType: soft
-
-"rstream-hdom@workspace:examples/rstream-hdom":
-  version: 0.0.0-use.local
-  resolution: "rstream-hdom@workspace:examples/rstream-hdom"
-  dependencies:
-    "@thi.ng/rstream": "workspace:^"
-    "@thi.ng/transducers": "workspace:^"
-    "@thi.ng/transducers-hdom": "workspace:^"
-    typescript: ^4.5.2
-    vite: ^2.6.14
-  languageName: unknown
-  linkType: soft
-
-"rstream-spreadsheet@workspace:examples/rstream-spreadsheet":
-  version: 0.0.0-use.local
-  resolution: "rstream-spreadsheet@workspace:examples/rstream-spreadsheet"
-  dependencies:
-    "@thi.ng/api": "workspace:^"
-    "@thi.ng/atom": "workspace:^"
-    "@thi.ng/checks": "workspace:^"
-    "@thi.ng/defmulti": "workspace:^"
-    "@thi.ng/errors": "workspace:^"
-    "@thi.ng/expose": "workspace:^"
-    "@thi.ng/hdom": "workspace:^"
-    "@thi.ng/math": "workspace:^"
-    "@thi.ng/memoize": "workspace:^"
-    "@thi.ng/paths": "workspace:^"
-    "@thi.ng/rstream": "workspace:^"
-    "@thi.ng/rstream-graph": "workspace:^"
-    "@thi.ng/sexpr": "workspace:^"
-    "@thi.ng/strings": "workspace:^"
-    "@thi.ng/transducers": "workspace:^"
-    "@thi.ng/transducers-hdom": "workspace:^"
-    typescript: ^4.5.2
-    vite: ^2.6.14
-  languageName: unknown
-  linkType: soft
-
 "safe-buffer@npm:5.1.2, safe-buffer@npm:~5.1.0, safe-buffer@npm:~5.1.1":
   version: 5.1.2
   resolution: "safe-buffer@npm:5.1.2"
@@ -6221,42 +6712,6 @@ __metadata:
   checksum: cab8f25ae6f1434abee8d80023d7e72b598cf1327164ddab31003c51215526801e40b66c5e65d658a0af1e9d6478cadcb4c745f4bd6751f97d8644786c0978b0
   languageName: node
   linkType: hard
-
-"scenegraph-image@workspace:examples/scenegraph-image":
-  version: 0.0.0-use.local
-  resolution: "scenegraph-image@workspace:examples/scenegraph-image"
-  dependencies:
-    "@thi.ng/api": "workspace:^"
-    "@thi.ng/dsp": "workspace:^"
-    "@thi.ng/geom": "workspace:^"
-    "@thi.ng/hdom": "workspace:^"
-    "@thi.ng/hdom-canvas": "workspace:^"
-    "@thi.ng/matrices": "workspace:^"
-    "@thi.ng/pixel": "workspace:^"
-    "@thi.ng/scenegraph": "workspace:^"
-    "@thi.ng/transducers": "workspace:^"
-    "@thi.ng/vectors": "workspace:^"
-    typescript: ^4.5.2
-    vite: ^2.6.14
-  languageName: unknown
-  linkType: soft
-
-"scenegraph@workspace:examples/scenegraph":
-  version: 0.0.0-use.local
-  resolution: "scenegraph@workspace:examples/scenegraph"
-  dependencies:
-    "@thi.ng/geom": "workspace:^"
-    "@thi.ng/geom-api": "workspace:^"
-    "@thi.ng/hdom": "workspace:^"
-    "@thi.ng/hdom-canvas": "workspace:^"
-    "@thi.ng/math": "workspace:^"
-    "@thi.ng/scenegraph": "workspace:^"
-    "@thi.ng/transducers": "workspace:^"
-    "@thi.ng/vectors": "workspace:^"
-    typescript: ^4.5.2
-    vite: ^2.6.14
-  languageName: unknown
-  linkType: soft
 
 "semver@npm:^7.3.5, semver@npm:~7.3.0":
   version: 7.3.5
@@ -6316,134 +6771,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"shader-ast-canvas2d@workspace:examples/shader-ast-canvas2d":
-  version: 0.0.0-use.local
-  resolution: "shader-ast-canvas2d@workspace:examples/shader-ast-canvas2d"
-  dependencies:
-    "@thi.ng/shader-ast": "workspace:^"
-    "@thi.ng/shader-ast-glsl": "workspace:^"
-    "@thi.ng/shader-ast-js": "workspace:^"
-    "@thi.ng/shader-ast-stdlib": "workspace:^"
-    typescript: ^4.5.2
-    vite: ^2.6.14
-  languageName: unknown
-  linkType: soft
-
-"shader-ast-evo@workspace:examples/shader-ast-evo":
-  version: 0.0.0-use.local
-  resolution: "shader-ast-evo@workspace:examples/shader-ast-evo"
-  dependencies:
-    "@thi.ng/gp": "workspace:^"
-    "@thi.ng/logger": "workspace:^"
-    "@thi.ng/random": "workspace:^"
-    "@thi.ng/shader-ast": "workspace:^"
-    "@thi.ng/shader-ast-optimize": "workspace:^"
-    "@thi.ng/shader-ast-stdlib": "workspace:^"
-    "@thi.ng/webgl": "workspace:^"
-    "@thi.ng/webgl-shadertoy": "workspace:^"
-    typescript: ^4.5.2
-    vite: ^2.6.14
-  languageName: unknown
-  linkType: soft
-
-"shader-ast-noise@workspace:examples/shader-ast-noise":
-  version: 0.0.0-use.local
-  resolution: "shader-ast-noise@workspace:examples/shader-ast-noise"
-  dependencies:
-    "@thi.ng/shader-ast": "workspace:^"
-    "@thi.ng/shader-ast-glsl": "workspace:^"
-    "@thi.ng/shader-ast-js": "workspace:^"
-    "@thi.ng/shader-ast-stdlib": "workspace:^"
-    "@thi.ng/webgl": "workspace:^"
-    typescript: ^4.5.2
-    vite: ^2.6.14
-  languageName: unknown
-  linkType: soft
-
-"shader-ast-raymarch@workspace:examples/shader-ast-raymarch":
-  version: 0.0.0-use.local
-  resolution: "shader-ast-raymarch@workspace:examples/shader-ast-raymarch"
-  dependencies:
-    "@thi.ng/shader-ast": "workspace:^"
-    "@thi.ng/shader-ast-glsl": "workspace:^"
-    "@thi.ng/shader-ast-js": "workspace:^"
-    "@thi.ng/shader-ast-stdlib": "workspace:^"
-    "@thi.ng/webgl": "workspace:^"
-    typescript: ^4.5.2
-    vite: ^2.6.14
-  languageName: unknown
-  linkType: soft
-
-"shader-ast-sdf2d@workspace:examples/shader-ast-sdf2d":
-  version: 0.0.0-use.local
-  resolution: "shader-ast-sdf2d@workspace:examples/shader-ast-sdf2d"
-  dependencies:
-    "@thi.ng/shader-ast": "workspace:^"
-    "@thi.ng/shader-ast-glsl": "workspace:^"
-    "@thi.ng/shader-ast-js": "workspace:^"
-    "@thi.ng/shader-ast-stdlib": "workspace:^"
-    "@thi.ng/webgl": "workspace:^"
-    typescript: ^4.5.2
-    vite: ^2.6.14
-  languageName: unknown
-  linkType: soft
-
-"shader-ast-tunnel@workspace:examples/shader-ast-tunnel":
-  version: 0.0.0-use.local
-  resolution: "shader-ast-tunnel@workspace:examples/shader-ast-tunnel"
-  dependencies:
-    "@thi.ng/color": "workspace:^"
-    "@thi.ng/pixel": "workspace:^"
-    "@thi.ng/shader-ast": "workspace:^"
-    "@thi.ng/shader-ast-glsl": "workspace:^"
-    "@thi.ng/shader-ast-js": "workspace:^"
-    "@thi.ng/webgl": "workspace:^"
-    typescript: ^4.5.2
-    vite: ^2.6.14
-  languageName: unknown
-  linkType: soft
-
-"shader-ast-workers@workspace:examples/shader-ast-workers":
-  version: 0.0.0-use.local
-  resolution: "shader-ast-workers@workspace:examples/shader-ast-workers"
-  dependencies:
-    "@thi.ng/bench": "workspace:^"
-    "@thi.ng/color": "workspace:^"
-    "@thi.ng/hiccup-canvas": "workspace:^"
-    "@thi.ng/math": "workspace:^"
-    "@thi.ng/pixel": "workspace:^"
-    "@thi.ng/rstream": "workspace:^"
-    "@thi.ng/shader-ast": "workspace:^"
-    "@thi.ng/shader-ast-js": "workspace:^"
-    "@thi.ng/shader-ast-stdlib": "workspace:^"
-    "@thi.ng/transducers": "workspace:^"
-    "@thi.ng/transducers-stats": "workspace:^"
-    esbuild: ^0.13.14
-    typescript: ^4.5.2
-    vite: ^2.6.14
-  languageName: unknown
-  linkType: soft
-
-"shader-graph@workspace:examples/shader-graph":
-  version: 0.0.0-use.local
-  resolution: "shader-graph@workspace:examples/shader-graph"
-  dependencies:
-    "@thi.ng/api": "workspace:^"
-    "@thi.ng/expose": "workspace:^"
-    "@thi.ng/matrices": "workspace:^"
-    "@thi.ng/rstream": "workspace:^"
-    "@thi.ng/rstream-gestures": "workspace:^"
-    "@thi.ng/scenegraph": "workspace:^"
-    "@thi.ng/shader-ast": "workspace:^"
-    "@thi.ng/shader-ast-glsl": "workspace:^"
-    "@thi.ng/shader-ast-stdlib": "workspace:^"
-    "@thi.ng/vectors": "workspace:^"
-    "@thi.ng/webgl": "workspace:^"
-    typescript: ^4.5.2
-    vite: ^2.6.14
-  languageName: unknown
-  linkType: soft
-
 "shiki@npm:^0.9.12":
   version: 0.9.12
   resolution: "shiki@npm:0.9.12"
@@ -6468,24 +6795,6 @@ __metadata:
   checksum: b5167a7142c1da704c0e3af85c402002b597081dd9575031a90b4f229ca5678e9a36e8a374f1814c8156a725d17008ae3bde63b92f9cfd132526379e580bec8b
   languageName: node
   linkType: hard
-
-"soa-ecs@workspace:examples/soa-ecs":
-  version: 0.0.0-use.local
-  resolution: "soa-ecs@workspace:examples/soa-ecs"
-  dependencies:
-    "@thi.ng/adapt-dpi": "workspace:^"
-    "@thi.ng/ecs": "workspace:^"
-    "@thi.ng/hdom": "workspace:^"
-    "@thi.ng/hdom-components": "workspace:^"
-    "@thi.ng/math": "workspace:^"
-    "@thi.ng/matrices": "workspace:^"
-    "@thi.ng/shader-ast": "workspace:^"
-    "@thi.ng/vectors": "workspace:^"
-    "@thi.ng/webgl": "workspace:^"
-    typescript: ^4.5.2
-    vite: ^2.6.14
-  languageName: unknown
-  linkType: soft
 
 "socks-proxy-agent@npm:^6.0.0":
   version: 6.1.0
@@ -6539,21 +6848,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"spline-tangent@workspace:examples/spline-tangent":
-  version: 0.0.0-use.local
-  resolution: "spline-tangent@workspace:examples/spline-tangent"
-  dependencies:
-    "@thi.ng/api": "workspace:^"
-    "@thi.ng/dual-algebra": "workspace:^"
-    "@thi.ng/geom": "workspace:^"
-    "@thi.ng/math": "workspace:^"
-    "@thi.ng/strings": "workspace:^"
-    "@thi.ng/vectors": "workspace:^"
-    typescript: ^4.5.2
-    vite: ^2.6.14
-  languageName: unknown
-  linkType: soft
-
 "sprintf-js@npm:~1.0.2":
   version: 1.0.3
   resolution: "sprintf-js@npm:1.0.3"
@@ -6576,20 +6870,6 @@ __metadata:
   checksum: c469b9519de16a4bb19600205cffb39ee471a5f17b82589757ca7bd40a8d92ebb6ed9f98b5a540c5d302ccbc78f15dc03cc0280dd6e00df1335568a5d5758a5c
   languageName: node
   linkType: hard
-
-"stratified-grid@workspace:examples/stratified-grid":
-  version: 0.0.0-use.local
-  resolution: "stratified-grid@workspace:examples/stratified-grid"
-  dependencies:
-    "@thi.ng/geom": "workspace:^"
-    "@thi.ng/geom-accel": "workspace:^"
-    "@thi.ng/poisson": "workspace:^"
-    "@thi.ng/transducers": "workspace:^"
-    "@thi.ng/vectors": "workspace:^"
-    typescript: ^4.5.2
-    vite: ^2.6.14
-  languageName: unknown
-  linkType: soft
 
 "string-argv@npm:~0.3.1":
   version: 0.3.1
@@ -6654,62 +6934,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"svg-barchart@workspace:examples/svg-barchart":
-  version: 0.0.0-use.local
-  resolution: "svg-barchart@workspace:examples/svg-barchart"
-  dependencies:
-    "@thi.ng/hdom": "workspace:^"
-    "@thi.ng/math": "workspace:^"
-    "@thi.ng/transducers": "workspace:^"
-    typescript: ^4.5.2
-    vite: ^2.6.14
-  languageName: unknown
-  linkType: soft
-
-"svg-particles@workspace:examples/svg-particles":
-  version: 0.0.0-use.local
-  resolution: "svg-particles@workspace:examples/svg-particles"
-  dependencies:
-    "@thi.ng/hdom": "workspace:^"
-    "@thi.ng/strings": "workspace:^"
-    "@thi.ng/transducers": "workspace:^"
-    typescript: ^4.5.2
-    vite: ^2.6.14
-  languageName: unknown
-  linkType: soft
-
-"svg-waveform@workspace:examples/svg-waveform":
-  version: 0.0.0-use.local
-  resolution: "svg-waveform@workspace:examples/svg-waveform"
-  dependencies:
-    "@thi.ng/api": "workspace:^"
-    "@thi.ng/atom": "workspace:^"
-    "@thi.ng/checks": "workspace:^"
-    "@thi.ng/expose": "workspace:^"
-    "@thi.ng/hdom": "workspace:^"
-    "@thi.ng/hiccup-svg": "workspace:^"
-    "@thi.ng/interceptors": "workspace:^"
-    "@thi.ng/transducers": "workspace:^"
-    typescript: ^4.5.2
-    vite: ^2.6.14
-  languageName: unknown
-  linkType: soft
-
-"talk-slides@workspace:examples/talk-slides":
-  version: 0.0.0-use.local
-  resolution: "talk-slides@workspace:examples/talk-slides"
-  dependencies:
-    "@thi.ng/hdom": "workspace:^"
-    "@thi.ng/math": "workspace:^"
-    "@thi.ng/rstream": "workspace:^"
-    "@thi.ng/strings": "workspace:^"
-    "@thi.ng/transducers": "workspace:^"
-    "@thi.ng/transducers-hdom": "workspace:^"
-    typescript: ^4.5.2
-    vite: ^2.6.14
-  languageName: unknown
-  linkType: soft
-
 "tar@npm:^6.0.2, tar@npm:^6.1.2":
   version: 6.1.11
   resolution: "tar@npm:6.1.11"
@@ -6742,33 +6966,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"text-canvas-image@workspace:examples/text-canvas-image":
-  version: 0.0.0-use.local
-  resolution: "text-canvas-image@workspace:examples/text-canvas-image"
-  dependencies:
-    "@thi.ng/pixel": "workspace:^"
-    "@thi.ng/text-canvas": "workspace:^"
-    "@thi.ng/text-format": "workspace:^"
-    typescript: ^4.5.2
-    vite: ^2.6.14
-  languageName: unknown
-  linkType: soft
-
-"text-canvas@workspace:examples/text-canvas":
-  version: 0.0.0-use.local
-  resolution: "text-canvas@workspace:examples/text-canvas"
-  dependencies:
-    "@thi.ng/dsp": "workspace:^"
-    "@thi.ng/geom": "workspace:^"
-    "@thi.ng/matrices": "workspace:^"
-    "@thi.ng/text-canvas": "workspace:^"
-    "@thi.ng/text-format": "workspace:^"
-    "@thi.ng/vectors": "workspace:^"
-    typescript: ^4.5.2
-    vite: ^2.6.14
-  languageName: unknown
-  linkType: soft
-
 "timsort@npm:~0.3.0":
   version: 0.3.0
   resolution: "timsort@npm:0.3.0"
@@ -6785,19 +6982,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"todo-list@workspace:examples/todo-list":
-  version: 0.0.0-use.local
-  resolution: "todo-list@workspace:examples/todo-list"
-  dependencies:
-    "@thi.ng/api": "workspace:^"
-    "@thi.ng/atom": "workspace:^"
-    "@thi.ng/hdom": "workspace:^"
-    "@thi.ng/transducers": "workspace:^"
-    typescript: ^4.5.2
-    vite: ^2.6.14
-  languageName: unknown
-  linkType: soft
-
 "toidentifier@npm:1.0.0":
   version: 1.0.0
   resolution: "toidentifier@npm:1.0.0"
@@ -6812,38 +6996,6 @@ __metadata:
     "tools:module-stats": bin/module-stats.mjs
     "tools:node-esm": bin/node-esm.mjs
     "tools:readme": bin/readme.mjs
-  languageName: unknown
-  linkType: soft
-
-"transducers-hdom@workspace:examples/transducers-hdom":
-  version: 0.0.0-use.local
-  resolution: "transducers-hdom@workspace:examples/transducers-hdom"
-  dependencies:
-    "@thi.ng/rstream": "workspace:^"
-    "@thi.ng/transducers": "workspace:^"
-    "@thi.ng/transducers-hdom": "workspace:^"
-    typescript: ^4.5.2
-    vite: ^2.6.14
-  languageName: unknown
-  linkType: soft
-
-"triple-query@workspace:examples/triple-query":
-  version: 0.0.0-use.local
-  resolution: "triple-query@workspace:examples/triple-query"
-  dependencies:
-    "@thi.ng/api": "workspace:^"
-    "@thi.ng/atom": "workspace:^"
-    "@thi.ng/checks": "workspace:^"
-    "@thi.ng/compare": "workspace:^"
-    "@thi.ng/expose": "workspace:^"
-    "@thi.ng/hdom": "workspace:^"
-    "@thi.ng/hdom-components": "workspace:^"
-    "@thi.ng/interceptors": "workspace:^"
-    "@thi.ng/paths": "workspace:^"
-    "@thi.ng/rstream-query": "workspace:^"
-    "@thi.ng/transducers": "workspace:^"
-    typescript: ^4.5.2
-    vite: ^2.6.14
   languageName: unknown
   linkType: soft
 
@@ -7026,16 +7178,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vite-test@workspace:examples/vite-test":
-  version: 0.0.0-use.local
-  resolution: "vite-test@workspace:examples/vite-test"
-  dependencies:
-    "@thi.ng/expose": "workspace:^"
-    typescript: ^4.5.2
-    vite: ^2.6.14
-  languageName: unknown
-  linkType: soft
-
 "vite@npm:^2.6.14":
   version: 2.6.14
   resolution: "vite@npm:2.6.14"
@@ -7072,125 +7214,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"webgl-cube@workspace:examples/webgl-cube":
-  version: 0.0.0-use.local
-  resolution: "webgl-cube@workspace:examples/webgl-cube"
-  dependencies:
-    "@thi.ng/hdom": "workspace:^"
-    "@thi.ng/hdom-components": "workspace:^"
-    "@thi.ng/matrices": "workspace:^"
-    "@thi.ng/soa": "workspace:^"
-    "@thi.ng/transducers": "workspace:^"
-    "@thi.ng/vectors": "workspace:^"
-    "@thi.ng/webgl": "workspace:^"
-    typescript: ^4.5.2
-    vite: ^2.6.14
-  languageName: unknown
-  linkType: soft
-
-"webgl-cubemap@workspace:examples/webgl-cubemap":
-  version: 0.0.0-use.local
-  resolution: "webgl-cubemap@workspace:examples/webgl-cubemap"
-  dependencies:
-    "@thi.ng/adapt-dpi": "workspace:^"
-    "@thi.ng/dsp": "workspace:^"
-    "@thi.ng/hdom": "workspace:^"
-    "@thi.ng/hdom-components": "workspace:^"
-    "@thi.ng/matrices": "workspace:^"
-    "@thi.ng/rstream": "workspace:^"
-    "@thi.ng/shader-ast": "workspace:^"
-    "@thi.ng/webgl": "workspace:^"
-    typescript: ^4.5.2
-    vite: ^2.6.14
-  languageName: unknown
-  linkType: soft
-
-"webgl-grid@workspace:examples/webgl-grid":
-  version: 0.0.0-use.local
-  resolution: "webgl-grid@workspace:examples/webgl-grid"
-  dependencies:
-    "@thi.ng/adapt-dpi": "workspace:^"
-    "@thi.ng/hdom": "workspace:^"
-    "@thi.ng/hdom-components": "workspace:^"
-    "@thi.ng/math": "workspace:^"
-    "@thi.ng/matrices": "workspace:^"
-    "@thi.ng/transducers": "workspace:^"
-    "@thi.ng/vectors": "workspace:^"
-    "@thi.ng/webgl": "workspace:^"
-    typescript: ^4.5.2
-    vite: ^2.6.14
-  languageName: unknown
-  linkType: soft
-
-"webgl-msdf@workspace:examples/webgl-msdf":
-  version: 0.0.0-use.local
-  resolution: "webgl-msdf@workspace:examples/webgl-msdf"
-  dependencies:
-    "@thi.ng/adapt-dpi": "workspace:^"
-    "@thi.ng/hdom": "workspace:^"
-    "@thi.ng/hdom-components": "workspace:^"
-    "@thi.ng/math": "workspace:^"
-    "@thi.ng/matrices": "workspace:^"
-    "@thi.ng/random": "workspace:^"
-    "@thi.ng/rstream": "workspace:^"
-    "@thi.ng/shader-ast": "workspace:^"
-    "@thi.ng/transducers": "workspace:^"
-    "@thi.ng/vector-pools": "workspace:^"
-    "@thi.ng/vectors": "workspace:^"
-    "@thi.ng/webgl": "workspace:^"
-    "@thi.ng/webgl-msdf": "workspace:^"
-    typescript: ^4.5.2
-    vite: ^2.6.14
-  languageName: unknown
-  linkType: soft
-
-"webgl-multipass@workspace:examples/webgl-multipass":
-  version: 0.0.0-use.local
-  resolution: "webgl-multipass@workspace:examples/webgl-multipass"
-  dependencies:
-    "@thi.ng/pixel": "workspace:^"
-    "@thi.ng/shader-ast": "workspace:^"
-    "@thi.ng/shader-ast-stdlib": "workspace:^"
-    "@thi.ng/webgl": "workspace:^"
-    typescript: ^4.5.2
-    vite: ^2.6.14
-  languageName: unknown
-  linkType: soft
-
-"webgl-shadertoy@workspace:examples/webgl-shadertoy":
-  version: 0.0.0-use.local
-  resolution: "webgl-shadertoy@workspace:examples/webgl-shadertoy"
-  dependencies:
-    "@thi.ng/shader-ast": "workspace:^"
-    "@thi.ng/shader-ast-stdlib": "workspace:^"
-    "@thi.ng/webgl": "workspace:^"
-    "@thi.ng/webgl-shadertoy": "workspace:^"
-    typescript: ^4.5.2
-    vite: ^2.6.14
-  languageName: unknown
-  linkType: soft
-
-"webgl-ssao@workspace:examples/webgl-ssao":
-  version: 0.0.0-use.local
-  resolution: "webgl-ssao@workspace:examples/webgl-ssao"
-  dependencies:
-    "@thi.ng/api": "workspace:^"
-    "@thi.ng/associative": "workspace:^"
-    "@thi.ng/dsp": "workspace:^"
-    "@thi.ng/hdom": "workspace:^"
-    "@thi.ng/hdom-components": "workspace:^"
-    "@thi.ng/matrices": "workspace:^"
-    "@thi.ng/rstream": "workspace:^"
-    "@thi.ng/shader-ast": "workspace:^"
-    "@thi.ng/shader-ast-stdlib": "workspace:^"
-    "@thi.ng/transducers": "workspace:^"
-    "@thi.ng/vectors": "workspace:^"
-    "@thi.ng/webgl": "workspace:^"
-    typescript: ^4.5.2
-    vite: ^2.6.14
-  languageName: unknown
-  linkType: soft
-
 "which@npm:^2.0.2":
   version: 2.0.2
   resolution: "which@npm:2.0.2"
@@ -7211,45 +7234,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"wolfram@workspace:examples/wolfram":
-  version: 0.0.0-use.local
-  resolution: "wolfram@workspace:examples/wolfram"
-  dependencies:
-    "@thi.ng/dl-asset": "workspace:^"
-    "@thi.ng/hdom-components": "workspace:^"
-    "@thi.ng/rstream": "workspace:^"
-    "@thi.ng/transducers": "workspace:^"
-    "@thi.ng/transducers-binary": "workspace:^"
-    "@thi.ng/transducers-hdom": "workspace:^"
-    typescript: ^4.5.2
-    vite: ^2.6.14
-  languageName: unknown
-  linkType: soft
-
 "wrappy@npm:1":
   version: 1.0.2
   resolution: "wrappy@npm:1.0.2"
   checksum: 159da4805f7e84a3d003d8841557196034155008f817172d4e986bd591f74aa82aa7db55929a54222309e01079a65a92a9e6414da5a6aa4b01ee44a511ac3ee5
   languageName: node
   linkType: hard
-
-"xml-converter@workspace:examples/xml-converter":
-  version: 0.0.0-use.local
-  resolution: "xml-converter@workspace:examples/xml-converter"
-  dependencies:
-    "@thi.ng/arrays": "workspace:^"
-    "@thi.ng/checks": "workspace:^"
-    "@thi.ng/defmulti": "workspace:^"
-    "@thi.ng/rstream": "workspace:^"
-    "@thi.ng/sax": "workspace:^"
-    "@thi.ng/strings": "workspace:^"
-    "@thi.ng/transducers": "workspace:^"
-    "@thi.ng/transducers-hdom": "workspace:^"
-    commander: ^6.2.0
-    typescript: ^4.5.2
-    vite: ^2.6.14
-  languageName: unknown
-  linkType: soft
 
 "yallist@npm:^3.0.2":
   version: 3.1.1

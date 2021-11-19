@@ -1,5 +1,5 @@
 {
-    "name": "dominant-colors",
+    "name": "@example/dominant-colors",
     "private": true,
     "version": "0.0.1",
     "description": "Color palette generation via dominant color extraction from uploaded images",

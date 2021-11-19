@@ -1,5 +1,5 @@
 {
-    "name": "parse-playground",
+    "name": "@example/parse-playground",
     "private": true,
     "version": "0.0.1",
     "description": "Parser grammar livecoding editor/playground & codegen",

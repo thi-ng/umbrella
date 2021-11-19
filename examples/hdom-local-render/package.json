@@ -1,5 +1,5 @@
 {
-    "name": "hdom-local-render",
+    "name": "@example/hdom-local-render",
     "private": true,
     "description": "Isolated, component-local DOM updates",
     "version": "0.0.1",

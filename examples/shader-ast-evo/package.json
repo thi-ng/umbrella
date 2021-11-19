@@ -1,5 +1,5 @@
 {
-    "name": "shader-ast-evo",
+    "name": "@example/shader-ast-evo",
     "private": true,
     "description": "Evolutionary shader generation using genetic programming",
     "version": "0.0.1",

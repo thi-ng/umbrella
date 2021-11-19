@@ -1,5 +1,5 @@
 {
-    "name": "hdom-elm",
+    "name": "@example/hdom-elm",
     "private": true,
     "version": "0.0.1",
     "description": "Using hdom in an Elm-like manner",

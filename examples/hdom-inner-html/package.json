@@ -1,5 +1,5 @@
 {
-    "name": "hdom-inner-html",
+    "name": "@example/hdom-inner-html",
     "private": true,
     "description": "Higher-order component for rendering HTML strings",
     "version": "0.0.1",

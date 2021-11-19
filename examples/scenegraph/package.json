@@ -1,5 +1,5 @@
 {
-    "name": "scenegraph",
+    "name": "@example/scenegraph",
     "private": true,
     "description": "2D scenegraph & shape picking",
     "version": "0.0.1",

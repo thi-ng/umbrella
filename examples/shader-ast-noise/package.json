@@ -1,5 +1,5 @@
 {
-    "name": "shader-ast-noise",
+    "name": "@example/shader-ast-noise",
     "private": true,
     "description": "HOF shader procedural noise function composition",
     "version": "0.0.1",

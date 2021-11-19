@@ -1,5 +1,5 @@
 {
-    "name": "webgl-ssao",
+    "name": "@example/webgl-ssao",
     "private": true,
     "description": "WebGL screenspace ambient occlusion",
     "version": "0.0.1",

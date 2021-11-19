@@ -1,5 +1,5 @@
 {
-    "name": "geom-knn",
+    "name": "@example/geom-knn",
     "private": true,
     "description": "Doodle w/ K-nearest neighbor search result visualization",
     "version": "0.0.1",

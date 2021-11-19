@@ -1,5 +1,5 @@
 {
-    "name": "shader-graph",
+    "name": "@example/shader-graph",
     "private": true,
     "version": "0.0.1",
     "description": "Minimal shader graph developed during livestream #2",

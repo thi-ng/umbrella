@@ -1,5 +1,5 @@
 {
-    "name": "text-canvas",
+    "name": "@example/text-canvas",
     "private": true,
     "version": "0.0.1",
     "description": "3D wireframe textmode demo",

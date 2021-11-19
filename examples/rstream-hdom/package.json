@@ -1,5 +1,5 @@
 {
-    "name": "rstream-hdom",
+    "name": "@example/rstream-hdom",
     "private": true,
     "description": "rstream based UI updates & state handling",
     "version": "0.0.1",

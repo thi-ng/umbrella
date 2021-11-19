@@ -1,5 +1,5 @@
 {
-    "name": "webgl-cubemap",
+    "name": "@example/webgl-cubemap",
     "private": true,
     "description": "WebGL cube maps with async texture loading",
     "version": "0.0.1",

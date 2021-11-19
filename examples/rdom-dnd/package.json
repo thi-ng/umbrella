@@ -1,5 +1,5 @@
 {
-    "name": "rdom-dnd",
+    "name": "@example/rdom-dnd",
     "private": true,
     "version": "0.0.1",
     "description": "rdom drag & drop example",

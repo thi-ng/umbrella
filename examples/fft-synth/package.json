@@ -1,5 +1,5 @@
 {
-    "name": "fft-synth",
+    "name": "@example/fft-synth",
     "private": true,
     "version": "0.0.1",
     "description": "Interactive inverse FFT toy synth",

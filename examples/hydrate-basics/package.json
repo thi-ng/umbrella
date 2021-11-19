@@ -1,5 +1,5 @@
 {
-    "name": "hydrate-basics",
+    "name": "@example/hydrate-basics",
     "private": true,
     "description": "Hiccup / hdom DOM hydration example",
     "version": "0.0.1",

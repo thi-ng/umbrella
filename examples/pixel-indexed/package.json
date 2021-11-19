@@ -1,5 +1,5 @@
 {
-    "name": "pixel-indexed",
+    "name": "@example/pixel-indexed",
     "private": true,
     "version": "0.0.1",
     "description": "Image dithering and remapping using indexed palettes",

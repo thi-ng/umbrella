@@ -24,6 +24,7 @@
     },
     "scripts": {
         "@thi.ng": "yarn workspaces foreach -pv --include '@thi.ng/*'",
+        "@example": "yarn workspaces foreach -pv --include '@example/*'",
         "build": "yarn @thi.ng -t run build",
         "clean": "yarn @thi.ng run clean",
         "doc": "yarn @thi.ng run doc",
@@ -31,7 +32,7 @@
         "doc:readme": "yarn @thi.ng run doc:readme",
         "doc:stats": "yarn @thi.ng run doc:stats",
         "doc:examples": "tools:node-esm tools/src/readme-examples.ts",
-        "examples": "scripts/build-examples",
+        "examples": "yarn @example run build",
         "pub": "yarn @thi.ng npm publish --tolerate-republish && yarn doc && tools:node-esm tools/src/deploy-docs.ts",
         "test": "yarn build && yarn test:only",
         "test:only": "yarn @thi.ng run test",

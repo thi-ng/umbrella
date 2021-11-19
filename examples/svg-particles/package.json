@@ -1,5 +1,5 @@
 {
-    "name": "svg-particles",
+    "name": "@example/svg-particles",
     "private": true,
     "description": "Basic 2D particle system w/ SVG shapes",
     "version": "0.0.1",

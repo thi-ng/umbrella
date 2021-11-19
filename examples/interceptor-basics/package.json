@@ -1,5 +1,5 @@
 {
-    "name": "interceptor-basics",
+    "name": "@example/interceptor-basics",
     "private": true,
     "description": "Event handling w/ interceptors and side effects",
     "version": "0.0.1",

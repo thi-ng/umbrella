@@ -1,5 +1,5 @@
 {
-    "name": "spline-tangent",
+    "name": "@example/spline-tangent",
     "private": true,
     "version": "0.0.1",
     "description": "Compute cubic spline position & tangent using Dual Numbers",

@@ -1,5 +1,5 @@
 {
-    "name": "hdom-vscroller",
+    "name": "@example/hdom-vscroller",
     "private": true,
     "description": "Virtual scroller component for large tables / lists",
     "version": "0.0.1",

@@ -1,5 +1,5 @@
 {
-    "name": "webgl-shadertoy",
+    "name": "@example/webgl-shadertoy",
     "private": true,
     "description": "Shadertoy-like WebGL setup",
     "version": "0.0.1",

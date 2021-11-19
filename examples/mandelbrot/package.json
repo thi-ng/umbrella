@@ -1,5 +1,5 @@
 {
-    "name": "mandelbrot",
+    "name": "@example/mandelbrot",
     "private": true,
     "version": "0.0.1",
     "description": "Worker based, interactive Mandelbrot visualization",

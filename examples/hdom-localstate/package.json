@@ -1,5 +1,5 @@
 {
-    "name": "hdom-localstate",
+    "name": "@example/hdom-localstate",
     "private": true,
     "description": "UI component w/ local state stored in hdom context",
     "version": "0.0.1",

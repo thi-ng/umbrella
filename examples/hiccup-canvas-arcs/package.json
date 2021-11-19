@@ -1,5 +1,5 @@
 {
-    "name": "hiccup-canvas-arcs",
+    "name": "@example/hiccup-canvas-arcs",
     "private": true,
     "version": "0.0.1",
     "description": "Animated arcs & drawing using hiccup-canvas",

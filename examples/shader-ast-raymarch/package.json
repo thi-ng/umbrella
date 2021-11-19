@@ -1,5 +1,5 @@
 {
-    "name": "shader-ast-raymarch",
+    "name": "@example/shader-ast-raymarch",
     "private": true,
     "description": "WebGL & JS canvas2D raymarch shader cross-compilation",
     "version": "0.0.1",

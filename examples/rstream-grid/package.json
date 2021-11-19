@@ -1,5 +1,5 @@
 {
-    "name": "rstream-grid",
+    "name": "@example/rstream-grid",
     "private": true,
     "version": "0.0.1",
     "description": "Interactive grid generator, SVG generation & export, undo/redo support",

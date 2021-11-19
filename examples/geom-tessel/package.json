@@ -1,5 +1,5 @@
 {
-    "name": "geom-tessel",
+    "name": "@example/geom-tessel",
     "private": true,
     "description": "Animated, recursive polygon tessellations",
     "version": "0.0.1",

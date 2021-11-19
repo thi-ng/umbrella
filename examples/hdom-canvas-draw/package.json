@@ -1,5 +1,5 @@
 {
-    "name": "hdom-canvas-draw",
+    "name": "@example/hdom-canvas-draw",
     "private": true,
     "version": "0.0.1",
     "description": "Interactive pattern drawing demo using transducers",

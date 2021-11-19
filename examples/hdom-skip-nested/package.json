@@ -1,5 +1,5 @@
 {
-    "name": "hdom-skip-nested",
+    "name": "@example/hdom-skip-nested",
     "private": true,
     "description": "Skipping UI updates for nested component(s)",
     "version": "0.0.1",

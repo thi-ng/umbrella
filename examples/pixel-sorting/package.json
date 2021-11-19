@@ -1,5 +1,5 @@
 {
-    "name": "pixel-sorting",
+    "name": "@example/pixel-sorting",
     "private": true,
     "version": "0.0.1",
     "description": "Interactive pixel sorting tool using thi.ng/color & thi.ng/pixel",

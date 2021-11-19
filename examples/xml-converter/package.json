@@ -1,5 +1,5 @@
 {
-    "name": "xml-converter",
+    "name": "@example/xml-converter",
     "private": true,
     "description": "XML/HTML/SVG to hiccup/JS conversion",
     "version": "0.0.1",

@@ -1,5 +1,5 @@
 {
-    "name": "hdom-dropdown",
+    "name": "@example/hdom-dropdown",
     "private": true,
     "description": "Custom dropdown UI component for hdom",
     "version": "0.0.1",

@@ -1,5 +1,5 @@
 {
-    "name": "bitmap-font",
+    "name": "@example/bitmap-font",
     "private": true,
     "version": "0.0.1",
     "description": "Figlet-style bitmap font creation with transducers",

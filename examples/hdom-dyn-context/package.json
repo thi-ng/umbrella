@@ -1,5 +1,5 @@
 {
-    "name": "hdom-dyn-context",
+    "name": "@example/hdom-dyn-context",
     "private": true,
     "description": "Using custom hdom context for dynamic UI theming",
     "version": "0.0.1",

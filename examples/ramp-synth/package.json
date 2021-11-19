@@ -1,5 +1,5 @@
 {
-    "name": "ramp-synth",
+    "name": "@example/ramp-synth",
     "private": true,
     "version": "0.0.1",
     "description": "Unison wavetable synth with waveform editor",

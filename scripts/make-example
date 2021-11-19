@@ -15,64 +15,14 @@ import { \$compile } from "@thi.ng/rdom";
 \$compile(["div", {}, "hello"]).mount(document.getElementById("app")!);
 EOF
 
-cat << EOF > "$MODULE"/src/static.d.ts
-/* Use this file to declare any custom file extensions for importing */
-/* Use this folder to also add/extend a package d.ts file, if needed. */
-
-/* CSS MODULES */
-declare module "*.module.css" {
-    const classes: { [key: string]: string };
-    export default classes;
-}
-declare module "*.module.scss" {
-    const classes: { [key: string]: string };
-    export default classes;
-}
-declare module "*.module.sass" {
-    const classes: { [key: string]: string };
-    export default classes;
-}
-declare module "*.module.less" {
-    const classes: { [key: string]: string };
-    export default classes;
-}
-declare module "*.module.styl" {
-    const classes: { [key: string]: string };
-    export default classes;
-}
-
-/* CSS */
-declare module "*.css";
-declare module "*.scss";
-declare module "*.sass";
-declare module "*.less";
-declare module "*.styl";
-
-/* IMAGES */
-declare module "*.svg" {
-    const ref: string;
-    export default ref;
-}
-declare module "*.gif" {
-    const ref: string;
-    export default ref;
-}
-declare module "*.jpg" {
-    const ref: string;
-    export default ref;
-}
-declare module "*.png" {
-    const ref: string;
-    export default ref;
-}
-
-/* CUSTOM: ADD YOUR OWN HERE */
+cat << EOF > "$MODULE"/src/vite-env.d.ts
+/// <reference types="vite/client" />
 EOF
 
 echo "writing package.json..."
 cat << EOF > "$MODULE"/package.json
 {
-    "name": "$1",
+    "name": "@example/$1",
     "version": "0.0.1",
     "private": true,
     "description": "TODO",
@@ -80,14 +30,13 @@ cat << EOF > "$MODULE"/package.json
     "author": "$AUTHOR <$EMAIL>",
     "license": "Apache-2.0",
     "scripts": {
-        "clean": "rimraf build node_modules/.cache",
-        "start": "snowpack dev --reload",
-        "build": "snowpack build"
+        "start": "vite",
+        "build": "tsc && vite build",
+        "preview": "vite preview"
     },
     "devDependencies": {
-        "@types/snowpack-env": "^2.3.4",
-        "rimraf": "^3.0.2",
-        "snowpack": "^3.8.8"
+        "typescript": "^4.5.2",
+        "vite": "^2.6.14"
     },
     "dependencies": {
         "@thi.ng/api": "workspace:^",
@@ -118,47 +67,8 @@ cat << EOF > "$MODULE"/tsconfig.json
 }
 EOF
 
-echo "writing snowpack.config.js..."
-cat << EOF > "$MODULE"/snowpack.config.js
-/** @type {import("snowpack").SnowpackUserConfig } */
-module.exports = {
-    mount: {
-        public: "/",
-        src: "/_dist_",
-    },
-    plugins: [
-        "@snowpack/plugin-typescript",
-        [
-            "@snowpack/plugin-webpack",
-            {
-                extendConfig: (config) => {
-                    config.node = false;
-                    config.resolve = {
-                        alias: {
-                            process: false,
-                            util: false,
-                        }
-                    };
-                    return config;
-                },
-            },
-        ],
-    ],
-    packageOptions: {
-        source: "local",
-        types: true,
-        knownEntrypoints: ["tslib"],
-    },
-    buildOptions: {
-        baseUrl: "/umbrella/$1",
-    },
-    workspaceRoot: "../..",
-};
-EOF
-
 echo "writing index.html..."
-mkdir -p "$MODULE"/public
-cat << EOF > "$MODULE"/public/index.html
+cat << EOF > "$MODULE"/index.html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -169,12 +79,11 @@ cat << EOF > "$MODULE"/public/index.html
     <link href="https://unpkg.com/tachyons@4/css/tachyons.min.css" rel="stylesheet">
     <style>
     </style>
-    <script async defer data-domain="demo.thi.ng" src="https://plausible.io/js/plausible.js"></script>
 </head>
 <body class="sans-serif">
     <div id="app"></div>
     <div><a class="link" href="https://github.com/thi-ng/umbrella/tree/develop/examples/$1">Source code</a></div>
-    <script type="module" src="/_dist_/index.js"></script>
+    <script type="module" src="/src/index.ts"></script>
 </body>
 </html>
 EOF
@@ -199,5 +108,5 @@ Please refer to the [example build instructions](https://github.com/thi-ng/umbre
 EOF
 
 echo "refreshing monorepo index..."
-yarn install &>/dev/null
+yarn install
 echo "DONE"

@@ -1,5 +1,5 @@
 {
-    "name": "geom-fuzz-basics",
+    "name": "@example/geom-fuzz-basics",
     "private": true,
     "version": "0.0.1",
     "description": "geom-fuzz basic shape & fill examples",

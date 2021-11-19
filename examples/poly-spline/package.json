@@ -1,5 +1,5 @@
 {
-    "name": "poly-spline",
+    "name": "@example/poly-spline",
     "private": true,
     "description": "Polygon to cubic curve conversion & visualization",
     "version": "0.0.1",

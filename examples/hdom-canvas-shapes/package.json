@@ -1,5 +1,5 @@
 {
-    "name": "hdom-canvas-shapes",
+    "name": "@example/hdom-canvas-shapes",
     "private": true,
     "description": "Various hdom-canvas shape drawing examples & SVG conversion / export",
     "version": "0.0.1",

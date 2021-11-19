@@ -1,5 +1,5 @@
 {
-    "name": "router-basics",
+    "name": "@example/router-basics",
     "private": true,
     "version": "0.0.1",
     "description": "Complete mini SPA app w/ router & async content loading",

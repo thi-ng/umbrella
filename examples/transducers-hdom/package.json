@@ -1,5 +1,5 @@
 {
-    "name": "transducers-hdom",
+    "name": "@example/transducers-hdom",
     "private": true,
     "description": "Transducer & rstream based hdom UI updates",
     "version": "0.0.1",

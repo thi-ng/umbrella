@@ -1,5 +1,5 @@
 {
-    "name": "rotating-voronoi",
+    "name": "@example/rotating-voronoi",
     "private": true,
     "description": "Animated Voronoi diagram, cubic splines & SVG download",
     "version": "0.0.1",

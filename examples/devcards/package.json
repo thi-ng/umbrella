@@ -1,5 +1,5 @@
 {
-    "name": "devcards",
+    "name": "@example/devcards",
     "private": true,
     "description": "BMI calculator in a devcards format",
     "version": "0.0.1",

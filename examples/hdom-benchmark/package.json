@@ -1,5 +1,5 @@
 {
-    "name": "hdom-benchmark",
+    "name": "@example/hdom-benchmark",
     "private": true,
     "description": "hdom update performance benchmark (old version)",
     "version": "0.0.1",

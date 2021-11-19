@@ -1,5 +1,5 @@
 {
-    "name": "webgl-cube",
+    "name": "@example/webgl-cube",
     "private": true,
     "description": "WebGL multi-colored cube mesh",
     "version": "0.0.1",

@@ -1,5 +1,5 @@
 {
-    "name": "hdom-skip",
+    "name": "@example/hdom-skip",
     "private": true,
     "description": "Skipping UI updates for selected component(s)",
     "version": "0.0.1",

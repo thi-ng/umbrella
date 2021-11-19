@@ -1,5 +1,5 @@
 {
-    "name": "rdom-delayed-update",
+    "name": "@example/rdom-delayed-update",
     "private": true,
     "version": "0.0.1",
     "description": "Dynamically loaded images w/ preloader state",

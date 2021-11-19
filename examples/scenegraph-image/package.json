@@ -1,5 +1,5 @@
 {
-    "name": "scenegraph-image",
+    "name": "@example/scenegraph-image",
     "private": true,
     "description": "2D scenegraph & image map based geometry manipulation",
     "version": "0.0.1",

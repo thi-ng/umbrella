@@ -1,5 +1,5 @@
 {
-    "name": "gesture-analysis",
+    "name": "@example/gesture-analysis",
     "private": true,
     "version": "0.0.1",
     "description": "Mouse gesture / stroke analysis, simplification, corner detection",

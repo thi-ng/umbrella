@@ -1,5 +1,5 @@
 {
-    "name": "rdom-basics",
+    "name": "@example/rdom-basics",
     "private": true,
     "version": "0.0.1",
     "description": "Demonstates various rdom usage patterns",
