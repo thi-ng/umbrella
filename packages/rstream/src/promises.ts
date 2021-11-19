@@ -4,13 +4,16 @@ import { __optsWithID } from "./idgen.js";
 import { fromPromise } from "./promise.js";
 
 /**
- * Wraps given iterable in `Promise.all()` to yield {@link Stream} of
- * results in same order as arguments, then closes.
+ * Wraps given iterable in `Promise.all()` to yield {@link Stream} of results in
+ * same order as arguments, then closes.
  *
  * @remarks
- * If any of the promises rejects, all others will do so too. In this
- * case the stream calls {@link ISubscriber.error} in all of its
- * subscribers.
+ * If any of the promises rejects, all others will do so too. In this case the
+ * stream calls {@link ISubscriber.error} in all of its subscribers.
+ *
+ * @remarks
+ * Type signature updated to use `Awaited<T>`, a new core type introduced in
+ * TypeScript 4.5.
  *
  * @example
  * ```ts
