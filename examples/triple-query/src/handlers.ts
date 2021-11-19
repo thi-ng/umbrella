@@ -2,8 +2,8 @@ import type { IObjectOf } from "@thi.ng/api";
 import { compare } from "@thi.ng/compare/compare";
 import {
     dispatchNow,
-    EffectDef,
-    EventDef,
+    type EffectDef,
+    type EventDef,
     FX_DISPATCH_NOW,
     FX_STATE,
     valueSetter,

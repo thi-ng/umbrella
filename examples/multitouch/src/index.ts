@@ -1,8 +1,8 @@
 import { canvas } from "@thi.ng/hdom-canvas";
 import { memoize1 } from "@thi.ng/memoize/memoize1";
 import {
-    GestureEvent,
-    GestureInfo,
+    type GestureEvent,
+    type GestureInfo,
     gestureStream,
 } from "@thi.ng/rstream-gestures";
 import { CloseMode } from "@thi.ng/rstream/api";

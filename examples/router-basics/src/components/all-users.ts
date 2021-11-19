@@ -1,4 +1,4 @@
-import { AppContext, StatusType, User } from "../api";
+import { type AppContext, StatusType, type User } from "../api";
 import { LOAD_USER_LIST, SET_STATUS } from "../events";
 import { USER_PROFILE } from "../routes";
 import { routeLink } from "./route-link";

@@ -11,7 +11,7 @@ import { permutations } from "@thi.ng/transducers/permutations";
 import { push } from "@thi.ng/transducers/push";
 import { range } from "@thi.ng/transducers/range";
 import { transduce } from "@thi.ng/transducers/transduce";
-import { CELL_STYLE, MAX_COL, NUM_COLS, NUM_ROWS, UICell } from "./api";
+import { CELL_STYLE, MAX_COL, NUM_COLS, NUM_ROWS, type UICell } from "./api";
 import {
     blurCell,
     cancelCell,

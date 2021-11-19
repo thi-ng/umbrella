@@ -6,7 +6,7 @@ import { circle } from "@thi.ng/hiccup-svg/circle";
 import { group } from "@thi.ng/hiccup-svg/group";
 import { polyline } from "@thi.ng/hiccup-svg/polyline";
 import { svg } from "@thi.ng/hiccup-svg/svg";
-import { GestureEvent, gestureStream } from "@thi.ng/rstream-gestures";
+import { type GestureEvent, gestureStream } from "@thi.ng/rstream-gestures";
 import { fromIterable } from "@thi.ng/rstream/iterable";
 import { merge } from "@thi.ng/rstream/merge";
 import { sync } from "@thi.ng/rstream/sync";

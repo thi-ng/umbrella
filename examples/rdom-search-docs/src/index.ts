@@ -13,7 +13,7 @@ import { reactive, Stream } from "@thi.ng/rstream/stream";
 import { map } from "@thi.ng/transducers/map";
 import msgpack from "@ygoe/msgpack";
 import { pageControls, Pagination } from "./pagination";
-import { search, SearchIndex } from "./search";
+import { search, type SearchIndex } from "./search";
 
 const INDEX_URL = "https://docs.thi.ng/umbrella/search-index-latest.bin";
 const REPO_URL = "https://github.com/thi-ng/umbrella/";

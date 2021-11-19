@@ -1,12 +1,12 @@
 import {
-    Event,
+    type Event,
     EV_SET_VALUE,
     FX_DELAY,
     FX_DISPATCH_ASYNC,
     FX_DISPATCH_NOW,
     valueUpdater,
 } from "@thi.ng/interceptors";
-import { AppConfig, StatusType } from "./api";
+import { type AppConfig, StatusType } from "./api";
 import { allUsers } from "./components/all-users";
 import { contact } from "./components/contact";
 import { home } from "./components/home";
@@ -65,7 +65,7 @@ export const CONFIG: AppConfig = {
             ],
             [FX_DISPATCH_ASYNC]: [
                 fx.JSON,
-                `assets/user-${id}.json`,
+                `data/user-${id}.json`,
                 ev.RECEIVE_USER,
                 ev.LOAD_USER_ERROR,
             ],
@@ -104,7 +104,7 @@ export const CONFIG: AppConfig = {
             ],
             [FX_DISPATCH_ASYNC]: [
                 fx.JSON,
-                `assets/users.json`,
+                "data/users.json",
                 ev.RECEIVE_USERS,
                 ev.ERROR,
             ],

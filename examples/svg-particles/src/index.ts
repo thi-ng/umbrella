@@ -1,4 +1,5 @@
 import { start } from "@thi.ng/hdom/start";
+import { SYSTEM } from "@thi.ng/random/system";
 import { U24 } from "@thi.ng/strings/radix";
 import { repeatedly } from "@thi.ng/transducers/repeatedly";
 
@@ -17,7 +18,7 @@ const updateParticle = (p: any, v: number[]) => {
 };
 
 const rand = (a: number, b: number) =>
-    (a + (b - a) * Math.random()) * (Math.random() < 0.5 ? 1 : -1);
+    SYSTEM.minmax(a, b) * (SYSTEM.float() < 0.5 ? 1 : -1);
 
 const randomParticle = () => {
     velocities.push([rand(1, 5), rand(1, 5)]);

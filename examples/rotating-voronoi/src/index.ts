@@ -20,8 +20,8 @@ import type { Vec } from "@thi.ng/vectors";
 import { cartesian2 } from "@thi.ng/vectors/cartesian";
 import { checkbox, slider } from "./controllers";
 import {
+    type AppState,
     animationStream,
-    AppState,
     mainStream,
     scaleStream,
 } from "./stream-state";

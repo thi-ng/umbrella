@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>hdom-local-render</title>
+        <link
+            href="https://unpkg.com/tachyons@4/css/tachyons.min.css"
+            rel="stylesheet"
+        />
+        <style>
+            .nosel {
+                user-select: none;
+            }
+        </style>
+    </head>
+    <body class="sans-serif ma3">
+        <div>
+            <h1>@thi.ng/hdom component local re-render</h1>
+            <p>
+                A counter value is supplied every 2 seconds and triggers a full
+                DOM update.
+            </p>
+            <p>
+                Clicking on a button immediately triggers a re-render of just
+                that component's sub-tree, independently of the main DOM update
+                cycle.
+            </p>
+        </div>
+        <div id="app"></div>
+        <div class="mv2">
+            <a
+                class="link"
+                href="https://github.com/thi-ng/umbrella/tree/develop/examples/hdom-local-render"
+                >Source code</a
+            >
+        </div>
+        <script type="module" src="/src/index.ts"></script>
+    </body>
+</html>

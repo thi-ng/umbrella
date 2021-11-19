@@ -16,7 +16,7 @@ import type { GLMat4, GLVec3, ModelSpec } from "@thi.ng/webgl";
 import {
     TextureFilter,
     TextureFormat,
-    TextureOpts,
+    type TextureOpts,
     TextureRepeat,
 } from "@thi.ng/webgl/api/texture";
 import { compileModel } from "@thi.ng/webgl/buffer";

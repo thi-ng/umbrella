@@ -7,9 +7,9 @@ import {
     checkbox,
     inputFile,
     inputNumber,
-    InputNumericAttribs,
     inputRange,
     label,
+    type InputNumericAttribs
 } from "@thi.ng/hiccup-html/forms";
 import { h1 } from "@thi.ng/hiccup-html/sections";
 import { closedOpen, intersection } from "@thi.ng/intervals";

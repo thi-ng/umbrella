@@ -68,7 +68,7 @@ const app = () => {
             selection
                 .subscribe(
                     metaStream((id: string) =>
-                        fromPromise(loadCubeMap(`assets/${id}/`))
+                        fromPromise(loadCubeMap(`./img/${id}/`))
                     )
                 )
                 .subscribe({

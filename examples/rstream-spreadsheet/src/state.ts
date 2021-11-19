@@ -10,7 +10,7 @@ import { map } from "@thi.ng/transducers/map";
 import { permutations } from "@thi.ng/transducers/permutations";
 import { range } from "@thi.ng/transducers/range";
 import { transduce } from "@thi.ng/transducers/transduce";
-import { Cell, MAX_COL, NUM_ROWS } from "./api";
+import { type Cell, MAX_COL, NUM_ROWS } from "./api";
 import { $eval } from "./dsl";
 
 /**

@@ -4,6 +4,7 @@ import { GRADIENTS } from "./gradient";
 // host message listener & responder
 const $self: any = self;
 self.addEventListener("message", (e) => {
+    console.log(e.data);
     const pix = render(e.data);
     $self.postMessage(pix.buffer, [pix.buffer]);
 });

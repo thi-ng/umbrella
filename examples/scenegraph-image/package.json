@@ -7,9 +7,9 @@
     "author": "Karsten Schmidt <k+npm@thi.ng>",
     "license": "Apache-2.0",
     "scripts": {
-        "clean": "rimraf build node_modules/.cache",
-        "start": "snowpack dev --reload",
-        "build": "yarn clean && snowpack build"
+        "start": "vite",
+        "build": "tsc && vite build",
+        "preview": "vite preview"
     },
     "dependencies": {
         "@thi.ng/api": "workspace:^",
@@ -45,8 +45,7 @@
         "screenshot": "examples/scenegraph-image.png"
     },
     "devDependencies": {
-        "@types/snowpack-env": "^2.3.3",
-        "rimraf": "^3.0.2",
-        "snowpack": "^3.8.8"
+        "typescript": "^4.5.2",
+        "vite": "^2.6.14"
     }
 }

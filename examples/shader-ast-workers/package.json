@@ -7,10 +7,10 @@
     "author": "Karsten Schmidt <k+npm@thi.ng>",
     "license": "Apache-2.0",
     "scripts": {
-        "clean": "rimraf build node_modules/.cache",
-        "start": "yarn build:worker && snowpack dev --reload",
-        "build": "yarn build:worker && snowpack build",
-        "build:worker": "esbuild --bundle src/worker.ts --outfile=public/worker.js --minify"
+        "start": "yarn build:worker && vite",
+        "build": "yarn build:worker && vite build && cp assets/worker.js dist/assets/",
+        "build:worker": "../../node_modules/.bin/esbuild --bundle src/worker.ts --outfile=assets/worker.js --minify",
+        "preview": "vite preview"
     },
     "dependencies": {
         "@thi.ng/bench": "workspace:^",
@@ -50,7 +50,7 @@
     },
     "devDependencies": {
         "esbuild": "^0.13.14",
-        "rimraf": "^3.0.2",
-        "snowpack": "^3.8.8"
+        "typescript": "^4.5.2",
+        "vite": "^2.6.14"
     }
 }

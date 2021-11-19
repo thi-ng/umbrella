@@ -40,7 +40,7 @@
         "util": false
     },
     "devDependencies": {
-        "rimraf": "^3.0.2",
-        "tools": "workspace:^"
+        "tools": "workspace:^",
+        "typescript": "^4.5.2"
     }
 }

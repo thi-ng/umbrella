@@ -2,17 +2,10 @@ import type { IObjectOf, Path } from "@thi.ng/api";
 import { defView, defViewUnsafe } from "@thi.ng/atom/view";
 import { start } from "@thi.ng/hdom/start";
 import {
-    EffectDef,
     ensureStateGreaterThan,
-    ensureStateLessThan,
-    Event,
-    EventBus,
-    EventDef,
-    EV_SET_VALUE,
+    ensureStateLessThan, EventBus, EV_SET_VALUE,
     EV_UPDATE_VALUE,
-    FX_DISPATCH_NOW,
-    IDispatch,
-    trace,
+    FX_DISPATCH_NOW, trace, type EffectDef, type Event, type EventDef, type IDispatch
 } from "@thi.ng/interceptors";
 
 ///////////////////////////////////////////////////////////////////////

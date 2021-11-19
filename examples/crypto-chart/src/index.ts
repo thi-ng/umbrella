@@ -1,5 +1,5 @@
 import type { Fn, IObjectOf } from "@thi.ng/api";
-import { dropdown, DropDownOption } from "@thi.ng/hdom-components/dropdown";
+import { dropdown, type DropDownOption } from "@thi.ng/hdom-components/dropdown";
 import { group } from "@thi.ng/hiccup-svg/group";
 import { line } from "@thi.ng/hiccup-svg/line";
 import { polygon } from "@thi.ng/hiccup-svg/polygon";
@@ -73,6 +73,7 @@ const SYMBOL_PAIRS: DropDownOption[] = [
     ["LTCUSD", "LTC-USD"],
     ["XLMUSD", "XLM-USD"],
     ["XMRUSD", "XMR-USD"],
+    ["XTZUSD", "XTZ-USD"],
 ];
 
 const MA_MODES: IObjectOf<{

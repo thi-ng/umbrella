@@ -5,7 +5,7 @@ import { div } from "@thi.ng/hiccup-html/blocks";
 import { $compile } from "@thi.ng/rdom/compile";
 import { cycle } from "@thi.ng/transducers/cycle";
 import { Draggable } from "./draggable";
-import { Notification, NotifyOpts } from "./notification";
+import { Notification, type NotifyOpts } from "./notification";
 
 const messages = cycle<NotifyOpts>([
     { type: <const>"info", msg: "All systems working" },

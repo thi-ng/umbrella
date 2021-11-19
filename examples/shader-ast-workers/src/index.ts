@@ -4,7 +4,7 @@ import { canvasPixels } from "@thi.ng/pixel/canvas";
 import { forkJoin } from "@thi.ng/rstream/forkjoin";
 import { reactive } from "@thi.ng/rstream/stream";
 import { bounds } from "@thi.ng/transducers-stats/bounds";
-import { NUM_WORKERS, WorkerJob, WorkerResult } from "./api";
+import { NUM_WORKERS, type WorkerJob, type WorkerResult } from "./api";
 
 const W = 256;
 const H = 256;
@@ -41,7 +41,7 @@ forkJoin<number, WorkerJob, WorkerResult, void>({
         // trigger next update
         time.next(time.deref()! + 0.05);
     },
-    worker: "./worker.js",
+    worker: "./assets/worker.js",
     numWorkers: NUM_WORKERS,
 });
 

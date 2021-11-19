@@ -8,12 +8,9 @@
     "license": "Apache-2.0",
     "type": "module",
     "scripts": {
-        "clean": "rimraf '*.js' '*.svg' lib",
         "build": "yarn clean && tools:node-esm src/index.ts"
     },
     "devDependencies": {
-        "@types/rimraf": "^3",
-        "rimraf": "^3.0.2",
         "tools": "workspace:^",
         "typescript": "^4.5.2"
     },

@@ -16,9 +16,10 @@ import {
 import type { DitherKernel } from "@thi.ng/pixel-dither/api";
 import { canvas2d, imagePromise } from "@thi.ng/pixel/canvas";
 import { IntBuffer, intBufferFromImage } from "@thi.ng/pixel/int";
+import IMG from "./michelangelo.png";
 
 (async () => {
-    const img = await imagePromise("assets/michelangelo.png");
+    const img = await imagePromise(IMG);
 
     const root = document.getElementById("app")!;
     root.appendChild(img);

@@ -1,0 +1,20 @@
+[
+    {
+        "id": 1,
+        "name": "Alice Burton",
+        "alias": "projectalice",
+        "img": "data/manomine-1.jpg"
+    },
+    {
+        "id": 2,
+        "name": "Charlie Deep",
+        "alias": "chuck",
+        "img": "data/manomine-2.jpg"
+    },
+    {
+        "id": 3,
+        "name": "Emilia Fox",
+        "alias": "em",
+        "img": "data/manomine-3.jpg"
+    }
+]

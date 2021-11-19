@@ -10,6 +10,7 @@ import { tunnel } from "@thi.ng/rstream/tunnel";
 import { Z4 } from "@thi.ng/strings/pad-left";
 import { updateDOM } from "@thi.ng/transducers-hdom";
 import { map } from "@thi.ng/transducers/map";
+import WORKER from "./worker?worker";
 
 // if enabled, auto-zoom out & export frames
 // (in this case also update initial DEFAULT_CONFIG below)
@@ -106,7 +107,10 @@ const app = () => {
             sync({ src: { x1, y1, x2, y2, iter, gradient } })
                 .map((obj) => ({ ...obj, w: el.width, h: el.height }))
                 .subscribe(
-                    tunnel<any, any>({ src: "./worker.js", interrupt: true })
+                    tunnel<any, any>({
+                        src: () => new WORKER(),
+                        interrupt: true,
+                    })
                 )
                 .subscribe({
                     next(pix: any) {

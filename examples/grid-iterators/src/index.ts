@@ -12,19 +12,13 @@ import {
     zigzagDiagonal2d,
     zigzagRows2d,
 } from "@thi.ng/grid-iterators";
-import { createElement } from "@thi.ng/hdom/dom";
+import { canvas2d } from "@thi.ng/pixel/canvas";
 import { concat } from "@thi.ng/transducers/concat";
 import { cycle } from "@thi.ng/transducers/cycle";
 
 const W = 256;
 const H = 256;
-const canvas = <HTMLCanvasElement>(
-    createElement(document.getElementById("app")!, "canvas", {
-        width: W,
-        height: H,
-    })
-);
-const ctx = canvas.getContext("2d")!;
+const { canvas, ctx } = canvas2d(W, H, document.getElementById("app")!);
 
 const NB: any = 16;
 const BW = Math.ceil(W / NB);

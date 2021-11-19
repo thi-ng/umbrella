@@ -1,12 +1,9 @@
 import type { IObjectOf } from "@thi.ng/api";
 import { start } from "@thi.ng/hdom/start";
 import {
-    EffectDef,
-    EventBus,
-    EventDef,
-    FX_DISPATCH_ASYNC,
+    EventBus, FX_DISPATCH_ASYNC,
     FX_DISPATCH_NOW,
-    valueSetter,
+    valueSetter, type EffectDef, type EventDef
 } from "@thi.ng/interceptors";
 
 // best practice tip:
@@ -82,7 +79,7 @@ const app = () => {
     const bus = new EventBus(null, events, effects);
 
     // kick off JSON request
-    bus.dispatch([EV_LOAD_JSON, "foo.json"]);
+    bus.dispatch([EV_LOAD_JSON, "data/foo.json"]);
 
     // root component function
     return () => {

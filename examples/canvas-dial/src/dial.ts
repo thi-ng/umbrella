@@ -4,7 +4,7 @@ import { isString } from "@thi.ng/checks/is-string";
 import { canvas2D } from "@thi.ng/hdom-components/canvas";
 import { fitClamped } from "@thi.ng/math/fit";
 import type { ISubscription } from "@thi.ng/rstream";
-import { GestureEvent, gestureStream } from "@thi.ng/rstream-gestures";
+import { type GestureEvent, gestureStream } from "@thi.ng/rstream-gestures";
 import { heading } from "@thi.ng/vectors/heading";
 import { sub2 } from "@thi.ng/vectors/sub";
 

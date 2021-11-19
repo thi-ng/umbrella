@@ -1,4 +1,4 @@
-import { AppContext, StatusType } from "../api";
+import { type AppContext, StatusType } from "../api";
 import { LOAD_USER, SET_STATUS } from "../events";
 import { status } from "./status";
 

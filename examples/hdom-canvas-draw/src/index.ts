@@ -1,6 +1,6 @@
 import { canvas } from "@thi.ng/hdom-canvas";
 import { HALF_PI, PI } from "@thi.ng/math/api";
-import { GestureEvent, gestureStream } from "@thi.ng/rstream-gestures";
+import { type GestureEvent, gestureStream } from "@thi.ng/rstream-gestures";
 import { CloseMode } from "@thi.ng/rstream/api";
 import { StreamSync, sync } from "@thi.ng/rstream/sync";
 import { trigger } from "@thi.ng/rstream/trigger";

@@ -34,7 +34,7 @@ import { map } from "@thi.ng/transducers/map";
 import { normRange } from "@thi.ng/transducers/norm-range";
 import { slidingWindow } from "@thi.ng/transducers/sliding-window";
 import { step } from "@thi.ng/transducers/step";
-import { NUM_WORKERS, WorkerJob, WorkerResult } from "./api";
+import { NUM_WORKERS, type WorkerJob, type WorkerResult } from "./api";
 
 // color table to tint each worker's region
 const COLORS = [...map((i) => hueRgb([], i), normRange(NUM_WORKERS))];

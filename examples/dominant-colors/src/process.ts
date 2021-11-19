@@ -8,7 +8,7 @@ import { intBufferFromImage } from "@thi.ng/pixel/int";
 import { map } from "@thi.ng/transducers/map";
 import { minMax } from "@thi.ng/transducers/min-max";
 import { transduce } from "@thi.ng/transducers/transduce";
-import { DominantColor, SortMode, SORT_MODES } from "./api";
+import { type DominantColor, type SortMode, SORT_MODES } from "./api";
 
 /**
  * Converts image into pixel buffer, resizes it to max 256 pixels (longest side)

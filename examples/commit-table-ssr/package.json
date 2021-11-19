@@ -9,15 +9,14 @@
     "scripts": {
         "clean": "rimraf node_modules/.cache build out",
         "build-static": "ts-node src/server/static.ts",
-        "build:webpack": "webpack --mode production",
-        "start": "ts-node src/server/index.ts"
+        "start": "ts-node src/server/index.ts",
+        "preview": "vite preview"
     },
     "devDependencies": {
         "@types/node": "^16.11.7",
-        "rimraf": "^3.0.2",
         "ts-node": "^10.4.0",
         "typescript": "^4.5.2",
-        "webpack": "^5.64.1"
+        "vite": "^2.6.14"
     },
     "dependencies": {
         "@thi.ng/api": "workspace:^",

@@ -2,6 +2,8 @@ import { start } from "@thi.ng/hdom/start";
 import type { TransformSubSpec } from "@thi.ng/transducers";
 import { deepTransform } from "@thi.ng/transducers/deep-transform";
 
+import "./style.css";
+
 // some dummy JSON records
 let db = [
     {

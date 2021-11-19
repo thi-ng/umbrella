@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>hdom-elm</title>
+        <link
+            href="https://unpkg.com/tachyons@4/css/tachyons.min.css"
+            rel="stylesheet"
+        />
+        <style></style>
+    </head>
+    <body class="ma3 sans-serif">
+        <div id="app"></div>
+        <div class="mt3">
+            <h3>Hotkeys</h3>
+            <ul>
+                <li>
+                    <code>-</code> / <code>_</code>: decrease counter by 1 or 10
+                </li>
+                <li>
+                    <code>=</code> / <code>+</code>: increase counter by 1 or 10
+                </li>
+                <li><code>r</code>: randomize counter</li>
+                <li>
+                    <code>d</code>: deferred randomize counter (500ms delay)
+                </li>
+            </ul>
+        </div>
+        <div class="mt3">
+            <a
+                class="link"
+                href="https://github.com/thi-ng/umbrella/tree/develop/examples/hdom-elm"
+                >Source code</a
+            >
+        </div>
+        <script type="module" src="/src/index.ts"></script>
+    </body>
+</html>

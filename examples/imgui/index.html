@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, user-scalable=0, minimum-scale=1, maximum-scale=1"
+        />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>imgui</title>
+        <link
+            href="https://unpkg.com/tachyons@4/css/tachyons.min.css"
+            rel="stylesheet"
+        />
+        <link
+            href="https://fonts.googleapis.com/css?family=IBM+Plex+Mono&display=swap"
+            rel="stylesheet"
+        />
+        <style>
+            .code {
+                font-family: "IBM Plex Mono";
+            }
+        </style>
+    </head>
+    <body class="sans-serif bg-black white ma0 pa0 overflow-hidden">
+        <div id="app"></div>
+        <div class="z-1 fixed bottom-0 right-0 pa3 tr f7 bg-black-20">
+            <div>
+                <div class="dib code dark-gray">Ctrl/Cmd+Z ::</div>
+                <div class="dib w4">Undo</div>
+            </div>
+            <div>
+                <div class="dib code dark-gray">Shift+Ctrl/Cmd+Z ::</div>
+                <div class="dib w4">Redo</div>
+            </div>
+            <div class="mb3">
+                <div class="dib code dark-gray">Ctrl ::</div>
+                <div class="dib w4">Show radial menu</div>
+            </div>
+            <a
+                class="link white"
+                href="https://github.com/thi-ng/umbrella/tree/develop/examples/imgui"
+                >Source code / Info</a
+            >
+        </div>
+        <script type="module" src="/src/index.ts"></script>
+    </body>
+</html>

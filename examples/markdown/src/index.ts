@@ -5,7 +5,8 @@ import { reactive, Stream } from "@thi.ng/rstream/stream";
 import { updateDOM } from "@thi.ng/transducers-hdom";
 import { iterator } from "@thi.ng/transducers/iterator";
 import { map } from "@thi.ng/transducers/map";
-import readme from "./README.md";
+// @ts-expect-error
+import readme from "./README.md?url";
 
 // ignore error, resolved by parcel
 // const readme = "README.af35c500.md"

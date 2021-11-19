@@ -34,9 +34,9 @@ import {
     tan,
 } from "@thi.ng/shader-ast/builtin/math";
 import {
-    MainImageFn,
+    type MainImageFn,
     shaderToy,
-    ShaderToyUniforms,
+    type ShaderToyUniforms,
 } from "@thi.ng/webgl-shadertoy";
 import { glCanvas } from "@thi.ng/webgl/canvas";
 import { setLogger } from "@thi.ng/webgl/logger";

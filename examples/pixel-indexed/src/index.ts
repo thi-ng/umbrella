@@ -9,9 +9,10 @@ import { ARGB8888 } from "@thi.ng/pixel/format/argb8888";
 import { FLOAT_RGB } from "@thi.ng/pixel/format/float-rgb";
 import { defIndexed } from "@thi.ng/pixel/format/indexed";
 import { IntBuffer, intBufferFromImage } from "@thi.ng/pixel/int";
+import IMG from "./test.jpg";
 
 (async () => {
-    const img = await imagePromise("assets/test.jpg");
+    const img = await imagePromise(IMG);
 
     const root = document.getElementById("app")!;
     root.appendChild(img);

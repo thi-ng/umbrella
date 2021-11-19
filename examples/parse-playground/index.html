@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>parse-playground</title>
+        <link
+            href="https://unpkg.com/tachyons@4/css/tachyons.min.css"
+            rel="stylesheet"
+        />
+        <style>
+            main {
+                display: grid;
+                grid-template-columns: 1fr;
+                gap: 0.5rem;
+            }
+
+            textarea {
+                border: 0;
+            }
+
+            /** Safari fix */
+            textarea:disabled {
+                -webkit-text-fill-color: currentColor;
+                opacity: 1;
+            }
+
+            textarea.editor {
+                border-left: 0.125rem solid white;
+            }
+
+            textarea.editor:focus {
+                outline: none;
+                border-left-color: hotpink;
+            }
+
+            @media screen and (min-width: 60rem) {
+                main {
+                    grid-template-columns: 1fr 1fr;
+                }
+            }
+        </style>
+    </head>
+    <body class="ma2 sans-serif bg-light-gray">
+        <script type="module" src="/src/index.ts"></script>
+    </body>
+</html>

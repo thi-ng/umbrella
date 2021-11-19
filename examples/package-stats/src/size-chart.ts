@@ -11,7 +11,7 @@ import {
     push,
     transduce,
 } from "@thi.ng/transducers";
-import * as fs from "fs";
+import { existsSync, readdirSync, readFileSync, writeFileSync } from "fs";
 import { barChart, labeledTickX, labeledTickY } from "./viz.js";
 
 const BASE_DIR = "../../packages/";
@@ -22,14 +22,14 @@ const meta = transduce(
     comp(
         filter((x) => !IGNORE_PACKAGES.has(x)),
         map((m: string) => [m, BASE_DIR + m + "/.meta/size.json"]),
-        filter(([_, path]) => fs.existsSync(path)),
-        map(([m, path]) => [m, JSON.parse(fs.readFileSync(path).toString())])
+        filter(([_, path]) => existsSync(path)),
+        map(([m, path]) => [m, JSON.parse(readFileSync(path).toString())])
     ),
     push(),
-    fs.readdirSync(BASE_DIR)
+    readdirSync(BASE_DIR)
 );
 
-fs.writeFileSync(
+writeFileSync(
     `package-sizes-${new Date().toISOString().substr(0, 10)}.json`,
     JSON.stringify(meta, null, 4)
 );
@@ -47,7 +47,7 @@ const fileSizeChart = (stats: any, modType: string, type: string) => {
         stats
     );
 
-    fs.writeFileSync(
+    writeFileSync(
         `package-sizes-${modType}.svg`,
         serialize([
             barChart,

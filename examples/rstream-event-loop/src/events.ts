@@ -6,7 +6,7 @@ import { stream } from "@thi.ng/rstream/stream";
 import { trace } from "@thi.ng/rstream/trace";
 import type { Transducer } from "@thi.ng/transducers";
 import { filter } from "@thi.ng/transducers/filter";
-import { Event, EventType, EventTypeMap, NEXT, PAGE_READY, PREV } from "./api";
+import { type Event, type EventType, type EventTypeMap, NEXT, PAGE_READY, PREV } from "./api";
 import { state } from "./state";
 
 /**

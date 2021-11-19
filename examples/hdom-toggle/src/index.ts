@@ -1,8 +1,8 @@
 import {
     slideToggleDot,
     slideToggleRect,
-    ToggleDotOpts,
-    ToggleRectOpts,
+    type ToggleDotOpts,
+    type ToggleRectOpts
 } from "@thi.ng/hdom-components/toggle";
 import { start } from "@thi.ng/hdom/start";
 
