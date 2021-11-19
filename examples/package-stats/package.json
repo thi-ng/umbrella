@@ -15,7 +15,7 @@
         "@types/rimraf": "^3",
         "rimraf": "^3.0.2",
         "tools": "workspace:^",
-        "typescript": "4.2.4"
+        "typescript": "^4.5.2"
     },
     "dependencies": {
         "@thi.ng/checks": "workspace:^",

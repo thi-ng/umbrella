@@ -14,15 +14,15 @@
         "@snowpack/plugin-webpack": "^3.0.0",
         "@types/node": "^16.11.7",
         "@types/snowpack-env": "^2.3.4",
-        "browserslist": "^4.17.6",
+        "browserslist": "^4.18.1",
         "esbuild": "^0.13.13",
         "html-minifier-terser": "^6.0.2",
         "rimraf": "^3.0.2",
         "snowpack": "^3.8.8",
         "tools": "workspace:^",
         "ts-node": "^10.4.0",
-        "typedoc": "^0.22.8",
-        "typescript": "4.4.4"
+        "typedoc": "^0.22.9",
+        "typescript": "^4.5.2"
     },
     "dependencies": {
         "@ygoe/msgpack": "^1.0.3"

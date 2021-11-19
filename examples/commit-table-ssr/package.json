@@ -16,7 +16,7 @@
         "@types/node": "^16.11.7",
         "rimraf": "^3.0.2",
         "ts-node": "^10.4.0",
-        "typescript": "4.2.4",
+        "typescript": "^4.5.2",
         "webpack": "^5.64.1"
     },
     "dependencies": {
