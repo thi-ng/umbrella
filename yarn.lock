@@ -4047,7 +4047,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/simd@workspace:^, @thi.ng/simd@workspace:packages/simd":
+"@thi.ng/simd@workspace:packages/simd":
   version: 0.0.0-use.local
   resolution: "@thi.ng/simd@workspace:packages/simd"
   dependencies:
@@ -4730,15 +4730,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/ws@npm:^8.2.0":
-  version: 8.2.0
-  resolution: "@types/ws@npm:8.2.0"
-  dependencies:
-    "@types/node": "*"
-  checksum: fb2f1cc1bc294607cf737a998a04d4eaca78b0a183905b879849c0e009f47ff4adaa6cbc7d9ac2d2ecc61652c8367e0f8bb02aab0af67a82e8c922746e96434b
-  languageName: node
-  linkType: hard
-
 "@webassemblyjs/ast@npm:1.11.1":
   version: 1.11.1
   resolution: "@webassemblyjs/ast@npm:1.11.1"
@@ -5106,18 +5097,6 @@ __metadata:
   checksum: 0fca141966559d195072ed047658b6e6c4fe92428c385dd38e288eacfc55807e7b4989322f030faff32c0f46bb0bc10f1e0ac32ec22d25315a1e5bbc0ebb76dc
   languageName: node
   linkType: hard
-
-"archive@workspace:examples-private/archive":
-  version: 0.0.0-use.local
-  resolution: "archive@workspace:examples-private/archive"
-  dependencies:
-    "@thi.ng/api": "workspace:^"
-    "@thi.ng/rdom": "workspace:^"
-    "@types/snowpack-env": ^2.3.3
-    rimraf: ^3.0.2
-    snowpack: ^3.8.8
-  languageName: unknown
-  linkType: soft
 
 "are-we-there-yet@npm:~1.1.2":
   version: 1.1.7
@@ -6021,23 +6000,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"crdt@workspace:examples-private/crdt":
-  version: 0.0.0-use.local
-  resolution: "crdt@workspace:examples-private/crdt"
-  dependencies:
-    "@thi.ng/api": "workspace:^"
-    "@thi.ng/rdom": "workspace:^"
-    "@types/node": ^16.11.7
-    "@types/snowpack-env": ^2.3.3
-    "@types/ws": ^8.2.0
-    rimraf: ^3.0.2
-    snowpack: ^3.8.8
-    ts-node: ^10.4.0
-    typescript: ^4.5.2
-    ws: ^8.2.3
-  languageName: unknown
-  linkType: soft
-
 "create-require@npm:^1.1.0":
   version: 1.1.1
   resolution: "create-require@npm:1.1.1"
@@ -6374,27 +6336,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"delaunay-draw@workspace:examples-private/delaunay-draw":
-  version: 0.0.0-use.local
-  resolution: "delaunay-draw@workspace:examples-private/delaunay-draw"
-  dependencies:
-    "@thi.ng/adapt-dpi": "workspace:^"
-    "@thi.ng/dl-asset": "workspace:^"
-    "@thi.ng/geom": "workspace:^"
-    "@thi.ng/geom-voronoi": "workspace:^"
-    "@thi.ng/hiccup-canvas": "workspace:^"
-    "@thi.ng/math": "workspace:^"
-    "@thi.ng/rstream": "workspace:^"
-    "@thi.ng/rstream-gestures": "workspace:^"
-    "@thi.ng/scenegraph": "workspace:^"
-    "@thi.ng/transducers": "workspace:^"
-    "@thi.ng/vectors": "workspace:^"
-    "@types/snowpack-env": ^2.3.3
-    rimraf: ^3.0.2
-    snowpack: ^3.8.8
-  languageName: unknown
-  linkType: soft
-
 "delayed-stream@npm:~1.0.0":
   version: 1.0.0
   resolution: "delayed-stream@npm:1.0.0"
@@ -6458,19 +6399,6 @@ __metadata:
   checksum: 8b26238db91423b2702a7a6d9629d0019c37c415e7b6e75d4b3e8d27e9464e21cac3618dd145f4d4ee96c70cc6ff034227b5b8a0e9c09015a8bdbe6dace3cfb9
   languageName: node
   linkType: hard
-
-"diagram@workspace:examples-private/diagram":
-  version: 0.0.0-use.local
-  resolution: "diagram@workspace:examples-private/diagram"
-  dependencies:
-    "@thi.ng/api": "workspace:^"
-    "@thi.ng/rstream": "workspace:^"
-    "@thi.ng/transducers-hdom": "workspace:^"
-    "@types/snowpack-env": ^2.3.3
-    rimraf: ^3.0.2
-    snowpack: ^3.8.8
-  languageName: unknown
-  linkType: soft
 
 "diff@npm:^4.0.1":
   version: 4.0.2
@@ -6559,19 +6487,6 @@ __metadata:
   checksum: a65e3519414856df0228b9f645332f974f2bf5433370f544a681122eab59e66038fc3349b4be1cdc47152779dac71a5864f1ccda2f745e767c46e9c6543b1169
   languageName: node
   linkType: hard
-
-"dunes@workspace:examples-private/dunes":
-  version: 0.0.0-use.local
-  resolution: "dunes@workspace:examples-private/dunes"
-  dependencies:
-    "@thi.ng/api": "workspace:^"
-    "@thi.ng/math": "workspace:^"
-    "@thi.ng/vectors": "workspace:^"
-    "@types/snowpack-env": ^2.3.3
-    rimraf: ^3.0.2
-    snowpack: ^3.8.8
-  languageName: unknown
-  linkType: soft
 
 "ecc-jsbn@npm:~0.1.1":
   version: 0.1.2
@@ -7268,17 +7183,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"formgen@workspace:examples-private/formgen":
-  version: 0.0.0-use.local
-  resolution: "formgen@workspace:examples-private/formgen"
-  dependencies:
-    "@thi.ng/api": "workspace:^"
-    "@types/snowpack-env": ^2.3.3
-    rimraf: ^3.0.2
-    snowpack: ^3.8.8
-  languageName: unknown
-  linkType: soft
-
 "forwarded@npm:0.2.0":
   version: 0.2.0
   resolution: "forwarded@npm:0.2.0"
@@ -7616,30 +7520,6 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"gridlines-warp@workspace:examples-private/gridlines-warp":
-  version: 0.0.0-use.local
-  resolution: "gridlines-warp@workspace:examples-private/gridlines-warp"
-  dependencies:
-    "@thi.ng/api": "workspace:^"
-    "@thi.ng/rdom": "workspace:^"
-    "@types/snowpack-env": ^2.3.3
-    rimraf: ^3.0.2
-    snowpack: ^3.8.8
-  languageName: unknown
-  linkType: soft
-
-"gridlines@workspace:examples-private/gridlines":
-  version: 0.0.0-use.local
-  resolution: "gridlines@workspace:examples-private/gridlines"
-  dependencies:
-    "@thi.ng/api": "workspace:^"
-    "@thi.ng/rdom": "workspace:^"
-    "@types/snowpack-env": ^2.3.3
-    rimraf: ^3.0.2
-    snowpack: ^3.8.8
-  languageName: unknown
-  linkType: soft
-
 "har-schema@npm:^2.0.0":
   version: 2.0.0
   resolution: "har-schema@npm:2.0.0"
@@ -7693,21 +7573,6 @@ __metadata:
   checksum: b9ad53d53be4af90ce5d1c38331e712522417d017d5ef1ebd0507e07c2fbad8686fffb8e12ddecd4c39ca9b9b47431afbb975b8abf7f3c3b82c98e9aad052792
   languageName: node
   linkType: hard
-
-"hdc@workspace:examples-private/hdc":
-  version: 0.0.0-use.local
-  resolution: "hdc@workspace:examples-private/hdc"
-  dependencies:
-    "@thi.ng/associative": "workspace:^"
-    "@thi.ng/hdom": "workspace:^"
-    "@thi.ng/hdom-components": "workspace:^"
-    "@thi.ng/hiccup-carbon-icons": "workspace:^"
-    "@thi.ng/resolve-map": "workspace:^"
-    "@types/snowpack-env": ^2.3.3
-    rimraf: ^3.0.2
-    snowpack: ^3.8.8
-  languageName: unknown
-  linkType: soft
 
 "hdom-basics@workspace:examples/hdom-basics":
   version: 0.0.0-use.local
@@ -7818,21 +7683,6 @@ __metadata:
     "@thi.ng/transducers": "workspace:^"
     "@thi.ng/transducers-hdom": "workspace:^"
     "@thi.ng/vectors": "workspace:^"
-    "@types/snowpack-env": ^2.3.3
-    rimraf: ^3.0.2
-    snowpack: ^3.8.8
-  languageName: unknown
-  linkType: soft
-
-"hdom-class@workspace:examples-private/hdom-class":
-  version: 0.0.0-use.local
-  resolution: "hdom-class@workspace:examples-private/hdom-class"
-  dependencies:
-    "@thi.ng/api": "workspace:^"
-    "@thi.ng/atom": "workspace:^"
-    "@thi.ng/hdom": "workspace:^"
-    "@thi.ng/interceptors": "workspace:^"
-    "@thi.ng/paths": "workspace:^"
     "@types/snowpack-env": ^2.3.3
     rimraf: ^3.0.2
     snowpack: ^3.8.8
@@ -9036,19 +8886,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lqtree@workspace:examples-private/lqtree":
-  version: 0.0.0-use.local
-  resolution: "lqtree@workspace:examples-private/lqtree"
-  dependencies:
-    "@thi.ng/api": "workspace:^"
-    "@thi.ng/rstream": "workspace:^"
-    "@thi.ng/transducers-hdom": "workspace:^"
-    "@types/snowpack-env": ^2.3.3
-    rimraf: ^3.0.2
-    snowpack: ^3.8.8
-  languageName: unknown
-  linkType: soft
-
 "lru-cache@npm:^5.1.1":
   version: 5.1.1
   resolution: "lru-cache@npm:5.1.1"
@@ -9174,18 +9011,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"meander@workspace:examples-private/meander":
-  version: 0.0.0-use.local
-  resolution: "meander@workspace:examples-private/meander"
-  dependencies:
-    "@thi.ng/api": "workspace:^"
-    "@thi.ng/rdom": "workspace:^"
-    "@types/snowpack-env": ^2.3.3
-    rimraf: ^3.0.2
-    snowpack: ^3.8.8
-  languageName: unknown
-  linkType: soft
-
 "media-typer@npm:0.3.0":
   version: 0.3.0
   resolution: "media-typer@npm:0.3.0"
@@ -9213,19 +9038,6 @@ __metadata:
   checksum: 3a0163fc80baddd6f1ba1ee1bb4c3f533995cc49b4a8fbfc667d35a4616685c82b32fb087ed204af6c20a790e5e4d0d3e7601ea5fd8a7db6dd78bce4aab124c2
   languageName: node
   linkType: hard
-
-"mesh@workspace:examples-private/mesh":
-  version: 0.0.0-use.local
-  resolution: "mesh@workspace:examples-private/mesh"
-  dependencies:
-    "@thi.ng/api": "workspace:^"
-    "@thi.ng/rstream": "workspace:^"
-    "@thi.ng/transducers-hdom": "workspace:^"
-    "@types/snowpack-env": ^2.3.3
-    rimraf: ^3.0.2
-    snowpack: ^3.8.8
-  languageName: unknown
-  linkType: soft
 
 "methods@npm:~1.1.2":
   version: 1.1.2
@@ -9461,18 +9273,6 @@ __metadata:
   checksum: 276d0d4b0c41c46aeefec5f09f093e4085a2352d06881c845db22b84f8ef72cc8defae6d76bfb1d8a2a128eb2dec42ab148d16582be4e7754c97905806ef57b6
   languageName: node
   linkType: hard
-
-"nbody@workspace:examples-private/nbody":
-  version: 0.0.0-use.local
-  resolution: "nbody@workspace:examples-private/nbody"
-  dependencies:
-    "@thi.ng/api": "workspace:^"
-    "@thi.ng/rdom": "workspace:^"
-    "@types/snowpack-env": ^2.3.3
-    rimraf: ^3.0.2
-    snowpack: ^3.8.8
-  languageName: unknown
-  linkType: soft
 
 "negotiator@npm:0.6.2, negotiator@npm:^0.6.2":
   version: 0.6.2
@@ -10093,28 +9893,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"pedit@workspace:examples-private/pedit":
-  version: 0.0.0-use.local
-  resolution: "pedit@workspace:examples-private/pedit"
-  dependencies:
-    "@thi.ng/api": "workspace:^"
-    "@thi.ng/associative": "workspace:^"
-    "@thi.ng/compare": "workspace:^"
-    "@thi.ng/geom": "workspace:^"
-    "@thi.ng/geom-api": "workspace:^"
-    "@thi.ng/math": "workspace:^"
-    "@thi.ng/rdom": "workspace:^"
-    "@thi.ng/rdom-canvas": "workspace:^"
-    "@thi.ng/rstream": "workspace:^"
-    "@thi.ng/rstream-gestures": "workspace:^"
-    "@thi.ng/transducers": "workspace:^"
-    "@thi.ng/vectors": "workspace:^"
-    "@types/snowpack-env": ^2.3.3
-    rimraf: ^3.0.2
-    snowpack: ^3.8.8
-  languageName: unknown
-  linkType: soft
-
 "pegjs@npm:0.11.0-master.b7b87ea":
   version: 0.11.0-master.b7b87ea
   resolution: "pegjs@npm:0.11.0-master.b7b87ea"
@@ -10187,18 +9965,6 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"pixel-draw@workspace:examples-private/pixel-draw":
-  version: 0.0.0-use.local
-  resolution: "pixel-draw@workspace:examples-private/pixel-draw"
-  dependencies:
-    "@thi.ng/api": "workspace:^"
-    "@thi.ng/rdom": "workspace:^"
-    "@types/snowpack-env": ^2.3.3
-    rimraf: ^3.0.2
-    snowpack: ^3.8.8
-  languageName: unknown
-  linkType: soft
-
 "pixel-indexed@workspace:examples/pixel-indexed":
   version: 0.0.0-use.local
   resolution: "pixel-indexed@workspace:examples/pixel-indexed"
@@ -10208,18 +9974,6 @@ __metadata:
     "@thi.ng/pixel": "workspace:^"
     "@thi.ng/pixel-dither": "workspace:^"
     "@types/snowpack-env": ^2.3.4
-    rimraf: ^3.0.2
-    snowpack: ^3.8.8
-  languageName: unknown
-  linkType: soft
-
-"pixel-sort-classic@workspace:examples-private/pixel-sort-classic":
-  version: 0.0.0-use.local
-  resolution: "pixel-sort-classic@workspace:examples-private/pixel-sort-classic"
-  dependencies:
-    "@thi.ng/api": "workspace:^"
-    "@thi.ng/rdom": "workspace:^"
-    "@types/snowpack-env": ^2.3.3
     rimraf: ^3.0.2
     snowpack: ^3.8.8
   languageName: unknown
@@ -10252,29 +10006,6 @@ __metadata:
   checksum: 9863e3f35132bf99ae1636d31ff1e1e3501251d480336edb1c211133c8d58906bed80f154a1d723652df1fda91e01c7442c2eeaf9dc83157c7ae89087e43c8d6
   languageName: node
   linkType: hard
-
-"pointfree-geom@workspace:examples-private/pointfree-geom":
-  version: 0.0.0-use.local
-  resolution: "pointfree-geom@workspace:examples-private/pointfree-geom"
-  dependencies:
-    "@thi.ng/api": "workspace:^"
-    "@thi.ng/checks": "workspace:^"
-    "@thi.ng/dl-asset": "workspace:^"
-    "@thi.ng/geom": "workspace:^"
-    "@thi.ng/geom-api": "workspace:^"
-    "@thi.ng/geom-tessellate": "workspace:^"
-    "@thi.ng/hdom": "workspace:^"
-    "@thi.ng/hdom-canvas": "workspace:^"
-    "@thi.ng/math": "workspace:^"
-    "@thi.ng/matrices": "workspace:^"
-    "@thi.ng/pointfree": "workspace:^"
-    "@thi.ng/pointfree-lang": "workspace:^"
-    "@thi.ng/transducers": "workspace:^"
-    "@types/snowpack-env": ^2.3.3
-    rimraf: ^3.0.2
-    snowpack: ^3.8.8
-  languageName: unknown
-  linkType: soft
 
 "pointfree-svg@workspace:examples/pointfree-svg":
   version: 0.0.0-use.local
@@ -10834,19 +10565,6 @@ __metadata:
   checksum: 24af7b9928ba2141233fba2912876ff100403dba1b08b20c3b490da9ea6c636760445ea2211a079e7dfa882a5cf8f738337b3748c8bdd0f93358fa8881d2db8f
   languageName: node
   linkType: hard
-
-"quad-db@workspace:examples-private/quad-db":
-  version: 0.0.0-use.local
-  resolution: "quad-db@workspace:examples-private/quad-db"
-  dependencies:
-    "@thi.ng/api": "workspace:^"
-    "@thi.ng/rstream": "workspace:^"
-    "@thi.ng/transducers-hdom": "workspace:^"
-    "@types/snowpack-env": ^2.3.3
-    rimraf: ^3.0.2
-    snowpack: ^3.8.8
-  languageName: unknown
-  linkType: soft
 
 "quick-lru@npm:^5.1.1":
   version: 5.1.1
@@ -11540,35 +11258,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"sdf-logo@workspace:examples-private/sdf-logo":
-  version: 0.0.0-use.local
-  resolution: "sdf-logo@workspace:examples-private/sdf-logo"
-  dependencies:
-    "@thi.ng/api": "workspace:^"
-    "@thi.ng/color": "workspace:^"
-    "@thi.ng/date": "workspace:^"
-    "@thi.ng/dl-asset": "workspace:^"
-    "@thi.ng/geom-isoline": "workspace:^"
-    "@thi.ng/hiccup": "workspace:^"
-    "@thi.ng/hiccup-html": "workspace:^"
-    "@thi.ng/hiccup-svg": "workspace:^"
-    "@thi.ng/math": "workspace:^"
-    "@thi.ng/matrices": "workspace:^"
-    "@thi.ng/pixel": "workspace:^"
-    "@thi.ng/rdom": "workspace:^"
-    "@thi.ng/rdom-canvas": "workspace:^"
-    "@thi.ng/rstream": "workspace:^"
-    "@thi.ng/shader-ast": "workspace:^"
-    "@thi.ng/shader-ast-js": "workspace:^"
-    "@thi.ng/shader-ast-stdlib": "workspace:^"
-    "@thi.ng/transducers": "workspace:^"
-    "@thi.ng/vectors": "workspace:^"
-    "@types/snowpack-env": ^2.3.3
-    rimraf: ^3.0.2
-    snowpack: ^3.8.8
-  languageName: unknown
-  linkType: soft
-
 "semver@npm:7.0.0":
   version: 7.0.0
   resolution: "semver@npm:7.0.0"
@@ -11671,24 +11360,6 @@ __metadata:
     "@thi.ng/shader-ast-glsl": "workspace:^"
     "@thi.ng/shader-ast-js": "workspace:^"
     "@thi.ng/shader-ast-stdlib": "workspace:^"
-    "@types/snowpack-env": ^2.3.3
-    rimraf: ^3.0.2
-    snowpack: ^3.8.8
-  languageName: unknown
-  linkType: soft
-
-"shader-ast-evo-private@workspace:examples-private/shader-ast-evo-private":
-  version: 0.0.0-use.local
-  resolution: "shader-ast-evo-private@workspace:examples-private/shader-ast-evo-private"
-  dependencies:
-    "@thi.ng/gp": "workspace:^"
-    "@thi.ng/logger": "workspace:^"
-    "@thi.ng/random": "workspace:^"
-    "@thi.ng/shader-ast": "workspace:^"
-    "@thi.ng/shader-ast-optimize": "workspace:^"
-    "@thi.ng/shader-ast-stdlib": "workspace:^"
-    "@thi.ng/webgl": "workspace:^"
-    "@thi.ng/webgl-shadertoy": "workspace:^"
     "@types/snowpack-env": ^2.3.3
     rimraf: ^3.0.2
     snowpack: ^3.8.8
@@ -11850,19 +11521,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"simd-basics@workspace:examples-private/simd-basics":
-  version: 0.0.0-use.local
-  resolution: "simd-basics@workspace:examples-private/simd-basics"
-  dependencies:
-    "@thi.ng/bench": "workspace:^"
-    "@thi.ng/equiv": "workspace:^"
-    "@thi.ng/simd": "workspace:^"
-    "@types/snowpack-env": ^2.3.3
-    rimraf: ^3.0.2
-    snowpack: ^3.8.8
-  languageName: unknown
-  linkType: soft
-
 "skypack@npm:^0.3.2":
   version: 0.3.2
   resolution: "skypack@npm:0.3.2"
@@ -11976,19 +11634,6 @@ __metadata:
     "@thi.ng/shader-ast": "workspace:^"
     "@thi.ng/vectors": "workspace:^"
     "@thi.ng/webgl": "workspace:^"
-    "@types/snowpack-env": ^2.3.3
-    rimraf: ^3.0.2
-    snowpack: ^3.8.8
-  languageName: unknown
-  linkType: soft
-
-"soa-test@workspace:examples-private/soa-test":
-  version: 0.0.0-use.local
-  resolution: "soa-test@workspace:examples-private/soa-test"
-  dependencies:
-    "@thi.ng/bench": "workspace:^"
-    "@thi.ng/soa": "workspace:^"
-    "@thi.ng/vectors": "workspace:^"
     "@types/snowpack-env": ^2.3.3
     rimraf: ^3.0.2
     snowpack: ^3.8.8
@@ -12418,24 +12063,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"texgen@workspace:examples-private/texgen":
-  version: 0.0.0-use.local
-  resolution: "texgen@workspace:examples-private/texgen"
-  dependencies:
-    "@thi.ng/api": "workspace:^"
-    "@thi.ng/compose": "workspace:^"
-    "@thi.ng/dl-asset": "workspace:^"
-    "@thi.ng/hdom-canvas": "workspace:^"
-    "@thi.ng/math": "workspace:^"
-    "@thi.ng/pixel": "workspace:^"
-    "@thi.ng/porter-duff": "workspace:^"
-    "@thi.ng/random": "workspace:^"
-    "@thi.ng/strings": "workspace:^"
-    "@thi.ng/transducers": "workspace:^"
-    "@types/snowpack-env": ^2.3.3
-  languageName: unknown
-  linkType: soft
-
 "text-canvas-image@workspace:examples/text-canvas-image":
   version: 0.0.0-use.local
   resolution: "text-canvas-image@workspace:examples/text-canvas-image"
@@ -12444,18 +12071,6 @@ __metadata:
     "@thi.ng/text-canvas": "workspace:^"
     "@thi.ng/text-format": "workspace:^"
     "@types/snowpack-env": ^2.3.4
-    rimraf: ^3.0.2
-    snowpack: ^3.8.8
-  languageName: unknown
-  linkType: soft
-
-"text-canvas-tables@workspace:examples-private/text-canvas-tables":
-  version: 0.0.0-use.local
-  resolution: "text-canvas-tables@workspace:examples-private/text-canvas-tables"
-  dependencies:
-    "@thi.ng/text-canvas": "workspace:^"
-    "@thi.ng/transducers": "workspace:^"
-    "@types/snowpack-env": ^2.3.3
     rimraf: ^3.0.2
     snowpack: ^3.8.8
   languageName: unknown
@@ -12638,38 +12253,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ts-parse@workspace:examples-private/ts-parse":
-  version: 0.0.0-use.local
-  resolution: "ts-parse@workspace:examples-private/ts-parse"
-  dependencies:
-    "@thi.ng/api": "workspace:^"
-    "@thi.ng/atom": "workspace:^"
-    "@thi.ng/rstream": "workspace:^"
-    "@thi.ng/transducers-hdom": "workspace:^"
-    "@types/snowpack-env": ^2.3.3
-    rimraf: ^3.0.2
-    snowpack: ^3.8.8
-  languageName: unknown
-  linkType: soft
-
 "tslib@npm:^2.0.3, tslib@npm:^2.2.0, tslib@npm:^2.3.1":
   version: 2.3.1
   resolution: "tslib@npm:2.3.1"
   checksum: de17a98d4614481f7fcb5cd53ffc1aaf8654313be0291e1bfaee4b4bb31a20494b7d218ff2e15017883e8ea9626599b3b0e0229c18383ba9dce89da2adf15cb9
   languageName: node
   linkType: hard
-
-"tsne@workspace:examples-private/tsne":
-  version: 0.0.0-use.local
-  resolution: "tsne@workspace:examples-private/tsne"
-  dependencies:
-    "@thi.ng/api": "workspace:^"
-    "@thi.ng/rdom": "workspace:^"
-    "@types/snowpack-env": ^2.3.3
-    rimraf: ^3.0.2
-    snowpack: ^3.8.8
-  languageName: unknown
-  linkType: soft
 
 "tunnel-agent@npm:^0.6.0":
   version: 0.6.0
@@ -13031,23 +12620,6 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"webgl-erosion@workspace:examples-private/webgl-erosion":
-  version: 0.0.0-use.local
-  resolution: "webgl-erosion@workspace:examples-private/webgl-erosion"
-  dependencies:
-    "@thi.ng/api": "workspace:^"
-    "@thi.ng/pixel": "workspace:^"
-    "@thi.ng/random": "workspace:^"
-    "@thi.ng/shader-ast": "workspace:^"
-    "@thi.ng/shader-ast-stdlib": "workspace:^"
-    "@thi.ng/transducers": "workspace:^"
-    "@thi.ng/webgl": "workspace:^"
-    "@types/snowpack-env": ^2.3.3
-    rimraf: ^3.0.2
-    snowpack: ^3.8.8
-  languageName: unknown
-  linkType: soft
-
 "webgl-grid@workspace:examples/webgl-grid":
   version: 0.0.0-use.local
   resolution: "webgl-grid@workspace:examples/webgl-grid"
@@ -13330,21 +12902,6 @@ __metadata:
     utf-8-validate:
       optional: true
   checksum: bd2b437256012af526c69c03d6670a132e7ab0fe5853f3b7092826acea4203fad4ee2a8d0d9bd44834b2b968e747bf34f753ab535f4a3edf40d262da4b1d0805
-  languageName: node
-  linkType: hard
-
-"ws@npm:^8.2.3":
-  version: 8.2.3
-  resolution: "ws@npm:8.2.3"
-  peerDependencies:
-    bufferutil: ^4.0.1
-    utf-8-validate: ^5.0.2
-  peerDependenciesMeta:
-    bufferutil:
-      optional: true
-    utf-8-validate:
-      optional: true
-  checksum: c869296ccb45f218ac6d32f8f614cd85b50a21fd434caf11646008eef92173be53490810c5c23aea31bc527902261fbfd7b062197eea341b26128d4be56a85e4
   languageName: node
   linkType: hard
 
