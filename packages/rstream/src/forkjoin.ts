@@ -5,7 +5,12 @@ import { map } from "@thi.ng/transducers/map";
 import { mapcat } from "@thi.ng/transducers/mapcat";
 import { range } from "@thi.ng/transducers/range";
 import { transduce } from "@thi.ng/transducers/transduce";
-import type { CommonOpts, ISubscribable, ITransformable } from "./api.js";
+import type {
+    CommonOpts,
+    ISubscribable,
+    ITransformable,
+    WorkerSource,
+} from "./api.js";
 import type { Subscription } from "./subscription.js";
 import { sync } from "./sync.js";
 import { tunnel } from "./tunnel.js";
@@ -47,7 +52,7 @@ export interface ForkJoinOpts<IN, MSG, RES, OUT> extends Partial<CommonOpts> {
      * string. In the latter two cases, a worker is created
      * automatically using `makeWorker()`.
      */
-    worker: string | Worker | Blob;
+    worker: WorkerSource;
     /**
      * Optional max number of workers to use. Defaults to
      * `navigator.hardwareConcurrency` (or if unavailable, then 4 as

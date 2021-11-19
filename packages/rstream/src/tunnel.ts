@@ -1,4 +1,4 @@
-import type { Fn } from "@thi.ng/api";
+import type { Fn, Fn0 } from "@thi.ng/api";
 import { State } from "./api.js";
 import { __nextID } from "./idgen.js";
 import { LOGGER } from "./logger.js";
@@ -10,7 +10,7 @@ export interface TunnelOpts<A> {
      * Tunnelled worker instance, source blob or script URL.
      * If `interrupt` is enabled, the worker MUST be given as blob or URL.
      */
-    src: Worker | Blob | string;
+    src: Worker | Blob | string | Fn0<Worker>;
     /**
      * Max. number of worker instances to use. Only useful if
      * `interrupt` is disabled. If more than one worker is used,
@@ -69,7 +69,7 @@ export const tunnel = <A, B>(opts: TunnelOpts<A>) => new Tunnel<A, B>(opts);
  */
 export class Tunnel<A, B> extends Subscription<A, B> {
     workers: Worker[];
-    src: Worker | Blob | string;
+    src: Worker | Blob | string | Fn0<Worker>;
     transferables?: Fn<A, any[]>;
     terminate: number;
     interrupt: boolean;

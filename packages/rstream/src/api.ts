@@ -232,3 +232,5 @@ export interface IStream<T> extends ISubscriber<T> {
 
 export type StreamCancel = () => void;
 export type StreamSource<T> = (sub: Stream<T>) => StreamCancel | void;
+
+export type WorkerSource = Worker | Blob | Fn0<Worker> | string;

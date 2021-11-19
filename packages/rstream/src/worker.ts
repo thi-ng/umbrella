@@ -1,4 +1,4 @@
-import type { WithErrorHandlerOpts } from "./api.js";
+import type { WithErrorHandlerOpts, WorkerSource } from "./api.js";
 import { defWorker } from "./defworker.js";
 import { __optsWithID } from "./idgen.js";
 import { LOGGER } from "./logger.js";
@@ -38,7 +38,7 @@ export interface FromWorkerOpts extends WithErrorHandlerOpts {
  * @param opts -
  */
 export const fromWorker = <T>(
-    worker: Worker | Blob | string,
+    worker: WorkerSource,
     opts?: Partial<FromWorkerOpts>
 ) => {
     const _worker = defWorker(worker);
