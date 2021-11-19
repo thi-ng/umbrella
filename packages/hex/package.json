@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/hex",
-    "version": "2.1.0",
+    "version": "2.1.1",
     "description": "Hex string formatters for 4/8/16/24/32/48/64bit words",
     "type": "module",
     "module": "./index.js",
@@ -35,7 +35,7 @@
     },
     "devDependencies": {
         "@microsoft/api-extractor": "^7.18.19",
-        "@thi.ng/testament": "^0.2.0",
+        "@thi.ng/testament": "^0.2.1",
         "rimraf": "^3.0.2",
         "tools": "workspace:^",
         "typedoc": "^0.22.9",

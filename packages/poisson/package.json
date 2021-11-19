@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/poisson",
-    "version": "2.1.0",
+    "version": "2.1.1",
     "description": "nD Stratified grid and Poisson-disc sampling w/ support for spatial density functions and custom PRNGs",
     "type": "module",
     "module": "./index.js",
@@ -34,16 +34,16 @@
         "test": "testament test"
     },
     "dependencies": {
-        "@thi.ng/api": "^8.3.0",
-        "@thi.ng/checks": "^3.1.0",
-        "@thi.ng/geom-api": "^3.1.0",
-        "@thi.ng/random": "^3.2.0",
-        "@thi.ng/transducers": "^8.1.0",
-        "@thi.ng/vectors": "^7.2.0"
+        "@thi.ng/api": "^8.3.1",
+        "@thi.ng/checks": "^3.1.1",
+        "@thi.ng/geom-api": "^3.1.1",
+        "@thi.ng/random": "^3.2.1",
+        "@thi.ng/transducers": "^8.1.1",
+        "@thi.ng/vectors": "^7.2.1"
     },
     "devDependencies": {
         "@microsoft/api-extractor": "^7.18.19",
-        "@thi.ng/testament": "^0.2.0",
+        "@thi.ng/testament": "^0.2.1",
         "rimraf": "^3.0.2",
         "tools": "workspace:^",
         "typedoc": "^0.22.9",
