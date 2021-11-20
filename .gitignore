@@ -15,7 +15,7 @@
 /.gtm/
 ae-docs
 assets/banners
-build
+dist
 dev
 doc
 
