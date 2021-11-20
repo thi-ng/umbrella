@@ -20,9 +20,6 @@
         "@thi.ng/pixel": "workspace:^",
         "@thi.ng/pixel-dither": "workspace:^"
     },
-    "browserslist": [
-        "last 3 Chrome versions"
-    ],
     "browser": {
         "process": false,
         "setTimeout": false,

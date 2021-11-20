@@ -19,9 +19,6 @@
         "@thi.ng/interceptors": "workspace:^",
         "@thi.ng/router": "workspace:^"
     },
-    "browserslist": [
-        "last 3 Chrome versions"
-    ],
     "browser": {
         "process": false,
         "setTimeout": false,

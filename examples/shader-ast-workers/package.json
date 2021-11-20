@@ -25,9 +25,6 @@
         "@thi.ng/transducers": "workspace:^",
         "@thi.ng/transducers-stats": "workspace:^"
     },
-    "browserslist": [
-        "last 3 Chrome versions"
-    ],
     "browser": {
         "process": false,
         "setTimeout": false,

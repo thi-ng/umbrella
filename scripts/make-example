@@ -42,9 +42,6 @@ cat << EOF > "$MODULE"/package.json
         "@thi.ng/api": "workspace:^",
         "@thi.ng/rdom": "workspace:^"
     },
-    "browserslist": [
-        "last 3 Chrome versions"
-    ],
     "browser": {
         "process": false
     },
