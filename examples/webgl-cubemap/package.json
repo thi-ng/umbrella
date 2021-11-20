@@ -7,7 +7,7 @@
     "author": "Karsten Schmidt <k+npm@thi.ng>",
     "license": "Apache-2.0",
     "scripts": {
-        "start": "vite",
+        "start": "vite --open",
         "build": "tsc && vite build && cp -R img dist",
         "preview": "vite preview"
     },

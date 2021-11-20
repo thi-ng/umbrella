@@ -7,7 +7,7 @@
     "author": "Karsten Schmidt",
     "license": "Apache-2.0",
     "scripts": {
-        "start": "vite",
+        "start": "vite --open",
         "build": "tsc && vite build && cp -R data dist",
         "preview": "vite preview"
     },

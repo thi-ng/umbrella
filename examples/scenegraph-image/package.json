@@ -7,12 +7,11 @@
     "author": "Karsten Schmidt <k+npm@thi.ng>",
     "license": "Apache-2.0",
     "scripts": {
-        "start": "vite",
+        "start": "vite --open",
         "build": "tsc && vite build",
         "preview": "vite preview"
     },
     "dependencies": {
-        "@thi.ng/api": "workspace:^",
         "@thi.ng/dsp": "workspace:^",
         "@thi.ng/geom": "workspace:^",
         "@thi.ng/hdom": "workspace:^",

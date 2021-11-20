@@ -7,7 +7,7 @@
     "author": "Karsten Schmidt",
     "license": "MIT",
     "scripts": {
-        "start": "vite",
+        "start": "vite --open",
         "build": "tsc && vite build",
         "preview": "vite preview"
     },

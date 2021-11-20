@@ -7,7 +7,7 @@
     "author": "Karsten Schmidt <k+npm@thi.ng>",
     "license": "Apache-2.0",
     "scripts": {
-        "start": "vite",
+        "start": "vite --open",
         "build": "tsc && vite build",
         "build:cli": "tsc -p tsconfig-cli.json",
         "preview": "vite preview"

@@ -30,7 +30,7 @@ cat << EOF > "$MODULE"/package.json
     "author": "$AUTHOR <$EMAIL>",
     "license": "Apache-2.0",
     "scripts": {
-        "start": "vite",
+        "start": "vite --open",
         "build": "tsc && vite build",
         "preview": "vite preview"
     },
