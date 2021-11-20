@@ -8,9 +8,9 @@ import { stream } from "@thi.ng/rstream/stream";
 import { trace } from "@thi.ng/rstream/trace";
 import type { Transducer } from "@thi.ng/transducers";
 import {
-    Event,
-    EventType,
-    EventTypeMap,
+    type Event,
+    type EventType,
+    type EventTypeMap,
     SET_IMAGE,
     SET_KERNEL_OFFSET,
     SET_KERNEL_WIDTH,

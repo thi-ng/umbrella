@@ -1,6 +1,6 @@
 import type { ColorRangePreset, ColorThemePart } from "@thi.ng/color";
 import { css } from "@thi.ng/color/css/css";
-import { lch, LCH } from "@thi.ng/color/lch/lch";
+import { lch, type LCH } from "@thi.ng/color/lch/lch";
 import { swatchesH } from "@thi.ng/color/swatches";
 import { div } from "@thi.ng/hiccup-html/blocks";
 import {
@@ -20,7 +20,7 @@ import { $inputCheckbox, $inputNum, $inputTrigger } from "@thi.ng/rdom/event";
 import { $list } from "@thi.ng/rdom/list";
 import { $replace } from "@thi.ng/rdom/replace";
 import { reactive } from "@thi.ng/rstream/stream";
-import { MainOutputs, RANGE_IDs } from "./api";
+import { type MainOutputs, RANGE_IDs } from "./api";
 import {
     debouncedParts,
     downloadTrigger,

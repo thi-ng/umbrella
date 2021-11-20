@@ -3,8 +3,8 @@ import { sidechainPartitionRAF } from "@thi.ng/rstream/sidechain-partition";
 import { map } from "@thi.ng/transducers/map";
 import { updateDOM } from "@thi.ng/transducers-hdom";
 import {
-    AppState,
-    Event,
+    type AppState,
+    type Event,
     SET_IMAGE,
     SET_KERNEL_OFFSET,
     SET_KERNEL_WIDTH,

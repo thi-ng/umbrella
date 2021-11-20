@@ -1,4 +1,4 @@
-import { dropdown, DropDownOption } from "@thi.ng/hdom-components/dropdown";
+import { dropdown, type DropDownOption } from "@thi.ng/hdom-components/dropdown";
 import { start } from "@thi.ng/hdom/start";
 import { bits } from "@thi.ng/transducers-binary/bits";
 import { comp } from "@thi.ng/transducers/comp";

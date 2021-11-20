@@ -8,7 +8,7 @@ import type {
 } from "@thi.ng/color";
 import { colorsFromTheme } from "@thi.ng/color/color-range";
 import { distCIEDE2000 } from "@thi.ng/color/distance";
-import { LCH, lch } from "@thi.ng/color/lch/lch";
+import { type LCH, lch } from "@thi.ng/color/lch/lch";
 import { proximity, sort } from "@thi.ng/color/sort";
 import { SYSTEM } from "@thi.ng/random/system";
 import { XsAdd } from "@thi.ng/random/xsadd";
@@ -16,7 +16,7 @@ import { debounce } from "@thi.ng/rstream/debounce";
 import { reactive, stream, Stream } from "@thi.ng/rstream/stream";
 import { sync } from "@thi.ng/rstream/sync";
 import { map } from "@thi.ng/transducers/map";
-import { MainInputs, MainOutputs, RANGE_IDs } from "./api";
+import { type MainInputs, type MainOutputs, RANGE_IDs } from "./api";
 import { downloadACT } from "./palette";
 import { attachSerializer, initFromHash } from "./serialize";
 
