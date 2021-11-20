@@ -1,10 +1,7 @@
 .ae
 .cache
-.parcel-cache
 .DS_Store
 .meta
-.nyc_output
-*.bak*
 *.d.ts
 *.gz
 *.js
@@ -19,13 +16,9 @@
 ae-docs
 assets/banners
 build
-bundle.*
-coverage
 dev
 doc
-docs
 
-!examples/**/snowpack.config.js
 !examples/**/*.d.ts
 examples-private
 export
