@@ -1,6 +1,6 @@
 import type { IRandom } from "./api.js";
 
-const INV_MAX = 1 / 0xffffffff;
+const INV_MAX = 1 / (2**32);
 
 export abstract class ARandom implements IRandom {
     abstract int(): number;

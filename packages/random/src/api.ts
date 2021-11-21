@@ -15,7 +15,7 @@ export interface INorm {
 
 export interface IRandom extends INorm {
     /**
-     * Returns unsigned 32bit int
+     * Returns unsigned 32bit int [0..0xffffffff]
      */
     int(): number;
     /**
