@@ -26,9 +26,6 @@
         "@thi.ng/transducers-binary": "workspace:^",
         "@ygoe/msgpack": "^1.0.3"
     },
-    "browserslist": [
-        "last 3 Chrome versions"
-    ],
     "browser": {
         "process": false,
         "setTimeout": false,

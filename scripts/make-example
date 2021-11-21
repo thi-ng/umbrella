@@ -42,9 +42,6 @@ cat << EOF > "$MODULE"/package.json
         "@thi.ng/api": "workspace:^",
         "@thi.ng/rdom": "workspace:^"
     },
-    "browserslist": [
-        "last 3 Chrome versions"
-    ],
     "browser": {
         "process": false
     },
@@ -60,9 +57,8 @@ echo "writing tsconfig.json..."
 cat << EOF > "$MODULE"/tsconfig.json
 {
     "extends": "../tsconfig.json",
-    "include": ["src"],
+    "include": ["src/**/*"],
     "compilerOptions": {
-        "baseUrl": "./"
     }
 }
 EOF
@@ -72,10 +68,14 @@ cat << EOF > "$MODULE"/index.html
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link
+        rel="icon"
+        href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y=".9em" font-size="90">⛱️</text></svg>'
+    />
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>$1</title>
+    <title>$1 · @thi.ng/umbrella</title>
     <link href="https://unpkg.com/tachyons@4/css/tachyons.min.css" rel="stylesheet">
     <style>
     </style>

@@ -23,9 +23,6 @@
         "@thi.ng/transducers-hdom": "workspace:^",
         "commander": "^6.2.0"
     },
-    "browserslist": [
-        "last 3 Chrome versions"
-    ],
     "browser": {
         "process": false,
         "setTimeout": false,

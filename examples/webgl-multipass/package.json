@@ -17,9 +17,6 @@
         "@thi.ng/shader-ast-stdlib": "workspace:^",
         "@thi.ng/webgl": "workspace:^"
     },
-    "browserslist": [
-        "last 3 Chrome versions"
-    ],
     "browser": {
         "process": false,
         "setTimeout": false,

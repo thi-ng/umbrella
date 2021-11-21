@@ -17,9 +17,6 @@
         "@thi.ng/hdom": "workspace:^",
         "@thi.ng/hdom-canvas": "workspace:^"
     },
-    "browserslist": [
-        "last 3 Chrome versions"
-    ],
     "browser": {
         "process": false,
         "setTimeout": false,

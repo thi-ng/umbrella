@@ -18,9 +18,6 @@
         "@thi.ng/hiccup-canvas": "workspace:^",
         "@thi.ng/rstream": "workspace:^"
     },
-    "browserslist": [
-        "last 3 Chrome versions"
-    ],
     "browser": {
         "process": false,
         "setTimeout": false,

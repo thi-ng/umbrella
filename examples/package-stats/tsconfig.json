@@ -5,5 +5,5 @@
         "noUnusedLocals": false,
         "noUnusedParameters": false
     },
-    "include": ["./src/**/*.ts"]
+    "include": ["src/**/*"]
 }

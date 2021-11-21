@@ -23,9 +23,6 @@
         "@thi.ng/strings": "workspace:^",
         "@thi.ng/vectors": "workspace:^"
     },
-    "browserslist": [
-        "last 3 Chrome versions"
-    ],
     "browser": {
         "process": false,
         "setTimeout": false,

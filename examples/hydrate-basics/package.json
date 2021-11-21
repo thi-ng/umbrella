@@ -18,9 +18,6 @@
         "@thi.ng/hdom-components": "workspace:^",
         "@thi.ng/hiccup": "workspace:^"
     },
-    "browserslist": [
-        "last 3 Chrome versions"
-    ],
     "browser": {
         "process": false,
         "setTimeout": false,

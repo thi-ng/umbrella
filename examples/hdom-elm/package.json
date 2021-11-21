@@ -18,9 +18,6 @@
         "@thi.ng/paths": "workspace:^",
         "@thi.ng/strings": "workspace:^"
     },
-    "browserslist": [
-        "last 3 Chrome versions"
-    ],
     "browser": {
         "process": false,
         "setTimeout": false,

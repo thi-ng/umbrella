@@ -22,9 +22,6 @@
         "@thi.ng/rstream-graph": "workspace:^",
         "@thi.ng/transducers": "workspace:^"
     },
-    "browserslist": [
-        "last 3 Chrome versions"
-    ],
     "browser": {
         "process": false,
         "setTimeout": false,

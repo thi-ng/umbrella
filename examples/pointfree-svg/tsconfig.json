@@ -3,5 +3,5 @@
     "compilerOptions": {
         "outDir": "."
     },
-    "include": ["./src/**/*.ts"]
+    "include": ["src/**/*"]
 }
