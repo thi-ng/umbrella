@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2021-11-19T07:59:50Z
+- **Last updated**: 2021-11-21T17:09:28Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,16 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [7.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/rstream@7.2.0) (2021-11-21)
+
+#### 🚀 Features
+
+- update defWorker() arg types ([e07521e](https://github.com/thi-ng/umbrella/commit/e07521e))
+  - add `WorkerSource` type alias
+  - add support for zero-arg fns returning a worker instance
+    - helps v. much with Vite's `xxx?worker` imports
+    - see /examples/mandelbrot for usage
 
 ### [7.1.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/rstream@7.1.1) (2021-11-19)
 
