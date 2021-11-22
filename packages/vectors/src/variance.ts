@@ -37,3 +37,20 @@ export const sd = (a: ReadonlyVec, isCentered = false) =>
     a.length > 1
         ? Math.sqrt(magSq(isCentered ? a : center([], a)) / (a.length - 1))
         : 0;
+
+/**
+ * Computes the standard error of vector components in `a`. If `isCentered` is
+ * false (default), the vector will first be {@link center}ed (copy) in order to
+ * compute the result.
+ *
+ * @remarks
+ * sderr(a) = sd(a) / sqrt(len(a))
+ *
+ * Reference:
+ * https://en.wikipedia.org/wiki/Standard_error
+ *
+ * @param a
+ * @param isCentered
+ */
+export const sdError = (a: ReadonlyVec, isCentered = false) =>
+    a.length > 1 ? sd(a, isCentered) / Math.sqrt(a.length) : 0;
