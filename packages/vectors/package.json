@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/vectors",
-    "version": "7.3.0",
+    "version": "7.4.0",
     "description": "Optimized 2d/3d/4d and arbitrary length vector operations",
     "type": "module",
     "module": "./index.js",

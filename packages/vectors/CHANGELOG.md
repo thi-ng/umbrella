@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2021-11-22T09:04:05Z
+- **Last updated**: 2021-11-22T11:46:50Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,20 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [7.4.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/vectors@7.4.0) (2021-11-22)
+
+#### 🚀 Features
+
+- add sdError() ([461213e](https://github.com/thi-ng/umbrella/commit/461213e))
+
+#### 🩹 Bug fixes
+
+- off-by-one error in variance(), add checks, tests ([3573fa5](https://github.com/thi-ng/umbrella/commit/3573fa5))
+  - fix divisor in variance() (N vs N-1)
+  - update sd() (use N-1 as divisor)
+  - add empty checks for vmean/vmedian()
+  - add tests
 
 ## [7.3.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/vectors@7.3.0) (2021-11-22)
 
