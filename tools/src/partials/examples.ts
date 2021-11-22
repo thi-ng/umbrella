@@ -24,16 +24,17 @@ export const examplesTable = (pkgName: string) => {
                     expkg.dependencies[pkgName])
             ) {
                 hasImg = !!meta.screenshot || hasImg;
+                const exampleName = shortName(expkg.name);
                 const body = {
                     img: meta.screenshot ? thumb(meta.screenshot) : "",
                     desc: expkg.description || "",
                     demo:
                         meta.online !== false
-                            ? link("Demo", `${CONFIG.demoURL}/${expkg.name}/`)
+                            ? link("Demo", `${CONFIG.demoURL}/${exampleName}/`)
                             : "",
                     src: link(
                         "Source",
-                        `${CONFIG.branchURL}/examples/${expkg.name}`
+                        `${CONFIG.branchURL}/examples/${exampleName}`
                     ),
                 };
                 examples.push(body);
