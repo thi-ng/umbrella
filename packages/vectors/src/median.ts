@@ -26,7 +26,7 @@ export const median = (out: Vec | null, src: ReadonlyVec[]) => {
 };
 
 /**
- * Computes the median component of given vector.
+ * Computes the median component of given vector. Returns 0 if vector is empty.
  *
  * @example
  * ```ts
@@ -37,6 +37,7 @@ export const median = (out: Vec | null, src: ReadonlyVec[]) => {
  * @param a
  */
 export const vmedian = (a: ReadonlyVec) => {
+    if (!a.length) return 0;
     a = [...a].sort((a, b) => a - b);
     return a[a.length >> 1];
 };

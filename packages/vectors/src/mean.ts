@@ -31,7 +31,7 @@ export const mean = (out: Vec | null, src: ReadonlyVec[]) => {
 };
 
 /**
- * Computes the mean of components of given vector.
+ * Computes the mean of components of given vector. Returns 0 if vector is empty.
  *
  * @example
  * ```ts
@@ -41,4 +41,4 @@ export const mean = (out: Vec | null, src: ReadonlyVec[]) => {
  *
  * @param a
  */
-export const vmean = (a: ReadonlyVec) => sum(a) / a.length;
+export const vmean = (a: ReadonlyVec) => (a.length > 0 ? sum(a) / a.length : 0);
