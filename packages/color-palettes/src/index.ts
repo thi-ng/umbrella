@@ -1169,6 +1169,7 @@ export const THEMES = {
         "#ffede1",
     ],
     "00uP6PKyOf1h08rEq": [
+        "#990a21",
         "#e71d3c",
         "#ff9519",
         "#fafff7",
@@ -1195,7 +1196,8 @@ export const THEMES = {
         "#401447",
         "#077085",
         "#1fe1bb",
-        "#b6fc51",
-        "#c0ffb0",
+        "#adfc3a",
+        "#c9ffbc",
+        "#f2ffec",
     ],
 };
