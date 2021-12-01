@@ -97,6 +97,9 @@
         "./center": {
             "import": "./center.js"
         },
+        "./currency": {
+            "import": "./currency.js"
+        },
         "./cursor": {
             "import": "./cursor.js"
         },

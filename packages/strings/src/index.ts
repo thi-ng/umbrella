@@ -3,6 +3,7 @@ export * from "./api.js";
 export * from "./ansi.js";
 export * from "./case.js";
 export * from "./center.js";
+export * from "./currency.js";
 export * from "./cursor.js";
 export * from "./entities.js";
 export * from "./escape.js";

@@ -21,6 +21,13 @@ export const hex =
     (x) =>
         maybeParseInt(x, defaultVal, 16);
 
+export const date =
+    (defaultVal = 0): CellTransform =>
+    (x) => {
+        const res = Date.parse(x);
+        return isNaN(res) ? defaultVal : res;
+    };
+
 // formatters
 
 export const zeroPad = (digits: number) => padLeft(digits, "0");

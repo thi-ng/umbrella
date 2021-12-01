@@ -32,7 +32,7 @@ This project is part of the
 
 ## About
 
-Various (80+) string formatting, word wrapping & utility functions, some
+Various (~100) string formatting, word wrapping & utility functions, some
 higher-order, some memoized.
 
 Partially based on Clojure version of [thi.ng/strf](http://thi.ng/strf).
@@ -48,6 +48,7 @@ Partially based on Clojure version of [thi.ng/strf](http://thi.ng/strf).
 
 ### Numeric formatters
 
+- `currency` / `chf` / `eur` / `gpb` / `usd` / `yen`
 - `radix`
 - `int` / `intLocale`
 - `float` / `floatFixedWidth`
@@ -142,7 +143,7 @@ node --experimental-repl-await
 > const strings = await import("@thi.ng/strings");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 4.53 KB
+Package sizes (gzipped, pre-treeshake): ESM: 4.63 KB
 
 ## Dependencies
 
