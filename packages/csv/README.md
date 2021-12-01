@@ -51,7 +51,7 @@ for more details/ideas.
 ### Planned features
 
 - [x] Simple CSV row parsing w/o object mapping (`parseCSVSimple()`)
-- [ ] CSV output from structured data
+- [x] CSV output from structured data
 - [ ] CSVW support (#257)
 - [ ] Integration with thi.ng/egf
 
@@ -78,7 +78,7 @@ node --experimental-repl-await
 > const csv = await import("@thi.ng/csv");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.53 KB
+Package sizes (gzipped, pre-treeshake): ESM: 1.65 KB
 
 ## Dependencies
 
@@ -103,8 +103,8 @@ import { parseCSV, upper, float } from "@thi.ng/csv";
     all: false,
     cols: {
       "country": { tx: upper },
-      "latitude": { alias: "lat", tx: float(0) },
-      "longitude": { alias: "lon", tx: float(0) },
+      "latitude": { alias: "lat", tx: float() },
+      "longitude": { alias: "lon", tx: float() },
     }
   },
   [

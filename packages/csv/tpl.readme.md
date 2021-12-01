@@ -37,7 +37,7 @@ ${status}
 ### Planned features
 
 - [x] Simple CSV row parsing w/o object mapping (`parseCSVSimple()`)
-- [ ] CSV output from structured data
+- [x] CSV output from structured data
 - [ ] CSVW support (#257)
 - [ ] Integration with thi.ng/egf
 
@@ -75,8 +75,8 @@ import { parseCSV, upper, float } from "@thi.ng/csv";
     all: false,
     cols: {
       "country": { tx: upper },
-      "latitude": { alias: "lat", tx: float(0) },
-      "longitude": { alias: "lon", tx: float(0) },
+      "latitude": { alias: "lat", tx: float() },
+      "longitude": { alias: "lon", tx: float() },
     }
   },
   [
