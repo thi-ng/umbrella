@@ -44,7 +44,7 @@ const updateImports = (root: string, latest = false) => {
         if (!d.startsWith("@thi.ng")) continue;
         if (deps.has(d) && !pkg.dependencies[d]) {
             const depPkg = readJSON(`packages/${shortName(d)}/package.json`);
-            pairs.push([d, latest ? "latest" : `^${depPkg.version}`]);
+            pairs.push([d, latest ? "workspace:^" : `^${depPkg.version}`]);
             edit = true;
         } else if (!deps.has(d)) {
             delete pkg.dependencies[d];
