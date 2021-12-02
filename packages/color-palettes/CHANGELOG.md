@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2021-11-21T17:09:28Z
+- **Last updated**: 2021-12-02T00:12:39Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,16 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [0.7.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/color-palettes@0.7.0) (2021-12-02)
+
+#### 🚀 Features
+
+- add new palettes, update readme ([0fd1b25](https://github.com/thi-ng/umbrella/commit/0fd1b25))
+
+#### 🩹 Bug fixes
+
+- add missing colors ([112ba7e](https://github.com/thi-ng/umbrella/commit/112ba7e))
 
 ## [0.6.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/color-palettes@0.6.0) (2021-11-17)
 

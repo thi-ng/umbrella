@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/sax",
-    "version": "2.1.2",
+    "version": "2.1.3",
     "description": "Transducer-based, SAX-like, non-validating, speedy & tiny XML parser",
     "type": "module",
     "module": "./index.js",
@@ -35,7 +35,7 @@
     },
     "dependencies": {
         "@thi.ng/api": "^8.3.2",
-        "@thi.ng/strings": "^3.2.2",
+        "@thi.ng/strings": "^3.3.0",
         "@thi.ng/transducers": "^8.1.2",
         "@thi.ng/transducers-fsm": "^2.1.2"
     },
