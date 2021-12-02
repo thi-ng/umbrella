@@ -13,7 +13,7 @@
     },
     "dependencies": {
         "@thi.ng/hdom": "workspace:^",
-        "@thi.ng/random": "latest",
+        "@thi.ng/random": "workspace:^",
         "@thi.ng/strings": "workspace:^",
         "@thi.ng/transducers": "workspace:^"
     },
