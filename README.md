@@ -141,16 +141,13 @@ feature or `develop` branches)
 
 ### Latest updates
 
-As of: 2021-11-10
+As of: 2021-12-01
 
-| Project                                         | Version                                                                                                               | Changelog                                        | Description                               |
-|-------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------|--------------------------------------------------|-------------------------------------------|
-| [`@thi.ng/api`](./packages/api)                 | [![version](https://img.shields.io/npm/v/@thi.ng/api.svg)](https://www.npmjs.com/package/@thi.ng/api)                 | [changelog](./packages/api/CHANGELOG.md)         | Common types, decorators, mixins          |
-| [`@thi.ng/checks`](./packages/checks)           | [![version](https://img.shields.io/npm/v/@thi.ng/checks.svg)](https://www.npmjs.com/package/@thi.ng/checks)           | [changelog](./packages/checks/CHANGELOG.md)      | Type & value checks                       |
-| [`@thi.ng/dl-asset`](./packages/dl-asset)       | [![version](https://img.shields.io/npm/v/@thi.ng/dl-asset.svg)](https://www.npmjs.com/package/@thi.ng/dl-asset)       | [changelog](./packages/download/CHANGELOG.md)    | Asset download trigger helper             |
-| [`@thi.ng/pixel`](./packages/pixel)             | [![version](https://img.shields.io/npm/v/@thi.ng/pixel.svg)](https://www.npmjs.com/package/@thi.ng/pixel)             | [changelog](./packages/pixel/CHANGELOG.md)       | Multi-format pixel buffers                |
-| [`@thi.ng/rasterize`](./packages/rasterize)     | [![version](https://img.shields.io/npm/v/@thi.ng/rasterize.svg)](https://www.npmjs.com/package/@thi.ng/rasterize)     | [changelog](./packages/rasterize/CHANGELOG.md)   | Shape drawing, filling & rasterization    |
-| [`@thi.ng/text-canvas`](./packages/text-canvas) | [![version](https://img.shields.io/npm/v/@thi.ng/text-canvas.svg)](https://www.npmjs.com/package/@thi.ng/text-canvas) | [changelog](./packages/text-canvas/CHANGELOG.md) | Text-mode canvas, drawing, tables, charts |
+| Project                                               | Version                                                                                                                     | Changelog                                           | Description                              |
+|-------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------|------------------------------------------|
+| [`@thi.ng/color-palettes`](./packages/color-palettes) | [![version](https://img.shields.io/npm/v/@thi.ng/color-palettes.svg)](https://www.npmjs.com/package/@thi.ng/color-palettes) | [changelog](./packages/color-palettes/CHANGELOG.md) | Collection of image-based color palettes |
+| [`@thi.ng/csv`](./packages/csv)                       | [![version](https://img.shields.io/npm/v/@thi.ng/csv.svg)](https://www.npmjs.com/package/@thi.ng/csv)                       | [changelog](./packages/csv/CHANGELOG.md)            | Customizable CSV parser/object mapper    |
+| [`@thi.ng/strings`](./packages/strings)               | [![version](https://img.shields.io/npm/v/@thi.ng/strings.svg)](https://www.npmjs.com/package/@thi.ng/strings)               | [changelog](./packages/strings/CHANGELOG.md)        | Higher-order string formatting utils     |
 
 ### Fundamentals
 
@@ -302,7 +299,7 @@ As of: 2021-11-10
 | Project                                                       | Version                                                                                                                             | Changelog                                               | Description                                         |
 |---------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------|-----------------------------------------------------|
 | [`@thi.ng/color`](./packages/color)                           | [![version](https://img.shields.io/npm/v/@thi.ng/color.svg)](https://www.npmjs.com/package/@thi.ng/color)                           | [changelog](./packages/color/CHANGELOG.md)              | Color conversions, gradients                        |
-| [`@thi.ng/color-palettes`](./packages/color-palettes)         | [![version](https://img.shields.io/npm/v/@thi.ng/color-palettes.svg)](https://www.npmjs.com/package/@thi.ng/color-palettes)         | [changelog](./packages/color-palettes/CHANGELOG.md)     | Collection of color palettes                        |
+| [`@thi.ng/color-palettes`](./packages/color-palettes)         | [![version](https://img.shields.io/npm/v/@thi.ng/color-palettes.svg)](https://www.npmjs.com/package/@thi.ng/color-palettes)         | [changelog](./packages/color-palettes/CHANGELOG.md)     | Collection of image-based color palettes            |
 | [`@thi.ng/dgraph-dot`](./packages/dgraph-dot)                 | [![version](https://img.shields.io/npm/v/@thi.ng/dgraph-dot.svg)](https://www.npmjs.com/package/@thi.ng/dgraph-dot)                 | [changelog](./packages/dgraph-dot/CHANGELOG.md)         | Dependency graph -> Graphviz                        |
 | [`@thi.ng/fuzzy-viz`](./packages/fuzzy-viz)                   | [![version](https://img.shields.io/npm/v/@thi.ng/fuzzy-viz.svg)](https://www.npmjs.com/package/@thi.ng/fuzzy-viz)                   | [changelog](./packages/fuzzy-viz/CHANGELOG.md)          | Visualization, instrumentation for @thi.ng/fuzzy    |
 | [`@thi.ng/geom`](./packages/geom)                             | [![version](https://img.shields.io/npm/v/@thi.ng/geom.svg)](https://www.npmjs.com/package/@thi.ng/geom)                             | [changelog](./packages/geom/CHANGELOG.md)               | 2D only geometry types & ops                        |
