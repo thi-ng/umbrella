@@ -21,3 +21,19 @@ export interface DownloadOpts {
      */
     expire: number;
 }
+
+/**
+ * User options for {@link canvasRecorder}.
+ */
+export interface CanvasRecorderOpts
+    extends Pick<
+        MediaRecorderOptions,
+        "mimeType" | "bitsPerSecond" | "videoBitsPerSecond"
+    > {
+    /**
+     * Recording frame rate (fps)
+     *
+     * @defaultValue 60
+     */
+    fps: number;
+}
