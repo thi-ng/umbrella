@@ -429,3 +429,114 @@ export const UNSHARP_MASK5: KernelSpec = {
     ],
     size: 5,
 };
+
+const { min, max } = Math;
+
+/**
+ * 3x3 convolution kernel to detect local maxima in a Von Neumann neighborhood.
+ * Returns in 1.0 if the center pixel is either higher valued than A & D or B & C,
+ * otherwise return zero.
+ *
+ * @remarks
+ * ```text
+ * |---|---|---|
+ * |   | A |   |
+ * |---|---|---|
+ * | B | X | C |
+ * |---|---|---|
+ * |   | D |   |
+ * |---|---|---|
+ * ```
+ *
+ * Also see {@link MAXIMA4_DIAG} for alternative.
+ */
+export const MAXIMA4_CROSS: KernelFnSpec = {
+    fn: (src) => {
+        const {
+            data: pix,
+            stride: [stride, rowStride],
+        } = src;
+        const maxX = (src.width - 1) * stride;
+        const maxY = (src.height - 1) * rowStride;
+        return (x, y, channel) => {
+            const x0 = max(x - stride, channel);
+            const x2 = min(x + stride, maxX + channel);
+            const y0 = max(y - rowStride, 0);
+            const y2 = min(y + rowStride, maxY);
+            const c = pix[x + y];
+            return (c > pix[y + x0] && c > pix[y + x2]) ||
+                (c > pix[y0 + x] && c > pix[y2 + x])
+                ? 1
+                : 0;
+        };
+    },
+    size: 3,
+};
+
+/**
+ * Similar to {@link MAXIMA4_CROSS}, a 3x3 convolution kernel to detect local
+ * maxima in a 45 degree rotated Von Neumann neighborhood. Returns in 1.0 if the
+ * center pixel is either higher valued than A & D or B & C, otherwise return
+ * zero.
+ *
+ * @remarks
+ * ```text
+ * |---|---|---|
+ * | A |   | B |
+ * |---|---|---|
+ * |   | X |   |
+ * |---|---|---|
+ * | C |   | D |
+ * |---|---|---|
+ * ```
+ */
+export const MAXIMA4_DIAG: KernelFnSpec = {
+    fn: (src) => {
+        const {
+            data: pix,
+            stride: [stride, rowStride],
+        } = src;
+        const maxX = (src.width - 1) * stride;
+        const maxY = (src.height - 1) * rowStride;
+        return (x, y, channel) => {
+            const x0 = max(x - stride, channel);
+            const x2 = min(x + stride, maxX + channel);
+            const y0 = max(y - rowStride, 0);
+            const y2 = min(y + rowStride, maxY);
+            const c = pix[x + y];
+            return (c > pix[y0 + x0] && c > pix[y2 + x2]) ||
+                (c > pix[y0 + x2] && c > pix[y2 + x0])
+                ? 1
+                : 0;
+        };
+    },
+    size: 3,
+};
+
+/**
+ * Union kernel of {@link MAXIMA4_CROSS} and {@link MAXIMA4_DIAG}.
+ */
+export const MAXIMA8: KernelFnSpec = {
+    fn: (src) => {
+        const {
+            data: pix,
+            stride: [stride, rowStride],
+        } = src;
+        const maxX = (src.width - 1) * stride;
+        const maxY = (src.height - 1) * rowStride;
+        return (x, y, channel) => {
+            const x0 = max(x - stride, channel);
+            const x2 = min(x + stride, maxX + channel);
+            const y0 = max(y - rowStride, 0);
+            const y2 = min(y + rowStride, maxY);
+            const c = pix[x + y];
+            return (c > pix[y + x0] && c > pix[y + x2]) ||
+                (c > pix[y0 + x] && c > pix[y2 + x]) ||
+                (c > pix[y0 + x0] && c > pix[y2 + x2]) ||
+                (c > pix[y0 + x2] && c > pix[y2 + x0])
+                ? 1
+                : 0;
+        };
+    },
+    size: 3,
+};

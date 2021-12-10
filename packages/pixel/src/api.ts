@@ -3,7 +3,7 @@ import type {
     Fn,
     Fn2,
     Fn3,
-    FnN,
+    FnN3,
     FnU2,
     IGrid2D,
     IObjectOf,
@@ -356,7 +356,7 @@ export interface KernelFnSpec {
     /**
      * Kernel factory.
      */
-    fn: Fn<IPixelBuffer<FloatArray, NumericArray>, FnN>;
+    fn: Fn<IPixelBuffer<FloatArray, NumericArray>, FnN3>;
     /**
      * Kernel size. If given as number, expands to `[size, size]`.
      */
