@@ -1,5 +1,5 @@
 import { isNumber } from "@thi.ng/checks/is-number";
-import type { CanvasContext, RawPixelBuffer } from "./api.js";
+import type { Canvas2DOpts, CanvasContext, RawPixelBuffer } from "./api.js";
 
 /**
  * Creates a canvas element of given size, obtains its 2D drawing
@@ -9,19 +9,22 @@ import type { CanvasContext, RawPixelBuffer } from "./api.js";
  * @param width -
  * @param height -
  * @param parent -
+ * @param opts -
  */
 export const canvas2d = (
     width: number,
     height = width,
-    parent?: HTMLElement
+    parent?: HTMLElement,
+    opts: Partial<Canvas2DOpts> = {}
 ): CanvasContext => {
     const canvas = document.createElement("canvas");
     canvas.width = width;
     canvas.height = height;
     parent && parent.appendChild(canvas);
+    opts.pixelated && (canvas.style.imageRendering = "pixelated");
     return {
         canvas,
-        ctx: canvas.getContext("2d")!,
+        ctx: canvas.getContext("2d", opts.ctx)!,
     };
 };
 

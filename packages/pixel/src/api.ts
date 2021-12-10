@@ -426,3 +426,15 @@ export interface NormalMapOpts {
 export type IntSampler = FnU2<number>;
 
 export type FloatSampler = FnU2<number, NumericArray>;
+
+export interface Canvas2DOpts {
+    /**
+     * (Native) options passed to `canvas.getContext("2d")`
+     */
+    ctx: CanvasRenderingContext2DSettings;
+    /**
+     * If true, adds CSS rule to force canvas being displayed properly pixelated
+     * (no smoothing)
+     */
+    pixelated: boolean;
+}
