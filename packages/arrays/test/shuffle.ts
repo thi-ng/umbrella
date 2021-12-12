@@ -1,7 +1,7 @@
 import { XsAdd } from "@thi.ng/random";
 import { group } from "@thi.ng/testament";
 import * as assert from "assert";
-import { shuffle, shuffleRange } from "../src/index.js"
+import { shuffle, shuffleRange } from "../src/index.js";
 
 group("arrays", {
     shuffle: () => {
@@ -18,11 +18,11 @@ group("arrays", {
         const rnd = new XsAdd(0xdeadbeef);
         assert.strictEqual(
             shuffleRange(buf, 10, 20, rnd).join(""),
-            "abcdefghijnokpsqmtrluvwxyz"
+            "abcdefghijmqrotplksnuvwxyz"
         );
         assert.strictEqual(
             shuffle(buf, buf.length, rnd).join(""),
-            "ovcwfhbnizgyekuqrdjslxpatm"
+            "osqkrelubvwfdmanixthjzgypc"
         );
     },
 });
