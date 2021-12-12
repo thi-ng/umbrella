@@ -52,6 +52,7 @@
         "interpolation",
         "interval",
         "math",
+        "prime",
         "quadratic",
         "smooth",
         "solver",
@@ -111,6 +112,9 @@
         },
         "./prec": {
             "import": "./prec.js"
+        },
+        "./prime": {
+            "import": "./prime.js"
         },
         "./ratio": {
             "import": "./ratio.js"
