@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2021-11-21T17:09:28Z
+- **Last updated**: 2021-12-13T10:26:00Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,19 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [3.3.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/pixel@3.3.0) (2021-12-13)
+
+#### 🚀 Features
+
+- add 8/16/32bit support for defIndexed() ([b20a924](https://github.com/thi-ng/umbrella/commit/b20a924))
+  - add defIndexed8/16/32()
+  - update defIndexed() to decide about required bitdepth
+  - add/update docs strings
+- add MAXIMA convolution kernels ([d15caed](https://github.com/thi-ng/umbrella/commit/d15caed))
+  - add `MAXIMA4_CROSS`, `MAXIMA4_DIAG`
+  - add `MAXIMA8`
+- add Canvas2DOpts, update canvas2d() ([7ff99a2](https://github.com/thi-ng/umbrella/commit/7ff99a2))
 
 ## [3.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/pixel@3.2.0) (2021-11-17)
 

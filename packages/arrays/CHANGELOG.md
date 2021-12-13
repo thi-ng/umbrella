@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2021-11-21T17:09:28Z
+- **Last updated**: 2021-12-13T10:25:59Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,15 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [2.1.3](https://github.com/thi-ng/umbrella/tree/@thi.ng/arrays@2.1.3) (2021-12-13)
+
+#### 🩹 Bug fixes
+
+- off-by-one error in shuffleRange() ([f832d2f](https://github.com/thi-ng/umbrella/commit/f832d2f))
+  - existing shuffle would keep some indices untouched, resulting in
+    still perceivable ordering
+  - update tests
 
 ## [2.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/arrays@2.1.0) (2021-11-17)
 
