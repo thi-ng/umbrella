@@ -48,6 +48,6 @@ export const lineClipped = (
     right: number,
     bottom: number
 ) => {
-    const res = liangBarsky(x1, y1, x2, y2, left, top, right, bottom);
+    const res = liangBarsky(x1, y1, x2, y2, left, top, right - 1, bottom - 1);
     return res ? line(res[0], res[1], res[2], res[3]) : undefined;
 };
