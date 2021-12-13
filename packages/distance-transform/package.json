@@ -1,7 +1,7 @@
 {
-    "name": "@thi.ng/math",
-    "version": "5.1.2",
-    "description": "Assorted common math functions & utilities",
+    "name": "@thi.ng/distance-transform",
+    "version": "0.0.1",
+    "description": "Binary image to Distance Field transformation",
     "type": "module",
     "module": "./index.js",
     "typings": "./index.d.ts",
@@ -10,7 +10,7 @@
         "type": "git",
         "url": "https://github.com/thi-ng/umbrella.git"
     },
-    "homepage": "https://github.com/thi-ng/umbrella/tree/develop/packages/math#readme",
+    "homepage": "https://github.com/thi-ng/umbrella/tree/master/packages/distance-transform#readme",
     "funding": [
         {
             "type": "github",
@@ -38,6 +38,7 @@
     },
     "devDependencies": {
         "@microsoft/api-extractor": "^7.19.2",
+        "@thi.ng/pixel": "^3.2.5",
         "@thi.ng/testament": "^0.2.2",
         "rimraf": "^3.0.2",
         "tools": "workspace:^",
@@ -45,26 +46,17 @@
         "typescript": "^4.5.3"
     },
     "keywords": [
-        "animation",
-        "bezier",
-        "cubic",
-        "hermite",
-        "interpolation",
-        "interval",
-        "math",
-        "prime",
-        "quadratic",
-        "smooth",
-        "solver",
-        "t-norm",
-        "trigonometry",
         "typescript"
     ],
     "publishConfig": {
         "access": "public"
     },
+    "browser": {
+        "process": false,
+        "setTimeout": false
+    },
     "engines": {
-        "node": ">=12.7"
+        "node": ">=14"
     },
     "files": [
         "*.js",
@@ -74,62 +66,18 @@
         ".": {
             "import": "./index.js"
         },
-        "./abs": {
-            "import": "./abs.js"
-        },
-        "./angle": {
-            "import": "./angle.js"
-        },
         "./api": {
             "import": "./api.js"
         },
-        "./crossing": {
-            "import": "./crossing.js"
+        "./metric": {
+            "import": "./metric.js"
         },
-        "./eqdelta": {
-            "import": "./eqdelta.js"
-        },
-        "./extrema": {
-            "import": "./extrema.js"
-        },
-        "./fit": {
-            "import": "./fit.js"
-        },
-        "./int": {
-            "import": "./int.js"
-        },
-        "./interval": {
-            "import": "./interval.js"
-        },
-        "./libc": {
-            "import": "./libc.js"
-        },
-        "./min-error": {
-            "import": "./min-error.js"
-        },
-        "./mix": {
-            "import": "./mix.js"
-        },
-        "./prec": {
-            "import": "./prec.js"
-        },
-        "./prime": {
-            "import": "./prime.js"
-        },
-        "./ratio": {
-            "import": "./ratio.js"
-        },
-        "./safe-div": {
-            "import": "./safe-div.js"
-        },
-        "./solve": {
-            "import": "./solve.js"
-        },
-        "./step": {
-            "import": "./step.js"
+        "./transform": {
+            "import": "./transform.js"
         }
     },
     "thi.ng": {
-        "year": 2013
+        "status": "alpha",
+        "year": 2021
     }
 }

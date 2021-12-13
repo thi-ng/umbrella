@@ -39,12 +39,12 @@
         "@thi.ng/transducers": "^8.1.2"
     },
     "devDependencies": {
-        "@microsoft/api-extractor": "^7.18.19",
+        "@microsoft/api-extractor": "^7.19.2",
         "@thi.ng/testament": "^0.2.2",
         "rimraf": "^3.0.2",
         "tools": "workspace:^",
-        "typedoc": "^0.22.9",
-        "typescript": "^4.5.2"
+        "typedoc": "^0.22.10",
+        "typescript": "^4.5.3"
     },
     "keywords": [
         "conversion",
