@@ -13,14 +13,15 @@ This project is part of the
 
 ${pkg.description}
 
-![example distance field comparison for three different metrics](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/distance-transform/dt.png)
+![example distance field comparison for three different
+metrics](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/distance-transform/dt.png)
 
-This package provides a function transforms a binary(-like) input grid/image it
+This package provides a function to transform a binary(-like) input grid/image
 into a distance field using a provided distance metric (default: Eucledian). Any
 non-zero values in the input grid are used as seed locations for the distance
-field. Returns a plain `Float32Array` of distance values. If `normalize` is > 0
-(default: 1), the result values will be normalized to the `[0,normalize]`
-interval.
+field. The function returns a plain `Float32Array` of distance values. If
+`normalize` is > 0 (default: 1). The result values will be normalized to the
+`[0,normalize]` interval.
 
 Based on: ["A general algorithm for computing Distance Transforms in linear
 time"](http://www.cs.rug.nl/~roe/publications/dt.pdf), A. Meijster, J.B.T.M.
