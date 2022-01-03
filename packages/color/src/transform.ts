@@ -63,7 +63,7 @@ export const IDENTITY: ColorMatrix = [
  * @param src - source color
  */
 // prettier-ignore
-export const subtract = (src: ReadonlyColor = WHITE): ColorMatrix => [
+export const subtractMat = (src: ReadonlyColor = WHITE): ColorMatrix => [
     -1, 0, 0, 0, src[0],
     0, -1, 0, 0, src[1],
     0, 0, -1, 0, src[2],
@@ -80,7 +80,7 @@ export const subtract = (src: ReadonlyColor = WHITE): ColorMatrix => [
  * @param x - brightness offset
  */
 // prettier-ignore
-export const brightness = (x: number): ColorMatrix => [
+export const brightnessMat = (x: number): ColorMatrix => [
     1, 0, 0, 0, x,
     0, 1, 0, 0, x,
     0, 0, 1, 0, x,
@@ -88,7 +88,7 @@ export const brightness = (x: number): ColorMatrix => [
 ];
 
 // prettier-ignore
-export const contrast = (x: number, o = 0.5 * (1 - x)): ColorMatrix => [
+export const contrastMat = (x: number, o = 0.5 * (1 - x)): ColorMatrix => [
     x, 0, 0, 0, o,
     0, x, 0, 0, o,
     0, 0, x, 0, o,
@@ -96,7 +96,7 @@ export const contrast = (x: number, o = 0.5 * (1 - x)): ColorMatrix => [
 ];
 
 // prettier-ignore
-export const exposure = (x: number): ColorMatrix => [
+export const exposureMat = (x: number): ColorMatrix => [
     x, 0, 0, 0, 0,
     0, x, 0, 0, 0,
     0, 0, x, 0, 0,
@@ -104,7 +104,7 @@ export const exposure = (x: number): ColorMatrix => [
 ];
 
 // prettier-ignore
-export const saturation = (x: number): ColorMatrix => [
+export const saturationMat = (x: number): ColorMatrix => [
     S1 + S4 * x, S3 - S3 * x, S0 - S0 * x, 0, 0,
     S1 - S1 * x, S3 + S2 * x, S0 - S0 * x, 0, 0,
     S1 - S1 * x, S3 - S3 * x, S0 + S5 * x, 0, 0,
@@ -112,7 +112,7 @@ export const saturation = (x: number): ColorMatrix => [
 ];
 
 // prettier-ignore
-export const hueRotate = (theta: number): ColorMatrix => {
+export const hueRotateMat = (theta: number): ColorMatrix => {
     const s = Math.sin(theta);
     const c = Math.cos(theta);
     return [
@@ -124,7 +124,7 @@ export const hueRotate = (theta: number): ColorMatrix => {
 };
 
 // prettier-ignore
-export const temperature = (x: number): ColorMatrix => [
+export const temperatureMat = (x: number): ColorMatrix => [
     1 + x, 0, 0, 0, 0,
     0, 1, 0, 0, 0,
     0, 0, 1 - x, 0, 0,
@@ -132,7 +132,7 @@ export const temperature = (x: number): ColorMatrix => [
 ];
 
 // prettier-ignore
-export const sepia = (x = 1): ColorMatrix => [
+export const sepiaMat = (x = 1): ColorMatrix => [
     mix(1, 0.393, x), 0.769 * x, 0.189 * x, 0, 0,
     0.349 * x, mix(1, 0.686, x), 0.168 * x, 0, 0,
     0.272 * x, 0.534 * x, mix(1, 0.131, x), 0, 0,
@@ -140,7 +140,7 @@ export const sepia = (x = 1): ColorMatrix => [
 ];
 
 // prettier-ignore
-export const tint = (x: number): ColorMatrix => [
+export const tintMat = (x: number): ColorMatrix => [
     1 + x, 0, 0, 0, 0,
     0, 1, 0, 0, 0,
     0, 0, 1 + x, 0, 0,
@@ -158,7 +158,7 @@ export const tint = (x: number): ColorMatrix => [
  * @param offset - brightness offset
  */
 // prettier-ignore
-export const grayscale = ([r, g, b] = RGB_LUMINANCE_REC709, offset = 0): ColorMatrix => [
+export const grayscaleMat = ([r, g, b] = RGB_LUMINANCE_REC709, offset = 0): ColorMatrix => [
     r, g, b, 0, offset,
     r, g, b, 0, offset,
     r, g, b, 0, offset,
@@ -176,7 +176,7 @@ export const grayscale = ([r, g, b] = RGB_LUMINANCE_REC709, offset = 0): ColorMa
  * @param coeffs - luminance coefficients
  */
 // prettier-ignore
-export const luminanceAlpha = ([r, g, b] = RGB_LUMINANCE_REC709): ColorMatrix => [
+export const luminanceAlphaMat = ([r, g, b] = RGB_LUMINANCE_REC709): ColorMatrix => [
     0, 0, 0, 0, 0,
     0, 0, 0, 0, 0,
     0, 0, 0, 0, 0,
