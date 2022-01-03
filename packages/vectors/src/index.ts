@@ -161,6 +161,7 @@ export * from "./rotates.js";
 export * from "./round.js";
 export * from "./rshift.js";
 export * from "./safe-div.js";
+export * from "./select.js";
 export * from "./set.js";
 export * from "./setc.js";
 export * from "./setn.js";

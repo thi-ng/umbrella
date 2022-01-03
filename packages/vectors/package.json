@@ -606,6 +606,9 @@
         "./safe-div": {
             "import": "./safe-div.js"
         },
+        "./select": {
+            "import": "./select.js"
+        },
         "./set": {
             "import": "./set.js"
         },
