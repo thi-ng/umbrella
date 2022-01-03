@@ -239,6 +239,9 @@
         "./is-black": {
             "import": "./is-black.js"
         },
+        "./is-gamut": {
+            "import": "./is-gamut.js"
+        },
         "./is-gray": {
             "import": "./is-gray.js"
         },
@@ -272,6 +275,9 @@
         "./lch/lch": {
             "import": "./lch/lch.js"
         },
+        "./lighten": {
+            "import": "./lighten.js"
+        },
         "./linear": {
             "import": "./linear.js"
         },
@@ -280,6 +286,9 @@
         },
         "./luminance": {
             "import": "./luminance.js"
+        },
+        "./max-chroma": {
+            "import": "./max-chroma.js"
         },
         "./mix": {
             "import": "./mix.js"
@@ -335,6 +344,9 @@
         "./rgb/rgb": {
             "import": "./rgb/rgb.js"
         },
+        "./rotate": {
+            "import": "./rotate.js"
+        },
         "./sort": {
             "import": "./sort.js"
         },
@@ -350,11 +362,20 @@
         "./srgb/srgb": {
             "import": "./srgb/srgb.js"
         },
+        "./strategies": {
+            "import": "./strategies.js"
+        },
         "./swatches": {
             "import": "./swatches.js"
         },
+        "./tint": {
+            "import": "./tint.js"
+        },
         "./transform": {
             "import": "./transform.js"
+        },
+        "./variations": {
+            "import": "./variations.js"
         },
         "./xyy/xyy-xyz": {
             "import": "./xyy/xyy-xyz.js"
