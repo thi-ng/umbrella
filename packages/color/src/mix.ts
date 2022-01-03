@@ -5,6 +5,7 @@ import { fract } from "@thi.ng/math/prec";
 import { mixN4 } from "@thi.ng/vectors/mixn";
 import { setC4 } from "@thi.ng/vectors/setc";
 import type { Color, ColorMixFn, TypedColor } from "./api.js";
+import { __dispatch1 } from "./internal/dispatch.js";
 
 /**
  * HOF color mix function. Takes 4 scalar mix fns (one per color channel) and
@@ -107,7 +108,7 @@ export const mix = defmulti<
     number,
     Color
 >(
-    (_, a) => a.mode,
+    __dispatch1,
     {},
     {
         hcy: mixHNNN,

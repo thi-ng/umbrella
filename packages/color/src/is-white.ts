@@ -1,6 +1,7 @@
 import { DEFAULT, defmulti } from "@thi.ng/defmulti/defmulti";
 import type { ReadonlyColor, TypedColor } from "./api.js";
 import { EPS } from "./api/constants.js";
+import { __dispatch0 } from "./internal/dispatch.js";
 import { rgb } from "./rgb/rgb.js";
 
 const isWhiteHsv = (x: ReadonlyColor, eps = EPS) =>
@@ -15,18 +16,20 @@ const isWhiteLch = (x: ReadonlyColor, eps = EPS) =>
     x[1] <= eps && x[0] >= 1 - eps;
 
 export const isWhite = defmulti<TypedColor<any>, number | undefined, boolean>(
-    (x) => x.mode,
-    {},
+    __dispatch0,
+    {
+        hsl: "hsv",
+        hsi: "hsv",
+        labD50: "lch",
+        labD65: "lch",
+        srgb: "rgb",
+        ycc: "lch",
+    },
     {
         hcy: (x, eps = EPS) => x[1] <= eps && x[2] >= 1 - eps,
-        hsi: isWhiteHsv,
-        hsl: isWhiteHsv,
         hsv: isWhiteHsv,
-        labD50: isWhiteLch,
-        labD65: isWhiteLch,
         lch: isWhiteLch,
         rgb: isWhiteRgb,
-        ycc: isWhiteLch,
         [DEFAULT]: (x: any) => isWhiteRgb(rgb(x)),
     }
 );

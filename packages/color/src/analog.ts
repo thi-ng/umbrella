@@ -6,6 +6,7 @@ import type { IRandom } from "@thi.ng/random";
 import { SYSTEM } from "@thi.ng/random/system";
 import { setC4 } from "@thi.ng/vectors/setc";
 import type { Color, ReadonlyColor, TypedColor } from "./api.js";
+import { __dispatch1 } from "./internal/dispatch.js";
 import { __ensureAlpha } from "./internal/ensure.js";
 
 /** @internal */
@@ -61,7 +62,7 @@ export const analog = defmulti<
     IRandom | undefined,
     Color
 >(
-    (_: Color | null, src: TypedColor<any>) => src.mode,
+    __dispatch1,
     {},
     {
         hcy: analogHNN,
