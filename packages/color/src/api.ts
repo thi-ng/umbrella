@@ -64,9 +64,16 @@ export interface IColor {
 export interface ChannelSpec {
     /**
      * Acceptable value range for this channel. Used by {@link TypedColor.clamp}.
+     *
      * @defaultValue [0,1]
      */
     range?: Range;
+    /**
+     * If true, this channel is used to store normalized hue values.
+     *
+     * @defaultValue false
+     */
+    hue?: boolean;
 }
 
 export interface ColorSpec<M extends ColorMode, K extends string> {

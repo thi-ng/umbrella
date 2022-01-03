@@ -3,7 +3,10 @@ import type { IRandom } from "@thi.ng/random";
 import type { Color, ColorFactory, ReadonlyColor, TypedColor } from "../api.js";
 import { defColor } from "../defcolor.js";
 import { hslHsv } from "../hsl/hsl-hsv.js";
+import { lchLab } from "../lab/lab-lch.js";
+import { labRgb } from "../lab/lab-rgb.js";
 import { rgbHsv } from "../rgb/rgb-hsv.js";
+import { rgbSrgb } from "../rgb/rgb-srgb.js";
 import { hsvRgb } from "./hsv-rgb.js";
 
 export declare class HSV implements TypedColor<HSV> {
@@ -32,7 +35,13 @@ export declare class HSV implements TypedColor<HSV> {
 
 export const hsv = <ColorFactory<HSV>>defColor({
     mode: "hsv",
+    channels: { h: { hue: true } },
     order: <const>["h", "s", "v", "alpha"],
-    from: { rgb: rgbHsv, srgb: rgbHsv, hsl: hslHsv },
+    from: {
+        rgb: rgbHsv,
+        srgb: rgbHsv,
+        hsl: hslHsv,
+        lch: [lchLab, labRgb, rgbSrgb, rgbHsv],
+    },
     toRgb: hsvRgb,
 });

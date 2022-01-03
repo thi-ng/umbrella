@@ -5,6 +5,7 @@ import { isNumber } from "@thi.ng/checks/is-number";
 import { isString } from "@thi.ng/checks/is-string";
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import { EPS } from "@thi.ng/math/api";
+import { fract } from "@thi.ng/math/prec";
 import type { IRandom } from "@thi.ng/random";
 import { vector } from "@thi.ng/strings/vector";
 import { mapStridedBuffer } from "@thi.ng/vectors/buffer";
@@ -57,6 +58,8 @@ export const defColor = <M extends ColorMode, K extends string>(
     const minR = set4([], min);
     const maxR = set4([], max);
     minR[numChannels - 1] = 1;
+
+    const hueChanID = order.findIndex((id) => !!channels[id]!.hue);
 
     const $Color = class implements TypedColor<$DefColor<any, any>> {
         buf: NumericArray;
@@ -114,7 +117,9 @@ export const defColor = <M extends ColorMode, K extends string>(
         }
 
         clamp() {
-            return <this>clamp4(null, this, min, max);
+            hueChanID >= 0 && (this[hueChanID] = fract(this[hueChanID]));
+            clamp4(null, this, min, max);
+            return this;
         }
 
         eqDelta(o: $DefColor<any, any>, eps = EPS): boolean {

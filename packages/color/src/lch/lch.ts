@@ -41,6 +41,7 @@ export const lch = <ColorFactory<LCH>>defColor({
     mode: "lch",
     channels: {
         c: { range: [0, 1.312] },
+        h: { hue: true },
     },
     order: <const>["l", "c", "h", "alpha"],
     from: {
