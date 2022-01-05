@@ -31,7 +31,7 @@
         "screenshot": "examples/todo-list.png"
     },
     "devDependencies": {
-        "typescript": "^4.5.3",
-        "vite": "^2.7.1"
+        "typescript": "^4.5.4",
+        "vite": "^2.7.10"
     }
 }
