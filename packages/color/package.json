@@ -32,6 +32,7 @@
         "doc:stats": "tools:module-stats",
         "pub": "yarn npm publish --access public",
         "test": "testament test",
+        "tool:maxchroma": "tools:node-esm tools/max-chroma.ts",
         "tool:swatches": "tools:node-esm tools/index.ts"
     },
     "dependencies": {

@@ -3,6 +3,8 @@ import { mix, mixBilinear } from "@thi.ng/math/mix";
 import { fract } from "@thi.ng/math/prec";
 import { lch } from "./lch/lch.js";
 
+// LUT generated via tools/max-chroma.ts
+/** @internal */
 const MAX_CHROMA = [
     [
         4, 22, 30, 34, 38, 43, 47, 52, 56, 61, 66, 70, 75, 80, 84, 74, 65, 56,
