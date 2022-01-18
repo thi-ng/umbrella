@@ -1,4 +1,4 @@
-import type { FnN, FnN2, FnN3 } from "@thi.ng/api";
+import type { FnN, FnN2, FnN3, FnU2 } from "@thi.ng/api";
 
 /**
  * Returns a value with the magnitude of `x` and the sign of `y`.
@@ -103,3 +103,17 @@ export const ldexp: FnN2 = (x, exp) => x * 2 ** exp;
  * @param y
  */
 export const remainder: FnN2 = (x, y) => x - y * Math.round(x / y);
+
+/**
+ * Computes both the quotient and remainder of the integer division of the
+ * numerator `x` by the denominator `y`.
+ *
+ * @param x
+ * @param y
+ */
+export const ldiv: FnU2<number, [number, number]> = (x, y) => {
+    x |= 0;
+    y |= 0;
+    const q = (x / y) | 0;
+    return [q, x - q * y];
+};
