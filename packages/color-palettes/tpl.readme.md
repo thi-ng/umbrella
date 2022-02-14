@@ -11,30 +11,24 @@ This project is part of the
 
 ## About
 
-${pkg.description}
+${pkg.description} (but has no dependencies)
 
 ## Recent additions
 
 | Preset              | Swatches                                                                                                   |
 |:--------------------|:-----------------------------------------------------------------------------------------------------------|
-| `00uPNyZwgGQhZDUaQ` | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/00uPNyZwgGQhZDUaQ.svg) |
-| `00uPN5nCkNSzg7ri4` | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/00uPN5nCkNSzg7ri4.svg) |
-| `00uPLAKIHr3vJ0xUB` | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/00uPLAKIHr3vJ0xUB.svg) |
-| `00uP6PKyOf1h08rEq` | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/00uP6PKyOf1h08rEq.svg) |
-| `00uOuzh5czMDF0xUE` | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/00uOuzh5czMDF0xUE.svg) |
-| `00uOqryM4SOXgd7S0` | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/00uOqryM4SOXgd7S0.svg) |
-| `00uOogzjozpSchnrp` | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/00uOogzjozpSchnrp.svg) |
-| `00uKBokFLvI0Epxqx` | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/00uKBokFLvI0Epxqx.svg) |
-| `00tAvqx4Pm26XfKhx` | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/00tAvqx4Pm26XfKhx.svg) |
-| `00tAuOG3R9ivBX2gO` | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/00tAuOG3R9ivBX2gO.svg) |
-| `00tAsz6uflx4ciwdA` | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/00tAsz6uflx4ciwdA.svg) |
-| `00tAq6qSD1erL65L8` | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/00tAq6qSD1erL65L8.svg) |
-| `00tAnftt5xsJlMhDZ` | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/00tAnftt5xsJlMhDZ.svg) |
-| `00tAmMznURg0qH4jp` | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/00tAmMznURg0qH4jp.svg) |
-| `00t03UwzLJ4HO8u5o` | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/00t03UwzLJ4HO8u5o.svg) |
-| `00sz9mhhmiZmgR9r6` | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/00sz9mhhmiZmgR9r6.svg) |
-| `00sz7CFkl88HCRtUW` | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/00sz7CFkl88HCRtUW.svg) |
-| `00sz5Uxo4ByGDH6tQ` | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/00sz5Uxo4ByGDH6tQ.svg) |
+| `014cNjiiOwqOhSKJS` | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/014cNjiiOwqOhSKJS.svg) |
+| `014cMCdTh3bwH8wVB` | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/014cMCdTh3bwH8wVB.svg) |
+| `014cCBZzmDcqRiRMv` | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/014cCBZzmDcqRiRMv.svg) |
+| `014cBhci3KKThfPSX` | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/014cBhci3KKThfPSX.svg) |
+| `014cACEjxmYUHo9fx` | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/014cACEjxmYUHo9fx.svg) |
+| `014c8uRpFlkiHSo9k` | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/014c8uRpFlkiHSo9k.svg) |
+| `014c7dTQjU2TA8F68` | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/014c7dTQjU2TA8F68.svg) |
+| `014c6avJ50DRl2NSK` | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/014c6avJ50DRl2NSK.svg) |
+| `014c5Q2Qc8D1tNdAn` | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/014c5Q2Qc8D1tNdAn.svg) |
+| `014c40MQuHMbjhkDu` | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/014c40MQuHMbjhkDu.svg) |
+| `013j3Yj2Vj9r3oaql` | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/013j3Yj2Vj9r3oaql.svg) |
+| `013j2ZZYIvwFGp4yL` | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/013j2ZZYIvwFGp4yL.svg) |
 
 ## All themes
 
@@ -49,8 +43,12 @@ be. Any pointers to workarounds/solutions are appreciated...):
 | Preset               | Swatches                                                                                                    |
 |:---------------------|:------------------------------------------------------------------------------------------------------------|
 | `00uPN5nCkNSzg7ri4`  | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/00uPN5nCkNSzg7ri4.svg)  |
+| `014c6avJ50DRl2NSK`  | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/014c6avJ50DRl2NSK.svg)  |
 | `00Q9Yxm7DrZXqTkyS`  | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/00Q9Yxm7DrZXqTkyS.svg)  |
+| `014cNjiiOwqOhSKJS`  | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/014cNjiiOwqOhSKJS.svg)  |
 | `00QMA8h2BH69zyEk0`  | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/00QMA8h2BH69zyEk0.svg)  |
+| `00uPNyZwgGQhZDUaQ`  | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/00uPNyZwgGQhZDUaQ.svg)  |
+| `014cMCdTh3bwH8wVB`  | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/014cMCdTh3bwH8wVB.svg)  |
 | `00uKBokFLvI0Epxqx`  | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/00uKBokFLvI0Epxqx.svg)  |
 | `00QLn7G59JhKtuUs0`  | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/00QLn7G59JhKtuUs0.svg)  |
 | `00tAuOG3R9ivBX2gO`  | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/00tAuOG3R9ivBX2gO.svg)  |
@@ -58,7 +56,6 @@ be. Any pointers to workarounds/solutions are appreciated...):
 | `00uPLAKIHr3vJ0xUB`  | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/00uPLAKIHr3vJ0xUB.svg)  |
 | `00QLNHv6JW1bL031O`  | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/00QLNHv6JW1bL031O.svg)  |
 | `00uP6PKyOf1h08rEq`  | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/00uP6PKyOf1h08rEq.svg)  |
-| `00uPNyZwgGQhZDUaQ`  | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/00uPNyZwgGQhZDUaQ.svg)  |
 | `00qIR1FROo31bNduE`  | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/00qIR1FROo31bNduE.svg)  |
 | `00iGNImQqINC9iQ1D`  | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/00iGNImQqINC9iQ1D.svg)  |
 | `00QLj3fsFErIl5W0b`  | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/00QLj3fsFErIl5W0b.svg)  |
@@ -71,6 +68,7 @@ be. Any pointers to workarounds/solutions are appreciated...):
 | `00qAPJU0vXnWXxf1k`  | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/00qAPJU0vXnWXxf1k.svg)  |
 | `00qAPJp5JxBfA0TbH`  | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/00qAPJp5JxBfA0TbH.svg)  |
 | `00QLNIVe1AkurVqYj`  | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/00QLNIVe1AkurVqYj.svg)  |
+| `014c5Q2Qc8D1tNdAn`  | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/014c5Q2Qc8D1tNdAn.svg)  |
 | `00QLn7XfPKvMKCrzO`  | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/00QLn7XfPKvMKCrzO.svg)  |
 | `00QMEZl7ulP3f2WaX`  | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/00QMEZl7ulP3f2WaX.svg)  |
 | `00QMKP9yh8XlJYcgM`  | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/00QMKP9yh8XlJYcgM.svg)  |
@@ -86,6 +84,7 @@ be. Any pointers to workarounds/solutions are appreciated...):
 | `00qIPBCHil9FW2idX`  | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/00qIPBCHil9FW2idX.svg)  |
 | `00QMSSCjsJpojbpYz`  | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/00QMSSCjsJpojbpYz.svg)  |
 | `00qAPJlU7mDXqCkiN`  | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/00qAPJlU7mDXqCkiN.svg)  |
+| `013j2ZZYIvwFGp4yL`  | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/013j2ZZYIvwFGp4yL.svg)  |
 | `00QLfPm4UfkMiaicq`  | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/00QLfPm4UfkMiaicq.svg)  |
 | `00QLcP0k2fPAz0KHR`  | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/00QLcP0k2fPAz0KHR.svg)  |
 | `00qAPJgQvoDkRkQTN`  | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/00qAPJgQvoDkRkQTN.svg)  |
@@ -129,13 +128,16 @@ be. Any pointers to workarounds/solutions are appreciated...):
 | `00QLn7BH2doQfh4Yw` | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/00QLn7BH2doQfh4Yw.svg) |
 | `00bYcixZkofJhLJ8w` | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/00bYcixZkofJhLJ8w.svg) |
 | `00RTRDOtbFF8KFNH9` | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/00RTRDOtbFF8KFNH9.svg) |
+| `014cACEjxmYUHo9fx` | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/014cACEjxmYUHo9fx.svg) |
 | `00QMA8tedClukB7IL` | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/00QMA8tedClukB7IL.svg) |
 | `00tAq6qSD1erL65L8` | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/00tAq6qSD1erL65L8.svg) |
 | `00QMSSEJXJOUdMoSj` | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/00QMSSEJXJOUdMoSj.svg) |
+| `014cBhci3KKThfPSX` | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/014cBhci3KKThfPSX.svg) |
 | `00sz9mhhmiZmgR9r6` | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/00sz9mhhmiZmgR9r6.svg) |
 | `00RYyJ4jHYfMF6yfy` | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/00RYyJ4jHYfMF6yfy.svg) |
 | `00qHzDGNbubSeZXrS` | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/00qHzDGNbubSeZXrS.svg) |
 | `00QMSSK2AEOwErS5M` | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/00QMSSK2AEOwErS5M.svg) |
+| `014c8uRpFlkiHSo9k` | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/014c8uRpFlkiHSo9k.svg) |
 | `00bYiZ8YHLsLMA7j3` | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/00bYiZ8YHLsLMA7j3.svg) |
 | `00QMEZSYbyUNt0041` | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/00QMEZSYbyUNt0041.svg) |
 | `00bYcivY8Jqx8nsiR` | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/00bYcivY8Jqx8nsiR.svg) |
@@ -165,11 +167,14 @@ be. Any pointers to workarounds/solutions are appreciated...):
 | Preset               | Swatches                                                                                                    |
 |:---------------------|:------------------------------------------------------------------------------------------------------------|
 | `00QMA8SkIwjW5KEch`  | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/00QMA8SkIwjW5KEch.svg)  |
+| `013j3Yj2Vj9r3oaql`  | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/013j3Yj2Vj9r3oaql.svg)  |
 | `00qHekhPJJlwTDcMi`  | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/00qHekhPJJlwTDcMi.svg)  |
 | `00QMEZzTrk06iVgaK`  | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/00QMEZzTrk06iVgaK.svg)  |
 | `00QLNIKFhjs5rJCjr`  | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/00QLNIKFhjs5rJCjr.svg)  |
 | `00QLj3PylHkh8qY2R`  | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/00QLj3PylHkh8qY2R.svg)  |
+| `014cCBZzmDcqRiRMv`  | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/014cCBZzmDcqRiRMv.svg)  |
 | `00tAsz6uflx4ciwdA`  | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/00tAsz6uflx4ciwdA.svg)  |
+| `014c40MQuHMbjhkDu`  | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/014c40MQuHMbjhkDu.svg)  |
 | `00bYcj0VC9wmmKNm5`  | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/00bYcj0VC9wmmKNm5.svg)  |
 | `00tAmMznURg0qH4jp`  | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/00tAmMznURg0qH4jp.svg)  |
 | `00bYiYyzA6ODPIC8V`  | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/00bYiYyzA6ODPIC8V.svg)  |
@@ -197,6 +202,7 @@ be. Any pointers to workarounds/solutions are appreciated...):
 | `00RnZfzWN7Ewml76I`  | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/00RnZfzWN7Ewml76I.svg)  |
 | `00PBWZvgJvi4gdxGj`  | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/00PBWZvgJvi4gdxGj.svg)  |
 | `00RB4I89XiwNSlobH`  | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/00RB4I89XiwNSlobH.svg)  |
+| `014c7dTQjU2TA8F68`  | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/014c7dTQjU2TA8F68.svg)  |
 | `00g3JvJ0ZydpXXvEC`  | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/00g3JvJ0ZydpXXvEC.svg)  |
 | `00gSFutQrW4MxihX7`  | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/00gSFutQrW4MxihX7.svg)  |
 | `00qAgiXIRZqDXJsI8`  | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/00qAgiXIRZqDXJsI8.svg)  |
