@@ -1,6 +1,6 @@
 import type { ISubscriber } from "@thi.ng/rstream";
 import { mapIndexed } from "@thi.ng/transducers/map-indexed";
-import { handleTab } from "./utils";
+import { handleTab } from "./utils.js";
 
 // converted from:
 // https://github.com/IBM/carbon-icons/blob/develop/src/svg/copy.svg

@@ -1,43 +1,12 @@
-#!/usr/bin/env node
+#!/usr/bin/env bash
 
-const fs = require("fs");
-const path = require("path");
-const program = require("commander");
-const package = require("../package.json");
-const convert = require("./convert");
-const format = require("./format");
-const utils = require("./utils");
+# https://stackoverflow.com/a/246128/294515
+SOURCE="${BASH_SOURCE[0]}"
+while [ -h "$SOURCE" ]; do
+  DIR="$( cd -P "$( dirname "$SOURCE" )" >/dev/null 2>&1 && pwd )"
+  SOURCE="$(readlink "$SOURCE")"
+  [[ $SOURCE != /* ]] && SOURCE="$DIR/$SOURCE"
+done
+DIR="$( cd -P "$( dirname "$SOURCE" )" >/dev/null 2>&1 && pwd )"
 
-program
-    .version(package.version)
-    .usage("[options] <file>")
-    .option("-t, --tags <items>", "remove tags from tree", utils.asSet)
-    .option("-a, --attribs <items>", "remove attribs from tree", utils.asSet)
-    .option("-v, --var <name>", "generate TS export var decl", utils.varName)
-    .option("-s, --single-quote", "use single quotes")
-    .option("-p, --no-pretty", "disable pretty printing")
-    .parse(process.argv);
-
-if (program.args.length == 0) {
-    console.log("Please run: hiccup --help");
-    process.exit(1);
-}
-
-const xmlFile = path.resolve(program.args[0]);
-const quote = program.singleQuote ? `'` : `"`;
-const copts = {
-    format: program.pretty ?
-        { ...format.DEFAULT_FORMAT, quote, indent: 4 } :
-        { ...format.COMPACT_FORMAT, quote },
-    removeAttribs: program.attribs || new Set(),
-    removeTags: program.tags || new Set(),
-};
-
-const xml = fs.readFileSync(xmlFile).toString();
-const hiccup = convert.convertXML(xml, copts);
-
-console.log(
-    program.var ?
-        `export const ${program.var} =\n${hiccup};` :
-        hiccup
-);
+/usr/bin/env node "$DIR/../cli.js" "$@"

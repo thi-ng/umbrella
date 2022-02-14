@@ -8,7 +8,7 @@ import { map } from "@thi.ng/transducers/map";
 import { pairs } from "@thi.ng/transducers/pairs";
 import { push } from "@thi.ng/transducers/push";
 import { transduce } from "@thi.ng/transducers/transduce";
-import { DEFAULT_FORMAT, format, type FormatOpts } from "./format";
+import { DEFAULT_FORMAT, format, type FormatOpts } from "./format.js";
 
 export interface ConversionOpts {
     format: FormatOpts;

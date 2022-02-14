@@ -1,9 +1,9 @@
 {
     "extends": "../../tsconfig.json",
     "compilerOptions": {
-        "outDir": "bin",
-        "target": "es6",
-        "module": "commonjs",
+        "outDir": ".",
+        "target": "es2020",
+        "module": "es2020",
         "declaration": false,
         "declarationMap": false,
         "sourceMap": false
