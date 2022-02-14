@@ -26,3 +26,11 @@ export function map<A, B>(fn: Fn<A, B>, src?: Iterable<A>): any {
               return compR(rfn, (acc, x: A) => r(acc, fn(x)));
           };
 }
+
+/**
+ * Convenience wrapper for {@link map} to transform an iterable with given `fn`
+ * and immediatedly collect results into an array.
+ */
+export const mapA = <A, B>(fn: Fn<A, B>, src: Iterable<A>): B[] => [
+    ...map(fn, src),
+];
