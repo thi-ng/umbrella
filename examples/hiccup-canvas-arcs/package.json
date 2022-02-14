@@ -34,7 +34,7 @@
         "screenshot": "examples/hiccup-canvas-arcs.png"
     },
     "devDependencies": {
-        "typescript": "^4.5.4",
-        "vite": "^2.7.10"
+        "typescript": "^4.5.5",
+        "vite": "^2.8.2"
     }
 }

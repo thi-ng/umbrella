@@ -6,6 +6,7 @@
     "repository": "https://github.com/thi-ng/umbrella",
     "author": "Karsten Schmidt <k+npm@thi.ng>",
     "license": "Apache-2.0",
+    "type": "module",
     "scripts": {
         "start": "vite --open",
         "build": "tsc && vite build",
@@ -13,6 +14,7 @@
         "preview": "vite preview"
     },
     "dependencies": {
+        "@thi.ng/args": "workspace:^",
         "@thi.ng/arrays": "workspace:^",
         "@thi.ng/checks": "workspace:^",
         "@thi.ng/defmulti": "workspace:^",
@@ -20,8 +22,7 @@
         "@thi.ng/sax": "workspace:^",
         "@thi.ng/strings": "workspace:^",
         "@thi.ng/transducers": "workspace:^",
-        "@thi.ng/transducers-hdom": "workspace:^",
-        "commander": "^8.3.0"
+        "@thi.ng/transducers-hdom": "workspace:^"
     },
     "browser": {
         "process": false,
@@ -38,7 +39,7 @@
         "screenshot": "examples/xml-converter.png"
     },
     "devDependencies": {
-        "typescript": "^4.5.4",
-        "vite": "^2.7.10"
+        "typescript": "^4.5.5",
+        "vite": "^2.8.2"
     }
 }
