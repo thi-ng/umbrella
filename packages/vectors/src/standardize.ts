@@ -22,7 +22,7 @@ export const standardize = (
     a: ReadonlyVec,
     isCentered = false
 ) => {
-    out = isCentered ? center(out, a) : !out ? a : set(out, a);
+    out = !isCentered ? center(out, a) : !out ? a : set(out, a);
     const d = sd(out, true);
     return d > 0 ? mulN(null, out, 1 / d) : out;
 };
