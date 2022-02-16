@@ -108,11 +108,11 @@ for (let gid of [...grouped.keys()].sort(compareNumDesc)) {
 
 writeFileSync(`export/table.md`, sections.join("\n\n"));
 
-const RECENT_ID = "00sz5Uxo4ByGDH6tQ";
+const RECENT_ID = "014xxHPGJc41M07kL";
 
 const recents = Object.keys(THEMES)
     .sort((a, b) => (a < b ? 1 : a > b ? -1 : 0))
-    .filter((x) => x >= RECENT_ID)
+    .filter((x) => x > RECENT_ID)
     .map((id) => [`\`${id}\``, `![](${BASE_URL}/${id}.svg)`]);
 
 writeFileSync(
