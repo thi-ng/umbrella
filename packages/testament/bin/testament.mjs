@@ -1,15 +1,15 @@
 #!/usr/bin/env node
 
-const src = "cli.js";
 import { spawn } from "child_process";
 import { join } from "path";
 const [node, toolsDir, ...args] = process.argv;
 
-const cli = join(toolsDir, "..", "..", src);
-const p = spawn(node, ["--loader", "ts-node/esm", cli, ...args]);
+const cli = join(toolsDir, "..", "..", "cli.js");
+const child = spawn(node, ["--loader", "ts-node/esm", cli, ...args]);
 
-p.stdout.pipe(process.stdout);
-p.stderr.on('data', d => {
-  const dStr = d.toString().trim();
-  !dStr.includes("ExperimentalWarning") ? console.log(dStr) : "";
+child.stderr.on("data", (d) => {
+    const dStr = d.toString().trim();
+    !dStr.includes("ExperimentalWarning") ? console.log(dStr) : "";
 });
+child.on("exit", (err) => process.exit(err));
+child.stdout.pipe(process.stdout);
