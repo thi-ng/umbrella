@@ -1,4 +1,5 @@
 export * from "./api.js";
+export * from "./arg-sort.js";
 export * from "./binary-search.js";
 export * from "./bisect.js";
 export * from "./ends-with.js";
