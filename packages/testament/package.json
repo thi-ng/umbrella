@@ -36,14 +36,14 @@
     },
     "dependencies": {
         "@thi.ng/logger": "^1.1.3",
-        "chokidar": "^3.5.2"
+        "chokidar": "^3.5.3"
     },
     "devDependencies": {
         "@microsoft/api-extractor": "^7.19.4",
         "rimraf": "^3.0.2",
         "tools": "workspace:^",
-        "typedoc": "^0.22.11",
-        "typescript": "^4.5.5"
+        "typedoc": "^0.22.13",
+        "typescript": "^4.6.2"
     },
     "keywords": [
         "typescript"

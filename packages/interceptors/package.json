@@ -46,8 +46,8 @@
         "@thi.ng/testament": "^0.2.3",
         "rimraf": "^3.0.2",
         "tools": "workspace:^",
-        "typedoc": "^0.22.11",
-        "typescript": "^4.5.5"
+        "typedoc": "^0.22.13",
+        "typescript": "^4.6.2"
     },
     "keywords": [
         "async",

@@ -31,8 +31,8 @@ __metadata:
     "@thi.ng/rstream": "workspace:^"
     "@thi.ng/transducers": "workspace:^"
     "@thi.ng/transducers-hdom": "workspace:^"
-    typescript: ^4.5.5
-    vite: ^2.8.2
+    typescript: ^4.6.2
+    vite: ^2.8.6
   languageName: unknown
   linkType: soft
 
@@ -43,8 +43,8 @@ __metadata:
     "@thi.ng/api": "workspace:^"
     "@thi.ng/hdom": "workspace:^"
     "@thi.ng/interceptors": "workspace:^"
-    typescript: ^4.5.5
-    vite: ^2.8.2
+    typescript: ^4.6.2
+    vite: ^2.8.6
   languageName: unknown
   linkType: soft
 
@@ -59,8 +59,8 @@ __metadata:
     "@thi.ng/transducers": "workspace:^"
     "@thi.ng/transducers-binary": "workspace:^"
     "@thi.ng/transducers-hdom": "workspace:^"
-    typescript: ^4.5.5
-    vite: ^2.8.2
+    typescript: ^4.6.2
+    vite: ^2.8.6
   languageName: unknown
   linkType: soft
 
@@ -79,8 +79,8 @@ __metadata:
     "@thi.ng/transducers": "workspace:^"
     "@thi.ng/transducers-hdom": "workspace:^"
     "@thi.ng/vectors": "workspace:^"
-    typescript: ^4.5.5
-    vite: ^2.8.2
+    typescript: ^4.6.2
+    vite: ^2.8.6
   languageName: unknown
   linkType: soft
 
@@ -92,8 +92,8 @@ __metadata:
     "@thi.ng/hdom-components": "workspace:^"
     "@thi.ng/transducers": "workspace:^"
     "@thi.ng/transducers-binary": "workspace:^"
-    typescript: ^4.5.5
-    vite: ^2.8.2
+    typescript: ^4.6.2
+    vite: ^2.8.6
   languageName: unknown
   linkType: soft
 
@@ -113,8 +113,8 @@ __metadata:
     "@thi.ng/rstream": "workspace:^"
     "@thi.ng/rstream-dot": "workspace:^"
     "@thi.ng/transducers": "workspace:^"
-    typescript: ^4.5.5
-    vite: ^2.8.2
+    typescript: ^4.6.2
+    vite: ^2.8.6
   languageName: unknown
   linkType: soft
 
@@ -132,7 +132,7 @@ __metadata:
     "@thi.ng/strings": "workspace:^"
     "@thi.ng/transducers": "workspace:^"
     tools: "workspace:^"
-    typescript: ^4.5.5
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -149,11 +149,11 @@ __metadata:
     "@thi.ng/transducers": "workspace:^"
     "@thi.ng/transducers-hdom": "workspace:^"
     "@types/express": ^4.17.13
-    "@types/node": ^17.0.17
-    express: ^4.17.2
-    ts-node: ^10.5.0
-    typescript: ^4.5.5
-    vite: ^2.8.2
+    "@types/node": ^17.0.21
+    express: ^4.17.3
+    ts-node: ^10.7.0
+    typescript: ^4.6.2
+    vite: ^2.8.6
   languageName: unknown
   linkType: soft
 
@@ -171,8 +171,8 @@ __metadata:
     "@thi.ng/transducers": "workspace:^"
     "@thi.ng/transducers-hdom": "workspace:^"
     "@thi.ng/transducers-stats": "workspace:^"
-    typescript: ^4.5.5
-    vite: ^2.8.2
+    typescript: ^4.6.2
+    vite: ^2.8.6
   languageName: unknown
   linkType: soft
 
@@ -183,8 +183,8 @@ __metadata:
     "@thi.ng/api": "workspace:^"
     "@thi.ng/atom": "workspace:^"
     "@thi.ng/hdom": "workspace:^"
-    typescript: ^4.5.5
-    vite: ^2.8.2
+    typescript: ^4.6.2
+    vite: ^2.8.6
   languageName: unknown
   linkType: soft
 
@@ -206,8 +206,8 @@ __metadata:
     "@thi.ng/rstream": "workspace:^"
     "@thi.ng/strings": "workspace:^"
     "@thi.ng/transducers": "workspace:^"
-    typescript: ^4.5.5
-    vite: ^2.8.2
+    typescript: ^4.6.2
+    vite: ^2.8.6
   languageName: unknown
   linkType: soft
 
@@ -222,8 +222,8 @@ __metadata:
     "@thi.ng/rstream-gestures": "workspace:^"
     "@thi.ng/transducers": "workspace:^"
     "@thi.ng/vectors": "workspace:^"
-    typescript: ^4.5.5
-    vite: ^2.8.2
+    typescript: ^4.6.2
+    vite: ^2.8.6
   languageName: unknown
   linkType: soft
 
@@ -244,8 +244,8 @@ __metadata:
     "@thi.ng/strings": "workspace:^"
     "@thi.ng/transducers": "workspace:^"
     "@thi.ng/transducers-hdom": "workspace:^"
-    typescript: ^4.5.5
-    vite: ^2.8.2
+    typescript: ^4.6.2
+    vite: ^2.8.6
   languageName: unknown
   linkType: soft
 
@@ -257,8 +257,8 @@ __metadata:
     "@thi.ng/geom-api": "workspace:^"
     "@thi.ng/hdom": "workspace:^"
     "@thi.ng/hdom-canvas": "workspace:^"
-    typescript: ^4.5.5
-    vite: ^2.8.2
+    typescript: ^4.6.2
+    vite: ^2.8.6
   languageName: unknown
   linkType: soft
 
@@ -271,8 +271,8 @@ __metadata:
     "@thi.ng/geom-fuzz": "workspace:^"
     "@thi.ng/hiccup-canvas": "workspace:^"
     "@thi.ng/rstream": "workspace:^"
-    typescript: ^4.5.5
-    vite: ^2.8.2
+    typescript: ^4.6.2
+    vite: ^2.8.6
   languageName: unknown
   linkType: soft
 
@@ -288,8 +288,8 @@ __metadata:
     "@thi.ng/transducers": "workspace:^"
     "@thi.ng/transducers-hdom": "workspace:^"
     "@thi.ng/vectors": "workspace:^"
-    typescript: ^4.5.5
-    vite: ^2.8.2
+    typescript: ^4.6.2
+    vite: ^2.8.6
   languageName: unknown
   linkType: soft
 
@@ -307,8 +307,8 @@ __metadata:
     "@thi.ng/transducers": "workspace:^"
     "@thi.ng/transducers-hdom": "workspace:^"
     "@thi.ng/vectors": "workspace:^"
-    typescript: ^4.5.5
-    vite: ^2.8.2
+    typescript: ^4.6.2
+    vite: ^2.8.6
   languageName: unknown
   linkType: soft
 
@@ -327,8 +327,8 @@ __metadata:
     "@thi.ng/poisson": "workspace:^"
     "@thi.ng/transducers": "workspace:^"
     "@thi.ng/vectors": "workspace:^"
-    typescript: ^4.5.5
-    vite: ^2.8.2
+    typescript: ^4.6.2
+    vite: ^2.8.6
   languageName: unknown
   linkType: soft
 
@@ -344,8 +344,8 @@ __metadata:
     "@thi.ng/transducers": "workspace:^"
     "@thi.ng/transducers-hdom": "workspace:^"
     "@thi.ng/vectors": "workspace:^"
-    typescript: ^4.5.5
-    vite: ^2.8.2
+    typescript: ^4.6.2
+    vite: ^2.8.6
   languageName: unknown
   linkType: soft
 
@@ -357,8 +357,8 @@ __metadata:
     "@thi.ng/grid-iterators": "workspace:^"
     "@thi.ng/pixel": "workspace:^"
     "@thi.ng/transducers": "workspace:^"
-    typescript: ^4.5.5
-    vite: ^2.8.2
+    typescript: ^4.6.2
+    vite: ^2.8.6
   languageName: unknown
   linkType: soft
 
@@ -367,8 +367,8 @@ __metadata:
   resolution: "@example/hdom-basics@workspace:examples/hdom-basics"
   dependencies:
     "@thi.ng/hdom": "workspace:^"
-    typescript: ^4.5.5
-    vite: ^2.8.2
+    typescript: ^4.6.2
+    vite: ^2.8.6
   languageName: unknown
   linkType: soft
 
@@ -382,8 +382,8 @@ __metadata:
     "@thi.ng/hiccup-css": "workspace:^"
     "@thi.ng/strings": "workspace:^"
     "@thi.ng/transducers": "workspace:^"
-    typescript: ^4.5.5
-    vite: ^2.8.2
+    typescript: ^4.6.2
+    vite: ^2.8.6
   languageName: unknown
   linkType: soft
 
@@ -396,8 +396,8 @@ __metadata:
     "@thi.ng/hex": "workspace:^"
     "@thi.ng/rstream": "workspace:^"
     "@thi.ng/transducers": "workspace:^"
-    typescript: ^4.5.5
-    vite: ^2.8.2
+    typescript: ^4.6.2
+    vite: ^2.8.6
   languageName: unknown
   linkType: soft
 
@@ -410,8 +410,8 @@ __metadata:
     "@thi.ng/math": "workspace:^"
     "@thi.ng/transducers": "workspace:^"
     "@thi.ng/vectors": "workspace:^"
-    typescript: ^4.5.5
-    vite: ^2.8.2
+    typescript: ^4.6.2
+    vite: ^2.8.6
   languageName: unknown
   linkType: soft
 
@@ -426,8 +426,8 @@ __metadata:
     "@thi.ng/transducers": "workspace:^"
     "@thi.ng/transducers-hdom": "workspace:^"
     "@thi.ng/vectors": "workspace:^"
-    typescript: ^4.5.5
-    vite: ^2.8.2
+    typescript: ^4.6.2
+    vite: ^2.8.6
   languageName: unknown
   linkType: soft
 
@@ -443,8 +443,8 @@ __metadata:
     "@thi.ng/random": "workspace:^"
     "@thi.ng/transducers": "workspace:^"
     "@thi.ng/vectors": "workspace:^"
-    typescript: ^4.5.5
-    vite: ^2.8.2
+    typescript: ^4.6.2
+    vite: ^2.8.6
   languageName: unknown
   linkType: soft
 
@@ -465,8 +465,8 @@ __metadata:
     "@thi.ng/transducers": "workspace:^"
     "@thi.ng/transducers-hdom": "workspace:^"
     "@thi.ng/vectors": "workspace:^"
-    typescript: ^4.5.5
-    vite: ^2.8.2
+    typescript: ^4.6.2
+    vite: ^2.8.6
   languageName: unknown
   linkType: soft
 
@@ -482,8 +482,8 @@ __metadata:
     "@thi.ng/interceptors": "workspace:^"
     "@thi.ng/paths": "workspace:^"
     "@thi.ng/transducers": "workspace:^"
-    typescript: ^4.5.5
-    vite: ^2.8.2
+    typescript: ^4.6.2
+    vite: ^2.8.6
   languageName: unknown
   linkType: soft
 
@@ -497,8 +497,8 @@ __metadata:
     "@thi.ng/hdom-components": "workspace:^"
     "@thi.ng/interceptors": "workspace:^"
     "@thi.ng/paths": "workspace:^"
-    typescript: ^4.5.5
-    vite: ^2.8.2
+    typescript: ^4.6.2
+    vite: ^2.8.6
   languageName: unknown
   linkType: soft
 
@@ -508,8 +508,8 @@ __metadata:
   dependencies:
     "@thi.ng/atom": "workspace:^"
     "@thi.ng/hdom": "workspace:^"
-    typescript: ^4.5.5
-    vite: ^2.8.2
+    typescript: ^4.6.2
+    vite: ^2.8.6
   languageName: unknown
   linkType: soft
 
@@ -522,8 +522,8 @@ __metadata:
     "@thi.ng/hiccup": "workspace:^"
     "@thi.ng/paths": "workspace:^"
     "@thi.ng/strings": "workspace:^"
-    typescript: ^4.5.5
-    vite: ^2.8.2
+    typescript: ^4.6.2
+    vite: ^2.8.6
   languageName: unknown
   linkType: soft
 
@@ -532,8 +532,8 @@ __metadata:
   resolution: "@example/hdom-inner-html@workspace:examples/hdom-inner-html"
   dependencies:
     "@thi.ng/hdom": "workspace:^"
-    typescript: ^4.5.5
-    vite: ^2.8.2
+    typescript: ^4.6.2
+    vite: ^2.8.6
   languageName: unknown
   linkType: soft
 
@@ -546,8 +546,8 @@ __metadata:
     "@thi.ng/rstream": "workspace:^"
     "@thi.ng/transducers": "workspace:^"
     "@thi.ng/transducers-hdom": "workspace:^"
-    typescript: ^4.5.5
-    vite: ^2.8.2
+    typescript: ^4.6.2
+    vite: ^2.8.6
   languageName: unknown
   linkType: soft
 
@@ -557,8 +557,8 @@ __metadata:
   dependencies:
     "@thi.ng/hdom": "workspace:^"
     "@thi.ng/paths": "workspace:^"
-    typescript: ^4.5.5
-    vite: ^2.8.2
+    typescript: ^4.6.2
+    vite: ^2.8.6
   languageName: unknown
   linkType: soft
 
@@ -567,8 +567,8 @@ __metadata:
   resolution: "@example/hdom-skip-nested@workspace:examples/hdom-skip-nested"
   dependencies:
     "@thi.ng/hdom": "workspace:^"
-    typescript: ^4.5.5
-    vite: ^2.8.2
+    typescript: ^4.6.2
+    vite: ^2.8.6
   languageName: unknown
   linkType: soft
 
@@ -577,8 +577,8 @@ __metadata:
   resolution: "@example/hdom-skip@workspace:examples/hdom-skip"
   dependencies:
     "@thi.ng/hdom": "workspace:^"
-    typescript: ^4.5.5
-    vite: ^2.8.2
+    typescript: ^4.6.2
+    vite: ^2.8.6
   languageName: unknown
   linkType: soft
 
@@ -589,8 +589,8 @@ __metadata:
     "@thi.ng/api": "workspace:^"
     "@thi.ng/hdom": "workspace:^"
     "@thi.ng/paths": "workspace:^"
-    typescript: ^4.5.5
-    vite: ^2.8.2
+    typescript: ^4.6.2
+    vite: ^2.8.6
   languageName: unknown
   linkType: soft
 
@@ -600,8 +600,8 @@ __metadata:
   dependencies:
     "@thi.ng/hdom": "workspace:^"
     "@thi.ng/hdom-components": "workspace:^"
-    typescript: ^4.5.5
-    vite: ^2.8.2
+    typescript: ^4.6.2
+    vite: ^2.8.6
   languageName: unknown
   linkType: soft
 
@@ -612,8 +612,8 @@ __metadata:
     "@thi.ng/api": "workspace:^"
     "@thi.ng/hdom": "workspace:^"
     "@thi.ng/transducers": "workspace:^"
-    typescript: ^4.5.5
-    vite: ^2.8.2
+    typescript: ^4.6.2
+    vite: ^2.8.6
   languageName: unknown
   linkType: soft
 
@@ -629,8 +629,8 @@ __metadata:
     "@thi.ng/rstream": "workspace:^"
     "@thi.ng/transducers": "workspace:^"
     "@thi.ng/vectors": "workspace:^"
-    typescript: ^4.5.5
-    vite: ^2.8.2
+    typescript: ^4.6.2
+    vite: ^2.8.6
   languageName: unknown
   linkType: soft
 
@@ -643,8 +643,8 @@ __metadata:
     "@thi.ng/hdom": "workspace:^"
     "@thi.ng/hdom-components": "workspace:^"
     "@thi.ng/hiccup": "workspace:^"
-    typescript: ^4.5.5
-    vite: ^2.8.2
+    typescript: ^4.6.2
+    vite: ^2.8.6
   languageName: unknown
   linkType: soft
 
@@ -658,8 +658,8 @@ __metadata:
     "@thi.ng/layout": "workspace:^"
     "@thi.ng/rstream": "workspace:^"
     "@thi.ng/rstream-gestures": "workspace:^"
-    typescript: ^4.5.5
-    vite: ^2.8.2
+    typescript: ^4.6.2
+    vite: ^2.8.6
   languageName: unknown
   linkType: soft
 
@@ -683,8 +683,8 @@ __metadata:
     "@thi.ng/transducers-hdom": "workspace:^"
     "@thi.ng/transducers-stats": "workspace:^"
     "@thi.ng/vectors": "workspace:^"
-    typescript: ^4.5.5
-    vite: ^2.8.2
+    typescript: ^4.6.2
+    vite: ^2.8.6
   languageName: unknown
   linkType: soft
 
@@ -696,8 +696,8 @@ __metadata:
     "@thi.ng/atom": "workspace:^"
     "@thi.ng/hdom": "workspace:^"
     "@thi.ng/interceptors": "workspace:^"
-    typescript: ^4.5.5
-    vite: ^2.8.2
+    typescript: ^4.6.2
+    vite: ^2.8.6
   languageName: unknown
   linkType: soft
 
@@ -709,8 +709,8 @@ __metadata:
     "@thi.ng/hdom": "workspace:^"
     "@thi.ng/interceptors": "workspace:^"
     "@thi.ng/transducers": "workspace:^"
-    typescript: ^4.5.5
-    vite: ^2.8.2
+    typescript: ^4.6.2
+    vite: ^2.8.6
   languageName: unknown
   linkType: soft
 
@@ -726,8 +726,8 @@ __metadata:
     "@thi.ng/math": "workspace:^"
     "@thi.ng/transducers": "workspace:^"
     "@thi.ng/vectors": "workspace:^"
-    typescript: ^4.5.5
-    vite: ^2.8.2
+    typescript: ^4.6.2
+    vite: ^2.8.6
   languageName: unknown
   linkType: soft
 
@@ -737,8 +737,8 @@ __metadata:
   dependencies:
     "@thi.ng/hdom": "workspace:^"
     "@thi.ng/transducers": "workspace:^"
-    typescript: ^4.5.5
-    vite: ^2.8.2
+    typescript: ^4.6.2
+    vite: ^2.8.6
   languageName: unknown
   linkType: soft
 
@@ -751,8 +751,8 @@ __metadata:
     "@thi.ng/expose": "workspace:^"
     "@thi.ng/hdom": "workspace:^"
     "@thi.ng/strings": "workspace:^"
-    typescript: ^4.5.5
-    vite: ^2.8.2
+    typescript: ^4.6.2
+    vite: ^2.8.6
   languageName: unknown
   linkType: soft
 
@@ -770,8 +770,8 @@ __metadata:
     "@thi.ng/strings": "workspace:^"
     "@thi.ng/transducers": "workspace:^"
     "@thi.ng/transducers-hdom": "workspace:^"
-    typescript: ^4.5.5
-    vite: ^2.8.2
+    typescript: ^4.6.2
+    vite: ^2.8.6
   languageName: unknown
   linkType: soft
 
@@ -784,8 +784,8 @@ __metadata:
     "@thi.ng/rstream": "workspace:^"
     "@thi.ng/transducers": "workspace:^"
     "@thi.ng/transducers-hdom": "workspace:^"
-    typescript: ^4.5.5
-    vite: ^2.8.2
+    typescript: ^4.6.2
+    vite: ^2.8.6
   languageName: unknown
   linkType: soft
 
@@ -799,8 +799,8 @@ __metadata:
     "@thi.ng/rstream-gestures": "workspace:^"
     "@thi.ng/transducers": "workspace:^"
     "@thi.ng/transducers-hdom": "workspace:^"
-    typescript: ^4.5.5
-    vite: ^2.8.2
+    typescript: ^4.6.2
+    vite: ^2.8.6
   languageName: unknown
   linkType: soft
 
@@ -817,7 +817,7 @@ __metadata:
     "@thi.ng/strings": "workspace:^"
     "@thi.ng/transducers": "workspace:^"
     tools: "workspace:^"
-    typescript: ^4.5.5
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -838,8 +838,8 @@ __metadata:
     "@thi.ng/transducers": "workspace:^"
     "@thi.ng/transducers-binary": "workspace:^"
     "@ygoe/msgpack": ^1.0.3
-    typescript: ^4.5.5
-    vite: ^2.8.2
+    typescript: ^4.6.2
+    vite: ^2.8.6
   languageName: unknown
   linkType: soft
 
@@ -849,8 +849,8 @@ __metadata:
   dependencies:
     "@thi.ng/pixel": "workspace:^"
     "@thi.ng/porter-duff": "workspace:^"
-    typescript: ^4.5.5
-    vite: ^2.8.2
+    typescript: ^4.6.2
+    vite: ^2.8.6
   languageName: unknown
   linkType: soft
 
@@ -861,8 +861,8 @@ __metadata:
     "@thi.ng/api": "workspace:^"
     "@thi.ng/pixel": "workspace:^"
     "@thi.ng/pixel-dither": "workspace:^"
-    typescript: ^4.5.5
-    vite: ^2.8.2
+    typescript: ^4.6.2
+    vite: ^2.8.6
   languageName: unknown
   linkType: soft
 
@@ -874,8 +874,8 @@ __metadata:
     "@thi.ng/color-palettes": "workspace:^"
     "@thi.ng/pixel": "workspace:^"
     "@thi.ng/pixel-dither": "workspace:^"
-    typescript: ^4.5.5
-    vite: ^2.8.2
+    typescript: ^4.6.2
+    vite: ^2.8.6
   languageName: unknown
   linkType: soft
 
@@ -892,8 +892,8 @@ __metadata:
     "@thi.ng/rdom": "workspace:^"
     "@thi.ng/rstream": "workspace:^"
     "@thi.ng/transducers": "workspace:^"
-    typescript: ^4.5.5
-    vite: ^2.8.2
+    typescript: ^4.6.2
+    vite: ^2.8.6
   languageName: unknown
   linkType: soft
 
@@ -906,7 +906,7 @@ __metadata:
     "@thi.ng/pointfree": "workspace:^"
     "@thi.ng/pointfree-lang": "workspace:^"
     tools: "workspace:^"
-    typescript: ^4.5.5
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -919,8 +919,8 @@ __metadata:
     "@thi.ng/math": "workspace:^"
     "@thi.ng/poisson": "workspace:^"
     "@thi.ng/vectors": "workspace:^"
-    typescript: ^4.5.5
-    vite: ^2.8.2
+    typescript: ^4.6.2
+    vite: ^2.8.6
   languageName: unknown
   linkType: soft
 
@@ -933,8 +933,8 @@ __metadata:
     "@thi.ng/rstream": "workspace:^"
     "@thi.ng/transducers": "workspace:^"
     "@thi.ng/transducers-hdom": "workspace:^"
-    typescript: ^4.5.5
-    vite: ^2.8.2
+    typescript: ^4.6.2
+    vite: ^2.8.6
   languageName: unknown
   linkType: soft
 
@@ -944,8 +944,8 @@ __metadata:
   dependencies:
     "@thi.ng/pixel": "workspace:^"
     "@thi.ng/porter-duff": "workspace:^"
-    typescript: ^4.5.5
-    vite: ^2.8.2
+    typescript: ^4.6.2
+    vite: ^2.8.6
   languageName: unknown
   linkType: soft
 
@@ -960,8 +960,8 @@ __metadata:
     "@thi.ng/ramp": "workspace:^"
     "@thi.ng/transducers": "workspace:^"
     "@thi.ng/vectors": "workspace:^"
-    typescript: ^4.5.5
-    vite: ^2.8.2
+    typescript: ^4.6.2
+    vite: ^2.8.6
   languageName: unknown
   linkType: soft
 
@@ -974,8 +974,8 @@ __metadata:
     "@thi.ng/rdom": "workspace:^"
     "@thi.ng/rstream": "workspace:^"
     "@thi.ng/transducers": "workspace:^"
-    typescript: ^4.5.5
-    vite: ^2.8.2
+    typescript: ^4.6.2
+    vite: ^2.8.6
   languageName: unknown
   linkType: soft
 
@@ -988,8 +988,8 @@ __metadata:
     "@thi.ng/rdom": "workspace:^"
     "@thi.ng/rstream": "workspace:^"
     "@thi.ng/transducers": "workspace:^"
-    typescript: ^4.5.5
-    vite: ^2.8.2
+    typescript: ^4.6.2
+    vite: ^2.8.6
   languageName: unknown
   linkType: soft
 
@@ -1002,8 +1002,8 @@ __metadata:
     "@thi.ng/hiccup-html": "workspace:^"
     "@thi.ng/rdom": "workspace:^"
     "@thi.ng/transducers": "workspace:^"
-    typescript: ^4.5.5
-    vite: ^2.8.2
+    typescript: ^4.6.2
+    vite: ^2.8.6
   languageName: unknown
   linkType: soft
 
@@ -1018,8 +1018,8 @@ __metadata:
     "@thi.ng/rdom-canvas": "workspace:^"
     "@thi.ng/rstream": "workspace:^"
     "@thi.ng/transducers": "workspace:^"
-    typescript: ^4.5.5
-    vite: ^2.8.2
+    typescript: ^4.6.2
+    vite: ^2.8.6
   languageName: unknown
   linkType: soft
 
@@ -1037,8 +1037,8 @@ __metadata:
     "@thi.ng/rstream": "workspace:^"
     "@thi.ng/transducers": "workspace:^"
     "@ygoe/msgpack": ^1.0.3
-    typescript: ^4.5.5
-    vite: ^2.8.2
+    typescript: ^4.6.2
+    vite: ^2.8.6
   languageName: unknown
   linkType: soft
 
@@ -1053,8 +1053,8 @@ __metadata:
     "@thi.ng/rstream": "workspace:^"
     "@thi.ng/transducers": "workspace:^"
     "@thi.ng/vectors": "workspace:^"
-    typescript: ^4.5.5
-    vite: ^2.8.2
+    typescript: ^4.6.2
+    vite: ^2.8.6
   languageName: unknown
   linkType: soft
 
@@ -1073,8 +1073,8 @@ __metadata:
     "@thi.ng/transducers": "workspace:^"
     "@thi.ng/transducers-hdom": "workspace:^"
     "@thi.ng/vectors": "workspace:^"
-    typescript: ^4.5.5
-    vite: ^2.8.2
+    typescript: ^4.6.2
+    vite: ^2.8.6
   languageName: unknown
   linkType: soft
 
@@ -1088,8 +1088,8 @@ __metadata:
     "@thi.ng/hdom": "workspace:^"
     "@thi.ng/interceptors": "workspace:^"
     "@thi.ng/router": "workspace:^"
-    typescript: ^4.5.5
-    vite: ^2.8.2
+    typescript: ^4.6.2
+    vite: ^2.8.6
   languageName: unknown
   linkType: soft
 
@@ -1106,8 +1106,8 @@ __metadata:
     "@thi.ng/rstream-gestures": "workspace:^"
     "@thi.ng/rstream-graph": "workspace:^"
     "@thi.ng/transducers": "workspace:^"
-    typescript: ^4.5.5
-    vite: ^2.8.2
+    typescript: ^4.6.2
+    vite: ^2.8.6
   languageName: unknown
   linkType: soft
 
@@ -1120,8 +1120,8 @@ __metadata:
     "@thi.ng/rstream": "workspace:^"
     "@thi.ng/transducers": "workspace:^"
     "@thi.ng/transducers-hdom": "workspace:^"
-    typescript: ^4.5.5
-    vite: ^2.8.2
+    typescript: ^4.6.2
+    vite: ^2.8.6
   languageName: unknown
   linkType: soft
 
@@ -1142,8 +1142,8 @@ __metadata:
     "@thi.ng/rstream": "workspace:^"
     "@thi.ng/rstream-graph": "workspace:^"
     "@thi.ng/transducers": "workspace:^"
-    typescript: ^4.5.5
-    vite: ^2.8.2
+    typescript: ^4.6.2
+    vite: ^2.8.6
   languageName: unknown
   linkType: soft
 
@@ -1154,8 +1154,8 @@ __metadata:
     "@thi.ng/rstream": "workspace:^"
     "@thi.ng/transducers": "workspace:^"
     "@thi.ng/transducers-hdom": "workspace:^"
-    typescript: ^4.5.5
-    vite: ^2.8.2
+    typescript: ^4.6.2
+    vite: ^2.8.6
   languageName: unknown
   linkType: soft
 
@@ -1179,8 +1179,8 @@ __metadata:
     "@thi.ng/strings": "workspace:^"
     "@thi.ng/transducers": "workspace:^"
     "@thi.ng/transducers-hdom": "workspace:^"
-    typescript: ^4.5.5
-    vite: ^2.8.2
+    typescript: ^4.6.2
+    vite: ^2.8.6
   languageName: unknown
   linkType: soft
 
@@ -1197,8 +1197,8 @@ __metadata:
     "@thi.ng/scenegraph": "workspace:^"
     "@thi.ng/transducers": "workspace:^"
     "@thi.ng/vectors": "workspace:^"
-    typescript: ^4.5.5
-    vite: ^2.8.2
+    typescript: ^4.6.2
+    vite: ^2.8.6
   languageName: unknown
   linkType: soft
 
@@ -1214,8 +1214,8 @@ __metadata:
     "@thi.ng/scenegraph": "workspace:^"
     "@thi.ng/transducers": "workspace:^"
     "@thi.ng/vectors": "workspace:^"
-    typescript: ^4.5.5
-    vite: ^2.8.2
+    typescript: ^4.6.2
+    vite: ^2.8.6
   languageName: unknown
   linkType: soft
 
@@ -1227,8 +1227,8 @@ __metadata:
     "@thi.ng/shader-ast-glsl": "workspace:^"
     "@thi.ng/shader-ast-js": "workspace:^"
     "@thi.ng/shader-ast-stdlib": "workspace:^"
-    typescript: ^4.5.5
-    vite: ^2.8.2
+    typescript: ^4.6.2
+    vite: ^2.8.6
   languageName: unknown
   linkType: soft
 
@@ -1244,8 +1244,8 @@ __metadata:
     "@thi.ng/shader-ast-stdlib": "workspace:^"
     "@thi.ng/webgl": "workspace:^"
     "@thi.ng/webgl-shadertoy": "workspace:^"
-    typescript: ^4.5.5
-    vite: ^2.8.2
+    typescript: ^4.6.2
+    vite: ^2.8.6
   languageName: unknown
   linkType: soft
 
@@ -1258,8 +1258,8 @@ __metadata:
     "@thi.ng/shader-ast-js": "workspace:^"
     "@thi.ng/shader-ast-stdlib": "workspace:^"
     "@thi.ng/webgl": "workspace:^"
-    typescript: ^4.5.5
-    vite: ^2.8.2
+    typescript: ^4.6.2
+    vite: ^2.8.6
   languageName: unknown
   linkType: soft
 
@@ -1272,8 +1272,8 @@ __metadata:
     "@thi.ng/shader-ast-js": "workspace:^"
     "@thi.ng/shader-ast-stdlib": "workspace:^"
     "@thi.ng/webgl": "workspace:^"
-    typescript: ^4.5.5
-    vite: ^2.8.2
+    typescript: ^4.6.2
+    vite: ^2.8.6
   languageName: unknown
   linkType: soft
 
@@ -1286,8 +1286,8 @@ __metadata:
     "@thi.ng/shader-ast-js": "workspace:^"
     "@thi.ng/shader-ast-stdlib": "workspace:^"
     "@thi.ng/webgl": "workspace:^"
-    typescript: ^4.5.5
-    vite: ^2.8.2
+    typescript: ^4.6.2
+    vite: ^2.8.6
   languageName: unknown
   linkType: soft
 
@@ -1301,8 +1301,8 @@ __metadata:
     "@thi.ng/shader-ast-glsl": "workspace:^"
     "@thi.ng/shader-ast-js": "workspace:^"
     "@thi.ng/webgl": "workspace:^"
-    typescript: ^4.5.5
-    vite: ^2.8.2
+    typescript: ^4.6.2
+    vite: ^2.8.6
   languageName: unknown
   linkType: soft
 
@@ -1321,9 +1321,9 @@ __metadata:
     "@thi.ng/shader-ast-stdlib": "workspace:^"
     "@thi.ng/transducers": "workspace:^"
     "@thi.ng/transducers-stats": "workspace:^"
-    esbuild: ^0.14.21
-    typescript: ^4.5.5
-    vite: ^2.8.2
+    esbuild: ^0.14.25
+    typescript: ^4.6.2
+    vite: ^2.8.6
   languageName: unknown
   linkType: soft
 
@@ -1342,8 +1342,8 @@ __metadata:
     "@thi.ng/shader-ast-stdlib": "workspace:^"
     "@thi.ng/vectors": "workspace:^"
     "@thi.ng/webgl": "workspace:^"
-    typescript: ^4.5.5
-    vite: ^2.8.2
+    typescript: ^4.6.2
+    vite: ^2.8.6
   languageName: unknown
   linkType: soft
 
@@ -1360,8 +1360,8 @@ __metadata:
     "@thi.ng/shader-ast": "workspace:^"
     "@thi.ng/vectors": "workspace:^"
     "@thi.ng/webgl": "workspace:^"
-    typescript: ^4.5.5
-    vite: ^2.8.2
+    typescript: ^4.6.2
+    vite: ^2.8.6
   languageName: unknown
   linkType: soft
 
@@ -1375,8 +1375,8 @@ __metadata:
     "@thi.ng/math": "workspace:^"
     "@thi.ng/strings": "workspace:^"
     "@thi.ng/vectors": "workspace:^"
-    typescript: ^4.5.5
-    vite: ^2.8.2
+    typescript: ^4.6.2
+    vite: ^2.8.6
   languageName: unknown
   linkType: soft
 
@@ -1389,8 +1389,8 @@ __metadata:
     "@thi.ng/poisson": "workspace:^"
     "@thi.ng/transducers": "workspace:^"
     "@thi.ng/vectors": "workspace:^"
-    typescript: ^4.5.5
-    vite: ^2.8.2
+    typescript: ^4.6.2
+    vite: ^2.8.6
   languageName: unknown
   linkType: soft
 
@@ -1401,8 +1401,8 @@ __metadata:
     "@thi.ng/hdom": "workspace:^"
     "@thi.ng/math": "workspace:^"
     "@thi.ng/transducers": "workspace:^"
-    typescript: ^4.5.5
-    vite: ^2.8.2
+    typescript: ^4.6.2
+    vite: ^2.8.6
   languageName: unknown
   linkType: soft
 
@@ -1414,8 +1414,8 @@ __metadata:
     "@thi.ng/random": "workspace:^"
     "@thi.ng/strings": "workspace:^"
     "@thi.ng/transducers": "workspace:^"
-    typescript: ^4.5.5
-    vite: ^2.8.2
+    typescript: ^4.6.2
+    vite: ^2.8.6
   languageName: unknown
   linkType: soft
 
@@ -1431,8 +1431,8 @@ __metadata:
     "@thi.ng/hiccup-svg": "workspace:^"
     "@thi.ng/interceptors": "workspace:^"
     "@thi.ng/transducers": "workspace:^"
-    typescript: ^4.5.5
-    vite: ^2.8.2
+    typescript: ^4.6.2
+    vite: ^2.8.6
   languageName: unknown
   linkType: soft
 
@@ -1446,8 +1446,8 @@ __metadata:
     "@thi.ng/strings": "workspace:^"
     "@thi.ng/transducers": "workspace:^"
     "@thi.ng/transducers-hdom": "workspace:^"
-    typescript: ^4.5.5
-    vite: ^2.8.2
+    typescript: ^4.6.2
+    vite: ^2.8.6
   languageName: unknown
   linkType: soft
 
@@ -1458,8 +1458,8 @@ __metadata:
     "@thi.ng/pixel": "workspace:^"
     "@thi.ng/text-canvas": "workspace:^"
     "@thi.ng/text-format": "workspace:^"
-    typescript: ^4.5.5
-    vite: ^2.8.2
+    typescript: ^4.6.2
+    vite: ^2.8.6
   languageName: unknown
   linkType: soft
 
@@ -1473,8 +1473,8 @@ __metadata:
     "@thi.ng/text-canvas": "workspace:^"
     "@thi.ng/text-format": "workspace:^"
     "@thi.ng/vectors": "workspace:^"
-    typescript: ^4.5.5
-    vite: ^2.8.2
+    typescript: ^4.6.2
+    vite: ^2.8.6
   languageName: unknown
   linkType: soft
 
@@ -1486,8 +1486,8 @@ __metadata:
     "@thi.ng/atom": "workspace:^"
     "@thi.ng/hdom": "workspace:^"
     "@thi.ng/transducers": "workspace:^"
-    typescript: ^4.5.5
-    vite: ^2.8.2
+    typescript: ^4.6.2
+    vite: ^2.8.6
   languageName: unknown
   linkType: soft
 
@@ -1498,8 +1498,8 @@ __metadata:
     "@thi.ng/rstream": "workspace:^"
     "@thi.ng/transducers": "workspace:^"
     "@thi.ng/transducers-hdom": "workspace:^"
-    typescript: ^4.5.5
-    vite: ^2.8.2
+    typescript: ^4.6.2
+    vite: ^2.8.6
   languageName: unknown
   linkType: soft
 
@@ -1518,8 +1518,8 @@ __metadata:
     "@thi.ng/paths": "workspace:^"
     "@thi.ng/rstream-query": "workspace:^"
     "@thi.ng/transducers": "workspace:^"
-    typescript: ^4.5.5
-    vite: ^2.8.2
+    typescript: ^4.6.2
+    vite: ^2.8.6
   languageName: unknown
   linkType: soft
 
@@ -1534,8 +1534,8 @@ __metadata:
     "@thi.ng/transducers": "workspace:^"
     "@thi.ng/vectors": "workspace:^"
     "@thi.ng/webgl": "workspace:^"
-    typescript: ^4.5.5
-    vite: ^2.8.2
+    typescript: ^4.6.2
+    vite: ^2.8.6
   languageName: unknown
   linkType: soft
 
@@ -1551,8 +1551,8 @@ __metadata:
     "@thi.ng/rstream": "workspace:^"
     "@thi.ng/shader-ast": "workspace:^"
     "@thi.ng/webgl": "workspace:^"
-    typescript: ^4.5.5
-    vite: ^2.8.2
+    typescript: ^4.6.2
+    vite: ^2.8.6
   languageName: unknown
   linkType: soft
 
@@ -1568,8 +1568,8 @@ __metadata:
     "@thi.ng/transducers": "workspace:^"
     "@thi.ng/vectors": "workspace:^"
     "@thi.ng/webgl": "workspace:^"
-    typescript: ^4.5.5
-    vite: ^2.8.2
+    typescript: ^4.6.2
+    vite: ^2.8.6
   languageName: unknown
   linkType: soft
 
@@ -1590,8 +1590,8 @@ __metadata:
     "@thi.ng/vectors": "workspace:^"
     "@thi.ng/webgl": "workspace:^"
     "@thi.ng/webgl-msdf": "workspace:^"
-    typescript: ^4.5.5
-    vite: ^2.8.2
+    typescript: ^4.6.2
+    vite: ^2.8.6
   languageName: unknown
   linkType: soft
 
@@ -1603,8 +1603,8 @@ __metadata:
     "@thi.ng/shader-ast": "workspace:^"
     "@thi.ng/shader-ast-stdlib": "workspace:^"
     "@thi.ng/webgl": "workspace:^"
-    typescript: ^4.5.5
-    vite: ^2.8.2
+    typescript: ^4.6.2
+    vite: ^2.8.6
   languageName: unknown
   linkType: soft
 
@@ -1616,8 +1616,8 @@ __metadata:
     "@thi.ng/shader-ast-stdlib": "workspace:^"
     "@thi.ng/webgl": "workspace:^"
     "@thi.ng/webgl-shadertoy": "workspace:^"
-    typescript: ^4.5.5
-    vite: ^2.8.2
+    typescript: ^4.6.2
+    vite: ^2.8.6
   languageName: unknown
   linkType: soft
 
@@ -1637,8 +1637,8 @@ __metadata:
     "@thi.ng/transducers": "workspace:^"
     "@thi.ng/vectors": "workspace:^"
     "@thi.ng/webgl": "workspace:^"
-    typescript: ^4.5.5
-    vite: ^2.8.2
+    typescript: ^4.6.2
+    vite: ^2.8.6
   languageName: unknown
   linkType: soft
 
@@ -1652,8 +1652,8 @@ __metadata:
     "@thi.ng/transducers": "workspace:^"
     "@thi.ng/transducers-binary": "workspace:^"
     "@thi.ng/transducers-hdom": "workspace:^"
-    typescript: ^4.5.5
-    vite: ^2.8.2
+    typescript: ^4.6.2
+    vite: ^2.8.6
   languageName: unknown
   linkType: soft
 
@@ -1670,8 +1670,8 @@ __metadata:
     "@thi.ng/strings": "workspace:^"
     "@thi.ng/transducers": "workspace:^"
     "@thi.ng/transducers-hdom": "workspace:^"
-    typescript: ^4.5.5
-    vite: ^2.8.2
+    typescript: ^4.6.2
+    vite: ^2.8.6
   languageName: unknown
   linkType: soft
 
@@ -1818,8 +1818,8 @@ __metadata:
     "@thi.ng/testament": ^0.2.3
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -1838,8 +1838,8 @@ __metadata:
     "@thi.ng/vectors": ^7.4.3
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -1851,8 +1851,8 @@ __metadata:
     "@thi.ng/testament": ^0.2.3
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -1868,8 +1868,8 @@ __metadata:
     "@thi.ng/testament": ^0.2.3
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -1887,8 +1887,8 @@ __metadata:
     "@thi.ng/testament": ^0.2.3
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -1910,8 +1910,8 @@ __metadata:
     rimraf: ^3.0.2
     tools: "workspace:^"
     tslib: ^2.3.1
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -1928,8 +1928,8 @@ __metadata:
     rimraf: ^3.0.2
     tools: "workspace:^"
     tslib: ^2.3.1
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -1942,8 +1942,8 @@ __metadata:
     "@thi.ng/testament": ^0.2.3
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -1954,11 +1954,11 @@ __metadata:
     "@microsoft/api-extractor": ^7.19.4
     "@thi.ng/api": ^8.3.3
     "@thi.ng/testament": ^0.2.3
-    "@types/node": ^17.0.17
+    "@types/node": ^17.0.21
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -1976,8 +1976,8 @@ __metadata:
     "@thi.ng/transducers-binary": ^2.1.4
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -1990,8 +1990,8 @@ __metadata:
     "@thi.ng/testament": ^0.2.3
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -2007,8 +2007,8 @@ __metadata:
     "@thi.ng/testament": ^0.2.3
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -2021,8 +2021,8 @@ __metadata:
     "@thi.ng/testament": ^0.2.3
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -2037,8 +2037,8 @@ __metadata:
     "@thi.ng/transducers": ^8.2.0
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -2048,12 +2048,12 @@ __metadata:
   dependencies:
     "@microsoft/api-extractor": ^7.19.4
     "@thi.ng/testament": ^0.2.3
-    "@types/node": ^17.0.17
+    "@types/node": ^17.0.21
     rimraf: ^3.0.2
     tools: "workspace:^"
     tslib: ^2.3.1
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -2065,8 +2065,8 @@ __metadata:
     "@thi.ng/testament": ^0.2.3
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -2091,8 +2091,8 @@ __metadata:
     "@thi.ng/vectors": ^7.4.3
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -2112,8 +2112,8 @@ __metadata:
     "@thi.ng/vectors": ^7.4.2
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -2126,8 +2126,8 @@ __metadata:
     "@thi.ng/testament": ^0.2.3
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -2141,8 +2141,8 @@ __metadata:
     "@thi.ng/testament": ^0.2.3
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -2160,8 +2160,8 @@ __metadata:
     "@thi.ng/transducers": ^8.2.0
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -2177,8 +2177,8 @@ __metadata:
     "@thi.ng/transducers": ^8.2.0
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -2193,8 +2193,8 @@ __metadata:
     "@thi.ng/testament": ^0.2.3
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -2213,8 +2213,8 @@ __metadata:
     "@thi.ng/transducers": ^8.2.0
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -2229,8 +2229,8 @@ __metadata:
     "@thi.ng/testament": ^0.2.3
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -2245,8 +2245,8 @@ __metadata:
     "@thi.ng/testament": ^0.2.3
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -2263,8 +2263,8 @@ __metadata:
     "@thi.ng/transducers": ^8.2.0
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -2278,8 +2278,8 @@ __metadata:
     "@thi.ng/testament": ^0.2.3
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -2293,8 +2293,8 @@ __metadata:
     "@thi.ng/testament": ^0.2.3
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -2312,8 +2312,8 @@ __metadata:
     "@thi.ng/vectors": ^7.4.3
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -2328,8 +2328,8 @@ __metadata:
     "@thi.ng/testament": ^0.2.3
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -2342,8 +2342,8 @@ __metadata:
     "@thi.ng/testament": ^0.2.3
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -2357,8 +2357,8 @@ __metadata:
     "@thi.ng/testament": ^0.2.3
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -2375,8 +2375,8 @@ __metadata:
     "@thi.ng/transducers-binary": ^2.1.4
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -2394,8 +2394,8 @@ __metadata:
     "@thi.ng/transducers": ^8.2.0
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -2408,8 +2408,8 @@ __metadata:
     "@thi.ng/testament": ^0.2.3
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -2423,8 +2423,8 @@ __metadata:
     "@thi.ng/testament": ^0.2.3
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -2448,8 +2448,8 @@ __metadata:
     rimraf: ^3.0.2
     tools: "workspace:^"
     tslib: ^2.3.1
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -2471,8 +2471,8 @@ __metadata:
     "@thi.ng/transducers-binary": ^2.1.4
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -2484,8 +2484,8 @@ __metadata:
     "@thi.ng/testament": ^0.2.3
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -2495,11 +2495,11 @@ __metadata:
   dependencies:
     "@microsoft/api-extractor": ^7.19.4
     "@thi.ng/testament": ^0.2.3
-    "@types/node": ^17.0.17
+    "@types/node": ^17.0.21
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -2509,11 +2509,11 @@ __metadata:
   dependencies:
     "@microsoft/api-extractor": ^7.19.4
     "@thi.ng/testament": ^0.2.3
-    "@types/node": ^17.0.17
+    "@types/node": ^17.0.21
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -2531,8 +2531,8 @@ __metadata:
     "@thi.ng/transducers": ^8.2.0
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -2551,8 +2551,8 @@ __metadata:
     "@thi.ng/text-canvas": ^2.2.7
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -2566,8 +2566,8 @@ __metadata:
     "@thi.ng/testament": ^0.2.3
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -2590,8 +2590,8 @@ __metadata:
     "@thi.ng/vectors": ^7.4.3
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -2605,8 +2605,8 @@ __metadata:
     "@thi.ng/vectors": ^7.4.3
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -2623,8 +2623,8 @@ __metadata:
     "@thi.ng/vectors": ^7.4.3
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -2639,8 +2639,8 @@ __metadata:
     "@thi.ng/vectors": ^7.4.3
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -2656,8 +2656,8 @@ __metadata:
     "@thi.ng/vectors": ^7.4.3
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -2672,8 +2672,8 @@ __metadata:
     "@thi.ng/vectors": ^7.4.3
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -2695,8 +2695,8 @@ __metadata:
     "@thi.ng/vectors": ^7.4.3
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -2710,8 +2710,8 @@ __metadata:
     "@thi.ng/vectors": ^7.4.3
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -2726,8 +2726,8 @@ __metadata:
     "@thi.ng/vectors": ^7.4.3
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -2744,8 +2744,8 @@ __metadata:
     "@thi.ng/vectors": ^7.4.3
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -2760,8 +2760,8 @@ __metadata:
     "@thi.ng/vectors": ^7.4.3
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -2778,8 +2778,8 @@ __metadata:
     "@thi.ng/vectors": ^7.4.3
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -2796,8 +2796,8 @@ __metadata:
     "@thi.ng/vectors": ^7.4.3
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -2816,8 +2816,8 @@ __metadata:
     "@thi.ng/vectors": ^7.4.3
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -2833,8 +2833,8 @@ __metadata:
     "@thi.ng/vectors": ^7.4.3
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -2852,8 +2852,8 @@ __metadata:
     "@thi.ng/vectors": ^7.4.3
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -2875,8 +2875,8 @@ __metadata:
     "@thi.ng/vectors": ^7.4.3
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -2887,6 +2887,7 @@ __metadata:
     "@microsoft/api-extractor": ^7.19.4
     "@thi.ng/api": ^8.3.3
     "@thi.ng/arrays": ^2.1.3
+    "@thi.ng/associative": ^6.1.4
     "@thi.ng/checks": ^3.1.3
     "@thi.ng/defmulti": ^2.1.3
     "@thi.ng/equiv": ^2.1.3
@@ -2914,8 +2915,8 @@ __metadata:
     "@thi.ng/vectors": ^7.4.3
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -2933,8 +2934,8 @@ __metadata:
     "@thi.ng/zipper": ^2.1.3
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -2953,8 +2954,8 @@ __metadata:
     "@thi.ng/transducers": ^8.2.0
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -2969,11 +2970,11 @@ __metadata:
     "@thi.ng/hiccup-css": ^2.1.4
     "@thi.ng/strings": ^3.3.1
     "@thi.ng/testament": ^0.2.3
-    "@types/node": ^17.0.17
+    "@types/node": ^17.0.21
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   bin:
     hdiff: bin/hdiff
   languageName: unknown
@@ -2993,8 +2994,8 @@ __metadata:
     "@thi.ng/testament": ^0.2.3
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -3012,8 +3013,8 @@ __metadata:
     "@thi.ng/transducers-stats": ^2.1.4
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -3028,8 +3029,8 @@ __metadata:
     "@thi.ng/testament": ^0.2.3
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -3050,8 +3051,8 @@ __metadata:
     "@thi.ng/testament": ^0.2.3
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -3066,8 +3067,8 @@ __metadata:
     "@thi.ng/testament": ^0.2.3
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -3079,8 +3080,8 @@ __metadata:
     "@thi.ng/testament": ^0.2.3
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -3098,8 +3099,8 @@ __metadata:
     "@thi.ng/vectors": ^7.4.3
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -3112,8 +3113,8 @@ __metadata:
     "@thi.ng/testament": ^0.2.3
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -3129,8 +3130,8 @@ __metadata:
     "@thi.ng/transducers": ^8.2.0
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -3143,8 +3144,8 @@ __metadata:
     "@thi.ng/testament": ^0.2.3
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -3166,8 +3167,8 @@ __metadata:
     "@thi.ng/transducers": ^8.2.0
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -3182,8 +3183,8 @@ __metadata:
     "@thi.ng/testament": ^0.2.3
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -3200,8 +3201,8 @@ __metadata:
     "@thi.ng/testament": ^0.2.3
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -3216,8 +3217,8 @@ __metadata:
     rimraf: ^3.0.2
     tools: "workspace:^"
     tslib: ^2.3.1
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -3235,8 +3236,8 @@ __metadata:
     "@thi.ng/vectors": ^7.4.3
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -3258,8 +3259,8 @@ __metadata:
     "@thi.ng/vectors": ^7.4.3
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -3277,8 +3278,8 @@ __metadata:
     "@thi.ng/testament": ^0.2.3
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -3294,8 +3295,8 @@ __metadata:
     "@thi.ng/testament": ^0.2.3
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -3310,8 +3311,8 @@ __metadata:
     "@thi.ng/testament": ^0.2.3
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -3328,8 +3329,8 @@ __metadata:
     "@thi.ng/vectors": ^7.4.3
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -3345,8 +3346,8 @@ __metadata:
     "@thi.ng/testament": ^0.2.3
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -3359,8 +3360,8 @@ __metadata:
     "@thi.ng/testament": ^0.2.3
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -3375,8 +3376,8 @@ __metadata:
     "@thi.ng/transducers-binary": ^2.1.4
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -3387,8 +3388,8 @@ __metadata:
     "@microsoft/api-extractor": ^7.19.4
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -3401,8 +3402,8 @@ __metadata:
     "@thi.ng/testament": ^0.2.3
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -3421,8 +3422,8 @@ __metadata:
     "@thi.ng/vectors": ^7.4.3
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -3438,8 +3439,8 @@ __metadata:
     "@thi.ng/testament": ^0.2.3
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -3457,8 +3458,8 @@ __metadata:
     "@thi.ng/transducers": ^8.2.0
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -3471,8 +3472,8 @@ __metadata:
     "@thi.ng/testament": ^0.2.3
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -3488,8 +3489,8 @@ __metadata:
     "@thi.ng/vectors": ^7.4.3
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -3502,8 +3503,8 @@ __metadata:
     "@thi.ng/testament": ^0.2.3
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -3516,8 +3517,8 @@ __metadata:
     "@thi.ng/testament": ^0.2.3
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -3533,8 +3534,8 @@ __metadata:
     "@thi.ng/testament": ^0.2.3
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -3550,8 +3551,8 @@ __metadata:
     "@thi.ng/testament": ^0.2.3
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -3568,8 +3569,8 @@ __metadata:
     "@thi.ng/testament": ^0.2.3
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -3584,8 +3585,8 @@ __metadata:
     "@thi.ng/testament": ^0.2.3
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -3600,8 +3601,8 @@ __metadata:
     "@thi.ng/testament": ^0.2.3
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -3616,8 +3617,8 @@ __metadata:
     "@thi.ng/testament": ^0.2.3
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -3638,8 +3639,8 @@ __metadata:
     rimraf: ^3.0.2
     tools: "workspace:^"
     tslib: ^2.3.1
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -3658,8 +3659,8 @@ __metadata:
     pegjs: 0.11.0-master.b7b87ea
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   bin:
     pointfree: bin/pointfree
   languageName: unknown
@@ -3678,8 +3679,8 @@ __metadata:
     "@thi.ng/testament": ^0.2.3
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -3697,8 +3698,8 @@ __metadata:
     "@thi.ng/vectors": ^7.4.3
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -3712,8 +3713,8 @@ __metadata:
     "@thi.ng/testament": ^0.2.3
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -3725,8 +3726,8 @@ __metadata:
     "@thi.ng/testament": ^0.2.3
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -3739,8 +3740,8 @@ __metadata:
     "@thi.ng/testament": ^0.2.3
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -3757,8 +3758,8 @@ __metadata:
     "@thi.ng/vectors": ^7.4.3
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -3774,8 +3775,8 @@ __metadata:
     "@thi.ng/testament": ^0.2.3
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -3789,8 +3790,8 @@ __metadata:
     "@thi.ng/transducers": ^8.1.3
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -3808,8 +3809,8 @@ __metadata:
     "@thi.ng/transducers": ^8.2.0
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -3829,8 +3830,8 @@ __metadata:
     "@thi.ng/transducers": ^8.2.0
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -3849,8 +3850,8 @@ __metadata:
     "@thi.ng/transducers": ^8.2.0
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -3870,8 +3871,8 @@ __metadata:
     "@thi.ng/testament": ^0.2.3
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -3887,8 +3888,8 @@ __metadata:
     "@thi.ng/testament": ^0.2.3
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -3902,8 +3903,8 @@ __metadata:
     "@thi.ng/testament": ^0.2.3
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -3920,8 +3921,8 @@ __metadata:
     rimraf: ^3.0.2
     tools: "workspace:^"
     tslib: ^2.3.1
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -3935,8 +3936,8 @@ __metadata:
     "@thi.ng/testament": ^0.2.3
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -3951,8 +3952,8 @@ __metadata:
     "@thi.ng/transducers": ^8.2.0
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -3969,8 +3970,8 @@ __metadata:
     "@thi.ng/transducers": ^8.2.0
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -3990,8 +3991,8 @@ __metadata:
     "@thi.ng/transducers": ^8.2.0
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -4002,11 +4003,11 @@ __metadata:
     "@microsoft/api-extractor": ^7.19.4
     "@thi.ng/rstream": ^7.2.2
     "@thi.ng/testament": ^0.2.3
-    "@types/node": ^17.0.17
+    "@types/node": ^17.0.21
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -4025,8 +4026,8 @@ __metadata:
     "@thi.ng/transducers": ^8.2.0
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -4048,8 +4049,8 @@ __metadata:
     "@thi.ng/transducers": ^8.2.0
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -4069,8 +4070,8 @@ __metadata:
     "@thi.ng/transducers": ^8.2.0
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -4086,8 +4087,8 @@ __metadata:
     "@thi.ng/transducers-fsm": ^2.1.4
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -4104,8 +4105,8 @@ __metadata:
     "@thi.ng/vectors": ^7.4.3
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -4119,8 +4120,8 @@ __metadata:
     "@thi.ng/testament": ^0.2.3
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -4135,8 +4136,8 @@ __metadata:
     "@thi.ng/testament": ^0.2.3
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -4152,8 +4153,8 @@ __metadata:
     "@thi.ng/testament": ^0.2.3
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -4173,8 +4174,8 @@ __metadata:
     "@thi.ng/vectors": ^7.4.3
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -4191,8 +4192,8 @@ __metadata:
     "@thi.ng/testament": ^0.2.3
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -4206,8 +4207,8 @@ __metadata:
     "@thi.ng/testament": ^0.2.3
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -4225,8 +4226,8 @@ __metadata:
     "@thi.ng/testament": ^0.2.3
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -4237,11 +4238,11 @@ __metadata:
     "@microsoft/api-extractor": ^7.19.4
     "@thi.ng/testament": ^0.2.3
     "@thi.ng/transducers-binary": ^2.1.4
-    assemblyscript: 0.19.21
+    assemblyscript: 0.19.23
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -4259,8 +4260,8 @@ __metadata:
     "@thi.ng/vectors": ^7.4.3
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -4275,8 +4276,8 @@ __metadata:
     "@thi.ng/transducers": ^8.2.0
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -4292,8 +4293,8 @@ __metadata:
     "@thi.ng/testament": ^0.2.3
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -4308,8 +4309,8 @@ __metadata:
     "@thi.ng/testament": ^0.2.3
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -4319,11 +4320,11 @@ __metadata:
   dependencies:
     "@microsoft/api-extractor": ^7.19.4
     "@thi.ng/logger": ^1.1.3
-    chokidar: ^3.5.2
+    chokidar: ^3.5.3
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   bin:
     testament: bin/testament.mjs
   languageName: unknown
@@ -4346,8 +4347,8 @@ __metadata:
     rimraf: ^3.0.2
     tools: "workspace:^"
     tslib: ^2.3.1
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -4362,8 +4363,8 @@ __metadata:
     "@thi.ng/testament": ^0.2.3
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -4381,8 +4382,8 @@ __metadata:
     "@thi.ng/transducers": ^8.2.0
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -4396,8 +4397,8 @@ __metadata:
     "@thi.ng/transducers": ^8.2.0
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -4412,8 +4413,8 @@ __metadata:
     "@thi.ng/transducers": ^8.2.0
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -4430,8 +4431,8 @@ __metadata:
     "@thi.ng/transducers": ^8.2.0
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -4447,8 +4448,8 @@ __metadata:
     "@thi.ng/transducers": ^8.2.0
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -4468,8 +4469,8 @@ __metadata:
     "@thi.ng/testament": ^0.2.3
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -4481,8 +4482,8 @@ __metadata:
     "@thi.ng/testament": ^0.2.3
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -4495,8 +4496,8 @@ __metadata:
     "@thi.ng/testament": ^0.2.3
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -4516,8 +4517,8 @@ __metadata:
     "@thi.ng/vectors": ^7.4.3
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -4539,8 +4540,8 @@ __metadata:
     "@thi.ng/transducers": ^8.2.0
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -4560,8 +4561,8 @@ __metadata:
     "@thi.ng/transducers": ^8.2.0
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -4577,11 +4578,11 @@ __metadata:
     "@thi.ng/vector-pools": ^3.1.7
     "@thi.ng/vectors": ^7.4.3
     "@thi.ng/webgl": ^6.1.7
-    "@types/node": ^17.0.17
+    "@types/node": ^17.0.21
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -4595,11 +4596,11 @@ __metadata:
     "@thi.ng/shader-ast-glsl": ^0.4.4
     "@thi.ng/testament": ^0.2.3
     "@thi.ng/webgl": ^6.1.7
-    "@types/node": ^17.0.17
+    "@types/node": ^17.0.21
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -4627,8 +4628,8 @@ __metadata:
     "@thi.ng/vectors": ^7.4.3
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -4644,8 +4645,8 @@ __metadata:
     "@thi.ng/testament": ^0.2.3
     rimraf: ^3.0.2
     tools: "workspace:^"
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -4754,10 +4755,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:^17.0.17":
-  version: 17.0.17
-  resolution: "@types/node@npm:17.0.17"
-  checksum: 8ddba2829acdf1684fbd8fd248ec13f033efb70ecd1085677b547c40ef8e936a006b95eac3bdc28c47939c62526f3f027afeb4a930e30e4394923bbae4626476
+"@types/node@npm:^17.0.21":
+  version: 17.0.21
+  resolution: "@types/node@npm:17.0.21"
+  checksum: 89dcd2fe82f21d3634266f8384e9c865cf8af49685639fbdbd799bdd1040480fb1e8eeda2d3b9fce41edbe704d2a4be9f427118c4ae872e8d9bb7cbeb3c41a94
   languageName: node
   linkType: hard
 
@@ -4799,13 +4800,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"accepts@npm:~1.3.7":
-  version: 1.3.7
-  resolution: "accepts@npm:1.3.7"
+"accepts@npm:~1.3.8":
+  version: 1.3.8
+  resolution: "accepts@npm:1.3.8"
   dependencies:
-    mime-types: ~2.1.24
-    negotiator: 0.6.2
-  checksum: 27fc8060ffc69481ff6719cd3ee06387d2b88381cb0ce626f087781bbd02201a645a9febc8e7e7333558354b33b1d2f922ad13560be4ec1b7ba9e76fc1c1241d
+    mime-types: ~2.1.34
+    negotiator: 0.6.3
+  checksum: 50c43d32e7b50285ebe84b613ee4a3aa426715a7d131b65b786e2ead0fd76b6b60091b9916d3478a75f11f162628a2139991b6c03ab3f1d9ab7c86075dc8eab4
   languageName: node
   linkType: hard
 
@@ -4931,9 +4932,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"assemblyscript@npm:0.19.21":
-  version: 0.19.21
-  resolution: "assemblyscript@npm:0.19.21"
+"assemblyscript@npm:0.19.23":
+  version: 0.19.23
+  resolution: "assemblyscript@npm:0.19.23"
   dependencies:
     binaryen: 102.0.0-nightly.20211028
     long: ^5.2.0
@@ -4941,7 +4942,7 @@ __metadata:
   bin:
     asc: bin/asc
     asinit: bin/asinit
-  checksum: 28525dc017d2c9a0cb8041e5e39b12ff499dd37c6ae0ac3f506a8c259c3854cd7c48aa514619f3457240391e11ccd8353d0d824d2da8a8a4dbe0ff2e3010419c
+  checksum: f5a5d808ccf5a5f5065c9690f67b74e8ab434d30c9dda688acaab92416ee296cdcae4b7a272ce1abd416e1e37e44aee61588713882c2638af037cf83c2ee933b
   languageName: node
   linkType: hard
 
@@ -4968,21 +4969,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"body-parser@npm:1.19.1":
-  version: 1.19.1
-  resolution: "body-parser@npm:1.19.1"
+"body-parser@npm:1.19.2":
+  version: 1.19.2
+  resolution: "body-parser@npm:1.19.2"
   dependencies:
-    bytes: 3.1.1
+    bytes: 3.1.2
     content-type: ~1.0.4
     debug: 2.6.9
     depd: ~1.1.2
     http-errors: 1.8.1
     iconv-lite: 0.4.24
     on-finished: ~2.3.0
-    qs: 6.9.6
-    raw-body: 2.4.2
+    qs: 6.9.7
+    raw-body: 2.4.3
     type-is: ~1.6.18
-  checksum: 9197a300a6580b8723c7b6b1e22cebd5ba47cd4a6fd45c153350efcde79293869ddee8d17d95fb52724812d649d89d62775faab072608d3243a0cbb00582234e
+  checksum: 7f777ea65670e2622ca4a785b5dcb2a68451b3bb8d4d0f41091d307d56b640dba588a9ae04d85dda2cdd5e42788266a783528d5417e5643720fd611fd52522e7
   languageName: node
   linkType: hard
 
@@ -4993,6 +4994,15 @@ __metadata:
     balanced-match: ^1.0.0
     concat-map: 0.0.1
   checksum: faf34a7bb0c3fcf4b59c7808bc5d2a96a40988addf2e7e09dfbb67a2251800e0d14cd2bfc1aa79174f2f5095c54ff27f46fb1289fe2d77dac755b5eb3434cc07
+  languageName: node
+  linkType: hard
+
+"brace-expansion@npm:^2.0.1":
+  version: 2.0.1
+  resolution: "brace-expansion@npm:2.0.1"
+  dependencies:
+    balanced-match: ^1.0.0
+  checksum: a61e7cd2e8a8505e9f0036b3b6108ba5e926b4b55089eeb5550cd04a471fe216c96d4fe7e4c7f995c728c554ae20ddfc4244cad10aef255e72b62930afd233d1
   languageName: node
   linkType: hard
 
@@ -5012,10 +5022,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"bytes@npm:3.1.1":
-  version: 3.1.1
-  resolution: "bytes@npm:3.1.1"
-  checksum: 949ab99a385d6acf4d2c69f1afc618615dc905936e0b0b9aa94a9e94d722baaba44d6a0851536585a0892ae4d462b5a270ccb1b04c774640742cbde5538ca328
+"bytes@npm:3.1.2":
+  version: 3.1.2
+  resolution: "bytes@npm:3.1.2"
+  checksum: e4bcd3948d289c5127591fbedf10c0b639ccbf00243504e4e127374a15c3bc8eed0d28d4aaab08ff6f1cf2abc0cce6ba3085ed32f4f90e82a5683ce0014e1b6e
   languageName: node
   linkType: hard
 
@@ -5055,9 +5065,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"chokidar@npm:^3.5.2":
-  version: 3.5.2
-  resolution: "chokidar@npm:3.5.2"
+"chokidar@npm:^3.5.3":
+  version: 3.5.3
+  resolution: "chokidar@npm:3.5.3"
   dependencies:
     anymatch: ~3.1.2
     braces: ~3.0.2
@@ -5070,7 +5080,7 @@ __metadata:
   dependenciesMeta:
     fsevents:
       optional: true
-  checksum: d1fda32fcd67d9f6170a8468ad2630a3c6194949c9db3f6a91b16478c328b2800f433fb5d2592511b6cb145a47c013ea1cce60b432b1a001ae3ee978a8bffc2d
+  checksum: b49fcde40176ba007ff361b198a2d35df60d9bb2a5aab228279eb810feae9294a6b4649ab15981304447afe1e6ffbf4788ad5db77235dc770ab777c6e771980c
   languageName: node
   linkType: hard
 
@@ -5162,10 +5172,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cookie@npm:0.4.1":
-  version: 0.4.1
-  resolution: "cookie@npm:0.4.1"
-  checksum: bd7c47f5d94ab70ccdfe8210cde7d725880d2fcda06d8e375afbdd82de0c8d3b73541996e9ce57d35f67f672c4ee6d60208adec06b3c5fc94cebb85196084cf8
+"cookie@npm:0.4.2":
+  version: 0.4.2
+  resolution: "cookie@npm:0.4.2"
+  checksum: a00833c998bedf8e787b4c342defe5fa419abd96b32f4464f718b91022586b8f1bafbddd499288e75c037642493c83083da426c6a9080d309e3bd90fd11baa9b
   languageName: node
   linkType: hard
 
@@ -5293,9 +5303,23 @@ __metadata:
   languageName: node
   linkType: hard
 
+"esbuild-android-64@npm:0.14.25":
+  version: 0.14.25
+  resolution: "esbuild-android-64@npm:0.14.25"
+  conditions: os=android & cpu=x64
+  languageName: node
+  linkType: hard
+
 "esbuild-android-arm64@npm:0.14.21":
   version: 0.14.21
   resolution: "esbuild-android-arm64@npm:0.14.21"
+  conditions: os=android & cpu=arm64
+  languageName: node
+  linkType: hard
+
+"esbuild-android-arm64@npm:0.14.25":
+  version: 0.14.25
+  resolution: "esbuild-android-arm64@npm:0.14.25"
   conditions: os=android & cpu=arm64
   languageName: node
   linkType: hard
@@ -5307,9 +5331,23 @@ __metadata:
   languageName: node
   linkType: hard
 
+"esbuild-darwin-64@npm:0.14.25":
+  version: 0.14.25
+  resolution: "esbuild-darwin-64@npm:0.14.25"
+  conditions: os=darwin & cpu=x64
+  languageName: node
+  linkType: hard
+
 "esbuild-darwin-arm64@npm:0.14.21":
   version: 0.14.21
   resolution: "esbuild-darwin-arm64@npm:0.14.21"
+  conditions: os=darwin & cpu=arm64
+  languageName: node
+  linkType: hard
+
+"esbuild-darwin-arm64@npm:0.14.25":
+  version: 0.14.25
+  resolution: "esbuild-darwin-arm64@npm:0.14.25"
   conditions: os=darwin & cpu=arm64
   languageName: node
   linkType: hard
@@ -5321,9 +5359,23 @@ __metadata:
   languageName: node
   linkType: hard
 
+"esbuild-freebsd-64@npm:0.14.25":
+  version: 0.14.25
+  resolution: "esbuild-freebsd-64@npm:0.14.25"
+  conditions: os=freebsd & cpu=x64
+  languageName: node
+  linkType: hard
+
 "esbuild-freebsd-arm64@npm:0.14.21":
   version: 0.14.21
   resolution: "esbuild-freebsd-arm64@npm:0.14.21"
+  conditions: os=freebsd & cpu=arm64
+  languageName: node
+  linkType: hard
+
+"esbuild-freebsd-arm64@npm:0.14.25":
+  version: 0.14.25
+  resolution: "esbuild-freebsd-arm64@npm:0.14.25"
   conditions: os=freebsd & cpu=arm64
   languageName: node
   linkType: hard
@@ -5335,9 +5387,23 @@ __metadata:
   languageName: node
   linkType: hard
 
+"esbuild-linux-32@npm:0.14.25":
+  version: 0.14.25
+  resolution: "esbuild-linux-32@npm:0.14.25"
+  conditions: os=linux & cpu=ia32
+  languageName: node
+  linkType: hard
+
 "esbuild-linux-64@npm:0.14.21":
   version: 0.14.21
   resolution: "esbuild-linux-64@npm:0.14.21"
+  conditions: os=linux & cpu=x64
+  languageName: node
+  linkType: hard
+
+"esbuild-linux-64@npm:0.14.25":
+  version: 0.14.25
+  resolution: "esbuild-linux-64@npm:0.14.25"
   conditions: os=linux & cpu=x64
   languageName: node
   linkType: hard
@@ -5349,9 +5415,23 @@ __metadata:
   languageName: node
   linkType: hard
 
+"esbuild-linux-arm64@npm:0.14.25":
+  version: 0.14.25
+  resolution: "esbuild-linux-arm64@npm:0.14.25"
+  conditions: os=linux & cpu=arm64
+  languageName: node
+  linkType: hard
+
 "esbuild-linux-arm@npm:0.14.21":
   version: 0.14.21
   resolution: "esbuild-linux-arm@npm:0.14.21"
+  conditions: os=linux & cpu=arm
+  languageName: node
+  linkType: hard
+
+"esbuild-linux-arm@npm:0.14.25":
+  version: 0.14.25
+  resolution: "esbuild-linux-arm@npm:0.14.25"
   conditions: os=linux & cpu=arm
   languageName: node
   linkType: hard
@@ -5363,9 +5443,23 @@ __metadata:
   languageName: node
   linkType: hard
 
+"esbuild-linux-mips64le@npm:0.14.25":
+  version: 0.14.25
+  resolution: "esbuild-linux-mips64le@npm:0.14.25"
+  conditions: os=linux & cpu=mips64el
+  languageName: node
+  linkType: hard
+
 "esbuild-linux-ppc64le@npm:0.14.21":
   version: 0.14.21
   resolution: "esbuild-linux-ppc64le@npm:0.14.21"
+  conditions: os=linux & cpu=ppc64
+  languageName: node
+  linkType: hard
+
+"esbuild-linux-ppc64le@npm:0.14.25":
+  version: 0.14.25
+  resolution: "esbuild-linux-ppc64le@npm:0.14.25"
   conditions: os=linux & cpu=ppc64
   languageName: node
   linkType: hard
@@ -5377,9 +5471,23 @@ __metadata:
   languageName: node
   linkType: hard
 
+"esbuild-linux-riscv64@npm:0.14.25":
+  version: 0.14.25
+  resolution: "esbuild-linux-riscv64@npm:0.14.25"
+  conditions: os=linux & cpu=riscv64
+  languageName: node
+  linkType: hard
+
 "esbuild-linux-s390x@npm:0.14.21":
   version: 0.14.21
   resolution: "esbuild-linux-s390x@npm:0.14.21"
+  conditions: os=linux & cpu=s390x
+  languageName: node
+  linkType: hard
+
+"esbuild-linux-s390x@npm:0.14.25":
+  version: 0.14.25
+  resolution: "esbuild-linux-s390x@npm:0.14.25"
   conditions: os=linux & cpu=s390x
   languageName: node
   linkType: hard
@@ -5391,9 +5499,23 @@ __metadata:
   languageName: node
   linkType: hard
 
+"esbuild-netbsd-64@npm:0.14.25":
+  version: 0.14.25
+  resolution: "esbuild-netbsd-64@npm:0.14.25"
+  conditions: os=netbsd & cpu=x64
+  languageName: node
+  linkType: hard
+
 "esbuild-openbsd-64@npm:0.14.21":
   version: 0.14.21
   resolution: "esbuild-openbsd-64@npm:0.14.21"
+  conditions: os=openbsd & cpu=x64
+  languageName: node
+  linkType: hard
+
+"esbuild-openbsd-64@npm:0.14.25":
+  version: 0.14.25
+  resolution: "esbuild-openbsd-64@npm:0.14.25"
   conditions: os=openbsd & cpu=x64
   languageName: node
   linkType: hard
@@ -5405,9 +5527,23 @@ __metadata:
   languageName: node
   linkType: hard
 
+"esbuild-sunos-64@npm:0.14.25":
+  version: 0.14.25
+  resolution: "esbuild-sunos-64@npm:0.14.25"
+  conditions: os=sunos & cpu=x64
+  languageName: node
+  linkType: hard
+
 "esbuild-windows-32@npm:0.14.21":
   version: 0.14.21
   resolution: "esbuild-windows-32@npm:0.14.21"
+  conditions: os=win32 & cpu=ia32
+  languageName: node
+  linkType: hard
+
+"esbuild-windows-32@npm:0.14.25":
+  version: 0.14.25
+  resolution: "esbuild-windows-32@npm:0.14.25"
   conditions: os=win32 & cpu=ia32
   languageName: node
   linkType: hard
@@ -5419,6 +5555,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"esbuild-windows-64@npm:0.14.25":
+  version: 0.14.25
+  resolution: "esbuild-windows-64@npm:0.14.25"
+  conditions: os=win32 & cpu=x64
+  languageName: node
+  linkType: hard
+
 "esbuild-windows-arm64@npm:0.14.21":
   version: 0.14.21
   resolution: "esbuild-windows-arm64@npm:0.14.21"
@@ -5426,7 +5569,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"esbuild@npm:^0.14.14, esbuild@npm:^0.14.21":
+"esbuild-windows-arm64@npm:0.14.25":
+  version: 0.14.25
+  resolution: "esbuild-windows-arm64@npm:0.14.25"
+  conditions: os=win32 & cpu=arm64
+  languageName: node
+  linkType: hard
+
+"esbuild@npm:^0.14.14":
   version: 0.14.21
   resolution: "esbuild@npm:0.14.21"
   dependencies:
@@ -5494,6 +5644,77 @@ __metadata:
   languageName: node
   linkType: hard
 
+"esbuild@npm:^0.14.25":
+  version: 0.14.25
+  resolution: "esbuild@npm:0.14.25"
+  dependencies:
+    esbuild-android-64: 0.14.25
+    esbuild-android-arm64: 0.14.25
+    esbuild-darwin-64: 0.14.25
+    esbuild-darwin-arm64: 0.14.25
+    esbuild-freebsd-64: 0.14.25
+    esbuild-freebsd-arm64: 0.14.25
+    esbuild-linux-32: 0.14.25
+    esbuild-linux-64: 0.14.25
+    esbuild-linux-arm: 0.14.25
+    esbuild-linux-arm64: 0.14.25
+    esbuild-linux-mips64le: 0.14.25
+    esbuild-linux-ppc64le: 0.14.25
+    esbuild-linux-riscv64: 0.14.25
+    esbuild-linux-s390x: 0.14.25
+    esbuild-netbsd-64: 0.14.25
+    esbuild-openbsd-64: 0.14.25
+    esbuild-sunos-64: 0.14.25
+    esbuild-windows-32: 0.14.25
+    esbuild-windows-64: 0.14.25
+    esbuild-windows-arm64: 0.14.25
+  dependenciesMeta:
+    esbuild-android-64:
+      optional: true
+    esbuild-android-arm64:
+      optional: true
+    esbuild-darwin-64:
+      optional: true
+    esbuild-darwin-arm64:
+      optional: true
+    esbuild-freebsd-64:
+      optional: true
+    esbuild-freebsd-arm64:
+      optional: true
+    esbuild-linux-32:
+      optional: true
+    esbuild-linux-64:
+      optional: true
+    esbuild-linux-arm:
+      optional: true
+    esbuild-linux-arm64:
+      optional: true
+    esbuild-linux-mips64le:
+      optional: true
+    esbuild-linux-ppc64le:
+      optional: true
+    esbuild-linux-riscv64:
+      optional: true
+    esbuild-linux-s390x:
+      optional: true
+    esbuild-netbsd-64:
+      optional: true
+    esbuild-openbsd-64:
+      optional: true
+    esbuild-sunos-64:
+      optional: true
+    esbuild-windows-32:
+      optional: true
+    esbuild-windows-64:
+      optional: true
+    esbuild-windows-arm64:
+      optional: true
+  bin:
+    esbuild: bin/esbuild
+  checksum: 076fa82293d91d4a9c5ad27f8bde01fb86dc60b60b6d12c3deb917c5c7e9235b324e27114fc6e7e1fee9c9a1796fd094eac306c3b44b77a3819929472ee29450
+  languageName: node
+  linkType: hard
+
 "escape-html@npm:~1.0.3":
   version: 1.0.3
   resolution: "escape-html@npm:1.0.3"
@@ -5518,16 +5739,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"express@npm:^4.17.2":
-  version: 4.17.2
-  resolution: "express@npm:4.17.2"
+"express@npm:^4.17.3":
+  version: 4.17.3
+  resolution: "express@npm:4.17.3"
   dependencies:
-    accepts: ~1.3.7
+    accepts: ~1.3.8
     array-flatten: 1.1.1
-    body-parser: 1.19.1
+    body-parser: 1.19.2
     content-disposition: 0.5.4
     content-type: ~1.0.4
-    cookie: 0.4.1
+    cookie: 0.4.2
     cookie-signature: 1.0.6
     debug: 2.6.9
     depd: ~1.1.2
@@ -5542,7 +5763,7 @@ __metadata:
     parseurl: ~1.3.3
     path-to-regexp: 0.1.7
     proxy-addr: ~2.0.7
-    qs: 6.9.6
+    qs: 6.9.7
     range-parser: ~1.2.1
     safe-buffer: 5.2.1
     send: 0.17.2
@@ -5552,7 +5773,7 @@ __metadata:
     type-is: ~1.6.18
     utils-merge: 1.0.1
     vary: ~1.1.2
-  checksum: 1535d56d20e65a1a39b5f056c025dd635290a744478ac69cc47633aeb4b2ce51458f8eb4080cfb7ba47c853ba5cfd794d404cff822a25127f1556b726ec3914a
+  checksum: 967e53b74a37eafdf9789b9938c8df86102928b4985b1ad5e385c709deeab405a364de95ca744bc2cc5d05b5d9cc1efc69ae2ae17688a462038648d5a924bfad
   languageName: node
   linkType: hard
 
@@ -6083,7 +6304,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"marked@npm:^4.0.10":
+"marked@npm:^4.0.12":
   version: 4.0.12
   resolution: "marked@npm:4.0.12"
   bin:
@@ -6120,7 +6341,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"mime-types@npm:~2.1.24":
+"mime-types@npm:~2.1.24, mime-types@npm:~2.1.34":
   version: 2.1.34
   resolution: "mime-types@npm:2.1.34"
   dependencies:
@@ -6144,6 +6365,15 @@ __metadata:
   dependencies:
     brace-expansion: ^1.1.7
   checksum: 66ac295f8a7b59788000ea3749938b0970344c841750abd96694f80269b926ebcafad3deeb3f1da2522978b119e6ae3a5869b63b13a7859a456b3408bd18a078
+  languageName: node
+  linkType: hard
+
+"minimatch@npm:^5.0.1":
+  version: 5.0.1
+  resolution: "minimatch@npm:5.0.1"
+  dependencies:
+    brace-expansion: ^2.0.1
+  checksum: b34b98463da4754bc526b244d680c69d4d6089451ebe512edaf6dd9eeed0279399cfa3edb19233513b8f830bf4bfcad911dddcdf125e75074100d52f724774f0
   languageName: node
   linkType: hard
 
@@ -6256,7 +6486,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"negotiator@npm:0.6.2, negotiator@npm:^0.6.2":
+"negotiator@npm:0.6.3":
+  version: 0.6.3
+  resolution: "negotiator@npm:0.6.3"
+  checksum: b8ffeb1e262eff7968fc90a2b6767b04cfd9842582a9d0ece0af7049537266e7b2506dfb1d107a32f06dd849ab2aea834d5830f7f4d0e5cb7d36e1ae55d021d9
+  languageName: node
+  linkType: hard
+
+"negotiator@npm:^0.6.2":
   version: 0.6.2
   resolution: "negotiator@npm:0.6.2"
   checksum: dfddaff6c06792f1c4c3809e29a427b8daef8cd437c83b08dd51d7ee11bbd1c29d9512d66b801144d6c98e910ffd8723f2432e0cbf8b18d41d2a09599c975ab3
@@ -6487,10 +6724,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"qs@npm:6.9.6":
-  version: 6.9.6
-  resolution: "qs@npm:6.9.6"
-  checksum: cb6df402bb8a3dbefa4bd46eba0dfca427079baca923e6b8d28a03e6bfb16a5c1dcdb96e69388f9c5813ac8ff17bb8bbca22f2ecd31fe1e344a55cb531b5fabf
+"qs@npm:6.9.7":
+  version: 6.9.7
+  resolution: "qs@npm:6.9.7"
+  checksum: 5bbd263332ccf320a1f36d04a2019a5834dc20bcb736431eaccde2a39dcba03fb26d2fd00174f5d7bc26aaad1cad86124b18440883ac042ea2a0fca6170c1bf1
   languageName: node
   linkType: hard
 
@@ -6501,15 +6738,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"raw-body@npm:2.4.2":
-  version: 2.4.2
-  resolution: "raw-body@npm:2.4.2"
+"raw-body@npm:2.4.3":
+  version: 2.4.3
+  resolution: "raw-body@npm:2.4.3"
   dependencies:
-    bytes: 3.1.1
+    bytes: 3.1.2
     http-errors: 1.8.1
     iconv-lite: 0.4.24
     unpipe: 1.0.0
-  checksum: c6f8d6a75c65c0a047f888cb29efc97f60fb36e950ba2cb31fefce694f98186e844a03367920faa7dc5bffaf33df08aee0b9dd935280e366439fa6492a5b163e
+  checksum: d2961fa3c71c9c22dc2c3fd60ff377bf36dfed7d7a748f2b25d585934a3e9df565bb9aa5bc2e3a716ea941f4bc2a6ddc795c8b0cf7219fb071029b59b1985394
   languageName: node
   linkType: hard
 
@@ -6646,15 +6883,15 @@ __metadata:
   dependencies:
     "@microsoft/api-documenter": ^7.15.3
     "@microsoft/api-extractor": ^7.19.4
-    "@types/node": ^17.0.17
+    "@types/node": ^17.0.21
     "@ygoe/msgpack": ^1.0.3
-    esbuild: ^0.14.21
+    esbuild: ^0.14.25
     html-minifier-terser: ^7.0.0-alpha.1
     rimraf: ^3.0.2
     tools: "workspace:^"
-    ts-node: ^10.5.0
-    typedoc: ^0.22.11
-    typescript: ^4.5.5
+    ts-node: ^10.7.0
+    typedoc: ^0.22.13
+    typescript: ^4.6.2
   languageName: unknown
   linkType: soft
 
@@ -6737,14 +6974,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"shiki@npm:^0.10.0":
-  version: 0.10.0
-  resolution: "shiki@npm:0.10.0"
+"shiki@npm:^0.10.1":
+  version: 0.10.1
+  resolution: "shiki@npm:0.10.1"
   dependencies:
     jsonc-parser: ^3.0.0
     vscode-oniguruma: ^1.6.1
     vscode-textmate: 5.2.0
-  checksum: b72630a56c5e4384128a57443fc188ca8f6cf239c16defb6624b2aa500c0c953d41fb53e49f9d583cf093ddc522ff07e1b19fab8f0ae40a03304805c4fd5894b
+  checksum: fb746f3cb3de7e545e3b10a6cb658d3938f840e4ccc9a3c90ceb7e69a8f89dbb432171faac1e9f02a03f103684dad88ee5e54b5c4964fa6b579fca6e8e26424d
   languageName: node
   linkType: hard
 
@@ -6972,9 +7209,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"ts-node@npm:^10.5.0":
-  version: 10.5.0
-  resolution: "ts-node@npm:10.5.0"
+"ts-node@npm:^10.7.0":
+  version: 10.7.0
+  resolution: "ts-node@npm:10.7.0"
   dependencies:
     "@cspotcode/source-map-support": 0.7.0
     "@tsconfig/node10": ^1.0.7
@@ -7002,10 +7239,11 @@ __metadata:
   bin:
     ts-node: dist/bin.js
     ts-node-cwd: dist/bin-cwd.js
+    ts-node-esm: dist/bin-esm.js
     ts-node-script: dist/bin-script.js
     ts-node-transpile-only: dist/bin-transpile.js
     ts-script: dist/bin-script-deprecated.js
-  checksum: d51ac8a9b3582ce3705cef8d35f3372e40caa277dbd7c7baeb651961538f13d2f11f22402614348f78d9b10501bd1cb5f05ec4f2ec9a74bd0e288de769c32335
+  checksum: 2a379e43f7478d0b79e1e63af91fe222d83857727957df4bd3bdf3c0a884de5097b12feb9bbf530074526b8874c0338b0e6328cf334f3a5e2c49c71e837273f7
   languageName: node
   linkType: hard
 
@@ -7026,30 +7264,30 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typedoc@npm:^0.22.11":
-  version: 0.22.11
-  resolution: "typedoc@npm:0.22.11"
+"typedoc@npm:^0.22.13":
+  version: 0.22.13
+  resolution: "typedoc@npm:0.22.13"
   dependencies:
     glob: ^7.2.0
     lunr: ^2.3.9
-    marked: ^4.0.10
-    minimatch: ^3.0.4
-    shiki: ^0.10.0
+    marked: ^4.0.12
+    minimatch: ^5.0.1
+    shiki: ^0.10.1
   peerDependencies:
-    typescript: 4.0.x || 4.1.x || 4.2.x || 4.3.x || 4.4.x || 4.5.x
+    typescript: 4.0.x || 4.1.x || 4.2.x || 4.3.x || 4.4.x || 4.5.x || 4.6.x
   bin:
     typedoc: bin/typedoc
-  checksum: 7d29f4b771d3eadc612d0b35509ee88c153d7310b7adb57faf0740132765613d6ceceb94877148d674cfc8242ca3c2e22e3ae2060768b2d96842bf14659d1b1c
+  checksum: e453114fbbb5e3e366bcfde40fc3f7d76a038dbc3953e6cc9c9dd8f9747048ed77c2d082671e91537fb26bb11f7fc5846f9568262adf0087b328b3f96a47a85a
   languageName: node
   linkType: hard
 
-"typescript@npm:^4.5.5":
-  version: 4.5.5
-  resolution: "typescript@npm:4.5.5"
+"typescript@npm:^4.6.2":
+  version: 4.6.2
+  resolution: "typescript@npm:4.6.2"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: 506f4c919dc8aeaafa92068c997f1d213b9df4d9756d0fae1a1e7ab66b585ab3498050e236113a1c9e57ee08c21ec6814ca7a7f61378c058d79af50a4b1f5a5e
+  checksum: 8a44ed7e6f6c4cb1ebe8cf236ecda2fb119d84dcf0fbd77e707b2dfea1bbcfc4e366493a143513ce7f57203c75da9d4e20af6fe46de89749366351046be7577c
   languageName: node
   linkType: hard
 
@@ -7063,13 +7301,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@^4.5.5#~builtin<compat/typescript>":
-  version: 4.5.5
-  resolution: "typescript@patch:typescript@npm%3A4.5.5#~builtin<compat/typescript>::version=4.5.5&hash=ddd1e8"
+"typescript@patch:typescript@^4.6.2#~builtin<compat/typescript>":
+  version: 4.6.2
+  resolution: "typescript@patch:typescript@npm%3A4.6.2#~builtin<compat/typescript>::version=4.6.2&hash=ddd1e8"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: 9cdde4aae20b2904431f3f2ca8acaf3b0cc52faddf68aa88b288c9d0520221817da43783a756fce7ab9360033ada0371c3ff93dfc4bdb4b13f6e9bac64e1658d
+  checksum: efb83260a22ee49d4c8bdc59b3cefe54fdf51d6f563f5c3a35aa3d5e46fb12f3f1d33a36d6f9f64171e567ead1847e99cb612d0a9a74e7d44e16cad9d0bbc937
   languageName: node
   linkType: hard
 
@@ -7159,9 +7397,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vite@npm:^2.8.2":
-  version: 2.8.2
-  resolution: "vite@npm:2.8.2"
+"vite@npm:^2.8.6":
+  version: 2.8.6
+  resolution: "vite@npm:2.8.6"
   dependencies:
     esbuild: ^0.14.14
     fsevents: ~2.3.2
@@ -7184,7 +7422,7 @@ __metadata:
       optional: true
   bin:
     vite: bin/vite.js
-  checksum: 2e5ace113e34fbcd335ea9e83292086fb464a0029df5b4547ae89d109de509210bd0027dc2c041f11d24a0af6136ee31e78dd605a1d93fa23e968db5a4e81c7e
+  checksum: 4b02d133892c98362c10214b7ad518d74b59745889197a2ba0b63260ed083fcef75a447e8fb58dbd2af8747386274b36017983d93031254df6ead38701950dcc
   languageName: node
   linkType: hard
 
