@@ -3,7 +3,7 @@ import { XsAdd } from "@thi.ng/random";
 import { group } from "@thi.ng/testament";
 import { range } from "@thi.ng/transducers";
 import * as assert from "assert";
-import { DCons, defDCons } from "../src/index.js"
+import { AList, DCons, defDCons } from "../src/index.js";
 
 let a: DCons<any>, src: number[];
 
@@ -11,6 +11,7 @@ group(
     "DCons",
     {
         "is instanceof": () => {
+            assert.ok(a instanceof AList);
             assert.ok(a instanceof DCons);
         },
 

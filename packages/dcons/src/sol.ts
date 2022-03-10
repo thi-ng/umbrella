@@ -1,6 +1,7 @@
 import type { Fn2, Predicate } from "@thi.ng/api";
 import { outOfBounds } from "@thi.ng/errors/out-of-bounds";
-import { ConsCell, DCons } from "./dcons.js";
+import type { ConsCell } from "./api.js";
+import { DCons } from "./dcons.js";
 
 /**
  * Self-organization function/handler. Attempts to re-order given list cell and
@@ -37,6 +38,16 @@ export class SOL<T> extends DCons<T> {
         return new SOL<T>(this._reorder);
     }
 
+    find(value: T) {
+        const cell = super.find(value);
+        return cell ? this._reorder(this, cell) : undefined;
+    }
+
+    findWith(fn: Predicate<T>) {
+        const cell = super.findWith(fn);
+        return cell ? this._reorder(this, cell) : undefined;
+    }
+
     nth(n: number, notFound?: T) {
         const cell = super.nthCell(n);
         return cell ? this._reorder(this, cell).value : notFound;
@@ -46,36 +57,17 @@ export class SOL<T> extends DCons<T> {
         const cell = this.nthCell(n);
         !cell && outOfBounds(n);
         this._reorder(this, cell!).value = v;
-        return this;
+        return cell;
     }
 
-    setTail(value: T): SOL<T> {
-        if (this.tail) {
-            this.tail.value = value;
-            this._reorder(this, this.tail);
-            return this;
+    setTail(value: T) {
+        const cell = this._tail;
+        if (cell) {
+            cell.value = value;
+            this._reorder(this, cell);
+            return cell;
         }
-        return <SOL<T>>this.cons(value);
-    }
-
-    find(value: T) {
-        let cell = this.head;
-        while (cell) {
-            if (cell.value === value) {
-                return this._reorder(this, cell);
-            }
-            cell = cell.next;
-        }
-    }
-
-    findWith(fn: Predicate<T>) {
-        let cell = this.head;
-        while (cell) {
-            if (fn(cell.value)) {
-                return this._reorder(this, cell);
-            }
-            cell = cell.next;
-        }
+        return this.prepend(value);
     }
 }
 

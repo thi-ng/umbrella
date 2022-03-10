@@ -1,133 +1,248 @@
 import type {
     Comparator,
     Fn,
-    IClear,
     ICompare,
-    ICopy,
     IEmpty,
-    IEquiv,
-    ILength,
-    IRelease,
     ISeq,
     ISeqable,
     IStack,
-    Predicate,
 } from "@thi.ng/api";
-import { isArrayLike } from "@thi.ng/checks/is-arraylike";
 import { compare } from "@thi.ng/compare/compare";
-import { equiv } from "@thi.ng/equiv";
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import { ensureIndex } from "@thi.ng/errors/out-of-bounds";
 import type { IRandom } from "@thi.ng/random";
 import { SYSTEM } from "@thi.ng/random/system";
-import type { IReducible, ReductionFn } from "@thi.ng/transducers";
-import { isReduced } from "@thi.ng/transducers/reduced";
-
-export interface ConsCell<T> {
-    value: T;
-    next: ConsCell<T> | undefined;
-    prev: ConsCell<T> | undefined;
-}
+import { AList } from "./alist.js";
+import type { ConsCell } from "./api.js";
 
 export class DCons<T>
+    extends AList<DCons<T>, T>
     implements
-        IClear,
         ICompare<DCons<T>>,
-        ICopy<DCons<T>>,
         IEmpty<DCons<T>>,
-        IEquiv,
-        ILength,
-        IReducible<any, T>,
-        IRelease,
-        ISeqable<T>,
-        IStack<T, T, DCons<T>>
+        IStack<T, T, DCons<T>>,
+        ISeqable<T>
 {
-    head: ConsCell<T> | undefined;
-    tail: ConsCell<T> | undefined;
-    protected _length: number = 0;
+    protected _tail: ConsCell<T> | undefined;
 
-    constructor(src?: Iterable<T>) {
-        if (src) {
-            this.into(src);
+    get tail() {
+        return this._tail;
+    }
+
+    append(value: T): ConsCell<T> {
+        if (this._tail) {
+            const cell = <ConsCell<T>>{ value, prev: this._tail };
+            this._tail.next = cell;
+            this._tail = cell;
+            this._length++;
+            return cell;
+        } else {
+            return this.prepend(value);
         }
     }
 
-    get length() {
-        return this._length;
+    asHead(cell: ConsCell<T>) {
+        if (cell === this._head) {
+            return this;
+        }
+        this.remove(cell);
+        this._head!.prev = cell;
+        cell.next = this._head;
+        cell.prev = undefined;
+        this._head = cell;
+        this._length++;
+        return this;
+    }
+
+    asTail(cell: ConsCell<T>) {
+        if (cell === this._tail) {
+            return this;
+        }
+        this.remove(cell);
+        this._tail!.next = cell;
+        cell.prev = this._tail;
+        cell.next = undefined;
+        this._tail = cell;
+        this._length++;
+        return this;
+    }
+
+    /** @deprecated use {@link DCons.prepend} */
+    cons(value: T): DCons<T> {
+        this.prepend(value);
+        return this;
     }
 
     copy() {
         return new DCons<T>(this);
     }
 
+    *cycle() {
+        while (true) {
+            yield* this;
+        }
+    }
+
+    drop() {
+        const cell = this._head;
+        if (cell) {
+            this._head = cell.next;
+            if (this._head) {
+                this._head.prev = undefined;
+            } else {
+                this._tail = undefined;
+            }
+            this._length--;
+            return cell.value;
+        }
+    }
+
     empty() {
         return new DCons<T>();
     }
 
-    clear() {
-        this.release();
+    insertAfter(cell: ConsCell<T>, value: T) {
+        const newCell = <ConsCell<T>>{ value, next: cell.next, prev: cell };
+        if (cell.next) {
+            cell.next.prev = newCell;
+        } else {
+            this._tail = newCell;
+        }
+        cell.next = newCell;
+        this._length++;
+        return newCell;
+    }
+
+    insertAfterNth(n: number, x: T) {
+        if (n < 0) {
+            n += this._length;
+        }
+        if (n >= this._length - 1) {
+            return this.append(x);
+        } else {
+            ensureIndex(n, 0, this._length);
+            return this.insertAfter(this.nthCellUnsafe(n)!, x);
+        }
+    }
+
+    insertBefore(cell: ConsCell<T>, value: T) {
+        const newCell = <ConsCell<T>>{ value, next: cell, prev: cell.prev };
+        if (cell.prev) {
+            cell.prev.next = newCell;
+        } else {
+            this._head = newCell;
+        }
+        cell.prev = newCell;
+        this._length++;
+        return newCell;
+    }
+
+    insertBeforeNth(n: number, x: T) {
+        if (n < 0) {
+            n += this._length;
+        }
+        if (n <= 0) {
+            return this.prepend(x);
+        } else {
+            ensureIndex(n, 0, this._length);
+            return this.insertBefore(this.nthCellUnsafe(n)!, x);
+        }
+    }
+
+    map<R>(fn: Fn<T, R>) {
+        return this._map(new DCons<R>(), fn);
+    }
+
+    nth(n: number, notFound?: T) {
+        const cell = this.nthCell(n);
+        return cell ? cell.value : notFound;
+    }
+
+    nthCell(n: number) {
+        if (n < 0) {
+            n += this._length;
+        }
+        if (n < 0 || n >= this._length) {
+            return;
+        }
+        return this.nthCellUnsafe(n);
+    }
+
+    pop() {
+        const cell = this._tail;
+        if (!cell) {
+            return;
+        }
+        this._tail = cell.prev;
+        if (this._tail) {
+            this._tail.next = undefined;
+        } else {
+            this._head = undefined;
+        }
+        this._length--;
+        return cell.value;
+    }
+
+    prepend(value: T): ConsCell<T> {
+        const cell = <ConsCell<T>>{ value, next: this._head };
+        if (this._head) {
+            this._head.prev = cell;
+        } else {
+            this._tail = cell;
+        }
+        this._head = cell;
+        this._length++;
+        return cell;
+    }
+
+    push(value: T): DCons<T> {
+        this.append(value);
+        return this;
     }
 
     release() {
-        let cell = this.head,
-            next;
-        while (cell) {
-            next = cell.next;
-            delete (<any>cell).value;
-            delete cell.prev;
-            delete cell.next;
-            cell = next;
-        }
-        delete this.head;
-        delete this.tail;
-        this._length = 0;
-        return true;
+        this._tail = undefined;
+        return super.release();
     }
 
-    compare(o: DCons<T>) {
-        const n = this._length;
-        if (n < o._length) {
-            return -1;
-        } else if (n > o._length) {
-            return 1;
-        } else if (n === 0) {
-            return 0;
+    remove(cell: ConsCell<T>) {
+        if (cell.prev) {
+            cell.prev.next = cell.next;
         } else {
-            let ca = this.head;
-            let cb = o.head;
-            let res = 0;
-            while (ca && res == 0) {
-                res = compare(ca.value, cb!.value);
-                ca = ca.next;
-                cb = cb!.next;
-            }
-            return res;
+            this._head = cell.next;
+        }
+        if (cell.next) {
+            cell.next.prev = cell.prev;
+        } else {
+            this._tail = cell.prev;
+        }
+        this._length--;
+        return this;
+    }
+
+    rotateLeft() {
+        switch (this._length) {
+            case 0:
+            case 1:
+                return this;
+            case 2:
+                return this.swap(this._head!, this._tail!);
+            default:
+                return this.push(this.drop()!);
         }
     }
 
-    equiv(o: any) {
-        if (
-            !(o instanceof DCons || isArrayLike(o)) ||
-            this._length !== o.length
-        ) {
-            return false;
-        }
-        if (!this._length || this === o) return true;
-        let cell = this.head;
-        for (let x of <any>o) {
-            if (!equiv(cell!.value, x)) {
-                return false;
-            }
-            cell = cell!.next;
-        }
-        return true;
-    }
-
-    *[Symbol.iterator]() {
-        let cell = this.head;
-        while (cell) {
-            yield cell.value;
-            cell = cell.next;
+    rotateRight() {
+        switch (this._length) {
+            case 0:
+            case 1:
+                return this;
+            case 2:
+                return this.swap(this._head!, this._tail!);
+            default:
+                const x = this.peek();
+                this.pop();
+                return this.cons(x!);
         }
     }
 
@@ -147,146 +262,38 @@ export class DCons<T>
         return cell ? $seq(cell) : undefined;
     }
 
-    *cycle() {
-        while (true) {
-            yield* this;
-        }
-    }
-
-    /** {@inheritDoc @thi.ng/transducers#IReducible.$reduce} */
-    $reduce(rfn: ReductionFn<any, T>, acc: any) {
-        let cell = this.head;
-        while (cell && !isReduced(acc)) {
-            acc = rfn(acc, cell.value);
-            cell = cell.next;
-        }
-        return acc;
-    }
-
-    drop() {
-        const cell = this.head;
-        if (cell) {
-            this.head = cell.next;
-            if (this.head) {
-                delete this.head.prev;
-            } else {
-                delete this.tail;
+    /**
+     * Shuffles list by probabilistically moving cells to head or tail
+     * positions.
+     *
+     * @remarks
+     * Supports configurable iterations and custom PRNG via
+     * {@link @thi.ng/random#IRandom} (default:
+     * {@link @thi.ng/random#SYSTEM}).
+     *
+     * Default iterations: `ceil(3/2 * log2(n))`
+     *
+     * @param iter -
+     * @param rnd -
+     */
+    shuffle(iter?: number, rnd: IRandom = SYSTEM) {
+        if (this._length < 2) return this;
+        for (
+            iter =
+                iter !== undefined
+                    ? iter
+                    : Math.ceil(1.5 * Math.log2(this._length));
+            iter > 0;
+            iter--
+        ) {
+            let cell = this._head;
+            while (cell) {
+                const next = cell.next;
+                rnd.float() < 0.5 ? this.asHead(cell) : this.asTail(cell);
+                cell = next;
             }
-            this._length--;
-            return cell.value;
         }
-    }
-
-    cons(value: T): DCons<T> {
-        const cell = <ConsCell<T>>{ value, next: this.head };
-        if (this.head) {
-            this.head.prev = cell;
-        } else {
-            this.tail = cell;
-        }
-        this.head = cell;
-        this._length++;
         return this;
-    }
-
-    insertBefore(cell: ConsCell<T>, value: T): DCons<T> {
-        if (!cell) {
-            illegalArgs("cell is undefined");
-        }
-        const newCell = <ConsCell<T>>{ value, next: cell, prev: cell.prev };
-        if (cell.prev) {
-            cell.prev.next = newCell;
-        } else {
-            this.head = newCell;
-        }
-        cell.prev = newCell;
-        this._length++;
-        return this;
-    }
-
-    insertAfter(cell: ConsCell<T>, value: T): DCons<T> {
-        if (!cell) {
-            illegalArgs("cell is undefined");
-        }
-        const newCell = <ConsCell<T>>{ value, next: cell.next, prev: cell };
-        if (cell.next) {
-            cell.next.prev = newCell;
-        } else {
-            this.tail = newCell;
-        }
-        cell.next = newCell;
-        this._length++;
-        return this;
-    }
-
-    insertBeforeNth(n: number, x: T) {
-        if (n < 0) {
-            n += this._length;
-        }
-        if (n <= 0) {
-            return this.cons(x);
-        } else {
-            ensureIndex(n, 0, this._length);
-            return this.insertBefore(this.nthCellUnsafe(n), x);
-        }
-    }
-
-    insertAfterNth(n: number, x: T) {
-        if (n < 0) {
-            n += this._length;
-        }
-        if (n >= this._length - 1) {
-            return this.push(x);
-        } else {
-            ensureIndex(n, 0, this._length);
-            return this.insertAfter(this.nthCellUnsafe(n), x);
-        }
-    }
-
-    insertSorted(value: T, cmp?: Comparator<T>) {
-        cmp = cmp || compare;
-        let cell = this.head;
-        while (cell) {
-            if (cmp(value, cell.value) <= 0) {
-                return this.insertBefore(cell, value);
-            }
-            cell = cell.next;
-        }
-        return this.push(value);
-    }
-
-    find(value: T) {
-        let cell = this.head;
-        while (cell) {
-            if (cell.value === value) {
-                return cell;
-            }
-            cell = cell.next;
-        }
-    }
-
-    findWith(fn: Predicate<T>) {
-        let cell = this.head;
-        while (cell) {
-            if (fn(cell.value)) {
-                return cell;
-            }
-            cell = cell.next;
-        }
-    }
-
-    concat(...slices: Iterable<T>[]) {
-        const res = this.copy();
-        for (let slice of slices) {
-            res.into(slice);
-        }
-        return res;
-    }
-
-    into(src: Iterable<T>) {
-        for (let x of src) {
-            this.push(x);
-        }
     }
 
     slice(from = 0, to = this.length) {
@@ -302,6 +309,70 @@ export class DCons<T>
             cell = cell.next;
         }
         return res;
+    }
+
+    /**
+     * Merge sort implementation based on Simon Tatham's algorithm:
+     * https://www.chiark.greenend.org.uk/~sgtatham/algorithms/listsort.html
+     *
+     * @remarks
+     * Uses {@link @thi.ng/compare#compare} as default comparator.
+     *
+     * @param cmp -
+     */
+    sort(cmp: Comparator<T> = compare) {
+        if (!this._length) return this;
+        let inSize = 1;
+        while (true) {
+            let p = this._head;
+            this._head = undefined;
+            this._tail = undefined;
+            let numMerges = 0;
+            while (p) {
+                numMerges++;
+                let q: ConsCell<T> | undefined = p;
+                let psize = 0;
+                for (let i = 0; i < inSize; i++) {
+                    psize++;
+                    q = q!.next;
+                    if (!q) break;
+                }
+                let qsize = inSize;
+                while (psize > 0 || (qsize > 0 && q)) {
+                    let e: ConsCell<T> | undefined;
+                    if (psize === 0) {
+                        e = q;
+                        q = q!.next;
+                        qsize--;
+                    } else if (!q || qsize === 0) {
+                        e = p;
+                        p = p!.next;
+                        psize--;
+                    } else if (cmp(p!.value, q!.value) <= 0) {
+                        e = p;
+                        p = p!.next;
+                        psize--;
+                    } else {
+                        e = q;
+                        q = q!.next;
+                        qsize--;
+                    }
+                    if (this._tail) {
+                        this._tail!.next = e;
+                    } else {
+                        this._head = e;
+                    }
+                    e!.prev = this._tail;
+                    this._tail = e;
+                }
+                p = q;
+            }
+            this._tail!.next = undefined;
+            if (numMerges <= 1) {
+                return this;
+            }
+            inSize *= 2;
+        }
     }
 
     splice(at: ConsCell<T> | number, del = 0, insert?: Iterable<T>): DCons<T> {
@@ -337,329 +408,6 @@ export class DCons<T>
             }
         }
         return removed;
-    }
-
-    remove(cell: ConsCell<T>) {
-        if (cell.prev) {
-            cell.prev.next = cell.next;
-        } else {
-            this.head = cell.next;
-        }
-        if (cell.next) {
-            cell.next.prev = cell.prev;
-        } else {
-            this.tail = cell.prev;
-        }
-        this._length--;
-        return this;
-    }
-
-    swap(a: ConsCell<T>, b: ConsCell<T>): DCons<T> {
-        if (a !== b) {
-            const t = a.value;
-            a.value = b.value;
-            b.value = t;
-        }
-        return this;
-    }
-
-    push(value: T): DCons<T> {
-        if (this.tail) {
-            const cell = <ConsCell<T>>{ value, prev: this.tail };
-            this.tail.next = cell;
-            this.tail = cell;
-            this._length++;
-            return this;
-        } else {
-            return this.cons(value);
-        }
-    }
-
-    pop() {
-        const cell = this.tail;
-        if (!cell) {
-            return;
-        }
-        this.tail = cell.prev;
-        if (this.tail) {
-            delete this.tail.next;
-        } else {
-            delete this.head;
-        }
-        this._length--;
-        return cell.value;
-    }
-
-    first() {
-        return this.head && this.head.value;
-    }
-
-    peek() {
-        return this.tail && this.tail.value;
-    }
-
-    setHead(v: T) {
-        if (this.head) {
-            this.head.value = v;
-            return this;
-        }
-        return this.cons(v);
-    }
-
-    setTail(v: T) {
-        if (this.tail) {
-            this.tail.value = v;
-            return this;
-        }
-        return this.push(v);
-    }
-
-    setNth(n: number, v: T) {
-        const cell = this.nthCell(n);
-        !cell && illegalArgs(`index out of bounds: ${n}`);
-        cell!.value = v;
-        return this;
-    }
-
-    nth(n: number, notFound?: T) {
-        const cell = this.nthCell(n);
-        return cell ? cell.value : notFound;
-    }
-
-    nthCell(n: number) {
-        if (n < 0) {
-            n += this._length;
-        }
-        if (n < 0 || n >= this._length) {
-            return;
-        }
-        return this.nthCellUnsafe(n);
-    }
-
-    rotateLeft() {
-        switch (this._length) {
-            case 0:
-            case 1:
-                return this;
-            case 2:
-                return this.swap(this.head!, this.tail!);
-            default:
-                return this.push(this.drop()!);
-        }
-    }
-
-    rotateRight() {
-        switch (this._length) {
-            case 0:
-            case 1:
-                return this;
-            case 2:
-                return this.swap(this.head!, this.tail!);
-            default:
-                const x = this.peek();
-                this.pop();
-                return this.cons(x!);
-        }
-    }
-
-    map<R>(fn: Fn<T, R>) {
-        const res = new DCons<R>();
-        let cell = this.head;
-        while (cell) {
-            res.push(fn(cell.value));
-            cell = cell.next;
-        }
-        return res;
-    }
-
-    filter(pred: Predicate<T>) {
-        const res = new DCons<T>();
-        let cell = this.head;
-        while (cell) {
-            pred(cell.value) && res.push(cell.value);
-            cell = cell.next;
-        }
-        return res;
-    }
-
-    reduce<R>(rfn: ReductionFn<R, T>, initial: R) {
-        let acc: R = initial;
-        let cell = this.head;
-        while (cell) {
-            // TODO add early termination support
-            acc = <R>rfn(acc, cell.value);
-            cell = cell.next;
-        }
-        return acc;
-    }
-
-    /**
-     * Shuffles list by probabilistically moving cells to head or tail
-     * positions.
-     *
-     * @remarks
-     * Supports configurable iterations and custom PRNG via
-     * {@link @thi.ng/random#IRandom} (default:
-     * {@link @thi.ng/random#SYSTEM}).
-     *
-     * Default iterations: `ceil(3/2 * log2(n))`
-     *
-     * @param iter -
-     * @param rnd -
-     */
-    shuffle(iter?: number, rnd: IRandom = SYSTEM) {
-        if (this._length < 2) return this;
-        for (
-            iter =
-                iter !== undefined
-                    ? iter
-                    : Math.ceil(1.5 * Math.log2(this._length));
-            iter > 0;
-            iter--
-        ) {
-            let cell = this.head;
-            while (cell) {
-                const next = cell.next;
-                rnd.float() < 0.5 ? this.asHead(cell) : this.asTail(cell);
-                cell = next;
-            }
-        }
-        return this;
-    }
-
-    /**
-     * Merge sort implementation based on Simon Tatham's algorithm:
-     * https://www.chiark.greenend.org.uk/~sgtatham/algorithms/listsort.html
-     *
-     * @remarks
-     * Uses {@link @thi.ng/compare#compare} as default comparator.
-     *
-     * @param cmp -
-     */
-    sort(cmp: Comparator<T> = compare) {
-        if (!this._length) return this;
-        let inSize = 1;
-        while (true) {
-            let p = this.head;
-            this.head = undefined;
-            this.tail = undefined;
-            let numMerges = 0;
-            while (p) {
-                numMerges++;
-                let q: ConsCell<T> | undefined = p;
-                let psize = 0;
-                for (let i = 0; i < inSize; i++) {
-                    psize++;
-                    q = q!.next;
-                    if (!q) break;
-                }
-                let qsize = inSize;
-                while (psize > 0 || (qsize > 0 && q)) {
-                    let e: ConsCell<T> | undefined;
-                    if (psize === 0) {
-                        e = q;
-                        q = q!.next;
-                        qsize--;
-                    } else if (!q || qsize === 0) {
-                        e = p;
-                        p = p!.next;
-                        psize--;
-                    } else if (cmp(p!.value, q!.value) <= 0) {
-                        e = p;
-                        p = p!.next;
-                        psize--;
-                    } else {
-                        e = q;
-                        q = q!.next;
-                        qsize--;
-                    }
-                    if (this.tail) {
-                        this.tail!.next = e;
-                    } else {
-                        this.head = e;
-                    }
-                    e!.prev = this.tail;
-                    this.tail = e;
-                }
-                p = q;
-            }
-            this.tail!.next = undefined;
-            if (numMerges <= 1) {
-                return this;
-            }
-            inSize *= 2;
-        }
-    }
-
-    reverse() {
-        let head = this.head;
-        let tail = this.tail;
-        let n = (this._length >>> 1) + (this._length & 1);
-        while (head && tail && n > 0) {
-            const t = head.value;
-            head.value = tail.value;
-            tail.value = t;
-            head = head.next;
-            tail = tail.prev;
-            n--;
-        }
-        return this;
-    }
-
-    asHead(cell: ConsCell<T>) {
-        if (cell === this.head) {
-            return this;
-        }
-        this.remove(cell);
-        this.head!.prev = cell;
-        cell.next = this.head;
-        cell.prev = undefined;
-        this.head = cell;
-        this._length++;
-        return this;
-    }
-
-    asTail(cell: ConsCell<T>) {
-        if (cell === this.tail) {
-            return this;
-        }
-        this.remove(cell);
-        this.tail!.next = cell;
-        cell.prev = this.tail;
-        cell.next = undefined;
-        this.tail = cell;
-        this._length++;
-        return this;
-    }
-
-    toString() {
-        let res: any = [];
-        let cell = this.head;
-        while (cell) {
-            res.push(String(cell.value));
-            cell = cell.next;
-        }
-        return res.join(", ");
-    }
-
-    toJSON() {
-        return [...this];
-    }
-
-    protected nthCellUnsafe(n: number) {
-        let cell: ConsCell<T>, dir: keyof ConsCell<T>;
-        if (n <= this._length >> 1) {
-            cell = this.head!;
-            dir = "next";
-        } else {
-            cell = this.tail!;
-            dir = "prev";
-            n = this._length - n - 1;
-        }
-        while (n-- > 0 && cell) {
-            cell = cell[dir]!;
-        }
-        return cell;
     }
 }
 
