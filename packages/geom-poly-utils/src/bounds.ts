@@ -33,3 +33,13 @@ export const bounds = (
     }
     return [vmin, vmax];
 };
+
+export const bounds2 = (pts: ReadonlyArray<Vec>) =>
+    bounds(pts, [Infinity, Infinity], [-Infinity, -Infinity]);
+
+export const bounds3 = (pts: ReadonlyArray<Vec>) =>
+    bounds(
+        pts,
+        [Infinity, Infinity, Infinity],
+        [-Infinity, -Infinity, -Infinity]
+    );
