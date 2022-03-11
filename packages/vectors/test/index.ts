@@ -2,6 +2,7 @@ import { eqDelta as $eq } from "@thi.ng/math/eqdelta";
 import { group } from "@thi.ng/testament";
 import * as assert from "assert";
 import {
+    center,
     eqDelta,
     sd,
     standardize,
@@ -19,6 +20,12 @@ group("vectors", {
     vmedian: () => {
         assert.strictEqual(vmedian(SAMPLES), 5);
     },
+    center: () => {
+        assert.deepStrictEqual(
+            center([], SAMPLES),
+            [2, -1, 4, -1, 0, -1, 0, -3]
+        );
+    },
     variance: () => {
         assert.strictEqual(variance(SAMPLES), 4);
     },
@@ -29,10 +36,7 @@ group("vectors", {
         assert.ok(
             eqDelta(
                 standardize([], SAMPLES),
-                [
-                    1.2159, 0.6948, 1.5633, 0.6948, 0.8685, 0.6948, 0.8685,
-                    0.3474,
-                ],
+                [0.9354, -0.4677, 1.8708, -0.4677, 0, -0.4677, 0, -1.4031],
                 0.001
             )
         );
