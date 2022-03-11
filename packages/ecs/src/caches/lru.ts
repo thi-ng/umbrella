@@ -1,5 +1,6 @@
 import type { Fn0 } from "@thi.ng/api";
-import { ConsCell, DCons } from "@thi.ng/dcons/dcons";
+import type { ConsCell } from "@thi.ng/dcons";
+import { DCons } from "@thi.ng/dcons/dcons";
 import type { ICache } from "../api.js";
 
 type LRUEntry<T> = { k: number; v: T };
