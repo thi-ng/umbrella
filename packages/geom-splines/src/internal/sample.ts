@@ -45,9 +45,8 @@ export const __sampleArray =
         const n = segments.length - 1;
         return Array.prototype.concat.apply(
             [],
-            segments.map((seg, i) => {
-                const last = !closed && i === n;
-                return fn(seg, { ..._opts, last });
-            })
+            segments.map((seg, i) =>
+                fn(seg, { ..._opts, last: !closed && i === n })
+            )
         );
     };
