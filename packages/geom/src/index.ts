@@ -1,6 +1,7 @@
 export * from "./api/aabb.js";
 export * from "./api/apc.js";
 export * from "./api/arc.js";
+export * from "./api/bpatch.js";
 export * from "./api/circle.js";
 export * from "./api/cubic.js";
 export * from "./api/ellipse.js";
@@ -22,6 +23,7 @@ export * from "./api/triangle.js";
 
 export * from "./aabb.js";
 export * from "./arc.js";
+export * from "./bpatch.js";
 export * from "./circle.js";
 export * from "./cubic.js";
 export * from "./ellipse.js";

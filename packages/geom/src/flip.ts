@@ -21,7 +21,7 @@ export const flip: MultiFn1<IShape, IShape> = defmulti<any, IShape>(
         tri: "points",
     },
     {
-        [DEFAULT]: (x) => x,
+        [DEFAULT]: (x: IShape) => x,
 
         arc: ($: Arc) => {
             const t = $.start;

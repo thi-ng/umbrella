@@ -2,19 +2,18 @@ import type { MultiFn1 } from "@thi.ng/defmulti";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
 import type { AABBLike, IShape, PathSegment, PCLike } from "@thi.ng/geom-api";
 import { bounds as arcBounds } from "@thi.ng/geom-arc/bounds";
-import { bounds as _bounds } from "@thi.ng/geom-poly-utils/bounds";
+import { bounds2, bounds3 } from "@thi.ng/geom-poly-utils/bounds";
 import { cubicBounds } from "@thi.ng/geom-splines/cubic-bounds";
 import { quadraticBounds } from "@thi.ng/geom-splines/quadratic-bounds";
 import { comp } from "@thi.ng/transducers/comp";
 import { filter } from "@thi.ng/transducers/filter";
 import { iterator1 } from "@thi.ng/transducers/iterator";
 import { map } from "@thi.ng/transducers/map";
-import { MAX2, MAX3, MIN2, MIN3 } from "@thi.ng/vectors/api";
 import { max } from "@thi.ng/vectors/max";
 import { min } from "@thi.ng/vectors/min";
 import { mul2 } from "@thi.ng/vectors/mul";
 import { mulN2 } from "@thi.ng/vectors/muln";
-import { set2, set3 } from "@thi.ng/vectors/set";
+import { set2 } from "@thi.ng/vectors/set";
 import { sub2 } from "@thi.ng/vectors/sub";
 import { subN2 } from "@thi.ng/vectors/subn";
 import { aabbFromMinMax } from "./aabb.js";
@@ -39,6 +38,7 @@ export const bounds: MultiFn1<IShape, AABBLike | undefined> = defmulti<
     __dispatch,
     {
         aabb: "rect",
+        bpatch: "points",
         poly: "points",
         polyline: "points",
         quad: "points",
@@ -83,15 +83,9 @@ export const bounds: MultiFn1<IShape, AABBLike | undefined> = defmulti<
             return b ? new Rect(...b) : undefined;
         },
 
-        points: ($: PCLike) =>
-            rectFromMinMax(
-                ..._bounds($.points, set2([], MAX2), set2([], MIN2))
-            ),
+        points: ($: PCLike) => rectFromMinMax(...bounds2($.points)),
 
-        points3: ($: PCLike) =>
-            aabbFromMinMax(
-                ..._bounds($.points, set3([], MAX3), set3([], MIN3))
-            ),
+        points3: ($: PCLike) => aabbFromMinMax(...bounds3($.points)),
 
         quadratic: ({ points }: Quadratic) =>
             rectFromMinMax(...quadraticBounds(points[0], points[1], points[2])),

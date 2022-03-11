@@ -37,6 +37,7 @@ export const vertices: MultiFn1O<
     __dispatch,
     {
         line: "polyline",
+        bpatch: "points",
         points3: "points",
         quad: "poly",
         tri: "poly",
@@ -143,7 +144,7 @@ export const vertices: MultiFn1O<
  * Takes array of vectors or an `IShape`. If the latter, calls {@link vertices}
  * and return result, else returns original array.
  *
- * @param shape - 
+ * @param shape -
  */
 export const ensureVertices = (shape: IShape | Vec[]) =>
     isArray(shape) ? shape : vertices(shape);

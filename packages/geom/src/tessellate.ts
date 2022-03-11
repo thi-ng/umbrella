@@ -9,6 +9,7 @@ export const tessellate = defmulti<IShape, Tessellator[], Vec[][]>(
     __dispatch,
     {},
     {
-        [DEFAULT]: ($, fns) => _tessellate(vertices($), fns),
+        [DEFAULT]: ($: IShape, fns: Tessellator[]) =>
+            _tessellate(vertices($), fns),
     }
 );

@@ -18,7 +18,7 @@ export const center: MultiFn1O<IShape, ReadonlyVec, IShape | undefined> =
         __dispatch,
         {},
         {
-            [DEFAULT]: ($, origin = ZERO3) => {
+            [DEFAULT]: ($: IShape, origin = ZERO3) => {
                 const c = centroid($);
                 return c ? translate($, submN(null, c, origin, -1)) : undefined;
             },
