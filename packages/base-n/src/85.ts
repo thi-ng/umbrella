@@ -1,7 +1,7 @@
 import { B62_CHARS } from "./62.js";
 import { defBase } from "./base.js";
 
-const B85_CHARS = B62_CHARS + "!#$%&()*+-;<=>?@^_`{|}~";
+export const B85_CHARS = B62_CHARS + "!#$%&()*+-;<=>?@^_`{|}~";
 
 /**
  * Reference: https://en.wikipedia.org/wiki/Ascii85
