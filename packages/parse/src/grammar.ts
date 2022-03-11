@@ -167,7 +167,8 @@ const compile: MultiFn4<
         unicode: "char",
     },
     {
-        [DEFAULT]: ($) => unsupported(`unknown op: ${$.id}`),
+        [DEFAULT]: ($: ParseScope<string>) =>
+            unsupported(`unknown op: ${$.id}`),
         root: ($, lang, opts, flags) => {
             const rules = first($).children!;
             rules.reduce(
