@@ -64,7 +64,7 @@ node --experimental-repl-await
 > const geomPolyUtils = await import("@thi.ng/geom-poly-utils");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.76 KB
+Package sizes (gzipped, pre-treeshake): ESM: 1.80 KB
 
 ## Dependencies
 
@@ -97,4 +97,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2013 - 2021 Karsten Schmidt // Apache Software License 2.0
+&copy; 2013 - 2022 Karsten Schmidt // Apache Software License 2.0

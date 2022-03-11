@@ -15,6 +15,7 @@ This project is part of the
     - [Nearest](#nearest)
     - [KNearest](#knearest)
   - [Status](#status)
+  - [Support packages](#support-packages)
   - [Related packages](#related-packages)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
@@ -89,6 +90,10 @@ Work is underway integrating this approach into the spatial indexing data
 structures provided by the
 [@thi.ng/geom-accel](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-accel)
 package.
+
+### Support packages
+
+- [@thi.ng/distance-transform](https://github.com/thi-ng/umbrella/tree/develop/packages/distance-transform) - Binary image to Distance Field transformation
 
 ### Related packages
 
@@ -179,4 +184,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2021 Karsten Schmidt // Apache Software License 2.0
+&copy; 2021 - 2022 Karsten Schmidt // Apache Software License 2.0

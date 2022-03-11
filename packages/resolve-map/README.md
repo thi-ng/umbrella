@@ -75,7 +75,7 @@ node --experimental-repl-await
 > const resolveMap = await import("@thi.ng/resolve-map");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 920 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 922 bytes
 
 ## Dependencies
 
@@ -314,4 +314,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2018 - 2021 Karsten Schmidt // Apache Software License 2.0
+&copy; 2018 - 2022 Karsten Schmidt // Apache Software License 2.0

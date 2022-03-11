@@ -37,7 +37,7 @@ fairly obscure anyway, so likely not problematic...
 
 ### Related packages
 
-- [@thi.ng/dl-asset](https://github.com/thi-ng/umbrella/tree/develop/packages/dl-asset) - Local asset download for web apps, with automatic MIME type detection
+- [@thi.ng/dl-asset](https://github.com/thi-ng/umbrella/tree/develop/packages/dl-asset) - Canvas, video recording & file asset download helpers for web apps
 
 ## Installation
 
@@ -156,4 +156,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2020 - 2021 Karsten Schmidt // Apache Software License 2.0
+&copy; 2020 - 2022 Karsten Schmidt // Apache Software License 2.0

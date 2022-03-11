@@ -20,13 +20,10 @@ This project is part of the
 
 ## About
 
-2D convex polygon clipping (Sutherland-Hodgeman). This is a support package for [@thi.ng/geom](https://github.com/thi-ng/umbrella/tree/develop/packages/geom).
+2D polygon clipping / offsetting (Sutherland-Hodgeman, Grainer-Hormann). This is a support package for [@thi.ng/geom](https://github.com/thi-ng/umbrella/tree/develop/packages/geom).
 
-Current implementation is based on [toxiclibs](http://toxiclibs.org)
-(Java) and Clojure version [thi.ng/geom-clj](http://thi.ng/geom-clj).
-
-This package has been extracted from the former (now obsolete)
-@thi.ng/geom-clip package.
+Current implementations are based on [toxiclibs](http://toxiclibs.org)
+(Java) and Clojure versions [thi.ng/geom-clj](http://thi.ng/geom-clj).
 
 ### Status
 
@@ -93,4 +90,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2013 - 2021 Karsten Schmidt // Apache Software License 2.0
+&copy; 2013 - 2022 Karsten Schmidt // Apache Software License 2.0

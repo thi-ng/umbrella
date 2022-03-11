@@ -89,7 +89,7 @@ node --experimental-repl-await
 > const random = await import("@thi.ng/random");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.83 KB
+Package sizes (gzipped, pre-treeshake): ESM: 1.84 KB
 
 ## Dependencies
 
@@ -160,4 +160,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2015 - 2021 Karsten Schmidt // Apache Software License 2.0
+&copy; 2015 - 2022 Karsten Schmidt // Apache Software License 2.0

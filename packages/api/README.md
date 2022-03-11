@@ -60,7 +60,7 @@ node --experimental-repl-await
 > const api = await import("@thi.ng/api");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 2.27 KB
+Package sizes (gzipped, pre-treeshake): ESM: 2.25 KB
 
 ## Dependencies
 
@@ -93,4 +93,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2016 - 2021 Karsten Schmidt // Apache Software License 2.0
+&copy; 2016 - 2022 Karsten Schmidt // Apache Software License 2.0

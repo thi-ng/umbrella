@@ -177,7 +177,7 @@ node --experimental-repl-await
 > const vectors = await import("@thi.ng/vectors");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 15.07 KB
+Package sizes (gzipped, pre-treeshake): ESM: 15.14 KB
 
 ## Dependencies
 
@@ -685,4 +685,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2015 - 2021 Karsten Schmidt // Apache Software License 2.0
+&copy; 2015 - 2022 Karsten Schmidt // Apache Software License 2.0

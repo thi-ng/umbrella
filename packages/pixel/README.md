@@ -333,7 +333,7 @@ node --experimental-repl-await
 > const pixel = await import("@thi.ng/pixel");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 9.15 KB
+Package sizes (gzipped, pre-treeshake): ESM: 9.43 KB
 
 ## Dependencies
 
@@ -452,4 +452,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2019 - 2021 Karsten Schmidt // Apache Software License 2.0
+&copy; 2019 - 2022 Karsten Schmidt // Apache Software License 2.0

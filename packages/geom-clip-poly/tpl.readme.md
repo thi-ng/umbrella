@@ -13,11 +13,8 @@ This project is part of the
 
 ${pkg.description}
 
-Current implementation is based on [toxiclibs](http://toxiclibs.org)
-(Java) and Clojure version [thi.ng/geom-clj](http://thi.ng/geom-clj).
-
-This package has been extracted from the former (now obsolete)
-@thi.ng/geom-clip package.
+Current implementations are based on [toxiclibs](http://toxiclibs.org)
+(Java) and Clojure versions [thi.ng/geom-clj](http://thi.ng/geom-clj).
 
 ${status}
 

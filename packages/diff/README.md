@@ -50,7 +50,7 @@ node --experimental-repl-await
 > const diff = await import("@thi.ng/diff");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.13 KB
+Package sizes (gzipped, pre-treeshake): ESM: 1.14 KB
 
 ## Dependencies
 
@@ -92,4 +92,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2016 - 2021 Karsten Schmidt // Apache Software License 2.0
+&copy; 2016 - 2022 Karsten Schmidt // Apache Software License 2.0

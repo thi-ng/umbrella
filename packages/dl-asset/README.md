@@ -23,7 +23,7 @@ This project is part of the
 
 ## About
 
-Local asset download for web apps, with automatic MIME type detection.
+Canvas, video recording & file asset download helpers for web apps.
 
 ### Status
 
@@ -58,7 +58,7 @@ node --experimental-repl-await
 > const dlAsset = await import("@thi.ng/dl-asset");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 516 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 648 bytes
 
 ## Dependencies
 
@@ -158,4 +158,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2020 - 2021 Karsten Schmidt // Apache Software License 2.0
+&copy; 2020 - 2022 Karsten Schmidt // Apache Software License 2.0

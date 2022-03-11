@@ -60,7 +60,7 @@ node --experimental-repl-await
 > const compare = await import("@thi.ng/compare");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 429 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 431 bytes
 
 ## Dependencies
 
@@ -176,4 +176,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2016 - 2021 Karsten Schmidt // Apache Software License 2.0
+&copy; 2016 - 2022 Karsten Schmidt // Apache Software License 2.0

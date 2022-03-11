@@ -51,7 +51,7 @@ node --experimental-repl-await
 > const arrays = await import("@thi.ng/arrays");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 2.24 KB
+Package sizes (gzipped, pre-treeshake): ESM: 2.30 KB
 
 ## Dependencies
 
@@ -67,6 +67,7 @@ Package sizes (gzipped, pre-treeshake): ESM: 2.24 KB
 [Generated API docs](https://docs.thi.ng/umbrella/arrays/)
 
 - [arrayIterator()](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays/src/iterator.ts)
+- [argSort()](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays/src/arg-sort.ts)
 - [binarySearch()](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays/src/binary-search.ts)
 - [bisect()](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays/src/bisect.ts)
 - [endsWith()](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays/src/ends-with.ts)
@@ -134,4 +135,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2018 - 2021 Karsten Schmidt // Apache Software License 2.0
+&copy; 2018 - 2022 Karsten Schmidt // Apache Software License 2.0

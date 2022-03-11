@@ -51,7 +51,7 @@ node --experimental-repl-await
 > const kMeans = await import("@thi.ng/k-means");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 988 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 987 bytes
 
 ## Dependencies
 
@@ -139,4 +139,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2021 Karsten Schmidt // Apache Software License 2.0
+&copy; 2021 - 2022 Karsten Schmidt // Apache Software License 2.0

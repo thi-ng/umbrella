@@ -70,7 +70,7 @@ node --experimental-repl-await
 > const transducersBinary = await import("@thi.ng/transducers-binary");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 2.86 KB
+Package sizes (gzipped, pre-treeshake): ESM: 2.87 KB
 
 ## Dependencies
 
@@ -321,4 +321,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2018 - 2021 Karsten Schmidt // Apache Software License 2.0
+&copy; 2018 - 2022 Karsten Schmidt // Apache Software License 2.0

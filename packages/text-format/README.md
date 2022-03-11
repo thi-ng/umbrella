@@ -209,7 +209,7 @@ node --experimental-repl-await
 > const textFormat = await import("@thi.ng/text-format");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.49 KB
+Package sizes (gzipped, pre-treeshake): ESM: 1.50 KB
 
 ## Dependencies
 
@@ -253,4 +253,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2020 - 2021 Karsten Schmidt // Apache Software License 2.0
+&copy; 2020 - 2022 Karsten Schmidt // Apache Software License 2.0

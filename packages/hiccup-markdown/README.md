@@ -65,7 +65,7 @@ node --experimental-repl-await
 > const hiccupMarkdown = await import("@thi.ng/hiccup-markdown");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 2.64 KB
+Package sizes (gzipped, pre-treeshake): ESM: 2.63 KB
 
 ## Dependencies
 
@@ -422,4 +422,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2018 - 2021 Karsten Schmidt // Apache Software License 2.0
+&copy; 2018 - 2022 Karsten Schmidt // Apache Software License 2.0

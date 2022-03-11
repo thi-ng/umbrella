@@ -70,7 +70,7 @@ node --experimental-repl-await
 > const rstreamLog = await import("@thi.ng/rstream-log");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 845 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 847 bytes
 
 ## Dependencies
 
@@ -139,4 +139,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2017 - 2021 Karsten Schmidt // Apache Software License 2.0
+&copy; 2017 - 2022 Karsten Schmidt // Apache Software License 2.0

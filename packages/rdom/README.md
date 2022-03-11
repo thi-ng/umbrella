@@ -173,7 +173,7 @@ node --experimental-repl-await
 > const rdom = await import("@thi.ng/rdom");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 4.05 KB
+Package sizes (gzipped, pre-treeshake): ESM: 4.08 KB
 
 ## Dependencies
 
@@ -274,4 +274,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2020 - 2021 Karsten Schmidt // Apache Software License 2.0
+&copy; 2020 - 2022 Karsten Schmidt // Apache Software License 2.0
