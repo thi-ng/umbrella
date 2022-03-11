@@ -141,16 +141,27 @@ feature or `develop` branches)
 
 ### Latest updates
 
-As of: 2021-12-13
+As of: 2022-03-11
 
-| Status                                        | Project                                                       | Version                                                                                                                             | Changelog                                               | Description                                |
-|-----------------------------------------------|---------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------|--------------------------------------------|
-| ![](https://img.shields.io/badge/-fix-orange) | [`@thi.ng/arrays`](./packages/arrays)                         | [![version](https://img.shields.io/npm/v/@thi.ng/arrays.svg)](https://www.npmjs.com/package/@thi.ng/arrays)                         | [changelog](./packages/arrays/CHANGELOG.md)             | Array utilities                            |
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/dl-asset`](./packages/dl-asset)                     | [![version](https://img.shields.io/npm/v/@thi.ng/dl-asset.svg)](https://www.npmjs.com/package/@thi.ng/dl-asset)                     | [changelog](./packages/dl-asset/CHANGELOG.md)           | Asset/canvas/file download helpers         |
-| ![](https://img.shields.io/badge/-new-cyan)   | [`@thi.ng/distance-transform`](./packages/distance-transform) | [![version](https://img.shields.io/npm/v/@thi.ng/distance-transform.svg)](https://www.npmjs.com/package/@thi.ng/distance-transform) | [changelog](./packages/distance-transform/CHANGELOG.md) | Image based distance field generation      |
-| ![](https://img.shields.io/badge/-fix-orange) | [`@thi.ng/grid-iterators`](./packages/grid-iterators)         | [![version](https://img.shields.io/npm/v/@thi.ng/grid-iterators.svg)](https://www.npmjs.com/package/@thi.ng/grid-iterators)         | [changelog](./packages/grid-iterators/CHANGELOG.md)     | 2D grid iterator strategies                |
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/math`](./packages/math)                             | [![version](https://img.shields.io/npm/v/@thi.ng/math.svg)](https://www.npmjs.com/package/@thi.ng/math)                             | [changelog](./packages/math/CHANGELOG.md)               | Assorted common math functions & utilities |
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/pixel`](./packages/pixel)                           | [![version](https://img.shields.io/npm/v/@thi.ng/pixel.svg)](https://www.npmjs.com/package/@thi.ng/pixel)                           | [changelog](./packages/pixel/CHANGELOG.md)              | Multi-format pixel buffers                 |
+| Status                                        | Project                                                 | Version                                                                                                                       | Changelog                                            |
+|-----------------------------------------------|---------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------|
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/arrays`](./packages/arrays)                   | [![version](https://img.shields.io/npm/v/@thi.ng/arrays.svg)](https://www.npmjs.com/package/@thi.ng/arrays)                   | [changelog](./packages/arrays/CHANGELOG.md)          |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/base-n`](./packages/base-n)                   | [![version](https://img.shields.io/npm/v/@thi.ng/base-n.svg)](https://www.npmjs.com/package/@thi.ng/base-n)                   | [changelog](./packages/base-n/CHANGELOG.md)          |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/binary`](./packages/binary)                   | [![version](https://img.shields.io/npm/v/@thi.ng/binary.svg)](https://www.npmjs.com/package/@thi.ng/binary)                   | [changelog](./packages/binary/CHANGELOG.md)          |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/color`](./packages/color)                     | [![version](https://img.shields.io/npm/v/@thi.ng/color.svg)](https://www.npmjs.com/package/@thi.ng/color)                     | [changelog](./packages/color/CHANGELOG.md)           |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/color-palettes`](./packages/color-palettes)   | [![version](https://img.shields.io/npm/v/@thi.ng/color-palettes.svg)](https://www.npmjs.com/package/@thi.ng/color-palettes)   | [changelog](./packages/color-palettes/CHANGELOG.md)  |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/dcons`](./packages/dcons)                     | [![version](https://img.shields.io/npm/v/@thi.ng/dcons.svg)](https://www.npmjs.com/package/@thi.ng/dcons)                     | [changelog](./packages/dcons/CHANGELOG.md)           |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/geom`](./packages/geom)                       | [![version](https://img.shields.io/npm/v/@thi.ng/geom.svg)](https://www.npmjs.com/package/@thi.ng/geom)                       | [changelog](./packages/geom/CHANGELOG.md)            |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/geom-poly-utils`](./packages/geom-poly-utils) | [![version](https://img.shields.io/npm/v/@thi.ng/geom-poly-utils.svg)](https://www.npmjs.com/package/@thi.ng/geom-poly-utils) | [changelog](./packages/geom-poly-utils/CHANGELOG.md) |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/math`](./packages/math)                       | [![version](https://img.shields.io/npm/v/@thi.ng/math.svg)](https://www.npmjs.com/package/@thi.ng/math)                       | [changelog](./packages/math/CHANGELOG.md)            |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/transducers`](./packages/transducers)         | [![version](https://img.shields.io/npm/v/@thi.ng/transducers.svg)](https://www.npmjs.com/package/@thi.ng/transducers)         | [changelog](./packages/transducers/CHANGELOG.md)     |
+| ![](https://img.shields.io/badge/-fix-orange) | [`@thi.ng/vectors`](./packages/vectors)                 | [![version](https://img.shields.io/npm/v/@thi.ng/vectors.svg)](https://www.npmjs.com/package/@thi.ng/vectors)                 | [changelog](./packages/vectors/CHANGELOG.md)         |
+
+<!--
+![](https://img.shields.io/badge/-feat-green)
+![](https://img.shields.io/badge/-fix-orange)
+![](https://img.shields.io/badge/-new-cyan)
+-->
 
 ### Fundamentals
 
