@@ -18,7 +18,7 @@ if (!EXAMPLE) {
     exit(1);
 }
 
-const BUILD = `examples/${EXAMPLE}/build/`;
+const BUILD = `examples/${EXAMPLE}/dist/`;
 const DEST_DIR = `/umbrella/${EXAMPLE}`;
 const BUCKET = `s3://demo.thi.ng${DEST_DIR}`;
 const CF_DISTRO = "EL2F1HMDPZ2RL";
@@ -28,7 +28,7 @@ const GZOPTS = `${OPTS} --content-encoding gzip`;
 
 const NEVER_GZIP = new Set(["mp4"]);
 
-const args = new Set(process.argv.slice(3).map((x) => x.substr(2)));
+const args = new Set(process.argv.slice(3).map((x) => x.substring(2)));
 console.log(args);
 
 execSync(`find examples/${EXAMPLE} -type f -name '*.DS_Store' -ls -delete`);
@@ -40,8 +40,8 @@ const uploadAssets = (dir: string, opts?: Partial<UploadOpts>) => {
     for (let f of files(root, opts.ext!, opts.depth)) {
         const fd = `${BUCKET}/${f
             .replace(BUILD, "")
-            .substr(dir === "" ? 1 : 0)}`;
-        const ext = f.substr(f.lastIndexOf(".") + 1);
+            .substring(dir === "" ? 1 : 0)}`;
+        const ext = f.substring(f.lastIndexOf(".") + 1);
         const type = preferredType(ext);
         console.log(f, "->", fd, type);
         opts.process && opts.process(f);
