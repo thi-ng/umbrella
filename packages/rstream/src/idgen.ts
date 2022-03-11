@@ -5,8 +5,8 @@ let NEXT_ID = 0;
 export const __nextID = () => NEXT_ID++;
 
 /**
- * @param prefix
- * @param opts
+ * @param prefix - 
+ * @param opts - 
  *
  * @internal
  */

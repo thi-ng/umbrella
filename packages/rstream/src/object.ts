@@ -20,7 +20,7 @@ export interface StreamObj<T, K extends Keys<T>> {
      * Feeds new values from `x` to each registered key's stream.
      * Satifies {@link ISubscriber.next} interface.
      *
-     * @param x
+     * @param x - 
      */
     next(x: T): void;
     /**
@@ -126,8 +126,8 @@ export interface StreamObjOpts<T, K extends Keys<T>> extends CommonOpts {
  * // b foo
  * ```
  *
- * @param src
- * @param opts
+ * @param src - 
+ * @param opts - 
  */
 export const fromObject = <T, K extends Keys<T>>(
     src: T,

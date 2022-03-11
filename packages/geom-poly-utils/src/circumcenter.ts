@@ -77,10 +77,10 @@ export const circumCenter2 = (
  * Based on Jonathan R Shewchuk:
  * https://www.ics.uci.edu/~eppstein/junkyard/circumcenter.html
  *
- * @param a
- * @param b
- * @param c
- * @param eps
+ * @param a - 
+ * @param b - 
+ * @param c - 
+ * @param eps - 
  */
 export const circumCenter3 = (
     a: ReadonlyVec,

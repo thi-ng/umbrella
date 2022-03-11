@@ -53,10 +53,10 @@ const fileChooser = [
 /**
  * Numeric input component.
  *
- * @param eventID
- * @param label
- * @param value
- * @param opts
+ * @param eventID - 
+ * @param label - 
+ * @param value - 
+ * @param opts - 
  */
 const param = (eventID: string, label: string, value: number, opts: any) => [
     "div",
@@ -77,7 +77,7 @@ const param = (eventID: string, label: string, value: number, opts: any) => [
  * Composite component of image canvas & controls for adaptive threshold
  * computation. Only used/shown once an image has been loaded.
  *
- * @param state
+ * @param state - 
  */
 const imageEditor = ({ destImg, threshold }: AppState) => [
     "div",
@@ -97,7 +97,7 @@ const imageEditor = ({ destImg, threshold }: AppState) => [
 /**
  * Main/root UI component, receives app state and returns hdom component tree.
  *
- * @param state
+ * @param state - 
  */
 const app = (state: AppState) => {
     return [

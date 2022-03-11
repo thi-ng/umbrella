@@ -9,8 +9,8 @@ import { AProc } from "./aproc.js";
  * @remarks
  * Provides optimized (loop free) versions for 2-4 inputs
  *
- * @param a
- * @param b
+ * @param a - 
+ * @param b - 
  */
 export function serial<A, B, C>(a: IProc<A, B>, b: IProc<B, C>): IProc<A, C>;
 export function serial<A, B, C, D>(

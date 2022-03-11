@@ -6,9 +6,9 @@ import { convolveChannel, POOL_THRESHOLD } from "@thi.ng/pixel/convolve";
  * kernel to compute mean brightness for each pixel's neighborhood, then applies
  * offset value and checks if pixel itself is above/below localized threshold.
  *
- * @param src
- * @param windowSize
- * @param offset
+ * @param src - 
+ * @param windowSize - 
+ * @param offset - 
  */
 export const adaptiveThreshold = (
     src: FloatBuffer,

@@ -6,7 +6,7 @@ import { status } from "./status";
  * Single user profile page. Triggers JSON I/O request on init if user
  * data has not been loaded yet.
  *
- * @param ctx injected context object
+ * @param ctx - njected context object
  */
 export function userProfile(ctx: AppContext) {
     const id = ctx.views.route.deref()!.params.id;

@@ -9,9 +9,9 @@ import { charCode } from "./utils.js";
  * 0x20 / space). If `reset` is true, first resets all internal state
  * (clipping, format, style), so that entire canvas will be cleared.
  *
- * @param canvas
- * @param reset
- * @param code
+ * @param canvas - 
+ * @param reset - 
+ * @param code - 
  */
 export const clear = (
     canvas: Canvas,
@@ -36,12 +36,12 @@ export const clear = (
  * Fills given rect with char, taking currect clip rect and format into
  * account.
  *
- * @param canvas
- * @param x
- * @param y
- * @param w
- * @param h
- * @param char
+ * @param canvas - 
+ * @param x - 
+ * @param y - 
+ * @param w - 
+ * @param h - 
+ * @param char - 
  */
 export const fillRect = (
     canvas: Canvas,
@@ -80,11 +80,11 @@ export const fillRect = (
  * Draws an outline of given rect, taking the current clip rect, format
  * and style into account.
  *
- * @param canvas
- * @param x
- * @param y
- * @param w
- * @param h
+ * @param canvas - 
+ * @param x - 
+ * @param y - 
+ * @param w - 
+ * @param h - 
  */
 export const strokeRect = (
     canvas: Canvas,

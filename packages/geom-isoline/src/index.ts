@@ -87,11 +87,11 @@ const contourVertex: Fn5<ReadonlyVec, number, number, number, number, Vec>[] = [
  * factor or vector. The default scale of 1.0 will result in coords in these
  * ranges: [0.5 .. w-0.5] (for X) and [0.5 .. h-0.5] (for Y).
  *
- * @param src
- * @param w
- * @param h
- * @param iso
- * @param scale
+ * @param src - 
+ * @param w - 
+ * @param h - 
+ * @param iso - 
+ * @param scale - 
  */
 export function* isolines(
     src: ReadonlyVec,

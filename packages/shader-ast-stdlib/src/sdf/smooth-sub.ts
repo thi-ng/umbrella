@@ -29,8 +29,8 @@ export const sdfSmoothSubtract = defn(
  * Variadic compiletime macro for {@link sdfSmoothSubtract}. Takes smooth factor
  * `k`, followed by any number (at least 1 required) of SDF terms.
  *
- * @param k
- * @param terms
+ * @param k - 
+ * @param terms - 
  */
 export const sdfSmoothSubtractAll = (k: FloatTerm, ...terms: FloatTerm[]) =>
     terms.reduce((acc, x) => sdfSmoothSubtract(acc, x, k));

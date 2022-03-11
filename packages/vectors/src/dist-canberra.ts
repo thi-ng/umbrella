@@ -4,8 +4,8 @@ import type { DistanceFn } from "./api.js";
  * @remarks
  * Reference: https://en.wikipedia.org/wiki/Canberra_distance
  *
- * @param a
- * @param b
+ * @param a - 
+ * @param b - 
  */
 export const distCanberra: DistanceFn = (a, b) => {
     let delta = 0;

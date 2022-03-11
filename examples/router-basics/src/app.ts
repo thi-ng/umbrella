@@ -79,7 +79,7 @@ export class App {
      * Initializes given derived view specs and attaches them to app
      * state atom.
      *
-     * @param specs
+     * @param specs - 
      */
     addViews(specs: IObjectOf<ViewSpec>) {
         const views: any = this.ctx.views;

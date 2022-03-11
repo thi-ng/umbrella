@@ -22,7 +22,7 @@ const prepLocale = (spec: LocaleSpec): Locale => {
  * Sets {@link LOCALE} for formatting and fills in missing default values.
  * Unless called explicitly, the package uses {@link EN_SHORT} by default.
  *
- * @param locale
+ * @param locale -
  */
 export const setLocale = (locale: LocaleSpec): Locale =>
     (LOCALE = prepLocale(locale));
@@ -34,8 +34,8 @@ export const setLocale = (locale: LocaleSpec): Locale =>
  * `fn` will be called within a try/catch block and the previous locale will be
  * restored even if `fn` throws an error.
  *
- * @param locale
- * @param fn
+ * @param locale -
+ * @param fn -
  */
 export const withLocale = <T>(locale: LocaleSpec, fn: Fn0<T>) => {
     const old = LOCALE;
@@ -92,10 +92,10 @@ export const monthNames = () => LOCALE.months.slice();
  * // "2 Jahren"
  * ```
  *
- * @param x
- * @param unit
- * @param isDativ
- * @param unitsOnly
+ * @param x -
+ * @param unit -
+ * @param isDativ -
+ * @param unitsOnly -
  */
 export const units = (
     x: number,
@@ -125,9 +125,9 @@ export const units = (
  * // "weniger als 1 Jahr"
  * ```
  *
- * @param x
- * @param unit
- * @param isDativ
+ * @param x -
+ * @param unit -
+ * @param isDativ -
  */
 export const unitsLessThan = (
     x: number,
@@ -145,9 +145,8 @@ export const unitsLessThan = (
  * Wraps given (presumably localized) string in current {@link LOCALE}'s `past`
  * or `future` phrases, depending on given `sign`.
  *
- * @param sign
- * @param res
- * @returns
+ * @param sign -
+ * @param res -
  */
 export const tense = (sign: number, res: string) =>
     (sign < 0 ? LOCALE.past : LOCALE.future).replace("%s", res);

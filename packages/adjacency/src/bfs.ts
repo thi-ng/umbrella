@@ -70,10 +70,10 @@ export class BFS {
  * - https://en.wikipedia.org/wiki/Breadth-first_search
  * - https://algs4.cs.princeton.edu/40graphs/
  *
- * @param graph
- * @param src
- * @param dest
- * @param cost
+ * @param graph - 
+ * @param src - 
+ * @param dest - 
+ * @param cost - 
  */
 export const bfs = (graph: IGraph, src: number, dest: number, cost?: CostFn) =>
     new BFS(graph, src, cost).pathTo(dest);

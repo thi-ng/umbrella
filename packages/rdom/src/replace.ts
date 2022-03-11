@@ -35,7 +35,7 @@ import { $wrapText } from "./wrap.js";
  * $compile($replace(counter)).mount(document.body);
  * ```
  *
- * @param src
+ * @param src -
  */
 export const $replace = <T>(src: ISubscribable<T>) =>
     $sub(src, new Replace<T>());

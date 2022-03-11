@@ -26,8 +26,8 @@ import type { ToStringOpts } from "./api.js";
  * // [1.00000 -2.00000 3.00000]
  * ```
  *
- * @param prec
- * @param width
+ * @param prec - 
+ * @param width - 
  */
 export const defFormat = (
     opts?: Partial<ToStringOpts>
@@ -50,7 +50,7 @@ export const defFormat = (
  * Sets package-wide default vector formatter. See {@link defFormat},
  * {@link FORMATTER}.
  *
- * @param fmt
+ * @param fmt - 
  */
 export const setFormat = (
     fmt: Stringer<Iterable<number>> | Partial<ToStringOpts>

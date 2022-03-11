@@ -15,8 +15,8 @@ const cos = Math.cos;
  * The buffer size MUST be the same as the signal length given to
  * {@link fft}.
  *
- * @param fn
- * @param lenOfBuf
+ * @param fn - 
+ * @param lenOfBuf - 
  */
 export const window = (fn: WindowFn, lenOfBuf: number | FloatArray) => {
     const buf = isNumber(lenOfBuf) ? new Float64Array(lenOfBuf) : lenOfBuf;
@@ -31,9 +31,9 @@ export const window = (fn: WindowFn, lenOfBuf: number | FloatArray) => {
  * Takes a `signal` and `window` buffer and multiplies both elementwise. Writes
  * results into `out` (or back into `signal` by default).
  *
- * @param signal
- * @param window
- * @param out
+ * @param signal - 
+ * @param window - 
+ * @param out - 
  */
 export const applyWindow = (
     signal: NumericArray,

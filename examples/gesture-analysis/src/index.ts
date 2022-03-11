@@ -29,8 +29,8 @@ import { CTA } from "./config";
  * Root component function, attached to rstream (see further below).
  * Receives raw & processed gesture paths to visualize as SVG.
  *
- * @param raw
- * @param processed
+ * @param raw - 
+ * @param processed - 
  */
 const app = ({
     raw,
@@ -61,9 +61,9 @@ const app = ({
  * Gesture visualization component. Creates an SVG group of shape
  * elements & iterables.
  *
- * @param raw raw gesture path
- * @param sampled resampled path
- * @param corners array of corner points
+ * @param raw - aw gesture path
+ * @param sampled - esampled path
+ * @param corners - rray of corner points
  */
 const path = (raw: Vec[], sampled: Vec[], corners: Vec[]) =>
     group(
@@ -81,8 +81,8 @@ const path = (raw: Vec[], sampled: Vec[], corners: Vec[]) =>
  * Re-samples given polyline at given uniform distance. Returns array of
  * interpolated points (does not modify original).
  *
- * @param step sample distance
- * @param pts
+ * @param step - ample distance
+ * @param pts - 
  */
 const sampleUniform = (step: number, pts: Vec[]) =>
     vertices(resample(gPolyline(pts), { dist: step }));
@@ -92,7 +92,7 @@ const sampleUniform = (step: number, pts: Vec[]) =>
  * array (apart from the 1st) is interpolated towards the last point in
  * the result array. Returns new array of smoothed points.
  *
- * @param path
+ * @param path - 
  */
 const smoothPath = (smooth: number, path: Vec[]) => {
     const res: Vec[] = [path[0]];
@@ -106,7 +106,7 @@ const smoothPath = (smooth: number, path: Vec[]) => {
  * Corner detector HOF. Returns new function which takes 3 successive
  * path points and returns true if the middle point is a corner.
  *
- * @param thresh normalized angle threshold
+ * @param thresh - ormalized angle threshold
  */
 const isCorner =
     (thresh: number) =>

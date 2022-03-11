@@ -85,7 +85,7 @@ export class TrieMap<T> {
      * Returns longest known prefix for `key`. Returns undefined if given key
      * has no partial matches.
      *
-     * @param key
+     * @param key - 
      */
     knownPrefix(key: string) {
         let node: TrieMap<T> | undefined = this;

@@ -8,7 +8,7 @@ import { applyWindow } from "./window.js";
 /**
  * Returns a new tuple of real/img F64 buffers of given size.
  *
- * @param n
+ * @param n - 
  */
 export const complexArray = (n: number): ComplexArray => [
     new Float64Array(n),
@@ -18,7 +18,7 @@ export const complexArray = (n: number): ComplexArray => [
 /**
  * Creates a deep copy of given {@link ComplexArray}.
  *
- * @param complex
+ * @param complex - 
  */
 export const copyComplex = (complex: ComplexArray): ComplexArray => [
     complex[0].slice(),
@@ -66,8 +66,8 @@ export const copyComplex = (complex: ComplexArray): ComplexArray => [
  * // ]
  * ```
  *
- * @param src
- * @param isImg
+ * @param src - 
+ * @param isImg - 
  */
 export function conjugate(src: NumericArray, isImg?: boolean): NumericArray;
 export function conjugate(complex: ComplexArray): ComplexArray;
@@ -194,8 +194,8 @@ const transform = (real: NumericArray, img: NumericArray, n: number) => {
  * - https://betterexplained.com/articles/an-interactive-guide-to-the-fourier-transform/
  * - http://toxi.co.uk/p5/fftDebug/fft4amit.pde
  *
- * @param complex
- * @param window
+ * @param complex - 
+ * @param window - 
  */
 export const fft = (
     complex: NumericArray | ComplexArray,
@@ -233,7 +233,7 @@ export const fft = (
  *
  * - https://www.dsprelated.com/showarticle/800.php (method #3)
  *
- * @param complex
+ * @param complex - 
  */
 export const ifft = (src: NumericArray | ComplexArray): ComplexArray => {
     let complex: ComplexArray = isComplex(src)
@@ -268,8 +268,8 @@ export const scaleFFT = (
  * References:
  * - https://holometer.fnal.gov/GH_FFT.pdf
  *
- * @param complex
- * @param window
+ * @param complex - 
+ * @param window - 
  */
 export const normalizeFFT = (
     complex: ComplexArray,
@@ -288,8 +288,8 @@ export const normalizeFFT = (
  * References:
  * - https://holometer.fnal.gov/GH_FFT.pdf
  *
- * @param complex
- * @param window
+ * @param complex - 
+ * @param window - 
  */
 export const denormalizeFFT = (
     complex: ComplexArray,
@@ -308,8 +308,8 @@ export const denormalizeFFT = (
  * References:
  * - https://www.gaussianwaves.com/2015/11/interpreting-fft-results-obtaining-magnitude-and-phase-information/
  *
- * @param complex
- * @param eps
+ * @param complex - 
+ * @param eps - 
  */
 export const thresholdFFT = (complex: ComplexArray, eps = 1e-12) => {
     const [real, img] = complex;
@@ -363,11 +363,11 @@ export const spectrumMag = (
  * - https://dsp.stackexchange.com/a/14935
  * - https://www.kvraudio.com/forum/viewtopic.php?t=276092
  *
- * @param complex
- * @param db
- * @param window
- * @param n
- * @param out
+ * @param complex - 
+ * @param db - 
+ * @param window - 
+ * @param n - 
+ * @param out - 
  */
 export const spectrumPow = (
     complex: ComplexArray,

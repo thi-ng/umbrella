@@ -6,7 +6,7 @@ import { xform } from "../combinators/xform.js";
  * Recursively joins non-null results of all children into a single
  * string, then discards children. Also see {@link join}.
  *
- * @param scope
+ * @param scope - 
  */
 export const xfJoin = <T>(scope: Nullable<ParseScope<T>>) => {
     if (!scope || !scope.children) return null;
@@ -23,6 +23,6 @@ export const xfJoin = <T>(scope: Nullable<ParseScope<T>>) => {
 /**
  * Syntax sugar for `xform(parser, xfJoin)`.
  *
- * @param parser
+ * @param parser - 
  */
 export const join = <T>(parser: Parser<T>) => xform(parser, xfJoin);

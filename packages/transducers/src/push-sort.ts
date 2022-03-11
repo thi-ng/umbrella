@@ -7,7 +7,7 @@ import type { Reducer } from "./api.js";
  * using optionally given comparator (default
  * {@link @thi.ng/compare#compare}).
  *
- * @param cmp
+ * @param cmp - 
  */
 export function pushSort<T>(cmp?: Comparator<T>): Reducer<T[], T>;
 export function pushSort<T>(cmp: Comparator<T>, xs: Iterable<T>): T[];

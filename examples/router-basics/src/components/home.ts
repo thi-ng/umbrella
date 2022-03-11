@@ -4,7 +4,7 @@ import { externalLink } from "./external-link";
 /**
  * Homepage component.
  *
- * @param ctx injected context object
+ * @param ctx - njected context object
  */
 export function home(ctx: AppContext) {
     return [

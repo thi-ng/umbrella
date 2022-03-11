@@ -15,9 +15,9 @@ const transform = (x: number) =>
  * Important: We're using a normalized Lab space w/ all three coordinates
  * divided by 100 (normalized to 100% luminance).
  *
- * @param out
- * @param src
- * @param white
+ * @param out - 
+ * @param src - 
+ * @param white - 
  */
 export const xyzLab = (out: Color | null, src: ReadonlyColor, white = D50) => {
     const x = transform(src[0] / white[0]);
@@ -35,7 +35,7 @@ export const xyzLab = (out: Color | null, src: ReadonlyColor, white = D50) => {
 /**
  * Same as {@link xyzLab}, but hard coded to use {@link D65} white point.
  *
- * @param out
- * @param src
+ * @param out - 
+ * @param src - 
  */
 export const xyzLabD65: ColorOp = (out, src) => xyzLab(out, src, D65);

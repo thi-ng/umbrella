@@ -16,7 +16,7 @@ import * as paths from "./paths";
  * produced. In turn, this event will update the app state and so
  * trigger a DOM update to display the new result.
  *
- * @param bus
+ * @param bus - 
  */
 export function initDataflow(bus: EventBus) {
     const graph = initGraph(bus.state, {

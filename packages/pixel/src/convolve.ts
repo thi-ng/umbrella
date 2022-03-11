@@ -29,8 +29,8 @@ import { range } from "./range.js";
  * References:
  * - https://en.wikipedia.org/wiki/Kernel_(image_processing)
  *
- * @param src
- * @param opts
+ * @param src - 
+ * @param opts - 
  */
 export const convolveChannel = (src: FloatBuffer, opts: ConvolveOpts) =>
     convolve(initConvolve(src, opts));
@@ -43,8 +43,8 @@ export const convolveChannel = (src: FloatBuffer, opts: ConvolveOpts) =>
  * This function re-uses as much as internal state & memory as possible, so will
  * be faster than individual applications of {@link convolveChannel}.
  *
- * @param src
- * @param opts
+ * @param src - 
+ * @param opts - 
  */
 export const convolveImage = (
     src: FloatBuffer,
@@ -186,9 +186,9 @@ const declOffset = (
  * pre-calculated too. Larger kernel sizes are handled via
  * {@link defLargeKernel}.
  *
- * @param tpl
- * @param w
- * @param h
+ * @param tpl - 
+ * @param w - 
+ * @param h - 
  */
 export const defKernel = (
     tpl: NumericArray | PoolTemplate,
@@ -248,9 +248,9 @@ export const defKernel = (
  * Loop based fallback for {@link defKernel}, intended for larger kernel sizes
  * for which loop-unrolled approach is prohibitive.
  *
- * @param kernel
- * @param w
- * @param h
+ * @param kernel - 
+ * @param w - 
+ * @param h - 
  */
 export const defLargeKernel = (
     kernel: NumericArray,
@@ -311,7 +311,7 @@ export const POOL_MAX: PoolTemplate = (body) => `Math.max(${body.join(",")})`;
  * convolveChannel(src, { kernel: { pool: POOL_THRESHOLD(1), size: 3 }});
  * ```
  *
- * @param bias
+ * @param bias - 
  */
 export const POOL_THRESHOLD =
     (bias = 0): PoolTemplate =>
@@ -372,7 +372,7 @@ export const GAUSSIAN_BLUR5: KernelSpec = {
  * Higher order Gaussian blur kernel for given pixel radius `r` (integer).
  * Returns {@link ConvolutionKernelSpec} with resulting kernel size of `2r+1`.
  *
- * @param r
+ * @param r - 
  */
 export const GAUSSIAN = (r: number): ConvolutionKernelSpec => {
     r |= 0;
@@ -397,8 +397,8 @@ export const GAUSSIAN = (r: number): ConvolutionKernelSpec => {
  * @remarks
  * https://en.wikipedia.org/wiki/Lanczos_resampling#Lanczos_kernel
  *
- * @param a
- * @param scale
+ * @param a - 
+ * @param scale - 
  */
 export const LANCZOS = (a: number, scale = 2): ConvolutionKernelSpec => {
     assert(a > 0, `invalid coefficient: ${a}`);

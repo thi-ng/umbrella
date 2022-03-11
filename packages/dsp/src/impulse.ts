@@ -5,7 +5,7 @@ import { AGen } from "./agen.js";
  * Numeric version of {@link impulseT}, using given `on` (default: 1) as
  * initial value and zero for the remaining values.
  *
- * @param on
+ * @param on - 
  */
 export const impulse = (on = 1) => new Impulse(on, 0);
 
@@ -22,7 +22,7 @@ export const impulseT = <T>(on: T, off: T) => new Impulse<T>(on, off);
  * Boolean version of {@link impulseT}, using given `start` (default:
  * true) as initial value and its inverse for the remaining values.
  *
- * @param start
+ * @param start - 
  */
 export const impulseB = (start = true) => new Impulse(start, !start);
 

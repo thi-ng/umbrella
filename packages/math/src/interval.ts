@@ -12,28 +12,28 @@ export const clamp: FnN3 = (x, min, max) => (x < min ? min : x > max ? max : x);
 /**
  * Clamps value `x` to closed [0 .. ∞] interval.
  *
- * @param x
+ * @param x - 
  */
 export const clamp0: FnN = (x) => (x > 0 ? x : 0);
 
 /**
  * Clamps value `x` to closed [0 .. 1] interval.
  *
- * @param x
+ * @param x - 
  */
 export const clamp01: FnN = (x) => (x < 0 ? 0 : x > 1 ? 1 : x);
 
 /**
  * Clamps value `x` to closed [-1 .. 1] interval.
  *
- * @param x
+ * @param x - 
  */
 export const clamp11: FnN = (x) => (x < -1 ? -1 : x > 1 ? 1 : x);
 
 /**
  * Clamps value `x` to closed [0 .. 0.5] interval.
  *
- * @param x
+ * @param x - 
  */
 export const clamp05: FnN = (x) => (x < 0 ? 0 : x > 0.5 ? 0.5 : x);
 
@@ -132,8 +132,8 @@ export const max4id: FnN4 = (a, b, c, d) =>
 /**
  * Returns the non-zero minimum value of the given `a`, `b` args.
  *
- * @param a
- * @param b
+ * @param a - 
+ * @param b - 
  */
 export const minNonZero2: FnN2 = (a, b) =>
     a !== 0 ? (b !== 0 ? Math.min(a, b) : a) : b;
@@ -141,9 +141,9 @@ export const minNonZero2: FnN2 = (a, b) =>
 /**
  * Returns the non-zero minimum value of the given `a`, `b`, `c` args.
  *
- * @param a
- * @param b
- * @param c
+ * @param a - 
+ * @param b - 
+ * @param c - 
  */
 export const minNonZero3: FnN3 = (a, b, c) => minNonZero2(minNonZero2(a, b), c);
 

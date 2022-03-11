@@ -53,9 +53,9 @@ import { now, timeDiff } from "./utils.js";
  * // }
  * ```
  *
- * @param title
- * @param fn
- * @param opts
+ * @param title - 
+ * @param fn - 
+ * @param opts - 
  */
 export const test = (
     title: string,

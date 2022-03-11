@@ -142,15 +142,15 @@ export interface ISubscribable<A> extends IDeref<A | undefined>, IID<string> {
     /**
      * Adds given `sub` as child subscription.
      *
-     * @param sub
+     * @param sub - 
      */
     subscribe<B>(sub: ISubscription<A, B>): ISubscription<A, B>;
     /**
      * Wraps given partial `sub` in a {@link Subscription} and attaches it as
      * child subscription.
      *
-     * @param sub
-     * @param opts
+     * @param sub - 
+     * @param opts - 
      */
     subscribe(
         sub: Partial<ISubscriber<A>>,
@@ -166,8 +166,8 @@ export interface ISubscribable<A> extends IDeref<A | undefined>, IID<string> {
      *
      * @see {@link ITransformable}
      *
-     * @param sub
-     * @param opts
+     * @param sub - 
+     * @param opts - 
      */
     subscribe<B>(
         sub: Partial<ISubscriber<B>>,
@@ -179,7 +179,7 @@ export interface ISubscribable<A> extends IDeref<A | undefined>, IID<string> {
      * cascade of further unsubscriptions, depending on
      * {@link CommonOpts.closeOut} settings of parent(s)).
      *
-     * @param sub
+     * @param sub - 
      */
     unsubscribe(sub?: ISubscription<A, any>): boolean;
 }

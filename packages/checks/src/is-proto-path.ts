@@ -9,7 +9,7 @@ const ILLEGAL_KEYS = new Set(["__proto__", "prototype", "constructor"]);
  *
  * @see {@link isProtoPath} for more details
  *
- * @param x
+ * @param x - 
  */
 export const isIllegalKey = (x: any) => ILLEGAL_KEYS.has(x);
 
@@ -25,7 +25,7 @@ export const isIllegalKey = (x: any) => ILLEGAL_KEYS.has(x);
  * Original discussion here, implementation updated to be more encompassing:
  * https://github.com/thi-ng/umbrella/pull/273
  *
- * @param path
+ * @param path - 
  */
 export const isProtoPath = (
     path: string | number | readonly (string | number)[]

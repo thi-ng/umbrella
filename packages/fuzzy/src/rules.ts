@@ -31,10 +31,10 @@ import { snormMax, tnormMin, tnormProduct } from "./tnorms.js";
  * )
  * ```
  *
- * @param op
+ * @param op - 
  * @param $if
- * @param then
- * @param weight
+ * @param then - 
+ * @param weight - 
  */
 export const rule = <I extends LVarSet<string>, O extends LVarSet<string>>(
     op: FnN2,

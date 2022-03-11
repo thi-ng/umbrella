@@ -220,7 +220,7 @@ export function modi(l: Term<any> | number, r: Term<any> | number): Op2<any> {
 /**
  * Syntax sugar for `-x`.
  *
- * @param val
+ * @param val - 
  */
 export const neg = <T extends Prim | Int | IVec | Mat>(val: Term<T>) =>
     op1("-", val);
@@ -228,7 +228,7 @@ export const neg = <T extends Prim | Int | IVec | Mat>(val: Term<T>) =>
 /**
  * Syntax sugar for `1 / x`.
  *
- * @param val
+ * @param val - 
  */
 export const reciprocal = <T extends Prim>(val: Term<T>): Op2<T> =>
     op2("/", 1, val);

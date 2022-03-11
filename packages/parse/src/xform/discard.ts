@@ -9,6 +9,6 @@ export const xfDiscard = () => null;
 /**
  * Syntax sugar for `xform(parser, xfDiscard)`.
  *
- * @param parser
+ * @param parser - 
  */
 export const discard = (parser: Parser<any>) => xform(parser, xfDiscard);

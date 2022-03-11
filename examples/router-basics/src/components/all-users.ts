@@ -8,7 +8,7 @@ import { status } from "./status";
  * Dummy user list component. Triggers JSON I/O request if user data has
  * not been loaded yet.
  *
- * @param ctx injected context object
+ * @param ctx - njected context object
  */
 export function allUsers(ctx: AppContext) {
     ctx.bus.dispatch(
@@ -22,7 +22,7 @@ export function allUsers(ctx: AppContext) {
 /**
  * The actual user list component.
  *
- * @param ctx injected context object
+ * @param ctx - njected context object
  */
 function userList(ctx: AppContext) {
     const profiles = ctx.views.users.deref();
@@ -42,9 +42,9 @@ function userList(ctx: AppContext) {
  * Based on:
  * http://tachyons.io/components/lists/follower-notifications/index.html
  *
- * @param ctx injected context object
- * @param user
- * @param cached
+ * @param ctx - njected context object
+ * @param user - 
+ * @param cached - 
  */
 function user(ctx: AppContext, user: User, cached: boolean) {
     const ui = ctx.ui.userlist;

@@ -13,9 +13,9 @@ import { sd } from "./variance.js";
  * If `mag(a')` is zero, the returned vector will have all components
  * zero-valued too.
  *
- * @param out
- * @param a
- * @param isCentered
+ * @param out - 
+ * @param a - 
+ * @param isCentered - 
  */
 export const standardize = (
     out: Vec | null,

@@ -30,8 +30,8 @@ import { LOGGER } from "@thi.ng/shader-ast/logger";
  * Replaces contents of `node` with those of `next`. All other existing props in
  * `node` will be removed.
  *
- * @param node
- * @param next
+ * @param node - 
+ * @param next - 
  *
  * @internal
  */

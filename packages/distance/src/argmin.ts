@@ -15,9 +15,9 @@ import { DIST_SQ, DIST_SQ1 } from "./squared.js";
  *
  * https://en.wikipedia.org/wiki/Arg_max#Arg_min
  *
- * @param p
- * @param samples
- * @param dist
+ * @param p - 
+ * @param samples - 
+ * @param dist - 
  */
 export const argmin = (
     p: ReadonlyVec,
@@ -64,10 +64,10 @@ export const argminN = (
  * @reference
  * Use {@link argmin} if all items are vectors already.
  *
- * @param p
- * @param samples
- * @param key
- * @param dist
+ * @param p - 
+ * @param samples - 
+ * @param key - 
+ * @param dist - 
  */
 export const argminT = <T>(
     p: T,
@@ -79,10 +79,10 @@ export const argminT = <T>(
 /**
  * Similar to {@link argmin}, but for k-nearest queries.
  *
- * @param k
- * @param p
- * @param samples
- * @param dist
+ * @param k - 
+ * @param p - 
+ * @param samples - 
+ * @param dist - 
  */
 export const argminK = (
     k: number,
@@ -100,10 +100,10 @@ export const argminK = (
 /**
  * Similar to {@link argminT}, but for k-nearest queries.
  *
- * @param k
- * @param p
- * @param samples
- * @param dist
+ * @param k - 
+ * @param p - 
+ * @param samples - 
+ * @param dist - 
  */
 export const argminKT = <T>(
     k: number,

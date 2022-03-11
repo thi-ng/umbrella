@@ -29,14 +29,14 @@ export function* line(ax: number, ay: number, bx: number, by: number) {
  * `left,top`..`right,bottom`. Returns undefined if circle lies completely
  * outside given clip rectangle.
  *
- * @param x1
- * @param y1
- * @param x2
- * @param y2
- * @param left
- * @param top
- * @param right
- * @param bottom
+ * @param x1 - 
+ * @param y1 - 
+ * @param x2 - 
+ * @param y2 - 
+ * @param left - 
+ * @param top - 
+ * @param right - 
+ * @param bottom - 
  */
 export const lineClipped = (
     x1: number,

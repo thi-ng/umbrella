@@ -53,11 +53,11 @@ import { $wrapText } from "./wrap.js";
  * components, however only two are defined, causing the last option to
  * throw an error and so trigger/use the error component.
  *
- * @param src
- * @param keyFn
- * @param ctors
- * @param error
- * @param loader
+ * @param src -
+ * @param keyFn -
+ * @param ctors -
+ * @param error -
+ * @param loader -
  */
 export const $switch = <T>(
     src: ISubscribable<T>,
@@ -84,10 +84,10 @@ export const $switch = <T>(
  * $refresh(fromInterval(1000), async (x) => ["div", {}, x])
  * ```
  *
- * @param src
- * @param ctor
- * @param error
- * @param loader
+ * @param src -
+ * @param ctor -
+ * @param error -
+ * @param loader -
  */
 export const $refresh = <T>(
     src: ISubscribable<T>,

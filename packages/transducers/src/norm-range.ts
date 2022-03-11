@@ -27,10 +27,10 @@ export function* normRange(
 /**
  * 2D version of {@link normRange} in Y-major order (i.e. X is inner loop).
  *
- * @param nx
- * @param ny
- * @param includeLastX
- * @param includeLastY
+ * @param nx - 
+ * @param ny - 
+ * @param includeLastX - 
+ * @param includeLastY - 
  */
 export function* normRange2d(
     nx: number,
@@ -48,10 +48,10 @@ export function* normRange2d(
  * 3D version of {@link normRange} in Z-major order (i.e. X being innermost
  * loop).
  *
- * @param nx
- * @param ny
- * @param includeLastX
- * @param includeLastY
+ * @param nx - 
+ * @param ny - 
+ * @param includeLastX - 
+ * @param includeLastY - 
  */
 export function* normRange3d(
     nx: number,

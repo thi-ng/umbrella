@@ -26,7 +26,7 @@ export interface IKSUID {
      * Returns a new baseN encoded ID string for given `epoch` (default: current
      * time) and with all random payload bytes set to 0.
      *
-     * @param epoch
+     * @param epoch - 
      */
     timeOnly(epoch?: number): string;
 
@@ -34,7 +34,7 @@ export interface IKSUID {
      * Binary version of {@link KSUI.timeOnly}, but returns byte array. The
      * first `epochSize` bytes will contain the timestamp.
      *
-     * @param epoch
+     * @param epoch - 
      */
     timeOnlyBinary(epoch?: number): Uint8Array;
 
@@ -52,7 +52,7 @@ export interface IKSUID {
      * @remarks
      * This operation requires `bigint` support by the host environment.
      *
-     * @param id
+     * @param id - 
      */
     parse(id: string): { epoch: number; id: Uint8Array };
 }

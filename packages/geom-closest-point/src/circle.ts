@@ -5,10 +5,10 @@ import { direction } from "@thi.ng/vectors/direction";
 /**
  * Returns closest point to `p` on circle defined by origin `c` and radius `r`.
  *
- * @param p
- * @param c
- * @param r
- * @param out
+ * @param p - 
+ * @param c - 
+ * @param r - 
+ * @param out - 
  */
 export const closestPointCircle = (
     p: ReadonlyVec,

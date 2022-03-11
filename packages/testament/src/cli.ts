@@ -90,10 +90,10 @@ Options:
  * Recursively reads given directory and yields sequence of file names matching
  * given extension (or regexp).
  *
- * @param dir
- * @param match
- * @param maxDepth
- * @param depth
+ * @param dir - 
+ * @param match - 
+ * @param maxDepth - 
+ * @param depth - 
  */
 export function* files(
     dir: string,

@@ -118,10 +118,10 @@ export interface ColorFactory<T extends TypedColor<any>> {
      * `buf` is given, the returned color will wrap `buf` from given `index`
      * (default: 0) and `stride` step size (default: 1).
      *
-     * @param rnd
-     * @param buf
-     * @param index
-     * @param stride
+     * @param rnd - 
+     * @param buf - 
+     * @param index - 
+     * @param stride - 
      */
     random(
         rnd?: IRandom,
@@ -210,14 +210,14 @@ export interface TypedColor<T>
      * color type (usually [0..1] interval). Alpha channel will remain
      * untouched.
      *
-     * @param rnd
+     * @param rnd - 
      */
     randomize(rnd?: IRandom): this;
 
     /**
      * Copies `src` into this color's array.
      *
-     * @param src
+     * @param src - 
      */
     set(src: ReadonlyColor): this;
 

@@ -10,10 +10,10 @@ export const testBoxSphere: MultiVecOpImpl<
  * Returns true if given 2D rect defined by `boxMinPos` and `boxSize`
  * intersects circle.
  *
- * @param boxMinPos
- * @param boxSize
- * @param circlePos
- * @param r
+ * @param boxMinPos - 
+ * @param boxSize - 
+ * @param circlePos - 
+ * @param r - 
  */
 export const testRectCircle = testBoxSphere.add(
     2,
@@ -26,10 +26,10 @@ export const testRectCircle = testBoxSphere.add(
 /**
  * Same as {@link testRectCircle}, but for 3D AABB and sphere.
  *
- * @param boxMinPos
- * @param boxSize
- * @param spherePos
- * @param r
+ * @param boxMinPos - 
+ * @param boxSize - 
+ * @param spherePos - 
+ * @param r - 
  */
 export const testAABBSphere = testBoxSphere.add(
     3,
@@ -52,10 +52,10 @@ testBoxSphere.default((boxPos, boxSize, spherePos, r) => {
  * Like {@link testCenteredAABBSphere}, but for arbitrary dimensions w/
  * optimized execution for 2D & 3D cases.
  *
- * @param boxCenter
- * @param boxExtent
- * @param spherePos
- * @param r
+ * @param boxCenter - 
+ * @param boxExtent - 
+ * @param spherePos - 
+ * @param r - 
  */
 export const testCenteredBoxSphere: MultiVecOpImpl<
     Fn4<ReadonlyVec, ReadonlyVec, ReadonlyVec, number, boolean>
@@ -65,10 +65,10 @@ export const testCenteredBoxSphere: MultiVecOpImpl<
  * Similar to {@link testRectCircle}, but for rects defined by centroid
  * and radius-like extent.
  *
- * @param rectPos
- * @param extent
- * @param circlePos
- * @param r
+ * @param rectPos - 
+ * @param extent - 
+ * @param circlePos - 
+ * @param r - 
  */
 export const testCenteredRectCircle = testCenteredBoxSphere.add(
     2,
@@ -82,10 +82,10 @@ export const testCenteredRectCircle = testCenteredBoxSphere.add(
  * Similar to {@link testAABBSphere}, but for AABBs defined by centroid
  * and radius-like extent.
  *
- * @param boxCenter
- * @param boxExtent
- * @param spherePos
- * @param r
+ * @param boxCenter - 
+ * @param boxExtent - 
+ * @param spherePos - 
+ * @param r - 
  */
 export const testCenteredAABBSphere = testCenteredBoxSphere.add(
     3,

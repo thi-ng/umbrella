@@ -43,7 +43,7 @@ export class KSUID64 extends AKSUID {
  * Creates and returns a new 64bit epoch KSUID generator instance (w/
  * millisecond time precision).
  *
- * @param opts
+ * @param opts - 
  */
 export const defKSUID64 = (opts?: Partial<KSUIDOpts>): KSUID64 =>
     new KSUID64(opts);

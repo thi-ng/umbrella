@@ -52,14 +52,14 @@ export function* circle(cx: number, cy: number, r: number, fill = true) {
  * `left,top`..`right,bottom`. Returns undefined if circle lies completely
  * outside given clip rectangle.
  *
- * @param cx
- * @param cy
- * @param r
- * @param left
- * @param top
- * @param right
- * @param bottom
- * @param fill
+ * @param cx - 
+ * @param cy - 
+ * @param r - 
+ * @param left - 
+ * @param top - 
+ * @param right - 
+ * @param bottom - 
+ * @param fill - 
  */
 export const circleClipped = (
     cx: number,

@@ -8,10 +8,10 @@ import type { VecOpVVV } from "./api.js";
  * @remarks
  * All 3 input vectors MUST be of same size.
  *
- * @param out
- * @param a
- * @param b
- * @param mask
+ * @param out - 
+ * @param a - 
+ * @param b - 
+ * @param mask - 
  */
 export const select: VecOpVVV = (out, a, b, mask) => {
     out = out || a;

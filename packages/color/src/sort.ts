@@ -16,8 +16,8 @@ export const selectChannel = (id: number) => (col: ReadonlyColor) => col[id];
  * function for {@link sort} to compute the distance metric of a color to the
  * given `target`.
  *
- * @param target
- * @param dist
+ * @param target - 
+ * @param dist - 
  */
 export const proximity =
     (target: ReadonlyColor, dist: ColorDistance = distEucledian3) =>
@@ -30,8 +30,8 @@ export const proximity =
  * function (default: {@link distEucledian3}) and will be in sRGB space. Hence
  * given `target` color should be provided in the same space too.
  *
- * @param target
- * @param dist
+ * @param target - 
+ * @param dist - 
  */
 export const proximityABGR32 =
     (target: ReadonlyColor, dist: ColorDistance = distEucledian3) =>
@@ -78,9 +78,9 @@ export const sort = (
  * // ]
  * ```
  *
- * @param colors
- * @param key
- * @param isReverse
+ * @param colors - 
+ * @param key - 
+ * @param isReverse - 
  */
 export const sortMapped = <T extends TypedColor<any>>(
     colors: T[],

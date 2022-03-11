@@ -9,10 +9,10 @@ import { SYSTEM } from "./system.js";
  * samples (or creates a new one). Returns the array. Gives up after
  * `maxTrials`.
  *
- * @param k
- * @param fn
- * @param existing
- * @param maxTrials
+ * @param k - 
+ * @param fn - 
+ * @param existing - 
+ * @param maxTrials - 
  */
 export const uniqueValuesFrom = (
     k: number,
@@ -44,11 +44,11 @@ export const uniqueValuesFrom = (
  * Candidates are drawn from the provided `rnd` {@link IRandom} (default:
  * {@link SYSTEM}) and only `maxTrials` are attempted before giving up.
  *
- * @param k
- * @param max
- * @param existing
- * @param maxTrials
- * @param rnd
+ * @param k - 
+ * @param max - 
+ * @param existing - 
+ * @param maxTrials - 
+ * @param rnd - 
  */
 export const uniqueIndices = (
     k: number,

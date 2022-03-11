@@ -58,7 +58,7 @@ export class DynVar<T> implements IDeref<T>, IBind<T>, ICopy<DynVar<T>> {
      * eventually followed by calls to {@link DynVar.unbind} to restore
      * this var's previously scoped value.
      *
-     * @param val
+     * @param val - 
      */
     bind(val: T) {
         __private.get(this).push(val);
@@ -80,7 +80,7 @@ export class DynVar<T> implements IDeref<T>, IBind<T>, ICopy<DynVar<T>> {
     /**
      * Replaces current scope's value with new `val`.
      *
-     * @param val
+     * @param val - 
      */
     set(val: T) {
         const v = __private.get(this);
@@ -92,8 +92,8 @@ export class DynVar<T> implements IDeref<T>, IBind<T>, ICopy<DynVar<T>> {
      * `val` bound to this variable. The new scope is automatically
      * removed when the function returns or an error occurred.
      *
-     * @param val
-     * @param body
+     * @param val - 
+     * @param body - 
      */
     withBinding<R>(val: T, body: Fn0<R>) {
         this.bind(val);

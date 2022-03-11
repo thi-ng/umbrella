@@ -11,8 +11,8 @@ export type VClock = Record<NumOrString, number>;
  * clock(id) <= 2**53-1, which is equivalent to ~285421 years @ a constant
  * 1000Hz update frequency.
  *
- * @param clock
- * @param id
+ * @param clock - 
+ * @param id - 
  */
 export const inc = (clock: VClock, id: NumOrString): VClock => ({
     ...clock,
@@ -23,8 +23,8 @@ export const inc = (clock: VClock, id: NumOrString): VClock => ({
  * Immutably removes key `id` from given vector clock. Returns updated clock or
  * original if `id` didn't exist in `clock`.
  *
- * @param clock
- * @param id
+ * @param clock - 
+ * @param id - 
  */
 export const remove = (clock: VClock, id: NumOrString): VClock => {
     if (clock[id] === undefined) return clock;
@@ -38,8 +38,8 @@ export const remove = (clock: VClock, id: NumOrString): VClock => {
  * new value is set to `max(a[id], b[id])`. If a key is only available in either
  * of the inputs, its value is kept.
  *
- * @param a
- * @param b
+ * @param a - 
+ * @param b - 
  */
 export const merge: FnU2<VClock> = (a, b) =>
     [...uniqueIDs(a, b)].reduce((acc, id) => {
@@ -69,8 +69,8 @@ export const merge: FnU2<VClock> = (a, b) =>
  * // -18
  * ```
  *
- * @param a
- * @param b
+ * @param a - 
+ * @param b - 
  */
 export const signedSkew: FnU2<VClock, number> = (a, b) =>
     [...uniqueIDs(a, b)].reduce((acc, id) => {
@@ -81,8 +81,8 @@ export const signedSkew: FnU2<VClock, number> = (a, b) =>
 /**
  * Unsigned version of {@link signedSkew}.
  *
- * @param a
- * @param b
+ * @param a - 
+ * @param b - 
  */
 export const absSkew: FnU2<VClock, number> = (a, b) =>
     Math.abs(signedSkew(a, b));
@@ -104,8 +104,8 @@ export const absSkew: FnU2<VClock, number> = (a, b) =>
  * compare({ a: 3, b: 3 }, { a: 3, b: 2 }); // +1
  * ```
  *
- * @param a
- * @param b
+ * @param a - 
+ * @param b - 
  */
 export const compare: Comparator<VClock> = (a, b) => {
     let ah = false;
@@ -122,24 +122,24 @@ export const compare: Comparator<VClock> = (a, b) => {
 /**
  * Returns true iff {@link compare} for the given vector clocks returns 0.
  *
- * @param a
- * @param b
+ * @param a - 
+ * @param b - 
  */
 export const isConcurrent: Predicate2<VClock> = (a, b) => compare(a, b) === 0;
 
 /**
  * Returns true iff {@link compare} for the given vector clocks returns -1.
  *
- * @param a
- * @param b
+ * @param a - 
+ * @param b - 
  */
 export const isBefore: Predicate2<VClock> = (a, b) => compare(a, b) < 0;
 
 /**
  * Returns true iff {@link compare} for the given vector clocks returns +1.
  *
- * @param a
- * @param b
+ * @param a - 
+ * @param b - 
  */
 export const isAfter: Predicate2<VClock> = (a, b) => compare(a, b) > 0;
 
@@ -147,8 +147,8 @@ export const isAfter: Predicate2<VClock> = (a, b) => compare(a, b) > 0;
  * Returns true if both vector clocks are equivalent, i.e. both only have the
  * same keys AND each key the same value.
  *
- * @param a
- * @param b
+ * @param a - 
+ * @param b - 
  */
 export const equiv: Predicate2<VClock> = (a, b) => {
     for (let id of uniqueIDs(a, b)) {
@@ -162,16 +162,16 @@ export const equiv: Predicate2<VClock> = (a, b) => {
 /**
  * Alias for {@link compare}.
  *
- * @param a
- * @param b
+ * @param a - 
+ * @param b - 
  */
 export const orderAsc = compare;
 
 /**
  * Similar to {@link orderAsc}, but yielding reverse sort order.
  *
- * @param a
- * @param b
+ * @param a - 
+ * @param b - 
  */
 export const orderDesc: Comparator<VClock> = (a, b) => -compare(a, b);
 

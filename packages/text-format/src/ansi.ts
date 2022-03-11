@@ -77,8 +77,8 @@ export const FMT_ANSI565: StringFormat = {
  * @remarks
  * https://en.wikipedia.org/wiki/ANSI_escape_code#8-bit
  *
- * @param fg
- * @param bg
+ * @param fg - 
+ * @param bg - 
  */
 export const format256 = (fg: number, bg = 0) =>
     ((bg & 0xff) << 8) | (fg & 0xff);
@@ -88,9 +88,9 @@ export const format256 = (fg: number, bg = 0) =>
  * value for later use with {@link FMT_ANSI565} or {@link FMT_HTML_565}. Does
  * NOT perform clipping!
  *
- * @param r
- * @param g
- * @param b
+ * @param r - 
+ * @param g - 
+ * @param b - 
  */
 export const format565 = (r: number, g: number, b: number) =>
     ((r * 0x1f) << 11) | ((g * 0x3f) << 5) | (b * 0x1f);
@@ -99,9 +99,9 @@ export const format565 = (r: number, g: number, b: number) =>
  * Converts RGB (8bit channels) into a 16bit RGB565 value for later use with
  * {@link FMT_ANSI565} or {@link FMT_HTML_565}. Does NOT perform clipping!
  *
- * @param r
- * @param g
- * @param b
+ * @param r - 
+ * @param g - 
+ * @param b - 
  */
 export const format565_8bit = (r: number, g: number, b: number) =>
     ((r << 8) & 0xf800) | ((g << 3) & 0x7e0) | (b >> 3);
@@ -109,20 +109,20 @@ export const format565_8bit = (r: number, g: number, b: number) =>
 /**
  * Syntax sugar for `defFormat(FMT_ANSI16, ...)`
  *
- * @param col
+ * @param col - 
  */
 export const defAnsi16 = (col: number) => defFormat(FMT_ANSI16, col);
 
 /**
  * Syntax sugar for `defFormat(FMT_ANSI256, ...)`
  *
- * @param col
+ * @param col - 
  */
 export const defAnsi256 = (col: number) => defFormat(FMT_ANSI256, col);
 
 /**
  * Syntax sugar for `defFormat(FMT_ANSI565, ...)`
  *
- * @param col
+ * @param col - 
  */
 export const defAnsi565 = (col: number) => defFormat(FMT_ANSI565, col);

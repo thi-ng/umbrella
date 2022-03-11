@@ -15,7 +15,7 @@ import { range } from "@thi.ng/transducers/range";
  * Single box component. Uses given id to switch between using `div` or
  * `box` element types, computes color and body text.
  *
- * @param id
+ * @param id - 
  */
 const box = (index: number, id: number) => [
     id & 1 ? "div" : "box",
@@ -34,12 +34,12 @@ const box = (index: number, id: number) => [
  * uses the time interval between received values. If not given,
  * attaches itself to a new RAF event stream.
  *
- * @param src
- * @param width
- * @param height
- * @param period
- * @param col
- * @param txtCol
+ * @param src - 
+ * @param width - 
+ * @param height - 
+ * @param period - 
+ * @param col - 
+ * @param txtCol - 
  */
 const fpsCounter = (
     src: Stream<number> | null,

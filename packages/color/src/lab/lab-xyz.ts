@@ -12,9 +12,9 @@ const transform = (x: number) => {
  * Converts Lab to XYZ using provided white point (default: {@link D50}). Also
  * see {@link labXyzD65}.
  *
- * @param out
- * @param src
- * @param white
+ * @param out - 
+ * @param src - 
+ * @param white - 
  */
 export const labXyz = (out: Color | null, src: ReadonlyColor, white = D50) => {
     const y = (src[0] + 0.16) / 1.16;
@@ -30,7 +30,7 @@ export const labXyz = (out: Color | null, src: ReadonlyColor, white = D50) => {
 /**
  * Same as {@link labXyz}, but using hardcoded {@link D65} white point.
  *
- * @param out
- * @param src
+ * @param out - 
+ * @param src - 
  */
 export const labXyzD65: ColorOp = (out, src) => labXyz(out, src, D65);

@@ -28,9 +28,9 @@ import { multiSwap } from "./swap.js";
  * // [ 'd', 'c', 'b', 'a' ]
  * ```
  *
- * @param src
- * @param key
- * @param cmp
+ * @param src -
+ * @param key -
+ * @param cmp -
  */
 export const sortByCachedKey = <T, K>(
     src: T[],

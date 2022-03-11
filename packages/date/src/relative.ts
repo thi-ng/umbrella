@@ -49,8 +49,8 @@ import { __idToPrecision, __precisionToID } from "./internal/precision.js";
  *   - `q` / `quarter` / `quarters`
  *   - `y` / `year` / `years`
  *
- * @param offset
- * @param base
+ * @param offset -
+ * @param base -
  */
 export const parseRelative = (offset: string, base?: MaybeDate) => {
     offset = offset.toLowerCase();
@@ -124,10 +124,9 @@ const parsePeriod = (x: string) => {
  * optionally given `base` date (default: now). If `num < 0` the result date
  * will be in the past (relative to `base`).
  *
- * @param num
- * @param period
- * @param base
- * @returns
+ * @param num -
+ * @param period -
+ * @param base -
  */
 export const relative = (
     num: number,
@@ -139,8 +138,8 @@ export const relative = (
  * Returns the signed difference in milliseconds between given two dates `a` and
  * `b`.
  *
- * @param a
- * @param b
+ * @param a -
+ * @param b -
  */
 export const difference = (a: MaybeDate, b: MaybeDate) =>
     ensureEpoch(a) - ensureEpoch(b);
@@ -151,8 +150,8 @@ export const difference = (a: MaybeDate, b: MaybeDate) =>
  * to indicate the relative order of `a` compared to `b`, i.e. same contract as
  * {@link @thi.ng/api#ICompare}.
  *
- * @param a
- * @param b
+ * @param a -
+ * @param b -
  */
 export const decomposeDifference = (
     a: MaybeDate,
@@ -235,10 +234,10 @@ export const decomposeDifference = (
  * // "in 18 minutes"
  * ```
  *
- * @param date
- * @param base
- * @param prec
- * @param eps
+ * @param date -
+ * @param base -
+ * @param prec -
+ * @param eps -
  */
 export const formatRelative = (
     date: MaybeDate,
@@ -304,10 +303,10 @@ export const formatRelative = (
  * // "in less than a day"
  * ```
  *
- * @param date
- * @param base
- * @param prec
- * @param eps
+ * @param date -
+ * @param base -
+ * @param prec -
+ * @param eps -
  */
 export const formatRelativeParts = (
     date: MaybeDate,

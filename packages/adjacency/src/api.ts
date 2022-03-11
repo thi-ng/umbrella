@@ -21,24 +21,24 @@ export interface IGraph<T = number> {
      * is undirected, a symmetric edge might be created automatically. Returns
      * true, if the edge was created.
      *
-     * @param from
-     * @param to
+     * @param from - 
+     * @param to - 
      */
     addEdge(from: T, to: T): boolean;
     /**
      * Attempts to remove an edge for given vertex pair. Returns true, if
      * successful.
      *
-     * @param from
-     * @param to
+     * @param from - 
+     * @param to - 
      */
     removeEdge(from: T, to: T): boolean;
     /**
      * Returns true if an edge exists for the given vertex pair. For undirected
      * graphs, the vertex order is irrelevant.
      *
-     * @param from
-     * @param to
+     * @param from - 
+     * @param to - 
      */
     hasEdge(from: T, to: T): boolean;
     /**
@@ -47,8 +47,8 @@ export interface IGraph<T = number> {
      * undirected graphs the `type` has no relevance and essentially is always
      * `"inout"`.
      *
-     * @param id
-     * @param type
+     * @param id - 
+     * @param type - 
      */
     degree(id: T, type?: DegreeType): number;
     /**
@@ -56,7 +56,7 @@ export interface IGraph<T = number> {
      * edges starting *from* given vertex (or, in undirected graphs, the other
      * vertices of edges which the given vertex is part of).
      *
-     * @param id
+     * @param id - 
      */
     neighbors(id: T): Iterable<number>;
     /**

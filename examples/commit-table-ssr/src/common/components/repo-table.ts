@@ -12,8 +12,8 @@ import { table } from "./table";
  * Git commit log table component. Consumes iterable of `Commit` objects
  * and transforms each into a table row.
  *
- * @param _
- * @param commits
+ * @param _ - 
+ * @param commits - 
  */
 export const repoTable = (_: AppContext, commits: Iterable<Commit>) => [
     table,

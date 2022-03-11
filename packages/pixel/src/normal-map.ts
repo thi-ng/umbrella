@@ -20,8 +20,8 @@ import { __asVec } from "./internal/utils.js";
  * (respectively). I.e. the right most pixel column will have `red = 0` and last
  * row will have `green = 0`.
  *
- * @param src
- * @param opts
+ * @param src - 
+ * @param opts - 
  */
 export const normalMap = (src: FloatBuffer, opts?: Partial<NormalMapOpts>) => {
     const { channel, step, scale, z } = {

@@ -48,6 +48,6 @@ export class ULID extends AKSUID {
  * @remarks
  * https://github.com/ulid/spec
  *
- * @param opts
+ * @param opts - 
  */
 export const defULID = (opts?: Partial<KSUIDOpts>): ULID => new ULID(opts);

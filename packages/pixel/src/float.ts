@@ -61,8 +61,8 @@ export function floatBuffer(...args: any[]) {
  * @remarks
  * See {@link FloatBuffer.as} for reverse operation.
  *
- * @param src
- * @param fmt
+ * @param src - 
+ * @param fmt - 
  */
 export const floatBufferFromInt = (
     src: IntBuffer,

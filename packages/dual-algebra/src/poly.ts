@@ -5,10 +5,10 @@ import { add, mul } from "./ops.js";
 /**
  * Computes: `ax^2 + bx + c`. All args must have same size/arity.
  *
- * @param x
- * @param a
- * @param b
- * @param c
+ * @param x - 
+ * @param a - 
+ * @param b - 
+ * @param c - 
  */
 export const quadratic: Op4 = (x, a, b, c) =>
     add(add(mul(a, mul(x, x)), mul(b, x)), c);
@@ -17,10 +17,10 @@ export const quadratic: Op4 = (x, a, b, c) =>
  * Same as {@link quadratic}, but for real/scalar inputs. `x` is treated as
  * variable `x+1ε`, the rest as `n+0ε`.
  *
- * @param x
- * @param a
- * @param b
- * @param c
+ * @param x - 
+ * @param a - 
+ * @param b - 
+ * @param c - 
  */
 export const quadraticS: FnU4<number, Dual> = (x, a, b, c) =>
     quadratic([x, 1], [a, 0], [b, 0], [c, 0]);
@@ -28,11 +28,11 @@ export const quadraticS: FnU4<number, Dual> = (x, a, b, c) =>
 /**
  * Computes: `ax^3 + bx^2 + cx + d`. All args must have same size/arity.
  *
- * @param x
- * @param a
- * @param b
- * @param c
- * @param d
+ * @param x - 
+ * @param a - 
+ * @param b - 
+ * @param c - 
+ * @param d - 
  */
 export const cubic: Op5 = (x, a, b, c, d) => {
     const x2 = mul(x, x);
@@ -43,11 +43,11 @@ export const cubic: Op5 = (x, a, b, c, d) => {
  * Same as {@link cubic}, but for real/scalar inputs. `x` is treated as variable
  * `x+1ε`, the rest as `n+0ε`.
  *
- * @param x
- * @param a
- * @param b
- * @param c
- * @param d
+ * @param x - 
+ * @param a - 
+ * @param b - 
+ * @param c - 
+ * @param d - 
  */
 export const cubicS: FnU5<number, Dual> = (x, a, b, c, d) =>
     cubic([x, 1], [a, 0], [b, 0], [c, 0], [d, 0]);
@@ -55,12 +55,12 @@ export const cubicS: FnU5<number, Dual> = (x, a, b, c, d) =>
 /**
  * Computes: `ax^4 + bx^3 + cx^2 + dx + e`. All args must have same size/arity.
  *
- * @param x
- * @param a
- * @param b
- * @param c
- * @param d
- * @param e
+ * @param x - 
+ * @param a - 
+ * @param b - 
+ * @param c - 
+ * @param d - 
+ * @param e - 
  */
 export const quartic = (
     x: Dual,
@@ -82,12 +82,12 @@ export const quartic = (
  * Same as {@link quartic}, but for real/scalar inputs. `x` is treated as
  * variable `x+1ε`, the rest as `n+0ε`.
  *
- * @param x
- * @param a
- * @param b
- * @param c
- * @param d
- * @param e
+ * @param x - 
+ * @param a - 
+ * @param b - 
+ * @param c - 
+ * @param d - 
+ * @param e - 
  */
 export const quarticS: FnU6<number, Dual> = (x, a, b, c, d, e) =>
     quartic([x, 1], [a, 0], [b, 0], [c, 0], [d, 0], [e, 0]);

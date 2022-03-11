@@ -31,7 +31,7 @@ export const initFromHash = (
 /**
  * Attaches subscription to store current config base64 encoded in hash fragment
  *
- * @param parent
+ * @param parent - 
  */
 export const attachSerializer = (parent: ISubscribable<MainOutputs>) =>
     parent.subscribe({

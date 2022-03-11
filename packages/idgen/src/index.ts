@@ -39,7 +39,7 @@ export class IDGen implements Iterable<number>, IClear, INotify {
     /**
      * Extract actual ID (without version bits).
      *
-     * @param id
+     * @param id - 
      */
     id(id: number) {
         return id & this.mask;
@@ -48,7 +48,7 @@ export class IDGen implements Iterable<number>, IClear, INotify {
     /**
      * Extract version from ID
      *
-     * @param id
+     * @param id - 
      */
     version(id: number) {
         return (id >>> this.shift) & this.vmask;
@@ -143,7 +143,7 @@ export class IDGen implements Iterable<number>, IClear, INotify {
      * Marks given ID as available again and increases its version (if
      * versioning is enabled). Emits {@link EVENT_REMOVED} if successful.
      *
-     * @param id
+     * @param id - 
      */
     free(id: number) {
         if (!this.has(id)) return false;
@@ -157,7 +157,7 @@ export class IDGen implements Iterable<number>, IClear, INotify {
     /**
      * Returns true iff the given ID is valid and currently used.
      *
-     * @param id
+     * @param id - 
      */
     has(id: number) {
         const rawID = id & this.mask;
@@ -194,10 +194,10 @@ export class IDGen implements Iterable<number>, IClear, INotify {
  * maximum: 2^bits). The start ID can be defined via `start` (default: 0) and
  * MUST be < `cap`.
  *
- * @param bits
- * @param vbits
- * @param cap
- * @param start
+ * @param bits - 
+ * @param vbits - 
+ * @param cap - 
+ * @param start - 
  */
 export const idgen = (
     bits: number,

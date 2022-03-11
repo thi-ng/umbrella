@@ -5,7 +5,7 @@ import type { Fn0, Fn2, Timestamp } from "./api.js";
  * @remarks
  * Copied from thi.ng/checks to avoid circular deps
  *
- * @param x
+ * @param x - 
  *
  * @internal
  */
@@ -37,8 +37,8 @@ export const now: Fn0<Timestamp> =
  * @remarks
  * Based on / copied from thi.ng/bench to avoid circular deps
  *
- * @param a
- * @param b
+ * @param a - 
+ * @param b - 
  *
  * @internal
  */

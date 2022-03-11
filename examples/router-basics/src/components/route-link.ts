@@ -4,11 +4,11 @@ import { ROUTE_TO } from "../events";
 /**
  * Customizable hyperlink component emitting EV_ROUTE_TO event when clicked.
  *
- * @param ctx injected context object
- * @param routeID route ID
- * @param routeParams route parameter object
- * @param attribs element attribs
- * @param body link body
+ * @param ctx - njected context object
+ * @param routeID - oute ID
+ * @param routeParams - oute parameter object
+ * @param attribs - lement attribs
+ * @param body - ink body
  */
 export function routeLink(
     ctx: AppContext,

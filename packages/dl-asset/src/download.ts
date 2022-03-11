@@ -9,9 +9,9 @@ import { downloadWithMime } from "./raw.js";
  * derive it from the given filename's extension (e.g. `.svg`) and if
  * that fails, falls back to default value.
  *
- * @param name
- * @param src
- * @param opts
+ * @param name - 
+ * @param src - 
+ * @param opts - 
  */
 export const download = (
     name: string,

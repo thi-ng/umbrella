@@ -28,8 +28,8 @@ const DEFAULT_NUMERIC_IDS = [
  * Takes an attributes object and a number of attrib IDs whose values should be
  * formatted using {@link ff}. Mutates and returns `attribs` object.
  *
- * @param attribs
- * @param ids
+ * @param attribs - 
+ * @param ids - 
  *
  * @internal
  */

@@ -13,8 +13,8 @@ import { AProc } from "./aproc.js";
  *
  * See {@link bounce} for combining results back into a single channel output.
  *
- * @param a
- * @param b
+ * @param a - 
+ * @param b - 
  */
 export function multiplex<T, A, B>(
     a: IProc<T, A>,

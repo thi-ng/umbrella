@@ -216,8 +216,8 @@ export class Subscription<A, B> implements ISubscription<A, B> {
      * single {@link @thi.ng/transducers#map} transducer only. The given
      * function `fn` is used as `map`'s transformation fn.
      *
-     * @param fn
-     * @param opts
+     * @param fn - 
+     * @param opts - 
      */
     map<C>(
         fn: Fn<B, C>,

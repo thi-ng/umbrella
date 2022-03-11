@@ -21,7 +21,7 @@ abstract class LocalReRenderable {
      * Init lifecycle method. In the base case, this is only used to
      * cache this component's actual root DOM element.
      *
-     * @param el
+     * @param el - 
      */
     init(el: HTMLElement) {
         this.el = el;

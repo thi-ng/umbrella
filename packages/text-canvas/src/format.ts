@@ -6,8 +6,8 @@ import type { Canvas } from "./canvas.js";
  * formatter. If none is given, returns plain string representation, ignoring
  * any character format data.
  *
- * @param canvas
- * @param format
+ * @param canvas - 
+ * @param format - 
  */
 export const formatCanvas = (canvas: Canvas, format?: StringFormat) => {
     const { data, width, height } = canvas;

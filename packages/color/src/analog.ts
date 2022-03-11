@@ -89,13 +89,13 @@ export const analog = defmulti<
  * By default (unless `deltaS`, `deltaV`, `deltaA` are provided) only the hue of
  * the color will be modulated.
  *
- * @param out
- * @param src
- * @param deltaH
- * @param deltaS
- * @param deltaV
- * @param deltaA
- * @param rnd
+ * @param out - 
+ * @param src - 
+ * @param deltaH - 
+ * @param deltaS - 
+ * @param deltaV - 
+ * @param deltaA - 
+ * @param rnd - 
  */
 export const analogHsv = (
     out: Color | null,
@@ -122,13 +122,13 @@ export const analogHsv = (
  * @remarks
  * By default the green and blue channel variance will be the same as `deltaR`.
  *
- * @param out
- * @param src
- * @param deltaR
- * @param deltaG
- * @param deltaB
- * @param deltaA
- * @param rnd
+ * @param out - 
+ * @param src - 
+ * @param deltaR - 
+ * @param deltaG - 
+ * @param deltaB - 
+ * @param deltaA - 
+ * @param rnd - 
  */
 export const analogRgb = (
     out: Color | null,

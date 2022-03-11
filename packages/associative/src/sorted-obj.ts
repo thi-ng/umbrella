@@ -10,7 +10,7 @@ import { assocObj } from "@thi.ng/transducers/assoc-obj";
  * Note: Object keys are not guaranteed to keep their order and behavior will
  * depend on JS runtime and object size (number of keys).
  *
- * @param obj
+ * @param obj - 
  */
 export const sortedObject = (obj: IObjectOf<any>) =>
     assocObj(Object.entries(obj).sort(compareByKey(0)));

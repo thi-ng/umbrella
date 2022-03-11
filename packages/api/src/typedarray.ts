@@ -215,7 +215,7 @@ export const asInt = (...args: number[]) => args.map((x) => x | 0);
 /**
  * Returns byte size for given {@link Type} ID or {@link GLType} enum.
  *
- * @param type
+ * @param type - 
  */
 export const sizeOf = (type: GLType | Type) => SIZEOF[asNativeType(type)];
 
@@ -239,7 +239,7 @@ export function typedArray<T extends Type | GLType>(type: T, ...xs: any[]) {
  * Takes an {@link NumericArray} and returns its corresponding {@link Type} ID.
  * Standard JS arrays will default to {@link "f64"}.
  *
- * @param x
+ * @param x - 
  */
 export const typedArrayType = (x: NumericArray) => {
     if (Array.isArray(x)) return "f64";
@@ -270,7 +270,7 @@ export const intTypeForSize = (x: number): IntType =>
 /**
  * Returns suitable {@link UintType} for given bit size (`[0,32]` range)
  *
- * @param x
+ * @param x - 
  */
 export const uintTypeForBits = (x: number): UintType =>
     x > 16 ? "u32" : x > 8 ? "u16" : "u8";
@@ -278,7 +278,7 @@ export const uintTypeForBits = (x: number): UintType =>
 /**
  * Returns suitable {@link IntType} for given bit size (`[0,32]` range)
  *
- * @param x
+ * @param x - 
  */
 export const intTypeForBits = (x: number): IntType =>
     x > 16 ? "i32" : x > 8 ? "i16" : "i8";

@@ -4,7 +4,7 @@ import { ensureDate } from "./checks.js";
 /**
  * Rounds down `epoch` to minute precision.
  *
- * @param epoch
+ * @param epoch - 
  */
 export const floorSecond: RoundingFn = (epoch) => {
     const d = ensureDate(epoch);
@@ -21,7 +21,7 @@ export const floorSecond: RoundingFn = (epoch) => {
 /**
  * Rounds down `epoch` to minute precision.
  *
- * @param epoch
+ * @param epoch - 
  */
 export const floorMinute: RoundingFn = (epoch) => {
     const d = ensureDate(epoch);
@@ -37,7 +37,7 @@ export const floorMinute: RoundingFn = (epoch) => {
 /**
  * Rounds down `epoch` to hour precision.
  *
- * @param epoch
+ * @param epoch - 
  */
 export const floorHour: RoundingFn = (epoch) => {
     const d = ensureDate(epoch);
@@ -52,7 +52,7 @@ export const floorHour: RoundingFn = (epoch) => {
 /**
  * Rounds down `epoch` to day precision
  *
- * @param epoch
+ * @param epoch - 
  */
 export const floorDay: RoundingFn = (epoch) => {
     const d = ensureDate(epoch);
@@ -63,7 +63,7 @@ export const floorDay: RoundingFn = (epoch) => {
  * Rounds down `epoch` to week precision. Assumes ISO8601 week logic, i.e. weeks
  * start on Monday.
  *
- * @param epoch
+ * @param epoch - 
  */
 export const floorWeek: RoundingFn = (epoch) => {
     const d = ensureDate(epoch);
@@ -77,7 +77,7 @@ export const floorWeek: RoundingFn = (epoch) => {
 /**
  * Rounds down `epoch` to month precision.
  *
- * @param epoch
+ * @param epoch - 
  */
 export const floorMonth: RoundingFn = (epoch) => {
     const d = ensureDate(epoch);
@@ -87,7 +87,7 @@ export const floorMonth: RoundingFn = (epoch) => {
 /**
  * Rounds down `epoch` to month precision, but at beginning of a quarter.
  *
- * @param epoch
+ * @param epoch - 
  */
 export const floorQuarter: RoundingFn = (epoch) => {
     const d = ensureDate(epoch);
@@ -97,7 +97,7 @@ export const floorQuarter: RoundingFn = (epoch) => {
 /**
  * Rounds down `epoch` to year precision.
  *
- * @param epoch
+ * @param epoch - 
  */
 export const floorYear: RoundingFn = (epoch) =>
     Date.UTC(ensureDate(epoch).getUTCFullYear(), 0);
@@ -105,7 +105,7 @@ export const floorYear: RoundingFn = (epoch) =>
 /**
  * Rounds up `epoch` to minute precision.
  *
- * @param epoch
+ * @param epoch - 
  */
 export const ceilSecond: RoundingFn = (epoch) =>
     floorSecond(ensureDate(epoch).getTime() + SECOND);
@@ -113,7 +113,7 @@ export const ceilSecond: RoundingFn = (epoch) =>
 /**
  * Rounds up `epoch` to minute precision.
  *
- * @param epoch
+ * @param epoch - 
  */
 export const ceilMinute: RoundingFn = (epoch) =>
     floorMinute(ensureDate(epoch).getTime() + MINUTE);
@@ -121,7 +121,7 @@ export const ceilMinute: RoundingFn = (epoch) =>
 /**
  * Rounds up `epoch` to hour precision.
  *
- * @param epoch
+ * @param epoch - 
  */
 export const ceilHour: RoundingFn = (epoch) =>
     floorHour(ensureDate(epoch).getTime() + HOUR);
@@ -129,7 +129,7 @@ export const ceilHour: RoundingFn = (epoch) =>
 /**
  * Rounds up `epoch` to day precision
  *
- * @param epoch
+ * @param epoch - 
  */
 export const ceilDay: RoundingFn = (epoch) =>
     floorDay(ensureDate(epoch).getTime() + DAY);
@@ -138,7 +138,7 @@ export const ceilDay: RoundingFn = (epoch) =>
  * Rounds up `epoch` to week precision. Assumes ISO8601 week logic, i.e. weeks
  * start on Monday.
  *
- * @param epoch
+ * @param epoch - 
  */
 export const ceilWeek: RoundingFn = (epoch) =>
     floorWeek(ensureDate(epoch).getTime() + WEEK);
@@ -146,7 +146,7 @@ export const ceilWeek: RoundingFn = (epoch) =>
 /**
  * Rounds up `epoch` to month precision
  *
- * @param epoch
+ * @param epoch - 
  */
 export const ceilMonth: RoundingFn = (epoch) => {
     const d = ensureDate(epoch);
@@ -159,7 +159,7 @@ export const ceilMonth: RoundingFn = (epoch) => {
 /**
  * Rounds up `epoch` to month precision (beginning of next quarter)
  *
- * @param epoch
+ * @param epoch - 
  */
 export const ceilQuarter: RoundingFn = (epoch) => {
     const d = ensureDate(epoch);
@@ -172,7 +172,7 @@ export const ceilQuarter: RoundingFn = (epoch) => {
 /**
  * Rounds up `epoch` to year precision
  *
- * @param epoch
+ * @param epoch - 
  */
 export const ceilYear: RoundingFn = (epoch) =>
     Date.UTC(ensureDate(epoch).getUTCFullYear() + 1, 0);

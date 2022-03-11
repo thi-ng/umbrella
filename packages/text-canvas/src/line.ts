@@ -9,12 +9,12 @@ import { charCode } from "./utils.js";
  * the current clip rect and format into account. If `char` is not
  * given, uses current style's `dot` char.
  *
- * @param canvas
- * @param ax
- * @param ay
- * @param bx
- * @param by
- * @param char
+ * @param canvas - 
+ * @param ax - 
+ * @param ay - 
+ * @param bx - 
+ * @param by - 
+ * @param char - 
  */
 export const line = (
     canvas: Canvas,

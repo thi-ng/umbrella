@@ -6,20 +6,20 @@ export interface IBase {
      * Encodes `x` into a baseN encoded string. `x` MUST be < 2^53. Use
      * `encodeBigInt()` for arbitrary values.
      *
-     * @param x
+     * @param x - 
      */
     encode(x: number): string;
     /**
      * Encodes bigint `x` into a baseN encoded string.
      *
-     * @param x
+     * @param x - 
      */
     encodeBigInt(x: bigint): string;
 
     /**
      * Encodes given byte array into a bigint and then baseN encodes it.
      *
-     * @param buf
+     * @param buf - 
      */
     encodeBytes(buf: Uint8Array): string;
 
@@ -27,13 +27,13 @@ export interface IBase {
      * Decodes baseN encoded string `x` into a numeric value. Assumes the
      * resulting `x` will be < 2^53. Use `decodeBigInt()` for arbitrary values.
      *
-     * @param x
+     * @param x - 
      */
     decode(x: string): number;
     /**
      * Decodes baseN encoded string `x` into a bigint value.
      *
-     * @param x
+     * @param x - 
      */
     decodeBigInt(x: string): bigint;
     /**
@@ -42,7 +42,7 @@ export interface IBase {
      * shorter than the space required by the encoded source string, the most
      * significant bytes will be ignored.
      *
-     * @param buf
+     * @param buf - 
      */
     decodeBytes(x: string, buf: Uint8Array): Uint8Array;
 }

@@ -52,14 +52,14 @@ export const liangBarsky2 = (
 /**
  * Same as {@link liangBarsky2} but for non-vector arguments.
  *
- * @param ax
- * @param ay
- * @param bx
- * @param by
- * @param minx
- * @param miny
- * @param maxx
- * @param maxy
+ * @param ax - 
+ * @param ay - 
+ * @param bx - 
+ * @param by - 
+ * @param minx - 
+ * @param miny - 
+ * @param maxx - 
+ * @param maxy - 
  */
 export const liangBarsky2Raw: FnU8<number, Tuple<number, 6> | undefined> = (
     ax,

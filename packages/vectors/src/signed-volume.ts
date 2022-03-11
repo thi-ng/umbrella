@@ -13,10 +13,10 @@ import type { ReadonlyVec } from "./api.js";
  * Based on code by Jonathan R. Shewchuk
  * http://www.cs.cmu.edu/afs/cs/project/quake/public/code/predicates.c
  *
- * @param a
- * @param b
- * @param c
- * @param d
+ * @param a - 
+ * @param b - 
+ * @param c - 
+ * @param d - 
  */
 export const signedVolume: FnU4<ReadonlyVec, number> = (
     a,

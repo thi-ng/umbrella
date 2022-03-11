@@ -21,10 +21,10 @@ import { curve } from "./curve.js";
  * // [...]
  * ```
  *
- * @param start
- * @param end
- * @param steps
- * @param rate
+ * @param start - 
+ * @param end - 
+ * @param steps - 
+ * @param rate - 
  * @param clamp - true, if clamp at `end` value
  */
 export const sweep = (

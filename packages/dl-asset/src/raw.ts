@@ -20,9 +20,9 @@ import type { DownloadOpts } from "./api.js";
  * again after `expire` millseconds (default: 10000) to free up memory.
  * The URL won't be expired if `expire <= 0`.
  *
- * @param name
- * @param src
- * @param opts
+ * @param name - 
+ * @param src - 
+ * @param opts - 
  */
 export const downloadWithMime = (
     name: string,

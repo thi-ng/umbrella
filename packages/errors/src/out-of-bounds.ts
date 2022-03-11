@@ -9,9 +9,9 @@ export const outOfBounds = (index: any): never => {
 /**
  * Throws an {@link OutOfBoundsError} if `index` outside the `[min..max)` range.
  *
- * @param index
- * @param min
- * @param max
+ * @param index -
+ * @param min -
+ * @param max -
  */
 export const ensureIndex = (index: number, min: number, max: number) =>
     (index < min || index >= max) && outOfBounds(index);
@@ -20,11 +20,10 @@ export const ensureIndex = (index: number, min: number, max: number) =>
  * Throws an {@link OutOfBoundsError} if either `x` or `y` is outside their
  * respective `[0..max)` range.
  *
- * @param x
- * @param y
- * @param maxX
- * @param maxY
- * @returns
+ * @param x -
+ * @param y -
+ * @param maxX -
+ * @param maxY -
  */
 export const ensureIndex2 = (
     x: number,

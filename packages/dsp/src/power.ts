@@ -6,7 +6,7 @@ import { isComplex } from "./complex.js";
 /**
  * Computes the sum of the given array.
  *
- * @param window
+ * @param window - 
  */
 export const integralT = (window: NumericArray) => {
     let sum = 0;
@@ -19,7 +19,7 @@ export const integralT = (window: NumericArray) => {
 /**
  * Computes the squared sum of given array.
  *
- * @param window
+ * @param window - 
  */
 export const integralTSquared = (window: NumericArray) => {
     let sum = 0;
@@ -32,7 +32,7 @@ export const integralTSquared = (window: NumericArray) => {
 /**
  * Computes the `sum(|c(i)|)` for given complex array.
  *
- * @param window
+ * @param window - 
  */
 export const integralF = ([real, img]: ComplexArray) => {
     let sum = 0;
@@ -45,7 +45,7 @@ export const integralF = ([real, img]: ComplexArray) => {
 /**
  * Computes the `sum(|c(i)|^2)` for given complex array.
  *
- * @param window
+ * @param window - 
  */
 export const integralFSquared = ([real, img]: ComplexArray) => {
     let sum = 0;
@@ -58,8 +58,8 @@ export const integralFSquared = ([real, img]: ComplexArray) => {
 /**
  * If `scale` is a number, returns it. Else returns `base / integralT(scale)`.
  *
- * @param scale
- * @param base
+ * @param scale - 
+ * @param base - 
  */
 export const powerScale = (scale: number | NumericArray, base = 1) =>
     isNumber(scale) ? scale : base / integralT(scale);
@@ -67,8 +67,8 @@ export const powerScale = (scale: number | NumericArray, base = 1) =>
 /**
  * If `scale` is a number, returns it. Else returns `integralT(scale) / base`.
  *
- * @param scale
- * @param base
+ * @param scale - 
+ * @param base - 
  */
 export const invPowerScale = (scale: number | NumericArray, base = 1) =>
     isNumber(scale) ? scale : integralT(scale) / base;
@@ -81,7 +81,7 @@ export const invPowerScale = (scale: number | NumericArray, base = 1) =>
  * - http://www.it.uom.gr/teaching/linearalgebra/NumericalRecipiesInC/c13-4.pdf
  * - http://www.hep.ucl.ac.uk/~rjn/saltStuff/fftNormalisation.pdf
  *
- * @param window
+ * @param window - 
  */
 export const powerSumSquared = (window: NumericArray | ComplexArray) =>
     isComplex(window)
@@ -96,7 +96,7 @@ export const powerSumSquared = (window: NumericArray | ComplexArray) =>
  * - http://www.it.uom.gr/teaching/linearalgebra/NumericalRecipiesInC/c13-4.pdf
  * - http://www.hep.ucl.ac.uk/~rjn/saltStuff/fftNormalisation.pdf
  *
- * @param window
+ * @param window - 
  */
 export const powerMeanSquared = (window: NumericArray | ComplexArray) =>
     powerSumSquared(window) /
@@ -111,7 +111,7 @@ export const powerMeanSquared = (window: NumericArray | ComplexArray) =>
  * - http://www.it.uom.gr/teaching/linearalgebra/NumericalRecipiesInC/c13-4.pdf
  * - http://www.hep.ucl.ac.uk/~rjn/saltStuff/fftNormalisation.pdf
  *
- * @param window
+ * @param window - 
  */
 export const powerTimeIntegral = (
     window: NumericArray | ComplexArray,

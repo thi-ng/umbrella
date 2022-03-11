@@ -80,8 +80,8 @@ export const renameKeysObj = <T>(
  * // { aa: 1, bb: 21 }
  * ```
  *
- * @param src
- * @param keys
+ * @param src - 
+ * @param keys - 
  */
 export const renameTransformedKeys = <T extends object, K extends keyof T>(
     src: Nullable<T>,

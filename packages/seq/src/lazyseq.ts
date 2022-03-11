@@ -16,7 +16,7 @@ import type { Fn0, ISeq } from "@thi.ng/api";
  * // 0.29578903713266524
  * ```
  *
- * @param fn
+ * @param fn - 
  */
 export const lazyseq = <T>(fn: Fn0<ISeq<T> | undefined>): ISeq<T> => {
     let called = false;

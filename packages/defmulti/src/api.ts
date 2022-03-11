@@ -191,7 +191,7 @@ export interface MultiFnBase<I> {
      * @remarks
      * Same as `.add(DEFAULT, impl)`
      *
-     * @param impl
+     * @param impl - 
      */
     setDefault(impl: I): boolean;
     /**

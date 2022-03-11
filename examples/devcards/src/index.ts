@@ -27,10 +27,10 @@ let CARD_ID = 1;
  * As with the original Devcards, the client root component is wrapped
  * in a card container, which too displays the app state in JSON format.
  *
- * @param card
- * @param state
- * @param title
- * @param parent
+ * @param card - 
+ * @param state - 
+ * @param title - 
+ * @param parent - 
  */
 function defcard(
     card: CardFn,
@@ -80,8 +80,8 @@ interface SliderOpts {
  * resets cursor's value and calls user `onchange`
  * function (if provided).
  *
- * @param state
- * @param opts
+ * @param state - 
+ * @param opts - 
  */
 function slider(state: IAtom<any>, opts: SliderOpts) {
     // prep attribs to avoid extra work during render
@@ -113,7 +113,7 @@ interface BMIState {
  * slider components used and finally return a component
  * function to be shown in the card wrapper.
  *
- * @param state
+ * @param state - 
  */
 function bmi(state: IAtom<BMIState>) {
     // state update function

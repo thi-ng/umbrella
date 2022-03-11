@@ -46,8 +46,8 @@ const GDF = [
  *
  * Also based on: HG_SDF (Mercury Demogroup)
  *
- * @param id
- * @param vecs
+ * @param id - 
+ * @param vecs - 
  */
 const defGDF = (
     id: string,

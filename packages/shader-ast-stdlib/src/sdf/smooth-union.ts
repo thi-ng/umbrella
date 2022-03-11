@@ -29,8 +29,8 @@ export const sdfSmoothUnion = defn(
  * Variadic compiletime macro for {@link sdfSmoothUnion}. Takes smooth factor
  * `k`, followed by any number (at least 1 required) of SDF terms.
  *
- * @param k
- * @param terms
+ * @param k - 
+ * @param terms - 
  */
 export const sdfSmoothUnionAll = (k: FloatTerm, ...terms: FloatTerm[]) =>
     terms.reduce((acc, x) => sdfSmoothUnion(acc, x, k));

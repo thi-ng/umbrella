@@ -18,7 +18,7 @@ export interface PartitionSync<T> extends Transducer<T, IObjectOf<T>> {
     /**
      * Adds `id` to set of required inputs.
      *
-     * @param id
+     * @param id - 
      */
     add(id: PropertyKey): void;
     /**
@@ -26,8 +26,8 @@ export interface PartitionSync<T> extends Transducer<T, IObjectOf<T>> {
      * also removes any previously received value(s) for that input in
      * the result tuple.
      *
-     * @param id
-     * @param clean
+     * @param id - 
+     * @param clean - 
      */
     delete(id: PropertyKey, clean?: boolean): void;
 }

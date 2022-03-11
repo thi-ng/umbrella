@@ -16,7 +16,7 @@ import { DEFAULT_DOC } from "../common/config";
  * See here for more reference:
  * https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup
  *
- * @param doc
+ * @param doc - 
  */
 export const html = (doc: HTMLDoc) => {
     doc = mergeDeepObj(DEFAULT_DOC, doc);

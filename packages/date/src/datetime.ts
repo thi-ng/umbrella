@@ -114,7 +114,7 @@ export class DateTime
      * Returns true if this instance is before the given date, i.e. if
      * `this.compare(d) < 0`.
      *
-     * @param d
+     * @param d - 
      */
     isBefore(d: MaybeDate) {
         return this.compare(d) < 0;
@@ -124,7 +124,7 @@ export class DateTime
      * Returns true if this instance is before the given date, i.e. if
      * `this.compare(d) > 0`.
      *
-     * @param d
+     * @param d - 
      */
     isAfter(d: MaybeDate) {
         return this.compare(d) > 0;
@@ -313,8 +313,8 @@ export class DateTime
      * Returns a new `DateTime` instance relative to this date, but with given
      * period added/subtracted.
      *
-     * @param x
-     * @param prec
+     * @param x - 
+     * @param prec - 
      */
     add(x: number, prec: Period): DateTime {
         if (prec === "w") return this.add(x * 7, "d");
@@ -379,7 +379,7 @@ export class DateTime
 /**
  * Coerces `x` to a {@link DateTime} instance.
  *
- * @param x
+ * @param x - 
  */
 export const ensureDateTime = (x: MaybeDate, prec: Precision = "t") =>
     x instanceof DateTime ? x : new DateTime(x, prec);
@@ -387,7 +387,7 @@ export const ensureDateTime = (x: MaybeDate, prec: Precision = "t") =>
 /**
  * Returns true if `x` is a {@link MaybeDate}.
  *
- * @param x
+ * @param x - 
  */
 export const maybeIsDate = (x: any) =>
     x instanceof DateTime || x instanceof Date || isNumber(x) || isString(x);

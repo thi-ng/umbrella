@@ -173,7 +173,7 @@ export let PC = percent(3);
  * Sets precision for CSS formatted values to `x` significant digits (default:
  * 3).
  *
- * @param x
+ * @param x - 
  */
 export const setPrecision = (x: number) => {
     FF = float(x);

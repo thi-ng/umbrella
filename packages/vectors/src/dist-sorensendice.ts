@@ -4,8 +4,8 @@ import type { DistanceFn } from "./api.js";
  * @remarks
  * Reference: https://en.wikipedia.org/wiki/S%C3%B8rensen%E2%80%93Dice_coefficient
  *
- * @param a
- * @param b
+ * @param a - 
+ * @param b - 
  */
 export const distSorensenDice: DistanceFn = (a, b) => {
     let numTP = 0;

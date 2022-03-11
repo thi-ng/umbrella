@@ -13,10 +13,10 @@ import { repeat } from "./repeat.js";
  * // !.......!.......!.......!.......!.......
  * ```
  *
- * @param width
- * @param major
- * @param a
- * @param b
+ * @param width - 
+ * @param major - 
+ * @param a - 
+ * @param b - 
  */
 export const ruler = (width: number, major = 5, a = "|", b = "'") =>
     repeat(a + repeat(b, major - 1), Math.ceil(width / major)).substr(0, width);
@@ -55,11 +55,11 @@ export const ruler = (width: number, major = 5, a = "|", b = "'") =>
  * // +  +  +
  * ```
  *
- * @param cols
- * @param rows
- * @param w
- * @param h
- * @param chars
+ * @param cols - 
+ * @param rows - 
+ * @param w - 
+ * @param h - 
+ * @param chars - 
  */
 export const grid = (
     cols: number,

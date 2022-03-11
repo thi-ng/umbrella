@@ -15,9 +15,9 @@ import { preseed, sum } from "./utils.js";
  * - https://www.dsprelated.com/showarticle/908.php
  * - https://www.firstpr.com.au/dsp/pink-noise/#Voss-McCartney
  *
- * @param n
- * @param scale
- * @param rnd
+ * @param n - 
+ * @param scale - 
+ * @param rnd - 
  */
 export function* pink(n = 8, scale = 1, rnd: INorm = SYSTEM) {
     const state = preseed(n, scale, rnd);

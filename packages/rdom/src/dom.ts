@@ -38,9 +38,9 @@ import { isComponent } from "./checks.js";
  * Any other values will be cast to strings and added as spans to
  * current `parent`.
  *
- * @param tree
- * @param parent
- * @param idx
+ * @param tree -
+ * @param parent -
+ * @param idx -
  */
 export const $tree = async (
     tree: any,
@@ -111,11 +111,11 @@ const $treeIter = (tree: any, parent: Element) => {
  * If `parent` is given, but no `idx` arg, the new element will be
  * appended as child.
  *
- * @param tag
- * @param attribs
- * @param body
- * @param parent
- * @param idx
+ * @param tag -
+ * @param attribs -
+ * @param body -
+ * @param parent -
+ * @param idx -
  */
 export const $el = (
     tag: string,
@@ -174,8 +174,8 @@ export const $clear = (el: Element) => ((el.innerHTML = ""), el);
  * {@link @thi.ng/api#IDeref} it'll be automatically deref'd. For SVG elements a
  * new child text DOM node will be created.
  *
- * @param el
- * @param body
+ * @param el -
+ * @param body -
  */
 export const $text = (el: HTMLElement, body: any) => {
     body = String(deref(body));
@@ -190,8 +190,8 @@ export const $text = (el: HTMLElement, body: any) => {
  * Same as `el.innerHtml = body`, use with caution! If `body` is an
  * {@link @thi.ng/api#IDeref} it'll be automatically deref'd.
  *
- * @param el
- * @param body
+ * @param el -
+ * @param body -
  */
 
 export const $html = (el: HTMLElement, body: MaybeDeref<string>) => {
@@ -227,8 +227,8 @@ export const $html = (el: HTMLElement, body: MaybeDeref<string>) => {
  * Depending on element type the `value` attribute will be updated
  * keeping the current cursor position / selection intact.
  *
- * @param el
- * @param attribs
+ * @param el -
+ * @param attribs -
  */
 export const $attribs = (el: Element, attribs: any) => {
     for (let id in attribs) {
@@ -353,8 +353,8 @@ const updateDataAttribs = (el: HTMLElement, attribs: any) => {
  * function, it will be called with the entire `rules` object as arg and
  * the return value used.
  *
- * @param el
- * @param rules
+ * @param el -
+ * @param rules -
  */
 export const $style = (el: Element, rules: string | any) => {
     if (isString(rules)) {
@@ -382,8 +382,8 @@ const PREFIXES: IObjectOf<string> = {
  * Registers an XML namespace prefix and its URL for later use, e.g. to
  * define namespaced elements/attributes.
  *
- * @param prefix
- * @param url
+ * @param prefix -
+ * @param url -
  */
 export const registerPrefix = (prefix: string, url: string) => {
     assert(

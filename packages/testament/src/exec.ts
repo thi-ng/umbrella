@@ -7,7 +7,7 @@ const TESTS: Test[] = [];
  * Adds given test to registration queue for later execution via
  * {@link execute}.
  *
- * @param test
+ * @param test - 
  */
 export const register = (test: Test) => {
     TESTS.push(test);
@@ -24,7 +24,7 @@ export const register = (test: Test) => {
  * Unless `total` is false, an additional result will be added to the collected
  * ones, stating the total time taken to run all tests/tasks.
  *
- * @param total
+ * @param total - 
  */
 export const execute = async (total = true) => {
     let results: TestResult[] = [];

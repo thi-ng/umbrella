@@ -6,9 +6,9 @@ const px = (x: number | string) => (typeof x === "string" ? x : x + "px");
  * (pixels). If no `height` is given, `width` is used. Additional attribs can be
  * provided via optional `attribs`.
  *
- * @param icon
- * @param width
- * @param height
+ * @param icon - 
+ * @param width - 
+ * @param height - 
  */
 export const withSize = (
     icon: any[],

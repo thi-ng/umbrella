@@ -46,11 +46,11 @@ import { $sub } from "./sub.js";
  * ```
  *
  *
- * @param src
- * @param tag
- * @param attribs
- * @param ctor
- * @param equiv
+ * @param src -
+ * @param tag -
+ * @param attribs -
+ * @param ctor -
+ * @param equiv -
  */
 export const $list = <T>(
     src: ISubscribable<T[]>,

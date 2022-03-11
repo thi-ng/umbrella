@@ -31,8 +31,8 @@ export const rectFromCentroid = (centroid: Vec, size: Vec, attribs?: Attribs) =>
  * Returns the intersection rect of given inputs or `undefined` if they
  * are non-overlapping.
  *
- * @param a
- * @param b
+ * @param a - 
+ * @param b - 
  */
 export const intersectionRect = (a: Rect, b: Rect) => {
     const p = max2([], a.pos, b.pos);

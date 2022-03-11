@@ -12,7 +12,7 @@ import { reduce, reducer } from "@thi.ng/transducers/reduce";
  * each pair is a `[node, parent]` tuple, or using `[node, null]` to merely
  * register a node in the graph (without dependencies).
  *
- * @param edges
+ * @param edges - 
  */
 export const defDGraph = <T>(edges?: Iterable<Pair<T, Nullable<T>>>) =>
     new DGraph<T>(edges);

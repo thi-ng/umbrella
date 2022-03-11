@@ -11,10 +11,10 @@ import { __dispatch1 } from "./internal/dispatch.js";
  * HOF color mix function. Takes 4 scalar mix fns (one per color channel) and
  * returns new {@link ColorMixFn}.
  *
- * @param x
- * @param y
- * @param z
- * @param alpha
+ * @param x - 
+ * @param y - 
+ * @param z - 
+ * @param alpha - 
  */
 export const defMix: FnU4<FnN3, ColorMixFn> =
     (x, y, z, alpha) => (out, a, b, t) =>
@@ -52,9 +52,9 @@ export const mixH: FnN3 = (a, b, t) => {
 /**
  * Single channel linear interpolation function.
  *
- * @param a
- * @param b
- * @param t
+ * @param a - 
+ * @param b - 
+ * @param t - 
  */
 export const mixN = $mix;
 

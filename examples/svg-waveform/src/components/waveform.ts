@@ -24,7 +24,7 @@ export interface WaveformOpts {
 /**
  * Additive synthesis and waveform visualization as SVG
  *
- * @param opts
+ * @param opts - 
  */
 export function waveform(ctx: AppContext, opts: WaveformOpts) {
     const phase = (opts.phase * Math.PI) / 180;

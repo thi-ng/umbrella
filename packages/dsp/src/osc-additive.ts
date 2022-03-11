@@ -12,10 +12,10 @@ import { sin } from "./osc-sin.js";
  * and amplitude factors for each of the `n` requested harmonics (given in [i,n]
  * range).
  *
- * @param osc
- * @param freqFn
- * @param ampFn
- * @param n
+ * @param osc - 
+ * @param freqFn - 
+ * @param ampFn - 
+ * @param n - 
  */
 export const additive = (
     osc: StatelessOscillator,

@@ -183,9 +183,9 @@ export class ZCurve<T extends Range2_64> {
      * Partially based on:
      * {@link https://github.com/statgen/LDServer/blob/develop/core/src/Morton.cpp#L38}
      *
-     * @param zcurr
-     * @param zmin
-     * @param zmax
+     * @param zcurr - 
+     * @param zmin - 
+     * @param zmax - 
      */
     bigMin(zcurr: bigint, zmin: bigint, zmax: bigint) {
         const dim = this.dim;

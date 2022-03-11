@@ -36,7 +36,7 @@ export const ESCAPES_REV: Record<number, string> = {
  * - Non-BMP chars will be escaped using `\Uxxxxxxxx`
  * - Chars outside 0x20 - 0x7e range will be escaped using `\uxxxxx`
  *
- * @param src
+ * @param src - 
  */
 export const escape = (src: string) =>
     src
@@ -65,7 +65,7 @@ export const escape = (src: string) =>
  * // '😎'
  * ```
  *
- * @param src
+ * @param src - 
  */
 export const unescape = (src: string) =>
     src

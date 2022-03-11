@@ -42,7 +42,7 @@ import { isReduced } from "./reduced.js";
  * // output done
  * ```
  *
- * @param re
+ * @param re - 
  */
 export function rechunk(re?: RegExp): Transducer<string, string>;
 export function rechunk(xs: Iterable<string>): IterableIterator<string>;

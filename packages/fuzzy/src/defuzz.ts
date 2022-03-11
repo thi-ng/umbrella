@@ -22,13 +22,13 @@ import { snormMax, tnormMin } from "./tnorms.js";
  * relevant output sets of all rules for integration/analysis by the given
  * defuzz `strategy` actually producing the crisp result.
  *
- * @param ins
- * @param outs
- * @param rules
- * @param vals
- * @param strategy
- * @param imply
- * @param combine
+ * @param ins - 
+ * @param outs - 
+ * @param rules - 
+ * @param vals - 
+ * @param strategy - 
+ * @param imply - 
+ * @param combine - 
  */
 export const defuzz = <I extends LVarSet<string>, O extends LVarSet<string>>(
     ins: I,

@@ -57,6 +57,6 @@ export let LOGGER = NULL_LOGGER;
 /**
  * Sets package logger to given instance.
  *
- * @param logger
+ * @param logger - 
  */
 export const setLogger = (logger: ILogger) => (LOGGER = logger);

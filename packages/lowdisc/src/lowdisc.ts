@@ -9,8 +9,8 @@ import { assert } from "@thi.ng/errors/assert";
  * This function acts as shared impl for all other sequence generators in this
  * package.
  *
- * @param dims
- * @param offset
+ * @param dims - 
+ * @param offset - 
  */
 export const lowDiscrepancy = (dims: Iterator<number>[], offset = 0) => {
     const num = dims.length;

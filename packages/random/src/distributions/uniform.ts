@@ -8,9 +8,9 @@ import { SYSTEM } from "../system.js";
  * @remarks
  * This function is syntax sugar for `rnd.minmax()`.
  *
- * @param rnd
- * @param min
- * @param max
+ * @param rnd - 
+ * @param min - 
+ * @param max - 
  */
 export const uniform =
     (rnd: IRandom = SYSTEM, min = 0, max = 1) =>

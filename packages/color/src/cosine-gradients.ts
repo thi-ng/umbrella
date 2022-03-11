@@ -168,8 +168,8 @@ export const COSINE_GRADIENTS: Record<CosineGradientPreset, CosGradientSpec> = {
  * Computes a single linear RGBA color for given gradient spec and normalized
  * position `t` (in [0..1] interval).
  *
- * @param spec
- * @param t
+ * @param spec - 
+ * @param t - 
  */
 export const cosineColor = (spec: CosGradientSpec, t: number): Color =>
     transduce(
@@ -190,9 +190,9 @@ export const cosineColor = (spec: CosGradientSpec, t: number): Color =>
  * For CSS/SVG use cases you could use {@link srgba} as transformation function
  * to not convert, but reinterpret & wrap raw color values as SRGBA.
  *
- * @param n
- * @param spec
- * @param tx
+ * @param n - 
+ * @param spec - 
+ * @param tx - 
  */
 export const cosineGradient = (
     n: number,

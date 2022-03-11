@@ -7,7 +7,7 @@ import { satisfy, satisfyD } from "./satisfy.js";
 /**
  * HOF predicate for matching single char against given options.
  *
- * @param opts
+ * @param opts - 
  */
 export const oneOfP = (
     opts: string | any[] | Set<any> | CharSet
@@ -22,8 +22,8 @@ export const oneOfP = (
  * Matches single char against given options. Also see {@link noneOf}
  * for reverse logic.
  *
- * @param opts
- * @param id
+ * @param opts - 
+ * @param id - 
  */
 export function oneOf(opts: string | CharSet, id?: string): LitParser<string>;
 export function oneOf<T>(opts: T[] | Set<T>, id?: string): LitParser<T>;
@@ -34,7 +34,7 @@ export function oneOf(opts: string | CharSet | any[] | Set<any>, id = "oneOf") {
 /**
  * Like {@link oneOf}, but discards result.
  *
- * @param opts
+ * @param opts - 
  */
 export function oneOfD(opts: string | CharSet): LitParser<string>;
 export function oneOfD<T>(opts: T[] | Set<T>): LitParser<T>;

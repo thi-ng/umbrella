@@ -6,8 +6,8 @@ import { MapG1 } from "./mapg.js";
  * Higher order generator. Composes a new {@link IGen} from given source gen and
  * a number of {@link IProc}s (processed in series, like using {@link serial}).
  *
- * @param src
- * @param proc
+ * @param src - 
+ * @param proc - 
  */
 export function pipe<A, B>(src: IGen<A>, proc: IProc<A, B>): IGen<B>;
 export function pipe<A, B, C>(

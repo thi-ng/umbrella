@@ -28,7 +28,7 @@ import { $wrapText } from "./wrap.js";
  * will be wrapped using a {@link $sub} `<span>` with the value as its
  * reactive body.
  *
- * @param tree
+ * @param tree -
  */
 export const $compile = (tree: any): IComponent =>
     isArray(tree)

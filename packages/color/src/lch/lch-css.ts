@@ -10,7 +10,7 @@ import { __ensureAlpha } from "../internal/ensure.js";
  * https://www.w3.org/TR/css-color-4/#specifying-lab-lch
  * https://test.csswg.org/harness/results/css-color-4_dev/grouped/ (test reports)
  *
- * @param src
+ * @param src - 
  */
 export const lchCss = (src: ReadonlyColor) => {
     const l = PC(clamp0(src[0]));

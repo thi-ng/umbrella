@@ -182,7 +182,7 @@ export function defSetter(path: Path): Fn2<any, any, any> {
 /**
  * Creates a shallow copy of given array, typed array or plain object.
  *
- * @param x
+ * @param x - 
  */
 export const copy = (x: any) =>
     isArray(x) || isTypedArray(x) ? x.slice() : { ...x };

@@ -3,7 +3,7 @@ import { OnePole } from "./onepole.js";
 /**
  * One-pole DC blocker based on {@link OnePole}.
  *
- * @param freq
+ * @param freq - 
  */
 export const dcBlock = (freq: number) => new DCBlock("lp", freq);
 

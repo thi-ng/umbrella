@@ -18,11 +18,11 @@ import { sub2 } from "@thi.ng/vectors/sub";
  * numbers, i.e. it computes (jointly) both the position **AND** the first
  * derivative (aka tangent) at this point.
  *
- * @param a
- * @param b
- * @param c
- * @param d
- * @param t
+ * @param a - 
+ * @param b - 
+ * @param c - 
+ * @param d - 
+ * @param t - 
  */
 const splinePosAndTangent: FnU5<number, Dual> = (a, b, c, d, _t) => {
     const t = $(_t, 1); // dual variable

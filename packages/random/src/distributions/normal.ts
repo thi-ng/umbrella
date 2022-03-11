@@ -9,9 +9,9 @@ import { SYSTEM } from "../system.js";
  * @remarks
  * Also see {@link gaussian} for alternative implementation.
  *
- * @param rnd
- * @param bias
- * @param sigma
+ * @param rnd - 
+ * @param bias - 
+ * @param sigma - 
  */
 export const normal = (rnd: IRandom = SYSTEM, bias = 0, sigma = 1) => {
     let a: Nullable<number>;

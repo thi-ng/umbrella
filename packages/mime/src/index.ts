@@ -31,8 +31,8 @@ export const MIME_TYPES = ((defs: any) => {
  *
  * Also see {@link preferredExtension} for reverse operation.
  *
- * @param ext
- * @param fallback
+ * @param ext -
+ * @param fallback -
  */
 export const preferredType = (ext: string, fallback = MIME_TYPES.bin[0]) => {
     const type = MIME_TYPES[ext[0] === "." ? ext.substr(1) : ext];
@@ -44,9 +44,8 @@ export const preferredType = (ext: string, fallback = MIME_TYPES.bin[0]) => {
  * preferred file extension (or failing that) returns `fallback` (default:
  * "bin").
  *
- * @param mime
- * @param fallback
- * @returns
+ * @param mime -
+ * @param fallback -
  */
 export const preferredExtension = (mime: string, fallback = "bin") => {
     const [prefix, suffix] = mime.split("/");

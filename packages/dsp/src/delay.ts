@@ -6,14 +6,14 @@ import { AProc } from "./aproc.js";
 /**
  * Delay line of length `n` for numeric values.
  *
- * @param n
+ * @param n - 
  */
 export const delay = (n: number) => new Delay(n, 0);
 
 /**
  * Delay line of length `n` for arbitrary typed values.
  *
- * @param n
+ * @param n - 
  */
 export const delayT = <T>(n: number, off: T | Fn0<T>) => new Delay<T>(n, off);
 
@@ -32,8 +32,8 @@ export class Delay<T> extends AProc<T, T> implements IClear, ILength, IReset {
      * be initialized with the results of that function (called for each
      * element).
      *
-     * @param n
-     * @param _empty
+     * @param n - 
+     * @param _empty - 
      */
     constructor(n: number, protected _empty: T | Fn0<T>) {
         super(isFunction(_empty) ? _empty() : _empty);
@@ -80,7 +80,7 @@ export class Delay<T> extends AProc<T, T> implements IClear, ILength, IReset {
      * be in `(-∞..0)` interval. E.g. `tap(-1)` returns the second
      * most recent value written.
      *
-     * @param t
+     * @param t - 
      */
     tap(t: number) {
         return this._buf[wrap((t | 0) + this._wpos, 0, this._buf.length - 1)];
@@ -101,7 +101,7 @@ export class Delay<T> extends AProc<T, T> implements IClear, ILength, IReset {
     /**
      * Progresses read & write pos, stores & returns new value.
      *
-     * @param x
+     * @param x - 
      */
     next(x: T) {
         this.step();

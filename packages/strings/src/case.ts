@@ -55,7 +55,7 @@ export const snake: FnS = (x) => kebab(x, "_");
 /**
  * Uppercase version of {@link snake}.
  *
- * @param x
+ * @param x - 
  */
 export const upperSnake: FnS = (x) => snake(x).toUpperCase();
 

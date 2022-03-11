@@ -5,7 +5,7 @@ import { xform } from "../combinators/xform.js";
  * Stores number of children as result, then discards children. Also see
  * {@link count}.
  *
- * @param scope
+ * @param scope - 
  */
 export const xfCount: ScopeTransform<any> = (scope) => {
     scope!.result = scope!.children ? scope!.children.length : 0;
@@ -16,6 +16,6 @@ export const xfCount: ScopeTransform<any> = (scope) => {
 /**
  * Syntax sugar for `xform(parser, xfCount)`.
  *
- * @param parser
+ * @param parser - 
  */
 export const count = <T>(parser: Parser<T>) => xform(parser, xfCount);

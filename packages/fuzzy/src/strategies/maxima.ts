@@ -27,7 +27,7 @@ import { defaultOpts } from "./opts.js";
  * //                     ^ 3.00
  * ```
  *
- * @param opts
+ * @param opts - 
  */
 export const meanOfMaximaStrategy = (
     opts?: Partial<DefuzzStrategyOpts>
@@ -80,7 +80,7 @@ export const meanOfMaximaStrategy = (
  * //        ^ 1.02
  * ```
  *
- * @param opts
+ * @param opts - 
  */
 export const firstOfMaximaStrategy = (
     opts?: Partial<DefuzzStrategyOpts>
@@ -128,7 +128,7 @@ export const firstOfMaximaStrategy = (
  * //                                  ^ 4.98
  * ```
  *
- * @param opts
+ * @param opts - 
  */
 export const lastOfMaximaStrategy = (
     opts?: Partial<DefuzzStrategyOpts>

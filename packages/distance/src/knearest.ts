@@ -93,11 +93,11 @@ export class KNearest<D, T>
  * and, by default, using an infinite region radius and {@link DIST_SQ} distance
  * metric.
  *
- * @param p
- * @param k
- * @param r
- * @param dist
- * @param sorted
+ * @param p - 
+ * @param k - 
+ * @param r - 
+ * @param dist - 
+ * @param sorted - 
  */
 export const knearest = <T>(
     p: ReadonlyVec,
@@ -111,11 +111,11 @@ export const knearest = <T>(
  * Defines a {@link KNearest} instance for 2D vector positions and, by default,
  * using an infinite region radius and {@link DIST_SQ2} distance metric.
  *
- * @param p
- * @param k
- * @param r
- * @param dist
- * @param sorted
+ * @param p - 
+ * @param k - 
+ * @param r - 
+ * @param dist - 
+ * @param sorted - 
  */
 export const knearest2 = <T>(
     p: ReadonlyVec,
@@ -129,11 +129,11 @@ export const knearest2 = <T>(
  * Defines a {@link KNearest} instance for 3D vector positions, by default,
  * using an infinite region radius and {@link DIST_SQ3} distance metric.
  *
- * @param p
- * @param k
- * @param r
- * @param dist
- * @param sorted
+ * @param p - 
+ * @param k - 
+ * @param r - 
+ * @param dist - 
+ * @param sorted - 
  */
 export const knearest3 = <T>(
     p: ReadonlyVec,
@@ -147,11 +147,11 @@ export const knearest3 = <T>(
  * Defines a {@link KNearest} instance for numeric positions and, by default,
  * using an infinite region radius and {@link DIST_SQ1} distance metric.
  *
- * @param p
- * @param k
- * @param r
- * @param dist
- * @param sorted
+ * @param p - 
+ * @param k - 
+ * @param r - 
+ * @param dist - 
+ * @param sorted - 
  */
 export const knearestN = <T>(
     p: number,

@@ -20,9 +20,9 @@ export const addResults = <A, B>(
 /**
  * Shared `into()` impl for spatial map types.
  *
- * @param map
- * @param pairs
- * @param eps
+ * @param map - 
+ * @param pairs - 
+ * @param eps - 
  *
  * @internal
  */

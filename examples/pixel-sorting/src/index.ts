@@ -37,8 +37,8 @@ interface ProcessParams {
  * Takes a ABGR pixel buffer and performs randomized pixel sorting based on
  * given config options.
  *
- * @param buf
- * @param param1
+ * @param buf - 
+ * @param param1 - 
  */
 const pixelSortBuffer = (
     buf: IntBuffer,

@@ -48,7 +48,7 @@ export const removeCell = (id: string) => removeNode(graph, id);
 /**
  * Enables focus flag for given cell
  *
- * @param id
+ * @param id - 
  */
 export const focusCell = (id: string) => {
     DB.swapIn([id], (cell) =>
@@ -59,7 +59,7 @@ export const focusCell = (id: string) => {
 /**
  * Disables focus flag for given cell
  *
- * @param id
+ * @param id - 
  */
 export const blurCell = (id: string) => {
     DB.swapIn([id], (cell) => setIn(cell, ["focus"], false));
@@ -68,7 +68,7 @@ export const blurCell = (id: string) => {
 /**
  * Restores cell value to `backup` string and clears focus.
  *
- * @param id
+ * @param id - 
  */
 export const cancelCell = (id: string) => {
     DB.swapIn([id], (cell) =>
@@ -82,8 +82,8 @@ export const cancelCell = (id: string) => {
  * error if failed. If not an s-expr, updates cell value and clears
  * error.
  *
- * @param id
- * @param val
+ * @param id - 
+ * @param val - 
  */
 export const updateCell = (id: string, val: string) => {
     if (val.startsWith("(")) {

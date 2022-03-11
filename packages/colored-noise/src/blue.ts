@@ -5,9 +5,9 @@ import { preseed, sum } from "./utils.js";
 /**
  * High-pass filtered noise. Opposite of {@link red}.
  *
- * @param n
- * @param scale
- * @param rnd
+ * @param n - 
+ * @param scale - 
+ * @param rnd - 
  */
 export function* blue(n = 2, scale = 1, rnd: INorm = SYSTEM) {
     const state = preseed(n, scale, rnd);

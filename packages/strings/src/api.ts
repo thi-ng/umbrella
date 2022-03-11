@@ -62,8 +62,8 @@ export interface IWordSplit {
      * adjusted split position, e.g. taking any control sequences into account
      * (which can't be split).
      *
-     * @param word
-     * @param pos
+     * @param word - 
+     * @param pos - 
      */
     split: Fn2<string, number, number>;
 }

@@ -12,9 +12,9 @@ import { ensureShader2D } from "./checks.js";
  *
  * Bounds calculation and clipping added by Karsten Schmidt
  *
- * @param grid
- * @param pts
- * @param val
+ * @param grid - 
+ * @param pts - 
+ * @param val - 
  */
 export const fillPoly = <T extends any[] | TypedArray, P>(
     grid: IGrid2D<T, P>,

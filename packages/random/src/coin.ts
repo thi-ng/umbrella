@@ -8,7 +8,7 @@ import { SYSTEM } from "./system.js";
  * @remarks
  * Also see {@link fairCoin}.
  *
- * @param rnd
+ * @param rnd - 
  */
 export const coin = (rnd: IRandom = SYSTEM) => rnd.float() < 0.5;
 
@@ -21,7 +21,7 @@ export const coin = (rnd: IRandom = SYSTEM) => rnd.float() < 0.5;
  * Reference:
  * https://en.m.wikipedia.org/wiki/Fair_coin#Fair_results_from_a_biased_coin
  *
- * @param rnd
+ * @param rnd - 
  */
 export const fairCoin = (rnd: IRandom = SYSTEM) => {
     let a: boolean, b: boolean;

@@ -15,9 +15,9 @@ const $ =
  * Adjust the "lightness" (luma, brightness etc.) channel of given `src` color
  * and `delta` offset. Writes result into `out` (or if null, back into `src`).
  *
- * @param out
- * @param src
- * @param delta
+ * @param out - 
+ * @param src - 
+ * @param delta - 
  */
 export const lighten = defmulti<Color | null, TypedColor<any>, number, Color>(
     __dispatch1,

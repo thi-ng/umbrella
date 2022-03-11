@@ -24,7 +24,7 @@ import { nextID } from "./idgen.js";
 /**
  * Return a new {@link Transacted} state wrapper.
  *
- * @param parent
+ * @param parent - 
  */
 export const defTransacted = <T>(parent: IAtom<T>) => new Transacted(parent);
 
@@ -32,7 +32,7 @@ export const defTransacted = <T>(parent: IAtom<T>) => new Transacted(parent);
  * Like {@link defTransacted}, but immediately starts new transaction as
  * well, i.e. same as `defTransacted(state).begin()`.
  *
- * @param parent
+ * @param parent - 
  */
 export const beginTransaction = <T>(parent: IAtom<T>) =>
     new Transacted(parent).begin();

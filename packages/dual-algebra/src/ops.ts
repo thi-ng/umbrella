@@ -17,32 +17,32 @@ export const dual = (real: number, n = 1, i = 0): Dual => {
 /**
  * Creates a 1-dual number of `r`. Syntax sugar for {@link dual}.
  *
- * @param r
- * @param i
+ * @param r - 
+ * @param i - 
  */
 export const $ = (r: number, i = 0) => [r, i === 1 ? 1 : 0];
 
 /**
  * Creates a 2-dual number of `r`. Syntax sugar for {@link dual}.
  *
- * @param r
- * @param i
+ * @param r - 
+ * @param i - 
  */
 export const $2 = (r: number, i = 0) => dual(r, 2, i);
 
 /**
  * Creates a 3-dual number of `r`. Syntax sugar for {@link dual}.
  *
- * @param r
- * @param i
+ * @param r - 
+ * @param i - 
  */
 export const $3 = (r: number, i = 0) => dual(r, 3, i);
 
 /**
  * Creates a 4-dual number of `r`. Syntax sugar for {@link dual}.
  *
- * @param r
- * @param i
+ * @param r - 
+ * @param i - 
  */
 export const $4 = (r: number, i = 0) => dual(r, 4, i);
 
@@ -222,9 +222,9 @@ export const atan = defOp<Op1>(
 /**
  * Linear interpolation for dual numbers: `a + (b - a) * t`
  *
- * @param a
- * @param b
- * @param t
+ * @param a - 
+ * @param b - 
+ * @param t - 
  */
 export const mix = (a: Dual, b: Dual, t: Dual) => add(a, mul(sub(b, a), t));
 
@@ -241,7 +241,7 @@ export const mix = (a: Dual, b: Dual, t: Dual) => add(a, mul(sub(b, a), t));
  * - index 1 - derivative of first var at `x`
  * - index 2 - derivative of second var at `y`
  *
- * @param fn
+ * @param fn - 
  */
 export const evalFn2 = (fn: Op2) => (x: number, y: number) =>
     fn([x, 1, 0], [y, 0, 1]);
@@ -249,7 +249,7 @@ export const evalFn2 = (fn: Op2) => (x: number, y: number) =>
 /**
  * Same as {@link evalFn2}, but 3-multivariate functions.
  *
- * @param fn
+ * @param fn - 
  */
 export const evalFn3 = (fn: Op3) => (x: number, y: number, z: number) =>
     fn([x, 1, 0, 0], [y, 0, 1, 0], [z, 0, 0, 1]);
@@ -257,7 +257,7 @@ export const evalFn3 = (fn: Op3) => (x: number, y: number, z: number) =>
 /**
  * Same as {@link evalFn4}, but 4-multivariate functions.
  *
- * @param fn
+ * @param fn - 
  */
 export const evalFn4 =
     (fn: Op4) => (x: number, y: number, z: number, w: number) =>

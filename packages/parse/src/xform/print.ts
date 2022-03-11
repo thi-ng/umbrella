@@ -12,9 +12,9 @@ import { indent } from "../utils.js";
  * The optional `fn` function is used to print each AST node (default:
  * `console.log`).
  *
- * @param scope
- * @param ctx
- * @param level
+ * @param scope - 
+ * @param ctx - 
+ * @param level - 
  */
 export const xfPrint = (fn: Fn<string, void> = console.log) => {
     const $print: ScopeTransform<any> = (scope, _, level = 0) => {
@@ -48,7 +48,7 @@ export const xfPrint = (fn: Fn<string, void> = console.log) => {
  * //   lit: "]"
  * ```
  *
- * @param parser
+ * @param parser - 
  */
 export const print = <T>(parser: Parser<T>, fn?: Fn<string, void>) =>
     xform(parser, xfPrint(fn));

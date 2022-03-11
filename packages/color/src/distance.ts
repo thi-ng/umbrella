@@ -13,7 +13,7 @@ const { abs, cos, hypot, sin, sqrt } = Math;
  * Higher order function. Returns {@link ColorDistance} function for given color
  * channel ID.
  *
- * @param id
+ * @param id - 
  */
 export const distChannel =
     (id: number): ColorDistance =>
@@ -24,8 +24,8 @@ export const distChannel =
  * Computes distance between two HSV colors, i.e. the eucledian distance between
  * points in a cyclinder.
  *
- * @param a
- * @param b
+ * @param a - 
+ * @param b - 
  */
 export const distHsv: ColorDistance = (a, b) => {
     const aa = cossin(a[0] * TAU, a[1]);
@@ -36,16 +36,16 @@ export const distHsv: ColorDistance = (a, b) => {
 /**
  * Computes difference in saturation between two HSV colors.
  *
- * @param a
- * @param b
+ * @param a - 
+ * @param b - 
  */
 export const distHsvSat = distChannel(1);
 
 /**
  * Computes difference in brightness between two HSV or two HSL colors.
  *
- * @param a
- * @param b
+ * @param a - 
+ * @param b - 
  */
 export const distHsvLuma = distChannel(2);
 
@@ -53,8 +53,8 @@ export const distHsvLuma = distChannel(2);
  * Computes eucledian distance between two colors. Only the first 3 color
  * channels will be considered.
  *
- * @param a
- * @param b
+ * @param a - 
+ * @param b - 
  */
 export const distEucledian3: ColorDistance = dist3;
 
@@ -63,8 +63,8 @@ export const distEucledian4: ColorDistance = dist4;
 /**
  * Computes difference in luminance between two RGB colors.
  *
- * @param a
- * @param b
+ * @param a - 
+ * @param b - 
  */
 export const distRgbLuma: ColorDistance = (a, b) =>
     abs(luminanceRgb(a) - luminanceRgb(b));
@@ -75,24 +75,24 @@ export const distSrgbLuma: ColorDistance = (a, b) =>
 /**
  * Computes red difference between two RGB colors.
  *
- * @param a
- * @param b
+ * @param a - 
+ * @param b - 
  */
 export const distRgbRed = distChannel(0);
 
 /**
  * Computes green difference between two RGB colors.
  *
- * @param a
- * @param b
+ * @param a - 
+ * @param b - 
  */
 export const distRgbGreen = distChannel(1);
 
 /**
  * Computes blue difference between two RGB colors.
  *
- * @param a
- * @param b
+ * @param a - 
+ * @param b - 
  */
 export const distRgbBlue = distChannel(1);
 

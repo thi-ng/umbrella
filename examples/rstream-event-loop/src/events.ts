@@ -31,7 +31,7 @@ events.subscribe(eventProc);
 /**
  * Event dispatch function. Sends given event into the event stream.
  *
- * @param e
+ * @param e - 
  */
 export const dispatch = (e: Event) => events.next(e);
 
@@ -41,9 +41,9 @@ export const dispatch = (e: Event) => events.next(e);
  * The handler's subscription also includes an error handler to display
  * errors in the console.
  *
- * @param id
- * @param handler
- * @param xform
+ * @param id - 
+ * @param handler - 
+ * @param xform - 
  */
 export const defHandler = <E extends EventType>(
     id: E,
@@ -65,7 +65,7 @@ export const defHandler = <E extends EventType>(
  * app state and simulates a pre-loading step (with delay), after which
  * it emits a `PAGE_READY` event.
  *
- * @param offset
+ * @param offset - 
  */
 const requestPage = (offset: number) => {
     // get current app state

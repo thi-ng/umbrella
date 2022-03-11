@@ -47,14 +47,14 @@ export const sample = (
  * optional `out` (or a new array). If `addLast` is falst (default:
  * true), point `b` will NOT be added.
  *
- * @param origin
- * @param r
- * @param a
- * @param b
- * @param out
- * @param steps
- * @param outwards
- * @param addLast
+ * @param origin - 
+ * @param r - 
+ * @param a - 
+ * @param b - 
+ * @param out - 
+ * @param steps - 
+ * @param outwards - 
+ * @param addLast - 
  */
 export const sampleCircular = (
     origin: Vec,

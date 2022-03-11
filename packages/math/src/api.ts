@@ -17,7 +17,7 @@ export const PHI = (1 + Math.sqrt(5)) / 2;
 export const SQRT2 = Math.SQRT2;
 export const SQRT3 = Math.sqrt(3);
 export const SQRT2_2 = SQRT2 / 2;
-export const SQRT2_3 = SQRT3 / 2;
+export const SQRT3_2 = SQRT3 / 2;
 
 export const THIRD = 1 / 3;
 export const TWO_THIRD = 2 / 3;

@@ -23,8 +23,8 @@ import { isString } from "@thi.ng/checks/is-string";
  * // "baz"
  * ```
  *
- * @param existing
- * @param val
+ * @param existing - 
+ * @param val - 
  */
 export const mergeClasses = (existing: string, val: any) => {
     val = deref(val);
@@ -41,9 +41,9 @@ export const mergeClasses = (existing: string, val: any) => {
  * Takes an attrib object and optional element ID and CSS class names from Emmet-style
  * hiccup tag, then transforms and merges definitions, returns attribs.
  *
- * @param attribs
- * @param id
- * @param classes
+ * @param attribs - 
+ * @param id - 
+ * @param classes - 
  */
 export const mergeEmmetAttribs = (
     attribs: any,

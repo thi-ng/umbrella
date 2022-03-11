@@ -35,7 +35,7 @@ import { zip } from "./zip.js";
  * // ]
  * ```
  *
- * @param vec
+ * @param vec - 
  */
 export const rangeNd = (
     min: ArrayLikeIterable<number>,

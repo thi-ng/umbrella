@@ -115,8 +115,8 @@ export class EquivMap<K, V>
      * readonly/immutable. This could be enforced via TS, but would
      * break ES6 Map interface contract.
      *
-     * @param fn
-     * @param thisArg
+     * @param fn - 
+     * @param thisArg - 
      */
     forEach(fn: Fn3<V, K, Map<K, V>, void>, thisArg?: any) {
         for (let pair of __map(this)) {

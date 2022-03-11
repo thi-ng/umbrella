@@ -28,8 +28,8 @@ export interface ElementFactory<T, B> {
  * supported attributes and children. See {@link ElementFactory} for
  * supported call formats of the resulting function..
  *
- * @param tag
- * @param baseAttribs
+ * @param tag - 
+ * @param baseAttribs - 
  */
 export const defElement =
     <T = Partial<Attribs>, B = any>(

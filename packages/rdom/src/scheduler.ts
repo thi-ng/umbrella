@@ -58,7 +58,6 @@ export let SCHEDULER: IScheduler = new NullScheduler();
 /**
  * Sets rdom-global scheduler for component updates (and other tasks).
  *
- * @param s
- * @returns
+ * @param s -
  */
 export const setScheduler = (s: IScheduler) => (SCHEDULER = s);

@@ -12,8 +12,8 @@ import { __ensureInputs } from "./internal/ensure.js";
  * // [ 3, 30, 300 ]
  * ```
  *
- * @param out
- * @param src
+ * @param out - 
+ * @param src - 
  */
 export const median = (out: Vec | null, src: ReadonlyVec[]) => {
     __ensureInputs(src);
@@ -34,7 +34,7 @@ export const median = (out: Vec | null, src: ReadonlyVec[]) => {
  * // 10
  * ```
  *
- * @param a
+ * @param a - 
  */
 export const vmedian = (a: ReadonlyVec) => {
     if (!a.length) return 0;

@@ -13,9 +13,9 @@ import { radians2 } from "./radians.js";
  * - https://en.wikipedia.org/wiki/Haversine_formula
  * - https://stackoverflow.com/a/21623206
  *
- * @param a
- * @param b
- * @param r
+ * @param a -
+ * @param b -
+ * @param r -
  */
 export const distHaversineLatLon = (
     a: ReadonlyVec,
@@ -31,10 +31,9 @@ export const distHaversineLatLon = (
  * Same as {@link distHaversineLatLon}, only for coordinates defined in
  * [lon,lat] order.
  *
- * @param a
- * @param b
- * @param r
- * @returns
+ * @param a -
+ * @param b -
+ * @param r -
  */
 export const distHaversineLonLat = (
     a: ReadonlyVec,

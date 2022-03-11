@@ -48,7 +48,7 @@ export const randomizeThemeParts = () => {
  * proximity to white) and adds them to the state for further downstream
  * processing.
  *
- * @param state
+ * @param state - 
  */
 export const computeSwatches = (state: MainInputs) => {
     const { parts, num, variance, seed, sorted } = state;

@@ -9,12 +9,12 @@ import { charCode, intersectRectCircle } from "./utils.js";
  * radius and taking the current clip rect and format into account. If
  * `char` is not given, uses current style's `dot` char.
  *
- * @param canvas
- * @param cx
- * @param cy
- * @param r
- * @param char
- * @param fill
+ * @param canvas - 
+ * @param cx - 
+ * @param cy - 
+ * @param r - 
+ * @param char - 
+ * @param fill - 
  */
 export const circle = (
     canvas: Canvas,

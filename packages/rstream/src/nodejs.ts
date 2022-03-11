@@ -9,9 +9,9 @@ import type { Subscription } from "./subscription.js";
  * type `T`). If given, also connects `stderr` to new rstream's error handler.
  * Unless `close` is false, the new stream closes once `stdout` is closed.
  *
- * @param stdout
- * @param stderr
- * @param close
+ * @param stdout - 
+ * @param stderr - 
+ * @param close - 
  */
 export const fromNodeJS = <T>(
     stdout: Readable,
@@ -54,10 +54,10 @@ export const fromNodeJS = <T>(
  * // output done
  * ```
  *
- * @param stdout
- * @param stderr
- * @param re
- * @param close
+ * @param stdout - 
+ * @param stderr - 
+ * @param re - 
+ * @param close - 
  */
 export const linesFromNodeJS = (
     stdout: Readable,

@@ -33,7 +33,7 @@ const init = (
  * Reference:
  * - https://en.wikipedia.org/wiki/Ordered_dithering
  *
- * @param size
+ * @param size - 
  */
 export const defBayer = (size: BayerSize): BayerMatrix => ({
     mat: init(0, 0, size, 0, 1, []),

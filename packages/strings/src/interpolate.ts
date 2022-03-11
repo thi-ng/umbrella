@@ -15,8 +15,8 @@ const TPL_K = /\{([a-z0-9_.-]+)\}/gi;
  * // "let a: number = 42;"
  * ```
  *
- * @param src
- * @param args
+ * @param src - 
+ * @param args - 
  */
 export const interpolate = (src: string, ...args: any[]) =>
     args.length > 0
@@ -36,8 +36,8 @@ export const interpolate = (src: string, ...args: any[]) =>
  * // "let a: number = 42;"
  * ```
  *
- * @param src
- * @param keys
+ * @param src - 
+ * @param keys - 
  */
 export const interpolateKeys = (src: string, keys: IObjectOf<NumOrString>) =>
     src.replace(TPL_K, (_, id) =>

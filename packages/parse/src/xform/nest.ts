@@ -16,7 +16,7 @@ import { xfJoin } from "./join.js";
  * context will be configured to produce true absolute offsets for its results
  * as if they were in the main context.
  *
- * @param parser
+ * @param parser - 
  */
 export const xfNest =
     (parser: Parser<string>): ScopeTransform<string> =>

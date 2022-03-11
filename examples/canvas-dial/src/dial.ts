@@ -110,7 +110,7 @@ const TAU = 2 * PI;
 /**
  * HOF component. Returns pre-configured dial component.
  *
- * @param opts
+ * @param opts - 
  */
 export const dial = (_opts: Partial<DialOpts>) => {
     const opts = <DialOpts>{

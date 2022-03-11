@@ -5,7 +5,7 @@ import { xfJoin } from "./join.js";
  * Higher order transform. First joins all children via {@link xfJoin},
  * then parses resulting string into an integer with given `radix`.
  *
- * @param radix
+ * @param radix - 
  */
 export const xfInt =
     (radix = 10): ScopeTransform<string> =>
@@ -18,7 +18,7 @@ export const xfInt =
  * First joins all children via {@link xfJoin}, then parses resulting
  * string into a floating point value.
  *
- * @param scope
+ * @param scope - 
  */
 export const xfFloat: ScopeTransform<string> = (scope) => {
     scope!.result = parseFloat(xfJoin(scope)!.result);

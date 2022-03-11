@@ -11,7 +11,7 @@ import { SYSTEM } from "../system.js";
  *
  * Reference: https://en.wikipedia.org/wiki/Geometric_distribution
  *
- * @param rnd
+ * @param rnd - 
  * @param p - probability (0,1]
  */
 export const geometric = (rnd: IRandom = SYSTEM, p = 0.5) =>

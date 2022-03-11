@@ -68,10 +68,10 @@ export class DVMesh<T> {
      * If adding multiple points, ensure `computeDual` will only be called
      * for/after the last point insertion to avoid computational overhead.
      *
-     * @param p
-     * @param val
-     * @param eps
-     * @param update
+     * @param p - 
+     * @param val - 
+     * @param eps - 
+     * @param update - 
      */
     add(p: ReadonlyVec, val?: T, eps = EPS, update = true) {
         let [e, exists] = this.locate(p, eps);

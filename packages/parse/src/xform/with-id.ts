@@ -5,7 +5,7 @@ import { xform } from "../combinators/xform.js";
  * Assigns given `id` to AST node. E.g. used for re-labeling parser
  * results defined by {@link defGrammar}.
  *
- * @param id
+ * @param id - 
  */
 export const xfID = (id: string): ScopeTransform<any> => (scope) => (
     (scope!.id = id), scope

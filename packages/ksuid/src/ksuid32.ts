@@ -31,7 +31,7 @@ export class KSUID32 extends AKSUID {
  * Creates and returns a new 32bit epoch KSUID generator instance (w/ second
  * time precision).
  *
- * @param opts
+ * @param opts - 
  */
 export const defKSUID32 = (opts?: Partial<KSUIDOpts>): KSUID32 =>
     new KSUID32(opts);

@@ -26,7 +26,7 @@ const formatCell = (x: string | number) => (isNumber(x) ? x.toFixed(2) : x);
 /**
  * Choose background color based on cell state.
  *
- * @param cell
+ * @param cell - 
  */
 const cellBackground = (cell: any) =>
     cell.focus
@@ -41,7 +41,7 @@ const cellBackground = (cell: any) =>
  * thi.ng/hdom cell component with lifecycle methods. (The current
  * markup used (editable div's) is far from perfect...)
  *
- * @param cellid tuple
+ * @param cellid - uple
  */
 const cell = ([row, col]: [number, string]) =>
     <UICell>{

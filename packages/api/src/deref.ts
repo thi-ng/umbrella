@@ -46,7 +46,7 @@ export type DerefedKeys<
 /**
  * Returns true iff `x` implements {@link IDeref}.
  *
- * @param x
+ * @param x - 
  */
 export const isDeref = (x: any): x is IDeref<any> =>
     x != null && typeof x["deref"] === "function";

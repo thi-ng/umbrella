@@ -6,10 +6,10 @@ import { downloadWithMime } from "./raw.js";
  * then triggers download via {@link downloadWithMime}. Default file type is
  * `png`. Default quality is 0.95 (only used for JPEG/WebP).
  *
- * @param canvas
- * @param baseName
- * @param type
- * @param quality
+ * @param canvas - 
+ * @param baseName - 
+ * @param type - 
+ * @param quality - 
  */
 export const downloadCanvas = (
     canvas: HTMLCanvasElement,
@@ -38,9 +38,9 @@ export const downloadCanvas = (
  * The default recording format is WebM (VP9 codec) @ 60 fps, using the browser
  * defined default bit rate.
  *
- * @param canvas
- * @param fileName
- * @param opts
+ * @param canvas - 
+ * @param fileName - 
+ * @param opts - 
  */
 export const canvasRecorder = (
     canvas: HTMLCanvasElement,

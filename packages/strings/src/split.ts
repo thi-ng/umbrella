@@ -8,9 +8,9 @@
  * This function is ~2x faster for large strings (benchmarked with 8MB & 16MB
  * inputs), with dramatically lower memory consumption.
  *
- * @param src
- * @param delim
- * @param includeDelim
+ * @param src - 
+ * @param delim - 
+ * @param includeDelim - 
  */
 export function* split(
     src: string,

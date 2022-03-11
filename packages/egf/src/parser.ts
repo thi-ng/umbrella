@@ -236,8 +236,8 @@ export const $parseFile = (path: string, ctx?: Partial<ParseContext>) => {
  * Parses EGF graph from given local file name, using provided options (if any)
  * to customize the parser. Returns object of graph `nodes` and `prefixes`.
  *
- * @param path
- * @param ctx
+ * @param path - 
+ * @param ctx - 
  */
 export const parseFile = (path: string, ctx?: Partial<ParseContext>) => {
     const res = $parseFile(path, ctx);
@@ -248,8 +248,8 @@ export const parseFile = (path: string, ctx?: Partial<ParseContext>) => {
  * Parses EGF graph from given string and provided options (if any) to customize
  * the parser. Returns object of graph `nodes` and `prefixes`.
  *
- * @param path
- * @param ctx
+ * @param path - 
+ * @param ctx - 
  */
 export const parseString = (src: string, ctx?: Partial<ParseContext>) => {
     const res = parse(src, initContext(ctx));

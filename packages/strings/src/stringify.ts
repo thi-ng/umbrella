@@ -6,8 +6,8 @@ import type { Stringer } from "./api.js";
  * are simply converted using `String(x)`. If `indent` is given, it will be used
  * for `JSON.stringify(x, null, indent)`
  *
- * @param all
- * @param indent
+ * @param all - 
+ * @param indent - 
  */
 export const stringify =
     (all = false, indent?: number): Stringer<any> =>

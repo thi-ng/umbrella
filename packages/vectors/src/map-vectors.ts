@@ -32,11 +32,11 @@ import { isNumber } from "@thi.ng/checks/is-number";
  * // [ [ 5.5, 11 ], [ 550, 1100 ] ]
  * ```
  *
- * @param fn
- * @param out
- * @param a
- * @param b
- * @param c
+ * @param fn - 
+ * @param out - 
+ * @param a - 
+ * @param b - 
+ * @param c - 
  */
 export function mapVectors(
     fn: VecOpVV,

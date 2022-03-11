@@ -70,7 +70,7 @@ export class OpNode<T extends UserUniforms> {
     /**
      * Takes time value (in frames) and renders shader to offscreen texture.
      *
-     * @param time
+     * @param time - 
      */
     update(time: number) {
         const unis = this.updateSpec.uniforms!;

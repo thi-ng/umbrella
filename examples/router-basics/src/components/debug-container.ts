@@ -5,9 +5,9 @@ import { eventLink } from "./event-link";
 /**
  * Collapsible component showing stringified app state.
  *
- * @param ctx injected context object
- * @param debug
- * @param json
+ * @param ctx - njected context object
+ * @param debug - 
+ * @param json - 
  */
 export function debugContainer(ctx: AppContext, debug: any, json: string) {
     return [

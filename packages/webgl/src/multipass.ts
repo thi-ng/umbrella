@@ -202,8 +202,8 @@ const initBuffers = (
  *
  * WebGL2 only (uses `texelFetch()`)
  *
- * @param src
- * @param dest
+ * @param src - 
+ * @param dest - 
  */
 export const passCopy = (src: string[], dest: string[]): PassOpts => {
     assert(

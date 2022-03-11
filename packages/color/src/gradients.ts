@@ -41,7 +41,7 @@ import { mix as $mix } from "./mix.js";
  * );
  * ```
  *
- * @param opts
+ * @param opts - 
  */
 export const multiColorGradient = <T extends TypedColor<any>>(
     opts: GradientOpts<T>
@@ -55,7 +55,7 @@ export const multiColorGradient = <T extends TypedColor<any>>(
  * Intended use case for this function: 1D texturemap/tonemap generation, e.g.
  * for dataviz etc. Also @see {@link cosineGradientBuffer}.
  *
- * @param opts
+ * @param opts - 
  * @param buffer - target buffer/array
  * @param offset - start index (default: 0)
  * @param cstride - channel stride (default: 1)

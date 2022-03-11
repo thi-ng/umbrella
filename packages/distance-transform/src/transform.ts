@@ -38,9 +38,9 @@ import { EUCLEDIAN } from "./metric.js";
  * dtImg.blitCanvas(canvas2d(img.width, img.height, document.body).canvas);
  * ```
  *
- * @param grid
- * @param metric
- * @param normalize
+ * @param grid - 
+ * @param metric - 
+ * @param normalize - 
  */
 export const distanceTransform = (
     {

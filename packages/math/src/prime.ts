@@ -5,7 +5,7 @@
  * @remarks
  * Reference: https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes
  *
- * @param x
+ * @param x - 
  */
 export function* primesUntil(x: number) {
     if (x < 1) return;
@@ -27,7 +27,7 @@ export function* primesUntil(x: number) {
  * @remarks
  * Reference: https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes
  *
- * @param x
+ * @param x - 
  */
 export const nearestPrime = (x: number) => {
     if (x < 1) return -1;

@@ -70,9 +70,9 @@ export const extract = (
  * upward, if `dy < 0` downward. The new empty space will be filled with
  * `clear` char (default: ` `).
  *
- * @param canvas
- * @param dy
- * @param clear
+ * @param canvas - 
+ * @param dy - 
+ * @param clear - 
  */
 export const scrollV = (canvas: Canvas, dy: number, clear = 0x20) => {
     const { data, width } = canvas;
@@ -89,13 +89,13 @@ export const scrollV = (canvas: Canvas, dy: number, clear = 0x20) => {
 
 /**
  *
- * @param canvas
- * @param x
- * @param y
- * @param w
- * @param h
- * @param pixels
- * @param opts
+ * @param canvas - 
+ * @param x - 
+ * @param y - 
+ * @param w - 
+ * @param h - 
+ * @param pixels - 
+ * @param opts - 
  */
 export const image = (
     canvas: Canvas,
@@ -149,13 +149,13 @@ export const image = (
  * Optimized version of {@link image}, which only uses a single char for all
  * pixels and applies pixel values directly as formatting data (for each pixel).
  *
- * @param canvas
- * @param x
- * @param y
- * @param w
- * @param h
- * @param pixels
- * @param char
+ * @param canvas - 
+ * @param x - 
+ * @param y - 
+ * @param w - 
+ * @param h - 
+ * @param pixels - 
+ * @param char - 
  */
 export const imageRaw = (
     canvas: Canvas,
@@ -205,14 +205,14 @@ export const imageRaw = (
  * Reference:
  * https://en.wikipedia.org/wiki/Braille_Patterns#Identifying.2C_naming_and_ordering
  *
- * @param canvas
- * @param x
- * @param y
- * @param w
- * @param h
- * @param pixels
- * @param thresh
- * @param format
+ * @param canvas - 
+ * @param x - 
+ * @param y - 
+ * @param w - 
+ * @param h - 
+ * @param pixels - 
+ * @param thresh - 
+ * @param format - 
  */
 export const imageBraille = (
     canvas: Canvas,
@@ -272,9 +272,9 @@ export const imageBraille = (
  * The returned canvas will have 50% width and 25% height of the original image
  * (due to each Braille character encoding 2x4 pixels).
  *
- * @param src
- * @param thresh
- * @param format
+ * @param src - 
+ * @param thresh - 
+ * @param format - 
  */
 export const imageCanvasBraille = (
     src: { width: number; height: number; data: UIntArray },
@@ -290,8 +290,8 @@ export const imageCanvasBraille = (
  * Same as {@link imageCanvasBrailler}, but returns resulting canvas as plain
  * string (of Unicode Braille characters).
  *
- * @param src
- * @param thresh
+ * @param src - 
+ * @param thresh - 
  */
 export const imageStringBraille = (
     src: { width: number; height: number; data: UIntArray },
@@ -303,8 +303,8 @@ export const imageStringBraille = (
  * pixel buffer in RGB565 format and converts it into a new {@link canvas}. The
  * optional `char` will be used as character for each pixel.
  *
- * @param src
- * @param char
+ * @param src - 
+ * @param char - 
  */
 export const imageCanvas565 = (
     src: { width: number; height: number; data: UIntArray },
@@ -319,8 +319,8 @@ export const imageCanvas565 = (
  * Same as {@link imageCanvas565}, but returns resulting canvas as 24bit ANSI
  * string.
  *
- * @param src
- * @param char
+ * @param src - 
+ * @param char - 
  */
 export const imageString565 = (
     src: { width: number; height: number; data: UIntArray },

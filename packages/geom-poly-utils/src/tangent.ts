@@ -20,9 +20,9 @@ import { sub } from "@thi.ng/vectors/sub";
  *
  * The optional `scale` arg can be used to scale the tangents (default: 1).
  *
- * @param pts
- * @param close
- * @param scale
+ * @param pts - 
+ * @param close - 
+ * @param scale - 
  */
 export const tangents = (pts: ReadonlyVec[], close = false, scale = 1) => {
     const n = pts.length - 1;
@@ -50,10 +50,10 @@ export const tangents = (pts: ReadonlyVec[], close = false, scale = 1) => {
  *
  * The optional `scale` arg can be used to scale the tangents (default: 1).
  *
- * @param pts
- * @param close
- * @param proportional
- * @param scale
+ * @param pts - 
+ * @param close - 
+ * @param proportional - 
+ * @param scale - 
  */
 export const smoothTangents = (
     pts: ReadonlyVec[],
@@ -110,7 +110,7 @@ export const smoothTangents = (
  * Transforms an array of 2d tangent vectors into a new array with each tangent
  * rotated 90 degrees counter-clockwise.
  *
- * @param tangents
+ * @param tangents - 
  */
 export const bitangents2 = (tangents: ReadonlyVec[]) =>
     tangents.map((t) => perpendicularCCW([], t));

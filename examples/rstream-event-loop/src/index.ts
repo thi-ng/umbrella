@@ -8,7 +8,7 @@ import { state } from "./state";
 /**
  * Main/root UI component, receives app state and returns hdom component tree.
  *
- * @param state
+ * @param state - 
  */
 const app = ({ pageID, isLoading }: AppState) =>
     isLoading
@@ -64,7 +64,7 @@ const app = ({ pageID, isLoading }: AppState) =>
  * Dummy page content.
  *
  * @param _ - hdom user context (unused)
- * @param pageID
+ * @param pageID - 
  */
 const page = (_: any, pageID: number) => ["h1", `Page: ${pageID}`];
 

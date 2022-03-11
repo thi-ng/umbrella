@@ -7,10 +7,10 @@ import { set } from "@thi.ng/vectors/set";
  * Returns closest point to `p` in given point array, optionally using custom
  * distance function `dist` (default: {@link @thi.ng/vectors#distSq}).
  *
- * @param p
- * @param pts
- * @param out
- * @param dist
+ * @param p - 
+ * @param pts - 
+ * @param out - 
+ * @param dist - 
  */
 export const closestPointArray = (
     p: ReadonlyVec,

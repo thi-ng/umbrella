@@ -6,14 +6,14 @@ import type { CellTransform } from "./api.js";
 /**
  * Cell parse value transform. Returns uppercased version of given input.
  *
- * @param x
+ * @param x - 
  */
 export const upper: CellTransform = (x) => x.toUpperCase();
 
 /**
  * Cell parse value transform. Returns lowercased version of given input.
  *
- * @param x
+ * @param x - 
  */
 export const lower: CellTransform = (x) => x.toLowerCase();
 
@@ -21,7 +21,7 @@ export const lower: CellTransform = (x) => x.toLowerCase();
  * Higher-order cell parse value transform. Attempts to parse cell values as
  * floating point number or returns `defaultVal` if not possible.
  *
- * @param defaultVal
+ * @param defaultVal - 
  */
 export const float =
     (defaultVal = 0): CellTransform =>
@@ -32,7 +32,7 @@ export const float =
  * Higher-order cell parse value transform. Attempts to parse cell values as
  * integer or returns `defaultVal` if not possible.
  *
- * @param defaultVal
+ * @param defaultVal - 
  */
 export const int =
     (defaultVal = 0): CellTransform =>
@@ -43,7 +43,7 @@ export const int =
  * Higher-order cell parse value transform. Attempts to parse cell values as
  * hexadecimal integer or returns `defaultVal` if not possible.
  *
- * @param defaultVal
+ * @param defaultVal - 
  */
 export const hex =
     (defaultVal = 0): CellTransform =>
@@ -56,7 +56,7 @@ export const percent: CellTransform = (x) => maybeParseFloat(x) * 0.01;
  * Higher-order cell parse value transform. Attempts to parse cell values as
  * Unix epoch/timestamp or returns `defaultVal` if not possible.
  *
- * @param defaultVal
+ * @param defaultVal - 
  */
 export const epoch =
     (defaultVal = 0): CellTransform =>
@@ -69,7 +69,7 @@ export const epoch =
  * Higher-order cell parse value transform. Attempts to parse cell values as JS
  * `Date` instance or returns `defaultVal` if not possible.
  *
- * @param defaultVal
+ * @param defaultVal - 
  */
 export const date =
     (defaultVal?: Date): CellTransform =>
@@ -85,7 +85,7 @@ export const date =
  * Cell parse value transform. Attempts to parse cell values as JS `URL`
  * instances.
  *
- * @param x
+ * @param x - 
  */
 export const url: CellTransform = (x) => new URL(x);
 

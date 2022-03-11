@@ -110,11 +110,11 @@ export const mixCubicHermite: FnN5 = (a, ta, b, tb, t) => {
  * spaced) and computes tangents automatically. Returns `b` iff `t=0` and `c`
  * iff `t=1.0`.
  *
- * @param a
- * @param b
- * @param c
- * @param d
- * @param t
+ * @param a -
+ * @param b -
+ * @param c -
+ * @param d -
+ * @param t -
  */
 export const mixCubicHermiteFromPoints: FnN5 = (a, b, c, d, t) => {
     d *= 0.5;
@@ -134,25 +134,24 @@ export const mixCubicHermiteFromPoints: FnN5 = (a, b, c, d, t) => {
  * Result will not be clamped and might fall outside the total range of the
  * input samples.
  *
- * @param s00
- * @param s01
- * @param s02
- * @param s03
- * @param s10
- * @param s11
- * @param s12
- * @param s13
- * @param s20
- * @param s21
- * @param s22
- * @param s23
- * @param s30
- * @param s31
- * @param s32
- * @param s33
- * @param u
- * @param v
- * @returns
+ * @param s00 -
+ * @param s01 -
+ * @param s02 -
+ * @param s03 -
+ * @param s10 -
+ * @param s11 -
+ * @param s12 -
+ * @param s13 -
+ * @param s20 -
+ * @param s21 -
+ * @param s22 -
+ * @param s23 -
+ * @param s30 -
+ * @param s31 -
+ * @param s32 -
+ * @param s33 -
+ * @param u -
+ * @param v -
  */
 export const mixBicubic = (
     s00: number,
@@ -351,8 +350,8 @@ export const cubicPulse: FnN3 = (w, c, t) => {
  * @remarks
  * https://en.wikipedia.org/wiki/Sinc_function
  *
- * @param k
- * @param t
+ * @param k -
+ * @param t -
  */
 export const sinc: FnN = (t) => (t !== 0 ? Math.sin(t) / t : 1);
 
@@ -364,8 +363,8 @@ export const sinc: FnN = (t) => (t !== 0 ? Math.sin(t) / t : 1);
  *
  * @see {@link sinc}
  *
- * @param k
- * @param t
+ * @param k -
+ * @param t -
  */
 export const sincNormalized: FnN2 = (k, t) => sinc(PI * k * t);
 
@@ -376,8 +375,8 @@ export const sincNormalized: FnN2 = (k, t) => sinc(PI * k * t);
  * @remarks
  * Interactive graph: https://www.desmos.com/calculator/pmypqgefle
  *
- * @param a
- * @param t
+ * @param a -
+ * @param t -
  */
 export const lanczos: FnN2 = (a, t) =>
     t !== 0 ? (-a < t && t < a ? sinc(PI * t) * sinc((PI * t) / a) : 0) : 1;
@@ -434,9 +433,9 @@ export const schlick: FnN3 = (a, b, t) =>
  * `num` steps. I.e. multiplying `a` with the returned factor will yield
  * `b` after `num` steps. All args must be > 0.
  *
- * @param a
- * @param b
- * @param num
+ * @param a -
+ * @param b -
+ * @param num -
  */
 export const expFactor: FnN3 = (a, b, num) => (b / a) ** (1 / num);
 
@@ -446,9 +445,9 @@ export const expFactor: FnN3 = (a, b, num) => (b / a) ** (1 / num);
  * @remarks
  * Interactive graph: https://www.desmos.com/calculator/aq6hdzxprv
  *
- * @param bias
- * @param sigma
- * @param t
+ * @param bias -
+ * @param sigma -
+ * @param t -
  */
 export const gaussian: FnN3 = (bias, sigma, t) =>
     Math.exp(-((t - bias) ** 2) / (2 * sigma * sigma));

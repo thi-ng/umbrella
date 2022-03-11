@@ -50,8 +50,7 @@ export const sidechainPartition = <A, B>(
  * any present), passes only most recent one downstream *during* next RAF event
  * processing.
  *
- * @param src
- * @returns
+ * @param src -
  */
 export const sidechainPartitionRAF = <T>(src: ISubscribable<T>) =>
     src

@@ -132,8 +132,8 @@ const $rnd = (ranges: Range[], rnd: IRandom) =>
  *
  * A custom PRNG can be defined via the `rnd` option (default: `Math.random`).
  *
- * @param range
- * @param opts
+ * @param range - 
+ * @param opts - 
  */
 export const colorFromRange = (
     range: ColorRange | keyof typeof COLOR_RANGES,
@@ -181,8 +181,8 @@ export const colorFromRange = (
  * sequence of random colors based on given range, base color (optional) and
  * other opts. Use `num` option to limit number of results.
  *
- * @param range
- * @param opts
+ * @param range - 
+ * @param opts - 
  */
 export function* colorsFromRange(
     range: ColorRange | keyof typeof COLOR_RANGES,
@@ -268,8 +268,8 @@ const themePartFromString = (part: string) =>
  * )]
  * ```
  *
- * @param parts
- * @param opts
+ * @param parts - 
+ * @param opts - 
  */
 export function* colorsFromTheme(
     parts: (ColorThemePart | ColorThemePartTuple)[],

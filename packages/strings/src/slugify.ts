@@ -37,7 +37,7 @@ export const slugify: Stringer<string> = (str: string) => {
  * // "me-myself--ëye"
  * ```
  *
- * @param str
+ * @param str - 
  */
 export const slugifyGH = (str: string) => {
     return (

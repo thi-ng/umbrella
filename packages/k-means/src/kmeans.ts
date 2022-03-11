@@ -19,9 +19,9 @@ import type { CentroidStrategy, Cluster, KMeansOpts } from "./api.js";
  * @remarks
  * https://en.wikipedia.org/wiki/K-medians_clustering
  *
- * @param k
- * @param samples
- * @param opts
+ * @param k - 
+ * @param samples - 
+ * @param opts - 
  */
 export const kmeans = <T extends ReadonlyVec>(
     k: number,
@@ -79,10 +79,10 @@ export const kmeans = <T extends ReadonlyVec>(
  * - http://ilpubs.stanford.edu:8090/778/1/2006-13.pdf
  * - http://vldb.org/pvldb/vol5/p622_bahmanbahmani_vldb2012.pdf (TODO)
  *
- * @param k
- * @param samples
- * @param dist
- * @param rnd
+ * @param k - 
+ * @param samples - 
+ * @param dist - 
+ * @param rnd - 
  */
 export const initKmeanspp = <T extends ReadonlyVec>(
     k: number,
@@ -150,7 +150,7 @@ const buildClusters = (centroids: ReadonlyVec[], clusters: number[]) => {
  * Default centroid strategy forming new centroids by averaging the position of
  * participating samples.
  *
- * @param dim
+ * @param dim - 
  */
 export const means: CentroidStrategy = (dim) => {
     const acc = zeroes(dim);

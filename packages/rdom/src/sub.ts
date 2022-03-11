@@ -29,8 +29,8 @@ import { $wrapText } from "./wrap.js";
  * src.next(43);
  * ```
  *
- * @param src
- * @param inner
+ * @param src -
+ * @param inner -
  */
 export function $sub<T>(
     src: ISubscribable<T>,

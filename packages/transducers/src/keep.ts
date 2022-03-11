@@ -8,7 +8,7 @@ import { __iter } from "./iterator.js";
  * Transducer. Only keeps values for which (optional) predicate returns a
  * non-null result. If no `pred` is given, uses values as is.
  *
- * @param pred
+ * @param pred - 
  */
 export function keep<T>(
     pred?: Fn<Nullable<T>, any>

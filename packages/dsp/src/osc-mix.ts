@@ -8,8 +8,8 @@ import type { StatelessOscillator } from "./api.js";
  * control contributions of either oscillator (default: 0.5 aka 50/50
  * ratio).
  *
- * @param osc1
- * @param osc2
+ * @param osc1 - 
+ * @param osc2 - 
  */
 export const mixOsc =
     (
@@ -23,9 +23,9 @@ export const mixOsc =
  * Similar to {@link mixOsc}, but with `mix` arg ([0..1] range)
  * directly given to HOF and not changeable after.
  *
- * @param osc1
- * @param osc2
- * @param mix
+ * @param osc1 - 
+ * @param osc2 - 
+ * @param mix - 
  */
 export const mixOscHOF =
     (

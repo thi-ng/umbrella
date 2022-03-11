@@ -42,9 +42,9 @@ export function rangeD(min: NumOrString, max: NumOrString) {
 /**
  * Matches single char in given UTF-16 codepoint range.
  *
- * @param min
- * @param max
- * @param id
+ * @param min - 
+ * @param max - 
+ * @param id - 
  */
 export const utf16Range = (min: number, max: number, id = "utfLit") =>
     satisfy(utf16RangeP(min, max), id);
@@ -52,9 +52,9 @@ export const utf16Range = (min: number, max: number, id = "utfLit") =>
 /**
  * Matches single char in given UTF-16 codepoint range.
  *
- * @param min
- * @param max
- * @param id
+ * @param min - 
+ * @param max - 
+ * @param id - 
  */
 export const utf16RangeD = (min: number, max: number) =>
     satisfyD(utf16RangeP(min, max));

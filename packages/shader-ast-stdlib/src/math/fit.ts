@@ -25,11 +25,11 @@ export const fitNorm1 = defn(
  * Fits value `x` from closed interval [a,b] to closed interval [c,d]. No
  * clamping performed.
  *
- * @param x
- * @param a
- * @param b
- * @param c
- * @param d
+ * @param x - 
+ * @param a - 
+ * @param b - 
+ * @param c - 
+ * @param d - 
  */
 export const fit = <T extends PrimTerm>(
     x: T,
@@ -42,11 +42,11 @@ export const fit = <T extends PrimTerm>(
 /**
  * Same as {@link fit}, but first clamps `x` to closed [a,b] interval.
  *
- * @param x
- * @param a
- * @param b
- * @param c
- * @param d
+ * @param x - 
+ * @param a - 
+ * @param b - 
+ * @param c - 
+ * @param d - 
  */
 export const fitClamped = <T extends PrimTerm>(
     x: T,

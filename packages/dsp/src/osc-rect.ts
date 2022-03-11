@@ -13,7 +13,7 @@ export const rect: StatelessOscillator = (
  * Higher order version of {@link rect} with pre-configured `duty` width
  * (in the (0..1) range).
  *
- * @param duty
+ * @param duty - 
  */
 export const rectHOF =
     (duty = 0.5): StatelessOscillator =>

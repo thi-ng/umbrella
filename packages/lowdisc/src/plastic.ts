@@ -11,8 +11,8 @@ import { lowDiscrepancy } from "./lowdisc.js";
  * @remarks
  * See {@link plasticND} for references.
  *
- * @param d
- * @param i
+ * @param d - 
+ * @param i - 
  */
 export const phi = (d: number, i = 18) => {
     assert(d > 0, `d must be > 0`);
@@ -33,7 +33,7 @@ export const phi = (d: number, i = 18) => {
  * - https://en.wikipedia.org/wiki/Plastic_number
  * - https://bib.irb.hr/datoteka/628836.Plastic_Number_-_Construct.pdf
  *
- * @param dim
+ * @param dim - 
  */
 export const plasticND = (dim: number, offset = 0) => {
     const g = phi(dim);

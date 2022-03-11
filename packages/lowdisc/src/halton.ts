@@ -6,7 +6,7 @@ import { lowDiscrepancy } from "./lowdisc.js";
  * @remarks
  * Ported from Python version at: https://en.wikipedia.org/wiki/Halton_sequence
  *
- * @param base
+ * @param base - 
  */
 export function* halton(base: number) {
     let n = 0;
@@ -33,8 +33,8 @@ export function* halton(base: number) {
  * dimension) and yields iterator of nD points. If `offset` > 0, the stated
  * number of initial iterations will be skipped.
  *
- * @param bases
- * @param offset
+ * @param bases - 
+ * @param offset - 
  */
 export const haltonND = (bases: number[], offset = 0) =>
     lowDiscrepancy(bases.map(halton), offset);

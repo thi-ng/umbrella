@@ -61,9 +61,9 @@ const SEPS: Record<Align, Stringer<number>> = {
  * // |     44 |   Dora    | (recipient) |
  * ```
  *
- * @param header
- * @param rows
- * @param opts
+ * @param header - 
+ * @param rows - 
+ * @param opts - 
  */
 export const table = (
     header: string[],
@@ -132,10 +132,10 @@ export const table = (
  * // |     44 |   Dora    | (recipient) |
  * ```
  *
- * @param headers
- * @param keys
- * @param items
- * @param opts
+ * @param headers - 
+ * @param keys - 
+ * @param items - 
+ * @param opts - 
  */
 export const tableKeys = <T>(
     headers: string[],

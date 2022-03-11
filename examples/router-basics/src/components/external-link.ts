@@ -3,10 +3,10 @@ import type { AppContext } from "../api";
 /**
  * User stylable external link component.
  *
- * @param ctx injected context object
- * @param attribs user provided attribs
- * @param uri link target
- * @param body link body
+ * @param ctx - njected context object
+ * @param attribs - ser provided attribs
+ * @param uri - ink target
+ * @param body - ink body
  */
 export function externalLink(
     _: AppContext,

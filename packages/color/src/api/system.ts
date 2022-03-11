@@ -92,7 +92,7 @@ export let CSS_SYSTEM_COLORS: SystemColors = {
 /**
  * Merges {@link CSS_SYSTEM_COLORS} w/ new values.
  *
- * @param cols
+ * @param cols - 
  */
 export const setSystemColors = (cols: Partial<SystemColors>) =>
     Object.assign(CSS_SYSTEM_COLORS, cols);

@@ -5,7 +5,7 @@ import { routeLink } from "./route-link";
 /**
  * Main nav component with hard coded routes.
  *
- * @param ctx injected context object
+ * @param ctx - njected context object
  */
 export function nav(ctx: AppContext) {
     const ui = ctx.ui.nav;

@@ -9,7 +9,7 @@ import type { FuzzyFn } from "./api.js";
  * HOF {@link FuzzyFn} always yielding given `x` (should be in [0,1]
  * interval).
  *
- * @param x
+ * @param x - 
  */
 export const constant =
     (x: number): FuzzyFn =>
@@ -20,8 +20,8 @@ export const constant =
  * HOF {@link FuzzyFn} which takes a value `p` and tolerance `eps`, then yields
  * a discrete window function: `|p - x| <= eps ? 1 : 0`
  *
- * @param p
- * @param eps
+ * @param p - 
+ * @param eps - 
  */
 export const point =
     (p: number, eps = EPS): FuzzyFn =>
@@ -32,8 +32,8 @@ export const point =
  * HOF {@link FuzzyFn} yielding a rising ramp in [a,b] interval, clamped to
  * [0,1] outputs. Returns 0.0 for inputs <= `a` and 1.0 for inputs >= `b`.
  *
- * @param a
- * @param b
+ * @param a - 
+ * @param b - 
  */
 export const ramp: FnU2<number, FuzzyFn> = (a, b) => (x) =>
     fitClamped(x, a, b, 0, 1);
@@ -43,9 +43,9 @@ export const ramp: FnU2<number, FuzzyFn> = (a, b) => (x) =>
  * `b` defining the position of the peak value (1.0). Returns 0.0 for inputs <
  * `a` or > `c`.
  *
- * @param a
- * @param b
- * @param c
+ * @param a - 
+ * @param b - 
+ * @param c - 
  */
 export const triangle: FnU3<number, FuzzyFn> = (a, b, c) => (x) =>
     x < a || x > c ? 0 : x <= b ? fit(x, a, b, 0, 1) : fit(x, b, c, 1, 0);
@@ -55,10 +55,10 @@ export const triangle: FnU3<number, FuzzyFn> = (a, b, c) => (x) =>
  * `[a..b..c..d]` with `b` and `c` defining the peak value range (with 1.0
  * outputs). Returns 0.0 for inputs < `a` or > `d`.
  *
- * @param a
- * @param b
- * @param c
- * @param d
+ * @param a - 
+ * @param b - 
+ * @param c - 
+ * @param d - 
  */
 export const trapezoid: FnU4<number, FuzzyFn> = (a, b, c, d) => (x) =>
     x < a || x > d
@@ -73,8 +73,8 @@ export const trapezoid: FnU4<number, FuzzyFn> = (a, b, c, d) => (x) =>
  * HOF {@link FuzzyFn}, yielding sigmoid curve with configurable `steep` and
  * positioned such that `f(bias) = 0.5`.
  *
- * @param bias
- * @param steep
+ * @param bias - 
+ * @param steep - 
  */
 export const sigmoid: FnU2<number, FuzzyFn> = (bias, steep) => (x) =>
     $sigmoid(bias, steep, x);
@@ -83,8 +83,8 @@ export const sigmoid: FnU2<number, FuzzyFn> = (bias, steep) => (x) =>
  * HOF {@link FuzzyFn}, yielding gaussian bell curve with its peak at `bias` and
  * width defined by `sigma`.
  *
- * @param bias
- * @param sigma
+ * @param bias - 
+ * @param sigma - 
  */
 export const gaussian: FnU2<number, FuzzyFn> = (bias, sigma) => (x) =>
     $gaussian(bias, sigma, x);
@@ -93,23 +93,23 @@ export const gaussian: FnU2<number, FuzzyFn> = (bias, sigma) => (x) =>
  * Higher-order function: Takes an existing {@link FuzzyFn} `fn` and returns
  * a new one producing its negated outcome aka `1 - fn(x)`.
  *
- * @param fn
+ * @param fn - 
  */
 export const negate: FnU<FuzzyFn> = (fn) => (x) => 1 - fn(x);
 
 /**
  * Inverse of {@link ramp}, i.e. a falling slope from `a` -> `b`.
  *
- * @param a
- * @param b
+ * @param a - 
+ * @param b - 
  */
 export const invRamp: FnU2<number, FuzzyFn> = (a, b) => negate(ramp(a, b));
 
 /**
  * Inverse of {@link sigmoid}.
  *
- * @param bias
- * @param steep
+ * @param bias - 
+ * @param steep - 
  */
 export const invSigmoid: FnU2<number, FuzzyFn> = (bias, steep) =>
     negate(sigmoid(bias, steep));
@@ -118,8 +118,8 @@ export const invSigmoid: FnU2<number, FuzzyFn> = (bias, steep) =>
  * Higher-order function: Takes an existing {@link FuzzyFn} `fn` and `weight`
  * factor. Returns new function which computes: `weight * fn(x)`.
  *
- * @param fn
- * @param weight
+ * @param fn - 
+ * @param weight - 
  */
 export const weighted =
     (fn: FuzzyFn, weight: number): FuzzyFn =>
@@ -130,8 +130,8 @@ export const weighted =
  * Higher order function. Returns new function which selects subset of given
  * fuzzy set where `fn(x) > alpha`, or else returns 0.
  *
- * @param fn
- * @param alpha
+ * @param fn - 
+ * @param alpha - 
  */
 export const alphaCut =
     (fn: FuzzyFn, alpha = 0.5): FuzzyFn =>
@@ -144,8 +144,8 @@ export const alphaCut =
  * Higher order function. Returns new function which selects subset of given
  * fuzzy set where `fn(x) < alpha`, or else returns 0.
  *
- * @param fn
- * @param alpha
+ * @param fn - 
+ * @param alpha - 
  */
 export const invAlphaCut =
     (fn: FuzzyFn, alpha = 0.5): FuzzyFn =>
@@ -196,9 +196,9 @@ export const invAlphaCut =
  * M(5) // 1
  * ```
  *
- * @param op
- * @param initial
- * @param fns
+ * @param op - 
+ * @param initial - 
+ * @param fns - 
  */
 export const compose = (
     op: FnN2,
@@ -222,8 +222,8 @@ export const compose = (
  * Syntax sugar for {@link compose} with an initial value of 1.0. The `op` is
  * supposed to be a T-norm.
  *
- * @param op
- * @param fns
+ * @param op - 
+ * @param fns - 
  */
 export const intersect = (op: FnN2, ...fns: FuzzyFn[]) =>
     compose(op, 1, ...fns);
@@ -232,7 +232,7 @@ export const intersect = (op: FnN2, ...fns: FuzzyFn[]) =>
  * Syntax sugar for {@link compose} with an initial value of 0.0. The `op` is
  * supposed to be a S-norm.
  *
- * @param op
- * @param fns
+ * @param op - 
+ * @param fns - 
  */
 export const union = (op: FnN2, ...fns: FuzzyFn[]) => compose(op, 0, ...fns);

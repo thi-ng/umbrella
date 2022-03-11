@@ -48,10 +48,10 @@ export const classifyPointInCircle = (
  *
  * Also see {@link pointInCircumCircle}
  *
- * @param p
- * @param a
- * @param b
- * @param c
+ * @param p -
+ * @param a -
+ * @param b -
+ * @param c -
  */
 export const pointIn3Circle: FnU4<ReadonlyVec, number> = (
     [px, py],
@@ -87,11 +87,11 @@ export const pointIn3Circle: FnU4<ReadonlyVec, number> = (
  * Based on Jonathan R. Shewchuck:
  * http://www.cs.cmu.edu/afs/cs/project/quake/public/code/predicates.c
  *
- * @param p
- * @param a
- * @param b
- * @param c
- * @param d
+ * @param p -
+ * @param a -
+ * @param b -
+ * @param c -
+ * @param d -
  */
 export const pointIn4Sphere: FnU5<ReadonlyVec, number> = (
     [px, py, pz],
@@ -183,7 +183,7 @@ export const pointInPolygon2 = (p: ReadonlyVec, pts: ReadonlyVec[]) => {
 
 export const classifyPointPolyPair: FnN7 = (px, py, ax, ay, bx, by, inside) =>
     ((ay < py && by >= py) || (by < py && ay >= py)) && (ax <= px || bx <= px)
-        ? inside ^ (ax + ((py - ay) / (by - ay)) * (bx - ax) < px ? 1 : 0)
+        ? inside ^ ~~(ax + ((py - ay) / (by - ay)) * (bx - ax) < px)
         : inside;
 
 export const pointInBox: MultiVecOpImpl<

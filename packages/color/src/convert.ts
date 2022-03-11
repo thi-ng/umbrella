@@ -15,7 +15,7 @@ export const CONVERSIONS: Partial<Record<ColorMode, Conversions>> = {};
  * Registers conversions for given {@link ColorSpec}. Called by
  * {@link defColor}.
  *
- * @param spec
+ * @param spec - 
  *
  * @internal
  */

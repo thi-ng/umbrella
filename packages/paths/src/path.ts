@@ -70,7 +70,7 @@ export const exists = (obj: any, path: Path) => {
  * - `prototype`
  * - `constructor`
  *
- * @param path
+ * @param path - 
  */
 export const disallowProtoPath = (path: Path) => (
     assert(!isProtoPath(path), `unsafe path: '${path}'`), path

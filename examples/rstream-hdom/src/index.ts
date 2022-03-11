@@ -41,9 +41,9 @@ const ctx = {
  *
  * Returns stream of hdom trees.
  *
- * @param root root DOM element
- * @param tree hdom component stream
- * @param ctx user context object
+ * @param root - oot DOM element
+ * @param tree - dom component stream
+ * @param ctx - ser context object
  */
 const domUpdate = (root: HTMLElement, tree: ISubscribable<any>, ctx?: any) =>
     sidechainPartitionRAF(tree).transform(updateDOM({ root, ctx }));
@@ -51,9 +51,9 @@ const domUpdate = (root: HTMLElement, tree: ISubscribable<any>, ctx?: any) =>
 /**
  * Generic button component.
  *
- * @param ctx hdom user context
- * @param onclick event handler
- * @param body button body
+ * @param ctx - dom user context
+ * @param onclick - vent handler
+ * @param body - utton body
  */
 const button = (ctx: any, onclick: EventListener, body: any) => [
     "button",
@@ -64,8 +64,8 @@ const button = (ctx: any, onclick: EventListener, body: any) => [
 /**
  * Specialized button component for counters.
  *
- * @param _ hdom user context (unused)
- * @param stream counter stream
+ * @param _ - dom user context (unused)
+ * @param stream - ounter stream
  */
 const clickButton = (_: any, stream: ISubscriber<boolean>) => [
     button,
@@ -76,8 +76,8 @@ const clickButton = (_: any, stream: ISubscriber<boolean>) => [
 /**
  * Specialized button to reset all counters.
  *
- * @param _ hdom user context (unused)
- * @param counters streams to reset
+ * @param _ - dom user context (unused)
+ * @param counters - treams to reset
  */
 const resetButton = (_: any, counters: ISubscriber<boolean>[]) => [
     button,
@@ -90,8 +90,8 @@ const resetButton = (_: any, counters: ISubscriber<boolean>[]) => [
  * the stream, the counter increases by given step value. If false is
  * written, the counter resets to the `start` value.
  *
- * @param start
- * @param step
+ * @param start - 
+ * @param step - 
  */
 const counter = (start: number, step: number) => {
     const s = subscription<boolean, number>(
@@ -117,7 +117,7 @@ const counter = (start: number, step: number) => {
  * StreamSync instance, which merges and converts these streams into a
  * single component.
  *
- * @param initial initial counter configs
+ * @param initial - nitial counter configs
  */
 const app = (ctx: any, initial: number[][]) => {
     const counters = initial.map(([start, step]) => counter(start, step));

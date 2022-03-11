@@ -4,7 +4,7 @@ import type { ScopeTransform } from "../api.js";
  * Takes any number of {@link ScopeTransform}s and composes them into
  * new xform w/ left to right order of execution.
  *
- * @param xs
+ * @param xs - 
  */
 export const comp = <T>(...xs: ScopeTransform<T>[]): ScopeTransform<T> => {
     const [a, b, c, d] = xs;

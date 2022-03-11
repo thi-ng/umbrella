@@ -7,9 +7,9 @@ import { set } from "./set.js";
  * Limits `v` to max length `n` and writes result to `out` (or to itself if
  * `out` is null).
  *
- * @param out
- * @param v
- * @param n
+ * @param out - 
+ * @param v - 
+ * @param n - 
  */
 export const limit: VecOpVN = (out, v, n) => {
     !out && (out = v);

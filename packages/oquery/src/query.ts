@@ -22,7 +22,7 @@ import type {
 /**
  * Classifies a single S,P,O term. See {@link QueryType} for explanations.
  *
- * @param x
+ * @param x - 
  *
  * @internal
  */
@@ -41,7 +41,7 @@ const ensureSet = (src: any[] | Set<any>) =>
  * ALL of the query term elements are present in a given object (assumed to be
  * an array or set too).
  *
- * @param src
+ * @param src - 
  *
  * @internal
  */
@@ -63,8 +63,8 @@ const intersect = (src: any[] | Set<any>) => {
  * input. If `isec` is true, the returned predicate will be the result of
  * {@link intersect}.
  *
- * @param x
- * @param isec
+ * @param x - 
+ * @param isec - 
  *
  * @internal
  */
@@ -83,7 +83,7 @@ const coerce = (x: any, isec = false) =>
  * Similar to {@link coerce}, but intended for S,P terms. Unless `x` is a
  * function or null, coerces `x` (or its elements) to strings first.
  *
- * @param x
+ * @param x - 
  *
  * @internal
  */
@@ -428,7 +428,7 @@ const DEFAULT_OPTS: QueryOpts = {
  * @see {@link ArrayQueryFn}
  * @see {@link defKeyQuery}
  *
- * @param opts
+ * @param opts - 
  */
 export const defQuery = <T extends QueryObj | QueryObj[] = QueryObj>(
     opts?: Partial<QueryOpts>
@@ -455,7 +455,7 @@ export const defQuery = <T extends QueryObj | QueryObj[] = QueryObj>(
  * @see {@link ObjKeyQueryFn}
  * @see {@link ArrayKeyQueryFn}
  *
- * @param opts
+ * @param opts - 
  */
 export const defKeyQuery = <T extends QueryObj | QueryObj[] = QueryObj>(
     opts?: Partial<KeyQueryOpts>

@@ -105,7 +105,7 @@ export class MultiTrie<K extends ArrayLike<any>, V> {
      * Returns longest known prefix for `key` as array. If array is
      * empty, the given key has no partial matches.
      *
-     * @param key
+     * @param key - 
      */
     knownPrefix(key: K) {
         let node: MultiTrie<K, V> | undefined = this;

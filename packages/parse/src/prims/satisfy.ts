@@ -12,7 +12,7 @@ export const satisfy = <T>(pred: Predicate<T>, id = "satisfy") =>
  * Like {@link satisfy}, but avoids creating AST node and discards
  * result.
  *
- * @param pred
+ * @param pred - 
  */
 export const satisfyD = <T>(pred: Predicate<T>) => <LitParser<T>>((ctx) => {
         if (ctx.done) return false;

@@ -25,8 +25,8 @@ import { DAY, HOUR, MINUTE, MONTH, SECOND, YEAR } from "./api.js";
  * // "01d 01h 02' 03" 29"
  * ```
  *
- * @param fps
- * @param sep
+ * @param fps - 
+ * @param sep - 
  */
 export const defTimecode = (fps: number, sep: ArrayLike<string> = "::::") => {
     const frame = 1000 / fps;
@@ -50,7 +50,7 @@ export const defTimecode = (fps: number, sep: ArrayLike<string> = "::::") => {
  * Decomposes given duration (in milliseconds) into a tuple of: `[year, month,
  * day, hour, minute, second, millis]`.
  *
- * @param dur
+ * @param dur - 
  */
 export const decomposeDuration = (dur: number) => {
     const year = (dur / YEAR) | 0;

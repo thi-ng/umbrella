@@ -9,7 +9,7 @@ import {
     BASE64,
     BASE85,
     IBase,
-} from "../src/index.js"
+} from "../src/index.js";
 
 group("base-n", {
     roundtrip: () => {

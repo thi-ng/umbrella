@@ -19,8 +19,8 @@ import { sum } from "./sum.js";
  * - https://en.wikipedia.org/wiki/Correlation
  * - https://www.youtube.com/watch?v=2bcmklvrXTQ
  *
- * @param a
- * @param b
+ * @param a - 
+ * @param b - 
  */
 export const correlation = (a: ReadonlyVec, b: ReadonlyVec) => {
     a = center([], a);

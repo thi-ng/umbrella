@@ -161,9 +161,9 @@ export type Val8<
  *
  * @internal
  *
- * @param T The structure to get the values from.
- * @param C The current key.
- * @param R The remaining keys
+ * @param T - he structure to get the values from.
+ * @param C - he current key.
+ * @param R - he remaining keys
  */
 type ValNReducer<T, C, R extends unknown[]> = C extends keyof T
     ? {
@@ -244,9 +244,9 @@ export type Without8<
  *
  * @internal
  *
- * @param T The structure to remove keys from.
- * @param C The current key.
- * @param R The remaining keys.
+ * @param T - he structure to remove keys from.
+ * @param C - he current key.
+ * @param R - he remaining keys.
  */
 type WithoutNReducer<T, C, R extends unknown[]> = C extends keyof T
     ? {
@@ -335,10 +335,10 @@ export type Replace8<
  *
  * @internal
  *
- * @param T The structure to remove keys from.
- * @param C The current key.
- * @param R The remaining keys.
- * @param V The type to use for the replacement.
+ * @param T - he structure to remove keys from.
+ * @param C - he current key.
+ * @param R - he remaining keys.
+ * @param V - he type to use for the replacement.
  */
 type ReplaceNReducer<T, C, R extends unknown[], V> = C extends keyof T
     ? {

@@ -7,10 +7,10 @@ import { Vec3 } from "@thi.ng/vectors/vec3";
 import { Vec4 } from "@thi.ng/vectors/vec4";
 
 /**
- * @param buf
- * @param size
- * @param idx
- * @param stride
+ * @param buf - 
+ * @param size - 
+ * @param idx - 
+ * @param stride - 
  *
  * @internal
  */

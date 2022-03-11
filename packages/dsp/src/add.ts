@@ -7,9 +7,9 @@ import { AGen } from "./agen.js";
  * given, the resulting output will be clamped to that value (min or max depends
  * on sign of `start - clamp`).
  *
- * @param step
- * @param start
- * @param clamp
+ * @param step - 
+ * @param start - 
+ * @param clamp - 
  */
 export const add = (step?: number, start?: number, clamp?: number) =>
     new Add(step, start, clamp);

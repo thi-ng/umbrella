@@ -4,7 +4,7 @@ import type { IObjectOf } from "@thi.ng/api";
  * Higher order helper function for {@link rename} transducer. Takes an object
  * of key mappings and returns function applying these mapping/renames.
  *
- * @param kmap
+ * @param kmap - 
  */
 export const renamer = (kmap: IObjectOf<PropertyKey>) => {
     const ks = Object.keys(kmap);

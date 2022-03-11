@@ -45,7 +45,7 @@ import { intArgb32Srgb } from "../int/int-srgb.js";
  * and {@link srgb} for non-linear (gamma encoded) RGB colors (CSS uses sRGB by
  * default).
  *
- * @param src
+ * @param src - 
  */
 export const parseCss = (src: string | IDeref<string>): IParsedColor => {
     src = (isString(src) ? src : src.deref()).toLowerCase();

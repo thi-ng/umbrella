@@ -22,8 +22,8 @@ export const selectKeysMap = <K, V>(
  * Similar to {@link selectKeysMap}, but only selects keys if their value is
  * defined (i.e. non-nullish).
  *
- * @param src
- * @param ks
+ * @param src - 
+ * @param ks - 
  */
 export const selectDefinedKeysMap = <K, V>(
     src: Map<K, V>,
@@ -59,8 +59,8 @@ export const selectKeysObj = <T extends object, K extends keyof T>(
  * Similar to {@link selectKeysObj}, but only selects keys if their value is
  * defined (i.e. non-nullish).
  *
- * @param src
- * @param ks
+ * @param src - 
+ * @param ks - 
  */
 export const selectDefinedKeysObj = <T extends object, K extends keyof T>(
     src: T,

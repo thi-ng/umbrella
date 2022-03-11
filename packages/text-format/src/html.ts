@@ -9,7 +9,7 @@ const F6 = 255 / 63;
  * Constructs an HTML formatter using given config options and for use w/
  * default format IDs only.
  *
- * @param opts
+ * @param opts - 
  */
 export const formatHtml = ({
     colors,
@@ -107,7 +107,7 @@ export const FMT_HTML_TACHYONS = formatHtml({
  * additional formatting flags). By default assigns text color, but can be
  * assigned to any CSS property via given `prop` argument.
  *
- * @param prop
+ * @param prop - 
  */
 export const FMT_HTML565 = (prop = "color"): StringFormat => ({
     start: memoize1(

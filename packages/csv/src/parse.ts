@@ -83,7 +83,7 @@ const DEFAULT_OPTS: Partial<CommonCSVOpts> = {
  * // ]
  * ```
  *
- * @param opts
+ * @param opts - 
  */
 export function parseCSV(
     opts?: Partial<CSVOpts>
@@ -188,7 +188,7 @@ export function parseCSV(opts?: Partial<CSVOpts>, src?: Iterable<string>): any {
  * // [ [ 1, 3 ], [ 4, 6 ] ]
  * ```
  *
- * @param opts
+ * @param opts - 
  */
 export function parseCSVSimple(
     opts?: Partial<SimpleCSVOpts>
@@ -262,8 +262,8 @@ export function parseCSVSimple(
  * given source string into a line based input using
  * {@link @thi.ng/strings#split}.
  *
- * @param opts
- * @param src
+ * @param opts - 
+ * @param src - 
  */
 export const parseCSVFromString = (opts: Partial<CSVOpts>, src: string) =>
     parseCSV(opts, split(src));
@@ -273,8 +273,8 @@ export const parseCSVFromString = (opts: Partial<CSVOpts>, src: string) =>
  * splitting given source string into a line based input using
  * {@link @thi.ng/strings#split}.
  *
- * @param opts
- * @param src
+ * @param opts - 
+ * @param src - 
  */
 export const parseCSVSimpleFromString = (
     opts: Partial<SimpleCSVOpts>,
@@ -294,11 +294,11 @@ export const parseCSVSimpleFromString = (
  * Function returns current state of `isQuoted` (i.e. if line terminated in a
  * quoted cell) and should be (re)called with new lines until it returns false.
  *
- * @param line
- * @param acc
- * @param isQuoted
- * @param delim
- * @param quote
+ * @param line - 
+ * @param acc - 
+ * @param isQuoted - 
+ * @param delim - 
+ * @param quote - 
  */
 const parseLine = (
     line: string,

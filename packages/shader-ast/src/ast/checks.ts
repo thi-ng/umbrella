@@ -11,7 +11,7 @@ const RE_MAT = /^mat[234]$/;
 /**
  * Returns true if given `t` is a {@link Term}-like object.
  *
- * @param t
+ * @param t - 
  */
 export const isTerm = (t: any): t is Term<any> =>
     isPlainObject(t) && !!t.tag && !!t.type;
@@ -64,7 +64,7 @@ export const isLitNumeric = (
  * Returns true if t is a numeric literal with a JS number as value (not an
  * expression).
  *
- * @param t
+ * @param t - 
  */
 export const isLitNumericConst = (
     t: Term<any>
@@ -74,7 +74,7 @@ export const isLitNumericConst = (
  * Returns true if t is a vector literal with a JS array as value (not an
  * expression).
  *
- * @param t
+ * @param t - 
  */
 export const isLitVecConst = (
     t: Term<any>

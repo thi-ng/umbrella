@@ -8,14 +8,14 @@ export const HEX = "0123456789abcdef";
 /**
  * Returns 4bit uint as hex string
  *
- * @param x
+ * @param x - 
  */
 export const U4 = (x: number) => HEX[x & 0xf];
 
 /**
  * Returns 8bit uint as hex string
  *
- * @param x
+ * @param x - 
  */
 export const U8 = (x: number) => HEX[(x >>> 4) & 0xf] + HEX[x & 0xf];
 
@@ -30,7 +30,7 @@ export const U8A = (x: ArrayLike<number>, i: number) => U8(x[i]);
 /**
  * Returns 16bit uint as hex string
  *
- * @param x
+ * @param x - 
  */
 export const U16 = (x: number) => U8(x >>> 8) + U8(x & 0xff);
 
@@ -57,7 +57,7 @@ export const U16LE = (x: ArrayLike<number>, i: number) =>
 /**
  * Returns 24bit uint as hex string
  *
- * @param x
+ * @param x - 
  */
 export const U24 = (x: number) => U8(x >>> 16) + U16(x);
 
@@ -84,7 +84,7 @@ export const U24LE = (x: ArrayLike<number>, i: number) =>
 /**
  * Returns 32bit uint as hex string
  *
- * @param x
+ * @param x - 
  */
 export const U32 = (x: number) => U16(x >>> 16) + U16(x);
 
@@ -111,7 +111,7 @@ export const U32LE = (x: ArrayLike<number>, i: number) =>
 /**
  * Returns 48bit uint as hex string
  *
- * @param x
+ * @param x - 
  */
 export const U48 = (x: number) => U48HL(x / P32, x % P32);
 
@@ -151,7 +151,7 @@ export const U48LE = (x: ArrayLike<number>, i: number) =>
  * {@link U64BE} or {@link U64LE} for byte array based values (full 64bit range
  * supported). Alternatively, use `BigInt(x).toString(16)`.
  *
- * @param x
+ * @param x - 
  */
 export const U64 = (x: number) => U64HL(x / P32, x % P32);
 

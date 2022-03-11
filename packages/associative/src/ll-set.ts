@@ -136,8 +136,8 @@ export class LLSet<T> extends Set<T> implements IEquivSet<T> {
      * readonly/immutable. This could be enforced via TS, but would
      * break ES6 Set interface contract.
      *
-     * @param fn
-     * @param thisArg
+     * @param fn - 
+     * @param thisArg - 
      */
     forEach(fn: Fn3<T, T, Set<T>, void>, thisArg?: any) {
         let i = __vals(this).head;

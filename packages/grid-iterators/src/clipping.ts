@@ -4,11 +4,11 @@ import type { FnN3, FnU2, FnU7, FnU8, Tuple } from "@thi.ng/api";
  * Filters points from `src` iterable to remove any falling outside the rect
  * defined by `left,top`..`right,bottom`.
  *
- * @param src
- * @param left
- * @param top
- * @param right
- * @param bottom
+ * @param src - 
+ * @param left - 
+ * @param top - 
+ * @param right - 
+ * @param bottom - 
  */
 export function* clipped(
     src: Iterable<number[]>,
@@ -30,13 +30,13 @@ const axis: FnN3 = (a, b, c) =>
 /**
  * Based on {@link @thi.ng/geom-isec}, but inlined to avoid dependency.
  *
- * @param x
- * @param y
- * @param w
- * @param h
- * @param cx
- * @param cy
- * @param r
+ * @param x - 
+ * @param y - 
+ * @param w - 
+ * @param h - 
+ * @param cx - 
+ * @param cy - 
+ * @param r - 
  *
  * @internal
  */
@@ -53,14 +53,14 @@ export const intersectRectCircle: FnU7<number, boolean> = (
 /**
  * Based on {@link @thi.ng/geom-clip-line#liangBarsky2Raw}, but with diff return type.
  *
- * @param ax
- * @param ay
- * @param bx
- * @param by
- * @param minx
- * @param miny
- * @param maxx
- * @param maxy
+ * @param ax - 
+ * @param ay - 
+ * @param bx - 
+ * @param by - 
+ * @param minx - 
+ * @param miny - 
+ * @param maxx - 
+ * @param maxy - 
  *
  * @internal
  */

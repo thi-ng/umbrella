@@ -81,8 +81,8 @@ const themePartControls = ([id, part]: [string, ColorThemePart]) => {
 /**
  * Simple 2-column component wrapper for given label & body component.
  *
- * @param label
- * @param body
+ * @param label - 
+ * @param body - 
  */
 const control = (label: string, ...body: ComponentLike[]) =>
     div(".grid2.mb3", {}, span({}, label), ...body);
@@ -90,7 +90,7 @@ const control = (label: string, ...body: ComponentLike[]) =>
 /**
  * SVG component wrapper for color swatches.
  *
- * @param state
+ * @param state - 
  */
 const svgSwatches = ({ colors, num }: MainOutputs) => <ComponentLike>svg(
         {

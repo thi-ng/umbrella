@@ -14,7 +14,7 @@ import { metaStream, MetaStreamOpts } from "./metastream.js";
  * // 3
  * ```
  *
- * @param delay
+ * @param delay - 
  */
 export const debounce = <T>(delay: number, opts?: Partial<MetaStreamOpts>) =>
     metaStream(

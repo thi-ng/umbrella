@@ -6,8 +6,8 @@ import type { ANode } from "./anode.js";
 /**
  * `IToHiccup` implementation Node2D/3D
  *
- * @param node
- * @param ctx
+ * @param node - 
+ * @param ctx - 
  *
  * @internal
  */

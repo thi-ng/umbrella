@@ -41,11 +41,11 @@ interface KListItem {
  * items.next([{id: "b"}, {id: "d"}, {id: "c"}]);
  * ```
  *
- * @param src
- * @param tag
- * @param attribs
- * @param childCtor
- * @param keyFn
+ * @param src -
+ * @param tag -
+ * @param attribs -
+ * @param childCtor -
+ * @param keyFn -
  */
 export const $klist = <T>(
     src: ISubscribable<T[]>,

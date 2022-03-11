@@ -22,12 +22,12 @@ import type { StatelessOscillator } from "./api.js";
  * - https://www.desmos.com/calculator/klvl9oszfm
  * - https://ccrma.stanford.edu/files/papers/stanm5.pdf
  *
- * @param phase
- * @param freq
- * @param amp
- * @param dc
- * @param alpha
- * @param beta
+ * @param phase - 
+ * @param freq - 
+ * @param amp - 
+ * @param dc - 
+ * @param alpha - 
+ * @param beta - 
  */
 export const dsf: StatelessOscillator = (
     phase,
@@ -52,8 +52,8 @@ export const dsf: StatelessOscillator = (
  * Higher order version of {@link dsf} oscillator with pre-configured
  * params. Slightly faster, but not dynamically changeable waveform.
  *
- * @param alpha
- * @param beta
+ * @param alpha - 
+ * @param beta - 
  */
 export const dsfHOF = (alpha = 0.5, beta = 1): StatelessOscillator => {
     const aa = alpha * alpha;

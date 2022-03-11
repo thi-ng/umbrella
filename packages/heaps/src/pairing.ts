@@ -134,7 +134,7 @@ export class PairingHeap<T>
      * Computes union with given heap and clears `heap`, i.e. this heap
      * will take ownership of `heap`'s items (if any).
      *
-     * @param heap
+     * @param heap - 
      */
     meld(heap: PairingHeap<T>) {
         if (!heap._size) return this;

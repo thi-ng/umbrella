@@ -29,11 +29,11 @@ import { BitField, defBitField } from "@thi.ng/bitfield/bitfield";
  * // ]
  * ```
  *
- * @param pred
- * @param x
- * @param y
- * @param width
- * @param height
+ * @param pred - 
+ * @param x - 
+ * @param y - 
+ * @param width - 
+ * @param height - 
  */
 export function* floodFill(
     pred: Predicate2<number>,

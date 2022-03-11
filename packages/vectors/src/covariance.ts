@@ -11,8 +11,8 @@ import { sum } from "./sum.js";
  * - https://en.wikipedia.org/wiki/Covariance
  * - https://www.youtube.com/watch?v=2bcmklvrXTQ
  *
- * @param a
- * @param b
+ * @param a - 
+ * @param b - 
  */
 export const covariance = (a: ReadonlyVec, b: ReadonlyVec) =>
     sum(mul(null, center([], a), center([], b))) / (a.length - 1);

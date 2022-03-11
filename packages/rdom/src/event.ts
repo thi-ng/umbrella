@@ -34,7 +34,7 @@ export const $inputNum =
 /**
  * HOF DOM event listener to emit a checkbox input's value on given stream.
  *
- * @param stream
+ * @param stream -
  */
 export const $inputCheckbox = (stream: ISubscriber<boolean>) => (e: Event) =>
     stream.next((<HTMLInputElement>e.target).checked);
@@ -43,7 +43,7 @@ export const $inputCheckbox = (stream: ISubscriber<boolean>) => (e: Event) =>
  * HOF DOM event listener to emit `true` on given stream when event is
  * triggered.
  *
- * @param stream
+ * @param stream -
  */
 export const $inputTrigger = (stream: ISubscriber<boolean>) => () =>
     stream.next(true);
@@ -52,7 +52,7 @@ export const $inputTrigger = (stream: ISubscriber<boolean>) => () =>
  * HOF DOM event listener to emit a file input's first selected file on given
  * stream.
  *
- * @param stream
+ * @param stream -
  */
 export const $inputFile = (stream: ISubscriber<File>) => (e: Event) =>
     stream.next((<HTMLInputElement>e.target).files![0]);
@@ -61,7 +61,7 @@ export const $inputFile = (stream: ISubscriber<File>) => (e: Event) =>
  * HOF DOM event listener to emit a file input's entire selected list of files
  * on given stream.
  *
- * @param stream
+ * @param stream -
  */
 export const $inputFiles = (stream: ISubscriber<FileList>) => (e: Event) =>
     stream.next((<HTMLInputElement>e.target).files!);

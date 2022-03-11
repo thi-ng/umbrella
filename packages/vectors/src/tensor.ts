@@ -27,9 +27,9 @@ import type { ReadonlyVec, Vec } from "./api.js";
  * // [ 4, 5, 8, 10, 12, 15 ]
  * ```
  *
- * @param out
- * @param a
- * @param b
+ * @param out - 
+ * @param a - 
+ * @param b - 
  */
 export const tensor = (out: Vec | null, a: ReadonlyVec, b: ReadonlyVec) => {
     out = out || [];

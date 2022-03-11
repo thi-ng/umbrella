@@ -52,7 +52,7 @@ export const treeToCartesian = (t: number[], dim: number) => {
  * Takes a vector of positive integer coordinates and returns vector of
  * nD quad tree coordinates.
  *
- * @param v
+ * @param v - 
  */
 export const cartesianToTree = (v: number[]) => {
     const $ = (v: number[], half: number): number[] => {

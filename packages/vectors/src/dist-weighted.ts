@@ -20,8 +20,8 @@ import { mul } from "./mul.js";
  * // 1.7320508075688772
  * ```
  *
- * @param fn
- * @param weights
+ * @param fn - 
+ * @param weights - 
  */
 export const weightedDistance =
     (fn: DistanceFn, weights: ReadonlyVec): DistanceFn =>

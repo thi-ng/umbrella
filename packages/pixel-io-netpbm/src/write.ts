@@ -9,10 +9,10 @@ const formatComments = (
  * Initializes byte array & PBM header for given {@link IntBuffer} and format
  * details.
  *
- * @param magic
- * @param limits
- * @param size
- * @param buf
+ * @param magic - 
+ * @param limits - 
+ * @param size - 
+ * @param buf - 
  *
  * @internal
  */
@@ -40,8 +40,8 @@ const initHeader = (
  * @remarks
  * Reference: http://netpbm.sourceforge.net/doc/pbm.html
  *
- * @param buf
- * @param comments
+ * @param buf - 
+ * @param comments - 
  */
 export const asPBM = (buf: IntBuffer, comments?: string[]) => {
     const { data, width, height } = buf;
@@ -75,8 +75,8 @@ export const asPBM = (buf: IntBuffer, comments?: string[]) => {
  * @remarks
  * Reference: http://netpbm.sourceforge.net/doc/pgm.html
  *
- * @param buf
- * @param comments
+ * @param buf - 
+ * @param comments - 
  */
 export const asPGM = (buf: IntBuffer, comments?: string[]) => {
     const { data, width, height } = buf;
@@ -100,8 +100,8 @@ export const asPGM = (buf: IntBuffer, comments?: string[]) => {
  * @remarks
  * Reference: http://netpbm.sourceforge.net/doc/pgm.html
  *
- * @param buf
- * @param comments
+ * @param buf - 
+ * @param comments - 
  */
 export const asPGM16 = (buf: IntBuffer, comments?: string[]) => {
     if (buf.format !== GRAY16) buf = buf.as(GRAY16);
@@ -126,8 +126,8 @@ export const asPGM16 = (buf: IntBuffer, comments?: string[]) => {
  * @remarks
  * Reference: http://netpbm.sourceforge.net/doc/ppm.html
  *
- * @param buf
- * @param comments
+ * @param buf - 
+ * @param comments - 
  */
 export const asPPM = (buf: IntBuffer, comments?: string[]) => {
     const { data, width, height } = buf;

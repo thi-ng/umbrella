@@ -63,9 +63,9 @@ export interface IMountWith<T, M> extends IComponent<T> {
      * Component mount lifecycle method which also receives initial
      * state value, presumably meant for populating component.
      *
-     * @param parent
-     * @param index
-     * @param state
+     * @param parent -
+     * @param index -
+     * @param state -
      */
     mount(parent: Element, index: NumOrElement, state: M): Promise<Element>;
 
@@ -73,7 +73,7 @@ export interface IMountWith<T, M> extends IComponent<T> {
      * Same like {@link IComponent.update}, but new `state` value arg is
      * mandatory.
      *
-     * @param state
+     * @param state -
      */
     update(state: T): void;
 }
@@ -111,15 +111,15 @@ export interface IScheduler {
      * Registers a new task for processing. The `scope` arg is used to uniquely
      * associate the task with a given component.
      *
-     * @param scope
-     * @param task
+     * @param scope -
+     * @param task -
      */
     add(scope: any, task: Task): void;
     /**
      * Attempts to cancel all tasks for given `scope`. Depending on
      * implementation and timing this might not be possible (anymore).
      *
-     * @param scope
+     * @param scope -
      */
     cancel(scope: any): void;
 }

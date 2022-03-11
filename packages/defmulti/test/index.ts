@@ -7,7 +7,7 @@ import {
     defmultiN,
     implementations,
     setLogger,
-} from "../src/index.js"
+} from "../src/index.js";
 
 group("defmulti", {
     flatten: () => {
@@ -92,7 +92,7 @@ group("defmulti", {
                 "savings-low": ({ balance }) => balance * 0.01,
                 "savings-med": ({ balance }) => balance * 0.025,
                 "savings-high": ({ balance }) => balance * 0.035,
-                [DEFAULT]: (x) => {
+                [DEFAULT]: (x: any) => {
                     throw new Error(`invalid account type: ${x.type}`);
                 },
             }

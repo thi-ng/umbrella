@@ -23,7 +23,7 @@ export const rgbXyz = (
  * Same as {@link rgbXyz}, but hard coded to use {@link D65} white point (via
  * {@link RGB_XYZ_D65} matrix).
  *
- * @param out
- * @param src
+ * @param out - 
+ * @param src - 
  */
 export const rgbXyzD65: ColorOp = (out, src) => rgbXyz(out, src, RGB_XYZ_D65);

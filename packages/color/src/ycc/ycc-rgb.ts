@@ -13,9 +13,9 @@ import { __ensureAlpha } from "../internal/ensure.js";
  * - https://en.wikipedia.org/wiki/YCbCr#ITU-R_BT.709_conversion
  * - https://en.wikipedia.org/wiki/Rec._709
  *
- * @param out
- * @param src
- * @param luma
+ * @param out - 
+ * @param src - 
+ * @param luma - 
  */
 export const yccRgb = (
     out: Color | null,

@@ -12,8 +12,8 @@ import type { VizualizeVarOpts } from "./api.js";
  * polygons. Returns a {@link @thi.ng/hiccup-canvas#} compatible shape component
  * tree.
  *
- * @param var
- * @param opts
+ * @param var - 
+ * @param opts - 
  */
 export const varToHiccup = (
     { domain: [min, max], terms }: LVar<any>,
@@ -120,7 +120,7 @@ export const varToHiccup = (
  * actual SVG string.
  *
  * @param $var
- * @param opts
+ * @param opts - 
  */
 export const varToSvg = ($var: LVar<any>, opts: Partial<VizualizeVarOpts>) =>
     serialize(convertTree(varToHiccup($var, opts)));

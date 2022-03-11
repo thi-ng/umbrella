@@ -29,7 +29,7 @@ import { defaultOpts } from "./opts.js";
  * //                     ^ 3.00
  * ```
  *
- * @param opts
+ * @param opts - 
  */
 export const centroidStrategy = (
     opts?: Partial<DefuzzStrategyOpts>

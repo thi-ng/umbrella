@@ -63,7 +63,7 @@ export class Pagination<T extends any[]> implements IRelease {
 /**
  * UI component for given pagination model.
  *
- * @param pager
+ * @param pager - 
  */
 export const pageControls = (pager: Pagination<any>) =>
     div(

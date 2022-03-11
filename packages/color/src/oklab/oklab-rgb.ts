@@ -10,8 +10,8 @@ const LMS_CONE = [
  * @remarks
  * Reference: https://bottosson.github.io/posts/oklab/
  *
- * @param out
- * @param src
+ * @param out - 
+ * @param src - 
  */
 export const oklabRgb: ColorOp = (out, { 0: l, 1: a, 2: b, 3: alpha }) =>
     __mulV33(out, LMS_CONE, [

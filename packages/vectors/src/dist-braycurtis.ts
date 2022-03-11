@@ -12,8 +12,8 @@ import type { DistanceFn } from "./api.js";
  * // 0.393939...
  * ```
  *
- * @param a
- * @param b
+ * @param a - 
+ * @param b - 
  */
 export const distBrayCurtis: DistanceFn = (a, b) => {
     let c = 0;

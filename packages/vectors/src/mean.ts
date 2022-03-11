@@ -18,8 +18,8 @@ import { sum } from "./sum.js";
  * // [ 2.5, 25, 250 ]
  * ```
  *
- * @param out
- * @param src
+ * @param out - 
+ * @param src - 
  */
 export const mean = (out: Vec | null, src: ReadonlyVec[]) => {
     __ensureInputs(src);
@@ -39,6 +39,6 @@ export const mean = (out: Vec | null, src: ReadonlyVec[]) => {
  * // 12.5
  * ```
  *
- * @param a
+ * @param a - 
  */
 export const vmean = (a: ReadonlyVec) => (a.length > 0 ? sum(a) / a.length : 0);

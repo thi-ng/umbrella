@@ -6,7 +6,7 @@ import type { MaybeDate } from "./api.js";
 /**
  * Coerces `x` to a native JS `Date` instance.
  *
- * @param x
+ * @param x - 
  */
 export const ensureDate = (x: MaybeDate): Date =>
     isString(x) || isNumber(x)
@@ -18,7 +18,7 @@ export const ensureDate = (x: MaybeDate): Date =>
 /**
  * Coerces `x` to a timestamp.
  *
- * @param x
+ * @param x - 
  */
 export const ensureEpoch = (x: MaybeDate) =>
     (implementsFunction(x, "getTime") ? x : ensureDate(x)).getTime();

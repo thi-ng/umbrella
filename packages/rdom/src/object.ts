@@ -45,9 +45,9 @@ import { $sub } from "./sub.js";
  * obj.update({ id: "b", name: "bar" });
  * ```
  *
- * @param src
+ * @param src -
  * @param opts - options for `fromObject()` stream setup
- * @param inner
+ * @param inner -
  */
 export const $object = <T, K extends Keys<T>>(
     src: T,
@@ -80,9 +80,9 @@ export const $object = <T, K extends Keys<T>>(
  * state.next({ id: "b", name: "bar" });
  * ```
  *
- * @param src
- * @param opts
- * @param inner
+ * @param src -
+ * @param opts -
+ * @param inner -
  */
 export const $subObject = <T, K extends Keys<T>>(
     src: ISubscribable<T>,

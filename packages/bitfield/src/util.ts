@@ -30,9 +30,9 @@ export const binOp = (
 /**
  * Returns number of set bits (1's) in the given array (index range).
  *
- * @param data
- * @param i
- * @param n
+ * @param data - 
+ * @param i - 
+ * @param n - 
  *
  * @internal
  **/

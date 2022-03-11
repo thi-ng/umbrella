@@ -13,8 +13,8 @@ import { FormatPresets, PresetID, PRESETS_TPL, StringFormat } from "./api.js";
  * // "\x1B[31mhello\x1B[0m"
  * ```
  *
- * @param fmt
- * @param code
+ * @param fmt - 
+ * @param code - 
  */
 export const defFormat = (fmt: StringFormat, code: number) => (x: any) =>
     fmt.start(code) + x + fmt.end;
@@ -24,7 +24,7 @@ export const defFormat = (fmt: StringFormat, code: number) => (x: any) =>
  * {@link FG_GREEN}) and returns an object of formatting functions for each
  * `FG_XXX` preset ID.
  *
- * @param fmt
+ * @param fmt - 
  */
 export const defFormatPresets = (fmt: StringFormat): FormatPresets =>
     Object.keys(PRESETS_TPL).reduce(

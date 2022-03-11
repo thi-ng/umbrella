@@ -189,8 +189,8 @@ export const withMax = (max: number, open = false) =>
 /**
  * Returns an open interval `(min..max)`
  *
- * @param min
- * @param max
+ * @param min - 
+ * @param max - 
  */
 export const open = (min: number, max: number) =>
     new Interval(min, max, true, true);
@@ -198,8 +198,8 @@ export const open = (min: number, max: number) =>
 /**
  * Returns a semi-open interval `(min..max]`, open on the LHS.
  *
- * @param min
- * @param max
+ * @param min - 
+ * @param max - 
  */
 export const openClosed = (min: number, max: number) =>
     new Interval(min, max, true, false);
@@ -207,8 +207,8 @@ export const openClosed = (min: number, max: number) =>
 /**
  * Returns a semi-open interval `[min..max)`, open on the RHS.
  *
- * @param min
- * @param max
+ * @param min - 
+ * @param max - 
  */
 export const closedOpen = (min: number, max: number) =>
     new Interval(min, max, false, true);
@@ -216,8 +216,8 @@ export const closedOpen = (min: number, max: number) =>
 /**
  * Returns a closed interval `(min..max)`.
  *
- * @param min
- * @param max
+ * @param min - 
+ * @param max - 
  */
 export const closed = (min: number, max: number) =>
     new Interval(min, max, false, false);
@@ -440,8 +440,8 @@ export const overlaps = (a: Readonly<Interval>, b: Readonly<Interval>) =>
  * Returns the union of the two given intervals, taken their openness into
  * account.
  *
- * @param a
- * @param b
+ * @param a - 
+ * @param b - 
  */
 export const union = (a: Readonly<Interval>, b: Readonly<Interval>) => {
     if (isEmpty(a)) return b;
@@ -455,8 +455,8 @@ export const union = (a: Readonly<Interval>, b: Readonly<Interval>) => {
  * Returns the intersection of the two given intervals, taken their openness
  * into account. Returns undefined if `a` and `b` don't overlap.
  *
- * @param a
- * @param b
+ * @param a - 
+ * @param b - 
  */
 export const intersection = (a: Readonly<Interval>, b: Readonly<Interval>) => {
     if (overlaps(a, b)) {

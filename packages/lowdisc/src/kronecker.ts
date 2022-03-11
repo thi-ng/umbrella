@@ -14,8 +14,8 @@ const fract = (x: number) => x - Math.floor(x);
  * - https://math.stackexchange.com/a/2848339
  * - http://extremelearning.com.au/unreasonable-effectiveness-of-quasirandom-sequences/
  *
- * @param alpha
- * @param start
+ * @param alpha - 
+ * @param start - 
  */
 export function* kronecker(alpha: number, start = 0) {
     while (true) yield (start = fract(start + alpha));
@@ -26,8 +26,8 @@ export function* kronecker(alpha: number, start = 0) {
  * per dimension) and yields iterator of nD points. If `offset` > 0, the stated
  * number of initial iterations will be skipped.
  *
- * @param bases
- * @param offset
+ * @param bases - 
+ * @param offset - 
  */
 export const kroneckerND = (alphas: number[], offset = 0) =>
     lowDiscrepancy(alphas.map(kronecker), offset);

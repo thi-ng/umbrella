@@ -58,10 +58,10 @@ import type { Parser } from "../api.js";
  * // { p: 10, l: 1, c: 11, done: false, last: 'a' }
  * ```
  *
- * @param parser
- * @param ahead
- * @param capture
- * @param id
+ * @param parser - 
+ * @param ahead - 
+ * @param capture - 
+ * @param id - 
  */
 export const lookahead =
     <T>(

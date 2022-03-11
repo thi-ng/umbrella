@@ -9,13 +9,13 @@ import { charCode } from "./utils.js";
  * and `m` (line middle) chars can be used to override the currently
  * active style.
  *
- * @param canvas
- * @param x
- * @param y
- * @param len
- * @param s
- * @param e
- * @param m
+ * @param canvas - 
+ * @param x - 
+ * @param y - 
+ * @param len - 
+ * @param s - 
+ * @param e - 
+ * @param m - 
  */
 export const hline = (
     canvas: Canvas,
@@ -52,13 +52,13 @@ export const hline = (
  * and `m` (line middle) chars can be used to override the currently
  * active style.
  *
- * @param canvas
- * @param x
- * @param y
- * @param len
- * @param s
- * @param e
- * @param m
+ * @param canvas - 
+ * @param x - 
+ * @param y - 
+ * @param len - 
+ * @param s - 
+ * @param e - 
+ * @param m - 
  */
 export const vline = (
     canvas: Canvas,

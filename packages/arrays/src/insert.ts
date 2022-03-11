@@ -12,10 +12,10 @@
  * faster than `Array.prototype.splice()` (for sizes < ~32). See
  * `/bench/insert.ts`
  *
- * @param buf
- * @param x
- * @param i
- * @param k
+ * @param buf -
+ * @param x -
+ * @param i -
+ * @param k -
  */
 export const insert = <T>(buf: T[], x: T, i: number, k = Infinity) =>
     i < 0 || i >= k || k < 1 ? buf : insertUnsafe(buf, x, i, k);
@@ -23,10 +23,10 @@ export const insert = <T>(buf: T[], x: T, i: number, k = Infinity) =>
 /**
  * Same as {@link insert} but without any bounds/index checks.
  *
- * @param buf
- * @param x
- * @param i
- * @param k
+ * @param buf -
+ * @param x -
+ * @param i -
+ * @param k -
  */
 export const insertUnsafe = <T>(buf: T[], x: T, i: number, k = Infinity) => {
     let j = buf.length < k ? buf.length + 1 : k;

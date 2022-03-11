@@ -19,7 +19,7 @@ import type { Parser } from "../api.js";
  * // { p: 15, l: 2, c: 1, done: true, last: '\n' }
  * ```
  *
- * @param pred
+ * @param pred - 
  */
 export const skipWhile =
     <T>(pred: Predicate<T>): Parser<T> =>

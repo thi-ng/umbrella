@@ -121,7 +121,7 @@ export const exec = (ctx: StackContext) => (
  *
  * ( body catch -- ? )
  *
- * @param ctx
+ * @param ctx - 
  */
 export const $try = (ctx: StackContext) => {
     const stack = ctx[0];

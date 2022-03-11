@@ -43,10 +43,10 @@ const row = (ctx: AppContext, attribs: any, body: Iterable<any>) => [
  * ]
  * ```
  *
- * @param ctx
- * @param layout column sizes
- * @param head header cell values
- * @param body row chunks
+ * @param ctx - 
+ * @param layout - olumn sizes
+ * @param head - eader cell values
+ * @param body - ow chunks
  */
 export const table = (
     ctx: AppContext,

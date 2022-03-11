@@ -16,8 +16,8 @@ import type { LVar, LVarDomain } from "./api.js";
  * });
  * ```
  *
- * @param domain
- * @param terms
+ * @param domain - 
+ * @param terms - 
  */
 export const variable = <K extends string>(
     domain: LVarDomain,
@@ -47,9 +47,9 @@ export const variable = <K extends string>(
  * // "warm"
  * ```
  *
- * @param var
- * @param x
- * @param threshold
+ * @param var - 
+ * @param x - 
+ * @param threshold - 
  */
 export const classify = <K extends string>(
     { terms }: LVar<K>,
@@ -86,8 +86,8 @@ export const classify = <K extends string>(
  * // { freezing: 0, cold: 0, warm: 0.4, hot: 0.01798620996209156 }
  * ```
  *
- * @param var
- * @param x
+ * @param var - 
+ * @param x - 
  */
 export const evaluate = <K extends string>({ terms }: LVar<K>, x: number) => {
     const res = <Record<K, number>>{};

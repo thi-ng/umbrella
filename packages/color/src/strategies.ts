@@ -12,9 +12,9 @@ const $ = (src: LCH, l = 0, c = 0) => {
  * Returns array of `src` color and its complementary color, possibly adjusted
  * via optional `deltaL` and `deltaC` args (offsets for L & C channels).
  *
- * @param src
- * @param deltaL
- * @param deltaC
+ * @param src - 
+ * @param deltaL - 
+ * @param deltaC - 
  */
 export const complementaryStrategy = (
     src: LCH,
@@ -27,10 +27,10 @@ export const complementaryStrategy = (
  * normalized `theta` and possibly adjusted via optional `deltaL` and `deltaC`
  * args (offsets for L & C channels).
  *
- * @param src
- * @param theta
- * @param deltaL
- * @param deltaC
+ * @param src - 
+ * @param theta - 
+ * @param deltaL - 
+ * @param deltaC - 
  */
 export const analogStrategy = (
     src: LCH,
@@ -49,10 +49,10 @@ export const analogStrategy = (
  * normalized `theta` and possibly adjusted via optional `deltaL` and `deltaC`
  * args (offsets for L & C channels).
  *
- * @param src
- * @param theta
- * @param deltaL
- * @param deltaC
+ * @param src - 
+ * @param theta - 
+ * @param deltaL - 
+ * @param deltaC - 
  */
 export const splitAnalogStrategy = (
     src: LCH,
@@ -70,10 +70,10 @@ export const splitAnalogStrategy = (
  * (from the complementary hue) and possibly adjusted via optional `deltaL` and
  * `deltaC` args (offsets for L & C channels).
  *
- * @param src
- * @param theta
- * @param deltaL
- * @param deltaC
+ * @param src - 
+ * @param theta - 
+ * @param deltaL - 
+ * @param deltaC - 
  */
 export const splitComplementaryStrategy = (
     src: LCH,
@@ -91,8 +91,8 @@ export const splitComplementaryStrategy = (
  * color, but with these luminance settings: 0.0, 0.25, 0.5, 0.75, 1.0. Chroma
  * can be adjusted via optional `deltaC` offset.
  *
- * @param src
- * @param deltaC
+ * @param src - 
+ * @param deltaC - 
  */
 export const monochromeStrategy = (src: LCH, deltaC = 0) => {
     let [_, c, h, a] = src;
@@ -112,9 +112,9 @@ export const monochromeStrategy = (src: LCH, deltaC = 0) => {
  * (possibly adjusted via optional `deltaL` and `deltaC` args, aka offsets for L
  * & C channels).
  *
- * @param src
- * @param deltaL
- * @param deltaC
+ * @param src - 
+ * @param deltaL - 
+ * @param deltaC - 
  */
 export const triadicStrategy = (src: LCH, deltaL?: number, deltaC?: number) =>
     splitComplementaryStrategy(src, 1 / 6, deltaL, deltaC);
@@ -126,10 +126,10 @@ export const triadicStrategy = (src: LCH, deltaL?: number, deltaC?: number) =>
  * possibly adjusted via optional `deltaL` and `deltaC` args (offsets for L & C
  * channels).
  *
- * @param src
- * @param theta
- * @param deltaL
- * @param deltaC
+ * @param src - 
+ * @param theta - 
+ * @param deltaL - 
+ * @param deltaC - 
  */
 export const tetradicStrategy = (
     src: LCH,
@@ -149,9 +149,9 @@ export const tetradicStrategy = (
  * adjusted via optional `deltaL` and `deltaC` args, aka offsets for L & C
  * channels).
  *
- * @param src
- * @param deltaL
- * @param deltaC
+ * @param src - 
+ * @param deltaL - 
+ * @param deltaC - 
  */
 export const squareStrategy = (src: LCH, deltaL?: number, deltaC?: number) =>
     tetradicStrategy(src, 0.25, deltaL, deltaC);

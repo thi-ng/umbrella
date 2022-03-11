@@ -12,10 +12,10 @@ import { __draw2D } from "./draw.js";
  * function. If the latter, the shader is called for each grid coordinate and
  * returns a fill value. Returns updated grid.
  *
- * @param grid
- * @param x
- * @param y
- * @param val
+ * @param grid - 
+ * @param x - 
+ * @param y - 
+ * @param val - 
  */
 export const floodFill = <T extends any[] | TypedArray, P>(
     grid: IGrid2D<T, P>,

@@ -4,7 +4,7 @@ import { AGen } from "./agen.js";
 /**
  * Returns a gen which yield sequence `y(t) = 1 / (y(t - 1) + step)`.
  *
- * @param step
+ * @param step - 
  */
 export const reciprocal = (step?: number) => new Reciprocal(step);
 

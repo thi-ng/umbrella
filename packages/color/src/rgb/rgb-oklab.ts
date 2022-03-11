@@ -12,8 +12,8 @@ const CONE_LMS = [
  * @remarks
  * Reference: https://bottosson.github.io/posts/oklab/
  *
- * @param out
- * @param src
+ * @param out - 
+ * @param src - 
  */
 export const rgbOklab: ColorOp = (out, src) =>
     __mulV33(null, OKLAB_M2, powN3(null, __mulV33(out, CONE_LMS, src), 1 / 3));

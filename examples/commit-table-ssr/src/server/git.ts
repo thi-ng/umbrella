@@ -14,7 +14,7 @@ import type { Commit } from "../common/api";
 /**
  * Calls out to git to retrieve raw log string.
  *
- * @param repoPath
+ * @param repoPath - 
  */
 const gitLog = (repoPath: string) =>
     execSync(
@@ -28,7 +28,7 @@ const gitLog = (repoPath: string) =>
  * Transforms 1st line of a raw commit log into a partial commit
  * object.
  *
- * @param log
+ * @param log - 
  */
 const parseLog = ([log]: string[]): Partial<Commit> => {
     const [date, author, sha, msg] = log.split("~~");
@@ -39,7 +39,7 @@ const parseLog = ([log]: string[]): Partial<Commit> => {
  * Transforms 2nd line (if present) of a raw commit log into a partial
  * commit object.
  *
- * @param log
+ * @param log - 
  */
 const parseStats = ([_, stats]: string[]): Partial<Commit> | null =>
     stats
@@ -54,7 +54,7 @@ const parseStats = ([_, stats]: string[]): Partial<Commit> | null =>
  * Retrieves git log for given `repoPath` and transforms it into an
  * iterable of `Commit` objects.
  *
- * @param repoPath
+ * @param repoPath - 
  */
 export const repoCommits = (repoPath: string) =>
     iterator(

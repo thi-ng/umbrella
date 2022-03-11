@@ -22,14 +22,14 @@ export interface IDistance<T> {
     /**
      * Converts Eucledian distance `x` into the metric of this instance.
      *
-     * @param x
+     * @param x - 
      */
     to(x: number): number;
 
     /**
      * Converts `x` from the metric of this instance into an Eucledian value.
      *
-     * @param x
+     * @param x - 
      */
     from(x: number): number;
 }
@@ -54,8 +54,8 @@ export interface INeighborhood<P, T> extends IReset {
      * into the metric used by this neighborhood using {@link IDistance.to},
      * otherwise it is expected to be already in that metric space.
      *
-     * @param d
-     * @param eucledian
+     * @param d - 
+     * @param eucledian - 
      */
     includesDistance(d: number, eucledian?: boolean): boolean;
 
@@ -64,8 +64,8 @@ export interface INeighborhood<P, T> extends IReset {
      * pos. If result distance is <= current radius, adds `val` to neighborhood
      * and shrinks neighborhood radius to new distance. Returns distance metric.
      *
-     * @param pos
-     * @param val
+     * @param pos - 
+     * @param val - 
      */
     consider(pos: P, val: T): number;
 }

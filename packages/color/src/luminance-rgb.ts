@@ -6,8 +6,8 @@ import { RGB_LUMINANCE_REC709, RGB_LUMINANCE_REC601 } from "./api/constants.js";
  * Computes RGB luminance, optionally using provided weights (by default:
  * {@link RGB_LUMINANCE_REC709}).
  *
- * @param rgb
- * @param weights
+ * @param rgb - 
+ * @param weights - 
  */
 export const luminanceRgb = (
     rgb: ReadonlyColor,

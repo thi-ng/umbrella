@@ -77,8 +77,8 @@ export const tnormAczelAlsina =
 /**
  * S-norm (T-conorm), dual of {@link tnormMin}.
  *
- * @param x
- * @param y
+ * @param x - 
+ * @param y - 
  */
 export const snormMax: FnN2 = (x, y) => Math.max(x, y);
 
@@ -86,16 +86,16 @@ export const snormMax: FnN2 = (x, y) => Math.max(x, y);
  * S-norm (T-conorm), dual of {@link tnormProduct}, probabilistic sum:
  * `a + b - a * b`
  *
- * @param x
- * @param y
+ * @param x - 
+ * @param y - 
  */
 export const snormProbabilistic: FnN2 = (x, y) => x + y - x * y;
 
 /**
  * S-norm (T-conorm), dual of {@link tnormLukasiewicz}.
  *
- * @param x
- * @param y
+ * @param x - 
+ * @param y - 
  */
 export const snormBoundedSum: FnN2 = (x, y) => Math.min(x + y, 1);
 
@@ -107,8 +107,8 @@ export const snormDrastic: FnN2 = (x, y) => (x === 0 ? y : y === 0 ? x : 1);
 /**
  * S-norm (T-conorm), dual of {@link tnormNilpotent}.
  *
- * @param x
- * @param y
+ * @param x - 
+ * @param y - 
  */
 export const snormNilpotent: FnN2 = (x, y) => (x + y < 1 ? Math.max(x, y) : 1);
 
@@ -116,8 +116,8 @@ export const snormNilpotent: FnN2 = (x, y) => (x + y < 1 ? Math.max(x, y) : 1);
  * S-norm (T-conorm), dual of {@link tnormHamacher}, iff that T-norm's curve
  * param is `p=2`.
  *
- * @param x
- * @param y
+ * @param x - 
+ * @param y - 
  */
 export const snormEinstein: FnN2 = (x, y) => (x + y) / (1 + x * y);
 
@@ -128,7 +128,7 @@ export const snormEinstein: FnN2 = (x, y) => (x + y) / (1 + x * y);
  * @remarks
  * Reference: https://en.wikipedia.org/wiki/Construction_of_t-norms#Ordinal_sums
  *
- * @param specs
+ * @param specs - 
  */
 export const ordinalSum =
     (specs: { domain: Range; tnorm: FnN2 }[]): FnN2 =>

@@ -12,8 +12,8 @@ import { __take } from "./internal/take.js";
  * The `initial` value is required to satisfy `.deref()` and the case where the
  * iterable doesn't provide a single value.
  *
- * @param src
- * @param initial
+ * @param src - 
+ * @param initial - 
  */
 export const iterable = <T>(src: Iterable<T>, initial: T) =>
     new $Iterable<T>(src, initial);

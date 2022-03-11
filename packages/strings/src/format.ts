@@ -13,7 +13,7 @@ export const format = (fmt: any[], ...args: any[]) => {
 /**
  * HOF version of {@link format}.
  *
- * @param fmt
+ * @param fmt - 
  */
 export const defFormat = (fmt: any[]) => (...args: any[]) =>
     format(fmt, ...args);
@@ -22,13 +22,13 @@ export const defFormat = (fmt: any[]) => (...args: any[]) =>
  * Helper for {@link format} which ignores argument and always returns
  * an empty string.
  *
- * @param _
+ * @param _ - 
  */
 export const ignore = (_: any) => "";
 
 /**
  * Helper for {@link format} which coerces `x` to a string.
  *
- * @param x
+ * @param x - 
  */
 export const str = (x: any) => String(x);

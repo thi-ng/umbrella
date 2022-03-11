@@ -63,9 +63,9 @@ export class Nearest<D, T>
  * default, using an infinite region radius and {@link DIST_SQ} distance
  * metric.
  *
- * @param p
- * @param r
- * @param dist
+ * @param p - 
+ * @param r - 
+ * @param dist - 
  */
 export const nearest = <T>(p: ReadonlyVec, r?: number, dist = DIST_SQ) =>
     new Nearest<ReadonlyVec, T>(dist, p, r);
@@ -74,9 +74,9 @@ export const nearest = <T>(p: ReadonlyVec, r?: number, dist = DIST_SQ) =>
  * Defines a {@link Nearest} instance for 2D vector positions, by default,
  * using an infinite region radius and {@link DIST_SQ2} distance metric.
  *
- * @param p
- * @param r
- * @param dist
+ * @param p - 
+ * @param r - 
+ * @param dist - 
  */
 export const nearest2 = <T>(p: ReadonlyVec, r?: number, dist = DIST_SQ2) =>
     new Nearest<ReadonlyVec, T>(dist, p, r);
@@ -85,9 +85,9 @@ export const nearest2 = <T>(p: ReadonlyVec, r?: number, dist = DIST_SQ2) =>
  * Defines a {@link Nearest} instance for 3D vector positions, by default,
  * using an infinite region radius and {@link DIST_SQ3} distance metric.
  *
- * @param p
- * @param r
- * @param dist
+ * @param p - 
+ * @param r - 
+ * @param dist - 
  */
 export const nearest3 = <T>(p: ReadonlyVec, r?: number, dist = DIST_SQ3) =>
     new Nearest<ReadonlyVec, T>(dist, p, r);
@@ -96,9 +96,9 @@ export const nearest3 = <T>(p: ReadonlyVec, r?: number, dist = DIST_SQ3) =>
  * Defines a {@link Nearest} instance for numeric positions and, by default,
  * using an infinite region radius and {@link DIST_SQ1} distance metric.
  *
- * @param p
- * @param r
- * @param dist
+ * @param p - 
+ * @param r - 
+ * @param dist - 
  */
 export const nearestN = <T>(p: number, r?: number, dist = DIST_SQ1) =>
     new Nearest<number, T>(dist, p, r);

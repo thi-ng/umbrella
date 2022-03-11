@@ -122,7 +122,7 @@ export const FORMATTERS: Record<string, FormatFn> = {
      * Returns literal `"Z"` iff timezone offset is zero (UTC), else the same as
      * `Z` formatter.
      *
-     * @param d
+     * @param d - 
      */
     ZZ: (d, utc = false) => (utc ? "Z" : FORMATTERS.Z(d, utc)),
     /**
@@ -164,7 +164,7 @@ export const FORMATTERS: Record<string, FormatFn> = {
  * // "yyyy"
  * ```
  *
- * @param fmt
+ * @param fmt - 
  */
 export const defFormat =
     (fmt: (string | FormatFn)[]) =>

@@ -30,7 +30,7 @@ const colors = cycle(["f00", "0ff", "f0f", "f90", "00f", "0f0"]);
 /**
  * User thumbnail component. Image element w/ reactive `src` attrib.
  *
- * @param srcUrl
+ * @param srcUrl - 
  */
 const userThumb = (srcUrl: Promise<string>) => [
     "img.db.w-100",
@@ -54,7 +54,7 @@ const userThumb = (srcUrl: Promise<string>) => [
 /**
  * Alternative project thumbnail with custom inner pre-loader component.
  *
- * @param srcUrl
+ * @param srcUrl - 
  */
 const userThumbAlt = (srcUrl: Promise<string>) => [
     "div.aspect-ratio.aspect-ratio--16x9.tc",

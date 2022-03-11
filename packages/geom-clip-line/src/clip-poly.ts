@@ -9,9 +9,9 @@ import { direction } from "@thi.ng/vectors/direction";
  * `b` with the given polygon. Returns an array of segments where the
  * line is inside the polygon.
  *
- * @param a
- * @param b
- * @param pts
+ * @param a - 
+ * @param b - 
+ * @param pts - 
  */
 export const clipLinePoly = (
     a: ReadonlyVec,

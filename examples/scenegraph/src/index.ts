@@ -34,7 +34,7 @@ class GeomNode extends Node2D {
      * Override method to check for actual point containment with body
      * shape.
      *
-     * @param p
+     * @param p - 
      */
     containsLocalPoint(p: ReadonlyVec) {
         return pointInside(this.body, p);

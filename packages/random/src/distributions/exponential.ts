@@ -8,7 +8,7 @@ import { SYSTEM } from "../system.js";
  * @remarks
  * https://en.wikipedia.org/wiki/Exponential_distribution
  *
- * @param rnd
+ * @param rnd - 
  * @param lambda - event interval [0,Inf)
  */
 export const exponential = (rnd: IRandom = SYSTEM, lambda = 10) =>

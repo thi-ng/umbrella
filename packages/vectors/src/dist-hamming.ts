@@ -7,8 +7,8 @@ import type { DistanceFn } from "./api.js";
  * @remarks
  * Reference: https://en.wikipedia.org/wiki/Hamming_distance
  *
- * @param a
- * @param b
+ * @param a - 
+ * @param b - 
  */
 export const distHamming: DistanceFn = (a, b) => {
     let delta = 0;

@@ -16,8 +16,8 @@ import { Component } from "./component.js";
  * $promise(prom).mount(document.body);
  * ```
  *
- * @param prom
- * @param error
+ * @param prom -
+ * @param error -
  */
 export const $promise = (
     prom: Promise<ComponentLike>,

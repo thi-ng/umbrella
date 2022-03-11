@@ -5,10 +5,10 @@ import { SYSTEM } from "./system.js";
  * (default: {@link SYSTEM}). The index selection will be constrained to the
  * `[start,end)` interval (default: entire array).
  *
- * @param src
- * @param rnd
- * @param start
- * @param end
+ * @param src - 
+ * @param rnd - 
+ * @param start - 
+ * @param end - 
  */
 export const pickRandom = <T>(
     src: ArrayLike<T>,

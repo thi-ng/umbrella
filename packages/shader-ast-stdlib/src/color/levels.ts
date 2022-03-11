@@ -50,7 +50,7 @@ export const midLevelGamma = defn(
  * potentially varying settings per channel). To be used with
  * {@link levelAdjustGammaRGB}.
  *
- * @param mid
+ * @param mid - 
  */
 export const midLevelGammaRGB = (mid: Vec3Term) =>
     vec3(
@@ -149,10 +149,10 @@ export const levelAdjustMid = (
  * @remarks
  * Also see {@link levelAdjustGammaRGB}, {@link midLevelGammaRGB}.
  *
- * @param x
- * @param mid
- * @param input
- * @param output
+ * @param x - 
+ * @param mid - 
+ * @param input - 
+ * @param output - 
  */
 export const levelAdjustMidRGB = (
     x: Vec3Term,

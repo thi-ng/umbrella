@@ -75,7 +75,7 @@ type ClassifiedCommit = [LogItem, string | string[]];
 /**
  * Retrieves raw git log from given repo path.
  *
- * @param repoPath
+ * @param repoPath - 
  */
 const gitLog = (repoPath: string) =>
     execSync(
@@ -91,7 +91,7 @@ const gitLog = (repoPath: string) =>
  * Attempts to split commit line with field separator and classifies
  * line as COMMIT or STATS based on outcome.
  *
- * @param line
+ * @param line - 
  */
 const classifyCommitLine = (line: string): ClassifiedCommit => {
     const parts = line.split(SEP);
@@ -101,14 +101,14 @@ const classifyCommitLine = (line: string): ClassifiedCommit => {
 /**
  * Filter predicate. Returns false if given line is empty.
  *
- * @param line
+ * @param line - 
  */
 const removeEmpty = (line: string) => line.length > 0;
 
 /**
  * Filter predicate. Returns false if commit is a merge.
  *
- * @param x
+ * @param x - 
  */
 const removeMergeCommits = (x: ClassifiedCommit) =>
     x[0] == LogItem.STATS || !x[1][1].startsWith("Merge");
@@ -118,7 +118,7 @@ const removeMergeCommits = (x: ClassifiedCommit) =>
  * `Commit` object. Returns undefined if commit message is not package
  * specific (based on Conventional Commits format).
  *
- * @param tuple
+ * @param tuple - 
  */
 const parseCommitTuple = (tuple: ClassifiedCommit[]) => {
     const [date, msg] = tuple[0][1];
@@ -170,7 +170,7 @@ const commitsByPackage = withoutKeysObj(
 /**
  * Computes max value for given statistics key.
  *
- * @param key
+ * @param key - 
  */
 const maxStat = (key: "files" | "adds" | "dels") =>
     transduce(
@@ -204,7 +204,7 @@ const HEIGHT = NUM_PKG * 10 + 20;
 /**
  * Computes X coord for given epoch (based on above config).
  *
- * @param epoch
+ * @param epoch - 
  */
 const mapEpoch = (epoch: number) =>
     fit(epoch, MIN_DATE, MAX_DATE, PKG_WIDTH, WIDTH - 1);
@@ -212,8 +212,8 @@ const mapEpoch = (epoch: number) =>
 /**
  * Returns log-mapped color from `GRAD` based on given `x` and `max` value.
  *
- * @param x
- * @param max
+ * @param x - 
+ * @param max - 
  */
 const mapColor = (x: number, max: number) =>
     GRAD[fit(Math.log(x), 0, Math.log(max), 0, GRAD.length - 1) | 0];
@@ -239,8 +239,8 @@ const timeLineLabels = () =>
  * Main visualization. Returns SVG group of commits for given package
  * name and index. See usage below.
  *
- * @param i
- * @param pkg
+ * @param i - 
+ * @param pkg - 
  */
 const packageCommits = (i: number, pkg: string) =>
     group(

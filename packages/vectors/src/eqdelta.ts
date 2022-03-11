@@ -26,9 +26,9 @@ const $ = (dim: number) =>
  * Checks given vectors for componentwise equality, taking tolerance
  * `eps` (default: {@link @thi.ng/math#EPS}) into account.
  *
- * @param a
- * @param b
- * @param eps
+ * @param a - 
+ * @param b - 
+ * @param eps - 
  */
 export const eqDelta: MultiVecOpRoVVO<boolean, number> = vop();
 

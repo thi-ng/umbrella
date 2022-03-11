@@ -127,7 +127,8 @@ export interface GestureStreamOpts extends IID<string> {
      */
     maxZoom: number;
     /**
-     * Scaling factor for zoom changes. Default: 1
+     * Scaling factor for zoom changes. Default: 1. If given a negative value,
+     * the sign/direction of wheel event Y-scroll values will flipped.
      */
     smooth: number;
     /**

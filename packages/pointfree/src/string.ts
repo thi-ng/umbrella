@@ -7,7 +7,7 @@ import { $n, $ } from "./safe.js";
  *
  * ( str re -- bool )
  *
- * @param ctx
+ * @param ctx - 
  */
 export const ismatch = (ctx: StackContext) => {
     const stack = ctx[0];
@@ -21,7 +21,7 @@ export const ismatch = (ctx: StackContext) => {
 /**
  * ( str -- obj )
  *
- * @param ctx
+ * @param ctx - 
  */
 export const fromjson = (ctx: StackContext) => {
     const stack = ctx[0];
@@ -33,7 +33,7 @@ export const fromjson = (ctx: StackContext) => {
 /**
  * ( x -- str )
  *
- * @param ctx
+ * @param ctx - 
  */
 export const tojson = (ctx: StackContext) => {
     const stack = ctx[0];

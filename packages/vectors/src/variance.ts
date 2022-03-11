@@ -13,8 +13,8 @@ import { magSq } from "./magsq.js";
  * Reference:
  * https://en.wikipedia.org/wiki/Variance
  *
- * @param a
- * @param isCentered
+ * @param a - 
+ * @param isCentered - 
  */
 export const variance = (a: ReadonlyVec, isCentered = false) =>
     a.length > 0 ? magSq(isCentered ? a : center([], a)) / a.length : 0;
@@ -30,8 +30,8 @@ export const variance = (a: ReadonlyVec, isCentered = false) =>
  * Reference:
  * https://en.wikipedia.org/wiki/Standard_deviation
  *
- * @param a
- * @param isCentered
+ * @param a - 
+ * @param isCentered - 
  */
 export const sd = (a: ReadonlyVec, isCentered = false) =>
     a.length > 1
@@ -49,8 +49,8 @@ export const sd = (a: ReadonlyVec, isCentered = false) =>
  * Reference:
  * https://en.wikipedia.org/wiki/Standard_error
  *
- * @param a
- * @param isCentered
+ * @param a - 
+ * @param isCentered - 
  */
 export const sdError = (a: ReadonlyVec, isCentered = false) =>
     a.length > 1 ? sd(a, isCentered) / Math.sqrt(a.length) : 0;

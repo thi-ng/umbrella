@@ -20,8 +20,8 @@ export interface SliderOpts {
  *
  * See `main.ts` for usage.
  *
- * @param ctx
- * @param opts
+ * @param ctx - 
+ * @param opts - 
  */
 export const slider = (ctx: AppContext, opts: SliderOpts) => {
     opts = Object.assign(

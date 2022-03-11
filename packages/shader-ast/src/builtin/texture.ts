@@ -74,8 +74,8 @@ export function textureSize(sampler: Term<Sampler>, lod: IntTerm): FnCall<any> {
 }
 
 /**
- * @param sampler
- * @param uv
+ * @param sampler - 
+ * @param uv - 
  * @param bias - not allowed in vertex shader
  */
 // prettier-ignore
@@ -106,8 +106,8 @@ export function texture(sampler: Term<Sampler>, uv: Term<Vec>, bias?: FloatTerm)
 }
 
 /**
- * @param sampler
- * @param uvw
+ * @param sampler - 
+ * @param uvw - 
  * @param bias - not allowed in vertex shader
  */
 // prettier-ignore
@@ -155,9 +155,9 @@ export function textureLod(sampler: Term<Sampler>, uv: Term<Vec>, lod: FloatTerm
 }
 
 /**
- * @param sampler
- * @param uvw
- * @param off
+ * @param sampler - 
+ * @param uvw - 
+ * @param off - 
  * @param bias - not allowed in vertex shader
  */
 // prettier-ignore
@@ -214,9 +214,9 @@ export function texelFetchOffset(sampler: Term<Sampler>, uv: Term<IVec>, lod: In
 }
 
 /**
- * @param sampler
- * @param uvw
- * @param off
+ * @param sampler - 
+ * @param uvw - 
+ * @param off - 
  * @param bias - not allowed in vertex shader
  */
 // prettier-ignore

@@ -77,8 +77,8 @@ export const wavHeader = (spec: WavSpec): BinStructItem[] => {
  * )
  * ```
  *
- * @param spec
- * @param src
+ * @param spec - 
+ * @param src - 
  */
 export const wavByteArray = (spec: WavSpec, src: Iterable<number>) => {
     const convert = CONVERTERS[spec.bits];
@@ -99,8 +99,8 @@ export const wavByteArray = (spec: WavSpec, src: Iterable<number>) => {
  * Similar to {@link wavByteArray}, but yields an iterator of the result
  * bytes, not an actual byte array.
  *
- * @param spec
- * @param src
+ * @param spec - 
+ * @param src - 
  */
 export const wavBytes = (spec: WavSpec, src: Iterable<number>) => {
     const convert = CONVERTERS[spec.bits];

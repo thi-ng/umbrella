@@ -24,8 +24,8 @@ export const aabbFromMinMax = (min: Vec, max: Vec, attribs?: Attribs) =>
  * Returns the intersection AABB of given inputs or `undefined` if they
  * are non-overlapping.
  *
- * @param a
- * @param b
+ * @param a - 
+ * @param b - 
  */
 export const intersectionAABB = (a: AABB, b: AABB) => {
     const p = max3([], a.pos, b.pos);

@@ -8,9 +8,9 @@ import type { DitherKernel, DitherOpts } from "./api.js";
  * (or configured) channels using provided options. Returns modified pixel
  * buffer.
  *
- * @param kernel
- * @param img
- * @param opts
+ * @param kernel - 
+ * @param img - 
+ * @param opts - 
  */
 export const ditherWith = (
     kernel: DitherKernel,

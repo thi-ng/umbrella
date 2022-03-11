@@ -30,7 +30,7 @@ import { defaultOpts } from "./opts.js";
  * //                     ^ 2.97
  * ```
  *
- * @param opts
+ * @param opts - 
  */
 export const bisectorStrategy = (
     opts?: Partial<DefuzzStrategyOpts>

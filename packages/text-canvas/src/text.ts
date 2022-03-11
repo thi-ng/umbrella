@@ -10,10 +10,10 @@ import { fillRect, strokeRect } from "./rect.js";
  * and format into account. The string MUST not include linebreaks or
  * other control chars.
  *
- * @param canvas
- * @param x
- * @param y
- * @param line
+ * @param canvas - 
+ * @param x - 
+ * @param y - 
+ * @param line - 
  */
 export const textLine = (
     canvas: Canvas,
@@ -58,13 +58,13 @@ export const textLines = (
  * also taking the current clip rect and format into account. Applies
  * word wrapping.
  *
- * @param canvas
- * @param x
- * @param y
- * @param width
- * @param txt
- * @param format
- * @param hardWrap
+ * @param canvas - 
+ * @param x - 
+ * @param y - 
+ * @param width - 
+ * @param txt - 
+ * @param format - 
+ * @param hardWrap - 
  */
 export const textColumn = (
     canvas: Canvas,
@@ -95,13 +95,13 @@ export const textColumn = (
  * @remarks
  * The width and height will include any configured padding and the box frame.
  *
- * @param canvas
- * @param x
- * @param y
- * @param width
- * @param height
- * @param txt
- * @param opts
+ * @param canvas - 
+ * @param x - 
+ * @param y - 
+ * @param width - 
+ * @param height - 
+ * @param txt - 
+ * @param opts - 
  */
 export const textBox = (
     canvas: Canvas,

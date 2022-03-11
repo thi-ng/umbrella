@@ -54,8 +54,8 @@ import { varToHiccup } from "./var.js";
  * strategy.clear();
  * ```
  *
- * @param strategy
- * @param instrument
+ * @param strategy - 
+ * @param instrument - 
  */
 export const instrumentStrategy = <T>(
     strategy: DefuzzStrategy,

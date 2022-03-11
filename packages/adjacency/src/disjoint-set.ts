@@ -102,6 +102,6 @@ export class DisjointSet {
 /**
  * Creates a new {@link DisjointSet} with capacity `n`.
  *
- * @param n
+ * @param n - 
  */
 export const defDisjointSet = (n: number) => new DisjointSet(n);

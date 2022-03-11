@@ -15,9 +15,9 @@ import { type DominantColor, type SortMode, SORT_MODES } from "./api";
  * and applies k-means clustering to obtain dominant colors and their coverage.
  * Returns object of pixel buffer and result colors (in LCH space).
  *
- * @param img
- * @param num
- * @param minChroma
+ * @param img - 
+ * @param num - 
+ * @param minChroma - 
  */
 export const processImage = (
     img: HTMLImageElement,

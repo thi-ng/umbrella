@@ -17,9 +17,9 @@ import { xyzD65, XYZD65 } from "./xyz65.js";
  * - 570 => yellow
  * - 610 => red
  *
- * @param out
- * @param lambda
- * @param alpha
+ * @param out - 
+ * @param lambda - 
+ * @param alpha - 
  */
 export const wavelengthXyz = (
     out: XYZD65 | null,

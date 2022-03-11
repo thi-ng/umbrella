@@ -25,9 +25,9 @@ export interface DominantColorOpts extends KMeansOpts {
  * @remarks
  * See thi.ng/k-means for details about clustering implementation & options.
  *
- * @param img
- * @param num
- * @param opts
+ * @param img - 
+ * @param num - 
+ * @param opts - 
  */
 export const dominantColors = (
     img: FloatBuffer,

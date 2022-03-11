@@ -20,8 +20,8 @@ const nextTab = (x: number, tabSize: number) =>
  * // ^   ^   ^   ^   ^   ^
  * ```
  *
- * @param src
- * @param tabSize
+ * @param src - 
+ * @param tabSize - 
  */
 export const tabsToSpaces = (src: string, tabSize = 4) =>
     src
@@ -33,8 +33,8 @@ export const tabsToSpaces = (src: string, tabSize = 4) =>
  * Takes a single line string and converts all tab characters to spaces, using
  * given `tabSize`.
  *
- * @param line
- * @param tabSize
+ * @param line - 
+ * @param tabSize - 
  */
 export const tabsToSpacesLine = (line: string, tabSize = 4) => {
     let res = "";
@@ -52,8 +52,8 @@ export const tabsToSpacesLine = (line: string, tabSize = 4) => {
 /**
  * Multi-line version of {@link spacesToTabsLine}.
  *
- * @param src
- * @param tabSize
+ * @param src - 
+ * @param tabSize - 
  */
 export const spacesToTabs = (src: string, tabSize = 4) =>
     src
@@ -65,8 +65,8 @@ export const spacesToTabs = (src: string, tabSize = 4) =>
  * Takes a single line string and converts all tab characters to spaces, using
  * given `tabSize`. Inverse op of {@link tabsToSpacesLine}.
  *
- * @param line
- * @param tabSize
+ * @param line - 
+ * @param tabSize - 
  */
 export const spacesToTabsLine = (line: string, tabSize = 4) => {
     const re = /\s{2,}/g;
