@@ -35,8 +35,8 @@ cat << EOF > "$MODULE"/package.json
         "preview": "vite preview"
     },
     "devDependencies": {
-        "typescript": "^4.5.2",
-        "vite": "^2.6.14"
+        "typescript": "^4.6.2",
+        "vite": "^2.8.6"
     },
     "dependencies": {
         "@thi.ng/api": "workspace:^",
