@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2021-12-13T10:26:00Z
+- **Last updated**: 2022-03-11T12:13:49Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,36 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+# [5.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/color@5.0.0) (2022-03-11)
+
+#### 🛑 Breaking changes
+
+- rename color matrix fns ([00fdc31](https://github.com/thi-ng/umbrella/commit/00fdc31))
+- BREAKING CHANGE: rename color matrix fns
+  - add `Mat` suffix, e.g. `grayscale()` => `grayscaleMat()`
+
+#### 🚀 Features
+
+- add color theme strategies ([22057e5](https://github.com/thi-ng/umbrella/commit/22057e5))
+  - add strategy fns:
+    - `complementaryStrategy()`
+    - `splitComplementaryStrategy()`
+    - `monochromeStrategy()`
+    - `triadicStrategy()`
+    - `tetradicStrategy()`
+    - `squareStrategy()`
+- add variations() generator ([91d760f](https://github.com/thi-ng/umbrella/commit/91d760f))
+- add max chroma LCH fns ([ab4e67a](https://github.com/thi-ng/umbrella/commit/ab4e67a))
+- add/update color ops ([33cb4a1](https://github.com/thi-ng/umbrella/commit/33cb4a1))
+  - add `invert()`, `isRgbGamut()`, `lighten()`, `rotate()` ops
+  - add `tint()`, `tone()`, `shade()` ops
+  - update impls for `isBlack/Gray/White()`
+  - add/re-use internal multimethod dispatch fns
+- update ChannelSpec and hue-based modes ([01d93dc](https://github.com/thi-ng/umbrella/commit/01d93dc))
+  - add `hue` flag for channel spec
+  - update `.clamp()` impl to wrap hue in [0..1] interval
+  - add/update LCH conversion paths
 
 ## [4.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/color@4.1.0) (2021-11-17)
 

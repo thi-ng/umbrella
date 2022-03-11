@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2021-12-13T10:26:00Z
+- **Last updated**: 2022-03-11T12:13:49Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,14 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [3.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom@3.2.0) (2022-03-11)
+
+#### 🚀 Features
+
+- update/refactor various shape ops ([0e3b99a](https://github.com/thi-ng/umbrella/commit/0e3b99a))
+- add BPatch type, ctors and warp fn ([ea81cb5](https://github.com/thi-ng/umbrella/commit/ea81cb5))
+- add opt. bleed attrib for `svgDoc()` ([fb3ed1e](https://github.com/thi-ng/umbrella/commit/fb3ed1e))
 
 ## [3.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom@3.1.0) (2021-11-17)
 

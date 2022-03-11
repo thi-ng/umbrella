@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2021-12-13T10:25:59Z
+- **Last updated**: 2022-03-11T12:13:49Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,12 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [2.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/arrays@2.2.0) (2022-03-11)
+
+#### 🚀 Features
+
+- add argSort() ([4b65c36](https://github.com/thi-ng/umbrella/commit/4b65c36))
 
 ### [2.1.3](https://github.com/thi-ng/umbrella/tree/@thi.ng/arrays@2.1.3) (2021-12-13)
 

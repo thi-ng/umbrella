@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2021-12-13T10:26:00Z
+- **Last updated**: 2022-03-11T12:13:49Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,16 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [7.5.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/vectors@7.5.0) (2022-03-11)
+
+#### 🚀 Features
+
+- add select() fn ([b7f9df1](https://github.com/thi-ng/umbrella/commit/b7f9df1))
+
+#### 🩹 Bug fixes
+
+- centered handling in standardize() ([8a5a81f](https://github.com/thi-ng/umbrella/commit/8a5a81f))
 
 ## [7.4.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/vectors@7.4.0) (2021-11-22)
 
