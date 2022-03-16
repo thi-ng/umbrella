@@ -1,8 +1,8 @@
 import { cossin } from "@thi.ng/math/angle";
+import { add2 } from "./add.js";
 import { MultiVecOpVO, ReadonlyVec, ZERO2, ZERO3 } from "./api.js";
-import { vop } from "./vop.js";
-import { maddN2 } from "./maddn.js";
 import { setC3 } from "./setc.js";
+import { vop } from "./vop.js";
 
 const cos = Math.cos;
 const sin = Math.sin;
@@ -28,7 +28,7 @@ export const cartesian: MultiVecOpVO<ReadonlyVec> = vop(1);
  * @param offset -
  */
 export const cartesian2 = cartesian.add(2, (out, a, b = ZERO2) =>
-    maddN2(out || a, cossin(a[1]), a[0], b)
+    add2(out || a, cossin(a[1], a[0]), b)
 );
 
 /**
