@@ -20,3 +20,7 @@ export const ensureChannel = (fmt: IntFormat | FloatFormat, id: number) => {
 /** @internal */
 export const ensureSingleChannel = (fmt: IntFormat | FloatFormat) =>
     assert(fmt.channels.length === 1, `require single channel buffer`);
+
+/** @internal */
+export const ensureAlpha = (fmt: IntFormat | FloatFormat) =>
+    assert(!!fmt.alpha, "missing alpha channel");

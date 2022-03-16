@@ -5,6 +5,7 @@ import { isNumber } from "@thi.ng/checks/is-number";
 import { isString } from "@thi.ng/checks/is-string";
 import { assert } from "@thi.ng/errors/assert";
 import { clamp01 } from "@thi.ng/math/interval";
+import { postmultiply, premultiply } from "@thi.ng/porter-duff/premultiply";
 import type {
     BlendFnFloat,
     BlitOpts,
@@ -61,8 +62,8 @@ export function floatBuffer(...args: any[]) {
  * @remarks
  * See {@link FloatBuffer.as} for reverse operation.
  *
- * @param src - 
- * @param fmt - 
+ * @param src -
+ * @param fmt -
  */
 export const floatBufferFromInt = (
     src: IntBuffer,
@@ -371,6 +372,44 @@ export class FloatBuffer
         return this;
     }
 
+    fill(x: NumericArray) {
+        assert(
+            x.length <= this.format.channels.length,
+            `fill value has too many channels`
+        );
+        const {
+            data,
+            stride: [stride],
+        } = this;
+        for (let i = 0, n = data.length; i < n; i += stride) {
+            data.set(x, i);
+        }
+    }
+
+    premultiply() {
+        this.ensureRGBA();
+        const {
+            data,
+            stride: [stride],
+        } = this;
+        for (let i = 0, n = data.length; i < n; i += stride) {
+            premultiply(null, data.subarray(i, i + stride));
+        }
+        return this;
+    }
+
+    postmultiply() {
+        this.ensureRGBA();
+        const {
+            data,
+            stride: [stride],
+        } = this;
+        for (let i = 0, n = data.length; i < n; i += stride) {
+            postmultiply(null, data.subarray(i, i + stride));
+        }
+        return this;
+    }
+
     clamp() {
         const data = this.data;
         for (let i = data.length; i-- > 0; ) {
@@ -478,5 +517,9 @@ export class FloatBuffer
             dest.format === this.format,
             `dest buffer format must be same as src`
         );
+    }
+
+    protected ensureRGBA() {
+        assert(this.format === FLOAT_RGBA, "require FLOAT_RGBA format");
     }
 }

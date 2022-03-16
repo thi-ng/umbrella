@@ -26,7 +26,7 @@ import {
     Lane,
 } from "./api.js";
 import { canvasPixels, imageCanvas } from "./canvas.js";
-import { ensureChannel, ensureSize } from "./checks.js";
+import { ensureAlpha, ensureChannel, ensureSize } from "./checks.js";
 import { ABGR8888 } from "./format/abgr8888.js";
 import { defIntFormat } from "./format/int-format.js";
 import {
@@ -72,10 +72,10 @@ export function intBuffer(...args: any[]) {
  * Creates a new pixel buffer from given HTML image element with optional
  * support for format conversion (default: {@link ABGR8888} & resizing.
  *
- * @param img - 
- * @param fmt - 
- * @param width - 
- * @param height - 
+ * @param img -
+ * @param fmt -
+ * @param width -
+ * @param height -
  */
 export const intBufferFromImage = (
     img: HTMLImageElement,
@@ -88,8 +88,8 @@ export const intBufferFromImage = (
  * Creates a new pixel buffer from given HTML canvas element with optional
  * support for format conversion (default: {@link ABGR8888}.
  *
- * @param canvas - 
- * @param fmt - 
+ * @param canvas -
+ * @param fmt -
  */
 export const intBufferFromCanvas = (
     canvas: HTMLCanvasElement,
@@ -374,6 +374,7 @@ export class IntBuffer
     }
 
     premultiply() {
+        ensureAlpha(this.format);
         __transformABGR(this.data, this.format, premultiplyInt);
         return this;
     }
@@ -402,6 +403,10 @@ export class IntBuffer
         return this;
     }
 
+    fill(x: number) {
+        this.data.fill(x);
+    }
+
     /**
      * Flips image vertically.
      */
@@ -425,7 +430,7 @@ export class IntBuffer
      * (default: `"linear"`) for interpolation. Syntax sugar for
      * {@link IntBuffer.resize}.
      *
-     * @param scale - 
+     * @param scale -
      */
     scale(scale: number, sampler: IntSampler | Filter = "linear") {
         assert(scale > 0, `scale must be > 0`);
