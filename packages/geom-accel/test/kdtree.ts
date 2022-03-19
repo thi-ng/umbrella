@@ -2,7 +2,7 @@ import { group } from "@thi.ng/testament";
 import { mapIndexed } from "@thi.ng/transducers";
 import { distHaversineLatLon, ReadonlyVec } from "@thi.ng/vectors";
 import * as assert from "assert";
-import { KdTreeMap } from "../src/index.js"
+import { KdTreeMap } from "../src/index.js";
 
 const pts3D = new Set<ReadonlyVec>([
     [10, 20, 30],
