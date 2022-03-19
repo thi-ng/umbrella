@@ -4,7 +4,7 @@ import type { IRegionQuery, ISpatialMap } from "@thi.ng/geom-api";
 import { Heap } from "@thi.ng/heaps/heap";
 import { EPS } from "@thi.ng/math/api";
 import { map } from "@thi.ng/transducers/map";
-import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
+import type { DistanceFn, ReadonlyVec, Vec } from "@thi.ng/vectors";
 import { distSq } from "@thi.ng/vectors/distsq";
 import { addResults, CMP, into } from "./utils.js";
 
@@ -50,10 +50,12 @@ export class KdTreeMap<K extends ReadonlyVec, V>
 
     protected root: MaybeKdNode<K, V>;
     protected _size: number;
+    protected _distFn: DistanceFn;
 
-    constructor(dim: number, pairs?: Iterable<Pair<K, V>>) {
+    constructor(dim: number, pairs?: Iterable<Pair<K, V>>, distFn?: DistanceFn) {
         this.dim = dim;
         this._size = 0;
+        this._distFn = distFn || distSq;
         this.root = pairs ? this.buildTree(ensureArray(pairs), 0) : undefined;
     }
 
@@ -120,7 +122,7 @@ export class KdTreeMap<K extends ReadonlyVec, V>
                 : parent;
         let parent: MaybeKdNode<K, V>;
         if (this.root) {
-            parent = nearest1(key, [eps, undefined], this.dim, this.root)[1];
+            parent = nearest1(key, [eps, undefined], this.dim, this.root, this._distFn)[1];
             if (parent) {
                 parent.v = val;
                 return false;
@@ -157,7 +159,7 @@ export class KdTreeMap<K extends ReadonlyVec, V>
     has(key: K, eps = EPS) {
         return (
             !!this.root &&
-            !!nearest1(key, [eps * eps, undefined], this.dim, this.root)[1]
+            !!nearest1(key, [eps * eps, undefined], this.dim, this.root, this._distFn)[1]
         );
     }
 
@@ -167,7 +169,8 @@ export class KdTreeMap<K extends ReadonlyVec, V>
                 key,
                 [eps * eps, undefined],
                 this.dim,
-                this.root
+                this.root,
+                this._distFn
             )[1];
             return node ? node.v : undefined;
         }
@@ -204,7 +207,8 @@ export class KdTreeMap<K extends ReadonlyVec, V>
                 q,
                 [maxDist, undefined],
                 this.dim,
-                this.root
+                this.root,
+                this._distFn
             )[1];
             sel && acc.push(f(sel));
         } else {
@@ -214,7 +218,7 @@ export class KdTreeMap<K extends ReadonlyVec, V>
                     compare: CMP,
                 }
             );
-            nearest(q, nodes, this.dim, maxNum, this.root!);
+            nearest(q, nodes, this.dim, maxNum, this.root!, this._distFn);
             return addResults(f, nodes.values, acc);
         }
         return acc;
@@ -319,7 +323,8 @@ const nearest = <K extends ReadonlyVec, V>(
     acc: Heap<[number, MaybeKdNode<K, V>]>,
     dims: number,
     maxNum: number,
-    node: KdNode<K, V>
+    node: KdNode<K, V>,
+    distFn: DistanceFn
 ) => {
     const p = node.k;
     const ndist = distSq(p, q);
@@ -327,13 +332,13 @@ const nearest = <K extends ReadonlyVec, V>(
         collect(acc, maxNum, node, ndist);
         return;
     }
-    const tdist = nodeDist(node, dims, q, p);
+    const tdist = nodeDist(node, dims, q, p, distFn);
     let best = bestChild(node, q);
-    nearest(q, acc, dims, maxNum, best!);
+    nearest(q, acc, dims, maxNum, best!, distFn);
     collect(acc, maxNum, node, ndist);
     if (tdist < acc.values[0][0]) {
         best = best === node.l ? node.r : node.l;
-        best && nearest(q, acc, dims, maxNum, best);
+        best && nearest(q, acc, dims, maxNum, best, distFn);
     }
 };
 
@@ -349,21 +354,22 @@ const nearest1 = <K extends ReadonlyVec, V>(
     q: K,
     acc: [number, MaybeKdNode<K, V>],
     dims: number,
-    node: KdNode<K, V>
+    node: KdNode<K, V>,
+    distFn: DistanceFn
 ): [number, MaybeKdNode<K, V>] => {
     const p = node.k;
-    const ndist = distSq(p, q);
+    const ndist = distFn(p, q);
     if (!node.l && !node.r) {
         collect1(acc, node, ndist);
         return acc;
     }
-    const tdist = nodeDist(node, dims, q, p);
+    const tdist = nodeDist(node, dims, q, p, distFn);
     let best = bestChild(node, q);
-    nearest1(q, acc, dims, best!);
+    nearest1(q, acc, dims, best!, distFn);
     collect1(acc, node, ndist);
     if (tdist < acc[0]) {
         best = best === node.l ? node.r : node.l;
-        best && nearest1(q, acc, dims, best);
+        best && nearest1(q, acc, dims, best, distFn);
     }
     return acc;
 };
@@ -402,10 +408,11 @@ const nodeDist = <K extends ReadonlyVec, V>(
     node: KdNode<K, V>,
     dims: number,
     q: K,
-    p: K
+    p: K,
+    distFn: DistanceFn
 ) => {
     for (let i = dims, d = node.d; i-- > 0; ) {
         TMP[i] = i === d ? q[i] : p[i];
     }
-    return distSq(TMP, p);
+    return distFn(TMP, p);
 };
