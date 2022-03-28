@@ -92,11 +92,12 @@ run(
             p[1],
             SHADES_ASCII_16[
                 mandelbrot(
+                    // map pixel pos to mandelbrot region
                     fit2([], p, [0, 0], maxSize, [-2, -1.25], [0.65, 1.25]),
                     2000,
                     15
                 )
-            ].charCodeAt(0)
+            ]
         );
     }),
     range2d(...maxSize)
