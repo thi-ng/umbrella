@@ -1,4 +1,4 @@
-import type { Fn0, IGrid2D, NumOrString } from "@thi.ng/api";
+import { Fn0, IGrid2D, nomixin, NumOrString } from "@thi.ng/api";
 import { IGrid2DMixin } from "@thi.ng/api/mixins/igrid";
 import { peek } from "@thi.ng/arrays/peek";
 import { clamp } from "@thi.ng/math/interval";
@@ -68,8 +68,16 @@ export class Canvas implements IGrid2D<Uint32Array, number> {
     // @ts-ignore mixin
     getAtUnsafe(x: number, y: number): number {}
 
-    // @ts-ignore mixin
-    setAt(x: number, y: number, col: number): boolean {}
+    @nomixin
+    setAt(x: number, y: number, val: NumOrString): boolean {
+        return this.includes(x, y)
+            ? ((this.data[this.indexAtUnsafe(x, y)] = charCode(
+                  val,
+                  this.format
+              )),
+              true)
+            : false;
+    }
 
     // @ts-ignore mixin
     setAtUnsafe(x: number, y: number, col: number): boolean {}
