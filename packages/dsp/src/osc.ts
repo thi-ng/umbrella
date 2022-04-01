@@ -6,22 +6,21 @@ import { Const } from "./const.js";
 import { sum } from "./sum.js";
 
 /**
- * Higher order oscillator gen, wrapping a {@link StatelessOscillator}
- * function and supporting either constant or {@link IGen}-based
- * frequency and amplitude, thus allowing for FM/AM modulation.
- * Furthermore, a constant `dc` offset (center value) can be specified
- * (default: 0).
+ * Higher order oscillator gen, wrapping a {@link StatelessOscillator} function
+ * and supporting either constant or {@link IGen}-based frequency and amplitude,
+ * thus allowing for FM/AM modulation. Furthermore, a constant `dc` offset
+ * (center value) and/or start `phase` can be specified (both default to: 0).
  *
  * @remarks
- * If `freq` is a number, it must be given as normalized frequency. If
- * `freq` is an `IGen`, it must be configured to produce normalized
- * frequency values (e.g. if using an `Osc` by setting its `amp` to a
- * normalized freq and its `dc` offset to `baseFreq * TAU`). Also see
- * {@link fmodOsc} for syntax sugar.
+ * If `freq` is a number, it must be given as normalized frequency (same for
+ * `phase`). If `freq` is an `IGen`, it must be configured to produce normalized
+ * frequency values (e.g. if using an `Osc` by setting its `amp` to a normalized
+ * freq and its `dc` offset to `baseFreq * TAU`). Also see {@link fmodOsc} for
+ * syntax sugar. The `phase` arg is only used if `freq` is NOT an `IGen`.
  *
- * The oscillator initializes to zero and its
- * {@link @thi.ng/api#IDeref.deref} value is only available / valid
- * after the first invocation of {@link IGen.next}.
+ * The oscillator initializes to zero and its {@link @thi.ng/api#IDeref.deref}
+ * value is only available / valid after the first invocation of
+ * {@link IGen.next}.
  *
  * @param osc - stateless osc
  * @param freq - normalized freq
@@ -32,8 +31,9 @@ export const osc = (
     osc: StatelessOscillator,
     freq: IGen<number> | number,
     amp?: IGen<number> | number,
-    dc?: number
-) => new Osc(osc, freq, amp, dc);
+    dc?: number,
+    phase?: number
+) => new Osc(osc, freq, amp, dc, phase);
 
 /**
  * Syntax sugar for creating frequency modulated `Osc` gens.
@@ -72,10 +72,11 @@ export class Osc extends AGen<number> {
         protected _osc: StatelessOscillator,
         freq: IGen<number> | number,
         amp: IGen<number> | number = 1,
-        protected _dc = 0
+        protected _dc = 0,
+        phase = 0
     ) {
         super(0);
-        this.setFreq(freq);
+        isNumber(freq) ? this.setFreq(freq, phase) : this.setFreq(freq);
         this.setAmp(amp);
     }
 
@@ -88,8 +89,10 @@ export class Osc extends AGen<number> {
         ));
     }
 
-    setFreq(freq: IGen<number> | number, phase = 0) {
-        this._phase = isNumber(freq) ? new Add(freq, phase) : freq;
+    setFreq(freq: IGen<number>): void;
+    setFreq(freq: number, phase?: number): void;
+    setFreq(freq: number | IGen<number>, phase?: number) {
+        this._phase = isNumber(freq) ? new Add(freq, phase || 0) : freq;
     }
 
     setAmp(amp: IGen<number> | number) {
