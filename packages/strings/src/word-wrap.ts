@@ -77,10 +77,10 @@ const append = (acc: Line[], word: string, wordLen: number, width: number) => {
  * {@link WordWrapOpts.min} chars available and the word is longer than that, it
  * will be placed into a new line (thus minimizing legibility issues).
  *
- * @param word - 
- * @param opts - 
- * @param offset - 
- * @param acc - 
+ * @param word -
+ * @param opts -
+ * @param offset -
+ * @param acc -
  *
  * @internal
  */
@@ -100,9 +100,9 @@ const wrapWord = (
     // (maybe) hardwrap long word
     while (hard && len > free) {
         const split = splitter.split(word, free);
-        const chunk = word.substr(0, split);
+        const chunk = word.substring(0, split);
         append(acc, chunk, free, width);
-        word = word.substr(split);
+        word = word.substring(split);
         free = width;
         len = splitter.length(word);
     }
@@ -117,9 +117,9 @@ const wrapWord = (
  *
  * @see {@link wordWrap} for main user facing alternative.
  *
- * @param line - 
- * @param opts - 
- * @param acc - 
+ * @param line -
+ * @param opts -
+ * @param acc -
  *
  * @internal
  */
@@ -153,8 +153,8 @@ export const wordWrapLine = (
  *
  * @see {@link wordWrap} for main user facing alternative.
  *
- * @param lines - 
- * @param opts - 
+ * @param lines -
+ * @param opts -
  */
 export const wordWrapLines = (lines: string, opts: Partial<WordWrapOpts>) => {
     let acc: Line[] = [];
@@ -168,8 +168,8 @@ export const wordWrapLines = (lines: string, opts: Partial<WordWrapOpts>) => {
  * Same as {@link wordWrapLines}, but returns wordwrapped result as string. See
  * {@link WordWrapOpts} for options.
  *
- * @param str - 
- * @param opts - 
+ * @param str -
+ * @param opts -
  */
 export const wordWrap = (str: string, opts: Partial<WordWrapOpts>) =>
     wordWrapLines(str, opts).join("\n");

@@ -76,9 +76,9 @@ export class BasicRouter implements INotify {
      */
     route(src: string): RouteMatch | undefined {
         if (src.charAt(0) === "#") {
-            src = src.substr(1);
+            src = src.substring(1);
         }
-        src = src.substr(this.config.prefix!.length);
+        src = src.substring(this.config.prefix!.length);
         let match = this.matchRoutes(src);
         if (!match) {
             if (!this.handleRouteFailure()) {
@@ -134,7 +134,7 @@ export class BasicRouter implements INotify {
                 route.match
                     .map((x) =>
                         x.charAt(0) === "?"
-                            ? (x = params[x.substr(1)]) != null
+                            ? (x = params[x.substring(1)]) != null
                                 ? x
                                 : "NULL"
                             : x
@@ -169,7 +169,7 @@ export class BasicRouter implements INotify {
             for (let i = 0; i < n; i++) {
                 const m = match[i];
                 if (m.charAt(0) === "?") {
-                    params[m.substr(1)] = curr[i];
+                    params[m.substring(1)] = curr[i];
                 } else if (curr[i] !== m) {
                     return;
                 }

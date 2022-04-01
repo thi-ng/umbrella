@@ -32,7 +32,7 @@ const readComments = (src: Uint8Array, acc: string[], i: number) => {
         // @ts-ignore
         const [comment, j] = readUntil(src, i);
         assert(j !== i, `EOF reached`);
-        acc.push(comment.substr(1).trim());
+        acc.push(comment.substring(1).trim());
         i = j;
     }
     return i;
@@ -41,7 +41,7 @@ const readComments = (src: Uint8Array, acc: string[], i: number) => {
 /**
  * Parses header information from given NetPBM file byte buffer.
  *
- * @param src - 
+ * @param src -
  */
 export const parseHeader = (src: Uint8Array) => {
     let type: string;
@@ -86,7 +86,7 @@ export const parseHeader = (src: Uint8Array) => {
  * Function will throw an error if image is of any other type or header is
  * corrupt otherwise. Any embedded comments will be discarded.
  *
- * @param src - 
+ * @param src -
  */
 export const read = (src: Uint8Array) => {
     const { type, width, height, max, start } = parseHeader(src);
@@ -109,10 +109,10 @@ export const read = (src: Uint8Array) => {
  * returns {@link @thi.ng/pixel#IntBuffer} in `GRAY8` format (due to current
  * lack of true 1bit format).
  *
- * @param src - 
- * @param i - 
- * @param width - 
- * @param height - 
+ * @param src -
+ * @param i -
+ * @param width -
+ * @param height -
  */
 export const readPBM = (
     src: Uint8Array,
@@ -141,11 +141,11 @@ export const readPBM = (
  * @remarks
  * Reference: http://netpbm.sourceforge.net/doc/pbm.html
  *
- * @param src - 
- * @param i - 
- * @param width - 
- * @param height - 
- * @param max - 
+ * @param src -
+ * @param i -
+ * @param width -
+ * @param height -
+ * @param max -
  */
 export const readPGM8 = (
     src: Uint8Array,
@@ -175,11 +175,11 @@ export const readPGM8 = (
  * @remarks
  * Reference: http://netpbm.sourceforge.net/doc/pgm.html
  *
- * @param src - 
- * @param i - 
- * @param width - 
- * @param height - 
- * @param max - 
+ * @param src -
+ * @param i -
+ * @param width -
+ * @param height -
+ * @param max -
  */
 export const readPGM16 = (
     src: Uint8Array,
@@ -206,11 +206,11 @@ export const readPGM16 = (
  * @remarks
  * Reference: http://netpbm.sourceforge.net/doc/pgm.html
  *
- * @param src - 
- * @param i - 
- * @param width - 
- * @param height - 
- * @param max - 
+ * @param src -
+ * @param i -
+ * @param width -
+ * @param height -
+ * @param max -
  */
 export const readPPM = (
     src: Uint8Array,

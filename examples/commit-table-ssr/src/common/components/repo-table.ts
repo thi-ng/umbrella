@@ -12,8 +12,8 @@ import { table } from "./table";
  * Git commit log table component. Consumes iterable of `Commit` objects
  * and transforms each into a table row.
  *
- * @param _ - 
- * @param commits - 
+ * @param _ -
+ * @param commits -
  */
 export const repoTable = (_: AppContext, commits: Iterable<Commit>) => [
     table,
@@ -23,7 +23,7 @@ export const repoTable = (_: AppContext, commits: Iterable<Commit>) => [
         comp(
             // convert commit into tuple, one value per table cell
             map((x: Commit) => [
-                x.date.substr(0, 10),
+                x.date.substring(0, 10),
                 x.author,
                 [commitLink, x.sha, x.msg],
                 x.files,
@@ -34,7 +34,7 @@ export const repoTable = (_: AppContext, commits: Iterable<Commit>) => [
             partitionBy((row: any[]) => row[0].split("-")[1]),
             // insert month headers (but not in 1st chunk)
             mapIndexed((i, month) => [
-                i > 0 ? [month[0][0].substr(0, 7), ...repeat("", 5)] : null,
+                i > 0 ? [month[0][0].substring(0, 7), ...repeat("", 5)] : null,
                 month,
             ])
         ),

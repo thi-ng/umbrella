@@ -49,7 +49,7 @@ export const textFieldRaw = (
     const maxLen = Math.max(1, ((w - pad * 2) / cw) | 0);
     const txtLen = txt.length;
     const state = gui.state(id, () => ({ cursor: 0, offset: 0 }));
-    const drawTxt = txt.substr(state.offset, maxLen);
+    const drawTxt = txt.substring(state.offset, state.offset + maxLen);
     const key = hash([x, y, w, h]);
     gui.registerID(id, key);
     const box = gui.resource(id, key, () => rect([x, y], [w, h], {}));

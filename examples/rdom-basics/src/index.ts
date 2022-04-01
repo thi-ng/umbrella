@@ -24,7 +24,7 @@ const typewriter = (min: number, max: number) => (src: string) =>
         let active = true;
         (async () => {
             for (let i = 1; active && i <= src.length; i++) {
-                s.next(src.substr(0, i));
+                s.next(src.substring(0, i));
                 await delayed(0, Math.random() * (max - min) + min);
             }
             s.closeIn !== CloseMode.NEVER && s.done();

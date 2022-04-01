@@ -16,7 +16,7 @@ export const index = <T extends Indexable>(
     id: NumericI | UintTerm
 ): Index<IndexTypeMap[T]> => ({
     tag: "idx",
-    type: <any>val.type.substr(0, val.type.length - 2),
+    type: <any>val.type.substring(0, val.type.length - 2),
     id: isNumber(id) ? int(id) : id,
     val,
 });

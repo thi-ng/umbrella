@@ -83,9 +83,9 @@ const parseKey = <T extends IObjectOf<any>>(
         if (a[1] === "-") {
             // terminator arg, stop parsing
             if (a === "--") return { state: 1 };
-            id = camel(a.substr(2));
+            id = camel(a.substring(2));
         } else {
-            id = aliases[a.substr(1)];
+            id = aliases[a.substring(1)];
             !id && illegalArgs(`unknown option: ${a}`);
         }
         const spec: ArgSpecExt = specs[id];

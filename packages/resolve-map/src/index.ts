@@ -316,10 +316,10 @@ export const absPath = (
     idx = 1
 ): NumOrString[] => {
     if (path.charAt(idx) === "/") {
-        return path.substr(idx + 1).split("/");
+        return path.substring(idx + 1).split("/");
     }
     curr = curr.slice(0, curr.length - 1);
-    const sub = path.substr(idx).split("/");
+    const sub = path.substring(idx).split("/");
     for (let i = 0, n = sub.length; i < n; i++) {
         if (sub[i] === "..") {
             !curr.length && illegalArgs(`invalid lookup path: ${path}`);

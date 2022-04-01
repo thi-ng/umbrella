@@ -100,7 +100,7 @@ const parseNum = (x: string, past: boolean) =>
 const parsePeriod = (x: string) => {
     x =
         x !== "s" && x !== "ms" && x.endsWith("s")
-            ? x.substr(0, x.length - 1)
+            ? x.substring(0, x.length - 1)
             : x;
     return <Period>{
             ms: "t",

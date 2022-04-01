@@ -12,7 +12,7 @@ export const initFromHash = (
 ) => {
     // attempt to restore state from hash fragment
     if (location.hash.length > 1) {
-        const tokens = atob(location.hash.substr(1)).split("|");
+        const tokens = window.atob(location.hash.substring(1)).split("|");
         if (tokens.length === NUM_STATE_TOKENS) {
             seed.next(parseInt(tokens[0]));
             num.next(parseInt(tokens[1]));
@@ -31,7 +31,7 @@ export const initFromHash = (
 /**
  * Attaches subscription to store current config base64 encoded in hash fragment
  *
- * @param parent - 
+ * @param parent -
  */
 export const attachSerializer = (parent: ISubscribable<MainOutputs>) =>
     parent.subscribe({

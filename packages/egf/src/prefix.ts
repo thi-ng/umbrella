@@ -26,7 +26,7 @@ export const defPrefixer = (prefixes: Prefixes) => {
     return (uri: string) => {
         const known = uriToID.knownPrefix(uri);
         return known
-            ? uriToID.get(known)! + ":" + uri.substr(known.length)
+            ? uriToID.get(known)! + ":" + uri.substring(known.length)
             : undefined;
     };
 };

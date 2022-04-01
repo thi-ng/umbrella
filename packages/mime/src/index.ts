@@ -11,7 +11,7 @@ export const MIME_TYPES = ((defs: any) => {
             const mime = groupID + "/" + type;
             for (let e of group[type].split(",")) {
                 const isLowPri = e[0] === "*";
-                const ext = isLowPri ? e.substr(1) : e;
+                const ext = isLowPri ? e.substring(1) : e;
                 let coll = res[ext];
                 !coll && (coll = res[ext] = []);
                 isLowPri ? coll.push(mime) : coll.unshift(mime);
@@ -35,7 +35,7 @@ export const MIME_TYPES = ((defs: any) => {
  * @param fallback -
  */
 export const preferredType = (ext: string, fallback = MIME_TYPES.bin[0]) => {
-    const type = MIME_TYPES[ext[0] === "." ? ext.substr(1) : ext];
+    const type = MIME_TYPES[ext[0] === "." ? ext.substring(1) : ext];
     return type ? type[0] : fallback;
 };
 
@@ -51,5 +51,7 @@ export const preferredExtension = (mime: string, fallback = "bin") => {
     const [prefix, suffix] = mime.split("/");
     const group = DB[prefix];
     const ext = group ? group[suffix].split(",") : undefined;
-    return ext ? ext.find((x) => x[0] !== "*") || ext[0].substr(1) : fallback;
+    return ext
+        ? ext.find((x) => x[0] !== "*") || ext[0].substring(1)
+        : fallback;
 };

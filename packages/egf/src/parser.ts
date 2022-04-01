@@ -49,7 +49,7 @@ export const parse = (src: string, ctx: ParseContext) => {
 };
 
 const parseInclude = (line: string, ctx: ParseContext) => {
-    const path = unescape(line.substr(INCLUDE.length));
+    const path = unescape(line.substring(INCLUDE.length));
     if (IS_NODE && ctx.opts.includes) {
         $parseFile(path, {
             ...ctx,
@@ -69,7 +69,7 @@ const parsePrefix = (line: string, ctx: ParseContext) => {
     if (idx > 0) {
         const id = unescape(line.substring(PREFIX.length, idx));
         if (RE_PREFIX.test(id)) {
-            const val = unescape(line.substr(idx + 2).trim());
+            const val = unescape(line.substring(idx + 2).trim());
             if (val.length) {
                 ctx.logger.debug(`declare prefix: ${id} = ${val}`);
                 ctx.prefixes[id] = val;
@@ -107,7 +107,7 @@ const parseProp = (
             ctx.index,
             node,
             key,
-            parseRef(unescape(line.substr(idx + 2).trim()), ctx)
+            parseRef(unescape(line.substring(idx + 2).trim()), ctx)
         );
         return ++i;
     } else if (line[idx] === "#") {
@@ -117,7 +117,7 @@ const parseProp = (
         idx++;
     }
     if (line[idx] === ">" && line[idx + 1] === ">" && line[idx + 2] === ">") {
-        body = line.substr(idx + 3);
+        body = line.substring(idx + 3);
         idx = body.indexOf("<<<");
         if (idx < 0) {
             const n = lines.length;
@@ -126,7 +126,7 @@ const parseProp = (
                 line = lines[i];
                 idx = line.indexOf("<<<");
                 if (idx >= 0) {
-                    body += "\n" + line.substr(0, idx);
+                    body += "\n" + line.substring(0, idx);
                     closed = true;
                     i++;
                     break;
@@ -136,11 +136,11 @@ const parseProp = (
             }
             !closed && illegalState("unterminated value, EOF reached");
         } else {
-            body = body.substr(0, idx);
+            body = body.substring(0, idx);
             i++;
         }
     } else {
-        body = line.substr(idx);
+        body = line.substring(idx);
         i++;
     }
     body = body.trim();
@@ -236,8 +236,8 @@ export const $parseFile = (path: string, ctx?: Partial<ParseContext>) => {
  * Parses EGF graph from given local file name, using provided options (if any)
  * to customize the parser. Returns object of graph `nodes` and `prefixes`.
  *
- * @param path - 
- * @param ctx - 
+ * @param path -
+ * @param ctx -
  */
 export const parseFile = (path: string, ctx?: Partial<ParseContext>) => {
     const res = $parseFile(path, ctx);
@@ -248,8 +248,8 @@ export const parseFile = (path: string, ctx?: Partial<ParseContext>) => {
  * Parses EGF graph from given string and provided options (if any) to customize
  * the parser. Returns object of graph `nodes` and `prefixes`.
  *
- * @param path - 
- * @param ctx - 
+ * @param path -
+ * @param ctx -
  */
 export const parseString = (src: string, ctx?: Partial<ParseContext>) => {
     const res = parse(src, initContext(ctx));

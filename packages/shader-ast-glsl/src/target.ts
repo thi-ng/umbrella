@@ -118,7 +118,7 @@ export const targetGLSL = (opts?: Partial<GLSLOpts>) => {
 
         call_i: (t) =>
             t.id === "texture" && _opts.version < GLSLVersion.GLES_300
-                ? `${t.id}${(<Sym<any>>t.args[0]).type.substr(7)}(${$list(
+                ? `${t.id}${(<Sym<any>>t.args[0]).type.substring(7)}(${$list(
                       t.args
                   )})`
                 : $fn(t),

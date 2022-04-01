@@ -19,6 +19,6 @@ export const padRight: (
         if (x == null) return buf;
         x = x.toString();
         len = len !== undefined ? len : x.length;
-        return len! < n ? x + buf.substr(len!) : x;
+        return len! < n ? x + buf.substring(len!) : x;
     };
 });

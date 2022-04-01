@@ -50,8 +50,8 @@ export function coerceKV(delim = "=", strict = false, multi = false) {
                     `got '${x}', but expected a 'key${delim}value' pair`
                 );
             if (idx > 0) {
-                const id = x.substr(0, idx);
-                const val = x.substr(idx + 1);
+                const id = x.substring(0, idx);
+                const val = x.substring(idx + 1);
                 if (multi) {
                     acc[id] ? (<string[]>acc[id]).push(val) : (acc[id] = [val]);
                 } else {

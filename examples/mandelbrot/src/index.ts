@@ -295,7 +295,7 @@ newRender.apply(
     null,
     <any>(
         (location.hash.length > 1
-            ? location.hash.substr(1).split(";").map(parseFloat)
+            ? location.hash.substring(1).split(";").map(parseFloat)
             : DEFAULT_CONFIG)
     )
 );

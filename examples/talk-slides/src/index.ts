@@ -66,7 +66,7 @@ const main = sync({
 if (INTERACTIVE) {
     main.transform(map(app(SLIDES.length, ctx)), updateDOM({ ctx }));
     initKeys(slideCTRL);
-    slideCTRL.next(parseSlideID(location.hash.substr(1)));
+    slideCTRL.next(parseSlideID(location.hash.substring(1)));
 } else {
     renderOnce(() => [printApp, SLIDES], { ctx });
 }

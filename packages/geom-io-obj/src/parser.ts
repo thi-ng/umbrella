@@ -102,7 +102,7 @@ export const parseOBJ = (src: string, opts?: Partial<ParseOpts>) => {
         const l = lines[i];
         if (!l.length) continue;
         if (l[0] === "#") {
-            comments && result.comments.push(l.substr(1).trim());
+            comments && result.comments.push(l.substring(1).trim());
             continue;
         }
         const items = l.trim().split(/\s+/g);

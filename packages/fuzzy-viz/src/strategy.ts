@@ -54,8 +54,8 @@ import { varToHiccup } from "./var.js";
  * strategy.clear();
  * ```
  *
- * @param strategy - 
- * @param instrument - 
+ * @param strategy -
+ * @param instrument -
  */
 export const instrumentStrategy = <T>(
     strategy: DefuzzStrategy,
@@ -119,7 +119,10 @@ export const fuzzySetToAscii =
         }
         const index = Math.round(fit(res, min, max, 0, vals.length));
         let chart = barChartHLines(height, vals, 0, 1)
-            .map((line) => line.substr(0, index) + "|" + line.substr(index + 1))
+            .map(
+                (line) =>
+                    line.substring(0, index) + "|" + line.substring(index + 1)
+            )
             .join("\n")
             .replace(/ /g, empty);
         const legend = repeat(" ", index) + "^ " + res.toFixed(2);

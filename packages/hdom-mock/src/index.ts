@@ -217,7 +217,7 @@ export class MockHDOM implements HDOMImplementation<HDOMNode> {
                     break;
                 default:
                     if (isListener) {
-                        const lid = id.substr(2);
+                        const lid = id.substring(2);
                         const listeners = el.listeners[lid];
                         (listeners || (el.listeners[lid] = [])).push(val);
                     } else {
@@ -236,7 +236,7 @@ export class MockHDOM implements HDOMImplementation<HDOMNode> {
         for (let i = attribs.length; i-- > 0; ) {
             const a = attribs[i];
             if (a.indexOf("on") === 0) {
-                const listeners = el.listeners[a.substr(2)];
+                const listeners = el.listeners[a.substring(2)];
                 if (listeners) {
                     const i = listeners.indexOf(prev[a]);
                     i >= 0 && listeners.splice(i, 1);

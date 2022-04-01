@@ -259,7 +259,7 @@ export const setAttrib = (el: Element, id: string, val: any, attribs?: any) => {
                 break;
             default:
                 isListener
-                    ? setListener(el, id.substr(2), val)
+                    ? setListener(el, id.substring(2), val)
                     : el.setAttribute(id, val === true ? "" : val);
         }
     } else {
@@ -307,7 +307,7 @@ export const removeAttribs = (el: Element, attribs: string[], prev: any) => {
     for (let i = attribs.length; i-- > 0; ) {
         const a = attribs[i];
         if (a[0] === "o" && a[1] === "n") {
-            removeListener(el, a.substr(2), prev[a]);
+            removeListener(el, a.substring(2), prev[a]);
         } else {
             el.hasAttribute(a) ? el.removeAttribute(a) : ((<any>el)[a] = null);
         }

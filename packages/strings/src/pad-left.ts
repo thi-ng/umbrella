@@ -19,7 +19,7 @@ export const padLeft: (
         if (x == null) return buf;
         x = x.toString();
         len = len !== undefined ? len : x.length;
-        return len! < n ? buf.substr(len!) + x : x;
+        return len! < n ? buf.substring(len!) + x : x;
     };
 });
 

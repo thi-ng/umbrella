@@ -407,7 +407,7 @@ sync({
 // seed initial test selection
 selection.next(
     window.location.hash.length > 1
-        ? window.location.hash.substr(1).replace(/-/g, " ")
+        ? window.location.hash.substring(1).replace(/-/g, " ")
         : "shape morph"
 );
 

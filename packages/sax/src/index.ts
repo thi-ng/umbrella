@@ -326,7 +326,7 @@ const PARSER: FSMStateMap<ParseState, string, ParseEvent[]> = {
             if (b.charAt(b.length - 1) === "\\") {
                 const e = ESCAPES[ch];
                 if (e !== undefined) {
-                    state.body = b.substr(0, b.length - 1) + e;
+                    state.body = b.substring(0, b.length - 1) + e;
                     return;
                 } else {
                     return illegalEscape(state, ch);
@@ -405,7 +405,7 @@ const PARSER: FSMStateMap<ParseState, string, ParseEvent[]> = {
         if (v.charAt(v.length - 1) == "\\") {
             const e = ESCAPES[ch];
             if (e !== undefined) {
-                state.val = v.substr(0, v.length - 1) + e;
+                state.val = v.substring(0, v.length - 1) + e;
                 return;
             } else {
                 return illegalEscape(state, ch);
@@ -453,11 +453,11 @@ const PARSER: FSMStateMap<ParseState, string, ParseEvent[]> = {
         state.pos++;
         if (ch === ">") {
             const n = state.body!.length;
-            if (state.body!.substr(n - 2) !== "--") {
+            if (state.body!.substring(n - 2) !== "--") {
                 return unexpected(state, ch);
             }
             state.state = State.WAIT;
-            let b = state.body!.substr(0, n - 2);
+            let b = state.body!.substring(0, n - 2);
             if (state.opts.trim) {
                 b = b.trim();
                 if (!b.length) {
@@ -496,12 +496,12 @@ const PARSER: FSMStateMap<ParseState, string, ParseEvent[]> = {
             }
         } else if (ch === ">") {
             const n = state.body!.length;
-            if (state.body!.substr(n - 2) !== "]]") {
+            if (state.body!.substring(n - 2) !== "]]") {
                 state.body += ch;
                 return;
             }
             state.state = State.WAIT;
-            let b = state.body!.substr(0, n - 2);
+            let b = state.body!.substring(0, n - 2);
             if (state.opts.trim) {
                 b = b.trim();
                 if (!b.length) {

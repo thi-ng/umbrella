@@ -74,7 +74,7 @@ fs.writeFileSync(
                 axis: [50, width - 15, 170],
                 domain: [0, packageDeps.length, 1],
                 range: [50, width - 5],
-                ticks: [...map((x) => x[0].substr(8), packageDeps)],
+                ticks: [...map((x) => x[0].substring(8), packageDeps)],
                 label: labeledTickX,
             },
             y: {

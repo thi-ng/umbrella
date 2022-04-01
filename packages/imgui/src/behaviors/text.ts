@@ -60,13 +60,13 @@ export const handleTextfieldKeys = (
             if (cursor > 0) {
                 const next = getNext(gui, txt, cursor, -1);
                 move(next, next - cursor);
-                return txt.substr(0, next) + txt.substr(cursor);
+                return txt.substring(0, next) + txt.substring(cursor);
             }
             break;
         case Key.DELETE:
             if (cursor < txtLen) {
                 const next = getNext(gui, txt, cursor, 1);
-                return txt.substr(0, cursor) + txt.substr(next + 1);
+                return txt.substring(0, cursor) + txt.substring(next + 1);
             }
             break;
         case Key.LEFT:
@@ -90,7 +90,7 @@ export const handleTextfieldKeys = (
         default: {
             if (k.length === 1 && filter(k)) {
                 move(cursor + 1, 1);
-                return txt.substr(0, cursor) + k + txt.substr(cursor);
+                return txt.substring(0, cursor) + k + txt.substring(cursor);
             }
         }
     }

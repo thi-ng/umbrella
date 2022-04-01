@@ -7,7 +7,7 @@ export const resolveColor = css;
 export const resolveGradientOrColor = (state: DrawState, v: any) =>
     isString(v)
         ? v[0] === "$"
-            ? state.grads![v.substr(1)]
+            ? state.grads![v.substring(1)]
             : v
         : resolveColor(v);
 

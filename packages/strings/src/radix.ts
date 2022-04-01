@@ -30,7 +30,7 @@ export const radix: (
         const buf = repeat("0", n);
         return (x: any) => {
             x = (x >>> 0).toString(radix);
-            return prefix + (x.length < n ? buf.substr(x.length) + x : x);
+            return prefix + (x.length < n ? buf.substring(x.length) + x : x);
         };
     }
 );

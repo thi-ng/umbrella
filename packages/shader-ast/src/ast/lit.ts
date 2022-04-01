@@ -113,7 +113,7 @@ const $uvec = $gvec(wrapUint, UINT0);
 
 const $bvec = $gvec(wrapBool, FALSE);
 
-const $vinfo = (v: Type, info = "") => v[0] + info.substr(1);
+const $vinfo = (v: Type, info = "") => v[0] + info.substring(1);
 
 const $info = (xs: any[], info: (string | undefined)[]) =>
     isVec(xs[0]) ? $vinfo(xs[0].type, info[xs.length]) : info[xs.length];

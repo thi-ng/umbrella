@@ -5,7 +5,11 @@ import { comp } from "@thi.ng/transducers/comp";
 import { filterFuzzy } from "@thi.ng/transducers/filter-fuzzy";
 import { iterator } from "@thi.ng/transducers/iterator";
 import { map } from "@thi.ng/transducers/map";
-import { dropdownListeners, type DropdownItem, type DropdownState } from "./dropdown";
+import {
+    dropdownListeners,
+    type DropdownItem,
+    type DropdownState,
+} from "./dropdown";
 
 export interface FuzzyArgs {
     state: IView<DropdownState>;
@@ -92,6 +96,6 @@ const highlightMatches = (
             j++;
         }
     }
-    prev < n && res.push(x.substr(prev + 1));
+    prev < n && res.push(x.substring(prev + 1));
     return res;
 };

@@ -26,7 +26,10 @@ export const untilStr =
             return buf.endsWith(str)
                 ? result(
                       callback &&
-                          callback(ctx, buf.substr(0, buf.length - str.length))
+                          callback(
+                              ctx,
+                              buf.substring(0, buf.length - str.length)
+                          )
                   )
                 : RES_PARTIAL;
         };

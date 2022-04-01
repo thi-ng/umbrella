@@ -30,7 +30,7 @@ const meta = transduce(
 );
 
 writeFileSync(
-    `package-sizes-${new Date().toISOString().substr(0, 10)}.json`,
+    `package-sizes-${new Date().toISOString().substring(0, 10)}.json`,
     JSON.stringify(meta, null, 4)
 );
 console.log(meta.length);

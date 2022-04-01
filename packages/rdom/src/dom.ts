@@ -136,7 +136,7 @@ export const $el = (
             ? document.createElementNS(XML_SVG, tag)
             : document.createElement(tag);
     } else {
-        el = document.createElementNS(PREFIXES[tag.substr(0, qidx)], tag);
+        el = document.createElementNS(PREFIXES[tag.substring(0, qidx)], tag);
     }
     attribs && $attribs(el, attribs);
     body != null && $text(<any>el, body);
@@ -243,7 +243,7 @@ const setAttrib = (el: Element, id: string, val: any, attribs: any) => {
         if (isString(val)) {
             el.setAttribute(id, val);
         } else {
-            id = id.substr(2);
+            id = id.substring(2);
             isArray(val)
                 ? el.addEventListener(id, val[0], val[1])
                 : el.addEventListener(id, val);
@@ -297,7 +297,7 @@ const setAttrib = (el: Element, id: string, val: any, attribs: any) => {
                     ? el.removeAttribute(id)
                     : el.setAttribute(id, val);
             } else {
-                const ns = PREFIXES[id.substr(0, idx)];
+                const ns = PREFIXES[id.substring(0, idx)];
                 val === false || val == null
                     ? el.removeAttributeNS(ns, id)
                     : el.setAttributeNS(ns, id, val);

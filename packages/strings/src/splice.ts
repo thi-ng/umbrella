@@ -30,8 +30,8 @@ export const splice = (
     }
     to = Math.max(to, 0);
     return from <= 0
-        ? insert + src.substr(to)
+        ? insert + src.substring(to)
         : from >= src.length
         ? src + insert
-        : src.substr(0, from) + insert + src.substr(to);
+        : src.substring(0, from) + insert + src.substring(to);
 };

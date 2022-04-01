@@ -11,7 +11,7 @@ export const isAutoQVar = (x: any) =>
 
 export const autoQVar = () => AUTO_QVAR_PREFIX + (AUTO_QVAR_ID++).toString(36);
 
-export const qvarName = (x: string) => x.substr(1);
+export const qvarName = (x: string) => x.substring(1);
 
 /**
  * Returns an optimized query variable solution extractor function based

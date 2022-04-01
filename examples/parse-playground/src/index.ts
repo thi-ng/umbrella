@@ -52,7 +52,7 @@ import {
 // this uses a base64 & msgpack encoded version of the two editors
 const parseState = ((): Nullable<string[]> => {
     try {
-        return deserialize(base64Decode(location.hash.substr(1)));
+        return deserialize(base64Decode(location.hash.substring(1)));
     } catch (e) {}
 })() || [DEFAULT_GRAMMAR, DEFAULT_RULE, ...DEFAULT_INPUTS];
 

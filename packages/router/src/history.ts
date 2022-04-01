@@ -109,7 +109,7 @@ export class HTMLRouter extends BasicRouter {
             this.hashHandler ||
             ((e: HashChangeEvent) => {
                 if (!this.ignoreHashChange) {
-                    const hash = e.newURL.substr(e.newURL.indexOf("#"));
+                    const hash = e.newURL.substring(e.newURL.indexOf("#"));
                     if (hash !== this.currentPath) {
                         this.route(hash, false);
                     }

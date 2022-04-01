@@ -1,4 +1,7 @@
-import { dropdown, type DropDownOption } from "@thi.ng/hdom-components/dropdown";
+import {
+    dropdown,
+    type DropDownOption,
+} from "@thi.ng/hdom-components/dropdown";
 import { start } from "@thi.ng/hdom/start";
 import { bits } from "@thi.ng/transducers-binary/bits";
 import { comp } from "@thi.ng/transducers/comp";
@@ -130,12 +133,14 @@ const isPreset = (id: string) => presets.findIndex((x) => x[0] === id) !== -1;
 
 // Use Conway CA default state rules [[dead], [alive]] if no preset present in hash
 applyRules(
-    location.hash.length > 18 ? location.hash.substr(1) : <string>presets[1][0]
+    location.hash.length > 18
+        ? location.hash.substring(1)
+        : <string>presets[1][0]
 );
 
 // define & start main app component
 start(() => {
-    const id = location.hash.substr(1);
+    const id = location.hash.substring(1);
     return [
         "div",
         ruleBoxes("birth", 0),

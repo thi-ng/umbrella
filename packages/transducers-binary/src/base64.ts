@@ -5,7 +5,7 @@ import { isReduced, reduced } from "@thi.ng/transducers/reduced";
 
 const B64_CHARS =
     "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
-const B64_SAFE = B64_CHARS.substr(0, 62) + "-_";
+const B64_SAFE = B64_CHARS.substring(0, 62) + "-_";
 
 /**
  * Stateful transducer. Decodes base64 chars into bytes.

@@ -171,8 +171,8 @@ const convertAttrib = (res: any, id: string, v: any) => {
     switch (id) {
         case "font": {
             const i = v.indexOf(" ");
-            res["font-size"] = v.substr(0, i);
-            res["font-family"] = v.substr(i + 1);
+            res["font-size"] = v.substring(0, i);
+            res["font-family"] = v.substring(i + 1);
             break;
         }
         case "align":

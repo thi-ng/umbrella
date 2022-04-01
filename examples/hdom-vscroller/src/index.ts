@@ -48,7 +48,7 @@ const repoLink = (_: any, sha: string, body: any) => [
 
 const packageLink = (_: any, name: any) => [
     "a.link.blue",
-    { href: `${REPO_BASE}tree/develop/packages/${name.substr(8)}` },
+    { href: `${REPO_BASE}tree/develop/packages/${name.substring(8)}` },
     name,
 ];
 

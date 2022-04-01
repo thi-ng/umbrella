@@ -62,7 +62,7 @@ export const parse = (
                 node = { type: "str", value: t.substring(1, t.length - 1) };
             } else if (
                 (t.startsWith("0x") &&
-                    !isNaN((value = parseInt(t.substr(2), 16)))) ||
+                    !isNaN((value = parseInt(t.substring(2), 16)))) ||
                 !isNaN((value = parseFloat(t)))
             ) {
                 node = { type: "num", value };

@@ -1,5 +1,8 @@
 import type { Fn, IObjectOf } from "@thi.ng/api";
-import { dropdown, type DropDownOption } from "@thi.ng/hdom-components/dropdown";
+import {
+    dropdown,
+    type DropDownOption,
+} from "@thi.ng/hdom-components/dropdown";
 import { group } from "@thi.ng/hiccup-svg/group";
 import { line } from "@thi.ng/hiccup-svg/line";
 import { polygon } from "@thi.ng/hiccup-svg/polygon";
@@ -163,7 +166,7 @@ const THEMES: any = {
 const API_URL = (market: string, symbol: string, period: number) =>
     `https://min-api.cryptocompare.com/data/histo${TIMEFRAMES[
         period
-    ].toLowerCase()}?fsym=${symbol.substr(0, 3)}&tsym=${symbol.substr(
+    ].toLowerCase()}?fsym=${symbol.substring(0, 3)}&tsym=${symbol.substring(
         3
     )}&limit=168&aggregate=1&e=${market}`;
 

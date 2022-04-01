@@ -36,9 +36,9 @@ export const center: (
         x = x.toString();
         const r = (n - x.length) / 2;
         return x.length < n
-            ? buf.substr(0, r) +
+            ? buf.substring(0, r) +
                   x +
-                  buf.substr(0, r + ((n & 1) === (x.length & 1) ? 0 : 1))
+                  buf.substring(0, r + ((n & 1) === (x.length & 1) ? 0 : 1))
             : truncate(n)(x);
     };
 });
