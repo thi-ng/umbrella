@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/color-palettes",
-    "version": "0.8.0",
+    "version": "0.8.1",
     "description": "Collection of 176 image based color palettes",
     "type": "module",
     "module": "./index.js",
@@ -36,7 +36,7 @@
     },
     "devDependencies": {
         "@microsoft/api-extractor": "^7.19.4",
-        "@thi.ng/testament": "^0.2.4",
+        "@thi.ng/testament": "^0.2.5",
         "rimraf": "^3.0.2",
         "tools": "workspace:^",
         "typedoc": "^0.22.13",

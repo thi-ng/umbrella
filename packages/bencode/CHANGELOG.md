@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-03-11T12:13:49Z
+- **Last updated**: 2022-04-07T14:17:30Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,14 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [2.1.6](https://github.com/thi-ng/umbrella/tree/@thi.ng/bencode@2.1.6) (2022-04-07)
+
+#### 🩹 Bug fixes
+
+- fix [#342](https://github.com/thi-ng/umbrella/issues/342), support signed ints ([66615be](https://github.com/thi-ng/umbrella/commit/66615be))
+  - add inf/NaN checks
+  - add tests
 
 ## [2.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/bencode@2.1.0) (2021-11-17)
 

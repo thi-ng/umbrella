@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-03-11T12:13:49Z
+- **Last updated**: 2022-04-07T14:17:30Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,12 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [2.3.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/grid-iterators@2.3.0) (2022-04-07)
+
+#### 🚀 Features
+
+- add diamondSquare() ([4fabaad](https://github.com/thi-ng/umbrella/commit/4fabaad))
 
 ### [2.2.4](https://github.com/thi-ng/umbrella/tree/@thi.ng/grid-iterators@2.2.4) (2021-12-13)
 

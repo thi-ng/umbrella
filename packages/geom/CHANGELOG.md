@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-03-11T12:13:49Z
+- **Last updated**: 2022-04-07T14:17:30Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,14 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [3.2.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom@3.2.1) (2022-04-07)
+
+#### 🩹 Bug fixes
+
+- fix [#336](https://github.com/thi-ng/umbrella/issues/336), update attrib ctor arg handling ([cb8e52a](https://github.com/thi-ng/umbrella/commit/cb8e52a))
+  - update internal __argAttribs() helper
+  - add tests
 
 ## [3.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom@3.2.0) (2022-03-11)
 

@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-03-11T12:13:49Z
+- **Last updated**: 2022-04-07T14:17:30Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,12 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [2.1.6](https://github.com/thi-ng/umbrella/tree/@thi.ng/hdom-mock@2.1.6) (2022-04-07)
+
+#### ♻️ Refactoring
+
+- replace deprecated .substr() w/ .substring() ([0710509](https://github.com/thi-ng/umbrella/commit/0710509))
 
 ## [2.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/hdom-mock@2.1.0) (2021-11-17)
 
