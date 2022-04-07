@@ -86,7 +86,7 @@ node --experimental-repl-await
 > const dsp = await import("@thi.ng/dsp");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 7.54 KB
+Package sizes (gzipped, pre-treeshake): ESM: 7.56 KB
 
 ## Dependencies
 

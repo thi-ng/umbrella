@@ -72,7 +72,7 @@ node --experimental-repl-await
 > const sexpr = await import("@thi.ng/sexpr");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 836 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 835 bytes
 
 ## Dependencies
 
