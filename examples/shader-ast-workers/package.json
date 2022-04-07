@@ -7,9 +7,8 @@
     "author": "Karsten Schmidt <k+npm@thi.ng>",
     "license": "Apache-2.0",
     "scripts": {
-        "start": "yarn build:worker && vite",
-        "build": "yarn build:worker && vite build && cp assets/worker.js dist/assets/",
-        "build:worker": "../../node_modules/.bin/esbuild --bundle src/worker.ts --outfile=assets/worker.js --minify",
+        "start": "vite --open",
+        "build": "tsc && vite build --base='./'",
         "preview": "vite preview"
     },
     "dependencies": {

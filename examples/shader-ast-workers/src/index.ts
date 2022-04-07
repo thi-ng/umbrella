@@ -5,6 +5,7 @@ import { forkJoin } from "@thi.ng/rstream/forkjoin";
 import { reactive } from "@thi.ng/rstream/stream";
 import { bounds } from "@thi.ng/transducers-stats/bounds";
 import { NUM_WORKERS, type WorkerJob, type WorkerResult } from "./api";
+import WORKER from "./worker?worker";
 
 const W = 256;
 const H = 256;
@@ -41,7 +42,7 @@ forkJoin<number, WorkerJob, WorkerResult, void>({
         // trigger next update
         time.next(time.deref()! + 0.05);
     },
-    worker: "./assets/worker.js",
+    worker: () => new WORKER(),
     numWorkers: NUM_WORKERS,
 });
 
