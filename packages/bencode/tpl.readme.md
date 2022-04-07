@@ -18,7 +18,7 @@ decoder for structured data.
 
 #### Booleans
 
-Will be converted to `0` or `1`.
+Will be converted to `0` or `1` integers.
 
 #### String handling
 
@@ -28,13 +28,14 @@ Bencode strings (e.g. `len:xxx...`), but are used as is.
 
 #### Floating point values
 
-This implementation has optional (non-standard) support for floating
-point values. If these are not desired (e.g. for compatibility reasons),
-all numeric values MUST be pre-rounded to integers. The encoder only
-chooses the custom float encoding iff a number has a fractional part.
-Floats are encoded similarly to standard ints (i.e. as text), but using
-`f` as prefix. Furthermore, only floats with an absolute value in the
-semi-open `[1e-6,1e21)` interval can be encoded.
+This implementation has optional (non-standard) support for floating point
+values. If these are not desired (e.g. for compatibility reasons), all numeric
+values MUST be pre-rounded to integers. The encoder only chooses the custom
+float encoding iff a number has a fractional part. Floats are encoded similarly
+to standard ints (i.e. as text), but using `f` as prefix. Furthermore, only
+floats with an absolute value in the semi-open `[1e-6,1e21)` interval can be
+encoded. Float values requiring exponential notation will throw an error during
+encoding.
 
 ${status}
 

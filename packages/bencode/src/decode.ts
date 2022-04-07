@@ -118,12 +118,16 @@ const collect = (stack: any[], x: any, utf8 = false) => {
 const readInt = (iter: Iterator<number>, acc: number, end = Lit.END) => {
     let i: IteratorResult<number>;
     let x: number;
+    let isSigned = false;
     while (!(i = iter.next()).done) {
         x = i.value;
         if (x >= Lit.ZERO && x <= Lit.NINE) {
             acc = acc * 10 + x - Lit.ZERO;
+        } else if (x === Lit.MINUS) {
+            assert(!isSigned, `invalid int literal`);
+            isSigned = true;
         } else if (x === end) {
-            return acc;
+            return isSigned ? -acc : acc;
         } else {
             illegalState(`expected digit, got 0x${x.toString(16)}`);
         }

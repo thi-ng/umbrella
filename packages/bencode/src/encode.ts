@@ -53,12 +53,16 @@ const encodeBin: MultiFn1<any, BinStructItem[]> = defmulti<
             : unsupported(`unsupported data type: ${x}`),
     {},
     {
-        [Type.INT]: (x: number) => [str(`i${Math.floor(x)}e`)],
+        [Type.INT]: (x: number) => {
+            __ensureValidNumber(x);
+            return [str(`i${Math.floor(x)}e`)];
+        },
 
         [Type.FLOAT]: (x: number) => {
+            __ensureValidNumber(x);
             assert(
                 FLOAT_RE.test(x.toString()),
-                `exponential notation not allowed (${x})`
+                `values requiring exponential notation not allowed (${x})`
             );
             return [str(`f${x}e`)];
         },
@@ -86,3 +90,9 @@ const encodeBin: MultiFn1<any, BinStructItem[]> = defmulti<
         ],
     }
 );
+
+/** @internal */
+const __ensureValidNumber = (x: number) => {
+    assert(isFinite(x), `can't encode infinite value`);
+    assert(!isNaN(x), `can't encode NaN`);
+};
