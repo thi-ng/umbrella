@@ -34,11 +34,9 @@
         "test": "testament test",
         "tool:convert": "tools:node-esm tools/convert.ts"
     },
-    "dependencies": {
-        "@thi.ng/api": "^8.3.4"
-    },
     "devDependencies": {
         "@microsoft/api-extractor": "^7.19.4",
+        "@thi.ng/api": "^8.3.4",
         "@thi.ng/testament": "^0.2.4",
         "rimraf": "^3.0.2",
         "tools": "workspace:^",
