@@ -37,6 +37,8 @@ const INCLUDE = new Set<string>([
 ]);
 
 const LO_PRIORITIES: IObjectOf<string> = {
+    js: "application/javascript",
+    mjs: "application/javascript",
     "3gpp": "audio/3gpp",
     jpm: "video/jpm",
     markdown: "text/markdown",
@@ -68,6 +70,9 @@ const dest: IObjectOf<IObjectOf<string>> = {
         // Houdini geometry formats
         "x-sidefx-houdini": "geo",
         "x-sidefx-houdini+binary": "bgeo",
+    },
+    text: {
+        javascript: "js,mjs",
     },
 };
 

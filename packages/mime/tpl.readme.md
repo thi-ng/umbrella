@@ -14,10 +14,13 @@ This project is part of the
 ${pkg.description}
 
 All MIME type mappings based on [mime-db](https://github.com/jshttp/mime-db)
-(2021-03-26). For filesize reasons only [a small selected
+(2022-04-07). For filesize reasons only [a small selected
 number](https://github.com/thi-ng/umbrella/blob/develop/packages/mime/tools/convert.ts#L7)
 of vendor MIME types (aka `*/vnd.*`) are included. Most of the omitted ones are
 fairly obscure anyway, so likely not problematic...
+
+Additionally, this package defines several MIME types not included in the
+original DB, as well as some preference overrides.
 
 ${status}
 
