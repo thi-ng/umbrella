@@ -10,7 +10,7 @@ import type { Vec } from "@thi.ng/vectors";
 import { cartesian2 } from "@thi.ng/vectors/cartesian";
 import { Polygon } from "./api/polygon.js";
 
-export const polygon = (pts: Vec[], attribs?: Attribs) =>
+export const polygon = (pts?: Vec[], attribs?: Attribs) =>
     new Polygon(pts, attribs);
 
 export const star = (

@@ -1,18 +1,25 @@
-import { peek } from "@thi.ng/arrays/peek";
 import { isNumber } from "@thi.ng/checks/is-number";
 import { isPlainObject } from "@thi.ng/checks/is-plain-object";
 
 /**
- * Takes an array of arguments, checks if last element is a plain object
- * and if so, removes it from array and returns it. Else returns
- * `undefined`.
+ * Takes an array of arguments, checks if last element is a plain object or
+ * nullish and if so, removes value from array and returns it (`null` will be
+ * cast to `undefined`). Else returns `undefined`.
  *
  * @param args -
  *
  * @internal
  */
-export const __argAttribs = (args: any[]) =>
-    isPlainObject(peek(args)) ? args.pop() : undefined;
+export const __argAttribs = (args: any[]) => {
+    if (args.length) {
+        const last = args[args.length - 1];
+        return isPlainObject(last)
+            ? args.pop()
+            : last == null
+            ? (args.pop(), undefined)
+            : undefined;
+    }
+};
 
 /**
  * Args parser for functions expecting up to 2 vector args and optional
