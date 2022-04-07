@@ -67,19 +67,19 @@
     ],
     "exports": {
         ".": {
-            "import": "./index.js"
+            "default": "./index.js"
         },
         "./api": {
-            "import": "./api.js"
+            "default": "./api.js"
         },
         "./format": {
-            "import": "./format.js"
+            "default": "./format.js"
         },
         "./parse": {
-            "import": "./parse.js"
+            "default": "./parse.js"
         },
         "./transforms": {
-            "import": "./transforms.js"
+            "default": "./transforms.js"
         }
     },
     "thi.ng": {

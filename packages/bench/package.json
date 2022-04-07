@@ -77,34 +77,34 @@
     ],
     "exports": {
         ".": {
-            "import": "./index.js"
+            "default": "./index.js"
         },
         "./api": {
-            "import": "./api.js"
+            "default": "./api.js"
         },
         "./bench": {
-            "import": "./bench.js"
+            "default": "./bench.js"
         },
         "./benchmark": {
-            "import": "./benchmark.js"
+            "default": "./benchmark.js"
         },
         "./format/csv": {
-            "import": "./format/csv.js"
+            "default": "./format/csv.js"
         },
         "./format/default": {
-            "import": "./format/default.js"
+            "default": "./format/default.js"
         },
         "./format/markdown": {
-            "import": "./format/markdown.js"
+            "default": "./format/markdown.js"
         },
         "./now": {
-            "import": "./now.js"
+            "default": "./now.js"
         },
         "./suite": {
-            "import": "./suite.js"
+            "default": "./suite.js"
         },
         "./timed": {
-            "import": "./timed.js"
+            "default": "./timed.js"
         }
     },
     "thi.ng": {

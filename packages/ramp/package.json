@@ -74,19 +74,19 @@
     ],
     "exports": {
         ".": {
-            "import": "./index.js"
+            "default": "./index.js"
         },
         "./api": {
-            "import": "./api.js"
+            "default": "./api.js"
         },
         "./aramp": {
-            "import": "./aramp.js"
+            "default": "./aramp.js"
         },
         "./hermite": {
-            "import": "./hermite.js"
+            "default": "./hermite.js"
         },
         "./linear": {
-            "import": "./linear.js"
+            "default": "./linear.js"
         }
     },
     "thi.ng": {

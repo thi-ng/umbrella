@@ -73,28 +73,28 @@
     ],
     "exports": {
         ".": {
-            "import": "./index.js"
+            "default": "./index.js"
         },
         "./accordion": {
-            "import": "./accordion.js"
+            "default": "./accordion.js"
         },
         "./dropdown": {
-            "import": "./dropdown.js"
+            "default": "./dropdown.js"
         },
         "./editor": {
-            "import": "./editor.js"
+            "default": "./editor.js"
         },
         "./icon-button": {
-            "import": "./icon-button.js"
+            "default": "./icon-button.js"
         },
         "./input": {
-            "import": "./input.js"
+            "default": "./input.js"
         },
         "./radio": {
-            "import": "./radio.js"
+            "default": "./radio.js"
         },
         "./tabs": {
-            "import": "./tabs.js"
+            "default": "./tabs.js"
         }
     },
     "thi.ng": {

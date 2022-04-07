@@ -77,58 +77,58 @@
     ],
     "exports": {
         ".": {
-            "import": "./index.js"
+            "default": "./index.js"
         },
         "./api": {
-            "import": "./api.js"
+            "default": "./api.js"
         },
         "./circle": {
-            "import": "./circle.js"
+            "default": "./circle.js"
         },
         "./convert": {
-            "import": "./convert.js"
+            "default": "./convert.js"
         },
         "./defs": {
-            "import": "./defs.js"
+            "default": "./defs.js"
         },
         "./ellipse": {
-            "import": "./ellipse.js"
+            "default": "./ellipse.js"
         },
         "./format": {
-            "import": "./format.js"
+            "default": "./format.js"
         },
         "./gradients": {
-            "import": "./gradients.js"
+            "default": "./gradients.js"
         },
         "./group": {
-            "import": "./group.js"
+            "default": "./group.js"
         },
         "./image": {
-            "import": "./image.js"
+            "default": "./image.js"
         },
         "./line": {
-            "import": "./line.js"
+            "default": "./line.js"
         },
         "./path": {
-            "import": "./path.js"
+            "default": "./path.js"
         },
         "./points": {
-            "import": "./points.js"
+            "default": "./points.js"
         },
         "./polygon": {
-            "import": "./polygon.js"
+            "default": "./polygon.js"
         },
         "./polyline": {
-            "import": "./polyline.js"
+            "default": "./polyline.js"
         },
         "./rect": {
-            "import": "./rect.js"
+            "default": "./rect.js"
         },
         "./svg": {
-            "import": "./svg.js"
+            "default": "./svg.js"
         },
         "./text": {
-            "import": "./text.js"
+            "default": "./text.js"
         }
     },
     "thi.ng": {

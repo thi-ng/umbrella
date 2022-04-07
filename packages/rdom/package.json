@@ -81,52 +81,52 @@
     ],
     "exports": {
         ".": {
-            "import": "./index.js"
+            "default": "./index.js"
         },
         "./api": {
-            "import": "./api.js"
+            "default": "./api.js"
         },
         "./checks": {
-            "import": "./checks.js"
+            "default": "./checks.js"
         },
         "./compile": {
-            "import": "./compile.js"
+            "default": "./compile.js"
         },
         "./component": {
-            "import": "./component.js"
+            "default": "./component.js"
         },
         "./dom": {
-            "import": "./dom.js"
+            "default": "./dom.js"
         },
         "./event": {
-            "import": "./event.js"
+            "default": "./event.js"
         },
         "./klist": {
-            "import": "./klist.js"
+            "default": "./klist.js"
         },
         "./list": {
-            "import": "./list.js"
+            "default": "./list.js"
         },
         "./object": {
-            "import": "./object.js"
+            "default": "./object.js"
         },
         "./promise": {
-            "import": "./promise.js"
+            "default": "./promise.js"
         },
         "./replace": {
-            "import": "./replace.js"
+            "default": "./replace.js"
         },
         "./scheduler": {
-            "import": "./scheduler.js"
+            "default": "./scheduler.js"
         },
         "./sub": {
-            "import": "./sub.js"
+            "default": "./sub.js"
         },
         "./switch": {
-            "import": "./switch.js"
+            "default": "./switch.js"
         },
         "./wrap": {
-            "import": "./wrap.js"
+            "default": "./wrap.js"
         }
     },
     "thi.ng": {

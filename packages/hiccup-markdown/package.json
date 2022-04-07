@@ -78,16 +78,16 @@
     ],
     "exports": {
         ".": {
-            "import": "./index.js"
+            "default": "./index.js"
         },
         "./api": {
-            "import": "./api.js"
+            "default": "./api.js"
         },
         "./parse": {
-            "import": "./parse.js"
+            "default": "./parse.js"
         },
         "./serialize": {
-            "import": "./serialize.js"
+            "default": "./serialize.js"
         }
     },
     "thi.ng": {

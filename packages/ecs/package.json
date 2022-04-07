@@ -85,37 +85,37 @@
     ],
     "exports": {
         ".": {
-            "import": "./index.js"
+            "default": "./index.js"
         },
         "./api": {
-            "import": "./api.js"
+            "default": "./api.js"
         },
         "./caches/lru": {
-            "import": "./caches/lru.js"
+            "default": "./caches/lru.js"
         },
         "./caches/null": {
-            "import": "./caches/null.js"
+            "default": "./caches/null.js"
         },
         "./caches/unbounded": {
-            "import": "./caches/unbounded.js"
+            "default": "./caches/unbounded.js"
         },
         "./components/acomponent": {
-            "import": "./components/acomponent.js"
+            "default": "./components/acomponent.js"
         },
         "./components/mem-component": {
-            "import": "./components/mem-component.js"
+            "default": "./components/mem-component.js"
         },
         "./components/object-component": {
-            "import": "./components/object-component.js"
+            "default": "./components/object-component.js"
         },
         "./ecs": {
-            "import": "./ecs.js"
+            "default": "./ecs.js"
         },
         "./groups/group": {
-            "import": "./groups/group.js"
+            "default": "./groups/group.js"
         },
         "./logger": {
-            "import": "./logger.js"
+            "default": "./logger.js"
         }
     },
     "thi.ng": {

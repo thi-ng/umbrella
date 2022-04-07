@@ -76,67 +76,67 @@
     ],
     "exports": {
         ".": {
-            "import": "./index.js"
+            "default": "./index.js"
         },
         "./api": {
-            "import": "./api.js"
+            "default": "./api.js"
         },
         "./env/bvec": {
-            "import": "./env/bvec.js"
+            "default": "./env/bvec.js"
         },
         "./env/float": {
-            "import": "./env/float.js"
+            "default": "./env/float.js"
         },
         "./env/int": {
-            "import": "./env/int.js"
+            "default": "./env/int.js"
         },
         "./env/ivec2": {
-            "import": "./env/ivec2.js"
+            "default": "./env/ivec2.js"
         },
         "./env/ivec3": {
-            "import": "./env/ivec3.js"
+            "default": "./env/ivec3.js"
         },
         "./env/ivec4": {
-            "import": "./env/ivec4.js"
+            "default": "./env/ivec4.js"
         },
         "./env/mat2": {
-            "import": "./env/mat2.js"
+            "default": "./env/mat2.js"
         },
         "./env/mat3": {
-            "import": "./env/mat3.js"
+            "default": "./env/mat3.js"
         },
         "./env/mat4": {
-            "import": "./env/mat4.js"
+            "default": "./env/mat4.js"
         },
         "./env/uint": {
-            "import": "./env/uint.js"
+            "default": "./env/uint.js"
         },
         "./env/uvec2": {
-            "import": "./env/uvec2.js"
+            "default": "./env/uvec2.js"
         },
         "./env/uvec3": {
-            "import": "./env/uvec3.js"
+            "default": "./env/uvec3.js"
         },
         "./env/uvec4": {
-            "import": "./env/uvec4.js"
+            "default": "./env/uvec4.js"
         },
         "./env/vec2": {
-            "import": "./env/vec2.js"
+            "default": "./env/vec2.js"
         },
         "./env/vec3": {
-            "import": "./env/vec3.js"
+            "default": "./env/vec3.js"
         },
         "./env/vec4": {
-            "import": "./env/vec4.js"
+            "default": "./env/vec4.js"
         },
         "./env": {
-            "import": "./env.js"
+            "default": "./env.js"
         },
         "./runtime": {
-            "import": "./runtime.js"
+            "default": "./runtime.js"
         },
         "./target": {
-            "import": "./target.js"
+            "default": "./target.js"
         }
     },
     "thi.ng": {

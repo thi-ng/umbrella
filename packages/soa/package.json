@@ -78,19 +78,19 @@
     ],
     "exports": {
         ".": {
-            "import": "./index.js"
+            "default": "./index.js"
         },
         "./aos": {
-            "import": "./aos.js"
+            "default": "./aos.js"
         },
         "./api": {
-            "import": "./api.js"
+            "default": "./api.js"
         },
         "./serialize": {
-            "import": "./serialize.js"
+            "default": "./serialize.js"
         },
         "./soa": {
-            "import": "./soa.js"
+            "default": "./soa.js"
         }
     },
     "thi.ng": {

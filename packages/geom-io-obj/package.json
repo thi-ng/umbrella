@@ -70,13 +70,13 @@
     ],
     "exports": {
         ".": {
-            "import": "./index.js"
+            "default": "./index.js"
         },
         "./api": {
-            "import": "./api.js"
+            "default": "./api.js"
         },
         "./parser": {
-            "import": "./parser.js"
+            "default": "./parser.js"
         }
     },
     "thi.ng": {

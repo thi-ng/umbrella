@@ -76,52 +76,52 @@
     ],
     "exports": {
         ".": {
-            "import": "./index.js"
+            "default": "./index.js"
         },
         "./align": {
-            "import": "./align.js"
+            "default": "./align.js"
         },
         "./api": {
-            "import": "./api.js"
+            "default": "./api.js"
         },
         "./bytes": {
-            "import": "./bytes.js"
+            "default": "./bytes.js"
         },
         "./constants": {
-            "import": "./constants.js"
+            "default": "./constants.js"
         },
         "./count": {
-            "import": "./count.js"
+            "default": "./count.js"
         },
         "./edit": {
-            "import": "./edit.js"
+            "default": "./edit.js"
         },
         "./float": {
-            "import": "./float.js"
+            "default": "./float.js"
         },
         "./gray": {
-            "import": "./gray.js"
+            "default": "./gray.js"
         },
         "./logic": {
-            "import": "./logic.js"
+            "default": "./logic.js"
         },
         "./mask": {
-            "import": "./mask.js"
+            "default": "./mask.js"
         },
         "./one-hot": {
-            "import": "./one-hot.js"
+            "default": "./one-hot.js"
         },
         "./pow": {
-            "import": "./pow.js"
+            "default": "./pow.js"
         },
         "./rotate": {
-            "import": "./rotate.js"
+            "default": "./rotate.js"
         },
         "./splat": {
-            "import": "./splat.js"
+            "default": "./splat.js"
         },
         "./swizzle": {
-            "import": "./swizzle.js"
+            "default": "./swizzle.js"
         }
     },
     "thi.ng": {

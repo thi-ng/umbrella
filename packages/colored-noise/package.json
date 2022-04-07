@@ -79,25 +79,25 @@
     ],
     "exports": {
         ".": {
-            "import": "./index.js"
+            "default": "./index.js"
         },
         "./blue": {
-            "import": "./blue.js"
+            "default": "./blue.js"
         },
         "./green": {
-            "import": "./green.js"
+            "default": "./green.js"
         },
         "./pink": {
-            "import": "./pink.js"
+            "default": "./pink.js"
         },
         "./red": {
-            "import": "./red.js"
+            "default": "./red.js"
         },
         "./violet": {
-            "import": "./violet.js"
+            "default": "./violet.js"
         },
         "./white": {
-            "import": "./white.js"
+            "default": "./white.js"
         }
     },
     "thi.ng": {

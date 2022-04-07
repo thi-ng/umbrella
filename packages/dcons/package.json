@@ -74,22 +74,22 @@
     ],
     "exports": {
         ".": {
-            "import": "./index.js"
+            "default": "./index.js"
         },
         "./alist": {
-            "import": "./alist.js"
+            "default": "./alist.js"
         },
         "./api": {
-            "import": "./api.js"
+            "default": "./api.js"
         },
         "./dcons": {
-            "import": "./dcons.js"
+            "default": "./dcons.js"
         },
         "./ring": {
-            "import": "./ring.js"
+            "default": "./ring.js"
         },
         "./sol": {
-            "import": "./sol.js"
+            "default": "./sol.js"
         }
     },
     "thi.ng": {

@@ -68,19 +68,19 @@
     ],
     "exports": {
         ".": {
-            "import": "./index.js"
+            "default": "./index.js"
         },
         "./api": {
-            "import": "./api.js"
+            "default": "./api.js"
         },
         "./box": {
-            "import": "./box.js"
+            "default": "./box.js"
         },
         "./checks": {
-            "import": "./checks.js"
+            "default": "./checks.js"
         },
         "./grid-layout": {
-            "import": "./grid-layout.js"
+            "default": "./grid-layout.js"
         }
     },
     "thi.ng": {

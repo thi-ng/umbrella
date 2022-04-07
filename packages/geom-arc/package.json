@@ -75,22 +75,22 @@
     ],
     "exports": {
         ".": {
-            "import": "./index.js"
+            "default": "./index.js"
         },
         "./bounds": {
-            "import": "./bounds.js"
+            "default": "./bounds.js"
         },
         "./closest-point": {
-            "import": "./closest-point.js"
+            "default": "./closest-point.js"
         },
         "./from-endpoints": {
-            "import": "./from-endpoints.js"
+            "default": "./from-endpoints.js"
         },
         "./point-at": {
-            "import": "./point-at.js"
+            "default": "./point-at.js"
         },
         "./sample": {
-            "import": "./sample.js"
+            "default": "./sample.js"
         }
     },
     "thi.ng": {

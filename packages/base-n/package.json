@@ -73,37 +73,37 @@
     ],
     "exports": {
         ".": {
-            "import": "./index.js"
+            "default": "./index.js"
         },
         "./16": {
-            "import": "./16.js"
+            "default": "./16.js"
         },
         "./32": {
-            "import": "./32.js"
+            "default": "./32.js"
         },
         "./36": {
-            "import": "./36.js"
+            "default": "./36.js"
         },
         "./58": {
-            "import": "./58.js"
+            "default": "./58.js"
         },
         "./62": {
-            "import": "./62.js"
+            "default": "./62.js"
         },
         "./64": {
-            "import": "./64.js"
+            "default": "./64.js"
         },
         "./8": {
-            "import": "./8.js"
+            "default": "./8.js"
         },
         "./85": {
-            "import": "./85.js"
+            "default": "./85.js"
         },
         "./api": {
-            "import": "./api.js"
+            "default": "./api.js"
         },
         "./base": {
-            "import": "./base.js"
+            "default": "./base.js"
         }
     },
     "thi.ng": {

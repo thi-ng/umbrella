@@ -71,19 +71,19 @@
     ],
     "exports": {
         ".": {
-            "import": "./index.js"
+            "default": "./index.js"
         },
         "./api": {
-            "import": "./api.js"
+            "default": "./api.js"
         },
         "./parse": {
-            "import": "./parse.js"
+            "default": "./parse.js"
         },
         "./runtime": {
-            "import": "./runtime.js"
+            "default": "./runtime.js"
         },
         "./tokenize": {
-            "import": "./tokenize.js"
+            "default": "./tokenize.js"
         }
     },
     "thi.ng": {

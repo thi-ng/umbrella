@@ -78,16 +78,16 @@
     ],
     "exports": {
         ".": {
-            "import": "./index.js"
+            "default": "./index.js"
         },
         "./resample": {
-            "import": "./resample.js"
+            "default": "./resample.js"
         },
         "./sampler": {
-            "import": "./sampler.js"
+            "default": "./sampler.js"
         },
         "./simplify": {
-            "import": "./simplify.js"
+            "default": "./simplify.js"
         }
     },
     "thi.ng": {

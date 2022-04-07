@@ -124,295 +124,295 @@
     ],
     "exports": {
         ".": {
-            "import": "./index.js"
+            "default": "./index.js"
         },
         "./alpha": {
-            "import": "./alpha.js"
+            "default": "./alpha.js"
         },
         "./analog": {
-            "import": "./analog.js"
+            "default": "./analog.js"
         },
         "./api/constants": {
-            "import": "./api/constants.js"
+            "default": "./api/constants.js"
         },
         "./api/gradients": {
-            "import": "./api/gradients.js"
+            "default": "./api/gradients.js"
         },
         "./api/names": {
-            "import": "./api/names.js"
+            "default": "./api/names.js"
         },
         "./api/ranges": {
-            "import": "./api/ranges.js"
+            "default": "./api/ranges.js"
         },
         "./api/system": {
-            "import": "./api/system.js"
+            "default": "./api/system.js"
         },
         "./api": {
-            "import": "./api.js"
+            "default": "./api.js"
         },
         "./clamp": {
-            "import": "./clamp.js"
+            "default": "./clamp.js"
         },
         "./closest-hue": {
-            "import": "./closest-hue.js"
+            "default": "./closest-hue.js"
         },
         "./color-range": {
-            "import": "./color-range.js"
+            "default": "./color-range.js"
         },
         "./color": {
-            "import": "./color.js"
+            "default": "./color.js"
         },
         "./convert": {
-            "import": "./convert.js"
+            "default": "./convert.js"
         },
         "./cosine-gradients": {
-            "import": "./cosine-gradients.js"
+            "default": "./cosine-gradients.js"
         },
         "./css/css": {
-            "import": "./css/css.js"
+            "default": "./css/css.js"
         },
         "./css/parse-css": {
-            "import": "./css/parse-css.js"
+            "default": "./css/parse-css.js"
         },
         "./defcolor": {
-            "import": "./defcolor.js"
+            "default": "./defcolor.js"
         },
         "./distance": {
-            "import": "./distance.js"
+            "default": "./distance.js"
         },
         "./gradients": {
-            "import": "./gradients.js"
+            "default": "./gradients.js"
         },
         "./hcy/hcy-rgb": {
-            "import": "./hcy/hcy-rgb.js"
+            "default": "./hcy/hcy-rgb.js"
         },
         "./hcy/hcy": {
-            "import": "./hcy/hcy.js"
+            "default": "./hcy/hcy.js"
         },
         "./hsi/hsi-rgb": {
-            "import": "./hsi/hsi-rgb.js"
+            "default": "./hsi/hsi-rgb.js"
         },
         "./hsi/hsi": {
-            "import": "./hsi/hsi.js"
+            "default": "./hsi/hsi.js"
         },
         "./hsl/hsl-css": {
-            "import": "./hsl/hsl-css.js"
+            "default": "./hsl/hsl-css.js"
         },
         "./hsl/hsl-hsv": {
-            "import": "./hsl/hsl-hsv.js"
+            "default": "./hsl/hsl-hsv.js"
         },
         "./hsl/hsl-rgb": {
-            "import": "./hsl/hsl-rgb.js"
+            "default": "./hsl/hsl-rgb.js"
         },
         "./hsl/hsl": {
-            "import": "./hsl/hsl.js"
+            "default": "./hsl/hsl.js"
         },
         "./hsv/hsv-css": {
-            "import": "./hsv/hsv-css.js"
+            "default": "./hsv/hsv-css.js"
         },
         "./hsv/hsv-hsl": {
-            "import": "./hsv/hsv-hsl.js"
+            "default": "./hsv/hsv-hsl.js"
         },
         "./hsv/hsv-rgb": {
-            "import": "./hsv/hsv-rgb.js"
+            "default": "./hsv/hsv-rgb.js"
         },
         "./hsv/hsv": {
-            "import": "./hsv/hsv.js"
+            "default": "./hsv/hsv.js"
         },
         "./int/int-css": {
-            "import": "./int/int-css.js"
+            "default": "./int/int-css.js"
         },
         "./int/int-int": {
-            "import": "./int/int-int.js"
+            "default": "./int/int-int.js"
         },
         "./int/int-rgb": {
-            "import": "./int/int-rgb.js"
+            "default": "./int/int-rgb.js"
         },
         "./int/int-srgb": {
-            "import": "./int/int-srgb.js"
+            "default": "./int/int-srgb.js"
         },
         "./int/int": {
-            "import": "./int/int.js"
+            "default": "./int/int.js"
         },
         "./invert": {
-            "import": "./invert.js"
+            "default": "./invert.js"
         },
         "./is-black": {
-            "import": "./is-black.js"
+            "default": "./is-black.js"
         },
         "./is-gamut": {
-            "import": "./is-gamut.js"
+            "default": "./is-gamut.js"
         },
         "./is-gray": {
-            "import": "./is-gray.js"
+            "default": "./is-gray.js"
         },
         "./is-white": {
-            "import": "./is-white.js"
+            "default": "./is-white.js"
         },
         "./lab/lab-css": {
-            "import": "./lab/lab-css.js"
+            "default": "./lab/lab-css.js"
         },
         "./lab/lab-lab": {
-            "import": "./lab/lab-lab.js"
+            "default": "./lab/lab-lab.js"
         },
         "./lab/lab-lch": {
-            "import": "./lab/lab-lch.js"
+            "default": "./lab/lab-lch.js"
         },
         "./lab/lab-rgb": {
-            "import": "./lab/lab-rgb.js"
+            "default": "./lab/lab-rgb.js"
         },
         "./lab/lab-xyz": {
-            "import": "./lab/lab-xyz.js"
+            "default": "./lab/lab-xyz.js"
         },
         "./lab/lab50": {
-            "import": "./lab/lab50.js"
+            "default": "./lab/lab50.js"
         },
         "./lab/lab65": {
-            "import": "./lab/lab65.js"
+            "default": "./lab/lab65.js"
         },
         "./lch/lch-css": {
-            "import": "./lch/lch-css.js"
+            "default": "./lch/lch-css.js"
         },
         "./lch/lch": {
-            "import": "./lch/lch.js"
+            "default": "./lch/lch.js"
         },
         "./lighten": {
-            "import": "./lighten.js"
+            "default": "./lighten.js"
         },
         "./linear": {
-            "import": "./linear.js"
+            "default": "./linear.js"
         },
         "./luminance-rgb": {
-            "import": "./luminance-rgb.js"
+            "default": "./luminance-rgb.js"
         },
         "./luminance": {
-            "import": "./luminance.js"
+            "default": "./luminance.js"
         },
         "./max-chroma": {
-            "import": "./max-chroma.js"
+            "default": "./max-chroma.js"
         },
         "./mix": {
-            "import": "./mix.js"
+            "default": "./mix.js"
         },
         "./oklab/oklab-rgb": {
-            "import": "./oklab/oklab-rgb.js"
+            "default": "./oklab/oklab-rgb.js"
         },
         "./oklab/oklab-xyz": {
-            "import": "./oklab/oklab-xyz.js"
+            "default": "./oklab/oklab-xyz.js"
         },
         "./oklab/oklab": {
-            "import": "./oklab/oklab.js"
+            "default": "./oklab/oklab.js"
         },
         "./rgb/hue-rgb": {
-            "import": "./rgb/hue-rgb.js"
+            "default": "./rgb/hue-rgb.js"
         },
         "./rgb/kelvin-rgba": {
-            "import": "./rgb/kelvin-rgba.js"
+            "default": "./rgb/kelvin-rgba.js"
         },
         "./rgb/rgb-css": {
-            "import": "./rgb/rgb-css.js"
+            "default": "./rgb/rgb-css.js"
         },
         "./rgb/rgb-hcv": {
-            "import": "./rgb/rgb-hcv.js"
+            "default": "./rgb/rgb-hcv.js"
         },
         "./rgb/rgb-hcy": {
-            "import": "./rgb/rgb-hcy.js"
+            "default": "./rgb/rgb-hcy.js"
         },
         "./rgb/rgb-hsi": {
-            "import": "./rgb/rgb-hsi.js"
+            "default": "./rgb/rgb-hsi.js"
         },
         "./rgb/rgb-hsl": {
-            "import": "./rgb/rgb-hsl.js"
+            "default": "./rgb/rgb-hsl.js"
         },
         "./rgb/rgb-hsv": {
-            "import": "./rgb/rgb-hsv.js"
+            "default": "./rgb/rgb-hsv.js"
         },
         "./rgb/rgb-lab": {
-            "import": "./rgb/rgb-lab.js"
+            "default": "./rgb/rgb-lab.js"
         },
         "./rgb/rgb-oklab": {
-            "import": "./rgb/rgb-oklab.js"
+            "default": "./rgb/rgb-oklab.js"
         },
         "./rgb/rgb-srgb": {
-            "import": "./rgb/rgb-srgb.js"
+            "default": "./rgb/rgb-srgb.js"
         },
         "./rgb/rgb-xyz": {
-            "import": "./rgb/rgb-xyz.js"
+            "default": "./rgb/rgb-xyz.js"
         },
         "./rgb/rgb-ycc": {
-            "import": "./rgb/rgb-ycc.js"
+            "default": "./rgb/rgb-ycc.js"
         },
         "./rgb/rgb": {
-            "import": "./rgb/rgb.js"
+            "default": "./rgb/rgb.js"
         },
         "./rotate": {
-            "import": "./rotate.js"
+            "default": "./rotate.js"
         },
         "./sort": {
-            "import": "./sort.js"
+            "default": "./sort.js"
         },
         "./srgb/srgb-css": {
-            "import": "./srgb/srgb-css.js"
+            "default": "./srgb/srgb-css.js"
         },
         "./srgb/srgb-int": {
-            "import": "./srgb/srgb-int.js"
+            "default": "./srgb/srgb-int.js"
         },
         "./srgb/srgb-rgb": {
-            "import": "./srgb/srgb-rgb.js"
+            "default": "./srgb/srgb-rgb.js"
         },
         "./srgb/srgb": {
-            "import": "./srgb/srgb.js"
+            "default": "./srgb/srgb.js"
         },
         "./strategies": {
-            "import": "./strategies.js"
+            "default": "./strategies.js"
         },
         "./swatches": {
-            "import": "./swatches.js"
+            "default": "./swatches.js"
         },
         "./tint": {
-            "import": "./tint.js"
+            "default": "./tint.js"
         },
         "./transform": {
-            "import": "./transform.js"
+            "default": "./transform.js"
         },
         "./variations": {
-            "import": "./variations.js"
+            "default": "./variations.js"
         },
         "./xyy/xyy-xyz": {
-            "import": "./xyy/xyy-xyz.js"
+            "default": "./xyy/xyy-xyz.js"
         },
         "./xyy/xyy": {
-            "import": "./xyy/xyy.js"
+            "default": "./xyy/xyy.js"
         },
         "./xyz/wavelength-xyz": {
-            "import": "./xyz/wavelength-xyz.js"
+            "default": "./xyz/wavelength-xyz.js"
         },
         "./xyz/xyz-lab": {
-            "import": "./xyz/xyz-lab.js"
+            "default": "./xyz/xyz-lab.js"
         },
         "./xyz/xyz-oklab": {
-            "import": "./xyz/xyz-oklab.js"
+            "default": "./xyz/xyz-oklab.js"
         },
         "./xyz/xyz-rgb": {
-            "import": "./xyz/xyz-rgb.js"
+            "default": "./xyz/xyz-rgb.js"
         },
         "./xyz/xyz-xyy": {
-            "import": "./xyz/xyz-xyy.js"
+            "default": "./xyz/xyz-xyy.js"
         },
         "./xyz/xyz-xyz": {
-            "import": "./xyz/xyz-xyz.js"
+            "default": "./xyz/xyz-xyz.js"
         },
         "./xyz/xyz50": {
-            "import": "./xyz/xyz50.js"
+            "default": "./xyz/xyz50.js"
         },
         "./xyz/xyz65": {
-            "import": "./xyz/xyz65.js"
+            "default": "./xyz/xyz65.js"
         },
         "./ycc/ycc-rgb": {
-            "import": "./ycc/ycc-rgb.js"
+            "default": "./ycc/ycc-rgb.js"
         },
         "./ycc/ycc": {
-            "import": "./ycc/ycc.js"
+            "default": "./ycc/ycc.js"
         }
     },
     "thi.ng": {

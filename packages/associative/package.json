@@ -86,100 +86,100 @@
     ],
     "exports": {
         ".": {
-            "import": "./index.js"
+            "default": "./index.js"
         },
         "./api": {
-            "import": "./api.js"
+            "default": "./api.js"
         },
         "./array-set": {
-            "import": "./array-set.js"
+            "default": "./array-set.js"
         },
         "./checks": {
-            "import": "./checks.js"
+            "default": "./checks.js"
         },
         "./common-keys": {
-            "import": "./common-keys.js"
+            "default": "./common-keys.js"
         },
         "./copy": {
-            "import": "./copy.js"
+            "default": "./copy.js"
         },
         "./difference": {
-            "import": "./difference.js"
+            "default": "./difference.js"
         },
         "./dissoc": {
-            "import": "./dissoc.js"
+            "default": "./dissoc.js"
         },
         "./empty": {
-            "import": "./empty.js"
+            "default": "./empty.js"
         },
         "./equiv-map": {
-            "import": "./equiv-map.js"
+            "default": "./equiv-map.js"
         },
         "./first": {
-            "import": "./first.js"
+            "default": "./first.js"
         },
         "./hash-map": {
-            "import": "./hash-map.js"
+            "default": "./hash-map.js"
         },
         "./indexed": {
-            "import": "./indexed.js"
+            "default": "./indexed.js"
         },
         "./intersection": {
-            "import": "./intersection.js"
+            "default": "./intersection.js"
         },
         "./into": {
-            "import": "./into.js"
+            "default": "./into.js"
         },
         "./invert": {
-            "import": "./invert.js"
+            "default": "./invert.js"
         },
         "./join": {
-            "import": "./join.js"
+            "default": "./join.js"
         },
         "./ll-set": {
-            "import": "./ll-set.js"
+            "default": "./ll-set.js"
         },
         "./merge-apply": {
-            "import": "./merge-apply.js"
+            "default": "./merge-apply.js"
         },
         "./merge-deep": {
-            "import": "./merge-deep.js"
+            "default": "./merge-deep.js"
         },
         "./merge-with": {
-            "import": "./merge-with.js"
+            "default": "./merge-with.js"
         },
         "./merge": {
-            "import": "./merge.js"
+            "default": "./merge.js"
         },
         "./multi-trie": {
-            "import": "./multi-trie.js"
+            "default": "./multi-trie.js"
         },
         "./rename-keys": {
-            "import": "./rename-keys.js"
+            "default": "./rename-keys.js"
         },
         "./select-keys": {
-            "import": "./select-keys.js"
+            "default": "./select-keys.js"
         },
         "./sorted-map": {
-            "import": "./sorted-map.js"
+            "default": "./sorted-map.js"
         },
         "./sorted-obj": {
-            "import": "./sorted-obj.js"
+            "default": "./sorted-obj.js"
         },
         "./sorted-set": {
-            "import": "./sorted-set.js"
+            "default": "./sorted-set.js"
         },
         "./sparse-set": {
-            "import": "./sparse-set.js"
+            "default": "./sparse-set.js"
         },
         "./trie-map": {
-            "import": "./trie-map.js"
+            "default": "./trie-map.js"
         },
         "./union": {
-            "import": "./union.js"
+            "default": "./union.js"
         },
         "./without-keys": {
-            "import": "./without-keys.js"
+            "default": "./without-keys.js"
         }
     },
     "thi.ng": {

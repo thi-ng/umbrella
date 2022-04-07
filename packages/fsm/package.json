@@ -72,49 +72,49 @@
     ],
     "exports": {
         ".": {
-            "import": "./index.js"
+            "default": "./index.js"
         },
         "./alts-lit": {
-            "import": "./alts-lit.js"
+            "default": "./alts-lit.js"
         },
         "./alts": {
-            "import": "./alts.js"
+            "default": "./alts.js"
         },
         "./always": {
-            "import": "./always.js"
+            "default": "./always.js"
         },
         "./api": {
-            "import": "./api.js"
+            "default": "./api.js"
         },
         "./fsm": {
-            "import": "./fsm.js"
+            "default": "./fsm.js"
         },
         "./lit": {
-            "import": "./lit.js"
+            "default": "./lit.js"
         },
         "./never": {
-            "import": "./never.js"
+            "default": "./never.js"
         },
         "./not": {
-            "import": "./not.js"
+            "default": "./not.js"
         },
         "./range": {
-            "import": "./range.js"
+            "default": "./range.js"
         },
         "./repeat": {
-            "import": "./repeat.js"
+            "default": "./repeat.js"
         },
         "./result": {
-            "import": "./result.js"
+            "default": "./result.js"
         },
         "./seq": {
-            "import": "./seq.js"
+            "default": "./seq.js"
         },
         "./str": {
-            "import": "./str.js"
+            "default": "./str.js"
         },
         "./until": {
-            "import": "./until.js"
+            "default": "./until.js"
         }
     },
     "thi.ng": {

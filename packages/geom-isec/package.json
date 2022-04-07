@@ -73,46 +73,46 @@
     ],
     "exports": {
         ".": {
-            "import": "./index.js"
+            "default": "./index.js"
         },
         "./api": {
-            "import": "./api.js"
+            "default": "./api.js"
         },
         "./circle-circle": {
-            "import": "./circle-circle.js"
+            "default": "./circle-circle.js"
         },
         "./line-line": {
-            "import": "./line-line.js"
+            "default": "./line-line.js"
         },
         "./line-poly": {
-            "import": "./line-poly.js"
+            "default": "./line-poly.js"
         },
         "./plane-plane": {
-            "import": "./plane-plane.js"
+            "default": "./plane-plane.js"
         },
         "./point": {
-            "import": "./point.js"
+            "default": "./point.js"
         },
         "./ray-circle": {
-            "import": "./ray-circle.js"
+            "default": "./ray-circle.js"
         },
         "./ray-line": {
-            "import": "./ray-line.js"
+            "default": "./ray-line.js"
         },
         "./ray-plane": {
-            "import": "./ray-plane.js"
+            "default": "./ray-plane.js"
         },
         "./ray-poly": {
-            "import": "./ray-poly.js"
+            "default": "./ray-poly.js"
         },
         "./ray-rect": {
-            "import": "./ray-rect.js"
+            "default": "./ray-rect.js"
         },
         "./rect-circle": {
-            "import": "./rect-circle.js"
+            "default": "./rect-circle.js"
         },
         "./rect-rect": {
-            "import": "./rect-rect.js"
+            "default": "./rect-rect.js"
         }
     },
     "thi.ng": {

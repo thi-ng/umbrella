@@ -71,73 +71,73 @@
     ],
     "exports": {
         ".": {
-            "import": "./index.js"
+            "default": "./index.js"
         },
         "./api": {
-            "import": "./api.js"
+            "default": "./api.js"
         },
         "./arg-sort": {
-            "import": "./arg-sort.js"
+            "default": "./arg-sort.js"
         },
         "./binary-search": {
-            "import": "./binary-search.js"
+            "default": "./binary-search.js"
         },
         "./bisect": {
-            "import": "./bisect.js"
+            "default": "./bisect.js"
         },
         "./ends-with": {
-            "import": "./ends-with.js"
+            "default": "./ends-with.js"
         },
         "./ensure-array": {
-            "import": "./ensure-array.js"
+            "default": "./ensure-array.js"
         },
         "./ensure-iterable": {
-            "import": "./ensure-iterable.js"
+            "default": "./ensure-iterable.js"
         },
         "./fill-range": {
-            "import": "./fill-range.js"
+            "default": "./fill-range.js"
         },
         "./find": {
-            "import": "./find.js"
+            "default": "./find.js"
         },
         "./fuzzy-match": {
-            "import": "./fuzzy-match.js"
+            "default": "./fuzzy-match.js"
         },
         "./insert": {
-            "import": "./insert.js"
+            "default": "./insert.js"
         },
         "./into": {
-            "import": "./into.js"
+            "default": "./into.js"
         },
         "./is-sorted": {
-            "import": "./is-sorted.js"
+            "default": "./is-sorted.js"
         },
         "./iterator": {
-            "import": "./iterator.js"
+            "default": "./iterator.js"
         },
         "./levenshtein": {
-            "import": "./levenshtein.js"
+            "default": "./levenshtein.js"
         },
         "./peek": {
-            "import": "./peek.js"
+            "default": "./peek.js"
         },
         "./quicksort": {
-            "import": "./quicksort.js"
+            "default": "./quicksort.js"
         },
         "./shuffle": {
-            "import": "./shuffle.js"
+            "default": "./shuffle.js"
         },
         "./sort-cached": {
-            "import": "./sort-cached.js"
+            "default": "./sort-cached.js"
         },
         "./starts-with": {
-            "import": "./starts-with.js"
+            "default": "./starts-with.js"
         },
         "./swap": {
-            "import": "./swap.js"
+            "default": "./swap.js"
         },
         "./swizzle": {
-            "import": "./swizzle.js"
+            "default": "./swizzle.js"
         }
     },
     "thi.ng": {

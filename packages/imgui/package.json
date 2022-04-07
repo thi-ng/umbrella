@@ -78,76 +78,76 @@
     ],
     "exports": {
         ".": {
-            "import": "./index.js"
+            "default": "./index.js"
         },
         "./api": {
-            "import": "./api.js"
+            "default": "./api.js"
         },
         "./behaviors/button": {
-            "import": "./behaviors/button.js"
+            "default": "./behaviors/button.js"
         },
         "./behaviors/dial": {
-            "import": "./behaviors/dial.js"
+            "default": "./behaviors/dial.js"
         },
         "./behaviors/slider": {
-            "import": "./behaviors/slider.js"
+            "default": "./behaviors/slider.js"
         },
         "./behaviors/text": {
-            "import": "./behaviors/text.js"
+            "default": "./behaviors/text.js"
         },
         "./components/button": {
-            "import": "./components/button.js"
+            "default": "./components/button.js"
         },
         "./components/dial": {
-            "import": "./components/dial.js"
+            "default": "./components/dial.js"
         },
         "./components/dropdown": {
-            "import": "./components/dropdown.js"
+            "default": "./components/dropdown.js"
         },
         "./components/icon-button": {
-            "import": "./components/icon-button.js"
+            "default": "./components/icon-button.js"
         },
         "./components/radial-menu": {
-            "import": "./components/radial-menu.js"
+            "default": "./components/radial-menu.js"
         },
         "./components/radio": {
-            "import": "./components/radio.js"
+            "default": "./components/radio.js"
         },
         "./components/ring": {
-            "import": "./components/ring.js"
+            "default": "./components/ring.js"
         },
         "./components/sliderh": {
-            "import": "./components/sliderh.js"
+            "default": "./components/sliderh.js"
         },
         "./components/sliderv": {
-            "import": "./components/sliderv.js"
+            "default": "./components/sliderv.js"
         },
         "./components/textfield": {
-            "import": "./components/textfield.js"
+            "default": "./components/textfield.js"
         },
         "./components/textlabel": {
-            "import": "./components/textlabel.js"
+            "default": "./components/textlabel.js"
         },
         "./components/toggle": {
-            "import": "./components/toggle.js"
+            "default": "./components/toggle.js"
         },
         "./components/tooltip": {
-            "import": "./components/tooltip.js"
+            "default": "./components/tooltip.js"
         },
         "./components/xypad": {
-            "import": "./components/xypad.js"
+            "default": "./components/xypad.js"
         },
         "./events": {
-            "import": "./events.js"
+            "default": "./events.js"
         },
         "./gui": {
-            "import": "./gui.js"
+            "default": "./gui.js"
         },
         "./hash": {
-            "import": "./hash.js"
+            "default": "./hash.js"
         },
         "./layout": {
-            "import": "./layout.js"
+            "default": "./layout.js"
         }
     },
     "thi.ng": {

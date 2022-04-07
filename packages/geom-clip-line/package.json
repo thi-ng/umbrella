@@ -68,13 +68,13 @@
     ],
     "exports": {
         ".": {
-            "import": "./index.js"
+            "default": "./index.js"
         },
         "./clip-poly": {
-            "import": "./clip-poly.js"
+            "default": "./clip-poly.js"
         },
         "./liang-barsky": {
-            "import": "./liang-barsky.js"
+            "default": "./liang-barsky.js"
         }
     },
     "thi.ng": {

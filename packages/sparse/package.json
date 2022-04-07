@@ -69,31 +69,31 @@
     ],
     "exports": {
         ".": {
-            "import": "./index.js"
+            "default": "./index.js"
         },
         "./amatrix": {
-            "import": "./amatrix.js"
+            "default": "./amatrix.js"
         },
         "./api": {
-            "import": "./api.js"
+            "default": "./api.js"
         },
         "./compressed": {
-            "import": "./compressed.js"
+            "default": "./compressed.js"
         },
         "./coo": {
-            "import": "./coo.js"
+            "default": "./coo.js"
         },
         "./csc": {
-            "import": "./csc.js"
+            "default": "./csc.js"
         },
         "./csr": {
-            "import": "./csr.js"
+            "default": "./csr.js"
         },
         "./diag": {
-            "import": "./diag.js"
+            "default": "./diag.js"
         },
         "./vec": {
-            "import": "./vec.js"
+            "default": "./vec.js"
         }
     },
     "thi.ng": {

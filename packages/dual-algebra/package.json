@@ -69,19 +69,19 @@
     ],
     "exports": {
         ".": {
-            "import": "./index.js"
+            "default": "./index.js"
         },
         "./api": {
-            "import": "./api.js"
+            "default": "./api.js"
         },
         "./ops": {
-            "import": "./ops.js"
+            "default": "./ops.js"
         },
         "./poly": {
-            "import": "./poly.js"
+            "default": "./poly.js"
         },
         "./vector": {
-            "import": "./vector.js"
+            "default": "./vector.js"
         }
     },
     "thi.ng": {

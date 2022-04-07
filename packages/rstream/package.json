@@ -81,115 +81,115 @@
     ],
     "exports": {
         ".": {
-            "import": "./index.js"
+            "default": "./index.js"
         },
         "./api": {
-            "import": "./api.js"
+            "default": "./api.js"
         },
         "./asidechain": {
-            "import": "./asidechain.js"
+            "default": "./asidechain.js"
         },
         "./atom": {
-            "import": "./atom.js"
+            "default": "./atom.js"
         },
         "./bisect": {
-            "import": "./bisect.js"
+            "default": "./bisect.js"
         },
         "./checks": {
-            "import": "./checks.js"
+            "default": "./checks.js"
         },
         "./debounce": {
-            "import": "./debounce.js"
+            "default": "./debounce.js"
         },
         "./defworker": {
-            "import": "./defworker.js"
+            "default": "./defworker.js"
         },
         "./event": {
-            "import": "./event.js"
+            "default": "./event.js"
         },
         "./forkjoin": {
-            "import": "./forkjoin.js"
+            "default": "./forkjoin.js"
         },
         "./idgen": {
-            "import": "./idgen.js"
+            "default": "./idgen.js"
         },
         "./interval": {
-            "import": "./interval.js"
+            "default": "./interval.js"
         },
         "./iterable": {
-            "import": "./iterable.js"
+            "default": "./iterable.js"
         },
         "./logger": {
-            "import": "./logger.js"
+            "default": "./logger.js"
         },
         "./merge": {
-            "import": "./merge.js"
+            "default": "./merge.js"
         },
         "./metastream": {
-            "import": "./metastream.js"
+            "default": "./metastream.js"
         },
         "./nodejs": {
-            "import": "./nodejs.js"
+            "default": "./nodejs.js"
         },
         "./object": {
-            "import": "./object.js"
+            "default": "./object.js"
         },
         "./post-worker": {
-            "import": "./post-worker.js"
+            "default": "./post-worker.js"
         },
         "./promise": {
-            "import": "./promise.js"
+            "default": "./promise.js"
         },
         "./promises": {
-            "import": "./promises.js"
+            "default": "./promises.js"
         },
         "./pubsub": {
-            "import": "./pubsub.js"
+            "default": "./pubsub.js"
         },
         "./raf": {
-            "import": "./raf.js"
+            "default": "./raf.js"
         },
         "./resolve": {
-            "import": "./resolve.js"
+            "default": "./resolve.js"
         },
         "./sidechain-partition": {
-            "import": "./sidechain-partition.js"
+            "default": "./sidechain-partition.js"
         },
         "./sidechain-toggle": {
-            "import": "./sidechain-toggle.js"
+            "default": "./sidechain-toggle.js"
         },
         "./stream": {
-            "import": "./stream.js"
+            "default": "./stream.js"
         },
         "./subscription": {
-            "import": "./subscription.js"
+            "default": "./subscription.js"
         },
         "./sync": {
-            "import": "./sync.js"
+            "default": "./sync.js"
         },
         "./timeout": {
-            "import": "./timeout.js"
+            "default": "./timeout.js"
         },
         "./trace": {
-            "import": "./trace.js"
+            "default": "./trace.js"
         },
         "./transduce": {
-            "import": "./transduce.js"
+            "default": "./transduce.js"
         },
         "./trigger": {
-            "import": "./trigger.js"
+            "default": "./trigger.js"
         },
         "./tunnel": {
-            "import": "./tunnel.js"
+            "default": "./tunnel.js"
         },
         "./tween": {
-            "import": "./tween.js"
+            "default": "./tween.js"
         },
         "./view": {
-            "import": "./view.js"
+            "default": "./view.js"
         },
         "./worker": {
-            "import": "./worker.js"
+            "default": "./worker.js"
         }
     },
     "thi.ng": {

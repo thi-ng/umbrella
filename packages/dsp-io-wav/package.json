@@ -76,13 +76,13 @@
     ],
     "exports": {
         ".": {
-            "import": "./index.js"
+            "default": "./index.js"
         },
         "./api": {
-            "import": "./api.js"
+            "default": "./api.js"
         },
         "./write": {
-            "import": "./write.js"
+            "default": "./write.js"
         }
     },
     "thi.ng": {

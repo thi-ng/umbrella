@@ -66,43 +66,43 @@
     ],
     "exports": {
         ".": {
-            "import": "./index.js"
+            "default": "./index.js"
         },
         "./button-group": {
-            "import": "./button-group.js"
+            "default": "./button-group.js"
         },
         "./button": {
-            "import": "./button.js"
+            "default": "./button.js"
         },
         "./canvas": {
-            "import": "./canvas.js"
+            "default": "./canvas.js"
         },
         "./dropdown": {
-            "import": "./dropdown.js"
+            "default": "./dropdown.js"
         },
         "./fps-counter": {
-            "import": "./fps-counter.js"
+            "default": "./fps-counter.js"
         },
         "./link": {
-            "import": "./link.js"
+            "default": "./link.js"
         },
         "./notification": {
-            "import": "./notification.js"
+            "default": "./notification.js"
         },
         "./pager": {
-            "import": "./pager.js"
+            "default": "./pager.js"
         },
         "./sparkline": {
-            "import": "./sparkline.js"
+            "default": "./sparkline.js"
         },
         "./title": {
-            "import": "./title.js"
+            "default": "./title.js"
         },
         "./toggle": {
-            "import": "./toggle.js"
+            "default": "./toggle.js"
         },
         "./utils/merge-attribs": {
-            "import": "./utils/merge-attribs.js"
+            "default": "./utils/merge-attribs.js"
         }
     },
     "thi.ng": {

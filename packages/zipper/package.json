@@ -73,13 +73,13 @@
     ],
     "exports": {
         ".": {
-            "import": "./index.js"
+            "default": "./index.js"
         },
         "./api": {
-            "import": "./api.js"
+            "default": "./api.js"
         },
         "./zipper": {
-            "import": "./zipper.js"
+            "default": "./zipper.js"
         }
     },
     "thi.ng": {

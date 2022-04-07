@@ -68,37 +68,37 @@
     ],
     "exports": {
         ".": {
-            "import": "./index.js"
+            "default": "./index.js"
         },
         "./api": {
-            "import": "./api.js"
+            "default": "./api.js"
         },
         "./blocks": {
-            "import": "./blocks.js"
+            "default": "./blocks.js"
         },
         "./def": {
-            "import": "./def.js"
+            "default": "./def.js"
         },
         "./forms": {
-            "import": "./forms.js"
+            "default": "./forms.js"
         },
         "./head": {
-            "import": "./head.js"
+            "default": "./head.js"
         },
         "./inline": {
-            "import": "./inline.js"
+            "default": "./inline.js"
         },
         "./lists": {
-            "import": "./lists.js"
+            "default": "./lists.js"
         },
         "./media": {
-            "import": "./media.js"
+            "default": "./media.js"
         },
         "./sections": {
-            "import": "./sections.js"
+            "default": "./sections.js"
         },
         "./table": {
-            "import": "./table.js"
+            "default": "./table.js"
         }
     },
     "thi.ng": {

@@ -85,31 +85,31 @@
     ],
     "exports": {
         ".": {
-            "import": "./index.js"
+            "default": "./index.js"
         },
         "./api": {
-            "import": "./api.js"
+            "default": "./api.js"
         },
         "./comp": {
-            "import": "./comp.js"
+            "default": "./comp.js"
         },
         "./dots": {
-            "import": "./dots.js"
+            "default": "./dots.js"
         },
         "./hatch": {
-            "import": "./hatch.js"
+            "default": "./hatch.js"
         },
         "./line": {
-            "import": "./line.js"
+            "default": "./line.js"
         },
         "./points": {
-            "import": "./points.js"
+            "default": "./points.js"
         },
         "./polygon": {
-            "import": "./polygon.js"
+            "default": "./polygon.js"
         },
         "./presets": {
-            "import": "./presets.js"
+            "default": "./presets.js"
         }
     },
     "thi.ng": {

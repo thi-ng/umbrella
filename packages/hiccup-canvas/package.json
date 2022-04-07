@@ -80,46 +80,46 @@
     ],
     "exports": {
         ".": {
-            "import": "./index.js"
+            "default": "./index.js"
         },
         "./api": {
-            "import": "./api.js"
+            "default": "./api.js"
         },
         "./arc": {
-            "import": "./arc.js"
+            "default": "./arc.js"
         },
         "./color": {
-            "import": "./color.js"
+            "default": "./color.js"
         },
         "./draw": {
-            "import": "./draw.js"
+            "default": "./draw.js"
         },
         "./image": {
-            "import": "./image.js"
+            "default": "./image.js"
         },
         "./line": {
-            "import": "./line.js"
+            "default": "./line.js"
         },
         "./packed-points": {
-            "import": "./packed-points.js"
+            "default": "./packed-points.js"
         },
         "./path": {
-            "import": "./path.js"
+            "default": "./path.js"
         },
         "./points": {
-            "import": "./points.js"
+            "default": "./points.js"
         },
         "./polygon": {
-            "import": "./polygon.js"
+            "default": "./polygon.js"
         },
         "./polyline": {
-            "import": "./polyline.js"
+            "default": "./polyline.js"
         },
         "./rect": {
-            "import": "./rect.js"
+            "default": "./rect.js"
         },
         "./text": {
-            "import": "./text.js"
+            "default": "./text.js"
         }
     },
     "thi.ng": {

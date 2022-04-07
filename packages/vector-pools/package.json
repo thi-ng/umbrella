@@ -81,25 +81,25 @@
     ],
     "exports": {
         ".": {
-            "import": "./index.js"
+            "default": "./index.js"
         },
         "./alist": {
-            "import": "./alist.js"
+            "default": "./alist.js"
         },
         "./api": {
-            "import": "./api.js"
+            "default": "./api.js"
         },
         "./array-list": {
-            "import": "./array-list.js"
+            "default": "./array-list.js"
         },
         "./attrib-pool": {
-            "import": "./attrib-pool.js"
+            "default": "./attrib-pool.js"
         },
         "./linked-list": {
-            "import": "./linked-list.js"
+            "default": "./linked-list.js"
         },
         "./vec-pool": {
-            "import": "./vec-pool.js"
+            "default": "./vec-pool.js"
         }
     },
     "thi.ng": {

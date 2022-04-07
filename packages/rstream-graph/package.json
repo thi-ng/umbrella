@@ -77,19 +77,19 @@
     ],
     "exports": {
         ".": {
-            "import": "./index.js"
+            "default": "./index.js"
         },
         "./api": {
-            "import": "./api.js"
+            "default": "./api.js"
         },
         "./graph": {
-            "import": "./graph.js"
+            "default": "./graph.js"
         },
         "./nodes/extract": {
-            "import": "./nodes/extract.js"
+            "default": "./nodes/extract.js"
         },
         "./nodes/math": {
-            "import": "./nodes/math.js"
+            "default": "./nodes/math.js"
         }
     },
     "thi.ng": {

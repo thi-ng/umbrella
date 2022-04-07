@@ -65,40 +65,40 @@
     ],
     "exports": {
         ".": {
-            "import": "./index.js"
+            "default": "./index.js"
         },
         "./api": {
-            "import": "./api.js"
+            "default": "./api.js"
         },
         "./atkinson": {
-            "import": "./atkinson.js"
+            "default": "./atkinson.js"
         },
         "./burkes": {
-            "import": "./burkes.js"
+            "default": "./burkes.js"
         },
         "./diffusion": {
-            "import": "./diffusion.js"
+            "default": "./diffusion.js"
         },
         "./dither": {
-            "import": "./dither.js"
+            "default": "./dither.js"
         },
         "./floyd-steinberg": {
-            "import": "./floyd-steinberg.js"
+            "default": "./floyd-steinberg.js"
         },
         "./jarvis": {
-            "import": "./jarvis.js"
+            "default": "./jarvis.js"
         },
         "./ordered": {
-            "import": "./ordered.js"
+            "default": "./ordered.js"
         },
         "./sierra2": {
-            "import": "./sierra2.js"
+            "default": "./sierra2.js"
         },
         "./stucki": {
-            "import": "./stucki.js"
+            "default": "./stucki.js"
         },
         "./threshold": {
-            "import": "./threshold.js"
+            "default": "./threshold.js"
         }
     },
     "thi.ng": {

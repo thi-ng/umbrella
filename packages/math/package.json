@@ -72,61 +72,61 @@
     ],
     "exports": {
         ".": {
-            "import": "./index.js"
+            "default": "./index.js"
         },
         "./abs": {
-            "import": "./abs.js"
+            "default": "./abs.js"
         },
         "./angle": {
-            "import": "./angle.js"
+            "default": "./angle.js"
         },
         "./api": {
-            "import": "./api.js"
+            "default": "./api.js"
         },
         "./crossing": {
-            "import": "./crossing.js"
+            "default": "./crossing.js"
         },
         "./eqdelta": {
-            "import": "./eqdelta.js"
+            "default": "./eqdelta.js"
         },
         "./extrema": {
-            "import": "./extrema.js"
+            "default": "./extrema.js"
         },
         "./fit": {
-            "import": "./fit.js"
+            "default": "./fit.js"
         },
         "./int": {
-            "import": "./int.js"
+            "default": "./int.js"
         },
         "./interval": {
-            "import": "./interval.js"
+            "default": "./interval.js"
         },
         "./libc": {
-            "import": "./libc.js"
+            "default": "./libc.js"
         },
         "./min-error": {
-            "import": "./min-error.js"
+            "default": "./min-error.js"
         },
         "./mix": {
-            "import": "./mix.js"
+            "default": "./mix.js"
         },
         "./prec": {
-            "import": "./prec.js"
+            "default": "./prec.js"
         },
         "./prime": {
-            "import": "./prime.js"
+            "default": "./prime.js"
         },
         "./ratio": {
-            "import": "./ratio.js"
+            "default": "./ratio.js"
         },
         "./safe-div": {
-            "import": "./safe-div.js"
+            "default": "./safe-div.js"
         },
         "./solve": {
-            "import": "./solve.js"
+            "default": "./solve.js"
         },
         "./step": {
-            "import": "./step.js"
+            "default": "./step.js"
         }
     },
     "thi.ng": {

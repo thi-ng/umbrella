@@ -90,49 +90,49 @@
     ],
     "exports": {
         ".": {
-            "import": "./index.js"
+            "default": "./index.js"
         },
         "./api": {
-            "import": "./api.js"
+            "default": "./api.js"
         },
         "./axis/common": {
-            "import": "./axis/common.js"
+            "default": "./axis/common.js"
         },
         "./axis/lens": {
-            "import": "./axis/lens.js"
+            "default": "./axis/lens.js"
         },
         "./axis/linear": {
-            "import": "./axis/linear.js"
+            "default": "./axis/linear.js"
         },
         "./axis/log": {
-            "import": "./axis/log.js"
+            "default": "./axis/log.js"
         },
         "./domain": {
-            "import": "./domain.js"
+            "default": "./domain.js"
         },
         "./plot/area": {
-            "import": "./plot/area.js"
+            "default": "./plot/area.js"
         },
         "./plot/bar": {
-            "import": "./plot/bar.js"
+            "default": "./plot/bar.js"
         },
         "./plot/candle": {
-            "import": "./plot/candle.js"
+            "default": "./plot/candle.js"
         },
         "./plot/line": {
-            "import": "./plot/line.js"
+            "default": "./plot/line.js"
         },
         "./plot/scatter": {
-            "import": "./plot/scatter.js"
+            "default": "./plot/scatter.js"
         },
         "./plot/stacked-intervals": {
-            "import": "./plot/stacked-intervals.js"
+            "default": "./plot/stacked-intervals.js"
         },
         "./plot/utils": {
-            "import": "./plot/utils.js"
+            "default": "./plot/utils.js"
         },
         "./plot": {
-            "import": "./plot.js"
+            "default": "./plot.js"
         }
     },
     "thi.ng": {

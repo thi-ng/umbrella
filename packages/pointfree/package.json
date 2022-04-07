@@ -75,58 +75,58 @@
     ],
     "exports": {
         ".": {
-            "import": "./index.js"
+            "default": "./index.js"
         },
         "./api": {
-            "import": "./api.js"
+            "default": "./api.js"
         },
         "./array": {
-            "import": "./array.js"
+            "default": "./array.js"
         },
         "./binary": {
-            "import": "./binary.js"
+            "default": "./binary.js"
         },
         "./cond": {
-            "import": "./cond.js"
+            "default": "./cond.js"
         },
         "./context": {
-            "import": "./context.js"
+            "default": "./context.js"
         },
         "./dataflow": {
-            "import": "./dataflow.js"
+            "default": "./dataflow.js"
         },
         "./env": {
-            "import": "./env.js"
+            "default": "./env.js"
         },
         "./io": {
-            "import": "./io.js"
+            "default": "./io.js"
         },
         "./logic": {
-            "import": "./logic.js"
+            "default": "./logic.js"
         },
         "./loop": {
-            "import": "./loop.js"
+            "default": "./loop.js"
         },
         "./math": {
-            "import": "./math.js"
+            "default": "./math.js"
         },
         "./ops": {
-            "import": "./ops.js"
+            "default": "./ops.js"
         },
         "./run": {
-            "import": "./run.js"
+            "default": "./run.js"
         },
         "./safe": {
-            "import": "./safe.js"
+            "default": "./safe.js"
         },
         "./stack": {
-            "import": "./stack.js"
+            "default": "./stack.js"
         },
         "./string": {
-            "import": "./string.js"
+            "default": "./string.js"
         },
         "./word": {
-            "import": "./word.js"
+            "default": "./word.js"
         }
     },
     "thi.ng": {

@@ -115,625 +115,625 @@
     ],
     "exports": {
         ".": {
-            "import": "./index.js"
+            "default": "./index.js"
         },
         "./abs": {
-            "import": "./abs.js"
+            "default": "./abs.js"
         },
         "./acos": {
-            "import": "./acos.js"
+            "default": "./acos.js"
         },
         "./add": {
-            "import": "./add.js"
+            "default": "./add.js"
         },
         "./addi": {
-            "import": "./addi.js"
+            "default": "./addi.js"
         },
         "./addm": {
-            "import": "./addm.js"
+            "default": "./addm.js"
         },
         "./addmn": {
-            "import": "./addmn.js"
+            "default": "./addmn.js"
         },
         "./addmns": {
-            "import": "./addmns.js"
+            "default": "./addmns.js"
         },
         "./addms": {
-            "import": "./addms.js"
+            "default": "./addms.js"
         },
         "./addn": {
-            "import": "./addn.js"
+            "default": "./addn.js"
         },
         "./addns": {
-            "import": "./addns.js"
+            "default": "./addns.js"
         },
         "./adds": {
-            "import": "./adds.js"
+            "default": "./adds.js"
         },
         "./addw": {
-            "import": "./addw.js"
+            "default": "./addw.js"
         },
         "./angle-between": {
-            "import": "./angle-between.js"
+            "default": "./angle-between.js"
         },
         "./api": {
-            "import": "./api.js"
+            "default": "./api.js"
         },
         "./asin": {
-            "import": "./asin.js"
+            "default": "./asin.js"
         },
         "./atan": {
-            "import": "./atan.js"
+            "default": "./atan.js"
         },
         "./avec": {
-            "import": "./avec.js"
+            "default": "./avec.js"
         },
         "./bisect": {
-            "import": "./bisect.js"
+            "default": "./bisect.js"
         },
         "./bit-and": {
-            "import": "./bit-and.js"
+            "default": "./bit-and.js"
         },
         "./bit-not": {
-            "import": "./bit-not.js"
+            "default": "./bit-not.js"
         },
         "./bit-or": {
-            "import": "./bit-or.js"
+            "default": "./bit-or.js"
         },
         "./bit-xor": {
-            "import": "./bit-xor.js"
+            "default": "./bit-xor.js"
         },
         "./buffer": {
-            "import": "./buffer.js"
+            "default": "./buffer.js"
         },
         "./cartesian": {
-            "import": "./cartesian.js"
+            "default": "./cartesian.js"
         },
         "./ceil": {
-            "import": "./ceil.js"
+            "default": "./ceil.js"
         },
         "./center": {
-            "import": "./center.js"
+            "default": "./center.js"
         },
         "./clamp": {
-            "import": "./clamp.js"
+            "default": "./clamp.js"
         },
         "./clampn": {
-            "import": "./clampn.js"
+            "default": "./clampn.js"
         },
         "./clockwise": {
-            "import": "./clockwise.js"
+            "default": "./clockwise.js"
         },
         "./compare": {
-            "import": "./compare.js"
+            "default": "./compare.js"
         },
         "./compile/accessors": {
-            "import": "./compile/accessors.js"
+            "default": "./compile/accessors.js"
         },
         "./compile/emit": {
-            "import": "./compile/emit.js"
+            "default": "./compile/emit.js"
         },
         "./compile/templates": {
-            "import": "./compile/templates.js"
+            "default": "./compile/templates.js"
         },
         "./convert": {
-            "import": "./convert.js"
+            "default": "./convert.js"
         },
         "./copy": {
-            "import": "./copy.js"
+            "default": "./copy.js"
         },
         "./correlation": {
-            "import": "./correlation.js"
+            "default": "./correlation.js"
         },
         "./cos": {
-            "import": "./cos.js"
+            "default": "./cos.js"
         },
         "./cosh": {
-            "import": "./cosh.js"
+            "default": "./cosh.js"
         },
         "./covariance": {
-            "import": "./covariance.js"
+            "default": "./covariance.js"
         },
         "./cross": {
-            "import": "./cross.js"
+            "default": "./cross.js"
         },
         "./crosss": {
-            "import": "./crosss.js"
+            "default": "./crosss.js"
         },
         "./degrees": {
-            "import": "./degrees.js"
+            "default": "./degrees.js"
         },
         "./direction": {
-            "import": "./direction.js"
+            "default": "./direction.js"
         },
         "./dist-braycurtis": {
-            "import": "./dist-braycurtis.js"
+            "default": "./dist-braycurtis.js"
         },
         "./dist-canberra": {
-            "import": "./dist-canberra.js"
+            "default": "./dist-canberra.js"
         },
         "./dist-chebyshev": {
-            "import": "./dist-chebyshev.js"
+            "default": "./dist-chebyshev.js"
         },
         "./dist-hamming": {
-            "import": "./dist-hamming.js"
+            "default": "./dist-hamming.js"
         },
         "./dist-haversine": {
-            "import": "./dist-haversine.js"
+            "default": "./dist-haversine.js"
         },
         "./dist-jaccard": {
-            "import": "./dist-jaccard.js"
+            "default": "./dist-jaccard.js"
         },
         "./dist-manhattan": {
-            "import": "./dist-manhattan.js"
+            "default": "./dist-manhattan.js"
         },
         "./dist-minkowski": {
-            "import": "./dist-minkowski.js"
+            "default": "./dist-minkowski.js"
         },
         "./dist-sorensendice": {
-            "import": "./dist-sorensendice.js"
+            "default": "./dist-sorensendice.js"
         },
         "./dist-weighted": {
-            "import": "./dist-weighted.js"
+            "default": "./dist-weighted.js"
         },
         "./dist": {
-            "import": "./dist.js"
+            "default": "./dist.js"
         },
         "./distsq": {
-            "import": "./distsq.js"
+            "default": "./distsq.js"
         },
         "./div": {
-            "import": "./div.js"
+            "default": "./div.js"
         },
         "./divi": {
-            "import": "./divi.js"
+            "default": "./divi.js"
         },
         "./divn": {
-            "import": "./divn.js"
+            "default": "./divn.js"
         },
         "./divns": {
-            "import": "./divns.js"
+            "default": "./divns.js"
         },
         "./divs": {
-            "import": "./divs.js"
+            "default": "./divs.js"
         },
         "./dot": {
-            "import": "./dot.js"
+            "default": "./dot.js"
         },
         "./dotc": {
-            "import": "./dotc.js"
+            "default": "./dotc.js"
         },
         "./dots": {
-            "import": "./dots.js"
+            "default": "./dots.js"
         },
         "./empty": {
-            "import": "./empty.js"
+            "default": "./empty.js"
         },
         "./eq": {
-            "import": "./eq.js"
+            "default": "./eq.js"
         },
         "./eqdelta": {
-            "import": "./eqdelta.js"
+            "default": "./eqdelta.js"
         },
         "./equals": {
-            "import": "./equals.js"
+            "default": "./equals.js"
         },
         "./every": {
-            "import": "./every.js"
+            "default": "./every.js"
         },
         "./exp": {
-            "import": "./exp.js"
+            "default": "./exp.js"
         },
         "./exp_2": {
-            "import": "./exp_2.js"
+            "default": "./exp_2.js"
         },
         "./face-forward": {
-            "import": "./face-forward.js"
+            "default": "./face-forward.js"
         },
         "./fill": {
-            "import": "./fill.js"
+            "default": "./fill.js"
         },
         "./fit": {
-            "import": "./fit.js"
+            "default": "./fit.js"
         },
         "./floor": {
-            "import": "./floor.js"
+            "default": "./floor.js"
         },
         "./fmod": {
-            "import": "./fmod.js"
+            "default": "./fmod.js"
         },
         "./fmodn": {
-            "import": "./fmodn.js"
+            "default": "./fmodn.js"
         },
         "./fract": {
-            "import": "./fract.js"
+            "default": "./fract.js"
         },
         "./gt": {
-            "import": "./gt.js"
+            "default": "./gt.js"
         },
         "./gte": {
-            "import": "./gte.js"
+            "default": "./gte.js"
         },
         "./gvec": {
-            "import": "./gvec.js"
+            "default": "./gvec.js"
         },
         "./hash": {
-            "import": "./hash.js"
+            "default": "./hash.js"
         },
         "./heading-segment": {
-            "import": "./heading-segment.js"
+            "default": "./heading-segment.js"
         },
         "./heading": {
-            "import": "./heading.js"
+            "default": "./heading.js"
         },
         "./homogeneous": {
-            "import": "./homogeneous.js"
+            "default": "./homogeneous.js"
         },
         "./invert": {
-            "import": "./invert.js"
+            "default": "./invert.js"
         },
         "./invsqrt": {
-            "import": "./invsqrt.js"
+            "default": "./invsqrt.js"
         },
         "./is-inf": {
-            "import": "./is-inf.js"
+            "default": "./is-inf.js"
         },
         "./is-nan": {
-            "import": "./is-nan.js"
+            "default": "./is-nan.js"
         },
         "./iterator": {
-            "import": "./iterator.js"
+            "default": "./iterator.js"
         },
         "./jitter": {
-            "import": "./jitter.js"
+            "default": "./jitter.js"
         },
         "./limit": {
-            "import": "./limit.js"
+            "default": "./limit.js"
         },
         "./log": {
-            "import": "./log.js"
+            "default": "./log.js"
         },
         "./log_2": {
-            "import": "./log_2.js"
+            "default": "./log_2.js"
         },
         "./logic-and": {
-            "import": "./logic-and.js"
+            "default": "./logic-and.js"
         },
         "./logic-not": {
-            "import": "./logic-not.js"
+            "default": "./logic-not.js"
         },
         "./logic-or": {
-            "import": "./logic-or.js"
+            "default": "./logic-or.js"
         },
         "./lshift": {
-            "import": "./lshift.js"
+            "default": "./lshift.js"
         },
         "./lt": {
-            "import": "./lt.js"
+            "default": "./lt.js"
         },
         "./lte": {
-            "import": "./lte.js"
+            "default": "./lte.js"
         },
         "./madd": {
-            "import": "./madd.js"
+            "default": "./madd.js"
         },
         "./maddn": {
-            "import": "./maddn.js"
+            "default": "./maddn.js"
         },
         "./maddns": {
-            "import": "./maddns.js"
+            "default": "./maddns.js"
         },
         "./madds": {
-            "import": "./madds.js"
+            "default": "./madds.js"
         },
         "./mag": {
-            "import": "./mag.js"
+            "default": "./mag.js"
         },
         "./mags": {
-            "import": "./mags.js"
+            "default": "./mags.js"
         },
         "./magsq": {
-            "import": "./magsq.js"
+            "default": "./magsq.js"
         },
         "./magsqs": {
-            "import": "./magsqs.js"
+            "default": "./magsqs.js"
         },
         "./major": {
-            "import": "./major.js"
+            "default": "./major.js"
         },
         "./map-vectors": {
-            "import": "./map-vectors.js"
+            "default": "./map-vectors.js"
         },
         "./map": {
-            "import": "./map.js"
+            "default": "./map.js"
         },
         "./max-bounds": {
-            "import": "./max-bounds.js"
+            "default": "./max-bounds.js"
         },
         "./max": {
-            "import": "./max.js"
+            "default": "./max.js"
         },
         "./mean": {
-            "import": "./mean.js"
+            "default": "./mean.js"
         },
         "./median": {
-            "import": "./median.js"
+            "default": "./median.js"
         },
         "./min-bounds": {
-            "import": "./min-bounds.js"
+            "default": "./min-bounds.js"
         },
         "./min": {
-            "import": "./min.js"
+            "default": "./min.js"
         },
         "./minor": {
-            "import": "./minor.js"
+            "default": "./minor.js"
         },
         "./mix-bilinear": {
-            "import": "./mix-bilinear.js"
+            "default": "./mix-bilinear.js"
         },
         "./mix-cubic": {
-            "import": "./mix-cubic.js"
+            "default": "./mix-cubic.js"
         },
         "./mix-hermite": {
-            "import": "./mix-hermite.js"
+            "default": "./mix-hermite.js"
         },
         "./mix-quadratic": {
-            "import": "./mix-quadratic.js"
+            "default": "./mix-quadratic.js"
         },
         "./mix": {
-            "import": "./mix.js"
+            "default": "./mix.js"
         },
         "./mixn": {
-            "import": "./mixn.js"
+            "default": "./mixn.js"
         },
         "./mixns": {
-            "import": "./mixns.js"
+            "default": "./mixns.js"
         },
         "./mixs": {
-            "import": "./mixs.js"
+            "default": "./mixs.js"
         },
         "./mod": {
-            "import": "./mod.js"
+            "default": "./mod.js"
         },
         "./modn": {
-            "import": "./modn.js"
+            "default": "./modn.js"
         },
         "./msub": {
-            "import": "./msub.js"
+            "default": "./msub.js"
         },
         "./msubn": {
-            "import": "./msubn.js"
+            "default": "./msubn.js"
         },
         "./msubns": {
-            "import": "./msubns.js"
+            "default": "./msubns.js"
         },
         "./msubs": {
-            "import": "./msubs.js"
+            "default": "./msubs.js"
         },
         "./mul": {
-            "import": "./mul.js"
+            "default": "./mul.js"
         },
         "./muli": {
-            "import": "./muli.js"
+            "default": "./muli.js"
         },
         "./muln": {
-            "import": "./muln.js"
+            "default": "./muln.js"
         },
         "./mulns": {
-            "import": "./mulns.js"
+            "default": "./mulns.js"
         },
         "./muls": {
-            "import": "./muls.js"
+            "default": "./muls.js"
         },
         "./neg": {
-            "import": "./neg.js"
+            "default": "./neg.js"
         },
         "./neq": {
-            "import": "./neq.js"
+            "default": "./neq.js"
         },
         "./normal": {
-            "import": "./normal.js"
+            "default": "./normal.js"
         },
         "./normalize": {
-            "import": "./normalize.js"
+            "default": "./normalize.js"
         },
         "./normalizes": {
-            "import": "./normalizes.js"
+            "default": "./normalizes.js"
         },
         "./not": {
-            "import": "./not.js"
+            "default": "./not.js"
         },
         "./ortho-normal": {
-            "import": "./ortho-normal.js"
+            "default": "./ortho-normal.js"
         },
         "./perpendicular": {
-            "import": "./perpendicular.js"
+            "default": "./perpendicular.js"
         },
         "./point-on-ray": {
-            "import": "./point-on-ray.js"
+            "default": "./point-on-ray.js"
         },
         "./polar": {
-            "import": "./polar.js"
+            "default": "./polar.js"
         },
         "./pow": {
-            "import": "./pow.js"
+            "default": "./pow.js"
         },
         "./pown": {
-            "import": "./pown.js"
+            "default": "./pown.js"
         },
         "./project": {
-            "import": "./project.js"
+            "default": "./project.js"
         },
         "./radians": {
-            "import": "./radians.js"
+            "default": "./radians.js"
         },
         "./random": {
-            "import": "./random.js"
+            "default": "./random.js"
         },
         "./randoms": {
-            "import": "./randoms.js"
+            "default": "./randoms.js"
         },
         "./reflect": {
-            "import": "./reflect.js"
+            "default": "./reflect.js"
         },
         "./refract": {
-            "import": "./refract.js"
+            "default": "./refract.js"
         },
         "./remainder": {
-            "import": "./remainder.js"
+            "default": "./remainder.js"
         },
         "./remaindern": {
-            "import": "./remaindern.js"
+            "default": "./remaindern.js"
         },
         "./rotate-around-axis": {
-            "import": "./rotate-around-axis.js"
+            "default": "./rotate-around-axis.js"
         },
         "./rotate-around-point": {
-            "import": "./rotate-around-point.js"
+            "default": "./rotate-around-point.js"
         },
         "./rotate": {
-            "import": "./rotate.js"
+            "default": "./rotate.js"
         },
         "./rotates": {
-            "import": "./rotates.js"
+            "default": "./rotates.js"
         },
         "./round": {
-            "import": "./round.js"
+            "default": "./round.js"
         },
         "./rshift": {
-            "import": "./rshift.js"
+            "default": "./rshift.js"
         },
         "./safe-div": {
-            "import": "./safe-div.js"
+            "default": "./safe-div.js"
         },
         "./select": {
-            "import": "./select.js"
+            "default": "./select.js"
         },
         "./set": {
-            "import": "./set.js"
+            "default": "./set.js"
         },
         "./setc": {
-            "import": "./setc.js"
+            "default": "./setc.js"
         },
         "./setcs": {
-            "import": "./setcs.js"
+            "default": "./setcs.js"
         },
         "./setn": {
-            "import": "./setn.js"
+            "default": "./setn.js"
         },
         "./setns": {
-            "import": "./setns.js"
+            "default": "./setns.js"
         },
         "./sets": {
-            "import": "./sets.js"
+            "default": "./sets.js"
         },
         "./setvn": {
-            "import": "./setvn.js"
+            "default": "./setvn.js"
         },
         "./setvv": {
-            "import": "./setvv.js"
+            "default": "./setvv.js"
         },
         "./sign": {
-            "import": "./sign.js"
+            "default": "./sign.js"
         },
         "./signed-area": {
-            "import": "./signed-area.js"
+            "default": "./signed-area.js"
         },
         "./signed-volume": {
-            "import": "./signed-volume.js"
+            "default": "./signed-volume.js"
         },
         "./sin": {
-            "import": "./sin.js"
+            "default": "./sin.js"
         },
         "./sinh": {
-            "import": "./sinh.js"
+            "default": "./sinh.js"
         },
         "./smoothstep": {
-            "import": "./smoothstep.js"
+            "default": "./smoothstep.js"
         },
         "./softmax": {
-            "import": "./softmax.js"
+            "default": "./softmax.js"
         },
         "./some": {
-            "import": "./some.js"
+            "default": "./some.js"
         },
         "./sqrt": {
-            "import": "./sqrt.js"
+            "default": "./sqrt.js"
         },
         "./standardize": {
-            "import": "./standardize.js"
+            "default": "./standardize.js"
         },
         "./step": {
-            "import": "./step.js"
+            "default": "./step.js"
         },
         "./string": {
-            "import": "./string.js"
+            "default": "./string.js"
         },
         "./sub": {
-            "import": "./sub.js"
+            "default": "./sub.js"
         },
         "./subi": {
-            "import": "./subi.js"
+            "default": "./subi.js"
         },
         "./subm": {
-            "import": "./subm.js"
+            "default": "./subm.js"
         },
         "./submn": {
-            "import": "./submn.js"
+            "default": "./submn.js"
         },
         "./submns": {
-            "import": "./submns.js"
+            "default": "./submns.js"
         },
         "./subms": {
-            "import": "./subms.js"
+            "default": "./subms.js"
         },
         "./subn": {
-            "import": "./subn.js"
+            "default": "./subn.js"
         },
         "./subns": {
-            "import": "./subns.js"
+            "default": "./subns.js"
         },
         "./subs": {
-            "import": "./subs.js"
+            "default": "./subs.js"
         },
         "./sum": {
-            "import": "./sum.js"
+            "default": "./sum.js"
         },
         "./swizzle": {
-            "import": "./swizzle.js"
+            "default": "./swizzle.js"
         },
         "./tan": {
-            "import": "./tan.js"
+            "default": "./tan.js"
         },
         "./tanh": {
-            "import": "./tanh.js"
+            "default": "./tanh.js"
         },
         "./tensor": {
-            "import": "./tensor.js"
+            "default": "./tensor.js"
         },
         "./trunc": {
-            "import": "./trunc.js"
+            "default": "./trunc.js"
         },
         "./variance": {
-            "import": "./variance.js"
+            "default": "./variance.js"
         },
         "./vec-of": {
-            "import": "./vec-of.js"
+            "default": "./vec-of.js"
         },
         "./vec2": {
-            "import": "./vec2.js"
+            "default": "./vec2.js"
         },
         "./vec3": {
-            "import": "./vec3.js"
+            "default": "./vec3.js"
         },
         "./vec4": {
-            "import": "./vec4.js"
+            "default": "./vec4.js"
         },
         "./vop": {
-            "import": "./vop.js"
+            "default": "./vop.js"
         },
         "./wrap": {
-            "import": "./wrap.js"
+            "default": "./wrap.js"
         }
     },
     "thi.ng": {

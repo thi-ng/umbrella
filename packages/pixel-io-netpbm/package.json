@@ -73,13 +73,13 @@
     ],
     "exports": {
         ".": {
-            "import": "./index.js"
+            "default": "./index.js"
         },
         "./read": {
-            "import": "./read.js"
+            "default": "./read.js"
         },
         "./write": {
-            "import": "./write.js"
+            "default": "./write.js"
         }
     },
     "thi.ng": {

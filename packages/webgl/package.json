@@ -94,112 +94,112 @@
     ],
     "exports": {
         ".": {
-            "import": "./index.js"
+            "default": "./index.js"
         },
         "./api/blend": {
-            "import": "./api/blend.js"
+            "default": "./api/blend.js"
         },
         "./api/buffers": {
-            "import": "./api/buffers.js"
+            "default": "./api/buffers.js"
         },
         "./api/canvas": {
-            "import": "./api/canvas.js"
+            "default": "./api/canvas.js"
         },
         "./api/ext": {
-            "import": "./api/ext.js"
+            "default": "./api/ext.js"
         },
         "./api/glsl": {
-            "import": "./api/glsl.js"
+            "default": "./api/glsl.js"
         },
         "./api/material": {
-            "import": "./api/material.js"
+            "default": "./api/material.js"
         },
         "./api/model": {
-            "import": "./api/model.js"
+            "default": "./api/model.js"
         },
         "./api/multipass": {
-            "import": "./api/multipass.js"
+            "default": "./api/multipass.js"
         },
         "./api/shader": {
-            "import": "./api/shader.js"
+            "default": "./api/shader.js"
         },
         "./api/stencil": {
-            "import": "./api/stencil.js"
+            "default": "./api/stencil.js"
         },
         "./api/texture": {
-            "import": "./api/texture.js"
+            "default": "./api/texture.js"
         },
         "./buffer": {
-            "import": "./buffer.js"
+            "default": "./buffer.js"
         },
         "./canvas": {
-            "import": "./canvas.js"
+            "default": "./canvas.js"
         },
         "./checks": {
-            "import": "./checks.js"
+            "default": "./checks.js"
         },
         "./draw": {
-            "import": "./draw.js"
+            "default": "./draw.js"
         },
         "./error": {
-            "import": "./error.js"
+            "default": "./error.js"
         },
         "./fbo": {
-            "import": "./fbo.js"
+            "default": "./fbo.js"
         },
         "./geo/cube": {
-            "import": "./geo/cube.js"
+            "default": "./geo/cube.js"
         },
         "./geo/quad": {
-            "import": "./geo/quad.js"
+            "default": "./geo/quad.js"
         },
         "./logger": {
-            "import": "./logger.js"
+            "default": "./logger.js"
         },
         "./material": {
-            "import": "./material.js"
+            "default": "./material.js"
         },
         "./matrices": {
-            "import": "./matrices.js"
+            "default": "./matrices.js"
         },
         "./multipass": {
-            "import": "./multipass.js"
+            "default": "./multipass.js"
         },
         "./rbo": {
-            "import": "./rbo.js"
+            "default": "./rbo.js"
         },
         "./readpixels": {
-            "import": "./readpixels.js"
+            "default": "./readpixels.js"
         },
         "./shader": {
-            "import": "./shader.js"
+            "default": "./shader.js"
         },
         "./shaders/lambert": {
-            "import": "./shaders/lambert.js"
+            "default": "./shaders/lambert.js"
         },
         "./shaders/phong": {
-            "import": "./shaders/phong.js"
+            "default": "./shaders/phong.js"
         },
         "./shaders/pipeline": {
-            "import": "./shaders/pipeline.js"
+            "default": "./shaders/pipeline.js"
         },
         "./syntax": {
-            "import": "./syntax.js"
+            "default": "./syntax.js"
         },
         "./texture": {
-            "import": "./texture.js"
+            "default": "./texture.js"
         },
         "./textures/checkerboard": {
-            "import": "./textures/checkerboard.js"
+            "default": "./textures/checkerboard.js"
         },
         "./textures/stripes": {
-            "import": "./textures/stripes.js"
+            "default": "./textures/stripes.js"
         },
         "./uniforms": {
-            "import": "./uniforms.js"
+            "default": "./uniforms.js"
         },
         "./utils": {
-            "import": "./utils.js"
+            "default": "./utils.js"
         }
     },
     "thi.ng": {

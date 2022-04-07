@@ -86,28 +86,28 @@
     ],
     "exports": {
         ".": {
-            "import": "./index.js"
+            "default": "./index.js"
         },
         "./aspatial-grid": {
-            "import": "./aspatial-grid.js"
+            "default": "./aspatial-grid.js"
         },
         "./kd-tree-map": {
-            "import": "./kd-tree-map.js"
+            "default": "./kd-tree-map.js"
         },
         "./kd-tree-set": {
-            "import": "./kd-tree-set.js"
+            "default": "./kd-tree-set.js"
         },
         "./nd-quadtree-map": {
-            "import": "./nd-quadtree-map.js"
+            "default": "./nd-quadtree-map.js"
         },
         "./nd-quadtree-set": {
-            "import": "./nd-quadtree-set.js"
+            "default": "./nd-quadtree-set.js"
         },
         "./spatial-grid2": {
-            "import": "./spatial-grid2.js"
+            "default": "./spatial-grid2.js"
         },
         "./spatial-grid3": {
-            "import": "./spatial-grid3.js"
+            "default": "./spatial-grid3.js"
         }
     },
     "thi.ng": {

@@ -65,19 +65,19 @@
     ],
     "exports": {
         ".": {
-            "import": "./index.js"
+            "default": "./index.js"
         },
         "./api": {
-            "import": "./api.js"
+            "default": "./api.js"
         },
         "./exec": {
-            "import": "./exec.js"
+            "default": "./exec.js"
         },
         "./group": {
-            "import": "./group.js"
+            "default": "./group.js"
         },
         "./test": {
-            "import": "./test.js"
+            "default": "./test.js"
         }
     },
     "thi.ng": {

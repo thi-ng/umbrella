@@ -74,13 +74,13 @@
     ],
     "exports": {
         ".": {
-            "import": "./index.js"
+            "default": "./index.js"
         },
         "./api": {
-            "import": "./api.js"
+            "default": "./api.js"
         },
         "./gesture-stream": {
-            "import": "./gesture-stream.js"
+            "default": "./gesture-stream.js"
         }
     },
     "thi.ng": {

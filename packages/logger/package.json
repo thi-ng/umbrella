@@ -61,16 +61,16 @@
     ],
     "exports": {
         ".": {
-            "import": "./index.js"
+            "default": "./index.js"
         },
         "./api": {
-            "import": "./api.js"
+            "default": "./api.js"
         },
         "./console": {
-            "import": "./console.js"
+            "default": "./console.js"
         },
         "./null": {
-            "import": "./null.js"
+            "default": "./null.js"
         }
     },
     "thi.ng": {

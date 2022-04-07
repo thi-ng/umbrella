@@ -103,103 +103,103 @@
     ],
     "exports": {
         ".": {
-            "import": "./index.js"
+            "default": "./index.js"
         },
         "./api": {
-            "import": "./api.js"
+            "default": "./api.js"
         },
         "./canvas": {
-            "import": "./canvas.js"
+            "default": "./canvas.js"
         },
         "./checks": {
-            "import": "./checks.js"
+            "default": "./checks.js"
         },
         "./convolve": {
-            "import": "./convolve.js"
+            "default": "./convolve.js"
         },
         "./dominant-colors": {
-            "import": "./dominant-colors.js"
+            "default": "./dominant-colors.js"
         },
         "./float": {
-            "import": "./float.js"
+            "default": "./float.js"
         },
         "./format/abgr8888": {
-            "import": "./format/abgr8888.js"
+            "default": "./format/abgr8888.js"
         },
         "./format/alpha8": {
-            "import": "./format/alpha8.js"
+            "default": "./format/alpha8.js"
         },
         "./format/argb1555": {
-            "import": "./format/argb1555.js"
+            "default": "./format/argb1555.js"
         },
         "./format/argb4444": {
-            "import": "./format/argb4444.js"
+            "default": "./format/argb4444.js"
         },
         "./format/argb8888": {
-            "import": "./format/argb8888.js"
+            "default": "./format/argb8888.js"
         },
         "./format/bgr888": {
-            "import": "./format/bgr888.js"
+            "default": "./format/bgr888.js"
         },
         "./format/float-format": {
-            "import": "./format/float-format.js"
+            "default": "./format/float-format.js"
         },
         "./format/float-gray-alpha": {
-            "import": "./format/float-gray-alpha.js"
+            "default": "./format/float-gray-alpha.js"
         },
         "./format/float-gray": {
-            "import": "./format/float-gray.js"
+            "default": "./format/float-gray.js"
         },
         "./format/float-hsva": {
-            "import": "./format/float-hsva.js"
+            "default": "./format/float-hsva.js"
         },
         "./format/float-norm": {
-            "import": "./format/float-norm.js"
+            "default": "./format/float-norm.js"
         },
         "./format/float-rgb": {
-            "import": "./format/float-rgb.js"
+            "default": "./format/float-rgb.js"
         },
         "./format/float-rgba": {
-            "import": "./format/float-rgba.js"
+            "default": "./format/float-rgba.js"
         },
         "./format/gray-alpha16": {
-            "import": "./format/gray-alpha16.js"
+            "default": "./format/gray-alpha16.js"
         },
         "./format/gray-alpha8": {
-            "import": "./format/gray-alpha8.js"
+            "default": "./format/gray-alpha8.js"
         },
         "./format/gray16": {
-            "import": "./format/gray16.js"
+            "default": "./format/gray16.js"
         },
         "./format/gray8": {
-            "import": "./format/gray8.js"
+            "default": "./format/gray8.js"
         },
         "./format/indexed": {
-            "import": "./format/indexed.js"
+            "default": "./format/indexed.js"
         },
         "./format/int-format": {
-            "import": "./format/int-format.js"
+            "default": "./format/int-format.js"
         },
         "./format/rgb565": {
-            "import": "./format/rgb565.js"
+            "default": "./format/rgb565.js"
         },
         "./format/rgb888": {
-            "import": "./format/rgb888.js"
+            "default": "./format/rgb888.js"
         },
         "./int": {
-            "import": "./int.js"
+            "default": "./int.js"
         },
         "./normal-map": {
-            "import": "./normal-map.js"
+            "default": "./normal-map.js"
         },
         "./pyramid": {
-            "import": "./pyramid.js"
+            "default": "./pyramid.js"
         },
         "./range": {
-            "import": "./range.js"
+            "default": "./range.js"
         },
         "./sample": {
-            "import": "./sample.js"
+            "default": "./sample.js"
         }
     },
     "thi.ng": {

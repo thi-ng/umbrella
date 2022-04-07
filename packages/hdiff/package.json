@@ -74,19 +74,19 @@
     ],
     "exports": {
         ".": {
-            "import": "./index.js"
+            "default": "./index.js"
         },
         "./api": {
-            "import": "./api.js"
+            "default": "./api.js"
         },
         "./diff": {
-            "import": "./diff.js"
+            "default": "./diff.js"
         },
         "./html": {
-            "import": "./html.js"
+            "default": "./html.js"
         },
         "./theme": {
-            "import": "./theme.js"
+            "default": "./theme.js"
         }
     },
     "thi.ng": {

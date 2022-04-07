@@ -80,28 +80,28 @@
     ],
     "exports": {
         ".": {
-            "import": "./index.js"
+            "default": "./index.js"
         },
         "./api": {
-            "import": "./api.js"
+            "default": "./api.js"
         },
         "./convert": {
-            "import": "./convert.js"
+            "default": "./convert.js"
         },
         "./logger": {
-            "import": "./logger.js"
+            "default": "./logger.js"
         },
         "./pattern": {
-            "import": "./pattern.js"
+            "default": "./pattern.js"
         },
         "./qvar": {
-            "import": "./qvar.js"
+            "default": "./qvar.js"
         },
         "./store": {
-            "import": "./store.js"
+            "default": "./store.js"
         },
         "./xforms": {
-            "import": "./xforms.js"
+            "default": "./xforms.js"
         }
     },
     "thi.ng": {

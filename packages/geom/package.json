@@ -107,256 +107,256 @@
     ],
     "exports": {
         ".": {
-            "import": "./index.js"
+            "default": "./index.js"
         },
         "./aabb": {
-            "import": "./aabb.js"
+            "default": "./aabb.js"
         },
         "./api/aabb": {
-            "import": "./api/aabb.js"
+            "default": "./api/aabb.js"
         },
         "./api/apc": {
-            "import": "./api/apc.js"
+            "default": "./api/apc.js"
         },
         "./api/arc": {
-            "import": "./api/arc.js"
+            "default": "./api/arc.js"
         },
         "./api/bpatch": {
-            "import": "./api/bpatch.js"
+            "default": "./api/bpatch.js"
         },
         "./api/circle": {
-            "import": "./api/circle.js"
+            "default": "./api/circle.js"
         },
         "./api/cubic": {
-            "import": "./api/cubic.js"
+            "default": "./api/cubic.js"
         },
         "./api/ellipse": {
-            "import": "./api/ellipse.js"
+            "default": "./api/ellipse.js"
         },
         "./api/group": {
-            "import": "./api/group.js"
+            "default": "./api/group.js"
         },
         "./api/line": {
-            "import": "./api/line.js"
+            "default": "./api/line.js"
         },
         "./api/path": {
-            "import": "./api/path.js"
+            "default": "./api/path.js"
         },
         "./api/plane": {
-            "import": "./api/plane.js"
+            "default": "./api/plane.js"
         },
         "./api/points": {
-            "import": "./api/points.js"
+            "default": "./api/points.js"
         },
         "./api/polygon": {
-            "import": "./api/polygon.js"
+            "default": "./api/polygon.js"
         },
         "./api/polyline": {
-            "import": "./api/polyline.js"
+            "default": "./api/polyline.js"
         },
         "./api/quad": {
-            "import": "./api/quad.js"
+            "default": "./api/quad.js"
         },
         "./api/quad3": {
-            "import": "./api/quad3.js"
+            "default": "./api/quad3.js"
         },
         "./api/quadratic": {
-            "import": "./api/quadratic.js"
+            "default": "./api/quadratic.js"
         },
         "./api/ray": {
-            "import": "./api/ray.js"
+            "default": "./api/ray.js"
         },
         "./api/rect": {
-            "import": "./api/rect.js"
+            "default": "./api/rect.js"
         },
         "./api/sphere": {
-            "import": "./api/sphere.js"
+            "default": "./api/sphere.js"
         },
         "./api/text": {
-            "import": "./api/text.js"
+            "default": "./api/text.js"
         },
         "./api/triangle": {
-            "import": "./api/triangle.js"
+            "default": "./api/triangle.js"
         },
         "./arc-length": {
-            "import": "./arc-length.js"
+            "default": "./arc-length.js"
         },
         "./arc": {
-            "import": "./arc.js"
+            "default": "./arc.js"
         },
         "./area": {
-            "import": "./area.js"
+            "default": "./area.js"
         },
         "./as-cubic": {
-            "import": "./as-cubic.js"
+            "default": "./as-cubic.js"
         },
         "./as-path": {
-            "import": "./as-path.js"
+            "default": "./as-path.js"
         },
         "./as-polygon": {
-            "import": "./as-polygon.js"
+            "default": "./as-polygon.js"
         },
         "./as-polyline": {
-            "import": "./as-polyline.js"
+            "default": "./as-polyline.js"
         },
         "./as-svg": {
-            "import": "./as-svg.js"
+            "default": "./as-svg.js"
         },
         "./bounds": {
-            "import": "./bounds.js"
+            "default": "./bounds.js"
         },
         "./bpatch": {
-            "import": "./bpatch.js"
+            "default": "./bpatch.js"
         },
         "./center": {
-            "import": "./center.js"
+            "default": "./center.js"
         },
         "./centroid": {
-            "import": "./centroid.js"
+            "default": "./centroid.js"
         },
         "./circle": {
-            "import": "./circle.js"
+            "default": "./circle.js"
         },
         "./classify-point": {
-            "import": "./classify-point.js"
+            "default": "./classify-point.js"
         },
         "./clip-convex": {
-            "import": "./clip-convex.js"
+            "default": "./clip-convex.js"
         },
         "./closest-point": {
-            "import": "./closest-point.js"
+            "default": "./closest-point.js"
         },
         "./convex-hull": {
-            "import": "./convex-hull.js"
+            "default": "./convex-hull.js"
         },
         "./cubic": {
-            "import": "./cubic.js"
+            "default": "./cubic.js"
         },
         "./edges": {
-            "import": "./edges.js"
+            "default": "./edges.js"
         },
         "./ellipse": {
-            "import": "./ellipse.js"
+            "default": "./ellipse.js"
         },
         "./fit-into-bounds": {
-            "import": "./fit-into-bounds.js"
+            "default": "./fit-into-bounds.js"
         },
         "./flip": {
-            "import": "./flip.js"
+            "default": "./flip.js"
         },
         "./group": {
-            "import": "./group.js"
+            "default": "./group.js"
         },
         "./intersects": {
-            "import": "./intersects.js"
+            "default": "./intersects.js"
         },
         "./line": {
-            "import": "./line.js"
+            "default": "./line.js"
         },
         "./map-point": {
-            "import": "./map-point.js"
+            "default": "./map-point.js"
         },
         "./offset": {
-            "import": "./offset.js"
+            "default": "./offset.js"
         },
         "./path-builder": {
-            "import": "./path-builder.js"
+            "default": "./path-builder.js"
         },
         "./path-from-svg": {
-            "import": "./path-from-svg.js"
+            "default": "./path-from-svg.js"
         },
         "./path": {
-            "import": "./path.js"
+            "default": "./path.js"
         },
         "./plane": {
-            "import": "./plane.js"
+            "default": "./plane.js"
         },
         "./point-at": {
-            "import": "./point-at.js"
+            "default": "./point-at.js"
         },
         "./point-inside": {
-            "import": "./point-inside.js"
+            "default": "./point-inside.js"
         },
         "./points": {
-            "import": "./points.js"
+            "default": "./points.js"
         },
         "./polygon": {
-            "import": "./polygon.js"
+            "default": "./polygon.js"
         },
         "./polyline": {
-            "import": "./polyline.js"
+            "default": "./polyline.js"
         },
         "./quad": {
-            "import": "./quad.js"
+            "default": "./quad.js"
         },
         "./quadratic": {
-            "import": "./quadratic.js"
+            "default": "./quadratic.js"
         },
         "./ray": {
-            "import": "./ray.js"
+            "default": "./ray.js"
         },
         "./rect": {
-            "import": "./rect.js"
+            "default": "./rect.js"
         },
         "./resample": {
-            "import": "./resample.js"
+            "default": "./resample.js"
         },
         "./scatter": {
-            "import": "./scatter.js"
+            "default": "./scatter.js"
         },
         "./simplify": {
-            "import": "./simplify.js"
+            "default": "./simplify.js"
         },
         "./sphere": {
-            "import": "./sphere.js"
+            "default": "./sphere.js"
         },
         "./split-at": {
-            "import": "./split-at.js"
+            "default": "./split-at.js"
         },
         "./split-near": {
-            "import": "./split-near.js"
+            "default": "./split-near.js"
         },
         "./subdiv-curve": {
-            "import": "./subdiv-curve.js"
+            "default": "./subdiv-curve.js"
         },
         "./tangent-at": {
-            "import": "./tangent-at.js"
+            "default": "./tangent-at.js"
         },
         "./tessellate": {
-            "import": "./tessellate.js"
+            "default": "./tessellate.js"
         },
         "./text": {
-            "import": "./text.js"
+            "default": "./text.js"
         },
         "./transform-vertices": {
-            "import": "./transform-vertices.js"
+            "default": "./transform-vertices.js"
         },
         "./transform": {
-            "import": "./transform.js"
+            "default": "./transform.js"
         },
         "./translate": {
-            "import": "./translate.js"
+            "default": "./translate.js"
         },
         "./triangle": {
-            "import": "./triangle.js"
+            "default": "./triangle.js"
         },
         "./union": {
-            "import": "./union.js"
+            "default": "./union.js"
         },
         "./unmap-point": {
-            "import": "./unmap-point.js"
+            "default": "./unmap-point.js"
         },
         "./vertices": {
-            "import": "./vertices.js"
+            "default": "./vertices.js"
         },
         "./volume": {
-            "import": "./volume.js"
+            "default": "./volume.js"
         },
         "./warp-points": {
-            "import": "./warp-points.js"
+            "default": "./warp-points.js"
         },
         "./with-attribs": {
-            "import": "./with-attribs.js"
+            "default": "./with-attribs.js"
         }
     },
     "thi.ng": {

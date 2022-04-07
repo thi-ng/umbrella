@@ -74,28 +74,28 @@
     ],
     "exports": {
         ".": {
-            "import": "./index.js"
+            "default": "./index.js"
         },
         "./api": {
-            "import": "./api.js"
+            "default": "./api.js"
         },
         "./checks": {
-            "import": "./checks.js"
+            "default": "./checks.js"
         },
         "./convert": {
-            "import": "./convert.js"
+            "default": "./convert.js"
         },
         "./dot": {
-            "import": "./dot.js"
+            "default": "./dot.js"
         },
         "./parser": {
-            "import": "./parser.js"
+            "default": "./parser.js"
         },
         "./prefix": {
-            "import": "./prefix.js"
+            "default": "./prefix.js"
         },
         "./tags": {
-            "import": "./tags.js"
+            "default": "./tags.js"
         }
     },
     "thi.ng": {

@@ -70,13 +70,13 @@
     ],
     "exports": {
         ".": {
-            "import": "./index.js"
+            "default": "./index.js"
         },
         "./decode": {
-            "import": "./decode.js"
+            "default": "./decode.js"
         },
         "./encode": {
-            "import": "./encode.js"
+            "default": "./encode.js"
         }
     }
 }

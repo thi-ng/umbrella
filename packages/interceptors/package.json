@@ -70,16 +70,16 @@
     ],
     "exports": {
         ".": {
-            "import": "./index.js"
+            "default": "./index.js"
         },
         "./api": {
-            "import": "./api.js"
+            "default": "./api.js"
         },
         "./event-bus": {
-            "import": "./event-bus.js"
+            "default": "./event-bus.js"
         },
         "./interceptors": {
-            "import": "./interceptors.js"
+            "default": "./interceptors.js"
         }
     },
     "thi.ng": {

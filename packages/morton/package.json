@@ -79,22 +79,22 @@
     ],
     "exports": {
         ".": {
-            "import": "./index.js"
+            "default": "./index.js"
         },
         "./mux": {
-            "import": "./mux.js"
+            "default": "./mux.js"
         },
         "./raw": {
-            "import": "./raw.js"
+            "default": "./raw.js"
         },
         "./scaled": {
-            "import": "./scaled.js"
+            "default": "./scaled.js"
         },
         "./tree": {
-            "import": "./tree.js"
+            "default": "./tree.js"
         },
         "./zcurve": {
-            "import": "./zcurve.js"
+            "default": "./zcurve.js"
         }
     },
     "thi.ng": {

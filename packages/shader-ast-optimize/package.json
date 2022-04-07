@@ -67,10 +67,10 @@
     ],
     "exports": {
         ".": {
-            "import": "./index.js"
+            "default": "./index.js"
         },
         "./contant-folding": {
-            "import": "./contant-folding.js"
+            "default": "./contant-folding.js"
         }
     },
     "thi.ng": {

@@ -69,37 +69,37 @@
     ],
     "exports": {
         ".": {
-            "import": "./index.js"
+            "default": "./index.js"
         },
         "./api": {
-            "import": "./api.js"
+            "default": "./api.js"
         },
         "./defuzz": {
-            "import": "./defuzz.js"
+            "default": "./defuzz.js"
         },
         "./rules": {
-            "import": "./rules.js"
+            "default": "./rules.js"
         },
         "./shapes": {
-            "import": "./shapes.js"
+            "default": "./shapes.js"
         },
         "./strategies/bisector": {
-            "import": "./strategies/bisector.js"
+            "default": "./strategies/bisector.js"
         },
         "./strategies/centroid": {
-            "import": "./strategies/centroid.js"
+            "default": "./strategies/centroid.js"
         },
         "./strategies/maxima": {
-            "import": "./strategies/maxima.js"
+            "default": "./strategies/maxima.js"
         },
         "./strategies/opts": {
-            "import": "./strategies/opts.js"
+            "default": "./strategies/opts.js"
         },
         "./tnorms": {
-            "import": "./tnorms.js"
+            "default": "./tnorms.js"
         },
         "./var": {
-            "import": "./var.js"
+            "default": "./var.js"
         }
     },
     "thi.ng": {

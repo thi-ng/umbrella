@@ -68,202 +68,202 @@
     ],
     "exports": {
         ".": {
-            "import": "./index.js"
+            "default": "./index.js"
         },
         "./exists-not-null": {
-            "import": "./exists-not-null.js"
+            "default": "./exists-not-null.js"
         },
         "./exists": {
-            "import": "./exists.js"
+            "default": "./exists.js"
         },
         "./has-bigint": {
-            "import": "./has-bigint.js"
+            "default": "./has-bigint.js"
         },
         "./has-crypto": {
-            "import": "./has-crypto.js"
+            "default": "./has-crypto.js"
         },
         "./has-max-length": {
-            "import": "./has-max-length.js"
+            "default": "./has-max-length.js"
         },
         "./has-min-length": {
-            "import": "./has-min-length.js"
+            "default": "./has-min-length.js"
         },
         "./has-performance": {
-            "import": "./has-performance.js"
+            "default": "./has-performance.js"
         },
         "./has-wasm": {
-            "import": "./has-wasm.js"
+            "default": "./has-wasm.js"
         },
         "./has-webgl": {
-            "import": "./has-webgl.js"
+            "default": "./has-webgl.js"
         },
         "./has-websocket": {
-            "import": "./has-websocket.js"
+            "default": "./has-websocket.js"
         },
         "./implements-function": {
-            "import": "./implements-function.js"
+            "default": "./implements-function.js"
         },
         "./is-alphanum": {
-            "import": "./is-alphanum.js"
+            "default": "./is-alphanum.js"
         },
         "./is-array": {
-            "import": "./is-array.js"
+            "default": "./is-array.js"
         },
         "./is-arraylike": {
-            "import": "./is-arraylike.js"
+            "default": "./is-arraylike.js"
         },
         "./is-ascii": {
-            "import": "./is-ascii.js"
+            "default": "./is-ascii.js"
         },
         "./is-async-iterable": {
-            "import": "./is-async-iterable.js"
+            "default": "./is-async-iterable.js"
         },
         "./is-blob": {
-            "import": "./is-blob.js"
+            "default": "./is-blob.js"
         },
         "./is-boolean": {
-            "import": "./is-boolean.js"
+            "default": "./is-boolean.js"
         },
         "./is-chrome": {
-            "import": "./is-chrome.js"
+            "default": "./is-chrome.js"
         },
         "./is-data-url": {
-            "import": "./is-data-url.js"
+            "default": "./is-data-url.js"
         },
         "./is-date": {
-            "import": "./is-date.js"
+            "default": "./is-date.js"
         },
         "./is-even": {
-            "import": "./is-even.js"
+            "default": "./is-even.js"
         },
         "./is-false": {
-            "import": "./is-false.js"
+            "default": "./is-false.js"
         },
         "./is-file": {
-            "import": "./is-file.js"
+            "default": "./is-file.js"
         },
         "./is-firefox": {
-            "import": "./is-firefox.js"
+            "default": "./is-firefox.js"
         },
         "./is-float-string": {
-            "import": "./is-float-string.js"
+            "default": "./is-float-string.js"
         },
         "./is-function": {
-            "import": "./is-function.js"
+            "default": "./is-function.js"
         },
         "./is-hex-color": {
-            "import": "./is-hex-color.js"
+            "default": "./is-hex-color.js"
         },
         "./is-hex": {
-            "import": "./is-hex.js"
+            "default": "./is-hex.js"
         },
         "./is-ie": {
-            "import": "./is-ie.js"
+            "default": "./is-ie.js"
         },
         "./is-in-range": {
-            "import": "./is-in-range.js"
+            "default": "./is-in-range.js"
         },
         "./is-int-string": {
-            "import": "./is-int-string.js"
+            "default": "./is-int-string.js"
         },
         "./is-int32": {
-            "import": "./is-int32.js"
+            "default": "./is-int32.js"
         },
         "./is-iterable": {
-            "import": "./is-iterable.js"
+            "default": "./is-iterable.js"
         },
         "./is-map": {
-            "import": "./is-map.js"
+            "default": "./is-map.js"
         },
         "./is-mobile": {
-            "import": "./is-mobile.js"
+            "default": "./is-mobile.js"
         },
         "./is-nan": {
-            "import": "./is-nan.js"
+            "default": "./is-nan.js"
         },
         "./is-negative": {
-            "import": "./is-negative.js"
+            "default": "./is-negative.js"
         },
         "./is-nil": {
-            "import": "./is-nil.js"
+            "default": "./is-nil.js"
         },
         "./is-node": {
-            "import": "./is-node.js"
+            "default": "./is-node.js"
         },
         "./is-not-string-iterable": {
-            "import": "./is-not-string-iterable.js"
+            "default": "./is-not-string-iterable.js"
         },
         "./is-null": {
-            "import": "./is-null.js"
+            "default": "./is-null.js"
         },
         "./is-number": {
-            "import": "./is-number.js"
+            "default": "./is-number.js"
         },
         "./is-numeric": {
-            "import": "./is-numeric.js"
+            "default": "./is-numeric.js"
         },
         "./is-object": {
-            "import": "./is-object.js"
+            "default": "./is-object.js"
         },
         "./is-odd": {
-            "import": "./is-odd.js"
+            "default": "./is-odd.js"
         },
         "./is-plain-object": {
-            "import": "./is-plain-object.js"
+            "default": "./is-plain-object.js"
         },
         "./is-positive": {
-            "import": "./is-positive.js"
+            "default": "./is-positive.js"
         },
         "./is-primitive": {
-            "import": "./is-primitive.js"
+            "default": "./is-primitive.js"
         },
         "./is-promise": {
-            "import": "./is-promise.js"
+            "default": "./is-promise.js"
         },
         "./is-promiselike": {
-            "import": "./is-promiselike.js"
+            "default": "./is-promiselike.js"
         },
         "./is-proto-path": {
-            "import": "./is-proto-path.js"
+            "default": "./is-proto-path.js"
         },
         "./is-regexp": {
-            "import": "./is-regexp.js"
+            "default": "./is-regexp.js"
         },
         "./is-safari": {
-            "import": "./is-safari.js"
+            "default": "./is-safari.js"
         },
         "./is-set": {
-            "import": "./is-set.js"
+            "default": "./is-set.js"
         },
         "./is-string": {
-            "import": "./is-string.js"
+            "default": "./is-string.js"
         },
         "./is-symbol": {
-            "import": "./is-symbol.js"
+            "default": "./is-symbol.js"
         },
         "./is-transferable": {
-            "import": "./is-transferable.js"
+            "default": "./is-transferable.js"
         },
         "./is-true": {
-            "import": "./is-true.js"
+            "default": "./is-true.js"
         },
         "./is-typedarray": {
-            "import": "./is-typedarray.js"
+            "default": "./is-typedarray.js"
         },
         "./is-uint32": {
-            "import": "./is-uint32.js"
+            "default": "./is-uint32.js"
         },
         "./is-undefined": {
-            "import": "./is-undefined.js"
+            "default": "./is-undefined.js"
         },
         "./is-uuid": {
-            "import": "./is-uuid.js"
+            "default": "./is-uuid.js"
         },
         "./is-uuid4": {
-            "import": "./is-uuid4.js"
+            "default": "./is-uuid4.js"
         },
         "./is-zero": {
-            "import": "./is-zero.js"
+            "default": "./is-zero.js"
         }
     }
 }

@@ -69,22 +69,22 @@
     ],
     "exports": {
         ".": {
-            "import": "./index.js"
+            "default": "./index.js"
         },
         "./api": {
-            "import": "./api.js"
+            "default": "./api.js"
         },
         "./dheap": {
-            "import": "./dheap.js"
+            "default": "./dheap.js"
         },
         "./heap": {
-            "import": "./heap.js"
+            "default": "./heap.js"
         },
         "./pairing": {
-            "import": "./pairing.js"
+            "default": "./pairing.js"
         },
         "./priority-queue": {
-            "import": "./priority-queue.js"
+            "default": "./priority-queue.js"
         }
     },
     "thi.ng": {

@@ -82,88 +82,88 @@
     ],
     "exports": {
         ".": {
-            "import": "./index.js"
+            "default": "./index.js"
         },
         "./api/function": {
-            "import": "./api/function.js"
+            "default": "./api/function.js"
         },
         "./api/nodes": {
-            "import": "./api/nodes.js"
+            "default": "./api/nodes.js"
         },
         "./api/ops": {
-            "import": "./api/ops.js"
+            "default": "./api/ops.js"
         },
         "./api/precision": {
-            "import": "./api/precision.js"
+            "default": "./api/precision.js"
         },
         "./api/swizzles": {
-            "import": "./api/swizzles.js"
+            "default": "./api/swizzles.js"
         },
         "./api/syms": {
-            "import": "./api/syms.js"
+            "default": "./api/syms.js"
         },
         "./api/tags": {
-            "import": "./api/tags.js"
+            "default": "./api/tags.js"
         },
         "./api/target": {
-            "import": "./api/target.js"
+            "default": "./api/target.js"
         },
         "./api/terms": {
-            "import": "./api/terms.js"
+            "default": "./api/terms.js"
         },
         "./api/types": {
-            "import": "./api/types.js"
+            "default": "./api/types.js"
         },
         "./ast/assign": {
-            "import": "./ast/assign.js"
+            "default": "./ast/assign.js"
         },
         "./ast/checks": {
-            "import": "./ast/checks.js"
+            "default": "./ast/checks.js"
         },
         "./ast/controlflow": {
-            "import": "./ast/controlflow.js"
+            "default": "./ast/controlflow.js"
         },
         "./ast/function": {
-            "import": "./ast/function.js"
+            "default": "./ast/function.js"
         },
         "./ast/idgen": {
-            "import": "./ast/idgen.js"
+            "default": "./ast/idgen.js"
         },
         "./ast/indexed": {
-            "import": "./ast/indexed.js"
+            "default": "./ast/indexed.js"
         },
         "./ast/item": {
-            "import": "./ast/item.js"
+            "default": "./ast/item.js"
         },
         "./ast/lit": {
-            "import": "./ast/lit.js"
+            "default": "./ast/lit.js"
         },
         "./ast/ops": {
-            "import": "./ast/ops.js"
+            "default": "./ast/ops.js"
         },
         "./ast/scope": {
-            "import": "./ast/scope.js"
+            "default": "./ast/scope.js"
         },
         "./ast/swizzle": {
-            "import": "./ast/swizzle.js"
+            "default": "./ast/swizzle.js"
         },
         "./ast/sym": {
-            "import": "./ast/sym.js"
+            "default": "./ast/sym.js"
         },
         "./builtin/bvec": {
-            "import": "./builtin/bvec.js"
+            "default": "./builtin/bvec.js"
         },
         "./builtin/math": {
-            "import": "./builtin/math.js"
+            "default": "./builtin/math.js"
         },
         "./builtin/texture": {
-            "import": "./builtin/texture.js"
+            "default": "./builtin/texture.js"
         },
         "./logger": {
-            "import": "./logger.js"
+            "default": "./logger.js"
         },
         "./target": {
-            "import": "./target.js"
+            "default": "./target.js"
         }
     },
     "thi.ng": {

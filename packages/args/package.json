@@ -75,22 +75,22 @@
     ],
     "exports": {
         ".": {
-            "import": "./index.js"
+            "default": "./index.js"
         },
         "./api": {
-            "import": "./api.js"
+            "default": "./api.js"
         },
         "./args": {
-            "import": "./args.js"
+            "default": "./args.js"
         },
         "./coerce": {
-            "import": "./coerce.js"
+            "default": "./coerce.js"
         },
         "./parse": {
-            "import": "./parse.js"
+            "default": "./parse.js"
         },
         "./usage": {
-            "import": "./usage.js"
+            "default": "./usage.js"
         }
     },
     "thi.ng": {

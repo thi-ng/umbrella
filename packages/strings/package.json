@@ -83,118 +83,118 @@
     ],
     "exports": {
         ".": {
-            "import": "./index.js"
+            "default": "./index.js"
         },
         "./ansi": {
-            "import": "./ansi.js"
+            "default": "./ansi.js"
         },
         "./api": {
-            "import": "./api.js"
+            "default": "./api.js"
         },
         "./case": {
-            "import": "./case.js"
+            "default": "./case.js"
         },
         "./center": {
-            "import": "./center.js"
+            "default": "./center.js"
         },
         "./currency": {
-            "import": "./currency.js"
+            "default": "./currency.js"
         },
         "./cursor": {
-            "import": "./cursor.js"
+            "default": "./cursor.js"
         },
         "./entities": {
-            "import": "./entities.js"
+            "default": "./entities.js"
         },
         "./escape": {
-            "import": "./escape.js"
+            "default": "./escape.js"
         },
         "./float": {
-            "import": "./float.js"
+            "default": "./float.js"
         },
         "./format": {
-            "import": "./format.js"
+            "default": "./format.js"
         },
         "./groups": {
-            "import": "./groups.js"
+            "default": "./groups.js"
         },
         "./hollerith": {
-            "import": "./hollerith.js"
+            "default": "./hollerith.js"
         },
         "./initials": {
-            "import": "./initials.js"
+            "default": "./initials.js"
         },
         "./int": {
-            "import": "./int.js"
+            "default": "./int.js"
         },
         "./interpolate": {
-            "import": "./interpolate.js"
+            "default": "./interpolate.js"
         },
         "./join": {
-            "import": "./join.js"
+            "default": "./join.js"
         },
         "./pad-left": {
-            "import": "./pad-left.js"
+            "default": "./pad-left.js"
         },
         "./pad-right": {
-            "import": "./pad-right.js"
+            "default": "./pad-right.js"
         },
         "./parse": {
-            "import": "./parse.js"
+            "default": "./parse.js"
         },
         "./percent": {
-            "import": "./percent.js"
+            "default": "./percent.js"
         },
         "./radix": {
-            "import": "./radix.js"
+            "default": "./radix.js"
         },
         "./range": {
-            "import": "./range.js"
+            "default": "./range.js"
         },
         "./repeat": {
-            "import": "./repeat.js"
+            "default": "./repeat.js"
         },
         "./ruler": {
-            "import": "./ruler.js"
+            "default": "./ruler.js"
         },
         "./slugify": {
-            "import": "./slugify.js"
+            "default": "./slugify.js"
         },
         "./splice": {
-            "import": "./splice.js"
+            "default": "./splice.js"
         },
         "./split": {
-            "import": "./split.js"
+            "default": "./split.js"
         },
         "./stringify": {
-            "import": "./stringify.js"
+            "default": "./stringify.js"
         },
         "./tabs": {
-            "import": "./tabs.js"
+            "default": "./tabs.js"
         },
         "./trim": {
-            "import": "./trim.js"
+            "default": "./trim.js"
         },
         "./truncate-left": {
-            "import": "./truncate-left.js"
+            "default": "./truncate-left.js"
         },
         "./truncate": {
-            "import": "./truncate.js"
+            "default": "./truncate.js"
         },
         "./units": {
-            "import": "./units.js"
+            "default": "./units.js"
         },
         "./uuid": {
-            "import": "./uuid.js"
+            "default": "./uuid.js"
         },
         "./vector": {
-            "import": "./vector.js"
+            "default": "./vector.js"
         },
         "./word-wrap": {
-            "import": "./word-wrap.js"
+            "default": "./word-wrap.js"
         },
         "./wrap": {
-            "import": "./wrap.js"
+            "default": "./wrap.js"
         }
     },
     "thi.ng": {

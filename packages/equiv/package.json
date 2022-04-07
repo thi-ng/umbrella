@@ -65,7 +65,7 @@
     ],
     "exports": {
         ".": {
-            "import": "./index.js"
+            "default": "./index.js"
         }
     }
 }

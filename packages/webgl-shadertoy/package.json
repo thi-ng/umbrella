@@ -71,13 +71,13 @@
     ],
     "exports": {
         ".": {
-            "import": "./index.js"
+            "default": "./index.js"
         },
         "./api": {
-            "import": "./api.js"
+            "default": "./api.js"
         },
         "./shadertoy": {
-            "import": "./shadertoy.js"
+            "default": "./shadertoy.js"
         }
     },
     "thi.ng": {

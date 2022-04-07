@@ -69,16 +69,16 @@
     ],
     "exports": {
         ".": {
-            "import": "./index.js"
+            "default": "./index.js"
         },
         "./api": {
-            "import": "./api.js"
+            "default": "./api.js"
         },
         "./porter-duff": {
-            "import": "./porter-duff.js"
+            "default": "./porter-duff.js"
         },
         "./premultiply": {
-            "import": "./premultiply.js"
+            "default": "./premultiply.js"
         }
     },
     "thi.ng": {

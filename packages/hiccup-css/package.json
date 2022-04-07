@@ -74,49 +74,49 @@
     ],
     "exports": {
         ".": {
-            "import": "./index.js"
+            "default": "./index.js"
         },
         "./animation": {
-            "import": "./animation.js"
+            "default": "./animation.js"
         },
         "./api": {
-            "import": "./api.js"
+            "default": "./api.js"
         },
         "./attribs": {
-            "import": "./attribs.js"
+            "default": "./attribs.js"
         },
         "./comment": {
-            "import": "./comment.js"
+            "default": "./comment.js"
         },
         "./conditional": {
-            "import": "./conditional.js"
+            "default": "./conditional.js"
         },
         "./css": {
-            "import": "./css.js"
+            "default": "./css.js"
         },
         "./import": {
-            "import": "./import.js"
+            "default": "./import.js"
         },
         "./inject": {
-            "import": "./inject.js"
+            "default": "./inject.js"
         },
         "./keyframes": {
-            "import": "./keyframes.js"
+            "default": "./keyframes.js"
         },
         "./media": {
-            "import": "./media.js"
+            "default": "./media.js"
         },
         "./namespace": {
-            "import": "./namespace.js"
+            "default": "./namespace.js"
         },
         "./quoted-functions": {
-            "import": "./quoted-functions.js"
+            "default": "./quoted-functions.js"
         },
         "./supports": {
-            "import": "./supports.js"
+            "default": "./supports.js"
         },
         "./units": {
-            "import": "./units.js"
+            "default": "./units.js"
         }
     },
     "thi.ng": {

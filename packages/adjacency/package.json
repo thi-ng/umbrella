@@ -86,31 +86,31 @@
     ],
     "exports": {
         ".": {
-            "import": "./index.js"
+            "default": "./index.js"
         },
         "./api": {
-            "import": "./api.js"
+            "default": "./api.js"
         },
         "./bfs": {
-            "import": "./bfs.js"
+            "default": "./bfs.js"
         },
         "./binary": {
-            "import": "./binary.js"
+            "default": "./binary.js"
         },
         "./dfs": {
-            "import": "./dfs.js"
+            "default": "./dfs.js"
         },
         "./disjoint-set": {
-            "import": "./disjoint-set.js"
+            "default": "./disjoint-set.js"
         },
         "./list": {
-            "import": "./list.js"
+            "default": "./list.js"
         },
         "./mst": {
-            "import": "./mst.js"
+            "default": "./mst.js"
         },
         "./sparse": {
-            "import": "./sparse.js"
+            "default": "./sparse.js"
         }
     },
     "thi.ng": {

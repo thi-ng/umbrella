@@ -93,214 +93,214 @@
     ],
     "exports": {
         ".": {
-            "import": "./index.js"
+            "default": "./index.js"
         },
         "./api": {
-            "import": "./api.js"
+            "default": "./api.js"
         },
         "./color/aces-film": {
-            "import": "./color/aces-film.js"
+            "default": "./color/aces-film.js"
         },
         "./color/levels": {
-            "import": "./color/levels.js"
+            "default": "./color/levels.js"
         },
         "./color/linear-srgb": {
-            "import": "./color/linear-srgb.js"
+            "default": "./color/linear-srgb.js"
         },
         "./color/luminance": {
-            "import": "./color/luminance.js"
+            "default": "./color/luminance.js"
         },
         "./color/porter-duff": {
-            "import": "./color/porter-duff.js"
+            "default": "./color/porter-duff.js"
         },
         "./color/rgbe": {
-            "import": "./color/rgbe.js"
+            "default": "./color/rgbe.js"
         },
         "./fog/exp": {
-            "import": "./fog/exp.js"
+            "default": "./fog/exp.js"
         },
         "./fog/exp2": {
-            "import": "./fog/exp2.js"
+            "default": "./fog/exp2.js"
         },
         "./fog/linear": {
-            "import": "./fog/linear.js"
+            "default": "./fog/linear.js"
         },
         "./light/lambert": {
-            "import": "./light/lambert.js"
+            "default": "./light/lambert.js"
         },
         "./light/trilight": {
-            "import": "./light/trilight.js"
+            "default": "./light/trilight.js"
         },
         "./math/additive": {
-            "import": "./math/additive.js"
+            "default": "./math/additive.js"
         },
         "./math/cartesian": {
-            "import": "./math/cartesian.js"
+            "default": "./math/cartesian.js"
         },
         "./math/clamp": {
-            "import": "./math/clamp.js"
+            "default": "./math/clamp.js"
         },
         "./math/cross2": {
-            "import": "./math/cross2.js"
+            "default": "./math/cross2.js"
         },
         "./math/dist-chebyshev": {
-            "import": "./math/dist-chebyshev.js"
+            "default": "./math/dist-chebyshev.js"
         },
         "./math/dist-manhattan": {
-            "import": "./math/dist-manhattan.js"
+            "default": "./math/dist-manhattan.js"
         },
         "./math/fit": {
-            "import": "./math/fit.js"
+            "default": "./math/fit.js"
         },
         "./math/magsq": {
-            "import": "./math/magsq.js"
+            "default": "./math/magsq.js"
         },
         "./math/maxcomp": {
-            "import": "./math/maxcomp.js"
+            "default": "./math/maxcomp.js"
         },
         "./math/mincomp": {
-            "import": "./math/mincomp.js"
+            "default": "./math/mincomp.js"
         },
         "./math/mix-cubic": {
-            "import": "./math/mix-cubic.js"
+            "default": "./math/mix-cubic.js"
         },
         "./math/mix-quadratic": {
-            "import": "./math/mix-quadratic.js"
+            "default": "./math/mix-quadratic.js"
         },
         "./math/orthogonal": {
-            "import": "./math/orthogonal.js"
+            "default": "./math/orthogonal.js"
         },
         "./math/osc": {
-            "import": "./math/osc.js"
+            "default": "./math/osc.js"
         },
         "./math/polar": {
-            "import": "./math/polar.js"
+            "default": "./math/polar.js"
         },
         "./math/sincos": {
-            "import": "./math/sincos.js"
+            "default": "./math/sincos.js"
         },
         "./matrix/convert": {
-            "import": "./matrix/convert.js"
+            "default": "./matrix/convert.js"
         },
         "./matrix/lookat": {
-            "import": "./matrix/lookat.js"
+            "default": "./matrix/lookat.js"
         },
         "./matrix/mvp": {
-            "import": "./matrix/mvp.js"
+            "default": "./matrix/mvp.js"
         },
         "./matrix/normal": {
-            "import": "./matrix/normal.js"
+            "default": "./matrix/normal.js"
         },
         "./matrix/rotation": {
-            "import": "./matrix/rotation.js"
+            "default": "./matrix/rotation.js"
         },
         "./noise/curl3": {
-            "import": "./noise/curl3.js"
+            "default": "./noise/curl3.js"
         },
         "./noise/hash": {
-            "import": "./noise/hash.js"
+            "default": "./noise/hash.js"
         },
         "./noise/permute": {
-            "import": "./noise/permute.js"
+            "default": "./noise/permute.js"
         },
         "./noise/simplex2": {
-            "import": "./noise/simplex2.js"
+            "default": "./noise/simplex2.js"
         },
         "./noise/simplex3": {
-            "import": "./noise/simplex3.js"
+            "default": "./noise/simplex3.js"
         },
         "./noise/voronoi2": {
-            "import": "./noise/voronoi2.js"
+            "default": "./noise/voronoi2.js"
         },
         "./noise/worley2": {
-            "import": "./noise/worley2.js"
+            "default": "./noise/worley2.js"
         },
         "./raymarch/ao": {
-            "import": "./raymarch/ao.js"
+            "default": "./raymarch/ao.js"
         },
         "./raymarch/direction": {
-            "import": "./raymarch/direction.js"
+            "default": "./raymarch/direction.js"
         },
         "./raymarch/normal": {
-            "import": "./raymarch/normal.js"
+            "default": "./raymarch/normal.js"
         },
         "./raymarch/point-at": {
-            "import": "./raymarch/point-at.js"
+            "default": "./raymarch/point-at.js"
         },
         "./raymarch/scene": {
-            "import": "./raymarch/scene.js"
+            "default": "./raymarch/scene.js"
         },
         "./screen/uv": {
-            "import": "./screen/uv.js"
+            "default": "./screen/uv.js"
         },
         "./sdf/annular": {
-            "import": "./sdf/annular.js"
+            "default": "./sdf/annular.js"
         },
         "./sdf/box": {
-            "import": "./sdf/box.js"
+            "default": "./sdf/box.js"
         },
         "./sdf/cylinder": {
-            "import": "./sdf/cylinder.js"
+            "default": "./sdf/cylinder.js"
         },
         "./sdf/isec": {
-            "import": "./sdf/isec.js"
+            "default": "./sdf/isec.js"
         },
         "./sdf/line": {
-            "import": "./sdf/line.js"
+            "default": "./sdf/line.js"
         },
         "./sdf/mirror": {
-            "import": "./sdf/mirror.js"
+            "default": "./sdf/mirror.js"
         },
         "./sdf/plane": {
-            "import": "./sdf/plane.js"
+            "default": "./sdf/plane.js"
         },
         "./sdf/polyhedra": {
-            "import": "./sdf/polyhedra.js"
+            "default": "./sdf/polyhedra.js"
         },
         "./sdf/repeat-polar": {
-            "import": "./sdf/repeat-polar.js"
+            "default": "./sdf/repeat-polar.js"
         },
         "./sdf/repeat": {
-            "import": "./sdf/repeat.js"
+            "default": "./sdf/repeat.js"
         },
         "./sdf/round": {
-            "import": "./sdf/round.js"
+            "default": "./sdf/round.js"
         },
         "./sdf/smooth-isec": {
-            "import": "./sdf/smooth-isec.js"
+            "default": "./sdf/smooth-isec.js"
         },
         "./sdf/smooth-sub": {
-            "import": "./sdf/smooth-sub.js"
+            "default": "./sdf/smooth-sub.js"
         },
         "./sdf/smooth-union": {
-            "import": "./sdf/smooth-union.js"
+            "default": "./sdf/smooth-union.js"
         },
         "./sdf/sphere": {
-            "import": "./sdf/sphere.js"
+            "default": "./sdf/sphere.js"
         },
         "./sdf/sub": {
-            "import": "./sdf/sub.js"
+            "default": "./sdf/sub.js"
         },
         "./sdf/torus": {
-            "import": "./sdf/torus.js"
+            "default": "./sdf/torus.js"
         },
         "./sdf/tri": {
-            "import": "./sdf/tri.js"
+            "default": "./sdf/tri.js"
         },
         "./sdf/union": {
-            "import": "./sdf/union.js"
+            "default": "./sdf/union.js"
         },
         "./tex/blur": {
-            "import": "./tex/blur.js"
+            "default": "./tex/blur.js"
         },
         "./tex/index-coord": {
-            "import": "./tex/index-coord.js"
+            "default": "./tex/index-coord.js"
         },
         "./tex/index-uv": {
-            "import": "./tex/index-uv.js"
+            "default": "./tex/index-uv.js"
         },
         "./tex/read-index": {
-            "import": "./tex/read-index.js"
+            "default": "./tex/read-index.js"
         }
     },
     "thi.ng": {

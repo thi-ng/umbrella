@@ -63,37 +63,37 @@
     ],
     "exports": {
         ".": {
-            "import": "./index.js"
+            "default": "./index.js"
         },
         "./dc": {
-            "import": "./dc.js"
+            "default": "./dc.js"
         },
         "./geo": {
-            "import": "./geo.js"
+            "default": "./geo.js"
         },
         "./json": {
-            "import": "./json.js"
+            "default": "./json.js"
         },
         "./media": {
-            "import": "./media.js"
+            "default": "./media.js"
         },
         "./rdf": {
-            "import": "./rdf.js"
+            "default": "./rdf.js"
         },
         "./social": {
-            "import": "./social.js"
+            "default": "./social.js"
         },
         "./time": {
-            "import": "./time.js"
+            "default": "./time.js"
         },
         "./upper": {
-            "import": "./upper.js"
+            "default": "./upper.js"
         },
         "./wiki": {
-            "import": "./wiki.js"
+            "default": "./wiki.js"
         },
         "./xml": {
-            "import": "./xml.js"
+            "default": "./xml.js"
         }
     },
     "thi.ng": {

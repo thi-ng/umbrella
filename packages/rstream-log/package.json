@@ -73,22 +73,22 @@
     ],
     "exports": {
         ".": {
-            "import": "./index.js"
+            "default": "./index.js"
         },
         "./api": {
-            "import": "./api.js"
+            "default": "./api.js"
         },
         "./console": {
-            "import": "./console.js"
+            "default": "./console.js"
         },
         "./filter": {
-            "import": "./filter.js"
+            "default": "./filter.js"
         },
         "./format": {
-            "import": "./format.js"
+            "default": "./format.js"
         },
         "./logger": {
-            "import": "./logger.js"
+            "default": "./logger.js"
         }
     },
     "thi.ng": {

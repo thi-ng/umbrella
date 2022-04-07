@@ -78,25 +78,25 @@
     ],
     "exports": {
         ".": {
-            "import": "./index.js"
+            "default": "./index.js"
         },
         "./api": {
-            "import": "./api.js"
+            "default": "./api.js"
         },
         "./atom": {
-            "import": "./atom.js"
+            "default": "./atom.js"
         },
         "./cursor": {
-            "import": "./cursor.js"
+            "default": "./cursor.js"
         },
         "./history": {
-            "import": "./history.js"
+            "default": "./history.js"
         },
         "./transacted": {
-            "import": "./transacted.js"
+            "default": "./transacted.js"
         },
         "./view": {
-            "import": "./view.js"
+            "default": "./view.js"
         }
     },
     "thi.ng": {

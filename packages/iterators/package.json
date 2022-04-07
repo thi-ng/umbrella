@@ -69,157 +69,157 @@
     ],
     "exports": {
         ".": {
-            "import": "./index.js"
+            "default": "./index.js"
         },
         "./butlast": {
-            "import": "./butlast.js"
+            "default": "./butlast.js"
         },
         "./cached": {
-            "import": "./cached.js"
+            "default": "./cached.js"
         },
         "./concat": {
-            "import": "./concat.js"
+            "default": "./concat.js"
         },
         "./constantly": {
-            "import": "./constantly.js"
+            "default": "./constantly.js"
         },
         "./consume": {
-            "import": "./consume.js"
+            "default": "./consume.js"
         },
         "./cycle": {
-            "import": "./cycle.js"
+            "default": "./cycle.js"
         },
         "./dedupe-with": {
-            "import": "./dedupe-with.js"
+            "default": "./dedupe-with.js"
         },
         "./dedupe": {
-            "import": "./dedupe.js"
+            "default": "./dedupe.js"
         },
         "./dense": {
-            "import": "./dense.js"
+            "default": "./dense.js"
         },
         "./drop-nth": {
-            "import": "./drop-nth.js"
+            "default": "./drop-nth.js"
         },
         "./drop-while": {
-            "import": "./drop-while.js"
+            "default": "./drop-while.js"
         },
         "./drop": {
-            "import": "./drop.js"
+            "default": "./drop.js"
         },
         "./ensure": {
-            "import": "./ensure.js"
+            "default": "./ensure.js"
         },
         "./every": {
-            "import": "./every.js"
+            "default": "./every.js"
         },
         "./filter": {
-            "import": "./filter.js"
+            "default": "./filter.js"
         },
         "./flatten-with": {
-            "import": "./flatten-with.js"
+            "default": "./flatten-with.js"
         },
         "./flatten": {
-            "import": "./flatten.js"
+            "default": "./flatten.js"
         },
         "./fnil": {
-            "import": "./fnil.js"
+            "default": "./fnil.js"
         },
         "./fork": {
-            "import": "./fork.js"
+            "default": "./fork.js"
         },
         "./frequencies": {
-            "import": "./frequencies.js"
+            "default": "./frequencies.js"
         },
         "./group-by": {
-            "import": "./group-by.js"
+            "default": "./group-by.js"
         },
         "./identity": {
-            "import": "./identity.js"
+            "default": "./identity.js"
         },
         "./indexed": {
-            "import": "./indexed.js"
+            "default": "./indexed.js"
         },
         "./interleave": {
-            "import": "./interleave.js"
+            "default": "./interleave.js"
         },
         "./interpose": {
-            "import": "./interpose.js"
+            "default": "./interpose.js"
         },
         "./iterate": {
-            "import": "./iterate.js"
+            "default": "./iterate.js"
         },
         "./iterator": {
-            "import": "./iterator.js"
+            "default": "./iterator.js"
         },
         "./juxt": {
-            "import": "./juxt.js"
+            "default": "./juxt.js"
         },
         "./last": {
-            "import": "./last.js"
+            "default": "./last.js"
         },
         "./map-indexed": {
-            "import": "./map-indexed.js"
+            "default": "./map-indexed.js"
         },
         "./map": {
-            "import": "./map.js"
+            "default": "./map.js"
         },
         "./mapcat": {
-            "import": "./mapcat.js"
+            "default": "./mapcat.js"
         },
         "./object-iterator": {
-            "import": "./object-iterator.js"
+            "default": "./object-iterator.js"
         },
         "./partition-by": {
-            "import": "./partition-by.js"
+            "default": "./partition-by.js"
         },
         "./partition": {
-            "import": "./partition.js"
+            "default": "./partition.js"
         },
         "./random-sample": {
-            "import": "./random-sample.js"
+            "default": "./random-sample.js"
         },
         "./range": {
-            "import": "./range.js"
+            "default": "./range.js"
         },
         "./reduce": {
-            "import": "./reduce.js"
+            "default": "./reduce.js"
         },
         "./reductions": {
-            "import": "./reductions.js"
+            "default": "./reductions.js"
         },
         "./repeat": {
-            "import": "./repeat.js"
+            "default": "./repeat.js"
         },
         "./repeatedly": {
-            "import": "./repeatedly.js"
+            "default": "./repeatedly.js"
         },
         "./reverse": {
-            "import": "./reverse.js"
+            "default": "./reverse.js"
         },
         "./run": {
-            "import": "./run.js"
+            "default": "./run.js"
         },
         "./some": {
-            "import": "./some.js"
+            "default": "./some.js"
         },
         "./take-last": {
-            "import": "./take-last.js"
+            "default": "./take-last.js"
         },
         "./take-nth": {
-            "import": "./take-nth.js"
+            "default": "./take-nth.js"
         },
         "./take-while": {
-            "import": "./take-while.js"
+            "default": "./take-while.js"
         },
         "./take": {
-            "import": "./take.js"
+            "default": "./take.js"
         },
         "./walk": {
-            "import": "./walk.js"
+            "default": "./walk.js"
         },
         "./zip": {
-            "import": "./zip.js"
+            "default": "./zip.js"
         }
     },
     "thi.ng": {

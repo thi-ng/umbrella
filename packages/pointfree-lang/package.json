@@ -85,19 +85,19 @@
     ],
     "exports": {
         ".": {
-            "import": "./index.js"
+            "default": "./index.js"
         },
         "./api": {
-            "import": "./api.js"
+            "default": "./api.js"
         },
         "./logger": {
-            "import": "./logger.js"
+            "default": "./logger.js"
         },
         "./parser": {
-            "import": "./parser.js"
+            "default": "./parser.js"
         },
         "./runtime": {
-            "import": "./runtime.js"
+            "default": "./runtime.js"
         }
     },
     "thi.ng": {

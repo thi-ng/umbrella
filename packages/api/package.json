@@ -69,157 +69,157 @@
     ],
     "exports": {
         ".": {
-            "import": "./index.js"
+            "default": "./index.js"
         },
         "./api": {
-            "import": "./api.js"
+            "default": "./api.js"
         },
         "./assoc": {
-            "import": "./assoc.js"
+            "default": "./assoc.js"
         },
         "./bind": {
-            "import": "./bind.js"
+            "default": "./bind.js"
         },
         "./buffered": {
-            "import": "./buffered.js"
+            "default": "./buffered.js"
         },
         "./clear": {
-            "import": "./clear.js"
+            "default": "./clear.js"
         },
         "./compare": {
-            "import": "./compare.js"
+            "default": "./compare.js"
         },
         "./contains": {
-            "import": "./contains.js"
+            "default": "./contains.js"
         },
         "./copy": {
-            "import": "./copy.js"
+            "default": "./copy.js"
         },
         "./decorators/configurable": {
-            "import": "./decorators/configurable.js"
+            "default": "./decorators/configurable.js"
         },
         "./decorators/deprecated": {
-            "import": "./decorators/deprecated.js"
+            "default": "./decorators/deprecated.js"
         },
         "./decorators/nomixin": {
-            "import": "./decorators/nomixin.js"
+            "default": "./decorators/nomixin.js"
         },
         "./decorators/sealed": {
-            "import": "./decorators/sealed.js"
+            "default": "./decorators/sealed.js"
         },
         "./deref": {
-            "import": "./deref.js"
+            "default": "./deref.js"
         },
         "./dissoc": {
-            "import": "./dissoc.js"
+            "default": "./dissoc.js"
         },
         "./empty": {
-            "import": "./empty.js"
+            "default": "./empty.js"
         },
         "./enable": {
-            "import": "./enable.js"
+            "default": "./enable.js"
         },
         "./equiv": {
-            "import": "./equiv.js"
+            "default": "./equiv.js"
         },
         "./event": {
-            "import": "./event.js"
+            "default": "./event.js"
         },
         "./fn": {
-            "import": "./fn.js"
+            "default": "./fn.js"
         },
         "./get": {
-            "import": "./get.js"
+            "default": "./get.js"
         },
         "./grid": {
-            "import": "./grid.js"
+            "default": "./grid.js"
         },
         "./hash": {
-            "import": "./hash.js"
+            "default": "./hash.js"
         },
         "./hiccup": {
-            "import": "./hiccup.js"
+            "default": "./hiccup.js"
         },
         "./id": {
-            "import": "./id.js"
+            "default": "./id.js"
         },
         "./indexed": {
-            "import": "./indexed.js"
+            "default": "./indexed.js"
         },
         "./into": {
-            "import": "./into.js"
+            "default": "./into.js"
         },
         "./keyval": {
-            "import": "./keyval.js"
+            "default": "./keyval.js"
         },
         "./length": {
-            "import": "./length.js"
+            "default": "./length.js"
         },
         "./meta": {
-            "import": "./meta.js"
+            "default": "./meta.js"
         },
         "./mixin": {
-            "import": "./mixin.js"
+            "default": "./mixin.js"
         },
         "./mixins/ienable": {
-            "import": "./mixins/ienable.js"
+            "default": "./mixins/ienable.js"
         },
         "./mixins/igrid": {
-            "import": "./mixins/igrid.js"
+            "default": "./mixins/igrid.js"
         },
         "./mixins/inotify": {
-            "import": "./mixins/inotify.js"
+            "default": "./mixins/inotify.js"
         },
         "./mixins/iterable": {
-            "import": "./mixins/iterable.js"
+            "default": "./mixins/iterable.js"
         },
         "./mixins/iwatch": {
-            "import": "./mixins/iwatch.js"
+            "default": "./mixins/iwatch.js"
         },
         "./null": {
-            "import": "./null.js"
+            "default": "./null.js"
         },
         "./object": {
-            "import": "./object.js"
+            "default": "./object.js"
         },
         "./path": {
-            "import": "./path.js"
+            "default": "./path.js"
         },
         "./predicate": {
-            "import": "./predicate.js"
+            "default": "./predicate.js"
         },
         "./prim": {
-            "import": "./prim.js"
+            "default": "./prim.js"
         },
         "./range": {
-            "import": "./range.js"
+            "default": "./range.js"
         },
         "./release": {
-            "import": "./release.js"
+            "default": "./release.js"
         },
         "./reset": {
-            "import": "./reset.js"
+            "default": "./reset.js"
         },
         "./select": {
-            "import": "./select.js"
+            "default": "./select.js"
         },
         "./seq": {
-            "import": "./seq.js"
+            "default": "./seq.js"
         },
         "./set": {
-            "import": "./set.js"
+            "default": "./set.js"
         },
         "./stack": {
-            "import": "./stack.js"
+            "default": "./stack.js"
         },
         "./tuple": {
-            "import": "./tuple.js"
+            "default": "./tuple.js"
         },
         "./typedarray": {
-            "import": "./typedarray.js"
+            "default": "./typedarray.js"
         },
         "./watch": {
-            "import": "./watch.js"
+            "default": "./watch.js"
         }
     }
 }

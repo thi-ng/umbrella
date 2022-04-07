@@ -73,37 +73,37 @@
     ],
     "exports": {
         ".": {
-            "import": "./index.js"
+            "default": "./index.js"
         },
         "./area": {
-            "import": "./area.js"
+            "default": "./area.js"
         },
         "./barycentric": {
-            "import": "./barycentric.js"
+            "default": "./barycentric.js"
         },
         "./bounds": {
-            "import": "./bounds.js"
+            "default": "./bounds.js"
         },
         "./center-of-weight": {
-            "import": "./center-of-weight.js"
+            "default": "./center-of-weight.js"
         },
         "./centroid": {
-            "import": "./centroid.js"
+            "default": "./centroid.js"
         },
         "./circumcenter": {
-            "import": "./circumcenter.js"
+            "default": "./circumcenter.js"
         },
         "./convexity": {
-            "import": "./convexity.js"
+            "default": "./convexity.js"
         },
         "./equilateral": {
-            "import": "./equilateral.js"
+            "default": "./equilateral.js"
         },
         "./perimeter": {
-            "import": "./perimeter.js"
+            "default": "./perimeter.js"
         },
         "./tangent": {
-            "import": "./tangent.js"
+            "default": "./tangent.js"
         }
     },
     "thi.ng": {

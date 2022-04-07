@@ -70,19 +70,19 @@
     ],
     "exports": {
         ".": {
-            "import": "./index.js"
+            "default": "./index.js"
         },
         "./halton": {
-            "import": "./halton.js"
+            "default": "./halton.js"
         },
         "./kronecker": {
-            "import": "./kronecker.js"
+            "default": "./kronecker.js"
         },
         "./lowdisc": {
-            "import": "./lowdisc.js"
+            "default": "./lowdisc.js"
         },
         "./plastic": {
-            "import": "./plastic.js"
+            "default": "./plastic.js"
         }
     },
     "thi.ng": {

@@ -77,28 +77,28 @@
     ],
     "exports": {
         ".": {
-            "import": "./index.js"
+            "default": "./index.js"
         },
         "./api": {
-            "import": "./api.js"
+            "default": "./api.js"
         },
         "./attribs": {
-            "import": "./attribs.js"
+            "default": "./attribs.js"
         },
         "./css": {
-            "import": "./css.js"
+            "default": "./css.js"
         },
         "./deref": {
-            "import": "./deref.js"
+            "default": "./deref.js"
         },
         "./normalize": {
-            "import": "./normalize.js"
+            "default": "./normalize.js"
         },
         "./prefix": {
-            "import": "./prefix.js"
+            "default": "./prefix.js"
         },
         "./serialize": {
-            "import": "./serialize.js"
+            "default": "./serialize.js"
         }
     },
     "thi.ng": {

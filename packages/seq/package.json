@@ -62,25 +62,25 @@
     ],
     "exports": {
         ".": {
-            "import": "./index.js"
+            "default": "./index.js"
         },
         "./array": {
-            "import": "./array.js"
+            "default": "./array.js"
         },
         "./concat": {
-            "import": "./concat.js"
+            "default": "./concat.js"
         },
         "./cons": {
-            "import": "./cons.js"
+            "default": "./cons.js"
         },
         "./ensure": {
-            "import": "./ensure.js"
+            "default": "./ensure.js"
         },
         "./iterator": {
-            "import": "./iterator.js"
+            "default": "./iterator.js"
         },
         "./lazyseq": {
-            "import": "./lazyseq.js"
+            "default": "./lazyseq.js"
         }
     },
     "thi.ng": {

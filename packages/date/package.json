@@ -78,52 +78,52 @@
     ],
     "exports": {
         ".": {
-            "import": "./index.js"
+            "default": "./index.js"
         },
         "./api": {
-            "import": "./api.js"
+            "default": "./api.js"
         },
         "./checks": {
-            "import": "./checks.js"
+            "default": "./checks.js"
         },
         "./datetime": {
-            "import": "./datetime.js"
+            "default": "./datetime.js"
         },
         "./format": {
-            "import": "./format.js"
+            "default": "./format.js"
         },
         "./i18n/de": {
-            "import": "./i18n/de.js"
+            "default": "./i18n/de.js"
         },
         "./i18n/en": {
-            "import": "./i18n/en.js"
+            "default": "./i18n/en.js"
         },
         "./i18n/es": {
-            "import": "./i18n/es.js"
+            "default": "./i18n/es.js"
         },
         "./i18n/fr": {
-            "import": "./i18n/fr.js"
+            "default": "./i18n/fr.js"
         },
         "./i18n/it": {
-            "import": "./i18n/it.js"
+            "default": "./i18n/it.js"
         },
         "./i18n": {
-            "import": "./i18n.js"
+            "default": "./i18n.js"
         },
         "./iterators": {
-            "import": "./iterators.js"
+            "default": "./iterators.js"
         },
         "./relative": {
-            "import": "./relative.js"
+            "default": "./relative.js"
         },
         "./round": {
-            "import": "./round.js"
+            "default": "./round.js"
         },
         "./timecode": {
-            "import": "./timecode.js"
+            "default": "./timecode.js"
         },
         "./units": {
-            "import": "./units.js"
+            "default": "./units.js"
         }
     },
     "thi.ng": {

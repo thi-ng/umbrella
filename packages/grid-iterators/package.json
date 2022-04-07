@@ -81,67 +81,67 @@
     ],
     "exports": {
         ".": {
-            "import": "./index.js"
+            "default": "./index.js"
         },
         "./circle": {
-            "import": "./circle.js"
+            "default": "./circle.js"
         },
         "./clipping": {
-            "import": "./clipping.js"
+            "default": "./clipping.js"
         },
         "./column-ends": {
-            "import": "./column-ends.js"
+            "default": "./column-ends.js"
         },
         "./columns": {
-            "import": "./columns.js"
+            "default": "./columns.js"
         },
         "./diagonal-ends": {
-            "import": "./diagonal-ends.js"
+            "default": "./diagonal-ends.js"
         },
         "./diagonal": {
-            "import": "./diagonal.js"
+            "default": "./diagonal.js"
         },
         "./diamond-square": {
-            "import": "./diamond-square.js"
+            "default": "./diamond-square.js"
         },
         "./flood-fill": {
-            "import": "./flood-fill.js"
+            "default": "./flood-fill.js"
         },
         "./hilbert": {
-            "import": "./hilbert.js"
+            "default": "./hilbert.js"
         },
         "./hvline": {
-            "import": "./hvline.js"
+            "default": "./hvline.js"
         },
         "./interleave": {
-            "import": "./interleave.js"
+            "default": "./interleave.js"
         },
         "./line": {
-            "import": "./line.js"
+            "default": "./line.js"
         },
         "./random": {
-            "import": "./random.js"
+            "default": "./random.js"
         },
         "./row-ends": {
-            "import": "./row-ends.js"
+            "default": "./row-ends.js"
         },
         "./rows": {
-            "import": "./rows.js"
+            "default": "./rows.js"
         },
         "./spiral": {
-            "import": "./spiral.js"
+            "default": "./spiral.js"
         },
         "./zcurve": {
-            "import": "./zcurve.js"
+            "default": "./zcurve.js"
         },
         "./zigzag-columns": {
-            "import": "./zigzag-columns.js"
+            "default": "./zigzag-columns.js"
         },
         "./zigzag-diagonal": {
-            "import": "./zigzag-diagonal.js"
+            "default": "./zigzag-diagonal.js"
         },
         "./zigzag-rows": {
-            "import": "./zigzag-rows.js"
+            "default": "./zigzag-rows.js"
         }
     },
     "thi.ng": {

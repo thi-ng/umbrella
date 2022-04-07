@@ -78,73 +78,73 @@
     ],
     "exports": {
         ".": {
-            "import": "./index.js"
+            "default": "./index.js"
         },
         "./api": {
-            "import": "./api.js"
+            "default": "./api.js"
         },
         "./arandom": {
-            "import": "./arandom.js"
+            "default": "./arandom.js"
         },
         "./coin": {
-            "import": "./coin.js"
+            "default": "./coin.js"
         },
         "./constants": {
-            "import": "./constants.js"
+            "default": "./constants.js"
         },
         "./crypto": {
-            "import": "./crypto.js"
+            "default": "./crypto.js"
         },
         "./distributions/exponential": {
-            "import": "./distributions/exponential.js"
+            "default": "./distributions/exponential.js"
         },
         "./distributions/gaussian": {
-            "import": "./distributions/gaussian.js"
+            "default": "./distributions/gaussian.js"
         },
         "./distributions/geometric": {
-            "import": "./distributions/geometric.js"
+            "default": "./distributions/geometric.js"
         },
         "./distributions/normal": {
-            "import": "./distributions/normal.js"
+            "default": "./distributions/normal.js"
         },
         "./distributions/uniform": {
-            "import": "./distributions/uniform.js"
+            "default": "./distributions/uniform.js"
         },
         "./pick-random": {
-            "import": "./pick-random.js"
+            "default": "./pick-random.js"
         },
         "./random-bytes": {
-            "import": "./random-bytes.js"
+            "default": "./random-bytes.js"
         },
         "./random-id": {
-            "import": "./random-id.js"
+            "default": "./random-id.js"
         },
         "./smush32": {
-            "import": "./smush32.js"
+            "default": "./smush32.js"
         },
         "./system": {
-            "import": "./system.js"
+            "default": "./system.js"
         },
         "./unique-indices": {
-            "import": "./unique-indices.js"
+            "default": "./unique-indices.js"
         },
         "./uuid": {
-            "import": "./uuid.js"
+            "default": "./uuid.js"
         },
         "./weighted-random": {
-            "import": "./weighted-random.js"
+            "default": "./weighted-random.js"
         },
         "./xorshift128": {
-            "import": "./xorshift128.js"
+            "default": "./xorshift128.js"
         },
         "./xorwow": {
-            "import": "./xorwow.js"
+            "default": "./xorwow.js"
         },
         "./xoshiro128": {
-            "import": "./xoshiro128.js"
+            "default": "./xoshiro128.js"
         },
         "./xsadd": {
-            "import": "./xsadd.js"
+            "default": "./xsadd.js"
         }
     },
     "thi.ng": {

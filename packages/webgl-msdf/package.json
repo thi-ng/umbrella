@@ -75,19 +75,19 @@
     ],
     "exports": {
         ".": {
-            "import": "./index.js"
+            "default": "./index.js"
         },
         "./api": {
-            "import": "./api.js"
+            "default": "./api.js"
         },
         "./convert": {
-            "import": "./convert.js"
+            "default": "./convert.js"
         },
         "./shader": {
-            "import": "./shader.js"
+            "default": "./shader.js"
         },
         "./text": {
-            "import": "./text.js"
+            "default": "./text.js"
         }
     },
     "thi.ng": {

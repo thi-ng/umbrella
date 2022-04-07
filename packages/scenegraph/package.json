@@ -70,22 +70,22 @@
     ],
     "exports": {
         ".": {
-            "import": "./index.js"
+            "default": "./index.js"
         },
         "./anode": {
-            "import": "./anode.js"
+            "default": "./anode.js"
         },
         "./api": {
-            "import": "./api.js"
+            "default": "./api.js"
         },
         "./hiccup": {
-            "import": "./hiccup.js"
+            "default": "./hiccup.js"
         },
         "./node2": {
-            "import": "./node2.js"
+            "default": "./node2.js"
         },
         "./node3": {
-            "import": "./node3.js"
+            "default": "./node3.js"
         }
     },
     "thi.ng": {

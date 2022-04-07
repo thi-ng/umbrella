@@ -76,31 +76,31 @@
     ],
     "exports": {
         ".": {
-            "import": "./index.js"
+            "default": "./index.js"
         },
         "./api": {
-            "import": "./api.js"
+            "default": "./api.js"
         },
         "./base64": {
-            "import": "./base64.js"
+            "default": "./base64.js"
         },
         "./bits": {
-            "import": "./bits.js"
+            "default": "./bits.js"
         },
         "./bytes": {
-            "import": "./bytes.js"
+            "default": "./bytes.js"
         },
         "./hex-dump": {
-            "import": "./hex-dump.js"
+            "default": "./hex-dump.js"
         },
         "./partition-bits": {
-            "import": "./partition-bits.js"
+            "default": "./partition-bits.js"
         },
         "./random-bits": {
-            "import": "./random-bits.js"
+            "default": "./random-bits.js"
         },
         "./utf8": {
-            "import": "./utf8.js"
+            "default": "./utf8.js"
         }
     },
     "thi.ng": {

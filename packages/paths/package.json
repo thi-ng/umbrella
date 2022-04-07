@@ -76,46 +76,46 @@
     ],
     "exports": {
         ".": {
-            "import": "./index.js"
+            "default": "./index.js"
         },
         "./api": {
-            "import": "./api.js"
+            "default": "./api.js"
         },
         "./delete-in": {
-            "import": "./delete-in.js"
+            "default": "./delete-in.js"
         },
         "./get-in": {
-            "import": "./get-in.js"
+            "default": "./get-in.js"
         },
         "./getter": {
-            "import": "./getter.js"
+            "default": "./getter.js"
         },
         "./mut-in-many": {
-            "import": "./mut-in-many.js"
+            "default": "./mut-in-many.js"
         },
         "./mut-in": {
-            "import": "./mut-in.js"
+            "default": "./mut-in.js"
         },
         "./mutator": {
-            "import": "./mutator.js"
+            "default": "./mutator.js"
         },
         "./path": {
-            "import": "./path.js"
+            "default": "./path.js"
         },
         "./set-in-many": {
-            "import": "./set-in-many.js"
+            "default": "./set-in-many.js"
         },
         "./set-in": {
-            "import": "./set-in.js"
+            "default": "./set-in.js"
         },
         "./setter": {
-            "import": "./setter.js"
+            "default": "./setter.js"
         },
         "./update-in": {
-            "import": "./update-in.js"
+            "default": "./update-in.js"
         },
         "./updater": {
-            "import": "./updater.js"
+            "default": "./updater.js"
         }
     },
     "thi.ng": {

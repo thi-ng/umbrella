@@ -69,13 +69,13 @@
     ],
     "exports": {
         ".": {
-            "import": "./index.js"
+            "default": "./index.js"
         },
         "./api": {
-            "import": "./api.js"
+            "default": "./api.js"
         },
         "./kmeans": {
-            "import": "./kmeans.js"
+            "default": "./kmeans.js"
         }
     },
     "thi.ng": {

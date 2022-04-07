@@ -77,22 +77,22 @@
     ],
     "exports": {
         ".": {
-            "import": "./index.js"
+            "default": "./index.js"
         },
         "./api": {
-            "import": "./api.js"
+            "default": "./api.js"
         },
         "./buffer": {
-            "import": "./buffer.js"
+            "default": "./buffer.js"
         },
         "./channel": {
-            "import": "./channel.js"
+            "default": "./channel.js"
         },
         "./mult": {
-            "import": "./mult.js"
+            "default": "./mult.js"
         },
         "./pubsub": {
-            "import": "./pubsub.js"
+            "default": "./pubsub.js"
         }
     },
     "thi.ng": {

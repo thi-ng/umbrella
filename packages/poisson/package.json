@@ -76,16 +76,16 @@
     ],
     "exports": {
         ".": {
-            "import": "./index.js"
+            "default": "./index.js"
         },
         "./api": {
-            "import": "./api.js"
+            "default": "./api.js"
         },
         "./poisson": {
-            "import": "./poisson.js"
+            "default": "./poisson.js"
         },
         "./stratified": {
-            "import": "./stratified.js"
+            "default": "./stratified.js"
         }
     },
     "thi.ng": {

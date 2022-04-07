@@ -75,16 +75,16 @@
     ],
     "exports": {
         ".": {
-            "import": "./index.js"
+            "default": "./index.js"
         },
         "./api": {
-            "import": "./api.js"
+            "default": "./api.js"
         },
         "./strategy": {
-            "import": "./strategy.js"
+            "default": "./strategy.js"
         },
         "./var": {
-            "import": "./var.js"
+            "default": "./var.js"
         }
     },
     "thi.ng": {

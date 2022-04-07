@@ -72,13 +72,13 @@
     ],
     "exports": {
         ".": {
-            "import": "./index.js"
+            "default": "./index.js"
         },
         "./bitfield": {
-            "import": "./bitfield.js"
+            "default": "./bitfield.js"
         },
         "./bitmatrix": {
-            "import": "./bitmatrix.js"
+            "default": "./bitmatrix.js"
         }
     },
     "thi.ng": {

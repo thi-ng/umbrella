@@ -81,34 +81,34 @@
     ],
     "exports": {
         ".": {
-            "import": "./index.js"
+            "default": "./index.js"
         },
         "./api": {
-            "import": "./api.js"
+            "default": "./api.js"
         },
         "./default": {
-            "import": "./default.js"
+            "default": "./default.js"
         },
         "./diff": {
-            "import": "./diff.js"
+            "default": "./diff.js"
         },
         "./dom": {
-            "import": "./dom.js"
+            "default": "./dom.js"
         },
         "./logger": {
-            "import": "./logger.js"
+            "default": "./logger.js"
         },
         "./normalize": {
-            "import": "./normalize.js"
+            "default": "./normalize.js"
         },
         "./render-once": {
-            "import": "./render-once.js"
+            "default": "./render-once.js"
         },
         "./resolve": {
-            "import": "./resolve.js"
+            "default": "./resolve.js"
         },
         "./start": {
-            "import": "./start.js"
+            "default": "./start.js"
         }
     },
     "thi.ng": {

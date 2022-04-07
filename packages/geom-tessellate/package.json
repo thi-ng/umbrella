@@ -72,28 +72,28 @@
     ],
     "exports": {
         ".": {
-            "import": "./index.js"
+            "default": "./index.js"
         },
         "./earcut": {
-            "import": "./earcut.js"
+            "default": "./earcut.js"
         },
         "./edge-split": {
-            "import": "./edge-split.js"
+            "default": "./edge-split.js"
         },
         "./inset": {
-            "import": "./inset.js"
+            "default": "./inset.js"
         },
         "./quad-fan": {
-            "import": "./quad-fan.js"
+            "default": "./quad-fan.js"
         },
         "./rim-tris": {
-            "import": "./rim-tris.js"
+            "default": "./rim-tris.js"
         },
         "./tessellate": {
-            "import": "./tessellate.js"
+            "default": "./tessellate.js"
         },
         "./tri-fan": {
-            "import": "./tri-fan.js"
+            "default": "./tri-fan.js"
         }
     },
     "thi.ng": {

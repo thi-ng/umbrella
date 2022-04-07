@@ -64,16 +64,16 @@
     ],
     "exports": {
         ".": {
-            "import": "./index.js"
+            "default": "./index.js"
         },
         "./api": {
-            "import": "./api.js"
+            "default": "./api.js"
         },
         "./metric": {
-            "import": "./metric.js"
+            "default": "./metric.js"
         },
         "./transform": {
-            "import": "./transform.js"
+            "default": "./transform.js"
         }
     },
     "thi.ng": {

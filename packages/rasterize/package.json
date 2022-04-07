@@ -79,34 +79,34 @@
     ],
     "exports": {
         ".": {
-            "import": "./index.js"
+            "default": "./index.js"
         },
         "./api": {
-            "import": "./api.js"
+            "default": "./api.js"
         },
         "./checks": {
-            "import": "./checks.js"
+            "default": "./checks.js"
         },
         "./circle": {
-            "import": "./circle.js"
+            "default": "./circle.js"
         },
         "./flood-fill": {
-            "import": "./flood-fill.js"
+            "default": "./flood-fill.js"
         },
         "./line": {
-            "import": "./line.js"
+            "default": "./line.js"
         },
         "./poly": {
-            "import": "./poly.js"
+            "default": "./poly.js"
         },
         "./polyline": {
-            "import": "./polyline.js"
+            "default": "./polyline.js"
         },
         "./rect": {
-            "import": "./rect.js"
+            "default": "./rect.js"
         },
         "./shader": {
-            "import": "./shader.js"
+            "default": "./shader.js"
         }
     },
     "thi.ng": {

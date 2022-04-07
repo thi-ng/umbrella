@@ -63,37 +63,37 @@
     ],
     "exports": {
         ".": {
-            "import": "./index.js"
+            "default": "./index.js"
         },
         "./accel": {
-            "import": "./accel.js"
+            "default": "./accel.js"
         },
         "./clip": {
-            "import": "./clip.js"
+            "default": "./clip.js"
         },
         "./convex": {
-            "import": "./convex.js"
+            "default": "./convex.js"
         },
         "./cubic": {
-            "import": "./cubic.js"
+            "default": "./cubic.js"
         },
         "./isec": {
-            "import": "./isec.js"
+            "default": "./isec.js"
         },
         "./path": {
-            "import": "./path.js"
+            "default": "./path.js"
         },
         "./sample": {
-            "import": "./sample.js"
+            "default": "./sample.js"
         },
         "./shape": {
-            "import": "./shape.js"
+            "default": "./shape.js"
         },
         "./subdiv": {
-            "import": "./subdiv.js"
+            "default": "./subdiv.js"
         },
         "./tessel": {
-            "import": "./tessel.js"
+            "default": "./tessel.js"
         }
     },
     "thi.ng": {

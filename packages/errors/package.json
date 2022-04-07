@@ -63,28 +63,28 @@
     ],
     "exports": {
         ".": {
-            "import": "./index.js"
+            "default": "./index.js"
         },
         "./assert": {
-            "import": "./assert.js"
+            "default": "./assert.js"
         },
         "./deferror": {
-            "import": "./deferror.js"
+            "default": "./deferror.js"
         },
         "./illegal-arguments": {
-            "import": "./illegal-arguments.js"
+            "default": "./illegal-arguments.js"
         },
         "./illegal-arity": {
-            "import": "./illegal-arity.js"
+            "default": "./illegal-arity.js"
         },
         "./illegal-state": {
-            "import": "./illegal-state.js"
+            "default": "./illegal-state.js"
         },
         "./out-of-bounds": {
-            "import": "./out-of-bounds.js"
+            "default": "./out-of-bounds.js"
         },
         "./unsupported": {
-            "import": "./unsupported.js"
+            "default": "./unsupported.js"
         }
     },
     "thi.ng": {

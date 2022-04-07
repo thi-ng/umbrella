@@ -100,445 +100,445 @@
     ],
     "exports": {
         ".": {
-            "import": "./index.js"
+            "default": "./index.js"
         },
         "./add": {
-            "import": "./add.js"
+            "default": "./add.js"
         },
         "./api": {
-            "import": "./api.js"
+            "default": "./api.js"
         },
         "./as-iterable": {
-            "import": "./as-iterable.js"
+            "default": "./as-iterable.js"
         },
         "./assoc-map": {
-            "import": "./assoc-map.js"
+            "default": "./assoc-map.js"
         },
         "./assoc-obj": {
-            "import": "./assoc-obj.js"
+            "default": "./assoc-obj.js"
         },
         "./auto-obj": {
-            "import": "./auto-obj.js"
+            "default": "./auto-obj.js"
         },
         "./benchmark": {
-            "import": "./benchmark.js"
+            "default": "./benchmark.js"
         },
         "./cat": {
-            "import": "./cat.js"
+            "default": "./cat.js"
         },
         "./choices": {
-            "import": "./choices.js"
+            "default": "./choices.js"
         },
         "./comp": {
-            "import": "./comp.js"
+            "default": "./comp.js"
         },
         "./compr": {
-            "import": "./compr.js"
+            "default": "./compr.js"
         },
         "./concat": {
-            "import": "./concat.js"
+            "default": "./concat.js"
         },
         "./conj": {
-            "import": "./conj.js"
+            "default": "./conj.js"
         },
         "./converge": {
-            "import": "./converge.js"
+            "default": "./converge.js"
         },
         "./convolve": {
-            "import": "./convolve.js"
+            "default": "./convolve.js"
         },
         "./count": {
-            "import": "./count.js"
+            "default": "./count.js"
         },
         "./curve": {
-            "import": "./curve.js"
+            "default": "./curve.js"
         },
         "./cycle": {
-            "import": "./cycle.js"
+            "default": "./cycle.js"
         },
         "./dedupe": {
-            "import": "./dedupe.js"
+            "default": "./dedupe.js"
         },
         "./deep-transform": {
-            "import": "./deep-transform.js"
+            "default": "./deep-transform.js"
         },
         "./delayed": {
-            "import": "./delayed.js"
+            "default": "./delayed.js"
         },
         "./distinct": {
-            "import": "./distinct.js"
+            "default": "./distinct.js"
         },
         "./div": {
-            "import": "./div.js"
+            "default": "./div.js"
         },
         "./drop-nth": {
-            "import": "./drop-nth.js"
+            "default": "./drop-nth.js"
         },
         "./drop-while": {
-            "import": "./drop-while.js"
+            "default": "./drop-while.js"
         },
         "./drop": {
-            "import": "./drop.js"
+            "default": "./drop.js"
         },
         "./dup": {
-            "import": "./dup.js"
+            "default": "./dup.js"
         },
         "./duplicate": {
-            "import": "./duplicate.js"
+            "default": "./duplicate.js"
         },
         "./ensure": {
-            "import": "./ensure.js"
+            "default": "./ensure.js"
         },
         "./every": {
-            "import": "./every.js"
+            "default": "./every.js"
         },
         "./extend-sides": {
-            "import": "./extend-sides.js"
+            "default": "./extend-sides.js"
         },
         "./fill": {
-            "import": "./fill.js"
+            "default": "./fill.js"
         },
         "./filter-fuzzy": {
-            "import": "./filter-fuzzy.js"
+            "default": "./filter-fuzzy.js"
         },
         "./filter": {
-            "import": "./filter.js"
+            "default": "./filter.js"
         },
         "./flatten-with": {
-            "import": "./flatten-with.js"
+            "default": "./flatten-with.js"
         },
         "./flatten": {
-            "import": "./flatten.js"
+            "default": "./flatten.js"
         },
         "./frequencies": {
-            "import": "./frequencies.js"
+            "default": "./frequencies.js"
         },
         "./group-binary": {
-            "import": "./group-binary.js"
+            "default": "./group-binary.js"
         },
         "./group-by-map": {
-            "import": "./group-by-map.js"
+            "default": "./group-by-map.js"
         },
         "./group-by-obj": {
-            "import": "./group-by-obj.js"
+            "default": "./group-by-obj.js"
         },
         "./indexed": {
-            "import": "./indexed.js"
+            "default": "./indexed.js"
         },
         "./interleave": {
-            "import": "./interleave.js"
+            "default": "./interleave.js"
         },
         "./interpolate-hermite": {
-            "import": "./interpolate-hermite.js"
+            "default": "./interpolate-hermite.js"
         },
         "./interpolate-linear": {
-            "import": "./interpolate-linear.js"
+            "default": "./interpolate-linear.js"
         },
         "./interpolate": {
-            "import": "./interpolate.js"
+            "default": "./interpolate.js"
         },
         "./interpose": {
-            "import": "./interpose.js"
+            "default": "./interpose.js"
         },
         "./iterate": {
-            "import": "./iterate.js"
+            "default": "./iterate.js"
         },
         "./iterator": {
-            "import": "./iterator.js"
+            "default": "./iterator.js"
         },
         "./juxtr": {
-            "import": "./juxtr.js"
+            "default": "./juxtr.js"
         },
         "./keep": {
-            "import": "./keep.js"
+            "default": "./keep.js"
         },
         "./key-permutations": {
-            "import": "./key-permutations.js"
+            "default": "./key-permutations.js"
         },
         "./key-selector": {
-            "import": "./key-selector.js"
+            "default": "./key-selector.js"
         },
         "./keys": {
-            "import": "./keys.js"
+            "default": "./keys.js"
         },
         "./labeled": {
-            "import": "./labeled.js"
+            "default": "./labeled.js"
         },
         "./last": {
-            "import": "./last.js"
+            "default": "./last.js"
         },
         "./line": {
-            "import": "./line.js"
+            "default": "./line.js"
         },
         "./lookup": {
-            "import": "./lookup.js"
+            "default": "./lookup.js"
         },
         "./map-deep": {
-            "import": "./map-deep.js"
+            "default": "./map-deep.js"
         },
         "./map-indexed": {
-            "import": "./map-indexed.js"
+            "default": "./map-indexed.js"
         },
         "./map-keys": {
-            "import": "./map-keys.js"
+            "default": "./map-keys.js"
         },
         "./map-nth": {
-            "import": "./map-nth.js"
+            "default": "./map-nth.js"
         },
         "./map-vals": {
-            "import": "./map-vals.js"
+            "default": "./map-vals.js"
         },
         "./map": {
-            "import": "./map.js"
+            "default": "./map.js"
         },
         "./mapcat-indexed": {
-            "import": "./mapcat-indexed.js"
+            "default": "./mapcat-indexed.js"
         },
         "./mapcat": {
-            "import": "./mapcat.js"
+            "default": "./mapcat.js"
         },
         "./match-first": {
-            "import": "./match-first.js"
+            "default": "./match-first.js"
         },
         "./match-last": {
-            "import": "./match-last.js"
+            "default": "./match-last.js"
         },
         "./max-compare": {
-            "import": "./max-compare.js"
+            "default": "./max-compare.js"
         },
         "./max-mag": {
-            "import": "./max-mag.js"
+            "default": "./max-mag.js"
         },
         "./max": {
-            "import": "./max.js"
+            "default": "./max.js"
         },
         "./mean": {
-            "import": "./mean.js"
+            "default": "./mean.js"
         },
         "./min-compare": {
-            "import": "./min-compare.js"
+            "default": "./min-compare.js"
         },
         "./min-mag": {
-            "import": "./min-mag.js"
+            "default": "./min-mag.js"
         },
         "./min-max": {
-            "import": "./min-max.js"
+            "default": "./min-max.js"
         },
         "./min": {
-            "import": "./min.js"
+            "default": "./min.js"
         },
         "./moving-average": {
-            "import": "./moving-average.js"
+            "default": "./moving-average.js"
         },
         "./moving-median": {
-            "import": "./moving-median.js"
+            "default": "./moving-median.js"
         },
         "./mul": {
-            "import": "./mul.js"
+            "default": "./mul.js"
         },
         "./multiplex-obj": {
-            "import": "./multiplex-obj.js"
+            "default": "./multiplex-obj.js"
         },
         "./multiplex": {
-            "import": "./multiplex.js"
+            "default": "./multiplex.js"
         },
         "./noop": {
-            "import": "./noop.js"
+            "default": "./noop.js"
         },
         "./norm-count": {
-            "import": "./norm-count.js"
+            "default": "./norm-count.js"
         },
         "./norm-frequencies-auto": {
-            "import": "./norm-frequencies-auto.js"
+            "default": "./norm-frequencies-auto.js"
         },
         "./norm-frequencies": {
-            "import": "./norm-frequencies.js"
+            "default": "./norm-frequencies.js"
         },
         "./norm-range": {
-            "import": "./norm-range.js"
+            "default": "./norm-range.js"
         },
         "./pad-last": {
-            "import": "./pad-last.js"
+            "default": "./pad-last.js"
         },
         "./pad-sides": {
-            "import": "./pad-sides.js"
+            "default": "./pad-sides.js"
         },
         "./page": {
-            "import": "./page.js"
+            "default": "./page.js"
         },
         "./pairs": {
-            "import": "./pairs.js"
+            "default": "./pairs.js"
         },
         "./palindrome": {
-            "import": "./palindrome.js"
+            "default": "./palindrome.js"
         },
         "./partition-by": {
-            "import": "./partition-by.js"
+            "default": "./partition-by.js"
         },
         "./partition-of": {
-            "import": "./partition-of.js"
+            "default": "./partition-of.js"
         },
         "./partition-sort": {
-            "import": "./partition-sort.js"
+            "default": "./partition-sort.js"
         },
         "./partition-sync": {
-            "import": "./partition-sync.js"
+            "default": "./partition-sync.js"
         },
         "./partition-time": {
-            "import": "./partition-time.js"
+            "default": "./partition-time.js"
         },
         "./partition-when": {
-            "import": "./partition-when.js"
+            "default": "./partition-when.js"
         },
         "./partition": {
-            "import": "./partition.js"
+            "default": "./partition.js"
         },
         "./peek": {
-            "import": "./peek.js"
+            "default": "./peek.js"
         },
         "./permutations": {
-            "import": "./permutations.js"
+            "default": "./permutations.js"
         },
         "./pluck": {
-            "import": "./pluck.js"
+            "default": "./pluck.js"
         },
         "./push-copy": {
-            "import": "./push-copy.js"
+            "default": "./push-copy.js"
         },
         "./push-sort": {
-            "import": "./push-sort.js"
+            "default": "./push-sort.js"
         },
         "./push": {
-            "import": "./push.js"
+            "default": "./push.js"
         },
         "./range-nd": {
-            "import": "./range-nd.js"
+            "default": "./range-nd.js"
         },
         "./range": {
-            "import": "./range.js"
+            "default": "./range.js"
         },
         "./range2d": {
-            "import": "./range2d.js"
+            "default": "./range2d.js"
         },
         "./range3d": {
-            "import": "./range3d.js"
+            "default": "./range3d.js"
         },
         "./rechunk": {
-            "import": "./rechunk.js"
+            "default": "./rechunk.js"
         },
         "./reduce": {
-            "import": "./reduce.js"
+            "default": "./reduce.js"
         },
         "./reduced": {
-            "import": "./reduced.js"
+            "default": "./reduced.js"
         },
         "./reductions": {
-            "import": "./reductions.js"
+            "default": "./reductions.js"
         },
         "./rename": {
-            "import": "./rename.js"
+            "default": "./rename.js"
         },
         "./renamer": {
-            "import": "./renamer.js"
+            "default": "./renamer.js"
         },
         "./repeat": {
-            "import": "./repeat.js"
+            "default": "./repeat.js"
         },
         "./repeatedly": {
-            "import": "./repeatedly.js"
+            "default": "./repeatedly.js"
         },
         "./reverse": {
-            "import": "./reverse.js"
+            "default": "./reverse.js"
         },
         "./run": {
-            "import": "./run.js"
+            "default": "./run.js"
         },
         "./sample": {
-            "import": "./sample.js"
+            "default": "./sample.js"
         },
         "./scan": {
-            "import": "./scan.js"
+            "default": "./scan.js"
         },
         "./select-keys": {
-            "import": "./select-keys.js"
+            "default": "./select-keys.js"
         },
         "./side-effect": {
-            "import": "./side-effect.js"
+            "default": "./side-effect.js"
         },
         "./sliding-window": {
-            "import": "./sliding-window.js"
+            "default": "./sliding-window.js"
         },
         "./some": {
-            "import": "./some.js"
+            "default": "./some.js"
         },
         "./sorted-keys": {
-            "import": "./sorted-keys.js"
+            "default": "./sorted-keys.js"
         },
         "./step": {
-            "import": "./step.js"
+            "default": "./step.js"
         },
         "./str": {
-            "import": "./str.js"
+            "default": "./str.js"
         },
         "./stream-shuffle": {
-            "import": "./stream-shuffle.js"
+            "default": "./stream-shuffle.js"
         },
         "./stream-sort": {
-            "import": "./stream-sort.js"
+            "default": "./stream-sort.js"
         },
         "./struct": {
-            "import": "./struct.js"
+            "default": "./struct.js"
         },
         "./sub": {
-            "import": "./sub.js"
+            "default": "./sub.js"
         },
         "./swizzle": {
-            "import": "./swizzle.js"
+            "default": "./swizzle.js"
         },
         "./symmetric": {
-            "import": "./symmetric.js"
+            "default": "./symmetric.js"
         },
         "./take-last": {
-            "import": "./take-last.js"
+            "default": "./take-last.js"
         },
         "./take-nth": {
-            "import": "./take-nth.js"
+            "default": "./take-nth.js"
         },
         "./take-while": {
-            "import": "./take-while.js"
+            "default": "./take-while.js"
         },
         "./take": {
-            "import": "./take.js"
+            "default": "./take.js"
         },
         "./throttle-time": {
-            "import": "./throttle-time.js"
+            "default": "./throttle-time.js"
         },
         "./throttle": {
-            "import": "./throttle.js"
+            "default": "./throttle.js"
         },
         "./toggle": {
-            "import": "./toggle.js"
+            "default": "./toggle.js"
         },
         "./trace": {
-            "import": "./trace.js"
+            "default": "./trace.js"
         },
         "./transduce": {
-            "import": "./transduce.js"
+            "default": "./transduce.js"
         },
         "./tween": {
-            "import": "./tween.js"
+            "default": "./tween.js"
         },
         "./vals": {
-            "import": "./vals.js"
+            "default": "./vals.js"
         },
         "./word-wrap": {
-            "import": "./word-wrap.js"
+            "default": "./word-wrap.js"
         },
         "./wrap-sides": {
-            "import": "./wrap-sides.js"
+            "default": "./wrap-sides.js"
         },
         "./zip": {
-            "import": "./zip.js"
+            "default": "./zip.js"
         }
     },
     "thi.ng": {

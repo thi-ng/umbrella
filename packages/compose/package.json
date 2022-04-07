@@ -63,46 +63,46 @@
     ],
     "exports": {
         ".": {
-            "import": "./index.js"
+            "default": "./index.js"
         },
         "./comp": {
-            "import": "./comp.js"
+            "default": "./comp.js"
         },
         "./complement": {
-            "import": "./complement.js"
+            "default": "./complement.js"
         },
         "./constantly": {
-            "import": "./constantly.js"
+            "default": "./constantly.js"
         },
         "./delay": {
-            "import": "./delay.js"
+            "default": "./delay.js"
         },
         "./delayed": {
-            "import": "./delayed.js"
+            "default": "./delayed.js"
         },
         "./identity": {
-            "import": "./identity.js"
+            "default": "./identity.js"
         },
         "./ifdef": {
-            "import": "./ifdef.js"
+            "default": "./ifdef.js"
         },
         "./juxt": {
-            "import": "./juxt.js"
+            "default": "./juxt.js"
         },
         "./partial": {
-            "import": "./partial.js"
+            "default": "./partial.js"
         },
         "./promisify": {
-            "import": "./promisify.js"
+            "default": "./promisify.js"
         },
         "./thread-first": {
-            "import": "./thread-first.js"
+            "default": "./thread-first.js"
         },
         "./thread-last": {
-            "import": "./thread-last.js"
+            "default": "./thread-last.js"
         },
         "./trampoline": {
-            "import": "./trampoline.js"
+            "default": "./trampoline.js"
         }
     }
 }

@@ -69,19 +69,19 @@
     ],
     "exports": {
         ".": {
-            "import": "./index.js"
+            "default": "./index.js"
         },
         "./api": {
-            "import": "./api.js"
+            "default": "./api.js"
         },
         "./lru": {
-            "import": "./lru.js"
+            "default": "./lru.js"
         },
         "./mru": {
-            "import": "./mru.js"
+            "default": "./mru.js"
         },
         "./tlru": {
-            "import": "./tlru.js"
+            "default": "./tlru.js"
         }
     },
     "thi.ng": {

@@ -69,22 +69,22 @@
     ],
     "exports": {
         ".": {
-            "import": "./index.js"
+            "default": "./index.js"
         },
         "./api": {
-            "import": "./api.js"
+            "default": "./api.js"
         },
         "./defmulti-n": {
-            "import": "./defmulti-n.js"
+            "default": "./defmulti-n.js"
         },
         "./defmulti": {
-            "import": "./defmulti.js"
+            "default": "./defmulti.js"
         },
         "./impls": {
-            "import": "./impls.js"
+            "default": "./impls.js"
         },
         "./logger": {
-            "import": "./logger.js"
+            "default": "./logger.js"
         }
     },
     "thi.ng": {

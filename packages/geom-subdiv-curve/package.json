@@ -73,16 +73,16 @@
     ],
     "exports": {
         ".": {
-            "import": "./index.js"
+            "default": "./index.js"
         },
         "./api": {
-            "import": "./api.js"
+            "default": "./api.js"
         },
         "./kernels": {
-            "import": "./kernels.js"
+            "default": "./kernels.js"
         },
         "./subdivide": {
-            "import": "./subdivide.js"
+            "default": "./subdivide.js"
         }
     },
     "thi.ng": {

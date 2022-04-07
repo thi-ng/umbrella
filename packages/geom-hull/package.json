@@ -66,10 +66,10 @@
     ],
     "exports": {
         ".": {
-            "import": "./index.js"
+            "default": "./index.js"
         },
         "./graham-scan": {
-            "import": "./graham-scan.js"
+            "default": "./graham-scan.js"
         }
     },
     "thi.ng": {

@@ -74,25 +74,25 @@
     ],
     "exports": {
         ".": {
-            "import": "./index.js"
+            "default": "./index.js"
         },
         "./box": {
-            "import": "./box.js"
+            "default": "./box.js"
         },
         "./circle": {
-            "import": "./circle.js"
+            "default": "./circle.js"
         },
         "./ellipse": {
-            "import": "./ellipse.js"
+            "default": "./ellipse.js"
         },
         "./line": {
-            "import": "./line.js"
+            "default": "./line.js"
         },
         "./plane": {
-            "import": "./plane.js"
+            "default": "./plane.js"
         },
         "./points": {
-            "import": "./points.js"
+            "default": "./points.js"
         }
     },
     "thi.ng": {

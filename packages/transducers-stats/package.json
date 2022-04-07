@@ -76,55 +76,55 @@
     ],
     "exports": {
         ".": {
-            "import": "./index.js"
+            "default": "./index.js"
         },
         "./bollinger": {
-            "import": "./bollinger.js"
+            "default": "./bollinger.js"
         },
         "./bounds": {
-            "import": "./bounds.js"
+            "default": "./bounds.js"
         },
         "./donchian": {
-            "import": "./donchian.js"
+            "default": "./donchian.js"
         },
         "./dot": {
-            "import": "./dot.js"
+            "default": "./dot.js"
         },
         "./ema": {
-            "import": "./ema.js"
+            "default": "./ema.js"
         },
         "./hma": {
-            "import": "./hma.js"
+            "default": "./hma.js"
         },
         "./macd": {
-            "import": "./macd.js"
+            "default": "./macd.js"
         },
         "./momentum": {
-            "import": "./momentum.js"
+            "default": "./momentum.js"
         },
         "./mse": {
-            "import": "./mse.js"
+            "default": "./mse.js"
         },
         "./roc": {
-            "import": "./roc.js"
+            "default": "./roc.js"
         },
         "./rsi": {
-            "import": "./rsi.js"
+            "default": "./rsi.js"
         },
         "./sd": {
-            "import": "./sd.js"
+            "default": "./sd.js"
         },
         "./sma": {
-            "import": "./sma.js"
+            "default": "./sma.js"
         },
         "./stochastic": {
-            "import": "./stochastic.js"
+            "default": "./stochastic.js"
         },
         "./trix": {
-            "import": "./trix.js"
+            "default": "./trix.js"
         },
         "./wma": {
-            "import": "./wma.js"
+            "default": "./wma.js"
         }
     },
     "thi.ng": {

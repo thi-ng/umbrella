@@ -69,16 +69,16 @@
     ],
     "exports": {
         ".": {
-            "import": "./index.js"
+            "default": "./index.js"
         },
         "./api": {
-            "import": "./api.js"
+            "default": "./api.js"
         },
         "./patch-array": {
-            "import": "./patch-array.js"
+            "default": "./patch-array.js"
         },
         "./patch-obj": {
-            "import": "./patch-obj.js"
+            "default": "./patch-obj.js"
         }
     },
     "thi.ng": {

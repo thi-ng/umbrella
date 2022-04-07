@@ -72,16 +72,16 @@
     ],
     "exports": {
         ".": {
-            "import": "./index.js"
+            "default": "./index.js"
         },
         "./api": {
-            "import": "./api.js"
+            "default": "./api.js"
         },
         "./native": {
-            "import": "./native.js"
+            "default": "./native.js"
         },
         "./pool": {
-            "import": "./pool.js"
+            "default": "./pool.js"
         }
     },
     "thi.ng": {

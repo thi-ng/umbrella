@@ -82,22 +82,22 @@
     ],
     "exports": {
         ".": {
-            "import": "./index.js"
+            "default": "./index.js"
         },
         "./aksuid": {
-            "import": "./aksuid.js"
+            "default": "./aksuid.js"
         },
         "./api": {
-            "import": "./api.js"
+            "default": "./api.js"
         },
         "./ksuid32": {
-            "import": "./ksuid32.js"
+            "default": "./ksuid32.js"
         },
         "./ksuid64": {
-            "import": "./ksuid64.js"
+            "default": "./ksuid64.js"
         },
         "./ulid": {
-            "import": "./ulid.js"
+            "default": "./ulid.js"
         }
     },
     "thi.ng": {

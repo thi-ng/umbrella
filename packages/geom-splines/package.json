@@ -84,58 +84,58 @@
     ],
     "exports": {
         ".": {
-            "import": "./index.js"
+            "default": "./index.js"
         },
         "./cubic-arc": {
-            "import": "./cubic-arc.js"
+            "default": "./cubic-arc.js"
         },
         "./cubic-bounds": {
-            "import": "./cubic-bounds.js"
+            "default": "./cubic-bounds.js"
         },
         "./cubic-closest-point": {
-            "import": "./cubic-closest-point.js"
+            "default": "./cubic-closest-point.js"
         },
         "./cubic-from-breakpoints": {
-            "import": "./cubic-from-breakpoints.js"
+            "default": "./cubic-from-breakpoints.js"
         },
         "./cubic-from-controlpoints": {
-            "import": "./cubic-from-controlpoints.js"
+            "default": "./cubic-from-controlpoints.js"
         },
         "./cubic-line": {
-            "import": "./cubic-line.js"
+            "default": "./cubic-line.js"
         },
         "./cubic-quadratic": {
-            "import": "./cubic-quadratic.js"
+            "default": "./cubic-quadratic.js"
         },
         "./cubic-sample": {
-            "import": "./cubic-sample.js"
+            "default": "./cubic-sample.js"
         },
         "./cubic-split": {
-            "import": "./cubic-split.js"
+            "default": "./cubic-split.js"
         },
         "./cubic-tangent": {
-            "import": "./cubic-tangent.js"
+            "default": "./cubic-tangent.js"
         },
         "./point-at": {
-            "import": "./point-at.js"
+            "default": "./point-at.js"
         },
         "./quadratic-bounds": {
-            "import": "./quadratic-bounds.js"
+            "default": "./quadratic-bounds.js"
         },
         "./quadratic-closest-point": {
-            "import": "./quadratic-closest-point.js"
+            "default": "./quadratic-closest-point.js"
         },
         "./quadratic-line": {
-            "import": "./quadratic-line.js"
+            "default": "./quadratic-line.js"
         },
         "./quadratic-sample": {
-            "import": "./quadratic-sample.js"
+            "default": "./quadratic-sample.js"
         },
         "./quadratic-split": {
-            "import": "./quadratic-split.js"
+            "default": "./quadratic-split.js"
         },
         "./quadratic-tangent": {
-            "import": "./quadratic-tangent.js"
+            "default": "./quadratic-tangent.js"
         }
     },
     "thi.ng": {

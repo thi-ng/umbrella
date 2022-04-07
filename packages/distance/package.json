@@ -74,31 +74,31 @@
     ],
     "exports": {
         ".": {
-            "import": "./index.js"
+            "default": "./index.js"
         },
         "./api": {
-            "import": "./api.js"
+            "default": "./api.js"
         },
         "./argmin": {
-            "import": "./argmin.js"
+            "default": "./argmin.js"
         },
         "./eucledian": {
-            "import": "./eucledian.js"
+            "default": "./eucledian.js"
         },
         "./haversine": {
-            "import": "./haversine.js"
+            "default": "./haversine.js"
         },
         "./knearest": {
-            "import": "./knearest.js"
+            "default": "./knearest.js"
         },
         "./manhattan": {
-            "import": "./manhattan.js"
+            "default": "./manhattan.js"
         },
         "./nearest": {
-            "import": "./nearest.js"
+            "default": "./nearest.js"
         },
         "./squared": {
-            "import": "./squared.js"
+            "default": "./squared.js"
         }
     },
     "thi.ng": {

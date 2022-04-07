@@ -13,7 +13,7 @@ const generatePackageExportMaps = (id: string) => {
     const thing = pkg["thi.ng"];
     if (!thing || thing.exports !== false) {
         const exports: Record<string, any> = {
-            ".": { import: "./index.js" },
+            ".": { default: "./index.js" },
         };
         for (let f of files(srcRoot, ".ts")) {
             if (/\/internal\/|\/index\.ts/.test(f)) continue;
@@ -21,7 +21,7 @@ const generatePackageExportMaps = (id: string) => {
             if (src.indexOf("// thing:no-export") !== -1) continue;
             // if (/\/index\.ts$/.test(f)) continue;
             const local = f.replace(srcRoot, ".").replace(".ts", "");
-            exports[local] = { import: `${local}.js` };
+            exports[local] = { default: `${local}.js` };
         }
         pkg.exports = exports;
     }

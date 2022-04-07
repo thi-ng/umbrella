@@ -62,25 +62,25 @@
     ],
     "exports": {
         ".": {
-            "import": "./index.js"
+            "default": "./index.js"
         },
         "./api": {
-            "import": "./api.js"
+            "default": "./api.js"
         },
         "./defonce": {
-            "import": "./defonce.js"
+            "default": "./defonce.js"
         },
         "./do-once": {
-            "import": "./do-once.js"
+            "default": "./do-once.js"
         },
         "./memoize": {
-            "import": "./memoize.js"
+            "default": "./memoize.js"
         },
         "./memoize1": {
-            "import": "./memoize1.js"
+            "default": "./memoize1.js"
         },
         "./memoizej": {
-            "import": "./memoizej.js"
+            "default": "./memoizej.js"
         }
     },
     "thi.ng": {

@@ -63,13 +63,13 @@
     ],
     "exports": {
         ".": {
-            "import": "./index.js"
+            "default": "./index.js"
         },
         "./input": {
-            "import": "./input.js"
+            "default": "./input.js"
         },
         "./output": {
-            "import": "./output.js"
+            "default": "./output.js"
         }
     },
     "thi.ng": {

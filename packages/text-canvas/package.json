@@ -93,43 +93,43 @@
     ],
     "exports": {
         ".": {
-            "import": "./index.js"
+            "default": "./index.js"
         },
         "./api": {
-            "import": "./api.js"
+            "default": "./api.js"
         },
         "./bars": {
-            "import": "./bars.js"
+            "default": "./bars.js"
         },
         "./canvas": {
-            "import": "./canvas.js"
+            "default": "./canvas.js"
         },
         "./circle": {
-            "import": "./circle.js"
+            "default": "./circle.js"
         },
         "./format": {
-            "import": "./format.js"
+            "default": "./format.js"
         },
         "./hvline": {
-            "import": "./hvline.js"
+            "default": "./hvline.js"
         },
         "./image": {
-            "import": "./image.js"
+            "default": "./image.js"
         },
         "./line": {
-            "import": "./line.js"
+            "default": "./line.js"
         },
         "./rect": {
-            "import": "./rect.js"
+            "default": "./rect.js"
         },
         "./style": {
-            "import": "./style.js"
+            "default": "./style.js"
         },
         "./table": {
-            "import": "./table.js"
+            "default": "./table.js"
         },
         "./text": {
-            "import": "./text.js"
+            "default": "./text.js"
         }
     },
     "thi.ng": {

@@ -76,22 +76,22 @@
     ],
     "exports": {
         ".": {
-            "import": "./index.js"
+            "default": "./index.js"
         },
         "./ansi": {
-            "import": "./ansi.js"
+            "default": "./ansi.js"
         },
         "./api": {
-            "import": "./api.js"
+            "default": "./api.js"
         },
         "./format": {
-            "import": "./format.js"
+            "default": "./format.js"
         },
         "./html": {
-            "import": "./html.js"
+            "default": "./html.js"
         },
         "./none": {
-            "import": "./none.js"
+            "default": "./none.js"
         }
     },
     "thi.ng": {

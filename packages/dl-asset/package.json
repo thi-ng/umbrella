@@ -68,19 +68,19 @@
     ],
     "exports": {
         ".": {
-            "import": "./index.js"
+            "default": "./index.js"
         },
         "./api": {
-            "import": "./api.js"
+            "default": "./api.js"
         },
         "./canvas": {
-            "import": "./canvas.js"
+            "default": "./canvas.js"
         },
         "./download": {
-            "import": "./download.js"
+            "default": "./download.js"
         },
         "./raw": {
-            "import": "./raw.js"
+            "default": "./raw.js"
         }
     },
     "thi.ng": {

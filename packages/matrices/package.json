@@ -89,175 +89,175 @@
     ],
     "exports": {
         ".": {
-            "import": "./index.js"
+            "default": "./index.js"
         },
         "./add": {
-            "import": "./add.js"
+            "default": "./add.js"
         },
         "./addn": {
-            "import": "./addn.js"
+            "default": "./addn.js"
         },
         "./alignment-quat": {
-            "import": "./alignment-quat.js"
+            "default": "./alignment-quat.js"
         },
         "./api": {
-            "import": "./api.js"
+            "default": "./api.js"
         },
         "./column": {
-            "import": "./column.js"
+            "default": "./column.js"
         },
         "./compile/emit": {
-            "import": "./compile/emit.js"
+            "default": "./compile/emit.js"
         },
         "./concat": {
-            "import": "./concat.js"
+            "default": "./concat.js"
         },
         "./conjugate": {
-            "import": "./conjugate.js"
+            "default": "./conjugate.js"
         },
         "./constants": {
-            "import": "./constants.js"
+            "default": "./constants.js"
         },
         "./determinant": {
-            "import": "./determinant.js"
+            "default": "./determinant.js"
         },
         "./diag": {
-            "import": "./diag.js"
+            "default": "./diag.js"
         },
         "./div": {
-            "import": "./div.js"
+            "default": "./div.js"
         },
         "./divn": {
-            "import": "./divn.js"
+            "default": "./divn.js"
         },
         "./frustum": {
-            "import": "./frustum.js"
+            "default": "./frustum.js"
         },
         "./identity": {
-            "import": "./identity.js"
+            "default": "./identity.js"
         },
         "./invert": {
-            "import": "./invert.js"
+            "default": "./invert.js"
         },
         "./lookat": {
-            "import": "./lookat.js"
+            "default": "./lookat.js"
         },
         "./m22-m23": {
-            "import": "./m22-m23.js"
+            "default": "./m22-m23.js"
         },
         "./m23-m22": {
-            "import": "./m23-m22.js"
+            "default": "./m23-m22.js"
         },
         "./m23-m44": {
-            "import": "./m23-m44.js"
+            "default": "./m23-m44.js"
         },
         "./m33-m44": {
-            "import": "./m33-m44.js"
+            "default": "./m33-m44.js"
         },
         "./m44-m33": {
-            "import": "./m44-m33.js"
+            "default": "./m44-m33.js"
         },
         "./matn": {
-            "import": "./matn.js"
+            "default": "./matn.js"
         },
         "./matv": {
-            "import": "./matv.js"
+            "default": "./matv.js"
         },
         "./mixq": {
-            "import": "./mixq.js"
+            "default": "./mixq.js"
         },
         "./mul": {
-            "import": "./mul.js"
+            "default": "./mul.js"
         },
         "./mulm": {
-            "import": "./mulm.js"
+            "default": "./mulm.js"
         },
         "./muln": {
-            "import": "./muln.js"
+            "default": "./muln.js"
         },
         "./mulq": {
-            "import": "./mulq.js"
+            "default": "./mulq.js"
         },
         "./mulv": {
-            "import": "./mulv.js"
+            "default": "./mulv.js"
         },
         "./mulvm": {
-            "import": "./mulvm.js"
+            "default": "./mulvm.js"
         },
         "./normal-mat": {
-            "import": "./normal-mat.js"
+            "default": "./normal-mat.js"
         },
         "./orthagonal": {
-            "import": "./orthagonal.js"
+            "default": "./orthagonal.js"
         },
         "./ortho": {
-            "import": "./ortho.js"
+            "default": "./ortho.js"
         },
         "./outer-product": {
-            "import": "./outer-product.js"
+            "default": "./outer-product.js"
         },
         "./perspective": {
-            "import": "./perspective.js"
+            "default": "./perspective.js"
         },
         "./project": {
-            "import": "./project.js"
+            "default": "./project.js"
         },
         "./quat-axis-angle": {
-            "import": "./quat-axis-angle.js"
+            "default": "./quat-axis-angle.js"
         },
         "./quat-euler": {
-            "import": "./quat-euler.js"
+            "default": "./quat-euler.js"
         },
         "./quat-m33": {
-            "import": "./quat-m33.js"
+            "default": "./quat-m33.js"
         },
         "./quat-m44": {
-            "import": "./quat-m44.js"
+            "default": "./quat-m44.js"
         },
         "./rotation-around-axis": {
-            "import": "./rotation-around-axis.js"
+            "default": "./rotation-around-axis.js"
         },
         "./rotation": {
-            "import": "./rotation.js"
+            "default": "./rotation.js"
         },
         "./row": {
-            "import": "./row.js"
+            "default": "./row.js"
         },
         "./scale-center": {
-            "import": "./scale-center.js"
+            "default": "./scale-center.js"
         },
         "./scale": {
-            "import": "./scale.js"
+            "default": "./scale.js"
         },
         "./set": {
-            "import": "./set.js"
+            "default": "./set.js"
         },
         "./shear": {
-            "import": "./shear.js"
+            "default": "./shear.js"
         },
         "./skew": {
-            "import": "./skew.js"
+            "default": "./skew.js"
         },
         "./sub": {
-            "import": "./sub.js"
+            "default": "./sub.js"
         },
         "./subn": {
-            "import": "./subn.js"
+            "default": "./subn.js"
         },
         "./trace": {
-            "import": "./trace.js"
+            "default": "./trace.js"
         },
         "./transform": {
-            "import": "./transform.js"
+            "default": "./transform.js"
         },
         "./translation": {
-            "import": "./translation.js"
+            "default": "./translation.js"
         },
         "./transpose": {
-            "import": "./transpose.js"
+            "default": "./transpose.js"
         },
         "./viewport": {
-            "import": "./viewport.js"
+            "default": "./viewport.js"
         }
     },
     "thi.ng": {

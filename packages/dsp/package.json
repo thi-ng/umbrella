@@ -92,178 +92,178 @@
     ],
     "exports": {
         ".": {
-            "import": "./index.js"
+            "default": "./index.js"
         },
         "./add": {
-            "import": "./add.js"
+            "default": "./add.js"
         },
         "./addg": {
-            "import": "./addg.js"
+            "default": "./addg.js"
         },
         "./adsr": {
-            "import": "./adsr.js"
+            "default": "./adsr.js"
         },
         "./agen": {
-            "import": "./agen.js"
+            "default": "./agen.js"
         },
         "./allpass": {
-            "import": "./allpass.js"
+            "default": "./allpass.js"
         },
         "./alt": {
-            "import": "./alt.js"
+            "default": "./alt.js"
         },
         "./anti-alias": {
-            "import": "./anti-alias.js"
+            "default": "./anti-alias.js"
         },
         "./api": {
-            "import": "./api.js"
+            "default": "./api.js"
         },
         "./aproc": {
-            "import": "./aproc.js"
+            "default": "./aproc.js"
         },
         "./biquad": {
-            "import": "./biquad.js"
+            "default": "./biquad.js"
         },
         "./bounce": {
-            "import": "./bounce.js"
+            "default": "./bounce.js"
         },
         "./complex": {
-            "import": "./complex.js"
+            "default": "./complex.js"
         },
         "./const": {
-            "import": "./const.js"
+            "default": "./const.js"
         },
         "./convert": {
-            "import": "./convert.js"
+            "default": "./convert.js"
         },
         "./cosine": {
-            "import": "./cosine.js"
+            "default": "./cosine.js"
         },
         "./curve": {
-            "import": "./curve.js"
+            "default": "./curve.js"
         },
         "./dcblock": {
-            "import": "./dcblock.js"
+            "default": "./dcblock.js"
         },
         "./delay": {
-            "import": "./delay.js"
+            "default": "./delay.js"
         },
         "./feedback-delay": {
-            "import": "./feedback-delay.js"
+            "default": "./feedback-delay.js"
         },
         "./fft": {
-            "import": "./fft.js"
+            "default": "./fft.js"
         },
         "./filter-response": {
-            "import": "./filter-response.js"
+            "default": "./filter-response.js"
         },
         "./foldback": {
-            "import": "./foldback.js"
+            "default": "./foldback.js"
         },
         "./impulse-train": {
-            "import": "./impulse-train.js"
+            "default": "./impulse-train.js"
         },
         "./impulse": {
-            "import": "./impulse.js"
+            "default": "./impulse.js"
         },
         "./integrator": {
-            "import": "./integrator.js"
+            "default": "./integrator.js"
         },
         "./iterable": {
-            "import": "./iterable.js"
+            "default": "./iterable.js"
         },
         "./line": {
-            "import": "./line.js"
+            "default": "./line.js"
         },
         "./madd": {
-            "import": "./madd.js"
+            "default": "./madd.js"
         },
         "./mapg": {
-            "import": "./mapg.js"
+            "default": "./mapg.js"
         },
         "./mix": {
-            "import": "./mix.js"
+            "default": "./mix.js"
         },
         "./mul": {
-            "import": "./mul.js"
+            "default": "./mul.js"
         },
         "./multiplex": {
-            "import": "./multiplex.js"
+            "default": "./multiplex.js"
         },
         "./onepole": {
-            "import": "./onepole.js"
+            "default": "./onepole.js"
         },
         "./osc-additive": {
-            "import": "./osc-additive.js"
+            "default": "./osc-additive.js"
         },
         "./osc-cos": {
-            "import": "./osc-cos.js"
+            "default": "./osc-cos.js"
         },
         "./osc-dsf": {
-            "import": "./osc-dsf.js"
+            "default": "./osc-dsf.js"
         },
         "./osc-mix": {
-            "import": "./osc-mix.js"
+            "default": "./osc-mix.js"
         },
         "./osc-parabolic": {
-            "import": "./osc-parabolic.js"
+            "default": "./osc-parabolic.js"
         },
         "./osc-rect": {
-            "import": "./osc-rect.js"
+            "default": "./osc-rect.js"
         },
         "./osc-saw": {
-            "import": "./osc-saw.js"
+            "default": "./osc-saw.js"
         },
         "./osc-sin": {
-            "import": "./osc-sin.js"
+            "default": "./osc-sin.js"
         },
         "./osc-tri": {
-            "import": "./osc-tri.js"
+            "default": "./osc-tri.js"
         },
         "./osc-wavetable": {
-            "import": "./osc-wavetable.js"
+            "default": "./osc-wavetable.js"
         },
         "./osc": {
-            "import": "./osc.js"
+            "default": "./osc.js"
         },
         "./pink-noise": {
-            "import": "./pink-noise.js"
+            "default": "./pink-noise.js"
         },
         "./pipe": {
-            "import": "./pipe.js"
+            "default": "./pipe.js"
         },
         "./power": {
-            "import": "./power.js"
+            "default": "./power.js"
         },
         "./product": {
-            "import": "./product.js"
+            "default": "./product.js"
         },
         "./reciprocal": {
-            "import": "./reciprocal.js"
+            "default": "./reciprocal.js"
         },
         "./serial": {
-            "import": "./serial.js"
+            "default": "./serial.js"
         },
         "./sincos": {
-            "import": "./sincos.js"
+            "default": "./sincos.js"
         },
         "./sum": {
-            "import": "./sum.js"
+            "default": "./sum.js"
         },
         "./svf": {
-            "import": "./svf.js"
+            "default": "./svf.js"
         },
         "./sweep": {
-            "import": "./sweep.js"
+            "default": "./sweep.js"
         },
         "./waveshaper": {
-            "import": "./waveshaper.js"
+            "default": "./waveshaper.js"
         },
         "./white-noise": {
-            "import": "./white-noise.js"
+            "default": "./white-noise.js"
         },
         "./window": {
-            "import": "./window.js"
+            "default": "./window.js"
         }
     },
     "thi.ng": {
