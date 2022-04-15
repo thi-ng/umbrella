@@ -3,7 +3,6 @@ import { compareNumAsc } from "@thi.ng/compare/numeric";
 import { absDiff } from "@thi.ng/math/abs";
 import { clamp } from "@thi.ng/math/interval";
 import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
-import { comparator2 } from "@thi.ng/vectors/compare";
 import type { IRamp, RampBounds } from "./api.js";
 
 export abstract class ARamp implements IRamp {
@@ -75,7 +74,7 @@ export abstract class ARamp implements IRamp {
     }
 
     sort() {
-        this.stops.sort(comparator2(0, 1));
+        this.stops.sort((a, b) => a[0] - b[0]);
     }
 
     uniform() {
