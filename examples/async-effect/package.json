@@ -8,7 +8,7 @@
     "license": "Apache-2.0",
     "scripts": {
         "start": "vite --open",
-        "build": "tsc && vite build && cp -R data dist",
+        "build": "tsc && vite build --base='./'",
         "preview": "vite preview"
     },
     "dependencies": {

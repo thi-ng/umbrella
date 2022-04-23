@@ -1,10 +1,14 @@
 import type { IObjectOf } from "@thi.ng/api";
 import { start } from "@thi.ng/hdom/start";
 import {
-    EventBus, FX_DISPATCH_ASYNC,
+    EventBus,
+    FX_DISPATCH_ASYNC,
     FX_DISPATCH_NOW,
-    valueSetter, type EffectDef, type EventDef
+    valueSetter,
+    type EffectDef,
+    type EventDef,
 } from "@thi.ng/interceptors";
+import DATA_URL from "./data/foo.json?url";
 
 // best practice tip:
 // define event & effect names as consts or enums and
@@ -79,7 +83,7 @@ const app = () => {
     const bus = new EventBus(null, events, effects);
 
     // kick off JSON request
-    bus.dispatch([EV_LOAD_JSON, "data/foo.json"]);
+    bus.dispatch([EV_LOAD_JSON, DATA_URL]);
 
     // root component function
     return () => {
