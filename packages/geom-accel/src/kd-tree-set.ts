@@ -1,6 +1,6 @@
 import type { ICopy, IEmpty, Pair } from "@thi.ng/api";
 import type { IRegionQuery, ISpatialSet } from "@thi.ng/geom-api";
-import type { ReadonlyVec } from "@thi.ng/vectors";
+import type { DistanceFn, ReadonlyVec } from "@thi.ng/vectors";
 import { KdTreeMap } from "./kd-tree-map.js";
 
 export class KdTreeSet<K extends ReadonlyVec>
@@ -12,8 +12,8 @@ export class KdTreeSet<K extends ReadonlyVec>
 {
     protected tree: KdTreeMap<K, K>;
 
-    constructor(dim: number, keys?: Iterable<K>) {
-        this.tree = new KdTreeMap(dim);
+    constructor(dim: number, keys?: Iterable<K>, distanceFn?: DistanceFn) {
+        this.tree = new KdTreeMap(dim, undefined, distanceFn);
         keys && this.into(keys);
     }
 
@@ -42,7 +42,7 @@ export class KdTreeSet<K extends ReadonlyVec>
     }
 
     copy() {
-        return new KdTreeSet<K>(this.tree.dim, this);
+        return new KdTreeSet<K>(this.tree.dim, this, this.tree.distanceFn);
     }
 
     clear() {
@@ -50,7 +50,7 @@ export class KdTreeSet<K extends ReadonlyVec>
     }
 
     empty() {
-        return new KdTreeSet<K>(this.tree.dim);
+        return new KdTreeSet<K>(this.tree.dim, undefined, this.tree.distanceFn);
     }
 
     add(key: K, eps?: number) {
