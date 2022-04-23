@@ -50,12 +50,14 @@ export class KdTreeMap<K extends ReadonlyVec, V>
 
     protected root: MaybeKdNode<K, V>;
     protected _size: number;
-    protected _distanceFn: DistanceFn;
 
-    constructor(dim: number, pairs?: Iterable<Pair<K, V>>, distanceFn: DistanceFn = distSq) {
+    constructor(
+        dim: number,
+        pairs?: Iterable<Pair<K, V>>,
+        public readonly distanceFn: DistanceFn = distSq
+    ) {
         this.dim = dim;
         this._size = 0;
-        this._distanceFn = distanceFn;
         this.root = pairs ? this.buildTree(ensureArray(pairs), 0) : undefined;
     }
 
@@ -97,12 +99,8 @@ export class KdTreeMap<K extends ReadonlyVec, V>
         return this._size ? this.height / Math.log2(this._size) : 0;
     }
 
-    get distanceFn() {
-        return this._distanceFn;
-    }
-
     copy() {
-        return new KdTreeMap(this.dim, this, this._distanceFn);
+        return new KdTreeMap(this.dim, this, this.distanceFn);
     }
 
     clear() {
@@ -111,7 +109,7 @@ export class KdTreeMap<K extends ReadonlyVec, V>
     }
 
     empty() {
-        return new KdTreeMap<K, V>(this.dim, undefined, this._distanceFn);
+        return new KdTreeMap<K, V>(this.dim, undefined, this.distanceFn);
     }
 
     set(key: K, val: V, eps = EPS) {
@@ -126,7 +124,13 @@ export class KdTreeMap<K extends ReadonlyVec, V>
                 : parent;
         let parent: MaybeKdNode<K, V>;
         if (this.root) {
-            parent = nearest1(key, [eps, undefined], this.dim, this.root, this._distanceFn)[1];
+            parent = nearest1(
+                key,
+                [eps, undefined],
+                this.dim,
+                this.root,
+                this.distanceFn
+            )[1];
             if (parent) {
                 parent.v = val;
                 return false;
@@ -163,7 +167,13 @@ export class KdTreeMap<K extends ReadonlyVec, V>
     has(key: K, eps = EPS) {
         return (
             !!this.root &&
-            !!nearest1(key, [eps * eps, undefined], this.dim, this.root, this._distanceFn)[1]
+            !!nearest1(
+                key,
+                [eps * eps, undefined],
+                this.dim,
+                this.root,
+                this.distanceFn
+            )[1]
         );
     }
 
@@ -174,7 +184,7 @@ export class KdTreeMap<K extends ReadonlyVec, V>
                 [eps * eps, undefined],
                 this.dim,
                 this.root,
-                this._distanceFn
+                this.distanceFn
             )[1];
             return node ? node.v : undefined;
         }
@@ -212,7 +222,7 @@ export class KdTreeMap<K extends ReadonlyVec, V>
                 [maxDist, undefined],
                 this.dim,
                 this.root,
-                this._distanceFn
+                this.distanceFn
             )[1];
             sel && acc.push(f(sel));
         } else {
@@ -222,7 +232,7 @@ export class KdTreeMap<K extends ReadonlyVec, V>
                     compare: CMP,
                 }
             );
-            nearest(q, nodes, this.dim, maxNum, this.root!, this._distanceFn);
+            nearest(q, nodes, this.dim, maxNum, this.root!, this.distanceFn);
             return addResults(f, nodes.values, acc);
         }
         return acc;

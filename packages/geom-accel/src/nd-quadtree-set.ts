@@ -1,7 +1,7 @@
 import type { ICopy, IEmpty, Pair } from "@thi.ng/api";
 import type { IRegionQuery, ISpatialSet } from "@thi.ng/geom-api";
 import { EPS } from "@thi.ng/math/api";
-import type { ReadonlyVec } from "@thi.ng/vectors";
+import type { DistanceFn, ReadonlyVec } from "@thi.ng/vectors";
 import { addmN } from "@thi.ng/vectors/addmn";
 import { submN } from "@thi.ng/vectors/submn";
 import { NdQuadtreeMap } from "./nd-quadtree-map.js";
@@ -36,8 +36,13 @@ export class NdQuadtreeSet<K extends ReadonlyVec>
     protected tree: NdQuadtreeMap<K, K>;
     protected _size: number;
 
-    constructor(pos: ReadonlyVec, ext: ReadonlyVec, keys?: Iterable<K>) {
-        this.tree = new NdQuadtreeMap<K, K>(pos, ext);
+    constructor(
+        pos: ReadonlyVec,
+        ext: ReadonlyVec,
+        keys?: Iterable<K>,
+        distanceFn?: DistanceFn
+    ) {
+        this.tree = new NdQuadtreeMap<K, K>(pos, ext, undefined, distanceFn);
         this._size = 0;
         keys && this.into(keys);
     }
@@ -62,7 +67,8 @@ export class NdQuadtreeSet<K extends ReadonlyVec>
         return new NdQuadtreeSet<K>(
             this.tree.root.pos,
             this.tree.root.ext,
-            this
+            this,
+            this.tree.distanceFn
         );
     }
 
@@ -71,7 +77,12 @@ export class NdQuadtreeSet<K extends ReadonlyVec>
     }
 
     empty() {
-        return new NdQuadtreeSet<K>(this.tree.root.pos, this.tree.root.ext);
+        return new NdQuadtreeSet<K>(
+            this.tree.root.pos,
+            this.tree.root.ext,
+            undefined,
+            this.tree.distanceFn
+        );
     }
 
     add(key: K, eps = EPS) {

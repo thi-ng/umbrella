@@ -11,7 +11,7 @@ import { map } from "@thi.ng/transducers/map";
 import { permutations } from "@thi.ng/transducers/permutations";
 import { repeat } from "@thi.ng/transducers/repeat";
 import { take } from "@thi.ng/transducers/take";
-import type { MultiVecOpRoVV, ReadonlyVec } from "@thi.ng/vectors";
+import type { DistanceFn, MultiVecOpRoVV, ReadonlyVec } from "@thi.ng/vectors";
 import { addmN } from "@thi.ng/vectors/addmn";
 import { distSq } from "@thi.ng/vectors/distsq";
 import { madd } from "@thi.ng/vectors/madd";
@@ -47,9 +47,9 @@ export class NdQtNode<K extends ReadonlyVec, V> {
         this.numC = 0;
     }
 
-    set(p: K, val: V, eps: number): boolean {
+    set(p: K, val: V, eps: number, distFn: DistanceFn): boolean {
         return (
-            (eps <= 0 || !this.queryKeys(p, eps, 1, []).length) &&
+            (eps <= 0 || !this.queryKeys(p, eps, 1, [], distFn).length) &&
             this.containsPoint(p) &&
             this.setUnsafe(p, val)
         );
@@ -82,7 +82,8 @@ export class NdQtNode<K extends ReadonlyVec, V> {
         p: K,
         r: number,
         max: number,
-        acc: T[]
+        acc: T[],
+        distFn: DistanceFn
     ) {
         return addResults(
             fn,
@@ -92,18 +93,25 @@ export class NdQtNode<K extends ReadonlyVec, V> {
                 max,
                 new Heap<[number, NdQtNode<K, V>?]>([[r * r]], {
                     compare: CMP,
-                })
+                }),
+                distFn
             ).values,
             acc
         );
     }
 
-    queryKeys(p: K, r: number, max: number, acc: K[]): K[] {
-        return this.query((n) => <K>n.k, p, r, max, acc);
+    queryKeys(p: K, r: number, max: number, acc: K[], distFn: DistanceFn): K[] {
+        return this.query((n) => <K>n.k, p, r, max, acc, distFn);
     }
 
-    queryValues(p: K, r: number, max: number, acc: V[]): V[] {
-        return this.query((n) => <V>n.v, p, r, max, acc);
+    queryValues(
+        p: K,
+        r: number,
+        max: number,
+        acc: V[],
+        distFn: DistanceFn
+    ): V[] {
+        return this.query((n) => <V>n.v, p, r, max, acc, distFn);
     }
 
     containsPoint(p: K) {
@@ -124,11 +132,12 @@ export class NdQtNode<K extends ReadonlyVec, V> {
         p: K,
         r: number,
         max: number,
-        acc: Heap<[number, NdQtNode<K, V>?]>
+        acc: Heap<[number, NdQtNode<K, V>?]>,
+        distFn: DistanceFn
     ): Heap<[number, NdQtNode<K, V>?]> {
         if (testCenteredBoxSphere(this.pos, this.ext, p, r)) {
             if (this.k) {
-                const d = distSq(this.k, p);
+                const d = distFn(this.k, p);
                 if (d <= acc.values[0][0]) {
                     acc.length >= max
                         ? acc.pushPop([d, this])
@@ -141,7 +150,7 @@ export class NdQtNode<K extends ReadonlyVec, V> {
 
                 ) {
                     if (this.children[i]) {
-                        this.children[i].doQuery(p, r, max, acc);
+                        this.children[i].doQuery(p, r, max, acc, distFn);
                         j--;
                     }
                 }
@@ -209,7 +218,8 @@ export class NdQuadtreeMap<K extends ReadonlyVec, V>
     constructor(
         pos: ReadonlyVec,
         ext: ReadonlyVec,
-        pairs?: Iterable<Pair<K, V>>
+        pairs?: Iterable<Pair<K, V>>,
+        public readonly distanceFn: DistanceFn = distSq
     ) {
         const dim = pos.length;
         assert(
@@ -254,7 +264,8 @@ export class NdQuadtreeMap<K extends ReadonlyVec, V>
         const tree = new NdQuadtreeMap<K, V>(
             this.root.pos,
             this.root.ext,
-            this
+            this,
+            this.distanceFn
         );
         return tree;
     }
@@ -265,11 +276,16 @@ export class NdQuadtreeMap<K extends ReadonlyVec, V>
     }
 
     empty() {
-        return new NdQuadtreeMap<K, V>(this.root.pos, this.root.ext);
+        return new NdQuadtreeMap<K, V>(
+            this.root.pos,
+            this.root.ext,
+            undefined,
+            this.distanceFn
+        );
     }
 
     set(key: K, val: V, eps = EPS) {
-        if (this.root.set(key, val, eps)) {
+        if (this.root.set(key, val, eps, this.distanceFn)) {
             this._size++;
             return true;
         }
@@ -300,7 +316,7 @@ export class NdQuadtreeMap<K extends ReadonlyVec, V>
     has(p: K, eps = EPS) {
         return !!(eps <= 0
             ? this.root.nodeForPoint(p)
-            : this.root.queryKeys(p, eps, 1, []).length);
+            : this.root.queryKeys(p, eps, 1, [], this.distanceFn).length);
     }
 
     get(p: K, eps = EPS) {
@@ -308,19 +324,26 @@ export class NdQuadtreeMap<K extends ReadonlyVec, V>
             const node = this.root.nodeForPoint(p);
             return node ? node.v : undefined;
         }
-        return this.root.queryValues(p, eps, 1, [])[0];
+        return this.root.queryValues(p, eps, 1, [], this.distanceFn)[0];
     }
 
     query(p: K, r: number, max = 1, acc: Pair<K, V>[] = []) {
-        return this.root.query((n) => <Pair<K, V>>[n.k, n.v], p, r, max, acc);
+        return this.root.query(
+            (n) => <Pair<K, V>>[n.k, n.v],
+            p,
+            r,
+            max,
+            acc,
+            this.distanceFn
+        );
     }
 
     queryKeys(p: K, r: number, max = 1, acc: K[] = []) {
-        return this.root.queryKeys(p, r, max, acc);
+        return this.root.queryKeys(p, r, max, acc, this.distanceFn);
     }
 
     queryValues(p: K, r: number, max = 1, acc: V[] = []) {
-        return this.root.queryValues(p, r, max, acc);
+        return this.root.queryValues(p, r, max, acc, this.distanceFn);
     }
 
     containsPoint(p: K) {
