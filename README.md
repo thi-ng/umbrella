@@ -499,6 +499,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://twitter.com/ja0nz"><img src="https://avatars.githubusercontent.com/u/19622393?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Ja&#124;nz</b></sub></a><br /><a href="https://github.com/thi-ng/umbrella/commits?author=ja0nz" title="Code">💻</a> <a href="#infra-ja0nz" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="#maintenance-ja0nz" title="Maintenance">🚧</a></td>
     <td align="center"><a href="http://odbol.com"><img src="https://avatars.githubusercontent.com/u/550985?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Tyler Freeman</b></sub></a><br /><a href="https://github.com/thi-ng/umbrella/issues?q=author%3Aodbol" title="Bug reports">🐛</a> <a href="https://github.com/thi-ng/umbrella/commits?author=odbol" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/blackhuman"><img src="https://avatars.githubusercontent.com/u/2269615?v=4?s=100" width="100px;" alt=""/><br /><sub><b>blackhuman</b></sub></a><br /><a href="https://github.com/thi-ng/umbrella/issues?q=author%3Ablackhuman" title="Bug reports">🐛</a></td>
+    <td align="center"><a href="https://github.com/dnegstad"><img src="https://avatars.githubusercontent.com/u/1406303?v=4?s=100" width="100px;" alt=""/><br /><sub><b>David Negstad</b></sub></a><br /><a href="https://github.com/thi-ng/umbrella/commits?author=dnegstad" title="Code">💻</a></td>
   </tr>
 </table>
 

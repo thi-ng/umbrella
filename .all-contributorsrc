@@ -393,6 +393,15 @@
       "contributions": [
         "bug"
       ]
+    },
+    {
+      "login": "dnegstad",
+      "name": "David Negstad",
+      "avatar_url": "https://avatars.githubusercontent.com/u/1406303?v=4",
+      "profile": "https://github.com/dnegstad",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
