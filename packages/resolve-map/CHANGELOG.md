@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-04-07T14:17:30Z
+- **Last updated**: 2022-05-02T11:57:05Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,15 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+# [6.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/resolve-map@6.0.0) (2022-05-02)
+
+#### 🛑 Breaking changes
+
+- add `Unresolved` type & type checking ([a997fd2](https://github.com/thi-ng/umbrella/commit/a997fd2))
+- BREAKING CHANGE: add type checking to `resolve()`.
+  This MIGHT require additional type generics (of the result object type)
+  to be added to any call sites. See tests for examples.
 
 ### [5.1.5](https://github.com/thi-ng/umbrella/tree/@thi.ng/resolve-map@5.1.5) (2022-04-07)
 

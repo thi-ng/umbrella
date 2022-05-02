@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-04-07T14:17:30Z
+- **Last updated**: 2022-05-02T11:57:05Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,13 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [3.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom-accel@3.2.0) (2022-05-02)
+
+#### 🚀 Features
+
+- add custom dist fn for NdQuadtreeMap/Set too ([5fccbd3](https://github.com/thi-ng/umbrella/commit/5fccbd3))
+  - minor refactor KdTreeMap dist fn handling
 
 ## [3.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom-accel@3.1.0) (2021-11-17)
 
