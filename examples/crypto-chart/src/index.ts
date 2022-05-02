@@ -59,6 +59,15 @@ interface MarketResponse {
     ohlc: OHLC[];
 }
 
+interface Stats {
+    ohlc: OHLC[];
+    period: number;
+    min: number;
+    max: number;
+    tbounds: number[];
+    sma: [number, number[]][];
+}
+
 // constant definitions
 
 // supported chart (and API) timeframes
@@ -230,7 +239,7 @@ const data = sync({
         filter(({ response }) => !!response.ohlc),
         // use @thi.ng/resolve-map to compute bounds & moving averages
         map(({ response, avg }: any) =>
-            resolve({
+            resolve<Stats>({
                 ...response,
                 min: ({ ohlc }: MarketResponse) =>
                     transduce(pluck("low"), min(), ohlc),
