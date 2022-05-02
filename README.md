@@ -141,17 +141,13 @@ feature or `develop` branches)
 
 ### Latest updates
 
-As of: 2022-04-07
+As of: 2022-05-01
 
-| Status                                        | Project                                               | Version                                                                                                                     | Changelog                                           |
-|-----------------------------------------------|-------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------|
-| ![](https://img.shields.io/badge/-fix-orange) | [`@thi.ng/bencode`](./packages/bencode)               | [![version](https://img.shields.io/npm/v/@thi.ng/bencode.svg)](https://www.npmjs.com/package/@thi.ng/bencode)               | [changelog](./packages/bencode/CHANGELOG.md)        |
-| ![](https://img.shields.io/badge/-new-cyan)   | [`@thi.ng/complex`](./packages/complex)               | [![version](https://img.shields.io/npm/v/@thi.ng/complex.svg)](https://www.npmjs.com/package/@thi.ng/complex)               | [changelog](./packages/complex/CHANGELOG.md)        |
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/dsp`](./packages/dsp)                       | [![version](https://img.shields.io/npm/v/@thi.ng/dsp.svg)](https://www.npmjs.com/package/@thi.ng/dsp)                       | [changelog](./packages/dsp/CHANGELOG.md)            |
-| ![](https://img.shields.io/badge/-fix-orange) | [`@thi.ng/geom`](./packages/geom)                     | [![version](https://img.shields.io/npm/v/@thi.ng/geom.svg)](https://www.npmjs.com/package/@thi.ng/geom)                     | [changelog](./packages/geom/CHANGELOG.md)           |
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/grid-iterators`](./packages/grid-iterators) | [![version](https://img.shields.io/npm/v/@thi.ng/grid-iterators.svg)](https://www.npmjs.com/package/@thi.ng/grid-iterators) | [changelog](./packages/grid-iterators/CHANGELOG.md) |
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/mime`](./packages/mime)                     | [![version](https://img.shields.io/npm/v/@thi.ng/mime.svg)](https://www.npmjs.com/package/@thi.ng/mime)                     | [changelog](./packages/mime/CHANGELOG.md)           |
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/mime`](./packages/pixel)                    | [![version](https://img.shields.io/npm/v/@thi.ng/pixel.svg)](https://www.npmjs.com/package/@thi.ng/pixel)                   | [changelog](./packages/pixel/CHANGELOG.md)          |
+| Status                                        | Project                                         | Version                                                                                                               | Changelog                                        |
+|-----------------------------------------------|-------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------|--------------------------------------------------|
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/geom-accel`](./packages/geom-accel)   | [![version](https://img.shields.io/npm/v/@thi.ng/geom-accel.svg)](https://www.npmjs.com/package/@thi.ng/geom-accel)   | [changelog](./packages/geom-accel/CHANGELOG.md)  |
+| ![](https://img.shields.io/badge/-fix-orange) | [`@thi.ng/ramp`](./packages/ramp)               | [![version](https://img.shields.io/npm/v/@thi.ng/ramp.svg)](https://www.npmjs.com/package/@thi.ng/ramp)               | [changelog](./packages/ramp/CHANGELOG.md)        |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/resolve-map`](./packages/resolve-map) | [![version](https://img.shields.io/npm/v/@thi.ng/resolve-map.svg)](https://www.npmjs.com/package/@thi.ng/resolve-map) | [changelog](./packages/resolve-map/CHANGELOG.md) |
 
 <!--
 ![](https://img.shields.io/badge/-feat-green)
