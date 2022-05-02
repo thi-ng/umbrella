@@ -1,4 +1,4 @@
-import type { NumOrString } from "@thi.ng/api";
+import type { Fn, NumOrString } from "@thi.ng/api";
 import { SEMAPHORE } from "@thi.ng/api/api";
 import { isArray } from "@thi.ng/checks/is-array";
 import { isFunction } from "@thi.ng/checks/is-function";
@@ -11,6 +11,15 @@ import { exists } from "@thi.ng/paths/path";
 
 const RE_ARGS = /^(function\s+\w+)?\s*\(\{([\w\s,:]+)\}/;
 
+export type Unresolved<T> = {
+    [K in keyof T]:
+        | Unresolved<T[K]>
+        | Fn<T, T[K]>
+        | Fn<ResolveFn, T[K]>
+        | Function
+        | string;
+};
+
 export type ResolveFn = (path: string) => any;
 
 export type LookupPath = NumOrString[];
@@ -21,6 +30,7 @@ export type LookupPath = NumOrString[];
  * references are not allowed and will throw an error. However, refs pointing to
  * other refs are recursively resolved (again, provided there are no cycles).
  *
+ * @remarks
  * Reference values are special strings representing lookup paths of other
  * values in the object and are prefixed with given `prefix` string (default:
  * `@`) for relative refs or `@/` for absolute refs and both using `/` as path
@@ -95,17 +105,19 @@ export type LookupPath = NumOrString[];
  * @param root -
  * @param prefix -
  */
-export const resolve = (root: any, prefix = "@") => {
+export function resolve<T>(root: Unresolved<T>, prefix?: string): T;
+export function resolve<T>(root: Unresolved<T[]>, prefix?: string): T[];
+export function resolve(root: any, prefix = "@") {
     if (isPlainObject(root)) {
         return resolveMap(root, prefix);
     } else if (isArray(root)) {
         return resolveArray(root, prefix);
     }
     return root;
-};
+}
 
-const resolveMap = (
-    obj: any,
+const resolveMap = <T>(
+    obj: Unresolved<T>,
     prefix: string,
     root?: any,
     path: LookupPath = [],
@@ -116,22 +128,22 @@ const resolveMap = (
     for (let k in obj) {
         _resolve(root, [...path, k], resolved, stack, prefix);
     }
-    return obj;
+    return <T>obj;
 };
 
-const resolveArray = (
-    arr: any[],
+const resolveArray = <T>(
+    arr: Unresolved<T[]>,
     prefix: string,
     root?: any,
     path: LookupPath = [],
     resolved: any = {},
     stack: string[] = []
-) => {
+): T[] => {
     root = root || arr;
     for (let k = 0, n = arr.length; k < n; k++) {
         _resolve(root, [...path, k], resolved, stack, prefix);
     }
-    return arr;
+    return <any>arr;
 };
 
 /**

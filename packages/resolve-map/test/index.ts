@@ -1,32 +1,64 @@
+import type { Fn0 } from "@thi.ng/api";
 import { group } from "@thi.ng/testament";
 import * as tx from "@thi.ng/transducers";
 import * as assert from "assert";
-import { resolve, ResolveFn } from "../src/index.js"
+import { resolve, ResolveFn } from "../src/index.js";
 
 group("resolve-map", {
     simple: () => {
-        assert.deepStrictEqual(resolve({ a: 1, b: "@a" }), { a: 1, b: 1 });
+        assert.deepStrictEqual(
+            resolve<{
+                a: number;
+                b: number;
+            }>({ a: 1, b: "@a" }),
+            {
+                a: 1,
+                b: 1,
+            }
+        );
     },
 
     "linked refs": () => {
-        assert.deepStrictEqual(resolve({ a: "@c", b: "@a", c: 1 }), {
-            a: 1,
-            b: 1,
-            c: 1,
-        });
+        assert.deepStrictEqual(
+            resolve<{
+                a: number;
+                b: number;
+                c: number;
+            }>({ a: "@c", b: "@a", c: 1 }),
+            {
+                a: 1,
+                b: 1,
+                c: 1,
+            }
+        );
     },
 
     "array refs": () => {
-        assert.deepStrictEqual(resolve({ a: "@c/1", b: "@a", c: [1, 2] }), {
-            a: 2,
-            b: 2,
-            c: [1, 2],
-        });
+        assert.deepStrictEqual(
+            resolve<{ a: number; b: number; c: number[] }>({
+                a: "@c/1",
+                b: "@a",
+                c: [1, 2],
+            }),
+            {
+                a: 2,
+                b: 2,
+                c: [1, 2],
+            }
+        );
     },
 
     "abs vs rel refs": () => {
+        interface Inner {
+            b: number;
+            c: number;
+        }
         assert.deepStrictEqual(
-            resolve({
+            resolve<{
+                a1: Inner;
+                a2: Inner;
+                a3: Inner;
+            }>({
                 a1: { b: 1, c: "@b" },
                 a2: { b: 2, c: "@b" },
                 a3: { b: 3, c: "@/a1/b" },
@@ -37,7 +69,10 @@ group("resolve-map", {
 
     "rel parent refs": () => {
         assert.deepStrictEqual(
-            resolve({
+            resolve<{
+                a: { b: { c: number; d: number; e: number }; c: { d: number } };
+                c: { d: number };
+            }>({
                 a: { b: { c: "@../c/d", d: "@c", e: "@/c/d" }, c: { d: 1 } },
                 c: { d: 10 },
             }),
@@ -55,14 +90,22 @@ group("resolve-map", {
 
     "function refs": () => {
         assert.deepStrictEqual(
-            resolve({
+            resolve<{
+                a: number;
+                b: { c: number; d: number };
+                e: number;
+            }>({
                 a: (x: ResolveFn) => x("b/c") * 10,
                 b: { c: "@d", d: "@/e" },
                 e: () => 1,
             }),
             { a: 10, b: { c: 1, d: 1 }, e: 1 }
         );
-        const res = resolve({
+        const res = resolve<{
+            a: number;
+            b: { c: number; d: number };
+            e: Fn0<number>;
+        }>({
             a: (x: ResolveFn) => x("b/c")() * 10,
             b: { c: "@d", d: "@/e" },
             e: () => () => 1,
@@ -76,7 +119,7 @@ group("resolve-map", {
     "function resolves only once": () => {
         let n = 0;
         assert.deepStrictEqual(
-            resolve({
+            resolve<{ a: number; b: { c: number; d: number }; e: number }>({
                 a: (x: ResolveFn) => x("b/c"),
                 b: { c: "@d", d: "@/e" },
                 e: () => (n++, 1),
@@ -88,7 +131,11 @@ group("resolve-map", {
 
     "deep resolve of yet unknown refs": () => {
         assert.deepStrictEqual(
-            resolve({
+            resolve<{
+                a: number;
+                b: { c: { d: { e: number } } };
+                x: number;
+            }>({
                 a: "@b/c/d",
                 b: ($: ResolveFn) => ({ c: { d: { e: $("/x") } } }),
                 x: 1,
@@ -148,22 +195,37 @@ group("resolve-map", {
     },
 
     "destructures w/ local renames": () => {
-        assert.deepStrictEqual(resolve({ a: 1, b: ({ a: aa }: any) => aa }), {
-            a: 1,
-            b: 1,
-        });
+        assert.deepStrictEqual(
+            resolve<{
+                a: number;
+                b: number;
+            }>({ a: 1, b: ({ a: aa }: any) => aa }),
+            {
+                a: 1,
+                b: 1,
+            }
+        );
     },
 
     "destructures w/ trailing comma": () => {
+        interface Test {
+            a: number;
+            b: number;
+            c: number;
+        }
         assert.deepStrictEqual(
             // since prettier is running over this file
             // build function dynamically to force trailing comma
-            resolve({ a: 1, b: 2, c: new Function("{a,b,}", "return a + b") }),
+            resolve<Test>({
+                a: 1,
+                b: 2,
+                c: new Function("{a,b,}", "return a + b"),
+            }),
             { a: 1, b: 2, c: 3 },
             "comma only"
         );
         assert.deepStrictEqual(
-            resolve({
+            resolve<Test>({
                 a: 1,
                 b: 2,
                 c: new Function("{ a, b, }", "return a + b"),
@@ -172,7 +234,7 @@ group("resolve-map", {
             "comma & whitespaces"
         );
         assert.deepStrictEqual(
-            resolve({
+            resolve<Test>({
                 a: 1,
                 b: 2,
                 c: new Function("{ a, b: bb,  }", "return a + bb"),
@@ -184,7 +246,10 @@ group("resolve-map", {
 
     "custom prefix": () => {
         assert.deepStrictEqual(
-            resolve(
+            resolve<{
+                a: { b: { c: number; d: number; e: number }; c: { d: number } };
+                c: { d: number };
+            }>(
                 {
                     a: {
                         b: { c: ">>>../c/d", d: ">>>c", e: ">>>/c/d" },
