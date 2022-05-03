@@ -16,7 +16,7 @@
 **Please visit [thi.ng](https://thi.ng) for additional information & topic based
 search of packages relevant to your use cases...**
 
-This mono-repository is home to 160+ thi.ng TypeScript/ES6 projects, a wide and
+This mono-repository is home to 163+ thi.ng TypeScript/ES6 projects, a wide and
 jointly developed collection of packages and building blocks for (non-exhaustive
 list of topics):
 
@@ -141,13 +141,14 @@ feature or `develop` branches)
 
 ### Latest updates
 
-As of: 2022-05-01
+As of: 2022-05-03
 
 | Status                                        | Project                                         | Version                                                                                                               | Changelog                                        |
 |-----------------------------------------------|-------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------|--------------------------------------------------|
 | ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/geom-accel`](./packages/geom-accel)   | [![version](https://img.shields.io/npm/v/@thi.ng/geom-accel.svg)](https://www.npmjs.com/package/@thi.ng/geom-accel)   | [changelog](./packages/geom-accel/CHANGELOG.md)  |
 | ![](https://img.shields.io/badge/-fix-orange) | [`@thi.ng/ramp`](./packages/ramp)               | [![version](https://img.shields.io/npm/v/@thi.ng/ramp.svg)](https://www.npmjs.com/package/@thi.ng/ramp)               | [changelog](./packages/ramp/CHANGELOG.md)        |
 | ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/resolve-map`](./packages/resolve-map) | [![version](https://img.shields.io/npm/v/@thi.ng/resolve-map.svg)](https://www.npmjs.com/package/@thi.ng/resolve-map) | [changelog](./packages/resolve-map/CHANGELOG.md) |
+| ![](https://img.shields.io/badge/-fix-orange) | [`@thi.ng/vectors`](./packages/vectors)         | [![version](https://img.shields.io/npm/v/@thi.ng/vectors.svg)](https://www.npmjs.com/package/@thi.ng/vectors)         | [changelog](./packages/vectors/CHANGELOG.md)     |
 
 <!--
 ![](https://img.shields.io/badge/-feat-green)
@@ -435,7 +436,7 @@ https://github.com/thi-ng/umbrella-docs-temp
 
 ## License
 
-&copy; 2015 - 2021 Karsten Schmidt // Apache Software License 2.0
+&copy; 2015 - 2022 Karsten Schmidt // Apache Software License 2.0
 
 ## Contributors ✨
 
