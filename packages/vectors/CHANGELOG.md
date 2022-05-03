@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-04-07T14:17:30Z
+- **Last updated**: 2022-05-03T10:37:31Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,12 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [7.5.2](https://github.com/thi-ng/umbrella/tree/@thi.ng/vectors@7.5.2) (2022-05-03)
+
+#### 🩹 Bug fixes
+
+- fix clamp01/11 signatures ([10bc32e](https://github.com/thi-ng/umbrella/commit/10bc32e))
 
 ### [7.5.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/vectors@7.5.1) (2022-04-07)
 
