@@ -1,16 +1,18 @@
-import type { FloatTerm, Vec2Term } from "@thi.ng/shader-ast";
+import type { FloatTerm } from "@thi.ng/shader-ast";
+import { defn, ret } from "@thi.ng/shader-ast/ast/function";
 import { mul, sub } from "@thi.ng/shader-ast/ast/ops";
 import { $x, $y } from "@thi.ng/shader-ast/ast/swizzle";
 
 /**
- * Inline function. Computes 2D "cross product" of given vectors. See
+ * Computes 2D "cross product" of given vectors. Also see
  * {@link crossC2}.
  *
  * @param a -
  * @param b -
  */
-export const cross2 = (a: Vec2Term, b: Vec2Term) =>
-    crossC2($x(a), $y(a), $x(b), $y(b));
+export const cross2 = defn("float", "cross2", ["vec2", "vec2"], (a, b) => [
+    ret(sub(mul($x(a), $y(b)), mul($y(a), $x(b)))),
+]);
 
 /**
  * Inline function. Computes 2D cross product of given individual

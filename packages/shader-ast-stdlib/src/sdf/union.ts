@@ -17,7 +17,8 @@ export const sdfUnion = (a: FloatTerm, ...terms: FloatTerm[]) =>
 
 /**
  * SDF shape union for vec2 terms, i.e. the common form where the X coord
- * defines distance and Y an object or material ID.
+ * defines distance and Y an object or material ID. Returns `a` or `b`,
+ * depending whose x-coord (dist) is smaller.
  *
  * @param a -
  * @param b -
