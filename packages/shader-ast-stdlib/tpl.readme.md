@@ -370,6 +370,7 @@ for reference.
 
 #### Primitives
 
+- `sdfArc2`
 - `sdfBox2`
 - `sdfBox3`
 - `sdfCircle`
@@ -378,6 +379,7 @@ for reference.
 - `sdfLine3`
 - `sdfPlane2`
 - `sdfPlane3`
+- `sdfQuadratic2`
 - `sdfSphere`
 - `sdfTorus`
 - `sdfTriangle2`

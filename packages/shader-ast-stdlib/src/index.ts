@@ -53,6 +53,8 @@ export * from "./raymarch/scene.js";
 export * from "./screen/uv.js";
 
 export * from "./sdf/annular.js";
+export * from "./sdf/arc.js";
+export * from "./sdf/bezier.js";
 export * from "./sdf/box.js";
 export * from "./sdf/cylinder.js";
 export * from "./sdf/isec.js";
