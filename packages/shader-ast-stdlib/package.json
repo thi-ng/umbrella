@@ -236,11 +236,26 @@
         "./sdf/annular": {
             "default": "./sdf/annular.js"
         },
+        "./sdf/arc": {
+            "default": "./sdf/arc.js"
+        },
+        "./sdf/bezier": {
+            "default": "./sdf/bezier.js"
+        },
+        "./sdf/box-rounded": {
+            "default": "./sdf/box-rounded.js"
+        },
         "./sdf/box": {
             "default": "./sdf/box.js"
         },
+        "./sdf/cross": {
+            "default": "./sdf/cross.js"
+        },
         "./sdf/cylinder": {
             "default": "./sdf/cylinder.js"
+        },
+        "./sdf/hex": {
+            "default": "./sdf/hex.js"
         },
         "./sdf/isec": {
             "default": "./sdf/isec.js"
@@ -253,6 +268,9 @@
         },
         "./sdf/plane": {
             "default": "./sdf/plane.js"
+        },
+        "./sdf/polygon": {
+            "default": "./sdf/polygon.js"
         },
         "./sdf/polyhedra": {
             "default": "./sdf/polyhedra.js"
