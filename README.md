@@ -141,14 +141,15 @@ feature or `develop` branches)
 
 ### Latest updates
 
-As of: 2022-05-03
+As of: 2022-05-07
 
-| Status                                        | Project                                         | Version                                                                                                               | Changelog                                        |
-|-----------------------------------------------|-------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------|--------------------------------------------------|
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/geom-accel`](./packages/geom-accel)   | [![version](https://img.shields.io/npm/v/@thi.ng/geom-accel.svg)](https://www.npmjs.com/package/@thi.ng/geom-accel)   | [changelog](./packages/geom-accel/CHANGELOG.md)  |
-| ![](https://img.shields.io/badge/-fix-orange) | [`@thi.ng/ramp`](./packages/ramp)               | [![version](https://img.shields.io/npm/v/@thi.ng/ramp.svg)](https://www.npmjs.com/package/@thi.ng/ramp)               | [changelog](./packages/ramp/CHANGELOG.md)        |
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/resolve-map`](./packages/resolve-map) | [![version](https://img.shields.io/npm/v/@thi.ng/resolve-map.svg)](https://www.npmjs.com/package/@thi.ng/resolve-map) | [changelog](./packages/resolve-map/CHANGELOG.md) |
-| ![](https://img.shields.io/badge/-fix-orange) | [`@thi.ng/vectors`](./packages/vectors)         | [![version](https://img.shields.io/npm/v/@thi.ng/vectors.svg)](https://www.npmjs.com/package/@thi.ng/vectors)         | [changelog](./packages/vectors/CHANGELOG.md)     |
+| Status                                        | Project                                                     | Version                                                                                                                           | Changelog                                              |
+|-----------------------------------------------|-------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------|
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/geom-accel`](./packages/geom-accel)               | [![version](https://img.shields.io/npm/v/@thi.ng/geom-accel.svg)](https://www.npmjs.com/package/@thi.ng/geom-accel)               | [changelog](./packages/geom-accel/CHANGELOG.md)        |
+| ![](https://img.shields.io/badge/-fix-orange) | [`@thi.ng/ramp`](./packages/ramp)                           | [![version](https://img.shields.io/npm/v/@thi.ng/ramp.svg)](https://www.npmjs.com/package/@thi.ng/ramp)                           | [changelog](./packages/ramp/CHANGELOG.md)              |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/resolve-map`](./packages/resolve-map)             | [![version](https://img.shields.io/npm/v/@thi.ng/resolve-map.svg)](https://www.npmjs.com/package/@thi.ng/resolve-map)             | [changelog](./packages/resolve-map/CHANGELOG.md)       |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/shader-ast-stdlib`](./packages/shader-ast-stdlib) | [![version](https://img.shields.io/npm/v/@thi.ng/shader-ast-stdlib.svg)](https://www.npmjs.com/package/@thi.ng/shader-ast-stdlib) | [changelog](./packages/shader-ast-stdlib/CHANGELOG.md) |
+| ![](https://img.shields.io/badge/-fix-orange) | [`@thi.ng/vectors`](./packages/vectors)                     | [![version](https://img.shields.io/npm/v/@thi.ng/vectors.svg)](https://www.npmjs.com/package/@thi.ng/vectors)                     | [changelog](./packages/vectors/CHANGELOG.md)           |
 
 <!--
 ![](https://img.shields.io/badge/-feat-green)
