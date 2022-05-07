@@ -12,8 +12,8 @@
         "preview": "vite preview"
     },
     "devDependencies": {
-        "typescript": "^4.6.2",
-        "vite": "^2.8.6"
+        "typescript": "^4.6.4",
+        "vite": "^2.9.8"
     },
     "dependencies": {
         "@thi.ng/pixel": "workspace:^",

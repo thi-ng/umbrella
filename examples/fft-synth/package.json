@@ -47,7 +47,7 @@
         "screenshot": "examples/fft-synth.png"
     },
     "devDependencies": {
-        "typescript": "^4.6.2",
-        "vite": "^2.8.6"
+        "typescript": "^4.6.4",
+        "vite": "^2.9.8"
     }
 }
