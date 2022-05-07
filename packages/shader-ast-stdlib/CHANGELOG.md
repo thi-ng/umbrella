@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-04-07T14:17:30Z
+- **Last updated**: 2022-05-07T11:33:35Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,17 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [0.12.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/shader-ast-stdlib@0.12.0) (2022-05-07)
+
+#### 🚀 Features
+
+- add more 2D SDF prims ([2672e75](https://github.com/thi-ng/umbrella/commit/2672e75))
+- add 2D SDF arc/bezier fns ([07bd445](https://github.com/thi-ng/umbrella/commit/07bd445))
+
+#### ♻️ Refactoring
+
+- update cross2() as non-inline fn ([59d631a](https://github.com/thi-ng/umbrella/commit/59d631a))
 
 ## [0.11.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/shader-ast-stdlib@0.11.0) (2021-11-17)
 

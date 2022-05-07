@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/system",
-    "version": "2.1.6",
+    "version": "2.1.7",
     "description": "Minimal and explicit dependency-injection & lifecycle container for stateful app components",
     "type": "module",
     "module": "./index.js",
@@ -34,13 +34,13 @@
         "test": "testament test"
     },
     "dependencies": {
-        "@thi.ng/api": "^8.3.5",
-        "@thi.ng/dgraph": "^2.1.6",
-        "@thi.ng/logger": "^1.1.5"
+        "@thi.ng/api": "^8.3.6",
+        "@thi.ng/dgraph": "^2.1.7",
+        "@thi.ng/logger": "^1.1.6"
     },
     "devDependencies": {
         "@microsoft/api-extractor": "^7.23.1",
-        "@thi.ng/testament": "^0.2.5",
+        "@thi.ng/testament": "^0.2.6",
         "rimraf": "^3.0.2",
         "tools": "workspace:^",
         "typedoc": "^0.22.15",
