@@ -1,6 +1,6 @@
+import { files } from "@thi.ng/file-io";
 import { execSync } from "child_process";
 import { readdirSync, readFileSync, statSync, writeFileSync } from "fs";
-import { files } from "./io.js";
 
 const PKG = process.argv[2];
 
@@ -76,6 +76,11 @@ const invalidatePackage = (id: string) =>
         `aws cloudfront create-invalidation --distribution-id ${CF_DISTRO} --paths "${S3_PREFIX}/${id}/*" ${AWS_PROFILE}`
     );
 
+const invalidateAll = () =>
+    execSync(
+        `aws cloudfront create-invalidation --distribution-id ${CF_DISTRO} --paths "${S3_PREFIX}/*" ${AWS_PROFILE}`
+    );
+
 const processPackage = (id: string, invalidate = true) => {
     console.log("processing", id);
     const root = `packages/${id}/doc`;
@@ -95,7 +100,8 @@ if (PKG) {
     const pkgs = readdirSync("packages").filter((p) =>
         statSync(`packages/${p}`).isDirectory()
     );
-    pkgs.forEach((pkg, i) => processPackage(pkg, i === pkgs.length - 1));
+    pkgs.forEach((pkg) => processPackage(pkg));
+    invalidateAll();
 }
 
 execSync(`scripts/node-esm tools/src/doc-table.ts`);

@@ -1,5 +1,6 @@
 import { unionR } from "@thi.ng/associative";
 import { compareByKeys2 } from "@thi.ng/compare";
+import { files, readJSON } from "@thi.ng/file-io";
 import {
     assocObj,
     comp,
@@ -11,7 +12,6 @@ import {
     transduce,
 } from "@thi.ng/transducers";
 import { readdirSync, readFileSync, statSync } from "fs";
-import { files, readJSON } from "./io.js";
 import { shortName } from "./partials/package.js";
 
 const RE_IMPORT = /\}? from "(?!\.)([a-z0-9@/.-]+)";/;

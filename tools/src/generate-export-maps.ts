@@ -1,5 +1,5 @@
+import { files, readJSON, readText } from "@thi.ng/file-io";
 import { readdirSync, statSync, writeFileSync } from "fs";
-import { files, readJSON, readText } from "./io.js";
 import { normalizePackage } from "./normalize-package.js";
 
 const generatePackageExportMaps = (id: string) => {

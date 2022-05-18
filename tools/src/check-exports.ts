@@ -1,6 +1,6 @@
 import { equivSet } from "@thi.ng/equiv";
+import { readJSON } from "@thi.ng/file-io";
 import { existsSync, readdirSync, statSync, writeFileSync } from "fs";
-import { readJSON } from "./io.js";
 
 const subdirs = (root: string, ignore = ["zig-cache"]) => {
     const dirs: string[] = [];

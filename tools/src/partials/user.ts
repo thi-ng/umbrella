@@ -1,6 +1,6 @@
+import { readText } from "@thi.ng/file-io";
 import { RE_USER } from "../api.js";
 import { CONFIG } from "../config.js";
-import { readText } from "../io.js";
 import { link } from "./link.js";
 
 export const userLink = (id: string): string =>

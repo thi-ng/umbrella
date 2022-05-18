@@ -1,8 +1,8 @@
+import { readJSON } from "@thi.ng/file-io";
 import { serialize } from "@thi.ng/hiccup";
 import { comp, filter, map, push, transduce } from "@thi.ng/transducers";
 import { existsSync, readdirSync, writeFileSync } from "fs";
 import { META_FIELD, Package } from "./api.js";
-import { readJSON } from "./io.js";
 import { shortName } from "./partials/package.js";
 
 const REPO_URL = "https://github.com/thi-ng/umbrella/blob/develop/packages";

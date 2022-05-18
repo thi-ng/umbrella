@@ -1,5 +1,5 @@
+import { readJSON } from "@thi.ng/file-io";
 import type { BaseConfig, Config, Package, PackageMeta } from "./api.js";
-import { readJSON } from "./io.js";
 
 export let CONFIG: Config;
 

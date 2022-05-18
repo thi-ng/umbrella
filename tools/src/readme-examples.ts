@@ -1,4 +1,5 @@
 import type { IObjectOf } from "@thi.ng/api";
+import { readJSON } from "@thi.ng/file-io";
 import { idgen } from "@thi.ng/idgen";
 import { tableKeys } from "@thi.ng/markdown-table";
 import { Z3 } from "@thi.ng/strings";
@@ -13,7 +14,6 @@ import {
 import { existsSync, readdirSync, writeFileSync } from "fs";
 import { META_FIELD } from "./api.js";
 import { initConfig } from "./config.js";
-import { readJSON } from "./io.js";
 import { thumb } from "./partials/asset.js";
 
 interface Example extends IObjectOf<string> {

@@ -1,15 +1,18 @@
+import { readJSON, readText } from "@thi.ng/file-io";
 import { bytes, camel } from "@thi.ng/strings";
 import { execSync } from "child_process";
 import { readdirSync } from "fs";
 import { META_FIELD, Package, RE_PKG } from "../api.js";
 import { CONFIG } from "../config.js";
-import { readJSON, readText } from "../io.js";
 import { link } from "./link.js";
 import { list } from "./list.js";
 
 export const shortName = (name: string) => name.split("/")[1];
 
 export const packageURL = (name: string) => `https://${name.substr(1)}`;
+
+export const isNodeOnly = (pkg: Package) =>
+    pkg.keywords ? pkg.keywords.includes("node-only") : false;
 
 export const pkgLink = (name: string) =>
     link(name, `${CONFIG.branchURL}/packages/${shortName(name)}`);
@@ -93,27 +96,29 @@ export const packageBanner = (name: string) => {
     return `![${name}](${CONFIG.bannerURL}${name}.svg?${sha1})`;
 };
 
-export const packageInstallation = (pkg: Package) => `\`\`\`bash
+export const packageInstallation = (pkg: Package) =>
+    [
+        `\`\`\`bash
 yarn add ${pkg.name}
-\`\`\`
-
-ES module import:
+\`\`\``,
+        !isNodeOnly(pkg)
+            ? `\nES module import:
 
 \`\`\`html
 <script type="module" src="https://cdn.skypack.dev/${pkg.name}"></script>
 \`\`\`
 
-[Skypack documentation](https://docs.skypack.dev/)
-
-For Node.js REPL:
+[Skypack documentation](https://docs.skypack.dev/)\n`
+            : "",
+        `For Node.js REPL:
 
 \`\`\`text
 # with flag only for < v16
 node --experimental-repl-await
 
 > const ${camel(shortName(pkg.name))} = await import("${pkg.name}");
-\`\`\`
-`;
+\`\`\`\n`,
+    ].join("\n");
 
 export const packageCitation = (name: string) => {
     let hasAuthors = false;

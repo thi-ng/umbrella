@@ -1,8 +1,8 @@
+import { readJSON } from "@thi.ng/file-io";
 import { tableKeys } from "@thi.ng/markdown-table";
 import { readdirSync } from "fs";
 import { META_FIELD } from "../api.js";
 import { CONFIG } from "../config.js";
-import { readJSON } from "../io.js";
 import { thumb } from "./asset.js";
 import { link } from "./link.js";
 import { shortName } from "./package.js";

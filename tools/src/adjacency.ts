@@ -1,4 +1,5 @@
 import { defAdjBitMatrix } from "@thi.ng/adjacency";
+import { files, readJSON } from "@thi.ng/file-io";
 import { CDATA, COMMENT, serialize } from "@thi.ng/hiccup";
 import { anchor, script, style, title } from "@thi.ng/hiccup-html";
 import {
@@ -15,14 +16,15 @@ import { XML_SVG } from "@thi.ng/prefixes";
 import { comp, filter, iterator, map, range } from "@thi.ng/transducers";
 import { execSync } from "child_process";
 import { writeFileSync } from "fs";
-import { files, readJSON } from "./io.js";
 import { shortName } from "./partials/package.js";
 
 const W = 16;
 const LW = 150;
 const GAP = 10;
 
-const packages = [...files("packages", "package.json", 2)].map(readJSON);
+const packages = [...files("packages", "package.json", 2)].map((f) =>
+    readJSON(f)
+);
 const ids = packages.map((p) => shortName(p.name));
 const num = ids.length;
 

@@ -1,8 +1,8 @@
 import type { Fn0, IObjectOf, Nullable } from "@thi.ng/api";
+import { readText } from "@thi.ng/file-io";
 import { writeFileSync } from "fs";
 import { RE_PARTIAL } from "./api.js";
 import { CONFIG, initConfig } from "./config.js";
-import { readText } from "./io.js";
 import { blogPosts } from "./partials/blog.js";
 import { docLink } from "./partials/docs.js";
 import { examplesTable } from "./partials/examples.js";

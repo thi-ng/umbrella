@@ -36,6 +36,7 @@ export interface Package {
     description: string;
     version: string;
     dependencies?: IObjectOf<string>;
+    keywords?: string[];
     [META_FIELD]?: Partial<PackageMeta>;
 }
 
