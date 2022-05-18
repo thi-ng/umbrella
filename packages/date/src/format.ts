@@ -150,6 +150,9 @@ export const FORMATTERS: Record<string, FormatFn> = {
  * instead of local time (default).
  *
  * @remarks
+ * If no date is given to the returned formatter, `Date.now()` will be used by
+ * default.
+ *
  * See {@link FORMATTERS} for available date component format IDs. To escape a
  * formatter and use as a string literal, prefix the term with `\\`.
  *
@@ -168,7 +171,7 @@ export const FORMATTERS: Record<string, FormatFn> = {
  */
 export const defFormat =
     (fmt: (string | FormatFn)[]) =>
-    (x: MaybeDate, utc = false) => {
+    (x: MaybeDate = Date.now(), utc = false) => {
         let d = ensureDate(x);
         utc && (d = new Date(d.getTime() + d.getTimezoneOffset() * MINUTE));
         return fmt
