@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-05-07T11:33:35Z
+- **Last updated**: 2022-05-18T12:59:20Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,12 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [2.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/date@2.2.0) (2022-05-18)
+
+#### 🚀 Features
+
+- use current time as default for all formatters ([ee536db](https://github.com/thi-ng/umbrella/commit/ee536db))
 
 ### [2.1.6](https://github.com/thi-ng/umbrella/tree/@thi.ng/date@2.1.6) (2022-04-07)
 
