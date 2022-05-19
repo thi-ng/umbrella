@@ -1,6 +1,7 @@
-import { files } from "@thi.ng/file-io";
+import { files, readText, writeText } from "@thi.ng/file-io";
 import { execSync } from "child_process";
-import { readdirSync, readFileSync, statSync, writeFileSync } from "fs";
+import { readdirSync, statSync } from "fs";
+import { LOGGER } from "./api.js";
 
 const PKG = process.argv[2];
 
@@ -16,7 +17,7 @@ const MINIFY_OPTS =
 
 const sanitizeFile = (f: string) => {
     let updated = false;
-    const src = readFileSync(f, "utf-8")
+    const src = readText(f, LOGGER)
         .replace(
             /\{@link @thi\.ng\/([a-z0-9-]+)(#(\w+))?\s*\|\s*([^\}]+)\}/g,
             (_, id, label) => {
@@ -44,8 +45,8 @@ const sanitizeFile = (f: string) => {
             return `<a href="${S3_PREFIX}/${id}/">@thi.ng/${id}</a>`;
         });
     if (updated) {
-        console.log("sanitizing:", f);
-        writeFileSync(f, src, "utf-8");
+        // console.log("sanitizing:", f);
+        writeText(f, src, LOGGER);
     }
 };
 

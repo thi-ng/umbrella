@@ -1,6 +1,8 @@
-import { readdirSync, writeFileSync } from "fs";
-import { request } from "https";
 import { delayed } from "@thi.ng/compose";
+import { writeJSON } from "@thi.ng/file-io";
+import { readdirSync } from "fs";
+import { request } from "https";
+import { LOGGER } from "./api.js";
 
 (async () => {
     const stats: any = {};
@@ -26,6 +28,6 @@ import { delayed } from "@thi.ng/compose";
     }
 
     await delayed(null, 5000);
-    writeFileSync("stats.json", JSON.stringify(stats));
+    writeJSON("stats.json", stats, null, 4, LOGGER);
     console.log("done");
 })();

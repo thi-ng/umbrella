@@ -1,7 +1,6 @@
 import type { Fn0, IObjectOf, Nullable } from "@thi.ng/api";
-import { readText } from "@thi.ng/file-io";
-import { writeFileSync } from "fs";
-import { RE_PARTIAL } from "./api.js";
+import { readText, writeText } from "@thi.ng/file-io";
+import { LOGGER, RE_PARTIAL } from "./api.js";
 import { CONFIG, initConfig } from "./config.js";
 import { blogPosts } from "./partials/blog.js";
 import { docLink } from "./partials/docs.js";
@@ -44,7 +43,7 @@ try {
         authors,
     };
 
-    let readme = readText("./tpl.readme.md")
+    let readme = readText("./tpl.readme.md", LOGGER)
         .replace(RE_PARTIAL, (orig, id) => {
             if (!partials.hasOwnProperty(id)) {
                 console.warn(`skipping unsupported tpl ID: "${id}"`);
@@ -57,7 +56,7 @@ try {
     readme = injectTOC(readme);
     readme = "<!-- This file is generated - DO NOT EDIT! -->\n\n" + readme;
 
-    writeFileSync("./README.md", readme);
+    writeText("./README.md", readme, LOGGER);
 } catch (e) {
     console.log((<Error>e).message);
     process.exit(1);

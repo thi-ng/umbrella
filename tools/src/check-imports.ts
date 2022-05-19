@@ -1,6 +1,6 @@
 import { unionR } from "@thi.ng/associative";
 import { compareByKeys2 } from "@thi.ng/compare";
-import { files, readJSON } from "@thi.ng/file-io";
+import { files, readJSON, readText } from "@thi.ng/file-io";
 import {
     assocObj,
     comp,
@@ -11,13 +11,14 @@ import {
     mapcat,
     transduce,
 } from "@thi.ng/transducers";
-import { readdirSync, readFileSync, statSync } from "fs";
+import { readdirSync, statSync } from "fs";
+import { LOGGER } from "./api.js";
 import { shortName } from "./partials/package.js";
 
 const RE_IMPORT = /\}? from "(?!\.)([a-z0-9@/.-]+)";/;
 
 const xform = comp(
-    mapcat((f: string) => readFileSync(f).toString().split("\n")),
+    mapcat((f: string) => readText(f, LOGGER).split("\n")),
     filter((line) => !line.startsWith(" * ")),
     map((line) => RE_IMPORT.exec(line)),
     filter((x) => !!x),

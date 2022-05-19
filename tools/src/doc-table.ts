@@ -1,8 +1,7 @@
-import { readJSON } from "@thi.ng/file-io";
+import { files, readJSON, writeText } from "@thi.ng/file-io";
 import { serialize } from "@thi.ng/hiccup";
 import { comp, filter, map, push, transduce } from "@thi.ng/transducers";
-import { existsSync, readdirSync, writeFileSync } from "fs";
-import { META_FIELD, Package } from "./api.js";
+import { LOGGER, META_FIELD, Package } from "./api.js";
 import { shortName } from "./partials/package.js";
 
 const REPO_URL = "https://github.com/thi-ng/umbrella/blob/develop/packages";
@@ -41,17 +40,17 @@ const pkgDetails = (p: Package) => [
 
 const packages = transduce(
     comp(
-        map((f) => `${BASE_DIR}/${f}/package.json`),
-        filter(existsSync),
-        map((f) => readJSON(<string>f)),
+        // map((f) => `${BASE_DIR}/${f}/package.json`),
+        // filter(existsSync),
+        map((f) => readJSON(f, LOGGER)),
         filter((pkg) => !pkg[META_FIELD]?.skip),
         map(pkgDetails)
     ),
     push(),
-    readdirSync(BASE_DIR)
+    files(BASE_DIR, "package.json", 2)
 );
 
-writeFileSync(
+writeText(
     "docs.html",
     serialize([
         ["!DOCTYPE", "html"],
@@ -120,5 +119,6 @@ writeFileSync(
                 ],
             ],
         ],
-    ])
+    ]),
+    LOGGER
 );

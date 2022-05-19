@@ -1,10 +1,10 @@
-import { files, readJSON, readText } from "@thi.ng/file-io";
-import { readdirSync, statSync, writeFileSync } from "fs";
+import { files, readJSON, readText, writeJSON } from "@thi.ng/file-io";
+import { readdirSync, statSync } from "fs";
+import { LOGGER } from "./api.js";
 import { normalizePackage } from "./normalize-package.js";
 
 const generatePackageExportMaps = (id: string) => {
-    console.log("updating pkg:", id);
-
+    // console.log("updating pkg:", id);
     const root = `packages/${id}`;
     const srcRoot = `${root}/src`;
     const pkgPath = `${root}/package.json`;
@@ -26,7 +26,7 @@ const generatePackageExportMaps = (id: string) => {
         pkg.exports = exports;
     }
     pkg = normalizePackage(pkg);
-    writeFileSync(pkgPath, JSON.stringify(pkg, null, 4) + "\n", "utf-8");
+    writeJSON(pkgPath, pkg, null, 4, LOGGER);
 };
 
 const updatePackages = (parent = "packages") => {

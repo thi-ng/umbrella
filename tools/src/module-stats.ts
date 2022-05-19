@@ -1,8 +1,9 @@
-import { readJSON } from "@thi.ng/file-io";
+import { readJSON, writeJSON } from "@thi.ng/file-io";
 import { execFileSync } from "child_process";
-import { existsSync, mkdirSync, writeFileSync } from "fs";
+import { existsSync, mkdirSync } from "fs";
+import { LOGGER } from "./api.js";
 
-const pkg = readJSON("package.json");
+const pkg = readJSON("package.json", LOGGER);
 const deps = [
     "tslib",
     "fs",
@@ -39,5 +40,5 @@ const stats = {
 !existsSync(".meta") && mkdirSync(".meta");
 // writeFileSync(".meta/raw.js", raw);
 // writeFileSync(".meta/min.js", min);
-writeFileSync(".meta/size.json", JSON.stringify({ esm: stats }));
+writeJSON(".meta/size.json", { esm: stats }, null, 0, LOGGER);
 console.log(stats);

@@ -1,4 +1,5 @@
 import type { IObjectOf } from "@thi.ng/api";
+import { ConsoleLogger } from "@thi.ng/logger";
 
 export const RE_PKG = /@thi\.ng\/[a-z0-9-]+/g;
 export const RE_USER = /@([a-z0-9_-]+)/gi;
@@ -9,6 +10,8 @@ export const PATTERN_TOC = "<!-- TOC -->";
 export const PATTERN_NO_TOC = "<!-- NOTOC -->";
 
 export const META_FIELD = "thi.ng";
+
+export const LOGGER = new ConsoleLogger("tools");
 
 export interface BaseConfig {
     repoURL: string;

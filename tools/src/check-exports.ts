@@ -1,6 +1,7 @@
 import { equivSet } from "@thi.ng/equiv";
-import { readJSON } from "@thi.ng/file-io";
-import { existsSync, readdirSync, statSync, writeFileSync } from "fs";
+import { readJSON, writeJSON } from "@thi.ng/file-io";
+import { existsSync, readdirSync, statSync } from "fs";
+import { LOGGER } from "./api.js";
 
 const subdirs = (root: string, ignore = ["zig-cache"]) => {
     const dirs: string[] = [];
@@ -14,8 +15,8 @@ const subdirs = (root: string, ignore = ["zig-cache"]) => {
 const processPackage = (id: string) => {
     const pkkRoot = `packages/${id}`;
     const pkgPath = `${pkkRoot}/package.json`;
-    console.log("checking", pkgPath);
-    const pkg = readJSON(pkgPath);
+    // console.log("checking", pkgPath);
+    const pkg = readJSON(pkgPath, LOGGER);
     const srcDirs = subdirs(`${pkkRoot}/src`).sort();
     const hasBin = existsSync(`${pkkRoot}/bin`);
     const oldFiles = new Set(pkg.files);
@@ -23,7 +24,7 @@ const processPackage = (id: string) => {
     if (!equivSet(oldFiles, new Set(newFiles))) {
         console.log("fixing pkg", newFiles);
         pkg.files = newFiles;
-        writeFileSync(pkgPath, JSON.stringify(pkg, null, 4) + "\n");
+        writeJSON(pkgPath, pkg, null, 4, LOGGER);
     } else {
         console.log("ok");
     }

@@ -1,9 +1,15 @@
 import { ArraySet, MultiTrie } from "@thi.ng/associative";
-import { files, readJSON } from "@thi.ng/file-io";
+import {
+    files,
+    readJSON,
+    readText,
+    writeFile,
+    writeJSON,
+} from "@thi.ng/file-io";
 // @ts-ignore
 import msgpack from "@ygoe/msgpack";
 import { execSync } from "child_process";
-import { readFileSync, writeFileSync } from "fs";
+import { LOGGER } from "./api.js";
 import { build, defEncoder } from "./search.js";
 
 const RE_DOC_START = /^\s*\/\*\*$/;
@@ -19,7 +25,7 @@ const pkgIDs = new Map<string, number>();
 const index = new MultiTrie<string, IndexValue>(null, {
     vals: () => new ArraySet<IndexValue>(),
 });
-const ignore = new Set(readJSON("./tools/ignore-words.json"));
+const ignore = new Set(readJSON("./tools/ignore-words.json", LOGGER));
 
 const encodeConfig = [
     [0, 0xff],
@@ -38,7 +44,7 @@ for (let f of files("packages", ".ts")) {
     const pkgId =
         pkgIDs.get(pkg) || (pkgIDs.set(pkg, pkgIDs.size), pkgIDs.size - 1);
     const fileId = fileIDs.has(fname) ? fileIDs.get(fname)! : fileIDs.size;
-    const src = readFileSync(f).toString();
+    const src = readText(f, LOGGER);
     let indexed = false;
     let isComment = false;
     let isCode = false;
@@ -98,9 +104,9 @@ const packed = build(
     index
 );
 
-writeFileSync("assets/search.json", JSON.stringify(packed));
+writeJSON("assets/search.json", packed, null, 0, LOGGER);
 // msgpack'd binary version
-writeFileSync("assets/search.bin", msgpack.serialize(packed));
+writeFile("assets/search.bin", msgpack.serialize(packed), {}, LOGGER);
 execSync("gzip -9 -f assets/search.bin");
 
 console.log("uploading...");
