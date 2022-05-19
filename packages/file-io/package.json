@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/file-io",
-    "version": "0.1.0",
+    "version": "0.2.0",
     "description": "Assorted file I/O utils (with logging support) for NodeJS",
     "type": "module",
     "module": "./index.js",
