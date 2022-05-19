@@ -1,10 +1,12 @@
 #!/usr/bin/env node
 
 import { spawn } from "child_process";
+import { realpathSync } from "fs";
 import { join } from "path";
 const [node, toolsDir, ...args] = process.argv;
 
-const cli = join(toolsDir, "..", "..", "cli.js");
+const cli = join(realpathSync(toolsDir), "..", "..", "cli.js");
+
 const child = spawn(node, ["--loader", "ts-node/esm", cli, ...args]);
 
 child.stderr.on("data", (d) => {
