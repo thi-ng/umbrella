@@ -87,6 +87,9 @@
         },
         "./text": {
             "default": "./text.js"
+        },
+        "./write": {
+            "default": "./write.js"
         }
     },
     "thi.ng": {
