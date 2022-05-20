@@ -496,6 +496,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="http://odbol.com"><img src="https://avatars.githubusercontent.com/u/550985?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Tyler Freeman</b></sub></a><br /><a href="https://github.com/thi-ng/umbrella/issues?q=author%3Aodbol" title="Bug reports">🐛</a> <a href="https://github.com/thi-ng/umbrella/commits?author=odbol" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/blackhuman"><img src="https://avatars.githubusercontent.com/u/2269615?v=4?s=100" width="100px;" alt=""/><br /><sub><b>blackhuman</b></sub></a><br /><a href="https://github.com/thi-ng/umbrella/issues?q=author%3Ablackhuman" title="Bug reports">🐛</a></td>
     <td align="center"><a href="https://github.com/dnegstad"><img src="https://avatars.githubusercontent.com/u/1406303?v=4?s=100" width="100px;" alt=""/><br /><sub><b>David Negstad</b></sub></a><br /><a href="https://github.com/thi-ng/umbrella/commits?author=dnegstad" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/reedho"><img src="https://avatars.githubusercontent.com/u/170881?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Muhammad Ridho</b></sub></a><br /><a href="https://github.com/thi-ng/umbrella/issues?q=author%3Areedho" title="Bug reports">🐛</a> <a href="https://github.com/thi-ng/umbrella/commits?author=reedho" title="Code">💻</a></td>
   </tr>
 </table>
 
