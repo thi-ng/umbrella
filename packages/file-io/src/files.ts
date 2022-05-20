@@ -2,6 +2,7 @@ import { isString } from "@thi.ng/checks/is-string";
 import type { ILogger } from "@thi.ng/logger";
 import { readdirSync, statSync } from "fs";
 import { sep } from "path";
+import { isDirectory } from "./dir.js";
 
 /**
  * Recursively reads given directory (up to given max. depth, default: infinite)
@@ -38,7 +39,7 @@ function* __files(
     for (let f of readdirSync(dir)) {
         const curr = dir + sep + f;
         try {
-            if (statSync(curr).isDirectory()) {
+            if (isDirectory(curr)) {
                 yield* __files(curr, match, logger, maxDepth, depth + 1);
             } else if (re.test(f)) {
                 yield curr;

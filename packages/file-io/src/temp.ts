@@ -5,7 +5,7 @@ import { randomID } from "@thi.ng/random/random-id";
 import { realpathSync, writeFileSync } from "fs";
 import { tmpdir } from "os";
 import { sep } from "path";
-import { ensureDirForFile } from "./ensure-dir.js";
+import { ensureDirForFile } from "./dir.js";
 
 export const createTempFile = (
     body: string | TypedArray,

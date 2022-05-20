@@ -1,4 +1,4 @@
-import { existsSync, mkdirSync } from "fs";
+import { existsSync, mkdirSync, statSync } from "fs";
 import { sep } from "path";
 
 /**
@@ -17,3 +17,10 @@ export const ensureDirForFile = (path: string) => {
         ? (mkdirSync(dir, { recursive: true }), true)
         : false;
 };
+
+/**
+ * Returns true if `path` is a directory (assumes path exists).
+ *
+ * @param path
+ */
+export const isDirectory = (path: string) => statSync(path).isDirectory();

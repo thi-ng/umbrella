@@ -49,6 +49,9 @@
     },
     "keywords": [
         "file",
+        "hash",
+        "json",
+        "logger",
         "node-only",
         "typescript"
     ],
@@ -73,14 +76,23 @@
         "./delete": {
             "default": "./delete.js"
         },
-        "./ensure-dir": {
-            "default": "./ensure-dir.js"
+        "./dir": {
+            "default": "./dir.js"
+        },
+        "./ext": {
+            "default": "./ext.js"
         },
         "./files": {
             "default": "./files.js"
         },
+        "./hash": {
+            "default": "./hash.js"
+        },
         "./json": {
             "default": "./json.js"
+        },
+        "./mask": {
+            "default": "./mask.js"
         },
         "./temp": {
             "default": "./temp.js"
