@@ -402,6 +402,16 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "reedho",
+      "name": "Muhammad Ridho",
+      "avatar_url": "https://avatars.githubusercontent.com/u/170881?v=4",
+      "profile": "https://github.com/reedho",
+      "contributions": [
+        "bug",
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
