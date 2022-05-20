@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/testament",
-    "version": "0.2.6",
+    "version": "0.2.7",
     "description": "Minimal, rational & TypeScript-friendly test runner, result export as CSV/JSON, watch mode",
     "type": "module",
     "module": "./index.js",

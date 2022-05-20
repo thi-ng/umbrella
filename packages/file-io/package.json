@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/file-io",
-    "version": "0.2.0",
+    "version": "0.3.0",
     "description": "Assorted file I/O utils (with logging support) for NodeJS",
     "type": "module",
     "module": "./index.js",
@@ -41,7 +41,7 @@
     },
     "devDependencies": {
         "@microsoft/api-extractor": "^7.23.1",
-        "@thi.ng/testament": "^0.2.6",
+        "@thi.ng/testament": "^0.2.7",
         "rimraf": "^3.0.2",
         "tools": "workspace:^",
         "typedoc": "^0.22.15",

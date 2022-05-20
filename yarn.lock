@@ -2543,7 +2543,7 @@ __metadata:
     "@thi.ng/checks": ^3.1.6
     "@thi.ng/logger": ^1.1.6
     "@thi.ng/random": ^3.2.6
-    "@thi.ng/testament": ^0.2.6
+    "@thi.ng/testament": ^0.2.7
     rimraf: ^3.0.2
     tools: "workspace:^"
     typedoc: ^0.22.15
@@ -4348,7 +4348,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/testament@^0.2.6, @thi.ng/testament@workspace:packages/testament":
+"@thi.ng/testament@^0.2.6, @thi.ng/testament@^0.2.7, @thi.ng/testament@workspace:packages/testament":
   version: 0.0.0-use.local
   resolution: "@thi.ng/testament@workspace:packages/testament"
   dependencies:
