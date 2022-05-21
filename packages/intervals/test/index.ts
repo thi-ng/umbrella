@@ -5,11 +5,12 @@ import {
     Classifier,
     classify,
     compare,
+    fold,
     intersection,
     interval as i,
     samples,
     union,
-} from "../src/index.js"
+} from "../src/index.js";
 
 group("intervals", {
     classify: () => {
@@ -131,5 +132,33 @@ group("intervals", {
             [...samples(i(10, 12, true, true), 5)],
             [10.5, 11, 11.5]
         );
+    },
+
+    foldClosed: () => {
+        assert.strictEqual(fold(i("[1,100]"), 0, 0.01), 99);
+        assert.strictEqual(fold(i("[1,100]"), 1, 0.01), 1);
+        assert.strictEqual(fold(i("[1,100]"), 100, 0.01), 100);
+        assert.strictEqual(fold(i("[1,100]"), 101, 0.01), 2);
+    },
+
+    foldOpenLeft: () => {
+        assert.strictEqual(fold(i("(1,100]"), 0, 0.01), 99);
+        assert.strictEqual(fold(i("(1,100]"), 1, 0.01), 100);
+        assert.strictEqual(fold(i("(1,100]"), 100, 0.01), 100);
+        assert.strictEqual(fold(i("(1,100]"), 101, 0.01), 2.01);
+    },
+
+    foldOpenRight: () => {
+        assert.strictEqual(fold(i("[1,100)"), 0, 0.01), 98.99);
+        assert.strictEqual(fold(i("[1,100)"), 1, 0.01), 1);
+        assert.strictEqual(fold(i("[1,100)"), 100, 0.01), 1);
+        assert.strictEqual(fold(i("[1,100)"), 101, 0.01), 2);
+    },
+
+    foldOpen: () => {
+        assert.strictEqual(fold(i("(1,100)"), 0, 0.01), 98.99);
+        assert.strictEqual(fold(i("(1,100)"), 1, 0.01), 99.99);
+        assert.strictEqual(fold(i("(1,100)"), 100, 0.01), 1.01);
+        assert.strictEqual(fold(i("(1,100)"), 101, 0.01), 2.01);
     },
 });
