@@ -16,7 +16,7 @@
 **Please visit [thi.ng](https://thi.ng) for additional information & topic based
 search of packages relevant to your use cases...**
 
-This mono-repository is home to 164+ thi.ng TypeScript/ES6 projects, a wide and
+This mono-repository is home to 165+ thi.ng TypeScript/ES6 projects, a wide and
 jointly developed collection of packages and building blocks for (non-exhaustive
 list of topics):
 
@@ -141,13 +141,14 @@ feature or `develop` branches)
 
 ### Latest updates
 
-As of: 2022-05-21
+As of: 2022-05-22
 
-| Status                                        | Project                                     | Version                                                                                                           | Changelog                                      |
-|-----------------------------------------------|---------------------------------------------|-------------------------------------------------------------------------------------------------------------------|------------------------------------------------|
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/date`](./packages/date)           | [![version](https://img.shields.io/npm/v/@thi.ng/date.svg)](https://www.npmjs.com/package/@thi.ng/date)           | [changelog](./packages/date/CHANGELOG.md)      |
-| ![](https://img.shields.io/badge/-new-cyan)   | [`@thi.ng/file-io`](./packages/file-io)     | [![version](https://img.shields.io/npm/v/@thi.ng/file-io.svg)](https://www.npmjs.com/package/@thi.ng/file-io)     | [changelog](./packages/file-io/CHANGELOG.md)   |
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/intervals`](./packages/intervals) | [![version](https://img.shields.io/npm/v/@thi.ng/intervals.svg)](https://www.npmjs.com/package/@thi.ng/intervals) | [changelog](./packages/intervals/CHANGELOG.md) |
+| Status                                        | Project                                             | Version                                                                                                                   | Changelog                                          |
+|-----------------------------------------------|-----------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------|
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/date`](./packages/date)                   | [![version](https://img.shields.io/npm/v/@thi.ng/date.svg)](https://www.npmjs.com/package/@thi.ng/date)                   | [changelog](./packages/date/CHANGELOG.md)          |
+| ![](https://img.shields.io/badge/-new-cyan)   | [`@thi.ng/file-io`](./packages/file-io)             | [![version](https://img.shields.io/npm/v/@thi.ng/file-io.svg)](https://www.npmjs.com/package/@thi.ng/file-io)             | [changelog](./packages/file-io/CHANGELOG.md)       |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/intervals`](./packages/intervals)         | [![version](https://img.shields.io/npm/v/@thi.ng/intervals.svg)](https://www.npmjs.com/package/@thi.ng/intervals)         | [changelog](./packages/intervals/CHANGELOG.md)     |
+| ![](https://img.shields.io/badge/-new-cyan)   | [`@thi.ng/random-fxhash`](./packages/random-fxhash) | [![version](https://img.shields.io/npm/v/@thi.ng/random-fxhash.svg)](https://www.npmjs.com/package/@thi.ng/random-fxhash) | [changelog](./packages/random-fxhash/CHANGELOG.md) |
 
 <!--
 ![](https://img.shields.io/badge/-feat-green)
@@ -202,6 +203,7 @@ As of: 2022-05-21
 | [`@thi.ng/ksuid`](./packages/ksuid)                 | [![version](https://img.shields.io/npm/v/@thi.ng/ksuid.svg)](https://www.npmjs.com/package/@thi.ng/ksuid)                 | [changelog](./packages/ksuid/CHANGELOG.md)         | K-sortable unique identifiers, binary & base-N encoded   |
 | [`@thi.ng/lowdisc`](./packages/lowdisc)             | [![version](https://img.shields.io/npm/v/@thi.ng/lowdisc.svg)](https://www.npmjs.com/package/@thi.ng/lowdisc)             | [changelog](./packages/lowdisc/CHANGELOG.md)       | n-D Low discrepancy sequence generators                  |
 | [`@thi.ng/random`](./packages/random)               | [![version](https://img.shields.io/npm/v/@thi.ng/random.svg)](https://www.npmjs.com/package/@thi.ng/random)               | [changelog](./packages/random/CHANGELOG.md)        | Seedable PRNG implementations, distributions & utilities |
+| [`@thi.ng/random-fxhash`](./packages/random-fxhash) | [![version](https://img.shields.io/npm/v/@thi.ng/random-fxhash.svg)](https://www.npmjs.com/package/@thi.ng/random-fxhash) | [changelog](./packages/random-fxhash/CHANGELOG.md) | PRNG impl & utilities for fxhash projects                |
 
 ### File / file format support
 
@@ -209,9 +211,9 @@ As of: 2022-05-21
 |---------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------|------------------------------------------------|
 | [`@thi.ng/bencode`](./packages/bencode)                 | [![version](https://img.shields.io/npm/v/@thi.ng/bencode.svg)](https://www.npmjs.com/package/@thi.ng/bencode)                 | [changelog](./packages/bencode/CHANGELOG.md)         | Bencode binary format encoding                 |
 | [`@thi.ng/csv`](./packages/csv)                         | [![version](https://img.shields.io/npm/v/@thi.ng/csv.svg)](https://www.npmjs.com/package/@thi.ng/csv)                         | [changelog](./packages/csv/CHANGELOG.md)             | Customizable CSV parser/object mapper          |
-| [`@thi.ng/file-io`](./packages/file-io)                 | [![version](https://img.shields.io/npm/v/@thi.ng/file-io.svg)](https://www.npmjs.com/package/@thi.ng/file-io)                 | [changelog](./packages/file-io/CHANGELOG.md)         | Assorted file I/O utils for NodeJS             |
 | [`@thi.ng/dot`](./packages/dot)                         | [![version](https://img.shields.io/npm/v/@thi.ng/dot.svg)](https://www.npmjs.com/package/@thi.ng/dot)                         | [changelog](./packages/dot/CHANGELOG.md)             | Graphviz DOM & export                          |
 | [`@thi.ng/dsp-io-wav`](./packages/dsp-io-wav)           | [![version](https://img.shields.io/npm/v/@thi.ng/dsp-io-wav.svg)](https://www.npmjs.com/package/@thi.ng/dsp-io-wav)           | [changelog](./packages/dsp-io-wav/CHANGELOG.md)      | WAV file format exporter                       |
+| [`@thi.ng/file-io`](./packages/file-io)                 | [![version](https://img.shields.io/npm/v/@thi.ng/file-io.svg)](https://www.npmjs.com/package/@thi.ng/file-io)                 | [changelog](./packages/file-io/CHANGELOG.md)         | Assorted file I/O utils for NodeJS             |
 | [`@thi.ng/geom-io-obj`](./packages/geom-io-obj)         | [![version](https://img.shields.io/npm/v/@thi.ng/geom-io-obj.svg)](https://www.npmjs.com/package/@thi.ng/geom-io-obj)         | [changelog](./packages/geom-io-obj/CHANGELOG.md)     | Wavefront OBJ model parser                     |
 | [`@thi.ng/hiccup-css`](./packages/hiccup-css)           | [![version](https://img.shields.io/npm/v/@thi.ng/hiccup-css.svg)](https://www.npmjs.com/package/@thi.ng/hiccup-css)           | [changelog](./packages/hiccup-css/CHANGELOG.md)      | CSS from nested JS data structures             |
 | [`@thi.ng/hiccup-html`](./packages/hiccup-html)         | [![version](https://img.shields.io/npm/v/@thi.ng/hiccup-html.svg)](https://www.npmjs.com/package/@thi.ng/hiccup-html)         | [changelog](./packages/hiccup-html/CHANGELOG.md)     | Type-checked HTML5 element wrappers for hiccup |
