@@ -10,6 +10,7 @@ export * from "./distributions/uniform.js";
 export * from "./pick-random.js";
 export * from "./random-bytes.js";
 export * from "./random-id.js";
+export * from "./sfc32.js";
 export * from "./smush32.js";
 export * from "./system.js";
 export * from "./unique-indices.js";

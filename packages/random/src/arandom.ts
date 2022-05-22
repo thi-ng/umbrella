@@ -1,6 +1,6 @@
 import type { IRandom } from "./api.js";
 
-const INV_MAX = 1 / (2**32);
+const INV_MAX = 1 / 2 ** 32;
 
 export abstract class ARandom implements IRandom {
     abstract int(): number;
@@ -15,5 +15,11 @@ export abstract class ARandom implements IRandom {
 
     minmax(min: number, max: number) {
         return this.float() * (max - min) + min;
+    }
+
+    minmaxInt(min: number, max: number) {
+        min |= 0;
+        max |= 0;
+        return min + ((this.float() * (max - min)) | 0);
     }
 }

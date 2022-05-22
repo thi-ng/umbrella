@@ -31,6 +31,13 @@ export interface IRandom extends INorm {
      * @param max -
      */
     minmax(min: number, max: number): number;
+    /**
+     * Returns int in [min..max) interval.
+     *
+     * @param min -
+     * @param max -
+     */
+    minmaxInt(min: number, max: number): number;
 }
 
 export interface ISeedable<T> {

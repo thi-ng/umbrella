@@ -119,6 +119,9 @@
         "./random-id": {
             "default": "./random-id.js"
         },
+        "./sfc32": {
+            "default": "./sfc32.js"
+        },
         "./smush32": {
             "default": "./smush32.js"
         },
