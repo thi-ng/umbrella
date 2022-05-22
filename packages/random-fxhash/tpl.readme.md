@@ -40,6 +40,23 @@ they're using the `RND` singleton by default (but optionally accept any other
 [`IRandom`](https://docs.thi.ng/umbrella/random/interfaces/IRandom.html)
 implementation as additional arg). See examples below.
 
+### Further functionality
+
+**All** thi.ng/umbrella packages dealing with randomness in any shape or form
+are supporting the above mentioned `IRandom` interface. That means the `RND`
+instance can be passed to any of the functions/classes to provide more advanced
+functionality, e.g.:
+
+- [@thi.ng/arrays](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays): Array shuffling
+- [@thi.ng/color](https://github.com/thi-ng/umbrella/tree/develop/packages/color): Generate procedural/stochastic colors/themes/ranges, analog colors
+- [@thi.ng/colored-noise](https://github.com/thi-ng/umbrella/tree/develop/packages/colored-noise): Various 1D noise generators
+- [@thi.ng/gp](https://github.com/thi-ng/umbrella/tree/develop/packages/gp): Genetic programming toolkit
+- [@thi.ng/k-means](https://github.com/thi-ng/umbrella/tree/develop/packages/k-means): nD k-Means clustering
+- [@thi.ng/lowdisc](https://github.com/thi-ng/umbrella/tree/develop/packages/lowdisc): nD low-discrepancy sequence generators/iterators
+- [@thi.ng/lsys](https://github.com/thi-ng/umbrella/tree/develop/packages/lsys): Highly customizable L-System interpreter
+- [@thi.ng/poisson](https://github.com/thi-ng/umbrella/tree/develop/packages/poisson): nD poisson disc sampling
+- [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors): 800+ vector functions, incl. random nD vector creation
+
 ${status}
 
 ${supportPackages}

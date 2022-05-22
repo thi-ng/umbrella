@@ -10,6 +10,7 @@ This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
 - [About](#about)
+  - [Further functionality](#further-functionality)
   - [Status](#status)
   - [Related packages](#related-packages)
 - [Installation](#installation)
@@ -39,13 +40,32 @@ pre-seeding with a transaction hash is only possible when using this package in
 the browser and in conjunction with a [fxhash HTML
 template](https://www.fxhash.xyz/doc/artist/guide-publish-generative-token#3-ways-to-start-a-project).
 If the global `fxhash` var is not defined, the `RND` instance will be seeded
-with a default seed (but can also be re-seeded later on). This also allows this package to be used outside the browser env, where the fxhash provided code snippet isn't available...
+with a default seed (but can also be re-seeded later on). This also allows this
+package to be used outside the browser env, where the fxhash provided code
+snippet isn't available...
 
 Additionally, the package also provides various wrappers for other commonly used
 utilities from the @thi.ng/random package. These are wrapped in such a way that
 they're using the `RND` singleton by default (but optionally accept any other
 [`IRandom`](https://docs.thi.ng/umbrella/random/interfaces/IRandom.html)
 implementation as additional arg). See examples below.
+
+### Further functionality
+
+**All** thi.ng/umbrella packages dealing with randomness in any shape or form
+are supporting the above mentioned `IRandom` interface. That means the `RND`
+instance can be passed to any of the functions/classes to provide more advanced
+functionality, e.g.:
+
+- [@thi.ng/arrays](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays): Array shuffling
+- [@thi.ng/color](https://github.com/thi-ng/umbrella/tree/develop/packages/color): Generate procedural/stochastic colors/themes/ranges, analog colors
+- [@thi.ng/colored-noise](https://github.com/thi-ng/umbrella/tree/develop/packages/colored-noise): Various 1D noise generators
+- [@thi.ng/gp](https://github.com/thi-ng/umbrella/tree/develop/packages/gp): Genetic programming toolkit
+- [@thi.ng/k-means](https://github.com/thi-ng/umbrella/tree/develop/packages/k-means): nD k-Means clustering
+- [@thi.ng/lowdisc](https://github.com/thi-ng/umbrella/tree/develop/packages/lowdisc): nD low-discrepancy sequence generators/iterators
+- [@thi.ng/lsys](https://github.com/thi-ng/umbrella/tree/develop/packages/lsys): Highly customizable L-System interpreter
+- [@thi.ng/poisson](https://github.com/thi-ng/umbrella/tree/develop/packages/poisson): nD poisson disc sampling
+- [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors): 800+ vector functions, incl. random nD vector creation
 
 ### Status
 
