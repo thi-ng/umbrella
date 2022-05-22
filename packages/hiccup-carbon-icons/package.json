@@ -66,10 +66,10 @@
     ],
     "exports": {
         ".": {
-            "import": "./index.js"
+            "default": "./index.js"
         },
         "./*": {
-            "import": "./*.js"
+            "default": "./*.js"
         }
     },
     "thi.ng": {

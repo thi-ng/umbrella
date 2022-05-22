@@ -110,7 +110,7 @@ cat << EOF > "$MODULE"/package.json
     ],
     "exports": {
         ".": {
-            "import": "./index.js"
+            "default": "./index.js"
         }
     },
     "thi.ng": {
