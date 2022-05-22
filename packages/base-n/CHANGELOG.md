@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-05-07T11:33:35Z
+- **Last updated**: 2022-05-22T17:15:19Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,12 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [2.3.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/base-n@2.3.0) (2022-05-22)
+
+#### 🚀 Features
+
+- add BASE58_LC alt version ([755a2a7](https://github.com/thi-ng/umbrella/commit/755a2a7))
 
 ## [2.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/base-n@2.2.0) (2022-03-11)
 

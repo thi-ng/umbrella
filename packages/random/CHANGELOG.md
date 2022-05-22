@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-05-07T11:33:36Z
+- **Last updated**: 2022-05-22T17:15:18Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,13 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [3.3.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/random@3.3.0) (2022-05-22)
+
+#### 🚀 Features
+
+- add pickRandomKey(), weightedRandomKey() ([9b8ed07](https://github.com/thi-ng/umbrella/commit/9b8ed07))
+- update IRandom, add SFC32 impl ([970d7f4](https://github.com/thi-ng/umbrella/commit/970d7f4))
 
 ### [3.2.2](https://github.com/thi-ng/umbrella/tree/@thi.ng/random@3.2.2) (2021-11-21)
 
