@@ -18,6 +18,7 @@ pseudo-random number generator implementations, incl. `IRandom` wrappers for
 `Math.random()` and `window.crypto`:
 
 - [Crypto](https://github.com/thi-ng/umbrella/tree/develop/packages/random/src/crypto.ts)
+- [SFC32](https://github.com/thi-ng/umbrella/tree/develop/packages/random/src/sfc32.ts)
 - [Smush32](https://github.com/thi-ng/umbrella/tree/develop/packages/random/src/smush32.ts)
 - [System](https://github.com/thi-ng/umbrella/tree/develop/packages/random/src/system.ts)
 - [Xoshiro128](https://github.com/thi-ng/umbrella/tree/develop/packages/random/src/xoshiro128.ts)
@@ -38,9 +39,10 @@ Partially ported from C implementations taken from [c.thi.ng](http://c.thi.ng).
 ### Other utilities
 
 - [`coin()` / `fairCoin()`](https://github.com/thi-ng/umbrella/tree/develop/packages/random/src/coin.ts)
+- [`pickRandom()` / `pickRandomKey()`](https://github.com/thi-ng/umbrella/tree/develop/packages/random/src/pick-random.ts)
 - [`randomBytes()` / `randomBytesFrom()`](https://github.com/thi-ng/umbrella/tree/develop/packages/random/src/random-bytes.ts)
 - [`randomID()`](https://github.com/thi-ng/umbrella/tree/develop/packages/random/src/random-id.ts)
-- [`weightedRandom()`](https://github.com/thi-ng/umbrella/tree/develop/packages/random/src/weighted-random.ts)
+- [`weightedRandom()` / `weightedRandomKey()`](https://github.com/thi-ng/umbrella/tree/develop/packages/random/src/weighted-random.ts)
 - [`uniqueIndices()` / `uniqueValuesFrom()`](https://github.com/thi-ng/umbrella/tree/develop/packages/random/src/unique-indices.ts)
 - [`uuidv4Bytes()` / `uuid()`](https://github.com/thi-ng/umbrella/tree/develop/packages/random/src/uuid.ts)
 
@@ -91,6 +93,8 @@ rnd.norm(100)
 // next float in given interval [min .. max)
 rnd.minmax(10, 20)
 // 15.295951807707537
+
+rnd.minmaxInt(10, 20)
 ```
 
 ## Authors

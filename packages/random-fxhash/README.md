@@ -80,7 +80,7 @@ node --experimental-repl-await
 > const randomFxhash = await import("@thi.ng/random-fxhash");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 517 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 478 bytes
 
 ## Dependencies
 
