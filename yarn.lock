@@ -3797,6 +3797,22 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@thi.ng/random-fxhash@workspace:packages/random-fxhash":
+  version: 0.0.0-use.local
+  resolution: "@thi.ng/random-fxhash@workspace:packages/random-fxhash"
+  dependencies:
+    "@microsoft/api-extractor": ^7.23.1
+    "@thi.ng/api": ^8.3.6
+    "@thi.ng/base-n": ^2.2.2
+    "@thi.ng/random": ^3.2.6
+    "@thi.ng/testament": ^0.2.6
+    rimraf: ^3.0.2
+    tools: "workspace:^"
+    typedoc: ^0.22.15
+    typescript: ^4.6.4
+  languageName: unknown
+  linkType: soft
+
 "@thi.ng/random@^3.2.6, @thi.ng/random@workspace:^, @thi.ng/random@workspace:packages/random":
   version: 0.0.0-use.local
   resolution: "@thi.ng/random@workspace:packages/random"
