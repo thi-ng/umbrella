@@ -1,3 +1,4 @@
+import type { Fn0 } from "@thi.ng/api";
 import { assert } from "@thi.ng/errors/assert";
 import type { IRandom } from "./api.js";
 import { SYSTEM } from "./system.js";
@@ -45,4 +46,24 @@ export const weightedRandom = <T>(
         }
         return <never>undefined;
     };
+};
+
+/**
+ * Alt version of {@link weightedRandom}, accepting an object of weights
+ * instead. The returned function will return keys of given `choices` object,
+ * taking into account the weights given for each key.
+ *
+ * @param choices
+ * @param rnd
+ */
+export const weightedRandomKey = <T extends Record<string, number>>(
+    choices: T,
+    rnd: IRandom = SYSTEM
+): Fn0<keyof T> => {
+    const keys = Object.keys(choices);
+    return weightedRandom(
+        keys,
+        keys.map((x) => choices[x]),
+        rnd
+    );
 };
