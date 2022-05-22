@@ -1,6 +1,5 @@
-import { files, readText, writeText } from "@thi.ng/file-io";
+import { dirs, files, readText, writeText } from "@thi.ng/file-io";
 import { execSync } from "child_process";
-import { readdirSync, statSync } from "fs";
 import { LOGGER } from "./api.js";
 
 const PKG = process.argv[2];
@@ -19,15 +18,17 @@ const sanitizeFile = (f: string) => {
     let updated = false;
     const src = readText(f, LOGGER)
         .replace(
-            /\{@link @thi\.ng\/([a-z0-9-]+)(#(\w+))?\s*\|\s*([^\}]+)\}/g,
+            /\{@link\s+@thi\.ng\/([a-z0-9-]+)(#(\w+))?\s*\|\s*([^\}]+)\}/g,
             (_, id, label) => {
+                LOGGER.debug("match pkg", id, label);
                 updated = true;
                 return `<a href="${S3_PREFIX}/${id}/">${label}</a>`;
             }
         )
         .replace(
-            /\{@link @thi\.ng\/([a-z0-9-]+)#(\w+)?\s*\}/g,
+            /\{@link\s+@thi\.ng\/([a-z0-9-]+)#(\w+)?\s*\}/g,
             (_, id, sym) => {
+                LOGGER.debug("match sym", id, sym);
                 updated = true;
                 let path = `${S3_PREFIX}/${id}/`;
                 if (!sym)
@@ -40,12 +41,12 @@ const sanitizeFile = (f: string) => {
                 return `<a href="${path}">${sym}</a>`;
             }
         )
-        .replace(/\{@link @thi\.ng\/([a-z0-9-]+)#?\s*\}/g, (_, id) => {
+        .replace(/\{@link\s+@thi\.ng\/([a-z0-9-]+)#?\s*\}/g, (_, id) => {
+            LOGGER.debug("match pkg only", id);
             updated = true;
             return `<a href="${S3_PREFIX}/${id}/">@thi.ng/${id}</a>`;
         });
     if (updated) {
-        // console.log("sanitizing:", f);
         writeText(f, src, LOGGER);
     }
 };
@@ -57,39 +58,36 @@ const sanitizePackage = (root: string) => {
 };
 
 const minifyPackage = (root: string) => {
-    console.log("minifying", root);
+    LOGGER.info("minifying", root);
     execSync(
         `node_modules/.bin/html-minifier-terser ${MINIFY_OPTS} --input-dir ${root} --output-dir ${root}`
     );
 };
 
 const syncPackage = (id: string, root: string) => {
-    console.log("syncing", root);
-    console.log(
+    LOGGER.info("syncing", root);
+    LOGGER.info(
         execSync(
             `aws s3 sync ${root} ${S3_BUCKET}${S3_PREFIX}/${id} ${SYNC_OPTS}`
         ).toString()
     );
 };
 
-const invalidatePackage = (id: string) =>
+const invalidatePath = (path: string) => {
+    LOGGER.info("invalidating CDN path:", path);
     execSync(
-        `aws cloudfront create-invalidation --distribution-id ${CF_DISTRO} --paths "${S3_PREFIX}/${id}/*" ${AWS_PROFILE}`
+        `aws cloudfront create-invalidation --distribution-id ${CF_DISTRO} --paths "${S3_PREFIX}/${path}" ${AWS_PROFILE}`
     );
-
-const invalidateAll = () =>
-    execSync(
-        `aws cloudfront create-invalidation --distribution-id ${CF_DISTRO} --paths "${S3_PREFIX}/*" ${AWS_PROFILE}`
-    );
+};
 
 const processPackage = (id: string, invalidate = true) => {
-    console.log("processing", id);
+    LOGGER.info("processing package", id);
     const root = `packages/${id}/doc`;
     try {
         sanitizePackage(root);
         minifyPackage(root);
         syncPackage(id, root);
-        invalidate && invalidatePackage(id);
+        invalidate && invalidatePath(`${id}/*`);
     } catch (e) {
         console.warn(e);
     }
@@ -98,13 +96,16 @@ const processPackage = (id: string, invalidate = true) => {
 if (PKG) {
     processPackage(PKG);
 } else {
-    const pkgs = readdirSync("packages").filter((p) =>
-        statSync(`packages/${p}`).isDirectory()
-    );
-    pkgs.forEach((pkg) => processPackage(pkg));
-    invalidateAll();
+    for (let pkg of dirs("packages", "", 1)) {
+        processPackage(pkg.replace("packages/", ""), false);
+    }
+    invalidatePath("*");
 }
 
 execSync(`scripts/node-esm tools/src/doc-table.ts`);
 
 execSync(`aws s3 cp docs.html ${S3_BUCKET}/index.html ${S3_OPTS}`);
+
+if (PKG) {
+    invalidatePath("/index.html");
+}
