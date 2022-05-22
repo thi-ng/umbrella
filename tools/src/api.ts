@@ -52,6 +52,7 @@ export interface PackageMeta {
     related: string[];
     screenshot: string;
     skip: boolean;
+    skypack: boolean;
     status: string;
     year: number;
 }

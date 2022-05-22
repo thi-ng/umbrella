@@ -9,10 +9,13 @@ import { list } from "./list.js";
 
 export const shortName = (name: string) => name.split("/")[1];
 
-export const packageURL = (name: string) => `https://${name.substr(1)}`;
+export const packageURL = (name: string) => `https://${name.substring(1)}`;
 
 export const isNodeOnly = (pkg: Package) =>
     pkg.keywords ? pkg.keywords.includes("node-only") : false;
+
+export const isWebModule = (pkg: Package) =>
+    !isNodeOnly(pkg) && pkg[META_FIELD]?.skypack !== false;
 
 export const pkgLink = (name: string) =>
     link(name, `${CONFIG.branchURL}/packages/${shortName(name)}`);
@@ -101,7 +104,7 @@ export const packageInstallation = (pkg: Package) =>
         `\`\`\`bash
 yarn add ${pkg.name}
 \`\`\``,
-        !isNodeOnly(pkg)
+        isWebModule(pkg)
             ? `\nES module import:
 
 \`\`\`html
