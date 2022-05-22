@@ -63,14 +63,6 @@ implementation as additional arg). See examples below.
 yarn add @thi.ng/random-fxhash
 ```
 
-ES module import:
-
-```html
-<script type="module" src="https://cdn.skypack.dev/@thi.ng/random-fxhash"></script>
-```
-
-[Skypack documentation](https://docs.skypack.dev/)
-
 For Node.js REPL:
 
 ```text

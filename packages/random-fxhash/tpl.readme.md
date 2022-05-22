@@ -30,7 +30,9 @@ pre-seeding with a transaction hash is only possible when using this package in
 the browser and in conjunction with a [fxhash HTML
 template](https://www.fxhash.xyz/doc/artist/guide-publish-generative-token#3-ways-to-start-a-project).
 If the global `fxhash` var is not defined, the `RND` instance will be seeded
-with a default seed (but can also be re-seeded later on). This also allows this package to be used outside the browser env, where the fxhash provided code snippet isn't available...
+with a default seed (but can also be re-seeded later on). This also allows this
+package to be used outside the browser env, where the fxhash provided code
+snippet isn't available...
 
 Additionally, the package also provides various wrappers for other commonly used
 utilities from the @thi.ng/random package. These are wrapped in such a way that
