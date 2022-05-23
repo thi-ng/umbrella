@@ -76,7 +76,7 @@ const syncPackage = (id: string, root: string) => {
 const invalidatePath = (path: string) => {
     LOGGER.info("invalidating CDN path:", path);
     execSync(
-        `aws cloudfront create-invalidation --distribution-id ${CF_DISTRO} --paths "${S3_PREFIX}/${path}" ${AWS_PROFILE}`
+        `aws cloudfront create-invalidation --distribution-id ${CF_DISTRO} --paths "${path}" ${AWS_PROFILE}`
     );
 };
 
@@ -87,7 +87,7 @@ const processPackage = (id: string, invalidate = true) => {
         sanitizePackage(root);
         minifyPackage(root);
         syncPackage(id, root);
-        invalidate && invalidatePath(`${id}/*`);
+        invalidate && invalidatePath(`${S3_PREFIX}/${id}/*`);
     } catch (e) {
         console.warn(e);
     }
@@ -99,7 +99,7 @@ if (PKG) {
     for (let pkg of dirs("packages", "", 1)) {
         processPackage(pkg.replace("packages/", ""), false);
     }
-    invalidatePath("*");
+    invalidatePath(`${S3_PREFIX}/*`);
 }
 
 execSync(`scripts/node-esm tools/src/doc-table.ts`);
