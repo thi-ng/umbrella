@@ -94,6 +94,13 @@ node --experimental-repl-await
 
 Package sizes (gzipped, pre-treeshake): ESM: 478 bytes
 
+**IMPORTANT**: When using this package (or any other packages from this
+monorepo) for fxhash, you MUST use a bundler (e.g. Vite, Parcel or Webpack),
+since the platform does not support ES module imports from external
+sources/CDNs. A related boilerplate project template will be published soon.
+Follow [@thing_umbrella](https://twitter.com/thing_umbrella) on Twitter for
+updates...
+
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)

@@ -71,6 +71,13 @@ ${pkg.install}
 
 ${pkg.size}
 
+**IMPORTANT**: When using this package (or any other packages from this
+monorepo) for fxhash, you MUST use a bundler (e.g. Vite, Parcel or Webpack),
+since the platform does not support ES module imports from external
+sources/CDNs. A related boilerplate project template will be published soon.
+Follow [@thing_umbrella](https://twitter.com/thing_umbrella) on Twitter for
+updates...
+
 ## Dependencies
 
 ${pkg.deps}
