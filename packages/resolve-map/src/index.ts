@@ -1,11 +1,10 @@
-import type { Fn, NumOrString } from "@thi.ng/api";
+import type { Fn, IDeref, NumOrString } from "@thi.ng/api";
 import { SEMAPHORE } from "@thi.ng/api/api";
 import { isArray } from "@thi.ng/checks/is-array";
 import { isFunction } from "@thi.ng/checks/is-function";
 import { isPlainObject } from "@thi.ng/checks/is-plain-object";
 import { isString } from "@thi.ng/checks/is-string";
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
-import { getInUnsafe } from "@thi.ng/paths/get-in";
 import { mutInUnsafe } from "@thi.ng/paths/mut-in";
 import { exists } from "@thi.ng/paths/path";
 
@@ -14,6 +13,7 @@ const RE_ARGS = /^(function\s+\w+)?\s*\(\{([\w\s,:]+)\}/;
 export type Unresolved<T> = {
     [K in keyof T]:
         | Unresolved<T[K]>
+        | Resolved<T[K]>
         | Fn<T, T[K]>
         | Fn<ResolveFn, T[K]>
         | Function
@@ -38,6 +38,11 @@ export type LookupPath = NumOrString[];
  * resolved from the currently visited object and support "../" prefixes to
  * access any parent levels. Absolute refs are always resolved from the root
  * level (the original object passed to this function).
+ *
+ * Values can be protected from further resolution attempts by wrapping them via
+ * {@link resolved}. The wrapped value can be later obtained via the standard
+ * {@link @thi.ng/api#IDeref} interface/mechanism. In lookup functions, the
+ * unwrapped value will be supplied, no `.deref()` necessary there.
  *
  * @example
  * ```ts
@@ -169,8 +174,12 @@ const _resolve = (
         illegalArgs(`cyclic references not allowed: ${pathID}`);
     }
     // console.log(pp, resolved[pp], stack);
-    let v = getInUnsafe(root, path);
+    let [v, isResolved] = getInUnsafe(root, path);
     if (!resolved[pathID]) {
+        if (isResolved) {
+            resolved[pathID] = true;
+            return v;
+        }
         let res = SEMAPHORE;
         stack.push(pathID);
         if (isPlainObject(v)) {
@@ -342,4 +351,50 @@ export const absPath = (
     }
     !curr.length && illegalArgs(`invalid lookup path: ${path}`);
     return curr;
+};
+
+/**
+ * Value wrapper to protect from future recursive resolution attempts. See
+ * {@link resolved} for further details.
+ */
+export class Resolved<T> implements IDeref<T> {
+    constructor(protected _value: T) {}
+
+    deref() {
+        return this._value;
+    }
+}
+
+/**
+ * Factory function for {@link Resolved} to wrap & protect values from further
+ * resolution attempts. The wrapped value can be later obtained via the standard
+ * {@link @thi.ng/api#IDeref} interface/mechanism. In lookup functions, the
+ * unwrapped value will be supplied, no `.deref()` necessary there.
+ *
+ * @param val
+ */
+export const resolved = <T>(val: T) => new Resolved<T>(val);
+
+/**
+ * Special version of {@link @thi.ng/paths#getInUnsafe} with extra support for
+ * intermediate wrapped {@link Resolved} values and returning tuple of:
+ * `[val,isResolved]`.
+ *
+ * @param obj
+ * @param path
+ *
+ * @internal
+ */
+const getInUnsafe = (obj: any, path: LookupPath) => {
+    const n = path.length - 1;
+    let res = obj;
+    let isResolved = obj instanceof Resolved;
+    for (let i = 0; res != null && i <= n; i++) {
+        res = res[path[i]];
+        if (res instanceof Resolved) {
+            isResolved = true;
+            res = res.deref();
+        }
+    }
+    return [res, isResolved];
 };

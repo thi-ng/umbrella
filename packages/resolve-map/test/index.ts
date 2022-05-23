@@ -2,7 +2,7 @@ import type { Fn0 } from "@thi.ng/api";
 import { group } from "@thi.ng/testament";
 import * as tx from "@thi.ng/transducers";
 import * as assert from "assert";
-import { resolve, ResolveFn } from "../src/index.js";
+import { resolve, Resolved, resolved, ResolveFn } from "../src/index.js";
 
 group("resolve-map", {
     simple: () => {
@@ -261,5 +261,23 @@ group("resolve-map", {
             ),
             { a: { b: { c: 1, d: 1, e: 10 }, c: { d: 1 } }, c: { d: 10 } }
         );
+    },
+
+    resolved: () => {
+        interface Foo {
+            a: Resolved<{ x: () => number; y: (() => number)[] }>;
+            b: number;
+            c: () => number;
+        }
+        const res = resolve<Foo>({
+            a: ({ b }: Foo) => resolved({ x: () => b, y: [() => 1] }),
+            b: () => 2,
+            c: "@a/y/0",
+        });
+        assert.ok(res.a instanceof Resolved);
+        assert.strictEqual(res.a.deref().x(), 2);
+        assert.strictEqual(res.a.deref().y[0](), 1);
+        assert.strictEqual(res.b, 2);
+        assert.strictEqual(res.c(), 1);
     },
 });

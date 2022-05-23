@@ -19,6 +19,7 @@ This project is part of the
   - [Theme configuration](#theme-configuration)
 - [API](#api)
   - [`resolve(obj)`](#resolveobj)
+    - [Protecting values](#protecting-values)
 - [Authors](#authors)
 - [License](#license)
 
@@ -75,7 +76,7 @@ node --experimental-repl-await
 > const resolveMap = await import("@thi.ng/resolve-map");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 929 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 1.03 KB
 
 ## Dependencies
 
@@ -296,6 +297,15 @@ res = resolve({
 res.e(2);
 // 20
 ```
+
+#### Protecting values
+
+Values can be protected from further resolution attempts by wrapping them via
+[`resolved()`](https://docs.thi.ng/umbrella/resolve-map/modules.html#resolved).
+The wrapped value can be later obtained via the standard [`IDeref`
+interface/mechanism](https://docs.thi.ng/umbrella/api/interfaces/IDeref.html).
+In lookup/resolution functions, the unwrapped value will be supplied, no
+`.deref()` necessary there.
 
 ## Authors
 
