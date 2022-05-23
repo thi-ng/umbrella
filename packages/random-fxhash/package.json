@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/random-fxhash",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "description": "@thi.ng/random compatible wrapper & utilities for fxhash's PRNG",
     "type": "module",
     "module": "./index.js",

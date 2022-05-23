@@ -3926,7 +3926,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/resolve-map@^6.0.1, @thi.ng/resolve-map@workspace:^, @thi.ng/resolve-map@workspace:packages/resolve-map":
+"@thi.ng/resolve-map@^6.1.0, @thi.ng/resolve-map@workspace:^, @thi.ng/resolve-map@workspace:packages/resolve-map":
   version: 0.0.0-use.local
   resolution: "@thi.ng/resolve-map@workspace:packages/resolve-map"
   dependencies:
@@ -3935,7 +3935,7 @@ __metadata:
     "@thi.ng/checks": ^3.1.6
     "@thi.ng/errors": ^2.1.6
     "@thi.ng/paths": ^5.1.6
-    "@thi.ng/testament": ^0.2.6
+    "@thi.ng/testament": ^0.2.7
     rimraf: ^3.0.2
     tools: "workspace:^"
     typedoc: ^0.22.15
@@ -4035,7 +4035,7 @@ __metadata:
     "@thi.ng/checks": ^3.1.6
     "@thi.ng/errors": ^2.1.6
     "@thi.ng/paths": ^5.1.6
-    "@thi.ng/resolve-map": ^6.0.1
+    "@thi.ng/resolve-map": ^6.1.0
     "@thi.ng/rstream": ^7.2.6
     "@thi.ng/testament": ^0.2.7
     "@thi.ng/transducers": ^8.3.3
