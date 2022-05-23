@@ -141,7 +141,7 @@ feature or `develop` branches)
 
 ### Latest updates
 
-As of: 2022-05-22
+As of: 2022-05-23
 
 | Status                                        | Project                                             | Version                                                                                                                   | Changelog                                          |
 |-----------------------------------------------|-----------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------|
@@ -149,6 +149,7 @@ As of: 2022-05-22
 | ![](https://img.shields.io/badge/-new-cyan)   | [`@thi.ng/file-io`](./packages/file-io)             | [![version](https://img.shields.io/npm/v/@thi.ng/file-io.svg)](https://www.npmjs.com/package/@thi.ng/file-io)             | [changelog](./packages/file-io/CHANGELOG.md)       |
 | ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/intervals`](./packages/intervals)         | [![version](https://img.shields.io/npm/v/@thi.ng/intervals.svg)](https://www.npmjs.com/package/@thi.ng/intervals)         | [changelog](./packages/intervals/CHANGELOG.md)     |
 | ![](https://img.shields.io/badge/-new-cyan)   | [`@thi.ng/random-fxhash`](./packages/random-fxhash) | [![version](https://img.shields.io/npm/v/@thi.ng/random-fxhash.svg)](https://www.npmjs.com/package/@thi.ng/random-fxhash) | [changelog](./packages/random-fxhash/CHANGELOG.md) |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/resolve-map`](./packages/resolve-map)     | [![version](https://img.shields.io/npm/v/@thi.ng/resolve-map.svg)](https://www.npmjs.com/package/@thi.ng/resolve-map)     | [changelog](./packages/resolve-map/CHANGELOG.md)   |
 
 <!--
 ![](https://img.shields.io/badge/-feat-green)
