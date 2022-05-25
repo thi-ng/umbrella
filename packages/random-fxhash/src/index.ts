@@ -11,17 +11,38 @@ import {
 
 declare var fxhash: string;
 
-let seed: number[];
-if (typeof fxhash === "string") {
-    seed = fxhash
+/**
+ * Takes a `fxhash` compatible base58 transaction hash, parses it into 4
+ * truncated 32bit uints and returns these partial seeds as array. This returned
+ * array can then be passed to reseed the {@link RND} instance.
+ *
+ * @remarks
+ * Note: The first characters of the given `hash` will ALWAYS be ignored (same
+ * logic fxhash is using & due to Tezos hash structure).
+ *
+ * Also see {@link @thi.ng/base-n#BASE58_LC}.
+ *
+ * @example
+ * ```ts
+ * RND.seed(seedFromHash("ookorwLedQrCTPesBcUPrR2oRbPHgsAxe9xgCSNq4XAuZSaCvaB"));
+ * ```
+ *
+ * @param hash
+ */
+export const seedFromHash = (hash: string) =>
+    hash
         .slice(2)
-        .match(new RegExp(`.{${(fxhash.length - 2) >> 2}}`, "g"))!
+        .match(new RegExp(`.{${(hash.length - 2) >> 2}}`, "g"))!
         .map((x) =>
             [...x].reduce(
-                (acc, y) => (acc * 58 + B58_CHARS_LC.indexOf(y)) | 0,
+                (acc, y) => (acc * 58 + B58_CHARS_LC.indexOf(y)) >>> 0,
                 0
             )
         );
+
+let seed: number[];
+if (typeof fxhash === "string") {
+    seed = seedFromHash(fxhash);
 } else {
     seed = DEFAULT_SEED_128;
     console.warn("fxhash PRNG not found, using default seed", seed, "\n\n");
@@ -35,7 +56,6 @@ if (typeof fxhash === "string") {
  * Should the need arise, the instance can be reseeded via `.seed([...])`.
  */
 export const RND = new SFC32(seed);
-
 /**
  * Returns true if the next random float from {@link RND} is less than given `p`.
  *

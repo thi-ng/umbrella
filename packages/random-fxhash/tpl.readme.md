@@ -72,11 +72,11 @@ ${pkg.install}
 ${pkg.size}
 
 **IMPORTANT**: When using this package (or any other packages from this
-monorepo) for fxhash, you MUST use a bundler (e.g. Vite, Parcel or Webpack),
-since the platform does not support ES module imports from external
-sources/CDNs. A related boilerplate project template will be published soon.
-Follow [@thing_umbrella](https://twitter.com/thing_umbrella) on Twitter for
-updates...
+monorepo) for [fxhash](https://fxhash.xyz), you MUST use a bundler (e.g. Vite,
+Parcel or Webpack), since the platform does not support ES module imports from
+external sources/CDNs. A related boilerplate project template will be published
+soon. Follow [@thing_umbrella](https://twitter.com/thing_umbrella) on Twitter
+for updates...
 
 ## Dependencies
 
@@ -91,7 +91,13 @@ ${docLink}
 TODO
 
 ```ts
-import { RND, pick, pickKey, weighted, weightedKey, probability } from "@thi.ng/random-fxhash";
+import {
+    RND,
+    probability,
+    pick, pickKey,
+    weighted, weightedKey,
+    seedFromHash,
+} from "@thi.ng/random-fxhash";
 
 const themes = {
     bw: ["#000", "#fff"],
@@ -135,8 +141,12 @@ RND.minmax(0.5, 1)
 // return a int in [min..max) interval
 RND.minmaxInt(0, 100)
 
-// reseed
+// (re)seed from transaction hash
+RND.seed(seedFromHash("ookorwLedQrCTPesBcUPrR2oRbPHgsAxe9xgCSNq4XAuZSaCvaB"));
+
+// or reseed from uint's
 RND.seed([1, 2, 3, 4]);
+
 ```
 
 ## Authors
