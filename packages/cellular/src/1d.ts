@@ -35,17 +35,21 @@ const $32 = BigInt(32);
  *
  * ### Rule encoding
  *
- * Automata rules are encoded as JS `BigInt` values and are _always_ anisotropic
- * (if isotropy is used, it has to be explicitly pre-encoded [out of scope of
- * this library]). An encoded rule ID and its overall magnitude is directly
- * related and dependent on the size and shape of its kernel config, e.g.:
+ * Automata rules are encoded as JS `BigInt` values and are considered
+ * anisotropic by default. If isotropy is to used, it has to be explicitly
+ * pre-encoded [out of scope of this library]. There's also built-in optional
+ * support for position independent neighborhood encoding, only considering the
+ * number/count of non-zero cells. An encoded rule ID and its overall magnitude
+ * is directly related and dependent on the size and shape of its kernel config,
+ * e.g.:
  *
  * ```ts
  * kernel = [[-2, 1], [-1, 0], [0, 0], [1, 0], [2, 1]]
  * ```
  *
- * This kernel defines a 5-cell neighborhood with a max. short term memory of
- * one additional previous generation (i.e. the [-2,1] and [2,1] offsets)
+ * This example kernel defines a 5-cell neighborhood with a max. short term
+ * memory of one additional previous generation (i.e. the [-2,1] and [2,1]
+ * offsets)
  *
  * The related rule has a 32 bit address space (4 billion possibilities), due to
  * 2^5 = 32 and each kernel offset being assigned a distinct bit value by
