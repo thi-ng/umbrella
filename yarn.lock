@@ -2042,6 +2042,24 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@thi.ng/cellular@workspace:packages/cellular":
+  version: 0.0.0-use.local
+  resolution: "@thi.ng/cellular@workspace:packages/cellular"
+  dependencies:
+    "@microsoft/api-extractor": ^7.23.1
+    "@thi.ng/api": ^8.3.6
+    "@thi.ng/checks": ^3.1.6
+    "@thi.ng/errors": ^2.1.6
+    "@thi.ng/random": ^3.3.0
+    "@thi.ng/testament": ^0.2.6
+    "@thi.ng/transducers": ^8.3.3
+    rimraf: ^3.0.2
+    tools: "workspace:^"
+    typedoc: ^0.22.15
+    typescript: ^4.6.4
+  languageName: unknown
+  linkType: soft
+
 "@thi.ng/checks@^3.1.6, @thi.ng/checks@workspace:^, @thi.ng/checks@workspace:packages/checks":
   version: 0.0.0-use.local
   resolution: "@thi.ng/checks@workspace:packages/checks"
