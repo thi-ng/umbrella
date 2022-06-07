@@ -37,7 +37,7 @@ export class System<T extends SystemMap<T>> implements ILifecycle {
         for (let id of this.topology) {
             const comp = this.components[id];
             if (comp.start && !(await comp.start())) {
-                LOGGER.warn(`error starting component: ${id}`);
+                LOGGER.warn(`error starting component: ${String(id)}`);
                 return false;
             }
         }
@@ -59,7 +59,7 @@ export class System<T extends SystemMap<T>> implements ILifecycle {
             const id = topo[i];
             const comp = this.components[id];
             if (comp.stop && !(await comp.stop())) {
-                LOGGER.warn(`error stopping component: ${id}`);
+                LOGGER.warn(`error stopping component: ${String(id)}`);
             }
         }
         return true;

@@ -119,8 +119,8 @@ export class HashMap<K, V>
      * readonly/immutable. This could be enforced via TS, but would
      * break ES6 Map interface contract.
      *
-     * @param fn - 
-     * @param thisArg - 
+     * @param fn -
+     * @param thisArg -
      */
     forEach(fn: Fn3<V, K, Map<K, V>, void>, thisArg?: any) {
         for (let pair of __private.get(this)!.bins) {
@@ -142,7 +142,7 @@ export class HashMap<K, V>
     copy() {
         const $this = __private.get(this)!;
         const m = new HashMap<K, V>(null, this.opts({ cap: 4 }));
-        Object.assign(__private.get(m), {
+        Object.assign(__private.get(m)!, {
             bins: $this.bins.slice(),
             mask: $this.mask,
             size: $this.size,

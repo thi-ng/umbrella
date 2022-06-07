@@ -4,10 +4,10 @@ import { xform } from "../combinators/xform.js";
 /**
  * Replace AST node with its first child node. Also see {@link hoist}.
  *
- * @param scope - 
+ * @param scope -
  */
 export const xfHoist: ScopeTransform<any> = (scope) => {
-    Object.assign(scope, scope!.children![0]);
+    Object.assign(scope!, scope!.children![0]);
     return scope;
 };
 
@@ -15,7 +15,7 @@ export const xfHoist: ScopeTransform<any> = (scope) => {
  * Moves the result of first child node to this node, then discards all
  * children. Also see {@link hoistR}.
  *
- * @param scope - 
+ * @param scope -
  */
 export const xfHoistResult: ScopeTransform<any> = (scope) => {
     scope!.result = scope!.children![0].result;
@@ -26,14 +26,14 @@ export const xfHoistResult: ScopeTransform<any> = (scope) => {
 /**
  * Syntax sugar for `xform(parser, xfHoist)`.
  *
- * @param parser - 
+ * @param parser -
  */
 export const hoist = <T>(parser: Parser<T>) => xform(parser, xfHoist);
 
 /**
  * Syntax sugar for `xform(parser, xfHoistR)`.
  *
- * @param parser - 
+ * @param parser -
  */
 export const hoistResult = <T>(parser: Parser<T>) =>
     xform(parser, xfHoistResult);
