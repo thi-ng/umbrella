@@ -21,7 +21,7 @@ This project is part of the
 
 ## About
 
-Collection of 50+ type, feature & value checks.
+Collection of 70+ type, feature & value checks.
 
 ### Status
 
@@ -52,7 +52,7 @@ node --experimental-repl-await
 > const checks = await import("@thi.ng/checks");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.71 KB
+Package sizes (gzipped, pre-treeshake): ESM: 1.72 KB
 
 ## Dependencies
 

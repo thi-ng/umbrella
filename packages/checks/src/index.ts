@@ -14,6 +14,7 @@ export * from "./is-array.js";
 export * from "./is-arraylike.js";
 export * from "./is-ascii.js";
 export * from "./is-async-iterable.js";
+export * from "./is-bigint.js";
 export * from "./is-blob.js";
 export * from "./is-boolean.js";
 export * from "./is-chrome.js";
