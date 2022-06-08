@@ -218,7 +218,9 @@ Result:
 ### Custom kernels & multiple rules
 
 ```ts
-// create CA with 2 rules/kernels and 64 max age
+import { multiColorGradient, srgb } from "@thi.ng/color";
+
+// create CA with 2 rules/kernels (5-neighborhoods) and 64 states (max age)
 const ca = new MultiCA1D(
     [
         {
@@ -235,7 +237,7 @@ const ca = new MultiCA1D(
     WIDTH
 );
 
-// seed with 10% noise
+// seed cells with 10% noise
 ca.setNoise("cells", 0.1);
 
 // set mask to stripe pattern to select both CAs
@@ -243,7 +245,7 @@ ca.setPattern("mask", WIDTH / 4, WIDTH / 2, 1, 0, WIDTH / 8);
 
 // alternatively apply noise to the mask to create
 // more uniformly hybrid/mixed results
-// ca.setNoise("mask", 0.5, RND);
+// ca.setNoise("mask", 0.5);
 
 // create color gradient to visualize the different cell states
 // and wrap as indexed color model for pixel buffer below...
