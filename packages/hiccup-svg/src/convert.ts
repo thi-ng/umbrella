@@ -76,7 +76,9 @@ export const convertTree = (tree: any): any[] | null => {
                 tree[2],
                 {
                     gradientUnits: attribs.gradientUnits || "userSpaceOnUse",
-                    gradientTransform: attribs.gradientTransform,
+                    ...(attribs.gradientTransform
+                        ? { gradientTransform: attribs.gradientTransform }
+                        : null),
                 }
             );
         case "radialGradient":
@@ -89,7 +91,9 @@ export const convertTree = (tree: any): any[] | null => {
                 tree[2],
                 {
                     gradientUnits: attribs.gradientUnits || "userSpaceOnUse",
-                    gradientTransform: attribs.gradientTransform,
+                    ...(attribs.gradientTransform
+                        ? { gradientTransform: attribs.gradientTransform }
+                        : null),
                 }
             );
         case "circle":
