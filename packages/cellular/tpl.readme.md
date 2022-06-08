@@ -19,6 +19,11 @@ The generic implementation provided by this package enables many novel and
 unusual CA setups as well as coevolution of multiple CAs within a shared
 environment.
 
+This library also forms the core of **C-SCAPE**, a generative art project by the
+author. Visit the [project site](https://www.fxhash.xyz/generative/slug/c-scape)
+to get a better impression and overview of the multitude of possible results
+(still nothing more than a small glimpse only)...
+
 ### Neighborhoods
 
 Cell neighborhoods are defined via an arbitrary number of 2D offset vectors `[x,
@@ -147,7 +152,8 @@ const HEIGHT = 512;
 const ca = new MultiCA1D(
     [
         {
-            rule: BigInt(73),
+            rule: 73,
+            // kernel can be imported as `WOLFRAM3`
             kernel: [[-1, 0],[0, 0],[1, 0]],
             states: 2,
             reset: false,
@@ -182,13 +188,15 @@ import { multiColorGradient, srgb } from "@thi.ng/color";
 const ca = new MultiCA1D(
     [
         {
-            rule: BigInt(0x73ed2ac2),
-            kernel: [[-2, 0],[-1, 0],[0, 0],[1, 0],[2, 0]],
+            rule: 0x73ed2ac2,
+            // kernel can be imported as `WOLFRAM5`
+            kernel: [[-2, 0], [-1, 0], [0, 0], [1, 0], [2, 0]],
             states: 64,
         },
         {
-            rule: BigInt(0xef14e4ca),
-            kernel: [[-2, 0],[-1, 0],[0, 0],[1, 0],[2, 0]],
+            rule: 0xef14e4ca,
+            // kernel can be imported as `WOLFRAM5`
+            kernel: [[-2, 0], [-1, 0], [0, 0], [1, 0], [2, 0]],
             states: 64,
         }
     ],
@@ -207,6 +215,9 @@ ca.setPattern("mask", WIDTH / 4, WIDTH / 2, 1, 0, WIDTH / 8);
 
 // create color gradient to visualize the different cell states
 // and wrap as indexed color model for pixel buffer below...
+// references:
+// https://docs.thi.ng/umbrella/color/modules.html#multiColorGradient
+// https://docs.thi.ng/umbrella/pixel/modules.html#defIndexed
 const fmt = defIndexed(
     multiColorGradient(
         {
