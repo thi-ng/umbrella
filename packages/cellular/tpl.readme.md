@@ -30,8 +30,8 @@ automata. Negative `y` coords will lead to cells being ignored.
 ### Rule encoding
 
 Automata rules are encoded as JS `BigInt` values and are considered anisotropic
-by default. If isotropy is to used, it has to be explicitly pre-encoded [out of
-scope of this library]. There's also built-in optional support for position
+by default. If isotropy is desired, it has to be explicitly pre-encoded (out of
+scope of this library). There's also built-in optional support for position
 independent neighborhood encoding, only considering the number/count of non-zero
 cells. An encoded rule ID and its overall magnitude is directly related and
 dependent on the size and shape of its kernel config, e.g.:
@@ -43,11 +43,12 @@ kernel = [[-2, 1], [-1, 0], [0, 0], [1, 0], [2, 1]]
 This example kernel defines a 5-cell neighborhood with a max. short term memory
 of one additional previous generation (i.e. the [-2,1] and [2,1] offsets)
 
-The related rule has a 32 bit address space (4 billion possibilities), due to
-2^5 = 32 and each kernel offset being assigned a distinct bit value by default,
-i.e. first kernel offset = 2^0, second kernel offset = 2^1, third = 2^2, fourth
-= 2^3, etc. Via the `positional` config option, this behavior can be overridden
-per kernel (to achieve position-independent kernels).
+The rules related to this kernel have a 32 bit address space (4 billion
+possibilities), due to 2^5 = 32 and each kernel offset being assigned a distinct
+bit value by default, i.e. first kernel offset = 2^0, second kernel offset =
+2^1, third = 2^2, fourth = 2^3, fifth = 2^4. Via the `positional` config option,
+this behavior can be overridden per kernel, to achieve position-independent
+kernels (with much smaller rule spaces).
 
 Given the following example cell matrix with the center cell highlighted with
 caret (`^`):
@@ -61,13 +62,13 @@ T-0: 0 1 0 3 0
 The above example kernel will select the following values and assign bit
 positions (for all non-zero cell states) to compute a summed ID:
 
-| k index | offset    | cell value | encoded |
-|--------:|-----------|-----------:|--------:|
-| 0       | `[-2, 1]` | 2          | 1       |
-| 1       | `[-1, 0]` | 1          | 2       |
-| 2       | `[0, 0]`  | 0          | 0       |
-| 3       | `[1, 0]`  | 3          | 8       |
-| 4       | `[2, 1]`  | 1          | 16      |
+| k index | offset    | cell value |  encoded |
+|--------:|-----------|-----------:|---------:|
+|       0 | `[-2, 1]` |          2 |  2^0 = 1 |
+|       1 | `[-1, 0]` |          1 |  2^1 = 2 |
+|       2 | `[0, 0]`  |          0 |        0 |
+|       3 | `[1, 0]`  |          3 |  2^3 = 8 |
+|       4 | `[2, 1]`  |          1 | 2^4 = 16 |
 
 Final encoded neighborhood sum: 1 + 2 + 8 + 16 = 27
 
@@ -129,6 +130,10 @@ ${examples}
 
 ${docLink}
 
+## Code examples
+
+### Classic Wolfram
+
 ```ts
 import { MultiCA1D } from "@thi.ng/cellular";
 import { defIndexed, intBuffer } from "@thi.ng/pixel";
@@ -143,11 +148,7 @@ const ca = new MultiCA1D(
     [
         {
             rule: BigInt(73),
-            kernel: [
-                [-1, 0],
-                [0, 0],
-                [1, 0],
-            ],
+            kernel: [[-1, 0],[0, 0],[1, 0]],
             states: 2,
             reset: false,
         },
@@ -171,6 +172,68 @@ writeFileSync("export/out.ppm", asPPM(img));
 Result:
 
 ![1D Wolfram CA, rule 73](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/cellular/wolfram-73.png)
+
+### Custom kernels & multiple rules
+
+```ts
+// create CA with 2 rules/kernels and 64 max age
+const ca = new MultiCA1D(
+    [
+        {
+            rule: BigInt(0x73ed2ac2),
+            kernel: [[-2, 0],[-1, 0],[0, 0],[1, 0],[2, 0]],
+            states: 64,
+        },
+        {
+            rule: BigInt(0xef14e4ca),
+            kernel: [[-2, 0],[-1, 0],[0, 0],[1, 0],[2, 0]],
+            states: 64,
+        }
+    ],
+    WIDTH
+);
+
+// seed with 10% noise
+ca.setNoise("cells", 0.1);
+
+// set mask to stripe pattern to select both CAs
+ca.setPattern("mask", WIDTH / 4, WIDTH / 2, 1, 0, WIDTH / 8);
+
+// alternatively apply noise to the mask to create
+// more uniformly hybrid/mixed results
+// ca.setNoise("mask", 0.5, RND);
+
+// create color gradient to visualize the different cell states
+// and wrap as indexed color model for pixel buffer below...
+const fmt = defIndexed(
+    multiColorGradient(
+        {
+            num: ca.numStates,
+            stops: [
+                [0, srgb(1, 0, 0.5)],
+                [0.02, srgb(0.8, 1, 1)],
+                [1, srgb(1, 0.5, 0)],
+            ],
+        },
+        false
+    )
+);
+
+// create image / pixel buffer using above indexed color model
+const img = intBuffer(WIDTH, HEIGHT, fmt);
+
+// compute CA for full image
+ca.updateImage(img.data, HEIGHT);
+
+// export as PPM image
+writeFileSync("export/out.ppm", asPPM(img));
+```
+
+| 1st CA only                                                                                       | 2nd CA only                                                                                     |
+|---------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------|
+| ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/cellular/hybrid-a.png)       | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/cellular/hybrid-b.png)     |
+| Hybrid (stripe pattern)                                                                           | Hybrid (noise)                                                                                  |
+| ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/cellular/hybrid-pattern.png) | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/cellular/hybrid-noise.png) |
 
 ## Authors
 
