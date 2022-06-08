@@ -2,11 +2,13 @@ import type { FnN, NumericArray } from "@thi.ng/api";
 
 export type Target = "cells" | "mask";
 
+export type Kernel = NumericArray[];
+
 export interface CAConfig1D {
     /**
      * Same as {@link CASpec1D.kernel}.
      */
-    kernel: NumericArray[];
+    kernel: Kernel;
     /**
      * Same as {@link CASpec1D.weights}.
      */
@@ -40,7 +42,7 @@ export interface CASpec1D {
      * overall state of the neighborhood, i.e. 2^k, where `k` is the array index
      * of the corresponding kernel offset.
      */
-    kernel: NumericArray[];
+    kernel: Kernel;
     /**
      * If false (default: true), the order of kernel offsets is irrelevant and
      * only the count of non-zero cells in the neighborhood is used to check a
@@ -55,7 +57,7 @@ export interface CASpec1D {
      * = 4 billion possibilities. A 7-neighborhood corresponds to a 2^7 = 128
      * bit large rule space (~10^38 possibilities!).
      */
-    rule: bigint | string;
+    rule: bigint | number | string;
     /**
      * Max number of cell states (aka cell age). Note: MUST be <= 256. For
      * "standard" Wolfram automata, states = 2.

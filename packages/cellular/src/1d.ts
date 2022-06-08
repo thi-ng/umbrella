@@ -1,5 +1,5 @@
 import type { IClear, TypedArray, UIntArray } from "@thi.ng/api";
-import { isString } from "@thi.ng/checks/is-string";
+import { isBigInt } from "@thi.ng/checks/is-bigint";
 import { assert } from "@thi.ng/errors/assert";
 import type { IRandom } from "@thi.ng/random";
 import { SYSTEM } from "@thi.ng/random/system";
@@ -10,11 +10,30 @@ import { max } from "@thi.ng/transducers/max";
 import { pluck } from "@thi.ng/transducers/pluck";
 import { repeatedly } from "@thi.ng/transducers/repeatedly";
 import { transduce } from "@thi.ng/transducers/transduce";
-import type { CAConfig1D, CASpec1D, Target } from "./api.js";
+import type { CAConfig1D, CASpec1D, Kernel, Target } from "./api.js";
 
 const $0 = BigInt(0);
 const $1 = BigInt(1);
 const $32 = BigInt(32);
+
+/**
+ * Standard Wolfram automata 3-neighborhood (no history)
+ */
+export const WOLFRAM3: Kernel = [
+    [-1, 0],
+    [0, 0],
+    [1, 0],
+];
+
+/**
+ * Standard 5-neighborhood (no history)
+ */
+export const WOLFRAM5: Kernel = [[-2, 0], ...WOLFRAM3, [2, 0]];
+
+/**
+ * Standard 7-neighborhood (no history)
+ */
+export const WOLFRAM7: Kernel = [[-3, 0], ...WOLFRAM5, [3, 0]];
 
 /**
  * Implementation of a 1D cellular automata environment with support for
@@ -295,7 +314,7 @@ const __compileSpec = ({
     return <CAConfig1D>{
         kernel,
         states,
-        rule: isString(rule) ? BigInt(rule) : rule,
+        rule: isBigInt(rule) ? rule : BigInt(rule),
         weights:
             positional !== false
                 ? kernel.map((_, i) => BigInt(2) ** BigInt(i))
