@@ -10,7 +10,7 @@ import { max } from "@thi.ng/transducers/max";
 import { pluck } from "@thi.ng/transducers/pluck";
 import { repeatedly } from "@thi.ng/transducers/repeatedly";
 import { transduce } from "@thi.ng/transducers/transduce";
-import type { CAConfig1D, CASpec1D } from "./api.js";
+import type { CAConfig1D, CASpec1D, Target } from "./api.js";
 
 const $0 = BigInt(0);
 const $1 = BigInt(1);
@@ -36,7 +36,7 @@ const $32 = BigInt(32);
  * ### Rule encoding
  *
  * Automata rules are encoded as JS `BigInt` values and are considered
- * anisotropic by default. If isotropy is to used, it has to be explicitly
+ * anisotropic by default. If isotropy is desired, it has to be explicitly
  * pre-encoded [out of scope of this library]. There's also built-in optional
  * support for position independent neighborhood encoding, only considering the
  * number/count of non-zero cells. An encoded rule ID and its overall magnitude
@@ -51,12 +51,13 @@ const $32 = BigInt(32);
  * memory of one additional previous generation (i.e. the [-2,1] and [2,1]
  * offsets)
  *
- * The related rule has a 32 bit address space (4 billion possibilities), due to
- * 2^5 = 32 and each kernel offset being assigned a distinct bit value by
- * default, i.e. first kernel offset = 2^0, second kernel offset = 2^1, third =
- * 2^2, fourth = 2^3, etc. Via the {@link CASpec1D.positional} config option,
- * this behavior can be overridden per kernel (to achieve position-independent
- * kernels).
+ * The rules related to this kernel have a 32 bit address space (4 billion
+ * possibilities), due to 2^5 = 32 and each kernel offset being assigned a
+ * distinct bit value by default, i.e. first kernel offset = 2^0, second kernel
+ * offset = 2^1, third = 2^2, fourth = 2^3, fifth = 2^4. Via the
+ * {@link CASpec1D.positional} config option, this behavior can be overridden
+ * per kernel, to achieve position-independent kernels (with much smaller rule
+ * spaces).
  *
  * Given the following example cell matrix with the center cell highlighted with
  * caret (`^`):
@@ -175,19 +176,27 @@ export class MultiCA1D implements IClear {
     }
 
     /**
-     * Sets a parametric pattern in the current generation array.
+     * Sets a parametric pattern in the current generation or mask array.
      *
+     * @param target - target buffer ID to apply pattern
      * @param width - number of consecutive cells per segment
      * @param stride -  number of cells between each pattern segment
      * @param val - start cell value per segment
      * @param inc - cell value increment
      * @param offset - start cell offset
      */
-    setPattern(width: number, stride: number, val = 1, inc = 0, offset = 0) {
-        const { current, numStates, width: $width } = this;
-        for (let x = offset; x < $width; x += stride) {
+    setPattern(
+        target: Target,
+        width: number,
+        stride: number,
+        val = 1,
+        inc = 0,
+        offset = 0
+    ) {
+        const [dest, num] = this._getTarget(target);
+        for (let x = offset, w = this.width; x < w; x += stride) {
             for (let k = 0, v = val; k < width; k++, v += inc) {
-                current[x + k] = v % numStates;
+                dest[x + k] = v % num;
             }
         }
         return this;
@@ -197,13 +206,14 @@ export class MultiCA1D implements IClear {
      * Sets cells in current generation array to a random state using given
      * `probability` and optional PRNG ({@link @thi.ng/random#IRandom} instance).
      *
+     * @param target
      * @param prob
      * @param rnd
      */
-    setNoise(prob = 0.5, rnd: IRandom = SYSTEM) {
-        const { current, numStates, width } = this;
-        for (let x = 0; x < width; x++) {
-            if (rnd.float() < prob) current[x] = rnd.int() % numStates;
+    setNoise(target: Target, prob = 0.5, rnd: IRandom = SYSTEM) {
+        const [dest, num] = this._getTarget(target);
+        for (let x = 0, width = this.width; x < width; x++) {
+            if (rnd.float() < prob) dest[x] = rnd.int() % num;
         }
         return this;
     }
@@ -256,7 +266,7 @@ export class MultiCA1D implements IClear {
         rnd: IRandom = SYSTEM
     ) {
         for (let y = 0; y < height; y++) {
-            rnd.float() < perturb && this.setNoise(density, rnd);
+            rnd.float() < perturb && this.setNoise("cells", density, rnd);
             this.update();
             pixels.set(this.current, y * this.width);
         }
@@ -265,6 +275,12 @@ export class MultiCA1D implements IClear {
     rotate(dir: number) {
         __rotate(this.current, dir);
         __rotate(this.mask, dir);
+    }
+
+    protected _getTarget(target: Target): [Uint8Array, number] {
+        return target === "cells"
+            ? [this.current, this.numStates]
+            : [this.mask, this.configs.length];
     }
 }
 

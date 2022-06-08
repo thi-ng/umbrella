@@ -1,5 +1,7 @@
 import type { FnN, NumericArray } from "@thi.ng/api";
 
+export type Target = "cells" | "mask";
+
 export interface CAConfig1D {
     /**
      * Same as {@link CASpec1D.kernel}.
@@ -42,7 +44,8 @@ export interface CASpec1D {
     /**
      * If false (default: true), the order of kernel offsets is irrelevant and
      * only the count of non-zero cells in the neighborhood is used to check a
-     * relevant bit in the `rule` ID.
+     * relevant bit in the `rule` ID. E.g. if count = 3, then the 3rd LSB will
+     * be checked.
      */
     positional?: boolean;
     /**
