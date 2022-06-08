@@ -3,11 +3,16 @@ import { tween } from "@thi.ng/transducers/tween";
 import { setS4 } from "@thi.ng/vectors/sets";
 import type { TypedColor } from "./api.js";
 import type { GradientOpts } from "./api/gradients.js";
+import { intArgb32Abgr32 } from "./int/int-int.js";
+import { argb32 } from "./int/int.js";
 import { mix as $mix } from "./mix.js";
 
 /**
  * Similar to {@link multiCosineGradient}, but using any number of gradient
- * color stops and isn't limited to RGB, but for arbitrary color types.
+ * color stops and isn't limited to RGB, but for arbitrary color types. The
+ * optional `isABGR` boolean arg can be used to autoconvert resulting colors
+ * into packed ARGB (false) or ABGR (true) integers. If that arg is given, an
+ * array of numbers will be returned.
  *
  * @remarks
  * @see {@link @thi.ng/transducers#tween}
@@ -41,11 +46,25 @@ import { mix as $mix } from "./mix.js";
  * );
  * ```
  *
- * @param opts - 
+ * @param opts -
+ * @param isABGR -
  */
-export const multiColorGradient = <T extends TypedColor<any>>(
+export function multiColorGradient<T extends TypedColor<any>>(
     opts: GradientOpts<T>
-) => [...gradient(opts)];
+): T[];
+export function multiColorGradient<T extends TypedColor<any>>(
+    opts: GradientOpts<T>,
+    isABGR: boolean
+): number[];
+export function multiColorGradient<T extends TypedColor<any>>(
+    opts: GradientOpts<T>,
+    isABGR?: boolean
+) {
+    const cols = [...gradient(opts)];
+    if (isABGR === undefined) return cols;
+    const rgba = cols.map((x) => argb32(x)[0]);
+    return isABGR ? rgba.map(intArgb32Abgr32) : rgba;
+}
 
 /**
  * Similar to {@link multiColorGradient}, but writes results into `buffer` from
@@ -55,7 +74,7 @@ export const multiColorGradient = <T extends TypedColor<any>>(
  * Intended use case for this function: 1D texturemap/tonemap generation, e.g.
  * for dataviz etc. Also @see {@link cosineGradientBuffer}.
  *
- * @param opts - 
+ * @param opts -
  * @param buffer - target buffer/array
  * @param offset - start index (default: 0)
  * @param cstride - channel stride (default: 1)
