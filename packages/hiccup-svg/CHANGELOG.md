@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-05-07T11:33:36Z
+- **Last updated**: 2022-06-09T16:14:01Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,13 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [4.2.13](https://github.com/thi-ng/umbrella/tree/@thi.ng/hiccup-svg@4.2.13) (2022-06-09)
+
+#### 🩹 Bug fixes
+
+- fix [#351](https://github.com/thi-ng/umbrella/issues/351) convertTree() ([8dc0e86](https://github.com/thi-ng/umbrella/commit/8dc0e86))
+  - update gradientTreansform handling
 
 ### [4.2.9](https://github.com/thi-ng/umbrella/tree/@thi.ng/hiccup-svg@4.2.9) (2022-04-07)
 

@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-05-07T11:33:35Z
+- **Last updated**: 2022-06-09T16:14:01Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,14 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [5.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/color@5.1.0) (2022-06-09)
+
+#### 🚀 Features
+
+- update multiColorGradient() ([f47a59d](https://github.com/thi-ng/umbrella/commit/f47a59d))
+  - add support for automatic conversion to packed ARGB/ABGR ints
+    (for use with indexed color models in [@thi.ng/pixel](https://github.com/thi-ng/umbrella/tree/main/packages/pixel))
 
 # [5.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/color@5.0.0) (2022-03-11)
 

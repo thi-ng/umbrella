@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/dcons",
-    "version": "3.2.3",
+    "version": "3.2.4",
     "description": "Double-linked lists with comprehensive set of operations (incl. optional self-organizing behaviors)",
     "type": "module",
     "module": "./index.js",
@@ -34,17 +34,17 @@
         "test": "testament test"
     },
     "dependencies": {
-        "@thi.ng/api": "^8.3.6",
-        "@thi.ng/checks": "^3.1.6",
-        "@thi.ng/compare": "^2.1.6",
-        "@thi.ng/equiv": "^2.1.6",
-        "@thi.ng/errors": "^2.1.6",
-        "@thi.ng/random": "^3.3.0",
-        "@thi.ng/transducers": "^8.3.3"
+        "@thi.ng/api": "^8.3.7",
+        "@thi.ng/checks": "^3.2.0",
+        "@thi.ng/compare": "^2.1.7",
+        "@thi.ng/equiv": "^2.1.7",
+        "@thi.ng/errors": "^2.1.7",
+        "@thi.ng/random": "^3.3.1",
+        "@thi.ng/transducers": "^8.3.4"
     },
     "devDependencies": {
         "@microsoft/api-extractor": "^7.25.0",
-        "@thi.ng/testament": "^0.2.7",
+        "@thi.ng/testament": "^0.2.8",
         "rimraf": "^3.0.2",
         "tools": "workspace:^",
         "typedoc": "^0.22.17",
