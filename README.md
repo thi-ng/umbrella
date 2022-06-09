@@ -71,7 +71,7 @@ this repo provides a large number of example projects, detailed readmes (at the
 very least for all the larger and/or more important packages) and smaller usage
 examples in the docstrings.
 
-## Examples
+## Examples & Showcase
 
 There's a steadily growing number (100+) of standalone examples
 (different complexities, often combining functionality from several
@@ -82,6 +82,26 @@ packages) in the [**examples**](./examples/README.md) directory.
 | <img src="./assets/examples/svg-waveform.jpg" width="240"/>   | <img src="./assets/imgui/imgui-all.png" width="240"/>             | <img src="./assets/shader-ast/shader-ast-raymarch.jpg" width="240"/> |
 | <img src="./assets/examples/shader-ast-evo.jpg" width="240"/> | <img src="./assets/examples/adaptive-threshold.png" width="240"/> | <img src="./assets/examples/crypto-chart.png" width="240"/>          |
 | <img src="./assets/examples/text-canvas.png" width="240"/>    | <img src="./assets/geom/tessel.png" width="240"/>                 | <img src="./assets/examples/soa-ecs-100k.png" width="240"/>          |
+
+### awesome.thi.ng
+
+Due to other priorities still very much in its infancy & planning stage, but
+please help to document your own usage of these packages by contributing project
+information to the [awesome.thi.ng](https://github.com/thi-ng/awesome.thi.ng)
+repo, which will be used to build a showcase site... Thank you!
+
+### Generative art projects
+
+Several generative art projects by [Karsten Schmidt on
+fx(hash)](https://www.fxhash.xyz/u/toxi) have been created exclusively with
+libraries from this collection.
+
+| De/Frag series                                  |                                              |                                              |
+|-------------------------------------------------|----------------------------------------------|----------------------------------------------|
+| <img src="./assets/fxhash/defrag1-240.jpg"/>    | <img src="./assets/fxhash/defrag2-240.jpg"/> | <img src="./assets/fxhash/defrag3-240.jpg"/> |
+| Quasiflock                                      | C-SCAPE                                      |                                              |
+| <img src="./assets/fxhash/quasiflock-240.jpg"/> | <img src="./assets/fxhash/c-scape-240.jpg"/> |                                              |
+
 
 ## Blog posts
 
@@ -141,15 +161,14 @@ feature or `develop` branches)
 
 ### Latest updates
 
-As of: 2022-05-23
+As of: 2022-06-09
 
-| Status                                        | Project                                             | Version                                                                                                                   | Changelog                                          |
-|-----------------------------------------------|-----------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------|
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/date`](./packages/date)                   | [![version](https://img.shields.io/npm/v/@thi.ng/date.svg)](https://www.npmjs.com/package/@thi.ng/date)                   | [changelog](./packages/date/CHANGELOG.md)          |
-| ![](https://img.shields.io/badge/-new-cyan)   | [`@thi.ng/file-io`](./packages/file-io)             | [![version](https://img.shields.io/npm/v/@thi.ng/file-io.svg)](https://www.npmjs.com/package/@thi.ng/file-io)             | [changelog](./packages/file-io/CHANGELOG.md)       |
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/intervals`](./packages/intervals)         | [![version](https://img.shields.io/npm/v/@thi.ng/intervals.svg)](https://www.npmjs.com/package/@thi.ng/intervals)         | [changelog](./packages/intervals/CHANGELOG.md)     |
-| ![](https://img.shields.io/badge/-new-cyan)   | [`@thi.ng/random-fxhash`](./packages/random-fxhash) | [![version](https://img.shields.io/npm/v/@thi.ng/random-fxhash.svg)](https://www.npmjs.com/package/@thi.ng/random-fxhash) | [changelog](./packages/random-fxhash/CHANGELOG.md) |
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/resolve-map`](./packages/resolve-map)     | [![version](https://img.shields.io/npm/v/@thi.ng/resolve-map.svg)](https://www.npmjs.com/package/@thi.ng/resolve-map)     | [changelog](./packages/resolve-map/CHANGELOG.md)   |
+| Status                                        | Project                                       | Version                                                                                                             | Changelog                                       |
+|-----------------------------------------------|-----------------------------------------------|---------------------------------------------------------------------------------------------------------------------|-------------------------------------------------|
+| ![](https://img.shields.io/badge/-new-cyan)   | [`@thi.ng/cellular`](./packages/cellular)     | [![version](https://img.shields.io/npm/v/@thi.ng/cellular.svg)](https://www.npmjs.com/package/@thi.ng/cellular)     | [changelog](./packages/cellular/CHANGELOG.md)   |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/checks`](./packages/checks)         | [![version](https://img.shields.io/npm/v/@thi.ng/checks.svg)](https://www.npmjs.com/package/@thi.ng/checks)         | [changelog](./packages/checks/CHANGELOG.md)     |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/color`](./packages/color)           | [![version](https://img.shields.io/npm/v/@thi.ng/color.svg)](https://www.npmjs.com/package/@thi.ng/color)           | [changelog](./packages/color/CHANGELOG.md)      |
+| ![](https://img.shields.io/badge/-fix-orange) | [`@thi.ng/hiccup-svg`](./packages/hiccup-svg) | [![version](https://img.shields.io/npm/v/@thi.ng/hiccup-svg.svg)](https://www.npmjs.com/package/@thi.ng/hiccup-svg) | [changelog](./packages/hiccup-svg/CHANGELOG.md) |
 
 <!--
 ![](https://img.shields.io/badge/-feat-green)
@@ -266,6 +285,7 @@ As of: 2022-05-23
 | [`@thi.ng/atom`](./packages/atom)               | [![version](https://img.shields.io/npm/v/@thi.ng/atom.svg)](https://www.npmjs.com/package/@thi.ng/atom)               | [changelog](./packages/atom/CHANGELOG.md)        | Immutable value wrappers, views, history |
 | [`@thi.ng/bitfield`](./packages/bitfield)       | [![version](https://img.shields.io/npm/v/@thi.ng/bitfield.svg)](https://www.npmjs.com/package/@thi.ng/bitfield)       | [changelog](./packages/bitfield/CHANGELOG.md)    | 1D/2D bit field implementations          |
 | [`@thi.ng/cache`](./packages/cache)             | [![version](https://img.shields.io/npm/v/@thi.ng/cache.svg)](https://www.npmjs.com/package/@thi.ng/cache)             | [changelog](./packages/cache/CHANGELOG.md)       | In-memory caches / strategies            |
+| [`@thi.ng/cellular`](./packages/cellular)       | [![version](https://img.shields.io/npm/v/@thi.ng/cellular.svg)](https://www.npmjs.com/package/@thi.ng/cellular)       | [changelog](./packages/cellular/CHANGELOG.md)    | Highly configurable 1D Cellular automata |
 | [`@thi.ng/dcons`](./packages/dcons)             | [![version](https://img.shields.io/npm/v/@thi.ng/dcons.svg)](https://www.npmjs.com/package/@thi.ng/dcons)             | [changelog](./packages/dcons/CHANGELOG.md)       | Doubly-linked list                       |
 | [`@thi.ng/diff`](./packages/diff)               | [![version](https://img.shields.io/npm/v/@thi.ng/diff.svg)](https://www.npmjs.com/package/@thi.ng/diff)               | [changelog](./packages/diff/CHANGELOG.md)        | Array & object diffing                   |
 | [`@thi.ng/dgraph`](./packages/dgraph)           | [![version](https://img.shields.io/npm/v/@thi.ng/dgraph.svg)](https://www.npmjs.com/package/@thi.ng/dgraph)           | [changelog](./packages/dgraph/CHANGELOG.md)      | Dependency graph                         |
