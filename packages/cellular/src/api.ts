@@ -1,6 +1,8 @@
-import type { FnN, NumericArray } from "@thi.ng/api";
+import type { Fn2, FnN, NumericArray } from "@thi.ng/api";
+import type { IRandom } from "@thi.ng/random";
+import type { MultiCA1D } from "./1d";
 
-export type Target = "cells" | "mask";
+export type Target = "cells" | "mask" | "prob";
 
 export type Kernel = NumericArray[];
 
@@ -10,7 +12,10 @@ export interface CAConfig1D {
      */
     kernel: Kernel;
     /**
-     * Same as {@link CASpec1D.weights}.
+     * Weight factors for each kernel offset. If {@link CASpec1D.positional} is
+     * true, these weights will all be `1 << i` where `i` is the index of each
+     * kernel offset vector. If `positional` is false, all weights will be set
+     * to 1.
      */
     weights: bigint[];
     /**
@@ -69,4 +74,49 @@ export interface CASpec1D {
      * automata.
      */
     reset?: boolean;
+}
+
+export interface UpdateBufferOpts {
+    /**
+     * Per-generation perturbance probability. Default: 0%
+     */
+    perturb: number;
+    /**
+     * Per-cell perturbance probability. Default: 5% (only used if `perturb >
+     * 0`)
+     */
+    density: number;
+}
+
+export interface UpdateImageOpts1D {
+    /**
+     * Per-generation perturbance options for cell states array
+     */
+    cells: Partial<UpdateBufferOpts>;
+    /**
+     * Per-generation perturbance options for cell mask array
+     */
+    mask: Partial<UpdateBufferOpts>;
+    /**
+     * Per-generation perturbance options for cell update probability array.
+     * Only used if {@link UpdateImageOpts1D.probabilistic} is true.
+     */
+    prob: Partial<UpdateBufferOpts>;
+    /**
+     * If true, each new generation will be updated via
+     * {@link MultiCA1D.updateProbabilistic} instead of
+     * {@link MultiCA1D.update}.
+     */
+    probabilistic: boolean;
+    /**
+     * PRNG instance to use for perturbance. Default:
+     * {@link @thi.ng/random#SYSTEM} aka `Math.random`.
+     */
+    rnd: IRandom;
+    /**
+     * User handler function called immediatedly after each update (computation
+     * of a new generation). The arguments passed are the {@link MultiCA1D}
+     * instance and pixel row index.
+     */
+    onupdate: Fn2<MultiCA1D, number, void>;
 }

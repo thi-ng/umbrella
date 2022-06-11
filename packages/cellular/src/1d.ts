@@ -10,7 +10,14 @@ import { max } from "@thi.ng/transducers/max";
 import { pluck } from "@thi.ng/transducers/pluck";
 import { repeatedly } from "@thi.ng/transducers/repeatedly";
 import { transduce } from "@thi.ng/transducers/transduce";
-import type { CAConfig1D, CASpec1D, Kernel, Target } from "./api.js";
+import type {
+    CAConfig1D,
+    CASpec1D,
+    Kernel,
+    Target,
+    UpdateBufferOpts,
+    UpdateImageOpts1D,
+} from "./api.js";
 
 const $0 = BigInt(0);
 const $1 = BigInt(1);
@@ -114,6 +121,13 @@ export const WOLFRAM7: Kernel = [[-3, 0], ...WOLFRAM5, [3, 0]];
  * {@link CASpec1D.reset} option. Conversely, if the corresponding bit is _not_
  * set in the rule ID, the cell state will be zeroed too.
  *
+ * ### Update probabilities
+ *
+ * Each cell has an optional update probability, which is initialized to 1.0 by
+ * default (i.e. to always be updated). Use
+ * {@link MultiCA1D.updateProbabilistic} or {@link MultiCA1D.updateImage} to
+ * take these probabilities into account.
+ *
  * ### Wraparound
  *
  * By default the environment is configured to be toroidal, i.e. both left/right
@@ -155,6 +169,7 @@ export class MultiCA1D implements IClear {
     numStates: number;
     mask!: Uint8Array;
     gens!: Uint8Array[];
+    prob!: Float32Array;
 
     constructor(configs: CASpec1D[], public width: number, public wrap = true) {
         this.configs = configs.map(__compileSpec);
@@ -182,16 +197,19 @@ export class MultiCA1D implements IClear {
 
     clear() {
         this.gens.forEach((g) => g.fill(0));
+        this.mask.fill(0);
+        this.prob.fill(1);
     }
 
-    clearCurrent() {
-        this.current.fill(0);
+    clearTarget(target: Target) {
+        this._getTarget(target)[0].fill(target === "prob" ? 1 : 0);
     }
 
     resize(width: number) {
         this.width = width;
         this.mask = new Uint8Array(width);
         this.gens = [...repeatedly(() => new Uint8Array(width), this.rows + 1)];
+        this.prob = new Float32Array(width).fill(1);
     }
 
     /**
@@ -231,75 +249,140 @@ export class MultiCA1D implements IClear {
      */
     setNoise(target: Target, prob = 0.5, rnd: IRandom = SYSTEM) {
         const [dest, num] = this._getTarget(target);
+        const fn =
+            target === "prob" ? () => rnd.float() : () => rnd.int() % num;
         for (let x = 0, width = this.width; x < width; x++) {
-            if (rnd.float() < prob) dest[x] = rnd.int() % num;
+            if (rnd.float() < prob) dest[x] = fn();
         }
         return this;
     }
 
     /**
-     * Computes a single new generation using current cell states and mask. See
+     * Computes a single new generation using current cell states and mask only
+     * (no consideration for cell update probabilities, use
+     * {@link MultiCA1D.updateProbabilistic} for that instead). Als see
      * {@link MultiCA1D.updateImage} for batch updates.
      */
     update() {
-        const { width, gens, configs, mask, wrap } = this;
+        const { width, gens, configs, mask } = this;
         const [next, curr] = gens;
         for (let x = 0; x < width; x++) {
-            const { rule, kernel, weights, fn } = configs[mask[x]];
-            let sum = $0;
-            for (let i = 0, n = kernel.length; i < n; i++) {
-                const k = kernel[i];
-                let xx = x + k[0];
-                if (wrap) {
-                    if (xx < 0) xx += width;
-                    else if (xx >= width) xx -= width;
-                } else if (xx < 0 || xx >= width) continue;
-                const y = k[1];
-                if (y >= 0 && gens[1 + y][xx] !== 0) sum += weights[i];
-            }
-            next[x] = rule & ($1 << sum) ? fn(curr[x]) : 0;
+            next[x] = this.computeCell(configs[mask[x]], x, curr[x]);
         }
         gens.unshift(gens.pop()!);
     }
 
     /**
+     * Same as {@link MultiCA1D.update}, but also considering cell update
+     * probabilities stored in the {@link MultiCA1D.prob} array.
+     *
+     * @param rnd
+     */
+    updateProbabilistic(rnd: IRandom = SYSTEM) {
+        const { width, prob, gens, configs, mask } = this;
+        const [next, curr] = gens;
+        for (let x = 0; x < width; x++) {
+            next[x] =
+                rnd.float() < prob[x]
+                    ? this.computeCell(configs[mask[x]], x, curr[x])
+                    : curr[x];
+        }
+        gens.unshift(gens.pop()!);
+    }
+
+    /**
+     * Computes (but doesn't apply) the new state for a single cell.
+     *
+     * @param config - CA configuration
+     * @param x - cell index
+     * @param val - current cell value
+     */
+    computeCell(
+        { rule, kernel, weights, fn }: CAConfig1D,
+        x: number,
+        val: number
+    ) {
+        const { width, gens, wrap } = this;
+        let sum = $0;
+        for (let i = 0, n = kernel.length; i < n; i++) {
+            const k = kernel[i];
+            let xx = x + k[0];
+            if (wrap) {
+                if (xx < 0) xx += width;
+                else if (xx >= width) xx -= width;
+            } else if (xx < 0 || xx >= width) continue;
+            const y = k[1];
+            if (y >= 0 && gens[1 + y][xx] !== 0) sum += weights[i];
+        }
+        return rule & ($1 << sum) ? fn(val) : 0;
+    }
+
+    /**
      * Batch version of {@link MultiCA1D.update} to compute an entire image of
-     * given `height` (and same width as this CA instance has been configured
-     * to). Fill given `pixels` array with consecutive generations. For each
-     * iteration there's `perturb` probability (default: 0%) to call
-     * {@link MultiCA1D.setNoise} with given `density` (default: 5%) and using
-     * optionally provided PRNG. This can be helpful to sporadically introduce
-     * noise into the sim and break otherwise constant patterns emerging.
+     * given `height` (and assumed to be the same width as this CA instance has
+     * been configured to). Fills given `pixels` array with consecutive
+     * generations.
+     *
+     * @remarks
+     * Via the provided options object, per-generation & per-cell perturbance
+     * settings can be provided for cell states, mask and cell update
+     * probabilities. The latter are only considered if the
+     * {@link UpdateImageOpts1D.probabilistic} option is enabled. This can be
+     * helpful to sporadically introduce noise into the sim, break constant
+     * patterns and/or produce more varied/complex outputs.
+     *
+     * See {@link UpdateImageOpts1D} for further options.
      *
      * @param pixels
      * @param height
-     * @param perturb
-     * @param density
-     * @param rnd
+     * @param opts
      */
     updateImage(
         pixels: UIntArray,
         height: number,
-        perturb = 0,
-        density = 0.05,
-        rnd: IRandom = SYSTEM
+        opts: Partial<UpdateImageOpts1D> = {}
     ) {
+        assert(
+            pixels.length >= this.width * height,
+            "target pixel buffer too small"
+        );
+        const { cells, mask, prob, probabilistic, rnd, onupdate } = {
+            probabilistic: false,
+            rnd: SYSTEM,
+            ...opts,
+        };
+        const $ = (id: Target, conf?: Partial<UpdateBufferOpts>) => {
+            conf &&
+                conf.perturb &&
+                rnd.float() < conf.perturb &&
+                this.setNoise(id, conf.density || 0.05, rnd);
+        };
         for (let y = 0; y < height; y++) {
-            rnd.float() < perturb && this.setNoise("cells", density, rnd);
-            this.update();
+            $("cells", cells);
+            $("mask", mask);
+            $("prob", prob);
+            probabilistic ? this.updateProbabilistic(rnd) : this.update();
+            onupdate && onupdate(this, y);
             pixels.set(this.current, y * this.width);
         }
     }
 
-    rotate(dir: number) {
-        __rotate(this.current, dir);
-        __rotate(this.mask, dir);
+    rotate(target: Target | "all", dir: number) {
+        if (target === "all") {
+            __rotate(this.current, dir);
+            __rotate(this.mask, dir);
+            __rotate(this.prob, dir);
+        } else {
+            __rotate(this._getTarget(target)[0], dir);
+        }
     }
 
-    protected _getTarget(target: Target): [Uint8Array, number] {
+    protected _getTarget(target: Target): [TypedArray, number] {
         return target === "cells"
             ? [this.current, this.numStates]
-            : [this.mask, this.configs.length];
+            : target === "mask"
+            ? [this.mask, this.configs.length]
+            : [this.prob, 1];
     }
 }
 
