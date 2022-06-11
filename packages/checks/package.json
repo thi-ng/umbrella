@@ -118,6 +118,9 @@
         "./is-async-iterable": {
             "default": "./is-async-iterable.js"
         },
+        "./is-bigint": {
+            "default": "./is-bigint.js"
+        },
         "./is-blob": {
             "default": "./is-blob.js"
         },
