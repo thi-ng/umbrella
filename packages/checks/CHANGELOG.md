@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-06-09T16:14:01Z
+- **Last updated**: 2022-06-11T14:24:35Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,12 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [3.2.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/checks@3.2.1) (2022-06-11)
+
+#### 🩹 Bug fixes
+
+- update export map (add missing isBigInt()) ([9270de0](https://github.com/thi-ng/umbrella/commit/9270de0))
 
 ## [3.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/checks@3.2.0) (2022-06-09)
 
