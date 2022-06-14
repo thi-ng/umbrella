@@ -173,7 +173,7 @@ const downloadParser = (tplID: string, src: string) => {
             code,
             location.href,
             new Date().toISOString(),
-            src.trim().replace(/\\/g, "\\\\"),
+            src.trim().replace(/\\/g, "\\\\").replace(/`/g, "\\`"),
             activeRule.deref()!
         ),
         { mime: "text/plain", utf8: true }
