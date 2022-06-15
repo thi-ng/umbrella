@@ -144,8 +144,10 @@ Syntax sugars for `xform(parser, fn)`:
 - `collect` - collect child results into array
 - `count` - count number of children
 - `discard` - discard result
+- `float` / `int` / `hexInt` - join child results and parse as number
 - `hoist` / `hoistResult` - hoist first child / child result
 - `join` - join child results into string
+- `json` - join child results into string and parse as JSON
 - `nest` - apply another parser to result
 - `print` - print AST
 - `replace` - replace AST node result w/ pre-configured value
@@ -308,12 +310,13 @@ transforms](#transformers):
 - `binary` - parse as binary number
 - `collect` - collect sub terms into array
 - `discard` - discard result
+- `float` - join & parse as floating point number
+- `hex` - join & parse as hex integer
 - `hoist` - replace AST node with its 1st child
 - `hoistR` - use result of 1st child term only
+- `int` - join & parse as integer
 - `join` - join sub terms into single string
-- `float` - parse as floating point number
-- `int` - parse as integer
-- `hex` - parse as hex int
+- `json` - join & parse as JSON
 - `print` - print out node's subtree (AST)
 - `trim` - trim result
 
