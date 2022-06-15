@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-06-09T16:14:01Z
+- **Last updated**: 2022-06-15T13:10:05Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,15 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [2.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/parse@2.2.0) (2022-06-15)
+
+#### 🚀 Features
+
+- add new transformers (json, numbers) ([2087131](https://github.com/thi-ng/umbrella/commit/2087131))
+  - add xfJson(), json() transform
+  - add int(), hexInt(), float() transform syntax sugar
+  - add `json` as built-in tx for grammar
 
 ### [2.1.8](https://github.com/thi-ng/umbrella/tree/@thi.ng/parse@2.1.8) (2022-06-09)
 
