@@ -46,6 +46,7 @@ export * from "./xform/count.js";
 export * from "./xform/discard.js";
 export * from "./xform/hoist.js";
 export * from "./xform/join.js";
+export * from "./xform/json.js";
 export * from "./xform/nest.js";
 export * from "./xform/number.js";
 export * from "./xform/print.js";

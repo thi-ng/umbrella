@@ -46,6 +46,7 @@ import { xfCount } from "./xform/count.js";
 import { discard, xfDiscard } from "./xform/discard.js";
 import { hoist, hoistResult, xfHoist, xfHoistResult } from "./xform/hoist.js";
 import { join, xfJoin } from "./xform/join.js";
+import { xfJson } from "./xform/json.js";
 import { nest } from "./xform/nest.js";
 import { xfFloat, xfInt } from "./xform/number.js";
 import { print, xfPrint } from "./xform/print.js";
@@ -393,6 +394,7 @@ export const defGrammar = (
         hoistR: xfHoistResult,
         int: xfInt(10),
         join: xfJoin,
+        json: xfJson,
         print: xfPrint(),
         trim: xfTrim,
         ...env,

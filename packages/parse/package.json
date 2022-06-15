@@ -212,6 +212,9 @@
         "./xform/join": {
             "default": "./xform/join.js"
         },
+        "./xform/json": {
+            "default": "./xform/json.js"
+        },
         "./xform/nest": {
             "default": "./xform/nest.js"
         },
