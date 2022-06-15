@@ -161,7 +161,7 @@ feature or `develop` branches)
 
 ### Latest updates
 
-As of: 2022-06-09
+As of: 2022-06-15
 
 | Status                                        | Project                                       | Version                                                                                                             | Changelog                                       |
 |-----------------------------------------------|-----------------------------------------------|---------------------------------------------------------------------------------------------------------------------|-------------------------------------------------|
@@ -169,6 +169,7 @@ As of: 2022-06-09
 | ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/checks`](./packages/checks)         | [![version](https://img.shields.io/npm/v/@thi.ng/checks.svg)](https://www.npmjs.com/package/@thi.ng/checks)         | [changelog](./packages/checks/CHANGELOG.md)     |
 | ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/color`](./packages/color)           | [![version](https://img.shields.io/npm/v/@thi.ng/color.svg)](https://www.npmjs.com/package/@thi.ng/color)           | [changelog](./packages/color/CHANGELOG.md)      |
 | ![](https://img.shields.io/badge/-fix-orange) | [`@thi.ng/hiccup-svg`](./packages/hiccup-svg) | [![version](https://img.shields.io/npm/v/@thi.ng/hiccup-svg.svg)](https://www.npmjs.com/package/@thi.ng/hiccup-svg) | [changelog](./packages/hiccup-svg/CHANGELOG.md) |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/parse`](./packages/parse)           | [![version](https://img.shields.io/npm/v/@thi.ng/parse.svg)](https://www.npmjs.com/package/@thi.ng/parse)           | [changelog](./packages/parse/CHANGELOG.md)      |
 
 <!--
 ![](https://img.shields.io/badge/-feat-green)
