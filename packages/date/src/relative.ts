@@ -45,7 +45,7 @@ import { __idToPrecision, __precisionToID } from "./internal/precision.js";
  *   - `h` / `hour` / `hours`
  *   - `d` / `day` / `days`
  *   - `w` / `week` / `weeks`
- *   - `month` / `months`
+ *   - `mo` / `month` / `months`
  *   - `q` / `quarter` / `quarters`
  *   - `y` / `year` / `years`
  *
@@ -76,7 +76,7 @@ export const parseRelative = (offset: string, base?: MaybeDate) => {
                 return epoch;
             }
             const match =
-                /^(an? |next |[-+]?\d+\s?)((ms|milli(?:(s?|seconds?)))|s(?:(ecs?|econds?))?|min(?:(s|utes?))?|h(?:ours?)?|d(?:ays?)?|w(?:eeks?)?|months?|q(?:uarters?)?|y(?:ears?)?)(\s+ago)?$/.exec(
+                /^(an? |next |[-+]?\d+\s?)((ms|milli(?:(s?|seconds?)))|s(?:(ecs?|econds?))?|min(?:(s|utes?))?|h(?:ours?)?|d(?:ays?)?|w(?:eeks?)?|mo(?:nths?)?|q(?:uarters?)?|y(?:ears?)?)(\s+ago)?$/.exec(
                     offset
                 );
             return match
@@ -113,6 +113,7 @@ const parsePeriod = (x: string) => {
             hour: "h",
             day: "d",
             week: "w",
+            mo: "M",
             month: "M",
             quarter: "q",
             year: "y",

@@ -1,6 +1,6 @@
 import { group } from "@thi.ng/testament";
 import * as assert from "assert";
-import { DateTime, dateTime, parseRelative } from "../src/index.js"
+import { DateTime, dateTime, parseRelative } from "../src/index.js";
 
 const checkDate = (offset: string, base: DateTime, expected: number) => {
     const d = parseRelative(offset, base);
@@ -70,7 +70,7 @@ group("relative", {
             Date.UTC(2021, 1, 5)
         );
         check(
-            ["month", "months"],
+            ["mo", "month", "months"],
             base,
             Date.UTC(2020, 7, 1),
             Date.UTC(2021, 5, 1)
