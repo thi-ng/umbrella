@@ -68,10 +68,10 @@ const config = {
     // Optional route path component separator. Default: `/`
     separator: "/",
 
-    // Route prefix. Default: `/`. All routes to be parsed by `route()`
-    // are assumed to have this prefix. All routes returned by
-    // `format()` will include this prefix.
-    prefix: "/",
+    // Route prefix. Default: `/` (or `#/` if `useFragment` is enabled).
+    // All routes to be parsed by `route()` are assumed to have this prefix.
+    // All routes returned by `format()` will include this prefix.
+    prefix: "#/",
 
     // actual route defs
     // these are checked in given order
@@ -139,9 +139,6 @@ router.addListener(EVENT_ROUTE_CHANGED, console.log);
 
 router.start();
 ```
-
-See [further comments in source
-code](https://github.com/thi-ng/umbrella/blob/develop/packages/router/src/api.ts)
 
 ## Authors
 
