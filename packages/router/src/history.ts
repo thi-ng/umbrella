@@ -1,8 +1,6 @@
 import type { Fn } from "@thi.ng/api";
-import { isString } from "@thi.ng/checks/is-string";
 import { equiv } from "@thi.ng/equiv";
-import { illegalArity } from "@thi.ng/errors/illegal-arity";
-import type { HTMLRouterConfig, RouteMatch, RouterConfig } from "./api.js";
+import type { HTMLRouterConfig } from "./api.js";
 import { BasicRouter } from "./basic.js";
 
 export class HTMLRouter extends BasicRouter {
@@ -13,7 +11,7 @@ export class HTMLRouter extends BasicRouter {
     protected ignoreHashChange: boolean;
 
     constructor(config: HTMLRouterConfig) {
-        super(<RouterConfig>config);
+        super({ prefix: config.useFragment ? "#/" : "/", ...config });
         this.useFragment = config.useFragment !== false;
         this.ignoreHashChange = false;
     }
@@ -73,23 +71,6 @@ export class HTMLRouter extends BasicRouter {
             location.hash = route;
         }
         this.route(route);
-    }
-
-    format(id: PropertyKey, params?: any): string;
-    format(match: Partial<RouteMatch>): string;
-    format(...args: any[]) {
-        let match;
-        switch (args.length) {
-            case 2:
-                match = { id: args[0], params: args[1] };
-                break;
-            case 1:
-                match = isString(args[0]) ? { id: args[0] } : args[0];
-                break;
-            default:
-                illegalArity(args.length);
-        }
-        return super.format(match, this.useFragment);
     }
 
     protected handlePopChange() {

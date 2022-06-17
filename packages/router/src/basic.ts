@@ -78,12 +78,9 @@ export class BasicRouter implements INotify {
      * to default route. Before returning, triggers event with
      * return value as well.
      *
-     * @param raw - route path to match
+     * @param src - route path to match
      */
     route(src: string): RouteMatch | undefined {
-        if (src.charAt(0) === "#") {
-            src = src.substring(1);
-        }
         if (
             this.config.removeTrailingSlash &&
             src.charAt(src.length - 1) === this.config.separator
@@ -107,29 +104,21 @@ export class BasicRouter implements INotify {
     }
 
     /**
-     * Returns a formatted version of given {@link RouteMatch}, incl. any params.
-     * Throw an error if an invalid route `id` is provided.
+     * Returns a formatted version of given {@link RouteMatch}, incl. any
+     * params, or alternatively a registered route ID (and optional route
+     * params). Throws an error if an invalid route `id` is provided.
      *
-     * @param match -
+     * @param id -
      * @param params -
-     * @param hash - if true, prepends `#` to results
      */
-    format(id: string, params?: any, hash?: boolean): string;
-    format(match: Partial<RouteMatch>, hash?: boolean): string;
+    format(id: string, params?: any): string;
+    format(match: Partial<RouteMatch>): string;
     format(...args: any[]) {
-        let [id, params, hash] = args;
+        let [id, params] = args;
         let match: Partial<RouteMatch>;
         switch (args.length) {
-            case 3:
-                match = { id, params };
-                break;
             case 2:
-                if (isString(id)) {
-                    match = { id, params };
-                } else {
-                    hash = params;
-                    match = id;
-                }
+                match = { id, params };
                 break;
             case 1:
                 match = isString(id) ? { id } : id;
@@ -141,16 +130,17 @@ export class BasicRouter implements INotify {
         if (route) {
             const params = match!.params || {};
             return (
-                (hash ? "#" : "") +
                 this.config.prefix +
                 route.match
-                    .map((x) =>
-                        x.charAt(0) === "?"
-                            ? (x = params[x.substring(1)]) != null
-                                ? x
-                                : "NULL"
-                            : x
-                    )
+                    .map((x) => {
+                        if (isRouteParam(x)) {
+                            const id = x.substring(1);
+                            const p = params[id];
+                            if (p != null) return p;
+                            illegalArgs(`missing value for param '${id}'`);
+                        }
+                        return x;
+                    })
                     .join(this.config.separator)
             );
         } else {
@@ -180,7 +170,7 @@ export class BasicRouter implements INotify {
             const params: any = {};
             for (let i = 0; i < n; i++) {
                 const m = match[i];
-                if (m.charAt(0) === "?") {
+                if (isRouteParam(m)) {
                     params[m.substring(1)] = curr[i];
                 } else if (curr[i] !== m) {
                     return;
@@ -221,5 +211,6 @@ export class BasicRouter implements INotify {
     }
 }
 
-const isParametricRoute = (route: Route) =>
-    route.match.some((p) => p.charAt(0) === "?");
+const isParametricRoute = (route: Route) => route.match.some(isRouteParam);
+
+const isRouteParam = (x: string) => x[0] === "?";
