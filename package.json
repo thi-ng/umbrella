@@ -41,5 +41,5 @@
         "tool:prune": "tools:node-esm tools/src/prune-changelogs.ts",
         "tool:searchindex": "tools:node-esm tools/src/build-search-index.ts"
     },
-    "packageManager": "yarn@3.1.0"
+    "packageManager": "yarn@3.2.1"
 }
