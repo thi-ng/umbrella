@@ -161,7 +161,7 @@ feature or `develop` branches)
 
 ### Latest updates
 
-As of: 2022-06-15
+As of: 2022-06-17
 
 | Status                                        | Project                                       | Version                                                                                                             | Changelog                                       |
 |-----------------------------------------------|-----------------------------------------------|---------------------------------------------------------------------------------------------------------------------|-------------------------------------------------|
@@ -171,6 +171,7 @@ As of: 2022-06-15
 | ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/date`](./packages/date)             | [![version](https://img.shields.io/npm/v/@thi.ng/date.svg)](https://www.npmjs.com/package/@thi.ng/date)             | [changelog](./packages/date/CHANGELOG.md)       |
 | ![](https://img.shields.io/badge/-fix-orange) | [`@thi.ng/hiccup-svg`](./packages/hiccup-svg) | [![version](https://img.shields.io/npm/v/@thi.ng/hiccup-svg.svg)](https://www.npmjs.com/package/@thi.ng/hiccup-svg) | [changelog](./packages/hiccup-svg/CHANGELOG.md) |
 | ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/parse`](./packages/parse)           | [![version](https://img.shields.io/npm/v/@thi.ng/parse.svg)](https://www.npmjs.com/package/@thi.ng/parse)           | [changelog](./packages/parse/CHANGELOG.md)      |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/router`](./packages/router)           | [![version](https://img.shields.io/npm/v/@thi.ng/router.svg)](https://www.npmjs.com/package/@thi.ng/router)           | [changelog](./packages/router/CHANGELOG.md)      |
 
 <!--
 ![](https://img.shields.io/badge/-feat-green)
