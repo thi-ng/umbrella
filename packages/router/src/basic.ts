@@ -17,18 +17,24 @@ import {
 export class BasicRouter implements INotify {
     config: RouterConfig;
     current: RouteMatch | undefined;
+    routeIndex: Record<string, Route>;
 
     constructor(config: RouterConfig) {
-        config.authenticator =
-            config.authenticator ||
-            ((route, _, params) => ({
+        this.config = {
+            authenticator: (route, _, params) => ({
                 id: route.id,
                 title: route.title,
                 params,
-            }));
-        config.prefix = config.prefix === undefined ? "/" : config.prefix;
-        config.separator = config.separator || "/";
-        this.config = config;
+            }),
+            prefix: "/",
+            separator: "/",
+            removeTrailingSlash: true,
+            ...config,
+        };
+        this.routeIndex = this.config.routes.reduce(
+            (acc, r) => ((acc[r.id] = r), acc),
+            <Record<string, Route>>{}
+        );
         assert(
             this.routeForID(this.config.defaultRouteID) !== undefined,
             `missing config for default route: '${this.config.defaultRouteID}'`
@@ -77,6 +83,12 @@ export class BasicRouter implements INotify {
     route(src: string): RouteMatch | undefined {
         if (src.charAt(0) === "#") {
             src = src.substring(1);
+        }
+        if (
+            this.config.removeTrailingSlash &&
+            src.charAt(src.length - 1) === this.config.separator
+        ) {
+            src = src.substring(0, src.length - 1);
         }
         src = src.substring(this.config.prefix!.length);
         let match = this.matchRoutes(src);
@@ -146,8 +158,8 @@ export class BasicRouter implements INotify {
         }
     }
 
-    routeForID(id: string) {
-        return this.config.routes.find((route) => route.id === id);
+    routeForID(id: string): Route | undefined {
+        return this.routeIndex[id];
     }
 
     protected matchRoutes(src: string) {
@@ -162,8 +174,8 @@ export class BasicRouter implements INotify {
     }
 
     protected matchRoute(curr: string[], route: Route): RouteMatch | undefined {
-        const match = route.match,
-            n = match.length;
+        const match = route.match;
+        const n = match.length;
         if (curr.length === n) {
             const params: any = {};
             for (let i = 0; i < n; i++) {

@@ -141,6 +141,12 @@ export interface RouterConfig {
      * this prefix.
      */
     prefix?: string;
+    /**
+     * If true (default), the trailing slash (actually
+     * {@link RouterConfig.separator}) of a given route string will be removed
+     * before matching.
+     */
+    removeTrailingSlash?: boolean;
 }
 
 export interface HTMLRouterConfig extends RouterConfig {

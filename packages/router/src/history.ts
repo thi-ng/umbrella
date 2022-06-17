@@ -49,7 +49,7 @@ export class HTMLRouter extends BasicRouter {
      * If called from userland, this normally is true. However, we want
      * to avoid this if called from this router's own event handlers.
      *
-     * @param raw -
+     * @param src -
      * @param pushState -
      */
     route(src: string, pushState = true) {
