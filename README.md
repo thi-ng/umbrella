@@ -16,7 +16,7 @@
 **Please visit [thi.ng](https://thi.ng) for additional information & topic based
 search of packages relevant to your use cases...**
 
-This mono-repository is home to 165+ thi.ng TypeScript/ES6 projects, a wide and
+This mono-repository is home to 166+ thi.ng TypeScript/ES6 projects, a wide and
 jointly developed collection of packages and building blocks for (non-exhaustive
 list of topics):
 
@@ -161,17 +161,13 @@ feature or `develop` branches)
 
 ### Latest updates
 
-As of: 2022-06-17
+As of: 2022-06-20
 
-| Status                                        | Project                                       | Version                                                                                                             | Changelog                                       |
-|-----------------------------------------------|-----------------------------------------------|---------------------------------------------------------------------------------------------------------------------|-------------------------------------------------|
-| ![](https://img.shields.io/badge/-new-cyan)   | [`@thi.ng/cellular`](./packages/cellular)     | [![version](https://img.shields.io/npm/v/@thi.ng/cellular.svg)](https://www.npmjs.com/package/@thi.ng/cellular)     | [changelog](./packages/cellular/CHANGELOG.md)   |
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/checks`](./packages/checks)         | [![version](https://img.shields.io/npm/v/@thi.ng/checks.svg)](https://www.npmjs.com/package/@thi.ng/checks)         | [changelog](./packages/checks/CHANGELOG.md)     |
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/color`](./packages/color)           | [![version](https://img.shields.io/npm/v/@thi.ng/color.svg)](https://www.npmjs.com/package/@thi.ng/color)           | [changelog](./packages/color/CHANGELOG.md)      |
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/date`](./packages/date)             | [![version](https://img.shields.io/npm/v/@thi.ng/date.svg)](https://www.npmjs.com/package/@thi.ng/date)             | [changelog](./packages/date/CHANGELOG.md)       |
-| ![](https://img.shields.io/badge/-fix-orange) | [`@thi.ng/hiccup-svg`](./packages/hiccup-svg) | [![version](https://img.shields.io/npm/v/@thi.ng/hiccup-svg.svg)](https://www.npmjs.com/package/@thi.ng/hiccup-svg) | [changelog](./packages/hiccup-svg/CHANGELOG.md) |
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/parse`](./packages/parse)           | [![version](https://img.shields.io/npm/v/@thi.ng/parse.svg)](https://www.npmjs.com/package/@thi.ng/parse)           | [changelog](./packages/parse/CHANGELOG.md)      |
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/router`](./packages/router)           | [![version](https://img.shields.io/npm/v/@thi.ng/router.svg)](https://www.npmjs.com/package/@thi.ng/router)           | [changelog](./packages/router/CHANGELOG.md)      |
+| Status                                        | Project                                   | Version                                                                                                         | Changelog                                     |
+|-----------------------------------------------|-------------------------------------------|-----------------------------------------------------------------------------------------------------------------|-----------------------------------------------|
+| ![](https://img.shields.io/badge/-new-cyan)   | [`@thi.ng/cellular`](./packages/cellular) | [![version](https://img.shields.io/npm/v/@thi.ng/cellular.svg)](https://www.npmjs.com/package/@thi.ng/cellular) | [changelog](./packages/cellular/CHANGELOG.md) |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/geom`](./packages/geom)         | [![version](https://img.shields.io/npm/v/@thi.ng/geom.svg)](https://www.npmjs.com/package/@thi.ng/geom)         | [changelog](./packages/geom/CHANGELOG.md)     |
+| ![](https://img.shields.io/badge/-new-cyan)   | [`@thi.ng/geom-sdf`](./packages/geom-sdf) | [![version](https://img.shields.io/npm/v/@thi.ng/geom-sdf.svg)](https://www.npmjs.com/package/@thi.ng/geom-sdf) | [changelog](./packages/geom-sdf/CHANGELOG.md) |
 
 <!--
 ![](https://img.shields.io/badge/-feat-green)
@@ -349,6 +345,7 @@ As of: 2022-06-17
 | [`@thi.ng/geom-isoline`](./packages/geom-isoline)             | [![version](https://img.shields.io/npm/v/@thi.ng/geom-isoline.svg)](https://www.npmjs.com/package/@thi.ng/geom-isoline)             | [changelog](./packages/geom-isoline/CHANGELOG.md)       | 2D contour line extraction                          |
 | [`@thi.ng/geom-poly-utils`](./packages/geom-poly-utils)       | [![version](https://img.shields.io/npm/v/@thi.ng/geom-poly-utils.svg)](https://www.npmjs.com/package/@thi.ng/geom-poly-utils)       | [changelog](./packages/geom-poly-utils/CHANGELOG.md)    | 2D polygon helpers                                  |
 | [`@thi.ng/geom-resample`](./packages/geom-resample)           | [![version](https://img.shields.io/npm/v/@thi.ng/geom-resample.svg)](https://www.npmjs.com/package/@thi.ng/geom-resample)           | [changelog](./packages/geom-resample/CHANGELOG.md)      | nD polyline / curve resampling                      |
+| [`@thi.ng/geom-sdf`](./packages/geom-sdf)                     | [![version](https://img.shields.io/npm/v/@thi.ng/geom-sdf.svg)](https://www.npmjs.com/package/@thi.ng/geom-sdf)                     | [changelog](./packages/geom-sdf/CHANGELOG.md)           | 2D SDF creation, conversions, operators, utilities  |
 | [`@thi.ng/geom-splines`](./packages/geom-splines)             | [![version](https://img.shields.io/npm/v/@thi.ng/geom-splines.svg)](https://www.npmjs.com/package/@thi.ng/geom-splines)             | [changelog](./packages/geom-splines/CHANGELOG.md)       | nD cubic / quadratic spline ops                     |
 | [`@thi.ng/geom-subdiv-curve`](./packages/geom-subdiv-curve)   | [![version](https://img.shields.io/npm/v/@thi.ng/geom-subdiv-curve.svg)](https://www.npmjs.com/package/@thi.ng/geom-subdiv-curve)   | [changelog](./packages/geom-subdiv-curve/CHANGELOG.md)  | nD iterative subdivision curves                     |
 | [`@thi.ng/geom-tessellate`](./packages/geom-tessellate)       | [![version](https://img.shields.io/npm/v/@thi.ng/geom-tessellate.svg)](https://www.npmjs.com/package/@thi.ng/geom-tessellate)       | [changelog](./packages/geom-tessellate/CHANGELOG.md)    | nD convex polygon tessellators                      |
