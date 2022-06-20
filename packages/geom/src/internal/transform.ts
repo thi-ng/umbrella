@@ -1,3 +1,4 @@
+// thing:export
 import type { Fn } from "@thi.ng/api";
 import type { PCLike, PCLikeConstructor } from "@thi.ng/geom-api";
 import type { MatOpMV, ReadonlyMat } from "@thi.ng/matrices";

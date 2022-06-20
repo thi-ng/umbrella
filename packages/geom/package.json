@@ -247,6 +247,15 @@
         "./group": {
             "default": "./group.js"
         },
+        "./internal/copy": {
+            "default": "./internal/copy.js"
+        },
+        "./internal/dispatch": {
+            "default": "./internal/dispatch.js"
+        },
+        "./internal/transform": {
+            "default": "./internal/transform.js"
+        },
         "./intersects": {
             "default": "./intersects.js"
         },

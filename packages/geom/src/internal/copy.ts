@@ -1,3 +1,4 @@
+// thing:export
 import { copyVectors } from "@thi.ng/vectors/copy";
 import type {
     Attribs,
@@ -6,7 +7,11 @@ import type {
     PCLikeConstructor,
 } from "@thi.ng/geom-api";
 
+/** @internal */
 export const __copyAttribs = ($: IShape) => <Attribs>{ ...$.attribs };
 
-export const __copyShape = (ctor: PCLikeConstructor, inst: PCLike) =>
-    new ctor(copyVectors(inst.points), __copyAttribs(inst));
+/** @internal */
+export const __copyShape = <T extends PCLike>(
+    ctor: PCLikeConstructor,
+    inst: T
+) => <T>new ctor(copyVectors(inst.points), __copyAttribs(inst));
