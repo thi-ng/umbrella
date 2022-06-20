@@ -3,7 +3,7 @@ import { isString } from "@thi.ng/checks/is-string";
 import { css } from "@thi.ng/color/css/css";
 import type { Vec2Like } from "./api.js";
 
-let PRECISION = 2;
+let PRECISION = 3;
 
 export const setPrecision = (n: number) => (PRECISION = n);
 
