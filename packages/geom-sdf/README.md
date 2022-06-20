@@ -50,7 +50,7 @@ node --experimental-repl-await
 > const geomSdf = await import("@thi.ng/geom-sdf");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 2.61 KB
+Package sizes (gzipped, pre-treeshake): ESM: 2.63 KB
 
 ## Dependencies
 
@@ -130,9 +130,11 @@ writeFileSync(
 
 Results:
 
-| using `circle()`                                                                                                       | using `rect()`                                                                                                                 |
-|------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------|
-| ![metaballs based on circles](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom-sdf/metaballs.png) | ![metaballs based on rectangles](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom-sdf/metaballs-rect.png) |
+| `circle()`                                                                                                                   | `rect()`                                                                                                                          |
+|------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------|
+| ![metaballs based on circles](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom-sdf/metaballs.png)       | ![metaballs based on rectangles](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom-sdf/metaballs-rect.png)    |
+| `circle()` (smooth)                                                                                                          | `rect()` (smooth)                                                                                                                 |
+| ![metaballs w/ smooth union](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom-sdf/metaballs-smooth.png) | ![metaballs w/ smooth union](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom-sdf/metaballs-rect-smooth.png) |
 
 ## Authors
 
