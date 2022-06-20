@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/geom-sdf",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "description": "2D Signed Distance Field creation from @thi.ng/geom shapes, conversions, sampling, combinators",
     "type": "module",
     "module": "./index.js",
