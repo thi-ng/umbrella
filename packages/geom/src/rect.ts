@@ -24,15 +24,29 @@ export function rect(...args: any[]) {
 export const rectFromMinMax = (min: Vec, max: Vec, attribs?: Attribs) =>
     new Rect(min, sub2([], max, min), attribs);
 
+export const rectFromMinMaxWithMargin = (
+    min: Vec,
+    max: Vec,
+    margin: number,
+    attribs?: Attribs
+) => rectFromMinMax(min, max, attribs).offset(margin);
+
 export const rectFromCentroid = (centroid: Vec, size: Vec, attribs?: Attribs) =>
     new Rect(maddN2([], size, -0.5, centroid), size, attribs);
+
+export const rectFromCentroidWithMargin = (
+    centroid: Vec,
+    size: Vec,
+    margin: number,
+    attribs?: Attribs
+) => rectFromCentroid(centroid, size, attribs).offset(margin);
 
 /**
  * Returns the intersection rect of given inputs or `undefined` if they
  * are non-overlapping.
  *
- * @param a - 
- * @param b - 
+ * @param a -
+ * @param b -
  */
 export const intersectionRect = (a: Rect, b: Rect) => {
     const p = max2([], a.pos, b.pos);

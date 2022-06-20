@@ -2,6 +2,7 @@ import type { Attribs } from "@thi.ng/geom-api";
 import { SQRT2_2 } from "@thi.ng/math/api";
 import { add3 } from "@thi.ng/vectors/add";
 import { ReadonlyVec, Vec, ZERO3 } from "@thi.ng/vectors/api";
+import { maddN3 } from "@thi.ng/vectors/maddn";
 import { max3 } from "@thi.ng/vectors/max";
 import { min3 } from "@thi.ng/vectors/min";
 import { sub3 } from "@thi.ng/vectors/sub";
@@ -20,12 +21,29 @@ export function aabb(...args: any[]) {
 export const aabbFromMinMax = (min: Vec, max: Vec, attribs?: Attribs) =>
     new AABB(min, sub3([], max, min), attribs);
 
+export const aabbFromMinMaxWithMargin = (
+    min: Vec,
+    max: Vec,
+    margin: number,
+    attribs?: Attribs
+) => aabbFromMinMax(min, max, attribs).offset(margin);
+
+export const aabbFromCentroid = (centroid: Vec, size: Vec, attribs?: Attribs) =>
+    new AABB(maddN3([], size, -0.5, centroid), size, attribs);
+
+export const aabbFromCentroidWithMargin = (
+    centroid: Vec,
+    size: Vec,
+    margin: number,
+    attribs?: Attribs
+) => aabbFromCentroid(centroid, size, attribs).offset(margin);
+
 /**
  * Returns the intersection AABB of given inputs or `undefined` if they
  * are non-overlapping.
  *
- * @param a - 
- * @param b - 
+ * @param a -
+ * @param b -
  */
 export const intersectionAABB = (a: AABB, b: AABB) => {
     const p = max3([], a.pos, b.pos);

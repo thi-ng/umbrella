@@ -2,7 +2,9 @@ import { isNumber } from "@thi.ng/checks/is-number";
 import type { AABBLike, Attribs, IHiccupShape } from "@thi.ng/geom-api";
 import type { Vec } from "@thi.ng/vectors";
 import { add2 } from "@thi.ng/vectors/add";
+import { addN2 } from "@thi.ng/vectors/addn";
 import { set2 } from "@thi.ng/vectors/set";
+import { subN2 } from "@thi.ng/vectors/subn";
 import { __copyAttribs } from "../internal/copy.js";
 
 export class Rect implements AABBLike, IHiccupShape {
@@ -30,6 +32,12 @@ export class Rect implements AABBLike, IHiccupShape {
 
     max() {
         return add2([], this.pos, this.size);
+    }
+
+    offset(offset: number) {
+        subN2(null, this.pos, offset);
+        addN2(null, this.size, offset * 2);
+        return this;
     }
 
     toHiccup() {
