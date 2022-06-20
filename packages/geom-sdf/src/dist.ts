@@ -21,8 +21,8 @@ const mag2 = (v: ReadonlyVec) => Math.sqrt(magSq2(v));
 
 export const distCircle2 = (p: ReadonlyVec, radius: number) => mag2(p) - radius;
 
-export const distBox2 = (p: ReadonlyVec, size: ReadonlyVec) => {
-    const d = sub2(null, abs2([], p), size);
+export const distBox2 = (p: ReadonlyVec, halfSize: ReadonlyVec) => {
+    const d = sub2(null, abs2([], p), halfSize);
     return Math.min(Math.max(d[0], d[1]), 0) + mag2(max2(null, d, ZERO2));
 };
 

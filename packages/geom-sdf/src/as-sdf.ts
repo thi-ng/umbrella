@@ -14,7 +14,8 @@ import type {
 } from "@thi.ng/geom";
 import type { Attribs, IShape } from "@thi.ng/geom-api";
 import { __dispatch } from "@thi.ng/geom/internal/dispatch";
-import { maddN2 } from "@thi.ng/vectors/maddn";
+import { add2 } from "@thi.ng/vectors/add";
+import { mulN2 } from "@thi.ng/vectors/muln";
 import type { SDFAttribs, SDFn } from "./api.js";
 import {
     difference,
@@ -119,8 +120,10 @@ export const asSDF: MultiFn1<IShape, SDFn> = defmulti<any, SDFn>(
         quadratic: ({ points: [a, b, c], attribs }: Quadratic) =>
             quadratic2(a, b, c, __sdfAttribs(attribs)),
 
-        rect: ({ pos, size, attribs }: Rect) =>
-            box2(maddN2([], size, 0.5, pos), size, __sdfAttribs(attribs)),
+        rect: ({ pos, size, attribs }: Rect) => {
+            const s = mulN2([], size, 0.5);
+            return box2(add2([], s, pos), s, __sdfAttribs(attribs));
+        },
     }
 );
 
