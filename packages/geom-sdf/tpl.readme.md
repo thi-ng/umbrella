@@ -96,9 +96,11 @@ writeFileSync(
 );
 ```
 
-Result:
+Results:
 
-![metaballs example output](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom-sdf/metaballs.png)
+| using `circle()`                                                                                                       | using `rect()`                                                                                                                 |
+|------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------|
+| ![metaballs based on circles](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom-sdf/metaballs.png) | ![metaballs based on rectangles](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom-sdf/metaballs-rect.png) |
 
 ## Authors
 
