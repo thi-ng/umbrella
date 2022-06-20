@@ -2818,7 +2818,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/geom-isoline@workspace:^, @thi.ng/geom-isoline@workspace:packages/geom-isoline":
+"@thi.ng/geom-isoline@^2.1.14, @thi.ng/geom-isoline@workspace:^, @thi.ng/geom-isoline@workspace:packages/geom-isoline":
   version: 0.0.0-use.local
   resolution: "@thi.ng/geom-isoline@workspace:packages/geom-isoline"
   dependencies:
@@ -2862,6 +2862,29 @@ __metadata:
     "@thi.ng/geom-closest-point": ^2.1.14
     "@thi.ng/math": ^5.3.3
     "@thi.ng/testament": ^0.2.8
+    "@thi.ng/vectors": ^7.5.6
+    rimraf: ^3.0.2
+    tools: "workspace:^"
+    typedoc: ^0.22.17
+    typescript: ^4.7.3
+  languageName: unknown
+  linkType: soft
+
+"@thi.ng/geom-sdf@workspace:packages/geom-sdf":
+  version: 0.0.0-use.local
+  resolution: "@thi.ng/geom-sdf@workspace:packages/geom-sdf"
+  dependencies:
+    "@microsoft/api-extractor": ^7.25.0
+    "@thi.ng/api": ^8.3.7
+    "@thi.ng/checks": ^3.2.1
+    "@thi.ng/defmulti": ^2.1.7
+    "@thi.ng/errors": ^2.1.7
+    "@thi.ng/geom": ^3.2.6
+    "@thi.ng/geom-api": ^3.1.14
+    "@thi.ng/geom-isoline": ^2.1.14
+    "@thi.ng/math": ^5.3.3
+    "@thi.ng/testament": ^0.2.8
+    "@thi.ng/transducers": ^8.3.5
     "@thi.ng/vectors": ^7.5.6
     rimraf: ^3.0.2
     tools: "workspace:^"
