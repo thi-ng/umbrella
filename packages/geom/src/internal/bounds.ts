@@ -7,10 +7,10 @@ import { min } from "@thi.ng/vectors/min";
 import { sub } from "@thi.ng/vectors/sub";
 
 /**
- * Computes the total bounds for the given shape collection, which
- * should either contain only 2D or 3D types. No mixed dimensions are
- * allowed! Currently the {@link bounds} function MUST be passed in as
- * arg to avoid circular module dependencies.
+ * Computes the total bounds for the given shape collection, which should either
+ * contain only 2D or 3D types. No mixed dimensions are allowed! Currently the
+ * {@link bounds} function MUST be passed in as arg to avoid circular module
+ * dependencies. Returns 2-tuple of `[pos, size]`.
  *
  * @param shapes - input shapes
  * @param bounds - bbox function
