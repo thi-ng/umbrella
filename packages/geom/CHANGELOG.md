@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-06-09T16:14:01Z
+- **Last updated**: 2022-06-20T17:33:30Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,15 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [3.3.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom@3.3.0) (2022-06-20)
+
+#### 🚀 Features
+
+- update bounds() to support opt. margin ([8cdc372](https://github.com/thi-ng/umbrella/commit/8cdc372))
+- update rect/aabb, add new factory fns ([f74e377](https://github.com/thi-ng/umbrella/commit/f74e377))
+  - add ...WithMargin() factory fns
+  - add AABBLike.offset() impls
 
 ### [3.2.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom@3.2.1) (2022-04-07)
 

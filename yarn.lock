@@ -2613,11 +2613,11 @@ __metadata:
     "@thi.ng/api": ^8.3.7
     "@thi.ng/fuzzy": ^2.1.7
     "@thi.ng/hiccup": ^4.2.9
-    "@thi.ng/hiccup-svg": ^4.2.14
+    "@thi.ng/hiccup-svg": ^4.3.0
     "@thi.ng/math": ^5.3.3
     "@thi.ng/strings": ^3.3.5
     "@thi.ng/testament": ^0.2.8
-    "@thi.ng/text-canvas": ^2.3.5
+    "@thi.ng/text-canvas": ^2.3.6
     rimraf: ^3.0.2
     tools: "workspace:^"
     typedoc: ^0.22.17
@@ -2650,8 +2650,8 @@ __metadata:
     "@thi.ng/checks": ^3.2.1
     "@thi.ng/equiv": ^2.1.7
     "@thi.ng/errors": ^2.1.7
-    "@thi.ng/geom-api": ^3.1.14
-    "@thi.ng/geom-isec": ^2.1.14
+    "@thi.ng/geom-api": ^3.2.0
+    "@thi.ng/geom-isec": ^2.1.15
     "@thi.ng/heaps": ^2.1.7
     "@thi.ng/math": ^5.3.3
     "@thi.ng/testament": ^0.2.8
@@ -2664,7 +2664,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/geom-api@^3.1.14, @thi.ng/geom-api@workspace:^, @thi.ng/geom-api@workspace:packages/geom-api":
+"@thi.ng/geom-api@^3.2.0, @thi.ng/geom-api@workspace:^, @thi.ng/geom-api@workspace:packages/geom-api":
   version: 0.0.0-use.local
   resolution: "@thi.ng/geom-api@workspace:packages/geom-api"
   dependencies:
@@ -2679,14 +2679,14 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/geom-arc@^2.1.14, @thi.ng/geom-arc@workspace:packages/geom-arc":
+"@thi.ng/geom-arc@^2.1.15, @thi.ng/geom-arc@workspace:packages/geom-arc":
   version: 0.0.0-use.local
   resolution: "@thi.ng/geom-arc@workspace:packages/geom-arc"
   dependencies:
     "@microsoft/api-extractor": ^7.25.0
     "@thi.ng/checks": ^3.2.1
-    "@thi.ng/geom-api": ^3.1.14
-    "@thi.ng/geom-resample": ^2.1.14
+    "@thi.ng/geom-api": ^3.2.0
+    "@thi.ng/geom-resample": ^2.1.15
     "@thi.ng/math": ^5.3.3
     "@thi.ng/testament": ^0.2.8
     "@thi.ng/vectors": ^7.5.6
@@ -2697,13 +2697,13 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/geom-clip-line@^2.1.14, @thi.ng/geom-clip-line@workspace:packages/geom-clip-line":
+"@thi.ng/geom-clip-line@^2.1.15, @thi.ng/geom-clip-line@workspace:packages/geom-clip-line":
   version: 0.0.0-use.local
   resolution: "@thi.ng/geom-clip-line@workspace:packages/geom-clip-line"
   dependencies:
     "@microsoft/api-extractor": ^7.25.0
     "@thi.ng/api": ^8.3.7
-    "@thi.ng/geom-isec": ^2.1.14
+    "@thi.ng/geom-isec": ^2.1.15
     "@thi.ng/testament": ^0.2.8
     "@thi.ng/vectors": ^7.5.6
     rimraf: ^3.0.2
@@ -2713,13 +2713,13 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/geom-clip-poly@^2.1.14, @thi.ng/geom-clip-poly@workspace:packages/geom-clip-poly":
+"@thi.ng/geom-clip-poly@^2.1.15, @thi.ng/geom-clip-poly@workspace:packages/geom-clip-poly":
   version: 0.0.0-use.local
   resolution: "@thi.ng/geom-clip-poly@workspace:packages/geom-clip-poly"
   dependencies:
     "@microsoft/api-extractor": ^7.25.0
-    "@thi.ng/geom-isec": ^2.1.14
-    "@thi.ng/geom-poly-utils": ^2.2.6
+    "@thi.ng/geom-isec": ^2.1.15
+    "@thi.ng/geom-poly-utils": ^2.2.7
     "@thi.ng/math": ^5.3.3
     "@thi.ng/testament": ^0.2.8
     "@thi.ng/vectors": ^7.5.6
@@ -2754,10 +2754,10 @@ __metadata:
     "@thi.ng/api": ^8.3.7
     "@thi.ng/associative": ^6.1.10
     "@thi.ng/color": ^5.1.1
-    "@thi.ng/geom": ^3.2.6
-    "@thi.ng/geom-api": ^3.1.14
-    "@thi.ng/geom-clip-line": ^2.1.14
-    "@thi.ng/geom-resample": ^2.1.14
+    "@thi.ng/geom": ^3.3.0
+    "@thi.ng/geom-api": ^3.2.0
+    "@thi.ng/geom-clip-line": ^2.1.15
+    "@thi.ng/geom-resample": ^2.1.15
     "@thi.ng/grid-iterators": ^2.3.4
     "@thi.ng/testament": ^0.2.8
     "@thi.ng/transducers": ^8.3.5
@@ -2800,13 +2800,13 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/geom-isec@^2.1.14, @thi.ng/geom-isec@workspace:packages/geom-isec":
+"@thi.ng/geom-isec@^2.1.15, @thi.ng/geom-isec@workspace:packages/geom-isec":
   version: 0.0.0-use.local
   resolution: "@thi.ng/geom-isec@workspace:packages/geom-isec"
   dependencies:
     "@microsoft/api-extractor": ^7.25.0
     "@thi.ng/api": ^8.3.7
-    "@thi.ng/geom-api": ^3.1.14
+    "@thi.ng/geom-api": ^3.2.0
     "@thi.ng/geom-closest-point": ^2.1.14
     "@thi.ng/math": ^5.3.3
     "@thi.ng/testament": ^0.2.8
@@ -2834,14 +2834,14 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/geom-poly-utils@^2.2.6, @thi.ng/geom-poly-utils@workspace:packages/geom-poly-utils":
+"@thi.ng/geom-poly-utils@^2.2.7, @thi.ng/geom-poly-utils@workspace:packages/geom-poly-utils":
   version: 0.0.0-use.local
   resolution: "@thi.ng/geom-poly-utils@workspace:packages/geom-poly-utils"
   dependencies:
     "@microsoft/api-extractor": ^7.25.0
     "@thi.ng/api": ^8.3.7
     "@thi.ng/errors": ^2.1.7
-    "@thi.ng/geom-api": ^3.1.14
+    "@thi.ng/geom-api": ^3.2.0
     "@thi.ng/math": ^5.3.3
     "@thi.ng/testament": ^0.2.8
     "@thi.ng/vectors": ^7.5.6
@@ -2852,13 +2852,13 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/geom-resample@^2.1.14, @thi.ng/geom-resample@workspace:^, @thi.ng/geom-resample@workspace:packages/geom-resample":
+"@thi.ng/geom-resample@^2.1.15, @thi.ng/geom-resample@workspace:^, @thi.ng/geom-resample@workspace:packages/geom-resample":
   version: 0.0.0-use.local
   resolution: "@thi.ng/geom-resample@workspace:packages/geom-resample"
   dependencies:
     "@microsoft/api-extractor": ^7.25.0
     "@thi.ng/checks": ^3.2.1
-    "@thi.ng/geom-api": ^3.1.14
+    "@thi.ng/geom-api": ^3.2.0
     "@thi.ng/geom-closest-point": ^2.1.14
     "@thi.ng/math": ^5.3.3
     "@thi.ng/testament": ^0.2.8
@@ -2879,8 +2879,8 @@ __metadata:
     "@thi.ng/checks": ^3.2.1
     "@thi.ng/defmulti": ^2.1.7
     "@thi.ng/errors": ^2.1.7
-    "@thi.ng/geom": ^3.2.6
-    "@thi.ng/geom-api": ^3.1.14
+    "@thi.ng/geom": ^3.3.0
+    "@thi.ng/geom-api": ^3.2.0
     "@thi.ng/geom-isoline": ^2.1.14
     "@thi.ng/math": ^5.3.3
     "@thi.ng/testament": ^0.2.8
@@ -2893,16 +2893,16 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/geom-splines@^2.1.14, @thi.ng/geom-splines@workspace:packages/geom-splines":
+"@thi.ng/geom-splines@^2.1.15, @thi.ng/geom-splines@workspace:packages/geom-splines":
   version: 0.0.0-use.local
   resolution: "@thi.ng/geom-splines@workspace:packages/geom-splines"
   dependencies:
     "@microsoft/api-extractor": ^7.25.0
     "@thi.ng/api": ^8.3.7
     "@thi.ng/checks": ^3.2.1
-    "@thi.ng/geom-api": ^3.1.14
-    "@thi.ng/geom-arc": ^2.1.14
-    "@thi.ng/geom-resample": ^2.1.14
+    "@thi.ng/geom-api": ^3.2.0
+    "@thi.ng/geom-arc": ^2.1.15
+    "@thi.ng/geom-resample": ^2.1.15
     "@thi.ng/math": ^5.3.3
     "@thi.ng/testament": ^0.2.8
     "@thi.ng/vectors": ^7.5.6
@@ -2913,13 +2913,13 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/geom-subdiv-curve@^2.1.14, @thi.ng/geom-subdiv-curve@workspace:packages/geom-subdiv-curve":
+"@thi.ng/geom-subdiv-curve@^2.1.15, @thi.ng/geom-subdiv-curve@workspace:packages/geom-subdiv-curve":
   version: 0.0.0-use.local
   resolution: "@thi.ng/geom-subdiv-curve@workspace:packages/geom-subdiv-curve"
   dependencies:
     "@microsoft/api-extractor": ^7.25.0
     "@thi.ng/api": ^8.3.7
-    "@thi.ng/geom-api": ^3.1.14
+    "@thi.ng/geom-api": ^3.2.0
     "@thi.ng/testament": ^0.2.8
     "@thi.ng/transducers": ^8.3.5
     "@thi.ng/vectors": ^7.5.6
@@ -2930,15 +2930,15 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/geom-tessellate@^2.1.14, @thi.ng/geom-tessellate@workspace:^, @thi.ng/geom-tessellate@workspace:packages/geom-tessellate":
+"@thi.ng/geom-tessellate@^2.1.15, @thi.ng/geom-tessellate@workspace:^, @thi.ng/geom-tessellate@workspace:packages/geom-tessellate":
   version: 0.0.0-use.local
   resolution: "@thi.ng/geom-tessellate@workspace:packages/geom-tessellate"
   dependencies:
     "@microsoft/api-extractor": ^7.25.0
     "@thi.ng/checks": ^3.2.1
-    "@thi.ng/geom-api": ^3.1.14
-    "@thi.ng/geom-isec": ^2.1.14
-    "@thi.ng/geom-poly-utils": ^2.2.6
+    "@thi.ng/geom-api": ^3.2.0
+    "@thi.ng/geom-isec": ^2.1.15
+    "@thi.ng/geom-poly-utils": ^2.2.7
     "@thi.ng/testament": ^0.2.8
     "@thi.ng/transducers": ^8.3.5
     "@thi.ng/vectors": ^7.5.6
@@ -2957,10 +2957,10 @@ __metadata:
     "@thi.ng/api": ^8.3.7
     "@thi.ng/bitfield": ^2.1.8
     "@thi.ng/checks": ^3.2.1
-    "@thi.ng/geom-clip-line": ^2.1.14
-    "@thi.ng/geom-clip-poly": ^2.1.14
-    "@thi.ng/geom-isec": ^2.1.14
-    "@thi.ng/geom-poly-utils": ^2.2.6
+    "@thi.ng/geom-clip-line": ^2.1.15
+    "@thi.ng/geom-clip-poly": ^2.1.15
+    "@thi.ng/geom-isec": ^2.1.15
+    "@thi.ng/geom-poly-utils": ^2.2.7
     "@thi.ng/math": ^5.3.3
     "@thi.ng/quad-edge": ^3.1.7
     "@thi.ng/testament": ^0.2.8
@@ -2972,7 +2972,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/geom@^3.2.6, @thi.ng/geom@workspace:^, @thi.ng/geom@workspace:packages/geom":
+"@thi.ng/geom@^3.3.0, @thi.ng/geom@workspace:^, @thi.ng/geom@workspace:packages/geom":
   version: 0.0.0-use.local
   resolution: "@thi.ng/geom@workspace:packages/geom"
   dependencies:
@@ -2984,20 +2984,20 @@ __metadata:
     "@thi.ng/defmulti": ^2.1.7
     "@thi.ng/equiv": ^2.1.7
     "@thi.ng/errors": ^2.1.7
-    "@thi.ng/geom-api": ^3.1.14
-    "@thi.ng/geom-arc": ^2.1.14
-    "@thi.ng/geom-clip-line": ^2.1.14
-    "@thi.ng/geom-clip-poly": ^2.1.14
+    "@thi.ng/geom-api": ^3.2.0
+    "@thi.ng/geom-arc": ^2.1.15
+    "@thi.ng/geom-clip-line": ^2.1.15
+    "@thi.ng/geom-clip-poly": ^2.1.15
     "@thi.ng/geom-closest-point": ^2.1.14
     "@thi.ng/geom-hull": ^2.1.14
-    "@thi.ng/geom-isec": ^2.1.14
-    "@thi.ng/geom-poly-utils": ^2.2.6
-    "@thi.ng/geom-resample": ^2.1.14
-    "@thi.ng/geom-splines": ^2.1.14
-    "@thi.ng/geom-subdiv-curve": ^2.1.14
-    "@thi.ng/geom-tessellate": ^2.1.14
+    "@thi.ng/geom-isec": ^2.1.15
+    "@thi.ng/geom-poly-utils": ^2.2.7
+    "@thi.ng/geom-resample": ^2.1.15
+    "@thi.ng/geom-splines": ^2.1.15
+    "@thi.ng/geom-subdiv-curve": ^2.1.15
+    "@thi.ng/geom-tessellate": ^2.1.15
     "@thi.ng/hiccup": ^4.2.9
-    "@thi.ng/hiccup-svg": ^4.2.14
+    "@thi.ng/hiccup-svg": ^4.3.0
     "@thi.ng/math": ^5.3.3
     "@thi.ng/matrices": ^2.1.14
     "@thi.ng/random": ^3.3.2
@@ -3255,7 +3255,7 @@ __metadata:
     "@thi.ng/hiccup": ^4.2.9
     "@thi.ng/strings": ^3.3.5
     "@thi.ng/testament": ^0.2.8
-    "@thi.ng/text-canvas": ^2.3.5
+    "@thi.ng/text-canvas": ^2.3.6
     "@thi.ng/transducers": ^8.3.5
     rimraf: ^3.0.2
     tools: "workspace:^"
@@ -3264,7 +3264,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/hiccup-svg@^4.2.14, @thi.ng/hiccup-svg@workspace:^, @thi.ng/hiccup-svg@workspace:packages/hiccup-svg":
+"@thi.ng/hiccup-svg@^4.3.0, @thi.ng/hiccup-svg@workspace:^, @thi.ng/hiccup-svg@workspace:packages/hiccup-svg":
   version: 0.0.0-use.local
   resolution: "@thi.ng/hiccup-svg@workspace:packages/hiccup-svg"
   dependencies:
@@ -3340,10 +3340,10 @@ __metadata:
     "@microsoft/api-extractor": ^7.25.0
     "@thi.ng/api": ^8.3.7
     "@thi.ng/checks": ^3.2.1
-    "@thi.ng/geom": ^3.2.6
-    "@thi.ng/geom-api": ^3.1.14
-    "@thi.ng/geom-isec": ^2.1.14
-    "@thi.ng/geom-tessellate": ^2.1.14
+    "@thi.ng/geom": ^3.3.0
+    "@thi.ng/geom-api": ^3.2.0
+    "@thi.ng/geom-isec": ^2.1.15
+    "@thi.ng/geom-tessellate": ^2.1.15
     "@thi.ng/layout": ^2.1.8
     "@thi.ng/math": ^5.3.3
     "@thi.ng/testament": ^0.2.8
@@ -3783,7 +3783,7 @@ __metadata:
     "@microsoft/api-extractor": ^7.25.0
     "@thi.ng/api": ^8.3.7
     "@thi.ng/checks": ^3.2.1
-    "@thi.ng/geom-api": ^3.1.14
+    "@thi.ng/geom-api": ^3.2.0
     "@thi.ng/random": ^3.3.2
     "@thi.ng/testament": ^0.2.8
     "@thi.ng/transducers": ^8.3.5
@@ -4438,7 +4438,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/text-canvas@^2.3.5, @thi.ng/text-canvas@workspace:^, @thi.ng/text-canvas@workspace:packages/text-canvas":
+"@thi.ng/text-canvas@^2.3.5, @thi.ng/text-canvas@^2.3.6, @thi.ng/text-canvas@workspace:^, @thi.ng/text-canvas@workspace:packages/text-canvas":
   version: 0.0.0-use.local
   resolution: "@thi.ng/text-canvas@workspace:packages/text-canvas"
   dependencies:
@@ -4446,7 +4446,7 @@ __metadata:
     "@thi.ng/api": ^8.3.7
     "@thi.ng/arrays": ^2.2.5
     "@thi.ng/checks": ^3.2.1
-    "@thi.ng/geom-clip-line": ^2.1.14
+    "@thi.ng/geom-clip-line": ^2.1.15
     "@thi.ng/math": ^5.3.3
     "@thi.ng/strings": ^3.3.5
     "@thi.ng/testament": ^0.2.8
