@@ -16,8 +16,10 @@ const generatePackageExportMaps = (id: string) => {
             ".": { default: "./index.js" },
         };
         for (let f of files(srcRoot, ".ts")) {
-            if (/\/internal\/|\/index\.ts/.test(f)) continue;
+            if (/\/index\.ts/.test(f)) continue;
             const src = readText(f);
+            if (/\/internal\//.test(f) && src.indexOf("// thing:export") < 0)
+                continue;
             if (src.indexOf("// thing:no-export") !== -1) continue;
             // if (/\/index\.ts$/.test(f)) continue;
             const local = f.replace(srcRoot, ".").replace(".ts", "");
