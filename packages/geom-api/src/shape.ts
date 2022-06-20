@@ -13,6 +13,7 @@ export interface AABBLike extends IShape {
     size: Vec;
 
     max(): Vec;
+    offset(x: number): this;
 }
 
 export interface SphereLike extends IShape {
