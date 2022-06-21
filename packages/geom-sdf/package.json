@@ -92,6 +92,9 @@
         "./as-sdf": {
             "default": "./as-sdf.js"
         },
+        "./bounds": {
+            "default": "./bounds.js"
+        },
         "./dist": {
             "default": "./dist.js"
         },

@@ -68,35 +68,30 @@ export const asSDF: MultiFn1<IShape, SDFn> = defmulti<any, SDFn>(
 
         ellipse: ($: Ellipse) => ellipse2($.pos, $.r, __sdfAttribs($.attribs)),
 
-        group: ({ attribs, children }: Group) => {
+        group: ($: Group) => {
+            const { attribs, children } = $;
             const $attribs = { ...DEFAULT_ATTRIBS, ...__sdfAttribs(attribs) };
-            const $children = <[SDFn, ...SDFn[]]>children.map(asSDF);
+            const $children = children.map(asSDF);
             let res: SDFn;
             if ($children.length > 1) {
                 switch ($attribs.combine) {
                     case "diff":
                         res =
                             $attribs.smooth !== 0
-                                ? smoothDifference(
-                                      $attribs.smooth,
-                                      ...$children
-                                  )
-                                : difference(...$children);
+                                ? smoothDifference($attribs.smooth, $children)
+                                : difference($children);
                         break;
                     case "isec":
                         res =
                             $attribs.smooth !== 0
-                                ? smoothIntersection(
-                                      $attribs.smooth,
-                                      ...$children
-                                  )
+                                ? smoothIntersection($attribs.smooth, $children)
                                 : intersection($children);
                         break;
                     case "union":
                     default: {
                         res =
                             $attribs.smooth !== 0
-                                ? smoothUnion($attribs.smooth, ...$children)
+                                ? smoothUnion($attribs.smooth, $children)
                                 : union($children);
                     }
                 }
