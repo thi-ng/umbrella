@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-06-09T16:14:01Z
+- **Last updated**: 2022-06-23T12:16:18Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,16 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [2.3.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom-poly-utils@2.3.0) (2022-06-23)
+
+#### 🚀 Features
+
+- add boundingCircle/Sphere() ([2f9ff9a](https://github.com/thi-ng/umbrella/commit/2f9ff9a))
+
+#### ⏱ Performance improvements
+
+- avoid destructuring in boundingCircle/Sphere() ([c46836c](https://github.com/thi-ng/umbrella/commit/c46836c))
 
 ## [2.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom-poly-utils@2.2.0) (2022-03-11)
 
