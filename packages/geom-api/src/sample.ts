@@ -1,5 +1,10 @@
 export let DEFAULT_SAMPLES = 20;
 
+/**
+ * Sets the number of {@link DEFAULT_SAMPLES} for various operations.
+ *
+ * @param n
+ */
 export const setDefaultSamples = (n: number) => (DEFAULT_SAMPLES = n);
 
 export interface SamplingOpts {
