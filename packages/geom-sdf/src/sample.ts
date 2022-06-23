@@ -1,22 +1,26 @@
-import type { NumericArray } from "@thi.ng/api";
-import { isFunction } from "@thi.ng/checks/is-function";
+import type { Fn, NumericArray } from "@thi.ng/api";
 import { assert } from "@thi.ng/errors/assert";
-import type { Polygon } from "@thi.ng/geom";
 import type { AABBLike } from "@thi.ng/geom-api";
-import { isolines, setBorder } from "@thi.ng/geom-isoline";
-import { polygon } from "@thi.ng/geom/polygon";
-import { comp } from "@thi.ng/transducers/comp";
-import { map } from "@thi.ng/transducers/map";
-import { mapcat } from "@thi.ng/transducers/mapcat";
-import { push } from "@thi.ng/transducers/push";
-import { transduce } from "@thi.ng/transducers/transduce";
-import { add2, div2, ReadonlyVec } from "@thi.ng/vectors";
+import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
 import type { SDFn } from "./api.js";
 
+/**
+ * Samples and discretizes the given SDF within the given bounding rect and
+ * resolution. The optional `domain` fn can be used to apply modifiers to each
+ * sample position. If `buf` is provided, writes results into it, else creates a
+ * new buffer automatically. Returns buffer.
+ *
+ * @param sdf
+ * @param bounds
+ * @param res
+ * @param domain
+ * @param buf
+ */
 export const sample2d = (
     sdf: SDFn,
     { pos: [px, py], size: [width, height] }: AABBLike,
     [resX, resY]: ReadonlyVec,
+    domain?: Fn<ReadonlyVec, Vec>,
     buf?: NumericArray
 ) => {
     if (buf) {
@@ -31,29 +35,8 @@ export const sample2d = (
         p[1] = py + y * dy;
         for (let x = 0; x < resX; x++, i++) {
             p[0] = px + x * dx;
-            buf[i] = sdf(p);
+            buf[i] = sdf(domain ? domain(p) : p);
         }
     }
     return buf;
-};
-
-export const asPolygons = (
-    sdf: NumericArray | SDFn,
-    bounds: AABBLike,
-    res: ReadonlyVec,
-    isoLevels: Iterable<number> = [0]
-) => {
-    const $sdf = isFunction(sdf) ? sample2d(sdf, bounds, res) : sdf;
-    const { pos, size } = bounds;
-    const [resX, resY] = res;
-    setBorder($sdf, resX, resY, 1e6);
-    const scale = div2([], size, [resX - 1, resY - 1]);
-    return transduce(
-        comp(
-            mapcat((iso) => isolines($sdf, resX, resY, iso, scale)),
-            map((pts) => polygon(pts.map((p) => add2(null, p, pos))))
-        ),
-        push<Polygon>(),
-        isoLevels
-    );
 };

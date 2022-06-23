@@ -2882,6 +2882,8 @@ __metadata:
     "@thi.ng/geom": ^3.3.0
     "@thi.ng/geom-api": ^3.2.0
     "@thi.ng/geom-isoline": ^2.1.14
+    "@thi.ng/geom-poly-utils": ^2.2.7
+    "@thi.ng/geom-resample": ^2.1.15
     "@thi.ng/math": ^5.3.3
     "@thi.ng/testament": ^0.2.8
     "@thi.ng/transducers": ^8.3.5

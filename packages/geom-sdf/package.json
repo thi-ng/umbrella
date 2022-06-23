@@ -41,6 +41,8 @@
         "@thi.ng/geom": "^3.3.0",
         "@thi.ng/geom-api": "^3.2.0",
         "@thi.ng/geom-isoline": "^2.1.14",
+        "@thi.ng/geom-poly-utils": "^2.2.7",
+        "@thi.ng/geom-resample": "^2.1.15",
         "@thi.ng/math": "^5.3.3",
         "@thi.ng/transducers": "^8.3.5",
         "@thi.ng/vectors": "^7.5.6"
@@ -89,6 +91,9 @@
         "./api": {
             "default": "./api.js"
         },
+        "./as-polygons": {
+            "default": "./as-polygons.js"
+        },
         "./as-sdf": {
             "default": "./as-sdf.js"
         },
@@ -97,6 +102,9 @@
         },
         "./dist": {
             "default": "./dist.js"
+        },
+        "./domain": {
+            "default": "./domain.js"
         },
         "./ops": {
             "default": "./ops.js"
@@ -110,6 +118,12 @@
     },
     "thi.ng": {
         "parent": "@thi.ng/geom",
+        "related": [
+            "distance-transform",
+            "geom-isoline",
+            "pixel",
+            "shader-ast-stdlib"
+        ],
         "status": "alpha",
         "year": 2022
     }
