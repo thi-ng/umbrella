@@ -136,7 +136,7 @@ node --experimental-repl-await
 > const geomSdf = await import("@thi.ng/geom-sdf");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 4.08 KB
+Package sizes (gzipped, pre-treeshake): ESM: 3.87 KB
 
 ## Dependencies
 
@@ -147,6 +147,8 @@ Package sizes (gzipped, pre-treeshake): ESM: 4.08 KB
 - [@thi.ng/geom](https://github.com/thi-ng/umbrella/tree/develop/packages/geom)
 - [@thi.ng/geom-api](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-api)
 - [@thi.ng/geom-isoline](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-isoline)
+- [@thi.ng/geom-poly-utils](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-poly-utils)
+- [@thi.ng/geom-resample](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-resample)
 - [@thi.ng/math](https://github.com/thi-ng/umbrella/tree/develop/packages/math)
 - [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)
 - [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors)

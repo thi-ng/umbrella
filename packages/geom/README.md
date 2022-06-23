@@ -50,6 +50,7 @@ themselves too):
 - [@thi.ng/geom-isoline](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-isoline) - Fast 2D contour line extraction / generation
 - [@thi.ng/geom-poly-utils](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-poly-utils) - 2D polygon/polyline analysis & processing utilities
 - [@thi.ng/geom-resample](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-resample) - Customizable nD polyline interpolation, re-sampling, splitting & nearest point computation
+- [@thi.ng/geom-sdf](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-sdf) - 2D Signed Distance Field creation from [@thi.ng/geom](https://github.com/thi-ng/umbrella/tree/develop/packages/geom) shapes, conversions, sampling, combinators
 - [@thi.ng/geom-splines](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-splines) - nD cubic & quadratic curve analysis, conversion, interpolation, splitting
 - [@thi.ng/geom-subdiv-curve](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-subdiv-curve) - Freely customizable, iterative nD subdivision curves for open / closed geometries
 - [@thi.ng/geom-tessellate](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-tessellate) - 2D/3D convex polygon tessellators
@@ -84,7 +85,7 @@ node --experimental-repl-await
 > const geom = await import("@thi.ng/geom");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 12.44 KB
+Package sizes (gzipped, pre-treeshake): ESM: 12.67 KB
 
 ## Dependencies
 

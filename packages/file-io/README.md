@@ -46,7 +46,7 @@ node --experimental-repl-await
 > const fileIo = await import("@thi.ng/file-io");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 761 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 1.10 KB
 
 ## Dependencies
 
