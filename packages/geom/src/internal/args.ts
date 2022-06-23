@@ -1,5 +1,7 @@
 import { isNumber } from "@thi.ng/checks/is-number";
 import { isPlainObject } from "@thi.ng/checks/is-plain-object";
+import type { Vec } from "@thi.ng/vectors";
+import { vecOf } from "@thi.ng/vectors/vec-of";
 
 /**
  * Takes an array of arguments, checks if last element is a plain object or
@@ -56,3 +58,6 @@ export const __argsVN = (args: any[]) => {
             : [args[0], undefined, attr]
         : [undefined, undefined, attr];
 };
+
+export const __asVec = (x: number | Vec, size = 2) =>
+    isNumber(x) ? vecOf(size, x) : x;

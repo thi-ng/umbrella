@@ -12,7 +12,7 @@ import { subN2 } from "@thi.ng/vectors/subn";
 import type { Circle } from "./api/circle.js";
 import type { Polygon } from "./api/polygon.js";
 import { Rect } from "./api/rect.js";
-import { __argsVV } from "./internal/args.js";
+import { __argsVV, __asVec } from "./internal/args.js";
 
 export function rect(pos: Vec, size: number | Vec, attribs?: Attribs): Rect;
 export function rect(size: number | Vec, attribs?: Attribs): Rect;
@@ -31,12 +31,18 @@ export const rectFromMinMaxWithMargin = (
     attribs?: Attribs
 ) => rectFromMinMax(min, max, attribs).offset(margin);
 
-export const rectFromCentroid = (centroid: Vec, size: Vec, attribs?: Attribs) =>
-    new Rect(maddN2([], size, -0.5, centroid), size, attribs);
+export const rectFromCentroid = (
+    centroid: Vec,
+    size: number | Vec,
+    attribs?: Attribs
+) => {
+    size = __asVec(size);
+    return new Rect(maddN2([], size, -0.5, centroid), size, attribs);
+};
 
 export const rectFromCentroidWithMargin = (
     centroid: Vec,
-    size: Vec,
+    size: number | Vec,
     margin: number,
     attribs?: Attribs
 ) => rectFromCentroid(centroid, size, attribs).offset(margin);
