@@ -114,7 +114,7 @@ ${examples}
 ${docLink}
 
 ```js
-import { asSvg, bounds, circle, group, simplify, svgDoc } from "@thi.ng/geom";
+import { asSvg, bounds, circle, group, svgDoc } from "@thi.ng/geom";
 import { asPolygons, asSDF, sample2d } from "@thi.ng/geom-sdf";
 import { range, repeatedly } from "@thi.ng/transducers";
 import { randMinMax2 } from "@thi.ng/vectors";
@@ -152,11 +152,10 @@ const image = sample2d(sdf, sceneBounds, RES);
 
 // extract contour polygons from given image
 // in this case the contours extracted are at distances in the [0..32) interval
-// afterwards we also simplify the resulting polygons using the Douglas-Peucker algorithm
+// the function also simplifies the resulting polygons using the Douglas-Peucker algorithm
+// with the given threshold (0.25) - the default setting only removes co-linear vertices...
 // see: https://en.wikipedia.org/wiki/Ramer%E2%80%93Douglas%E2%80%93Peucker_algorithm
-const contours = asPolygons(image, sceneBounds, RES, range(0, 32, 4)).map(
-    (p) => simplify(p, 0.25)
-);
+const contours = asPolygons(image, sceneBounds, RES, range(0, 32, 4), 0.25);
 
 // convert to SVG and output as file
 writeFileSync(
