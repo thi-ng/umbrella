@@ -13,6 +13,82 @@ This project is part of the
 
 ${pkg.description}
 
+Includes several distance functions and SDF operators ported from GLSL
+implementations by:
+
+- Inigo Quilez ([Article](https://iquilezles.org/articles/distfunctions2d/))
+- Mercury demogroup ([HG_SDF](https://mercury.sexy/hg_sdf/))
+
+### SDF creation
+
+SDFs can be directly defined/composed via provided shape primitive functions and
+combinators OR via automatic conversion from @thi.ng/geom geometry
+types/hierarchies. In the latter case various
+[attributes](https://docs.thi.ng/umbrella/geom-sdf/interfaces/SDFAttribs.html)
+can be used to control the conversion process. Regardless of approach, the
+result will be a single distance function which accepts a world position and
+returns the signed distance to the encoded scene.
+
+```ts
+// via direct SDF composition
+import { circle2, union } from "@thi.ng/geom-sdf";
+
+const f = union([circle2([-50, 0], 100), circle2([50, 0], 100)]);
+
+// via conversion
+import { circle, group } from "@thi.ng/geom";
+import { asSDF } from "@thi.ng/geom-sdf";
+
+const f = asSDF(group({}, [circle([-50, 0], 100), circle([50, 0], 100)]));
+```
+
+### SDF combinators
+
+The following table illustrates various options how SDFs can be combined. When
+using the [`asSDF()`](https://docs.thi.ng/umbrella/geom-sdf/modules.html#asSDF)
+geometry converter, these operators can be specified and configured (most are
+parametric) via a shape `group()`'s
+[attributes](https://docs.thi.ng/umbrella/geom-sdf/interfaces/SDFAttribs.html),
+e.g.
+
+```ts
+group({ __sdf: { combine: "diff", chamfer: 50 }}, [
+    rectFromCentroid([-50,-50], 200),
+    rectFromCentroid([50,50], 200),
+])
+```
+
+| Operator | Union                                                                                                    | Difference                                                                                              | Intersection                                                                                            |
+|----------|----------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------|
+| default  | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom-sdf/combine-none-union.png)    | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom-sdf/combine-none-diff.png)    | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom-sdf/combine-none-isec.png)    |
+| chamfer  | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom-sdf/combine-chamfer-union.png) | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom-sdf/combine-chamfer-diff.png) | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom-sdf/combine-chamfer-isec.png) |
+| round    | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom-sdf/combine-round-union.png)   | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom-sdf/combine-round-diff.png)   | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom-sdf/combine-round-isec.png)   |
+| smooth   | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom-sdf/combine-smooth-union.png)  | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom-sdf/combine-smooth-diff.png)  | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom-sdf/combine-smooth-isec.png)  |
+| steps    | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom-sdf/combine-steps-union.png)   | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom-sdf/combine-steps-diff.png)   | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom-sdf/combine-steps-isec.png)   |
+
+
+### SDF discretization, sampling & domain modifiers
+
+The package provides the
+[`sample2d()`](https://docs.thi.ng/umbrella/geom-sdf/modules.html#sample2d) and
+[`asPolygons()`](https://docs.thi.ng/umbrella/geom-sdf/modules.html#asPolygons)
+functions to discretize an SDF and cache results in a buffer (image) and then
+extract contour polygons from it, i.e. convert the 2D back into geometry (see
+example further below). The SDF will be sampled in a user defined bounding
+rectangle (with customizable resolution) and the sampling positions can be
+modulated via several provided domain modifiers to create various axial/spatial
+repetions, symmetries etc. Modifiers are nestable/composable via standard
+functional composition (e.g. using
+[`compL()`](https://docs.thi.ng/umbrella/compose/modules.html#compL)) and also
+support custom modfifiers. The table below illustrates a few examples effects:
+
+| Modifier          |                                                                                                     |                                                                                                     |                                                                                                     |
+|-------------------|-----------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------|
+| `repeat2()`       | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom-sdf/domain-repeat-01.png) | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom-sdf/domain-repeat-02.png) | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom-sdf/domain-repeat-03.png) |
+| `repeatGrid2()`   | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom-sdf/domain-grid-01.png)   | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom-sdf/domain-grid-02.png)   | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom-sdf/domain-grid-03.png)   |
+| `repeatMirror2()` | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom-sdf/domain-mirror-01.png) | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom-sdf/domain-mirror-02.png) | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom-sdf/domain-mirror-03.png) |
+| `repeatPolar2()`  | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom-sdf/domain-polar-01.png)  | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom-sdf/domain-polar-02.png)  | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom-sdf/domain-polar-03.png)  |
+
 ${status}
 
 ${supportPackages}
@@ -62,7 +138,8 @@ const scene = group({ stroke: "red", __sdf: { smooth: 20 } }, [
 ]);
 
 // compute bounding box + some extra margin
-// the margin is to ensure
+// the extra margin is to ensure the SDF can be fully sampled
+// at some distance from the original boundary (see further below)
 const sceneBounds = bounds(scene, 40);
 
 // convert to an SDF distance function
