@@ -76,9 +76,11 @@ export const boundingCircle = (pts: ReadonlyVec[]): [Vec, number] => {
     }
     const xspan = distSq2(xmin, xmax);
     const yspan = distSq2(ymin, ymax);
-    const [d1, d2] = xspan > yspan ? [xmin, xmax] : [ymin, ymax];
-    let centroid = addmN2([], d1, d2, 0.5);
-    let rsq = distSq2(centroid, d1);
+    const span = <[ReadonlyVec, ReadonlyVec]>(
+        (xspan > yspan ? [xmin, xmax] : [ymin, ymax])
+    );
+    let centroid = addmN2([], ...span, 0.5);
+    let rsq = distSq2(centroid, span[0]);
     let r = Math.sqrt(rsq);
     for (let i = pts.length; i-- > 0; ) {
         const p = pts[i];
@@ -122,16 +124,13 @@ export const boundingSphere = (pts: ReadonlyVec[]): [Vec, number] => {
         if (p[2] < zmin[1]) zmin = p;
         else if (p[2] > zmax[1]) zmax = p;
     }
-    const xspan = distSq3(xmin, xmax);
-    const yspan = distSq3(ymin, ymax);
-    const zspan = distSq3(zmin, zmax);
-    const [d1, d2] = [
+    const span = <[ReadonlyVec, ReadonlyVec]>[
         [xmin, xmax],
         [ymin, ymax],
         [zmin, zmax],
-    ][max3id(xspan, yspan, zspan)];
-    let centroid = addmN3([], d1, d2, 0.5);
-    let rsq = distSq3(centroid, d1);
+    ][max3id(distSq3(xmin, xmax), distSq3(ymin, ymax), distSq3(zmin, zmax))];
+    let centroid = addmN3([], ...span, 0.5);
+    let rsq = distSq3(centroid, span[0]);
     let r = Math.sqrt(rsq);
     for (let i = pts.length; i-- > 0; ) {
         const p = pts[i];
