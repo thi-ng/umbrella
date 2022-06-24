@@ -43,6 +43,7 @@ export * from "./rect.js";
 export * from "./text.js";
 export * from "./triangle.js";
 
+export * from "./apply-transforms.js";
 export * from "./arc-length.js";
 export * from "./area.js";
 export * from "./as-cubic.js";
@@ -66,6 +67,8 @@ export * from "./offset.js";
 export * from "./point-at.js";
 export * from "./point-inside.js";
 export * from "./resample.js";
+export * from "./rotate.js";
+export * from "./scale.js";
 export * from "./scatter.js";
 export * from "./simplify.js";
 export * from "./split-at.js";

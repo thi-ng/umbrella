@@ -17,13 +17,13 @@ import type { Rect } from "./api/rect.js";
 import { Text } from "./api/text.js";
 import { Triangle } from "./api/triangle.js";
 import { asPath } from "./as-path.js";
-import { asPolygon } from "./as-polygon.js";
 import { __copyAttribs } from "./internal/copy.js";
 import { __dispatch } from "./internal/dispatch.js";
 import {
     __transformedShape as tx,
     __transformedShape3 as tx3,
 } from "./internal/transform.js";
+import { vertices } from "./vertices.js";
 
 /**
  * Transforms given shape with provided matrix. Some shape types will be
@@ -88,7 +88,8 @@ export const transform: MultiFn2<IShape, ReadonlyMat, IShape> = defmulti<
 
         quadratic: tx(Quadratic),
 
-        rect: ($: Rect, mat) => transform(asPolygon($), mat),
+        rect: ($: Rect, mat) =>
+            transform(new Quad(vertices($), __copyAttribs($)), mat),
 
         text: ($: Text, mat) =>
             new Text(mulV([], mat, $.pos!), $.body, __copyAttribs($)),

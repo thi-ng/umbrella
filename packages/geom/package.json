@@ -178,6 +178,9 @@
         "./api/triangle": {
             "default": "./api/triangle.js"
         },
+        "./apply-transforms": {
+            "default": "./apply-transforms.js"
+        },
         "./arc-length": {
             "default": "./arc-length.js"
         },
@@ -309,6 +312,12 @@
         },
         "./resample": {
             "default": "./resample.js"
+        },
+        "./rotate": {
+            "default": "./rotate.js"
+        },
+        "./scale": {
+            "default": "./scale.js"
         },
         "./scatter": {
             "default": "./scatter.js"
