@@ -18,6 +18,10 @@ export class Sphere implements IHiccupShape {
         return new Sphere(set3([], this.pos), this.r, __copyAttribs(this));
     }
 
+    withAttribs(attribs: Attribs): Sphere {
+        return new Sphere(this.pos, this.r, attribs);
+    }
+
     toHiccup() {
         return ["sphere", this.attribs, this.pos, this.r];
     }

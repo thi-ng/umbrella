@@ -1,4 +1,8 @@
-import type { IHiccupPathSegment, IHiccupShape } from "@thi.ng/geom-api";
+import type {
+    Attribs,
+    IHiccupPathSegment,
+    IHiccupShape,
+} from "@thi.ng/geom-api";
 import { __copyShape } from "../internal/copy.js";
 import { APC } from "./apc.js";
 
@@ -9,6 +13,10 @@ export class Quadratic extends APC implements IHiccupShape, IHiccupPathSegment {
 
     copy(): Quadratic {
         return <Quadratic>__copyShape(Quadratic, this);
+    }
+
+    withAttribs(attribs: Attribs): Quadratic {
+        return new Quadratic(this.points, attribs);
     }
 
     toHiccup() {

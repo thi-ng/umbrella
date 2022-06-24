@@ -25,6 +25,10 @@ export class Group implements IHiccupShape {
         return new Group(__copyAttribs(this), this.children.map(fn));
     }
 
+    withAttribs(attribs: Attribs): Group {
+        return new Group(attribs, this.children);
+    }
+
     equiv(o: any) {
         return o instanceof Group && equiv(this.children, o.children);
     }

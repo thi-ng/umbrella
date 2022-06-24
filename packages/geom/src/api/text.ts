@@ -20,6 +20,10 @@ export class Text implements IHiccupShape {
         return new Text(set([], this.pos), this.body, __copyAttribs(this));
     }
 
+    withAttribs(attribs: Attribs): Text {
+        return new Text(this.pos, this.body, attribs);
+    }
+
     toHiccup() {
         return ["text", this.attribs, this.pos, this.body];
     }

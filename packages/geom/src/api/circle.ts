@@ -18,6 +18,10 @@ export class Circle implements IHiccupShape {
         return new Circle(set([], this.pos), this.r, __copyAttribs(this));
     }
 
+    withAttribs(attribs: Attribs): Circle {
+        return new Circle(this.pos, this.r, attribs);
+    }
+
     toHiccup() {
         return ["circle", this.attribs, this.pos, this.r];
     }

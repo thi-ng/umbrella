@@ -45,6 +45,10 @@ export class BPatch extends APC implements IHiccupShape {
         return <BPatch>__copyShape(BPatch, this);
     }
 
+    withAttribs(attribs: Attribs): BPatch {
+        return new BPatch(this.points, attribs);
+    }
+
     edges() {
         const p = this.points;
         return [

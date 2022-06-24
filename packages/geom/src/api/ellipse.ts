@@ -27,6 +27,10 @@ export class Ellipse implements IHiccupShape {
         );
     }
 
+    withAttribs(attribs: Attribs): Ellipse {
+        return new Ellipse(this.pos, this.r, attribs);
+    }
+
     toHiccup() {
         return ["ellipse", this.attribs, this.pos, this.r];
     }

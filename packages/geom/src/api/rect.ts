@@ -30,6 +30,10 @@ export class Rect implements AABBLike, IHiccupShape {
         );
     }
 
+    withAttribs(attribs: Attribs): Rect {
+        return new Rect(this.pos, this.size, attribs);
+    }
+
     max() {
         return add2([], this.pos, this.size);
     }

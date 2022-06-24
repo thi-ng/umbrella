@@ -34,6 +34,12 @@ export class Path implements IHiccupShape {
         return p;
     }
 
+    withAttribs(attribs: Attribs): Path {
+        const res = new Path(this.segments, attribs);
+        res.closed = true;
+        return res;
+    }
+
     equiv(o: any) {
         return o instanceof Path && equiv(this.segments, o.segments);
     }

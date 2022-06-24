@@ -18,6 +18,10 @@ export class Plane implements IHiccupShape {
         return new Plane(set3([], this.normal), this.w, __copyAttribs(this));
     }
 
+    withAttribs(attribs: Attribs): Plane {
+        return new Plane(this.normal, this.w, attribs);
+    }
+
     toHiccup() {
         return ["plane", this.attribs, this.normal, this.w];
     }

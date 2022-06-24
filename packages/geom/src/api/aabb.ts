@@ -30,6 +30,10 @@ export class AABB implements AABBLike {
         );
     }
 
+    withAttribs(attribs: Attribs): AABB {
+        return new AABB(this.pos, this.size, attribs);
+    }
+
     max() {
         return add3([], this.pos, this.size);
     }

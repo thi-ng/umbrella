@@ -41,6 +41,19 @@ export class Arc implements IHiccupShape, IHiccupPathSegment {
         );
     }
 
+    withAttribs(attribs: Attribs): Arc {
+        return new Arc(
+            this.pos,
+            this.r,
+            this.axis,
+            this.start,
+            this.end,
+            this.xl,
+            this.cw,
+            attribs
+        );
+    }
+
     equiv(o: any) {
         return (
             o instanceof Arc &&

@@ -19,6 +19,10 @@ export class Ray implements IHiccupShape {
         );
     }
 
+    withAttribs(attribs: Attribs): Ray {
+        return new Ray(this.pos, this.dir, attribs);
+    }
+
     toHiccup() {
         return [
             "line",
