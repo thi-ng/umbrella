@@ -5,7 +5,7 @@ import { centerOfWeight2 } from "@thi.ng/geom-poly-utils/center-of-weight";
 import { centroid as _centroid } from "@thi.ng/geom-poly-utils/centroid";
 import type { Vec } from "@thi.ng/vectors";
 import { add } from "@thi.ng/vectors/add";
-import { divN } from "@thi.ng/vectors/divn";
+import { addmN } from "@thi.ng/vectors/addmn";
 import { maddN } from "@thi.ng/vectors/maddn";
 import { mixN } from "@thi.ng/vectors/mixn";
 import { mulN } from "@thi.ng/vectors/muln";
@@ -19,6 +19,30 @@ import type { Triangle } from "./api/triangle.js";
 import { bounds } from "./bounds.js";
 import { __dispatch } from "./internal/dispatch.js";
 
+/**
+ * Computes centroid of given shape, writes result in optionally provided output
+ * vector (or creates new one if omitted).
+ *
+ * @remarks
+ * Currently implemented for:
+ *
+ * - {@link AABB}
+ * - {@link Arc}
+ * - {@link BPatch}
+ * - {@link Circle}
+ * - {@link Cubic}
+ * - {@link Ellipse}
+ * - {@link Group}
+ * - {@link Line}
+ * - {@link Path}
+ * - {@link Polygon}
+ * - {@link Polyline}
+ * - {@link Points}
+ * - {@link Points3}
+ * - {@link Quad}
+ * - {@link Quadratic}
+ * - {@link Text} - (no way to compute size, only position & any margin)
+ */
 export const centroid: MultiFn1O<IShape, Vec, Vec | undefined> = defmulti<
     any,
     Vec | undefined,
@@ -28,6 +52,7 @@ export const centroid: MultiFn1O<IShape, Vec, Vec | undefined> = defmulti<
     {
         arc: "circle",
         aabb: "rect",
+        bpatch: "points",
         ellipse: "circle",
         line3: "line",
         points3: "points",
@@ -40,9 +65,9 @@ export const centroid: MultiFn1O<IShape, Vec, Vec | undefined> = defmulti<
     {
         circle: ($: Circle, out?) => set(out || [], $.pos),
 
-        group: ($: Group) => {
+        group: ($: Group, out?) => {
             const b = bounds($);
-            return b ? centroid(b) : undefined;
+            return b ? centroid(b, out) : undefined;
         },
 
         line: ({ points }: Line, out?) =>
@@ -57,10 +82,6 @@ export const centroid: MultiFn1O<IShape, Vec, Vec | undefined> = defmulti<
         rect: ($: AABBLike, out?) => maddN(out || [], $.size, 0.5, $.pos),
 
         tri: ({ points }: Triangle, out?) =>
-            divN(
-                null,
-                add(null, add(out || [], points[0], points[1]), points[2]),
-                3
-            ),
+            addmN(null, add(out || [], points[0], points[1]), points[2], 1 / 3),
     }
 );

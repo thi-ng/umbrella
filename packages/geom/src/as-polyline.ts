@@ -8,6 +8,26 @@ import { __copyAttribs } from "./internal/copy.js";
 import { __dispatch } from "./internal/dispatch.js";
 import { vertices } from "./vertices.js";
 
+/**
+ * Converts given shape into a {@link Polyline}, optionally using provided
+ * {@link @thi.ng/geom-api#SamplingOpts} or number of target vertices.
+ *
+ * @remarks
+ * Currently implemented for:
+ *
+ * - {@link Arc}
+ * - {@link Circle}
+ * - {@link Cubic}
+ * - {@link Ellipse}
+ * - {@link Line}
+ * - {@link Path}
+ * - {@link Poly}
+ * - {@link Polyline}
+ * - {@link Quad}
+ * - {@link Quadratic}
+ * - {@link Rect}
+ * - {@link Triangle}
+ */
 export const asPolyline: MultiFn1O<
     IShape,
     number | Partial<SamplingOpts>,

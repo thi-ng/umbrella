@@ -27,6 +27,26 @@ import { cubicFromArc, cubicFromLine, cubicFromQuadratic } from "./cubic.js";
 import { __copyAttribs } from "./internal/copy.js";
 import { __dispatch } from "./internal/dispatch.js";
 
+/**
+ * Converts given shape into an array of {@link Cubic} curves.
+ *
+ * @remarks
+ * Currently implemented for:
+ *
+ * - Arc
+ * - Circle
+ * - Cubic
+ * - Ellipse
+ * - Group
+ * - Line
+ * - Path
+ * - Polygon
+ * - Polyline
+ * - Quad
+ * - Quadratic
+ * - Rect
+ * - Triangle
+ */
 export const asCubic: MultiFn1O<IShape, Partial<CubicOpts>, Cubic[]> = defmulti(
     __dispatch,
     {
@@ -52,7 +72,7 @@ export const asCubic: MultiFn1O<IShape, Partial<CubicOpts>, Cubic[]> = defmulti(
         ],
 
         poly: ($: Polygon, opts: Partial<CubicOpts> = {}) =>
-            polyCubic(
+            __polyCubic(
                 $,
                 opts,
                 closedCubicFromBreakPoints,
@@ -60,7 +80,7 @@ export const asCubic: MultiFn1O<IShape, Partial<CubicOpts>, Cubic[]> = defmulti(
             ),
 
         polyline: ($: Polyline, opts: Partial<CubicOpts> = {}) =>
-            polyCubic(
+            __polyCubic(
                 $,
                 opts,
                 openCubicFromBreakPoints,
@@ -76,8 +96,11 @@ export const asCubic: MultiFn1O<IShape, Partial<CubicOpts>, Cubic[]> = defmulti(
     }
 );
 
+/**
+ * @internal
+ */
 // prettier-ignore
-const polyCubic = (
+const __polyCubic = (
     $: PCLike,
     opts: Partial<CubicOpts>,
     breakPoints: (pts: ReadonlyVec[], t?: number, uniform?: boolean) => Vec[][],

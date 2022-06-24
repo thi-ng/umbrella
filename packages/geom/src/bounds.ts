@@ -31,6 +31,31 @@ import { __collBounds } from "./internal/bounds.js";
 import { __dispatch } from "./internal/dispatch.js";
 import { rectFromMinMaxWithMargin } from "./rect.js";
 
+/**
+ * Computes and returns bounding rect/box for the given shape, optionally with
+ * extra uniform margin/padding (default: 0). For groups, the compound bounds of
+ * all children will be returned.
+ *
+ * @remarks
+ * Currently implemented for:
+ *
+ * - {@link AABB}
+ * - {@link Arc}
+ * - {@link BPatch}
+ * - {@link Circle}
+ * - {@link Cubic}
+ * - {@link Ellipse}
+ * - {@link Group}
+ * - {@link Line}
+ * - {@link Path}
+ * - {@link Polygon}
+ * - {@link Polyline}
+ * - {@link Points}
+ * - {@link Points3}
+ * - {@link Quad}
+ * - {@link Quadratic}
+ * - {@link Text} - (no way to compute size, only position & any margin)
+ */
 export const bounds: MultiFn1O<IShape, number, AABBLike | undefined> = defmulti<
     any,
     number | undefined,
@@ -111,6 +136,6 @@ export const bounds: MultiFn1O<IShape, number, AABBLike | undefined> = defmulti<
                 : (<AABBLike>$.copy()).offset(margin),
 
         text: ($: Text, margin = 0) =>
-            new Rect(subN2([], $.pos, margin), [0, 0]), // TODO
+            new Rect(subN2([], $.pos, margin), margin * 2),
     }
 );

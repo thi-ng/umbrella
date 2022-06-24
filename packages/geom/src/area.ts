@@ -10,41 +10,44 @@ import type { Arc } from "./api/arc.js";
 import type { Circle } from "./api/circle.js";
 import type { Ellipse } from "./api/ellipse.js";
 import type { Group } from "./api/group.js";
+import type { Path } from "./api/path.js";
 import type { Polygon } from "./api/polygon.js";
 import type { Rect } from "./api/rect.js";
 import type { Sphere } from "./api/sphere.js";
 import type { Triangle } from "./api/triangle.js";
+import { asPolygon } from "./as-polygon.js";
 import { __dispatch } from "./internal/dispatch.js";
 
 /**
- * Returns the possibly signed (unsigned by default) surface area of given
- * `shape`. For groups calls {@link area} for each child and returns sum of
- * unsigned areas.
+ * Computes the possibly signed (unsigned by default) surface area of given
+ * `shape`. For groups calls itself for each child and returns sum of unsigned
+ * areas.
  *
- * In general, for polygons and triangles, the sign of the result can be
- * used as indication of the shapes orientation (clockwise /
- * counterclockwise).
+ * @remarks
+ * In general, for polygons and triangles, the sign of the result can be used as
+ * indication of the shapes orientation (clockwise / counterclockwise).
  *
  * For curves, lines, point clouds and rays the function returns 0.
  *
- * Implemented for:
+ * Currently implemented for:
  *
- * - AABB
- * - Circle
- * - Cubic
- * - Ellipse
- * - Group
- * - Line
- * - Plane
- * - Points
- * - Polygon
- * - Polyline
- * - Quad
- * - Quadratic
- * - Ray
- * - Rect
- * - Sphere
- * - Triangle
+ * - {@link AABB}
+ * - {@link Circle}
+ * - {@link Cubic}
+ * - {@link Ellipse}
+ * - {@link Group}
+ * - {@link Line}
+ * - {@link Path} (closed only & via poly conversion)
+ * - {@link Plane}
+ * - {@link Points}
+ * - {@link Polygon}
+ * - {@link Polyline}
+ * - {@link Quad}
+ * - {@link Quadratic}
+ * - {@link Ray}
+ * - {@link Rect}
+ * - {@link Sphere}
+ * - {@link Triangle}
  *
  * @param shape - shape to operate on
  * @param signed - true, if signed area
@@ -65,6 +68,8 @@ export const area: MultiFn1O<IShape, boolean, number> = defmulti(
 
         group: ({ children }: Group) =>
             children.reduce((sum, $) => sum + area($, false), 0),
+
+        path: ($: Path) => ($.closed ? area(asPolygon($)) : 0),
 
         plane: () => Infinity,
 

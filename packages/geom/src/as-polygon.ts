@@ -6,6 +6,23 @@ import { __copyAttribs } from "./internal/copy.js";
 import { __dispatch } from "./internal/dispatch.js";
 import { vertices } from "./vertices.js";
 
+/**
+ * Converts given shape into a {@link Polygon}, optionally using provided
+ * {@link @thi.ng/geom-api#SamplingOpts} or number of target vertices.
+ *
+ * @remarks
+ * Currently implemented for:
+ *
+ * - Circle
+ * - Ellipse
+ * - Line
+ * - Path
+ * - Poly
+ * - Polyline (will be closed)
+ * - Quad
+ * - Rect
+ * - Triangle
+ */
 export const asPolygon: MultiFn1O<
     IShape,
     number | Partial<SamplingOpts>,
