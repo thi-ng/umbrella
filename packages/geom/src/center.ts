@@ -14,12 +14,15 @@ import { __dispatch } from "./internal/dispatch.js";
 import { translate } from "./translate.js";
 
 /**
- * Returns copy of given shape centered around optionally provided point
- * (default: worldspace origin)
+ * Returns copy of given shape centered around optionally provided point `p`
+ * (default: worldspace origin).
  *
  * @remarks
  * Implemented for all shape types supported by {@link centroid} and
  * {@link translate}.
+ *
+ * @param shape
+ * @param p
  */
 export const center: MultiFn1O<IShape, ReadonlyVec, IShape | undefined> =
     defmulti<any, ReadonlyVec | undefined, IShape | undefined>(

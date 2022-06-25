@@ -28,24 +28,40 @@ import { __copyAttribs } from "./internal/copy.js";
 import { __dispatch } from "./internal/dispatch.js";
 
 /**
- * Converts given shape into an array of {@link Cubic} curves.
+ * Converts given shape into an array of {@link Cubic} curves. For some shapes
+ * (see below) the conversion supports optionally provided {@link CubicOpts}.
  *
  * @remarks
  * Currently implemented for:
  *
- * - Arc
- * - Circle
- * - Cubic
- * - Ellipse
- * - Group
- * - Line
- * - Path
- * - Polygon
- * - Polyline
- * - Quad
- * - Quadratic
- * - Rect
- * - Triangle
+ * - {@link Arc}
+ * - {@link Circle}
+ * - {@link Cubic}
+ * - {@link Ellipse}
+ * - {@link Group}
+ * - {@link Line}
+ * - {@link Path}
+ * - {@link Polygon}
+ * - {@link Polyline}
+ * - {@link Quad}
+ * - {@link Quadratic}
+ * - {@link Rect}
+ * - {@link Triangle}
+ *
+ * Shape types supporting custom conversion options (see
+ * [@thi.ng/geom-splines](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-splines#cubic-curve-conversion-from-polygons--polylines)
+ * for more details):
+ *
+ * - {@link Group} (only used for eligible children)
+ * - {@link Polygon}
+ * - {@link Polyline}
+ * - {@link Quad}
+ * - {@link Quadratic}
+ * - {@link Rect}
+ * - {@link Triangle}
+ *
+ * @param shape
+ * @param opts
  */
 export const asCubic: MultiFn1O<IShape, Partial<CubicOpts>, Cubic[]> = defmulti(
     __dispatch,
@@ -61,7 +77,9 @@ export const asCubic: MultiFn1O<IShape, Partial<CubicOpts>, Cubic[]> = defmulti(
 
         cubic: ($: Cubic) => [$],
 
-        group: ($: Group) => [...mapcat(asCubic, $.children)],
+        group: ($: Group, opts?: Partial<CubicOpts>) => [
+            ...mapcat((x) => asCubic(x, opts), $.children),
+        ],
 
         line: ({ attribs, points }: Line) => [
             cubicFromLine(points[0], points[1], { ...attribs }),

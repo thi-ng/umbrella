@@ -10,6 +10,24 @@ import { __dispatch } from "./internal/dispatch.js";
 import { __edges } from "./internal/edges.js";
 import { vertices } from "./vertices.js";
 
+/**
+ * Extracts the edges of given shape's boundary and returns them as an iterable.
+ * Some shapes also support {@link @thi.ng/geom-api#SamplingOpts}.
+ *
+ * @remarks
+ * Currently implemented for:
+ *
+ * - {@line AABB}
+ * - {@line Line}
+ * - {@line Polygon}
+ * - {@line Polyline}
+ * - {@line Quad}
+ * - {@line Rect}
+ * - {@line Triangle}
+ *
+ * @param shape
+ * @param opts
+ */
 export const edges: MultiFn1O<
     IShape,
     number | Partial<SamplingOpts>,

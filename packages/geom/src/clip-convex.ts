@@ -12,6 +12,19 @@ import { __copyAttribs } from "./internal/copy.js";
 import { __dispatch } from "./internal/dispatch.js";
 import { ensureVertices, vertices } from "./vertices.js";
 
+/**
+ * Takes a shape and a boundary (both convex). Uses the Sutherland-Hodgman
+ * algorithm to compute a clipped version of the first shape (against the
+ * boundary). Returns `undefined` if there're no remaining result vertices.
+ *
+ * @remarks
+ * Internally uses {@link @thi.ng/geom-clip-poly#sutherlandHodgeman}. For
+ * groups, calls itself for each child shape individually and returns a new
+ * group of results (if any).
+ *
+ * @param shape
+ * @param boundary
+ */
 export const clipConvex: MultiFn2<
     IShape,
     IShape | ReadonlyVec[],
@@ -33,7 +46,9 @@ export const clipConvex: MultiFn2<
                 const res = clipConvex(c, boundary);
                 if (res) clipped.push(<IHiccupShape>res);
             }
-            return new Group({ ...attribs }, clipped);
+            return clipped.length
+                ? new Group({ ...attribs }, clipped)
+                : undefined;
         },
 
         line: ($: Line, boundary) => {

@@ -13,15 +13,18 @@ import { vertices } from "./vertices.js";
  * @remarks
  * Currently implemented for:
  *
- * - Circle
- * - Ellipse
- * - Line
- * - Path
- * - Poly
- * - Polyline (will be closed)
- * - Quad
- * - Rect
- * - Triangle
+ * - {@link Circle}
+ * - {@link Ellipse}
+ * - {@link Line}
+ * - {@link Path}
+ * - {@link Poly}
+ * - {@link Polyline} (will be closed)
+ * - {@link Quad}
+ * - {@link Rect}
+ * - {@link Triangle}
+ *
+ * @param shape
+ * @param opts
  */
 export const asPolygon: MultiFn1O<
     IShape,

@@ -42,6 +42,9 @@ import { __dispatch } from "./internal/dispatch.js";
  * - {@link Quad}
  * - {@link Quadratic}
  * - {@link Text} - (no way to compute size, only position & any margin)
+ *
+ * @param shape
+ * @param out
  */
 export const centroid: MultiFn1O<IShape, Vec, Vec | undefined> = defmulti<
     any,

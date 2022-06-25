@@ -27,6 +27,32 @@ import type { Quadratic } from "./api/quadratic.js";
 import type { Rect } from "./api/rect.js";
 import { __dispatch } from "./internal/dispatch.js";
 
+/**
+ * Computes closest point to `p` on boundary of given shape. Writes result in
+ * optionally provided output vector (or creates new one if omitted).
+ *
+ * @remarks
+ * Currently implemented for:
+ *
+ * - {@link AABB}
+ * - {@link Arc}
+ * - {@link Circle}
+ * - {@link Cubic}
+ * - {@link Line}
+ * - {@link Plane}
+ * - {@link Points}
+ * - {@link Points3}
+ * - {@link Polygon}
+ * - {@link Polyline}
+ * - {@link Quad}
+ * - {@link Quadratic}
+ * - {@link Rect}
+ * - {@link Sphere}
+ *
+ * @param shape
+ * @param p
+ * @param out
+ */
 export const closestPoint: MultiFn2O<
     IShape,
     ReadonlyVec,
@@ -36,6 +62,7 @@ export const closestPoint: MultiFn2O<
     __dispatch,
     {
         quad: "poly",
+        points3: "points",
         sphere: "circle",
         tri: "poly",
     },

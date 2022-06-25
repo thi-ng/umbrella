@@ -20,16 +20,17 @@ import { __dispatch } from "./internal/dispatch.js";
  *
  * Implemented for:
  *
- * - Circle
- * - Ellipse
- * - Group
- * - Line
- * - Polygon
- * - Polyline
- * - Quad
- * - Rect
- * - Triangle
+ * - {@link Circle}
+ * - {@link Ellipse}
+ * - {@link Group} (total sum of child circumferences)
+ * - {@link Line}
+ * - {@link Polygon}
+ * - {@link Polyline}
+ * - {@link Quad}
+ * - {@link Rect}
+ * - {@link Triangle}
  *
+ * @param shape
  */
 export const arcLength: MultiFn1<IShape, number> = defmulti(
     __dispatch,
@@ -54,7 +55,7 @@ export const arcLength: MultiFn1<IShape, number> = defmulti(
 
         polyline: ({ points }: Polygon) => perimeter(points, points.length),
 
-        rect: ({ size }: Rect) => 2 * (size[0] + size[1]),
+        rect: ({ size: [w, h] }: Rect) => 2 * (w + h),
 
         tri: ({ points }: Triangle) =>
             dist(points[0], points[1]) +

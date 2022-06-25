@@ -29,6 +29,32 @@ import type { Quadratic } from "./api/quadratic.js";
 import type { Rect } from "./api/rect.js";
 import { __dispatch } from "./internal/dispatch.js";
 
+/**
+ * Extracts/samples vertices from given shape's boundary and returns them as array.
+ * Some shapes also support {@link @thi.ng/geom-api#SamplingOpts}.
+ *
+ * @remarks
+ * Currently implemented for:
+ *
+ * - {@link AABB}
+ * - {@link Arc}
+ * - {@link BPatch}
+ * - {@link Circle}
+ * - {@link Cubic}
+ * - {@link Ellipse}
+ * - {@link Group}
+ * - {@link Line}
+ * - {@link Path}
+ * - {@link Points}
+ * - {@link Points3}
+ * - {@link Quad}
+ * - {@link Quadratic}
+ * - {@link Rect}
+ * - {@link Triangle}
+ *
+ * @param shape
+ * @param opts
+ */
 export const vertices: MultiFn1O<
     IShape,
     number | Partial<SamplingOpts>,
@@ -72,7 +98,7 @@ export const vertices: MultiFn1O<
         circle: ($: Circle, opts = DEFAULT_SAMPLES) => {
             const pos = $.pos;
             const r = $.r;
-            let [num, last] = circleOpts(opts, r);
+            let [num, last] = __circleOpts(opts, r);
             const delta = TAU / num;
             last && num++;
             const buf: Vec[] = new Array(num);
@@ -89,7 +115,7 @@ export const vertices: MultiFn1O<
             const buf: Vec[] = [];
             const pos = $.pos;
             const r = $.r;
-            let [num, last] = circleOpts(opts, Math.max($.r[0], $.r[1]));
+            let [num, last] = __circleOpts(opts, Math.max($.r[0], $.r[1]));
             const delta = TAU / num;
             last && num++;
             for (let i = 0; i < num; i++) {
@@ -141,15 +167,17 @@ export const vertices: MultiFn1O<
 );
 
 /**
- * Takes array of vectors or an `IShape`. If the latter, calls {@link vertices}
- * and return result, else returns original array.
+ * Takes an array of vertices or an `IShape`. If the latter, calls
+ * {@link vertices} with default options and returns result, else returns
+ * original array.
  *
  * @param shape -
  */
 export const ensureVertices = (shape: IShape | Vec[]) =>
     isArray(shape) ? shape : vertices(shape);
 
-const circleOpts = (
+/** @internal */
+const __circleOpts = (
     opts: number | Partial<SamplingOpts>,
     r: number
 ): [number, boolean] =>

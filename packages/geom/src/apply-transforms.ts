@@ -55,6 +55,8 @@ const __apply = ($: IShape) => {
  * uniformly scaling a circle with a scalar factor retains a circle, but scaling
  * non-uniformly will convert it to an ellipse... Similarly, rotating a rect
  * will convert it to a quad etc.
+ *
+ * @param shape
  */
 export const applyTransforms: MultiFn1<IShape, IShape> = defmulti<any, IShape>(
     __dispatch,

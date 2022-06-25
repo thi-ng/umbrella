@@ -27,6 +27,9 @@ import { vertices } from "./vertices.js";
  * - {@link Quadratic}
  * - {@link Rect}
  * - {@link Triangle}
+ *
+ * @param shape
+ * @param opts
  */
 export const asPolyline: MultiFn1O<
     IShape,

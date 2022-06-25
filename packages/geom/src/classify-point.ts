@@ -27,10 +27,15 @@ import { __dispatch } from "./internal/dispatch.js";
  * - {@link Sphere}
  * - {@link Triangle}
  *
- * The package @thi.ng/geom-sdf provides a much more comprehensive feature set
- * (incl. support for more shapes) to perform similar checks as this function.
+ * The {@link @thi.ng/geom-sdf#} package provides a much more comprehensive
+ * feature set (incl. support for more shapes) to perform similar checks as this
+ * function.
  *
  * Also see {@link pointInside}.
+ *
+ * @param shape
+ * @param p
+ * @param eps
  */
 export const classifyPoint: MultiFn2O<IShape, ReadonlyVec, number, number> =
     defmulti<any, ReadonlyVec, number | undefined, number>(

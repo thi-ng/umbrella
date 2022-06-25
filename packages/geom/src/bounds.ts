@@ -55,6 +55,9 @@ import { rectFromMinMaxWithMargin } from "./rect.js";
  * - {@link Quad}
  * - {@link Quadratic}
  * - {@link Text} - (no way to compute size, only position & any margin)
+ *
+ * @param shape
+ * @param margin
  */
 export const bounds: MultiFn1O<IShape, number, AABBLike | undefined> = defmulti<
     any,
