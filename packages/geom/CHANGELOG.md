@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-06-23T12:16:18Z
+- **Last updated**: 2022-06-28T13:48:51Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,23 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [3.4.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom@3.4.0) (2022-06-28)
+
+#### 🚀 Features
+
+- add AABB support for intersects() ([768dddd](https://github.com/thi-ng/umbrella/commit/768dddd))
+- update warpPoints() args, add docs ([50cb467](https://github.com/thi-ng/umbrella/commit/50cb467))
+- update edges(), support more types ([3e1b340](https://github.com/thi-ng/umbrella/commit/3e1b340))
+- add new transform ops & helpers ([cd8217c](https://github.com/thi-ng/umbrella/commit/cd8217c))
+  - add applyTransforms(), rotate(), scale()
+  - add internal helpers
+  - update transform() rect coercion (now => Quad, previous Polygon)
+- add IAttributed impls for all shape types ([ccb40f1](https://github.com/thi-ng/umbrella/commit/ccb40f1))
+
+#### 🩹 Bug fixes
+
+- update AABB/Rect.offset(), clamp size to zero ([620121d](https://github.com/thi-ng/umbrella/commit/620121d))
 
 ### [3.3.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom@3.3.1) (2022-06-23)
 

@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-06-09T16:14:01Z
+- **Last updated**: 2022-06-28T13:48:51Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,13 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [2.3.8](https://github.com/thi-ng/umbrella/tree/@thi.ng/text-canvas@2.3.8) (2022-06-28)
+
+#### ♻️ Refactoring
+
+- update/simplify formatCanvas() ([e2f3ab9](https://github.com/thi-ng/umbrella/commit/e2f3ab9))
+  - re-use new single-line formatting fns from [@thi.ng/text-format](https://github.com/thi-ng/umbrella/tree/main/packages/text-format)
 
 ## [2.3.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/text-canvas@2.3.0) (2022-04-07)
 
