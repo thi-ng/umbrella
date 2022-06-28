@@ -1,4 +1,5 @@
 import type { StringFormat } from "@thi.ng/text-format";
+import { format, formatNone } from "@thi.ng/text-format/format";
 import type { Canvas } from "./canvas.js";
 
 /**
@@ -6,40 +7,20 @@ import type { Canvas } from "./canvas.js";
  * formatter. If none is given, returns plain string representation, ignoring
  * any character format data.
  *
- * @param canvas - 
- * @param format - 
+ * @param canvas -
+ * @param fmt -
  */
-export const formatCanvas = (canvas: Canvas, format?: StringFormat) => {
+export const formatCanvas = (canvas: Canvas, fmt?: StringFormat) => {
     const { data, width, height } = canvas;
     const res: string[] = [];
-    if (format) {
-        const { start, end, prefix, suffix, zero } = format;
-        let prevID: number, ch: number, id: number;
-        const check = zero ? () => prevID !== -1 : () => prevID !== 0;
-        for (let y = 0, i = 0; y < height; y++) {
-            prevID = zero ? -1 : 0;
-            res.push(prefix);
-            for (let x = 0; x < width; x++, i++) {
-                ch = data[i];
-                id = ch >>> 16;
-                if (id != prevID) {
-                    check() && res.push(end);
-                    (zero || id) && res.push(start(id));
-                    prevID = id;
-                }
-                res.push(String.fromCharCode(ch & 0xffff));
-            }
-            check() && res.push(end);
-            res.push(suffix);
+    if (fmt) {
+        for (let y = 0; y < height; y++) {
+            res.push(format(fmt, data, width, y * width));
         }
-        return res.join("");
     } else {
-        for (let y = 0, i = 0; y < height; y++) {
-            for (let x = 0; x < width; x++, i++) {
-                res.push(String.fromCharCode(data[i] & 0xffff));
-            }
-            res.push("\n");
+        for (let y = 0; y < height; y++) {
+            res.push(formatNone(data, width, y * width));
         }
-        return res.join("");
     }
+    return res.join("");
 };
