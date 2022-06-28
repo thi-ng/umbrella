@@ -3,27 +3,41 @@ import { defmulti } from "@thi.ng/defmulti/defmulti";
 import type { IShape, SamplingOpts } from "@thi.ng/geom-api";
 import type { VecPair } from "@thi.ng/vectors";
 import type { AABB } from "./api/aabb.js";
+import type { Arc } from "./api/arc.js";
+import type { BPatch } from "./api/bpatch.js";
+import type { Circle } from "./api/circle.js";
+import type { Path } from "./api/path.js";
 import type { Polygon } from "./api/polygon.js";
 import type { Polyline } from "./api/polyline.js";
 import type { Rect } from "./api/rect.js";
+import { asPolygon } from "./as-polygon.js";
+import { asPolyline } from "./as-polyline.js";
 import { __dispatch } from "./internal/dispatch.js";
 import { __edges } from "./internal/edges.js";
 import { vertices } from "./vertices.js";
 
 /**
- * Extracts the edges of given shape's boundary and returns them as an iterable.
- * Some shapes also support {@link @thi.ng/geom-api#SamplingOpts}.
+ * Extracts the edges of given shape's boundary and returns them as an iterable
+ * of vector pairs. Some shapes also support
+ * {@link @thi.ng/geom-api#SamplingOpts}.
  *
  * @remarks
  * Currently implemented for:
  *
- * - {@line AABB}
- * - {@line Line}
- * - {@line Polygon}
- * - {@line Polyline}
- * - {@line Quad}
- * - {@line Rect}
- * - {@line Triangle}
+ * - {@link AABB}
+ * - {@link Arc}
+ * - {@link BPatch}
+ * - {@link Circle}
+ * - {@link Cubic}
+ * - {@link Ellipse}
+ * - {@link Line}
+ * - {@link Path}
+ * - {@link Polygon}
+ * - {@link Polyline}
+ * - {@link Quad}
+ * - {@link Quadratic}
+ * - {@link Rect}
+ * - {@link Triangle}
  *
  * @param shape
  * @param opts
@@ -39,8 +53,11 @@ export const edges: MultiFn1O<
 >(
     __dispatch,
     {
+        cubic: "arc",
+        ellipse: "circle",
         line: "polyline",
         quad: "poly",
+        quadratic: "arc",
         tri: "poly",
     },
     {
@@ -61,6 +78,14 @@ export const edges: MultiFn1O<
                 [d, h], // right
             ];
         },
+
+        arc: ($: Arc, opts) => __edges(asPolyline($, opts).points, false),
+
+        bpatch: ($: BPatch) => $.edges(),
+
+        circle: ($: Circle, opts) => __edges(asPolygon($, opts).points, true),
+
+        path: ($: Path, opts) => __edges(asPolygon($, opts).points, $.closed),
 
         poly: ($: Polygon) => __edges($.points, true),
 
