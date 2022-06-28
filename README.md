@@ -161,13 +161,13 @@ feature or `develop` branches)
 
 ### Latest updates
 
-As of: 2022-06-23
+As of: 2022-06-28
 
 | Status                                        | Project                                                 | Version                                                                                                                       | Changelog                                            |
 |-----------------------------------------------|---------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------|
 | ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/geom`](./packages/geom)                       | [![version](https://img.shields.io/npm/v/@thi.ng/geom.svg)](https://www.npmjs.com/package/@thi.ng/geom)                       | [changelog](./packages/geom/CHANGELOG.md)            |
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/geom-poly-utils`](./packages/geom-poly-utils) | [![version](https://img.shields.io/npm/v/@thi.ng/geom-poly-utils.svg)](https://www.npmjs.com/package/@thi.ng/geom-poly-utils) | [changelog](./packages/geom-poly-utils/CHANGELOG.md) |
 | ![](https://img.shields.io/badge/-new-cyan)   | [`@thi.ng/geom-sdf`](./packages/geom-sdf)               | [![version](https://img.shields.io/npm/v/@thi.ng/geom-sdf.svg)](https://www.npmjs.com/package/@thi.ng/geom-sdf)               | [changelog](./packages/geom-sdf/CHANGELOG.md)        |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/text-format`](./packages/text-format) | [![version](https://img.shields.io/npm/v/@thi.ng/text-format.svg)](https://www.npmjs.com/package/@thi.ng/text-format) | [changelog](./packages/text-format/CHANGELOG.md) |
 
 <!--
 ![](https://img.shields.io/badge/-feat-green)
