@@ -1,4 +1,4 @@
-import type { MultiFn2O } from "@thi.ng/defmulti";
+import type { MultiFn2 } from "@thi.ng/defmulti";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
 import type { IntersectionResult, IShape, PCLike } from "@thi.ng/geom-api";
 import { IntersectionType } from "@thi.ng/geom-api/isec";
@@ -10,7 +10,7 @@ import { intersectRayPlane } from "@thi.ng/geom-isec/ray-plane";
 import { intersectRayPolyline } from "@thi.ng/geom-isec/ray-poly";
 import { intersectRayAABB, intersectRayRect } from "@thi.ng/geom-isec/ray-rect";
 import { testRectCircle } from "@thi.ng/geom-isec/rect-circle";
-import { testRectRect } from "@thi.ng/geom-isec/rect-rect";
+import { testAabbAabb, testRectRect } from "@thi.ng/geom-isec/rect-rect";
 import type { AABB } from "./api/aabb.js";
 import type { Circle } from "./api/circle.js";
 import type { Line } from "./api/line.js";
@@ -20,8 +20,33 @@ import type { Rect } from "./api/rect.js";
 import type { Sphere } from "./api/sphere.js";
 import { __dispatch2 } from "./internal/dispatch.js";
 
-export const intersects: MultiFn2O<IShape, IShape, any, IntersectionResult> =
-    defmulti(
+/**
+ * Performs intersection tests on given 2 shapes and returns
+ * {@link @thi.ng/geom-api#IntersectionResult}.
+ *
+ * @remarks
+ * Currently supported pairs:
+ *
+ * - {@link Circle} / {@link Circle}
+ * - {@link Line} / {@link Line}
+ * - {@link Plane} / {@link Plane}
+ * - {@link Ray} / {@link AABB}
+ * - {@link Ray} / {@link Circle}
+ * - {@link Ray} / {@link Plane}
+ * - {@link Ray} / {@link Polygon}
+ * - {@link Ray} / {@link Polyline}
+ * - {@link Ray} / {@link Quad}
+ * - {@link Ray} / {@link Rect}
+ * - {@link Ray} / {@link Sphere}
+ * - {@link Ray} / {@link Triangle}
+ * - {@link Rect} / {@link Rect}
+ * - {@link Sphere} / {@link Sphere}
+ *
+ * @param a
+ * @param b
+ */
+export const intersects: MultiFn2<IShape, IShape, IntersectionResult> =
+    defmulti<any, any, IntersectionResult>(
         __dispatch2,
         {
             "ray-sphere": "ray-circle",
@@ -30,7 +55,13 @@ export const intersects: MultiFn2O<IShape, IShape, any, IntersectionResult> =
             "sphere-sphere": "circle-circle",
         },
         {
-            "circle-circle": (a: Sphere, b: Sphere) =>
+            "aabb-aabb": (a: AABB, b: AABB) => ({
+                type: testAabbAabb(a.pos, a.size, b.pos, b.size)
+                    ? IntersectionType.INTERSECT
+                    : IntersectionType.NONE,
+            }),
+
+            "circle-circle": (a: Circle, b: Circle) =>
                 intersectCircleCircle(a.pos, b.pos, a.r, b.r),
 
             "line-line": ({ points: a }: Line, { points: b }: Line) =>
