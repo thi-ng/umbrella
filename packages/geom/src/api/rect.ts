@@ -1,7 +1,8 @@
 import type { AABBLike, Attribs, IHiccupShape } from "@thi.ng/geom-api";
-import type { Vec } from "@thi.ng/vectors";
 import { add2 } from "@thi.ng/vectors/add";
 import { addN2 } from "@thi.ng/vectors/addn";
+import { Vec, ZERO2 } from "@thi.ng/vectors/api";
+import { max2 } from "@thi.ng/vectors/max";
 import { set2 } from "@thi.ng/vectors/set";
 import { subN2 } from "@thi.ng/vectors/subn";
 import { __asVec } from "../internal/args.js";
@@ -40,7 +41,7 @@ export class Rect implements AABBLike, IHiccupShape {
 
     offset(offset: number) {
         subN2(null, this.pos, offset);
-        addN2(null, this.size, offset * 2);
+        max2(null, addN2(null, this.size, offset * 2), ZERO2);
         return this;
     }
 
