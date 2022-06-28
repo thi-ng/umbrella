@@ -7,12 +7,30 @@ import { mapPoint } from "./map-point.js";
 import { rectFromMinMax } from "./rect.js";
 import { unmapPoint } from "./unmap-point.js";
 
-export const warpPoints = (pts: ReadonlyVec[], dest: IShape, src: IShape) => {
-    const res: Vec[] = [];
+/**
+ * Transfers/remaps points (in world space) given in relation to `src` shape to
+ * be relative to the space of `dest` shape. Writes results to `out` (or creates
+ * new array).
+ *
+ * @remarks
+ * The type of `src` must be supported by {@link mapPoint}. The type of `dest`
+ * must be supported by {@link unmapPoint}.
+ *
+ * @param pts
+ * @param dest
+ * @param src
+ * @param out
+ */
+export const warpPoints = (
+    pts: ReadonlyVec[],
+    dest: IShape,
+    src: IShape,
+    out: Vec[] = []
+) => {
     for (let n = pts.length, i = 0; i < n; i++) {
-        res.push(unmapPoint(dest, mapPoint(src, pts[i])));
+        out.push(unmapPoint(dest, mapPoint(src, pts[i])));
     }
-    return res;
+    return out;
 };
 
 export const warpPointsBPatch = (
