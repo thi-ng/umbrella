@@ -30,6 +30,38 @@ import { __copyAttribs } from "./internal/copy.js";
 import { __dispatch } from "./internal/dispatch.js";
 import { __scaledShape as tx } from "./internal/scale.js";
 
+/**
+ * Scales given shape uniformly or non-uniformly by given `factor`.
+ *
+ * @remarks
+ * Scaling non-uniformly might result in different result types, e.g.
+ * {@link Circle} => {@link Ellipse}.
+ *
+ * Currently implemented for:
+ *
+ * - {@link AABB}
+ * - {@link Arc}
+ * - {@link Circle}
+ * - {@link Cubic}
+ * - {@link Ellipse}
+ * - {@link Group}
+ * - {@link Line}
+ * - {@link Path}
+ * - {@link Points}
+ * - {@link Points3}
+ * - {@link Polygon}
+ * - {@link Polyline}
+ * - {@link Quad}
+ * - {@link Quadratic}
+ * - {@link Ray}
+ * - {@link Rect}
+ * - {@link Sphere}
+ * - {@link Text}
+ * - {@link Triangle}
+ *
+ * @param shape
+ * @param factor
+ */
 export const scale: MultiFn2<IShape, number | ReadonlyVec, IShape> = defmulti<
     any,
     number | ReadonlyVec,

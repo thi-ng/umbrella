@@ -9,16 +9,19 @@ import type { Rect } from "./api/rect.js";
 import { __dispatch } from "./internal/dispatch.js";
 
 /**
- * Projects given point `uv` (normalized coords) into the target space
- * defined by `shape` and writes result to `out` (or returns new
- * vector). See {@link mapPoint} for reverse operation. Both functions
- * together can be used to warp points from one shape into another.
+ * Projects given point `uv` (normalized coords) into the target space defined
+ * by `shape` and writes result to `out` (or returns new vector).
+ *
+ * @remarks
+ * See {@link mapPoint} for reverse operation. Both functions together can be
+ * used to warp points from one shape into another.
  *
  * Currently only implemented for these shape types:
  *
- * - AABB
- * - Quad
- * - Rect
+ * - {@link AABB}
+ * - {@link Quad}
+ * - {@link Quad3}
+ * - {@link Rect}
  *
  * @param shape - shape to operate on
  * @param uv - point to map in UV space

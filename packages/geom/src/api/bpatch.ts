@@ -1,6 +1,6 @@
 import { assert } from "@thi.ng/errors/assert";
 import type { Attribs, IHiccupShape } from "@thi.ng/geom-api";
-import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
+import type { ReadonlyVec, Vec, VecPair } from "@thi.ng/vectors";
 import { mixCubic } from "@thi.ng/vectors/mix-cubic";
 import { __copyShape } from "../internal/copy.js";
 import { APC } from "./apc.js";
@@ -76,7 +76,7 @@ export class BPatch extends APC implements IHiccupShape {
             [12, 13],
             [13, 14],
             [14, 15],
-        ].map(([a, b]) => [p[a], p[b]]);
+        ].map(([a, b]) => <VecPair>[p[a], p[b]]);
     }
 
     unmapPoint(uv: ReadonlyVec, out?: Vec) {

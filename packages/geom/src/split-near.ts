@@ -19,14 +19,14 @@ import { __splitLine } from "./internal/split.js";
 /**
  * Similar to {@link splitAt}, but instead of taking a normalized parametric
  * split position, splits the given curve at the closest point to `p`.
- * Returns tuple of split shapes of same type as `shape`.
  *
- * Implemented for:
+ * @remarks
+ * Currently only implemented for:
  *
- * - Cubic
- * - Line
- * - Polyline
- * - Quadratic
+ * - {@link Cubic}
+ * - {@link Line}
+ * - {@link Polyline}
+ * - {@link Quadratic}
  *
  * @param shape - shape to operate on
  * @param p - split point

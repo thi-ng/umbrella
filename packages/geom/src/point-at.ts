@@ -24,6 +24,31 @@ import type { Rect } from "./api/rect.js";
 import { __dispatch } from "./internal/dispatch.js";
 import { vertices } from "./vertices.js";
 
+/**
+ * Samples and returns point on the boundary of given 2D shape at normalized
+ * parametric distance `t`. If the shape is closed, t=0 and t=1 yield the same
+ * result.
+ *
+ * @remarks
+ * Currently implemented for:
+ *
+ * - {@link Arc}
+ * - {@link Circle}
+ * - {@link Cubic}
+ * - {@link Ellipse}
+ * - {@link Line}
+ * - {@link Polygon}
+ * - {@link Polyline}
+ * - {@link Quad}
+ * - {@link Quadratic}
+ * - {@link Ray}
+ * - {@link Ray3}
+ * - {@link Rect}
+ * - {@link Triangle}
+ *
+ * @param shape
+ * @param t
+ */
 export const pointAt: MultiFn2<IShape, number, Vec | undefined> = defmulti<
     any,
     number,

@@ -8,6 +8,29 @@ import type { Path } from "./api/path.js";
 import type { Ray } from "./api/ray.js";
 import { __dispatch } from "./internal/dispatch.js";
 
+/**
+ * Reverses vertex ordering or general direction (e.g. for {@link Ray}) of given
+ * shape.
+ *
+ * @remarks
+ * Currently implemented for:
+ *
+ * - {@link Arc}
+ * - {@link Cubic}
+ * - {@link Group} (only eligible shapes)
+ * - {@link Line}
+ * - {@link Path}
+ * - {@link Points}
+ * - {@link Points3}
+ * - {@link Polygon}
+ * - {@link Polyline}
+ * - {@link Quad}
+ * - {@link Quadratic}
+ * - {@link Ray}
+ * - {@link Triangle}
+ *
+ * @param shape
+ */
 export const flip: MultiFn1<IShape, IShape> = defmulti<any, IShape>(
     __dispatch,
     {

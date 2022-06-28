@@ -16,6 +16,21 @@ import { __dispatch } from "./internal/dispatch.js";
 import { __pointArraysAsShapes } from "./internal/points-as-shape.js";
 import { __splitLine } from "./internal/split.js";
 
+/**
+ * Splits given shape in 2 parts at normalized parametric position `t`.
+ *
+ * @remarks
+ * Currently only implemented for:
+ *
+ * - {@link Arc}
+ * - {@link Cubic}
+ * - {@link Line}
+ * - {@link Polyline}
+ * - {@link Quadratic}
+ *
+ * @param shape
+ * @param t
+ */
 export const splitAt: MultiFn2<IShape, number, IShape[] | undefined> = defmulti<
     any,
     number,

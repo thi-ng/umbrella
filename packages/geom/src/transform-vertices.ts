@@ -27,17 +27,42 @@ import {
 } from "./internal/transform.js";
 
 /**
- * Transforms vertices of given shape with provided function, which is
- * being called for each vertex individually and should produce a
- * transformation matrix. Some shape types will be automatically
- * converted to other types prior to transformation because they cannot
- * be reliably represented in their original type anymore, this
- * includes:
+ * Similar to {@link transform}. Transforms vertices of given shape with
+ * provided function, which is being called for each vertex individually and
+ * should produce a transformation matrix.
  *
- * - Arc => Path (cubics)
- * - Circle => Path (cubics)
- * - Ellipse => Path (cubics)
- * - Rect => Polygon
+ * @remark
+ * Some shape types will be automatically converted to other types prior to
+ * transformation because they cannot be reliably represented in their original
+ * type anymore, this includes:
+ *
+ * - {@link Arc} => {@link Path} (cubics)
+ * - {@link Circle} => {@link Path} (cubics)
+ * - {@link Ellipse} => {@link Path} (cubics)
+ * - {@link Rect} => {@link Polygon}
+ *
+ * Currently implemented for:
+ *
+ * - {@link Arc}
+ * - {@link Circle}
+ * - {@link Cubic}
+ * - {@link Ellipse}
+ * - {@link Group}
+ * - {@link Line}
+ * - {@link Path}
+ * - {@link Points}
+ * - {@link Points3}
+ * - {@link Polygon}
+ * - {@link Polyline}
+ * - {@link Quad}
+ * - {@link Quadratic}
+ * - {@link Ray}
+ * - {@link Rect}
+ * - {@link Text}
+ * - {@link Triangle}
+ *
+ * @param shape
+ * @param fn
  */
 export const transformVertices: MultiFn2<
     IShape,

@@ -7,6 +7,21 @@ import { sub } from "@thi.ng/vectors/sub";
 import type { Rect } from "./api/rect.js";
 import { __dispatch } from "./internal/dispatch.js";
 
+/**
+ * Maps point `p` from world space to the local space of given shape.
+ *
+ * @remarks
+ * This is the reverse operation of {@link unmapPoint}.
+ *
+ * Currently only implemented for:
+ *
+ * - {@link AABB}
+ * - {@link Rect}
+ *
+ * @param shape
+ * @param p
+ * @param out
+ */
 export const mapPoint: MultiFn2O<IShape, ReadonlyVec, Vec, Vec> = defmulti<
     any,
     ReadonlyVec,

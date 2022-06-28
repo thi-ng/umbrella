@@ -11,6 +11,24 @@ import { __copyAttribs } from "./internal/copy.js";
 import { __dispatch } from "./internal/dispatch.js";
 import { vertices } from "./vertices.js";
 
+/**
+ * Simplifies given 2D shape boundary using Douglas-Peucker algorithm
+ * (implemented by {@link @thi.ng/geom-resample#simplify}) and given `threshold`
+ * distance (default: 0, which removes only co-linear vertices).
+ *
+ * @remarks
+ * Currently only implemented for:
+ *
+ * - {@link Path}
+ * - {@link Polygon}
+ * - {@link Polyline}
+ *
+ * Use {@link asPath}, {@link asPolygon} or {@link asPolyline} to convert other
+ * shape types first.
+ *
+ * @param shape
+ * @param threshold
+ */
 export const simplify: MultiFn2<IShape, number, IShape> = defmulti<
     any,
     number,
@@ -19,7 +37,7 @@ export const simplify: MultiFn2<IShape, number, IShape> = defmulti<
     __dispatch,
     {},
     {
-        path: ($: Path, eps = 0.1) => {
+        path: ($: Path, eps = 0) => {
             const res: PathSegment[] = [];
             const orig = $.segments;
             const n = orig.length;
@@ -53,10 +71,10 @@ export const simplify: MultiFn2<IShape, number, IShape> = defmulti<
             return new Path(res, __copyAttribs($));
         },
 
-        poly: ($: Polygon, eps = 0.1) =>
+        poly: ($: Polygon, eps = 0) =>
             new Polygon(_simplify($.points, eps, true), __copyAttribs($)),
 
-        polyline: ($: Polyline, eps = 0.1) =>
+        polyline: ($: Polyline, eps = 0) =>
             new Polyline(_simplify($.points, eps), __copyAttribs($)),
     }
 );

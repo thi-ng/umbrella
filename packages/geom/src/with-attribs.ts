@@ -1,9 +1,9 @@
 import type { Attribs, IShape } from "@thi.ng/geom-api";
 
 /**
- * Returns a shallow copy of given shape with new `attribs` assigned. If
- * `replace` is false, the new attribs will be merged with the existing ones (if
- * any).
+ * Returns a shallow copy of given shape with new `attribs` assigned (using
+ * {@link @thi.ng/geom-api#IAttributed.withAttribs}). If `replace` is false, the
+ * new attribs will be merged with the existing ones (if any).
  *
  * @param shape
  * @param attribs

@@ -9,15 +9,16 @@ import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
 import { neg } from "@thi.ng/vectors/neg";
 import type { AABB } from "./api/aabb.js";
 import { Rect } from "./api/rect.js";
-import { __collBounds } from "./internal/bounds.js";
 import { bounds } from "./bounds.js";
 import { center } from "./center.js";
 import { centroid } from "./centroid.js";
+import { __collBounds } from "./internal/bounds.js";
 import { mapPoint } from "./map-point.js";
 import { transform } from "./transform.js";
 import { unmapPoint } from "./unmap-point.js";
 
-const translateScale = (
+/** @internal */
+const __translateScale = (
     tmat: MatOpV,
     smat: MatOpNV,
     shape: IShape,
@@ -30,12 +31,19 @@ const translateScale = (
         concat([], tmat([], postTrans), smat([], scale), tmat([], preTrans))
     );
 
+/**
+ * Uniformly rescales & repositions given 2D `shape` such that it fits into
+ * destination bounds. Returns transformed copy of `shape`.
+ *
+ * @param shape
+ * @param dest
+ */
 export const fitIntoBounds2 = (shape: IShape, dest: Rect) => {
     const src = <Rect>bounds(shape);
     if (!src) return;
     const c = centroid(src);
     if (!c) return;
-    return translateScale(
+    return __translateScale(
         translation23,
         scale23,
         shape,
@@ -48,12 +56,18 @@ export const fitIntoBounds2 = (shape: IShape, dest: Rect) => {
     );
 };
 
+/**
+ * 3D version of {@link fitIntoBounds2}.
+ *
+ * @param shape
+ * @param dest
+ */
 export const fitIntoBounds3 = (shape: IShape, dest: AABB) => {
     const src = <AABB>bounds(shape);
     if (!src) return;
     const c = centroid(src);
     if (!c) return;
-    return translateScale(
+    return __translateScale(
         translation44,
         scale44,
         shape,
@@ -67,6 +81,12 @@ export const fitIntoBounds3 = (shape: IShape, dest: AABB) => {
     );
 };
 
+/**
+ * Version of {@link fitIntoBounds2} for multiple source shapes.
+ *
+ * @param shapes
+ * @param dest
+ */
 export const fitAllIntoBounds2 = (shapes: IShape[], dest: Rect) => {
     const sbraw = __collBounds(shapes, bounds);
     if (!sbraw) return;
@@ -85,7 +105,7 @@ export const fitAllIntoBounds2 = (shapes: IShape[], dest: Rect) => {
         if (sc) {
             unmapPoint(b, mapPoint(src, sc), c2);
             res.push(
-                translateScale(
+                __translateScale(
                     translation23,
                     scale23,
                     s,

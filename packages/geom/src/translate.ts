@@ -26,6 +26,35 @@ import { __copyAttribs } from "./internal/copy.js";
 import { __dispatch } from "./internal/dispatch.js";
 import { __translatedShape as tx } from "./internal/translate.js";
 
+/**
+ * Translates given shape by given `offset` vector.
+ *
+ * @remarks
+ * Currently implemented for:
+ *
+ * - {@link AABB}
+ * - {@link Arc}
+ * - {@link Circle}
+ * - {@link Cubic}
+ * - {@link Ellipse}
+ * - {@link Group}
+ * - {@link Line}
+ * - {@link Path}
+ * - {@link Points}
+ * - {@link Points3}
+ * - {@link Polygon}
+ * - {@link Polyline}
+ * - {@link Quad}
+ * - {@link Quadratic}
+ * - {@link Ray}
+ * - {@link Rect}
+ * - {@link Sphere}
+ * - {@link Text}
+ * - {@link Triangle}
+ *
+ * @param shape
+ * @param offset
+ */
 export const translate: MultiFn2<IShape, ReadonlyVec, IShape> = defmulti<
     any,
     ReadonlyVec,

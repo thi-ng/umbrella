@@ -26,15 +26,41 @@ import {
 import { vertices } from "./vertices.js";
 
 /**
- * Transforms given shape with provided matrix. Some shape types will be
- * automatically converted to other types prior to transformation because they
- * cannot be reliably represented in their original type anymore, this
- * includes:
+ * Transforms given shape with provided matrix.
  *
- * - Arc => Path (cubics)
- * - Circle => Path (cubics)
- * - Ellipse => Path (cubics)
- * - Rect => Polygon
+ * @remarks
+ * A 2x3 transform matrix is assumed for 2D shapes and 4x4 matrix for 3D shapes.
+ * Some shape types will be automatically converted to other types prior to
+ * transformation because they cannot be reliably represented in their original
+ * type anymore, this includes:
+ *
+ * - {@link Arc} => {@link Path} (cubics)
+ * - {@link Circle} => {@link Path} (cubics)
+ * - {@link Ellipse} => {@link Path} (cubics)
+ * - {@link Rect} => {@link Quad}
+ *
+ * Currently implemented for:
+ *
+ * - {@link Arc}
+ * - {@link Circle}
+ * - {@link Cubic}
+ * - {@link Ellipse}
+ * - {@link Group}
+ * - {@link Line}
+ * - {@link Path}
+ * - {@link Points}
+ * - {@link Points3}
+ * - {@link Polygon}
+ * - {@link Polyline}
+ * - {@link Quad}
+ * - {@link Quadratic}
+ * - {@link Ray}
+ * - {@link Rect}
+ * - {@link Text}
+ * - {@link Triangle}
+ *
+ * @param shape
+ * @param mat
  */
 export const transform: MultiFn2<IShape, ReadonlyMat, IShape> = defmulti<
     any,

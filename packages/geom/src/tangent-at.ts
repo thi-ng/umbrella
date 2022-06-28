@@ -14,6 +14,25 @@ import type { Rect } from "./api/rect.js";
 import { __dispatch } from "./internal/dispatch.js";
 import { vertices } from "./vertices.js";
 
+/**
+ * Computes tangent on shape/boundary at normalized parametric position `t`.
+ *
+ * @remarks
+ * Currently implemented for:
+ *
+ * - {@link Circle}
+ * - {@link Cubic}
+ * - {@link Line}
+ * - {@link Polygon}
+ * - {@link Polyline}
+ * - {@link Quad}
+ * - {@link Quadratic}
+ * - {@link Rect}
+ * - {@link Triangle}
+ *
+ * @param shape
+ * @param t
+ */
 export const tangentAt: MultiFn2<IShape, number, Vec | undefined> = defmulti<
     any,
     number,

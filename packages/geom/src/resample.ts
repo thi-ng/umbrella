@@ -8,6 +8,25 @@ import { asPolygon } from "./as-polygon.js";
 import { __copyAttribs } from "./internal/copy.js";
 import { __dispatch } from "./internal/dispatch.js";
 
+/**
+ * Resamples given 2D shape with given options and returns result as polygon (if
+ * closed) or polyline (if open).
+ *
+ * @remarks
+ * Currently implemented for:
+ *
+ * - {@link Circle}
+ * - {@link Ellipse}
+ * - {@link Line}
+ * - {@link Polygon}
+ * - {@link Polyline}
+ * - {@link Quad}
+ * - {@link Rect}
+ * - {@link Triangle}
+ *
+ * @param shape
+ * @param opts
+ */
 export const resample: MultiFn2<
     IShape,
     number | Partial<SamplingOpts>,

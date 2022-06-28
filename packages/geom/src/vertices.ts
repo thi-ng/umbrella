@@ -30,8 +30,8 @@ import type { Rect } from "./api/rect.js";
 import { __dispatch } from "./internal/dispatch.js";
 
 /**
- * Extracts/samples vertices from given shape's boundary and returns them as array.
- * Some shapes also support {@link @thi.ng/geom-api#SamplingOpts}.
+ * Extracts/samples vertices from given shape's boundary and returns them as
+ * array. Some shapes also support {@link @thi.ng/geom-api#SamplingOpts}.
  *
  * @remarks
  * Currently implemented for:

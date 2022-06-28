@@ -6,6 +6,16 @@ import { Rect } from "./api/rect.js";
 import { __unionBounds } from "./internal/bounds.js";
 import { __dispatch } from "./internal/dispatch.js";
 
+/**
+ * Computes shape "union" of given 2 shapes.
+ *
+ * @remarks
+ * Currently only implemented for {@link AABB} and {@link Rect} to compute union
+ * bounding boxes.
+ *
+ * @param a
+ * @param b
+ */
 export const union: MultiFn2<IShape, IShape, IShape[]> = defmulti<
     any,
     any,

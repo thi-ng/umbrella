@@ -2,12 +2,11 @@ import type { MultiFn2 } from "@thi.ng/defmulti";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
 import type { IShape } from "@thi.ng/geom-api";
 import { add2 } from "@thi.ng/vectors/add";
-import { addN2 } from "@thi.ng/vectors/addn";
-import { ZERO2 } from "@thi.ng/vectors/api";
-import { max2 } from "@thi.ng/vectors/max";
 import { normalCW } from "@thi.ng/vectors/normal";
 import { set2 } from "@thi.ng/vectors/set";
 import { sub2 } from "@thi.ng/vectors/sub";
+import { aabbFromCentroidWithMargin } from "./aabb.js";
+import type { AABB } from "./api/aabb.js";
 import { Circle } from "./api/circle.js";
 import type { Line } from "./api/line.js";
 import { Quad } from "./api/quad.js";
@@ -15,8 +14,25 @@ import type { Rect } from "./api/rect.js";
 import { centroid } from "./centroid.js";
 import { __copyAttribs } from "./internal/copy.js";
 import { __dispatch } from "./internal/dispatch.js";
-import { rectFromCentroid } from "./rect.js";
+import { rectFromCentroidWithMargin } from "./rect.js";
 
+/**
+ * Computes an offset shape (as in "path offsetting") of given shape and offset
+ * distance `dist`.
+ *
+ * @remarks
+ * Also see {@link @thi.ng/geom-sdf#} package for more flexible & advanced usage.
+ *
+ * Currently only implemented for:
+ *
+ * - {@link AABB}
+ * - {@link Circle}
+ * - {@link Line}
+ * - {@link Rect}
+ *
+ * @param shape
+ * @param dist
+ */
 export const offset: MultiFn2<IShape, number, IShape> = defmulti<
     any,
     number,
@@ -25,6 +41,14 @@ export const offset: MultiFn2<IShape, number, IShape> = defmulti<
     __dispatch,
     {},
     {
+        aabb: ($: AABB, n) =>
+            aabbFromCentroidWithMargin(
+                centroid($)!,
+                $.size,
+                n,
+                __copyAttribs($)
+            ),
+
         circle: ($: Circle, n) =>
             new Circle(set2([], $.pos), Math.max($.r + n, 0)),
 
@@ -42,9 +66,10 @@ export const offset: MultiFn2<IShape, number, IShape> = defmulti<
         },
 
         rect: ($: Rect, n) =>
-            rectFromCentroid(
+            rectFromCentroidWithMargin(
                 centroid($)!,
-                max2(null, addN2([], $.size, n), ZERO2),
+                $.size,
+                n,
                 __copyAttribs($)
             ),
     }

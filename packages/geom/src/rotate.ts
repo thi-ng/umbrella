@@ -24,6 +24,32 @@ import { __copyAttribs } from "./internal/copy.js";
 import { __dispatch } from "./internal/dispatch.js";
 import { __rotatedShape as tx } from "./internal/rotate.js";
 
+/**
+ * Rotates given 2D shape by `theta` (in radians).
+ *
+ * @remarks
+ * Currently implemented for:
+ *
+ * - {@link Arc}
+ * - {@link Circle}
+ * - {@link Cubic}
+ * - {@link Ellipse}
+ * - {@link Group}
+ * - {@link Line}
+ * - {@link Path}
+ * - {@link Points}
+ * - {@link Polygon}
+ * - {@link Polyline}
+ * - {@link Quad}
+ * - {@link Quadratic}
+ * - {@link Ray}
+ * - {@link Rect}
+ * - {@link Text}
+ * - {@link Triangle}
+ *
+ * @param shape
+ * @param theta
+ */
 export const rotate: MultiFn2<IShape, number, IShape> = defmulti<
     any,
     number,

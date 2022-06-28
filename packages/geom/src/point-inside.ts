@@ -20,6 +20,25 @@ import type { Rect } from "./api/rect.js";
 import type { Triangle } from "./api/triangle.js";
 import { __dispatch } from "./internal/dispatch.js";
 
+/**
+ * Returns true if point `p` is inside the given shape.
+ *
+ * @remarks
+ * Currently implemented for:
+ *
+ * - AABB
+ * - Circle
+ * - Points (i.e. if `p` is one of the points in the cloud)
+ * - Points3 (same as w/ Points)
+ * - Polygon
+ * - Quad
+ * - Rect
+ * - Sphere
+ * - Triangle
+ *
+ * @param shape
+ * @param p
+ */
 export const pointInside: MultiFn2<IShape, ReadonlyVec, boolean> = defmulti<
     any,
     ReadonlyVec,
