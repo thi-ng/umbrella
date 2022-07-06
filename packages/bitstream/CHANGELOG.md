@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-06-09T16:14:01Z
+- **Last updated**: 2022-07-06T11:33:31Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,13 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [2.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/bitstream@2.2.0) (2022-07-06)
+
+#### 🚀 Features
+
+- add barebones bitReader/Writer() ([e17dff9](https://github.com/thi-ng/umbrella/commit/e17dff9))
+  - update pkg & readme
 
 ## [2.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/bitstream@2.1.0) (2021-11-17)
 

@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/bitstream",
-    "version": "2.1.7",
+    "version": "2.2.0",
     "description": "ES6 iterator based read/write bit streams with support for variable word widths",
     "type": "module",
     "module": "./index.js",

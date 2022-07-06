@@ -2029,7 +2029,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/bitstream@^2.1.7, @thi.ng/bitstream@workspace:packages/bitstream":
+"@thi.ng/bitstream@^2.2.0, @thi.ng/bitstream@workspace:packages/bitstream":
   version: 0.0.0-use.local
   resolution: "@thi.ng/bitstream@workspace:packages/bitstream"
   dependencies:
@@ -3895,9 +3895,9 @@ __metadata:
   resolution: "@thi.ng/range-coder@workspace:packages/range-coder"
   dependencies:
     "@microsoft/api-extractor": ^7.25.0
-    "@thi.ng/bitstream": ^2.1.7
+    "@thi.ng/bitstream": ^2.2.0
     "@thi.ng/testament": ^0.2.8
-    "@thi.ng/transducers": ^8.3.4
+    "@thi.ng/transducers": ^8.3.5
     rimraf: ^3.0.2
     tools: "workspace:^"
     typedoc: ^0.22.17
@@ -4008,7 +4008,7 @@ __metadata:
   resolution: "@thi.ng/rle-pack@workspace:packages/rle-pack"
   dependencies:
     "@microsoft/api-extractor": ^7.25.0
-    "@thi.ng/bitstream": ^2.1.7
+    "@thi.ng/bitstream": ^2.2.0
     "@thi.ng/errors": ^2.1.7
     "@thi.ng/testament": ^0.2.8
     rimraf: ^3.0.2
@@ -4563,7 +4563,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/transducers@^8.3.4, @thi.ng/transducers@^8.3.5, @thi.ng/transducers@workspace:^, @thi.ng/transducers@workspace:packages/transducers":
+"@thi.ng/transducers@^8.3.5, @thi.ng/transducers@workspace:^, @thi.ng/transducers@workspace:packages/transducers":
   version: 0.0.0-use.local
   resolution: "@thi.ng/transducers@workspace:packages/transducers"
   dependencies:

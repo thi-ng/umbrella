@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/rle-pack",
-    "version": "3.1.7",
+    "version": "3.1.8",
     "description": "Binary run-length encoding packer w/ flexible repeat bit widths",
     "type": "module",
     "module": "./index.js",
@@ -34,7 +34,7 @@
         "test": "testament test"
     },
     "dependencies": {
-        "@thi.ng/bitstream": "^2.1.7",
+        "@thi.ng/bitstream": "^2.2.0",
         "@thi.ng/errors": "^2.1.7"
     },
     "devDependencies": {
