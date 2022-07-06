@@ -17,6 +17,7 @@ This project is part of the
 - [API](#api)
   - [BitOutputStream](#bitoutputstream)
   - [BitInputStream](#bitinputstream)
+  - [Barebones alternatives](#barebones-alternatives)
 - [Authors](#authors)
 - [License](#license)
 
@@ -58,7 +59,7 @@ node --experimental-repl-await
 > const bitstream = await import("@thi.ng/bitstream");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.10 KB
+Package sizes (gzipped, pre-treeshake): ESM: 1.31 KB
 
 ## Dependencies
 
@@ -163,6 +164,36 @@ input.read(7)
 
 In addition to the generic `read()` method, there's also the slightly
 faster `readBit()` for reading single bits.
+
+### Barebones alternatives
+
+For use cases requiring only word sizes <=8 bits and none of the advanced features provided by the above implementations, the package also provides functional barebones alternatives in the form of [`bitWriter()`](https://docs.thi.ng/umbrella/bitstream/modules.html#bitWriter) and [`bitReader()`](https://docs.thi.ng/umbrella/bitstream/modules.html#bitReader):
+
+```ts
+import { bitReader, bitWriter } from "@thi.ng/bistream";
+
+const writer = bitWriter();
+// write single bit
+writer.write(1);
+
+// write unsigned value (up to 8 bits)
+writer.write(31, 5);
+
+// retrieve buffer
+const bytes = writer.bytes();
+// Uint8Array(1) [ 252 ]
+
+// create reader from byte buffer
+const reader = bitReader(bytes);
+
+// read single bit
+reader();
+// 1
+
+// read n-bit unsigned value
+reader(5);
+// 31
+```
 
 ## Authors
 

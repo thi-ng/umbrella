@@ -70,6 +70,9 @@
         },
         "./output": {
             "default": "./output.js"
+        },
+        "./simple": {
+            "default": "./simple.js"
         }
     },
     "thi.ng": {
