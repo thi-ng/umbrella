@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-06-09T16:14:01Z
+- **Last updated**: 2022-07-07T12:39:33Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,16 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [6.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/resolve-map@6.2.0) (2022-07-07)
+
+#### 🚀 Features
+
+- unwrap all resolved() values in result ([888fa33](https://github.com/thi-ng/umbrella/commit/888fa33))
+  - add unwrapResolved() to unwrap any values wrapped via `resolved()`
+  - update resolveMap/Array()
+  - update doc strings
+  - update tests
 
 ## [6.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/resolve-map@6.1.0) (2022-05-23)
 
