@@ -252,10 +252,11 @@ res.e(2);
 
 Values can be protected from further resolution attempts by wrapping them via
 [`resolved()`](https://docs.thi.ng/umbrella/resolve-map/modules.html#resolved).
-The wrapped value can be later obtained via the standard [`IDeref`
-interface/mechanism](https://docs.thi.ng/umbrella/api/interfaces/IDeref.html).
-In lookup/resolution functions, the unwrapped value will be supplied, no
-`.deref()` necessary there.
+These wrapped values are only used during the resolution phase and the final
+result object/array will only contain the original, unwrapped values. Unwrapped
+values will also be supplied to any lookup functions, no
+[`.deref()`](https://docs.thi.ng/umbrella/api/interfaces/IDeref.html) necessary
+there.
 
 ## Authors
 
