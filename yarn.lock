@@ -3986,7 +3986,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/resolve-map@^6.2.0, @thi.ng/resolve-map@workspace:^, @thi.ng/resolve-map@workspace:packages/resolve-map":
+"@thi.ng/resolve-map@^7.0.0, @thi.ng/resolve-map@workspace:^, @thi.ng/resolve-map@workspace:packages/resolve-map":
   version: 0.0.0-use.local
   resolution: "@thi.ng/resolve-map@workspace:packages/resolve-map"
   dependencies:
@@ -4095,7 +4095,7 @@ __metadata:
     "@thi.ng/checks": ^3.2.1
     "@thi.ng/errors": ^2.1.7
     "@thi.ng/paths": ^5.1.8
-    "@thi.ng/resolve-map": ^6.2.0
+    "@thi.ng/resolve-map": ^7.0.0
     "@thi.ng/rstream": ^7.2.8
     "@thi.ng/testament": ^0.2.8
     "@thi.ng/transducers": ^8.3.5

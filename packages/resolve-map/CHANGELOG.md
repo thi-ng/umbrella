@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-07-07T12:39:33Z
+- **Last updated**: 2022-07-07T13:36:28Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,18 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+# [7.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/resolve-map@7.0.0) (2022-07-07)
+
+#### 🛑 Breaking changes
+
+- add ResolveOpts, conditional unwrapping ([a23308b](https://github.com/thi-ng/umbrella/commit/a23308b))
+- BREAKING CHANGE: update resolve() signature, use new `ResolveOpts`
+  - this change has only downstream impact on use cases requiring custom
+  prefixes to indicate lookup paths
+  - add new option to control value unwrapping in final result
+  - update docs/readme
+  - add new tests
 
 ## [6.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/resolve-map@6.2.0) (2022-07-07)
 
