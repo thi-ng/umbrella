@@ -1,4 +1,4 @@
-import type { Fn, IDeref, NumOrString } from "@thi.ng/api";
+import type { Fn, IDeref, IObjectOf, NumOrString } from "@thi.ng/api";
 import { SEMAPHORE } from "@thi.ng/api/api";
 import { isArray } from "@thi.ng/checks/is-array";
 import { isFunction } from "@thi.ng/checks/is-function";
@@ -40,9 +40,10 @@ export type LookupPath = NumOrString[];
  * level (the original object passed to this function).
  *
  * Values can be protected from further resolution attempts by wrapping them via
- * {@link resolved}. The wrapped value can be later obtained via the standard
- * {@link @thi.ng/api#IDeref} interface/mechanism. In lookup functions, the
- * unwrapped value will be supplied, no `.deref()` necessary there.
+ * {@link resolved}. These wrapped values are only used during the resolution
+ * phase and the final result object/array will only contain the original,
+ * unwrapped values. Unwrapped values will also be supplied to any lookup
+ * functions, no `.deref()` necessary there.
  *
  * @example
  * ```ts
@@ -121,34 +122,36 @@ export function resolve(root: any, prefix = "@") {
     return root;
 }
 
+/** @internal */
 const resolveMap = <T>(
     obj: Unresolved<T>,
     prefix: string,
     root?: any,
     path: LookupPath = [],
-    resolved: any = {},
+    resolved: IObjectOf<boolean> = {},
     stack: string[] = []
 ) => {
     root = root || obj;
     for (let k in obj) {
         _resolve(root, [...path, k], resolved, stack, prefix);
     }
-    return <T>obj;
+    return path.length ? <T>obj : unwrapResolved(<T>obj, resolved);
 };
 
+/** @internal */
 const resolveArray = <T>(
     arr: Unresolved<T[]>,
     prefix: string,
     root?: any,
     path: LookupPath = [],
-    resolved: any = {},
+    resolved: IObjectOf<boolean> = {},
     stack: string[] = []
-): T[] => {
+) => {
     root = root || arr;
     for (let k = 0, n = arr.length; k < n; k++) {
         _resolve(root, [...path, k], resolved, stack, prefix);
     }
-    return <any>arr;
+    return path.length ? <T[]>arr : unwrapResolved(<T[]>arr, resolved);
 };
 
 /**
@@ -161,11 +164,13 @@ const resolveArray = <T>(
  * @param path -
  * @param resolved -
  * @param stack -
+ *
+ * @internal
  */
 const _resolve = (
     root: any,
     path: LookupPath,
-    resolved: any,
+    resolved: IObjectOf<boolean>,
     stack: string[],
     prefix: string
 ) => {
@@ -237,11 +242,13 @@ const _resolve = (
  * @param root -
  * @param path -
  * @param resolved -
+ *
+ * @internal
  */
 const resolvePath = (
     root: any,
     path: LookupPath,
-    resolved: any,
+    resolved: IObjectOf<boolean>,
     stack: string[],
     prefix: string
 ) => {
@@ -272,12 +279,14 @@ const resolvePath = (
  * @param resolve -
  * @param pathID - current base path for marking
  * @param resolved -
+ *
+ * @internal
  */
 const resolveFunction = (
     fn: (x: any, r?: ResolveFn) => any,
     resolve: ResolveFn,
     pathID: string,
-    resolved: any
+    resolved: IObjectOf<boolean>
 ) => {
     const match = RE_ARGS.exec(fn.toString());
     let res;
@@ -296,7 +305,8 @@ const resolveFunction = (
     return res;
 };
 
-const markResolved = (v: any, path: string, resolved: any) => {
+/** @internal */
+const markResolved = (v: any, path: string, resolved: IObjectOf<boolean>) => {
     resolved[path] = true;
     if (isPlainObject(v)) {
         markObjResolved(v, path, resolved);
@@ -305,7 +315,12 @@ const markResolved = (v: any, path: string, resolved: any) => {
     }
 };
 
-const markObjResolved = (obj: any, path: string, resolved: any) => {
+/** @internal */
+const markObjResolved = (
+    obj: any,
+    path: string,
+    resolved: IObjectOf<boolean>
+) => {
     let v, p;
     for (let k in obj) {
         v = obj[k];
@@ -314,7 +329,12 @@ const markObjResolved = (obj: any, path: string, resolved: any) => {
     }
 };
 
-const markArrayResolved = (arr: any[], path: string, resolved: any) => {
+/** @internal */
+const markArrayResolved = (
+    arr: any[],
+    path: string,
+    resolved: IObjectOf<boolean>
+) => {
     let v, p;
     for (let i = 0, n = arr.length; i < n; i++) {
         v = arr[i];
@@ -397,4 +417,21 @@ const getInUnsafe = (obj: any, path: LookupPath) => {
         }
     }
     return [res, isResolved];
+};
+
+/**
+ * Unwraps all known values wrapped using {@link Resolved} in-place.
+ *
+ * @param root
+ * @param resolved
+ *
+ * @internal
+ */
+const unwrapResolved = <T>(root: T, resolved: IObjectOf<boolean>) => {
+    for (let path in resolved) {
+        const $path = path.split("/");
+        const val = getInUnsafe(root, $path);
+        val[1] && mutInUnsafe(root, $path, val[0]);
+    }
+    return root;
 };

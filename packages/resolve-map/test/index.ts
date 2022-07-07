@@ -265,7 +265,7 @@ group("resolve-map", {
 
     resolved: () => {
         interface Foo {
-            a: Resolved<{ x: () => number; y: (() => number)[] }>;
+            a: { x: () => number; y: (() => number)[] };
             b: number;
             c: () => number;
         }
@@ -274,9 +274,9 @@ group("resolve-map", {
             b: () => 2,
             c: "@a/y/0",
         });
-        assert.ok(res.a instanceof Resolved);
-        assert.strictEqual(res.a.deref().x(), 2);
-        assert.strictEqual(res.a.deref().y[0](), 1);
+        assert.ok(!(res.a instanceof Resolved));
+        assert.strictEqual(res.a.x(), 2);
+        assert.strictEqual(res.a.y[0](), 1);
         assert.strictEqual(res.b, 2);
         assert.strictEqual(res.c(), 1);
     },
