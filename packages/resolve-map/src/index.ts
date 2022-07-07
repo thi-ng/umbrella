@@ -24,6 +24,23 @@ export type ResolveFn = (path: string) => any;
 
 export type LookupPath = NumOrString[];
 
+export interface ResolveOpts {
+    /**
+     * Prefix for auto-recognizing & interpreting embedded string values as
+     * lookup paths.
+     *
+     * @defaultValue `@`
+     */
+    prefix: string;
+    /**
+     * If true (default), all known values wrapped using {@link resolved} will
+     * be unwrapped in the final result.
+     *
+     * @defaultValue true
+     */
+    unwrap: boolean;
+}
+
 /**
  * Visits all key-value pairs or array items in depth-first order, expands any
  * reference values, mutates the original object and returns it. Cyclic
@@ -40,10 +57,13 @@ export type LookupPath = NumOrString[];
  * level (the original object passed to this function).
  *
  * Values can be protected from further resolution attempts by wrapping them via
- * {@link resolved}. These wrapped values are only used during the resolution
- * phase and the final result object/array will only contain the original,
- * unwrapped values. Unwrapped values will also be supplied to any lookup
- * functions, no `.deref()` necessary there.
+ * {@link resolved}. By default (unless `unwrap` is set to `false`), these
+ * wrapped values are only used during the resolution phase and the final result
+ * object/array will only contain the original, unwrapped values. In any way,
+ * unwrapped values will also be supplied to any lookup functions, no `.deref()`
+ * necessary there.
+ *
+ * See {@link ResolveOpts} for further details.
  *
  * @example
  * ```ts
@@ -109,23 +129,26 @@ export type LookupPath = NumOrString[];
  * ```
  *
  * @param root -
- * @param prefix -
+ * @param opts -
  */
-export function resolve<T>(root: Unresolved<T>, prefix?: string): T;
-export function resolve<T>(root: Unresolved<T[]>, prefix?: string): T[];
-export function resolve(root: any, prefix = "@") {
-    if (isPlainObject(root)) {
-        return resolveMap(root, prefix);
-    } else if (isArray(root)) {
-        return resolveArray(root, prefix);
-    }
-    return root;
+export function resolve<T>(root: Unresolved<T>, opts?: Partial<ResolveOpts>): T;
+export function resolve<T>(
+    root: Unresolved<T[]>,
+    opts?: Partial<ResolveOpts>
+): T[];
+export function resolve(root: any, opts?: Partial<ResolveOpts>) {
+    const $opts = <ResolveOpts>{ prefix: "@", unwrap: true, ...opts };
+    return isPlainObject(root)
+        ? resolveMap(root, $opts)
+        : isArray(root)
+        ? resolveArray(root, $opts)
+        : root;
 }
 
 /** @internal */
 const resolveMap = <T>(
     obj: Unresolved<T>,
-    prefix: string,
+    opts: ResolveOpts,
     root?: any,
     path: LookupPath = [],
     resolved: IObjectOf<boolean> = {},
@@ -133,15 +156,17 @@ const resolveMap = <T>(
 ) => {
     root = root || obj;
     for (let k in obj) {
-        _resolve(root, [...path, k], resolved, stack, prefix);
+        _resolve(root, [...path, k], resolved, stack, opts);
     }
-    return path.length ? <T>obj : unwrapResolved(<T>obj, resolved);
+    return !opts.unwrap || path.length
+        ? <T>obj
+        : unwrapResolved(<T>obj, resolved);
 };
 
 /** @internal */
 const resolveArray = <T>(
     arr: Unresolved<T[]>,
-    prefix: string,
+    opts: ResolveOpts,
     root?: any,
     path: LookupPath = [],
     resolved: IObjectOf<boolean> = {},
@@ -149,9 +174,11 @@ const resolveArray = <T>(
 ) => {
     root = root || arr;
     for (let k = 0, n = arr.length; k < n; k++) {
-        _resolve(root, [...path, k], resolved, stack, prefix);
+        _resolve(root, [...path, k], resolved, stack, opts);
     }
-    return path.length ? <T[]>arr : unwrapResolved(<T[]>arr, resolved);
+    return !opts.unwrap || path.length
+        ? <T[]>arr
+        : unwrapResolved(<T[]>arr, resolved);
 };
 
 /**
@@ -172,7 +199,7 @@ const _resolve = (
     path: LookupPath,
     resolved: IObjectOf<boolean>,
     stack: string[],
-    prefix: string
+    opts: ResolveOpts
 ) => {
     const pathID = path.join("/");
     if (stack.indexOf(pathID) >= 0) {
@@ -188,33 +215,41 @@ const _resolve = (
         let res = SEMAPHORE;
         stack.push(pathID);
         if (isPlainObject(v)) {
-            resolveMap(v, prefix, root, path, resolved, stack);
+            resolveMap(
+                v,
+                { ...opts, unwrap: false },
+                root,
+                path,
+                resolved,
+                stack
+            );
         } else if (isArray(v)) {
-            resolveArray(v, prefix, root, path, resolved, stack);
-        } else if (isString(v) && v.startsWith(prefix)) {
+            resolveArray(
+                v,
+                { ...opts, unwrap: false },
+                root,
+                path,
+                resolved,
+                stack
+            );
+        } else if (isString(v) && v.startsWith(opts.prefix)) {
             res = _resolve(
                 root,
-                absPath(path, v, prefix.length),
+                absPath(path, v, opts.prefix.length),
                 resolved,
                 stack,
-                prefix
+                opts
             );
         } else if (isFunction(v)) {
             res = resolveFunction(
                 v,
                 (p: string) =>
-                    _resolve(
-                        root,
-                        absPath(path, p, 0),
-                        resolved,
-                        stack,
-                        prefix
-                    ),
+                    _resolve(root, absPath(path, p, 0), resolved, stack, opts),
                 pathID,
                 resolved
             );
         } else if (!exists(root, path)) {
-            v = resolvePath(root, path, resolved, stack, prefix);
+            v = resolvePath(root, path, resolved, stack, opts);
         }
         if (res !== SEMAPHORE) {
             mutInUnsafe(root, path, res);
@@ -250,13 +285,13 @@ const resolvePath = (
     path: LookupPath,
     resolved: IObjectOf<boolean>,
     stack: string[],
-    prefix: string
+    opts: ResolveOpts
 ) => {
     // temporarily remove current path to avoid cycle detection
     let pathID = stack.pop();
     let v;
     for (let i = 1, n = path.length; i <= n; i++) {
-        v = _resolve(root, path.slice(0, i), resolved, stack, prefix);
+        v = _resolve(root, path.slice(0, i), resolved, stack, opts);
     }
     // restore
     stack.push(pathID!);

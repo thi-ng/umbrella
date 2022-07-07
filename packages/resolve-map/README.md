@@ -76,7 +76,7 @@ node --experimental-repl-await
 > const resolveMap = await import("@thi.ng/resolve-map");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.08 KB
+Package sizes (gzipped, pre-treeshake): ESM: 1.11 KB
 
 ## Dependencies
 
@@ -237,7 +237,7 @@ resolve({ a: 1, b: { c: "@d", d: "@/a"} })
 // { a: 1, b: { c: 1, d: 1 } }
 
 // same with custom lookup prefix
-resolve({ a: 1, b: { c: ">>>d", d: ">>>/a"} }, ">>>")
+resolve({ a: 1, b: { c: ">>>d", d: ">>>/a"} }, { prefix: ">>>" })
 // { a: 1, b: { c: 1, d: 1 } }
 ```
 
@@ -256,8 +256,8 @@ the 2nd (legacy) form. Also, since ES6 var names can't contain special
 characters, destructured keys can ALWAYS only be looked up as siblings
 of the currently processed key.
 
-The `resolve` function provided as arg to the user function accepts a
-path (**without `@` prefix**) to look up any other values in the root
+The `resolve` function provided as arg to the user function accepts a path
+(**without `@` (or custom) prefix**) to look up any other values in the root
 object.
 
 ```ts
@@ -302,11 +302,23 @@ res.e(2);
 
 Values can be protected from further resolution attempts by wrapping them via
 [`resolved()`](https://docs.thi.ng/umbrella/resolve-map/modules.html#resolved).
-These wrapped values are only used during the resolution phase and the final
-result object/array will only contain the original, unwrapped values. Unwrapped
-values will also be supplied to any lookup functions, no
+By default, these wrapped values are only used during the resolution phase and
+the final result object/array will only contain the original, unwrapped values.
+Unwrapped values will also be supplied to any lookup functions, no
 [`.deref()`](https://docs.thi.ng/umbrella/api/interfaces/IDeref.html) necessary
 there.
+
+```ts
+resolve({ a: 42, b: ({a}) => resolved(a) });
+// { a: 42, b: 42 }
+
+const res = resolve({ a: 42, b: ({a}) => resolved(a) }, { unwrap: false });
+// { a: 42, b: Resolved { _value: 42 } }
+
+// obtain b's value via .deref()
+res.b.deref()
+// 42
+```
 
 ## Authors
 
