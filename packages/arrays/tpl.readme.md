@@ -41,6 +41,7 @@ ${docLink}
 - [argSort()](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays/src/arg-sort.ts)
 - [binarySearch()](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays/src/binary-search.ts)
 - [bisect()](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays/src/bisect.ts)
+- [blit1d() / blit2d()](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays/src/blit.ts)
 - [endsWith()](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays/src/ends-with.ts)
 - [ensureArray()](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays/src/ensure-array.ts)
 - [ensureIterable()](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays/src/ensure-iterable.ts)
