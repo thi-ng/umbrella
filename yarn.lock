@@ -4448,6 +4448,7 @@ __metadata:
     "@thi.ng/api": ^8.3.7
     "@thi.ng/arrays": ^2.2.5
     "@thi.ng/checks": ^3.2.1
+    "@thi.ng/errors": ^2.1.7
     "@thi.ng/geom-clip-line": ^2.1.17
     "@thi.ng/math": ^5.3.3
     "@thi.ng/strings": ^3.3.5

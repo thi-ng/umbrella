@@ -1,13 +1,17 @@
-import { Fn0, IGrid2D, nomixin, NumOrString } from "@thi.ng/api";
+import { Fn0, ICopy, IGrid2D, nomixin, NumOrString } from "@thi.ng/api";
 import { IGrid2DMixin } from "@thi.ng/api/mixins/igrid";
 import { peek } from "@thi.ng/arrays/peek";
+import { assert } from "@thi.ng/errors/assert";
 import { clamp } from "@thi.ng/math/interval";
-import { NONE } from "@thi.ng/text-format/api";
+import { NONE } from "@thi.ng/text-format";
+import { map } from "@thi.ng/transducers/map";
+import { max } from "@thi.ng/transducers/max";
+import { transduce } from "@thi.ng/transducers/transduce";
 import { ClipRect, StrokeStyle, STYLE_ASCII } from "./api.js";
 import { charCode, intersectRect } from "./utils.js";
 
 @IGrid2DMixin
-export class Canvas implements IGrid2D<Uint32Array, number> {
+export class Canvas implements ICopy<Canvas>, IGrid2D<Uint32Array, number> {
     data: Uint32Array;
     size: [number, number];
     stride: [number, number];
@@ -50,6 +54,15 @@ export class Canvas implements IGrid2D<Uint32Array, number> {
         return 2;
     }
 
+    copy() {
+        const res = new Canvas(this.width, this.height, this.format);
+        res.data.set(this.data);
+        res.stride = <[number, number]>this.stride.slice();
+        res.styles = this.styles.slice();
+        res.clipRects = this.clipRects.slice();
+        return res;
+    }
+
     // @ts-ignore mixin
     order(): number[] {}
 
@@ -89,6 +102,46 @@ export const canvas = (
     format?: number,
     style?: StrokeStyle
 ) => new Canvas(width, height, format, style);
+
+/**
+ * Creates and returns a new {@link Canvas} from given string/lines array and
+ * optional default `format` and/or initial `fill` value.
+ *
+ * @remarks
+ * The canvas will use the longest line width as its width and the length of the
+ * source array as height.
+ *
+ * @param lines
+ * @param format
+ * @param fill
+ */
+export const canvasFromText = (
+    lines: string[],
+    format = NONE,
+    fill?: NumOrString
+) => {
+    const height = lines.length;
+    assert(height > 0, "require at least 1 line of text");
+    const width = transduce(
+        map((x) => x.length),
+        max(),
+        lines
+    );
+    const res = canvas(width, height, format);
+    fill !== undefined && res.data.fill(charCode(fill, format));
+    format <<= 16;
+    for (let y = 0; y < height; y++) {
+        const line = lines[y];
+        for (
+            let x = 0, i = y * width, n = Math.min(width, line.length);
+            x < n;
+            x++, i++
+        ) {
+            res.data[i] = line.charCodeAt(x) | format;
+        }
+    }
+    return res;
+};
 
 export const beginClip = (
     canvas: Canvas,
