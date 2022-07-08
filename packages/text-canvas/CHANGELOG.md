@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-06-28T13:48:51Z
+- **Last updated**: 2022-07-08T18:20:19Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,17 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [2.4.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/text-canvas@2.4.0) (2022-07-08)
+
+#### 🚀 Features
+
+- add canvasFromText(), update Canvas ([e8baa0b](https://github.com/thi-ng/umbrella/commit/e8baa0b))
+  - update deps
+  - add canvasFromText() factory fn
+  - add ICopy impl for Canvas
+- add clearFormat() ([83f04cc](https://github.com/thi-ng/umbrella/commit/83f04cc))
+- add blitMask() & docs ([a6cf74a](https://github.com/thi-ng/umbrella/commit/a6cf74a))
 
 ### [2.3.8](https://github.com/thi-ng/umbrella/tree/@thi.ng/text-canvas@2.3.8) (2022-06-28)
 
