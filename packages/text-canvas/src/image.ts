@@ -1,4 +1,5 @@
-import type { UIntArray } from "@thi.ng/api";
+import type { NumOrString, UIntArray } from "@thi.ng/api";
+import { blit1d } from "@thi.ng/arrays/blit";
 import { peek } from "@thi.ng/arrays/peek";
 import { isNumber } from "@thi.ng/checks/is-number";
 import { clamp0 } from "@thi.ng/math/interval";
@@ -8,11 +9,11 @@ import { canvas, Canvas } from "./canvas.js";
 import { formatCanvas } from "./format.js";
 import { charCode, intersectRect } from "./utils.js";
 
-export const blit = (canvas: Canvas, x: number, y: number, src: Canvas) => {
+export const blit = (dest: Canvas, x: number, y: number, src: Canvas) => {
     x |= 0;
     y |= 0;
     const { data: sbuf, width: sw, height: sh } = src;
-    const { data: dbuf, width: dw } = canvas;
+    const { data: dbuf, width: dw } = dest;
     const {
         x1,
         y1,
@@ -21,7 +22,7 @@ export const blit = (canvas: Canvas, x: number, y: number, src: Canvas) => {
         h: ih,
     } = intersectRect(
         { x1: x, y1: y, x2: x + sw, y2: y + sh, w: sw, h: sh },
-        peek(canvas.clipRects)
+        peek(dest.clipRects)
     );
     if (!iw || !ih) return;
     const sx = clamp0(x1 - x);
@@ -30,6 +31,81 @@ export const blit = (canvas: Canvas, x: number, y: number, src: Canvas) => {
         let sidx = sx + yy * sw;
         let didx = x1 + dy * dw;
         dbuf.set(sbuf.subarray(sidx, sidx + iw), didx);
+    }
+};
+
+/**
+ * Similar to {@link blit}. Pastes `src` {@link Canvas} into `dest` at given
+ * position and uses `mask` to exclude pixels from being copied (and therefore
+ * achieve a form of 1bit transparency, similar to GIFs), i.e. only non-`mask`
+ * pixels/chars will be copied. Supports region clipping.
+ *
+ * @example
+ * ```ts
+ * // source canvas
+ * const a = canvasFromText([
+ *   "###==###",
+ *   "##====##",
+ *   "#======#",
+ *   "##====##",
+ *   "###==###",
+ * ]);
+ *
+ * // destination canvas (filled w/ "-")
+ * const b = canvas(12,7);
+ * clear(b, true, "-");
+ *
+ * // paste `a` several times into `b` using "#" as mask
+ * blitMask(b, -4, -2, a, "#"); // top-left (partially outside)
+ * blitMask(b, 2, 1, a, "#");   // center
+ * blitMask(b, 8, 4, a, "#");   // bottom-right (part outside)
+ *
+ * // show result
+ * console.log(formatCanvas(b))
+ * // ===---------
+ * // ==---==-----
+ * // =---====----
+ * // ---======---
+ * // ----====---=
+ * // -----==---==
+ * // ---------===
+ * ```
+ *
+ * @param dest
+ * @param x
+ * @param y
+ * @param src
+ * @param mask
+ */
+export const blitMask = (
+    dest: Canvas,
+    x: number,
+    y: number,
+    src: Canvas,
+    mask: NumOrString = 0x20
+) => {
+    x |= 0;
+    y |= 0;
+    const { data: sbuf, width: sw, height: sh } = src;
+    const { data: dbuf, width: dw } = dest;
+    const {
+        x1,
+        y1,
+        y2,
+        w: iw,
+        h: ih,
+    } = intersectRect(
+        { x1: x, y1: y, x2: x + sw, y2: y + sh, w: sw, h: sh },
+        peek(dest.clipRects)
+    );
+    if (!iw || !ih) return;
+    const sx = clamp0(x1 - x);
+    const sy = clamp0(y1 - y);
+    mask = charCode(mask, 0);
+    for (let yy = sy, dy = y1; dy < y2; yy++, dy++) {
+        let sidx = sx + yy * sw;
+        let didx = x1 + dy * dw;
+        blit1d(dbuf, didx, sbuf.subarray(sidx, sidx + iw), mask);
     }
 };
 
@@ -70,9 +146,9 @@ export const extract = (
  * upward, if `dy < 0` downward. The new empty space will be filled with
  * `clear` char (default: ` `).
  *
- * @param canvas - 
- * @param dy - 
- * @param clear - 
+ * @param canvas -
+ * @param dy -
+ * @param clear -
  */
 export const scrollV = (canvas: Canvas, dy: number, clear = 0x20) => {
     const { data, width } = canvas;
@@ -89,13 +165,13 @@ export const scrollV = (canvas: Canvas, dy: number, clear = 0x20) => {
 
 /**
  *
- * @param canvas - 
- * @param x - 
- * @param y - 
- * @param w - 
- * @param h - 
- * @param pixels - 
- * @param opts - 
+ * @param canvas -
+ * @param x -
+ * @param y -
+ * @param w -
+ * @param h -
+ * @param pixels -
+ * @param opts -
  */
 export const image = (
     canvas: Canvas,
@@ -149,13 +225,13 @@ export const image = (
  * Optimized version of {@link image}, which only uses a single char for all
  * pixels and applies pixel values directly as formatting data (for each pixel).
  *
- * @param canvas - 
- * @param x - 
- * @param y - 
- * @param w - 
- * @param h - 
- * @param pixels - 
- * @param char - 
+ * @param canvas -
+ * @param x -
+ * @param y -
+ * @param w -
+ * @param h -
+ * @param pixels -
+ * @param char -
  */
 export const imageRaw = (
     canvas: Canvas,
@@ -205,14 +281,14 @@ export const imageRaw = (
  * Reference:
  * https://en.wikipedia.org/wiki/Braille_Patterns#Identifying.2C_naming_and_ordering
  *
- * @param canvas - 
- * @param x - 
- * @param y - 
- * @param w - 
- * @param h - 
- * @param pixels - 
- * @param thresh - 
- * @param format - 
+ * @param canvas -
+ * @param x -
+ * @param y -
+ * @param w -
+ * @param h -
+ * @param pixels -
+ * @param thresh -
+ * @param format -
  */
 export const imageBraille = (
     canvas: Canvas,
@@ -272,9 +348,9 @@ export const imageBraille = (
  * The returned canvas will have 50% width and 25% height of the original image
  * (due to each Braille character encoding 2x4 pixels).
  *
- * @param src - 
- * @param thresh - 
- * @param format - 
+ * @param src -
+ * @param thresh -
+ * @param format -
  */
 export const imageCanvasBraille = (
     src: { width: number; height: number; data: UIntArray },
@@ -290,8 +366,8 @@ export const imageCanvasBraille = (
  * Same as {@link imageCanvasBrailler}, but returns resulting canvas as plain
  * string (of Unicode Braille characters).
  *
- * @param src - 
- * @param thresh - 
+ * @param src -
+ * @param thresh -
  */
 export const imageStringBraille = (
     src: { width: number; height: number; data: UIntArray },
@@ -303,8 +379,8 @@ export const imageStringBraille = (
  * pixel buffer in RGB565 format and converts it into a new {@link canvas}. The
  * optional `char` will be used as character for each pixel.
  *
- * @param src - 
- * @param char - 
+ * @param src -
+ * @param char -
  */
 export const imageCanvas565 = (
     src: { width: number; height: number; data: UIntArray },
@@ -319,8 +395,8 @@ export const imageCanvas565 = (
  * Same as {@link imageCanvas565}, but returns resulting canvas as 24bit ANSI
  * string.
  *
- * @param src - 
- * @param char - 
+ * @param src -
+ * @param char -
  */
 export const imageString565 = (
     src: { width: number; height: number; data: UIntArray },
