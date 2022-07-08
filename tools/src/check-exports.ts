@@ -15,7 +15,7 @@ const subdirs = (root: string, ignore = ["zig-cache"]) => {
 const processPackage = (id: string) => {
     const pkkRoot = `packages/${id}`;
     const pkgPath = `${pkkRoot}/package.json`;
-    // console.log("checking", pkgPath);
+    LOGGER.info("checking", pkgPath);
     const pkg = readJSON(pkgPath, LOGGER);
     const srcDirs = subdirs(`${pkkRoot}/src`).sort();
     const hasBin = existsSync(`${pkkRoot}/bin`);
@@ -26,7 +26,7 @@ const processPackage = (id: string) => {
         pkg.files = newFiles;
         writeJSON(pkgPath, pkg, null, 4, LOGGER);
     } else {
-        console.log("ok");
+        LOGGER.info("ok");
     }
 };
 

@@ -1,5 +1,5 @@
 import type { IObjectOf } from "@thi.ng/api";
-import { ConsoleLogger } from "@thi.ng/logger";
+import { ConsoleLogger, LogLevel, LogLevelName } from "@thi.ng/logger";
 
 export const RE_PKG = /@thi\.ng\/[a-z0-9-]+/g;
 export const RE_USER = /@([a-z0-9_-]+)/gi;
@@ -11,7 +11,12 @@ export const PATTERN_NO_TOC = "<!-- NOTOC -->";
 
 export const META_FIELD = "thi.ng";
 
-export const LOGGER = new ConsoleLogger("tools");
+export const LOGGER = new ConsoleLogger(
+    "tools",
+    process.env.LOG_LEVEL
+        ? LogLevel[<LogLevelName>process.env.LOG_LEVEL]
+        : LogLevel.INFO
+);
 
 export interface BaseConfig {
     repoURL: string;
