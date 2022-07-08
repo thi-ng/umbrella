@@ -2,6 +2,7 @@ export * from "./api.js";
 export * from "./arg-sort.js";
 export * from "./binary-search.js";
 export * from "./bisect.js";
+export * from "./blit.js";
 export * from "./ends-with.js";
 export * from "./ensure-array.js";
 export * from "./ensure-iterable.js";

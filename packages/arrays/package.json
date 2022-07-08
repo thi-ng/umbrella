@@ -85,6 +85,9 @@
         "./bisect": {
             "default": "./bisect.js"
         },
+        "./blit": {
+            "default": "./blit.js"
+        },
         "./ends-with": {
             "default": "./ends-with.js"
         },
