@@ -91,15 +91,17 @@ $compile(
             label(".dib.w4", { for: "spacing" }, "SPACING"),
             inputRange("#spacing", {
                 oninput: $inputNum(spacing),
-                value: spacing,
                 min: -2,
                 max: 2,
                 step: 1,
+                value: spacing,
             })
         ),
         pre(
             {},
-            main.map(({ msg, spacing }) => font.getText(msg, spacing).join("\n"))
+            main.map(({ msg, spacing }) =>
+                font.getText(msg, spacing).join("\n")
+            )
         )
     )
 ).mount(document.getElementById("app")!);
