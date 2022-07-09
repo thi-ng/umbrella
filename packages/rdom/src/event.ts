@@ -15,8 +15,10 @@ import { maybeParseFloat } from "@thi.ng/strings/parse";
  *
  * @param stream -
  */
-export const $input = (stream: ISubscriber<string>) => (e: Event) =>
-    stream.next((<any>e.target).value);
+export const $input =
+    <T extends string = string>(stream: ISubscriber<T>) =>
+    (e: Event) =>
+        stream.next((<any>e.target).value);
 
 /**
  * Similar to {@link $input}, but attempts to first coerce value using
