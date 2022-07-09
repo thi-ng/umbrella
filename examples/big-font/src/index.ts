@@ -1,9 +1,11 @@
 import { div, inputRange, inputText, label, pre } from "@thi.ng/hiccup-html";
 import { $compile, $input, $inputNum } from "@thi.ng/rdom";
-import { reactive, sync } from "@thi.ng/rstream";
+import { staticDropdown } from "@thi.ng/rdom-components";
+import { reactive, Stream, sync } from "@thi.ng/rstream";
 import { repeat } from "@thi.ng/strings";
 import { repeatedly } from "@thi.ng/transducers";
-import FONT from "./font.txt?raw";
+import FONT_L from "./font-large.txt?raw";
+import FONT_S from "./font-small.txt?raw";
 
 class Font {
     chars: Record<string, [number, number]> = {};
@@ -67,13 +69,33 @@ class Font {
     }
 }
 
-// instantiate font (see font.txt)
-const font = new Font(FONT.split("\n"));
+type FontID = "l" | "s";
+
+// instantiate fonts (see font-*.txt files)
+const FONTS: Record<FontID, Font> = {
+    l: new Font(FONT_L.split("\n")),
+    s: new Font(FONT_S.split("\n")),
+};
+
+// labels for dropdown
+const FONT_NAMES: Record<FontID, string> = {
+    l: "large",
+    s: "small",
+};
 
 // reactive state setup
 const msg = reactive("hello?!").map((x) => x.toUpperCase());
 const spacing = reactive(-1);
-const main = sync({ src: { msg, spacing } });
+const font = reactive<FontID>("l");
+
+const main = sync({
+    src: {
+        msg,
+        spacing,
+        // map font ID to actual font instance
+        font: font.map((id) => FONTS[<FontID>id]),
+    },
+});
 
 // compile UI
 $compile(
@@ -83,13 +105,13 @@ $compile(
             ".mb3",
             {},
             label(".dib.w4", { for: "body" }, "TEXT"),
-            inputText("#body", { oninput: $input(msg), value: msg })
+            inputText("#body.w5", { oninput: $input(msg), value: msg })
         ),
         div(
             ".mb3",
             {},
             label(".dib.w4", { for: "spacing" }, "SPACING"),
-            inputRange("#spacing", {
+            inputRange("#spacing.w4", {
                 oninput: $inputNum(spacing),
                 min: -2,
                 max: 2,
@@ -97,9 +119,18 @@ $compile(
                 value: spacing,
             })
         ),
+        div(
+            ".mb3",
+            {},
+            label(".dib.w4", { for: "font" }, "FONT"),
+            staticDropdown<FontID, FontID>(["l", "s"], font, {
+                attribs: { id: "font", class: "w4" },
+                label: (id) => FONT_NAMES[id],
+            })
+        ),
         pre(
             {},
-            main.map(({ msg, spacing }) =>
+            main.map(({ msg, spacing, font }) =>
                 font.getText(msg, spacing).join("\n")
             )
         )
