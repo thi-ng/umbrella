@@ -41,6 +41,20 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@example/big-font@workspace:examples/big-font":
+  version: 0.0.0-use.local
+  resolution: "@example/big-font@workspace:examples/big-font"
+  dependencies:
+    "@thi.ng/api": "workspace:^"
+    "@thi.ng/hiccup-html": "workspace:^"
+    "@thi.ng/rdom": "workspace:^"
+    "@thi.ng/rstream": "workspace:^"
+    "@thi.ng/text-canvas": "workspace:^"
+    typescript: ^4.7.3
+    vite: ^2.9.10
+  languageName: unknown
+  linkType: soft
+
 "@example/bitmap-font@workspace:examples/bitmap-font":
   version: 0.0.0-use.local
   resolution: "@example/bitmap-font@workspace:examples/bitmap-font"
