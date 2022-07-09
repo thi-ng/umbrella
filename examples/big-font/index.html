@@ -13,7 +13,20 @@
             href="https://unpkg.com/tachyons@4/css/tachyons.min.css"
             rel="stylesheet"
         />
-        <style></style>
+        <style>
+            @font-face {
+                font-family: "Iosevka Fixed SS04 Web";
+                font-display: swap;
+                font-weight: 400;
+                font-stretch: normal;
+                font-style: normal;
+                src: url("/assets/iosevka-fixed-ss04-regular.woff2")
+                    format("woff2");
+            }
+            pre {
+                font-family: "Iosevka Fixed SS04 Web", monospace;
+            }
+        </style>
     </head>
     <body class="pa3 bg-black white sans-serif">
         <div id="app"></div>

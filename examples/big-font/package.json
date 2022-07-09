@@ -8,7 +8,7 @@
     "license": "Apache-2.0",
     "scripts": {
         "start": "vite --open",
-        "build": "tsc && vite build",
+        "build": "tsc && vite build --base='./'",
         "preview": "vite preview"
     },
     "devDependencies": {
@@ -18,6 +18,7 @@
     "dependencies": {
         "@thi.ng/hiccup-html": "workspace:^",
         "@thi.ng/rdom": "workspace:^",
+        "@thi.ng/rdom-components": "workspace:^",
         "@thi.ng/rstream": "workspace:^",
         "@thi.ng/strings": "workspace:^",
         "@thi.ng/transducers": "workspace:^"
