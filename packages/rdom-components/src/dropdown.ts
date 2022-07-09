@@ -10,9 +10,9 @@ export interface DropdownOpts<T> {
     value: Fn<T, string>;
 }
 
-export const dynamicDropdown = <T = string>(
+export const dynamicDropdown = <T = string, S extends string = string>(
     items: ISubscribable<T[]>,
-    sel: Subscription<string, string>,
+    sel: Subscription<S, S>,
     opts?: Partial<DropdownOpts<T>>
 ) => {
     opts = {
@@ -28,9 +28,9 @@ export const dynamicDropdown = <T = string>(
     );
 };
 
-export const staticDropdown = <T = string>(
+export const staticDropdown = <T = string, S extends string = string>(
     items: T[],
-    sel: Subscription<string, string>,
+    sel: Subscription<S, S>,
     opts?: Partial<DropdownOpts<T>>
 ) => {
     opts = {
@@ -45,7 +45,10 @@ export const staticDropdown = <T = string>(
 };
 
 const $option =
-    <T>(sel: Subscription<string, string>, { label, value }: DropdownOpts<T>) =>
+    <T, S extends string>(
+        sel: Subscription<S, S>,
+        { label, value }: DropdownOpts<T>
+    ) =>
     (x: T) => {
         let v = value(x);
         return option(
