@@ -76,7 +76,7 @@ node --experimental-repl-await
 > const resolveMap = await import("@thi.ng/resolve-map");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.11 KB
+Package sizes (gzipped, pre-treeshake): ESM: 1.13 KB
 
 ## Dependencies
 
@@ -318,6 +318,20 @@ const res = resolve({ a: 42, b: ({a}) => resolved(a) }, { unwrap: false });
 // obtain b's value via .deref()
 res.b.deref()
 // 42
+```
+
+Since v7.1.0 a new `onlyFnRefs` option has been added which changes the
+resolution behavior to **not** consider string values for resolution at all
+anymore and instead requires the use of function values to trigger resolution.
+
+```ts
+// default behavior
+resolve({ a: "@c", b: ({a}) => a, c: 42 })
+// { a: 42, b: 42, c: 42 }
+
+// with option enabled
+resolve({ a: "@c", b: ({a}) => a, c: 42 }, { onlyFnRefs: true })
+// { a: '@c', b: '@c', c: 42 }
 ```
 
 ## Authors
