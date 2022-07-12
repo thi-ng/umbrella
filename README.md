@@ -161,16 +161,13 @@ feature or `develop` branches)
 
 ### Latest updates
 
-As of: 2022-07-08
+As of: 2022-07-12
 
-| Status                                        | Project                                         | Version                                                                                                               | Changelog                                        |
-|-----------------------------------------------|-------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------|--------------------------------------------------|
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/bitstream`](./packages/bitstream)     | [![version](https://img.shields.io/npm/v/@thi.ng/bitstream.svg)](https://www.npmjs.com/package/@thi.ng/bitstream)     | [changelog](./packages/bitstream/CHANGELOG.md)   |
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/geom`](./packages/geom)               | [![version](https://img.shields.io/npm/v/@thi.ng/geom.svg)](https://www.npmjs.com/package/@thi.ng/geom)               | [changelog](./packages/geom/CHANGELOG.md)        |
-| ![](https://img.shields.io/badge/-new-cyan)   | [`@thi.ng/geom-sdf`](./packages/geom-sdf)       | [![version](https://img.shields.io/npm/v/@thi.ng/geom-sdf.svg)](https://www.npmjs.com/package/@thi.ng/geom-sdf)       | [changelog](./packages/geom-sdf/CHANGELOG.md)    |
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/resolve-map`](./packages/resolve-map) | [![version](https://img.shields.io/npm/v/@thi.ng/resolve-map.svg)](https://www.npmjs.com/package/@thi.ng/resolve-map) | [changelog](./packages/resolve-map/CHANGELOG.md) |
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/text-canvas`](./packages/text-canvas) | [![version](https://img.shields.io/npm/v/@thi.ng/text-canvas.svg)](https://www.npmjs.com/package/@thi.ng/text-canvas) | [changelog](./packages/text-canvas/CHANGELOG.md) |
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/text-format`](./packages/text-format) | [![version](https://img.shields.io/npm/v/@thi.ng/text-format.svg)](https://www.npmjs.com/package/@thi.ng/text-format) | [changelog](./packages/text-format/CHANGELOG.md) |
+| Status                                        | Project                                                 | Version                                                                                                                       | Changelog                                            |
+|-----------------------------------------------|---------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------|
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/resolve-map`](./packages/resolve-map)         | [![version](https://img.shields.io/npm/v/@thi.ng/resolve-map.svg)](https://www.npmjs.com/package/@thi.ng/resolve-map)         | [changelog](./packages/resolve-map/CHANGELOG.md)     |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/rdom`](./packages/rdom)                       | [![version](https://img.shields.io/npm/v/@thi.ng/rdom.svg)](https://www.npmjs.com/package/@thi.ng/rdom)                       | [changelog](./packages/rdom/CHANGELOG.md)            |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/rdom-components`](./packages/rdom-components) | [![version](https://img.shields.io/npm/v/@thi.ng/rdom-components.svg)](https://www.npmjs.com/package/@thi.ng/rdom-components) | [changelog](./packages/rdom-components/CHANGELOG.md) |
 
 <!--
 ![](https://img.shields.io/badge/-feat-green)
