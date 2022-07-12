@@ -303,4 +303,22 @@ group("resolve-map", {
         assert.strictEqual(res.b, 2);
         assert.strictEqual(res.c(), 1);
     },
+
+    onlyFnRefs: () => {
+        assert.deepStrictEqual(
+            resolve(
+                { a: "@c", b: ({ a }: any) => a, c: 42 },
+                { onlyFnRefs: true }
+            ),
+            { a: "@c", b: "@c", c: 42 }
+        );
+        assert.deepStrictEqual(
+            resolve({ a: "@c", b: ({ a }: any) => a, c: 42 }),
+            {
+                a: 42,
+                b: 42,
+                c: 42,
+            }
+        );
+    },
 });

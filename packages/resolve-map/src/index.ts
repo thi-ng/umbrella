@@ -27,7 +27,7 @@ export type LookupPath = NumOrString[];
 export interface ResolveOpts {
     /**
      * Prefix for auto-recognizing & interpreting embedded string values as
-     * lookup paths.
+     * lookup paths (only if {@link ResolveOpts.onlyFnRefs} is false, default)
      *
      * @defaultValue `@`
      */
@@ -39,6 +39,11 @@ export interface ResolveOpts {
      * @defaultValue true
      */
     unwrap: boolean;
+    /**
+     * If true, only function values (not strings!) will be considered for
+     * resolution.
+     */
+    onlyFnRefs: boolean;
 }
 
 /**
@@ -56,14 +61,17 @@ export interface ResolveOpts {
  * access any parent levels. Absolute refs are always resolved from the root
  * level (the original object passed to this function).
  *
- * Values can be protected from further resolution attempts by wrapping them via
- * {@link resolved}. By default (unless `unwrap` is set to `false`), these
- * wrapped values are only used during the resolution phase and the final result
- * object/array will only contain the original, unwrapped values. In any way,
- * unwrapped values will also be supplied to any lookup functions, no `.deref()`
- * necessary there.
+ * Values can be protected from (further) resolution attempts in two ways:
  *
- * See {@link ResolveOpts} for further details.
+ * 1) by wrapping them via {@link resolved}. By default (unless `unwrap` is set
+ *    to `false`), these wrapped values are only used during the resolution
+ *    phase and the final result object/array will only contain the original,
+ *    unwrapped values. In any way, unwrapped values will also be supplied to
+ *    any lookup functions, no `.deref()` necessary there.
+ * 2) Enabling the `onlyFnRefs` option, only function values will be considered
+ *    for resolution and strings (regardless of prefix) will be ignored.
+ *
+ * See {@link ResolveOpts} and package readme for further details.
  *
  * @example
  * ```ts
@@ -232,7 +240,11 @@ const _resolve = (
                 resolved,
                 stack
             );
-        } else if (isString(v) && v.startsWith(opts.prefix)) {
+        } else if (
+            !opts.onlyFnRefs &&
+            isString(v) &&
+            v.startsWith(opts.prefix)
+        ) {
             res = _resolve(
                 root,
                 absPath(path, v, opts.prefix.length),
