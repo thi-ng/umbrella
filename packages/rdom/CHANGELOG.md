@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-06-09T16:14:01Z
+- **Last updated**: 2022-07-12T19:50:54Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,13 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [0.9.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/rdom@0.9.0) (2022-07-12)
+
+#### 🚀 Features
+
+- update $input() generics ([6be320a](https://github.com/thi-ng/umbrella/commit/6be320a))
+  - allow any string-derived stream types
 
 ### [0.8.7](https://github.com/thi-ng/umbrella/tree/@thi.ng/rdom@0.8.7) (2022-04-07)
 

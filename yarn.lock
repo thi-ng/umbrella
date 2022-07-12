@@ -3949,7 +3949,7 @@ __metadata:
     "@thi.ng/associative": ^6.1.11
     "@thi.ng/checks": ^3.2.1
     "@thi.ng/hiccup-canvas": ^2.1.16
-    "@thi.ng/rdom": ^0.8.12
+    "@thi.ng/rdom": ^0.9.0
     "@thi.ng/rstream": ^7.2.9
     "@thi.ng/testament": ^0.2.8
     "@thi.ng/transducers": ^8.3.6
@@ -3968,7 +3968,7 @@ __metadata:
     "@thi.ng/api": ^8.3.7
     "@thi.ng/associative": ^6.1.11
     "@thi.ng/hiccup-html": ^2.1.7
-    "@thi.ng/rdom": ^0.8.12
+    "@thi.ng/rdom": ^0.9.0
     "@thi.ng/rstream": ^7.2.9
     "@thi.ng/strings": ^3.3.5
     "@thi.ng/testament": ^0.2.8
@@ -3980,7 +3980,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/rdom@^0.8.12, @thi.ng/rdom@workspace:^, @thi.ng/rdom@workspace:packages/rdom":
+"@thi.ng/rdom@^0.9.0, @thi.ng/rdom@workspace:^, @thi.ng/rdom@workspace:packages/rdom":
   version: 0.0.0-use.local
   resolution: "@thi.ng/rdom@workspace:packages/rdom"
   dependencies:
@@ -4001,7 +4001,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/resolve-map@^7.0.0, @thi.ng/resolve-map@workspace:^, @thi.ng/resolve-map@workspace:packages/resolve-map":
+"@thi.ng/resolve-map@^7.1.0, @thi.ng/resolve-map@workspace:^, @thi.ng/resolve-map@workspace:packages/resolve-map":
   version: 0.0.0-use.local
   resolution: "@thi.ng/resolve-map@workspace:packages/resolve-map"
   dependencies:
@@ -4110,7 +4110,7 @@ __metadata:
     "@thi.ng/checks": ^3.2.1
     "@thi.ng/errors": ^2.1.7
     "@thi.ng/paths": ^5.1.8
-    "@thi.ng/resolve-map": ^7.0.0
+    "@thi.ng/resolve-map": ^7.1.0
     "@thi.ng/rstream": ^7.2.9
     "@thi.ng/testament": ^0.2.8
     "@thi.ng/transducers": ^8.3.6
