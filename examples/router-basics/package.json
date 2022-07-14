@@ -8,8 +8,8 @@
     "license": "Apache-2.0",
     "scripts": {
         "start": "vite --open",
-        "build": "tsc && vite build && cp -R data dist",
-        "preview": "vite preview"
+        "build": "tsc && vite build --base='./' && cp -R data dist",
+        "preview": "vite preview --host --open"
     },
     "dependencies": {
         "@thi.ng/api": "workspace:^",

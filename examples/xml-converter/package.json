@@ -11,7 +11,7 @@
         "start": "vite --open",
         "build": "tsc && vite build --base='./'",
         "build:cli": "tsc -p tsconfig-cli.json",
-        "preview": "vite preview"
+        "preview": "vite preview --host --open"
     },
     "dependencies": {
         "@thi.ng/args": "workspace:^",

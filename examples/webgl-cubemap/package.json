@@ -8,8 +8,8 @@
     "license": "Apache-2.0",
     "scripts": {
         "start": "vite --open",
-        "build": "tsc && vite build && cp -R img dist",
-        "preview": "vite preview"
+        "build": "tsc && vite build --base='./' && cp -R img dist",
+        "preview": "vite preview --host --open"
     },
     "dependencies": {
         "@thi.ng/adapt-dpi": "workspace:^",

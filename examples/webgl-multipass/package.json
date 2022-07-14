@@ -9,7 +9,7 @@
     "scripts": {
         "start": "vite --open",
         "build": "tsc && vite build --base='./'",
-        "preview": "vite preview"
+        "preview": "vite preview --host --open"
     },
     "dependencies": {
         "@thi.ng/pixel": "workspace:^",

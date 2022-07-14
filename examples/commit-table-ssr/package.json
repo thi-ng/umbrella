@@ -10,7 +10,7 @@
         "clean": "rimraf node_modules/.cache build out",
         "build-static": "ts-node src/server/static.ts",
         "start": "ts-node src/server/index.ts",
-        "preview": "vite preview"
+        "preview": "vite preview --host --open"
     },
     "devDependencies": {
         "@types/node": "^17.0.41",
