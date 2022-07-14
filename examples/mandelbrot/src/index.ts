@@ -10,7 +10,7 @@ import { tunnel } from "@thi.ng/rstream/tunnel";
 import { Z4 } from "@thi.ng/strings/pad-left";
 import { updateDOM } from "@thi.ng/transducers-hdom";
 import { map } from "@thi.ng/transducers/map";
-import WORKER from "./worker?worker";
+import WORKER from "./worker?worker&inline";
 
 // if enabled, auto-zoom out & export frames
 // (in this case also update initial DEFAULT_CONFIG below)

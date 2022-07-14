@@ -5,7 +5,7 @@ import { forkJoin } from "@thi.ng/rstream/forkjoin";
 import { reactive } from "@thi.ng/rstream/stream";
 import { bounds } from "@thi.ng/transducers-stats/bounds";
 import { NUM_WORKERS, type WorkerJob, type WorkerResult } from "./api";
-import WORKER from "./worker?worker";
+import WORKER from "./worker?worker&inline";
 
 const W = 256;
 const H = 256;
