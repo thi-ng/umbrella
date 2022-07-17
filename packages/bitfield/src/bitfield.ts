@@ -19,6 +19,26 @@ export class BitField implements IClear, ICopy<BitField> {
         !isNumber && this.setRange(0, <any>bits);
     }
 
+    /**
+     * Yields iterator of the field's individual bits.
+     */
+    *[Symbol.iterator]() {
+        const { data, n } = this;
+        for (let i = 0; i < n; i++) {
+            yield data[i >>> 5] & (1 << (~i & 31)) ? 1 : 0;
+        }
+    }
+
+    /**
+     * Yields iterator of positions/indices of all set bits only.
+     */
+    *positions() {
+        const { data, n } = this;
+        for (let i = 0; i < n; i++) {
+            if (data[i >>> 5] & (1 << (~i & 31))) yield i;
+        }
+    }
+
     clear() {
         this.data.fill(0);
     }
