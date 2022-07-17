@@ -18,7 +18,8 @@ export class BFS {
     }
 
     protected search(id: number, cost: CostFn) {
-        const queue = new DCons<number>().cons(id);
+        const queue = new DCons<number>();
+        queue.prepend(id);
         const { dist, edges, graph, marked } = this;
         dist.fill(0xffffffff);
         dist[id] = 0;
@@ -46,9 +47,9 @@ export class BFS {
         const { dist, edges } = this;
         const path = new DCons<number>();
         for (; dist[id] > 0; id = edges[id]) {
-            path.cons(id);
+            path.prepend(id);
         }
-        path.cons(id);
+        path.prepend(id);
         return path;
     }
 }
@@ -70,10 +71,10 @@ export class BFS {
  * - https://en.wikipedia.org/wiki/Breadth-first_search
  * - https://algs4.cs.princeton.edu/40graphs/
  *
- * @param graph - 
- * @param src - 
- * @param dest - 
- * @param cost - 
+ * @param graph -
+ * @param src -
+ * @param dest -
+ * @param cost -
  */
 export const bfs = (graph: IGraph, src: number, dest: number, cost?: CostFn) =>
     new BFS(graph, src, cost).pathTo(dest);

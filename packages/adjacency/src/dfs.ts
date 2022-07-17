@@ -37,9 +37,9 @@ export class DFS {
         const { edges, src } = this;
         const path = new DCons<number>();
         for (; id !== src; id = edges[id]) {
-            path.cons(id);
+            path.prepend(id);
         }
-        path.cons(id);
+        path.prepend(id);
         return path;
     }
 }
@@ -49,9 +49,9 @@ export class DFS {
  * If successful, returns path as iterable or undefined if no path connects the
  * given vertices.
  *
- * @param graph - 
- * @param src - 
- * @param dest - 
+ * @param graph -
+ * @param src -
+ * @param dest -
  */
 export const dfs = (graph: IGraph, src: number, dest: number) =>
     new DFS(graph, src).pathTo(dest);
