@@ -1,9 +1,8 @@
-import { DCons } from "@thi.ng/dcons/dcons";
 import type { DegreeType, Edge, IGraph } from "./api.js";
 import { into, invert, toDot } from "./utils.js";
 
 export class AdjacencyList implements IGraph<number> {
-    vertices: DCons<number>[] = [];
+    vertices: number[][] = [];
     indegree: number[] = [];
     protected numE = 0;
     protected numV = 0;
@@ -39,8 +38,7 @@ export class AdjacencyList implements IGraph<number> {
         if (!vertex) return false;
         // remove outgoing
         while (vertex.length) {
-            const to = vertex.first()!;
-            vertex.drop();
+            const to = vertex.pop()!;
             indegree[to]--;
             this.numE--;
         }
@@ -49,7 +47,8 @@ export class AdjacencyList implements IGraph<number> {
         for (let i = 0, n = vertices.length; i < n && indegree[id] > 0; i++) {
             const vertex = this.vertices[i];
             if (!vertex) continue;
-            while (!!vertex.find(id)) this.removeEdge(i, id);
+            while (vertex.includes(id)) this.removeEdge(i, id);
+            if (!vertex.length) delete this.vertices[i];
         }
         this.numV--;
         return true;
@@ -67,9 +66,9 @@ export class AdjacencyList implements IGraph<number> {
     removeEdge(from: number, to: number) {
         const vertex = this.vertices[from];
         if (vertex) {
-            const dest = vertex.find(to);
-            if (dest) {
-                vertex.remove(dest);
+            const dest = vertex.indexOf(to);
+            if (dest >= 0) {
+                vertex.splice(dest, 1);
                 this.numE--;
                 this.indegree[to]--;
                 return true;
@@ -80,7 +79,7 @@ export class AdjacencyList implements IGraph<number> {
 
     hasEdge(from: number, to: number) {
         const vertex = this.vertices[from];
-        return vertex ? !!vertex.find(to) : false;
+        return vertex ? vertex.includes(to) : false;
     }
 
     degree(id: number, type: DegreeType = "out") {
@@ -107,7 +106,7 @@ export class AdjacencyList implements IGraph<number> {
         for (let i = 0, n = vertices.length; i < n; i++) {
             if (vertices[i]) {
                 res.push(
-                    `${i}: [${[...vertices[i]]
+                    `${i}: [${[...vertices[i]!]
                         .sort((a, b) => a - b)
                         .join(", ")}]`
                 );
@@ -125,7 +124,7 @@ export class AdjacencyList implements IGraph<number> {
         if (vertex) return vertex;
         this.numV++;
         this.indegree[id] = 0;
-        return (this.vertices[id] = new DCons());
+        return (this.vertices[id] = []);
     }
 }
 
