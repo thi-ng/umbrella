@@ -94,6 +94,9 @@
         "./array-set": {
             "default": "./array-set.js"
         },
+        "./bidir-index": {
+            "default": "./bidir-index.js"
+        },
         "./checks": {
             "default": "./checks.js"
         },

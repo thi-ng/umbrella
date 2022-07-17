@@ -1,5 +1,6 @@
 export * from "./api.js";
 export * from "./array-set.js";
+export * from "./bidir-index.js";
 export * from "./checks.js";
 export * from "./common-keys.js";
 export * from "./copy.js";
