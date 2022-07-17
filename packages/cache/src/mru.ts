@@ -30,7 +30,7 @@ export class MRUCache<K, V> extends LRUCache<K, V> {
             e.value.s = s;
             this.items.asHead(e);
         } else {
-            this.items.cons({ k, v, s });
+            this.items.prepend({ k, v, s });
             this.map.set(k, this.items.head!);
         }
     }

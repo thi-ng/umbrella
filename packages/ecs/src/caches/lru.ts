@@ -37,7 +37,7 @@ export class LRU<T> implements ICache<T> {
             node.value.v = val;
             items.asHead(node);
         } else {
-            items.cons({ k: key, v: val });
+            items.prepend({ k: key, v: val });
             index.set(key, items.head!);
             while (items.length > this.capacity) {
                 this.index.delete(this.items.pop()!.k);
