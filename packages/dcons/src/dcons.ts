@@ -242,7 +242,8 @@ export class DCons<T>
             default:
                 const x = this.peek();
                 this.pop();
-                return this.cons(x!);
+                this.prepend(x!);
+                return this;
         }
     }
 
