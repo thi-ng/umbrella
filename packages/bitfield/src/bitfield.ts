@@ -1,14 +1,15 @@
-import type { Fn2, IClear, ICopy } from "@thi.ng/api";
+import type { Fn2, IClear, ICopy, ILength } from "@thi.ng/api";
 import { align } from "@thi.ng/binary/align";
+import { popCountArray } from "@thi.ng/binary/count";
 import { bitAnd, bitNot, bitOr, bitXor } from "@thi.ng/binary/logic";
 import { assert } from "@thi.ng/errors/assert";
-import { binOp, popCount, toString } from "./util.js";
+import { binOp, toString } from "./util.js";
 
 /**
  * 1D bit field, backed by a Uint32Array. Hence size is always rounded
  * up to a multiple of 32.
  */
-export class BitField implements IClear, ICopy<BitField> {
+export class BitField implements IClear, ICopy<BitField>, ILength {
     data: Uint32Array;
     n: number;
 
@@ -17,6 +18,10 @@ export class BitField implements IClear, ICopy<BitField> {
         this.n = align(isNumber ? <number>bits : (<any>bits).length, 32);
         this.data = new Uint32Array(this.n >>> 5);
         !isNumber && this.setRange(0, <any>bits);
+    }
+
+    get length() {
+        return this.n;
     }
 
     /**
@@ -135,7 +140,14 @@ export class BitField implements IClear, ICopy<BitField> {
      * Returns number of set bits (1's) in the bitfield.
      */
     popCount() {
-        return popCount(this.data);
+        return popCountArray(this.data);
+    }
+
+    /**
+     * Same as {@link BitField.popCount}, but as normalized ratio/percentage.
+     */
+    density() {
+        return this.popCount() / this.n;
     }
 
     and(field: BitField) {

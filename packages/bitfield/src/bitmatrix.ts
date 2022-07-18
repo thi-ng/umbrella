@@ -1,10 +1,11 @@
 import type { Fn2, IClear, ICopy } from "@thi.ng/api";
 import { align } from "@thi.ng/binary/align";
+import { popCountArray } from "@thi.ng/binary/count";
 import { bitAnd, bitNot, bitOr, bitXor } from "@thi.ng/binary/logic";
 import { assert } from "@thi.ng/errors/assert";
 import { ensureIndex } from "@thi.ng/errors/out-of-bounds";
 import { BitField } from "./bitfield.js";
-import { binOp, popCount, toString } from "./util.js";
+import { binOp, toString } from "./util.js";
 
 /**
  * MxN row-major 2D bit matrix, backed by a Uint32Array. Hence the width
@@ -21,6 +22,10 @@ export class BitMatrix implements IClear, ICopy<BitMatrix> {
         this.n = cols = align(cols, 32);
         this.stride = cols >>> 5;
         this.data = new Uint32Array(rows * this.stride);
+    }
+
+    get length() {
+        return this.m * this.n;
     }
 
     clear() {
@@ -128,10 +133,17 @@ export class BitMatrix implements IClear, ICopy<BitMatrix> {
         return this.binOp(this, bitNot);
     }
 
+    /**
+     * Returns number of set bits (1's) in the matrix.
+     */
+    popCount() {
+        return popCountArray(this.data);
+    }
+
     popCountRow(m: number) {
         ensureIndex(m, 0, this.m);
         m *= this.stride;
-        return popCount(this.data.subarray(m, m + this.stride));
+        return popCountArray(this.data.subarray(m, m + this.stride));
     }
 
     popCountColumn(n: number) {
@@ -143,6 +155,13 @@ export class BitMatrix implements IClear, ICopy<BitMatrix> {
             data[i] & mask && res++;
         }
         return res;
+    }
+
+    /**
+     * Same as {@link BitMatrix.popCount}, but as normalized ratio/percentage.
+     */
+    density() {
+        return this.popCount() / this.length;
     }
 
     row(m: number) {
