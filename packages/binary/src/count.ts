@@ -12,6 +12,26 @@ export const popCount: FnN = (x) => (
 );
 
 /**
+ * Returns number of set bits (1's) in the given array (index range).
+ *
+ * @param data -
+ * @param start -
+ * @param n -
+ */
+export const popCountArray = (
+    data: Uint32Array,
+    start = 0,
+    n = data.length
+) => {
+    let num = 0;
+    for (let end = start + n; start < end; start++) {
+        const x = data[start];
+        x > 0 && (num += popCount(x));
+    }
+    return num;
+};
+
+/**
  * Returns number of bit changes between `x` and `y`.
  *
  * {@link https://en.wikipedia.org/wiki/Hamming_distance}
