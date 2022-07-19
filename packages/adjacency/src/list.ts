@@ -1,14 +1,15 @@
+import type { Nullable } from "@thi.ng/api";
 import type { DegreeType, Edge, IGraph } from "./api.js";
-import { into, invert, toDot } from "./utils.js";
+import { __into, __invert, __toDot } from "./utils.js";
 
 export class AdjacencyList implements IGraph<number> {
-    vertices: number[][] = [];
+    adjacency: number[][] = [];
     indegree: number[] = [];
     protected numE = 0;
     protected numV = 0;
 
     constructor(edges?: Iterable<Edge>) {
-        edges && into(this, edges);
+        edges && __into(this, edges);
     }
 
     numEdges(): number {
@@ -19,10 +20,17 @@ export class AdjacencyList implements IGraph<number> {
         return this.numV;
     }
 
+    *vertices() {
+        const { adjacency } = this;
+        for (let i = 0, n = adjacency.length; i < n; i++) {
+            if (adjacency[i]) yield i;
+        }
+    }
+
     *edges() {
-        const vertices = this.vertices;
-        for (let i = 0, n = vertices.length; i < n; i++) {
-            const vertex = vertices[i];
+        const { adjacency } = this;
+        for (let i = 0, n = adjacency.length; i < n; i++) {
+            const vertex = adjacency[i];
             if (!vertex) continue;
             for (let j of vertex) yield <Edge>[i, j];
         }
@@ -33,22 +41,20 @@ export class AdjacencyList implements IGraph<number> {
     }
 
     removeVertex(id: number) {
-        const { vertices, indegree } = this;
-        const vertex = vertices[id];
+        const { adjacency, indegree } = this;
+        const vertex = adjacency[id];
         if (!vertex) return false;
         // remove outgoing
         while (vertex.length) {
-            const to = vertex.pop()!;
-            indegree[to]--;
+            indegree[vertex.pop()!]--;
             this.numE--;
         }
-        delete vertices[id];
+        delete adjacency[id];
         // remove incoming
-        for (let i = 0, n = vertices.length; i < n && indegree[id] > 0; i++) {
-            const vertex = this.vertices[i];
+        for (let i = 0, n = adjacency.length; i < n && indegree[id] > 0; i++) {
+            const vertex = adjacency[i];
             if (!vertex) continue;
             while (vertex.includes(id)) this.removeEdge(i, id);
-            if (!vertex.length) delete this.vertices[i];
         }
         this.numV--;
         return true;
@@ -64,7 +70,7 @@ export class AdjacencyList implements IGraph<number> {
     }
 
     removeEdge(from: number, to: number) {
-        const vertex = this.vertices[from];
+        const vertex = this.adjacency[from];
         if (vertex) {
             const dest = vertex.indexOf(to);
             if (dest >= 0) {
@@ -78,13 +84,13 @@ export class AdjacencyList implements IGraph<number> {
     }
 
     hasEdge(from: number, to: number) {
-        const vertex = this.vertices[from];
+        const vertex = this.adjacency[from];
         return vertex ? vertex.includes(to) : false;
     }
 
     degree(id: number, type: DegreeType = "out") {
         let degree = 0;
-        const vertex = this.vertices[id];
+        const vertex = this.adjacency[id];
         if (vertex) {
             if (type !== "in") degree += vertex.length;
             if (type !== "out") degree += this.indegree[id];
@@ -93,20 +99,24 @@ export class AdjacencyList implements IGraph<number> {
     }
 
     neighbors(id: number): Iterable<number> {
-        return [...(this.vertices[id] || [])];
+        return [...(this.adjacency[id] || [])];
     }
 
     invert(): AdjacencyList {
-        return invert(new AdjacencyList(), this.edges());
+        return __invert(new AdjacencyList(), this.edges());
+    }
+
+    toDot(ids?: string[]) {
+        return __toDot(this.edges(), false, ids);
     }
 
     toString() {
-        const vertices = this.vertices;
+        const { adjacency } = this;
         const res: string[] = [];
-        for (let i = 0, n = vertices.length; i < n; i++) {
-            if (vertices[i]) {
+        for (let i = 0, n = adjacency.length; i < n; i++) {
+            if (adjacency[i]) {
                 res.push(
-                    `${i}: [${[...vertices[i]!]
+                    `${i}: [${[...adjacency[i]!]
                         .sort((a, b) => a - b)
                         .join(", ")}]`
                 );
@@ -115,17 +125,23 @@ export class AdjacencyList implements IGraph<number> {
         return res.join("\n");
     }
 
-    toDot(ids?: string[]) {
-        return toDot(this.edges(), false, ids);
-    }
-
     protected ensureVertexData(id: number) {
-        const vertex = this.vertices[id];
+        const vertex = this.adjacency[id];
         if (vertex) return vertex;
         this.numV++;
         this.indegree[id] = 0;
-        return (this.vertices[id] = []);
+        return (this.adjacency[id] = []);
     }
 }
 
 export const defAdjList = (edges?: Iterable<Edge>) => new AdjacencyList(edges);
+
+export const adjListFromAdjacency = (src: Nullable<number[]>[]) => {
+    const res = new AdjacencyList();
+    for (let i = 0, n = src.length; i < n; i++) {
+        const v = src[i];
+        if (!v) continue;
+        for (let w of v) res.addEdge(i, w);
+    }
+    return res;
+};

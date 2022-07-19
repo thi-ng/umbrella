@@ -1,7 +1,7 @@
 import { ensureIndex2 } from "@thi.ng/errors/out-of-bounds";
 import { CSR } from "@thi.ng/sparse/csr";
 import type { DegreeType, Edge, IGraph } from "./api.js";
-import { into, invert, toDot } from "./utils.js";
+import { __into, __invert, __toDot } from "./utils.js";
 
 export class AdjacencyMatrix extends CSR implements IGraph<number> {
     undirected: boolean;
@@ -75,7 +75,7 @@ export class AdjacencyMatrix extends CSR implements IGraph<number> {
     }
 
     invert(): AdjacencyMatrix {
-        return invert(
+        return __invert(
             defAdjMatrix(this.m, undefined, this.undirected),
             this.edges()
         );
@@ -168,7 +168,7 @@ export class AdjacencyMatrix extends CSR implements IGraph<number> {
     }
 
     toDot(ids?: string[]) {
-        return toDot(this.edges(), this.undirected, ids);
+        return __toDot(this.edges(), this.undirected, ids);
     }
 }
 
@@ -195,6 +195,6 @@ export const defAdjMatrix = (
         raw.cols,
         undirected
     );
-    edges && into(mat, edges);
+    edges && __into(mat, edges);
     return mat;
 };

@@ -1,6 +1,6 @@
 import { BitMatrix } from "@thi.ng/bitfield/bitmatrix";
 import type { DegreeType, Edge, IGraph } from "./api.js";
-import { into, invert, toDot } from "./utils.js";
+import { __into, __invert, __toDot } from "./utils.js";
 
 /**
  * Adjacency matrix representation for both directed and undirected graphs and
@@ -17,7 +17,7 @@ export class AdjacencyBitMatrix implements IGraph<number> {
         this.mat = new BitMatrix(n);
         this.undirected = undirected;
         this.numE = 0;
-        edges && into(this, edges);
+        edges && __into(this, edges);
     }
 
     *edges() {
@@ -100,7 +100,7 @@ export class AdjacencyBitMatrix implements IGraph<number> {
     }
 
     invert(): AdjacencyBitMatrix {
-        return invert(
+        return __invert(
             new AdjacencyBitMatrix(this.mat.n, undefined, this.undirected),
             this.edges()
         );
@@ -111,7 +111,7 @@ export class AdjacencyBitMatrix implements IGraph<number> {
     }
 
     toDot(ids?: string[]) {
-        return toDot(this.edges(), this.undirected, ids);
+        return __toDot(this.edges(), this.undirected, ids);
     }
 }
 

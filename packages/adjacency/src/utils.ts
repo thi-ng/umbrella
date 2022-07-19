@@ -3,7 +3,7 @@ import type { Pair } from "@thi.ng/api";
 import type { Edge, IGraph } from "./api.js";
 
 /** @internal */
-export const toDot = (
+export const __toDot = (
     edges: Iterable<Pair<number, number>>,
     undirected: boolean,
     ids?: string[]
@@ -22,14 +22,14 @@ export const toDot = (
 };
 
 /** @internal */
-export const into = (graph: IGraph, edges: Iterable<Edge>) => {
+export const __into = (graph: IGraph, edges: Iterable<Edge>) => {
     for (let e of edges) {
         graph.addEdge(e[0], e[1]);
     }
 };
 
 /** @internal */
-export const invert = <T extends IGraph>(graph: T, edges: Iterable<Edge>) => {
+export const __invert = <T extends IGraph>(graph: T, edges: Iterable<Edge>) => {
     for (let e of edges) {
         graph.addEdge(e[1], e[0]);
     }
