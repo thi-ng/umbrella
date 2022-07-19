@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-06-09T16:14:01Z
+- **Last updated**: 2022-07-19T15:36:12Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,19 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [2.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/adjacency@2.2.0) (2022-07-19)
+
+#### 🚀 Features
+
+- update AdjacencyList ([5d85d87](https://github.com/thi-ng/umbrella/commit/5d85d87))
+  - add vertices() iterator
+  - rename old `.vertices` field => `.adjacency`
+  - add adjListFromAdjacency() factory fn
+
+#### ♻️ Refactoring
+
+- update DCons call sites ([2dfec21](https://github.com/thi-ng/umbrella/commit/2dfec21))
 
 ## [2.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/adjacency@2.1.0) (2021-11-17)
 

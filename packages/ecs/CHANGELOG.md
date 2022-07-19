@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-06-09T16:14:01Z
+- **Last updated**: 2022-07-19T15:36:12Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,12 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [0.7.12](https://github.com/thi-ng/umbrella/tree/@thi.ng/ecs@0.7.12) (2022-07-19)
+
+#### ♻️ Refactoring
+
+- update deprecated DCons call sites ([2bbacf7](https://github.com/thi-ng/umbrella/commit/2bbacf7))
 
 ### [0.7.5](https://github.com/thi-ng/umbrella/tree/@thi.ng/ecs@0.7.5) (2022-03-11)
 

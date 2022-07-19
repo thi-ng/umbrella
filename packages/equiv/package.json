@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/equiv",
-    "version": "2.1.7",
+    "version": "2.1.8",
     "description": "Extensible deep value equivalence checking for any data types",
     "type": "module",
     "module": "./index.js",
@@ -35,7 +35,7 @@
     },
     "devDependencies": {
         "@microsoft/api-extractor": "^7.25.0",
-        "@thi.ng/testament": "^0.2.8",
+        "@thi.ng/testament": "^0.2.9",
         "rimraf": "^3.0.2",
         "tools": "workspace:^",
         "typedoc": "^0.22.17",
