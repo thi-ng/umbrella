@@ -96,11 +96,11 @@ Several generative art projects by [Karsten Schmidt on
 fx(hash)](https://www.fxhash.xyz/u/toxi) have been created exclusively with
 libraries from this collection.
 
-| De/Frag series                                  |                                              |                                              |
-|-------------------------------------------------|----------------------------------------------|----------------------------------------------|
-| <img src="./assets/fxhash/defrag1-240.jpg"/>    | <img src="./assets/fxhash/defrag2-240.jpg"/> | <img src="./assets/fxhash/defrag3-240.jpg"/> |
-| Quasiflock                                      | C-SCAPE                                      |                                              |
-| <img src="./assets/fxhash/quasiflock-240.jpg"/> | <img src="./assets/fxhash/c-scape-240.jpg"/> |                                              |
+| De/Frag series                                  |                                              |                                                  |
+|-------------------------------------------------|----------------------------------------------|--------------------------------------------------|
+| <img src="./assets/fxhash/defrag1-240.jpg"/>    | <img src="./assets/fxhash/defrag2-240.jpg"/> | <img src="./assets/fxhash/defrag3-240.jpg"/>     |
+| Quasiflock                                      | C-SCAPE                                      | ASCII-SCAPE                                      |
+| <img src="./assets/fxhash/quasiflock-240.jpg"/> | <img src="./assets/fxhash/c-scape-240.jpg"/> | <img src="./assets/fxhash/ascii-scape-240.jpg"/> |
 
 
 ## Blog posts
@@ -161,13 +161,14 @@ feature or `develop` branches)
 
 ### Latest updates
 
-As of: 2022-07-12
+As of: 2022-07-19
 
-| Status                                        | Project                                                 | Version                                                                                                                       | Changelog                                            |
-|-----------------------------------------------|---------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------|
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/resolve-map`](./packages/resolve-map)         | [![version](https://img.shields.io/npm/v/@thi.ng/resolve-map.svg)](https://www.npmjs.com/package/@thi.ng/resolve-map)         | [changelog](./packages/resolve-map/CHANGELOG.md)     |
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/rdom`](./packages/rdom)                       | [![version](https://img.shields.io/npm/v/@thi.ng/rdom.svg)](https://www.npmjs.com/package/@thi.ng/rdom)                       | [changelog](./packages/rdom/CHANGELOG.md)            |
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/rdom-components`](./packages/rdom-components) | [![version](https://img.shields.io/npm/v/@thi.ng/rdom-components.svg)](https://www.npmjs.com/package/@thi.ng/rdom-components) | [changelog](./packages/rdom-components/CHANGELOG.md) |
+| Status                                        | Project                                         | Version                                                                                                               | Changelog                                        |
+|-----------------------------------------------|-------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------|--------------------------------------------------|
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/adjacency`](./packages/adjacency)     | [![version](https://img.shields.io/npm/v/@thi.ng/adjacency.svg)](https://www.npmjs.com/package/@thi.ng/adjacency)     | [changelog](./packages/adjacency/CHANGELOG.md)   |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/associative`](./packages/associative) | [![version](https://img.shields.io/npm/v/@thi.ng/associative.svg)](https://www.npmjs.com/package/@thi.ng/associative) | [changelog](./packages/associative/CHANGELOG.md) |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/binary`](./packages/binary)           | [![version](https://img.shields.io/npm/v/@thi.ng/binary.svg)](https://www.npmjs.com/package/@thi.ng/binary)           | [changelog](./packages/binary/CHANGELOG.md)      |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/bitfield`](./packages/bitfield)       | [![version](https://img.shields.io/npm/v/@thi.ng/bitfield.svg)](https://www.npmjs.com/package/@thi.ng/bitfield)       | [changelog](./packages/bitfield/CHANGELOG.md)    |
 
 <!--
 ![](https://img.shields.io/badge/-feat-green)
