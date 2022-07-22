@@ -1,17 +1,39 @@
-import { div, inputRange, inputText, label, pre } from "@thi.ng/hiccup-html";
-import { $compile, $input, $inputNum } from "@thi.ng/rdom";
+import type { Keys } from "@thi.ng/api";
+import {
+    checkbox,
+    div,
+    inputRange,
+    inputText,
+    label,
+    pre,
+} from "@thi.ng/hiccup-html";
+import { getIn, setIn } from "@thi.ng/paths";
+import { $compile, $input, $inputCheckbox, $inputNum } from "@thi.ng/rdom";
 import { staticDropdown } from "@thi.ng/rdom-components";
-import { reactive, Stream, sync } from "@thi.ng/rstream";
+import { reactive, sync } from "@thi.ng/rstream";
 import { repeat } from "@thi.ng/strings";
-import { repeatedly } from "@thi.ng/transducers";
-import FONT_L from "./font-large.txt?raw";
-import FONT_S from "./font-small.txt?raw";
+import { map, repeatedly } from "@thi.ng/transducers";
+import FONT_ATARI from "./fonts/atari.txt?raw";
+import FONT_GOTHIC from "./fonts/newgothic.txt?raw";
+import FONT_SMALL from "./fonts/smallblock.txt?raw";
 
+/**
+ * Fonts used by this class are defined in plain text using this format:
+ *
+ * - Line 1: lineheight (number of lines for all chars)
+ * - Line 2: header with character markers
+ * - Lines 3-N: Character defs
+ * - Lines N+1...: Kerning pairs (one pair per line, e.g. `LY -4`)
+ *
+ * See example fonts in /src/fonts
+ */
 class Font {
     chars: Record<string, [number, number]> = {};
     rows: string[];
+    kerning: Record<string, Record<string, number>> = {};
 
-    constructor([header, ...rows]: string[]) {
+    constructor([$height, header, ...rows]: string[]) {
+        const height = parseInt($height);
         // parse header line to determine characters
         // and their offsets & widths...
         let prev: string | undefined;
@@ -30,7 +52,15 @@ class Font {
         if (prev !== undefined) {
             this.chars[prev][1] = header.length;
         }
-        this.rows = rows;
+        // process kern pairs/table
+        // build index of character pairs & their kern values
+        // e.g. { L: { Y: -2 } } for a Y following an L will be shifted left
+        this.rows = rows.slice(0, height);
+        for (let pair of rows.slice(height)) {
+            if (!pair.length) continue;
+            const [[a, b], k] = pair.split(" ");
+            this.kerning = setIn(this.kerning, [a, b], parseInt(k));
+        }
     }
 
     /**
@@ -43,96 +73,124 @@ class Font {
      */
     getChar(id: string, spacing = 0) {
         const char = this.chars[id];
-        if (char === undefined) {
-            return [...repeatedly(() => "", this.rows.length)];
-        }
-        const minSpace = Math.min(0, spacing);
         const pad = spacing > 0 ? repeat(" ", spacing) : "";
-        return this.rows.map(
-            (row) => row.substring(char[0], char[1] + minSpace) + pad
-        );
+        return char !== undefined
+            ? this.rows.map((row) => row.substring(char[0], char[1]) + pad)
+            : [...repeatedly(() => pad, this.rows.length)];
+    }
+
+    kernPair(acc: string[], a: string, b: string, spacing = 0, kern = true) {
+        const brows = this.getChar(b, spacing);
+        const k = kern ? (getIn(this.kerning, [a, b]) || 0) + spacing : spacing;
+        const merge = (a: string, b: string) =>
+            b.replace(/./g, (x, i) => (x != " " ? x : a[i]));
+        if (k < 0) {
+            return acc.map((row, i) =>
+                [
+                    row.substring(0, row.length + k),
+                    merge(
+                        row.substring(row.length + k),
+                        brows[i].substring(0, -k)
+                    ),
+                    brows[i].substring(-k),
+                ].join("")
+            );
+        } else {
+            return acc.map((row, i) => row + brows[i]);
+        }
     }
 
     /**
      * Similar to {@link Font.getChar}, but for an arbitrarily long string
-     * (single line).
+     * (single line) and kerning (by default).
      *
      * @param txt
      * @param spacing
+     * @param kern
      */
-    getText(txt: string, spacing = 0) {
-        const res = [...repeatedly(() => "", this.rows.length)];
-        for (let c of txt) {
-            this.getChar(c, spacing).forEach((row, i) => (res[i] += row));
+    getText([first, ...rest]: string, spacing = 0, kern = true) {
+        let res = this.getChar(first, spacing);
+        let prev = first;
+        for (let c of rest) {
+            res = this.kernPair(res, prev, c, spacing, kern);
+            prev = c;
         }
         return res;
     }
 }
 
-type FontID = "l" | "s";
-
-// instantiate fonts (see font-*.txt files)
-const FONTS: Record<FontID, Font> = {
-    l: new Font(FONT_L.split("\n")),
-    s: new Font(FONT_S.split("\n")),
+// instantiate fonts (see *.txt files in /src/fonts dir)
+const FONTS = {
+    atari: new Font(FONT_ATARI.split("\n")),
+    newgothic: new Font(FONT_GOTHIC.split("\n")),
+    small: new Font(FONT_SMALL.split("\n")),
 };
+
+type FontID = Keys<typeof FONTS>;
 
 // labels for dropdown
-const FONT_NAMES: Record<FontID, string> = {
-    l: "large",
-    s: "small",
-};
+const FONT_NAMES = <FontID[]>Object.keys(FONTS);
 
 // reactive state setup
 const msg = reactive("hello?!").map((x) => x.toUpperCase());
-const spacing = reactive(-1);
-const font = reactive<FontID>("l");
+const spacing = reactive(0);
+const kerning = reactive(true);
+const font = reactive<FontID>("atari");
 
+// reactive stream combinator
 const main = sync({
     src: {
         msg,
         spacing,
-        // map font ID to actual font instance
-        font: font.map((id) => FONTS[<FontID>id]),
+        kerning,
+        font,
     },
+    // compute ASCII output
+    xform: map(({ msg, spacing, kerning, font }) =>
+        FONTS[font].getText(msg, spacing, kerning).join("\n")
+    ),
 });
+
+// helper component to wrap form elements
+const formParam = (el: [string, ...any[]]) => {
+    const id = el[1].id;
+    return div(".mb3", {}, label(".dib.w4.ttu", { for: id }, id), el);
+};
 
 // compile UI
 $compile(
     div(
         {},
-        div(
-            ".mb3",
-            {},
-            label(".dib.w4", { for: "body" }, "TEXT"),
-            inputText("#body.w5", { oninput: $input(msg), value: msg })
+        formParam(
+            inputText(".w5", {
+                id: "text",
+                autofocus: true,
+                oninput: $input(msg),
+                value: msg,
+            })
         ),
-        div(
-            ".mb3",
-            {},
-            label(".dib.w4", { for: "spacing" }, "SPACING"),
-            inputRange("#spacing.w4", {
+        formParam(
+            staticDropdown<FontID, FontID>(FONT_NAMES, font, {
+                attribs: { id: "font", class: "w5" },
+            })
+        ),
+        formParam(
+            inputRange(".w4", {
+                id: "spacing",
                 oninput: $inputNum(spacing),
-                min: -2,
-                max: 2,
+                min: 0,
+                max: 4,
                 step: 1,
                 value: spacing,
             })
         ),
-        div(
-            ".mb3",
-            {},
-            label(".dib.w4", { for: "font" }, "FONT"),
-            staticDropdown<FontID, FontID>(["l", "s"], font, {
-                attribs: { id: "font", class: "w4" },
-                label: (id) => FONT_NAMES[id],
+        formParam(
+            checkbox({
+                id: "kerning",
+                oninput: $inputCheckbox(kerning),
+                checked: kerning,
             })
         ),
-        pre(
-            {},
-            main.map(({ msg, spacing, font }) =>
-                font.getText(msg, spacing).join("\n")
-            )
-        )
+        pre({}, main)
     )
 ).mount(document.getElementById("app")!);

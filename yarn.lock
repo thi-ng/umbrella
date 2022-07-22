@@ -46,6 +46,7 @@ __metadata:
   resolution: "@example/big-font@workspace:examples/big-font"
   dependencies:
     "@thi.ng/hiccup-html": "workspace:^"
+    "@thi.ng/paths": "workspace:^"
     "@thi.ng/rdom": "workspace:^"
     "@thi.ng/rdom-components": "workspace:^"
     "@thi.ng/rstream": "workspace:^"

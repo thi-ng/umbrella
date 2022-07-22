@@ -17,6 +17,7 @@
     },
     "dependencies": {
         "@thi.ng/hiccup-html": "workspace:^",
+        "@thi.ng/paths": "workspace:^",
         "@thi.ng/rdom": "workspace:^",
         "@thi.ng/rdom-components": "workspace:^",
         "@thi.ng/rstream": "workspace:^",
