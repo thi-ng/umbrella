@@ -13,8 +13,8 @@ import { transpose33, transpose44 } from "./transpose.js";
  * @param m -
  */
 export const normal33: MatOpMU = (out, m) => {
-    out = invert33(null, mat44to33(out, m))!;
-    return out ? transpose33(null, out) : undefined;
+	out = invert33(null, mat44to33(out, m))!;
+	return out ? transpose33(null, out) : undefined;
 };
 
 /**
@@ -26,6 +26,6 @@ export const normal33: MatOpMU = (out, m) => {
  * @param m -
  */
 export const normal44: MatOpMU = (out, m) => {
-    out = invert44(out, m)!;
-    return out ? transpose44(null, out) : undefined;
+	out = invert44(out, m)!;
+	return out ? transpose44(null, out) : undefined;
 };

@@ -1,9 +1,10 @@
 import type { MatOp1, MatOpN } from "./api.js";
 import { identity22, identity23, identity33, identity44 } from "./identity.js";
 
-const $ = (f: MatOp1) => (i: number): MatOpN => (m, x) => (
-    !m && (m = []), f(m), (m[i] = x), m
-);
+const $ =
+	(f: MatOp1) =>
+	(i: number): MatOpN =>
+	(m, x) => (!m && (m = []), f(m), (m[i] = x), m);
 
 const $22 = $(identity22);
 const $23 = $(identity23);

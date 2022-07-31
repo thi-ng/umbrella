@@ -17,19 +17,19 @@ import { __dispatch } from "./internal/dispatch.js";
  * @param b
  */
 export const union: MultiFn2<IShape, IShape, IShape[]> = defmulti<
-    any,
-    any,
-    IShape[]
+	any,
+	any,
+	IShape[]
 >(
-    __dispatch,
-    {},
-    {
-        aabb: (a: AABB, b: AABB) => [
-            new AABB(...__unionBounds(a.pos, a.size, b.pos, b.size)),
-        ],
+	__dispatch,
+	{},
+	{
+		aabb: (a: AABB, b: AABB) => [
+			new AABB(...__unionBounds(a.pos, a.size, b.pos, b.size)),
+		],
 
-        rect: (a: Rect, b: Rect) => [
-            new Rect(...__unionBounds(a.pos, a.size, b.pos, b.size)),
-        ],
-    }
+		rect: (a: Rect, b: Rect) => [
+			new Rect(...__unionBounds(a.pos, a.size, b.pos, b.size)),
+		],
+	}
 );

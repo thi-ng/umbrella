@@ -1,45 +1,45 @@
 {
-    "name": "@example/rdom-search-docs",
-    "private": true,
-    "version": "0.0.1",
-    "description": "Full umbrella repo doc string search w/ paginated results",
-    "repository": "https://github.com/thi-ng/umbrella",
-    "author": "Karsten Schmidt <k+npm@thi.ng>",
-    "license": "Apache-2.0",
-    "scripts": {
-        "start": "vite --open",
-        "build": "tsc && vite build --base='./'",
-        "preview": "vite preview --host --open"
-    },
-    "dependencies": {
-        "@thi.ng/api": "workspace:^",
-        "@thi.ng/bench": "workspace:^",
-        "@thi.ng/compare": "workspace:^",
-        "@thi.ng/equiv": "workspace:^",
-        "@thi.ng/hiccup-html": "workspace:^",
-        "@thi.ng/math": "workspace:^",
-        "@thi.ng/rdom": "workspace:^",
-        "@thi.ng/rstream": "workspace:^",
-        "@thi.ng/transducers": "workspace:^",
-        "@ygoe/msgpack": "^1.0.3"
-    },
-    "browser": {
-        "process": false,
-        "setTimeout": false,
-        "util": false
-    },
-    "thi.ng": {
-        "readme": [
-            "bench",
-            "compare",
-            "hiccup-html",
-            "rdom",
-            "rstream",
-            "transducers"
-        ]
-    },
-    "devDependencies": {
-        "typescript": "^4.7.4",
-        "vite": "^3.0.0"
-    }
+	"name": "@example/rdom-search-docs",
+	"private": true,
+	"version": "0.0.1",
+	"description": "Full umbrella repo doc string search w/ paginated results",
+	"repository": "https://github.com/thi-ng/umbrella",
+	"author": "Karsten Schmidt <k+npm@thi.ng>",
+	"license": "Apache-2.0",
+	"scripts": {
+		"start": "vite --open",
+		"build": "tsc && vite build --base='./'",
+		"preview": "vite preview --host --open"
+	},
+	"dependencies": {
+		"@thi.ng/api": "workspace:^",
+		"@thi.ng/bench": "workspace:^",
+		"@thi.ng/compare": "workspace:^",
+		"@thi.ng/equiv": "workspace:^",
+		"@thi.ng/hiccup-html": "workspace:^",
+		"@thi.ng/math": "workspace:^",
+		"@thi.ng/rdom": "workspace:^",
+		"@thi.ng/rstream": "workspace:^",
+		"@thi.ng/transducers": "workspace:^",
+		"@ygoe/msgpack": "^1.0.3"
+	},
+	"browser": {
+		"process": false,
+		"setTimeout": false,
+		"util": false
+	},
+	"thi.ng": {
+		"readme": [
+			"bench",
+			"compare",
+			"hiccup-html",
+			"rdom",
+			"rstream",
+			"transducers"
+		]
+	},
+	"devDependencies": {
+		"typescript": "^4.7.4",
+		"vite": "^3.0.0"
+	}
 }

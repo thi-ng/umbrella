@@ -7,9 +7,9 @@ import type { IID } from "./id.js";
 export type Listener = Fn<Event, void>;
 
 export interface Event extends IID<PropertyKey> {
-    target?: any;
-    canceled?: boolean;
-    value?: any;
+	target?: any;
+	canceled?: boolean;
+	value?: any;
 }
 
 /**
@@ -17,7 +17,7 @@ export interface Event extends IID<PropertyKey> {
  * {@link INotifyMixin} decorator mixin.
  */
 export interface INotify {
-    addListener(id: string, fn: Listener, scope?: any): boolean;
-    removeListener(id: string, fn: Listener, scope?: any): boolean;
-    notify(event: Event): void;
+	addListener(id: string, fn: Listener, scope?: any): boolean;
+	removeListener(id: string, fn: Listener, scope?: any): boolean;
+	notify(event: Event): void;
 }

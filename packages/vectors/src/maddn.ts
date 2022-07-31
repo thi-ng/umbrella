@@ -11,7 +11,7 @@ import { ARGS_VNV, ARGS_VV, MATH2A_N } from "./compile/templates.js";
  * @param b - vec
  */
 export const [maddN, maddN2, maddN3, maddN4] = defOp<MultiVecOpVNV, VecOpVNV>(
-    MATH2A_N("*", "+"),
-    ARGS_VNV,
-    ARGS_VV
+	MATH2A_N("*", "+"),
+	ARGS_VNV,
+	ARGS_VV
 );

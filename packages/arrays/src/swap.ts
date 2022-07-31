@@ -8,9 +8,9 @@ import type { AnyArray, SwapFn } from "./api.js";
  * @param y - other index
  */
 export const swap = (arr: AnyArray, x: number, y: number) => {
-    const t = arr[x];
-    arr[x] = arr[y];
-    arr[y] = t;
+	const t = arr[x];
+	arr[x] = arr[y];
+	arr[y] = t;
 };
 
 /**
@@ -43,33 +43,33 @@ export const swap = (arr: AnyArray, x: number, y: number) => {
  * @param xs - arrays to swap in later
  */
 export const multiSwap = (...xs: AnyArray[]): SwapFn => {
-    const [b, c, d] = xs;
-    const n = xs.length;
-    switch (n) {
-        case 0:
-            return swap;
-        case 1:
-            return (a, x, y) => {
-                swap(a, x, y);
-                swap(b, x, y);
-            };
-        case 2:
-            return (a, x, y) => {
-                swap(a, x, y);
-                swap(b, x, y);
-                swap(c, x, y);
-            };
-        case 3:
-            return (a, x, y) => {
-                swap(a, x, y);
-                swap(b, x, y);
-                swap(c, x, y);
-                swap(d, x, y);
-            };
-        default:
-            return (a, x, y) => {
-                swap(a, x, y);
-                for (let i = n; i-- > 0; ) swap(xs[i], x, y);
-            };
-    }
+	const [b, c, d] = xs;
+	const n = xs.length;
+	switch (n) {
+		case 0:
+			return swap;
+		case 1:
+			return (a, x, y) => {
+				swap(a, x, y);
+				swap(b, x, y);
+			};
+		case 2:
+			return (a, x, y) => {
+				swap(a, x, y);
+				swap(b, x, y);
+				swap(c, x, y);
+			};
+		case 3:
+			return (a, x, y) => {
+				swap(a, x, y);
+				swap(b, x, y);
+				swap(c, x, y);
+				swap(d, x, y);
+			};
+		default:
+			return (a, x, y) => {
+				swap(a, x, y);
+				for (let i = n; i-- > 0; ) swap(xs[i], x, y);
+			};
+	}
 };

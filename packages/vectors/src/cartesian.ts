@@ -28,7 +28,7 @@ export const cartesian: MultiVecOpVO<ReadonlyVec> = vop(1);
  * @param offset -
  */
 export const cartesian2 = cartesian.add(2, (out, a, b = ZERO2) =>
-    add2(out || a, cossin(a[1], a[0]), b)
+	add2(out || a, cossin(a[1], a[0]), b)
 );
 
 /**
@@ -41,14 +41,14 @@ export const cartesian2 = cartesian.add(2, (out, a, b = ZERO2) =>
  * @param offset -
  */
 export const cartesian3 = cartesian.add(3, (out, a, b = ZERO3) => {
-    const r = a[0];
-    const theta = a[1];
-    const phi = a[2];
-    const ct = cos(theta);
-    return setC3(
-        out || a,
-        r * ct * cos(phi) + b[0],
-        r * ct * sin(phi) + b[1],
-        r * sin(theta) + b[2]
-    );
+	const r = a[0];
+	const theta = a[1];
+	const phi = a[2];
+	const ct = cos(theta);
+	return setC3(
+		out || a,
+		r * ct * cos(phi) + b[0],
+		r * ct * sin(phi) + b[1],
+		r * sin(theta) + b[2]
+	);
 });

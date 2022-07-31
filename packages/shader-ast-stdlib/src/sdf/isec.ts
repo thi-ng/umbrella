@@ -9,4 +9,4 @@ import { max } from "@thi.ng/shader-ast/builtin/math";
  * @param terms -
  */
 export const sdfIntersect = (a: FloatTerm, ...terms: FloatTerm[]) =>
-    terms.reduce((a, b) => max(a, b), a);
+	terms.reduce((a, b) => max(a, b), a);

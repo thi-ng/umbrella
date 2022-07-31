@@ -28,34 +28,34 @@ import { __iter } from "./iterator.js";
  * @param src -
  */
 export function slidingWindow<T>(
-    size: MaybeDeref<number>,
-    partial?: boolean
+	size: MaybeDeref<number>,
+	partial?: boolean
 ): Transducer<T, T[]>;
 export function slidingWindow<T>(
-    size: MaybeDeref<number>,
-    src: Iterable<T>
+	size: MaybeDeref<number>,
+	src: Iterable<T>
 ): IterableIterator<T[]>;
 export function slidingWindow<T>(
-    size: MaybeDeref<number>,
-    partial: boolean,
-    src: Iterable<T>
+	size: MaybeDeref<number>,
+	partial: boolean,
+	src: Iterable<T>
 ): IterableIterator<T[]>;
 export function slidingWindow<T>(...args: any[]): any {
-    const iter = __iter(slidingWindow, args);
-    if (iter) return iter;
-    const size: MaybeDeref<number> = args[0];
-    const partial: boolean = args[1] !== false;
-    return (rfn: Reducer<any, T[]>) => {
-        const reduce = rfn[2];
-        let buf: T[] = [];
-        return compR(rfn, (acc, x: T) => {
-            buf.push(x);
-            const _size = deref(size);
-            if (partial || buf.length >= _size) {
-                acc = reduce(acc, buf);
-                buf = buf.slice(buf.length >= _size ? 1 : 0, _size);
-            }
-            return acc;
-        });
-    };
+	const iter = __iter(slidingWindow, args);
+	if (iter) return iter;
+	const size: MaybeDeref<number> = args[0];
+	const partial: boolean = args[1] !== false;
+	return (rfn: Reducer<any, T[]>) => {
+		const reduce = rfn[2];
+		let buf: T[] = [];
+		return compR(rfn, (acc, x: T) => {
+			buf.push(x);
+			const _size = deref(size);
+			if (partial || buf.length >= _size) {
+				acc = reduce(acc, buf);
+				buf = buf.slice(buf.length >= _size ? 1 : 0, _size);
+			}
+			return acc;
+		});
+	};
 }

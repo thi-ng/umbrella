@@ -38,19 +38,19 @@ import { MAdd } from "./madd.js";
  * @param clampEnd - true to clamp curve at end value (default: false)
  */
 export const curve = (
-    start: number,
-    end: number,
-    num: number,
-    rate = 0.1,
-    skipFirst = false,
-    clampEnd = false
+	start: number,
+	end: number,
+	num: number,
+	rate = 0.1,
+	skipFirst = false,
+	clampEnd = false
 ) => {
-    const c = Math.exp(-Math.log((Math.abs(end - start) + rate) / rate) / num);
-    const offset = (start < end ? end + rate : end - rate) * (1 - c);
-    return new MAdd(
-        c,
-        skipFirst ? offset + start * c : start,
-        offset,
-        clampEnd ? end : undefined
-    );
+	const c = Math.exp(-Math.log((Math.abs(end - start) + rate) / rate) / num);
+	const offset = (start < end ? end + rate : end - rate) * (1 - c);
+	return new MAdd(
+		c,
+		skipFirst ? offset + start * c : start,
+		offset,
+		clampEnd ? end : undefined
+	);
 };

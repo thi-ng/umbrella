@@ -21,16 +21,16 @@ import { curve } from "./curve.js";
  * // [...]
  * ```
  *
- * @param start - 
- * @param end - 
- * @param steps - 
- * @param rate - 
+ * @param start -
+ * @param end -
+ * @param steps -
+ * @param rate -
  * @param clamp - true, if clamp at `end` value
  */
 export const sweep = (
-    start: number,
-    end: number,
-    steps: number,
-    rate?: number,
-    clamp = true
+	start: number,
+	end: number,
+	steps: number,
+	rate?: number,
+	clamp = true
 ) => addG(curve(start, end, steps, rate, false, clamp));

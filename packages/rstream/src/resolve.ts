@@ -5,10 +5,10 @@ import { LOGGER } from "./logger.js";
 import { Subscription } from "./subscription.js";
 
 export interface ResolverOpts extends IID<string> {
-    /**
-     * Error handler for failed promises.
-     */
-    fail: Fn<any, void>;
+	/**
+	 * Error handler for failed promises.
+	 */
+	fail: Fn<any, void>;
 }
 
 /**
@@ -36,47 +36,47 @@ export interface ResolverOpts extends IID<string> {
  * @param opts -
  */
 export const resolve = <T>(opts?: Partial<ResolverOpts>) =>
-    new Resolver<T>(opts);
+	new Resolver<T>(opts);
 
 export class Resolver<T> extends Subscription<Promise<T>, T> {
-    protected outstanding = 0;
-    protected fail?: Fn<any, void>;
+	protected outstanding = 0;
+	protected fail?: Fn<any, void>;
 
-    constructor(opts: Partial<ResolverOpts> = {}) {
-        super(undefined, __optsWithID("resolve"));
-        this.fail = opts.fail;
-    }
+	constructor(opts: Partial<ResolverOpts> = {}) {
+		super(undefined, __optsWithID("resolve"));
+		this.fail = opts.fail;
+	}
 
-    next(x: Promise<T>) {
-        this.outstanding++;
-        x.then(
-            (y) => {
-                if (this.state < State.DONE) {
-                    this.dispatch(y);
-                    if (--this.outstanding === 0) {
-                        this.done();
-                    }
-                } else {
-                    LOGGER.warn(`resolved value in state ${this.state} (${x})`);
-                }
-            },
-            (e) => {
-                if (this.fail) {
-                    this.fail(e);
-                } else {
-                    this.error(e);
-                }
-            }
-        );
-    }
+	next(x: Promise<T>) {
+		this.outstanding++;
+		x.then(
+			(y) => {
+				if (this.state < State.DONE) {
+					this.dispatch(y);
+					if (--this.outstanding === 0) {
+						this.done();
+					}
+				} else {
+					LOGGER.warn(`resolved value in state ${this.state} (${x})`);
+				}
+			},
+			(e) => {
+				if (this.fail) {
+					this.fail(e);
+				} else {
+					this.error(e);
+				}
+			}
+		);
+	}
 
-    done() {
-        if (
-            this.parent &&
-            this.parent.getState() === State.DONE &&
-            this.outstanding === 0
-        ) {
-            super.done();
-        }
-    }
+	done() {
+		if (
+			this.parent &&
+			this.parent.getState() === State.DONE &&
+			this.outstanding === 0
+		) {
+			super.done();
+		}
+	}
 }

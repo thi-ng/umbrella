@@ -24,26 +24,26 @@ import { __iter } from "./iterator.js";
  * @param offset - initial index
  */
 export function mapIndexed<A, B>(
-    fn: Fn2<number, A, B>,
-    offset?: number
+	fn: Fn2<number, A, B>,
+	offset?: number
 ): Transducer<A, B>;
 export function mapIndexed<A, B>(
-    fn: Fn2<number, A, B>,
-    src: Iterable<A>
+	fn: Fn2<number, A, B>,
+	src: Iterable<A>
 ): IterableIterator<B>;
 export function mapIndexed<A, B>(
-    fn: Fn2<number, A, B>,
-    offset: number,
-    src: Iterable<A>
+	fn: Fn2<number, A, B>,
+	offset: number,
+	src: Iterable<A>
 ): IterableIterator<B>;
 export function mapIndexed<A, B>(...args: any[]): any {
-    return (
-        __iter(mapIndexed, args) ||
-        ((rfn: Reducer<any, B>) => {
-            const r = rfn[2];
-            const fn: Fn2<number, A, B> = args[0];
-            let i: number = args[1] || 0;
-            return compR(rfn, (acc, x: A) => r(acc, fn(i++, x)));
-        })
-    );
+	return (
+		__iter(mapIndexed, args) ||
+		((rfn: Reducer<any, B>) => {
+			const r = rfn[2];
+			const fn: Fn2<number, A, B> = args[0];
+			let i: number = args[1] || 0;
+			return compR(rfn, (acc, x: A) => r(acc, fn(i++, x)));
+		})
+	);
 }

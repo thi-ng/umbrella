@@ -14,24 +14,24 @@ import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
  * @param to -
  */
 export const splice = (
-    src: string,
-    insert: string,
-    from: number,
-    to = from
+	src: string,
+	insert: string,
+	from: number,
+	to = from
 ) => {
-    if (from < 0) {
-        from += src.length;
-    }
-    if (to < 0) {
-        to += src.length;
-    }
-    if (from > to) {
-        illegalArgs("'from' index must be <= 'to'");
-    }
-    to = Math.max(to, 0);
-    return from <= 0
-        ? insert + src.substring(to)
-        : from >= src.length
-        ? src + insert
-        : src.substring(0, from) + insert + src.substring(to);
+	if (from < 0) {
+		from += src.length;
+	}
+	if (to < 0) {
+		to += src.length;
+	}
+	if (from > to) {
+		illegalArgs("'from' index must be <= 'to'");
+	}
+	to = Math.max(to, 0);
+	return from <= 0
+		? insert + src.substring(to)
+		: from >= src.length
+		? src + insert
+		: src.substring(0, from) + insert + src.substring(to);
 };

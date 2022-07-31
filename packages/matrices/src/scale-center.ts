@@ -13,16 +13,16 @@ import { translation23, translation44 } from "./translation.js";
  * @param m -
  */
 export const scaleWithCenter23 = (
-    m: Mat | null,
-    p: ReadonlyVec,
-    s: number | ReadonlyVec
+	m: Mat | null,
+	p: ReadonlyVec,
+	s: number | ReadonlyVec
 ) =>
-    concat(
-        m,
-        translation23([], p),
-        scale23([], s),
-        translation23([], neg([], p))
-    );
+	concat(
+		m,
+		translation23([], p),
+		scale23([], s),
+		translation23([], neg([], p))
+	);
 
 /**
  * Computes a 4x4 matrix representing a scale operation with origin `p`
@@ -32,13 +32,13 @@ export const scaleWithCenter23 = (
  * @param m -
  */
 export const scaleWithCenter44 = (
-    m: Mat | null,
-    p: ReadonlyVec,
-    s: number | ReadonlyVec
+	m: Mat | null,
+	p: ReadonlyVec,
+	s: number | ReadonlyVec
 ) =>
-    concat(
-        m,
-        translation44([], p),
-        scale44([], s),
-        translation44([], neg([], p))
-    );
+	concat(
+		m,
+		translation44([], p),
+		scale44([], s),
+		translation44([], neg([], p))
+	);

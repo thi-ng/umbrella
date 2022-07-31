@@ -52,19 +52,19 @@ export const same8 = (x: number) => ((x >> 8) & 0xff) === (x & 0xff);
 /**
  * Expands 3x4bit value like `0xabc` to 24bits: `0xaabbcc`
  *
- * @param x - 
+ * @param x -
  */
 export const interleave4_12_24 = (x: number) =>
-    ((x & 0xf00) * 0x1100) | ((x & 0xf0) * 0x110) | ((x & 0xf) * 0x11);
+	((x & 0xf00) * 0x1100) | ((x & 0xf0) * 0x110) | ((x & 0xf) * 0x11);
 
 /**
  * Expands 4x4bit value like `0xabcd` to 32bits: `0xaabbccdd`
  *
- * @param x - 
+ * @param x -
  */
 export const interleave4_16_32 = (x: number) =>
-    (((x & 0xf000) * 0x11000) |
-        ((x & 0xf00) * 0x1100) |
-        ((x & 0xf0) * 0x110) |
-        ((x & 0xf) * 0x11)) >>>
-    0;
+	(((x & 0xf000) * 0x11000) |
+		((x & 0xf00) * 0x1100) |
+		((x & 0xf0) * 0x110) |
+		((x & 0xf) * 0x11)) >>>
+	0;

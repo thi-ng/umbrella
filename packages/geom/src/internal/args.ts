@@ -13,14 +13,14 @@ import { vecOf } from "@thi.ng/vectors/vec-of";
  * @internal
  */
 export const __argAttribs = (args: any[]) => {
-    if (args.length) {
-        const last = args[args.length - 1];
-        return isPlainObject(last)
-            ? args.pop()
-            : last == null
-            ? (args.pop(), undefined)
-            : undefined;
-    }
+	if (args.length) {
+		const last = args[args.length - 1];
+		return isPlainObject(last)
+			? args.pop()
+			: last == null
+			? (args.pop(), undefined)
+			: undefined;
+	}
 };
 
 /**
@@ -32,12 +32,12 @@ export const __argAttribs = (args: any[]) => {
  * @internal
  */
 export const __argsVV = (args: any[]) => {
-    const attr = __argAttribs(args);
-    return args.length
-        ? args.length === 2
-            ? [args[0], args[1], attr]
-            : [undefined, args[0], attr]
-        : [undefined, undefined, attr];
+	const attr = __argAttribs(args);
+	return args.length
+		? args.length === 2
+			? [args[0], args[1], attr]
+			: [undefined, args[0], attr]
+		: [undefined, undefined, attr];
 };
 
 /**
@@ -49,15 +49,15 @@ export const __argsVV = (args: any[]) => {
  * @internal
  */
 export const __argsVN = (args: any[]) => {
-    const attr = __argAttribs(args);
-    return args.length
-        ? args.length === 2
-            ? [args[0], args[1], attr]
-            : isNumber(args[0])
-            ? [undefined, args[0], attr]
-            : [args[0], undefined, attr]
-        : [undefined, undefined, attr];
+	const attr = __argAttribs(args);
+	return args.length
+		? args.length === 2
+			? [args[0], args[1], attr]
+			: isNumber(args[0])
+			? [undefined, args[0], attr]
+			: [args[0], undefined, attr]
+		: [undefined, undefined, attr];
 };
 
 export const __asVec = (x: number | Vec, size = 2) =>
-    isNumber(x) ? vecOf(size, x) : x;
+	isNumber(x) ? vecOf(size, x) : x;

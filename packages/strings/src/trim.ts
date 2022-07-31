@@ -17,10 +17,10 @@ import type { Stringer } from "./api.js";
  * @param chars -
  */
 export const trim = memoize1<string, Stringer<string>>((chars = " \t\n\r") => {
-    chars = `(${chars
-        .split("")
-        .map((x) => `\\${x}`)
-        .join("|")})`;
-    const re = new RegExp(`(^${chars}+)|(${chars}+$)`, "g");
-    return (x) => x.replace(re, "");
+	chars = `(${chars
+		.split("")
+		.map((x) => `\\${x}`)
+		.join("|")})`;
+	const re = new RegExp(`(^${chars}+)|(${chars}+$)`, "g");
+	return (x) => x.replace(re, "");
 });

@@ -24,15 +24,15 @@ import { map } from "./map.js";
  * @param fn - mapping function
  */
 export function mapcat<A, B>(
-    fn: Fn<A, Iterable<B> | null | undefined>
+	fn: Fn<A, Iterable<B> | null | undefined>
 ): Transducer<A, B>;
 export function mapcat<A, B>(
-    fn: Fn<A, Iterable<B> | null | undefined>,
-    src: Iterable<A>
+	fn: Fn<A, Iterable<B> | null | undefined>,
+	src: Iterable<A>
 ): IterableIterator<B>;
 export function mapcat<A, B>(
-    fn: Fn<A, Iterable<B> | null | undefined>,
-    src?: Iterable<A>
+	fn: Fn<A, Iterable<B> | null | undefined>,
+	src?: Iterable<A>
 ): any {
-    return isIterable(src) ? iterator(mapcat(fn), src) : comp(map(fn), cat());
+	return isIterable(src) ? iterator(mapcat(fn), src) : comp(map(fn), cat());
 }

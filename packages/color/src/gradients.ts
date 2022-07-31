@@ -50,20 +50,20 @@ import { mix as $mix } from "./mix.js";
  * @param isABGR -
  */
 export function multiColorGradient<T extends TypedColor<any>>(
-    opts: GradientOpts<T>
+	opts: GradientOpts<T>
 ): T[];
 export function multiColorGradient<T extends TypedColor<any>>(
-    opts: GradientOpts<T>,
-    isABGR: boolean
+	opts: GradientOpts<T>,
+	isABGR: boolean
 ): number[];
 export function multiColorGradient<T extends TypedColor<any>>(
-    opts: GradientOpts<T>,
-    isABGR?: boolean
+	opts: GradientOpts<T>,
+	isABGR?: boolean
 ) {
-    const cols = [...gradient(opts)];
-    if (isABGR === undefined) return cols;
-    const rgba = cols.map((x) => argb32(x)[0]);
-    return isABGR ? rgba.map(intArgb32Abgr32) : rgba;
+	const cols = [...gradient(opts)];
+	if (isABGR === undefined) return cols;
+	const rgba = cols.map((x) => argb32(x)[0]);
+	return isABGR ? rgba.map(intArgb32Abgr32) : rgba;
 }
 
 /**
@@ -81,34 +81,34 @@ export function multiColorGradient<T extends TypedColor<any>>(
  * @param estride - element stride (default: 4)
  */
 export const multiColorGradientBuffer = <T extends TypedColor<any>>(
-    opts: GradientOpts<T>,
-    buffer: NumericArray = [],
-    offset = 0,
-    cstride = 1,
-    estride = 4
+	opts: GradientOpts<T>,
+	buffer: NumericArray = [],
+	offset = 0,
+	cstride = 1,
+	estride = 4
 ) => {
-    for (let col of gradient(opts)) {
-        setS4(buffer, col, offset, 0, cstride);
-        offset += estride;
-    }
-    return buffer;
+	for (let col of gradient(opts)) {
+		setS4(buffer, col, offset, 0, cstride);
+		offset += estride;
+	}
+	return buffer;
 };
 
 /** @internal */
 const gradient = <T extends TypedColor<any>>({
-    num,
-    stops,
-    easing,
-    mix,
+	num,
+	stops,
+	easing,
+	mix,
 }: GradientOpts<T>): Iterable<T> =>
-    tween<T, T[], T>({
-        num: num - 1,
-        stops,
-        easing,
-        min: 0,
-        max: 1,
-        init: (a, b) => [a, b],
-        mix: mix
-            ? ([a, b], t) => <T>mix(a.empty(), a, b, t)
-            : ([a, b], t) => <T>$mix(a.empty(), a, b, t),
-    });
+	tween<T, T[], T>({
+		num: num - 1,
+		stops,
+		easing,
+		min: 0,
+		max: 1,
+		init: (a, b) => [a, b],
+		mix: mix
+			? ([a, b], t) => <T>mix(a.empty(), a, b, t)
+			: ([a, b], t) => <T>$mix(a.empty(), a, b, t),
+	});

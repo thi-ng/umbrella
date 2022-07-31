@@ -31,37 +31,37 @@ import { snormMax, tnormMin, tnormProduct } from "./tnorms.js";
  * )
  * ```
  *
- * @param op - 
+ * @param op -
  * @param $if
- * @param then - 
- * @param weight - 
+ * @param then -
+ * @param weight -
  */
 export const rule = <I extends LVarSet<string>, O extends LVarSet<string>>(
-    op: FnN2,
-    $if: LVarKeySet<I, keyof I>,
-    then: LVarKeySet<O, keyof O>,
-    weight = 1
+	op: FnN2,
+	$if: LVarKeySet<I, keyof I>,
+	then: LVarKeySet<O, keyof O>,
+	weight = 1
 ): Rule<I, O> => ({
-    if: $if,
-    then,
-    op,
-    weight,
+	if: $if,
+	then,
+	op,
+	weight,
 });
 
 export const and = <I extends LVarSet<string>, O extends LVarSet<string>>(
-    $if: LVarKeySet<I, keyof I>,
-    then: LVarKeySet<O, keyof O>,
-    weight?: number
+	$if: LVarKeySet<I, keyof I>,
+	then: LVarKeySet<O, keyof O>,
+	weight?: number
 ) => rule(tnormMin, $if, then, weight);
 
 export const strongAnd = <I extends LVarSet<string>, O extends LVarSet<string>>(
-    $if: LVarKeySet<I, keyof I>,
-    then: LVarKeySet<O, keyof O>,
-    weight?: number
+	$if: LVarKeySet<I, keyof I>,
+	then: LVarKeySet<O, keyof O>,
+	weight?: number
 ) => rule(tnormProduct, $if, then, weight);
 
 export const or = <I extends LVarSet<string>, O extends LVarSet<string>>(
-    $if: LVarKeySet<I, keyof I>,
-    then: LVarKeySet<O, keyof O>,
-    weight?: number
+	$if: LVarKeySet<I, keyof I>,
+	then: LVarKeySet<O, keyof O>,
+	weight?: number
 ) => rule(snormMax, $if, then, weight);

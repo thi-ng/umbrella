@@ -2,68 +2,68 @@ import type { Fn } from "@thi.ng/api";
 import { repeat } from "@thi.ng/strings/repeat";
 import type { ArgSpec, KVDict, KVMultiDict, Tuple } from "./api.js";
 import {
-    coerceFloat,
-    coerceFloats,
-    coerceHexInt,
-    coerceHexInts,
-    coerceInt,
-    coerceInts,
-    coerceJson,
-    coerceKV,
-    coerceOneOf,
-    coerceTuple,
+	coerceFloat,
+	coerceFloats,
+	coerceHexInt,
+	coerceHexInts,
+	coerceInt,
+	coerceInts,
+	coerceJson,
+	coerceKV,
+	coerceOneOf,
+	coerceTuple,
 } from "./coerce.js";
 
 const $single =
-    <T = number>(coerce: Fn<string, T>, hint: string) =>
-    <S extends Partial<ArgSpec<T>>>(
-        spec: S
-    ): S & { coerce: Fn<string, T>; hint: string; group: string } => ({
-        coerce,
-        hint,
-        group: "main",
-        ...spec,
-    });
+	<T = number>(coerce: Fn<string, T>, hint: string) =>
+	<S extends Partial<ArgSpec<T>>>(
+		spec: S
+	): S & { coerce: Fn<string, T>; hint: string; group: string } => ({
+		coerce,
+		hint,
+		group: "main",
+		...spec,
+	});
 
 const $multi =
-    <T = number>(coerce: Fn<string[], T[]>, hint: string) =>
-    <S extends Partial<ArgSpec<T[]> & { delim: string }>>(
-        spec: S
-    ): S & {
-        coerce: Fn<string[], T[]>;
-        hint: string;
-        multi: true;
-        group: string;
-    } => ({
-        hint: $hint(hint, spec.delim),
-        multi: true,
-        coerce,
-        group: "main",
-        ...spec,
-    });
+	<T = number>(coerce: Fn<string[], T[]>, hint: string) =>
+	<S extends Partial<ArgSpec<T[]> & { delim: string }>>(
+		spec: S
+	): S & {
+		coerce: Fn<string[], T[]>;
+		hint: string;
+		multi: true;
+		group: string;
+	} => ({
+		hint: $hint(hint, spec.delim),
+		multi: true,
+		coerce,
+		group: "main",
+		...spec,
+	});
 
 const $hint = (hint: string, delim?: string) =>
-    hint + (delim ? `[${delim}..]` : "");
+	hint + (delim ? `[${delim}..]` : "");
 
 /**
  * Returns a full {@link ArgSpec} for a boolean flag. The mere presence of this
  * arg will enable the flag.
  *
- * @param spec - 
+ * @param spec -
  */
 export const flag = <S extends Partial<ArgSpec<boolean>>>(
-    spec: S
+	spec: S
 ): S & { flag: true; default: boolean; group: string } => ({
-    flag: true,
-    default: false,
-    group: "flags",
-    ...spec,
+	flag: true,
+	default: false,
+	group: "flags",
+	...spec,
 });
 
 /**
  * Returns a full {@link ArgSpec} for a string value arg.
  *
- * @param spec - 
+ * @param spec -
  */
 export const string = $single<string>((x) => x, "STR");
 
@@ -72,7 +72,7 @@ export const string = $single<string>((x) => x, "STR");
  * multi string value arg. This argument can be provided mutiple times with
  * values collected into an array.
  *
- * @param spec - 
+ * @param spec -
  */
 export const strings = $multi<string>((x) => x, "STR");
 
@@ -80,7 +80,7 @@ export const strings = $multi<string>((x) => x, "STR");
  * Returns a full {@link ArgSpec} for a floating point value arg. The value
  * will be autoatically coerced into a number using {@link coerceFloat}.
  *
- * @param spec - 
+ * @param spec -
  */
 export const float = $single(coerceFloat, "NUM");
 
@@ -88,7 +88,7 @@ export const float = $single(coerceFloat, "NUM");
  * Returns a full {@link ArgSpec} for a single hex integer value arg. The value
  * will be autoatically coerced into a number using {@link coerceHexInt}.
  *
- * @param spec - 
+ * @param spec -
  */
 export const hex = $single(coerceHexInt, "HEX");
 
@@ -96,7 +96,7 @@ export const hex = $single(coerceHexInt, "HEX");
  * Returns a full {@link ArgSpec} for a single integer value arg. The value
  * will be autoatically coerced into a number using {@link coerceInt}.
  *
- * @param spec - 
+ * @param spec -
  */
 export const int = $single(coerceInt, "INT");
 
@@ -105,7 +105,7 @@ export const int = $single(coerceInt, "INT");
  * multi floating point value arg. This argument can be provided mutiple times
  * with values being coerced into numbers and collected into an array.
  *
- * @param spec - 
+ * @param spec -
  */
 export const floats = $multi(coerceFloats, "NUM");
 
@@ -114,7 +114,7 @@ export const floats = $multi(coerceFloats, "NUM");
  * hex integer value arg. This argument can be provided mutiple times with
  * values being coerced into numbers and collected into an array.
  *
- * @param spec - 
+ * @param spec -
  */
 export const hexes = $multi(coerceHexInts, "HEX");
 
@@ -123,7 +123,7 @@ export const hexes = $multi(coerceHexInts, "HEX");
  * integer value arg. This argument can be provided mutiple times with values
  * being coerced into numbers and collected into an array.
  *
- * @param spec - 
+ * @param spec -
  */
 export const ints = $multi(coerceInts, "INT");
 
@@ -131,38 +131,38 @@ export const ints = $multi(coerceInts, "INT");
  * Returns full {@link ArgSpec} for a JSON value arg. The raw CLI value string
  * will be automcatically coerced using {@link coerceJson}.
  *
- * @param spec - 
+ * @param spec -
  */
 export const json = <T, S extends Partial<ArgSpec<T>>>(
-    spec: S
+	spec: S
 ): S & { coerce: Fn<string, T>; hint: string; group: string } => ({
-    coerce: coerceJson,
-    hint: "JSON",
-    group: "main",
-    ...spec,
+	coerce: coerceJson,
+	hint: "JSON",
+	group: "main",
+	...spec,
 });
 
 const $desc = (opts: readonly string[], prefix?: string) =>
-    `${prefix ? prefix + ": " : ""}${opts.map((x) => `"${x}"`).join(", ")}`;
+	`${prefix ? prefix + ": " : ""}${opts.map((x) => `"${x}"`).join(", ")}`;
 
 /**
  * Returns full {@link ArgSpec} for an enum-like string value arg. The raw CLI
  * value string will be automcatically validated using {@link coerceOneOf}.
  *
- * @param opts - 
- * @param spec - 
+ * @param opts -
+ * @param spec -
  */
 export const oneOf = <K extends string, S extends Partial<ArgSpec<K>>>(
-    opts: readonly K[],
-    spec: S
+	opts: readonly K[],
+	spec: S
 ): S & { coerce: Fn<string, K>; hint: string; group: string } & {
-    desc: string;
+	desc: string;
 } => ({
-    coerce: coerceOneOf(opts),
-    hint: "ID",
-    group: "main",
-    ...spec,
-    desc: $desc(opts, spec.desc),
+	coerce: coerceOneOf(opts),
+	hint: "ID",
+	group: "main",
+	...spec,
+	desc: $desc(opts, spec.desc),
 });
 
 /**
@@ -170,27 +170,27 @@ export const oneOf = <K extends string, S extends Partial<ArgSpec<K>>>(
  * enum-like string value args. The raw CLI value strings will be automcatically
  * validated using {@link coerceOneOf} and collected into an array.
  *
- * @param opts - 
- * @param spec - 
+ * @param opts -
+ * @param spec -
  */
 export const oneOfMulti = <
-    K extends string,
-    S extends Partial<ArgSpec<K[]> & { delim: string }>
+	K extends string,
+	S extends Partial<ArgSpec<K[]> & { delim: string }>
 >(
-    opts: readonly K[],
-    spec: S
+	opts: readonly K[],
+	spec: S
 ): S & {
-    coerce: Fn<string[], K[]>;
-    hint: string;
-    multi: true;
-    group: string;
+	coerce: Fn<string[], K[]>;
+	hint: string;
+	multi: true;
+	group: string;
 } & { desc: string } => ({
-    coerce: (xs) => xs.map(coerceOneOf(opts)),
-    hint: $hint("ID", spec.delim),
-    multi: true,
-    group: "main",
-    ...spec,
-    desc: $desc(opts, spec.desc),
+	coerce: (xs) => xs.map(coerceOneOf(opts)),
+	hint: $hint("ID", spec.delim),
+	multi: true,
+	group: "main",
+	...spec,
+	desc: $desc(opts, spec.desc),
 });
 
 /**
@@ -202,24 +202,24 @@ export const oneOfMulti = <
  * are allowed and will receive a `"true"` as their value. However, if `strict`
  * is true, only full KV pairs are allowed.
  *
- * @param spec - 
- * @param delim - 
+ * @param spec -
+ * @param delim -
  */
 export const kvPairs = <S extends Partial<ArgSpec<KVDict>>>(
-    spec: S,
-    delim = "=",
-    strict?: boolean
+	spec: S,
+	delim = "=",
+	strict?: boolean
 ): S & {
-    coerce: Fn<string[], KVDict>;
-    hint: string;
-    multi: true;
-    group: string;
+	coerce: Fn<string[], KVDict>;
+	hint: string;
+	multi: true;
+	group: string;
 } => ({
-    coerce: coerceKV(delim, strict),
-    hint: `key${delim}val`,
-    multi: true,
-    group: "main",
-    ...spec,
+	coerce: coerceKV(delim, strict),
+	hint: `key${delim}val`,
+	multi: true,
+	group: "main",
+	...spec,
 });
 
 /**
@@ -227,25 +227,25 @@ export const kvPairs = <S extends Partial<ArgSpec<KVDict>>>(
  * which supports multiple values per given key (each key's values are collected
  * into arrays).
  *
- * @param spec - 
- * @param delim - 
- * @param strict - 
+ * @param spec -
+ * @param delim -
+ * @param strict -
  */
 export const kvPairsMulti = <S extends Partial<ArgSpec<KVMultiDict>>>(
-    spec: S,
-    delim = "=",
-    strict?: boolean
+	spec: S,
+	delim = "=",
+	strict?: boolean
 ): S & {
-    coerce: Fn<string[], KVMultiDict>;
-    hint: string;
-    multi: true;
-    group: string;
+	coerce: Fn<string[], KVMultiDict>;
+	hint: string;
+	multi: true;
+	group: string;
 } => ({
-    coerce: coerceKV(delim, strict, true),
-    hint: `key${delim}val(s)`,
-    multi: true,
-    group: "main",
-    ...spec,
+	coerce: coerceKV(delim, strict, true),
+	hint: `key${delim}val(s)`,
+	multi: true,
+	group: "main",
+	...spec,
 });
 
 /**
@@ -269,45 +269,45 @@ export const kvPairsMulti = <S extends Partial<ArgSpec<KVMultiDict>>>(
  * // }
  * ```
  *
- * @param coerce - 
- * @param size - 
- * @param spec - 
- * @param delim - 
+ * @param coerce -
+ * @param size -
+ * @param spec -
+ * @param delim -
  */
 export const tuple = <T, S extends Partial<ArgSpec<Tuple<T>>>>(
-    coerce: Fn<string, T>,
-    size: number,
-    spec: S,
-    delim = ","
+	coerce: Fn<string, T>,
+	size: number,
+	spec: S,
+	delim = ","
 ): S & { coerce: Fn<string, Tuple<T>>; hint: string; group: string } => ({
-    coerce: coerceTuple(coerce, size, delim),
-    hint: [...repeat("N", size)].join(delim),
-    group: "main",
-    ...spec,
+	coerce: coerceTuple(coerce, size, delim),
+	hint: [...repeat("N", size)].join(delim),
+	group: "main",
+	...spec,
 });
 
 /**
  * Syntax sugar for `tuple(coerceInt, size, {...}, delim)`.
  *
- * @param size - 
- * @param spec - 
- * @param delim - 
+ * @param size -
+ * @param spec -
+ * @param delim -
  */
 export const size = <S extends Partial<ArgSpec<Tuple<number>>>>(
-    size: number,
-    spec: S,
-    delim = "x"
+	size: number,
+	spec: S,
+	delim = "x"
 ) => tuple(coerceInt, size, spec, delim);
 
 /**
  * Syntax sugar for `tuple(coerceFloat, size, {...}, delim)`.
  *
- * @param size - 
- * @param spec - 
- * @param delim - 
+ * @param size -
+ * @param spec -
+ * @param delim -
  */
 export const vec = <S extends Partial<ArgSpec<Tuple<number>>>>(
-    size: number,
-    spec: S,
-    delim = ","
+	size: number,
+	spec: S,
+	delim = ","
 ) => tuple(coerceFloat, size, spec, delim);

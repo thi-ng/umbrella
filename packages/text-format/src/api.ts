@@ -51,22 +51,22 @@ export const DIM = 0x800;
 export const UNDERLINE = 0x1000;
 
 export const PRESETS_TPL = {
-    black: FG_BLACK,
-    blue: FG_BLUE,
-    cyan: FG_CYAN,
-    gray: FG_GRAY,
-    green: FG_GREEN,
-    magenta: FG_MAGENTA,
-    red: FG_RED,
-    white: FG_WHITE,
-    yellow: FG_YELLOW,
-    lightBlue: FG_LIGHT_BLUE,
-    lightCyan: FG_LIGHT_CYAN,
-    lightGray: FG_LIGHT_GRAY,
-    lightGreen: FG_LIGHT_GREEN,
-    lightMagenta: FG_LIGHT_MAGENTA,
-    lightRed: FG_LIGHT_RED,
-    lightYellow: FG_LIGHT_YELLOW,
+	black: FG_BLACK,
+	blue: FG_BLUE,
+	cyan: FG_CYAN,
+	gray: FG_GRAY,
+	green: FG_GREEN,
+	magenta: FG_MAGENTA,
+	red: FG_RED,
+	white: FG_WHITE,
+	yellow: FG_YELLOW,
+	lightBlue: FG_LIGHT_BLUE,
+	lightCyan: FG_LIGHT_CYAN,
+	lightGray: FG_LIGHT_GRAY,
+	lightGreen: FG_LIGHT_GREEN,
+	lightMagenta: FG_LIGHT_MAGENTA,
+	lightRed: FG_LIGHT_RED,
+	lightYellow: FG_LIGHT_YELLOW,
 };
 
 export type PresetID = Keys<typeof PRESETS_TPL>;
@@ -74,72 +74,72 @@ export type PresetID = Keys<typeof PRESETS_TPL>;
 export type FormatPresets = Record<PresetID, Fn<any, string>>;
 
 export interface StringFormat {
-    /**
-     * Function translating canvas character format codes to the actual
-     * output format. This function will only be called when needed,
-     * i.e. when a character's format is different than that of the
-     * previous.
-     */
-    start: Fn<number, string>;
-    /**
-     * Format end string (e.g. to ANSI reset or `</span>`).
-     */
-    end: string;
-    /**
-     * Prefix for each canvas row / line result string
-     */
-    prefix: string;
-    /**
-     * Suffix for each canvas row / line result string (e.g. linebreak)
-     */
-    suffix: string;
-    /**
-     * If true, DON'T skip 0-valued format IDs during formatting.
-     *
-     * @remarks
-     * This is needed for various custom color-only formats, e.g. in order to
-     * reproduce black in `FMT_ANSI565`. In the default format, a zero refers to
-     * the default format of the target.
-     *
-     * @defaultValue false
-     */
-    zero?: boolean;
+	/**
+	 * Function translating canvas character format codes to the actual
+	 * output format. This function will only be called when needed,
+	 * i.e. when a character's format is different than that of the
+	 * previous.
+	 */
+	start: Fn<number, string>;
+	/**
+	 * Format end string (e.g. to ANSI reset or `</span>`).
+	 */
+	end: string;
+	/**
+	 * Prefix for each canvas row / line result string
+	 */
+	prefix: string;
+	/**
+	 * Suffix for each canvas row / line result string (e.g. linebreak)
+	 */
+	suffix: string;
+	/**
+	 * If true, DON'T skip 0-valued format IDs during formatting.
+	 *
+	 * @remarks
+	 * This is needed for various custom color-only formats, e.g. in order to
+	 * reproduce black in `FMT_ANSI565`. In the default format, a zero refers to
+	 * the default format of the target.
+	 *
+	 * @defaultValue false
+	 */
+	zero?: boolean;
 }
 
 export interface HtmlFormatOpts {
-    /**
-     * Array of 16 color strings, in this order: black, red, green,
-     * yellow, blue, magenta, cyan, white, then repeated as bright
-     * versions.
-     */
-    colors: string[];
-    /**
-     * HTML attrib name.
-     */
-    attrib: string;
-    /**
-     * Delimiter between individual formatting terms (e.g. `;` for CSS
-     * rules or ` ` for CSS class names).
-     */
-    delim: string;
-    /**
-     * Prefix string for foreground colors
-     */
-    fg: string;
-    /**
-     * Prefix string for background colors
-     */
-    bg: string;
-    /**
-     * Bold format string
-     */
-    bold: string;
-    /**
-     * Dimmed format string
-     */
-    dim: string;
-    /**
-     * Underline format string
-     */
-    underline: string;
+	/**
+	 * Array of 16 color strings, in this order: black, red, green,
+	 * yellow, blue, magenta, cyan, white, then repeated as bright
+	 * versions.
+	 */
+	colors: string[];
+	/**
+	 * HTML attrib name.
+	 */
+	attrib: string;
+	/**
+	 * Delimiter between individual formatting terms (e.g. `;` for CSS
+	 * rules or ` ` for CSS class names).
+	 */
+	delim: string;
+	/**
+	 * Prefix string for foreground colors
+	 */
+	fg: string;
+	/**
+	 * Prefix string for background colors
+	 */
+	bg: string;
+	/**
+	 * Bold format string
+	 */
+	bold: string;
+	/**
+	 * Dimmed format string
+	 */
+	dim: string;
+	/**
+	 * Underline format string
+	 */
+	underline: string;
 }

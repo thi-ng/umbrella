@@ -27,23 +27,23 @@ import { vertices } from "./vertices.js";
  * @param opts
  */
 export const asPolygon: MultiFn1O<
-    IShape,
-    number | Partial<SamplingOpts>,
-    Polygon
+	IShape,
+	number | Partial<SamplingOpts>,
+	Polygon
 > = defmulti<IShape, number | Partial<SamplingOpts> | undefined, Polygon>(
-    __dispatch,
-    {
-        circle: "points",
-        ellipse: "points",
-        line: "points",
-        path: "points",
-        poly: "points",
-        polyline: "points",
-        quad: "points",
-        rect: "points",
-        tri: "points",
-    },
-    {
-        points: ($, opts) => new Polygon(vertices($, opts), __copyAttribs($)),
-    }
+	__dispatch,
+	{
+		circle: "points",
+		ellipse: "points",
+		line: "points",
+		path: "points",
+		poly: "points",
+		polyline: "points",
+		quad: "points",
+		rect: "points",
+		tri: "points",
+	},
+	{
+		points: ($, opts) => new Polygon(vertices($, opts), __copyAttribs($)),
+	}
 );

@@ -17,21 +17,21 @@ import { mapIndexed } from "./map-indexed.js";
  * @param offset - initial index
  */
 export function mapcatIndexed<A, B>(
-    fn: Fn2<number, A, Iterable<B> | null | undefined>,
-    offset?: number
+	fn: Fn2<number, A, Iterable<B> | null | undefined>,
+	offset?: number
 ): Transducer<A, B>;
 export function mapcatIndexed<A, B>(
-    fn: Fn2<number, A, Iterable<B> | null | undefined>,
-    src: Iterable<A>
+	fn: Fn2<number, A, Iterable<B> | null | undefined>,
+	src: Iterable<A>
 ): IterableIterator<B>;
 export function mapcatIndexed<A, B>(
-    fn: Fn2<number, A, Iterable<B> | null | undefined>,
-    offset: number,
-    src: Iterable<A>
+	fn: Fn2<number, A, Iterable<B> | null | undefined>,
+	offset: number,
+	src: Iterable<A>
 ): IterableIterator<B>;
 export function mapcatIndexed<A, B>(...args: any[]): any {
-    return (
-        __iter(mapcatIndexed, args, iterator) ||
-        comp(mapIndexed<A, Iterable<B>>(args[0], args[1]), cat())
-    );
+	return (
+		__iter(mapcatIndexed, args, iterator) ||
+		comp(mapIndexed<A, Iterable<B>>(args[0], args[1]), cat())
+	);
 }

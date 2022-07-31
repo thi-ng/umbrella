@@ -21,24 +21,24 @@ import { $$reduce } from "./reduce.js";
  */
 export function normFrequencies<A>(norm: number): Reducer<Map<A, number>, A>;
 export function normFrequencies<A>(
-    norm: number,
-    xs: Iterable<A>
+	norm: number,
+	xs: Iterable<A>
 ): Map<A, number>;
 export function normFrequencies<A, B>(
-    norm: number,
-    key: Fn<A, B>
+	norm: number,
+	key: Fn<A, B>
 ): Reducer<Map<B, number>, A>;
 export function normFrequencies<A, B>(
-    norm: number,
-    key: Fn<A, B>,
-    xs: Iterable<A>
+	norm: number,
+	key: Fn<A, B>,
+	xs: Iterable<A>
 ): Map<B, number>;
 export function normFrequencies(...args: any[]): any {
-    return (
-        $$reduce(normFrequencies, args) ||
-        groupByMap({
-            key: args[1] || identity,
-            group: normCount(args[0]),
-        })
-    );
+	return (
+		$$reduce(normFrequencies, args) ||
+		groupByMap({
+			key: args[1] || identity,
+			group: normCount(args[0]),
+		})
+	);
 }

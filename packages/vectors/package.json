@@ -1,756 +1,756 @@
 {
-    "name": "@thi.ng/vectors",
-    "version": "7.5.8",
-    "description": "Optimized 2d/3d/4d and arbitrary length vector operations",
-    "type": "module",
-    "module": "./index.js",
-    "typings": "./index.d.ts",
-    "sideEffects": false,
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/thi-ng/umbrella.git"
-    },
-    "homepage": "https://github.com/thi-ng/umbrella/tree/develop/packages/vectors#readme",
-    "funding": [
-        {
-            "type": "github",
-            "url": "https://github.com/sponsors/postspectacular"
-        },
-        {
-            "type": "patreon",
-            "url": "https://patreon.com/thing_umbrella"
-        }
-    ],
-    "author": "Karsten Schmidt <k+npm@thi.ng>",
-    "license": "Apache-2.0",
-    "scripts": {
-        "build": "yarn clean && tsc --declaration",
-        "clean": "rimraf '*.js' '*.d.ts' '*.map' doc compile internal",
-        "doc": "typedoc --excludePrivate --excludeInternal --out doc src/index.ts",
-        "doc:ae": "mkdir -p .ae/doc .ae/temp && api-extractor run --local --verbose",
-        "doc:readme": "yarn doc:stats && tools:readme",
-        "doc:stats": "tools:module-stats",
-        "pub": "yarn npm publish --access public",
-        "test": "testament test"
-    },
-    "dependencies": {
-        "@thi.ng/api": "^8.3.8",
-        "@thi.ng/binary": "^3.3.0",
-        "@thi.ng/checks": "^3.2.2",
-        "@thi.ng/equiv": "^2.1.8",
-        "@thi.ng/errors": "^2.1.8",
-        "@thi.ng/math": "^5.3.4",
-        "@thi.ng/memoize": "^3.1.8",
-        "@thi.ng/random": "^3.3.3",
-        "@thi.ng/strings": "^3.3.6",
-        "@thi.ng/transducers": "^8.3.7"
-    },
-    "devDependencies": {
-        "@microsoft/api-extractor": "^7.25.0",
-        "@thi.ng/testament": "^0.2.9",
-        "rimraf": "^3.0.2",
-        "tools": "workspace:^",
-        "typedoc": "^0.22.17",
-        "typescript": "^4.7.4"
-    },
-    "keywords": [
-        "2d",
-        "3d",
-        "4d",
-        "acceleration",
-        "array",
-        "bezier",
-        "binary",
-        "cartesian",
-        "codegen",
-        "comparator",
-        "cubic",
-        "data-oriented",
-        "datastructure",
-        "distance",
-        "dotproduct",
-        "equality",
-        "geometry",
-        "glsl",
-        "graphics",
-        "hash",
-        "heading",
-        "homogeneous",
-        "interpolation",
-        "interval",
-        "manhattan",
-        "math",
-        "memory-mapped",
-        "nd",
-        "polar",
-        "polymorphic",
-        "projection",
-        "quadratic",
-        "random",
-        "reflect",
-        "refract",
-        "rotation",
-        "smoothstep",
-        "step",
-        "typescript",
-        "vector",
-        "wasm",
-        "webgl"
-    ],
-    "publishConfig": {
-        "access": "public"
-    },
-    "browser": {
-        "process": false,
-        "setTimeout": false
-    },
-    "engines": {
-        "node": ">=12.7"
-    },
-    "files": [
-        "*.js",
-        "*.d.ts",
-        "compile",
-        "internal"
-    ],
-    "exports": {
-        ".": {
-            "default": "./index.js"
-        },
-        "./abs": {
-            "default": "./abs.js"
-        },
-        "./acos": {
-            "default": "./acos.js"
-        },
-        "./add": {
-            "default": "./add.js"
-        },
-        "./addi": {
-            "default": "./addi.js"
-        },
-        "./addm": {
-            "default": "./addm.js"
-        },
-        "./addmn": {
-            "default": "./addmn.js"
-        },
-        "./addmns": {
-            "default": "./addmns.js"
-        },
-        "./addms": {
-            "default": "./addms.js"
-        },
-        "./addn": {
-            "default": "./addn.js"
-        },
-        "./addns": {
-            "default": "./addns.js"
-        },
-        "./adds": {
-            "default": "./adds.js"
-        },
-        "./addw": {
-            "default": "./addw.js"
-        },
-        "./angle-between": {
-            "default": "./angle-between.js"
-        },
-        "./api": {
-            "default": "./api.js"
-        },
-        "./asin": {
-            "default": "./asin.js"
-        },
-        "./atan": {
-            "default": "./atan.js"
-        },
-        "./avec": {
-            "default": "./avec.js"
-        },
-        "./bisect": {
-            "default": "./bisect.js"
-        },
-        "./bit-and": {
-            "default": "./bit-and.js"
-        },
-        "./bit-not": {
-            "default": "./bit-not.js"
-        },
-        "./bit-or": {
-            "default": "./bit-or.js"
-        },
-        "./bit-xor": {
-            "default": "./bit-xor.js"
-        },
-        "./buffer": {
-            "default": "./buffer.js"
-        },
-        "./cartesian": {
-            "default": "./cartesian.js"
-        },
-        "./ceil": {
-            "default": "./ceil.js"
-        },
-        "./center": {
-            "default": "./center.js"
-        },
-        "./clamp": {
-            "default": "./clamp.js"
-        },
-        "./clampn": {
-            "default": "./clampn.js"
-        },
-        "./clockwise": {
-            "default": "./clockwise.js"
-        },
-        "./compare": {
-            "default": "./compare.js"
-        },
-        "./compile/accessors": {
-            "default": "./compile/accessors.js"
-        },
-        "./compile/emit": {
-            "default": "./compile/emit.js"
-        },
-        "./compile/templates": {
-            "default": "./compile/templates.js"
-        },
-        "./convert": {
-            "default": "./convert.js"
-        },
-        "./copy": {
-            "default": "./copy.js"
-        },
-        "./correlation": {
-            "default": "./correlation.js"
-        },
-        "./cos": {
-            "default": "./cos.js"
-        },
-        "./cosh": {
-            "default": "./cosh.js"
-        },
-        "./covariance": {
-            "default": "./covariance.js"
-        },
-        "./cross": {
-            "default": "./cross.js"
-        },
-        "./crosss": {
-            "default": "./crosss.js"
-        },
-        "./degrees": {
-            "default": "./degrees.js"
-        },
-        "./direction": {
-            "default": "./direction.js"
-        },
-        "./dist-braycurtis": {
-            "default": "./dist-braycurtis.js"
-        },
-        "./dist-canberra": {
-            "default": "./dist-canberra.js"
-        },
-        "./dist-chebyshev": {
-            "default": "./dist-chebyshev.js"
-        },
-        "./dist-hamming": {
-            "default": "./dist-hamming.js"
-        },
-        "./dist-haversine": {
-            "default": "./dist-haversine.js"
-        },
-        "./dist-jaccard": {
-            "default": "./dist-jaccard.js"
-        },
-        "./dist-manhattan": {
-            "default": "./dist-manhattan.js"
-        },
-        "./dist-minkowski": {
-            "default": "./dist-minkowski.js"
-        },
-        "./dist-sorensendice": {
-            "default": "./dist-sorensendice.js"
-        },
-        "./dist-weighted": {
-            "default": "./dist-weighted.js"
-        },
-        "./dist": {
-            "default": "./dist.js"
-        },
-        "./distsq": {
-            "default": "./distsq.js"
-        },
-        "./div": {
-            "default": "./div.js"
-        },
-        "./divi": {
-            "default": "./divi.js"
-        },
-        "./divn": {
-            "default": "./divn.js"
-        },
-        "./divns": {
-            "default": "./divns.js"
-        },
-        "./divs": {
-            "default": "./divs.js"
-        },
-        "./dot": {
-            "default": "./dot.js"
-        },
-        "./dotc": {
-            "default": "./dotc.js"
-        },
-        "./dots": {
-            "default": "./dots.js"
-        },
-        "./empty": {
-            "default": "./empty.js"
-        },
-        "./eq": {
-            "default": "./eq.js"
-        },
-        "./eqdelta": {
-            "default": "./eqdelta.js"
-        },
-        "./equals": {
-            "default": "./equals.js"
-        },
-        "./every": {
-            "default": "./every.js"
-        },
-        "./exp": {
-            "default": "./exp.js"
-        },
-        "./exp_2": {
-            "default": "./exp_2.js"
-        },
-        "./face-forward": {
-            "default": "./face-forward.js"
-        },
-        "./fill": {
-            "default": "./fill.js"
-        },
-        "./fit": {
-            "default": "./fit.js"
-        },
-        "./floor": {
-            "default": "./floor.js"
-        },
-        "./fmod": {
-            "default": "./fmod.js"
-        },
-        "./fmodn": {
-            "default": "./fmodn.js"
-        },
-        "./fract": {
-            "default": "./fract.js"
-        },
-        "./gt": {
-            "default": "./gt.js"
-        },
-        "./gte": {
-            "default": "./gte.js"
-        },
-        "./gvec": {
-            "default": "./gvec.js"
-        },
-        "./hash": {
-            "default": "./hash.js"
-        },
-        "./heading-segment": {
-            "default": "./heading-segment.js"
-        },
-        "./heading": {
-            "default": "./heading.js"
-        },
-        "./homogeneous": {
-            "default": "./homogeneous.js"
-        },
-        "./invert": {
-            "default": "./invert.js"
-        },
-        "./invsqrt": {
-            "default": "./invsqrt.js"
-        },
-        "./is-inf": {
-            "default": "./is-inf.js"
-        },
-        "./is-nan": {
-            "default": "./is-nan.js"
-        },
-        "./iterator": {
-            "default": "./iterator.js"
-        },
-        "./jitter": {
-            "default": "./jitter.js"
-        },
-        "./limit": {
-            "default": "./limit.js"
-        },
-        "./log": {
-            "default": "./log.js"
-        },
-        "./log_2": {
-            "default": "./log_2.js"
-        },
-        "./logic-and": {
-            "default": "./logic-and.js"
-        },
-        "./logic-not": {
-            "default": "./logic-not.js"
-        },
-        "./logic-or": {
-            "default": "./logic-or.js"
-        },
-        "./lshift": {
-            "default": "./lshift.js"
-        },
-        "./lt": {
-            "default": "./lt.js"
-        },
-        "./lte": {
-            "default": "./lte.js"
-        },
-        "./madd": {
-            "default": "./madd.js"
-        },
-        "./maddn": {
-            "default": "./maddn.js"
-        },
-        "./maddns": {
-            "default": "./maddns.js"
-        },
-        "./madds": {
-            "default": "./madds.js"
-        },
-        "./mag": {
-            "default": "./mag.js"
-        },
-        "./mags": {
-            "default": "./mags.js"
-        },
-        "./magsq": {
-            "default": "./magsq.js"
-        },
-        "./magsqs": {
-            "default": "./magsqs.js"
-        },
-        "./major": {
-            "default": "./major.js"
-        },
-        "./map-vectors": {
-            "default": "./map-vectors.js"
-        },
-        "./map": {
-            "default": "./map.js"
-        },
-        "./max-bounds": {
-            "default": "./max-bounds.js"
-        },
-        "./max": {
-            "default": "./max.js"
-        },
-        "./mean": {
-            "default": "./mean.js"
-        },
-        "./median": {
-            "default": "./median.js"
-        },
-        "./min-bounds": {
-            "default": "./min-bounds.js"
-        },
-        "./min": {
-            "default": "./min.js"
-        },
-        "./minor": {
-            "default": "./minor.js"
-        },
-        "./mix-bilinear": {
-            "default": "./mix-bilinear.js"
-        },
-        "./mix-cubic": {
-            "default": "./mix-cubic.js"
-        },
-        "./mix-hermite": {
-            "default": "./mix-hermite.js"
-        },
-        "./mix-quadratic": {
-            "default": "./mix-quadratic.js"
-        },
-        "./mix": {
-            "default": "./mix.js"
-        },
-        "./mixn": {
-            "default": "./mixn.js"
-        },
-        "./mixns": {
-            "default": "./mixns.js"
-        },
-        "./mixs": {
-            "default": "./mixs.js"
-        },
-        "./mod": {
-            "default": "./mod.js"
-        },
-        "./modn": {
-            "default": "./modn.js"
-        },
-        "./msub": {
-            "default": "./msub.js"
-        },
-        "./msubn": {
-            "default": "./msubn.js"
-        },
-        "./msubns": {
-            "default": "./msubns.js"
-        },
-        "./msubs": {
-            "default": "./msubs.js"
-        },
-        "./mul": {
-            "default": "./mul.js"
-        },
-        "./muli": {
-            "default": "./muli.js"
-        },
-        "./muln": {
-            "default": "./muln.js"
-        },
-        "./mulns": {
-            "default": "./mulns.js"
-        },
-        "./muls": {
-            "default": "./muls.js"
-        },
-        "./neg": {
-            "default": "./neg.js"
-        },
-        "./neq": {
-            "default": "./neq.js"
-        },
-        "./normal": {
-            "default": "./normal.js"
-        },
-        "./normalize": {
-            "default": "./normalize.js"
-        },
-        "./normalizes": {
-            "default": "./normalizes.js"
-        },
-        "./not": {
-            "default": "./not.js"
-        },
-        "./ortho-normal": {
-            "default": "./ortho-normal.js"
-        },
-        "./perpendicular": {
-            "default": "./perpendicular.js"
-        },
-        "./point-on-ray": {
-            "default": "./point-on-ray.js"
-        },
-        "./polar": {
-            "default": "./polar.js"
-        },
-        "./pow": {
-            "default": "./pow.js"
-        },
-        "./pown": {
-            "default": "./pown.js"
-        },
-        "./project": {
-            "default": "./project.js"
-        },
-        "./radians": {
-            "default": "./radians.js"
-        },
-        "./random": {
-            "default": "./random.js"
-        },
-        "./randoms": {
-            "default": "./randoms.js"
-        },
-        "./reflect": {
-            "default": "./reflect.js"
-        },
-        "./refract": {
-            "default": "./refract.js"
-        },
-        "./remainder": {
-            "default": "./remainder.js"
-        },
-        "./remaindern": {
-            "default": "./remaindern.js"
-        },
-        "./rotate-around-axis": {
-            "default": "./rotate-around-axis.js"
-        },
-        "./rotate-around-point": {
-            "default": "./rotate-around-point.js"
-        },
-        "./rotate": {
-            "default": "./rotate.js"
-        },
-        "./rotates": {
-            "default": "./rotates.js"
-        },
-        "./round": {
-            "default": "./round.js"
-        },
-        "./rshift": {
-            "default": "./rshift.js"
-        },
-        "./safe-div": {
-            "default": "./safe-div.js"
-        },
-        "./select": {
-            "default": "./select.js"
-        },
-        "./set": {
-            "default": "./set.js"
-        },
-        "./setc": {
-            "default": "./setc.js"
-        },
-        "./setcs": {
-            "default": "./setcs.js"
-        },
-        "./setn": {
-            "default": "./setn.js"
-        },
-        "./setns": {
-            "default": "./setns.js"
-        },
-        "./sets": {
-            "default": "./sets.js"
-        },
-        "./setvn": {
-            "default": "./setvn.js"
-        },
-        "./setvv": {
-            "default": "./setvv.js"
-        },
-        "./sign": {
-            "default": "./sign.js"
-        },
-        "./signed-area": {
-            "default": "./signed-area.js"
-        },
-        "./signed-volume": {
-            "default": "./signed-volume.js"
-        },
-        "./sin": {
-            "default": "./sin.js"
-        },
-        "./sinh": {
-            "default": "./sinh.js"
-        },
-        "./smoothstep": {
-            "default": "./smoothstep.js"
-        },
-        "./softmax": {
-            "default": "./softmax.js"
-        },
-        "./some": {
-            "default": "./some.js"
-        },
-        "./sqrt": {
-            "default": "./sqrt.js"
-        },
-        "./standardize": {
-            "default": "./standardize.js"
-        },
-        "./step": {
-            "default": "./step.js"
-        },
-        "./string": {
-            "default": "./string.js"
-        },
-        "./sub": {
-            "default": "./sub.js"
-        },
-        "./subi": {
-            "default": "./subi.js"
-        },
-        "./subm": {
-            "default": "./subm.js"
-        },
-        "./submn": {
-            "default": "./submn.js"
-        },
-        "./submns": {
-            "default": "./submns.js"
-        },
-        "./subms": {
-            "default": "./subms.js"
-        },
-        "./subn": {
-            "default": "./subn.js"
-        },
-        "./subns": {
-            "default": "./subns.js"
-        },
-        "./subs": {
-            "default": "./subs.js"
-        },
-        "./sum": {
-            "default": "./sum.js"
-        },
-        "./swizzle": {
-            "default": "./swizzle.js"
-        },
-        "./tan": {
-            "default": "./tan.js"
-        },
-        "./tanh": {
-            "default": "./tanh.js"
-        },
-        "./tensor": {
-            "default": "./tensor.js"
-        },
-        "./trunc": {
-            "default": "./trunc.js"
-        },
-        "./variance": {
-            "default": "./variance.js"
-        },
-        "./vec-of": {
-            "default": "./vec-of.js"
-        },
-        "./vec2": {
-            "default": "./vec2.js"
-        },
-        "./vec3": {
-            "default": "./vec3.js"
-        },
-        "./vec4": {
-            "default": "./vec4.js"
-        },
-        "./vop": {
-            "default": "./vop.js"
-        },
-        "./wrap": {
-            "default": "./wrap.js"
-        }
-    },
-    "thi.ng": {
-        "related": [
-            "color",
-            "distance",
-            "ecs",
-            "geom",
-            "hdom-canvas",
-            "imgui",
-            "matrices",
-            "simd",
-            "soa",
-            "shader-ast-js",
-            "vector-pools",
-            "webgl"
-        ],
-        "year": 2015
-    }
+	"name": "@thi.ng/vectors",
+	"version": "7.5.8",
+	"description": "Optimized 2d/3d/4d and arbitrary length vector operations",
+	"type": "module",
+	"module": "./index.js",
+	"typings": "./index.d.ts",
+	"sideEffects": false,
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/thi-ng/umbrella.git"
+	},
+	"homepage": "https://github.com/thi-ng/umbrella/tree/develop/packages/vectors#readme",
+	"funding": [
+		{
+			"type": "github",
+			"url": "https://github.com/sponsors/postspectacular"
+		},
+		{
+			"type": "patreon",
+			"url": "https://patreon.com/thing_umbrella"
+		}
+	],
+	"author": "Karsten Schmidt <k+npm@thi.ng>",
+	"license": "Apache-2.0",
+	"scripts": {
+		"build": "yarn clean && tsc --declaration",
+		"clean": "rimraf '*.js' '*.d.ts' '*.map' doc compile internal",
+		"doc": "typedoc --excludePrivate --excludeInternal --out doc src/index.ts",
+		"doc:ae": "mkdir -p .ae/doc .ae/temp && api-extractor run --local --verbose",
+		"doc:readme": "yarn doc:stats && tools:readme",
+		"doc:stats": "tools:module-stats",
+		"pub": "yarn npm publish --access public",
+		"test": "testament test"
+	},
+	"dependencies": {
+		"@thi.ng/api": "^8.3.8",
+		"@thi.ng/binary": "^3.3.0",
+		"@thi.ng/checks": "^3.2.2",
+		"@thi.ng/equiv": "^2.1.8",
+		"@thi.ng/errors": "^2.1.8",
+		"@thi.ng/math": "^5.3.4",
+		"@thi.ng/memoize": "^3.1.8",
+		"@thi.ng/random": "^3.3.3",
+		"@thi.ng/strings": "^3.3.6",
+		"@thi.ng/transducers": "^8.3.7"
+	},
+	"devDependencies": {
+		"@microsoft/api-extractor": "^7.25.0",
+		"@thi.ng/testament": "^0.2.9",
+		"rimraf": "^3.0.2",
+		"tools": "workspace:^",
+		"typedoc": "^0.22.17",
+		"typescript": "^4.7.4"
+	},
+	"keywords": [
+		"2d",
+		"3d",
+		"4d",
+		"acceleration",
+		"array",
+		"bezier",
+		"binary",
+		"cartesian",
+		"codegen",
+		"comparator",
+		"cubic",
+		"data-oriented",
+		"datastructure",
+		"distance",
+		"dotproduct",
+		"equality",
+		"geometry",
+		"glsl",
+		"graphics",
+		"hash",
+		"heading",
+		"homogeneous",
+		"interpolation",
+		"interval",
+		"manhattan",
+		"math",
+		"memory-mapped",
+		"nd",
+		"polar",
+		"polymorphic",
+		"projection",
+		"quadratic",
+		"random",
+		"reflect",
+		"refract",
+		"rotation",
+		"smoothstep",
+		"step",
+		"typescript",
+		"vector",
+		"wasm",
+		"webgl"
+	],
+	"publishConfig": {
+		"access": "public"
+	},
+	"browser": {
+		"process": false,
+		"setTimeout": false
+	},
+	"engines": {
+		"node": ">=12.7"
+	},
+	"files": [
+		"*.js",
+		"*.d.ts",
+		"compile",
+		"internal"
+	],
+	"exports": {
+		".": {
+			"default": "./index.js"
+		},
+		"./abs": {
+			"default": "./abs.js"
+		},
+		"./acos": {
+			"default": "./acos.js"
+		},
+		"./add": {
+			"default": "./add.js"
+		},
+		"./addi": {
+			"default": "./addi.js"
+		},
+		"./addm": {
+			"default": "./addm.js"
+		},
+		"./addmn": {
+			"default": "./addmn.js"
+		},
+		"./addmns": {
+			"default": "./addmns.js"
+		},
+		"./addms": {
+			"default": "./addms.js"
+		},
+		"./addn": {
+			"default": "./addn.js"
+		},
+		"./addns": {
+			"default": "./addns.js"
+		},
+		"./adds": {
+			"default": "./adds.js"
+		},
+		"./addw": {
+			"default": "./addw.js"
+		},
+		"./angle-between": {
+			"default": "./angle-between.js"
+		},
+		"./api": {
+			"default": "./api.js"
+		},
+		"./asin": {
+			"default": "./asin.js"
+		},
+		"./atan": {
+			"default": "./atan.js"
+		},
+		"./avec": {
+			"default": "./avec.js"
+		},
+		"./bisect": {
+			"default": "./bisect.js"
+		},
+		"./bit-and": {
+			"default": "./bit-and.js"
+		},
+		"./bit-not": {
+			"default": "./bit-not.js"
+		},
+		"./bit-or": {
+			"default": "./bit-or.js"
+		},
+		"./bit-xor": {
+			"default": "./bit-xor.js"
+		},
+		"./buffer": {
+			"default": "./buffer.js"
+		},
+		"./cartesian": {
+			"default": "./cartesian.js"
+		},
+		"./ceil": {
+			"default": "./ceil.js"
+		},
+		"./center": {
+			"default": "./center.js"
+		},
+		"./clamp": {
+			"default": "./clamp.js"
+		},
+		"./clampn": {
+			"default": "./clampn.js"
+		},
+		"./clockwise": {
+			"default": "./clockwise.js"
+		},
+		"./compare": {
+			"default": "./compare.js"
+		},
+		"./compile/accessors": {
+			"default": "./compile/accessors.js"
+		},
+		"./compile/emit": {
+			"default": "./compile/emit.js"
+		},
+		"./compile/templates": {
+			"default": "./compile/templates.js"
+		},
+		"./convert": {
+			"default": "./convert.js"
+		},
+		"./copy": {
+			"default": "./copy.js"
+		},
+		"./correlation": {
+			"default": "./correlation.js"
+		},
+		"./cos": {
+			"default": "./cos.js"
+		},
+		"./cosh": {
+			"default": "./cosh.js"
+		},
+		"./covariance": {
+			"default": "./covariance.js"
+		},
+		"./cross": {
+			"default": "./cross.js"
+		},
+		"./crosss": {
+			"default": "./crosss.js"
+		},
+		"./degrees": {
+			"default": "./degrees.js"
+		},
+		"./direction": {
+			"default": "./direction.js"
+		},
+		"./dist-braycurtis": {
+			"default": "./dist-braycurtis.js"
+		},
+		"./dist-canberra": {
+			"default": "./dist-canberra.js"
+		},
+		"./dist-chebyshev": {
+			"default": "./dist-chebyshev.js"
+		},
+		"./dist-hamming": {
+			"default": "./dist-hamming.js"
+		},
+		"./dist-haversine": {
+			"default": "./dist-haversine.js"
+		},
+		"./dist-jaccard": {
+			"default": "./dist-jaccard.js"
+		},
+		"./dist-manhattan": {
+			"default": "./dist-manhattan.js"
+		},
+		"./dist-minkowski": {
+			"default": "./dist-minkowski.js"
+		},
+		"./dist-sorensendice": {
+			"default": "./dist-sorensendice.js"
+		},
+		"./dist-weighted": {
+			"default": "./dist-weighted.js"
+		},
+		"./dist": {
+			"default": "./dist.js"
+		},
+		"./distsq": {
+			"default": "./distsq.js"
+		},
+		"./div": {
+			"default": "./div.js"
+		},
+		"./divi": {
+			"default": "./divi.js"
+		},
+		"./divn": {
+			"default": "./divn.js"
+		},
+		"./divns": {
+			"default": "./divns.js"
+		},
+		"./divs": {
+			"default": "./divs.js"
+		},
+		"./dot": {
+			"default": "./dot.js"
+		},
+		"./dotc": {
+			"default": "./dotc.js"
+		},
+		"./dots": {
+			"default": "./dots.js"
+		},
+		"./empty": {
+			"default": "./empty.js"
+		},
+		"./eq": {
+			"default": "./eq.js"
+		},
+		"./eqdelta": {
+			"default": "./eqdelta.js"
+		},
+		"./equals": {
+			"default": "./equals.js"
+		},
+		"./every": {
+			"default": "./every.js"
+		},
+		"./exp": {
+			"default": "./exp.js"
+		},
+		"./exp_2": {
+			"default": "./exp_2.js"
+		},
+		"./face-forward": {
+			"default": "./face-forward.js"
+		},
+		"./fill": {
+			"default": "./fill.js"
+		},
+		"./fit": {
+			"default": "./fit.js"
+		},
+		"./floor": {
+			"default": "./floor.js"
+		},
+		"./fmod": {
+			"default": "./fmod.js"
+		},
+		"./fmodn": {
+			"default": "./fmodn.js"
+		},
+		"./fract": {
+			"default": "./fract.js"
+		},
+		"./gt": {
+			"default": "./gt.js"
+		},
+		"./gte": {
+			"default": "./gte.js"
+		},
+		"./gvec": {
+			"default": "./gvec.js"
+		},
+		"./hash": {
+			"default": "./hash.js"
+		},
+		"./heading-segment": {
+			"default": "./heading-segment.js"
+		},
+		"./heading": {
+			"default": "./heading.js"
+		},
+		"./homogeneous": {
+			"default": "./homogeneous.js"
+		},
+		"./invert": {
+			"default": "./invert.js"
+		},
+		"./invsqrt": {
+			"default": "./invsqrt.js"
+		},
+		"./is-inf": {
+			"default": "./is-inf.js"
+		},
+		"./is-nan": {
+			"default": "./is-nan.js"
+		},
+		"./iterator": {
+			"default": "./iterator.js"
+		},
+		"./jitter": {
+			"default": "./jitter.js"
+		},
+		"./limit": {
+			"default": "./limit.js"
+		},
+		"./log": {
+			"default": "./log.js"
+		},
+		"./log_2": {
+			"default": "./log_2.js"
+		},
+		"./logic-and": {
+			"default": "./logic-and.js"
+		},
+		"./logic-not": {
+			"default": "./logic-not.js"
+		},
+		"./logic-or": {
+			"default": "./logic-or.js"
+		},
+		"./lshift": {
+			"default": "./lshift.js"
+		},
+		"./lt": {
+			"default": "./lt.js"
+		},
+		"./lte": {
+			"default": "./lte.js"
+		},
+		"./madd": {
+			"default": "./madd.js"
+		},
+		"./maddn": {
+			"default": "./maddn.js"
+		},
+		"./maddns": {
+			"default": "./maddns.js"
+		},
+		"./madds": {
+			"default": "./madds.js"
+		},
+		"./mag": {
+			"default": "./mag.js"
+		},
+		"./mags": {
+			"default": "./mags.js"
+		},
+		"./magsq": {
+			"default": "./magsq.js"
+		},
+		"./magsqs": {
+			"default": "./magsqs.js"
+		},
+		"./major": {
+			"default": "./major.js"
+		},
+		"./map-vectors": {
+			"default": "./map-vectors.js"
+		},
+		"./map": {
+			"default": "./map.js"
+		},
+		"./max-bounds": {
+			"default": "./max-bounds.js"
+		},
+		"./max": {
+			"default": "./max.js"
+		},
+		"./mean": {
+			"default": "./mean.js"
+		},
+		"./median": {
+			"default": "./median.js"
+		},
+		"./min-bounds": {
+			"default": "./min-bounds.js"
+		},
+		"./min": {
+			"default": "./min.js"
+		},
+		"./minor": {
+			"default": "./minor.js"
+		},
+		"./mix-bilinear": {
+			"default": "./mix-bilinear.js"
+		},
+		"./mix-cubic": {
+			"default": "./mix-cubic.js"
+		},
+		"./mix-hermite": {
+			"default": "./mix-hermite.js"
+		},
+		"./mix-quadratic": {
+			"default": "./mix-quadratic.js"
+		},
+		"./mix": {
+			"default": "./mix.js"
+		},
+		"./mixn": {
+			"default": "./mixn.js"
+		},
+		"./mixns": {
+			"default": "./mixns.js"
+		},
+		"./mixs": {
+			"default": "./mixs.js"
+		},
+		"./mod": {
+			"default": "./mod.js"
+		},
+		"./modn": {
+			"default": "./modn.js"
+		},
+		"./msub": {
+			"default": "./msub.js"
+		},
+		"./msubn": {
+			"default": "./msubn.js"
+		},
+		"./msubns": {
+			"default": "./msubns.js"
+		},
+		"./msubs": {
+			"default": "./msubs.js"
+		},
+		"./mul": {
+			"default": "./mul.js"
+		},
+		"./muli": {
+			"default": "./muli.js"
+		},
+		"./muln": {
+			"default": "./muln.js"
+		},
+		"./mulns": {
+			"default": "./mulns.js"
+		},
+		"./muls": {
+			"default": "./muls.js"
+		},
+		"./neg": {
+			"default": "./neg.js"
+		},
+		"./neq": {
+			"default": "./neq.js"
+		},
+		"./normal": {
+			"default": "./normal.js"
+		},
+		"./normalize": {
+			"default": "./normalize.js"
+		},
+		"./normalizes": {
+			"default": "./normalizes.js"
+		},
+		"./not": {
+			"default": "./not.js"
+		},
+		"./ortho-normal": {
+			"default": "./ortho-normal.js"
+		},
+		"./perpendicular": {
+			"default": "./perpendicular.js"
+		},
+		"./point-on-ray": {
+			"default": "./point-on-ray.js"
+		},
+		"./polar": {
+			"default": "./polar.js"
+		},
+		"./pow": {
+			"default": "./pow.js"
+		},
+		"./pown": {
+			"default": "./pown.js"
+		},
+		"./project": {
+			"default": "./project.js"
+		},
+		"./radians": {
+			"default": "./radians.js"
+		},
+		"./random": {
+			"default": "./random.js"
+		},
+		"./randoms": {
+			"default": "./randoms.js"
+		},
+		"./reflect": {
+			"default": "./reflect.js"
+		},
+		"./refract": {
+			"default": "./refract.js"
+		},
+		"./remainder": {
+			"default": "./remainder.js"
+		},
+		"./remaindern": {
+			"default": "./remaindern.js"
+		},
+		"./rotate-around-axis": {
+			"default": "./rotate-around-axis.js"
+		},
+		"./rotate-around-point": {
+			"default": "./rotate-around-point.js"
+		},
+		"./rotate": {
+			"default": "./rotate.js"
+		},
+		"./rotates": {
+			"default": "./rotates.js"
+		},
+		"./round": {
+			"default": "./round.js"
+		},
+		"./rshift": {
+			"default": "./rshift.js"
+		},
+		"./safe-div": {
+			"default": "./safe-div.js"
+		},
+		"./select": {
+			"default": "./select.js"
+		},
+		"./set": {
+			"default": "./set.js"
+		},
+		"./setc": {
+			"default": "./setc.js"
+		},
+		"./setcs": {
+			"default": "./setcs.js"
+		},
+		"./setn": {
+			"default": "./setn.js"
+		},
+		"./setns": {
+			"default": "./setns.js"
+		},
+		"./sets": {
+			"default": "./sets.js"
+		},
+		"./setvn": {
+			"default": "./setvn.js"
+		},
+		"./setvv": {
+			"default": "./setvv.js"
+		},
+		"./sign": {
+			"default": "./sign.js"
+		},
+		"./signed-area": {
+			"default": "./signed-area.js"
+		},
+		"./signed-volume": {
+			"default": "./signed-volume.js"
+		},
+		"./sin": {
+			"default": "./sin.js"
+		},
+		"./sinh": {
+			"default": "./sinh.js"
+		},
+		"./smoothstep": {
+			"default": "./smoothstep.js"
+		},
+		"./softmax": {
+			"default": "./softmax.js"
+		},
+		"./some": {
+			"default": "./some.js"
+		},
+		"./sqrt": {
+			"default": "./sqrt.js"
+		},
+		"./standardize": {
+			"default": "./standardize.js"
+		},
+		"./step": {
+			"default": "./step.js"
+		},
+		"./string": {
+			"default": "./string.js"
+		},
+		"./sub": {
+			"default": "./sub.js"
+		},
+		"./subi": {
+			"default": "./subi.js"
+		},
+		"./subm": {
+			"default": "./subm.js"
+		},
+		"./submn": {
+			"default": "./submn.js"
+		},
+		"./submns": {
+			"default": "./submns.js"
+		},
+		"./subms": {
+			"default": "./subms.js"
+		},
+		"./subn": {
+			"default": "./subn.js"
+		},
+		"./subns": {
+			"default": "./subns.js"
+		},
+		"./subs": {
+			"default": "./subs.js"
+		},
+		"./sum": {
+			"default": "./sum.js"
+		},
+		"./swizzle": {
+			"default": "./swizzle.js"
+		},
+		"./tan": {
+			"default": "./tan.js"
+		},
+		"./tanh": {
+			"default": "./tanh.js"
+		},
+		"./tensor": {
+			"default": "./tensor.js"
+		},
+		"./trunc": {
+			"default": "./trunc.js"
+		},
+		"./variance": {
+			"default": "./variance.js"
+		},
+		"./vec-of": {
+			"default": "./vec-of.js"
+		},
+		"./vec2": {
+			"default": "./vec2.js"
+		},
+		"./vec3": {
+			"default": "./vec3.js"
+		},
+		"./vec4": {
+			"default": "./vec4.js"
+		},
+		"./vop": {
+			"default": "./vop.js"
+		},
+		"./wrap": {
+			"default": "./wrap.js"
+		}
+	},
+	"thi.ng": {
+		"related": [
+			"color",
+			"distance",
+			"ecs",
+			"geom",
+			"hdom-canvas",
+			"imgui",
+			"matrices",
+			"simd",
+			"soa",
+			"shader-ast-js",
+			"vector-pools",
+			"webgl"
+		],
+		"year": 2015
+	}
 }

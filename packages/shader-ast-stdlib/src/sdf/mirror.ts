@@ -13,22 +13,22 @@ import { floor, mod } from "@thi.ng/shader-ast/builtin/math";
  * @param size - mirror box size
  */
 export const sdfMirror2 = defn(
-    "vec2",
-    "sdfMirror2",
-    ["vec2", "vec2"],
-    (p, size) => {
-        let halfSize: Vec2Sym;
-        return [
-            (halfSize = sym(mul(size, FLOAT05))),
-            ret(
-                mul(
-                    sub(mod(add(p, halfSize), size), halfSize),
-                    sub(
-                        mul(mod(floor(div(add(p, halfSize), size)), VEC2_2), 2),
-                        VEC2_1
-                    )
-                )
-            ),
-        ];
-    }
+	"vec2",
+	"sdfMirror2",
+	["vec2", "vec2"],
+	(p, size) => {
+		let halfSize: Vec2Sym;
+		return [
+			(halfSize = sym(mul(size, FLOAT05))),
+			ret(
+				mul(
+					sub(mod(add(p, halfSize), size), halfSize),
+					sub(
+						mul(mod(floor(div(add(p, halfSize), size)), VEC2_2), 2),
+						VEC2_1
+					)
+				)
+			),
+		];
+	}
 );

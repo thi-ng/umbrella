@@ -29,26 +29,26 @@ import { vertices } from "./vertices.js";
  * @param shape
  */
 export const convexHull: MultiFn1<IShape, IShape> = defmulti<any, IShape>(
-    __dispatch,
-    {
-        arc: "group",
-        circle: "tri",
-        cubic: "group",
-        ellipse: "tri",
-        line: "tri",
-        poly: "points",
-        polyline: "points",
-        quad: "points",
-        quadratic: "group",
-        rect: "tri",
-    },
-    {
-        group: ($: IShape) =>
-            new Polygon(grahamScan2(vertices($)), __copyAttribs($)),
+	__dispatch,
+	{
+		arc: "group",
+		circle: "tri",
+		cubic: "group",
+		ellipse: "tri",
+		line: "tri",
+		poly: "points",
+		polyline: "points",
+		quad: "points",
+		quadratic: "group",
+		rect: "tri",
+	},
+	{
+		group: ($: IShape) =>
+			new Polygon(grahamScan2(vertices($)), __copyAttribs($)),
 
-        points: ($: PCLike) =>
-            new Polygon(grahamScan2($.points), __copyAttribs($)),
+		points: ($: PCLike) =>
+			new Polygon(grahamScan2($.points), __copyAttribs($)),
 
-        tri: ($: IShape) => new Polygon(vertices($), __copyAttribs($)),
-    }
+		tri: ($: IShape) => new Polygon(vertices($), __copyAttribs($)),
+	}
 );

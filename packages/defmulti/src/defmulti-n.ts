@@ -44,13 +44,13 @@ import { DEFAULT, defmulti } from "./defmulti.js";
  * @param fallback - fallback implementation
  */
 export const defmultiN = <T>(
-    impls: { [id: number]: Implementation<T> },
-    fallback?: Implementation<T>
+	impls: { [id: number]: Implementation<T> },
+	fallback?: Implementation<T>
 ) => {
-    const fn = defmulti<T>((...args: any[]) => args.length);
-    fn.add(DEFAULT, fallback || ((...args) => illegalArity(args.length)));
-    for (let id in impls) {
-        fn.add(id, impls[id]);
-    }
-    return fn;
+	const fn = defmulti<T>((...args: any[]) => args.length);
+	fn.add(DEFAULT, fallback || ((...args) => illegalArity(args.length)));
+	for (let id in impls) {
+		fn.add(id, impls[id]);
+	}
+	return fn;
 };

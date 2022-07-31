@@ -3,7 +3,7 @@ import { defError } from "./deferror.js";
 export const OutOfBoundsError = defError<any>(() => "index out of bounds");
 
 export const outOfBounds = (index: any): never => {
-    throw new OutOfBoundsError(index);
+	throw new OutOfBoundsError(index);
 };
 
 /**
@@ -14,7 +14,7 @@ export const outOfBounds = (index: any): never => {
  * @param max -
  */
 export const ensureIndex = (index: number, min: number, max: number) =>
-    (index < min || index >= max) && outOfBounds(index);
+	(index < min || index >= max) && outOfBounds(index);
 
 /**
  * Throws an {@link OutOfBoundsError} if either `x` or `y` is outside their
@@ -26,8 +26,8 @@ export const ensureIndex = (index: number, min: number, max: number) =>
  * @param maxY -
  */
 export const ensureIndex2 = (
-    x: number,
-    y: number,
-    maxX: number,
-    maxY: number
+	x: number,
+	y: number,
+	maxX: number,
+	maxY: number
 ) => (x < 0 || x >= maxX || y < 0 || y >= maxY) && outOfBounds([x, y]);

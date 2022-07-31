@@ -28,11 +28,11 @@ import { sum } from "./sum.js";
  * @param dc - DC offset / center value
  */
 export const osc = (
-    osc: StatelessOscillator,
-    freq: IGen<number> | number,
-    amp?: IGen<number> | number,
-    dc?: number,
-    phase?: number
+	osc: StatelessOscillator,
+	freq: IGen<number> | number,
+	amp?: IGen<number> | number,
+	dc?: number,
+	phase?: number
 ) => new Osc(osc, freq, amp, dc, phase);
 
 /**
@@ -58,44 +58,44 @@ export const osc = (
  * @param amod` - normalized freq
  */
 export const modOsc = (
-    osc: StatelessOscillator,
-    freq: IGen<number> | number,
-    fmod: IGen<number>,
-    amod: IGen<number> | number = 1
+	osc: StatelessOscillator,
+	freq: IGen<number> | number,
+	fmod: IGen<number>,
+	amod: IGen<number> | number = 1
 ) => new Osc(osc, sum(fmod, isNumber(freq) ? add(freq) : freq), amod);
 
 export class Osc extends AGen<number> {
-    protected _phase!: IGen<number>;
-    protected _amp!: IGen<number>;
+	protected _phase!: IGen<number>;
+	protected _amp!: IGen<number>;
 
-    constructor(
-        protected _osc: StatelessOscillator,
-        freq: IGen<number> | number,
-        amp: IGen<number> | number = 1,
-        protected _dc = 0,
-        phase = 0
-    ) {
-        super(0);
-        isNumber(freq) ? this.setFreq(freq, phase) : this.setFreq(freq);
-        this.setAmp(amp);
-    }
+	constructor(
+		protected _osc: StatelessOscillator,
+		freq: IGen<number> | number,
+		amp: IGen<number> | number = 1,
+		protected _dc = 0,
+		phase = 0
+	) {
+		super(0);
+		isNumber(freq) ? this.setFreq(freq, phase) : this.setFreq(freq);
+		this.setAmp(amp);
+	}
 
-    next() {
-        return (this._val = this._osc(
-            this._phase.next(),
-            1,
-            this._amp.next(),
-            this._dc
-        ));
-    }
+	next() {
+		return (this._val = this._osc(
+			this._phase.next(),
+			1,
+			this._amp.next(),
+			this._dc
+		));
+	}
 
-    setFreq(freq: IGen<number>): void;
-    setFreq(freq: number, phase?: number): void;
-    setFreq(freq: number | IGen<number>, phase?: number) {
-        this._phase = isNumber(freq) ? new Add(freq, phase || 0) : freq;
-    }
+	setFreq(freq: IGen<number>): void;
+	setFreq(freq: number, phase?: number): void;
+	setFreq(freq: number | IGen<number>, phase?: number) {
+		this._phase = isNumber(freq) ? new Add(freq, phase || 0) : freq;
+	}
 
-    setAmp(amp: IGen<number> | number) {
-        this._amp = isNumber(amp) ? new Const(amp) : amp;
-    }
+	setAmp(amp: IGen<number> | number) {
+		this._amp = isNumber(amp) ? new Const(amp) : amp;
+	}
 }

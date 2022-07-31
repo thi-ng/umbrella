@@ -14,6 +14,6 @@ import { ARGS_VVV, MATH2 } from "./compile/templates.js";
  * @param c -
  */
 export const [msub, msub2, msub3, msub4] = defOp<MultiVecOpVVV, VecOpVVV>(
-    MATH2("*", "-"),
-    ARGS_VVV
+	MATH2("*", "-"),
+	ARGS_VVV
 );

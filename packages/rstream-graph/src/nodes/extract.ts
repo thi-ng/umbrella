@@ -13,7 +13,7 @@ import { node1 } from "../graph.js";
  * @param inputID - default: `src`
  */
 export const extract = (path: Path, inputID?: string): NodeFactory<any> =>
-    node1(
-        map((x) => getInUnsafe(x, path)),
-        inputID
-    );
+	node1(
+		map((x) => getInUnsafe(x, path)),
+		inputID
+	);

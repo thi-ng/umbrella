@@ -13,16 +13,16 @@ import { diagonal2d } from "./diagonal.js";
  * @param rows -
  */
 export function* diagonalEnds2d(cols: number, rows = cols) {
-    [cols, rows] = asInt(cols, rows);
-    const num = cols * rows - 1;
-    const maxX = cols - 1;
-    const maxY = rows - 1;
-    let i = 0;
-    for (let p of diagonal2d(cols, rows)) {
-        if (i > 0 && i < num) {
-            const [x, y] = p;
-            if (x === 0 || x === maxX || y === 0 || y === maxY) yield p;
-        }
-        i++;
-    }
+	[cols, rows] = asInt(cols, rows);
+	const num = cols * rows - 1;
+	const maxX = cols - 1;
+	const maxY = rows - 1;
+	let i = 0;
+	for (let p of diagonal2d(cols, rows)) {
+		if (i > 0 && i < num) {
+			const [x, y] = p;
+			if (x === 0 || x === maxX || y === 0 || y === maxY) yield p;
+		}
+		i++;
+	}
 }

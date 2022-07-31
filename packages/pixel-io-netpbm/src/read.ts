@@ -11,31 +11,31 @@ const isLinebreak = (c: number) => c === 0xa;
 const isWS = (c: number) => c === 0x20 || (c >= 9 && c <= 13);
 
 const readUntil = (
-    src: Uint8Array,
-    i: number,
-    end: Predicate<number> = isLinebreak
+	src: Uint8Array,
+	i: number,
+	end: Predicate<number> = isLinebreak
 ): [string, number] => {
-    let res = "";
-    for (; i < src.length; i++) {
-        let c = src[i];
-        if (end(c)) {
-            i++;
-            break;
-        }
-        res += String.fromCharCode(c);
-    }
-    return [res, i];
+	let res = "";
+	for (; i < src.length; i++) {
+		let c = src[i];
+		if (end(c)) {
+			i++;
+			break;
+		}
+		res += String.fromCharCode(c);
+	}
+	return [res, i];
 };
 
 const readComments = (src: Uint8Array, acc: string[], i: number) => {
-    while (src[i] === 0x23) {
-        // @ts-ignore
-        const [comment, j] = readUntil(src, i);
-        assert(j !== i, `EOF reached`);
-        acc.push(comment.substring(1).trim());
-        i = j;
-    }
-    return i;
+	while (src[i] === 0x23) {
+		// @ts-ignore
+		const [comment, j] = readUntil(src, i);
+		assert(j !== i, `EOF reached`);
+		acc.push(comment.substring(1).trim());
+		i = j;
+	}
+	return i;
 };
 
 /**
@@ -44,31 +44,31 @@ const readComments = (src: Uint8Array, acc: string[], i: number) => {
  * @param src -
  */
 export const parseHeader = (src: Uint8Array) => {
-    let type: string;
-    let sw: string, sh: string;
-    let norm: string;
-    let max: number | undefined;
-    const comments: string[] = [];
-    let i = readComments(src, comments, 0);
-    [type, i] = readUntil(src, i);
-    i = readComments(src, comments, i);
-    [sw, i] = readUntil(src, i, isWS);
-    [sh, i] = readUntil(src, i, isWS);
-    const width = parseInt(sw);
-    const height = parseInt(sh);
-    assert(width > 0 && height > 0, `invalid NetPBM header`);
-    if (type === "P5" || type === "P6") {
-        [norm, i] = readUntil(src, i);
-        max = parseInt(norm);
-    }
-    return {
-        type,
-        width,
-        height,
-        max,
-        start: i,
-        comments,
-    };
+	let type: string;
+	let sw: string, sh: string;
+	let norm: string;
+	let max: number | undefined;
+	const comments: string[] = [];
+	let i = readComments(src, comments, 0);
+	[type, i] = readUntil(src, i);
+	i = readComments(src, comments, i);
+	[sw, i] = readUntil(src, i, isWS);
+	[sh, i] = readUntil(src, i, isWS);
+	const width = parseInt(sw);
+	const height = parseInt(sh);
+	assert(width > 0 && height > 0, `invalid NetPBM header`);
+	if (type === "P5" || type === "P6") {
+		[norm, i] = readUntil(src, i);
+		max = parseInt(norm);
+	}
+	return {
+		type,
+		width,
+		height,
+		max,
+		start: i,
+		comments,
+	};
 };
 
 /**
@@ -89,19 +89,19 @@ export const parseHeader = (src: Uint8Array) => {
  * @param src -
  */
 export const read = (src: Uint8Array) => {
-    const { type, width, height, max, start } = parseHeader(src);
-    switch (type) {
-        case "P4":
-            return readPBM(src, start, width, height);
-        case "P5":
-            return max! < 0x100
-                ? readPGM8(src, start, width, height, max)
-                : readPGM16(src, start, width, height, max);
-        case "P6":
-            return readPPM(src, start, width, height, max);
-        default:
-            unsupported(`PBM type: ${type}`);
-    }
+	const { type, width, height, max, start } = parseHeader(src);
+	switch (type) {
+		case "P4":
+			return readPBM(src, start, width, height);
+		case "P5":
+			return max! < 0x100
+				? readPGM8(src, start, width, height, max)
+				: readPGM16(src, start, width, height, max);
+		case "P6":
+			return readPPM(src, start, width, height, max);
+		default:
+			unsupported(`PBM type: ${type}`);
+	}
 };
 
 /**
@@ -115,21 +115,21 @@ export const read = (src: Uint8Array) => {
  * @param height -
  */
 export const readPBM = (
-    src: Uint8Array,
-    i: number,
-    width: number,
-    height: number
+	src: Uint8Array,
+	i: number,
+	width: number,
+	height: number
 ) => {
-    const buf = intBuffer(width, height, GRAY8);
-    const data = buf.data;
-    const w1 = width - 1;
-    for (let y = 0, j = 0; y < height; y++) {
-        for (let x = 0; x < width; x++, j++) {
-            data[j] = src[i] & (1 << (~x & 7)) ? 0 : 0xff;
-            if ((x & 7) === 7 || x === w1) i++;
-        }
-    }
-    return buf;
+	const buf = intBuffer(width, height, GRAY8);
+	const data = buf.data;
+	const w1 = width - 1;
+	for (let y = 0, j = 0; y < height; y++) {
+		for (let x = 0; x < width; x++, j++) {
+			data[j] = src[i] & (1 << (~x & 7)) ? 0 : 0xff;
+			if ((x & 7) === 7 || x === w1) i++;
+		}
+	}
+	return buf;
 };
 
 /**
@@ -148,23 +148,23 @@ export const readPBM = (
  * @param max -
  */
 export const readPGM8 = (
-    src: Uint8Array,
-    i: number,
-    width: number,
-    height: number,
-    max = 0xff
+	src: Uint8Array,
+	i: number,
+	width: number,
+	height: number,
+	max = 0xff
 ) => {
-    const buf = intBuffer(width, height, GRAY8);
-    const data = buf.data;
-    if (max === 0xff) {
-        data.set(src.subarray(i));
-    } else {
-        max = 0xff / max;
-        for (let j = 0, n = data.length; j < n; i++, j++) {
-            data[j] = (src[i] * max) | 0;
-        }
-    }
-    return buf;
+	const buf = intBuffer(width, height, GRAY8);
+	const data = buf.data;
+	if (max === 0xff) {
+		data.set(src.subarray(i));
+	} else {
+		max = 0xff / max;
+		for (let j = 0, n = data.length; j < n; i++, j++) {
+			data[j] = (src[i] * max) | 0;
+		}
+	}
+	return buf;
 };
 
 /**
@@ -182,19 +182,19 @@ export const readPGM8 = (
  * @param max -
  */
 export const readPGM16 = (
-    src: Uint8Array,
-    i: number,
-    width: number,
-    height: number,
-    max = 0xffff
+	src: Uint8Array,
+	i: number,
+	width: number,
+	height: number,
+	max = 0xffff
 ) => {
-    const buf = intBuffer(width, height, GRAY16);
-    const data = buf.data;
-    max = 0xffff / max;
-    for (let j = 0, n = data.length; j < n; i += 2, j++) {
-        data[j] = (((src[i] << 8) | src[i + 1]) * max) | 0;
-    }
-    return buf;
+	const buf = intBuffer(width, height, GRAY16);
+	const data = buf.data;
+	max = 0xffff / max;
+	for (let j = 0, n = data.length; j < n; i += 2, j++) {
+		data[j] = (((src[i] << 8) | src[i + 1]) * max) | 0;
+	}
+	return buf;
 };
 
 /**
@@ -213,27 +213,27 @@ export const readPGM16 = (
  * @param max -
  */
 export const readPPM = (
-    src: Uint8Array,
-    i: number,
-    width: number,
-    height: number,
-    max = 0xff
+	src: Uint8Array,
+	i: number,
+	width: number,
+	height: number,
+	max = 0xff
 ) => {
-    const buf = intBuffer(width, height, RGB888);
-    const data = buf.data;
-    assert(max <= 0xff, `unsupported max value: ${max}`);
-    if (max === 0xff) {
-        for (let j = 0, n = data.length; j < n; i += 3, j++) {
-            data[j] = (src[i] << 16) | (src[i + 1] << 8) | src[i + 2];
-        }
-    } else {
-        max = 0xff / max;
-        for (let j = 0, n = data.length; j < n; i += 3, j++) {
-            data[j] =
-                ((src[i] * max) << 16) |
-                ((src[i + 1] * max) << 8) |
-                (src[i + 2] * max);
-        }
-    }
-    return buf;
+	const buf = intBuffer(width, height, RGB888);
+	const data = buf.data;
+	assert(max <= 0xff, `unsupported max value: ${max}`);
+	if (max === 0xff) {
+		for (let j = 0, n = data.length; j < n; i += 3, j++) {
+			data[j] = (src[i] << 16) | (src[i + 1] << 8) | src[i + 2];
+		}
+	} else {
+		max = 0xff / max;
+		for (let j = 0, n = data.length; j < n; i += 3, j++) {
+			data[j] =
+				((src[i] * max) << 16) |
+				((src[i + 1] * max) << 8) |
+				(src[i + 2] * max);
+		}
+	}
+	return buf;
 };

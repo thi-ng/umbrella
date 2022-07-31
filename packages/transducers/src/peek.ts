@@ -17,5 +17,5 @@ import { map } from "./map.js";
 export function peek<T>(): Transducer<T[], T>;
 export function peek<T>(src: Iterable<T[]>): IterableIterator<T>;
 export function peek<T>(src?: Iterable<T[]>): any {
-    return map(_peek, src!);
+	return map(_peek, src!);
 }

@@ -5,8 +5,8 @@ import type { StringFormat } from "./api.js";
  * plain text.
  */
 export const FMT_NONE: StringFormat = {
-    prefix: "",
-    suffix: "\n",
-    start: () => "",
-    end: "",
+	prefix: "",
+	suffix: "\n",
+	start: () => "",
+	end: "",
 };

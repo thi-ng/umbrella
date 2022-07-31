@@ -9,15 +9,15 @@ import { clamp } from "../clamp.js";
 const SQRT32 = SQRT3 / 2;
 
 export const rgbHsi: ColorOp = (out, src) => {
-    out = clamp(out || src, src);
-    const { 0: r, 1: g, 2: b } = out;
-    const i = THIRD * (r + g + b);
-    return i < 1e-6 || (r === g && r === b)
-        ? setC3(out, 0, 0, i)
-        : setC3(
-              out,
-              atan2Abs(SQRT32 * (g - b), 0.5 * (2 * r - g - b)) / TAU,
-              1 - Math.min(r, g, b) / i,
-              i
-          );
+	out = clamp(out || src, src);
+	const { 0: r, 1: g, 2: b } = out;
+	const i = THIRD * (r + g + b);
+	return i < 1e-6 || (r === g && r === b)
+		? setC3(out, 0, 0, i)
+		: setC3(
+				out,
+				atan2Abs(SQRT32 * (g - b), 0.5 * (2 * r - g - b)) / TAU,
+				1 - Math.min(r, g, b) / i,
+				i
+		  );
 };

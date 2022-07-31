@@ -2,42 +2,42 @@ import type { Nullable } from "@thi.ng/api";
 import { isString } from "@thi.ng/checks/is-string";
 import { assert } from "@thi.ng/errors/assert";
 import type {
-    Arg,
-    Arg1,
-    Arg2,
-    Arg3,
-    Arg4,
-    Arg5,
-    Arg6,
-    Arg7,
-    Arg8,
-    FnBody0,
-    FnBody1,
-    FnBody2,
-    FnBody3,
-    FnBody4,
-    FnBody5,
-    FnBody6,
-    FnBody7,
-    FnBody8,
-    ScopeBody,
+	Arg,
+	Arg1,
+	Arg2,
+	Arg3,
+	Arg4,
+	Arg5,
+	Arg6,
+	Arg7,
+	Arg8,
+	FnBody0,
+	FnBody1,
+	FnBody2,
+	FnBody3,
+	FnBody4,
+	FnBody5,
+	FnBody6,
+	FnBody7,
+	FnBody8,
+	ScopeBody,
 } from "../api/function.js";
 import type {
-    FnCall,
-    Func,
-    FuncArg,
-    FuncReturn,
-    Sym,
-    TaggedFn0,
-    TaggedFn1,
-    TaggedFn2,
-    TaggedFn3,
-    TaggedFn4,
-    TaggedFn5,
-    TaggedFn6,
-    TaggedFn7,
-    TaggedFn8,
-    Term,
+	FnCall,
+	Func,
+	FuncArg,
+	FuncReturn,
+	Sym,
+	TaggedFn0,
+	TaggedFn1,
+	TaggedFn2,
+	TaggedFn3,
+	TaggedFn4,
+	TaggedFn5,
+	TaggedFn6,
+	TaggedFn7,
+	TaggedFn8,
+	Term,
 } from "../api/nodes.js";
 import type { SymOpts } from "../api/syms.js";
 import type { Type } from "../api/types.js";
@@ -46,13 +46,13 @@ import { allChildren, scope, scopedChildren, walk } from "./scope.js";
 import { sym } from "./sym.js";
 
 const defArg = <T extends Type>(a: Arg<T>): FuncArg<T> => {
-    const [type, id, opts] = isString(a) ? <[T, string?, SymOpts?]>[a] : a;
-    return {
-        tag: "arg",
-        type,
-        id: id || gensym(),
-        opts: { q: "in", ...opts },
-    };
+	const [type, id, opts] = isString(a) ? <[T, string?, SymOpts?]>[a] : a;
+	return {
+		tag: "arg",
+		type,
+		id: id || gensym(),
+		opts: { q: "in", ...opts },
+	};
 };
 
 /**
@@ -146,11 +146,11 @@ export const defMain = (body: FnBody0) => defn("void", "main", [], body);
 export function ret(): FuncReturn<"void">;
 export function ret<T extends Type>(val: Term<T>): FuncReturn<T>;
 export function ret(val?: Term<any>): FuncReturn<any> {
-    return {
-        tag: "ret",
-        type: val ? val.type : "void",
-        val,
-    };
+	return {
+		tag: "ret",
+		type: val ? val.type : "void",
+		val,
+	};
 }
 
 // prettier-ignore
@@ -191,12 +191,12 @@ export function funcall(fn: string | Func<any>, ...args: Term<any>[]): FnCall<an
 }
 
 export const builtinCall = <T extends Type>(
-    id: string,
-    type: T,
-    ...args: Term<any>[]
+	id: string,
+	type: T,
+	...args: Term<any>[]
 ): FnCall<T> => ({
-    tag: "call_i",
-    type,
-    id,
-    args,
+	tag: "call_i",
+	type,
+	id,
+	args,
 });

@@ -10,38 +10,38 @@ import { rgbSrgb } from "../rgb/rgb-srgb.js";
 import { hslRgb } from "./hsl-rgb.js";
 
 export declare class HSL implements TypedColor<HSL> {
-    buf: NumericArray;
-    offset: number;
-    stride: number;
-    h: number;
-    s: number;
-    l: number;
-    alpha: number;
-    [id: number]: number;
-    readonly mode: "hsl";
-    readonly length: 4;
-    readonly range: [ReadonlyColor, ReadonlyColor];
-    [Symbol.iterator](): Iterator<number, any, undefined>;
-    clamp(): this;
-    copy(): HSL;
-    copyView(): HSL;
-    deref(): Color;
-    empty(): HSL;
-    eqDelta(o: HSL, eps?: number): boolean;
-    randomize(rnd?: IRandom): this;
-    set(src: ReadonlyColor): this;
-    toJSON(): number[];
+	buf: NumericArray;
+	offset: number;
+	stride: number;
+	h: number;
+	s: number;
+	l: number;
+	alpha: number;
+	[id: number]: number;
+	readonly mode: "hsl";
+	readonly length: 4;
+	readonly range: [ReadonlyColor, ReadonlyColor];
+	[Symbol.iterator](): Iterator<number, any, undefined>;
+	clamp(): this;
+	copy(): HSL;
+	copyView(): HSL;
+	deref(): Color;
+	empty(): HSL;
+	eqDelta(o: HSL, eps?: number): boolean;
+	randomize(rnd?: IRandom): this;
+	set(src: ReadonlyColor): this;
+	toJSON(): number[];
 }
 
 export const hsl = <ColorFactory<HSL>>defColor({
-    mode: "hsl",
-    channels: { h: { hue: true } },
-    order: <const>["h", "s", "l", "alpha"],
-    from: {
-        rgb: rgbHsl,
-        srgb: rgbHsl,
-        hsv: hsvHsl,
-        lch: [lchLab, labRgb, rgbSrgb, rgbHsl],
-    },
-    toRgb: hslRgb,
+	mode: "hsl",
+	channels: { h: { hue: true } },
+	order: <const>["h", "s", "l", "alpha"],
+	from: {
+		rgb: rgbHsl,
+		srgb: rgbHsl,
+		hsv: hsvHsl,
+		lch: [lchLab, labRgb, rgbSrgb, rgbHsl],
+	},
+	toRgb: hslRgb,
 });

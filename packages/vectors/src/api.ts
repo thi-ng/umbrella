@@ -1,28 +1,28 @@
 import type {
-    ArrayLikeIterable,
-    Fn,
-    Fn0,
-    Fn2,
-    Fn3,
-    Fn4,
-    Fn6,
-    Fn7,
-    FnU2,
-    ICopy,
-    IEmpty,
-    IEqualsDelta,
-    ILength,
-    NumericArray,
-    Tuple,
-    TypedArray,
+	ArrayLikeIterable,
+	Fn,
+	Fn0,
+	Fn2,
+	Fn3,
+	Fn4,
+	Fn6,
+	Fn7,
+	FnU2,
+	ICopy,
+	IEmpty,
+	IEqualsDelta,
+	ILength,
+	NumericArray,
+	Tuple,
+	TypedArray,
 } from "@thi.ng/api";
 
 export interface Vec extends Iterable<number>, ILength {
-    [id: number]: number;
+	[id: number]: number;
 }
 
 export interface BVec extends Iterable<boolean>, ILength {
-    [id: number]: boolean;
+	[id: number]: boolean;
 }
 
 export type ReadonlyVec = ArrayLikeIterable<number>;
@@ -36,49 +36,49 @@ export type BVec3Like = Tuple<boolean, 3>;
 export type BVec4Like = Tuple<boolean, 4>;
 
 export interface StridedVec {
-    buf: NumericArray;
-    offset: number;
-    stride: number;
+	buf: NumericArray;
+	offset: number;
+	stride: number;
 }
 
 export interface IVector<T>
-    extends Vec,
-        ICopy<T>,
-        ICopyView<T>,
-        IEmpty<T>,
-        IEqualsDelta<T>,
-        StridedVec {}
+	extends Vec,
+		ICopy<T>,
+		ICopyView<T>,
+		IEmpty<T>,
+		IEqualsDelta<T>,
+		StridedVec {}
 
 export interface ICopyView<T> {
-    copyView(): T;
+	copyView(): T;
 }
 
 export interface VectorConstructor<T> {
-    new (buf: NumericArray, offset?: number, stride?: number): T;
+	new (buf: NumericArray, offset?: number, stride?: number): T;
 }
 
 export interface MultiVecOp<VOP> {
-    /**
-     * Adds / overwrites implementation for given vector size.
-     *
-     * @param dim -
-     * @param op -
-     */
-    add(dim: number, op: VOP): VOP;
-    /**
-     * Adds / overwrites default implementation (SHOULD support
-     * arbitrary vector sizes).
-     *
-     * @param op -
-     */
-    default(op: VOP): VOP;
-    /**
-     * Returns implementation for given vector size or default
-     * implementation.
-     *
-     * @param dim -
-     */
-    impl(dim: number): VOP;
+	/**
+	 * Adds / overwrites implementation for given vector size.
+	 *
+	 * @param dim -
+	 * @param op -
+	 */
+	add(dim: number, op: VOP): VOP;
+	/**
+	 * Adds / overwrites default implementation (SHOULD support
+	 * arbitrary vector sizes).
+	 *
+	 * @param op -
+	 */
+	default(op: VOP): VOP;
+	/**
+	 * Returns implementation for given vector size or default
+	 * implementation.
+	 *
+	 * @param dim -
+	 */
+	impl(dim: number): VOP;
 }
 
 export type VecPair = [Vec, Vec];
@@ -88,33 +88,33 @@ export type VecOpN = Fn2<Vec | null, number, Vec>;
 export type VecOpVV = Fn3<Vec | null, ReadonlyVec, ReadonlyVec, Vec>;
 export type VecOpVN = Fn3<Vec | null, ReadonlyVec, number, Vec>;
 export type VecOpVVV = Fn4<
-    Vec | null,
-    ReadonlyVec,
-    ReadonlyVec,
-    ReadonlyVec,
-    Vec
+	Vec | null,
+	ReadonlyVec,
+	ReadonlyVec,
+	ReadonlyVec,
+	Vec
 >;
 export type VecOpVVN = Fn4<Vec | null, ReadonlyVec, ReadonlyVec, number, Vec>;
 export type VecOpVNV = Fn4<Vec | null, ReadonlyVec, number, ReadonlyVec, Vec>;
 export type VecOpVNN = Fn4<Vec | null, ReadonlyVec, number, number, Vec>;
 export type VecOpVVVVV = Fn6<
-    Vec | null,
-    ReadonlyVec,
-    ReadonlyVec,
-    ReadonlyVec,
-    ReadonlyVec,
-    ReadonlyVec,
-    Vec
+	Vec | null,
+	ReadonlyVec,
+	ReadonlyVec,
+	ReadonlyVec,
+	ReadonlyVec,
+	ReadonlyVec,
+	Vec
 >;
 export type VecOpVVVVNN = Fn7<
-    Vec | null,
-    ReadonlyVec,
-    ReadonlyVec,
-    ReadonlyVec,
-    ReadonlyVec,
-    number,
-    number,
-    Vec
+	Vec | null,
+	ReadonlyVec,
+	ReadonlyVec,
+	ReadonlyVec,
+	ReadonlyVec,
+	number,
+	number,
+	Vec
 >;
 
 export type VecOpVO<T> = (out: Vec | null, a: ReadonlyVec, b?: T) => Vec;
@@ -129,274 +129,274 @@ export type VecOpRoVVO<T, O> = (a: ReadonlyVec, b: ReadonlyVec, c?: O) => T;
 export type VecOpFN = (out: Vec | null, fn: Fn0<number>, n?: number) => Vec;
 
 export type VecOpSV = (
-    out: Vec | null,
-    a: ReadonlyVec,
-    io?: number,
-    ia?: number,
-    so?: number,
-    sa?: number
+	out: Vec | null,
+	a: ReadonlyVec,
+	io?: number,
+	ia?: number,
+	so?: number,
+	sa?: number
 ) => Vec;
 export type VecOpSGV = (
-    out: Vec | null,
-    a: ReadonlyVec,
-    num: number,
-    io?: number,
-    ia?: number,
-    so?: number,
-    sa?: number
+	out: Vec | null,
+	a: ReadonlyVec,
+	num: number,
+	io?: number,
+	ia?: number,
+	so?: number,
+	sa?: number
 ) => Vec;
 
 export type VecOpSN = (
-    out: Vec | null,
-    n: number,
-    io?: number,
-    so?: number
+	out: Vec | null,
+	n: number,
+	io?: number,
+	so?: number
 ) => Vec;
 export type VecOpSGN = (
-    out: Vec | null,
-    n: number,
-    num: number,
-    io?: number,
-    so?: number
+	out: Vec | null,
+	n: number,
+	num: number,
+	io?: number,
+	so?: number
 ) => Vec;
 
 export type VecOpSVN = (
-    out: Vec | null,
-    a: ReadonlyVec,
-    n: number,
-    io?: number,
-    ia?: number,
-    so?: number,
-    sa?: number
+	out: Vec | null,
+	a: ReadonlyVec,
+	n: number,
+	io?: number,
+	ia?: number,
+	so?: number,
+	sa?: number
 ) => Vec;
 export type VecOpSGVN = (
-    out: Vec | null,
-    a: ReadonlyVec,
-    n: number,
-    num: number,
-    io?: number,
-    ia?: number,
-    so?: number,
-    sa?: number
+	out: Vec | null,
+	a: ReadonlyVec,
+	n: number,
+	num: number,
+	io?: number,
+	ia?: number,
+	so?: number,
+	sa?: number
 ) => Vec;
 
 export type VecOpSVV = (
-    out: Vec | null,
-    a: ReadonlyVec,
-    b: ReadonlyVec,
-    io?: number,
-    ia?: number,
-    ib?: number,
-    so?: number,
-    sa?: number,
-    sb?: number
+	out: Vec | null,
+	a: ReadonlyVec,
+	b: ReadonlyVec,
+	io?: number,
+	ia?: number,
+	ib?: number,
+	so?: number,
+	sa?: number,
+	sb?: number
 ) => Vec;
 export type VecOpSGVV = (
-    out: Vec | null,
-    a: ReadonlyVec,
-    b: ReadonlyVec,
-    num: number,
-    io?: number,
-    ia?: number,
-    ib?: number,
-    so?: number,
-    sa?: number,
-    sb?: number
+	out: Vec | null,
+	a: ReadonlyVec,
+	b: ReadonlyVec,
+	num: number,
+	io?: number,
+	ia?: number,
+	ib?: number,
+	so?: number,
+	sa?: number,
+	sb?: number
 ) => Vec;
 
 export type VecOpSVNV = (
-    out: Vec | null,
-    a: ReadonlyVec,
-    n: number,
-    b: ReadonlyVec,
-    io?: number,
-    ia?: number,
-    ib?: number,
-    so?: number,
-    sa?: number,
-    sb?: number
+	out: Vec | null,
+	a: ReadonlyVec,
+	n: number,
+	b: ReadonlyVec,
+	io?: number,
+	ia?: number,
+	ib?: number,
+	so?: number,
+	sa?: number,
+	sb?: number
 ) => Vec;
 export type VecOpSGVNV = (
-    out: Vec | null,
-    a: ReadonlyVec,
-    n: number,
-    b: ReadonlyVec,
-    num: number,
-    io?: number,
-    ia?: number,
-    ib?: number,
-    so?: number,
-    sa?: number,
-    sb?: number
+	out: Vec | null,
+	a: ReadonlyVec,
+	n: number,
+	b: ReadonlyVec,
+	num: number,
+	io?: number,
+	ia?: number,
+	ib?: number,
+	so?: number,
+	sa?: number,
+	sb?: number
 ) => Vec;
 
 export type VecOpSVVN = (
-    out: Vec | null,
-    a: ReadonlyVec,
-    b: ReadonlyVec,
-    n: number,
-    io?: number,
-    ia?: number,
-    ib?: number,
-    so?: number,
-    sa?: number,
-    sb?: number
+	out: Vec | null,
+	a: ReadonlyVec,
+	b: ReadonlyVec,
+	n: number,
+	io?: number,
+	ia?: number,
+	ib?: number,
+	so?: number,
+	sa?: number,
+	sb?: number
 ) => Vec;
 export type VecOpSGVVN = (
-    out: Vec | null,
-    a: ReadonlyVec,
-    b: ReadonlyVec,
-    n: number,
-    num: number,
-    io?: number,
-    ia?: number,
-    ib?: number,
-    so?: number,
-    sa?: number,
-    sb?: number
+	out: Vec | null,
+	a: ReadonlyVec,
+	b: ReadonlyVec,
+	n: number,
+	num: number,
+	io?: number,
+	ia?: number,
+	ib?: number,
+	so?: number,
+	sa?: number,
+	sb?: number
 ) => Vec;
 
 export type VecOpSVVV = (
-    out: Vec | null,
-    a: ReadonlyVec,
-    b: ReadonlyVec,
-    c: ReadonlyVec,
-    io?: number,
-    ia?: number,
-    ib?: number,
-    ic?: number,
-    so?: number,
-    sa?: number,
-    sb?: number,
-    sc?: number
+	out: Vec | null,
+	a: ReadonlyVec,
+	b: ReadonlyVec,
+	c: ReadonlyVec,
+	io?: number,
+	ia?: number,
+	ib?: number,
+	ic?: number,
+	so?: number,
+	sa?: number,
+	sb?: number,
+	sc?: number
 ) => Vec;
 export type VecOpSGVVV = (
-    out: Vec | null,
-    a: ReadonlyVec,
-    b: ReadonlyVec,
-    c: ReadonlyVec,
-    num: number,
-    io?: number,
-    ia?: number,
-    ib?: number,
-    ic?: number,
-    so?: number,
-    sa?: number,
-    sb?: number,
-    sc?: number
+	out: Vec | null,
+	a: ReadonlyVec,
+	b: ReadonlyVec,
+	c: ReadonlyVec,
+	num: number,
+	io?: number,
+	ia?: number,
+	ib?: number,
+	ic?: number,
+	so?: number,
+	sa?: number,
+	sb?: number,
+	sc?: number
 ) => Vec;
 
 export type VecOpSRoV<T> = (a: ReadonlyVec, ia?: number, sa?: number) => T;
 export type VecOpSGRoV<T> = (
-    a: ReadonlyVec,
-    num: number,
-    ia?: number,
-    sa?: number
+	a: ReadonlyVec,
+	num: number,
+	ia?: number,
+	sa?: number
 ) => T;
 
 export type VecOpSRoVV<T> = (
-    a: ReadonlyVec,
-    b: ReadonlyVec,
-    ia?: number,
-    ib?: number,
-    sa?: number,
-    sb?: number
+	a: ReadonlyVec,
+	b: ReadonlyVec,
+	ia?: number,
+	ib?: number,
+	sa?: number,
+	sb?: number
 ) => T;
 
 export type VecOpSVO<T> = (
-    out: Vec | null,
-    a: ReadonlyVec,
-    b?: T,
-    io?: number,
-    ia?: number,
-    so?: number,
-    sa?: number
+	out: Vec | null,
+	a: ReadonlyVec,
+	b?: T,
+	io?: number,
+	ia?: number,
+	so?: number,
+	sa?: number
 ) => Vec;
 export type VecOpSGVO<T> = (
-    out: Vec | null,
-    a: ReadonlyVec,
-    num: number,
-    b?: T,
-    io?: number,
-    ia?: number,
-    so?: number,
-    sa?: number
+	out: Vec | null,
+	a: ReadonlyVec,
+	num: number,
+	b?: T,
+	io?: number,
+	ia?: number,
+	so?: number,
+	sa?: number
 ) => Vec;
 
 export type VecOpSOO<A, B> = (
-    a: Vec | null,
-    opt1?: A,
-    opt2?: B,
-    ia?: number,
-    sa?: number
+	a: Vec | null,
+	opt1?: A,
+	opt2?: B,
+	ia?: number,
+	sa?: number
 ) => Vec;
 export type VecOpSGOO<A, B> = (
-    a: Vec | null,
-    num: number,
-    opt1?: A,
-    opt2?: B,
-    ia?: number,
-    sa?: number
+	a: Vec | null,
+	num: number,
+	opt1?: A,
+	opt2?: B,
+	ia?: number,
+	sa?: number
 ) => Vec;
 
 export type VecOpSOOO<A, B, C> = (
-    a: Vec | null,
-    opt1?: A,
-    opt2?: B,
-    opt3?: C,
-    ia?: number,
-    sa?: number
+	a: Vec | null,
+	opt1?: A,
+	opt2?: B,
+	opt3?: C,
+	ia?: number,
+	sa?: number
 ) => Vec;
 export type VecOpSGOOO<A, B, C> = (
-    a: Vec | null,
-    num: number,
-    opt1?: A,
-    opt2?: B,
-    opt3?: C,
-    ia?: number,
-    sa?: number
+	a: Vec | null,
+	num: number,
+	opt1?: A,
+	opt2?: B,
+	opt3?: C,
+	ia?: number,
+	sa?: number
 ) => Vec;
 
 export type VecOpSVVO<O> = (
-    out: Vec | null,
-    a: ReadonlyVec,
-    b: ReadonlyVec,
-    opt?: O,
-    io?: number,
-    ia?: number,
-    ib?: number,
-    so?: number,
-    sa?: number,
-    sb?: number
+	out: Vec | null,
+	a: ReadonlyVec,
+	b: ReadonlyVec,
+	opt?: O,
+	io?: number,
+	ia?: number,
+	ib?: number,
+	so?: number,
+	sa?: number,
+	sb?: number
 ) => Vec;
 export type VecOpSGVVO<O> = (
-    out: Vec | null,
-    a: ReadonlyVec,
-    b: ReadonlyVec,
-    num: number,
-    opt?: O,
-    io?: number,
-    ia?: number,
-    ib?: number,
-    so?: number,
-    sa?: number,
-    sb?: number
+	out: Vec | null,
+	a: ReadonlyVec,
+	b: ReadonlyVec,
+	num: number,
+	opt?: O,
+	io?: number,
+	ia?: number,
+	ib?: number,
+	so?: number,
+	sa?: number,
+	sb?: number
 ) => Vec;
 
 export type VecOpSGFN = (
-    out: Vec | null,
-    num: number,
-    fn: Fn0<number>,
-    n?: number,
-    io?: number,
-    so?: number
+	out: Vec | null,
+	num: number,
+	fn: Fn0<number>,
+	n?: number,
+	io?: number,
+	so?: number
 ) => Vec;
 export type VecOpSFN = (
-    out: Vec | null,
-    fn: Fn0<number>,
-    n?: number,
-    io?: number,
-    so?: number
+	out: Vec | null,
+	fn: Fn0<number>,
+	n?: number,
+	io?: number,
+	so?: number
 ) => Vec;
 
 export type MultiVecOpImpl<T> = T & MultiVecOp<T>;
@@ -475,27 +475,27 @@ export const W4: ReadonlyVec = Object.freeze([0, 0, 0, 1]);
 export type Template = (syms: string[], i?: number) => string;
 
 export interface ToStringOpts {
-    /**
-     * Number of fractional digits
-     *
-     * @defaultValue 3
-     */
-    prec: number;
-    /**
-     * If given, each formatted vector component will be padded to given number
-     * of characters.
-     */
-    width: number;
-    /**
-     * Inter-component delimiter.
-     *
-     * @defaultValue ", "
-     */
-    delim: string;
-    /**
-     * Prefix/suffix wrapper strings.
-     *
-     * @defaultValue "[" and "]"
-     */
-    wrap: ArrayLike<string>;
+	/**
+	 * Number of fractional digits
+	 *
+	 * @defaultValue 3
+	 */
+	prec: number;
+	/**
+	 * If given, each formatted vector component will be padded to given number
+	 * of characters.
+	 */
+	width: number;
+	/**
+	 * Inter-component delimiter.
+	 *
+	 * @defaultValue ", "
+	 */
+	delim: string;
+	/**
+	 * Prefix/suffix wrapper strings.
+	 *
+	 * @defaultValue "[" and "]"
+	 */
+	wrap: ArrayLike<string>;
 }

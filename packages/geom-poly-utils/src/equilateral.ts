@@ -9,14 +9,14 @@ import { perpendicularCCW } from "@thi.ng/vectors/perpendicular";
 import { sub2 } from "@thi.ng/vectors/sub";
 
 export const equilateralTriangle2: FnU2<Vec, Vec[]> = (a, b) => {
-    const dir = sub2([], b, a);
-    return [
-        a,
-        b,
-        add2(
-            null,
-            normalize(null, perpendicularCCW([], dir), mag(dir) * SQRT3_2),
-            maddN2(dir, dir, 0.5, a)
-        ),
-    ];
+	const dir = sub2([], b, a);
+	return [
+		a,
+		b,
+		add2(
+			null,
+			normalize(null, perpendicularCCW([], dir), mag(dir) * SQRT3_2),
+			maddN2(dir, dir, 0.5, a)
+		),
+	];
 };

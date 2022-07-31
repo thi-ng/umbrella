@@ -21,37 +21,37 @@ import { isReduced } from "@thi.ng/transducers/reduced";
 export function bits(size?: number, msb?: boolean): Transducer<number, number>;
 export function bits(src: Iterable<number>): IterableIterator<number>;
 export function bits(
-    size: number,
-    src: Iterable<number>
+	size: number,
+	src: Iterable<number>
 ): IterableIterator<number>;
 export function bits(
-    size: number,
-    msb: boolean,
-    src: Iterable<number>
+	size: number,
+	msb: boolean,
+	src: Iterable<number>
 ): IterableIterator<number>;
 export function bits(...args: any[]): any {
-    return (
-        __iter(bits, args, iterator) ||
-        ((rfn: Reducer<any, number>) => {
-            const reduce = rfn[2];
-            const size = args[0] || 8;
-            const msb = args[1] !== false;
-            return compR(
-                rfn,
-                msb
-                    ? (acc, x: number) => {
-                          for (let i = size; i-- > 0 && !isReduced(acc); ) {
-                              acc = reduce(acc, (x >>> i) & 1);
-                          }
-                          return acc;
-                      }
-                    : (acc, x: number) => {
-                          for (let i = 0; i < size && !isReduced(acc); i++) {
-                              acc = reduce(acc, (x >>> i) & 1);
-                          }
-                          return acc;
-                      }
-            );
-        })
-    );
+	return (
+		__iter(bits, args, iterator) ||
+		((rfn: Reducer<any, number>) => {
+			const reduce = rfn[2];
+			const size = args[0] || 8;
+			const msb = args[1] !== false;
+			return compR(
+				rfn,
+				msb
+					? (acc, x: number) => {
+							for (let i = size; i-- > 0 && !isReduced(acc); ) {
+								acc = reduce(acc, (x >>> i) & 1);
+							}
+							return acc;
+					  }
+					: (acc, x: number) => {
+							for (let i = 0; i < size && !isReduced(acc); i++) {
+								acc = reduce(acc, (x >>> i) & 1);
+							}
+							return acc;
+					  }
+			);
+		})
+	);
 }

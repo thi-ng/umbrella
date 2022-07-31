@@ -17,10 +17,10 @@ import { vertices } from "./vertices.js";
  * @param tessellators
  */
 export const tessellate = defmulti<IShape, Tessellator[], Vec[][]>(
-    __dispatch,
-    {},
-    {
-        [DEFAULT]: ($: IShape, fns: Tessellator[]) =>
-            _tessellate(vertices($), fns),
-    }
+	__dispatch,
+	{},
+	{
+		[DEFAULT]: ($: IShape, fns: Tessellator[]) =>
+			_tessellate(vertices($), fns),
+	}
 );

@@ -16,8 +16,8 @@ import { MapG1 } from "./mapg.js";
  * // [ 10, 11, 12, 13, 14 ]
  * ```
  *
- * @param step - 
- * @param start - 
+ * @param step -
+ * @param start -
  */
 export const addG = (step: IGen<number>, start = 0): IGen<number> =>
-    new MapG1((a, b) => a + b, step, start - step.deref());
+	new MapG1((a, b) => a + b, step, start - step.deref());

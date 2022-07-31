@@ -8,12 +8,12 @@ import type { Reducer, Transducer } from "@thi.ng/transducers";
 import { compR } from "@thi.ng/transducers/compr";
 import { iterator1 } from "@thi.ng/transducers/iterator";
 import type {
-    ColumnSpec,
-    CommonCSVOpts,
-    CSVOpts,
-    CSVRecord,
-    CSVRow,
-    SimpleCSVOpts,
+	ColumnSpec,
+	CommonCSVOpts,
+	CSVOpts,
+	CSVRecord,
+	CSVRow,
+	SimpleCSVOpts,
 } from "./api.js";
 
 /** @internal */
@@ -25,10 +25,10 @@ type IndexEntry = { i: number; spec: ColumnSpec };
  * @internal
  */
 const DEFAULT_OPTS: Partial<CommonCSVOpts> = {
-    delim: ",",
-    quote: '"',
-    comment: "#",
-    trim: false,
+	delim: ",",
+	quote: '"',
+	comment: "#",
+	trim: false,
 };
 
 /**
@@ -83,94 +83,97 @@ const DEFAULT_OPTS: Partial<CommonCSVOpts> = {
  * // ]
  * ```
  *
- * @param opts - 
+ * @param opts -
  */
 export function parseCSV(
-    opts?: Partial<CSVOpts>
+	opts?: Partial<CSVOpts>
 ): Transducer<string, CSVRecord>;
 export function parseCSV(
-    opts: Partial<CSVOpts>,
-    src: Iterable<string>
+	opts: Partial<CSVOpts>,
+	src: Iterable<string>
 ): IterableIterator<CSVRecord>;
 export function parseCSV(opts?: Partial<CSVOpts>, src?: Iterable<string>): any {
-    return isIterable(src)
-        ? iterator1(parseCSV(opts), src)
-        : (rfn: Reducer<any, CSVRecord>) => {
-              const { all, cols, delim, quote, comment, trim, header } = {
-                  all: true,
-                  ...DEFAULT_OPTS,
-                  ...opts,
-              };
-              const reduce = rfn[2];
-              let index: Record<string, IndexEntry>;
-              let revIndex: Record<number, string>;
-              let first = true;
-              let isQuoted = false;
-              let record: string[] = [];
+	return isIterable(src)
+		? iterator1(parseCSV(opts), src)
+		: (rfn: Reducer<any, CSVRecord>) => {
+				const { all, cols, delim, quote, comment, trim, header } = {
+					all: true,
+					...DEFAULT_OPTS,
+					...opts,
+				};
+				const reduce = rfn[2];
+				let index: Record<string, IndexEntry>;
+				let revIndex: Record<number, string>;
+				let first = true;
+				let isQuoted = false;
+				let record: string[] = [];
 
-              const init = (header: string[]) => {
-                  cols && (index = initIndex(header, cols));
-                  all && (revIndex = initRevIndex(header));
-                  first = false;
-              };
+				const init = (header: string[]) => {
+					cols && (index = initIndex(header, cols));
+					all && (revIndex = initRevIndex(header));
+					first = false;
+				};
 
-              const collectAll = (row: CSVRecord) =>
-                  record.reduce(
-                      (acc, x, i) => (
-                          (acc[revIndex[i]] = trim ? x.trim() : x), acc
-                      ),
-                      row
-                  );
+				const collectAll = (row: CSVRecord) =>
+					record.reduce(
+						(acc, x, i) => (
+							(acc[revIndex[i]] = trim ? x.trim() : x), acc
+						),
+						row
+					);
 
-              const collectIndexed = (row: CSVRecord) =>
-                  Object.entries(index).reduce((acc, [id, { i, spec }]) => {
-                      let val = record[i];
-                      if (val !== undefined) {
-                          trim && (val = val.trim());
-                          all && spec.alias && delete acc[id];
-                          acc[spec.alias || id] = spec.tx
-                              ? spec.tx(val, acc)
-                              : val;
-                      }
-                      return acc;
-                  }, row);
+				const collectIndexed = (row: CSVRecord) =>
+					Object.entries(index).reduce((acc, [id, { i, spec }]) => {
+						let val = record[i];
+						if (val !== undefined) {
+							trim && (val = val.trim());
+							all && spec.alias && delete acc[id];
+							acc[spec.alias || id] = spec.tx
+								? spec.tx(val, acc)
+								: val;
+						}
+						return acc;
+					}, row);
 
-              header && init(header);
+				header && init(header);
 
-              return compR(rfn, (acc, line: string) => {
-                  if ((!line.length || line.startsWith(comment!)) && !isQuoted)
-                      return acc;
-                  if (!first) {
-                      isQuoted = parseLine(
-                          line,
-                          record,
-                          isQuoted,
-                          delim!,
-                          quote!
-                      );
-                      if (isQuoted) return acc;
+				return compR(rfn, (acc, line: string) => {
+					if (
+						(!line.length || line.startsWith(comment!)) &&
+						!isQuoted
+					)
+						return acc;
+					if (!first) {
+						isQuoted = parseLine(
+							line,
+							record,
+							isQuoted,
+							delim!,
+							quote!
+						);
+						if (isQuoted) return acc;
 
-                      const row: CSVRecord = {};
-                      all && collectAll(row);
-                      index && collectIndexed(row);
-                      record = [];
-                      return reduce(acc, row);
-                  } else {
-                      isQuoted = parseLine(
-                          line,
-                          record,
-                          isQuoted,
-                          delim!,
-                          quote!
-                      );
-                      if (!isQuoted) {
-                          init(record);
-                          record = [];
-                      }
-                      return acc;
-                  }
-              });
-          };
+						const row: CSVRecord = {};
+						all && collectAll(row);
+						index && collectIndexed(row);
+						record = [];
+						return reduce(acc, row);
+					} else {
+						isQuoted = parseLine(
+							line,
+							record,
+							isQuoted,
+							delim!,
+							quote!
+						);
+						if (!isQuoted) {
+							init(record);
+							record = [];
+						}
+						return acc;
+					}
+				});
+		  };
 }
 
 /**
@@ -188,73 +191,76 @@ export function parseCSV(opts?: Partial<CSVOpts>, src?: Iterable<string>): any {
  * // [ [ 1, 3 ], [ 4, 6 ] ]
  * ```
  *
- * @param opts - 
+ * @param opts -
  */
 export function parseCSVSimple(
-    opts?: Partial<SimpleCSVOpts>
+	opts?: Partial<SimpleCSVOpts>
 ): Transducer<string, CSVRow>;
 export function parseCSVSimple(
-    opts: Partial<SimpleCSVOpts>,
-    src: Iterable<string>
+	opts: Partial<SimpleCSVOpts>,
+	src: Iterable<string>
 ): IterableIterator<CSVRow>;
 export function parseCSVSimple(
-    opts?: Partial<SimpleCSVOpts>,
-    src?: Iterable<string>
+	opts?: Partial<SimpleCSVOpts>,
+	src?: Iterable<string>
 ): any {
-    return isIterable(src)
-        ? iterator1(parseCSVSimple(opts), src)
-        : (rfn: Reducer<any, CSVRecord>) => {
-              const { cols, delim, quote, comment, trim, header } = {
-                  header: true,
-                  ...DEFAULT_OPTS,
-                  ...opts,
-              };
-              const reduce = rfn[2];
-              let first = header;
-              let isQuoted = false;
-              let record: string[] = [];
+	return isIterable(src)
+		? iterator1(parseCSVSimple(opts), src)
+		: (rfn: Reducer<any, CSVRecord>) => {
+				const { cols, delim, quote, comment, trim, header } = {
+					header: true,
+					...DEFAULT_OPTS,
+					...opts,
+				};
+				const reduce = rfn[2];
+				let first = header;
+				let isQuoted = false;
+				let record: string[] = [];
 
-              const collect = () =>
-                  cols!.reduce((acc, col, i) => {
-                      if (col) {
-                          let val = record[i];
-                          if (val !== undefined) {
-                              trim && (val = val.trim());
-                              acc.push(isFunction(col) ? col(val, acc) : val);
-                          }
-                      }
-                      return acc;
-                  }, <CSVRow>[]);
+				const collect = () =>
+					cols!.reduce((acc, col, i) => {
+						if (col) {
+							let val = record[i];
+							if (val !== undefined) {
+								trim && (val = val.trim());
+								acc.push(isFunction(col) ? col(val, acc) : val);
+							}
+						}
+						return acc;
+					}, <CSVRow>[]);
 
-              return compR(rfn, (acc, line: string) => {
-                  if ((!line.length || line.startsWith(comment!)) && !isQuoted)
-                      return acc;
-                  if (!first) {
-                      isQuoted = parseLine(
-                          line,
-                          record,
-                          isQuoted,
-                          delim!,
-                          quote!
-                      );
-                      if (isQuoted) return acc;
-                      const row: CSVRow = cols ? collect() : record;
-                      record = [];
-                      return reduce(acc, row);
-                  } else {
-                      isQuoted = parseLine(
-                          line,
-                          record,
-                          isQuoted,
-                          delim!,
-                          quote!
-                      );
-                      first = false;
-                      record = [];
-                      return acc;
-                  }
-              });
-          };
+				return compR(rfn, (acc, line: string) => {
+					if (
+						(!line.length || line.startsWith(comment!)) &&
+						!isQuoted
+					)
+						return acc;
+					if (!first) {
+						isQuoted = parseLine(
+							line,
+							record,
+							isQuoted,
+							delim!,
+							quote!
+						);
+						if (isQuoted) return acc;
+						const row: CSVRow = cols ? collect() : record;
+						record = [];
+						return reduce(acc, row);
+					} else {
+						isQuoted = parseLine(
+							line,
+							record,
+							isQuoted,
+							delim!,
+							quote!
+						);
+						first = false;
+						record = [];
+						return acc;
+					}
+				});
+		  };
 }
 
 /**
@@ -262,23 +268,23 @@ export function parseCSVSimple(
  * given source string into a line based input using
  * {@link @thi.ng/strings#split}.
  *
- * @param opts - 
- * @param src - 
+ * @param opts -
+ * @param src -
  */
 export const parseCSVFromString = (opts: Partial<CSVOpts>, src: string) =>
-    parseCSV(opts, split(src));
+	parseCSV(opts, split(src));
 
 /**
  * Syntax sugar for iterator version of {@link parseCSVSimple}, efficiently
  * splitting given source string into a line based input using
  * {@link @thi.ng/strings#split}.
  *
- * @param opts - 
- * @param src - 
+ * @param opts -
+ * @param src -
  */
 export const parseCSVSimpleFromString = (
-    opts: Partial<SimpleCSVOpts>,
-    src: string
+	opts: Partial<SimpleCSVOpts>,
+	src: string
 ) => parseCSVSimple(opts, split(src));
 
 /**
@@ -294,76 +300,76 @@ export const parseCSVSimpleFromString = (
  * Function returns current state of `isQuoted` (i.e. if line terminated in a
  * quoted cell) and should be (re)called with new lines until it returns false.
  *
- * @param line - 
- * @param acc - 
- * @param isQuoted - 
- * @param delim - 
- * @param quote - 
+ * @param line -
+ * @param acc -
+ * @param isQuoted -
+ * @param delim -
+ * @param quote -
  */
 const parseLine = (
-    line: string,
-    acc: string[],
-    isQuoted: boolean,
-    delim: string,
-    quote: string
+	line: string,
+	acc: string[],
+	isQuoted: boolean,
+	delim: string,
+	quote: string
 ) => {
-    let curr = "";
-    let p = "";
-    let openQuote = isQuoted;
-    for (let i = 0, n = line.length; i < n; i++) {
-        const c = line[i];
-        // escaped char
-        if (p === "\\") {
-            curr += ESCAPES[c] || c;
-        }
-        // quote open/close & CSV escape pair (aka `""`)
-        else if (c === quote) {
-            if (!isQuoted) {
-                p = "";
-                isQuoted = true;
-                continue;
-            } else if (p === quote) {
-                curr += quote;
-                p = "";
-                continue;
-            } else if (line[i + 1] !== quote) isQuoted = false;
-        }
-        // field delimiter
-        else if (!isQuoted && c === delim) {
-            collectCell(acc, curr, openQuote);
-            openQuote = false;
-            curr = "";
-        }
-        // record unless escape seq start
-        else if (c !== "\\") {
-            curr += c;
-        }
-        p = c;
-    }
-    curr !== "" && collectCell(acc, curr, openQuote);
-    return isQuoted;
+	let curr = "";
+	let p = "";
+	let openQuote = isQuoted;
+	for (let i = 0, n = line.length; i < n; i++) {
+		const c = line[i];
+		// escaped char
+		if (p === "\\") {
+			curr += ESCAPES[c] || c;
+		}
+		// quote open/close & CSV escape pair (aka `""`)
+		else if (c === quote) {
+			if (!isQuoted) {
+				p = "";
+				isQuoted = true;
+				continue;
+			} else if (p === quote) {
+				curr += quote;
+				p = "";
+				continue;
+			} else if (line[i + 1] !== quote) isQuoted = false;
+		}
+		// field delimiter
+		else if (!isQuoted && c === delim) {
+			collectCell(acc, curr, openQuote);
+			openQuote = false;
+			curr = "";
+		}
+		// record unless escape seq start
+		else if (c !== "\\") {
+			curr += c;
+		}
+		p = c;
+	}
+	curr !== "" && collectCell(acc, curr, openQuote);
+	return isQuoted;
 };
 
 const collectCell = (acc: string[], curr: string, openQuote: boolean) =>
-    openQuote ? (acc[acc.length - 1] += "\n" + curr) : acc.push(curr);
+	openQuote ? (acc[acc.length - 1] += "\n" + curr) : acc.push(curr);
 
 const initIndex = (
-    line: string[],
-    cols: Nullable<ColumnSpec>[] | Record<string, ColumnSpec>
+	line: string[],
+	cols: Nullable<ColumnSpec>[] | Record<string, ColumnSpec>
 ) =>
-    isArray(cols)
-        ? cols.reduce((acc, spec, i) => {
-              if (spec) {
-                  const alias = spec.alias || line[i] || String(i);
-                  acc[alias] = { i, spec: { alias, ...spec } };
-              }
-              return acc;
-          }, <Record<string, IndexEntry>>{})
-        : line.reduce(
-              (acc, id, i) =>
-                  cols![id] ? ((acc[id] = { i, spec: cols![id] }), acc) : acc,
-              <Record<string, IndexEntry>>{}
-          );
+	isArray(cols)
+		? cols.reduce((acc, spec, i) => {
+				if (spec) {
+					const alias = spec.alias || line[i] || String(i);
+					acc[alias] = { i, spec: { alias, ...spec } };
+				}
+				return acc;
+		  }, <Record<string, IndexEntry>>{})
+		: line.reduce(
+				(acc, id, i) =>
+					cols![id] ? ((acc[id] = { i, spec: cols![id] }), acc) : acc,
+				<Record<string, IndexEntry>>{}
+		  );
 
 const initRevIndex = (line: string[]) =>
-    line.reduce((acc, x, i) => ((acc[i] = x), acc), <Record<number, string>>{});
+	line.reduce((acc, x, i) => ((acc[i] = x), acc), <Record<number, string>>{});

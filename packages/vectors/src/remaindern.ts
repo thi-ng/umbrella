@@ -8,6 +8,6 @@ import { ARGS_V, ARGS_VN, FN_N } from "./compile/templates.js";
  * for all vector components).
  */
 export const [remainderN, remainderN2, remainderN3, remainderN4] = defHofOp<
-    MultiVecOpVN,
-    VecOpVN
+	MultiVecOpVN,
+	VecOpVN
 >(_remainder, FN_N("op"), ARGS_VN, ARGS_V);

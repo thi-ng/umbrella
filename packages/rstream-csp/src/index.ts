@@ -4,13 +4,13 @@ import { LOGGER } from "@thi.ng/rstream/logger";
 import { Stream } from "@thi.ng/rstream/stream";
 
 export interface FromChannelOpts extends CommonOpts {
-    /**
-     * If true, the parent CSP channel will be closed when this stream
-     * closes.
-     *
-     * @defaultValue true
-     */
-    closeChannel: boolean;
+	/**
+	 * If true, the parent CSP channel will be closed when this stream
+	 * closes.
+	 *
+	 * @defaultValue true
+	 */
+	closeChannel: boolean;
 }
 
 /**
@@ -21,28 +21,28 @@ export interface FromChannelOpts extends CommonOpts {
  * @param opts -
  */
 export const fromChannel = <T>(
-    src: Channel<T>,
-    opts?: Partial<FromChannelOpts>
+	src: Channel<T>,
+	opts?: Partial<FromChannelOpts>
 ) => {
-    opts = { id: `channel-${src.id}`, closeChannel: true, ...opts };
-    return new Stream<T>((stream) => {
-        let isActive = true;
-        (async () => {
-            let x;
-            while (((x = null), (x = await src.read())) !== undefined) {
-                if (x === undefined || !isActive) {
-                    break;
-                }
-                stream.next(x);
-            }
-            stream.done();
-        })();
-        return () => {
-            if (opts!.closeChannel !== false) {
-                src.close(true);
-                LOGGER.info("closed channel", src.id);
-            }
-            isActive = false;
-        };
-    }, opts);
+	opts = { id: `channel-${src.id}`, closeChannel: true, ...opts };
+	return new Stream<T>((stream) => {
+		let isActive = true;
+		(async () => {
+			let x;
+			while (((x = null), (x = await src.read())) !== undefined) {
+				if (x === undefined || !isActive) {
+					break;
+				}
+				stream.next(x);
+			}
+			stream.done();
+		})();
+		return () => {
+			if (opts!.closeChannel !== false) {
+				src.close(true);
+				LOGGER.info("closed channel", src.id);
+			}
+			isActive = false;
+		};
+	}, opts);
 };

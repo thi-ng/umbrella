@@ -7,22 +7,22 @@ import { __iter, iterator } from "./iterator.js";
 import { isReduced } from "./reduced.js";
 
 export interface StreamShuffleOpts {
-    /**
-     * Sliding window size
-     */
-    n: number;
-    /**
-     * Max. shuffle ops per new input (in [0..n] range)
-     *
-     * @defaultValue same as `n`
-     */
-    max?: number;
-    /**
-     * PRNG instance to use for shuffling
-     *
-     * @defaultValue SYSTEM
-     */
-    rnd?: IRandom;
+	/**
+	 * Sliding window size
+	 */
+	n: number;
+	/**
+	 * Max. shuffle ops per new input (in [0..n] range)
+	 *
+	 * @defaultValue same as `n`
+	 */
+	max?: number;
+	/**
+	 * PRNG instance to use for shuffling
+	 *
+	 * @defaultValue SYSTEM
+	 */
+	rnd?: IRandom;
 }
 
 /**
@@ -45,62 +45,62 @@ export interface StreamShuffleOpts {
  * @param maxSwaps - number of swaps per input
  */
 export function streamShuffle<T>(
-    n: number,
-    maxSwaps?: number
+	n: number,
+	maxSwaps?: number
 ): Transducer<T, T>;
 export function streamShuffle<T>(opts: StreamShuffleOpts): Transducer<T, T>;
 export function streamShuffle<T>(
-    opts: number | StreamShuffleOpts,
-    src: Iterable<T>
+	opts: number | StreamShuffleOpts,
+	src: Iterable<T>
 ): IterableIterator<T>;
 export function streamShuffle<T>(
-    n: number,
-    maxSwaps: number,
-    src: Iterable<T>
+	n: number,
+	maxSwaps: number,
+	src: Iterable<T>
 ): IterableIterator<T>;
 export function streamShuffle<T>(...args: any[]): any {
-    return (
-        __iter(streamShuffle, args, iterator) ||
-        (([init, complete, reduce]: Reducer<any, T>) => {
-            let n: number;
-            let maxSwaps: number;
-            let rnd: IRandom = SYSTEM;
-            const opts = <StreamShuffleOpts>args[0];
-            if (isPlainObject(opts)) {
-                n = opts.n;
-                maxSwaps = opts.max || n;
-                opts.rnd && (rnd = opts.rnd);
-            } else {
-                n = args[0];
-                maxSwaps = args[1] || n;
-            }
-            const buf: T[] = [];
-            return <Reducer<any, T>>[
-                init,
-                (acc) => {
-                    if (buf.length) {
-                        shuffle(buf, Math.min(maxSwaps, buf.length), rnd);
-                        for (
-                            let i = 0, n = buf.length;
-                            i < n && !isReduced(acc);
-                            i++
-                        ) {
-                            acc = reduce(acc, buf[i]);
-                        }
-                    }
-                    buf.length = 0;
-                    acc = complete(acc);
-                    return acc;
-                },
-                (acc, x: T) => {
-                    buf.push(x);
-                    if (buf.length === n) {
-                        shuffle(buf, Math.min(maxSwaps, n), rnd);
-                        acc = reduce(acc, buf.shift()!);
-                    }
-                    return acc;
-                },
-            ];
-        })
-    );
+	return (
+		__iter(streamShuffle, args, iterator) ||
+		(([init, complete, reduce]: Reducer<any, T>) => {
+			let n: number;
+			let maxSwaps: number;
+			let rnd: IRandom = SYSTEM;
+			const opts = <StreamShuffleOpts>args[0];
+			if (isPlainObject(opts)) {
+				n = opts.n;
+				maxSwaps = opts.max || n;
+				opts.rnd && (rnd = opts.rnd);
+			} else {
+				n = args[0];
+				maxSwaps = args[1] || n;
+			}
+			const buf: T[] = [];
+			return <Reducer<any, T>>[
+				init,
+				(acc) => {
+					if (buf.length) {
+						shuffle(buf, Math.min(maxSwaps, buf.length), rnd);
+						for (
+							let i = 0, n = buf.length;
+							i < n && !isReduced(acc);
+							i++
+						) {
+							acc = reduce(acc, buf[i]);
+						}
+					}
+					buf.length = 0;
+					acc = complete(acc);
+					return acc;
+				},
+				(acc, x: T) => {
+					buf.push(x);
+					if (buf.length === n) {
+						shuffle(buf, Math.min(maxSwaps, n), rnd);
+						acc = reduce(acc, buf.shift()!);
+					}
+					return acc;
+				},
+			];
+		})
+	);
 }

@@ -34,30 +34,30 @@ import { vertices } from "./vertices.js";
  * @param t
  */
 export const tangentAt: MultiFn2<IShape, number, Vec | undefined> = defmulti<
-    any,
-    number,
-    Vec | undefined
+	any,
+	number,
+	Vec | undefined
 >(
-    __dispatch,
-    {
-        quad: "poly",
-        tri: "poly",
-    },
-    {
-        circle: (_, t) => cossin(TAU * t + HALF_PI),
+	__dispatch,
+	{
+		quad: "poly",
+		tri: "poly",
+	},
+	{
+		circle: (_, t) => cossin(TAU * t + HALF_PI),
 
-        cubic: ({ points }: Cubic, t) =>
-            cubicTangentAt([], points[0], points[1], points[2], points[3], t),
+		cubic: ({ points }: Cubic, t) =>
+			cubicTangentAt([], points[0], points[1], points[2], points[3], t),
 
-        line: ({ points }: Line) => direction([], points[0], points[1]),
+		line: ({ points }: Line) => direction([], points[0], points[1]),
 
-        poly: ($: PCLike, t) => new Sampler($.points, true).tangentAt(t),
+		poly: ($: PCLike, t) => new Sampler($.points, true).tangentAt(t),
 
-        polyline: ($: PCLike, t) => new Sampler($.points).tangentAt(t),
+		polyline: ($: PCLike, t) => new Sampler($.points).tangentAt(t),
 
-        quadratic: ({ points }: Cubic, t) =>
-            quadraticTangentAt([], points[0], points[1], points[2], t),
+		quadratic: ({ points }: Cubic, t) =>
+			quadraticTangentAt([], points[0], points[1], points[2], t),
 
-        rect: ($: Rect, t) => new Sampler(vertices($), true).tangentAt(t),
-    }
+		rect: ($: Rect, t) => new Sampler(vertices($), true).tangentAt(t),
+	}
 );

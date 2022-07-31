@@ -1,38 +1,38 @@
 {
-    "name": "@example/geom-fuzz-basics",
-    "private": true,
-    "version": "0.0.1",
-    "description": "geom-fuzz basic shape & fill examples",
-    "repository": "https://github.com/thi-ng/umbrella",
-    "author": "Karsten Schmidt <k+npm@thi.ng>",
-    "license": "Apache-2.0",
-    "scripts": {
-        "start": "vite --open",
-        "build": "tsc && vite build --base='./'",
-        "preview": "vite preview --host --open"
-    },
-    "dependencies": {
-        "@thi.ng/adapt-dpi": "workspace:^",
-        "@thi.ng/geom": "workspace:^",
-        "@thi.ng/geom-fuzz": "workspace:^",
-        "@thi.ng/hiccup-canvas": "workspace:^",
-        "@thi.ng/rstream": "workspace:^"
-    },
-    "browser": {
-        "process": false,
-        "setTimeout": false,
-        "util": false
-    },
-    "thi.ng": {
-        "readme": [
-            "geom",
-            "geom-fuzz",
-            "hiccup-canvas"
-        ],
-        "screenshot": "geom/geom-fuzz.png"
-    },
-    "devDependencies": {
-        "typescript": "^4.7.4",
-        "vite": "^3.0.0"
-    }
+	"name": "@example/geom-fuzz-basics",
+	"private": true,
+	"version": "0.0.1",
+	"description": "geom-fuzz basic shape & fill examples",
+	"repository": "https://github.com/thi-ng/umbrella",
+	"author": "Karsten Schmidt <k+npm@thi.ng>",
+	"license": "Apache-2.0",
+	"scripts": {
+		"start": "vite --open",
+		"build": "tsc && vite build --base='./'",
+		"preview": "vite preview --host --open"
+	},
+	"dependencies": {
+		"@thi.ng/adapt-dpi": "workspace:^",
+		"@thi.ng/geom": "workspace:^",
+		"@thi.ng/geom-fuzz": "workspace:^",
+		"@thi.ng/hiccup-canvas": "workspace:^",
+		"@thi.ng/rstream": "workspace:^"
+	},
+	"browser": {
+		"process": false,
+		"setTimeout": false,
+		"util": false
+	},
+	"thi.ng": {
+		"readme": [
+			"geom",
+			"geom-fuzz",
+			"hiccup-canvas"
+		],
+		"screenshot": "geom/geom-fuzz.png"
+	},
+	"devDependencies": {
+		"typescript": "^4.7.4",
+		"vite": "^3.0.0"
+	}
 }

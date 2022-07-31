@@ -38,11 +38,11 @@ import { takeLast } from "./take-last.js";
  */
 export function matchLast<T>(pred: Predicate<T>): Transducer<T, T>;
 export function matchLast<T>(
-    pred: Predicate<T>,
-    src: Iterable<T>
+	pred: Predicate<T>,
+	src: Iterable<T>
 ): T | undefined;
 export function matchLast<T>(pred: Predicate<T>, src?: Iterable<T>): any {
-    return isIterable(src)
-        ? [...iterator(matchLast(pred), src)][0]
-        : comp(filter(pred), takeLast(1));
+	return isIterable(src)
+		? [...iterator(matchLast(pred), src)][0]
+		: comp(filter(pred), takeLast(1));
 }

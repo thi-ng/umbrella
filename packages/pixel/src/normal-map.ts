@@ -20,37 +20,37 @@ import { __asVec } from "./internal/utils.js";
  * (respectively). I.e. the right most pixel column will have `red = 0` and last
  * row will have `green = 0`.
  *
- * @param src - 
- * @param opts - 
+ * @param src -
+ * @param opts -
  */
 export const normalMap = (src: FloatBuffer, opts?: Partial<NormalMapOpts>) => {
-    const { channel, step, scale, z } = {
-        channel: 0,
-        step: 0,
-        scale: 1,
-        z: 1,
-        ...opts,
-    };
-    ensureChannel(src.format, channel);
-    const spec = [-1, ...new Array(step).fill(0), 1];
-    const [sx, sy] = __asVec(scale);
-    const dest = new FloatBuffer(src.width, src.height, FLOAT_NORMAL);
-    dest.setChannel(
-        0,
-        convolveChannel(src, {
-            kernel: { spec, size: [step + 2, 1] },
-            scale: sx,
-            channel,
-        })
-    );
-    dest.setChannel(
-        1,
-        convolveChannel(src, {
-            kernel: { spec, size: [1, step + 2] },
-            scale: sy,
-            channel,
-        })
-    );
-    dest.setChannel(2, z);
-    return dest;
+	const { channel, step, scale, z } = {
+		channel: 0,
+		step: 0,
+		scale: 1,
+		z: 1,
+		...opts,
+	};
+	ensureChannel(src.format, channel);
+	const spec = [-1, ...new Array(step).fill(0), 1];
+	const [sx, sy] = __asVec(scale);
+	const dest = new FloatBuffer(src.width, src.height, FLOAT_NORMAL);
+	dest.setChannel(
+		0,
+		convolveChannel(src, {
+			kernel: { spec, size: [step + 2, 1] },
+			scale: sx,
+			channel,
+		})
+	);
+	dest.setChannel(
+		1,
+		convolveChannel(src, {
+			kernel: { spec, size: [1, step + 2] },
+			scale: sy,
+			channel,
+		})
+	);
+	dest.setChannel(2, z);
+	return dest;
 };

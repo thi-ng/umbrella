@@ -16,4 +16,4 @@ import type { Stringer } from "./api.js";
  * @param x -
  */
 export const hstr: Stringer<any> = (x) =>
-    x != null ? ((x = x.toString()), `${x.length}H${x}`) : "";
+	x != null ? ((x = x.toString()), `${x.length}H${x}`) : "";

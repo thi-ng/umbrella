@@ -1,41 +1,41 @@
 {
-    "name": "@example/poly-spline",
-    "private": true,
-    "description": "Polygon to cubic curve conversion & visualization",
-    "version": "0.0.1",
-    "repository": "https://github.com/thi-ng/umbrella",
-    "author": "Karsten Schmidt <k+npm@thi.ng>",
-    "license": "Apache-2.0",
-    "scripts": {
-        "start": "vite --open",
-        "build": "tsc && vite build --base='./'",
-        "preview": "vite preview --host --open"
-    },
-    "dependencies": {
-        "@thi.ng/dsp": "workspace:^",
-        "@thi.ng/geom": "workspace:^",
-        "@thi.ng/rstream": "workspace:^",
-        "@thi.ng/transducers": "workspace:^",
-        "@thi.ng/transducers-hdom": "workspace:^"
-    },
-    "browser": {
-        "process": false,
-        "setTimeout": false,
-        "util": false
-    },
-    "thi.ng": {
-        "readme": [
-            "dsp",
-            "geom",
-            "geom-splines",
-            "hiccup-svg",
-            "transducers",
-            "transducers-hdom"
-        ],
-        "screenshot": "examples/poly-spline.png"
-    },
-    "devDependencies": {
-        "typescript": "^4.7.4",
-        "vite": "^3.0.0"
-    }
+	"name": "@example/poly-spline",
+	"private": true,
+	"description": "Polygon to cubic curve conversion & visualization",
+	"version": "0.0.1",
+	"repository": "https://github.com/thi-ng/umbrella",
+	"author": "Karsten Schmidt <k+npm@thi.ng>",
+	"license": "Apache-2.0",
+	"scripts": {
+		"start": "vite --open",
+		"build": "tsc && vite build --base='./'",
+		"preview": "vite preview --host --open"
+	},
+	"dependencies": {
+		"@thi.ng/dsp": "workspace:^",
+		"@thi.ng/geom": "workspace:^",
+		"@thi.ng/rstream": "workspace:^",
+		"@thi.ng/transducers": "workspace:^",
+		"@thi.ng/transducers-hdom": "workspace:^"
+	},
+	"browser": {
+		"process": false,
+		"setTimeout": false,
+		"util": false
+	},
+	"thi.ng": {
+		"readme": [
+			"dsp",
+			"geom",
+			"geom-splines",
+			"hiccup-svg",
+			"transducers",
+			"transducers-hdom"
+		],
+		"screenshot": "examples/poly-spline.png"
+	},
+	"devDependencies": {
+		"typescript": "^4.7.4",
+		"vite": "^3.0.0"
+	}
 }

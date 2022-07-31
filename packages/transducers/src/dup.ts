@@ -24,9 +24,9 @@ export function dup(x: string): string;
 export function dup<T>(x: T[]): T[];
 export function dup<T>(x: Iterable<T>): Iterable<T>;
 export function dup(x: any): any {
-    return isString(x)
-        ? x + x
-        : isArray(x)
-        ? x.concat(x)
-        : ((x = ensureArray(x)), concat(x, x));
+	return isString(x)
+		? x + x
+		: isArray(x)
+		? x.concat(x)
+		: ((x = ensureArray(x)), concat(x, x));
 }

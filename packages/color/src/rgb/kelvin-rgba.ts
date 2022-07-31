@@ -27,27 +27,29 @@ const B3 = 0.453646839257496;
  * @param alpha - target alpha channel
  */
 export const kelvinRgb = (out: SRGB | null, kelvin: number, alpha = 1) => {
-    kelvin *= 0.01;
-    let t: number;
-    return kelvin < 66
-        ? <SRGB>(
-              setC4(
-                  out || srgb(),
-                  1,
-                  clamp01(G1 + G2 * (t = kelvin - 2) + G3 * Math.log(t)),
-                  kelvin < 20
-                      ? 0
-                      : clamp01(B1 + B2 * (t = kelvin - 10) + B3 * Math.log(t)),
-                  alpha
-              )
-          )
-        : <SRGB>(
-              setC4(
-                  out || srgb(),
-                  clamp01(R1 + R2 * (t = kelvin - 55) + R3 * Math.log(t)),
-                  clamp01(G4 + G5 * (t = kelvin - 50) - G6 * Math.log(t)),
-                  1,
-                  alpha
-              )
-          );
+	kelvin *= 0.01;
+	let t: number;
+	return kelvin < 66
+		? <SRGB>(
+				setC4(
+					out || srgb(),
+					1,
+					clamp01(G1 + G2 * (t = kelvin - 2) + G3 * Math.log(t)),
+					kelvin < 20
+						? 0
+						: clamp01(
+								B1 + B2 * (t = kelvin - 10) + B3 * Math.log(t)
+						  ),
+					alpha
+				)
+		  )
+		: <SRGB>(
+				setC4(
+					out || srgb(),
+					clamp01(R1 + R2 * (t = kelvin - 55) + R3 * Math.log(t)),
+					clamp01(G4 + G5 * (t = kelvin - 50) - G6 * Math.log(t)),
+					1,
+					alpha
+				)
+		  );
 };

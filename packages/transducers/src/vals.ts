@@ -12,9 +12,9 @@ import type { IObjectOf } from "@thi.ng/api";
  * @param x -
  */
 export function* vals<T>(x: IObjectOf<T>): IterableIterator<T> {
-    for (let k in x) {
-        if (x.hasOwnProperty(k)) {
-            yield x[k];
-        }
-    }
+	for (let k in x) {
+		if (x.hasOwnProperty(k)) {
+			yield x[k];
+		}
+	}
 }

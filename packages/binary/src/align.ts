@@ -8,7 +8,7 @@ import type { Pow2 } from "./api.js";
  * @param size - alignment value
  */
 export const align = (addr: number, size: Pow2) => (
-    size--, (addr + size) & ~size
+	size--, (addr + size) & ~size
 );
 
 /**

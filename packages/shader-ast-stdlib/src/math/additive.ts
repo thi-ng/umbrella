@@ -27,33 +27,33 @@ import { sym } from "@thi.ng/shader-ast/ast/sym";
  * @param name -
  */
 export const additive = <T extends Prim>(
-    type: T,
-    fn: Fn<Term<T>, FloatTerm>,
-    oct: number | FloatTerm = 4,
-    name = "additive"
+	type: T,
+	fn: Fn<Term<T>, FloatTerm>,
+	oct: number | FloatTerm = 4,
+	name = "additive"
 ) =>
-    defn("float", name, [[type], [type], "float"], (pos, shift, decay) => {
-        let n: FloatSym;
-        let amp: FloatSym;
-        return [
-            (n = sym(FLOAT0)),
-            (amp = sym(FLOAT05)),
-            forLoop(
-                sym(FLOAT0),
-                (i) => lt(i, float(oct)),
-                inc,
-                (i) => [
-                    assign(
-                        n,
-                        add(
-                            n,
-                            mul(amp, fn(<any>add(<any>pos, mul(i, <any>shift))))
-                        )
-                    ),
-                    assign(amp, mul(amp, decay)),
-                    assign(pos, <any>mul(<any>pos, 2)),
-                ]
-            ),
-            ret(n),
-        ];
-    });
+	defn("float", name, [[type], [type], "float"], (pos, shift, decay) => {
+		let n: FloatSym;
+		let amp: FloatSym;
+		return [
+			(n = sym(FLOAT0)),
+			(amp = sym(FLOAT05)),
+			forLoop(
+				sym(FLOAT0),
+				(i) => lt(i, float(oct)),
+				inc,
+				(i) => [
+					assign(
+						n,
+						add(
+							n,
+							mul(amp, fn(<any>add(<any>pos, mul(i, <any>shift))))
+						)
+					),
+					assign(amp, mul(amp, decay)),
+					assign(pos, <any>mul(<any>pos, 2)),
+				]
+			),
+			ret(n),
+		];
+	});

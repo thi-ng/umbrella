@@ -27,14 +27,14 @@ export const bitFlip = (x: number, bit: Bit) => (x ^ (1 << bit)) >>> 0;
 export const bitSet = (x: number, bit: Bit) => (x | (1 << bit)) >>> 0;
 
 export const bitSetWindow = (
-    x: number,
-    y: number,
-    from: number,
-    to: number
+	x: number,
+	y: number,
+	from: number,
+	to: number
 ) => {
-    const m = defMask(from, to);
-    return (x & ~m) | ((y << (1 << from)) & m);
+	const m = defMask(from, to);
+	return (x & ~m) | ((y << (1 << from)) & m);
 };
 
 export const bitClearWindow: FnU3<number> = (x, from, to) =>
-    x & ~defMask(from, to);
+	x & ~defMask(from, to);

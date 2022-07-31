@@ -1,47 +1,47 @@
 {
-    "name": "@example/pixel-sorting",
-    "private": true,
-    "version": "0.0.1",
-    "description": "Interactive pixel sorting tool using thi.ng/color & thi.ng/pixel",
-    "repository": "https://github.com/thi-ng/umbrella",
-    "author": "Karsten Schmidt <k+npm@thi.ng>",
-    "license": "Apache-2.0",
-    "scripts": {
-        "start": "vite --open",
-        "build": "tsc && vite build --base='./'",
-        "preview": "vite preview --host --open"
-    },
-    "devDependencies": {
-        "typescript": "^4.7.4",
-        "vite": "^3.0.0"
-    },
-    "dependencies": {
-        "@thi.ng/bench": "workspace:^",
-        "@thi.ng/color": "workspace:^",
-        "@thi.ng/hiccup-html": "workspace:^",
-        "@thi.ng/intervals": "workspace:^",
-        "@thi.ng/pixel": "workspace:^",
-        "@thi.ng/random": "workspace:^",
-        "@thi.ng/rdom": "workspace:^",
-        "@thi.ng/rstream": "workspace:^",
-        "@thi.ng/transducers": "workspace:^"
-    },
-    "browser": {
-        "process": false,
-        "setTimeout": false,
-        "util": false
-    },
-    "thi.ng": {
-        "readme": [
-            "bench",
-            "color",
-            "hiccup-html",
-            "intervals",
-            "pixel",
-            "random",
-            "rdom",
-            "rstream"
-        ],
-        "screenshot": "examples/pixel-sorting.png"
-    }
+	"name": "@example/pixel-sorting",
+	"private": true,
+	"version": "0.0.1",
+	"description": "Interactive pixel sorting tool using thi.ng/color & thi.ng/pixel",
+	"repository": "https://github.com/thi-ng/umbrella",
+	"author": "Karsten Schmidt <k+npm@thi.ng>",
+	"license": "Apache-2.0",
+	"scripts": {
+		"start": "vite --open",
+		"build": "tsc && vite build --base='./'",
+		"preview": "vite preview --host --open"
+	},
+	"devDependencies": {
+		"typescript": "^4.7.4",
+		"vite": "^3.0.0"
+	},
+	"dependencies": {
+		"@thi.ng/bench": "workspace:^",
+		"@thi.ng/color": "workspace:^",
+		"@thi.ng/hiccup-html": "workspace:^",
+		"@thi.ng/intervals": "workspace:^",
+		"@thi.ng/pixel": "workspace:^",
+		"@thi.ng/random": "workspace:^",
+		"@thi.ng/rdom": "workspace:^",
+		"@thi.ng/rstream": "workspace:^",
+		"@thi.ng/transducers": "workspace:^"
+	},
+	"browser": {
+		"process": false,
+		"setTimeout": false,
+		"util": false
+	},
+	"thi.ng": {
+		"readme": [
+			"bench",
+			"color",
+			"hiccup-html",
+			"intervals",
+			"pixel",
+			"random",
+			"rdom",
+			"rstream"
+		],
+		"screenshot": "examples/pixel-sorting.png"
+	}
 }

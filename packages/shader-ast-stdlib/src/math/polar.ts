@@ -13,7 +13,7 @@ import { asin, atan, length } from "@thi.ng/shader-ast/builtin/math";
  * @param v -
  */
 export const polar2 = defn("vec2", "polar2", ["vec2"], (v) => [
-    ret(vec2(length(v), atan(div($y(v), $x(v))))),
+	ret(vec2(length(v), atan(div($y(v), $x(v))))),
 ]);
 
 /**
@@ -24,9 +24,9 @@ export const polar2 = defn("vec2", "polar2", ["vec2"], (v) => [
  * @param v -
  */
 export const polar3 = defn("vec3", "polar3", ["vec3"], (v) => {
-    let r: FloatSym;
-    return [
-        (r = sym(length(v))),
-        ret(vec3(r, asin(div($z(v), r)), atan(div($y(v), $x(v))))),
-    ];
+	let r: FloatSym;
+	return [
+		(r = sym(length(v))),
+		ret(vec3(r, asin(div($z(v), r)), atan(div($y(v), $x(v))))),
+	];
 });

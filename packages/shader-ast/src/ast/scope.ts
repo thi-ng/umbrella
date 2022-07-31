@@ -2,19 +2,19 @@ import type { Fn, Fn2 } from "@thi.ng/api";
 import { isArray } from "@thi.ng/checks/is-array";
 import { DGraph } from "@thi.ng/dgraph";
 import type {
-    Assign,
-    Branch,
-    Decl,
-    FnCall,
-    Func,
-    FuncReturn,
-    Lit,
-    Op1,
-    Op2,
-    Scope,
-    Sym,
-    Term,
-    Ternary,
+	Assign,
+	Branch,
+	Decl,
+	FnCall,
+	Func,
+	FuncReturn,
+	Lit,
+	Op1,
+	Op2,
+	Scope,
+	Sym,
+	Term,
+	Ternary,
 } from "../api/nodes.js";
 import type { Type } from "../api/types.js";
 import { isMat, isTerm, isVec } from "./checks.js";
@@ -26,13 +26,13 @@ import { isMat, isTerm, isVec } from "./checks.js";
  * {@link allChildren}
  */
 export const scopedChildren = (t: Term<any>) =>
-    t.tag === "fn" || t.tag === "for" || t.tag == "while"
-        ? (<Func<any>>t).scope.body
-        : t.tag === "if"
-        ? (<Branch>t).f
-            ? (<Branch>t).t.body.concat((<Branch>t).f!.body)
-            : (<Branch>t).t.body
-        : undefined;
+	t.tag === "fn" || t.tag === "for" || t.tag == "while"
+		? (<Func<any>>t).scope.body
+		: t.tag === "if"
+		? (<Branch>t).f
+			? (<Branch>t).t.body.concat((<Branch>t).f!.body)
+			: (<Branch>t).t.body
+		: undefined;
 
 /**
  * Helper function for {@link walk}. Returns an array of all child nodes for
@@ -41,30 +41,30 @@ export const scopedChildren = (t: Term<any>) =>
  * {@link scopedChildren}
  */
 export const allChildren = (t: Term<any>) =>
-    scopedChildren(t) ||
-    (t.tag === "scope"
-        ? (<Scope>t).body
-        : t.tag === "ternary"
-        ? [(<Ternary<any>>t).t, (<Ternary<any>>t).f]
-        : t.tag === "ret"
-        ? [(<FuncReturn<any>>t).val]
-        : t.tag === "call" || t.tag === "call_i"
-        ? (<FnCall<any>>t).args
-        : t.tag === "sym" && (<Sym<any>>t).init
-        ? [(<Sym<any>>t).init]
-        : t.tag === "decl"
-        ? [(<Decl<any>>t).id]
-        : t.tag === "op1" || t.tag === "swizzle"
-        ? [(<Op1<any>>t).val]
-        : t.tag === "op2"
-        ? [(<Op2<any>>t).l, (<Op2<any>>t).r]
-        : t.tag === "assign"
-        ? [(<Assign<any>>t).r]
-        : isVec(t) || isMat(t)
-        ? (<Lit<any>>t).val
-        : isTerm((<Lit<any>>t).val)
-        ? (<Lit<any>>t).val
-        : undefined);
+	scopedChildren(t) ||
+	(t.tag === "scope"
+		? (<Scope>t).body
+		: t.tag === "ternary"
+		? [(<Ternary<any>>t).t, (<Ternary<any>>t).f]
+		: t.tag === "ret"
+		? [(<FuncReturn<any>>t).val]
+		: t.tag === "call" || t.tag === "call_i"
+		? (<FnCall<any>>t).args
+		: t.tag === "sym" && (<Sym<any>>t).init
+		? [(<Sym<any>>t).init]
+		: t.tag === "decl"
+		? [(<Decl<any>>t).id]
+		: t.tag === "op1" || t.tag === "swizzle"
+		? [(<Op1<any>>t).val]
+		: t.tag === "op2"
+		? [(<Op2<any>>t).l, (<Op2<any>>t).r]
+		: t.tag === "assign"
+		? [(<Assign<any>>t).r]
+		: isVec(t) || isMat(t)
+		? (<Lit<any>>t).val
+		: isTerm((<Lit<any>>t).val)
+		? (<Lit<any>>t).val
+		: undefined);
 
 /**
  * Traverses given AST in depth-first order and applies `visit` and
@@ -85,21 +85,21 @@ export const allChildren = (t: Term<any>) =>
  * @param pre -
  */
 export const walk = <T>(
-    visit: Fn2<T, Term<any>, T>,
-    children: Fn<Term<any>, Term<any>[] | undefined>,
-    acc: T,
-    tree: Term<any> | Term<any>[],
-    pre = true
+	visit: Fn2<T, Term<any>, T>,
+	children: Fn<Term<any>, Term<any>[] | undefined>,
+	acc: T,
+	tree: Term<any> | Term<any>[],
+	pre = true
 ) => {
-    if (isArray(tree)) {
-        tree.forEach((x) => (acc = walk(visit, children, acc, x, pre)));
-    } else {
-        pre && (acc = visit(acc, tree));
-        const c = children(tree);
-        c && (acc = walk(visit, children, acc, c, pre));
-        !pre && (acc = visit(acc, tree));
-    }
-    return acc;
+	if (isArray(tree)) {
+		tree.forEach((x) => (acc = walk(visit, children, acc, x, pre)));
+	} else {
+		pre && (acc = visit(acc, tree));
+		const c = children(tree);
+		c && (acc = walk(visit, children, acc, c, pre));
+		!pre && (acc = visit(acc, tree));
+	}
+	return acc;
 };
 
 /**
@@ -110,20 +110,20 @@ export const walk = <T>(
  * @param graph -
  */
 export const buildCallGraph = (
-    fn: Func<any>,
-    graph: DGraph<Func<any>> = new DGraph()
+	fn: Func<any>,
+	graph: DGraph<Func<any>> = new DGraph()
 ): DGraph<Func<any>> =>
-    fn.deps && fn.deps.length
-        ? fn.deps.reduce(
-              (graph, d) => buildCallGraph(d, graph.addDependency(fn, d)),
-              graph
-          )
-        : graph.addNode(fn);
+	fn.deps && fn.deps.length
+		? fn.deps.reduce(
+				(graph, d) => buildCallGraph(d, graph.addDependency(fn, d)),
+				graph
+		  )
+		: graph.addNode(fn);
 
 export const decl = <T extends Type>(id: Sym<T>): Decl<T> => ({
-    tag: "decl",
-    type: id.type,
-    id,
+	tag: "decl",
+	type: id.type,
+	id,
 });
 
 /**
@@ -140,14 +140,14 @@ export const decl = <T extends Type>(id: Sym<T>): Decl<T> => ({
  * @param global -
  */
 export const scope = (body: (Term<any> | null)[], global = false): Scope => ({
-    tag: "scope",
-    type: "void",
-    body: <Term<any>[]>(
-        body
-            .filter((x) => x != null)
-            .map((x) => (x!.tag === "sym" ? decl(<Sym<any>>x) : x))
-    ),
-    global,
+	tag: "scope",
+	type: "void",
+	body: <Term<any>[]>(
+		body
+			.filter((x) => x != null)
+			.map((x) => (x!.tag === "sym" ? decl(<Sym<any>>x) : x))
+	),
+	global,
 });
 
 /**
@@ -166,10 +166,10 @@ export const scope = (body: (Term<any> | null)[], global = false): Scope => ({
  * @param body -
  */
 export const program = (body: (Sym<any> | Func<any>)[]) => {
-    const syms = body.filter((x) => x.tag !== "fn");
-    const g = body.reduce(
-        (acc, x) => (x.tag === "fn" ? buildCallGraph(<Func<any>>x, acc) : acc),
-        new DGraph<Func<any>>()
-    );
-    return scope(syms.concat(g.sort()), true);
+	const syms = body.filter((x) => x.tag !== "fn");
+	const g = body.reduce(
+		(acc, x) => (x.tag === "fn" ? buildCallGraph(<Func<any>>x, acc) : acc),
+		new DGraph<Func<any>>()
+	);
+	return scope(syms.concat(g.sort()), true);
 };

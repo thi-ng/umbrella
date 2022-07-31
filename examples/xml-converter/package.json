@@ -1,45 +1,45 @@
 {
-    "name": "@example/xml-converter",
-    "private": true,
-    "description": "XML/HTML/SVG to hiccup/JS conversion",
-    "version": "0.0.1",
-    "repository": "https://github.com/thi-ng/umbrella",
-    "author": "Karsten Schmidt <k+npm@thi.ng>",
-    "license": "Apache-2.0",
-    "type": "module",
-    "scripts": {
-        "start": "vite --open",
-        "build": "tsc && vite build --base='./'",
-        "build:cli": "tsc -p tsconfig-cli.json",
-        "preview": "vite preview --host --open"
-    },
-    "dependencies": {
-        "@thi.ng/args": "workspace:^",
-        "@thi.ng/arrays": "workspace:^",
-        "@thi.ng/checks": "workspace:^",
-        "@thi.ng/defmulti": "workspace:^",
-        "@thi.ng/rstream": "workspace:^",
-        "@thi.ng/sax": "workspace:^",
-        "@thi.ng/strings": "workspace:^",
-        "@thi.ng/transducers": "workspace:^",
-        "@thi.ng/transducers-hdom": "workspace:^"
-    },
-    "browser": {
-        "process": false,
-        "setTimeout": false,
-        "util": false
-    },
-    "thi.ng": {
-        "readme": [
-            "defmulti",
-            "sax",
-            "strings",
-            "transducers"
-        ],
-        "screenshot": "examples/xml-converter.png"
-    },
-    "devDependencies": {
-        "typescript": "^4.7.4",
-        "vite": "^3.0.0"
-    }
+	"name": "@example/xml-converter",
+	"private": true,
+	"description": "XML/HTML/SVG to hiccup/JS conversion",
+	"version": "0.0.1",
+	"repository": "https://github.com/thi-ng/umbrella",
+	"author": "Karsten Schmidt <k+npm@thi.ng>",
+	"license": "Apache-2.0",
+	"type": "module",
+	"scripts": {
+		"start": "vite --open",
+		"build": "tsc && vite build --base='./'",
+		"build:cli": "tsc -p tsconfig-cli.json",
+		"preview": "vite preview --host --open"
+	},
+	"dependencies": {
+		"@thi.ng/args": "workspace:^",
+		"@thi.ng/arrays": "workspace:^",
+		"@thi.ng/checks": "workspace:^",
+		"@thi.ng/defmulti": "workspace:^",
+		"@thi.ng/rstream": "workspace:^",
+		"@thi.ng/sax": "workspace:^",
+		"@thi.ng/strings": "workspace:^",
+		"@thi.ng/transducers": "workspace:^",
+		"@thi.ng/transducers-hdom": "workspace:^"
+	},
+	"browser": {
+		"process": false,
+		"setTimeout": false,
+		"util": false
+	},
+	"thi.ng": {
+		"readme": [
+			"defmulti",
+			"sax",
+			"strings",
+			"transducers"
+		],
+		"screenshot": "examples/xml-converter.png"
+	},
+	"devDependencies": {
+		"typescript": "^4.7.4",
+		"vite": "^3.0.0"
+	}
 }

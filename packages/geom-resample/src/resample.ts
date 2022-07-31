@@ -5,28 +5,28 @@ import { copyVectors } from "@thi.ng/vectors/copy";
 import { Sampler } from "./sampler.js";
 
 export const resample = (
-    pts: ReadonlyVec[],
-    opts?: number | Partial<SamplingOpts>,
-    closed = false,
-    copy = false
+	pts: ReadonlyVec[],
+	opts?: number | Partial<SamplingOpts>,
+	closed = false,
+	copy = false
 ) => {
-    if (opts !== undefined) {
-        const sampler = new Sampler(pts, closed);
-        return isPlainObject(opts)
-            ? closed
-                ? opts.dist
-                    ? sampler.sampleUniform(opts.dist, opts.last)
-                    : sampler.sampleFixedNum(
-                          opts.num || DEFAULT_SAMPLES,
-                          opts.last
-                      )
-                : opts.dist
-                ? sampler.sampleUniform(opts.dist, opts.last !== false)
-                : sampler.sampleFixedNum(
-                      opts.num || DEFAULT_SAMPLES,
-                      opts.last !== false
-                  )
-            : sampler.sampleFixedNum(opts || DEFAULT_SAMPLES, !closed);
-    }
-    return copy ? copyVectors(pts) : pts;
+	if (opts !== undefined) {
+		const sampler = new Sampler(pts, closed);
+		return isPlainObject(opts)
+			? closed
+				? opts.dist
+					? sampler.sampleUniform(opts.dist, opts.last)
+					: sampler.sampleFixedNum(
+							opts.num || DEFAULT_SAMPLES,
+							opts.last
+					  )
+				: opts.dist
+				? sampler.sampleUniform(opts.dist, opts.last !== false)
+				: sampler.sampleFixedNum(
+						opts.num || DEFAULT_SAMPLES,
+						opts.last !== false
+				  )
+			: sampler.sampleFixedNum(opts || DEFAULT_SAMPLES, !closed);
+	}
+	return copy ? copyVectors(pts) : pts;
 };

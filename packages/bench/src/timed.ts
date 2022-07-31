@@ -10,9 +10,9 @@ import { now, timeDiff } from "./now.js";
  * @param prefix - log prefix
  */
 export const timed = <T>(fn: () => T, prefix = "") => {
-    const [res, t] = timedResult(fn);
-    console.log(`${prefix} ${t.toFixed(2)}ms`);
-    return res;
+	const [res, t] = timedResult(fn);
+	console.log(`${prefix} ${t.toFixed(2)}ms`);
+	return res;
 };
 
 /**
@@ -22,8 +22,8 @@ export const timed = <T>(fn: () => T, prefix = "") => {
  * @param fn - function to time
  */
 export const timedResult = <T>(fn: () => T): TimingResult<T> => {
-    const t0 = now();
-    const res = fn();
-    const t1 = now();
-    return [res, timeDiff(t0, t1)];
+	const t0 = now();
+	const res = fn();
+	const t1 = now();
+	return [res, timeDiff(t0, t1)];
 };

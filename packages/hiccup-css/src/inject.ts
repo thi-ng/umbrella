@@ -10,18 +10,18 @@
  * @param first - true, if prepend to stylesheet list (else append)
  */
 export const injectStyleSheet = (css: string, first = false) => {
-    const head = document.getElementsByTagName("head")[0];
-    const sheet = document.createElement("style");
-    sheet.setAttribute("type", "text/css");
-    if ((<any>sheet).styleSheet !== undefined) {
-        (<any>sheet).styleSheet.cssText = css;
-    } else {
-        sheet.textContent = css;
-    }
-    if (first) {
-        head.insertBefore(sheet, head.firstChild);
-    } else {
-        head.appendChild(sheet);
-    }
-    return sheet;
+	const head = document.getElementsByTagName("head")[0];
+	const sheet = document.createElement("style");
+	sheet.setAttribute("type", "text/css");
+	if ((<any>sheet).styleSheet !== undefined) {
+		(<any>sheet).styleSheet.cssText = css;
+	} else {
+		sheet.textContent = css;
+	}
+	if (first) {
+		head.insertBefore(sheet, head.firstChild);
+	} else {
+		head.appendChild(sheet);
+	}
+	return sheet;
 };

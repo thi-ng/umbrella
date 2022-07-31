@@ -13,15 +13,15 @@ import { $$reduce, reducer } from "../reduce.js";
  * @internal
  */
 export const __mathop = (
-    rfn: FnAny<Reducer<number, number>>,
-    fn: ReductionFn<number, number>,
-    initDefault: number,
-    args: any[]
+	rfn: FnAny<Reducer<number, number>>,
+	fn: ReductionFn<number, number>,
+	initDefault: number,
+	args: any[]
 ) => {
-    const res = $$reduce(rfn, args);
-    if (res !== undefined) {
-        return res;
-    }
-    const init = args[0] || initDefault;
-    return reducer(() => init, fn);
+	const res = $$reduce(rfn, args);
+	if (res !== undefined) {
+		return res;
+	}
+	const init = args[0] || initDefault;
+	return reducer(() => init, fn);
 };

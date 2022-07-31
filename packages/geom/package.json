@@ -1,383 +1,383 @@
 {
-    "name": "@thi.ng/geom",
-    "version": "3.4.2",
-    "description": "Functional, polymorphic API for 2D geometry types & SVG generation",
-    "type": "module",
-    "module": "./index.js",
-    "typings": "./index.d.ts",
-    "sideEffects": false,
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/thi-ng/umbrella.git"
-    },
-    "homepage": "https://github.com/thi-ng/umbrella/tree/develop/packages/geom#readme",
-    "funding": [
-        {
-            "type": "github",
-            "url": "https://github.com/sponsors/postspectacular"
-        },
-        {
-            "type": "patreon",
-            "url": "https://patreon.com/thing_umbrella"
-        }
-    ],
-    "author": "Karsten Schmidt <k+npm@thi.ng>",
-    "license": "Apache-2.0",
-    "scripts": {
-        "build": "yarn clean && tsc --declaration",
-        "clean": "rimraf '*.js' '*.d.ts' '*.map' doc api ctors internal",
-        "doc": "typedoc --excludePrivate --excludeInternal --out doc src/index.ts",
-        "doc:ae": "mkdir -p .ae/doc .ae/temp && api-extractor run --local --verbose",
-        "doc:readme": "yarn doc:stats && tools:readme",
-        "doc:stats": "tools:module-stats",
-        "pub": "yarn npm publish --access public",
-        "test": "testament test",
-        "tool:bpatch": "tools:node-esm tools/bpatch.ts"
-    },
-    "dependencies": {
-        "@thi.ng/api": "^8.3.8",
-        "@thi.ng/arrays": "^2.3.1",
-        "@thi.ng/associative": "^6.2.0",
-        "@thi.ng/checks": "^3.2.2",
-        "@thi.ng/defmulti": "^2.1.8",
-        "@thi.ng/equiv": "^2.1.8",
-        "@thi.ng/errors": "^2.1.8",
-        "@thi.ng/geom-api": "^3.3.2",
-        "@thi.ng/geom-arc": "^2.1.19",
-        "@thi.ng/geom-clip-line": "^2.1.19",
-        "@thi.ng/geom-clip-poly": "^2.1.19",
-        "@thi.ng/geom-closest-point": "^2.1.16",
-        "@thi.ng/geom-hull": "^2.1.16",
-        "@thi.ng/geom-isec": "^2.1.19",
-        "@thi.ng/geom-poly-utils": "^2.3.3",
-        "@thi.ng/geom-resample": "^2.1.19",
-        "@thi.ng/geom-splines": "^2.1.19",
-        "@thi.ng/geom-subdiv-curve": "^2.1.19",
-        "@thi.ng/geom-tessellate": "^2.1.19",
-        "@thi.ng/hiccup": "^4.2.10",
-        "@thi.ng/hiccup-svg": "^4.3.3",
-        "@thi.ng/math": "^5.3.4",
-        "@thi.ng/matrices": "^2.1.16",
-        "@thi.ng/random": "^3.3.3",
-        "@thi.ng/strings": "^3.3.6",
-        "@thi.ng/transducers": "^8.3.7",
-        "@thi.ng/vectors": "^7.5.8"
-    },
-    "devDependencies": {
-        "@microsoft/api-extractor": "^7.25.0",
-        "@thi.ng/testament": "^0.2.9",
-        "rimraf": "^3.0.2",
-        "tools": "workspace:^",
-        "typedoc": "^0.22.17",
-        "typescript": "^4.7.4"
-    },
-    "keywords": [
-        "2d",
-        "analysis",
-        "arc",
-        "area",
-        "bbox",
-        "bezier",
-        "centroid",
-        "circle",
-        "clipping",
-        "conversion",
-        "datastructure",
-        "geometry",
-        "graphics",
-        "intersection",
-        "polymorphic",
-        "sample",
-        "scatter",
-        "shape",
-        "svg",
-        "typescript"
-    ],
-    "publishConfig": {
-        "access": "public"
-    },
-    "engines": {
-        "node": ">=12.7"
-    },
-    "files": [
-        "*.js",
-        "*.d.ts",
-        "api",
-        "internal"
-    ],
-    "exports": {
-        ".": {
-            "default": "./index.js"
-        },
-        "./aabb": {
-            "default": "./aabb.js"
-        },
-        "./api/aabb": {
-            "default": "./api/aabb.js"
-        },
-        "./api/apc": {
-            "default": "./api/apc.js"
-        },
-        "./api/arc": {
-            "default": "./api/arc.js"
-        },
-        "./api/bpatch": {
-            "default": "./api/bpatch.js"
-        },
-        "./api/circle": {
-            "default": "./api/circle.js"
-        },
-        "./api/cubic": {
-            "default": "./api/cubic.js"
-        },
-        "./api/ellipse": {
-            "default": "./api/ellipse.js"
-        },
-        "./api/group": {
-            "default": "./api/group.js"
-        },
-        "./api/line": {
-            "default": "./api/line.js"
-        },
-        "./api/path": {
-            "default": "./api/path.js"
-        },
-        "./api/plane": {
-            "default": "./api/plane.js"
-        },
-        "./api/points": {
-            "default": "./api/points.js"
-        },
-        "./api/polygon": {
-            "default": "./api/polygon.js"
-        },
-        "./api/polyline": {
-            "default": "./api/polyline.js"
-        },
-        "./api/quad": {
-            "default": "./api/quad.js"
-        },
-        "./api/quad3": {
-            "default": "./api/quad3.js"
-        },
-        "./api/quadratic": {
-            "default": "./api/quadratic.js"
-        },
-        "./api/ray": {
-            "default": "./api/ray.js"
-        },
-        "./api/rect": {
-            "default": "./api/rect.js"
-        },
-        "./api/sphere": {
-            "default": "./api/sphere.js"
-        },
-        "./api/text": {
-            "default": "./api/text.js"
-        },
-        "./api/triangle": {
-            "default": "./api/triangle.js"
-        },
-        "./apply-transforms": {
-            "default": "./apply-transforms.js"
-        },
-        "./arc-length": {
-            "default": "./arc-length.js"
-        },
-        "./arc": {
-            "default": "./arc.js"
-        },
-        "./area": {
-            "default": "./area.js"
-        },
-        "./as-cubic": {
-            "default": "./as-cubic.js"
-        },
-        "./as-path": {
-            "default": "./as-path.js"
-        },
-        "./as-polygon": {
-            "default": "./as-polygon.js"
-        },
-        "./as-polyline": {
-            "default": "./as-polyline.js"
-        },
-        "./as-svg": {
-            "default": "./as-svg.js"
-        },
-        "./bounds": {
-            "default": "./bounds.js"
-        },
-        "./bpatch": {
-            "default": "./bpatch.js"
-        },
-        "./center": {
-            "default": "./center.js"
-        },
-        "./centroid": {
-            "default": "./centroid.js"
-        },
-        "./circle": {
-            "default": "./circle.js"
-        },
-        "./classify-point": {
-            "default": "./classify-point.js"
-        },
-        "./clip-convex": {
-            "default": "./clip-convex.js"
-        },
-        "./closest-point": {
-            "default": "./closest-point.js"
-        },
-        "./convex-hull": {
-            "default": "./convex-hull.js"
-        },
-        "./cubic": {
-            "default": "./cubic.js"
-        },
-        "./edges": {
-            "default": "./edges.js"
-        },
-        "./ellipse": {
-            "default": "./ellipse.js"
-        },
-        "./fit-into-bounds": {
-            "default": "./fit-into-bounds.js"
-        },
-        "./flip": {
-            "default": "./flip.js"
-        },
-        "./group": {
-            "default": "./group.js"
-        },
-        "./internal/copy": {
-            "default": "./internal/copy.js"
-        },
-        "./internal/dispatch": {
-            "default": "./internal/dispatch.js"
-        },
-        "./internal/transform": {
-            "default": "./internal/transform.js"
-        },
-        "./intersects": {
-            "default": "./intersects.js"
-        },
-        "./line": {
-            "default": "./line.js"
-        },
-        "./map-point": {
-            "default": "./map-point.js"
-        },
-        "./offset": {
-            "default": "./offset.js"
-        },
-        "./path-builder": {
-            "default": "./path-builder.js"
-        },
-        "./path-from-svg": {
-            "default": "./path-from-svg.js"
-        },
-        "./path": {
-            "default": "./path.js"
-        },
-        "./plane": {
-            "default": "./plane.js"
-        },
-        "./point-at": {
-            "default": "./point-at.js"
-        },
-        "./point-inside": {
-            "default": "./point-inside.js"
-        },
-        "./points": {
-            "default": "./points.js"
-        },
-        "./polygon": {
-            "default": "./polygon.js"
-        },
-        "./polyline": {
-            "default": "./polyline.js"
-        },
-        "./quad": {
-            "default": "./quad.js"
-        },
-        "./quadratic": {
-            "default": "./quadratic.js"
-        },
-        "./ray": {
-            "default": "./ray.js"
-        },
-        "./rect": {
-            "default": "./rect.js"
-        },
-        "./resample": {
-            "default": "./resample.js"
-        },
-        "./rotate": {
-            "default": "./rotate.js"
-        },
-        "./scale": {
-            "default": "./scale.js"
-        },
-        "./scatter": {
-            "default": "./scatter.js"
-        },
-        "./simplify": {
-            "default": "./simplify.js"
-        },
-        "./sphere": {
-            "default": "./sphere.js"
-        },
-        "./split-at": {
-            "default": "./split-at.js"
-        },
-        "./split-near": {
-            "default": "./split-near.js"
-        },
-        "./subdiv-curve": {
-            "default": "./subdiv-curve.js"
-        },
-        "./tangent-at": {
-            "default": "./tangent-at.js"
-        },
-        "./tessellate": {
-            "default": "./tessellate.js"
-        },
-        "./text": {
-            "default": "./text.js"
-        },
-        "./transform-vertices": {
-            "default": "./transform-vertices.js"
-        },
-        "./transform": {
-            "default": "./transform.js"
-        },
-        "./translate": {
-            "default": "./translate.js"
-        },
-        "./triangle": {
-            "default": "./triangle.js"
-        },
-        "./union": {
-            "default": "./union.js"
-        },
-        "./unmap-point": {
-            "default": "./unmap-point.js"
-        },
-        "./vertices": {
-            "default": "./vertices.js"
-        },
-        "./volume": {
-            "default": "./volume.js"
-        },
-        "./warp-points": {
-            "default": "./warp-points.js"
-        },
-        "./with-attribs": {
-            "default": "./with-attribs.js"
-        }
-    },
-    "thi.ng": {
-        "year": 2013
-    }
+	"name": "@thi.ng/geom",
+	"version": "3.4.2",
+	"description": "Functional, polymorphic API for 2D geometry types & SVG generation",
+	"type": "module",
+	"module": "./index.js",
+	"typings": "./index.d.ts",
+	"sideEffects": false,
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/thi-ng/umbrella.git"
+	},
+	"homepage": "https://github.com/thi-ng/umbrella/tree/develop/packages/geom#readme",
+	"funding": [
+		{
+			"type": "github",
+			"url": "https://github.com/sponsors/postspectacular"
+		},
+		{
+			"type": "patreon",
+			"url": "https://patreon.com/thing_umbrella"
+		}
+	],
+	"author": "Karsten Schmidt <k+npm@thi.ng>",
+	"license": "Apache-2.0",
+	"scripts": {
+		"build": "yarn clean && tsc --declaration",
+		"clean": "rimraf '*.js' '*.d.ts' '*.map' doc api ctors internal",
+		"doc": "typedoc --excludePrivate --excludeInternal --out doc src/index.ts",
+		"doc:ae": "mkdir -p .ae/doc .ae/temp && api-extractor run --local --verbose",
+		"doc:readme": "yarn doc:stats && tools:readme",
+		"doc:stats": "tools:module-stats",
+		"pub": "yarn npm publish --access public",
+		"test": "testament test",
+		"tool:bpatch": "tools:node-esm tools/bpatch.ts"
+	},
+	"dependencies": {
+		"@thi.ng/api": "^8.3.8",
+		"@thi.ng/arrays": "^2.3.1",
+		"@thi.ng/associative": "^6.2.0",
+		"@thi.ng/checks": "^3.2.2",
+		"@thi.ng/defmulti": "^2.1.8",
+		"@thi.ng/equiv": "^2.1.8",
+		"@thi.ng/errors": "^2.1.8",
+		"@thi.ng/geom-api": "^3.3.2",
+		"@thi.ng/geom-arc": "^2.1.19",
+		"@thi.ng/geom-clip-line": "^2.1.19",
+		"@thi.ng/geom-clip-poly": "^2.1.19",
+		"@thi.ng/geom-closest-point": "^2.1.16",
+		"@thi.ng/geom-hull": "^2.1.16",
+		"@thi.ng/geom-isec": "^2.1.19",
+		"@thi.ng/geom-poly-utils": "^2.3.3",
+		"@thi.ng/geom-resample": "^2.1.19",
+		"@thi.ng/geom-splines": "^2.1.19",
+		"@thi.ng/geom-subdiv-curve": "^2.1.19",
+		"@thi.ng/geom-tessellate": "^2.1.19",
+		"@thi.ng/hiccup": "^4.2.10",
+		"@thi.ng/hiccup-svg": "^4.3.3",
+		"@thi.ng/math": "^5.3.4",
+		"@thi.ng/matrices": "^2.1.16",
+		"@thi.ng/random": "^3.3.3",
+		"@thi.ng/strings": "^3.3.6",
+		"@thi.ng/transducers": "^8.3.7",
+		"@thi.ng/vectors": "^7.5.8"
+	},
+	"devDependencies": {
+		"@microsoft/api-extractor": "^7.25.0",
+		"@thi.ng/testament": "^0.2.9",
+		"rimraf": "^3.0.2",
+		"tools": "workspace:^",
+		"typedoc": "^0.22.17",
+		"typescript": "^4.7.4"
+	},
+	"keywords": [
+		"2d",
+		"analysis",
+		"arc",
+		"area",
+		"bbox",
+		"bezier",
+		"centroid",
+		"circle",
+		"clipping",
+		"conversion",
+		"datastructure",
+		"geometry",
+		"graphics",
+		"intersection",
+		"polymorphic",
+		"sample",
+		"scatter",
+		"shape",
+		"svg",
+		"typescript"
+	],
+	"publishConfig": {
+		"access": "public"
+	},
+	"engines": {
+		"node": ">=12.7"
+	},
+	"files": [
+		"*.js",
+		"*.d.ts",
+		"api",
+		"internal"
+	],
+	"exports": {
+		".": {
+			"default": "./index.js"
+		},
+		"./aabb": {
+			"default": "./aabb.js"
+		},
+		"./api/aabb": {
+			"default": "./api/aabb.js"
+		},
+		"./api/apc": {
+			"default": "./api/apc.js"
+		},
+		"./api/arc": {
+			"default": "./api/arc.js"
+		},
+		"./api/bpatch": {
+			"default": "./api/bpatch.js"
+		},
+		"./api/circle": {
+			"default": "./api/circle.js"
+		},
+		"./api/cubic": {
+			"default": "./api/cubic.js"
+		},
+		"./api/ellipse": {
+			"default": "./api/ellipse.js"
+		},
+		"./api/group": {
+			"default": "./api/group.js"
+		},
+		"./api/line": {
+			"default": "./api/line.js"
+		},
+		"./api/path": {
+			"default": "./api/path.js"
+		},
+		"./api/plane": {
+			"default": "./api/plane.js"
+		},
+		"./api/points": {
+			"default": "./api/points.js"
+		},
+		"./api/polygon": {
+			"default": "./api/polygon.js"
+		},
+		"./api/polyline": {
+			"default": "./api/polyline.js"
+		},
+		"./api/quad": {
+			"default": "./api/quad.js"
+		},
+		"./api/quad3": {
+			"default": "./api/quad3.js"
+		},
+		"./api/quadratic": {
+			"default": "./api/quadratic.js"
+		},
+		"./api/ray": {
+			"default": "./api/ray.js"
+		},
+		"./api/rect": {
+			"default": "./api/rect.js"
+		},
+		"./api/sphere": {
+			"default": "./api/sphere.js"
+		},
+		"./api/text": {
+			"default": "./api/text.js"
+		},
+		"./api/triangle": {
+			"default": "./api/triangle.js"
+		},
+		"./apply-transforms": {
+			"default": "./apply-transforms.js"
+		},
+		"./arc-length": {
+			"default": "./arc-length.js"
+		},
+		"./arc": {
+			"default": "./arc.js"
+		},
+		"./area": {
+			"default": "./area.js"
+		},
+		"./as-cubic": {
+			"default": "./as-cubic.js"
+		},
+		"./as-path": {
+			"default": "./as-path.js"
+		},
+		"./as-polygon": {
+			"default": "./as-polygon.js"
+		},
+		"./as-polyline": {
+			"default": "./as-polyline.js"
+		},
+		"./as-svg": {
+			"default": "./as-svg.js"
+		},
+		"./bounds": {
+			"default": "./bounds.js"
+		},
+		"./bpatch": {
+			"default": "./bpatch.js"
+		},
+		"./center": {
+			"default": "./center.js"
+		},
+		"./centroid": {
+			"default": "./centroid.js"
+		},
+		"./circle": {
+			"default": "./circle.js"
+		},
+		"./classify-point": {
+			"default": "./classify-point.js"
+		},
+		"./clip-convex": {
+			"default": "./clip-convex.js"
+		},
+		"./closest-point": {
+			"default": "./closest-point.js"
+		},
+		"./convex-hull": {
+			"default": "./convex-hull.js"
+		},
+		"./cubic": {
+			"default": "./cubic.js"
+		},
+		"./edges": {
+			"default": "./edges.js"
+		},
+		"./ellipse": {
+			"default": "./ellipse.js"
+		},
+		"./fit-into-bounds": {
+			"default": "./fit-into-bounds.js"
+		},
+		"./flip": {
+			"default": "./flip.js"
+		},
+		"./group": {
+			"default": "./group.js"
+		},
+		"./internal/copy": {
+			"default": "./internal/copy.js"
+		},
+		"./internal/dispatch": {
+			"default": "./internal/dispatch.js"
+		},
+		"./internal/transform": {
+			"default": "./internal/transform.js"
+		},
+		"./intersects": {
+			"default": "./intersects.js"
+		},
+		"./line": {
+			"default": "./line.js"
+		},
+		"./map-point": {
+			"default": "./map-point.js"
+		},
+		"./offset": {
+			"default": "./offset.js"
+		},
+		"./path-builder": {
+			"default": "./path-builder.js"
+		},
+		"./path-from-svg": {
+			"default": "./path-from-svg.js"
+		},
+		"./path": {
+			"default": "./path.js"
+		},
+		"./plane": {
+			"default": "./plane.js"
+		},
+		"./point-at": {
+			"default": "./point-at.js"
+		},
+		"./point-inside": {
+			"default": "./point-inside.js"
+		},
+		"./points": {
+			"default": "./points.js"
+		},
+		"./polygon": {
+			"default": "./polygon.js"
+		},
+		"./polyline": {
+			"default": "./polyline.js"
+		},
+		"./quad": {
+			"default": "./quad.js"
+		},
+		"./quadratic": {
+			"default": "./quadratic.js"
+		},
+		"./ray": {
+			"default": "./ray.js"
+		},
+		"./rect": {
+			"default": "./rect.js"
+		},
+		"./resample": {
+			"default": "./resample.js"
+		},
+		"./rotate": {
+			"default": "./rotate.js"
+		},
+		"./scale": {
+			"default": "./scale.js"
+		},
+		"./scatter": {
+			"default": "./scatter.js"
+		},
+		"./simplify": {
+			"default": "./simplify.js"
+		},
+		"./sphere": {
+			"default": "./sphere.js"
+		},
+		"./split-at": {
+			"default": "./split-at.js"
+		},
+		"./split-near": {
+			"default": "./split-near.js"
+		},
+		"./subdiv-curve": {
+			"default": "./subdiv-curve.js"
+		},
+		"./tangent-at": {
+			"default": "./tangent-at.js"
+		},
+		"./tessellate": {
+			"default": "./tessellate.js"
+		},
+		"./text": {
+			"default": "./text.js"
+		},
+		"./transform-vertices": {
+			"default": "./transform-vertices.js"
+		},
+		"./transform": {
+			"default": "./transform.js"
+		},
+		"./translate": {
+			"default": "./translate.js"
+		},
+		"./triangle": {
+			"default": "./triangle.js"
+		},
+		"./union": {
+			"default": "./union.js"
+		},
+		"./unmap-point": {
+			"default": "./unmap-point.js"
+		},
+		"./vertices": {
+			"default": "./vertices.js"
+		},
+		"./volume": {
+			"default": "./volume.js"
+		},
+		"./warp-points": {
+			"default": "./warp-points.js"
+		},
+		"./with-attribs": {
+			"default": "./with-attribs.js"
+		}
+	},
+	"thi.ng": {
+		"year": 2013
+	}
 }

@@ -1,21 +1,21 @@
 import type { IObjectOf } from "@thi.ng/api";
 import type {
-    ColorRangePreset,
-    ColorThemePart,
-    ReadonlyColor,
+	ColorRangePreset,
+	ColorThemePart,
+	ReadonlyColor,
 } from "@thi.ng/color";
 import { COLOR_RANGES } from "@thi.ng/color/color-range";
 
 export interface MainInputs {
-    parts: IObjectOf<ColorThemePart>;
-    num: number;
-    variance: number;
-    seed: number;
-    sorted: boolean;
+	parts: IObjectOf<ColorThemePart>;
+	num: number;
+	variance: number;
+	seed: number;
+	sorted: boolean;
 }
 
 export interface MainOutputs extends MainInputs {
-    colors: ReadonlyColor[];
+	colors: ReadonlyColor[];
 }
 
 // pre-sort range preset IDs for dropdown menus

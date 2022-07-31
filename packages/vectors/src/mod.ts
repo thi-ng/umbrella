@@ -18,7 +18,7 @@ import { ARGS_VV, FN2 } from "./compile/templates.js";
  * https://www.khronos.org/registry/OpenGL-Refpages/gl4/html/mod.xhtml
  */
 export const [mod, mod2, mod3, mod4] = defHofOp<MultiVecOpVV, VecOpVV>(
-    _mod,
-    FN2("op"),
-    ARGS_VV
+	_mod,
+	FN2("op"),
+	ARGS_VV
 );

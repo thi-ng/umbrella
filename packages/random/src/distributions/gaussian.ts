@@ -18,10 +18,10 @@ import { SYSTEM } from "../system.js";
  * @param scale - scale, default 1
  */
 export const gaussian =
-    (rnd: IRandom = SYSTEM, n = 24, offset = 0, scale = 1) =>
-    () => {
-        let sum = 0;
-        let m = n;
-        while (m-- > 0) sum += rnd.norm(scale);
-        return sum / n + offset;
-    };
+	(rnd: IRandom = SYSTEM, n = 24, offset = 0, scale = 1) =>
+	() => {
+		let sum = 0;
+		let m = n;
+		while (m-- > 0) sum += rnd.norm(scale);
+		return sum / n + offset;
+	};

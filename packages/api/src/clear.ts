@@ -6,5 +6,5 @@
  * Also see {@link IEmpty} and {@link IRelease} for related operations.
  */
 export interface IClear {
-    clear(): void;
+	clear(): void;
 }

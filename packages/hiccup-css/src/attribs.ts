@@ -1,8 +1,7 @@
-const $ = (op: string) => (
-    id: string,
-    x: string | number,
-    caseSensitve = false
-) => `[${id}${op}="${x}"${caseSensitve ? " i" : ""}]`;
+const $ =
+	(op: string) =>
+	(id: string, x: string | number, caseSensitve = false) =>
+		`[${id}${op}="${x}"${caseSensitve ? " i" : ""}]`;
 
 /**
  * Returns attrib selector: `[id]`

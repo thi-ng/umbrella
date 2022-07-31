@@ -3,55 +3,55 @@ import { DCons } from "@thi.ng/dcons/dcons";
 import type { CostFn, IGraph } from "./api.js";
 
 export class BFS {
-    graph: IGraph;
-    marked: BitField;
-    edges: Uint32Array;
-    dist: Uint32Array;
+	graph: IGraph;
+	marked: BitField;
+	edges: Uint32Array;
+	dist: Uint32Array;
 
-    constructor(graph: IGraph, src: number, cost: CostFn = () => 1) {
-        this.graph = graph;
-        const numV = graph.numVertices();
-        this.edges = new Uint32Array(numV);
-        this.dist = new Uint32Array(numV);
-        this.marked = new BitField(numV);
-        this.search(src, cost);
-    }
+	constructor(graph: IGraph, src: number, cost: CostFn = () => 1) {
+		this.graph = graph;
+		const numV = graph.numVertices();
+		this.edges = new Uint32Array(numV);
+		this.dist = new Uint32Array(numV);
+		this.marked = new BitField(numV);
+		this.search(src, cost);
+	}
 
-    protected search(id: number, cost: CostFn) {
-        const queue = new DCons<number>();
-        queue.prepend(id);
-        const { dist, edges, graph, marked } = this;
-        dist.fill(0xffffffff);
-        dist[id] = 0;
-        marked.setAt(id);
-        while (queue.length) {
-            const v = queue.drop()!;
-            for (let n of graph.neighbors(v)) {
-                const c = dist[v] + cost(v, n);
-                if (c < dist[n] || !marked.at(n)) {
-                    edges[n] = v;
-                    dist[n] = c;
-                    marked.setAt(n);
-                    queue.push(n);
-                }
-            }
-        }
-    }
+	protected search(id: number, cost: CostFn) {
+		const queue = new DCons<number>();
+		queue.prepend(id);
+		const { dist, edges, graph, marked } = this;
+		dist.fill(0xffffffff);
+		dist[id] = 0;
+		marked.setAt(id);
+		while (queue.length) {
+			const v = queue.drop()!;
+			for (let n of graph.neighbors(v)) {
+				const c = dist[v] + cost(v, n);
+				if (c < dist[n] || !marked.at(n)) {
+					edges[n] = v;
+					dist[n] = c;
+					marked.setAt(n);
+					queue.push(n);
+				}
+			}
+		}
+	}
 
-    hasPathTo(id: number) {
-        return this.marked.at(id) !== 0;
-    }
+	hasPathTo(id: number) {
+		return this.marked.at(id) !== 0;
+	}
 
-    pathTo(id: number): Iterable<number> | undefined {
-        if (!this.marked.at(id)) return;
-        const { dist, edges } = this;
-        const path = new DCons<number>();
-        for (; dist[id] > 0; id = edges[id]) {
-            path.prepend(id);
-        }
-        path.prepend(id);
-        return path;
-    }
+	pathTo(id: number): Iterable<number> | undefined {
+		if (!this.marked.at(id)) return;
+		const { dist, edges } = this;
+		const path = new DCons<number>();
+		for (; dist[id] > 0; id = edges[id]) {
+			path.prepend(id);
+		}
+		path.prepend(id);
+		return path;
+	}
 }
 
 /**
@@ -77,4 +77,4 @@ export class BFS {
  * @param cost -
  */
 export const bfs = (graph: IGraph, src: number, dest: number, cost?: CostFn) =>
-    new BFS(graph, src, cost).pathTo(dest);
+	new BFS(graph, src, cost).pathTo(dest);

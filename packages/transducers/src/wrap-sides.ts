@@ -21,22 +21,22 @@ import { inRange } from "@thi.ng/math/interval";
  * @param numRight -
  */
 export function* wrapSides<T>(
-    src: Iterable<T>,
-    numLeft = 1,
-    numRight = numLeft
+	src: Iterable<T>,
+	numLeft = 1,
+	numRight = numLeft
 ): IterableIterator<T> {
-    const _src: T[] = ensureArray(src);
-    !(inRange(numLeft, 0, _src.length) && inRange(numRight, 0, _src.length)) &&
-        illegalArgs(`allowed wrap range: [0..${_src.length}]`);
-    if (numLeft > 0) {
-        for (let m = _src.length, i = m - numLeft; i < m; i++) {
-            yield _src[i];
-        }
-    }
-    yield* _src;
-    if (numRight > 0) {
-        for (let i = 0; i < numRight; i++) {
-            yield _src[i];
-        }
-    }
+	const _src: T[] = ensureArray(src);
+	!(inRange(numLeft, 0, _src.length) && inRange(numRight, 0, _src.length)) &&
+		illegalArgs(`allowed wrap range: [0..${_src.length}]`);
+	if (numLeft > 0) {
+		for (let m = _src.length, i = m - numLeft; i < m; i++) {
+			yield _src[i];
+		}
+	}
+	yield* _src;
+	if (numRight > 0) {
+		for (let i = 0; i < numRight; i++) {
+			yield _src[i];
+		}
+	}
 }

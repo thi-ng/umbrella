@@ -31,8 +31,8 @@ import type { Fn0 } from "@thi.ng/api";
  * @param f - function
  */
 export const trampoline = <T>(f: T | Fn0<T | Fn0<T>>) => {
-    while (typeof f === "function") {
-        f = (<any>f)();
-    }
-    return <T>f;
+	while (typeof f === "function") {
+		f = (<any>f)();
+	}
+	return <T>f;
 };

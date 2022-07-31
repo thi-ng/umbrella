@@ -6,13 +6,13 @@ import { mulN } from "@thi.ng/vectors/muln";
 import { __copyAttribs } from "./copy.js";
 
 export const __scaledPoints = (
-    pts: ReadonlyVec[],
-    delta: number | ReadonlyVec
+	pts: ReadonlyVec[],
+	delta: number | ReadonlyVec
 ) =>
-    pts.map(
-        isNumber(delta) ? (x) => mulN([], x, delta) : (x) => mul([], x, delta)
-    );
+	pts.map(
+		isNumber(delta) ? (x) => mulN([], x, delta) : (x) => mul([], x, delta)
+	);
 
 export const __scaledShape =
-    (ctor: PCLikeConstructor) => ($: PCLike, delta: number | ReadonlyVec) =>
-        new ctor(__scaledPoints($.points, delta), __copyAttribs($));
+	(ctor: PCLikeConstructor) => ($: PCLike, delta: number | ReadonlyVec) =>
+		new ctor(__scaledPoints($.points, delta), __copyAttribs($));

@@ -1,117 +1,117 @@
 {
-    "name": "@thi.ng/bench",
-    "version": "3.1.8",
-    "description": "Benchmarking utilities w/ various statistics & formatters (CSV, Markdown etc.)",
-    "type": "module",
-    "module": "./index.js",
-    "typings": "./index.d.ts",
-    "sideEffects": false,
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/thi-ng/umbrella.git"
-    },
-    "homepage": "https://github.com/thi-ng/umbrella/tree/develop/packages/bench#readme",
-    "funding": [
-        {
-            "type": "github",
-            "url": "https://github.com/sponsors/postspectacular"
-        },
-        {
-            "type": "patreon",
-            "url": "https://patreon.com/thing_umbrella"
-        }
-    ],
-    "author": "Karsten Schmidt <k+npm@thi.ng>",
-    "license": "Apache-2.0",
-    "scripts": {
-        "build": "yarn clean && tsc --declaration",
-        "clean": "rimraf '*.js' '*.d.ts' '*.map' doc",
-        "doc": "typedoc --excludePrivate --excludeInternal --out doc src/index.ts",
-        "doc:ae": "mkdir -p .ae/doc .ae/temp && api-extractor run --local --verbose",
-        "doc:readme": "yarn doc:stats && tools:readme",
-        "doc:stats": "tools:module-stats",
-        "pub": "yarn npm publish --access public",
-        "test": "testament test"
-    },
-    "dependencies": {
-        "@thi.ng/api": "^8.3.8"
-    },
-    "devDependencies": {
-        "@microsoft/api-extractor": "^7.25.0",
-        "@thi.ng/testament": "^0.2.9",
-        "@types/node": "^17.0.41",
-        "rimraf": "^3.0.2",
-        "tools": "workspace:^",
-        "typedoc": "^0.22.17",
-        "typescript": "^4.7.4"
-    },
-    "keywords": [
-        "benchmark",
-        "bigint",
-        "csv",
-        "execution",
-        "format",
-        "functional",
-        "hrtime",
-        "markdown",
-        "measure",
-        "statistics",
-        "table",
-        "time",
-        "typescript"
-    ],
-    "publishConfig": {
-        "access": "public"
-    },
-    "browser": {
-        "process": false,
-        "setTimeout": false
-    },
-    "engines": {
-        "node": ">=12.7"
-    },
-    "files": [
-        "*.js",
-        "*.d.ts",
-        "format"
-    ],
-    "exports": {
-        ".": {
-            "default": "./index.js"
-        },
-        "./api": {
-            "default": "./api.js"
-        },
-        "./bench": {
-            "default": "./bench.js"
-        },
-        "./benchmark": {
-            "default": "./benchmark.js"
-        },
-        "./format/csv": {
-            "default": "./format/csv.js"
-        },
-        "./format/default": {
-            "default": "./format/default.js"
-        },
-        "./format/markdown": {
-            "default": "./format/markdown.js"
-        },
-        "./now": {
-            "default": "./now.js"
-        },
-        "./suite": {
-            "default": "./suite.js"
-        },
-        "./timed": {
-            "default": "./timed.js"
-        }
-    },
-    "thi.ng": {
-        "related": [
-            "csv",
-            "hiccup-markdown"
-        ],
-        "year": 2018
-    }
+	"name": "@thi.ng/bench",
+	"version": "3.1.8",
+	"description": "Benchmarking utilities w/ various statistics & formatters (CSV, Markdown etc.)",
+	"type": "module",
+	"module": "./index.js",
+	"typings": "./index.d.ts",
+	"sideEffects": false,
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/thi-ng/umbrella.git"
+	},
+	"homepage": "https://github.com/thi-ng/umbrella/tree/develop/packages/bench#readme",
+	"funding": [
+		{
+			"type": "github",
+			"url": "https://github.com/sponsors/postspectacular"
+		},
+		{
+			"type": "patreon",
+			"url": "https://patreon.com/thing_umbrella"
+		}
+	],
+	"author": "Karsten Schmidt <k+npm@thi.ng>",
+	"license": "Apache-2.0",
+	"scripts": {
+		"build": "yarn clean && tsc --declaration",
+		"clean": "rimraf '*.js' '*.d.ts' '*.map' doc",
+		"doc": "typedoc --excludePrivate --excludeInternal --out doc src/index.ts",
+		"doc:ae": "mkdir -p .ae/doc .ae/temp && api-extractor run --local --verbose",
+		"doc:readme": "yarn doc:stats && tools:readme",
+		"doc:stats": "tools:module-stats",
+		"pub": "yarn npm publish --access public",
+		"test": "testament test"
+	},
+	"dependencies": {
+		"@thi.ng/api": "^8.3.8"
+	},
+	"devDependencies": {
+		"@microsoft/api-extractor": "^7.25.0",
+		"@thi.ng/testament": "^0.2.9",
+		"@types/node": "^17.0.41",
+		"rimraf": "^3.0.2",
+		"tools": "workspace:^",
+		"typedoc": "^0.22.17",
+		"typescript": "^4.7.4"
+	},
+	"keywords": [
+		"benchmark",
+		"bigint",
+		"csv",
+		"execution",
+		"format",
+		"functional",
+		"hrtime",
+		"markdown",
+		"measure",
+		"statistics",
+		"table",
+		"time",
+		"typescript"
+	],
+	"publishConfig": {
+		"access": "public"
+	},
+	"browser": {
+		"process": false,
+		"setTimeout": false
+	},
+	"engines": {
+		"node": ">=12.7"
+	},
+	"files": [
+		"*.js",
+		"*.d.ts",
+		"format"
+	],
+	"exports": {
+		".": {
+			"default": "./index.js"
+		},
+		"./api": {
+			"default": "./api.js"
+		},
+		"./bench": {
+			"default": "./bench.js"
+		},
+		"./benchmark": {
+			"default": "./benchmark.js"
+		},
+		"./format/csv": {
+			"default": "./format/csv.js"
+		},
+		"./format/default": {
+			"default": "./format/default.js"
+		},
+		"./format/markdown": {
+			"default": "./format/markdown.js"
+		},
+		"./now": {
+			"default": "./now.js"
+		},
+		"./suite": {
+			"default": "./suite.js"
+		},
+		"./timed": {
+			"default": "./timed.js"
+		}
+	},
+	"thi.ng": {
+		"related": [
+			"csv",
+			"hiccup-markdown"
+		],
+		"year": 2018
+	}
 }

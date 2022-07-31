@@ -1,34 +1,34 @@
 {
-    "name": "@example/big-font",
-    "version": "0.0.1",
-    "private": true,
-    "description": "Large ASCII font text generator using @thi.ng/rdom",
-    "repository": "https://github.com/thi-ng/umbrella",
-    "author": "Karsten Schmidt <k+npm@thi.ng>",
-    "license": "Apache-2.0",
-    "scripts": {
-        "start": "vite --open",
-        "build": "tsc && vite build --base='./'",
-        "preview": "vite preview --host --open"
-    },
-    "devDependencies": {
-        "typescript": "^4.7.4",
-        "vite": "^3.0.0"
-    },
-    "dependencies": {
-        "@thi.ng/hiccup-html": "workspace:^",
-        "@thi.ng/paths": "workspace:^",
-        "@thi.ng/rdom": "workspace:^",
-        "@thi.ng/rdom-components": "workspace:^",
-        "@thi.ng/rstream": "workspace:^",
-        "@thi.ng/strings": "workspace:^",
-        "@thi.ng/transducers": "workspace:^"
-    },
-    "browser": {
-        "process": false
-    },
-    "thi.ng": {
-        "readme": true,
-        "screenshot": "examples/big-font.png"
-    }
+	"name": "@example/big-font",
+	"version": "0.0.1",
+	"private": true,
+	"description": "Large ASCII font text generator using @thi.ng/rdom",
+	"repository": "https://github.com/thi-ng/umbrella",
+	"author": "Karsten Schmidt <k+npm@thi.ng>",
+	"license": "Apache-2.0",
+	"scripts": {
+		"start": "vite --open",
+		"build": "tsc && vite build --base='./'",
+		"preview": "vite preview --host --open"
+	},
+	"devDependencies": {
+		"typescript": "^4.7.4",
+		"vite": "^3.0.0"
+	},
+	"dependencies": {
+		"@thi.ng/hiccup-html": "workspace:^",
+		"@thi.ng/paths": "workspace:^",
+		"@thi.ng/rdom": "workspace:^",
+		"@thi.ng/rdom-components": "workspace:^",
+		"@thi.ng/rstream": "workspace:^",
+		"@thi.ng/strings": "workspace:^",
+		"@thi.ng/transducers": "workspace:^"
+	},
+	"browser": {
+		"process": false
+	},
+	"thi.ng": {
+		"readme": true,
+		"screenshot": "examples/big-font.png"
+	}
 }

@@ -13,16 +13,16 @@ import { sd } from "./variance.js";
  * If `mag(a')` is zero, the returned vector will have all components
  * zero-valued too.
  *
- * @param out - 
- * @param a - 
- * @param isCentered - 
+ * @param out -
+ * @param a -
+ * @param isCentered -
  */
 export const standardize = (
-    out: Vec | null,
-    a: ReadonlyVec,
-    isCentered = false
+	out: Vec | null,
+	a: ReadonlyVec,
+	isCentered = false
 ) => {
-    out = !isCentered ? center(out, a) : !out ? a : set(out, a);
-    const d = sd(out, true);
-    return d > 0 ? mulN(null, out, 1 / d) : out;
+	out = !isCentered ? center(out, a) : !out ? a : set(out, a);
+	const d = sd(out, true);
+	return d > 0 ? mulN(null, out, 1 / d) : out;
 };

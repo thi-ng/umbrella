@@ -14,22 +14,22 @@ import type { ISeq, Nullable } from "@thi.ng/api";
  * @param end - end index (excluded)
  */
 export const aseq = <T>(
-    buf: Nullable<ArrayLike<T>>,
-    start = 0,
-    end?: number
+	buf: Nullable<ArrayLike<T>>,
+	start = 0,
+	end?: number
 ): ISeq<T> | undefined => {
-    if (!buf) return;
-    end === undefined && (end = buf.length);
-    return start < end!
-        ? {
-              first() {
-                  return buf[start];
-              },
-              next() {
-                  return aseq<T>(buf, start + 1, end);
-              },
-          }
-        : undefined;
+	if (!buf) return;
+	end === undefined && (end = buf.length);
+	return start < end!
+		? {
+				first() {
+					return buf[start];
+				},
+				next() {
+					return aseq<T>(buf, start + 1, end);
+				},
+		  }
+		: undefined;
 };
 
 /**
@@ -47,20 +47,20 @@ export const aseq = <T>(
  * @param end - end index (excluded)
  */
 export const rseq = <T>(
-    buf: Nullable<ArrayLike<T>>,
-    start?: number,
-    end = -1
+	buf: Nullable<ArrayLike<T>>,
+	start?: number,
+	end = -1
 ): ISeq<T> | undefined => {
-    if (!buf) return;
-    start === undefined && (start = buf.length - 1);
-    return start > end
-        ? {
-              first() {
-                  return buf[start!];
-              },
-              next() {
-                  return rseq<T>(buf, start! - 1, end);
-              },
-          }
-        : undefined;
+	if (!buf) return;
+	start === undefined && (start = buf.length - 1);
+	return start > end
+		? {
+				first() {
+					return buf[start!];
+				},
+				next() {
+					return rseq<T>(buf, start! - 1, end);
+				},
+		  }
+		: undefined;
 };

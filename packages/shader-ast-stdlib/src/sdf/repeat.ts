@@ -5,9 +5,9 @@ import { mul, sub } from "@thi.ng/shader-ast/ast/ops";
 import { mod } from "@thi.ng/shader-ast/builtin/math";
 
 const $ = <N extends 2 | 3, T extends PrimTypeMap[N]>(n: N, type: T) =>
-    defn(type, `sdTxRepeat${n}`, [type, type], (p, c) => [
-        ret(sub(mod(p, c), mul(c, FLOAT05))),
-    ]);
+	defn(type, `sdTxRepeat${n}`, [type, type], (p, c) => [
+		ret(sub(mod(p, c), mul(c, FLOAT05))),
+	]);
 
 /**
  * 2D domain repetition by wrapping position `p` into period `c`.

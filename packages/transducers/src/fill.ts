@@ -13,15 +13,15 @@ export function fill<T>(start?: number): Reducer<T[], T>;
 export function fill<T>(xs: Iterable<T>): T[];
 export function fill<T>(start: number, xs: Iterable<T>): T[];
 export function fill<T>(...args: any[]): any {
-    const res = $$reduce(fill, args);
-    if (res !== undefined) {
-        return res;
-    }
-    let start = args[0] || 0;
-    return reducer<T[], T>(
-        () => [],
-        (acc, x) => ((acc[start++] = x), acc)
-    );
+	const res = $$reduce(fill, args);
+	if (res !== undefined) {
+		return res;
+	}
+	let start = args[0] || 0;
+	return reducer<T[], T>(
+		() => [],
+		(acc, x) => ((acc[start++] = x), acc)
+	);
 }
 
 /**
@@ -34,5 +34,5 @@ export function fillN(start?: number): Reducer<NumericArray, number>;
 export function fillN(xs: Iterable<number>): NumericArray;
 export function fillN(start: number, xs: Iterable<number>): NumericArray;
 export function fillN(...args: any[]): any {
-    return fill(...args);
+	return fill(...args);
 }

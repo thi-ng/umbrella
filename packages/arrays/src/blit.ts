@@ -30,25 +30,25 @@ import type { TypedArray } from "@thi.ng/api";
  * @param mask
  */
 export function blit1d<T extends TypedArray>(
-    dest: T,
-    dx: number,
-    src: ArrayLike<number>,
-    mask: number
+	dest: T,
+	dx: number,
+	src: ArrayLike<number>,
+	mask: number
 ): T;
 export function blit1d<T>(
-    dest: T[],
-    dx: number,
-    src: ArrayLike<T>,
-    mask: T
+	dest: T[],
+	dx: number,
+	src: ArrayLike<T>,
+	mask: T
 ): T[];
 export function blit1d(dest: any[], x: number, src: ArrayLike<any>, mask: any) {
-    const [sx, sw, dx, dw] = __clip(0, src.length, x, dest.length);
-    if (sw < 1 || dx >= dw) return dest;
-    for (let i = 0; i < sw; i++) {
-        const val = src[sx + i];
-        val !== mask && (dest[dx + i] = val);
-    }
-    return dest;
+	const [sx, sw, dx, dw] = __clip(0, src.length, x, dest.length);
+	if (sw < 1 || dx >= dw) return dest;
+	for (let i = 0; i < sw; i++) {
+		const val = src[sx + i];
+		val !== mask && (dest[dx + i] = val);
+	}
+	return dest;
 }
 
 /**
@@ -63,56 +63,56 @@ export function blit1d(dest: any[], x: number, src: ArrayLike<any>, mask: any) {
  * @param mask
  */
 export function blit2d<T extends TypedArray>(
-    dest: T,
-    dpos: ArrayLike<number>,
-    dsize: ArrayLike<number>,
-    src: ArrayLike<number>,
-    ssize: ArrayLike<number>,
-    mask: number
+	dest: T,
+	dpos: ArrayLike<number>,
+	dsize: ArrayLike<number>,
+	src: ArrayLike<number>,
+	ssize: ArrayLike<number>,
+	mask: number
 ): T;
 export function blit2d<T>(
-    dest: T[],
-    dpos: ArrayLike<number>,
-    dsize: ArrayLike<number>,
-    src: ArrayLike<T>,
-    ssize: ArrayLike<number>,
-    mask: T
+	dest: T[],
+	dpos: ArrayLike<number>,
+	dsize: ArrayLike<number>,
+	src: ArrayLike<T>,
+	ssize: ArrayLike<number>,
+	mask: T
 ): T[];
 export function blit2d(
-    dest: any[],
-    dpos: ArrayLike<number>,
-    dsize: ArrayLike<number>,
-    src: ArrayLike<any>,
-    ssize: ArrayLike<number>,
-    mask: any
+	dest: any[],
+	dpos: ArrayLike<number>,
+	dsize: ArrayLike<number>,
+	src: ArrayLike<any>,
+	ssize: ArrayLike<number>,
+	mask: any
 ) {
-    const [sx, sw, dx, dw] = __clip(0, ssize[0], dpos[0], dsize[0]);
-    const [sy, sh, dy, dh] = __clip(0, ssize[1], dpos[1], dsize[1]);
-    if (sw < 1 || sh < 1 || dx >= dw || dy >= dh) return dest;
-    const sstride = ssize[0];
-    const dstride = dsize[0];
-    for (let y = 0; y < sh; y++) {
-        for (
-            let x = 0,
-                soff = (sy + y) * sstride + sx,
-                doff = (dy + y) * dstride + dx;
-            x < sw;
-            x++
-        ) {
-            const val = src[soff + x];
-            val !== mask && (dest[doff + x] = val);
-        }
-    }
-    return dest;
+	const [sx, sw, dx, dw] = __clip(0, ssize[0], dpos[0], dsize[0]);
+	const [sy, sh, dy, dh] = __clip(0, ssize[1], dpos[1], dsize[1]);
+	if (sw < 1 || sh < 1 || dx >= dw || dy >= dh) return dest;
+	const sstride = ssize[0];
+	const dstride = dsize[0];
+	for (let y = 0; y < sh; y++) {
+		for (
+			let x = 0,
+				soff = (sy + y) * sstride + sx,
+				doff = (dy + y) * dstride + dx;
+			x < sw;
+			x++
+		) {
+			const val = src[soff + x];
+			val !== mask && (dest[doff + x] = val);
+		}
+	}
+	return dest;
 }
 
 const __clip = (sx: number, sw: number, dx: number, dw: number) => {
-    if (dx < 0) {
-        sx -= dx;
-        sw += dx;
-        dx = 0;
-    } else if (dx + sw > dw) {
-        sw = dw - dx;
-    }
-    return [sx, sw, dx, dw];
+	if (dx < 0) {
+		sx -= dx;
+		sw += dx;
+		dx = 0;
+	} else if (dx + sw > dw) {
+		sw = dw - dx;
+	}
+	return [sx, sw, dx, dw];
 };

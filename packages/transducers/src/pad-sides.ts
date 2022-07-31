@@ -30,15 +30,15 @@ import { repeat } from "./repeat.js";
  * @param numRight -
  */
 export const padSides = <T>(
-    src: Iterable<T>,
-    x: T,
-    numLeft = 1,
-    numRight = numLeft
+	src: Iterable<T>,
+	x: T,
+	numLeft = 1,
+	numRight = numLeft
 ): IterableIterator<T> =>
-    numLeft > 0
-        ? numRight > 0
-            ? concat(repeat(x, numLeft), src, repeat(x, numRight))
-            : concat(repeat(x, numLeft), src)
-        : numRight > 0
-        ? concat(src, repeat(x, numRight))
-        : concat(src);
+	numLeft > 0
+		? numRight > 0
+			? concat(repeat(x, numLeft), src, repeat(x, numRight))
+			: concat(repeat(x, numLeft), src)
+		: numRight > 0
+		? concat(src, repeat(x, numRight))
+		: concat(src);

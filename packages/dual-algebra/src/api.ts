@@ -1,12 +1,12 @@
 import type {
-    Fn,
-    Fn2,
-    FnU2,
-    FnU3,
-    FnU4,
-    FnU5,
-    FnU6,
-    NumericArray,
+	Fn,
+	Fn2,
+	FnU2,
+	FnU3,
+	FnU4,
+	FnU5,
+	FnU6,
+	NumericArray,
 } from "@thi.ng/api";
 
 export type Dual = NumericArray;

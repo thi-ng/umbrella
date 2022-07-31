@@ -5,7 +5,7 @@ import type { Fn0, Fn2, Timestamp } from "./api.js";
  * @remarks
  * Copied from thi.ng/checks to avoid circular deps
  *
- * @param x - 
+ * @param x -
  *
  * @internal
  */
@@ -22,13 +22,13 @@ export const isString = (x: any): x is string => typeof x === "string";
  * @internal
  */
 export const now: Fn0<Timestamp> =
-    typeof BigInt !== "undefined"
-        ? typeof process !== "undefined" &&
-          typeof process.hrtime !== "undefined" &&
-          typeof process.hrtime.bigint === "function"
-            ? () => process.hrtime.bigint()
-            : () => BigInt(Date.now() * 1e6)
-        : () => Date.now() * 1e6;
+	typeof BigInt !== "undefined"
+		? typeof process !== "undefined" &&
+		  typeof process.hrtime !== "undefined" &&
+		  typeof process.hrtime.bigint === "function"
+			? () => process.hrtime.bigint()
+			: () => BigInt(Date.now() * 1e6)
+		: () => Date.now() * 1e6;
 
 /**
  * Returns the (rounded) difference in milliseconds between two given
@@ -37,14 +37,14 @@ export const now: Fn0<Timestamp> =
  * @remarks
  * Based on / copied from thi.ng/bench to avoid circular deps
  *
- * @param a - 
- * @param b - 
+ * @param a -
+ * @param b -
  *
  * @internal
  */
 export const timeDiff: Fn2<Timestamp, Timestamp, number> = (a, b) =>
-    Math.round(
-        (typeof BigInt !== "undefined"
-            ? Number(<bigint>b - <bigint>a)
-            : <number>b - <number>a) * 1e-6
-    );
+	Math.round(
+		(typeof BigInt !== "undefined"
+			? Number(<bigint>b - <bigint>a)
+			: <number>b - <number>a) * 1e-6
+	);

@@ -23,7 +23,7 @@ export const mulV: MultiMatOpMV = vop(1);
  * @param v -
  */
 export const mulV22: MatOpMV = mulV.add(4, (out, m, v) =>
-    setC2(out || v, dotS2(m, v, 0, 0, 2), dotS2(m, v, 1, 0, 2))
+	setC2(out || v, dotS2(m, v, 0, 0, 2), dotS2(m, v, 1, 0, 2))
 );
 
 /**
@@ -35,7 +35,7 @@ export const mulV22: MatOpMV = mulV.add(4, (out, m, v) =>
  * @param v -
  */
 export const mulV23: MatOpMV = mulV.add(6, (out, m, v) =>
-    setC2(out || v, dotS2(m, v, 0, 0, 2) + m[4], dotS2(m, v, 1, 0, 2) + m[5])
+	setC2(out || v, dotS2(m, v, 0, 0, 2) + m[4], dotS2(m, v, 1, 0, 2) + m[5])
 );
 
 /**
@@ -47,12 +47,12 @@ export const mulV23: MatOpMV = mulV.add(6, (out, m, v) =>
  * @param v -
  */
 export const mulV33: MatOpMV = mulV.add(9, (out, m, v) =>
-    setC3(
-        out || v,
-        dotS3(m, v, 0, 0, 3),
-        dotS3(m, v, 1, 0, 3),
-        dotS3(m, v, 2, 0, 3)
-    )
+	setC3(
+		out || v,
+		dotS3(m, v, 0, 0, 3),
+		dotS3(m, v, 1, 0, 3),
+		dotS3(m, v, 2, 0, 3)
+	)
 );
 
 /**
@@ -64,13 +64,13 @@ export const mulV33: MatOpMV = mulV.add(9, (out, m, v) =>
  * @param v -
  */
 export const mulV44: MatOpMV = mulV.add(16, (out, m, v) =>
-    setC4(
-        out || v,
-        dotS4(m, v, 0, 0, 4),
-        dotS4(m, v, 1, 0, 4),
-        dotS4(m, v, 2, 0, 4),
-        dotS4(m, v, 3, 0, 4)
-    )
+	setC4(
+		out || v,
+		dotS4(m, v, 0, 0, 4),
+		dotS4(m, v, 1, 0, 4),
+		dotS4(m, v, 2, 0, 4),
+		dotS4(m, v, 3, 0, 4)
+	)
 );
 
 /**
@@ -85,15 +85,15 @@ export const mulV44: MatOpMV = mulV.add(16, (out, m, v) =>
  * @param v -
  */
 export const mulV344 = (out: Vec | null, m: ReadonlyMat, v: ReadonlyVec) => {
-    const w = dotS3(m, v, 3, 0, 4) + m[15];
-    return w !== 0
-        ? setC3(
-              out || v,
-              (dotS3(m, v, 0, 0, 4) + m[12]) / w,
-              (dotS3(m, v, 1, 0, 4) + m[13]) / w,
-              (dotS3(m, v, 2, 0, 4) + m[14]) / w
-          )
-        : undefined;
+	const w = dotS3(m, v, 3, 0, 4) + m[15];
+	return w !== 0
+		? setC3(
+				out || v,
+				(dotS3(m, v, 0, 0, 4) + m[12]) / w,
+				(dotS3(m, v, 1, 0, 4) + m[13]) / w,
+				(dotS3(m, v, 2, 0, 4) + m[14]) / w
+		  )
+		: undefined;
 };
 
 /**
@@ -105,16 +105,16 @@ export const mulV344 = (out: Vec | null, m: ReadonlyMat, v: ReadonlyVec) => {
  * @param v -
  */
 export const mulVQ: VecOpVV = (out, q, v) => {
-    const { 0: px, 1: py, 2: pz } = v;
-    const { 0: qx, 1: qy, 2: qz, 3: qw } = q;
-    const ix = qw * px + qy * pz - qz * py;
-    const iy = qw * py + qz * px - qx * pz;
-    const iz = qw * pz + qx * py - qy * px;
-    const iw = -qx * px - qy * py - qz * pz;
-    return setC3(
-        out || v,
-        ix * qw + iw * -qx + iy * -qz - iz * -qy,
-        iy * qw + iw * -qy + iz * -qx - ix * -qz,
-        iz * qw + iw * -qz + ix * -qy - iy * -qx
-    );
+	const { 0: px, 1: py, 2: pz } = v;
+	const { 0: qx, 1: qy, 2: qz, 3: qw } = q;
+	const ix = qw * px + qy * pz - qz * py;
+	const iy = qw * py + qz * px - qx * pz;
+	const iz = qw * pz + qx * py - qy * px;
+	const iw = -qx * px - qy * py - qz * pz;
+	return setC3(
+		out || v,
+		ix * qw + iw * -qx + iy * -qz - iz * -qy,
+		iy * qw + iw * -qy + iz * -qx - ix * -qz,
+		iz * qw + iw * -qz + ix * -qy - iy * -qx
+	);
 };

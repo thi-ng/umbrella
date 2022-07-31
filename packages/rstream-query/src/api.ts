@@ -20,29 +20,29 @@ export type QuerySolution = ISubscription<any, Solutions>;
 export type BindFn = Fn<Solution, any>;
 
 export interface Edit {
-    index: Set<number>;
-    key: any;
+	index: Set<number>;
+	key: any;
 }
 
 export interface QuerySpec {
-    q: SubQuerySpec[];
-    select?: string[];
-    order?: string;
-    bind?: IObjectOf<BindFn>;
-    limit?: number;
+	q: SubQuerySpec[];
+	select?: string[];
+	order?: string;
+	bind?: IObjectOf<BindFn>;
+	limit?: number;
 }
 
 export type SubQuerySpec = WhereQuerySpec | PathQuerySpec;
 
 export interface WhereQuerySpec {
-    where: Pattern[];
+	where: Pattern[];
 }
 
 export interface PathQuerySpec {
-    path: PathPattern;
+	path: PathPattern;
 }
 
 export interface JoinOpts {
-    limit: number;
-    select: string[];
+	limit: number;
+	select: string[];
 }

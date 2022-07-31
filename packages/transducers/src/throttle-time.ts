@@ -19,17 +19,17 @@ import { throttle } from "./throttle.js";
  */
 export function throttleTime<T>(delay: number): Transducer<T, T>;
 export function throttleTime<T>(
-    delay: number,
-    src: Iterable<T>
+	delay: number,
+	src: Iterable<T>
 ): IterableIterator<T>;
 export function throttleTime<T>(delay: number, src?: Iterable<T>): any {
-    return isIterable(src)
-        ? iterator1(throttleTime(delay), src)
-        : throttle<T>(() => {
-              let last = 0;
-              return () => {
-                  const t = Date.now();
-                  return t - last >= delay ? ((last = t), true) : false;
-              };
-          });
+	return isIterable(src)
+		? iterator1(throttleTime(delay), src)
+		: throttle<T>(() => {
+				let last = 0;
+				return () => {
+					const t = Date.now();
+					return t - last >= delay ? ((last = t), true) : false;
+				};
+		  });
 }

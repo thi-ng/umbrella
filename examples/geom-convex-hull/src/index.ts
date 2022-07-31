@@ -36,25 +36,25 @@ const COL3 = (a: number) => `rgba(102,102,102,${a})`;
 
 // render shapes with thi.ng/hdom & thi.ng/hdom-canvas
 renderOnce([
-    canvas,
-    { width, height },
-    points(pts1, { shape: "circle", fill: COL1(1), size: 5 }),
-    points(pts2, { shape: "circle", fill: COL2(1), size: 5 }),
-    withAttribs(hull1, { fill: COL1(0.5) }),
-    withAttribs(hull2, { fill: COL2(0.5) }),
-    withAttribs(clip, {
-        fill: COL3(0.5),
-        stroke: COL3(1),
-        weight: 3,
-    }),
-    ...(<[IShape, string][]>[
-        [hull1, COL1(1)],
-        [hull2, COL2(1)],
-        [clip, COL3(1)],
-    ]).map(([shape, col]) => [
-        "text",
-        { fill: col },
-        centroid(shape),
-        area(shape).toFixed(2),
-    ]),
+	canvas,
+	{ width, height },
+	points(pts1, { shape: "circle", fill: COL1(1), size: 5 }),
+	points(pts2, { shape: "circle", fill: COL2(1), size: 5 }),
+	withAttribs(hull1, { fill: COL1(0.5) }),
+	withAttribs(hull2, { fill: COL2(0.5) }),
+	withAttribs(clip, {
+		fill: COL3(0.5),
+		stroke: COL3(1),
+		weight: 3,
+	}),
+	...(<[IShape, string][]>[
+		[hull1, COL1(1)],
+		[hull2, COL2(1)],
+		[clip, COL3(1)],
+	]).map(([shape, col]) => [
+		"text",
+		{ fill: col },
+		centroid(shape),
+		area(shape).toFixed(2),
+	]),
 ]);

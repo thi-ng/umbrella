@@ -18,44 +18,44 @@ import { isReduced } from "./reduced.js";
  * @param stateful -
  */
 export function partitionWhen<T>(
-    pred: Predicate<T> | (() => Predicate<T>),
-    stateful?: boolean
+	pred: Predicate<T> | (() => Predicate<T>),
+	stateful?: boolean
 ): Transducer<T, T[]>;
 export function partitionWhen<T>(
-    pred: Predicate<T> | (() => Predicate<T>),
-    src: Iterable<T>
+	pred: Predicate<T> | (() => Predicate<T>),
+	src: Iterable<T>
 ): IterableIterator<T[]>;
 export function partitionWhen<T>(
-    pred: Predicate<T> | (() => Predicate<T>),
-    stateful: boolean,
-    src: Iterable<T>
+	pred: Predicate<T> | (() => Predicate<T>),
+	stateful: boolean,
+	src: Iterable<T>
 ): IterableIterator<T[]>;
 export function partitionWhen<T>(...args: any[]): any {
-    return (
-        __iter(partitionWhen, args, iterator) ||
-        (([init, complete, reduce]: Reducer<any, T[]>) => {
-            const pred: Predicate<T> | (() => Predicate<T>) = args[0];
-            const f = args[1] === true ? (<() => Predicate<T>>pred)() : pred;
-            let chunk: T[] | null;
-            return <Reducer<any, T>>[
-                init,
-                (acc) => {
-                    if (chunk && chunk.length) {
-                        acc = reduce(acc, chunk);
-                        chunk = null;
-                    }
-                    return complete(acc);
-                },
-                (acc, x) => {
-                    if (f(x)) {
-                        chunk && (acc = reduce(acc, chunk));
-                        chunk = isReduced(acc) ? null : [x];
-                    } else {
-                        chunk ? chunk.push(x) : (chunk = [x]);
-                    }
-                    return acc;
-                },
-            ];
-        })
-    );
+	return (
+		__iter(partitionWhen, args, iterator) ||
+		(([init, complete, reduce]: Reducer<any, T[]>) => {
+			const pred: Predicate<T> | (() => Predicate<T>) = args[0];
+			const f = args[1] === true ? (<() => Predicate<T>>pred)() : pred;
+			let chunk: T[] | null;
+			return <Reducer<any, T>>[
+				init,
+				(acc) => {
+					if (chunk && chunk.length) {
+						acc = reduce(acc, chunk);
+						chunk = null;
+					}
+					return complete(acc);
+				},
+				(acc, x) => {
+					if (f(x)) {
+						chunk && (acc = reduce(acc, chunk));
+						chunk = isReduced(acc) ? null : [x];
+					} else {
+						chunk ? chunk.push(x) : (chunk = [x]);
+					}
+					return acc;
+				},
+			];
+		})
+	);
 }

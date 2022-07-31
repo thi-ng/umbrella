@@ -73,26 +73,26 @@ serialize swap write-file
 
 // initialize environment and pre-compile library source
 const env = ffi(
-    // predefined variables
-    {
-        "svg.line": svg.line,
-        "svg.circle": svg.circle,
-        "svg.svg": svg.svg,
-        shapes: [],
-    },
-    // foreign function interface (FFI)
-    // custom words usable by the DSL
-    {
-        // ( svgdom -- svgstring )
-        serialize: maptos(serialize),
-        // ( body filename -- )
-        "write-file": (ctx) => {
-            const stack = ctx[0];
-            ensureStack(stack, 2);
-            writeFileSync(stack.pop(), stack.pop());
-            return ctx;
-        },
-    }
+	// predefined variables
+	{
+		"svg.line": svg.line,
+		"svg.circle": svg.circle,
+		"svg.svg": svg.svg,
+		shapes: [],
+	},
+	// foreign function interface (FFI)
+	// custom words usable by the DSL
+	{
+		// ( svgdom -- svgstring )
+		serialize: maptos(serialize),
+		// ( body filename -- )
+		"write-file": (ctx) => {
+			const stack = ctx[0];
+			ensureStack(stack, 2);
+			writeFileSync(stack.pop(), stack.pop());
+			return ctx;
+		},
+	}
 );
 // compile lib (resulting words are stored in env)
 run(libsrc, env);

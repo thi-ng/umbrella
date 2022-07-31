@@ -19,24 +19,24 @@ import type { AnyArray } from "./api.js";
  * @param rnd - PRNG
  */
 export const shuffleRange = <T extends AnyArray>(
-    buf: T,
-    start = 0,
-    end = buf.length,
-    rnd: IRandom = SYSTEM
+	buf: T,
+	start = 0,
+	end = buf.length,
+	rnd: IRandom = SYSTEM
 ) => {
-    assert(
-        start >= 0 && end >= start && end <= buf.length,
-        `illegal range ${start}..${end}`
-    );
-    if (end - start > 1) {
-        for (let i = end; i-- > start; ) {
-            const a = rnd.minmax(start, i + 1) | 0;
-            const t = buf[a];
-            buf[a] = buf[i];
-            buf[i] = t;
-        }
-    }
-    return buf;
+	assert(
+		start >= 0 && end >= start && end <= buf.length,
+		`illegal range ${start}..${end}`
+	);
+	if (end - start > 1) {
+		for (let i = end; i-- > start; ) {
+			const a = rnd.minmax(start, i + 1) | 0;
+			const t = buf[a];
+			buf[a] = buf[i];
+			buf[i] = t;
+		}
+	}
+	return buf;
 };
 
 /**
@@ -50,7 +50,7 @@ export const shuffleRange = <T extends AnyArray>(
  * @param rnd - PRNG
  */
 export const shuffle = <T extends any[] | TypedArray>(
-    buf: T,
-    n = buf.length,
-    rnd: IRandom = SYSTEM
+	buf: T,
+	n = buf.length,
+	rnd: IRandom = SYSTEM
 ) => shuffleRange(buf, 0, n, rnd);

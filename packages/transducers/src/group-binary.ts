@@ -4,9 +4,9 @@ import { groupByObj } from "./group-by-obj.js";
 import { push } from "./push.js";
 
 const branchPred =
-    <T>(key: Fn<T, number>, b: number, l: PropertyKey, r: PropertyKey) =>
-    (x: T) =>
-        key(x) & b ? r : l;
+	<T>(key: Fn<T, number>, b: number, l: PropertyKey, r: PropertyKey) =>
+	(x: T) =>
+		key(x) & b ? r : l;
 
 /**
  * Creates a bottom-up, unbalanced binary tree of desired depth and
@@ -83,23 +83,23 @@ const branchPred =
  * @param right - key for storing right branches (e.g. `1` for arrays)
  */
 export const groupBinary = <T>(
-    bits: number,
-    key: Fn<T, number>,
-    branch?: Fn0<IObjectOf<T[]>>,
-    leaf?: Reducer<any, T>,
-    left: PropertyKey = "l",
-    right: PropertyKey = "r"
+	bits: number,
+	key: Fn<T, number>,
+	branch?: Fn0<IObjectOf<T[]>>,
+	leaf?: Reducer<any, T>,
+	left: PropertyKey = "l",
+	right: PropertyKey = "r"
 ): Reducer<any, T> => {
-    const init = branch || (() => ({}));
-    let rfn: Reducer<any, T> = groupByObj({
-        key: branchPred(key, 1, left, right),
-        group: leaf || push(),
-    });
-    for (let i = 2, maxIndex = 1 << bits; i < maxIndex; i <<= 1) {
-        rfn = groupByObj({
-            key: branchPred(key, i, left, right),
-            group: [init, rfn[1], rfn[2]],
-        });
-    }
-    return [init, rfn[1], rfn[2]];
+	const init = branch || (() => ({}));
+	let rfn: Reducer<any, T> = groupByObj({
+		key: branchPred(key, 1, left, right),
+		group: leaf || push(),
+	});
+	for (let i = 2, maxIndex = 1 << bits; i < maxIndex; i <<= 1) {
+		rfn = groupByObj({
+			key: branchPred(key, i, left, right),
+			group: [init, rfn[1], rfn[2]],
+		});
+	}
+	return [init, rfn[1], rfn[2]];
 };

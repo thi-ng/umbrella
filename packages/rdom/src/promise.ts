@@ -20,32 +20,32 @@ import { Component } from "./component.js";
  * @param error -
  */
 export const $promise = (
-    prom: Promise<ComponentLike>,
-    error?: Fn<Error, any>
+	prom: Promise<ComponentLike>,
+	error?: Fn<Error, any>
 ) => new $Promise(prom, error);
 
 export class $Promise extends Component {
-    inner?: IComponent;
+	inner?: IComponent;
 
-    constructor(
-        protected promise: Promise<ComponentLike>,
-        protected error: Fn<Error, any> = (e) => e
-    ) {
-        super();
-    }
+	constructor(
+		protected promise: Promise<ComponentLike>,
+		protected error: Fn<Error, any> = (e) => e
+	) {
+		super();
+	}
 
-    async mount(parent: Element, index: NumOrElement) {
-        try {
-            this.inner = this.$compile(await this.promise);
-        } catch (e) {
-            this.inner = this.$compile(this.error(<Error>e));
-        }
-        return (this.el = await this.inner.mount(parent, index));
-    }
+	async mount(parent: Element, index: NumOrElement) {
+		try {
+			this.inner = this.$compile(await this.promise);
+		} catch (e) {
+			this.inner = this.$compile(this.error(<Error>e));
+		}
+		return (this.el = await this.inner.mount(parent, index));
+	}
 
-    async unmount() {
-        await this.inner!.unmount();
-        this.inner = undefined;
-        this.el = undefined;
-    }
+	async unmount() {
+		await this.inner!.unmount();
+		this.inner = undefined;
+		this.el = undefined;
+	}
 }

@@ -10,22 +10,22 @@ import type { FloatBuffer } from "./float.js";
  * becomes less than `minSize` (default: 1). If `includeOrig` is enabled
  * (default), the first emitted image will be the original `src`.
  *
- * @param src - 
- * @param kernel - 
- * @param minSize - 
- * @param includeOrig - 
+ * @param src -
+ * @param kernel -
+ * @param minSize -
+ * @param includeOrig -
  */
 export function* imagePyramid(
-    src: FloatBuffer,
-    kernel: KernelSpec = LANCZOS(2),
-    minSize = 1,
-    includeOrig = true
+	src: FloatBuffer,
+	kernel: KernelSpec = LANCZOS(2),
+	minSize = 1,
+	includeOrig = true
 ) {
-    assert(minSize > 0, `invalid min size`);
-    minSize <<= 1;
-    if (includeOrig) yield src;
-    while (src.width >= minSize && src.height >= minSize) {
-        src = convolveImage(src, { kernel, stride: 2 });
-        yield src;
-    }
+	assert(minSize > 0, `invalid min size`);
+	minSize <<= 1;
+	if (includeOrig) yield src;
+	while (src.width >= minSize && src.height >= minSize) {
+		src = convolveImage(src, { kernel, stride: 2 });
+		yield src;
+	}
 }

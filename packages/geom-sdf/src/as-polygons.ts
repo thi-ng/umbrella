@@ -36,24 +36,24 @@ import { sample2d } from "./sample.js";
  * @param eps
  */
 export const asPolygons = (
-    sdf: NumericArray | SDFn,
-    bounds: AABBLike,
-    res: ReadonlyVec,
-    distances: Iterable<number> = [0],
-    eps = 1e-6
+	sdf: NumericArray | SDFn,
+	bounds: AABBLike,
+	res: ReadonlyVec,
+	distances: Iterable<number> = [0],
+	eps = 1e-6
 ) => {
-    const $sdf = isFunction(sdf) ? sample2d(sdf, bounds, res) : sdf;
-    const { pos, size } = bounds;
-    const [resX, resY] = res;
-    setBorder($sdf, resX, resY, 1e6);
-    const scale = div2([], size, [resX - 1, resY - 1]);
-    return transduce(
-        comp(
-            mapcat((iso) => isolines($sdf, resX, resY, iso, scale)),
-            map((pts) => pts.map((p) => add2(null, p, pos))),
-            map((pts) => polygon(eps >= 0 ? simplify(pts, eps, true) : pts))
-        ),
-        push<Polygon>(),
-        distances
-    );
+	const $sdf = isFunction(sdf) ? sample2d(sdf, bounds, res) : sdf;
+	const { pos, size } = bounds;
+	const [resX, resY] = res;
+	setBorder($sdf, resX, resY, 1e6);
+	const scale = div2([], size, [resX - 1, resY - 1]);
+	return transduce(
+		comp(
+			mapcat((iso) => isolines($sdf, resX, resY, iso, scale)),
+			map((pts) => pts.map((p) => add2(null, p, pos))),
+			map((pts) => polygon(eps >= 0 ? simplify(pts, eps, true) : pts))
+		),
+		push<Polygon>(),
+		distances
+	);
 };

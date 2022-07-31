@@ -42,41 +42,41 @@ import { isReduced } from "./reduced.js";
  * // output done
  * ```
  *
- * @param re - 
+ * @param re -
  */
 export function rechunk(re?: RegExp): Transducer<string, string>;
 export function rechunk(xs: Iterable<string>): IterableIterator<string>;
 export function rechunk(
-    re: RegExp,
-    xs: Iterable<string>
+	re: RegExp,
+	xs: Iterable<string>
 ): IterableIterator<string>;
 export function rechunk(...args: any[]) {
-    const iter = __iter(rechunk, args, iterator);
-    if (iter) return iter;
-    return ([init, complete, reduce]: Reducer<any, string>) => {
-        let buf = "";
-        const re = args[0] || /\r?\n/;
-        return [
-            init,
-            (acc: any) => {
-                if (buf) acc = reduce(acc, buf);
-                return complete(acc);
-            },
-            (acc: any, chunk: string) => {
-                buf += chunk;
-                const res = buf.split(re);
-                if (res.length > 1) {
-                    buf = res.pop()!;
-                    for (let l of res) {
-                        acc = reduce(acc, l);
-                        if (isReduced(acc)) {
-                            buf = "";
-                            break;
-                        }
-                    }
-                }
-                return acc;
-            },
-        ];
-    };
+	const iter = __iter(rechunk, args, iterator);
+	if (iter) return iter;
+	return ([init, complete, reduce]: Reducer<any, string>) => {
+		let buf = "";
+		const re = args[0] || /\r?\n/;
+		return [
+			init,
+			(acc: any) => {
+				if (buf) acc = reduce(acc, buf);
+				return complete(acc);
+			},
+			(acc: any, chunk: string) => {
+				buf += chunk;
+				const res = buf.split(re);
+				if (res.length > 1) {
+					buf = res.pop()!;
+					for (let l of res) {
+						acc = reduce(acc, l);
+						if (isReduced(acc)) {
+							buf = "";
+							break;
+						}
+					}
+				}
+				return acc;
+			},
+		];
+	};
 }

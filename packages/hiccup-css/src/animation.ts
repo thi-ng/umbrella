@@ -1,20 +1,20 @@
 import { at_keyframes } from "./keyframes.js";
 
 export interface AnimationOpts {
-    delay: string;
-    direction:
-        | "unset"
-        | "inherit"
-        | "initial"
-        | "normal"
-        | "reverse"
-        | "alternate"
-        | "alternate-reverse";
-    duration: string;
-    "fill-mode": "none" | "forwards" | "backwards" | "both";
-    "iteration-count": number;
-    "play-state": "unset" | "inherit" | "initial" | "paused" | "running";
-    "timing-function": string;
+	delay: string;
+	direction:
+		| "unset"
+		| "inherit"
+		| "initial"
+		| "normal"
+		| "reverse"
+		| "alternate"
+		| "alternate-reverse";
+	duration: string;
+	"fill-mode": "none" | "forwards" | "backwards" | "both";
+	"iteration-count": number;
+	"play-state": "unset" | "inherit" | "initial" | "paused" | "running";
+	"timing-function": string;
 }
 
 /**
@@ -56,25 +56,25 @@ export interface AnimationOpts {
  * @param keyframes - keyframes
  */
 export const animation = (
-    id: string,
-    opts: Partial<AnimationOpts>,
-    ...keyframes: any
+	id: string,
+	opts: Partial<AnimationOpts>,
+	...keyframes: any
 ) => {
-    opts = <any>{
-        duration: "250ms",
-        name: id,
-        ...opts,
-    };
-    return [
-        at_keyframes.apply(null, <any>[id, ...keyframes]),
-        [
-            `.${id}`,
-            Object.keys(opts).reduce(
-                (acc: any, k) => (
-                    (acc[`animation-${k}`] = (<any>opts)[k]), acc
-                ),
-                {}
-            ),
-        ],
-    ];
+	opts = <any>{
+		duration: "250ms",
+		name: id,
+		...opts,
+	};
+	return [
+		at_keyframes.apply(null, <any>[id, ...keyframes]),
+		[
+			`.${id}`,
+			Object.keys(opts).reduce(
+				(acc: any, k) => (
+					(acc[`animation-${k}`] = (<any>opts)[k]), acc
+				),
+				{}
+			),
+		],
+	];
 };

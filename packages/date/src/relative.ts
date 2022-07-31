@@ -1,13 +1,13 @@
 import {
-    DAY,
-    HOUR,
-    MaybeDate,
-    MINUTE,
-    MONTH,
-    Period,
-    Precision,
-    SECOND,
-    YEAR,
+	DAY,
+	HOUR,
+	MaybeDate,
+	MINUTE,
+	MONTH,
+	Period,
+	Precision,
+	SECOND,
+	YEAR,
 } from "./api.js";
 import { ensureEpoch } from "./checks.js";
 import { DateTime, dateTime, ensureDateTime } from "./datetime.js";
@@ -53,71 +53,71 @@ import { __idToPrecision, __precisionToID } from "./internal/precision.js";
  * @param base -
  */
 export const parseRelative = (offset: string, base?: MaybeDate) => {
-    offset = offset.toLowerCase();
-    const epoch = dateTime(base);
-    switch (offset) {
-        case "today":
-            return epoch;
-        case "tomorrow":
-            epoch.incDay();
-            return epoch;
-        case "yesterday":
-            epoch.decDay();
-            return epoch;
-        default: {
-            let idx = findIndex(EN_SHORT.days, offset);
-            if (idx < 0) {
-                idx = findIndex(EN_LONG.days, offset);
-            }
-            if (idx >= 0) {
-                do {
-                    epoch.incDay();
-                } while (epoch.toDate().getDay() != idx);
-                return epoch;
-            }
-            const match =
-                /^(an? |next |[-+]?\d+\s?)((ms|milli(?:(s?|seconds?)))|s(?:(ecs?|econds?))?|min(?:(s|utes?))?|h(?:ours?)?|d(?:ays?)?|w(?:eeks?)?|mo(?:nths?)?|q(?:uarters?)?|y(?:ears?)?)(\s+ago)?$/.exec(
-                    offset
-                );
-            return match
-                ? relative(
-                      parseNum(match![1], !!match[7]),
-                      parsePeriod(match![2]),
-                      base
-                  )
-                : undefined;
-        }
-    }
+	offset = offset.toLowerCase();
+	const epoch = dateTime(base);
+	switch (offset) {
+		case "today":
+			return epoch;
+		case "tomorrow":
+			epoch.incDay();
+			return epoch;
+		case "yesterday":
+			epoch.decDay();
+			return epoch;
+		default: {
+			let idx = findIndex(EN_SHORT.days, offset);
+			if (idx < 0) {
+				idx = findIndex(EN_LONG.days, offset);
+			}
+			if (idx >= 0) {
+				do {
+					epoch.incDay();
+				} while (epoch.toDate().getDay() != idx);
+				return epoch;
+			}
+			const match =
+				/^(an? |next |[-+]?\d+\s?)((ms|milli(?:(s?|seconds?)))|s(?:(ecs?|econds?))?|min(?:(s|utes?))?|h(?:ours?)?|d(?:ays?)?|w(?:eeks?)?|mo(?:nths?)?|q(?:uarters?)?|y(?:ears?)?)(\s+ago)?$/.exec(
+					offset
+				);
+			return match
+				? relative(
+						parseNum(match![1], !!match[7]),
+						parsePeriod(match![2]),
+						base
+				  )
+				: undefined;
+		}
+	}
 };
 
 const findIndex = (items: string[], x: string) =>
-    items.findIndex((y) => y.toLowerCase() === x);
+	items.findIndex((y) => y.toLowerCase() === x);
 
 const parseNum = (x: string, past: boolean) =>
-    (x === "next " || x === "a " || x === "an " ? 1 : Number(x)) *
-    (past ? -1 : 1);
+	(x === "next " || x === "a " || x === "an " ? 1 : Number(x)) *
+	(past ? -1 : 1);
 
 const parsePeriod = (x: string) => {
-    x =
-        x !== "s" && x !== "ms" && x.endsWith("s")
-            ? x.substring(0, x.length - 1)
-            : x;
-    return <Period>{
-            ms: "t",
-            milli: "t",
-            millisecond: "t",
-            sec: "s",
-            second: "s",
-            min: "m",
-            minute: "m",
-            hour: "h",
-            day: "d",
-            week: "w",
-            mo: "M",
-            month: "M",
-            quarter: "q",
-            year: "y",
-        }[x] || <Period>x;
+	x =
+		x !== "s" && x !== "ms" && x.endsWith("s")
+			? x.substring(0, x.length - 1)
+			: x;
+	return <Period>{
+			ms: "t",
+			milli: "t",
+			millisecond: "t",
+			sec: "s",
+			second: "s",
+			min: "m",
+			minute: "m",
+			hour: "h",
+			day: "d",
+			week: "w",
+			mo: "M",
+			month: "M",
+			quarter: "q",
+			year: "y",
+		}[x] || <Period>x;
 };
 
 /**
@@ -130,9 +130,9 @@ const parsePeriod = (x: string) => {
  * @param base -
  */
 export const relative = (
-    num: number,
-    period: Period,
-    base: MaybeDate = dateTime()
+	num: number,
+	period: Period,
+	base: MaybeDate = dateTime()
 ) => dateTime(base).add(num, period);
 
 /**
@@ -143,7 +143,7 @@ export const relative = (
  * @param b -
  */
 export const difference = (a: MaybeDate, b: MaybeDate) =>
-    ensureEpoch(a) - ensureEpoch(b);
+	ensureEpoch(a) - ensureEpoch(b);
 
 /**
  * Computes and decomposes difference between given dates. Returns tuple of:
@@ -155,58 +155,58 @@ export const difference = (a: MaybeDate, b: MaybeDate) =>
  * @param b -
  */
 export const decomposeDifference = (
-    a: MaybeDate,
-    b: MaybeDate = new Date()
+	a: MaybeDate,
+	b: MaybeDate = new Date()
 ) => {
-    const dur = ensureEpoch(a) - ensureEpoch(b);
-    let abs = Math.abs(dur);
-    const milli = abs % SECOND;
-    abs -= milli;
-    const sec = abs % MINUTE;
-    abs -= sec;
-    const min = abs % HOUR;
-    abs -= min;
-    const hour = abs % DAY;
-    abs -= hour;
+	const dur = ensureEpoch(a) - ensureEpoch(b);
+	let abs = Math.abs(dur);
+	const milli = abs % SECOND;
+	abs -= milli;
+	const sec = abs % MINUTE;
+	abs -= sec;
+	const min = abs % HOUR;
+	abs -= min;
+	const hour = abs % DAY;
+	abs -= hour;
 
-    const parts = [
-        Math.sign(dur),
-        0, // year
-        0, // month
-        0, // day
-        hour / HOUR,
-        min / MINUTE,
-        sec / SECOND,
-        milli,
-    ];
+	const parts = [
+		Math.sign(dur),
+		0, // year
+		0, // month
+		0, // day
+		hour / HOUR,
+		min / MINUTE,
+		sec / SECOND,
+		milli,
+	];
 
-    if (!abs) return parts;
+	if (!abs) return parts;
 
-    const diff = (a: DateTime, b: DateTime): number => {
-        const months = (b.y - a.y) * 12 + (b.M - a.M);
-        const bstart = +a.add(months, "M");
-        let frac = +b - bstart;
-        frac /=
-            frac < 0
-                ? bstart - +a.add(months - 1, "M")
-                : +a.add(months + 1, "M") - bstart;
-        return -(months + frac) || 0;
-    };
+	const diff = (a: DateTime, b: DateTime): number => {
+		const months = (b.y - a.y) * 12 + (b.M - a.M);
+		const bstart = +a.add(months, "M");
+		let frac = +b - bstart;
+		frac /=
+			frac < 0
+				? bstart - +a.add(months - 1, "M")
+				: +a.add(months + 1, "M") - bstart;
+		return -(months + frac) || 0;
+	};
 
-    const aa = ensureDateTime(a, "d");
-    const bb = ensureDateTime(b, "d");
-    const months = Math.abs(aa.d < bb.d ? -diff(bb, aa) : diff(aa, bb)) | 0;
+	const aa = ensureDateTime(a, "d");
+	const bb = ensureDateTime(b, "d");
+	const months = Math.abs(aa.d < bb.d ? -diff(bb, aa) : diff(aa, bb)) | 0;
 
-    const days = (start: DateTime, end: DateTime) =>
-        Math.abs(
-            +start.withPrecision("d").add(months, "M") - +end.withPrecision("d")
-        ) / DAY;
+	const days = (start: DateTime, end: DateTime) =>
+		Math.abs(
+			+start.withPrecision("d").add(months, "M") - +end.withPrecision("d")
+		) / DAY;
 
-    parts[1] = (months / 12) | 0;
-    parts[2] = months % 12;
-    parts[3] = dur < 0 ? days(aa, bb) : days(bb, aa);
+	parts[1] = (months / 12) | 0;
+	parts[2] = months % 12;
+	parts[3] = dur < 0 ? days(aa, bb) : days(bb, aa);
 
-    return parts;
+	return parts;
 };
 
 /**
@@ -241,42 +241,42 @@ export const decomposeDifference = (
  * @param eps -
  */
 export const formatRelative = (
-    date: MaybeDate,
-    base: MaybeDate = new Date(),
-    prec = 0,
-    eps = 100
+	date: MaybeDate,
+	base: MaybeDate = new Date(),
+	prec = 0,
+	eps = 100
 ) => {
-    const delta = difference(date, base);
-    if (Math.abs(delta) < eps) return LOCALE.now;
+	const delta = difference(date, base);
+	if (Math.abs(delta) < eps) return LOCALE.now;
 
-    let abs = Math.abs(delta);
-    let unit: Precision;
-    if (abs < SECOND) {
-        unit = "t";
-    } else if (abs < MINUTE) {
-        abs /= SECOND;
-        unit = "s";
-    } else if (abs < HOUR) {
-        abs /= MINUTE;
-        unit = "m";
-    } else if (abs < DAY) {
-        abs /= HOUR;
-        unit = "h";
-    } else if (abs < MONTH) {
-        abs /= DAY;
-        unit = "d";
-    } else if (abs < YEAR) {
-        abs /= MONTH;
-        unit = "M";
-    } else {
-        abs /= YEAR;
-        unit = "y";
-    }
+	let abs = Math.abs(delta);
+	let unit: Precision;
+	if (abs < SECOND) {
+		unit = "t";
+	} else if (abs < MINUTE) {
+		abs /= SECOND;
+		unit = "s";
+	} else if (abs < HOUR) {
+		abs /= MINUTE;
+		unit = "m";
+	} else if (abs < DAY) {
+		abs /= HOUR;
+		unit = "h";
+	} else if (abs < MONTH) {
+		abs /= DAY;
+		unit = "d";
+	} else if (abs < YEAR) {
+		abs /= MONTH;
+		unit = "M";
+	} else {
+		abs /= YEAR;
+		unit = "y";
+	}
 
-    const exp = 10 ** -prec;
-    abs = Math.round(abs / exp) * exp;
+	const exp = 10 ** -prec;
+	abs = Math.round(abs / exp) * exp;
 
-    return tense(delta, `${abs.toFixed(prec)} ${units(abs, unit, true, true)}`);
+	return tense(delta, `${abs.toFixed(prec)} ${units(abs, unit, true, true)}`);
 };
 
 /**
@@ -310,37 +310,37 @@ export const formatRelative = (
  * @param eps -
  */
 export const formatRelativeParts = (
-    date: MaybeDate,
-    base: MaybeDate = Date.now(),
-    prec: Precision = "s",
-    eps = 1000
+	date: MaybeDate,
+	base: MaybeDate = Date.now(),
+	prec: Precision = "s",
+	eps = 1000
 ) => {
-    date = ensureEpoch(date);
-    base = ensureEpoch(base);
-    if (Math.abs(date - base) < eps) return LOCALE.now;
-    const [sign, ...parts] = decomposeDifference(date, base);
-    const precID = __precisionToID(prec);
-    let maxID = precID;
-    while (!parts[maxID] && maxID > 0) maxID--;
-    let minID = parts.findIndex((x) => x > 0);
-    minID < 0 && (minID = maxID);
-    maxID = Math.min(Math.max(maxID, minID), precID);
-    if (minID <= precID && precID < 6) {
-        parts[maxID] = Math.round(
-            parts[maxID] + parts[maxID + 1] / [12, 31, 24, 60, 60, 1000][maxID]
-        );
-    }
-    const res = parts
-        .slice(0, maxID + 1)
-        .map((x, i) => {
-            let unit = LOCALE.units[__idToPrecision(i)];
-            return x > 0
-                ? units(x, unit, true)
-                : i === maxID && maxID < 6
-                ? unitsLessThan(1, unit, true)
-                : "";
-        })
-        .filter((x) => !!x)
-        .join(", ");
-    return tense(sign, res);
+	date = ensureEpoch(date);
+	base = ensureEpoch(base);
+	if (Math.abs(date - base) < eps) return LOCALE.now;
+	const [sign, ...parts] = decomposeDifference(date, base);
+	const precID = __precisionToID(prec);
+	let maxID = precID;
+	while (!parts[maxID] && maxID > 0) maxID--;
+	let minID = parts.findIndex((x) => x > 0);
+	minID < 0 && (minID = maxID);
+	maxID = Math.min(Math.max(maxID, minID), precID);
+	if (minID <= precID && precID < 6) {
+		parts[maxID] = Math.round(
+			parts[maxID] + parts[maxID + 1] / [12, 31, 24, 60, 60, 1000][maxID]
+		);
+	}
+	const res = parts
+		.slice(0, maxID + 1)
+		.map((x, i) => {
+			let unit = LOCALE.units[__idToPrecision(i)];
+			return x > 0
+				? units(x, unit, true)
+				: i === maxID && maxID < 6
+				? unitsLessThan(1, unit, true)
+				: "";
+		})
+		.filter((x) => !!x)
+		.join(", ");
+	return tense(sign, res);
 };

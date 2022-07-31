@@ -22,38 +22,38 @@ export const itemType = (type: Type) => <Type>type.replace("[]", "");
  * @param x -
  */
 export const numberWithMatchingType = (t: Term<Prim | Int>, x: number) => {
-    const id = t.type[0];
-    return id === "i"
-        ? int(x)
-        : id === "u"
-        ? uint(x)
-        : id === "b"
-        ? bool(x)
-        : float(x);
+	const id = t.type[0];
+	return id === "i"
+		? int(x)
+		: id === "u"
+		? uint(x)
+		: id === "b"
+		? bool(x)
+		: float(x);
 };
 
 export const matchingPrimFor = <T extends Prim>(
-    t: Term<T>,
-    x: FloatTerm
+	t: Term<T>,
+	x: FloatTerm
 ): Term<T> => {
-    const ctor = (<any>{ vec2, vec3, vec4 })[t.type];
-    return ctor ? ctor(x) : x;
+	const ctor = (<any>{ vec2, vec3, vec4 })[t.type];
+	return ctor ? ctor(x) : x;
 };
 
 export const matchingBoolType = <T extends Prim | Int | IVec | UVec>(
-    t: Term<T>
+	t: Term<T>
 ) =>
-    (<IObjectOf<Type>>{
-        float: "bool",
-        int: "bool",
-        uint: "bool",
-        vec2: "bvec2",
-        ivec2: "bvec2",
-        uvec2: "bvec2",
-        vec3: "bvec3",
-        ivec3: "bvec3",
-        uvec3: "bvec3",
-        vec4: "bvec4",
-        ivec4: "bvec4",
-        uvec4: "bvec4",
-    })[t.type];
+	(<IObjectOf<Type>>{
+		float: "bool",
+		int: "bool",
+		uint: "bool",
+		vec2: "bvec2",
+		ivec2: "bvec2",
+		uvec2: "bvec2",
+		vec3: "bvec3",
+		ivec3: "bvec3",
+		uvec3: "bvec3",
+		vec4: "bvec4",
+		ivec4: "bvec4",
+		uvec4: "bvec4",
+	})[t.type];

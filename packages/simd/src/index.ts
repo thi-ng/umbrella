@@ -27,28 +27,28 @@ export * from "./api.js";
  * @param memory -
  */
 export const init = (memory: WebAssembly.Memory): SIMD | undefined => {
-    const buf = memory.buffer;
-    return <SIMD>{
-        ...new WebAssembly.Instance(
-            new WebAssembly.Module(base64Decode(BINARY)),
-            {
-                env: {
-                    memory,
-                    abort(_: any, file: any, line: number, column: number) {
-                        console.error(
-                            `abort called in ${file}: ${line}:${column}`
-                        );
-                    },
-                },
-            }
-        ).exports,
-        f32: new Float32Array(buf),
-        f64: new Float64Array(buf),
-        u32: new Uint32Array(buf),
-        i32: new Int32Array(buf),
-        u16: new Uint16Array(buf),
-        i16: new Int16Array(buf),
-        u8: new Uint8Array(buf),
-        i8: new Int8Array(buf),
-    };
+	const buf = memory.buffer;
+	return <SIMD>{
+		...new WebAssembly.Instance(
+			new WebAssembly.Module(base64Decode(BINARY)),
+			{
+				env: {
+					memory,
+					abort(_: any, file: any, line: number, column: number) {
+						console.error(
+							`abort called in ${file}: ${line}:${column}`
+						);
+					},
+				},
+			}
+		).exports,
+		f32: new Float32Array(buf),
+		f64: new Float64Array(buf),
+		u32: new Uint32Array(buf),
+		i32: new Int32Array(buf),
+		u16: new Uint16Array(buf),
+		i16: new Int16Array(buf),
+		u8: new Uint8Array(buf),
+		i8: new Int8Array(buf),
+	};
 };

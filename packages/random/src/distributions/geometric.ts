@@ -11,13 +11,13 @@ import { SYSTEM } from "../system.js";
  *
  * Reference: https://en.wikipedia.org/wiki/Geometric_distribution
  *
- * @param rnd - 
+ * @param rnd -
  * @param p - probability (0,1]
  */
 export const geometric = (rnd: IRandom = SYSTEM, p = 0.5) =>
-    p <= 0
-        ? () => Infinity
-        : p >= 1
-        ? () => 1
-        : ((p = Math.log(1 - p)),
-          () => Math.floor(Math.log(1 - rnd.float(1)) / p) + 1);
+	p <= 0
+		? () => Infinity
+		: p >= 1
+		? () => 1
+		: ((p = Math.log(1 - p)),
+		  () => Math.floor(Math.log(1 - rnd.float(1)) / p) + 1);

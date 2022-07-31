@@ -33,12 +33,12 @@ import { multiSwap } from "./swap.js";
  * @param cmp -
  */
 export const sortByCachedKey = <T, K>(
-    src: T[],
-    key: K[] | Fn<T, K>,
-    cmp: Comparator<K> = compare
+	src: T[],
+	key: K[] | Fn<T, K>,
+	cmp: Comparator<K> = compare
 ) => {
-    const keys = isFunction(key) ? src.map(key) : key;
-    assert(keys.length === src.length, `keys.length != src.length`);
-    quickSort(keys, cmp, multiSwap(src));
-    return src;
+	const keys = isFunction(key) ? src.map(key) : key;
+	assert(keys.length === src.length, `keys.length != src.length`);
+	quickSort(keys, cmp, multiSwap(src));
+	return src;
 };

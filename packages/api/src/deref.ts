@@ -4,10 +4,10 @@ import type { IObjectOf } from "./object.js";
  * Generic interface for reference types (value wrappers).
  */
 export interface IDeref<T> {
-    /**
-     * Returns wrapped value.
-     */
-    deref(): T;
+	/**
+	 * Returns wrapped value.
+	 */
+	deref(): T;
 }
 
 export type MaybeDeref<T> = IDeref<T> | T;
@@ -37,19 +37,19 @@ export type Derefed<T> = T extends IDeref<any> ? ReturnType<T["deref"]> : T;
  * ```
  */
 export type DerefedKeys<
-    T extends IObjectOf<any>,
-    K extends keyof T = keyof T
+	T extends IObjectOf<any>,
+	K extends keyof T = keyof T
 > = {
-    [P in K]: Derefed<T[P]>;
+	[P in K]: Derefed<T[P]>;
 };
 
 /**
  * Returns true iff `x` implements {@link IDeref}.
  *
- * @param x - 
+ * @param x -
  */
 export const isDeref = (x: any): x is IDeref<any> =>
-    x != null && typeof x["deref"] === "function";
+	x != null && typeof x["deref"] === "function";
 
 /**
  * If `x` implements {@link IDeref}, returns its wrapped value, else

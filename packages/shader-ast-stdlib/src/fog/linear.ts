@@ -12,8 +12,8 @@ import { fitNorm1 } from "../math/fit.js";
  *
  */
 export const fogLinear = defn(
-    "float",
-    "fogLinear",
-    ["float", "float", "float"],
-    (dist, start, end) => [ret(clamp01(fitNorm1(dist, start, end)))]
+	"float",
+	"fogLinear",
+	["float", "float", "float"],
+	(dist, start, end) => [ret(clamp01(fitNorm1(dist, start, end)))]
 );

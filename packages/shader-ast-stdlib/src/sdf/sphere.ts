@@ -9,10 +9,10 @@ import { length } from "@thi.ng/shader-ast/builtin/math";
  * @param r - float
  */
 export const sdfCircle = defn(
-    "float",
-    "sdCircle",
-    ["vec2", "float"],
-    (p, r) => [ret(sub(length(p), r))]
+	"float",
+	"sdCircle",
+	["vec2", "float"],
+	(p, r) => [ret(sub(length(p), r))]
 );
 
 /**
@@ -22,8 +22,8 @@ export const sdfCircle = defn(
  * @param r - float
  */
 export const sdfSphere = defn(
-    "float",
-    "sdSphere",
-    ["vec3", "float"],
-    (p, r) => [ret(sub(length(p), r))]
+	"float",
+	"sdSphere",
+	["vec3", "float"],
+	(p, r) => [ret(sub(length(p), r))]
 );

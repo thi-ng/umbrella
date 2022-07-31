@@ -63,32 +63,32 @@ import { sync } from "./sync.js";
  * @param clock -
  */
 export const tween = <T>(
-    src: ISubscribable<T>,
-    initial: T,
-    mix: Fn2<T, T, T>,
-    stop?: Fn2<T, T, boolean>,
-    clock?: ISubscribable<any> | number
+	src: ISubscribable<T>,
+	initial: T,
+	mix: Fn2<T, T, T>,
+	stop?: Fn2<T, T, boolean>,
+	clock?: ISubscribable<any> | number
 ) =>
-    sync({
-        src: {
-            src,
-            _:
-                clock == null
-                    ? fromRAF()
-                    : isNumber(clock)
-                    ? fromInterval(clock)
-                    : clock,
-        },
-        closeIn: CloseMode.FIRST,
-    }).transform(
-        scan(
-            reducer(
-                () => initial,
-                (acc, { src }) => mix(acc, src)
-            )
-        ),
-        dedupe(stop || (() => false))
-    );
+	sync({
+		src: {
+			src,
+			_:
+				clock == null
+					? fromRAF()
+					: isNumber(clock)
+					? fromInterval(clock)
+					: clock,
+		},
+		closeIn: CloseMode.FIRST,
+	}).transform(
+		scan(
+			reducer(
+				() => initial,
+				(acc, { src }) => mix(acc, src)
+			)
+		),
+		dedupe(stop || (() => false))
+	);
 
 /**
  * Convenience version of {@link tween} for its most common use case, tweening
@@ -101,16 +101,16 @@ export const tween = <T>(
  * @param clock -
  */
 export const tweenNumber = (
-    src: ISubscribable<number>,
-    init = 0,
-    speed = 0.05,
-    eps = 1e-3,
-    clock?: ISubscribable<any> | number
+	src: ISubscribable<number>,
+	init = 0,
+	speed = 0.05,
+	eps = 1e-3,
+	clock?: ISubscribable<any> | number
 ) =>
-    tween(
-        src,
-        init,
-        (a, b) => a + (b - a) * speed,
-        (a, b) => Math.abs(a - b) < eps,
-        clock
-    );
+	tween(
+		src,
+		init,
+		(a, b) => a + (b - a) * speed,
+		(a, b) => Math.abs(a - b) < eps,
+		clock
+	);

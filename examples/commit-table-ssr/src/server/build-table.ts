@@ -9,10 +9,10 @@ import { html } from "./html";
  * generation. Returns serialized HTML string of commit table.
  */
 export const buildRepoTableHTML = (commits: Iterable<Commit>) =>
-    html({
-        ctx,
-        body: [
-            [header, ctx.repo.name],
-            [repoTable, commits],
-        ],
-    });
+	html({
+		ctx,
+		body: [
+			[header, ctx.repo.name],
+			[repoTable, commits],
+		],
+	});

@@ -12,17 +12,17 @@ import { __ensureInputs } from "./internal/ensure.js";
  * // [ 3, 30, 300 ]
  * ```
  *
- * @param out - 
- * @param src - 
+ * @param out -
+ * @param src -
  */
 export const median = (out: Vec | null, src: ReadonlyVec[]) => {
-    __ensureInputs(src);
-    out = out || [];
-    const m = src.length >> 1;
-    for (let i = src[0].length; i-- > 0; ) {
-        out[i] = src.map((x) => x[i]).sort((a, b) => a - b)[m];
-    }
-    return out;
+	__ensureInputs(src);
+	out = out || [];
+	const m = src.length >> 1;
+	for (let i = src[0].length; i-- > 0; ) {
+		out[i] = src.map((x) => x[i]).sort((a, b) => a - b)[m];
+	}
+	return out;
 };
 
 /**
@@ -34,10 +34,10 @@ export const median = (out: Vec | null, src: ReadonlyVec[]) => {
  * // 10
  * ```
  *
- * @param a - 
+ * @param a -
  */
 export const vmedian = (a: ReadonlyVec) => {
-    if (!a.length) return 0;
-    a = [...a].sort((a, b) => a - b);
-    return a[a.length >> 1];
+	if (!a.length) return 0;
+	a = [...a].sort((a, b) => a - b);
+	return a[a.length >> 1];
 };

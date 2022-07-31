@@ -9,16 +9,16 @@ import { xyzLab, xyzLabD65 } from "../xyz/xyz-lab.js";
  * Important: We're using a normalized Lab space w/ all three coordinates
  * divided by 100 (normalized to 100% luminance).
  *
- * @param out - 
- * @param src - 
+ * @param out -
+ * @param src -
  */
 export const rgbLab: ColorOp = (out, src) => xyzLab(null, rgbXyz(out, src));
 
 /**
  * Same as {@link rgbLab}, but using {@link D65} white point.
  *
- * @param out - 
- * @param src - 
+ * @param out -
+ * @param src -
  */
 export const rgbLabD65: ColorOp = (out, src) =>
-    xyzLabD65(null, rgbXyzD65(out, src));
+	xyzLabD65(null, rgbXyzD65(out, src));

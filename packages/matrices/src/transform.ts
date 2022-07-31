@@ -18,17 +18,17 @@ import { translation23 } from "./translation.js";
  * @param scale -
  */
 export const transform23 = (
-    out: Mat | null,
-    translate: ReadonlyVec,
-    rotation: number,
-    scale: number | ReadonlyVec
+	out: Mat | null,
+	translate: ReadonlyVec,
+	rotation: number,
+	scale: number | ReadonlyVec
 ) =>
-    concat(
-        out,
-        translation23([], translate),
-        rotation23([], rotation),
-        scale23([], scale)
-    );
+	concat(
+		out,
+		translation23([], translate),
+		rotation23([], rotation),
+		scale23([], scale)
+	);
 
 /**
  * Creates 4x4 TRS transformation matrix from given translation vector,
@@ -43,17 +43,17 @@ export const transform23 = (
  * @param scale -
  */
 export const transform44 = (
-    out: Mat | null,
-    translate: ReadonlyVec,
-    rotation: ReadonlyVec,
-    scale: number | ReadonlyVec
+	out: Mat | null,
+	translate: ReadonlyVec,
+	rotation: ReadonlyVec,
+	scale: number | ReadonlyVec
 ) =>
-    mulM44(
-        out,
-        quatToMat44(
-            out,
-            quatFromEuler("zyx", rotation[2], rotation[1], rotation[0]),
-            translate
-        ),
-        scale44([], scale)
-    );
+	mulM44(
+		out,
+		quatToMat44(
+			out,
+			quatFromEuler("zyx", rotation[2], rotation[1], rotation[0]),
+			translate
+		),
+		scale44([], scale)
+	);

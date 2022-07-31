@@ -14,11 +14,11 @@ import type { MapLike } from "./api.js";
  * @param cache -
  */
 export const memoize1 = <A, B>(fn: Fn<A, B>, cache?: MapLike<A, B>) => {
-    !cache && (cache = new Map());
-    return (x: A): B => {
-        let res;
-        return cache!.has(x)
-            ? cache!.get(x)!
-            : (cache!.set(x, (res = fn(x))), res);
-    };
+	!cache && (cache = new Map());
+	return (x: A): B => {
+		let res;
+		return cache!.has(x)
+			? cache!.get(x)!
+			: (cache!.set(x, (res = fn(x))), res);
+	};
 };

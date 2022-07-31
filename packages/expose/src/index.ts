@@ -14,26 +14,26 @@ declare const __SNOWPACK_ENV__: any;
  * @param always -
  */
 export const exposeGlobal = (id: string, value: any, always = false) => {
-    const glob: any =
-        typeof global !== "undefined"
-            ? global
-            : typeof window !== "undefined"
-            ? window
-            : undefined;
-    if (
-        glob &&
-        (always ||
-            (() =>
-                typeof process !== "undefined" &&
-                typeof process.env !== "undefined"
-                    ? process.env.NODE_ENV !== "production" ||
-                      !!process.env.UMBRELLA_GLOBALS
-                    : typeof __SNOWPACK_ENV__ !== "undefined"
-                    ? __SNOWPACK_ENV__.MODE !== "production" ||
-                      !!__SNOWPACK_ENV__.UMBRELLA_GLOBALS ||
-                      !!__SNOWPACK_ENV__.SNOWPACK_PUBLIC_UMBRELLA_GLOBALS
-                    : true)())
-    ) {
-        glob[id] = value;
-    }
+	const glob: any =
+		typeof global !== "undefined"
+			? global
+			: typeof window !== "undefined"
+			? window
+			: undefined;
+	if (
+		glob &&
+		(always ||
+			(() =>
+				typeof process !== "undefined" &&
+				typeof process.env !== "undefined"
+					? process.env.NODE_ENV !== "production" ||
+					  !!process.env.UMBRELLA_GLOBALS
+					: typeof __SNOWPACK_ENV__ !== "undefined"
+					? __SNOWPACK_ENV__.MODE !== "production" ||
+					  !!__SNOWPACK_ENV__.UMBRELLA_GLOBALS ||
+					  !!__SNOWPACK_ENV__.SNOWPACK_PUBLIC_UMBRELLA_GLOBALS
+					: true)())
+	) {
+		glob[id] = value;
+	}
 };

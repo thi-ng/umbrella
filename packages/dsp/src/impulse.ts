@@ -5,7 +5,7 @@ import { AGen } from "./agen.js";
  * Numeric version of {@link impulseT}, using given `on` (default: 1) as
  * initial value and zero for the remaining values.
  *
- * @param on - 
+ * @param on -
  */
 export const impulse = (on = 1) => new Impulse(on, 0);
 
@@ -22,23 +22,23 @@ export const impulseT = <T>(on: T, off: T) => new Impulse<T>(on, off);
  * Boolean version of {@link impulseT}, using given `start` (default:
  * true) as initial value and its inverse for the remaining values.
  *
- * @param start - 
+ * @param start -
  */
 export const impulseB = (start = true) => new Impulse(start, !start);
 
 export class Impulse<T> extends AGen<T> implements IReset {
-    constructor(protected _on: T, protected _off: T) {
-        super(_on);
-    }
+	constructor(protected _on: T, protected _off: T) {
+		super(_on);
+	}
 
-    reset() {
-        this._val = this._on;
-        return this;
-    }
+	reset() {
+		this._val = this._on;
+		return this;
+	}
 
-    next() {
-        const x = this._val;
-        this._val = this._off;
-        return x;
-    }
+	next() {
+		const x = this._val;
+		this._val = this._off;
+		return x;
+	}
 }

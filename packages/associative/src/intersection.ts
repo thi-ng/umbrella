@@ -14,19 +14,19 @@ import { into } from "./into.js";
  * @param out - result set
  */
 export const intersection = <T>(a: Set<T>, b: Set<T>, out?: Set<T>): Set<T> => {
-    out = out || empty(a, Set);
-    if (a === b) {
-        return into(out!, a);
-    }
-    if (b.size < a.size) {
-        return intersection(b, a, out);
-    }
-    for (let i of b) {
-        if (a.has(i)) {
-            out!.add(i);
-        }
-    }
-    return out!;
+	out = out || empty(a, Set);
+	if (a === b) {
+		return into(out!, a);
+	}
+	if (b.size < a.size) {
+		return intersection(b, a, out);
+	}
+	for (let i of b) {
+		if (a.has(i)) {
+			out!.add(i);
+		}
+	}
+	return out!;
 };
 
 /**
@@ -40,5 +40,5 @@ export const intersection = <T>(a: Set<T>, b: Set<T>, out?: Set<T>): Set<T> => {
 export function intersectionR<T>(): Reducer<Set<T>, Iterable<T>>;
 export function intersectionR<T>(src: Iterable<Iterable<T>>): Set<T>;
 export function intersectionR<T>(src?: Iterable<Iterable<T>>) {
-    return __combineSet<T>(intersectionR, intersection, src);
+	return __combineSet<T>(intersectionR, intersection, src);
 }

@@ -10,49 +10,49 @@ import { split } from "./split.js";
  * @internal
  */
 class Line {
-    n = 0;
-    w: string[] = [];
+	n = 0;
+	w: string[] = [];
 
-    constructor(word?: string, n?: number) {
-        word != null && this.add(word, n);
-    }
+	constructor(word?: string, n?: number) {
+		word != null && this.add(word, n);
+	}
 
-    add(word: string, n = word.length) {
-        this.w.push(word);
-        this.n += n + ~~(this.n > 0);
-        return this;
-    }
+	add(word: string, n = word.length) {
+		this.w.push(word);
+		this.n += n + ~~(this.n > 0);
+		return this;
+	}
 
-    toString() {
-        return this.w.join(" ");
-    }
+	toString() {
+		return this.w.join(" ");
+	}
 }
 
 /**
  * (Default) wordwrap word splitting strategy for plain text.
  */
 export const SPLIT_PLAIN: IWordSplit = {
-    length: (x) => x.length,
-    split: (_, max) => max,
+	length: (x) => x.length,
+	split: (_, max) => max,
 };
 
 /**
  * Wordwrap word splitting strategy for text containing ANSI control sequences.
  */
 export const SPLIT_ANSI: IWordSplit = {
-    length: lengthAnsi,
-    split: (x, max) => {
-        const re = /\x1b\[[0-9;]+m/g;
-        let i = max;
-        let match: RegExpExecArray | null;
-        while ((match = re.exec(x))) {
-            if (match.index >= max) break;
-            const n = match[0].length;
-            i += n;
-            max += n;
-        }
-        return i;
-    },
+	length: lengthAnsi,
+	split: (x, max) => {
+		const re = /\x1b\[[0-9;]+m/g;
+		let i = max;
+		let match: RegExpExecArray | null;
+		while ((match = re.exec(x))) {
+			if (match.index >= max) break;
+			const n = match[0].length;
+			i += n;
+			max += n;
+		}
+		return i;
+	},
 };
 
 /**
@@ -61,10 +61,10 @@ export const SPLIT_ANSI: IWordSplit = {
  * @internal
  */
 const append = (acc: Line[], word: string, wordLen: number, width: number) => {
-    const curr = acc[acc.length - 1];
-    curr && width - curr.n > wordLen
-        ? curr.add(word, wordLen)
-        : acc.push(new Line(word, wordLen));
+	const curr = acc[acc.length - 1];
+	curr && width - curr.n > wordLen
+		? curr.add(word, wordLen)
+		: acc.push(new Line(word, wordLen));
 };
 
 /**
@@ -85,29 +85,29 @@ const append = (acc: Line[], word: string, wordLen: number, width: number) => {
  * @internal
  */
 const wrapWord = (
-    word: string,
-    { width, min, hard, splitter }: WordWrapOpts,
-    offset = 0,
-    acc: Line[] = []
+	word: string,
+	{ width, min, hard, splitter }: WordWrapOpts,
+	offset = 0,
+	acc: Line[] = []
 ) => {
-    let len = splitter.length(word);
-    let free = width - offset;
-    // don't start word in current line if only
-    // a few chars left...
-    if (free < min && free < len) {
-        free = width;
-    }
-    // (maybe) hardwrap long word
-    while (hard && len > free) {
-        const split = splitter.split(word, free);
-        const chunk = word.substring(0, split);
-        append(acc, chunk, free, width);
-        word = word.substring(split);
-        free = width;
-        len = splitter.length(word);
-    }
-    append(acc, word, len, width);
-    return acc;
+	let len = splitter.length(word);
+	let free = width - offset;
+	// don't start word in current line if only
+	// a few chars left...
+	if (free < min && free < len) {
+		free = width;
+	}
+	// (maybe) hardwrap long word
+	while (hard && len > free) {
+		const split = splitter.split(word, free);
+		const chunk = word.substring(0, split);
+		append(acc, chunk, free, width);
+		word = word.substring(split);
+		free = width;
+		len = splitter.length(word);
+	}
+	append(acc, word, len, width);
+	return acc;
 };
 
 /**
@@ -124,26 +124,26 @@ const wrapWord = (
  * @internal
  */
 export const wordWrapLine = (
-    line: string,
-    opts: Partial<WordWrapOpts>,
-    acc: Line[] = []
+	line: string,
+	opts: Partial<WordWrapOpts>,
+	acc: Line[] = []
 ) => {
-    if (!line.length) {
-        acc.push(new Line());
-        return acc;
-    }
-    const $opts = <WordWrapOpts>{
-        width: 80,
-        min: 4,
-        hard: false,
-        splitter: SPLIT_PLAIN,
-        ...opts,
-    };
-    for (let word of split(line, opts.delimWord || /\s/g)) {
-        const curr = acc[acc.length - 1];
-        wrapWord(word, $opts, curr && curr.n > 0 ? curr.n + 1 : 0, acc);
-    }
-    return acc;
+	if (!line.length) {
+		acc.push(new Line());
+		return acc;
+	}
+	const $opts = <WordWrapOpts>{
+		width: 80,
+		min: 4,
+		hard: false,
+		splitter: SPLIT_PLAIN,
+		...opts,
+	};
+	for (let word of split(line, opts.delimWord || /\s/g)) {
+		const curr = acc[acc.length - 1];
+		wrapWord(word, $opts, curr && curr.n > 0 ? curr.n + 1 : 0, acc);
+	}
+	return acc;
 };
 
 /**
@@ -157,11 +157,11 @@ export const wordWrapLine = (
  * @param opts -
  */
 export const wordWrapLines = (lines: string, opts: Partial<WordWrapOpts>) => {
-    let acc: Line[] = [];
-    for (let line of split(lines, opts.delimLine)) {
-        acc = acc.concat(wordWrapLine(line, opts));
-    }
-    return acc;
+	let acc: Line[] = [];
+	for (let line of split(lines, opts.delimLine)) {
+		acc = acc.concat(wordWrapLine(line, opts));
+	}
+	return acc;
 };
 
 /**
@@ -172,4 +172,4 @@ export const wordWrapLines = (lines: string, opts: Partial<WordWrapOpts>) => {
  * @param opts -
  */
 export const wordWrap = (str: string, opts: Partial<WordWrapOpts>) =>
-    wordWrapLines(str, opts).join("\n");
+	wordWrapLines(str, opts).join("\n");

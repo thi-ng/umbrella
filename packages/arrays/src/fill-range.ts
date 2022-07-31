@@ -24,16 +24,16 @@ import type { TypedArray } from "@thi.ng/api";
  * @param step -
  */
 export const fillRange = <T extends number[] | TypedArray>(
-    buf: T,
-    index = 0,
-    start = 0,
-    end = buf.length,
-    step = end > start ? 1 : -1
+	buf: T,
+	index = 0,
+	start = 0,
+	end = buf.length,
+	step = end > start ? 1 : -1
 ) => {
-    if (step > 0) {
-        for (; start < end; start += step) buf[index++] = start;
-    } else {
-        for (; start > end; start += step) buf[index++] = start;
-    }
-    return buf;
+	if (step > 0) {
+		for (; start < end; start += step) buf[index++] = start;
+	} else {
+		for (; start > end; start += step) buf[index++] = start;
+	}
+	return buf;
 };

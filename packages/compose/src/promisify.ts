@@ -19,6 +19,6 @@ import type { Fn, Fn2 } from "@thi.ng/api";
  * @param fn - function accepting a callback
  */
 export const promisify = <T>(fn: Fn<Fn2<any, T, void>, void>) =>
-    new Promise<T>((resolve, reject) =>
-        fn((err, result) => (err != null ? reject(err) : resolve(result)))
-    );
+	new Promise<T>((resolve, reject) =>
+		fn((err, result) => (err != null ? reject(err) : resolve(result)))
+	);

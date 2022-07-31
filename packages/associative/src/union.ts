@@ -12,13 +12,13 @@ import { into } from "./into.js";
  * @param out - result set
  */
 export const union = <T>(a: Set<T>, b: Set<T>, out?: Set<T>): Set<T> => {
-    if (a.size < b.size) {
-        const t = a;
-        a = b;
-        b = t;
-    }
-    out = out ? into(out, a) : copy(a, Set);
-    return a === b ? out! : into(out!, b);
+	if (a.size < b.size) {
+		const t = a;
+		a = b;
+		b = t;
+	}
+	out = out ? into(out, a) : copy(a, Set);
+	return a === b ? out! : into(out!, b);
 };
 
 /**
@@ -32,5 +32,5 @@ export const union = <T>(a: Set<T>, b: Set<T>, out?: Set<T>): Set<T> => {
 export function unionR<T>(): Reducer<Set<T>, Iterable<T>>;
 export function unionR<T>(src: Iterable<Iterable<T>>): Set<T>;
 export function unionR<T>(src?: Iterable<Iterable<T>>) {
-    return __combineSet<T>(unionR, union, src);
+	return __combineSet<T>(unionR, union, src);
 }

@@ -1,29 +1,29 @@
 import { U16, U32 } from "./radix.js";
 
 export const ESCAPES: Record<string, string> = {
-    0: "\0",
-    b: "\b",
-    t: "\t",
-    r: "\r",
-    v: "\v",
-    f: "\f",
-    n: "\n",
-    "'": "'",
-    '"': '"',
-    "\\": "\\",
+	0: "\0",
+	b: "\b",
+	t: "\t",
+	r: "\r",
+	v: "\v",
+	f: "\f",
+	n: "\n",
+	"'": "'",
+	'"': '"',
+	"\\": "\\",
 };
 
 export const ESCAPES_REV: Record<number, string> = {
-    0: "0",
-    8: "b",
-    9: "t",
-    10: "n",
-    11: "v",
-    12: "f",
-    13: "r",
-    33: "'",
-    34: '"',
-    92: "\\",
+	0: "0",
+	8: "b",
+	9: "t",
+	10: "n",
+	11: "v",
+	12: "f",
+	13: "r",
+	33: "'",
+	34: '"',
+	92: "\\",
 };
 
 /**
@@ -36,16 +36,16 @@ export const ESCAPES_REV: Record<number, string> = {
  * - Non-BMP chars will be escaped using `\Uxxxxxxxx`
  * - Chars outside 0x20 - 0x7e range will be escaped using `\uxxxxx`
  *
- * @param src - 
+ * @param src -
  */
 export const escape = (src: string) =>
-    src
-        .replace(
-            /[\0\b\t\n\v\f\r'"\\]/g,
-            (x) => `\\${ESCAPES_REV[x.charCodeAt(0)!]}`
-        )
-        .replace(/[\ud800-\udfff]{2}/g, (x) => `\\U${U32(x.codePointAt(0)!)}`)
-        .replace(/[^\u0020-\u007e]/g, (x) => `\\u${U16(x.charCodeAt(0))}`);
+	src
+		.replace(
+			/[\0\b\t\n\v\f\r'"\\]/g,
+			(x) => `\\${ESCAPES_REV[x.charCodeAt(0)!]}`
+		)
+		.replace(/[\ud800-\udfff]{2}/g, (x) => `\\U${U32(x.codePointAt(0)!)}`)
+		.replace(/[^\u0020-\u007e]/g, (x) => `\\u${U16(x.charCodeAt(0))}`);
 
 /**
  * Replaces `\uxxxx` UTF-16 escapes, full `\Uxxxxxxxx` UTF-32 codepoint escapes
@@ -65,14 +65,14 @@ export const escape = (src: string) =>
  * // '😎'
  * ```
  *
- * @param src - 
+ * @param src -
  */
 export const unescape = (src: string) =>
-    src
-        .replace(/\\u([0-9a-fA-F]{4})/g, (_, id) =>
-            String.fromCharCode(parseInt(id, 16))
-        )
-        .replace(/\\U([0-9a-fA-F]{8})/g, (_, id) =>
-            String.fromCodePoint(parseInt(id, 16))
-        )
-        .replace(/\\([0btnvfr'"\\])/g, (_, id) => ESCAPES[id]);
+	src
+		.replace(/\\u([0-9a-fA-F]{4})/g, (_, id) =>
+			String.fromCharCode(parseInt(id, 16))
+		)
+		.replace(/\\U([0-9a-fA-F]{8})/g, (_, id) =>
+			String.fromCodePoint(parseInt(id, 16))
+		)
+		.replace(/\\([0btnvfr'"\\])/g, (_, id) => ESCAPES[id]);

@@ -27,11 +27,11 @@ import { map } from "./map.js";
  */
 export function swizzle<T>(order: PropertyKey[]): Transducer<T, any[]>;
 export function swizzle<T>(
-    order: PropertyKey[],
-    src: Iterable<any>
+	order: PropertyKey[],
+	src: Iterable<any>
 ): IterableIterator<any[]>;
 export function swizzle(order: PropertyKey[], src?: Iterable<any>): any {
-    return isIterable(src)
-        ? iterator1(swizzle(order), src)
-        : map(_swizzle(order));
+	return isIterable(src)
+		? iterator1(swizzle(order), src)
+		: map(_swizzle(order));
 }

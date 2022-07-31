@@ -60,12 +60,12 @@ export const obj = (ctx: StackContext) => (ctx[0].push({}), ctx);
  * @param ctx -
  */
 export const pushl = (ctx: StackContext) => {
-    $(ctx[0], 2);
-    const stack = ctx[0];
-    const a = stack.pop();
-    a.unshift(stack.pop());
-    stack.push(a);
-    return ctx;
+	$(ctx[0], 2);
+	const stack = ctx[0];
+	const a = stack.pop();
+	a.unshift(stack.pop());
+	stack.push(a);
+	return ctx;
 };
 
 /**
@@ -76,12 +76,12 @@ export const pushl = (ctx: StackContext) => {
  * @param ctx -
  */
 export const pushr = (ctx: StackContext) => {
-    const stack = ctx[0];
-    const n = stack.length - 2;
-    $n(n, 0);
-    stack[n].push(stack[n + 1]);
-    stack.length--;
-    return ctx;
+	const stack = ctx[0];
+	const n = stack.length - 2;
+	$n(n, 0);
+	stack[n].push(stack[n + 1]);
+	stack.length--;
+	return ctx;
 };
 
 /**
@@ -93,13 +93,13 @@ export const pushr = (ctx: StackContext) => {
  * @param ctx -
  */
 export const popr = (ctx: StackContext) => {
-    const stack = ctx[0];
-    const n = stack.length - 1;
-    $n(n, 0);
-    const a = stack[n];
-    !a.length && illegalState("can't pop empty array");
-    stack.push(a.pop());
-    return ctx;
+	const stack = ctx[0];
+	const n = stack.length - 1;
+	$n(n, 0);
+	const a = stack[n];
+	!a.length && illegalState("can't pop empty array");
+	stack.push(a.pop());
+	return ctx;
 };
 
 export const pull = defWord([popr, swap]);
@@ -120,13 +120,13 @@ export const vdiv = defOp2v((b, a) => a / b);
  * @param ctx -
  */
 export const split = (ctx: StackContext) => {
-    const stack = ctx[0];
-    const n = stack.length - 2;
-    $n(n, 0);
-    const a = stack[n];
-    const b = stack[n + 1];
-    stack[n + 1] = a.splice(b, a.length - b);
-    return ctx;
+	const stack = ctx[0];
+	const n = stack.length - 2;
+	$n(n, 0);
+	const a = stack[n];
+	const b = stack[n + 1];
+	stack[n + 1] = a.splice(b, a.length - b);
+	return ctx;
 };
 
 /**
@@ -137,11 +137,11 @@ export const split = (ctx: StackContext) => {
  * @param ctx -
  */
 export const cat = (ctx: StackContext) => {
-    const stack = ctx[0];
-    const n = stack.length - 2;
-    $n(n, 0);
-    stack[n] = stack[n].concat(stack.pop());
-    return ctx;
+	const stack = ctx[0];
+	const n = stack.length - 2;
+	$n(n, 0);
+	stack[n] = stack[n].concat(stack.pop());
+	return ctx;
 };
 
 /**
@@ -152,11 +152,11 @@ export const cat = (ctx: StackContext) => {
  * @param ctx -
  */
 export const catr = (ctx: StackContext) => {
-    const stack = ctx[0];
-    const n = stack.length - 2;
-    $n(n, 0);
-    stack[n] = stack.pop().concat(stack[n]);
-    return ctx;
+	const stack = ctx[0];
+	const n = stack.length - 2;
+	$n(n, 0);
+	stack[n] = stack.pop().concat(stack[n]);
+	return ctx;
 };
 
 /**
@@ -223,16 +223,16 @@ export const catr = (ctx: StackContext) => {
  * @param ctx -
  */
 export const mapl = (ctx: StackContext) => {
-    $(ctx[0], 2);
-    const stack = ctx[0];
-    const w = $stackFn(stack.pop());
-    const list = stack.pop();
-    const n = list.length;
-    for (let i = 0; i < n; i++) {
-        ctx[0].push(list[i]);
-        ctx = w(ctx);
-    }
-    return ctx;
+	$(ctx[0], 2);
+	const stack = ctx[0];
+	const w = $stackFn(stack.pop());
+	const list = stack.pop();
+	const n = list.length;
+	for (let i = 0; i < n; i++) {
+		ctx[0].push(list[i]);
+		ctx = w(ctx);
+	}
+	return ctx;
 };
 
 /**
@@ -257,21 +257,21 @@ export const mapl = (ctx: StackContext) => {
  * @param ctx -
  */
 export const mapll = (ctx: StackContext) => {
-    $(ctx[0], 2);
-    let stack = ctx[0];
-    const w = $stackFn(stack.pop());
-    const list = stack.pop();
-    const n = list.length;
-    let r = 0;
-    for (let i = 0; i < n; i++) {
-        let m = stack.length;
-        stack.push(list[i]);
-        ctx = w(ctx);
-        stack = ctx[0];
-        r += stack.length - m;
-    }
-    stack.push(stack.splice(stack.length - r, r));
-    return ctx;
+	$(ctx[0], 2);
+	let stack = ctx[0];
+	const w = $stackFn(stack.pop());
+	const list = stack.pop();
+	const n = list.length;
+	let r = 0;
+	for (let i = 0; i < n; i++) {
+		let m = stack.length;
+		stack.push(list[i]);
+		ctx = w(ctx);
+		stack = ctx[0];
+		r += stack.length - m;
+	}
+	stack.push(stack.splice(stack.length - r, r));
+	return ctx;
 };
 
 /**
@@ -292,13 +292,13 @@ export const foldl = defWord([invrot, mapl]);
  * @param ctx -
  */
 export const collect = (ctx: StackContext) => {
-    const stack = ctx[0];
-    let n = stack.length - 1,
-        m;
-    $n(n, 0);
-    $n((n -= m = stack.pop()), 0);
-    stack.push(stack.splice(n, m));
-    return ctx;
+	const stack = ctx[0];
+	let n = stack.length - 1,
+		m;
+	$n(n, 0);
+	$n((n -= m = stack.pop()), 0);
+	stack.push(stack.splice(n, m));
+	return ctx;
 };
 
 /**
@@ -341,11 +341,11 @@ export const length = defOp1((x) => x.length);
  * ( x -- copy )
  */
 export const copy = defOp1((x) =>
-    isArray(x)
-        ? x.slice()
-        : isPlainObject(x)
-        ? { ...x }
-        : illegalArgs(`can't copy type ${typeof x}`)
+	isArray(x)
+		? x.slice()
+		: isPlainObject(x)
+		? { ...x }
+		: illegalArgs(`can't copy type ${typeof x}`)
 );
 
 /**
@@ -365,13 +365,13 @@ export const at = defOp2((b, a) => a[b]);
  * @param ctx -
  */
 export const setat = (ctx: StackContext) => {
-    const stack = ctx[0];
-    const n = stack.length - 3;
-    $n(n, 0);
-    stack[n + 1][stack[n + 2]] = stack[n];
-    stack[n] = stack[n + 1];
-    stack.length -= 2;
-    return ctx;
+	const stack = ctx[0];
+	const n = stack.length - 3;
+	$n(n, 0);
+	stack[n + 1][stack[n + 2]] = stack[n];
+	stack[n] = stack[n + 1];
+	stack.length -= 2;
+	return ctx;
 };
 
 //////////////////// Objects  ////////////////////
@@ -393,14 +393,14 @@ export const setat = (ctx: StackContext) => {
  * @param ctx -
  */
 export const bindkeys = (ctx: StackContext) => {
-    const stack = ctx[0];
-    $(stack, 2);
-    const obj = stack.pop();
-    const keys = stack.pop();
-    $(stack, keys.length);
-    for (let i = keys.length - 1; i >= 0; i--) {
-        obj[keys[i]] = stack.pop();
-    }
-    stack.push(obj);
-    return ctx;
+	const stack = ctx[0];
+	$(stack, 2);
+	const obj = stack.pop();
+	const keys = stack.pop();
+	$(stack, keys.length);
+	for (let i = keys.length - 1; i >= 0; i--) {
+		obj[keys[i]] = stack.pop();
+	}
+	stack.push(obj);
+	return ctx;
 };

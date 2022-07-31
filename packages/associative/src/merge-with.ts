@@ -3,19 +3,19 @@ import { isIllegalKey } from "@thi.ng/checks/is-proto-path";
 import { copy, copyObj } from "./copy.js";
 
 export const mergeMapWith = <K, V>(
-    f: Fn2<V, V, V>,
-    dest: Map<K, V>,
-    ...xs: Nullable<Map<K, V>>[]
+	f: Fn2<V, V, V>,
+	dest: Map<K, V>,
+	...xs: Nullable<Map<K, V>>[]
 ) => {
-    const res: Map<K, V> = copy(dest, Map);
-    for (let x of xs) {
-        if (x != null) {
-            for (let [k, v] of x) {
-                res.set(k, res.has(k) ? f(res.get(k)!, v) : v);
-            }
-        }
-    }
-    return res;
+	const res: Map<K, V> = copy(dest, Map);
+	for (let x of xs) {
+		if (x != null) {
+			for (let [k, v] of x) {
+				res.set(k, res.has(k) ? f(res.get(k)!, v) : v);
+			}
+		}
+	}
+	return res;
 };
 
 /**
@@ -27,14 +27,14 @@ export const mergeMapWith = <K, V>(
  * Since v4.4.0, the `__proto__` property will be ignored to avoid
  * prototype pollution.
  *
- * @param f - 
- * @param dest - 
- * @param xs - 
+ * @param f -
+ * @param dest -
+ * @param xs -
  */
 export const mergeObjWith = <T>(
-    f: Fn2<T, T, T>,
-    dest: IObjectOf<T>,
-    ...xs: Nullable<IObjectOf<T>>[]
+	f: Fn2<T, T, T>,
+	dest: IObjectOf<T>,
+	...xs: Nullable<IObjectOf<T>>[]
 ) => meldObjWith(f, copyObj(dest), ...xs);
 
 /**
@@ -50,18 +50,18 @@ export const mergeObjWith = <T>(
  * @param xs -
  */
 export const meldObjWith = <T>(
-    f: Fn2<T, T, T>,
-    dest: IObjectOf<T>,
-    ...xs: Nullable<IObjectOf<T>>[]
+	f: Fn2<T, T, T>,
+	dest: IObjectOf<T>,
+	...xs: Nullable<IObjectOf<T>>[]
 ) => {
-    for (let x of xs) {
-        if (x != null) {
-            for (let k in x) {
-                if (isIllegalKey(k)) continue;
-                const v = x[k];
-                dest[k] = dest.hasOwnProperty(k) ? f(dest[k], v) : v;
-            }
-        }
-    }
-    return dest;
+	for (let x of xs) {
+		if (x != null) {
+			for (let k in x) {
+				if (isIllegalKey(k)) continue;
+				const v = x[k];
+				dest[k] = dest.hasOwnProperty(k) ? f(dest[k], v) : v;
+			}
+		}
+	}
+	return dest;
 };

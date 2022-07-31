@@ -21,43 +21,43 @@ export type ViewSpec = string | Path | [string | Path, Fn<any, any>];
  * See `src/config.ts`.
  */
 export interface AppConfig {
-    components: IObjectOf<AppComponent>;
-    domRoot: string | Element;
-    effects: IObjectOf<EffectDef>;
-    events: IObjectOf<EventDef>;
-    initialState: any;
-    router: HTMLRouterConfig;
-    ui: UIAttribs;
-    views: Partial<Record<AppViewIDs, ViewSpec>>;
+	components: IObjectOf<AppComponent>;
+	domRoot: string | Element;
+	effects: IObjectOf<EffectDef>;
+	events: IObjectOf<EventDef>;
+	initialState: any;
+	router: HTMLRouterConfig;
+	ui: UIAttribs;
+	views: Partial<Record<AppViewIDs, ViewSpec>>;
 }
 
 export type AppViewIDs =
-    | "route"
-    | "routeComponent"
-    | "users"
-    | "userlist"
-    | "status"
-    | "debug"
-    | "json";
+	| "route"
+	| "routeComponent"
+	| "users"
+	| "userlist"
+	| "status"
+	| "debug"
+	| "json";
 
 /**
  * Derived views exposed by the app.
  * Add more declarations here as needed.
  */
 export interface AppViews extends Record<AppViewIDs, IView<any>> {
-    route: IView<RouteMatch>;
-    routeComponent: IView<any>;
-    users: IView<IObjectOf<User>>;
-    userlist: IView<User[]>;
-    status: IView<Status>;
-    debug: IView<number>;
-    json: IView<string>;
+	route: IView<RouteMatch>;
+	routeComponent: IView<any>;
+	users: IView<IObjectOf<User>>;
+	userlist: IView<User[]>;
+	status: IView<Status>;
+	debug: IView<number>;
+	json: IView<string>;
 }
 
 export interface AppContext {
-    bus: EventBus;
-    views: AppViews;
-    ui: UIAttribs;
+	bus: EventBus;
+	views: AppViews;
+	ui: UIAttribs;
 }
 
 /**
@@ -68,41 +68,41 @@ export interface AppContext {
  * component functions.
  */
 export interface UIAttribs {
-    bodyCopy: any;
-    bodyLink: any;
-    card: any;
-    code: any;
-    column: any;
-    contact: any;
-    debugToggle: any;
-    nav: any;
-    root: any;
-    status: any;
-    userlist: any;
+	bodyCopy: any;
+	bodyLink: any;
+	card: any;
+	code: any;
+	column: any;
+	contact: any;
+	debugToggle: any;
+	nav: any;
+	root: any;
+	status: any;
+	userlist: any;
 }
 
 /// demo app related types
 
 export interface User {
-    id: number;
-    name: string;
-    job: string;
-    img: string;
-    desc: string;
-    alias: string;
+	id: number;
+	name: string;
+	job: string;
+	img: string;
+	desc: string;
+	alias: string;
 }
 
 /**
  * Types for status line component
  */
 export enum StatusType {
-    DONE,
-    INFO,
-    SUCCESS,
-    ERROR,
+	DONE,
+	INFO,
+	SUCCESS,
+	ERROR,
 }
 
 export interface Status extends Array<any> {
-    [0]: StatusType;
-    [1]: string;
+	[0]: StatusType;
+	[1]: string;
 }

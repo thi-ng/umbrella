@@ -4,6 +4,6 @@ import { defHofOp } from "./compile/emit.js";
 import { FN } from "./compile/templates.js";
 
 export const [degrees, degrees2, degrees3, degrees4] = defHofOp<
-    MultiVecOpV,
-    VecOpV
+	MultiVecOpV,
+	VecOpV
 >(deg, FN("op"));

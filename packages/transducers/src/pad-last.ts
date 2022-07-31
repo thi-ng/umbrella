@@ -37,27 +37,27 @@ import { isReduced } from "./reduced.js";
  */
 export function padLast<T>(n: number, fill: T): Transducer<T, T>;
 export function padLast<T>(
-    n: number,
-    fill: T,
-    src: Iterable<T>
+	n: number,
+	fill: T,
+	src: Iterable<T>
 ): IterableIterator<T>;
 export function padLast<T>(n: number, fill: T, src?: Iterable<T>): any {
-    return isIterable(src)
-        ? iterator(padLast(n, fill), src)
-        : ([init, complete, reduce]: Reducer<any, T>) => {
-              let m = 0;
-              return <Reducer<any, T>>[
-                  init,
-                  (acc) => {
-                      let rem = m % n;
-                      if (rem > 0) {
-                          while (++rem <= n && !isReduced(acc)) {
-                              acc = reduce(acc, fill);
-                          }
-                      }
-                      return complete(acc);
-                  },
-                  (acc, x) => (m++, reduce(acc, x)),
-              ];
-          };
+	return isIterable(src)
+		? iterator(padLast(n, fill), src)
+		: ([init, complete, reduce]: Reducer<any, T>) => {
+				let m = 0;
+				return <Reducer<any, T>>[
+					init,
+					(acc) => {
+						let rem = m % n;
+						if (rem > 0) {
+							while (++rem <= n && !isReduced(acc)) {
+								acc = reduce(acc, fill);
+							}
+						}
+						return complete(acc);
+					},
+					(acc, x) => (m++, reduce(acc, x)),
+				];
+		  };
 }

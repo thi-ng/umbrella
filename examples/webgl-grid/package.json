@@ -1,44 +1,44 @@
 {
-    "name": "@example/webgl-grid",
-    "private": true,
-    "description": "WebGL instancing, animated grid",
-    "version": "0.0.1",
-    "repository": "https://github.com/thi-ng/umbrella",
-    "author": "Karsten Schmidt <k+npm@thi.ng>",
-    "license": "Apache-2.0",
-    "scripts": {
-        "start": "vite --open",
-        "build": "tsc && vite build --base='./'",
-        "preview": "vite preview --host --open"
-    },
-    "dependencies": {
-        "@thi.ng/adapt-dpi": "workspace:^",
-        "@thi.ng/hdom": "workspace:^",
-        "@thi.ng/hdom-components": "workspace:^",
-        "@thi.ng/math": "workspace:^",
-        "@thi.ng/matrices": "workspace:^",
-        "@thi.ng/transducers": "workspace:^",
-        "@thi.ng/vectors": "workspace:^",
-        "@thi.ng/webgl": "workspace:^"
-    },
-    "browser": {
-        "process": false,
-        "setTimeout": false,
-        "util": false
-    },
-    "thi.ng": {
-        "readme": [
-            "adapt-dpi",
-            "matrices",
-            "shader-ast",
-            "transducers",
-            "vectors",
-            "webgl"
-        ],
-        "screenshot": "examples/webgl-grid.jpg"
-    },
-    "devDependencies": {
-        "typescript": "^4.7.4",
-        "vite": "^3.0.0"
-    }
+	"name": "@example/webgl-grid",
+	"private": true,
+	"description": "WebGL instancing, animated grid",
+	"version": "0.0.1",
+	"repository": "https://github.com/thi-ng/umbrella",
+	"author": "Karsten Schmidt <k+npm@thi.ng>",
+	"license": "Apache-2.0",
+	"scripts": {
+		"start": "vite --open",
+		"build": "tsc && vite build --base='./'",
+		"preview": "vite preview --host --open"
+	},
+	"dependencies": {
+		"@thi.ng/adapt-dpi": "workspace:^",
+		"@thi.ng/hdom": "workspace:^",
+		"@thi.ng/hdom-components": "workspace:^",
+		"@thi.ng/math": "workspace:^",
+		"@thi.ng/matrices": "workspace:^",
+		"@thi.ng/transducers": "workspace:^",
+		"@thi.ng/vectors": "workspace:^",
+		"@thi.ng/webgl": "workspace:^"
+	},
+	"browser": {
+		"process": false,
+		"setTimeout": false,
+		"util": false
+	},
+	"thi.ng": {
+		"readme": [
+			"adapt-dpi",
+			"matrices",
+			"shader-ast",
+			"transducers",
+			"vectors",
+			"webgl"
+		],
+		"screenshot": "examples/webgl-grid.jpg"
+	},
+	"devDependencies": {
+		"typescript": "^4.7.4",
+		"vite": "^3.0.0"
+	}
 }

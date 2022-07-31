@@ -18,52 +18,52 @@ export function sym<T extends Type>(type: T, opts: SymOpts, init: Term<T>): Sym<
 // prettier-ignore
 export function sym<T extends Type>(type: T, id: string, opts: SymOpts, init: Term<T>): Sym<T>;
 export function sym<T extends Type>(type: any, ...xs: any[]): Sym<any> {
-    let id: string;
-    let opts: SymOpts;
-    let init: Term<T>;
-    switch (xs.length) {
-        case 0:
-            if (!isString(type)) {
-                init = type;
-                type = init.type;
-            }
-            break;
-        case 1:
-            if (isString(xs[0])) {
-                id = xs[0];
-            } else if (xs[0].tag) {
-                init = xs[0];
-            } else {
-                opts = xs[0];
-            }
-            break;
-        case 2:
-            if (isString(xs[0])) {
-                [id, opts] = xs;
-            } else {
-                [opts, init] = xs;
-            }
-            break;
-        case 3:
-            [id, opts, init] = xs;
-            break;
-        default:
-            illegalArgs();
-    }
-    return {
-        tag: "sym",
-        type,
-        id: id! || gensym(),
-        opts: opts! || {},
-        init: init!,
-    };
+	let id: string;
+	let opts: SymOpts;
+	let init: Term<T>;
+	switch (xs.length) {
+		case 0:
+			if (!isString(type)) {
+				init = type;
+				type = init.type;
+			}
+			break;
+		case 1:
+			if (isString(xs[0])) {
+				id = xs[0];
+			} else if (xs[0].tag) {
+				init = xs[0];
+			} else {
+				opts = xs[0];
+			}
+			break;
+		case 2:
+			if (isString(xs[0])) {
+				[id, opts] = xs;
+			} else {
+				[opts, init] = xs;
+			}
+			break;
+		case 3:
+			[id, opts, init] = xs;
+			break;
+		default:
+			illegalArgs();
+	}
+	return {
+		tag: "sym",
+		type,
+		id: id! || gensym(),
+		opts: opts! || {},
+		init: init!,
+	};
 }
 
 export const constSym = <T extends Type>(
-    type: T,
-    id?: string,
-    opts?: SymOpts,
-    init?: Term<T>
+	type: T,
+	id?: string,
+	opts?: SymOpts,
+	init?: Term<T>
 ) => sym(type, id || gensym(), { const: true, ...opts }, init!);
 
 /**
@@ -74,41 +74,41 @@ export const constSym = <T extends Type>(
  * targets.
  */
 export const arraySym = <T extends keyof ArrayTypeMap>(
-    type: T,
-    id?: string,
-    opts: SymOpts = {},
-    init?: (Lit<T> | Sym<T>)[]
+	type: T,
+	id?: string,
+	opts: SymOpts = {},
+	init?: (Lit<T> | Sym<T>)[]
 ): Sym<ArrayTypeMap[T]> => {
-    if (init && opts.num == null) {
-        opts.num = init.length;
-    }
-    assert(opts.num != null, "missing array length");
-    init &&
-        assert(
-            opts.num === init.length,
-            `expected ${opts.num} items in array, but got ${init.length}`
-        );
-    const atype = <Type>(type + "[]");
-    return <any>{
-        tag: "sym",
-        type: atype,
-        id: id || gensym(),
-        opts,
-        init: init
-            ? {
-                  tag: "array_init",
-                  type: atype,
-                  init,
-              }
-            : undefined,
-    };
+	if (init && opts.num == null) {
+		opts.num = init.length;
+	}
+	assert(opts.num != null, "missing array length");
+	init &&
+		assert(
+			opts.num === init.length,
+			`expected ${opts.num} items in array, but got ${init.length}`
+		);
+	const atype = <Type>(type + "[]");
+	return <any>{
+		tag: "sym",
+		type: atype,
+		id: id || gensym(),
+		opts,
+		init: init
+			? {
+					tag: "array_init",
+					type: atype,
+					init,
+			  }
+			: undefined,
+	};
 };
 
 export const input = <T extends Type>(type: T, id: string, opts?: SymOpts) =>
-    sym(type, id, { q: "in", type: "in", ...opts });
+	sym(type, id, { q: "in", type: "in", ...opts });
 
 export const output = <T extends Type>(type: T, id: string, opts?: SymOpts) =>
-    sym(type, id, { q: "out", type: "out", ...opts });
+	sym(type, id, { q: "out", type: "out", ...opts });
 
 export const uniform = <T extends Type>(type: T, id: string, opts?: SymOpts) =>
-    sym(type, id, { q: "in", type: "uni", ...opts });
+	sym(type, id, { q: "in", type: "uni", ...opts });

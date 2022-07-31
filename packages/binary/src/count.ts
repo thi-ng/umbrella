@@ -6,9 +6,9 @@ import type { FnN, FnN2 } from "@thi.ng/api";
  * @param x -
  */
 export const popCount: FnN = (x) => (
-    (x = x - ((x >>> 1) & 0x55555555)),
-    (x = (x & 0x33333333) + ((x >>> 2) & 0x33333333)),
-    (((x + (x >>> 4)) & 0xf0f0f0f) * 0x1010101) >>> 24
+	(x = x - ((x >>> 1) & 0x55555555)),
+	(x = (x & 0x33333333) + ((x >>> 2) & 0x33333333)),
+	(((x + (x >>> 4)) & 0xf0f0f0f) * 0x1010101) >>> 24
 );
 
 /**
@@ -19,16 +19,16 @@ export const popCount: FnN = (x) => (
  * @param n -
  */
 export const popCountArray = (
-    data: Uint32Array,
-    start = 0,
-    n = data.length
+	data: Uint32Array,
+	start = 0,
+	n = data.length
 ) => {
-    let num = 0;
-    for (let end = start + n; start < end; start++) {
-        const x = data[start];
-        x > 0 && (num += popCount(x));
-    }
-    return num;
+	let num = 0;
+	for (let end = start + n; start < end; start++) {
+		const x = data[start];
+		x > 0 && (num += popCount(x));
+	}
+	return num;
 };
 
 /**
@@ -49,18 +49,18 @@ export const hammingDist: FnN2 = (x, y) => popCount(x ^ y);
  * @param x -
  */
 export const clz32: FnN = (x) =>
-    x !== 0 ? 31 - ((Math.log(x >>> 0) / Math.LN2) | 0) : 32;
+	x !== 0 ? 31 - ((Math.log(x >>> 0) / Math.LN2) | 0) : 32;
 
 export const ctz32: FnN = (x) => {
-    let c = 32;
-    x &= -x;
-    x && c--;
-    x & 0x0000ffff && (c -= 16);
-    x & 0x00ff00ff && (c -= 8);
-    x & 0x0f0f0f0f && (c -= 4);
-    x & 0x33333333 && (c -= 2);
-    x & 0x55555555 && (c -= 1);
-    return c;
+	let c = 32;
+	x &= -x;
+	x && c--;
+	x & 0x0000ffff && (c -= 16);
+	x & 0x00ff00ff && (c -= 8);
+	x & 0x0f0f0f0f && (c -= 4);
+	x & 0x33333333 && (c -= 2);
+	x & 0x55555555 && (c -= 1);
+	return c;
 };
 
 /**

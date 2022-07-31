@@ -3,19 +3,19 @@ import { compile } from "./compile/emit.js";
 import { vop } from "./vop.js";
 
 const $ = (dim: number) =>
-    distChebyshev.add(
-        dim,
-        compile(
-            dim,
-            ([a, b]) => `Math.abs(${a}-${b})`,
-            "a,b",
-            undefined,
-            "",
-            ",",
-            "return Math.max(",
-            ");"
-        )
-    );
+	distChebyshev.add(
+		dim,
+		compile(
+			dim,
+			([a, b]) => `Math.abs(${a}-${b})`,
+			"a,b",
+			undefined,
+			"",
+			",",
+			"return Math.max(",
+			");"
+		)
+	);
 
 /**
  * @remarks
@@ -24,11 +24,11 @@ const $ = (dim: number) =>
 export const distChebyshev: MultiVecOpRoVV<number> = vop();
 
 distChebyshev.default((a, b) => {
-    let max = 0;
-    for (let i = a.length; i-- > 0; ) {
-        max = Math.max(max, Math.abs(a[i] - b[i]));
-    }
-    return max;
+	let max = 0;
+	for (let i = a.length; i-- > 0; ) {
+		max = Math.max(max, Math.abs(a[i] - b[i]));
+	}
+	return max;
 });
 
 export const distChebyshev2 = $(2);

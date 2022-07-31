@@ -4,18 +4,18 @@ import type { Locale, LocaleSpec, LocaleUnit, Precision } from "./api.js";
 import { EN_SHORT } from "./i18n/en.js";
 
 const prepLocale = (spec: LocaleSpec): Locale => {
-    const locale = <Locale>{
-        sepED: " ",
-        sepDM: "/",
-        sepMY: "/",
-        sepHM: ":",
-        date: ["E", "/ED", "d", "/DM", "MMM", "/MY", "yyyy"],
-        time: ["H", "/HM", "mm"],
-        ...spec,
-    };
-    !locale.dateTime &&
-        (locale.dateTime = [...locale.date, ", ", ...locale.time]);
-    return locale;
+	const locale = <Locale>{
+		sepED: " ",
+		sepDM: "/",
+		sepMY: "/",
+		sepHM: ":",
+		date: ["E", "/ED", "d", "/DM", "MMM", "/MY", "yyyy"],
+		time: ["H", "/HM", "mm"],
+		...spec,
+	};
+	!locale.dateTime &&
+		(locale.dateTime = [...locale.date, ", ", ...locale.time]);
+	return locale;
 };
 
 /**
@@ -25,7 +25,7 @@ const prepLocale = (spec: LocaleSpec): Locale => {
  * @param locale -
  */
 export const setLocale = (locale: LocaleSpec): Locale =>
-    (LOCALE = prepLocale(locale));
+	(LOCALE = prepLocale(locale));
 
 /**
  * Executes given `fn` with temporarily active `locale`. Returns result of `fn`.
@@ -38,16 +38,16 @@ export const setLocale = (locale: LocaleSpec): Locale =>
  * @param fn -
  */
 export const withLocale = <T>(locale: LocaleSpec, fn: Fn0<T>) => {
-    const old = LOCALE;
-    setLocale(locale);
-    try {
-        const res = fn();
-        setLocale(old);
-        return res;
-    } catch (e) {
-        setLocale(old);
-        throw e;
-    }
+	const old = LOCALE;
+	setLocale(locale);
+	try {
+		const res = fn();
+		setLocale(old);
+		return res;
+	} catch (e) {
+		setLocale(old);
+		throw e;
+	}
 };
 
 export let LOCALE = prepLocale(EN_SHORT);
@@ -98,21 +98,21 @@ export const monthNames = () => LOCALE.months.slice();
  * @param unitsOnly -
  */
 export const units = (
-    x: number,
-    unit: Precision | LocaleUnit,
-    isDativ = false,
-    unitsOnly = false
+	x: number,
+	unit: Precision | LocaleUnit,
+	isDativ = false,
+	unitsOnly = false
 ) => {
-    unit = isString(unit) ? LOCALE.units[unit] : unit;
-    const res =
-        x > 1 || x === 0
-            ? isDativ
-                ? unit.pd || unit.p
-                : unit.p
-            : isDativ
-            ? unit.sd || unit.s
-            : unit.s;
-    return unitsOnly ? res : `${x} ${res}`;
+	unit = isString(unit) ? LOCALE.units[unit] : unit;
+	const res =
+		x > 1 || x === 0
+			? isDativ
+				? unit.pd || unit.p
+				: unit.p
+			: isDativ
+			? unit.sd || unit.s
+			: unit.s;
+	return unitsOnly ? res : `${x} ${res}`;
 };
 
 /**
@@ -130,16 +130,16 @@ export const units = (
  * @param isDativ -
  */
 export const unitsLessThan = (
-    x: number,
-    unit: Precision | LocaleUnit,
-    isDativ = false
+	x: number,
+	unit: Precision | LocaleUnit,
+	isDativ = false
 ) =>
-    `${LOCALE.less.replace("%s", String(x))} ${units(
-        Math.max(x, 1),
-        unit,
-        isDativ,
-        true
-    )}`;
+	`${LOCALE.less.replace("%s", String(x))} ${units(
+		Math.max(x, 1),
+		unit,
+		isDativ,
+		true
+	)}`;
 
 /**
  * Wraps given (presumably localized) string in current {@link LOCALE}'s `past`
@@ -149,4 +149,4 @@ export const unitsLessThan = (
  * @param res -
  */
 export const tense = (sign: number, res: string) =>
-    (sign < 0 ? LOCALE.past : LOCALE.future).replace("%s", res);
+	(sign < 0 ? LOCALE.past : LOCALE.future).replace("%s", res);

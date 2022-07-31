@@ -5,14 +5,14 @@ import { __optsWithID } from "./idgen.js";
 import { Subscription } from "./subscription.js";
 
 export interface MetaStreamOpts extends CommonOpts {
-    /**
-     * If true, emits the last received value from the metastream's
-     * current child stream (if any) when the metastream's parent is
-     * calling `.done()`.
-     *
-     * @defaultValue false
-     */
-    emitLast: boolean;
+	/**
+	 * If true, emits the last received value from the metastream's
+	 * current child stream (if any) when the metastream's parent is
+	 * calling `.done()`.
+	 *
+	 * @defaultValue false
+	 */
+	emitLast: boolean;
 }
 
 /**
@@ -95,81 +95,81 @@ export interface MetaStreamOpts extends CommonOpts {
  * @param id -
  */
 export const metaStream = <A, B>(
-    factory: Fn<A, Nullable<ISubscription<B, B>>>,
-    opts?: Partial<MetaStreamOpts>
+	factory: Fn<A, Nullable<ISubscription<B, B>>>,
+	opts?: Partial<MetaStreamOpts>
 ) => new MetaStream(factory, opts);
 
 /**
  * @see {@link metaStream} for reference & examples.
  */
 export class MetaStream<A, B> extends Subscription<A, B> {
-    factory: Fn<A, Nullable<ISubscription<B, B>>>;
-    stream?: ISubscription<B, B>;
-    sub?: ISubscription<B, B>;
-    emitLast: boolean;
-    doneRequested: boolean;
+	factory: Fn<A, Nullable<ISubscription<B, B>>>;
+	stream?: ISubscription<B, B>;
+	sub?: ISubscription<B, B>;
+	emitLast: boolean;
+	doneRequested: boolean;
 
-    constructor(
-        factory: Fn<A, Nullable<ISubscription<B, B>>>,
-        opts: Partial<MetaStreamOpts> = {}
-    ) {
-        super(undefined, __optsWithID("metastram", opts));
-        this.factory = factory;
-        this.emitLast = opts.emitLast === true;
-        this.doneRequested = false;
-    }
+	constructor(
+		factory: Fn<A, Nullable<ISubscription<B, B>>>,
+		opts: Partial<MetaStreamOpts> = {}
+	) {
+		super(undefined, __optsWithID("metastram", opts));
+		this.factory = factory;
+		this.emitLast = opts.emitLast === true;
+		this.doneRequested = false;
+	}
 
-    next(x: A) {
-        if (this.state < State.DONE) {
-            if (this.stream) {
-                this.stream.unsubscribe(this.sub);
-            }
-            let stream = this.factory(x);
-            if (stream) {
-                this.stream = stream;
-                this.sub = this.stream.subscribe({
-                    next: (x) => {
-                        stream === this.stream && super.dispatch(x);
-                        this.doneRequested && this.done();
-                    },
-                    done: () => {
-                        this.stream!.unsubscribe(this.sub);
-                        if (stream === this.stream) {
-                            this.stream = undefined;
-                            this.sub = undefined;
-                        }
-                    },
-                    error: (e) => super.error(e),
-                    __owner: this,
-                });
-            }
-        }
-    }
+	next(x: A) {
+		if (this.state < State.DONE) {
+			if (this.stream) {
+				this.stream.unsubscribe(this.sub);
+			}
+			let stream = this.factory(x);
+			if (stream) {
+				this.stream = stream;
+				this.sub = this.stream.subscribe({
+					next: (x) => {
+						stream === this.stream && super.dispatch(x);
+						this.doneRequested && this.done();
+					},
+					done: () => {
+						this.stream!.unsubscribe(this.sub);
+						if (stream === this.stream) {
+							this.stream = undefined;
+							this.sub = undefined;
+						}
+					},
+					error: (e) => super.error(e),
+					__owner: this,
+				});
+			}
+		}
+	}
 
-    done() {
-        if (this.emitLast && !this.doneRequested) {
-            this.doneRequested = true;
-        } else {
-            if (this.stream) {
-                this.detach(true);
-            }
-            this.closeIn !== CloseMode.NEVER && super.done();
-        }
-    }
+	done() {
+		if (this.emitLast && !this.doneRequested) {
+			this.doneRequested = true;
+		} else {
+			if (this.stream) {
+				this.detach(true);
+			}
+			this.closeIn !== CloseMode.NEVER && super.done();
+		}
+	}
 
-    unsubscribe(sub?: ISubscription<B, any>) {
-        if (this.stream && (!sub || this.subs.length === 1)) {
-            this.detach(!sub);
-        }
-        return super.unsubscribe(sub);
-    }
+	unsubscribe(sub?: ISubscription<B, any>) {
+		if (this.stream && (!sub || this.subs.length === 1)) {
+			this.detach(!sub);
+		}
+		return super.unsubscribe(sub);
+	}
 
-    protected detach(force: boolean) {
-        if (force || this.closeOut !== CloseMode.NEVER) {
-            assert(!!this.stream, "input stream already removed");
-            this.stream!.unsubscribe(this.sub);
-            delete this.stream;
-            delete this.sub;
-        }
-    }
+	protected detach(force: boolean) {
+		if (force || this.closeOut !== CloseMode.NEVER) {
+			assert(!!this.stream, "input stream already removed");
+			this.stream!.unsubscribe(this.sub);
+			delete this.stream;
+			delete this.sub;
+		}
+	}
 }

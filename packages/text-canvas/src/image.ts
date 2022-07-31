@@ -10,28 +10,28 @@ import { formatCanvas } from "./format.js";
 import { charCode, intersectRect } from "./utils.js";
 
 export const blit = (dest: Canvas, x: number, y: number, src: Canvas) => {
-    x |= 0;
-    y |= 0;
-    const { data: sbuf, width: sw, height: sh } = src;
-    const { data: dbuf, width: dw } = dest;
-    const {
-        x1,
-        y1,
-        y2,
-        w: iw,
-        h: ih,
-    } = intersectRect(
-        { x1: x, y1: y, x2: x + sw, y2: y + sh, w: sw, h: sh },
-        peek(dest.clipRects)
-    );
-    if (!iw || !ih) return;
-    const sx = clamp0(x1 - x);
-    const sy = clamp0(y1 - y);
-    for (let yy = sy, dy = y1; dy < y2; yy++, dy++) {
-        let sidx = sx + yy * sw;
-        let didx = x1 + dy * dw;
-        dbuf.set(sbuf.subarray(sidx, sidx + iw), didx);
-    }
+	x |= 0;
+	y |= 0;
+	const { data: sbuf, width: sw, height: sh } = src;
+	const { data: dbuf, width: dw } = dest;
+	const {
+		x1,
+		y1,
+		y2,
+		w: iw,
+		h: ih,
+	} = intersectRect(
+		{ x1: x, y1: y, x2: x + sw, y2: y + sh, w: sw, h: sh },
+		peek(dest.clipRects)
+	);
+	if (!iw || !ih) return;
+	const sx = clamp0(x1 - x);
+	const sy = clamp0(y1 - y);
+	for (let yy = sy, dy = y1; dy < y2; yy++, dy++) {
+		let sidx = sx + yy * sw;
+		let didx = x1 + dy * dw;
+		dbuf.set(sbuf.subarray(sidx, sidx + iw), didx);
+	}
 };
 
 /**
@@ -78,67 +78,67 @@ export const blit = (dest: Canvas, x: number, y: number, src: Canvas) => {
  * @param mask
  */
 export const blitMask = (
-    dest: Canvas,
-    x: number,
-    y: number,
-    src: Canvas,
-    mask: NumOrString = 0x20
+	dest: Canvas,
+	x: number,
+	y: number,
+	src: Canvas,
+	mask: NumOrString = 0x20
 ) => {
-    x |= 0;
-    y |= 0;
-    const { data: sbuf, width: sw, height: sh } = src;
-    const { data: dbuf, width: dw } = dest;
-    const {
-        x1,
-        y1,
-        y2,
-        w: iw,
-        h: ih,
-    } = intersectRect(
-        { x1: x, y1: y, x2: x + sw, y2: y + sh, w: sw, h: sh },
-        peek(dest.clipRects)
-    );
-    if (!iw || !ih) return;
-    const sx = clamp0(x1 - x);
-    const sy = clamp0(y1 - y);
-    mask = charCode(mask, 0);
-    for (let yy = sy, dy = y1; dy < y2; yy++, dy++) {
-        let sidx = sx + yy * sw;
-        let didx = x1 + dy * dw;
-        blit1d(dbuf, didx, sbuf.subarray(sidx, sidx + iw), mask);
-    }
+	x |= 0;
+	y |= 0;
+	const { data: sbuf, width: sw, height: sh } = src;
+	const { data: dbuf, width: dw } = dest;
+	const {
+		x1,
+		y1,
+		y2,
+		w: iw,
+		h: ih,
+	} = intersectRect(
+		{ x1: x, y1: y, x2: x + sw, y2: y + sh, w: sw, h: sh },
+		peek(dest.clipRects)
+	);
+	if (!iw || !ih) return;
+	const sx = clamp0(x1 - x);
+	const sy = clamp0(y1 - y);
+	mask = charCode(mask, 0);
+	for (let yy = sy, dy = y1; dy < y2; yy++, dy++) {
+		let sidx = sx + yy * sw;
+		let didx = x1 + dy * dw;
+		blit1d(dbuf, didx, sbuf.subarray(sidx, sidx + iw), mask);
+	}
 };
 
 export const resize = (canvas: Canvas, newWidth: number, newHeight: number) => {
-    if (canvas.width === newWidth && canvas.height === newHeight) return;
-    const dest = new Canvas(newWidth, newHeight);
-    dest.data.fill(charCode(0x20, canvas.format));
-    blit(dest, 0, 0, canvas);
-    canvas.data = dest.data;
-    canvas.size[0] = newWidth;
-    canvas.size[1] = newHeight;
-    canvas.clipRects = [
-        {
-            x1: 0,
-            y1: 0,
-            x2: newWidth,
-            y2: newHeight,
-            w: newWidth,
-            h: newHeight,
-        },
-    ];
+	if (canvas.width === newWidth && canvas.height === newHeight) return;
+	const dest = new Canvas(newWidth, newHeight);
+	dest.data.fill(charCode(0x20, canvas.format));
+	blit(dest, 0, 0, canvas);
+	canvas.data = dest.data;
+	canvas.size[0] = newWidth;
+	canvas.size[1] = newHeight;
+	canvas.clipRects = [
+		{
+			x1: 0,
+			y1: 0,
+			x2: newWidth,
+			y2: newHeight,
+			w: newWidth,
+			h: newHeight,
+		},
+	];
 };
 
 export const extract = (
-    canvas: Canvas,
-    x: number,
-    y: number,
-    w: number,
-    h: number
+	canvas: Canvas,
+	x: number,
+	y: number,
+	w: number,
+	h: number
 ) => {
-    const dest = new Canvas(w, h, canvas.format, peek(canvas.styles));
-    blit(dest, -x, -y, canvas);
-    return dest;
+	const dest = new Canvas(w, h, canvas.format, peek(canvas.styles));
+	blit(dest, -x, -y, canvas);
+	return dest;
 };
 
 /**
@@ -151,16 +151,16 @@ export const extract = (
  * @param clear -
  */
 export const scrollV = (canvas: Canvas, dy: number, clear = 0x20) => {
-    const { data, width } = canvas;
-    const ch = charCode(clear, canvas.format);
-    dy *= width;
-    if (dy < 0) {
-        data.copyWithin(-dy, 0, dy);
-        data.fill(ch, 0, -dy);
-    } else if (dy > 0) {
-        data.copyWithin(0, dy);
-        data.fill(ch, -dy);
-    }
+	const { data, width } = canvas;
+	const ch = charCode(clear, canvas.format);
+	dy *= width;
+	if (dy < 0) {
+		data.copyWithin(-dy, 0, dy);
+		data.fill(ch, 0, -dy);
+	} else if (dy > 0) {
+		data.copyWithin(0, dy);
+		data.fill(ch, -dy);
+	}
 };
 
 /**
@@ -174,51 +174,51 @@ export const scrollV = (canvas: Canvas, dy: number, clear = 0x20) => {
  * @param opts -
  */
 export const image = (
-    canvas: Canvas,
-    x: number,
-    y: number,
-    w: number,
-    h: number,
-    pixels: ArrayLike<number>,
-    opts?: Partial<ImageOpts>
+	canvas: Canvas,
+	x: number,
+	y: number,
+	w: number,
+	h: number,
+	pixels: ArrayLike<number>,
+	opts?: Partial<ImageOpts>
 ) => {
-    x |= 0;
-    y |= 0;
-    w |= 0;
-    h |= 0;
-    const { data, width } = canvas;
-    const {
-        x1,
-        y1,
-        x2,
-        y2,
-        sx,
-        sy,
-        w: iw,
-        h: ih,
-    } = imgRect(canvas, x, y, w, h);
-    if (!iw || !ih) return;
-    const { chars, format, gamma, invert, bits } = {
-        chars: SHADES_BLOCK,
-        format: canvas.format,
-        gamma: 1,
-        invert: false,
-        bits: 8,
-        ...opts,
-    };
-    const fmt = isNumber(format) ? () => format : format;
-    const max = (1 << bits) - 1;
-    const mask = invert ? max : 0;
-    const norm = 1 / max;
-    const num = chars.length - 1;
-    for (let yy = sy, dy = y1; dy < y2; yy++, dy++) {
-        let sidx = sx + yy * w;
-        let didx = x1 + dy * width;
-        for (let xx = sx, dx = x1; dx < x2; xx++, dx++) {
-            const col = Math.pow((pixels[sidx++] ^ mask) * norm, gamma);
-            data[didx++] = charCode(chars[(col * num + 0.5) | 0], fmt(col));
-        }
-    }
+	x |= 0;
+	y |= 0;
+	w |= 0;
+	h |= 0;
+	const { data, width } = canvas;
+	const {
+		x1,
+		y1,
+		x2,
+		y2,
+		sx,
+		sy,
+		w: iw,
+		h: ih,
+	} = imgRect(canvas, x, y, w, h);
+	if (!iw || !ih) return;
+	const { chars, format, gamma, invert, bits } = {
+		chars: SHADES_BLOCK,
+		format: canvas.format,
+		gamma: 1,
+		invert: false,
+		bits: 8,
+		...opts,
+	};
+	const fmt = isNumber(format) ? () => format : format;
+	const max = (1 << bits) - 1;
+	const mask = invert ? max : 0;
+	const norm = 1 / max;
+	const num = chars.length - 1;
+	for (let yy = sy, dy = y1; dy < y2; yy++, dy++) {
+		let sidx = sx + yy * w;
+		let didx = x1 + dy * width;
+		for (let xx = sx, dx = x1; dx < x2; xx++, dx++) {
+			const col = Math.pow((pixels[sidx++] ^ mask) * norm, gamma);
+			data[didx++] = charCode(chars[(col * num + 0.5) | 0], fmt(col));
+		}
+	}
 };
 
 /**
@@ -234,38 +234,38 @@ export const image = (
  * @param char -
  */
 export const imageRaw = (
-    canvas: Canvas,
-    x: number,
-    y: number,
-    w: number,
-    h: number,
-    pixels: ArrayLike<number>,
-    char = "█"
+	canvas: Canvas,
+	x: number,
+	y: number,
+	w: number,
+	h: number,
+	pixels: ArrayLike<number>,
+	char = "█"
 ) => {
-    x |= 0;
-    y |= 0;
-    w |= 0;
-    h |= 0;
-    const { data, width } = canvas;
-    const {
-        x1,
-        y1,
-        x2,
-        y2,
-        sx,
-        sy,
-        w: iw,
-        h: ih,
-    } = imgRect(canvas, x, y, w, h);
-    if (!iw || !ih) return;
-    const code = char.charCodeAt(0);
-    for (let yy = sy, dy = y1; dy < y2; yy++, dy++) {
-        let sidx = sx + yy * w;
-        let didx = x1 + dy * width;
-        for (let xx = sx, dx = x1; dx < x2; xx++, dx++) {
-            data[didx++] = code | ((pixels[sidx++] & 0xffff) << 16);
-        }
-    }
+	x |= 0;
+	y |= 0;
+	w |= 0;
+	h |= 0;
+	const { data, width } = canvas;
+	const {
+		x1,
+		y1,
+		x2,
+		y2,
+		sx,
+		sy,
+		w: iw,
+		h: ih,
+	} = imgRect(canvas, x, y, w, h);
+	if (!iw || !ih) return;
+	const code = char.charCodeAt(0);
+	for (let yy = sy, dy = y1; dy < y2; yy++, dy++) {
+		let sidx = sx + yy * w;
+		let didx = x1 + dy * width;
+		for (let xx = sx, dx = x1; dx < x2; xx++, dx++) {
+			data[didx++] = code | ((pixels[sidx++] & 0xffff) << 16);
+		}
+	}
 };
 
 /**
@@ -291,53 +291,53 @@ export const imageRaw = (
  * @param format -
  */
 export const imageBraille = (
-    canvas: Canvas,
-    x: number,
-    y: number,
-    w: number,
-    h: number,
-    pixels: ArrayLike<number>,
-    thresh: number,
-    format?: number
+	canvas: Canvas,
+	x: number,
+	y: number,
+	w: number,
+	h: number,
+	pixels: ArrayLike<number>,
+	thresh: number,
+	format?: number
 ) => {
-    x |= 0;
-    y |= 0;
-    w |= 0;
-    h |= 0;
-    const { data, width } = canvas;
-    const fmt = (format !== undefined ? format : canvas.format) << 16;
-    const {
-        x1,
-        y1,
-        x2,
-        y2,
-        sx,
-        sy,
-        w: iw,
-        h: ih,
-    } = imgRect(canvas, x, y, w >> 1, h >> 2);
-    if (!iw || !ih) return;
-    const w2 = w * 2;
-    const w3 = w * 3;
+	x |= 0;
+	y |= 0;
+	w |= 0;
+	h |= 0;
+	const { data, width } = canvas;
+	const fmt = (format !== undefined ? format : canvas.format) << 16;
+	const {
+		x1,
+		y1,
+		x2,
+		y2,
+		sx,
+		sy,
+		w: iw,
+		h: ih,
+	} = imgRect(canvas, x, y, w >> 1, h >> 2);
+	if (!iw || !ih) return;
+	const w2 = w * 2;
+	const w3 = w * 3;
 
-    const braille = (i: number) =>
-        (pixels[i] >= thresh ? 1 : 0) |
-        (pixels[i + w] >= thresh ? 2 : 0) |
-        (pixels[i + w2] >= thresh ? 4 : 0) |
-        (pixels[i + w3] >= thresh ? 8 : 0) |
-        (pixels[i + 1] >= thresh ? 16 : 0) |
-        (pixels[i + w + 1] >= thresh ? 32 : 0) |
-        (pixels[i + w2 + 1] >= thresh ? 64 : 0) |
-        (pixels[i + w3 + 1] >= thresh ? 128 : 0) |
-        0x2800;
+	const braille = (i: number) =>
+		(pixels[i] >= thresh ? 1 : 0) |
+		(pixels[i + w] >= thresh ? 2 : 0) |
+		(pixels[i + w2] >= thresh ? 4 : 0) |
+		(pixels[i + w3] >= thresh ? 8 : 0) |
+		(pixels[i + 1] >= thresh ? 16 : 0) |
+		(pixels[i + w + 1] >= thresh ? 32 : 0) |
+		(pixels[i + w2 + 1] >= thresh ? 64 : 0) |
+		(pixels[i + w3 + 1] >= thresh ? 128 : 0) |
+		0x2800;
 
-    for (let yy = sy, dy = y1; dy < y2; yy += 4, dy++) {
-        let sidx = sx + yy * w;
-        let didx = x1 + dy * width;
-        for (let xx = sx, dx = x1; dx < x2; xx += 2, dx++, sidx += 2) {
-            data[didx++] = braille(sidx) | fmt;
-        }
-    }
+	for (let yy = sy, dy = y1; dy < y2; yy += 4, dy++) {
+		let sidx = sx + yy * w;
+		let didx = x1 + dy * width;
+		for (let xx = sx, dx = x1; dx < x2; xx += 2, dx++, sidx += 2) {
+			data[didx++] = braille(sidx) | fmt;
+		}
+	}
 };
 
 /**
@@ -353,13 +353,13 @@ export const imageBraille = (
  * @param format -
  */
 export const imageCanvasBraille = (
-    src: { width: number; height: number; data: UIntArray },
-    thresh: number,
-    format = 0
+	src: { width: number; height: number; data: UIntArray },
+	thresh: number,
+	format = 0
 ) => {
-    const dest = canvas(src.width >> 1, src.height >> 2);
-    imageBraille(dest, 0, 0, src.width, src.height, src.data, thresh, format);
-    return dest;
+	const dest = canvas(src.width >> 1, src.height >> 2);
+	imageBraille(dest, 0, 0, src.width, src.height, src.data, thresh, format);
+	return dest;
 };
 
 /**
@@ -370,8 +370,8 @@ export const imageCanvasBraille = (
  * @param thresh -
  */
 export const imageStringBraille = (
-    src: { width: number; height: number; data: UIntArray },
-    thresh: number
+	src: { width: number; height: number; data: UIntArray },
+	thresh: number
 ) => formatCanvas(imageCanvasBraille(src, thresh, 0));
 
 /**
@@ -383,12 +383,12 @@ export const imageStringBraille = (
  * @param char -
  */
 export const imageCanvas565 = (
-    src: { width: number; height: number; data: UIntArray },
-    char?: string
+	src: { width: number; height: number; data: UIntArray },
+	char?: string
 ) => {
-    const dest = canvas(src.width, src.height);
-    imageRaw(dest, 0, 0, src.width, src.height, src.data, char);
-    return dest;
+	const dest = canvas(src.width, src.height);
+	imageRaw(dest, 0, 0, src.width, src.height, src.data, char);
+	return dest;
 };
 
 /**
@@ -399,25 +399,25 @@ export const imageCanvas565 = (
  * @param char -
  */
 export const imageString565 = (
-    src: { width: number; height: number; data: UIntArray },
-    char?: string,
-    fmt = FMT_ANSI565
+	src: { width: number; height: number; data: UIntArray },
+	char?: string,
+	fmt = FMT_ANSI565
 ) => formatCanvas(imageCanvas565(src, char), fmt);
 
 const imgRect = (
-    canvas: Canvas,
-    x: number,
-    y: number,
-    w: number,
-    h: number
+	canvas: Canvas,
+	x: number,
+	y: number,
+	w: number,
+	h: number
 ) => {
-    const rect: ClipRect & { sx: number; sy: number } = <any>(
-        intersectRect(
-            { x1: x, y1: y, x2: x + w, y2: y + h, w, h },
-            peek(canvas.clipRects)
-        )
-    );
-    rect.sx = clamp0(rect.x1 - x);
-    rect.sy = clamp0(rect.y1 - y);
-    return rect;
+	const rect: ClipRect & { sx: number; sy: number } = <any>(
+		intersectRect(
+			{ x1: x, y1: y, x2: x + w, y2: y + h, w, h },
+			peek(canvas.clipRects)
+		)
+	);
+	rect.sx = clamp0(rect.x1 - x);
+	rect.sy = clamp0(rect.y1 - y);
+	return rect;
 };

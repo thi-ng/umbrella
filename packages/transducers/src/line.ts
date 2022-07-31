@@ -28,6 +28,6 @@ import { normRange } from "./norm-range.js";
  * @param steps -
  */
 export const line = (start: number, end: number, steps = 10) => {
-    const delta = end - start;
-    return map((t) => start + delta * t, normRange(steps));
+	const delta = end - start;
+	return map((t) => start + delta * t, normRange(steps));
 };

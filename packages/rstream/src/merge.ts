@@ -1,8 +1,8 @@
 import {
-    ISubscribable,
-    ISubscription,
-    State,
-    TransformableOpts,
+	ISubscribable,
+	ISubscription,
+	State,
+	TransformableOpts,
 } from "./api.js";
 import { isFirstOrLastInput } from "./checks.js";
 import { __optsWithID } from "./idgen.js";
@@ -10,10 +10,10 @@ import { __removeAllIDs } from "./internal/remove.js";
 import { Subscription } from "./subscription.js";
 
 export interface StreamMergeOpts<A, B> extends TransformableOpts<A, B> {
-    /**
-     * Input sources.
-     */
-    src: ISubscribable<A>[];
+	/**
+	 * Input sources.
+	 */
+	src: ISubscribable<A>[];
 }
 
 /**
@@ -70,87 +70,87 @@ export interface StreamMergeOpts<A, B> extends TransformableOpts<A, B> {
  * @param opts -
  */
 export const merge = <A, B>(opts?: Partial<StreamMergeOpts<A, B>>) =>
-    new StreamMerge(opts);
+	new StreamMerge(opts);
 
 /**
  * @see {@link merge} for reference & examples.
  */
 export class StreamMerge<A, B> extends Subscription<A, B> {
-    sources: Map<ISubscribable<A>, ISubscription<A, any>>;
+	sources: Map<ISubscribable<A>, ISubscription<A, any>>;
 
-    constructor(opts?: Partial<StreamMergeOpts<A, B>>) {
-        opts = opts || {};
-        super(undefined, __optsWithID("streammerge", opts));
-        this.sources = new Map();
-        opts.src && this.addAll(opts.src);
-    }
+	constructor(opts?: Partial<StreamMergeOpts<A, B>>) {
+		opts = opts || {};
+		super(undefined, __optsWithID("streammerge", opts));
+		this.sources = new Map();
+		opts.src && this.addAll(opts.src);
+	}
 
-    add(src: ISubscribable<A>) {
-        this.ensureState();
-        this.sources.set(
-            src,
-            src.subscribe(
-                {
-                    next: (x) =>
-                        x instanceof Subscription ? this.add(x) : this.next(x),
-                    done: () => this.markDone(src),
-                    __owner: this,
-                },
-                { id: `in-${src.id}` }
-            )
-        );
-    }
+	add(src: ISubscribable<A>) {
+		this.ensureState();
+		this.sources.set(
+			src,
+			src.subscribe(
+				{
+					next: (x) =>
+						x instanceof Subscription ? this.add(x) : this.next(x),
+					done: () => this.markDone(src),
+					__owner: this,
+				},
+				{ id: `in-${src.id}` }
+			)
+		);
+	}
 
-    addAll(src: Iterable<ISubscribable<A>>) {
-        for (let s of src) {
-            this.add(s);
-        }
-    }
+	addAll(src: Iterable<ISubscribable<A>>) {
+		for (let s of src) {
+			this.add(s);
+		}
+	}
 
-    remove(src: ISubscribable<A>) {
-        const sub = this.sources.get(src);
-        if (sub) {
-            this.sources.delete(src);
-            sub.unsubscribe();
-            return true;
-        }
-        return false;
-    }
+	remove(src: ISubscribable<A>) {
+		const sub = this.sources.get(src);
+		if (sub) {
+			this.sources.delete(src);
+			sub.unsubscribe();
+			return true;
+		}
+		return false;
+	}
 
-    removeID(id: string) {
-        for (let s of this.sources) {
-            if (s[0].id === id) {
-                return this.remove(s[0]);
-            }
-        }
-        return false;
-    }
+	removeID(id: string) {
+		for (let s of this.sources) {
+			if (s[0].id === id) {
+				return this.remove(s[0]);
+			}
+		}
+		return false;
+	}
 
-    removeAll(src: Iterable<ISubscribable<A>>) {
-        let ok = true;
-        for (let s of src) {
-            ok = this.remove(s) && ok;
-        }
-        return ok;
-    }
+	removeAll(src: Iterable<ISubscribable<A>>) {
+		let ok = true;
+		for (let s of src) {
+			ok = this.remove(s) && ok;
+		}
+		return ok;
+	}
 
-    removeAllIDs(ids: Iterable<string>) {
-        return __removeAllIDs(this, ids);
-    }
+	removeAllIDs(ids: Iterable<string>) {
+		return __removeAllIDs(this, ids);
+	}
 
-    unsubscribe(sub?: ISubscription<B, any>) {
-        if (!sub) {
-            for (let s of this.sources.values()) {
-                s.unsubscribe();
-            }
-            this.state = State.DONE;
-            this.sources.clear();
-        }
-        return super.unsubscribe(sub);
-    }
+	unsubscribe(sub?: ISubscription<B, any>) {
+		if (!sub) {
+			for (let s of this.sources.values()) {
+				s.unsubscribe();
+			}
+			this.state = State.DONE;
+			this.sources.clear();
+		}
+		return super.unsubscribe(sub);
+	}
 
-    protected markDone(src: ISubscribable<A>) {
-        this.remove(src);
-        isFirstOrLastInput(this.closeIn, this.sources.size) && this.done();
-    }
+	protected markDone(src: ISubscribable<A>) {
+		this.remove(src);
+		isFirstOrLastInput(this.closeIn, this.sources.size) && this.done();
+	}
 }

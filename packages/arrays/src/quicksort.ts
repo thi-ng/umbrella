@@ -39,30 +39,45 @@ import { swap } from "./swap.js";
  * @param start - start index
  * @param end - end index (inclusive)
  */
-// prettier-ignore
-export function quickSort<T>(arr: T[], _cmp?: Comparator<T>, _swap?: Fn3<T[], number, number, void>, start?: number, end?: number): T[];
-// prettier-ignore
-export function quickSort<T extends TypedArray>(arr: T, _cmp?: Comparator<number>, _swap?: Fn3<T, number, number, void>, start?: number, end?: number): T;
-// prettier-ignore
-export function quickSort(arr: any, _cmp: Comparator<any> = compare, _swap: Fn3<any, number, number, void> = swap, start = 0, end = arr.length - 1): any {
-    if (start < end) {
-        const pivot = arr[start + ((end - start) >> 1)];
-        let s = start - 1;
-        let e = end + 1;
+export function quickSort<T>(
+	arr: T[],
+	_cmp?: Comparator<T>,
+	_swap?: Fn3<T[], number, number, void>,
+	start?: number,
+	end?: number
+): T[];
+export function quickSort<T extends TypedArray>(
+	arr: T,
+	_cmp?: Comparator<number>,
+	_swap?: Fn3<T, number, number, void>,
+	start?: number,
+	end?: number
+): T;
+export function quickSort(
+	arr: any,
+	_cmp: Comparator<any> = compare,
+	_swap: Fn3<any, number, number, void> = swap,
+	start = 0,
+	end = arr.length - 1
+): any {
+	if (start < end) {
+		const pivot = arr[start + ((end - start) >> 1)];
+		let s = start - 1;
+		let e = end + 1;
 
-        while (true) {
-            do {
-                s++;
-            } while (_cmp(arr[s], pivot) < 0);
-            do {
-                e--;
-            } while (_cmp(arr[e], pivot) > 0);
-            if (s >= e) break;
-            _swap(arr, s, e);
-        }
+		while (true) {
+			do {
+				s++;
+			} while (_cmp(arr[s], pivot) < 0);
+			do {
+				e--;
+			} while (_cmp(arr[e], pivot) > 0);
+			if (s >= e) break;
+			_swap(arr, s, e);
+		}
 
-        quickSort(arr, _cmp, _swap, start, e);
-        quickSort(arr, _cmp, _swap, e + 1, end);
-    }
-    return arr;
+		quickSort(arr, _cmp, _swap, start, e);
+		quickSort(arr, _cmp, _swap, e + 1, end);
+	}
+	return arr;
 }

@@ -17,19 +17,19 @@ import { abs, dot, max } from "@thi.ng/shader-ast/builtin/math";
  * @param col3 - vec3
  */
 export const trilight = defn(
-    "vec3",
-    "trilight",
-    ["vec3", "vec3", "vec3", "vec3", "vec3"],
-    (n, l, c1, c2, c3) => {
-        let d: FloatSym;
-        return [
-            (d = sym(dot(n, l))),
-            ret(
-                add(
-                    add(mul(c1, max(d, FLOAT0)), mul(c2, sub(FLOAT1, abs(d)))),
-                    mul(c3, max(dot(neg(n), l), FLOAT0))
-                )
-            ),
-        ];
-    }
+	"vec3",
+	"trilight",
+	["vec3", "vec3", "vec3", "vec3", "vec3"],
+	(n, l, c1, c2, c3) => {
+		let d: FloatSym;
+		return [
+			(d = sym(dot(n, l))),
+			ret(
+				add(
+					add(mul(c1, max(d, FLOAT0)), mul(c2, sub(FLOAT1, abs(d)))),
+					mul(c3, max(dot(neg(n), l), FLOAT0))
+				)
+			),
+		];
+	}
 );

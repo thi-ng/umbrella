@@ -24,11 +24,11 @@ import { flattenWith } from "./flatten-with.js";
  */
 export function flatten<A, B = DeepArrayValue<A>>(): Transducer<A, B>;
 export function flatten<A, B = DeepArrayValue<A>>(
-    src: Iterable<A>
+	src: Iterable<A>
 ): IterableIterator<B>;
 export function flatten(src?: Iterable<any>): any {
-    return flattenWith<any, any>(
-        (x) => (isNotStringAndIterable(x) ? x : undefined),
-        src!
-    );
+	return flattenWith<any, any>(
+		(x) => (isNotStringAndIterable(x) ? x : undefined),
+		src!
+	);
 }

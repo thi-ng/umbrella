@@ -13,13 +13,13 @@ import type { StratifiedGridOpts } from "./api.js";
  * @remarks
  * All samples will be in `[[0,0,...] ...[dimx,dimy,...])` interval
  *
- * @param opts - 
+ * @param opts -
  */
 export const stratifiedGrid = (opts: StratifiedGridOpts) => {
-    const { rnd, samples } = { samples: 1, rnd: SYSTEM, ...opts };
-    const tmp = new Array<number>(opts.dim.length);
-    return mapcat(
-        (p) => repeatedly(() => add([], p, random(tmp, 0, 1, rnd)), samples),
-        rangeNd(opts.dim)
-    );
+	const { rnd, samples } = { samples: 1, rnd: SYSTEM, ...opts };
+	const tmp = new Array<number>(opts.dim.length);
+	return mapcat(
+		(p) => repeatedly(() => add([], p, random(tmp, 0, 1, rnd)), samples),
+		rangeNd(opts.dim)
+	);
 };

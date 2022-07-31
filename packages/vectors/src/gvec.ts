@@ -21,21 +21,21 @@ const SYM_EQD = "eqDelta";
 const SYM_STR = "toString";
 
 const PROPS = new Set<StringOrSym>([
-    SYM_B,
-    SYM_C,
-    SYM_CV,
-    SYM_EMPTY,
-    SYM_EQD,
-    SYM_L,
-    SYM_O,
-    SYM_S,
-    SYM_STR,
-    Symbol.iterator,
+	SYM_B,
+	SYM_C,
+	SYM_CV,
+	SYM_EMPTY,
+	SYM_EQD,
+	SYM_L,
+	SYM_O,
+	SYM_S,
+	SYM_STR,
+	Symbol.iterator,
 ]);
 
 const keys = memoize1<number, StringOrSym[]>((size: number) => [
-    ...map(String, range(size)),
-    ...PROPS,
+	...map(String, range(size)),
+	...PROPS,
 ]);
 
 /**
@@ -105,67 +105,67 @@ const keys = memoize1<number, StringOrSym[]>((size: number) => [
  * @param stride - component stride
  */
 export const gvec = (
-    buf: NumericArray,
-    size: number,
-    offset = 0,
-    stride = 1
+	buf: NumericArray,
+	size: number,
+	offset = 0,
+	stride = 1
 ): IVector<any> => <any>new Proxy(buf, {
-        get(obj, id) {
-            switch (id) {
-                case Symbol.iterator:
-                    return () => stridedValues(obj, size, offset, stride);
-                case SYM_L:
-                    return size;
-                case SYM_B:
-                    return buf;
-                case SYM_O:
-                    return offset;
-                case SYM_S:
-                    return stride;
-                case SYM_C:
-                    return () => setS([], obj, size, 0, offset, 1, stride);
-                case SYM_CV:
-                    return () => gvec(obj, size, offset, stride);
-                case SYM_EMPTY:
-                    return () => zeroes(size);
-                case SYM_EQD:
-                    return (o: any, eps: number = EPS) =>
-                        eqDeltaS(buf, o, size, eps, offset, 0, stride, 1);
-                case SYM_STR:
-                    return () =>
-                        FORMATTER(stridedValues(obj, size, offset, stride));
-                default:
-                    const j = parseInt(<string>id);
-                    return !isNaN(j) && j >= 0 && j < size
-                        ? obj[offset + j * stride]
-                        : undefined;
-            }
-        },
-        set(obj, id, value) {
-            const j = parseInt(<string>id);
-            if (!isNaN(j) && <any>j >= 0 && <any>j < size) {
-                obj[offset + ((<any>id) | 0) * stride] = value;
-            } else {
-                switch (id) {
-                    case SYM_O:
-                        offset = value;
-                        break;
-                    case SYM_S:
-                        stride = value;
-                        break;
-                    case SYM_L:
-                        size = value;
-                        break;
-                    default:
-                        return false;
-                }
-            }
-            return true;
-        },
-        has(_, id) {
-            return (<any>id >= 0 && <any>id < size) || PROPS.has(id);
-        },
-        ownKeys() {
-            return keys(size);
-        },
-    });
+		get(obj, id) {
+			switch (id) {
+				case Symbol.iterator:
+					return () => stridedValues(obj, size, offset, stride);
+				case SYM_L:
+					return size;
+				case SYM_B:
+					return buf;
+				case SYM_O:
+					return offset;
+				case SYM_S:
+					return stride;
+				case SYM_C:
+					return () => setS([], obj, size, 0, offset, 1, stride);
+				case SYM_CV:
+					return () => gvec(obj, size, offset, stride);
+				case SYM_EMPTY:
+					return () => zeroes(size);
+				case SYM_EQD:
+					return (o: any, eps: number = EPS) =>
+						eqDeltaS(buf, o, size, eps, offset, 0, stride, 1);
+				case SYM_STR:
+					return () =>
+						FORMATTER(stridedValues(obj, size, offset, stride));
+				default:
+					const j = parseInt(<string>id);
+					return !isNaN(j) && j >= 0 && j < size
+						? obj[offset + j * stride]
+						: undefined;
+			}
+		},
+		set(obj, id, value) {
+			const j = parseInt(<string>id);
+			if (!isNaN(j) && <any>j >= 0 && <any>j < size) {
+				obj[offset + ((<any>id) | 0) * stride] = value;
+			} else {
+				switch (id) {
+					case SYM_O:
+						offset = value;
+						break;
+					case SYM_S:
+						stride = value;
+						break;
+					case SYM_L:
+						size = value;
+						break;
+					default:
+						return false;
+				}
+			}
+			return true;
+		},
+		has(_, id) {
+			return (<any>id >= 0 && <any>id < size) || PROPS.has(id);
+		},
+		ownKeys() {
+			return keys(size);
+		},
+	});

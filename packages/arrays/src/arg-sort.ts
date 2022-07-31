@@ -30,4 +30,4 @@ import { sortByCachedKey } from "./sort-cached.js";
  * @param cmp -
  */
 export const argSort = <T>(src: T[], cmp = compare) =>
-    sortByCachedKey(fillRange(new Array(src.length)), src.slice(), cmp);
+	sortByCachedKey(fillRange(new Array(src.length)), src.slice(), cmp);

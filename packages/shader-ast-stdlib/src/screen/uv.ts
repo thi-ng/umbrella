@@ -15,7 +15,7 @@ import { fit0111 } from "../math/fit.js";
  * @param res -
  */
 export const fragUV = (fragCoord: Vec4Term, res: Vec2Term) =>
-    div($xy(fragCoord), res);
+	div($xy(fragCoord), res);
 
 /**
  * Takes `pos`, a screen coord (e.g. gl_FragCoord) and viewport resolution
@@ -26,17 +26,17 @@ export const fragUV = (fragCoord: Vec4Term, res: Vec2Term) =>
  * @param res - vec2
  */
 export const aspectCorrectedUV = defn(
-    "vec2",
-    "aspectCorrectedUV",
-    ["vec2", "vec2"],
-    (pos, res) => {
-        let uv: Vec2Sym;
-        return [
-            (uv = sym(fit0111(div(pos, res)))),
-            assign($x(uv), mul($x(uv), div($x(res), $y(res)))),
-            ret(uv),
-        ];
-    }
+	"vec2",
+	"aspectCorrectedUV",
+	["vec2", "vec2"],
+	(pos, res) => {
+		let uv: Vec2Sym;
+		return [
+			(uv = sym(fit0111(div(pos, res)))),
+			assign($x(uv), mul($x(uv), div($x(res), $y(res)))),
+			ret(uv),
+		];
+	}
 );
 
 /**
@@ -50,17 +50,17 @@ export const aspectCorrectedUV = defn(
  * ```
  */
 export const borderMask = defn(
-    "bool",
-    "borderMask",
-    ["vec2", "float"],
-    (uv, width) => [
-        ret(
-            _any(
-                bvec4(
-                    lessThan(uv, vec2(width)),
-                    greaterThan(add(uv, width), VEC2_1)
-                )
-            )
-        ),
-    ]
+	"bool",
+	"borderMask",
+	["vec2", "float"],
+	(uv, width) => [
+		ret(
+			_any(
+				bvec4(
+					lessThan(uv, vec2(width)),
+					greaterThan(add(uv, width), VEC2_1)
+				)
+			)
+		),
+	]
 );

@@ -28,31 +28,31 @@ import { __dispatch } from "./internal/dispatch.js";
  * @param opts
  */
 export const resample: MultiFn2<
-    IShape,
-    number | Partial<SamplingOpts>,
-    IShape
+	IShape,
+	number | Partial<SamplingOpts>,
+	IShape
 > = defmulti<any, number | Partial<SamplingOpts>, IShape>(
-    __dispatch,
-    {
-        ellipse: "circle",
-        line: "polyline",
-        quad: "poly",
-        tri: "poly",
-        rect: "circle",
-    },
-    {
-        circle: ($: IShape, opts) => asPolygon($, opts),
+	__dispatch,
+	{
+		ellipse: "circle",
+		line: "polyline",
+		quad: "poly",
+		tri: "poly",
+		rect: "circle",
+	},
+	{
+		circle: ($: IShape, opts) => asPolygon($, opts),
 
-        poly: ($: PCLike, opts) =>
-            new Polygon(
-                _resample($.points, opts, true, true),
-                __copyAttribs($)
-            ),
+		poly: ($: PCLike, opts) =>
+			new Polygon(
+				_resample($.points, opts, true, true),
+				__copyAttribs($)
+			),
 
-        polyline: ($: PCLike, opts) =>
-            new Polyline(
-                _resample($.points, opts, false, true),
-                __copyAttribs($)
-            ),
-    }
+		polyline: ($: PCLike, opts) =>
+			new Polyline(
+				_resample($.points, opts, false, true),
+				__copyAttribs($)
+			),
+	}
 );

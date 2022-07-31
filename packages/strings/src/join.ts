@@ -22,5 +22,5 @@ import type { Stringer } from "./api.js";
  * ```
  */
 export const join = memoize1<string, Stringer<any[]>>(
-    (sep) => (x) => x.join(sep)
+	(sep) => (x) => x.join(sep)
 );

@@ -19,20 +19,20 @@ const NO_OP_REDUCER: Reducer<void, any> = [NO_OP, NO_OP, NO_OP];
 export function run<A>(tx: TxLike<A, any>, xs: Iterable<A>): void;
 export function run<A>(tx: TxLike<A, any>, xs: IReducible<any, A>): void;
 export function run<A, B>(
-    tx: TxLike<A, B>,
-    fx: Fn<B, void>,
-    xs: Iterable<A>
+	tx: TxLike<A, B>,
+	fx: Fn<B, void>,
+	xs: Iterable<A>
 ): void;
 export function run<A, B>(
-    tx: TxLike<A, B>,
-    fx: Fn<B, void>,
-    xs: IReducible<any, A>
+	tx: TxLike<A, B>,
+	fx: Fn<B, void>,
+	xs: IReducible<any, A>
 ): void;
 export function run<A, B>(tx: TxLike<A, B>, ...args: any[]) {
-    if (args.length === 1) {
-        transduce(tx, NO_OP_REDUCER, args[0]);
-    } else {
-        const fx: Fn<B, void> = args[0];
-        transduce(tx, [NO_OP, NO_OP, (_, x) => fx(x)], args[1]);
-    }
+	if (args.length === 1) {
+		transduce(tx, NO_OP_REDUCER, args[0]);
+	} else {
+		const fx: Fn<B, void> = args[0];
+		transduce(tx, [NO_OP, NO_OP, (_, x) => fx(x)], args[1]);
+	}
 }

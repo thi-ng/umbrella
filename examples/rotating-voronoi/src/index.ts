@@ -20,10 +20,10 @@ import type { Vec } from "@thi.ng/vectors";
 import { cartesian2 } from "@thi.ng/vectors/cartesian";
 import { checkbox, slider } from "./controllers";
 import {
-    type AppState,
-    animationStream,
-    mainStream,
-    scaleStream,
+	type AppState,
+	animationStream,
+	mainStream,
+	scaleStream,
 } from "./stream-state";
 
 const edge = window.innerWidth * 0.7;
@@ -35,142 +35,142 @@ const center = [width / 2, height / 2];
 const rndInt = (min: number, max: number) => SYSTEM.minmax(min, max) | 0;
 
 const startingCircles: Array<[number, number, boolean]> = [
-    [radius / 1, rndInt(4, 20), true],
-    [radius / 2, rndInt(4, 20), false],
-    [radius / 4, rndInt(4, 20), true],
-    [radius / 8, rndInt(4, 20), false],
+	[radius / 1, rndInt(4, 20), true],
+	[radius / 2, rndInt(4, 20), false],
+	[radius / 4, rndInt(4, 20), true],
+	[radius / 8, rndInt(4, 20), false],
 ];
 
 const pointsInCircle = (
-    _center: Vec,
-    _radius: number,
-    _num: number,
-    _angle: number
+	_center: Vec,
+	_radius: number,
+	_num: number,
+	_angle: number
 ) => [
-    ...map(
-        (index) => cartesian2(null, [_radius, index * TAU + _angle], _center),
-        normRange(_num, false)
-    ),
+	...map(
+		(index) => cartesian2(null, [_radius, index * TAU + _angle], _center),
+		normRange(_num, false)
+	),
 ];
 
 mainStream.transform(map(appRender), updateDOM());
 
 function computeVoronoi(state: AppState) {
-    const delta = state.frameValue / 100;
-    const doSave = state.keyValue === "s";
+	const delta = state.frameValue / 100;
+	const doSave = state.keyValue === "s";
 
-    const startPoints = [
-        ...mapcat(
-            ([rad, density, clockwise]) =>
-                pointsInCircle(
-                    center,
-                    rad,
-                    density,
-                    clockwise ? delta : PI - delta
-                ),
-            startingCircles
-        ),
-    ];
+	const startPoints = [
+		...mapcat(
+			([rad, density, clockwise]) =>
+				pointsInCircle(
+					center,
+					rad,
+					density,
+					clockwise ? delta : PI - delta
+				),
+			startingCircles
+		),
+	];
 
-    const bounds = rect([width, height], { fill: "black" });
-    const mesh = new DVMesh();
-    mesh.addKeys(startPoints, 0.01);
-    const cells = mesh.voronoi(vertices(bounds));
+	const bounds = rect([width, height], { fill: "black" });
+	const mesh = new DVMesh();
+	mesh.addKeys(startPoints, 0.01);
+	const cells = mesh.voronoi(vertices(bounds));
 
-    const voronoi = [
-        bounds,
+	const voronoi = [
+		bounds,
 
-        group(
-            { fill: "white", "stroke-width": 1 },
-            cells.map((cell) =>
-                pathFromCubics(
-                    asCubic(polygon(simplify(cell, 0.5, true)), {
-                        scale: state.scaleValue,
-                    })
-                )
-            )
-        ),
+		group(
+			{ fill: "white", "stroke-width": 1 },
+			cells.map((cell) =>
+				pathFromCubics(
+					asCubic(polygon(simplify(cell, 0.5, true)), {
+						scale: state.scaleValue,
+					})
+				)
+			)
+		),
 
-        points(doSave ? [] : startPoints, {
-            size: 4,
-            shape: "circle",
-            fill: "gray",
-        }),
-    ];
+		points(doSave ? [] : startPoints, {
+			size: 4,
+			shape: "circle",
+			fill: "gray",
+		}),
+	];
 
-    if (doSave) {
-        const svg = asSvg(
-            svgDoc(
-                {
-                    width,
-                    height,
-                    viewBox: `0 0 ${width} ${height}`,
-                    "stroke-width": 0.25,
-                },
-                ...voronoi
-            )
-        );
-        downloadWithMime(`${new Date().getTime()}-voronoi.svg`, svg, {
-            mime: "image/svg+xml",
-        });
-    }
+	if (doSave) {
+		const svg = asSvg(
+			svgDoc(
+				{
+					width,
+					height,
+					viewBox: `0 0 ${width} ${height}`,
+					"stroke-width": 0.25,
+				},
+				...voronoi
+			)
+		);
+		downloadWithMime(`${new Date().getTime()}-voronoi.svg`, svg, {
+			mime: "image/svg+xml",
+		});
+	}
 
-    return voronoi;
+	return voronoi;
 }
 
 function appRender(state: AppState) {
-    return [
-        "div.ma3.flex.flex-column.flex-row-l.flex-row-m.sans-serif",
-        [
-            [
-                "div.pr3.w-100.w-30-l.w-30-m",
-                ["h1", "Rotating voronoi"],
-                [
-                    "p",
-                    "Based on a M. Bostock",
-                    [
-                        "a",
-                        {
-                            href: "https://observablehq.com/@mbostock/rotating-voronoi",
-                        },
-                        " observablehq sketch",
-                    ],
-                    ". ",
+	return [
+		"div.ma3.flex.flex-column.flex-row-l.flex-row-m.sans-serif",
+		[
+			[
+				"div.pr3.w-100.w-30-l.w-30-m",
+				["h1", "Rotating voronoi"],
+				[
+					"p",
+					"Based on a M. Bostock",
+					[
+						"a",
+						{
+							href: "https://observablehq.com/@mbostock/rotating-voronoi",
+						},
+						" observablehq sketch",
+					],
+					". ",
 
-                    "Originally from an ",
-                    [
-                        "a",
-                        {
-                            href: "https://www.flickr.com/photos/quasimondo/8254540763/",
-                        },
-                        "ornament",
-                    ],
-                    " by Mario Klingemann.",
-                ],
-                ["p", "Press `s` to save the SVG file."],
-                [
-                    "div.mv3",
-                    slider(
-                        state.scaleValue,
-                        (x: number) => scaleStream.next(x),
-                        0,
-                        1.2,
-                        0.01,
-                        "Tangent scale factor"
-                    ),
-                    checkbox(
-                        state.animationValue,
-                        (x: boolean) => animationStream.next(x),
-                        "Animation"
-                    ),
-                ],
-            ],
-            [
-                "div.flex.justify-center",
-                [canvas, { width, height }, ...computeVoronoi(state)],
-            ],
-        ],
-    ];
+					"Originally from an ",
+					[
+						"a",
+						{
+							href: "https://www.flickr.com/photos/quasimondo/8254540763/",
+						},
+						"ornament",
+					],
+					" by Mario Klingemann.",
+				],
+				["p", "Press `s` to save the SVG file."],
+				[
+					"div.mv3",
+					slider(
+						state.scaleValue,
+						(x: number) => scaleStream.next(x),
+						0,
+						1.2,
+						0.01,
+						"Tangent scale factor"
+					),
+					checkbox(
+						state.animationValue,
+						(x: boolean) => animationStream.next(x),
+						"Animation"
+					),
+				],
+			],
+			[
+				"div.flex.justify-center",
+				[canvas, { width, height }, ...computeVoronoi(state)],
+			],
+		],
+	];
 }
 
 // if (process.env.NODE_ENV !== "production") {

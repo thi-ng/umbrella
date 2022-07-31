@@ -14,15 +14,15 @@ import type { Nullable } from "@thi.ng/api";
  * @param end - end index (excluded)
  */
 export function* arrayIterator<T>(
-    buf: Nullable<ArrayLike<T>>,
-    start = 0,
-    end?: number
+	buf: Nullable<ArrayLike<T>>,
+	start = 0,
+	end?: number
 ) {
-    if (!buf) return;
-    start = start;
-    end === undefined && (end = buf.length);
-    const step = start <= end ? 1 : -1;
-    for (; start !== end; start += step) {
-        yield buf[start];
-    }
+	if (!buf) return;
+	start = start;
+	end === undefined && (end = buf.length);
+	const step = start <= end ? 1 : -1;
+	for (; start !== end; start += step) {
+		yield buf[start];
+	}
 }

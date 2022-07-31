@@ -9,5 +9,5 @@ import { ESC, UNICODE } from "./escape.js";
 const quote = litD('"');
 
 export const STRING = join(
-    seq([quote, zeroOrMore(alt([UNICODE, ESC, noneOf('"')])), quote], "string")
+	seq([quote, zeroOrMore(alt([UNICODE, ESC, noneOf('"')])), quote], "string")
 );

@@ -16,14 +16,14 @@ import { maxComp2 } from "../math/maxcomp.js";
  * @param r - float
  */
 export const sdfCylinder = defn(
-    "float",
-    "sdCylinder",
-    ["vec3", "float", "float"],
-    (p, h, r) => {
-        let d: Vec2Sym;
-        return [
-            (d = sym(sub(abs(vec2(length($(p, "xz")), $y(p))), vec2(h, r)))),
-            ret(add(min(maxComp2(d), FLOAT0), length(max(d, VEC2_0)))),
-        ];
-    }
+	"float",
+	"sdCylinder",
+	["vec3", "float", "float"],
+	(p, h, r) => {
+		let d: Vec2Sym;
+		return [
+			(d = sym(sub(abs(vec2(length($(p, "xz")), $y(p))), vec2(h, r)))),
+			ret(add(min(maxComp2(d), FLOAT0), length(max(d, VEC2_0)))),
+		];
+	}
 );

@@ -1,27 +1,27 @@
 import type { MatOpN } from "./api.js";
 import {
-    shearX22,
-    shearX23,
-    shearXY33,
-    shearXY44,
-    shearXZ33,
-    shearXZ44,
-    shearY22,
-    shearY23,
-    shearYX33,
-    shearYX44,
-    shearYZ33,
-    shearYZ44,
-    shearZX33,
-    shearZX44,
-    shearZY33,
-    shearZY44,
+	shearX22,
+	shearX23,
+	shearXY33,
+	shearXY44,
+	shearXZ33,
+	shearXZ44,
+	shearY22,
+	shearY23,
+	shearYX33,
+	shearYX44,
+	shearYZ33,
+	shearYZ44,
+	shearZX33,
+	shearZX44,
+	shearZY33,
+	shearZY44,
 } from "./shear.js";
 
 const $ =
-    (f: MatOpN): MatOpN =>
-    (m, theta) =>
-        f(m, Math.tan(theta));
+	(f: MatOpN): MatOpN =>
+	(m, theta) =>
+		f(m, Math.tan(theta));
 
 export const skewX22 = $(shearX22);
 export const skewY22 = $(shearY22);

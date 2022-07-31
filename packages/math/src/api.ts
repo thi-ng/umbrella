@@ -26,20 +26,20 @@ export const SIXTH = 1 / 6;
 export let EPS = 1e-6;
 
 export type Crossing =
-    /**
-     * lines A & B are equal
-     */
-    | "equal"
-    /**
-     * lines A & B are flat (all same values)
-     */
-    | "flat"
-    /**
-     * line A crossed under B
-     */
-    | "under"
-    /**
-     * line A crossed over B
-     */
-    | "over"
-    | "other";
+	/**
+	 * lines A & B are equal
+	 */
+	| "equal"
+	/**
+	 * lines A & B are flat (all same values)
+	 */
+	| "flat"
+	/**
+	 * line A crossed under B
+	 */
+	| "under"
+	/**
+	 * line A crossed over B
+	 */
+	| "over"
+	| "other";

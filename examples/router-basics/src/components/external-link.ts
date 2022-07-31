@@ -9,10 +9,10 @@ import type { AppContext } from "../api";
  * @param body - ink body
  */
 export function externalLink(
-    _: AppContext,
-    attribs: any,
-    uri: string,
-    body: any
+	_: AppContext,
+	attribs: any,
+	uri: string,
+	body: any
 ) {
-    return ["a", { ...attribs, href: uri }, body];
+	return ["a", { ...attribs, href: uri }, body];
 }

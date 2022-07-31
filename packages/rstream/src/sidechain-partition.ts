@@ -8,7 +8,7 @@ import { fromRAF } from "./raf.js";
 import type { Subscription } from "./subscription.js";
 
 export interface SidechainPartitionOpts<T> extends CommonOpts {
-    pred: Predicate<T>;
+	pred: Predicate<T>;
 }
 
 /**
@@ -39,8 +39,8 @@ export interface SidechainPartitionOpts<T> extends CommonOpts {
  * @param opts -
  */
 export const sidechainPartition = <A, B>(
-    side: ISubscribable<B>,
-    opts?: Partial<SidechainPartitionOpts<B>>
+	side: ISubscribable<B>,
+	opts?: Partial<SidechainPartitionOpts<B>>
 ): Subscription<A, A[]> => new SidechainPartition<A, B>(side, opts);
 
 /**
@@ -53,42 +53,42 @@ export const sidechainPartition = <A, B>(
  * @param src -
  */
 export const sidechainPartitionRAF = <T>(src: ISubscribable<T>) =>
-    src
-        .subscribe<T[]>(sidechainPartition<T, number>(fromRAF()))
-        .transform(map(peek));
+	src
+		.subscribe<T[]>(sidechainPartition<T, number>(fromRAF()))
+		.transform(map(peek));
 
 export class SidechainPartition<T, S> extends ASidechain<T, S, T[]> {
-    buf: T[];
+	buf: T[];
 
-    constructor(
-        side: ISubscribable<S>,
-        opts?: Partial<SidechainPartitionOpts<S>>
-    ) {
-        opts = __optsWithID("sidepart", opts);
-        super(opts);
-        this.buf = [];
-        const pred = opts.pred || (() => true);
-        const $this = this;
-        this.sideSub = side.subscribe({
-            next(x) {
-                if ($this.buf.length && pred!(x)) {
-                    $this.dispatch($this.buf);
-                    $this.buf = [];
-                }
-            },
-            done() {
-                if ($this.buf.length) {
-                    $this.dispatch($this.buf);
-                }
-                $this.done();
-                delete (<any>$this).buf;
-            },
-        });
-    }
+	constructor(
+		side: ISubscribable<S>,
+		opts?: Partial<SidechainPartitionOpts<S>>
+	) {
+		opts = __optsWithID("sidepart", opts);
+		super(opts);
+		this.buf = [];
+		const pred = opts.pred || (() => true);
+		const $this = this;
+		this.sideSub = side.subscribe({
+			next(x) {
+				if ($this.buf.length && pred!(x)) {
+					$this.dispatch($this.buf);
+					$this.buf = [];
+				}
+			},
+			done() {
+				if ($this.buf.length) {
+					$this.dispatch($this.buf);
+				}
+				$this.done();
+				delete (<any>$this).buf;
+			},
+		});
+	}
 
-    next(x: T) {
-        if (this.state < State.DONE) {
-            this.buf.push(x);
-        }
-    }
+	next(x: T) {
+		if (this.state < State.DONE) {
+			this.buf.push(x);
+		}
+	}
 }

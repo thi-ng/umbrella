@@ -7,46 +7,46 @@ const RES = [512, 512];
 const margin = 36;
 
 for (let op of <const>["none", "chamfer", "round", "smooth", "steps"]) {
-    for (let mode of <const>["union", "isec", "diff"]) {
-        const __sdf = <Partial<SDFAttribs>>{ combine: mode };
-        if (op !== "none") __sdf[op] = <any>(op === "steps" ? [50, 4] : 50);
-        const scene = group(
-            {
-                stroke: [0.5, 0, 1, 0.5],
-                weight: 3,
-                __sdf,
-            },
-            [rectFromCentroid([-33, -33], 200), rectFromCentroid([33, 33], 200)]
-        );
+	for (let mode of <const>["union", "isec", "diff"]) {
+		const __sdf = <Partial<SDFAttribs>>{ combine: mode };
+		if (op !== "none") __sdf[op] = <any>(op === "steps" ? [50, 4] : 50);
+		const scene = group(
+			{
+				stroke: [0.5, 0, 1, 0.5],
+				weight: 3,
+				__sdf,
+			},
+			[rectFromCentroid([-33, -33], 200), rectFromCentroid([33, 33], 200)]
+		);
 
-        const sceneBounds = bounds(scene, margin)!;
-        const sdf = asSDF(scene);
-        const img = sample2d(sdf, sceneBounds, RES);
-        const polys = asPolygons(
-            img,
-            sceneBounds,
-            RES,
-            range(0, margin, 4),
-            0.25
-        );
+		const sceneBounds = bounds(scene, margin)!;
+		const sdf = asSDF(scene);
+		const img = sample2d(sdf, sceneBounds, RES);
+		const polys = asPolygons(
+			img,
+			sceneBounds,
+			RES,
+			range(0, margin, 4),
+			0.25
+		);
 
-        const path = `export/rect-${op}-${mode}.svg`;
-        console.log(path);
+		const path = `export/rect-${op}-${mode}.svg`;
+		console.log(path);
 
-        writeText(
-            path,
-            asSvg(
-                svgDoc(
-                    {
-                        width: 280,
-                        height: 280,
-                        viewBox: "-180 -180 360 360",
-                        fill: "none",
-                    },
-                    group({ stroke: "#000", weight: 0.5 }, polys),
-                    scene
-                )
-            )
-        );
-    }
+		writeText(
+			path,
+			asSvg(
+				svgDoc(
+					{
+						width: 280,
+						height: 280,
+						viewBox: "-180 -180 360 360",
+						fill: "none",
+					},
+					group({ stroke: "#000", weight: 0.5 }, polys),
+					scene
+				)
+			)
+		);
+	}
 }

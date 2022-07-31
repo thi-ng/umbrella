@@ -10,4 +10,4 @@ import { max } from "@thi.ng/shader-ast/builtin/math";
  * @param terms -
  */
 export const sdfSubtract = (a: FloatTerm, ...terms: FloatTerm[]) =>
-    terms.reduce((a, b) => max(a, neg(b)), a);
+	terms.reduce((a, b) => max(a, neg(b)), a);

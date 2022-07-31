@@ -17,7 +17,7 @@ import { FormatPresets, PresetID, PRESETS_TPL, StringFormat } from "./api.js";
  * @param code -
  */
 export const defFormat = (fmt: StringFormat, code: number) => (x: any) =>
-    fmt.start(code) + x + fmt.end;
+	fmt.start(code) + x + fmt.end;
 
 /**
  * Takes a {@link StringFormat} impl supporting preset format ID constants (e.g.
@@ -27,12 +27,12 @@ export const defFormat = (fmt: StringFormat, code: number) => (x: any) =>
  * @param fmt -
  */
 export const defFormatPresets = (fmt: StringFormat): FormatPresets =>
-    Object.keys(PRESETS_TPL).reduce(
-        (acc, id) => (
-            (acc[id] = defFormat(fmt, PRESETS_TPL[<PresetID>id])), acc
-        ),
-        <any>{}
-    );
+	Object.keys(PRESETS_TPL).reduce(
+		(acc, id) => (
+			(acc[id] = defFormat(fmt, PRESETS_TPL[<PresetID>id])), acc
+		),
+		<any>{}
+	);
 
 /**
  * Returns string representation of a single line/row (of a potentially larger
@@ -45,29 +45,29 @@ export const defFormatPresets = (fmt: StringFormat): FormatPresets =>
  * @param offset - read offset in data buffer
  */
 export const format = (
-    format: StringFormat,
-    data: Uint32Array,
-    width = data.length,
-    offset = 0
+	format: StringFormat,
+	data: Uint32Array,
+	width = data.length,
+	offset = 0
 ) => {
-    const { start, end, prefix, suffix, zero } = format;
-    const check = zero ? () => prevID !== -1 : () => prevID !== 0;
-    const res: string[] = [prefix];
-    let prevID: number, ch: number, id: number;
-    prevID = zero ? -1 : 0;
-    for (let x = 0; x < width; x++) {
-        ch = data[x + offset];
-        id = ch >>> 16;
-        if (id != prevID) {
-            check() && res.push(end);
-            (zero || id) && res.push(start(id));
-            prevID = id;
-        }
-        res.push(String.fromCharCode(ch & 0xffff));
-    }
-    check() && res.push(end);
-    res.push(suffix);
-    return res.join("");
+	const { start, end, prefix, suffix, zero } = format;
+	const check = zero ? () => prevID !== -1 : () => prevID !== 0;
+	const res: string[] = [prefix];
+	let prevID: number, ch: number, id: number;
+	prevID = zero ? -1 : 0;
+	for (let x = 0; x < width; x++) {
+		ch = data[x + offset];
+		id = ch >>> 16;
+		if (id != prevID) {
+			check() && res.push(end);
+			(zero || id) && res.push(start(id));
+			prevID = id;
+		}
+		res.push(String.fromCharCode(ch & 0xffff));
+	}
+	check() && res.push(end);
+	res.push(suffix);
+	return res.join("");
 };
 
 /**
@@ -83,14 +83,14 @@ export const format = (
  * @param offset - read offset in data buffer
  */
 export const formatNone = (
-    data: Uint32Array,
-    width = data.length,
-    offset = 0
+	data: Uint32Array,
+	width = data.length,
+	offset = 0
 ) => {
-    const res: string[] = [];
-    for (let x = 0; x < width; x++) {
-        res.push(String.fromCharCode(data[x + offset] & 0xffff));
-    }
-    res.push("\n");
-    return res.join("");
+	const res: string[] = [];
+	for (let x = 0; x < width; x++) {
+		res.push(String.fromCharCode(data[x + offset] & 0xffff));
+	}
+	res.push("\n");
+	return res.join("");
 };

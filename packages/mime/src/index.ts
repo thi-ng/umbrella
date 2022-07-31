@@ -4,21 +4,21 @@ import { DB } from "./generated.js";
 // https://www.iana.org/assignments/media-types/
 
 export const MIME_TYPES = ((defs: any) => {
-    const res: IObjectOf<string[]> = {};
-    for (let groupID in defs) {
-        const group = defs[groupID];
-        for (let type in group) {
-            const mime = groupID + "/" + type;
-            for (let e of group[type].split(",")) {
-                const isLowPri = e[0] === "*";
-                const ext = isLowPri ? e.substring(1) : e;
-                let coll = res[ext];
-                !coll && (coll = res[ext] = []);
-                isLowPri ? coll.push(mime) : coll.unshift(mime);
-            }
-        }
-    }
-    return res;
+	const res: IObjectOf<string[]> = {};
+	for (let groupID in defs) {
+		const group = defs[groupID];
+		for (let type in group) {
+			const mime = groupID + "/" + type;
+			for (let e of group[type].split(",")) {
+				const isLowPri = e[0] === "*";
+				const ext = isLowPri ? e.substring(1) : e;
+				let coll = res[ext];
+				!coll && (coll = res[ext] = []);
+				isLowPri ? coll.push(mime) : coll.unshift(mime);
+			}
+		}
+	}
+	return res;
 })(DB);
 
 /**
@@ -35,8 +35,8 @@ export const MIME_TYPES = ((defs: any) => {
  * @param fallback -
  */
 export const preferredType = (ext: string, fallback = MIME_TYPES.bin[0]) => {
-    const type = MIME_TYPES[ext[0] === "." ? ext.substring(1) : ext];
-    return type ? type[0] : fallback;
+	const type = MIME_TYPES[ext[0] === "." ? ext.substring(1) : ext];
+	return type ? type[0] : fallback;
 };
 
 /**
@@ -48,10 +48,10 @@ export const preferredType = (ext: string, fallback = MIME_TYPES.bin[0]) => {
  * @param fallback -
  */
 export const preferredExtension = (mime: string, fallback = "bin") => {
-    const [prefix, suffix] = mime.split("/");
-    const group = DB[prefix];
-    const ext = group ? group[suffix].split(",") : undefined;
-    return ext
-        ? ext.find((x) => x[0] !== "*") || ext[0].substring(1)
-        : fallback;
+	const [prefix, suffix] = mime.split("/");
+	const group = DB[prefix];
+	const ext = group ? group[suffix].split(",") : undefined;
+	return ext
+		? ext.find((x) => x[0] !== "*") || ext[0].substring(1)
+		: fallback;
 };

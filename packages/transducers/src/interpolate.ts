@@ -47,26 +47,26 @@ import { partition } from "./partition.js";
  * @param n -
  */
 export function interpolate<T>(
-    fn: Fn2<T[], number, T>,
-    window: number,
-    n: number
+	fn: Fn2<T[], number, T>,
+	window: number,
+	n: number
 ): Transducer<number, number>;
 export function interpolate<T>(
-    fn: Fn2<T[], number, T>,
-    window: number,
-    n: number,
-    src: Iterable<number>
+	fn: Fn2<T[], number, T>,
+	window: number,
+	n: number,
+	src: Iterable<number>
 ): IterableIterator<number>;
 export function interpolate<T>(
-    fn: Fn2<T[], number, T>,
-    window: number,
-    n: number,
-    src?: Iterable<number>
+	fn: Fn2<T[], number, T>,
+	window: number,
+	n: number,
+	src?: Iterable<number>
 ) {
-    return isIterable(src)
-        ? iterator(interpolate(fn, window, n), src)
-        : comp(
-              partition<T>(window, 1),
-              mapcat((chunk) => map((t) => fn(chunk, t), normRange(n, false)))
-          );
+	return isIterable(src)
+		? iterator(interpolate(fn, window, n), src)
+		: comp(
+				partition<T>(window, 1),
+				mapcat((chunk) => map((t) => fn(chunk, t), normRange(n, false)))
+		  );
 }

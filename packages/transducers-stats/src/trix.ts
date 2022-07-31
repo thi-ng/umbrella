@@ -14,11 +14,11 @@ import { roc } from "./roc.js";
  */
 export function trix(period: number): Transducer<number, number>;
 export function trix(
-    period: number,
-    src: Iterable<number>
+	period: number,
+	src: Iterable<number>
 ): IterableIterator<number>;
 export function trix(period: number, src?: Iterable<number>): any {
-    return src
-        ? iterator1(trix(period), src)
-        : comp(ema(period), ema(period), ema(period), roc(1));
+	return src
+		? iterator1(trix(period), src)
+		: comp(ema(period), ema(period), ema(period), roc(1));
 }

@@ -40,34 +40,34 @@ import { prepareSpec } from "./utils.js";
  * @param byteOffset -
  */
 export const aos = <K extends string>(
-    num: number,
-    specs: AOSSpecs<K>,
-    buf?: ArrayBuffer,
-    byteOffset = 0
+	num: number,
+	specs: AOSSpecs<K>,
+	buf?: ArrayBuffer,
+	byteOffset = 0
 ) => {
-    let total = 0;
-    let maxSize = 0;
-    const offsets = <Record<K, number>>{};
-    const soaSpecs = <SOASpecs<K>>{};
-    for (let id in specs) {
-        const spec = prepareSpec(specs[id]);
-        const tsize = SIZEOF[spec.type!];
-        maxSize = Math.max(maxSize, tsize);
-        // align field to type size
-        total = align(total, <Pow2>tsize);
-        offsets[id] = total;
-        total += tsize * spec.size!;
-        soaSpecs[id] = spec;
-    }
-    // align total struct size to largest type
-    total = align(total, <Pow2>maxSize);
-    buf = buf || new ArrayBuffer(total * num + byteOffset);
-    for (let id in soaSpecs) {
-        const spec = soaSpecs[id];
-        const tsize = SIZEOF[spec.type!];
-        spec.stride = total / tsize;
-        spec.buf = buf;
-        spec.byteOffset = byteOffset + offsets[id];
-    }
-    return new SOA<K>(num, soaSpecs);
+	let total = 0;
+	let maxSize = 0;
+	const offsets = <Record<K, number>>{};
+	const soaSpecs = <SOASpecs<K>>{};
+	for (let id in specs) {
+		const spec = prepareSpec(specs[id]);
+		const tsize = SIZEOF[spec.type!];
+		maxSize = Math.max(maxSize, tsize);
+		// align field to type size
+		total = align(total, <Pow2>tsize);
+		offsets[id] = total;
+		total += tsize * spec.size!;
+		soaSpecs[id] = spec;
+	}
+	// align total struct size to largest type
+	total = align(total, <Pow2>maxSize);
+	buf = buf || new ArrayBuffer(total * num + byteOffset);
+	for (let id in soaSpecs) {
+		const spec = soaSpecs[id];
+		const tsize = SIZEOF[spec.type!];
+		spec.stride = total / tsize;
+		spec.buf = buf;
+		spec.byteOffset = byteOffset + offsets[id];
+	}
+	return new SOA<K>(num, soaSpecs);
 };

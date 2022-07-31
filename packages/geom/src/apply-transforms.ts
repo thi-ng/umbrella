@@ -11,22 +11,22 @@ import { translate } from "./translate.js";
 
 /** @internal */
 const __apply = ($: IShape) => {
-    let attribs = $.attribs;
-    if (!attribs) return $;
-    const { transform: tx, translate: t, rotate: r, scale: s } = attribs;
-    if (tx)
-        return transform(
-            $.withAttribs(withoutKeysObj(attribs, ["transform"])),
-            tx
-        );
-    if (!(t || r || s)) return $;
-    $ = $.withAttribs(
-        withoutKeysObj(attribs, ["translate", "rotate", "scale"])
-    );
-    if (r) $ = rotate($, r);
-    if (s) $ = scale($, s);
-    if (t) $ = translate($, t);
-    return $;
+	let attribs = $.attribs;
+	if (!attribs) return $;
+	const { transform: tx, translate: t, rotate: r, scale: s } = attribs;
+	if (tx)
+		return transform(
+			$.withAttribs(withoutKeysObj(attribs, ["transform"])),
+			tx
+		);
+	if (!(t || r || s)) return $;
+	$ = $.withAttribs(
+		withoutKeysObj(attribs, ["translate", "rotate", "scale"])
+	);
+	if (r) $ = rotate($, r);
+	if (s) $ = scale($, s);
+	if (t) $ = translate($, t);
+	return $;
 };
 
 /**
@@ -59,12 +59,12 @@ const __apply = ($: IShape) => {
  * @param shape
  */
 export const applyTransforms: MultiFn1<IShape, IShape> = defmulti<any, IShape>(
-    __dispatch,
-    {},
-    {
-        [DEFAULT]: __apply,
+	__dispatch,
+	{},
+	{
+		[DEFAULT]: __apply,
 
-        group: ($: Group) =>
-            __apply($.copyTransformed((x) => <IHiccupShape>applyTransforms(x))),
-    }
+		group: ($: Group) =>
+			__apply($.copyTransformed((x) => <IHiccupShape>applyTransforms(x))),
+	}
 );

@@ -11,7 +11,7 @@ import { $ } from "./safe.js";
  * @param ctx -
  */
 export const print = (ctx: StackContext) => (
-    $(ctx[0], 1), console.log(ctx[0].pop()), ctx
+	$(ctx[0], 1), console.log(ctx[0].pop()), ctx
 );
 
 export const printds = (ctx: StackContext) => (console.log(ctx[0]), ctx);

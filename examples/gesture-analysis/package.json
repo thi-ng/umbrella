@@ -1,44 +1,44 @@
 {
-    "name": "@example/gesture-analysis",
-    "private": true,
-    "version": "0.0.1",
-    "description": "Mouse gesture / stroke analysis, simplification, corner detection",
-    "repository": "https://github.com/thi-ng/umbrella",
-    "author": "Karsten Schmidt <k+npm@thi.ng>",
-    "license": "Apache-2.0",
-    "scripts": {
-        "start": "vite --open",
-        "build": "tsc && vite build --base='./'",
-        "preview": "vite preview --host --open"
-    },
-    "dependencies": {
-        "@thi.ng/arrays": "workspace:^",
-        "@thi.ng/geom": "workspace:^",
-        "@thi.ng/hiccup-svg": "workspace:^",
-        "@thi.ng/rstream": "workspace:^",
-        "@thi.ng/rstream-gestures": "workspace:^",
-        "@thi.ng/transducers": "workspace:^",
-        "@thi.ng/transducers-hdom": "workspace:^",
-        "@thi.ng/vectors": "workspace:^"
-    },
-    "browser": {
-        "process": false,
-        "setTimeout": false,
-        "util": false
-    },
-    "thi.ng": {
-        "readme": [
-            "geom",
-            "hiccup-svg",
-            "rstream",
-            "rstream-gestures",
-            "transducers-hdom",
-            "vectors"
-        ],
-        "screenshot": "examples/gesture-analysis.png"
-    },
-    "devDependencies": {
-        "typescript": "^4.7.4",
-        "vite": "^3.0.0"
-    }
+	"name": "@example/gesture-analysis",
+	"private": true,
+	"version": "0.0.1",
+	"description": "Mouse gesture / stroke analysis, simplification, corner detection",
+	"repository": "https://github.com/thi-ng/umbrella",
+	"author": "Karsten Schmidt <k+npm@thi.ng>",
+	"license": "Apache-2.0",
+	"scripts": {
+		"start": "vite --open",
+		"build": "tsc && vite build --base='./'",
+		"preview": "vite preview --host --open"
+	},
+	"dependencies": {
+		"@thi.ng/arrays": "workspace:^",
+		"@thi.ng/geom": "workspace:^",
+		"@thi.ng/hiccup-svg": "workspace:^",
+		"@thi.ng/rstream": "workspace:^",
+		"@thi.ng/rstream-gestures": "workspace:^",
+		"@thi.ng/transducers": "workspace:^",
+		"@thi.ng/transducers-hdom": "workspace:^",
+		"@thi.ng/vectors": "workspace:^"
+	},
+	"browser": {
+		"process": false,
+		"setTimeout": false,
+		"util": false
+	},
+	"thi.ng": {
+		"readme": [
+			"geom",
+			"hiccup-svg",
+			"rstream",
+			"rstream-gestures",
+			"transducers-hdom",
+			"vectors"
+		],
+		"screenshot": "examples/gesture-analysis.png"
+	},
+	"devDependencies": {
+		"typescript": "^4.7.4",
+		"vite": "^3.0.0"
+	}
 }

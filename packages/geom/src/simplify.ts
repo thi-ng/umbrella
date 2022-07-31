@@ -30,51 +30,51 @@ import { vertices } from "./vertices.js";
  * @param threshold
  */
 export const simplify: MultiFn2<IShape, number, IShape> = defmulti<
-    any,
-    number,
-    IShape
+	any,
+	number,
+	IShape
 >(
-    __dispatch,
-    {},
-    {
-        path: ($: Path, eps = 0) => {
-            const res: PathSegment[] = [];
-            const orig = $.segments;
-            const n = orig.length;
-            let points!: Vec[] | null;
-            let lastP!: Vec;
-            for (let i = 0; i < n; i++) {
-                const s = orig[i];
-                if (s.type === "l" || s.type === "p") {
-                    points = points
-                        ? points.concat(vertices(s.geo!))
-                        : vertices(s.geo!);
-                    lastP = peek(points);
-                } else if (points) {
-                    points.push(lastP);
-                    res.push({
-                        geo: new Polyline(_simplify(points, eps)),
-                        type: "p",
-                    });
-                    points = null;
-                } else {
-                    res.push({ ...s });
-                }
-            }
-            if (points) {
-                points.push(lastP);
-                res.push({
-                    geo: new Polyline(points),
-                    type: "p",
-                });
-            }
-            return new Path(res, __copyAttribs($));
-        },
+	__dispatch,
+	{},
+	{
+		path: ($: Path, eps = 0) => {
+			const res: PathSegment[] = [];
+			const orig = $.segments;
+			const n = orig.length;
+			let points!: Vec[] | null;
+			let lastP!: Vec;
+			for (let i = 0; i < n; i++) {
+				const s = orig[i];
+				if (s.type === "l" || s.type === "p") {
+					points = points
+						? points.concat(vertices(s.geo!))
+						: vertices(s.geo!);
+					lastP = peek(points);
+				} else if (points) {
+					points.push(lastP);
+					res.push({
+						geo: new Polyline(_simplify(points, eps)),
+						type: "p",
+					});
+					points = null;
+				} else {
+					res.push({ ...s });
+				}
+			}
+			if (points) {
+				points.push(lastP);
+				res.push({
+					geo: new Polyline(points),
+					type: "p",
+				});
+			}
+			return new Path(res, __copyAttribs($));
+		},
 
-        poly: ($: Polygon, eps = 0) =>
-            new Polygon(_simplify($.points, eps, true), __copyAttribs($)),
+		poly: ($: Polygon, eps = 0) =>
+			new Polygon(_simplify($.points, eps, true), __copyAttribs($)),
 
-        polyline: ($: Polyline, eps = 0) =>
-            new Polyline(_simplify($.points, eps), __copyAttribs($)),
-    }
+		polyline: ($: Polyline, eps = 0) =>
+			new Polyline(_simplify($.points, eps), __copyAttribs($)),
+	}
 );

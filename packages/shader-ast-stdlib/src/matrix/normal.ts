@@ -12,4 +12,4 @@ import { normalize } from "@thi.ng/shader-ast/builtin/math";
  * @param normalMat -
  */
 export const surfaceNormal = (n: Vec3Term, normalMat: Mat4Term) =>
-    normalize($xyz(mul(normalMat, vec4(n, 0))));
+	normalize($xyz(mul(normalMat, vec4(n, 0))));

@@ -7,4 +7,4 @@ export const isNode = (x: any): x is Node => isPlainObject(x) && "$id" in x;
 export const isRef = (x: any): x is NodeRef => isPlainObject(x) && "$ref" in x;
 
 export const isToEGF = (x: any): x is IToEGFConvert =>
-    implementsFunction(x, "toEGF");
+	implementsFunction(x, "toEGF");

@@ -25,7 +25,7 @@ export const polar: MultiVecOpV = vop(1);
  * @param v -
  */
 export const polar2 = polar.add(2, (out, a) =>
-    setC2(out || a, mag(a), atan2(a[1], a[0]))
+	setC2(out || a, mag(a), atan2(a[1], a[0]))
 );
 
 /**
@@ -37,9 +37,9 @@ export const polar2 = polar.add(2, (out, a) =>
  * @param v -
  */
 export const polar3 = polar.add(3, (out, a) => {
-    const x = a[0];
-    const y = a[1];
-    const z = a[2];
-    const r = sqrt(x * x + y * y + z * z);
-    return setC3(out || a, r, asin(z / r), atan2(y, x));
+	const x = a[0];
+	const y = a[1];
+	const z = a[2];
+	const r = sqrt(x * x + y * y + z * z);
+	return setC3(out || a, r, asin(z / r), atan2(y, x));
 });

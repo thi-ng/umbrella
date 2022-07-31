@@ -12,8 +12,8 @@ import { mul } from "@thi.ng/shader-ast/ast/ops";
  * @param proj -
  */
 export const transformMVP = (
-    p: Vec3Term,
-    model: Mat4Term,
-    view: Mat4Term,
-    proj: Mat4Term
+	p: Vec3Term,
+	model: Mat4Term,
+	view: Mat4Term,
+	proj: Mat4Term
 ) => mul(mul(proj, mul(view, model)), vec4(p, FLOAT1));

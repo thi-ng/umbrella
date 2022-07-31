@@ -11,7 +11,7 @@ import { indexToUV } from "./index-uv.js";
  * @param size -
  */
 export const readIndex1 = (tex: Sampler2DTerm, i: IntTerm, size: IVec2Term) =>
-    $x(readIndex4(tex, i, size));
+	$x(readIndex4(tex, i, size));
 
 /**
  * Inline function. Returns vec2 (x,y components) at index `i` in `tex`.
@@ -21,7 +21,7 @@ export const readIndex1 = (tex: Sampler2DTerm, i: IntTerm, size: IVec2Term) =>
  * @param size -
  */
 export const readIndex2 = (tex: Sampler2DTerm, i: IntTerm, size: IVec2Term) =>
-    $xy(readIndex4(tex, i, size));
+	$xy(readIndex4(tex, i, size));
 
 /**
  * Inline function. Returns vec3 (x,y,z components) at index `i` in `tex`.
@@ -31,7 +31,7 @@ export const readIndex2 = (tex: Sampler2DTerm, i: IntTerm, size: IVec2Term) =>
  * @param size -
  */
 export const readIndex3 = (tex: Sampler2DTerm, i: IntTerm, size: IVec2Term) =>
-    $xyz(readIndex4(tex, i, size));
+	$xyz(readIndex4(tex, i, size));
 
 /**
  * Inline function. Returns vec4 at index `i` in `tex`.
@@ -41,4 +41,4 @@ export const readIndex3 = (tex: Sampler2DTerm, i: IntTerm, size: IVec2Term) =>
  * @param size -
  */
 export const readIndex4 = (tex: Sampler2DTerm, i: IntTerm, size: IVec2Term) =>
-    texture(tex, indexToUV(i, size));
+	texture(tex, indexToUV(i, size));

@@ -22,35 +22,35 @@ import { line } from "./line.js";
  * @param db -
  */
 export const filterResponseRaw = (
-    zeroes: NumericArray,
-    poles: NumericArray,
-    freq: number,
-    db = true
+	zeroes: NumericArray,
+	poles: NumericArray,
+	freq: number,
+	db = true
 ): FilterResponse => {
-    const w0 = TAU * freq;
-    const [cp, sp] = convolve(poles, w0);
-    const [cz, sz] = convolve(zeroes, w0);
-    const mag = Math.sqrt((cz * cz + sz * sz) / (cp * cp + sp * sp));
-    const phase = Math.atan2(sp, cp) - Math.atan2(sz, cz);
-    return { freq, phase, mag: db ? magDb(mag) : mag };
+	const w0 = TAU * freq;
+	const [cp, sp] = convolve(poles, w0);
+	const [cz, sz] = convolve(zeroes, w0);
+	const mag = Math.sqrt((cz * cz + sz * sz) / (cp * cp + sp * sp));
+	const phase = Math.atan2(sp, cp) - Math.atan2(sz, cz);
+	return { freq, phase, mag: db ? magDb(mag) : mag };
 };
 
 export const filterResponse = (
-    coeffs: FilterConfig,
-    freq: number,
-    db?: boolean
+	coeffs: FilterConfig,
+	freq: number,
+	db?: boolean
 ) => filterResponseRaw(coeffs.zeroes, coeffs.poles, freq, db);
 
 export const freqRange: FnU3<number, number[]> = (fstart, fend, num) =>
-    line(fstart, fend, num - 1).take(num);
+	line(fstart, fend, num - 1).take(num);
 
 const convolve = (coeffs: NumericArray, w0: number) => {
-    let c = 0;
-    let s = 0;
-    for (let i = coeffs.length; i-- > 0; ) {
-        const k = cossin(w0 * i, coeffs[i]);
-        c += k[0];
-        s += k[1];
-    }
-    return [c, s];
+	let c = 0;
+	let s = 0;
+	for (let i = coeffs.length; i-- > 0; ) {
+		const k = cossin(w0 * i, coeffs[i]);
+		c += k[0];
+		s += k[1];
+	}
+	return [c, s];
 };

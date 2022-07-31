@@ -3,13 +3,13 @@ import { getInUnsafe } from "@thi.ng/paths/get-in";
 import { defSetterUnsafe } from "@thi.ng/paths/setter";
 import { defUpdaterUnsafe } from "@thi.ng/paths/updater";
 import {
-    Event,
-    FX_CANCEL,
-    FX_DISPATCH,
-    FX_DISPATCH_NOW,
-    FX_STATE,
-    InterceptorFn,
-    InterceptorPredicate,
+	Event,
+	FX_CANCEL,
+	FX_DISPATCH,
+	FX_DISPATCH_NOW,
+	FX_STATE,
+	InterceptorFn,
+	InterceptorPredicate,
 } from "./api.js";
 
 /**
@@ -25,8 +25,8 @@ export const trace: InterceptorFn = (_, e) => console.log("event:", e);
  * @param fxID - side effect ID
  */
 export const forwardSideFx =
-    (fxID: string): InterceptorFn =>
-    (_, [__, body]) => ({ [fxID]: body !== undefined ? body : true });
+	(fxID: string): InterceptorFn =>
+	(_, [__, body]) => ({ [fxID]: body !== undefined ? body : true });
 
 /**
  * Higher-order interceptor. Returns interceptor which assigns given
@@ -35,10 +35,10 @@ export const forwardSideFx =
  * @param event -
  */
 export const dispatch =
-    (event: Event): InterceptorFn =>
-    () => ({
-        [FX_DISPATCH]: event,
-    });
+	(event: Event): InterceptorFn =>
+	() => ({
+		[FX_DISPATCH]: event,
+	});
 
 /**
  * Higher-order interceptor. Returns interceptor which assigns given
@@ -47,10 +47,10 @@ export const dispatch =
  * @param event -
  */
 export const dispatchNow =
-    (event: Event): InterceptorFn =>
-    () => ({
-        [FX_DISPATCH_NOW]: event,
-    });
+	(event: Event): InterceptorFn =>
+	() => ({
+		[FX_DISPATCH_NOW]: event,
+	});
 
 /**
  * Higher-order interceptor. Returns interceptor which calls
@@ -84,9 +84,9 @@ export const dispatchNow =
  * @param id -
  */
 export const snapshot =
-    (id = "history"): InterceptorFn =>
-    (_, __, ___, ctx) =>
-        ctx[id].record();
+	(id = "history"): InterceptorFn =>
+	(_, __, ___, ctx) =>
+		ctx[id].record();
 
 /**
  * Higher-order interceptor for validation purposes. Takes a predicate
@@ -128,19 +128,19 @@ export const snapshot =
  * @param err - interceptor triggered on predicate failure
  */
 export const ensurePred =
-    (pred: InterceptorPredicate, err?: InterceptorFn): InterceptorFn =>
-    (state, e, bus, ctx) =>
-        !pred(state, e, bus, ctx)
-            ? {
-                  [FX_CANCEL]: true,
-                  ...(err ? err(state, e, bus, ctx) : null),
-              }
-            : undefined;
+	(pred: InterceptorPredicate, err?: InterceptorFn): InterceptorFn =>
+	(state, e, bus, ctx) =>
+		!pred(state, e, bus, ctx)
+			? {
+					[FX_CANCEL]: true,
+					...(err ? err(state, e, bus, ctx) : null),
+			  }
+			: undefined;
 
 const eventPathState = (
-    state: any,
-    path: Fn<Event, Path> | undefined,
-    e: Event
+	state: any,
+	path: Fn<Event, Path> | undefined,
+	e: Event
 ) => getInUnsafe(state, path ? path(e) : e[1]);
 
 /**
@@ -163,9 +163,9 @@ const eventPathState = (
  * @param err - error interceptor
  */
 export const ensureStateLessThan = (
-    max: number,
-    path?: Fn<Event, Path>,
-    err?: InterceptorFn
+	max: number,
+	path?: Fn<Event, Path>,
+	err?: InterceptorFn
 ) => ensurePred((state, e) => eventPathState(state, path, e) < max, err);
 
 /**
@@ -177,9 +177,9 @@ export const ensureStateLessThan = (
  * @param err - error interceptor
  */
 export const ensureStateGreaterThan = (
-    min: number,
-    path?: Fn<Event, Path>,
-    err?: InterceptorFn
+	min: number,
+	path?: Fn<Event, Path>,
+	err?: InterceptorFn
 ) => ensurePred((state, e) => eventPathState(state, path, e) > min, err);
 
 /**
@@ -193,15 +193,15 @@ export const ensureStateGreaterThan = (
  * @param err - error interceptor
  */
 export const ensureStateRange = (
-    min: number,
-    max: number,
-    path?: Fn<Event, Path>,
-    err?: InterceptorFn
+	min: number,
+	max: number,
+	path?: Fn<Event, Path>,
+	err?: InterceptorFn
 ) =>
-    ensurePred((state, e) => {
-        const x = eventPathState(state, path, e);
-        return x >= min && x <= max;
-    }, err);
+	ensurePred((state, e) => {
+		const x = eventPathState(state, path, e);
+		return x >= min && x <= max;
+	}, err);
 
 /**
  * Specialization of {@link ensurePred} to ensure an event's payload value
@@ -219,15 +219,15 @@ export const ensureStateRange = (
  * @param err - error interceptor
  */
 export const ensureParamRange = (
-    min: number,
-    max: number,
-    value?: Fn<Event, number>,
-    err?: InterceptorFn
+	min: number,
+	max: number,
+	value?: Fn<Event, number>,
+	err?: InterceptorFn
 ) =>
-    ensurePred((_, e) => {
-        const x = value ? value(e) : e[1];
-        return x >= min && x <= max;
-    }, err);
+	ensurePred((_, e) => {
+		const x = value ? value(e) : e[1];
+		return x >= min && x <= max;
+	}, err);
 
 /**
  * Higher-order interceptor. Returns new interceptor to set state value
@@ -251,8 +251,8 @@ export const ensureParamRange = (
  * @param tx -
  */
 export const valueSetter = <T>(path: Path, tx?: Fn<T, T>): InterceptorFn => {
-    const $ = defSetterUnsafe(path);
-    return (state, [_, val]) => ({ [FX_STATE]: $(state, tx ? tx(val) : val) });
+	const $ = defSetterUnsafe(path);
+	return (state, [_, val]) => ({ [FX_STATE]: $(state, tx ? tx(val) : val) });
 };
 
 /**
@@ -279,6 +279,6 @@ export const valueSetter = <T>(path: Path, tx?: Fn<T, T>): InterceptorFn => {
  * @param fn -
  */
 export const valueUpdater = <T>(path: Path, fn: FnO<T, T>): InterceptorFn => {
-    const $ = defUpdaterUnsafe(path, fn);
-    return (state, [_, ...args]) => ({ [FX_STATE]: $(state, ...args) });
+	const $ = defUpdaterUnsafe(path, fn);
+	return (state, [_, ...args]) => ({ [FX_STATE]: $(state, ...args) });
 };

@@ -22,19 +22,19 @@ import { reduced } from "./reduced.js";
 export function takeWhile<T>(pred?: Predicate<T>): Transducer<T, T>;
 export function takeWhile<T>(src: Iterable<T>): IterableIterator<T>;
 export function takeWhile<T>(
-    pred: Predicate<T>,
-    src: Iterable<T>
+	pred: Predicate<T>,
+	src: Iterable<T>
 ): IterableIterator<T>;
 export function takeWhile<T>(...args: any[]): any {
-    return (
-        __iter(takeWhile, args) ||
-        ((rfn: Reducer<any, T>) => {
-            const r = rfn[2];
-            const pred = args[0];
-            let ok = true;
-            return compR(rfn, (acc, x: T) =>
-                (ok = ok && pred(x)) ? r(acc, x) : reduced(acc)
-            );
-        })
-    );
+	return (
+		__iter(takeWhile, args) ||
+		((rfn: Reducer<any, T>) => {
+			const r = rfn[2];
+			const pred = args[0];
+			let ok = true;
+			return compR(rfn, (acc, x: T) =>
+				(ok = ok && pred(x)) ? r(acc, x) : reduced(acc)
+			);
+		})
+	);
 }

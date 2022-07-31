@@ -32,50 +32,50 @@ import { setIn } from "./set-in.js";
  */
 export function setInManyUnsafe<T>(state: T, p1: Path, v1: any): T;
 export function setInManyUnsafe<T>(
-    state: T,
-    p1: Path,
-    v1: any,
-    p2: Path,
-    v2: any
+	state: T,
+	p1: Path,
+	v1: any,
+	p2: Path,
+	v2: any
 ): T;
 export function setInManyUnsafe<T>(
-    state: T,
-    p1: Path,
-    v1: any,
-    p2: Path,
-    v2: any,
-    p3: Path,
-    v3: any
+	state: T,
+	p1: Path,
+	v1: any,
+	p2: Path,
+	v2: any,
+	p3: Path,
+	v3: any
 ): T;
 export function setInManyUnsafe<T>(
-    state: T,
-    p1: Path,
-    v1: any,
-    p2: Path,
-    v2: any,
-    p3: Path,
-    v3: any,
-    p4: Path,
-    v4: any
+	state: T,
+	p1: Path,
+	v1: any,
+	p2: Path,
+	v2: any,
+	p3: Path,
+	v3: any,
+	p4: Path,
+	v4: any
 ): T;
 export function setInManyUnsafe<T>(
-    state: T,
-    p1: Path,
-    v1: any,
-    p2: Path,
-    v2: any,
-    p3: Path,
-    v3: any,
-    p4: Path,
-    v4: any,
-    ...xs: any[]
+	state: T,
+	p1: Path,
+	v1: any,
+	p2: Path,
+	v2: any,
+	p3: Path,
+	v3: any,
+	p4: Path,
+	v4: any,
+	...xs: any[]
 ): T;
 export function setInManyUnsafe<T>(state: T, ...pairs: any[]) {
-    const n = pairs.length;
-    n & 1 &&
-        illegalArgs(`require even number of KV args (got ${pairs.length})`);
-    for (let i = 0; i < n; i += 2) {
-        state = setIn(state, pairs[i], pairs[i + 1]);
-    }
-    return state;
+	const n = pairs.length;
+	n & 1 &&
+		illegalArgs(`require even number of KV args (got ${pairs.length})`);
+	for (let i = 0; i < n; i += 2) {
+		state = setIn(state, pairs[i], pairs[i + 1]);
+	}
+	return state;
 }

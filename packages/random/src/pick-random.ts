@@ -12,10 +12,10 @@ import { SYSTEM } from "./system.js";
  * @param end -
  */
 export const pickRandom = <T>(
-    src: ArrayLike<T>,
-    rnd: IRandom = SYSTEM,
-    start = 0,
-    end = src.length
+	src: ArrayLike<T>,
+	rnd: IRandom = SYSTEM,
+	start = 0,
+	end = src.length
 ) => src[rnd.minmax(start, end) | 0];
 
 /**
@@ -25,4 +25,4 @@ export const pickRandom = <T>(
  * @param rnd
  */
 export const pickRandomKey = <T>(obj: T, rnd: IRandom = SYSTEM) =>
-    pickRandom(<(keyof T)[]>Object.keys(obj), rnd);
+	pickRandom(<(keyof T)[]>Object.keys(obj), rnd);

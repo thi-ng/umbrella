@@ -56,87 +56,87 @@ import { __translatedShape as tx } from "./internal/translate.js";
  * @param offset
  */
 export const translate: MultiFn2<IShape, ReadonlyVec, IShape> = defmulti<
-    any,
-    ReadonlyVec,
-    IShape
+	any,
+	ReadonlyVec,
+	IShape
 >(
-    __dispatch,
-    {},
-    {
-        aabb: ($: AABB, delta) =>
-            new AABB(
-                add3([], $.pos, delta),
-                set3([], $.size),
-                __copyAttribs($)
-            ),
+	__dispatch,
+	{},
+	{
+		aabb: ($: AABB, delta) =>
+			new AABB(
+				add3([], $.pos, delta),
+				set3([], $.size),
+				__copyAttribs($)
+			),
 
-        arc: ($: Arc, delta) => {
-            const a = $.copy();
-            add2(null, a.pos, delta);
-            return a;
-        },
+		arc: ($: Arc, delta) => {
+			const a = $.copy();
+			add2(null, a.pos, delta);
+			return a;
+		},
 
-        circle: ($: Circle, delta) =>
-            new Circle(add2([], $.pos, delta), $.r, __copyAttribs($)),
+		circle: ($: Circle, delta) =>
+			new Circle(add2([], $.pos, delta), $.r, __copyAttribs($)),
 
-        cubic: tx(Cubic),
+		cubic: tx(Cubic),
 
-        ellipse: ($: Ellipse, delta) =>
-            new Ellipse(
-                add2([], $.pos, delta),
-                set2([], $.r),
-                __copyAttribs($)
-            ),
+		ellipse: ($: Ellipse, delta) =>
+			new Ellipse(
+				add2([], $.pos, delta),
+				set2([], $.r),
+				__copyAttribs($)
+			),
 
-        group: ($: Group, delta) =>
-            $.copyTransformed((x) => <IHiccupShape>translate(x, delta)),
+		group: ($: Group, delta) =>
+			$.copyTransformed((x) => <IHiccupShape>translate(x, delta)),
 
-        line: tx(Line),
+		line: tx(Line),
 
-        path: ($: Path, delta: ReadonlyVec) =>
-            new Path(
-                $.segments.map((s) =>
-                    s.geo
-                        ? {
-                              type: s.type,
-                              geo: <any>translate(s.geo, delta),
-                          }
-                        : {
-                              type: s.type,
-                              point: add2([], s.point!, delta),
-                          }
-                ),
-                __copyAttribs($)
-            ),
+		path: ($: Path, delta: ReadonlyVec) =>
+			new Path(
+				$.segments.map((s) =>
+					s.geo
+						? {
+								type: s.type,
+								geo: <any>translate(s.geo, delta),
+						  }
+						: {
+								type: s.type,
+								point: add2([], s.point!, delta),
+						  }
+				),
+				__copyAttribs($)
+			),
 
-        points: tx(Points),
+		points: tx(Points),
 
-        points3: tx(Points3),
+		points3: tx(Points3),
 
-        poly: tx(Polygon),
+		poly: tx(Polygon),
 
-        polyline: tx(Polyline),
+		polyline: tx(Polyline),
 
-        quad: tx(Quad),
+		quad: tx(Quad),
 
-        quadratic: tx(Quadratic),
+		quadratic: tx(Quadratic),
 
-        ray: ($: Ray, delta) =>
-            new Ray(add2([], $.pos, delta), $.dir, __copyAttribs($)),
+		ray: ($: Ray, delta) =>
+			new Ray(add2([], $.pos, delta), $.dir, __copyAttribs($)),
 
-        rect: ($: Rect, delta) =>
-            new Rect(
-                add2([], $.pos, delta),
-                set2([], $.size),
-                __copyAttribs($)
-            ),
+		rect: ($: Rect, delta) =>
+			new Rect(
+				add2([], $.pos, delta),
+				set2([], $.size),
+				__copyAttribs($)
+			),
 
-        sphere: ($: Sphere, delta) =>
-            new Sphere(add3([], $.pos, delta), $.r, __copyAttribs($)),
+		sphere: ($: Sphere, delta) =>
+			new Sphere(add3([], $.pos, delta), $.r, __copyAttribs($)),
 
-        text: ($: Text, delta) =>
-            new Text(add2([], $.pos, delta), $.body, __copyAttribs($)),
+		text: ($: Text, delta) =>
+			new Text(add2([], $.pos, delta), $.body, __copyAttribs($)),
 
-        tri: tx(Triangle),
-    }
+		tri: tx(Triangle),
+	}
 );

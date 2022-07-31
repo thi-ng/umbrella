@@ -11,24 +11,24 @@ import { unwrap } from "./word.js";
  * @param ctx -
  */
 export const run = (
-    prog: StackProc,
-    ctx: StackContext = [[], [], {}]
+	prog: StackProc,
+	ctx: StackContext = [[], [], {}]
 ): StackContext => {
-    if (isFunction(prog)) {
-        return prog(ctx);
-    }
-    for (
-        let p = isArray(prog) ? prog : [prog], n = p.length, i = 0, w;
-        i < n;
-        i++
-    ) {
-        if (isFunction((w = p[i]))) {
-            ctx = w(ctx);
-        } else {
-            ctx[0].push(w);
-        }
-    }
-    return ctx;
+	if (isFunction(prog)) {
+		return prog(ctx);
+	}
+	for (
+		let p = isArray(prog) ? prog : [prog], n = p.length, i = 0, w;
+		i < n;
+		i++
+	) {
+		if (isFunction((w = p[i]))) {
+			ctx = w(ctx);
+		} else {
+			ctx[0].push(w);
+		}
+	}
+	return ctx;
 };
 
 /**
@@ -40,7 +40,7 @@ export const run = (
  * @param n -
  */
 export const runU = (prog: StackProc, ctx?: StackContext, n = 1) =>
-    unwrap(run(prog, ctx), n);
+	unwrap(run(prog, ctx), n);
 
 /**
  * Like {@link run}, but returns result environment. Syntax sugar for:

@@ -3,5 +3,5 @@
  * values.
  */
 export interface IInto<V, T> {
-    into(coll: Iterable<V>): T;
+	into(coll: Iterable<V>): T;
 }

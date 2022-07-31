@@ -3,15 +3,15 @@ import { dist, dist2, dist3 } from "@thi.ng/vectors/dist";
 import type { IDistance, Metric } from "./api.js";
 
 export class Eucledian<T> implements IDistance<T> {
-    constructor(public readonly metric: Metric<T>) {}
+	constructor(public readonly metric: Metric<T>) {}
 
-    to(x: number) {
-        return x;
-    }
+	to(x: number) {
+		return x;
+	}
 
-    from(x: number) {
-        return x;
-    }
+	from(x: number) {
+		return x;
+	}
 }
 
 /**

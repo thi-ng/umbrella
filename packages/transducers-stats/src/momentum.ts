@@ -14,25 +14,25 @@ import { iterator1 } from "@thi.ng/transducers/iterator";
  */
 export function momentum(period: number): Transducer<number, number>;
 export function momentum(
-    period: number,
-    src: Iterable<number>
+	period: number,
+	src: Iterable<number>
 ): IterableIterator<number>;
 export function momentum(period: number, src?: Iterable<number>): any {
-    if (src) {
-        return iterator1(momentum(period), src);
-    }
-    period |= 0;
-    period < 1 && illegalArgs("period must be >= 1");
-    return (rfn: Reducer<any, number>) => {
-        const reduce = rfn[2];
-        const window = new DCons<number>();
-        return compR(rfn, (acc, x: number) => {
-            window.push(x);
-            if (window.length <= period) {
-                return acc;
-            }
-            const prev = window.drop()!;
-            return reduce(acc, x - prev);
-        });
-    };
+	if (src) {
+		return iterator1(momentum(period), src);
+	}
+	period |= 0;
+	period < 1 && illegalArgs("period must be >= 1");
+	return (rfn: Reducer<any, number>) => {
+		const reduce = rfn[2];
+		const window = new DCons<number>();
+		return compR(rfn, (acc, x: number) => {
+			window.push(x);
+			if (window.length <= period) {
+				return acc;
+			}
+			const prev = window.drop()!;
+			return reduce(acc, x - prev);
+		});
+	};
 }

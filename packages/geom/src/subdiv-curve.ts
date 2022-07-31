@@ -25,20 +25,20 @@ import { __dispatch } from "./internal/dispatch.js";
  * @param iter
  */
 export const subdivCurve: MultiFn2O<IShape, SubdivKernel, number, IShape> =
-    defmulti<any, SubdivKernel, number | undefined, IShape>(
-        __dispatch,
-        {},
-        {
-            poly: ($: Polygon, kernel, iter = 1) =>
-                new Polygon(
-                    subdivide($.points, kernel, iter),
-                    __copyAttribs($)
-                ),
+	defmulti<any, SubdivKernel, number | undefined, IShape>(
+		__dispatch,
+		{},
+		{
+			poly: ($: Polygon, kernel, iter = 1) =>
+				new Polygon(
+					subdivide($.points, kernel, iter),
+					__copyAttribs($)
+				),
 
-            polyline: ($: Polyline, kernel, iter = 1) =>
-                new Polyline(
-                    subdivide($.points, kernel, iter),
-                    __copyAttribs($)
-                ),
-        }
-    );
+			polyline: ($: Polyline, kernel, iter = 1) =>
+				new Polyline(
+					subdivide($.points, kernel, iter),
+					__copyAttribs($)
+				),
+		}
+	);

@@ -19,10 +19,10 @@ import { sum } from "./sum.js";
  * - https://en.wikipedia.org/wiki/Softmax_function
  * - https://victorzhou.com/blog/softmax/
  *
- * @param out - 
- * @param src - 
+ * @param out -
+ * @param src -
  */
 export const softMax = (out: Vec | null, src: ReadonlyVec) => {
-    const e = exp([], src);
-    return divN(out || src, e, sum(e));
+	const e = exp([], src);
+	return divN(out || src, e, sum(e));
 };

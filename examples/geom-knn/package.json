@@ -1,44 +1,44 @@
 {
-    "name": "@example/geom-knn",
-    "private": true,
-    "description": "Doodle w/ K-nearest neighbor search result visualization",
-    "version": "0.0.1",
-    "repository": "https://github.com/thi-ng/umbrella",
-    "author": "Karsten Schmidt <k+npm@thi.ng>",
-    "license": "Apache-2.0",
-    "scripts": {
-        "start": "vite --open",
-        "build": "tsc && vite build --base='./'",
-        "preview": "vite preview --host --open"
-    },
-    "dependencies": {
-        "@thi.ng/bench": "workspace:^",
-        "@thi.ng/geom-accel": "workspace:^",
-        "@thi.ng/hdom-canvas": "workspace:^",
-        "@thi.ng/rstream": "workspace:^",
-        "@thi.ng/rstream-gestures": "workspace:^",
-        "@thi.ng/transducers": "workspace:^",
-        "@thi.ng/transducers-hdom": "workspace:^",
-        "@thi.ng/vectors": "workspace:^"
-    },
-    "browser": {
-        "process": false,
-        "setTimeout": false,
-        "util": false
-    },
-    "thi.ng": {
-        "readme": [
-            "bench",
-            "geom-accel",
-            "hdom-canvas",
-            "rstream-gestures",
-            "transducers-hdom",
-            "vectors"
-        ],
-        "screenshot": "examples/geom-knn.jpg"
-    },
-    "devDependencies": {
-        "typescript": "^4.7.4",
-        "vite": "^3.0.0"
-    }
+	"name": "@example/geom-knn",
+	"private": true,
+	"description": "Doodle w/ K-nearest neighbor search result visualization",
+	"version": "0.0.1",
+	"repository": "https://github.com/thi-ng/umbrella",
+	"author": "Karsten Schmidt <k+npm@thi.ng>",
+	"license": "Apache-2.0",
+	"scripts": {
+		"start": "vite --open",
+		"build": "tsc && vite build --base='./'",
+		"preview": "vite preview --host --open"
+	},
+	"dependencies": {
+		"@thi.ng/bench": "workspace:^",
+		"@thi.ng/geom-accel": "workspace:^",
+		"@thi.ng/hdom-canvas": "workspace:^",
+		"@thi.ng/rstream": "workspace:^",
+		"@thi.ng/rstream-gestures": "workspace:^",
+		"@thi.ng/transducers": "workspace:^",
+		"@thi.ng/transducers-hdom": "workspace:^",
+		"@thi.ng/vectors": "workspace:^"
+	},
+	"browser": {
+		"process": false,
+		"setTimeout": false,
+		"util": false
+	},
+	"thi.ng": {
+		"readme": [
+			"bench",
+			"geom-accel",
+			"hdom-canvas",
+			"rstream-gestures",
+			"transducers-hdom",
+			"vectors"
+		],
+		"screenshot": "examples/geom-knn.jpg"
+	},
+	"devDependencies": {
+		"typescript": "^4.7.4",
+		"vite": "^3.0.0"
+	}
 }

@@ -8,8 +8,8 @@ import { DEG2RAD, HALF_PI, INV_HALF_PI, PI, RAD2DEG, TAU } from "./api.js";
  * @param n -
  */
 export const sincos = (theta: number, n = 1) => [
-    Math.sin(theta) * n,
-    Math.cos(theta) * n,
+	Math.sin(theta) * n,
+	Math.cos(theta) * n,
 ];
 
 /**
@@ -19,8 +19,8 @@ export const sincos = (theta: number, n = 1) => [
  * @param n -
  */
 export const cossin = (theta: number, n = 1) => [
-    Math.cos(theta) * n,
-    Math.sin(theta) * n,
+	Math.cos(theta) * n,
+	Math.sin(theta) * n,
 ];
 
 /**
@@ -29,11 +29,11 @@ export const cossin = (theta: number, n = 1) => [
  * @param theta -
  */
 export const absTheta: FnN = (theta) => (
-    (theta %= TAU), theta < 0 ? TAU + theta : theta
+	(theta %= TAU), theta < 0 ? TAU + theta : theta
 );
 
 export const absInnerAngle: FnN = (theta) => (
-    (theta = Math.abs(theta)), theta > PI ? TAU - theta : theta
+	(theta = Math.abs(theta)), theta > PI ? TAU - theta : theta
 );
 
 /**
@@ -44,7 +44,7 @@ export const absInnerAngle: FnN = (theta) => (
  * @param b -
  */
 export const angleDist: FnN2 = (a, b) =>
-    absInnerAngle(absTheta((b % TAU) - (a % TAU)));
+	absInnerAngle(absTheta((b % TAU) - (a % TAU)));
 
 /**
  * Like `Math.atan2`, but always returns angle in [0 .. TAU) interval.
@@ -105,7 +105,7 @@ export const cot: FnN = (theta) => 1 / Math.tan(theta);
  * @param gamma -
  */
 export const loc: FnN3 = (a, b, gamma) =>
-    Math.sqrt(a * a + b * b - 2 * a * b * Math.cos(gamma));
+	Math.sqrt(a * a + b * b - 2 * a * b * Math.cos(gamma));
 
 /**
  * Approximates cos(xπ) for x in [-1,1]
@@ -113,13 +113,13 @@ export const loc: FnN3 = (a, b, gamma) =>
  * @param x -
  */
 export const normCos: FnN = (x) => {
-    const x2 = x * x;
-    return 1.0 + x2 * (-4 + 2 * x2);
+	const x2 = x * x;
+	return 1.0 + x2 * (-4 + 2 * x2);
 };
 
 const __fastCos: FnN = (x) => {
-    const x2 = x * x;
-    return 0.99940307 + x2 * (-0.49558072 + 0.03679168 * x2);
+	const x2 = x * x;
+	return 0.99940307 + x2 * (-0.49558072 + 0.03679168 * x2);
 };
 
 /**
@@ -131,18 +131,18 @@ const __fastCos: FnN = (x) => {
  * @param theta - in radians
  */
 export const fastCos: FnN = (theta) => {
-    theta %= TAU;
-    theta < 0 && (theta = -theta);
-    switch ((theta * INV_HALF_PI) | 0) {
-        case 0:
-            return __fastCos(theta);
-        case 1:
-            return -__fastCos(PI - theta);
-        case 2:
-            return -__fastCos(theta - PI);
-        default:
-            return __fastCos(TAU - theta);
-    }
+	theta %= TAU;
+	theta < 0 && (theta = -theta);
+	switch ((theta * INV_HALF_PI) | 0) {
+		case 0:
+			return __fastCos(theta);
+		case 1:
+			return -__fastCos(PI - theta);
+		case 2:
+			return -__fastCos(theta - PI);
+		default:
+			return __fastCos(TAU - theta);
+	}
 };
 
 /**

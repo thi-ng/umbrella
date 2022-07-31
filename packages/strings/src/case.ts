@@ -35,15 +35,15 @@ export const capitalize: FnS = (x) => x[0].toUpperCase() + x.substring(1);
  * @param delim -
  */
 export const kebab: Stringer<string> = (x, delim = "-") =>
-    lower(
-        x.replace(
-            // TC39
-            // /(?<=[a-z0-9\u00e0-\u00fd])(?=[A-Z\u00c0-\u00dd])/g,
-            // (_, i) => (i ? delim : "")
-            /([a-z0-9\u00e0-\u00fd])([A-Z\u00c0-\u00dd])/g,
-            (_, a, b) => a + delim + b
-        )
-    );
+	lower(
+		x.replace(
+			// TC39
+			// /(?<=[a-z0-9\u00e0-\u00fd])(?=[A-Z\u00c0-\u00dd])/g,
+			// (_, i) => (i ? delim : "")
+			/([a-z0-9\u00e0-\u00fd])([A-Z\u00c0-\u00dd])/g,
+			(_, a, b) => a + delim + b
+		)
+	);
 
 /**
  * Short for {@link kebab} using `_` as delimiter.
@@ -67,4 +67,4 @@ export const upperSnake: FnS = (x) => snake(x).toUpperCase();
  * @param delim -
  */
 export const camel: Stringer<string> = (x, delim = "-") =>
-    lower(x).replace(new RegExp(`\\${delim}+(\\w)`, "g"), (_, c) => upper(c));
+	lower(x).replace(new RegExp(`\\${delim}+(\\w)`, "g"), (_, c) => upper(c));

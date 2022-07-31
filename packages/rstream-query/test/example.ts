@@ -1,15 +1,15 @@
 import { trace } from "@thi.ng/rstream";
-import * as q from "../src/index.js"
+import * as q from "../src/index.js";
 
 const store = new q.TripleStore([
-    ["london", "type", "city"],
-    ["london", "part-of", "uk"],
-    ["portland", "type", "city"],
-    ["portland", "part-of", "oregon"],
-    ["portland", "part-of", "usa"],
-    ["oregon", "type", "state"],
-    ["usa", "type", "country"],
-    ["uk", "type", "country"],
+	["london", "type", "city"],
+	["london", "part-of", "uk"],
+	["portland", "type", "city"],
+	["portland", "part-of", "oregon"],
+	["portland", "part-of", "usa"],
+	["oregon", "type", "state"],
+	["usa", "type", "country"],
+	["uk", "type", "country"],
 ]);
 
 // alternatively, convert an object into a sequence of triples
@@ -37,41 +37,41 @@ const store = new q.TripleStore([
 // in the near future, more query types will be supported
 // (e.g. optional relationships, filters etc.)
 store
-    .addQueryFromSpec({
-        q: [
-            {
-                where: [
-                    // first match any subject of type "city"
-                    ["?city", "type", "city"],
-                    // then a city's "part-of" relationships (if any)
-                    ["?city", "partOf", "?country"],
-                    // the matched ?country must have type = "country"
-                    ["?country", "type", "country"],
-                ],
-            },
-        ],
-        // `bind` is an (optional) query post-processor and
-        // allows injection of new variables into the result set
-        // here we create a new var "answer" whose values are derived from
-        // the other two query vars
-        bind: {
-            answer: (res) => `${res.city} is located in ${res.country}`,
-        },
-        // another post-processing step, only keeps "answer" var in results
-        select: ["answer"],
-    })
-    .subscribe(trace());
+	.addQueryFromSpec({
+		q: [
+			{
+				where: [
+					// first match any subject of type "city"
+					["?city", "type", "city"],
+					// then a city's "part-of" relationships (if any)
+					["?city", "partOf", "?country"],
+					// the matched ?country must have type = "country"
+					["?country", "type", "country"],
+				],
+			},
+		],
+		// `bind` is an (optional) query post-processor and
+		// allows injection of new variables into the result set
+		// here we create a new var "answer" whose values are derived from
+		// the other two query vars
+		bind: {
+			answer: (res) => `${res.city} is located in ${res.country}`,
+		},
+		// another post-processing step, only keeps "answer" var in results
+		select: ["answer"],
+	})
+	.subscribe(trace());
 // Set {
 //   { answer: 'london is located in uk' },
 //   { answer: 'portland is located in usa' } }
 
 // helper fn to insert new city relationship to the store
 const addCity = (name: string, country: string) =>
-    store.into([
-        [name, "type", "city"],
-        [name, "partOf", country],
-        [country, "type", "country"],
-    ]);
+	store.into([
+		[name, "type", "city"],
+		[name, "partOf", country],
+		[country, "type", "country"],
+	]);
 
 addCity("berlin", "germany");
 // Set {

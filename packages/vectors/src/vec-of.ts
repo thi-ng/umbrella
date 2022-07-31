@@ -17,7 +17,7 @@ export const vecOf = (size: number, n = 0) => new Array(size).fill(n);
  * @param hot -
  */
 export const oneHot = (size: number, hot: number) => {
-    const res = vecOf(size);
-    res[hot] = 1;
-    return res;
+	const res = vecOf(size);
+	res[hot] = 1;
+	return res;
 };

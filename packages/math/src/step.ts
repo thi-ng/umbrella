@@ -19,8 +19,8 @@ export const step: FnN2 = (edge, x) => (x < edge ? 0 : 1);
  * @returns 0, if `x < edge1`, 1 if `x > edge2`, else S-curve polynomial interpolation
  */
 export const smoothStep: FnN3 = (edge, edge2, x) => {
-    x = clamp01((x - edge) / (edge2 - edge));
-    return (3 - 2 * x) * x * x;
+	x = clamp01((x - edge) / (edge2 - edge));
+	return (3 - 2 * x) * x * x;
 };
 
 /**
@@ -31,8 +31,8 @@ export const smoothStep: FnN3 = (edge, edge2, x) => {
  * @param x -
  */
 export const smootherStep: FnN3 = (edge, edge2, x) => {
-    x = clamp01((x - edge) / (edge2 - edge));
-    return x * x * x * (x * (x * 6 - 15) + 10);
+	x = clamp01((x - edge) / (edge2 - edge));
+	return x * x * x * (x * (x * 6 - 15) + 10);
 };
 
 /**

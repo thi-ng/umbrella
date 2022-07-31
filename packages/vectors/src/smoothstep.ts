@@ -12,6 +12,6 @@ import { DEFAULT_OUT, FN3 } from "./compile/templates.js";
  * @param v -
  */
 export const [smoothStep, smoothStep2, smoothStep3, smoothStep4] = defHofOp<
-    MultiVecOpVVV,
-    VecOpVVV
+	MultiVecOpVVV,
+	VecOpVVV
 >(_step, FN3(), "o,e1,e2,a", undefined, "o", 3, DEFAULT_OUT);

@@ -20,32 +20,32 @@ const src = `
 `;
 
 const drawLine = (ctx: StackContext) => {
-    const stack = ctx[0];
-    // minimum stack depth guard
-    ensureStack(stack, 2);
-    // pop top 2 values
-    const [x2, y2] = stack.pop();
-    const [x1, y1] = stack.pop();
-    console.log(`draw line: ${x1},${y1} -> ${x2},${y2}`);
+	const stack = ctx[0];
+	// minimum stack depth guard
+	ensureStack(stack, 2);
+	// pop top 2 values
+	const [x2, y2] = stack.pop();
+	const [x1, y1] = stack.pop();
+	console.log(`draw line: ${x1},${y1} -> ${x2},${y2}`);
 
-    // if we had a canvas drawing context stored in env...
-    // const canvasCtx = ctx[2].canvasContext;
-    // canvasCtx.beginPath();
-    // canvasCtx.moveTo(x1, y1);
-    // canvasCtx.lineTo(x2, y2);
-    // canvasCtx.stroke();
+	// if we had a canvas drawing context stored in env...
+	// const canvasCtx = ctx[2].canvasContext;
+	// canvasCtx.beginPath();
+	// canvasCtx.moveTo(x1, y1);
+	// canvasCtx.lineTo(x2, y2);
+	// canvasCtx.stroke();
 
-    // or alternatively generate SVG and push result on stack (or store in env)
-    // stack.push(`<line x1="${x1}" y1="${y1} x2="${x2} y2="${y2}"/>`);
-    return ctx;
+	// or alternatively generate SVG and push result on stack (or store in env)
+	// stack.push(`<line x1="${x1}" y1="${y1} x2="${x2} y2="${y2}"/>`);
+	return ctx;
 };
 
 // create new environment and associate custom FFI words
 const env = ffi(
-    {},
-    {
-        "gfx.line": drawLine,
-    }
+	{},
+	{
+		"gfx.line": drawLine,
+	}
 );
 
 // compile / execute source code w/ given env

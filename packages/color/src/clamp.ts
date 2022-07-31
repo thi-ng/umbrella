@@ -14,13 +14,13 @@ import { __ensureAlpha } from "./internal/ensure.js";
  * @param alpha - alpha value
  */
 export const clamp = (out: Color | null, src: ReadonlyColor, alpha = 1) =>
-    setC4(
-        out || src,
-        clamp01(src[0]),
-        clamp01(src[1]),
-        clamp01(src[2]),
-        __ensureAlpha(src[3], alpha)
-    );
+	setC4(
+		out || src,
+		clamp01(src[0]),
+		clamp01(src[1]),
+		clamp01(src[2]),
+		__ensureAlpha(src[3], alpha)
+	);
 
 /**
  * Similar to {@link clamp}, but calls `ensureHue` to fold (instead of
@@ -31,10 +31,10 @@ export const clamp = (out: Color | null, src: ReadonlyColor, alpha = 1) =>
  * @param alpha - alpha value
  */
 export const clampH = (out: Color | null, src: ReadonlyColor, alpha = 1) =>
-    setC4(
-        out || src,
-        fract(src[0]),
-        clamp01(src[1]),
-        clamp01(src[2]),
-        __ensureAlpha(src[3], alpha)
-    );
+	setC4(
+		out || src,
+		fract(src[0]),
+		clamp01(src[1]),
+		clamp01(src[2]),
+		__ensureAlpha(src[3], alpha)
+	);

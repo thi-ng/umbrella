@@ -9,8 +9,8 @@ import type { MatOpN } from "./api.js";
  * @param theta -
  */
 export const rotation22: MatOpN = (out, theta) => {
-    const [s, c] = sincos(theta);
-    return setC4(out || [], c, s, -s, c);
+	const [s, c] = sincos(theta);
+	return setC4(out || [], c, s, -s, c);
 };
 
 /**
@@ -20,8 +20,8 @@ export const rotation22: MatOpN = (out, theta) => {
  * @param theta -
  */
 export const rotation23: MatOpN = (out, theta) => {
-    const [s, c] = sincos(theta);
-    return setC6(out || [], c, s, -s, c, 0, 0);
+	const [s, c] = sincos(theta);
+	return setC6(out || [], c, s, -s, c, 0, 0);
 };
 
 /**
@@ -31,8 +31,8 @@ export const rotation23: MatOpN = (out, theta) => {
  * @param theta -
  */
 export const rotationX33: MatOpN = (out, theta) => {
-    const [s, c] = sincos(theta);
-    return setC(out || [], 1, 0, 0, 0, c, s, 0, -s, c);
+	const [s, c] = sincos(theta);
+	return setC(out || [], 1, 0, 0, 0, c, s, 0, -s, c);
 };
 
 /**
@@ -42,8 +42,8 @@ export const rotationX33: MatOpN = (out, theta) => {
  * @param theta -
  */
 export const rotationY33: MatOpN = (out, theta) => {
-    const [s, c] = sincos(theta);
-    return setC(out || [], c, 0, -s, 0, 1, 0, s, 0, c);
+	const [s, c] = sincos(theta);
+	return setC(out || [], c, 0, -s, 0, 1, 0, s, 0, c);
 };
 
 /**
@@ -53,8 +53,8 @@ export const rotationY33: MatOpN = (out, theta) => {
  * @param theta -
  */
 export const rotationZ33: MatOpN = (out, theta) => {
-    const [s, c] = sincos(theta);
-    return setC(out || [], c, s, 0, -s, c, 0, 0, 0, 1);
+	const [s, c] = sincos(theta);
+	return setC(out || [], c, s, 0, -s, c, 0, 0, 0, 1);
 };
 
 /**
@@ -64,8 +64,8 @@ export const rotationZ33: MatOpN = (out, theta) => {
  * @param theta -
  */
 export const rotationX44: MatOpN = (out, theta) => {
-    const [s, c] = sincos(theta);
-    return setC(out || [], 1, 0, 0, 0, 0, c, s, 0, 0, -s, c, 0, 0, 0, 0, 1);
+	const [s, c] = sincos(theta);
+	return setC(out || [], 1, 0, 0, 0, 0, c, s, 0, 0, -s, c, 0, 0, 0, 0, 1);
 };
 
 /**
@@ -75,8 +75,8 @@ export const rotationX44: MatOpN = (out, theta) => {
  * @param theta -
  */
 export const rotationY44: MatOpN = (out, theta) => {
-    const [s, c] = sincos(theta);
-    return setC(out || [], c, 0, -s, 0, 0, 1, 0, 0, s, 0, c, 0, 0, 0, 0, 1);
+	const [s, c] = sincos(theta);
+	return setC(out || [], c, 0, -s, 0, 0, 1, 0, 0, s, 0, c, 0, 0, 0, 0, 1);
 };
 
 /**
@@ -86,6 +86,6 @@ export const rotationY44: MatOpN = (out, theta) => {
  * @param theta -
  */
 export const rotationZ44: MatOpN = (out, theta) => {
-    const [s, c] = sincos(theta);
-    return setC(out || [], c, s, 0, 0, -s, c, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+	const [s, c] = sincos(theta);
+	return setC(out || [], c, s, 0, 0, -s, c, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
 };

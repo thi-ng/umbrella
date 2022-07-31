@@ -5,16 +5,16 @@ import { defn, ret } from "@thi.ng/shader-ast/ast/function";
 import { index } from "@thi.ng/shader-ast/ast/indexed";
 import { bvec3, FLOAT1, int, INT0 } from "@thi.ng/shader-ast/ast/lit";
 import {
-    div,
-    gt,
-    gte,
-    inc,
-    lt,
-    mul,
-    neg,
-    not,
-    or,
-    sub,
+	div,
+	gt,
+	gte,
+	inc,
+	lt,
+	mul,
+	neg,
+	not,
+	or,
+	sub,
 } from "@thi.ng/shader-ast/ast/ops";
 import { $x, $y } from "@thi.ng/shader-ast/ast/swizzle";
 import { sym } from "@thi.ng/shader-ast/ast/sym";
@@ -33,46 +33,46 @@ import { clamp01 } from "../math/clamp.js";
  * @param N
  */
 export const sdfPolygon2 = (N: number) =>
-    defn(
-        "float",
-        `sdfPolygon2_${N}`,
-        ["vec2", ["vec2[]", "pts", { num: N }]],
-        (p, pts) => {
-            let d: FloatSym, s: FloatSym;
-            let b: Vec2Sym, e: Vec2Sym, w: Vec2Sym, t: Vec2Sym;
-            let pi: Vec2Sym, pj: Vec2Sym;
-            let c: BVec3Sym;
-            let j: IntSym;
-            return [
-                (t = sym(sub(p, index(pts, 0)))),
-                (d = sym(dot(t, t))),
-                (s = sym(FLOAT1)),
-                (j = sym(int(N - 1))),
-                forLoop(
-                    sym(INT0),
-                    (i) => lt(i, int(N)),
-                    inc,
-                    (i) => [
-                        (pi = sym(index(pts, i))),
-                        (pj = sym(index(pts, j))),
-                        (e = sym(sub(pj, pi))),
-                        (w = sym(sub(p, pi))),
-                        (b = sym(
-                            sub(w, mul(e, clamp01(div(dot(w, e), dot(e, e)))))
-                        )),
-                        assign(d, min(d, dot(b, b))),
-                        (c = sym(
-                            bvec3(
-                                gte($y(p), $y(pi)),
-                                lt($y(p), $y(pj)),
-                                gt(mul($x(e), $y(w)), mul($y(e), $x(w)))
-                            )
-                        )),
-                        ifThen(or(all(c), not(_any(c))), [assign(s, neg(s))]),
-                        assign(j, i),
-                    ]
-                ),
-                ret(mul(s, sqrt(d))),
-            ];
-        }
-    );
+	defn(
+		"float",
+		`sdfPolygon2_${N}`,
+		["vec2", ["vec2[]", "pts", { num: N }]],
+		(p, pts) => {
+			let d: FloatSym, s: FloatSym;
+			let b: Vec2Sym, e: Vec2Sym, w: Vec2Sym, t: Vec2Sym;
+			let pi: Vec2Sym, pj: Vec2Sym;
+			let c: BVec3Sym;
+			let j: IntSym;
+			return [
+				(t = sym(sub(p, index(pts, 0)))),
+				(d = sym(dot(t, t))),
+				(s = sym(FLOAT1)),
+				(j = sym(int(N - 1))),
+				forLoop(
+					sym(INT0),
+					(i) => lt(i, int(N)),
+					inc,
+					(i) => [
+						(pi = sym(index(pts, i))),
+						(pj = sym(index(pts, j))),
+						(e = sym(sub(pj, pi))),
+						(w = sym(sub(p, pi))),
+						(b = sym(
+							sub(w, mul(e, clamp01(div(dot(w, e), dot(e, e)))))
+						)),
+						assign(d, min(d, dot(b, b))),
+						(c = sym(
+							bvec3(
+								gte($y(p), $y(pi)),
+								lt($y(p), $y(pj)),
+								gt(mul($x(e), $y(w)), mul($y(e), $x(w)))
+							)
+						)),
+						ifThen(or(all(c), not(_any(c))), [assign(s, neg(s))]),
+						assign(j, i),
+					]
+				),
+				ret(mul(s, sqrt(d))),
+			];
+		}
+	);

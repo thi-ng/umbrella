@@ -6,5 +6,5 @@ import type { Stringer } from "./api.js";
  * both sides.
  */
 export const wrap: (pad: string) => Stringer<any> = memoizeJ(
-    (pad: string) => (x: any) => pad + x + pad
+	(pad: string) => (x: any) => pad + x + pad
 );

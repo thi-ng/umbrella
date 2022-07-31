@@ -12,8 +12,8 @@ import { mulM } from "./mulm.js";
  * @param xs -
  */
 export const concat = (
-    out: Mat | null,
-    a: ReadonlyMat,
-    b: ReadonlyMat,
-    ...xs: ReadonlyMat[]
+	out: Mat | null,
+	a: ReadonlyMat,
+	b: ReadonlyMat,
+	...xs: ReadonlyMat[]
 ): Mat => xs.reduce((acc: Mat, x) => mulM(acc, acc, x), mulM(out, a, b));

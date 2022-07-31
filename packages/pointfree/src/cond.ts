@@ -21,11 +21,11 @@ import { $stackFn } from "./word.js";
  * @param _else -
  */
 export const defCond =
-    (_then: StackProc, _else: StackProc = nop) =>
-    (ctx: StackContext) => {
-        $(ctx[0], 1);
-        return $stackFn(ctx[0].pop() ? _then : _else)(ctx);
-    };
+	(_then: StackProc, _else: StackProc = nop) =>
+	(ctx: StackContext) => {
+		$(ctx[0], 1);
+		return $stackFn(ctx[0].pop() ? _then : _else)(ctx);
+	};
 
 /**
  * Non-HOF version of {@link cond}, expects `test` result and both branches on
@@ -37,11 +37,11 @@ export const defCond =
  * @param ctx -
  */
 export const condq = (ctx: StackContext) => {
-    const stack = ctx[0];
-    $(stack, 3);
-    const _else = stack.pop();
-    const _then = stack.pop();
-    return $stackFn(stack.pop() ? _then : _else)(ctx);
+	const stack = ctx[0];
+	$(stack, 3);
+	const _else = stack.pop();
+	const _then = stack.pop();
+	return $stackFn(stack.pop() ? _then : _else)(ctx);
 };
 
 /**
@@ -53,10 +53,10 @@ export const condq = (ctx: StackContext) => {
  * @param ctx -
  */
 export const whenq = (ctx: StackContext) => {
-    const stack = ctx[0];
-    $(stack, 2);
-    const _then = stack.pop();
-    return stack.pop() ? $stackFn(_then)(ctx) : ctx;
+	const stack = ctx[0];
+	$(stack, 2);
+	const _then = stack.pop();
+	return stack.pop() ? $stackFn(_then)(ctx) : ctx;
 };
 
 /**
@@ -72,23 +72,23 @@ export const whenq = (ctx: StackContext) => {
  * @param cases -
  */
 export const defCases =
-    (cases: IObjectOf<StackProc>) => (ctx: StackContext) => {
-        $(ctx[0], 1);
-        const stack = ctx[0];
-        const tos = stack.pop();
-        const cas = cases[tos];
-        if (cas !== undefined) {
-            return $stackFn(cas)(ctx);
-        }
-        if (cases.default) {
-            stack.push(tos);
-            return $stackFn(cases.default)(ctx);
-        }
-        return illegalState(`no matching case for: ${tos}`);
-    };
+	(cases: IObjectOf<StackProc>) => (ctx: StackContext) => {
+		$(ctx[0], 1);
+		const stack = ctx[0];
+		const tos = stack.pop();
+		const cas = cases[tos];
+		if (cas !== undefined) {
+			return $stackFn(cas)(ctx);
+		}
+		if (cases.default) {
+			stack.push(tos);
+			return $stackFn(cases.default)(ctx);
+		}
+		return illegalState(`no matching case for: ${tos}`);
+	};
 
 export const casesq = (ctx: StackContext) => {
-    const stack = ctx[0];
-    $(stack, 2);
-    return defCases(stack.pop())(ctx);
+	const stack = ctx[0];
+	$(stack, 2);
+	return defCases(stack.pop())(ctx);
 };

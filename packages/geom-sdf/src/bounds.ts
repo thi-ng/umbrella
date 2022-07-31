@@ -24,22 +24,22 @@ import { distBox2 } from "./dist.js";
  */
 export function withBoundingCircle(sdf: SDFn, pts: ReadonlyVec[]): SDFn;
 export function withBoundingCircle(
-    sdf: SDFn,
-    centroid: ReadonlyVec,
-    r: number
+	sdf: SDFn,
+	centroid: ReadonlyVec,
+	r: number
 ): SDFn;
 export function withBoundingCircle(sdf: SDFn, ...args: any[]): SDFn {
-    let [[cx, cy], r] =
-        args.length === 1
-            ? boundingCircle(args[0])
-            : <[ReadonlyVec, number]>args;
-    r *= r;
-    return (p, minD = Infinity) => {
-        if (minD === Infinity) return sdf(p, minD);
-        const dx = p[0] - cx;
-        const dy = p[1] - cy;
-        return dx * dx + dy * dy - r < minD * minD ? sdf(p, minD) : minD;
-    };
+	let [[cx, cy], r] =
+		args.length === 1
+			? boundingCircle(args[0])
+			: <[ReadonlyVec, number]>args;
+	r *= r;
+	return (p, minD = Infinity) => {
+		if (minD === Infinity) return sdf(p, minD);
+		const dx = p[0] - cx;
+		const dy = p[1] - cy;
+		return dx * dx + dy * dy - r < minD * minD ? sdf(p, minD) : minD;
+	};
 }
 
 /**
@@ -51,20 +51,20 @@ export function withBoundingCircle(sdf: SDFn, ...args: any[]): SDFn {
  */
 export function withBoundingRect(sdf: SDFn, pts: ReadonlyVec[]): SDFn;
 export function withBoundingRect(
-    sdf: SDFn,
-    min: ReadonlyVec,
-    max: ReadonlyVec
+	sdf: SDFn,
+	min: ReadonlyVec,
+	max: ReadonlyVec
 ): SDFn;
 export function withBoundingRect(sdf: SDFn, ...args: any[]): SDFn {
-    const [min, max] =
-        args.length === 1 ? bounds2(args[0]) : <[ReadonlyVec, ReadonlyVec]>args;
-    const centroid = addmN2([], min, max, 0.5);
-    const hSize = submN2([], max, min, 0.5);
-    const t = [0, 0];
-    return (p, minD = Infinity) => {
-        if (minD === Infinity) return sdf(p, minD);
-        return distBox2(sub2(t, p, centroid), hSize) < minD
-            ? sdf(p, minD)
-            : minD;
-    };
+	const [min, max] =
+		args.length === 1 ? bounds2(args[0]) : <[ReadonlyVec, ReadonlyVec]>args;
+	const centroid = addmN2([], min, max, 0.5);
+	const hSize = submN2([], max, min, 0.5);
+	const t = [0, 0];
+	return (p, minD = Infinity) => {
+		if (minD === Infinity) return sdf(p, minD);
+		return distBox2(sub2(t, p, centroid), hSize) < minD
+			? sdf(p, minD)
+			: minD;
+	};
 }

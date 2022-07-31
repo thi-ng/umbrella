@@ -9,7 +9,7 @@ import { setC, setC4, setC6 } from "./setc.js";
  * @param b -
  */
 export const setVV4: VecOpVV = (out, a, b) =>
-    setC4(out, a[0], a[1], b[0], b[1]);
+	setC4(out, a[0], a[1], b[0], b[1]);
 
 /**
  * Sets `out` to `[a.x, a.y, b.x, b.y, c.x, c.y]`
@@ -20,7 +20,7 @@ export const setVV4: VecOpVV = (out, a, b) =>
  * @param c -
  */
 export const setVV6: VecOpVVV = (out, a, b, c) =>
-    setC6(out, a[0], a[1], b[0], b[1], c[0], c[1]);
+	setC6(out, a[0], a[1], b[0], b[1], c[0], c[1]);
 
 /**
  * Sets `out` to:
@@ -32,7 +32,7 @@ export const setVV6: VecOpVVV = (out, a, b, c) =>
  * @param c -
  */
 export const setVV9: VecOpVVV = (out, a, b, c) =>
-    setC(out, a[0], a[1], a[2], b[0], b[1], b[2], c[0], c[1], c[2]);
+	setC(out, a[0], a[1], a[2], b[0], b[1], b[2], c[0], c[1], c[2]);
 
 /**
  * Sets `out` to concatenation of `a`, `b`, `c`, `d`:
@@ -49,28 +49,28 @@ export const setVV9: VecOpVVV = (out, a, b, c) =>
  * @param c -
  */
 export const setVV16 = (
-    out: Vec | null,
-    a: ReadonlyVec,
-    b: ReadonlyVec,
-    c: ReadonlyVec,
-    d: ReadonlyVec
+	out: Vec | null,
+	a: ReadonlyVec,
+	b: ReadonlyVec,
+	c: ReadonlyVec,
+	d: ReadonlyVec
 ) =>
-    setC(
-        out,
-        a[0],
-        a[1],
-        a[2],
-        a[3],
-        b[0],
-        b[1],
-        b[2],
-        b[3],
-        c[0],
-        c[1],
-        c[2],
-        c[3],
-        d[0],
-        d[1],
-        d[2],
-        d[3]
-    );
+	setC(
+		out,
+		a[0],
+		a[1],
+		a[2],
+		a[3],
+		b[0],
+		b[1],
+		b[2],
+		b[3],
+		c[0],
+		c[1],
+		c[2],
+		c[3],
+		d[0],
+		d[1],
+		d[2],
+		d[3]
+	);

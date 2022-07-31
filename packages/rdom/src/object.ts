@@ -2,10 +2,10 @@ import type { Fn, Keys } from "@thi.ng/api";
 import type { ISubscribable, StreamObj, StreamObjOpts } from "@thi.ng/rstream";
 import { fromObject } from "@thi.ng/rstream/object";
 import type {
-    ComponentLike,
-    IComponent,
-    IMountWithState,
-    NumOrElement,
+	ComponentLike,
+	IComponent,
+	IMountWithState,
+	NumOrElement,
 } from "./api.js";
 import { Component } from "./component.js";
 import { $sub } from "./sub.js";
@@ -50,9 +50,9 @@ import { $sub } from "./sub.js";
  * @param inner -
  */
 export const $object = <T, K extends Keys<T>>(
-    src: T,
-    opts: Partial<StreamObjOpts<T, K>>,
-    inner: Fn<StreamObj<T, K>["streams"], Promise<ComponentLike>>
+	src: T,
+	opts: Partial<StreamObjOpts<T, K>>,
+	inner: Fn<StreamObj<T, K>["streams"], Promise<ComponentLike>>
 ) => new $Object<T, K>(src, opts, inner);
 
 /**
@@ -85,42 +85,42 @@ export const $object = <T, K extends Keys<T>>(
  * @param inner -
  */
 export const $subObject = <T, K extends Keys<T>>(
-    src: ISubscribable<T>,
-    opts: Partial<StreamObjOpts<T, K>>,
-    inner: Fn<StreamObj<T, K>["streams"], Promise<ComponentLike>>
+	src: ISubscribable<T>,
+	opts: Partial<StreamObjOpts<T, K>>,
+	inner: Fn<StreamObj<T, K>["streams"], Promise<ComponentLike>>
 ) => $sub<T>(src, $object(src.deref() || <any>{}, opts, inner));
 
 export class $Object<T, K extends Keys<T>>
-    extends Component
-    implements IMountWithState<T>
+	extends Component
+	implements IMountWithState<T>
 {
-    protected obj: StreamObj<T, K>;
-    protected inner?: IComponent;
+	protected obj: StreamObj<T, K>;
+	protected inner?: IComponent;
 
-    constructor(
-        src: T,
-        opts: Partial<StreamObjOpts<T, K>>,
-        protected ctor: Fn<StreamObj<T, K>["streams"], Promise<ComponentLike>>
-    ) {
-        super();
-        this.obj = fromObject(src, opts);
-    }
+	constructor(
+		src: T,
+		opts: Partial<StreamObjOpts<T, K>>,
+		protected ctor: Fn<StreamObj<T, K>["streams"], Promise<ComponentLike>>
+	) {
+		super();
+		this.obj = fromObject(src, opts);
+	}
 
-    async mount(parent: Element, index: NumOrElement = -1, state?: T) {
-        state !== undefined && this.obj.next(state);
-        this.inner = this.$compile(await this.ctor(this.obj.streams));
-        this.el = await this.inner.mount(parent, index);
-        return this.el!;
-    }
+	async mount(parent: Element, index: NumOrElement = -1, state?: T) {
+		state !== undefined && this.obj.next(state);
+		this.inner = this.$compile(await this.ctor(this.obj.streams));
+		this.el = await this.inner.mount(parent, index);
+		return this.el!;
+	}
 
-    async unmount() {
-        this.obj.done();
-        await this.inner!.unmount();
-        this.el = undefined;
-        this.inner = undefined;
-    }
+	async unmount() {
+		this.obj.done();
+		await this.inner!.unmount();
+		this.el = undefined;
+		this.inner = undefined;
+	}
 
-    update(state: T) {
-        this.obj.next(state);
-    }
+	update(state: T) {
+		this.obj.next(state);
+	}
 }

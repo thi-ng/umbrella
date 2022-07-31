@@ -12,20 +12,20 @@ import type { Canvas2DOpts, CanvasContext, RawPixelBuffer } from "./api.js";
  * @param opts -
  */
 export const canvas2d = (
-    width: number,
-    height = width,
-    parent?: HTMLElement,
-    opts: Partial<Canvas2DOpts> = {}
+	width: number,
+	height = width,
+	parent?: HTMLElement,
+	opts: Partial<Canvas2DOpts> = {}
 ): CanvasContext => {
-    const canvas = document.createElement("canvas");
-    canvas.width = width;
-    canvas.height = height;
-    parent && parent.appendChild(canvas);
-    opts.pixelated && (canvas.style.imageRendering = "pixelated");
-    return {
-        canvas,
-        ctx: canvas.getContext("2d", opts.ctx)!,
-    };
+	const canvas = document.createElement("canvas");
+	canvas.width = width;
+	canvas.height = height;
+	parent && parent.appendChild(canvas);
+	opts.pixelated && (canvas.style.imageRendering = "pixelated");
+	return {
+		canvas,
+		ctx: canvas.getContext("2d", opts.ctx)!,
+	};
 };
 
 /**
@@ -35,26 +35,28 @@ export const canvas2d = (
  */
 export function canvasPixels(canvas: HTMLCanvasElement): RawPixelBuffer;
 export function canvasPixels(width: number, height?: number): RawPixelBuffer;
-// prettier-ignore
-export function canvasPixels(width: HTMLCanvasElement | number, height?: number): RawPixelBuffer {
-    let canvas: HTMLCanvasElement;
-    let ctx: CanvasRenderingContext2D;
-    if (isNumber(width)) {
-        const c = canvas2d(width, height);
-        canvas = c.canvas;
-        ctx = c.ctx;
-    } else {
-        canvas = width;
-        ctx = canvas.getContext("2d")!;
-    }
-    const img = ctx.getImageData(0, 0, canvas.width, canvas.height);
-    const data = new Uint32Array(img.data.buffer);
-    return {
-        canvas,
-        ctx,
-        img,
-        data
-    };
+export function canvasPixels(
+	width: HTMLCanvasElement | number,
+	height?: number
+): RawPixelBuffer {
+	let canvas: HTMLCanvasElement;
+	let ctx: CanvasRenderingContext2D;
+	if (isNumber(width)) {
+		const c = canvas2d(width, height);
+		canvas = c.canvas;
+		ctx = c.ctx;
+	} else {
+		canvas = width;
+		ctx = canvas.getContext("2d")!;
+	}
+	const img = ctx.getImageData(0, 0, canvas.width, canvas.height);
+	const data = new Uint32Array(img.data.buffer);
+	return {
+		canvas,
+		ctx,
+		img,
+		data,
+	};
 }
 
 /**
@@ -69,16 +71,16 @@ export function canvasPixels(width: HTMLCanvasElement | number, height?: number)
  * @param parent -
  */
 export const imageCanvas = (
-    img: HTMLImageElement,
-    width?: number,
-    height = width,
-    parent?: HTMLElement
+	img: HTMLImageElement,
+	width?: number,
+	height = width,
+	parent?: HTMLElement
 ): CanvasContext => {
-    const ctx = isNumber(width)
-        ? canvas2d(width, height, parent)
-        : canvas2d(img.width, img.height, parent);
-    ctx.ctx.drawImage(img, 0, 0, ctx.canvas.width, ctx.canvas.height);
-    return ctx;
+	const ctx = isNumber(width)
+		? canvas2d(width, height, parent)
+		: canvas2d(img.width, img.height, parent);
+	ctx.ctx.drawImage(img, 0, 0, ctx.canvas.width, ctx.canvas.height);
+	return ctx;
 };
 
 /**
@@ -96,9 +98,9 @@ export const imageCanvas = (
  * @param cors -
  */
 export const imagePromise = async (src: string, cors = "anonymous") => {
-    const img = new Image();
-    img.crossOrigin = cors;
-    img.src = src;
-    await img.decode();
-    return img;
+	const img = new Image();
+	img.crossOrigin = cors;
+	img.src = src;
+	await img.decode();
+	return img;
 };

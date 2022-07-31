@@ -8,10 +8,10 @@ import { asInt } from "@thi.ng/api/typedarray";
  * @param rows -
  */
 export function* rowEnds2d(cols: number, rows = cols) {
-    [cols, rows] = asInt(cols, rows);
-    cols--;
-    for (let y = 0; y < rows; y++) {
-        yield [0, y];
-        yield [cols, y];
-    }
+	[cols, rows] = asInt(cols, rows);
+	cols--;
+	for (let y = 0; y < rows; y++) {
+		yield [0, y];
+		yield [cols, y];
+	}
 }

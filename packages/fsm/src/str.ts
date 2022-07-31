@@ -17,30 +17,30 @@ import { result } from "./result.js";
  * @param collect - true, if input is to be collected/buffered
  */
 export const str = <C, R>(
-    str: string,
-    success?: LitCallback<string, C, R>,
-    fail?: LitCallback<string, C, R>,
-    collect = false
+	str: string,
+	success?: LitCallback<string, C, R>,
+	fail?: LitCallback<string, C, R>,
+	collect = false
 ): Matcher<string, C, R> =>
-    collect
-        ? () => {
-              let buf = "";
-              return (ctx, x) =>
-                  (buf += x) === str
-                      ? result(success && success(ctx, buf))
-                      : str.indexOf(buf) === 0
-                      ? RES_PARTIAL
-                      : result(fail && fail(ctx, buf), Match.FAIL);
-          }
-        : () => {
-              let matched = 0;
-              let i = 0;
-              return (ctx, x) => {
-                  str.charAt(i++) === x && matched++;
-                  return matched === str.length
-                      ? result(success && success(ctx, str))
-                      : matched === i
-                      ? RES_PARTIAL
-                      : result(fail && fail(ctx, ""), Match.FAIL);
-              };
-          };
+	collect
+		? () => {
+				let buf = "";
+				return (ctx, x) =>
+					(buf += x) === str
+						? result(success && success(ctx, buf))
+						: str.indexOf(buf) === 0
+						? RES_PARTIAL
+						: result(fail && fail(ctx, buf), Match.FAIL);
+		  }
+		: () => {
+				let matched = 0;
+				let i = 0;
+				return (ctx, x) => {
+					str.charAt(i++) === x && matched++;
+					return matched === str.length
+						? result(success && success(ctx, str))
+						: matched === i
+						? RES_PARTIAL
+						: result(fail && fail(ctx, ""), Match.FAIL);
+				};
+		  };

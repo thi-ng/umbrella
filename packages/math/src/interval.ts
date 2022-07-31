@@ -12,28 +12,28 @@ export const clamp: FnN3 = (x, min, max) => (x < min ? min : x > max ? max : x);
 /**
  * Clamps value `x` to closed [0 .. ∞] interval.
  *
- * @param x - 
+ * @param x -
  */
 export const clamp0: FnN = (x) => (x > 0 ? x : 0);
 
 /**
  * Clamps value `x` to closed [0 .. 1] interval.
  *
- * @param x - 
+ * @param x -
  */
 export const clamp01: FnN = (x) => (x < 0 ? 0 : x > 1 ? 1 : x);
 
 /**
  * Clamps value `x` to closed [-1 .. 1] interval.
  *
- * @param x - 
+ * @param x -
  */
 export const clamp11: FnN = (x) => (x < -1 ? -1 : x > 1 ? 1 : x);
 
 /**
  * Clamps value `x` to closed [0 .. 0.5] interval.
  *
- * @param x - 
+ * @param x -
  */
 export const clamp05: FnN = (x) => (x < 0 ? 0 : x > 0.5 ? 0.5 : x);
 
@@ -46,17 +46,17 @@ export const clamp05: FnN = (x) => (x < 0 ? 0 : x > 0.5 ? 0.5 : x);
  * @param max -
  */
 export const wrap: FnN3 = (x, min, max) => {
-    if (min === max) return min;
-    if (x > max) {
-        const d = max - min;
-        x -= d;
-        if (x > max) x -= d * (((x - min) / d) | 0);
-    } else if (x < min) {
-        const d = max - min;
-        x += d;
-        if (x < min) x += d * (((min - x) / d + 1) | 0);
-    }
-    return x;
+	if (min === max) return min;
+	if (x > max) {
+		const d = max - min;
+		x -= d;
+		if (x > max) x -= d * (((x - min) / d) | 0);
+	} else if (x < min) {
+		const d = max - min;
+		x += d;
+		if (x < min) x += d * (((min - x) / d + 1) | 0);
+	}
+	return x;
 };
 
 /**
@@ -69,7 +69,7 @@ export const wrap: FnN3 = (x, min, max) => {
  * @param max -
  */
 export const wrapOnce: FnN3 = (x, min, max) =>
-    x < min ? x - min + max : x > max ? x - max + min : x;
+	x < min ? x - min + max : x > max ? x - max + min : x;
 
 /**
  * Similar to {@link wrapOnce} for [0..1] interval.
@@ -88,62 +88,62 @@ export const wrap11: FnN = (x) => (x < -1 ? x + 2 : x > 1 ? x - 2 : x);
 export const min2id: FnN2 = (a, b) => (a <= b ? 0 : 1);
 
 export const min3id: FnN3 = (a, b, c) =>
-    a <= b ? (a <= c ? 0 : 2) : b <= c ? 1 : 2;
+	a <= b ? (a <= c ? 0 : 2) : b <= c ? 1 : 2;
 
 export const min4id: FnN4 = (a, b, c, d) =>
-    a <= b
-        ? a <= c
-            ? a <= d
-                ? 0
-                : 3
-            : c <= d
-            ? 2
-            : 3
-        : b <= c
-        ? b <= d
-            ? 1
-            : 3
-        : c <= d
-        ? 2
-        : 3;
+	a <= b
+		? a <= c
+			? a <= d
+				? 0
+				: 3
+			: c <= d
+			? 2
+			: 3
+		: b <= c
+		? b <= d
+			? 1
+			: 3
+		: c <= d
+		? 2
+		: 3;
 
 export const max2id: FnN2 = (a, b) => (a >= b ? 0 : 1);
 
 export const max3id: FnN3 = (a, b, c) =>
-    a >= b ? (a >= c ? 0 : 2) : b >= c ? 1 : 2;
+	a >= b ? (a >= c ? 0 : 2) : b >= c ? 1 : 2;
 
 export const max4id: FnN4 = (a, b, c, d) =>
-    a >= b
-        ? a >= c
-            ? a >= d
-                ? 0
-                : 3
-            : c >= d
-            ? 2
-            : 3
-        : b >= c
-        ? b >= d
-            ? 1
-            : 3
-        : c >= d
-        ? 2
-        : 3;
+	a >= b
+		? a >= c
+			? a >= d
+				? 0
+				: 3
+			: c >= d
+			? 2
+			: 3
+		: b >= c
+		? b >= d
+			? 1
+			: 3
+		: c >= d
+		? 2
+		: 3;
 
 /**
  * Returns the non-zero minimum value of the given `a`, `b` args.
  *
- * @param a - 
- * @param b - 
+ * @param a -
+ * @param b -
  */
 export const minNonZero2: FnN2 = (a, b) =>
-    a !== 0 ? (b !== 0 ? Math.min(a, b) : a) : b;
+	a !== 0 ? (b !== 0 ? Math.min(a, b) : a) : b;
 
 /**
  * Returns the non-zero minimum value of the given `a`, `b`, `c` args.
  *
- * @param a - 
- * @param b - 
- * @param c - 
+ * @param a -
+ * @param b -
+ * @param c -
  */
 export const minNonZero3: FnN3 = (a, b, c) => minNonZero2(minNonZero2(a, b), c);
 
@@ -168,9 +168,9 @@ export const smin: FnN3 = (a, b, k) => smax(a, b, -k);
  * @param k - smooth exponent (MUST be > 0)
  */
 export const smax: FnN3 = (a, b, k) => {
-    const ea = Math.exp(a * k);
-    const eb = Math.exp(b * k);
-    return (a * ea + b * eb) / (ea + eb);
+	const ea = Math.exp(a * k);
+	const eb = Math.exp(b * k);
+	return (a * ea + b * eb) / (ea + eb);
 };
 
 /**
@@ -200,7 +200,7 @@ export const absMax: FnN2 = (a, b) => (Math.abs(a) > Math.abs(b) ? a : b);
  * @param x - input value
  */
 export const foldback: FnN2 = (e, x) =>
-    x < -e || x > e ? Math.abs(Math.abs((x - e) % (4 * e)) - 2 * e) - e : x;
+	x < -e || x > e ? Math.abs(Math.abs((x - e) % (4 * e)) - 2 * e) - e : x;
 
 /**
  * Returns true iff `x` is in closed interval `[min .. max]`
@@ -210,7 +210,7 @@ export const foldback: FnN2 = (e, x) =>
  * @param max -
  */
 export const inRange: FnU3<number, boolean> = (x, min, max) =>
-    x >= min && x <= max;
+	x >= min && x <= max;
 
 /**
  * Returns true iff `x` is in open interval `(min .. max)`
@@ -220,4 +220,4 @@ export const inRange: FnU3<number, boolean> = (x, min, max) =>
  * @param max -
  */
 export const inOpenRange: FnU3<number, boolean> = (x, min, max) =>
-    x > min && x < max;
+	x > min && x < max;

@@ -34,43 +34,43 @@ import { rectFromCentroidWithMargin } from "./rect.js";
  * @param dist
  */
 export const offset: MultiFn2<IShape, number, IShape> = defmulti<
-    any,
-    number,
-    IShape
+	any,
+	number,
+	IShape
 >(
-    __dispatch,
-    {},
-    {
-        aabb: ($: AABB, n) =>
-            aabbFromCentroidWithMargin(
-                centroid($)!,
-                $.size,
-                n,
-                __copyAttribs($)
-            ),
+	__dispatch,
+	{},
+	{
+		aabb: ($: AABB, n) =>
+			aabbFromCentroidWithMargin(
+				centroid($)!,
+				$.size,
+				n,
+				__copyAttribs($)
+			),
 
-        circle: ($: Circle, n) =>
-            new Circle(set2([], $.pos), Math.max($.r + n, 0)),
+		circle: ($: Circle, n) =>
+			new Circle(set2([], $.pos), Math.max($.r + n, 0)),
 
-        line: ({ points: [a, b], attribs }: Line, n) => {
-            const norm = normalCW([], a, b, n);
-            return new Quad(
-                [
-                    add2([], a, norm),
-                    add2([], b, norm),
-                    sub2([], b, norm),
-                    sub2([], a, norm),
-                ],
-                { ...attribs }
-            );
-        },
+		line: ({ points: [a, b], attribs }: Line, n) => {
+			const norm = normalCW([], a, b, n);
+			return new Quad(
+				[
+					add2([], a, norm),
+					add2([], b, norm),
+					sub2([], b, norm),
+					sub2([], a, norm),
+				],
+				{ ...attribs }
+			);
+		},
 
-        rect: ($: Rect, n) =>
-            rectFromCentroidWithMargin(
-                centroid($)!,
-                $.size,
-                n,
-                __copyAttribs($)
-            ),
-    }
+		rect: ($: Rect, n) =>
+			rectFromCentroidWithMargin(
+				centroid($)!,
+				$.size,
+				n,
+				__copyAttribs($)
+			),
+	}
 );

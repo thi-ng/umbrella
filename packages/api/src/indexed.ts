@@ -3,5 +3,5 @@
  * index.
  */
 export interface IIndexed<T> {
-    nth(i: number, notfound: T): T;
+	nth(i: number, notfound: T): T;
 }

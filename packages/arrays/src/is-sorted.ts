@@ -26,16 +26,16 @@ import { compare } from "@thi.ng/compare/compare";
  * @param end - end index
  */
 export const isSorted = <T>(
-    arr: ArrayLike<T>,
-    cmp: Comparator<T> = compare,
-    start = 0,
-    end = arr.length
+	arr: ArrayLike<T>,
+	cmp: Comparator<T> = compare,
+	start = 0,
+	end = arr.length
 ) => {
-    let prev = arr[start];
-    while (++start < end) {
-        const curr = arr[start];
-        if (cmp(prev, curr) > 0) return false;
-        prev = curr;
-    }
-    return true;
+	let prev = arr[start];
+	while (++start < end) {
+		const curr = arr[start];
+		if (cmp(prev, curr) > 0) return false;
+		prev = curr;
+	}
+	return true;
 };

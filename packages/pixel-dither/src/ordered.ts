@@ -4,25 +4,25 @@ import type { IntBuffer } from "@thi.ng/pixel";
 import type { BayerMatrix, BayerSize } from "./api.js";
 
 const init = (
-    x: number,
-    y: number,
-    size: number,
-    val: number,
-    step: number,
-    mat: number[][]
+	x: number,
+	y: number,
+	size: number,
+	val: number,
+	step: number,
+	mat: number[][]
 ) => {
-    if (size === 1) {
-        !mat[y] && (mat[y] = []);
-        mat[y][x] = val;
-        return mat;
-    }
-    size >>= 1;
-    const step4 = step << 2;
-    init(x, y, size, val, step4, mat);
-    init(x + size, y + size, size, val + step, step4, mat);
-    init(x + size, y, size, val + step * 2, step4, mat);
-    init(x, y + size, size, val + step * 3, step4, mat);
-    return mat;
+	if (size === 1) {
+		!mat[y] && (mat[y] = []);
+		mat[y][x] = val;
+		return mat;
+	}
+	size >>= 1;
+	const step4 = step << 2;
+	init(x, y, size, val, step4, mat);
+	init(x + size, y + size, size, val + step, step4, mat);
+	init(x + size, y, size, val + step * 2, step4, mat);
+	init(x, y + size, size, val + step * 3, step4, mat);
+	return mat;
 };
 
 /**
@@ -33,12 +33,12 @@ const init = (
  * Reference:
  * - https://en.wikipedia.org/wiki/Ordered_dithering
  *
- * @param size - 
+ * @param size -
  */
 export const defBayer = (size: BayerSize): BayerMatrix => ({
-    mat: init(0, 0, size, 0, 1, []),
-    invSize: 1 / (size * size),
-    mask: size - 1,
+	mat: init(0, 0, size, 0, 1, []),
+	invSize: 1 / (size * size),
+	mask: size - 1,
 });
 
 /**
@@ -55,18 +55,18 @@ export const defBayer = (size: BayerSize): BayerMatrix => ({
  * @internal
  */
 const orderedDither1 = (
-    { mat, mask, invSize }: BayerMatrix,
-    dsteps: number,
-    drange: number,
-    srange: number,
-    x: number,
-    y: number,
-    val: number
+	{ mat, mask, invSize }: BayerMatrix,
+	dsteps: number,
+	drange: number,
+	srange: number,
+	x: number,
+	y: number,
+	val: number
 ) => {
-    val =
-        (dsteps * (val / srange) + mat[y & mask][x & mask] * invSize - 0.5) | 0;
-    dsteps--;
-    return clamp(val, 0, dsteps) * ((drange - 1) / dsteps);
+	val =
+		(dsteps * (val / srange) + mat[y & mask][x & mask] * invSize - 0.5) | 0;
+	dsteps--;
+	return clamp(val, 0, dsteps) * ((drange - 1) / dsteps);
 };
 
 /**
@@ -88,36 +88,36 @@ const orderedDither1 = (
  * @param numColors - num target colors/steps
  */
 export const orderedDither = (
-    img: IntBuffer,
-    size: BayerSize | BayerMatrix,
-    numColors: number | number[]
+	img: IntBuffer,
+	size: BayerSize | BayerMatrix,
+	numColors: number | number[]
 ) => {
-    const { data, format, width } = img;
-    const steps = isNumber(numColors)
-        ? new Array<number>(format.channels.length).fill(numColors)
-        : numColors;
-    const mat = isNumber(size) ? defBayer(size) : size;
-    for (
-        let i = 0, n = data.length, nc = format.channels.length, x = 0, y = 0;
-        i < n;
-        i++
-    ) {
-        let col = data[i];
-        for (let j = 0; j < nc; j++) {
-            const ch = format.channels[j];
-            const num = ch.num;
-            const cs = steps[j];
-            cs > 0 &&
-                (col = ch.setInt(
-                    col,
-                    orderedDither1(mat, cs, num, num, x, y, ch.int(col))
-                ));
-        }
-        data[i] = col;
-        if (++x === width) {
-            x = 0;
-            y++;
-        }
-    }
-    return img;
+	const { data, format, width } = img;
+	const steps = isNumber(numColors)
+		? new Array<number>(format.channels.length).fill(numColors)
+		: numColors;
+	const mat = isNumber(size) ? defBayer(size) : size;
+	for (
+		let i = 0, n = data.length, nc = format.channels.length, x = 0, y = 0;
+		i < n;
+		i++
+	) {
+		let col = data[i];
+		for (let j = 0; j < nc; j++) {
+			const ch = format.channels[j];
+			const num = ch.num;
+			const cs = steps[j];
+			cs > 0 &&
+				(col = ch.setInt(
+					col,
+					orderedDither1(mat, cs, num, num, x, y, ch.int(col))
+				));
+		}
+		data[i] = col;
+		if (++x === width) {
+			x = 0;
+			y++;
+		}
+	}
+	return img;
 };

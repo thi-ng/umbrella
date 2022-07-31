@@ -1,11 +1,11 @@
 import {
-    AltCallback,
-    AltFallback,
-    Match,
-    Matcher,
-    MatcherInst,
-    MatchResult,
-    RES_PARTIAL,
+	AltCallback,
+	AltFallback,
+	Match,
+	Matcher,
+	MatcherInst,
+	MatchResult,
+	RES_PARTIAL,
 } from "./api.js";
 import { result } from "./result.js";
 
@@ -32,40 +32,40 @@ import { result } from "./result.js";
  * @param fail - failure callback
  */
 export const alts =
-    <T, C, R>(
-        opts: Matcher<T, C, R>[],
-        fallback?: AltFallback<T, C, R>,
-        success?: AltCallback<T, C, R>,
-        fail?: AltFallback<T, C, R>
-    ): Matcher<T, C, R> =>
-    () => {
-        const alts: (MatcherInst<T, C, R> | null)[] = opts.map((o) => o());
-        const buf: T[] = [];
-        let active = alts.length;
-        return (ctx, x) => {
-            for (
-                let i = alts.length,
-                    a: MatcherInst<T, C, R> | null,
-                    next: MatchResult<R>;
-                i-- > 0;
+	<T, C, R>(
+		opts: Matcher<T, C, R>[],
+		fallback?: AltFallback<T, C, R>,
+		success?: AltCallback<T, C, R>,
+		fail?: AltFallback<T, C, R>
+	): Matcher<T, C, R> =>
+	() => {
+		const alts: (MatcherInst<T, C, R> | null)[] = opts.map((o) => o());
+		const buf: T[] = [];
+		let active = alts.length;
+		return (ctx, x) => {
+			for (
+				let i = alts.length,
+					a: MatcherInst<T, C, R> | null,
+					next: MatchResult<R>;
+				i-- > 0;
 
-            ) {
-                if (!(a = alts[i])) continue;
-                next = a(ctx, x);
-                if (next.type >= Match.FULL) {
-                    return success
-                        ? result(success(ctx, next.body, buf), next.type)
-                        : next;
-                } else if (next.type === Match.FAIL) {
-                    alts[i] = null;
-                    active--;
-                }
-            }
-            (fallback || fail) && buf.push(x);
-            return active
-                ? RES_PARTIAL
-                : fallback
-                ? result(fallback(ctx, buf))
-                : result(fail && fail(ctx, buf), Match.FAIL);
-        };
-    };
+			) {
+				if (!(a = alts[i])) continue;
+				next = a(ctx, x);
+				if (next.type >= Match.FULL) {
+					return success
+						? result(success(ctx, next.body, buf), next.type)
+						: next;
+				} else if (next.type === Match.FAIL) {
+					alts[i] = null;
+					active--;
+				}
+			}
+			(fallback || fail) && buf.push(x);
+			return active
+				? RES_PARTIAL
+				: fallback
+				? result(fallback(ctx, buf))
+				: result(fail && fail(ctx, buf), Match.FAIL);
+		};
+	};

@@ -13,26 +13,26 @@ import type { ReadonlyVec } from "./api.js";
  * Based on code by Jonathan R. Shewchuk
  * http://www.cs.cmu.edu/afs/cs/project/quake/public/code/predicates.c
  *
- * @param a - 
- * @param b - 
- * @param c - 
- * @param d - 
+ * @param a -
+ * @param b -
+ * @param c -
+ * @param d -
  */
 export const signedVolume: FnU4<ReadonlyVec, number> = (
-    a,
-    b,
-    c,
-    [dx, dy, dz]
+	a,
+	b,
+	c,
+	[dx, dy, dz]
 ) => {
-    const ady = a[1] - dy;
-    const bdy = b[1] - dy;
-    const cdy = c[1] - dy;
-    const adz = a[2] - dz;
-    const bdz = b[2] - dz;
-    const cdz = c[2] - dz;
-    return (
-        (a[0] - dx) * (bdy * cdz - bdz * cdy) +
-        (b[0] - dx) * (cdy * adz - cdz * ady) +
-        (c[0] - dx) * (ady * bdz - adz * bdy)
-    );
+	const ady = a[1] - dy;
+	const bdy = b[1] - dy;
+	const cdy = c[1] - dy;
+	const adz = a[2] - dz;
+	const bdz = b[2] - dz;
+	const cdz = c[2] - dz;
+	return (
+		(a[0] - dx) * (bdy * cdz - bdz * cdy) +
+		(b[0] - dx) * (cdy * adz - cdz * ady) +
+		(c[0] - dx) * (ady * bdz - adz * bdy)
+	);
 };

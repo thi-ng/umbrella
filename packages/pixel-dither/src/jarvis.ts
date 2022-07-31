@@ -14,8 +14,8 @@ const D = 7 * A;
  * - https://tannerhelland.com/2012/12/28/dithering-eleven-algorithms-source-code.html
  */
 export const JARVIS_JUDICE_NINKE: DitherKernel = {
-    ox: [1, 2, -2, -1, 0, 1, 2, -2, -1, 0, 1, 2],
-    oy: [0, 0, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2],
-    weights: [D, C, B, C, D, C, B, A, B, C, B, A],
-    shift: 6,
+	ox: [1, 2, -2, -1, 0, 1, 2, -2, -1, 0, 1, 2],
+	oy: [0, 0, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2],
+	weights: [D, C, B, C, D, C, B, A, B, C, B, A],
+	shift: 6,
 };

@@ -15,27 +15,27 @@ export function aabb(pos: Vec, size: number | Vec, attribs?: Attribs): AABB;
 export function aabb(size: number | Vec, attribs?: Attribs): AABB;
 export function aabb(attribs?: Attribs): AABB;
 export function aabb(...args: any[]) {
-    return new AABB(...__argsVV(args));
+	return new AABB(...__argsVV(args));
 }
 
 export const aabbFromMinMax = (min: Vec, max: Vec, attribs?: Attribs) =>
-    new AABB(min, sub3([], max, min), attribs);
+	new AABB(min, sub3([], max, min), attribs);
 
 export const aabbFromMinMaxWithMargin = (
-    min: Vec,
-    max: Vec,
-    margin: number,
-    attribs?: Attribs
+	min: Vec,
+	max: Vec,
+	margin: number,
+	attribs?: Attribs
 ) => aabbFromMinMax(min, max, attribs).offset(margin);
 
 export const aabbFromCentroid = (centroid: Vec, size: Vec, attribs?: Attribs) =>
-    new AABB(maddN3([], size, -0.5, centroid), size, attribs);
+	new AABB(maddN3([], size, -0.5, centroid), size, attribs);
 
 export const aabbFromCentroidWithMargin = (
-    centroid: Vec,
-    size: Vec,
-    margin: number,
-    attribs?: Attribs
+	centroid: Vec,
+	size: Vec,
+	margin: number,
+	attribs?: Attribs
 ) => aabbFromCentroid(centroid, size, attribs).offset(margin);
 
 /**
@@ -46,12 +46,12 @@ export const aabbFromCentroidWithMargin = (
  * @param b -
  */
 export const intersectionAABB = (a: AABB, b: AABB) => {
-    const p = max3([], a.pos, b.pos);
-    const q = min3(null, add3([], a.pos, a.size), add3([], b.pos, b.size));
-    const size = max3(null, sub3(null, q, p), ZERO3);
-    return size[0] > 0 && size[1] > 0 && size[2] > 0
-        ? new AABB(p, size)
-        : undefined;
+	const p = max3([], a.pos, b.pos);
+	const q = min3(null, add3([], a.pos, a.size), add3([], b.pos, b.size));
+	const size = max3(null, sub3(null, q, p), ZERO3);
+	return size[0] > 0 && size[1] > 0 && size[2] > 0
+		? new AABB(p, size)
+		: undefined;
 };
 
 /**
@@ -63,14 +63,14 @@ export const intersectionAABB = (a: AABB, b: AABB) => {
 export function inscribedAABB(sphere: Sphere): AABB;
 export function inscribedAABB(pos: ReadonlyVec, r: number): AABB;
 export function inscribedAABB(...args: any[]) {
-    let pos: ReadonlyVec, r: number;
-    if (args.length === 1) {
-        const c: Sphere = args[0];
-        pos = c.pos;
-        r = c.r;
-    } else {
-        [pos, r] = args;
-    }
-    r *= SQRT2_2;
-    return aabb(subN3([], pos, r), r * 2);
+	let pos: ReadonlyVec, r: number;
+	if (args.length === 1) {
+		const c: Sphere = args[0];
+		pos = c.pos;
+		r = c.r;
+	} else {
+		[pos, r] = args;
+	}
+	r *= SQRT2_2;
+	return aabb(subN3([], pos, r), r * 2);
 }

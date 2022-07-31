@@ -22,49 +22,49 @@ import type { StatelessOscillator } from "./api.js";
  * - https://www.desmos.com/calculator/klvl9oszfm
  * - https://ccrma.stanford.edu/files/papers/stanm5.pdf
  *
- * @param phase - 
- * @param freq - 
- * @param amp - 
- * @param dc - 
- * @param alpha - 
- * @param beta - 
+ * @param phase -
+ * @param freq -
+ * @param amp -
+ * @param dc -
+ * @param alpha -
+ * @param beta -
  */
 export const dsf: StatelessOscillator = (
-    phase,
-    freq,
-    amp = 1,
-    dc = 0,
-    alpha = 0.5,
-    beta = 1
+	phase,
+	freq,
+	amp = 1,
+	dc = 0,
+	alpha = 0.5,
+	beta = 1
 ) => {
-    const aa = alpha * alpha;
-    const a2 = 2 * alpha;
-    phase *= TAU * freq;
-    return (
-        amp *
-            (((1 - aa) * Math.sin(phase)) /
-                (1 + aa - a2 * Math.cos(beta * phase))) +
-        dc
-    );
+	const aa = alpha * alpha;
+	const a2 = 2 * alpha;
+	phase *= TAU * freq;
+	return (
+		amp *
+			(((1 - aa) * Math.sin(phase)) /
+				(1 + aa - a2 * Math.cos(beta * phase))) +
+		dc
+	);
 };
 
 /**
  * Higher order version of {@link dsf} oscillator with pre-configured
  * params. Slightly faster, but not dynamically changeable waveform.
  *
- * @param alpha - 
- * @param beta - 
+ * @param alpha -
+ * @param beta -
  */
 export const dsfHOF = (alpha = 0.5, beta = 1): StatelessOscillator => {
-    const aa = alpha * alpha;
-    const a2 = 2 * alpha;
-    return (phase, freq, amp = 1, dc = 0) => {
-        phase *= TAU * freq;
-        return (
-            amp *
-                (((1 - aa) * Math.sin(phase)) /
-                    (1 + aa - a2 * Math.cos(beta * phase))) +
-            dc
-        );
-    };
+	const aa = alpha * alpha;
+	const a2 = 2 * alpha;
+	return (phase, freq, amp = 1, dc = 0) => {
+		phase *= TAU * freq;
+		return (
+			amp *
+				(((1 - aa) * Math.sin(phase)) /
+					(1 + aa - a2 * Math.cos(beta * phase))) +
+			dc
+		);
+	};
 };

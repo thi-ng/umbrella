@@ -10,18 +10,18 @@
  * @param height - uncompensated pixel height
  */
 export const adaptDPI = (
-    canvas: HTMLCanvasElement,
-    width: number,
-    height: number
+	canvas: HTMLCanvasElement,
+	width: number,
+	height: number
 ) => {
-    const dpr = window.devicePixelRatio || 1;
-    if (dpr !== 1) {
-        canvas.style.width = `${width}px`;
-        canvas.style.height = `${height}px`;
-    }
-    canvas.width = width * dpr;
-    canvas.height = height * dpr;
-    return dpr;
+	const dpr = window.devicePixelRatio || 1;
+	if (dpr !== 1) {
+		canvas.style.width = `${width}px`;
+		canvas.style.height = `${height}px`;
+	}
+	canvas.width = width * dpr;
+	canvas.height = height * dpr;
+	return dpr;
 };
 
 /**

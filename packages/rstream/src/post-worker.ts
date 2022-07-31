@@ -39,33 +39,33 @@ import { defWorker } from "./defworker.js";
  * @param terminate - worker termination delay (ms)
  */
 export const postWorker = <T>(
-    worker: Worker | Blob | string,
-    transfer = false,
-    terminate = 0
+	worker: Worker | Blob | string,
+	transfer = false,
+	terminate = 0
 ): ISubscriber<T> => {
-    const _worker = defWorker(worker);
-    return {
-        next(x) {
-            if (x instanceof Promise) {
-                x.then((y) => this.next(y));
-                return;
-            }
-            let tx;
-            if (transfer) {
-                const ta = isTypedArray(x);
-                if (ta || isTransferable(x)) {
-                    tx = [ta ? (<any>x).buffer : x];
-                }
-            }
-            _worker.postMessage(x, tx || []);
-        },
-        done() {
-            if (terminate > 0) {
-                setTimeout(() => {
-                    LOGGER.info("terminating worker...");
-                    _worker.terminate();
-                }, terminate);
-            }
-        },
-    };
+	const _worker = defWorker(worker);
+	return {
+		next(x) {
+			if (x instanceof Promise) {
+				x.then((y) => this.next(y));
+				return;
+			}
+			let tx;
+			if (transfer) {
+				const ta = isTypedArray(x);
+				if (ta || isTransferable(x)) {
+					tx = [ta ? (<any>x).buffer : x];
+				}
+			}
+			_worker.postMessage(x, tx || []);
+		},
+		done() {
+			if (terminate > 0) {
+				setTimeout(() => {
+					LOGGER.info("terminating worker...");
+					_worker.terminate();
+				}, terminate);
+			}
+		},
+	};
 };

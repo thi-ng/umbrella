@@ -12,4 +12,4 @@ import { mulN } from "./muln.js";
  * @param dir -
  */
 export const project = (out: Vec, v: ReadonlyVec, dir: ReadonlyVec) =>
-    mulN(out || v, dir, dot(v, dir) / magSq(dir));
+	mulN(out || v, dir, dot(v, dir) / magSq(dir));

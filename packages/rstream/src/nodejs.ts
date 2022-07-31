@@ -9,20 +9,20 @@ import type { Subscription } from "./subscription.js";
  * type `T`). If given, also connects `stderr` to new rstream's error handler.
  * Unless `close` is false, the new stream closes once `stdout` is closed.
  *
- * @param stdout - 
- * @param stderr - 
- * @param close - 
+ * @param stdout -
+ * @param stderr -
+ * @param close -
  */
 export const fromNodeJS = <T>(
-    stdout: Readable,
-    stderr?: Readable,
-    close = true
+	stdout: Readable,
+	stderr?: Readable,
+	close = true
 ): Stream<T> => {
-    const ingest = stream<T>();
-    stdout.on("data", (data) => ingest.next(data));
-    stderr && stderr.on("data", (data) => ingest.error(data));
-    close && stdout.on("close", () => ingest.done());
-    return ingest;
+	const ingest = stream<T>();
+	stdout.on("data", (data) => ingest.next(data));
+	stderr && stderr.on("data", (data) => ingest.error(data));
+	close && stdout.on("close", () => ingest.done());
+	return ingest;
 };
 
 /**
@@ -54,17 +54,17 @@ export const fromNodeJS = <T>(
  * // output done
  * ```
  *
- * @param stdout - 
- * @param stderr - 
- * @param re - 
- * @param close - 
+ * @param stdout -
+ * @param stderr -
+ * @param re -
+ * @param close -
  */
 export const linesFromNodeJS = (
-    stdout: Readable,
-    stderr?: Readable,
-    re?: RegExp,
-    close?: boolean
+	stdout: Readable,
+	stderr?: Readable,
+	re?: RegExp,
+	close?: boolean
 ) =>
-    <Subscription<string, string>>(
-        fromNodeJS<string>(stdout, stderr, close).transform(rechunk(re))
-    );
+	<Subscription<string, string>>(
+		fromNodeJS<string>(stdout, stderr, close).transform(rechunk(re))
+	);

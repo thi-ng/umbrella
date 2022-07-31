@@ -4,25 +4,25 @@ import { set3 } from "@thi.ng/vectors/set";
 import { __copyAttribs } from "../internal/copy.js";
 
 export class Sphere implements IHiccupShape {
-    constructor(
-        public pos: Vec = [0, 0, 0],
-        public r = 1,
-        public attribs?: Attribs
-    ) {}
+	constructor(
+		public pos: Vec = [0, 0, 0],
+		public r = 1,
+		public attribs?: Attribs
+	) {}
 
-    get type() {
-        return "sphere";
-    }
+	get type() {
+		return "sphere";
+	}
 
-    copy(): Sphere {
-        return new Sphere(set3([], this.pos), this.r, __copyAttribs(this));
-    }
+	copy(): Sphere {
+		return new Sphere(set3([], this.pos), this.r, __copyAttribs(this));
+	}
 
-    withAttribs(attribs: Attribs): Sphere {
-        return new Sphere(this.pos, this.r, attribs);
-    }
+	withAttribs(attribs: Attribs): Sphere {
+		return new Sphere(this.pos, this.r, attribs);
+	}
 
-    toHiccup() {
-        return ["sphere", this.attribs, this.pos, this.r];
-    }
+	toHiccup() {
+		return ["sphere", this.attribs, this.pos, this.r];
+	}
 }

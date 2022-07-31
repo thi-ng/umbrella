@@ -14,27 +14,27 @@ import { submN } from "./submn.js";
  * @param t - interpolation coeff [0..1]
  */
 export const mixCubicHermite = (
-    out: Vec | null,
-    a: ReadonlyVec,
-    ta: ReadonlyVec,
-    b: ReadonlyVec,
-    tb: ReadonlyVec,
-    t: number
+	out: Vec | null,
+	a: ReadonlyVec,
+	ta: ReadonlyVec,
+	b: ReadonlyVec,
+	tb: ReadonlyVec,
+	t: number
 ) => {
-    const s = t - 1;
-    const t2 = t * t;
-    const s2 = s * s;
-    return addW4(
-        out,
-        a,
-        ta,
-        b,
-        tb,
-        (1 + 2 * t) * s2,
-        t * s2,
-        t2 * (3 - 2 * t),
-        t2 * s
-    );
+	const s = t - 1;
+	const t2 = t * t;
+	const s2 = s * s;
+	return addW4(
+		out,
+		a,
+		ta,
+		b,
+		tb,
+		(1 + 2 * t) * s2,
+		t * s2,
+		t2 * (3 - 2 * t),
+		t2 * s
+	);
 };
 
 /**
@@ -55,22 +55,22 @@ export const mixCubicHermite = (
  * @param scale - tangent tightness / scale
  */
 export const mixHermiteCardinal = (
-    out: Vec | null,
-    a: ReadonlyVec,
-    b: ReadonlyVec,
-    c: ReadonlyVec,
-    d: ReadonlyVec,
-    t: number,
-    scale = 0.5
+	out: Vec | null,
+	a: ReadonlyVec,
+	b: ReadonlyVec,
+	c: ReadonlyVec,
+	d: ReadonlyVec,
+	t: number,
+	scale = 0.5
 ) =>
-    mixCubicHermite(
-        out,
-        b,
-        tangentCardinal([], a, c, scale),
-        c,
-        tangentCardinal([], b, d, scale),
-        t
-    );
+	mixCubicHermite(
+		out,
+		b,
+		tangentCardinal([], a, c, scale),
+		c,
+		tangentCardinal([], b, d, scale),
+		t
+	);
 
 /**
  * Convenience version of {@link mixCubicHermite}, using 4 input points
@@ -88,21 +88,21 @@ export const mixHermiteCardinal = (
  * @param t - interpolation coeff [0..1]
  */
 export const mixHermiteDiff3 = (
-    out: Vec,
-    a: ReadonlyVec,
-    b: ReadonlyVec,
-    c: ReadonlyVec,
-    d: ReadonlyVec,
-    t: number
+	out: Vec,
+	a: ReadonlyVec,
+	b: ReadonlyVec,
+	c: ReadonlyVec,
+	d: ReadonlyVec,
+	t: number
 ) =>
-    mixCubicHermite(
-        out,
-        b,
-        tangentDiff3([], a, b, c),
-        c,
-        tangentDiff3([], b, c, d),
-        t
-    );
+	mixCubicHermite(
+		out,
+		b,
+		tangentDiff3([], a, b, c),
+		c,
+		tangentDiff3([], b, c, d),
+		t
+	);
 
 /**
  * Vector version of {@link @thi.ng/math#tangentCardinal}.
@@ -115,12 +115,12 @@ export const mixHermiteDiff3 = (
  * @param tc -
  */
 export const tangentCardinal = (
-    out: Vec,
-    prev: ReadonlyVec,
-    next: ReadonlyVec,
-    scale = 0.5,
-    ta = 0,
-    tc = 2
+	out: Vec,
+	prev: ReadonlyVec,
+	next: ReadonlyVec,
+	scale = 0.5,
+	ta = 0,
+	tc = 2
 ) => submN(out, next, prev, scale / (tc - ta));
 
 /**
@@ -135,17 +135,17 @@ export const tangentCardinal = (
  * @param tc -
  */
 export const tangentDiff3 = (
-    out: Vec,
-    prev: ReadonlyVec,
-    curr: ReadonlyVec,
-    next: ReadonlyVec,
-    ta = 0,
-    tb = 1,
-    tc = 2
+	out: Vec,
+	prev: ReadonlyVec,
+	curr: ReadonlyVec,
+	next: ReadonlyVec,
+	ta = 0,
+	tb = 1,
+	tc = 2
 ) =>
-    addmN(
-        out,
-        submN(out, curr, prev, 1 / (tb - ta)),
-        submN([], next, curr, 1 / (tc - tb)),
-        0.5
-    );
+	addmN(
+		out,
+		submN(out, curr, prev, 1 / (tb - ta)),
+		submN([], next, curr, 1 / (tc - tb)),
+		0.5
+	);

@@ -26,4 +26,4 @@ export const eqDelta = (a: number, b: number, eps = EPS) => abs(a - b) <= eps;
  * @param eps - epsilon / tolerance, default `1e-6`
  */
 export const eqDeltaScaled = (a: number, b: number, eps = EPS) =>
-    abs(a - b) <= eps * max(1, abs(a), abs(b));
+	abs(a - b) <= eps * max(1, abs(a), abs(b));

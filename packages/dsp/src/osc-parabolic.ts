@@ -14,4 +14,4 @@ import type { StatelessOscillator } from "./api.js";
  * @param dc -
  */
 export const parabolic: StatelessOscillator = (phase, freq, amp = 1, dc = 0) =>
-    dc + amp * (8 * (fract(phase * freq) - 0.5) ** 2 - 1);
+	dc + amp * (8 * (fract(phase * freq) - 0.5) ** 2 - 1);

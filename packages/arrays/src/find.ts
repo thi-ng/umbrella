@@ -10,12 +10,12 @@ import { equiv as _equiv } from "@thi.ng/equiv";
  * @param equiv - equivalence predicate
  */
 export const find = <T>(
-    buf: ArrayLike<T>,
-    x: T,
-    equiv: Predicate2<T> = _equiv
+	buf: ArrayLike<T>,
+	x: T,
+	equiv: Predicate2<T> = _equiv
 ) => {
-    const i = findIndex(buf, x, equiv);
-    return i !== -1 ? buf[i] : undefined;
+	const i = findIndex(buf, x, equiv);
+	return i !== -1 ? buf[i] : undefined;
 };
 
 /**
@@ -27,12 +27,12 @@ export const find = <T>(
  * @param equiv - equivalence predicate
  */
 export const findIndex = <T>(
-    buf: ArrayLike<T>,
-    x: T,
-    equiv: Predicate2<T> = _equiv
+	buf: ArrayLike<T>,
+	x: T,
+	equiv: Predicate2<T> = _equiv
 ) => {
-    for (let i = buf.length; i-- > 0; ) {
-        if (equiv(x, buf[i])) return i;
-    }
-    return -1;
+	for (let i = buf.length; i-- > 0; ) {
+		if (equiv(x, buf[i])) return i;
+	}
+	return -1;
 };

@@ -37,17 +37,17 @@
  * @param falloff -
  */
 export function* curve(
-    start: number,
-    end: number,
-    steps = 10,
-    rate = 0.1
+	start: number,
+	end: number,
+	steps = 10,
+	rate = 0.1
 ): IterableIterator<number> {
-    const c = Math.exp(
-        -Math.log((Math.abs(end - start) + rate) / rate) / steps
-    );
-    const offset = (start < end ? end + rate : end - rate) * (1 - c);
-    steps > 0 && (yield start);
-    for (let x = start; steps-- > 0; ) {
-        yield (x = offset + x * c);
-    }
+	const c = Math.exp(
+		-Math.log((Math.abs(end - start) + rate) / rate) / steps
+	);
+	const offset = (start < end ? end + rate : end - rate) * (1 - c);
+	steps > 0 && (yield start);
+	for (let x = start; steps-- > 0; ) {
+		yield (x = offset + x * c);
+	}
 }

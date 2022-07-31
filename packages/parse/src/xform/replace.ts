@@ -8,12 +8,12 @@ import { xform } from "../combinators/xform.js";
  * @param result - replacement value
  */
 export const xfReplace =
-    <T>(result: any): ScopeTransform<T> =>
-    (scope) => {
-        scope!.result = result;
-        scope!.children = null;
-        return scope;
-    };
+	<T>(result: any): ScopeTransform<T> =>
+	(scope) => {
+		scope!.result = result;
+		scope!.children = null;
+		return scope;
+	};
 
 /**
  * Syntax sugar for `xform(parser, xfReplace(result))`.
@@ -22,4 +22,4 @@ export const xfReplace =
  * @param result -
  */
 export const replace = <T>(parser: Parser<T>, result: any) =>
-    xform(parser, xfReplace(result));
+	xform(parser, xfReplace(result));

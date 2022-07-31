@@ -20,20 +20,20 @@ import { sub } from "@thi.ng/vectors/sub";
  *
  * The optional `scale` arg can be used to scale the tangents (default: 1).
  *
- * @param pts - 
- * @param close - 
- * @param scale - 
+ * @param pts -
+ * @param close -
+ * @param scale -
  */
 export const tangents = (pts: ReadonlyVec[], close = false, scale = 1) => {
-    const n = pts.length - 1;
-    const res: Vec[] = [];
-    for (let i = 1; i <= n; i++) {
-        res.push(direction([], pts[i - 1], pts[i], scale));
-    }
-    res.push(
-        close ? direction([], pts[n], pts[0], scale) : set([], res[n - 1])
-    );
-    return res;
+	const n = pts.length - 1;
+	const res: Vec[] = [];
+	for (let i = 1; i <= n; i++) {
+		res.push(direction([], pts[i - 1], pts[i], scale));
+	}
+	res.push(
+		close ? direction([], pts[n], pts[0], scale) : set([], res[n - 1])
+	);
+	return res;
 };
 
 /**
@@ -50,67 +50,67 @@ export const tangents = (pts: ReadonlyVec[], close = false, scale = 1) => {
  *
  * The optional `scale` arg can be used to scale the tangents (default: 1).
  *
- * @param pts - 
- * @param close - 
- * @param proportional - 
- * @param scale - 
+ * @param pts -
+ * @param close -
+ * @param proportional -
+ * @param scale -
  */
 export const smoothTangents = (
-    pts: ReadonlyVec[],
-    close = false,
-    proportional = true,
-    scale = 1
+	pts: ReadonlyVec[],
+	close = false,
+	proportional = true,
+	scale = 1
 ) => {
-    const res: Vec[] = [];
-    const n = pts.length - 1;
-    if (n < 1) return res;
-    let prev: Vec | undefined;
-    let plen: number | undefined;
-    if (close) {
-        prev = sub([], pts[0], pts[n]);
-        plen = mag(prev!);
-        normalize(null, prev!);
-    }
-    let t: Vec;
-    for (let i = 0; i <= n; i++) {
-        let curr: Vec;
-        let clen: number;
-        if (i === n) {
-            if (close) {
-                curr = sub([], pts[0], pts[i]);
-            } else {
-                res.push(prev!);
-                return res;
-            }
-        } else {
-            curr = sub([], pts[i + 1], pts[i]);
-        }
-        clen = mag(curr);
-        normalize(null, curr);
-        if (i > 0 || close) {
-            t = proportional
-                ? mixN(
-                      [],
-                      prev!,
-                      curr,
-                      Math.min(1, clen / (clen + plen! + EPS))
-                  )
-                : addmN([], prev!, curr, 0.5);
-        } else {
-            t = set([], curr);
-        }
-        res.push(normalize(null, t, scale));
-        prev = curr;
-        plen = clen;
-    }
-    return res;
+	const res: Vec[] = [];
+	const n = pts.length - 1;
+	if (n < 1) return res;
+	let prev: Vec | undefined;
+	let plen: number | undefined;
+	if (close) {
+		prev = sub([], pts[0], pts[n]);
+		plen = mag(prev!);
+		normalize(null, prev!);
+	}
+	let t: Vec;
+	for (let i = 0; i <= n; i++) {
+		let curr: Vec;
+		let clen: number;
+		if (i === n) {
+			if (close) {
+				curr = sub([], pts[0], pts[i]);
+			} else {
+				res.push(prev!);
+				return res;
+			}
+		} else {
+			curr = sub([], pts[i + 1], pts[i]);
+		}
+		clen = mag(curr);
+		normalize(null, curr);
+		if (i > 0 || close) {
+			t = proportional
+				? mixN(
+						[],
+						prev!,
+						curr,
+						Math.min(1, clen / (clen + plen! + EPS))
+				  )
+				: addmN([], prev!, curr, 0.5);
+		} else {
+			t = set([], curr);
+		}
+		res.push(normalize(null, t, scale));
+		prev = curr;
+		plen = clen;
+	}
+	return res;
 };
 
 /**
  * Transforms an array of 2d tangent vectors into a new array with each tangent
  * rotated 90 degrees counter-clockwise.
  *
- * @param tangents - 
+ * @param tangents -
  */
 export const bitangents2 = (tangents: ReadonlyVec[]) =>
-    tangents.map((t) => perpendicularCCW([], t));
+	tangents.map((t) => perpendicularCCW([], t));

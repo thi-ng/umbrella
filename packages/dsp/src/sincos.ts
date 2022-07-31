@@ -20,48 +20,48 @@ import { AGen } from "./agen.js";
  * @param amp - amplitude (default: 1)
  */
 export class SinCos extends AGen<number[]> implements IReset {
-    protected _f!: number;
-    protected _s!: number;
-    protected _c!: number;
+	protected _f!: number;
+	protected _s!: number;
+	protected _c!: number;
 
-    constructor(protected _freq: number, protected _amp = 1) {
-        super([0, _amp]);
-        this.calcCoeffs();
-    }
+	constructor(protected _freq: number, protected _amp = 1) {
+		super([0, _amp]);
+		this.calcCoeffs();
+	}
 
-    reset() {
-        this.calcCoeffs();
-        return this;
-    }
+	reset() {
+		this.calcCoeffs();
+		return this;
+	}
 
-    next() {
-        this._val = [this._s, this._c];
-        this._s += this._f * this._c;
-        this._c -= this._f * this._s;
-        return this._val;
-    }
+	next() {
+		this._val = [this._s, this._c];
+		this._s += this._f * this._c;
+		this._c -= this._f * this._s;
+		return this._val;
+	}
 
-    freq() {
-        return this._freq;
-    }
+	freq() {
+		return this._freq;
+	}
 
-    setFreq(freq: number) {
-        this._freq = freq;
-        this.calcCoeffs();
-    }
+	setFreq(freq: number) {
+		this._freq = freq;
+		this.calcCoeffs();
+	}
 
-    amp() {
-        return this._amp;
-    }
+	amp() {
+		return this._amp;
+	}
 
-    setAmp(amp: number) {
-        this._amp = amp;
-        this.calcCoeffs();
-    }
+	setAmp(amp: number) {
+		this._amp = amp;
+		this.calcCoeffs();
+	}
 
-    protected calcCoeffs() {
-        this._f = TAU * this._freq;
-        this._s = 0;
-        this._c = this._amp;
-    }
+	protected calcCoeffs() {
+		this._f = TAU * this._freq;
+		this._s = 0;
+		this._c = this._amp;
+	}
 }

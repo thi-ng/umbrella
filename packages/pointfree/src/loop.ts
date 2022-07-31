@@ -22,18 +22,18 @@ import { $stackFn } from "./word.js";
  * @param body -
  */
 export const defLoop = (test: StackProc, body: StackProc) => {
-    const _test = $stackFn(test);
-    const _body = $stackFn(body);
-    return (ctx: StackContext) => {
-        while (true) {
-            ctx = _test(ctx);
-            $(ctx[0], 1);
-            if (!ctx[0].pop()) {
-                return ctx;
-            }
-            ctx = _body(ctx);
-        }
-    };
+	const _test = $stackFn(test);
+	const _body = $stackFn(body);
+	return (ctx: StackContext) => {
+		while (true) {
+			ctx = _test(ctx);
+			$(ctx[0], 1);
+			if (!ctx[0].pop()) {
+				return ctx;
+			}
+			ctx = _body(ctx);
+		}
+	};
 };
 
 /**
@@ -45,10 +45,10 @@ export const defLoop = (test: StackProc, body: StackProc) => {
  * @param ctx -
  */
 export const loopq = (ctx: StackContext) => {
-    const stack = ctx[0];
-    $(stack, 2);
-    const body = stack.pop();
-    return defLoop(stack.pop(), body)(ctx);
+	const stack = ctx[0];
+	$(stack, 2);
+	const body = stack.pop();
+	return defLoop(stack.pop(), body)(ctx);
 };
 
 /**
@@ -80,12 +80,12 @@ export const loopq = (ctx: StackContext) => {
  * @param body -
  */
 export const dotimes = (ctx: StackContext) => {
-    let stack = ctx[0];
-    $(stack, 2);
-    const w = $stackFn(stack.pop());
-    for (let i = 0, n = stack.pop(); i < n; i++) {
-        ctx[0].push(i);
-        ctx = w(ctx);
-    }
-    return ctx;
+	let stack = ctx[0];
+	$(stack, 2);
+	const w = $stackFn(stack.pop());
+	for (let i = 0, n = stack.pop(); i < n; i++) {
+		ctx[0].push(i);
+		ctx = w(ctx);
+	}
+	return ctx;
 };

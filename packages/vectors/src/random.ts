@@ -2,12 +2,12 @@ import type { IRandom } from "@thi.ng/random";
 import { normal } from "@thi.ng/random/distributions/normal";
 import { SYSTEM } from "@thi.ng/random/system";
 import type {
-    MultiVecOpFN,
-    MultiVecOpOOO,
-    ReadonlyVec,
-    Vec,
-    VecOpFN,
-    VecOpOOO,
+	MultiVecOpFN,
+	MultiVecOpOOO,
+	ReadonlyVec,
+	Vec,
+	VecOpFN,
+	VecOpOOO,
 } from "./api.js";
 import { defHofOp } from "./compile/emit.js";
 import { NEW_OUT_A } from "./index.js";
@@ -28,16 +28,16 @@ import { normalize } from "./normalize.js";
  * @param rnd -
  */
 export const [random, random2, random3, random4] = defHofOp<
-    MultiVecOpOOO<number, number, IRandom>,
-    VecOpOOO<number, number, IRandom>
+	MultiVecOpOOO<number, number, IRandom>,
+	VecOpOOO<number, number, IRandom>
 >(
-    SYSTEM,
-    ([a]) => `${a}=rnd.minmax(n,m);`,
-    "a,n=-1,m=1,rnd=op",
-    "a",
-    "a",
-    0,
-    NEW_OUT_A
+	SYSTEM,
+	([a]) => `${a}=rnd.minmax(n,m);`,
+	"a,n=-1,m=1,rnd=op",
+	"a",
+	"a",
+	0,
+	NEW_OUT_A
 );
 
 /**
@@ -58,25 +58,25 @@ export const [random, random2, random3, random4] = defHofOp<
  * @param n - default 1
  */
 export const [randomDistrib, randomDistrib2, randomDistrib3, randomDistrib4] =
-    defHofOp<MultiVecOpFN, VecOpFN>(
-        normal,
-        ([a]) => `${a}=rnd()*n;`,
-        "a,rnd=op(),n=1",
-        "a",
-        "a",
-        0,
-        NEW_OUT_A
-    );
+	defHofOp<MultiVecOpFN, VecOpFN>(
+		normal,
+		([a]) => `${a}=rnd()*n;`,
+		"a,rnd=op(),n=1",
+		"a",
+		"a",
+		0,
+		NEW_OUT_A
+	);
 
 const $norm =
-    (random: VecOpOOO<number, number, IRandom>) =>
-    (v: Vec | null, n = 1, rnd: IRandom = SYSTEM) =>
-        normalize(null, random(v, -1, 1, rnd), n);
+	(random: VecOpOOO<number, number, IRandom>) =>
+	(v: Vec | null, n = 1, rnd: IRandom = SYSTEM) =>
+		normalize(null, random(v, -1, 1, rnd), n);
 
 const $normDist =
-    (random: VecOpFN): VecOpFN =>
-    (v, rnd, n = 1) =>
-        normalize(null, random(v, rnd), n);
+	(random: VecOpFN): VecOpFN =>
+	(v, rnd, n = 1) =>
+		normalize(null, random(v, rnd), n);
 
 /**
  * Sets `v` to a random vector (using {@link random}), normalized to length `n`
@@ -120,11 +120,11 @@ export const randNormDistrib4 = $normDist(randomDistrib4);
  * @param rnd -
  */
 export const [randMinMax, randMinMax2, randMinMax3, randMinMax4] = defHofOp<
-    MultiVecOpOOO<ReadonlyVec, ReadonlyVec, IRandom>,
-    VecOpOOO<ReadonlyVec, ReadonlyVec, IRandom>
+	MultiVecOpOOO<ReadonlyVec, ReadonlyVec, IRandom>,
+	VecOpOOO<ReadonlyVec, ReadonlyVec, IRandom>
 >(
-    SYSTEM,
-    ([o, a, b]) => `${o}=rnd.minmax(${a},${b});`,
-    "o,a,b,rnd=op",
-    "o,a,b"
+	SYSTEM,
+	([o, a, b]) => `${o}=rnd.minmax(${a},${b});`,
+	"o,a,b,rnd=op",
+	"o,a,b"
 );

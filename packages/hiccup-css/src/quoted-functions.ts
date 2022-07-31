@@ -7,10 +7,10 @@ import { at_supports } from "./supports.js";
 
 /** @internal */
 export const QUOTED_FNS = {
-    "@comment": comment,
-    "@import": at_import,
-    "@keyframes": at_keyframes,
-    "@media": at_media,
-    "@namespace": at_namespace,
-    "@supports": at_supports,
+	"@comment": comment,
+	"@import": at_import,
+	"@keyframes": at_keyframes,
+	"@media": at_media,
+	"@namespace": at_namespace,
+	"@supports": at_supports,
 };

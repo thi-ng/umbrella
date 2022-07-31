@@ -18,9 +18,9 @@ import { swapxy } from "./utils.js";
  * @param step - column stride
  */
 export function* interleaveColumns2d(cols: number, rows = cols, step = 2) {
-    for (let j = 0; j < step; j++) {
-        yield* map(swapxy, range2d(0, rows | 0, j, cols | 0, 1, step | 0));
-    }
+	for (let j = 0; j < step; j++) {
+		yield* map(swapxy, range2d(0, rows | 0, j, cols | 0, 1, step | 0));
+	}
 }
 
 /**
@@ -39,7 +39,7 @@ export function* interleaveColumns2d(cols: number, rows = cols, step = 2) {
  * @param step - row stride
  */
 export function* interleaveRows2d(cols: number, rows = cols, step = 2) {
-    for (let j = 0; j < step; j++) {
-        yield* range2d(0, cols | 0, j, rows | 0, 1, step | 0);
-    }
+	for (let j = 0; j < step; j++) {
+		yield* range2d(0, cols | 0, j, rows | 0, 1, step | 0);
+	}
 }

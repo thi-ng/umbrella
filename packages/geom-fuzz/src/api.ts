@@ -10,40 +10,40 @@ export type FillFn = Fn<Polygon, IHiccupShape>;
 export type HatchDir = "d" | "h" | "v";
 
 export interface FuzzyPolygonOpts {
-    num: number;
-    jitter: number;
-    curveBreakPoints: boolean;
-    curveScale: number;
-    fill: FillFn;
+	num: number;
+	jitter: number;
+	curveBreakPoints: boolean;
+	curveScale: number;
+	fill: FillFn;
 }
 
 export interface FuzzyLineOpts {
-    jitter: number;
-    resample: number;
-    attribs: any;
+	jitter: number;
+	resample: number;
+	attribs: any;
 }
 
 export interface HatchOpts {
-    dir: HatchDir;
-    space: number;
-    line: Partial<FuzzyLineOpts>;
+	dir: HatchDir;
+	space: number;
+	line: Partial<FuzzyLineOpts>;
 }
 
 export interface DotFillOpts {
-    space: number;
-    jitter: number;
-    attribs: Partial<{
-        shape: "circle" | "square";
-        [id: string]: any;
-    }>;
+	space: number;
+	jitter: number;
+	attribs: Partial<{
+		shape: "circle" | "square";
+		[id: string]: any;
+	}>;
 }
 
 export const DEFAULT_LINE = {
-    resample: 0,
-    jitter: 2,
-    attribs: {
-        lineCap: "butt",
-        lineJoin: "round",
-        stroke: "black",
-    },
+	resample: 0,
+	jitter: 2,
+	attribs: {
+		lineCap: "butt",
+		lineJoin: "round",
+		stroke: "black",
+	},
 };

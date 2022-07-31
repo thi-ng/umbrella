@@ -10,22 +10,22 @@ import { DEFAULT_LINE, FuzzyLineOpts } from "./api.js";
 import { jitterPoints } from "./points.js";
 
 export const defLine = (
-    opts: Partial<FuzzyLineOpts> = {}
+	opts: Partial<FuzzyLineOpts> = {}
 ): Fn3<ReadonlyVec, ReadonlyVec, boolean, IHiccupShape> => {
-    opts = mergeDeepObj(DEFAULT_LINE, opts);
-    return opts.resample! > 1
-        ? (a, b, useAttr = true) =>
-              polyline(
-                  jitterPoints(
-                      resample([a, b], { num: opts.resample, last: true }),
-                      opts.jitter
-                  ),
-                  useAttr ? opts.attribs : undefined
-              )
-        : (a, b, useAttr = true) =>
-              line(
-                  jitter(null, a, opts.jitter),
-                  jitter(null, b, opts.jitter),
-                  useAttr ? opts.attribs : undefined
-              );
+	opts = mergeDeepObj(DEFAULT_LINE, opts);
+	return opts.resample! > 1
+		? (a, b, useAttr = true) =>
+				polyline(
+					jitterPoints(
+						resample([a, b], { num: opts.resample, last: true }),
+						opts.jitter
+					),
+					useAttr ? opts.attribs : undefined
+				)
+		: (a, b, useAttr = true) =>
+				line(
+					jitter(null, a, opts.jitter),
+					jitter(null, b, opts.jitter),
+					useAttr ? opts.attribs : undefined
+				);
 };

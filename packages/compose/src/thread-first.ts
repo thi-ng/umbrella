@@ -28,13 +28,13 @@ import type { FnAny } from "@thi.ng/api";
  * @param fns - functions / S-expressions
  */
 export const threadFirst = (
-    init: any,
-    ...fns: (FnAny<any> | [FnAny<any>, ...any[]])[]
+	init: any,
+	...fns: (FnAny<any> | [FnAny<any>, ...any[]])[]
 ) =>
-    fns.reduce(
-        (acc, expr) =>
-            typeof expr === "function"
-                ? expr(acc)
-                : expr[0](acc, ...expr.slice(1)),
-        init
-    );
+	fns.reduce(
+		(acc, expr) =>
+			typeof expr === "function"
+				? expr(acc)
+				: expr[0](acc, ...expr.slice(1)),
+		init
+	);

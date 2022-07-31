@@ -7,5 +7,5 @@ export function ellipse(pos: Vec, r: number | Vec, attribs?: Attribs): Ellipse;
 export function ellipse(r: number | Vec, attribs?: Attribs): Ellipse;
 export function ellipse(attribs?: Attribs): Ellipse;
 export function ellipse(...args: any[]) {
-    return new Ellipse(...__argsVV(args));
+	return new Ellipse(...__argsVV(args));
 }

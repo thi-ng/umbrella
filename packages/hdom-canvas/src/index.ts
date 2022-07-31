@@ -49,136 +49,136 @@ const STR = "string";
  * @param shapes - shape components
  */
 export const canvas = {
-    render(_: any, attribs: any, ...body: any[]) {
-        const cattribs = { ...attribs };
-        delete cattribs.__diff;
-        delete cattribs.__normalize;
-        const dpr = window.devicePixelRatio || 1;
-        if (dpr !== 1) {
-            !cattribs.style && (cattribs.style = {});
-            cattribs.style.width = `${cattribs.width}px`;
-            cattribs.style.height = `${cattribs.height}px`;
-            cattribs.width *= dpr;
-            cattribs.height *= dpr;
-        }
-        return [
-            "canvas",
-            cattribs,
-            [
-                "g",
-                {
-                    __impl: IMPL,
-                    __diff: attribs.__diff !== false,
-                    __normalize: attribs.__normalize !== false,
-                    __release: attribs.__release === true,
-                    __serialize: false,
-                    __clear: attribs.__clear,
-                    scale: dpr !== 1 ? dpr : null,
-                },
-                ...body,
-            ],
-        ];
-    },
+	render(_: any, attribs: any, ...body: any[]) {
+		const cattribs = { ...attribs };
+		delete cattribs.__diff;
+		delete cattribs.__normalize;
+		const dpr = window.devicePixelRatio || 1;
+		if (dpr !== 1) {
+			!cattribs.style && (cattribs.style = {});
+			cattribs.style.width = `${cattribs.width}px`;
+			cattribs.style.height = `${cattribs.height}px`;
+			cattribs.width *= dpr;
+			cattribs.height *= dpr;
+		}
+		return [
+			"canvas",
+			cattribs,
+			[
+				"g",
+				{
+					__impl: IMPL,
+					__diff: attribs.__diff !== false,
+					__normalize: attribs.__normalize !== false,
+					__release: attribs.__release === true,
+					__serialize: false,
+					__clear: attribs.__clear,
+					scale: dpr !== 1 ? dpr : null,
+				},
+				...body,
+			],
+		];
+	},
 };
 
 /** @internal */
 export const createTree = (
-    _: Partial<HDOMOpts>,
-    canvas: HTMLCanvasElement,
-    tree: any
+	_: Partial<HDOMOpts>,
+	canvas: HTMLCanvasElement,
+	tree: any
 ) => {
-    // console.log(Date.now(), "draw");
-    const ctx = canvas.getContext("2d");
-    assert(!!ctx, "canvas ctx unavailable");
-    const attribs = tree[1];
-    if (attribs) {
-        if (attribs.__skip) return;
-        if (attribs.__clear !== false) {
-            ctx!.clearRect(0, 0, canvas.width, canvas.height);
-        }
-    }
-    draw(ctx!, tree);
+	// console.log(Date.now(), "draw");
+	const ctx = canvas.getContext("2d");
+	assert(!!ctx, "canvas ctx unavailable");
+	const attribs = tree[1];
+	if (attribs) {
+		if (attribs.__skip) return;
+		if (attribs.__clear !== false) {
+			ctx!.clearRect(0, 0, canvas.width, canvas.height);
+		}
+	}
+	draw(ctx!, tree);
 };
 
 /** @internal */
 export const normalizeTree = (opts: Partial<HDOMOpts>, tree: any): any => {
-    if (tree == null) {
-        return tree;
-    }
-    if (isArray(tree)) {
-        const tag = tree[0];
-        if (typeof tag === FN) {
-            return normalizeTree(
-                opts,
-                tag.apply(null, [opts.ctx, ...tree.slice(1)])
-            );
-        }
-        if (typeof tag === STR) {
-            const attribs = tree[1];
-            if (attribs && attribs.__normalize === false) {
-                return tree;
-            }
-            const res = [tree[0], attribs];
-            for (let i = 2, n = tree.length; i < n; i++) {
-                const n = normalizeTree(opts, tree[i]);
-                n != null && res.push(n);
-            }
-            return res;
-        }
-    } else if (typeof tree === FN) {
-        return normalizeTree(opts, tree(opts.ctx));
-    } else if (typeof tree.toHiccup === FN) {
-        return normalizeTree(opts, tree.toHiccup(opts.ctx));
-    } else if (typeof tree.deref === FN) {
-        return normalizeTree(opts, tree.deref());
-    } else if (isNotStringAndIterable(tree)) {
-        const res = [];
-        for (let t of tree) {
-            const n = normalizeTree(opts, t);
-            n != null && res.push(n);
-        }
-        return res;
-    }
-    return tree;
+	if (tree == null) {
+		return tree;
+	}
+	if (isArray(tree)) {
+		const tag = tree[0];
+		if (typeof tag === FN) {
+			return normalizeTree(
+				opts,
+				tag.apply(null, [opts.ctx, ...tree.slice(1)])
+			);
+		}
+		if (typeof tag === STR) {
+			const attribs = tree[1];
+			if (attribs && attribs.__normalize === false) {
+				return tree;
+			}
+			const res = [tree[0], attribs];
+			for (let i = 2, n = tree.length; i < n; i++) {
+				const n = normalizeTree(opts, tree[i]);
+				n != null && res.push(n);
+			}
+			return res;
+		}
+	} else if (typeof tree === FN) {
+		return normalizeTree(opts, tree(opts.ctx));
+	} else if (typeof tree.toHiccup === FN) {
+		return normalizeTree(opts, tree.toHiccup(opts.ctx));
+	} else if (typeof tree.deref === FN) {
+		return normalizeTree(opts, tree.deref());
+	} else if (isNotStringAndIterable(tree)) {
+		const res = [];
+		for (let t of tree) {
+			const n = normalizeTree(opts, t);
+			n != null && res.push(n);
+		}
+		return res;
+	}
+	return tree;
 };
 
 /** @internal */
 export const diffTree = (
-    opts: Partial<HDOMOpts>,
-    parent: HTMLCanvasElement,
-    prev: any[],
-    curr: any[],
-    child: number
+	opts: Partial<HDOMOpts>,
+	parent: HTMLCanvasElement,
+	prev: any[],
+	curr: any[],
+	child: number
 ) => {
-    const attribs = curr[1];
-    if (attribs.__skip) return;
-    if (attribs.__diff === false) {
-        releaseTree(prev);
-        return createTree(opts, parent, curr);
-    }
-    // delegate to branch-local implementation
-    let impl: HDOMImplementation<any> = attribs.__impl;
-    if (impl && impl !== IMPL) {
-        return impl.diffTree(opts, parent, prev, curr, child);
-    }
-    const delta = diffArray(prev, curr, "only-distance", equiv);
-    if (delta.distance > 0) {
-        return createTree(opts, parent, curr);
-    }
+	const attribs = curr[1];
+	if (attribs.__skip) return;
+	if (attribs.__diff === false) {
+		releaseTree(prev);
+		return createTree(opts, parent, curr);
+	}
+	// delegate to branch-local implementation
+	let impl: HDOMImplementation<any> = attribs.__impl;
+	if (impl && impl !== IMPL) {
+		return impl.diffTree(opts, parent, prev, curr, child);
+	}
+	const delta = diffArray(prev, curr, "only-distance", equiv);
+	if (delta.distance > 0) {
+		return createTree(opts, parent, curr);
+	}
 };
 
 export const IMPL: HDOMImplementation<any> = {
-    createTree,
-    normalizeTree,
-    diffTree,
-    hydrateTree: NO_OP,
-    getElementById: NO_OP,
-    createElement: NO_OP,
-    createTextElement: NO_OP,
-    replaceChild: NO_OP,
-    getChild: NO_OP,
-    removeAttribs: NO_OP,
-    removeChild: NO_OP,
-    setAttrib: NO_OP,
-    setContent: NO_OP,
+	createTree,
+	normalizeTree,
+	diffTree,
+	hydrateTree: NO_OP,
+	getElementById: NO_OP,
+	createElement: NO_OP,
+	createTextElement: NO_OP,
+	replaceChild: NO_OP,
+	getChild: NO_OP,
+	removeAttribs: NO_OP,
+	removeChild: NO_OP,
+	setAttrib: NO_OP,
+	setContent: NO_OP,
 };

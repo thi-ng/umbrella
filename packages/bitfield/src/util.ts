@@ -19,9 +19,9 @@ export const toString = (data: Uint32Array) => [...data].map(B32).join("");
  * @internal
  */
 export const binOp = (
-    dest: Uint32Array,
-    src: Uint32Array,
-    op: Fn2<number, number, number>
+	dest: Uint32Array,
+	src: Uint32Array,
+	op: Fn2<number, number, number>
 ) => {
-    for (let i = src.length; i-- > 0; ) dest[i] = op(src[i], dest[i]);
+	for (let i = src.length; i-- > 0; ) dest[i] = op(src[i], dest[i]);
 };

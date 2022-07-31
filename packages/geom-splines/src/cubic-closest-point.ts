@@ -22,16 +22,16 @@ import { mixCubic } from "@thi.ng/vectors/mix-cubic";
  * @param eps - epsilon value
  */
 export const closestPointCubic = (
-    p: ReadonlyVec,
-    a: ReadonlyVec,
-    b: ReadonlyVec,
-    c: ReadonlyVec,
-    d: ReadonlyVec,
-    out: Vec = [],
-    res?: number,
-    iter?: number,
-    eps?: number
+	p: ReadonlyVec,
+	a: ReadonlyVec,
+	b: ReadonlyVec,
+	c: ReadonlyVec,
+	d: ReadonlyVec,
+	out: Vec = [],
+	res?: number,
+	iter?: number,
+	eps?: number
 ) => {
-    const fn = (t: number) => mixCubic(out, a, b, c, d, t);
-    return fn(minError(fn, distSq, p, res, iter, 0, 1, eps));
+	const fn = (t: number) => mixCubic(out, a, b, c, d, t);
+	return fn(minError(fn, distSq, p, res, iter, 0, 1, eps));
 };

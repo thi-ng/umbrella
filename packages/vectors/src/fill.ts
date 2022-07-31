@@ -25,8 +25,8 @@ import { set } from "./set.js";
  * @param so - output stride
  */
 export const fill = (
-    out: IVector<any>,
-    v: IVector<any>,
-    num: number,
-    so = out.length * out.stride
+	out: IVector<any>,
+	v: IVector<any>,
+	num: number,
+	so = out.length * out.stride
 ) => mapV(set.impl(v.length), out, v, num, so, 0);

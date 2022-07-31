@@ -28,34 +28,34 @@ import { ensureReduced, isReduced, unreduced } from "./reduced.js";
  */
 export function scan<A, B>(rfn: Reducer<B, A>, init?: B): Transducer<A, B>;
 export function scan<A, B>(
-    rfn: Reducer<B, A>,
-    init: B,
-    src: Iterable<A>
+	rfn: Reducer<B, A>,
+	init: B,
+	src: Iterable<A>
 ): IterableIterator<B>;
 export function scan<A, B>(...args: any[]): any {
-    return (
-        (args.length > 2 && __iter(scan, args, iterator)) ||
-        (([inito, completeo, reduceo]: Reducer<any, B>) => {
-            const [initi, completei, reducei]: Reducer<B, A> = args[0];
-            let acc: B = args.length > 1 && args[1] != null ? args[1] : initi();
-            return <Reducer<B, A>>[
-                inito,
-                (_acc) => {
-                    let a = completei(acc);
-                    if (a !== acc) {
-                        _acc = unreduced(reduceo(_acc, a));
-                    }
-                    acc = a;
-                    return completeo(_acc);
-                },
-                (_acc, x: A) => {
-                    acc = <any>reducei(acc, x);
-                    if (isReduced(acc)) {
-                        return ensureReduced(reduceo(_acc, (<any>acc).deref()));
-                    }
-                    return reduceo(_acc, acc);
-                },
-            ];
-        })
-    );
+	return (
+		(args.length > 2 && __iter(scan, args, iterator)) ||
+		(([inito, completeo, reduceo]: Reducer<any, B>) => {
+			const [initi, completei, reducei]: Reducer<B, A> = args[0];
+			let acc: B = args.length > 1 && args[1] != null ? args[1] : initi();
+			return <Reducer<B, A>>[
+				inito,
+				(_acc) => {
+					let a = completei(acc);
+					if (a !== acc) {
+						_acc = unreduced(reduceo(_acc, a));
+					}
+					acc = a;
+					return completeo(_acc);
+				},
+				(_acc, x: A) => {
+					acc = <any>reducei(acc, x);
+					if (isReduced(acc)) {
+						return ensureReduced(reduceo(_acc, (<any>acc).deref()));
+					}
+					return reduceo(_acc, acc);
+				},
+			];
+		})
+	);
 }

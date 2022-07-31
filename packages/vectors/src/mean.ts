@@ -18,16 +18,16 @@ import { sum } from "./sum.js";
  * // [ 2.5, 25, 250 ]
  * ```
  *
- * @param out - 
- * @param src - 
+ * @param out -
+ * @param src -
  */
 export const mean = (out: Vec | null, src: ReadonlyVec[]) => {
-    __ensureInputs(src);
-    out = set(out || [], src[0]);
-    for (let i = src.length; i-- > 1; ) {
-        add(out, out, src[i]);
-    }
-    return mulN(out, out, 1 / src.length);
+	__ensureInputs(src);
+	out = set(out || [], src[0]);
+	for (let i = src.length; i-- > 1; ) {
+		add(out, out, src[i]);
+	}
+	return mulN(out, out, 1 / src.length);
 };
 
 /**
@@ -39,6 +39,6 @@ export const mean = (out: Vec | null, src: ReadonlyVec[]) => {
  * // 12.5
  * ```
  *
- * @param a - 
+ * @param a -
  */
 export const vmean = (a: ReadonlyVec) => (a.length > 0 ? sum(a) / a.length : 0);

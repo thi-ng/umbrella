@@ -24,23 +24,23 @@ import { sma } from "./sma.js";
 export function sd(period?: number, scale?: number): Transducer<number, number>;
 export function sd(src: Iterable<number>): IterableIterator<number>;
 export function sd(
-    period: number,
-    scale: number,
-    src: Iterable<number>
+	period: number,
+	scale: number,
+	src: Iterable<number>
 ): IterableIterator<number>;
 export function sd(...args: any[]): any {
-    const iter = __iter(sd, args);
-    if (iter) {
-        return iter;
-    }
-    const period: number = args[0] || 20;
-    const scale: number = args[1] || 1;
-    return comp(
-        multiplex(partition(period, 1), sma(period)),
-        drop(period - 1),
-        map(
-            ([window, mean]: [number[], number]) =>
-                Math.sqrt(mse(window, mean) / period) * scale
-        )
-    );
+	const iter = __iter(sd, args);
+	if (iter) {
+		return iter;
+	}
+	const period: number = args[0] || 20;
+	const scale: number = args[1] || 1;
+	return comp(
+		multiplex(partition(period, 1), sma(period)),
+		drop(period - 1),
+		map(
+			([window, mean]: [number[], number]) =>
+				Math.sqrt(mse(window, mean) / period) * scale
+		)
+	);
 }

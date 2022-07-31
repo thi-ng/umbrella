@@ -12,8 +12,8 @@ import { clamp01 } from "../math/clamp.js";
  * @param density - float
  */
 export const fogExp = defn(
-    "float",
-    "fogExp",
-    ["float", "float"],
-    (dist, density) => [ret(sub(FLOAT1, clamp01(exp(mul(neg(density), dist)))))]
+	"float",
+	"fogExp",
+	["float", "float"],
+	(dist, density) => [ret(sub(FLOAT1, clamp01(exp(mul(neg(density), dist)))))]
 );

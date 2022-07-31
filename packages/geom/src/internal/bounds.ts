@@ -16,20 +16,20 @@ import { sub } from "@thi.ng/vectors/sub";
  * @param bounds - bbox function
  */
 export const __collBounds = (
-    shapes: IShape[],
-    bounds: Fn<IShape, AABBLike | undefined>
+	shapes: IShape[],
+	bounds: Fn<IShape, AABBLike | undefined>
 ) => {
-    let n = shapes.length - 1;
-    if (n < 0) return;
-    let b = bounds(shapes[n]);
-    if (!b) return;
-    let { pos, size } = b;
-    for (; n-- > 0; ) {
-        b = bounds(shapes[n]);
-        if (!b) continue;
-        [pos, size] = __unionBounds(pos, size, b.pos, b.size);
-    }
-    return [pos, size];
+	let n = shapes.length - 1;
+	if (n < 0) return;
+	let b = bounds(shapes[n]);
+	if (!b) return;
+	let { pos, size } = b;
+	for (; n-- > 0; ) {
+		b = bounds(shapes[n]);
+		if (!b) continue;
+		[pos, size] = __unionBounds(pos, size, b.pos, b.size);
+	}
+	return [pos, size];
 };
 
 /**
@@ -43,13 +43,13 @@ export const __collBounds = (
  * @param bsize - bbox 2 size
  */
 export const __unionBounds = (
-    apos: ReadonlyVec,
-    asize: ReadonlyVec,
-    bpos: ReadonlyVec,
-    bsize: ReadonlyVec
+	apos: ReadonlyVec,
+	asize: ReadonlyVec,
+	bpos: ReadonlyVec,
+	bsize: ReadonlyVec
 ): VecPair => {
-    const p = add([], apos, asize);
-    const q = add([], bpos, bsize);
-    const pos = min([], apos, bpos);
-    return [pos, sub(null, max(null, p, q), pos)];
+	const p = add([], apos, asize);
+	const q = add([], bpos, bsize);
+	const pos = min([], apos, bpos);
+	return [pos, sub(null, max(null, p, q), pos)];
 };

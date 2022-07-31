@@ -3,29 +3,29 @@ import { isNode } from "@thi.ng/checks/is-node";
 import { map } from "@thi.ng/transducers/map";
 
 let inspect:
-    | ((
-          object: any,
-          showHidden?: boolean,
-          depth?: number | null,
-          color?: boolean
-      ) => string)
-    | null = null;
+	| ((
+			object: any,
+			showHidden?: boolean,
+			depth?: number | null,
+			color?: boolean
+	  ) => string)
+	| null = null;
 
 isNode() &&
-    import("util").then((m) => {
-        inspect = m.inspect;
-    });
+	import("util").then((m) => {
+		inspect = m.inspect;
+	});
 
 const inspectSet = (coll: Set<any>, opts: any) =>
-    [...map((x) => inspect!(x, opts), coll)].join(", ");
+	[...map((x) => inspect!(x, opts), coll)].join(", ");
 
 const inspectMap = (coll: Map<any, any>, opts: any) =>
-    [
-        ...map(
-            ([k, v]) => `${inspect!(k, opts)} => ${inspect!(v, opts)}`,
-            coll
-        ),
-    ].join(", ");
+	[
+		...map(
+			([k, v]) => `${inspect!(k, opts)} => ${inspect!(v, opts)}`,
+			coll
+		),
+	].join(", ");
 
 /**
  * NodeJS inspection mixin
@@ -37,24 +37,24 @@ const inspectMap = (coll: Map<any, any>, opts: any) =>
  * @internal
  */
 export const __inspectable = mixin({
-    [Symbol.for("nodejs.util.inspect.custom")](depth: number, opts: any) {
-        const name = this[Symbol.toStringTag];
-        const childOpts = {
-            ...opts,
-            depth: opts.depth === null ? null : opts.depth - 1,
-        };
-        return depth >= 0
-            ? [
-                  `${name}(${this.size || 0}) {`,
-                  inspect
-                      ? this instanceof Set
-                          ? inspectSet(this, childOpts)
-                          : this instanceof Map
-                          ? inspectMap(this, childOpts)
-                          : ""
-                      : "",
-                  "}",
-              ].join(" ")
-            : opts.stylize(`[${name}]`, "special");
-    },
+	[Symbol.for("nodejs.util.inspect.custom")](depth: number, opts: any) {
+		const name = this[Symbol.toStringTag];
+		const childOpts = {
+			...opts,
+			depth: opts.depth === null ? null : opts.depth - 1,
+		};
+		return depth >= 0
+			? [
+					`${name}(${this.size || 0}) {`,
+					inspect
+						? this instanceof Set
+							? inspectSet(this, childOpts)
+							: this instanceof Map
+							? inspectMap(this, childOpts)
+							: ""
+						: "",
+					"}",
+			  ].join(" ")
+			: opts.stylize(`[${name}]`, "special");
+	},
 });

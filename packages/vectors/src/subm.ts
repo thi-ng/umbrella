@@ -9,6 +9,6 @@ import { ARGS_VVV, MATH2 } from "./compile/templates.js";
  * - {@link addm}
  */
 export const [subm, subm2, subm3, subm4] = defOp<MultiVecOpVVV, VecOpVVV>(
-    MATH2("-", "*"),
-    ARGS_VVV
+	MATH2("-", "*"),
+	ARGS_VVV
 );

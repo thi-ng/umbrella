@@ -12,12 +12,12 @@ import { frustum, frustumBounds } from "./frustum.js";
  * @param far -
  */
 export const perspective = (
-    out: Mat | null,
-    fov: number,
-    aspect: number,
-    near: number,
-    far: number
+	out: Mat | null,
+	fov: number,
+	aspect: number,
+	near: number,
+	far: number
 ): Mat => {
-    const f = frustumBounds(fov, aspect, near, far);
-    return frustum(out, f.left, f.right, f.bottom, f.top, f.near, f.far);
+	const f = frustumBounds(fov, aspect, near, far);
+	return frustum(out, f.left, f.right, f.bottom, f.top, f.near, f.far);
 };

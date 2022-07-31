@@ -5,8 +5,8 @@ type Op3 = FnU3<boolean>;
 type Op4 = FnU4<boolean>;
 
 export interface Sum<T> {
-    s: T;
-    c: boolean;
+	s: T;
+	c: boolean;
 }
 
 /**
@@ -209,7 +209,7 @@ export const oai22: Op4 = (a, b, c, d) => !((a || b) && (c || d));
  * @param s -
  */
 export const mux: Op3 = (a: boolean, b: boolean, s: boolean) =>
-    (a && !s) || (b && s);
+	(a && !s) || (b && s);
 
 /**
  * {@link https://en.wikipedia.org/wiki/NAND_logic#DEMUX}
@@ -225,8 +225,8 @@ export const mux: Op3 = (a: boolean, b: boolean, s: boolean) =>
  * @param s -
  */
 export const demux: FnU2<boolean, [boolean, boolean]> = (i, s) => [
-    i && !s,
-    i && s,
+	i && !s,
+	i && s,
 ];
 
 /**
@@ -236,8 +236,8 @@ export const demux: FnU2<boolean, [boolean, boolean]> = (i, s) => [
  * @param b -
  */
 export const hadd1: FnU2<boolean, Sum<boolean>> = (a, b) => ({
-    s: a !== b,
-    c: a && b,
+	s: a !== b,
+	c: a && b,
 });
 
 /**
@@ -248,8 +248,8 @@ export const hadd1: FnU2<boolean, Sum<boolean>> = (a, b) => ({
  * @param c -
  */
 export const fadd1: FnU3<boolean, Sum<boolean>> = (a, b, c) => ({
-    s: (a !== b) !== c,
-    c: (a !== b && c) || (a && b),
+	s: (a !== b) !== c,
+	c: (a !== b && c) || (a && b),
 });
 
 /**
@@ -260,13 +260,13 @@ export const fadd1: FnU3<boolean, Sum<boolean>> = (a, b, c) => ({
  * @param c -
  */
 export const rca = (a: boolean[], b: boolean[], c: boolean): Sum<boolean[]> => {
-    const s: boolean[] = [];
-    for (let n = a.length, i = 0; i < n; i++) {
-        const r = fadd1(a[i], b[i], c);
-        s.push(r.s);
-        c = r.c;
-    }
-    return { s, c };
+	const s: boolean[] = [];
+	for (let n = a.length, i = 0; i < n; i++) {
+		const r = fadd1(a[i], b[i], c);
+		s.push(r.s);
+		c = r.c;
+	}
+	return { s, c };
 };
 
 /**
@@ -277,14 +277,14 @@ export const rca = (a: boolean[], b: boolean[], c: boolean): Sum<boolean[]> => {
  * @param n -
  */
 export const delay = (n: number) => {
-    const buf = new Array<boolean>(n).fill(false);
-    let i = 0;
-    return n > 0
-        ? (x: boolean) => {
-              const y = buf[i];
-              buf[i++] = x;
-              i %= n;
-              return y;
-          }
-        : (x: boolean) => x;
+	const buf = new Array<boolean>(n).fill(false);
+	let i = 0;
+	return n > 0
+		? (x: boolean) => {
+				const y = buf[i];
+				buf[i++] = x;
+				i %= n;
+				return y;
+		  }
+		: (x: boolean) => x;
 };

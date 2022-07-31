@@ -3,10 +3,10 @@
  * part of the collection.
  */
 export interface IContains<T> {
-    /**
-     * Returns `true` if `x` is part of collection.
-     *
-     * @param x - value to check for
-     */
-    contains(x: T): boolean;
+	/**
+	 * Returns `true` if `x` is part of collection.
+	 *
+	 * @param x - value to check for
+	 */
+	contains(x: T): boolean;
 }

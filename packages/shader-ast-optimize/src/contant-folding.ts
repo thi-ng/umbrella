@@ -6,21 +6,21 @@ import { clamp } from "@thi.ng/math/interval";
 import { mix } from "@thi.ng/math/mix";
 import { fract, mod } from "@thi.ng/math/prec";
 import type {
-    FnCall,
-    Lit,
-    Op1,
-    Op2,
-    Swizzle,
-    Term,
-    Operator,
-    Swizzle4_1,
+	FnCall,
+	Lit,
+	Op1,
+	Op2,
+	Swizzle,
+	Term,
+	Operator,
+	Swizzle4_1,
 } from "@thi.ng/shader-ast";
 import {
-    isFloat,
-    isInt,
-    isLitNumericConst,
-    isLitVecConst,
-    isUint,
+	isFloat,
+	isInt,
+	isLitNumericConst,
+	isLitVecConst,
+	isUint,
 } from "@thi.ng/shader-ast/ast/checks";
 import { float, int, lit, uint } from "@thi.ng/shader-ast/ast/lit";
 import { allChildren, walk } from "@thi.ng/shader-ast/ast/scope";
@@ -30,140 +30,140 @@ import { LOGGER } from "@thi.ng/shader-ast/logger";
  * Replaces contents of `node` with those of `next`. All other existing props in
  * `node` will be removed.
  *
- * @param node - 
- * @param next - 
+ * @param node -
+ * @param next -
  *
  * @internal
  */
 const replaceNode = (node: any, next: any) => {
-    if (LOGGER.level <= LogLevel.DEBUG) {
-        LOGGER.debug(`replacing AST node:`);
-        LOGGER.debug("\told: " + JSON.stringify(node));
-        LOGGER.debug("\tnew: " + JSON.stringify(next));
-    }
-    for (let k in node) {
-        !next.hasOwnProperty(k) && delete node[k];
-    }
-    Object.assign(node, next);
-    return true;
+	if (LOGGER.level <= LogLevel.DEBUG) {
+		LOGGER.debug(`replacing AST node:`);
+		LOGGER.debug("\told: " + JSON.stringify(node));
+		LOGGER.debug("\tnew: " + JSON.stringify(next));
+	}
+	for (let k in node) {
+		!next.hasOwnProperty(k) && delete node[k];
+	}
+	Object.assign(node, next);
+	return true;
 };
 
 const replaceNumericNode = (node: any, res: number) => {
-    node.type === "int" && (res |= 0);
-    node.type === "uint" && (res >>>= 0);
-    return replaceNode(node, lit(node.type, res));
+	node.type === "int" && (res |= 0);
+	node.type === "uint" && (res >>>= 0);
+	return replaceNode(node, lit(node.type, res));
 };
 
 /** @internal */
 const maybeFoldMath = (op: Operator, l: number, r: number) =>
-    op === "+"
-        ? l + r
-        : op === "-"
-        ? l - r
-        : op === "*"
-        ? l * r
-        : op === "/"
-        ? l / r
-        : undefined;
+	op === "+"
+		? l + r
+		: op === "-"
+		? l - r
+		: op === "*"
+		? l * r
+		: op === "/"
+		? l / r
+		: undefined;
 
 /** @internal */
 const COMPS: Record<Swizzle4_1, number> = { x: 0, y: 1, z: 2, w: 3 };
 
 const BUILTINS: IObjectOf<Fn<number[], number>> = {
-    abs: ([a]) => Math.abs(a),
-    acos: ([a]) => Math.acos(a),
-    asin: ([a]) => Math.asin(a),
-    ceil: ([a]) => Math.ceil(a),
-    clamp: ([a, b, c]) => clamp(a, b, c),
-    cos: ([a]) => Math.cos(a),
-    degrees: ([a]) => deg(a),
-    exp: ([a]) => Math.exp(a),
-    exp2: ([a]) => Math.pow(2, a),
-    floor: ([a]) => Math.floor(a),
-    fract: ([a]) => fract(a),
-    inversesqrt: ([a]) => 1 / Math.sqrt(a),
-    log: ([a]) => Math.log(a),
-    log2: ([a]) => Math.log2(a),
-    max: ([a, b]) => Math.max(a, b),
-    min: ([a, b]) => Math.min(a, b),
-    mix: ([a, b, c]) => mix(a, b, c),
-    mod: ([a, b]) => mod(a, b),
-    pow: ([a, b]) => Math.pow(a, b),
-    radians: ([a]) => rad(a),
-    sign: ([a]) => Math.sign(a),
-    sin: ([a]) => Math.sin(a),
-    tan: ([a]) => Math.tan(a),
-    sqrt: ([a]) => Math.sqrt(a),
+	abs: ([a]) => Math.abs(a),
+	acos: ([a]) => Math.acos(a),
+	asin: ([a]) => Math.asin(a),
+	ceil: ([a]) => Math.ceil(a),
+	clamp: ([a, b, c]) => clamp(a, b, c),
+	cos: ([a]) => Math.cos(a),
+	degrees: ([a]) => deg(a),
+	exp: ([a]) => Math.exp(a),
+	exp2: ([a]) => Math.pow(2, a),
+	floor: ([a]) => Math.floor(a),
+	fract: ([a]) => fract(a),
+	inversesqrt: ([a]) => 1 / Math.sqrt(a),
+	log: ([a]) => Math.log(a),
+	log2: ([a]) => Math.log2(a),
+	max: ([a, b]) => Math.max(a, b),
+	min: ([a, b]) => Math.min(a, b),
+	mix: ([a, b, c]) => mix(a, b, c),
+	mod: ([a, b]) => mod(a, b),
+	pow: ([a, b]) => Math.pow(a, b),
+	radians: ([a]) => rad(a),
+	sign: ([a]) => Math.sign(a),
+	sin: ([a]) => Math.sin(a),
+	tan: ([a]) => Math.tan(a),
+	sqrt: ([a]) => Math.sqrt(a),
 };
 
 /** @internal */
 export const foldNode = defmulti<Term<any>, boolean | undefined>(
-    (t) => t.tag,
-    {},
-    {
-        [DEFAULT]: () => false,
+	(t) => t.tag,
+	{},
+	{
+		[DEFAULT]: () => false,
 
-        op1: (node) => {
-            const $node = <Op1<any>>node;
-            if ($node.op == "-" && isLitNumericConst($node.val)) {
-                (<Lit<"float">>$node.val).val *= -1;
-                return replaceNode(node, <Lit<"float">>$node.val);
-            }
-        },
+		op1: (node) => {
+			const $node = <Op1<any>>node;
+			if ($node.op == "-" && isLitNumericConst($node.val)) {
+				(<Lit<"float">>$node.val).val *= -1;
+				return replaceNode(node, <Lit<"float">>$node.val);
+			}
+		},
 
-        op2: (node) => {
-            const $node = <Op2<any>>node;
-            if (isLitNumericConst($node.l) && isLitNumericConst($node.r)) {
-                const l: number = $node.l.val;
-                const r: number = $node.r.val;
-                let res = maybeFoldMath($node.op, l, r);
-                if (res !== undefined) {
-                    return replaceNumericNode(node, res);
-                }
-            }
-        },
+		op2: (node) => {
+			const $node = <Op2<any>>node;
+			if (isLitNumericConst($node.l) && isLitNumericConst($node.r)) {
+				const l: number = $node.l.val;
+				const r: number = $node.r.val;
+				let res = maybeFoldMath($node.op, l, r);
+				if (res !== undefined) {
+					return replaceNumericNode(node, res);
+				}
+			}
+		},
 
-        call_i: (node) => {
-            const $node = <FnCall<any>>node;
-            if ($node.args.every((x) => isLitNumericConst(x))) {
-                const op = BUILTINS[$node.id];
-                if (op !== undefined) {
-                    return replaceNumericNode(
-                        node,
-                        op($node.args.map((x) => (<Lit<any>>x).val))
-                    );
-                }
-            }
-        },
+		call_i: (node) => {
+			const $node = <FnCall<any>>node;
+			if ($node.args.every((x) => isLitNumericConst(x))) {
+				const op = BUILTINS[$node.id];
+				if (op !== undefined) {
+					return replaceNumericNode(
+						node,
+						op($node.args.map((x) => (<Lit<any>>x).val))
+					);
+				}
+			}
+		},
 
-        lit: (node) => {
-            const $node = <Lit<any>>node;
-            if (isLitNumericConst($node.val)) {
-                if (isFloat($node.val)) {
-                    return replaceNode(node, float($node.val.val));
-                }
-                if (isInt($node.val)) {
-                    return replaceNode(node, int($node.val.val));
-                }
-                if (isUint($node.val)) {
-                    return replaceNode(node, uint($node.val.val));
-                }
-            }
-        },
+		lit: (node) => {
+			const $node = <Lit<any>>node;
+			if (isLitNumericConst($node.val)) {
+				if (isFloat($node.val)) {
+					return replaceNode(node, float($node.val.val));
+				}
+				if (isInt($node.val)) {
+					return replaceNode(node, int($node.val.val));
+				}
+				if (isUint($node.val)) {
+					return replaceNode(node, uint($node.val.val));
+				}
+			}
+		},
 
-        swizzle: (node) => {
-            const $node = <Swizzle<any>>node;
-            const val = $node.val;
-            if (isLitVecConst(val)) {
-                if (isFloat(node)) {
-                    return replaceNode(
-                        node,
-                        float(val.val[COMPS[<Swizzle4_1>$node.id]])
-                    );
-                }
-            }
-        },
-    }
+		swizzle: (node) => {
+			const $node = <Swizzle<any>>node;
+			const val = $node.val;
+			if (isLitVecConst(val)) {
+				if (isFloat(node)) {
+					return replaceNode(
+						node,
+						float(val.val[COMPS[<Swizzle4_1>$node.id]])
+					);
+				}
+			}
+		},
+	}
 );
 
 /**
@@ -223,18 +223,18 @@ export const foldNode = defmulti<Term<any>, boolean | undefined>(
  * @param tree -
  */
 export const constantFolding = (tree: Term<any>) => {
-    let exec = true;
-    while (exec) {
-        exec = false;
-        walk(
-            (_, node) => {
-                exec = foldNode(node) || exec;
-            },
-            allChildren,
-            <any>null,
-            tree,
-            false
-        );
-    }
-    return tree;
+	let exec = true;
+	while (exec) {
+		exec = false;
+		walk(
+			(_, node) => {
+				exec = foldNode(node) || exec;
+			},
+			allChildren,
+			<any>null,
+			tree,
+			false
+		);
+	}
+	return tree;
 };

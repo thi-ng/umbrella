@@ -1,132 +1,132 @@
 {
-    "name": "@thi.ng/date",
-    "version": "2.3.2",
-    "description": "Datetime types, relative dates, math, iterators, composable formatters, locales",
-    "type": "module",
-    "module": "./index.js",
-    "typings": "./index.d.ts",
-    "sideEffects": false,
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/thi-ng/umbrella.git"
-    },
-    "homepage": "https://github.com/thi-ng/umbrella/tree/master/packages/date#readme",
-    "funding": [
-        {
-            "type": "github",
-            "url": "https://github.com/sponsors/postspectacular"
-        },
-        {
-            "type": "patreon",
-            "url": "https://patreon.com/thing_umbrella"
-        }
-    ],
-    "author": "Karsten Schmidt <k+npm@thi.ng>",
-    "license": "Apache-2.0",
-    "scripts": {
-        "build": "yarn clean && tsc --declaration",
-        "clean": "rimraf '*.js' '*.d.ts' '*.map' doc",
-        "doc": "typedoc --excludePrivate --excludeInternal --out doc src/index.ts",
-        "doc:ae": "mkdir -p .ae/doc .ae/temp && api-extractor run --local --verbose",
-        "doc:readme": "yarn doc:stats && tools:readme",
-        "doc:stats": "tools:module-stats",
-        "pub": "yarn npm publish --access public",
-        "test": "testament test"
-    },
-    "dependencies": {
-        "@thi.ng/api": "^8.3.8",
-        "@thi.ng/checks": "^3.2.2",
-        "@thi.ng/strings": "^3.3.6"
-    },
-    "devDependencies": {
-        "@microsoft/api-extractor": "^7.25.0",
-        "@thi.ng/testament": "^0.2.9",
-        "rimraf": "^3.0.2",
-        "tools": "workspace:^",
-        "typedoc": "^0.22.17",
-        "typescript": "^4.7.4"
-    },
-    "keywords": [
-        "datastructure",
-        "date",
-        "format",
-        "i18n",
-        "interval",
-        "iterator",
-        "math",
-        "offset",
-        "parser",
-        "precision",
-        "relative",
-        "smpte",
-        "string",
-        "time",
-        "typescript",
-        "utc"
-    ],
-    "publishConfig": {
-        "access": "public"
-    },
-    "engines": {
-        "node": ">=12.7"
-    },
-    "files": [
-        "*.js",
-        "*.d.ts",
-        "i18n",
-        "internal"
-    ],
-    "exports": {
-        ".": {
-            "default": "./index.js"
-        },
-        "./api": {
-            "default": "./api.js"
-        },
-        "./checks": {
-            "default": "./checks.js"
-        },
-        "./datetime": {
-            "default": "./datetime.js"
-        },
-        "./format": {
-            "default": "./format.js"
-        },
-        "./i18n/de": {
-            "default": "./i18n/de.js"
-        },
-        "./i18n/en": {
-            "default": "./i18n/en.js"
-        },
-        "./i18n/es": {
-            "default": "./i18n/es.js"
-        },
-        "./i18n/fr": {
-            "default": "./i18n/fr.js"
-        },
-        "./i18n/it": {
-            "default": "./i18n/it.js"
-        },
-        "./i18n": {
-            "default": "./i18n.js"
-        },
-        "./iterators": {
-            "default": "./iterators.js"
-        },
-        "./relative": {
-            "default": "./relative.js"
-        },
-        "./round": {
-            "default": "./round.js"
-        },
-        "./timecode": {
-            "default": "./timecode.js"
-        },
-        "./units": {
-            "default": "./units.js"
-        }
-    },
-    "thi.ng": {
-        "year": 2020
-    }
+	"name": "@thi.ng/date",
+	"version": "2.3.2",
+	"description": "Datetime types, relative dates, math, iterators, composable formatters, locales",
+	"type": "module",
+	"module": "./index.js",
+	"typings": "./index.d.ts",
+	"sideEffects": false,
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/thi-ng/umbrella.git"
+	},
+	"homepage": "https://github.com/thi-ng/umbrella/tree/master/packages/date#readme",
+	"funding": [
+		{
+			"type": "github",
+			"url": "https://github.com/sponsors/postspectacular"
+		},
+		{
+			"type": "patreon",
+			"url": "https://patreon.com/thing_umbrella"
+		}
+	],
+	"author": "Karsten Schmidt <k+npm@thi.ng>",
+	"license": "Apache-2.0",
+	"scripts": {
+		"build": "yarn clean && tsc --declaration",
+		"clean": "rimraf '*.js' '*.d.ts' '*.map' doc",
+		"doc": "typedoc --excludePrivate --excludeInternal --out doc src/index.ts",
+		"doc:ae": "mkdir -p .ae/doc .ae/temp && api-extractor run --local --verbose",
+		"doc:readme": "yarn doc:stats && tools:readme",
+		"doc:stats": "tools:module-stats",
+		"pub": "yarn npm publish --access public",
+		"test": "testament test"
+	},
+	"dependencies": {
+		"@thi.ng/api": "^8.3.8",
+		"@thi.ng/checks": "^3.2.2",
+		"@thi.ng/strings": "^3.3.6"
+	},
+	"devDependencies": {
+		"@microsoft/api-extractor": "^7.25.0",
+		"@thi.ng/testament": "^0.2.9",
+		"rimraf": "^3.0.2",
+		"tools": "workspace:^",
+		"typedoc": "^0.22.17",
+		"typescript": "^4.7.4"
+	},
+	"keywords": [
+		"datastructure",
+		"date",
+		"format",
+		"i18n",
+		"interval",
+		"iterator",
+		"math",
+		"offset",
+		"parser",
+		"precision",
+		"relative",
+		"smpte",
+		"string",
+		"time",
+		"typescript",
+		"utc"
+	],
+	"publishConfig": {
+		"access": "public"
+	},
+	"engines": {
+		"node": ">=12.7"
+	},
+	"files": [
+		"*.js",
+		"*.d.ts",
+		"i18n",
+		"internal"
+	],
+	"exports": {
+		".": {
+			"default": "./index.js"
+		},
+		"./api": {
+			"default": "./api.js"
+		},
+		"./checks": {
+			"default": "./checks.js"
+		},
+		"./datetime": {
+			"default": "./datetime.js"
+		},
+		"./format": {
+			"default": "./format.js"
+		},
+		"./i18n/de": {
+			"default": "./i18n/de.js"
+		},
+		"./i18n/en": {
+			"default": "./i18n/en.js"
+		},
+		"./i18n/es": {
+			"default": "./i18n/es.js"
+		},
+		"./i18n/fr": {
+			"default": "./i18n/fr.js"
+		},
+		"./i18n/it": {
+			"default": "./i18n/it.js"
+		},
+		"./i18n": {
+			"default": "./i18n.js"
+		},
+		"./iterators": {
+			"default": "./iterators.js"
+		},
+		"./relative": {
+			"default": "./relative.js"
+		},
+		"./round": {
+			"default": "./round.js"
+		},
+		"./timecode": {
+			"default": "./timecode.js"
+		},
+		"./units": {
+			"default": "./units.js"
+		}
+	},
+	"thi.ng": {
+		"year": 2020
+	}
 }

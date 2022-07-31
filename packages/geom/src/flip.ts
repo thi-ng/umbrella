@@ -32,46 +32,46 @@ import { __dispatch } from "./internal/dispatch.js";
  * @param shape
  */
 export const flip: MultiFn1<IShape, IShape> = defmulti<any, IShape>(
-    __dispatch,
-    {
-        cubic: "points",
-        line: "points",
-        points3: "points",
-        poly: "points",
-        polyline: "points",
-        quad: "points",
-        quadratic: "points",
-        tri: "points",
-    },
-    {
-        [DEFAULT]: (x: IShape) => x,
+	__dispatch,
+	{
+		cubic: "points",
+		line: "points",
+		points3: "points",
+		poly: "points",
+		polyline: "points",
+		quad: "points",
+		quadratic: "points",
+		tri: "points",
+	},
+	{
+		[DEFAULT]: (x: IShape) => x,
 
-        arc: ($: Arc) => {
-            const t = $.start;
-            $.start = $.end;
-            $.end = t;
-            $.cw = !$.cw;
-            return $;
-        },
+		arc: ($: Arc) => {
+			const t = $.start;
+			$.start = $.end;
+			$.end = t;
+			$.cw = !$.cw;
+			return $;
+		},
 
-        group: ($: Group) => {
-            $.children.forEach(flip);
-            return $;
-        },
+		group: ($: Group) => {
+			$.children.forEach(flip);
+			return $;
+		},
 
-        path: ($: Path) => {
-            // TODO
-            return $;
-        },
+		path: ($: Path) => {
+			// TODO
+			return $;
+		},
 
-        points: ($: PCLike) => {
-            $.points.reverse();
-            return $;
-        },
+		points: ($: PCLike) => {
+			$.points.reverse();
+			return $;
+		},
 
-        ray: ($: Ray) => {
-            $.dir = neg(null, $.dir);
-            return $;
-        },
-    }
+		ray: ($: Ray) => {
+			$.dir = neg(null, $.dir);
+			return $;
+		},
+	}
 );

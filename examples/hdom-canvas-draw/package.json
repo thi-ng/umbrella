@@ -1,44 +1,44 @@
 {
-    "name": "@example/hdom-canvas-draw",
-    "private": true,
-    "version": "0.0.1",
-    "description": "Interactive pattern drawing demo using transducers",
-    "repository": "https://github.com/thi-ng/umbrella",
-    "author": "Karsten Schmidt <k+npm@thi.ng>",
-    "license": "Apache-2.0",
-    "scripts": {
-        "start": "vite --open",
-        "build": "tsc && vite build --base='./'",
-        "preview": "vite preview --host --open"
-    },
-    "dependencies": {
-        "@thi.ng/hdom-canvas": "workspace:^",
-        "@thi.ng/math": "workspace:^",
-        "@thi.ng/rstream": "workspace:^",
-        "@thi.ng/rstream-gestures": "workspace:^",
-        "@thi.ng/transducers": "workspace:^",
-        "@thi.ng/transducers-hdom": "workspace:^",
-        "@thi.ng/vectors": "workspace:^"
-    },
-    "browser": {
-        "process": false,
-        "setTimeout": false,
-        "util": false
-    },
-    "thi.ng": {
-        "readme": [
-            "hdom-canvas",
-            "hiccup-canvas",
-            "rstream",
-            "rstream-gestures",
-            "transducers",
-            "transducers-hdom",
-            "vectors"
-        ],
-        "screenshot": "examples/hdom-canvas-draw.jpg"
-    },
-    "devDependencies": {
-        "typescript": "^4.7.4",
-        "vite": "^3.0.0"
-    }
+	"name": "@example/hdom-canvas-draw",
+	"private": true,
+	"version": "0.0.1",
+	"description": "Interactive pattern drawing demo using transducers",
+	"repository": "https://github.com/thi-ng/umbrella",
+	"author": "Karsten Schmidt <k+npm@thi.ng>",
+	"license": "Apache-2.0",
+	"scripts": {
+		"start": "vite --open",
+		"build": "tsc && vite build --base='./'",
+		"preview": "vite preview --host --open"
+	},
+	"dependencies": {
+		"@thi.ng/hdom-canvas": "workspace:^",
+		"@thi.ng/math": "workspace:^",
+		"@thi.ng/rstream": "workspace:^",
+		"@thi.ng/rstream-gestures": "workspace:^",
+		"@thi.ng/transducers": "workspace:^",
+		"@thi.ng/transducers-hdom": "workspace:^",
+		"@thi.ng/vectors": "workspace:^"
+	},
+	"browser": {
+		"process": false,
+		"setTimeout": false,
+		"util": false
+	},
+	"thi.ng": {
+		"readme": [
+			"hdom-canvas",
+			"hiccup-canvas",
+			"rstream",
+			"rstream-gestures",
+			"transducers",
+			"transducers-hdom",
+			"vectors"
+		],
+		"screenshot": "examples/hdom-canvas-draw.jpg"
+	},
+	"devDependencies": {
+		"typescript": "^4.7.4",
+		"vite": "^3.0.0"
+	}
 }

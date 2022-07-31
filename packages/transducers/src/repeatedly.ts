@@ -18,7 +18,7 @@ import type { Fn } from "@thi.ng/api";
  * @param n - num values (default: ∞)
  */
 export function* repeatedly<T>(fn: Fn<number, T>, n = Infinity) {
-    for (let i = 0; i < n; i++) {
-        yield fn(i);
-    }
+	for (let i = 0; i < n; i++) {
+		yield fn(i);
+	}
 }

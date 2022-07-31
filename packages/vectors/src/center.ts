@@ -7,8 +7,8 @@ import { subN } from "./subn.js";
  * from each component and writes result to `out` (or back into `a` iff `out` is
  * null).
  *
- * @param out - 
- * @param a - 
+ * @param out -
+ * @param a -
  */
 export const center = (out: Vec | null, a: ReadonlyVec) =>
-    subN(out, a, vmean(a));
+	subN(out, a, vmean(a));

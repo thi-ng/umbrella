@@ -1,15 +1,15 @@
 import { adaptDPI } from "@thi.ng/adapt-dpi";
 
 export type CanvasContext =
-    | CanvasRenderingContext2D
-    | WebGLRenderingContext
-    | WebGL2RenderingContext;
+	| CanvasRenderingContext2D
+	| WebGLRenderingContext
+	| WebGL2RenderingContext;
 
 interface Canvas2DContextAttributes {
-    alpha?: boolean;
-    storage?: boolean;
-    willReadFrequently?: boolean;
-    [attribute: string]: boolean | string | undefined;
+	alpha?: boolean;
+	storage?: boolean;
+	willReadFrequently?: boolean;
+	[attribute: string]: boolean | string | undefined;
 }
 
 /**
@@ -19,26 +19,26 @@ interface Canvas2DContextAttributes {
  * Not all handlers need to be implemented.
  */
 export interface CanvasHandlers<T extends CanvasContext> {
-    /**
-     * User init handler (called only once when canvas first)
-     */
-    init(el: HTMLCanvasElement, ctx: T, hctx: any, ...args: any[]): void;
-    /**
-     * Update handler (called for each hdom update iteration)
-     */
-    update(
-        el: HTMLCanvasElement,
-        ctx: T,
-        hctx: any,
-        time: number,
-        frame: number,
-        ...args: any[]
-    ): void;
-    /**
-     * release handler (called only once when canvas element is removed
-     * from DOM)
-     */
-    release(el: HTMLCanvasElement, ctx: T, hctx: any, ...args: any[]): void;
+	/**
+	 * User init handler (called only once when canvas first)
+	 */
+	init(el: HTMLCanvasElement, ctx: T, hctx: any, ...args: any[]): void;
+	/**
+	 * Update handler (called for each hdom update iteration)
+	 */
+	update(
+		el: HTMLCanvasElement,
+		ctx: T,
+		hctx: any,
+		time: number,
+		frame: number,
+		...args: any[]
+	): void;
+	/**
+	 * release handler (called only once when canvas element is removed
+	 * from DOM)
+	 */
+	release(el: HTMLCanvasElement, ctx: T, hctx: any, ...args: any[]): void;
 }
 
 /**
@@ -50,41 +50,41 @@ export interface CanvasHandlers<T extends CanvasContext> {
  * @param opts - canvas context creation options
  */
 const _canvas = (
-    type: string,
-    handlers: Partial<CanvasHandlers<any>>,
-    opts: Canvas2DContextAttributes | WebGLContextAttributes | undefined
+	type: string,
+	handlers: Partial<CanvasHandlers<any>>,
+	opts: Canvas2DContextAttributes | WebGLContextAttributes | undefined
 ) => {
-    let el: HTMLCanvasElement;
-    let ctx: any;
-    let frame = 0;
-    let time = 0;
-    return {
-        init(_el: HTMLCanvasElement, hctx: any, ...args: any[]) {
-            el = _el;
-            adaptDPI(el, el.width, el.height);
-            ctx = el.getContext(type, opts);
-            time = Date.now();
-            handlers.init && handlers.init(el, ctx, hctx, ...args);
-            handlers.update &&
-                handlers.update(el, ctx, hctx, time, frame++, ...args);
-        },
-        render(hctx: any, ...args: any[]) {
-            ctx &&
-                handlers.update &&
-                handlers.update(
-                    el,
-                    ctx,
-                    hctx,
-                    Date.now() - time,
-                    frame++,
-                    ...args
-                );
-            return ["canvas", args[0]];
-        },
-        release(hctx: any, ...args: any[]) {
-            handlers.release && handlers.release(el, ctx, hctx, ...args);
-        },
-    };
+	let el: HTMLCanvasElement;
+	let ctx: any;
+	let frame = 0;
+	let time = 0;
+	return {
+		init(_el: HTMLCanvasElement, hctx: any, ...args: any[]) {
+			el = _el;
+			adaptDPI(el, el.width, el.height);
+			ctx = el.getContext(type, opts);
+			time = Date.now();
+			handlers.init && handlers.init(el, ctx, hctx, ...args);
+			handlers.update &&
+				handlers.update(el, ctx, hctx, time, frame++, ...args);
+		},
+		render(hctx: any, ...args: any[]) {
+			ctx &&
+				handlers.update &&
+				handlers.update(
+					el,
+					ctx,
+					hctx,
+					Date.now() - time,
+					frame++,
+					...args
+				);
+			return ["canvas", args[0]];
+		},
+		release(hctx: any, ...args: any[]) {
+			handlers.release && handlers.release(el, ctx, hctx, ...args);
+		},
+	};
 };
 
 /**
@@ -113,8 +113,8 @@ const _canvas = (
  * @param opts - canvas context creation options
  */
 export const canvasWebGL = (
-    handlers: Partial<CanvasHandlers<WebGLRenderingContext>>,
-    opts?: WebGLContextAttributes
+	handlers: Partial<CanvasHandlers<WebGLRenderingContext>>,
+	opts?: WebGLContextAttributes
 ) => _canvas("webgl", handlers, opts);
 
 /**
@@ -124,8 +124,8 @@ export const canvasWebGL = (
  * @param opts - canvas context creation options
  */
 export const canvasWebGL2 = (
-    handlers: Partial<CanvasHandlers<WebGL2RenderingContext>>,
-    opts?: WebGLContextAttributes
+	handlers: Partial<CanvasHandlers<WebGL2RenderingContext>>,
+	opts?: WebGLContextAttributes
 ) => _canvas("webgl2", handlers, opts);
 
 /**
@@ -135,6 +135,6 @@ export const canvasWebGL2 = (
  * @param glopts - canvas context creation options
  */
 export const canvas2D = (
-    handlers: Partial<CanvasHandlers<CanvasRenderingContext2D>>,
-    opts?: Canvas2DContextAttributes
+	handlers: Partial<CanvasHandlers<CanvasRenderingContext2D>>,
+	opts?: Canvas2DContextAttributes
 ) => _canvas("2d", handlers, opts);

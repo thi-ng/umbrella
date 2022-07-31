@@ -45,108 +45,108 @@ import { intArgb32Srgb } from "../int/int-srgb.js";
  * and {@link srgb} for non-linear (gamma encoded) RGB colors (CSS uses sRGB by
  * default).
  *
- * @param src - 
+ * @param src -
  */
 export const parseCss = (src: string | IDeref<string>): IParsedColor => {
-    src = (isString(src) ? src : src.deref()).toLowerCase();
-    const named = (<any>CSS_NAMES)[src] || (<any>CSS_SYSTEM_COLORS)[src];
-    if (named || src[0] === "#")
-        return new ParsedColor(
-            "srgb",
-            intArgb32Srgb([], parseHex(named || src))
-        );
-    const parts = src.split(/[(),/ ]+/);
-    const [mode, a, b, c, d] = parts;
-    assert(
-        parts.length === 5 || parts.length === 6,
-        `invalid ${mode} color: ${src}`
-    );
-    switch (mode) {
-        case "rgb":
-        case "rgba":
-            return new ParsedColor("srgb", [
-                parseNumOrPercent(a),
-                parseNumOrPercent(b),
-                parseNumOrPercent(c),
-                parseAlpha(d),
-            ]);
-        case "hsl":
-        case "hsla":
-            return new ParsedColor("hsl", [
-                parseHue(a),
-                parsePercent(b),
-                parsePercent(c),
-                parseAlpha(d),
-            ]);
-        case "lab":
-            return new ParsedColor("lab50", [
-                parsePercent(a, false),
-                parseNumber(b) * 0.01,
-                parseNumber(c) * 0.01,
-                parseAlpha(d),
-            ]);
-        case "lch":
-            return new ParsedColor("lch", [
-                parsePercent(a, false),
-                parseNumber(b) * 0.01,
-                parseHue(c),
-                parseAlpha(d),
-            ]);
-        default:
-            unsupported(`color mode: ${mode}`);
-    }
+	src = (isString(src) ? src : src.deref()).toLowerCase();
+	const named = (<any>CSS_NAMES)[src] || (<any>CSS_SYSTEM_COLORS)[src];
+	if (named || src[0] === "#")
+		return new ParsedColor(
+			"srgb",
+			intArgb32Srgb([], parseHex(named || src))
+		);
+	const parts = src.split(/[(),/ ]+/);
+	const [mode, a, b, c, d] = parts;
+	assert(
+		parts.length === 5 || parts.length === 6,
+		`invalid ${mode} color: ${src}`
+	);
+	switch (mode) {
+		case "rgb":
+		case "rgba":
+			return new ParsedColor("srgb", [
+				parseNumOrPercent(a),
+				parseNumOrPercent(b),
+				parseNumOrPercent(c),
+				parseAlpha(d),
+			]);
+		case "hsl":
+		case "hsla":
+			return new ParsedColor("hsl", [
+				parseHue(a),
+				parsePercent(b),
+				parsePercent(c),
+				parseAlpha(d),
+			]);
+		case "lab":
+			return new ParsedColor("lab50", [
+				parsePercent(a, false),
+				parseNumber(b) * 0.01,
+				parseNumber(c) * 0.01,
+				parseAlpha(d),
+			]);
+		case "lch":
+			return new ParsedColor("lch", [
+				parsePercent(a, false),
+				parseNumber(b) * 0.01,
+				parseHue(c),
+				parseAlpha(d),
+			]);
+		default:
+			unsupported(`color mode: ${mode}`);
+	}
 };
 
 const HUE_NORMS: Record<string, number> = {
-    rad: TAU,
-    grad: 400,
-    turn: 1,
-    deg: 360,
-    undefined: 360,
+	rad: TAU,
+	grad: 400,
+	turn: 1,
+	deg: 360,
+	undefined: 360,
 };
 
 const parseHue = (x: string) => {
-    const match = /^(-?[0-9.]+)(deg|rad|grad|turn)?$/.exec(x);
-    assert(!!match, `expected hue, got: ${x}`);
-    return fract(parseFloat(match![1]) / HUE_NORMS[match![2]]);
+	const match = /^(-?[0-9.]+)(deg|rad|grad|turn)?$/.exec(x);
+	assert(!!match, `expected hue, got: ${x}`);
+	return fract(parseFloat(match![1]) / HUE_NORMS[match![2]]);
 };
 
 const parseAlpha = (x?: string) => (x ? parseNumOrPercent(x, 1) : 1);
 
 const parsePercent = (x: string, clamp = true) => {
-    assert(/^([0-9.]+)%$/.test(x), `expected percentage, got: ${x}`);
-    const res = parseFloat(x) / 100;
-    return clamp ? clamp01(res) : res;
+	assert(/^([0-9.]+)%$/.test(x), `expected percentage, got: ${x}`);
+	const res = parseFloat(x) / 100;
+	return clamp ? clamp01(res) : res;
 };
 
 const parseNumber = (x: string) => {
-    assert(/^-?[0-9.]+$/.test(x), `expected number, got: ${x}`);
-    return parseFloat(x);
+	assert(/^-?[0-9.]+$/.test(x), `expected number, got: ${x}`);
+	return parseFloat(x);
 };
 
 const parseNumOrPercent = (x: string, norm = 255, clamp = true) => {
-    assert(/^-?[0-9.]+%?$/.test(x), `expected number or percentage, got: ${x}`);
-    const res = parseFloat(x) / (x.endsWith("%") ? 100 : norm);
-    return clamp ? clamp01(res) : res;
+	assert(/^-?[0-9.]+%?$/.test(x), `expected number or percentage, got: ${x}`);
+	const res = parseFloat(x) / (x.endsWith("%") ? 100 : norm);
+	return clamp ? clamp01(res) : res;
 };
 
 export const parseHex = (src: string): number => {
-    const match = /^#?([0-9a-f]{3,8})$/i.exec(src);
-    if (match) {
-        const hex = match[1];
-        switch (hex.length) {
-            case 3:
-                return (
-                    (interleave4_12_24(parseInt(hex, 16)) | 0xff000000) >>> 0
-                );
-            case 4:
-                return interleave4_16_32(parseInt(hex, 16)) >>> 0;
-            case 6:
-                return (parseInt(hex, 16) | 0xff000000) >>> 0;
-            case 8:
-                return parseInt(hex, 16) >>> 0;
-            default:
-        }
-    }
-    return illegalArgs(`invalid hex color: "${src}"`);
+	const match = /^#?([0-9a-f]{3,8})$/i.exec(src);
+	if (match) {
+		const hex = match[1];
+		switch (hex.length) {
+			case 3:
+				return (
+					(interleave4_12_24(parseInt(hex, 16)) | 0xff000000) >>> 0
+				);
+			case 4:
+				return interleave4_16_32(parseInt(hex, 16)) >>> 0;
+			case 6:
+				return (parseInt(hex, 16) | 0xff000000) >>> 0;
+			case 8:
+				return parseInt(hex, 16) >>> 0;
+			default:
+		}
+	}
+	return illegalArgs(`invalid hex color: "${src}"`);
 };

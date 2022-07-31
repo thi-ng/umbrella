@@ -10,13 +10,13 @@ import { timed, timedResult } from "./timed.js";
  * @param n - number of iterations
  */
 export const bench = <T>(fn: () => T, n = 1e6, prefix = "") => {
-    let res: T;
-    return timed(() => {
-        while (n-- > 0) {
-            res = fn();
-        }
-        return res;
-    }, prefix);
+	let res: T;
+	return timed(() => {
+		while (n-- > 0) {
+			res = fn();
+		}
+		return res;
+	}, prefix);
 };
 
 /**
@@ -27,11 +27,11 @@ export const bench = <T>(fn: () => T, n = 1e6, prefix = "") => {
  * @param n - number of iterations
  */
 export const benchResult = <T>(fn: () => T, n = 1e6): TimingResult<T> => {
-    let res: T;
-    return timedResult(() => {
-        while (n-- > 0) {
-            res = fn();
-        }
-        return res;
-    });
+	let res: T;
+	return timedResult(() => {
+		while (n-- > 0) {
+			res = fn();
+		}
+		return res;
+	});
 };

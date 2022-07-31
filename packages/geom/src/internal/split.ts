@@ -3,9 +3,9 @@ import { mixN } from "@thi.ng/vectors/mixn";
 import { set } from "@thi.ng/vectors/set";
 
 export const __splitLine = (a: Vec, b: Vec, t: number): [VecPair, VecPair] => {
-    const p = mixN([], a, b, t);
-    return [
-        [a, p],
-        [set([], p), b],
-    ];
+	const p = mixN([], a, b, t);
+	return [
+		[a, p],
+		[set([], p), b],
+	];
 };

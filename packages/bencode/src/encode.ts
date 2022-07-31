@@ -13,18 +13,18 @@ import { utf8Length } from "@thi.ng/transducers-binary/utf8";
 import { mapcat } from "@thi.ng/transducers/mapcat";
 
 const enum Type {
-    INT,
-    FLOAT,
-    STR,
-    BINARY,
-    DICT,
-    LIST,
+	INT,
+	FLOAT,
+	STR,
+	BINARY,
+	DICT,
+	LIST,
 }
 
 const enum Lit {
-    DICT = 0x64,
-    END = 0x65,
-    LIST = 0x6c,
+	DICT = 0x64,
+	END = 0x65,
+	LIST = 0x6c,
 }
 
 const FLOAT_RE = /^[0-9.-]+$/;
@@ -32,67 +32,67 @@ const FLOAT_RE = /^[0-9.-]+$/;
 export const encode = (x: any, cap = 1024) => bytes(cap, encodeBin(x));
 
 const encodeBin: MultiFn1<any, BinStructItem[]> = defmulti<
-    any,
-    BinStructItem[]
+	any,
+	BinStructItem[]
 >(
-    (x: any): Type =>
-        isNumber(x)
-            ? Math.floor(x) !== x
-                ? Type.FLOAT
-                : Type.INT
-            : isBoolean(x)
-            ? Type.INT
-            : isString(x)
-            ? Type.STR
-            : x instanceof Uint8Array
-            ? Type.BINARY
-            : isArrayLike(x)
-            ? Type.LIST
-            : isPlainObject(x)
-            ? Type.DICT
-            : unsupported(`unsupported data type: ${x}`),
-    {},
-    {
-        [Type.INT]: (x: number) => {
-            __ensureValidNumber(x);
-            return [str(`i${Math.floor(x)}e`)];
-        },
+	(x: any): Type =>
+		isNumber(x)
+			? Math.floor(x) !== x
+				? Type.FLOAT
+				: Type.INT
+			: isBoolean(x)
+			? Type.INT
+			: isString(x)
+			? Type.STR
+			: x instanceof Uint8Array
+			? Type.BINARY
+			: isArrayLike(x)
+			? Type.LIST
+			: isPlainObject(x)
+			? Type.DICT
+			: unsupported(`unsupported data type: ${x}`),
+	{},
+	{
+		[Type.INT]: (x: number) => {
+			__ensureValidNumber(x);
+			return [str(`i${Math.floor(x)}e`)];
+		},
 
-        [Type.FLOAT]: (x: number) => {
-            __ensureValidNumber(x);
-            assert(
-                FLOAT_RE.test(x.toString()),
-                `values requiring exponential notation not allowed (${x})`
-            );
-            return [str(`f${x}e`)];
-        },
+		[Type.FLOAT]: (x: number) => {
+			__ensureValidNumber(x);
+			assert(
+				FLOAT_RE.test(x.toString()),
+				`values requiring exponential notation not allowed (${x})`
+			);
+			return [str(`f${x}e`)];
+		},
 
-        [Type.BINARY]: (buf: Uint8Array) => [
-            str(buf.length + ":"),
-            u8array(buf),
-        ],
+		[Type.BINARY]: (buf: Uint8Array) => [
+			str(buf.length + ":"),
+			u8array(buf),
+		],
 
-        [Type.STR]: (x: string) => [str(utf8Length(x) + ":" + x)],
+		[Type.STR]: (x: string) => [str(utf8Length(x) + ":" + x)],
 
-        [Type.LIST]: (x: Iterable<any>) => [
-            u8(Lit.LIST),
-            ...mapcat(encodeBin, x),
-            u8(Lit.END),
-        ],
+		[Type.LIST]: (x: Iterable<any>) => [
+			u8(Lit.LIST),
+			...mapcat(encodeBin, x),
+			u8(Lit.END),
+		],
 
-        [Type.DICT]: (x: any) => [
-            u8(Lit.DICT),
-            ...mapcat(
-                (k: string) => encodeBin(k).concat(encodeBin(x[k])),
-                Object.keys(x).sort()
-            ),
-            u8(Lit.END),
-        ],
-    }
+		[Type.DICT]: (x: any) => [
+			u8(Lit.DICT),
+			...mapcat(
+				(k: string) => encodeBin(k).concat(encodeBin(x[k])),
+				Object.keys(x).sort()
+			),
+			u8(Lit.END),
+		],
+	}
 );
 
 /** @internal */
 const __ensureValidNumber = (x: number) => {
-    assert(isFinite(x), `can't encode infinite value`);
-    assert(!isNaN(x), `can't encode NaN`);
+	assert(isFinite(x), `can't encode infinite value`);
+	assert(!isNaN(x), `can't encode NaN`);
 };

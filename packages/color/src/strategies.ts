@@ -3,23 +3,23 @@ import { lch, LCH } from "./lch/lch.js";
 import { rotate } from "./rotate.js";
 
 const $ = (src: LCH, l = 0, c = 0) => {
-    src.l = clamp01(src.l + l);
-    src.c = clamp(src.c + c, 0, 1.312);
-    return src;
+	src.l = clamp01(src.l + l);
+	src.c = clamp(src.c + c, 0, 1.312);
+	return src;
 };
 
 /**
  * Returns array of `src` color and its complementary color, possibly adjusted
  * via optional `deltaL` and `deltaC` args (offsets for L & C channels).
  *
- * @param src - 
- * @param deltaL - 
- * @param deltaC - 
+ * @param src -
+ * @param deltaL -
+ * @param deltaC -
  */
 export const complementaryStrategy = (
-    src: LCH,
-    deltaL?: number,
-    deltaC?: number
+	src: LCH,
+	deltaL?: number,
+	deltaC?: number
 ) => [src, $(<LCH>rotate(lch(), src, 0.5), deltaL, deltaC)];
 
 /**
@@ -27,20 +27,20 @@ export const complementaryStrategy = (
  * normalized `theta` and possibly adjusted via optional `deltaL` and `deltaC`
  * args (offsets for L & C channels).
  *
- * @param src - 
- * @param theta - 
- * @param deltaL - 
- * @param deltaC - 
+ * @param src -
+ * @param theta -
+ * @param deltaL -
+ * @param deltaC -
  */
 export const analogStrategy = (
-    src: LCH,
-    theta = 1 / 12,
-    deltaL?: number,
-    deltaC?: number
+	src: LCH,
+	theta = 1 / 12,
+	deltaL?: number,
+	deltaC?: number
 ) => [
-    src,
-    $(<LCH>rotate(lch(), src, -theta), deltaL, deltaC),
-    $(<LCH>rotate(lch(), src, theta), deltaL, deltaC),
+	src,
+	$(<LCH>rotate(lch(), src, -theta), deltaL, deltaC),
+	$(<LCH>rotate(lch(), src, theta), deltaL, deltaC),
 ];
 
 /**
@@ -49,19 +49,19 @@ export const analogStrategy = (
  * normalized `theta` and possibly adjusted via optional `deltaL` and `deltaC`
  * args (offsets for L & C channels).
  *
- * @param src - 
- * @param theta - 
- * @param deltaL - 
- * @param deltaC - 
+ * @param src -
+ * @param theta -
+ * @param deltaL -
+ * @param deltaC -
  */
 export const splitAnalogStrategy = (
-    src: LCH,
-    theta = 1 / 12,
-    deltaL?: number,
-    deltaC?: number
+	src: LCH,
+	theta = 1 / 12,
+	deltaL?: number,
+	deltaC?: number
 ) => [
-    ...splitComplementaryStrategy(src, theta, deltaL, deltaC),
-    $(<LCH>rotate(lch(), src, theta), deltaL, deltaC),
+	...splitComplementaryStrategy(src, theta, deltaL, deltaC),
+	$(<LCH>rotate(lch(), src, theta), deltaL, deltaC),
 ];
 
 /**
@@ -70,20 +70,20 @@ export const splitAnalogStrategy = (
  * (from the complementary hue) and possibly adjusted via optional `deltaL` and
  * `deltaC` args (offsets for L & C channels).
  *
- * @param src - 
- * @param theta - 
- * @param deltaL - 
- * @param deltaC - 
+ * @param src -
+ * @param theta -
+ * @param deltaL -
+ * @param deltaC -
  */
 export const splitComplementaryStrategy = (
-    src: LCH,
-    theta = 1 / 12,
-    deltaL?: number,
-    deltaC?: number
+	src: LCH,
+	theta = 1 / 12,
+	deltaL?: number,
+	deltaC?: number
 ) => [
-    src,
-    $(<LCH>rotate(lch(), src, 0.5 - theta), deltaL, deltaC),
-    $(<LCH>rotate(lch(), src, 0.5 + theta), deltaL, deltaC),
+	src,
+	$(<LCH>rotate(lch(), src, 0.5 - theta), deltaL, deltaC),
+	$(<LCH>rotate(lch(), src, 0.5 + theta), deltaL, deltaC),
 ];
 
 /**
@@ -91,19 +91,19 @@ export const splitComplementaryStrategy = (
  * color, but with these luminance settings: 0.0, 0.25, 0.5, 0.75, 1.0. Chroma
  * can be adjusted via optional `deltaC` offset.
  *
- * @param src - 
- * @param deltaC - 
+ * @param src -
+ * @param deltaC -
  */
 export const monochromeStrategy = (src: LCH, deltaC = 0) => {
-    let [_, c, h, a] = src;
-    c = clamp(c + deltaC, 0, 1.312);
-    return [
-        lch(0.0, c, h, a),
-        lch(0.25, c, h, a),
-        lch(0.5, c, h, a),
-        lch(0.75, c, h, a),
-        lch(1, c, h, a),
-    ];
+	let [_, c, h, a] = src;
+	c = clamp(c + deltaC, 0, 1.312);
+	return [
+		lch(0.0, c, h, a),
+		lch(0.25, c, h, a),
+		lch(0.5, c, h, a),
+		lch(0.75, c, h, a),
+		lch(1, c, h, a),
+	];
 };
 
 /**
@@ -112,12 +112,12 @@ export const monochromeStrategy = (src: LCH, deltaC = 0) => {
  * (possibly adjusted via optional `deltaL` and `deltaC` args, aka offsets for L
  * & C channels).
  *
- * @param src - 
- * @param deltaL - 
- * @param deltaC - 
+ * @param src -
+ * @param deltaL -
+ * @param deltaC -
  */
 export const triadicStrategy = (src: LCH, deltaL?: number, deltaC?: number) =>
-    splitComplementaryStrategy(src, 1 / 6, deltaL, deltaC);
+	splitComplementaryStrategy(src, 1 / 6, deltaL, deltaC);
 
 /**
  * Returns array of `src` color and 3 other colors whose hues form a rectangle,
@@ -126,21 +126,21 @@ export const triadicStrategy = (src: LCH, deltaL?: number, deltaC?: number) =>
  * possibly adjusted via optional `deltaL` and `deltaC` args (offsets for L & C
  * channels).
  *
- * @param src - 
- * @param theta - 
- * @param deltaL - 
- * @param deltaC - 
+ * @param src -
+ * @param theta -
+ * @param deltaL -
+ * @param deltaC -
  */
 export const tetradicStrategy = (
-    src: LCH,
-    theta = 1 / 12,
-    deltaL?: number,
-    deltaC?: number
+	src: LCH,
+	theta = 1 / 12,
+	deltaL?: number,
+	deltaC?: number
 ) => [
-    src,
-    $(<LCH>rotate(lch(), src, theta), deltaL, deltaC),
-    $(<LCH>rotate(lch(), src, 0.5), deltaL, deltaC),
-    $(<LCH>rotate(lch(), src, 0.5 + theta), deltaL, deltaC),
+	src,
+	$(<LCH>rotate(lch(), src, theta), deltaL, deltaC),
+	$(<LCH>rotate(lch(), src, 0.5), deltaL, deltaC),
+	$(<LCH>rotate(lch(), src, 0.5 + theta), deltaL, deltaC),
 ];
 
 /**
@@ -149,9 +149,9 @@ export const tetradicStrategy = (
  * adjusted via optional `deltaL` and `deltaC` args, aka offsets for L & C
  * channels).
  *
- * @param src - 
- * @param deltaL - 
- * @param deltaC - 
+ * @param src -
+ * @param deltaL -
+ * @param deltaC -
  */
 export const squareStrategy = (src: LCH, deltaL?: number, deltaC?: number) =>
-    tetradicStrategy(src, 0.25, deltaL, deltaC);
+	tetradicStrategy(src, 0.25, deltaL, deltaC);

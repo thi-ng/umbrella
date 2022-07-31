@@ -21,15 +21,15 @@ import { transduce } from "@thi.ng/transducers/transduce";
 import type { Align, Column, Row, TableOpts } from "./api.js";
 
 const PADS: Record<Align, Fn<number, Stringer<string>>> = {
-    c: center,
-    l: padRight,
-    r: padLeft,
+	c: center,
+	l: padRight,
+	r: padLeft,
 };
 
 const SEPS: Record<Align, Stringer<number>> = {
-    c: (x) => `:${repeat("-", x)}:`,
-    l: (x) => `:${repeat("-", x + 1)}`,
-    r: (x) => `${repeat("-", x + 1)}:`,
+	c: (x) => `:${repeat("-", x)}:`,
+	l: (x) => `:${repeat("-", x + 1)}`,
+	r: (x) => `${repeat("-", x + 1)}:`,
 };
 
 /**
@@ -61,49 +61,49 @@ const SEPS: Record<Align, Stringer<number>> = {
  * // |     44 |   Dora    | (recipient) |
  * ```
  *
- * @param header - 
- * @param rows - 
- * @param opts - 
+ * @param header -
+ * @param rows -
+ * @param opts -
  */
 export const table = (
-    header: string[],
-    rows: Iterable<Row>,
-    opts: Partial<TableOpts> = {}
+	header: string[],
+	rows: Iterable<Row>,
+	opts: Partial<TableOpts> = {}
 ) => {
-    const numColumns = header.length;
-    const align = opts.align || [...$repeat<Align>("l", numColumns)];
-    assert(align.length === numColumns, `invalid/missing column alignments`);
-    opts.bold && (header = header.map(wrap("**")));
-    const body = [header, ...rows];
-    const widths = transduce(
-        multiplex(
-            ...(<[Transducer<Row, number>]>[
-                ...repeatedly(
-                    (i) =>
-                        comp(
-                            map((row: Row) =>
-                                row[i] != null ? String(row[i]).length : 0
-                            ),
-                            scan(max())
-                        ),
-                    numColumns
-                ),
-            ])
-        ),
-        last<number[]>(),
-        body
-    );
-    const pads = widths.map((w, i) => PADS[align![i]](w));
-    const colIDs = [...repeatedly((x) => x, numColumns)];
-    const result = body.map(
-        (row) => colIDs.map((i) => `| ${pads[i](str(row[i]))} `).join("") + "|"
-    );
-    result.splice(
-        1,
-        0,
-        widths.map((w, i) => `|${SEPS[align![i]](w)}`).join("") + "|"
-    );
-    return result.join("\n");
+	const numColumns = header.length;
+	const align = opts.align || [...$repeat<Align>("l", numColumns)];
+	assert(align.length === numColumns, `invalid/missing column alignments`);
+	opts.bold && (header = header.map(wrap("**")));
+	const body = [header, ...rows];
+	const widths = transduce(
+		multiplex(
+			...(<[Transducer<Row, number>]>[
+				...repeatedly(
+					(i) =>
+						comp(
+							map((row: Row) =>
+								row[i] != null ? String(row[i]).length : 0
+							),
+							scan(max())
+						),
+					numColumns
+				),
+			])
+		),
+		last<number[]>(),
+		body
+	);
+	const pads = widths.map((w, i) => PADS[align![i]](w));
+	const colIDs = [...repeatedly((x) => x, numColumns)];
+	const result = body.map(
+		(row) => colIDs.map((i) => `| ${pads[i](str(row[i]))} `).join("") + "|"
+	);
+	result.splice(
+		1,
+		0,
+		widths.map((w, i) => `|${SEPS[align![i]](w)}`).join("") + "|"
+	);
+	return result.join("\n");
 };
 
 /**
@@ -132,28 +132,28 @@ export const table = (
  * // |     44 |   Dora    | (recipient) |
  * ```
  *
- * @param headers - 
- * @param keys - 
- * @param items - 
- * @param opts - 
+ * @param headers -
+ * @param keys -
+ * @param items -
+ * @param opts -
  */
 export const tableKeys = <T>(
-    headers: string[],
-    keys: (Keys<T> | Fn<T, Column>)[],
-    items: Iterable<T>,
-    opts?: Partial<TableOpts>
+	headers: string[],
+	keys: (Keys<T> | Fn<T, Column>)[],
+	items: Iterable<T>,
+	opts?: Partial<TableOpts>
 ) =>
-    table(
-        headers,
-        map<T, Row>(
-            juxt(
-                // @ts-ignore
-                ...keys.map((k) => (isString(k) ? (x) => str(x[k]) : k))
-            ),
-            items
-        ),
-        opts
-    );
+	table(
+		headers,
+		map<T, Row>(
+			juxt(
+				// @ts-ignore
+				...keys.map((k) => (isString(k) ? (x) => str(x[k]) : k))
+			),
+			items
+		),
+		opts
+	);
 
 /** @internal */
 const str = (x: any) => (x != null ? String(x) : "");

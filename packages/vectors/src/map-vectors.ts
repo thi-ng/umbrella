@@ -1,10 +1,10 @@
 import type {
-    ReadonlyVec,
-    VecOpVV,
-    Vec,
-    VecOpVN,
-    VecOpVVV,
-    VecOpVVN,
+	ReadonlyVec,
+	VecOpVV,
+	Vec,
+	VecOpVN,
+	VecOpVVV,
+	VecOpVVN,
 } from "./api.js";
 import { isNumber } from "@thi.ng/checks/is-number";
 
@@ -32,89 +32,89 @@ import { isNumber } from "@thi.ng/checks/is-number";
  * // [ [ 5.5, 11 ], [ 550, 1100 ] ]
  * ```
  *
- * @param fn - 
- * @param out - 
- * @param a - 
- * @param b - 
- * @param c - 
+ * @param fn -
+ * @param out -
+ * @param a -
+ * @param b -
+ * @param c -
  */
 export function mapVectors(
-    fn: VecOpVV,
-    out: Vec[] | null,
-    a: ReadonlyVec[],
-    b: ReadonlyVec[]
+	fn: VecOpVV,
+	out: Vec[] | null,
+	a: ReadonlyVec[],
+	b: ReadonlyVec[]
 ): Vec[];
 export function mapVectors(
-    fn: VecOpVN,
-    out: Vec[] | null,
-    a: ReadonlyVec[],
-    n: number
+	fn: VecOpVN,
+	out: Vec[] | null,
+	a: ReadonlyVec[],
+	n: number
 ): Vec[];
 export function mapVectors(
-    fn: VecOpVVV,
-    out: Vec[] | null,
-    a: ReadonlyVec[],
-    b: ReadonlyVec[],
-    c: ReadonlyVec[]
+	fn: VecOpVVV,
+	out: Vec[] | null,
+	a: ReadonlyVec[],
+	b: ReadonlyVec[],
+	c: ReadonlyVec[]
 ): Vec[];
 export function mapVectors(
-    fn: VecOpVVN,
-    out: Vec[] | null,
-    a: ReadonlyVec[],
-    b: ReadonlyVec[],
-    c: number
+	fn: VecOpVVN,
+	out: Vec[] | null,
+	a: ReadonlyVec[],
+	b: ReadonlyVec[],
+	c: number
 ): Vec[];
 export function mapVectors(
-    fn: VecOpVV | VecOpVN | VecOpVVV | VecOpVVN,
-    out: Vec[] | null,
-    a: ReadonlyVec[],
-    b: ReadonlyVec[] | number,
-    c?: ReadonlyVec[] | number
+	fn: VecOpVV | VecOpVN | VecOpVVV | VecOpVVN,
+	out: Vec[] | null,
+	a: ReadonlyVec[],
+	b: ReadonlyVec[] | number,
+	c?: ReadonlyVec[] | number
 ): Vec[] {
-    const num = a.length;
-    !out && (out = new Array(num));
-    c !== undefined
-        ? isNumber(c)
-            ? mapVVN(<VecOpVVN>fn, out, a, <ReadonlyVec[]>b, c)
-            : mapVVV(<VecOpVVV>fn, out, a, <ReadonlyVec[]>b, c)
-        : isNumber(b)
-        ? mapVN(<VecOpVN>fn, out, a, b)
-        : mapVV(<VecOpVV>fn, out, a, b);
-    return out;
+	const num = a.length;
+	!out && (out = new Array(num));
+	c !== undefined
+		? isNumber(c)
+			? mapVVN(<VecOpVVN>fn, out, a, <ReadonlyVec[]>b, c)
+			: mapVVV(<VecOpVVV>fn, out, a, <ReadonlyVec[]>b, c)
+		: isNumber(b)
+		? mapVN(<VecOpVN>fn, out, a, b)
+		: mapVV(<VecOpVV>fn, out, a, b);
+	return out;
 }
 
 const mapVN = (fn: VecOpVN, out: Vec[], a: ReadonlyVec[], b: number) => {
-    for (let i = 0, num = a.length; i < num; i++) {
-        out[i] = fn(out[i] || [], a[i], b);
-    }
+	for (let i = 0, num = a.length; i < num; i++) {
+		out[i] = fn(out[i] || [], a[i], b);
+	}
 };
 
 const mapVV = (fn: VecOpVV, out: Vec[], a: ReadonlyVec[], b: ReadonlyVec[]) => {
-    for (let i = 0, num = a.length; i < num; i++) {
-        out[i] = fn(out[i] || [], a[i], b[i]);
-    }
+	for (let i = 0, num = a.length; i < num; i++) {
+		out[i] = fn(out[i] || [], a[i], b[i]);
+	}
 };
 
 const mapVVN = (
-    fn: VecOpVVN,
-    out: Vec[],
-    a: ReadonlyVec[],
-    b: ReadonlyVec[],
-    c: number
+	fn: VecOpVVN,
+	out: Vec[],
+	a: ReadonlyVec[],
+	b: ReadonlyVec[],
+	c: number
 ) => {
-    for (let i = 0, num = a.length; i < num; i++) {
-        out[i] = fn(out[i] || [], a[i], b[i], c);
-    }
+	for (let i = 0, num = a.length; i < num; i++) {
+		out[i] = fn(out[i] || [], a[i], b[i], c);
+	}
 };
 
 const mapVVV = (
-    fn: VecOpVVV,
-    out: Vec[],
-    a: ReadonlyVec[],
-    b: ReadonlyVec[],
-    c: ReadonlyVec[]
+	fn: VecOpVVV,
+	out: Vec[],
+	a: ReadonlyVec[],
+	b: ReadonlyVec[],
+	c: ReadonlyVec[]
 ) => {
-    for (let i = 0, num = a.length; i < num; i++) {
-        out[i] = fn(out[i] || [], a[i], b[i], c[i]);
-    }
+	for (let i = 0, num = a.length; i < num; i++) {
+		out[i] = fn(out[i] || [], a[i], b[i], c[i]);
+	}
 };

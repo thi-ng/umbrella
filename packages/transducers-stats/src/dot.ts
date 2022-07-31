@@ -6,9 +6,9 @@
  * @param b -
  */
 export const dot = (a: number[], b: number[]) => {
-    let sum = 0;
-    for (let i = a.length - 1; i >= 0; i--) {
-        sum += a[i] * b[i];
-    }
-    return sum;
+	let sum = 0;
+	for (let i = a.length - 1; i >= 0; i--) {
+		sum += a[i] * b[i];
+	}
+	return sum;
 };

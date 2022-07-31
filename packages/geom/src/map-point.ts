@@ -23,15 +23,15 @@ import { __dispatch } from "./internal/dispatch.js";
  * @param out
  */
 export const mapPoint: MultiFn2O<IShape, ReadonlyVec, Vec, Vec> = defmulti<
-    any,
-    ReadonlyVec,
-    Vec | undefined,
-    Vec
+	any,
+	ReadonlyVec,
+	Vec | undefined,
+	Vec
 >(
-    __dispatch,
-    { aabb: "rect" },
-    {
-        rect: ($: Rect, p: ReadonlyVec, out: Vec = []) =>
-            div(null, sub(out, p, $.pos), $.size),
-    }
+	__dispatch,
+	{ aabb: "rect" },
+	{
+		rect: ($: Rect, p: ReadonlyVec, out: Vec = []) =>
+			div(null, sub(out, p, $.pos), $.size),
+	}
 );

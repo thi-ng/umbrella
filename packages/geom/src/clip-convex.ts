@@ -26,60 +26,60 @@ import { ensureVertices, vertices } from "./vertices.js";
  * @param boundary
  */
 export const clipConvex: MultiFn2<
-    IShape,
-    IShape | ReadonlyVec[],
-    IShape | undefined
+	IShape,
+	IShape | ReadonlyVec[],
+	IShape | undefined
 > = defmulti<any, IShape | ReadonlyVec[], IShape | undefined>(
-    __dispatch,
-    {
-        circle: "rect",
-        ellipse: "rect",
-        path: "rect",
-        quad: "poly",
-        tri: "poly",
-    },
-    {
-        group: ({ children, attribs }: Group, boundary) => {
-            boundary = ensureVertices(boundary);
-            const clipped: IHiccupShape[] = [];
-            for (let c of children) {
-                const res = clipConvex(c, boundary);
-                if (res) clipped.push(<IHiccupShape>res);
-            }
-            return clipped.length
-                ? new Group({ ...attribs }, clipped)
-                : undefined;
-        },
+	__dispatch,
+	{
+		circle: "rect",
+		ellipse: "rect",
+		path: "rect",
+		quad: "poly",
+		tri: "poly",
+	},
+	{
+		group: ({ children, attribs }: Group, boundary) => {
+			boundary = ensureVertices(boundary);
+			const clipped: IHiccupShape[] = [];
+			for (let c of children) {
+				const res = clipConvex(c, boundary);
+				if (res) clipped.push(<IHiccupShape>res);
+			}
+			return clipped.length
+				? new Group({ ...attribs }, clipped)
+				: undefined;
+		},
 
-        line: ($: Line, boundary) => {
-            const segments = clipLineSegmentPoly(
-                $.points[0],
-                $.points[1],
-                ensureVertices(boundary)
-            );
-            return segments && segments.length
-                ? new Line(segments[0], __copyAttribs($))
-                : undefined;
-        },
+		line: ($: Line, boundary) => {
+			const segments = clipLineSegmentPoly(
+				$.points[0],
+				$.points[1],
+				ensureVertices(boundary)
+			);
+			return segments && segments.length
+				? new Line(segments[0], __copyAttribs($))
+				: undefined;
+		},
 
-        poly: ($: Polygon, boundary) => {
-            boundary = ensureVertices(boundary);
-            const pts = sutherlandHodgeman(
-                $.points,
-                boundary,
-                centroid(boundary)
-            );
-            return pts.length ? new Polygon(pts, __copyAttribs($)) : undefined;
-        },
+		poly: ($: Polygon, boundary) => {
+			boundary = ensureVertices(boundary);
+			const pts = sutherlandHodgeman(
+				$.points,
+				boundary,
+				centroid(boundary)
+			);
+			return pts.length ? new Polygon(pts, __copyAttribs($)) : undefined;
+		},
 
-        rect: ($: IShape, boundary) => {
-            boundary = ensureVertices(boundary);
-            const pts = sutherlandHodgeman(
-                vertices($),
-                boundary,
-                centroid(boundary)
-            );
-            return pts.length ? new Polygon(pts, __copyAttribs($)) : undefined;
-        },
-    }
+		rect: ($: IShape, boundary) => {
+			boundary = ensureVertices(boundary);
+			const pts = sutherlandHodgeman(
+				vertices($),
+				boundary,
+				centroid(boundary)
+			);
+			return pts.length ? new Polygon(pts, __copyAttribs($)) : undefined;
+		},
+	}
 );

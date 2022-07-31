@@ -13,8 +13,8 @@ import { normalize } from "@thi.ng/shader-ast/builtin/math";
  * @param normalize -
  */
 export const rayPointAt = <A extends Vec, B extends A>(
-    p: Term<A>,
-    dir: Term<B>,
-    t: FloatTerm,
-    norm = false
+	p: Term<A>,
+	dir: Term<B>,
+	t: FloatTerm,
+	norm = false
 ) => add(p, mul(norm ? normalize(dir) : dir, t));

@@ -20,52 +20,52 @@ export type Conditional = string | IObjectOf<boolean | number | string>;
  * Format
  */
 export interface Format {
-    rules: string;
-    ruleSep: string;
-    valSep: string;
-    decls: string;
-    declStart: string;
-    declEnd: string;
-    indent: string;
-    comments: boolean;
+	rules: string;
+	ruleSep: string;
+	valSep: string;
+	decls: string;
+	declStart: string;
+	declEnd: string;
+	indent: string;
+	comments: boolean;
 }
 
 /**
  * Config options supported by {@link css} and its helper functions.
  */
 export interface CSSOpts {
-    /**
-     * CSS output format config.
-     * Two presets are included: COMPACT (default), PRETTY
-     */
-    format: Format;
-    /**
-     * Dictionary object for JSON->CSS conversion
-     * Maps keys to rule functions.
-     * See quoted-functions.ts
-     */
-    fns: IObjectOf<FnAny<RuleFn>>;
-    /**
-     * Array or set of properties to prefix automatically.
-     * If given, each listed property will be prefixed
-     * with values given under `vendors`.
-     *
-     * By default, no properties are prefixed.
-     */
-    autoprefix: string[] | Set<string>;
-    /**
-     * Prefix strings for props under `autoprefix`
-     * Defaults to `DEFAULT_VENDORS` object.
-     */
-    vendors: string[];
-    /**
-     * Current tree depth. Internal use only. Ignore.
-     */
-    depth: number;
-    /**
-     * Optional scoping suffix for CSS classes
-     */
-    scope: string;
+	/**
+	 * CSS output format config.
+	 * Two presets are included: COMPACT (default), PRETTY
+	 */
+	format: Format;
+	/**
+	 * Dictionary object for JSON->CSS conversion
+	 * Maps keys to rule functions.
+	 * See quoted-functions.ts
+	 */
+	fns: IObjectOf<FnAny<RuleFn>>;
+	/**
+	 * Array or set of properties to prefix automatically.
+	 * If given, each listed property will be prefixed
+	 * with values given under `vendors`.
+	 *
+	 * By default, no properties are prefixed.
+	 */
+	autoprefix: string[] | Set<string>;
+	/**
+	 * Prefix strings for props under `autoprefix`
+	 * Defaults to `DEFAULT_VENDORS` object.
+	 */
+	vendors: string[];
+	/**
+	 * Current tree depth. Internal use only. Ignore.
+	 */
+	depth: number;
+	/**
+	 * Optional scoping suffix for CSS classes
+	 */
+	scope: string;
 }
 
 export const DEFAULT_VENDORS = ["-moz-", "-ms-", "-o-", "-webkit-"];
@@ -76,14 +76,14 @@ export const DEFAULT_VENDORS = ["-moz-", "-ms-", "-o-", "-webkit-"];
  * and omits comments unless they were forced.
  */
 export const COMPACT: Format = {
-    rules: "",
-    ruleSep: ",",
-    valSep: "",
-    decls: "",
-    declStart: "{",
-    declEnd: "}",
-    indent: "",
-    comments: false,
+	rules: "",
+	ruleSep: ",",
+	valSep: "",
+	decls: "",
+	declStart: "{",
+	declEnd: "}",
+	indent: "",
+	comments: false,
 };
 
 /**
@@ -91,12 +91,12 @@ export const COMPACT: Format = {
  * and indentation.
  */
 export const PRETTY: Format = {
-    rules: "\n",
-    ruleSep: ", ",
-    valSep: " ",
-    decls: "\n",
-    declStart: " {\n",
-    declEnd: "}\n",
-    indent: "    ",
-    comments: true,
+	rules: "\n",
+	ruleSep: ", ",
+	valSep: " ",
+	decls: "\n",
+	declStart: " {\n",
+	declEnd: "}\n",
+	indent: "    ",
+	comments: true,
 };

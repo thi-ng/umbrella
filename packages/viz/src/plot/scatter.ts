@@ -1,7 +1,7 @@
 import { defSimplePlotFn } from "./utils.js";
 
 export interface ScatterPlotOpts {
-    attribs: any;
+	attribs: any;
 }
 
 export const scatterPlot = defSimplePlotFn<ScatterPlotOpts>("points");

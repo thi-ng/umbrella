@@ -13,16 +13,16 @@ import { stream, Stream } from "./stream.js";
  * @param streamOpts - stream opts
  */
 export const fromEvent = (
-    src: EventTarget,
-    name: string,
-    listenerOpts: boolean | AddEventListenerOptions = false,
-    streamOpts?: Partial<CommonOpts>
+	src: EventTarget,
+	name: string,
+	listenerOpts: boolean | AddEventListenerOptions = false,
+	streamOpts?: Partial<CommonOpts>
 ) =>
-    stream<Event>((stream) => {
-        let listener = (e: Event) => stream.next(e);
-        src.addEventListener(name, listener, listenerOpts);
-        return () => src.removeEventListener(name, listener, listenerOpts);
-    }, __optsWithID(`event-${name}`, streamOpts));
+	stream<Event>((stream) => {
+		let listener = (e: Event) => stream.next(e);
+		src.addEventListener(name, listener, listenerOpts);
+		return () => src.removeEventListener(name, listener, listenerOpts);
+	}, __optsWithID(`event-${name}`, streamOpts));
 
 /**
  * Same as {@link fromEvent}, however only supports well-known DOM event
@@ -44,9 +44,9 @@ export const fromEvent = (
  * @param streamOpts -
  */
 export const fromDOMEvent = <K extends keyof GlobalEventHandlersEventMap>(
-    src: EventTarget,
-    name: K,
-    listenerOpts: boolean | AddEventListenerOptions = false,
-    streamOpts?: Partial<CommonOpts>
+	src: EventTarget,
+	name: K,
+	listenerOpts: boolean | AddEventListenerOptions = false,
+	streamOpts?: Partial<CommonOpts>
 ): Stream<GlobalEventHandlersEventMap[K]> =>
-    <any>fromEvent(src, name, listenerOpts, streamOpts);
+	<any>fromEvent(src, name, listenerOpts, streamOpts);

@@ -37,67 +37,67 @@ import type { PatchArrayOp } from "./api.js";
  * ```
  */
 export function patchArray<T>(
-    immutable?: boolean
+	immutable?: boolean
 ): Reducer<T[], PatchArrayOp<T> | PatchArrayOp<T>[]>;
 export function patchArray<T>(
-    immutable: boolean,
-    init: T[],
-    patches: Iterable<PatchArrayOp<T> | PatchArrayOp<T>[]>
+	immutable: boolean,
+	init: T[],
+	patches: Iterable<PatchArrayOp<T> | PatchArrayOp<T>[]>
 ): T[];
 export function patchArray<T>(...args: any[]) {
-    let immutable: boolean;
-    let init: T[];
-    let patches: Iterable<PatchArrayOp<T> | PatchArrayOp<T>[]> | undefined;
-    switch (args.length) {
-        case 0:
-            immutable = true;
-            break;
-        case 1:
-            immutable = args[0];
-            break;
-        case 3:
-            immutable = args[0];
-            init = args[1];
-            patches = args[2];
-            break;
-        default:
-            illegalArity(args.length);
-    }
+	let immutable: boolean;
+	let init: T[];
+	let patches: Iterable<PatchArrayOp<T> | PatchArrayOp<T>[]> | undefined;
+	switch (args.length) {
+		case 0:
+			immutable = true;
+			break;
+		case 1:
+			immutable = args[0];
+			break;
+		case 3:
+			immutable = args[0];
+			init = args[1];
+			patches = args[2];
+			break;
+		default:
+			illegalArity(args.length);
+	}
 
-    const edit = (acc: T[], x: PatchArrayOp<T> | PatchArrayOp<T>[]) => {
-        switch (x[0]) {
-            case "set":
-                acc[x[1]] = x[2];
-                break;
-            case "update":
-                acc[x[1]] = x[2](acc[x[1]], ...x.slice(3));
-                break;
-            case "insert":
-                acc.splice(x[1], 0, ...x[2]);
-                break;
-            case "delete":
-                acc.splice(x[1], 1);
-                break;
-            default:
-                illegalArgs(`patch op: ${x}`);
-        }
-        return acc;
-    };
+	const edit = (acc: T[], x: PatchArrayOp<T> | PatchArrayOp<T>[]) => {
+		switch (x[0]) {
+			case "set":
+				acc[x[1]] = x[2];
+				break;
+			case "update":
+				acc[x[1]] = x[2](acc[x[1]], ...x.slice(3));
+				break;
+			case "insert":
+				acc.splice(x[1], 0, ...x[2]);
+				break;
+			case "delete":
+				acc.splice(x[1], 1);
+				break;
+			default:
+				illegalArgs(`patch op: ${x}`);
+		}
+		return acc;
+	};
 
-    return patches
-        ? reduce(patchArray<T>(immutable), init!, patches)
-        : reducer<T[], PatchArrayOp<T> | PatchArrayOp<T>[]>(
-              () => [],
-              (acc, x) => {
-                  immutable && (acc = acc.slice());
-                  if (isString(x[0])) {
-                      acc = edit(acc, x);
-                  } else {
-                      for (let e of <PatchArrayOp<T>[]>x) {
-                          acc = edit(acc, e);
-                      }
-                  }
-                  return acc;
-              }
-          );
+	return patches
+		? reduce(patchArray<T>(immutable), init!, patches)
+		: reducer<T[], PatchArrayOp<T> | PatchArrayOp<T>[]>(
+				() => [],
+				(acc, x) => {
+					immutable && (acc = acc.slice());
+					if (isString(x[0])) {
+						acc = edit(acc, x);
+					} else {
+						for (let e of <PatchArrayOp<T>[]>x) {
+							acc = edit(acc, e);
+						}
+					}
+					return acc;
+				}
+		  );
 }

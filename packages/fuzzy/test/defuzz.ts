@@ -2,89 +2,89 @@ import { eqDelta, roundTo } from "@thi.ng/math";
 import { group } from "@thi.ng/testament";
 import * as assert from "assert";
 import {
-    bisectorStrategy,
-    centroidStrategy,
-    defuzz,
-    DefuzzStrategy,
-    firstOfMaximaStrategy,
-    gaussian,
-    invRamp,
-    lastOfMaximaStrategy,
-    meanOfMaximaStrategy,
-    or,
-    ramp,
-    triangle,
-    variable,
-} from "../src/index.js"
+	bisectorStrategy,
+	centroidStrategy,
+	defuzz,
+	DefuzzStrategy,
+	firstOfMaximaStrategy,
+	gaussian,
+	invRamp,
+	lastOfMaximaStrategy,
+	meanOfMaximaStrategy,
+	or,
+	ramp,
+	triangle,
+	variable,
+} from "../src/index.js";
 
 group("defuzz", {
-    strategies: () => {
-        // https://www.researchgate.net/publication/267041266_Introduction_to_fuzzy_logic
-        const inputs = {
-            food: variable([0, 10], {
-                awful: invRamp(1, 3),
-                delicious: ramp(7, 9),
-            }),
-            service: variable([0, 10], {
-                poor: gaussian(0, 1.5),
-                good: gaussian(5, 1.5),
-                excellent: gaussian(10, 1.5),
-            }),
-        };
+	strategies: () => {
+		// https://www.researchgate.net/publication/267041266_Introduction_to_fuzzy_logic
+		const inputs = {
+			food: variable([0, 10], {
+				awful: invRamp(1, 3),
+				delicious: ramp(7, 9),
+			}),
+			service: variable([0, 10], {
+				poor: gaussian(0, 1.5),
+				good: gaussian(5, 1.5),
+				excellent: gaussian(10, 1.5),
+			}),
+		};
 
-        const outputs = {
-            tip: variable([0, 30], {
-                low: triangle(0, 5, 10),
-                medium: triangle(10, 15, 20),
-                high: triangle(20, 25, 30),
-            }),
-        };
+		const outputs = {
+			tip: variable([0, 30], {
+				low: triangle(0, 5, 10),
+				medium: triangle(10, 15, 20),
+				high: triangle(20, 25, 30),
+			}),
+		};
 
-        type I = typeof inputs;
-        type O = typeof outputs;
+		type I = typeof inputs;
+		type O = typeof outputs;
 
-        // if service is poor OR food is awful -> tip is low
-        // if service is normal -> tip is medium
-        // if service is excellent OR food is delicious -> tip is high
-        const rules = [
-            or<I, O>({ food: "awful", service: "poor" }, { tip: "low" }),
-            or<I, O>({ service: "good" }, { tip: "medium" }),
-            or<I, O>(
-                { food: "delicious", service: "excellent" },
-                { tip: "high" }
-            ),
-        ];
+		// if service is poor OR food is awful -> tip is low
+		// if service is normal -> tip is medium
+		// if service is excellent OR food is delicious -> tip is high
+		const rules = [
+			or<I, O>({ food: "awful", service: "poor" }, { tip: "low" }),
+			or<I, O>({ service: "good" }, { tip: "medium" }),
+			or<I, O>(
+				{ food: "delicious", service: "excellent" },
+				{ tip: "high" }
+			),
+		];
 
-        const testStrategy = (
-            id: string,
-            strategy: DefuzzStrategy,
-            expected: number[]
-        ) => {
-            // const all = [];
-            for (let i = 0, k = 0; i <= 10; i++) {
-                for (let j = 0; j <= 10; j++, k++) {
-                    let res = defuzz(
-                        inputs,
-                        outputs,
-                        rules,
-                        { food: i, service: j },
-                        strategy
-                    );
-                    assert.ok(
-                        eqDelta(roundTo(res.tip!, 0.01), expected[k]),
-                        `${id}(${i},${j}): expected: ${expected[k]}, got: ${res.tip}`
-                    );
-                    // all.push(res.tip!.toFixed(2));
-                }
-            }
-            // for (let i = 0; i <= 10; i++) {
-            //     console.log(all.slice(i * 11, (i + 1) * 11).join(", "));
-            // }
-            // console.log("--");
-        };
+		const testStrategy = (
+			id: string,
+			strategy: DefuzzStrategy,
+			expected: number[]
+		) => {
+			// const all = [];
+			for (let i = 0, k = 0; i <= 10; i++) {
+				for (let j = 0; j <= 10; j++, k++) {
+					let res = defuzz(
+						inputs,
+						outputs,
+						rules,
+						{ food: i, service: j },
+						strategy
+					);
+					assert.ok(
+						eqDelta(roundTo(res.tip!, 0.01), expected[k]),
+						`${id}(${i},${j}): expected: ${expected[k]}, got: ${res.tip}`
+					);
+					// all.push(res.tip!.toFixed(2));
+				}
+			}
+			// for (let i = 0; i <= 10; i++) {
+			//     console.log(all.slice(i * 11, (i + 1) * 11).join(", "));
+			// }
+			// console.log("--");
+		};
 
-        // prettier-ignore
-        const centroidResults = [
+		// prettier-ignore
+		const centroidResults = [
             5.08, 5.54, 7.02, 8.95, 9.91, 10.06, 10.32, 11.08, 13.18, 14.80, 15.00,
             5.08, 5.54, 7.02, 8.95, 9.91, 10.06, 10.32, 11.08, 13.18, 14.80, 15.00,
             5.08, 5.56, 7.52, 9.66, 10.62, 10.78, 11.07, 11.99, 14.41, 16.19, 16.42,
@@ -97,10 +97,10 @@ group("defuzz", {
             15.00, 15.20, 16.82, 18.92, 19.68, 19.94, 20.09, 21.05, 22.98, 24.46, 24.92,
             15.00, 15.20, 16.82, 18.92, 19.68, 19.94, 20.09, 21.05, 22.98, 24.46, 24.92,
         ];
-        testStrategy("centroid", centroidStrategy(), centroidResults);
+		testStrategy("centroid", centroidStrategy(), centroidResults);
 
-        // prettier-ignore
-        const bisectResults = [
+		// prettier-ignore
+		const bisectResults = [
             4.87, 5.00, 5.53, 6.91, 8.88, 10.30, 10.50, 8.32, 8.32, 11.41, 14.85,
             4.87, 5.00, 5.53, 6.91, 8.88, 10.30, 10.50, 8.32, 8.32, 11.41, 14.85,
             4.87, 5.03, 6.12, 8.30, 12.14, 12.39, 12.43, 11.82, 13.06, 21.81, 22.31,
@@ -114,10 +114,10 @@ group("defuzz", {
             14.85, 18.29, 21.38, 21.38, 19.20, 19.40, 20.82, 22.79, 24.17, 24.70, 24.83,
         ];
 
-        testStrategy("bisect", bisectorStrategy(), bisectResults);
+		testStrategy("bisect", bisectorStrategy(), bisectResults);
 
-        // prettier-ignore
-        const foMaResults = [
+		// prettier-ignore
+		const foMaResults = [
             5.10, 5.10, 5.10, 5.10, 5.10, 15.00, 5.10, 5.10, 5.10, 5.10, 5.10,
             5.10, 5.10, 5.10, 5.10, 5.10, 15.00, 5.10, 5.10, 5.10, 5.10, 5.10,
             5.10, 4.20, 2.70, 2.70, 14.10, 15.00, 14.10, 2.70, 2.70, 24.30, 24.90,
@@ -130,10 +130,10 @@ group("defuzz", {
             5.10, 24.90, 24.90, 24.90, 24.90, 15.00, 24.90, 24.90, 24.90, 24.90, 24.90,
             5.10, 24.90, 24.90, 24.90, 24.90, 15.00, 24.90, 24.90, 24.90, 24.90, 24.90,
         ];
-        testStrategy("first", firstOfMaximaStrategy(), foMaResults);
+		testStrategy("first", firstOfMaximaStrategy(), foMaResults);
 
-        // prettier-ignore
-        const loMaResults = [
+		// prettier-ignore
+		const loMaResults = [
             5.10, 5.10, 5.10, 5.10, 5.10, 15.00, 5.10, 5.10, 5.10, 5.10, 24.90,
             5.10, 5.10, 5.10, 5.10, 5.10, 15.00, 5.10, 5.10, 5.10, 5.10, 24.90,
             5.10, 5.70, 7.50, 7.50, 15.90, 15.00, 15.90, 7.50, 7.50, 25.80, 24.90,
@@ -146,10 +146,10 @@ group("defuzz", {
             24.90, 24.90, 24.90, 24.90, 24.90, 15.00, 24.90, 24.90, 24.90, 24.90, 24.90,
             24.90, 24.90, 24.90, 24.90, 24.90, 15.00, 24.90, 24.90, 24.90, 24.90, 24.90,
         ];
-        testStrategy("last", lastOfMaximaStrategy(), loMaResults);
+		testStrategy("last", lastOfMaximaStrategy(), loMaResults);
 
-        // prettier-ignore
-        const meoMaResults = [
+		// prettier-ignore
+		const meoMaResults = [
             5.10, 5.10, 5.10, 5.10, 5.10, 15.00, 5.10, 5.10, 5.10, 5.10, 15.00,
             5.10, 5.10, 5.10, 5.10, 5.10, 15.00, 5.10, 5.10, 5.10, 5.10, 15.00,
             5.10, 4.95, 5.10, 5.10, 15.00, 15.00, 15.00, 5.10, 5.10, 25.05, 24.90,
@@ -162,17 +162,17 @@ group("defuzz", {
             15.00, 24.90, 24.90, 24.90, 24.90, 15.00, 24.90, 24.90, 24.90, 24.90, 24.90,
             15.00, 24.90, 24.90, 24.90, 24.90, 15.00, 24.90, 24.90, 24.90, 24.90, 24.90,
         ];
-        testStrategy("mean", meanOfMaximaStrategy(), meoMaResults);
+		testStrategy("mean", meanOfMaximaStrategy(), meoMaResults);
 
-        // const strat = instrumentStrategy(centroidStrategy(), fuzzySetToAscii());
-        // defuzz(
-        //     inputs,
-        //     outputs,
-        //     rules,
-        //     { food: 7.32, service: 7.83 },
-        //     strat,
-        //     tnormAczelAlsina(2)
-        // );
-        // console.log(strat.deref()[0]);
-    },
+		// const strat = instrumentStrategy(centroidStrategy(), fuzzySetToAscii());
+		// defuzz(
+		//     inputs,
+		//     outputs,
+		//     rules,
+		//     { food: 7.32, service: 7.83 },
+		//     strat,
+		//     tnormAczelAlsina(2)
+		// );
+		// console.log(strat.deref()[0]);
+	},
 });

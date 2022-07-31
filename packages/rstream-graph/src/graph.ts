@@ -13,16 +13,16 @@ import { fromViewUnsafe } from "@thi.ng/rstream/view";
 import type { Transducer } from "@thi.ng/transducers";
 import { map } from "@thi.ng/transducers/map";
 import type {
-    Graph,
-    GraphSpec,
-    Node,
-    NodeFactory,
-    NodeInputs,
-    NodeInputSpec,
-    NodeOutputs,
-    NodeOutputSpec,
-    NodeResolver,
-    NodeSpec,
+	Graph,
+	GraphSpec,
+	Node,
+	NodeFactory,
+	NodeInputs,
+	NodeInputSpec,
+	NodeOutputs,
+	NodeOutputSpec,
+	NodeResolver,
+	NodeSpec,
 } from "./api.js";
 
 /**
@@ -39,17 +39,17 @@ import type {
  * @param spec -
  */
 export const initGraph = (state: IAtom<any>, spec: GraphSpec): Graph => {
-    const res: IObjectOf<Node | NodeResolver> = {};
-    for (let id in spec) {
-        const n = spec[id];
-        res[id] = isNodeSpec(n) ? nodeFromSpec(state, n, id) : n;
-    }
-    return resolve(res);
+	const res: IObjectOf<Node | NodeResolver> = {};
+	for (let id in spec) {
+		const n = spec[id];
+		res[id] = isNodeSpec(n) ? nodeFromSpec(state, n, id) : n;
+	}
+	return resolve(res);
 };
 
 /** @internal */
 const isNodeSpec = (x: any): x is NodeSpec =>
-    isPlainObject(x) && isFunction(x.fn);
+	isPlainObject(x) && isFunction(x.fn);
 
 /**
  * Transforms a single {@link NodeSpec} into a lookup function for
@@ -97,95 +97,95 @@ const isNodeSpec = (x: any): x is NodeSpec =>
  * @param id -
  */
 const nodeFromSpec =
-    (state: IAtom<any>, spec: NodeSpec, id: string) =>
-    (resolve: ResolveFn): Node => {
-        const ins = prepareNodeInputs(spec.ins, state, resolve);
-        const node = spec.fn(ins, id);
-        const outs = prepareNodeOutputs(spec.outs, node, state, id);
-        return { ins, node, outs };
-    };
+	(state: IAtom<any>, spec: NodeSpec, id: string) =>
+	(resolve: ResolveFn): Node => {
+		const ins = prepareNodeInputs(spec.ins, state, resolve);
+		const node = spec.fn(ins, id);
+		const outs = prepareNodeOutputs(spec.outs, node, state, id);
+		return { ins, node, outs };
+	};
 
 const prepareNodeInputs = (
-    ins: IObjectOf<NodeInputSpec>,
-    state: IAtom<any>,
-    resolve: ResolveFn
+	ins: IObjectOf<NodeInputSpec>,
+	state: IAtom<any>,
+	resolve: ResolveFn
 ) => {
-    const res: NodeInputs = {};
-    if (!ins) return res;
-    for (let id in ins) {
-        const i = ins[id];
-        const src = getNodeInput(i, id, state, resolve);
-        res[id] = i.xform ? src.transform(i.xform, { id }) : src;
-    }
-    return res;
+	const res: NodeInputs = {};
+	if (!ins) return res;
+	for (let id in ins) {
+		const i = ins[id];
+		const src = getNodeInput(i, id, state, resolve);
+		res[id] = i.xform ? src.transform(i.xform, { id }) : src;
+	}
+	return res;
 };
 
 const getNodeInput = (
-    i: NodeInputSpec,
-    id: string,
-    state: IAtom<any>,
-    resolve: ResolveFn
+	i: NodeInputSpec,
+	id: string,
+	state: IAtom<any>,
+	resolve: ResolveFn
 ): ISubscription<any, any> =>
-    i.path
-        ? fromViewUnsafe(state, { path: i.path })
-        : i.stream
-        ? isString(i.stream)
-            ? resolve(i.stream)
-            : i.stream(resolve)
-        : i.const !== undefined
-        ? fromIterableSync([isFunction(i.const) ? i.const(resolve) : i.const], {
-              closeIn: CloseMode.NEVER,
-          })
-        : illegalArgs(`invalid node input: ${id}`);
+	i.path
+		? fromViewUnsafe(state, { path: i.path })
+		: i.stream
+		? isString(i.stream)
+			? resolve(i.stream)
+			: i.stream(resolve)
+		: i.const !== undefined
+		? fromIterableSync([isFunction(i.const) ? i.const(resolve) : i.const], {
+				closeIn: CloseMode.NEVER,
+		  })
+		: illegalArgs(`invalid node input: ${id}`);
 
 const prepareNodeOutputs = (
-    outs: IObjectOf<NodeOutputSpec> | undefined,
-    node: ISubscription<any, any>,
-    state: IAtom<any>,
-    nodeID: string
+	outs: IObjectOf<NodeOutputSpec> | undefined,
+	node: ISubscription<any, any>,
+	state: IAtom<any>,
+	nodeID: string
 ) => {
-    const res: NodeOutputs = {};
-    if (!outs) return res;
-    for (let id in outs) {
-        const out = outs[id];
-        res[id] = isFunction(out)
-            ? out(node, id)
-            : id == "*"
-            ? nodeOutAll(node, state, nodeID, out)
-            : nodeOutID(node, state, nodeID, out, id);
-    }
-    return res;
+	const res: NodeOutputs = {};
+	if (!outs) return res;
+	for (let id in outs) {
+		const out = outs[id];
+		res[id] = isFunction(out)
+			? out(node, id)
+			: id == "*"
+			? nodeOutAll(node, state, nodeID, out)
+			: nodeOutID(node, state, nodeID, out, id);
+	}
+	return res;
 };
 
 const nodeOutAll = (
-    node: ISubscription<any, any>,
-    state: IAtom<any>,
-    nodeID: string,
-    path: Path
+	node: ISubscription<any, any>,
+	state: IAtom<any>,
+	nodeID: string,
+	path: Path
 ) =>
-    node.subscribe(
-        {
-            next: (x) => state.resetIn(<any>path, x),
-        },
-        { id: `out-${nodeID}` }
-    );
+	node.subscribe(
+		{
+			next: (x) => state.resetIn(<any>path, x),
+		},
+		{ id: `out-${nodeID}` }
+	);
 
 const nodeOutID = (
-    node: ISubscription<any, any>,
-    state: IAtom<any>,
-    nodeID: string,
-    path: Path,
-    id: string
+	node: ISubscription<any, any>,
+	state: IAtom<any>,
+	nodeID: string,
+	path: Path,
+	id: string
 ) =>
-    node.subscribe(
-        {
-            next: (x) => state.resetIn(<any>path, x),
-        },
-        {
-            xform: map((x: any) => (x != null ? x[id] : x)),
-            id: `out-${nodeID}-${id}`,
-        }
-    );
+	node.subscribe(
+		{
+			next: (x) => state.resetIn(<any>path, x),
+		},
+		{
+			xform: map((x: any) => (x != null ? x[id] : x)),
+			id: `out-${nodeID}-${id}`,
+		}
+	);
 
 /**
  * Compiles given {@link NodeSpec} and adds it to graph. Returns compiled
@@ -198,17 +198,17 @@ const nodeOutID = (
  * @param spec -
  */
 export const addNode = (
-    graph: Graph,
-    state: IAtom<any>,
-    id: string,
-    spec: NodeSpec
+	graph: Graph,
+	state: IAtom<any>,
+	id: string,
+	spec: NodeSpec
 ): Node => {
-    graph[id] && illegalArgs(`graph already contains a node with ID: ${id}`);
-    return (graph[id] = nodeFromSpec(
-        state,
-        spec,
-        id
-    )((path) => getInUnsafe(graph, absPath([id], path))));
+	graph[id] && illegalArgs(`graph already contains a node with ID: ${id}`);
+	return (graph[id] = nodeFromSpec(
+		state,
+		spec,
+		id
+	)((path) => getInUnsafe(graph, absPath([id], path))));
 };
 
 /**
@@ -220,16 +220,16 @@ export const addNode = (
  * @param id -
  */
 export const removeNode = (graph: Graph, id: string) => {
-    const node = graph[id];
-    if (node) {
-        node.node.unsubscribe();
-        for (let id in node.outs) {
-            node.outs[id].unsubscribe();
-        }
-        delete graph[id];
-        return true;
-    }
-    return false;
+	const node = graph[id];
+	if (node) {
+		node.node.unsubscribe();
+		for (let id in node.outs) {
+			node.outs[id].unsubscribe();
+		}
+		delete graph[id];
+		return true;
+	}
+	return false;
 };
 
 /**
@@ -239,9 +239,9 @@ export const removeNode = (graph: Graph, id: string) => {
  * @param graph -
  */
 export const stop = (graph: Graph) => {
-    for (let id in graph) {
-        graph[id].node.unsubscribe();
-    }
+	for (let id in graph) {
+		graph[id].node.unsubscribe();
+	}
 };
 
 /**
@@ -262,18 +262,18 @@ export const stop = (graph: Graph) => {
  * @param reset -
  */
 export const node =
-    (
-        xform: Transducer<IObjectOf<any>, any>,
-        inputIDs?: string[],
-        reset = false
-    ): NodeFactory<any> =>
-    (
-        src: IObjectOf<ISubscription<any, any>>,
-        id: string
-    ): StreamSync<any, any> => {
-        ensureInputs(src, inputIDs, id);
-        return sync({ src, xform, id, reset });
-    };
+	(
+		xform: Transducer<IObjectOf<any>, any>,
+		inputIDs?: string[],
+		reset = false
+	): NodeFactory<any> =>
+	(
+		src: IObjectOf<ISubscription<any, any>>,
+		id: string
+	): StreamSync<any, any> => {
+		ensureInputs(src, inputIDs, id);
+		return sync({ src, xform, id, reset });
+	};
 
 /**
  * Similar to {@link node}, but optimized for nodes using only a single
@@ -285,14 +285,14 @@ export const node =
  * @param inputID -
  */
 export const node1 =
-    (xform?: Transducer<any, any>, inputID = "src"): NodeFactory<any> =>
-    (
-        src: IObjectOf<ISubscription<any, any>>,
-        id: string
-    ): ISubscription<any, any> => {
-        ensureInputs(src, [inputID], id);
-        return src[inputID].subscribe({}, { xform, id });
-    };
+	(xform?: Transducer<any, any>, inputID = "src"): NodeFactory<any> =>
+	(
+		src: IObjectOf<ISubscription<any, any>>,
+		id: string
+	): ISubscription<any, any> => {
+		ensureInputs(src, [inputID], id);
+		return src[inputID].subscribe({}, { xform, id });
+	};
 
 /**
  * Syntax sugar for `node()`, intended for nodes w/ 2 inputs, by default
@@ -303,9 +303,9 @@ export const node1 =
  * @param reset -
  */
 export const node2 = (
-    xform: Transducer<IObjectOf<any>, any>,
-    inputIDs: Tuple<string, 2> = ["a", "b"],
-    reset = false
+	xform: Transducer<IObjectOf<any>, any>,
+	inputIDs: Tuple<string, 2> = ["a", "b"],
+	reset = false
 ) => node(xform, inputIDs, reset);
 
 /**
@@ -317,18 +317,18 @@ export const node2 = (
  * @param nodeID -
  */
 export const ensureInputs = (
-    src: IObjectOf<ISubscription<any, any>>,
-    inputIDs: string[] | undefined,
-    nodeID: string
+	src: IObjectOf<ISubscription<any, any>>,
+	inputIDs: string[] | undefined,
+	nodeID: string
 ) => {
-    if (inputIDs) {
-        const missing: string[] = [];
-        for (let i of inputIDs) {
-            !src[i] && missing.push(i);
-        }
-        missing.length &&
-            illegalArgs(
-                `node "${nodeID}": missing input(s): ${missing.join(", ")}`
-            );
-    }
+	if (inputIDs) {
+		const missing: string[] = [];
+		for (let i of inputIDs) {
+			!src[i] && missing.push(i);
+		}
+		missing.length &&
+			illegalArgs(
+				`node "${nodeID}": missing input(s): ${missing.join(", ")}`
+			);
+	}
 };

@@ -28,8 +28,8 @@ export const bitOai22: FnN4 = (a, b, c, d) => ~((a | b) & (c | d));
 export const bitMux: FnN3 = (a, b, s) => ((a & ~s) | (b & s)) >>> 0;
 
 export const bitDemux: FnU3<number, [number, number]> = (a, b, s) => [
-    (a & ~s) >>> 0,
-    (b & s) >>> 0,
+	(a & ~s) >>> 0,
+	(b & s) >>> 0,
 ];
 
 export const bitNotM: FnN2 = (n, x) => maskL(n, ~x);
@@ -53,14 +53,14 @@ export const bitAoi21M: FnN4 = (n, a, b, c) => maskL(n, ~(a | (b & c)));
 export const bitOai21M: FnN4 = (n, a, b, c) => maskL(n, ~(a & (b | c)));
 
 export const bitAoi22M: FnN5 = (n, a, b, c, d) =>
-    maskL(n, ~((a & b) | (c & d)));
+	maskL(n, ~((a & b) | (c & d)));
 
 export const bitOai22M: FnN5 = (n, a, b, c, d) =>
-    maskL(n, ~((a | b) & (c | d)));
+	maskL(n, ~((a | b) & (c | d)));
 
 export const bitMuxM: FnN4 = (n, a, b, s) => maskL(n, (a & ~s) | (b & s));
 
 export const bitDemuxM: FnU4<number, [number, number]> = (n, a, b, s) => [
-    maskL(n, a & ~s),
-    maskL(n, b & s),
+	maskL(n, a & ~s),
+	maskL(n, b & s),
 ];

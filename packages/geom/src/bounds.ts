@@ -60,85 +60,85 @@ import { rectFromMinMaxWithMargin } from "./rect.js";
  * @param margin
  */
 export const bounds: MultiFn1O<IShape, number, AABBLike | undefined> = defmulti<
-    any,
-    number | undefined,
-    AABBLike | undefined
+	any,
+	number | undefined,
+	AABBLike | undefined
 >(
-    __dispatch,
-    {
-        aabb: "rect",
-        bpatch: "points",
-        poly: "points",
-        polyline: "points",
-        quad: "points",
-        tri: "points",
-    },
-    {
-        arc: ($: Arc, margin = 0) =>
-            rectFromMinMaxWithMargin(
-                ...arcBounds($.pos, $.r, $.axis, $.start, $.end),
-                margin
-            ),
+	__dispatch,
+	{
+		aabb: "rect",
+		bpatch: "points",
+		poly: "points",
+		polyline: "points",
+		quad: "points",
+		tri: "points",
+	},
+	{
+		arc: ($: Arc, margin = 0) =>
+			rectFromMinMaxWithMargin(
+				...arcBounds($.pos, $.r, $.axis, $.start, $.end),
+				margin
+			),
 
-        circle: ($: Circle, margin = 0) =>
-            new Rect(
-                subN2([], $.pos, $.r + margin),
-                mulN2(null, [2, 2], $.r + margin)
-            ),
+		circle: ($: Circle, margin = 0) =>
+			new Rect(
+				subN2([], $.pos, $.r + margin),
+				mulN2(null, [2, 2], $.r + margin)
+			),
 
-        cubic: ({ points }: Cubic, margin = 0) =>
-            rectFromMinMaxWithMargin(
-                ...cubicBounds(points[0], points[1], points[2], points[3]),
-                margin
-            ),
+		cubic: ({ points }: Cubic, margin = 0) =>
+			rectFromMinMaxWithMargin(
+				...cubicBounds(points[0], points[1], points[2], points[3]),
+				margin
+			),
 
-        ellipse: ($: Ellipse, margin = 0) => {
-            const r = addN2([], $.r, margin);
-            return new Rect(sub2([], $.pos, r), mul2(null, [2, 2], r));
-        },
+		ellipse: ($: Ellipse, margin = 0) => {
+			const r = addN2([], $.r, margin);
+			return new Rect(sub2([], $.pos, r), mul2(null, [2, 2], r));
+		},
 
-        group: ($: Group, margin = 0) => {
-            const res = __collBounds($.children, bounds);
-            return res ? new Rect(...res).offset(margin) : undefined;
-        },
+		group: ($: Group, margin = 0) => {
+			const res = __collBounds($.children, bounds);
+			return res ? new Rect(...res).offset(margin) : undefined;
+		},
 
-        line: ({ points: [a, b] }: Line, margin = 0) =>
-            rectFromMinMaxWithMargin(min([], a, b), max([], a, b), margin),
+		line: ({ points: [a, b] }: Line, margin = 0) =>
+			rectFromMinMaxWithMargin(min([], a, b), max([], a, b), margin),
 
-        path: (path: Path, margin = 0) => {
-            const b = __collBounds(
-                [
-                    ...iterator1(
-                        comp(
-                            map((s: PathSegment) => s.geo!),
-                            filter((s) => !!s)
-                        ),
-                        path.segments
-                    ),
-                ],
-                bounds
-            );
-            return b ? new Rect(...b).offset(margin) : undefined;
-        },
+		path: (path: Path, margin = 0) => {
+			const b = __collBounds(
+				[
+					...iterator1(
+						comp(
+							map((s: PathSegment) => s.geo!),
+							filter((s) => !!s)
+						),
+						path.segments
+					),
+				],
+				bounds
+			);
+			return b ? new Rect(...b).offset(margin) : undefined;
+		},
 
-        points: ($: PCLike, margin = 0) =>
-            rectFromMinMaxWithMargin(...bounds2($.points), margin),
+		points: ($: PCLike, margin = 0) =>
+			rectFromMinMaxWithMargin(...bounds2($.points), margin),
 
-        points3: ($: PCLike, margin = 0) =>
-            aabbFromMinMaxWithMargin(...bounds3($.points), margin),
+		points3: ($: PCLike, margin = 0) =>
+			aabbFromMinMaxWithMargin(...bounds3($.points), margin),
 
-        quadratic: ({ points }: Quadratic, margin = 0) =>
-            rectFromMinMaxWithMargin(
-                ...quadraticBounds(points[0], points[1], points[2]),
-                margin
-            ),
+		quadratic: ({ points }: Quadratic, margin = 0) =>
+			rectFromMinMaxWithMargin(
+				...quadraticBounds(points[0], points[1], points[2]),
+				margin
+			),
 
-        rect: ($: IShape, margin = 0) =>
-            margin === 0
-                ? <AABBLike>$.copy()
-                : (<AABBLike>$.copy()).offset(margin),
+		rect: ($: IShape, margin = 0) =>
+			margin === 0
+				? <AABBLike>$.copy()
+				: (<AABBLike>$.copy()).offset(margin),
 
-        text: ($: Text, margin = 0) =>
-            new Rect(subN2([], $.pos, margin), margin * 2),
-    }
+		text: ($: Text, margin = 0) =>
+			new Rect(subN2([], $.pos, margin), margin * 2),
+	}
 );

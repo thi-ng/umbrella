@@ -32,39 +32,39 @@ import { __splitLine } from "./internal/split.js";
  * @param p - split point
  */
 export const splitNearPoint: MultiFn2<
-    IShape,
-    ReadonlyVec,
-    IShape[] | undefined
+	IShape,
+	ReadonlyVec,
+	IShape[] | undefined
 > = defmulti<any, ReadonlyVec, IShape[] | undefined>(
-    __dispatch,
-    {},
-    {
-        cubic: ({ points, attribs }: Cubic, p) =>
-            splitCubicNearPoint(
-                p,
-                points[0],
-                points[1],
-                points[2],
-                points[3]
-            ).map((pts) => new Cubic(pts, { ...attribs })),
+	__dispatch,
+	{},
+	{
+		cubic: ({ points, attribs }: Cubic, p) =>
+			splitCubicNearPoint(
+				p,
+				points[0],
+				points[1],
+				points[2],
+				points[3]
+			).map((pts) => new Cubic(pts, { ...attribs })),
 
-        line: ($: Line, p) => {
-            const t = closestT(p, $.points[0], $.points[1]) || 0;
-            return __splitLine($.points[0], $.points[1], clamp01(t)).map(
-                (pts) => new Line(pts, __copyAttribs($))
-            );
-        },
+		line: ($: Line, p) => {
+			const t = closestT(p, $.points[0], $.points[1]) || 0;
+			return __splitLine($.points[0], $.points[1], clamp01(t)).map(
+				(pts) => new Line(pts, __copyAttribs($))
+			);
+		},
 
-        polyline: ($: Polyline, p) =>
-            __pointArraysAsShapes(
-                Polyline,
-                new Sampler($.points).splitNear(p),
-                $.attribs
-            ),
+		polyline: ($: Polyline, p) =>
+			__pointArraysAsShapes(
+				Polyline,
+				new Sampler($.points).splitNear(p),
+				$.attribs
+			),
 
-        quadratic: ({ points, attribs }: Quadratic, p) =>
-            quadraticSplitNearPoint(p, points[0], points[1], points[2]).map(
-                (pts) => new Quadratic(pts, { ...attribs })
-            ),
-    }
+		quadratic: ({ points, attribs }: Quadratic, p) =>
+			quadraticSplitNearPoint(p, points[0], points[1], points[2]).map(
+				(pts) => new Quadratic(pts, { ...attribs })
+			),
+	}
 );

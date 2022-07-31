@@ -13,12 +13,12 @@ import { range } from "@thi.ng/transducers/range";
 import { transduce } from "@thi.ng/transducers/transduce";
 import { CELL_STYLE, MAX_COL, NUM_COLS, NUM_ROWS, type UICell } from "./api";
 import {
-    blurCell,
-    cancelCell,
-    DB,
-    focusCell,
-    graph,
-    updateCell,
+	blurCell,
+	cancelCell,
+	DB,
+	focusCell,
+	graph,
+	updateCell,
 } from "./state";
 
 const formatCell = (x: string | number) => (isNumber(x) ? x.toFixed(2) : x);
@@ -26,16 +26,16 @@ const formatCell = (x: string | number) => (isNumber(x) ? x.toFixed(2) : x);
 /**
  * Choose background color based on cell state.
  *
- * @param cell - 
+ * @param cell -
  */
 const cellBackground = (cell: any) =>
-    cell.focus
-        ? "bg-yellow"
-        : cell.formula
-        ? cell.error
-            ? "bg-red white"
-            : "bg-light-green"
-        : "";
+	cell.focus
+		? "bg-yellow"
+		: cell.formula
+		? cell.error
+			? "bg-red white"
+			: "bg-light-green"
+		: "";
 
 /**
  * thi.ng/hdom cell component with lifecycle methods. (The current
@@ -44,56 +44,56 @@ const cellBackground = (cell: any) =>
  * @param cellid - uple
  */
 const cell = ([row, col]: [number, string]) =>
-    <UICell>{
-        init(el: HTMLDivElement) {
-            this.element = el;
-            this.focus = false;
-        },
-        render(_: any, cells: any) {
-            const id = `${col}${row}`;
-            const cell = cells[id];
-            return [
-                `${CELL_STYLE}.w4.overflow-y-hidden.overflow-x-scroll`,
-                {
-                    class: cellBackground(cell),
-                    contenteditable: true,
-                    title: cell.formula,
-                    onfocus: () => {
-                        this.focus = true;
-                        focusCell(id);
-                    },
-                    onblur: () => {
-                        if (this.focus) {
-                            updateCell(id, this.element!.textContent!.trim());
-                            this.focus = false;
-                        }
-                        blurCell(id);
-                    },
-                    onkeydown: (e: KeyboardEvent) => {
-                        switch (e.key) {
-                            case "Enter":
-                            case "Tab":
-                                updateCell(
-                                    id,
-                                    this.element!.textContent!.trim()
-                                );
-                                this.element!.blur();
-                                break;
-                            case "Escape":
-                                this.focus = false;
-                                cancelCell(id);
-                                this.element!.blur();
-                        }
-                    },
-                },
-                String(
-                    cell.focus && cell.formula
-                        ? cell.formula
-                        : cell.error || formatCell(cell.value)
-                ),
-            ];
-        },
-    };
+	<UICell>{
+		init(el: HTMLDivElement) {
+			this.element = el;
+			this.focus = false;
+		},
+		render(_: any, cells: any) {
+			const id = `${col}${row}`;
+			const cell = cells[id];
+			return [
+				`${CELL_STYLE}.w4.overflow-y-hidden.overflow-x-scroll`,
+				{
+					class: cellBackground(cell),
+					contenteditable: true,
+					title: cell.formula,
+					onfocus: () => {
+						this.focus = true;
+						focusCell(id);
+					},
+					onblur: () => {
+						if (this.focus) {
+							updateCell(id, this.element!.textContent!.trim());
+							this.focus = false;
+						}
+						blurCell(id);
+					},
+					onkeydown: (e: KeyboardEvent) => {
+						switch (e.key) {
+							case "Enter":
+							case "Tab":
+								updateCell(
+									id,
+									this.element!.textContent!.trim()
+								);
+								this.element!.blur();
+								break;
+							case "Escape":
+								this.focus = false;
+								cancelCell(id);
+								this.element!.blur();
+						}
+					},
+				},
+				String(
+					cell.focus && cell.formula
+						? cell.formula
+						: cell.error || formatCell(cell.value)
+				),
+			];
+		},
+	};
 
 /**
  * Main UI component HOF. Attached to to `main` rstream (defined below)
@@ -102,33 +102,33 @@ const cell = ([row, col]: [number, string]) =>
  * entire spreadsheet.
  */
 const app = () => {
-    const CELLS: UICell[][] = transduce(
-        comp(map(cell), partition(NUM_COLS)),
-        push(),
-        permutations(range(1, NUM_ROWS + 1), charRange("A", MAX_COL))
-    );
-    return (state: any) => [
-        "div",
-        {},
-        [`${CELL_STYLE}.w2.b.bg-moon-gray`, "\u00a0"],
-        map(
-            (col) => [`${CELL_STYLE}.w4.b.bg-moon-gray`, {}, col],
-            charRange("A", MAX_COL)
-        ),
-        mapIndexed(
-            (i, rowid) => [
-                "div",
-                {},
-                [
-                    `${CELL_STYLE}.w2.b.bg-moon-gray.overflow-y-hidden.overflow-x-scroll`,
-                    {},
-                    rowid,
-                ],
-                ...CELLS[i].map((cell) => [cell, state]),
-            ],
-            range(1, NUM_ROWS + 1)
-        ),
-    ];
+	const CELLS: UICell[][] = transduce(
+		comp(map(cell), partition(NUM_COLS)),
+		push(),
+		permutations(range(1, NUM_ROWS + 1), charRange("A", MAX_COL))
+	);
+	return (state: any) => [
+		"div",
+		{},
+		[`${CELL_STYLE}.w2.b.bg-moon-gray`, "\u00a0"],
+		map(
+			(col) => [`${CELL_STYLE}.w4.b.bg-moon-gray`, {}, col],
+			charRange("A", MAX_COL)
+		),
+		mapIndexed(
+			(i, rowid) => [
+				"div",
+				{},
+				[
+					`${CELL_STYLE}.w2.b.bg-moon-gray.overflow-y-hidden.overflow-x-scroll`,
+					{},
+					rowid,
+				],
+				...CELLS[i].map((cell) => [cell, state]),
+			],
+			range(1, NUM_ROWS + 1)
+		),
+	];
 };
 
 // setLogger(new ConsoleLogger("rstream"));

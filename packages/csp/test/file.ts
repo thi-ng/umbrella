@@ -1,23 +1,23 @@
 import * as tx from "@thi.ng/transducers";
 import * as fs from "fs";
-import { Channel, Mult } from "../src/index.js"
+import { Channel, Mult } from "../src/index.js";
 
 // compose transducer to split source file into words
 // and filter out short strings
 const proc: tx.Transducer<string, string> = tx.comp(
-    tx.mapcat((src: string) => src.toLowerCase().split(/[^\w]+/g)),
-    tx.filter((w: string) => w.length > 1)
+	tx.mapcat((src: string) => src.toLowerCase().split(/[^\w]+/g)),
+	tx.filter((w: string) => w.length > 1)
 );
 
 // define a channel which receives file paths
 // and resolves them with their contents
 const paths = new Channel<any>(
-    tx.map(
-        (path: string) =>
-            new Promise<string>((resolve) =>
-                fs.readFile(path, (_, data) => resolve(data.toString()))
-            )
-    )
+	tx.map(
+		(path: string) =>
+			new Promise<string>((resolve) =>
+				fs.readFile(path, (_, data) => resolve(data.toString()))
+			)
+	)
 );
 
 // define multiplexed output channel
@@ -31,10 +31,10 @@ const counter = results.tap(tx.map((x) => x[1]))!.reduce(tx.add());
 // (using a sliding window size of 500 items) and dropping
 // words with < 20 occurrences
 const sorted = results.tap(
-    tx.comp(
-        tx.streamSort(500, { key: (x) => x[1] }),
-        tx.dropWhile((x) => x[1] < 20)
-    )
+	tx.comp(
+		tx.streamSort(500, { key: (x) => x[1] }),
+		tx.dropWhile((x) => x[1] < 20)
+	)
 )!;
 
 // define workflow:
@@ -44,9 +44,9 @@ const sorted = results.tap(
 // into the `sorted` channel
 // (`freqs` is a JS Map and is iterable)
 paths
-    .pipe(proc)
-    .reduce(tx.frequencies())
-    .then((freqs) => results.channel().into(freqs));
+	.pipe(proc)
+	.reduce(tx.frequencies())
+	.then((freqs) => results.channel().into(freqs));
 
 // kick off process by writing file paths into the 1st channel
 paths.into(["src/channel.ts", "src/mult.ts", "src/pubsub.ts"]);
@@ -54,5 +54,5 @@ paths.into(["src/channel.ts", "src/mult.ts", "src/pubsub.ts"]);
 // start tracing sorted outputs and
 // wait for all to finish
 Promise.all([sorted.consume(), counter]).then(([_, num]) =>
-    console.log("total words:", num)
+	console.log("total words:", num)
 );

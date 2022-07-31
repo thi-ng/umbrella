@@ -15,25 +15,25 @@ import { result } from "./result.js";
  * @param callback - result callback
  */
 export const untilStr =
-    <C, R>(
-        str: string,
-        callback?: LitCallback<string, C, R>
-    ): Matcher<string, C, R> =>
-    () => {
-        let buf = "";
-        return (ctx, x) => {
-            buf += x;
-            return buf.endsWith(str)
-                ? result(
-                      callback &&
-                          callback(
-                              ctx,
-                              buf.substring(0, buf.length - str.length)
-                          )
-                  )
-                : RES_PARTIAL;
-        };
-    };
+	<C, R>(
+		str: string,
+		callback?: LitCallback<string, C, R>
+	): Matcher<string, C, R> =>
+	() => {
+		let buf = "";
+		return (ctx, x) => {
+			buf += x;
+			return buf.endsWith(str)
+				? result(
+						callback &&
+							callback(
+								ctx,
+								buf.substring(0, buf.length - str.length)
+							)
+				  )
+				: RES_PARTIAL;
+		};
+	};
 
 /**
  * Generic array version of {@link untilStr}.
@@ -42,16 +42,16 @@ export const untilStr =
  * @param callback - result callback
  */
 export const until =
-    <T, C, R>(str: T[], callback?: LitCallback<T[], C, R>): Matcher<T, C, R> =>
-    () => {
-        let buf: T[] = [];
-        return (ctx, x) => {
-            buf.push(x);
-            return endsWith(buf, str)
-                ? result(
-                      callback &&
-                          callback(ctx, buf.slice(0, buf.length - str.length))
-                  )
-                : RES_PARTIAL;
-        };
-    };
+	<T, C, R>(str: T[], callback?: LitCallback<T[], C, R>): Matcher<T, C, R> =>
+	() => {
+		let buf: T[] = [];
+		return (ctx, x) => {
+			buf.push(x);
+			return endsWith(buf, str)
+				? result(
+						callback &&
+							callback(ctx, buf.slice(0, buf.length - str.length))
+				  )
+				: RES_PARTIAL;
+		};
+	};

@@ -36,11 +36,11 @@ import { permutations } from "./permutations.js";
  * @param spec - permutation spec object
  */
 export const keyPermutations = <T extends IObjectOf<any[]>>(
-    spec: T
+	spec: T
 ): IterableIterator<{ [k in keyof T]: T[k][0] }> =>
-    <any>(
-        map(
-            (x) => assocObj(<Iterable<Pair<string, any>>>partition(2, x)),
-            permutations(...mapcat(([k, v]) => [[k], v], pairs(spec)))
-        )
-    );
+	<any>(
+		map(
+			(x) => assocObj(<Iterable<Pair<string, any>>>partition(2, x)),
+			permutations(...mapcat(([k, v]) => [[k], v], pairs(spec)))
+		)
+	);

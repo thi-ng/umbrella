@@ -9,11 +9,11 @@ import { xfInt } from "../xform/number.js";
 import { HEX_DIGIT } from "./hex.js";
 
 export const ESC = xform(seq([litD("\\"), always()], "esc"), ($) => {
-    const id = $!.children![0].result;
-    const resolved = ESCAPES[id];
-    $!.result = resolved !== undefined ? resolved : `\\${id}`;
-    $!.children = null;
-    return $;
+	const id = $!.children![0].result;
+	const resolved = ESCAPES[id];
+	$!.result = resolved !== undefined ? resolved : `\\${id}`;
+	$!.children = null;
+	return $;
 });
 
 /**
@@ -21,8 +21,8 @@ export const ESC = xform(seq([litD("\\"), always()], "esc"), ($) => {
  * it into it actual character via `String.fromCharCode()`.
  */
 export const UNICODE = xform(
-    seq([stringD("\\u"), repeat(HEX_DIGIT, 4, 4)], "unicode"),
-    ($, ctx) => (
-        ($!.result = String.fromCharCode(xfInt(16)($, ctx)!.result)), $
-    )
+	seq([stringD("\\u"), repeat(HEX_DIGIT, 4, 4)], "unicode"),
+	($, ctx) => (
+		($!.result = String.fromCharCode(xfInt(16)($, ctx)!.result)), $
+	)
 );

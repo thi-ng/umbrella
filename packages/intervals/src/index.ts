@@ -5,78 +5,78 @@ import { and, or } from "@thi.ng/dlogic";
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 
 export enum Classifier {
-    DISJOINT_LEFT,
-    DISJOINT_RIGHT,
-    EQUIV,
-    SUBSET,
-    SUPERSET,
-    OVERLAP_LEFT,
-    OVERLAP_RIGHT,
+	DISJOINT_LEFT,
+	DISJOINT_RIGHT,
+	EQUIV,
+	SUBSET,
+	SUPERSET,
+	OVERLAP_LEFT,
+	OVERLAP_RIGHT,
 }
 
 export class Interval
-    implements ICompare<Interval>, IContains<number>, ICopy<Interval>, IEquiv
+	implements ICompare<Interval>, IContains<number>, ICopy<Interval>, IEquiv
 {
-    l: number;
-    r: number;
+	l: number;
+	r: number;
 
-    lopen: boolean;
-    ropen: boolean;
+	lopen: boolean;
+	ropen: boolean;
 
-    constructor(l: number, r: number, lopen = false, ropen = false) {
-        (l > r || (l === r && lopen !== ropen)) &&
-            illegalArgs(`invalid interval: ${$toString(l, r, lopen, ropen)}`);
-        this.l = l;
-        this.r = r;
-        this.lopen = lopen;
-        this.ropen = ropen;
-    }
+	constructor(l: number, r: number, lopen = false, ropen = false) {
+		(l > r || (l === r && lopen !== ropen)) &&
+			illegalArgs(`invalid interval: ${$toString(l, r, lopen, ropen)}`);
+		this.l = l;
+		this.r = r;
+		this.lopen = lopen;
+		this.ropen = ropen;
+	}
 
-    get size(): number {
-        return isEmpty(this) ? 0 : this.r - this.l;
-    }
+	get size(): number {
+		return isEmpty(this) ? 0 : this.r - this.l;
+	}
 
-    copy() {
-        return new Interval(this.l, this.r, this.lopen, this.ropen);
-    }
+	copy() {
+		return new Interval(this.l, this.r, this.lopen, this.ropen);
+	}
 
-    /**
-     * Compares this interval with `i` and returns a comparator value
-     * (-1, 0 or 1). Comparison order is: LHS, RHS, openness.
-     *
-     * @param i -
-     */
-    compare(i: Readonly<Interval>) {
-        return compare(this, i);
-    }
+	/**
+	 * Compares this interval with `i` and returns a comparator value
+	 * (-1, 0 or 1). Comparison order is: LHS, RHS, openness.
+	 *
+	 * @param i -
+	 */
+	compare(i: Readonly<Interval>) {
+		return compare(this, i);
+	}
 
-    equiv(i: any) {
-        return (
-            this === i ||
-            (i instanceof Interval &&
-                this.l === i.l &&
-                this.r === i.r &&
-                this.lopen === i.lopen &&
-                this.ropen === i.ropen)
-        );
-    }
+	equiv(i: any) {
+		return (
+			this === i ||
+			(i instanceof Interval &&
+				this.l === i.l &&
+				this.r === i.r &&
+				this.lopen === i.lopen &&
+				this.ropen === i.ropen)
+		);
+	}
 
-    /**
-     * Returns true if `x` is lies within this interval.
-     *
-     * @param x -
-     */
-    contains(x: number) {
-        return contains(this, x);
-    }
+	/**
+	 * Returns true if `x` is lies within this interval.
+	 *
+	 * @param x -
+	 */
+	contains(x: number) {
+		return contains(this, x);
+	}
 
-    toString() {
-        return $toString(this.l, this.r, this.lopen, this.ropen);
-    }
+	toString() {
+		return $toString(this.l, this.r, this.lopen, this.ropen);
+	}
 
-    toJSON() {
-        return this.toString();
-    }
+	toJSON() {
+		return this.toString();
+	}
 }
 
 const BRACES = "()[]";
@@ -84,18 +84,18 @@ const RE_INF = /^([-+])?(inf(inity)?|\u221e)$/i;
 
 export function interval(spec: string): Interval;
 export function interval(
-    l: number,
-    r: number,
-    lopen?: boolean,
-    ropen?: boolean
+	l: number,
+	r: number,
+	lopen?: boolean,
+	ropen?: boolean
 ): Interval;
 export function interval(
-    l: number | string,
-    r?: number,
-    lopen?: boolean,
-    ropen?: boolean
+	l: number | string,
+	r?: number,
+	lopen?: boolean,
+	ropen?: boolean
 ) {
-    return isString(l) ? parse(l) : new Interval(l, r!, lopen, ropen);
+	return isString(l) ? parse(l) : new Interval(l, r!, lopen, ropen);
 }
 
 /**
@@ -127,38 +127,38 @@ export function interval(
  * @param src -
  */
 export const parse = (src: string) => {
-    let l, r, c1, c2;
-    const n = src.length - 1;
-    const comma = src.indexOf(",") > 0;
-    const dot = src.indexOf("..") > 0;
-    if (n < (dot ? 3 : 2)) illegalArgs(src);
-    c1 = src.charAt(0);
-    c2 = src.charAt(n);
-    if (BRACES.indexOf(c1) < 0 || BRACES.indexOf(c2) < 0 || !(comma || dot)) {
-        illegalArgs(src);
-    }
-    [l, r] = src
-        .substring(1, n)
-        .split(dot ? ".." : ",")
-        .map((x, i) => {
-            x = x.trim();
-            const inf = RE_INF.exec(x);
-            const n =
-                (x === "" && i === 0) || (inf && inf[1] === "-")
-                    ? -Infinity
-                    : (x === "" && i > 0) || (inf && inf[1] !== "-")
-                    ? Infinity
-                    : parseFloat(x);
-            isNaN(n) && illegalArgs(`expected number: '${x}'`);
-            return n;
-        });
-    r === undefined && (r = Infinity);
-    return new Interval(
-        l,
-        r,
-        c1 === "(" || c1 === "]",
-        c2 === ")" || c2 === "["
-    );
+	let l, r, c1, c2;
+	const n = src.length - 1;
+	const comma = src.indexOf(",") > 0;
+	const dot = src.indexOf("..") > 0;
+	if (n < (dot ? 3 : 2)) illegalArgs(src);
+	c1 = src.charAt(0);
+	c2 = src.charAt(n);
+	if (BRACES.indexOf(c1) < 0 || BRACES.indexOf(c2) < 0 || !(comma || dot)) {
+		illegalArgs(src);
+	}
+	[l, r] = src
+		.substring(1, n)
+		.split(dot ? ".." : ",")
+		.map((x, i) => {
+			x = x.trim();
+			const inf = RE_INF.exec(x);
+			const n =
+				(x === "" && i === 0) || (inf && inf[1] === "-")
+					? -Infinity
+					: (x === "" && i > 0) || (inf && inf[1] !== "-")
+					? Infinity
+					: parseFloat(x);
+			isNaN(n) && illegalArgs(`expected number: '${x}'`);
+			return n;
+		});
+	r === undefined && (r = Infinity);
+	return new Interval(
+		l,
+		r,
+		c1 === "(" || c1 === "]",
+		c2 === ")" || c2 === "["
+	);
 };
 
 /**
@@ -174,7 +174,7 @@ export const infinity = () => new Interval(-Infinity, Infinity);
  * @param open -
  */
 export const withMin = (min: number, open = false) =>
-    new Interval(min, Infinity, open, false);
+	new Interval(min, Infinity, open, false);
 
 /**
  * Returns new interval of `[∞..max]` or `[∞..max)` depending on if `open` is
@@ -184,7 +184,7 @@ export const withMin = (min: number, open = false) =>
  * @param open -
  */
 export const withMax = (max: number, open = false) =>
-    new Interval(-Infinity, max, false, open);
+	new Interval(-Infinity, max, false, open);
 
 /**
  * Returns an open interval `(min..max)`
@@ -193,7 +193,7 @@ export const withMax = (max: number, open = false) =>
  * @param max -
  */
 export const open = (min: number, max: number) =>
-    new Interval(min, max, true, true);
+	new Interval(min, max, true, true);
 
 /**
  * Returns a semi-open interval `(min..max]`, open on the LHS.
@@ -202,7 +202,7 @@ export const open = (min: number, max: number) =>
  * @param max -
  */
 export const openClosed = (min: number, max: number) =>
-    new Interval(min, max, true, false);
+	new Interval(min, max, true, false);
 
 /**
  * Returns a semi-open interval `[min..max)`, open on the RHS.
@@ -211,7 +211,7 @@ export const openClosed = (min: number, max: number) =>
  * @param max -
  */
 export const closedOpen = (min: number, max: number) =>
-    new Interval(min, max, false, true);
+	new Interval(min, max, false, true);
 
 /**
  * Returns a closed interval `(min..max)`.
@@ -220,7 +220,7 @@ export const closedOpen = (min: number, max: number) =>
  * @param max -
  */
 export const closed = (min: number, max: number) =>
-    new Interval(min, max, false, false);
+	new Interval(min, max, false, false);
 
 /**
  * Returns iterator of values in given interval at given `step` size. If the
@@ -231,7 +231,7 @@ export const closed = (min: number, max: number) =>
  * @param step -
  */
 export const values = (i: Readonly<Interval>, step: number) =>
-    samples(i, Math.floor(i.size / step + 1));
+	samples(i, Math.floor(i.size / step + 1));
 
 /**
  * Returns an iterator yielding up to `n` uniformly spaced samples in given
@@ -251,11 +251,11 @@ export const values = (i: Readonly<Interval>, step: number) =>
  * @param n -
  */
 export function* samples(i: Readonly<Interval>, n: number) {
-    const delta = n > 1 ? (i.r - i.l) / (n - 1) : 0;
-    for (let x = 0; x < n; x++) {
-        const y = i.l + delta * x;
-        if (contains(i, y)) yield y;
-    }
+	const delta = n > 1 ? (i.r - i.l) / (n - 1) : 0;
+	for (let x = 0; x < n; x++) {
+		const y = i.l + delta * x;
+		if (contains(i, y)) yield y;
+	}
 }
 
 /**
@@ -274,16 +274,16 @@ export const isEmpty = (i: Readonly<Interval>) => i.l >= i.r;
  * @param x -
  */
 export const isBefore = (
-    i: Readonly<Interval>,
-    x: number | Readonly<Interval>
+	i: Readonly<Interval>,
+	x: number | Readonly<Interval>
 ) =>
-    x instanceof Interval
-        ? i.ropen || x.lopen
-            ? i.r <= x.l
-            : i.r < x.l
-        : i.ropen
-        ? i.r <= x
-        : i.r < x;
+	x instanceof Interval
+		? i.ropen || x.lopen
+			? i.r <= x.l
+			: i.r < x.l
+		: i.ropen
+		? i.r <= x
+		: i.r < x;
 
 /**
  * Returns true iff interval `i` LHS > `x`, taking into account openness. If `x`
@@ -294,16 +294,16 @@ export const isBefore = (
  * @param x -
  */
 export const isAfter = (
-    i: Readonly<Interval>,
-    x: number | Readonly<Interval>
+	i: Readonly<Interval>,
+	x: number | Readonly<Interval>
 ) =>
-    x instanceof Interval
-        ? i.lopen || x.ropen
-            ? i.l >= x.r
-            : i.l > x.r
-        : i.ropen
-        ? i.l >= x
-        : i.l > x;
+	x instanceof Interval
+		? i.lopen || x.ropen
+			? i.l >= x.r
+			: i.l > x.r
+		: i.ropen
+		? i.l >= x
+		: i.l > x;
 
 /**
  * Compares interval `a` with `b` and returns a comparator value
@@ -313,19 +313,19 @@ export const isAfter = (
  * @param b -
  */
 export const compare = (a: Readonly<Interval>, b: Readonly<Interval>) => {
-    if (a === b) return 0;
-    let c: number;
-    return a.l < b.l
-        ? -1
-        : a.l > b.l
-        ? 1
-        : a.r < b.r
-        ? -1
-        : a.r > b.r
-        ? 1
-        : (c = ~~a.lopen - ~~b.lopen) === 0
-        ? ~~b.ropen - ~~a.ropen
-        : c;
+	if (a === b) return 0;
+	let c: number;
+	return a.l < b.l
+		? -1
+		: a.l > b.l
+		? 1
+		: a.r < b.r
+		? -1
+		: a.r > b.r
+		? 1
+		: (c = ~~a.lopen - ~~b.lopen) === 0
+		? ~~b.ropen - ~~a.ropen
+		: c;
 };
 
 /**
@@ -335,7 +335,7 @@ export const compare = (a: Readonly<Interval>, b: Readonly<Interval>) => {
  * @param x -
  */
 export const contains = (i: Readonly<Interval>, x: number) =>
-    (i.lopen ? x > i.l : x >= i.l) && (i.ropen ? x < i.r : x <= i.r);
+	(i.lopen ? x > i.l : x >= i.l) && (i.ropen ? x < i.r : x <= i.r);
 
 export const centroid = (i: Readonly<Interval>) => (i.l + i.r) / 2;
 
@@ -347,11 +347,11 @@ export const centroid = (i: Readonly<Interval>) => (i.l + i.r) / 2;
  * @param x -
  */
 export const include = (i: Readonly<Interval>, x: number) =>
-    isAfter(i, x)
-        ? new Interval(x, i.r, false, i.ropen)
-        : isBefore(i, x)
-        ? new Interval(i.l, x, i.lopen, false)
-        : i.copy();
+	isAfter(i, x)
+		? new Interval(x, i.r, false, i.ropen)
+		: isBefore(i, x)
+		? new Interval(i.l, x, i.lopen, false)
+		: i.copy();
 
 /**
  * Returns the distance between intervals, or zero if they touch or
@@ -361,7 +361,7 @@ export const include = (i: Readonly<Interval>, x: number) =>
  * @param b -
  */
 export const distance = (a: Readonly<Interval>, b: Readonly<Interval>) =>
-    overlaps(a, b) ? 0 : a.l < b.l ? b.l - a.r : a.l - b.r;
+	overlaps(a, b) ? 0 : a.l < b.l ? b.l - a.r : a.l - b.r;
 
 /**
  * Applies given `fn` to both sides of interval `i` and returns a new
@@ -371,7 +371,7 @@ export const distance = (a: Readonly<Interval>, b: Readonly<Interval>) =>
  * @param fn -
  */
 export const transform = (i: Readonly<Interval>, fn: Fn<number, number>) =>
-    new Interval(fn(i.l), fn(i.r), i.lopen, i.ropen);
+	new Interval(fn(i.l), fn(i.r), i.lopen, i.ropen);
 
 /**
  * Returns classifier for interval `a` WRT given interval `b`. E.g.
@@ -412,19 +412,19 @@ export const transform = (i: Readonly<Interval>, fn: Fn<number, number>) =>
  * @param b -
  */
 export const classify = (a: Readonly<Interval>, b: Readonly<Interval>) =>
-    a.equiv(b)
-        ? Classifier.EQUIV
-        : isBefore(a, b)
-        ? Classifier.DISJOINT_LEFT
-        : isAfter(a, b)
-        ? Classifier.DISJOINT_RIGHT
-        : contains(a, b.l)
-        ? contains(a, b.r)
-            ? Classifier.SUPERSET
-            : Classifier.OVERLAP_RIGHT
-        : contains(a, b.r)
-        ? Classifier.OVERLAP_LEFT
-        : Classifier.SUBSET;
+	a.equiv(b)
+		? Classifier.EQUIV
+		: isBefore(a, b)
+		? Classifier.DISJOINT_LEFT
+		: isAfter(a, b)
+		? Classifier.DISJOINT_RIGHT
+		: contains(a, b.l)
+		? contains(a, b.r)
+			? Classifier.SUPERSET
+			: Classifier.OVERLAP_RIGHT
+		: contains(a, b.r)
+		? Classifier.OVERLAP_LEFT
+		: Classifier.SUBSET;
 
 /**
  * Returns true if interval `a` intersects `b` in any way (incl.
@@ -434,7 +434,7 @@ export const classify = (a: Readonly<Interval>, b: Readonly<Interval>) =>
  * @param b -
  */
 export const overlaps = (a: Readonly<Interval>, b: Readonly<Interval>) =>
-    classify(a, b) >= Classifier.EQUIV;
+	classify(a, b) >= Classifier.EQUIV;
 
 /**
  * Returns the union of the two given intervals, taken their openness into
@@ -444,11 +444,11 @@ export const overlaps = (a: Readonly<Interval>, b: Readonly<Interval>) =>
  * @param b -
  */
 export const union = (a: Readonly<Interval>, b: Readonly<Interval>) => {
-    if (isEmpty(a)) return b;
-    if (isEmpty(b)) return a;
-    const [l, lo] = $min(a.l, b.l, a.lopen, b.lopen, and);
-    const [r, ro] = $max(a.r, b.r, a.ropen, b.ropen, and);
-    return new Interval(l, r, lo, ro);
+	if (isEmpty(a)) return b;
+	if (isEmpty(b)) return a;
+	const [l, lo] = $min(a.l, b.l, a.lopen, b.lopen, and);
+	const [r, ro] = $max(a.r, b.r, a.ropen, b.ropen, and);
+	return new Interval(l, r, lo, ro);
 };
 
 /**
@@ -459,27 +459,27 @@ export const union = (a: Readonly<Interval>, b: Readonly<Interval>) => {
  * @param b -
  */
 export const intersection = (a: Readonly<Interval>, b: Readonly<Interval>) => {
-    if (overlaps(a, b)) {
-        const [l, lo] = $max(a.l, b.l, a.lopen, b.lopen, or);
-        const [r, ro] = $min(a.r, b.r, a.ropen, b.ropen, or);
-        return new Interval(l, r, lo, ro);
-    }
+	if (overlaps(a, b)) {
+		const [l, lo] = $max(a.l, b.l, a.lopen, b.lopen, or);
+		const [r, ro] = $min(a.r, b.r, a.ropen, b.ropen, or);
+		return new Interval(l, r, lo, ro);
+	}
 };
 
 export const prefix = (a: Readonly<Interval>, b: Readonly<Interval>) => {
-    if (overlaps(a, b)) {
-        const [l, lo] = $min(a.l, b.l, a.lopen, b.lopen, or);
-        const [r, ro] = $min(a.r, b.l, a.ropen, b.lopen, or);
-        return new Interval(l, r, lo, ro);
-    }
+	if (overlaps(a, b)) {
+		const [l, lo] = $min(a.l, b.l, a.lopen, b.lopen, or);
+		const [r, ro] = $min(a.r, b.l, a.ropen, b.lopen, or);
+		return new Interval(l, r, lo, ro);
+	}
 };
 
 export const suffix = (a: Readonly<Interval>, b: Readonly<Interval>) => {
-    if (overlaps(a, b)) {
-        const [l, lo] = $max(a.l, b.r, a.lopen, b.ropen, or);
-        const [r, ro] = $max(a.r, b.r, a.ropen, b.ropen, or);
-        return new Interval(l, r, lo, ro);
-    }
+	if (overlaps(a, b)) {
+		const [l, lo] = $max(a.l, b.r, a.lopen, b.ropen, or);
+		const [r, ro] = $max(a.r, b.r, a.ropen, b.ropen, or);
+		return new Interval(l, r, lo, ro);
+	}
 };
 
 /**
@@ -492,7 +492,7 @@ export const suffix = (a: Readonly<Interval>, b: Readonly<Interval>) => {
  * @param eps -
  */
 export const min = (i: Readonly<Interval>, x: number, eps = DEFAULT_EPS) =>
-    i.ropen ? (x >= i.r ? i.r - eps : x) : x > i.r ? i.r : x;
+	i.ropen ? (x >= i.r ? i.r - eps : x) : x > i.r ? i.r : x;
 
 /**
  * Returns the greater value of either `x` or interval `i`'s LHS value. If
@@ -504,7 +504,7 @@ export const min = (i: Readonly<Interval>, x: number, eps = DEFAULT_EPS) =>
  * @param eps -
  */
 export const max = (i: Readonly<Interval>, x: number, eps = DEFAULT_EPS) =>
-    i.lopen ? (x <= i.l ? i.l + eps : x) : x < i.l ? i.l : x;
+	i.lopen ? (x <= i.l ? i.l + eps : x) : x < i.l ? i.l : x;
 
 /**
  * Clamps `x` to interval `i`, using {@link Interval.min} and
@@ -515,7 +515,7 @@ export const max = (i: Readonly<Interval>, x: number, eps = DEFAULT_EPS) =>
  * @param eps -
  */
 export const clamp = (i: Readonly<Interval>, x: number, eps = DEFAULT_EPS) =>
-    min(i, max(i, x, eps), eps);
+	min(i, max(i, x, eps), eps);
 
 /**
  * Folds `x` back into interval `i`, should it lie outside. `x` MUST originally
@@ -532,44 +532,44 @@ export const clamp = (i: Readonly<Interval>, x: number, eps = DEFAULT_EPS) =>
  * @param eps
  */
 export const fold = (i: Readonly<Interval>, x: number, eps = DEFAULT_EPS) => {
-    do {
-        if ((i.lopen && x <= i.l) || (!i.lopen && x < i.l)) {
-            x = x - i.l + i.r - (i.ropen ? eps : 0);
-        } else if ((i.ropen && x >= i.r) || (!i.ropen && x > i.r)) {
-            x = x - i.r + i.l + (i.lopen ? eps : 0);
-        }
-    } while (!contains(i, x));
-    return x;
+	do {
+		if ((i.lopen && x <= i.l) || (!i.lopen && x < i.l)) {
+			x = x - i.l + i.r - (i.ropen ? eps : 0);
+		} else if ((i.ropen && x >= i.r) || (!i.ropen && x > i.r)) {
+			x = x - i.r + i.l + (i.lopen ? eps : 0);
+		}
+	} while (!contains(i, x));
+	return x;
 };
 
 /** @internal */
 const $min = (
-    a: number,
-    b: number,
-    ao: boolean,
-    bo: boolean,
-    op: Fn2<boolean, boolean, boolean>
+	a: number,
+	b: number,
+	ao: boolean,
+	bo: boolean,
+	op: Fn2<boolean, boolean, boolean>
 ) => $minmax(a < b, a, b, ao, bo, op);
 
 /** @internal */
 const $max = (
-    a: number,
-    b: number,
-    ao: boolean,
-    bo: boolean,
-    op: Fn2<boolean, boolean, boolean>
+	a: number,
+	b: number,
+	ao: boolean,
+	bo: boolean,
+	op: Fn2<boolean, boolean, boolean>
 ) => $minmax(a > b, a, b, ao, bo, op);
 
 /** @internal */
 const $minmax = (
-    test: boolean,
-    a: number,
-    b: number,
-    ao: boolean,
-    bo: boolean,
-    op: Fn2<boolean, boolean, boolean>
+	test: boolean,
+	a: number,
+	b: number,
+	ao: boolean,
+	bo: boolean,
+	op: Fn2<boolean, boolean, boolean>
 ): [number, boolean] => (test ? [a, ao] : a === b ? [a, op(ao, bo)] : [b, bo]);
 
 /** @internal */
 const $toString = (l: number, r: number, lopen: boolean, ropen: boolean) =>
-    `${lopen ? "(" : "["}${l} .. ${r}${ropen ? ")" : "]"}`;
+	`${lopen ? "(" : "["}${l} .. ${r}${ropen ? ")" : "]"}`;

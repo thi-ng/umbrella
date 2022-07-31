@@ -14,8 +14,8 @@ import { range } from "@thi.ng/transducers/range";
  * @param rnd - PRNG
  */
 export function* random2d(cols: number, rows = cols, rnd: IRandom = SYSTEM) {
-    [cols, rows] = asInt(cols, rows);
-    for (let i of shuffle([...range(cols * rows)], undefined, rnd)) {
-        yield [i % cols, (i / cols) | 0];
-    }
+	[cols, rows] = asInt(cols, rows);
+	for (let i of shuffle([...range(cols * rows)], undefined, rnd)) {
+		yield [i % cols, (i / cols) | 0];
+	}
 }

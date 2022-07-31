@@ -7,16 +7,16 @@ import { xform } from "../combinators/xform.js";
  *
  * {@link trim}.
  *
- * @param scope - 
+ * @param scope -
  */
 export const xfTrim: ScopeTransform<string> = (scope) => {
-    scope!.result = (<string>scope!.result).trim();
-    return scope;
+	scope!.result = (<string>scope!.result).trim();
+	return scope;
 };
 
 /**
  * Syntax sugar for `xform(parser, xfTrim)`.
  *
- * @param parser - 
+ * @param parser -
  */
 export const trim = (parser: Parser<string>) => xform(parser, xfTrim);

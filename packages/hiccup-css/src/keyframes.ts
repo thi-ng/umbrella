@@ -48,28 +48,28 @@ import type { CSSOpts, RuleFn } from "./api.js";
 export function at_keyframes(id: string, stops: any): RuleFn;
 export function at_keyframes(id: string, from: any, to: any): RuleFn;
 export function at_keyframes(id: string, ...args: any[]): RuleFn {
-    const stops = args.length === 1 ? args[0] : { 0: args[0], 100: args[1] };
-    return (acc: string[], opts: CSSOpts) => {
-        const outer = indent(opts);
-        opts.depth++;
-        const inner = indent(opts);
-        acc.push(`${outer}@keyframes ${id}${opts.format.declStart}`);
-        for (let s in stops) {
-            if (stops.hasOwnProperty(s)) {
-                acc.push(
-                    [
-                        inner,
-                        percent(<any>s),
-                        opts.format.declStart,
-                        formatDecls(stops[s], opts),
-                        inner,
-                        opts.format.declEnd,
-                    ].join("")
-                );
-            }
-        }
-        opts.depth--;
-        acc.push(outer + opts.format.declEnd);
-        return acc;
-    };
+	const stops = args.length === 1 ? args[0] : { 0: args[0], 100: args[1] };
+	return (acc: string[], opts: CSSOpts) => {
+		const outer = indent(opts);
+		opts.depth++;
+		const inner = indent(opts);
+		acc.push(`${outer}@keyframes ${id}${opts.format.declStart}`);
+		for (let s in stops) {
+			if (stops.hasOwnProperty(s)) {
+				acc.push(
+					[
+						inner,
+						percent(<any>s),
+						opts.format.declStart,
+						formatDecls(stops[s], opts),
+						inner,
+						opts.format.declEnd,
+					].join("")
+				);
+			}
+		}
+		opts.depth--;
+		acc.push(outer + opts.format.declEnd);
+		return acc;
+	};
 }

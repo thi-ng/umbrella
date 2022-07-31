@@ -9,9 +9,9 @@ import type { Parser, PassValue } from "../api.js";
  * @param id -
  */
 export const pass =
-    <R = any>(result: PassValue<R>, id = "pass"): Parser<any> =>
-    (ctx) =>
-        ctx.addChild(id, isFunction(result) ? result() : result);
+	<R = any>(result: PassValue<R>, id = "pass"): Parser<any> =>
+	(ctx) =>
+		ctx.addChild(id, isFunction(result) ? result() : result);
 
 /**
  * Parser which consumes no input and always succeeds. No AST creation.

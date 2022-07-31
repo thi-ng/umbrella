@@ -21,16 +21,16 @@ import { maxComp2 } from "../math/maxcomp.js";
  * @param r - vec4
  */
 export const sdfBoxRounded = defn(
-    "float",
-    "sdfBoxRounded",
-    ["vec2", "vec2", "vec4"],
-    (p, size, r) => {
-        let q: Vec2Sym, t: Vec2Sym, d: FloatSym;
-        return [
-            (t = sym(ternary(gt($x(p), FLOAT0), $xy(r), $(r, "zw")))),
-            (d = sym(ternary(gt($y(p), FLOAT0), $x(t), $y(t)))),
-            (q = sym(add(sub(abs(p), size), d))),
-            ret(sub(add(min(maxComp2(q), FLOAT0), length(max(q, VEC2_0))), d)),
-        ];
-    }
+	"float",
+	"sdfBoxRounded",
+	["vec2", "vec2", "vec4"],
+	(p, size, r) => {
+		let q: Vec2Sym, t: Vec2Sym, d: FloatSym;
+		return [
+			(t = sym(ternary(gt($x(p), FLOAT0), $xy(r), $(r, "zw")))),
+			(d = sym(ternary(gt($y(p), FLOAT0), $x(t), $y(t)))),
+			(q = sym(add(sub(abs(p), size), d))),
+			ret(sub(add(min(maxComp2(q), FLOAT0), length(max(q, VEC2_0))), d)),
+		];
+	}
 );

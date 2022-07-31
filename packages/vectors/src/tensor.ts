@@ -27,19 +27,19 @@ import type { ReadonlyVec, Vec } from "./api.js";
  * // [ 4, 5, 8, 10, 12, 15 ]
  * ```
  *
- * @param out - 
- * @param a - 
- * @param b - 
+ * @param out -
+ * @param a -
+ * @param b -
  */
 export const tensor = (out: Vec | null, a: ReadonlyVec, b: ReadonlyVec) => {
-    out = out || [];
-    const n = a.length;
-    const m = b.length;
-    for (let i = 0, k = 0; i < m; i++) {
-        const bb = b[i];
-        for (let j = 0; j < n; j++) {
-            out[k++] = a[j] * bb;
-        }
-    }
-    return out;
+	out = out || [];
+	const n = a.length;
+	const m = b.length;
+	for (let i = 0, k = 0; i < m; i++) {
+		const bb = b[i];
+		for (let j = 0; j < n; j++) {
+			out[k++] = a[j] * bb;
+		}
+	}
+	return out;
 };

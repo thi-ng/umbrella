@@ -6,11 +6,11 @@ const GAMMA = float(2.2);
 const INV_GAMMA = float(1 / 2.2);
 
 const $ = <T extends Prim>(t: Term<T>, x: FloatTerm): Term<T> => <any>{
-        float: x,
-        vec2: vec2(x),
-        vec3: vec3(x),
-        vec4: vec4(x, x, x, 1),
-    }[t.type];
+		float: x,
+		vec2: vec2(x),
+		vec3: vec3(x),
+		vec4: vec4(x, x, x, 1),
+	}[t.type];
 
 /**
  * Inline function. Converts sRGB color term (1D-4D) to linear space via

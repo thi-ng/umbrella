@@ -26,43 +26,43 @@ import { range } from "./range.js";
  */
 export function permutations<A>(a: Iterable<A>): IterableIterator<[A]>;
 export function permutations<A, B>(
-    a: Iterable<A>,
-    b: Iterable<B>
+	a: Iterable<A>,
+	b: Iterable<B>
 ): IterableIterator<[A, B]>;
 export function permutations<A, B, C>(
-    a: Iterable<A>,
-    b: Iterable<B>,
-    c: Iterable<C>
+	a: Iterable<A>,
+	b: Iterable<B>,
+	c: Iterable<C>
 ): IterableIterator<[A, B, C]>;
 export function permutations<A, B, C, D>(
-    a: Iterable<A>,
-    b: Iterable<B>,
-    c: Iterable<C>,
-    d: Iterable<D>
+	a: Iterable<A>,
+	b: Iterable<B>,
+	c: Iterable<C>,
+	d: Iterable<D>
 ): IterableIterator<[A, B, C, D]>;
 export function permutations(...src: Iterable<any>[]): IterableIterator<any[]>;
 export function* permutations(...src: any[]): IterableIterator<any[]> {
-    const n = src.length - 1;
-    if (n < 0) {
-        return;
-    }
-    const step = new Array(n + 1).fill(0);
-    const realized = src.map(ensureArrayLike);
-    const total = realized.reduce((acc, x) => acc * x.length, 1);
-    for (let i = 0; i < total; i++) {
-        const tuple = [];
-        for (let j = n; j >= 0; j--) {
-            const r = realized[j];
-            let s = step[j];
-            if (s === r.length) {
-                step[j] = s = 0;
-                j > 0 && step[j - 1]++;
-            }
-            tuple[j] = r[s];
-        }
-        step[n]++;
-        yield tuple;
-    }
+	const n = src.length - 1;
+	if (n < 0) {
+		return;
+	}
+	const step = new Array(n + 1).fill(0);
+	const realized = src.map(ensureArrayLike);
+	const total = realized.reduce((acc, x) => acc * x.length, 1);
+	for (let i = 0; i < total; i++) {
+		const tuple = [];
+		for (let j = n; j >= 0; j--) {
+			const r = realized[j];
+			let s = step[j];
+			if (s === r.length) {
+				step[j] = s = 0;
+				j > 0 && step[j - 1]++;
+			}
+			tuple[j] = r[s];
+		}
+		step[n]++;
+		yield tuple;
+	}
 }
 
 /**
@@ -93,17 +93,17 @@ export function* permutations(...src: any[]): IterableIterator<any[]> {
  * @param offsets -
  */
 export const permutationsN = (
-    n: number,
-    m = n,
-    offsets?: number[]
+	n: number,
+	m = n,
+	offsets?: number[]
 ): IterableIterator<number[]> => {
-    if (offsets && offsets.length < n) {
-        illegalArgs(`insufficient offsets, got ${offsets.length}, needed ${n}`);
-    }
-    const seqs = [];
-    while (n-- > 0) {
-        const o = offsets ? offsets[n] : 0;
-        seqs[n] = range(o, o + m);
-    }
-    return permutations.apply(null, seqs);
+	if (offsets && offsets.length < n) {
+		illegalArgs(`insufficient offsets, got ${offsets.length}, needed ${n}`);
+	}
+	const seqs = [];
+	while (n-- > 0) {
+		const o = offsets ? offsets[n] : 0;
+		seqs[n] = range(o, o + m);
+	}
+	return permutations.apply(null, seqs);
 };

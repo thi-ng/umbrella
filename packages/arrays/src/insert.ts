@@ -18,7 +18,7 @@
  * @param k -
  */
 export const insert = <T>(buf: T[], x: T, i: number, k = Infinity) =>
-    i < 0 || i >= k || k < 1 ? buf : insertUnsafe(buf, x, i, k);
+	i < 0 || i >= k || k < 1 ? buf : insertUnsafe(buf, x, i, k);
 
 /**
  * Same as {@link insert} but without any bounds/index checks.
@@ -29,8 +29,8 @@ export const insert = <T>(buf: T[], x: T, i: number, k = Infinity) =>
  * @param k -
  */
 export const insertUnsafe = <T>(buf: T[], x: T, i: number, k = Infinity) => {
-    let j = buf.length < k ? buf.length + 1 : k;
-    for (; --j > i; ) buf[j] = buf[j - 1];
-    buf[i] = x;
-    return buf;
+	let j = buf.length < k ? buf.length + 1 : k;
+	for (; --j > i; ) buf[j] = buf[j - 1];
+	buf[i] = x;
+	return buf;
 };

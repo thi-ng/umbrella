@@ -11,10 +11,10 @@ const RE_MAT = /^mat[234]$/;
 /**
  * Returns true if given `t` is a {@link Term}-like object.
  *
- * @param t - 
+ * @param t -
  */
 export const isTerm = (t: any): t is Term<any> =>
-    isPlainObject(t) && !!t.tag && !!t.type;
+	isPlainObject(t) && !!t.tag && !!t.type;
 
 /**
  * Returns true, if given term evaluates to a boolean value.
@@ -45,7 +45,7 @@ export const isLit = (t: Term<any>): t is Lit<any> => t.tag === "lit";
  * Returns true, if given term is a float literal.
  */
 export const isLitFloat = (t: Term<any>): t is Lit<"float"> =>
-    isLit(t) && isFloat(t);
+	isLit(t) && isFloat(t);
 
 /**
  * Returns true, if given term is a signed integer literal.
@@ -56,30 +56,30 @@ export const isLitInt = (t: Term<any>): t is Lit<"int"> => isLit(t) && isInt(t);
  * Returns true, if given term is a numeric literal (float, int, uint).
  */
 export const isLitNumeric = (
-    t: Term<any>
+	t: Term<any>
 ): t is Lit<"float" | "int" | "uint"> =>
-    isLit(t) && (isFloat(t) || isInt(t) || isUint(t));
+	isLit(t) && (isFloat(t) || isInt(t) || isUint(t));
 
 /**
  * Returns true if t is a numeric literal with a JS number as value (not an
  * expression).
  *
- * @param t - 
+ * @param t -
  */
 export const isLitNumericConst = (
-    t: Term<any>
+	t: Term<any>
 ): t is Lit<"float" | "int" | "uint"> => isLit(t) && isNumber(t.val);
 
 /**
  * Returns true if t is a vector literal with a JS array as value (not an
  * expression).
  *
- * @param t - 
+ * @param t -
  */
 export const isLitVecConst = (
-    t: Term<any>
+	t: Term<any>
 ): t is Lit<Vec | IVec | UVec | BVec> =>
-    isLit(t) && isVec(t) && isArrayLike(t.val);
+	isLit(t) && isVec(t) && isArrayLike(t.val);
 
 /**
  * Returns true, if given term evaluates to a vector value (vec, ivec, bvec).

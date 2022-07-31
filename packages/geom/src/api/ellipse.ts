@@ -5,33 +5,33 @@ import { __asVec } from "../internal/args.js";
 import { __copyAttribs } from "../internal/copy.js";
 
 export class Ellipse implements IHiccupShape {
-    r: Vec;
+	r: Vec;
 
-    constructor(
-        public pos: Vec = [0, 0],
-        r: number | Vec = [1, 1],
-        public attribs?: Attribs
-    ) {
-        this.r = __asVec(r);
-    }
+	constructor(
+		public pos: Vec = [0, 0],
+		r: number | Vec = [1, 1],
+		public attribs?: Attribs
+	) {
+		this.r = __asVec(r);
+	}
 
-    get type() {
-        return "ellipse";
-    }
+	get type() {
+		return "ellipse";
+	}
 
-    copy(): Ellipse {
-        return new Ellipse(
-            set([], this.pos),
-            set([], this.r),
-            __copyAttribs(this)
-        );
-    }
+	copy(): Ellipse {
+		return new Ellipse(
+			set([], this.pos),
+			set([], this.r),
+			__copyAttribs(this)
+		);
+	}
 
-    withAttribs(attribs: Attribs): Ellipse {
-        return new Ellipse(this.pos, this.r, attribs);
-    }
+	withAttribs(attribs: Attribs): Ellipse {
+		return new Ellipse(this.pos, this.r, attribs);
+	}
 
-    toHiccup() {
-        return ["ellipse", this.attribs, this.pos, this.r];
-    }
+	toHiccup() {
+		return ["ellipse", this.attribs, this.pos, this.r];
+	}
 }

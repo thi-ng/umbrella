@@ -17,17 +17,19 @@ export const AssertionError = defError<any>(() => "Assertion failed");
  * or if the `UMBRELLA_ASSERTS` env var is set to 1.
  */
 export const assert = (() =>
-    typeof process !== "undefined" && typeof process.env !== "undefined"
-        ? process.env.NODE_ENV !== "production" ||
-          !!process.env.UMBRELLA_ASSERTS
-        : typeof __SNOWPACK_ENV__ !== "undefined"
-        ? __SNOWPACK_ENV__.MODE !== "production" ||
-          !!__SNOWPACK_ENV__.UMBRELLA_ASSERTS ||
-          !!__SNOWPACK_ENV__.SNOWPACK_PUBLIC_UMBRELLA_ASSERTS
-        : true)()
-    ? (test: boolean | (() => boolean), msg?: string | (() => string)) => {
-          if ((typeof test === "function" && !test()) || !test) {
-              throw new AssertionError(typeof msg === "function" ? msg() : msg);
-          }
-      }
-    : () => {};
+	typeof process !== "undefined" && typeof process.env !== "undefined"
+		? process.env.NODE_ENV !== "production" ||
+		  !!process.env.UMBRELLA_ASSERTS
+		: typeof __SNOWPACK_ENV__ !== "undefined"
+		? __SNOWPACK_ENV__.MODE !== "production" ||
+		  !!__SNOWPACK_ENV__.UMBRELLA_ASSERTS ||
+		  !!__SNOWPACK_ENV__.SNOWPACK_PUBLIC_UMBRELLA_ASSERTS
+		: true)()
+	? (test: boolean | (() => boolean), msg?: string | (() => string)) => {
+			if ((typeof test === "function" && !test()) || !test) {
+				throw new AssertionError(
+					typeof msg === "function" ? msg() : msg
+				);
+			}
+	  }
+	: () => {};

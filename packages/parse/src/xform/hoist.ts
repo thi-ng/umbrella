@@ -7,8 +7,8 @@ import { xform } from "../combinators/xform.js";
  * @param scope -
  */
 export const xfHoist: ScopeTransform<any> = (scope) => {
-    Object.assign(scope!, scope!.children![0]);
-    return scope;
+	Object.assign(scope!, scope!.children![0]);
+	return scope;
 };
 
 /**
@@ -18,9 +18,9 @@ export const xfHoist: ScopeTransform<any> = (scope) => {
  * @param scope -
  */
 export const xfHoistResult: ScopeTransform<any> = (scope) => {
-    scope!.result = scope!.children![0].result;
-    scope!.children = null;
-    return scope;
+	scope!.result = scope!.children![0].result;
+	scope!.children = null;
+	return scope;
 };
 
 /**
@@ -36,4 +36,4 @@ export const hoist = <T>(parser: Parser<T>) => xform(parser, xfHoist);
  * @param parser -
  */
 export const hoistResult = <T>(parser: Parser<T>) =>
-    xform(parser, xfHoistResult);
+	xform(parser, xfHoistResult);

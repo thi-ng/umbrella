@@ -19,17 +19,17 @@ import { unmapPoint } from "./unmap-point.js";
 
 /** @internal */
 const __translateScale = (
-    tmat: MatOpV,
-    smat: MatOpNV,
-    shape: IShape,
-    preTrans: ReadonlyVec,
-    postTrans: ReadonlyVec,
-    scale: ReadonlyVec | number
+	tmat: MatOpV,
+	smat: MatOpNV,
+	shape: IShape,
+	preTrans: ReadonlyVec,
+	postTrans: ReadonlyVec,
+	scale: ReadonlyVec | number
 ) =>
-    transform(
-        shape,
-        concat([], tmat([], postTrans), smat([], scale), tmat([], preTrans))
-    );
+	transform(
+		shape,
+		concat([], tmat([], postTrans), smat([], scale), tmat([], preTrans))
+	);
 
 /**
  * Uniformly rescales & repositions given 2D `shape` such that it fits into
@@ -39,21 +39,21 @@ const __translateScale = (
  * @param dest
  */
 export const fitIntoBounds2 = (shape: IShape, dest: Rect) => {
-    const src = <Rect>bounds(shape);
-    if (!src) return;
-    const c = centroid(src);
-    if (!c) return;
-    return __translateScale(
-        translation23,
-        scale23,
-        shape,
-        neg(null, c),
-        centroid(dest)!,
-        minNonZero2(
-            safeDiv(dest.size[0], src.size[0]),
-            safeDiv(dest.size[1], src.size[1])
-        )
-    );
+	const src = <Rect>bounds(shape);
+	if (!src) return;
+	const c = centroid(src);
+	if (!c) return;
+	return __translateScale(
+		translation23,
+		scale23,
+		shape,
+		neg(null, c),
+		centroid(dest)!,
+		minNonZero2(
+			safeDiv(dest.size[0], src.size[0]),
+			safeDiv(dest.size[1], src.size[1])
+		)
+	);
 };
 
 /**
@@ -63,22 +63,22 @@ export const fitIntoBounds2 = (shape: IShape, dest: Rect) => {
  * @param dest
  */
 export const fitIntoBounds3 = (shape: IShape, dest: AABB) => {
-    const src = <AABB>bounds(shape);
-    if (!src) return;
-    const c = centroid(src);
-    if (!c) return;
-    return __translateScale(
-        translation44,
-        scale44,
-        shape,
-        neg(null, c),
-        centroid(dest)!,
-        minNonZero3(
-            safeDiv(dest.size[0], src.size[0]),
-            safeDiv(dest.size[1], src.size[1]),
-            safeDiv(dest.size[2], src.size[2])
-        )
-    );
+	const src = <AABB>bounds(shape);
+	if (!src) return;
+	const c = centroid(src);
+	if (!c) return;
+	return __translateScale(
+		translation44,
+		scale44,
+		shape,
+		neg(null, c),
+		centroid(dest)!,
+		minNonZero3(
+			safeDiv(dest.size[0], src.size[0]),
+			safeDiv(dest.size[1], src.size[1]),
+			safeDiv(dest.size[2], src.size[2])
+		)
+	);
 };
 
 /**
@@ -88,35 +88,35 @@ export const fitIntoBounds3 = (shape: IShape, dest: AABB) => {
  * @param dest
  */
 export const fitAllIntoBounds2 = (shapes: IShape[], dest: Rect) => {
-    const sbraw = __collBounds(shapes, bounds);
-    if (!sbraw) return;
-    const src = new Rect(...sbraw);
-    const sx = safeDiv(dest.size[0], src.size[0]);
-    const sy = safeDiv(dest.size[1], src.size[1]);
-    const scale = sx > 0 ? (sy > 0 ? Math.min(sx, sy) : sx) : sy;
-    const smat = scale23([], scale);
-    const b = center(transform(src, smat), centroid(dest))!;
-    const c1: Vec = [];
-    const c2: Vec = [];
-    const res: IShape[] = [];
-    for (let i = shapes.length; i-- > 0; ) {
-        const s = shapes[i];
-        const sc = centroid(s, c1);
-        if (sc) {
-            unmapPoint(b, mapPoint(src, sc), c2);
-            res.push(
-                __translateScale(
-                    translation23,
-                    scale23,
-                    s,
-                    neg(null, c1),
-                    c2,
-                    smat
-                )
-            );
-        } else {
-            res.push(s);
-        }
-    }
-    return res;
+	const sbraw = __collBounds(shapes, bounds);
+	if (!sbraw) return;
+	const src = new Rect(...sbraw);
+	const sx = safeDiv(dest.size[0], src.size[0]);
+	const sy = safeDiv(dest.size[1], src.size[1]);
+	const scale = sx > 0 ? (sy > 0 ? Math.min(sx, sy) : sx) : sy;
+	const smat = scale23([], scale);
+	const b = center(transform(src, smat), centroid(dest))!;
+	const c1: Vec = [];
+	const c2: Vec = [];
+	const res: IShape[] = [];
+	for (let i = shapes.length; i-- > 0; ) {
+		const s = shapes[i];
+		const sc = centroid(s, c1);
+		if (sc) {
+			unmapPoint(b, mapPoint(src, sc), c2);
+			res.push(
+				__translateScale(
+					translation23,
+					scale23,
+					s,
+					neg(null, c1),
+					c2,
+					smat
+				)
+			);
+		} else {
+			res.push(s);
+		}
+	}
+	return res;
 };

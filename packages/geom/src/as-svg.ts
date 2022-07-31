@@ -8,7 +8,7 @@ import { bounds } from "./bounds.js";
 import { __collBounds } from "./internal/bounds.js";
 
 export const asSvg = (...args: any[]) =>
-    args.map((x) => serialize(convertTree(x))).join("");
+	args.map((x) => serialize(convertTree(x))).join("");
 
 /**
  * Creates a hiccup SVG doc element for given {@link IShape}s and attribs. If
@@ -23,25 +23,25 @@ export const asSvg = (...args: any[]) =>
  * @param xs
  */
 export const svgDoc = (attribs: Attribs, ...xs: IShape[]) => {
-    if (xs.length > 0) {
-        if (!attribs.viewBox) {
-            const cbounds = __collBounds(xs, bounds);
-            if (cbounds) {
-                const [[x, y], [w, h]] = cbounds;
-                const bleed = attribs.bleed || 0;
-                const bleed2 = 2 * bleed;
-                const width = ff(w + bleed2);
-                const height = ff(h + bleed2);
-                attribs = {
-                    width,
-                    height,
-                    viewBox: `${ff(x - bleed)} ${ff(
-                        y - bleed
-                    )} ${width} ${height}`,
-                    ...withoutKeysObj(attribs, ["bleed"]),
-                };
-            }
-        }
-    }
-    return svg(attribs, ...xs);
+	if (xs.length > 0) {
+		if (!attribs.viewBox) {
+			const cbounds = __collBounds(xs, bounds);
+			if (cbounds) {
+				const [[x, y], [w, h]] = cbounds;
+				const bleed = attribs.bleed || 0;
+				const bleed2 = 2 * bleed;
+				const width = ff(w + bleed2);
+				const height = ff(h + bleed2);
+				attribs = {
+					width,
+					height,
+					viewBox: `${ff(x - bleed)} ${ff(
+						y - bleed
+					)} ${width} ${height}`,
+					...withoutKeysObj(attribs, ["bleed"]),
+				};
+			}
+		}
+	}
+	return svg(attribs, ...xs);
 };

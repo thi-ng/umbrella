@@ -1,2 +1,2 @@
 export const hasCrypto = () =>
-    typeof window !== "undefined" && window["crypto"] !== undefined;
+	typeof window !== "undefined" && window["crypto"] !== undefined;

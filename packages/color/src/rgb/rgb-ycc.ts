@@ -14,21 +14,21 @@ import { __ensureAlpha } from "../internal/ensure.js";
  * - https://en.wikipedia.org/wiki/YCbCr#ITU-R_BT.709_conversion
  * - https://en.wikipedia.org/wiki/Rec._709
  *
- * @param out - 
- * @param src - 
- * @param luma - 
+ * @param out -
+ * @param src -
+ * @param luma -
  */
 export const rgbYcc = (
-    out: Color | null,
-    src: ReadonlyColor,
-    luma = RGB_LUMINANCE_REC709
+	out: Color | null,
+	src: ReadonlyColor,
+	luma = RGB_LUMINANCE_REC709
 ) => {
-    const y = dot3(src, luma);
-    return setC4(
-        out || src,
-        y,
-        (0.5 * (src[2] - y)) / (1 - luma[2]),
-        (0.5 * (src[0] - y)) / (1 - luma[0]),
-        __ensureAlpha(src[3])
-    );
+	const y = dot3(src, luma);
+	return setC4(
+		out || src,
+		y,
+		(0.5 * (src[2] - y)) / (1 - luma[2]),
+		(0.5 * (src[0] - y)) / (1 - luma[0]),
+		__ensureAlpha(src[3])
+	);
 };

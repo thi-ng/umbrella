@@ -4,21 +4,21 @@ import { compR } from "@thi.ng/transducers/compr";
 import { ensureReduced, isReduced } from "@thi.ng/transducers/reduced";
 
 export interface FSMState {
-    state: PropertyKey;
+	state: PropertyKey;
 }
 
 export type FSMStateMap<T extends FSMState, A, B> = IObjectOf<
-    FSMHandler<T, A, B>
+	FSMHandler<T, A, B>
 >;
 export type FSMHandler<T extends FSMState, A, B> = (
-    state: T,
-    input: A
+	state: T,
+	input: A
 ) => B | null | void;
 
 export interface FSMOpts<T extends FSMState, A, B> {
-    states: FSMStateMap<T, A, B>;
-    terminate: PropertyKey;
-    init: Fn0<T>;
+	states: FSMStateMap<T, A, B>;
+	terminate: PropertyKey;
+	init: Fn0<T>;
 }
 
 /**
@@ -98,24 +98,24 @@ export interface FSMOpts<T extends FSMState, A, B> {
  * @param opts -
  */
 export const fsm =
-    <T extends FSMState, A, B>(opts: FSMOpts<T, A, B[]>): Transducer<A, B> =>
-    (rfn: Reducer<any, B>) => {
-        const states = opts.states;
-        const state = opts.init();
-        const r = rfn[2];
-        return compR(rfn, (acc, x) => {
-            const res: any = states[<any>state.state](state, x);
-            if (res != null) {
-                for (let i = 0, n = (<B[]>res).length; i < n; i++) {
-                    acc = r(acc, res[i]);
-                    if (isReduced(acc)) {
-                        break;
-                    }
-                }
-            }
-            if (state.state === opts.terminate) {
-                return ensureReduced(acc);
-            }
-            return acc;
-        });
-    };
+	<T extends FSMState, A, B>(opts: FSMOpts<T, A, B[]>): Transducer<A, B> =>
+	(rfn: Reducer<any, B>) => {
+		const states = opts.states;
+		const state = opts.init();
+		const r = rfn[2];
+		return compR(rfn, (acc, x) => {
+			const res: any = states[<any>state.state](state, x);
+			if (res != null) {
+				for (let i = 0, n = (<B[]>res).length; i < n; i++) {
+					acc = r(acc, res[i]);
+					if (isReduced(acc)) {
+						break;
+					}
+				}
+			}
+			if (state.state === opts.terminate) {
+				return ensureReduced(acc);
+			}
+			return acc;
+		});
+	};

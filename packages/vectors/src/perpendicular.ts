@@ -9,7 +9,7 @@ import { setC2 } from "./setc.js";
  * @param v -
  */
 export const perpendicularCCW: VecOpV = (out, a) =>
-    setC2(out || a, -a[1], a[0]);
+	setC2(out || a, -a[1], a[0]);
 
 /**
  * 2D only. Produces a clockwise perpendicular vector to `v`, i.e.

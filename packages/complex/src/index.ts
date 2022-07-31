@@ -59,7 +59,7 @@ export const abs: ComplexOpN = (a) => Math.sqrt(norm(a));
  * @param a -
  */
 export const acos: ComplexOp1 = (a) =>
-    mul(J, log(add(a, mul(I, sqrt(sub(ONE, sq(a)))))));
+	mul(J, log(add(a, mul(I, sqrt(sub(ONE, sq(a)))))));
 
 /**
  * Complex hyperbolic arccosine.
@@ -70,8 +70,8 @@ export const acos: ComplexOp1 = (a) =>
  * @param a -
  */
 export const acosh: ComplexOp1 = (a) => {
-    const [r, i] = acos(a);
-    return i > 0 ? [i, -r] : [-i, r];
+	const [r, i] = acos(a);
+	return i > 0 ? [i, -r] : [-i, r];
 };
 
 /**
@@ -83,7 +83,7 @@ export const acosh: ComplexOp1 = (a) => {
  * @param a -
  */
 export const acot: ComplexOp1 = ([r, i]) =>
-    mul([0, -0.5], log(div([r, i + 1], [r, i - 1])));
+	mul([0, -0.5], log(div([r, i + 1], [r, i - 1])));
 
 /**
  * Complex hyperbolic arccotangent.
@@ -94,7 +94,7 @@ export const acot: ComplexOp1 = ([r, i]) =>
  * @param a -
  */
 export const acoth: ComplexOp1 = ([r, i]) =>
-    mul(log(div([r + 1, i], [r - 1, i])), 0.5);
+	mul(log(div([r + 1, i], [r - 1, i])), 0.5);
 
 /**
  * Complex addition. Operand `b` can be real or complex.
@@ -103,7 +103,7 @@ export const acoth: ComplexOp1 = ([r, i]) =>
  * @param b -
  */
 export const add: ComplexOp2 = (a, b) =>
-    isNumber(b) ? [a[0] + b, a[1]] : add2([], a, b);
+	isNumber(b) ? [a[0] + b, a[1]] : add2([], a, b);
 
 /**
  * Returns the argument/angle of a complex number, i.e. atan2(im,re)
@@ -124,7 +124,7 @@ export const arg: ComplexOpN = (a) => Math.atan2(a[1], a[0]);
  * @param a -
  */
 export const asin: ComplexOp1 = (a) =>
-    mul(J, log(add([-a[1], a[0]], sqrt(sub(ONE, sq(a))))));
+	mul(J, log(add([-a[1], a[0]], sqrt(sub(ONE, sq(a))))));
 
 /**
  * Complex hyperbolic arcsine.
@@ -145,7 +145,7 @@ export const asinh: ComplexOp1 = ([r, i]) => mul(I, asin([i, -r]));
  * @param a -
  */
 export const atan: ComplexOp1 = ([r, i]) =>
-    mul([0, -0.5], log(div([-r, 1 - i], [r, i + 1])));
+	mul([0, -0.5], log(div([-r, 1 - i], [r, i + 1])));
 
 /**
  * Complex hyperbolic arctangent.
@@ -156,7 +156,7 @@ export const atan: ComplexOp1 = ([r, i]) =>
  * @param a -
  */
 export const atanh: ComplexOp1 = ([r, i]) =>
-    mul(log(div([1 + r, i], [1 - r, -i])), 0.5);
+	mul(log(div([1 + r, i], [1 - r, -i])), 0.5);
 
 /**
  * Complex number conjugation.
@@ -174,7 +174,7 @@ export const conjugate: ComplexOp1 = (a) => [a[0], -a[1]];
  * @param a -
  */
 export const cos: ComplexOp1 = ([r, i]) =>
-    divN2(null, add(exp([-i, r]), exp([i, -r])), 2);
+	divN2(null, add(exp([-i, r]), exp([i, -r])), 2);
 
 /**
  * Complex hyperbolic cosine.
@@ -195,10 +195,10 @@ export const cosh: ComplexOp1 = (a) => mul(add(exp(a), exp(neg(a))), 0.5);
  * @param a -
  */
 export const cot: ComplexOp1 = ([r, i]) => {
-    const e1 = exp([-i, r]);
-    const e2 = exp([i, -r]);
-    const b = submN2([], e1, e2, 0.5);
-    return div(addmN2([], e1, e2, 0.5), [b[1], -b[0]]);
+	const e1 = exp([-i, r]);
+	const e2 = exp([i, -r]);
+	const b = submN2([], e1, e2, 0.5);
+	return div(addmN2([], e1, e2, 0.5), [b[1], -b[0]]);
 };
 
 /**
@@ -210,8 +210,8 @@ export const cot: ComplexOp1 = ([r, i]) => {
  * @param a -
  */
 export const coth: ComplexOp1 = (a) => {
-    const [er, ei] = exp(mulN2([], a, 2));
-    return div([er + 1, ei], [er - 1, ei]);
+	const [er, ei] = exp(mulN2([], a, 2));
+	return div([er + 1, ei], [er - 1, ei]);
 };
 
 /**
@@ -221,17 +221,17 @@ export const coth: ComplexOp1 = (a) => {
  * @param b -
  */
 export const div: ComplexOp2 = (a, b) => {
-    if (isNumber(b)) return divN2([], a, b);
-    const d = norm(b);
-    return d !== 0
-        ? [(a[0] * b[0] + a[1] * b[1]) / d, (a[1] * b[0] - a[0] * b[1]) / d]
-        : INF;
+	if (isNumber(b)) return divN2([], a, b);
+	const d = norm(b);
+	return d !== 0
+		? [(a[0] * b[0] + a[1] * b[1]) / d, (a[1] * b[0] - a[0] * b[1]) / d]
+		: INF;
 };
 
 export const eq: Predicate2<Complex> = equals2;
 
 export const eqDelta: (a: Complex, b: Complex, eps?: number) => boolean =
-    eqDelta2;
+	eqDelta2;
 
 /**
  * Returns e (the base of natural logarithms) raised to a complex power.
@@ -249,7 +249,7 @@ export const exp: ComplexOp1 = (a) => cossin(a[1], Math.exp(a[0]));
  * @param a
  */
 export const inv: ComplexOp1 = (a) =>
-    isZero(a) ? INF : isInfinite(a) ? ZERO : div(ONE, a);
+	isZero(a) ? INF : isInfinite(a) ? ZERO : div(ONE, a);
 
 /**
  * Complex number (natural) logarithm.
@@ -265,9 +265,9 @@ export const log: ComplexOp1 = (a) => [Math.log(abs(a)), arg(a)];
  * @param b -
  */
 export const mul: ComplexOp2 = (a, b) =>
-    isNumber(b)
-        ? mulN2([], a, b)
-        : [a[0] * b[0] - a[1] * b[1], a[0] * b[1] + a[1] * b[0]];
+	isNumber(b)
+		? mulN2([], a, b)
+		: [a[0] * b[0] - a[1] * b[1], a[0] * b[1] + a[1] * b[0]];
 
 export const neg: ComplexOp1 = (a) => [-a[0], -a[1]];
 
@@ -315,7 +315,7 @@ export const pow: ComplexOp2 = (a, b) => exp(mul(log(a), b));
  * @param a -
  */
 export const sin: ComplexOp1 = ([r, i]) =>
-    div(sub(exp([-i, r]), exp([i, -r])), [0, 2]);
+	div(sub(exp([-i, r]), exp([i, -r])), [0, 2]);
 
 /**
  * Complex hyperbolic sine.
@@ -344,11 +344,11 @@ export const sq: ComplexOp1 = (a) => mul(a, a);
  * @param a -
  */
 export const sqrt: ComplexOp1 = (a) => {
-    const mag = abs(a);
-    return [
-        Math.sqrt((mag + a[0]) / 2),
-        Math.sign(a[1]) * Math.sqrt((mag - a[0]) / 2),
-    ];
+	const mag = abs(a);
+	return [
+		Math.sqrt((mag + a[0]) / 2),
+		Math.sign(a[1]) * Math.sqrt((mag - a[0]) / 2),
+	];
 };
 
 /**
@@ -358,7 +358,7 @@ export const sqrt: ComplexOp1 = (a) => {
  * @param b -
  */
 export const sub: ComplexOp2 = (a, b) =>
-    isNumber(b) ? [a[0] - b, a[1]] : sub2([], a, b);
+	isNumber(b) ? [a[0] - b, a[1]] : sub2([], a, b);
 
 /**
  * Complex tangent.
@@ -369,12 +369,12 @@ export const sub: ComplexOp2 = (a, b) =>
  * @param a -
  */
 export const tan: ComplexOp1 = ([r, i]) => {
-    const e1 = exp([-i, r]);
-    const e2 = exp([i, -r]);
-    const a = submN2([], e1, e2, 0.5);
-    const b = addmN2([], e1, e2, 0.5);
-    // div(sin(a),cos(a))
-    return div([a[1], -a[0]], [b[0], b[1]]);
+	const e1 = exp([-i, r]);
+	const e2 = exp([i, -r]);
+	const a = submN2([], e1, e2, 0.5);
+	const b = addmN2([], e1, e2, 0.5);
+	// div(sin(a),cos(a))
+	return div([a[1], -a[0]], [b[0], b[1]]);
 };
 
 /**
@@ -386,6 +386,6 @@ export const tan: ComplexOp1 = ([r, i]) => {
  * @param a -
  */
 export const tanh: ComplexOp1 = (a) => {
-    const [er, ei] = exp(mulN2([], a, 2));
-    return div([er - 1, ei], [er + 1, ei]);
+	const [er, ei] = exp(mulN2([], a, 2));
+	return div([er - 1, ei], [er + 1, ei]);
 };

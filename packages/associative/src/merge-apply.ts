@@ -10,14 +10,14 @@ import { copy, copyObj } from "./copy.js";
  * @param xs - map w/ transformation functions
  */
 export const mergeApplyMap = <K, V>(
-    src: Map<K, V>,
-    xs: Map<K, V | Fn<V, V>>
+	src: Map<K, V>,
+	xs: Map<K, V | Fn<V, V>>
 ): Map<K, V> => {
-    const res: Map<K, any> = copy(src, Map);
-    for (let [k, v] of xs) {
-        res.set(k, isFunction(v) ? v(res.get(k)) : v);
-    }
-    return res;
+	const res: Map<K, any> = copy(src, Map);
+	for (let [k, v] of xs) {
+		res.set(k, isFunction(v) ? v(res.get(k)) : v);
+	}
+	return res;
 };
 
 /**
@@ -49,8 +49,8 @@ export const mergeApplyMap = <K, V>(
  * @param xs - object w/ transformation functions
  */
 export const mergeApplyObj = <V>(
-    src: IObjectOf<V>,
-    xs: IObjectOf<V | Fn<V, V>>
+	src: IObjectOf<V>,
+	xs: IObjectOf<V | Fn<V, V>>
 ) => meldApplyObj(copyObj(src), xs);
 
 /**
@@ -65,13 +65,13 @@ export const mergeApplyObj = <V>(
  * @param xs -
  */
 export const meldApplyObj = <V>(
-    src: IObjectOf<V>,
-    xs: IObjectOf<V | Fn<V, V>>
+	src: IObjectOf<V>,
+	xs: IObjectOf<V | Fn<V, V>>
 ) => {
-    for (let k in xs) {
-        if (isIllegalKey(k)) continue;
-        const v = xs[k];
-        src[k] = isFunction(v) ? v(src[k]) : v;
-    }
-    return src;
+	for (let k in xs) {
+		if (isIllegalKey(k)) continue;
+		const v = xs[k];
+		src[k] = isFunction(v) ? v(src[k]) : v;
+	}
+	return src;
 };

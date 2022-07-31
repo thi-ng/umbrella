@@ -8,4 +8,4 @@ import { dot } from "@thi.ng/shader-ast/builtin/math";
  * @param rgb -
  */
 export const luminanceRGB = (rgb: Vec3Term) =>
-    dot(rgb, vec3(0.299, 0.587, 0.114));
+	dot(rgb, vec3(0.299, 0.587, 0.114));

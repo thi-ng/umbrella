@@ -35,22 +35,29 @@ import { partition } from "./partition.js";
  * @param key - sort key lookup
  * @param cmp - comparator
  */
-// prettier-ignore
-export function partitionSort<A, B>(n: number, opts?: Partial<SortOpts<A, B>>): Transducer<A, A>;
-// prettier-ignore
-export function partitionSort<A, B>(n: number, src: Iterable<A>): IterableIterator<A>;
-// prettier-ignore
-export function partitionSort<A, B>(n: number, opts: Partial<SortOpts<A, B>>, src: Iterable<A>): IterableIterator<A>;
+export function partitionSort<A, B>(
+	n: number,
+	opts?: Partial<SortOpts<A, B>>
+): Transducer<A, A>;
+export function partitionSort<A, B>(
+	n: number,
+	src: Iterable<A>
+): IterableIterator<A>;
+export function partitionSort<A, B>(
+	n: number,
+	opts: Partial<SortOpts<A, B>>,
+	src: Iterable<A>
+): IterableIterator<A>;
 export function partitionSort<A, B>(...args: any[]): any {
-    const iter = __iter(partitionSort, args, iterator);
-    if (iter) {
-        return iter;
-    }
-    const { key, compare } = __sortOpts<A, B>(args[1]);
-    return comp<A, A[], A>(
-        partition(args[0], true),
-        mapcat((window: A[]) =>
-            window.slice().sort((a, b) => compare(key(a), key(b)))
-        )
-    );
+	const iter = __iter(partitionSort, args, iterator);
+	if (iter) {
+		return iter;
+	}
+	const { key, compare } = __sortOpts<A, B>(args[1]);
+	return comp<A, A[], A>(
+		partition(args[0], true),
+		mapcat((window: A[]) =>
+			window.slice().sort((a, b) => compare(key(a), key(b)))
+		)
+	);
 }

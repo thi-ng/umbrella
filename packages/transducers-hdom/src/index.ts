@@ -42,27 +42,27 @@ import { scan } from "@thi.ng/transducers/scan";
  * @param opts - hdom options
  */
 export const updateDOM = (
-    opts: Partial<HDOMOpts> = {},
-    impl: HDOMImplementation<any> = DEFAULT_IMPL
+	opts: Partial<HDOMOpts> = {},
+	impl: HDOMImplementation<any> = DEFAULT_IMPL
 ): Transducer<any, any[]> => {
-    const _opts = { root: "app", ...opts };
-    const root = resolveRoot(_opts.root, impl);
-    return scan<any, any[]>([
-        () => [],
-        (acc) => acc,
-        (prev, curr) => {
-            _opts.ctx = derefContext(opts.ctx, _opts.autoDerefKeys);
-            curr = impl.normalizeTree(_opts, curr);
-            if (curr != null) {
-                if (_opts.hydrate) {
-                    impl.hydrateTree(_opts, root, curr);
-                    _opts.hydrate = false;
-                } else {
-                    impl.diffTree(_opts, root, prev, curr, 0);
-                }
-                return curr;
-            }
-            return prev;
-        },
-    ]);
+	const _opts = { root: "app", ...opts };
+	const root = resolveRoot(_opts.root, impl);
+	return scan<any, any[]>([
+		() => [],
+		(acc) => acc,
+		(prev, curr) => {
+			_opts.ctx = derefContext(opts.ctx, _opts.autoDerefKeys);
+			curr = impl.normalizeTree(_opts, curr);
+			if (curr != null) {
+				if (_opts.hydrate) {
+					impl.hydrateTree(_opts, root, curr);
+					_opts.hydrate = false;
+				} else {
+					impl.diffTree(_opts, root, prev, curr, 0);
+				}
+				return curr;
+			}
+			return prev;
+		},
+	]);
 };

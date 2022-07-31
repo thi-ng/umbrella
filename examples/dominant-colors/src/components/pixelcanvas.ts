@@ -7,20 +7,20 @@ import { Component } from "@thi.ng/rdom/component";
 
 // when the component mounts
 export class PixelCanvas extends Component {
-    constructor(protected buffer: IntBuffer) {
-        super();
-    }
+	constructor(protected buffer: IntBuffer) {
+		super();
+	}
 
-    async mount(parent: Element, index?: NumOrElement) {
-        const buf = this.buffer;
-        this.el = this.$el(
-            "canvas",
-            { width: buf.width, height: buf.height, class: "dib v-top" },
-            null,
-            parent,
-            index
-        );
-        buf.blitCanvas(<HTMLCanvasElement>this.el);
-        return this.el;
-    }
+	async mount(parent: Element, index?: NumOrElement) {
+		const buf = this.buffer;
+		this.el = this.$el(
+			"canvas",
+			{ width: buf.width, height: buf.height, class: "dib v-top" },
+			null,
+			parent,
+			index
+		);
+		buf.blitCanvas(<HTMLCanvasElement>this.el);
+		return this.el;
+	}
 }

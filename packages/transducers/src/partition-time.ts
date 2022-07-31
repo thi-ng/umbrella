@@ -35,18 +35,18 @@ import { partitionBy } from "./partition-by.js";
  */
 export function partitionTime<T>(period: number): Transducer<T, T[]>;
 export function partitionTime<T>(
-    period: number,
-    src: Iterable<T>
+	period: number,
+	src: Iterable<T>
 ): IterableIterator<T[]>;
 export function partitionTime<T>(period: number, src?: Iterable<T>): any {
-    return isIterable(src)
-        ? iterator(partitionTime(period), src)
-        : partitionBy(() => {
-              let last = 0;
-              return () => {
-                  const t = Date.now();
-                  t - last >= period && (last = t);
-                  return last;
-              };
-          }, true);
+	return isIterable(src)
+		? iterator(partitionTime(period), src)
+		: partitionBy(() => {
+				let last = 0;
+				return () => {
+					const t = Date.now();
+					t - last >= period && (last = t);
+					return last;
+				};
+		  }, true);
 }

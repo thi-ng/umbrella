@@ -6,6 +6,6 @@ import type { Transducer } from "./api.js";
  * existing values in a {@link (multiplex:1)} tuple lane.
  */
 export const noop =
-    <T>(): Transducer<T, T> =>
-    (rfn) =>
-        rfn;
+	<T>(): Transducer<T, T> =>
+	(rfn) =>
+		rfn;

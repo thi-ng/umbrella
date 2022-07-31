@@ -15,10 +15,10 @@ import { signedArea2 } from "./signed-area.js";
  * @param eps - zero tolerance for sign computation
  */
 export const corner2 = (
-    a: ReadonlyVec,
-    b: ReadonlyVec,
-    c: ReadonlyVec,
-    eps = EPS
+	a: ReadonlyVec,
+	b: ReadonlyVec,
+	c: ReadonlyVec,
+	eps = EPS
 ) => sign(signedArea2(a, b, c), eps);
 
 /**
@@ -31,8 +31,8 @@ export const corner2 = (
  * @param eps -
  */
 export const clockwise2 = (
-    a: ReadonlyVec,
-    b: ReadonlyVec,
-    c: ReadonlyVec,
-    eps = EPS
+	a: ReadonlyVec,
+	b: ReadonlyVec,
+	c: ReadonlyVec,
+	eps = EPS
 ) => corner2(a, b, c, eps) < 0;

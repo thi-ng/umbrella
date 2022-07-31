@@ -8,10 +8,10 @@ import { reduce, reducer } from "./reduce.js";
 export function minMag(): Reducer<number, number>;
 export function minMag(xs: Iterable<number>): number;
 export function minMag(xs?: Iterable<number>): any {
-    return xs
-        ? reduce(minMag(), xs)
-        : reducer(
-              () => Infinity,
-              (acc, x: number) => (Math.abs(x) < Math.abs(acc) ? x : acc)
-          );
+	return xs
+		? reduce(minMag(), xs)
+		: reducer(
+				() => Infinity,
+				(acc, x: number) => (Math.abs(x) < Math.abs(acc) ? x : acc)
+		  );
 }

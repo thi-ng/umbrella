@@ -5,20 +5,20 @@ import { __optsWithID } from "./idgen.js";
 import { stream } from "./stream.js";
 
 export interface FromAtomOpts<T> extends CommonOpts {
-    /**
-     * True, if the current atom value should be emitted when the stream
-     * activates.
-     *
-     * @defaultValue true
-     */
-    emitFirst: boolean;
-    /**
-     * User predicate to determine value changes in atom. New values are
-     * only emitted on stream if the predicate returns true.
-     *
-     * @defaultValue `!==`
-     */
-    changed: Predicate2<T>;
+	/**
+	 * True, if the current atom value should be emitted when the stream
+	 * activates.
+	 *
+	 * @defaultValue true
+	 */
+	emitFirst: boolean;
+	/**
+	 * User predicate to determine value changes in atom. New values are
+	 * only emitted on stream if the predicate returns true.
+	 *
+	 * @defaultValue `!==`
+	 */
+	changed: Predicate2<T>;
 }
 
 /**
@@ -53,21 +53,21 @@ export interface FromAtomOpts<T> extends CommonOpts {
  * @param opts -
  */
 export const fromAtom = <T>(
-    atom: ReadonlyAtom<T>,
-    opts?: Partial<FromAtomOpts<T>>
+	atom: ReadonlyAtom<T>,
+	opts?: Partial<FromAtomOpts<T>>
 ) => {
-    opts = __optsWithID("atom", <FromAtomOpts<T>>{
-        emitFirst: true,
-        changed: (a, b) => a !== b,
-        ...opts,
-    });
-    return stream<T>((stream) => {
-        atom.addWatch(stream.id, (_, prev, curr) => {
-            if (opts!.changed!(prev, curr)) {
-                stream.next(curr);
-            }
-        });
-        opts!.emitFirst && stream.next(atom.deref());
-        return () => atom.removeWatch(stream.id);
-    }, opts);
+	opts = __optsWithID("atom", <FromAtomOpts<T>>{
+		emitFirst: true,
+		changed: (a, b) => a !== b,
+		...opts,
+	});
+	return stream<T>((stream) => {
+		atom.addWatch(stream.id, (_, prev, curr) => {
+			if (opts!.changed!(prev, curr)) {
+				stream.next(curr);
+			}
+		});
+		opts!.emitFirst && stream.next(atom.deref());
+		return () => atom.removeWatch(stream.id);
+	}, opts);
 };

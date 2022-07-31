@@ -9,8 +9,8 @@ import type { SortOpts } from "../api.js";
  * @internal
  */
 export const __sortOpts = <A, B>(opts?: Partial<SortOpts<A, B>>) =>
-    <SortOpts<A, B>>{
-        key: (x: any) => x,
-        compare,
-        ...opts,
-    };
+	<SortOpts<A, B>>{
+		key: (x: any) => x,
+		compare,
+		...opts,
+	};

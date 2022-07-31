@@ -18,33 +18,33 @@ export function rect(pos: Vec, size: number | Vec, attribs?: Attribs): Rect;
 export function rect(size: number | Vec, attribs?: Attribs): Rect;
 export function rect(attribs?: Attribs): Rect;
 export function rect(...args: any[]) {
-    return new Rect(...__argsVV(args));
+	return new Rect(...__argsVV(args));
 }
 
 export const rectFromMinMax = (min: Vec, max: Vec, attribs?: Attribs) =>
-    new Rect(min, sub2([], max, min), attribs);
+	new Rect(min, sub2([], max, min), attribs);
 
 export const rectFromMinMaxWithMargin = (
-    min: Vec,
-    max: Vec,
-    margin: number,
-    attribs?: Attribs
+	min: Vec,
+	max: Vec,
+	margin: number,
+	attribs?: Attribs
 ) => rectFromMinMax(min, max, attribs).offset(margin);
 
 export const rectFromCentroid = (
-    centroid: Vec,
-    size: number | Vec,
-    attribs?: Attribs
+	centroid: Vec,
+	size: number | Vec,
+	attribs?: Attribs
 ) => {
-    size = __asVec(size);
-    return new Rect(maddN2([], size, -0.5, centroid), size, attribs);
+	size = __asVec(size);
+	return new Rect(maddN2([], size, -0.5, centroid), size, attribs);
 };
 
 export const rectFromCentroidWithMargin = (
-    centroid: Vec,
-    size: number | Vec,
-    margin: number,
-    attribs?: Attribs
+	centroid: Vec,
+	size: number | Vec,
+	margin: number,
+	attribs?: Attribs
 ) => rectFromCentroid(centroid, size, attribs).offset(margin);
 
 /**
@@ -55,10 +55,10 @@ export const rectFromCentroidWithMargin = (
  * @param b -
  */
 export const intersectionRect = (a: Rect, b: Rect) => {
-    const p = max2([], a.pos, b.pos);
-    const q = min2(null, add2([], a.pos, a.size), add2([], b.pos, b.size));
-    const size = max2(null, sub2(null, q, p), ZERO2);
-    return size[0] > 0 && size[1] > 0 ? new Rect(p, size) : undefined;
+	const p = max2([], a.pos, b.pos);
+	const q = min2(null, add2([], a.pos, a.size), add2([], b.pos, b.size));
+	const size = max2(null, sub2(null, q, p), ZERO2);
+	return size[0] > 0 && size[1] > 0 ? new Rect(p, size) : undefined;
 };
 
 /**
@@ -70,16 +70,16 @@ export const intersectionRect = (a: Rect, b: Rect) => {
 export function inscribedSquare(circle: Circle): Rect;
 export function inscribedSquare(pos: ReadonlyVec, r: number): Rect;
 export function inscribedSquare(...args: any[]) {
-    let pos: ReadonlyVec, r: number;
-    if (args.length === 1) {
-        const c: Circle = args[0];
-        pos = c.pos;
-        r = c.r;
-    } else {
-        [pos, r] = args;
-    }
-    r *= SQRT2_2;
-    return rect(subN2([], pos, r), r * 2);
+	let pos: ReadonlyVec, r: number;
+	if (args.length === 1) {
+		const c: Circle = args[0];
+		pos = c.pos;
+		r = c.r;
+	} else {
+		[pos, r] = args;
+	}
+	r *= SQRT2_2;
+	return rect(subN2([], pos, r), r * 2);
 }
 
 /**
@@ -91,14 +91,14 @@ export function inscribedSquare(...args: any[]) {
 export function inscribedSquareHex(hex: Polygon): Rect;
 export function inscribedSquareHex(pos: ReadonlyVec, len: number): Rect;
 export function inscribedSquareHex(...args: any[]) {
-    let pos: ReadonlyVec, l: number;
-    if (args.length === 1) {
-        const pts = (<Polygon>args[0]).points;
-        pos = centroid(pts);
-        l = dist(pts[0], pts[1]);
-    } else {
-        [pos, l] = args;
-    }
-    l *= 3 - SQRT3;
-    return rect(subN2([], pos, l / 2), l);
+	let pos: ReadonlyVec, l: number;
+	if (args.length === 1) {
+		const pts = (<Polygon>args[0]).points;
+		pos = centroid(pts);
+		l = dist(pts[0], pts[1]);
+	} else {
+		[pos, l] = args;
+	}
+	l *= 3 - SQRT3;
+	return rect(subN2([], pos, l / 2), l);
 }

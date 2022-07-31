@@ -21,13 +21,13 @@ import { $stackFn, defWord, exec } from "./word.js";
  * @param ctx -
  */
 export const dip = (ctx: StackContext) => {
-    const stack = ctx[0];
-    $(stack, 2);
-    const q = stack.pop();
-    const x = stack.pop();
-    ctx = $stackFn(q)(ctx);
-    ctx[0].push(x);
-    return ctx;
+	const stack = ctx[0];
+	$(stack, 2);
+	const q = stack.pop();
+	const x = stack.pop();
+	ctx = $stackFn(q)(ctx);
+	ctx[0].push(x);
+	return ctx;
 };
 
 /**

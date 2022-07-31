@@ -38,36 +38,36 @@ import { $wrapText } from "./wrap.js";
  * @param src -
  */
 export const $replace = <T>(src: ISubscribable<T>) =>
-    $sub(src, new Replace<T>());
+	$sub(src, new Replace<T>());
 
 export class Replace<T> extends Component implements IMountWithState<T> {
-    protected parent?: Element;
-    protected inner?: IComponent<T>;
-    protected index?: NumOrElement;
+	protected parent?: Element;
+	protected inner?: IComponent<T>;
+	protected index?: NumOrElement;
 
-    async mount(parent: Element, index: NumOrElement, val: T) {
-        this.parent = parent;
-        this.index = index;
-        await this.update(val);
-        if (!this.inner) {
-            this.inner = $wrapText("span", { hidden: true });
-            await this.inner.mount(parent, index);
-        }
-        return this.inner!.el!;
-    }
+	async mount(parent: Element, index: NumOrElement, val: T) {
+		this.parent = parent;
+		this.index = index;
+		await this.update(val);
+		if (!this.inner) {
+			this.inner = $wrapText("span", { hidden: true });
+			await this.inner.mount(parent, index);
+		}
+		return this.inner!.el!;
+	}
 
-    async unmount() {
-        this.inner && (await this.inner!.unmount());
-        this.parent = undefined;
-        this.inner = undefined;
-    }
+	async unmount() {
+		this.inner && (await this.inner!.unmount());
+		this.parent = undefined;
+		this.inner = undefined;
+	}
 
-    async update(val: T) {
-        this.inner && (await this.inner.unmount());
-        this.inner = undefined;
-        if (val != null) {
-            this.inner = $compile(val);
-            this.inner && (await this.inner.mount(this.parent!, this.index!));
-        }
-    }
+	async update(val: T) {
+		this.inner && (await this.inner.unmount());
+		this.inner = undefined;
+		if (val != null) {
+			this.inner = $compile(val);
+			this.inner && (await this.inner.mount(this.parent!, this.index!));
+		}
+	}
 }

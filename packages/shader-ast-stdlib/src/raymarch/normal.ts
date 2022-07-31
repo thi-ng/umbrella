@@ -17,12 +17,12 @@ import type { RaymarchScene } from "../api.js";
  * @param name -
  */
 export const raymarchNormal = (scene: RaymarchScene, name = "raymarchNormal") =>
-    defn("vec3", name, ["vec3", "float"], (p, smooth) => {
-        let dn: Vec2Sym;
-        const comp = (id: Swizzle2_3) =>
-            sub($x(scene(add(p, $(dn, id)))), $x(scene(sub(p, $(dn, id)))));
-        return [
-            (dn = sym(vec2(smooth, 0))),
-            ret(normalize(vec3(comp("xyy"), comp("yxy"), comp("yyx")))),
-        ];
-    });
+	defn("vec3", name, ["vec3", "float"], (p, smooth) => {
+		let dn: Vec2Sym;
+		const comp = (id: Swizzle2_3) =>
+			sub($x(scene(add(p, $(dn, id)))), $x(scene(sub(p, $(dn, id)))));
+		return [
+			(dn = sym(vec2(smooth, 0))),
+			ret(normalize(vec3(comp("xyy"), comp("yxy"), comp("yyx")))),
+		];
+	});

@@ -34,13 +34,13 @@ import { take } from "./take.js";
 export function page<T>(page: number, pageLen?: number): Transducer<T, T>;
 export function page<T>(page: number, src: Iterable<T>): IterableIterator<T>;
 export function page<T>(
-    page: number,
-    pageLen: number,
-    src: Iterable<T>
+	page: number,
+	pageLen: number,
+	src: Iterable<T>
 ): IterableIterator<T>;
 export function page(...args: any[]): any {
-    return (
-        __iter(page, args) ||
-        comp(drop(args[0] * (args[1] || 10)), take(args[1] || 10))
-    );
+	return (
+		__iter(page, args) ||
+		comp(drop(args[0] * (args[1] || 10)), take(args[1] || 10))
+	);
 }

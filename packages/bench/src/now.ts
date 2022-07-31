@@ -7,13 +7,13 @@ import type { Timestamp } from "./api.js";
  * timestamp, either as `bigint` or `number`.
  */
 export const now: Fn0<Timestamp> =
-    typeof BigInt !== "undefined"
-        ? typeof process !== "undefined" &&
-          typeof process.hrtime !== "undefined" &&
-          typeof process.hrtime.bigint === "function"
-            ? () => process.hrtime.bigint()
-            : () => BigInt(Date.now() * 1e6)
-        : () => Date.now() * 1e6;
+	typeof BigInt !== "undefined"
+		? typeof process !== "undefined" &&
+		  typeof process.hrtime !== "undefined" &&
+		  typeof process.hrtime.bigint === "function"
+			? () => process.hrtime.bigint()
+			: () => BigInt(Date.now() * 1e6)
+		: () => Date.now() * 1e6;
 
 /**
  * Returns the difference in milliseconds between 2 given
@@ -23,6 +23,6 @@ export const now: Fn0<Timestamp> =
  * @param b
  */
 export const timeDiff: FnU2<Timestamp, number> = (a, b) =>
-    (typeof BigInt !== "undefined"
-        ? Number(<bigint>b - <bigint>a)
-        : <number>b - <number>a) * 1e-6;
+	(typeof BigInt !== "undefined"
+		? Number(<bigint>b - <bigint>a)
+		: <number>b - <number>a) * 1e-6;

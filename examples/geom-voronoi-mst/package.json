@@ -1,48 +1,48 @@
 {
-    "name": "@example/geom-voronoi-mst",
-    "private": true,
-    "version": "0.0.1",
-    "description": "Poisson-disk shape-aware sampling, Voronoi & Minimum Spanning Tree visualization",
-    "repository": "https://github.com/thi-ng/umbrella",
-    "author": "Karsten Schmidt <k+npm@thi.ng>",
-    "license": "Apache-2.0",
-    "scripts": {
-        "start": "vite --open",
-        "build": "tsc && vite build --base='./'",
-        "preview": "vite preview --host --open"
-    },
-    "dependencies": {
-        "@thi.ng/adjacency": "workspace:^",
-        "@thi.ng/bench": "workspace:^",
-        "@thi.ng/geom": "workspace:^",
-        "@thi.ng/geom-accel": "workspace:^",
-        "@thi.ng/geom-voronoi": "workspace:^",
-        "@thi.ng/hdom": "workspace:^",
-        "@thi.ng/hdom-canvas": "workspace:^",
-        "@thi.ng/math": "workspace:^",
-        "@thi.ng/poisson": "workspace:^",
-        "@thi.ng/transducers": "workspace:^",
-        "@thi.ng/vectors": "workspace:^"
-    },
-    "browser": {
-        "process": false,
-        "setTimeout": false,
-        "util": false
-    },
-    "thi.ng": {
-        "readme": [
-            "adjacency",
-            "bench",
-            "geom",
-            "geom-accel",
-            "geom-voronoi",
-            "hdom-canvas",
-            "poisson"
-        ],
-        "screenshot": "examples/geom-voronoi-mst.jpg"
-    },
-    "devDependencies": {
-        "typescript": "^4.7.4",
-        "vite": "^3.0.0"
-    }
+	"name": "@example/geom-voronoi-mst",
+	"private": true,
+	"version": "0.0.1",
+	"description": "Poisson-disk shape-aware sampling, Voronoi & Minimum Spanning Tree visualization",
+	"repository": "https://github.com/thi-ng/umbrella",
+	"author": "Karsten Schmidt <k+npm@thi.ng>",
+	"license": "Apache-2.0",
+	"scripts": {
+		"start": "vite --open",
+		"build": "tsc && vite build --base='./'",
+		"preview": "vite preview --host --open"
+	},
+	"dependencies": {
+		"@thi.ng/adjacency": "workspace:^",
+		"@thi.ng/bench": "workspace:^",
+		"@thi.ng/geom": "workspace:^",
+		"@thi.ng/geom-accel": "workspace:^",
+		"@thi.ng/geom-voronoi": "workspace:^",
+		"@thi.ng/hdom": "workspace:^",
+		"@thi.ng/hdom-canvas": "workspace:^",
+		"@thi.ng/math": "workspace:^",
+		"@thi.ng/poisson": "workspace:^",
+		"@thi.ng/transducers": "workspace:^",
+		"@thi.ng/vectors": "workspace:^"
+	},
+	"browser": {
+		"process": false,
+		"setTimeout": false,
+		"util": false
+	},
+	"thi.ng": {
+		"readme": [
+			"adjacency",
+			"bench",
+			"geom",
+			"geom-accel",
+			"geom-voronoi",
+			"hdom-canvas",
+			"poisson"
+		],
+		"screenshot": "examples/geom-voronoi-mst.jpg"
+	},
+	"devDependencies": {
+		"typescript": "^4.7.4",
+		"vite": "^3.0.0"
+	}
 }

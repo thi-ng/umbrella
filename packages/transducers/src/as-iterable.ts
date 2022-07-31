@@ -5,5 +5,5 @@
  * @param src -
  */
 export function* asIterable<T>(src: Iterable<T>) {
-    yield* src;
+	yield* src;
 }

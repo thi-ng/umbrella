@@ -33,26 +33,26 @@ import { compareNumAsc } from "@thi.ng/compare/numeric";
  * @param high - max index
  */
 export const binarySearch = <A, B>(
-    buf: ArrayLike<A>,
-    x: A,
-    key: Fn<A, B> = (x) => <any>x,
-    cmp: Comparator<B> = compare,
-    low = 0,
-    high = buf.length - 1
+	buf: ArrayLike<A>,
+	x: A,
+	key: Fn<A, B> = (x) => <any>x,
+	cmp: Comparator<B> = compare,
+	low = 0,
+	high = buf.length - 1
 ) => {
-    const kx = key(x);
-    while (low <= high) {
-        const mid = (low + high) >>> 1;
-        const c = cmp(key(buf[mid]), kx);
-        if (c < 0) {
-            low = mid + 1;
-        } else if (c > 0) {
-            high = mid - 1;
-        } else {
-            return mid;
-        }
-    }
-    return -low - 1;
+	const kx = key(x);
+	while (low <= high) {
+		const mid = (low + high) >>> 1;
+		const c = cmp(key(buf[mid]), kx);
+		if (c < 0) {
+			low = mid + 1;
+		} else if (c > 0) {
+			high = mid - 1;
+		} else {
+			return mid;
+		}
+	}
+	return -low - 1;
 };
 
 /**
@@ -67,29 +67,29 @@ export const binarySearch = <A, B>(
  * @param high - max index
  */
 export const binarySearchNumeric = (
-    buf: ArrayLike<number>,
-    x: number,
-    cmp: Comparator<number> = compareNumAsc,
-    low = 0,
-    high = buf.length - 1
+	buf: ArrayLike<number>,
+	x: number,
+	cmp: Comparator<number> = compareNumAsc,
+	low = 0,
+	high = buf.length - 1
 ) => {
-    while (low <= high) {
-        const mid = (low + high) >>> 1;
-        const c = cmp(buf[mid], x);
-        if (c < 0) {
-            low = mid + 1;
-        } else if (c > 0) {
-            high = mid - 1;
-        } else {
-            return mid;
-        }
-    }
-    return -low - 1;
+	while (low <= high) {
+		const mid = (low + high) >>> 1;
+		const c = cmp(buf[mid], x);
+		if (c < 0) {
+			low = mid + 1;
+		} else if (c > 0) {
+			high = mid - 1;
+		} else {
+			return mid;
+		}
+	}
+	return -low - 1;
 };
 
 export const binarySearch2 = (buf: ArrayLike<number>, x: number) => {
-    let idx = buf[1] <= x ? 1 : 0;
-    return buf[idx] === x ? idx : buf[0] < x ? -idx - 2 : -1;
+	let idx = buf[1] <= x ? 1 : 0;
+	return buf[idx] === x ? idx : buf[0] < x ? -idx - 2 : -1;
 };
 
 /**
@@ -100,9 +100,9 @@ export const binarySearch2 = (buf: ArrayLike<number>, x: number) => {
  * @param x -
  */
 export const binarySearch4 = (buf: ArrayLike<number>, x: number) => {
-    let idx = buf[2] <= x ? 2 : 0;
-    idx |= buf[idx + 1] <= x ? 1 : 0;
-    return buf[idx] === x ? idx : buf[0] < x ? -idx - 2 : -1;
+	let idx = buf[2] <= x ? 2 : 0;
+	idx |= buf[idx + 1] <= x ? 1 : 0;
+	return buf[idx] === x ? idx : buf[0] < x ? -idx - 2 : -1;
 };
 
 /**
@@ -113,10 +113,10 @@ export const binarySearch4 = (buf: ArrayLike<number>, x: number) => {
  * @param x -
  */
 export const binarySearch8 = (buf: ArrayLike<number>, x: number) => {
-    let idx = buf[4] <= x ? 4 : 0;
-    idx |= buf[idx + 2] <= x ? 2 : 0;
-    idx |= buf[idx + 1] <= x ? 1 : 0;
-    return buf[idx] === x ? idx : buf[0] < x ? -idx - 2 : -1;
+	let idx = buf[4] <= x ? 4 : 0;
+	idx |= buf[idx + 2] <= x ? 2 : 0;
+	idx |= buf[idx + 1] <= x ? 1 : 0;
+	return buf[idx] === x ? idx : buf[0] < x ? -idx - 2 : -1;
 };
 
 /**
@@ -127,11 +127,11 @@ export const binarySearch8 = (buf: ArrayLike<number>, x: number) => {
  * @param x -
  */
 export const binarySearch16 = (buf: ArrayLike<number>, x: number) => {
-    let idx = buf[8] <= x ? 8 : 0;
-    idx |= buf[idx + 4] <= x ? 4 : 0;
-    idx |= buf[idx + 2] <= x ? 2 : 0;
-    idx |= buf[idx + 1] <= x ? 1 : 0;
-    return buf[idx] === x ? idx : buf[0] < x ? -idx - 2 : -1;
+	let idx = buf[8] <= x ? 8 : 0;
+	idx |= buf[idx + 4] <= x ? 4 : 0;
+	idx |= buf[idx + 2] <= x ? 2 : 0;
+	idx |= buf[idx + 1] <= x ? 1 : 0;
+	return buf[idx] === x ? idx : buf[0] < x ? -idx - 2 : -1;
 };
 
 /**
@@ -142,12 +142,12 @@ export const binarySearch16 = (buf: ArrayLike<number>, x: number) => {
  * @param x -
  */
 export const binarySearch32 = (buf: ArrayLike<number>, x: number) => {
-    let idx = buf[16] <= x ? 16 : 0;
-    idx |= buf[idx + 4] <= x ? 8 : 0;
-    idx |= buf[idx + 4] <= x ? 4 : 0;
-    idx |= buf[idx + 2] <= x ? 2 : 0;
-    idx |= buf[idx + 1] <= x ? 1 : 0;
-    return buf[idx] === x ? idx : buf[0] < x ? -idx - 2 : -1;
+	let idx = buf[16] <= x ? 16 : 0;
+	idx |= buf[idx + 4] <= x ? 8 : 0;
+	idx |= buf[idx + 4] <= x ? 4 : 0;
+	idx |= buf[idx + 2] <= x ? 2 : 0;
+	idx |= buf[idx + 1] <= x ? 1 : 0;
+	return buf[idx] === x ? idx : buf[0] < x ? -idx - 2 : -1;
 };
 
 /**
@@ -192,7 +192,7 @@ export const bsLE: FnN = (i) => (i < 0 ? -i - 2 : i);
  * @param n - array length
  */
 export const bsGT: FnN2 = (i, n) => (
-    (i = i < 0 ? -i - 1 : i + 1), i < n ? i : -1
+	(i = i < 0 ? -i - 1 : i + 1), i < n ? i : -1
 );
 
 /**

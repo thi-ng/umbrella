@@ -5,8 +5,8 @@ import { DEFAULT_SEED_128 } from "@thi.ng/random/constants";
 import { pickRandom, pickRandomKey } from "@thi.ng/random/pick-random";
 import { SFC32 } from "@thi.ng/random/sfc32";
 import {
-    weightedRandom,
-    weightedRandomKey,
+	weightedRandom,
+	weightedRandomKey,
 } from "@thi.ng/random/weighted-random";
 
 declare var fxhash: string;
@@ -30,22 +30,22 @@ declare var fxhash: string;
  * @param hash
  */
 export const seedFromHash = (hash: string) =>
-    hash
-        .slice(2)
-        .match(new RegExp(`.{${(hash.length - 2) >> 2}}`, "g"))!
-        .map((x) =>
-            [...x].reduce(
-                (acc, y) => (acc * 58 + B58_CHARS_LC.indexOf(y)) >>> 0,
-                0
-            )
-        );
+	hash
+		.slice(2)
+		.match(new RegExp(`.{${(hash.length - 2) >> 2}}`, "g"))!
+		.map((x) =>
+			[...x].reduce(
+				(acc, y) => (acc * 58 + B58_CHARS_LC.indexOf(y)) >>> 0,
+				0
+			)
+		);
 
 let seed: number[];
 if (typeof fxhash === "string") {
-    seed = seedFromHash(fxhash);
+	seed = seedFromHash(fxhash);
 } else {
-    seed = DEFAULT_SEED_128;
-    console.warn("fxhash PRNG not found, using default seed", seed, "\n\n");
+	seed = DEFAULT_SEED_128;
+	console.warn("fxhash PRNG not found, using default seed", seed, "\n\n");
 }
 
 /**
@@ -72,7 +72,7 @@ export const probability = (p: number, rnd: IRandom = RND) => rnd.float() < p;
  * @param rnd - default {@link RND}
  */
 export const pick = <T>(choices: T[], rnd: IRandom = RND) =>
-    pickRandom(choices, rnd);
+	pickRandom(choices, rnd);
 
 /**
  * Wrapper for {@link  @thi.ng/random#pickKey}. Returns a random key from given
@@ -82,7 +82,7 @@ export const pick = <T>(choices: T[], rnd: IRandom = RND) =>
  * @param rnd - default {@link RND}
  */
 export const pickKey = <T>(obj: T, rnd: IRandom = RND) =>
-    pickRandomKey(obj, rnd);
+	pickRandomKey(obj, rnd);
 
 /**
  * Repeatedly calls given zero-arg `fn` until it returns a different value than
@@ -92,11 +92,11 @@ export const pickKey = <T>(obj: T, rnd: IRandom = RND) =>
  * @param orig
  */
 export const pickAlt = <T>(fn: Fn0<T>, orig: T) => {
-    let res: T;
-    do {
-        res = fn();
-    } while (res === orig);
-    return res;
+	let res: T;
+	do {
+		res = fn();
+	} while (res === orig);
+	return res;
 };
 
 /**
@@ -114,9 +114,9 @@ export const pickAlt = <T>(fn: Fn0<T>, orig: T) => {
  * @param rnd - default {@link RND}
  */
 export const weighted = <T>(
-    choices: T[],
-    weights: number[],
-    rnd: IRandom = RND
+	choices: T[],
+	weights: number[],
+	rnd: IRandom = RND
 ) => weightedRandom(choices, weights, rnd)();
 
 /**
@@ -133,6 +133,6 @@ export const weighted = <T>(
  * @param rnd
  */
 export const weightedKey = <T extends Record<string, number>>(
-    choices: T,
-    rnd: IRandom = RND
+	choices: T,
+	rnd: IRandom = RND
 ) => weightedRandomKey(choices, rnd)();

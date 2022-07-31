@@ -1,10 +1,10 @@
 import {
-    Fn,
-    GLOBAL_OPTS,
-    GroupOpts,
-    LifecycleCtx,
-    TestCtx,
-    TestResult,
+	Fn,
+	GLOBAL_OPTS,
+	GroupOpts,
+	LifecycleCtx,
+	TestCtx,
+	TestResult,
 } from "./api.js";
 import { register } from "./exec.js";
 import { test } from "./test.js";
@@ -49,59 +49,59 @@ import { test } from "./test.js";
  * );
  * ```
  *
- * @param title - 
- * @param tests - 
- * @param opts - 
+ * @param title -
+ * @param tests -
+ * @param opts -
  */
 export const group = (
-    title: string,
-    tests: Record<string, Fn<TestCtx, void>>,
-    opts: Partial<GroupOpts> = {}
+	title: string,
+	tests: Record<string, Fn<TestCtx, void>>,
+	opts: Partial<GroupOpts> = {}
 ) => {
-    const { logger, stop, exit, before, after, beforeEach, afterEach } = {
-        ...GLOBAL_OPTS,
-        ...opts,
-    };
-    const ctx: LifecycleCtx = {
-        logger,
-    };
-    register(async () => {
-        let results: TestResult[] = [];
-        try {
-            logger.info("────────────────────");
-            logger.info(title);
-            logger.info("────────────────────");
-            if (before) {
-                await before(ctx);
-            }
-            for (let k in tests) {
-                if (beforeEach) {
-                    await beforeEach(ctx);
-                }
-                const res = await test(k, tests[k], opts)();
-                results.push({ group: title, ...res });
-                if (afterEach) {
-                    await afterEach(ctx);
-                }
-                if (res.error && stop) {
-                    throw res.error;
-                }
-            }
-            if (after) {
-                await after(ctx);
-            }
-            logger.info();
-            return results;
-        } catch (e) {
-            if (exit !== false) {
-                logger.warn((<Error>e).message);
-                typeof process !== "undefined" &&
-                    typeof process.exit !== "undefined" &&
-                    process.exit(1);
-                return [];
-            } else {
-                throw e;
-            }
-        }
-    });
+	const { logger, stop, exit, before, after, beforeEach, afterEach } = {
+		...GLOBAL_OPTS,
+		...opts,
+	};
+	const ctx: LifecycleCtx = {
+		logger,
+	};
+	register(async () => {
+		let results: TestResult[] = [];
+		try {
+			logger.info("────────────────────");
+			logger.info(title);
+			logger.info("────────────────────");
+			if (before) {
+				await before(ctx);
+			}
+			for (let k in tests) {
+				if (beforeEach) {
+					await beforeEach(ctx);
+				}
+				const res = await test(k, tests[k], opts)();
+				results.push({ group: title, ...res });
+				if (afterEach) {
+					await afterEach(ctx);
+				}
+				if (res.error && stop) {
+					throw res.error;
+				}
+			}
+			if (after) {
+				await after(ctx);
+			}
+			logger.info();
+			return results;
+		} catch (e) {
+			if (exit !== false) {
+				logger.warn((<Error>e).message);
+				typeof process !== "undefined" &&
+					typeof process.exit !== "undefined" &&
+					process.exit(1);
+				return [];
+			} else {
+				throw e;
+			}
+		}
+	});
 };

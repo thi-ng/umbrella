@@ -11,6 +11,6 @@ import { ARGS_VV, FN2 } from "./compile/templates.js";
  * @param b -
  */
 export const [safeDiv, safeDiv2, safeDiv3, safeDiv4] = defHofOp<
-    MultiVecOpVV,
-    VecOpVV
+	MultiVecOpVV,
+	VecOpVV
 >(_div, FN2("op"), ARGS_VV);

@@ -18,7 +18,7 @@ import type { ReadonlyMat } from "./api.js";
  * @param m -
  */
 export const mulVM22 = (out: Vec | null, v: ReadonlyVec, m: ReadonlyMat) =>
-    setC2(out, dot2(v, m), dotS2(v, m, 0, 2));
+	setC2(out, dot2(v, m), dotS2(v, m, 0, 2));
 
 export const mulVM23 = mulVM22;
 
@@ -37,7 +37,7 @@ export const mulVM23 = mulVM22;
  * @param m -
  */
 export const mulVM33 = (out: Vec | null, v: ReadonlyVec, m: ReadonlyMat) =>
-    setC3(out, dot3(v, m), dotS3(v, m, 0, 3), dotS3(v, m, 0, 6));
+	setC3(out, dot3(v, m), dotS3(v, m, 0, 3), dotS3(v, m, 0, 6));
 
 /**
  * Same as:
@@ -55,10 +55,10 @@ export const mulVM33 = (out: Vec | null, v: ReadonlyVec, m: ReadonlyMat) =>
  * @param m -
  */
 export const mulVM44 = (out: Vec | null, v: ReadonlyVec, m: ReadonlyMat) =>
-    setC4(
-        out,
-        dot4(v, m),
-        dotS4(v, m, 0, 4),
-        dotS4(v, m, 0, 8),
-        dotS4(v, m, 0, 12)
-    );
+	setC4(
+		out,
+		dot4(v, m),
+		dotS4(v, m, 0, 4),
+		dotS4(v, m, 0, 8),
+		dotS4(v, m, 0, 12)
+	);

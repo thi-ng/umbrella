@@ -21,15 +21,15 @@ import { mixQuadratic } from "@thi.ng/vectors/mix-quadratic";
  * @param eps - epsilon value
  */
 export const closestPointQuadratic = (
-    p: ReadonlyVec,
-    a: ReadonlyVec,
-    b: ReadonlyVec,
-    c: ReadonlyVec,
-    out: Vec = [],
-    res?: number,
-    iter?: number,
-    eps?: number
+	p: ReadonlyVec,
+	a: ReadonlyVec,
+	b: ReadonlyVec,
+	c: ReadonlyVec,
+	out: Vec = [],
+	res?: number,
+	iter?: number,
+	eps?: number
 ) => {
-    const fn = (t: number) => mixQuadratic(out, a, b, c, t);
-    return fn(minError(fn, distSq, p, res, iter, 0, 1, eps));
+	const fn = (t: number) => mixQuadratic(out, a, b, c, t);
+	return fn(minError(fn, distSq, p, res, iter, 0, 1, eps));
 };

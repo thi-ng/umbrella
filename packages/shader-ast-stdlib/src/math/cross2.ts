@@ -11,7 +11,7 @@ import { $x, $y } from "@thi.ng/shader-ast/ast/swizzle";
  * @param b -
  */
 export const cross2 = defn("float", "cross2", ["vec2", "vec2"], (a, b) => [
-    ret(sub(mul($x(a), $y(b)), mul($y(a), $x(b)))),
+	ret(sub(mul($x(a), $y(b)), mul($y(a), $x(b)))),
 ]);
 
 /**
@@ -24,8 +24,8 @@ export const cross2 = defn("float", "cross2", ["vec2", "vec2"], (a, b) => [
  * @param by -
  */
 export const crossC2 = (
-    ax: FloatTerm,
-    ay: FloatTerm,
-    bx: FloatTerm,
-    by: FloatTerm
+	ax: FloatTerm,
+	ay: FloatTerm,
+	bx: FloatTerm,
+	by: FloatTerm
 ) => sub(mul(ax, by), mul(ay, bx));

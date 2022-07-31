@@ -1,43 +1,43 @@
 {
-    "name": "@example/package-stats",
-    "private": true,
-    "description": "CLI util to visualize umbrella pkg stats",
-    "version": "0.0.1",
-    "repository": "https://github.com/thi-ng/umbrella",
-    "author": "Karsten Schmidt <k+npm@thi.ng>",
-    "license": "Apache-2.0",
-    "type": "module",
-    "scripts": {
-        "build": "tools:node-esm src/index.ts"
-    },
-    "devDependencies": {
-        "tools": "workspace:^",
-        "typescript": "^4.7.4"
-    },
-    "dependencies": {
-        "@thi.ng/checks": "workspace:^",
-        "@thi.ng/dgraph": "workspace:^",
-        "@thi.ng/hiccup": "workspace:^",
-        "@thi.ng/hiccup-svg": "workspace:^",
-        "@thi.ng/math": "workspace:^",
-        "@thi.ng/paths": "workspace:^",
-        "@thi.ng/strings": "workspace:^",
-        "@thi.ng/transducers": "workspace:^"
-    },
-    "browser": {
-        "process": false,
-        "setTimeout": false,
-        "util": false
-    },
-    "thi.ng": {
-        "online": false,
-        "readme": [
-            "dgraph",
-            "hiccup",
-            "hiccup-svg",
-            "transducers",
-            "vectors"
-        ],
-        "screenshot": "examples/package-stats.png"
-    }
+	"name": "@example/package-stats",
+	"private": true,
+	"description": "CLI util to visualize umbrella pkg stats",
+	"version": "0.0.1",
+	"repository": "https://github.com/thi-ng/umbrella",
+	"author": "Karsten Schmidt <k+npm@thi.ng>",
+	"license": "Apache-2.0",
+	"type": "module",
+	"scripts": {
+		"build": "tools:node-esm src/index.ts"
+	},
+	"devDependencies": {
+		"tools": "workspace:^",
+		"typescript": "^4.7.4"
+	},
+	"dependencies": {
+		"@thi.ng/checks": "workspace:^",
+		"@thi.ng/dgraph": "workspace:^",
+		"@thi.ng/hiccup": "workspace:^",
+		"@thi.ng/hiccup-svg": "workspace:^",
+		"@thi.ng/math": "workspace:^",
+		"@thi.ng/paths": "workspace:^",
+		"@thi.ng/strings": "workspace:^",
+		"@thi.ng/transducers": "workspace:^"
+	},
+	"browser": {
+		"process": false,
+		"setTimeout": false,
+		"util": false
+	},
+	"thi.ng": {
+		"online": false,
+		"readme": [
+			"dgraph",
+			"hiccup",
+			"hiccup-svg",
+			"transducers",
+			"vectors"
+		],
+		"screenshot": "examples/package-stats.png"
+	}
 }

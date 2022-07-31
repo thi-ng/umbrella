@@ -1,33 +1,33 @@
 {
-    "name": "@example/pointfree-svg",
-    "private": true,
-    "description": "Generate SVG using pointfree DSL",
-    "version": "0.0.1",
-    "repository": "https://github.com/thi-ng/umbrella",
-    "author": "Karsten Schmidt <k+npm@thi.ng>",
-    "license": "Apache-2.0",
-    "type": "module",
-    "scripts": {
-        "build": "tools:node-esm src/index.ts"
-    },
-    "dependencies": {
-        "@thi.ng/hiccup": "workspace:^",
-        "@thi.ng/hiccup-svg": "workspace:^",
-        "@thi.ng/pointfree": "workspace:^",
-        "@thi.ng/pointfree-lang": "workspace:^"
-    },
-    "devDependencies": {
-        "tools": "workspace:^",
-        "typescript": "^4.7.4"
-    },
-    "thi.ng": {
-        "online": false,
-        "readme": true,
-        "screenshot": "examples/pointfree-svg.png"
-    },
-    "browser": {
-        "process": false,
-        "setTimeout": false,
-        "util": false
-    }
+	"name": "@example/pointfree-svg",
+	"private": true,
+	"description": "Generate SVG using pointfree DSL",
+	"version": "0.0.1",
+	"repository": "https://github.com/thi-ng/umbrella",
+	"author": "Karsten Schmidt <k+npm@thi.ng>",
+	"license": "Apache-2.0",
+	"type": "module",
+	"scripts": {
+		"build": "tools:node-esm src/index.ts"
+	},
+	"dependencies": {
+		"@thi.ng/hiccup": "workspace:^",
+		"@thi.ng/hiccup-svg": "workspace:^",
+		"@thi.ng/pointfree": "workspace:^",
+		"@thi.ng/pointfree-lang": "workspace:^"
+	},
+	"devDependencies": {
+		"tools": "workspace:^",
+		"typescript": "^4.7.4"
+	},
+	"thi.ng": {
+		"online": false,
+		"readme": true,
+		"screenshot": "examples/pointfree-svg.png"
+	},
+	"browser": {
+		"process": false,
+		"setTimeout": false,
+		"util": false
+	}
 }

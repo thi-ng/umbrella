@@ -17,4 +17,4 @@ const cache: any = {};
  * @param factory -
  */
 export const defonce = <T>(id: string, factory: Fn0<T>): T =>
-    cache.hasOwnProperty(id) ? cache[id] : (cache[id] = factory());
+	cache.hasOwnProperty(id) ? cache[id] : (cache[id] = factory());

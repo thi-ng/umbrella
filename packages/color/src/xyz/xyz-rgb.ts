@@ -12,16 +12,16 @@ import { __mulV33 } from "../internal/matrix-ops.js";
  * @param src - source color
  */
 export const xyzRgb = (
-    out: Color | null,
-    src: ReadonlyColor,
-    mat = XYZ_RGB_D50
+	out: Color | null,
+	src: ReadonlyColor,
+	mat = XYZ_RGB_D50
 ) => __mulV33(out, mat, src);
 
 /**
  * Same as {@link xyzRgb}, but hard coded to use {@link D65} white point (via
  * {@link XYZ_RGB_D65} matrix).
  *
- * @param out - 
- * @param src - 
+ * @param out -
+ * @param src -
  */
 export const xyzRgbD65: ColorOp = (out, src) => xyzRgb(out, src, XYZ_RGB_D65);

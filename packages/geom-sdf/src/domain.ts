@@ -21,9 +21,9 @@ import { subN2 } from "@thi.ng/vectors/subn";
  * @param size
  */
 export const repeat2 = (size: ReadonlyVec) => {
-    const s2 = mulN2([], size, 0.5);
-    return (p: ReadonlyVec) =>
-        sub2(null, mod2(null, add2([], s2, p), size), s2);
+	const s2 = mulN2([], size, 0.5);
+	return (p: ReadonlyVec) =>
+		sub2(null, mod2(null, add2([], s2, p), size), s2);
 };
 
 /**
@@ -34,26 +34,26 @@ export const repeat2 = (size: ReadonlyVec) => {
  * @param size
  */
 export const repeatMirror2 = (size: ReadonlyVec) => {
-    const c: Vec = [];
-    const s2 = mulN2([], size, 0.5);
-    return (p: ReadonlyVec) =>
-        mul2(
-            null,
-            sub2(null, mod2(null, add2([], s2, p), size), s2),
-            subN2(
-                null,
-                mulN2(
-                    null,
-                    modN2(
-                        null,
-                        floor2(null, div2(null, add2(c, s2, p), size)),
-                        2
-                    ),
-                    2
-                ),
-                1
-            )
-        );
+	const c: Vec = [];
+	const s2 = mulN2([], size, 0.5);
+	return (p: ReadonlyVec) =>
+		mul2(
+			null,
+			sub2(null, mod2(null, add2([], s2, p), size), s2),
+			subN2(
+				null,
+				mulN2(
+					null,
+					modN2(
+						null,
+						floor2(null, div2(null, add2(c, s2, p), size)),
+						2
+					),
+					2
+				),
+				1
+			)
+		);
 };
 
 /**
@@ -64,12 +64,12 @@ export const repeatMirror2 = (size: ReadonlyVec) => {
  * @param size
  */
 export const repeatGrid2 = (size: ReadonlyVec) => {
-    const s2 = mulN2([], size, 0.5);
-    const rm = repeatMirror2(size);
-    return (p: ReadonlyVec) => {
-        p = sub2(null, rm(p), s2);
-        return p[0] > p[1] ? [p[1], p[0]] : p;
-    };
+	const s2 = mulN2([], size, 0.5);
+	const rm = repeatMirror2(size);
+	return (p: ReadonlyVec) => {
+		p = sub2(null, rm(p), s2);
+		return p[0] > p[1] ? [p[1], p[0]] : p;
+	};
 };
 
 /**
@@ -80,11 +80,11 @@ export const repeatGrid2 = (size: ReadonlyVec) => {
  * @param n - number of repetition
  */
 export const repeatPolar2 = (n: number) => {
-    const theta = TAU / n;
-    const halfTheta = theta / 2;
-    return (p: ReadonlyVec) =>
-        cossin(
-            mod(Math.atan2(p[1], p[0]) + halfTheta, theta) - halfTheta,
-            mag(p)
-        );
+	const theta = TAU / n;
+	const halfTheta = theta / 2;
+	return (p: ReadonlyVec) =>
+		cossin(
+			mod(Math.atan2(p[1], p[0]) + halfTheta, theta) - halfTheta,
+			mag(p)
+		);
 };

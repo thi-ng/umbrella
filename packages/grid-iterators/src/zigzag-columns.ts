@@ -12,12 +12,12 @@ import { asInt } from "@thi.ng/api/typedarray";
  *
  */
 export function* zigzagColumns2d(cols: number, rows = cols) {
-    [cols, rows] = asInt(cols, rows);
-    const num = cols * rows;
-    for (let i = 0; i < num; i++) {
-        const x = (i / rows) | 0;
-        let y = i % rows;
-        x & 1 && (y = rows - 1 - y);
-        yield [x, y];
-    }
+	[cols, rows] = asInt(cols, rows);
+	const num = cols * rows;
+	for (let i = 0; i < num; i++) {
+		const x = (i / rows) | 0;
+		let y = i % rows;
+		x & 1 && (y = rows - 1 - y);
+		yield [x, y];
+	}
 }

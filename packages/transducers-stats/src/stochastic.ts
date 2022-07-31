@@ -6,9 +6,9 @@ import { donchian } from "./donchian.js";
 import { sma } from "./sma.js";
 
 export interface Stochastic {
-    k: number;
-    d1: number;
-    d2: number;
+	k: number;
+	d1: number;
+	d2: number;
 }
 
 /**
@@ -25,35 +25,35 @@ export interface Stochastic {
  * @param periodD2 -
  */
 export function stochastic(
-    periodK?: number,
-    periodD1?: number,
-    periodD2?: number
+	periodK?: number,
+	periodD1?: number,
+	periodD2?: number
 ): Transducer<number, Stochastic>;
 export function stochastic(src: Iterable<number>): IterableIterator<Stochastic>;
 export function stochastic(
-    periodK: number,
-    periodD1: number,
-    periodD2: number,
-    src: Iterable<number>
+	periodK: number,
+	periodD1: number,
+	periodD2: number,
+	src: Iterable<number>
 ): IterableIterator<Stochastic>;
 export function stochastic(...args: any[]): any {
-    return (
-        __iter(stochastic, args) ||
-        ((rfn: Reducer<any, Stochastic>) => {
-            const reduce = rfn[2];
-            const xfD = step(donchian(args[0] || 5));
-            const ma1 = step(sma(args[1] || 3));
-            const ma2 = step(sma(args[2] || 3));
-            return compR(rfn, (acc, x: number) => {
-                const b = <number[]>xfD(x);
-                if (b == null) return acc;
-                const k = (x - b[0]) / (b[1] - b[0]);
-                const d1 = <number>ma1(k);
-                if (d1 == null) return acc;
-                const d2 = <number>ma2(d1);
-                if (d2 == null) return acc;
-                return reduce(acc, { k, d1, d2 });
-            });
-        })
-    );
+	return (
+		__iter(stochastic, args) ||
+		((rfn: Reducer<any, Stochastic>) => {
+			const reduce = rfn[2];
+			const xfD = step(donchian(args[0] || 5));
+			const ma1 = step(sma(args[1] || 3));
+			const ma2 = step(sma(args[2] || 3));
+			return compR(rfn, (acc, x: number) => {
+				const b = <number[]>xfD(x);
+				if (b == null) return acc;
+				const k = (x - b[0]) / (b[1] - b[0]);
+				const d1 = <number>ma1(k);
+				if (d1 == null) return acc;
+				const d2 = <number>ma2(d1);
+				if (d2 == null) return acc;
+				return reduce(acc, { k, d1, d2 });
+			});
+		})
+	);
 }

@@ -19,12 +19,12 @@ import { sum } from "./sum.js";
  * - https://en.wikipedia.org/wiki/Correlation
  * - https://www.youtube.com/watch?v=2bcmklvrXTQ
  *
- * @param a - 
- * @param b - 
+ * @param a -
+ * @param b -
  */
 export const correlation = (a: ReadonlyVec, b: ReadonlyVec) => {
-    a = center([], a);
-    b = center([], b);
-    const m = mag(a) * mag(b);
-    return m !== 0 ? sum(mul(null, a, b)) / m : undefined;
+	a = center([], a);
+	b = center([], b);
+	const m = mag(a) * mag(b);
+	return m !== 0 ? sum(mul(null, a, b)) / m : undefined;
 };

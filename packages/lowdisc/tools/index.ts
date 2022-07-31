@@ -16,21 +16,21 @@ const grad = cosineGradient(NUM_COL, COSINE_GRADIENTS["blue-magenta-orange"]);
 setPrecision(4);
 
 for (let i = 100, j = 0; i < 5000; i += 100, j++) {
-    writeFileSync(
-        `export/ld-${Z4(j)}.svg`,
-        asSvg(
-            svgDoc(
-                {
-                    width: W,
-                    height: W,
-                    viewBox: "0 0 1 1",
-                },
-                ...mapIndexed(
-                    (k, p: number[]) =>
-                        circle(p, R, { fill: grad[k % NUM_COL] }),
-                    take(i, plasticND(2))
-                )
-            )
-        )
-    );
+	writeFileSync(
+		`export/ld-${Z4(j)}.svg`,
+		asSvg(
+			svgDoc(
+				{
+					width: W,
+					height: W,
+					viewBox: "0 0 1 1",
+				},
+				...mapIndexed(
+					(k, p: number[]) =>
+						circle(p, R, { fill: grad[k % NUM_COL] }),
+					take(i, plasticND(2))
+				)
+			)
+		)
+	);
 }

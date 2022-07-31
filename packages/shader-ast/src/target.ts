@@ -14,12 +14,12 @@ import type { TargetImpl } from "./api/target.js";
  * @param impls -
  */
 export const defTarget = <T>(impls: TargetImpl<T>): Fn<Term<any>, T> =>
-    defmulti<Term<any>, T>(
-        (x) => x.tag,
-        {},
-        {
-            [DEFAULT]: (t: Term<any>) =>
-                unsupported(`no impl for AST node type: '${t.tag}'`),
-            ...(<any>impls),
-        }
-    );
+	defmulti<Term<any>, T>(
+		(x) => x.tag,
+		{},
+		{
+			[DEFAULT]: (t: Term<any>) =>
+				unsupported(`no impl for AST node type: '${t.tag}'`),
+			...(<any>impls),
+		}
+	);

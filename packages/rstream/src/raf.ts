@@ -17,18 +17,18 @@ import { stream } from "./stream.js";
  * loop iteration.
  */
 export const fromRAF = (opts?: Partial<CommonOpts>) =>
-    isNode()
-        ? fromInterval(16, opts)
-        : stream<number>((stream) => {
-              let i = 0;
-              let isActive = true;
-              const loop = () => {
-                  isActive && stream.next(i++);
-                  isActive && (id = requestAnimationFrame(loop));
-              };
-              let id = requestAnimationFrame(loop);
-              return () => {
-                  isActive = false;
-                  cancelAnimationFrame(id);
-              };
-          }, __optsWithID("raf", opts));
+	isNode()
+		? fromInterval(16, opts)
+		: stream<number>((stream) => {
+				let i = 0;
+				let isActive = true;
+				const loop = () => {
+					isActive && stream.next(i++);
+					isActive && (id = requestAnimationFrame(loop));
+				};
+				let id = requestAnimationFrame(loop);
+				return () => {
+					isActive = false;
+					cancelAnimationFrame(id);
+				};
+		  }, __optsWithID("raf", opts));

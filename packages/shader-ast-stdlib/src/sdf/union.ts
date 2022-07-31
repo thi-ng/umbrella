@@ -13,7 +13,7 @@ import { min } from "@thi.ng/shader-ast/builtin/math";
  * @param terms -
  */
 export const sdfUnion = (a: FloatTerm, ...terms: FloatTerm[]) =>
-    terms.reduce((a, b) => min(a, b), a);
+	terms.reduce((a, b) => min(a, b), a);
 
 /**
  * SDF shape union for vec2 terms, i.e. the common form where the X coord
@@ -24,5 +24,5 @@ export const sdfUnion = (a: FloatTerm, ...terms: FloatTerm[]) =>
  * @param b -
  */
 export const sdfUnion2 = defn("vec2", "sdfUnion2", ["vec2", "vec2"], (a, b) => [
-    ret(ternary(lt($x(a), $x(b)), a, b)),
+	ret(ternary(lt($x(a), $x(b)), a, b)),
 ]);

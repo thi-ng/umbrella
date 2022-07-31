@@ -19,23 +19,23 @@ import { $eval } from "./dsl";
  * then attach subscriptions manipulate individual cell values.
  */
 export const DB = new Atom<IObjectOf<Cell>>(
-    transduce(
-        map(
-            ([col, row]) =>
-                <[string, Cell]>[
-                    `${col}${row}`,
-                    {
-                        formula: "",
-                        value: "",
-                        backup: "",
-                        focus: false,
-                        error: "",
-                    },
-                ]
-        ),
-        assocObj(),
-        permutations(charRange("A", MAX_COL), range(1, NUM_ROWS + 1))
-    )
+	transduce(
+		map(
+			([col, row]) =>
+				<[string, Cell]>[
+					`${col}${row}`,
+					{
+						formula: "",
+						value: "",
+						backup: "",
+						focus: false,
+						error: "",
+					},
+				]
+		),
+		assocObj(),
+		permutations(charRange("A", MAX_COL), range(1, NUM_ROWS + 1))
+	)
 );
 
 /**
@@ -48,32 +48,32 @@ export const removeCell = (id: string) => removeNode(graph, id);
 /**
  * Enables focus flag for given cell
  *
- * @param id - 
+ * @param id -
  */
 export const focusCell = (id: string) => {
-    DB.swapIn([id], (cell) =>
-        setInManyUnsafe(cell, "focus", true, "backup", cell.formula)
-    );
+	DB.swapIn([id], (cell) =>
+		setInManyUnsafe(cell, "focus", true, "backup", cell.formula)
+	);
 };
 
 /**
  * Disables focus flag for given cell
  *
- * @param id - 
+ * @param id -
  */
 export const blurCell = (id: string) => {
-    DB.swapIn([id], (cell) => setIn(cell, ["focus"], false));
+	DB.swapIn([id], (cell) => setIn(cell, ["focus"], false));
 };
 
 /**
  * Restores cell value to `backup` string and clears focus.
  *
- * @param id - 
+ * @param id -
  */
 export const cancelCell = (id: string) => {
-    DB.swapIn([id], (cell) =>
-        setInManyUnsafe(cell, "focus", false, "formula", cell.backup)
-    );
+	DB.swapIn([id], (cell) =>
+		setInManyUnsafe(cell, "focus", false, "formula", cell.backup)
+	);
 };
 
 /**
@@ -82,22 +82,22 @@ export const cancelCell = (id: string) => {
  * error if failed. If not an s-expr, updates cell value and clears
  * error.
  *
- * @param id - 
- * @param val - 
+ * @param id -
+ * @param val -
  */
 export const updateCell = (id: string, val: string) => {
-    if (val.startsWith("(")) {
-        DB.resetIn(<const>[id, "formula"], val);
-        try {
-            $eval(val, id);
-            DB.resetIn(<const>[id, "error"], null);
-        } catch (e) {
-            DB.resetIn(<const>[id, "error"], (<Error>e).message);
-        }
-    } else {
-        removeCell(id);
-        DB.swapIn([id], (cell) =>
-            setInManyUnsafe(cell, "value", val, "formula", "", "error", null)
-        );
-    }
+	if (val.startsWith("(")) {
+		DB.resetIn(<const>[id, "formula"], val);
+		try {
+			$eval(val, id);
+			DB.resetIn(<const>[id, "error"], null);
+		} catch (e) {
+			DB.resetIn(<const>[id, "error"], (<Error>e).message);
+		}
+	} else {
+		removeCell(id);
+		DB.swapIn([id], (cell) =>
+			setInManyUnsafe(cell, "value", val, "formula", "", "error", null)
+		);
+	}
 };

@@ -2,37 +2,37 @@ import type { Fn, Type } from "@thi.ng/api";
 import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
 
 export interface AOSAttribSpec {
-    /**
-     * Element size
-     */
-    size: number;
-    /**
-     * Primitive type ID for backing array.
-     * Default: "f32"
-     */
-    type: Type;
-    /**
-     * Default value
-     */
-    default: ReadonlyVec;
+	/**
+	 * Element size
+	 */
+	size: number;
+	/**
+	 * Primitive type ID for backing array.
+	 * Default: "f32"
+	 */
+	type: Type;
+	/**
+	 * Default value
+	 */
+	default: ReadonlyVec;
 }
 
 export interface SOAAttribSpec extends AOSAttribSpec {
-    /**
-     * Optional user supplied backing buffer.
-     */
-    buf: ArrayBuffer;
-    /**
-     * Optional start offset for mapped region in backing buffer. Only
-     * used if `buf` is given.
-     */
-    byteOffset: number;
-    /**
-     * Number of indices between each SOA value.
-     * MUST be >= size
-     * Default: size
-     */
-    stride: number;
+	/**
+	 * Optional user supplied backing buffer.
+	 */
+	buf: ArrayBuffer;
+	/**
+	 * Optional start offset for mapped region in backing buffer. Only
+	 * used if `buf` is given.
+	 */
+	byteOffset: number;
+	/**
+	 * Number of indices between each SOA value.
+	 * MUST be >= size
+	 * Default: size
+	 */
+	stride: number;
 }
 
 /**
@@ -55,22 +55,22 @@ export type SOASpecs<K extends string> = Record<K, Partial<SOAAttribSpec>>;
 export type SOATuple<K extends string, V> = Record<K, V>;
 
 export interface SerializerPair<T> {
-    decode: (v: ReadonlyVec) => T;
-    encode: (x: T) => ReadonlyVec;
+	decode: (v: ReadonlyVec) => T;
+	encode: (x: T) => ReadonlyVec;
 }
 
 export type SerializerSpecs = Record<string, SerializerPair<any>>;
 
 export type SerializedType<
-    T extends SerializerSpecs,
-    K extends keyof T
+	T extends SerializerSpecs,
+	K extends keyof T
 > = ReturnType<T[K]["decode"]>;
 
 export type SerializedTuple<T extends SerializerSpecs> = {
-    [P in keyof T]: SerializedType<T, P>;
+	[P in keyof T]: SerializedType<T, P>;
 };
 
 export interface Serializer<T extends SerializerSpecs> {
-    decode: Fn<Record<keyof T, Vec>, SerializedTuple<T>>;
-    encode: Fn<Partial<SerializedTuple<T>>, Partial<Record<keyof T, Vec>>>;
+	decode: Fn<Record<keyof T, Vec>, SerializedTuple<T>>;
+	encode: Fn<Partial<SerializedTuple<T>>, Partial<Record<keyof T, Vec>>>;
 }

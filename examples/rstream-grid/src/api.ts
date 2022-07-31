@@ -18,13 +18,13 @@ export type ViewSpec = string | Path | [string | Path, Fn<any, any>];
  * See `src/config.ts`.
  */
 export interface AppConfig {
-    rootComponent: AppComponent;
-    domRoot: string | Element;
-    effects: IObjectOf<EffectDef>;
-    events: IObjectOf<EventDef>;
-    initialState: any;
-    ui: UIAttribs;
-    views: Partial<Record<AppViewIDs, ViewSpec>>;
+	rootComponent: AppComponent;
+	domRoot: string | Element;
+	effects: IObjectOf<EffectDef>;
+	events: IObjectOf<EventDef>;
+	initialState: any;
+	ui: UIAttribs;
+	views: Partial<Record<AppViewIDs, ViewSpec>>;
 }
 
 export type AppViewIDs = "svg" | "cols" | "rows" | "theta" | "stroke";
@@ -34,11 +34,11 @@ export type AppViewIDs = "svg" | "cols" | "rows" | "theta" | "stroke";
  * Add more declarations here as needed.
  */
 export interface AppViews extends Record<AppViewIDs, IView<any>> {
-    svg: IView<any[]>;
-    cols: IView<number>;
-    rows: IView<number>;
-    theta: IView<number>;
-    stroke: IView<number>;
+	svg: IView<any[]>;
+	cols: IView<number>;
+	rows: IView<number>;
+	theta: IView<number>;
+	stroke: IView<number>;
 }
 
 /**
@@ -49,20 +49,20 @@ export interface AppViews extends Record<AppViewIDs, IView<any>> {
  * component functions.
  */
 export interface UIAttribs {
-    button: any;
-    buttongroup: any;
-    footer: any;
-    link: any;
-    root: any;
-    slider: { root: any; range: any; label: any; number: any };
-    sidebar: any;
+	button: any;
+	buttongroup: any;
+	footer: any;
+	link: any;
+	root: any;
+	slider: { root: any; range: any; label: any; number: any };
+	sidebar: any;
 }
 
 /**
  * Structure of the context object passed to all component functions
  */
 export interface AppContext {
-    bus: EventBus;
-    views: AppViews;
-    ui: UIAttribs;
+	bus: EventBus;
+	views: AppViews;
+	ui: UIAttribs;
 }

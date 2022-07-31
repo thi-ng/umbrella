@@ -6,11 +6,11 @@ import { start } from "@thi.ng/hdom/start";
 import { capitalize } from "@thi.ng/strings/case";
 
 interface State {
-    state: string;
-    error?: string;
-    user: {
-        name?: string;
-    };
+	state: string;
+	error?: string;
+	user: {
+		name?: string;
+	};
 }
 
 // central immutable app state
@@ -21,12 +21,12 @@ const appState = defView(db, ["state"]);
 
 // the error view converts the state value into a UI component array
 const error = defView(db, ["error"], (error) =>
-    error ? ["div.error", error] : null
+	error ? ["div.error", error] : null
 );
 
 // view transformer for the username value
 const user = defView(db, ["user", "name"], (name) =>
-    name ? capitalize(name) : null
+	name ? capitalize(name) : null
 );
 
 // state update functions
@@ -41,61 +41,61 @@ const setUser = (e: Event) => setValue(user.path, (<any>e.target).value);
 const setValue = (path: Path, val: any) => db.resetInUnsafe(path, val);
 
 const loginUser = () => {
-    if (user.deref() === "Admin") {
-        setError(null);
-        setState("main");
-    } else {
-        setError("sorry, wrong username (try 'admin')");
-    }
+	if (user.deref() === "Admin") {
+		setError(null);
+		setState("main");
+	} else {
+		setError("sorry, wrong username (try 'admin')");
+	}
 };
 
 const logoutUser = () => {
-    setValue(user.path, null);
-    setState("logout");
+	setValue(user.path, null);
+	setState("logout");
 };
 
 // UI components for different app states
 // note how the value views are used here
 const uiViews: any = {
-    // dummy login form
-    login: () => [
-        "div#login",
-        ["h1", "Login"],
-        // embedded error view (will auto-deref)
-        error.deref(),
-        ["input", { type: "text", onchange: setUser }],
-        ["button", { onclick: loginUser }, "Login"],
-    ],
-    logout: () => [
-        "div#logout",
-        ["h1", "Good bye"],
-        "You've been logged out. ",
-        ["a", { href: "#", onclick: () => setState("login") }, "Log back in?"],
-    ],
-    main: () => [
-        "div#main",
-        ["h1", `Welcome, ${user.deref()}!`],
-        ["div", "Current app state:"],
-        [
-            "div",
-            [
-                "textarea",
-                { cols: 40, rows: 10 },
-                JSON.stringify(db.deref(), null, 2),
-            ],
-        ],
-        ["button", { onclick: logoutUser }, "Logout"],
-    ],
+	// dummy login form
+	login: () => [
+		"div#login",
+		["h1", "Login"],
+		// embedded error view (will auto-deref)
+		error.deref(),
+		["input", { type: "text", onchange: setUser }],
+		["button", { onclick: loginUser }, "Login"],
+	],
+	logout: () => [
+		"div#logout",
+		["h1", "Good bye"],
+		"You've been logged out. ",
+		["a", { href: "#", onclick: () => setState("login") }, "Log back in?"],
+	],
+	main: () => [
+		"div#main",
+		["h1", `Welcome, ${user.deref()}!`],
+		["div", "Current app state:"],
+		[
+			"div",
+			[
+				"textarea",
+				{ cols: 40, rows: 10 },
+				JSON.stringify(db.deref(), null, 2),
+			],
+		],
+		["button", { onclick: logoutUser }, "Logout"],
+	],
 };
 
 // finally define another derived view for the app state value
 // including a transformer, which maps the current app state value
 // to its correct UI component (incl. a fallback for illegal app states)
 const currView = defView(
-    db,
-    ["state"],
-    (state) =>
-        uiViews[state] || ["div", ["h1", `No component for state: ${state}`]]
+	db,
+	["state"],
+	(state) =>
+		uiViews[state] || ["div", ["h1", `No component for state: ${state}`]]
 );
 
 // app root component

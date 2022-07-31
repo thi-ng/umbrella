@@ -1,41 +1,41 @@
 {
-    "name": "@example/text-canvas",
-    "private": true,
-    "version": "0.0.1",
-    "description": "3D wireframe textmode demo",
-    "repository": "https://github.com/thi-ng/umbrella",
-    "author": "Karsten Schmidt <k+npm@thi.ng>",
-    "license": "Apache-2.0",
-    "scripts": {
-        "start": "vite --open",
-        "build": "tsc && vite build --base='./'",
-        "preview": "vite preview --host --open"
-    },
-    "dependencies": {
-        "@thi.ng/dsp": "workspace:^",
-        "@thi.ng/geom": "workspace:^",
-        "@thi.ng/matrices": "workspace:^",
-        "@thi.ng/text-canvas": "workspace:^",
-        "@thi.ng/text-format": "workspace:^",
-        "@thi.ng/vectors": "workspace:^"
-    },
-    "browser": {
-        "process": false,
-        "setTimeout": false,
-        "util": false
-    },
-    "thi.ng": {
-        "readme": [
-            "geom",
-            "matrices",
-            "text-canvas",
-            "text-format",
-            "vectors"
-        ],
-        "screenshot": "examples/text-canvas.png"
-    },
-    "devDependencies": {
-        "typescript": "^4.7.4",
-        "vite": "^3.0.0"
-    }
+	"name": "@example/text-canvas",
+	"private": true,
+	"version": "0.0.1",
+	"description": "3D wireframe textmode demo",
+	"repository": "https://github.com/thi-ng/umbrella",
+	"author": "Karsten Schmidt <k+npm@thi.ng>",
+	"license": "Apache-2.0",
+	"scripts": {
+		"start": "vite --open",
+		"build": "tsc && vite build --base='./'",
+		"preview": "vite preview --host --open"
+	},
+	"dependencies": {
+		"@thi.ng/dsp": "workspace:^",
+		"@thi.ng/geom": "workspace:^",
+		"@thi.ng/matrices": "workspace:^",
+		"@thi.ng/text-canvas": "workspace:^",
+		"@thi.ng/text-format": "workspace:^",
+		"@thi.ng/vectors": "workspace:^"
+	},
+	"browser": {
+		"process": false,
+		"setTimeout": false,
+		"util": false
+	},
+	"thi.ng": {
+		"readme": [
+			"geom",
+			"matrices",
+			"text-canvas",
+			"text-format",
+			"vectors"
+		],
+		"screenshot": "examples/text-canvas.png"
+	},
+	"devDependencies": {
+		"typescript": "^4.7.4",
+		"vite": "^3.0.0"
+	}
 }

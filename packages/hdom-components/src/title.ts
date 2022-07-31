@@ -1,20 +1,20 @@
 export interface TitleOpts {
-    /**
-     * Element name for main title. Default: `h1`
-     */
-    element: string;
-    /**
-     * Attribs for main title: Default: none
-     */
-    attribs: any;
-    /**
-     * Element name for subtitle: Default: `small`
-     */
-    subElement: string;
-    /**
-     * Attribs for subtitle: Default: none
-     */
-    subAttribs: any;
+	/**
+	 * Element name for main title. Default: `h1`
+	 */
+	element: string;
+	/**
+	 * Attribs for main title: Default: none
+	 */
+	attribs: any;
+	/**
+	 * Element name for subtitle: Default: `small`
+	 */
+	subElement: string;
+	/**
+	 * Attribs for subtitle: Default: none
+	 */
+	subAttribs: any;
 }
 
 /**
@@ -34,17 +34,17 @@ export interface TitleOpts {
  * @param opts -
  */
 export const title = (_opts?: Partial<TitleOpts>) => {
-    const opts = {
-        element: "h1",
-        attribs: {},
-        subElement: "small",
-        subAttribs: {},
-        ..._opts,
-    };
-    return (_: any, title: any, subtitle: any) => [
-        opts.element,
-        opts.attribs,
-        title,
-        subtitle ? [opts.subElement, opts.subAttribs, subtitle] : undefined,
-    ];
+	const opts = {
+		element: "h1",
+		attribs: {},
+		subElement: "small",
+		subAttribs: {},
+		..._opts,
+	};
+	return (_: any, title: any, subtitle: any) => [
+		opts.element,
+		opts.attribs,
+		title,
+		subtitle ? [opts.subElement, opts.subAttribs, subtitle] : undefined,
+	];
 };

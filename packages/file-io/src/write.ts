@@ -15,14 +15,14 @@ import { ensureDirForFile } from "./dir.js";
  * @param dryRun
  */
 export const writeFile = (
-    path: string,
-    body: string | TypedArray,
-    opts?: WriteFileOptions,
-    logger?: ILogger,
-    dryRun = false
+	path: string,
+	body: string | TypedArray,
+	opts?: WriteFileOptions,
+	logger?: ILogger,
+	dryRun = false
 ) => {
-    logger && logger.info(`${dryRun ? "[dryrun] " : ""}writing file: ${path}`);
-    if (dryRun) return;
-    ensureDirForFile(path);
-    writeFileSync(path, body, !opts && isString(body) ? "utf-8" : opts);
+	logger && logger.info(`${dryRun ? "[dryrun] " : ""}writing file: ${path}`);
+	if (dryRun) return;
+	ensureDirForFile(path);
+	writeFileSync(path, body, !opts && isString(body) ? "utf-8" : opts);
 };

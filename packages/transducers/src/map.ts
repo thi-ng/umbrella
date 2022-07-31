@@ -19,12 +19,12 @@ import { iterator1 } from "./iterator.js";
 export function map<A, B>(fn: Fn<A, B>): Transducer<A, B>;
 export function map<A, B>(fn: Fn<A, B>, src: Iterable<A>): IterableIterator<B>;
 export function map<A, B>(fn: Fn<A, B>, src?: Iterable<A>): any {
-    return isIterable(src)
-        ? iterator1(map(fn), src)
-        : (rfn: Reducer<any, B>) => {
-              const r = rfn[2];
-              return compR(rfn, (acc, x: A) => r(acc, fn(x)));
-          };
+	return isIterable(src)
+		? iterator1(map(fn), src)
+		: (rfn: Reducer<any, B>) => {
+				const r = rfn[2];
+				return compR(rfn, (acc, x: A) => r(acc, fn(x)));
+		  };
 }
 
 /**
@@ -32,5 +32,5 @@ export function map<A, B>(fn: Fn<A, B>, src?: Iterable<A>): any {
  * and immediatedly collect results into an array.
  */
 export const mapA = <A, B>(fn: Fn<A, B>, src: Iterable<A>): B[] => [
-    ...map(fn, src),
+	...map(fn, src),
 ];

@@ -23,21 +23,21 @@ import { partitionBy } from "./partition-by.js";
  */
 export function partitionOf<T>(sizes: number[]): Transducer<T, T[]>;
 export function partitionOf<T>(
-    sizes: number[],
-    src: Iterable<T>
+	sizes: number[],
+	src: Iterable<T>
 ): IterableIterator<T[]>;
 export function partitionOf<T>(sizes: number[], src?: Iterable<T>): any {
-    return isIterable(src)
-        ? iterator(partitionOf(sizes), src)
-        : partitionBy(() => {
-              let i = 0,
-                  j = 0;
-              return () => {
-                  if (i++ === sizes[j]) {
-                      i = 1;
-                      j = (j + 1) % sizes.length;
-                  }
-                  return j;
-              };
-          }, true);
+	return isIterable(src)
+		? iterator(partitionOf(sizes), src)
+		: partitionBy(() => {
+				let i = 0,
+					j = 0;
+				return () => {
+					if (i++ === sizes[j]) {
+						i = 1;
+						j = (j + 1) % sizes.length;
+					}
+					return j;
+				};
+		  }, true);
 }

@@ -5,8 +5,8 @@ import { __optsWithID } from "./idgen.js";
 import type { Subscription } from "./subscription.js";
 
 export interface SidechainToggleOpts<T> extends CommonOpts {
-    pred: Predicate<T>;
-    initial: boolean;
+	pred: Predicate<T>;
+	initial: boolean;
 }
 
 /**
@@ -38,37 +38,37 @@ export interface SidechainToggleOpts<T> extends CommonOpts {
  * @param opts -
  */
 export const sidechainToggle = <A, B>(
-    side: ISubscribable<B>,
-    opts?: Partial<SidechainToggleOpts<B>>
+	side: ISubscribable<B>,
+	opts?: Partial<SidechainToggleOpts<B>>
 ): Subscription<A, A> => new SidechainToggle(side, opts);
 
 export class SidechainToggle<T, S> extends ASidechain<T, S, T> {
-    isActive: boolean;
+	isActive: boolean;
 
-    constructor(
-        side: ISubscribable<S>,
-        opts?: Partial<SidechainToggleOpts<S>>
-    ) {
-        opts = __optsWithID("sidetoggle", opts);
-        super(opts);
-        this.isActive = !!opts.initial;
-        const pred = opts.pred || (() => true);
-        const $this = this;
-        this.sideSub = side.subscribe({
-            next(x) {
-                if (pred(x)) {
-                    $this.isActive = !$this.isActive;
-                }
-            },
-            done() {
-                $this.done();
-            },
-        });
-    }
+	constructor(
+		side: ISubscribable<S>,
+		opts?: Partial<SidechainToggleOpts<S>>
+	) {
+		opts = __optsWithID("sidetoggle", opts);
+		super(opts);
+		this.isActive = !!opts.initial;
+		const pred = opts.pred || (() => true);
+		const $this = this;
+		this.sideSub = side.subscribe({
+			next(x) {
+				if (pred(x)) {
+					$this.isActive = !$this.isActive;
+				}
+			},
+			done() {
+				$this.done();
+			},
+		});
+	}
 
-    next(x: T) {
-        if (this.isActive && this.state < State.DONE) {
-            super.next(x);
-        }
-    }
+	next(x: T) {
+		if (this.isActive && this.state < State.DONE) {
+			super.next(x);
+		}
+	}
 }

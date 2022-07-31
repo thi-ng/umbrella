@@ -11,44 +11,44 @@ const bus = new EventBus(defAtom(state));
 bus.instrumentWith([trace]);
 
 const ctx = {
-    bus,
-    theme,
-    views: {
-        countries: defView(bus.state, ["countries"]),
-        filter: defView(bus.state, ["countries", "filter"]),
-    },
+	bus,
+	theme,
+	views: {
+		countries: defView(bus.state, ["countries"]),
+		filter: defView(bus.state, ["countries", "filter"]),
+	},
 };
 
 const dd = dropdown("theme.dd");
 const input = cancelableInput("theme.input");
 
 start(
-    (ctx: any) => {
-        ctx.bus.processQueue();
-        return [
-            "div",
-            ctx.theme.root,
-            [
-                "div",
-                ctx.theme.column,
-                [
-                    fuzzyDropdown,
-                    {
-                        state: ctx.views.countries,
-                        filter: ctx.views.filter,
-                        placeholder: "Start typing to fuzzy match",
-                        hoverLabel: [
-                            ["span", "Choose a country..."],
-                            ["i.fr.fas.fa-angle-down"],
-                        ],
-                        dropdown: dd,
-                        input,
-                    },
-                ],
-            ],
-        ];
-    },
-    { ctx }
+	(ctx: any) => {
+		ctx.bus.processQueue();
+		return [
+			"div",
+			ctx.theme.root,
+			[
+				"div",
+				ctx.theme.column,
+				[
+					fuzzyDropdown,
+					{
+						state: ctx.views.countries,
+						filter: ctx.views.filter,
+						placeholder: "Start typing to fuzzy match",
+						hoverLabel: [
+							["span", "Choose a country..."],
+							["i.fr.fas.fa-angle-down"],
+						],
+						dropdown: dd,
+						input,
+					},
+				],
+			],
+		];
+	},
+	{ ctx }
 );
 
 // window["ctx"] = ctx;

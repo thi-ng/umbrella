@@ -15,14 +15,14 @@
  * // "LvB"
  * ```
  *
- * @param parts - 
- * @param mode - 
+ * @param parts -
+ * @param mode -
  */
 export const initials = (parts: string[], mode: "u" | "l" | null = "u") => {
-    const res = parts.map((x) => x[0]).join("");
-    return mode === "u"
-        ? res.toUpperCase()
-        : mode === "l"
-        ? res.toLowerCase()
-        : res;
+	const res = parts.map((x) => x[0]).join("");
+	return mode === "u"
+		? res.toUpperCase()
+		: mode === "l"
+		? res.toLowerCase()
+		: res;
 };

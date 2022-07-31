@@ -1,10 +1,10 @@
 import type {
-    IVector,
-    VecOpV,
-    VecOpVN,
-    VecOpVV,
-    VecOpVVN,
-    VecOpVVV,
+	IVector,
+	VecOpV,
+	VecOpVN,
+	VecOpVV,
+	VecOpVVN,
+	VecOpVVV,
 } from "./api.js";
 
 /**
@@ -79,22 +79,22 @@ import type {
  * @param sb -
  */
 export const mapVV = (
-    op: VecOpVV,
-    out: IVector<any>,
-    a: IVector<any>,
-    b: IVector<any>,
-    num: number,
-    so = out.length * out.stride,
-    sa = a.length * a.stride,
-    sb = b.length * b.stride
+	op: VecOpVV,
+	out: IVector<any>,
+	a: IVector<any>,
+	b: IVector<any>,
+	num: number,
+	so = out.length * out.stride,
+	sa = a.length * a.stride,
+	sb = b.length * b.stride
 ) => {
-    while (num-- > 0) {
-        op(out, a, b);
-        out.offset += so;
-        a.offset += sa;
-        b.offset += sb;
-    }
-    return out.buf;
+	while (num-- > 0) {
+		op(out, a, b);
+		out.offset += so;
+		a.offset += sa;
+		b.offset += sb;
+	}
+	return out.buf;
 };
 
 /**
@@ -124,19 +124,19 @@ export const mapVV = (
  * @param sa -
  */
 export const mapV = (
-    op: VecOpV,
-    out: IVector<any>,
-    a: IVector<any>,
-    num: number,
-    so = out.length * out.stride,
-    sa = a.length * a.stride
+	op: VecOpV,
+	out: IVector<any>,
+	a: IVector<any>,
+	num: number,
+	so = out.length * out.stride,
+	sa = a.length * a.stride
 ) => {
-    while (num-- > 0) {
-        op(out, a);
-        out.offset += so;
-        a.offset += sa;
-    }
-    return out.buf;
+	while (num-- > 0) {
+		op(out, a);
+		out.offset += so;
+		a.offset += sa;
+	}
+	return out.buf;
 };
 
 /**
@@ -152,20 +152,20 @@ export const mapV = (
  * @param sa -
  */
 export const mapVN = (
-    op: VecOpVN,
-    out: IVector<any>,
-    a: IVector<any>,
-    n: number,
-    num: number,
-    so = out.length * out.stride,
-    sa = a.length * a.stride
+	op: VecOpVN,
+	out: IVector<any>,
+	a: IVector<any>,
+	n: number,
+	num: number,
+	so = out.length * out.stride,
+	sa = a.length * a.stride
 ) => {
-    while (num-- > 0) {
-        op(out, a, n);
-        out.offset += so;
-        a.offset += sa;
-    }
-    return out.buf;
+	while (num-- > 0) {
+		op(out, a, n);
+		out.offset += so;
+		a.offset += sa;
+	}
+	return out.buf;
 };
 
 /**
@@ -184,25 +184,25 @@ export const mapVN = (
  * @param sc -
  */
 export const mapVVV = (
-    op: VecOpVVV,
-    out: IVector<any>,
-    a: IVector<any>,
-    b: IVector<any>,
-    c: IVector<any>,
-    num: number,
-    so = out.length * out.stride,
-    sa = a.length * a.stride,
-    sb = b.length * b.stride,
-    sc = c.length * c.stride
+	op: VecOpVVV,
+	out: IVector<any>,
+	a: IVector<any>,
+	b: IVector<any>,
+	c: IVector<any>,
+	num: number,
+	so = out.length * out.stride,
+	sa = a.length * a.stride,
+	sb = b.length * b.stride,
+	sc = c.length * c.stride
 ) => {
-    while (num-- > 0) {
-        op(out, a, b, c);
-        out.offset += so;
-        a.offset += sa;
-        b.offset += sb;
-        c.offset += sc;
-    }
-    return out.buf;
+	while (num-- > 0) {
+		op(out, a, b, c);
+		out.offset += so;
+		a.offset += sa;
+		b.offset += sb;
+		c.offset += sc;
+	}
+	return out.buf;
 };
 
 /**
@@ -220,21 +220,21 @@ export const mapVVV = (
  * @param sb -
  */
 export const mapVVN = (
-    op: VecOpVVN,
-    out: IVector<any>,
-    a: IVector<any>,
-    b: IVector<any>,
-    n: number,
-    num: number,
-    so = out.length * out.stride,
-    sa = a.length * a.stride,
-    sb = b.length * b.stride
+	op: VecOpVVN,
+	out: IVector<any>,
+	a: IVector<any>,
+	b: IVector<any>,
+	n: number,
+	num: number,
+	so = out.length * out.stride,
+	sa = a.length * a.stride,
+	sb = b.length * b.stride
 ) => {
-    while (num-- > 0) {
-        op(out, a, b, n);
-        out.offset += so;
-        a.offset += sa;
-        b.offset += sb;
-    }
-    return out.buf;
+	while (num-- > 0) {
+		op(out, a, b, n);
+		out.offset += so;
+		a.offset += sa;
+		b.offset += sb;
+	}
+	return out.buf;
 };

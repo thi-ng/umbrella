@@ -35,4 +35,4 @@ export const dotC6: FnN6 = (a, b, c, d, e, f) => a * b + c * d + e * f;
  * @param h -
  */
 export const dotC8: FnN8 = (a, b, c, d, e, f, g, h) =>
-    a * b + c * d + e * f + g * h;
+	a * b + c * d + e * f + g * h;

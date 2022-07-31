@@ -23,30 +23,30 @@ import { map } from "./map.js";
  * incoming value
  */
 export function mapVals<A, B>(
-    fn: Fn<A, B>,
-    copy?: boolean
+	fn: Fn<A, B>,
+	copy?: boolean
 ): Transducer<IObjectOf<A>, IObjectOf<B>>;
 export function mapVals<A, B>(
-    fn: Fn<A, B>,
-    src: Iterable<IObjectOf<A>>
+	fn: Fn<A, B>,
+	src: Iterable<IObjectOf<A>>
 ): IterableIterator<IObjectOf<B>>;
 export function mapVals<A, B>(
-    fn: Fn<A, B>,
-    copy: boolean,
-    src: Iterable<IObjectOf<A>>
+	fn: Fn<A, B>,
+	copy: boolean,
+	src: Iterable<IObjectOf<A>>
 ): IterableIterator<IObjectOf<B>>;
 export function mapVals<A, B>(...args: any[]): any {
-    const iter = __iter(mapVals, args);
-    if (iter) {
-        return iter;
-    }
-    const fn: Fn<A, B> = args[0];
-    const copy = args[1] !== false;
-    return map((x: any) => {
-        const res: any = copy ? {} : x;
-        for (let k in x) {
-            res[k] = fn(x[k]);
-        }
-        return <any>res;
-    });
+	const iter = __iter(mapVals, args);
+	if (iter) {
+		return iter;
+	}
+	const fn: Fn<A, B> = args[0];
+	const copy = args[1] !== false;
+	return map((x: any) => {
+		const res: any = copy ? {} : x;
+		for (let k in x) {
+			res[k] = fn(x[k]);
+		}
+		return <any>res;
+	});
 }

@@ -13,9 +13,9 @@
  * @param prefixes -
  */
 export const formatPrefixes = (prefixes: Record<string, string>) =>
-    Object.keys(prefixes)
-        .reduce(
-            (acc, k) => (acc.push(`${k}: ${prefixes[k]}`), acc),
-            <string[]>[]
-        )
-        .join(" ");
+	Object.keys(prefixes)
+		.reduce(
+			(acc, k) => (acc.push(`${k}: ${prefixes[k]}`), acc),
+			<string[]>[]
+		)
+		.join(" ");

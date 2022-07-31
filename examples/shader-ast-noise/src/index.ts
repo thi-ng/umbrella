@@ -26,23 +26,23 @@ const JS = targetJS();
 
 // https://www.shadertoy.com/view/Ms2SWW (by iq)
 const mainImage = defn(
-    "vec4",
-    "mainImage",
-    ["vec2", "vec2", "float"],
-    (fragCoord, res, time) => {
-        let uv: Vec2Sym;
-        let col: FloatSym;
-        return [
-            (uv = sym(aspectCorrectedUV(fragCoord, res))),
-            // dynamically create a multi-octave version of `snoise2`
-            // computed over 4 octaves w/ given phase shift and decay
-            // factor (both per octave)
-            (col = sym(
-                additive("vec2", snoise2, 4)(add(uv, time), vec2(2), float(0.5))
-            )),
-            ret(vec4(vec3(fit1101(col)), 1)),
-        ];
-    }
+	"vec4",
+	"mainImage",
+	["vec2", "vec2", "float"],
+	(fragCoord, res, time) => {
+		let uv: Vec2Sym;
+		let col: FloatSym;
+		return [
+			(uv = sym(aspectCorrectedUV(fragCoord, res))),
+			// dynamically create a multi-octave version of `snoise2`
+			// computed over 4 octaves w/ given phase shift and decay
+			// factor (both per octave)
+			(col = sym(
+				additive("vec2", snoise2, 4)(add(uv, time), vec2(2), float(0.5))
+			)),
+			ret(vec4(vec3(fit1101(col)), 1)),
+		];
+	}
 );
 
 // build call graph for given entry function, sort in topological order
@@ -66,56 +66,56 @@ info.innerText = (JS_MODE ? "Canvas2D" : "WebGL") + " version";
 document.body.appendChild(info);
 
 if (JS_MODE) {
-    //
-    // JS Canvas 2D shader emulation from here...
-    //
-    const fn = JS.compile(shaderProgram).mainImage;
-    const rt = canvasRenderer(canvas);
-    let time = 0;
+	//
+	// JS Canvas 2D shader emulation from here...
+	//
+	const fn = JS.compile(shaderProgram).mainImage;
+	const rt = canvasRenderer(canvas);
+	let time = 0;
 
-    setInterval(() => {
-        time += 0.01;
-        rt((frag) => fn(frag, size, time));
-    }, 16);
+	setInterval(() => {
+		time += 0.01;
+		rt((frag) => fn(frag, size, time));
+	}, 16);
 } else {
-    //
-    // WebGL mode...
-    //
-    const ctx: WebGLRenderingContext = canvas.getContext("webgl")!;
-    // build fullscreen quad
-    const model = defQuadModel({ uv: false });
-    // set shader
-    model.shader = defShader(ctx, {
-        vs: (gl, _, attribs) => [
-            defMain(() => [
-                assign(gl.gl_Position, vec4(attribs.position, 0, 1)),
-            ]),
-        ],
-        fs: (gl, unis, _, outs) => [
-            mainImage,
-            defMain(() => [
-                assign(
-                    outs.fragColor,
-                    mainImage($xy(gl.gl_FragCoord), unis.resolution, unis.time)
-                ),
-            ]),
-        ],
-        attribs: {
-            position: "vec2",
-        },
-        uniforms: {
-            resolution: ["vec2", [W, H]],
-            time: "float",
-        },
-    });
-    // compile model (attrib buffers)
-    compileModel(ctx, model);
+	//
+	// WebGL mode...
+	//
+	const ctx: WebGLRenderingContext = canvas.getContext("webgl")!;
+	// build fullscreen quad
+	const model = defQuadModel({ uv: false });
+	// set shader
+	model.shader = defShader(ctx, {
+		vs: (gl, _, attribs) => [
+			defMain(() => [
+				assign(gl.gl_Position, vec4(attribs.position, 0, 1)),
+			]),
+		],
+		fs: (gl, unis, _, outs) => [
+			mainImage,
+			defMain(() => [
+				assign(
+					outs.fragColor,
+					mainImage($xy(gl.gl_FragCoord), unis.resolution, unis.time)
+				),
+			]),
+		],
+		attribs: {
+			position: "vec2",
+		},
+		uniforms: {
+			resolution: ["vec2", [W, H]],
+			time: "float",
+		},
+	});
+	// compile model (attrib buffers)
+	compileModel(ctx, model);
 
-    const t0 = Date.now();
-    // render loop
-    setInterval(() => {
-        const time = (Date.now() - t0) * 0.001;
-        model.uniforms!.time = time;
-        draw(model);
-    });
+	const t0 = Date.now();
+	// render loop
+	setInterval(() => {
+		const time = (Date.now() - t0) * 0.001;
+		model.uniforms!.time = time;
+		draw(model);
+	});
 }

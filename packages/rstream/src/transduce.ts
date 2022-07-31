@@ -28,49 +28,49 @@ import type { Subscription } from "./subscription.js";
  * @param init -
  */
 export const transduce = <A, B, C>(
-    src: Subscription<any, A>,
-    xform: Transducer<A, B>,
-    rfn: Reducer<C, B>,
-    init?: C
+	src: Subscription<any, A>,
+	xform: Transducer<A, B>,
+	rfn: Reducer<C, B>,
+	init?: C
 ): Promise<C> => {
-    let acc = init !== undefined ? init : rfn[0]();
-    let sub: ISubscription<A, B>;
+	let acc = init !== undefined ? init : rfn[0]();
+	let sub: ISubscription<A, B>;
 
-    return new Promise<C>((resolve, reject) => {
-        sub = src.subscribe(
-            {
-                next(x) {
-                    let _acc: C | Reduced<C>;
-                    try {
-                        _acc = rfn[2](acc, x);
-                    } catch (e) {
-                        reject(e);
-                        return;
-                    }
-                    if (isReduced(_acc)) {
-                        resolve(_acc.deref());
-                    } else {
-                        acc = _acc;
-                    }
-                },
-                done() {
-                    resolve(acc);
-                },
-                error(e) {
-                    reject(e);
-                    return false;
-                },
-            },
-            { xform }
-        );
-    }).then(
-        (fulfilled) => {
-            sub.unsubscribe();
-            return fulfilled;
-        },
-        (rejected) => {
-            sub.unsubscribe();
-            throw rejected;
-        }
-    );
+	return new Promise<C>((resolve, reject) => {
+		sub = src.subscribe(
+			{
+				next(x) {
+					let _acc: C | Reduced<C>;
+					try {
+						_acc = rfn[2](acc, x);
+					} catch (e) {
+						reject(e);
+						return;
+					}
+					if (isReduced(_acc)) {
+						resolve(_acc.deref());
+					} else {
+						acc = _acc;
+					}
+				},
+				done() {
+					resolve(acc);
+				},
+				error(e) {
+					reject(e);
+					return false;
+				},
+			},
+			{ xform }
+		);
+	}).then(
+		(fulfilled) => {
+			sub.unsubscribe();
+			return fulfilled;
+		},
+		(rejected) => {
+			sub.unsubscribe();
+			throw rejected;
+		}
+	);
 };

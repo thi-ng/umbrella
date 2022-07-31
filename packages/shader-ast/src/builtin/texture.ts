@@ -1,56 +1,56 @@
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import type { FnCall, Sym, Term } from "../api/nodes.js";
 import type {
-    FloatTerm,
-    IntTerm,
-    ISampler2DTerm,
-    ISampler3DTerm,
-    ISamplerCubeTerm,
-    IVec2Term,
-    IVec3Term,
-    Sampler2DTerm,
-    Sampler3DTerm,
-    SamplerCubeTerm,
-    USampler2DTerm,
-    USampler3DTerm,
-    USamplerCubeTerm,
-    Vec2Term,
-    Vec3Term,
-    Vec4Term,
+	FloatTerm,
+	IntTerm,
+	ISampler2DTerm,
+	ISampler3DTerm,
+	ISamplerCubeTerm,
+	IVec2Term,
+	IVec3Term,
+	Sampler2DTerm,
+	Sampler3DTerm,
+	SamplerCubeTerm,
+	USampler2DTerm,
+	USampler3DTerm,
+	USamplerCubeTerm,
+	Vec2Term,
+	Vec3Term,
+	Vec4Term,
 } from "../api/terms.js";
 import type { IVec, Prim, Sampler, Vec } from "../api/types.js";
 import { isVec } from "../ast/checks.js";
 import { builtinCall } from "../ast/function.js";
 
 const texRetType = (sampler: Term<Sampler>) => {
-    const t = sampler.type[0];
-    const shadow = sampler.type.indexOf("Shadow") > 0;
-    return t === "s"
-        ? shadow
-            ? "float"
-            : "vec4"
-        : t === "i"
-        ? shadow
-            ? "int"
-            : "ivec4"
-        : t === "u"
-        ? shadow
-            ? "uint"
-            : "uvec4"
-        : illegalArgs(`unknown sampler type ${sampler.type}`);
+	const t = sampler.type[0];
+	const shadow = sampler.type.indexOf("Shadow") > 0;
+	return t === "s"
+		? shadow
+			? "float"
+			: "vec4"
+		: t === "i"
+		? shadow
+			? "int"
+			: "ivec4"
+		: t === "u"
+		? shadow
+			? "uint"
+			: "uvec4"
+		: illegalArgs(`unknown sampler type ${sampler.type}`);
 };
 
 const $call = (
-    name: string,
-    sampler: Term<Sampler>,
-    args: Term<any>[],
-    bias?: FloatTerm
+	name: string,
+	sampler: Term<Sampler>,
+	args: Term<any>[],
+	bias?: FloatTerm
 ) => {
-    const f = bias
-        ? builtinCall(name, texRetType(sampler), sampler, ...args, bias)
-        : builtinCall(name, texRetType(sampler), sampler, ...args);
-    !isVec(f) && (f.info = "n");
-    return f;
+	const f = bias
+		? builtinCall(name, texRetType(sampler), sampler, ...args, bias)
+		: builtinCall(name, texRetType(sampler), sampler, ...args);
+	!isVec(f) && (f.info = "n");
+	return f;
 };
 
 // prettier-ignore
@@ -74,8 +74,8 @@ export function textureSize(sampler: Term<Sampler>, lod: IntTerm): FnCall<any> {
 }
 
 /**
- * @param sampler - 
- * @param uv - 
+ * @param sampler -
+ * @param uv -
  * @param bias - not allowed in vertex shader
  */
 // prettier-ignore
@@ -106,8 +106,8 @@ export function texture(sampler: Term<Sampler>, uv: Term<Vec>, bias?: FloatTerm)
 }
 
 /**
- * @param sampler - 
- * @param uvw - 
+ * @param sampler -
+ * @param uvw -
  * @param bias - not allowed in vertex shader
  */
 // prettier-ignore
@@ -155,9 +155,9 @@ export function textureLod(sampler: Term<Sampler>, uv: Term<Vec>, lod: FloatTerm
 }
 
 /**
- * @param sampler - 
- * @param uvw - 
- * @param off - 
+ * @param sampler -
+ * @param uvw -
+ * @param off -
  * @param bias - not allowed in vertex shader
  */
 // prettier-ignore
@@ -214,9 +214,9 @@ export function texelFetchOffset(sampler: Term<Sampler>, uv: Term<IVec>, lod: In
 }
 
 /**
- * @param sampler - 
- * @param uvw - 
- * @param off - 
+ * @param sampler -
+ * @param uvw -
+ * @param off -
  * @param bias - not allowed in vertex shader
  */
 // prettier-ignore
@@ -410,10 +410,10 @@ export function textureProjGradOffset(sampler: Term<Sampler>, uvw: Term<Vec>, dx
 }
 
 export const dFdx = <T extends Prim>(sym: Sym<T>) =>
-    builtinCall("dFdx", sym.type, sym);
+	builtinCall("dFdx", sym.type, sym);
 
 export const dFdy = <T extends Prim>(sym: Sym<T>) =>
-    builtinCall("dFdy", sym.type, sym);
+	builtinCall("dFdy", sym.type, sym);
 
 export const fwidth = <T extends Prim>(sym: Sym<T>) =>
-    builtinCall("fwidth", sym.type, sym);
+	builtinCall("fwidth", sym.type, sym);

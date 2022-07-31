@@ -9,8 +9,8 @@ import { __inspectable } from "./internal/inspect.js";
 import { into } from "./into.js";
 
 interface SetProps<T> {
-    vals: DCons<T>;
-    equiv: Predicate2<T>;
+	vals: DCons<T>;
+	equiv: Predicate2<T>;
 }
 
 const __private = new WeakMap<LLSet<any>, SetProps<any>>();
@@ -30,143 +30,143 @@ const __vals = (inst: LLSet<any>) => __private.get(inst)!.vals;
  */
 @__inspectable
 export class LLSet<T> extends Set<T> implements IEquivSet<T> {
-    constructor(
-        vals?: Iterable<T> | null,
-        opts: Partial<EquivSetOpts<T>> = {}
-    ) {
-        super();
-        __private.set(this, {
-            equiv: opts.equiv || equiv,
-            vals: new DCons<T>(),
-        });
-        vals && this.into(vals);
-    }
+	constructor(
+		vals?: Iterable<T> | null,
+		opts: Partial<EquivSetOpts<T>> = {}
+	) {
+		super();
+		__private.set(this, {
+			equiv: opts.equiv || equiv,
+			vals: new DCons<T>(),
+		});
+		vals && this.into(vals);
+	}
 
-    *[Symbol.iterator](): IterableIterator<T> {
-        yield* __vals(this);
-    }
+	*[Symbol.iterator](): IterableIterator<T> {
+		yield* __vals(this);
+	}
 
-    get [Symbol.species]() {
-        return LLSet;
-    }
+	get [Symbol.species]() {
+		return LLSet;
+	}
 
-    get [Symbol.toStringTag]() {
-        return "LLSet";
-    }
+	get [Symbol.toStringTag]() {
+		return "LLSet";
+	}
 
-    get size(): number {
-        return __vals(this).length;
-    }
+	get size(): number {
+		return __vals(this).length;
+	}
 
-    copy() {
-        const s = new LLSet<T>(null, this.opts());
-        __private.get(s)!.vals = __vals(this).copy();
-        return s;
-    }
+	copy() {
+		const s = new LLSet<T>(null, this.opts());
+		__private.get(s)!.vals = __vals(this).copy();
+		return s;
+	}
 
-    empty() {
-        return new LLSet<T>(null, this.opts());
-    }
+	empty() {
+		return new LLSet<T>(null, this.opts());
+	}
 
-    clear() {
-        __vals(this).clear();
-    }
+	clear() {
+		__vals(this).clear();
+	}
 
-    first(): T | undefined {
-        if (this.size) {
-            return __vals(this).head!.value;
-        }
-    }
+	first(): T | undefined {
+		if (this.size) {
+			return __vals(this).head!.value;
+		}
+	}
 
-    add(key: T) {
-        !this.has(key) && __vals(this).push(key);
-        return this;
-    }
+	add(key: T) {
+		!this.has(key) && __vals(this).push(key);
+		return this;
+	}
 
-    into(keys: Iterable<T>) {
-        return <this>into(this, keys);
-    }
+	into(keys: Iterable<T>) {
+		return <this>into(this, keys);
+	}
 
-    has(key: T) {
-        return this.get(key, <any>SEMAPHORE) !== <any>SEMAPHORE;
-    }
+	has(key: T) {
+		return this.get(key, <any>SEMAPHORE) !== <any>SEMAPHORE;
+	}
 
-    /**
-     * Returns the canonical (stored) value for `key`, if present. If
-     * the set contains no equivalent for `key`, returns `notFound`.
-     *
-     * @param key - search key
-     * @param notFound - default value
-     */
-    get(key: T, notFound?: T): T | undefined {
-        const { equiv, vals } = __private.get(this)!;
-        let i = vals.head;
-        while (i) {
-            if (equiv(i.value, key)) {
-                return i.value;
-            }
-            i = i.next;
-        }
-        return notFound;
-    }
+	/**
+	 * Returns the canonical (stored) value for `key`, if present. If
+	 * the set contains no equivalent for `key`, returns `notFound`.
+	 *
+	 * @param key - search key
+	 * @param notFound - default value
+	 */
+	get(key: T, notFound?: T): T | undefined {
+		const { equiv, vals } = __private.get(this)!;
+		let i = vals.head;
+		while (i) {
+			if (equiv(i.value, key)) {
+				return i.value;
+			}
+			i = i.next;
+		}
+		return notFound;
+	}
 
-    delete(key: T) {
-        const { equiv, vals } = __private.get(this)!;
-        let i = vals.head;
-        while (i) {
-            if (equiv(i.value, key)) {
-                vals.splice(i, 1);
-                return true;
-            }
-            i = i.next;
-        }
-        return false;
-    }
+	delete(key: T) {
+		const { equiv, vals } = __private.get(this)!;
+		let i = vals.head;
+		while (i) {
+			if (equiv(i.value, key)) {
+				vals.splice(i, 1);
+				return true;
+			}
+			i = i.next;
+		}
+		return false;
+	}
 
-    disj(keys: Iterable<T>) {
-        return <this>dissoc(this, keys);
-    }
+	disj(keys: Iterable<T>) {
+		return <this>dissoc(this, keys);
+	}
 
-    equiv(o: any) {
-        return __equivSet(this, o);
-    }
+	equiv(o: any) {
+		return __equivSet(this, o);
+	}
 
-    /**
-     * The value args given to the callback `fn` MUST be treated as
-     * readonly/immutable. This could be enforced via TS, but would
-     * break ES6 Set interface contract.
-     *
-     * @param fn - 
-     * @param thisArg - 
-     */
-    forEach(fn: Fn3<T, T, Set<T>, void>, thisArg?: any) {
-        let i = __vals(this).head;
-        while (i) {
-            fn.call(thisArg, i.value, i.value, this);
-            i = i.next;
-        }
-    }
+	/**
+	 * The value args given to the callback `fn` MUST be treated as
+	 * readonly/immutable. This could be enforced via TS, but would
+	 * break ES6 Set interface contract.
+	 *
+	 * @param fn -
+	 * @param thisArg -
+	 */
+	forEach(fn: Fn3<T, T, Set<T>, void>, thisArg?: any) {
+		let i = __vals(this).head;
+		while (i) {
+			fn.call(thisArg, i.value, i.value, this);
+			i = i.next;
+		}
+	}
 
-    *entries(): IterableIterator<Pair<T, T>> {
-        for (let v of __vals(this)) {
-            yield [v, v];
-        }
-    }
+	*entries(): IterableIterator<Pair<T, T>> {
+		for (let v of __vals(this)) {
+			yield [v, v];
+		}
+	}
 
-    *keys(): IterableIterator<T> {
-        yield* __vals(this);
-    }
+	*keys(): IterableIterator<T> {
+		yield* __vals(this);
+	}
 
-    *values(): IterableIterator<T> {
-        yield* __vals(this);
-    }
+	*values(): IterableIterator<T> {
+		yield* __vals(this);
+	}
 
-    opts(): EquivSetOpts<T> {
-        return { equiv: __private.get(this)!.equiv };
-    }
+	opts(): EquivSetOpts<T> {
+		return { equiv: __private.get(this)!.equiv };
+	}
 }
 
 export const defLLSet = <T>(
-    vals?: Iterable<T> | null,
-    opts?: Partial<EquivSetOpts<T>>
+	vals?: Iterable<T> | null,
+	opts?: Partial<EquivSetOpts<T>>
 ) => new LLSet(vals, opts);

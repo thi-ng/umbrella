@@ -1,176 +1,176 @@
 {
-    "name": "@thi.ng/shader-ast",
-    "version": "0.12.12",
-    "description": "DSL to define shader code in TypeScript and cross-compile to GLSL, JS and other targets",
-    "type": "module",
-    "module": "./index.js",
-    "typings": "./index.d.ts",
-    "sideEffects": false,
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/thi-ng/umbrella.git"
-    },
-    "homepage": "https://github.com/thi-ng/umbrella/tree/develop/packages/shader-ast#readme",
-    "funding": [
-        {
-            "type": "github",
-            "url": "https://github.com/sponsors/postspectacular"
-        },
-        {
-            "type": "patreon",
-            "url": "https://patreon.com/thing_umbrella"
-        }
-    ],
-    "author": "Karsten Schmidt <k+npm@thi.ng>",
-    "license": "Apache-2.0",
-    "scripts": {
-        "build": "yarn clean && tsc --declaration",
-        "clean": "rimraf '*.js' '*.d.ts' '*.map' doc api ast builtin",
-        "doc": "typedoc --excludePrivate --excludeInternal --out doc src/index.ts",
-        "doc:ae": "mkdir -p .ae/doc .ae/temp && api-extractor run --local --verbose",
-        "doc:readme": "yarn doc:stats && tools:readme",
-        "doc:stats": "tools:module-stats",
-        "pub": "yarn npm publish --access public",
-        "test": "testament test"
-    },
-    "dependencies": {
-        "@thi.ng/api": "^8.3.8",
-        "@thi.ng/checks": "^3.2.2",
-        "@thi.ng/defmulti": "^2.1.8",
-        "@thi.ng/dgraph": "^2.1.12",
-        "@thi.ng/errors": "^2.1.8",
-        "@thi.ng/logger": "^1.1.8"
-    },
-    "devDependencies": {
-        "@microsoft/api-extractor": "^7.25.0",
-        "@thi.ng/testament": "^0.2.9",
-        "rimraf": "^3.0.2",
-        "tools": "workspace:^",
-        "typedoc": "^0.22.17",
-        "typescript": "^4.7.4"
-    },
-    "keywords": [
-        "ast",
-        "canvas",
-        "codegen",
-        "compiler",
-        "dag",
-        "datastructure",
-        "dsl",
-        "glsl",
-        "gpgpu",
-        "interval",
-        "optimize",
-        "shader",
-        "tree",
-        "typecheck",
-        "typescript",
-        "webgl"
-    ],
-    "publishConfig": {
-        "access": "public"
-    },
-    "engines": {
-        "node": ">=12.7"
-    },
-    "files": [
-        "*.js",
-        "*.d.ts",
-        "api",
-        "ast",
-        "builtin"
-    ],
-    "exports": {
-        ".": {
-            "default": "./index.js"
-        },
-        "./api/function": {
-            "default": "./api/function.js"
-        },
-        "./api/nodes": {
-            "default": "./api/nodes.js"
-        },
-        "./api/ops": {
-            "default": "./api/ops.js"
-        },
-        "./api/precision": {
-            "default": "./api/precision.js"
-        },
-        "./api/swizzles": {
-            "default": "./api/swizzles.js"
-        },
-        "./api/syms": {
-            "default": "./api/syms.js"
-        },
-        "./api/tags": {
-            "default": "./api/tags.js"
-        },
-        "./api/target": {
-            "default": "./api/target.js"
-        },
-        "./api/terms": {
-            "default": "./api/terms.js"
-        },
-        "./api/types": {
-            "default": "./api/types.js"
-        },
-        "./ast/assign": {
-            "default": "./ast/assign.js"
-        },
-        "./ast/checks": {
-            "default": "./ast/checks.js"
-        },
-        "./ast/controlflow": {
-            "default": "./ast/controlflow.js"
-        },
-        "./ast/function": {
-            "default": "./ast/function.js"
-        },
-        "./ast/idgen": {
-            "default": "./ast/idgen.js"
-        },
-        "./ast/indexed": {
-            "default": "./ast/indexed.js"
-        },
-        "./ast/item": {
-            "default": "./ast/item.js"
-        },
-        "./ast/lit": {
-            "default": "./ast/lit.js"
-        },
-        "./ast/ops": {
-            "default": "./ast/ops.js"
-        },
-        "./ast/scope": {
-            "default": "./ast/scope.js"
-        },
-        "./ast/swizzle": {
-            "default": "./ast/swizzle.js"
-        },
-        "./ast/sym": {
-            "default": "./ast/sym.js"
-        },
-        "./builtin/bvec": {
-            "default": "./builtin/bvec.js"
-        },
-        "./builtin/math": {
-            "default": "./builtin/math.js"
-        },
-        "./builtin/texture": {
-            "default": "./builtin/texture.js"
-        },
-        "./logger": {
-            "default": "./logger.js"
-        },
-        "./target": {
-            "default": "./target.js"
-        }
-    },
-    "thi.ng": {
-        "related": [
-            "webgl",
-            "webgl-shadertoy"
-        ],
-        "year": 2019
-    }
+	"name": "@thi.ng/shader-ast",
+	"version": "0.12.12",
+	"description": "DSL to define shader code in TypeScript and cross-compile to GLSL, JS and other targets",
+	"type": "module",
+	"module": "./index.js",
+	"typings": "./index.d.ts",
+	"sideEffects": false,
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/thi-ng/umbrella.git"
+	},
+	"homepage": "https://github.com/thi-ng/umbrella/tree/develop/packages/shader-ast#readme",
+	"funding": [
+		{
+			"type": "github",
+			"url": "https://github.com/sponsors/postspectacular"
+		},
+		{
+			"type": "patreon",
+			"url": "https://patreon.com/thing_umbrella"
+		}
+	],
+	"author": "Karsten Schmidt <k+npm@thi.ng>",
+	"license": "Apache-2.0",
+	"scripts": {
+		"build": "yarn clean && tsc --declaration",
+		"clean": "rimraf '*.js' '*.d.ts' '*.map' doc api ast builtin",
+		"doc": "typedoc --excludePrivate --excludeInternal --out doc src/index.ts",
+		"doc:ae": "mkdir -p .ae/doc .ae/temp && api-extractor run --local --verbose",
+		"doc:readme": "yarn doc:stats && tools:readme",
+		"doc:stats": "tools:module-stats",
+		"pub": "yarn npm publish --access public",
+		"test": "testament test"
+	},
+	"dependencies": {
+		"@thi.ng/api": "^8.3.8",
+		"@thi.ng/checks": "^3.2.2",
+		"@thi.ng/defmulti": "^2.1.8",
+		"@thi.ng/dgraph": "^2.1.12",
+		"@thi.ng/errors": "^2.1.8",
+		"@thi.ng/logger": "^1.1.8"
+	},
+	"devDependencies": {
+		"@microsoft/api-extractor": "^7.25.0",
+		"@thi.ng/testament": "^0.2.9",
+		"rimraf": "^3.0.2",
+		"tools": "workspace:^",
+		"typedoc": "^0.22.17",
+		"typescript": "^4.7.4"
+	},
+	"keywords": [
+		"ast",
+		"canvas",
+		"codegen",
+		"compiler",
+		"dag",
+		"datastructure",
+		"dsl",
+		"glsl",
+		"gpgpu",
+		"interval",
+		"optimize",
+		"shader",
+		"tree",
+		"typecheck",
+		"typescript",
+		"webgl"
+	],
+	"publishConfig": {
+		"access": "public"
+	},
+	"engines": {
+		"node": ">=12.7"
+	},
+	"files": [
+		"*.js",
+		"*.d.ts",
+		"api",
+		"ast",
+		"builtin"
+	],
+	"exports": {
+		".": {
+			"default": "./index.js"
+		},
+		"./api/function": {
+			"default": "./api/function.js"
+		},
+		"./api/nodes": {
+			"default": "./api/nodes.js"
+		},
+		"./api/ops": {
+			"default": "./api/ops.js"
+		},
+		"./api/precision": {
+			"default": "./api/precision.js"
+		},
+		"./api/swizzles": {
+			"default": "./api/swizzles.js"
+		},
+		"./api/syms": {
+			"default": "./api/syms.js"
+		},
+		"./api/tags": {
+			"default": "./api/tags.js"
+		},
+		"./api/target": {
+			"default": "./api/target.js"
+		},
+		"./api/terms": {
+			"default": "./api/terms.js"
+		},
+		"./api/types": {
+			"default": "./api/types.js"
+		},
+		"./ast/assign": {
+			"default": "./ast/assign.js"
+		},
+		"./ast/checks": {
+			"default": "./ast/checks.js"
+		},
+		"./ast/controlflow": {
+			"default": "./ast/controlflow.js"
+		},
+		"./ast/function": {
+			"default": "./ast/function.js"
+		},
+		"./ast/idgen": {
+			"default": "./ast/idgen.js"
+		},
+		"./ast/indexed": {
+			"default": "./ast/indexed.js"
+		},
+		"./ast/item": {
+			"default": "./ast/item.js"
+		},
+		"./ast/lit": {
+			"default": "./ast/lit.js"
+		},
+		"./ast/ops": {
+			"default": "./ast/ops.js"
+		},
+		"./ast/scope": {
+			"default": "./ast/scope.js"
+		},
+		"./ast/swizzle": {
+			"default": "./ast/swizzle.js"
+		},
+		"./ast/sym": {
+			"default": "./ast/sym.js"
+		},
+		"./builtin/bvec": {
+			"default": "./builtin/bvec.js"
+		},
+		"./builtin/math": {
+			"default": "./builtin/math.js"
+		},
+		"./builtin/texture": {
+			"default": "./builtin/texture.js"
+		},
+		"./logger": {
+			"default": "./logger.js"
+		},
+		"./target": {
+			"default": "./target.js"
+		}
+	},
+	"thi.ng": {
+		"related": [
+			"webgl",
+			"webgl-shadertoy"
+		],
+		"year": 2019
+	}
 }

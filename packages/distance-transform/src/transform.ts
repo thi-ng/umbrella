@@ -38,77 +38,77 @@ import { EUCLEDIAN } from "./metric.js";
  * dtImg.blitCanvas(canvas2d(img.width, img.height, document.body).canvas);
  * ```
  *
- * @param grid - 
- * @param metric - 
- * @param normalize - 
+ * @param grid -
+ * @param metric -
+ * @param normalize -
  */
 export const distanceTransform = (
-    {
-        data: spix,
-        size: [width, height],
-        stride: [sx, sy],
-        offset,
-    }: IGrid2D<NumericArray, number>,
-    { dist, sep, post }: DTMetric = EUCLEDIAN,
-    normalize = 1
+	{
+		data: spix,
+		size: [width, height],
+		stride: [sx, sy],
+		offset,
+	}: IGrid2D<NumericArray, number>,
+	{ dist, sep, post }: DTMetric = EUCLEDIAN,
+	normalize = 1
 ) => {
-    post = post || ((x) => x);
-    const dest = new Float32Array(width * height);
-    const g = new Uint32Array(width * height);
-    const s = new Uint32Array(width);
-    const t = new Uint32Array(width);
-    const MAX = 0xffffffff;
+	post = post || ((x) => x);
+	const dest = new Float32Array(width * height);
+	const g = new Uint32Array(width * height);
+	const s = new Uint32Array(width);
+	const t = new Uint32Array(width);
+	const MAX = 0xffffffff;
 
-    for (let x = 0; x < width; x++) {
-        g[x] = spix[offset + x * sx] === 0 ? MAX : 0;
-        for (let y = 1; y < height; y++) {
-            const i = y * width + x;
-            g[i] =
-                spix[offset + y * sy + x * sx] === 0
-                    ? Math.min(MAX, 1 + g[i - width])
-                    : 0;
-        }
-        for (let y = height - 1; y-- > 0; ) {
-            const i = x + y * width;
-            const q = g[i + width];
-            q < g[i] && (g[i] = Math.min(MAX, 1 + q));
-        }
-    }
+	for (let x = 0; x < width; x++) {
+		g[x] = spix[offset + x * sx] === 0 ? MAX : 0;
+		for (let y = 1; y < height; y++) {
+			const i = y * width + x;
+			g[i] =
+				spix[offset + y * sy + x * sx] === 0
+					? Math.min(MAX, 1 + g[i - width])
+					: 0;
+		}
+		for (let y = height - 1; y-- > 0; ) {
+			const i = x + y * width;
+			const q = g[i + width];
+			q < g[i] && (g[i] = Math.min(MAX, 1 + q));
+		}
+	}
 
-    let maxD = -Infinity;
-    for (let y = 0; y < height; y++) {
-        const I = y * width;
-        let q = 0;
-        s[0] = t[0] = 0;
-        for (let u = 1; u < width; u++) {
-            while (
-                q >= 0 &&
-                dist(t[q], s[q], g[I + s[q]]) > dist(t[q], u, g[I + u])
-            )
-                q--;
-            if (q < 0) {
-                q = 0;
-                s[0] = u;
-            } else {
-                const w = 1 + sep(s[q], u, g[I + s[q]], g[I + u]);
-                if (w < width) {
-                    q++;
-                    s[q] = u;
-                    t[q] = w;
-                }
-            }
-        }
-        for (let u = width; u-- > 0; ) {
-            let d = (dest[u + I] = post(dist(u, s[q], g[I + s[q]])));
-            d > maxD && (maxD = d);
-            u === t[q] && q--;
-        }
-    }
+	let maxD = -Infinity;
+	for (let y = 0; y < height; y++) {
+		const I = y * width;
+		let q = 0;
+		s[0] = t[0] = 0;
+		for (let u = 1; u < width; u++) {
+			while (
+				q >= 0 &&
+				dist(t[q], s[q], g[I + s[q]]) > dist(t[q], u, g[I + u])
+			)
+				q--;
+			if (q < 0) {
+				q = 0;
+				s[0] = u;
+			} else {
+				const w = 1 + sep(s[q], u, g[I + s[q]], g[I + u]);
+				if (w < width) {
+					q++;
+					s[q] = u;
+					t[q] = w;
+				}
+			}
+		}
+		for (let u = width; u-- > 0; ) {
+			let d = (dest[u + I] = post(dist(u, s[q], g[I + s[q]])));
+			d > maxD && (maxD = d);
+			u === t[q] && q--;
+		}
+	}
 
-    if (normalize > 0 && maxD > 1e-6) {
-        maxD = normalize / maxD;
-        for (let i = dest.length; i-- > 0; ) dest[i] *= maxD;
-    }
+	if (normalize > 0 && maxD > 1e-6) {
+		maxD = normalize / maxD;
+		for (let i = dest.length; i-- > 0; ) dest[i] *= maxD;
+	}
 
-    return dest;
+	return dest;
 };

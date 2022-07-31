@@ -22,49 +22,49 @@ const time = reactive(0);
 
 // fork worker jobs & re-join results
 forkJoin<number, WorkerJob, WorkerResult, void>({
-    src: time,
-    // WorkerJob preparation
-    // this function is called for each worker ID to define a region of
-    // the image to compute. the results of that function are the messages
-    // sent to the workers...
-    fork: (id, _, time) => ({
-        width: W,
-        height: H,
-        y1: id * rowsPerSlice,
-        y2: (id + 1) * rowsPerSlice,
-        id,
-        time,
-    }),
-    // re-join partial results (here, update canvas)
-    join: (parts) => {
-        updatePixels(parts);
-        drawStats(parts);
-        // trigger next update
-        time.next(time.deref()! + 0.05);
-    },
-    worker: () => new WORKER(),
-    numWorkers: NUM_WORKERS,
+	src: time,
+	// WorkerJob preparation
+	// this function is called for each worker ID to define a region of
+	// the image to compute. the results of that function are the messages
+	// sent to the workers...
+	fork: (id, _, time) => ({
+		width: W,
+		height: H,
+		y1: id * rowsPerSlice,
+		y2: (id + 1) * rowsPerSlice,
+		id,
+		time,
+	}),
+	// re-join partial results (here, update canvas)
+	join: (parts) => {
+		updatePixels(parts);
+		drawStats(parts);
+		// trigger next update
+		time.next(time.deref()! + 0.05);
+	},
+	worker: () => new WORKER(),
+	numWorkers: NUM_WORKERS,
 });
 
 const updatePixels = (parts: WorkerResult[]) => {
-    for (let i = 0; i < NUM_WORKERS; i++) {
-        imgU32.set(parts[i].buf, i * pixelsPerSlice);
-    }
-    canvas.ctx.putImageData(canvas.img, 0, 0);
+	for (let i = 0; i < NUM_WORKERS; i++) {
+		imgU32.set(parts[i].buf, i * pixelsPerSlice);
+	}
+	canvas.ctx.putImageData(canvas.img, 0, 0);
 };
 
 const drawStats = (parts: WorkerResult[]) => {
-    canvas.ctx.strokeStyle = "white";
-    for (let i = 0; i < NUM_WORKERS; i++) {
-        const x = i * 32 + 4;
-        const stats = parts[i].stats;
-        if (stats && x < W) {
-            const [min, max] = bounds(stats);
-            polyline(
-                canvas.ctx,
-                {},
-                stats.map((y, j) => [x + j, fitClamped(y, min, max, 28, 4)])
-            );
-        }
-    }
+	canvas.ctx.strokeStyle = "white";
+	for (let i = 0; i < NUM_WORKERS; i++) {
+		const x = i * 32 + 4;
+		const stats = parts[i].stats;
+		if (stats && x < W) {
+			const [min, max] = bounds(stats);
+			polyline(
+				canvas.ctx,
+				{},
+				stats.map((y, j) => [x + j, fitClamped(y, min, max, 28, 4)])
+			);
+		}
+	}
 };

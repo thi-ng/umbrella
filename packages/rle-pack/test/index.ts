@@ -1,6 +1,6 @@
 import { group } from "@thi.ng/testament";
 import * as assert from "assert";
-import { decode, encode } from "../src/index.js"
+import { decode, encode } from "../src/index.js";
 
 const src1k = new Uint8Array(1024);
 // prettier-ignore

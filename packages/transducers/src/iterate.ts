@@ -24,12 +24,12 @@ import type { Fn2 } from "@thi.ng/api";
  * @param num -
  */
 export function* iterate<T>(
-    fn: Fn2<T, number, T>,
-    seed: T,
-    num = Infinity
+	fn: Fn2<T, number, T>,
+	seed: T,
+	num = Infinity
 ): IterableIterator<T> {
-    for (let i = 1; i <= num; i++) {
-        yield seed;
-        seed = fn(seed, i);
-    }
+	for (let i = 1; i <= num; i++) {
+		yield seed;
+		seed = fn(seed, i);
+	}
 }

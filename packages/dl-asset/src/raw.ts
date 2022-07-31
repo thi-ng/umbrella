@@ -20,34 +20,34 @@ import type { DownloadOpts } from "./api.js";
  * again after `expire` millseconds (default: 10000) to free up memory.
  * The URL won't be expired if `expire <= 0`.
  *
- * @param name - 
- * @param src - 
- * @param opts - 
+ * @param name -
+ * @param src -
+ * @param opts -
  */
 export const downloadWithMime = (
-    name: string,
-    src: string | TypedArray | ArrayBuffer | Blob,
-    opts: Partial<DownloadOpts> & { mime: string }
+	name: string,
+	src: string | TypedArray | ArrayBuffer | Blob,
+	opts: Partial<DownloadOpts> & { mime: string }
 ) => {
-    const _opts = {
-        expire: 1e4,
-        utf8: false,
-        ...opts,
-    };
-    if (isString(src) && _opts.utf8) {
-        src = new TextEncoder().encode(src);
-        _opts.mime += ";charset=UTF-8";
-    }
-    const uri = URL.createObjectURL(
-        !(src instanceof Blob) ? new Blob([src], { type: _opts.mime }) : src
-    );
-    const link = document.createElement("a");
-    link.setAttribute("download", name);
-    link.setAttribute("href", uri);
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-    if (_opts.expire > 0) {
-        setTimeout(() => URL.revokeObjectURL(uri), _opts.expire);
-    }
+	const _opts = {
+		expire: 1e4,
+		utf8: false,
+		...opts,
+	};
+	if (isString(src) && _opts.utf8) {
+		src = new TextEncoder().encode(src);
+		_opts.mime += ";charset=UTF-8";
+	}
+	const uri = URL.createObjectURL(
+		!(src instanceof Blob) ? new Blob([src], { type: _opts.mime }) : src
+	);
+	const link = document.createElement("a");
+	link.setAttribute("download", name);
+	link.setAttribute("href", uri);
+	document.body.appendChild(link);
+	link.click();
+	document.body.removeChild(link);
+	if (_opts.expire > 0) {
+		setTimeout(() => URL.revokeObjectURL(uri), _opts.expire);
+	}
 };

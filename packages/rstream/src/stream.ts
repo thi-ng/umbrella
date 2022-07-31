@@ -1,14 +1,14 @@
 import { isFunction } from "@thi.ng/checks/is-function";
 import {
-    CloseMode,
-    CommonOpts,
-    IStream,
-    ISubscriber,
-    ISubscription,
-    StreamCancel,
-    StreamSource,
-    TransformableOpts,
-    WithErrorHandlerOpts,
+	CloseMode,
+	CommonOpts,
+	IStream,
+	ISubscriber,
+	ISubscription,
+	StreamCancel,
+	StreamSource,
+	TransformableOpts,
+	WithErrorHandlerOpts,
 } from "./api.js";
 import { __optsWithID } from "./idgen.js";
 import { LOGGER } from "./logger.js";
@@ -71,14 +71,14 @@ import { Subscription } from "./subscription.js";
  */
 export function stream<T>(opts?: Partial<WithErrorHandlerOpts>): Stream<T>;
 export function stream<T>(
-    src: StreamSource<T>,
-    opts?: Partial<WithErrorHandlerOpts>
+	src: StreamSource<T>,
+	opts?: Partial<WithErrorHandlerOpts>
 ): Stream<T>;
 export function stream<T>(
-    src?: any,
-    opts?: Partial<WithErrorHandlerOpts>
+	src?: any,
+	opts?: Partial<WithErrorHandlerOpts>
 ): Stream<T> {
-    return new Stream<T>(src, opts);
+	return new Stream<T>(src, opts);
 }
 
 /**
@@ -90,99 +90,99 @@ export function stream<T>(
  * @param opts -
  */
 export const reactive = <T>(val: T, opts?: Partial<CommonOpts>) => {
-    const res = new Stream<T>(opts);
-    res.next(val);
-    return res;
+	const res = new Stream<T>(opts);
+	res.next(val);
+	return res;
 };
 
 /**
  * @see {@link stream} & {@link reactive} for reference & examples.
  */
 export class Stream<T> extends Subscription<T, T> implements IStream<T> {
-    src?: StreamSource<T>;
+	src?: StreamSource<T>;
 
-    protected _cancel: StreamCancel | undefined;
-    protected _inited: boolean;
+	protected _cancel: StreamCancel | undefined;
+	protected _inited: boolean;
 
-    constructor(opts?: Partial<WithErrorHandlerOpts>);
-    constructor(src: StreamSource<T>, opts?: Partial<WithErrorHandlerOpts>);
-    constructor(
-        src?: StreamSource<T> | Partial<WithErrorHandlerOpts>,
-        opts?: Partial<WithErrorHandlerOpts>
-    ) {
-        const [_src, _opts] = isFunction(src)
-            ? [src, opts || {}]
-            : [undefined, src || {}];
-        super(
-            _opts.error ? { error: _opts.error } : undefined,
-            __optsWithID("stream", _opts)
-        );
-        this.src = _src;
-        this._inited = false;
-    }
+	constructor(opts?: Partial<WithErrorHandlerOpts>);
+	constructor(src: StreamSource<T>, opts?: Partial<WithErrorHandlerOpts>);
+	constructor(
+		src?: StreamSource<T> | Partial<WithErrorHandlerOpts>,
+		opts?: Partial<WithErrorHandlerOpts>
+	) {
+		const [_src, _opts] = isFunction(src)
+			? [src, opts || {}]
+			: [undefined, src || {}];
+		super(
+			_opts.error ? { error: _opts.error } : undefined,
+			__optsWithID("stream", _opts)
+		);
+		this.src = _src;
+		this._inited = false;
+	}
 
-    subscribe<C>(sub: ISubscription<T, C>): ISubscription<T, C>;
-    subscribe(
-        sub: Partial<ISubscriber<T>>,
-        opts?: Partial<CommonOpts>
-    ): ISubscription<T, T>;
-    subscribe<C>(
-        sub: Partial<ISubscriber<C>>,
-        opts?: Partial<TransformableOpts<T, C>>
-    ): ISubscription<T, C>;
-    subscribe(
-        sub: Partial<ISubscriber<any>>,
-        opts: Partial<TransformableOpts<any, any>> = {}
-    ): any {
-        const $sub = super.subscribe(sub, opts);
-        if (!this._inited) {
-            if (this.src) {
-                try {
-                    this._cancel = this.src(this) || (() => void 0);
-                } catch (e) {
-                    let s = this.wrapped;
-                    if (!s || !s.error || !s.error(e)) {
-                        this.unhandledError(e);
-                    }
-                }
-            }
-            this._inited = true;
-        }
-        return $sub;
-    }
+	subscribe<C>(sub: ISubscription<T, C>): ISubscription<T, C>;
+	subscribe(
+		sub: Partial<ISubscriber<T>>,
+		opts?: Partial<CommonOpts>
+	): ISubscription<T, T>;
+	subscribe<C>(
+		sub: Partial<ISubscriber<C>>,
+		opts?: Partial<TransformableOpts<T, C>>
+	): ISubscription<T, C>;
+	subscribe(
+		sub: Partial<ISubscriber<any>>,
+		opts: Partial<TransformableOpts<any, any>> = {}
+	): any {
+		const $sub = super.subscribe(sub, opts);
+		if (!this._inited) {
+			if (this.src) {
+				try {
+					this._cancel = this.src(this) || (() => void 0);
+				} catch (e) {
+					let s = this.wrapped;
+					if (!s || !s.error || !s.error(e)) {
+						this.unhandledError(e);
+					}
+				}
+			}
+			this._inited = true;
+		}
+		return $sub;
+	}
 
-    unsubscribe(sub?: ISubscription<T, any>) {
-        const res = super.unsubscribe(sub);
-        if (
-            res &&
-            (!sub ||
-                ((!this.subs || !this.subs.length) &&
-                    this.closeOut !== CloseMode.NEVER))
-        ) {
-            this.cancel();
-        }
-        return res;
-    }
+	unsubscribe(sub?: ISubscription<T, any>) {
+		const res = super.unsubscribe(sub);
+		if (
+			res &&
+			(!sub ||
+				((!this.subs || !this.subs.length) &&
+					this.closeOut !== CloseMode.NEVER))
+		) {
+			this.cancel();
+		}
+		return res;
+	}
 
-    done() {
-        this.cancel();
-        super.done();
-        delete this.src;
-        delete this._cancel;
-    }
+	done() {
+		this.cancel();
+		super.done();
+		delete this.src;
+		delete this._cancel;
+	}
 
-    error(e: any) {
-        if (super.error(e)) return true;
-        this.cancel();
-        return false;
-    }
+	error(e: any) {
+		if (super.error(e)) return true;
+		this.cancel();
+		return false;
+	}
 
-    cancel() {
-        if (this._cancel) {
-            LOGGER.debug(this.id, "cancel");
-            const f = this._cancel;
-            delete this._cancel;
-            f();
-        }
-    }
+	cancel() {
+		if (this._cancel) {
+			LOGGER.debug(this.id, "cancel");
+			const f = this._cancel;
+			delete this._cancel;
+			f();
+		}
+	}
 }

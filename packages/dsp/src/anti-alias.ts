@@ -37,8 +37,8 @@ export const fejer: FnN2 = (k, n) => (n - k) / n;
  * @param t - normalized phase
  */
 export const polyBLEP: FnN2 = (dt, t) =>
-    t < dt
-        ? ((t /= dt), t + t - t * t - 1)
-        : t > 1 - dt
-        ? ((t = (t - 1) / dt), t * t + t + t + 1)
-        : 0;
+	t < dt
+		? ((t /= dt), t + t - t * t - 1)
+		: t > 1 - dt
+		? ((t = (t - 1) / dt), t * t + t + t + 1)
+		: 0;

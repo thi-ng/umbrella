@@ -17,25 +17,25 @@ import { set4 } from "@thi.ng/vectors/set";
  * @param eps -
  */
 export const mixQ = (
-    out: Vec | null,
-    a: ReadonlyVec,
-    b: ReadonlyVec,
-    t: number,
-    eps = 1e-3
+	out: Vec | null,
+	a: ReadonlyVec,
+	b: ReadonlyVec,
+	t: number,
+	eps = 1e-3
 ) => {
-    const d = dot4(a, b);
-    if (Math.abs(d) < 1.0) {
-        const theta = Math.acos(d);
-        const stheta = Math.sqrt(1 - d * d);
-        let u: number, v: number;
-        if (Math.abs(stheta) < eps) {
-            u = v = 0.5;
-        } else {
-            u = Math.sin(theta * (1 - t)) / stheta;
-            v = Math.sin(theta * t) / stheta;
-        }
-        !out && (out = a);
-        return maddN4(out, b, v, mulN4(out, a, u));
-    }
-    return a !== out ? set4(out, a) : out;
+	const d = dot4(a, b);
+	if (Math.abs(d) < 1.0) {
+		const theta = Math.acos(d);
+		const stheta = Math.sqrt(1 - d * d);
+		let u: number, v: number;
+		if (Math.abs(stheta) < eps) {
+			u = v = 0.5;
+		} else {
+			u = Math.sin(theta * (1 - t)) / stheta;
+			v = Math.sin(theta * t) / stheta;
+		}
+		!out && (out = a);
+		return maddN4(out, b, v, mulN4(out, a, u));
+	}
+	return a !== out ? set4(out, a) : out;
 };

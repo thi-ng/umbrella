@@ -3,5 +3,5 @@ import { isNumber } from "@thi.ng/checks/is-number";
 import type { ComplexArray } from "./api.js";
 
 export const isComplex = (
-    buf: NumericArray | ComplexArray
+	buf: NumericArray | ComplexArray
 ): buf is ComplexArray => !isNumber(buf[0]);

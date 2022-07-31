@@ -7,47 +7,47 @@ import type { ISubscribable } from "@thi.ng/rstream";
  * interface.
  */
 export interface IComponent<T = any> {
-    /**
-     * This component's main DOM element, i.e. usually the element
-     * created when the component is {@link IComponent.mount}ed. This
-     * element will be used as default by various helper methods in the
-     * {@link Component} class.
-     */
-    el?: Element;
-    /**
-     * Async component lifecycle method to initialize & attach the
-     * component in the target DOM.
-     *
-     * The `index` arg is used to define the child index of where to
-     * mount the component in the parent element and SHOULD default to
-     * -1, causing the component to be appended to (rather than inserted
-     * into) the list of children. The `index` arg MUST be passed to any
-     * DOM creation functions used within `mount()` (e.g. {@link el},
-     * {@link $tree}). Likewise, for control-flow or wrapper components,
-     * the `index` arg MUST be used when mounting child components
-     * in-place of the wrapper component itself (e.g. see {@link $list},
-     * {@link $klist}, {@link $sub} etc.).
-     *
-     * The optional additional varargs are only used by some component
-     * wrappers and are context specific to each.
-     *
-     * @param parent -
-     * @param idx -
-     * @param xs -
-     */
-    mount(parent: Element, idx?: NumOrElement, ...xs: any[]): Promise<Element>;
-    /**
-     * Async component lifecycle method to remove the component from the
-     * target DOM and release any other internal resources (e.g.
-     * subscriptions).
-     */
-    unmount(): Promise<void>;
-    /**
-     * Component update lifecycle method. Not always used, but if it is
-     * then intended to perform internal updates to reflect incoming
-     * `state` arg in the DOM and/or child components.
-     */
-    update(state?: T): void;
+	/**
+	 * This component's main DOM element, i.e. usually the element
+	 * created when the component is {@link IComponent.mount}ed. This
+	 * element will be used as default by various helper methods in the
+	 * {@link Component} class.
+	 */
+	el?: Element;
+	/**
+	 * Async component lifecycle method to initialize & attach the
+	 * component in the target DOM.
+	 *
+	 * The `index` arg is used to define the child index of where to
+	 * mount the component in the parent element and SHOULD default to
+	 * -1, causing the component to be appended to (rather than inserted
+	 * into) the list of children. The `index` arg MUST be passed to any
+	 * DOM creation functions used within `mount()` (e.g. {@link el},
+	 * {@link $tree}). Likewise, for control-flow or wrapper components,
+	 * the `index` arg MUST be used when mounting child components
+	 * in-place of the wrapper component itself (e.g. see {@link $list},
+	 * {@link $klist}, {@link $sub} etc.).
+	 *
+	 * The optional additional varargs are only used by some component
+	 * wrappers and are context specific to each.
+	 *
+	 * @param parent -
+	 * @param idx -
+	 * @param xs -
+	 */
+	mount(parent: Element, idx?: NumOrElement, ...xs: any[]): Promise<Element>;
+	/**
+	 * Async component lifecycle method to remove the component from the
+	 * target DOM and release any other internal resources (e.g.
+	 * subscriptions).
+	 */
+	unmount(): Promise<void>;
+	/**
+	 * Component update lifecycle method. Not always used, but if it is
+	 * then intended to perform internal updates to reflect incoming
+	 * `state` arg in the DOM and/or child components.
+	 */
+	update(state?: T): void;
 }
 
 /**
@@ -59,23 +59,23 @@ export interface IComponent<T = any> {
  * with a state provider (e.g. {@link $sub}).
  */
 export interface IMountWith<T, M> extends IComponent<T> {
-    /**
-     * Component mount lifecycle method which also receives initial
-     * state value, presumably meant for populating component.
-     *
-     * @param parent -
-     * @param index -
-     * @param state -
-     */
-    mount(parent: Element, index: NumOrElement, state: M): Promise<Element>;
+	/**
+	 * Component mount lifecycle method which also receives initial
+	 * state value, presumably meant for populating component.
+	 *
+	 * @param parent -
+	 * @param index -
+	 * @param state -
+	 */
+	mount(parent: Element, index: NumOrElement, state: M): Promise<Element>;
 
-    /**
-     * Same like {@link IComponent.update}, but new `state` value arg is
-     * mandatory.
-     *
-     * @param state -
-     */
-    update(state: T): void;
+	/**
+	 * Same like {@link IComponent.update}, but new `state` value arg is
+	 * mandatory.
+	 *
+	 * @param state -
+	 */
+	update(state: T): void;
 }
 
 /**
@@ -87,8 +87,8 @@ export type IMountWithState<T> = IMountWith<T, T>;
  * Component type returned by {@link $compile}.
  */
 export interface CompiledComponent extends IComponent {
-    subs?: ISubscribable<any>[];
-    children?: IComponent[];
+	subs?: ISubscribable<any>[];
+	children?: IComponent[];
 }
 
 /**
@@ -107,19 +107,19 @@ export type NumOrElement = number | Element;
  * {@link RAFScheduler}.
  */
 export interface IScheduler {
-    /**
-     * Registers a new task for processing. The `scope` arg is used to uniquely
-     * associate the task with a given component.
-     *
-     * @param scope -
-     * @param task -
-     */
-    add(scope: any, task: Task): void;
-    /**
-     * Attempts to cancel all tasks for given `scope`. Depending on
-     * implementation and timing this might not be possible (anymore).
-     *
-     * @param scope -
-     */
-    cancel(scope: any): void;
+	/**
+	 * Registers a new task for processing. The `scope` arg is used to uniquely
+	 * associate the task with a given component.
+	 *
+	 * @param scope -
+	 * @param task -
+	 */
+	add(scope: any, task: Task): void;
+	/**
+	 * Attempts to cancel all tasks for given `scope`. Depending on
+	 * implementation and timing this might not be possible (anymore).
+	 *
+	 * @param scope -
+	 */
+	cancel(scope: any): void;
 }

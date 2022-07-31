@@ -3,19 +3,19 @@ import { compile, compileG } from "./compile/emit.js";
 import { vop } from "./vop.js";
 
 const $ = (dim: number) =>
-    distManhattan.add(
-        dim,
-        compile(
-            dim,
-            ([a, b]) => `Math.abs(${a}-${b})`,
-            "a,b",
-            undefined,
-            "",
-            "+",
-            "return ",
-            ";"
-        )
-    );
+	distManhattan.add(
+		dim,
+		compile(
+			dim,
+			([a, b]) => `Math.abs(${a}-${b})`,
+			"a,b",
+			undefined,
+			"",
+			"+",
+			"return ",
+			";"
+		)
+	);
 
 /**
  * @remarks
@@ -24,13 +24,13 @@ const $ = (dim: number) =>
 export const distManhattan: MultiVecOpRoVV<number> = vop();
 
 distManhattan.default(
-    compileG(
-        ([a, b]) => `sum+=Math.abs(${a}-${b});`,
-        "a,b",
-        undefined,
-        "sum",
-        "let sum=0;"
-    )
+	compileG(
+		([a, b]) => `sum+=Math.abs(${a}-${b});`,
+		"a,b",
+		undefined,
+		"sum",
+		"let sum=0;"
+	)
 );
 
 export const distManhattan2 = $(2);

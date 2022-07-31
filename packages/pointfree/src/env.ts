@@ -24,12 +24,12 @@ export const pushenv = (ctx: StackContext) => (ctx[0].push(ctx[2]), ctx);
  * @param env -
  */
 export const load = (ctx: StackContext) => {
-    const stack = ctx[0];
-    $(stack, 1);
-    const id = stack.pop();
-    !ctx[2].hasOwnProperty(id) && illegalArgs(`unknown var: ${id}`);
-    stack.push(ctx[2][id]);
-    return ctx;
+	const stack = ctx[0];
+	$(stack, 1);
+	const id = stack.pop();
+	!ctx[2].hasOwnProperty(id) && illegalArgs(`unknown var: ${id}`);
+	stack.push(ctx[2][id]);
+	return ctx;
 };
 
 /**
@@ -41,7 +41,7 @@ export const load = (ctx: StackContext) => {
  * @param env -
  */
 export const store = (ctx: StackContext) => (
-    $(ctx[0], 2), (ctx[2][ctx[0].pop()] = ctx[0].pop()), ctx
+	$(ctx[0], 2), (ctx[2][ctx[0].pop()] = ctx[0].pop()), ctx
 );
 
 /**
@@ -54,10 +54,10 @@ export const store = (ctx: StackContext) => (
  * @param env -
  */
 export const defLoadKey = (key: PropertyKey) => (ctx: StackContext) => {
-    !ctx[2].hasOwnProperty(key) &&
-        illegalArgs(`unknown var: ${key.toString()}`);
-    ctx[0].push(ctx[2][key]);
-    return ctx;
+	!ctx[2].hasOwnProperty(key) &&
+		illegalArgs(`unknown var: ${key.toString()}`);
+	ctx[0].push(ctx[2][key]);
+	return ctx;
 };
 
 /**
@@ -71,7 +71,7 @@ export const defLoadKey = (key: PropertyKey) => (ctx: StackContext) => {
  * @param env -
  */
 export const defStoreKey = (key: PropertyKey) => (ctx: StackContext) => {
-    $(ctx[0], 1);
-    ctx[2][key] = ctx[0].pop();
-    return ctx;
+	$(ctx[0], 1);
+	ctx[2][key] = ctx[0].pop();
+	return ctx;
 };

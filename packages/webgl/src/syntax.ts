@@ -4,72 +4,72 @@ import type { GLSL } from "./api/glsl.js";
 import type { GLSLDeclPrefixes, GLSLSyntax } from "./api/shader.js";
 
 export const PREFIXES: GLSLDeclPrefixes = {
-    a: "a_",
-    v: "v_",
-    u: "u_",
-    o: "o_",
+	a: "a_",
+	v: "v_",
+	u: "u_",
+	o: "o_",
 };
 
 export const NO_PREFIXES: GLSLDeclPrefixes = {
-    a: "",
-    v: "",
-    u: "",
-    o: "",
+	a: "",
+	v: "",
+	u: "",
+	o: "",
 };
 
 /**
  * GLSL data declaration code generators.
  */
 export const SYNTAX: Record<GLSLVersion, GLSLSyntax> = {
-    /**
-     * WebGL (GLSL ES 1.0)
-     */
-    [GLSLVersion.GLES_100]: {
-        number: 100,
-        attrib: (id, type, pre) =>
-            `attribute ${isArray(type) ? type[0] : type} ${pre.a}${id};`,
-        varying: {
-            vs: (id, type, pre) => arrayDecl("varying", type, pre.v + id),
-            fs: (id, type, pre) => arrayDecl("varying", type, pre.v + id),
-        },
-        uniform: (id, u, pre) => arrayDecl("uniform", <any>u, pre.u + id),
-        output: (id, type, pre) =>
-            isArray(type)
-                ? `#define ${pre.o}${id} gl_FragData[${type[1]}]`
-                : "",
-    },
-    /**
-     * WebGL 2 (GLSL ES 3)
-     */
-    [GLSLVersion.GLES_300]: {
-        number: 300,
-        attrib: (id, type, pre) =>
-            isArray(type)
-                ? `layout(location=${type[1]}) in ${type[0]} ${pre.a}${id};`
-                : `in ${type} ${pre.a}${id};`,
-        varying: {
-            vs: (id, type, pre) => arrayDecl("out", type, pre.v + id),
-            fs: (id, type, pre) => arrayDecl("in", type, pre.v + id),
-        },
-        uniform: (id, u, pre) => arrayDecl("uniform", <any>u, pre.u + id),
-        output: (id, type, pre) =>
-            isArray(type)
-                ? `layout(location=${type[1]}) out ${type[0]} ${pre.o}${id};`
-                : `out ${type} ${pre.o}${id};`,
-    },
+	/**
+	 * WebGL (GLSL ES 1.0)
+	 */
+	[GLSLVersion.GLES_100]: {
+		number: 100,
+		attrib: (id, type, pre) =>
+			`attribute ${isArray(type) ? type[0] : type} ${pre.a}${id};`,
+		varying: {
+			vs: (id, type, pre) => arrayDecl("varying", type, pre.v + id),
+			fs: (id, type, pre) => arrayDecl("varying", type, pre.v + id),
+		},
+		uniform: (id, u, pre) => arrayDecl("uniform", <any>u, pre.u + id),
+		output: (id, type, pre) =>
+			isArray(type)
+				? `#define ${pre.o}${id} gl_FragData[${type[1]}]`
+				: "",
+	},
+	/**
+	 * WebGL 2 (GLSL ES 3)
+	 */
+	[GLSLVersion.GLES_300]: {
+		number: 300,
+		attrib: (id, type, pre) =>
+			isArray(type)
+				? `layout(location=${type[1]}) in ${type[0]} ${pre.a}${id};`
+				: `in ${type} ${pre.a}${id};`,
+		varying: {
+			vs: (id, type, pre) => arrayDecl("out", type, pre.v + id),
+			fs: (id, type, pre) => arrayDecl("in", type, pre.v + id),
+		},
+		uniform: (id, u, pre) => arrayDecl("uniform", <any>u, pre.u + id),
+		output: (id, type, pre) =>
+			isArray(type)
+				? `layout(location=${type[1]}) out ${type[0]} ${pre.o}${id};`
+				: `out ${type} ${pre.o}${id};`,
+	},
 };
 
 const arrayDecl = (
-    qualifier: string,
-    decl: GLSL | [GLSL, number],
-    id: string
+	qualifier: string,
+	decl: GLSL | [GLSL, number],
+	id: string
 ) => {
-    const type = isArray(decl) ? decl[0] : decl;
-    return type.indexOf("[]") > 0
-        ? `${qualifier} ${type.replace("[]", "")} ${id}[${
-              (<[GLSL, number]>decl)[1]
-          }];`
-        : `${qualifier} ${type} ${id};`;
+	const type = isArray(decl) ? decl[0] : decl;
+	return type.indexOf("[]") > 0
+		? `${qualifier} ${type.replace("[]", "")} ${id}[${
+				(<[GLSL, number]>decl)[1]
+		  }];`
+		: `${qualifier} ${type} ${id};`;
 };
 
 /**
@@ -80,21 +80,21 @@ const arrayDecl = (
  * @param fail -
  */
 export const VERSION_CHECK = (ver: number, ok: string, fail = "") => {
-    let cmp = ">=";
-    if (!ok) {
-        ok = fail;
-        fail = <any>null;
-        cmp = "<";
-    }
-    return `#if __VERSION__ ${cmp} ${ver}
+	let cmp = ">=";
+	if (!ok) {
+		ok = fail;
+		fail = <any>null;
+		cmp = "<";
+	}
+	return `#if __VERSION__ ${cmp} ${ver}
 ${ok}${fail ? `\n#else\n${fail}` : ""}
 #endif`;
 };
 
 export const ALIAS_TEXTURE = VERSION_CHECK(
-    300,
-    "",
-    "#define texture texture2D"
+	300,
+	"",
+	"#define texture texture2D"
 );
 
 /**
@@ -105,7 +105,7 @@ export const ALIAS_TEXTURE = VERSION_CHECK(
  * @param out -
  */
 export const EXPORT_FRAGCOL = (body = "col", out = "o_fragColor") =>
-    VERSION_CHECK(300, `${out}=${body};`, `gl_FragColor=${body};`);
+	VERSION_CHECK(300, `${out}=${body};`, `gl_FragColor=${body};`);
 
 /**
  * Default GLSL prelude.

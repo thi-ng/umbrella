@@ -9,23 +9,23 @@ import { Delay } from "./delay.js";
  * @param feedback - feedback factor (default: 0.5)
  */
 export const feedbackDelay = (n: number, feedback?: number) =>
-    new FeedbackDelay(n, feedback);
+	new FeedbackDelay(n, feedback);
 
 export class FeedbackDelay extends Delay<number> {
-    constructor(n: number, protected _feedback = 0.5) {
-        super(n, 0);
-        this.setFeedback(_feedback);
-    }
+	constructor(n: number, protected _feedback = 0.5) {
+		super(n, 0);
+		this.setFeedback(_feedback);
+	}
 
-    next(x: number) {
-        return super.next(x + this._buf[this._rpos] * this._feedback);
-    }
+	next(x: number) {
+		return super.next(x + this._buf[this._rpos] * this._feedback);
+	}
 
-    feedback() {
-        return this._feedback;
-    }
+	feedback() {
+		return this._feedback;
+	}
 
-    setFeedback(feedback: number) {
-        this._feedback = clamp01(feedback);
-    }
+	setFeedback(feedback: number) {
+		this._feedback = clamp01(feedback);
+	}
 }

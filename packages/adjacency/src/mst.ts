@@ -51,19 +51,19 @@ import { DisjointSet } from "./disjoint-set.js";
  * @typeParam T - edge type
  */
 export const mst = <T>(
-    edges: T[],
-    maxID: number,
-    cost: Fn<T, number>,
-    verts: Fn<T, [number, number]>
+	edges: T[],
+	maxID: number,
+	cost: Fn<T, number>,
+	verts: Fn<T, [number, number]>
 ) => {
-    const graph = new DisjointSet(maxID + 1);
-    const res: T[] = [];
-    for (let e of sortByCachedKey(edges, cost)) {
-        const v = verts(e);
-        if (!graph.unified(v[0], v[1])) {
-            graph.union(v[0], v[1]);
-            res.push(e);
-        }
-    }
-    return res;
+	const graph = new DisjointSet(maxID + 1);
+	const res: T[] = [];
+	for (let e of sortByCachedKey(edges, cost)) {
+		const v = verts(e);
+		if (!graph.unified(v[0], v[1])) {
+			graph.union(v[0], v[1]);
+			res.push(e);
+		}
+	}
+	return res;
 };

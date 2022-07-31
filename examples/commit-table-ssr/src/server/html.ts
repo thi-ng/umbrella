@@ -16,29 +16,29 @@ import { DEFAULT_DOC } from "../common/config";
  * See here for more reference:
  * https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup
  *
- * @param doc - 
+ * @param doc -
  */
 export const html = (doc: HTMLDoc) => {
-    doc = mergeDeepObj(DEFAULT_DOC, doc);
-    return `<!DOCTYPE html>${serialize(
-        [
-            "html",
-            { lang: doc.lang || "en" },
-            [
-                "head",
-                map((meta) => ["meta", meta], doc.head!.meta || []),
-                map((s) => script(null, s), doc.head!.scripts || []),
-                map((link) => ["link", link], doc.head!.links || []),
-                map((css) => ["style", css], doc.head!.styles || []),
-                ["title", doc.head!.title || ""],
-            ],
-            ["body", doc.ctx!.ui.body, ...doc.body],
-        ],
-        doc.ctx
-    )}`;
+	doc = mergeDeepObj(DEFAULT_DOC, doc);
+	return `<!DOCTYPE html>${serialize(
+		[
+			"html",
+			{ lang: doc.lang || "en" },
+			[
+				"head",
+				map((meta) => ["meta", meta], doc.head!.meta || []),
+				map((s) => script(null, s), doc.head!.scripts || []),
+				map((link) => ["link", link], doc.head!.links || []),
+				map((css) => ["style", css], doc.head!.styles || []),
+				["title", doc.head!.title || ""],
+			],
+			["body", doc.ctx!.ui.body, ...doc.body],
+		],
+		doc.ctx
+	)}`;
 };
 
 export const script = (
-    _: Nullable<AppContext>,
-    script: { src: string; type?: string }
+	_: Nullable<AppContext>,
+	script: { src: string; type?: string }
 ) => ["script", { type: "text/javascript", ...script }];

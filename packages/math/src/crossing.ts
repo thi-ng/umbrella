@@ -19,7 +19,7 @@ import { eqDelta } from "./eqdelta.js";
  * @param b2 -
  */
 export const isCrossOver: FnU4<number, boolean> = (a1, a2, b1, b2) =>
-    a1 < b1 && a2 > b2;
+	a1 < b1 && a2 > b2;
 
 /**
  * Returns true if line A rises up over B.
@@ -38,7 +38,7 @@ export const isCrossOver: FnU4<number, boolean> = (a1, a2, b1, b2) =>
  * @param b2 -
  */
 export const isCrossUnder: FnU4<number, boolean> = (a1, a2, b1, b2) =>
-    a1 > b1 && a2 < b2;
+	a1 > b1 && a2 < b2;
 
 /**
  * Returns {@link Crossing} classifier indicating the relationship of line A
@@ -56,18 +56,18 @@ export const isCrossUnder: FnU4<number, boolean> = (a1, a2, b1, b2) =>
  * @param eps -
  */
 export const classifyCrossing = (
-    a1: number,
-    a2: number,
-    b1: number,
-    b2: number,
-    eps = EPS
+	a1: number,
+	a2: number,
+	b1: number,
+	b2: number,
+	eps = EPS
 ): Crossing =>
-    eqDelta(a1, b1, eps) && eqDelta(a2, b2, eps)
-        ? eqDelta(a1, b2, eps)
-            ? "flat"
-            : "equal"
-        : isCrossOver(a1, a2, b1, b2)
-        ? "over"
-        : isCrossUnder(a1, a2, b1, b2)
-        ? "under"
-        : "other";
+	eqDelta(a1, b1, eps) && eqDelta(a2, b2, eps)
+		? eqDelta(a1, b2, eps)
+			? "flat"
+			: "equal"
+		: isCrossOver(a1, a2, b1, b2)
+		? "over"
+		: isCrossUnder(a1, a2, b1, b2)
+		? "under"
+		: "other";

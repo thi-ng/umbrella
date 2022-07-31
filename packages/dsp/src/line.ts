@@ -23,16 +23,16 @@ import { Add } from "./add.js";
  * @param clampEnd - true to clamp curve at end value (default: false)
  */
 export const line = (
-    start = 0,
-    end = 1,
-    num = 10,
-    skipFirst = false,
-    clampEnd = false
+	start = 0,
+	end = 1,
+	num = 10,
+	skipFirst = false,
+	clampEnd = false
 ) => {
-    const dt = (end - start) / num;
-    return new Add(
-        dt,
-        skipFirst ? start + dt : start,
-        clampEnd ? end : undefined
-    );
+	const dt = (end - start) / num;
+	return new Add(
+		dt,
+		skipFirst ? start + dt : start,
+		clampEnd ? end : undefined
+	);
 };

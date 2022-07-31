@@ -7,9 +7,9 @@
  * @param max -
  */
 export const into = <T>(dest: T[], src: Iterable<T>, max = Infinity) => {
-    for (let x of src) {
-        if (--max < 0) break;
-        dest.push(x);
-    }
-    return dest;
+	for (let x of src) {
+		if (--max < 0) break;
+		dest.push(x);
+	}
+	return dest;
 };

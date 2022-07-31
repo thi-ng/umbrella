@@ -1,38 +1,38 @@
 {
-    "name": "@example/hdom-local-render",
-    "private": true,
-    "description": "Isolated, component-local DOM updates",
-    "version": "0.0.1",
-    "repository": "https://github.com/thi-ng/umbrella",
-    "author": "Karsten Schmidt <k+npm@thi.ng>",
-    "license": "Apache-2.0",
-    "scripts": {
-        "start": "vite --open",
-        "build": "tsc && vite build --base='./'",
-        "preview": "vite preview --host --open"
-    },
-    "dependencies": {
-        "@thi.ng/hdom": "workspace:^",
-        "@thi.ng/memoize": "workspace:^",
-        "@thi.ng/rstream": "workspace:^",
-        "@thi.ng/transducers": "workspace:^",
-        "@thi.ng/transducers-hdom": "workspace:^"
-    },
-    "browser": {
-        "process": false,
-        "setTimeout": false,
-        "util": false
-    },
-    "devDependencies": {
-        "typescript": "^4.7.4",
-        "vite": "^3.0.0"
-    },
-    "thi.ng": {
-        "readme": [
-            "hdom",
-            "memoize",
-            "transducers",
-            "transducers-hdom"
-        ]
-    }
+	"name": "@example/hdom-local-render",
+	"private": true,
+	"description": "Isolated, component-local DOM updates",
+	"version": "0.0.1",
+	"repository": "https://github.com/thi-ng/umbrella",
+	"author": "Karsten Schmidt <k+npm@thi.ng>",
+	"license": "Apache-2.0",
+	"scripts": {
+		"start": "vite --open",
+		"build": "tsc && vite build --base='./'",
+		"preview": "vite preview --host --open"
+	},
+	"dependencies": {
+		"@thi.ng/hdom": "workspace:^",
+		"@thi.ng/memoize": "workspace:^",
+		"@thi.ng/rstream": "workspace:^",
+		"@thi.ng/transducers": "workspace:^",
+		"@thi.ng/transducers-hdom": "workspace:^"
+	},
+	"browser": {
+		"process": false,
+		"setTimeout": false,
+		"util": false
+	},
+	"devDependencies": {
+		"typescript": "^4.7.4",
+		"vite": "^3.0.0"
+	},
+	"thi.ng": {
+		"readme": [
+			"hdom",
+			"memoize",
+			"transducers",
+			"transducers-hdom"
+		]
+	}
 }

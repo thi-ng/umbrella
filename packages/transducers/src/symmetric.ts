@@ -1,6 +1,6 @@
 interface Cell<T> {
-    x: T;
-    n?: Cell<T>;
+	x: T;
+	n?: Cell<T>;
 }
 
 /**
@@ -17,13 +17,13 @@ interface Cell<T> {
  * @param src -
  */
 export function* symmetric<T>(src: Iterable<T>): IterableIterator<T> {
-    let head: Cell<T> | undefined = undefined;
-    for (let x of src) {
-        head = { x, n: head };
-        yield x;
-    }
-    while (head) {
-        yield head.x;
-        head = head.n;
-    }
+	let head: Cell<T> | undefined = undefined;
+	for (let x of src) {
+		head = { x, n: head };
+		yield x;
+	}
+	while (head) {
+		yield head.x;
+		head = head.n;
+	}
 }

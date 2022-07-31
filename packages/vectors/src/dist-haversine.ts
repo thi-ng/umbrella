@@ -18,13 +18,13 @@ import { radians2 } from "./radians.js";
  * @param r -
  */
 export const distHaversineLatLon = (
-    a: ReadonlyVec,
-    b: ReadonlyVec,
-    r = 6371
+	a: ReadonlyVec,
+	b: ReadonlyVec,
+	r = 6371
 ) => {
-    a = radians2([], a);
-    b = radians2([], b);
-    return dist(a[0], a[1], b[0], b[1], r);
+	a = radians2([], a);
+	b = radians2([], b);
+	return dist(a[0], a[1], b[0], b[1], r);
 };
 
 /**
@@ -36,13 +36,13 @@ export const distHaversineLatLon = (
  * @param r -
  */
 export const distHaversineLonLat = (
-    a: ReadonlyVec,
-    b: ReadonlyVec,
-    r = 6371
+	a: ReadonlyVec,
+	b: ReadonlyVec,
+	r = 6371
 ) => {
-    a = radians2([], a);
-    b = radians2([], b);
-    return dist(a[1], a[0], b[1], b[0], r);
+	a = radians2([], a);
+	b = radians2([], b);
+	return dist(a[1], a[0], b[1], b[0], r);
 };
 
 /**
@@ -51,8 +51,8 @@ export const distHaversineLonLat = (
 export const distHaversine = distHaversineLonLat;
 
 const dist: FnN5 = (lat1, lon1, lat2, lon2, r) => {
-    const dlat = 0.5 - Math.cos(lat2 - lat1) * 0.5;
-    const dlon = (1 - Math.cos(lon2 - lon1)) * 0.5;
-    const combined = dlat + Math.cos(lat1) * Math.cos(lat2) * dlon;
-    return 2 * r * Math.asin(Math.sqrt(combined));
+	const dlat = 0.5 - Math.cos(lat2 - lat1) * 0.5;
+	const dlon = (1 - Math.cos(lon2 - lon1)) * 0.5;
+	const combined = dlat + Math.cos(lat1) * Math.cos(lat2) * dlon;
+	return 2 * r * Math.asin(Math.sqrt(combined));
 };

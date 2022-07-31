@@ -32,36 +32,36 @@ import { vertices } from "./vertices.js";
  * @param opts
  */
 export const asPolyline: MultiFn1O<
-    IShape,
-    number | Partial<SamplingOpts>,
-    Polyline
+	IShape,
+	number | Partial<SamplingOpts>,
+	Polyline
 > = defmulti<any, number | Partial<SamplingOpts> | undefined, Polyline>(
-    __dispatch,
-    {
-        arc: "points",
-        circle: "poly",
-        cubic: "points",
-        ellipse: "poly",
-        line: "points",
-        polyline: "points",
-        quad: "poly",
-        quadratic: "points",
-        rect: "poly",
-        tri: "poly",
-    },
-    {
-        points: ($, opts) => new Polyline(vertices($, opts), __copyAttribs($)),
+	__dispatch,
+	{
+		arc: "points",
+		circle: "poly",
+		cubic: "points",
+		ellipse: "poly",
+		line: "points",
+		polyline: "points",
+		quad: "poly",
+		quadratic: "points",
+		rect: "poly",
+		tri: "poly",
+	},
+	{
+		points: ($, opts) => new Polyline(vertices($, opts), __copyAttribs($)),
 
-        path: ($: Path, opts) => {
-            const pts = vertices($, opts);
-            $.closed && pts.push(set([], pts[0]));
-            return new Polyline(pts, __copyAttribs($));
-        },
+		path: ($: Path, opts) => {
+			const pts = vertices($, opts);
+			$.closed && pts.push(set([], pts[0]));
+			return new Polyline(pts, __copyAttribs($));
+		},
 
-        poly: ($, opts) => {
-            const pts = vertices($, opts);
-            pts.push(set([], pts[0]));
-            return new Polyline(pts, __copyAttribs($));
-        },
-    }
+		poly: ($, opts) => {
+			const pts = vertices($, opts);
+			pts.push(set([], pts[0]));
+			return new Polyline(pts, __copyAttribs($));
+		},
+	}
 );

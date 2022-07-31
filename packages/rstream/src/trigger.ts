@@ -17,5 +17,5 @@ import type { Stream } from "./stream.js";
 export function trigger(): Stream<boolean>;
 export function trigger<T>(x: T, opts?: Partial<CommonOpts>): Stream<T>;
 export function trigger(x: any = true, opts?: Partial<CommonOpts>) {
-    return fromIterableSync([x], __optsWithID("trigger", opts));
+	return fromIterableSync([x], __optsWithID("trigger", opts));
 }

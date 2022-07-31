@@ -23,25 +23,25 @@ import { iterator1 } from "./iterator.js";
  */
 export function toggle<T>(on: T, off: T, initial?: boolean): Transducer<any, T>;
 export function toggle<T>(
-    on: T,
-    off: T,
-    initial: boolean,
-    src: Iterable<any>
+	on: T,
+	off: T,
+	initial: boolean,
+	src: Iterable<any>
 ): IterableIterator<boolean>;
 export function toggle<T>(
-    on: T,
-    off: T,
-    initial = false,
-    src?: Iterable<any>
+	on: T,
+	off: T,
+	initial = false,
+	src?: Iterable<any>
 ): any {
-    return isIterable(src)
-        ? iterator1(toggle(on, off, initial), src)
-        : ([init, complete, reduce]: Reducer<any, T>) => {
-              let state = initial;
-              return [
-                  init,
-                  complete,
-                  (acc: any) => reduce(acc, (state = !state) ? on : off),
-              ];
-          };
+	return isIterable(src)
+		? iterator1(toggle(on, off, initial), src)
+		: ([init, complete, reduce]: Reducer<any, T>) => {
+				let state = initial;
+				return [
+					init,
+					complete,
+					(acc: any) => reduce(acc, (state = !state) ? on : off),
+				];
+		  };
 }

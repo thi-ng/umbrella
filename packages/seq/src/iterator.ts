@@ -7,11 +7,11 @@ import { ensureSeq } from "./ensure.js";
  * @param src -
  */
 export function* iterator<T>(
-    src: Nullable<ISeq<T> | ISeqable<T> | ArrayLike<T>>
+	src: Nullable<ISeq<T> | ISeqable<T> | ArrayLike<T>>
 ) {
-    let seq = ensureSeq(src);
-    while (seq) {
-        yield seq.first()!;
-        seq = seq.next();
-    }
+	let seq = ensureSeq(src);
+	while (seq) {
+		yield seq.first()!;
+		seq = seq.next();
+	}
 }

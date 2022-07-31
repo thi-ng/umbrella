@@ -8,21 +8,21 @@ import { applyWindow } from "./window.js";
 /**
  * Returns a new tuple of real/img F64 buffers of given size.
  *
- * @param n - 
+ * @param n -
  */
 export const complexArray = (n: number): ComplexArray => [
-    new Float64Array(n),
-    new Float64Array(n),
+	new Float64Array(n),
+	new Float64Array(n),
 ];
 
 /**
  * Creates a deep copy of given {@link ComplexArray}.
  *
- * @param complex - 
+ * @param complex -
  */
 export const copyComplex = (complex: ComplexArray): ComplexArray => [
-    complex[0].slice(),
-    complex[1].slice(),
+	complex[0].slice(),
+	complex[1].slice(),
 ];
 
 /**
@@ -66,116 +66,116 @@ export const copyComplex = (complex: ComplexArray): ComplexArray => [
  * // ]
  * ```
  *
- * @param src - 
- * @param isImg - 
+ * @param src -
+ * @param isImg -
  */
 export function conjugate(src: NumericArray, isImg?: boolean): NumericArray;
 export function conjugate(complex: ComplexArray): ComplexArray;
 export function conjugate(src: NumericArray | ComplexArray, isImg = true): any {
-    if (isComplex(src)) {
-        const n = src[0].length;
-        const res = complexArray(n * 2);
-        const [sreal, simg] = <ComplexArray>src;
-        const [dreal, dimg] = res;
-        (<Float64Array>dreal).set(sreal);
-        (<Float64Array>dimg).set(simg);
-        for (let i = 1, j = n * 2 - 1; i < n; i++, j--) {
-            dreal[j] = sreal[i];
-            dimg[j] = -simg[i];
-        }
-        return res;
-    } else {
-        const n = src.length;
-        const dest = new Float64Array(n * 2);
-        dest.set(<NumericArray>src);
-        for (let i = 1, j = n * 2 - 1; i < n; i++, j--) {
-            dest[j] = isImg ? -(<NumericArray>src)[i] : (<NumericArray>src)[i];
-        }
-        return dest;
-    }
+	if (isComplex(src)) {
+		const n = src[0].length;
+		const res = complexArray(n * 2);
+		const [sreal, simg] = <ComplexArray>src;
+		const [dreal, dimg] = res;
+		(<Float64Array>dreal).set(sreal);
+		(<Float64Array>dimg).set(simg);
+		for (let i = 1, j = n * 2 - 1; i < n; i++, j--) {
+			dreal[j] = sreal[i];
+			dimg[j] = -simg[i];
+		}
+		return res;
+	} else {
+		const n = src.length;
+		const dest = new Float64Array(n * 2);
+		dest.set(<NumericArray>src);
+		for (let i = 1, j = n * 2 - 1; i < n; i++, j--) {
+			dest[j] = isImg ? -(<NumericArray>src)[i] : (<NumericArray>src)[i];
+		}
+		return dest;
+	}
 }
 
 const swapR = (real: NumericArray, n: number) => {
-    const n2 = n >> 1;
-    let ii: number;
-    let jj: number;
-    let k: number;
-    let t: number;
-    for (let i = 1, j = 1; i < n; i++) {
-        if (i < j) {
-            ii = i - 1;
-            jj = j - 1;
-            t = real[jj];
-            real[jj] = real[ii];
-            real[ii] = t;
-        }
-        k = n2;
-        while (k < j) {
-            j -= k;
-            k >>= 1;
-        }
-        j += k;
-    }
+	const n2 = n >> 1;
+	let ii: number;
+	let jj: number;
+	let k: number;
+	let t: number;
+	for (let i = 1, j = 1; i < n; i++) {
+		if (i < j) {
+			ii = i - 1;
+			jj = j - 1;
+			t = real[jj];
+			real[jj] = real[ii];
+			real[ii] = t;
+		}
+		k = n2;
+		while (k < j) {
+			j -= k;
+			k >>= 1;
+		}
+		j += k;
+	}
 };
 
 const swapRI = (real: NumericArray, img: NumericArray, n: number) => {
-    const n2 = n >> 1;
-    let ii: number;
-    let jj: number;
-    let k: number;
-    let t: number;
-    for (let i = 1, j = 1; i < n; i++) {
-        if (i < j) {
-            ii = i - 1;
-            jj = j - 1;
-            t = real[jj];
-            real[jj] = real[ii];
-            real[ii] = t;
-            t = img[jj];
-            img[jj] = img[ii];
-            img[ii] = t;
-        }
-        k = n2;
-        while (k < j) {
-            j -= k;
-            k >>= 1;
-        }
-        j += k;
-    }
+	const n2 = n >> 1;
+	let ii: number;
+	let jj: number;
+	let k: number;
+	let t: number;
+	for (let i = 1, j = 1; i < n; i++) {
+		if (i < j) {
+			ii = i - 1;
+			jj = j - 1;
+			t = real[jj];
+			real[jj] = real[ii];
+			real[ii] = t;
+			t = img[jj];
+			img[jj] = img[ii];
+			img[ii] = t;
+		}
+		k = n2;
+		while (k < j) {
+			j -= k;
+			k >>= 1;
+		}
+		j += k;
+	}
 };
 
 const transform = (real: NumericArray, img: NumericArray, n: number) => {
-    let step = 1;
-    let prevStep: number;
-    let i: number, j: number, ii: number, ip: number;
-    let tr: number, ti: number;
-    let ur: number, ui: number;
-    let wr: number, wi: number;
-    let t: number;
-    for (let b = Math.ceil(Math.log2(n)); b-- > 0; ) {
-        prevStep = step;
-        step <<= 1;
-        ur = 1;
-        ui = 0;
-        t = Math.PI / prevStep;
-        wr = Math.cos(t);
-        wi = -Math.sin(t);
-        for (j = 1; j <= prevStep; j++) {
-            for (i = j; i <= n; i += step) {
-                ip = i + prevStep - 1;
-                ii = i - 1;
-                tr = real[ip] * ur - img[ip] * ui;
-                ti = real[ip] * ui + img[ip] * ur;
-                real[ip] = real[ii] - tr;
-                img[ip] = img[ii] - ti;
-                real[ii] += tr;
-                img[ii] += ti;
-            }
-            t = ur;
-            ur = t * wr - ui * wi;
-            ui = t * wi + ui * wr;
-        }
-    }
+	let step = 1;
+	let prevStep: number;
+	let i: number, j: number, ii: number, ip: number;
+	let tr: number, ti: number;
+	let ur: number, ui: number;
+	let wr: number, wi: number;
+	let t: number;
+	for (let b = Math.ceil(Math.log2(n)); b-- > 0; ) {
+		prevStep = step;
+		step <<= 1;
+		ur = 1;
+		ui = 0;
+		t = Math.PI / prevStep;
+		wr = Math.cos(t);
+		wi = -Math.sin(t);
+		for (j = 1; j <= prevStep; j++) {
+			for (i = j; i <= n; i += step) {
+				ip = i + prevStep - 1;
+				ii = i - 1;
+				tr = real[ip] * ur - img[ip] * ui;
+				ti = real[ip] * ui + img[ip] * ur;
+				real[ip] = real[ii] - tr;
+				img[ip] = img[ii] - ti;
+				real[ii] += tr;
+				img[ii] += ti;
+			}
+			t = ur;
+			ur = t * wr - ui * wi;
+			ui = t * wi + ui * wr;
+		}
+	}
 };
 
 /**
@@ -194,34 +194,34 @@ const transform = (real: NumericArray, img: NumericArray, n: number) => {
  * - https://betterexplained.com/articles/an-interactive-guide-to-the-fourier-transform/
  * - http://toxi.co.uk/p5/fftDebug/fft4amit.pde
  *
- * @param complex - 
- * @param window - 
+ * @param complex -
+ * @param window -
  */
 export const fft = (
-    complex: NumericArray | ComplexArray,
-    window?: NumericArray
+	complex: NumericArray | ComplexArray,
+	window?: NumericArray
 ): ComplexArray => {
-    let real: NumericArray, img: NumericArray | undefined;
-    if (isComplex(complex)) {
-        real = complex[0];
-        img = <NumericArray>complex[1];
-    } else {
-        real = <NumericArray>complex;
-    }
-    if (window) {
-        applyWindow(real, window);
-    }
-    const n = real.length;
-    if (img) {
-        swapRI(real, img, n);
-    } else {
-        swapR(real, n);
-        img = new Float64Array(n);
-    }
+	let real: NumericArray, img: NumericArray | undefined;
+	if (isComplex(complex)) {
+		real = complex[0];
+		img = <NumericArray>complex[1];
+	} else {
+		real = <NumericArray>complex;
+	}
+	if (window) {
+		applyWindow(real, window);
+	}
+	const n = real.length;
+	if (img) {
+		swapRI(real, img, n);
+	} else {
+		swapR(real, n);
+		img = new Float64Array(n);
+	}
 
-    transform(real, img, n);
+	transform(real, img, n);
 
-    return [real, img];
+	return [real, img];
 };
 
 /**
@@ -233,27 +233,27 @@ export const fft = (
  *
  * - https://www.dsprelated.com/showarticle/800.php (method #3)
  *
- * @param complex - 
+ * @param complex -
  */
 export const ifft = (src: NumericArray | ComplexArray): ComplexArray => {
-    let complex: ComplexArray = isComplex(src)
-        ? src
-        : [new Float64Array(src.length), <NumericArray>src];
-    fft([complex[1], complex[0]]);
-    return scaleFFT(complex, 1 / complex[0].length);
+	let complex: ComplexArray = isComplex(src)
+		? src
+		: [new Float64Array(src.length), <NumericArray>src];
+	fft([complex[1], complex[0]]);
+	return scaleFFT(complex, 1 / complex[0].length);
 };
 
 export const scaleFFT = (
-    complex: ComplexArray,
-    scale: number
+	complex: ComplexArray,
+	scale: number
 ): ComplexArray => {
-    const [real, img] = complex;
-    const n = real.length;
-    for (let i = 0; i < n; i++) {
-        real[i] *= scale;
-        img[i] *= scale;
-    }
-    return [real, img];
+	const [real, img] = complex;
+	const n = real.length;
+	for (let i = 0; i < n; i++) {
+		real[i] *= scale;
+		img[i] *= scale;
+	}
+	return [real, img];
 };
 
 /**
@@ -268,12 +268,12 @@ export const scaleFFT = (
  * References:
  * - https://holometer.fnal.gov/GH_FFT.pdf
  *
- * @param complex - 
- * @param window - 
+ * @param complex -
+ * @param window -
  */
 export const normalizeFFT = (
-    complex: ComplexArray,
-    window: number | NumericArray = 2 / complex[0].length
+	complex: ComplexArray,
+	window: number | NumericArray = 2 / complex[0].length
 ): ComplexArray => scaleFFT(complex, powerScale(window, 2));
 
 /**
@@ -288,12 +288,12 @@ export const normalizeFFT = (
  * References:
  * - https://holometer.fnal.gov/GH_FFT.pdf
  *
- * @param complex - 
- * @param window - 
+ * @param complex -
+ * @param window -
  */
 export const denormalizeFFT = (
-    complex: ComplexArray,
-    window: number | NumericArray = complex[0].length / 2
+	complex: ComplexArray,
+	window: number | NumericArray = complex[0].length / 2
 ): ComplexArray => scaleFFT(complex, invPowerScale(window, 2));
 
 /**
@@ -308,17 +308,17 @@ export const denormalizeFFT = (
  * References:
  * - https://www.gaussianwaves.com/2015/11/interpreting-fft-results-obtaining-magnitude-and-phase-information/
  *
- * @param complex - 
- * @param eps - 
+ * @param complex -
+ * @param eps -
  */
 export const thresholdFFT = (complex: ComplexArray, eps = 1e-12) => {
-    const [real, img] = complex;
-    for (let i = 0, n = real.length; i < n; i++) {
-        if (Math.hypot(real[i], img[i]) < eps) {
-            real[i] = img[i] = 0;
-        }
-    }
-    return complex;
+	const [real, img] = complex;
+	for (let i = 0, n = real.length; i < n; i++) {
+		if (Math.hypot(real[i], img[i]) < eps) {
+			real[i] = img[i] = 0;
+		}
+	}
+	return complex;
 };
 
 /**
@@ -330,15 +330,15 @@ export const thresholdFFT = (complex: ComplexArray, eps = 1e-12) => {
  * @param out - result array
  */
 export const spectrumMag = (
-    complex: ComplexArray,
-    n = complex[0].length / 2,
-    out: NumericArray = []
+	complex: ComplexArray,
+	n = complex[0].length / 2,
+	out: NumericArray = []
 ) => {
-    const [real, img] = complex;
-    for (let i = 0; i < n; i++) {
-        out[i] = Math.hypot(real[i], img[i]);
-    }
-    return out;
+	const [real, img] = complex;
+	for (let i = 0; i < n; i++) {
+		out[i] = Math.hypot(real[i], img[i]);
+	}
+	return out;
 };
 
 /**
@@ -363,26 +363,26 @@ export const spectrumMag = (
  * - https://dsp.stackexchange.com/a/14935
  * - https://www.kvraudio.com/forum/viewtopic.php?t=276092
  *
- * @param complex - 
- * @param db - 
- * @param window - 
- * @param n - 
- * @param out - 
+ * @param complex -
+ * @param db -
+ * @param window -
+ * @param n -
+ * @param out -
  */
 export const spectrumPow = (
-    complex: ComplexArray,
-    db = false,
-    window: number | NumericArray = 2 / complex[0].length,
-    n = complex[0].length / 2,
-    out: NumericArray = []
+	complex: ComplexArray,
+	db = false,
+	window: number | NumericArray = 2 / complex[0].length,
+	n = complex[0].length / 2,
+	out: NumericArray = []
 ) => {
-    const [real, img] = complex;
-    const scale = powerScale(window, 2);
-    for (let i = 0; i < n; i++) {
-        const p = real[i] ** 2 + img[i] ** 2;
-        out[i] = db ? magDb(Math.sqrt(p) * scale) : p * scale;
-    }
-    return out;
+	const [real, img] = complex;
+	const scale = powerScale(window, 2);
+	for (let i = 0; i < n; i++) {
+		const p = real[i] ** 2 + img[i] ** 2;
+		out[i] = db ? magDb(Math.sqrt(p) * scale) : p * scale;
+	}
+	return out;
 };
 
 /**
@@ -398,15 +398,15 @@ export const spectrumPow = (
  * @param out - result array
  */
 export const spectrumPhase = (
-    complex: ComplexArray,
-    n = complex[0].length / 2,
-    out: NumericArray = []
+	complex: ComplexArray,
+	n = complex[0].length / 2,
+	out: NumericArray = []
 ) => {
-    const [real, img] = complex;
-    for (let i = 0; i < n; i++) {
-        out[i] = Math.atan2(img[i], real[i]);
-    }
-    return out;
+	const [real, img] = complex;
+	for (let i = 0; i < n; i++) {
+		out[i] = Math.atan2(img[i], real[i]);
+	}
+	return out;
 };
 
 /**
@@ -439,9 +439,9 @@ export const binFreq: FnN3 = (bin, fs, n) => (bin * fs) / n;
  * @param m - number of result values
  */
 export const fftFreq = (n: number, fs: number, m = n / 2) => {
-    const res = new Float64Array(m);
-    for (let i = 0; i <= m; i++) {
-        res[i] = binFreq(i, fs, n);
-    }
-    return res;
+	const res = new Float64Array(m);
+	for (let i = 0; i <= m; i++) {
+		res[i] = binFreq(i, fs, n);
+	}
+	return res;
 };

@@ -9,5 +9,5 @@ import type { MatOpM } from "./api.js";
  * @param m22 -
  */
 export const mat22to23: MatOpM = (out, m22) => (
-    !out && (out = []), set4(out, m22), (out[4] = out[5] = 0), out
+	!out && (out = []), set4(out, m22), (out[4] = out[5] = 0), out
 );

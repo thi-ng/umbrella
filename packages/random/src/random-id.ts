@@ -24,14 +24,14 @@ import { SYSTEM } from "./system.js";
  * @param rnd -
  */
 export const randomID = (
-    len = 4,
-    prefix = "",
-    syms = "abcdefghijklmnopqrstuvwxyz",
-    rnd: IRandom = SYSTEM
+	len = 4,
+	prefix = "",
+	syms = "abcdefghijklmnopqrstuvwxyz",
+	rnd: IRandom = SYSTEM
 ) => {
-    const n = syms.length;
-    for (; len-- > 0; ) {
-        prefix += syms[rnd.int() % n];
-    }
-    return prefix;
+	const n = syms.length;
+	for (; len-- > 0; ) {
+		prefix += syms[rnd.int() % n];
+	}
+	return prefix;
 };

@@ -13,17 +13,17 @@ import { result } from "./result.js";
  * @param fail - failure callback
  */
 export const range =
-    <T extends number | string, C, R>(
-        min: T,
-        max: T,
-        success?: LitCallback<T, C, R>,
-        fail?: LitCallback<T, C, R>
-    ): Matcher<T, C, R> =>
-    () =>
-    (ctx, x) =>
-        x >= min && x <= max
-            ? result(success && success(ctx, x))
-            : result(fail && fail(ctx, x));
+	<T extends number | string, C, R>(
+		min: T,
+		max: T,
+		success?: LitCallback<T, C, R>,
+		fail?: LitCallback<T, C, R>
+	): Matcher<T, C, R> =>
+	() =>
+	(ctx, x) =>
+		x >= min && x <= max
+			? result(success && success(ctx, x))
+			: result(fail && fail(ctx, x));
 
 /**
  * Matcher for single digit characters (0-9).
@@ -32,8 +32,8 @@ export const range =
  * @param fail - failure callback
  */
 export const digit = <C, R>(
-    success?: LitCallback<string, C, R>,
-    fail?: LitCallback<string, C, R>
+	success?: LitCallback<string, C, R>,
+	fail?: LitCallback<string, C, R>
 ): Matcher<string, C, R> => altsLitObj(DIGITS, success, fail);
 
 /**
@@ -43,8 +43,8 @@ export const digit = <C, R>(
  * @param fail - failure callback
  */
 export const alpha = <C, R>(
-    success?: LitCallback<string, C, R>,
-    fail?: LitCallback<string, C, R>
+	success?: LitCallback<string, C, R>,
+	fail?: LitCallback<string, C, R>
 ): Matcher<string, C, R> => altsLitObj(ALPHA, success, fail);
 
 /**
@@ -54,8 +54,8 @@ export const alpha = <C, R>(
  * @param fail - failure callback
  */
 export const alphaNum = <C, R>(
-    success?: LitCallback<string, C, R>,
-    fail?: LitCallback<string, C, R>
+	success?: LitCallback<string, C, R>,
+	fail?: LitCallback<string, C, R>
 ): Matcher<string, C, R> => altsLitObj({ ...ALPHA, ...DIGITS }, success, fail);
 
 /**
@@ -65,6 +65,6 @@ export const alphaNum = <C, R>(
  * @param fail - failure callback
  */
 export const whitespace = <C, R>(
-    success?: LitCallback<string, C, R>,
-    fail?: LitCallback<string, C, R>
+	success?: LitCallback<string, C, R>,
+	fail?: LitCallback<string, C, R>
 ): Matcher<string, C, R> => altsLitObj(WS, success, fail);

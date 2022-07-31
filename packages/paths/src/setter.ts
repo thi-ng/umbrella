@@ -1,18 +1,18 @@
 import type {
-    DeepPath,
-    Fn2,
-    NumOrString,
-    Path,
-    Path0,
-    Path1,
-    Path2,
-    Path3,
-    Path4,
-    Path5,
-    Path6,
-    Path7,
-    Path8,
-    PathVal,
+	DeepPath,
+	Fn2,
+	NumOrString,
+	Path,
+	Path0,
+	Path1,
+	Path2,
+	Path3,
+	Path4,
+	Path5,
+	Path6,
+	Path7,
+	Path8,
+	PathVal,
 } from "@thi.ng/api";
 import { isArray } from "@thi.ng/checks/is-array";
 import { isTypedArray } from "@thi.ng/checks/is-typedarray";
@@ -77,7 +77,7 @@ import { toPath } from "./path.js";
  * @param path -
  */
 export const defSetterUnsafe = <T = any>(path: Path): Fn2<any, T, any> =>
-    defSetter(<any>path);
+	defSetter(<any>path);
 
 /**
  * Type checked version of {@link defSetterUnsafe}. Only the first 8
@@ -112,80 +112,80 @@ export const defSetterUnsafe = <T = any>(path: Path): Fn2<any, T, any> =>
 export function defSetter<T>(path: Path0): Fn2<T, T, T>;
 export function defSetter<T, A>(path: Path1<T, A>): Fn2<T, PathVal<T, [A]>, T>;
 export function defSetter<T, A, B>(
-    path: Path2<T, A, B>
+	path: Path2<T, A, B>
 ): Fn2<T, PathVal<T, [A, B]>, T>;
 export function defSetter<T, A, B, C>(
-    path: Path3<T, A, B, C>
+	path: Path3<T, A, B, C>
 ): Fn2<T, PathVal<T, [A, B, C]>, T>;
 export function defSetter<T, A, B, C, D>(
-    path: Path4<T, A, B, C, D>
+	path: Path4<T, A, B, C, D>
 ): Fn2<T, PathVal<T, [A, B, C, D]>, T>;
 export function defSetter<T, A, B, C, D, E>(
-    path: Path5<T, A, B, C, D, E>
+	path: Path5<T, A, B, C, D, E>
 ): Fn2<T, PathVal<T, [A, B, C, D, E]>, T>;
 export function defSetter<T, A, B, C, D, E, F>(
-    path: Path6<T, A, B, C, D, E, F>
+	path: Path6<T, A, B, C, D, E, F>
 ): Fn2<T, PathVal<T, [A, B, C, D, E, F]>, T>;
 export function defSetter<T, A, B, C, D, E, F, G>(
-    path: Path7<T, A, B, C, D, E, F, G>
+	path: Path7<T, A, B, C, D, E, F, G>
 ): Fn2<T, PathVal<T, [A, B, C, D, E, F, G]>, T>;
 export function defSetter<T, A, B, C, D, E, F, G, H>(
-    path: Path8<T, A, B, C, D, E, F, G, H>
+	path: Path8<T, A, B, C, D, E, F, G, H>
 ): Fn2<T, PathVal<T, [A, B, C, D, E, F, G, H]>, T>;
 export function defSetter<T, A, B, C, D, E, F, G, H>(
-    path: DeepPath<T, A, B, C, D, E, F, G, H>
+	path: DeepPath<T, A, B, C, D, E, F, G, H>
 ): Fn2<T, any, any>;
 export function defSetter(path: Path): Fn2<any, any, any> {
-    const ks = toPath(path);
-    const [a, b, c, d] = ks;
-    switch (ks.length) {
-        case 0:
-            return (_, v) => v;
-        case 1:
-            return (s, v) => ((s = copy(s)), (s[a] = v), s);
-        case 2:
-            return (s, v) => {
-                let x;
-                s = copy(s);
-                s[a] = x = copy(s[a]);
-                x[b] = v;
-                return s;
-            };
-        case 3:
-            return (s, v) => {
-                let x, y;
-                s = copy(s);
-                s[a] = x = copy(s[a]);
-                x[b] = y = copy(x[b]);
-                y[c] = v;
-                return s;
-            };
-        case 4:
-            return (s, v) => {
-                let x, y, z;
-                s = copy(s);
-                s[a] = x = copy(s[a]);
-                x[b] = y = copy(x[b]);
-                y[c] = z = copy(y[c]);
-                z[d] = v;
-                return s;
-            };
-        default:
-            let f: any;
-            for (let i = ks.length; i-- > 0; ) {
-                f = compS(ks[i], f);
-            }
-            return f;
-    }
+	const ks = toPath(path);
+	const [a, b, c, d] = ks;
+	switch (ks.length) {
+		case 0:
+			return (_, v) => v;
+		case 1:
+			return (s, v) => ((s = copy(s)), (s[a] = v), s);
+		case 2:
+			return (s, v) => {
+				let x;
+				s = copy(s);
+				s[a] = x = copy(s[a]);
+				x[b] = v;
+				return s;
+			};
+		case 3:
+			return (s, v) => {
+				let x, y;
+				s = copy(s);
+				s[a] = x = copy(s[a]);
+				x[b] = y = copy(x[b]);
+				y[c] = v;
+				return s;
+			};
+		case 4:
+			return (s, v) => {
+				let x, y, z;
+				s = copy(s);
+				s[a] = x = copy(s[a]);
+				x[b] = y = copy(x[b]);
+				y[c] = z = copy(y[c]);
+				z[d] = v;
+				return s;
+			};
+		default:
+			let f: any;
+			for (let i = ks.length; i-- > 0; ) {
+				f = compS(ks[i], f);
+			}
+			return f;
+	}
 }
 
 /**
  * Creates a shallow copy of given array, typed array or plain object.
  *
- * @param x - 
+ * @param x -
  */
 export const copy = (x: any) =>
-    isArray(x) || isTypedArray(x) ? x.slice() : { ...x };
+	isArray(x) || isTypedArray(x) ? x.slice() : { ...x };
 
 /**
  * Helper for {@link defSetter}. Returns setter for a single step.
@@ -196,8 +196,8 @@ export const copy = (x: any) =>
  * @internal
  */
 const compS =
-    (k: NumOrString, f: (o: any, v: any) => any) => (s: any, v: any) => {
-        s = copy(s);
-        s[k] = f ? f(s[k], v) : v;
-        return s;
-    };
+	(k: NumOrString, f: (o: any, v: any) => any) => (s: any, v: any) => {
+		s = copy(s);
+		s[k] = f ? f(s[k], v) : v;
+		return s;
+	};

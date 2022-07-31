@@ -14,23 +14,23 @@ import { isReduced, unreduced } from "./reduced.js";
  * @param xs -
  */
 export function* iterator<A, B>(
-    xform: TxLike<A, B>,
-    xs: Iterable<A>
+	xform: TxLike<A, B>,
+	xs: Iterable<A>
 ): IterableIterator<B> {
-    const rfn = <Reducer<B[], A>>ensureTransducer(xform)(push());
-    const complete = rfn[1];
-    const reduce = rfn[2];
-    for (let x of xs) {
-        const y = reduce([], x);
-        if (isReduced(y)) {
-            yield* unreduced(complete(y.deref()));
-            return;
-        }
-        if (y.length) {
-            yield* y;
-        }
-    }
-    yield* unreduced(complete([]));
+	const rfn = <Reducer<B[], A>>ensureTransducer(xform)(push());
+	const complete = rfn[1];
+	const reduce = rfn[2];
+	for (let x of xs) {
+		const y = reduce([], x);
+		if (isReduced(y)) {
+			yield* unreduced(complete(y.deref()));
+			return;
+		}
+		if (y.length) {
+			yield* y;
+		}
+	}
+	yield* unreduced(complete([]));
 }
 
 /**
@@ -44,25 +44,25 @@ export function* iterator<A, B>(
  * @param xs -
  */
 export function* iterator1<A, B>(
-    xform: TxLike<A, B>,
-    xs: Iterable<A>
+	xform: TxLike<A, B>,
+	xs: Iterable<A>
 ): IterableIterator<B> {
-    const reduce = (<Reducer<B, A>>(
-        ensureTransducer(xform)([NO_OP, NO_OP, (_, x) => x])
-    ))[2];
-    for (let x of xs) {
-        let y = reduce(<any>SEMAPHORE, x);
-        if (isReduced(y)) {
-            y = unreduced(y.deref());
-            if (<any>y !== SEMAPHORE) {
-                yield <B>y;
-            }
-            return;
-        }
-        if (<any>y !== SEMAPHORE) {
-            yield y;
-        }
-    }
+	const reduce = (<Reducer<B, A>>(
+		ensureTransducer(xform)([NO_OP, NO_OP, (_, x) => x])
+	))[2];
+	for (let x of xs) {
+		let y = reduce(<any>SEMAPHORE, x);
+		if (isReduced(y)) {
+			y = unreduced(y.deref());
+			if (<any>y !== SEMAPHORE) {
+				yield <B>y;
+			}
+			return;
+		}
+		if (<any>y !== SEMAPHORE) {
+			yield y;
+		}
+	}
 }
 
 /**
@@ -76,14 +76,14 @@ export function* iterator1<A, B>(
  * @internal
  */
 export const __iter = (
-    xform: FnAny<Transducer<any, any>>,
-    args: any[],
-    impl = iterator1
+	xform: FnAny<Transducer<any, any>>,
+	args: any[],
+	impl = iterator1
 ) => {
-    const n = args.length - 1;
-    return isIterable(args[n])
-        ? args.length > 1
-            ? impl(xform.apply(null, args.slice(0, n)), args[n])
-            : impl(xform(), args[0])
-        : undefined;
+	const n = args.length - 1;
+	return isIterable(args[n])
+		? args.length > 1
+			? impl(xform.apply(null, args.slice(0, n)), args[n])
+			: impl(xform(), args[0])
+		: undefined;
 };

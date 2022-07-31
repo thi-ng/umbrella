@@ -7,8 +7,8 @@ import type { Predicate } from "@thi.ng/api";
  * @param i -
  */
 export const bisect = <T>(src: T[], i = src.length >>> 1) => [
-    src.slice(0, i),
-    src.slice(i),
+	src.slice(0, i),
+	src.slice(i),
 ];
 
 /**
@@ -21,6 +21,6 @@ export const bisect = <T>(src: T[], i = src.length >>> 1) => [
  * @param pred -
  */
 export const bisectWith = <T>(src: T[], pred: Predicate<T>) => {
-    const i = src.findIndex(pred);
-    return i >= 0 ? bisect(src, i) : [src, []];
+	const i = src.findIndex(pred);
+	return i >= 0 ? bisect(src, i) : [src, []];
 };

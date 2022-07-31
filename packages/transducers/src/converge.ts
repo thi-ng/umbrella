@@ -36,25 +36,25 @@ import { ensureReduced } from "./reduced.js";
  */
 export function converge<T>(pred?: Predicate2<T>): Transducer<T, T>;
 export function converge<T>(
-    pred: Predicate2<T>,
-    src: Iterable<T>
+	pred: Predicate2<T>,
+	src: Iterable<T>
 ): IterableIterator<T>;
 export function converge<T>(...args: any[]): any {
-    return (
-        __iter(converge, args) ||
-        ((rfn: Reducer<any, T>) => {
-            const r = rfn[2];
-            const pred = args[0];
-            let prev: any = SEMAPHORE;
-            let done = false;
-            return compR(rfn, (acc, x: T) => {
-                if (done || (prev !== SEMAPHORE && pred(prev, x))) {
-                    done = true;
-                    return ensureReduced(r(acc, x));
-                }
-                prev = x;
-                return r(acc, x);
-            });
-        })
-    );
+	return (
+		__iter(converge, args) ||
+		((rfn: Reducer<any, T>) => {
+			const r = rfn[2];
+			const pred = args[0];
+			let prev: any = SEMAPHORE;
+			let done = false;
+			return compR(rfn, (acc, x: T) => {
+				if (done || (prev !== SEMAPHORE && pred(prev, x))) {
+					done = true;
+					return ensureReduced(r(acc, x));
+				}
+				prev = x;
+				return r(acc, x);
+			});
+		})
+	);
 }

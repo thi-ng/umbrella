@@ -9,10 +9,10 @@ import { reduce, reducer } from "./reduce.js";
 export function assocObj<T>(): Reducer<IObjectOf<T>, Pair<PropertyKey, T>>;
 export function assocObj<T>(xs: Iterable<Pair<PropertyKey, T>>): IObjectOf<T>;
 export function assocObj<T>(xs?: Iterable<Pair<PropertyKey, T>>): any {
-    return xs
-        ? reduce(assocObj(), xs)
-        : reducer<IObjectOf<T>, Pair<PropertyKey, T>>(
-              () => ({}),
-              (acc, [k, v]) => ((acc[<any>k] = v), acc)
-          );
+	return xs
+		? reduce(assocObj(), xs)
+		: reducer<IObjectOf<T>, Pair<PropertyKey, T>>(
+				() => ({}),
+				(acc, [k, v]) => ((acc[<any>k] = v), acc)
+		  );
 }

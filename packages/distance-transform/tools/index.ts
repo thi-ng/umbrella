@@ -1,8 +1,8 @@
 import {
-    CHEBYSHEV,
-    distanceTransform,
-    EUCLEDIAN,
-    MANHATTAN,
+	CHEBYSHEV,
+	distanceTransform,
+	EUCLEDIAN,
+	MANHATTAN,
 } from "@thi.ng/distance-transform";
 import { floatBuffer, FLOAT_GRAY, GRAY8, intBuffer } from "@thi.ng/pixel";
 import { asPGM } from "@thi.ng/pixel-io-netpbm";
@@ -18,9 +18,9 @@ drawLine(src, W / 5, W / 2, (W * 4) / 5, W / 2, 255);
 
 const all = floatBuffer(W * 3, W, FLOAT_GRAY);
 [EUCLEDIAN, MANHATTAN, CHEBYSHEV].forEach((m, i) =>
-    floatBuffer(W, W, FLOAT_GRAY, distanceTransform(src, m)).blit(all, {
-        dx: i * W,
-    })
+	floatBuffer(W, W, FLOAT_GRAY, distanceTransform(src, m)).blit(all, {
+		dx: i * W,
+	})
 );
 
 all.forEach((x) => [x[0] ** 0.4545]);

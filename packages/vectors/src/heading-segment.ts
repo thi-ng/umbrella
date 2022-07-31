@@ -3,9 +3,9 @@ import { atan2Abs } from "@thi.ng/math/angle";
 import type { ReadonlyVec } from "./api.js";
 
 const $ =
-    (u: number, v: number): FnU2<ReadonlyVec, number> =>
-    (a, b) =>
-        atan2Abs(b[u] - a[u], b[v] - a[v]);
+	(u: number, v: number): FnU2<ReadonlyVec, number> =>
+	(a, b) =>
+		atan2Abs(b[u] - a[u], b[v] - a[v]);
 
 /**
  * Computes direction angle (in radians) of line segment `a` -> `b` in

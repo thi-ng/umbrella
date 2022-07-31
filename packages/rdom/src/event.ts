@@ -16,9 +16,9 @@ import { maybeParseFloat } from "@thi.ng/strings/parse";
  * @param stream -
  */
 export const $input =
-    <T extends string = string>(stream: ISubscriber<T>) =>
-    (e: Event) =>
-        stream.next((<any>e.target).value);
+	<T extends string = string>(stream: ISubscriber<T>) =>
+	(e: Event) =>
+		stream.next((<any>e.target).value);
 
 /**
  * Similar to {@link $input}, but attempts to first coerce value using
@@ -29,9 +29,9 @@ export const $input =
  * @param fallback -
  */
 export const $inputNum =
-    (stream: ISubscriber<number>, fallback = 0) =>
-    (e: Event) =>
-        stream.next(maybeParseFloat((<any>e.target).value, fallback));
+	(stream: ISubscriber<number>, fallback = 0) =>
+	(e: Event) =>
+		stream.next(maybeParseFloat((<any>e.target).value, fallback));
 
 /**
  * HOF DOM event listener to emit a checkbox input's value on given stream.
@@ -39,7 +39,7 @@ export const $inputNum =
  * @param stream -
  */
 export const $inputCheckbox = (stream: ISubscriber<boolean>) => (e: Event) =>
-    stream.next((<HTMLInputElement>e.target).checked);
+	stream.next((<HTMLInputElement>e.target).checked);
 
 /**
  * HOF DOM event listener to emit `true` on given stream when event is
@@ -48,7 +48,7 @@ export const $inputCheckbox = (stream: ISubscriber<boolean>) => (e: Event) =>
  * @param stream -
  */
 export const $inputTrigger = (stream: ISubscriber<boolean>) => () =>
-    stream.next(true);
+	stream.next(true);
 
 /**
  * HOF DOM event listener to emit a file input's first selected file on given
@@ -57,7 +57,7 @@ export const $inputTrigger = (stream: ISubscriber<boolean>) => () =>
  * @param stream -
  */
 export const $inputFile = (stream: ISubscriber<File>) => (e: Event) =>
-    stream.next((<HTMLInputElement>e.target).files![0]);
+	stream.next((<HTMLInputElement>e.target).files![0]);
 
 /**
  * HOF DOM event listener to emit a file input's entire selected list of files
@@ -66,4 +66,4 @@ export const $inputFile = (stream: ISubscriber<File>) => (e: Event) =>
  * @param stream -
  */
 export const $inputFiles = (stream: ISubscriber<FileList>) => (e: Event) =>
-    stream.next((<HTMLInputElement>e.target).files!);
+	stream.next((<HTMLInputElement>e.target).files!);

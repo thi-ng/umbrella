@@ -21,12 +21,12 @@ import { repeatedly } from "./repeatedly.js";
  * @param weights -
  */
 export const choices = <T>(
-    choices: ArrayLike<T> & Iterable<T>,
-    weights?: ArrayLike<number>,
-    rnd: IRandom = SYSTEM
+	choices: ArrayLike<T> & Iterable<T>,
+	weights?: ArrayLike<number>,
+	rnd: IRandom = SYSTEM
 ): IterableIterator<T> =>
-    repeatedly(
-        weights
-            ? weightedRandom(ensureArray(choices), weights, rnd)
-            : () => choices[rnd.float(choices.length) | 0]
-    );
+	repeatedly(
+		weights
+			? weightedRandom(ensureArray(choices), weights, rnd)
+			: () => choices[rnd.float(choices.length) | 0]
+	);

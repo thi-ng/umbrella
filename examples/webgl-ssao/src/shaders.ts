@@ -8,12 +8,12 @@ import { $x, $xyz } from "@thi.ng/shader-ast/ast/swizzle";
 import { texture } from "@thi.ng/shader-ast/builtin/texture";
 import type { ShaderFn, ShaderSpec } from "@thi.ng/webgl";
 import {
-    FX_SHADER_SPEC,
-    FX_SHADER_SPEC_UV,
+	FX_SHADER_SPEC,
+	FX_SHADER_SPEC_UV,
 } from "@thi.ng/webgl/shaders/pipeline";
 
 export const LIGHT_SHADER: ShaderSpec = {
-    vs: `void main() {
+	vs: `void main() {
     v_position = model * vec4(position + offset, 1.0);
     v_normal = model * vec4(normal, 0.0);
     v_uv = uv;
@@ -21,7 +21,7 @@ export const LIGHT_SHADER: ShaderSpec = {
     v_viewNormal = view * v_normal;
     gl_Position = proj * v_viewPos;
 }`,
-    fs: `void main() {
+	fs: `void main() {
     vec3 position = v_position.xyz;
     vec3 normal = normalize(v_normal.xyz);
     vec3 baseColor = texture(tex, v_uv).xyz;
@@ -34,44 +34,44 @@ export const LIGHT_SHADER: ShaderSpec = {
     o_viewPos = v_viewPos;
     o_viewNormal = v_viewNormal;
 }`,
-    attribs: {
-        position: "vec3",
-        normal: "vec3",
-        offset: "vec3",
-        uv: "vec2",
-    },
-    varying: {
-        v_position: "vec4",
-        v_normal: "vec4",
-        v_uv: "vec2",
-        v_viewPos: "vec4",
-        v_viewNormal: "vec4",
-    },
-    uniforms: {
-        model: "mat4",
-        view: "mat4",
-        proj: "mat4",
-        eyePos: "vec3",
-        lightPos: "vec3",
-        shininess: ["float", 250],
-        specular: "float",
-        ambient: ["float", 0.15],
-        tex: "sampler2D",
-    },
-    outputs: {
-        o_color: ["vec4", 0],
-        o_viewPos: ["vec4", 1],
-        o_viewNormal: ["vec4", 2],
-    },
-    state: {
-        depth: true,
-        cull: true,
-    },
+	attribs: {
+		position: "vec3",
+		normal: "vec3",
+		offset: "vec3",
+		uv: "vec2",
+	},
+	varying: {
+		v_position: "vec4",
+		v_normal: "vec4",
+		v_uv: "vec2",
+		v_viewPos: "vec4",
+		v_viewNormal: "vec4",
+	},
+	uniforms: {
+		model: "mat4",
+		view: "mat4",
+		proj: "mat4",
+		eyePos: "vec3",
+		lightPos: "vec3",
+		shininess: ["float", 250],
+		specular: "float",
+		ambient: ["float", 0.15],
+		tex: "sampler2D",
+	},
+	outputs: {
+		o_color: ["vec4", 0],
+		o_viewPos: ["vec4", 1],
+		o_viewNormal: ["vec4", 2],
+	},
+	state: {
+		depth: true,
+		cull: true,
+	},
 };
 
 export const SSAO_SHADER: ShaderSpec = {
-    ...FX_SHADER_SPEC,
-    fs: `const vec2 kernel[4] = vec2[](
+	...FX_SHADER_SPEC,
+	fs: `const vec2 kernel[4] = vec2[](
     vec2(-K, 0.0), vec2(K, 0.0),
     vec2(0.0, -K), vec2(0.0, K)
 );
@@ -103,43 +103,43 @@ void main() {
 
     o_occlusion = clamp(sum / 16.0, 0.0, 1.0);
 }`,
-    pre: "#define K (0.707107)",
-    uniforms: {
-        positionTex: ["sampler2D", 0],
-        normalTex: ["sampler2D", 1],
-        noiseTex: ["sampler2D", 2],
-        sampleRadius: ["float", 32],
-        bias: ["float", 0.09],
-        attenuate: ["float", 1],
-        attenuateDist: ["float", 1],
-        depthRange: ["vec2", [0.1, 10]],
-    },
-    outputs: {
-        o_occlusion: "float",
-    },
+	pre: "#define K (0.707107)",
+	uniforms: {
+		positionTex: ["sampler2D", 0],
+		normalTex: ["sampler2D", 1],
+		noiseTex: ["sampler2D", 2],
+		sampleRadius: ["float", 32],
+		bias: ["float", 0.09],
+		attenuate: ["float", 1],
+		attenuateDist: ["float", 1],
+		depthRange: ["vec2", [0.1, 10]],
+	},
+	outputs: {
+		o_occlusion: "float",
+	},
 };
 
 export const FINAL_SHADER: ShaderSpec = mergeDeepObj(FX_SHADER_SPEC_UV, {
-    fs: <ShaderFn>(
-        ((_, unis, ins, outs) => [
-            defMain(() => [
-                assign(
-                    outs.fragColor,
-                    vec4(
-                        clamp01(
-                            sub(
-                                $xyz(texture(unis.tex, ins.v_uv)),
-                                mul($x(texture(unis.tex2, ins.v_uv)), unis.amp)
-                            )
-                        ),
-                        1
-                    )
-                ),
-            ]),
-        ])
-    ),
-    uniforms: {
-        tex2: ["sampler2D", 1],
-        amp: ["float", 1],
-    },
+	fs: <ShaderFn>(
+		((_, unis, ins, outs) => [
+			defMain(() => [
+				assign(
+					outs.fragColor,
+					vec4(
+						clamp01(
+							sub(
+								$xyz(texture(unis.tex, ins.v_uv)),
+								mul($x(texture(unis.tex2, ins.v_uv)), unis.amp)
+							)
+						),
+						1
+					)
+				),
+			]),
+		])
+	),
+	uniforms: {
+		tex2: ["sampler2D", 1],
+		amp: ["float", 1],
+	},
 });

@@ -15,25 +15,25 @@ import { iterator1 } from "@thi.ng/transducers/iterator";
  */
 export function sma(period: number): Transducer<number, number>;
 export function sma(
-    period: number,
-    src: Iterable<number>
+	period: number,
+	src: Iterable<number>
 ): IterableIterator<number>;
 export function sma(period: number, src?: Iterable<number>): any {
-    if (src) {
-        return iterator1(sma(period), src);
-    }
-    period |= 0;
-    period < 2 && illegalArgs("period must be >= 2");
-    return (rfn: Reducer<any, number>) => {
-        const reduce = rfn[2];
-        const window = new DCons<number>();
-        let sum = 0;
-        return compR(rfn, (acc, x: number) => {
-            window.push(x);
-            const n = window.length;
-            sum += x;
-            n > period && (sum -= window.drop()!);
-            return n >= period ? reduce(acc, sum / period) : acc;
-        });
-    };
+	if (src) {
+		return iterator1(sma(period), src);
+	}
+	period |= 0;
+	period < 2 && illegalArgs("period must be >= 2");
+	return (rfn: Reducer<any, number>) => {
+		const reduce = rfn[2];
+		const window = new DCons<number>();
+		let sum = 0;
+		return compR(rfn, (acc, x: number) => {
+			window.push(x);
+			const n = window.length;
+			sum += x;
+			n > period && (sum -= window.drop()!);
+			return n >= period ? reduce(acc, sum / period) : acc;
+		});
+	};
 }

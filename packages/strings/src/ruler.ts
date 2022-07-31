@@ -19,10 +19,10 @@ import { repeat } from "./repeat.js";
  * @param b -
  */
 export const ruler = (width: number, major = 5, a = "|", b = "'") =>
-    repeat(a + repeat(b, major - 1), Math.ceil(width / major)).substring(
-        0,
-        width
-    );
+	repeat(a + repeat(b, major - 1), Math.ceil(width / major)).substring(
+		0,
+		width
+	);
 
 /**
  * Returns a grid of given `cols` x `rows` as string, each cell of size `w` x
@@ -65,13 +65,13 @@ export const ruler = (width: number, major = 5, a = "|", b = "'") =>
  * @param chars -
  */
 export const grid = (
-    cols: number,
-    rows: number,
-    w: number,
-    h: number,
-    [a, b, c, d] = "+-| "
+	cols: number,
+	rows: number,
+	w: number,
+	h: number,
+	[a, b, c, d] = "+-| "
 ) => {
-    const major = ruler(cols * w, w, a, b) + a + "\n";
-    const minor = ruler(cols * w, w, c, d) + c + "\n";
-    return repeat(major + repeat(minor, h - 1), rows) + major;
+	const major = ruler(cols * w, w, a, b) + a + "\n";
+	const minor = ruler(cols * w, w, c, d) + c + "\n";
+	return repeat(major + repeat(minor, h - 1), rows) + major;
 };

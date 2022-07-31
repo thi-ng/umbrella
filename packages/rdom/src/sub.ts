@@ -33,69 +33,69 @@ import { $wrapText } from "./wrap.js";
  * @param inner -
  */
 export function $sub<T>(
-    src: ISubscribable<T>,
-    inner: IMountWithState<T>
+	src: ISubscribable<T>,
+	inner: IMountWithState<T>
 ): IComponent<T>;
 export function $sub(
-    src: ISubscribable<any>,
-    tag: string,
-    attribs?: any
+	src: ISubscribable<any>,
+	tag: string,
+	attribs?: any
 ): IComponent;
 export function $sub(
-    src: ISubscribable<any>,
-    tag: IMountWithState<any> | string,
-    attribs?: any
+	src: ISubscribable<any>,
+	tag: IMountWithState<any> | string,
+	attribs?: any
 ): IComponent {
-    return <$Sub>(
-        src.subscribe(new $Sub(isString(tag) ? $wrapText(tag, attribs) : tag))
-    );
+	return <$Sub>(
+		src.subscribe(new $Sub(isString(tag) ? $wrapText(tag, attribs) : tag))
+	);
 }
 
 export class $Sub<T = any> extends Subscription<T, T> {
-    el?: Element;
+	el?: Element;
 
-    constructor(protected inner: IMountWithState<T | undefined>) {
-        super(undefined, { id: `rdom$sub-${__nextID()}` });
-    }
+	constructor(protected inner: IMountWithState<T | undefined>) {
+		super(undefined, { id: `rdom$sub-${__nextID()}` });
+	}
 
-    async mount(parent: Element, index: NumOrElement = -1) {
-        return (this.el = await this.inner.mount(
-            parent,
-            index,
-            this.parent!.deref()
-        ));
-    }
+	async mount(parent: Element, index: NumOrElement = -1) {
+		return (this.el = await this.inner.mount(
+			parent,
+			index,
+			this.parent!.deref()
+		));
+	}
 
-    async unmount() {
-        this.unsubscribe();
-        SCHEDULER.cancel(this);
-        this.el = undefined;
-        await this.inner.unmount();
-    }
+	async unmount() {
+		this.unsubscribe();
+		SCHEDULER.cancel(this);
+		this.el = undefined;
+		await this.inner.unmount();
+	}
 
-    update(x: T) {
-        this.next(x);
-    }
+	update(x: T) {
+		this.next(x);
+	}
 
-    next(x: T) {
-        SCHEDULER.add(this, () => this.el && this.inner.update(x));
-    }
+	next(x: T) {
+		SCHEDULER.add(this, () => this.el && this.inner.update(x));
+	}
 }
 
 export class $SubA extends Subscription<any, any> {
-    protected setter: Fn2<any, any, any>;
-    protected attr: any = {};
+	protected setter: Fn2<any, any, any>;
+	protected attr: any = {};
 
-    constructor(protected comp: IComponent, path: Path) {
-        super(undefined, { id: `rdom$sub-${__nextID()}` });
-        this.setter = defSetterUnsafe(path);
-    }
+	constructor(protected comp: IComponent, path: Path) {
+		super(undefined, { id: `rdom$sub-${__nextID()}` });
+		this.setter = defSetterUnsafe(path);
+	}
 
-    next(a: any) {
-        const $ = this.comp;
-        SCHEDULER.add(
-            $,
-            () => $.el && $attribs($.el, this.setter(this.attr, a))
-        );
-    }
+	next(a: any) {
+		const $ = this.comp;
+		SCHEDULER.add(
+			$,
+			() => $.el && $attribs($.el, this.setter(this.attr, a))
+		);
+	}
 }

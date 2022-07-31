@@ -1,10 +1,10 @@
 import type { Fn, IObjectOf, Path } from "@thi.ng/api";
 import type { IView } from "@thi.ng/atom";
 import type {
-    EffectDef,
-    EventBus,
-    EventDef,
-    InterceptorContext,
+	EffectDef,
+	EventBus,
+	EventDef,
+	InterceptorContext,
 } from "@thi.ng/interceptors";
 import type { QuerySpec, TripleStore } from "@thi.ng/rstream-query";
 
@@ -23,38 +23,38 @@ export type ViewSpec = string | Path | [string | Path, Fn<any, any>];
  * See `src/config.ts`.
  */
 export interface AppConfig {
-    events: IObjectOf<EventDef>;
-    effects: IObjectOf<EffectDef>;
-    domRoot: string | Element;
-    initialState: any;
-    rootComponent: AppComponent;
-    ui: UIAttribs;
-    views: Partial<Record<AppViewIDs, ViewSpec>>;
-    data: {
-        cities: string[][];
-        countries: string[][];
-        regions: string[];
-        queries: IObjectOf<QuerySpec>;
-    };
+	events: IObjectOf<EventDef>;
+	effects: IObjectOf<EffectDef>;
+	domRoot: string | Element;
+	initialState: any;
+	rootComponent: AppComponent;
+	ui: UIAttribs;
+	views: Partial<Record<AppViewIDs, ViewSpec>>;
+	data: {
+		cities: string[][];
+		countries: string[][];
+		regions: string[];
+		queries: IObjectOf<QuerySpec>;
+	};
 }
 
 export type AppViewIDs =
-    | "page"
-    | "pagedTriples"
-    | "cities"
-    | "countries"
-    | "sort";
+	| "page"
+	| "pagedTriples"
+	| "cities"
+	| "countries"
+	| "sort";
 
 /**
  * Base structure of derived views exposed by the base app.
  * Add more declarations here as needed.
  */
 export interface AppViews extends Record<AppViewIDs, IView<any>> {
-    page: IView<number>;
-    pagedTriples: IView<any>;
-    cities: IView<any>;
-    countries: IView<any>;
-    sort: IView<[number, boolean]>;
+	page: IView<number>;
+	pagedTriples: IView<any>;
+	cities: IView<any>;
+	countries: IView<any>;
+	sort: IView<[number, boolean]>;
 }
 
 /**
@@ -65,25 +65,25 @@ export interface AppViews extends Record<AppViewIDs, IView<any>> {
  * component functions.
  */
 export interface UIAttribs {
-    button: any;
-    buttonDisabled: any;
-    buttongroup: any;
-    link: any;
-    root: any;
-    table: { root: any; head: any; headlink: any; row: any; cell: any };
-    pager: { root: any; prev: any; pages: any; next: any };
+	button: any;
+	buttonDisabled: any;
+	buttongroup: any;
+	link: any;
+	root: any;
+	table: { root: any; head: any; headlink: any; row: any; cell: any };
+	pager: { root: any; prev: any; pages: any; next: any };
 }
 
 /**
  * Structure of the context object passed to all component functions
  */
 export interface AppContext {
-    bus: EventBus;
-    views: AppViews;
-    ui: UIAttribs;
-    store: TripleStore;
+	bus: EventBus;
+	views: AppViews;
+	ui: UIAttribs;
+	store: TripleStore;
 }
 
 export interface AppInterceptorContext extends InterceptorContext {
-    store: TripleStore;
+	store: TripleStore;
 }

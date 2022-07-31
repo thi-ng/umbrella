@@ -3,13 +3,13 @@ import { __optsWithID } from "./idgen.js";
 import { stream } from "./stream.js";
 
 export interface FromIterableOpts extends CommonOpts {
-    /**
-     * Time delay (in ms) between emitted values. The default value of
-     * 0, means as fast as possible (but still via `setInterval`).
-     *
-     * @defaultValue 0
-     */
-    delay: number;
+	/**
+	 * Time delay (in ms) between emitted values. The default value of
+	 * 0, means as fast as possible (but still via `setInterval`).
+	 *
+	 * @defaultValue 0
+	 */
+	delay: number;
 }
 
 /**
@@ -28,22 +28,22 @@ export interface FromIterableOpts extends CommonOpts {
  * @param opts -
  */
 export const fromIterable = <T>(
-    src: Iterable<T>,
-    opts: Partial<FromIterableOpts> = {}
+	src: Iterable<T>,
+	opts: Partial<FromIterableOpts> = {}
 ) =>
-    stream<T>((stream) => {
-        const iter = src[Symbol.iterator]();
-        const id = setInterval(() => {
-            let val: IteratorResult<T>;
-            if ((val = iter.next()).done) {
-                clearInterval(id);
-                stream.closeIn !== CloseMode.NEVER && stream.done();
-            } else {
-                stream.next(val.value);
-            }
-        }, opts.delay || 0);
-        return () => clearInterval(id);
-    }, __optsWithID("iterable", opts));
+	stream<T>((stream) => {
+		const iter = src[Symbol.iterator]();
+		const id = setInterval(() => {
+			let val: IteratorResult<T>;
+			if ((val = iter.next()).done) {
+				clearInterval(id);
+				stream.closeIn !== CloseMode.NEVER && stream.done();
+			} else {
+				stream.next(val.value);
+			}
+		}, opts.delay || 0);
+		return () => clearInterval(id);
+	}, __optsWithID("iterable", opts));
 
 /**
  * Creates a new {@link Stream} of given iterable which synchronously calls
@@ -56,12 +56,12 @@ export const fromIterable = <T>(
  * @param opts -
  */
 export const fromIterableSync = <T>(
-    src: Iterable<T>,
-    opts?: Partial<CommonOpts>
+	src: Iterable<T>,
+	opts?: Partial<CommonOpts>
 ) =>
-    stream<T>((stream) => {
-        for (let s of src) {
-            stream.next(s);
-        }
-        stream.closeIn !== CloseMode.NEVER && stream.done();
-    }, __optsWithID("iterable-sync", opts));
+	stream<T>((stream) => {
+		for (let s of src) {
+			stream.next(s);
+		}
+		stream.closeIn !== CloseMode.NEVER && stream.done();
+	}, __optsWithID("iterable-sync", opts));

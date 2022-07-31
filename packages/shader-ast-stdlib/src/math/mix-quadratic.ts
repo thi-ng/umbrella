@@ -4,26 +4,26 @@ import { add, mul, sub } from "@thi.ng/shader-ast/ast/ops";
 import { sym } from "@thi.ng/shader-ast/ast/sym";
 
 const $ = <N extends 1 | 2 | 3 | 4, T extends PrimTypeMap[N]>(n: N, type: T) =>
-    defn(
-        type,
-        `mixQuadratic${n > 1 ? n : ""}`,
-        [type, type, type, "float"],
-        (a, b, c, t) => {
-            let s: FloatSym;
-            return [
-                (s = sym(sub(1, t))),
-                ret(
-                    add(
-                        add(
-                            mul(<any>a, mul(s, s)),
-                            mul(<any>b, mul(2, mul(s, t)))
-                        ),
-                        mul(<any>c, mul(t, t))
-                    )
-                ),
-            ];
-        }
-    );
+	defn(
+		type,
+		`mixQuadratic${n > 1 ? n : ""}`,
+		[type, type, type, "float"],
+		(a, b, c, t) => {
+			let s: FloatSym;
+			return [
+				(s = sym(sub(1, t))),
+				ret(
+					add(
+						add(
+							mul(<any>a, mul(s, s)),
+							mul(<any>b, mul(2, mul(s, t)))
+						),
+						mul(<any>c, mul(t, t))
+					)
+				),
+			];
+		}
+	);
 
 export const mixQuadratic = $(1, "float");
 export const mixQuadratic2 = $(2, "vec2");

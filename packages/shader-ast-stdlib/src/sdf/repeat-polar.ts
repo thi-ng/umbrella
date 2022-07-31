@@ -15,18 +15,18 @@ import { cossin } from "../math/sincos.js";
  * @param n - number of polar repetitions
  */
 export const sdfRepeatPolar2 = defn(
-    "vec2",
-    "sdfRepeatPolar2",
-    ["vec2", "float"],
-    (p, n) => {
-        let angle: FloatSym;
-        let angle2: FloatSym;
-        let a: FloatSym;
-        return [
-            (angle = sym(div(TAU, n))),
-            (angle2 = sym(mul(angle, FLOAT05))),
-            (a = sym(sub(mod(add(angle2, atan($y(p), $x(p))), angle), angle2))),
-            ret(mul(cossin(a), length(p))),
-        ];
-    }
+	"vec2",
+	"sdfRepeatPolar2",
+	["vec2", "float"],
+	(p, n) => {
+		let angle: FloatSym;
+		let angle2: FloatSym;
+		let a: FloatSym;
+		return [
+			(angle = sym(div(TAU, n))),
+			(angle2 = sym(mul(angle, FLOAT05))),
+			(a = sym(sub(mod(add(angle2, atan($y(p), $x(p))), angle), angle2))),
+			ret(mul(cossin(a), length(p))),
+		];
+	}
 );

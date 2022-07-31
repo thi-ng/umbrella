@@ -60,11 +60,11 @@ import { $wrapText } from "./wrap.js";
  * @param loader -
  */
 export const $switch = <T>(
-    src: ISubscribable<T>,
-    keyFn: Fn<T, NumOrString>,
-    ctors: Record<NumOrString, Fn<T, Promise<any>>>,
-    error?: Fn<Error, Promise<any>>,
-    loader?: Fn<T, Promise<any>>
+	src: ISubscribable<T>,
+	keyFn: Fn<T, NumOrString>,
+	ctors: Record<NumOrString, Fn<T, Promise<any>>>,
+	error?: Fn<Error, Promise<any>>,
+	loader?: Fn<T, Promise<any>>
 ) => $sub<T>(src, new Switch<T>(keyFn, ctors, error, loader));
 
 /**
@@ -90,70 +90,70 @@ export const $switch = <T>(
  * @param loader -
  */
 export const $refresh = <T>(
-    src: ISubscribable<T>,
-    ctor: Fn<T, Promise<any>>,
-    error?: Fn<Error, Promise<any>>,
-    loader?: Fn<T, Promise<any>>
+	src: ISubscribable<T>,
+	ctor: Fn<T, Promise<any>>,
+	error?: Fn<Error, Promise<any>>,
+	loader?: Fn<T, Promise<any>>
 ) => $switch(src, () => 0, { 0: ctor }, error, loader);
 
 export class Switch<T> extends Component implements IMountWithState<T> {
-    protected val?: T;
-    protected parent?: Element;
-    protected inner?: IComponent<T>;
-    protected index?: NumOrElement;
+	protected val?: T;
+	protected parent?: Element;
+	protected inner?: IComponent<T>;
+	protected index?: NumOrElement;
 
-    constructor(
-        protected keyFn: Fn<T, NumOrString>,
-        protected ctors: Record<NumOrString, Fn<T, Promise<any>>>,
-        protected error: Fn<Error, Promise<any>> = async (e) =>
-            $wrapText("span", {}, e),
-        protected loader: Fn<T, Promise<any>> = async () =>
-            $wrapText("span", {
-                hidden: true,
-            })
-    ) {
-        super();
-    }
+	constructor(
+		protected keyFn: Fn<T, NumOrString>,
+		protected ctors: Record<NumOrString, Fn<T, Promise<any>>>,
+		protected error: Fn<Error, Promise<any>> = async (e) =>
+			$wrapText("span", {}, e),
+		protected loader: Fn<T, Promise<any>> = async () =>
+			$wrapText("span", {
+				hidden: true,
+			})
+	) {
+		super();
+	}
 
-    async mount(parent: Element, index: NumOrElement, val: T) {
-        this.parent = parent;
-        this.index = index;
-        await this.update(val);
-        return this.inner!.el!;
-    }
+	async mount(parent: Element, index: NumOrElement, val: T) {
+		this.parent = parent;
+		this.index = index;
+		await this.update(val);
+		return this.inner!.el!;
+	}
 
-    async unmount() {
-        this.inner && (await this.inner!.unmount());
-        this.val = undefined;
-        this.parent = undefined;
-        this.inner = undefined;
-    }
+	async unmount() {
+		this.inner && (await this.inner!.unmount());
+		this.val = undefined;
+		this.parent = undefined;
+		this.inner = undefined;
+	}
 
-    async update(val: T) {
-        this.inner && (await this.inner.unmount());
-        this.inner = undefined;
-        if (val != null) {
-            this.val = val;
-            let loader: IComponent | undefined;
-            if (this.loader) {
-                loader = $compile(await this.loader(val));
-                await loader.mount(this.parent!, this.index!);
-            }
-            try {
-                const key = this.keyFn(val);
-                const next = this.ctors[key];
-                assert(!!next, `missing component for key: ${key}`);
-                this.inner = $compile(await next(val));
-                loader && (await loader.unmount());
-            } catch (e) {
-                if (this.error) {
-                    this.inner = $compile(await this.error(<Error>e));
-                    loader && (await loader.unmount());
-                }
-            }
-        } else {
-            this.loader && (this.inner = $compile(await this.loader(val)));
-        }
-        this.inner && (await this.inner.mount(this.parent!, this.index!));
-    }
+	async update(val: T) {
+		this.inner && (await this.inner.unmount());
+		this.inner = undefined;
+		if (val != null) {
+			this.val = val;
+			let loader: IComponent | undefined;
+			if (this.loader) {
+				loader = $compile(await this.loader(val));
+				await loader.mount(this.parent!, this.index!);
+			}
+			try {
+				const key = this.keyFn(val);
+				const next = this.ctors[key];
+				assert(!!next, `missing component for key: ${key}`);
+				this.inner = $compile(await next(val));
+				loader && (await loader.unmount());
+			} catch (e) {
+				if (this.error) {
+					this.inner = $compile(await this.error(<Error>e));
+					loader && (await loader.unmount());
+				}
+			}
+		} else {
+			this.loader && (this.inner = $compile(await this.loader(val)));
+		}
+		this.inner && (await this.inner.mount(this.parent!, this.index!));
+	}
 }

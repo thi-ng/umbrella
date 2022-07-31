@@ -7,10 +7,10 @@ export const DEFER = "defer";
 
 // alias of possible event structures/signatures
 export interface EventTypeMap {
-    [INC]: [typeof INC, number];
-    [DEC]: [typeof DEC, number];
-    [RANDOM]: [typeof RANDOM];
-    [DEFER]: [typeof DEFER, Fn0<void>, number];
+	[INC]: [typeof INC, number];
+	[DEC]: [typeof DEC, number];
+	[RANDOM]: [typeof RANDOM];
+	[DEFER]: [typeof DEFER, Fn0<void>, number];
 }
 
 export type EventType = keyof EventTypeMap;

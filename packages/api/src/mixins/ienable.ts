@@ -4,8 +4,8 @@ import type { Event } from "../event.js";
 import { mixin } from "../mixin.js";
 
 interface _IEnable extends IEnable<any> {
-    _enabled: boolean;
-    notify?(e: Event): void;
+	_enabled: boolean;
+	notify?(e: Event): void;
 }
 
 /**
@@ -16,29 +16,29 @@ interface _IEnable extends IEnable<any> {
  * events.
  */
 export const IEnableMixin = mixin(<IEnable<any>>{
-    _enabled: true,
+	_enabled: true,
 
-    isEnabled(this: _IEnable) {
-        return this._enabled;
-    },
+	isEnabled(this: _IEnable) {
+		return this._enabled;
+	},
 
-    enable(this: _IEnable) {
-        $enable(this, true, EVENT_ENABLE);
-    },
+	enable(this: _IEnable) {
+		$enable(this, true, EVENT_ENABLE);
+	},
 
-    disable(this: _IEnable) {
-        $enable(this, false, EVENT_DISABLE);
-    },
+	disable(this: _IEnable) {
+		$enable(this, false, EVENT_DISABLE);
+	},
 
-    toggle(this: _IEnable) {
-        this._enabled ? this.disable() : this.enable();
-        return this._enabled;
-    },
+	toggle(this: _IEnable) {
+		this._enabled ? this.disable() : this.enable();
+		return this._enabled;
+	},
 });
 
 const $enable = (target: _IEnable, state: boolean, id: string) => {
-    target._enabled = state;
-    if (target.notify) {
-        target.notify({ id, target });
-    }
+	target._enabled = state;
+	if (target.notify) {
+		target.notify({ id, target });
+	}
 };

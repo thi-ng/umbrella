@@ -4,8 +4,8 @@ import { readFileSync } from "fs";
 import { writeFile } from "./write.js";
 
 export const readText = (path: string, logger?: ILogger) => {
-    logger && logger.debug("reading file:", path);
-    return readFileSync(path, "utf-8");
+	logger && logger.debug("reading file:", path);
+	return readFileSync(path, "utf-8");
 };
 
 /**
@@ -19,15 +19,15 @@ export const readText = (path: string, logger?: ILogger) => {
  * @param dryRun
  */
 export const writeText = (
-    path: string,
-    body: string | string[],
-    logger?: ILogger,
-    dryRun = false
+	path: string,
+	body: string | string[],
+	logger?: ILogger,
+	dryRun = false
 ) =>
-    writeFile(
-        path,
-        isArray(body) ? body.join("\n") : body,
-        "utf-8",
-        logger,
-        dryRun
-    );
+	writeFile(
+		path,
+		isArray(body) ? body.join("\n") : body,
+		"utf-8",
+		logger,
+		dryRun
+	);

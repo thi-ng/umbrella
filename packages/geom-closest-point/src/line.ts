@@ -31,9 +31,9 @@ import { sub } from "@thi.ng/vectors/sub";
  * @param b - line point B
  */
 export const closestT: FnU3<ReadonlyVec, number | undefined> = (p, a, b) => {
-    const d = sub([], b, a);
-    const l = magSq(d);
-    return l > 1e-6 ? dot(sub([], p, a), d) / l : undefined;
+	const d = sub([], b, a);
+	const l = magSq(d);
+	return l > 1e-6 ? dot(sub([], p, a), d) / l : undefined;
 };
 
 /**
@@ -48,7 +48,7 @@ export const closestT: FnU3<ReadonlyVec, number | undefined> = (p, a, b) => {
  * @param b - line point B
  */
 export const closestPointLine: FnU3<ReadonlyVec, Vec> = (p, a, b) =>
-    mixN([], a, b, closestT(p, a, b) || 0);
+	mixN([], a, b, closestT(p, a, b) || 0);
 
 /**
  * Returns distance from `p` to closest point to infinite line `a` ->
@@ -62,7 +62,7 @@ export const closestPointLine: FnU3<ReadonlyVec, Vec> = (p, a, b) =>
  * @param b - line point B
  */
 export const distToLine: FnU3<ReadonlyVec, number> = (p, a, b) =>
-    dist(p, closestPointLine(p, a, b) || a);
+	dist(p, closestPointLine(p, a, b) || a);
 
 /**
  * Returns closest point to `p` on line segment `a` -> `b`. By default,
@@ -88,18 +88,18 @@ export const distToLine: FnU3<ReadonlyVec, number> = (p, a, b) =>
  * @param eps - epsilon value
  */
 export const closestPointSegment = (
-    p: ReadonlyVec,
-    a: ReadonlyVec,
-    b: ReadonlyVec,
-    out?: Vec,
-    insideOnly = false,
-    eps = 0
+	p: ReadonlyVec,
+	a: ReadonlyVec,
+	b: ReadonlyVec,
+	out?: Vec,
+	insideOnly = false,
+	eps = 0
 ) => {
-    const t = closestT(p, a, b);
-    if (t !== undefined && (!insideOnly || (t >= eps && t <= 1 - eps))) {
-        out = out || empty(p);
-        return t <= 0 ? set(out, a) : t >= 1 ? set(out, b) : mixN(out, a, b, t);
-    }
+	const t = closestT(p, a, b);
+	if (t !== undefined && (!insideOnly || (t >= eps && t <= 1 - eps))) {
+		out = out || empty(p);
+		return t <= 0 ? set(out, a) : t >= 1 ? set(out, b) : mixN(out, a, b, t);
+	}
 };
 
 /**
@@ -111,37 +111,37 @@ export const closestPointSegment = (
  * @param b - line point B
  */
 export const distToSegment: FnU3<ReadonlyVec, number> = (p, a, b) =>
-    dist(p, closestPointSegment(p, a, b) || a);
+	dist(p, closestPointSegment(p, a, b) || a);
 
 export const closestPointPolyline = (
-    p: ReadonlyVec,
-    pts: ReadonlyArray<Vec>,
-    closed = false,
-    out: Vec = []
+	p: ReadonlyVec,
+	pts: ReadonlyArray<Vec>,
+	closed = false,
+	out: Vec = []
 ) => {
-    if (!pts.length) return;
-    const tmp: Vec = [];
-    const n = pts.length - 1;
-    let minD = Infinity,
-        i,
-        j;
-    if (closed) {
-        i = n;
-        j = 0;
-    } else {
-        i = 0;
-        j = 1;
-    }
-    for (; j <= n; i = j, j++) {
-        if (closestPointSegment(p, pts[i], pts[j], tmp)) {
-            const d = distSq(p, tmp);
-            if (d < minD) {
-                minD = d;
-                set(out, tmp);
-            }
-        }
-    }
-    return minD < Infinity ? out : undefined;
+	if (!pts.length) return;
+	const tmp: Vec = [];
+	const n = pts.length - 1;
+	let minD = Infinity,
+		i,
+		j;
+	if (closed) {
+		i = n;
+		j = 0;
+	} else {
+		i = 0;
+		j = 1;
+	}
+	for (; j <= n; i = j, j++) {
+		if (closestPointSegment(p, pts[i], pts[j], tmp)) {
+			const d = distSq(p, tmp);
+			if (d < minD) {
+				minD = d;
+				set(out, tmp);
+			}
+		}
+	}
+	return minD < Infinity ? out : undefined;
 };
 
 /**
@@ -157,22 +157,22 @@ export const closestPointPolyline = (
  * @param to - end search index
  */
 export const farthestPointSegment = (
-    a: ReadonlyVec,
-    b: ReadonlyVec,
-    points: ReadonlyVec[],
-    from = 0,
-    to = points.length
+	a: ReadonlyVec,
+	b: ReadonlyVec,
+	points: ReadonlyVec[],
+	from = 0,
+	to = points.length
 ) => {
-    let maxD = -1;
-    let maxIdx: number = -1;
-    const tmp = empty(a);
-    for (let i = from; i < to; i++) {
-        const p = points[i];
-        const d = distSq(p, closestPointSegment(p, a, b, tmp) || a);
-        if (d > maxD) {
-            maxD = d;
-            maxIdx = i;
-        }
-    }
-    return [maxIdx, Math.sqrt(maxD)];
+	let maxD = -1;
+	let maxIdx: number = -1;
+	const tmp = empty(a);
+	for (let i = from; i < to; i++) {
+		const p = points[i];
+		const d = distSq(p, closestPointSegment(p, a, b, tmp) || a);
+		if (d > maxD) {
+			maxD = d;
+			maxIdx = i;
+		}
+	}
+	return [maxIdx, Math.sqrt(maxD)];
 };

@@ -59,20 +59,20 @@ import type { Implementation, MultiFn } from "./api.js";
  * @param impls - implementations
  */
 export const implementations = (
-    id: PropertyKey,
-    rels: IObjectOf<MultiFn<any>[]>,
-    ...impls: (MultiFn<any> | Implementation<any>)[]
+	id: PropertyKey,
+	rels: IObjectOf<MultiFn<any>[]>,
+	...impls: (MultiFn<any> | Implementation<any>)[]
 ) => {
-    impls.length & 1 &&
-        illegalArgs("expected an even number of implementation items");
-    if (rels) {
-        for (let parent in rels) {
-            for (let fn of rels[parent]) {
-                fn.isa(id, parent);
-            }
-        }
-    }
-    for (let i = 0; i < impls.length; i += 2) {
-        (<MultiFn<any>>impls[i]).add(id, impls[i + 1]);
-    }
+	impls.length & 1 &&
+		illegalArgs("expected an even number of implementation items");
+	if (rels) {
+		for (let parent in rels) {
+			for (let fn of rels[parent]) {
+				fn.isa(id, parent);
+			}
+		}
+	}
+	for (let i = 0; i < impls.length; i += 2) {
+		(<MultiFn<any>>impls[i]).add(id, impls[i + 1]);
+	}
 };

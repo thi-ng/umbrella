@@ -18,13 +18,13 @@ import { __dispatch } from "./internal/dispatch.js";
  * @param shape
  */
 export const volume: MultiFn1<IShape, number> = defmulti<any, number>(
-    __dispatch,
-    {},
-    {
-        [DEFAULT]: () => 0,
+	__dispatch,
+	{},
+	{
+		[DEFAULT]: () => 0,
 
-        aabb: ({ size }: AABB) => size[0] * size[1] * size[2],
+		aabb: ({ size }: AABB) => size[0] * size[1] * size[2],
 
-        sphere: ($: Sphere) => (4 / 3) * PI * $.r ** 3,
-    }
+		sphere: ($: Sphere) => (4 / 3) * PI * $.r ** 3,
+	}
 );

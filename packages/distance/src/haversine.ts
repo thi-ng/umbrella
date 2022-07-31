@@ -1,7 +1,7 @@
 import type { ReadonlyVec } from "@thi.ng/vectors";
 import {
-    distHaversineLatLon,
-    distHaversineLonLat,
+	distHaversineLatLon,
+	distHaversineLonLat,
 } from "@thi.ng/vectors/dist-haversine";
 import { Eucledian } from "./eucledian.js";
 

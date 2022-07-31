@@ -9,11 +9,11 @@ import { xfJoin } from "./join.js";
  * @param radix -
  */
 export const xfInt =
-    (radix = 10): ScopeTransform<string> =>
-    (scope) => {
-        scope!.result = parseInt(xfJoin(scope)!.result, radix);
-        return scope;
-    };
+	(radix = 10): ScopeTransform<string> =>
+	(scope) => {
+		scope!.result = parseInt(xfJoin(scope)!.result, radix);
+		return scope;
+	};
 
 /**
  * Syntax sugar for `xform(parser, xfInt(10))`
@@ -36,8 +36,8 @@ export const hexInt = (parser: Parser<string>) => xform(parser, xfInt(16));
  * @param scope -
  */
 export const xfFloat: ScopeTransform<string> = (scope) => {
-    scope!.result = parseFloat(xfJoin(scope)!.result);
-    return scope;
+	scope!.result = parseFloat(xfJoin(scope)!.result);
+	return scope;
 };
 
 /**

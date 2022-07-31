@@ -19,25 +19,25 @@ import { abs, cos, length, sin } from "@thi.ng/shader-ast/builtin/math";
  * - https://iquilezles.org/articles/distfunctions2d/
  */
 export const sdfArc2 = defn(
-    "float",
-    "sdfArc",
-    ["vec2", "float", "float", "float"],
-    (p, apert, ra, rb) => {
-        let q: Vec2Sym;
-        let sc: Vec2Sym;
-        return [
-            (q = sym(vec2(abs($x(p)), $y(p)))),
-            (sc = sym(vec2(sin(apert), cos(apert)))),
-            ret(
-                sub(
-                    ternary(
-                        gt(mul($y(sc), $x(q)), mul($x(sc), $y(q))),
-                        length(madd(sc, neg(ra), q)),
-                        abs(sub(length(q), ra))
-                    ),
-                    rb
-                )
-            ),
-        ];
-    }
+	"float",
+	"sdfArc",
+	["vec2", "float", "float", "float"],
+	(p, apert, ra, rb) => {
+		let q: Vec2Sym;
+		let sc: Vec2Sym;
+		return [
+			(q = sym(vec2(abs($x(p)), $y(p)))),
+			(sc = sym(vec2(sin(apert), cos(apert)))),
+			ret(
+				sub(
+					ternary(
+						gt(mul($y(sc), $x(q)), mul($x(sc), $y(q))),
+						length(madd(sc, neg(ra), q)),
+						abs(sub(length(q), ra))
+					),
+					rb
+				)
+			),
+		];
+	}
 );

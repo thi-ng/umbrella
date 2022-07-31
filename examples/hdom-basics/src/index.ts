@@ -7,14 +7,14 @@ const greeter = (_: any, name: string) => ["h1.title", "hello ", name];
 
 // component w/ local state
 const counter = (i = 0) => {
-    return () => ["button", { onclick: () => i++ }, `clicks: ${i}`];
+	return () => ["button", { onclick: () => i++ }, `clicks: ${i}`];
 };
 
 const app = () => {
-    // initialization steps
-    // ...
-    // root component is just a static array
-    return ["div#app", [greeter, "world"], counter(), counter(100)];
+	// initialization steps
+	// ...
+	// root component is just a static array
+	return ["div#app", [greeter, "world"], counter(), counter(100)];
 };
 
 // start update loop (browser only, see diagram below)

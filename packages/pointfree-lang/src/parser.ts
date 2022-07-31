@@ -3,14 +3,14 @@
 // Stubs for auto-generated parser module (using pegjs 0.10.+)
 // To rebuild the parser run either: `yarn build` or `yarn peg`
 export class SyntaxError {
-    message!: string;
-    expected!: string;
-    found: any;
-    location: any;
+	message!: string;
+	expected!: string;
+	found: any;
+	location: any;
 }
 
 export function parse(input: string, options?: any): any {
-    input;
-    options;
-    return null;
+	input;
+	options;
+	return null;
 }

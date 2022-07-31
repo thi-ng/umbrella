@@ -4,6 +4,6 @@ import { defHofOp } from "./compile/emit.js";
 import { FN } from "./compile/templates.js";
 
 export const [radians, radians2, radians3, radians4] = defHofOp<
-    MultiVecOpV,
-    VecOpV
+	MultiVecOpV,
+	VecOpV
 >(rad, FN("op"));

@@ -5,30 +5,30 @@ import { set } from "@thi.ng/vectors/set";
 import { __copyAttribs } from "../internal/copy.js";
 
 export class Ray implements IHiccupShape {
-    constructor(public pos: Vec, public dir: Vec, public attribs?: Attribs) {}
+	constructor(public pos: Vec, public dir: Vec, public attribs?: Attribs) {}
 
-    get type() {
-        return "ray";
-    }
+	get type() {
+		return "ray";
+	}
 
-    copy(): Ray {
-        return new Ray(
-            set([], this.pos),
-            set([], this.dir),
-            __copyAttribs(this)
-        );
-    }
+	copy(): Ray {
+		return new Ray(
+			set([], this.pos),
+			set([], this.dir),
+			__copyAttribs(this)
+		);
+	}
 
-    withAttribs(attribs: Attribs): Ray {
-        return new Ray(this.pos, this.dir, attribs);
-    }
+	withAttribs(attribs: Attribs): Ray {
+		return new Ray(this.pos, this.dir, attribs);
+	}
 
-    toHiccup() {
-        return [
-            "line",
-            this.attribs,
-            this.pos,
-            maddN2([], this.dir, 1e6, this.pos),
-        ];
-    }
+	toHiccup() {
+		return [
+			"line",
+			this.attribs,
+			this.pos,
+			maddN2([], this.dir, 1e6, this.pos),
+		];
+	}
 }

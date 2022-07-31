@@ -8,7 +8,7 @@ import type { Stack, StackContext, StackEnv } from "./api.js";
  * @param env - initial environment
  */
 export const ctx = (stack: Stack = [], env: StackEnv = {}): StackContext => [
-    stack,
-    [],
-    env,
+	stack,
+	[],
+	env,
 ];

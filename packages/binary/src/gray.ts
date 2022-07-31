@@ -17,10 +17,10 @@ export const encodeGray32: FnN = (x) => (x ^ (x >>> 1)) >>> 0;
  * {@link https://en.wikipedia.org/wiki/Gray_code}
  */
 export const decodeGray32: FnN = (x) => {
-    x = x ^ (x >>> 16);
-    x = x ^ (x >>> 8);
-    x = x ^ (x >>> 4);
-    x = x ^ (x >>> 2);
-    x = x ^ (x >>> 1);
-    return x >>> 0;
+	x = x ^ (x >>> 16);
+	x = x ^ (x >>> 8);
+	x = x ^ (x >>> 4);
+	x = x ^ (x >>> 2);
+	x = x ^ (x >>> 1);
+	return x >>> 0;
 };

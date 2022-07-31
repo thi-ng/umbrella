@@ -30,20 +30,20 @@ import { repeat } from "./repeat.js";
  * @param numRight -
  */
 export function* extendSides<T>(
-    src: Iterable<T>,
-    numLeft = 1,
-    numRight = numLeft
+	src: Iterable<T>,
+	numLeft = 1,
+	numRight = numLeft
 ): IterableIterator<T> {
-    let prev: T | typeof SEMAPHORE = SEMAPHORE;
-    for (let x of src) {
-        if (numLeft > 0 && prev === SEMAPHORE) {
-            yield* repeat(x, numLeft);
-            numLeft = 0;
-        }
-        yield x;
-        prev = x;
-    }
-    if (numRight > 0 && prev !== SEMAPHORE) {
-        yield* repeat(prev, numRight);
-    }
+	let prev: T | typeof SEMAPHORE = SEMAPHORE;
+	for (let x of src) {
+		if (numLeft > 0 && prev === SEMAPHORE) {
+			yield* repeat(x, numLeft);
+			numLeft = 0;
+		}
+		yield x;
+		prev = x;
+	}
+	if (numRight > 0 && prev !== SEMAPHORE) {
+		yield* repeat(prev, numRight);
+	}
 }

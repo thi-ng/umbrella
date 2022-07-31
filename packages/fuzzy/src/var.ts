@@ -16,15 +16,15 @@ import type { LVar, LVarDomain } from "./api.js";
  * });
  * ```
  *
- * @param domain - 
- * @param terms - 
+ * @param domain -
+ * @param terms -
  */
 export const variable = <K extends string>(
-    domain: LVarDomain,
-    terms: LVar<K>["terms"]
+	domain: LVarDomain,
+	terms: LVar<K>["terms"]
 ): LVar<K> => ({
-    domain,
-    terms,
+	domain,
+	terms,
 });
 
 /**
@@ -47,25 +47,25 @@ export const variable = <K extends string>(
  * // "warm"
  * ```
  *
- * @param var - 
- * @param x - 
- * @param threshold - 
+ * @param var -
+ * @param x -
+ * @param threshold -
  */
 export const classify = <K extends string>(
-    { terms }: LVar<K>,
-    x: number,
-    threshold = 0.5
+	{ terms }: LVar<K>,
+	x: number,
+	threshold = 0.5
 ) => {
-    let max = threshold;
-    let maxID: K | undefined;
-    for (let id in terms) {
-        const t = terms[id](x);
-        if (t >= max) {
-            max = t;
-            maxID = id;
-        }
-    }
-    return maxID;
+	let max = threshold;
+	let maxID: K | undefined;
+	for (let id in terms) {
+		const t = terms[id](x);
+		if (t >= max) {
+			max = t;
+			maxID = id;
+		}
+	}
+	return maxID;
 };
 
 /**
@@ -86,13 +86,13 @@ export const classify = <K extends string>(
  * // { freezing: 0, cold: 0, warm: 0.4, hot: 0.01798620996209156 }
  * ```
  *
- * @param var - 
- * @param x - 
+ * @param var -
+ * @param x -
  */
 export const evaluate = <K extends string>({ terms }: LVar<K>, x: number) => {
-    const res = <Record<K, number>>{};
-    for (let id in terms) {
-        res[id] = terms[id](x);
-    }
-    return res;
+	const res = <Record<K, number>>{};
+	for (let id in terms) {
+		res[id] = terms[id](x);
+	}
+	return res;
 };

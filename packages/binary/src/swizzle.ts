@@ -12,7 +12,7 @@ import type { Lane16, Lane2, Lane4, Lane8 } from "./api.js";
  * @param lane - lane ID enum
  */
 export const lane16 = (x: number, lane: Lane16) =>
-    (x >>> ((1 - lane) << 4)) & 0xffff;
+	(x >>> ((1 - lane) << 4)) & 0xffff;
 
 /**
  * Extracts 8-bit lane from given 32bit uint and returns as unsigned
@@ -27,7 +27,7 @@ export const lane16 = (x: number, lane: Lane16) =>
  * @param lane - lane ID enum
  */
 export const lane8 = (x: number, lane: Lane8) =>
-    (x >>> ((3 - lane) << 3)) & 0xff;
+	(x >>> ((3 - lane) << 3)) & 0xff;
 
 /**
  * Extracts 4-bit lane from given 32bit uint and returns as unsigned
@@ -46,13 +46,13 @@ export const lane8 = (x: number, lane: Lane8) =>
  * @param lane - lane ID enum
  */
 export const lane4 = (x: number, lane: Lane4) =>
-    (x >>> ((7 - lane) << 2)) & 0xf;
+	(x >>> ((7 - lane) << 2)) & 0xf;
 
 export const lane2 = (x: number, lane: Lane2) =>
-    (x >>> ((15 - lane) << 1)) & 0x3;
+	(x >>> ((15 - lane) << 1)) & 0x3;
 
 export const setLane16 = (x: number, y: number, lane: Lane16) =>
-    lane ? mux(x, y, 0xffff) : mux(x, y << 16, 0xffff0000);
+	lane ? mux(x, y, 0xffff) : mux(x, y << 16, 0xffff0000);
 
 /**
  * Sets 8-bit `lane` with value`y` in `x`.
@@ -64,8 +64,8 @@ export const setLane16 = (x: number, y: number, lane: Lane16) =>
  * @param lane - lane ID enum
  */
 export const setLane8 = (x: number, y: number, lane: Lane8) => {
-    const l = (3 - lane) << 3;
-    return ((~(0xff << l) & x) | ((y & 0xff) << l)) >>> 0;
+	const l = (3 - lane) << 3;
+	return ((~(0xff << l) & x) | ((y & 0xff) << l)) >>> 0;
 };
 
 /**
@@ -78,8 +78,8 @@ export const setLane8 = (x: number, y: number, lane: Lane8) => {
  * @param lane - lane ID enum
  */
 export const setLane4 = (x: number, y: number, lane: Lane4) => {
-    const l = (7 - lane) << 2;
-    return ((~(0xf << l) & x) | ((y & 0xf) << l)) >>> 0;
+	const l = (7 - lane) << 2;
+	return ((~(0xf << l) & x) | ((y & 0xf) << l)) >>> 0;
 };
 
 /**
@@ -92,8 +92,8 @@ export const setLane4 = (x: number, y: number, lane: Lane4) => {
  * @param lane - lane ID enum
  */
 export const setLane2 = (x: number, y: number, lane: Lane2) => {
-    const l = (15 - lane) << 1;
-    return ((~(0x3 << l) & x) | ((y & 0x3) << l)) >>> 0;
+	const l = (15 - lane) << 1;
+	return ((~(0x3 << l) & x) | ((y & 0x3) << l)) >>> 0;
 };
 
 /**
@@ -113,11 +113,11 @@ export const setLane2 = (x: number, y: number, lane: Lane2) => {
  * @param d - lane ID enum
  */
 export const swizzle8 = (x: number, a: Lane8, b: Lane8, c: Lane8, d: Lane8) =>
-    ((lane8(x, a) << 24) |
-        (lane8(x, b) << 16) |
-        (lane8(x, c) << 8) |
-        lane8(x, d)) >>>
-    0;
+	((lane8(x, a) << 24) |
+		(lane8(x, b) << 16) |
+		(lane8(x, c) << 8) |
+		lane8(x, d)) >>>
+	0;
 
 /**
  *
@@ -132,25 +132,25 @@ export const swizzle8 = (x: number, a: Lane8, b: Lane8, c: Lane8, d: Lane8) =>
  * @param h - lane ID enum
  */
 export const swizzle4 = (
-    x: number,
-    a: Lane4,
-    b: Lane4,
-    c: Lane4,
-    d: Lane4,
-    e: Lane4,
-    f: Lane4,
-    g: Lane4,
-    h: Lane4
+	x: number,
+	a: Lane4,
+	b: Lane4,
+	c: Lane4,
+	d: Lane4,
+	e: Lane4,
+	f: Lane4,
+	g: Lane4,
+	h: Lane4
 ) =>
-    ((lane4(x, a) << 28) |
-        (lane4(x, b) << 24) |
-        (lane4(x, c) << 20) |
-        (lane4(x, d) << 16) |
-        (lane4(x, e) << 12) |
-        (lane4(x, f) << 8) |
-        (lane4(x, g) << 4) |
-        lane4(x, h)) >>>
-    0;
+	((lane4(x, a) << 28) |
+		(lane4(x, b) << 24) |
+		(lane4(x, c) << 20) |
+		(lane4(x, d) << 16) |
+		(lane4(x, e) << 12) |
+		(lane4(x, f) << 8) |
+		(lane4(x, g) << 4) |
+		lane4(x, h)) >>>
+	0;
 
 /**
  * Merges bits of `a` and `b`, selecting bits from `b` where `mask` bits
@@ -165,9 +165,9 @@ export const swizzle4 = (
  * // 0x12345555
  * ```
  *
- * @param a - 
- * @param b - 
- * @param mask - 
+ * @param a -
+ * @param b -
+ * @param mask -
  */
 export const mux: FnN3 = (a, b, mask) => (~mask & a) | (mask & b);
 
@@ -177,7 +177,7 @@ export const mux: FnN3 = (a, b, mask) => (~mask & a) | (mask & b);
  * @param x -
  */
 export const flip8: FnN = (x) =>
-    ((x >>> 24) | ((x >> 8) & 0xff00) | ((x & 0xff00) << 8) | (x << 24)) >>> 0;
+	((x >>> 24) | ((x >> 8) & 0xff00) | ((x & 0xff00) << 8) | (x << 24)) >>> 0;
 
 /**
  * Swaps the highest & lowest 16 bits in `x`.
@@ -188,7 +188,7 @@ export const flip8: FnN = (x) =>
  * // 0x56781234
  * ```
  *
- * @param x - 
+ * @param x -
  */
 export const flip16: FnN = (x) => mux(x << 16, x >>> 16, 0xffff);
 
@@ -200,15 +200,15 @@ export const flipBytes = flip8;
 /**
  * Swaps bytes lanes 0 & 2 (i.e. bits 24-31 with bits 8-15)
  *
- * @param x - 
+ * @param x -
  */
 export const swapLane02: FnN = (x) =>
-    ((x & 0xff00) << 16) | ((x >>> 16) & 0xff00) | (x & 0x00ff00ff);
+	((x & 0xff00) << 16) | ((x >>> 16) & 0xff00) | (x & 0x00ff00ff);
 
 /**
  * Swaps bytes lanes 1 & 3 (i.e. bits 16-23 with bits 0-7)
  *
- * @param x - 
+ * @param x -
  */
 export const swapLane13: FnN = (x) =>
-    ((x & 0xff) << 16) | ((x >> 16) & 0xff) | (x & 0xff00ff00);
+	((x & 0xff) << 16) | ((x >> 16) & 0xff) | (x & 0xff00ff00);

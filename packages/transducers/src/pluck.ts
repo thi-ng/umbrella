@@ -17,11 +17,11 @@ import { map } from "./map.js";
  */
 export function pluck<A, B>(key: PropertyKey): Transducer<A, B>;
 export function pluck<A, B>(
-    key: PropertyKey,
-    src: Iterable<A>
+	key: PropertyKey,
+	src: Iterable<A>
 ): IterableIterator<B>;
 export function pluck<A>(key: PropertyKey, src?: Iterable<A>): any {
-    return isIterable(src)
-        ? iterator1(pluck(key), src)
-        : map((x: any) => x[key]);
+	return isIterable(src)
+		? iterator1(pluck(key), src)
+		: map((x: any) => x[key]);
 }

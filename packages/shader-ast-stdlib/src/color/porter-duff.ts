@@ -7,9 +7,9 @@ import { $w } from "@thi.ng/shader-ast/ast/swizzle";
 import { clamp01 } from "../math/clamp.js";
 
 const coeff = (
-    f: Fn2<FloatTerm, FloatTerm, FloatTerm>,
-    a: Vec4Sym,
-    b: Vec4Sym
+	f: Fn2<FloatTerm, FloatTerm, FloatTerm>,
+	a: Vec4Sym,
+	b: Vec4Sym
 ) => (f === ZERO ? FLOAT0 : f === ONE ? a : mul(a, f($w(a), $w(b))));
 
 /**
@@ -31,23 +31,23 @@ const coeff = (
  * @param fb - dest coeff fn
  */
 export const porterDuff = (
-    name: string,
-    fa: Fn2<FloatTerm, FloatTerm, FloatTerm>,
-    fb: Fn2<FloatTerm, FloatTerm, FloatTerm>
+	name: string,
+	fa: Fn2<FloatTerm, FloatTerm, FloatTerm>,
+	fb: Fn2<FloatTerm, FloatTerm, FloatTerm>
 ) =>
-    defn("vec4", name, ["vec4", "vec4"], (a, b) => {
-        const src = coeff(fa, a, b);
-        const dest = coeff(fb, a, b);
-        const srcZero = src === FLOAT0;
-        const destZero = dest === FLOAT0;
-        return [
-            ret(
-                srcZero && destZero
-                    ? vec4()
-                    : clamp01(srcZero ? dest : destZero ? src : add(src, dest))
-            ),
-        ];
-    });
+	defn("vec4", name, ["vec4", "vec4"], (a, b) => {
+		const src = coeff(fa, a, b);
+		const dest = coeff(fb, a, b);
+		const srcZero = src === FLOAT0;
+		const destZero = dest === FLOAT0;
+		return [
+			ret(
+				srcZero && destZero
+					? vec4()
+					: clamp01(srcZero ? dest : destZero ? src : add(src, dest))
+			),
+		];
+	});
 
 // coefficient functions
 

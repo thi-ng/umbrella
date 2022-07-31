@@ -27,27 +27,27 @@ import { mulN2, mulN3 } from "@thi.ng/vectors/muln";
  * @param vmax - max result (pre-initialized to `-∞`)
  */
 export const bounds = (
-    pts: ReadonlyArray<Vec>,
-    vmin: Vec,
-    vmax: Vec
+	pts: ReadonlyArray<Vec>,
+	vmin: Vec,
+	vmax: Vec
 ): VecPair => {
-    for (let i = pts.length; i-- > 0; ) {
-        const p = pts[i];
-        min(null, vmin, p);
-        max(null, vmax, p);
-    }
-    return [vmin, vmax];
+	for (let i = pts.length; i-- > 0; ) {
+		const p = pts[i];
+		min(null, vmin, p);
+		max(null, vmax, p);
+	}
+	return [vmin, vmax];
 };
 
 export const bounds2 = (pts: ReadonlyArray<Vec>) =>
-    bounds(pts, [Infinity, Infinity], [-Infinity, -Infinity]);
+	bounds(pts, [Infinity, Infinity], [-Infinity, -Infinity]);
 
 export const bounds3 = (pts: ReadonlyArray<Vec>) =>
-    bounds(
-        pts,
-        [Infinity, Infinity, Infinity],
-        [-Infinity, -Infinity, -Infinity]
-    );
+	bounds(
+		pts,
+		[Infinity, Infinity, Infinity],
+		[-Infinity, -Infinity, -Infinity]
+	);
 
 /**
  * Calculates a near-optimal bounding circle for a set of points in 2D. Returns
@@ -63,36 +63,36 @@ export const bounds3 = (pts: ReadonlyArray<Vec>) =>
  * @param pts
  */
 export const boundingCircle = (pts: ReadonlyVec[]): [Vec, number] => {
-    let xmin = MAX2;
-    let xmax = MIN2;
-    let ymin = MAX2;
-    let ymax = MIN2;
-    for (let i = pts.length; i-- > 0; ) {
-        const p = pts[i];
-        if (p[0] < xmin[0]) xmin = p;
-        else if (p[0] > xmax[0]) xmax = p;
-        if (p[1] < ymin[1]) ymin = p;
-        else if (p[1] > ymax[1]) ymax = p;
-    }
-    const xspan = distSq2(xmin, xmax);
-    const yspan = distSq2(ymin, ymax);
-    const span = <[ReadonlyVec, ReadonlyVec]>(
-        (xspan > yspan ? [xmin, xmax] : [ymin, ymax])
-    );
-    let centroid = addmN2([], ...span, 0.5);
-    let rsq = distSq2(centroid, span[0]);
-    let r = Math.sqrt(rsq);
-    for (let i = pts.length; i-- > 0; ) {
-        const p = pts[i];
-        const dsq = distSq2(centroid, p);
-        if (dsq > rsq) {
-            const d = Math.sqrt(dsq);
-            r = (r + d) / 2;
-            rsq = r * r;
-            mulN2(null, addW2(null, centroid, p, r, d - r), 1 / d);
-        }
-    }
-    return [centroid, r];
+	let xmin = MAX2;
+	let xmax = MIN2;
+	let ymin = MAX2;
+	let ymax = MIN2;
+	for (let i = pts.length; i-- > 0; ) {
+		const p = pts[i];
+		if (p[0] < xmin[0]) xmin = p;
+		else if (p[0] > xmax[0]) xmax = p;
+		if (p[1] < ymin[1]) ymin = p;
+		else if (p[1] > ymax[1]) ymax = p;
+	}
+	const xspan = distSq2(xmin, xmax);
+	const yspan = distSq2(ymin, ymax);
+	const span = <[ReadonlyVec, ReadonlyVec]>(
+		(xspan > yspan ? [xmin, xmax] : [ymin, ymax])
+	);
+	let centroid = addmN2([], ...span, 0.5);
+	let rsq = distSq2(centroid, span[0]);
+	let r = Math.sqrt(rsq);
+	for (let i = pts.length; i-- > 0; ) {
+		const p = pts[i];
+		const dsq = distSq2(centroid, p);
+		if (dsq > rsq) {
+			const d = Math.sqrt(dsq);
+			r = (r + d) / 2;
+			rsq = r * r;
+			mulN2(null, addW2(null, centroid, p, r, d - r), 1 / d);
+		}
+	}
+	return [centroid, r];
 };
 
 /**
@@ -109,38 +109,38 @@ export const boundingCircle = (pts: ReadonlyVec[]): [Vec, number] => {
  * @param pts
  */
 export const boundingSphere = (pts: ReadonlyVec[]): [Vec, number] => {
-    let xmin = MAX2;
-    let xmax = MIN2;
-    let ymin = MAX2;
-    let ymax = MIN2;
-    let zmin = MAX2;
-    let zmax = MIN2;
-    for (let i = pts.length; i-- > 0; ) {
-        const p = pts[i];
-        if (p[0] < xmin[0]) xmin = p;
-        else if (p[0] > xmax[0]) xmax = p;
-        if (p[1] < ymin[1]) ymin = p;
-        else if (p[1] > ymax[1]) ymax = p;
-        if (p[2] < zmin[1]) zmin = p;
-        else if (p[2] > zmax[1]) zmax = p;
-    }
-    const span = <[ReadonlyVec, ReadonlyVec]>[
-        [xmin, xmax],
-        [ymin, ymax],
-        [zmin, zmax],
-    ][max3id(distSq3(xmin, xmax), distSq3(ymin, ymax), distSq3(zmin, zmax))];
-    let centroid = addmN3([], ...span, 0.5);
-    let rsq = distSq3(centroid, span[0]);
-    let r = Math.sqrt(rsq);
-    for (let i = pts.length; i-- > 0; ) {
-        const p = pts[i];
-        const dsq = distSq3(centroid, p);
-        if (dsq > rsq) {
-            const d = Math.sqrt(dsq);
-            r = (r + d) / 2;
-            rsq = r * r;
-            mulN3(null, addW2(null, centroid, p, r, d - r), 1 / d);
-        }
-    }
-    return [centroid, r];
+	let xmin = MAX2;
+	let xmax = MIN2;
+	let ymin = MAX2;
+	let ymax = MIN2;
+	let zmin = MAX2;
+	let zmax = MIN2;
+	for (let i = pts.length; i-- > 0; ) {
+		const p = pts[i];
+		if (p[0] < xmin[0]) xmin = p;
+		else if (p[0] > xmax[0]) xmax = p;
+		if (p[1] < ymin[1]) ymin = p;
+		else if (p[1] > ymax[1]) ymax = p;
+		if (p[2] < zmin[1]) zmin = p;
+		else if (p[2] > zmax[1]) zmax = p;
+	}
+	const span = <[ReadonlyVec, ReadonlyVec]>[
+		[xmin, xmax],
+		[ymin, ymax],
+		[zmin, zmax],
+	][max3id(distSq3(xmin, xmax), distSq3(ymin, ymax), distSq3(zmin, zmax))];
+	let centroid = addmN3([], ...span, 0.5);
+	let rsq = distSq3(centroid, span[0]);
+	let r = Math.sqrt(rsq);
+	for (let i = pts.length; i-- > 0; ) {
+		const p = pts[i];
+		const dsq = distSq3(centroid, p);
+		if (dsq > rsq) {
+			const d = Math.sqrt(dsq);
+			r = (r + d) / 2;
+			rsq = r * r;
+			mulN3(null, addW2(null, centroid, p, r, d - r), 1 / d);
+		}
+	}
+	return [centroid, r];
 };

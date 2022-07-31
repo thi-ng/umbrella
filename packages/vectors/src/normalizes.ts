@@ -13,22 +13,22 @@ import { setS, setS2, setS3, setS4 } from "./sets.js";
  * @param n -
  */
 export const normalizeS: VecOpSGVO<number> = (
-    out,
-    v,
-    num,
-    n = 1,
-    io = 0,
-    ia = 0,
-    so = 1,
-    sa = 1
+	out,
+	v,
+	num,
+	n = 1,
+	io = 0,
+	ia = 0,
+	so = 1,
+	sa = 1
 ) => {
-    !out && (out = v);
-    const m = magS(v, num, ia, sa);
-    return m >= EPS
-        ? mulNS(out, v, n / m, num, io, ia, so, sa)
-        : out !== v
-        ? setS(out, v, num, io, ia, so, sa)
-        : out;
+	!out && (out = v);
+	const m = magS(v, num, ia, sa);
+	return m >= EPS
+		? mulNS(out, v, n / m, num, io, ia, so, sa)
+		: out !== v
+		? setS(out, v, num, io, ia, so, sa)
+		: out;
 };
 
 /**
@@ -40,21 +40,21 @@ export const normalizeS: VecOpSGVO<number> = (
  * @param n -
  */
 export const normalizeS2: VecOpSVO<number> = (
-    out,
-    v,
-    n = 1,
-    io = 0,
-    ia = 0,
-    so = 1,
-    sa = 1
+	out,
+	v,
+	n = 1,
+	io = 0,
+	ia = 0,
+	so = 1,
+	sa = 1
 ) => {
-    !out && (out = v);
-    const m = magS2(v, ia, sa);
-    return m >= EPS
-        ? mulNS2(out, v, n / m, io, ia, so, sa)
-        : out !== v
-        ? setS2(out, v, io, ia, so, sa)
-        : out;
+	!out && (out = v);
+	const m = magS2(v, ia, sa);
+	return m >= EPS
+		? mulNS2(out, v, n / m, io, ia, so, sa)
+		: out !== v
+		? setS2(out, v, io, ia, so, sa)
+		: out;
 };
 
 /**
@@ -66,21 +66,21 @@ export const normalizeS2: VecOpSVO<number> = (
  * @param n -
  */
 export const normalizeS3: VecOpSVO<number> = (
-    out,
-    v,
-    n = 1,
-    io = 0,
-    ia = 0,
-    so = 1,
-    sa = 1
+	out,
+	v,
+	n = 1,
+	io = 0,
+	ia = 0,
+	so = 1,
+	sa = 1
 ) => {
-    !out && (out = v);
-    const m = magS3(v, ia, sa);
-    return m >= EPS
-        ? mulNS3(out, v, n / m, io, ia, so, sa)
-        : out !== v
-        ? setS3(out, v, io, ia, so, sa)
-        : out;
+	!out && (out = v);
+	const m = magS3(v, ia, sa);
+	return m >= EPS
+		? mulNS3(out, v, n / m, io, ia, so, sa)
+		: out !== v
+		? setS3(out, v, io, ia, so, sa)
+		: out;
 };
 
 /**
@@ -92,19 +92,19 @@ export const normalizeS3: VecOpSVO<number> = (
  * @param n -
  */
 export const normalizeS4: VecOpSVO<number> = (
-    out,
-    v,
-    n = 1,
-    io = 0,
-    ia = 0,
-    so = 1,
-    sa = 1
+	out,
+	v,
+	n = 1,
+	io = 0,
+	ia = 0,
+	so = 1,
+	sa = 1
 ) => {
-    !out && (out = v);
-    const m = magS4(v, ia, sa);
-    return m >= EPS
-        ? mulNS4(out, v, n / m, io, ia, so, sa)
-        : out !== v
-        ? setS4(out, v, io, ia, so, sa)
-        : out;
+	!out && (out = v);
+	const m = magS4(v, ia, sa);
+	return m >= EPS
+		? mulNS4(out, v, n / m, io, ia, so, sa)
+		: out !== v
+		? setS4(out, v, io, ia, so, sa)
+		: out;
 };

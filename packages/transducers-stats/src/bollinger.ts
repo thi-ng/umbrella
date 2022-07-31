@@ -9,10 +9,10 @@ import { mse } from "./mse.js";
 import { sma } from "./sma.js";
 
 export interface BollingerBand {
-    min: number;
-    max: number;
-    mean: number;
-    pb: number;
+	min: number;
+	max: number;
+	mean: number;
+	pb: number;
 }
 
 /**
@@ -28,37 +28,37 @@ export interface BollingerBand {
  * @param src -
  */
 export function bollinger(
-    period?: number,
-    sd?: number
+	period?: number,
+	sd?: number
 ): Transducer<number, BollingerBand>;
 export function bollinger(
-    src: Iterable<number>
+	src: Iterable<number>
 ): IterableIterator<BollingerBand>;
 export function bollinger(
-    period: number,
-    src: Iterable<number>
+	period: number,
+	src: Iterable<number>
 ): IterableIterator<BollingerBand>;
 export function bollinger(
-    period: number,
-    sd: number,
-    src: Iterable<number>
+	period: number,
+	sd: number,
+	src: Iterable<number>
 ): IterableIterator<BollingerBand>;
 export function bollinger(...args: any[]): any {
-    const iter = __iter(bollinger, args);
-    if (iter) {
-        return iter;
-    }
-    const period: number = args[0] || 20;
-    const sd: number = args[1] || 2;
-    return comp(
-        multiplex(partition(period, 1), sma(period)),
-        drop(period - 1),
-        map(([window, mean]: [number[], number]) => {
-            const std = Math.sqrt(mse(window, mean) / period) * sd;
-            const min = mean - std;
-            const max = mean + std;
-            const pb = (window[period - 1] - min) / (max - min);
-            return { min, max, mean, pb };
-        })
-    );
+	const iter = __iter(bollinger, args);
+	if (iter) {
+		return iter;
+	}
+	const period: number = args[0] || 20;
+	const sd: number = args[1] || 2;
+	return comp(
+		multiplex(partition(period, 1), sma(period)),
+		drop(period - 1),
+		map(([window, mean]: [number[], number]) => {
+			const std = Math.sqrt(mse(window, mean) / period) * sd;
+			const min = mean - std;
+			const max = mean + std;
+			const pb = (window[period - 1] - min) / (max - min);
+			return { min, max, mean, pb };
+		})
+	);
 }

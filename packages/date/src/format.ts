@@ -7,140 +7,140 @@ import { LOCALE } from "./i18n.js";
 import { weekInYear } from "./units.js";
 
 export const FORMATTERS: Record<string, FormatFn> = {
-    /**
-     * Full year (4 digits)
-     */
-    yyyy: (d) => Z4(d.getFullYear()),
-    /**
-     * Short year (2 digits, e.g. `2020 % 100` => 20)
-     */
-    yy: (d) => Z2(d.getFullYear() % 100),
-    /**
-     * Month name, using current {@link LOCALE} (e.g. `Feb`)
-     */
-    MMM: (d) => LOCALE.months[d.getMonth()],
-    /**
-     * Zero-padded 2-digit month
-     */
-    MM: (d) => Z2(d.getMonth() + 1),
-    /**
-     * Unpadded month
-     */
-    M: (d) => String(d.getMonth() + 1),
-    /**
-     * Zero-padded 2-digit day of month
-     */
-    dd: (d) => Z2(d.getDate()),
-    /**
-     * Unpadded day of month
-     */
-    d: (d) => String(d.getDate()),
-    /**
-     * Weekday name, using current {@link LOCALE} (e.g. `Mon`)
-     */
-    E: (d) => LOCALE.days[d.getDay()],
-    /**
-     * Zero-padded 2-digit ISO week number.
-     */
-    ww: (d) => Z2(FORMATTERS.w(d, false)),
-    /**
-     * Unpadded ISO week number.
-     */
-    w: (d) => String(weekInYear(d.getFullYear(), d.getMonth(), d.getDate())),
-    /**
-     * Unpadded quarter:
-     *
-     * - 1 = Jan - Mar
-     * - 2 = Apr - Jun
-     * - 3 = Jul - Sep
-     * - 4 = Oct - Dec
-     */
-    q: (d) => String(((d.getMonth() / 3) | 0) + 1),
-    /**
-     * Zero-padded 2-digit hour of day (0-23)
-     */
-    HH: (d) => Z2(d.getHours()),
-    /**
-     * Unpadded our of day (0-23)
-     */
-    H: (d) => String(d.getHours()),
-    /**
-     * Zero-padded hour of day (1-12)
-     */
-    hh: (d) => {
-        const h = d.getHours() % 12;
-        return Z2(h > 0 ? h : 12);
-    },
-    /**
-     * Unpadded hour of day (1-12)
-     */
-    h: (d) => {
-        const h = d.getHours() % 12;
-        return String(h > 0 ? h : 12);
-    },
-    /**
-     * Zero-padded 2-digit minute of hour
-     */
-    mm: (d) => Z2(d.getMinutes()),
-    /**
-     * Unpadded minute of hour
-     */
-    m: (d) => String(d.getMinutes()),
-    /**
-     * Zero-padded 2-digit second of minute
-     */
-    ss: (d) => Z2(d.getSeconds()),
-    /**
-     * Unpadded second of minute
-     */
-    s: (d) => String(d.getSeconds()),
-    /**
-     * Zero-padded 3-digit millisecond of second
-     */
-    SS: (d) => Z3(d.getMilliseconds()),
-    /**
-     * Unpadded millisecond of second
-     */
-    S: (d) => String(d.getMilliseconds()),
-    /**
-     * 12-hour AM/PM marker (uppercase)
-     */
-    A: (d) => String(d.getHours() < 12 ? "AM" : "PM"),
-    /**
-     * 12-hour am/pm marker (lowercase)
-     */
-    a: (d) => String(d.getHours() < 12 ? "am" : "pm"),
-    /**
-     * Timezone offset in signed `HH:mm` format
-     */
-    Z: (d, utc = false) => {
-        const z = utc ? 0 : d.getTimezoneOffset();
-        const za = Math.abs(z);
-        return `${z < 0 ? "+" : "-"}${Z2((za / 60) | 0)}:${Z2(za % 60)}`;
-    },
-    /**
-     * Returns literal `"Z"` iff timezone offset is zero (UTC), else the same as
-     * `Z` formatter.
-     *
-     * @param d -
-     */
-    ZZ: (d, utc = false) => (utc ? "Z" : FORMATTERS.Z(d, utc)),
-    /**
-     * Current {@link LOCALE}'s day-month separator.
-     */
-    "/DM": () => LOCALE.sepDM,
-    /**
-     * Current {@link LOCALE}'s weekday-day separator.
-     */
-    "/ED": () => LOCALE.sepED,
-    /**
-     * Current {@link LOCALE}'s hour-minute separator.
-     */
-    "/HM": () => LOCALE.sepHM,
-    /**
-     * Current {@link LOCALE}'s month-year separator.
-     */
-    "/MY": () => LOCALE.sepMY,
+	/**
+	 * Full year (4 digits)
+	 */
+	yyyy: (d) => Z4(d.getFullYear()),
+	/**
+	 * Short year (2 digits, e.g. `2020 % 100` => 20)
+	 */
+	yy: (d) => Z2(d.getFullYear() % 100),
+	/**
+	 * Month name, using current {@link LOCALE} (e.g. `Feb`)
+	 */
+	MMM: (d) => LOCALE.months[d.getMonth()],
+	/**
+	 * Zero-padded 2-digit month
+	 */
+	MM: (d) => Z2(d.getMonth() + 1),
+	/**
+	 * Unpadded month
+	 */
+	M: (d) => String(d.getMonth() + 1),
+	/**
+	 * Zero-padded 2-digit day of month
+	 */
+	dd: (d) => Z2(d.getDate()),
+	/**
+	 * Unpadded day of month
+	 */
+	d: (d) => String(d.getDate()),
+	/**
+	 * Weekday name, using current {@link LOCALE} (e.g. `Mon`)
+	 */
+	E: (d) => LOCALE.days[d.getDay()],
+	/**
+	 * Zero-padded 2-digit ISO week number.
+	 */
+	ww: (d) => Z2(FORMATTERS.w(d, false)),
+	/**
+	 * Unpadded ISO week number.
+	 */
+	w: (d) => String(weekInYear(d.getFullYear(), d.getMonth(), d.getDate())),
+	/**
+	 * Unpadded quarter:
+	 *
+	 * - 1 = Jan - Mar
+	 * - 2 = Apr - Jun
+	 * - 3 = Jul - Sep
+	 * - 4 = Oct - Dec
+	 */
+	q: (d) => String(((d.getMonth() / 3) | 0) + 1),
+	/**
+	 * Zero-padded 2-digit hour of day (0-23)
+	 */
+	HH: (d) => Z2(d.getHours()),
+	/**
+	 * Unpadded our of day (0-23)
+	 */
+	H: (d) => String(d.getHours()),
+	/**
+	 * Zero-padded hour of day (1-12)
+	 */
+	hh: (d) => {
+		const h = d.getHours() % 12;
+		return Z2(h > 0 ? h : 12);
+	},
+	/**
+	 * Unpadded hour of day (1-12)
+	 */
+	h: (d) => {
+		const h = d.getHours() % 12;
+		return String(h > 0 ? h : 12);
+	},
+	/**
+	 * Zero-padded 2-digit minute of hour
+	 */
+	mm: (d) => Z2(d.getMinutes()),
+	/**
+	 * Unpadded minute of hour
+	 */
+	m: (d) => String(d.getMinutes()),
+	/**
+	 * Zero-padded 2-digit second of minute
+	 */
+	ss: (d) => Z2(d.getSeconds()),
+	/**
+	 * Unpadded second of minute
+	 */
+	s: (d) => String(d.getSeconds()),
+	/**
+	 * Zero-padded 3-digit millisecond of second
+	 */
+	SS: (d) => Z3(d.getMilliseconds()),
+	/**
+	 * Unpadded millisecond of second
+	 */
+	S: (d) => String(d.getMilliseconds()),
+	/**
+	 * 12-hour AM/PM marker (uppercase)
+	 */
+	A: (d) => String(d.getHours() < 12 ? "AM" : "PM"),
+	/**
+	 * 12-hour am/pm marker (lowercase)
+	 */
+	a: (d) => String(d.getHours() < 12 ? "am" : "pm"),
+	/**
+	 * Timezone offset in signed `HH:mm` format
+	 */
+	Z: (d, utc = false) => {
+		const z = utc ? 0 : d.getTimezoneOffset();
+		const za = Math.abs(z);
+		return `${z < 0 ? "+" : "-"}${Z2((za / 60) | 0)}:${Z2(za % 60)}`;
+	},
+	/**
+	 * Returns literal `"Z"` iff timezone offset is zero (UTC), else the same as
+	 * `Z` formatter.
+	 *
+	 * @param d -
+	 */
+	ZZ: (d, utc = false) => (utc ? "Z" : FORMATTERS.Z(d, utc)),
+	/**
+	 * Current {@link LOCALE}'s day-month separator.
+	 */
+	"/DM": () => LOCALE.sepDM,
+	/**
+	 * Current {@link LOCALE}'s weekday-day separator.
+	 */
+	"/ED": () => LOCALE.sepED,
+	/**
+	 * Current {@link LOCALE}'s hour-minute separator.
+	 */
+	"/HM": () => LOCALE.sepHM,
+	/**
+	 * Current {@link LOCALE}'s month-year separator.
+	 */
+	"/MY": () => LOCALE.sepMY,
 };
 
 /**
@@ -170,25 +170,25 @@ export const FORMATTERS: Record<string, FormatFn> = {
  * @param fmt -
  */
 export const defFormat =
-    (fmt: (string | FormatFn)[]) =>
-    (x: MaybeDate = Date.now(), utc = false) => {
-        let d = ensureDate(x);
-        utc && (d = new Date(d.getTime() + d.getTimezoneOffset() * MINUTE));
-        return fmt
-            .map((x) => {
-                let fn: FormatFn;
-                return isString(x)
-                    ? x.startsWith("\\")
-                        ? x.substring(1)
-                        : (fn = FORMATTERS[x])
-                        ? fn(d, utc)
-                        : x
-                    : isFunction(x)
-                    ? x(d, utc)
-                    : x;
-            })
-            .join("");
-    };
+	(fmt: (string | FormatFn)[]) =>
+	(x: MaybeDate = Date.now(), utc = false) => {
+		let d = ensureDate(x);
+		utc && (d = new Date(d.getTime() + d.getTimezoneOffset() * MINUTE));
+		return fmt
+			.map((x) => {
+				let fn: FormatFn;
+				return isString(x)
+					? x.startsWith("\\")
+						? x.substring(1)
+						: (fn = FORMATTERS[x])
+						? fn(d, utc)
+						: x
+					: isFunction(x)
+					? x(d, utc)
+					: x;
+			})
+			.join("");
+	};
 
 /**
  * Format preset, e.g. `2020-09-19`

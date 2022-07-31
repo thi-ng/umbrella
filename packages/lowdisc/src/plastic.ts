@@ -11,15 +11,15 @@ import { lowDiscrepancy } from "./lowdisc.js";
  * @remarks
  * See {@link plasticND} for references.
  *
- * @param d - 
- * @param i - 
+ * @param d -
+ * @param i -
  */
 export const phi = (d: number, i = 18) => {
-    assert(d > 0, `d must be > 0`);
-    d = 1 / (d + 1);
-    let x = 2;
-    while (i-- > 0) x = (1 + x) ** d;
-    return x;
+	assert(d > 0, `d must be > 0`);
+	d = 1 / (d + 1);
+	let x = 2;
+	while (i-- > 0) x = (1 + x) ** d;
+	return x;
 };
 
 /**
@@ -33,14 +33,14 @@ export const phi = (d: number, i = 18) => {
  * - https://en.wikipedia.org/wiki/Plastic_number
  * - https://bib.irb.hr/datoteka/628836.Plastic_Number_-_Construct.pdf
  *
- * @param dim - 
+ * @param dim -
  */
 export const plasticND = (dim: number, offset = 0) => {
-    const g = phi(dim);
-    return lowDiscrepancy(
-        new Array(dim)
-            .fill(0)
-            .map((_, i) => kronecker(1 / Math.pow(g, i + 1), 0.5)),
-        offset
-    );
+	const g = phi(dim);
+	return lowDiscrepancy(
+		new Array(dim)
+			.fill(0)
+			.map((_, i) => kronecker(1 / Math.pow(g, i + 1), 0.5)),
+		offset
+	);
 };

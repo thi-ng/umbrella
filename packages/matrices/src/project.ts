@@ -16,13 +16,13 @@ import { mulV23, mulV344, mulV44 } from "./mulv.js";
  * @param p -
  */
 export const project = (
-    out: Vec | null,
-    mvp: ReadonlyMat,
-    view: ReadonlyMat,
-    p: ReadonlyVec
+	out: Vec | null,
+	mvp: ReadonlyMat,
+	view: ReadonlyMat,
+	p: ReadonlyVec
 ) => (
-    !out && (out = []),
-    mulV23(out, view, fromHomogeneous4(out, mulV44([], mvp, p)))
+	!out && (out = []),
+	mulV23(out, view, fromHomogeneous4(out, mulV44([], mvp, p)))
 );
 
 /**
@@ -38,14 +38,14 @@ export const project = (
  * @param p -
  */
 export const project3 = (
-    out: Vec | null,
-    mvp: ReadonlyMat,
-    view: ReadonlyMat,
-    p: ReadonlyVec
+	out: Vec | null,
+	mvp: ReadonlyMat,
+	view: ReadonlyMat,
+	p: ReadonlyVec
 ) => {
-    !out && (out = []);
-    const q = mulV344(out, mvp, p);
-    return q ? mulV23(q, view, q) : undefined;
+	!out && (out = []);
+	const q = mulV344(out, mvp, p);
+	return q ? mulV23(q, view, q) : undefined;
 };
 
 /**
@@ -61,18 +61,18 @@ export const project3 = (
  * @param invert -
  */
 export const unproject = (
-    out: Vec,
-    mvp: ReadonlyMat,
-    view: ReadonlyMat,
-    p: ReadonlyVec,
-    doInvert = false
+	out: Vec,
+	mvp: ReadonlyMat,
+	view: ReadonlyMat,
+	p: ReadonlyVec,
+	doInvert = false
 ) => {
-    if (doInvert) {
-        const _mvp = invert44([], mvp);
-        const _view = invert23([], view);
-        if (!_mvp || !_view) return;
-        mvp = _mvp;
-        view = _view;
-    }
-    return mulV344(out, mvp, mulV23([0, 0, p[2] * 2 - 1], view, p));
+	if (doInvert) {
+		const _mvp = invert44([], mvp);
+		const _view = invert23([], view);
+		if (!_mvp || !_view) return;
+		mvp = _mvp;
+		view = _view;
+	}
+	return mulV344(out, mvp, mulV23([0, 0, p[2] * 2 - 1], view, p));
 };

@@ -15,13 +15,13 @@ export const fpoint = (p: Vec2Like) => ff(p[0]) + "," + ff(p[1]);
 
 /** @internal */
 export const fpoints = (pts: Vec2Like[], sep = " ") =>
-    pts ? pts.map(fpoint).join(sep) : "";
+	pts ? pts.map(fpoint).join(sep) : "";
 
 const DEFAULT_NUMERIC_IDS = [
-    "font-size",
-    "opacity",
-    "stroke-width",
-    "stroke-miterlimit",
+	"font-size",
+	"opacity",
+	"stroke-width",
+	"stroke-miterlimit",
 ];
 
 /**
@@ -34,11 +34,11 @@ const DEFAULT_NUMERIC_IDS = [
  * @internal
  */
 const numericAttribs = (attribs: any, ids: string[]) => {
-    let v: any;
-    for (let id of DEFAULT_NUMERIC_IDS.concat(ids)) {
-        typeof (v = attribs[id]) === "number" && (attribs[id] = ff(v));
-    }
-    return attribs;
+	let v: any;
+	for (let id of DEFAULT_NUMERIC_IDS.concat(ids)) {
+		typeof (v = attribs[id]) === "number" && (attribs[id] = ff(v));
+	}
+	return attribs;
 };
 
 /**
@@ -77,12 +77,12 @@ const numericAttribs = (attribs: any, ids: string[]) => {
  * @internal
  */
 export const fattribs = (attribs: any, ...numericIDs: string[]) => {
-    if (!attribs) return;
-    const res: any = ftransforms(attribs);
-    let v: any;
-    (v = attribs.fill) && (res.fill = fcolor(v));
-    (v = attribs.stroke) && (res.stroke = fcolor(v));
-    return numericAttribs(attribs, numericIDs);
+	if (!attribs) return;
+	const res: any = ftransforms(attribs);
+	let v: any;
+	(v = attribs.fill) && (res.fill = fcolor(v));
+	(v = attribs.stroke) && (res.stroke = fcolor(v));
+	return numericAttribs(attribs, numericIDs);
 };
 
 /**
@@ -95,52 +95,52 @@ export const fattribs = (attribs: any, ...numericIDs: string[]) => {
  * @internal
  */
 const ftransforms = (attribs: any) => {
-    let v: any;
-    if (
-        (v = attribs.transform) ||
-        attribs.translate ||
-        attribs.scale ||
-        attribs.rotate
-    ) {
-        if (v) {
-            attribs.transform = !isString(v)
-                ? `matrix(${[...v].map(ff).join(" ")})`
-                : v;
-            delete attribs.translate;
-            delete attribs.rotate;
-            delete attribs.scale;
-        } else {
-            attribs.transform = buildTransform(attribs);
-        }
-    }
-    return attribs;
+	let v: any;
+	if (
+		(v = attribs.transform) ||
+		attribs.translate ||
+		attribs.scale ||
+		attribs.rotate
+	) {
+		if (v) {
+			attribs.transform = !isString(v)
+				? `matrix(${[...v].map(ff).join(" ")})`
+				: v;
+			delete attribs.translate;
+			delete attribs.rotate;
+			delete attribs.scale;
+		} else {
+			attribs.transform = buildTransform(attribs);
+		}
+	}
+	return attribs;
 };
 
 /**
  * @internal
  */
 const buildTransform = (attribs: any) => {
-    const tx: string[] = [];
-    let v: any;
-    if ((v = attribs.translate)) {
-        tx.push(isString(v) ? v : `translate(${ff(v[0])} ${ff(v[1])})`);
-        delete attribs.translate;
-    }
-    if ((v = attribs.rotate)) {
-        tx.push(isString(v) ? v : `rotate(${ff((v * 180) / Math.PI)})`);
-        delete attribs.rotate;
-    }
-    if ((v = attribs.scale)) {
-        tx.push(
-            isString(v)
-                ? v
-                : isArrayLike(v)
-                ? `scale(${ff(v[0])} ${ff(v[1])})`
-                : `scale(${ff(v)})`
-        );
-        delete attribs.scale;
-    }
-    return tx.join(" ");
+	const tx: string[] = [];
+	let v: any;
+	if ((v = attribs.translate)) {
+		tx.push(isString(v) ? v : `translate(${ff(v[0])} ${ff(v[1])})`);
+		delete attribs.translate;
+	}
+	if ((v = attribs.rotate)) {
+		tx.push(isString(v) ? v : `rotate(${ff((v * 180) / Math.PI)})`);
+		delete attribs.rotate;
+	}
+	if ((v = attribs.scale)) {
+		tx.push(
+			isString(v)
+				? v
+				: isArrayLike(v)
+				? `scale(${ff(v[0])} ${ff(v[1])})`
+				: `scale(${ff(v)})`
+		);
+		delete attribs.scale;
+	}
+	return tx.join(" ");
 };
 
 /**
@@ -154,17 +154,17 @@ const buildTransform = (attribs: any) => {
  * @internal
  */
 export const fcolor = (col: any) =>
-    isString(col)
-        ? col[0] === "$"
-            ? `url(#${col.substring(1)})`
-            : col
-        : css(col);
+	isString(col)
+		? col[0] === "$"
+			? `url(#${col.substring(1)})`
+			: col
+		: css(col);
 
 /** @internal */
 export const withoutKeys = (src: any, keys: Set<PropertyKey>) => {
-    const dest: any = {};
-    for (let k in src) {
-        src.hasOwnProperty(k) && !keys.has(k) && (dest[k] = src[<any>k]);
-    }
-    return dest;
+	const dest: any = {};
+	for (let k in src) {
+		src.hasOwnProperty(k) && !keys.has(k) && (dest[k] = src[<any>k]);
+	}
+	return dest;
 };

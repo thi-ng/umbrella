@@ -12,10 +12,10 @@ import { sep } from "path";
  * @param path
  */
 export const ensureDirForFile = (path: string) => {
-    const dir = path.substring(0, path.lastIndexOf(sep));
-    return dir.length > 0 && !existsSync(dir)
-        ? (mkdirSync(dir, { recursive: true }), true)
-        : false;
+	const dir = path.substring(0, path.lastIndexOf(sep));
+	return dir.length > 0 && !existsSync(dir)
+		? (mkdirSync(dir, { recursive: true }), true)
+		: false;
 };
 
 /**

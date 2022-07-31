@@ -1,7 +1,7 @@
 import { repeat } from "./repeat.js";
 
 const nextTab = (x: number, tabSize: number) =>
-    Math.floor((x + tabSize) / tabSize) * tabSize;
+	Math.floor((x + tabSize) / tabSize) * tabSize;
 
 /**
  * Multi-line version of {@link tabsToSpacesLine}.
@@ -24,10 +24,10 @@ const nextTab = (x: number, tabSize: number) =>
  * @param tabSize -
  */
 export const tabsToSpaces = (src: string, tabSize = 4) =>
-    src
-        .split(/\r?\n/g)
-        .map((line) => tabsToSpacesLine(line, tabSize))
-        .join("\n");
+	src
+		.split(/\r?\n/g)
+		.map((line) => tabsToSpacesLine(line, tabSize))
+		.join("\n");
 
 /**
  * Takes a single line string and converts all tab characters to spaces, using
@@ -37,16 +37,16 @@ export const tabsToSpaces = (src: string, tabSize = 4) =>
  * @param tabSize -
  */
 export const tabsToSpacesLine = (line: string, tabSize = 4) => {
-    let res = "";
-    let words = line.split(/\t/g);
-    let n = words.length - 1;
-    for (let i = 0; i < n; i++) {
-        const w = words[i];
-        res += w;
-        res += repeat(" ", nextTab(res.length, tabSize) - res.length);
-    }
-    res += words[n];
-    return res;
+	let res = "";
+	let words = line.split(/\t/g);
+	let n = words.length - 1;
+	for (let i = 0; i < n; i++) {
+		const w = words[i];
+		res += w;
+		res += repeat(" ", nextTab(res.length, tabSize) - res.length);
+	}
+	res += words[n];
+	return res;
 };
 
 /**
@@ -56,10 +56,10 @@ export const tabsToSpacesLine = (line: string, tabSize = 4) => {
  * @param tabSize -
  */
 export const spacesToTabs = (src: string, tabSize = 4) =>
-    src
-        .split(/\r?\n/g)
-        .map((line) => spacesToTabsLine(line, tabSize))
-        .join("\n");
+	src
+		.split(/\r?\n/g)
+		.map((line) => spacesToTabsLine(line, tabSize))
+		.join("\n");
 
 /**
  * Takes a single line string and converts all tab characters to spaces, using
@@ -69,26 +69,26 @@ export const spacesToTabs = (src: string, tabSize = 4) =>
  * @param tabSize -
  */
 export const spacesToTabsLine = (line: string, tabSize = 4) => {
-    const re = /\s{2,}/g;
-    let i = 0;
-    let res = "";
-    let m: RegExpExecArray | null;
-    while ((m = re.exec(line))) {
-        const numSpaces = m[0].length;
-        res += line.substring(i, m.index);
-        i = m.index;
-        const end = m.index + numSpaces;
-        while (i < end) {
-            const j = nextTab(i, tabSize);
-            if (j <= end) {
-                res += "\t";
-                i = j;
-            } else {
-                res += repeat(" ", end - i);
-                i = end;
-            }
-        }
-        i = end;
-    }
-    return res + line.substring(i);
+	const re = /\s{2,}/g;
+	let i = 0;
+	let res = "";
+	let m: RegExpExecArray | null;
+	while ((m = re.exec(line))) {
+		const numSpaces = m[0].length;
+		res += line.substring(i, m.index);
+		i = m.index;
+		const end = m.index + numSpaces;
+		while (i < end) {
+			const j = nextTab(i, tabSize);
+			if (j <= end) {
+				res += "\t";
+				i = j;
+			} else {
+				res += repeat(" ", end - i);
+				i = end;
+			}
+		}
+		i = end;
+	}
+	return res + line.substring(i);
 };

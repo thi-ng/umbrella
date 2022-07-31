@@ -9,8 +9,8 @@ import { perpendicularCCW } from "./perpendicular.js";
 import { sub } from "./sub.js";
 
 export const bisect2: VecOpRoVV<number> = (a, b) => {
-    const theta = (headingXY(a) + headingXY(b)) / 2;
-    return theta <= HALF_PI ? theta : PI - theta;
+	const theta = (headingXY(a) + headingXY(b)) / 2;
+	return theta <= HALF_PI ? theta : PI - theta;
 };
 
 /**
@@ -26,23 +26,23 @@ export const bisect2: VecOpRoVV<number> = (a, b) => {
  * @param n -
  */
 export const cornerBisector = (
-    out: Vec | null,
-    a: ReadonlyVec,
-    b: ReadonlyVec,
-    c: ReadonlyVec,
-    n = 1
+	out: Vec | null,
+	a: ReadonlyVec,
+	b: ReadonlyVec,
+	c: ReadonlyVec,
+	n = 1
 ) => (
-    !out && (out = []),
-    normalize(
-        out,
-        addmN(
-            out,
-            normalize(out, sub(out, a, b)),
-            normalize(null, sub([], c, b)),
-            0.5
-        ),
-        n
-    )
+	!out && (out = []),
+	normalize(
+		out,
+		addmN(
+			out,
+			normalize(out, sub(out, a, b)),
+			normalize(null, sub([], c, b)),
+			0.5
+		),
+		n
+	)
 );
 
 /**
@@ -63,19 +63,19 @@ export const cornerBisector = (
  * @param n -
  */
 export const cornerBisector2 = (
-    out: Vec | null,
-    a: ReadonlyVec,
-    b: ReadonlyVec,
-    c: ReadonlyVec,
-    n = 1
+	out: Vec | null,
+	a: ReadonlyVec,
+	b: ReadonlyVec,
+	c: ReadonlyVec,
+	n = 1
 ) => (
-    !out && (out = []),
-    perpendicularCCW(
-        out,
-        normalize(
-            out,
-            mixN2(out, direction(out, a, b), direction([], b, c), 0.5),
-            n
-        )
-    )
+	!out && (out = []),
+	perpendicularCCW(
+		out,
+		normalize(
+			out,
+			mixN2(out, direction(out, a, b), direction([], b, c), 0.5),
+			n
+		)
+	)
 );

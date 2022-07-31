@@ -11,21 +11,21 @@ import { ROUTE_TO } from "../events";
  * @param body - ink body
  */
 export function routeLink(
-    ctx: AppContext,
-    routeID: PropertyKey,
-    routeParams: any,
-    attribs: any,
-    body: any
+	ctx: AppContext,
+	routeID: PropertyKey,
+	routeParams: any,
+	attribs: any,
+	body: any
 ) {
-    return [
-        "a",
-        {
-            ...attribs,
-            onclick: (e: Event) => {
-                e.preventDefault();
-                ctx.bus.dispatch([ROUTE_TO, [routeID, routeParams]]);
-            },
-        },
-        body,
-    ];
+	return [
+		"a",
+		{
+			...attribs,
+			onclick: (e: Event) => {
+				e.preventDefault();
+				ctx.bus.dispatch([ROUTE_TO, [routeID, routeParams]]);
+			},
+		},
+		body,
+	];
 }

@@ -13,30 +13,30 @@ import { AProc } from "./aproc.js";
  * @param amp - post amplifier
  */
 export const foldback = (thresh?: number, amp?: number) =>
-    new Foldback(thresh, amp);
+	new Foldback(thresh, amp);
 
 export class Foldback extends AProc<number, number> {
-    constructor(protected _thresh = 1, protected _amp = 1 / _thresh) {
-        super(0);
-    }
+	constructor(protected _thresh = 1, protected _amp = 1 / _thresh) {
+		super(0);
+	}
 
-    next(x: number) {
-        return (this._val = _foldback(this._thresh, x) * this._amp);
-    }
+	next(x: number) {
+		return (this._val = _foldback(this._thresh, x) * this._amp);
+	}
 
-    threshold() {
-        return this._thresh;
-    }
+	threshold() {
+		return this._thresh;
+	}
 
-    setThreshold(t: number) {
-        this._thresh = t;
-    }
+	setThreshold(t: number) {
+		this._thresh = t;
+	}
 
-    amp() {
-        return this._amp;
-    }
+	amp() {
+		return this._amp;
+	}
 
-    setAmp(a: number) {
-        this._amp = a;
-    }
+	setAmp(a: number) {
+		this._amp = a;
+	}
 }

@@ -2,11 +2,11 @@ import { isArray } from "@thi.ng/checks/is-array";
 import { isFunction } from "@thi.ng/checks/is-function";
 import { compL } from "@thi.ng/compose/comp";
 import type {
-    StackContext,
-    StackEnv,
-    StackFn,
-    StackProc,
-    StackProgram,
+	StackContext,
+	StackEnv,
+	StackFn,
+	StackProc,
+	StackProgram,
 } from "./api.js";
 import { $ } from "./safe.js";
 import { tos } from "./stack.js";
@@ -14,18 +14,18 @@ import { tos } from "./stack.js";
 export const $stackFn = (f: StackProc) => (isArray(f) ? defWord(f) : f);
 
 const compile = (prog: StackProgram) =>
-    prog.length > 0
-        ? compL.apply(
-              null,
-              <any>(
-                  prog.map((w) =>
-                      !isFunction(w)
-                          ? (ctx: StackContext) => (ctx[0].push(w), ctx)
-                          : w
-                  )
-              )
-          )
-        : (ctx: StackContext) => ctx;
+	prog.length > 0
+		? compL.apply(
+				null,
+				<any>(
+					prog.map((w) =>
+						!isFunction(w)
+							? (ctx: StackContext) => (ctx[0].push(w), ctx)
+							: w
+					)
+				)
+		  )
+		: (ctx: StackContext) => ctx;
 
 /**
  * Takes a result tuple returned by {@link run} and unwraps one or more
@@ -36,7 +36,7 @@ const compile = (prog: StackProgram) =>
  * @param n -
  */
 export const unwrap = ([stack]: StackContext, n = 1) =>
-    n === 1 ? tos(stack) : stack.slice(Math.max(0, stack.length - n));
+	n === 1 ? tos(stack) : stack.slice(Math.max(0, stack.length - n));
 
 //////////////////// Dynamic words & quotations  ////////////////////
 
@@ -61,18 +61,18 @@ export const unwrap = ([stack]: StackContext, n = 1) =>
  * @param mergeEnv -
  */
 export const defWord = (
-    prog: StackProgram,
-    env?: StackEnv,
-    mergeEnv = true
+	prog: StackProgram,
+	env?: StackEnv,
+	mergeEnv = true
 ) => {
-    const w: StackFn = compile(prog);
-    return env
-        ? mergeEnv
-            ? (ctx: StackContext) => (
-                  w([ctx[0], ctx[1], { ...ctx[2], ...env }]), ctx
-              )
-            : (ctx: StackContext) => (w([ctx[0], ctx[1], { ...env }]), ctx)
-        : w;
+	const w: StackFn = compile(prog);
+	return env
+		? mergeEnv
+			? (ctx: StackContext) => (
+					w([ctx[0], ctx[1], { ...ctx[2], ...env }]), ctx
+			  )
+			: (ctx: StackContext) => (w([ctx[0], ctx[1], { ...env }]), ctx)
+		: w;
 };
 
 /**
@@ -88,18 +88,18 @@ export const defWord = (
  * @param mergeEnv -
  */
 export const defWordU = (
-    prog: StackProgram,
-    n = 1,
-    env?: StackEnv,
-    mergeEnv = true
+	prog: StackProgram,
+	n = 1,
+	env?: StackEnv,
+	mergeEnv = true
 ) => {
-    const w: StackFn = compile(prog);
-    return env
-        ? mergeEnv
-            ? (ctx: StackContext) =>
-                  unwrap(w([ctx[0], ctx[1], { ...ctx[2], ...env }]), n)
-            : (ctx: StackContext) => unwrap(w([ctx[0], ctx[1], { ...env }]), n)
-        : (ctx: StackContext) => unwrap(w(ctx), n);
+	const w: StackFn = compile(prog);
+	return env
+		? mergeEnv
+			? (ctx: StackContext) =>
+					unwrap(w([ctx[0], ctx[1], { ...ctx[2], ...env }]), n)
+			: (ctx: StackContext) => unwrap(w([ctx[0], ctx[1], { ...env }]), n)
+		: (ctx: StackContext) => unwrap(w(ctx), n);
 };
 
 /**
@@ -111,7 +111,7 @@ export const defWordU = (
  * @param ctx -
  */
 export const exec = (ctx: StackContext) => (
-    $(ctx[0], 1), $stackFn(ctx[0].pop())(ctx)
+	$(ctx[0], 1), $stackFn(ctx[0].pop())(ctx)
 );
 
 /**
@@ -121,18 +121,18 @@ export const exec = (ctx: StackContext) => (
  *
  * ( body catch -- ? )
  *
- * @param ctx - 
+ * @param ctx -
  */
 export const $try = (ctx: StackContext) => {
-    const stack = ctx[0];
-    $(stack, 2);
-    const err = stack.pop();
-    try {
-        return exec(ctx);
-    } catch (e) {
-        stack.push(e, err);
-        return exec(ctx);
-    }
+	const stack = ctx[0];
+	$(stack, 2);
+	const err = stack.pop();
+	try {
+		return exec(ctx);
+	} catch (e) {
+		stack.push(e, err);
+		return exec(ctx);
+	}
 };
 
 //////////////////// JS host calls ////////////////////
@@ -147,9 +147,9 @@ export const $try = (ctx: StackContext) => {
  * @param ctx -
  */
 export const execjs = (ctx: StackContext) => {
-    const stack = ctx[0];
-    $(stack, 1);
-    const [fn, ...args] = stack.pop();
-    stack.push(fn(...args));
-    return ctx;
+	const stack = ctx[0];
+	$(stack, 1);
+	const [fn, ...args] = stack.pop();
+	stack.push(fn(...args));
+	return ctx;
 };

@@ -17,14 +17,14 @@ import { circle } from "./circle";
 // infinite iterator of randomized colors (Tachyons CSS class names)
 // used by `color` graph node below
 const colors = choices([
-    "bg-red",
-    "bg-blue",
-    "bg-gold",
-    "bg-light-green",
-    "bg-pink",
-    "bg-light-purple",
-    "bg-orange",
-    "bg-gray",
+	"bg-red",
+	"bg-blue",
+	"bg-gold",
+	"bg-light-green",
+	"bg-pink",
+	"bg-light-purple",
+	"bg-orange",
+	"bg-gray",
 ]);
 
 // atom for storing dataflow results (optional, here only for
@@ -58,112 +58,112 @@ const raf = fromRAF();
 // current internal state of the graph and is useful for debugging /
 // backup etc.
 const graph = initGraph(db, {
-    // extracts current mouse/touch position from gesture tuple
-    // the `[1, 0]` is the lookup path, i.e. `gesture[1][0]`
-    mpos: {
-        fn: extract(["pos"]),
-        ins: { src: { stream: () => gestures } },
-        outs: { "*": "mpos" },
-    },
+	// extracts current mouse/touch position from gesture tuple
+	// the `[1, 0]` is the lookup path, i.e. `gesture[1][0]`
+	mpos: {
+		fn: extract(["pos"]),
+		ins: { src: { stream: () => gestures } },
+		outs: { "*": "mpos" },
+	},
 
-    // extracts last click position from gesture tuple
-    // the `[1, 1]` is the lookup path, i.e. `gesture[1][1]`
-    // (only defined during drag gestures)
-    clickpos: {
-        fn: extract(["active", 0, "start"]),
-        ins: { src: { stream: () => gestures } },
-        outs: { "*": "clickpos" },
-    },
+	// extracts last click position from gesture tuple
+	// the `[1, 1]` is the lookup path, i.e. `gesture[1][1]`
+	// (only defined during drag gestures)
+	clickpos: {
+		fn: extract(["active", 0, "start"]),
+		ins: { src: { stream: () => gestures } },
+		outs: { "*": "clickpos" },
+	},
 
-    // extracts & computes length of `delta` vector in gesture tuple
-    // i.e. the distance between `clickpos` and current `mpos`
-    // (`delta` is only defined during drag gestures)
-    // `node1` is a helper function for nodes using only a single input
-    dist: {
-        fn: node1(
-            map((gesture) => {
-                const delta = getIn(gesture, ["active", 0, "delta"]);
-                return delta && Math.hypot.apply(null, delta) | 0;
-            })
-        ),
-        ins: { src: { stream: () => gestures } },
-        outs: { "*": "dist" },
-    },
+	// extracts & computes length of `delta` vector in gesture tuple
+	// i.e. the distance between `clickpos` and current `mpos`
+	// (`delta` is only defined during drag gestures)
+	// `node1` is a helper function for nodes using only a single input
+	dist: {
+		fn: node1(
+			map((gesture) => {
+				const delta = getIn(gesture, ["active", 0, "delta"]);
+				return delta && Math.hypot.apply(null, delta) | 0;
+			})
+		),
+		ins: { src: { stream: () => gestures } },
+		outs: { "*": "dist" },
+	},
 
-    // combines `clickpos`, `dist` and `color` streams to produce a
-    // stream of @thi.ng/hdom UI components (a circle around clickpos).
-    // the resulting stream is then directly included in this app's root
-    // component below... all inputs are locally renamed using the
-    // stated input `id`s
-    // `node` is a helper function to create a `StreamSync` based node
-    // with multiple inputs
-    circle: {
-        fn: node(
-            map((ins) => {
-                // console.log(ins);
-                const { click, radius, color } = ins;
-                return click && radius && color
-                    ? circle(color, click[0], click[1], radius * 2)
-                    : undefined;
-            })
-        ),
-        ins: {
-            click: { stream: "/clickpos/node" },
-            radius: { stream: "/radius/node" },
-            color: { stream: "/color/node" },
-        },
-        outs: { "*": "circle" },
-    },
+	// combines `clickpos`, `dist` and `color` streams to produce a
+	// stream of @thi.ng/hdom UI components (a circle around clickpos).
+	// the resulting stream is then directly included in this app's root
+	// component below... all inputs are locally renamed using the
+	// stated input `id`s
+	// `node` is a helper function to create a `StreamSync` based node
+	// with multiple inputs
+	circle: {
+		fn: node(
+			map((ins) => {
+				// console.log(ins);
+				const { click, radius, color } = ins;
+				return click && radius && color
+					? circle(color, click[0], click[1], radius * 2)
+					: undefined;
+			})
+		),
+		ins: {
+			click: { stream: "/clickpos/node" },
+			radius: { stream: "/radius/node" },
+			color: { stream: "/color/node" },
+		},
+		outs: { "*": "circle" },
+	},
 
-    // produces a new random color for each new drag gesture (and
-    // therefore each new circle will have a potentially different
-    // color). transformation is done using a composed transducer which
-    // first dedupes click pos values and emits a new random color each
-    // time clickpos is redefined (remember, clickpos is only defined
-    // during drag gestures)
-    color: {
-        fn: node1(
-            comp(
-                dedupe(equiv),
-                map((x) => x && colors.next().value)
-            )
-        ),
-        ins: { src: { stream: "/clickpos/node" } },
-        outs: { "*": "color" },
-    },
+	// produces a new random color for each new drag gesture (and
+	// therefore each new circle will have a potentially different
+	// color). transformation is done using a composed transducer which
+	// first dedupes click pos values and emits a new random color each
+	// time clickpos is redefined (remember, clickpos is only defined
+	// during drag gestures)
+	color: {
+		fn: node1(
+			comp(
+				dedupe(equiv),
+				map((x) => x && colors.next().value)
+			)
+		),
+		ins: { src: { stream: "/clickpos/node" } },
+		outs: { "*": "color" },
+	},
 
-    // transforms a `requestAnimationFrame` event stream (frame counter @ 60fps)
-    // into a sine wave with 0.6 .. 1.0 interval
-    sine: {
-        fn: node1(map((x: number) => 0.8 + 0.2 * Math.sin(x * 0.05))),
-        ins: { src: { stream: () => raf } },
-        outs: { "*": "sin" },
-    },
+	// transforms a `requestAnimationFrame` event stream (frame counter @ 60fps)
+	// into a sine wave with 0.6 .. 1.0 interval
+	sine: {
+		fn: node1(map((x: number) => 0.8 + 0.2 * Math.sin(x * 0.05))),
+		ins: { src: { stream: () => raf } },
+		outs: { "*": "sin" },
+	},
 
-    // multiplies `dist` and `sine` streams to produce an animated
-    // radius value for `circle`
-    radius: {
-        fn: mul,
-        ins: {
-            a: { stream: "/sine/node" },
-            b: { stream: "/dist/node" },
-        },
-        outs: { "*": "radius" },
-    },
+	// multiplies `dist` and `sine` streams to produce an animated
+	// radius value for `circle`
+	radius: {
+		fn: mul,
+		ins: {
+			a: { stream: "/sine/node" },
+			b: { stream: "/dist/node" },
+		},
+		outs: { "*": "radius" },
+	},
 });
 
 // start @thi.ng/hdom update loop
 start(() => [
-    "div",
-    [
-        "pre.absolute.top-1.left-1.pa0.ma0.z-2.f7",
-        JSON.stringify(db.deref(), null, 2),
-    ],
-    // note: direct embedding of result stream below. this works
-    // since all @thi.ng/rstream subscriptions implement the
-    // @thi.ng/api/IDeref interface (like several other types, e.g.
-    // @thi.ng/atom's Atom, Cursor, View etc.)
-    graph.circle.node,
+	"div",
+	[
+		"pre.absolute.top-1.left-1.pa0.ma0.z-2.f7",
+		JSON.stringify(db.deref(), null, 2),
+	],
+	// note: direct embedding of result stream below. this works
+	// since all @thi.ng/rstream subscriptions implement the
+	// @thi.ng/api/IDeref interface (like several other types, e.g.
+	// @thi.ng/atom's Atom, Cursor, View etc.)
+	graph.circle.node,
 ]);
 
 // create a GraphViz DOT file of the entire dataflow graph

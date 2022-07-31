@@ -27,30 +27,30 @@ import { map } from "./map.js";
  * @param src -
  */
 export function mapKeys(
-    keys: IObjectOf<Fn2<any, any, any>>,
-    copy?: boolean
+	keys: IObjectOf<Fn2<any, any, any>>,
+	copy?: boolean
 ): Transducer<any, any>;
 export function mapKeys(
-    keys: IObjectOf<Fn2<any, any, any>>,
-    src: Iterable<any>
+	keys: IObjectOf<Fn2<any, any, any>>,
+	src: Iterable<any>
 ): IterableIterator<any>;
 export function mapKeys(
-    keys: IObjectOf<Fn2<any, any, any>>,
-    copy: boolean,
-    src: Iterable<any>
+	keys: IObjectOf<Fn2<any, any, any>>,
+	copy: boolean,
+	src: Iterable<any>
 ): IterableIterator<any>;
 export function mapKeys(...args: any[]): any {
-    const iter = __iter(mapKeys, args);
-    if (iter) {
-        return iter;
-    }
-    const keys: IObjectOf<Fn2<any, any, any>> = args[0];
-    const copy = args[1] !== false;
-    return map((x: any) => {
-        const res: any = copy ? Object.assign({}, x) : x;
-        for (let k in keys) {
-            res[k] = keys[k](x[k], x);
-        }
-        return res;
-    });
+	const iter = __iter(mapKeys, args);
+	if (iter) {
+		return iter;
+	}
+	const keys: IObjectOf<Fn2<any, any, any>> = args[0];
+	const copy = args[1] !== false;
+	return map((x: any) => {
+		const res: any = copy ? Object.assign({}, x) : x;
+		for (let k in keys) {
+			res[k] = keys[k](x[k], x);
+		}
+		return res;
+	});
 }

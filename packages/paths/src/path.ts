@@ -21,15 +21,15 @@ import { assert } from "@thi.ng/errors/assert";
  * @param path -
  */
 export const toPath = (path: Path): readonly NumOrString[] =>
-    isArray(path)
-        ? <any[]>path
-        : isString(path)
-        ? path.length > 0
-            ? path.split(".")
-            : []
-        : path != null
-        ? [path]
-        : [];
+	isArray(path)
+		? <any[]>path
+		: isString(path)
+		? path.length > 0
+			? path.split(".")
+			: []
+		: path != null
+		? [path]
+		: [];
 
 /**
  * Takes an arbitrary object and lookup path. Descends into object along
@@ -41,21 +41,21 @@ export const toPath = (path: Path): readonly NumOrString[] =>
  * @param path -
  */
 export const exists = (obj: any, path: Path) => {
-    if (obj == null) {
-        return false;
-    }
-    path = toPath(path);
-    for (let n = path.length - 1, i = 0; i <= n; i++) {
-        const k = path[i];
-        if (!obj.hasOwnProperty(k)) {
-            return false;
-        }
-        obj = obj[k];
-        if (obj == null && i < n) {
-            return false;
-        }
-    }
-    return true;
+	if (obj == null) {
+		return false;
+	}
+	path = toPath(path);
+	for (let n = path.length - 1, i = 0; i <= n; i++) {
+		const k = path[i];
+		if (!obj.hasOwnProperty(k)) {
+			return false;
+		}
+		obj = obj[k];
+		if (obj == null && i < n) {
+			return false;
+		}
+	}
+	return true;
 };
 
 /**
@@ -70,8 +70,8 @@ export const exists = (obj: any, path: Path) => {
  * - `prototype`
  * - `constructor`
  *
- * @param path - 
+ * @param path -
  */
 export const disallowProtoPath = (path: Path) => (
-    assert(!isProtoPath(path), `unsafe path: '${path}'`), path
+	assert(!isProtoPath(path), `unsafe path: '${path}'`), path
 );

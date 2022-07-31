@@ -4,18 +4,18 @@ import { isArrayLike } from "@thi.ng/checks/is-arraylike";
 import { aseq } from "./array.js";
 
 export const isSeq = (x: any): x is ISeq<any> =>
-    implementsFunction(x, "first") && implementsFunction(x, "next");
+	implementsFunction(x, "first") && implementsFunction(x, "next");
 
 export const isSeqable = (x: any): x is ISeqable<any> =>
-    implementsFunction(x, "seq");
+	implementsFunction(x, "seq");
 
 export const ensureSeq = <T>(
-    x: Nullable<ISeq<T> | ISeqable<T> | ArrayLike<T>>
+	x: Nullable<ISeq<T> | ISeqable<T> | ArrayLike<T>>
 ) =>
-    implementsFunction(x, "seq")
-        ? (<ISeqable<T>>x).seq()
-        : isArrayLike(x)
-        ? aseq(x)
-        : x != null
-        ? <ISeq<T>>x
-        : undefined;
+	implementsFunction(x, "seq")
+		? (<ISeqable<T>>x).seq()
+		: isArrayLike(x)
+		? aseq(x)
+		: x != null
+		? <ISeq<T>>x
+		: undefined;

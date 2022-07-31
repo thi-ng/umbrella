@@ -23,9 +23,9 @@ import type { ReadonlyVec } from "./api.js";
  * @param c -
  */
 export const signedArea2: FnU3<ReadonlyVec, number> = (a, b, c) => {
-    const ax = a[0];
-    const ay = a[1];
-    return (b[0] - ax) * (c[1] - ay) - (c[0] - ax) * (b[1] - ay);
+	const ax = a[0];
+	const ay = a[1];
+	return (b[0] - ax) * (c[1] - ay) - (c[0] - ax) * (b[1] - ay);
 };
 
 /**
@@ -40,4 +40,4 @@ export const signedArea2: FnU3<ReadonlyVec, number> = (a, b, c) => {
  * @param cy -
  */
 export const signedAreaC2: FnN6 = (ax, ay, bx, by, cx, cy) =>
-    (bx - ax) * (cy - ay) - (cx - ax) * (by - ay);
+	(bx - ax) * (cy - ay) - (cx - ax) * (by - ay);

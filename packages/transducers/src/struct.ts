@@ -9,9 +9,9 @@ import { partitionOf } from "./partition-of.js";
 import { rename } from "./rename.js";
 
 export interface StructField extends Array<any> {
-    [0]: string;
-    [1]: number;
-    [2]?: Fn<any[], any>;
+	[0]: string;
+	[1]: number;
+	[2]?: Fn<any[], any>;
 }
 
 /**
@@ -49,22 +49,23 @@ export interface StructField extends Array<any> {
  */
 export function struct<T>(fields: StructField[]): Transducer<any, T>;
 export function struct<T>(
-    fields: StructField[],
-    src: Iterable<any>
+	fields: StructField[],
+	src: Iterable<any>
 ): IterableIterator<T>;
 export function struct(fields: StructField[], src?: Iterable<any>): any {
-    return isIterable(src)
-        ? iterator(struct(fields), src)
-        : comp(
-              partitionOf(fields.map((f) => f[1])),
-              partition(fields.length),
-              rename(fields.map((f) => f[0])),
-              mapKeys(
-                  fields.reduce(
-                      (acc: any, f) => (f[2] ? ((acc[f[0]] = f[2]), acc) : acc),
-                      {}
-                  ),
-                  false
-              )
-          );
+	return isIterable(src)
+		? iterator(struct(fields), src)
+		: comp(
+				partitionOf(fields.map((f) => f[1])),
+				partition(fields.length),
+				rename(fields.map((f) => f[0])),
+				mapKeys(
+					fields.reduce(
+						(acc: any, f) =>
+							f[2] ? ((acc[f[0]] = f[2]), acc) : acc,
+						{}
+					),
+					false
+				)
+		  );
 }

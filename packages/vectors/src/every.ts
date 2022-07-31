@@ -9,10 +9,10 @@ import { vop } from "./vop.js";
 export const every: MultiBVecOpRoV<boolean> = vop();
 
 every.default((v) => {
-    for (let i = v.length; i-- > 0; ) {
-        if (!v[i]) return false;
-    }
-    return true;
+	for (let i = v.length; i-- > 0; ) {
+		if (!v[i]) return false;
+	}
+	return true;
 });
 
 export const every2 = every.add(2, (a) => a[0] && a[1]);

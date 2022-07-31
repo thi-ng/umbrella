@@ -48,31 +48,31 @@ import { resolveRoot } from "./resolve.js";
  * @param impl - hdom target implementation
  */
 export const start = (
-    tree: any,
-    opts: Partial<HDOMOpts> = {},
-    impl: HDOMImplementation<any> = DEFAULT_IMPL
+	tree: any,
+	opts: Partial<HDOMOpts> = {},
+	impl: HDOMImplementation<any> = DEFAULT_IMPL
 ) => {
-    const _opts = { root: "app", ...opts };
-    let prev: any[] = [];
-    let isActive = true;
-    const root = resolveRoot(_opts.root, impl);
-    const update = () => {
-        if (isActive) {
-            _opts.ctx = derefContext(opts.ctx, _opts.autoDerefKeys);
-            const curr = impl.normalizeTree(_opts, tree);
-            if (curr != null) {
-                if (_opts.hydrate) {
-                    impl.hydrateTree(_opts, root, curr);
-                    _opts.hydrate = false;
-                } else {
-                    impl.diffTree(_opts, root, prev, curr);
-                }
-                prev = curr;
-            }
-            // check again in case one of the components called cancel
-            isActive && requestAnimationFrame(update);
-        }
-    };
-    requestAnimationFrame(update);
-    return () => (isActive = false);
+	const _opts = { root: "app", ...opts };
+	let prev: any[] = [];
+	let isActive = true;
+	const root = resolveRoot(_opts.root, impl);
+	const update = () => {
+		if (isActive) {
+			_opts.ctx = derefContext(opts.ctx, _opts.autoDerefKeys);
+			const curr = impl.normalizeTree(_opts, tree);
+			if (curr != null) {
+				if (_opts.hydrate) {
+					impl.hydrateTree(_opts, root, curr);
+					_opts.hydrate = false;
+				} else {
+					impl.diffTree(_opts, root, prev, curr);
+				}
+				prev = curr;
+			}
+			// check again in case one of the components called cancel
+			isActive && requestAnimationFrame(update);
+		}
+	};
+	requestAnimationFrame(update);
+	return () => (isActive = false);
 };

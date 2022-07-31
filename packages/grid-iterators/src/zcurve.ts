@@ -12,12 +12,12 @@ import { demux2 } from "@thi.ng/morton/mux";
  * @param rows -
  */
 export function* zcurve2d(cols: number, rows = cols) {
-    [cols, rows] = asInt(cols, rows);
-    const max = ceilPow2(Math.pow(Math.max(cols, rows), 2));
-    for (let i = 0; i < max; i++) {
-        const p = demux2(i);
-        if (p[0] < cols && p[1] < rows) {
-            yield p;
-        }
-    }
+	[cols, rows] = asInt(cols, rows);
+	const max = ceilPow2(Math.pow(Math.max(cols, rows), 2));
+	for (let i = 0; i < max; i++) {
+		const p = demux2(i);
+		if (p[0] < cols && p[1] < rows) {
+			yield p;
+		}
+	}
 }

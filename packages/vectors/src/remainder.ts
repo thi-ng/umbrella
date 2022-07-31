@@ -12,6 +12,6 @@ import { ARGS_VV, FN2 } from "./compile/templates.js";
  * Also see {@link @thi.ng/math#remainder}.
  */
 export const [remainder, remainder2, remainder3, remainder4] = defHofOp<
-    MultiVecOpVV,
-    VecOpVV
+	MultiVecOpVV,
+	VecOpVV
 >(_remainder, FN2("op"), ARGS_VV);

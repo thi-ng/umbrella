@@ -48,12 +48,12 @@ import { PubSub } from "./pubsub.js";
  * @param falsy - subscription for falsy branch
  */
 export const bisect = <T>(
-    pred: Predicate<T>,
-    truthy?: ISubscriber<T>,
-    falsy?: ISubscriber<T>
+	pred: Predicate<T>,
+	truthy?: ISubscriber<T>,
+	falsy?: ISubscriber<T>
 ): PubSub<T, T> => {
-    const sub = new PubSub<T, T>({ topic: pred, id: `bisect-${__nextID()}` });
-    truthy && sub.subscribeTopic(true, truthy);
-    falsy && sub.subscribeTopic(false, falsy);
-    return sub;
+	const sub = new PubSub<T, T>({ topic: pred, id: `bisect-${__nextID()}` });
+	truthy && sub.subscribeTopic(true, truthy);
+	falsy && sub.subscribeTopic(false, falsy);
+	return sub;
 };

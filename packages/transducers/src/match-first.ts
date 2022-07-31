@@ -38,11 +38,11 @@ import { take } from "./take.js";
  */
 export function matchFirst<T>(pred: Predicate<T>): Transducer<T, T>;
 export function matchFirst<T>(
-    pred: Predicate<T>,
-    src: Iterable<T>
+	pred: Predicate<T>,
+	src: Iterable<T>
 ): T | undefined;
 export function matchFirst<T>(pred: Predicate<T>, src?: Iterable<T>): any {
-    return isIterable(src)
-        ? [...iterator1(matchFirst(pred), src)][0]
-        : comp(filter(pred), take(1));
+	return isIterable(src)
+		? [...iterator1(matchFirst(pred), src)][0]
+		: comp(filter(pred), take(1));
 }

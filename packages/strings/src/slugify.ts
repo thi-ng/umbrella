@@ -17,14 +17,14 @@ const re = new RegExp(src.split("").join("|"), "g");
  * @param str -
  */
 export const slugify: Stringer<string> = (str: string) => {
-    return str
-        .toLowerCase()
-        .replace(/\s+/g, "-")
-        .replace(re, (c) => dest[src.indexOf(c)])
-        .replace(/&+/g, "-and-")
-        .replace(/[^\w\-]+/g, "")
-        .replace(/\-{2,}/g, "-")
-        .replace(/(^-+)|(-+$)/g, "");
+	return str
+		.toLowerCase()
+		.replace(/\s+/g, "-")
+		.replace(re, (c) => dest[src.indexOf(c)])
+		.replace(/&+/g, "-and-")
+		.replace(/[^\w\-]+/g, "")
+		.replace(/\-{2,}/g, "-")
+		.replace(/(^-+)|(-+$)/g, "");
 };
 
 /**
@@ -37,21 +37,21 @@ export const slugify: Stringer<string> = (str: string) => {
  * // "me-myself--ëye"
  * ```
  *
- * @param str - 
+ * @param str -
  */
 export const slugifyGH = (str: string) => {
-    return (
-        str
-            .toLowerCase()
-            // remove all punctuations:
-            // - ascii
-            // - https://www.unicode.org/charts/PDF/U2000.pdf (general)
-            // - https://www.unicode.org/charts/PDF/U2700.pdf (dingbats)
-            // - https://www.unicode.org/charts/PDF/U2E00.pdf (supplemental)
-            .replace(
-                /[!"#$%&'()*+,./:;<=>?@\[\\\]^`{|}~\u0000-\u001f\u2000-\u206f\u2700-\u27bf\u2e00-\u2e7f]/g,
-                ""
-            )
-            .replace(/\s/g, "-")
-    );
+	return (
+		str
+			.toLowerCase()
+			// remove all punctuations:
+			// - ascii
+			// - https://www.unicode.org/charts/PDF/U2000.pdf (general)
+			// - https://www.unicode.org/charts/PDF/U2700.pdf (dingbats)
+			// - https://www.unicode.org/charts/PDF/U2E00.pdf (supplemental)
+			.replace(
+				/[!"#$%&'()*+,./:;<=>?@\[\\\]^`{|}~\u0000-\u001f\u2000-\u206f\u2700-\u27bf\u2e00-\u2e7f]/g,
+				""
+			)
+			.replace(/\s/g, "-")
+	);
 };

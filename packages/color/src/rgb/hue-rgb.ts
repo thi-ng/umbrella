@@ -11,15 +11,15 @@ import type { Color, Hue } from "../api.js";
  * @param hue - normalized hue
  */
 export const hueRgb = (out: Color | null, hue: number, alpha = 1): Color => {
-    hue = fract(hue) * 6;
-    return setC4(
-        out || [],
-        clamp01(Math.abs(hue - 3) - 1),
-        clamp01(2 - Math.abs(hue - 2)),
-        clamp01(2 - Math.abs(hue - 4)),
-        alpha
-    );
+	hue = fract(hue) * 6;
+	return setC4(
+		out || [],
+		clamp01(Math.abs(hue - 3) - 1),
+		clamp01(2 - Math.abs(hue - 2)),
+		clamp01(2 - Math.abs(hue - 4)),
+		alpha
+	);
 };
 
 export const namedHueRgb = (out: Color | null, hue: Hue, alpha = 1) =>
-    hueRgb(out, hue / 12, alpha);
+	hueRgb(out, hue / 12, alpha);

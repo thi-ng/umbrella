@@ -28,29 +28,29 @@ import { __dispatch } from "./internal/dispatch.js";
  * @param out - result
  */
 export const unmapPoint: MultiFn2O<IShape, ReadonlyVec, Vec, Vec> = defmulti<
-    any,
-    ReadonlyVec,
-    Vec | undefined,
-    Vec
+	any,
+	ReadonlyVec,
+	Vec | undefined,
+	Vec
 >(
-    __dispatch,
-    {
-        aabb: "rect",
-        quad3: "quad",
-    },
-    {
-        quad: ({ points }: Quad, uv, out = []) =>
-            mixBilinear(
-                out,
-                points[0],
-                points[1],
-                points[3],
-                points[2],
-                uv[0],
-                uv[1]
-            ),
+	__dispatch,
+	{
+		aabb: "rect",
+		quad3: "quad",
+	},
+	{
+		quad: ({ points }: Quad, uv, out = []) =>
+			mixBilinear(
+				out,
+				points[0],
+				points[1],
+				points[3],
+				points[2],
+				uv[0],
+				uv[1]
+			),
 
-        rect: ($: Rect, uvw: ReadonlyVec, out = []) =>
-            madd(out, $.size, uvw, $.pos),
-    }
+		rect: ($: Rect, uvw: ReadonlyVec, out = []) =>
+			madd(out, $.size, uvw, $.pos),
+	}
 );

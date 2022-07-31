@@ -9,13 +9,13 @@ import { wrapSides } from "@thi.ng/transducers/wrap-sides";
 import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
 
 export const triFan: Tessellator = (points: ReadonlyVec[]) => {
-    const c = centroid(points);
-    return transduce(
-        comp(
-            partition<Vec>(2, 1),
-            map(([a, b]) => [a, b, c])
-        ),
-        push(),
-        wrapSides(points, 0, 1)
-    );
+	const c = centroid(points);
+	return transduce(
+		comp(
+			partition<Vec>(2, 1),
+			map(([a, b]) => [a, b, c])
+		),
+		push(),
+		wrapSides(points, 0, 1)
+	);
 };

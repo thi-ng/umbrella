@@ -7,7 +7,7 @@ import { clz32 } from "./count.js";
  * @remarks
  * Reference: https://en.wikipedia.org/wiki/One-hot
  *
- * @param x - 
+ * @param x -
  */
 export const binaryOneHot = (x: Range0_31) => (1 << x) >>> 0;
 
@@ -17,6 +17,6 @@ export const binaryOneHot = (x: Range0_31) => (1 << x) >>> 0;
  * @remarks
  * Reference: https://en.wikipedia.org/wiki/One-hot
  *
- * @param x - 
+ * @param x -
  */
 export const oneHotBinary = (x: number) => 31 - clz32(x);

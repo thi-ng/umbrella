@@ -30,18 +30,18 @@ import type { ReadonlyVec, Vec, VecOpSV, VectorConstructor } from "./api.js";
  * @param byteStride -
  */
 export const mapBuffer = <T extends Type>(
-    type: T,
-    buf: ArrayBufferLike,
-    num: number,
-    size: number,
-    byteOffset = 0,
-    byteStride = size * SIZEOF[type]
+	type: T,
+	buf: ArrayBufferLike,
+	num: number,
+	size: number,
+	byteOffset = 0,
+	byteStride = size * SIZEOF[type]
 ) => {
-    const res: TypedArrayTypeMap[T][] = [];
-    for (; num-- > 0; byteOffset += byteStride) {
-        res.push(typedArray(type, buf, byteOffset, size));
-    }
-    return res;
+	const res: TypedArrayTypeMap[T][] = [];
+	for (; num-- > 0; byteOffset += byteStride) {
+		res.push(typedArray(type, buf, byteOffset, size));
+	}
+	return res;
 };
 
 /**
@@ -57,49 +57,49 @@ export const mapBuffer = <T extends Type>(
  * @param byteStride -
  */
 export const intoBuffer = <T extends Type>(
-    type: T,
-    buf: ArrayBufferLike,
-    src: Iterable<ReadonlyVec>,
-    byteOffset: number,
-    byteStride: number
+	type: T,
+	buf: ArrayBufferLike,
+	src: Iterable<ReadonlyVec>,
+	byteOffset: number,
+	byteStride: number
 ) => {
-    const view = typedArray(type, buf);
-    const size = SIZEOF[type];
-    byteOffset /= size;
-    byteStride /= size;
-    for (let x of src) {
-        view.set(x, byteOffset);
-        byteOffset += byteStride;
-    }
+	const view = typedArray(type, buf);
+	const size = SIZEOF[type];
+	byteOffset /= size;
+	byteStride /= size;
+	for (let x of src) {
+		view.set(x, byteOffset);
+		byteOffset += byteStride;
+	}
 };
 
 export const mapStridedBuffer = <T>(
-    ctor: VectorConstructor<T>,
-    buf: NumericArray,
-    num: number,
-    start: number,
-    cstride: number,
-    estride: number
+	ctor: VectorConstructor<T>,
+	buf: NumericArray,
+	num: number,
+	start: number,
+	cstride: number,
+	estride: number
 ) => {
-    const res: T[] = [];
-    while (num-- > 0) {
-        res.push(new ctor(buf, start, cstride));
-        start += estride;
-    }
-    return res;
+	const res: T[] = [];
+	while (num-- > 0) {
+		res.push(new ctor(buf, start, cstride));
+		start += estride;
+	}
+	return res;
 };
 
 export const intoStridedBuffer = (
-    set: VecOpSV,
-    buf: NumericArray,
-    src: Iterable<Vec>,
-    start: number,
-    cstride: number,
-    estride: number
+	set: VecOpSV,
+	buf: NumericArray,
+	src: Iterable<Vec>,
+	start: number,
+	cstride: number,
+	estride: number
 ) => {
-    for (let v of src) {
-        set(buf, v, start, 0, cstride, 1);
-        start += estride;
-    }
-    return buf;
+	for (let v of src) {
+		set(buf, v, start, 0, cstride, 1);
+		start += estride;
+	}
+	return buf;
 };

@@ -6,18 +6,18 @@ import { compareNumDesc } from "@thi.ng/compare/numeric";
 export type SortMode = "hue" | "luma" | "area";
 
 export interface DominantColor {
-    col: LCH;
-    area: number;
+	col: LCH;
+	area: number;
 }
 
 export const SORT_MODES: Record<SortMode, Comparator<DominantColor>> = {
-    hue: compareByKeys2(
-        (x) => x.col.h,
-        (x) => x.col.l
-    ),
-    luma: compareByKeys2(
-        (x) => x.col.l,
-        (x) => x.col.h
-    ),
-    area: compareByKey("area", compareNumDesc),
+	hue: compareByKeys2(
+		(x) => x.col.h,
+		(x) => x.col.l
+	),
+	luma: compareByKeys2(
+		(x) => x.col.l,
+		(x) => x.col.h
+	),
+	area: compareByKey("area", compareNumDesc),
 };

@@ -23,18 +23,18 @@ import { iterator1 } from "./iterator.js";
  */
 export function throttle<T>(pred: StatefulPredicate<T>): Transducer<T, T>;
 export function throttle<T>(
-    pred: StatefulPredicate<T>,
-    src: Iterable<T>
+	pred: StatefulPredicate<T>,
+	src: Iterable<T>
 ): IterableIterator<T>;
 export function throttle<T>(
-    pred: StatefulPredicate<T>,
-    src?: Iterable<T>
+	pred: StatefulPredicate<T>,
+	src?: Iterable<T>
 ): any {
-    return isIterable(src)
-        ? iterator1(throttle(pred), src)
-        : (rfn: Reducer<any, T>) => {
-              const r = rfn[2];
-              const _pred = pred();
-              return compR(rfn, (acc, x: T) => (_pred(x) ? r(acc, x) : acc));
-          };
+	return isIterable(src)
+		? iterator1(throttle(pred), src)
+		: (rfn: Reducer<any, T>) => {
+				const r = rfn[2];
+				const _pred = pred();
+				return compR(rfn, (acc, x: T) => (_pred(x) ? r(acc, x) : acc));
+		  };
 }

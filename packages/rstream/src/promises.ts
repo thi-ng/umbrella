@@ -44,10 +44,10 @@ import { fromPromise } from "./promise.js";
  * @param opts -
  */
 export const fromPromises = <T>(
-    promises: Iterable<T | PromiseLike<T>>,
-    opts?: Partial<WithErrorHandlerOpts>
+	promises: Iterable<T | PromiseLike<T>>,
+	opts?: Partial<WithErrorHandlerOpts>
 ): ISubscription<Awaited<T>[], Awaited<T>> =>
-    fromPromise(
-        Promise.all(promises),
-        __optsWithID("promises", opts)
-    ).transform(mapcat((x: Awaited<T>[]) => x));
+	fromPromise(
+		Promise.all(promises),
+		__optsWithID("promises", opts)
+	).transform(mapcat((x: Awaited<T>[]) => x));

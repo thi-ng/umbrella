@@ -17,13 +17,13 @@ export type ViewSpec = string | Path | [string | Path, Fn<any, any>];
  * See `src/config.ts`.
  */
 export interface AppConfig {
-    events: IObjectOf<EventDef>;
-    effects: IObjectOf<EffectDef>;
-    domRoot: string | Element;
-    initialState: any;
-    rootComponent: AppComponent;
-    ui: UIAttribs;
-    views: Partial<Record<AppViewIDs, ViewSpec>>;
+	events: IObjectOf<EventDef>;
+	effects: IObjectOf<EffectDef>;
+	domRoot: string | Element;
+	initialState: any;
+	rootComponent: AppComponent;
+	ui: UIAttribs;
+	views: Partial<Record<AppViewIDs, ViewSpec>>;
 }
 
 export type AppViewIDs = "amp" | "freq" | "phase" | "harmonics" | "hstep";
@@ -33,11 +33,11 @@ export type AppViewIDs = "amp" | "freq" | "phase" | "harmonics" | "hstep";
  * Add more declarations here as needed.
  */
 export interface AppViews extends Record<AppViewIDs, IView<any>> {
-    amp: IView<number>;
-    freq: IView<number>;
-    phase: IView<number>;
-    harmonics: IView<number>;
-    hstep: IView<number>;
+	amp: IView<number>;
+	freq: IView<number>;
+	phase: IView<number>;
+	harmonics: IView<number>;
+	hstep: IView<number>;
 }
 
 /**
@@ -48,21 +48,21 @@ export interface AppViews extends Record<AppViewIDs, IView<any>> {
  * component functions.
  */
 export interface UIAttribs {
-    button: any;
-    buttongroup: any;
-    footer: any;
-    link: any;
-    slider: { root: any; range: any; number: any };
-    root: any;
-    sidebar: any;
-    waveform: any;
+	button: any;
+	buttongroup: any;
+	footer: any;
+	link: any;
+	slider: { root: any; range: any; number: any };
+	root: any;
+	sidebar: any;
+	waveform: any;
 }
 
 /**
  * Structure of the context object passed to all component functions
  */
 export interface AppContext {
-    bus: EventBus;
-    views: AppViews;
-    ui: UIAttribs;
+	bus: EventBus;
+	views: AppViews;
+	ui: UIAttribs;
 }

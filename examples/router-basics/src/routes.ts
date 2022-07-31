@@ -10,18 +10,18 @@ import type { Route } from "@thi.ng/router";
 // https://docs.thi.ng/umbrella/router/interfaces/Route.html
 
 export const HOME: Route = {
-    id: "home",
-    match: ["home"],
+	id: "home",
+	match: ["home"],
 };
 
 export const CONTACT: Route = {
-    id: "contact",
-    match: ["contact"],
+	id: "contact",
+	match: ["contact"],
 };
 
 export const USER_LIST: Route = {
-    id: "user-list",
-    match: ["users"],
+	id: "user-list",
+	match: ["users"],
 };
 
 // this is a parametric route w/ parameter coercion & validation
@@ -30,12 +30,12 @@ export const USER_LIST: Route = {
 // be used (see full router config further below)
 
 export const USER_PROFILE: Route = {
-    id: "user-profile",
-    match: ["users", "?id"],
-    validate: {
-        id: {
-            coerce: (x) => parseInt(x),
-            check: (x) => x > 0 && x < 100,
-        },
-    },
+	id: "user-profile",
+	match: ["users", "?id"],
+	validate: {
+		id: {
+			coerce: (x) => parseInt(x),
+			check: (x) => x > 0 && x < 100,
+		},
+	},
 };

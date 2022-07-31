@@ -30,32 +30,32 @@ import { defaultOpts } from "./opts.js";
  * //                     ^ 2.97
  * ```
  *
- * @param opts - 
+ * @param opts -
  */
 export const bisectorStrategy = (
-    opts?: Partial<DefuzzStrategyOpts>
+	opts?: Partial<DefuzzStrategyOpts>
 ): DefuzzStrategy => {
-    let { samples } = defaultOpts(opts);
-    return (fn, [min, max]) => {
-        const delta = (max - min) / samples;
-        let sum: number[] = [];
-        for (let i = 0, acc = 0; i <= samples; i++) {
-            acc += fn(min + i * delta);
-            sum.push(acc);
-        }
-        if (!sum.length) return min;
-        const mean = sum[samples] * 0.5;
-        for (let i = 1; i <= samples; i++) {
-            if (sum[i] >= mean) {
-                return fit(
-                    mean,
-                    sum[i - 1],
-                    sum[i],
-                    min + (i - 1) * delta,
-                    min + i * delta
-                );
-            }
-        }
-        return min;
-    };
+	let { samples } = defaultOpts(opts);
+	return (fn, [min, max]) => {
+		const delta = (max - min) / samples;
+		let sum: number[] = [];
+		for (let i = 0, acc = 0; i <= samples; i++) {
+			acc += fn(min + i * delta);
+			sum.push(acc);
+		}
+		if (!sum.length) return min;
+		const mean = sum[samples] * 0.5;
+		for (let i = 1; i <= samples; i++) {
+			if (sum[i] >= mean) {
+				return fit(
+					mean,
+					sum[i - 1],
+					sum[i],
+					min + (i - 1) * delta,
+					min + i * delta
+				);
+			}
+		}
+		return min;
+	};
 };

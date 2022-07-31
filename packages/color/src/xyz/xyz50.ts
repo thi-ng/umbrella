@@ -12,44 +12,44 @@ import { xyzRgb } from "./xyz-rgb.js";
 import { xyzXyzD65_50 } from "./xyz-xyz.js";
 
 export declare class XYZD50 implements TypedColor<XYZD50> {
-    buf: NumericArray;
-    offset: number;
-    stride: number;
-    x: number;
-    y: number;
-    z: number;
-    alpha: number;
-    [id: number]: number;
-    readonly mode: "xyz50";
-    readonly length: 4;
-    readonly range: [ReadonlyColor, ReadonlyColor];
-    [Symbol.iterator](): Iterator<number, any, undefined>;
-    clamp(): this;
-    copy(): XYZD50;
-    copyView(): XYZD50;
-    deref(): Color;
-    empty(): XYZD50;
-    eqDelta(o: XYZD50, eps?: number): boolean;
-    randomize(rnd?: IRandom): this;
-    set(src: ReadonlyColor): this;
-    toJSON(): number[];
+	buf: NumericArray;
+	offset: number;
+	stride: number;
+	x: number;
+	y: number;
+	z: number;
+	alpha: number;
+	[id: number]: number;
+	readonly mode: "xyz50";
+	readonly length: 4;
+	readonly range: [ReadonlyColor, ReadonlyColor];
+	[Symbol.iterator](): Iterator<number, any, undefined>;
+	clamp(): this;
+	copy(): XYZD50;
+	copyView(): XYZD50;
+	deref(): Color;
+	empty(): XYZD50;
+	eqDelta(o: XYZD50, eps?: number): boolean;
+	randomize(rnd?: IRandom): this;
+	set(src: ReadonlyColor): this;
+	toJSON(): number[];
 }
 
 export const xyzD50 = <ColorFactory<XYZD50>>defColor({
-    mode: "xyz50",
-    channels: {
-        x: { range: [0, D50[0]] },
-        y: { range: [0, D50[1]] },
-        z: { range: [0, D50[2]] },
-    },
-    order: <const>["x", "y", "z", "alpha"],
-    from: {
-        rgb: rgbXyz,
-        lab50: labXyz,
-        lab65: [labXyzD65, xyzXyzD65_50],
-        lch: [lchLab, labXyz],
-        oklab: [oklabXyzD65, xyzXyzD65_50],
-        xyy: xyyXyz,
-    },
-    toRgb: xyzRgb,
+	mode: "xyz50",
+	channels: {
+		x: { range: [0, D50[0]] },
+		y: { range: [0, D50[1]] },
+		z: { range: [0, D50[2]] },
+	},
+	order: <const>["x", "y", "z", "alpha"],
+	from: {
+		rgb: rgbXyz,
+		lab50: labXyz,
+		lab65: [labXyzD65, xyzXyzD65_50],
+		lch: [lchLab, labXyz],
+		oklab: [oklabXyzD65, xyzXyzD65_50],
+		xyy: xyyXyz,
+	},
+	toRgb: xyzRgb,
 });

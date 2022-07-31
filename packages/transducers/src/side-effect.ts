@@ -10,4 +10,4 @@ import { map } from "./map.js";
  * @param fn - side effect
  */
 export const sideEffect = <T>(fn: Fn<T, void>): Transducer<T, T> =>
-    map((x) => (fn(x), x));
+	map((x) => (fn(x), x));

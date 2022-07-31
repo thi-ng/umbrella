@@ -5,9 +5,9 @@ import { add, mul } from "@thi.ng/shader-ast/ast/ops";
 import { mod } from "@thi.ng/shader-ast/builtin/math";
 
 const __permute = <T extends Prim>(type: T, suffix = "") =>
-    defn(type, `permute${suffix}`, [type], (v) => [
-        ret(mod(mul(<any>v, add(mul(<any>v, float(34)), FLOAT1)), float(289))),
-    ]);
+	defn(type, `permute${suffix}`, [type], (v) => [
+		ret(mod(mul(<any>v, add(mul(<any>v, float(34)), FLOAT1)), float(289))),
+	]);
 
 export const permute = __permute("float");
 

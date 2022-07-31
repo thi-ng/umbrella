@@ -11,16 +11,16 @@ import type { Canvas } from "./canvas.js";
  * @param fmt -
  */
 export const formatCanvas = (canvas: Canvas, fmt?: StringFormat) => {
-    const { data, width, height } = canvas;
-    const res: string[] = [];
-    if (fmt) {
-        for (let y = 0; y < height; y++) {
-            res.push(format(fmt, data, width, y * width));
-        }
-    } else {
-        for (let y = 0; y < height; y++) {
-            res.push(formatNone(data, width, y * width));
-        }
-    }
-    return res.join("");
+	const { data, width, height } = canvas;
+	const res: string[] = [];
+	if (fmt) {
+		for (let y = 0; y < height; y++) {
+			res.push(format(fmt, data, width, y * width));
+		}
+	} else {
+		for (let y = 0; y < height; y++) {
+			res.push(formatNone(data, width, y * width));
+		}
+	}
+	return res.join("");
 };

@@ -11,12 +11,12 @@ import { pluck } from "@thi.ng/transducers/pluck";
 import { repeatedly } from "@thi.ng/transducers/repeatedly";
 import { transduce } from "@thi.ng/transducers/transduce";
 import type {
-    CAConfig1D,
-    CASpec1D,
-    Kernel,
-    Target,
-    UpdateBufferOpts,
-    UpdateImageOpts1D,
+	CAConfig1D,
+	CASpec1D,
+	Kernel,
+	Target,
+	UpdateBufferOpts,
+	UpdateImageOpts1D,
 } from "./api.js";
 
 const $0 = BigInt(0);
@@ -27,9 +27,9 @@ const $32 = BigInt(32);
  * Standard Wolfram automata 3-neighborhood (no history)
  */
 export const WOLFRAM3: Kernel = [
-    [-1, 0],
-    [0, 0],
-    [1, 0],
+	[-1, 0],
+	[0, 0],
+	[1, 0],
 ];
 
 /**
@@ -164,261 +164,261 @@ export const WOLFRAM7: Kernel = [[-3, 0], ...WOLFRAM5, [3, 0]];
  * ```
  */
 export class MultiCA1D implements IClear {
-    configs: CAConfig1D[];
-    rows: number;
-    numStates: number;
-    mask!: Uint8Array;
-    gens!: Uint8Array[];
-    prob!: Float32Array;
+	configs: CAConfig1D[];
+	rows: number;
+	numStates: number;
+	mask!: Uint8Array;
+	gens!: Uint8Array[];
+	prob!: Float32Array;
 
-    constructor(configs: CASpec1D[], public width: number, public wrap = true) {
-        this.configs = configs.map(__compileSpec);
-        this.rows =
-            transduce(
-                mapcat((c) => map((k) => k[1], c.kernel)),
-                max(),
-                configs
-            ) + 1;
-        this.numStates = transduce(pluck("states"), max(), configs);
-        assert(
-            this.numStates >= 2 && this.numStates <= 256,
-            "num states must be in [2..256] range"
-        );
-        this.resize(width);
-    }
+	constructor(configs: CASpec1D[], public width: number, public wrap = true) {
+		this.configs = configs.map(__compileSpec);
+		this.rows =
+			transduce(
+				mapcat((c) => map((k) => k[1], c.kernel)),
+				max(),
+				configs
+			) + 1;
+		this.numStates = transduce(pluck("states"), max(), configs);
+		assert(
+			this.numStates >= 2 && this.numStates <= 256,
+			"num states must be in [2..256] range"
+		);
+		this.resize(width);
+	}
 
-    get current() {
-        return this.gens[1];
-    }
+	get current() {
+		return this.gens[1];
+	}
 
-    get previous() {
-        return this.gens[2 % this.gens.length];
-    }
+	get previous() {
+		return this.gens[2 % this.gens.length];
+	}
 
-    clear() {
-        this.gens.forEach((g) => g.fill(0));
-        this.mask.fill(0);
-        this.prob.fill(1);
-    }
+	clear() {
+		this.gens.forEach((g) => g.fill(0));
+		this.mask.fill(0);
+		this.prob.fill(1);
+	}
 
-    clearTarget(target: Target) {
-        this._getTarget(target)[0].fill(target === "prob" ? 1 : 0);
-    }
+	clearTarget(target: Target) {
+		this._getTarget(target)[0].fill(target === "prob" ? 1 : 0);
+	}
 
-    resize(width: number) {
-        this.width = width;
-        this.mask = new Uint8Array(width);
-        this.gens = [...repeatedly(() => new Uint8Array(width), this.rows + 1)];
-        this.prob = new Float32Array(width).fill(1);
-    }
+	resize(width: number) {
+		this.width = width;
+		this.mask = new Uint8Array(width);
+		this.gens = [...repeatedly(() => new Uint8Array(width), this.rows + 1)];
+		this.prob = new Float32Array(width).fill(1);
+	}
 
-    /**
-     * Sets a parametric pattern in the current generation or mask array.
-     *
-     * @param target - target buffer ID to apply pattern
-     * @param width - number of consecutive cells per segment
-     * @param stride -  number of cells between each pattern segment
-     * @param val - start cell value per segment
-     * @param inc - cell value increment
-     * @param offset - start cell offset
-     */
-    setPattern(
-        target: Target,
-        width: number,
-        stride: number,
-        val = 1,
-        inc = 0,
-        offset = 0
-    ) {
-        const [dest, num] = this._getTarget(target);
-        for (let x = offset, w = this.width; x < w; x += stride) {
-            for (let k = 0, v = val; k < width; k++, v += inc) {
-                dest[x + k] = v % num;
-            }
-        }
-        return this;
-    }
+	/**
+	 * Sets a parametric pattern in the current generation or mask array.
+	 *
+	 * @param target - target buffer ID to apply pattern
+	 * @param width - number of consecutive cells per segment
+	 * @param stride -  number of cells between each pattern segment
+	 * @param val - start cell value per segment
+	 * @param inc - cell value increment
+	 * @param offset - start cell offset
+	 */
+	setPattern(
+		target: Target,
+		width: number,
+		stride: number,
+		val = 1,
+		inc = 0,
+		offset = 0
+	) {
+		const [dest, num] = this._getTarget(target);
+		for (let x = offset, w = this.width; x < w; x += stride) {
+			for (let k = 0, v = val; k < width; k++, v += inc) {
+				dest[x + k] = v % num;
+			}
+		}
+		return this;
+	}
 
-    /**
-     * Sets cells in current generation array to a random state using given
-     * `probability` and optional PRNG ({@link @thi.ng/random#IRandom} instance).
-     *
-     * @param target
-     * @param prob
-     * @param rnd
-     */
-    setNoise(target: Target, prob = 0.5, rnd: IRandom = SYSTEM) {
-        const [dest, num] = this._getTarget(target);
-        const fn =
-            target === "prob" ? () => rnd.float() : () => rnd.int() % num;
-        for (let x = 0, width = this.width; x < width; x++) {
-            if (rnd.float() < prob) dest[x] = fn();
-        }
-        return this;
-    }
+	/**
+	 * Sets cells in current generation array to a random state using given
+	 * `probability` and optional PRNG ({@link @thi.ng/random#IRandom} instance).
+	 *
+	 * @param target
+	 * @param prob
+	 * @param rnd
+	 */
+	setNoise(target: Target, prob = 0.5, rnd: IRandom = SYSTEM) {
+		const [dest, num] = this._getTarget(target);
+		const fn =
+			target === "prob" ? () => rnd.float() : () => rnd.int() % num;
+		for (let x = 0, width = this.width; x < width; x++) {
+			if (rnd.float() < prob) dest[x] = fn();
+		}
+		return this;
+	}
 
-    /**
-     * Computes a single new generation using current cell states and mask only
-     * (no consideration for cell update probabilities, use
-     * {@link MultiCA1D.updateProbabilistic} for that instead). Als see
-     * {@link MultiCA1D.updateImage} for batch updates.
-     */
-    update() {
-        const { width, gens, configs, mask } = this;
-        const [next, curr] = gens;
-        for (let x = 0; x < width; x++) {
-            next[x] = this.computeCell(configs[mask[x]], x, curr[x]);
-        }
-        gens.unshift(gens.pop()!);
-    }
+	/**
+	 * Computes a single new generation using current cell states and mask only
+	 * (no consideration for cell update probabilities, use
+	 * {@link MultiCA1D.updateProbabilistic} for that instead). Als see
+	 * {@link MultiCA1D.updateImage} for batch updates.
+	 */
+	update() {
+		const { width, gens, configs, mask } = this;
+		const [next, curr] = gens;
+		for (let x = 0; x < width; x++) {
+			next[x] = this.computeCell(configs[mask[x]], x, curr[x]);
+		}
+		gens.unshift(gens.pop()!);
+	}
 
-    /**
-     * Same as {@link MultiCA1D.update}, but also considering cell update
-     * probabilities stored in the {@link MultiCA1D.prob} array.
-     *
-     * @param rnd
-     */
-    updateProbabilistic(rnd: IRandom = SYSTEM) {
-        const { width, prob, gens, configs, mask } = this;
-        const [next, curr] = gens;
-        for (let x = 0; x < width; x++) {
-            next[x] =
-                rnd.float() < prob[x]
-                    ? this.computeCell(configs[mask[x]], x, curr[x])
-                    : curr[x];
-        }
-        gens.unshift(gens.pop()!);
-    }
+	/**
+	 * Same as {@link MultiCA1D.update}, but also considering cell update
+	 * probabilities stored in the {@link MultiCA1D.prob} array.
+	 *
+	 * @param rnd
+	 */
+	updateProbabilistic(rnd: IRandom = SYSTEM) {
+		const { width, prob, gens, configs, mask } = this;
+		const [next, curr] = gens;
+		for (let x = 0; x < width; x++) {
+			next[x] =
+				rnd.float() < prob[x]
+					? this.computeCell(configs[mask[x]], x, curr[x])
+					: curr[x];
+		}
+		gens.unshift(gens.pop()!);
+	}
 
-    /**
-     * Computes (but doesn't apply) the new state for a single cell.
-     *
-     * @param config - CA configuration
-     * @param x - cell index
-     * @param val - current cell value
-     */
-    computeCell(
-        { rule, kernel, weights, fn }: CAConfig1D,
-        x: number,
-        val: number
-    ) {
-        const { width, gens, wrap } = this;
-        let sum = $0;
-        for (let i = 0, n = kernel.length; i < n; i++) {
-            const k = kernel[i];
-            let xx = x + k[0];
-            if (wrap) {
-                if (xx < 0) xx += width;
-                else if (xx >= width) xx -= width;
-            } else if (xx < 0 || xx >= width) continue;
-            const y = k[1];
-            if (y >= 0 && gens[1 + y][xx] !== 0) sum += weights[i];
-        }
-        return rule & ($1 << sum) ? fn(val) : 0;
-    }
+	/**
+	 * Computes (but doesn't apply) the new state for a single cell.
+	 *
+	 * @param config - CA configuration
+	 * @param x - cell index
+	 * @param val - current cell value
+	 */
+	computeCell(
+		{ rule, kernel, weights, fn }: CAConfig1D,
+		x: number,
+		val: number
+	) {
+		const { width, gens, wrap } = this;
+		let sum = $0;
+		for (let i = 0, n = kernel.length; i < n; i++) {
+			const k = kernel[i];
+			let xx = x + k[0];
+			if (wrap) {
+				if (xx < 0) xx += width;
+				else if (xx >= width) xx -= width;
+			} else if (xx < 0 || xx >= width) continue;
+			const y = k[1];
+			if (y >= 0 && gens[1 + y][xx] !== 0) sum += weights[i];
+		}
+		return rule & ($1 << sum) ? fn(val) : 0;
+	}
 
-    /**
-     * Batch version of {@link MultiCA1D.update} to compute an entire image of
-     * given `height` (and assumed to be the same width as this CA instance has
-     * been configured to). Fills given `pixels` array with consecutive
-     * generations.
-     *
-     * @remarks
-     * Via the provided options object, per-generation & per-cell perturbance
-     * settings can be provided for cell states, mask and cell update
-     * probabilities. The latter are only considered if the
-     * {@link UpdateImageOpts1D.probabilistic} option is enabled. This can be
-     * helpful to sporadically introduce noise into the sim, break constant
-     * patterns and/or produce more varied/complex outputs.
-     *
-     * See {@link UpdateImageOpts1D} for further options.
-     *
-     * @param pixels
-     * @param height
-     * @param opts
-     */
-    updateImage(
-        pixels: UIntArray,
-        height: number,
-        opts: Partial<UpdateImageOpts1D> = {}
-    ) {
-        assert(
-            pixels.length >= this.width * height,
-            "target pixel buffer too small"
-        );
-        const { cells, mask, prob, probabilistic, rnd, onupdate } = {
-            probabilistic: false,
-            rnd: SYSTEM,
-            ...opts,
-        };
-        const $ = (id: Target, conf?: Partial<UpdateBufferOpts>) => {
-            conf &&
-                conf.perturb &&
-                rnd.float() < conf.perturb &&
-                this.setNoise(id, conf.density || 0.05, rnd);
-        };
-        for (let y = 0; y < height; y++) {
-            $("cells", cells);
-            $("mask", mask);
-            $("prob", prob);
-            probabilistic ? this.updateProbabilistic(rnd) : this.update();
-            onupdate && onupdate(this, y);
-            pixels.set(this.current, y * this.width);
-        }
-    }
+	/**
+	 * Batch version of {@link MultiCA1D.update} to compute an entire image of
+	 * given `height` (and assumed to be the same width as this CA instance has
+	 * been configured to). Fills given `pixels` array with consecutive
+	 * generations.
+	 *
+	 * @remarks
+	 * Via the provided options object, per-generation & per-cell perturbance
+	 * settings can be provided for cell states, mask and cell update
+	 * probabilities. The latter are only considered if the
+	 * {@link UpdateImageOpts1D.probabilistic} option is enabled. This can be
+	 * helpful to sporadically introduce noise into the sim, break constant
+	 * patterns and/or produce more varied/complex outputs.
+	 *
+	 * See {@link UpdateImageOpts1D} for further options.
+	 *
+	 * @param pixels
+	 * @param height
+	 * @param opts
+	 */
+	updateImage(
+		pixels: UIntArray,
+		height: number,
+		opts: Partial<UpdateImageOpts1D> = {}
+	) {
+		assert(
+			pixels.length >= this.width * height,
+			"target pixel buffer too small"
+		);
+		const { cells, mask, prob, probabilistic, rnd, onupdate } = {
+			probabilistic: false,
+			rnd: SYSTEM,
+			...opts,
+		};
+		const $ = (id: Target, conf?: Partial<UpdateBufferOpts>) => {
+			conf &&
+				conf.perturb &&
+				rnd.float() < conf.perturb &&
+				this.setNoise(id, conf.density || 0.05, rnd);
+		};
+		for (let y = 0; y < height; y++) {
+			$("cells", cells);
+			$("mask", mask);
+			$("prob", prob);
+			probabilistic ? this.updateProbabilistic(rnd) : this.update();
+			onupdate && onupdate(this, y);
+			pixels.set(this.current, y * this.width);
+		}
+	}
 
-    rotate(target: Target | "all", dir: number) {
-        if (target === "all") {
-            __rotate(this.current, dir);
-            __rotate(this.mask, dir);
-            __rotate(this.prob, dir);
-        } else {
-            __rotate(this._getTarget(target)[0], dir);
-        }
-    }
+	rotate(target: Target | "all", dir: number) {
+		if (target === "all") {
+			__rotate(this.current, dir);
+			__rotate(this.mask, dir);
+			__rotate(this.prob, dir);
+		} else {
+			__rotate(this._getTarget(target)[0], dir);
+		}
+	}
 
-    protected _getTarget(target: Target): [TypedArray, number] {
-        return target === "cells"
-            ? [this.current, this.numStates]
-            : target === "mask"
-            ? [this.mask, this.configs.length]
-            : [this.prob, 1];
-    }
+	protected _getTarget(target: Target): [TypedArray, number] {
+		return target === "cells"
+			? [this.current, this.numStates]
+			: target === "mask"
+			? [this.mask, this.configs.length]
+			: [this.prob, 1];
+	}
 }
 
 const __compileSpec = ({
-    rule,
-    kernel,
-    positional,
-    states,
-    reset,
+	rule,
+	kernel,
+	positional,
+	states,
+	reset,
 }: CASpec1D) => {
-    const max = states - 1;
-    return <CAConfig1D>{
-        kernel,
-        states,
-        rule: isBigInt(rule) ? rule : BigInt(rule),
-        weights:
-            positional !== false
-                ? kernel.map((_, i) => BigInt(2) ** BigInt(i))
-                : [...repeat($1, kernel.length)],
-        fn:
-            reset !== false
-                ? (y) => (++y >= states ? 0 : y)
-                : (y) => (++y >= max ? max : y),
-    };
+	const max = states - 1;
+	return <CAConfig1D>{
+		kernel,
+		states,
+		rule: isBigInt(rule) ? rule : BigInt(rule),
+		weights:
+			positional !== false
+				? kernel.map((_, i) => BigInt(2) ** BigInt(i))
+				: [...repeat($1, kernel.length)],
+		fn:
+			reset !== false
+				? (y) => (++y >= states ? 0 : y)
+				: (y) => (++y >= max ? max : y),
+	};
 };
 
 const __rotate = (buf: TypedArray, dir: number) => {
-    if (dir < 0) {
-        const tmp = buf.slice(0, -dir);
-        buf.copyWithin(0, -dir);
-        buf.set(tmp, buf.length + dir);
-    } else if (dir > 0) {
-        const tmp = buf.slice(buf.length - dir);
-        buf.copyWithin(dir, 0);
-        buf.set(tmp, 0);
-    }
+	if (dir < 0) {
+		const tmp = buf.slice(0, -dir);
+		buf.copyWithin(0, -dir);
+		buf.set(tmp, buf.length + dir);
+	} else if (dir > 0) {
+		const tmp = buf.slice(buf.length - dir);
+		buf.copyWithin(dir, 0);
+		buf.set(tmp, 0);
+	}
 };
 
 /**
@@ -429,13 +429,13 @@ const __rotate = (buf: TypedArray, dir: number) => {
  * @param rnd
  */
 export const randomRule1D = (kernelSize: number, rnd: IRandom = SYSTEM) => {
-    const n = BigInt(2 ** kernelSize);
-    let id = $0;
-    for (let i = $0; i < n; i += $32) {
-        id <<= $32;
-        let mask = n - i;
-        if (mask > $32) mask = $32;
-        id |= BigInt(rnd.int()) & (($1 << mask) - $1);
-    }
-    return id;
+	const n = BigInt(2 ** kernelSize);
+	let id = $0;
+	for (let i = $0; i < n; i += $32) {
+		id <<= $32;
+		let mask = n - i;
+		if (mask > $32) mask = $32;
+		id |= BigInt(rnd.int()) & (($1 << mask) - $1);
+	}
+	return id;
 };

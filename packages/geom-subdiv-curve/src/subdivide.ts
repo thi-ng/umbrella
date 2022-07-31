@@ -14,20 +14,20 @@ import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
  * @param iter - number of iterations
  */
 export const subdivide = (
-    pts: ReadonlyVec[],
-    { fn, pre, size }: SubdivKernel,
-    iter = 1
+	pts: ReadonlyVec[],
+	{ fn, pre, size }: SubdivKernel,
+	iter = 1
 ) => {
-    while (iter-- > 0) {
-        const nump = pts.length;
-        pts = transduce<ReadonlyVec, ReadonlyVec, Vec[]>(
-            comp(
-                partition(size, 1),
-                mapcatIndexed((i, pts) => fn(pts, i, nump))
-            ),
-            push(),
-            pre ? pre(pts) : pts
-        );
-    }
-    return pts;
+	while (iter-- > 0) {
+		const nump = pts.length;
+		pts = transduce<ReadonlyVec, ReadonlyVec, Vec[]>(
+			comp(
+				partition(size, 1),
+				mapcatIndexed((i, pts) => fn(pts, i, nump))
+			),
+			push(),
+			pre ? pre(pts) : pts
+		);
+	}
+	return pts;
 };

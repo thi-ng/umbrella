@@ -16,54 +16,54 @@ import * as paths from "./paths";
  * produced. In turn, this event will update the app state and so
  * trigger a DOM update to display the new result.
  *
- * @param bus - 
+ * @param bus -
  */
 export function initDataflow(bus: EventBus) {
-    const graph = initGraph(bus.state, {
-        grid: {
-            fn: grid,
-            ins: {
-                cols: { path: paths.COLS },
-                rows: { path: paths.ROWS },
-            },
-        },
-        rotation: {
-            fn: rotate,
-            ins: {
-                shapes: { stream: "/grid/node" },
-                theta: { path: paths.THETA },
-            },
-        },
-        svg: {
-            fn: createSVG,
-            ins: {
-                shapes: { stream: "/rotation/node" },
-                cols: { path: paths.COLS },
-                rows: { path: paths.ROWS },
-                stroke: { path: paths.STROKE },
-            },
-            // dispatch SVG result doc as event
-            outs: {
-                "*": (node) =>
-                    node.subscribe({
-                        next: (svg) => bus.dispatch([ev.UPDATE_SVG, svg]),
-                    }),
-            },
-        },
-    });
-    return graph;
+	const graph = initGraph(bus.state, {
+		grid: {
+			fn: grid,
+			ins: {
+				cols: { path: paths.COLS },
+				rows: { path: paths.ROWS },
+			},
+		},
+		rotation: {
+			fn: rotate,
+			ins: {
+				shapes: { stream: "/grid/node" },
+				theta: { path: paths.THETA },
+			},
+		},
+		svg: {
+			fn: createSVG,
+			ins: {
+				shapes: { stream: "/rotation/node" },
+				cols: { path: paths.COLS },
+				rows: { path: paths.ROWS },
+				stroke: { path: paths.STROKE },
+			},
+			// dispatch SVG result doc as event
+			outs: {
+				"*": (node) =>
+					node.subscribe({
+						next: (svg) => bus.dispatch([ev.UPDATE_SVG, svg]),
+					}),
+			},
+		},
+	});
+	return graph;
 }
 
 /**
  * Implementation for grid generator node.
  */
 const grid = node(
-    map(({ cols, rows }) => [
-        ...map(
-            ([x, y]) => ["rect", { x, y, width: 1, height: 1 }],
-            range2d(cols, rows)
-        ),
-    ])
+	map(({ cols, rows }) => [
+		...map(
+			([x, y]) => ["rect", { x, y, width: 1, height: 1 }],
+			range2d(cols, rows)
+		),
+	])
 );
 
 /**
@@ -71,16 +71,16 @@ const grid = node(
  * all received shapes.
  */
 const rotate = node(
-    map(({ shapes, theta }) =>
-        shapes.map(
-            (s: any) => (
-                (s[1].transform = `rotate(${theta} ${s[1].x + 0.5} ${
-                    s[1].y + 0.5
-                })`),
-                s
-            )
-        )
-    )
+	map(({ shapes, theta }) =>
+		shapes.map(
+			(s: any) => (
+				(s[1].transform = `rotate(${theta} ${s[1].x + 0.5} ${
+					s[1].y + 0.5
+				})`),
+				s
+			)
+		)
+	)
 );
 
 /**
@@ -88,22 +88,22 @@ const rotate = node(
  * complete svg document in hiccup format.
  */
 const createSVG = node(
-    map(({ shapes, cols, rows, stroke }) =>
-        svg(
-            {
-                class: "w-100 h-100",
-                preserveAspectRatio: "xMidYMid",
-                viewBox: `-1 -1 ${cols + 2} ${rows + 2}`,
-            },
-            rect([-1, -1], cols + 2, rows + 2, { fill: "black" }),
-            group(
-                {
-                    stroke: "white",
-                    fill: "none",
-                    "stroke-width": stroke,
-                },
-                ...shapes
-            )
-        )
-    )
+	map(({ shapes, cols, rows, stroke }) =>
+		svg(
+			{
+				class: "w-100 h-100",
+				preserveAspectRatio: "xMidYMid",
+				viewBox: `-1 -1 ${cols + 2} ${rows + 2}`,
+			},
+			rect([-1, -1], cols + 2, rows + 2, { fill: "black" }),
+			group(
+				{
+					stroke: "white",
+					fill: "none",
+					"stroke-width": stroke,
+				},
+				...shapes
+			)
+		)
+	)
 );

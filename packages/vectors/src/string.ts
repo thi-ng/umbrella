@@ -26,36 +26,36 @@ import type { ToStringOpts } from "./api.js";
  * // [1.00000 -2.00000 3.00000]
  * ```
  *
- * @param prec - 
- * @param width - 
+ * @param prec -
+ * @param width -
  */
 export const defFormat = (
-    opts?: Partial<ToStringOpts>
+	opts?: Partial<ToStringOpts>
 ): Stringer<Iterable<number>> => {
-    const { prec, width, delim, wrap } = {
-        prec: 3,
-        delim: ", ",
-        wrap: "[]",
-        ...opts,
-    };
-    const fmt = width ? floatFixedWidth(width, prec) : float(prec);
-    return (src) => {
-        let res: string[] = [];
-        for (let x of src) res.push(fmt(x));
-        return `${wrap[0]}${res.join(delim)}${wrap[1]}`;
-    };
+	const { prec, width, delim, wrap } = {
+		prec: 3,
+		delim: ", ",
+		wrap: "[]",
+		...opts,
+	};
+	const fmt = width ? floatFixedWidth(width, prec) : float(prec);
+	return (src) => {
+		let res: string[] = [];
+		for (let x of src) res.push(fmt(x));
+		return `${wrap[0]}${res.join(delim)}${wrap[1]}`;
+	};
 };
 
 /**
  * Sets package-wide default vector formatter. See {@link defFormat},
  * {@link FORMATTER}.
  *
- * @param fmt - 
+ * @param fmt -
  */
 export const setFormat = (
-    fmt: Stringer<Iterable<number>> | Partial<ToStringOpts>
+	fmt: Stringer<Iterable<number>> | Partial<ToStringOpts>
 ) => {
-    FORMATTER = isFunction(fmt) ? fmt : defFormat(fmt);
+	FORMATTER = isFunction(fmt) ? fmt : defFormat(fmt);
 };
 
 /**

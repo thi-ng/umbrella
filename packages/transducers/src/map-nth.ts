@@ -27,51 +27,51 @@ import { __iter } from "./iterator.js";
  */
 export function mapNth<A, B>(n: number, fn: Fn<A, B>): Transducer<A, A | B>;
 export function mapNth<A, B>(
-    n: number,
-    offset: number,
-    fn: Fn<A, B>
+	n: number,
+	offset: number,
+	fn: Fn<A, B>
 ): Transducer<A, A | B>;
 export function mapNth<A, B>(
-    n: number,
-    fn: Fn<A, B>,
-    src: Iterable<A>
+	n: number,
+	fn: Fn<A, B>,
+	src: Iterable<A>
 ): IterableIterator<A | B>;
 export function mapNth<A, B>(
-    n: number,
-    offset: number,
-    fn: Fn<A, B>,
-    src: Iterable<A>
+	n: number,
+	offset: number,
+	fn: Fn<A, B>,
+	src: Iterable<A>
 ): IterableIterator<A | B>;
 export function mapNth<A, B>(...args: any[]): any {
-    const iter = __iter(mapNth, args);
-    if (iter) {
-        return iter;
-    }
-    let n = args[0] - 1;
-    let offset: number;
-    let fn: Fn<A, B>;
-    if (typeof args[1] === "number") {
-        offset = args[1];
-        fn = args[2];
-    } else {
-        fn = args[1];
-        offset = 0;
-    }
-    return (rfn: Reducer<any, A | B>) => {
-        const r = rfn[2];
-        let skip = 0,
-            off = offset;
-        return compR(rfn, (acc, x: A) => {
-            if (off === 0) {
-                if (skip === 0) {
-                    skip = n;
-                    return r(acc, fn(x));
-                }
-                skip--;
-            } else {
-                off--;
-            }
-            return r(acc, x);
-        });
-    };
+	const iter = __iter(mapNth, args);
+	if (iter) {
+		return iter;
+	}
+	let n = args[0] - 1;
+	let offset: number;
+	let fn: Fn<A, B>;
+	if (typeof args[1] === "number") {
+		offset = args[1];
+		fn = args[2];
+	} else {
+		fn = args[1];
+		offset = 0;
+	}
+	return (rfn: Reducer<any, A | B>) => {
+		const r = rfn[2];
+		let skip = 0,
+			off = offset;
+		return compR(rfn, (acc, x: A) => {
+			if (off === 0) {
+				if (skip === 0) {
+					skip = n;
+					return r(acc, fn(x));
+				}
+				skip--;
+			} else {
+				off--;
+			}
+			return r(acc, x);
+		});
+	};
 }

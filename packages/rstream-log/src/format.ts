@@ -7,15 +7,15 @@ import type { BodyFormat, DateFormat, LogEntry, LogEntryObj } from "./api.js";
 export const isoDate = (dt: number) => new Date(dt).toISOString();
 
 export const formatString = (
-    dtFmt?: DateFormat,
-    bodyFmt?: BodyFormat
+	dtFmt?: DateFormat,
+	bodyFmt?: BodyFormat
 ): Transducer<LogEntry, string> => {
-    dtFmt = dtFmt || isoDate;
-    bodyFmt = bodyFmt || ((x) => x.map(stringify()).join(" "));
-    return map(
-        ([level, id, time, ...body]) =>
-            `[${LogLevel[level]}] ${id}: ${dtFmt!(time)} ${bodyFmt!(body)}`
-    );
+	dtFmt = dtFmt || isoDate;
+	bodyFmt = bodyFmt || ((x) => x.map(stringify()).join(" "));
+	return map(
+		([level, id, time, ...body]) =>
+			`[${LogLevel[level]}] ${id}: ${dtFmt!(time)} ${bodyFmt!(body)}`
+	);
 };
 
 /**
@@ -42,23 +42,23 @@ export const formatString = (
  * @param mask -
  */
 export const maskSecrets = (patterns: RegExp[], mask = "****") =>
-    map((msg: string) =>
-        patterns.reduce((acc, pat) => acc.replace(pat, mask), msg)
-    );
+	map((msg: string) =>
+		patterns.reduce((acc, pat) => acc.replace(pat, mask), msg)
+	);
 
 export const formatObject = (): Transducer<LogEntry, LogEntryObj> =>
-    map(([level, id, time, ...body]) => ({ level, id, time, body }));
+	map(([level, id, time, ...body]) => ({ level, id, time, body }));
 
 export const formatJSON = (
-    dtfmt?: DateFormat
+	dtfmt?: DateFormat
 ): Transducer<LogEntry, string> => {
-    dtfmt = dtfmt || isoDate;
-    return map(([level, id, time, ...body]) =>
-        JSON.stringify({
-            id,
-            level: LogLevel[level],
-            time: dtfmt!(time),
-            body,
-        })
-    );
+	dtfmt = dtfmt || isoDate;
+	return map(([level, id, time, ...body]) =>
+		JSON.stringify({
+			id,
+			level: LogLevel[level],
+			time: dtfmt!(time),
+			body,
+		})
+	);
 };

@@ -7,10 +7,10 @@ import { reduce, reducer } from "./reduce.js";
 export function conj<T>(): Reducer<Set<T>, T>;
 export function conj<T>(xs: Iterable<T>): Set<T>;
 export function conj<T>(xs?: Iterable<T>): any {
-    return xs
-        ? reduce(conj(), xs)
-        : reducer(
-              () => new Set(),
-              (acc, x) => acc.add(x)
-          );
+	return xs
+		? reduce(conj(), xs)
+		: reducer(
+				() => new Set(),
+				(acc, x) => acc.add(x)
+		  );
 }

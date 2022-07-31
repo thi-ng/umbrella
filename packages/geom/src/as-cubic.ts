@@ -2,12 +2,12 @@ import type { MultiFn1O } from "@thi.ng/defmulti";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
 import type { CubicOpts, IShape, PCLike } from "@thi.ng/geom-api";
 import {
-    closedCubicFromBreakPoints,
-    openCubicFromBreakPoints,
+	closedCubicFromBreakPoints,
+	openCubicFromBreakPoints,
 } from "@thi.ng/geom-splines/cubic-from-breakpoints";
 import {
-    closedCubicFromControlPoints,
-    openCubicFromControlPoints,
+	closedCubicFromControlPoints,
+	openCubicFromControlPoints,
 } from "@thi.ng/geom-splines/cubic-from-controlpoints";
 import { TAU } from "@thi.ng/math/api";
 import { mapcat } from "@thi.ng/transducers/mapcat";
@@ -64,54 +64,54 @@ import { __dispatch } from "./internal/dispatch.js";
  * @param opts
  */
 export const asCubic: MultiFn1O<IShape, Partial<CubicOpts>, Cubic[]> = defmulti(
-    __dispatch,
-    {
-        ellipse: "circle",
-        quad: "poly",
-        tri: "poly",
-    },
-    {
-        arc: cubicFromArc,
+	__dispatch,
+	{
+		ellipse: "circle",
+		quad: "poly",
+		tri: "poly",
+	},
+	{
+		arc: cubicFromArc,
 
-        circle: ($: Circle) => asCubic(arc($.pos, $.r, 0, 0, TAU, true, true)),
+		circle: ($: Circle) => asCubic(arc($.pos, $.r, 0, 0, TAU, true, true)),
 
-        cubic: ($: Cubic) => [$],
+		cubic: ($: Cubic) => [$],
 
-        group: ($: Group, opts?: Partial<CubicOpts>) => [
-            ...mapcat((x) => asCubic(x, opts), $.children),
-        ],
+		group: ($: Group, opts?: Partial<CubicOpts>) => [
+			...mapcat((x) => asCubic(x, opts), $.children),
+		],
 
-        line: ({ attribs, points }: Line) => [
-            cubicFromLine(points[0], points[1], { ...attribs }),
-        ],
+		line: ({ attribs, points }: Line) => [
+			cubicFromLine(points[0], points[1], { ...attribs }),
+		],
 
-        path: ($: Path) => [
-            ...mapcat((s) => (s.geo ? asCubic(s.geo) : null), $.segments),
-        ],
+		path: ($: Path) => [
+			...mapcat((s) => (s.geo ? asCubic(s.geo) : null), $.segments),
+		],
 
-        poly: ($: Polygon, opts: Partial<CubicOpts> = {}) =>
-            __polyCubic(
-                $,
-                opts,
-                closedCubicFromBreakPoints,
-                closedCubicFromControlPoints
-            ),
+		poly: ($: Polygon, opts: Partial<CubicOpts> = {}) =>
+			__polyCubic(
+				$,
+				opts,
+				closedCubicFromBreakPoints,
+				closedCubicFromControlPoints
+			),
 
-        polyline: ($: Polyline, opts: Partial<CubicOpts> = {}) =>
-            __polyCubic(
-                $,
-                opts,
-                openCubicFromBreakPoints,
-                openCubicFromControlPoints
-            ),
+		polyline: ($: Polyline, opts: Partial<CubicOpts> = {}) =>
+			__polyCubic(
+				$,
+				opts,
+				openCubicFromBreakPoints,
+				openCubicFromControlPoints
+			),
 
-        quadratic: ({ attribs, points }: Quadratic) => [
-            cubicFromQuadratic(points[0], points[1], points[2], { ...attribs }),
-        ],
+		quadratic: ({ attribs, points }: Quadratic) => [
+			cubicFromQuadratic(points[0], points[1], points[2], { ...attribs }),
+		],
 
-        rect: ($: Rect, opts?: Partial<CubicOpts>) =>
-            asCubic(asPolygon($), opts),
-    }
+		rect: ($: Rect, opts?: Partial<CubicOpts>) =>
+			asCubic(asPolygon($), opts),
+	}
 );
 
 /**

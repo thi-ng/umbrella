@@ -1,42 +1,42 @@
 {
-    "name": "@example/geom-tessel",
-    "private": true,
-    "description": "Animated, recursive polygon tessellations",
-    "version": "0.0.1",
-    "repository": "https://github.com/thi-ng/umbrella",
-    "author": "Karsten Schmidt <k+npm@thi.ng>",
-    "license": "Apache-2.0",
-    "scripts": {
-        "start": "vite --open",
-        "build": "tsc && vite build --base='./'",
-        "preview": "vite preview --host --open"
-    },
-    "dependencies": {
-        "@thi.ng/compose": "workspace:^",
-        "@thi.ng/geom": "workspace:^",
-        "@thi.ng/geom-api": "workspace:^",
-        "@thi.ng/geom-tessellate": "workspace:^",
-        "@thi.ng/hdom-canvas": "workspace:^",
-        "@thi.ng/math": "workspace:^",
-        "@thi.ng/rstream": "workspace:^",
-        "@thi.ng/transducers": "workspace:^",
-        "@thi.ng/transducers-hdom": "workspace:^",
-        "@thi.ng/vectors": "workspace:^"
-    },
-    "browser": {
-        "process": false,
-        "setTimeout": false,
-        "util": false
-    },
-    "thi.ng": {
-        "readme": [
-            "geom",
-            "geom-tessellate"
-        ],
-        "screenshot": "geom/tessel.png"
-    },
-    "devDependencies": {
-        "typescript": "^4.7.4",
-        "vite": "^3.0.0"
-    }
+	"name": "@example/geom-tessel",
+	"private": true,
+	"description": "Animated, recursive polygon tessellations",
+	"version": "0.0.1",
+	"repository": "https://github.com/thi-ng/umbrella",
+	"author": "Karsten Schmidt <k+npm@thi.ng>",
+	"license": "Apache-2.0",
+	"scripts": {
+		"start": "vite --open",
+		"build": "tsc && vite build --base='./'",
+		"preview": "vite preview --host --open"
+	},
+	"dependencies": {
+		"@thi.ng/compose": "workspace:^",
+		"@thi.ng/geom": "workspace:^",
+		"@thi.ng/geom-api": "workspace:^",
+		"@thi.ng/geom-tessellate": "workspace:^",
+		"@thi.ng/hdom-canvas": "workspace:^",
+		"@thi.ng/math": "workspace:^",
+		"@thi.ng/rstream": "workspace:^",
+		"@thi.ng/transducers": "workspace:^",
+		"@thi.ng/transducers-hdom": "workspace:^",
+		"@thi.ng/vectors": "workspace:^"
+	},
+	"browser": {
+		"process": false,
+		"setTimeout": false,
+		"util": false
+	},
+	"thi.ng": {
+		"readme": [
+			"geom",
+			"geom-tessellate"
+		],
+		"screenshot": "geom/tessel.png"
+	},
+	"devDependencies": {
+		"typescript": "^4.7.4",
+		"vite": "^3.0.0"
+	}
 }

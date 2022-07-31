@@ -1,18 +1,18 @@
 import type {
-    DeepPath,
-    Fn,
-    OptPathVal,
-    Path,
-    Path0,
-    Path1,
-    Path2,
-    Path3,
-    Path4,
-    Path5,
-    Path6,
-    Path7,
-    Path8,
-    Predicate2,
+	DeepPath,
+	Fn,
+	OptPathVal,
+	Path,
+	Path0,
+	Path1,
+	Path2,
+	Path3,
+	Path4,
+	Path5,
+	Path6,
+	Path7,
+	Path8,
+	Predicate2,
 } from "@thi.ng/api";
 import type { ReadonlyAtom } from "@thi.ng/atom";
 import { View } from "@thi.ng/atom/view";
@@ -21,9 +21,9 @@ import { __optsWithID } from "./idgen.js";
 import { Stream } from "./stream.js";
 
 export interface FromViewOpts<P, A, B> extends Partial<CommonOpts> {
-    path: P;
-    tx?: Fn<A, B>;
-    equiv?: Predicate2<A>;
+	path: P;
+	tx?: Fn<A, B>;
+	equiv?: Predicate2<A>;
 }
 
 export type FromViewUnsafeOpts<T> = FromViewOpts<Path, any, T>;
@@ -58,8 +58,8 @@ export type FromViewUnsafeOpts<T> = FromViewOpts<Path, any, T>;
  * @param opts -
  */
 export const fromViewUnsafe = <T>(
-    atom: ReadonlyAtom<any>,
-    opts: FromViewUnsafeOpts<T>
+	atom: ReadonlyAtom<any>,
+	opts: FromViewUnsafeOpts<T>
 ): Stream<T extends undefined ? any : T> => fromView(atom, <any>opts);
 
 /**
@@ -112,81 +112,81 @@ export const fromViewUnsafe = <T>(
  * @param opts -
  */
 export function fromView<T, R = undefined>(
-    parent: ReadonlyAtom<T>,
-    opts: FromViewOpts<Path0, T, R>
+	parent: ReadonlyAtom<T>,
+	opts: FromViewOpts<Path0, T, R>
 ): Stream<R extends undefined ? T : R>;
 export function fromView<T, A, R = undefined>(
-    parent: ReadonlyAtom<T>,
-    opts: FromViewOpts<Path1<T, A>, OptPathVal<T, [A]>, R>
+	parent: ReadonlyAtom<T>,
+	opts: FromViewOpts<Path1<T, A>, OptPathVal<T, [A]>, R>
 ): Stream<R extends undefined ? OptPathVal<T, [A]> : R>;
 export function fromView<T, A, B, R = undefined>(
-    parent: ReadonlyAtom<T>,
-    opts: FromViewOpts<Path2<T, A, B>, OptPathVal<T, [A, B]>, R>
+	parent: ReadonlyAtom<T>,
+	opts: FromViewOpts<Path2<T, A, B>, OptPathVal<T, [A, B]>, R>
 ): Stream<R extends undefined ? OptPathVal<T, [A, B]> : R>;
 export function fromView<T, A, B, C, R = undefined>(
-    parent: ReadonlyAtom<T>,
-    opts: FromViewOpts<Path3<T, A, B, C>, OptPathVal<T, [A, B, C]>, R>
+	parent: ReadonlyAtom<T>,
+	opts: FromViewOpts<Path3<T, A, B, C>, OptPathVal<T, [A, B, C]>, R>
 ): Stream<R extends undefined ? OptPathVal<T, [A, B, C]> : R>;
 export function fromView<T, A, B, C, D, R = undefined>(
-    parent: ReadonlyAtom<T>,
-    opts: FromViewOpts<Path4<T, A, B, C, D>, OptPathVal<T, [A, B, C, D]>, R>
+	parent: ReadonlyAtom<T>,
+	opts: FromViewOpts<Path4<T, A, B, C, D>, OptPathVal<T, [A, B, C, D]>, R>
 ): Stream<R extends undefined ? OptPathVal<T, [A, B, C, D]> : R>;
 export function fromView<T, A, B, C, D, E, R = undefined>(
-    parent: ReadonlyAtom<T>,
-    opts: FromViewOpts<
-        Path5<T, A, B, C, D, E>,
-        OptPathVal<T, [A, B, C, D, E]>,
-        R
-    >
+	parent: ReadonlyAtom<T>,
+	opts: FromViewOpts<
+		Path5<T, A, B, C, D, E>,
+		OptPathVal<T, [A, B, C, D, E]>,
+		R
+	>
 ): Stream<R extends undefined ? OptPathVal<T, [A, B, C, D, E]> : R>;
 export function fromView<T, A, B, C, D, E, F, R = undefined>(
-    parent: ReadonlyAtom<T>,
-    opts: FromViewOpts<
-        Path6<T, A, B, C, D, E, F>,
-        OptPathVal<T, [A, B, C, D, E, F]>,
-        R
-    >
+	parent: ReadonlyAtom<T>,
+	opts: FromViewOpts<
+		Path6<T, A, B, C, D, E, F>,
+		OptPathVal<T, [A, B, C, D, E, F]>,
+		R
+	>
 ): Stream<R extends undefined ? OptPathVal<T, [A, B, C, D, E, F]> : R>;
 export function fromView<T, A, B, C, D, E, F, G, R = undefined>(
-    parent: ReadonlyAtom<T>,
-    opts: FromViewOpts<
-        Path7<T, A, B, C, D, E, F, G>,
-        OptPathVal<T, [A, B, C, D, E, F, G]>,
-        R
-    >
+	parent: ReadonlyAtom<T>,
+	opts: FromViewOpts<
+		Path7<T, A, B, C, D, E, F, G>,
+		OptPathVal<T, [A, B, C, D, E, F, G]>,
+		R
+	>
 ): Stream<R extends undefined ? OptPathVal<T, [A, B, C, D, E, F, G]> : R>;
 export function fromView<T, A, B, C, D, E, F, G, H, R = undefined>(
-    parent: ReadonlyAtom<T>,
-    opts: FromViewOpts<
-        Path8<T, A, B, C, D, E, F, G, H>,
-        OptPathVal<T, [A, B, C, D, E, F, G, H]>,
-        R
-    >
+	parent: ReadonlyAtom<T>,
+	opts: FromViewOpts<
+		Path8<T, A, B, C, D, E, F, G, H>,
+		OptPathVal<T, [A, B, C, D, E, F, G, H]>,
+		R
+	>
 ): Stream<R extends undefined ? OptPathVal<T, [A, B, C, D, E, F, G, H]> : R>;
 export function fromView<T, A, B, C, D, E, F, G, H, R = undefined>(
-    parent: ReadonlyAtom<T>,
-    opts: FromViewOpts<DeepPath<T, A, B, C, D, E, F, G, H>, any, R>
+	parent: ReadonlyAtom<T>,
+	opts: FromViewOpts<DeepPath<T, A, B, C, D, E, F, G, H>, any, R>
 ): Stream<R extends undefined ? any : R>;
 export function fromView(
-    atom: ReadonlyAtom<any>,
-    opts: FromViewOpts<Path, any, any>
+	atom: ReadonlyAtom<any>,
+	opts: FromViewOpts<Path, any, any>
 ): Stream<any> {
-    opts = <FromViewUnsafeOpts<any>>__optsWithID("view", opts);
-    return new Stream((stream) => {
-        let isActive = true;
-        const tx = opts.tx;
-        const view = new View(
-            atom,
-            opts.path,
-            tx
-                ? (x) => isActive && ((x = tx(x)), stream.next(x), x)
-                : (x) => isActive && (stream.next(x), x),
-            false,
-            opts.equiv
-        );
-        return () => {
-            isActive = false;
-            view.release();
-        };
-    });
+	opts = <FromViewUnsafeOpts<any>>__optsWithID("view", opts);
+	return new Stream((stream) => {
+		let isActive = true;
+		const tx = opts.tx;
+		const view = new View(
+			atom,
+			opts.path,
+			tx
+				? (x) => isActive && ((x = tx(x)), stream.next(x), x)
+				: (x) => isActive && (stream.next(x), x),
+			false,
+			opts.equiv
+		);
+		return () => {
+			isActive = false;
+			view.release();
+		};
+	});
 }

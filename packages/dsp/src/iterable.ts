@@ -12,42 +12,42 @@ import { __take } from "./internal/take.js";
  * The `initial` value is required to satisfy `.deref()` and the case where the
  * iterable doesn't provide a single value.
  *
- * @param src - 
- * @param initial - 
+ * @param src -
+ * @param initial -
  */
 export const iterable = <T>(src: Iterable<T>, initial: T) =>
-    new $Iterable<T>(src, initial);
+	new $Iterable<T>(src, initial);
 
 export class $Iterable<T> implements IGen<T> {
-    protected _iter: Iterator<T> | null;
-    protected _val: T;
+	protected _iter: Iterator<T> | null;
+	protected _val: T;
 
-    constructor(src: Iterable<T>, initial: T) {
-        this._iter = src[Symbol.iterator]();
-        this._val = initial;
-    }
+	constructor(src: Iterable<T>, initial: T) {
+		this._iter = src[Symbol.iterator]();
+		this._val = initial;
+	}
 
-    deref() {
-        return this._val;
-    }
+	deref() {
+		return this._val;
+	}
 
-    *[Symbol.iterator]() {
-        while (true) yield this.next();
-    }
+	*[Symbol.iterator]() {
+		while (true) yield this.next();
+	}
 
-    next() {
-        if (this._iter) {
-            const res = this._iter.next();
-            if (!res.done) {
-                this._val = res.value;
-            } else {
-                this._iter = null;
-            }
-        }
-        return this._val;
-    }
+	next() {
+		if (this._iter) {
+			const res = this._iter.next();
+			if (!res.done) {
+				this._val = res.value;
+			} else {
+				this._iter = null;
+			}
+		}
+		return this._val;
+	}
 
-    take(num: number, out: T[] = [], idx = 0): T[] {
-        return __take(this, num, out, idx);
-    }
+	take(num: number, out: T[] = [], idx = 0): T[] {
+		return __take(this, num, out, idx);
+	}
 }

@@ -16,24 +16,24 @@ import type { Fn0, ISeq } from "@thi.ng/api";
  * // 0.29578903713266524
  * ```
  *
- * @param fn - 
+ * @param fn -
  */
 export const lazyseq = <T>(fn: Fn0<ISeq<T> | undefined>): ISeq<T> => {
-    let called = false;
-    let seq: ISeq<T> | undefined;
-    const ensure = () => {
-        if (!called) {
-            seq = fn();
-            called = true;
-        }
-        return seq;
-    };
-    return {
-        first() {
-            return ensure() !== undefined ? seq!.first() : undefined;
-        },
-        next() {
-            return ensure() !== undefined ? seq!.next() : undefined;
-        },
-    };
+	let called = false;
+	let seq: ISeq<T> | undefined;
+	const ensure = () => {
+		if (!called) {
+			seq = fn();
+			called = true;
+		}
+		return seq;
+	};
+	return {
+		first() {
+			return ensure() !== undefined ? seq!.first() : undefined;
+		},
+		next() {
+			return ensure() !== undefined ? seq!.next() : undefined;
+		},
+	};
 };

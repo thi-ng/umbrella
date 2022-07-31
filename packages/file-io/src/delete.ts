@@ -11,7 +11,7 @@ import { unlinkSync } from "fs";
  * @param dryRun
  */
 export const deleteFile = (path: string, logger?: ILogger, dryRun = false) => {
-    logger && logger.info(`${dryRun ? "[dryrun] " : ""}deleting file: ${path}`);
-    if (dryRun) return;
-    unlinkSync(path);
+	logger && logger.info(`${dryRun ? "[dryrun] " : ""}deleting file: ${path}`);
+	if (dryRun) return;
+	unlinkSync(path);
 };

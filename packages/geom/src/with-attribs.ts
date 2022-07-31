@@ -10,7 +10,7 @@ import type { Attribs, IShape } from "@thi.ng/geom-api";
  * @param replace
  */
 export const withAttribs = <T extends IShape>(
-    shape: T,
-    attribs: Attribs,
-    replace = true
+	shape: T,
+	attribs: Attribs,
+	replace = true
 ) => shape.withAttribs(replace ? attribs : { ...shape.attribs, ...attribs });

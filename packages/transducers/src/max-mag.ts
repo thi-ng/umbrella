@@ -8,10 +8,10 @@ import { reduce, reducer } from "./reduce.js";
 export function maxMag(): Reducer<number, number>;
 export function maxMag(xs: Iterable<number>): number;
 export function maxMag(xs?: Iterable<number>): any {
-    return xs
-        ? reduce(maxMag(), xs)
-        : reducer(
-              () => 0,
-              (acc, x: number) => (Math.abs(x) > Math.abs(acc) ? x : acc)
-          );
+	return xs
+		? reduce(maxMag(), xs)
+		: reducer(
+				() => 0,
+				(acc, x: number) => (Math.abs(x) > Math.abs(acc) ? x : acc)
+		  );
 }

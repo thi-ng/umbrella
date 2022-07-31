@@ -38,33 +38,33 @@ type MaybeIterable<T> = Nullable<Iterable<T>>;
  * @param src -
  */
 export function flattenWith<A, B = DeepArrayValue<A>>(
-    fn: Fn<any, MaybeIterable<any>>
+	fn: Fn<any, MaybeIterable<any>>
 ): Transducer<A, B>;
 export function flattenWith<A, B = DeepArrayValue<A>>(
-    fn: Fn<any, MaybeIterable<any>>,
-    src: Iterable<A>
+	fn: Fn<any, MaybeIterable<any>>,
+	src: Iterable<A>
 ): IterableIterator<B>;
 export function flattenWith<A>(
-    fn: Fn<any, MaybeIterable<any>>,
-    src?: Iterable<A>
+	fn: Fn<any, MaybeIterable<any>>,
+	src?: Iterable<A>
 ): any {
-    return isIterable(src)
-        ? iterator(flattenWith(fn), isString(src) ? <any>[src] : src)
-        : (rfn: Reducer<any, A>) => {
-              const reduce = rfn[2];
-              const flatten = (acc: any, x: any) => {
-                  const xx = fn(x);
-                  if (xx) {
-                      for (let y of xx) {
-                          acc = flatten(acc, y);
-                          if (isReduced(acc)) {
-                              break;
-                          }
-                      }
-                      return acc;
-                  }
-                  return reduce(acc, x);
-              };
-              return compR(rfn, flatten);
-          };
+	return isIterable(src)
+		? iterator(flattenWith(fn), isString(src) ? <any>[src] : src)
+		: (rfn: Reducer<any, A>) => {
+				const reduce = rfn[2];
+				const flatten = (acc: any, x: any) => {
+					const xx = fn(x);
+					if (xx) {
+						for (let y of xx) {
+							acc = flatten(acc, y);
+							if (isReduced(acc)) {
+								break;
+							}
+						}
+						return acc;
+					}
+					return reduce(acc, x);
+				};
+				return compR(rfn, flatten);
+		  };
 }

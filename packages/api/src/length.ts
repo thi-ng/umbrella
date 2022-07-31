@@ -3,5 +3,5 @@
  * count.
  */
 export interface ILength {
-    readonly length: number;
+	readonly length: number;
 }

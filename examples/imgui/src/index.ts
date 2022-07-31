@@ -51,23 +51,23 @@ import { vecOf } from "@thi.ng/vectors/vec-of";
 // define theme colors in RGBA format for future compatibility with
 // WebGL backend
 const THEMES: Partial<GUITheme>[] = [
-    DEFAULT_THEME,
-    {
-        globalBg: "#ccc",
-        focus: [1, 0.66, 0, 1],
-        cursor: [0, 0, 0, 1],
-        bg: [1, 1, 1, 0.66],
-        bgDisabled: [1, 1, 1, 0.33],
-        bgHover: [1, 1, 1, 0.9],
-        fg: [0.8, 0, 0.8, 1],
-        fgDisabled: [0.8, 0, 0.8, 0.5],
-        fgHover: [1, 0, 1, 1],
-        text: [0.3, 0.3, 0.3, 1],
-        textDisabled: [0.3, 0.3, 0.3, 0.5],
-        textHover: [0.2, 0.2, 0.4, 1],
-        bgTooltip: [1, 1, 0.8, 0.85],
-        textTooltip: [0, 0, 0, 1],
-    },
+	DEFAULT_THEME,
+	{
+		globalBg: "#ccc",
+		focus: [1, 0.66, 0, 1],
+		cursor: [0, 0, 0, 1],
+		bg: [1, 1, 1, 0.66],
+		bgDisabled: [1, 1, 1, 0.33],
+		bgHover: [1, 1, 1, 0.9],
+		fg: [0.8, 0, 0.8, 1],
+		fgDisabled: [0.8, 0, 0.8, 0.5],
+		fgHover: [1, 0, 1, 1],
+		text: [0.3, 0.3, 0.3, 1],
+		textDisabled: [0.3, 0.3, 0.3, 0.5],
+		textHover: [0.2, 0.2, 0.4, 1],
+		bgTooltip: [1, 1, 0.8, 0.85],
+		textTooltip: [0, 0, 0, 1],
+	},
 ];
 
 // float value formatters
@@ -85,15 +85,15 @@ const THEME_IDS = ["Default", "Raspberry"];
 // helper function to normalize hiccup icon paths
 // (transforms each path into one only consisting of cubic spline segments)
 const mkIcon = (icon: any[]) => [
-    "g",
-    { stroke: "none", scale: 16 / 32 },
-    ...iterator(
-        comp(
-            mapcat((p) => pathFromSvg(p[1].d)),
-            map(normalizedPath)
-        ),
-        icon.slice(2)
-    ),
+	"g",
+	{ stroke: "none", scale: 16 / 32 },
+	...iterator(
+		comp(
+			mapcat((p) => pathFromSvg(p[1].d)),
+			map(normalizedPath)
+		),
+		icon.slice(2)
+	),
 ];
 
 // icon definitions (from @thi.ng/hiccup-carbon-icons)
@@ -101,155 +101,155 @@ const ICON1 = mkIcon(DOWNLOAD);
 const ICON2 = mkIcon(RESTART);
 
 interface AppState {
-    uiVisible: boolean;
-    uiMode: number;
-    theme: number;
-    radius: number;
-    gridW: number;
-    rgb: number[];
-    pos: Vec;
-    txt: string;
-    toggles: boolean[];
-    flags: boolean[];
-    radio: number;
+	uiVisible: boolean;
+	uiMode: number;
+	theme: number;
+	radius: number;
+	gridW: number;
+	rgb: number[];
+	pos: Vec;
+	txt: string;
+	toggles: boolean[];
+	flags: boolean[];
+	radio: number;
 }
 
 // main immutable app state wrapper (with time travel)
 const DB = new History(
-    new Atom<AppState>({
-        uiVisible: true,
-        uiMode: 0,
-        theme: 0,
-        radius: 10,
-        gridW: 15,
-        rgb: [0.9, 0.45, 0.5],
-        pos: <Vec>[400, 140],
-        txt: "Hello there! This is a test, do not panic!",
-        toggles: new Array<boolean>(12).fill(false),
-        flags: [true, false],
-        radio: 0,
-    }),
-    // max. 500 undo steps
-    500
+	new Atom<AppState>({
+		uiVisible: true,
+		uiMode: 0,
+		theme: 0,
+		radius: 10,
+		gridW: 15,
+		rgb: [0.9, 0.45, 0.5],
+		pos: <Vec>[400, 140],
+		txt: "Hello there! This is a test, do not panic!",
+		toggles: new Array<boolean>(12).fill(false),
+		flags: [true, false],
+		radio: 0,
+	}),
+	// max. 500 undo steps
+	500
 );
 
 // theme merging helper
 const themeForID = (theme: number): Partial<GUITheme> => ({
-    ...THEMES[theme % THEMES.length],
-    font: FONT,
-    cursorBlink: 0,
+	...THEMES[theme % THEMES.length],
+	font: FONT,
+	cursorBlink: 0,
 });
 
 // state update handler for `rgb` value
 // if Alt key is pressed when this handler executes,
 // then all values will be set uniformly...
 const setRGB = (gui: IMGUI, res: number[]) =>
-    res !== undefined &&
-    (gui.isAltDown()
-        ? DB.resetIn(["rgb"], vecOf(3, res[1]))
-        : DB.resetIn(["rgb", res[0]], res[1]));
+	res !== undefined &&
+	(gui.isAltDown()
+		? DB.resetIn(["rgb"], vecOf(3, res[1]))
+		: DB.resetIn(["rgb", res[0]], res[1]));
 
 // main application
 const app = () => {
-    let maxW = 240;
-    let size = [window.innerWidth, window.innerHeight];
-    let radialPos = [0, 0];
-    let radialActive = false;
+	let maxW = 240;
+	let size = [window.innerWidth, window.innerHeight];
+	let radialPos = [0, 0];
+	let radialActive = false;
 
-    // GUI instance
-    const gui = new IMGUI({ theme: themeForID(DB.deref().theme) });
+	// GUI instance
+	const gui = new IMGUI({ theme: themeForID(DB.deref().theme) });
 
-    // GUI benchmark (moving average) transducer
-    const bench = step(sma(50));
+	// GUI benchmark (moving average) transducer
+	const bench = step(sma(50));
 
-    // augment hdom-canvas component with init lifecycle method to
-    // attach event streams once canvas has been mounted
-    const _canvas = {
-        ...canvas,
-        init(canv: HTMLCanvasElement) {
-            // add event streams to main stream combinator
-            // in order to trigger GUI updates...
-            main.add(
-                // merge all event streams into a single input to `main`
-                // (we don't actually care about their actual values and merely
-                // use them as mechanism to trigger updates)
-                merge<any, any>({
-                    src: [
-                        // mouse & touch events
-                        gestureStream(canv, {}).subscribe({
-                            next(e) {
-                                gui.setMouse(e.pos, e.buttons);
-                            },
-                        }),
-                        // keydown & undo/redo handler:
-                        // Ctrl/Command + Z = undo
-                        // Shift + Ctrl/Command + Z = redo
-                        fromDOMEvent(window, "keydown").subscribe({
-                            next(e) {
-                                if (e.key === Key.TAB) {
-                                    e.preventDefault();
-                                }
-                                if (
-                                    (e.metaKey || e.ctrlKey) &&
-                                    e.key.toLowerCase() === "z"
-                                ) {
-                                    e.shiftKey ? DB.redo() : DB.undo();
-                                } else {
-                                    gui.setKey(e);
-                                }
-                            },
-                        }),
-                        fromDOMEvent(window, "keyup").subscribe({
-                            next(e) {
-                                gui.setKey(e);
-                            },
-                        }),
-                        fromDOMEvent(window, "resize").subscribe({
-                            next() {
-                                maxW = Math.min(maxW, window.innerWidth - 16);
-                                setC2(
-                                    size,
-                                    window.innerWidth,
-                                    window.innerHeight
-                                );
-                                DB.swapIn(["pos"], (pos: Vec) =>
-                                    min2([], pos, size)
-                                );
-                            },
-                        }),
-                    ],
-                })
-            );
-        },
-    };
+	// augment hdom-canvas component with init lifecycle method to
+	// attach event streams once canvas has been mounted
+	const _canvas = {
+		...canvas,
+		init(canv: HTMLCanvasElement) {
+			// add event streams to main stream combinator
+			// in order to trigger GUI updates...
+			main.add(
+				// merge all event streams into a single input to `main`
+				// (we don't actually care about their actual values and merely
+				// use them as mechanism to trigger updates)
+				merge<any, any>({
+					src: [
+						// mouse & touch events
+						gestureStream(canv, {}).subscribe({
+							next(e) {
+								gui.setMouse(e.pos, e.buttons);
+							},
+						}),
+						// keydown & undo/redo handler:
+						// Ctrl/Command + Z = undo
+						// Shift + Ctrl/Command + Z = redo
+						fromDOMEvent(window, "keydown").subscribe({
+							next(e) {
+								if (e.key === Key.TAB) {
+									e.preventDefault();
+								}
+								if (
+									(e.metaKey || e.ctrlKey) &&
+									e.key.toLowerCase() === "z"
+								) {
+									e.shiftKey ? DB.redo() : DB.undo();
+								} else {
+									gui.setKey(e);
+								}
+							},
+						}),
+						fromDOMEvent(window, "keyup").subscribe({
+							next(e) {
+								gui.setKey(e);
+							},
+						}),
+						fromDOMEvent(window, "resize").subscribe({
+							next() {
+								maxW = Math.min(maxW, window.innerWidth - 16);
+								setC2(
+									size,
+									window.innerWidth,
+									window.innerHeight
+								);
+								DB.swapIn(["pos"], (pos: Vec) =>
+									min2([], pos, size)
+								);
+							},
+						}),
+					],
+				})
+			);
+		},
+	};
 
-    // main GUI update function
-    const updateGUI = (draw: boolean) => {
-        // obtain atom value
-        const state = DB.deref();
-        // setup initial layout (single column)
-        const grid = gridLayout(10, 10, maxW - 20, 1, 16, 4);
+	// main GUI update function
+	const updateGUI = (draw: boolean) => {
+		// obtain atom value
+		const state = DB.deref();
+		// setup initial layout (single column)
+		const grid = gridLayout(10, 10, maxW - 20, 1, 16, 4);
 
-        gui.setTheme(themeForID(state.theme));
+		gui.setTheme(themeForID(state.theme));
 
-        // start frame
-        gui.begin(draw);
+		// start frame
+		gui.begin(draw);
 
-        // disable all GUI components if radial menu is active
-        gui.beginDisabled(radialActive);
+		// disable all GUI components if radial menu is active
+		gui.beginDisabled(radialActive);
 
-        // button components return true if clicked
-        if (
-            buttonH(gui, grid, "show", state.uiVisible ? "Hide UI" : "Show UI")
-        ) {
-            DB.resetIn(["uiVisible"], !state.uiVisible);
-        }
-        if (state.uiVisible) {
-            let inner: GridLayout;
-            let inner2: GridLayout;
-            let res: any;
-            // prettier-ignore
-            switch(state.uiMode) {
+		// button components return true if clicked
+		if (
+			buttonH(gui, grid, "show", state.uiVisible ? "Hide UI" : "Show UI")
+		) {
+			DB.resetIn(["uiVisible"], !state.uiVisible);
+		}
+		if (state.uiVisible) {
+			let inner: GridLayout;
+			let inner2: GridLayout;
+			let res: any;
+			// prettier-ignore
+			switch(state.uiMode) {
                 case 0:
                     // create empty row
                     grid.next();
@@ -396,152 +396,152 @@ const app = () => {
 
                 default:
             }
-        }
-        // remove disabled flag from stack
-        gui.endDisabled();
+		}
+		// remove disabled flag from stack
+		gui.endDisabled();
 
-        // radial menu
-        if (gui.isControlDown()) {
-            if (!radialActive) {
-                radialPos = [...gui.mouse];
-            }
-            // menu backdrop
-            gui.add(
-                gui.resource("radial", hash(radialPos) + 1, () => [
-                    "g",
-                    {},
-                    [
-                        "radialGradient",
-                        {
-                            id: "shadow",
-                            from: radialPos,
-                            to: radialPos,
-                            r1: 5,
-                            r2: 300,
-                        },
-                        [
-                            [0, [1, 1, 1, 0.8]],
-                            [0.5, [1, 1, 1, 0.66]],
-                            [1, [1, 1, 1, 0]],
-                        ],
-                    ],
-                    ["circle", { fill: "$shadow" }, radialPos, 300],
-                ])
-            );
-            let res: number | undefined;
-            if (
-                (res = radialMenu(
-                    gui,
-                    "radial",
-                    radialPos[0],
-                    radialPos[1],
-                    100,
-                    RADIAL_LABELS,
-                    []
-                )) !== undefined
-            ) {
-                DB.swap((db) =>
-                    setInManyUnsafe(db, ["uiMode"], res, ["uiVisible"], true)
-                );
-            }
-            gui.add(
-                textLabelRaw(
-                    add2([], radialPos, [0, 120]),
-                    { fill: "#000", align: "center" },
-                    "Use cursor keys to navigate"
-                ),
-                textLabelRaw(
-                    add2([], radialPos, [0, 134]),
-                    { fill: "#000", align: "center" },
-                    "Click or Enter to switch UI"
-                )
-            );
-            if (!radialActive) {
-                gui.focusID = gui.hotID;
-            }
-            radialActive = true;
-        } else {
-            radialActive = false;
-        }
-        // resize
-        const [w, h] = size;
-        if (
-            gui.activeID === NONE &&
-            gui.isMouseDown() &&
-            Math.abs(gui.mouse[0] - maxW) < 80
-        ) {
-            maxW = clamp(gui.mouse[0], 240, w - 16);
-        }
+		// radial menu
+		if (gui.isControlDown()) {
+			if (!radialActive) {
+				radialPos = [...gui.mouse];
+			}
+			// menu backdrop
+			gui.add(
+				gui.resource("radial", hash(radialPos) + 1, () => [
+					"g",
+					{},
+					[
+						"radialGradient",
+						{
+							id: "shadow",
+							from: radialPos,
+							to: radialPos,
+							r1: 5,
+							r2: 300,
+						},
+						[
+							[0, [1, 1, 1, 0.8]],
+							[0.5, [1, 1, 1, 0.66]],
+							[1, [1, 1, 1, 0]],
+						],
+					],
+					["circle", { fill: "$shadow" }, radialPos, 300],
+				])
+			);
+			let res: number | undefined;
+			if (
+				(res = radialMenu(
+					gui,
+					"radial",
+					radialPos[0],
+					radialPos[1],
+					100,
+					RADIAL_LABELS,
+					[]
+				)) !== undefined
+			) {
+				DB.swap((db) =>
+					setInManyUnsafe(db, ["uiMode"], res, ["uiVisible"], true)
+				);
+			}
+			gui.add(
+				textLabelRaw(
+					add2([], radialPos, [0, 120]),
+					{ fill: "#000", align: "center" },
+					"Use cursor keys to navigate"
+				),
+				textLabelRaw(
+					add2([], radialPos, [0, 134]),
+					{ fill: "#000", align: "center" },
+					"Click or Enter to switch UI"
+				)
+			);
+			if (!radialActive) {
+				gui.focusID = gui.hotID;
+			}
+			radialActive = true;
+		} else {
+			radialActive = false;
+		}
+		// resize
+		const [w, h] = size;
+		if (
+			gui.activeID === NONE &&
+			gui.isMouseDown() &&
+			Math.abs(gui.mouse[0] - maxW) < 80
+		) {
+			maxW = clamp(gui.mouse[0], 240, w - 16);
+		}
 
-        const { key, hotID, activeID, focusID, lastID } = gui;
-        const statLayout = gridLayout(10, h - 10 - 3 * 14, w, 1, 14, 0);
-        textLabel(gui, statLayout, `Key: ${key}`);
-        textLabel(gui, statLayout, `Focus: ${focusID} / ${lastID}`);
-        textLabel(
-            gui,
-            statLayout,
-            `IDs: ${hotID || "none"} / ${activeID || "none"}`
-        );
+		const { key, hotID, activeID, focusID, lastID } = gui;
+		const statLayout = gridLayout(10, h - 10 - 3 * 14, w, 1, 14, 0);
+		textLabel(gui, statLayout, `Key: ${key}`);
+		textLabel(gui, statLayout, `Focus: ${focusID} / ${lastID}`);
+		textLabel(
+			gui,
+			statLayout,
+			`IDs: ${hotID || "none"} / ${activeID || "none"}`
+		);
 
-        gui.end();
-    };
+		gui.end();
+	};
 
-    // main component function
-    return () => {
-        const width = window.innerWidth;
-        const height = window.innerHeight;
+	// main component function
+	return () => {
+		const width = window.innerWidth;
+		const height = window.innerHeight;
 
-        // this is only needed because we're NOT using a RAF update loop:
-        // call updateGUI twice to compensate for lack of regular 60fps update
-        // Note: Unless your GUI is super complex, this cost is pretty neglible
-        // and no actual drawing takes place here ...
+		// this is only needed because we're NOT using a RAF update loop:
+		// call updateGUI twice to compensate for lack of regular 60fps update
+		// Note: Unless your GUI is super complex, this cost is pretty neglible
+		// and no actual drawing takes place here ...
 
-        // the `timedResult` function measures execution time and returns tuple
-        // of [result, time]. We then pass the time taken to our SMA transducer
-        // to update and return a moving average.
-        const t = <number>bench(
-            timedResult(() => {
-                updateGUI(false);
-                updateGUI(true);
-            })[1]
-        );
-        // since the MA will only be available after the configured period,
-        // we will only display stats when they're ready...
-        t != null &&
-            gui.add(
-                textLabelRaw(
-                    [10, height - 10 - 4 * 14],
-                    "#ff0",
-                    `GUI time: ${F2(t)}ms`
-                )
-            );
-        // return hdom-canvas component with embedded GUI
-        return [
-            _canvas,
-            {
-                width,
-                height,
-                style: { background: gui.theme.globalBg, cursor: gui.cursor },
-                oncontextmenu: (e: Event) => e.preventDefault(),
-                ...gui.attribs,
-            },
-            // GUI resize border line
-            line([maxW, 0], [maxW, height], { stroke: "#000" }),
-            [
-                "text",
-                {
-                    transform: [0, -1, 1, 0, maxW + 12, height / 2],
-                    fill: "#000",
-                    font: FONT,
-                    align: "center",
-                },
-                [0, 0],
-                "DRAG TO RESIZE",
-            ],
-            // IMGUI implements IToHiccup interface so just supply as is
-            gui,
-        ];
-    };
+		// the `timedResult` function measures execution time and returns tuple
+		// of [result, time]. We then pass the time taken to our SMA transducer
+		// to update and return a moving average.
+		const t = <number>bench(
+			timedResult(() => {
+				updateGUI(false);
+				updateGUI(true);
+			})[1]
+		);
+		// since the MA will only be available after the configured period,
+		// we will only display stats when they're ready...
+		t != null &&
+			gui.add(
+				textLabelRaw(
+					[10, height - 10 - 4 * 14],
+					"#ff0",
+					`GUI time: ${F2(t)}ms`
+				)
+			);
+		// return hdom-canvas component with embedded GUI
+		return [
+			_canvas,
+			{
+				width,
+				height,
+				style: { background: gui.theme.globalBg, cursor: gui.cursor },
+				oncontextmenu: (e: Event) => e.preventDefault(),
+				...gui.attribs,
+			},
+			// GUI resize border line
+			line([maxW, 0], [maxW, height], { stroke: "#000" }),
+			[
+				"text",
+				{
+					transform: [0, -1, 1, 0, maxW + 12, height / 2],
+					fill: "#000",
+					font: FONT,
+					align: "center",
+				},
+				[0, 0],
+				"DRAG TO RESIZE",
+			],
+			// IMGUI implements IToHiccup interface so just supply as is
+			gui,
+		];
+	};
 };
 
 // main stream combinator
@@ -550,9 +550,9 @@ const app = () => {
 // event streams to this stream sync, which are then used to trigger future
 // updates on demand...
 const main = sync({
-    src: {
-        state: fromAtom(DB),
-    },
+	src: {
+		state: fromAtom(DB),
+	},
 });
 
 // subscription & transformation of app state stream. uses a RAF

@@ -6,7 +6,7 @@
  * @param home
  */
 export const maskHomeDir = (
-    path: string,
-    home = process.env.HOME,
-    mask = "~"
+	path: string,
+	home = process.env.HOME,
+	mask = "~"
 ) => (home ? path.replace(home, mask) : path);

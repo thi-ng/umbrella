@@ -4,36 +4,36 @@ import type { Attribs, IHiccupShape } from "@thi.ng/geom-api";
 import { __copyAttribs } from "../internal/copy.js";
 
 export class Group implements IHiccupShape {
-    constructor(
-        public attribs: Attribs,
-        public children: IHiccupShape[] = []
-    ) {}
+	constructor(
+		public attribs: Attribs,
+		public children: IHiccupShape[] = []
+	) {}
 
-    get type() {
-        return "group";
-    }
+	get type() {
+		return "group";
+	}
 
-    *[Symbol.iterator]() {
-        yield* this.children;
-    }
+	*[Symbol.iterator]() {
+		yield* this.children;
+	}
 
-    copy(): Group {
-        return this.copyTransformed((c) => <IHiccupShape>c.copy());
-    }
+	copy(): Group {
+		return this.copyTransformed((c) => <IHiccupShape>c.copy());
+	}
 
-    copyTransformed(fn: Fn<IHiccupShape, IHiccupShape>) {
-        return new Group(__copyAttribs(this), this.children.map(fn));
-    }
+	copyTransformed(fn: Fn<IHiccupShape, IHiccupShape>) {
+		return new Group(__copyAttribs(this), this.children.map(fn));
+	}
 
-    withAttribs(attribs: Attribs): Group {
-        return new Group(attribs, this.children);
-    }
+	withAttribs(attribs: Attribs): Group {
+		return new Group(attribs, this.children);
+	}
 
-    equiv(o: any) {
-        return o instanceof Group && equiv(this.children, o.children);
-    }
+	equiv(o: any) {
+		return o instanceof Group && equiv(this.children, o.children);
+	}
 
-    toHiccup() {
-        return ["g", this.attribs, ...this.children.map((x) => x.toHiccup())];
-    }
+	toHiccup() {
+		return ["g", this.attribs, ...this.children.map((x) => x.toHiccup())];
+	}
 }

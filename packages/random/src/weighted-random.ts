@@ -22,30 +22,30 @@ import { SYSTEM } from "./system.js";
  * @param weights - optional weights
  */
 export const weightedRandom = <T>(
-    choices: Array<T>,
-    weights?: ArrayLike<number>,
-    rnd: IRandom = SYSTEM
+	choices: Array<T>,
+	weights?: ArrayLike<number>,
+	rnd: IRandom = SYSTEM
 ) => {
-    const n = choices.length;
-    assert(n > 0, "no choices given");
-    const opts = weights
-        ? choices
-              .map((x, i) => <[number, T]>[weights[i] || 0, x])
-              .sort((a, b) => b[0] - a[0])
-        : choices.map((x) => <[number, T]>[1, x]);
-    const total = opts.reduce((acc, o) => acc + o[0], 0);
-    total <= 0 && console.warn("total weights <= 0");
-    return () => {
-        const r = rnd.float(total);
-        let sum = total;
-        for (let i = 0; i < n; i++) {
-            sum -= opts[i][0];
-            if (sum <= r) {
-                return opts[i][1];
-            }
-        }
-        return <never>undefined;
-    };
+	const n = choices.length;
+	assert(n > 0, "no choices given");
+	const opts = weights
+		? choices
+				.map((x, i) => <[number, T]>[weights[i] || 0, x])
+				.sort((a, b) => b[0] - a[0])
+		: choices.map((x) => <[number, T]>[1, x]);
+	const total = opts.reduce((acc, o) => acc + o[0], 0);
+	total <= 0 && console.warn("total weights <= 0");
+	return () => {
+		const r = rnd.float(total);
+		let sum = total;
+		for (let i = 0; i < n; i++) {
+			sum -= opts[i][0];
+			if (sum <= r) {
+				return opts[i][1];
+			}
+		}
+		return <never>undefined;
+	};
 };
 
 /**
@@ -57,13 +57,13 @@ export const weightedRandom = <T>(
  * @param rnd
  */
 export const weightedRandomKey = <T extends Record<string, number>>(
-    choices: T,
-    rnd: IRandom = SYSTEM
+	choices: T,
+	rnd: IRandom = SYSTEM
 ): Fn0<keyof T> => {
-    const keys = Object.keys(choices);
-    return weightedRandom(
-        keys,
-        keys.map((x) => choices[x]),
-        rnd
-    );
+	const keys = Object.keys(choices);
+	return weightedRandom(
+		keys,
+		keys.map((x) => choices[x]),
+		rnd
+	);
 };

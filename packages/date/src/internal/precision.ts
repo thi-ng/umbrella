@@ -3,7 +3,7 @@ import type { Precision } from "../api.js";
 /**
  * Converts a {@link Precision} into a numeric ID.
  *
- * @param prec - 
+ * @param prec -
  *
  * @internal
  */
@@ -12,7 +12,7 @@ export const __precisionToID = (prec: Precision) => "yMdhmst".indexOf(prec);
 /**
  * Inverse op of {@link __precisionToID}.
  *
- * @param id - 
+ * @param id -
  *
  * @internal
  */

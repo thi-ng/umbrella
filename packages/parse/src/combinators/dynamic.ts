@@ -16,8 +16,8 @@ import type { ParseContext } from "../context.js";
  * ```
  */
 export const dynamic = <T = string>(): DynamicParser<T> => {
-    let impl: Nullable<Parser<T>>;
-    const wrapper: any = (ctx: ParseContext<T>) => (impl ? impl(ctx) : false);
-    wrapper.set = (p: Parser<T>) => (impl = p);
-    return wrapper;
+	let impl: Nullable<Parser<T>>;
+	const wrapper: any = (ctx: ParseContext<T>) => (impl ? impl(ctx) : false);
+	wrapper.set = (p: Parser<T>) => (impl = p);
+	return wrapper;
 };

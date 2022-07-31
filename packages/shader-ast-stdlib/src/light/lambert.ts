@@ -12,7 +12,7 @@ import { fit1101 } from "../math/fit.js";
  * @param lightDir - vec3
  */
 export const lambert = (n: Vec3Term, ldir: Vec3Term) =>
-    max(dot(n, ldir), FLOAT0);
+	max(dot(n, ldir), FLOAT0);
 
 /**
  * Inline function. Computes Half-Lambertian term. Both vectors must be
@@ -24,7 +24,7 @@ export const lambert = (n: Vec3Term, ldir: Vec3Term) =>
  * @param ldir -
  */
 export const halfLambert = (n: Vec3Term, ldir: Vec3Term) =>
-    fit1101(dot(n, ldir));
+	fit1101(dot(n, ldir));
 
 /**
  * Inline function. Computes:
@@ -37,8 +37,8 @@ export const halfLambert = (n: Vec3Term, ldir: Vec3Term) =>
  * @param ambientCol - vec3
  */
 export const diffuseLighting = (
-    lambertian: FloatTerm,
-    diffuse: Vec3Term,
-    light: Vec3Term,
-    ambient: Vec3Term
+	lambertian: FloatTerm,
+	diffuse: Vec3Term,
+	light: Vec3Term,
+	ambient: Vec3Term
 ) => madd(mul(light, lambertian), diffuse, ambient);

@@ -26,49 +26,49 @@ type SOFn<T> = Fn2<SOL<T>, ConsCell<T>, ConsCell<T>>;
  * - https://en.wikipedia.org/wiki/Self-organizing_list
  */
 export class SOL<T> extends DCons<T> {
-    constructor(protected _reorder: SOFn<T>, src?: Iterable<T>) {
-        super(src);
-    }
+	constructor(protected _reorder: SOFn<T>, src?: Iterable<T>) {
+		super(src);
+	}
 
-    copy() {
-        return new SOL<T>(this._reorder, this);
-    }
+	copy() {
+		return new SOL<T>(this._reorder, this);
+	}
 
-    empty() {
-        return new SOL<T>(this._reorder);
-    }
+	empty() {
+		return new SOL<T>(this._reorder);
+	}
 
-    find(value: T) {
-        const cell = super.find(value);
-        return cell ? this._reorder(this, cell) : undefined;
-    }
+	find(value: T) {
+		const cell = super.find(value);
+		return cell ? this._reorder(this, cell) : undefined;
+	}
 
-    findWith(fn: Predicate<T>) {
-        const cell = super.findWith(fn);
-        return cell ? this._reorder(this, cell) : undefined;
-    }
+	findWith(fn: Predicate<T>) {
+		const cell = super.findWith(fn);
+		return cell ? this._reorder(this, cell) : undefined;
+	}
 
-    nth(n: number, notFound?: T) {
-        const cell = super.nthCell(n);
-        return cell ? this._reorder(this, cell).value : notFound;
-    }
+	nth(n: number, notFound?: T) {
+		const cell = super.nthCell(n);
+		return cell ? this._reorder(this, cell).value : notFound;
+	}
 
-    setNth(n: number, v: T) {
-        const cell = this.nthCell(n);
-        !cell && outOfBounds(n);
-        this._reorder(this, cell!).value = v;
-        return cell;
-    }
+	setNth(n: number, v: T) {
+		const cell = this.nthCell(n);
+		!cell && outOfBounds(n);
+		this._reorder(this, cell!).value = v;
+		return cell;
+	}
 
-    setTail(value: T) {
-        const cell = this._tail;
-        if (cell) {
-            cell.value = value;
-            this._reorder(this, cell);
-            return cell;
-        }
-        return this.prepend(value);
-    }
+	setTail(value: T) {
+		const cell = this._tail;
+		if (cell) {
+			cell.value = value;
+			this._reorder(this, cell);
+			return cell;
+		}
+		return this.prepend(value);
+	}
 }
 
 /**
@@ -79,7 +79,7 @@ export class SOL<T> extends DCons<T> {
  * - https://en.wikipedia.org/wiki/Self-organizing_list#Move_to_front_method_(MTF)
  */
 export const defMTF = <T>(src?: Iterable<T>) =>
-    new SOL((list, cell) => (list.asHead(cell), cell), src);
+	new SOL((list, cell) => (list.asHead(cell), cell), src);
 
 /**
  * Created self-organizing list using Swap-With-Neighbor (transpose) strategy.
@@ -89,8 +89,8 @@ export const defMTF = <T>(src?: Iterable<T>) =>
  * - https://en.wikipedia.org/wiki/Self-organizing_list#Transpose_method
  */
 export const defTranspose = <T>(src?: Iterable<T>) =>
-    new SOL(
-        (list, cell) =>
-            cell.prev ? (list.swap(cell.prev, cell), cell.prev) : cell,
-        src
-    );
+	new SOL(
+		(list, cell) =>
+			cell.prev ? (list.swap(cell.prev, cell), cell.prev) : cell,
+		src
+	);

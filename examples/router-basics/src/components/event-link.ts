@@ -11,20 +11,20 @@ import type { AppContext } from "../api";
  * @param body - ink body
  */
 export function eventLink(
-    ctx: AppContext,
-    event: Event,
-    attribs: any,
-    body: any
+	ctx: AppContext,
+	event: Event,
+	attribs: any,
+	body: any
 ) {
-    return [
-        "a",
-        {
-            ...attribs,
-            onclick: (e: any) => {
-                e.preventDefault();
-                ctx.bus.dispatch(event);
-            },
-        },
-        body,
-    ];
+	return [
+		"a",
+		{
+			...attribs,
+			onclick: (e: any) => {
+				e.preventDefault();
+				ctx.bus.dispatch(event);
+			},
+		},
+		body,
+	];
 }

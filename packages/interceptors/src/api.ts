@@ -3,27 +3,27 @@ import type { ILogger } from "@thi.ng/logger";
 import { NULL_LOGGER } from "@thi.ng/logger/null";
 
 export type InterceptorFn = (
-    state: any,
-    e: Event,
-    bus: IDispatch,
-    ctx: InterceptorContext
+	state: any,
+	e: Event,
+	bus: IDispatch,
+	ctx: InterceptorContext
 ) => InterceptorContext | void;
 export type InterceptorPredicate = (
-    state: any,
-    e: Event,
-    bus: IDispatch,
-    ctx: InterceptorContext
+	state: any,
+	e: Event,
+	bus: IDispatch,
+	ctx: InterceptorContext
 ) => boolean;
 
 export type SideEffect = (
-    x: any,
-    bus: IDispatch,
-    ctx: InterceptorContext
+	x: any,
+	bus: IDispatch,
+	ctx: InterceptorContext
 ) => any;
 export type EventDef =
-    | Interceptor
-    | InterceptorFn
-    | (Interceptor | InterceptorFn)[];
+	| Interceptor
+	| InterceptorFn
+	| (Interceptor | InterceptorFn)[];
 export type EffectDef = SideEffect | [SideEffect, number];
 export type AsyncEffectDef = [string, any, string, string];
 export type EffectPriority = [string, number];
@@ -59,29 +59,29 @@ export const EV_REDO = "--redo";
 export const EV_UNDO = "--undo";
 
 export interface Event extends Array<any> {
-    [0]: PropertyKey;
-    [1]?: any;
+	[0]: PropertyKey;
+	[1]?: any;
 }
 
 export interface IDispatch {
-    readonly state: ReadonlyAtom<any>;
-    dispatch(...event: Event[]): void;
-    dispatchNow(...event: Event[]): void;
-    dispatchLater(event: Event, delay?: number): void;
+	readonly state: ReadonlyAtom<any>;
+	dispatch(...event: Event[]): void;
+	dispatchNow(...event: Event[]): void;
+	dispatchLater(event: Event, delay?: number): void;
 }
 
 export interface Interceptor {
-    pre?: InterceptorFn;
-    post?: InterceptorFn;
+	pre?: InterceptorFn;
+	post?: InterceptorFn;
 }
 
 export interface InterceptorContext {
-    [FX_STATE]?: any;
-    [FX_CANCEL]?: boolean;
-    [FX_DISPATCH]?: Event | Event[];
-    [FX_DISPATCH_NOW]?: Event | Event[];
-    [FX_DISPATCH_ASYNC]?: AsyncEffectDef | AsyncEffectDef[];
-    [id: string]: any;
+	[FX_STATE]?: any;
+	[FX_CANCEL]?: boolean;
+	[FX_DISPATCH]?: Event | Event[];
+	[FX_DISPATCH_NOW]?: Event | Event[];
+	[FX_DISPATCH_ASYNC]?: AsyncEffectDef | AsyncEffectDef[];
+	[id: string]: any;
 }
 
 export let LOGGER = NULL_LOGGER;

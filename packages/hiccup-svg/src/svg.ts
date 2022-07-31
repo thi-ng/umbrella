@@ -16,20 +16,20 @@ import { fattribs } from "./format.js";
  * @param body - shape primitives
  */
 export const svg = (attribs: any, ...body: any[]): any[] => {
-    attribs = fattribs(
-        {
-            version: "1.1",
-            xmlns: XML_SVG,
-            "xmlns:xlink": XML_XLINK,
-            ...attribs,
-        },
-        "width",
-        "height",
-        "stroke-width"
-    );
-    if (attribs.convert) {
-        delete attribs.convert;
-        body = body.map(convertTree);
-    }
-    return ["svg", attribs, ...body];
+	attribs = fattribs(
+		{
+			version: "1.1",
+			xmlns: XML_SVG,
+			"xmlns:xlink": XML_XLINK,
+			...attribs,
+		},
+		"width",
+		"height",
+		"stroke-width"
+	);
+	if (attribs.convert) {
+		delete attribs.convert;
+		body = body.map(convertTree);
+	}
+	return ["svg", attribs, ...body];
 };

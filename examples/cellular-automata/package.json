@@ -1,38 +1,38 @@
 {
-    "name": "@example/cellular-automata",
-    "private": true,
-    "version": "0.0.1",
-    "description": "2D transducer based cellular automata",
-    "repository": "https://github.com/thi-ng/umbrella",
-    "author": "Karsten Schmidt <k+npm@thi.ng>",
-    "license": "Apache-2.0",
-    "scripts": {
-        "start": "vite --open",
-        "build": "tsc && vite build --base='./'",
-        "preview": "vite preview --host --open"
-    },
-    "dependencies": {
-        "@thi.ng/hdom": "workspace:^",
-        "@thi.ng/hdom-components": "workspace:^",
-        "@thi.ng/transducers": "workspace:^",
-        "@thi.ng/transducers-binary": "workspace:^"
-    },
-    "browser": {
-        "process": false,
-        "setTimeout": false,
-        "util": false
-    },
-    "thi.ng": {
-        "readme": [
-            "hdom",
-            "hdom-components",
-            "transducers",
-            "transducers-binary"
-        ],
-        "screenshot": "examples/cellular-automata.png"
-    },
-    "devDependencies": {
-        "typescript": "^4.7.4",
-        "vite": "^3.0.0"
-    }
+	"name": "@example/cellular-automata",
+	"private": true,
+	"version": "0.0.1",
+	"description": "2D transducer based cellular automata",
+	"repository": "https://github.com/thi-ng/umbrella",
+	"author": "Karsten Schmidt <k+npm@thi.ng>",
+	"license": "Apache-2.0",
+	"scripts": {
+		"start": "vite --open",
+		"build": "tsc && vite build --base='./'",
+		"preview": "vite preview --host --open"
+	},
+	"dependencies": {
+		"@thi.ng/hdom": "workspace:^",
+		"@thi.ng/hdom-components": "workspace:^",
+		"@thi.ng/transducers": "workspace:^",
+		"@thi.ng/transducers-binary": "workspace:^"
+	},
+	"browser": {
+		"process": false,
+		"setTimeout": false,
+		"util": false
+	},
+	"thi.ng": {
+		"readme": [
+			"hdom",
+			"hdom-components",
+			"transducers",
+			"transducers-binary"
+		],
+		"screenshot": "examples/cellular-automata.png"
+	},
+	"devDependencies": {
+		"typescript": "^4.7.4",
+		"vite": "^3.0.0"
+	}
 }

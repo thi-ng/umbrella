@@ -6,4 +6,4 @@ import { assert } from "@thi.ng/errors/assert";
  * @internal
  */
 export const __ensureInputs = (src: any[]) =>
-    assert(src.length > 0, `no inputs given`);
+	assert(src.length > 0, `no inputs given`);

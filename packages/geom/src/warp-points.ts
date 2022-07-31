@@ -22,26 +22,26 @@ import { unmapPoint } from "./unmap-point.js";
  * @param out
  */
 export const warpPoints = (
-    pts: ReadonlyVec[],
-    dest: IShape,
-    src: IShape,
-    out: Vec[] = []
+	pts: ReadonlyVec[],
+	dest: IShape,
+	src: IShape,
+	out: Vec[] = []
 ) => {
-    for (let n = pts.length, i = 0; i < n; i++) {
-        out.push(unmapPoint(dest, mapPoint(src, pts[i])));
-    }
-    return out;
+	for (let n = pts.length, i = 0; i < n; i++) {
+		out.push(unmapPoint(dest, mapPoint(src, pts[i])));
+	}
+	return out;
 };
 
 export const warpPointsBPatch = (
-    pts: ReadonlyVec[],
-    dest: BPatch,
-    src?: Rect,
-    out: Vec[] = []
+	pts: ReadonlyVec[],
+	dest: BPatch,
+	src?: Rect,
+	out: Vec[] = []
 ) => {
-    src = src || rectFromMinMax(...bounds2(pts));
-    for (let i = pts.length; i-- > 0; ) {
-        out[i] = dest.unmapPoint(mapPoint(src, pts[i]));
-    }
-    return out;
+	src = src || rectFromMinMax(...bounds2(pts));
+	for (let i = pts.length; i-- > 0; ) {
+		out[i] = dest.unmapPoint(mapPoint(src, pts[i]));
+	}
+	return out;
 };

@@ -27,31 +27,31 @@ import { defaultOpts } from "./opts.js";
  * //                     ^ 3.00
  * ```
  *
- * @param opts - 
+ * @param opts -
  */
 export const meanOfMaximaStrategy = (
-    opts?: Partial<DefuzzStrategyOpts>
+	opts?: Partial<DefuzzStrategyOpts>
 ): DefuzzStrategy => {
-    const { samples, eps } = defaultOpts(opts);
-    return (fn, [min, max]) => {
-        const delta = (max - min) / samples;
-        let peak = -Infinity;
-        let peakPos = min;
-        let n = 1;
-        for (let i = 0; i <= samples; i++) {
-            const t = min + i * delta;
-            const x = fn(t);
-            if (eqDelta(x, peak, eps)) {
-                peakPos += t;
-                n++;
-            } else if (x > peak) {
-                peak = x;
-                peakPos = t;
-                n = 1;
-            }
-        }
-        return peakPos / n;
-    };
+	const { samples, eps } = defaultOpts(opts);
+	return (fn, [min, max]) => {
+		const delta = (max - min) / samples;
+		let peak = -Infinity;
+		let peakPos = min;
+		let n = 1;
+		for (let i = 0; i <= samples; i++) {
+			const t = min + i * delta;
+			const x = fn(t);
+			if (eqDelta(x, peak, eps)) {
+				peakPos += t;
+				n++;
+			} else if (x > peak) {
+				peak = x;
+				peakPos = t;
+				n = 1;
+			}
+		}
+		return peakPos / n;
+	};
 };
 
 /**
@@ -80,26 +80,26 @@ export const meanOfMaximaStrategy = (
  * //        ^ 1.02
  * ```
  *
- * @param opts - 
+ * @param opts -
  */
 export const firstOfMaximaStrategy = (
-    opts?: Partial<DefuzzStrategyOpts>
+	opts?: Partial<DefuzzStrategyOpts>
 ): DefuzzStrategy => {
-    const { samples } = defaultOpts(opts);
-    return (fn, [min, max]) => {
-        const delta = (max - min) / samples;
-        let peak = -Infinity;
-        let peakPos = min;
-        for (let i = 0; i <= samples; i++) {
-            const t = min + i * delta;
-            const x = fn(t);
-            if (x > peak) {
-                peak = x;
-                peakPos = t;
-            }
-        }
-        return peakPos;
-    };
+	const { samples } = defaultOpts(opts);
+	return (fn, [min, max]) => {
+		const delta = (max - min) / samples;
+		let peak = -Infinity;
+		let peakPos = min;
+		for (let i = 0; i <= samples; i++) {
+			const t = min + i * delta;
+			const x = fn(t);
+			if (x > peak) {
+				peak = x;
+				peakPos = t;
+			}
+		}
+		return peakPos;
+	};
 };
 
 /**
@@ -128,11 +128,11 @@ export const firstOfMaximaStrategy = (
  * //                                  ^ 4.98
  * ```
  *
- * @param opts - 
+ * @param opts -
  */
 export const lastOfMaximaStrategy = (
-    opts?: Partial<DefuzzStrategyOpts>
+	opts?: Partial<DefuzzStrategyOpts>
 ): DefuzzStrategy => {
-    const impl = firstOfMaximaStrategy(opts);
-    return (fn, [min, max]) => impl(fn, [max, min]);
+	const impl = firstOfMaximaStrategy(opts);
+	return (fn, [min, max]) => impl(fn, [max, min]);
 };

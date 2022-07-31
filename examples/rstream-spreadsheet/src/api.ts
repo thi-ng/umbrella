@@ -11,14 +11,14 @@ export const RE_CELL_ID = /^([A-Z])(\d+)$/i;
 export const RE_CELL_RANGE = /^([A-Z])(\d+):([A-Z])(\d+)$/i;
 
 export interface Cell {
-    formula: string;
-    value: string | number;
-    error: string | null;
-    backup: string;
-    focus: boolean;
+	formula: string;
+	value: string | number;
+	error: string | null;
+	backup: string;
+	focus: boolean;
 }
 
 export interface UICell extends ILifecycle {
-    element?: HTMLDivElement;
-    focus?: boolean;
+	element?: HTMLDivElement;
+	focus?: boolean;
 }

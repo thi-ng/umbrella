@@ -29,33 +29,33 @@ import type { HexDumpOpts } from "./api.js";
  * @param src -
  */
 export function hexDump(
-    opts?: Partial<HexDumpOpts>
+	opts?: Partial<HexDumpOpts>
 ): Transducer<number, string>;
 export function hexDump(src: Iterable<number>): IterableIterator<string>;
 export function hexDump(
-    opts: Partial<HexDumpOpts>,
-    src: Iterable<number>
+	opts: Partial<HexDumpOpts>,
+	src: Iterable<number>
 ): IterableIterator<string>;
 export function hexDump(...args: any[]): any {
-    const iter = __iter(hexDump, args, iterator);
-    if (iter) {
-        return iter;
-    }
-    const { cols, address } = <HexDumpOpts>{ cols: 16, address: 0, ...args[0] };
-    return comp(
-        padLast(cols, 0),
-        map(
-            juxt(U8, (x) => (x > 31 && x < 127 ? String.fromCharCode(x) : "."))
-        ),
-        partition(cols, true),
-        map(
-            juxt(
-                (x: string[][]) => x.map((y) => y[0]).join(" "),
-                (x: string[][]) => x.map((y) => y[1]).join("")
-            )
-        ),
-        mapIndexed((i, [h, a]) => `${U32(address + i * cols)} | ${h} | ${a}`)
-    );
+	const iter = __iter(hexDump, args, iterator);
+	if (iter) {
+		return iter;
+	}
+	const { cols, address } = <HexDumpOpts>{ cols: 16, address: 0, ...args[0] };
+	return comp(
+		padLast(cols, 0),
+		map(
+			juxt(U8, (x) => (x > 31 && x < 127 ? String.fromCharCode(x) : "."))
+		),
+		partition(cols, true),
+		map(
+			juxt(
+				(x: string[][]) => x.map((y) => y[0]).join(" "),
+				(x: string[][]) => x.map((y) => y[1]).join("")
+			)
+		),
+		mapIndexed((i, [h, a]) => `${U32(address + i * cols)} | ${h} | ${a}`)
+	);
 }
 
 /**
@@ -66,6 +66,6 @@ export function hexDump(...args: any[]): any {
  * @param src -
  */
 export const hexDumpString = (
-    opts: Partial<HexDumpOpts>,
-    src: Iterable<number>
+	opts: Partial<HexDumpOpts>,
+	src: Iterable<number>
 ) => [...hexDump(opts, src)].join("\n");

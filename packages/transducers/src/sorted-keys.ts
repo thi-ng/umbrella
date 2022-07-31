@@ -10,5 +10,5 @@ import { compare } from "@thi.ng/compare/compare";
  * @param cmp -
  */
 export function* sortedKeys(x: any, cmp: Comparator<string> = compare) {
-    yield* Object.keys(x).sort(cmp);
+	yield* Object.keys(x).sort(cmp);
 }

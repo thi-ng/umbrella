@@ -11,11 +11,11 @@ import { randomBytes, randomBytesFrom } from "./random-bytes.js";
  * @param rnd -
  */
 export const uuidv4Bytes = (buf?: Uint8Array, rnd?: IRandom) => {
-    buf = buf || new Uint8Array(16);
-    buf = rnd ? randomBytesFrom(rnd, buf) : randomBytes(buf);
-    buf[6] = 0x40 | (buf[6] & 0x0f);
-    buf[8] = 0x80 | (buf[8] & 0x3f);
-    return buf;
+	buf = buf || new Uint8Array(16);
+	buf = rnd ? randomBytesFrom(rnd, buf) : randomBytes(buf);
+	buf[6] = 0x40 | (buf[6] & 0x0f);
+	buf[8] = 0x80 | (buf[8] & 0x3f);
+	return buf;
 };
 
 /**
@@ -26,4 +26,4 @@ export const uuidv4Bytes = (buf?: Uint8Array, rnd?: IRandom) => {
  * @param i - start index
  */
 export const uuid = (id?: ArrayLike<number>, i = 0) =>
-    $uuid(id || uuidv4Bytes(), i);
+	$uuid(id || uuidv4Bytes(), i);

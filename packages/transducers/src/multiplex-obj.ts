@@ -30,27 +30,27 @@ import { rename } from "./rename.js";
  * @param src -
  */
 export function multiplexObj<A, B>(
-    xforms: IObjectOf<TxLike<A, any>>,
-    rfn?: Reducer<B, [PropertyKey, any]>
+	xforms: IObjectOf<TxLike<A, any>>,
+	rfn?: Reducer<B, [PropertyKey, any]>
 ): Transducer<A, B>;
 export function multiplexObj<A, B>(
-    xforms: IObjectOf<TxLike<A, any>>,
-    src: Iterable<A>
+	xforms: IObjectOf<TxLike<A, any>>,
+	src: Iterable<A>
 ): IterableIterator<B>;
 export function multiplexObj<A, B>(
-    xforms: IObjectOf<TxLike<A, any>>,
-    rfn: Reducer<B, [PropertyKey, any]>,
-    src: Iterable<A>
+	xforms: IObjectOf<TxLike<A, any>>,
+	rfn: Reducer<B, [PropertyKey, any]>,
+	src: Iterable<A>
 ): IterableIterator<B>;
 export function multiplexObj(...args: any[]): any {
-    const iter = __iter(multiplexObj, args);
-    if (iter) {
-        return iter;
-    }
-    const [xforms, rfn] = args;
-    const ks = Object.keys(xforms);
-    return comp(
-        multiplex.apply(null, <any>ks.map((k) => xforms[k])),
-        rename(ks, rfn)
-    );
+	const iter = __iter(multiplexObj, args);
+	if (iter) {
+		return iter;
+	}
+	const [xforms, rfn] = args;
+	const ks = Object.keys(xforms);
+	return comp(
+		multiplex.apply(null, <any>ks.map((k) => xforms[k])),
+		rename(ks, rfn)
+	);
 }

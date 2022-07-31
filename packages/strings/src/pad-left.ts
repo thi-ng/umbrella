@@ -7,20 +7,20 @@ import { repeat } from "./repeat.js";
  * @param ch - pad character(s)
  */
 export const padLeft: (
-    n: number,
-    ch?: string | number
+	n: number,
+	ch?: string | number
 ) => (x: any, length?: number) => string = memoizeJ<
-    number,
-    string | number | undefined,
-    Stringer<any>
+	number,
+	string | number | undefined,
+	Stringer<any>
 >((n, ch = " ") => {
-    const buf = repeat(String(ch), n);
-    return (x: any, len?: number) => {
-        if (x == null) return buf;
-        x = x.toString();
-        len = len !== undefined ? len : x.length;
-        return len! < n ? buf.substring(len!) + x : x;
-    };
+	const buf = repeat(String(ch), n);
+	return (x: any, len?: number) => {
+		if (x == null) return buf;
+		x = x.toString();
+		len = len !== undefined ? len : x.length;
+		return len! < n ? buf.substring(len!) + x : x;
+	};
 });
 
 /**

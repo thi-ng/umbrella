@@ -13,14 +13,14 @@ import { vals } from "@thi.ng/transducers/vals";
 // here only used to provide style / theme config using
 // Tachyons CSS classes
 const ctx = {
-    ui: {
-        root: {
-            class: "pa2",
-        },
-        button: {
-            class: "w4 h2 bg-black white bn br2 mr2 pointer",
-        },
-    },
+	ui: {
+		root: {
+			class: "pa2",
+		},
+		button: {
+			class: "w4 h2 bg-black white bn br2 mr2 pointer",
+		},
+	},
 };
 
 /**
@@ -46,7 +46,7 @@ const ctx = {
  * @param ctx - ser context object
  */
 const domUpdate = (root: HTMLElement, tree: ISubscribable<any>, ctx?: any) =>
-    sidechainPartitionRAF(tree).transform(updateDOM({ root, ctx }));
+	sidechainPartitionRAF(tree).transform(updateDOM({ root, ctx }));
 
 /**
  * Generic button component.
@@ -56,9 +56,9 @@ const domUpdate = (root: HTMLElement, tree: ISubscribable<any>, ctx?: any) =>
  * @param body - utton body
  */
 const button = (ctx: any, onclick: EventListener, body: any) => [
-    "button",
-    { ...ctx.ui.button, onclick },
-    body,
+	"button",
+	{ ...ctx.ui.button, onclick },
+	body,
 ];
 
 /**
@@ -68,9 +68,9 @@ const button = (ctx: any, onclick: EventListener, body: any) => [
  * @param stream - ounter stream
  */
 const clickButton = (_: any, stream: ISubscriber<boolean>) => [
-    button,
-    () => stream.next(true),
-    stream.deref(),
+	button,
+	() => stream.next(true),
+	stream.deref(),
 ];
 
 /**
@@ -80,9 +80,9 @@ const clickButton = (_: any, stream: ISubscriber<boolean>) => [
  * @param counters - treams to reset
  */
 const resetButton = (_: any, counters: ISubscriber<boolean>[]) => [
-    button,
-    () => counters.forEach((c) => c.next(false)),
-    "reset",
+	button,
+	() => counters.forEach((c) => c.next(false)),
+	"reset",
 ];
 
 /**
@@ -90,25 +90,25 @@ const resetButton = (_: any, counters: ISubscriber<boolean>[]) => [
  * the stream, the counter increases by given step value. If false is
  * written, the counter resets to the `start` value.
  *
- * @param start - 
- * @param step - 
+ * @param start -
+ * @param step -
  */
 const counter = (start: number, step: number) => {
-    const s = subscription<boolean, number>(
-        undefined,
-        // the `scan` transducer is used to provide counter functionality
-        // see: https://docs.thi.ng/umbrella/transducers/modules.html#scan
-        {
-            xform: scan(
-                reducer(
-                    () => start,
-                    (x, y) => (y ? x + step : start)
-                )
-            ),
-        }
-    );
-    s.next(false);
-    return s;
+	const s = subscription<boolean, number>(
+		undefined,
+		// the `scan` transducer is used to provide counter functionality
+		// see: https://docs.thi.ng/umbrella/transducers/modules.html#scan
+		{
+			xform: scan(
+				reducer(
+					() => start,
+					(x, y) => (y ? x + step : start)
+				)
+			),
+		}
+	);
+	s.next(false);
+	return s;
 };
 
 /**
@@ -120,40 +120,40 @@ const counter = (start: number, step: number) => {
  * @param initial - nitial counter configs
  */
 const app = (ctx: any, initial: number[][]) => {
-    const counters = initial.map(([start, step]) => counter(start, step));
-    return sync({
-        src: autoObj(
-            "",
-            counters.map((c) => c.transform(map(() => [clickButton, c])))
-        ),
-        xform: map(
-            // build the app's actual root component
-            (buttons) => [
-                "div",
-                ctx.ui.root,
-                ...vals(buttons),
-                [resetButton, counters],
-            ]
-        ),
-        // this config ensures that only at the very beginning *all*
-        // inputs must have delivered a value (i.e. stream
-        // synchronization) before this stream itself delivers a value.
-        // however, by stating `reset: false` (actually the default) any
-        // subsequent changes to any of the inputs will not be
-        // synchronized see here for further details:
-        // https://docs.thi.ng/umbrella/rstream/interfaces/StreamSyncOpts.html
-        // https://docs.thi.ng/umbrella/transducers/modules.html#partitionSync
-        reset: false,
-    });
+	const counters = initial.map(([start, step]) => counter(start, step));
+	return sync({
+		src: autoObj(
+			"",
+			counters.map((c) => c.transform(map(() => [clickButton, c])))
+		),
+		xform: map(
+			// build the app's actual root component
+			(buttons) => [
+				"div",
+				ctx.ui.root,
+				...vals(buttons),
+				[resetButton, counters],
+			]
+		),
+		// this config ensures that only at the very beginning *all*
+		// inputs must have delivered a value (i.e. stream
+		// synchronization) before this stream itself delivers a value.
+		// however, by stating `reset: false` (actually the default) any
+		// subsequent changes to any of the inputs will not be
+		// synchronized see here for further details:
+		// https://docs.thi.ng/umbrella/rstream/interfaces/StreamSyncOpts.html
+		// https://docs.thi.ng/umbrella/transducers/modules.html#partitionSync
+		reset: false,
+	});
 };
 
 // start app & DOM updates
 domUpdate(
-    document.getElementById("app")!,
-    app(ctx, [
-        [10, 1],
-        [20, 5],
-        [30, 10],
-    ]),
-    ctx
+	document.getElementById("app")!,
+	app(ctx, [
+		[10, 1],
+		[20, 5],
+		[30, 10],
+	]),
+	ctx
 );

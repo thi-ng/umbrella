@@ -1,6 +1,6 @@
 import { equiv } from "@thi.ng/equiv";
 import { eqDelta } from "@thi.ng/vectors";
-import { init } from "../src/index.js"
+import { init } from "../src/index.js";
 
 const DEST = 0x400;
 
@@ -8,20 +8,20 @@ const simd = init(new WebAssembly.Memory({ initial: 1 }))!;
 // console.log(simd);
 
 const fail = (res: any, exp: any, msg = "") => {
-    process.stderr.write(`${msg} expected: ${exp}, got ${res}\n\n`);
-    process.exit(1);
+	process.stderr.write(`${msg} expected: ${exp}, got ${res}\n\n`);
+	process.exit(1);
 };
 
 const assertEqual = (res: any, exp: any, msg?: string) => {
-    !equiv(res, exp) && fail(res, exp, msg);
+	!equiv(res, exp) && fail(res, exp, msg);
 };
 
 const assertEqualDelta = (res: any, exp: any, eps = 1e-3, msg?: string) => {
-    !eqDelta(res, exp, eps) && fail(res, exp, msg);
+	!eqDelta(res, exp, eps) && fail(res, exp, msg);
 };
 
 const res_f32 = (addr: number, n: number) =>
-    simd.f32.slice(addr / 4, addr / 4 + n);
+	simd.f32.slice(addr / 4, addr / 4 + n);
 
 // basic math ops
 // prettier-ignore
@@ -176,17 +176,17 @@ assertEqual(res_f32(DEST, 8), [-89, -178, -267, -356, -445, -534, -623, -712]);
 simd.f32.set([1, 2, 10, 20, -100, 200, 100, -200]);
 simd.magsq2_f32_aos(DEST, 0, 4);
 assertEqualDelta(res_f32(DEST, 4), [
-    1 * 1 + 2 * 2,
-    10 * 10 + 20 * 20,
-    100 * 100 + 200 * 200,
-    100 * 100 + 200 * 200,
+	1 * 1 + 2 * 2,
+	10 * 10 + 20 * 20,
+	100 * 100 + 200 * 200,
+	100 * 100 + 200 * 200,
 ]);
 simd.mag2_f32_aos(DEST, 0, 4);
 assertEqualDelta(res_f32(DEST, 4), [
-    Math.sqrt(5),
-    Math.sqrt(500),
-    Math.sqrt(50000),
-    Math.sqrt(50000),
+	Math.sqrt(5),
+	Math.sqrt(500),
+	Math.sqrt(50000),
+	Math.sqrt(50000),
 ]);
 
 simd.magsq4_f32_aos(DEST, 0, 2, 1, 4);
@@ -201,14 +201,14 @@ assertEqualDelta(res_f32(DEST, 8), [1, Math.SQRT2, 3, 4, 5, 6, 7, 8]);
 // invsqrt4
 simd.invsqrt4_f32(DEST, 0, 2, 4, 4);
 assertEqualDelta(res_f32(DEST, 8), [
-    1,
-    Math.SQRT1_2,
-    1 / 3,
-    1 / 4,
-    1 / 5,
-    1 / 6,
-    1 / 7,
-    1 / 8,
+	1,
+	Math.SQRT1_2,
+	1 / 3,
+	1 / 4,
+	1 / 5,
+	1 / 6,
+	1 / 7,
+	1 / 8,
 ]);
 
 // mix4_f32
@@ -275,23 +275,23 @@ assertEqual(res_f32(DEST, 8), [110, 240, 390, 1, 140, 300, 480, 1]);
 simd.f32.set([-1, 1, 0, 2, -1e-8, 0, 4, -2]);
 simd.normalize2_f32_aos(DEST, 0, 4, 10);
 assertEqualDelta(
-    res_f32(DEST, 8),
-    [-7.07, 7.07, 0, 10, 0, 0, 8.94, -4.47],
-    0.01
+	res_f32(DEST, 8),
+	[-7.07, 7.07, 0, 10, 0, 0, 8.94, -4.47],
+	0.01
 );
 // normalize4_f32
 simd.f32.set([1, 0, -1, 0, 0, -1, 0, 1, -1, 1, 1, -1, 1e-8, -1e-6, 1e-8, 1e-6]);
 simd.normalize4_f32_aos(DEST, 0, 4, 10, 4, 4);
 assertEqualDelta(
-    res_f32(DEST, 16),
-    // prettier-ignore
-    [
+	res_f32(DEST, 16),
+	// prettier-ignore
+	[
         7.07, 0, -7.07, 0,
         0, -7.07, 0, 7.07,
         -5, 5, 5, -5,
         0, 0, 0, 0,
     ],
-    0.01
+	0.01
 );
 
 // prettier-ignore
@@ -300,16 +300,16 @@ assertEqual(simd.sum4_f32(0, 4, 4), 396);
 
 simd.f32.set([10, 20, 30, 40, 50, 60, 70, 80]);
 simd.swizzle4_32_aos(DEST, 0, 3, 0, 1, 2, 2, 4, 4),
-    assertEqual(
-        res_f32(DEST, 8),
-        // prettier-ignore
-        [40, 10, 20, 30, 80, 50, 60, 70],
-        "swizzle4 1"
-    );
+	assertEqual(
+		res_f32(DEST, 8),
+		// prettier-ignore
+		[40, 10, 20, 30, 80, 50, 60, 70],
+		"swizzle4 1"
+	);
 simd.swizzle4_32_aos(DEST, 0, 1, 1, 2, 2, 2, 4, 4),
-    assertEqual(
-        res_f32(DEST, 8),
-        // prettier-ignore
-        [20, 20, 30, 30, 60, 60, 70, 70],
-        "swizzle4 2"
-    );
+	assertEqual(
+		res_f32(DEST, 8),
+		// prettier-ignore
+		[20, 20, 30, 30, 60, 60, 70, 70],
+		"swizzle4 2"
+	);

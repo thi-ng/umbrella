@@ -35,32 +35,32 @@ import { selectKeysObj } from "./select-keys.js";
  * @param b - other set
  */
 export const join = <A, B>(
-    a: Set<A>,
-    b: Set<B>
+	a: Set<A>,
+	b: Set<B>
 ): Set<Pick<A, keyof A> & Pick<B, keyof B>> => {
-    if (a.size && b.size) {
-        const ks = commonKeysObj(first(a) || {}, first(b) || {});
-        let aa: Set<any>, bb: Set<any>;
-        if (a.size <= b.size) {
-            aa = a;
-            bb = b;
-        } else {
-            aa = b;
-            bb = a;
-        }
-        const idx = indexed(aa, ks);
-        const res: Set<any> = empty(a, Set);
-        for (let x of bb) {
-            const found = idx.get(selectKeysObj(x, ks));
-            if (found) {
-                for (let f of found) {
-                    res.add(mergeObj({ ...f }, x));
-                }
-            }
-        }
-        return res;
-    }
-    return empty(a, Set);
+	if (a.size && b.size) {
+		const ks = commonKeysObj(first(a) || {}, first(b) || {});
+		let aa: Set<any>, bb: Set<any>;
+		if (a.size <= b.size) {
+			aa = a;
+			bb = b;
+		} else {
+			aa = b;
+			bb = a;
+		}
+		const idx = indexed(aa, ks);
+		const res: Set<any> = empty(a, Set);
+		for (let x of bb) {
+			const found = idx.get(selectKeysObj(x, ks));
+			if (found) {
+				for (let f of found) {
+					res.add(mergeObj({ ...f }, x));
+				}
+			}
+		}
+		return res;
+	}
+	return empty(a, Set);
 };
 
 /**
@@ -93,34 +93,34 @@ export const join = <A, B>(
  * @param kmap - keys to compute join for
  */
 export const joinWith = <A, B>(
-    a: Set<A>,
-    b: Set<B>,
-    kmap: { [id in keyof A]?: keyof B }
+	a: Set<A>,
+	b: Set<B>,
+	kmap: { [id in keyof A]?: keyof B }
 ): Set<any> => {
-    if (a.size && b.size) {
-        let aa: Set<any>, bb: Set<any>;
-        let k: { [id in keyof A]?: keyof B };
-        if (a.size <= b.size) {
-            aa = a;
-            bb = b;
-            k = <any>invertObj(<any>kmap);
-        } else {
-            aa = b;
-            bb = a;
-            k = kmap;
-        }
-        const idx = indexed(aa, Object.values(k));
-        const ks = Object.keys(k);
-        const res: Set<any> = empty(a, Set);
-        for (let x of bb) {
-            const found = idx.get(renameKeysObj(<any>selectKeysObj(x, ks), k));
-            if (found) {
-                for (let f of found) {
-                    res.add(mergeObj({ ...f }, x));
-                }
-            }
-        }
-        return res;
-    }
-    return empty(a, Set);
+	if (a.size && b.size) {
+		let aa: Set<any>, bb: Set<any>;
+		let k: { [id in keyof A]?: keyof B };
+		if (a.size <= b.size) {
+			aa = a;
+			bb = b;
+			k = <any>invertObj(<any>kmap);
+		} else {
+			aa = b;
+			bb = a;
+			k = kmap;
+		}
+		const idx = indexed(aa, Object.values(k));
+		const ks = Object.keys(k);
+		const res: Set<any> = empty(a, Set);
+		for (let x of bb) {
+			const found = idx.get(renameKeysObj(<any>selectKeysObj(x, ks), k));
+			if (found) {
+				for (let f of found) {
+					res.add(mergeObj({ ...f }, x));
+				}
+			}
+		}
+		return res;
+	}
+	return empty(a, Set);
 };

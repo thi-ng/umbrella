@@ -14,14 +14,14 @@ import { into } from "./into.js";
  * @param out - optional result set
  */
 export const difference = <T>(a: Set<T>, b: Set<T>, out?: Set<T>): Set<T> => {
-    if (a === b) {
-        return out || empty(a, Set);
-    }
-    out = out ? into(out, a) : copy(a, Set);
-    for (let i of b) {
-        out!.delete(i);
-    }
-    return out!;
+	if (a === b) {
+		return out || empty(a, Set);
+	}
+	out = out ? into(out, a) : copy(a, Set);
+	for (let i of b) {
+		out!.delete(i);
+	}
+	return out!;
 };
 
 /**
@@ -35,5 +35,5 @@ export const difference = <T>(a: Set<T>, b: Set<T>, out?: Set<T>): Set<T> => {
 export function differenceR<T>(): Reducer<Set<T>, Iterable<T>>;
 export function differenceR<T>(src: Iterable<Iterable<T>>): Set<T>;
 export function differenceR<T>(src?: Iterable<Iterable<T>>) {
-    return __combineSet<T>(differenceR, difference, src);
+	return __combineSet<T>(differenceR, difference, src);
 }

@@ -12,10 +12,10 @@ import { rgbHcv } from "./rgb-hcv.js";
  * @param src - source color
  */
 export const rgbHcy: ColorOp = (out, src) => {
-    const y = luminanceRgb(src);
-    out = rgbHcv(out, src);
-    const z = luminanceRgb(hueRgb([], out[0]));
-    out[1] *= y < z ? z / (y + EPS) : (1 - z) / (1 + EPS - y);
-    out[2] = y;
-    return out;
+	const y = luminanceRgb(src);
+	out = rgbHcv(out, src);
+	const z = luminanceRgb(hueRgb([], out[0]));
+	out[1] *= y < z ? z / (y + EPS) : (1 - z) / (1 + EPS - y);
+	out[2] = y;
+	return out;
 };

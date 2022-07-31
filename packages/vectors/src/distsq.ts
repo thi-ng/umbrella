@@ -6,7 +6,7 @@ const tpl: Template = ([a, b]) => `t=${a}-${b};s+=t*t;`;
 const pre = "let t,s=0;";
 
 const $ = (dim: number) =>
-    distSq.add(dim, compile(dim, tpl, "a,b", undefined, "s", "", pre));
+	distSq.add(dim, compile(dim, tpl, "a,b", undefined, "s", "", pre));
 
 export const distSq: MultiVecOpRoVV<number> = vop();
 

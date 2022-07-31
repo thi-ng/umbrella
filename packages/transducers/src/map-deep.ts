@@ -14,11 +14,11 @@ import { map } from "./map.js";
  */
 export function mapDeep(spec: TransformSpec): Transducer<any, any>;
 export function mapDeep(
-    spec: TransformSpec,
-    src: Iterable<any>
+	spec: TransformSpec,
+	src: Iterable<any>
 ): IterableIterator<any>;
 export function mapDeep(spec: TransformSpec, src?: Iterable<any>): any {
-    return isIterable(src)
-        ? iterator1(mapDeep(spec), src)
-        : map(deepTransform(spec));
+	return isIterable(src)
+		? iterator1(mapDeep(spec), src)
+		: map(deepTransform(spec));
 }

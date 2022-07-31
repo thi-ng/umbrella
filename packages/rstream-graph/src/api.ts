@@ -9,8 +9,8 @@ import type { Transducer } from "@thi.ng/transducers";
  * and node ID. See `node()` and `node1()`.
  */
 export type NodeFactory<T> = (
-    src: NodeInputs,
-    id: string
+	src: NodeInputs,
+	id: string
 ) => ISubscription<T, any>;
 
 export type NodeResolver = Fn<ResolveFn, Node>;
@@ -19,9 +19,9 @@ export type NodeOutputs = IObjectOf<ISubscription<any, any>>;
 export type Graph = IObjectOf<Node>;
 
 export interface Node {
-    ins: NodeInputs;
-    outs: NodeOutputs;
-    node: ISubscription<any, any>;
+	ins: NodeInputs;
+	outs: NodeOutputs;
+	node: ISubscription<any, any>;
 }
 
 /**
@@ -51,9 +51,9 @@ export type GraphSpec = IObjectOf<NodeSpec | Node | NodeResolver>;
  * details how these specs are compiled into stream constructs.
  */
 export interface NodeSpec {
-    fn: NodeFactory<any>;
-    ins: IObjectOf<NodeInputSpec>;
-    outs?: IObjectOf<NodeOutputSpec>;
+	fn: NodeFactory<any>;
+	ins: IObjectOf<NodeInputSpec>;
+	outs?: IObjectOf<NodeOutputSpec>;
 }
 
 /**
@@ -104,16 +104,16 @@ export interface NodeSpec {
  * transducer is added to the input and then used as input instead.
  */
 export interface NodeInputSpec {
-    id?: string;
-    path?: Path;
-    stream?: string | Fn<ResolveFn, ISubscription<any, any>>;
-    const?: any | Fn<ResolveFn, any>;
-    xform?: Transducer<any, any>;
+	id?: string;
+	path?: Path;
+	stream?: string | Fn<ResolveFn, ISubscription<any, any>>;
+	const?: any | Fn<ResolveFn, any>;
+	xform?: Transducer<any, any>;
 }
 
 export type NodeOutputSpec = Path | NodeOutputFn;
 
 export type NodeOutputFn = (
-    node: ISubscription<any, any>,
-    id: NumOrString
+	node: ISubscription<any, any>,
+	id: NumOrString
 ) => ISubscription<any, any>;

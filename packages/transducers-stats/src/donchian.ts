@@ -18,11 +18,11 @@ import { bounds } from "./bounds.js";
  */
 export function donchian(period: number): Transducer<number, [number, number]>;
 export function donchian(
-    period: number,
-    src: Iterable<number>
+	period: number,
+	src: Iterable<number>
 ): IterableIterator<[number, number]>;
 export function donchian(period: number, src?: Iterable<number>): any {
-    return src
-        ? iterator(donchian(period), src)
-        : comp<number, number[], number[]>(partition(period, 1), map(bounds));
+	return src
+		? iterator(donchian(period), src)
+		: comp<number, number[], number[]>(partition(period, 1), map(bounds));
 }

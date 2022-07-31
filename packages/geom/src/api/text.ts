@@ -10,21 +10,21 @@ import { __copyAttribs } from "../internal/copy.js";
  * text elements in {@link Group}s with other shape types.
  */
 export class Text implements IHiccupShape {
-    constructor(public pos: Vec, public body: any, public attribs?: Attribs) {}
+	constructor(public pos: Vec, public body: any, public attribs?: Attribs) {}
 
-    get type() {
-        return "text";
-    }
+	get type() {
+		return "text";
+	}
 
-    copy(): Text {
-        return new Text(set([], this.pos), this.body, __copyAttribs(this));
-    }
+	copy(): Text {
+		return new Text(set([], this.pos), this.body, __copyAttribs(this));
+	}
 
-    withAttribs(attribs: Attribs): Text {
-        return new Text(this.pos, this.body, attribs);
-    }
+	withAttribs(attribs: Attribs): Text {
+		return new Text(this.pos, this.body, attribs);
+	}
 
-    toHiccup() {
-        return ["text", this.attribs, this.pos, this.body];
-    }
+	toHiccup() {
+		return ["text", this.attribs, this.pos, this.body];
+	}
 }

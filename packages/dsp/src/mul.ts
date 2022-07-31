@@ -12,30 +12,30 @@ import { AGen } from "./agen.js";
  * @param clamp -
  */
 export const mul = (factor?: number, start?: number, clamp?: number) =>
-    new Mul(factor, start, clamp);
+	new Mul(factor, start, clamp);
 
 export class Mul extends AGen<number> implements IReset {
-    constructor(
-        protected _factor = 1,
-        protected _start = 1,
-        protected _clamp?: number
-    ) {
-        super(0);
-        this.reset();
-    }
+	constructor(
+		protected _factor = 1,
+		protected _start = 1,
+		protected _clamp?: number
+	) {
+		super(0);
+		this.reset();
+	}
 
-    reset() {
-        this._val = this._start / this._factor;
-        return this;
-    }
+	reset() {
+		this._val = this._start / this._factor;
+		return this;
+	}
 
-    next() {
-        let v = this._val * this._factor;
-        return (this._val =
-            this._clamp !== undefined
-                ? this._start < this._clamp
-                    ? Math.min(v, this._clamp)
-                    : Math.max(v, this._clamp)
-                : v);
-    }
+	next() {
+		let v = this._val * this._factor;
+		return (this._val =
+			this._clamp !== undefined
+				? this._start < this._clamp
+					? Math.min(v, this._clamp)
+					: Math.max(v, this._clamp)
+				: v);
+	}
 }

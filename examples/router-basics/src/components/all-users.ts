@@ -11,12 +11,12 @@ import { status } from "./status";
  * @param ctx - njected context object
  */
 export function allUsers(ctx: AppContext) {
-    ctx.bus.dispatch(
-        ctx.views.userlist.deref()!.length
-            ? [SET_STATUS, [StatusType.SUCCESS, "list loaded from cache", true]]
-            : [LOAD_USER_LIST]
-    );
-    return ["div", status, userList];
+	ctx.bus.dispatch(
+		ctx.views.userlist.deref()!.length
+			? [SET_STATUS, [StatusType.SUCCESS, "list loaded from cache", true]]
+			: [LOAD_USER_LIST]
+	);
+	return ["div", status, userList];
 }
 
 /**
@@ -25,15 +25,15 @@ export function allUsers(ctx: AppContext) {
  * @param ctx - njected context object
  */
 function userList(ctx: AppContext) {
-    const profiles = ctx.views.users.deref();
-    const list = ctx.views.userlist.deref();
-    return (
-        list && [
-            "section",
-            ctx.ui.userlist.root,
-            list.map((u) => [user, u, !!profiles![u.id]]),
-        ]
-    );
+	const profiles = ctx.views.users.deref();
+	const list = ctx.views.userlist.deref();
+	return (
+		list && [
+			"section",
+			ctx.ui.userlist.root,
+			list.map((u) => [user, u, !!profiles![u.id]]),
+		]
+	);
 }
 
 /**
@@ -43,25 +43,25 @@ function userList(ctx: AppContext) {
  * http://tachyons.io/components/lists/follower-notifications/index.html
  *
  * @param ctx - njected context object
- * @param user - 
- * @param cached - 
+ * @param user -
+ * @param cached -
  */
 function user(ctx: AppContext, user: User, cached: boolean) {
-    const ui = ctx.ui.userlist;
-    return [
-        "article",
-        ui.container,
-        ["div", ui.thumbWrapper, ["img", { ...ui.thumb, src: user.img }]],
-        [
-            "div",
-            ui.body,
-            [
-                "h1",
-                ui.title,
-                [routeLink, USER_PROFILE.id, { id: user.id }, null, user.name],
-            ],
-            ["h2", ui.subtitle, `@${user.alias}`],
-        ],
-        cached ? ["div", ui.meta, "cached"] : undefined,
-    ];
+	const ui = ctx.ui.userlist;
+	return [
+		"article",
+		ui.container,
+		["div", ui.thumbWrapper, ["img", { ...ui.thumb, src: user.img }]],
+		[
+			"div",
+			ui.body,
+			[
+				"h1",
+				ui.title,
+				[routeLink, USER_PROFILE.id, { id: user.id }, null, user.name],
+			],
+			["h2", ui.subtitle, `@${user.alias}`],
+		],
+		cached ? ["div", ui.meta, "cached"] : undefined,
+	];
 }

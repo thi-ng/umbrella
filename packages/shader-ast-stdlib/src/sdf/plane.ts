@@ -10,10 +10,10 @@ import { dot } from "@thi.ng/shader-ast/builtin/math";
  * @param w - float
  */
 export const sdfPlane2 = defn(
-    "float",
-    "sdPlane2",
-    ["vec2", "vec2", "float"],
-    (p, n, w) => [ret(add(dot(p, n), w))]
+	"float",
+	"sdPlane2",
+	["vec2", "vec2", "float"],
+	(p, n, w) => [ret(add(dot(p, n), w))]
 );
 
 /**
@@ -24,8 +24,8 @@ export const sdfPlane2 = defn(
  * @param w - float
  */
 export const sdfPlane3 = defn(
-    "float",
-    "sdPlane3",
-    ["vec3", "vec3", "float"],
-    (p, n, w) => [ret(add(dot(p, n), w))]
+	"float",
+	"sdPlane3",
+	["vec3", "vec3", "float"],
+	(p, n, w) => [ret(add(dot(p, n), w))]
 );

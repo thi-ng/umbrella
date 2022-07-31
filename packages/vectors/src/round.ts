@@ -11,9 +11,9 @@ import { ARGS_VV, FN2, FN_N } from "./compile/templates.js";
  * correctly using 2 input vectors.
  */
 export const [round, round2, round3, round4] = defHofOp<MultiVecOpVV, VecOpVV>(
-    _round,
-    FN2("op"),
-    ARGS_VV
+	_round,
+	FN2("op"),
+	ARGS_VV
 );
 
 /**
@@ -21,6 +21,6 @@ export const [round, round2, round3, round4] = defHofOp<MultiVecOpVV, VecOpVV>(
  * components.
  */
 export const [roundN, roundN2, roundN3, roundN4] = defHofOp<
-    MultiVecOpVO<number>,
-    VecOpVO<number>
+	MultiVecOpVO<number>,
+	VecOpVO<number>
 >(_round, FN_N("op"), "o,a,n=1", "o,a");

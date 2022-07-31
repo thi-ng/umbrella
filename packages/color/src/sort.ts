@@ -16,13 +16,13 @@ export const selectChannel = (id: number) => (col: ReadonlyColor) => col[id];
  * function for {@link sort} to compute the distance metric of a color to the
  * given `target`.
  *
- * @param target - 
- * @param dist - 
+ * @param target -
+ * @param dist -
  */
 export const proximity =
-    (target: ReadonlyColor, dist: ColorDistance = distEucledian3) =>
-    (col: ReadonlyColor) =>
-        dist(target, col);
+	(target: ReadonlyColor, dist: ColorDistance = distEucledian3) =>
+	(col: ReadonlyColor) =>
+		dist(target, col);
 
 /**
  * Similar to {@link proximity}, but intended as syntax sugar for {@link ABGR}
@@ -30,18 +30,18 @@ export const proximity =
  * function (default: {@link distEucledian3}) and will be in sRGB space. Hence
  * given `target` color should be provided in the same space too.
  *
- * @param target - 
- * @param dist - 
+ * @param target -
+ * @param dist -
  */
 export const proximityABGR32 =
-    (target: ReadonlyColor, dist: ColorDistance = distEucledian3) =>
-    (col: ReadonlyColor) =>
-        dist(target, intAbgr32Srgb([], col[0]));
+	(target: ReadonlyColor, dist: ColorDistance = distEucledian3) =>
+	(col: ReadonlyColor) =>
+		dist(target, intAbgr32Srgb([], col[0]));
 
 export const sort = (
-    colors: ReadonlyColor[],
-    key: Fn<ReadonlyColor, number>,
-    isReverse = false
+	colors: ReadonlyColor[],
+	key: Fn<ReadonlyColor, number>,
+	isReverse = false
 ) => sortByCachedKey(colors, key, isReverse ? compareNumDesc : compareNumAsc);
 
 /**
@@ -78,23 +78,23 @@ export const sort = (
  * // ]
  * ```
  *
- * @param colors - 
- * @param key - 
- * @param isReverse - 
+ * @param colors -
+ * @param key -
+ * @param isReverse -
  */
 export const sortMapped = <T extends TypedColor<any>>(
-    colors: T[],
-    key: Fn<ReadonlyColor, number>,
-    isReverse = false
+	colors: T[],
+	key: Fn<ReadonlyColor, number>,
+	isReverse = false
 ) => {
-    if (!colors.length) return colors;
-    const keys = colors.map(key);
-    const tmp = typedArray(typedArrayType(colors[0].buf), colors[0].length);
-    quickSort(keys, isReverse ? compareNumDesc : compareNumAsc, (_, x, y) => {
-        swap(keys, x, y);
-        tmp.set(colors[x]);
-        colors[x].set(colors[y]);
-        colors[y].set(tmp);
-    });
-    return colors;
+	if (!colors.length) return colors;
+	const keys = colors.map(key);
+	const tmp = typedArray(typedArrayType(colors[0].buf), colors[0].length);
+	quickSort(keys, isReverse ? compareNumDesc : compareNumAsc, (_, x, y) => {
+		swap(keys, x, y);
+		tmp.set(colors[x]);
+		colors[x].set(colors[y]);
+		colors[y].set(tmp);
+	});
+	return colors;
 };

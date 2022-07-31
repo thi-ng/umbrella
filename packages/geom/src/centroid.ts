@@ -47,44 +47,44 @@ import { __dispatch } from "./internal/dispatch.js";
  * @param out
  */
 export const centroid: MultiFn1O<IShape, Vec, Vec | undefined> = defmulti<
-    any,
-    Vec | undefined,
-    Vec | undefined
+	any,
+	Vec | undefined,
+	Vec | undefined
 >(
-    __dispatch,
-    {
-        arc: "circle",
-        aabb: "rect",
-        bpatch: "points",
-        ellipse: "circle",
-        line3: "line",
-        points3: "points",
-        polyline: "points",
-        quad: "poly",
-        sphere: "circle",
-        text: "circle",
-        tri3: "tri",
-    },
-    {
-        circle: ($: Circle, out?) => set(out || [], $.pos),
+	__dispatch,
+	{
+		arc: "circle",
+		aabb: "rect",
+		bpatch: "points",
+		ellipse: "circle",
+		line3: "line",
+		points3: "points",
+		polyline: "points",
+		quad: "poly",
+		sphere: "circle",
+		text: "circle",
+		tri3: "tri",
+	},
+	{
+		circle: ($: Circle, out?) => set(out || [], $.pos),
 
-        group: ($: Group, out?) => {
-            const b = bounds($);
-            return b ? centroid(b, out) : undefined;
-        },
+		group: ($: Group, out?) => {
+			const b = bounds($);
+			return b ? centroid(b, out) : undefined;
+		},
 
-        line: ({ points }: Line, out?) =>
-            mixN(out || [], points[0], points[1], 0.5),
+		line: ({ points }: Line, out?) =>
+			mixN(out || [], points[0], points[1], 0.5),
 
-        points: ($: PCLike, out?) => _centroid($.points, out),
+		points: ($: PCLike, out?) => _centroid($.points, out),
 
-        plane: ($: Plane, out?) => mulN(out || [], $.normal, $.w),
+		plane: ($: Plane, out?) => mulN(out || [], $.normal, $.w),
 
-        poly: ($: Polygon, out?) => centerOfWeight2($.points, out),
+		poly: ($: Polygon, out?) => centerOfWeight2($.points, out),
 
-        rect: ($: AABBLike, out?) => maddN(out || [], $.size, 0.5, $.pos),
+		rect: ($: AABBLike, out?) => maddN(out || [], $.size, 0.5, $.pos),
 
-        tri: ({ points }: Triangle, out?) =>
-            addmN(null, add(out || [], points[0], points[1]), points[2], 1 / 3),
-    }
+		tri: ({ points }: Triangle, out?) =>
+			addmN(null, add(out || [], points[0], points[1]), points[2], 1 / 3),
+	}
 );

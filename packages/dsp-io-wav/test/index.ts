@@ -1,18 +1,18 @@
 import * as assert from "assert";
 import { group } from "@thi.ng/testament";
-import { wavByteArray } from "../src/index.js"
+import { wavByteArray } from "../src/index.js";
 
 group("dsp-io-wav", {
-    "mono 48kHz/16 bits": () => {
-        assert.deepStrictEqual(
-            [
-                ...wavByteArray(
-                    { sampleRate: 48000, channels: 1, length: 4, bits: 16 },
-                    [-1, -0.5, 0, 1]
-                ),
-            ],
-            // prettier-ignore
-            [
+	"mono 48kHz/16 bits": () => {
+		assert.deepStrictEqual(
+			[
+				...wavByteArray(
+					{ sampleRate: 48000, channels: 1, length: 4, bits: 16 },
+					[-1, -0.5, 0, 1]
+				),
+			],
+			// prettier-ignore
+			[
                 0x52, 0x49, 0x46, 0x46, 0x2c, 0x00, 0x00,
                 0x00, 0x57, 0x41, 0x56, 0x45, 0x66, 0x6d,
                 0x74, 0x20, 0x10, 0x00, 0x00, 0x00, 0x01,
@@ -22,6 +22,6 @@ group("dsp-io-wav", {
                 0x00, 0x00, 0x01, 0x80, 0x01, 0xc0, 0x00,
                 0x00, 0xff, 0x7f
               ]
-        );
-    },
+		);
+	},
 });

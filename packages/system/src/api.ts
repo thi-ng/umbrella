@@ -3,28 +3,28 @@ import type { ILogger } from "@thi.ng/logger";
 import { NULL_LOGGER } from "@thi.ng/logger/null";
 
 export interface ILifecycle {
-    /**
-     * Starts component. Defined as async method to simplify internal
-     * use of `await` for starting any child/sub-components. Usually
-     * called by {@link System.start} which synchronously starts all of
-     * its components in dependency order.
-     *
-     * Returns false to indicate component startup failed and to cancel
-     * initialization of dependent components. Alternatively, an error
-     * can be thrown, but it's the user's responsibility to catch it.
-     */
-    start?(): Promise<boolean>;
-    /**
-     * Similar to {@link ILifecycle.start} but for stopping components.
-     *
-     * Returns false to indicate component startup failed and log a
-     * warning message to the console. Unlike with `start()`, returning
-     * false will NOT stop decommision other components.
-     */
-    stop?(): Promise<boolean>;
-    // allow extension and disable weak type detection
-    // https://github.com/thi-ng/umbrella/issues/247#issuecomment-687196363
-    [id: string]: any;
+	/**
+	 * Starts component. Defined as async method to simplify internal
+	 * use of `await` for starting any child/sub-components. Usually
+	 * called by {@link System.start} which synchronously starts all of
+	 * its components in dependency order.
+	 *
+	 * Returns false to indicate component startup failed and to cancel
+	 * initialization of dependent components. Alternatively, an error
+	 * can be thrown, but it's the user's responsibility to catch it.
+	 */
+	start?(): Promise<boolean>;
+	/**
+	 * Similar to {@link ILifecycle.start} but for stopping components.
+	 *
+	 * Returns false to indicate component startup failed and log a
+	 * warning message to the console. Unlike with `start()`, returning
+	 * false will NOT stop decommision other components.
+	 */
+	stop?(): Promise<boolean>;
+	// allow extension and disable weak type detection
+	// https://github.com/thi-ng/umbrella/issues/247#issuecomment-687196363
+	[id: string]: any;
 }
 
 /**
@@ -44,11 +44,11 @@ export type ComponentFactory<T extends SystemMap<T>> = Fn<T, ILifecycle>;
  * validate all specs.
  */
 export type SystemSpecs<T extends SystemMap<T>> = Record<
-    Keys<T>,
-    {
-        factory: ComponentFactory<T>;
-        deps?: Keys<T>[];
-    }
+	Keys<T>,
+	{
+		factory: ComponentFactory<T>;
+		deps?: Keys<T>[];
+	}
 >;
 
 /** @internal */
@@ -57,6 +57,6 @@ export let LOGGER = NULL_LOGGER;
 /**
  * Sets package logger to given instance.
  *
- * @param logger - 
+ * @param logger -
  */
 export const setLogger = (logger: ILogger) => (LOGGER = logger);

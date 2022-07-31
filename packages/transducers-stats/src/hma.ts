@@ -16,16 +16,16 @@ import { wma } from "./wma.js";
  */
 export function hma(period: number): Transducer<number, any>;
 export function hma(
-    period: number,
-    src: Iterable<number>
+	period: number,
+	src: Iterable<number>
 ): IterableIterator<number>;
 export function hma(period: number, src?: Iterable<number>): any {
-    return src
-        ? iterator1(hma(period), src)
-        : comp(
-              multiplex(wma((period / 2) | 0), wma(period)),
-              drop(period - 1),
-              map((w) => 2 * w[0] - w[1]),
-              wma(Math.sqrt(period))
-          );
+	return src
+		? iterator1(hma(period), src)
+		: comp(
+				multiplex(wma((period / 2) | 0), wma(period)),
+				drop(period - 1),
+				map((w) => 2 * w[0] - w[1]),
+				wma(Math.sqrt(period))
+		  );
 }

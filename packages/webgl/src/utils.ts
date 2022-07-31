@@ -4,21 +4,21 @@ import { add, mul } from "@thi.ng/shader-ast/ast/ops";
 import type { ShaderPresetOpts } from "./api/shader.js";
 
 export const positionAttrib = (
-    opts: Partial<ShaderPresetOpts<any>>,
-    attribs: IObjectOf<Sym<any>>,
-    pos = "position"
+	opts: Partial<ShaderPresetOpts<any>>,
+	attribs: IObjectOf<Sym<any>>,
+	pos = "position"
 ) =>
-    opts.instancePos
-        ? add(attribs[pos], attribs[opts.instancePos])
-        : attribs[pos];
+	opts.instancePos
+		? add(attribs[pos], attribs[opts.instancePos])
+		: attribs[pos];
 
 export const colorAttrib = (
-    opts: Partial<ShaderPresetOpts<any>>,
-    attribs: IObjectOf<Sym<any>>,
-    fallback: Sym<"vec3">
+	opts: Partial<ShaderPresetOpts<any>>,
+	attribs: IObjectOf<Sym<any>>,
+	fallback: Sym<"vec3">
 ): Term<"vec3"> =>
-    opts.instanceColor
-        ? mul(attribs[opts.instanceColor], fallback)
-        : opts.color
-        ? mul(attribs[opts.color], fallback)
-        : fallback;
+	opts.instanceColor
+		? mul(attribs[opts.instanceColor], fallback)
+		: opts.color
+		? mul(attribs[opts.color], fallback)
+		: fallback;

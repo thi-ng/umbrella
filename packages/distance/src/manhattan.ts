@@ -1,8 +1,8 @@
 import type { ReadonlyVec } from "@thi.ng/vectors";
 import {
-    distManhattan,
-    distManhattan2,
-    distManhattan3,
+	distManhattan,
+	distManhattan2,
+	distManhattan3,
 } from "@thi.ng/vectors/dist-manhattan";
 import type { IDistance, Metric } from "./api.js";
 
@@ -49,29 +49,29 @@ import type { IDistance, Metric } from "./api.js";
  * ```
  */
 export class Manhattan<T> implements IDistance<T> {
-    protected _invD: number;
+	protected _invD: number;
 
-    constructor(
-        public readonly dim: number,
-        public readonly metric: Metric<T>
-    ) {
-        this._invD = this.dim / Math.sqrt(dim);
-    }
+	constructor(
+		public readonly dim: number,
+		public readonly metric: Metric<T>
+	) {
+		this._invD = this.dim / Math.sqrt(dim);
+	}
 
-    to(x: number) {
-        return x * this._invD;
-    }
+	to(x: number) {
+		return x * this._invD;
+	}
 
-    from(x: number) {
-        return Math.sqrt((x / this.dim) ** 2 * this.dim);
-    }
+	from(x: number) {
+		return Math.sqrt((x / this.dim) ** 2 * this.dim);
+	}
 }
 
 /**
  * Returns a new Manhattan distance metric for n-D vectors of dimension `dim`.
  */
 export const defManhattan = (dim: number) =>
-    new Manhattan<ReadonlyVec>(dim, distManhattan);
+	new Manhattan<ReadonlyVec>(dim, distManhattan);
 
 /**
  * Manhattan distance metric for 2d vectors.

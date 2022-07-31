@@ -19,32 +19,39 @@ import { __iter, iterator } from "./iterator.js";
  * @param key -
  * @param cmp -
  */
-// prettier-ignore
-export function streamSort<A, B>(n: number, opts?: Partial<SortOpts<A, B>>): Transducer<A, A>;
-// prettier-ignore
-export function streamSort<A, B>(n: number, src: Iterable<A>): IterableIterator<A>;
-// prettier-ignore
-export function streamSort<A, B>(n: number, opts: Partial<SortOpts<A, B>>, src: Iterable<A>): IterableIterator<A>;
+export function streamSort<A, B>(
+	n: number,
+	opts?: Partial<SortOpts<A, B>>
+): Transducer<A, A>;
+export function streamSort<A, B>(
+	n: number,
+	src: Iterable<A>
+): IterableIterator<A>;
+export function streamSort<A, B>(
+	n: number,
+	opts: Partial<SortOpts<A, B>>,
+	src: Iterable<A>
+): IterableIterator<A>;
 export function streamSort<A, B>(...args: any[]): any {
-    const iter = __iter(streamSort, args, iterator);
-    if (iter) {
-        return iter;
-    }
-    const { key, compare } = __sortOpts<A, B>(args[1]);
-    const n = args[0];
-    return ([init, complete, reduce]: Reducer<any, A>) => {
-        const buf: A[] = [];
-        return <Reducer<any, A>>[
-            init,
-            __drain(buf, complete, reduce),
-            (acc, x) => {
-                const idx = binarySearch(buf, x, key, compare);
-                buf.splice(idx < 0 ? -(idx + 1) : idx, 0, x);
-                if (buf.length === n) {
-                    acc = reduce(acc, buf.shift()!);
-                }
-                return acc;
-            },
-        ];
-    };
+	const iter = __iter(streamSort, args, iterator);
+	if (iter) {
+		return iter;
+	}
+	const { key, compare } = __sortOpts<A, B>(args[1]);
+	const n = args[0];
+	return ([init, complete, reduce]: Reducer<any, A>) => {
+		const buf: A[] = [];
+		return <Reducer<any, A>>[
+			init,
+			__drain(buf, complete, reduce),
+			(acc, x) => {
+				const idx = binarySearch(buf, x, key, compare);
+				buf.splice(idx < 0 ? -(idx + 1) : idx, 0, x);
+				if (buf.length === n) {
+					acc = reduce(acc, buf.shift()!);
+				}
+				return acc;
+			},
+		];
+	};
 }

@@ -12,11 +12,11 @@ import { implementsFunction } from "@thi.ng/checks/implements-function";
  * @internal
  */
 export const derefContext = (ctx: any, keys: PropertyKey[] | undefined) => {
-    if (ctx == null || !keys || !keys.length) return ctx;
-    const res = { ...ctx };
-    for (let k of keys) {
-        const v = res[k];
-        implementsFunction(v, "deref") && (res[k] = v.deref());
-    }
-    return res;
+	if (ctx == null || !keys || !keys.length) return ctx;
+	const res = { ...ctx };
+	for (let k of keys) {
+		const v = res[k];
+		implementsFunction(v, "deref") && (res[k] = v.deref());
+	}
+	return res;
 };

@@ -36,6 +36,6 @@ export const ceilTo = (x: number, prec = 1) => Math.ceil(x / prec) * prec;
  * @param eps -
  */
 export const roundEps = (x: number, eps = EPS) => {
-    const f = fract(x);
-    return f <= eps || f >= 1 - eps ? Math.round(x) : x;
+	const f = fract(x);
+	return f <= eps || f >= 1 - eps ? Math.round(x) : x;
 };

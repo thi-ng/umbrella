@@ -29,22 +29,22 @@ import { defaultOpts } from "./opts.js";
  * //                     ^ 3.00
  * ```
  *
- * @param opts - 
+ * @param opts -
  */
 export const centroidStrategy = (
-    opts?: Partial<DefuzzStrategyOpts>
+	opts?: Partial<DefuzzStrategyOpts>
 ): DefuzzStrategy => {
-    let { samples } = defaultOpts(opts);
-    return (fn, [min, max]) => {
-        const delta = (max - min) / samples;
-        let num = 0;
-        let denom = 0;
-        for (let i = 0; i <= samples; i++) {
-            const x = min + i * delta;
-            const y = fn(x);
-            num += x * y;
-            denom += y;
-        }
-        return num / denom;
-    };
+	let { samples } = defaultOpts(opts);
+	return (fn, [min, max]) => {
+		const delta = (max - min) / samples;
+		let num = 0;
+		let denom = 0;
+		for (let i = 0; i <= samples; i++) {
+			const x = min + i * delta;
+			const y = fn(x);
+			num += x * y;
+			denom += y;
+		}
+		return num / denom;
+	};
 };

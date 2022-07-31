@@ -43,54 +43,54 @@ import { vertices } from "./vertices.js";
  * @param opts
  */
 export const edges: MultiFn1O<
-    IShape,
-    number | Partial<SamplingOpts>,
-    Iterable<VecPair>
+	IShape,
+	number | Partial<SamplingOpts>,
+	Iterable<VecPair>
 > = defmulti<
-    any,
-    number | Partial<SamplingOpts> | undefined,
-    Iterable<VecPair>
+	any,
+	number | Partial<SamplingOpts> | undefined,
+	Iterable<VecPair>
 >(
-    __dispatch,
-    {
-        cubic: "arc",
-        ellipse: "circle",
-        line: "polyline",
-        quad: "poly",
-        quadratic: "arc",
-        tri: "poly",
-    },
-    {
-        aabb: ($: AABB) => {
-            const [a, b, c, d, e, f, g, h] = vertices($);
-            return [
-                [a, b],
-                [b, c],
-                [c, d],
-                [d, a], // bottom
-                [e, f],
-                [f, g],
-                [g, h],
-                [h, e], // top
-                [a, e],
-                [b, f], // left
-                [c, g],
-                [d, h], // right
-            ];
-        },
+	__dispatch,
+	{
+		cubic: "arc",
+		ellipse: "circle",
+		line: "polyline",
+		quad: "poly",
+		quadratic: "arc",
+		tri: "poly",
+	},
+	{
+		aabb: ($: AABB) => {
+			const [a, b, c, d, e, f, g, h] = vertices($);
+			return [
+				[a, b],
+				[b, c],
+				[c, d],
+				[d, a], // bottom
+				[e, f],
+				[f, g],
+				[g, h],
+				[h, e], // top
+				[a, e],
+				[b, f], // left
+				[c, g],
+				[d, h], // right
+			];
+		},
 
-        arc: ($: Arc, opts) => __edges(asPolyline($, opts).points, false),
+		arc: ($: Arc, opts) => __edges(asPolyline($, opts).points, false),
 
-        bpatch: ($: BPatch) => $.edges(),
+		bpatch: ($: BPatch) => $.edges(),
 
-        circle: ($: Circle, opts) => __edges(asPolygon($, opts).points, true),
+		circle: ($: Circle, opts) => __edges(asPolygon($, opts).points, true),
 
-        path: ($: Path, opts) => __edges(asPolygon($, opts).points, $.closed),
+		path: ($: Path, opts) => __edges(asPolygon($, opts).points, $.closed),
 
-        poly: ($: Polygon) => __edges($.points, true),
+		poly: ($: Polygon) => __edges($.points, true),
 
-        polyline: ($: Polyline) => __edges($.points),
+		polyline: ($: Polyline) => __edges($.points),
 
-        rect: ($: Rect) => __edges(vertices($), true),
-    }
+		rect: ($: Rect) => __edges(vertices($), true),
+	}
 );

@@ -1,2 +1,2 @@
 export const isChrome = () =>
-    typeof window !== "undefined" && !!(<any>window)["chrome"];
+	typeof window !== "undefined" && !!(<any>window)["chrome"];

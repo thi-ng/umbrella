@@ -1,12 +1,12 @@
 import type { AppContext } from "../api";
 
 export interface SliderOpts {
-    event: PropertyKey;
-    view: PropertyKey;
-    label: string;
-    min?: number;
-    max?: number;
-    step?: number;
+	event: PropertyKey;
+	view: PropertyKey;
+	label: string;
+	min?: number;
+	max?: number;
+	step?: number;
 }
 
 /**
@@ -20,49 +20,49 @@ export interface SliderOpts {
  *
  * See `main.ts` for usage.
  *
- * @param ctx - 
- * @param opts - 
+ * @param ctx -
+ * @param opts -
  */
 export const slider = (ctx: AppContext, opts: SliderOpts) => {
-    opts = Object.assign(
-        {
-            oninput: (e: Event) =>
-                ctx.bus.dispatch([
-                    opts.event,
-                    parseFloat((<HTMLInputElement>e.target).value),
-                ]),
-            min: 0,
-            max: 100,
-            step: 1,
-        },
-        opts
-    );
-    const ui = ctx.ui.slider;
-    return () => [
-        "section",
-        ui.root,
-        [
-            "input",
-            {
-                ...ui.range,
-                ...opts,
-                type: "range",
-                value: (<any>ctx.views)[opts.view].deref(),
-            },
-        ],
-        [
-            "div",
-            ui.label,
-            opts.label,
-            [
-                "input",
-                {
-                    ...ui.number,
-                    ...opts,
-                    type: "number",
-                    value: (<any>ctx.views)[opts.view].deref(),
-                },
-            ],
-        ],
-    ];
+	opts = Object.assign(
+		{
+			oninput: (e: Event) =>
+				ctx.bus.dispatch([
+					opts.event,
+					parseFloat((<HTMLInputElement>e.target).value),
+				]),
+			min: 0,
+			max: 100,
+			step: 1,
+		},
+		opts
+	);
+	const ui = ctx.ui.slider;
+	return () => [
+		"section",
+		ui.root,
+		[
+			"input",
+			{
+				...ui.range,
+				...opts,
+				type: "range",
+				value: (<any>ctx.views)[opts.view].deref(),
+			},
+		],
+		[
+			"div",
+			ui.label,
+			opts.label,
+			[
+				"input",
+				{
+					...ui.number,
+					...opts,
+					type: "number",
+					value: (<any>ctx.views)[opts.view].deref(),
+				},
+			],
+		],
+	];
 };

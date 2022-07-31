@@ -23,40 +23,40 @@ import { isString } from "@thi.ng/checks/is-string";
  * // "baz"
  * ```
  *
- * @param existing - 
- * @param val - 
+ * @param existing -
+ * @param val -
  */
 export const mergeClasses = (existing: string, val: any) => {
-    val = deref(val);
-    if (val == null) return existing;
-    if (isString(val)) return existing + " " + val;
-    const classes = new Set(existing.split(" "));
-    for (let id in val) {
-        deref(val[id]) ? classes.add(id) : classes.delete(id);
-    }
-    return [...classes].join(" ");
+	val = deref(val);
+	if (val == null) return existing;
+	if (isString(val)) return existing + " " + val;
+	const classes = new Set(existing.split(" "));
+	for (let id in val) {
+		deref(val[id]) ? classes.add(id) : classes.delete(id);
+	}
+	return [...classes].join(" ");
 };
 
 /**
  * Takes an attrib object and optional element ID and CSS class names from Emmet-style
  * hiccup tag, then transforms and merges definitions, returns attribs.
  *
- * @param attribs - 
- * @param id - 
- * @param classes - 
+ * @param attribs -
+ * @param id -
+ * @param classes -
  */
 export const mergeEmmetAttribs = (
-    attribs: any,
-    id?: string,
-    classes?: string
+	attribs: any,
+	id?: string,
+	classes?: string
 ) => {
-    id && (attribs.id = id);
-    let aclass = deref(attribs.class);
-    if (classes) {
-        classes = classes.replace(/\./g, " ");
-        attribs.class = aclass ? mergeClasses(classes, aclass) : classes;
-    } else if (aclass) {
-        attribs.class = isString(aclass) ? aclass : mergeClasses("", aclass);
-    }
-    return attribs;
+	id && (attribs.id = id);
+	let aclass = deref(attribs.class);
+	if (classes) {
+		classes = classes.replace(/\./g, " ");
+		attribs.class = aclass ? mergeClasses(classes, aclass) : classes;
+	} else if (aclass) {
+		attribs.class = isString(aclass) ? aclass : mergeClasses("", aclass);
+	}
+	return attribs;
 };

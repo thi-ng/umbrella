@@ -11,12 +11,12 @@ import { MapG2, MapG3 } from "./mapg.js";
  */
 export function sum(a: IGen<number>, b: IGen<number>): IGen<number>;
 export function sum(
-    a: IGen<number>,
-    b: IGen<number>,
-    c: IGen<number>
+	a: IGen<number>,
+	b: IGen<number>,
+	c: IGen<number>
 ): IGen<number>;
 export function sum(a: IGen<number>, b: IGen<number>, c?: IGen<number>) {
-    return c
-        ? new MapG3((a, b, c) => a + b + c, a, b, c, 0)
-        : new MapG2((a, b) => a + b, a, b, 0);
+	return c
+		? new MapG3((a, b, c) => a + b + c, a, b, c, 0)
+		: new MapG2((a, b) => a + b, a, b, 0);
 }

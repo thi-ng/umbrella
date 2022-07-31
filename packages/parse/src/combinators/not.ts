@@ -12,11 +12,11 @@ import { always } from "../prims/always.js";
  * @param fail -
  */
 export const not =
-    <T>(parser: Parser<T>, fail: Parser<T> = always()): Parser<T> =>
-    (ctx) => {
-        if (ctx.done) return false;
-        ctx.start("");
-        const res = parser(ctx);
-        ctx.discard();
-        return res ? false : fail(ctx);
-    };
+	<T>(parser: Parser<T>, fail: Parser<T> = always()): Parser<T> =>
+	(ctx) => {
+		if (ctx.done) return false;
+		ctx.start("");
+		const res = parser(ctx);
+		ctx.discard();
+		return res ? false : fail(ctx);
+	};

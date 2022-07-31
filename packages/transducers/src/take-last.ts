@@ -19,20 +19,20 @@ import { iterator } from "./iterator.js";
 export function takeLast<T>(n: number): Transducer<T, T>;
 export function takeLast<T>(n: number, src: Iterable<T>): IterableIterator<T>;
 export function takeLast<T>(n: number, src?: Iterable<T>): any {
-    return isIterable(src)
-        ? iterator(takeLast(n), src)
-        : ([init, complete, reduce]: Reducer<any, T>) => {
-              const buf: T[] = [];
-              return <Reducer<any, T>>[
-                  init,
-                  __drain(buf, complete, reduce),
-                  (acc, x) => {
-                      if (buf.length === n) {
-                          buf.shift();
-                      }
-                      buf.push(x);
-                      return acc;
-                  },
-              ];
-          };
+	return isIterable(src)
+		? iterator(takeLast(n), src)
+		: ([init, complete, reduce]: Reducer<any, T>) => {
+				const buf: T[] = [];
+				return <Reducer<any, T>>[
+					init,
+					__drain(buf, complete, reduce),
+					(acc, x) => {
+						if (buf.length === n) {
+							buf.shift();
+						}
+						buf.push(x);
+						return acc;
+					},
+				];
+		  };
 }

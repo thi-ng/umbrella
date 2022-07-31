@@ -22,16 +22,16 @@ import { selectKeysObj } from "./select-keys.js";
  * @param ks - keys used for indexing
  */
 export const indexed = <T extends object>(
-    records: Iterable<T>,
-    ks: (keyof T)[]
+	records: Iterable<T>,
+	ks: (keyof T)[]
 ) => {
-    const res = new EquivMap<{ [id in keyof T]?: T[id] }, Set<T>>();
-    let x, ik, rv;
-    for (x of records) {
-        ik = selectKeysObj(x, ks);
-        rv = res.get(ik);
-        !rv && res.set(ik, (rv = empty(records, Set)));
-        rv.add(x);
-    }
-    return res;
+	const res = new EquivMap<{ [id in keyof T]?: T[id] }, Set<T>>();
+	let x, ik, rv;
+	for (x of records) {
+		ik = selectKeysObj(x, ks);
+		rv = res.get(ik);
+		!rv && res.set(ik, (rv = empty(records, Set)));
+		rv.add(x);
+	}
+	return res;
 };

@@ -63,119 +63,119 @@ import { __scaledShape as tx } from "./internal/scale.js";
  * @param factor
  */
 export const scale: MultiFn2<IShape, number | ReadonlyVec, IShape> = defmulti<
-    any,
-    number | ReadonlyVec,
-    IShape
+	any,
+	number | ReadonlyVec,
+	IShape
 >(
-    __dispatch,
-    {},
-    {
-        aabb: ($: AABB, delta) => {
-            delta = __asVec(delta, 3);
-            return new AABB(
-                mul3([], $.pos, delta),
-                mul3([], $.size, delta),
-                __copyAttribs($)
-            );
-        },
+	__dispatch,
+	{},
+	{
+		aabb: ($: AABB, delta) => {
+			delta = __asVec(delta, 3);
+			return new AABB(
+				mul3([], $.pos, delta),
+				mul3([], $.size, delta),
+				__copyAttribs($)
+			);
+		},
 
-        arc: ($: Arc, delta) => {
-            delta = __asVec(delta);
-            const a = $.copy();
-            mul2(null, a.pos, delta);
-            mul2(null, a.r, delta);
-            return a;
-        },
+		arc: ($: Arc, delta) => {
+			delta = __asVec(delta);
+			const a = $.copy();
+			mul2(null, a.pos, delta);
+			mul2(null, a.r, delta);
+			return a;
+		},
 
-        circle: ($: Circle, delta) =>
-            isNumber(delta)
-                ? new Circle(
-                      mulN2([], $.pos, delta),
-                      $.r * delta,
-                      __copyAttribs($)
-                  )
-                : new Ellipse(
-                      mul2([], $.pos, delta),
-                      mulN2([], delta, $.r),
-                      __copyAttribs($)
-                  ),
+		circle: ($: Circle, delta) =>
+			isNumber(delta)
+				? new Circle(
+						mulN2([], $.pos, delta),
+						$.r * delta,
+						__copyAttribs($)
+				  )
+				: new Ellipse(
+						mul2([], $.pos, delta),
+						mulN2([], delta, $.r),
+						__copyAttribs($)
+				  ),
 
-        cubic: tx(Cubic),
+		cubic: tx(Cubic),
 
-        ellipse: ($: Ellipse, delta) => {
-            delta = __asVec(delta);
-            return new Ellipse(
-                mul2([], $.pos, delta),
-                mul2([], $.r, delta),
-                __copyAttribs($)
-            );
-        },
+		ellipse: ($: Ellipse, delta) => {
+			delta = __asVec(delta);
+			return new Ellipse(
+				mul2([], $.pos, delta),
+				mul2([], $.r, delta),
+				__copyAttribs($)
+			);
+		},
 
-        group: ($: Group, delta) =>
-            $.copyTransformed((x) => <IHiccupShape>scale(x, delta)),
+		group: ($: Group, delta) =>
+			$.copyTransformed((x) => <IHiccupShape>scale(x, delta)),
 
-        line: tx(Line),
+		line: tx(Line),
 
-        path: ($: Path, delta) => {
-            delta = __asVec(delta);
-            return new Path(
-                $.segments.map((s) =>
-                    s.geo
-                        ? {
-                              type: s.type,
-                              geo: <any>scale(s.geo, delta),
-                          }
-                        : {
-                              type: s.type,
-                              point: mul2([], s.point!, <ReadonlyVec>delta),
-                          }
-                ),
-                __copyAttribs($)
-            );
-        },
+		path: ($: Path, delta) => {
+			delta = __asVec(delta);
+			return new Path(
+				$.segments.map((s) =>
+					s.geo
+						? {
+								type: s.type,
+								geo: <any>scale(s.geo, delta),
+						  }
+						: {
+								type: s.type,
+								point: mul2([], s.point!, <ReadonlyVec>delta),
+						  }
+				),
+				__copyAttribs($)
+			);
+		},
 
-        points: tx(Points),
+		points: tx(Points),
 
-        points3: tx(Points3),
+		points3: tx(Points3),
 
-        poly: tx(Polygon),
+		poly: tx(Polygon),
 
-        polyline: tx(Polyline),
+		polyline: tx(Polyline),
 
-        quad: tx(Quad),
+		quad: tx(Quad),
 
-        quadratic: tx(Quadratic),
+		quadratic: tx(Quadratic),
 
-        ray: ($: Ray, delta) => {
-            delta = __asVec(delta);
-            return new Ray(
-                mul2([], $.pos, delta),
-                normalize(null, mul2([], $.dir, delta)),
-                __copyAttribs($)
-            );
-        },
+		ray: ($: Ray, delta) => {
+			delta = __asVec(delta);
+			return new Ray(
+				mul2([], $.pos, delta),
+				normalize(null, mul2([], $.dir, delta)),
+				__copyAttribs($)
+			);
+		},
 
-        rect: ($: Rect, delta) => {
-            delta = __asVec(delta);
-            return new Rect(
-                mul2([], $.pos, delta),
-                mul2([], $.size, delta),
-                __copyAttribs($)
-            );
-        },
+		rect: ($: Rect, delta) => {
+			delta = __asVec(delta);
+			return new Rect(
+				mul2([], $.pos, delta),
+				mul2([], $.size, delta),
+				__copyAttribs($)
+			);
+		},
 
-        sphere: ($: Sphere, delta) =>
-            isNumber(delta)
-                ? new Sphere(
-                      mulN3([], $.pos, delta),
-                      $.r * delta,
-                      __copyAttribs($)
-                  )
-                : unsupported("can't non-uniformly scale sphere"),
+		sphere: ($: Sphere, delta) =>
+			isNumber(delta)
+				? new Sphere(
+						mulN3([], $.pos, delta),
+						$.r * delta,
+						__copyAttribs($)
+				  )
+				: unsupported("can't non-uniformly scale sphere"),
 
-        text: ($: Text, delta) =>
-            new Text(mul2([], $.pos, __asVec(delta)), $.body, __copyAttribs($)),
+		text: ($: Text, delta) =>
+			new Text(mul2([], $.pos, __asVec(delta)), $.body, __copyAttribs($)),
 
-        tri: tx(Triangle),
-    }
+		tri: tx(Triangle),
+	}
 );

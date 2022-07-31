@@ -10,42 +10,42 @@ bus.instrumentWith([trace]);
 const dd = dropdown("theme.dd");
 
 start(
-    (ctx: any) => {
-        bus.processQueue();
-        return [
-            "div",
-            ctx.theme.root,
-            [
-                "div",
-                ctx.theme.column,
-                [
-                    dd,
-                    {
-                        ...dropdownListeners(ctx, ["foo"]),
-                        state: ctx.bus.state.deref().foo,
-                        hoverLabel: [
-                            ["span", "Choose a genre..."],
-                            ["i.fr.fas.fa-angle-down"],
-                        ],
-                    },
-                ],
-            ],
-            [
-                "div",
-                ctx.theme.column,
-                [
-                    dd,
-                    {
-                        ...dropdownListeners(ctx, ["bar"]),
-                        state: ctx.bus.state.deref().bar,
-                        hoverLabel: [
-                            ["span", "Region..."],
-                            ["i.fr.fas.fa-angle-down"],
-                        ],
-                    },
-                ],
-            ],
-        ];
-    },
-    { ctx: { bus, theme } }
+	(ctx: any) => {
+		bus.processQueue();
+		return [
+			"div",
+			ctx.theme.root,
+			[
+				"div",
+				ctx.theme.column,
+				[
+					dd,
+					{
+						...dropdownListeners(ctx, ["foo"]),
+						state: ctx.bus.state.deref().foo,
+						hoverLabel: [
+							["span", "Choose a genre..."],
+							["i.fr.fas.fa-angle-down"],
+						],
+					},
+				],
+			],
+			[
+				"div",
+				ctx.theme.column,
+				[
+					dd,
+					{
+						...dropdownListeners(ctx, ["bar"]),
+						state: ctx.bus.state.deref().bar,
+						hoverLabel: [
+							["span", "Region..."],
+							["i.fr.fas.fa-angle-down"],
+						],
+					},
+				],
+			],
+		];
+	},
+	{ ctx: { bus, theme } }
 );

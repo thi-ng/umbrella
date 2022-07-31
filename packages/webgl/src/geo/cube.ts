@@ -1,9 +1,9 @@
 import { DrawMode, ModelSpec } from "../api/model.js";
 
 export interface CubeOpts {
-    size: number;
-    normal: boolean;
-    uv: boolean;
+	size: number;
+	normal: boolean;
+	uv: boolean;
 }
 
 // prettier-ignore

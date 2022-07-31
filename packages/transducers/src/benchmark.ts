@@ -21,16 +21,16 @@ import { iterator1 } from "./iterator.js";
 export function benchmark(): Transducer<any, number>;
 export function benchmark(src: Iterable<any>): IterableIterator<number>;
 export function benchmark(src?: Iterable<any>): any {
-    return isIterable(src)
-        ? iterator1(benchmark(), src)
-        : (rfn: Reducer<any, number>) => {
-              const r = rfn[2];
-              let prev = Date.now();
-              return compR(rfn, (acc, _) => {
-                  const t = Date.now();
-                  const x = t - prev;
-                  prev = t;
-                  return r(acc, x);
-              });
-          };
+	return isIterable(src)
+		? iterator1(benchmark(), src)
+		: (rfn: Reducer<any, number>) => {
+				const r = rfn[2];
+				let prev = Date.now();
+				return compR(rfn, (acc, _) => {
+					const t = Date.now();
+					const x = t - prev;
+					prev = t;
+					return r(acc, x);
+				});
+		  };
 }

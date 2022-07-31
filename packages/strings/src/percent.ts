@@ -7,6 +7,6 @@ import type { Stringer } from "./api.js";
  * @param prec - number of fractional digits (default: 0)
  */
 export const percent =
-    (prec = 0): Stringer<number> =>
-    (x: number) =>
-        (x * 100).toFixed(prec) + "%";
+	(prec = 0): Stringer<number> =>
+	(x: number) =>
+		(x * 100).toFixed(prec) + "%";

@@ -1,191 +1,191 @@
 {
-    "name": "@thi.ng/associative",
-    "version": "6.2.0",
-    "description": "Alternative Map and Set implementations with customizable equality semantics & supporting operations",
-    "type": "module",
-    "module": "./index.js",
-    "typings": "./index.d.ts",
-    "sideEffects": false,
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/thi-ng/umbrella.git"
-    },
-    "homepage": "https://github.com/thi-ng/umbrella/tree/develop/packages/associative#readme",
-    "funding": [
-        {
-            "type": "github",
-            "url": "https://github.com/sponsors/postspectacular"
-        },
-        {
-            "type": "patreon",
-            "url": "https://patreon.com/thing_umbrella"
-        }
-    ],
-    "author": "Karsten Schmidt <k+npm@thi.ng>",
-    "license": "Apache-2.0",
-    "scripts": {
-        "build": "yarn clean && tsc --declaration",
-        "clean": "rimraf '*.js' '*.d.ts' '*.map' doc internal",
-        "doc": "typedoc --excludePrivate --excludeInternal --out doc src/index.ts",
-        "doc:ae": "mkdir -p .ae/doc .ae/temp && api-extractor run --local --verbose",
-        "doc:readme": "yarn doc:stats && tools:readme",
-        "doc:stats": "tools:module-stats",
-        "pub": "yarn npm publish --access public",
-        "test": "testament test"
-    },
-    "dependencies": {
-        "@thi.ng/api": "^8.3.8",
-        "@thi.ng/arrays": "^2.3.1",
-        "@thi.ng/binary": "^3.3.0",
-        "@thi.ng/checks": "^3.2.2",
-        "@thi.ng/compare": "^2.1.8",
-        "@thi.ng/dcons": "^3.2.7",
-        "@thi.ng/equiv": "^2.1.8",
-        "@thi.ng/errors": "^2.1.8",
-        "@thi.ng/transducers": "^8.3.7",
-        "tslib": "^2.4.0"
-    },
-    "devDependencies": {
-        "@microsoft/api-extractor": "^7.25.0",
-        "@thi.ng/testament": "^0.2.9",
-        "rimraf": "^3.0.2",
-        "tools": "workspace:^",
-        "typedoc": "^0.22.17",
-        "typescript": "^4.7.4"
-    },
-    "keywords": [
-        "cache",
-        "datastructure",
-        "equality",
-        "hash",
-        "intersection",
-        "join",
-        "map",
-        "set",
-        "skiplist",
-        "sort",
-        "sparse",
-        "trie",
-        "typescript",
-        "union",
-        "value-semantics"
-    ],
-    "publishConfig": {
-        "access": "public"
-    },
-    "browser": {
-        "util": false
-    },
-    "engines": {
-        "node": ">=12.7"
-    },
-    "files": [
-        "*.js",
-        "*.d.ts",
-        "internal"
-    ],
-    "exports": {
-        ".": {
-            "default": "./index.js"
-        },
-        "./api": {
-            "default": "./api.js"
-        },
-        "./array-set": {
-            "default": "./array-set.js"
-        },
-        "./bidir-index": {
-            "default": "./bidir-index.js"
-        },
-        "./checks": {
-            "default": "./checks.js"
-        },
-        "./common-keys": {
-            "default": "./common-keys.js"
-        },
-        "./copy": {
-            "default": "./copy.js"
-        },
-        "./difference": {
-            "default": "./difference.js"
-        },
-        "./dissoc": {
-            "default": "./dissoc.js"
-        },
-        "./empty": {
-            "default": "./empty.js"
-        },
-        "./equiv-map": {
-            "default": "./equiv-map.js"
-        },
-        "./first": {
-            "default": "./first.js"
-        },
-        "./hash-map": {
-            "default": "./hash-map.js"
-        },
-        "./indexed": {
-            "default": "./indexed.js"
-        },
-        "./intersection": {
-            "default": "./intersection.js"
-        },
-        "./into": {
-            "default": "./into.js"
-        },
-        "./invert": {
-            "default": "./invert.js"
-        },
-        "./join": {
-            "default": "./join.js"
-        },
-        "./ll-set": {
-            "default": "./ll-set.js"
-        },
-        "./merge-apply": {
-            "default": "./merge-apply.js"
-        },
-        "./merge-deep": {
-            "default": "./merge-deep.js"
-        },
-        "./merge-with": {
-            "default": "./merge-with.js"
-        },
-        "./merge": {
-            "default": "./merge.js"
-        },
-        "./multi-trie": {
-            "default": "./multi-trie.js"
-        },
-        "./rename-keys": {
-            "default": "./rename-keys.js"
-        },
-        "./select-keys": {
-            "default": "./select-keys.js"
-        },
-        "./sorted-map": {
-            "default": "./sorted-map.js"
-        },
-        "./sorted-obj": {
-            "default": "./sorted-obj.js"
-        },
-        "./sorted-set": {
-            "default": "./sorted-set.js"
-        },
-        "./sparse-set": {
-            "default": "./sparse-set.js"
-        },
-        "./trie-map": {
-            "default": "./trie-map.js"
-        },
-        "./union": {
-            "default": "./union.js"
-        },
-        "./without-keys": {
-            "default": "./without-keys.js"
-        }
-    },
-    "thi.ng": {
-        "year": 2017
-    }
+	"name": "@thi.ng/associative",
+	"version": "6.2.0",
+	"description": "Alternative Map and Set implementations with customizable equality semantics & supporting operations",
+	"type": "module",
+	"module": "./index.js",
+	"typings": "./index.d.ts",
+	"sideEffects": false,
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/thi-ng/umbrella.git"
+	},
+	"homepage": "https://github.com/thi-ng/umbrella/tree/develop/packages/associative#readme",
+	"funding": [
+		{
+			"type": "github",
+			"url": "https://github.com/sponsors/postspectacular"
+		},
+		{
+			"type": "patreon",
+			"url": "https://patreon.com/thing_umbrella"
+		}
+	],
+	"author": "Karsten Schmidt <k+npm@thi.ng>",
+	"license": "Apache-2.0",
+	"scripts": {
+		"build": "yarn clean && tsc --declaration",
+		"clean": "rimraf '*.js' '*.d.ts' '*.map' doc internal",
+		"doc": "typedoc --excludePrivate --excludeInternal --out doc src/index.ts",
+		"doc:ae": "mkdir -p .ae/doc .ae/temp && api-extractor run --local --verbose",
+		"doc:readme": "yarn doc:stats && tools:readme",
+		"doc:stats": "tools:module-stats",
+		"pub": "yarn npm publish --access public",
+		"test": "testament test"
+	},
+	"dependencies": {
+		"@thi.ng/api": "^8.3.8",
+		"@thi.ng/arrays": "^2.3.1",
+		"@thi.ng/binary": "^3.3.0",
+		"@thi.ng/checks": "^3.2.2",
+		"@thi.ng/compare": "^2.1.8",
+		"@thi.ng/dcons": "^3.2.7",
+		"@thi.ng/equiv": "^2.1.8",
+		"@thi.ng/errors": "^2.1.8",
+		"@thi.ng/transducers": "^8.3.7",
+		"tslib": "^2.4.0"
+	},
+	"devDependencies": {
+		"@microsoft/api-extractor": "^7.25.0",
+		"@thi.ng/testament": "^0.2.9",
+		"rimraf": "^3.0.2",
+		"tools": "workspace:^",
+		"typedoc": "^0.22.17",
+		"typescript": "^4.7.4"
+	},
+	"keywords": [
+		"cache",
+		"datastructure",
+		"equality",
+		"hash",
+		"intersection",
+		"join",
+		"map",
+		"set",
+		"skiplist",
+		"sort",
+		"sparse",
+		"trie",
+		"typescript",
+		"union",
+		"value-semantics"
+	],
+	"publishConfig": {
+		"access": "public"
+	},
+	"browser": {
+		"util": false
+	},
+	"engines": {
+		"node": ">=12.7"
+	},
+	"files": [
+		"*.js",
+		"*.d.ts",
+		"internal"
+	],
+	"exports": {
+		".": {
+			"default": "./index.js"
+		},
+		"./api": {
+			"default": "./api.js"
+		},
+		"./array-set": {
+			"default": "./array-set.js"
+		},
+		"./bidir-index": {
+			"default": "./bidir-index.js"
+		},
+		"./checks": {
+			"default": "./checks.js"
+		},
+		"./common-keys": {
+			"default": "./common-keys.js"
+		},
+		"./copy": {
+			"default": "./copy.js"
+		},
+		"./difference": {
+			"default": "./difference.js"
+		},
+		"./dissoc": {
+			"default": "./dissoc.js"
+		},
+		"./empty": {
+			"default": "./empty.js"
+		},
+		"./equiv-map": {
+			"default": "./equiv-map.js"
+		},
+		"./first": {
+			"default": "./first.js"
+		},
+		"./hash-map": {
+			"default": "./hash-map.js"
+		},
+		"./indexed": {
+			"default": "./indexed.js"
+		},
+		"./intersection": {
+			"default": "./intersection.js"
+		},
+		"./into": {
+			"default": "./into.js"
+		},
+		"./invert": {
+			"default": "./invert.js"
+		},
+		"./join": {
+			"default": "./join.js"
+		},
+		"./ll-set": {
+			"default": "./ll-set.js"
+		},
+		"./merge-apply": {
+			"default": "./merge-apply.js"
+		},
+		"./merge-deep": {
+			"default": "./merge-deep.js"
+		},
+		"./merge-with": {
+			"default": "./merge-with.js"
+		},
+		"./merge": {
+			"default": "./merge.js"
+		},
+		"./multi-trie": {
+			"default": "./multi-trie.js"
+		},
+		"./rename-keys": {
+			"default": "./rename-keys.js"
+		},
+		"./select-keys": {
+			"default": "./select-keys.js"
+		},
+		"./sorted-map": {
+			"default": "./sorted-map.js"
+		},
+		"./sorted-obj": {
+			"default": "./sorted-obj.js"
+		},
+		"./sorted-set": {
+			"default": "./sorted-set.js"
+		},
+		"./sparse-set": {
+			"default": "./sparse-set.js"
+		},
+		"./trie-map": {
+			"default": "./trie-map.js"
+		},
+		"./union": {
+			"default": "./union.js"
+		},
+		"./without-keys": {
+			"default": "./without-keys.js"
+		}
+	},
+	"thi.ng": {
+		"year": 2017
+	}
 }

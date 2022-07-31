@@ -11,7 +11,7 @@ import { $x, $y } from "@thi.ng/shader-ast/ast/swizzle";
  * @param width -
  */
 export const indexToCoord = (i: UintTerm, width: UintTerm) =>
-    uvec2(modi(i, width), div(i, width));
+	uvec2(modi(i, width), div(i, width));
 
 /**
  * Inline function. Reverse op to {@link indexToCoord}.  Not compatible with
@@ -21,4 +21,4 @@ export const indexToCoord = (i: UintTerm, width: UintTerm) =>
  * @param width -
  */
 export const coordToIndex = (coord: UVec2Term, width: UintTerm) =>
-    madd($y(coord), width, $x(coord));
+	madd($y(coord), width, $x(coord));

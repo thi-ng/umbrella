@@ -7,21 +7,21 @@ import { push } from "@thi.ng/transducers/push";
 import { transduce } from "@thi.ng/transducers/transduce";
 
 const slider = (label: string, attribs: any, stream: Stream<number>) => () =>
-    [
-        "div.mb2",
-        ["span.dib.w4", label],
-        [
-            "input.w5",
-            {
-                ...attribs,
-                type: "range",
-                value: stream.deref(),
-                oninput: (e: Event) =>
-                    stream.next(parseFloat((<HTMLInputElement>e.target).value)),
-            },
-        ],
-        ["span.ml3", stream.deref()],
-    ];
+	[
+		"div.mb2",
+		["span.dib.w4", label],
+		[
+			"input.w5",
+			{
+				...attribs,
+				type: "range",
+				value: stream.deref(),
+				oninput: (e: Event) =>
+					stream.next(parseFloat((<HTMLInputElement>e.target).value)),
+			},
+		],
+		["span.ml3", stream.deref()],
+	];
 
 type ParamDef = [string, any, number];
 
@@ -38,16 +38,16 @@ export const PARAM_DEFS: IObjectOf<ParamDef> = {
 };
 
 export const PARAMS = transduce(
-    map<[string, ParamDef], [string, Stream<number>]>(([id, spec]) => [
-        id,
-        reactive(spec[2]),
-    ]),
-    assocObj(),
-    pairs(PARAM_DEFS)
+	map<[string, ParamDef], [string, Stream<number>]>(([id, spec]) => [
+		id,
+		reactive(spec[2]),
+	]),
+	assocObj(),
+	pairs(PARAM_DEFS)
 );
 
 export const CONTROLS = transduce(
-    map(([id, [label, attribs]]) => slider(label, attribs, PARAMS[id])),
-    push(),
-    pairs(PARAM_DEFS)
+	map(([id, [label, attribs]]) => slider(label, attribs, PARAMS[id])),
+	push(),
+	pairs(PARAM_DEFS)
 );

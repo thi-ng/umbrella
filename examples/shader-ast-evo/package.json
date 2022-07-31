@@ -1,45 +1,45 @@
 {
-    "name": "@example/shader-ast-evo",
-    "private": true,
-    "description": "Evolutionary shader generation using genetic programming",
-    "version": "0.0.1",
-    "repository": "https://github.com/thi-ng/umbrella",
-    "author": "Karsten Schmidt <k+npm@thi.ng>",
-    "license": "Apache-2.0",
-    "scripts": {
-        "start": "vite --open",
-        "build": "tsc && vite build --base='./'",
-        "preview": "vite preview --host --open"
-    },
-    "dependencies": {
-        "@thi.ng/gp": "workspace:^",
-        "@thi.ng/logger": "workspace:^",
-        "@thi.ng/random": "workspace:^",
-        "@thi.ng/shader-ast": "workspace:^",
-        "@thi.ng/shader-ast-optimize": "workspace:^",
-        "@thi.ng/shader-ast-stdlib": "workspace:^",
-        "@thi.ng/webgl": "workspace:^",
-        "@thi.ng/webgl-shadertoy": "workspace:^"
-    },
-    "browser": {
-        "process": false,
-        "setTimeout": false,
-        "util": false
-    },
-    "thi.ng": {
-        "readme": [
-            "gp",
-            "shader-ast",
-            "shader-ast-optimize",
-            "shader-ast-stdlib",
-            "random",
-            "webgl",
-            "webgl-shadertoy"
-        ],
-        "screenshot": "examples/shader-ast-evo.jpg"
-    },
-    "devDependencies": {
-        "typescript": "^4.7.4",
-        "vite": "^3.0.0"
-    }
+	"name": "@example/shader-ast-evo",
+	"private": true,
+	"description": "Evolutionary shader generation using genetic programming",
+	"version": "0.0.1",
+	"repository": "https://github.com/thi-ng/umbrella",
+	"author": "Karsten Schmidt <k+npm@thi.ng>",
+	"license": "Apache-2.0",
+	"scripts": {
+		"start": "vite --open",
+		"build": "tsc && vite build --base='./'",
+		"preview": "vite preview --host --open"
+	},
+	"dependencies": {
+		"@thi.ng/gp": "workspace:^",
+		"@thi.ng/logger": "workspace:^",
+		"@thi.ng/random": "workspace:^",
+		"@thi.ng/shader-ast": "workspace:^",
+		"@thi.ng/shader-ast-optimize": "workspace:^",
+		"@thi.ng/shader-ast-stdlib": "workspace:^",
+		"@thi.ng/webgl": "workspace:^",
+		"@thi.ng/webgl-shadertoy": "workspace:^"
+	},
+	"browser": {
+		"process": false,
+		"setTimeout": false,
+		"util": false
+	},
+	"thi.ng": {
+		"readme": [
+			"gp",
+			"shader-ast",
+			"shader-ast-optimize",
+			"shader-ast-stdlib",
+			"random",
+			"webgl",
+			"webgl-shadertoy"
+		],
+		"screenshot": "examples/shader-ast-evo.jpg"
+	},
+	"devDependencies": {
+		"typescript": "^4.7.4",
+		"vite": "^3.0.0"
+	}
 }

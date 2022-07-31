@@ -52,11 +52,11 @@ import type { ReadonlyVec } from "./api.js";
  * @param hash - hash factor
  */
 export const hash = (v: ReadonlyVec, H = 0x9e3779b1) => {
-    let hash = -1;
-    for (let i = v.length; i-- > 0; ) {
-        hash = (Math.imul(H, hash) + mix(hash, floatToUintBits(v[i]))) >>> 0;
-    }
-    return hash;
+	let hash = -1;
+	for (let i = v.length; i-- > 0; ) {
+		hash = (Math.imul(H, hash) + mix(hash, floatToUintBits(v[i]))) >>> 0;
+	}
+	return hash;
 };
 
 const M1 = 0xcc9e2d51;
@@ -64,6 +64,6 @@ const M2 = 0x1b873593;
 const M3 = 0xe6546b64;
 
 const mix: FnN2 = (h, k) => {
-    k = Math.imul(rotateLeft(Math.imul(k, M1) >>> 0, 15), M2) >>> 0;
-    return ((Math.imul(rotateLeft(h ^ k, 13), 5) >>> 0) + M3) >>> 0;
+	k = Math.imul(rotateLeft(Math.imul(k, M1) >>> 0, 15), M2) >>> 0;
+	return ((Math.imul(rotateLeft(h ^ k, 13), 5) >>> 0) + M3) >>> 0;
 };

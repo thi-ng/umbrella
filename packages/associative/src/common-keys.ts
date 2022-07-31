@@ -6,14 +6,14 @@
  * @param out - result array
  */
 export const commonKeysMap = <K>(
-    a: Map<K, any>,
-    b: Map<K, any>,
-    out: K[] = []
+	a: Map<K, any>,
+	b: Map<K, any>,
+	out: K[] = []
 ) => {
-    for (let k of a.keys()) {
-        b.has(k) && out.push(k);
-    }
-    return out;
+	for (let k of a.keys()) {
+		b.has(k) && out.push(k);
+	}
+	return out;
 };
 
 /**
@@ -31,12 +31,12 @@ export const commonKeysMap = <K>(
  * @param out - result array
  */
 export const commonKeysObj = <A extends object, B extends object>(
-    a: A,
-    b: B,
-    out: string[] = []
+	a: A,
+	b: B,
+	out: string[] = []
 ): (keyof A & keyof B)[] => {
-    for (let k in a) {
-        b.hasOwnProperty(k) && out.push(k);
-    }
-    return <any>out;
+	for (let k in a) {
+		b.hasOwnProperty(k) && out.push(k);
+	}
+	return <any>out;
 };

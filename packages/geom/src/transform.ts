@@ -20,8 +20,8 @@ import { asPath } from "./as-path.js";
 import { __copyAttribs } from "./internal/copy.js";
 import { __dispatch } from "./internal/dispatch.js";
 import {
-    __transformedShape as tx,
-    __transformedShape3 as tx3,
+	__transformedShape as tx,
+	__transformedShape3 as tx3,
 } from "./internal/transform.js";
 import { vertices } from "./vertices.js";
 
@@ -63,63 +63,63 @@ import { vertices } from "./vertices.js";
  * @param mat
  */
 export const transform: MultiFn2<IShape, ReadonlyMat, IShape> = defmulti<
-    any,
-    ReadonlyMat,
-    IShape
+	any,
+	ReadonlyMat,
+	IShape
 >(
-    __dispatch,
-    {
-        circle: "arc",
-        ellipse: "circle",
-    },
-    {
-        arc: ($: IShape, mat) => transform(asPath($), mat),
+	__dispatch,
+	{
+		circle: "arc",
+		ellipse: "circle",
+	},
+	{
+		arc: ($: IShape, mat) => transform(asPath($), mat),
 
-        cubic: tx(Cubic),
+		cubic: tx(Cubic),
 
-        group: ($: Group, mat) =>
-            $.copyTransformed((x) => <IHiccupShape>transform(x, mat)),
+		group: ($: Group, mat) =>
+			$.copyTransformed((x) => <IHiccupShape>transform(x, mat)),
 
-        line: tx(Line),
+		line: tx(Line),
 
-        path: ($: Path, mat) =>
-            new Path(
-                [
-                    ...map(
-                        (s) =>
-                            s.type === "m"
-                                ? <PathSegment>{
-                                      type: s.type,
-                                      point: mulV([], mat, s.point!),
-                                  }
-                                : <PathSegment>{
-                                      type: s.type,
-                                      geo: transform(s.geo!, mat),
-                                  },
-                        $.segments
-                    ),
-                ],
-                __copyAttribs($)
-            ),
+		path: ($: Path, mat) =>
+			new Path(
+				[
+					...map(
+						(s) =>
+							s.type === "m"
+								? <PathSegment>{
+										type: s.type,
+										point: mulV([], mat, s.point!),
+								  }
+								: <PathSegment>{
+										type: s.type,
+										geo: transform(s.geo!, mat),
+								  },
+						$.segments
+					),
+				],
+				__copyAttribs($)
+			),
 
-        points: tx(Points),
+		points: tx(Points),
 
-        points3: tx3(Points3),
+		points3: tx3(Points3),
 
-        poly: tx(Polygon),
+		poly: tx(Polygon),
 
-        polyline: tx(Polyline),
+		polyline: tx(Polyline),
 
-        quad: tx(Quad),
+		quad: tx(Quad),
 
-        quadratic: tx(Quadratic),
+		quadratic: tx(Quadratic),
 
-        rect: ($: Rect, mat) =>
-            transform(new Quad(vertices($), __copyAttribs($)), mat),
+		rect: ($: Rect, mat) =>
+			transform(new Quad(vertices($), __copyAttribs($)), mat),
 
-        text: ($: Text, mat) =>
-            new Text(mulV([], mat, $.pos!), $.body, __copyAttribs($)),
+		text: ($: Text, mat) =>
+			new Text(mulV([], mat, $.pos!), $.body, __copyAttribs($)),
 
-        tri: tx(Triangle),
-    }
+		tri: tx(Triangle),
+	}
 );

@@ -31,141 +31,141 @@ const __private = new WeakMap<SortedSet<any>, SortedMap<any, any>>();
  */
 @__inspectable
 export class SortedSet<T>
-    extends Set<T>
-    implements IEquivSet<T>, ICompare<Set<T>>, IReducible<any, T>
+	extends Set<T>
+	implements IEquivSet<T>, ICompare<Set<T>>, IReducible<any, T>
 {
-    /**
-     * Creates new instance with optional given values and/or
-     * implementation options. The options are the same as used by
-     * {@link SortedMap}.
-     *
-     * @param values - input values
-     * @param opts - config options
-     */
-    constructor(values?: Iterable<T> | null, opts?: Partial<SortedSetOpts<T>>) {
-        super();
-        __private.set(
-            this,
-            new SortedMap<T, T>(
-                values ? map((x) => <Pair<T, T>>[x, x], values) : null,
-                opts
-            )
-        );
-    }
+	/**
+	 * Creates new instance with optional given values and/or
+	 * implementation options. The options are the same as used by
+	 * {@link SortedMap}.
+	 *
+	 * @param values - input values
+	 * @param opts - config options
+	 */
+	constructor(values?: Iterable<T> | null, opts?: Partial<SortedSetOpts<T>>) {
+		super();
+		__private.set(
+			this,
+			new SortedMap<T, T>(
+				values ? map((x) => <Pair<T, T>>[x, x], values) : null,
+				opts
+			)
+		);
+	}
 
-    [Symbol.iterator](): IterableIterator<T> {
-        return this.keys();
-    }
+	[Symbol.iterator](): IterableIterator<T> {
+		return this.keys();
+	}
 
-    get [Symbol.species]() {
-        return SortedSet;
-    }
+	get [Symbol.species]() {
+		return SortedSet;
+	}
 
-    get [Symbol.toStringTag]() {
-        return "SortedSet";
-    }
+	get [Symbol.toStringTag]() {
+		return "SortedSet";
+	}
 
-    get size(): number {
-        return __private.get(this)!.size;
-    }
+	get size(): number {
+		return __private.get(this)!.size;
+	}
 
-    copy(): SortedSet<T> {
-        return new SortedSet<T>(this.keys(), this.opts());
-    }
+	copy(): SortedSet<T> {
+		return new SortedSet<T>(this.keys(), this.opts());
+	}
 
-    empty() {
-        return new SortedSet<T>(null, {
-            ...this.opts(),
-            capacity: SortedMap.DEFAULT_CAP,
-        });
-    }
+	empty() {
+		return new SortedSet<T>(null, {
+			...this.opts(),
+			capacity: SortedMap.DEFAULT_CAP,
+		});
+	}
 
-    compare(o: Set<T>) {
-        const n = this.size;
-        const m = o.size;
-        if (n < m) return -1;
-        if (n > m) return 1;
-        const i = this.entries();
-        const j = o.entries();
-        let x: IteratorResult<Pair<T, T>>, y: IteratorResult<Pair<T, T>>;
-        let c: number;
-        while (((x = i.next()), (y = j.next()), !x.done && !y.done)) {
-            if ((c = compare(x.value[0], y.value[0])) !== 0) {
-                return c;
-            }
-        }
-        return 0;
-    }
+	compare(o: Set<T>) {
+		const n = this.size;
+		const m = o.size;
+		if (n < m) return -1;
+		if (n > m) return 1;
+		const i = this.entries();
+		const j = o.entries();
+		let x: IteratorResult<Pair<T, T>>, y: IteratorResult<Pair<T, T>>;
+		let c: number;
+		while (((x = i.next()), (y = j.next()), !x.done && !y.done)) {
+			if ((c = compare(x.value[0], y.value[0])) !== 0) {
+				return c;
+			}
+		}
+		return 0;
+	}
 
-    equiv(o: any) {
-        return __equivSet(this, o);
-    }
+	equiv(o: any) {
+		return __equivSet(this, o);
+	}
 
-    $reduce(rfn: ReductionFn<any, T>, acc: any): any {
-        return __private.get(this)!.$reduce((_acc, x) => rfn(_acc, x[0]), acc);
-    }
+	$reduce(rfn: ReductionFn<any, T>, acc: any): any {
+		return __private.get(this)!.$reduce((_acc, x) => rfn(_acc, x[0]), acc);
+	}
 
-    entries(key?: T, max = false): IterableIterator<Pair<T, T>> {
-        return __private.get(this)!.entries(key, max);
-    }
+	entries(key?: T, max = false): IterableIterator<Pair<T, T>> {
+		return __private.get(this)!.entries(key, max);
+	}
 
-    keys(key?: T, max = false): IterableIterator<T> {
-        return __private.get(this)!.keys(key, max);
-    }
+	keys(key?: T, max = false): IterableIterator<T> {
+		return __private.get(this)!.keys(key, max);
+	}
 
-    values(key?: T, max = false): IterableIterator<T> {
-        return __private.get(this)!.values(key, max);
-    }
+	values(key?: T, max = false): IterableIterator<T> {
+		return __private.get(this)!.values(key, max);
+	}
 
-    add(key: T) {
-        __private.get(this)!.set(key, key);
-        return this;
-    }
+	add(key: T) {
+		__private.get(this)!.set(key, key);
+		return this;
+	}
 
-    into(keys: Iterable<T>) {
-        return <this>into(this, keys);
-    }
+	into(keys: Iterable<T>) {
+		return <this>into(this, keys);
+	}
 
-    clear(): void {
-        __private.get(this)!.clear();
-    }
+	clear(): void {
+		__private.get(this)!.clear();
+	}
 
-    first(): T {
-        const first = __private.get(this)!.first();
-        return first ? first[0] : undefined;
-    }
+	first(): T {
+		const first = __private.get(this)!.first();
+		return first ? first[0] : undefined;
+	}
 
-    delete(key: T): boolean {
-        return __private.get(this)!.delete(key);
-    }
+	delete(key: T): boolean {
+		return __private.get(this)!.delete(key);
+	}
 
-    disj(keys: Iterable<T>) {
-        return <this>dissoc(this, keys);
-    }
+	disj(keys: Iterable<T>) {
+		return <this>dissoc(this, keys);
+	}
 
-    forEach(
-        fn: Fn3<Readonly<T>, Readonly<T>, Set<T>, void>,
-        thisArg?: any
-    ): void {
-        for (let p of this) {
-            fn.call(thisArg, p, p, this);
-        }
-    }
+	forEach(
+		fn: Fn3<Readonly<T>, Readonly<T>, Set<T>, void>,
+		thisArg?: any
+	): void {
+		for (let p of this) {
+			fn.call(thisArg, p, p, this);
+		}
+	}
 
-    has(key: T): boolean {
-        return __private.get(this)!.has(key);
-    }
+	has(key: T): boolean {
+		return __private.get(this)!.has(key);
+	}
 
-    get(key: T, notFound?: T): T | undefined {
-        return __private.get(this)!.get(key, notFound);
-    }
+	get(key: T, notFound?: T): T | undefined {
+		return __private.get(this)!.get(key, notFound);
+	}
 
-    opts(): SortedSetOpts<T> {
-        return __private.get(this)!.opts();
-    }
+	opts(): SortedSetOpts<T> {
+		return __private.get(this)!.opts();
+	}
 }
 
 export const defSortedSet = <T>(
-    vals?: Iterable<T> | null,
-    opts?: Partial<SortedSetOpts<T>>
+	vals?: Iterable<T> | null,
+	opts?: Partial<SortedSetOpts<T>>
 ) => new SortedSet(vals, opts);

@@ -1,53 +1,53 @@
 {
-    "name": "@example/rstream-grid",
-    "private": true,
-    "version": "0.0.1",
-    "description": "Interactive grid generator, SVG generation & export, undo/redo support",
-    "repository": "https://github.com/[your-gh-username]/rs-undo",
-    "author": "Karsten Schmidt",
-    "license": "MIT",
-    "scripts": {
-        "start": "vite --open",
-        "build": "tsc && vite build --base='./'",
-        "preview": "vite preview --host --open"
-    },
-    "dependencies": {
-        "@thi.ng/api": "workspace:^",
-        "@thi.ng/atom": "workspace:^",
-        "@thi.ng/checks": "workspace:^",
-        "@thi.ng/dl-asset": "workspace:^",
-        "@thi.ng/expose": "workspace:^",
-        "@thi.ng/hdom": "workspace:^",
-        "@thi.ng/hiccup": "workspace:^",
-        "@thi.ng/hiccup-svg": "workspace:^",
-        "@thi.ng/interceptors": "workspace:^",
-        "@thi.ng/paths": "workspace:^",
-        "@thi.ng/rstream": "workspace:^",
-        "@thi.ng/rstream-graph": "workspace:^",
-        "@thi.ng/transducers": "workspace:^"
-    },
-    "browser": {
-        "process": false,
-        "setTimeout": false,
-        "util": false
-    },
-    "thi.ng": {
-        "readme": [
-            "atom",
-            "dl-asset",
-            "expose",
-            "hdom",
-            "hiccup",
-            "hiccup-svg",
-            "interceptors",
-            "rstream",
-            "rstream-graph",
-            "transducers"
-        ],
-        "screenshot": "examples/rstream-grid.jpg"
-    },
-    "devDependencies": {
-        "typescript": "^4.7.4",
-        "vite": "^3.0.0"
-    }
+	"name": "@example/rstream-grid",
+	"private": true,
+	"version": "0.0.1",
+	"description": "Interactive grid generator, SVG generation & export, undo/redo support",
+	"repository": "https://github.com/[your-gh-username]/rs-undo",
+	"author": "Karsten Schmidt",
+	"license": "MIT",
+	"scripts": {
+		"start": "vite --open",
+		"build": "tsc && vite build --base='./'",
+		"preview": "vite preview --host --open"
+	},
+	"dependencies": {
+		"@thi.ng/api": "workspace:^",
+		"@thi.ng/atom": "workspace:^",
+		"@thi.ng/checks": "workspace:^",
+		"@thi.ng/dl-asset": "workspace:^",
+		"@thi.ng/expose": "workspace:^",
+		"@thi.ng/hdom": "workspace:^",
+		"@thi.ng/hiccup": "workspace:^",
+		"@thi.ng/hiccup-svg": "workspace:^",
+		"@thi.ng/interceptors": "workspace:^",
+		"@thi.ng/paths": "workspace:^",
+		"@thi.ng/rstream": "workspace:^",
+		"@thi.ng/rstream-graph": "workspace:^",
+		"@thi.ng/transducers": "workspace:^"
+	},
+	"browser": {
+		"process": false,
+		"setTimeout": false,
+		"util": false
+	},
+	"thi.ng": {
+		"readme": [
+			"atom",
+			"dl-asset",
+			"expose",
+			"hdom",
+			"hiccup",
+			"hiccup-svg",
+			"interceptors",
+			"rstream",
+			"rstream-graph",
+			"transducers"
+		],
+		"screenshot": "examples/rstream-grid.jpg"
+	},
+	"devDependencies": {
+		"typescript": "^4.7.4",
+		"vite": "^3.0.0"
+	}
 }

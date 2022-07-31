@@ -8,7 +8,7 @@ export type Watch<T> = (id: string, oldState: T, newState: T) => void;
  * Also see `@IWatch` decorator mixin.
  */
 export interface IWatch<T> {
-    addWatch(id: string, fn: Watch<T>): boolean;
-    removeWatch(id: string): boolean;
-    notifyWatches(oldState: T, newState: T): void;
+	addWatch(id: string, fn: Watch<T>): boolean;
+	removeWatch(id: string): boolean;
+	notifyWatches(oldState: T, newState: T): void;
 }

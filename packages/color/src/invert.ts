@@ -20,8 +20,8 @@ import { __ensureAlpha } from "./internal/ensure.js";
  * @param src - source color
  */
 export const invertRgb: ColorOp = (out, src) => {
-    out = clamp(out || src, src);
-    return sub3(out, ONE3, out);
+	out = clamp(out || src, src);
+	return sub3(out, ONE3, out);
 };
 
 /**
@@ -35,52 +35,52 @@ export const invertRgb: ColorOp = (out, src) => {
 export const invertInt = (src: number) => src ^ 0xffffff;
 
 export const invert = defmulti<Color | null, TypedColor<any>, Color>(
-    __dispatch1,
-    {
-        hcy: "hsv",
-        hsi: "hsv",
-        hsl: "hsl",
-        labD65: "labD50",
-        oklab: "labD50",
-        srgb: "rgb",
-    },
-    {
-        hsv: (out, src) =>
-            setC4(
-                out || src,
-                fract(src[0] + 0.5),
-                src[1],
-                1 - src[2],
-                __ensureAlpha(src[3])
-            ),
-        labD50: (out, src) => {
-            const [min, max] = src.range;
-            return setC4(
-                out || src,
-                1 - src[0],
-                __invert1(src[1], min[1], max[1]),
-                __invert1(src[2], min[2], max[2]),
-                __ensureAlpha(src[3])
-            );
-        },
-        lch: (out, src) =>
-            setC4(
-                out || src,
-                1 - src[0],
-                src[1],
-                fract(src[2] + 0.5),
-                __ensureAlpha(src[3])
-            ),
-        rgb: invertRgb,
-        ycc: (out, src) =>
-            setC4(
-                out || src,
-                1 - src[0],
-                __invert1(src[1], -0.5, 0.5),
-                __invert1(src[2], -0.5, 0.5),
-                __ensureAlpha(src[3])
-            ),
-    }
+	__dispatch1,
+	{
+		hcy: "hsv",
+		hsi: "hsv",
+		hsl: "hsl",
+		labD65: "labD50",
+		oklab: "labD50",
+		srgb: "rgb",
+	},
+	{
+		hsv: (out, src) =>
+			setC4(
+				out || src,
+				fract(src[0] + 0.5),
+				src[1],
+				1 - src[2],
+				__ensureAlpha(src[3])
+			),
+		labD50: (out, src) => {
+			const [min, max] = src.range;
+			return setC4(
+				out || src,
+				1 - src[0],
+				__invert1(src[1], min[1], max[1]),
+				__invert1(src[2], min[2], max[2]),
+				__ensureAlpha(src[3])
+			);
+		},
+		lch: (out, src) =>
+			setC4(
+				out || src,
+				1 - src[0],
+				src[1],
+				fract(src[2] + 0.5),
+				__ensureAlpha(src[3])
+			),
+		rgb: invertRgb,
+		ycc: (out, src) =>
+			setC4(
+				out || src,
+				1 - src[0],
+				__invert1(src[1], -0.5, 0.5),
+				__invert1(src[2], -0.5, 0.5),
+				__ensureAlpha(src[3])
+			),
+	}
 );
 
 const __invert1: FnN3 = (x, a, b) => fit(x, a, b, b, a);

@@ -5,14 +5,14 @@ import { __iter } from "./iterator.js";
 import { filter } from "./filter.js";
 
 export interface FilterFuzzyOpts<A, B> {
-    /**
-     * Key extractor function.
-     */
-    key: Fn<A, ArrayLike<B>>;
-    /**
-     * Equivalence predicate function.
-     */
-    equiv: Predicate2<any>;
+	/**
+	 * Key extractor function.
+	 */
+	key: Fn<A, ArrayLike<B>>;
+	/**
+	 * Equivalence predicate function.
+	 */
+	equiv: Predicate2<any>;
 }
 
 /**
@@ -35,26 +35,26 @@ export interface FilterFuzzyOpts<A, B> {
  * @param src -
  */
 export function filterFuzzy<A, B>(
-    query: ArrayLike<B>,
-    opts?: Partial<FilterFuzzyOpts<A, B>>
+	query: ArrayLike<B>,
+	opts?: Partial<FilterFuzzyOpts<A, B>>
 ): Transducer<A, A>;
 export function filterFuzzy<A, B>(
-    query: ArrayLike<B>,
-    src: Iterable<A>
+	query: ArrayLike<B>,
+	src: Iterable<A>
 ): IterableIterator<A>;
 export function filterFuzzy<A, B>(
-    query: ArrayLike<B>,
-    opts: Partial<FilterFuzzyOpts<A, B>>,
-    src: Iterable<A>
+	query: ArrayLike<B>,
+	opts: Partial<FilterFuzzyOpts<A, B>>,
+	src: Iterable<A>
 ): IterableIterator<A>;
 export function filterFuzzy<A, B>(...args: any[]): any {
-    const iter = args.length > 1 && __iter(filterFuzzy, args);
-    if (iter) {
-        return iter;
-    }
-    const query: ArrayLike<B> = args[0];
-    const { key, equiv } = <FilterFuzzyOpts<A, B>>(args[1] || {});
-    return filter((x: A) =>
-        fuzzyMatch(key != null ? key(x) : <any>x, query, equiv)
-    );
+	const iter = args.length > 1 && __iter(filterFuzzy, args);
+	if (iter) {
+		return iter;
+	}
+	const query: ArrayLike<B> = args[0];
+	const { key, equiv } = <FilterFuzzyOpts<A, B>>(args[1] || {});
+	return filter((x: A) =>
+		fuzzyMatch(key != null ? key(x) : <any>x, query, equiv)
+	);
 }

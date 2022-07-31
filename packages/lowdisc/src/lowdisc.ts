@@ -9,35 +9,35 @@ import { assert } from "@thi.ng/errors/assert";
  * This function acts as shared impl for all other sequence generators in this
  * package.
  *
- * @param dims - 
- * @param offset - 
+ * @param dims -
+ * @param offset -
  */
 export const lowDiscrepancy = (dims: Iterator<number>[], offset = 0) => {
-    const num = dims.length;
-    assert(num > 0, `invalid dimensions`);
-    const [x, y, z] = dims;
-    const iter =
-        num === 1
-            ? (function* () {
-                  while (true) yield [<number>x.next().value];
-              })()
-            : num === 2
-            ? (function* () {
-                  while (true)
-                      yield [<number>x.next().value, <number>y.next().value];
-              })()
-            : num === 3
-            ? (function* () {
-                  while (true)
-                      yield [
-                          <number>x.next().value,
-                          <number>y.next().value,
-                          <number>z.next().value,
-                      ];
-              })()
-            : (function* () {
-                  while (true) yield dims.map((d) => <number>d.next().value);
-              })();
-    for (; offset-- > 0; ) iter.next();
-    return iter;
+	const num = dims.length;
+	assert(num > 0, `invalid dimensions`);
+	const [x, y, z] = dims;
+	const iter =
+		num === 1
+			? (function* () {
+					while (true) yield [<number>x.next().value];
+			  })()
+			: num === 2
+			? (function* () {
+					while (true)
+						yield [<number>x.next().value, <number>y.next().value];
+			  })()
+			: num === 3
+			? (function* () {
+					while (true)
+						yield [
+							<number>x.next().value,
+							<number>y.next().value,
+							<number>z.next().value,
+						];
+			  })()
+			: (function* () {
+					while (true) yield dims.map((d) => <number>d.next().value);
+			  })();
+	for (; offset-- > 0; ) iter.next();
+	return iter;
 };

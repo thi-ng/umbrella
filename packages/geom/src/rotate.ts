@@ -51,71 +51,71 @@ import { __rotatedShape as tx } from "./internal/rotate.js";
  * @param theta
  */
 export const rotate: MultiFn2<IShape, number, IShape> = defmulti<
-    any,
-    number,
-    IShape
+	any,
+	number,
+	IShape
 >(
-    __dispatch,
-    {},
-    {
-        arc: ($: Arc, theta) => {
-            const a = $.copy();
-            $rotate(null, a.pos, theta);
-            return a;
-        },
+	__dispatch,
+	{},
+	{
+		arc: ($: Arc, theta) => {
+			const a = $.copy();
+			$rotate(null, a.pos, theta);
+			return a;
+		},
 
-        circle: ($: Circle, theta) =>
-            new Circle($rotate([], $.pos, theta), $.r, __copyAttribs($)),
+		circle: ($: Circle, theta) =>
+			new Circle($rotate([], $.pos, theta), $.r, __copyAttribs($)),
 
-        cubic: tx(Cubic),
+		cubic: tx(Cubic),
 
-        ellipse: ($: Ellipse, theta) => rotate(asPath($), theta),
+		ellipse: ($: Ellipse, theta) => rotate(asPath($), theta),
 
-        group: ($: Group, theta) =>
-            $.copyTransformed((x) => <IHiccupShape>rotate(x, theta)),
+		group: ($: Group, theta) =>
+			$.copyTransformed((x) => <IHiccupShape>rotate(x, theta)),
 
-        line: tx(Line),
+		line: tx(Line),
 
-        path: ($: Path, theta) => {
-            return new Path(
-                $.segments.map((s) =>
-                    s.geo
-                        ? {
-                              type: s.type,
-                              geo: <any>rotate(s.geo, theta),
-                          }
-                        : {
-                              type: s.type,
-                              point: $rotate([], s.point!, theta),
-                          }
-                ),
-                __copyAttribs($)
-            );
-        },
+		path: ($: Path, theta) => {
+			return new Path(
+				$.segments.map((s) =>
+					s.geo
+						? {
+								type: s.type,
+								geo: <any>rotate(s.geo, theta),
+						  }
+						: {
+								type: s.type,
+								point: $rotate([], s.point!, theta),
+						  }
+				),
+				__copyAttribs($)
+			);
+		},
 
-        points: tx(Points),
+		points: tx(Points),
 
-        poly: tx(Polygon),
+		poly: tx(Polygon),
 
-        polyline: tx(Polyline),
+		polyline: tx(Polyline),
 
-        quad: tx(Quad),
+		quad: tx(Quad),
 
-        quadratic: tx(Quadratic),
+		quadratic: tx(Quadratic),
 
-        ray: ($: Ray, theta) => {
-            return new Ray(
-                $rotate([], $.pos, theta),
-                $rotate([], $.dir, theta),
-                __copyAttribs($)
-            );
-        },
+		ray: ($: Ray, theta) => {
+			return new Ray(
+				$rotate([], $.pos, theta),
+				$rotate([], $.dir, theta),
+				__copyAttribs($)
+			);
+		},
 
-        rect: ($: Rect, theta) => rotate(asPolygon($), theta),
+		rect: ($: Rect, theta) => rotate(asPolygon($), theta),
 
-        text: ($: Text, theta) =>
-            new Text($rotate([], $.pos, theta), $.body, __copyAttribs($)),
+		text: ($: Text, theta) =>
+			new Text($rotate([], $.pos, theta), $.body, __copyAttribs($)),
 
-        tri: tx(Triangle),
-    }
+		tri: tx(Triangle),
+	}
 );

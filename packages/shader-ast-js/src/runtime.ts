@@ -6,13 +6,13 @@ import { IntBuffer, intBufferFromCanvas } from "@thi.ng/pixel/int";
 import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
 
 const rgba2bgra = (rgba: ReadonlyVec) =>
-    ((clamp01(rgba[0]) * 255.5) << 0) |
-    ((clamp01(rgba[1]) * 255.5) << 8) |
-    ((clamp01(rgba[2]) * 255.5) << 16) |
-    ((clamp01(rgba[3]) * 255.5) << 24);
+	((clamp01(rgba[0]) * 255.5) << 0) |
+	((clamp01(rgba[1]) * 255.5) << 8) |
+	((clamp01(rgba[2]) * 255.5) << 16) |
+	((clamp01(rgba[3]) * 255.5) << 24);
 
 const clampCoord = (x: number, maxW: number, w?: number) =>
-    w !== undefined ? Math.min(x + w, maxW) : maxW;
+	w !== undefined ? Math.min(x + w, maxW) : maxW;
 
 /**
  * Low-level function used by {@link canvasRenderer} and
@@ -39,32 +39,32 @@ const clampCoord = (x: number, maxW: number, w?: number) =>
  * @param imgH -
  */
 export const renderPixels = (
-    fn: Fn<ReadonlyVec, Vec>,
-    u32: Uint32Array,
-    bufW: number,
-    bufH: number,
-    x: number,
-    y: number,
-    w?: number,
-    h?: number,
-    bufOffsetX = 0,
-    bufOffsetY = 0,
-    imgH = bufH
+	fn: Fn<ReadonlyVec, Vec>,
+	u32: Uint32Array,
+	bufW: number,
+	bufH: number,
+	x: number,
+	y: number,
+	w?: number,
+	h?: number,
+	bufOffsetX = 0,
+	bufOffsetY = 0,
+	imgH = bufH
 ) => {
-    const frag = [];
-    x = clamp(x, 0, bufW);
-    y = clamp(y, 0, bufH);
-    const x2 = clampCoord(x, bufW, w);
-    const y2 = clampCoord(y, bufH, h);
-    for (let yy = y; yy < y2; yy++) {
-        frag[1] = imgH - 1 - yy - bufOffsetY;
-        let i = yy * bufW + x;
-        for (let xx = x; xx < x2; xx++) {
-            frag[0] = xx + bufOffsetX;
-            u32[i++] = rgba2bgra(fn(frag));
-        }
-    }
-    return u32;
+	const frag = [];
+	x = clamp(x, 0, bufW);
+	y = clamp(y, 0, bufH);
+	const x2 = clampCoord(x, bufW, w);
+	const y2 = clampCoord(y, bufH, h);
+	for (let yy = y; yy < y2; yy++) {
+		frag[1] = imgH - 1 - yy - bufOffsetY;
+		let i = yy * bufW + x;
+		for (let xx = x; xx < x2; xx++) {
+			frag[0] = xx + bufOffsetX;
+			u32[i++] = rgba2bgra(fn(frag));
+		}
+	}
+	return u32;
 };
 
 /**
@@ -89,31 +89,31 @@ export const renderPixels = (
  * @param imgH -
  */
 export const renderBuffer = (
-    fn: Fn<ReadonlyVec, Vec>,
-    buf: IntBuffer,
-    x = 0,
-    y = 0,
-    w?: number,
-    h?: number,
-    bufOffsetX = 0,
-    bufOffsetY = 0,
-    imgH = buf.height
+	fn: Fn<ReadonlyVec, Vec>,
+	buf: IntBuffer,
+	x = 0,
+	y = 0,
+	w?: number,
+	h?: number,
+	bufOffsetX = 0,
+	bufOffsetY = 0,
+	imgH = buf.height
 ) => {
-    assert(buf.format === ABGR8888, `invalid buffer pixel format`);
-    renderPixels(
-        fn,
-        <Uint32Array>buf.data,
-        buf.width,
-        buf.height,
-        x,
-        y,
-        w,
-        h,
-        bufOffsetX,
-        bufOffsetY,
-        imgH
-    );
-    return buf;
+	assert(buf.format === ABGR8888, `invalid buffer pixel format`);
+	renderPixels(
+		fn,
+		<Uint32Array>buf.data,
+		buf.width,
+		buf.height,
+		x,
+		y,
+		w,
+		h,
+		bufOffsetX,
+		bufOffsetY,
+		imgH
+	);
+	return buf;
 };
 
 /**
@@ -127,15 +127,15 @@ export const renderBuffer = (
  * @param canvas -
  */
 export const canvasRenderer = (canvas: HTMLCanvasElement) => {
-    const buf = intBufferFromCanvas(canvas);
-    return (
-        fn: Fn<ReadonlyVec, Vec>,
-        x = 0,
-        y = 0,
-        w = canvas.width,
-        h = canvas.height
-    ) => {
-        renderBuffer(fn, buf, x, y, w, h);
-        buf.blitCanvas(canvas);
-    };
+	const buf = intBufferFromCanvas(canvas);
+	return (
+		fn: Fn<ReadonlyVec, Vec>,
+		x = 0,
+		y = 0,
+		w = canvas.width,
+		h = canvas.height
+	) => {
+		renderBuffer(fn, buf, x, y, w, h);
+		buf.blitCanvas(canvas);
+	};
 };

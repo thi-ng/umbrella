@@ -11,10 +11,10 @@ import { maddN, maddN2, maddN3 } from "./maddn.js";
  * @param dist -
  */
 export const pointOnRay = (
-    out: Vec | null,
-    rayOrigin: ReadonlyVec,
-    rayDir: ReadonlyVec,
-    dist: number
+	out: Vec | null,
+	rayOrigin: ReadonlyVec,
+	rayDir: ReadonlyVec,
+	dist: number
 ) => maddN(out, rayDir, dist, rayOrigin);
 
 /**
@@ -26,10 +26,10 @@ export const pointOnRay = (
  * @param dist -
  */
 export const pointOnRay2 = (
-    out: Vec | null,
-    rayOrigin: ReadonlyVec,
-    rayDir: ReadonlyVec,
-    dist: number
+	out: Vec | null,
+	rayOrigin: ReadonlyVec,
+	rayDir: ReadonlyVec,
+	dist: number
 ) => maddN2(out, rayDir, dist, rayOrigin);
 
 /**
@@ -41,8 +41,8 @@ export const pointOnRay2 = (
  * @param dist -
  */
 export const pointOnRay3 = (
-    out: Vec | null,
-    rayOrigin: ReadonlyVec,
-    rayDir: ReadonlyVec,
-    dist: number
+	out: Vec | null,
+	rayOrigin: ReadonlyVec,
+	rayDir: ReadonlyVec,
+	dist: number
 ) => maddN3(out, rayDir, dist, rayOrigin);

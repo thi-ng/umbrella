@@ -35,42 +35,42 @@ export type USampler3DSym = Sym<"usampler3D">;
 export type USamplerCubeSym = Sym<"usamplerCube">;
 
 export interface SymOpts {
-    /**
-     * If in global scope, used for:
-     *
-     * - `in` => attribute (in VS), varying (in FS)
-     * - `out` => varying (in VS), output (in FS)
-     *
-     * For parameters / fn args:
-     *
-     * - `in` =>  passed into a function
-     * - `out` => passed back out of a function, but not initialized
-     * - `inout` => passed both into and out of a function
-     */
-    q?: SymQualifier;
-    /**
-     * Symbol type, only used for global scope in/out vars, e.g.
-     * attribute, varying, uniform.
-     */
-    type?: SymType;
-    /**
-     * Const symbol
-     */
-    const?: boolean;
-    /**
-     * Precision qualifier
-     */
-    prec?: Precision;
-    /**
-     * Interpolation qualifier
-     */
-    smooth?: Interpolation;
-    /**
-     * Arrays only. Length
-     */
-    num?: number;
-    /**
-     * Layout location
-     */
-    loc?: number;
+	/**
+	 * If in global scope, used for:
+	 *
+	 * - `in` => attribute (in VS), varying (in FS)
+	 * - `out` => varying (in VS), output (in FS)
+	 *
+	 * For parameters / fn args:
+	 *
+	 * - `in` =>  passed into a function
+	 * - `out` => passed back out of a function, but not initialized
+	 * - `inout` => passed both into and out of a function
+	 */
+	q?: SymQualifier;
+	/**
+	 * Symbol type, only used for global scope in/out vars, e.g.
+	 * attribute, varying, uniform.
+	 */
+	type?: SymType;
+	/**
+	 * Const symbol
+	 */
+	const?: boolean;
+	/**
+	 * Precision qualifier
+	 */
+	prec?: Precision;
+	/**
+	 * Interpolation qualifier
+	 */
+	smooth?: Interpolation;
+	/**
+	 * Arrays only. Length
+	 */
+	num?: number;
+	/**
+	 * Layout location
+	 */
+	loc?: number;
 }

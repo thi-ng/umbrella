@@ -12,15 +12,15 @@ import { SYSTEM } from "./system.js";
  * @param end -
  */
 export const randomBytesFrom = (
-    rnd: IRandom,
-    buf: Uint8Array,
-    start = 0,
-    end = buf.length
+	rnd: IRandom,
+	buf: Uint8Array,
+	start = 0,
+	end = buf.length
 ) => {
-    for (let i = end; --i >= start; ) {
-        buf[i] = rnd.int() & 0xff;
-    }
-    return buf;
+	for (let i = end; --i >= start; ) {
+		buf[i] = rnd.int() & 0xff;
+	}
+	return buf;
 };
 
 /**
@@ -33,8 +33,8 @@ export const randomBytesFrom = (
  * @param end -
  */
 export const randomBytes = hasCrypto()
-    ? (buf: Uint8Array, start = 0, end = buf.length) => (
-          window.crypto.getRandomValues(buf.subarray(start, end)), buf
-      )
-    : (buf: Uint8Array, start?: number, end?: number) =>
-          randomBytesFrom(SYSTEM, buf, start, end);
+	? (buf: Uint8Array, start = 0, end = buf.length) => (
+			window.crypto.getRandomValues(buf.subarray(start, end)), buf
+	  )
+	: (buf: Uint8Array, start?: number, end?: number) =>
+			randomBytesFrom(SYSTEM, buf, start, end);

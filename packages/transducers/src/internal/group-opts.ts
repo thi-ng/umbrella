@@ -9,10 +9,10 @@ import { push } from "../push.js";
  * @internal
  */
 export const __groupByOpts = <SRC, KEY, GROUP>(
-    opts?: Partial<GroupByOpts<SRC, PropertyKey, GROUP>>
+	opts?: Partial<GroupByOpts<SRC, PropertyKey, GROUP>>
 ) =>
-    <GroupByOpts<SRC, KEY, GROUP>>{
-        key: (x: any) => x,
-        group: push(),
-        ...opts,
-    };
+	<GroupByOpts<SRC, KEY, GROUP>>{
+		key: (x: any) => x,
+		group: push(),
+		...opts,
+	};

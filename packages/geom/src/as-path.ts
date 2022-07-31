@@ -11,4 +11,4 @@ import { pathFromCubics } from "./path.js";
  * @param attribs
  */
 export const asPath = (src: IShape, attribs?: Attribs) =>
-    pathFromCubics(asCubic(src), attribs || __copyAttribs(src));
+	pathFromCubics(asCubic(src), attribs || __copyAttribs(src));

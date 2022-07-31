@@ -5,13 +5,13 @@ import { LOGGER } from "./logger.js";
 import { stream } from "./stream.js";
 
 export interface FromWorkerOpts extends WithErrorHandlerOpts {
-    /**
-     * If true, the worker will be terminated when the stream
-     * is being closed.
-     *
-     * @defaultValue true
-     */
-    terminate: boolean;
+	/**
+	 * If true, the worker will be terminated when the stream
+	 * is being closed.
+	 *
+	 * @defaultValue true
+	 */
+	terminate: boolean;
 }
 
 /**
@@ -38,27 +38,27 @@ export interface FromWorkerOpts extends WithErrorHandlerOpts {
  * @param opts -
  */
 export const fromWorker = <T>(
-    worker: WorkerSource,
-    opts?: Partial<FromWorkerOpts>
+	worker: WorkerSource,
+	opts?: Partial<FromWorkerOpts>
 ) => {
-    const _worker = defWorker(worker);
-    opts = __optsWithID("worker", opts);
-    return stream<T>((stream) => {
-        const msgListener = (e: MessageEvent) => {
-            stream.next(e.data);
-        };
-        const errListener = (e: MessageEvent) => {
-            stream.error(e.data);
-        };
-        _worker.addEventListener("message", msgListener);
-        _worker.addEventListener("error", <EventListener>errListener);
-        return () => {
-            _worker.removeEventListener("message", msgListener);
-            _worker.removeEventListener("error", <EventListener>errListener);
-            if (opts!.terminate !== false) {
-                LOGGER.info("terminating worker", _worker);
-                _worker.terminate();
-            }
-        };
-    }, opts);
+	const _worker = defWorker(worker);
+	opts = __optsWithID("worker", opts);
+	return stream<T>((stream) => {
+		const msgListener = (e: MessageEvent) => {
+			stream.next(e.data);
+		};
+		const errListener = (e: MessageEvent) => {
+			stream.error(e.data);
+		};
+		_worker.addEventListener("message", msgListener);
+		_worker.addEventListener("error", <EventListener>errListener);
+		return () => {
+			_worker.removeEventListener("message", msgListener);
+			_worker.removeEventListener("error", <EventListener>errListener);
+			if (opts!.terminate !== false) {
+				LOGGER.info("terminating worker", _worker);
+				_worker.terminate();
+			}
+		};
+	}, opts);
 };

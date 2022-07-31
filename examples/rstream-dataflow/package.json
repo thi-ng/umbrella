@@ -1,44 +1,44 @@
 {
-    "name": "@example/rstream-dataflow",
-    "private": true,
-    "description": "Minimal rstream dataflow graph",
-    "version": "0.0.1",
-    "repository": "https://github.com/thi-ng/umbrella",
-    "author": "Karsten Schmidt <k+npm@thi.ng>",
-    "license": "Apache-2.0",
-    "scripts": {
-        "start": "vite --open",
-        "build": "tsc && vite build --base='./'",
-        "preview": "vite preview --host --open"
-    },
-    "dependencies": {
-        "@thi.ng/atom": "workspace:^",
-        "@thi.ng/equiv": "workspace:^",
-        "@thi.ng/hdom": "workspace:^",
-        "@thi.ng/paths": "workspace:^",
-        "@thi.ng/rstream": "workspace:^",
-        "@thi.ng/rstream-dot": "workspace:^",
-        "@thi.ng/rstream-gestures": "workspace:^",
-        "@thi.ng/rstream-graph": "workspace:^",
-        "@thi.ng/transducers": "workspace:^"
-    },
-    "browser": {
-        "process": false,
-        "setTimeout": false,
-        "util": false
-    },
-    "thi.ng": {
-        "readme": [
-            "atom",
-            "hdom",
-            "rstream-dot",
-            "rstream-gestures",
-            "rstream-graph",
-            "transducers"
-        ]
-    },
-    "devDependencies": {
-        "typescript": "^4.7.4",
-        "vite": "^3.0.0"
-    }
+	"name": "@example/rstream-dataflow",
+	"private": true,
+	"description": "Minimal rstream dataflow graph",
+	"version": "0.0.1",
+	"repository": "https://github.com/thi-ng/umbrella",
+	"author": "Karsten Schmidt <k+npm@thi.ng>",
+	"license": "Apache-2.0",
+	"scripts": {
+		"start": "vite --open",
+		"build": "tsc && vite build --base='./'",
+		"preview": "vite preview --host --open"
+	},
+	"dependencies": {
+		"@thi.ng/atom": "workspace:^",
+		"@thi.ng/equiv": "workspace:^",
+		"@thi.ng/hdom": "workspace:^",
+		"@thi.ng/paths": "workspace:^",
+		"@thi.ng/rstream": "workspace:^",
+		"@thi.ng/rstream-dot": "workspace:^",
+		"@thi.ng/rstream-gestures": "workspace:^",
+		"@thi.ng/rstream-graph": "workspace:^",
+		"@thi.ng/transducers": "workspace:^"
+	},
+	"browser": {
+		"process": false,
+		"setTimeout": false,
+		"util": false
+	},
+	"thi.ng": {
+		"readme": [
+			"atom",
+			"hdom",
+			"rstream-dot",
+			"rstream-gestures",
+			"rstream-graph",
+			"transducers"
+		]
+	},
+	"devDependencies": {
+		"typescript": "^4.7.4",
+		"vite": "^3.0.0"
+	}
 }

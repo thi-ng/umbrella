@@ -13,10 +13,10 @@ import { length } from "@thi.ng/shader-ast/builtin/math";
  * @param r2 - float
  */
 export const sdfTorus = defn(
-    "float",
-    "sdTorus",
-    ["vec3", "float", "float"],
-    (p, r1, r2) => [
-        ret(sub(length(vec2(sub(length($(p, "xz")), r2), $y(p))), r1)),
-    ]
+	"float",
+	"sdTorus",
+	["vec3", "float", "float"],
+	(p, r1, r2) => [
+		ret(sub(length(vec2(sub(length($(p, "xz")), r2), $y(p))), r1)),
+	]
 );

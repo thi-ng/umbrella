@@ -3,19 +3,19 @@ import type { PathPattern, Pattern } from "./api.js";
 import { autoQVar, isQVar, qvarName } from "./qvar.js";
 
 export const patternVarCount = (p: Pattern) => {
-    let n = 0;
-    if (isQVar(p[0])) n++;
-    if (isQVar(p[1])) n++;
-    if (isQVar(p[2])) n++;
-    return n;
+	let n = 0;
+	if (isQVar(p[0])) n++;
+	if (isQVar(p[1])) n++;
+	if (isQVar(p[2])) n++;
+	return n;
 };
 
 export const patternVars = ([s, p, o]: Pattern) => {
-    const vars = [];
-    isQVar(s) && vars.push(qvarName(s));
-    isQVar(p) && vars.push(qvarName(p));
-    isQVar(o) && vars.push(qvarName(o));
-    return vars;
+	const vars = [];
+	isQVar(s) && vars.push(qvarName(s));
+	isQVar(p) && vars.push(qvarName(p));
+	isQVar(o) && vars.push(qvarName(o));
+	return vars;
 };
 
 /**
@@ -39,17 +39,17 @@ export const patternVars = ([s, p, o]: Pattern) => {
  * @param maxLen -
  */
 export const resolvePathPattern = (
-    [s, p, o]: PathPattern,
-    maxLen = p.length
+	[s, p, o]: PathPattern,
+	maxLen = p.length
 ): [Pattern[], string[]] => {
-    const res: Pattern[] = [];
-    const avars = [...repeatedly(autoQVar, maxLen - 1)];
-    for (let i = 0; i < maxLen; i++) {
-        res.push([s, p[i % p.length], (s = avars[i])]);
-    }
-    res[res.length - 1][2] = o;
-    return [res, avars];
+	const res: Pattern[] = [];
+	const avars = [...repeatedly(autoQVar, maxLen - 1)];
+	for (let i = 0; i < maxLen; i++) {
+		res.push([s, p[i % p.length], (s = avars[i])]);
+	}
+	res[res.length - 1][2] = o;
+	return [res, avars];
 };
 
 export const sortPatterns = (patterns: Pattern[]) =>
-    patterns.sort((a, b) => patternVarCount(a) - patternVarCount(b));
+	patterns.sort((a, b) => patternVarCount(a) - patternVarCount(b));

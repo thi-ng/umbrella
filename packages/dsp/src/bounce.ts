@@ -9,13 +9,13 @@ import { AProc } from "./aproc.js";
 export const bounce = () => new Bounce();
 
 export class Bounce extends AProc<NumericArray, number> {
-    constructor() {
-        super(0);
-    }
+	constructor() {
+		super(0);
+	}
 
-    next(src: NumericArray) {
-        let res = 0;
-        for (let i = src.length; i-- > 0; ) res += src[i];
-        return (this._val = res);
-    }
+	next(src: NumericArray) {
+		let res = 0;
+		for (let i = src.length; i-- > 0; ) res += src[i];
+		return (this._val = res);
+	}
 }

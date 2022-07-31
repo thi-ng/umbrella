@@ -24,13 +24,15 @@ import { interpolate } from "./interpolate.js";
  * @param n -
  */
 export function interpolateHermite(n: number): Transducer<number, number>;
-// prettier-ignore
-export function interpolateHermite(n: number, src: Iterable<number>): IterableIterator<number>;
+export function interpolateHermite(
+	n: number,
+	src: Iterable<number>
+): IterableIterator<number>;
 export function interpolateHermite(n: number, src?: Iterable<number>): any {
-    return interpolate<number>(
-        (chunk, t) => (<any>mixHermite)(...chunk, t),
-        4,
-        n,
-        src!
-    );
+	return interpolate<number>(
+		(chunk, t) => (<any>mixHermite)(...chunk, t),
+		4,
+		n,
+		src!
+	);
 }

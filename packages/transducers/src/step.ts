@@ -40,16 +40,16 @@ import { isReduced } from "./reduced.js";
  * @param tx -
  */
 export const step = <A, B>(tx: TxLike<A, B>): ((x: A) => B | B[]) => {
-    const { 1: complete, 2: reduce } = ensureTransducer(tx)(push());
-    let done = false;
-    return (x: A) => {
-        if (!done) {
-            let acc = reduce([], x);
-            done = isReduced(acc);
-            if (done) {
-                acc = complete(acc.deref());
-            }
-            return acc.length === 1 ? acc[0] : acc.length > 0 ? acc : undefined;
-        }
-    };
+	const { 1: complete, 2: reduce } = ensureTransducer(tx)(push());
+	let done = false;
+	return (x: A) => {
+		if (!done) {
+			let acc = reduce([], x);
+			done = isReduced(acc);
+			if (done) {
+				acc = complete(acc.deref());
+			}
+			return acc.length === 1 ? acc[0] : acc.length > 0 ? acc : undefined;
+		}
+	};
 };

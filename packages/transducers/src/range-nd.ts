@@ -35,17 +35,17 @@ import { zip } from "./zip.js";
  * // ]
  * ```
  *
- * @param vec - 
+ * @param vec -
  */
 export const rangeNd = (
-    min: ArrayLikeIterable<number>,
-    max?: ArrayLikeIterable<number>
+	min: ArrayLikeIterable<number>,
+	max?: ArrayLikeIterable<number>
 ) =>
-    permutations.apply(
-        null,
-        <Range[]>(
-            (max
-                ? [...map(([a, b]) => range(a, b), zip(min, max))]
-                : [...map(range, min)])
-        )
-    );
+	permutations.apply(
+		null,
+		<Range[]>(
+			(max
+				? [...map(([a, b]) => range(a, b), zip(min, max))]
+				: [...map(range, min)])
+		)
+	);

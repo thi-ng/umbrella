@@ -64,208 +64,207 @@ Rage, rage against the dying of the light.
 Dylan Thomas`;
 
 const createText = (
-    gl: WebGLRenderingContext,
-    font: MSDFFont,
-    img: HTMLImageElement,
-    txt: string,
-    col = [1, 0.8, 0, 1]
+	gl: WebGLRenderingContext,
+	font: MSDFFont,
+	img: HTMLImageElement,
+	txt: string,
+	col = [1, 0.8, 0, 1]
 ) => {
-    const model = {
-        ...text(font, txt, {
-            align: alignCenter,
-            leading: 1.4,
-            spacing: 1,
-            dirY: -1,
-            useColor: true,
-        }),
-        shader: defShader(gl, msdfShader({ color: true })),
-        textures: [
-            defTexture(gl, {
-                image: img,
-                filter: TextureFilter.LINEAR,
-                wrap: TextureRepeat.CLAMP,
-            }),
-        ],
-        uniforms: {
-            bg: [0, 0, 0, 1],
-            thresh: -0.2,
-        },
-    };
-    // update bottom vertex colors of each character
-    for (let i = 2; i < model.attribPool!.capacity; i += 4) {
-        model.attribPool!.setAttribValues("color", [col, col], i);
-    }
-    return compileModel(gl, model);
+	const model = {
+		...text(font, txt, {
+			align: alignCenter,
+			leading: 1.4,
+			spacing: 1,
+			dirY: -1,
+			useColor: true,
+		}),
+		shader: defShader(gl, msdfShader({ color: true })),
+		textures: [
+			defTexture(gl, {
+				image: img,
+				filter: TextureFilter.LINEAR,
+				wrap: TextureRepeat.CLAMP,
+			}),
+		],
+		uniforms: {
+			bg: [0, 0, 0, 1],
+			thresh: -0.2,
+		},
+	};
+	// update bottom vertex colors of each character
+	for (let i = 2; i < model.attribPool!.capacity; i += 4) {
+		model.attribPool!.setAttribValues("color", [col, col], i);
+	}
+	return compileModel(gl, model);
 };
 
 const createStarField = (gl: WebGLRenderingContext, num = 1000) => {
-    const pool = new AttribPool({
-        attribs: {
-            position: { type: "f32", size: 3, byteOffset: 0 },
-            dir: { type: "f32", size: 3, byteOffset: 12 },
-            id: { type: "f32", size: 1, byteOffset: 24 },
-        },
-        mem: {
-            size: num * 28 + 8 /* FIXME */ + 40,
-        },
-        num,
-    });
-    for (let i = 0, r = SYSTEM; i < num; i++) {
-        const pos = [r.minmax(-15, 15), r.minmax(0, 10), 0];
-        pool.setAttribValue("position", i, pos);
-        pool.setAttribValue(
-            "dir",
-            i,
-            mixN([], mulN([], pos, 0.1), [0, -1, r.minmax(2, 5)], 0.8)
-        );
-        pool.setAttribValue("id", i, i);
-    }
-    return compileModel(gl, {
-        attribs: {},
-        attribPool: pool,
-        uniforms: {},
-        shader: defShader(gl, {
-            vs: (gl, unis, ins, outs) => [
-                defMain(() => [
-                    assign(
-                        outs.valpha,
-                        add(
-                            mul(sin(mul(ins.id, float(37.13829))), float(0.3)),
-                            float(0.7)
-                        )
-                    ),
-                    assign(
-                        gl.gl_Position,
-                        mul(
-                            mul(unis.proj, unis.modelview),
-                            vec4(
-                                sub(
-                                    mod(
-                                        add(
-                                            ins.position,
-                                            mul(ins.dir, unis.time)
-                                        ),
-                                        float(10)
-                                    ),
-                                    float(5)
-                                ),
-                                1
-                            )
-                        )
-                    ),
-                    assign(gl.gl_PointSize, div(float(20), $w(gl.gl_Position))),
-                ]),
-            ],
-            fs: (gl, _, ins, outs) => [
-                defMain(() => [
-                    assign(
-                        outs.fragColor,
-                        vec4(
-                            vec3(ins.valpha),
-                            sub(
-                                float(1),
-                                smoothstep(
-                                    float(0.1),
-                                    float(0.5),
-                                    length(sub(gl.gl_PointCoord, float(0.5)))
-                                )
-                            )
-                        )
-                    ),
-                ]),
-            ],
-            attribs: {
-                position: "vec3",
-                dir: "vec3",
-                id: "float",
-            },
-            varying: {
-                valpha: "float",
-            },
-            uniforms: {
-                modelview: "mat4",
-                proj: "mat4",
-                time: "float",
-            },
-            state: {
-                blend: true,
-                blendFn: BLEND_NORMAL,
-            },
-        }),
-        mode: DrawMode.POINTS,
-        num,
-    });
+	const pool = new AttribPool({
+		attribs: {
+			position: { type: "f32", size: 3, byteOffset: 0 },
+			dir: { type: "f32", size: 3, byteOffset: 12 },
+			id: { type: "f32", size: 1, byteOffset: 24 },
+		},
+		mem: {
+			size: num * 28 + 8 /* FIXME */ + 40,
+		},
+		num,
+	});
+	for (let i = 0, r = SYSTEM; i < num; i++) {
+		const pos = [r.minmax(-15, 15), r.minmax(0, 10), 0];
+		pool.setAttribValue("position", i, pos);
+		pool.setAttribValue(
+			"dir",
+			i,
+			mixN([], mulN([], pos, 0.1), [0, -1, r.minmax(2, 5)], 0.8)
+		);
+		pool.setAttribValue("id", i, i);
+	}
+	return compileModel(gl, {
+		attribs: {},
+		attribPool: pool,
+		uniforms: {},
+		shader: defShader(gl, {
+			vs: (gl, unis, ins, outs) => [
+				defMain(() => [
+					assign(
+						outs.valpha,
+						add(
+							mul(sin(mul(ins.id, float(37.13829))), float(0.3)),
+							float(0.7)
+						)
+					),
+					assign(
+						gl.gl_Position,
+						mul(
+							mul(unis.proj, unis.modelview),
+							vec4(
+								sub(
+									mod(
+										add(
+											ins.position,
+											mul(ins.dir, unis.time)
+										),
+										float(10)
+									),
+									float(5)
+								),
+								1
+							)
+						)
+					),
+					assign(gl.gl_PointSize, div(float(20), $w(gl.gl_Position))),
+				]),
+			],
+			fs: (gl, _, ins, outs) => [
+				defMain(() => [
+					assign(
+						outs.fragColor,
+						vec4(
+							vec3(ins.valpha),
+							sub(
+								float(1),
+								smoothstep(
+									float(0.1),
+									float(0.5),
+									length(sub(gl.gl_PointCoord, float(0.5)))
+								)
+							)
+						)
+					),
+				]),
+			],
+			attribs: {
+				position: "vec3",
+				dir: "vec3",
+				id: "float",
+			},
+			varying: {
+				valpha: "float",
+			},
+			uniforms: {
+				modelview: "mat4",
+				proj: "mat4",
+				time: "float",
+			},
+			state: {
+				blend: true,
+				blendFn: BLEND_NORMAL,
+			},
+		}),
+		mode: DrawMode.POINTS,
+		num,
+	});
 };
 
 const app = () => {
-    // If using MSDF font def from https://msdf-bmfont.donmccurdy.com/
-    // const glyphs = convertGlyphs(GLYPHS);
-    const glyphs = GLYPHS;
-    let stars: ModelSpec;
-    let body: ModelSpec;
-    let mouse: ISubscription<any, ReadonlyVec>;
-    let bg = 0;
-    const canvas = canvasWebGL({
-        init: async (el, gl) => {
-            const img = new Image();
-            img.src = GLYPH_TEX;
-            await img.decode();
-            body = createText(gl, glyphs, img, TEXT);
-            stars = createStarField(gl);
-            body.uniforms!.proj = stars.uniforms!.proj = <GLMat4>(
-                perspective(
-                    [],
-                    60,
-                    gl.drawingBufferWidth / gl.drawingBufferHeight,
-                    0.1,
-                    20
-                )
-            );
-            mouse = fromDOMEvent(el, "mousemove").transform(
-                map((e) =>
-                    fit3(
-                        [],
-                        [e.clientX, e.clientY, 0],
-                        ZERO3,
-                        [window.innerWidth, window.innerHeight, 0],
-                        [-1, -1, 0],
-                        [1, 1, 0]
-                    )
-                )
-            );
-        },
-        update: (el, gl, __, time) => {
-            if (!body) return;
-            adaptDPI(el, window.innerWidth, window.innerHeight);
-            // prettier-ignore
-            const eye = madd3(
-                [],
-                mouse.deref() || ZERO3,
-                [2, 0.5, 0],
-                [0, -4, 5]
-            );
-            const view = lookAt([], eye, ZERO3, Y3);
-            body.uniforms!.modelview = <GLMat4>(
-                concat(
-                    [],
-                    view,
-                    transform44(
-                        [],
-                        [0, fitClamped(time % 70000, 0, 70000, -3.5, 20), 0],
-                        ZERO3,
-                        0.005
-                    )
-                )
-            );
-            stars.uniforms!.modelview = <GLMat4>view;
-            stars.uniforms!.time = 10 + time * 0.001;
-            gl.viewport(0, 0, gl.drawingBufferWidth, gl.drawingBufferHeight);
-            gl.clearColor(bg, bg, bg, 1);
-            gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
-            draw([stars, body]);
-        },
-    });
-    return [canvas, { width: window.innerWidth, height: window.innerHeight }];
+	// If using MSDF font def from https://msdf-bmfont.donmccurdy.com/
+	// const glyphs = convertGlyphs(GLYPHS);
+	const glyphs = GLYPHS;
+	let stars: ModelSpec;
+	let body: ModelSpec;
+	let mouse: ISubscription<any, ReadonlyVec>;
+	let bg = 0;
+	const canvas = canvasWebGL({
+		init: async (el, gl) => {
+			const img = new Image();
+			img.src = GLYPH_TEX;
+			await img.decode();
+			body = createText(gl, glyphs, img, TEXT);
+			stars = createStarField(gl);
+			body.uniforms!.proj = stars.uniforms!.proj = <GLMat4>(
+				perspective(
+					[],
+					60,
+					gl.drawingBufferWidth / gl.drawingBufferHeight,
+					0.1,
+					20
+				)
+			);
+			mouse = fromDOMEvent(el, "mousemove").transform(
+				map((e) =>
+					fit3(
+						[],
+						[e.clientX, e.clientY, 0],
+						ZERO3,
+						[window.innerWidth, window.innerHeight, 0],
+						[-1, -1, 0],
+						[1, 1, 0]
+					)
+				)
+			);
+		},
+		update: (el, gl, __, time) => {
+			if (!body) return;
+			adaptDPI(el, window.innerWidth, window.innerHeight);
+			const eye = madd3(
+				[],
+				mouse.deref() || ZERO3,
+				[2, 0.5, 0],
+				[0, -4, 5]
+			);
+			const view = lookAt([], eye, ZERO3, Y3);
+			body.uniforms!.modelview = <GLMat4>(
+				concat(
+					[],
+					view,
+					transform44(
+						[],
+						[0, fitClamped(time % 70000, 0, 70000, -3.5, 20), 0],
+						ZERO3,
+						0.005
+					)
+				)
+			);
+			stars.uniforms!.modelview = <GLMat4>view;
+			stars.uniforms!.time = 10 + time * 0.001;
+			gl.viewport(0, 0, gl.drawingBufferWidth, gl.drawingBufferHeight);
+			gl.clearColor(bg, bg, bg, 1);
+			gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+			draw([stars, body]);
+		},
+	});
+	return [canvas, { width: window.innerWidth, height: window.innerHeight }];
 };
 
 start(app());

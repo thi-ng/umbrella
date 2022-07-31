@@ -2,10 +2,10 @@ import { DEFAULT, defmulti } from "@thi.ng/defmulti/defmulti";
 import type { MaybeColor } from "./api.js";
 import { rgb } from "./rgb/rgb.js";
 import {
-    luminanceAbgr32,
-    luminanceArgb32,
-    luminanceRgb,
-    luminanceSrgb,
+	luminanceAbgr32,
+	luminanceArgb32,
+	luminanceRgb,
+	luminanceSrgb,
 } from "./luminance-rgb.js";
 import { __dispatch0 } from "./internal/dispatch.js";
 
@@ -20,16 +20,16 @@ import { __dispatch0 } from "./internal/dispatch.js";
  * to linear RGB.
  */
 export const luminance = defmulti<MaybeColor, number>(
-    <any>__dispatch0,
-    { lch: "lab", oklab: "lab", ycc: "lab", xyy: "hcy" },
-    {
-        argb32: <any>luminanceArgb32,
-        abgr32: <any>luminanceAbgr32,
-        hcy: (x: any) => x[2],
-        lab: (x: any) => x[0],
-        rgb: <any>luminanceRgb,
-        srgb: <any>luminanceSrgb,
-        xyz: (x: any) => x[1],
-        [DEFAULT]: (x: any) => luminanceRgb(rgb(x)),
-    }
+	<any>__dispatch0,
+	{ lch: "lab", oklab: "lab", ycc: "lab", xyy: "hcy" },
+	{
+		argb32: <any>luminanceArgb32,
+		abgr32: <any>luminanceAbgr32,
+		hcy: (x: any) => x[2],
+		lab: (x: any) => x[0],
+		rgb: <any>luminanceRgb,
+		srgb: <any>luminanceSrgb,
+		xyz: (x: any) => x[1],
+		[DEFAULT]: (x: any) => luminanceRgb(rgb(x)),
+	}
 );

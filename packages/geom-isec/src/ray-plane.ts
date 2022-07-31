@@ -10,27 +10,27 @@ import { sub } from "@thi.ng/vectors/sub";
 import { NONE } from "./api.js";
 
 export const intersectRayPlane = (
-    rpos: ReadonlyVec,
-    dir: ReadonlyVec,
-    normal: ReadonlyVec,
-    w: number,
-    eps = EPS
+	rpos: ReadonlyVec,
+	dir: ReadonlyVec,
+	normal: ReadonlyVec,
+	w: number,
+	eps = EPS
 ) => {
-    const d = dot(normal, dir);
-    const cp = sign(dot(normal, rpos) - w, eps);
-    if ((d > eps && cp < 0) || (d < -eps && cp > 0)) {
-        const isec = sub(null, mulN([], normal, w), rpos);
-        const alpha = dot(normal, isec) / d;
-        return {
-            type: IntersectionType.INTERSECT,
-            isec: maddN(isec, dir, alpha, rpos),
-            alpha,
-        };
-    }
-    return cp === 0
-        ? {
-              type: IntersectionType.COINCIDENT,
-              isec: copy(rpos),
-          }
-        : NONE;
+	const d = dot(normal, dir);
+	const cp = sign(dot(normal, rpos) - w, eps);
+	if ((d > eps && cp < 0) || (d < -eps && cp > 0)) {
+		const isec = sub(null, mulN([], normal, w), rpos);
+		const alpha = dot(normal, isec) / d;
+		return {
+			type: IntersectionType.INTERSECT,
+			isec: maddN(isec, dir, alpha, rpos),
+			alpha,
+		};
+	}
+	return cp === 0
+		? {
+				type: IntersectionType.COINCIDENT,
+				isec: copy(rpos),
+		  }
+		: NONE;
 };

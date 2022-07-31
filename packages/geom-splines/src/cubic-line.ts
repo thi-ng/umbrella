@@ -12,8 +12,8 @@ import { set } from "@thi.ng/vectors/set";
  * @param b - line endpoint
  */
 export const cubicFromLine: FnU2<Vec, Vec[]> = (a, b) => [
-    set([], a),
-    mixN([], a, b, 1 / 3),
-    mixN([], b, a, 1 / 3),
-    set([], b),
+	set([], a),
+	mixN([], a, b, 1 / 3),
+	mixN([], b, a, 1 / 3),
+	set([], b),
 ];

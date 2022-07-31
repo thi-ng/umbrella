@@ -9,8 +9,8 @@ import { xfJoin } from "./join.js";
  * @param scope -
  */
 export const xfJson: ScopeTransform<string> = (scope) => {
-    scope!.result = JSON.parse(xfJoin(scope)!.result);
-    return scope;
+	scope!.result = JSON.parse(xfJoin(scope)!.result);
+	return scope;
 };
 
 /**

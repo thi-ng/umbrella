@@ -4,7 +4,7 @@ import { DOT, DOT_G } from "./compile/templates.js";
 import { vop } from "./vop.js";
 
 const $ = (dim: number) =>
-    dot.add(dim, compile(dim, DOT, "a,b", undefined, "", "+", "return ", ";"));
+	dot.add(dim, compile(dim, DOT, "a,b", undefined, "", "+", "return ", ";"));
 
 export const dot: MultiVecOpRoVV<number> = vop();
 

@@ -3,15 +3,15 @@ import type { FnN, FnN2, FnN3, FnU2 } from "@thi.ng/api";
 /**
  * Returns a value with the magnitude of `x` and the sign of `y`.
  *
- * @param x - 
- * @param y - 
+ * @param x -
+ * @param y -
  */
 export const copysign: FnN2 = (x, y) => Math.sign(y) * Math.abs(x);
 
 /**
  * Returns `2^x`.
  *
- * @param x - 
+ * @param x -
  */
 export const exp2: FnN = (x) => 2 ** x;
 
@@ -19,17 +19,17 @@ export const exp2: FnN = (x) => 2 ** x;
  * Returns the positive difference between `x` and `y`, i.e. `x - y` iff `x > y`,
  * otherwise zero.
  *
- * @param x - 
- * @param y - 
+ * @param x -
+ * @param y -
  */
 export const fdim: FnN2 = (x, y) => Math.max(x - y, 0);
 
 /**
  * Returns `x * y + z`.
  *
- * @param x - 
- * @param y - 
- * @param z - 
+ * @param x -
+ * @param y -
+ * @param z -
  */
 export const fma: FnN3 = (x, y, z) => x * y + z;
 
@@ -47,8 +47,8 @@ export const fma: FnN3 = (x, y, z) => x * y + z;
  *
  * Reference: https://www.cplusplus.com/reference/cmath/fmod/
  *
- * @param x - 
- * @param y - 
+ * @param x -
+ * @param y -
  */
 export const fmod: FnN2 = (x, y) => x % y;
 //export const fmod: FnN2 = (x, y) => x - y * Math.trunc(x / y);
@@ -66,30 +66,30 @@ export const fmod: FnN2 = (x, y) => x % y;
  * Based on:
  * https://github.com/locutusjs/locutus/blob/master/src/c/math/frexp.js
  *
- * @param x - 
+ * @param x -
  */
 export const frexp = (x: number) => {
-    if (x === 0 || !isFinite(x)) return [x, 0];
+	if (x === 0 || !isFinite(x)) return [x, 0];
 
-    const abs = Math.abs(x);
-    let exp = Math.max(-1023, Math.floor(Math.log2(abs)) + 1);
-    let y = abs * 2 ** -exp;
-    while (y < 0.5) {
-        y *= 2;
-        exp--;
-    }
-    while (y >= 1) {
-        y *= 0.5;
-        exp++;
-    }
-    return [x < 0 ? -y : y, exp];
+	const abs = Math.abs(x);
+	let exp = Math.max(-1023, Math.floor(Math.log2(abs)) + 1);
+	let y = abs * 2 ** -exp;
+	while (y < 0.5) {
+		y *= 2;
+		exp--;
+	}
+	while (y >= 1) {
+		y *= 0.5;
+		exp++;
+	}
+	return [x < 0 ? -y : y, exp];
 };
 
 /**
  * Inverse op of {@link frexp}. Returns `x * 2^exp`
  *
- * @param x - 
- * @param exp - 
+ * @param x -
+ * @param exp -
  */
 export const ldexp: FnN2 = (x, exp) => x * 2 ** exp;
 
@@ -99,8 +99,8 @@ export const ldexp: FnN2 = (x, exp) => x * 2 ** exp;
  * @remarks
  * https://www.cplusplus.com/reference/cmath/remainder/
  *
- * @param x - 
- * @param y - 
+ * @param x -
+ * @param y -
  */
 export const remainder: FnN2 = (x, y) => x - y * Math.round(x / y);
 
@@ -108,12 +108,12 @@ export const remainder: FnN2 = (x, y) => x - y * Math.round(x / y);
  * Computes both the quotient and remainder of the integer division of the
  * numerator `x` by the denominator `y`.
  *
- * @param x - 
- * @param y - 
+ * @param x -
+ * @param y -
  */
 export const ldiv: FnU2<number, [number, number]> = (x, y) => {
-    x |= 0;
-    y |= 0;
-    const q = (x / y) | 0;
-    return [q, x - q * y];
+	x |= 0;
+	y |= 0;
+	const q = (x / y) | 0;
+	return [q, x - q * y];
 };

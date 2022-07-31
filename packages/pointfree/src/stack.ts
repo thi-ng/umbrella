@@ -2,89 +2,89 @@ import type { Stack, StackContext } from "./api.js";
 import { $, $n } from "./safe.js";
 
 const __xsp = (id: 0 | 1) => (ctx: StackContext) => (
-    ctx[0].push(ctx[id].length), ctx
+	ctx[0].push(ctx[id].length), ctx
 );
 
 const __dup = (id: 0 | 1) => __copy(id, id);
 
 const __dup2 = (id: 0 | 1) => (ctx: StackContext) => {
-    const stack = ctx[id];
-    let n = stack.length - 2;
-    $n(n, 0);
-    stack.push(stack[n], stack[n + 1]);
-    return ctx;
+	const stack = ctx[id];
+	let n = stack.length - 2;
+	$n(n, 0);
+	stack.push(stack[n], stack[n + 1]);
+	return ctx;
 };
 
 const __dup3 = (id: 0 | 1) => (ctx: StackContext) => {
-    const stack = ctx[id];
-    let n = stack.length - 3;
-    $n(n, 0);
-    stack.push(stack[n], stack[n + 1], stack[n + 2]);
-    return ctx;
+	const stack = ctx[id];
+	let n = stack.length - 3;
+	$n(n, 0);
+	stack.push(stack[n], stack[n + 1], stack[n + 2]);
+	return ctx;
 };
 
-const __drop = (id: 0 | 1, n = 1) => (ctx: StackContext) => (
-    $(ctx[id], 1), (ctx[id].length -= n), ctx
-);
+const __drop =
+	(id: 0 | 1, n = 1) =>
+	(ctx: StackContext) => ($(ctx[id], 1), (ctx[id].length -= n), ctx);
 
 const __swap = (i: number) => (ctx: StackContext) => {
-    const stack = ctx[i];
-    const n = stack.length - 2;
-    $n(n, 0);
-    const a = stack[n];
-    stack[n] = stack[n + 1];
-    stack[n + 1] = a;
-    return ctx;
+	const stack = ctx[i];
+	const n = stack.length - 2;
+	$n(n, 0);
+	const a = stack[n];
+	stack[n] = stack[n + 1];
+	stack[n + 1] = a;
+	return ctx;
 };
 
 const __swap2 = (i: number) => (ctx: StackContext) => {
-    const stack = ctx[i];
-    let n = stack.length - 1;
-    $n(n, 3);
-    let a = stack[n];
-    stack[n] = stack[n - 2];
-    stack[n - 2] = a;
-    n--;
-    a = stack[n];
-    stack[n] = stack[n - 2];
-    stack[n - 2] = a;
-    return ctx;
+	const stack = ctx[i];
+	let n = stack.length - 1;
+	$n(n, 3);
+	let a = stack[n];
+	stack[n] = stack[n - 2];
+	stack[n - 2] = a;
+	n--;
+	a = stack[n];
+	stack[n] = stack[n - 2];
+	stack[n - 2] = a;
+	return ctx;
 };
 
 const __over = (id: 0 | 1) => (ctx: StackContext) => {
-    const stack = ctx[id];
-    const n = stack.length - 2;
-    $n(n, 0);
-    stack.push(stack[n]);
-    return ctx;
+	const stack = ctx[id];
+	const n = stack.length - 2;
+	$n(n, 0);
+	stack.push(stack[n]);
+	return ctx;
 };
 
 const __move = (src: 0 | 1, dest: 0 | 1) => (ctx: StackContext) => (
-    $(ctx[src], 1), ctx[dest].push(ctx[src].pop()), ctx
+	$(ctx[src], 1), ctx[dest].push(ctx[src].pop()), ctx
 );
 
 const __move2 = (a: 0 | 1, b: 0 | 1) => (ctx: StackContext) => {
-    const src = ctx[a];
-    $(src, 2);
-    const v = src.pop();
-    ctx[b].push(src.pop(), v);
-    return ctx;
+	const src = ctx[a];
+	$(src, 2);
+	const v = src.pop();
+	ctx[b].push(src.pop(), v);
+	return ctx;
 };
 
 const __copy = (src: 0 | 1, dest: 0 | 1) => (ctx: StackContext) => (
-    $(ctx[src], 1), ctx[dest].push(tos(ctx[src])), ctx
+	$(ctx[src], 1), ctx[dest].push(tos(ctx[src])), ctx
 );
 
 const __copy2 = (a: 0 | 1, b: 0 | 1) => (ctx: StackContext) => {
-    const src = ctx[a];
-    const n = src.length - 2;
-    $n(n, 0);
-    ctx[b].push(src[n], src[n + 1]);
-    return ctx;
+	const src = ctx[a];
+	const n = src.length - 2;
+	$n(n, 0);
+	ctx[b].push(src[n], src[n + 1]);
+	return ctx;
 };
 
 const __incdec = (id: 0 | 1, n: number) => (ctx: StackContext) => (
-    $(ctx[id], 1), (ctx[id][ctx[id].length - 1] += n), ctx
+	$(ctx[id], 1), (ctx[id][ctx[id].length - 1] += n), ctx
 );
 
 //////////////////// Stack manipulation words ////////////////////
@@ -118,12 +118,12 @@ export const dsp = __xsp(0);
  * @param ctx -
  */
 export const pick = (ctx: StackContext) => {
-    const stack = ctx[0];
-    let n = stack.length - 1;
-    $n(n, 0);
-    $n((n -= stack.pop() + 1), 0);
-    stack.push(stack[n]);
-    return ctx;
+	const stack = ctx[0];
+	let n = stack.length - 1;
+	$n(n, 0);
+	$n((n -= stack.pop() + 1), 0);
+	stack.push(stack[n]);
+	return ctx;
 };
 
 /**
@@ -154,7 +154,7 @@ export const drop2 = __drop(0, 2);
  * ( x -- x )
  */
 export const dropif = (ctx: StackContext) => (
-    $(ctx[0], 1), tos(ctx[0]) && ctx[0].length--, ctx
+	$(ctx[0], 1), tos(ctx[0]) && ctx[0].length--, ctx
 );
 
 /**
@@ -164,9 +164,9 @@ export const dropif = (ctx: StackContext) => (
  *
  * @param args -
  */
-export const defPush = (...args: any[]) => (ctx: StackContext) => (
-    ctx[0].push(...args), ctx
-);
+export const defPush =
+	(...args: any[]) =>
+	(ctx: StackContext) => (ctx[0].push(...args), ctx);
 
 /**
  * Duplicates TOS on d-stack.
@@ -207,10 +207,10 @@ export const dup3 = __dup3(0);
  * @param ctx -
  */
 export const dupif = (ctx: StackContext) => {
-    $(ctx[0], 1);
-    const x = tos(ctx[0]);
-    x && ctx[0].push(x);
-    return ctx;
+	$(ctx[0], 1);
+	const x = tos(ctx[0]);
+	x && ctx[0].push(x);
+	return ctx;
 };
 
 /**
@@ -239,11 +239,11 @@ export const swap2 = __swap2(0);
  * @param ctx -
  */
 export const nip = (ctx: StackContext) => {
-    const stack = ctx[0];
-    const n = stack.length - 2;
-    $n(n, 0);
-    stack[n] = stack.pop();
-    return ctx;
+	const stack = ctx[0];
+	const n = stack.length - 2;
+	$n(n, 0);
+	stack[n] = stack.pop();
+	return ctx;
 };
 
 /**
@@ -254,11 +254,11 @@ export const nip = (ctx: StackContext) => {
  * @param ctx -
  */
 export const tuck = (ctx: StackContext) => {
-    $(ctx[0], 2);
-    const stack = ctx[0];
-    const a = stack.pop();
-    stack.push(a, stack.pop(), a);
-    return ctx;
+	$(ctx[0], 2);
+	const stack = ctx[0];
+	const a = stack.pop();
+	stack.push(a, stack.pop(), a);
+	return ctx;
 };
 
 /**
@@ -269,14 +269,14 @@ export const tuck = (ctx: StackContext) => {
  * @param ctx -
  */
 export const rot = (ctx: StackContext) => {
-    const stack = ctx[0];
-    const n = stack.length - 1;
-    $n(n, 2);
-    const c = stack[n - 2];
-    stack[n - 2] = stack[n - 1];
-    stack[n - 1] = stack[n];
-    stack[n] = c;
-    return ctx;
+	const stack = ctx[0];
+	const n = stack.length - 1;
+	$n(n, 2);
+	const c = stack[n - 2];
+	stack[n - 2] = stack[n - 1];
+	stack[n - 1] = stack[n];
+	stack[n] = c;
+	return ctx;
 };
 
 /**
@@ -287,14 +287,14 @@ export const rot = (ctx: StackContext) => {
  * @param ctx -
  */
 export const invrot = (ctx: StackContext) => {
-    const stack = ctx[0];
-    const n = stack.length - 1;
-    $n(n, 2);
-    const c = stack[n];
-    stack[n] = stack[n - 1];
-    stack[n - 1] = stack[n - 2];
-    stack[n - 2] = c;
-    return ctx;
+	const stack = ctx[0];
+	const n = stack.length - 1;
+	$n(n, 2);
+	const c = stack[n];
+	stack[n] = stack[n - 1];
+	stack[n - 1] = stack[n - 2];
+	stack[n - 2] = c;
+	return ctx;
 };
 
 /**

@@ -10,27 +10,27 @@ import { xyzXyzD50_65 } from "../xyz/xyz-xyz.js";
 import { oklabRgb } from "./oklab-rgb.js";
 
 export declare class Oklab implements TypedColor<Oklab> {
-    buf: NumericArray;
-    offset: number;
-    stride: number;
-    l: number;
-    a: number;
-    b: number;
-    alpha: number;
-    [id: number]: number;
-    readonly mode: "oklab";
-    readonly length: 4;
-    readonly range: [ReadonlyColor, ReadonlyColor];
-    [Symbol.iterator](): Iterator<number, any, undefined>;
-    clamp(): this;
-    copy(): Oklab;
-    copyView(): Oklab;
-    deref(): Color;
-    empty(): Oklab;
-    eqDelta(o: Oklab, eps?: number): boolean;
-    randomize(rnd?: IRandom): this;
-    set(src: ReadonlyColor): this;
-    toJSON(): number[];
+	buf: NumericArray;
+	offset: number;
+	stride: number;
+	l: number;
+	a: number;
+	b: number;
+	alpha: number;
+	[id: number]: number;
+	readonly mode: "oklab";
+	readonly length: 4;
+	readonly range: [ReadonlyColor, ReadonlyColor];
+	[Symbol.iterator](): Iterator<number, any, undefined>;
+	clamp(): this;
+	copy(): Oklab;
+	copyView(): Oklab;
+	deref(): Color;
+	empty(): Oklab;
+	eqDelta(o: Oklab, eps?: number): boolean;
+	randomize(rnd?: IRandom): this;
+	set(src: ReadonlyColor): this;
+	toJSON(): number[];
 }
 
 /**
@@ -40,19 +40,19 @@ export declare class Oklab implements TypedColor<Oklab> {
  * Reference: https://bottosson.github.io/posts/oklab/
  */
 export const oklab = <ColorFactory<Oklab>>defColor({
-    mode: "oklab",
-    channels: {
-        a: { range: [-0.2339, 0.2763] },
-        b: { range: [-0.3116, 0.1985] },
-    },
-    order: <const>["l", "a", "b", "alpha"],
-    from: {
-        lab50: [labXyz, xyzXyzD50_65, xyzOklab],
-        lab65: [labXyzD65, xyzOklab],
-        lch: [lchLab, labXyzD65, xyzOklab],
-        rgb: rgbOklab,
-        xyz50: [xyzXyzD50_65, xyzOklab],
-        xyz65: xyzOklab,
-    },
-    toRgb: oklabRgb,
+	mode: "oklab",
+	channels: {
+		a: { range: [-0.2339, 0.2763] },
+		b: { range: [-0.3116, 0.1985] },
+	},
+	order: <const>["l", "a", "b", "alpha"],
+	from: {
+		lab50: [labXyz, xyzXyzD50_65, xyzOklab],
+		lab65: [labXyzD65, xyzOklab],
+		lch: [lchLab, labXyzD65, xyzOklab],
+		rgb: rgbOklab,
+		xyz50: [xyzXyzD50_65, xyzOklab],
+		xyz65: xyzOklab,
+	},
+	toRgb: oklabRgb,
 });

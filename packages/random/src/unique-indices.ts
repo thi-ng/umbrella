@@ -9,29 +9,29 @@ import { SYSTEM } from "./system.js";
  * samples (or creates a new one). Returns the array. Gives up after
  * `maxTrials`.
  *
- * @param k - 
- * @param fn - 
- * @param existing - 
- * @param maxTrials - 
+ * @param k -
+ * @param fn -
+ * @param existing -
+ * @param maxTrials -
  */
 export const uniqueValuesFrom = (
-    k: number,
-    fn: Fn0<number>,
-    existing: number[] = [],
-    maxTrials = 100
+	k: number,
+	fn: Fn0<number>,
+	existing: number[] = [],
+	maxTrials = 100
 ) => {
-    let n = 0;
-    while (n < k) {
-        let i: number;
-        let trials = maxTrials;
-        do {
-            i = fn();
-        } while (existing.includes(i) && --trials > 0);
-        if (trials <= 0) break;
-        existing.push(i);
-        n++;
-    }
-    return existing;
+	let n = 0;
+	while (n < k) {
+		let i: number;
+		let trials = maxTrials;
+		do {
+			i = fn();
+		} while (existing.includes(i) && --trials > 0);
+		if (trials <= 0) break;
+		existing.push(i);
+		n++;
+	}
+	return existing;
 };
 
 /**
@@ -44,19 +44,19 @@ export const uniqueValuesFrom = (
  * Candidates are drawn from the provided `rnd` {@link IRandom} (default:
  * {@link SYSTEM}) and only `maxTrials` are attempted before giving up.
  *
- * @param k - 
- * @param max - 
- * @param existing - 
- * @param maxTrials - 
- * @param rnd - 
+ * @param k -
+ * @param max -
+ * @param existing -
+ * @param maxTrials -
+ * @param rnd -
  */
 export const uniqueIndices = (
-    k: number,
-    max: number,
-    existing?: number[],
-    maxTrials = max,
-    rnd: IRandom = SYSTEM
+	k: number,
+	max: number,
+	existing?: number[],
+	maxTrials = max,
+	rnd: IRandom = SYSTEM
 ) => {
-    assert(k >= 0 && k <= max, `k must be in [0, ${max}] interval`);
-    return uniqueValuesFrom(k, () => rnd.int() % max, existing, maxTrials);
+	assert(k >= 0 && k <= max, `k must be in [0, ${max}] interval`);
+	return uniqueValuesFrom(k, () => rnd.int() % max, existing, maxTrials);
 };

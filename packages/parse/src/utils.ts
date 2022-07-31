@@ -5,7 +5,7 @@ const cache: string[] = [];
 /**
  * Memoized indentation.
  *
- * @param x - 
+ * @param x -
  *
  * @internal
  */

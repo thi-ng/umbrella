@@ -11,15 +11,15 @@ import { empty } from "./empty.js";
  * @param out - result map
  */
 export const renameKeysMap = <K, V>(
-    src: Map<K, V>,
-    km: Map<K, K>,
-    out?: Map<K, V>
+	src: Map<K, V>,
+	km: Map<K, K>,
+	out?: Map<K, V>
 ) => {
-    out = out || empty(src, Map);
-    for (let [k, v] of src) {
-        out!.set(km.has(k) ? km.get(k)! : k, v);
-    }
-    return out;
+	out = out || empty(src, Map);
+	for (let [k, v] of src) {
+		out!.set(km.has(k) ? km.get(k)! : k, v);
+	}
+	return out;
 };
 
 /**
@@ -37,14 +37,14 @@ export const renameKeysMap = <K, V>(
  * @param out - result object
  */
 export const renameKeysObj = <T>(
-    src: T,
-    km: { [id in keyof T]?: PropertyKey },
-    out: any = {}
+	src: T,
+	km: { [id in keyof T]?: PropertyKey },
+	out: any = {}
 ) => {
-    for (let k in src) {
-        out[km.hasOwnProperty(k) ? km[k] : k] = src[k];
-    }
-    return out;
+	for (let k in src) {
+		out[km.hasOwnProperty(k) ? km[k] : k] = src[k];
+	}
+	return out;
 };
 
 /**
@@ -80,20 +80,20 @@ export const renameKeysObj = <T>(
  * // { aa: 1, bb: 21 }
  * ```
  *
- * @param src - 
- * @param keys - 
+ * @param src -
+ * @param keys -
  */
 export const renameTransformedKeys = <T extends object, K extends keyof T>(
-    src: Nullable<T>,
-    keys: Record<K, PropertyKey | [PropertyKey, Fn2<any, T, any>]>
+	src: Nullable<T>,
+	keys: Record<K, PropertyKey | [PropertyKey, Fn2<any, T, any>]>
 ) => {
-    if (!src) return {};
-    const res: any = {};
-    for (let $k in keys) {
-        const spec = keys[$k];
-        const [k, fn] = isArray(spec) ? spec : [spec];
-        const val = src[$k];
-        if (val != null) res[k] = fn ? fn(val, src) : val;
-    }
-    return res;
+	if (!src) return {};
+	const res: any = {};
+	for (let $k in keys) {
+		const spec = keys[$k];
+		const [k, fn] = isArray(spec) ? spec : [spec];
+		const val = src[$k];
+		if (val != null) res[k] = fn ? fn(val, src) : val;
+	}
+	return res;
 };
