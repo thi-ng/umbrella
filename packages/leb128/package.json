@@ -57,7 +57,8 @@
 		"typescript",
 		"varint",
 		"wasm",
-		"zig"
+		"webassembly",
+		"ziglang"
 	],
 	"publishConfig": {
 		"access": "public"

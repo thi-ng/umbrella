@@ -22,44 +22,44 @@ EOF
 echo "writing package.json..."
 cat << EOF > "$MODULE"/package.json
 {
-    "name": "@example/$1",
-    "version": "0.0.1",
-    "private": true,
-    "description": "TODO",
-    "repository": "https://github.com/thi-ng/umbrella",
-    "author": "$AUTHOR <$EMAIL>",
-    "license": "Apache-2.0",
-    "scripts": {
-        "start": "vite --open",
-        "build": "tsc && vite build --base='./'",
-        "preview": "vite preview --host --open"
-    },
-    "devDependencies": {
-        "typescript": "^4.7.4",
-        "vite": "^3.0.0"
-    },
-    "dependencies": {
-        "@thi.ng/api": "workspace:^",
-        "@thi.ng/rdom": "workspace:^"
-    },
-    "browser": {
-        "process": false
-    },
-    "thi.ng": {
-        "skip": true,
-        "readme": false,
-        "screenshot": "examples/"
-    }
+	"name": "@example/$1",
+	"version": "0.0.1",
+	"private": true,
+	"description": "TODO",
+	"repository": "https://github.com/thi-ng/umbrella",
+	"author": "$AUTHOR <$EMAIL>",
+	"license": "Apache-2.0",
+	"scripts": {
+		"start": "vite --open",
+		"build": "tsc && vite build --base='./'",
+		"preview": "vite preview --host --open"
+	},
+	"devDependencies": {
+		"typescript": "^4.7.4",
+		"vite": "^3.0.4"
+	},
+	"dependencies": {
+		"@thi.ng/api": "workspace:^",
+		"@thi.ng/rdom": "workspace:^"
+	},
+	"browser": {
+		"process": false
+	},
+	"thi.ng": {
+		"skip": true,
+		"readme": false,
+		"screenshot": "examples/"
+	}
 }
 EOF
 
 echo "writing tsconfig.json..."
 cat << EOF > "$MODULE"/tsconfig.json
 {
-    "extends": "../tsconfig.json",
-    "include": ["src/**/*"],
-    "compilerOptions": {
-    }
+	"extends": "../tsconfig.json",
+	"include": ["src/**/*"],
+	"compilerOptions": {
+	}
 }
 EOF
 
@@ -68,22 +68,22 @@ cat << EOF > "$MODULE"/index.html
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link
-        rel="icon"
-        href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y=".9em" font-size="90">⛱️</text></svg>'
+	<link
+		rel="icon"
+		href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y=".9em" font-size="90">⛱️</text></svg>'
     />
-    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>$1 · @thi.ng/umbrella</title>
-    <link href="https://unpkg.com/tachyons@4/css/tachyons.min.css" rel="stylesheet">
-    <style>
-    </style>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>$1 · @thi.ng/umbrella</title>
+	<link href="https://unpkg.com/tachyons@4/css/tachyons.min.css" rel="stylesheet">
+	<style>
+	</style>
 </head>
 <body class="sans-serif">
-    <div id="app"></div>
-    <div><a class="link" href="https://github.com/thi-ng/umbrella/tree/develop/examples/$1">Source code</a></div>
-    <script type="module" src="/src/index.ts"></script>
+	<div id="app"></div>
+	<div><a class="link" href="https://github.com/thi-ng/umbrella/tree/develop/examples/$1">Source code</a></div>
+	<script type="module" src="/src/index.ts"></script>
 </body>
 </html>
 EOF

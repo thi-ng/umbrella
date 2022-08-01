@@ -57,7 +57,8 @@
 		"typedarray",
 		"typescript",
 		"vector",
-		"wasm"
+		"wasm",
+		"webassembly"
 	],
 	"publishConfig": {
 		"access": "public"
