@@ -34,14 +34,14 @@ export interface CoreAPI {
 	printU32Hex: Fn<number, void>;
 	printF32: Fn<number, void>;
 	printF64: Fn<number, void>;
-	_printI8Array: (ptr: number, len: number) => void;
-	_printU8Array: (ptr: number, len: number) => void;
-	_printI16Array: (ptr: number, len: number) => void;
-	_printU16Array: (ptr: number, len: number) => void;
-	_printI32Array: (ptr: number, len: number) => void;
-	_printU32Array: (ptr: number, len: number) => void;
-	_printF32Array: (ptr: number, len: number) => void;
-	_printF64Array: (ptr: number, len: number) => void;
-	_printStr0: (ptr: number) => void;
-	_printStr: (ptr: number, len: number) => void;
+	_printI8Array: (addr: number, len: number) => void;
+	_printU8Array: (addr: number, len: number) => void;
+	_printI16Array: (addr: number, len: number) => void;
+	_printU16Array: (addr: number, len: number) => void;
+	_printI32Array: (addr: number, len: number) => void;
+	_printU32Array: (addr: number, len: number) => void;
+	_printF32Array: (addr: number, len: number) => void;
+	_printF64Array: (addr: number, len: number) => void;
+	_printStr0: (addr: number) => void;
+	_printStr: (addr: number, len: number) => void;
 }

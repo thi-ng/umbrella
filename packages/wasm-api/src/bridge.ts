@@ -19,13 +19,13 @@ export class WasmBridge {
 	core: CoreAPI;
 
 	constructor(
-		public logger: ILogger = new ConsoleLogger("wasm"),
-		protected children: IWasmAPI[] = []
+		public modules: Record<string, IWasmAPI> = {},
+		public logger: ILogger = new ConsoleLogger("wasm")
 	) {
 		const logN = (x: number) => this.logger.debug(x);
 		const logA =
-			(method: FnU2<number, TypedArray>) => (ptr: number, len: number) =>
-				this.logger.debug(method(ptr, len).join(", "));
+			(method: FnU2<number, TypedArray>) => (addr: number, len: number) =>
+				this.logger.debug(method(addr, len).join(", "));
 		this.core = {
 			printI8: logN,
 			printU8: logN,
@@ -48,11 +48,11 @@ export class WasmBridge {
 			_printF32Array: logA(this.getF32Array.bind(this)),
 			_printF64Array: logA(this.getF64Array.bind(this)),
 
-			_printStr0: (ptr: number) =>
-				this.logger.debug(this.getString(ptr, 0)),
+			_printStr0: (addr: number) =>
+				this.logger.debug(this.getString(addr, 0)),
 
-			_printStr: (ptr: number, len: number) =>
-				this.logger.debug(this.getString(ptr, len)),
+			_printStr: (addr: number, len: number) =>
+				this.logger.debug(this.getString(addr, len)),
 		};
 	}
 
@@ -65,8 +65,9 @@ export class WasmBridge {
 		this.u32 = new Uint32Array(mem.buffer);
 		this.f32 = new Float32Array(mem.buffer);
 		this.f64 = new Float64Array(mem.buffer);
-		for (let child of this.children) {
-			const status = await child.init(this);
+		for (let id in this.modules) {
+			this.logger.debug(`initializing API module: ${id}`);
+			const status = await this.modules[id].init(this);
 			if (!status) return false;
 		}
 		return true;
@@ -78,7 +79,9 @@ export class WasmBridge {
 	 */
 	getImports() {
 		const env = { ...this.core };
-		for (let child of this.children) Object.assign(env, child.getImports());
+		for (let id in this.modules) {
+			Object.assign(env, this.modules[id].getImports());
+		}
 		return { env };
 	}
 
@@ -152,18 +155,17 @@ export class WasmBridge {
 		return this.f64[ptr >> 3];
 	}
 
-	getString(ptr: number, len = 0) {
-		const start = this.u32[ptr >> 2];
+	getString(addr: number, len = 0) {
 		return this.utf8Decoder.decode(
 			this.u8.subarray(
-				start,
-				len > 0 ? start + len : this.u8.indexOf(0, start)
+				addr,
+				len > 0 ? addr + len : this.u8.indexOf(0, addr)
 			)
 		);
 	}
 
-	getElementById(ptr: number, len = 0) {
-		const id = this.getString(ptr, len);
+	getElementById(addr: number, len = 0) {
+		const id = this.getString(addr, len);
 		const el = document.getElementById(id);
 		assert(!!el, `missing DOM element #${id}`);
 		return el;
@@ -171,21 +173,21 @@ export class WasmBridge {
 
 	setString(
 		str: string,
-		ptr: number,
+		addr: number,
 		maxBytes: number,
 		terminate = true
 	): number {
-		maxBytes = Math.min(maxBytes, this.u8.length - ptr);
+		maxBytes = Math.min(maxBytes, this.u8.length - addr);
 		const len = this.utf8Encoder.encodeInto(
 			str,
-			this.u8.subarray(ptr, ptr + maxBytes)
+			this.u8.subarray(addr, addr + maxBytes)
 		).written!;
 		assert(
 			len != null && len < maxBytes + (terminate ? 0 : 1),
-			`error writing string to 0x${U32(ptr)}`
+			`error writing string to 0x${U32(addr)}`
 		);
 		if (terminate) {
-			this.u8[ptr + len!] = 0;
+			this.u8[addr + len!] = 0;
 			return len! + 1;
 		}
 		return len!;
