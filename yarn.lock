@@ -4739,6 +4739,7 @@ __metadata:
     "@thi.ng/api": ^8.3.9
     "@thi.ng/errors": ^2.1.9
     "@thi.ng/hex": ^2.1.9
+    "@thi.ng/idgen": ^2.1.9
     "@thi.ng/logger": ^1.1.9
     "@thi.ng/testament": ^0.2.10
     rimraf: ^3.0.2
