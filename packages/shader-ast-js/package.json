@@ -1,6 +1,6 @@
 {
     "name": "@thi.ng/shader-ast-js",
-    "version": "0.7.17",
+    "version": "0.7.18",
     "description": "Customizable JS codegen, compiler & runtime for @thi.ng/shader-ast",
     "type": "module",
     "module": "./index.js",
@@ -38,10 +38,10 @@
         "@thi.ng/checks": "^3.2.3",
         "@thi.ng/errors": "^2.1.9",
         "@thi.ng/math": "^5.3.5",
-        "@thi.ng/matrices": "^2.1.17",
-        "@thi.ng/pixel": "^3.4.8",
-        "@thi.ng/shader-ast": "^0.12.13",
-        "@thi.ng/vectors": "^7.5.9"
+        "@thi.ng/matrices": "^2.1.18",
+        "@thi.ng/pixel": "^3.4.9",
+        "@thi.ng/shader-ast": "^0.12.14",
+        "@thi.ng/vectors": "^7.5.10"
     },
     "devDependencies": {
         "@microsoft/api-extractor": "^7.25.0",
