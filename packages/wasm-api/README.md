@@ -10,6 +10,8 @@ This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
 - [About](#about)
+  - [Custom API modules](#custom-api-modules)
+  - [Object indices & handles](#object-indices--handles)
   - [Status](#status)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
@@ -30,6 +32,124 @@ manipulation, WebGL, WebGPU, WebAudio etc.
 
 In general, all languages with a WebAssembly target are supported, however
 currently only bindings for [Zig](https://ziglang.org) are included.
+
+### Custom API modules
+
+On the JS side, custom API modules can be easily integrated via the [`IWasmAPI`
+interface](https://docs.thi.ng/umbrella/wasm-api/interfaces/IWasmAPI.html). The
+following example provides a brief overview:
+
+```ts
+import { IWasmAPI, WasmBridge } from "@thi.ng/wasm-api";
+
+export class CustomAPI implements IWasmAPI {
+	parent!: WasmBridge;
+
+	async init(parent: WasmBridge) {
+		this.parent = parent;
+		this.parent.logger.debug("initializing custom API");
+
+		// any other tasks you might need to do...
+
+		return true;
+	}
+
+	/**
+	 * Returns object of functions to import as externals into
+	 * the WASM module. These imports are merged with the bridge's
+	 * core API and hence should use naming prefixes...
+	 */
+	getImports(): WebAssembly.Imports {
+		return {
+			/**
+			 * Writes 2 random float32 numbers to given address
+			 */
+			custom_randomVec2: (addr: number) => {
+				this.parent.f32.set(
+					[Math.random(), Math.random()],
+					addr >> 2
+				);
+			}
+		};
+	}
+}
+```
+
+Now we can supply this custom API when creating the main WASM bridge:
+
+```ts
+export const bridge = new WasmBridge({ custom: new CustomAPI() });
+```
+
+In Zig (or any other language of your choice) we can then utilize this custom
+API like so (also see example further below in this readme):
+
+```zig
+const js = @import("wasmapi");
+
+/// JS external to fill vec2 w/ random values
+extern fn custom_randomVec2(addr: usize) void;
+
+export fn test_randomVec2() void {
+    var foo = [2]f32{ 0, 0 };
+
+	// print original
+    js.printF32Array(foo[0..]);
+
+	// populate foo with random numbers
+    custom_randomVec2(@ptrToInt(&foo));
+
+	// print result
+    js.printF32Array(foo[0..]);
+}
+```
+
+### Object indices & handles
+
+Since only numeric values can be exchanged between the WASM module and the JS
+host, any JS native objects the WASM side might want to be working with must be
+managed in JS. For this purpose the [`ObjectIndex`
+class](https://docs.thi.ng/umbrella/wasm-api/classes/ObjectIndex.html) can be
+used by API modules to handle ID generation (incl. recycling, using
+[@thi.ng/idgen](https://github.com/thi-ng/umbrella/tree/develop/packages/idgen))
+& indexing of different types of JS objects/values. Only the numeric IDs will
+then need to be exchanged with the WASM module...
+
+```ts
+import { ObjectIndex } from "@thi.ng/wasm-api";
+
+const canvases = new ObjectIndex<HTMLCanvasElement>({ name: "canvas" });
+
+// index item and assign new ID
+canvases.add(document.createElement("canvas"));
+// 0
+
+// look up item by ID
+canvases.get(0);
+// <canvas ...>
+
+// work w/ retrieved item
+canvases.get(0).id = "foo";
+
+// check if item for ID exists (O(1))
+canvases.has(1)
+// false
+
+// by default invalid IDs throw error
+canvases.get(1)
+// Uncaught Error: Assertion failed: missing canvas for ID: 2
+
+// error can be disabled via 2nd arg
+canvases.get(1, false)
+// undefined
+
+// find ID using custom predicate (same failure behavior as .get())
+canvases.find((x) => x.id == "bar")
+// Uncaught Error: Assertion failed: given predicate matched no canvas
+
+canvases.delete(0);
+// true
+```
 
 ### Status
 
@@ -60,13 +180,14 @@ node --experimental-repl-await
 > const wasmApi = await import("@thi.ng/wasm-api");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.08 KB
+Package sizes (gzipped, pre-treeshake): ESM: 1.21 KB
 
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
 - [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
 - [@thi.ng/hex](https://github.com/thi-ng/umbrella/tree/develop/packages/hex)
+- [@thi.ng/idgen](https://github.com/thi-ng/umbrella/tree/develop/packages/idgen)
 - [@thi.ng/logger](https://github.com/thi-ng/umbrella/tree/develop/packages/logger)
 
 ## API
@@ -84,18 +205,23 @@ interface App {
 }
 
 (async () => {
+	// new API bridge with defaults
+	// (i.e. no child API modules and using console logger)
 	const bridge = new WasmBridge();
+
 	// instantiate WASM module using imports provided by the bridge
 	const wasm = await WebAssembly.instantiate(
 		readFileSync("hello.wasm"),
 		bridge.getImports()
 	);
+
 	// cast WASM exports to our defined interface
 	const app: App = <any>wasm.instance.exports;
+
 	// init bindings & child APIs (if any)
 	await bridge.init(app.memory);
 
-	// call WASM function
+	// call a WASM function
 	app.start();
 })();
 ```
@@ -112,7 +238,8 @@ export fn start() void {
 }
 ```
 
-The WASM binary can be built via:
+The WASM binary can be built via (for more complex scenarios add the supplied
+.zig file(s) to your `build.zig` and/or source folder):
 
 ```bash
 # compile WASM binary
@@ -135,12 +262,12 @@ The resulting WASM:
  (import "env" "_printStr" (func $fimport$0 (param i32 i32)))
  (global $global$0 (mut i32) (i32.const 65536))
  (memory $0 2)
- (data (i32.const 65536) "hello world!\00\00\00\00\00\00\01\00\0c\00\00\00")
+ (data (i32.const 65536) "hello world!\00")
  (export "memory" (memory $0))
  (export "start" (func $0))
  (func $0
   (call $fimport$0
-   (i32.const 65552)
+   (i32.const 65536)
    (i32.const 12)
   )
  )
