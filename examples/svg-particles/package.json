@@ -25,6 +25,6 @@
 	"thi.ng": {},
 	"devDependencies": {
 		"typescript": "^4.7.4",
-		"vite": "^3.0.0"
+		"vite": "^3.0.4"
 	}
 }
