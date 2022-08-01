@@ -56,7 +56,7 @@ node --experimental-repl-await
 > const binary = await import("@thi.ng/binary");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 2.19 KB
+Package sizes (gzipped, pre-treeshake): ESM: 2.25 KB
 
 ## Dependencies
 

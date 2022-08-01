@@ -186,7 +186,7 @@ node --experimental-repl-await
 > const associative = await import("@thi.ng/associative");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 6.94 KB
+Package sizes (gzipped, pre-treeshake): ESM: 7.35 KB
 
 ## Dependencies
 
