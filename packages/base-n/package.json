@@ -1,112 +1,112 @@
 {
-	"name": "@thi.ng/base-n",
-	"version": "2.3.3",
-	"description": "Arbitrary base-n conversions w/ presets for base16/32/36/58/62/64/85, support for arrays & bigints",
-	"type": "module",
-	"module": "./index.js",
-	"typings": "./index.d.ts",
-	"sideEffects": false,
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/thi-ng/umbrella.git"
-	},
-	"homepage": "https://github.com/thi-ng/umbrella/tree/master/packages/base-n#readme",
-	"funding": [
-		{
-			"type": "github",
-			"url": "https://github.com/sponsors/postspectacular"
-		},
-		{
-			"type": "patreon",
-			"url": "https://patreon.com/thing_umbrella"
-		}
-	],
-	"author": "Karsten Schmidt <k+npm@thi.ng>",
-	"license": "Apache-2.0",
-	"scripts": {
-		"build": "yarn clean && tsc --declaration",
-		"clean": "rimraf '*.js' '*.d.ts' '*.map' doc",
-		"doc": "typedoc --excludePrivate --excludeInternal --out doc src/index.ts",
-		"doc:ae": "mkdir -p .ae/doc .ae/temp && api-extractor run --local --verbose",
-		"doc:readme": "yarn doc:stats && tools:readme",
-		"doc:stats": "tools:module-stats",
-		"pub": "yarn npm publish --access public",
-		"test": "testament test"
-	},
-	"dependencies": {
-		"@thi.ng/hex": "^2.1.8"
-	},
-	"devDependencies": {
-		"@microsoft/api-extractor": "^7.25.0",
-		"@thi.ng/testament": "^0.2.9",
-		"rimraf": "^3.0.2",
-		"tools": "workspace:^",
-		"typedoc": "^0.22.17",
-		"typescript": "^4.7.4"
-	},
-	"keywords": [
-		"array",
-		"base16",
-		"base32",
-		"base36",
-		"base58",
-		"base62",
-		"base64",
-		"base85",
-		"bigint",
-		"binary",
-		"conversion",
-		"encode",
-		"decode",
-		"string",
-		"typescript"
-	],
-	"publishConfig": {
-		"access": "public"
-	},
-	"engines": {
-		"node": ">=12.7"
-	},
-	"files": [
-		"*.js",
-		"*.d.ts"
-	],
-	"exports": {
-		".": {
-			"default": "./index.js"
-		},
-		"./16": {
-			"default": "./16.js"
-		},
-		"./32": {
-			"default": "./32.js"
-		},
-		"./36": {
-			"default": "./36.js"
-		},
-		"./58": {
-			"default": "./58.js"
-		},
-		"./62": {
-			"default": "./62.js"
-		},
-		"./64": {
-			"default": "./64.js"
-		},
-		"./8": {
-			"default": "./8.js"
-		},
-		"./85": {
-			"default": "./85.js"
-		},
-		"./api": {
-			"default": "./api.js"
-		},
-		"./base": {
-			"default": "./base.js"
-		}
-	},
-	"thi.ng": {
-		"year": 2017
-	}
+    "name": "@thi.ng/base-n",
+    "version": "2.3.4",
+    "description": "Arbitrary base-n conversions w/ presets for base16/32/36/58/62/64/85, support for arrays & bigints",
+    "type": "module",
+    "module": "./index.js",
+    "typings": "./index.d.ts",
+    "sideEffects": false,
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/thi-ng/umbrella.git"
+    },
+    "homepage": "https://github.com/thi-ng/umbrella/tree/master/packages/base-n#readme",
+    "funding": [
+        {
+            "type": "github",
+            "url": "https://github.com/sponsors/postspectacular"
+        },
+        {
+            "type": "patreon",
+            "url": "https://patreon.com/thing_umbrella"
+        }
+    ],
+    "author": "Karsten Schmidt <k+npm@thi.ng>",
+    "license": "Apache-2.0",
+    "scripts": {
+        "build": "yarn clean && tsc --declaration",
+        "clean": "rimraf '*.js' '*.d.ts' '*.map' doc",
+        "doc": "typedoc --excludePrivate --excludeInternal --out doc src/index.ts",
+        "doc:ae": "mkdir -p .ae/doc .ae/temp && api-extractor run --local --verbose",
+        "doc:readme": "yarn doc:stats && tools:readme",
+        "doc:stats": "tools:module-stats",
+        "pub": "yarn npm publish --access public",
+        "test": "testament test"
+    },
+    "dependencies": {
+        "@thi.ng/hex": "^2.1.9"
+    },
+    "devDependencies": {
+        "@microsoft/api-extractor": "^7.25.0",
+        "@thi.ng/testament": "^0.2.10",
+        "rimraf": "^3.0.2",
+        "tools": "workspace:^",
+        "typedoc": "^0.22.17",
+        "typescript": "^4.7.4"
+    },
+    "keywords": [
+        "array",
+        "base16",
+        "base32",
+        "base36",
+        "base58",
+        "base62",
+        "base64",
+        "base85",
+        "bigint",
+        "binary",
+        "conversion",
+        "encode",
+        "decode",
+        "string",
+        "typescript"
+    ],
+    "publishConfig": {
+        "access": "public"
+    },
+    "engines": {
+        "node": ">=12.7"
+    },
+    "files": [
+        "*.js",
+        "*.d.ts"
+    ],
+    "exports": {
+        ".": {
+            "default": "./index.js"
+        },
+        "./16": {
+            "default": "./16.js"
+        },
+        "./32": {
+            "default": "./32.js"
+        },
+        "./36": {
+            "default": "./36.js"
+        },
+        "./58": {
+            "default": "./58.js"
+        },
+        "./62": {
+            "default": "./62.js"
+        },
+        "./64": {
+            "default": "./64.js"
+        },
+        "./8": {
+            "default": "./8.js"
+        },
+        "./85": {
+            "default": "./85.js"
+        },
+        "./api": {
+            "default": "./api.js"
+        },
+        "./base": {
+            "default": "./base.js"
+        }
+    },
+    "thi.ng": {
+        "year": 2017
+    }
 }

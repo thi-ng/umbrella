@@ -1,424 +1,424 @@
 {
-	"name": "@thi.ng/color",
-	"version": "5.1.4",
-	"description": "Array-based color types, CSS parsing, conversions, transformations, declarative theme generation, gradients, presets",
-	"type": "module",
-	"module": "./index.js",
-	"typings": "./index.d.ts",
-	"sideEffects": false,
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/thi-ng/umbrella.git"
-	},
-	"homepage": "https://github.com/thi-ng/umbrella/tree/develop/packages/color#readme",
-	"funding": [
-		{
-			"type": "github",
-			"url": "https://github.com/sponsors/postspectacular"
-		},
-		{
-			"type": "patreon",
-			"url": "https://patreon.com/thing_umbrella"
-		}
-	],
-	"author": "Karsten Schmidt <k+npm@thi.ng>",
-	"license": "Apache-2.0",
-	"scripts": {
-		"build": "yarn clean && tsc --declaration",
-		"clean": "rimraf '*.js' '*.d.ts' '*.map' doc api css hcy hsi hsl hsv int internal lab lch oklab rgb srgb xyy xyz ycc",
-		"doc": "typedoc --excludePrivate --excludeInternal --out doc src/index.ts",
-		"doc:ae": "mkdir -p .ae/doc .ae/temp && api-extractor run --local --verbose",
-		"doc:readme": "yarn doc:stats && tools:readme",
-		"doc:stats": "tools:module-stats",
-		"pub": "yarn npm publish --access public",
-		"test": "testament test",
-		"tool:maxchroma": "tools:node-esm tools/max-chroma.ts",
-		"tool:swatches": "tools:node-esm tools/index.ts"
-	},
-	"dependencies": {
-		"@thi.ng/api": "^8.3.8",
-		"@thi.ng/arrays": "^2.3.1",
-		"@thi.ng/binary": "^3.3.0",
-		"@thi.ng/checks": "^3.2.2",
-		"@thi.ng/compare": "^2.1.8",
-		"@thi.ng/compose": "^2.1.8",
-		"@thi.ng/defmulti": "^2.1.8",
-		"@thi.ng/errors": "^2.1.8",
-		"@thi.ng/math": "^5.3.4",
-		"@thi.ng/random": "^3.3.3",
-		"@thi.ng/strings": "^3.3.6",
-		"@thi.ng/transducers": "^8.3.7",
-		"@thi.ng/vectors": "^7.5.8"
-	},
-	"devDependencies": {
-		"@microsoft/api-extractor": "^7.25.0",
-		"@thi.ng/testament": "^0.2.9",
-		"rimraf": "^3.0.2",
-		"tools": "workspace:^",
-		"typedoc": "^0.22.17",
-		"typescript": "^4.7.4"
-	},
-	"keywords": [
-		"color",
-		"conversion",
-		"cosine",
-		"css",
-		"D50",
-		"D65",
-		"distance",
-		"filter",
-		"gamma",
-		"generator",
-		"gradient",
-		"hcy",
-		"hsi",
-		"hsl",
-		"hsv",
-		"interpolation",
-		"iterator",
-		"lab",
-		"lch",
-		"matrix",
-		"oklab",
-		"random",
-		"rgb",
-		"sort",
-		"srgb",
-		"swatches",
-		"theme",
-		"typescript",
-		"xyy",
-		"xyz",
-		"ycbcr",
-		"ycc"
-	],
-	"publishConfig": {
-		"access": "public"
-	},
-	"browser": {
-		"process": false,
-		"setTimeout": false
-	},
-	"engines": {
-		"node": ">=12.7"
-	},
-	"files": [
-		"*.js",
-		"*.d.ts",
-		"api",
-		"css",
-		"hcy",
-		"hsi",
-		"hsl",
-		"hsv",
-		"int",
-		"internal",
-		"lab",
-		"lch",
-		"oklab",
-		"rgb",
-		"srgb",
-		"xyy",
-		"xyz",
-		"ycc"
-	],
-	"exports": {
-		".": {
-			"default": "./index.js"
-		},
-		"./alpha": {
-			"default": "./alpha.js"
-		},
-		"./analog": {
-			"default": "./analog.js"
-		},
-		"./api/constants": {
-			"default": "./api/constants.js"
-		},
-		"./api/gradients": {
-			"default": "./api/gradients.js"
-		},
-		"./api/names": {
-			"default": "./api/names.js"
-		},
-		"./api/ranges": {
-			"default": "./api/ranges.js"
-		},
-		"./api/system": {
-			"default": "./api/system.js"
-		},
-		"./api": {
-			"default": "./api.js"
-		},
-		"./clamp": {
-			"default": "./clamp.js"
-		},
-		"./closest-hue": {
-			"default": "./closest-hue.js"
-		},
-		"./color-range": {
-			"default": "./color-range.js"
-		},
-		"./color": {
-			"default": "./color.js"
-		},
-		"./convert": {
-			"default": "./convert.js"
-		},
-		"./cosine-gradients": {
-			"default": "./cosine-gradients.js"
-		},
-		"./css/css": {
-			"default": "./css/css.js"
-		},
-		"./css/parse-css": {
-			"default": "./css/parse-css.js"
-		},
-		"./defcolor": {
-			"default": "./defcolor.js"
-		},
-		"./distance": {
-			"default": "./distance.js"
-		},
-		"./gradients": {
-			"default": "./gradients.js"
-		},
-		"./hcy/hcy-rgb": {
-			"default": "./hcy/hcy-rgb.js"
-		},
-		"./hcy/hcy": {
-			"default": "./hcy/hcy.js"
-		},
-		"./hsi/hsi-rgb": {
-			"default": "./hsi/hsi-rgb.js"
-		},
-		"./hsi/hsi": {
-			"default": "./hsi/hsi.js"
-		},
-		"./hsl/hsl-css": {
-			"default": "./hsl/hsl-css.js"
-		},
-		"./hsl/hsl-hsv": {
-			"default": "./hsl/hsl-hsv.js"
-		},
-		"./hsl/hsl-rgb": {
-			"default": "./hsl/hsl-rgb.js"
-		},
-		"./hsl/hsl": {
-			"default": "./hsl/hsl.js"
-		},
-		"./hsv/hsv-css": {
-			"default": "./hsv/hsv-css.js"
-		},
-		"./hsv/hsv-hsl": {
-			"default": "./hsv/hsv-hsl.js"
-		},
-		"./hsv/hsv-rgb": {
-			"default": "./hsv/hsv-rgb.js"
-		},
-		"./hsv/hsv": {
-			"default": "./hsv/hsv.js"
-		},
-		"./int/int-css": {
-			"default": "./int/int-css.js"
-		},
-		"./int/int-int": {
-			"default": "./int/int-int.js"
-		},
-		"./int/int-rgb": {
-			"default": "./int/int-rgb.js"
-		},
-		"./int/int-srgb": {
-			"default": "./int/int-srgb.js"
-		},
-		"./int/int": {
-			"default": "./int/int.js"
-		},
-		"./invert": {
-			"default": "./invert.js"
-		},
-		"./is-black": {
-			"default": "./is-black.js"
-		},
-		"./is-gamut": {
-			"default": "./is-gamut.js"
-		},
-		"./is-gray": {
-			"default": "./is-gray.js"
-		},
-		"./is-white": {
-			"default": "./is-white.js"
-		},
-		"./lab/lab-css": {
-			"default": "./lab/lab-css.js"
-		},
-		"./lab/lab-lab": {
-			"default": "./lab/lab-lab.js"
-		},
-		"./lab/lab-lch": {
-			"default": "./lab/lab-lch.js"
-		},
-		"./lab/lab-rgb": {
-			"default": "./lab/lab-rgb.js"
-		},
-		"./lab/lab-xyz": {
-			"default": "./lab/lab-xyz.js"
-		},
-		"./lab/lab50": {
-			"default": "./lab/lab50.js"
-		},
-		"./lab/lab65": {
-			"default": "./lab/lab65.js"
-		},
-		"./lch/lch-css": {
-			"default": "./lch/lch-css.js"
-		},
-		"./lch/lch": {
-			"default": "./lch/lch.js"
-		},
-		"./lighten": {
-			"default": "./lighten.js"
-		},
-		"./linear": {
-			"default": "./linear.js"
-		},
-		"./luminance-rgb": {
-			"default": "./luminance-rgb.js"
-		},
-		"./luminance": {
-			"default": "./luminance.js"
-		},
-		"./max-chroma": {
-			"default": "./max-chroma.js"
-		},
-		"./mix": {
-			"default": "./mix.js"
-		},
-		"./oklab/oklab-rgb": {
-			"default": "./oklab/oklab-rgb.js"
-		},
-		"./oklab/oklab-xyz": {
-			"default": "./oklab/oklab-xyz.js"
-		},
-		"./oklab/oklab": {
-			"default": "./oklab/oklab.js"
-		},
-		"./rgb/hue-rgb": {
-			"default": "./rgb/hue-rgb.js"
-		},
-		"./rgb/kelvin-rgba": {
-			"default": "./rgb/kelvin-rgba.js"
-		},
-		"./rgb/rgb-css": {
-			"default": "./rgb/rgb-css.js"
-		},
-		"./rgb/rgb-hcv": {
-			"default": "./rgb/rgb-hcv.js"
-		},
-		"./rgb/rgb-hcy": {
-			"default": "./rgb/rgb-hcy.js"
-		},
-		"./rgb/rgb-hsi": {
-			"default": "./rgb/rgb-hsi.js"
-		},
-		"./rgb/rgb-hsl": {
-			"default": "./rgb/rgb-hsl.js"
-		},
-		"./rgb/rgb-hsv": {
-			"default": "./rgb/rgb-hsv.js"
-		},
-		"./rgb/rgb-lab": {
-			"default": "./rgb/rgb-lab.js"
-		},
-		"./rgb/rgb-oklab": {
-			"default": "./rgb/rgb-oklab.js"
-		},
-		"./rgb/rgb-srgb": {
-			"default": "./rgb/rgb-srgb.js"
-		},
-		"./rgb/rgb-xyz": {
-			"default": "./rgb/rgb-xyz.js"
-		},
-		"./rgb/rgb-ycc": {
-			"default": "./rgb/rgb-ycc.js"
-		},
-		"./rgb/rgb": {
-			"default": "./rgb/rgb.js"
-		},
-		"./rotate": {
-			"default": "./rotate.js"
-		},
-		"./sort": {
-			"default": "./sort.js"
-		},
-		"./srgb/srgb-css": {
-			"default": "./srgb/srgb-css.js"
-		},
-		"./srgb/srgb-int": {
-			"default": "./srgb/srgb-int.js"
-		},
-		"./srgb/srgb-rgb": {
-			"default": "./srgb/srgb-rgb.js"
-		},
-		"./srgb/srgb": {
-			"default": "./srgb/srgb.js"
-		},
-		"./strategies": {
-			"default": "./strategies.js"
-		},
-		"./swatches": {
-			"default": "./swatches.js"
-		},
-		"./tint": {
-			"default": "./tint.js"
-		},
-		"./transform": {
-			"default": "./transform.js"
-		},
-		"./variations": {
-			"default": "./variations.js"
-		},
-		"./xyy/xyy-xyz": {
-			"default": "./xyy/xyy-xyz.js"
-		},
-		"./xyy/xyy": {
-			"default": "./xyy/xyy.js"
-		},
-		"./xyz/wavelength-xyz": {
-			"default": "./xyz/wavelength-xyz.js"
-		},
-		"./xyz/xyz-lab": {
-			"default": "./xyz/xyz-lab.js"
-		},
-		"./xyz/xyz-oklab": {
-			"default": "./xyz/xyz-oklab.js"
-		},
-		"./xyz/xyz-rgb": {
-			"default": "./xyz/xyz-rgb.js"
-		},
-		"./xyz/xyz-xyy": {
-			"default": "./xyz/xyz-xyy.js"
-		},
-		"./xyz/xyz-xyz": {
-			"default": "./xyz/xyz-xyz.js"
-		},
-		"./xyz/xyz50": {
-			"default": "./xyz/xyz50.js"
-		},
-		"./xyz/xyz65": {
-			"default": "./xyz/xyz65.js"
-		},
-		"./ycc/ycc-rgb": {
-			"default": "./ycc/ycc-rgb.js"
-		},
-		"./ycc/ycc": {
-			"default": "./ycc/ycc.js"
-		}
-	},
-	"thi.ng": {
-		"related": [
-			"pixel",
-			"vectors"
-		]
-	}
+    "name": "@thi.ng/color",
+    "version": "5.1.5",
+    "description": "Array-based color types, CSS parsing, conversions, transformations, declarative theme generation, gradients, presets",
+    "type": "module",
+    "module": "./index.js",
+    "typings": "./index.d.ts",
+    "sideEffects": false,
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/thi-ng/umbrella.git"
+    },
+    "homepage": "https://github.com/thi-ng/umbrella/tree/develop/packages/color#readme",
+    "funding": [
+        {
+            "type": "github",
+            "url": "https://github.com/sponsors/postspectacular"
+        },
+        {
+            "type": "patreon",
+            "url": "https://patreon.com/thing_umbrella"
+        }
+    ],
+    "author": "Karsten Schmidt <k+npm@thi.ng>",
+    "license": "Apache-2.0",
+    "scripts": {
+        "build": "yarn clean && tsc --declaration",
+        "clean": "rimraf '*.js' '*.d.ts' '*.map' doc api css hcy hsi hsl hsv int internal lab lch oklab rgb srgb xyy xyz ycc",
+        "doc": "typedoc --excludePrivate --excludeInternal --out doc src/index.ts",
+        "doc:ae": "mkdir -p .ae/doc .ae/temp && api-extractor run --local --verbose",
+        "doc:readme": "yarn doc:stats && tools:readme",
+        "doc:stats": "tools:module-stats",
+        "pub": "yarn npm publish --access public",
+        "test": "testament test",
+        "tool:maxchroma": "tools:node-esm tools/max-chroma.ts",
+        "tool:swatches": "tools:node-esm tools/index.ts"
+    },
+    "dependencies": {
+        "@thi.ng/api": "^8.3.9",
+        "@thi.ng/arrays": "^2.3.2",
+        "@thi.ng/binary": "^3.3.1",
+        "@thi.ng/checks": "^3.2.3",
+        "@thi.ng/compare": "^2.1.9",
+        "@thi.ng/compose": "^2.1.9",
+        "@thi.ng/defmulti": "^2.1.9",
+        "@thi.ng/errors": "^2.1.9",
+        "@thi.ng/math": "^5.3.5",
+        "@thi.ng/random": "^3.3.4",
+        "@thi.ng/strings": "^3.3.7",
+        "@thi.ng/transducers": "^8.3.8",
+        "@thi.ng/vectors": "^7.5.9"
+    },
+    "devDependencies": {
+        "@microsoft/api-extractor": "^7.25.0",
+        "@thi.ng/testament": "^0.2.10",
+        "rimraf": "^3.0.2",
+        "tools": "workspace:^",
+        "typedoc": "^0.22.17",
+        "typescript": "^4.7.4"
+    },
+    "keywords": [
+        "color",
+        "conversion",
+        "cosine",
+        "css",
+        "D50",
+        "D65",
+        "distance",
+        "filter",
+        "gamma",
+        "generator",
+        "gradient",
+        "hcy",
+        "hsi",
+        "hsl",
+        "hsv",
+        "interpolation",
+        "iterator",
+        "lab",
+        "lch",
+        "matrix",
+        "oklab",
+        "random",
+        "rgb",
+        "sort",
+        "srgb",
+        "swatches",
+        "theme",
+        "typescript",
+        "xyy",
+        "xyz",
+        "ycbcr",
+        "ycc"
+    ],
+    "publishConfig": {
+        "access": "public"
+    },
+    "browser": {
+        "process": false,
+        "setTimeout": false
+    },
+    "engines": {
+        "node": ">=12.7"
+    },
+    "files": [
+        "*.js",
+        "*.d.ts",
+        "api",
+        "css",
+        "hcy",
+        "hsi",
+        "hsl",
+        "hsv",
+        "int",
+        "internal",
+        "lab",
+        "lch",
+        "oklab",
+        "rgb",
+        "srgb",
+        "xyy",
+        "xyz",
+        "ycc"
+    ],
+    "exports": {
+        ".": {
+            "default": "./index.js"
+        },
+        "./alpha": {
+            "default": "./alpha.js"
+        },
+        "./analog": {
+            "default": "./analog.js"
+        },
+        "./api/constants": {
+            "default": "./api/constants.js"
+        },
+        "./api/gradients": {
+            "default": "./api/gradients.js"
+        },
+        "./api/names": {
+            "default": "./api/names.js"
+        },
+        "./api/ranges": {
+            "default": "./api/ranges.js"
+        },
+        "./api/system": {
+            "default": "./api/system.js"
+        },
+        "./api": {
+            "default": "./api.js"
+        },
+        "./clamp": {
+            "default": "./clamp.js"
+        },
+        "./closest-hue": {
+            "default": "./closest-hue.js"
+        },
+        "./color-range": {
+            "default": "./color-range.js"
+        },
+        "./color": {
+            "default": "./color.js"
+        },
+        "./convert": {
+            "default": "./convert.js"
+        },
+        "./cosine-gradients": {
+            "default": "./cosine-gradients.js"
+        },
+        "./css/css": {
+            "default": "./css/css.js"
+        },
+        "./css/parse-css": {
+            "default": "./css/parse-css.js"
+        },
+        "./defcolor": {
+            "default": "./defcolor.js"
+        },
+        "./distance": {
+            "default": "./distance.js"
+        },
+        "./gradients": {
+            "default": "./gradients.js"
+        },
+        "./hcy/hcy-rgb": {
+            "default": "./hcy/hcy-rgb.js"
+        },
+        "./hcy/hcy": {
+            "default": "./hcy/hcy.js"
+        },
+        "./hsi/hsi-rgb": {
+            "default": "./hsi/hsi-rgb.js"
+        },
+        "./hsi/hsi": {
+            "default": "./hsi/hsi.js"
+        },
+        "./hsl/hsl-css": {
+            "default": "./hsl/hsl-css.js"
+        },
+        "./hsl/hsl-hsv": {
+            "default": "./hsl/hsl-hsv.js"
+        },
+        "./hsl/hsl-rgb": {
+            "default": "./hsl/hsl-rgb.js"
+        },
+        "./hsl/hsl": {
+            "default": "./hsl/hsl.js"
+        },
+        "./hsv/hsv-css": {
+            "default": "./hsv/hsv-css.js"
+        },
+        "./hsv/hsv-hsl": {
+            "default": "./hsv/hsv-hsl.js"
+        },
+        "./hsv/hsv-rgb": {
+            "default": "./hsv/hsv-rgb.js"
+        },
+        "./hsv/hsv": {
+            "default": "./hsv/hsv.js"
+        },
+        "./int/int-css": {
+            "default": "./int/int-css.js"
+        },
+        "./int/int-int": {
+            "default": "./int/int-int.js"
+        },
+        "./int/int-rgb": {
+            "default": "./int/int-rgb.js"
+        },
+        "./int/int-srgb": {
+            "default": "./int/int-srgb.js"
+        },
+        "./int/int": {
+            "default": "./int/int.js"
+        },
+        "./invert": {
+            "default": "./invert.js"
+        },
+        "./is-black": {
+            "default": "./is-black.js"
+        },
+        "./is-gamut": {
+            "default": "./is-gamut.js"
+        },
+        "./is-gray": {
+            "default": "./is-gray.js"
+        },
+        "./is-white": {
+            "default": "./is-white.js"
+        },
+        "./lab/lab-css": {
+            "default": "./lab/lab-css.js"
+        },
+        "./lab/lab-lab": {
+            "default": "./lab/lab-lab.js"
+        },
+        "./lab/lab-lch": {
+            "default": "./lab/lab-lch.js"
+        },
+        "./lab/lab-rgb": {
+            "default": "./lab/lab-rgb.js"
+        },
+        "./lab/lab-xyz": {
+            "default": "./lab/lab-xyz.js"
+        },
+        "./lab/lab50": {
+            "default": "./lab/lab50.js"
+        },
+        "./lab/lab65": {
+            "default": "./lab/lab65.js"
+        },
+        "./lch/lch-css": {
+            "default": "./lch/lch-css.js"
+        },
+        "./lch/lch": {
+            "default": "./lch/lch.js"
+        },
+        "./lighten": {
+            "default": "./lighten.js"
+        },
+        "./linear": {
+            "default": "./linear.js"
+        },
+        "./luminance-rgb": {
+            "default": "./luminance-rgb.js"
+        },
+        "./luminance": {
+            "default": "./luminance.js"
+        },
+        "./max-chroma": {
+            "default": "./max-chroma.js"
+        },
+        "./mix": {
+            "default": "./mix.js"
+        },
+        "./oklab/oklab-rgb": {
+            "default": "./oklab/oklab-rgb.js"
+        },
+        "./oklab/oklab-xyz": {
+            "default": "./oklab/oklab-xyz.js"
+        },
+        "./oklab/oklab": {
+            "default": "./oklab/oklab.js"
+        },
+        "./rgb/hue-rgb": {
+            "default": "./rgb/hue-rgb.js"
+        },
+        "./rgb/kelvin-rgba": {
+            "default": "./rgb/kelvin-rgba.js"
+        },
+        "./rgb/rgb-css": {
+            "default": "./rgb/rgb-css.js"
+        },
+        "./rgb/rgb-hcv": {
+            "default": "./rgb/rgb-hcv.js"
+        },
+        "./rgb/rgb-hcy": {
+            "default": "./rgb/rgb-hcy.js"
+        },
+        "./rgb/rgb-hsi": {
+            "default": "./rgb/rgb-hsi.js"
+        },
+        "./rgb/rgb-hsl": {
+            "default": "./rgb/rgb-hsl.js"
+        },
+        "./rgb/rgb-hsv": {
+            "default": "./rgb/rgb-hsv.js"
+        },
+        "./rgb/rgb-lab": {
+            "default": "./rgb/rgb-lab.js"
+        },
+        "./rgb/rgb-oklab": {
+            "default": "./rgb/rgb-oklab.js"
+        },
+        "./rgb/rgb-srgb": {
+            "default": "./rgb/rgb-srgb.js"
+        },
+        "./rgb/rgb-xyz": {
+            "default": "./rgb/rgb-xyz.js"
+        },
+        "./rgb/rgb-ycc": {
+            "default": "./rgb/rgb-ycc.js"
+        },
+        "./rgb/rgb": {
+            "default": "./rgb/rgb.js"
+        },
+        "./rotate": {
+            "default": "./rotate.js"
+        },
+        "./sort": {
+            "default": "./sort.js"
+        },
+        "./srgb/srgb-css": {
+            "default": "./srgb/srgb-css.js"
+        },
+        "./srgb/srgb-int": {
+            "default": "./srgb/srgb-int.js"
+        },
+        "./srgb/srgb-rgb": {
+            "default": "./srgb/srgb-rgb.js"
+        },
+        "./srgb/srgb": {
+            "default": "./srgb/srgb.js"
+        },
+        "./strategies": {
+            "default": "./strategies.js"
+        },
+        "./swatches": {
+            "default": "./swatches.js"
+        },
+        "./tint": {
+            "default": "./tint.js"
+        },
+        "./transform": {
+            "default": "./transform.js"
+        },
+        "./variations": {
+            "default": "./variations.js"
+        },
+        "./xyy/xyy-xyz": {
+            "default": "./xyy/xyy-xyz.js"
+        },
+        "./xyy/xyy": {
+            "default": "./xyy/xyy.js"
+        },
+        "./xyz/wavelength-xyz": {
+            "default": "./xyz/wavelength-xyz.js"
+        },
+        "./xyz/xyz-lab": {
+            "default": "./xyz/xyz-lab.js"
+        },
+        "./xyz/xyz-oklab": {
+            "default": "./xyz/xyz-oklab.js"
+        },
+        "./xyz/xyz-rgb": {
+            "default": "./xyz/xyz-rgb.js"
+        },
+        "./xyz/xyz-xyy": {
+            "default": "./xyz/xyz-xyy.js"
+        },
+        "./xyz/xyz-xyz": {
+            "default": "./xyz/xyz-xyz.js"
+        },
+        "./xyz/xyz50": {
+            "default": "./xyz/xyz50.js"
+        },
+        "./xyz/xyz65": {
+            "default": "./xyz/xyz65.js"
+        },
+        "./ycc/ycc-rgb": {
+            "default": "./ycc/ycc-rgb.js"
+        },
+        "./ycc/ycc": {
+            "default": "./ycc/ycc.js"
+        }
+    },
+    "thi.ng": {
+        "related": [
+            "pixel",
+            "vectors"
+        ]
+    }
 }

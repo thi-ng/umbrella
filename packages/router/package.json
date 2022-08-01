@@ -1,94 +1,94 @@
 {
-	"name": "@thi.ng/router",
-	"version": "3.2.1",
-	"description": "Generic router for browser & non-browser based applications",
-	"type": "module",
-	"module": "./index.js",
-	"typings": "./index.d.ts",
-	"sideEffects": false,
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/thi-ng/umbrella.git"
-	},
-	"homepage": "https://github.com/thi-ng/umbrella/tree/develop/packages/router#readme",
-	"funding": [
-		{
-			"type": "github",
-			"url": "https://github.com/sponsors/postspectacular"
-		},
-		{
-			"type": "patreon",
-			"url": "https://patreon.com/thing_umbrella"
-		}
-	],
-	"author": "Karsten Schmidt <k+npm@thi.ng>",
-	"license": "Apache-2.0",
-	"scripts": {
-		"build": "yarn clean && tsc --declaration",
-		"clean": "rimraf '*.js' '*.d.ts' '*.map' doc",
-		"doc": "typedoc --excludePrivate --excludeInternal --out doc src/index.ts",
-		"doc:ae": "mkdir -p .ae/doc .ae/temp && api-extractor run --local --verbose",
-		"doc:readme": "yarn doc:stats && tools:readme",
-		"doc:stats": "tools:module-stats",
-		"pub": "yarn npm publish --access public",
-		"test": "testament test"
-	},
-	"dependencies": {
-		"@thi.ng/api": "^8.3.8",
-		"@thi.ng/checks": "^3.2.2",
-		"@thi.ng/equiv": "^2.1.8",
-		"@thi.ng/errors": "^2.1.8",
-		"tslib": "^2.4.0"
-	},
-	"devDependencies": {
-		"@microsoft/api-extractor": "^7.25.0",
-		"@thi.ng/testament": "^0.2.9",
-		"rimraf": "^3.0.2",
-		"tools": "workspace:^",
-		"typedoc": "^0.22.17",
-		"typescript": "^4.7.4"
-	},
-	"keywords": [
-		"browser",
-		"datastructure",
-		"declarative",
-		"history",
-		"html",
-		"parametric",
-		"router",
-		"typescript",
-		"ui",
-		"validate"
-	],
-	"publishConfig": {
-		"access": "public"
-	},
-	"engines": {
-		"node": ">=12.7"
-	},
-	"files": [
-		"*.js",
-		"*.d.ts"
-	],
-	"exports": {
-		".": {
-			"default": "./index.js"
-		},
-		"./api": {
-			"default": "./api.js"
-		},
-		"./basic": {
-			"default": "./basic.js"
-		},
-		"./history": {
-			"default": "./history.js"
-		}
-	},
-	"thi.ng": {
-		"related": [
-			"hdom",
-			"rdom"
-		],
-		"year": 2014
-	}
+    "name": "@thi.ng/router",
+    "version": "3.2.2",
+    "description": "Generic router for browser & non-browser based applications",
+    "type": "module",
+    "module": "./index.js",
+    "typings": "./index.d.ts",
+    "sideEffects": false,
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/thi-ng/umbrella.git"
+    },
+    "homepage": "https://github.com/thi-ng/umbrella/tree/develop/packages/router#readme",
+    "funding": [
+        {
+            "type": "github",
+            "url": "https://github.com/sponsors/postspectacular"
+        },
+        {
+            "type": "patreon",
+            "url": "https://patreon.com/thing_umbrella"
+        }
+    ],
+    "author": "Karsten Schmidt <k+npm@thi.ng>",
+    "license": "Apache-2.0",
+    "scripts": {
+        "build": "yarn clean && tsc --declaration",
+        "clean": "rimraf '*.js' '*.d.ts' '*.map' doc",
+        "doc": "typedoc --excludePrivate --excludeInternal --out doc src/index.ts",
+        "doc:ae": "mkdir -p .ae/doc .ae/temp && api-extractor run --local --verbose",
+        "doc:readme": "yarn doc:stats && tools:readme",
+        "doc:stats": "tools:module-stats",
+        "pub": "yarn npm publish --access public",
+        "test": "testament test"
+    },
+    "dependencies": {
+        "@thi.ng/api": "^8.3.9",
+        "@thi.ng/checks": "^3.2.3",
+        "@thi.ng/equiv": "^2.1.9",
+        "@thi.ng/errors": "^2.1.9",
+        "tslib": "^2.4.0"
+    },
+    "devDependencies": {
+        "@microsoft/api-extractor": "^7.25.0",
+        "@thi.ng/testament": "^0.2.10",
+        "rimraf": "^3.0.2",
+        "tools": "workspace:^",
+        "typedoc": "^0.22.17",
+        "typescript": "^4.7.4"
+    },
+    "keywords": [
+        "browser",
+        "datastructure",
+        "declarative",
+        "history",
+        "html",
+        "parametric",
+        "router",
+        "typescript",
+        "ui",
+        "validate"
+    ],
+    "publishConfig": {
+        "access": "public"
+    },
+    "engines": {
+        "node": ">=12.7"
+    },
+    "files": [
+        "*.js",
+        "*.d.ts"
+    ],
+    "exports": {
+        ".": {
+            "default": "./index.js"
+        },
+        "./api": {
+            "default": "./api.js"
+        },
+        "./basic": {
+            "default": "./basic.js"
+        },
+        "./history": {
+            "default": "./history.js"
+        }
+    },
+    "thi.ng": {
+        "related": [
+            "hdom",
+            "rdom"
+        ],
+        "year": 2014
+    }
 }

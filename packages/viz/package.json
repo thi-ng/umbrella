@@ -1,147 +1,147 @@
 {
-	"name": "@thi.ng/viz",
-	"version": "0.4.13",
-	"description": "Declarative, functional & multi-format data visualization toolkit based around @thi.ng/hiccup",
-	"type": "module",
-	"module": "./index.js",
-	"typings": "./index.d.ts",
-	"sideEffects": false,
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/thi-ng/umbrella.git"
-	},
-	"homepage": "https://github.com/thi-ng/umbrella/tree/master/packages/viz#readme",
-	"funding": [
-		{
-			"type": "github",
-			"url": "https://github.com/sponsors/postspectacular"
-		},
-		{
-			"type": "patreon",
-			"url": "https://patreon.com/thing_umbrella"
-		}
-	],
-	"author": "Karsten Schmidt <k+npm@thi.ng>",
-	"license": "Apache-2.0",
-	"scripts": {
-		"build": "yarn clean && tsc --declaration",
-		"clean": "rimraf '*.js' '*.d.ts' '*.map' doc axis plot",
-		"doc": "typedoc --excludePrivate --excludeInternal --out doc src/index.ts",
-		"doc:ae": "mkdir -p .ae/doc .ae/temp && api-extractor run --local --verbose",
-		"doc:readme": "yarn doc:stats && tools:readme",
-		"doc:stats": "tools:module-stats",
-		"pub": "yarn npm publish --access public",
-		"test": "testament test",
-		"tool:bars": "tools:node-esm tools/bars.ts",
-		"tool:candles": "tools:node-esm tools/candles.ts",
-		"tool:covid": "tools:node-esm tools/covid-bars.ts",
-		"tool:intervals": "tools:node-esm tools/intervals.ts",
-		"tool:line": "tools:node-esm tools/line.ts",
-		"tool:tags": "tools:node-esm tools/tagcloud.ts"
-	},
-	"dependencies": {
-		"@thi.ng/api": "^8.3.8",
-		"@thi.ng/arrays": "^2.3.1",
-		"@thi.ng/associative": "^6.2.0",
-		"@thi.ng/checks": "^3.2.2",
-		"@thi.ng/math": "^5.3.4",
-		"@thi.ng/strings": "^3.3.6",
-		"@thi.ng/transducers": "^8.3.7"
-	},
-	"devDependencies": {
-		"@microsoft/api-extractor": "^7.25.0",
-		"@thi.ng/date": "^2.3.2",
-		"@thi.ng/testament": "^0.2.9",
-		"rimraf": "^3.0.2",
-		"tools": "workspace:^",
-		"typedoc": "^0.22.17",
-		"typescript": "^4.7.4"
-	},
-	"keywords": [
-		"2d",
-		"analysis",
-		"area",
-		"canvas",
-		"chart",
-		"clipping",
-		"declarative",
-		"hiccup",
-		"interval",
-		"line",
-		"plot",
-		"scatter",
-		"svg",
-		"timeline",
-		"transducer",
-		"typescript",
-		"visualization"
-	],
-	"publishConfig": {
-		"access": "public"
-	},
-	"engines": {
-		"node": ">=12.7"
-	},
-	"files": [
-		"*.js",
-		"*.d.ts",
-		"axis",
-		"plot"
-	],
-	"exports": {
-		".": {
-			"default": "./index.js"
-		},
-		"./api": {
-			"default": "./api.js"
-		},
-		"./axis/common": {
-			"default": "./axis/common.js"
-		},
-		"./axis/lens": {
-			"default": "./axis/lens.js"
-		},
-		"./axis/linear": {
-			"default": "./axis/linear.js"
-		},
-		"./axis/log": {
-			"default": "./axis/log.js"
-		},
-		"./domain": {
-			"default": "./domain.js"
-		},
-		"./plot/area": {
-			"default": "./plot/area.js"
-		},
-		"./plot/bar": {
-			"default": "./plot/bar.js"
-		},
-		"./plot/candle": {
-			"default": "./plot/candle.js"
-		},
-		"./plot/line": {
-			"default": "./plot/line.js"
-		},
-		"./plot/scatter": {
-			"default": "./plot/scatter.js"
-		},
-		"./plot/stacked-intervals": {
-			"default": "./plot/stacked-intervals.js"
-		},
-		"./plot/utils": {
-			"default": "./plot/utils.js"
-		},
-		"./plot": {
-			"default": "./plot.js"
-		}
-	},
-	"thi.ng": {
-		"related": [
-			"hiccup",
-			"hiccup-canvas",
-			"hiccup-svg"
-		],
-		"status": "alpha",
-		"year": 2014
-	}
+    "name": "@thi.ng/viz",
+    "version": "0.4.14",
+    "description": "Declarative, functional & multi-format data visualization toolkit based around @thi.ng/hiccup",
+    "type": "module",
+    "module": "./index.js",
+    "typings": "./index.d.ts",
+    "sideEffects": false,
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/thi-ng/umbrella.git"
+    },
+    "homepage": "https://github.com/thi-ng/umbrella/tree/master/packages/viz#readme",
+    "funding": [
+        {
+            "type": "github",
+            "url": "https://github.com/sponsors/postspectacular"
+        },
+        {
+            "type": "patreon",
+            "url": "https://patreon.com/thing_umbrella"
+        }
+    ],
+    "author": "Karsten Schmidt <k+npm@thi.ng>",
+    "license": "Apache-2.0",
+    "scripts": {
+        "build": "yarn clean && tsc --declaration",
+        "clean": "rimraf '*.js' '*.d.ts' '*.map' doc axis plot",
+        "doc": "typedoc --excludePrivate --excludeInternal --out doc src/index.ts",
+        "doc:ae": "mkdir -p .ae/doc .ae/temp && api-extractor run --local --verbose",
+        "doc:readme": "yarn doc:stats && tools:readme",
+        "doc:stats": "tools:module-stats",
+        "pub": "yarn npm publish --access public",
+        "test": "testament test",
+        "tool:bars": "tools:node-esm tools/bars.ts",
+        "tool:candles": "tools:node-esm tools/candles.ts",
+        "tool:covid": "tools:node-esm tools/covid-bars.ts",
+        "tool:intervals": "tools:node-esm tools/intervals.ts",
+        "tool:line": "tools:node-esm tools/line.ts",
+        "tool:tags": "tools:node-esm tools/tagcloud.ts"
+    },
+    "dependencies": {
+        "@thi.ng/api": "^8.3.9",
+        "@thi.ng/arrays": "^2.3.2",
+        "@thi.ng/associative": "^6.2.1",
+        "@thi.ng/checks": "^3.2.3",
+        "@thi.ng/math": "^5.3.5",
+        "@thi.ng/strings": "^3.3.7",
+        "@thi.ng/transducers": "^8.3.8"
+    },
+    "devDependencies": {
+        "@microsoft/api-extractor": "^7.25.0",
+        "@thi.ng/date": "^2.3.3",
+        "@thi.ng/testament": "^0.2.10",
+        "rimraf": "^3.0.2",
+        "tools": "workspace:^",
+        "typedoc": "^0.22.17",
+        "typescript": "^4.7.4"
+    },
+    "keywords": [
+        "2d",
+        "analysis",
+        "area",
+        "canvas",
+        "chart",
+        "clipping",
+        "declarative",
+        "hiccup",
+        "interval",
+        "line",
+        "plot",
+        "scatter",
+        "svg",
+        "timeline",
+        "transducer",
+        "typescript",
+        "visualization"
+    ],
+    "publishConfig": {
+        "access": "public"
+    },
+    "engines": {
+        "node": ">=12.7"
+    },
+    "files": [
+        "*.js",
+        "*.d.ts",
+        "axis",
+        "plot"
+    ],
+    "exports": {
+        ".": {
+            "default": "./index.js"
+        },
+        "./api": {
+            "default": "./api.js"
+        },
+        "./axis/common": {
+            "default": "./axis/common.js"
+        },
+        "./axis/lens": {
+            "default": "./axis/lens.js"
+        },
+        "./axis/linear": {
+            "default": "./axis/linear.js"
+        },
+        "./axis/log": {
+            "default": "./axis/log.js"
+        },
+        "./domain": {
+            "default": "./domain.js"
+        },
+        "./plot/area": {
+            "default": "./plot/area.js"
+        },
+        "./plot/bar": {
+            "default": "./plot/bar.js"
+        },
+        "./plot/candle": {
+            "default": "./plot/candle.js"
+        },
+        "./plot/line": {
+            "default": "./plot/line.js"
+        },
+        "./plot/scatter": {
+            "default": "./plot/scatter.js"
+        },
+        "./plot/stacked-intervals": {
+            "default": "./plot/stacked-intervals.js"
+        },
+        "./plot/utils": {
+            "default": "./plot/utils.js"
+        },
+        "./plot": {
+            "default": "./plot.js"
+        }
+    },
+    "thi.ng": {
+        "related": [
+            "hiccup",
+            "hiccup-canvas",
+            "hiccup-svg"
+        ],
+        "status": "alpha",
+        "year": 2014
+    }
 }

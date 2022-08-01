@@ -1,225 +1,225 @@
 {
-	"name": "@thi.ng/api",
-	"version": "8.3.8",
-	"description": "Common, generic types, interfaces & mixins",
-	"type": "module",
-	"module": "./index.js",
-	"typings": "./index.d.ts",
-	"sideEffects": false,
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/thi-ng/umbrella.git"
-	},
-	"homepage": "https://github.com/thi-ng/umbrella/tree/develop/packages/api#readme",
-	"funding": [
-		{
-			"type": "github",
-			"url": "https://github.com/sponsors/postspectacular"
-		},
-		{
-			"type": "patreon",
-			"url": "https://patreon.com/thing_umbrella"
-		}
-	],
-	"author": "Karsten Schmidt <k+npm@thi.ng>",
-	"license": "Apache-2.0",
-	"scripts": {
-		"build": "yarn clean && tsc --declaration",
-		"clean": "rimraf '*.js' '*.d.ts' '*.map' doc api decorators mixins",
-		"doc": "typedoc --excludePrivate --excludeInternal --out doc src/index.ts",
-		"doc:ae": "mkdir -p .ae/doc .ae/temp && api-extractor run --local --verbose",
-		"doc:readme": "yarn doc:stats && tools:readme",
-		"doc:stats": "tools:module-stats",
-		"pub": "yarn npm publish --access public",
-		"test": "testament test"
-	},
-	"devDependencies": {
-		"@microsoft/api-extractor": "^7.25.0",
-		"@thi.ng/testament": "^0.2.9",
-		"rimraf": "^3.0.2",
-		"tools": "workspace:^",
-		"typedoc": "^0.22.17",
-		"typescript": "^4.7.4"
-	},
-	"keywords": [
-		"assert",
-		"constants",
-		"decorators",
-		"generic",
-		"interface",
-		"mixin",
-		"type",
-		"typescript"
-	],
-	"publishConfig": {
-		"access": "public"
-	},
-	"browser": {
-		"process": false,
-		"setTimeout": false
-	},
-	"engines": {
-		"node": ">=12.7"
-	},
-	"files": [
-		"*.js",
-		"*.d.ts",
-		"decorators",
-		"mixins"
-	],
-	"exports": {
-		".": {
-			"default": "./index.js"
-		},
-		"./api": {
-			"default": "./api.js"
-		},
-		"./assoc": {
-			"default": "./assoc.js"
-		},
-		"./bind": {
-			"default": "./bind.js"
-		},
-		"./buffered": {
-			"default": "./buffered.js"
-		},
-		"./clear": {
-			"default": "./clear.js"
-		},
-		"./compare": {
-			"default": "./compare.js"
-		},
-		"./contains": {
-			"default": "./contains.js"
-		},
-		"./copy": {
-			"default": "./copy.js"
-		},
-		"./decorators/configurable": {
-			"default": "./decorators/configurable.js"
-		},
-		"./decorators/deprecated": {
-			"default": "./decorators/deprecated.js"
-		},
-		"./decorators/nomixin": {
-			"default": "./decorators/nomixin.js"
-		},
-		"./decorators/sealed": {
-			"default": "./decorators/sealed.js"
-		},
-		"./deref": {
-			"default": "./deref.js"
-		},
-		"./dissoc": {
-			"default": "./dissoc.js"
-		},
-		"./empty": {
-			"default": "./empty.js"
-		},
-		"./enable": {
-			"default": "./enable.js"
-		},
-		"./equiv": {
-			"default": "./equiv.js"
-		},
-		"./event": {
-			"default": "./event.js"
-		},
-		"./fn": {
-			"default": "./fn.js"
-		},
-		"./get": {
-			"default": "./get.js"
-		},
-		"./grid": {
-			"default": "./grid.js"
-		},
-		"./hash": {
-			"default": "./hash.js"
-		},
-		"./hiccup": {
-			"default": "./hiccup.js"
-		},
-		"./id": {
-			"default": "./id.js"
-		},
-		"./indexed": {
-			"default": "./indexed.js"
-		},
-		"./into": {
-			"default": "./into.js"
-		},
-		"./keyval": {
-			"default": "./keyval.js"
-		},
-		"./length": {
-			"default": "./length.js"
-		},
-		"./meta": {
-			"default": "./meta.js"
-		},
-		"./mixin": {
-			"default": "./mixin.js"
-		},
-		"./mixins/ienable": {
-			"default": "./mixins/ienable.js"
-		},
-		"./mixins/igrid": {
-			"default": "./mixins/igrid.js"
-		},
-		"./mixins/inotify": {
-			"default": "./mixins/inotify.js"
-		},
-		"./mixins/iterable": {
-			"default": "./mixins/iterable.js"
-		},
-		"./mixins/iwatch": {
-			"default": "./mixins/iwatch.js"
-		},
-		"./null": {
-			"default": "./null.js"
-		},
-		"./object": {
-			"default": "./object.js"
-		},
-		"./path": {
-			"default": "./path.js"
-		},
-		"./predicate": {
-			"default": "./predicate.js"
-		},
-		"./prim": {
-			"default": "./prim.js"
-		},
-		"./range": {
-			"default": "./range.js"
-		},
-		"./release": {
-			"default": "./release.js"
-		},
-		"./reset": {
-			"default": "./reset.js"
-		},
-		"./select": {
-			"default": "./select.js"
-		},
-		"./seq": {
-			"default": "./seq.js"
-		},
-		"./set": {
-			"default": "./set.js"
-		},
-		"./stack": {
-			"default": "./stack.js"
-		},
-		"./tuple": {
-			"default": "./tuple.js"
-		},
-		"./typedarray": {
-			"default": "./typedarray.js"
-		},
-		"./watch": {
-			"default": "./watch.js"
-		}
-	}
+    "name": "@thi.ng/api",
+    "version": "8.3.9",
+    "description": "Common, generic types, interfaces & mixins",
+    "type": "module",
+    "module": "./index.js",
+    "typings": "./index.d.ts",
+    "sideEffects": false,
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/thi-ng/umbrella.git"
+    },
+    "homepage": "https://github.com/thi-ng/umbrella/tree/develop/packages/api#readme",
+    "funding": [
+        {
+            "type": "github",
+            "url": "https://github.com/sponsors/postspectacular"
+        },
+        {
+            "type": "patreon",
+            "url": "https://patreon.com/thing_umbrella"
+        }
+    ],
+    "author": "Karsten Schmidt <k+npm@thi.ng>",
+    "license": "Apache-2.0",
+    "scripts": {
+        "build": "yarn clean && tsc --declaration",
+        "clean": "rimraf '*.js' '*.d.ts' '*.map' doc api decorators mixins",
+        "doc": "typedoc --excludePrivate --excludeInternal --out doc src/index.ts",
+        "doc:ae": "mkdir -p .ae/doc .ae/temp && api-extractor run --local --verbose",
+        "doc:readme": "yarn doc:stats && tools:readme",
+        "doc:stats": "tools:module-stats",
+        "pub": "yarn npm publish --access public",
+        "test": "testament test"
+    },
+    "devDependencies": {
+        "@microsoft/api-extractor": "^7.25.0",
+        "@thi.ng/testament": "^0.2.10",
+        "rimraf": "^3.0.2",
+        "tools": "workspace:^",
+        "typedoc": "^0.22.17",
+        "typescript": "^4.7.4"
+    },
+    "keywords": [
+        "assert",
+        "constants",
+        "decorators",
+        "generic",
+        "interface",
+        "mixin",
+        "type",
+        "typescript"
+    ],
+    "publishConfig": {
+        "access": "public"
+    },
+    "browser": {
+        "process": false,
+        "setTimeout": false
+    },
+    "engines": {
+        "node": ">=12.7"
+    },
+    "files": [
+        "*.js",
+        "*.d.ts",
+        "decorators",
+        "mixins"
+    ],
+    "exports": {
+        ".": {
+            "default": "./index.js"
+        },
+        "./api": {
+            "default": "./api.js"
+        },
+        "./assoc": {
+            "default": "./assoc.js"
+        },
+        "./bind": {
+            "default": "./bind.js"
+        },
+        "./buffered": {
+            "default": "./buffered.js"
+        },
+        "./clear": {
+            "default": "./clear.js"
+        },
+        "./compare": {
+            "default": "./compare.js"
+        },
+        "./contains": {
+            "default": "./contains.js"
+        },
+        "./copy": {
+            "default": "./copy.js"
+        },
+        "./decorators/configurable": {
+            "default": "./decorators/configurable.js"
+        },
+        "./decorators/deprecated": {
+            "default": "./decorators/deprecated.js"
+        },
+        "./decorators/nomixin": {
+            "default": "./decorators/nomixin.js"
+        },
+        "./decorators/sealed": {
+            "default": "./decorators/sealed.js"
+        },
+        "./deref": {
+            "default": "./deref.js"
+        },
+        "./dissoc": {
+            "default": "./dissoc.js"
+        },
+        "./empty": {
+            "default": "./empty.js"
+        },
+        "./enable": {
+            "default": "./enable.js"
+        },
+        "./equiv": {
+            "default": "./equiv.js"
+        },
+        "./event": {
+            "default": "./event.js"
+        },
+        "./fn": {
+            "default": "./fn.js"
+        },
+        "./get": {
+            "default": "./get.js"
+        },
+        "./grid": {
+            "default": "./grid.js"
+        },
+        "./hash": {
+            "default": "./hash.js"
+        },
+        "./hiccup": {
+            "default": "./hiccup.js"
+        },
+        "./id": {
+            "default": "./id.js"
+        },
+        "./indexed": {
+            "default": "./indexed.js"
+        },
+        "./into": {
+            "default": "./into.js"
+        },
+        "./keyval": {
+            "default": "./keyval.js"
+        },
+        "./length": {
+            "default": "./length.js"
+        },
+        "./meta": {
+            "default": "./meta.js"
+        },
+        "./mixin": {
+            "default": "./mixin.js"
+        },
+        "./mixins/ienable": {
+            "default": "./mixins/ienable.js"
+        },
+        "./mixins/igrid": {
+            "default": "./mixins/igrid.js"
+        },
+        "./mixins/inotify": {
+            "default": "./mixins/inotify.js"
+        },
+        "./mixins/iterable": {
+            "default": "./mixins/iterable.js"
+        },
+        "./mixins/iwatch": {
+            "default": "./mixins/iwatch.js"
+        },
+        "./null": {
+            "default": "./null.js"
+        },
+        "./object": {
+            "default": "./object.js"
+        },
+        "./path": {
+            "default": "./path.js"
+        },
+        "./predicate": {
+            "default": "./predicate.js"
+        },
+        "./prim": {
+            "default": "./prim.js"
+        },
+        "./range": {
+            "default": "./range.js"
+        },
+        "./release": {
+            "default": "./release.js"
+        },
+        "./reset": {
+            "default": "./reset.js"
+        },
+        "./select": {
+            "default": "./select.js"
+        },
+        "./seq": {
+            "default": "./seq.js"
+        },
+        "./set": {
+            "default": "./set.js"
+        },
+        "./stack": {
+            "default": "./stack.js"
+        },
+        "./tuple": {
+            "default": "./tuple.js"
+        },
+        "./typedarray": {
+            "default": "./typedarray.js"
+        },
+        "./watch": {
+            "default": "./watch.js"
+        }
+    }
 }

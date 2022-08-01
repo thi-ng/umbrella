@@ -1,204 +1,204 @@
 {
-	"name": "@thi.ng/rstream",
-	"version": "7.2.10",
-	"description": "Reactive streams & subscription primitives for constructing dataflow graphs / pipelines",
-	"type": "module",
-	"module": "./index.js",
-	"typings": "./index.d.ts",
-	"sideEffects": false,
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/thi-ng/umbrella.git"
-	},
-	"homepage": "https://github.com/thi-ng/umbrella/tree/develop/packages/rstream#readme",
-	"funding": [
-		{
-			"type": "github",
-			"url": "https://github.com/sponsors/postspectacular"
-		},
-		{
-			"type": "patreon",
-			"url": "https://patreon.com/thing_umbrella"
-		}
-	],
-	"author": "Karsten Schmidt <k+npm@thi.ng>",
-	"license": "Apache-2.0",
-	"scripts": {
-		"build": "yarn clean && tsc --declaration",
-		"clean": "rimraf '*.js' '*.d.ts' '*.map' doc",
-		"doc": "typedoc --excludePrivate --excludeInternal --out doc src/index.ts",
-		"doc:ae": "mkdir -p .ae/doc .ae/temp && api-extractor run --local --verbose",
-		"doc:readme": "yarn doc:stats && tools:readme",
-		"doc:stats": "tools:module-stats",
-		"pub": "yarn npm publish --access public",
-		"test": "testament test"
-	},
-	"dependencies": {
-		"@thi.ng/api": "^8.3.8",
-		"@thi.ng/arrays": "^2.3.1",
-		"@thi.ng/associative": "^6.2.0",
-		"@thi.ng/atom": "^5.1.9",
-		"@thi.ng/checks": "^3.2.2",
-		"@thi.ng/errors": "^2.1.8",
-		"@thi.ng/logger": "^1.1.8",
-		"@thi.ng/transducers": "^8.3.7"
-	},
-	"devDependencies": {
-		"@microsoft/api-extractor": "^7.25.0",
-		"@thi.ng/testament": "^0.2.9",
-		"rimraf": "^3.0.2",
-		"tools": "workspace:^",
-		"typedoc": "^0.22.17",
-		"typescript": "^4.7.4"
-	},
-	"keywords": [
-		"async",
-		"datastructure",
-		"event",
-		"graph",
-		"pipeline",
-		"pubsub",
-		"reactive",
-		"rstream",
-		"state",
-		"stream",
-		"subscription",
-		"transducer",
-		"transformation",
-		"typescript",
-		"webworker"
-	],
-	"publishConfig": {
-		"access": "public"
-	},
-	"engines": {
-		"node": ">=12.7"
-	},
-	"files": [
-		"*.js",
-		"*.d.ts",
-		"internal"
-	],
-	"exports": {
-		".": {
-			"default": "./index.js"
-		},
-		"./api": {
-			"default": "./api.js"
-		},
-		"./asidechain": {
-			"default": "./asidechain.js"
-		},
-		"./atom": {
-			"default": "./atom.js"
-		},
-		"./bisect": {
-			"default": "./bisect.js"
-		},
-		"./checks": {
-			"default": "./checks.js"
-		},
-		"./debounce": {
-			"default": "./debounce.js"
-		},
-		"./defworker": {
-			"default": "./defworker.js"
-		},
-		"./event": {
-			"default": "./event.js"
-		},
-		"./forkjoin": {
-			"default": "./forkjoin.js"
-		},
-		"./idgen": {
-			"default": "./idgen.js"
-		},
-		"./interval": {
-			"default": "./interval.js"
-		},
-		"./iterable": {
-			"default": "./iterable.js"
-		},
-		"./logger": {
-			"default": "./logger.js"
-		},
-		"./merge": {
-			"default": "./merge.js"
-		},
-		"./metastream": {
-			"default": "./metastream.js"
-		},
-		"./nodejs": {
-			"default": "./nodejs.js"
-		},
-		"./object": {
-			"default": "./object.js"
-		},
-		"./post-worker": {
-			"default": "./post-worker.js"
-		},
-		"./promise": {
-			"default": "./promise.js"
-		},
-		"./promises": {
-			"default": "./promises.js"
-		},
-		"./pubsub": {
-			"default": "./pubsub.js"
-		},
-		"./raf": {
-			"default": "./raf.js"
-		},
-		"./resolve": {
-			"default": "./resolve.js"
-		},
-		"./sidechain-partition": {
-			"default": "./sidechain-partition.js"
-		},
-		"./sidechain-toggle": {
-			"default": "./sidechain-toggle.js"
-		},
-		"./stream": {
-			"default": "./stream.js"
-		},
-		"./subscription": {
-			"default": "./subscription.js"
-		},
-		"./sync": {
-			"default": "./sync.js"
-		},
-		"./timeout": {
-			"default": "./timeout.js"
-		},
-		"./trace": {
-			"default": "./trace.js"
-		},
-		"./transduce": {
-			"default": "./transduce.js"
-		},
-		"./trigger": {
-			"default": "./trigger.js"
-		},
-		"./tunnel": {
-			"default": "./tunnel.js"
-		},
-		"./tween": {
-			"default": "./tween.js"
-		},
-		"./view": {
-			"default": "./view.js"
-		},
-		"./worker": {
-			"default": "./worker.js"
-		}
-	},
-	"thi.ng": {
-		"related": [
-			"atom",
-			"hdom",
-			"rdom",
-			"transducers"
-		],
-		"year": 2017
-	}
+    "name": "@thi.ng/rstream",
+    "version": "7.2.11",
+    "description": "Reactive streams & subscription primitives for constructing dataflow graphs / pipelines",
+    "type": "module",
+    "module": "./index.js",
+    "typings": "./index.d.ts",
+    "sideEffects": false,
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/thi-ng/umbrella.git"
+    },
+    "homepage": "https://github.com/thi-ng/umbrella/tree/develop/packages/rstream#readme",
+    "funding": [
+        {
+            "type": "github",
+            "url": "https://github.com/sponsors/postspectacular"
+        },
+        {
+            "type": "patreon",
+            "url": "https://patreon.com/thing_umbrella"
+        }
+    ],
+    "author": "Karsten Schmidt <k+npm@thi.ng>",
+    "license": "Apache-2.0",
+    "scripts": {
+        "build": "yarn clean && tsc --declaration",
+        "clean": "rimraf '*.js' '*.d.ts' '*.map' doc",
+        "doc": "typedoc --excludePrivate --excludeInternal --out doc src/index.ts",
+        "doc:ae": "mkdir -p .ae/doc .ae/temp && api-extractor run --local --verbose",
+        "doc:readme": "yarn doc:stats && tools:readme",
+        "doc:stats": "tools:module-stats",
+        "pub": "yarn npm publish --access public",
+        "test": "testament test"
+    },
+    "dependencies": {
+        "@thi.ng/api": "^8.3.9",
+        "@thi.ng/arrays": "^2.3.2",
+        "@thi.ng/associative": "^6.2.1",
+        "@thi.ng/atom": "^5.1.10",
+        "@thi.ng/checks": "^3.2.3",
+        "@thi.ng/errors": "^2.1.9",
+        "@thi.ng/logger": "^1.1.9",
+        "@thi.ng/transducers": "^8.3.8"
+    },
+    "devDependencies": {
+        "@microsoft/api-extractor": "^7.25.0",
+        "@thi.ng/testament": "^0.2.10",
+        "rimraf": "^3.0.2",
+        "tools": "workspace:^",
+        "typedoc": "^0.22.17",
+        "typescript": "^4.7.4"
+    },
+    "keywords": [
+        "async",
+        "datastructure",
+        "event",
+        "graph",
+        "pipeline",
+        "pubsub",
+        "reactive",
+        "rstream",
+        "state",
+        "stream",
+        "subscription",
+        "transducer",
+        "transformation",
+        "typescript",
+        "webworker"
+    ],
+    "publishConfig": {
+        "access": "public"
+    },
+    "engines": {
+        "node": ">=12.7"
+    },
+    "files": [
+        "*.js",
+        "*.d.ts",
+        "internal"
+    ],
+    "exports": {
+        ".": {
+            "default": "./index.js"
+        },
+        "./api": {
+            "default": "./api.js"
+        },
+        "./asidechain": {
+            "default": "./asidechain.js"
+        },
+        "./atom": {
+            "default": "./atom.js"
+        },
+        "./bisect": {
+            "default": "./bisect.js"
+        },
+        "./checks": {
+            "default": "./checks.js"
+        },
+        "./debounce": {
+            "default": "./debounce.js"
+        },
+        "./defworker": {
+            "default": "./defworker.js"
+        },
+        "./event": {
+            "default": "./event.js"
+        },
+        "./forkjoin": {
+            "default": "./forkjoin.js"
+        },
+        "./idgen": {
+            "default": "./idgen.js"
+        },
+        "./interval": {
+            "default": "./interval.js"
+        },
+        "./iterable": {
+            "default": "./iterable.js"
+        },
+        "./logger": {
+            "default": "./logger.js"
+        },
+        "./merge": {
+            "default": "./merge.js"
+        },
+        "./metastream": {
+            "default": "./metastream.js"
+        },
+        "./nodejs": {
+            "default": "./nodejs.js"
+        },
+        "./object": {
+            "default": "./object.js"
+        },
+        "./post-worker": {
+            "default": "./post-worker.js"
+        },
+        "./promise": {
+            "default": "./promise.js"
+        },
+        "./promises": {
+            "default": "./promises.js"
+        },
+        "./pubsub": {
+            "default": "./pubsub.js"
+        },
+        "./raf": {
+            "default": "./raf.js"
+        },
+        "./resolve": {
+            "default": "./resolve.js"
+        },
+        "./sidechain-partition": {
+            "default": "./sidechain-partition.js"
+        },
+        "./sidechain-toggle": {
+            "default": "./sidechain-toggle.js"
+        },
+        "./stream": {
+            "default": "./stream.js"
+        },
+        "./subscription": {
+            "default": "./subscription.js"
+        },
+        "./sync": {
+            "default": "./sync.js"
+        },
+        "./timeout": {
+            "default": "./timeout.js"
+        },
+        "./trace": {
+            "default": "./trace.js"
+        },
+        "./transduce": {
+            "default": "./transduce.js"
+        },
+        "./trigger": {
+            "default": "./trigger.js"
+        },
+        "./tunnel": {
+            "default": "./tunnel.js"
+        },
+        "./tween": {
+            "default": "./tween.js"
+        },
+        "./view": {
+            "default": "./view.js"
+        },
+        "./worker": {
+            "default": "./worker.js"
+        }
+    },
+    "thi.ng": {
+        "related": [
+            "atom",
+            "hdom",
+            "rdom",
+            "transducers"
+        ],
+        "year": 2017
+    }
 }
