@@ -1,14 +1,13 @@
-// import { benchmark } from "@thi.ng/bench";
-import { assert } from "@thi.ng/api";
 import { benchmark } from "@thi.ng/bench";
+import { assert } from "@thi.ng/errors";
 import { defKSUID32, KSUID32 } from "../src";
 
 const opts = { iter: 100, warmup: 10 };
 
 const bench = (id: KSUID32, n = 10000) => {
-    const acc = new Set<string>();
-    for (let i = 0; i < n; i++) acc.add(id.next());
-    assert(acc.size === n, `collision`);
+	const acc = new Set<string>();
+	for (let i = 0; i < n; i++) acc.add(id.next());
+	assert(acc.size === n, `collision`);
 };
 
 // prettier-ignore

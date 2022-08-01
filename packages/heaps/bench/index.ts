@@ -12,24 +12,24 @@ const buildDHeap = (vals: number[], d = 4) => new DHeap(vals, { d });
 const buildPHeap = (vals: number[]) => new PairingHeap(vals);
 
 const drainHeap = (vals: number[]) => {
-    const h = buildHeap(vals);
-    while (h.length) {
-        h.pop();
-    }
+	const h = buildHeap(vals);
+	while (h.length) {
+		h.pop();
+	}
 };
 
 const drainDHeap = (vals: number[], d = 4) => {
-    const h = buildDHeap(vals, d);
-    while (h.length) {
-        h.pop();
-    }
+	const h = buildDHeap(vals, d);
+	while (h.length) {
+		h.pop();
+	}
 };
 
 const drainPHeap = (vals: number[]) => {
-    const h = buildPHeap(vals);
-    while (h.length) {
-        h.pop();
-    }
+	const h = buildPHeap(vals);
+	while (h.length) {
+		h.pop();
+	}
 };
 
 const vals = generateValues(1e3);
