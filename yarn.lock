@@ -4731,6 +4731,23 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@thi.ng/wasm-api@workspace:packages/wasm-api":
+  version: 0.0.0-use.local
+  resolution: "@thi.ng/wasm-api@workspace:packages/wasm-api"
+  dependencies:
+    "@microsoft/api-extractor": ^7.25.0
+    "@thi.ng/api": ^8.3.8
+    "@thi.ng/errors": ^2.1.8
+    "@thi.ng/hex": ^2.1.8
+    "@thi.ng/logger": ^1.1.8
+    "@thi.ng/testament": ^0.2.9
+    rimraf: ^3.0.2
+    tools: "workspace:^"
+    typedoc: ^0.22.17
+    typescript: ^4.7.4
+  languageName: unknown
+  linkType: soft
+
 "@thi.ng/webgl-msdf@workspace:^, @thi.ng/webgl-msdf@workspace:packages/webgl-msdf":
   version: 0.0.0-use.local
   resolution: "@thi.ng/webgl-msdf@workspace:packages/webgl-msdf"
