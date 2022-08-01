@@ -16,7 +16,7 @@
 **Please visit [thi.ng](https://thi.ng) for additional information & topic based
 search of packages relevant to your use cases...**
 
-This mono-repository is home to 166+ thi.ng TypeScript/ES6 projects, a wide and
+This mono-repository is home to 167+ thi.ng TypeScript/ES6 projects, a wide and
 jointly developed collection of packages and building blocks for (non-exhaustive
 list of topics):
 
@@ -161,14 +161,11 @@ feature or `develop` branches)
 
 ### Latest updates
 
-As of: 2022-07-19
+As of: 2022-08-01
 
-| Status                                        | Project                                         | Version                                                                                                               | Changelog                                        |
-|-----------------------------------------------|-------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------|--------------------------------------------------|
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/adjacency`](./packages/adjacency)     | [![version](https://img.shields.io/npm/v/@thi.ng/adjacency.svg)](https://www.npmjs.com/package/@thi.ng/adjacency)     | [changelog](./packages/adjacency/CHANGELOG.md)   |
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/associative`](./packages/associative) | [![version](https://img.shields.io/npm/v/@thi.ng/associative.svg)](https://www.npmjs.com/package/@thi.ng/associative) | [changelog](./packages/associative/CHANGELOG.md) |
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/binary`](./packages/binary)           | [![version](https://img.shields.io/npm/v/@thi.ng/binary.svg)](https://www.npmjs.com/package/@thi.ng/binary)           | [changelog](./packages/binary/CHANGELOG.md)      |
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/bitfield`](./packages/bitfield)       | [![version](https://img.shields.io/npm/v/@thi.ng/bitfield.svg)](https://www.npmjs.com/package/@thi.ng/bitfield)       | [changelog](./packages/bitfield/CHANGELOG.md)    |
+| Status                                      | Project                                   | Version                                                                                                         | Changelog                                     |
+|---------------------------------------------|-------------------------------------------|-----------------------------------------------------------------------------------------------------------------|-----------------------------------------------|
+| ![](https://img.shields.io/badge/-new-cyan) | [`@thi.ng/wasm-api`](./packages/wasm-api) | [![version](https://img.shields.io/npm/v/@thi.ng/wasm-api.svg)](https://www.npmjs.com/package/@thi.ng/wasm-api) | [changelog](./packages/wasm-api/CHANGELOG.md) |
 
 <!--
 ![](https://img.shields.io/badge/-feat-green)
@@ -374,7 +371,7 @@ As of: 2022-07-19
 | [`@thi.ng/webgl-msdf`](./packages/webgl-msdf)                   | [![version](https://img.shields.io/npm/v/@thi.ng/webgl-msdf.svg)](https://www.npmjs.com/package/@thi.ng/webgl-msdf)                   | [changelog](./packages/webgl-msdf/CHANGELOG.md)          | MSDF font rendering                |
 | [`@thi.ng/webgl-shadertoy`](./packages/webgl-shadertoy)         | [![version](https://img.shields.io/npm/v/@thi.ng/webgl-shadertoy.svg)](https://www.npmjs.com/package/@thi.ng/webgl-shadertoy)         | [changelog](./packages/webgl-shadertoy/CHANGELOG.md)     | Shadertoy-like WebGL setup         |
 
-### Low-level, binary, memory management
+### Low-level, binary, memory management, interop
 
 | Project                                           | Version                                                                                                                 | Changelog                                         | Description                                     |
 |---------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------|-------------------------------------------------|
@@ -390,6 +387,7 @@ As of: 2022-07-19
 | [`@thi.ng/soa`](./packages/soa)                   | [![version](https://img.shields.io/npm/v/@thi.ng/soa.svg)](https://www.npmjs.com/package/@thi.ng/soa)                   | [changelog](./packages/soa/CHANGELOG.md)          | Memory mapped data structures & serialization   |
 | [`@thi.ng/unionstruct`](./packages/unionstruct)   | [![version](https://img.shields.io/npm/v/@thi.ng/unionstruct.svg)](https://www.npmjs.com/package/@thi.ng/unionstruct)   | [changelog](./packages/unionstruct/CHANGELOG.md)  | Wrapper for C-like structs / unions             |
 | [`@thi.ng/vector-pools`](./packages/vector-pools) | [![version](https://img.shields.io/npm/v/@thi.ng/vector-pools.svg)](https://www.npmjs.com/package/@thi.ng/vector-pools) | [changelog](./packages/vector-pools/CHANGELOG.md) | Data structures for memory mapped vectors       |
+| [`@thi.ng/wasm-api`](./packages/wasm-api)         | [![version](https://img.shields.io/npm/v/@thi.ng/wasm-api.svg)](https://www.npmjs.com/package/@thi.ng/wasm-api)         | [changelog](./packages/wasm-api/CHANGELOG.md)     | Modular, extensible JS/WebAssembly bridge API   |
 
 ### DSLs
 
