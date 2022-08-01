@@ -67,7 +67,7 @@ interface App {
 	// cast WASM exports to our defined interface
 	const app: App = <any>wasm.instance.exports;
 	// init bindings & child APIs (if any)
-    await bridge.init(app.memory);
+	await bridge.init(app.memory);
 
 	// call WASM function
 	app.start();
