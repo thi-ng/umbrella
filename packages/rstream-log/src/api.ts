@@ -2,6 +2,9 @@ import type { IID } from "@thi.ng/api";
 import type { ILogger as APILogger, LogLevel } from "@thi.ng/logger";
 import type { ISubscribable } from "@thi.ng/rstream";
 
+/**
+ * @deprecated moved to thi.ng/logger package
+ */
 export interface LogEntry extends Array<any> {
 	[0]: LogLevel;
 	[1]: string;

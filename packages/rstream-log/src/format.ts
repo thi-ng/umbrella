@@ -1,8 +1,8 @@
-import { LogLevel } from "@thi.ng/logger/api";
+import { LogEntry, LogLevel } from "@thi.ng/logger/api";
 import { stringify } from "@thi.ng/strings/stringify";
 import type { Transducer } from "@thi.ng/transducers";
 import { map } from "@thi.ng/transducers/map";
-import type { BodyFormat, DateFormat, LogEntry, LogEntryObj } from "./api.js";
+import type { BodyFormat, DateFormat, LogEntryObj } from "./api.js";
 
 export const isoDate = (dt: number) => new Date(dt).toISOString();
 

@@ -1,9 +1,9 @@
 import { illegalArity } from "@thi.ng/errors/illegal-arity";
-import { LogLevel } from "@thi.ng/logger/api";
+import { LogEntry, LogLevel } from "@thi.ng/logger/api";
 import { CloseMode, ISubscribable } from "@thi.ng/rstream/api";
 import { __nextID } from "@thi.ng/rstream/idgen";
 import { StreamMerge } from "@thi.ng/rstream/merge";
-import type { ILogger, LogEntry } from "./api.js";
+import type { ILogger } from "./api.js";
 
 export class Logger extends StreamMerge<LogEntry, LogEntry> implements ILogger {
 	level: LogLevel;
