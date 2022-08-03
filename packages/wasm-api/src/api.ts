@@ -4,8 +4,12 @@ import type { WasmBridge } from "./bridge.js";
 /**
  * Common interface for WASM/JS child APIs which will be used in combination
  * with a parent {@link WasmBridge}.
+ *
+ * @remarks
+ * The generic type param is optional and only used if the API is requiring
+ * certain exports declared by WASM module.
  */
-export interface IWasmAPI {
+export interface IWasmAPI<T extends WasmExports = WasmExports> {
 	/**
 	 * Called by {@link WasmBridge.init} to initialize all child APIs (async)
 	 * after the WASM module has been instantiated. If the method returns false
@@ -13,7 +17,7 @@ export interface IWasmAPI {
 	 *
 	 * @param parent
 	 */
-	init(parent: WasmBridge): Promise<boolean>;
+	init(parent: WasmBridge<T>): Promise<boolean>;
 	/**
 	 * Returns an object of this child API's declared WASM imports. Be aware
 	 * imports from all child APIs will be merged into a single flat namespace,
@@ -22,6 +26,30 @@ export interface IWasmAPI {
 	getImports(): WebAssembly.ModuleImports;
 }
 
+/**
+ * Base interface of exports declared by the WASM module. At the very least, the
+ * module needs to export its memory.
+ *
+ * @remarks
+ * This interface is supposed to be extended with the concrete exports defined
+ * by your WASM module and is used as generic type param for {@link WasmBridge}
+ * and any {@link IWasmAPI} bridge modules. These exports can obtained via
+ * {@link WasmBridge.exports} where they will be stored during the execution of
+ * {@link WasmBridge.init}.
+ */
+export interface WasmExports {
+	/**
+	 * The WASM module's linear memory buffer. The `WasmBridge` automatically
+	 * creates various typed views of that memory.
+	 */
+	memory: WebAssembly.Memory;
+}
+
+/**
+ * Core API of WASM imports defined by the {@link WasmBridge}. The same
+ * functions are declared as bindings in `/zig/core.zig`. Also see this file for
+ * documentation of each function...
+ */
 export interface CoreAPI {
 	printI8: Fn<number, void>;
 	printU8: Fn<number, void>;
