@@ -82,9 +82,10 @@ export const bridge = new WasmBridge({ custom: new CustomAPI() });
 ```
 
 In Zig (or any other language of your choice) we can then utilize this custom
-API like so (also see example further below in this readme):
+API like so (Please also see example further below in this readme):
 
 ```zig
+// Import JS core API
 const js = @import("wasmapi");
 
 /// JS external to fill vec2 w/ random values
@@ -180,7 +181,7 @@ node --experimental-repl-await
 > const wasmApi = await import("@thi.ng/wasm-api");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.21 KB
+Package sizes (gzipped, pre-treeshake): ESM: 1.29 KB
 
 ## Dependencies
 
@@ -195,19 +196,18 @@ Package sizes (gzipped, pre-treeshake): ESM: 1.21 KB
 [Generated API docs](https://docs.thi.ng/umbrella/wasm-api/)
 
 ```ts
-import { WasmBridge } from "@thi.ng/wasm-api";
+import { WasmBridge, WasmExports } from "@thi.ng/wasm-api";
 import { readFileSync } from "fs";
 
 // WASM exports from our dummy module (below)
-interface App {
-	memory: WebAssembly.Memory;
+interface App extends WasmExports {
 	start: () => void;
 }
 
 (async () => {
 	// new API bridge with defaults
 	// (i.e. no child API modules and using console logger)
-	const bridge = new WasmBridge();
+	const bridge = new WasmBridge<App>();
 
 	// instantiate WASM module using imports provided by the bridge
 	const wasm = await WebAssembly.instantiate(
@@ -215,14 +215,11 @@ interface App {
 		bridge.getImports()
 	);
 
-	// cast WASM exports to our defined interface
-	const app: App = <any>wasm.instance.exports;
-
 	// init bindings & child APIs (if any)
-	await bridge.init(app.memory);
+	await bridge.init(<any>wasm.instance.exports);
 
-	// call a WASM function
-	app.start();
+	// call an exported WASM function
+	bridge.exports.start();
 })();
 ```
 
@@ -238,8 +235,9 @@ export fn start() void {
 }
 ```
 
-The WASM binary can be built via (for more complex scenarios add the supplied
-.zig file(s) to your `build.zig` and/or source folder):
+The WASM binary can be built using the following command (or for more complex
+scenarios add the supplied .zig file(s) to your `build.zig` and/or source
+folder):
 
 ```bash
 # compile WASM binary
