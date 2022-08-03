@@ -27,3 +27,25 @@ export interface ILogger {
 	warn(...args: any[]): void;
 	severe(...args: any[]): void;
 }
+
+/**
+ * Tuple type describing a single log entry.
+ */
+export interface LogEntry extends Array<any> {
+	/**
+	 * Entry's associated log level
+	 */
+	[0]: LogLevel;
+	/**
+	 * Logger ID
+	 */
+	[1]: string;
+	/**
+	 * Timestamp
+	 */
+	[2]: number;
+	/**
+	 * Log entry body (any number/type of arguments given)
+	 */
+	[id: number]: any;
+}
