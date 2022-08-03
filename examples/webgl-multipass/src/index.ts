@@ -1,6 +1,5 @@
+import { floatBuffer, FLOAT_GRAY } from "@thi.ng/pixel";
 import { canvas2d } from "@thi.ng/pixel/canvas";
-import { GRAY8 } from "@thi.ng/pixel/format/gray8";
-import { intBuffer } from "@thi.ng/pixel/int";
 import type { Vec2Sym, Vec4Sym } from "@thi.ng/shader-ast";
 import { clamp01 } from "@thi.ng/shader-ast-stdlib/math/clamp";
 import { fit1101 } from "@thi.ng/shader-ast-stdlib/math/fit";
@@ -100,16 +99,16 @@ const toy = defMultiPass({
 toy.update(0);
 
 const canv = canvas2d(32, 32, document.body);
-intBuffer(
+floatBuffer(
 	32,
 	32,
-	GRAY8,
+	FLOAT_GRAY,
 	readTexture(
 		canvas.gl,
 		toy.textures.bar,
 		TextureFormat.RED,
-		TextureType.UNSIGNED_BYTE,
-		new Uint8Array(32 * 32)
+		TextureType.FLOAT,
+		new Float32Array(32 * 32)
 	)
 ).blitCanvas(canv.canvas);
 
