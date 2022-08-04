@@ -6,18 +6,42 @@ pub extern fn printI8(x: i8) void;
 pub extern fn printU8(x: u8) void;
 /// Prints hex number using configured JS logger
 pub extern fn printU8Hex(x: u8) void;
+
 /// Prints number using configured JS logger
 pub extern fn printI16(x: i16) void;
 /// Prints number using configured JS logger
 pub extern fn printU16(x: u16) void;
 /// Prints hex number using configured JS logger
 pub extern fn printU16Hex(x: u16) void;
+
 /// Prints number using configured JS logger
 pub extern fn printI32(x: i32) void;
 /// Prints number using configured JS logger
 pub extern fn printU32(x: u32) void;
 /// Prints hex number using configured JS logger
 pub extern fn printU32Hex(x: u32) void;
+
+/// Prints decomposed i64 number using configured JS logger
+pub extern fn _printI64(hi: i32, lo: i32) void;
+/// Convenience wrapper for _printI64(), accepting an i64
+pub fn printI64(x: i64) void {
+    _printI64(@truncate(i32, x >> 32), @truncate(i32, x));
+}
+
+/// Prints decomposed u64 number using configured JS logger
+pub extern fn _printU64(hi: u32, lo: u32) void;
+/// Convenience wrapper for _printU64(), accepting an u64
+pub fn printU64(x: u64) void {
+    _printU64(@truncate(u32, x >> 32), @truncate(u32, x));
+}
+
+/// Prints decomposed u64 hex number using configured JS logger
+pub extern fn _printU64Hex(hi: u32, lo: u32) void;
+/// Convenience wrapper for _printU64Hex(), accepting an u64
+pub fn printU64Hex(x: u64) void {
+    _printU64Hex(@truncate(u32, x >> 32), @truncate(u32, x));
+}
+
 /// Prints number using configured JS logger
 pub extern fn printF32(x: f32) void;
 /// Prints number using configured JS logger
@@ -40,6 +64,10 @@ pub extern fn _printU16Array(addr: usize, len: usize) void;
 pub extern fn _printI32Array(addr: usize, len: usize) void;
 /// Prints number array using configured JS logger
 pub extern fn _printU32Array(addr: usize, len: usize) void;
+/// Prints number array using configured JS logger
+pub extern fn _printI64Array(addr: usize, len: usize) void;
+/// Prints number array using configured JS logger
+pub extern fn _printU64Array(addr: usize, len: usize) void;
 /// Prints number array using configured JS logger
 pub extern fn _printF32Array(addr: usize, len: usize) void;
 /// Prints number array using configured JS logger
@@ -68,6 +96,14 @@ pub fn printI32Array(buf: []const i32) void {
 /// Prints number array using configured JS logger
 pub fn printU32Array(buf: []const u32) void {
     _printU32Array(@ptrToInt(buf.ptr), buf.len);
+}
+/// Prints number array using configured JS logger
+pub fn printI64Array(buf: []const i64) void {
+    _printI64Array(@ptrToInt(buf.ptr), buf.len);
+}
+/// Prints number array using configured JS logger
+pub fn printU64Array(buf: []const u64) void {
+    _printU64Array(@ptrToInt(buf.ptr), buf.len);
 }
 /// Prints number array using configured JS logger
 pub fn printF32Array(buf: []const f32) void {

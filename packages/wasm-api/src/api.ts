@@ -1,5 +1,7 @@
-import type { Fn } from "@thi.ng/api";
+import type { Fn, Fn2 } from "@thi.ng/api";
 import type { WasmBridge } from "./bridge.js";
+
+export type BigIntArray = bigint[] | BigInt64Array | BigUint64Array;
 
 /**
  * Common interface for WASM/JS child APIs which will be used in combination
@@ -60,6 +62,9 @@ export interface CoreAPI {
 	printI32: Fn<number, void>;
 	printU32: Fn<number, void>;
 	printU32Hex: Fn<number, void>;
+	_printI64: Fn2<number, number, void>;
+	_printU64: Fn2<number, number, void>;
+	_printU64Hex: Fn2<number, number, void>;
 	printF32: Fn<number, void>;
 	printF64: Fn<number, void>;
 	_printI8Array: (addr: number, len: number) => void;
@@ -68,6 +73,8 @@ export interface CoreAPI {
 	_printU16Array: (addr: number, len: number) => void;
 	_printI32Array: (addr: number, len: number) => void;
 	_printU32Array: (addr: number, len: number) => void;
+	_printI64Array: (addr: number, len: number) => void;
+	_printU64Array: (addr: number, len: number) => void;
 	_printF32Array: (addr: number, len: number) => void;
 	_printF64Array: (addr: number, len: number) => void;
 	_printStr0: (addr: number) => void;
