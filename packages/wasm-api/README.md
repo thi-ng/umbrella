@@ -25,9 +25,10 @@ Modular, extensible API bridge and generic glue code between JS & WebAssembly.
 
 This package provides a small, generic and modular
 [`WasmBridge`](https://docs.thi.ng/umbrella/wasm-api/classes/WasmBridge.html)
-class as interop basis for hybrid JS/WebAssembly applications. At the moment
-only a basic core API is provided (i.e. for debug output, string & pointer
-handling), but in the future we aim to also supply support modules for DOM
+class as interop basis and a much reduced boilerplate for hybrid JS/WebAssembly
+applications. At the moment only a minimal core API is provided (i.e. for debug
+output, string, pointer, typed array accessors [8/16/32/64 bit (u)ints, 32/64
+bit floats]), but in the future we aim to also supply support modules for DOM
 manipulation, WebGL, WebGPU, WebAudio etc.
 
 In general, all languages with a WebAssembly target are supported, however
@@ -181,7 +182,7 @@ node --experimental-repl-await
 > const wasmApi = await import("@thi.ng/wasm-api");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.49 KB
+Package sizes (gzipped, pre-treeshake): ESM: 1.63 KB
 
 ## Dependencies
 
