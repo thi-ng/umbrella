@@ -161,11 +161,12 @@ feature or `develop` branches)
 
 ### Latest updates
 
-As of: 2022-08-01
+As of: 2022-08-04
 
-| Status                                      | Project                                   | Version                                                                                                         | Changelog                                     |
-|---------------------------------------------|-------------------------------------------|-----------------------------------------------------------------------------------------------------------------|-----------------------------------------------|
-| ![](https://img.shields.io/badge/-new-cyan) | [`@thi.ng/wasm-api`](./packages/wasm-api) | [![version](https://img.shields.io/npm/v/@thi.ng/wasm-api.svg)](https://www.npmjs.com/package/@thi.ng/wasm-api) | [changelog](./packages/wasm-api/CHANGELOG.md) |
+| Status                                        | Project                                   | Version                                                                                                         | Changelog                                     |
+|-----------------------------------------------|-------------------------------------------|-----------------------------------------------------------------------------------------------------------------|-----------------------------------------------|
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/logger`](./packages/logger)     | [![version](https://img.shields.io/npm/v/@thi.ng/logger.svg)](https://www.npmjs.com/package/@thi.ng/logger)     | [changelog](./packages/logger/CHANGELOG.md)   |
+| ![](https://img.shields.io/badge/-new-cyan)   | [`@thi.ng/wasm-api`](./packages/wasm-api) | [![version](https://img.shields.io/npm/v/@thi.ng/wasm-api.svg)](https://www.npmjs.com/package/@thi.ng/wasm-api) | [changelog](./packages/wasm-api/CHANGELOG.md) |
 
 <!--
 ![](https://img.shields.io/badge/-feat-green)
