@@ -82,16 +82,16 @@ const js = @import("wasmapi");
 extern fn custom_randomVec2(addr: usize) void;
 
 export fn test_randomVec2() void {
-    var foo = [2]f32{ 0, 0 };
+	var foo = [2]f32{ 0, 0 };
 
 	// print original
-    js.printF32Array(foo[0..]);
+	js.printF32Array(foo[0..]);
 
 	// populate foo with random numbers
-    custom_randomVec2(@ptrToInt(&foo));
+	custom_randomVec2(@ptrToInt(&foo));
 
 	// print result
-    js.printF32Array(foo[0..]);
+	js.printF32Array(foo[0..]);
 }
 ```
 
@@ -181,13 +181,8 @@ interface App extends WasmExports {
 	const bridge = new WasmBridge<App>();
 
 	// instantiate WASM module using imports provided by the bridge
-	const wasm = await WebAssembly.instantiate(
-		readFileSync("hello.wasm"),
-		bridge.getImports()
-	);
-
-	// init bindings & child APIs (if any)
-	await bridge.init(<any>wasm.instance.exports);
+	// this also initializes any bindings & bridge child APIs (if any)
+	await bridge.instantiate(readFileSync("hello.wasm"));
 
 	// call an exported WASM function
 	bridge.exports.start();
@@ -213,10 +208,10 @@ folder):
 ```bash
 # compile WASM binary
 zig build-lib \
-  --pkg-begin wasmapi node_modules/@thi.ng/wasm-api/zig/core.zig --pkg-end \
-  -target wasm32-freestanding \
-  -O ReleaseSmall -dynamic --strip \
-  hello.zig
+	--pkg-begin wasmapi node_modules/@thi.ng/wasm-api/zig/core.zig --pkg-end \
+	-target wasm32-freestanding \
+	-O ReleaseSmall -dynamic --strip \
+	hello.zig
 
 # disassemble WASM
 wasm-dis -o hello.wast hello.wasm
