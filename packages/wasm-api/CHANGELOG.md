@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-08-01T22:09:32Z
+- **Last updated**: 2022-08-04T21:21:08Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,23 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [0.3.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/wasm-api@0.3.0) (2022-08-04)
+
+#### 🚀 Features
+
+- add i64/u64 support/accessors ([768c8bd](https://github.com/thi-ng/umbrella/commit/768c8bd))
+- add WasmBridge.instantiate, add/update accessors ([0698bae](https://github.com/thi-ng/umbrella/commit/0698bae))
+  - add WasmBridge.instantiate() boilerplate
+  - add setters for typed scalars & arrays
+  - rename derefXX() => getXX() getters
+  - update tests
+- major update WasmBridge, add types ([47aa222](https://github.com/thi-ng/umbrella/commit/47aa222))
+  - add WasmExports base interface
+  - add generics for WasmBridge & IWasmAPI
+  - update WasmBridge.init() arg (full WASM exports, not just mem)
+  - add WasmBridge.exports field to store WASM module exports
+  - add naming conflict check in WasmBridge.getImports()
 
 ## [0.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/wasm-api@0.2.0) (2022-08-01)
 

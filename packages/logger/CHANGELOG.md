@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-08-01T14:53:59Z
+- **Last updated**: 2022-08-04T21:21:08Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,17 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [1.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/logger@1.2.0) (2022-08-04)
+
+#### 🚀 Features
+
+- add MemoryLogger, ALogger ([b2cd409](https://github.com/thi-ng/umbrella/commit/b2cd409))
+  - extract abstract ALogger
+  - add MemoryLogger
+  - refactor ConsoleLogger
+  - add LogEntry tuple type (migrated from [@thi.ng/rstream-log](https://github.com/thi-ng/umbrella/tree/main/packages/rstream-log))
+  - add tests
 
 ## [1.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/logger@1.1.0) (2021-11-17)
 

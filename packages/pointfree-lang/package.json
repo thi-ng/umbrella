@@ -1,107 +1,107 @@
 {
-    "name": "@thi.ng/pointfree-lang",
-    "version": "2.1.12",
-    "description": "Forth style syntax layer/compiler & CLI for the @thi.ng/pointfree DSL",
-    "type": "module",
-    "module": "./index.js",
-    "typings": "./index.d.ts",
-    "bin": {
-        "pointfree": "bin/pointfree"
-    },
-    "sideEffects": false,
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/thi-ng/umbrella.git"
-    },
-    "homepage": "https://github.com/thi-ng/umbrella/tree/develop/packages/pointfree-lang#readme",
-    "funding": [
-        {
-            "type": "github",
-            "url": "https://github.com/sponsors/postspectacular"
-        },
-        {
-            "type": "patreon",
-            "url": "https://patreon.com/thing_umbrella"
-        }
-    ],
-    "author": "Karsten Schmidt <k+npm@thi.ng>",
-    "license": "Apache-2.0",
-    "scripts": {
-        "build": "yarn clean && tsc --declaration && yarn build:peg",
-        "build:peg": "pegjs -f es -o parser.js src/grammar.pegjs",
-        "clean": "rimraf '*.js' '*.d.ts' '*.map' doc",
-        "doc": "typedoc --excludePrivate --excludeInternal --out doc src/index.ts",
-        "doc:ae": "mkdir -p .ae/doc .ae/temp && api-extractor run --local --verbose",
-        "doc:readme": "yarn doc:stats && tools:readme",
-        "doc:stats": "tools:module-stats",
-        "pub": "yarn npm publish --access public",
-        "test": "testament test"
-    },
-    "dependencies": {
-        "@thi.ng/api": "^8.3.9",
-        "@thi.ng/args": "^2.1.12",
-        "@thi.ng/bench": "^3.1.9",
-        "@thi.ng/errors": "^2.1.9",
-        "@thi.ng/logger": "^1.1.9",
-        "@thi.ng/pointfree": "^3.1.10"
-    },
-    "devDependencies": {
-        "@microsoft/api-extractor": "^7.25.0",
-        "@thi.ng/testament": "^0.2.10",
-        "pegjs": "0.11.0-master.b7b87ea",
-        "rimraf": "^3.0.2",
-        "tools": "workspace:^",
-        "typedoc": "^0.22.17",
-        "typescript": "^4.7.4"
-    },
-    "keywords": [
-        "ast",
-        "cli",
-        "compiler",
-        "concatenative",
-        "dataflow",
-        "dsl",
-        "forth",
-        "functional",
-        "grammar",
-        "language",
-        "parser",
-        "peg",
-        "pointfree",
-        "rpn",
-        "syntax",
-        "typescript"
-    ],
-    "publishConfig": {
-        "access": "public"
-    },
-    "engines": {
-        "node": ">=12.7"
-    },
-    "files": [
-        "*.js",
-        "*.d.ts",
-        "bin"
-    ],
-    "exports": {
-        ".": {
-            "default": "./index.js"
-        },
-        "./api": {
-            "default": "./api.js"
-        },
-        "./logger": {
-            "default": "./logger.js"
-        },
-        "./parser": {
-            "default": "./parser.js"
-        },
-        "./runtime": {
-            "default": "./runtime.js"
-        }
-    },
-    "thi.ng": {
-        "parent": "@thi.ng/pointfree",
-        "year": 2018
-    }
+	"name": "@thi.ng/pointfree-lang",
+	"version": "2.1.13",
+	"description": "Forth style syntax layer/compiler & CLI for the @thi.ng/pointfree DSL",
+	"type": "module",
+	"module": "./index.js",
+	"typings": "./index.d.ts",
+	"bin": {
+		"pointfree": "bin/pointfree"
+	},
+	"sideEffects": false,
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/thi-ng/umbrella.git"
+	},
+	"homepage": "https://github.com/thi-ng/umbrella/tree/develop/packages/pointfree-lang#readme",
+	"funding": [
+		{
+			"type": "github",
+			"url": "https://github.com/sponsors/postspectacular"
+		},
+		{
+			"type": "patreon",
+			"url": "https://patreon.com/thing_umbrella"
+		}
+	],
+	"author": "Karsten Schmidt <k+npm@thi.ng>",
+	"license": "Apache-2.0",
+	"scripts": {
+		"build": "yarn clean && tsc --declaration && yarn build:peg",
+		"build:peg": "pegjs -f es -o parser.js src/grammar.pegjs",
+		"clean": "rimraf '*.js' '*.d.ts' '*.map' doc",
+		"doc": "typedoc --excludePrivate --excludeInternal --out doc src/index.ts",
+		"doc:ae": "mkdir -p .ae/doc .ae/temp && api-extractor run --local --verbose",
+		"doc:readme": "yarn doc:stats && tools:readme",
+		"doc:stats": "tools:module-stats",
+		"pub": "yarn npm publish --access public",
+		"test": "testament test"
+	},
+	"dependencies": {
+		"@thi.ng/api": "^8.3.9",
+		"@thi.ng/args": "^2.1.12",
+		"@thi.ng/bench": "^3.1.9",
+		"@thi.ng/errors": "^2.1.9",
+		"@thi.ng/logger": "^1.2.0",
+		"@thi.ng/pointfree": "^3.1.10"
+	},
+	"devDependencies": {
+		"@microsoft/api-extractor": "^7.25.0",
+		"@thi.ng/testament": "^0.2.11",
+		"pegjs": "0.11.0-master.b7b87ea",
+		"rimraf": "^3.0.2",
+		"tools": "workspace:^",
+		"typedoc": "^0.22.17",
+		"typescript": "^4.7.4"
+	},
+	"keywords": [
+		"ast",
+		"cli",
+		"compiler",
+		"concatenative",
+		"dataflow",
+		"dsl",
+		"forth",
+		"functional",
+		"grammar",
+		"language",
+		"parser",
+		"peg",
+		"pointfree",
+		"rpn",
+		"syntax",
+		"typescript"
+	],
+	"publishConfig": {
+		"access": "public"
+	},
+	"engines": {
+		"node": ">=12.7"
+	},
+	"files": [
+		"*.js",
+		"*.d.ts",
+		"bin"
+	],
+	"exports": {
+		".": {
+			"default": "./index.js"
+		},
+		"./api": {
+			"default": "./api.js"
+		},
+		"./logger": {
+			"default": "./logger.js"
+		},
+		"./parser": {
+			"default": "./parser.js"
+		},
+		"./runtime": {
+			"default": "./runtime.js"
+		}
+	},
+	"thi.ng": {
+		"parent": "@thi.ng/pointfree",
+		"year": 2018
+	}
 }

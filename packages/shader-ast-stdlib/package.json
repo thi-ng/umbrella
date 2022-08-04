@@ -1,333 +1,333 @@
 {
-    "name": "@thi.ng/shader-ast-stdlib",
-    "version": "0.12.7",
-    "description": "Function collection for modular GPGPU / shader programming with @thi.ng/shader-ast",
-    "type": "module",
-    "module": "./index.js",
-    "typings": "./index.d.ts",
-    "sideEffects": false,
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/thi-ng/umbrella.git"
-    },
-    "homepage": "https://github.com/thi-ng/umbrella/tree/develop/packages/shader-ast-stdlib#readme",
-    "funding": [
-        {
-            "type": "github",
-            "url": "https://github.com/sponsors/postspectacular"
-        },
-        {
-            "type": "patreon",
-            "url": "https://patreon.com/thing_umbrella"
-        }
-    ],
-    "author": "Karsten Schmidt <k+npm@thi.ng>",
-    "license": "Apache-2.0",
-    "scripts": {
-        "build": "yarn clean && tsc --declaration",
-        "clean": "rimraf '*.js' '*.d.ts' '*.map' doc color fog light math matrix noise raymarch screen sdf tex",
-        "doc": "typedoc --excludePrivate --excludeInternal --out doc src/index.ts",
-        "doc:ae": "mkdir -p .ae/doc .ae/temp && api-extractor run --local --verbose",
-        "doc:readme": "yarn doc:stats && tools:readme",
-        "doc:stats": "tools:module-stats",
-        "pub": "yarn npm publish --access public",
-        "test": "testament test"
-    },
-    "dependencies": {
-        "@thi.ng/api": "^8.3.9",
-        "@thi.ng/shader-ast": "^0.12.14"
-    },
-    "devDependencies": {
-        "@microsoft/api-extractor": "^7.25.0",
-        "@thi.ng/testament": "^0.2.10",
-        "rimraf": "^3.0.2",
-        "tools": "workspace:^",
-        "typedoc": "^0.22.17",
-        "typescript": "^4.7.4"
-    },
-    "keywords": [
-        "ast",
-        "blur",
-        "canvas",
-        "codegen",
-        "dsl",
-        "fog",
-        "functional",
-        "glsl",
-        "gpgpu",
-        "higher-order",
-        "inline",
-        "interval",
-        "lighting",
-        "math",
-        "matrix",
-        "noise",
-        "random",
-        "raymarch",
-        "rgb",
-        "sdf",
-        "shader",
-        "texture",
-        "typescript",
-        "webgl"
-    ],
-    "publishConfig": {
-        "access": "public"
-    },
-    "engines": {
-        "node": ">=12.7"
-    },
-    "files": [
-        "*.js",
-        "*.d.ts",
-        "color",
-        "fog",
-        "light",
-        "math",
-        "matrix",
-        "noise",
-        "raymarch",
-        "screen",
-        "sdf",
-        "tex"
-    ],
-    "exports": {
-        ".": {
-            "default": "./index.js"
-        },
-        "./api": {
-            "default": "./api.js"
-        },
-        "./color/aces-film": {
-            "default": "./color/aces-film.js"
-        },
-        "./color/levels": {
-            "default": "./color/levels.js"
-        },
-        "./color/linear-srgb": {
-            "default": "./color/linear-srgb.js"
-        },
-        "./color/luminance": {
-            "default": "./color/luminance.js"
-        },
-        "./color/porter-duff": {
-            "default": "./color/porter-duff.js"
-        },
-        "./color/rgbe": {
-            "default": "./color/rgbe.js"
-        },
-        "./fog/exp": {
-            "default": "./fog/exp.js"
-        },
-        "./fog/exp2": {
-            "default": "./fog/exp2.js"
-        },
-        "./fog/linear": {
-            "default": "./fog/linear.js"
-        },
-        "./light/lambert": {
-            "default": "./light/lambert.js"
-        },
-        "./light/trilight": {
-            "default": "./light/trilight.js"
-        },
-        "./math/additive": {
-            "default": "./math/additive.js"
-        },
-        "./math/cartesian": {
-            "default": "./math/cartesian.js"
-        },
-        "./math/clamp": {
-            "default": "./math/clamp.js"
-        },
-        "./math/cross2": {
-            "default": "./math/cross2.js"
-        },
-        "./math/dist-chebyshev": {
-            "default": "./math/dist-chebyshev.js"
-        },
-        "./math/dist-manhattan": {
-            "default": "./math/dist-manhattan.js"
-        },
-        "./math/fit": {
-            "default": "./math/fit.js"
-        },
-        "./math/magsq": {
-            "default": "./math/magsq.js"
-        },
-        "./math/maxcomp": {
-            "default": "./math/maxcomp.js"
-        },
-        "./math/mincomp": {
-            "default": "./math/mincomp.js"
-        },
-        "./math/mix-cubic": {
-            "default": "./math/mix-cubic.js"
-        },
-        "./math/mix-quadratic": {
-            "default": "./math/mix-quadratic.js"
-        },
-        "./math/orthogonal": {
-            "default": "./math/orthogonal.js"
-        },
-        "./math/osc": {
-            "default": "./math/osc.js"
-        },
-        "./math/polar": {
-            "default": "./math/polar.js"
-        },
-        "./math/sincos": {
-            "default": "./math/sincos.js"
-        },
-        "./matrix/convert": {
-            "default": "./matrix/convert.js"
-        },
-        "./matrix/lookat": {
-            "default": "./matrix/lookat.js"
-        },
-        "./matrix/mvp": {
-            "default": "./matrix/mvp.js"
-        },
-        "./matrix/normal": {
-            "default": "./matrix/normal.js"
-        },
-        "./matrix/rotation": {
-            "default": "./matrix/rotation.js"
-        },
-        "./noise/curl3": {
-            "default": "./noise/curl3.js"
-        },
-        "./noise/hash": {
-            "default": "./noise/hash.js"
-        },
-        "./noise/permute": {
-            "default": "./noise/permute.js"
-        },
-        "./noise/simplex2": {
-            "default": "./noise/simplex2.js"
-        },
-        "./noise/simplex3": {
-            "default": "./noise/simplex3.js"
-        },
-        "./noise/voronoi2": {
-            "default": "./noise/voronoi2.js"
-        },
-        "./noise/worley2": {
-            "default": "./noise/worley2.js"
-        },
-        "./raymarch/ao": {
-            "default": "./raymarch/ao.js"
-        },
-        "./raymarch/direction": {
-            "default": "./raymarch/direction.js"
-        },
-        "./raymarch/normal": {
-            "default": "./raymarch/normal.js"
-        },
-        "./raymarch/point-at": {
-            "default": "./raymarch/point-at.js"
-        },
-        "./raymarch/scene": {
-            "default": "./raymarch/scene.js"
-        },
-        "./screen/uv": {
-            "default": "./screen/uv.js"
-        },
-        "./sdf/annular": {
-            "default": "./sdf/annular.js"
-        },
-        "./sdf/arc": {
-            "default": "./sdf/arc.js"
-        },
-        "./sdf/bezier": {
-            "default": "./sdf/bezier.js"
-        },
-        "./sdf/box-rounded": {
-            "default": "./sdf/box-rounded.js"
-        },
-        "./sdf/box": {
-            "default": "./sdf/box.js"
-        },
-        "./sdf/cross": {
-            "default": "./sdf/cross.js"
-        },
-        "./sdf/cylinder": {
-            "default": "./sdf/cylinder.js"
-        },
-        "./sdf/hex": {
-            "default": "./sdf/hex.js"
-        },
-        "./sdf/isec": {
-            "default": "./sdf/isec.js"
-        },
-        "./sdf/line": {
-            "default": "./sdf/line.js"
-        },
-        "./sdf/mirror": {
-            "default": "./sdf/mirror.js"
-        },
-        "./sdf/plane": {
-            "default": "./sdf/plane.js"
-        },
-        "./sdf/polygon": {
-            "default": "./sdf/polygon.js"
-        },
-        "./sdf/polyhedra": {
-            "default": "./sdf/polyhedra.js"
-        },
-        "./sdf/repeat-polar": {
-            "default": "./sdf/repeat-polar.js"
-        },
-        "./sdf/repeat": {
-            "default": "./sdf/repeat.js"
-        },
-        "./sdf/round": {
-            "default": "./sdf/round.js"
-        },
-        "./sdf/smooth-isec": {
-            "default": "./sdf/smooth-isec.js"
-        },
-        "./sdf/smooth-sub": {
-            "default": "./sdf/smooth-sub.js"
-        },
-        "./sdf/smooth-union": {
-            "default": "./sdf/smooth-union.js"
-        },
-        "./sdf/sphere": {
-            "default": "./sdf/sphere.js"
-        },
-        "./sdf/sub": {
-            "default": "./sdf/sub.js"
-        },
-        "./sdf/torus": {
-            "default": "./sdf/torus.js"
-        },
-        "./sdf/tri": {
-            "default": "./sdf/tri.js"
-        },
-        "./sdf/union": {
-            "default": "./sdf/union.js"
-        },
-        "./tex/blur": {
-            "default": "./tex/blur.js"
-        },
-        "./tex/index-coord": {
-            "default": "./tex/index-coord.js"
-        },
-        "./tex/index-uv": {
-            "default": "./tex/index-uv.js"
-        },
-        "./tex/read-index": {
-            "default": "./tex/read-index.js"
-        }
-    },
-    "thi.ng": {
-        "parent": "@thi.ng/shader-ast",
-        "related": [
-            "shader-ast-glsl",
-            "shader-ast-js",
-            "webgl"
-        ],
-        "year": 2019
-    }
+	"name": "@thi.ng/shader-ast-stdlib",
+	"version": "0.12.8",
+	"description": "Function collection for modular GPGPU / shader programming with @thi.ng/shader-ast",
+	"type": "module",
+	"module": "./index.js",
+	"typings": "./index.d.ts",
+	"sideEffects": false,
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/thi-ng/umbrella.git"
+	},
+	"homepage": "https://github.com/thi-ng/umbrella/tree/develop/packages/shader-ast-stdlib#readme",
+	"funding": [
+		{
+			"type": "github",
+			"url": "https://github.com/sponsors/postspectacular"
+		},
+		{
+			"type": "patreon",
+			"url": "https://patreon.com/thing_umbrella"
+		}
+	],
+	"author": "Karsten Schmidt <k+npm@thi.ng>",
+	"license": "Apache-2.0",
+	"scripts": {
+		"build": "yarn clean && tsc --declaration",
+		"clean": "rimraf '*.js' '*.d.ts' '*.map' doc color fog light math matrix noise raymarch screen sdf tex",
+		"doc": "typedoc --excludePrivate --excludeInternal --out doc src/index.ts",
+		"doc:ae": "mkdir -p .ae/doc .ae/temp && api-extractor run --local --verbose",
+		"doc:readme": "yarn doc:stats && tools:readme",
+		"doc:stats": "tools:module-stats",
+		"pub": "yarn npm publish --access public",
+		"test": "testament test"
+	},
+	"dependencies": {
+		"@thi.ng/api": "^8.3.9",
+		"@thi.ng/shader-ast": "^0.12.15"
+	},
+	"devDependencies": {
+		"@microsoft/api-extractor": "^7.25.0",
+		"@thi.ng/testament": "^0.2.11",
+		"rimraf": "^3.0.2",
+		"tools": "workspace:^",
+		"typedoc": "^0.22.17",
+		"typescript": "^4.7.4"
+	},
+	"keywords": [
+		"ast",
+		"blur",
+		"canvas",
+		"codegen",
+		"dsl",
+		"fog",
+		"functional",
+		"glsl",
+		"gpgpu",
+		"higher-order",
+		"inline",
+		"interval",
+		"lighting",
+		"math",
+		"matrix",
+		"noise",
+		"random",
+		"raymarch",
+		"rgb",
+		"sdf",
+		"shader",
+		"texture",
+		"typescript",
+		"webgl"
+	],
+	"publishConfig": {
+		"access": "public"
+	},
+	"engines": {
+		"node": ">=12.7"
+	},
+	"files": [
+		"*.js",
+		"*.d.ts",
+		"color",
+		"fog",
+		"light",
+		"math",
+		"matrix",
+		"noise",
+		"raymarch",
+		"screen",
+		"sdf",
+		"tex"
+	],
+	"exports": {
+		".": {
+			"default": "./index.js"
+		},
+		"./api": {
+			"default": "./api.js"
+		},
+		"./color/aces-film": {
+			"default": "./color/aces-film.js"
+		},
+		"./color/levels": {
+			"default": "./color/levels.js"
+		},
+		"./color/linear-srgb": {
+			"default": "./color/linear-srgb.js"
+		},
+		"./color/luminance": {
+			"default": "./color/luminance.js"
+		},
+		"./color/porter-duff": {
+			"default": "./color/porter-duff.js"
+		},
+		"./color/rgbe": {
+			"default": "./color/rgbe.js"
+		},
+		"./fog/exp": {
+			"default": "./fog/exp.js"
+		},
+		"./fog/exp2": {
+			"default": "./fog/exp2.js"
+		},
+		"./fog/linear": {
+			"default": "./fog/linear.js"
+		},
+		"./light/lambert": {
+			"default": "./light/lambert.js"
+		},
+		"./light/trilight": {
+			"default": "./light/trilight.js"
+		},
+		"./math/additive": {
+			"default": "./math/additive.js"
+		},
+		"./math/cartesian": {
+			"default": "./math/cartesian.js"
+		},
+		"./math/clamp": {
+			"default": "./math/clamp.js"
+		},
+		"./math/cross2": {
+			"default": "./math/cross2.js"
+		},
+		"./math/dist-chebyshev": {
+			"default": "./math/dist-chebyshev.js"
+		},
+		"./math/dist-manhattan": {
+			"default": "./math/dist-manhattan.js"
+		},
+		"./math/fit": {
+			"default": "./math/fit.js"
+		},
+		"./math/magsq": {
+			"default": "./math/magsq.js"
+		},
+		"./math/maxcomp": {
+			"default": "./math/maxcomp.js"
+		},
+		"./math/mincomp": {
+			"default": "./math/mincomp.js"
+		},
+		"./math/mix-cubic": {
+			"default": "./math/mix-cubic.js"
+		},
+		"./math/mix-quadratic": {
+			"default": "./math/mix-quadratic.js"
+		},
+		"./math/orthogonal": {
+			"default": "./math/orthogonal.js"
+		},
+		"./math/osc": {
+			"default": "./math/osc.js"
+		},
+		"./math/polar": {
+			"default": "./math/polar.js"
+		},
+		"./math/sincos": {
+			"default": "./math/sincos.js"
+		},
+		"./matrix/convert": {
+			"default": "./matrix/convert.js"
+		},
+		"./matrix/lookat": {
+			"default": "./matrix/lookat.js"
+		},
+		"./matrix/mvp": {
+			"default": "./matrix/mvp.js"
+		},
+		"./matrix/normal": {
+			"default": "./matrix/normal.js"
+		},
+		"./matrix/rotation": {
+			"default": "./matrix/rotation.js"
+		},
+		"./noise/curl3": {
+			"default": "./noise/curl3.js"
+		},
+		"./noise/hash": {
+			"default": "./noise/hash.js"
+		},
+		"./noise/permute": {
+			"default": "./noise/permute.js"
+		},
+		"./noise/simplex2": {
+			"default": "./noise/simplex2.js"
+		},
+		"./noise/simplex3": {
+			"default": "./noise/simplex3.js"
+		},
+		"./noise/voronoi2": {
+			"default": "./noise/voronoi2.js"
+		},
+		"./noise/worley2": {
+			"default": "./noise/worley2.js"
+		},
+		"./raymarch/ao": {
+			"default": "./raymarch/ao.js"
+		},
+		"./raymarch/direction": {
+			"default": "./raymarch/direction.js"
+		},
+		"./raymarch/normal": {
+			"default": "./raymarch/normal.js"
+		},
+		"./raymarch/point-at": {
+			"default": "./raymarch/point-at.js"
+		},
+		"./raymarch/scene": {
+			"default": "./raymarch/scene.js"
+		},
+		"./screen/uv": {
+			"default": "./screen/uv.js"
+		},
+		"./sdf/annular": {
+			"default": "./sdf/annular.js"
+		},
+		"./sdf/arc": {
+			"default": "./sdf/arc.js"
+		},
+		"./sdf/bezier": {
+			"default": "./sdf/bezier.js"
+		},
+		"./sdf/box-rounded": {
+			"default": "./sdf/box-rounded.js"
+		},
+		"./sdf/box": {
+			"default": "./sdf/box.js"
+		},
+		"./sdf/cross": {
+			"default": "./sdf/cross.js"
+		},
+		"./sdf/cylinder": {
+			"default": "./sdf/cylinder.js"
+		},
+		"./sdf/hex": {
+			"default": "./sdf/hex.js"
+		},
+		"./sdf/isec": {
+			"default": "./sdf/isec.js"
+		},
+		"./sdf/line": {
+			"default": "./sdf/line.js"
+		},
+		"./sdf/mirror": {
+			"default": "./sdf/mirror.js"
+		},
+		"./sdf/plane": {
+			"default": "./sdf/plane.js"
+		},
+		"./sdf/polygon": {
+			"default": "./sdf/polygon.js"
+		},
+		"./sdf/polyhedra": {
+			"default": "./sdf/polyhedra.js"
+		},
+		"./sdf/repeat-polar": {
+			"default": "./sdf/repeat-polar.js"
+		},
+		"./sdf/repeat": {
+			"default": "./sdf/repeat.js"
+		},
+		"./sdf/round": {
+			"default": "./sdf/round.js"
+		},
+		"./sdf/smooth-isec": {
+			"default": "./sdf/smooth-isec.js"
+		},
+		"./sdf/smooth-sub": {
+			"default": "./sdf/smooth-sub.js"
+		},
+		"./sdf/smooth-union": {
+			"default": "./sdf/smooth-union.js"
+		},
+		"./sdf/sphere": {
+			"default": "./sdf/sphere.js"
+		},
+		"./sdf/sub": {
+			"default": "./sdf/sub.js"
+		},
+		"./sdf/torus": {
+			"default": "./sdf/torus.js"
+		},
+		"./sdf/tri": {
+			"default": "./sdf/tri.js"
+		},
+		"./sdf/union": {
+			"default": "./sdf/union.js"
+		},
+		"./tex/blur": {
+			"default": "./tex/blur.js"
+		},
+		"./tex/index-coord": {
+			"default": "./tex/index-coord.js"
+		},
+		"./tex/index-uv": {
+			"default": "./tex/index-uv.js"
+		},
+		"./tex/read-index": {
+			"default": "./tex/read-index.js"
+		}
+	},
+	"thi.ng": {
+		"parent": "@thi.ng/shader-ast",
+		"related": [
+			"shader-ast-glsl",
+			"shader-ast-js",
+			"webgl"
+		],
+		"year": 2019
+	}
 }

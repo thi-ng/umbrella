@@ -1,244 +1,244 @@
 {
-    "name": "@thi.ng/parse",
-    "version": "2.2.3",
-    "description": "Purely functional parser combinators & AST generation for generic inputs",
-    "type": "module",
-    "module": "./index.js",
-    "typings": "./index.d.ts",
-    "sideEffects": false,
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/thi-ng/umbrella.git"
-    },
-    "homepage": "https://github.com/thi-ng/umbrella/tree/develop/packages/parse#readme",
-    "funding": [
-        {
-            "type": "github",
-            "url": "https://github.com/sponsors/postspectacular"
-        },
-        {
-            "type": "patreon",
-            "url": "https://patreon.com/thing_umbrella"
-        }
-    ],
-    "author": "Karsten Schmidt <k+npm@thi.ng>",
-    "license": "Apache-2.0",
-    "scripts": {
-        "build": "yarn clean && tsc --declaration",
-        "clean": "rimraf '*.js' '*.d.ts' '*.map' doc combinators presets prims readers xform",
-        "doc": "typedoc --excludePrivate --excludeInternal --out doc src/index.ts",
-        "doc:ae": "mkdir -p .ae/doc .ae/temp && api-extractor run --local --verbose",
-        "doc:readme": "yarn doc:stats && tools:readme",
-        "doc:stats": "tools:module-stats",
-        "pub": "yarn npm publish --access public",
-        "test": "testament test"
-    },
-    "dependencies": {
-        "@thi.ng/api": "^8.3.9",
-        "@thi.ng/checks": "^3.2.3",
-        "@thi.ng/defmulti": "^2.1.9",
-        "@thi.ng/errors": "^2.1.9",
-        "@thi.ng/strings": "^3.3.8"
-    },
-    "devDependencies": {
-        "@microsoft/api-extractor": "^7.25.0",
-        "@thi.ng/testament": "^0.2.10",
-        "rimraf": "^3.0.2",
-        "tools": "workspace:^",
-        "typedoc": "^0.22.17",
-        "typescript": "^4.7.4"
-    },
-    "keywords": [
-        "ast",
-        "combinator",
-        "compiler",
-        "composition",
-        "datastructure",
-        "dsl",
-        "functional",
-        "grammar",
-        "parser",
-        "peg",
-        "recursive",
-        "regexp",
-        "tree",
-        "typescript"
-    ],
-    "publishConfig": {
-        "access": "public"
-    },
-    "engines": {
-        "node": ">=12.7"
-    },
-    "files": [
-        "*.js",
-        "*.d.ts",
-        "combinators",
-        "presets",
-        "prims",
-        "readers",
-        "xform"
-    ],
-    "exports": {
-        ".": {
-            "default": "./index.js"
-        },
-        "./api": {
-            "default": "./api.js"
-        },
-        "./combinators/alt": {
-            "default": "./combinators/alt.js"
-        },
-        "./combinators/boundary": {
-            "default": "./combinators/boundary.js"
-        },
-        "./combinators/check": {
-            "default": "./combinators/check.js"
-        },
-        "./combinators/dynamic": {
-            "default": "./combinators/dynamic.js"
-        },
-        "./combinators/expect": {
-            "default": "./combinators/expect.js"
-        },
-        "./combinators/lookahead": {
-            "default": "./combinators/lookahead.js"
-        },
-        "./combinators/maybe": {
-            "default": "./combinators/maybe.js"
-        },
-        "./combinators/not": {
-            "default": "./combinators/not.js"
-        },
-        "./combinators/repeat": {
-            "default": "./combinators/repeat.js"
-        },
-        "./combinators/seq": {
-            "default": "./combinators/seq.js"
-        },
-        "./combinators/wrap": {
-            "default": "./combinators/wrap.js"
-        },
-        "./combinators/xform": {
-            "default": "./combinators/xform.js"
-        },
-        "./context": {
-            "default": "./context.js"
-        },
-        "./error": {
-            "default": "./error.js"
-        },
-        "./grammar": {
-            "default": "./grammar.js"
-        },
-        "./presets/alpha": {
-            "default": "./presets/alpha.js"
-        },
-        "./presets/bits": {
-            "default": "./presets/bits.js"
-        },
-        "./presets/digits": {
-            "default": "./presets/digits.js"
-        },
-        "./presets/escape": {
-            "default": "./presets/escape.js"
-        },
-        "./presets/hex": {
-            "default": "./presets/hex.js"
-        },
-        "./presets/numbers": {
-            "default": "./presets/numbers.js"
-        },
-        "./presets/string": {
-            "default": "./presets/string.js"
-        },
-        "./presets/whitespace": {
-            "default": "./presets/whitespace.js"
-        },
-        "./prims/always": {
-            "default": "./prims/always.js"
-        },
-        "./prims/anchor": {
-            "default": "./prims/anchor.js"
-        },
-        "./prims/fail": {
-            "default": "./prims/fail.js"
-        },
-        "./prims/lit": {
-            "default": "./prims/lit.js"
-        },
-        "./prims/none-of": {
-            "default": "./prims/none-of.js"
-        },
-        "./prims/one-of": {
-            "default": "./prims/one-of.js"
-        },
-        "./prims/pass": {
-            "default": "./prims/pass.js"
-        },
-        "./prims/range": {
-            "default": "./prims/range.js"
-        },
-        "./prims/satisfy": {
-            "default": "./prims/satisfy.js"
-        },
-        "./prims/skip": {
-            "default": "./prims/skip.js"
-        },
-        "./prims/string": {
-            "default": "./prims/string.js"
-        },
-        "./readers/array-reader": {
-            "default": "./readers/array-reader.js"
-        },
-        "./readers/string-reader": {
-            "default": "./readers/string-reader.js"
-        },
-        "./xform/collect": {
-            "default": "./xform/collect.js"
-        },
-        "./xform/comp": {
-            "default": "./xform/comp.js"
-        },
-        "./xform/count": {
-            "default": "./xform/count.js"
-        },
-        "./xform/discard": {
-            "default": "./xform/discard.js"
-        },
-        "./xform/hoist": {
-            "default": "./xform/hoist.js"
-        },
-        "./xform/join": {
-            "default": "./xform/join.js"
-        },
-        "./xform/json": {
-            "default": "./xform/json.js"
-        },
-        "./xform/nest": {
-            "default": "./xform/nest.js"
-        },
-        "./xform/number": {
-            "default": "./xform/number.js"
-        },
-        "./xform/print": {
-            "default": "./xform/print.js"
-        },
-        "./xform/replace": {
-            "default": "./xform/replace.js"
-        },
-        "./xform/trim": {
-            "default": "./xform/trim.js"
-        },
-        "./xform/with-id": {
-            "default": "./xform/with-id.js"
-        }
-    },
-    "thi.ng": {
-        "related": [
-            "fsm",
-            "transducers-fsm"
-        ],
-        "year": 2020
-    }
+	"name": "@thi.ng/parse",
+	"version": "2.2.4",
+	"description": "Purely functional parser combinators & AST generation for generic inputs",
+	"type": "module",
+	"module": "./index.js",
+	"typings": "./index.d.ts",
+	"sideEffects": false,
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/thi-ng/umbrella.git"
+	},
+	"homepage": "https://github.com/thi-ng/umbrella/tree/develop/packages/parse#readme",
+	"funding": [
+		{
+			"type": "github",
+			"url": "https://github.com/sponsors/postspectacular"
+		},
+		{
+			"type": "patreon",
+			"url": "https://patreon.com/thing_umbrella"
+		}
+	],
+	"author": "Karsten Schmidt <k+npm@thi.ng>",
+	"license": "Apache-2.0",
+	"scripts": {
+		"build": "yarn clean && tsc --declaration",
+		"clean": "rimraf '*.js' '*.d.ts' '*.map' doc combinators presets prims readers xform",
+		"doc": "typedoc --excludePrivate --excludeInternal --out doc src/index.ts",
+		"doc:ae": "mkdir -p .ae/doc .ae/temp && api-extractor run --local --verbose",
+		"doc:readme": "yarn doc:stats && tools:readme",
+		"doc:stats": "tools:module-stats",
+		"pub": "yarn npm publish --access public",
+		"test": "testament test"
+	},
+	"dependencies": {
+		"@thi.ng/api": "^8.3.9",
+		"@thi.ng/checks": "^3.2.3",
+		"@thi.ng/defmulti": "^2.1.10",
+		"@thi.ng/errors": "^2.1.9",
+		"@thi.ng/strings": "^3.3.8"
+	},
+	"devDependencies": {
+		"@microsoft/api-extractor": "^7.25.0",
+		"@thi.ng/testament": "^0.2.11",
+		"rimraf": "^3.0.2",
+		"tools": "workspace:^",
+		"typedoc": "^0.22.17",
+		"typescript": "^4.7.4"
+	},
+	"keywords": [
+		"ast",
+		"combinator",
+		"compiler",
+		"composition",
+		"datastructure",
+		"dsl",
+		"functional",
+		"grammar",
+		"parser",
+		"peg",
+		"recursive",
+		"regexp",
+		"tree",
+		"typescript"
+	],
+	"publishConfig": {
+		"access": "public"
+	},
+	"engines": {
+		"node": ">=12.7"
+	},
+	"files": [
+		"*.js",
+		"*.d.ts",
+		"combinators",
+		"presets",
+		"prims",
+		"readers",
+		"xform"
+	],
+	"exports": {
+		".": {
+			"default": "./index.js"
+		},
+		"./api": {
+			"default": "./api.js"
+		},
+		"./combinators/alt": {
+			"default": "./combinators/alt.js"
+		},
+		"./combinators/boundary": {
+			"default": "./combinators/boundary.js"
+		},
+		"./combinators/check": {
+			"default": "./combinators/check.js"
+		},
+		"./combinators/dynamic": {
+			"default": "./combinators/dynamic.js"
+		},
+		"./combinators/expect": {
+			"default": "./combinators/expect.js"
+		},
+		"./combinators/lookahead": {
+			"default": "./combinators/lookahead.js"
+		},
+		"./combinators/maybe": {
+			"default": "./combinators/maybe.js"
+		},
+		"./combinators/not": {
+			"default": "./combinators/not.js"
+		},
+		"./combinators/repeat": {
+			"default": "./combinators/repeat.js"
+		},
+		"./combinators/seq": {
+			"default": "./combinators/seq.js"
+		},
+		"./combinators/wrap": {
+			"default": "./combinators/wrap.js"
+		},
+		"./combinators/xform": {
+			"default": "./combinators/xform.js"
+		},
+		"./context": {
+			"default": "./context.js"
+		},
+		"./error": {
+			"default": "./error.js"
+		},
+		"./grammar": {
+			"default": "./grammar.js"
+		},
+		"./presets/alpha": {
+			"default": "./presets/alpha.js"
+		},
+		"./presets/bits": {
+			"default": "./presets/bits.js"
+		},
+		"./presets/digits": {
+			"default": "./presets/digits.js"
+		},
+		"./presets/escape": {
+			"default": "./presets/escape.js"
+		},
+		"./presets/hex": {
+			"default": "./presets/hex.js"
+		},
+		"./presets/numbers": {
+			"default": "./presets/numbers.js"
+		},
+		"./presets/string": {
+			"default": "./presets/string.js"
+		},
+		"./presets/whitespace": {
+			"default": "./presets/whitespace.js"
+		},
+		"./prims/always": {
+			"default": "./prims/always.js"
+		},
+		"./prims/anchor": {
+			"default": "./prims/anchor.js"
+		},
+		"./prims/fail": {
+			"default": "./prims/fail.js"
+		},
+		"./prims/lit": {
+			"default": "./prims/lit.js"
+		},
+		"./prims/none-of": {
+			"default": "./prims/none-of.js"
+		},
+		"./prims/one-of": {
+			"default": "./prims/one-of.js"
+		},
+		"./prims/pass": {
+			"default": "./prims/pass.js"
+		},
+		"./prims/range": {
+			"default": "./prims/range.js"
+		},
+		"./prims/satisfy": {
+			"default": "./prims/satisfy.js"
+		},
+		"./prims/skip": {
+			"default": "./prims/skip.js"
+		},
+		"./prims/string": {
+			"default": "./prims/string.js"
+		},
+		"./readers/array-reader": {
+			"default": "./readers/array-reader.js"
+		},
+		"./readers/string-reader": {
+			"default": "./readers/string-reader.js"
+		},
+		"./xform/collect": {
+			"default": "./xform/collect.js"
+		},
+		"./xform/comp": {
+			"default": "./xform/comp.js"
+		},
+		"./xform/count": {
+			"default": "./xform/count.js"
+		},
+		"./xform/discard": {
+			"default": "./xform/discard.js"
+		},
+		"./xform/hoist": {
+			"default": "./xform/hoist.js"
+		},
+		"./xform/join": {
+			"default": "./xform/join.js"
+		},
+		"./xform/json": {
+			"default": "./xform/json.js"
+		},
+		"./xform/nest": {
+			"default": "./xform/nest.js"
+		},
+		"./xform/number": {
+			"default": "./xform/number.js"
+		},
+		"./xform/print": {
+			"default": "./xform/print.js"
+		},
+		"./xform/replace": {
+			"default": "./xform/replace.js"
+		},
+		"./xform/trim": {
+			"default": "./xform/trim.js"
+		},
+		"./xform/with-id": {
+			"default": "./xform/with-id.js"
+		}
+	},
+	"thi.ng": {
+		"related": [
+			"fsm",
+			"transducers-fsm"
+		],
+		"year": 2020
+	}
 }
