@@ -1,4 +1,4 @@
-import type { FnU2, TypedArray } from "@thi.ng/api";
+import type { FnU2, NumericArray, TypedArray } from "@thi.ng/api";
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import { U16, U32, U8 } from "@thi.ng/hex";
 import type { ILogger } from "@thi.ng/logger";
@@ -7,7 +7,9 @@ import type { CoreAPI, IWasmAPI, WasmExports } from "./api.js";
 
 /**
  * The main interop API bridge between the JS host environment and a WebAssembly
- * module. This class provides a small core API
+ * module. This class provides a small core API with various typed accessors and
+ * utils to exchange data (scalars, arrays, strings etc.) via the WASM module's
+ * memory.
  */
 export class WasmBridge<T extends WasmExports = WasmExports> {
 	i8!: Int8Array;
@@ -62,6 +64,34 @@ export class WasmBridge<T extends WasmExports = WasmExports> {
 	}
 
 	/**
+	 * Instantiates WASM module from given `src` (and optional provided extra
+	 * imports), then automatically calls {@link WasmBridge.init} with the
+	 * modules exports.
+	 *
+	 * @remarks
+	 * If the given `src` is a `Response` or `Promise<Response>`, the module
+	 * will be instantiated via `WebAssembly.instantiateStreaming()`, otherwise
+	 * the non-streaming version will be used.
+	 *
+	 * @param src
+	 * @param imports
+	 */
+	async instantiate(
+		src: Response | BufferSource | PromiseLike<Response | BufferSource>,
+		imports?: WebAssembly.Imports
+	) {
+		const $src = await src;
+		const $imports = { ...imports, ...this.getImports() };
+		let wasm: WebAssembly.WebAssemblyInstantiatedSource;
+		if ($src instanceof Response) {
+			wasm = await WebAssembly.instantiateStreaming($src, $imports);
+		} else {
+			wasm = await WebAssembly.instantiate($src, $imports);
+		}
+		return this.init(<any>wasm.instance.exports);
+	}
+
+	/**
 	 * Receives the WASM module's exports, stores the for future reference and
 	 * then initializes all declared bridge child API modules. Returns false if
 	 * any of the module initializations failed.
@@ -97,7 +127,7 @@ export class WasmBridge<T extends WasmExports = WasmExports> {
 	 * it's recommended to use per-module naming prefixes to avoid clashes. If
 	 * there're any naming clashes, this function will throw an error.
 	 */
-	getImports() {
+	getImports(): WebAssembly.Imports {
 		const env: WebAssembly.ModuleImports = { ...this.core };
 		for (let id in this.modules) {
 			const imports = this.modules[id].getImports();
@@ -112,6 +142,78 @@ export class WasmBridge<T extends WasmExports = WasmExports> {
 			Object.assign(env, imports);
 		}
 		return { env };
+	}
+
+	getI8(addr: number) {
+		return this.i8[addr];
+	}
+
+	getU8(addr: number) {
+		return this.u8[addr];
+	}
+
+	getI16(addr: number) {
+		return this.i16[addr >> 1];
+	}
+
+	getU16(addr: number) {
+		return this.u16[addr >> 1];
+	}
+
+	getI32(addr: number) {
+		return this.i32[addr >> 2];
+	}
+
+	getU32(addr: number) {
+		return this.u32[addr >> 2];
+	}
+
+	getF32(addr: number) {
+		return this.f32[addr >> 2];
+	}
+
+	getF64(addr: number) {
+		return this.f64[addr >> 3];
+	}
+
+	setI8(addr: number, x: number) {
+		this.i8[addr] = x;
+		return this;
+	}
+
+	setU8(addr: number, x: number) {
+		this.u8[addr] = x;
+		return this;
+	}
+
+	setI16(addr: number, x: number) {
+		this.i16[addr >> 1] = x;
+		return this;
+	}
+
+	setU16(addr: number, x: number) {
+		this.u16[addr >> 1] = x;
+		return this;
+	}
+
+	setI32(addr: number, x: number) {
+		this.i32[addr >> 2] = x;
+		return this;
+	}
+
+	setU32(addr: number, x: number) {
+		this.u32[addr >> 2] = x;
+		return this;
+	}
+
+	setF32(addr: number, x: number) {
+		this.f32[addr >> 2] = x;
+		return this;
+	}
+
+	setF64(addr: number, x: number) {
+		this.f64[addr >> 3] = x;
+		return this;
 	}
 
 	getI8Array(addr: number, len: number): Int8Array {
@@ -152,36 +254,44 @@ export class WasmBridge<T extends WasmExports = WasmExports> {
 		return this.f64.subarray(addr, addr + len);
 	}
 
-	derefI8(ptr: number) {
-		return this.i8[ptr];
+	setI8Array(addr: number, buf: NumericArray) {
+		this.i8.set(buf, addr);
+		return this;
 	}
 
-	derefU8(ptr: number) {
-		return this.u8[ptr];
+	setU8Array(addr: number, buf: NumericArray) {
+		this.u8.set(buf, addr);
+		return this;
 	}
 
-	derefI16(ptr: number) {
-		return this.i16[ptr >> 1];
+	setI16Array(addr: number, buf: NumericArray) {
+		this.i16.set(buf, addr >> 1);
+		return this;
 	}
 
-	derefU16(ptr: number) {
-		return this.u16[ptr >> 1];
+	setU16Array(addr: number, buf: NumericArray) {
+		this.u16.set(buf, addr >> 1);
+		return this;
 	}
 
-	derefI32(ptr: number) {
-		return this.i32[ptr >> 2];
+	setI32Array(addr: number, buf: NumericArray) {
+		this.i32.set(buf, addr >> 2);
+		return this;
 	}
 
-	derefU32(ptr: number) {
-		return this.u32[ptr >> 2];
+	setU32Array(addr: number, buf: NumericArray) {
+		this.u32.set(buf, addr >> 2);
+		return this;
 	}
 
-	derefF32(ptr: number) {
-		return this.f32[ptr >> 2];
+	setF32Array(addr: number, buf: NumericArray) {
+		this.f32.set(buf, addr >> 2);
+		return this;
 	}
 
-	derefF64(ptr: number) {
-		return this.f64[ptr >> 3];
+	setF64Array(addr: number, buf: NumericArray) {
+		this.f64.set(buf, addr >> 3);
+		return this;
 	}
 
 	getString(addr: number, len = 0) {
@@ -191,13 +301,6 @@ export class WasmBridge<T extends WasmExports = WasmExports> {
 				len > 0 ? addr + len : this.u8.indexOf(0, addr)
 			)
 		);
-	}
-
-	getElementById(addr: number, len = 0) {
-		const id = this.getString(addr, len);
-		const el = document.getElementById(id);
-		el == null && illegalArgs(`missing DOM element #${id}`);
-		return el;
 	}
 
 	setString(
@@ -219,5 +322,12 @@ export class WasmBridge<T extends WasmExports = WasmExports> {
 			return len! + 1;
 		}
 		return len!;
+	}
+
+	getElementById(addr: number, len = 0) {
+		const id = this.getString(addr, len);
+		const el = document.getElementById(id);
+		el == null && illegalArgs(`missing DOM element #${id}`);
+		return el!;
 	}
 }

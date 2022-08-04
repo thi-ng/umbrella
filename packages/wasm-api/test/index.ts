@@ -31,16 +31,7 @@ group("wasm-api", {
 			{ custom: new CustomAPI() },
 			logger
 		);
-		bridge.init(
-			<any>(
-				(
-					await WebAssembly.instantiate(
-						readFileSync("test/custom.wasm"),
-						bridge.getImports()
-					)
-				).instance.exports
-			)
-		);
+		assert.ok(await bridge.instantiate(readFileSync("test/custom.wasm")));
 
 		bridge.exports.test_setVec2();
 		assert.strictEqual(logger.journal.length, 3);

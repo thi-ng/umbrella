@@ -82,7 +82,7 @@ pub fn printF64Array(buf: []const f64) void {
 extern fn _printStr0(addr: usize) void;
 /// Prints a string of given length using configured JS logger
 extern fn _printStr(addr: usize, len: usize) void;
-
+/// Convenience wrapper for _printStr, accepting a slice as arg
 pub fn printStr(msg: []const u8) void {
     _printStr(@ptrToInt(msg.ptr), msg.len);
 }
