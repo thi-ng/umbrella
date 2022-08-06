@@ -7,7 +7,7 @@ import { ortho } from "@thi.ng/matrices/ortho";
 import { scale44 } from "@thi.ng/matrices/scale";
 import { mapcat } from "@thi.ng/transducers/mapcat";
 import { range2d } from "@thi.ng/transducers/range2d";
-import { normalize } from "@thi.ng/vectors/normalize";
+import { normalize3 } from "@thi.ng/vectors/normalize";
 import { rotateY } from "@thi.ng/vectors/rotate";
 import type { GLMat4, GLVec3, ModelSpec } from "@thi.ng/webgl";
 import { TextureFilter, TextureRepeat } from "@thi.ng/webgl/api/texture";
@@ -103,7 +103,7 @@ const app = () => {
 				view: <GLMat4>lookAt([], eye, [0, 0, 0], [0, 1, 0]),
 				model: <GLMat4>scale44([], [1, Math.sin(time * 0.001) + 1, 1]),
 				lightDir: <GLVec3>(
-					rotateY(null, normalize(null, [-0.25, 1, 1]), 0)
+					rotateY(null, normalize3(null, [-0.25, 1, 1]), 0)
 				),
 			});
 			const bg = 0.1;

@@ -10,7 +10,7 @@ import { text } from "@thi.ng/geom/text";
 import { fract } from "@thi.ng/math/prec";
 import { vector } from "@thi.ng/strings/vector";
 import { add2 } from "@thi.ng/vectors/add";
-import { normalize } from "@thi.ng/vectors/normalize";
+import { normalize2 } from "@thi.ng/vectors/normalize";
 import { sub2 } from "@thi.ng/vectors/sub";
 
 /**
@@ -59,7 +59,7 @@ setInterval(() => {
 	const [y, dy] = splinePosAndTangent(a[1], b[1], c[1], d[1], t);
 
 	const pos = [x, y];
-	const dir = normalize(null, [dx, dy], 20);
+	const dir = normalize2(null, [dx, dy], 20);
 
 	root.innerHTML = asSvg(
 		svgDoc(

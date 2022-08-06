@@ -20,7 +20,7 @@ import { mixN2 } from "@thi.ng/vectors/mixn";
 import { mixNS2 } from "@thi.ng/vectors/mixns";
 import { mulN2 } from "@thi.ng/vectors/muln";
 import { mulNS2 } from "@thi.ng/vectors/mulns";
-import { normalize } from "@thi.ng/vectors/normalize";
+import { normalize2 } from "@thi.ng/vectors/normalize";
 import { normalizeS2 } from "@thi.ng/vectors/normalizes";
 import { randNorm } from "@thi.ng/vectors/random";
 import { randNormS2 } from "@thi.ng/vectors/randoms";
@@ -110,7 +110,10 @@ const updateSingle = (
 	const m = magSq2(pos);
 	rotate(pos, pos, m * amp);
 	if (m < 4e4) {
-		normalize(vel, mixN2(vel, vel, dir, 0.01 + 0.2 * fract((i + t) / NUM)));
+		normalize2(
+			vel,
+			mixN2(vel, vel, dir, 0.01 + 0.2 * fract((i + t) / NUM))
+		);
 	} else {
 		mulN2(pos, pos, 0.98);
 		randNorm(vel);

@@ -7,7 +7,7 @@ import { rotationX44, rotationY44 } from "@thi.ng/matrices/rotation";
 import { SOA } from "@thi.ng/soa/soa";
 import { permutations } from "@thi.ng/transducers/permutations";
 import { repeat } from "@thi.ng/transducers/repeat";
-import { normalize } from "@thi.ng/vectors/normalize";
+import { normalize3 } from "@thi.ng/vectors/normalize";
 import type { GLMat4, GLVec3, ModelSpec } from "@thi.ng/webgl";
 import { compileModel } from "@thi.ng/webgl/buffer";
 import { draw } from "@thi.ng/webgl/draw";
@@ -57,7 +57,7 @@ const app = () => {
 				uniforms: {
 					proj: <GLMat4>perspective([], 60, 1, 0.1, 10),
 					view: <GLMat4>lookAt([], [0, 0, 4], [0, 0, 0], [0, 1, 0]),
-					lightDir: <GLVec3>normalize(null, [0.5, 0.75, 1]),
+					lightDir: <GLVec3>normalize3(null, [0.5, 0.75, 1]),
 				},
 				...cube(),
 			});
