@@ -2,7 +2,7 @@ import { intersectLinePolylineAll } from "@thi.ng/geom-isec/line-poly";
 import { pointInPolygon2 } from "@thi.ng/geom-isec/point";
 import { intersectRayPolylineAll } from "@thi.ng/geom-isec/ray-poly";
 import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
-import { direction } from "@thi.ng/vectors/direction";
+import { direction2 } from "@thi.ng/vectors/direction";
 
 /**
  * Computes all intersection points of the infinite line defined by `a`,
@@ -20,7 +20,7 @@ export const clipLinePoly = (
 ) => {
 	const isecs = intersectRayPolylineAll(
 		a,
-		direction([], a, b),
+		direction2([], a, b),
 		pts,
 		true
 	).isec;
