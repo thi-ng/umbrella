@@ -6,7 +6,7 @@ import type { IHiccupShape, IShape } from "@thi.ng/geom-api";
 import type { ReadonlyVec } from "@thi.ng/vectors";
 import { mul2, mul3 } from "@thi.ng/vectors/mul";
 import { mulN2, mulN3 } from "@thi.ng/vectors/muln";
-import { normalize } from "@thi.ng/vectors/normalize";
+import { normalize2 } from "@thi.ng/vectors/normalize";
 import { AABB } from "./api/aabb.js";
 import type { Arc } from "./api/arc.js";
 import { Circle } from "./api/circle.js";
@@ -150,7 +150,7 @@ export const scale: MultiFn2<IShape, number | ReadonlyVec, IShape> = defmulti<
 			delta = __asVec(delta);
 			return new Ray(
 				mul2([], $.pos, delta),
-				normalize(null, mul2([], $.dir, delta)),
+				normalize2(null, mul2([], $.dir, delta)),
 				__copyAttribs($)
 			);
 		},
