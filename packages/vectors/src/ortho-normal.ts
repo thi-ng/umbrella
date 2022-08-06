@@ -1,6 +1,6 @@
 import type { ReadonlyVec, Vec } from "./api.js";
 import { cross3 } from "./cross.js";
-import { normalize } from "./normalize.js";
+import { normalize3 } from "./normalize.js";
 import { sub3 } from "./sub.js";
 
 /**
@@ -28,5 +28,5 @@ export const orthoNormal3 = (
 	doNormalize = true
 ) => {
 	out = cross3(null, sub3(out || a, b, a), sub3([], c, a));
-	return doNormalize ? normalize(out, out) : out;
+	return doNormalize ? normalize3(out, out) : out;
 };

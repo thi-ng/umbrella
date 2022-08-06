@@ -1,6 +1,6 @@
 import type { ReadonlyVec, Vec } from "./api.js";
-import { normalize } from "./normalize.js";
-import { sub } from "./sub.js";
+import { normalize, normalize2, normalize3 } from "./normalize.js";
+import { sub, sub2, sub3 } from "./sub.js";
 
 /**
  * Computes direction vector `a` -> `b`, normalized to length `n`
@@ -16,3 +16,17 @@ export const direction = (
 	b: ReadonlyVec,
 	n = 1
 ) => normalize(null, sub(out || a, b, a), n);
+
+export const direction2 = (
+	out: Vec | null,
+	a: ReadonlyVec,
+	b: ReadonlyVec,
+	n = 1
+) => normalize2(null, sub2(out || a, b, a), n);
+
+export const direction3 = (
+	out: Vec | null,
+	a: ReadonlyVec,
+	b: ReadonlyVec,
+	n = 1
+) => normalize3(null, sub3(out || a, b, a), n);

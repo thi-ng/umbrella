@@ -1,5 +1,5 @@
 import type { ReadonlyVec, Vec } from "./api.js";
-import { direction } from "./direction.js";
+import { direction2 } from "./direction.js";
 import { perpendicularCCW, perpendicularCW } from "./perpendicular.js";
 
 /**
@@ -13,7 +13,7 @@ import { perpendicularCCW, perpendicularCW } from "./perpendicular.js";
  * @param n -
  */
 export const normalCCW = (out: Vec, a: ReadonlyVec, b: ReadonlyVec, n = 1) =>
-	perpendicularCCW(null, direction(out || [], a, b, n));
+	perpendicularCCW(null, direction2(out || [], a, b, n));
 
 /**
  * Computes 2D normal by rotating direction vector `a` -> `b`, 90 deg
@@ -26,4 +26,4 @@ export const normalCCW = (out: Vec, a: ReadonlyVec, b: ReadonlyVec, n = 1) =>
  * @param n -
  */
 export const normalCW = (out: Vec, a: ReadonlyVec, b: ReadonlyVec, n = 1) =>
-	perpendicularCW(null, direction(out || [], a, b, n));
+	perpendicularCW(null, direction2(out || [], a, b, n));

@@ -1,10 +1,10 @@
 import { HALF_PI, PI } from "@thi.ng/math/api";
 import { addmN } from "./addmn.js";
 import type { ReadonlyVec, Vec, VecOpRoVV } from "./api.js";
-import { direction } from "./direction.js";
+import { direction2 } from "./direction.js";
 import { headingXY } from "./heading.js";
 import { mixN2 } from "./mixn.js";
-import { normalize } from "./normalize.js";
+import { normalize, normalize2 } from "./normalize.js";
 import { perpendicularCCW } from "./perpendicular.js";
 import { sub } from "./sub.js";
 
@@ -72,9 +72,9 @@ export const cornerBisector2 = (
 	!out && (out = []),
 	perpendicularCCW(
 		out,
-		normalize(
+		normalize2(
 			out,
-			mixN2(out, direction(out, a, b), direction([], b, c), 0.5),
+			mixN2(out, direction2(out, a, b), direction2([], b, c), 0.5),
 			n
 		)
 	)
