@@ -1,159 +1,159 @@
 {
-    "name": "@thi.ng/random",
-    "version": "3.3.4",
-    "description": "Pseudo-random number generators w/ unified API, distributions, weighted choices, ID generation",
-    "type": "module",
-    "module": "./index.js",
-    "typings": "./index.d.ts",
-    "sideEffects": false,
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/thi-ng/umbrella.git"
-    },
-    "homepage": "https://github.com/thi-ng/umbrella/tree/develop/packages/random#readme",
-    "funding": [
-        {
-            "type": "github",
-            "url": "https://github.com/sponsors/postspectacular"
-        },
-        {
-            "type": "patreon",
-            "url": "https://patreon.com/thing_umbrella"
-        }
-    ],
-    "author": "Karsten Schmidt <k+npm@thi.ng>",
-    "license": "Apache-2.0",
-    "scripts": {
-        "build": "yarn clean && tsc --declaration",
-        "clean": "rimraf '*.js' '*.d.ts' '*.map' doc distributions",
-        "doc": "typedoc --excludePrivate --excludeInternal --out doc src/index.ts",
-        "doc:ae": "mkdir -p .ae/doc .ae/temp && api-extractor run --local --verbose",
-        "doc:readme": "yarn doc:stats && tools:readme",
-        "doc:stats": "tools:module-stats",
-        "pub": "yarn npm publish --access public",
-        "test": "testament test"
-    },
-    "dependencies": {
-        "@thi.ng/api": "^8.3.9",
-        "@thi.ng/checks": "^3.2.3",
-        "@thi.ng/errors": "^2.1.9",
-        "@thi.ng/hex": "^2.1.9"
-    },
-    "devDependencies": {
-        "@microsoft/api-extractor": "^7.25.0",
-        "@thi.ng/testament": "^0.2.10",
-        "rimraf": "^3.0.2",
-        "tools": "workspace:^",
-        "typedoc": "^0.22.17",
-        "typescript": "^4.7.4"
-    },
-    "keywords": [
-        "binary",
-        "crypto",
-        "datastructure",
-        "distribution",
-        "exponential",
-        "gaussian",
-        "generator",
-        "geometric",
-        "normal",
-        "prng",
-        "random",
-        "typedarray",
-        "typescript",
-        "weighted",
-        "uuid",
-        "uniform"
-    ],
-    "publishConfig": {
-        "access": "public"
-    },
-    "engines": {
-        "node": ">=12.7"
-    },
-    "files": [
-        "*.js",
-        "*.d.ts",
-        "distributions"
-    ],
-    "exports": {
-        ".": {
-            "default": "./index.js"
-        },
-        "./api": {
-            "default": "./api.js"
-        },
-        "./arandom": {
-            "default": "./arandom.js"
-        },
-        "./coin": {
-            "default": "./coin.js"
-        },
-        "./constants": {
-            "default": "./constants.js"
-        },
-        "./crypto": {
-            "default": "./crypto.js"
-        },
-        "./distributions/exponential": {
-            "default": "./distributions/exponential.js"
-        },
-        "./distributions/gaussian": {
-            "default": "./distributions/gaussian.js"
-        },
-        "./distributions/geometric": {
-            "default": "./distributions/geometric.js"
-        },
-        "./distributions/normal": {
-            "default": "./distributions/normal.js"
-        },
-        "./distributions/uniform": {
-            "default": "./distributions/uniform.js"
-        },
-        "./pick-random": {
-            "default": "./pick-random.js"
-        },
-        "./random-bytes": {
-            "default": "./random-bytes.js"
-        },
-        "./random-id": {
-            "default": "./random-id.js"
-        },
-        "./sfc32": {
-            "default": "./sfc32.js"
-        },
-        "./smush32": {
-            "default": "./smush32.js"
-        },
-        "./system": {
-            "default": "./system.js"
-        },
-        "./unique-indices": {
-            "default": "./unique-indices.js"
-        },
-        "./uuid": {
-            "default": "./uuid.js"
-        },
-        "./weighted-random": {
-            "default": "./weighted-random.js"
-        },
-        "./xorshift128": {
-            "default": "./xorshift128.js"
-        },
-        "./xorwow": {
-            "default": "./xorwow.js"
-        },
-        "./xoshiro128": {
-            "default": "./xoshiro128.js"
-        },
-        "./xsadd": {
-            "default": "./xsadd.js"
-        }
-    },
-    "thi.ng": {
-        "year": 2015,
-        "related": [
-            "ksuid"
-        ]
-    }
+	"name": "@thi.ng/random",
+	"version": "3.3.5",
+	"description": "Pseudo-random number generators w/ unified API, distributions, weighted choices, ID generation",
+	"type": "module",
+	"module": "./index.js",
+	"typings": "./index.d.ts",
+	"sideEffects": false,
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/thi-ng/umbrella.git"
+	},
+	"homepage": "https://github.com/thi-ng/umbrella/tree/develop/packages/random#readme",
+	"funding": [
+		{
+			"type": "github",
+			"url": "https://github.com/sponsors/postspectacular"
+		},
+		{
+			"type": "patreon",
+			"url": "https://patreon.com/thing_umbrella"
+		}
+	],
+	"author": "Karsten Schmidt <k+npm@thi.ng>",
+	"license": "Apache-2.0",
+	"scripts": {
+		"build": "yarn clean && tsc --declaration",
+		"clean": "rimraf '*.js' '*.d.ts' '*.map' doc distributions",
+		"doc": "typedoc --excludePrivate --excludeInternal --out doc src/index.ts",
+		"doc:ae": "mkdir -p .ae/doc .ae/temp && api-extractor run --local --verbose",
+		"doc:readme": "yarn doc:stats && tools:readme",
+		"doc:stats": "tools:module-stats",
+		"pub": "yarn npm publish --access public",
+		"test": "testament test"
+	},
+	"dependencies": {
+		"@thi.ng/api": "^8.3.9",
+		"@thi.ng/checks": "^3.2.4",
+		"@thi.ng/errors": "^2.1.10",
+		"@thi.ng/hex": "^2.1.9"
+	},
+	"devDependencies": {
+		"@microsoft/api-extractor": "^7.25.0",
+		"@thi.ng/testament": "^0.2.11",
+		"rimraf": "^3.0.2",
+		"tools": "workspace:^",
+		"typedoc": "^0.22.17",
+		"typescript": "^4.7.4"
+	},
+	"keywords": [
+		"binary",
+		"crypto",
+		"datastructure",
+		"distribution",
+		"exponential",
+		"gaussian",
+		"generator",
+		"geometric",
+		"normal",
+		"prng",
+		"random",
+		"typedarray",
+		"typescript",
+		"weighted",
+		"uuid",
+		"uniform"
+	],
+	"publishConfig": {
+		"access": "public"
+	},
+	"engines": {
+		"node": ">=12.7"
+	},
+	"files": [
+		"*.js",
+		"*.d.ts",
+		"distributions"
+	],
+	"exports": {
+		".": {
+			"default": "./index.js"
+		},
+		"./api": {
+			"default": "./api.js"
+		},
+		"./arandom": {
+			"default": "./arandom.js"
+		},
+		"./coin": {
+			"default": "./coin.js"
+		},
+		"./constants": {
+			"default": "./constants.js"
+		},
+		"./crypto": {
+			"default": "./crypto.js"
+		},
+		"./distributions/exponential": {
+			"default": "./distributions/exponential.js"
+		},
+		"./distributions/gaussian": {
+			"default": "./distributions/gaussian.js"
+		},
+		"./distributions/geometric": {
+			"default": "./distributions/geometric.js"
+		},
+		"./distributions/normal": {
+			"default": "./distributions/normal.js"
+		},
+		"./distributions/uniform": {
+			"default": "./distributions/uniform.js"
+		},
+		"./pick-random": {
+			"default": "./pick-random.js"
+		},
+		"./random-bytes": {
+			"default": "./random-bytes.js"
+		},
+		"./random-id": {
+			"default": "./random-id.js"
+		},
+		"./sfc32": {
+			"default": "./sfc32.js"
+		},
+		"./smush32": {
+			"default": "./smush32.js"
+		},
+		"./system": {
+			"default": "./system.js"
+		},
+		"./unique-indices": {
+			"default": "./unique-indices.js"
+		},
+		"./uuid": {
+			"default": "./uuid.js"
+		},
+		"./weighted-random": {
+			"default": "./weighted-random.js"
+		},
+		"./xorshift128": {
+			"default": "./xorshift128.js"
+		},
+		"./xorwow": {
+			"default": "./xorwow.js"
+		},
+		"./xoshiro128": {
+			"default": "./xoshiro128.js"
+		},
+		"./xsadd": {
+			"default": "./xsadd.js"
+		}
+	},
+	"thi.ng": {
+		"year": 2015,
+		"related": [
+			"ksuid"
+		]
+	}
 }

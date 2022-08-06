@@ -1,122 +1,122 @@
 {
-    "name": "@thi.ng/geom-isec",
-    "version": "2.1.21",
-    "description": "2D/3D shape intersection checks",
-    "type": "module",
-    "module": "./index.js",
-    "typings": "./index.d.ts",
-    "sideEffects": false,
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/thi-ng/umbrella.git"
-    },
-    "homepage": "https://github.com/thi-ng/umbrella/tree/develop/packages/geom-isec#readme",
-    "funding": [
-        {
-            "type": "github",
-            "url": "https://github.com/sponsors/postspectacular"
-        },
-        {
-            "type": "patreon",
-            "url": "https://patreon.com/thing_umbrella"
-        }
-    ],
-    "author": "Karsten Schmidt <k+npm@thi.ng>",
-    "license": "Apache-2.0",
-    "scripts": {
-        "build": "yarn clean && tsc --declaration",
-        "clean": "rimraf '*.js' '*.d.ts' '*.map' doc",
-        "doc": "typedoc --excludePrivate --excludeInternal --out doc src/index.ts",
-        "doc:ae": "mkdir -p .ae/doc .ae/temp && api-extractor run --local --verbose",
-        "doc:readme": "yarn doc:stats && tools:readme",
-        "doc:stats": "tools:module-stats",
-        "pub": "yarn npm publish --access public",
-        "test": "testament test"
-    },
-    "dependencies": {
-        "@thi.ng/api": "^8.3.9",
-        "@thi.ng/geom-api": "^3.3.4",
-        "@thi.ng/geom-closest-point": "^2.1.18",
-        "@thi.ng/math": "^5.3.5",
-        "@thi.ng/vectors": "^7.5.10"
-    },
-    "devDependencies": {
-        "@microsoft/api-extractor": "^7.25.0",
-        "@thi.ng/testament": "^0.2.10",
-        "rimraf": "^3.0.2",
-        "tools": "workspace:^",
-        "typedoc": "^0.22.17",
-        "typescript": "^4.7.4"
-    },
-    "keywords": [
-        "2d",
-        "3d",
-        "bbox",
-        "circle",
-        "geometry",
-        "intersection",
-        "line",
-        "ray",
-        "rect",
-        "sphere",
-        "typescript"
-    ],
-    "publishConfig": {
-        "access": "public"
-    },
-    "engines": {
-        "node": ">=12.7"
-    },
-    "files": [
-        "*.js",
-        "*.d.ts"
-    ],
-    "exports": {
-        ".": {
-            "default": "./index.js"
-        },
-        "./api": {
-            "default": "./api.js"
-        },
-        "./circle-circle": {
-            "default": "./circle-circle.js"
-        },
-        "./line-line": {
-            "default": "./line-line.js"
-        },
-        "./line-poly": {
-            "default": "./line-poly.js"
-        },
-        "./plane-plane": {
-            "default": "./plane-plane.js"
-        },
-        "./point": {
-            "default": "./point.js"
-        },
-        "./ray-circle": {
-            "default": "./ray-circle.js"
-        },
-        "./ray-line": {
-            "default": "./ray-line.js"
-        },
-        "./ray-plane": {
-            "default": "./ray-plane.js"
-        },
-        "./ray-poly": {
-            "default": "./ray-poly.js"
-        },
-        "./ray-rect": {
-            "default": "./ray-rect.js"
-        },
-        "./rect-circle": {
-            "default": "./rect-circle.js"
-        },
-        "./rect-rect": {
-            "default": "./rect-rect.js"
-        }
-    },
-    "thi.ng": {
-        "parent": "@thi.ng/geom",
-        "year": 2013
-    }
+	"name": "@thi.ng/geom-isec",
+	"version": "2.1.22",
+	"description": "2D/3D shape intersection checks",
+	"type": "module",
+	"module": "./index.js",
+	"typings": "./index.d.ts",
+	"sideEffects": false,
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/thi-ng/umbrella.git"
+	},
+	"homepage": "https://github.com/thi-ng/umbrella/tree/develop/packages/geom-isec#readme",
+	"funding": [
+		{
+			"type": "github",
+			"url": "https://github.com/sponsors/postspectacular"
+		},
+		{
+			"type": "patreon",
+			"url": "https://patreon.com/thing_umbrella"
+		}
+	],
+	"author": "Karsten Schmidt <k+npm@thi.ng>",
+	"license": "Apache-2.0",
+	"scripts": {
+		"build": "yarn clean && tsc --declaration",
+		"clean": "rimraf '*.js' '*.d.ts' '*.map' doc",
+		"doc": "typedoc --excludePrivate --excludeInternal --out doc src/index.ts",
+		"doc:ae": "mkdir -p .ae/doc .ae/temp && api-extractor run --local --verbose",
+		"doc:readme": "yarn doc:stats && tools:readme",
+		"doc:stats": "tools:module-stats",
+		"pub": "yarn npm publish --access public",
+		"test": "testament test"
+	},
+	"dependencies": {
+		"@thi.ng/api": "^8.3.9",
+		"@thi.ng/geom-api": "^3.3.5",
+		"@thi.ng/geom-closest-point": "^2.1.19",
+		"@thi.ng/math": "^5.3.5",
+		"@thi.ng/vectors": "^7.5.11"
+	},
+	"devDependencies": {
+		"@microsoft/api-extractor": "^7.25.0",
+		"@thi.ng/testament": "^0.2.11",
+		"rimraf": "^3.0.2",
+		"tools": "workspace:^",
+		"typedoc": "^0.22.17",
+		"typescript": "^4.7.4"
+	},
+	"keywords": [
+		"2d",
+		"3d",
+		"bbox",
+		"circle",
+		"geometry",
+		"intersection",
+		"line",
+		"ray",
+		"rect",
+		"sphere",
+		"typescript"
+	],
+	"publishConfig": {
+		"access": "public"
+	},
+	"engines": {
+		"node": ">=12.7"
+	},
+	"files": [
+		"*.js",
+		"*.d.ts"
+	],
+	"exports": {
+		".": {
+			"default": "./index.js"
+		},
+		"./api": {
+			"default": "./api.js"
+		},
+		"./circle-circle": {
+			"default": "./circle-circle.js"
+		},
+		"./line-line": {
+			"default": "./line-line.js"
+		},
+		"./line-poly": {
+			"default": "./line-poly.js"
+		},
+		"./plane-plane": {
+			"default": "./plane-plane.js"
+		},
+		"./point": {
+			"default": "./point.js"
+		},
+		"./ray-circle": {
+			"default": "./ray-circle.js"
+		},
+		"./ray-line": {
+			"default": "./ray-line.js"
+		},
+		"./ray-plane": {
+			"default": "./ray-plane.js"
+		},
+		"./ray-poly": {
+			"default": "./ray-poly.js"
+		},
+		"./ray-rect": {
+			"default": "./ray-rect.js"
+		},
+		"./rect-circle": {
+			"default": "./rect-circle.js"
+		},
+		"./rect-rect": {
+			"default": "./rect-rect.js"
+		}
+	},
+	"thi.ng": {
+		"parent": "@thi.ng/geom",
+		"year": 2013
+	}
 }

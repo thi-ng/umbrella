@@ -1,113 +1,113 @@
 {
-    "name": "@thi.ng/hdom-components",
-    "version": "5.1.14",
-    "description": "Raw, skinnable UI & SVG components for @thi.ng/hdom",
-    "type": "module",
-    "module": "./index.js",
-    "typings": "./index.d.ts",
-    "sideEffects": false,
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/thi-ng/umbrella.git"
-    },
-    "homepage": "https://github.com/thi-ng/umbrella/tree/develop/packages/hdom-components#readme",
-    "funding": [
-        {
-            "type": "github",
-            "url": "https://github.com/sponsors/postspectacular"
-        },
-        {
-            "type": "patreon",
-            "url": "https://patreon.com/thing_umbrella"
-        }
-    ],
-    "author": "Karsten Schmidt <k+npm@thi.ng>",
-    "license": "Apache-2.0",
-    "scripts": {
-        "build": "yarn clean && tsc --declaration",
-        "clean": "rimraf '*.js' '*.d.ts' '*.map' doc utils",
-        "doc": "typedoc --excludePrivate --excludeInternal --out doc src/index.ts",
-        "doc:ae": "mkdir -p .ae/doc .ae/temp && api-extractor run --local --verbose",
-        "doc:readme": "yarn doc:stats && tools:readme",
-        "doc:stats": "tools:module-stats",
-        "pub": "yarn npm publish --access public",
-        "test": "testament test"
-    },
-    "dependencies": {
-        "@thi.ng/adapt-dpi": "^2.1.9",
-        "@thi.ng/api": "^8.3.9",
-        "@thi.ng/checks": "^3.2.3",
-        "@thi.ng/math": "^5.3.5",
-        "@thi.ng/transducers": "^8.3.9",
-        "@thi.ng/transducers-stats": "^2.1.14"
-    },
-    "devDependencies": {
-        "@microsoft/api-extractor": "^7.25.0",
-        "@thi.ng/testament": "^0.2.10",
-        "rimraf": "^3.0.2",
-        "tools": "workspace:^",
-        "typedoc": "^0.22.17",
-        "typescript": "^4.7.4"
-    },
-    "keywords": [
-        "browser",
-        "typescript"
-    ],
-    "publishConfig": {
-        "access": "public"
-    },
-    "engines": {
-        "node": ">=12.7"
-    },
-    "files": [
-        "*.js",
-        "*.d.ts",
-        "utils"
-    ],
-    "exports": {
-        ".": {
-            "default": "./index.js"
-        },
-        "./button-group": {
-            "default": "./button-group.js"
-        },
-        "./button": {
-            "default": "./button.js"
-        },
-        "./canvas": {
-            "default": "./canvas.js"
-        },
-        "./dropdown": {
-            "default": "./dropdown.js"
-        },
-        "./fps-counter": {
-            "default": "./fps-counter.js"
-        },
-        "./link": {
-            "default": "./link.js"
-        },
-        "./notification": {
-            "default": "./notification.js"
-        },
-        "./pager": {
-            "default": "./pager.js"
-        },
-        "./sparkline": {
-            "default": "./sparkline.js"
-        },
-        "./title": {
-            "default": "./title.js"
-        },
-        "./toggle": {
-            "default": "./toggle.js"
-        },
-        "./utils/merge-attribs": {
-            "default": "./utils/merge-attribs.js"
-        }
-    },
-    "thi.ng": {
-        "parent": "@thi.ng/hdom",
-        "status": "beta",
-        "year": 2018
-    }
+	"name": "@thi.ng/hdom-components",
+	"version": "5.1.15",
+	"description": "Raw, skinnable UI & SVG components for @thi.ng/hdom",
+	"type": "module",
+	"module": "./index.js",
+	"typings": "./index.d.ts",
+	"sideEffects": false,
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/thi-ng/umbrella.git"
+	},
+	"homepage": "https://github.com/thi-ng/umbrella/tree/develop/packages/hdom-components#readme",
+	"funding": [
+		{
+			"type": "github",
+			"url": "https://github.com/sponsors/postspectacular"
+		},
+		{
+			"type": "patreon",
+			"url": "https://patreon.com/thing_umbrella"
+		}
+	],
+	"author": "Karsten Schmidt <k+npm@thi.ng>",
+	"license": "Apache-2.0",
+	"scripts": {
+		"build": "yarn clean && tsc --declaration",
+		"clean": "rimraf '*.js' '*.d.ts' '*.map' doc utils",
+		"doc": "typedoc --excludePrivate --excludeInternal --out doc src/index.ts",
+		"doc:ae": "mkdir -p .ae/doc .ae/temp && api-extractor run --local --verbose",
+		"doc:readme": "yarn doc:stats && tools:readme",
+		"doc:stats": "tools:module-stats",
+		"pub": "yarn npm publish --access public",
+		"test": "testament test"
+	},
+	"dependencies": {
+		"@thi.ng/adapt-dpi": "^2.1.9",
+		"@thi.ng/api": "^8.3.9",
+		"@thi.ng/checks": "^3.2.4",
+		"@thi.ng/math": "^5.3.5",
+		"@thi.ng/transducers": "^8.3.10",
+		"@thi.ng/transducers-stats": "^2.1.15"
+	},
+	"devDependencies": {
+		"@microsoft/api-extractor": "^7.25.0",
+		"@thi.ng/testament": "^0.2.11",
+		"rimraf": "^3.0.2",
+		"tools": "workspace:^",
+		"typedoc": "^0.22.17",
+		"typescript": "^4.7.4"
+	},
+	"keywords": [
+		"browser",
+		"typescript"
+	],
+	"publishConfig": {
+		"access": "public"
+	},
+	"engines": {
+		"node": ">=12.7"
+	},
+	"files": [
+		"*.js",
+		"*.d.ts",
+		"utils"
+	],
+	"exports": {
+		".": {
+			"default": "./index.js"
+		},
+		"./button-group": {
+			"default": "./button-group.js"
+		},
+		"./button": {
+			"default": "./button.js"
+		},
+		"./canvas": {
+			"default": "./canvas.js"
+		},
+		"./dropdown": {
+			"default": "./dropdown.js"
+		},
+		"./fps-counter": {
+			"default": "./fps-counter.js"
+		},
+		"./link": {
+			"default": "./link.js"
+		},
+		"./notification": {
+			"default": "./notification.js"
+		},
+		"./pager": {
+			"default": "./pager.js"
+		},
+		"./sparkline": {
+			"default": "./sparkline.js"
+		},
+		"./title": {
+			"default": "./title.js"
+		},
+		"./toggle": {
+			"default": "./toggle.js"
+		},
+		"./utils/merge-attribs": {
+			"default": "./utils/merge-attribs.js"
+		}
+	},
+	"thi.ng": {
+		"parent": "@thi.ng/hdom",
+		"status": "beta",
+		"year": 2018
+	}
 }

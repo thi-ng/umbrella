@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-08-01T14:53:59Z
+- **Last updated**: 2022-08-06T15:22:27Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,12 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [2.1.22](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom-splines@2.1.22) (2022-08-06)
+
+#### ⏱ Performance improvements
+
+- update vector fns ([3fcfc51](https://github.com/thi-ng/umbrella/commit/3fcfc51))
 
 ### [2.1.8](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom-splines@2.1.8) (2022-03-11)
 

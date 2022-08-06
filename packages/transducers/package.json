@@ -1,570 +1,570 @@
 {
-    "name": "@thi.ng/transducers",
-    "version": "8.3.9",
-    "description": "Lightweight transducer implementations for ES6 / TypeScript",
-    "type": "module",
-    "module": "./index.js",
-    "typings": "./index.d.ts",
-    "sideEffects": false,
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/thi-ng/umbrella.git"
-    },
-    "homepage": "https://github.com/thi-ng/umbrella/tree/develop/packages/transducers#readme",
-    "funding": [
-        {
-            "type": "github",
-            "url": "https://github.com/sponsors/postspectacular"
-        },
-        {
-            "type": "patreon",
-            "url": "https://patreon.com/thing_umbrella"
-        }
-    ],
-    "author": "Karsten Schmidt <k+npm@thi.ng>",
-    "license": "Apache-2.0",
-    "scripts": {
-        "build": "yarn clean && tsc --declaration",
-        "clean": "rimraf '*.js' '*.d.ts' '*.map' doc internal",
-        "doc": "typedoc --excludePrivate --excludeInternal --out doc src/index.ts",
-        "doc:ae": "mkdir -p .ae/doc .ae/temp && api-extractor run --local --verbose",
-        "doc:readme": "yarn doc:stats && tools:readme",
-        "doc:stats": "tools:module-stats",
-        "pub": "yarn npm publish --access public",
-        "test": "testament test"
-    },
-    "dependencies": {
-        "@thi.ng/api": "^8.3.9",
-        "@thi.ng/arrays": "^2.3.2",
-        "@thi.ng/checks": "^3.2.3",
-        "@thi.ng/compare": "^2.1.9",
-        "@thi.ng/compose": "^2.1.9",
-        "@thi.ng/errors": "^2.1.9",
-        "@thi.ng/math": "^5.3.5",
-        "@thi.ng/random": "^3.3.4"
-    },
-    "devDependencies": {
-        "@microsoft/api-extractor": "^7.25.0",
-        "@thi.ng/testament": "^0.2.10",
-        "rimraf": "^3.0.2",
-        "tools": "workspace:^",
-        "typedoc": "^0.22.17",
-        "typescript": "^4.7.4"
-    },
-    "keywords": [
-        "2d",
-        "3d",
-        "nd",
-        "array",
-        "clojure",
-        "composition",
-        "convolution",
-        "cycle",
-        "filter",
-        "flatten",
-        "frequency",
-        "functional",
-        "fuzzy",
-        "group-by",
-        "histogram",
-        "interleave",
-        "interpolation",
-        "iterator",
-        "partition",
-        "permutation",
-        "pipeline",
-        "random",
-        "range",
-        "reducer",
-        "sample",
-        "set",
-        "sliding-window",
-        "stream",
-        "throttle",
-        "transducer",
-        "transformation",
-        "tween",
-        "typescript",
-        "wordwrap"
-    ],
-    "publishConfig": {
-        "access": "public"
-    },
-    "engines": {
-        "node": ">=12.7"
-    },
-    "files": [
-        "*.js",
-        "*.d.ts",
-        "internal"
-    ],
-    "exports": {
-        ".": {
-            "default": "./index.js"
-        },
-        "./add": {
-            "default": "./add.js"
-        },
-        "./api": {
-            "default": "./api.js"
-        },
-        "./as-iterable": {
-            "default": "./as-iterable.js"
-        },
-        "./assoc-map": {
-            "default": "./assoc-map.js"
-        },
-        "./assoc-obj": {
-            "default": "./assoc-obj.js"
-        },
-        "./auto-obj": {
-            "default": "./auto-obj.js"
-        },
-        "./benchmark": {
-            "default": "./benchmark.js"
-        },
-        "./cat": {
-            "default": "./cat.js"
-        },
-        "./choices": {
-            "default": "./choices.js"
-        },
-        "./comp": {
-            "default": "./comp.js"
-        },
-        "./compr": {
-            "default": "./compr.js"
-        },
-        "./concat": {
-            "default": "./concat.js"
-        },
-        "./conj": {
-            "default": "./conj.js"
-        },
-        "./converge": {
-            "default": "./converge.js"
-        },
-        "./convolve": {
-            "default": "./convolve.js"
-        },
-        "./count": {
-            "default": "./count.js"
-        },
-        "./curve": {
-            "default": "./curve.js"
-        },
-        "./cycle": {
-            "default": "./cycle.js"
-        },
-        "./dedupe": {
-            "default": "./dedupe.js"
-        },
-        "./deep-transform": {
-            "default": "./deep-transform.js"
-        },
-        "./delayed": {
-            "default": "./delayed.js"
-        },
-        "./distinct": {
-            "default": "./distinct.js"
-        },
-        "./div": {
-            "default": "./div.js"
-        },
-        "./drop-nth": {
-            "default": "./drop-nth.js"
-        },
-        "./drop-while": {
-            "default": "./drop-while.js"
-        },
-        "./drop": {
-            "default": "./drop.js"
-        },
-        "./dup": {
-            "default": "./dup.js"
-        },
-        "./duplicate": {
-            "default": "./duplicate.js"
-        },
-        "./ensure": {
-            "default": "./ensure.js"
-        },
-        "./every": {
-            "default": "./every.js"
-        },
-        "./extend-sides": {
-            "default": "./extend-sides.js"
-        },
-        "./fill": {
-            "default": "./fill.js"
-        },
-        "./filter-fuzzy": {
-            "default": "./filter-fuzzy.js"
-        },
-        "./filter": {
-            "default": "./filter.js"
-        },
-        "./flatten-with": {
-            "default": "./flatten-with.js"
-        },
-        "./flatten": {
-            "default": "./flatten.js"
-        },
-        "./frequencies": {
-            "default": "./frequencies.js"
-        },
-        "./group-binary": {
-            "default": "./group-binary.js"
-        },
-        "./group-by-map": {
-            "default": "./group-by-map.js"
-        },
-        "./group-by-obj": {
-            "default": "./group-by-obj.js"
-        },
-        "./indexed": {
-            "default": "./indexed.js"
-        },
-        "./interleave": {
-            "default": "./interleave.js"
-        },
-        "./interpolate-hermite": {
-            "default": "./interpolate-hermite.js"
-        },
-        "./interpolate-linear": {
-            "default": "./interpolate-linear.js"
-        },
-        "./interpolate": {
-            "default": "./interpolate.js"
-        },
-        "./interpose": {
-            "default": "./interpose.js"
-        },
-        "./iterate": {
-            "default": "./iterate.js"
-        },
-        "./iterator": {
-            "default": "./iterator.js"
-        },
-        "./juxtr": {
-            "default": "./juxtr.js"
-        },
-        "./keep": {
-            "default": "./keep.js"
-        },
-        "./key-permutations": {
-            "default": "./key-permutations.js"
-        },
-        "./key-selector": {
-            "default": "./key-selector.js"
-        },
-        "./keys": {
-            "default": "./keys.js"
-        },
-        "./labeled": {
-            "default": "./labeled.js"
-        },
-        "./last": {
-            "default": "./last.js"
-        },
-        "./line": {
-            "default": "./line.js"
-        },
-        "./lookup": {
-            "default": "./lookup.js"
-        },
-        "./map-deep": {
-            "default": "./map-deep.js"
-        },
-        "./map-indexed": {
-            "default": "./map-indexed.js"
-        },
-        "./map-keys": {
-            "default": "./map-keys.js"
-        },
-        "./map-nth": {
-            "default": "./map-nth.js"
-        },
-        "./map-vals": {
-            "default": "./map-vals.js"
-        },
-        "./map": {
-            "default": "./map.js"
-        },
-        "./mapcat-indexed": {
-            "default": "./mapcat-indexed.js"
-        },
-        "./mapcat": {
-            "default": "./mapcat.js"
-        },
-        "./match-first": {
-            "default": "./match-first.js"
-        },
-        "./match-last": {
-            "default": "./match-last.js"
-        },
-        "./max-compare": {
-            "default": "./max-compare.js"
-        },
-        "./max-mag": {
-            "default": "./max-mag.js"
-        },
-        "./max": {
-            "default": "./max.js"
-        },
-        "./mean": {
-            "default": "./mean.js"
-        },
-        "./min-compare": {
-            "default": "./min-compare.js"
-        },
-        "./min-mag": {
-            "default": "./min-mag.js"
-        },
-        "./min-max": {
-            "default": "./min-max.js"
-        },
-        "./min": {
-            "default": "./min.js"
-        },
-        "./moving-average": {
-            "default": "./moving-average.js"
-        },
-        "./moving-median": {
-            "default": "./moving-median.js"
-        },
-        "./mul": {
-            "default": "./mul.js"
-        },
-        "./multiplex-obj": {
-            "default": "./multiplex-obj.js"
-        },
-        "./multiplex": {
-            "default": "./multiplex.js"
-        },
-        "./noop": {
-            "default": "./noop.js"
-        },
-        "./norm-count": {
-            "default": "./norm-count.js"
-        },
-        "./norm-frequencies-auto": {
-            "default": "./norm-frequencies-auto.js"
-        },
-        "./norm-frequencies": {
-            "default": "./norm-frequencies.js"
-        },
-        "./norm-range": {
-            "default": "./norm-range.js"
-        },
-        "./pad-last": {
-            "default": "./pad-last.js"
-        },
-        "./pad-sides": {
-            "default": "./pad-sides.js"
-        },
-        "./page": {
-            "default": "./page.js"
-        },
-        "./pairs": {
-            "default": "./pairs.js"
-        },
-        "./palindrome": {
-            "default": "./palindrome.js"
-        },
-        "./partition-by": {
-            "default": "./partition-by.js"
-        },
-        "./partition-of": {
-            "default": "./partition-of.js"
-        },
-        "./partition-sort": {
-            "default": "./partition-sort.js"
-        },
-        "./partition-sync": {
-            "default": "./partition-sync.js"
-        },
-        "./partition-time": {
-            "default": "./partition-time.js"
-        },
-        "./partition-when": {
-            "default": "./partition-when.js"
-        },
-        "./partition": {
-            "default": "./partition.js"
-        },
-        "./peek": {
-            "default": "./peek.js"
-        },
-        "./permutations": {
-            "default": "./permutations.js"
-        },
-        "./pluck": {
-            "default": "./pluck.js"
-        },
-        "./push-copy": {
-            "default": "./push-copy.js"
-        },
-        "./push-sort": {
-            "default": "./push-sort.js"
-        },
-        "./push": {
-            "default": "./push.js"
-        },
-        "./range-nd": {
-            "default": "./range-nd.js"
-        },
-        "./range": {
-            "default": "./range.js"
-        },
-        "./range2d": {
-            "default": "./range2d.js"
-        },
-        "./range3d": {
-            "default": "./range3d.js"
-        },
-        "./rechunk": {
-            "default": "./rechunk.js"
-        },
-        "./reduce": {
-            "default": "./reduce.js"
-        },
-        "./reduced": {
-            "default": "./reduced.js"
-        },
-        "./reductions": {
-            "default": "./reductions.js"
-        },
-        "./rename": {
-            "default": "./rename.js"
-        },
-        "./renamer": {
-            "default": "./renamer.js"
-        },
-        "./repeat": {
-            "default": "./repeat.js"
-        },
-        "./repeatedly": {
-            "default": "./repeatedly.js"
-        },
-        "./reverse": {
-            "default": "./reverse.js"
-        },
-        "./run": {
-            "default": "./run.js"
-        },
-        "./sample": {
-            "default": "./sample.js"
-        },
-        "./scan": {
-            "default": "./scan.js"
-        },
-        "./select-keys": {
-            "default": "./select-keys.js"
-        },
-        "./side-effect": {
-            "default": "./side-effect.js"
-        },
-        "./sliding-window": {
-            "default": "./sliding-window.js"
-        },
-        "./some": {
-            "default": "./some.js"
-        },
-        "./sorted-keys": {
-            "default": "./sorted-keys.js"
-        },
-        "./step": {
-            "default": "./step.js"
-        },
-        "./str": {
-            "default": "./str.js"
-        },
-        "./stream-shuffle": {
-            "default": "./stream-shuffle.js"
-        },
-        "./stream-sort": {
-            "default": "./stream-sort.js"
-        },
-        "./struct": {
-            "default": "./struct.js"
-        },
-        "./sub": {
-            "default": "./sub.js"
-        },
-        "./swizzle": {
-            "default": "./swizzle.js"
-        },
-        "./symmetric": {
-            "default": "./symmetric.js"
-        },
-        "./take-last": {
-            "default": "./take-last.js"
-        },
-        "./take-nth": {
-            "default": "./take-nth.js"
-        },
-        "./take-while": {
-            "default": "./take-while.js"
-        },
-        "./take": {
-            "default": "./take.js"
-        },
-        "./throttle-time": {
-            "default": "./throttle-time.js"
-        },
-        "./throttle": {
-            "default": "./throttle.js"
-        },
-        "./toggle": {
-            "default": "./toggle.js"
-        },
-        "./trace": {
-            "default": "./trace.js"
-        },
-        "./transduce": {
-            "default": "./transduce.js"
-        },
-        "./tween": {
-            "default": "./tween.js"
-        },
-        "./vals": {
-            "default": "./vals.js"
-        },
-        "./word-wrap": {
-            "default": "./word-wrap.js"
-        },
-        "./wrap-sides": {
-            "default": "./wrap-sides.js"
-        },
-        "./zip": {
-            "default": "./zip.js"
-        }
-    },
-    "thi.ng": {
-        "blog": [
-            {
-                "title": "HOFs, Transducers, Reducers",
-                "url": "https://medium.com/@thi.ng/of-umbrellas-transducers-reactive-streams-mushrooms-pt-2-9c540beb0023"
-            },
-            {
-                "title": "Convolution, 1D/2D Cellular automata",
-                "url": "https://medium.com/@thi.ng/of-umbrellas-transducers-reactive-streams-mushrooms-pt-3-a1c4e621db9b"
-            },
-            {
-                "title": "Disjoint Sets, Graph analysis, Signed Distance Fields",
-                "url": "https://medium.com/@thi.ng/of-umbrellas-transducers-reactive-streams-mushrooms-pt-4-62d8e71e5603"
-            }
-        ],
-        "related": [
-            "csp",
-            "grid-iterators",
-            "fsm",
-            "rstream",
-            "rstream-graph",
-            "rstream-log",
-            "sax"
-        ],
-        "year": 2016
-    }
+	"name": "@thi.ng/transducers",
+	"version": "8.3.10",
+	"description": "Lightweight transducer implementations for ES6 / TypeScript",
+	"type": "module",
+	"module": "./index.js",
+	"typings": "./index.d.ts",
+	"sideEffects": false,
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/thi-ng/umbrella.git"
+	},
+	"homepage": "https://github.com/thi-ng/umbrella/tree/develop/packages/transducers#readme",
+	"funding": [
+		{
+			"type": "github",
+			"url": "https://github.com/sponsors/postspectacular"
+		},
+		{
+			"type": "patreon",
+			"url": "https://patreon.com/thing_umbrella"
+		}
+	],
+	"author": "Karsten Schmidt <k+npm@thi.ng>",
+	"license": "Apache-2.0",
+	"scripts": {
+		"build": "yarn clean && tsc --declaration",
+		"clean": "rimraf '*.js' '*.d.ts' '*.map' doc internal",
+		"doc": "typedoc --excludePrivate --excludeInternal --out doc src/index.ts",
+		"doc:ae": "mkdir -p .ae/doc .ae/temp && api-extractor run --local --verbose",
+		"doc:readme": "yarn doc:stats && tools:readme",
+		"doc:stats": "tools:module-stats",
+		"pub": "yarn npm publish --access public",
+		"test": "testament test"
+	},
+	"dependencies": {
+		"@thi.ng/api": "^8.3.9",
+		"@thi.ng/arrays": "^2.3.3",
+		"@thi.ng/checks": "^3.2.4",
+		"@thi.ng/compare": "^2.1.9",
+		"@thi.ng/compose": "^2.1.10",
+		"@thi.ng/errors": "^2.1.10",
+		"@thi.ng/math": "^5.3.5",
+		"@thi.ng/random": "^3.3.5"
+	},
+	"devDependencies": {
+		"@microsoft/api-extractor": "^7.25.0",
+		"@thi.ng/testament": "^0.2.11",
+		"rimraf": "^3.0.2",
+		"tools": "workspace:^",
+		"typedoc": "^0.22.17",
+		"typescript": "^4.7.4"
+	},
+	"keywords": [
+		"2d",
+		"3d",
+		"nd",
+		"array",
+		"clojure",
+		"composition",
+		"convolution",
+		"cycle",
+		"filter",
+		"flatten",
+		"frequency",
+		"functional",
+		"fuzzy",
+		"group-by",
+		"histogram",
+		"interleave",
+		"interpolation",
+		"iterator",
+		"partition",
+		"permutation",
+		"pipeline",
+		"random",
+		"range",
+		"reducer",
+		"sample",
+		"set",
+		"sliding-window",
+		"stream",
+		"throttle",
+		"transducer",
+		"transformation",
+		"tween",
+		"typescript",
+		"wordwrap"
+	],
+	"publishConfig": {
+		"access": "public"
+	},
+	"engines": {
+		"node": ">=12.7"
+	},
+	"files": [
+		"*.js",
+		"*.d.ts",
+		"internal"
+	],
+	"exports": {
+		".": {
+			"default": "./index.js"
+		},
+		"./add": {
+			"default": "./add.js"
+		},
+		"./api": {
+			"default": "./api.js"
+		},
+		"./as-iterable": {
+			"default": "./as-iterable.js"
+		},
+		"./assoc-map": {
+			"default": "./assoc-map.js"
+		},
+		"./assoc-obj": {
+			"default": "./assoc-obj.js"
+		},
+		"./auto-obj": {
+			"default": "./auto-obj.js"
+		},
+		"./benchmark": {
+			"default": "./benchmark.js"
+		},
+		"./cat": {
+			"default": "./cat.js"
+		},
+		"./choices": {
+			"default": "./choices.js"
+		},
+		"./comp": {
+			"default": "./comp.js"
+		},
+		"./compr": {
+			"default": "./compr.js"
+		},
+		"./concat": {
+			"default": "./concat.js"
+		},
+		"./conj": {
+			"default": "./conj.js"
+		},
+		"./converge": {
+			"default": "./converge.js"
+		},
+		"./convolve": {
+			"default": "./convolve.js"
+		},
+		"./count": {
+			"default": "./count.js"
+		},
+		"./curve": {
+			"default": "./curve.js"
+		},
+		"./cycle": {
+			"default": "./cycle.js"
+		},
+		"./dedupe": {
+			"default": "./dedupe.js"
+		},
+		"./deep-transform": {
+			"default": "./deep-transform.js"
+		},
+		"./delayed": {
+			"default": "./delayed.js"
+		},
+		"./distinct": {
+			"default": "./distinct.js"
+		},
+		"./div": {
+			"default": "./div.js"
+		},
+		"./drop-nth": {
+			"default": "./drop-nth.js"
+		},
+		"./drop-while": {
+			"default": "./drop-while.js"
+		},
+		"./drop": {
+			"default": "./drop.js"
+		},
+		"./dup": {
+			"default": "./dup.js"
+		},
+		"./duplicate": {
+			"default": "./duplicate.js"
+		},
+		"./ensure": {
+			"default": "./ensure.js"
+		},
+		"./every": {
+			"default": "./every.js"
+		},
+		"./extend-sides": {
+			"default": "./extend-sides.js"
+		},
+		"./fill": {
+			"default": "./fill.js"
+		},
+		"./filter-fuzzy": {
+			"default": "./filter-fuzzy.js"
+		},
+		"./filter": {
+			"default": "./filter.js"
+		},
+		"./flatten-with": {
+			"default": "./flatten-with.js"
+		},
+		"./flatten": {
+			"default": "./flatten.js"
+		},
+		"./frequencies": {
+			"default": "./frequencies.js"
+		},
+		"./group-binary": {
+			"default": "./group-binary.js"
+		},
+		"./group-by-map": {
+			"default": "./group-by-map.js"
+		},
+		"./group-by-obj": {
+			"default": "./group-by-obj.js"
+		},
+		"./indexed": {
+			"default": "./indexed.js"
+		},
+		"./interleave": {
+			"default": "./interleave.js"
+		},
+		"./interpolate-hermite": {
+			"default": "./interpolate-hermite.js"
+		},
+		"./interpolate-linear": {
+			"default": "./interpolate-linear.js"
+		},
+		"./interpolate": {
+			"default": "./interpolate.js"
+		},
+		"./interpose": {
+			"default": "./interpose.js"
+		},
+		"./iterate": {
+			"default": "./iterate.js"
+		},
+		"./iterator": {
+			"default": "./iterator.js"
+		},
+		"./juxtr": {
+			"default": "./juxtr.js"
+		},
+		"./keep": {
+			"default": "./keep.js"
+		},
+		"./key-permutations": {
+			"default": "./key-permutations.js"
+		},
+		"./key-selector": {
+			"default": "./key-selector.js"
+		},
+		"./keys": {
+			"default": "./keys.js"
+		},
+		"./labeled": {
+			"default": "./labeled.js"
+		},
+		"./last": {
+			"default": "./last.js"
+		},
+		"./line": {
+			"default": "./line.js"
+		},
+		"./lookup": {
+			"default": "./lookup.js"
+		},
+		"./map-deep": {
+			"default": "./map-deep.js"
+		},
+		"./map-indexed": {
+			"default": "./map-indexed.js"
+		},
+		"./map-keys": {
+			"default": "./map-keys.js"
+		},
+		"./map-nth": {
+			"default": "./map-nth.js"
+		},
+		"./map-vals": {
+			"default": "./map-vals.js"
+		},
+		"./map": {
+			"default": "./map.js"
+		},
+		"./mapcat-indexed": {
+			"default": "./mapcat-indexed.js"
+		},
+		"./mapcat": {
+			"default": "./mapcat.js"
+		},
+		"./match-first": {
+			"default": "./match-first.js"
+		},
+		"./match-last": {
+			"default": "./match-last.js"
+		},
+		"./max-compare": {
+			"default": "./max-compare.js"
+		},
+		"./max-mag": {
+			"default": "./max-mag.js"
+		},
+		"./max": {
+			"default": "./max.js"
+		},
+		"./mean": {
+			"default": "./mean.js"
+		},
+		"./min-compare": {
+			"default": "./min-compare.js"
+		},
+		"./min-mag": {
+			"default": "./min-mag.js"
+		},
+		"./min-max": {
+			"default": "./min-max.js"
+		},
+		"./min": {
+			"default": "./min.js"
+		},
+		"./moving-average": {
+			"default": "./moving-average.js"
+		},
+		"./moving-median": {
+			"default": "./moving-median.js"
+		},
+		"./mul": {
+			"default": "./mul.js"
+		},
+		"./multiplex-obj": {
+			"default": "./multiplex-obj.js"
+		},
+		"./multiplex": {
+			"default": "./multiplex.js"
+		},
+		"./noop": {
+			"default": "./noop.js"
+		},
+		"./norm-count": {
+			"default": "./norm-count.js"
+		},
+		"./norm-frequencies-auto": {
+			"default": "./norm-frequencies-auto.js"
+		},
+		"./norm-frequencies": {
+			"default": "./norm-frequencies.js"
+		},
+		"./norm-range": {
+			"default": "./norm-range.js"
+		},
+		"./pad-last": {
+			"default": "./pad-last.js"
+		},
+		"./pad-sides": {
+			"default": "./pad-sides.js"
+		},
+		"./page": {
+			"default": "./page.js"
+		},
+		"./pairs": {
+			"default": "./pairs.js"
+		},
+		"./palindrome": {
+			"default": "./palindrome.js"
+		},
+		"./partition-by": {
+			"default": "./partition-by.js"
+		},
+		"./partition-of": {
+			"default": "./partition-of.js"
+		},
+		"./partition-sort": {
+			"default": "./partition-sort.js"
+		},
+		"./partition-sync": {
+			"default": "./partition-sync.js"
+		},
+		"./partition-time": {
+			"default": "./partition-time.js"
+		},
+		"./partition-when": {
+			"default": "./partition-when.js"
+		},
+		"./partition": {
+			"default": "./partition.js"
+		},
+		"./peek": {
+			"default": "./peek.js"
+		},
+		"./permutations": {
+			"default": "./permutations.js"
+		},
+		"./pluck": {
+			"default": "./pluck.js"
+		},
+		"./push-copy": {
+			"default": "./push-copy.js"
+		},
+		"./push-sort": {
+			"default": "./push-sort.js"
+		},
+		"./push": {
+			"default": "./push.js"
+		},
+		"./range-nd": {
+			"default": "./range-nd.js"
+		},
+		"./range": {
+			"default": "./range.js"
+		},
+		"./range2d": {
+			"default": "./range2d.js"
+		},
+		"./range3d": {
+			"default": "./range3d.js"
+		},
+		"./rechunk": {
+			"default": "./rechunk.js"
+		},
+		"./reduce": {
+			"default": "./reduce.js"
+		},
+		"./reduced": {
+			"default": "./reduced.js"
+		},
+		"./reductions": {
+			"default": "./reductions.js"
+		},
+		"./rename": {
+			"default": "./rename.js"
+		},
+		"./renamer": {
+			"default": "./renamer.js"
+		},
+		"./repeat": {
+			"default": "./repeat.js"
+		},
+		"./repeatedly": {
+			"default": "./repeatedly.js"
+		},
+		"./reverse": {
+			"default": "./reverse.js"
+		},
+		"./run": {
+			"default": "./run.js"
+		},
+		"./sample": {
+			"default": "./sample.js"
+		},
+		"./scan": {
+			"default": "./scan.js"
+		},
+		"./select-keys": {
+			"default": "./select-keys.js"
+		},
+		"./side-effect": {
+			"default": "./side-effect.js"
+		},
+		"./sliding-window": {
+			"default": "./sliding-window.js"
+		},
+		"./some": {
+			"default": "./some.js"
+		},
+		"./sorted-keys": {
+			"default": "./sorted-keys.js"
+		},
+		"./step": {
+			"default": "./step.js"
+		},
+		"./str": {
+			"default": "./str.js"
+		},
+		"./stream-shuffle": {
+			"default": "./stream-shuffle.js"
+		},
+		"./stream-sort": {
+			"default": "./stream-sort.js"
+		},
+		"./struct": {
+			"default": "./struct.js"
+		},
+		"./sub": {
+			"default": "./sub.js"
+		},
+		"./swizzle": {
+			"default": "./swizzle.js"
+		},
+		"./symmetric": {
+			"default": "./symmetric.js"
+		},
+		"./take-last": {
+			"default": "./take-last.js"
+		},
+		"./take-nth": {
+			"default": "./take-nth.js"
+		},
+		"./take-while": {
+			"default": "./take-while.js"
+		},
+		"./take": {
+			"default": "./take.js"
+		},
+		"./throttle-time": {
+			"default": "./throttle-time.js"
+		},
+		"./throttle": {
+			"default": "./throttle.js"
+		},
+		"./toggle": {
+			"default": "./toggle.js"
+		},
+		"./trace": {
+			"default": "./trace.js"
+		},
+		"./transduce": {
+			"default": "./transduce.js"
+		},
+		"./tween": {
+			"default": "./tween.js"
+		},
+		"./vals": {
+			"default": "./vals.js"
+		},
+		"./word-wrap": {
+			"default": "./word-wrap.js"
+		},
+		"./wrap-sides": {
+			"default": "./wrap-sides.js"
+		},
+		"./zip": {
+			"default": "./zip.js"
+		}
+	},
+	"thi.ng": {
+		"blog": [
+			{
+				"title": "HOFs, Transducers, Reducers",
+				"url": "https://medium.com/@thi.ng/of-umbrellas-transducers-reactive-streams-mushrooms-pt-2-9c540beb0023"
+			},
+			{
+				"title": "Convolution, 1D/2D Cellular automata",
+				"url": "https://medium.com/@thi.ng/of-umbrellas-transducers-reactive-streams-mushrooms-pt-3-a1c4e621db9b"
+			},
+			{
+				"title": "Disjoint Sets, Graph analysis, Signed Distance Fields",
+				"url": "https://medium.com/@thi.ng/of-umbrellas-transducers-reactive-streams-mushrooms-pt-4-62d8e71e5603"
+			}
+		],
+		"related": [
+			"csp",
+			"grid-iterators",
+			"fsm",
+			"rstream",
+			"rstream-graph",
+			"rstream-log",
+			"sax"
+		],
+		"year": 2016
+	}
 }

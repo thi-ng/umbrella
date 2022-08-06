@@ -1,122 +1,122 @@
 {
-    "name": "@thi.ng/adjacency",
-    "version": "2.2.2",
-    "description": "Sparse & bitwise adjacency matrices and related functions for directed & undirected graphs",
-    "type": "module",
-    "module": "./index.js",
-    "typings": "./index.d.ts",
-    "sideEffects": false,
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/thi-ng/umbrella.git"
-    },
-    "homepage": "https://github.com/thi-ng/umbrella/tree/develop/packages/adjacency#readme",
-    "funding": [
-        {
-            "type": "github",
-            "url": "https://github.com/sponsors/postspectacular"
-        },
-        {
-            "type": "patreon",
-            "url": "https://patreon.com/thing_umbrella"
-        }
-    ],
-    "author": "Karsten Schmidt <k+npm@thi.ng>",
-    "license": "Apache-2.0",
-    "scripts": {
-        "build": "yarn clean && tsc --declaration",
-        "clean": "rimraf '*.js' '*.d.ts' '*.map' doc",
-        "doc": "typedoc --excludePrivate --excludeInternal --out doc src/index.ts",
-        "doc:ae": "mkdir -p .ae/doc .ae/temp && api-extractor run --local --verbose",
-        "doc:readme": "yarn doc:stats && tools:readme",
-        "doc:stats": "tools:module-stats",
-        "pub": "yarn npm publish --access public",
-        "test": "testament test"
-    },
-    "dependencies": {
-        "@thi.ng/api": "^8.3.9",
-        "@thi.ng/arrays": "^2.3.2",
-        "@thi.ng/bitfield": "^2.2.2",
-        "@thi.ng/dcons": "^3.2.9",
-        "@thi.ng/errors": "^2.1.9",
-        "@thi.ng/sparse": "^0.3.14"
-    },
-    "devDependencies": {
-        "@microsoft/api-extractor": "^7.25.0",
-        "@thi.ng/testament": "^0.2.10",
-        "@thi.ng/vectors": "^7.5.10",
-        "rimraf": "^3.0.2",
-        "tools": "workspace:^",
-        "typedoc": "^0.22.17",
-        "typescript": "^4.7.4"
-    },
-    "keywords": [
-        "adjacency",
-        "binary",
-        "bitwise",
-        "datastructure",
-        "degree",
-        "directed",
-        "disjointset",
-        "graph",
-        "laplacian",
-        "list",
-        "matrix",
-        "neighbors",
-        "path",
-        "search",
-        "span",
-        "sparse",
-        "tree",
-        "typescript",
-        "undirected",
-        "unionfind",
-        "valence",
-        "vertex"
-    ],
-    "publishConfig": {
-        "access": "public"
-    },
-    "engines": {
-        "node": ">=12.7"
-    },
-    "files": [
-        "*.js",
-        "*.d.ts"
-    ],
-    "exports": {
-        ".": {
-            "default": "./index.js"
-        },
-        "./api": {
-            "default": "./api.js"
-        },
-        "./bfs": {
-            "default": "./bfs.js"
-        },
-        "./binary": {
-            "default": "./binary.js"
-        },
-        "./dfs": {
-            "default": "./dfs.js"
-        },
-        "./disjoint-set": {
-            "default": "./disjoint-set.js"
-        },
-        "./list": {
-            "default": "./list.js"
-        },
-        "./mst": {
-            "default": "./mst.js"
-        },
-        "./sparse": {
-            "default": "./sparse.js"
-        }
-    },
-    "thi.ng": {
-        "related": [
-            "dgraph"
-        ],
-        "year": 2018
-    }
+	"name": "@thi.ng/adjacency",
+	"version": "2.2.3",
+	"description": "Sparse & bitwise adjacency matrices and related functions for directed & undirected graphs",
+	"type": "module",
+	"module": "./index.js",
+	"typings": "./index.d.ts",
+	"sideEffects": false,
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/thi-ng/umbrella.git"
+	},
+	"homepage": "https://github.com/thi-ng/umbrella/tree/develop/packages/adjacency#readme",
+	"funding": [
+		{
+			"type": "github",
+			"url": "https://github.com/sponsors/postspectacular"
+		},
+		{
+			"type": "patreon",
+			"url": "https://patreon.com/thing_umbrella"
+		}
+	],
+	"author": "Karsten Schmidt <k+npm@thi.ng>",
+	"license": "Apache-2.0",
+	"scripts": {
+		"build": "yarn clean && tsc --declaration",
+		"clean": "rimraf '*.js' '*.d.ts' '*.map' doc",
+		"doc": "typedoc --excludePrivate --excludeInternal --out doc src/index.ts",
+		"doc:ae": "mkdir -p .ae/doc .ae/temp && api-extractor run --local --verbose",
+		"doc:readme": "yarn doc:stats && tools:readme",
+		"doc:stats": "tools:module-stats",
+		"pub": "yarn npm publish --access public",
+		"test": "testament test"
+	},
+	"dependencies": {
+		"@thi.ng/api": "^8.3.9",
+		"@thi.ng/arrays": "^2.3.3",
+		"@thi.ng/bitfield": "^2.2.3",
+		"@thi.ng/dcons": "^3.2.10",
+		"@thi.ng/errors": "^2.1.10",
+		"@thi.ng/sparse": "^0.3.15"
+	},
+	"devDependencies": {
+		"@microsoft/api-extractor": "^7.25.0",
+		"@thi.ng/testament": "^0.2.11",
+		"@thi.ng/vectors": "^7.5.11",
+		"rimraf": "^3.0.2",
+		"tools": "workspace:^",
+		"typedoc": "^0.22.17",
+		"typescript": "^4.7.4"
+	},
+	"keywords": [
+		"adjacency",
+		"binary",
+		"bitwise",
+		"datastructure",
+		"degree",
+		"directed",
+		"disjointset",
+		"graph",
+		"laplacian",
+		"list",
+		"matrix",
+		"neighbors",
+		"path",
+		"search",
+		"span",
+		"sparse",
+		"tree",
+		"typescript",
+		"undirected",
+		"unionfind",
+		"valence",
+		"vertex"
+	],
+	"publishConfig": {
+		"access": "public"
+	},
+	"engines": {
+		"node": ">=12.7"
+	},
+	"files": [
+		"*.js",
+		"*.d.ts"
+	],
+	"exports": {
+		".": {
+			"default": "./index.js"
+		},
+		"./api": {
+			"default": "./api.js"
+		},
+		"./bfs": {
+			"default": "./bfs.js"
+		},
+		"./binary": {
+			"default": "./binary.js"
+		},
+		"./dfs": {
+			"default": "./dfs.js"
+		},
+		"./disjoint-set": {
+			"default": "./disjoint-set.js"
+		},
+		"./list": {
+			"default": "./list.js"
+		},
+		"./mst": {
+			"default": "./mst.js"
+		},
+		"./sparse": {
+			"default": "./sparse.js"
+		}
+	},
+	"thi.ng": {
+		"related": [
+			"dgraph"
+		],
+		"year": 2018
+	}
 }

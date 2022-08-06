@@ -1,95 +1,95 @@
 {
-    "name": "@thi.ng/ramp",
-    "version": "2.1.19",
-    "description": "Parametric interpolated 1D lookup tables for remapping values",
-    "type": "module",
-    "module": "./index.js",
-    "typings": "./index.d.ts",
-    "sideEffects": false,
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/thi-ng/umbrella.git"
-    },
-    "homepage": "https://github.com/thi-ng/umbrella/tree/develop/packages/ramp#readme",
-    "funding": [
-        {
-            "type": "github",
-            "url": "https://github.com/sponsors/postspectacular"
-        },
-        {
-            "type": "patreon",
-            "url": "https://patreon.com/thing_umbrella"
-        }
-    ],
-    "author": "Karsten Schmidt <k+npm@thi.ng>",
-    "license": "Apache-2.0",
-    "scripts": {
-        "build": "yarn clean && tsc --declaration",
-        "clean": "rimraf '*.js' '*.d.ts' '*.map' doc",
-        "doc": "typedoc --excludePrivate --excludeInternal --out doc src/index.ts",
-        "doc:ae": "mkdir -p .ae/doc .ae/temp && api-extractor run --local --verbose",
-        "doc:readme": "yarn doc:stats && tools:readme",
-        "doc:stats": "tools:module-stats",
-        "pub": "yarn npm publish --access public",
-        "test": "testament test"
-    },
-    "dependencies": {
-        "@thi.ng/arrays": "^2.3.2",
-        "@thi.ng/compare": "^2.1.9",
-        "@thi.ng/math": "^5.3.5",
-        "@thi.ng/transducers": "^8.3.9",
-        "@thi.ng/vectors": "^7.5.10"
-    },
-    "devDependencies": {
-        "@microsoft/api-extractor": "^7.25.0",
-        "@thi.ng/testament": "^0.2.10",
-        "rimraf": "^3.0.2",
-        "tools": "workspace:^",
-        "typedoc": "^0.22.17",
-        "typescript": "^4.7.4"
-    },
-    "keywords": [
-        "1d",
-        "animation",
-        "datastructure",
-        "envelope",
-        "hermite",
-        "interpolation",
-        "interval",
-        "keyframe",
-        "linear",
-        "lut",
-        "timeline",
-        "typescript"
-    ],
-    "publishConfig": {
-        "access": "public"
-    },
-    "engines": {
-        "node": ">=12.7"
-    },
-    "files": [
-        "*.js",
-        "*.d.ts"
-    ],
-    "exports": {
-        ".": {
-            "default": "./index.js"
-        },
-        "./api": {
-            "default": "./api.js"
-        },
-        "./aramp": {
-            "default": "./aramp.js"
-        },
-        "./hermite": {
-            "default": "./hermite.js"
-        },
-        "./linear": {
-            "default": "./linear.js"
-        }
-    },
-    "thi.ng": {
-        "year": 2019
-    }
+	"name": "@thi.ng/ramp",
+	"version": "2.1.20",
+	"description": "Parametric interpolated 1D lookup tables for remapping values",
+	"type": "module",
+	"module": "./index.js",
+	"typings": "./index.d.ts",
+	"sideEffects": false,
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/thi-ng/umbrella.git"
+	},
+	"homepage": "https://github.com/thi-ng/umbrella/tree/develop/packages/ramp#readme",
+	"funding": [
+		{
+			"type": "github",
+			"url": "https://github.com/sponsors/postspectacular"
+		},
+		{
+			"type": "patreon",
+			"url": "https://patreon.com/thing_umbrella"
+		}
+	],
+	"author": "Karsten Schmidt <k+npm@thi.ng>",
+	"license": "Apache-2.0",
+	"scripts": {
+		"build": "yarn clean && tsc --declaration",
+		"clean": "rimraf '*.js' '*.d.ts' '*.map' doc",
+		"doc": "typedoc --excludePrivate --excludeInternal --out doc src/index.ts",
+		"doc:ae": "mkdir -p .ae/doc .ae/temp && api-extractor run --local --verbose",
+		"doc:readme": "yarn doc:stats && tools:readme",
+		"doc:stats": "tools:module-stats",
+		"pub": "yarn npm publish --access public",
+		"test": "testament test"
+	},
+	"dependencies": {
+		"@thi.ng/arrays": "^2.3.3",
+		"@thi.ng/compare": "^2.1.9",
+		"@thi.ng/math": "^5.3.5",
+		"@thi.ng/transducers": "^8.3.10",
+		"@thi.ng/vectors": "^7.5.11"
+	},
+	"devDependencies": {
+		"@microsoft/api-extractor": "^7.25.0",
+		"@thi.ng/testament": "^0.2.11",
+		"rimraf": "^3.0.2",
+		"tools": "workspace:^",
+		"typedoc": "^0.22.17",
+		"typescript": "^4.7.4"
+	},
+	"keywords": [
+		"1d",
+		"animation",
+		"datastructure",
+		"envelope",
+		"hermite",
+		"interpolation",
+		"interval",
+		"keyframe",
+		"linear",
+		"lut",
+		"timeline",
+		"typescript"
+	],
+	"publishConfig": {
+		"access": "public"
+	},
+	"engines": {
+		"node": ">=12.7"
+	},
+	"files": [
+		"*.js",
+		"*.d.ts"
+	],
+	"exports": {
+		".": {
+			"default": "./index.js"
+		},
+		"./api": {
+			"default": "./api.js"
+		},
+		"./aramp": {
+			"default": "./aramp.js"
+		},
+		"./hermite": {
+			"default": "./hermite.js"
+		},
+		"./linear": {
+			"default": "./linear.js"
+		}
+	},
+	"thi.ng": {
+		"year": 2019
+	}
 }

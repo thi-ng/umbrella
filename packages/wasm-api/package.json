@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/wasm-api",
-	"version": "0.3.0",
+	"version": "0.3.1",
 	"description": "Modular, extensible API bridge and generic glue code between JS & WebAssembly",
 	"type": "module",
 	"module": "./index.js",
@@ -35,9 +35,9 @@
 	},
 	"dependencies": {
 		"@thi.ng/api": "^8.3.9",
-		"@thi.ng/errors": "^2.1.9",
+		"@thi.ng/errors": "^2.1.10",
 		"@thi.ng/hex": "^2.1.9",
-		"@thi.ng/idgen": "^2.1.9",
+		"@thi.ng/idgen": "^2.1.10",
 		"@thi.ng/logger": "^1.2.0"
 	},
 	"devDependencies": {

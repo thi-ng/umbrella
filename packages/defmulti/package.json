@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/defmulti",
-	"version": "2.1.10",
+	"version": "2.1.11",
 	"description": "Dynamic, extensible multiple dispatch via user supplied dispatch function.",
 	"type": "module",
 	"module": "./index.js",
@@ -35,7 +35,7 @@
 	},
 	"dependencies": {
 		"@thi.ng/api": "^8.3.9",
-		"@thi.ng/errors": "^2.1.9",
+		"@thi.ng/errors": "^2.1.10",
 		"@thi.ng/logger": "^1.2.0"
 	},
 	"devDependencies": {

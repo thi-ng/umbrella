@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-08-01T14:54:00Z
+- **Last updated**: 2022-08-06T15:22:27Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,12 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [2.1.19](https://github.com/thi-ng/umbrella/tree/@thi.ng/matrices@2.1.19) (2022-08-06)
+
+#### ⏱ Performance improvements
+
+- update vector fns ([39565cb](https://github.com/thi-ng/umbrella/commit/39565cb))
 
 ## [2.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/matrices@2.1.0) (2021-11-17)
 

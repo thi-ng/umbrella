@@ -1,96 +1,96 @@
 {
-    "name": "@thi.ng/hdiff",
-    "version": "0.3.15",
-    "description": "String diffing w/ hiccup output for further processing, e.g. with @thi.ng/hdom, @thi.ng/hiccup. Includes CLI util to generate HTML, with theme support and code folding",
-    "type": "module",
-    "module": "./index.js",
-    "typings": "./index.d.ts",
-    "bin": "bin/hdiff",
-    "sideEffects": false,
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/thi-ng/umbrella.git"
-    },
-    "homepage": "https://github.com/thi-ng/umbrella/tree/master/packages/hdiff#readme",
-    "funding": [
-        {
-            "type": "github",
-            "url": "https://github.com/sponsors/postspectacular"
-        },
-        {
-            "type": "patreon",
-            "url": "https://patreon.com/thing_umbrella"
-        }
-    ],
-    "author": "Karsten Schmidt <k+npm@thi.ng>",
-    "license": "Apache-2.0",
-    "scripts": {
-        "build": "yarn clean && tsc --declaration",
-        "clean": "rimraf '*.js' '*.d.ts' '*.map' doc",
-        "doc": "typedoc --excludePrivate --excludeInternal --out doc src/index.ts",
-        "doc:ae": "mkdir -p .ae/doc .ae/temp && api-extractor run --local --verbose",
-        "doc:readme": "yarn doc:stats && tools:readme",
-        "doc:stats": "tools:module-stats",
-        "pub": "yarn npm publish --access public",
-        "test": "testament test"
-    },
-    "dependencies": {
-        "@thi.ng/api": "^8.3.9",
-        "@thi.ng/diff": "^5.1.9",
-        "@thi.ng/hiccup": "^4.2.12",
-        "@thi.ng/hiccup-css": "^2.1.14",
-        "@thi.ng/strings": "^3.3.8"
-    },
-    "devDependencies": {
-        "@microsoft/api-extractor": "^7.25.0",
-        "@thi.ng/testament": "^0.2.10",
-        "@types/node": "^18.6.4",
-        "rimraf": "^3.0.2",
-        "tools": "workspace:^",
-        "typedoc": "^0.22.17",
-        "typescript": "^4.7.4"
-    },
-    "keywords": [
-        "cli",
-        "css",
-        "diff",
-        "file",
-        "git",
-        "hiccup",
-        "html",
-        "theme",
-        "typescript"
-    ],
-    "publishConfig": {
-        "access": "public"
-    },
-    "engines": {
-        "node": ">=12.7"
-    },
-    "files": [
-        "*.js",
-        "*.d.ts",
-        "bin"
-    ],
-    "exports": {
-        ".": {
-            "default": "./index.js"
-        },
-        "./api": {
-            "default": "./api.js"
-        },
-        "./diff": {
-            "default": "./diff.js"
-        },
-        "./html": {
-            "default": "./html.js"
-        },
-        "./theme": {
-            "default": "./theme.js"
-        }
-    },
-    "thi.ng": {
-        "status": "alpha",
-        "year": 2018
-    }
+	"name": "@thi.ng/hdiff",
+	"version": "0.3.16",
+	"description": "String diffing w/ hiccup output for further processing, e.g. with @thi.ng/hdom, @thi.ng/hiccup. Includes CLI util to generate HTML, with theme support and code folding",
+	"type": "module",
+	"module": "./index.js",
+	"typings": "./index.d.ts",
+	"bin": "bin/hdiff",
+	"sideEffects": false,
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/thi-ng/umbrella.git"
+	},
+	"homepage": "https://github.com/thi-ng/umbrella/tree/master/packages/hdiff#readme",
+	"funding": [
+		{
+			"type": "github",
+			"url": "https://github.com/sponsors/postspectacular"
+		},
+		{
+			"type": "patreon",
+			"url": "https://patreon.com/thing_umbrella"
+		}
+	],
+	"author": "Karsten Schmidt <k+npm@thi.ng>",
+	"license": "Apache-2.0",
+	"scripts": {
+		"build": "yarn clean && tsc --declaration",
+		"clean": "rimraf '*.js' '*.d.ts' '*.map' doc",
+		"doc": "typedoc --excludePrivate --excludeInternal --out doc src/index.ts",
+		"doc:ae": "mkdir -p .ae/doc .ae/temp && api-extractor run --local --verbose",
+		"doc:readme": "yarn doc:stats && tools:readme",
+		"doc:stats": "tools:module-stats",
+		"pub": "yarn npm publish --access public",
+		"test": "testament test"
+	},
+	"dependencies": {
+		"@thi.ng/api": "^8.3.9",
+		"@thi.ng/diff": "^5.1.9",
+		"@thi.ng/hiccup": "^4.2.13",
+		"@thi.ng/hiccup-css": "^2.1.15",
+		"@thi.ng/strings": "^3.3.9"
+	},
+	"devDependencies": {
+		"@microsoft/api-extractor": "^7.25.0",
+		"@thi.ng/testament": "^0.2.11",
+		"@types/node": "^18.6.4",
+		"rimraf": "^3.0.2",
+		"tools": "workspace:^",
+		"typedoc": "^0.22.17",
+		"typescript": "^4.7.4"
+	},
+	"keywords": [
+		"cli",
+		"css",
+		"diff",
+		"file",
+		"git",
+		"hiccup",
+		"html",
+		"theme",
+		"typescript"
+	],
+	"publishConfig": {
+		"access": "public"
+	},
+	"engines": {
+		"node": ">=12.7"
+	},
+	"files": [
+		"*.js",
+		"*.d.ts",
+		"bin"
+	],
+	"exports": {
+		".": {
+			"default": "./index.js"
+		},
+		"./api": {
+			"default": "./api.js"
+		},
+		"./diff": {
+			"default": "./diff.js"
+		},
+		"./html": {
+			"default": "./html.js"
+		},
+		"./theme": {
+			"default": "./theme.js"
+		}
+	},
+	"thi.ng": {
+		"status": "alpha",
+		"year": 2018
+	}
 }
