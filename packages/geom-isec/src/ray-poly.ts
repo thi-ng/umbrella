@@ -7,6 +7,16 @@ import { intersectRayLine } from "./ray-line.js";
 const startPoints = (pts: ReadonlyVec[], closed: boolean) =>
 	closed ? [pts[pts.length - 1], pts[0]] : [pts[0], pts[1]];
 
+/**
+ * 2D only.
+ *
+ * @param rpos
+ * @param dir
+ * @param pts
+ * @param closed
+ * @param minD
+ * @param maxD
+ */
 export const intersectRayPolyline = (
 	rpos: ReadonlyVec,
 	dir: ReadonlyVec,
@@ -36,6 +46,16 @@ export const intersectRayPolyline = (
 		: NONE;
 };
 
+/**
+ * 2D only.
+ *
+ * @param rpos
+ * @param dir
+ * @param pts
+ * @param closed
+ * @param minD
+ * @param maxD
+ */
 export const intersectRayPolylineAll = (
 	rpos: ReadonlyVec,
 	dir: ReadonlyVec,

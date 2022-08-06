@@ -1,5 +1,5 @@
 import { group } from "@thi.ng/testament";
-import { eqDelta, maddN3, mulN3, normalize, Vec } from "@thi.ng/vectors";
+import { eqDelta, maddN3, mulN3, normalize3, Vec } from "@thi.ng/vectors";
 import * as assert from "assert";
 import { intersectRayAABB } from "../src/index.js";
 
@@ -34,7 +34,7 @@ group("ray intersection", {
 			[1, 1, 1],
 		];
 		for (let d of dirs) {
-			const n = normalize([], d);
+			const n = normalize3([], d);
 			const i = intersectRayAABB([5, 5, 5], n, [0, 0, 0], [10, 10, 10]);
 			const expected = maddN3([], n, i.alpha!, [5, 5, 5]);
 			assert.ok(i.inside, `inside d=${d}`);

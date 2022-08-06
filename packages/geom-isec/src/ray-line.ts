@@ -1,9 +1,19 @@
 import { IntersectionType } from "@thi.ng/geom-api/isec";
 import { eqDelta } from "@thi.ng/math/eqdelta";
 import type { ReadonlyVec } from "@thi.ng/vectors";
-import { maddN } from "@thi.ng/vectors/maddn";
+import { maddN2 } from "@thi.ng/vectors/maddn";
 import { NONE } from "./api.js";
 
+/**
+ * 2D only.
+ *
+ * @param rpos
+ * @param dir
+ * @param a
+ * @param b
+ * @param minD
+ * @param maxD
+ */
 export const intersectRayLine = (
 	rpos: ReadonlyVec,
 	dir: ReadonlyVec,
@@ -25,7 +35,7 @@ export const intersectRayLine = (
 	return t >= minD && t <= maxD && s >= 0 && s <= 1
 		? {
 				type: IntersectionType.INTERSECT,
-				isec: maddN([], dir, t, rpos),
+				isec: maddN2([], dir, t, rpos),
 				alpha: t,
 		  }
 		: NONE;
