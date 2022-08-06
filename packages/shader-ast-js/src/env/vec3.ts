@@ -1,4 +1,3 @@
-import { cross3 } from "@thi.ng/vectors/cross";
 import { abs3 } from "@thi.ng/vectors/abs";
 import { acos3 } from "@thi.ng/vectors/acos";
 import { add3 } from "@thi.ng/vectors/add";
@@ -9,6 +8,7 @@ import { atan3, atan_23 } from "@thi.ng/vectors/atan";
 import { ceil3 } from "@thi.ng/vectors/ceil";
 import { clamp3 } from "@thi.ng/vectors/clamp";
 import { cos3 } from "@thi.ng/vectors/cos";
+import { cross3 } from "@thi.ng/vectors/cross";
 import { degrees3 } from "@thi.ng/vectors/degrees";
 import { dist } from "@thi.ng/vectors/dist";
 import { div3 } from "@thi.ng/vectors/div";
@@ -38,7 +38,7 @@ import { mul3 } from "@thi.ng/vectors/mul";
 import { mulN3 } from "@thi.ng/vectors/muln";
 import { neg } from "@thi.ng/vectors/neg";
 import { neq3 } from "@thi.ng/vectors/neq";
-import { normalize } from "@thi.ng/vectors/normalize";
+import { normalize3 } from "@thi.ng/vectors/normalize";
 import { pow3 } from "@thi.ng/vectors/pow";
 import { radians3 } from "@thi.ng/vectors/radians";
 import { reflect } from "@thi.ng/vectors/reflect";
@@ -95,7 +95,7 @@ export const VEC3: JSBuiltinsVec3 = {
 	mul: (a, b) => mul3([], a, b),
 	mulnv: (a, b) => mulN3([], b, a),
 	mulvn: (a, b) => mulN3([], a, b),
-	normalize: (a) => normalize([], a),
+	normalize: (a) => normalize3([], a),
 	pow: (a, b) => pow3([], a, b),
 	radians: (a) => radians3([], a),
 	reflect: (a, b) => reflect([], a, b),

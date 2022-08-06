@@ -37,7 +37,7 @@ import { mul2 } from "@thi.ng/vectors/mul";
 import { mulN2 } from "@thi.ng/vectors/muln";
 import { neg } from "@thi.ng/vectors/neg";
 import { neq2 } from "@thi.ng/vectors/neq";
-import { normalize } from "@thi.ng/vectors/normalize";
+import { normalize2 } from "@thi.ng/vectors/normalize";
 import { pow2 } from "@thi.ng/vectors/pow";
 import { radians2 } from "@thi.ng/vectors/radians";
 import { reflect } from "@thi.ng/vectors/reflect";
@@ -93,7 +93,7 @@ export const VEC2: JSBuiltinsVec = {
 	mul: (a, b) => mul2([], a, b),
 	mulnv: (a, b) => mulN2([], b, a),
 	mulvn: (a, b) => mulN2([], a, b),
-	normalize: (a) => normalize([], a),
+	normalize: (a) => normalize2([], a),
 	pow: (a, b) => pow2([], a, b),
 	radians: (a) => radians2([], a),
 	reflect: (a, b) => reflect([], a, b),
