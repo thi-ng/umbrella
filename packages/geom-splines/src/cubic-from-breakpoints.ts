@@ -1,12 +1,12 @@
 import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
 import { cornerBisector } from "@thi.ng/vectors/bisect";
 import { corner2 } from "@thi.ng/vectors/clockwise";
-import { direction } from "@thi.ng/vectors/direction";
+import { direction2 } from "@thi.ng/vectors/direction";
 import { dist } from "@thi.ng/vectors/dist";
-import { maddN } from "@thi.ng/vectors/maddn";
-import { mulN } from "@thi.ng/vectors/muln";
+import { maddN2 } from "@thi.ng/vectors/maddn";
+import { mulN, mulN2 } from "@thi.ng/vectors/muln";
 import { perpendicularCW } from "@thi.ng/vectors/perpendicular";
-import { set } from "@thi.ng/vectors/set";
+import { set2 } from "@thi.ng/vectors/set";
 
 const buildSegments = (tangents: Vec[][], t: number, uniform: boolean) => {
 	const res: Vec[][] = [];
@@ -14,7 +14,7 @@ const buildSegments = (tangents: Vec[][], t: number, uniform: boolean) => {
 		const [a, na] = tangents[i];
 		const [b, nb] = tangents[i + 1];
 		const d = uniform ? t : t * dist(a, b);
-		res.push([a, maddN([], na, d, a), maddN([], nb, -d, b), b]);
+		res.push([a, maddN2([], na, d, a), maddN2([], nb, -d, b), b]);
 	}
 	return res;
 };
@@ -34,7 +34,7 @@ export const closedCubicFromBreakPoints = (
 			perpendicularCW(null, cornerBisector([], a, b, c)),
 			corner2(a, b, c)
 		);
-		tangents.push([set([], b), n]);
+		tangents.push([set2([], b), n]);
 	}
 	tangents.push(tangents[0]);
 	return buildSegments(tangents, t, uniform);
@@ -46,20 +46,20 @@ export const openCubicFromBreakPoints = (
 	uniform = false
 ) => {
 	const tangents: Vec[][] = [
-		[points[0], direction([], points[0], points[1])],
+		[points[0], direction2([], points[0], points[1])],
 	];
 	const num = points.length - 1;
 	for (let i = 1; i < num; i++) {
 		const a = points[i - 1];
 		const b = points[i];
 		const c = points[i + 1];
-		const n = mulN(
+		const n = mulN2(
 			null,
 			perpendicularCW(null, cornerBisector([], a, b, c)),
 			corner2(a, b, c)
 		);
-		tangents.push([set([], b), n]);
+		tangents.push([set2([], b), n]);
 	}
-	tangents.push([points[num], direction([], points[num - 1], points[num])]);
+	tangents.push([points[num], direction2([], points[num - 1], points[num])]);
 	return buildSegments(tangents, t, uniform);
 };
