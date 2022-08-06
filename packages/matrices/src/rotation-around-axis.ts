@@ -1,6 +1,6 @@
 import { sincos } from "@thi.ng/math/angle";
 import type { ReadonlyVec } from "@thi.ng/vectors";
-import { normalize as _normalize } from "@thi.ng/vectors/normalize";
+import { normalize3 } from "@thi.ng/vectors/normalize";
 import { setC } from "@thi.ng/vectors/setc";
 import type { Mat } from "./api.js";
 import { mat33to44 } from "./m33-m44.js";
@@ -21,7 +21,7 @@ export const rotationAroundAxis33 = (
 	theta: number,
 	normalize = false
 ): Mat => {
-	const [x, y, z] = normalize ? _normalize([], axis) : axis;
+	const [x, y, z] = normalize ? normalize3([], axis) : axis;
 	const [s, c] = sincos(theta);
 	const t = 1 - c;
 	const xs = x * s;

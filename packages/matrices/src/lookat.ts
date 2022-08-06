@@ -1,7 +1,7 @@
 import type { ReadonlyVec } from "@thi.ng/vectors";
 import { cross3 } from "@thi.ng/vectors/cross";
 import { dot3 } from "@thi.ng/vectors/dot";
-import { normalize } from "@thi.ng/vectors/normalize";
+import { normalize3 } from "@thi.ng/vectors/normalize";
 import { setC } from "@thi.ng/vectors/setc";
 import { sub3 } from "@thi.ng/vectors/sub";
 import type { Mat } from "./api.js";
@@ -22,9 +22,9 @@ export const lookAt = (
 	target: ReadonlyVec,
 	up: ReadonlyVec
 ): Mat => {
-	const z = normalize(null, sub3([], eye, target));
-	const x = normalize(null, cross3([], up, z));
-	const y = normalize(null, cross3([], z, x));
+	const z = normalize3(null, sub3([], eye, target));
+	const x = normalize3(null, cross3([], up, z));
+	const y = normalize3(null, cross3([], z, x));
 
 	return setC(
 		out || [],

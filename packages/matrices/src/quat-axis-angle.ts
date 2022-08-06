@@ -1,6 +1,6 @@
 import { EPS } from "@thi.ng/math/api";
 import type { ReadonlyVec } from "@thi.ng/vectors";
-import { normalize } from "@thi.ng/vectors/normalize";
+import { normalize3, normalize4 } from "@thi.ng/vectors/normalize";
 
 /**
  * Computes a quaternion representing the rotation `theta` around
@@ -11,7 +11,7 @@ import { normalize } from "@thi.ng/vectors/normalize";
  */
 export const quatFromAxisAngle = (axis: ReadonlyVec, theta: number) => {
 	theta *= 0.5;
-	return normalize([0, 0, 0, Math.cos(theta)], axis, Math.sin(theta));
+	return normalize3([0, 0, 0, Math.cos(theta)], axis, Math.sin(theta));
 };
 
 /**
@@ -20,7 +20,7 @@ export const quatFromAxisAngle = (axis: ReadonlyVec, theta: number) => {
  * @param quat -
  */
 export const quatToAxisAngle = (quat: ReadonlyVec) => {
-	const n = normalize([], quat);
+	const n = normalize4([], quat);
 	const w = n[3];
 	const m = Math.sqrt(1 - w * w);
 	const theta = 2 * Math.acos(w);
