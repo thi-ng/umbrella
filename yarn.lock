@@ -1565,6 +1565,20 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@example/webgl-float-fbo@workspace:examples/webgl-float-fbo":
+  version: 0.0.0-use.local
+  resolution: "@example/webgl-float-fbo@workspace:examples/webgl-float-fbo"
+  dependencies:
+    "@thi.ng/colored-noise": "workspace:^"
+    "@thi.ng/logger": "workspace:^"
+    "@thi.ng/transducers": "workspace:^"
+    "@thi.ng/vectors": "workspace:^"
+    "@thi.ng/webgl": "workspace:^"
+    typescript: ^4.7.4
+    vite: ^3.0.4
+  languageName: unknown
+  linkType: soft
+
 "@example/webgl-grid@workspace:examples/webgl-grid":
   version: 0.0.0-use.local
   resolution: "@example/webgl-grid@workspace:examples/webgl-grid"
@@ -2185,7 +2199,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/colored-noise@workspace:packages/colored-noise":
+"@thi.ng/colored-noise@workspace:^, @thi.ng/colored-noise@workspace:packages/colored-noise":
   version: 0.0.0-use.local
   resolution: "@thi.ng/colored-noise@workspace:packages/colored-noise"
   dependencies:

@@ -92,7 +92,7 @@ echo "writing README.md..."
 cat << EOF > "$MODULE"/README.md
 # $1
 
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/pixel/$1.png)
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/$1.png)
 
 [Live demo](http://demo.thi.ng/umbrella/$1/)
 
