@@ -36,8 +36,9 @@ export class WasmBridge<T extends WasmExports = WasmExports> {
 	f64!: Float64Array;
 	utf8Decoder: TextDecoder = new TextDecoder();
 	utf8Encoder: TextEncoder = new TextEncoder();
-	core: CoreAPI;
+	imports!: WebAssembly.Imports;
 	exports!: T;
+	core: CoreAPI;
 
 	constructor(
 		public modules: Record<string, IWasmAPI<T>> = {},
@@ -104,13 +105,10 @@ export class WasmBridge<T extends WasmExports = WasmExports> {
 		imports?: WebAssembly.Imports
 	) {
 		const $src = await src;
-		const $imports = { ...imports, ...this.getImports() };
-		let wasm: WebAssembly.WebAssemblyInstantiatedSource;
-		if ($src instanceof Response) {
-			wasm = await WebAssembly.instantiateStreaming($src, $imports);
-		} else {
-			wasm = await WebAssembly.instantiate($src, $imports);
-		}
+		const $imports = { ...this.getImports(), ...imports };
+		const wasm = await ($src instanceof Response
+			? WebAssembly.instantiateStreaming($src, $imports)
+			: WebAssembly.instantiate($src, $imports));
 		return this.init(<any>wasm.instance.exports);
 	}
 
@@ -148,25 +146,45 @@ export class WasmBridge<T extends WasmExports = WasmExports> {
 	 * API and any provided bridge API modules.
 	 *
 	 * @remarks
-	 * Since all declared imports will be merged into a single flat namespace,
-	 * it's recommended to use per-module naming prefixes to avoid clashes. If
-	 * there're any naming clashes, this function will throw an error.
+	 * Since v0.4.0 each API module's imports will be in their own WASM import
+	 * object, named using the same key which was assigned to the module when
+	 * creating the WASM bridge. The bridge's core API will be named `core` and
+	 * is reserved.
+	 *
+	 * @example
+	 * The following creates a bridge with a fictional `custom` API module:
+	 *
+	 * ```ts
+	 * const bridge = new WasmBridge({ custom: new CustomAPI() });
+	 *
+	 * // get combined imports object
+	 * bridge.getImports();
+	 * {
+	 *   // imports defined by the core API of the bridge itself
+	 *   core: { ... },
+	 *   // imports defined by the CustomAPI module
+	 *   custom: { ... }
+	 * }
+	 * ```
+	 *
+	 * Any related API bindings on the WASM (Zig) side then also need to refer
+	 * to these custom import sections (also see `/zig/core.zig`):
+	 *
+	 * ```zig
+	 * pub export "custom" fn foo(x: u32) void;
+	 * ```
 	 */
 	getImports(): WebAssembly.Imports {
-		const env: WebAssembly.ModuleImports = { ...this.core };
-		for (let id in this.modules) {
-			const imports = this.modules[id].getImports();
-			// check for naming clashes
-			for (let k in imports) {
-				if (env[k] !== undefined) {
-					illegalArgs(
-						`attempt to redeclare import: ${k} by API module ${id}`
-					);
+		if (!this.imports) {
+			this.imports = { core: this.core };
+			for (let id in this.modules) {
+				if (this.imports[id] !== undefined) {
+					illegalArgs(`attempt to redeclare API module ${id}`);
 				}
+				this.imports[id] = this.modules[id].getImports();
 			}
-			Object.assign(env, imports);
 		}
-		return { env };
+		return this.imports;
 	}
 
 	getI8(addr: number) {

@@ -52,7 +52,7 @@ export interface WasmExports {
  * functions are declared as bindings in `/zig/core.zig`. Also see this file for
  * documentation of each function...
  */
-export interface CoreAPI {
+export interface CoreAPI extends WebAssembly.ModuleImports {
 	printI8: Fn<number, void>;
 	printU8: Fn<number, void>;
 	printU8Hex: Fn<number, void>;
