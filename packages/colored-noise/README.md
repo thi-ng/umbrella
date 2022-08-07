@@ -20,6 +20,7 @@ This project is part of the
   - [Related packages](#related-packages)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
+- [Usage examples](#usage-examples)
 - [API](#api)
   - [Use as IGen in @thi.ng/dsp](#use-as-igen-in-thingdsp)
 - [Authors](#authors)
@@ -380,6 +381,18 @@ Package sizes (gzipped, pre-treeshake): ESM: 538 bytes
 
 - [@thi.ng/binary](https://github.com/thi-ng/umbrella/tree/develop/packages/binary)
 - [@thi.ng/random](https://github.com/thi-ng/umbrella/tree/develop/packages/random)
+
+## Usage examples
+
+Several demos in this repo's
+[/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
+directory are using this package.
+
+A selection:
+
+| Screenshot                                                                                                             | Description                                                      | Live demo                                             | Source                                                                             |
+|:-----------------------------------------------------------------------------------------------------------------------|:-----------------------------------------------------------------|:------------------------------------------------------|:-----------------------------------------------------------------------------------|
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/webgl-float-fbo.jpg" width="240"/> | Drawing to floating point offscreen / multi-pass shader pipeline | [Demo](https://demo.thi.ng/umbrella/webgl-float-fbo/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/webgl-float-fbo) |
 
 ## API
 

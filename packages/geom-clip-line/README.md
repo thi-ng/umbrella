@@ -61,7 +61,7 @@ node --experimental-repl-await
 > const geomClipLine = await import("@thi.ng/geom-clip-line");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 550 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 549 bytes
 
 ## Dependencies
 

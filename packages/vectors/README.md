@@ -177,7 +177,7 @@ node --experimental-repl-await
 > const vectors = await import("@thi.ng/vectors");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 15.14 KB
+Package sizes (gzipped, pre-treeshake): ESM: 15.25 KB
 
 ## Dependencies
 
@@ -222,6 +222,7 @@ A selection:
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/spline-tangent.png" width="240"/>                | Compute cubic spline position & tangent using Dual Numbers           | [Demo](https://demo.thi.ng/umbrella/spline-tangent/)        | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/spline-tangent)        |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/text-canvas.png" width="240"/>                   | 3D wireframe textmode demo                                           | [Demo](https://demo.thi.ng/umbrella/text-canvas/)           | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/text-canvas)           |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/webgl-cube.png" width="240"/>                    | WebGL multi-colored cube mesh                                        | [Demo](https://demo.thi.ng/umbrella/webgl-cube/)            | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/webgl-cube)            |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/webgl-float-fbo.jpg" width="240"/>               | Drawing to floating point offscreen / multi-pass shader pipeline     | [Demo](https://demo.thi.ng/umbrella/webgl-float-fbo/)       | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/webgl-float-fbo)       |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/webgl-grid.jpg" width="240"/>                    | WebGL instancing, animated grid                                      | [Demo](https://demo.thi.ng/umbrella/webgl-grid/)            | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/webgl-grid)            |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/webgl-msdf.jpg" width="240"/>                    | WebGL MSDF text rendering & particle system                          | [Demo](https://demo.thi.ng/umbrella/webgl-msdf/)            | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/webgl-msdf)            |
 

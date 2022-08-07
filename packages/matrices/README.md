@@ -84,7 +84,7 @@ node --experimental-repl-await
 > const matrices = await import("@thi.ng/matrices");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 5.72 KB
+Package sizes (gzipped, pre-treeshake): ESM: 5.73 KB
 
 ## Dependencies
 

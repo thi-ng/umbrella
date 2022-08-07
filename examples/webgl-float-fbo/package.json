@@ -2,7 +2,7 @@
 	"name": "@example/webgl-float-fbo",
 	"version": "0.0.1",
 	"private": true,
-	"description": "TODO",
+	"description": "Drawing to floating point offscreen / multi-pass shader pipeline",
 	"repository": "https://github.com/thi-ng/umbrella",
 	"author": "Karsten Schmidt <k+npm@thi.ng>",
 	"license": "Apache-2.0",
