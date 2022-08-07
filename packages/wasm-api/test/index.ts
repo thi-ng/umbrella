@@ -19,7 +19,7 @@ group("wasm-api", {
 
 			getImports() {
 				return {
-					custom_setVec2: (addr: number) => {
+					setVec2: (addr: number) => {
 						this.parent.f32.set([10, 20], addr >> 2);
 					},
 				};
