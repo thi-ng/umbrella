@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-08-04T21:21:08Z
+- **Last updated**: 2022-08-07T15:28:01Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,15 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [0.4.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/wasm-api@0.4.0) (2022-08-07)
+
+#### 🚀 Features
+
+- use named import objects ([4965f20](https://github.com/thi-ng/umbrella/commit/4965f20))
+  - switch to name import objects to avoid merging into flat namespace
+  - update externs in core.zig
+  - update docstrings
 
 ## [0.3.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/wasm-api@0.3.0) (2022-08-04)
 
