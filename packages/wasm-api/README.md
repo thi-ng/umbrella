@@ -57,15 +57,15 @@ export class CustomAPI implements IWasmAPI {
 
 	/**
 	 * Returns object of functions to import as externals into
-	 * the WASM module. These imports are merged with the bridge's
-	 * core API and hence should use naming prefixes...
+	 * the WASM module. These imports are merged into a larger
+	 * imports object alongside the bridge's core API...
 	 */
 	getImports(): WebAssembly.Imports {
 		return {
 			/**
 			 * Writes 2 random float32 numbers to given address
 			 */
-			custom_randomVec2: (addr: number) => {
+			randomVec2: (addr: number) => {
 				this.parent.f32.set(
 					[Math.random(), Math.random()],
 					addr >> 2
@@ -83,14 +83,17 @@ export const bridge = new WasmBridge({ custom: new CustomAPI() });
 ```
 
 In Zig (or any other language of your choice) we can then utilize this custom
-API like so (Please also see example further below in this readme):
+API like so (Please also see /test/index.ts` & the example further below in this
+readme):
 
 ```zig
 // Import JS core API
 const js = @import("wasmapi");
 
 /// JS external to fill vec2 w/ random values
-extern fn custom_randomVec2(addr: usize) void;
+/// Note: Each API module uses a separate import object to avoid naming clashes
+/// Here we declare an external binding belonging to the "custom" import group
+extern "custom" fn randomVec2(addr: usize) void;
 
 export fn test_randomVec2() void {
 	var foo = [2]f32{ 0, 0 };
@@ -99,7 +102,7 @@ export fn test_randomVec2() void {
 	js.printF32Array(foo[0..]);
 
 	// populate foo with random numbers
-	custom_randomVec2(@ptrToInt(&foo));
+	randomVec2(@ptrToInt(&foo));
 
 	// print result
 	js.printF32Array(foo[0..]);
@@ -182,7 +185,7 @@ node --experimental-repl-await
 > const wasmApi = await import("@thi.ng/wasm-api");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.63 KB
+Package sizes (gzipped, pre-treeshake): ESM: 1.61 KB
 
 ## Dependencies
 
@@ -212,6 +215,7 @@ interface App extends WasmExports {
 
 	// instantiate WASM module using imports provided by the bridge
 	// this also initializes any bindings & bridge child APIs (if any)
+	// (also accepts a fetch() `Response` as input)
 	await bridge.instantiate(readFileSync("hello.wasm"));
 
 	// call an exported WASM function
@@ -253,7 +257,7 @@ The resulting WASM:
 (module
  (type $i32_i32_=>_none (func (param i32 i32)))
  (type $none_=>_none (func))
- (import "env" "_printStr" (func $fimport$0 (param i32 i32)))
+ (import "core" "_printStr" (func $fimport$0 (param i32 i32)))
  (global $global$0 (mut i32) (i32.const 65536))
  (memory $0 2)
  (data (i32.const 65536) "hello world!\00")
