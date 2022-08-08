@@ -20,6 +20,13 @@ export interface Multipass {
 	start(): void;
 	stop(): void;
 	update(time?: number): void;
+	/**
+	 * Executes a single shader pass only.
+	 *
+	 * @param id
+	 * @param time
+	 */
+	singlePass(id: number, time: number): void;
 
 	fbos: IFbo[];
 	models: ModelSpec[];

@@ -38,7 +38,8 @@ export const defMultiPass = (opts: MultipassOpts) => {
 	const passes = initPasses(opts, textures);
 	const fbos = initBuffers(opts, textures, useMainBuffer);
 
-	const drawPass = (i: number, time: number) => {
+	const drawPass = (i: number, time: number, isFBO = true) => {
+		isFBO && fbos[i].bind();
 		const spec = opts.passes[i];
 		const pass = passes[i];
 		const shader = pass.shader;
@@ -49,15 +50,14 @@ export const defMultiPass = (opts: MultipassOpts) => {
 		shader.uniforms.time && (pass.uniforms!.time = time);
 		gl.viewport(0, 0, size[0], size[1]);
 		draw(pass);
+		isFBO && fbos[i].unbind();
 	};
 
 	const update = (time: number) => {
 		for (let i = 0; i < fbos.length; i++) {
-			fbos[i].bind();
 			drawPass(i, time);
-			fbos[i].unbind();
 		}
-		useMainBuffer && drawPass(numPasses - 1, time);
+		useMainBuffer && drawPass(numPasses - 1, time, false);
 	};
 
 	const updateRAF = () => {
@@ -83,6 +83,9 @@ export const defMultiPass = (opts: MultipassOpts) => {
 		},
 		update(time: number) {
 			update(time);
+		},
+		singlePass(i: number, time: number) {
+			drawPass(i, time, i < fbos.length);
 		},
 		passes: opts.passes,
 		fbos,
@@ -162,6 +165,7 @@ const initShader = (
 	if (floatOut) {
 		ext[isGL2 ? "EXT_color_buffer_float" : "WEBGL_color_buffer_float"] =
 			"require";
+		isGL2 && (ext["EXT_float_blend"] = "require");
 	}
 	return defShader(gl, spec);
 };
