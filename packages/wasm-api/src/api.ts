@@ -30,7 +30,8 @@ export interface IWasmAPI<T extends WasmExports = WasmExports> {
 
 /**
  * Base interface of exports declared by the WASM module. At the very least, the
- * module needs to export its memory.
+ * module needs to export its memory and the functions defined in this
+ * interface.
  *
  * @remarks
  * This interface is supposed to be extended with the concrete exports defined
@@ -42,9 +43,32 @@ export interface IWasmAPI<T extends WasmExports = WasmExports> {
 export interface WasmExports {
 	/**
 	 * The WASM module's linear memory buffer. The `WasmBridge` automatically
-	 * creates various typed views of that memory.
+	 * creates various typed views of that memory (i.e. u8, u16, u32, f32 etc.)
 	 */
 	memory: WebAssembly.Memory;
+	/**
+	 * Implementation specific memory allocation function (likely heap-based).
+	 * If successful returns address of new memory block, or zero if
+	 * unsuccessful.
+	 *
+	 * @remarks
+	 * In the supplied Zig bindings (see `/zig/core.zig`), by default this is
+	 * using the `std.heap.GeneralPurposeAllocator` (which also automatically
+	 * handles growing the WASM memory), however as mentioned the underlying
+	 * mechanism is purposefully left to the actual WASM-side implementation. In
+	 * a C program, this would likely use `malloc()` or similar...
+	 */
+	_wasm_allocate(numBytes: number): number;
+	/**
+	 * Implementation specific function to free a previously allocated chunk of
+	 * of WASM memory (allocated via {@link WasmExports._wasm_allocate}).
+	 *
+	 * @remarks
+	 * In the supplied Zig bindings (/zig/core.zig) this is a no-op (currently).
+	 *
+	 * @param addr
+	 */
+	_wasm_free(addr: number): void;
 }
 
 /**

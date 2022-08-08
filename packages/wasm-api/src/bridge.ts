@@ -1,4 +1,5 @@
 import type { FnU2, NumericArray, TypedArray } from "@thi.ng/api";
+import { defError } from "@thi.ng/errors/deferror";
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import { U16, U32, U64HL, U8 } from "@thi.ng/hex";
 import type { ILogger } from "@thi.ng/logger";
@@ -6,6 +7,8 @@ import { ConsoleLogger } from "@thi.ng/logger/console";
 import type { BigIntArray, CoreAPI, IWasmAPI, WasmExports } from "./api.js";
 
 const B32 = BigInt(32);
+
+export const OutOfMemoryError = defError(() => "Out of memory");
 
 /**
  * The main interop API bridge between the JS host environment and a WebAssembly
@@ -121,7 +124,22 @@ export class WasmBridge<T extends WasmExports = WasmExports> {
 	 */
 	async init(exports: T) {
 		this.exports = exports;
-		const buf = exports.memory.buffer;
+		this.ensureMemory();
+		for (let id in this.modules) {
+			this.logger.debug(`initializing API module: ${id}`);
+			const status = await this.modules[id].init(this);
+			if (!status) return false;
+		}
+		return true;
+	}
+
+	/**
+	 * Called automatically. Initializes and/or updates the various typed WASM
+	 * memory views (e.g. after growing the WASM memory).
+	 */
+	ensureMemory() {
+		const buf = this.exports.memory.buffer;
+		if (this.u8 && this.u8.buffer === buf) return;
 		this.i8 = new Int8Array(buf);
 		this.u8 = new Uint8Array(buf);
 		this.i16 = new Int16Array(buf);
@@ -132,12 +150,6 @@ export class WasmBridge<T extends WasmExports = WasmExports> {
 		this.u64 = new BigUint64Array(buf);
 		this.f32 = new Float32Array(buf);
 		this.f64 = new Float64Array(buf);
-		for (let id in this.modules) {
-			this.logger.debug(`initializing API module: ${id}`);
-			const status = await this.modules[id].init(this);
-			if (!status) return false;
-		}
-		return true;
 	}
 
 	/**
@@ -185,6 +197,43 @@ export class WasmBridge<T extends WasmExports = WasmExports> {
 			}
 		}
 		return this.imports;
+	}
+
+	/**
+	 * Attempts to grow the WASM memory by an additional `numPages` (64KB/page)
+	 * and if successful updates all typed memory views to use the new
+	 * underlying buffer.
+	 *
+	 * @param numPages
+	 */
+	growMemory(numPages: number) {
+		this.exports.memory.grow(numPages);
+		this.ensureMemory();
+	}
+
+	/**
+	 * Attempts to allocate `numBytes` using the exported WASM core API function
+	 * {@link WasmExports._wasm_allocate} (implementation specific) and returns
+	 * start address of the new memory block. If unsuccessful, throws an
+	 * {@link OutOfMemoryError}.
+	 *
+	 * @remarks
+	 * See {@link WasmExports._wasm_allocate} docs for further details.
+	 *
+	 * @param numBytes
+	 */
+	allocate(numBytes: number) {
+		const addr = this.exports._wasm_allocate(numBytes);
+		if (!addr)
+			throw new OutOfMemoryError(`unable to allocate: ${numBytes}`);
+		this.logger.debug(`allocated ${numBytes} bytes @ 0x${U32(addr)}`);
+		this.ensureMemory();
+		return addr;
+	}
+
+	free(addr: number) {
+		this.logger.debug(`freeing memory @ 0x${U32(addr)}`);
+		this.exports._wasm_free(addr);
 	}
 
 	getI8(addr: number) {
@@ -395,7 +444,7 @@ export class WasmBridge<T extends WasmExports = WasmExports> {
 			str,
 			this.u8.subarray(addr, addr + maxBytes)
 		).written!;
-		if (len != null && len < maxBytes + (terminate ? 0 : 1)) {
+		if (len == null || len >= maxBytes + (terminate ? 0 : 1)) {
 			illegalArgs(`error writing string to 0x${U32(addr)}`);
 		}
 		if (terminate) {

@@ -1,5 +1,42 @@
 //! JavaScript externals for https://thi.ng/wasm-api
 
+const std = @import("std");
+const root = @import("root");
+
+/// Initialize the allocator to be exposed to the WASM host env
+/// (via `_wasm_allocate()` and `_wasm_free()`).
+/// If the user defines a public `WASM_ALLOCATOR` in their root file
+/// then this allocator will be used, otherwise the implementation
+/// falls back to using GPA.
+/// Note: The type for this var is purposefully chosen as an optional,
+/// effectively disabling allocations from the WASM host side if
+/// `WASM_ALLOCATOR` is set to null.
+pub const allocator: ?std.mem.Allocator = alloc: {
+    if (@hasDecl(root, "WASM_ALLOCATOR")) {
+        break :alloc root.WASM_ALLOCATOR;
+    } else {
+        var gpa = std.heap.GeneralPurposeAllocator(.{}){};
+        break :alloc gpa.allocator();
+    }
+};
+
+/// Attempts to allocate memory using configured `allocator` and if
+/// successful returns address of new chunk or zero if failed
+/// Note: For SIMD compatibility all allocations are aligned to 16 bytes
+pub export fn _wasm_allocate(numBytes: usize) usize {
+    if (allocator) |a| {
+        var buf = a.alignedAlloc(u8, 16, numBytes) catch return 0;
+        return @ptrToInt(buf.ptr);
+    }
+    return 0;
+}
+
+/// Frees chunk of heap memory (previously allocated using `_wasm_allocate()`)
+/// starting at given address. Note: This is a no-op currently.
+pub export fn _wasm_free(addr: usize) void {
+    _ = addr;
+}
+
 /// Prints number using configured JS logger
 pub extern "core" fn printI8(x: i8) void;
 /// Prints number using configured JS logger
