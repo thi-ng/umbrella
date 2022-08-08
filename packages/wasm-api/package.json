@@ -31,7 +31,8 @@
 		"doc:readme": "yarn doc:stats && tools:readme",
 		"doc:stats": "tools:module-stats",
 		"pub": "yarn npm publish --access public",
-		"test": "testament test"
+		"test": "testament test",
+		"test:build-zig": "zig build-lib -O ReleaseSmall -target wasm32-freestanding -dynamic --strip --pkg-begin wasmapi zig/core.zig --pkg-end test/custom.zig && wasm-dis -o custom.wast custom.wasm && cp custom.wasm test"
 	},
 	"dependencies": {
 		"@thi.ng/api": "^8.3.9",
