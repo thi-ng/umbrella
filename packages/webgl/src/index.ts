@@ -5,7 +5,9 @@ export * from "./api/ext.js";
 export * from "./api/glsl.js";
 export * from "./api/material.js";
 export * from "./api/model.js";
+export * from "./api/multipass.js";
 export * from "./api/shader.js";
+export * from "./api/stencil.js";
 export * from "./api/texture.js";
 
 export * from "./buffer.js";
