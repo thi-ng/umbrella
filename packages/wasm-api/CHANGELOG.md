@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-08-07T15:28:01Z
+- **Last updated**: 2022-08-08T22:36:17Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,17 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [0.5.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/wasm-api@0.5.0) (2022-08-08)
+
+#### 🚀 Features
+
+- add memory allocation ([980c1f2](https://github.com/thi-ng/umbrella/commit/980c1f2))
+  - add WasmBridge.allocate()/free()
+  - add WasmBridge.growMemory()
+  - extract WasmBridge.ensureMemory()
+  - update WasmExports
+  - update Zig bindings (configurable allocator, GPA as default)
 
 ## [0.4.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/wasm-api@0.4.0) (2022-08-07)
 

@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-08-08T09:24:07Z
+- **Last updated**: 2022-08-08T22:36:17Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,16 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [6.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/webgl@6.2.0) (2022-08-08)
+
+#### 🚀 Features
+
+- update Multipass ([5f51d26](https://github.com/thi-ng/umbrella/commit/5f51d26))
+  - auto-enable EXT_float_blend extension for float outputs
+    (this silences warnings on Firefox, Chrome seemed fine)
+  - add Multipass.singlePass() to selectively execute single shader passes
+- add more extensions to WebGLExtensionMap ([dd2e295](https://github.com/thi-ng/umbrella/commit/dd2e295))
 
 ### [6.1.22](https://github.com/thi-ng/umbrella/tree/@thi.ng/webgl@6.1.22) (2022-08-08)
 

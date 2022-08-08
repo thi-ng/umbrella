@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/wasm-api",
-	"version": "0.4.0",
+	"version": "0.5.0",
 	"description": "Modular, extensible API bridge and generic glue code between JS & WebAssembly",
 	"type": "module",
 	"module": "./index.js",

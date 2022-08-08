@@ -4774,7 +4774,7 @@ __metadata:
     "@thi.ng/transducers": ^8.3.11
     "@thi.ng/vector-pools": ^3.1.21
     "@thi.ng/vectors": ^7.5.12
-    "@thi.ng/webgl": ^6.1.22
+    "@thi.ng/webgl": ^6.2.0
     "@types/node": ^18.6.4
     rimraf: ^3.0.2
     tools: "workspace:^"
@@ -4792,7 +4792,7 @@ __metadata:
     "@thi.ng/shader-ast": ^0.12.17
     "@thi.ng/shader-ast-glsl": ^0.4.17
     "@thi.ng/testament": ^0.2.11
-    "@thi.ng/webgl": ^6.1.22
+    "@thi.ng/webgl": ^6.2.0
     "@types/node": ^18.6.4
     rimraf: ^3.0.2
     tools: "workspace:^"
@@ -4801,7 +4801,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/webgl@^6.1.22, @thi.ng/webgl@workspace:^, @thi.ng/webgl@workspace:packages/webgl":
+"@thi.ng/webgl@^6.2.0, @thi.ng/webgl@workspace:^, @thi.ng/webgl@workspace:packages/webgl":
   version: 0.0.0-use.local
   resolution: "@thi.ng/webgl@workspace:packages/webgl"
   dependencies:
