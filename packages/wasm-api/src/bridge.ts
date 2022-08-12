@@ -215,25 +215,39 @@ export class WasmBridge<T extends WasmExports = WasmExports> {
 	 * Attempts to allocate `numBytes` using the exported WASM core API function
 	 * {@link WasmExports._wasm_allocate} (implementation specific) and returns
 	 * start address of the new memory block. If unsuccessful, throws an
-	 * {@link OutOfMemoryError}.
+	 * {@link OutOfMemoryError}. If `clear` is true, the allocated region will
+	 * be zero-filled.
 	 *
 	 * @remarks
 	 * See {@link WasmExports._wasm_allocate} docs for further details.
 	 *
 	 * @param numBytes
+	 * @param clear
 	 */
-	allocate(numBytes: number) {
+	allocate(numBytes: number, clear = false) {
 		const addr = this.exports._wasm_allocate(numBytes);
 		if (!addr)
 			throw new OutOfMemoryError(`unable to allocate: ${numBytes}`);
 		this.logger.debug(`allocated ${numBytes} bytes @ 0x${U32(addr)}`);
 		this.ensureMemory();
+		clear && this.u8.fill(0, addr, addr + numBytes);
 		return addr;
 	}
 
-	free(addr: number) {
-		this.logger.debug(`freeing memory @ 0x${U32(addr)}`);
-		this.exports._wasm_free(addr);
+	/**
+	 * Frees a previous allocated memory region using the exported WASM core API
+	 * function {@link WasmExports._wasm_free} (implementation specific). The
+	 * `numBytes` value must be the same as previously given to
+	 * {@link WasmBridge.allocate}.
+	 *
+	 * @param addr
+	 * @param numBytes
+	 */
+	free(addr: number, numBytes: number) {
+		this.logger.debug(
+			`freeing memory @ 0x${U32(addr)} .. 0x${U32(addr + numBytes - 1)}`
+		);
+		this.exports._wasm_free(addr, numBytes);
 	}
 
 	getI8(addr: number) {
@@ -424,7 +438,16 @@ export class WasmBridge<T extends WasmExports = WasmExports> {
 		return this;
 	}
 
+	/**
+	 * Reads UTF-8 encoded string from given address and optional byte length.
+	 * The default length is 0, which will be interpreted as a zero-terminated
+	 * string. Returns string.
+	 *
+	 * @param addr
+	 * @param len
+	 */
 	getString(addr: number, len = 0) {
+		this.ensureMemory();
 		return this.utf8Decoder.decode(
 			this.u8.subarray(
 				addr,
@@ -433,6 +456,21 @@ export class WasmBridge<T extends WasmExports = WasmExports> {
 		);
 	}
 
+	/**
+	 * Encodes given string as UTF-8 and writes it to WASM memory starting at
+	 * `addr`. By default the string will be zero-terminated and only `maxBytes`
+	 * will be written. Returns the number of bytes written.
+	 *
+	 * @remarks
+	 * An error will be thrown if the encoded string doesn't fully fit into the
+	 * designated memory region (also note that there might need to be space for
+	 * the additional sentinel/termination byte).
+	 *
+	 * @param str
+	 * @param addr
+	 * @param maxBytes
+	 * @param terminate
+	 */
 	setString(
 		str: string,
 		addr: number,

@@ -24,17 +24,22 @@ pub const allocator: ?std.mem.Allocator = alloc: {
 /// successful returns address of new chunk or zero if failed
 /// Note: For SIMD compatibility all allocations are aligned to 16 bytes
 pub export fn _wasm_allocate(numBytes: usize) usize {
-    if (allocator) |a| {
-        var buf = a.alignedAlloc(u8, 16, numBytes) catch return 0;
-        return @ptrToInt(buf.ptr);
+    if (allocator) |alloc| {
+        var mem = alloc.alignedAlloc(u8, 16, numBytes) catch return 0;
+        return @ptrToInt(mem.ptr);
     }
     return 0;
 }
 
 /// Frees chunk of heap memory (previously allocated using `_wasm_allocate()`)
-/// starting at given address. Note: This is a no-op currently.
-pub export fn _wasm_free(addr: usize) void {
-    _ = addr;
+/// starting at given address and of given byte length.
+/// Note: This is a no-op if the allocator is explicitly disabled (see `setAllocator()`),
+pub export fn _wasm_free(addr: usize, numBytes: usize) void {
+    if (allocator) |alloc| {
+        var mem = [2]usize{ addr, numBytes };
+        printFmt("{d}", .{@ptrCast(*[]u8, &mem).*});
+        alloc.free(@ptrCast(*[]u8, &mem).*);
+    }
 }
 
 /// Prints number using configured JS logger
@@ -158,4 +163,12 @@ pub extern "core" fn _printStr(addr: usize, len: usize) void;
 /// Convenience wrapper for _printStr, accepting a slice as arg
 pub fn printStr(msg: []const u8) void {
     _printStr(@ptrToInt(msg.ptr), msg.len);
+}
+
+pub fn printFmt(comptime fmt: []const u8, args: anytype) void {
+    if (allocator) |alloc| {
+        const res = std.fmt.allocPrint(alloc, fmt, args) catch return;
+        defer alloc.free(res);
+        printStr(res);
+    }
 }

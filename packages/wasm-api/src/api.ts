@@ -63,12 +63,10 @@ export interface WasmExports {
 	 * Implementation specific function to free a previously allocated chunk of
 	 * of WASM memory (allocated via {@link WasmExports._wasm_allocate}).
 	 *
-	 * @remarks
-	 * In the supplied Zig bindings (/zig/core.zig) this is a no-op (currently).
-	 *
 	 * @param addr
+	 * @param numBytes
 	 */
-	_wasm_free(addr: number): void;
+	_wasm_free(addr: number, numBytes: number): void;
 }
 
 /**
