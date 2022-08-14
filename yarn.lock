@@ -4745,7 +4745,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/wasm-api@^0.5.0, @thi.ng/wasm-api@workspace:packages/wasm-api":
+"@thi.ng/wasm-api@workspace:packages/wasm-api":
   version: 0.0.0-use.local
   resolution: "@thi.ng/wasm-api@workspace:packages/wasm-api"
   dependencies:
@@ -4760,7 +4760,6 @@ __metadata:
     "@thi.ng/idgen": ^2.1.10
     "@thi.ng/logger": ^1.2.0
     "@thi.ng/testament": ^0.2.11
-    "@thi.ng/wasm-api": ^0.5.0
     rimraf: ^3.0.2
     tools: "workspace:^"
     typedoc: ^0.22.17

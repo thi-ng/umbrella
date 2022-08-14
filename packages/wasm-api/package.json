@@ -43,8 +43,7 @@
 		"@thi.ng/errors": "^2.1.10",
 		"@thi.ng/hex": "^2.1.9",
 		"@thi.ng/idgen": "^2.1.10",
-		"@thi.ng/logger": "^1.2.0",
-		"@thi.ng/wasm-api": "^0.5.0"
+		"@thi.ng/logger": "^1.2.0"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.25.0",
@@ -80,7 +79,7 @@
 	"files": [
 		"*.js",
 		"*.d.ts",
-		"*.zig"
+		"codegen"
 	],
 	"exports": {
 		".": {

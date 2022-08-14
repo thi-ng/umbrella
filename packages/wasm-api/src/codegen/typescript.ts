@@ -14,6 +14,8 @@ export interface TSOpts {
 	indent: string;
 }
 
+const PKG_NAME = "@thi.ng/wasm-api";
+
 export const TYPESCRIPT = (opts?: Partial<TSOpts>) => {
 	const { indent } = { indent: "\t", ...opts };
 	const I = indent;
@@ -21,7 +23,7 @@ export const TYPESCRIPT = (opts?: Partial<TSOpts>) => {
 	const I3 = I2 + I;
 
 	const gen: ICodeGen = {
-		pre: `import type { WasmTypeBase, WasmTypeConstructor } from "@thi.ng/wasm-api";\n`,
+		pre: `import type { WasmTypeBase, WasmTypeConstructor } from "${PKG_NAME}";\n`,
 
 		doc: (doc, indent, acc) => {
 			if (doc.indexOf("\n") !== -1) {
