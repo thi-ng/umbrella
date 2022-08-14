@@ -69,6 +69,19 @@ export interface WasmExports {
 	_wasm_free(addr: number, numBytes: number): void;
 }
 
+export interface WasmMemViews {
+	i8: Int8Array;
+	u8: Uint8Array;
+	i16: Int16Array;
+	u16: Uint16Array;
+	i32: Int32Array;
+	u32: Uint32Array;
+	i64: BigInt64Array;
+	u64: BigUint64Array;
+	f32: Float32Array;
+	f64: Float64Array;
+}
+
 /**
  * Core API of WASM imports defined by the {@link WasmBridge}. The same
  * functions are declared as bindings in `/zig/core.zig`. Also see this file for

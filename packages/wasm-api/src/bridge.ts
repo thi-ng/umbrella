@@ -4,7 +4,13 @@ import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import { U16, U32, U64HL, U8 } from "@thi.ng/hex";
 import type { ILogger } from "@thi.ng/logger";
 import { ConsoleLogger } from "@thi.ng/logger/console";
-import type { BigIntArray, CoreAPI, IWasmAPI, WasmExports } from "./api.js";
+import type {
+	BigIntArray,
+	CoreAPI,
+	IWasmAPI,
+	WasmExports,
+	WasmMemViews,
+} from "./api.js";
 
 const B32 = BigInt(32);
 
@@ -26,7 +32,9 @@ export const OutOfMemoryError = defError(() => "Out of memory");
  * 64bit integers are handled via JS `BigInt` and hence require the host env to
  * support it. No polyfill is provided.
  */
-export class WasmBridge<T extends WasmExports = WasmExports> {
+export class WasmBridge<T extends WasmExports = WasmExports>
+	implements WasmMemViews
+{
 	i8!: Int8Array;
 	u8!: Uint8Array;
 	i16!: Int16Array;
