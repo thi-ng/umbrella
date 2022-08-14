@@ -13,6 +13,8 @@ export type TypedArray =
 	| Uint16Array
 	| Uint32Array;
 
+export type BigTypedArray = BigInt64Array | BigUint64Array;
+
 export type FloatArray = Float32Array | Float64Array;
 
 export type IntArray = Int8Array | Int16Array | Int32Array;
@@ -38,6 +40,10 @@ export type UIntArrayConstructor =
 	| Uint16ArrayConstructor
 	| Uint32ArrayConstructor;
 
+export type BigIntArrayConstructor =
+	| BigInt64ArrayConstructor
+	| BigUint64ArrayConstructor;
+
 export type TypedArrayConstructor =
 	| FloatArrayConstructor
 	| IntArrayConstructor
@@ -59,6 +65,8 @@ export type Type =
 	| "i32"
 	| "f32"
 	| "f64";
+
+export type BigType = "i64" | "u64";
 
 export type UintType = "u8" | "u8c" | "u16" | "u32";
 
@@ -117,7 +125,8 @@ export const TYPE2GL: Record<Type, GLType | undefined> = {
 };
 
 /**
- * Size information (in bytes) for {@link Type}. Also see {@link sizeOf}.
+ * Size information (in bytes) for {@link Type} and {@link BigType}. Also see
+ * {@link sizeOf}.
  */
 export const SIZEOF = {
 	u8: 1,
@@ -127,8 +136,28 @@ export const SIZEOF = {
 	i16: 2,
 	u32: 4,
 	i32: 4,
+	i64: 8,
+	u64: 8,
 	f32: 4,
 	f64: 8,
+};
+
+/**
+ * Bit shift values to convert byte addresses into array indices for all
+ * {@link Type}s and {@link BigType}s.
+ */
+export const BIT_SHIFTS = {
+	i8: 0,
+	u8: 0,
+	u8c: 0,
+	i16: 1,
+	u16: 1,
+	i32: 2,
+	u32: 2,
+	i64: 3,
+	u64: 3,
+	f32: 2,
+	f64: 2,
 };
 
 export const FLOAT_ARRAY_CTORS: Record<FloatType, FloatArrayConstructor> = {
@@ -147,6 +176,11 @@ export const UINT_ARRAY_CTORS: Record<UintType, UIntArrayConstructor> = {
 	u8c: Uint8ClampedArray,
 	u16: Uint16Array,
 	u32: Uint32Array,
+};
+
+export const BIGINT_ARRAY_CTORS: Record<BigType, BigIntArrayConstructor> = {
+	i64: BigInt64Array,
+	u64: BigUint64Array,
 };
 
 export const TYPEDARRAY_CTORS: Record<Type, TypedArrayConstructor> = {
@@ -174,6 +208,11 @@ export interface TypedArrayTypeMap extends Record<Type | GLType, TypedArray> {
 	[GLType.F32]: Float32Array;
 }
 
+export interface BigTypedArrayTypeMap extends Record<BigType, BigTypedArray> {
+	i64: BigInt64Array;
+	u64: BigUint64Array;
+}
+
 /**
  * Returns canonical {@link Type} value of `type` by first
  * attempting to resolve it as {@link GLType} enum.
@@ -187,7 +226,7 @@ export interface TypedArrayTypeMap extends Record<Type | GLType, TypedArray> {
  * @param type -
  */
 export const asNativeType = (type: GLType | Type): Type => {
-	const t = (<any>GL2TYPE)[type];
+	const t = GL2TYPE[<GLType>type];
 	return t !== undefined ? t : <Type>type;
 };
 
@@ -203,7 +242,7 @@ export const asNativeType = (type: GLType | Type): Type => {
  * @param type -
  */
 export const asGLType = (type: GLType | Type): GLType => {
-	const t = (<any>TYPE2GL)[type];
+	const t = TYPE2GL[<Type>type];
 	return t !== undefined ? t : <GLType>type;
 };
 
@@ -217,22 +256,49 @@ export const asInt = (...args: number[]) => args.map((x) => x | 0);
  *
  * @param type -
  */
-export const sizeOf = (type: GLType | Type) => SIZEOF[asNativeType(type)];
+export const sizeOf = (type: Type | BigType | GLType) =>
+	SIZEOF[<Type>type] || SIZEOF[asNativeType(<Type>type)];
 
 /**
- * Constructs new typed array of given {@link Type}/{@link GLType}. Supports all
- * arities of standard typed array ctors.
+ * Constructs new typed array of given {@link Type}, {@link GLType} or
+ * {@link BigType}. Supports all arities of standard typed array ctors.
  *
  * @param type - array type enum
  */
-// prettier-ignore
-export function typedArray<T extends Type | GLType>(type: T, length: number): TypedArrayTypeMap[T];
-// prettier-ignore
-export function typedArray<T extends Type | GLType>(type: T, src: ArrayLike<number> | ArrayBufferLike): TypedArrayTypeMap[T];
-// prettier-ignore
-export function typedArray<T extends Type | GLType>(type: T, buf: ArrayBufferLike, byteOffset: number, length?: number): TypedArrayTypeMap[T];
-export function typedArray<T extends Type | GLType>(type: T, ...xs: any[]) {
-	return new (<any>TYPEDARRAY_CTORS[asNativeType(type)])(...xs);
+export function typedArray<T extends Type | GLType>(
+	type: T,
+	length: number
+): TypedArrayTypeMap[T];
+export function typedArray<T extends Type | GLType>(
+	type: T,
+	src: ArrayLike<number> | ArrayBufferLike
+): TypedArrayTypeMap[T];
+export function typedArray<T extends Type | GLType>(
+	type: T,
+	buf: ArrayBufferLike,
+	byteOffset: number,
+	length?: number
+): TypedArrayTypeMap[T];
+export function typedArray<T extends BigType>(
+	type: T,
+	length: number
+): BigTypedArrayTypeMap[T];
+export function typedArray<T extends BigType>(
+	type: T,
+	src: ArrayLike<bigint> | ArrayBufferLike
+): BigTypedArrayTypeMap[T];
+export function typedArray<T extends BigType>(
+	type: T,
+	buf: ArrayBufferLike,
+	byteOffset: number,
+	length?: number
+): BigTypedArrayTypeMap[T];
+export function typedArray<T extends Type | GLType | BigType>(
+	type: T,
+	...xs: any[]
+) {
+	const ctor = BIGINT_ARRAY_CTORS[<BigType>type];
+	return new (ctor || TYPEDARRAY_CTORS[asNativeType(<any>type)])(...xs);
 }
 
 /**
