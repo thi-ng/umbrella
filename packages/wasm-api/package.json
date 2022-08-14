@@ -36,10 +36,15 @@
 	},
 	"dependencies": {
 		"@thi.ng/api": "^8.3.9",
+		"@thi.ng/binary": "^3.3.2",
+		"@thi.ng/checks": "^3.2.4",
+		"@thi.ng/compare": "^2.1.9",
+		"@thi.ng/defmulti": "^2.1.11",
 		"@thi.ng/errors": "^2.1.10",
 		"@thi.ng/hex": "^2.1.9",
 		"@thi.ng/idgen": "^2.1.10",
-		"@thi.ng/logger": "^1.2.0"
+		"@thi.ng/logger": "^1.2.0",
+		"@thi.ng/wasm-api": "^0.5.0"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.25.0",
@@ -51,6 +56,8 @@
 	},
 	"keywords": [
 		"api",
+		"bindings",
+		"codegen",
 		"id",
 		"logger",
 		"memory",
@@ -82,8 +89,20 @@
 		"./api": {
 			"default": "./api.js"
 		},
+		"./bindings": {
+			"default": "./bindings.js"
+		},
 		"./bridge": {
 			"default": "./bridge.js"
+		},
+		"./codegen/typescript": {
+			"default": "./codegen/typescript.js"
+		},
+		"./codegen/utils": {
+			"default": "./codegen/utils.js"
+		},
+		"./codegen/zig": {
+			"default": "./codegen/zig.js"
 		},
 		"./object-index": {
 			"default": "./object-index.js"

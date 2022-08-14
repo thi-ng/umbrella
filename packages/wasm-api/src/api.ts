@@ -1,4 +1,4 @@
-import type { Fn, Fn2 } from "@thi.ng/api";
+import type { FloatType, Fn, Fn2, IntType } from "@thi.ng/api";
 import type { WasmBridge } from "./bridge.js";
 
 export type BigIntArray = bigint[] | BigInt64Array | BigUint64Array;
@@ -114,4 +114,143 @@ export interface CoreAPI extends WebAssembly.ModuleImports {
 	_printF64Array: (addr: number, len: number) => void;
 	_printStr0: (addr: number) => void;
 	_printStr: (addr: number, len: number) => void;
+}
+
+export interface WasmTypeBase {
+	/**
+	 * Base address in linear WASM memory.
+	 */
+	readonly __base: number;
+	/**
+	 * Obtain as byte buffer
+	 */
+	readonly __bytes: Uint8Array;
+}
+
+export interface WasmType<T> {
+	readonly align: number;
+	readonly size: number;
+	instance: Fn<number, T>;
+}
+
+export type WasmTypeConstructor<T> = Fn<WasmMemViews, WasmType<T>>;
+
+export type WasmInt = IntType | "i64";
+export type WasmUint = "u8" | "u16" | "u32" | "u64";
+export type WasmFloat = FloatType;
+export type WasmPrim = WasmInt | WasmUint | WasmFloat;
+
+export type TypeColl = Record<string, TopLevelType>;
+
+export interface TypeInfo {
+	/**
+	 * Auto-computed size (in bytes)
+	 *
+	 * @internal
+	 */
+	__size?: number;
+	/**
+	 * Auto-computed offset (in bytes) in parent struct
+	 *
+	 * @internal
+	 */
+	__offset?: number;
+	/**
+	 * Auto-computed alignment (in bytes)
+	 *
+	 * @internal
+	 */
+	__align?: number;
+}
+
+export interface TopLevelType extends TypeInfo {
+	name: string;
+	doc?: string;
+	type: "struct" | "enum";
+}
+
+export interface Struct extends TopLevelType {
+	type: "struct";
+	fields: StructField[];
+	/**
+	 * If true, struct fields will be re-ordered in descending order based on
+	 * their {@link TypeInfo.__align} size.
+	 *
+	 * @defaultValue false
+	 */
+	auto?: boolean;
+}
+
+export interface StructField extends TypeInfo {
+	/**
+	 * Field name (prefix: "__" is reserved)
+	 */
+	name: string;
+	/**
+	 * Field docstring (can be multiline, will be formatted)
+	 */
+	doc?: string;
+	/**
+	 * Field type tag/qualifier (note: `slice` & `vec` are only supported by
+	 * Zig & TS)
+	 *
+	 * @defaultValue "scalar"
+	 */
+	tag?: "scalar" | "array" | "ptr" | "slice" | "vec";
+	/**
+	 * Field base type. If not a {@link WasmPrim} or `opaque`, the value is
+	 * interpreted as another type name in the {@link TypeColl}.
+	 *
+	 * TODO `opaque` currently unsupported.
+	 */
+	type: WasmPrim | "opaque" | string;
+	/**
+	 * TODO currently unsupported!
+	 */
+	sentinel?: number;
+	/**
+	 * Array or vector length
+	 */
+	len?: number;
+	/**
+	 * TODO currently unsupported!
+	 */
+	default?: any;
+}
+
+export interface Enum extends TopLevelType {
+	type: "enum";
+	/**
+	 * No u64 support, due to Typescript not supporting bigint enum values
+	 */
+	tag: Exclude<WasmUint, "u64">;
+	values: (string | EnumValue)[];
+}
+
+export interface EnumValue {
+	name: string;
+	value?: number;
+	doc?: string;
+}
+
+export interface ICodeGen {
+	/**
+	 * Optional prelude source, to be prepended before any generated type defs.
+	 */
+	pre?: string;
+	/**
+	 * Optional source code to be appended after any generated type defs.
+	 */
+	post?: string;
+
+	doc: (
+		doc: string,
+		indent: string,
+		acc: string[],
+		topLevel?: boolean
+	) => void;
+
+	enum: (type: Enum, types: TypeColl, acc: string[]) => void;
+
+	struct: (type: Struct, types: TypeColl, acc: string[]) => void;
 }
