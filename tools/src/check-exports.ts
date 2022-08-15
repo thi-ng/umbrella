@@ -19,8 +19,15 @@ const processPackage = (id: string) => {
 	const pkg = readJSON(pkgPath, LOGGER);
 	const srcDirs = subdirs(`${pkkRoot}/src`).sort();
 	const hasBin = existsSync(`${pkkRoot}/bin`);
+	const hasInclude = existsSync(`${pkkRoot}/include`);
 	const oldFiles = new Set(pkg.files);
-	const newFiles = ["*.js", "*.d.ts", ...(hasBin ? ["bin"] : []), ...srcDirs];
+	const newFiles = [
+		"*.js",
+		"*.d.ts",
+		...(hasBin ? ["bin"] : []),
+		...(hasInclude ? ["include"] : []),
+		...srcDirs,
+	];
 	if (!equivSet(oldFiles, new Set(newFiles))) {
 		console.log("fixing pkg", newFiles);
 		pkg.files = newFiles;
