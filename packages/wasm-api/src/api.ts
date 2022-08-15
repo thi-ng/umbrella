@@ -249,9 +249,9 @@ export interface StructField extends TypeInfo {
 export interface Enum extends TopLevelType {
 	type: "enum";
 	/**
-	 * No u64 support, due to Typescript not supporting bigint enum values
+	 * No i64/u64 support, due to Typescript not supporting bigint enum values
 	 */
-	tag: Exclude<WasmUint, "u64">;
+	tag: Exclude<WasmPrim32, FloatType>;
 	/**
 	 * List of possible values/IDs. Use {@link EnumValue}s for more detailed
 	 * config.
