@@ -1,108 +1,108 @@
 {
-    "name": "@thi.ng/fuzzy",
-    "version": "2.1.9",
-    "description": "Fuzzy logic operators & configurable rule inferencing engine",
-    "type": "module",
-    "module": "./index.js",
-    "typings": "./index.d.ts",
-    "sideEffects": false,
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/thi-ng/umbrella.git"
-    },
-    "homepage": "https://github.com/thi-ng/umbrella/tree/master/packages/fuzzy#readme",
-    "funding": [
-        {
-            "type": "github",
-            "url": "https://github.com/sponsors/postspectacular"
-        },
-        {
-            "type": "patreon",
-            "url": "https://patreon.com/thing_umbrella"
-        }
-    ],
-    "author": "Karsten Schmidt <k+npm@thi.ng>",
-    "license": "Apache-2.0",
-    "scripts": {
-        "build": "yarn clean && tsc --declaration",
-        "clean": "rimraf '*.js' '*.d.ts' '*.map' doc strategies",
-        "doc": "typedoc --excludePrivate --excludeInternal --out doc src/index.ts",
-        "doc:ae": "mkdir -p .ae/doc .ae/temp && api-extractor run --local --verbose",
-        "doc:readme": "yarn doc:stats && tools:readme",
-        "doc:stats": "tools:module-stats",
-        "pub": "yarn npm publish --access public",
-        "test": "testament test"
-    },
-    "dependencies": {
-        "@thi.ng/api": "^8.3.9",
-        "@thi.ng/math": "^5.3.5"
-    },
-    "devDependencies": {
-        "@microsoft/api-extractor": "^7.25.0",
-        "@thi.ng/testament": "^0.2.10",
-        "rimraf": "^3.0.2",
-        "tools": "workspace:^",
-        "typedoc": "^0.22.17",
-        "typescript": "^4.7.4"
-    },
-    "keywords": [
-        "agent",
-        "functional",
-        "math",
-        "fuzzy",
-        "inference",
-        "logic",
-        "rule",
-        "t-norm",
-        "typescript"
-    ],
-    "publishConfig": {
-        "access": "public"
-    },
-    "engines": {
-        "node": ">=12.7"
-    },
-    "files": [
-        "*.js",
-        "*.d.ts",
-        "strategies"
-    ],
-    "exports": {
-        ".": {
-            "default": "./index.js"
-        },
-        "./api": {
-            "default": "./api.js"
-        },
-        "./defuzz": {
-            "default": "./defuzz.js"
-        },
-        "./rules": {
-            "default": "./rules.js"
-        },
-        "./shapes": {
-            "default": "./shapes.js"
-        },
-        "./strategies/bisector": {
-            "default": "./strategies/bisector.js"
-        },
-        "./strategies/centroid": {
-            "default": "./strategies/centroid.js"
-        },
-        "./strategies/maxima": {
-            "default": "./strategies/maxima.js"
-        },
-        "./strategies/opts": {
-            "default": "./strategies/opts.js"
-        },
-        "./tnorms": {
-            "default": "./tnorms.js"
-        },
-        "./var": {
-            "default": "./var.js"
-        }
-    },
-    "thi.ng": {
-        "year": 2020
-    }
+	"name": "@thi.ng/fuzzy",
+	"version": "2.1.10",
+	"description": "Fuzzy logic operators & configurable rule inferencing engine",
+	"type": "module",
+	"module": "./index.js",
+	"typings": "./index.d.ts",
+	"sideEffects": false,
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/thi-ng/umbrella.git"
+	},
+	"homepage": "https://github.com/thi-ng/umbrella/tree/master/packages/fuzzy#readme",
+	"funding": [
+		{
+			"type": "github",
+			"url": "https://github.com/sponsors/postspectacular"
+		},
+		{
+			"type": "patreon",
+			"url": "https://patreon.com/thing_umbrella"
+		}
+	],
+	"author": "Karsten Schmidt <k+npm@thi.ng>",
+	"license": "Apache-2.0",
+	"scripts": {
+		"build": "yarn clean && tsc --declaration",
+		"clean": "rimraf '*.js' '*.d.ts' '*.map' doc strategies",
+		"doc": "typedoc --excludePrivate --excludeInternal --out doc src/index.ts",
+		"doc:ae": "mkdir -p .ae/doc .ae/temp && api-extractor run --local --verbose",
+		"doc:readme": "yarn doc:stats && tools:readme",
+		"doc:stats": "tools:module-stats",
+		"pub": "yarn npm publish --access public",
+		"test": "testament test"
+	},
+	"dependencies": {
+		"@thi.ng/api": "^8.4.0",
+		"@thi.ng/math": "^5.3.6"
+	},
+	"devDependencies": {
+		"@microsoft/api-extractor": "^7.25.0",
+		"@thi.ng/testament": "^0.2.11",
+		"rimraf": "^3.0.2",
+		"tools": "workspace:^",
+		"typedoc": "^0.22.17",
+		"typescript": "^4.7.4"
+	},
+	"keywords": [
+		"agent",
+		"functional",
+		"math",
+		"fuzzy",
+		"inference",
+		"logic",
+		"rule",
+		"t-norm",
+		"typescript"
+	],
+	"publishConfig": {
+		"access": "public"
+	},
+	"engines": {
+		"node": ">=12.7"
+	},
+	"files": [
+		"*.js",
+		"*.d.ts",
+		"strategies"
+	],
+	"exports": {
+		".": {
+			"default": "./index.js"
+		},
+		"./api": {
+			"default": "./api.js"
+		},
+		"./defuzz": {
+			"default": "./defuzz.js"
+		},
+		"./rules": {
+			"default": "./rules.js"
+		},
+		"./shapes": {
+			"default": "./shapes.js"
+		},
+		"./strategies/bisector": {
+			"default": "./strategies/bisector.js"
+		},
+		"./strategies/centroid": {
+			"default": "./strategies/centroid.js"
+		},
+		"./strategies/maxima": {
+			"default": "./strategies/maxima.js"
+		},
+		"./strategies/opts": {
+			"default": "./strategies/opts.js"
+		},
+		"./tnorms": {
+			"default": "./tnorms.js"
+		},
+		"./var": {
+			"default": "./var.js"
+		}
+	},
+	"thi.ng": {
+		"year": 2020
+	}
 }

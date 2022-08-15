@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-08-08T22:36:17Z
+- **Last updated**: 2022-08-15T15:40:55Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,40 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [0.6.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/wasm-api@0.6.0) (2022-08-15)
+
+#### 🚀 Features
+
+- add C11 header/include file, update WasmBridge ([a67dc00](https://github.com/thi-ng/umbrella/commit/a67dc00))
+  - migrate headers/includes to /include
+  - rename "core" import section => "wasmapi"
+  - rename WasmBridge.core => WasmBridge.api
+  - update pkg file
+- update codegens, add opts, fix alignments ([5c1fec5](https://github.com/thi-ng/umbrella/commit/5c1fec5))
+  - add global CodeGenOpts
+  - update generateTypes() to consider new opts
+  - add global USIZE type (for pointer sizes & codegens)
+  - add options for Zig codegen (extra debug helpers)
+  - simplify TS codegen
+  - fix sizeOf() for struct fields
+  - make prepareType() idempotent
+- add bindings code generator framework ([17ee06f](https://github.com/thi-ng/umbrella/commit/17ee06f))
+  - add/update deps
+  - add preliminary codegens for Zig & TS
+  - add supporting types & utils
+  - add generateTypes() codegen facade fn
+- update allocate/free() fns, update Zig core API ([8a55989](https://github.com/thi-ng/umbrella/commit/8a55989))
+  - add _wasm_free() Zig impl
+  - add printFmt() Zig fn
+  - update WasmBridge.allocate() (add clear option)
+  - update WasmBridge.free()
+  - ensure memory in WasmBridge.getString()
+  - add/update docstrings
+
+#### ♻️ Refactoring
+
+- extract WasmMemViews interface, update test WASM ([4c73e65](https://github.com/thi-ng/umbrella/commit/4c73e65))
 
 ## [0.5.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/wasm-api@0.5.0) (2022-08-08)
 

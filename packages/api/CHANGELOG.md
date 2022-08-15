@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-08-01T14:53:59Z
+- **Last updated**: 2022-08-15T15:40:55Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,16 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [8.4.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/api@8.4.0) (2022-08-15)
+
+#### 🚀 Features
+
+- add i64/u64 support for typed arrays ([0bb5277](https://github.com/thi-ng/umbrella/commit/0bb5277))
+  - add various 64bit bigint related types & lookups
+  - add BIT_SHIFTS LUT
+  - update sizeOf()
+  - update typedArray()
 
 ## [8.3.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/api@8.3.0) (2021-11-17)
 

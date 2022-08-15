@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/wasm-api",
-	"version": "0.5.0",
+	"version": "0.6.0",
 	"description": "Generic, modular, extensible API bridge, glue code and bindings code generator for hybrid JS & WebAssembly projects",
 	"type": "module",
 	"module": "./index.js",
@@ -35,14 +35,14 @@
 		"test:build-zig": "zig build-lib -O ReleaseSmall -target wasm32-freestanding -dynamic --strip --pkg-begin wasmapi include/wasmapi.zig --pkg-end test/custom.zig && wasm-dis -o custom.wast custom.wasm && cp custom.wasm test"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.3.9",
-		"@thi.ng/binary": "^3.3.2",
+		"@thi.ng/api": "^8.4.0",
+		"@thi.ng/binary": "^3.3.3",
 		"@thi.ng/checks": "^3.2.4",
-		"@thi.ng/compare": "^2.1.9",
-		"@thi.ng/defmulti": "^2.1.11",
+		"@thi.ng/compare": "^2.1.10",
+		"@thi.ng/defmulti": "^2.1.12",
 		"@thi.ng/errors": "^2.1.10",
 		"@thi.ng/hex": "^2.1.9",
-		"@thi.ng/idgen": "^2.1.10",
+		"@thi.ng/idgen": "^2.1.11",
 		"@thi.ng/logger": "^1.2.0"
 	},
 	"devDependencies": {
