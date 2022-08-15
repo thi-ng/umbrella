@@ -83,8 +83,9 @@
 	"files": [
 		"*.js",
 		"*.d.ts",
-		"codegen",
-		"include"
+		"bin",
+		"include",
+		"codegen"
 	],
 	"exports": {
 		".": {
