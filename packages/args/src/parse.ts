@@ -1,9 +1,12 @@
 import type { IObjectOf, Nullable } from "@thi.ng/api";
 import { isArray } from "@thi.ng/checks/is-array";
+import { defError } from "@thi.ng/errors/deferror";
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import { camel } from "@thi.ng/strings/case";
 import type { Args, ArgSpecExt, ParseOpts, ParseResult } from "./api.js";
 import { usage } from "./usage.js";
+
+export const ParseError = defError(() => "parse error");
 
 export const parse = <T extends IObjectOf<any>>(
 	specs: Args<T>,
@@ -19,7 +22,7 @@ export const parse = <T extends IObjectOf<any>>(
 				(<Error>e).message + "\n\n" + usage(specs, opts.usageOpts)
 			);
 		}
-		throw e;
+		throw new ParseError((<Error>e).message);
 	}
 };
 
