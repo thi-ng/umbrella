@@ -5,6 +5,7 @@
 	"type": "module",
 	"module": "./index.js",
 	"typings": "./index.d.ts",
+	"bin": "bin/wasm-api",
 	"sideEffects": false,
 	"repository": {
 		"type": "git",
@@ -36,11 +37,13 @@
 	},
 	"dependencies": {
 		"@thi.ng/api": "^8.4.0",
+		"@thi.ng/args": "^2.1.14",
 		"@thi.ng/binary": "^3.3.3",
 		"@thi.ng/checks": "^3.2.4",
 		"@thi.ng/compare": "^2.1.10",
 		"@thi.ng/defmulti": "^2.1.12",
 		"@thi.ng/errors": "^2.1.10",
+		"@thi.ng/file-io": "^0.3.9",
 		"@thi.ng/hex": "^2.1.9",
 		"@thi.ng/idgen": "^2.1.11",
 		"@thi.ng/logger": "^1.2.0"
