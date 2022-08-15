@@ -167,17 +167,31 @@ export interface TypeInfo {
 }
 
 export interface TopLevelType extends TypeInfo {
+	/**
+	 * Type name
+	 */
 	name: string;
+	/**
+	 * Optional (multi-line) docstring for this type
+	 */
 	doc?: string;
+	/**
+	 * Type / kind
+	 */
 	type: "struct" | "enum";
 }
 
 export interface Struct extends TopLevelType {
 	type: "struct";
+	/**
+	 * List of struct fields (might be re-ordered if {@link Struct.auto} is
+	 * enabled).
+	 */
 	fields: StructField[];
 	/**
 	 * If true, struct fields will be re-ordered in descending order based on
-	 * their {@link TypeInfo.__align} size.
+	 * their {@link TypeInfo.__align} size. This might result in overall smaller
+	 * structs due to minimizing inter-field padding.
 	 *
 	 * @defaultValue false
 	 */
@@ -194,8 +208,18 @@ export interface StructField extends TypeInfo {
 	 */
 	doc?: string;
 	/**
-	 * Field type tag/qualifier (note: `slice` & `vec` are only supported by
-	 * Zig & TS)
+	 * Field type tag/qualifier (note: `slice` & `vec` are only supported by Zig
+	 * & TS).
+	 *
+	 * @remarks
+	 * - Array & vector fields are statically sized (using
+	 *   {@link StructField.len})
+	 * - Pointers are emitted as single-value pointers (where this distinction
+	 *   exist), i.e. even if they're pointing to multiple values, there's no
+	 *   explicit length encoded/available
+	 * - Zig slices are essentially a pointer w/ associated length
+	 * - Zig vectors will be processed using SIMD (if enabled in WASM target)
+	 *   and therefore will have stricter (larger) alignment requirements.
 	 *
 	 * @defaultValue "scalar"
 	 */
@@ -205,18 +229,19 @@ export interface StructField extends TypeInfo {
 	 * interpreted as another type name in the {@link TypeColl}.
 	 *
 	 * TODO `opaque` currently unsupported.
+	 * TODO add string support (see {@link StructField.sentinel})
 	 */
 	type: WasmPrim | "opaque" | string;
 	/**
-	 * TODO currently unsupported!
+	 * TODO currently unsupported & ignored!
 	 */
 	sentinel?: number;
 	/**
-	 * Array or vector length
+	 * Array or vector length (see {@link StructField.tag})
 	 */
 	len?: number;
 	/**
-	 * TODO currently unsupported!
+	 * TODO currently unsupported & ignored!
 	 */
 	default?: any;
 }
@@ -227,12 +252,25 @@ export interface Enum extends TopLevelType {
 	 * No u64 support, due to Typescript not supporting bigint enum values
 	 */
 	tag: Exclude<WasmUint, "u64">;
+	/**
+	 * List of possible values/IDs. Use {@link EnumValue}s for more detailed
+	 * config.
+	 */
 	values: (string | EnumValue)[];
 }
 
 export interface EnumValue {
+	/**
+	 * Enum value name/ID
+	 */
 	name: string;
+	/**
+	 * Optional associated numeric value
+	 */
 	value?: number;
+	/**
+	 * Optional docstring for this value
+	 */
 	doc?: string;
 }
 
@@ -245,16 +283,22 @@ export interface ICodeGen {
 	 * Optional source code to be appended after any generated type defs.
 	 */
 	post?: string;
-
+	/**
+	 * Docstring codegen
+	 */
 	doc: (
 		doc: string,
 		indent: string,
 		acc: string[],
 		topLevel?: boolean
 	) => void;
-
+	/**
+	 * Codegen for enum types.
+	 */
 	enum: (type: Enum, types: TypeColl, acc: string[]) => void;
-
+	/**
+	 * Codegen for struct types.
+	 */
 	struct: (type: Struct, types: TypeColl, acc: string[]) => void;
 }
 
