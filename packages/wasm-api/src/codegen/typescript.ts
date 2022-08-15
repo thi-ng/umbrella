@@ -146,7 +146,7 @@ export const TYPESCRIPT = (opts?: Partial<TSOpts>) => {
 ${I3}return mem.${f.type}.subarray(addr, addr + len);`
 							: `${I3}const addr = ${__ptr(
 									offset
-							  )};\n${__mapArray(struct, f, I3)}`
+							  )};\n${__mapArray(f, I3)}`
 					);
 				} else if (f.tag === "array" || f.tag === "vec") {
 					acc.push(
@@ -155,7 +155,7 @@ ${I3}return mem.${f.type}.subarray(addr, addr + len);`
 ${I3}return mem.${f.type}.subarray(addr, addr + ${f.len});`
 							: `${I3}const addr = ${__addr(
 									offset
-							  )};\n${__mapArray(struct, f, I3, f.len)}`
+							  )};\n${__mapArray(f, I3, f.len)}`
 					);
 				} else {
 					let setter: string;
@@ -202,8 +202,10 @@ const __shift = (type: string) => BIT_SHIFTS[<WasmPrim>type];
 const __addr = (offset: number) => (offset > 0 ? `(base + ${offset})` : "base");
 
 /** @internal */
-const __addrShift = (offset: number, shift: string) =>
-	__addr(offset) + " >>> " + __shift(shift);
+const __addrShift = (offset: number, shift: string) => {
+	const bits = __shift(shift);
+	return __addr(offset) + (bits ? " >>> " + bits : "");
+};
 
 /** @internal */
 const __ptr = (offset: number) => `mem.${USIZE}[${__addrShift(offset, USIZE)}]`;
@@ -216,16 +218,11 @@ const __mem = (type: string, offset: number) =>
 	`mem.${type}[${__addrShift(offset!, type)}]`;
 
 /** @internal */
-const __mapArray = (
-	struct: Struct,
-	f: StructField,
-	indent: string,
-	len: NumOrString = "len"
-) =>
+const __mapArray = (f: StructField, indent: string, len: NumOrString = "len") =>
 	prefixLines(
 		indent,
 		`const inst = $${f.type}(mem);
 const slice: ${f.type}[] = [];
-for(let i = 0; i < ${len}; i++) slice.push(inst.instance(addr + i * ${struct.__size}));
+for(let i = 0; i < ${len}; i++) slice.push(inst.instance(addr + i * ${f.__size}));
 return slice;`
 	);
