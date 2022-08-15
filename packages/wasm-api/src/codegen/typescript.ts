@@ -7,15 +7,37 @@ import {
 	TYPEDARRAY_CTORS,
 } from "@thi.ng/api/typedarray";
 import { isString } from "@thi.ng/checks/is-string";
-import type { Enum, ICodeGen, Struct, StructField, WasmPrim } from "../api.js";
+import {
+	Enum,
+	ICodeGen,
+	PKG_NAME,
+	Struct,
+	StructField,
+	USIZE,
+	WasmPrim,
+} from "../api.js";
 import { isBigNumeric, isNumeric, isPrim, prefixLines } from "./utils.js";
 
 export interface TSOpts {
+	/**
+	 * Indentation string
+	 *
+	 * @defaultValue "\t"
+	 */
 	indent: string;
 }
 
-const PKG_NAME = "@thi.ng/wasm-api";
-
+/**
+ * TypeScript code generator. Call with options and then pass to
+ * {@link generateTypes} (see its docs for further usage).
+ *
+ * @remarks
+ * This codegen generates interface and enum definitions for a {@link TypeColl}
+ * given to {@link generateTypes}. For structs it will also generate memory
+ * mapped wrappers with fully typed accessors.
+ *
+ * @param opts
+ */
 export const TYPESCRIPT = (opts?: Partial<TSOpts>) => {
 	const { indent } = { indent: "\t", ...opts };
 	const I = indent;
@@ -23,7 +45,7 @@ export const TYPESCRIPT = (opts?: Partial<TSOpts>) => {
 	const I3 = I2 + I;
 
 	const gen: ICodeGen = {
-		pre: `import type { WasmTypeBase, WasmTypeConstructor } from "${PKG_NAME}";\n`,
+		pre: `import type { WasmTypeBase, WasmTypeConstructor } from "${PKG_NAME}";`,
 
 		doc: (doc, indent, acc) => {
 			if (doc.indexOf("\n") !== -1) {
@@ -100,20 +122,19 @@ export const TYPESCRIPT = (opts?: Partial<TSOpts>) => {
 				if (f.tag === "ptr") {
 					acc.push(
 						prim
-							? `${I3}return mem.${f.type}[${__ptr(
-									offset
-							  )} >> ${__shift(f.type)}];`
+							? `${I3}return mem.${f.type}[${__ptrShift(
+									offset,
+									f.type
+							  )}];`
 							: `${I3}return $${f.type}.instance(${__ptr(
 									offset
 							  )});`
 					);
 				} else if (f.tag === "slice") {
 					acc.push(
-						`${I3}const len = ${__ptr(offset, 4)};`,
+						`${I3}const len = ${__ptr(offset + 4)};`,
 						prim
-							? `${I3}const addr = ${__ptr(offset)} >> ${__shift(
-									f.type
-							  )};
+							? `${I3}const addr = ${__ptrShift(offset, f.type)};
 ${I3}return mem.${f.type}.subarray(addr, addr + len);`
 							: `${I3}const addr = ${__ptr(
 									offset
@@ -122,37 +143,30 @@ ${I3}return mem.${f.type}.subarray(addr, addr + len);`
 				} else if (f.tag === "array" || f.tag === "vec") {
 					acc.push(
 						prim
-							? `${I3}const addr = (base + ${offset}) >> ${__shift(
-									f.type
-							  )};
+							? `${I3}const addr = ${__addrShift(offset, f.type)};
 ${I3}return mem.${f.type}.subarray(addr, addr + ${f.len});`
-							: `${I3}const addr = base + ${offset};\n${__mapArray(
-									struct,
-									f,
-									I3,
-									f.len
-							  )}`
+							: `${I3}const addr = ${__addr(
+									offset
+							  )};\n${__mapArray(struct, f, I3, f.len)}`
 					);
 				} else {
 					let setter: string;
 					if (prim) {
-						const addr = `mem.${f.type}[(base + ${
-							f.__offset
-						}) >> ${__shift(f.type)}]`;
+						const addr = __mem(f.type, f.__offset!);
 						acc.push(`${I3}return ${addr};`);
 						setter = `${addr} = x`;
 					} else if (types[f.type].type === "enum") {
 						const tag = (<Enum>types[f.type]).tag;
-						const addr = `mem.${tag}[(base + ${
-							f.__offset
-						}) >> ${__shift(tag)}]`;
+						const addr = __mem(tag, f.__offset!);
 						acc.push(`${I3}return ${addr};`);
 						setter = `${addr} = x`;
 					} else {
 						acc.push(
-							`${I3}return $${f.type}(mem).instance(base + ${offset});`
+							`${I3}return $${f.type}(mem).instance(${__addr(
+								offset
+							)});`
 						);
-						setter = `mem.u8.set(x.__bytes, base + ${offset})`;
+						setter = `mem.u8.set(x.__bytes, ${__addr(offset)})`;
 					}
 					// close getter
 					acc.push(`${I2}},`);
@@ -177,10 +191,21 @@ ${I3}return mem.${f.type}.subarray(addr, addr + ${f.len});`
 const __shift = (type: string) => BIT_SHIFTS[<WasmPrim>type];
 
 /** @internal */
-const __ptr = (offset: number, extra = 0) =>
-	`mem.u32[(base${offset > 0 ? ` + ${offset}` : ""}${
-		extra > 0 ? ` + ${extra}` : ""
-	}) >> 2]`;
+const __addr = (offset: number) => (offset > 0 ? `(base + ${offset})` : "base");
+
+/** @internal */
+const __addrShift = (offset: number, shift: string) =>
+	__addr(offset) + " >>> " + __shift(shift);
+
+/** @internal */
+const __ptr = (offset: number) => `mem.${USIZE}[${__addrShift(offset, USIZE)}]`;
+
+/** @internal */
+const __ptrShift = (offset: number, shift: string) =>
+	__ptr(offset) + " >>> " + __shift(shift);
+
+const __mem = (type: string, offset: number) =>
+	`mem.${type}[${__addrShift(offset!, type)}]`;
 
 /** @internal */
 const __mapArray = (

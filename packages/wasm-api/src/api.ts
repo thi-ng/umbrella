@@ -1,5 +1,7 @@
-import type { FloatType, Fn, Fn2, IntType } from "@thi.ng/api";
+import type { FloatType, Fn, Fn2 } from "@thi.ng/api";
 import type { WasmBridge } from "./bridge.js";
+
+export const PKG_NAME = "@thi.ng/wasm-api";
 
 export type BigIntArray = bigint[] | BigInt64Array | BigUint64Array;
 
@@ -135,7 +137,7 @@ export interface WasmType<T> {
 
 export type WasmTypeConstructor<T> = Fn<WasmMemViews, WasmType<T>>;
 
-export type WasmInt = IntType | "i64";
+export type WasmInt = "i8" | "i16" | "i32" | "i64";
 export type WasmUint = "u8" | "u16" | "u32" | "u64";
 export type WasmFloat = FloatType;
 export type WasmPrim = WasmInt | WasmUint | WasmFloat;
@@ -254,3 +256,12 @@ export interface ICodeGen {
 
 	struct: (type: Struct, types: TypeColl, acc: string[]) => void;
 }
+
+/**
+ * WASM usize type. Assuming wasm32 until wasm64 surfaces, then need an option.
+ */
+export const USIZE = "u32";
+/**
+ * Byte size of {@link USIZE}.
+ */
+export const USIZE_SIZE = 4;

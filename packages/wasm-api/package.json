@@ -88,11 +88,11 @@
 		"./api": {
 			"default": "./api.js"
 		},
-		"./bindings": {
-			"default": "./bindings.js"
-		},
 		"./bridge": {
 			"default": "./bridge.js"
+		},
+		"./codegen": {
+			"default": "./codegen.js"
 		},
 		"./codegen/typescript": {
 			"default": "./codegen/typescript.js"
