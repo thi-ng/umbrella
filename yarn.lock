@@ -1941,7 +1941,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/args@^2.1.14, @thi.ng/args@workspace:^, @thi.ng/args@workspace:packages/args":
+"@thi.ng/args@^2.2.0, @thi.ng/args@workspace:^, @thi.ng/args@workspace:packages/args":
   version: 0.0.0-use.local
   resolution: "@thi.ng/args@workspace:packages/args"
   dependencies:
@@ -3812,7 +3812,7 @@ __metadata:
   dependencies:
     "@microsoft/api-extractor": ^7.25.0
     "@thi.ng/api": ^8.4.0
-    "@thi.ng/args": ^2.1.14
+    "@thi.ng/args": ^2.2.0
     "@thi.ng/bench": ^3.1.11
     "@thi.ng/errors": ^2.1.10
     "@thi.ng/logger": ^1.2.0
@@ -4751,7 +4751,7 @@ __metadata:
   dependencies:
     "@microsoft/api-extractor": ^7.25.0
     "@thi.ng/api": ^8.4.0
-    "@thi.ng/args": ^2.1.14
+    "@thi.ng/args": ^2.2.0
     "@thi.ng/binary": ^3.3.3
     "@thi.ng/checks": ^3.2.4
     "@thi.ng/compare": ^2.1.10

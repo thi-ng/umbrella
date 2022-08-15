@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-08-15T15:40:55Z
+- **Last updated**: 2022-08-15T23:41:37Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,20 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [0.7.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/wasm-api@0.7.0) (2022-08-15)
+
+#### 🚀 Features
+
+- add CLI wrapper for codegens ([683a560](https://github.com/thi-ng/umbrella/commit/683a560))
+- update TSOpts & TS codegen ([4f6bbbf](https://github.com/thi-ng/umbrella/commit/4f6bbbf))
+  - add `uppercaseEnum` option to force UC enum IDs
+- update helper predicates ([65b23d4](https://github.com/thi-ng/umbrella/commit/65b23d4))
+
+#### 🩹 Bug fixes
+
+- allow signed ints for enum tags ([78d0822](https://github.com/thi-ng/umbrella/commit/78d0822))
+- correct TS __mapArray codegen ([289b137](https://github.com/thi-ng/umbrella/commit/289b137))
 
 ## [0.6.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/wasm-api@0.6.0) (2022-08-15)
 
