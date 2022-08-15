@@ -49,7 +49,7 @@ export class WasmBridge<T extends WasmExports = WasmExports>
 	utf8Encoder: TextEncoder = new TextEncoder();
 	imports!: WebAssembly.Imports;
 	exports!: T;
-	core: CoreAPI;
+	api: CoreAPI;
 
 	constructor(
 		public modules: Record<string, IWasmAPI<T>> = {},
@@ -60,7 +60,7 @@ export class WasmBridge<T extends WasmExports = WasmExports>
 			(method: FnU2<number, TypedArray | BigIntArray>) =>
 			(addr: number, len: number) =>
 				this.logger.debug(method(addr, len).join(", "));
-		this.core = {
+		this.api = {
 			printI8: logN,
 			printU8: logN,
 			printU8Hex: (x: number) => this.logger.debug(`0x${U8(x)}`),
@@ -181,7 +181,7 @@ export class WasmBridge<T extends WasmExports = WasmExports>
 	 * bridge.getImports();
 	 * {
 	 *   // imports defined by the core API of the bridge itself
-	 *   core: { ... },
+	 *   wasmapi: { ... },
 	 *   // imports defined by the CustomAPI module
 	 *   custom: { ... }
 	 * }
@@ -196,7 +196,7 @@ export class WasmBridge<T extends WasmExports = WasmExports>
 	 */
 	getImports(): WebAssembly.Imports {
 		if (!this.imports) {
-			this.imports = { core: this.core };
+			this.imports = { wasmapi: this.api };
 			for (let id in this.modules) {
 				if (this.imports[id] !== undefined) {
 					illegalArgs(`attempt to redeclare API module ${id}`);
