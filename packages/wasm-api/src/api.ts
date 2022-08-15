@@ -1,4 +1,4 @@
-import type { FloatType, Fn, Fn2 } from "@thi.ng/api";
+import type { BigType, FloatType, Fn, Fn2 } from "@thi.ng/api";
 import type { WasmBridge } from "./bridge.js";
 
 export const PKG_NAME = "@thi.ng/wasm-api";
@@ -141,6 +141,7 @@ export type WasmInt = "i8" | "i16" | "i32" | "i64";
 export type WasmUint = "u8" | "u16" | "u32" | "u64";
 export type WasmFloat = FloatType;
 export type WasmPrim = WasmInt | WasmUint | WasmFloat;
+export type WasmPrim32 = Exclude<WasmPrim, BigType>;
 
 export type TypeColl = Record<string, TopLevelType>;
 
