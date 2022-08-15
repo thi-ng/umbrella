@@ -25,6 +25,10 @@ export interface TSOpts {
 	 * @defaultValue "\t"
 	 */
 	indent: string;
+	/**
+	 * If true (default), forces uppercase enums
+	 */
+	uppercaseEnums: boolean;
 }
 
 /**
@@ -39,7 +43,11 @@ export interface TSOpts {
  * @param opts
  */
 export const TYPESCRIPT = (opts?: Partial<TSOpts>) => {
-	const { indent } = { indent: "\t", ...opts };
+	const { indent, uppercaseEnums } = {
+		indent: "\t",
+		uppercaseEnums: true,
+		...opts,
+	};
 	const I = indent;
 	const I2 = I + I;
 	const I3 = I2 + I;
@@ -66,10 +74,10 @@ export const TYPESCRIPT = (opts?: Partial<TSOpts>) => {
 				var line = indent;
 				if (!isString(v)) {
 					v.doc && gen.doc(v.doc, indent, acc);
-					line += v.name;
+					line += uppercaseEnums ? v.name.toUpperCase() : v.name;
 					if (v.value != null) line += ` = ${v.value}`;
 				} else {
-					line += v;
+					line += uppercaseEnums ? v.toUpperCase() : v;
 				}
 				acc.push(line + ",");
 			}
