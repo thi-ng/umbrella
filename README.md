@@ -41,6 +41,7 @@ list of topics):
 - S-expression parser & runtime (interpreter) infrastructure for custom DSL creation
 - Low-level tooling for binary data, shared memory/WASM/WebGL interop
 - SIMD batch-processing of vector data
+- WebAssembly bridge API & data structure bindings code generators for multiple target languages
 - Various interpolations, math helpers, automatic differentiation (Dual numbers)
 - etc. (see package overview below)
 
@@ -161,11 +162,12 @@ feature or `develop` branches)
 
 ### Latest updates
 
-As of: 2022-08-15
+As of: 2022-08-16
 
 | Status                                        | Project                                   | Version                                                                                                         | Changelog                                     |
 |-----------------------------------------------|-------------------------------------------|-----------------------------------------------------------------------------------------------------------------|-----------------------------------------------|
 | ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/api`](./packages/api)           | [![version](https://img.shields.io/npm/v/@thi.ng/api.svg)](https://www.npmjs.com/package/@thi.ng/api)           | [changelog](./packages/api/CHANGELOG.md)      |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/args`](./packages/args)         | [![version](https://img.shields.io/npm/v/@thi.ng/args.svg)](https://www.npmjs.com/package/@thi.ng/args)         | [changelog](./packages/args/CHANGELOG.md)     |
 | ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/wasm-api`](./packages/wasm-api) | [![version](https://img.shields.io/npm/v/@thi.ng/wasm-api.svg)](https://www.npmjs.com/package/@thi.ng/wasm-api) | [changelog](./packages/wasm-api/CHANGELOG.md) |
 
 <!--
