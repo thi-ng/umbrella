@@ -165,7 +165,8 @@ As of: 2022-08-15
 
 | Status                                        | Project                                   | Version                                                                                                         | Changelog                                     |
 |-----------------------------------------------|-------------------------------------------|-----------------------------------------------------------------------------------------------------------------|-----------------------------------------------|
-| ![](https://img.shields.io/badge/-feat-green)   | [`@thi.ng/wasm-api`](./packages/wasm-api) | [![version](https://img.shields.io/npm/v/@thi.ng/wasm-api.svg)](https://www.npmjs.com/package/@thi.ng/wasm-api) | [changelog](./packages/wasm-api/CHANGELOG.md) |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/api`](./packages/api)           | [![version](https://img.shields.io/npm/v/@thi.ng/api.svg)](https://www.npmjs.com/package/@thi.ng/api)           | [changelog](./packages/api/CHANGELOG.md)      |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/wasm-api`](./packages/wasm-api) | [![version](https://img.shields.io/npm/v/@thi.ng/wasm-api.svg)](https://www.npmjs.com/package/@thi.ng/wasm-api) | [changelog](./packages/wasm-api/CHANGELOG.md) |
 
 <!--
 ![](https://img.shields.io/badge/-feat-green)
