@@ -161,14 +161,11 @@ feature or `develop` branches)
 
 ### Latest updates
 
-As of: 2022-08-09
+As of: 2022-08-15
 
 | Status                                        | Project                                   | Version                                                                                                         | Changelog                                     |
 |-----------------------------------------------|-------------------------------------------|-----------------------------------------------------------------------------------------------------------------|-----------------------------------------------|
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/logger`](./packages/logger)     | [![version](https://img.shields.io/npm/v/@thi.ng/logger.svg)](https://www.npmjs.com/package/@thi.ng/logger)     | [changelog](./packages/logger/CHANGELOG.md)   |
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/vectors`](./packages/vectors)   | [![version](https://img.shields.io/npm/v/@thi.ng/vectors.svg)](https://www.npmjs.com/package/@thi.ng/vectors)   | [changelog](./packages/vectors/CHANGELOG.md)  |
-| ![](https://img.shields.io/badge/-new-cyan)   | [`@thi.ng/wasm-api`](./packages/wasm-api) | [![version](https://img.shields.io/npm/v/@thi.ng/wasm-api.svg)](https://www.npmjs.com/package/@thi.ng/wasm-api) | [changelog](./packages/wasm-api/CHANGELOG.md) |
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/webgl`](./packages/webgl)       | [![version](https://img.shields.io/npm/v/@thi.ng/webgl.svg)](https://www.npmjs.com/package/@thi.ng/webgl)       | [changelog](./packages/webgl/CHANGELOG.md)    |
+| ![](https://img.shields.io/badge/-feat-green)   | [`@thi.ng/wasm-api`](./packages/wasm-api) | [![version](https://img.shields.io/npm/v/@thi.ng/wasm-api.svg)](https://www.npmjs.com/package/@thi.ng/wasm-api) | [changelog](./packages/wasm-api/CHANGELOG.md) |
 
 <!--
 ![](https://img.shields.io/badge/-feat-green)
