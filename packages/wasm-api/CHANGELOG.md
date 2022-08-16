@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-08-15T23:41:37Z
+- **Last updated**: 2022-08-16T16:05:07Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,17 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [0.8.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/wasm-api@0.8.0) (2022-08-16)
+
+#### 🚀 Features
+
+- add preliminary string handling support ([3da4efe](https://github.com/thi-ng/umbrella/commit/3da4efe))
+  - update/rename IWasmMemoryAccess (add string getter/setter)
+  - update StructField.type (add `string`)
+  - add CodeGenOpts.stringType option
+  - update codegen fns
+  - update TS & Zig codegen impls
 
 ## [0.7.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/wasm-api@0.7.0) (2022-08-15)
 

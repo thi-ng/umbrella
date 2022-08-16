@@ -2822,7 +2822,7 @@ __metadata:
     "@thi.ng/api": ^8.4.0
     "@thi.ng/associative": ^6.2.5
     "@thi.ng/color": ^5.1.10
-    "@thi.ng/geom": ^3.4.8
+    "@thi.ng/geom": ^3.4.9
     "@thi.ng/geom-api": ^3.3.7
     "@thi.ng/geom-clip-line": ^2.1.24
     "@thi.ng/geom-resample": ^2.1.24
@@ -2947,7 +2947,7 @@ __metadata:
     "@thi.ng/checks": ^3.2.4
     "@thi.ng/defmulti": ^2.1.12
     "@thi.ng/errors": ^2.1.10
-    "@thi.ng/geom": ^3.4.8
+    "@thi.ng/geom": ^3.4.9
     "@thi.ng/geom-api": ^3.3.7
     "@thi.ng/geom-isoline": ^2.1.21
     "@thi.ng/geom-poly-utils": ^2.3.8
@@ -3042,7 +3042,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/geom@^3.4.8, @thi.ng/geom@workspace:^, @thi.ng/geom@workspace:packages/geom":
+"@thi.ng/geom@^3.4.9, @thi.ng/geom@workspace:^, @thi.ng/geom@workspace:packages/geom":
   version: 0.0.0-use.local
   resolution: "@thi.ng/geom@workspace:packages/geom"
   dependencies:
@@ -3069,7 +3069,7 @@ __metadata:
     "@thi.ng/hiccup": ^4.2.14
     "@thi.ng/hiccup-svg": ^4.3.9
     "@thi.ng/math": ^5.3.6
-    "@thi.ng/matrices": ^2.1.21
+    "@thi.ng/matrices": ^2.1.22
     "@thi.ng/random": ^3.3.6
     "@thi.ng/strings": ^3.3.10
     "@thi.ng/testament": ^0.2.11
@@ -3410,7 +3410,7 @@ __metadata:
     "@microsoft/api-extractor": ^7.25.0
     "@thi.ng/api": ^8.4.0
     "@thi.ng/checks": ^3.2.4
-    "@thi.ng/geom": ^3.4.8
+    "@thi.ng/geom": ^3.4.9
     "@thi.ng/geom-api": ^3.3.7
     "@thi.ng/geom-isec": ^2.1.24
     "@thi.ng/geom-tessellate": ^2.1.24
@@ -3639,7 +3639,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/matrices@^2.1.21, @thi.ng/matrices@workspace:^, @thi.ng/matrices@workspace:packages/matrices":
+"@thi.ng/matrices@^2.1.22, @thi.ng/matrices@workspace:^, @thi.ng/matrices@workspace:packages/matrices":
   version: 0.0.0-use.local
   resolution: "@thi.ng/matrices@workspace:packages/matrices"
   dependencies:
@@ -4278,7 +4278,7 @@ __metadata:
     "@thi.ng/api": ^8.4.0
     "@thi.ng/checks": ^3.2.4
     "@thi.ng/errors": ^2.1.10
-    "@thi.ng/matrices": ^2.1.21
+    "@thi.ng/matrices": ^2.1.22
     "@thi.ng/testament": ^0.2.11
     "@thi.ng/vectors": ^7.5.13
     rimraf: ^3.0.2
@@ -4345,7 +4345,7 @@ __metadata:
     "@thi.ng/checks": ^3.2.4
     "@thi.ng/errors": ^2.1.10
     "@thi.ng/math": ^5.3.6
-    "@thi.ng/matrices": ^2.1.21
+    "@thi.ng/matrices": ^2.1.22
     "@thi.ng/pixel": ^3.4.12
     "@thi.ng/shader-ast": ^0.12.18
     "@thi.ng/testament": ^0.2.11
@@ -4782,7 +4782,7 @@ __metadata:
     "@thi.ng/transducers": ^8.3.12
     "@thi.ng/vector-pools": ^3.1.22
     "@thi.ng/vectors": ^7.5.13
-    "@thi.ng/webgl": ^6.2.1
+    "@thi.ng/webgl": ^6.2.2
     "@types/node": ^18.6.4
     rimraf: ^3.0.2
     tools: "workspace:^"
@@ -4800,7 +4800,7 @@ __metadata:
     "@thi.ng/shader-ast": ^0.12.18
     "@thi.ng/shader-ast-glsl": ^0.4.18
     "@thi.ng/testament": ^0.2.11
-    "@thi.ng/webgl": ^6.2.1
+    "@thi.ng/webgl": ^6.2.2
     "@types/node": ^18.6.4
     rimraf: ^3.0.2
     tools: "workspace:^"
@@ -4809,7 +4809,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/webgl@^6.2.1, @thi.ng/webgl@workspace:^, @thi.ng/webgl@workspace:packages/webgl":
+"@thi.ng/webgl@^6.2.2, @thi.ng/webgl@workspace:^, @thi.ng/webgl@workspace:packages/webgl":
   version: 0.0.0-use.local
   resolution: "@thi.ng/webgl@workspace:packages/webgl"
   dependencies:
@@ -4821,7 +4821,7 @@ __metadata:
     "@thi.ng/equiv": ^2.1.9
     "@thi.ng/errors": ^2.1.10
     "@thi.ng/logger": ^1.2.0
-    "@thi.ng/matrices": ^2.1.21
+    "@thi.ng/matrices": ^2.1.22
     "@thi.ng/memoize": ^3.1.10
     "@thi.ng/pixel": ^3.4.12
     "@thi.ng/shader-ast": ^0.12.18

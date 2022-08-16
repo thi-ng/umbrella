@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-08-07T15:28:01Z
+- **Last updated**: 2022-08-16T16:05:07Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,12 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [2.1.22](https://github.com/thi-ng/umbrella/tree/@thi.ng/matrices@2.1.22) (2022-08-16)
+
+#### 🩹 Bug fixes
+
+- fix [#352](https://github.com/thi-ng/umbrella/issues/352), update set() return var ([d32026c](https://github.com/thi-ng/umbrella/commit/d32026c))
 
 ### [2.1.19](https://github.com/thi-ng/umbrella/tree/@thi.ng/matrices@2.1.19) (2022-08-06)
 
