@@ -407,12 +407,31 @@ foo.color
 // Float32Array(4) [0.1, 0.2, 0.3, 0.4]
 
 // this even applies to arrays using other types
-// (setters are currently only supported for scalar values, incl. enums)
 foo.bars[2].kind = Kind.BEST;
 
 // IMPORTANT: any modifications like this are directly
 // applied to the underlying WASM memory...
 ```
+
+**IMPORTANT:** Struct field setters are currently only supported for single
+values, incl. enums, strings, structs. The latter 2 will always be copied by
+value (mem copy). Arrays or slices of strings do not currently provide write
+access...
+
+### String handling
+
+Most low-level languages deal with strings very differently and alas there's no
+general standard. Some have UTF-8/16 support, others don't. In some languages
+(incl. C & Zig), strings are stored as zero terminated, in others they aren't...
+It's outside the scope of this package to provide an allround out-of-the-box
+solution. However, the code generators provide the global `stringType` option to
+interpret the `string` type of a struct field in different ways:
+
+- `slice` (default): Considers strings as Zig-style slices (i.e. pointer + length)
+- `ptr`: Considers strings as C-style raw `*char` pointer (without any length)
+
+Note: If setting this global option to `ptr`, it also has to be stated for the
+TypeScript code generator explicitly.
 
 ${status}
 
