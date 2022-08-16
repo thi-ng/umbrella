@@ -193,7 +193,7 @@ to invoke the codegenerator(s) from JSON type definitions and to write the
 generated source code(s) to different files:
 
 ```text
-$ npx run @thi.ng/wasm-api
+$ npx @thi.ng/wasm-api
 
  █ █   █           │
 ██ █               │
