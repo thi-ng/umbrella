@@ -17,6 +17,9 @@ import {
 } from "./api.js";
 import { isNumeric } from "./codegen/utils.js";
 
+/**
+ * Global/shared code generator options.
+ */
 export interface CodeGenOpts {
 	/**
 	 * Optional string to be injected before generated type defs (but after
@@ -130,12 +133,39 @@ const prepareType = defmulti<TopLevelType, TypeColl, void>(
 	}
 );
 
+/**
+ * Takes a type collection and analyzes each analyzed to compute individual
+ * alignments and sizes.
+ *
+ * @remarks
+ * This function is idempotent and called automatically by
+ * {@link generateTypes}. Only exported for dev/debug purposes.
+ *
+ * @param types
+ *
+ * @internal
+ */
 export const prepareTypes = (types: TypeColl) => {
 	for (let id in types) {
 		prepareType(types[id], types);
 	}
 };
 
+/**
+ * Code generator main entry point. Takes an object of {@link TopLevelType}
+ * definitions, an actual code generator implementation for a single target
+ * language and (optional) global codegen options. Returns generated source code
+ * for all given types as a single string.
+ *
+ * @remarks
+ * Before actual code generation the types are first analyzed to compute their
+ * alignments and sizes. This is only ever done once (idempotent), even if
+ * `generateTypes()` is called multiple times for different target langs.
+ *
+ * @param types
+ * @param codegen
+ * @param opts
+ */
 export const generateTypes = (
 	types: TypeColl,
 	codegen: ICodeGen,

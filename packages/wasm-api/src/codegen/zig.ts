@@ -2,6 +2,9 @@ import { isString } from "@thi.ng/checks/is-string";
 import type { ICodeGen } from "../api.js";
 import { prefixLines } from "./utils.js";
 
+/**
+ * Zig code generator options.
+ */
 export interface ZigOpts {
 	/**
 	 * If true, generates various struct & struct field analysis functions

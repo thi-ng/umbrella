@@ -18,6 +18,9 @@ import {
 } from "../api.js";
 import { isBigNumeric, isNumeric, isPrim, prefixLines } from "./utils.js";
 
+/**
+ * TypeScript code generator options.
+ */
 export interface TSOpts {
 	/**
 	 * Indentation string
