@@ -26,7 +26,7 @@ export interface ZigOpts {
  * @param opts
  */
 export const ZIG = (opts?: Partial<ZigOpts>) => {
-	const { debug } = { debug: false, ...opts };
+	const { debug } = <ZigOpts>{ debug: false, ...opts };
 	const gen: ICodeGen = {
 		doc: (doc, indent, acc, topLevel = false) => {
 			acc.push(prefixLines(topLevel ? "//! " : indent + "/// ", doc));
@@ -54,23 +54,22 @@ export const ZIG = (opts?: Partial<ZigOpts>) => {
 			const ftypes: Record<string, string> = {};
 			for (let f of struct.fields) {
 				f.doc && gen.doc(f.doc, "    ", acc);
-				var ftype: string;
+				let ftype = f.type === "string" ? "[]const u8" : f.type;
 				switch (f.tag) {
 					case "array":
-						ftype = `[${f.len}]${f.type}`;
+						ftype = `[${f.len}]${ftype}`;
 						break;
 					case "slice":
-						ftype = `[]${f.type}`;
+						ftype = `[]${ftype}`;
 						break;
 					case "vec":
-						ftype = `@Vector(${f.len}, ${f.type})`;
+						ftype = `@Vector(${f.len}, ${ftype})`;
 						break;
 					case "ptr":
-						ftype = `*${f.len ? `[${f.len}]` : ""}${f.type}`;
+						ftype = `*${f.len ? `[${f.len}]` : ""}${ftype}`;
 						break;
 					case "scalar":
 					default:
-						ftype = f.type;
 				}
 				ftypes[f.name] = ftype;
 				acc.push(`    ${f.name}: ${ftype},`);

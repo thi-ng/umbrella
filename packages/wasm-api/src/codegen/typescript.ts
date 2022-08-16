@@ -14,9 +14,16 @@ import {
 	Struct,
 	StructField,
 	USIZE,
+	USIZE_SIZE,
 	WasmPrim,
 } from "../api.js";
-import { isBigNumeric, isNumeric, isPrim, prefixLines } from "./utils.js";
+import {
+	isBigNumeric,
+	isNumeric,
+	isWasmPrim,
+	isWasmString,
+	prefixLines,
+} from "./utils.js";
 
 /**
  * TypeScript code generator options.
@@ -30,8 +37,14 @@ export interface TSOpts {
 	indent: string;
 	/**
 	 * If true (default), forces uppercase enums
+	 *
+	 * @defaultValue true
 	 */
 	uppercaseEnums: boolean;
+	/**
+	 * Same as {@link CodeGenOpts.stringType}.
+	 */
+	stringType: "slice" | "ptr";
 }
 
 /**
@@ -46,8 +59,9 @@ export interface TSOpts {
  * @param opts
  */
 export const TYPESCRIPT = (opts?: Partial<TSOpts>) => {
-	const { indent, uppercaseEnums } = {
+	const { indent, stringType, uppercaseEnums } = <TSOpts>{
 		indent: "\t",
+		stringType: "slice",
 		uppercaseEnums: true,
 		...opts,
 	};
@@ -74,7 +88,7 @@ export const TYPESCRIPT = (opts?: Partial<TSOpts>) => {
 			const e = <Enum>type;
 			acc.push(`export enum ${e.name} {`);
 			for (let v of e.values) {
-				var line = indent;
+				let line = indent;
 				if (!isString(v)) {
 					v.doc && gen.doc(v.doc, indent, acc);
 					line += uppercaseEnums ? v.name.toUpperCase() : v.name;
@@ -129,43 +143,79 @@ export const TYPESCRIPT = (opts?: Partial<TSOpts>) => {
 			for (let f of struct.fields) {
 				const offset = f.__offset || 0;
 				acc.push(`${I2}get ${f.name}(): ${returnTypes[f.name]} {`);
-				const prim = isPrim(f.type);
+				const isPrim = isWasmPrim(f.type);
+				const isStr = isWasmString(f.type);
 				if (f.tag === "ptr") {
-					acc.push(
-						prim
-							? `${I3}return mem.${f.type}[${__ptrShift(
-									offset,
-									f.type
-							  )}];`
-							: `${I3}return $${f.type}.instance(${__ptr(
-									offset
-							  )});`
-					);
+					if (isPrim) {
+						acc.push(
+							`${I3}return mem.${f.type}[${__ptrShift(
+								offset,
+								f.type
+							)}];`
+						);
+					} else if (isStr) {
+						acc.push(
+							// double deref
+							stringType === "slice"
+								? `${I3}return mem.getString(mem.${USIZE}[${__ptr(
+										offset
+								  )} >>> ${USIZE_SIZE}])`
+								: `${I3}return mem.getString(${__ptr(offset)})`
+						);
+					} else {
+						acc.push(
+							`${I3}return $${f.type}.instance(${__ptr(offset)});`
+						);
+					}
 				} else if (f.tag === "slice") {
-					acc.push(
-						`${I3}const len = ${__ptr(offset + 4)};`,
-						prim
-							? `${I3}const addr = ${__ptrShift(offset, f.type)};
-${I3}return mem.${f.type}.subarray(addr, addr + len);`
-							: `${I3}const addr = ${__ptr(
-									offset
-							  )};\n${__mapArray(f, I3)}`
-					);
+					acc.push(`${I3}const len = ${__ptr(offset + 4)};`);
+					if (isPrim) {
+						acc.push(
+							`${I3}const addr = ${__ptrShift(offset, f.type)};`,
+							`${I3}return mem.${f.type}.subarray(addr, addr + len);`
+						);
+					} else if (isStr) {
+						acc.push(
+							`${I3}const addr = ${__ptr(offset)};`,
+							__mapStringArray(I3, stringType)
+						);
+					} else {
+						acc.push(
+							`${I3}const addr = ${__ptr(offset)};`,
+							__mapArray(f, I3)
+						);
+					}
 				} else if (f.tag === "array" || f.tag === "vec") {
-					acc.push(
-						prim
-							? `${I3}const addr = ${__addrShift(offset, f.type)};
-${I3}return mem.${f.type}.subarray(addr, addr + ${f.len});`
-							: `${I3}const addr = ${__addr(
-									offset
-							  )};\n${__mapArray(f, I3, f.len)}`
-					);
+					if (isPrim) {
+						acc.push(
+							`${I3}const addr = ${__addrShift(offset, f.type)};`,
+							`${I3}return mem.${f.type}.subarray(addr, addr + ${f.len});`
+						);
+					} else if (isStr) {
+						acc.push(
+							`${I3}const addr = ${__addr(offset)};`,
+							__mapStringArray(I3, stringType, f.len)
+						);
+					} else {
+						acc.push(
+							`${I3}const addr = ${__addr(offset)};`,
+							__mapArray(f, I3, f.len)
+						);
+					}
 				} else {
 					let setter: string;
-					if (prim) {
+					if (isPrim) {
 						const addr = __mem(f.type, f.__offset!);
 						acc.push(`${I3}return ${addr};`);
 						setter = `${addr} = x`;
+					} else if (isStr) {
+						acc.push(`${I3}return mem.getString(${__ptr(offset)})`);
+						setter =
+							stringType === "slice"
+								? `mem.setString(x, ${__ptr(offset)}, ${__ptr(
+										offset + 4
+								  )} + 1, true);`
+								: `throw new Error("unsupported for raw string pointers")`;
 					} else if (types[f.type].type === "enum") {
 						const tag = (<Enum>types[f.type]).tag;
 						const addr = __mem(tag, f.__offset!);
@@ -229,3 +279,17 @@ const slice: ${f.type}[] = [];
 for(let i = 0; i < ${len}; i++) slice.push(inst.instance(addr + i * ${f.__size}));
 return slice;`
 	);
+
+/** @internal */
+const __mapStringArray = (
+	indent: string,
+	type: TSOpts["stringType"],
+	len: NumOrString = "len"
+) =>
+	prefixLines(indent, [
+		"const slice: string[] = [];",
+		`for(let i = 0; i < ${len}; i++) slice.push(mem.getString(mem.${USIZE}[(addr + i * ${
+			USIZE_SIZE * (type === "slice" ? 2 : 1)
+		}) >>> ${__shift(USIZE)}]));`,
+		"return slice;",
+	]);

@@ -71,7 +71,7 @@ export interface WasmExports {
 	_wasm_free(addr: number, numBytes: number): void;
 }
 
-export interface WasmMemViews {
+export interface IWasmMemoryAccess {
 	i8: Int8Array;
 	u8: Uint8Array;
 	i16: Int16Array;
@@ -82,6 +82,38 @@ export interface WasmMemViews {
 	u64: BigUint64Array;
 	f32: Float32Array;
 	f64: Float64Array;
+
+	/**
+	 * Reads UTF-8 encoded string from given address and optional byte length.
+	 * The default length is 0, which will be interpreted as a zero-terminated
+	 * string. Returns string.
+	 *
+	 * @param addr
+	 * @param len
+	 */
+	getString(addr: number, len?: number): string;
+
+	/**
+	 * Encodes given string as UTF-8 and writes it to WASM memory starting at
+	 * `addr`. By default the string will be zero-terminated and only `maxBytes`
+	 * will be written. Returns the number of bytes written.
+	 *
+	 * @remarks
+	 * An error will be thrown if the encoded string doesn't fully fit into the
+	 * designated memory region (also note that there might need to be space for
+	 * the additional sentinel/termination byte).
+	 *
+	 * @param str
+	 * @param addr
+	 * @param maxBytes
+	 * @param terminate
+	 */
+	setString(
+		str: string,
+		addr: number,
+		maxBytes: number,
+		terminate?: boolean
+	): number;
 }
 
 /**
@@ -135,7 +167,7 @@ export interface WasmType<T> {
 	instance: Fn<number, T>;
 }
 
-export type WasmTypeConstructor<T> = Fn<WasmMemViews, WasmType<T>>;
+export type WasmTypeConstructor<T> = Fn<IWasmMemoryAccess, WasmType<T>>;
 
 export type WasmInt = "i8" | "i16" | "i32" | "i64";
 export type WasmUint = "u8" | "u16" | "u32" | "u64";
@@ -225,13 +257,16 @@ export interface StructField extends TypeInfo {
 	 */
 	tag?: "scalar" | "array" | "ptr" | "slice" | "vec";
 	/**
-	 * Field base type. If not a {@link WasmPrim} or `opaque`, the value is
-	 * interpreted as another type name in the {@link TypeColl}.
+	 * Field base type. If not a {@link WasmPrim}, `string` or `opaque`, the
+	 * value is interpreted as another type name in the {@link TypeColl}.
+	 *
+	 * @remarks
+	 * Please see {@link CodeGenOpts.stringType} and consult package readme for
+	 * further details re: string handling.
 	 *
 	 * TODO `opaque` currently unsupported.
-	 * TODO add string support (see {@link StructField.sentinel})
 	 */
-	type: WasmPrim | "opaque" | string;
+	type: WasmPrim | "string" | "opaque" | string;
 	/**
 	 * TODO currently unsupported & ignored!
 	 */

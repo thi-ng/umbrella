@@ -19,7 +19,7 @@ import { resolve } from "path";
 import type { Struct, TopLevelType, TypeColl } from "./api.js";
 import { CodeGenOpts, generateTypes } from "./codegen.js";
 import { TSOpts, TYPESCRIPT } from "./codegen/typescript.js";
-import { isPrim } from "./codegen/utils.js";
+import { isWasmPrim, isWasmString } from "./codegen/utils.js";
 import { ZIG, ZigOpts } from "./codegen/zig.js";
 
 const GENERATORS = <const>{ ts: TYPESCRIPT, zig: ZIG };
@@ -121,7 +121,7 @@ const validateTypeRefs = (coll: TypeColl) => {
 	for (let spec of Object.values(coll)) {
 		if (spec.type !== "struct") continue;
 		for (let f of (<Struct>spec).fields) {
-			if (!(isPrim(f.type) || coll[f.type])) {
+			if (!(isWasmPrim(f.type) || isWasmString(f.type) || coll[f.type])) {
 				invalidSpec(
 					(<any>spec).__path,
 					`structfield ${spec.name}.${f.name} of unknown type: ${f.type}`

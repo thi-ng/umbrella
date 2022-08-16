@@ -9,7 +9,7 @@ import type {
 	CoreAPI,
 	IWasmAPI,
 	WasmExports,
-	WasmMemViews,
+	IWasmMemoryAccess,
 } from "./api.js";
 
 const B32 = BigInt(32);
@@ -33,7 +33,7 @@ export const OutOfMemoryError = defError(() => "Out of memory");
  * support it. No polyfill is provided.
  */
 export class WasmBridge<T extends WasmExports = WasmExports>
-	implements WasmMemViews
+	implements IWasmMemoryAccess
 {
 	i8!: Int8Array;
 	u8!: Uint8Array;
@@ -491,7 +491,11 @@ export class WasmBridge<T extends WasmExports = WasmExports>
 			this.u8.subarray(addr, addr + maxBytes)
 		).written!;
 		if (len == null || len >= maxBytes + (terminate ? 0 : 1)) {
-			illegalArgs(`error writing string to 0x${U32(addr)}`);
+			illegalArgs(
+				`error writing string to 0x${U32(
+					addr
+				)} (max. ${maxBytes} bytes, got at least ${str.length})`
+			);
 		}
 		if (terminate) {
 			this.u8[addr + len!] = 0;

@@ -1,4 +1,5 @@
 import type { BigType } from "@thi.ng/api";
+import { isString } from "@thi.ng/checks/is-string";
 import type { WasmPrim, WasmPrim32 } from "../api.js";
 
 /**
@@ -21,18 +22,19 @@ export const isBigNumeric = (x: string): x is BigType => /^[iu]64$/.test(x);
  *
  * @param x
  */
-export const isPrim = (x: string): x is WasmPrim =>
+export const isWasmPrim = (x: string): x is WasmPrim =>
 	isNumeric(x) || isBigNumeric(x);
 
+export const isWasmString = (x: string): x is "string" => x === "string";
+
 /**
- * Splits given string into lines, prefixes each with given `prefix` and then
- * returns rejoined result.
+ * Takes an array of strings or splits given string into lines, prefixes each
+ * line with given `prefix` and then returns rejoined result.
  *
  * @param prefix
  * @param str
  */
-export const prefixLines = (prefix: string, str: string) =>
-	str
-		.split("\n")
+export const prefixLines = (prefix: string, str: string | string[]) =>
+	(isString(str) ? str.split("\n") : str)
 		.map((line) => prefix + line)
 		.join("\n");
