@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<link
+			rel="icon"
+			href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y=".9em" font-size="90">⛱️</text></svg>'
+		/>
+		<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<title>webgl-channel-mixer · @thi.ng/umbrella</title>
+		<link
+			href="https://unpkg.com/tachyons@4/css/tachyons.min.css"
+			rel="stylesheet"
+		/>
+		<style>
+			main {
+				display: grid;
+				grid-template-columns: 20rem 1fr;
+				overflow: hidden;
+			}
+			.range {
+				height: 1rem;
+				-webkit-appearance: none;
+				background: transparent;
+				outline: none;
+				overflow: hidden;
+			}
+			.range::-webkit-slider-thumb {
+				-webkit-appearance: none;
+				width: 0.1rem;
+				height: 1rem;
+				cursor: pointer;
+				border: 2px solid #fff;
+				box-shadow: -1005px 0 0 1000px #333;
+			}
+			.range::-moz-range-thumb {
+				width: 0.1rem;
+				height: 1rem;
+				cursor: pointer;
+				border: 2px solid #fff;
+				box-shadow: -1005px 0 0 1000px #333;
+			}
+		</style>
+	</head>
+	<body class="bg-gray sans-serif">
+		<script type="module" src="/src/index.ts"></script>
+	</body>
+</html>

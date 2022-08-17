@@ -1532,6 +1532,21 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@example/webgl-channel-mixer@workspace:examples/webgl-channel-mixer":
+  version: 0.0.0-use.local
+  resolution: "@example/webgl-channel-mixer@workspace:examples/webgl-channel-mixer"
+  dependencies:
+    "@thi.ng/dl-asset": "workspace:^"
+    "@thi.ng/hiccup-html": "workspace:^"
+    "@thi.ng/rdom": "workspace:^"
+    "@thi.ng/rstream": "workspace:^"
+    "@thi.ng/rstream-gestures": "workspace:^"
+    "@thi.ng/webgl": "workspace:^"
+    typescript: ^4.7.4
+    vite: ^3.0.4
+  languageName: unknown
+  linkType: soft
+
 "@example/webgl-cube@workspace:examples/webgl-cube":
   version: 0.0.0-use.local
   resolution: "@example/webgl-cube@workspace:examples/webgl-cube"
