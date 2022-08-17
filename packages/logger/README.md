@@ -14,6 +14,7 @@ This project is part of the
   - [Related packages](#related-packages)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
+- [Usage examples](#usage-examples)
 - [API](#api)
 - [Authors](#authors)
 - [License](#license)
@@ -55,11 +56,23 @@ node --experimental-repl-await
 > const logger = await import("@thi.ng/logger");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 361 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 485 bytes
 
 ## Dependencies
 
 None
+
+## Usage examples
+
+Several demos in this repo's
+[/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
+directory are using this package.
+
+A selection:
+
+| Screenshot                                                                                                             | Description                                                      | Live demo                                             | Source                                                                             |
+|:-----------------------------------------------------------------------------------------------------------------------|:-----------------------------------------------------------------|:------------------------------------------------------|:-----------------------------------------------------------------------------------|
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/webgl-float-fbo.jpg" width="240"/> | Drawing to floating point offscreen / multi-pass shader pipeline | [Demo](https://demo.thi.ng/umbrella/webgl-float-fbo/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/webgl-float-fbo) |
 
 ## API
 
