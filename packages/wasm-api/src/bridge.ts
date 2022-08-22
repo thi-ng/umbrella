@@ -95,6 +95,10 @@ export class WasmBridge<T extends WasmExports = WasmExports>
 
 			_printStr: (addr: number, len: number) =>
 				this.logger.debug(this.getString(addr, len)),
+
+			debug: () => {
+				debugger;
+			},
 		};
 	}
 

@@ -165,6 +165,9 @@ pub fn printStr(msg: []const u8) void {
     _printStr(@ptrToInt(msg.ptr), msg.len);
 }
 
+/// Calls std.fmt.allocPrint to format given string, then calls `printStr()`
+/// to output it via JS, then frees string's memory again
+/// (Only available if the allocator used by `_wasm_allocate()` hasn't been disabled.)
 pub fn printFmt(comptime fmt: []const u8, args: anytype) void {
     if (allocator) |alloc| {
         const res = std.fmt.allocPrint(alloc, fmt, args) catch return;
@@ -172,3 +175,6 @@ pub fn printFmt(comptime fmt: []const u8, args: anytype) void {
         printStr(res);
     }
 }
+
+/// Triggers the JS/browser debugger
+pub extern "wasmapi" fn debug() void;

@@ -7,9 +7,13 @@ extern "C" {
 #include <stddef.h>
 #include <stdint.h>
 
+// Declares an imported symbol from named import module
+// The prefix is only used for the C side, NOT for exported name
 #define WASM_IMPORT(MODULE, TYPE, NAME, PREFIX)                     \
   extern __attribute__((import_module(MODULE), import_name(#NAME))) \
   TYPE PREFIX##NAME
+
+// Same as EMSCRIPTEN_KEEP_ALIVE, ensures symbol will be exported
 #define WASM_KEEP __attribute__((used))
 
 // Generate stubs only if explicitly disabled by defining this symbol
@@ -52,6 +56,8 @@ WASM_IMPORT("wasmapi", void, _printF64Array, wasm)(void* addr, size_t len);
 
 WASM_IMPORT("wasmapi", void, _printStr0, wasm)(void* addr);
 WASM_IMPORT("wasmapi", void, _printStr, wasm)(void* addr, size_t len);
+
+WASM_IMPORT("wasmapi", void, debug, wasm_)(void);
 
 void wasm_printPtr(void* ptr) { wasm_printU32Hex((size_t)ptr); }
 

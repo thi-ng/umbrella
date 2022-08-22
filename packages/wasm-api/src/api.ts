@@ -148,6 +148,7 @@ export interface CoreAPI extends WebAssembly.ModuleImports {
 	_printF64Array: (addr: number, len: number) => void;
 	_printStr0: (addr: number) => void;
 	_printStr: (addr: number, len: number) => void;
+	debug: () => void;
 }
 
 export interface WasmTypeBase {
