@@ -471,7 +471,8 @@ export class WasmBridge<T extends WasmExports = WasmExports>
 	/**
 	 * Encodes given string as UTF-8 and writes it to WASM memory starting at
 	 * `addr`. By default the string will be zero-terminated and only `maxBytes`
-	 * will be written. Returns the number of bytes written.
+	 * will be written. Returns the number of bytes written (excluding final
+	 * sentinel, if any).
 	 *
 	 * @remarks
 	 * An error will be thrown if the encoded string doesn't fully fit into the
@@ -503,7 +504,6 @@ export class WasmBridge<T extends WasmExports = WasmExports>
 		}
 		if (terminate) {
 			this.u8[addr + len!] = 0;
-			return len! + 1;
 		}
 		return len!;
 	}
