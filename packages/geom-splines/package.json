@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/geom-splines",
-	"version": "2.1.24",
+	"version": "2.1.25",
 	"description": "nD cubic & quadratic curve analysis, conversion, interpolation, splitting",
 	"type": "module",
 	"module": "./index.js",
@@ -34,17 +34,17 @@
 		"test": "testament test"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.4.0",
+		"@thi.ng/api": "^8.4.1",
 		"@thi.ng/checks": "^3.2.4",
-		"@thi.ng/geom-api": "^3.3.7",
-		"@thi.ng/geom-arc": "^2.1.24",
-		"@thi.ng/geom-resample": "^2.1.24",
-		"@thi.ng/math": "^5.3.6",
-		"@thi.ng/vectors": "^7.5.13"
+		"@thi.ng/geom-api": "^3.3.8",
+		"@thi.ng/geom-arc": "^2.1.25",
+		"@thi.ng/geom-resample": "^2.1.25",
+		"@thi.ng/math": "^5.3.7",
+		"@thi.ng/vectors": "^7.5.14"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.25.0",
-		"@thi.ng/testament": "^0.2.11",
+		"@thi.ng/testament": "^0.2.12",
 		"rimraf": "^3.0.2",
 		"tools": "workspace:^",
 		"typedoc": "^0.22.17",

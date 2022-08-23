@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-08-01T14:53:59Z
+- **Last updated**: 2022-08-23T10:37:04Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,13 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [0.9.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/color-palettes@0.9.0) (2022-08-23)
+
+#### 🚀 Features
+
+- add new themes, update swatch tool ([1051b7e](https://github.com/thi-ng/umbrella/commit/1051b7e))
+  - update swatch gen to emit 3-column tables
 
 ## [0.8.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/color-palettes@0.8.0) (2022-03-11)
 

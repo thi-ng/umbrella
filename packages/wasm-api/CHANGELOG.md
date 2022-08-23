@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-08-16T16:05:07Z
+- **Last updated**: 2022-08-23T10:37:04Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,17 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [0.9.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/wasm-api@0.9.0) (2022-08-23)
+
+#### 🚀 Features
+
+- add debug() core API function ([ca01978](https://github.com/thi-ng/umbrella/commit/ca01978))
+
+#### 🩹 Bug fixes
+
+- update setString() return value ([116dd0b](https://github.com/thi-ng/umbrella/commit/116dd0b))
+  - always only return num bytes written w/o sentinel
 
 ## [0.8.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/wasm-api@0.8.0) (2022-08-16)
 

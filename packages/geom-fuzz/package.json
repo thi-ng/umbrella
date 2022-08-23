@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/geom-fuzz",
-	"version": "2.1.26",
+	"version": "2.1.27",
 	"description": "Highly configurable, fuzzy line & polygon creation with presets and composable fill & stroke styles. Canvas & SVG support",
 	"type": "module",
 	"module": "./index.js",
@@ -34,20 +34,20 @@
 		"test": "testament test"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.4.0",
-		"@thi.ng/associative": "^6.2.5",
-		"@thi.ng/color": "^5.1.10",
-		"@thi.ng/geom": "^3.4.9",
-		"@thi.ng/geom-api": "^3.3.7",
-		"@thi.ng/geom-clip-line": "^2.1.24",
-		"@thi.ng/geom-resample": "^2.1.24",
-		"@thi.ng/grid-iterators": "^2.3.11",
-		"@thi.ng/transducers": "^8.3.12",
-		"@thi.ng/vectors": "^7.5.13"
+		"@thi.ng/api": "^8.4.1",
+		"@thi.ng/associative": "^6.2.6",
+		"@thi.ng/color": "^5.1.11",
+		"@thi.ng/geom": "^3.4.10",
+		"@thi.ng/geom-api": "^3.3.8",
+		"@thi.ng/geom-clip-line": "^2.1.25",
+		"@thi.ng/geom-resample": "^2.1.25",
+		"@thi.ng/grid-iterators": "^2.3.12",
+		"@thi.ng/transducers": "^8.3.13",
+		"@thi.ng/vectors": "^7.5.14"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.25.0",
-		"@thi.ng/testament": "^0.2.11",
+		"@thi.ng/testament": "^0.2.12",
 		"rimraf": "^3.0.2",
 		"tools": "workspace:^",
 		"typedoc": "^0.22.17",

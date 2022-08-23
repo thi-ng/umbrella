@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/compose",
-	"version": "2.1.11",
+	"version": "2.1.12",
 	"description": "Optimized functional composition helpers",
 	"type": "module",
 	"module": "./index.js",
@@ -34,12 +34,12 @@
 		"test": "testament test"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.4.0",
+		"@thi.ng/api": "^8.4.1",
 		"@thi.ng/errors": "^2.1.10"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.25.0",
-		"@thi.ng/testament": "^0.2.11",
+		"@thi.ng/testament": "^0.2.12",
 		"rimraf": "^3.0.2",
 		"tools": "workspace:^",
 		"typedoc": "^0.22.17",
