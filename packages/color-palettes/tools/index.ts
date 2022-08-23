@@ -5,11 +5,15 @@ import { svg } from "@thi.ng/hiccup-svg";
 import { table } from "@thi.ng/markdown-table";
 import {
 	assocObj,
+	comp,
 	groupByMap,
+	iterator,
 	map,
+	mapcat,
 	mapIndexed,
 	minMax,
 	pairs,
+	partition,
 	pluck,
 	range2d,
 	transduce,
@@ -78,6 +82,7 @@ const sections: string[] = [];
 for (let gid of [...grouped.keys()].sort(compareNumDesc)) {
 	sections.push(`### ${["Soft", "Medium", "Strong"][gid]}`);
 	const rows: string[][] = [];
+	const curr: string[][] = [];
 	const themes = grouped
 		.get(gid)!
 		.sort(compareByKey("sortKey", compareNumDesc));
@@ -100,10 +105,14 @@ for (let gid of [...grouped.keys()].sort(compareNumDesc)) {
 			)
 		);
 		writeFileSync(`export/${id}.svg`, doc);
-
-		rows.push([`\`${id}\``, `![](${BASE_URL}/${id}.svg)`]);
+		curr.push([id, `![](${BASE_URL}/${id}.svg)`]);
+		if (curr.length == 3) {
+			rows.push(curr.map((x) => x[1]));
+			rows.push(curr.map((x) => x[0]));
+			curr.length = 0;
+		}
 	}
-	sections.push(table(["Preset", "Swatches"], rows));
+	sections.push(table(["Palettes", "", ""], rows));
 }
 
 writeFileSync(`export/table.md`, sections.join("\n\n"));
@@ -112,10 +121,17 @@ const RECENT_ID = "014xxHPGJc41M07kL";
 
 const recents = Object.keys(THEMES)
 	.sort((a, b) => (a < b ? 1 : a > b ? -1 : 0))
-	.filter((x) => x > RECENT_ID)
-	.map((id) => [`\`${id}\``, `![](${BASE_URL}/${id}.svg)`]);
+	.filter((x) => x > RECENT_ID);
+
+const recentPalettes = iterator(
+	comp(
+		partition(3, true),
+		mapcat((ids) => [ids.map((id) => `![](${BASE_URL}/${id}.svg)`), ids])
+	),
+	recents
+);
 
 writeFileSync(
 	`export/table-recents.md`,
-	table(["Preset", "Swatches"], recents)
+	table(["Palettes", "", ""], recentPalettes)
 );
