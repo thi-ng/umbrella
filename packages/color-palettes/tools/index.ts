@@ -1,7 +1,7 @@
 import { dotsH, lch } from "@thi.ng/color";
 import { compareByKey, compareNumDesc } from "@thi.ng/compare";
 import { serialize } from "@thi.ng/hiccup";
-import { svg } from "@thi.ng/hiccup-svg";
+import { svg, setPrecision } from "@thi.ng/hiccup-svg";
 import { table } from "@thi.ng/markdown-table";
 import {
 	assocObj,
@@ -21,6 +21,8 @@ import {
 } from "@thi.ng/transducers";
 import { writeFileSync } from "fs";
 import { THEMES } from "../src/index.js";
+
+setPrecision(2);
 
 const BASE_URL =
 	process.argv[2] !== "--local"
