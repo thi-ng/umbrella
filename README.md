@@ -162,14 +162,12 @@ feature or `develop` branches)
 
 ### Latest updates
 
-As of: 2022-08-16
+As of: 2022-08-23
 
-| Status                                        | Project                                   | Version                                                                                                         | Changelog                                     |
-|-----------------------------------------------|-------------------------------------------|-----------------------------------------------------------------------------------------------------------------|-----------------------------------------------|
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/api`](./packages/api)           | [![version](https://img.shields.io/npm/v/@thi.ng/api.svg)](https://www.npmjs.com/package/@thi.ng/api)           | [changelog](./packages/api/CHANGELOG.md)      |
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/args`](./packages/args)         | [![version](https://img.shields.io/npm/v/@thi.ng/args.svg)](https://www.npmjs.com/package/@thi.ng/args)         | [changelog](./packages/args/CHANGELOG.md)     |
-| ![](https://img.shields.io/badge/-fix-orange) | [`@thi.ng/matrices`](./packages/matrices) | [![version](https://img.shields.io/npm/v/@thi.ng/matrices.svg)](https://www.npmjs.com/package/@thi.ng/matrices) | [changelog](./packages/matrices/CHANGELOG.md) |
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/wasm-api`](./packages/wasm-api) | [![version](https://img.shields.io/npm/v/@thi.ng/wasm-api.svg)](https://www.npmjs.com/package/@thi.ng/wasm-api) | [changelog](./packages/wasm-api/CHANGELOG.md) |
+| Status                                        | Project                                    | Version                                                                                                                     | Changelog                                           |
+|-----------------------------------------------|--------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------|
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/api`](./packages/color-palettes) | [![version](https://img.shields.io/npm/v/@thi.ng/color-palettes.svg)](https://www.npmjs.com/package/@thi.ng/color-palettes) | [changelog](./packages/color-palettes/CHANGELOG.md) |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/wasm-api`](./packages/wasm-api)  | [![version](https://img.shields.io/npm/v/@thi.ng/wasm-api.svg)](https://www.npmjs.com/package/@thi.ng/wasm-api)             | [changelog](./packages/wasm-api/CHANGELOG.md)       |
 
 <!--
 ![](https://img.shields.io/badge/-feat-green)
