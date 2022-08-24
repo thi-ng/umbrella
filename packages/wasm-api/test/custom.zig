@@ -2,8 +2,6 @@
 const js = @import("wasmapi");
 const std = @import("std");
 
-pub const WASM_ALLOCATOR: ?std.mem.Allocator = null;
-
 /// Fill vec2 with random values
 /// Associate this function with the "custom" import section
 extern "custom" fn setVec2(addr: usize) void;
