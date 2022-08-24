@@ -420,7 +420,9 @@ reference:
 Note: The provided Zig mechanism supports the idiomatic (Zig) pattern of working
 with multiple allocators in different parts of the application and supports
 dynamic assignments/swapping of the exposed allocator. See comments in source
-file for more details...
+file and
+[tests](https://github.com/thi-ng/umbrella/tree/develop/packages/wasm-api/test)
+for more details...
 
 ```ts
 try {

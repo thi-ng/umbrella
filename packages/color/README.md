@@ -571,7 +571,7 @@ concatenation (see `concat()`) for more efficient application.
 
 ### Support packages
 
-- [@thi.ng/color-palettes](https://github.com/thi-ng/umbrella/tree/develop/packages/color-palettes) - Collection of 176 image based color palettes
+- [@thi.ng/color-palettes](https://github.com/thi-ng/umbrella/tree/develop/packages/color-palettes) - Collection of 190+ image based color palettes
 
 ### Related packages
 
