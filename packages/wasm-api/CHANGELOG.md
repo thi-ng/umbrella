@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-08-23T10:37:04Z
+- **Last updated**: 2022-08-24T09:52:32Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,18 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [0.10.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/wasm-api@0.10.0) (2022-08-24)
+
+#### 🚀 Features
+
+- add events, update allocator handling ([89416b1](https://github.com/thi-ng/umbrella/commit/89416b1))
+  - add INotify impl for WasmBridge
+  - emit event when WASM memory has changed (e.g. to recreate user views)
+  - reverse logic so that NO allocator is used by default and instead must
+    be explicitly enabled (rather than disabled)
+  - update Zig & C bindings
+  - add/update docstrings
 
 ## [0.9.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/wasm-api@0.9.0) (2022-08-23)
 
