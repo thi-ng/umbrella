@@ -3,28 +3,26 @@
 const std = @import("std");
 const root = @import("root");
 
-/// Initialize the allocator to be exposed to the WASM host env
+/// Obtains the allocator to be exposed to the WASM host env
 /// (via `_wasm_allocate()` and `_wasm_free()`).
 /// If the user defines a public `WASM_ALLOCATOR` in their root file
-/// then this allocator will be used, otherwise the implementation
-/// falls back to using GPA.
+/// then this allocator will be used, otherwise the implementations
+/// of the two mentioned functions are no-ops.
+/// The `WASM_ALLOCATOR` can be changed and/or enabled/disabled dynamically
+/// This helper function here is used to always lookup the current value/impl.
+///
 /// Note: The type for this var is purposefully chosen as an optional,
-/// effectively disabling allocations from the WASM host side if
-/// `WASM_ALLOCATOR` is set to null.
-pub const allocator: ?std.mem.Allocator = alloc: {
-    if (@hasDecl(root, "WASM_ALLOCATOR")) {
-        break :alloc root.WASM_ALLOCATOR;
-    } else {
-        var gpa = std.heap.GeneralPurposeAllocator(.{}){};
-        break :alloc gpa.allocator();
-    }
-};
+/// effectively disabling allocations from the WASM host side if no
+/// `WASM_ALLOCATOR` is set (or set to null).
+pub fn allocator() ?std.mem.Allocator {
+    return if (@hasDecl(root, "WASM_ALLOCATOR")) root.WASM_ALLOCATOR else null;
+}
 
-/// Attempts to allocate memory using configured `allocator` and if
+/// Attempts to allocate memory using configured `allocator()` and if
 /// successful returns address of new chunk or zero if failed
 /// Note: For SIMD compatibility all allocations are aligned to 16 bytes
 pub export fn _wasm_allocate(numBytes: usize) usize {
-    if (allocator) |alloc| {
+    if (allocator()) |alloc| {
         var mem = alloc.alignedAlloc(u8, 16, numBytes) catch return 0;
         return @ptrToInt(mem.ptr);
     }
@@ -33,11 +31,10 @@ pub export fn _wasm_allocate(numBytes: usize) usize {
 
 /// Frees chunk of heap memory (previously allocated using `_wasm_allocate()`)
 /// starting at given address and of given byte length.
-/// Note: This is a no-op if the allocator is explicitly disabled (see `setAllocator()`),
+/// Note: This is a no-op if no allocator is configured (see `allocator()`)
 pub export fn _wasm_free(addr: usize, numBytes: usize) void {
-    if (allocator) |alloc| {
+    if (allocator()) |alloc| {
         var mem = [2]usize{ addr, numBytes };
-        printFmt("{d}", .{@ptrCast(*[]u8, &mem).*});
         alloc.free(@ptrCast(*[]u8, &mem).*);
     }
 }
@@ -169,7 +166,7 @@ pub fn printStr(msg: []const u8) void {
 /// to output it via JS, then frees string's memory again
 /// (Only available if the allocator used by `_wasm_allocate()` hasn't been disabled.)
 pub fn printFmt(comptime fmt: []const u8, args: anytype) void {
-    if (allocator) |alloc| {
+    if (allocator()) |alloc| {
         const res = std.fmt.allocPrint(alloc, fmt, args) catch return;
         defer alloc.free(res);
         printStr(res);

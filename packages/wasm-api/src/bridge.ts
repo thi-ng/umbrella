@@ -1,15 +1,24 @@
-import type { FnU2, NumericArray, TypedArray } from "@thi.ng/api";
+import type {
+	Event,
+	FnU2,
+	INotify,
+	Listener,
+	NumericArray,
+	TypedArray,
+} from "@thi.ng/api";
+import { INotifyMixin } from "@thi.ng/api/mixins/inotify";
 import { defError } from "@thi.ng/errors/deferror";
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import { U16, U32, U64HL, U8 } from "@thi.ng/hex";
 import type { ILogger } from "@thi.ng/logger";
 import { ConsoleLogger } from "@thi.ng/logger/console";
-import type {
+import {
 	BigIntArray,
 	CoreAPI,
 	IWasmAPI,
 	WasmExports,
 	IWasmMemoryAccess,
+	EVENT_MEMORY_CHANGED,
 } from "./api.js";
 
 const B32 = BigInt(32);
@@ -32,8 +41,9 @@ export const OutOfMemoryError = defError(() => "Out of memory");
  * 64bit integers are handled via JS `BigInt` and hence require the host env to
  * support it. No polyfill is provided.
  */
+@INotifyMixin
 export class WasmBridge<T extends WasmExports = WasmExports>
-	implements IWasmMemoryAccess
+	implements IWasmMemoryAccess, INotify
 {
 	i8!: Int8Array;
 	u8!: Uint8Array;
@@ -132,24 +142,34 @@ export class WasmBridge<T extends WasmExports = WasmExports>
 	 * then initializes all declared bridge child API modules. Returns false if
 	 * any of the module initializations failed.
 	 *
+	 * @remarks
+	 * Emits the {@link EVENT_MEMORY_CHANGED} event just before returning (and
+	 * AFTER all child API modules have been initialized).
+	 *
 	 * @param exports
 	 */
 	async init(exports: T) {
 		this.exports = exports;
-		this.ensureMemory();
+		this.ensureMemory(false);
 		for (let id in this.modules) {
 			this.logger.debug(`initializing API module: ${id}`);
 			const status = await this.modules[id].init(this);
 			if (!status) return false;
 		}
+		this.notify({ id: EVENT_MEMORY_CHANGED, value: this.exports.memory });
 		return true;
 	}
 
 	/**
-	 * Called automatically. Initializes and/or updates the various typed WASM
-	 * memory views (e.g. after growing the WASM memory).
+	 * Called automatically during initialization. Initializes and/or updates
+	 * the various typed WASM memory views (e.g. after growing the WASM memory
+	 * and the previous buffer becoming detached). Unless `notify` is false,
+	 * the {@link EVENT_MEMORY_CHANGED} event will be emitted if the memory
+	 * views had to be updated.
+	 *
+	 * @param notify
 	 */
-	ensureMemory() {
+	ensureMemory(notify = true) {
 		const buf = this.exports.memory.buffer;
 		if (this.u8 && this.u8.buffer === buf) return;
 		this.i8 = new Int8Array(buf);
@@ -162,6 +182,11 @@ export class WasmBridge<T extends WasmExports = WasmExports>
 		this.u64 = new BigUint64Array(buf);
 		this.f32 = new Float32Array(buf);
 		this.f64 = new Float64Array(buf);
+		notify &&
+			this.notify({
+				id: EVENT_MEMORY_CHANGED,
+				value: this.exports.memory,
+			});
 	}
 
 	/**
@@ -240,7 +265,11 @@ export class WasmBridge<T extends WasmExports = WasmExports>
 		const addr = this.exports._wasm_allocate(numBytes);
 		if (!addr)
 			throw new OutOfMemoryError(`unable to allocate: ${numBytes}`);
-		this.logger.debug(`allocated ${numBytes} bytes @ 0x${U32(addr)}`);
+		this.logger.debug(
+			`allocated ${numBytes} bytes @ 0x${U32(addr)} .. 0x${U32(
+				addr + numBytes - 1
+			)}`
+		);
 		this.ensureMemory();
 		clear && this.u8.fill(0, addr, addr + numBytes);
 		return addr;
@@ -251,6 +280,10 @@ export class WasmBridge<T extends WasmExports = WasmExports>
 	 * function {@link WasmExports._wasm_free} (implementation specific). The
 	 * `numBytes` value must be the same as previously given to
 	 * {@link WasmBridge.allocate}.
+	 *
+	 * @remarks
+	 * This function always succeeds, regardless of presence of an active
+	 * allocator on the WASM side or validity of given arguments.
 	 *
 	 * @param addr
 	 * @param numBytes
@@ -514,4 +547,16 @@ export class WasmBridge<T extends WasmExports = WasmExports>
 		el == null && illegalArgs(`missing DOM element #${id}`);
 		return el!;
 	}
+
+	/** {@inheritDoc @thi.ng/api#INotify.addListener} */
+	// @ts-ignore: mixin
+	addListener(id: string, fn: Listener, scope?: any): boolean {}
+
+	/** {@inheritDoc @thi.ng/api#INotify.removeListener} */
+	// @ts-ignore: mixin
+	removeListener(id: string, fn: Listener, scope?: any): boolean {}
+
+	/** {@inheritDoc @thi.ng/api#INotify.notify} */
+	// @ts-ignore: mixin
+	notify(event: Event): void {}
 }

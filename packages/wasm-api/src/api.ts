@@ -3,6 +3,8 @@ import type { WasmBridge } from "./bridge.js";
 
 export const PKG_NAME = "@thi.ng/wasm-api";
 
+export const EVENT_MEMORY_CHANGED = "memory-changed";
+
 export type BigIntArray = bigint[] | BigInt64Array | BigUint64Array;
 
 /**
@@ -31,9 +33,9 @@ export interface IWasmAPI<T extends WasmExports = WasmExports> {
 }
 
 /**
- * Base interface of exports declared by the WASM module. At the very least, the
- * module needs to export its memory and the functions defined in this
- * interface.
+ * Base interface of exports declared by the WASM module. At the very least, a
+ * compatible module needs to export its memory and the functions defined in
+ * this interface.
  *
  * @remarks
  * This interface is supposed to be extended with the concrete exports defined
@@ -49,21 +51,34 @@ export interface WasmExports {
 	 */
 	memory: WebAssembly.Memory;
 	/**
-	 * Implementation specific memory allocation function (likely heap-based).
-	 * If successful returns address of new memory block, or zero if
-	 * unsuccessful.
+	 * Implementation specific WASM memory allocation function. If successful
+	 * returns address of new memory block, or zero if unsuccessful.
 	 *
 	 * @remarks
-	 * In the supplied Zig bindings (see `/zig/core.zig`), by default this is
-	 * using the `std.heap.GeneralPurposeAllocator` (which also automatically
-	 * handles growing the WASM memory), however as mentioned the underlying
-	 * mechanism is purposefully left to the actual WASM-side implementation. In
-	 * a C program, this would likely use `malloc()` or similar...
+	 * #### Zig
+	 *
+	 * Using the supplied Zig bindings (see `/include/wasmapi.zig`), it's the
+	 * user's responsibility to define a public `WASM_ALLOCATOR` in the root
+	 * source file to enable allocations, e.g. using the
+	 * [`std.heap.GeneralPurposeAllocator`](https://ziglang.org/documentation/master/#Choosing-an-Allocator)
+	 * (which also automatically handles growing the WASM memory). However, as
+	 * mentioned, the underlying mechanism is purposefully left to the actual
+	 * WASM-side implementation. If no allocator is defined this function
+	 * returns zero, which in turn will cause {@link WasmBridge.allocate} to
+	 * throw an error.
+	 *
+	 * #### C/C++
+	 *
+	 * Using the supplied C bindings (see `/include/wasmapi.h`), it's the user's
+	 * responsibility to enable allocation support by defining the
+	 * `WASMAPI_MALLOC` symbol (and compiling the WASM module with a malloc
+	 * implementation).
 	 */
 	_wasm_allocate(numBytes: number): number;
 	/**
 	 * Implementation specific function to free a previously allocated chunk of
-	 * of WASM memory (allocated via {@link WasmExports._wasm_allocate}).
+	 * of WASM memory (allocated via {@link WasmExports._wasm_allocate}, also
+	 * see remarks for that function).
 	 *
 	 * @param addr
 	 * @param numBytes

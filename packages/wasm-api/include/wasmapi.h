@@ -16,16 +16,17 @@ extern "C" {
 // Same as EMSCRIPTEN_KEEP_ALIVE, ensures symbol will be exported
 #define WASM_KEEP __attribute__((used))
 
-// Generate stubs only if explicitly disabled by defining this symbol
-#ifdef WASMAPI_NO_MALLOC
-size_t WASM_KEEP _wasm_allocate(size_t num_bytes) { return 0; }
-void WASM_KEEP _wasm_free(size_t addr) {}
-#else
+// Generate malloc/free wrappers only if explicitly enabled by defining this
+// symbol. If undefined some function stubs are exported.
+#ifdef WASMAPI_MALLOC
 #include <stdlib.h>
 size_t WASM_KEEP _wasm_allocate(size_t numBytes) {
   return (size_t)malloc(numBytes);
 }
 void WASM_KEEP _wasm_free(size_t addr) { free((void*)addr); }
+#else
+size_t WASM_KEEP _wasm_allocate(size_t num_bytes) { return 0; }
+void WASM_KEEP _wasm_free(size_t addr) {}
 #endif
 
 WASM_IMPORT("wasmapi", void, printI8, wasm_)(int8_t x);
