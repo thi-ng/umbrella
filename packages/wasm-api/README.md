@@ -418,12 +418,28 @@ TypeScript code generator explicitly.
 
 ### Memory allocations
 
-The `WasmBridge` includes support for malloc/free-style allocations (within the
-linear WASM memory), _unless_ these are explicitly disabled on the WASM side. Please see for further reference:
+If explicitly enabled on the WASM side, the `WasmBridge` includes support for
+malloc/free-style allocations (within the linear WASM memory) from the JS side
+(Note: This is a breaking change in v0.10.0, now using a more flexible approach
+& reverse logic of earlier alpha versions).
 
-- [`/include/wasmapi.zig`](https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api/include/wasmapi.zig#L6) - comments about WASM-side allocator handling
-- [`WasmBridge.allocate()`](https://docs.thi.ng/umbrella/wasm-api/classes/WasmBridge.html#allocate) - allocating memory from JS side
-- [`WasmBridge.free()`](https://docs.thi.ng/umbrella/wasm-api/classes/WasmBridge.html#free) - freeing previously allocated memory
+The actual allocator is implementation specific and suitable generic mechanisms
+are defined for both the included Zig & C bindings. Please see for further
+reference:
+
+- [`/include/wasmapi.zig`](https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api/include/wasmapi.zig#L6):
+  comments about WASM-side allocator handling in Zig
+- [`/include/wasmapi.h`](https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api/include/wasmapi.h#L19):
+  comments about WASM-side allocator handling in C/C++
+- [`WasmBridge.allocate()`](https://docs.thi.ng/umbrella/wasm-api/classes/WasmBridge.html#allocate):
+  allocating memory from JS side
+- [`WasmBridge.free()`](https://docs.thi.ng/umbrella/wasm-api/classes/WasmBridge.html#free):
+  freeing previously allocated memory from JS side
+
+Note: The provided Zig mechanism supports the idiomatic (Zig) pattern of working
+with multiple allocators in different parts of the application and supports
+dynamic assignments/swapping of the exposed allocator. See comments in source
+file for more details...
 
 ```ts
 try {
@@ -431,7 +447,7 @@ try {
 	const addr = bridge.allocate(256);
 
 	// write string to reserved memory
-	// max. 256 bytes written, zero terminated
+	// max. 256 bytes, zero terminated
 	const num = bridge.setString("hello WASM world!", addr, 256, true);
 
 	// call WASM function doing something w/ the string
@@ -440,7 +456,7 @@ try {
 	// cleanup
 	bridge.free(addr, 256);
 } catch(e) {
-	// allocation error
+	// deal with allocation error
 	// ...
 }
 ```
@@ -521,7 +537,7 @@ node --experimental-repl-await
 > const wasmApi = await import("@thi.ng/wasm-api");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 4.34 KB
+Package sizes (gzipped, pre-treeshake): ESM: 4.48 KB
 
 **IMPORTANT:** The package includes various code generators and supporting
 functions which are NOT required during runtime. Hence the actual package size
