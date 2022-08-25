@@ -20,7 +20,9 @@ This project is part of the
 
 ## About
 
-Parametric interpolated 1D lookup tables for remapping values.
+Parametric (non-)linearly interpolated 1D lookup tables for remapping values.
+
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/ramp/readme.png)
 
 ### Status
 

@@ -13,6 +13,8 @@ This project is part of the
 
 ${pkg.description}
 
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/ramp/readme.png)
+
 ${status}
 
 ${supportPackages}

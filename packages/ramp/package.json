@@ -1,7 +1,7 @@
 {
 	"name": "@thi.ng/ramp",
 	"version": "2.1.23",
-	"description": "Parametric interpolated 1D lookup tables for remapping values",
+	"description": "Parametric (non-)linearly interpolated 1D lookup tables for remapping values",
 	"type": "module",
 	"module": "./index.js",
 	"typings": "./index.d.ts",
@@ -51,6 +51,7 @@
 	"keywords": [
 		"1d",
 		"animation",
+		"curve",
 		"datastructure",
 		"envelope",
 		"hermite",
@@ -59,6 +60,7 @@
 		"keyframe",
 		"linear",
 		"lut",
+		"ramp",
 		"timeline",
 		"typescript"
 	],
