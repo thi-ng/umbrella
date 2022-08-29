@@ -1,4 +1,4 @@
-import type { BigType, FloatType, Fn, Fn2 } from "@thi.ng/api";
+import type { BigType, FloatType, Fn } from "@thi.ng/api";
 import type { WasmBridge } from "./bridge.js";
 
 export const PKG_NAME = "@thi.ng/wasm-api";
@@ -146,9 +146,9 @@ export interface CoreAPI extends WebAssembly.ModuleImports {
 	printI32: Fn<number, void>;
 	printU32: Fn<number, void>;
 	printU32Hex: Fn<number, void>;
-	_printI64: Fn2<number, number, void>;
-	_printU64: Fn2<number, number, void>;
-	_printU64Hex: Fn2<number, number, void>;
+	printI64: Fn<bigint, void>;
+	printU64: Fn<bigint, void>;
+	printU64Hex: Fn<bigint, void>;
 	printF32: Fn<number, void>;
 	printF64: Fn<number, void>;
 	_printI8Array: (addr: number, len: number) => void;
@@ -164,6 +164,9 @@ export interface CoreAPI extends WebAssembly.ModuleImports {
 	_printStr0: (addr: number) => void;
 	_printStr: (addr: number, len: number) => void;
 	debug: () => void;
+	_panic: (addr: number, len: number) => void;
+	timer: () => number;
+	epoch: () => bigint;
 }
 
 export interface WasmTypeBase {

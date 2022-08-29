@@ -9,20 +9,19 @@ import type {
 import { INotifyMixin } from "@thi.ng/api/mixins/inotify";
 import { defError } from "@thi.ng/errors/deferror";
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
-import { U16, U32, U64HL, U8 } from "@thi.ng/hex";
+import { U16, U32, U64BIG, U8 } from "@thi.ng/hex";
 import type { ILogger } from "@thi.ng/logger";
 import { ConsoleLogger } from "@thi.ng/logger/console";
 import {
 	BigIntArray,
 	CoreAPI,
-	IWasmAPI,
-	WasmExports,
-	IWasmMemoryAccess,
 	EVENT_MEMORY_CHANGED,
+	IWasmAPI,
+	IWasmMemoryAccess,
+	WasmExports,
 } from "./api.js";
 
-const B32 = BigInt(32);
-
+export const Panic = defError(() => "Panic");
 export const OutOfMemoryError = defError(() => "Out of memory");
 
 /**
@@ -73,21 +72,18 @@ export class WasmBridge<T extends WasmExports = WasmExports>
 		this.api = {
 			printI8: logN,
 			printU8: logN,
-			printU8Hex: (x: number) => this.logger.debug(`0x${U8(x)}`),
 			printI16: logN,
 			printU16: logN,
-			printU16Hex: (x: number) => this.logger.debug(`0x${U16(x)}`),
 			printI32: logN,
 			printU32: (x: number) => this.logger.debug(x >>> 0),
-			printU32Hex: (x: number) => this.logger.debug(`0x${U32(x)}`),
-			_printI64: (hi: number, lo: number) =>
-				this.logger.debug((BigInt(hi) << B32) | BigInt(lo)),
-			_printU64: (hi: number, lo: number) =>
-				this.logger.debug((BigInt(hi >>> 0) << B32) | BigInt(lo >>> 0)),
-			_printU64Hex: (hi: number, lo: number) =>
-				this.logger.debug(`0x${U64HL(hi, lo)}`),
+			printI64: (x: bigint) => this.logger.debug(x),
+			printU64: (x: bigint) => this.logger.debug(x),
 			printF32: logN,
 			printF64: logN,
+			printU8Hex: (x: number) => this.logger.debug(`0x${U8(x)}`),
+			printU16Hex: (x: number) => this.logger.debug(`0x${U16(x)}`),
+			printU32Hex: (x: number) => this.logger.debug(`0x${U32(x)}`),
+			printU64Hex: (x: bigint) => this.logger.debug(`0x${U64BIG(x)}`),
 
 			_printI8Array: logA(this.getI8Array.bind(this)),
 			_printU8Array: logA(this.getU8Array.bind(this)),
@@ -109,6 +105,13 @@ export class WasmBridge<T extends WasmExports = WasmExports>
 			debug: () => {
 				debugger;
 			},
+
+			_panic: (addr, len) => {
+				throw new Panic(this.getString(addr, len));
+			},
+
+			timer: () => performance.now(),
+			epoch: () => BigInt(Date.now()),
 		};
 	}
 

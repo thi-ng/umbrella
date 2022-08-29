@@ -74,6 +74,7 @@ group("wasm-api", {
 	custom: async ({ done }) => {
 		interface CustomWasm extends WasmExports {
 			test_setVec2: () => void;
+			test_epoch: () => void;
 		}
 		class CustomAPI implements IWasmAPI {
 			parent!: WasmBridge;
@@ -103,6 +104,11 @@ group("wasm-api", {
 		assert.strictEqual(logger.journal.length, 3);
 		assert.strictEqual(logger.journal[1][3], "0, 0");
 		assert.strictEqual(logger.journal[2][3], "10, 20");
+
+		logger.clear();
+		const epoch = bridge.api.epoch();
+		bridge.exports.test_epoch();
+		assert.ok(logger.journal[0][3] >= epoch);
 		done();
 	},
 });

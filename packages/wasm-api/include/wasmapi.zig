@@ -3,6 +3,13 @@
 const std = @import("std");
 const root = @import("root");
 
+pub extern "wasmapi" fn _panic(addr: [*]const u8, len: usize) noreturn;
+
+pub fn panic(msg: []const u8, _: ?*std.builtin.StackTrace) noreturn {
+    _panic(msg.ptr, msg.len);
+    unreachable;
+}
+
 /// Obtains the allocator to be exposed to the WASM host env
 /// (via `_wasm_allocate()` and `_wasm_free()`).
 /// If the user defines a public `WASM_ALLOCATOR` in their root file
@@ -32,9 +39,9 @@ pub export fn _wasm_allocate(numBytes: usize) usize {
 /// Frees chunk of heap memory (previously allocated using `_wasm_allocate()`)
 /// starting at given address and of given byte length.
 /// Note: This is a no-op if no allocator is configured (see `allocator()`)
-pub export fn _wasm_free(addr: usize, numBytes: usize) void {
+pub export fn _wasm_free(addr: [*]u8, numBytes: usize) void {
     if (allocator()) |alloc| {
-        var mem = [2]usize{ addr, numBytes };
+        var mem = [2]usize{ @ptrToInt(addr), numBytes };
         alloc.free(@ptrCast(*[]u8, &mem).*);
     }
 }
@@ -60,26 +67,12 @@ pub extern "wasmapi" fn printU32(x: u32) void;
 /// Prints hex number using configured JS logger
 pub extern "wasmapi" fn printU32Hex(x: u32) void;
 
-/// Prints decomposed i64 number using configured JS logger
-pub extern "wasmapi" fn _printI64(hi: i32, lo: i32) void;
-/// Convenience wrapper for _printI64(), accepting an i64
-pub fn printI64(x: i64) void {
-    _printI64(@truncate(i32, x >> 32), @truncate(i32, x));
-}
-
-/// Prints decomposed u64 number using configured JS logger
-pub extern "wasmapi" fn _printU64(hi: u32, lo: u32) void;
-/// Convenience wrapper for _printU64(), accepting an u64
-pub fn printU64(x: u64) void {
-    _printU64(@truncate(u32, x >> 32), @truncate(u32, x));
-}
-
-/// Prints decomposed u64 hex number using configured JS logger
-pub extern "wasmapi" fn _printU64Hex(hi: u32, lo: u32) void;
-/// Convenience wrapper for _printU64Hex(), accepting an u64
-pub fn printU64Hex(x: u64) void {
-    _printU64Hex(@truncate(u32, x >> 32), @truncate(u32, x));
-}
+/// Prints i64 number using configured JS logger
+pub extern "wasmapi" fn printI64(x: i64) void;
+/// Prints u64 number using configured JS logger
+pub extern "wasmapi" fn printU64(x: u64) void;
+/// Prints u64 hex number using configured JS logger
+pub extern "wasmapi" fn printU64Hex(x: u64) void;
 
 /// Prints number using configured JS logger
 pub extern "wasmapi" fn printF32(x: f32) void;
@@ -92,74 +85,74 @@ pub fn printPtr(ptr: *const anyopaque) void {
 }
 
 /// Prints number array using configured JS logger
-pub extern "wasmapi" fn _printI8Array(addr: usize, len: usize) void;
+pub extern "wasmapi" fn _printI8Array(addr: [*]const i8, len: usize) void;
 /// Prints number array using configured JS logger
-pub extern "wasmapi" fn _printU8Array(addr: usize, len: usize) void;
+pub extern "wasmapi" fn _printU8Array(addr: [*]const u8, len: usize) void;
 /// Prints number array using configured JS logger
-pub extern "wasmapi" fn _printI16Array(addr: usize, len: usize) void;
+pub extern "wasmapi" fn _printI16Array(addr: [*]const i16, len: usize) void;
 /// Prints number array using configured JS logger
-pub extern "wasmapi" fn _printU16Array(addr: usize, len: usize) void;
+pub extern "wasmapi" fn _printU16Array(addr: [*]const u16, len: usize) void;
 /// Prints number array using configured JS logger
-pub extern "wasmapi" fn _printI32Array(addr: usize, len: usize) void;
+pub extern "wasmapi" fn _printI32Array(addr: [*]const i32, len: usize) void;
 /// Prints number array using configured JS logger
-pub extern "wasmapi" fn _printU32Array(addr: usize, len: usize) void;
+pub extern "wasmapi" fn _printU32Array(addr: [*]const u32, len: usize) void;
 /// Prints number array using configured JS logger
-pub extern "wasmapi" fn _printI64Array(addr: usize, len: usize) void;
+pub extern "wasmapi" fn _printI64Array(addr: [*]const i64, len: usize) void;
 /// Prints number array using configured JS logger
-pub extern "wasmapi" fn _printU64Array(addr: usize, len: usize) void;
+pub extern "wasmapi" fn _printU64Array(addr: [*]const u64, len: usize) void;
 /// Prints number array using configured JS logger
-pub extern "wasmapi" fn _printF32Array(addr: usize, len: usize) void;
+pub extern "wasmapi" fn _printF32Array(addr: [*]const f32, len: usize) void;
 /// Prints number array using configured JS logger
-pub extern "wasmapi" fn _printF64Array(addr: usize, len: usize) void;
+pub extern "wasmapi" fn _printF64Array(addr: [*]const f64, len: usize) void;
 
 /// Prints number array using configured JS logger
 pub fn printI8Array(buf: []const i8) void {
-    _printI8Array(@ptrToInt(buf.ptr), buf.len);
+    _printI8Array(buf.ptr, buf.len);
 }
 /// Prints number array using configured JS logger
 pub fn printU8Array(buf: []const u8) void {
-    _printU8Array(@ptrToInt(buf.ptr), buf.len);
+    _printU8Array(buf.ptr, buf.len);
 }
 /// Prints number array using configured JS logger
 pub fn printI16Array(buf: []const i16) void {
-    _printI16Array(@ptrToInt(buf.ptr), buf.len);
+    _printI16Array(buf.ptr, buf.len);
 }
 /// Prints number array using configured JS logger
 pub fn printU16Array(buf: []const u16) void {
-    _printU16Array(@ptrToInt(buf.ptr), buf.len);
+    _printU16Array(buf.ptr, buf.len);
 }
 /// Prints number array using configured JS logger
 pub fn printI32Array(buf: []const i32) void {
-    _printI32Array(@ptrToInt(buf.ptr), buf.len);
+    _printI32Array(buf.ptr, buf.len);
 }
 /// Prints number array using configured JS logger
 pub fn printU32Array(buf: []const u32) void {
-    _printU32Array(@ptrToInt(buf.ptr), buf.len);
+    _printU32Array(buf.ptr, buf.len);
 }
 /// Prints number array using configured JS logger
 pub fn printI64Array(buf: []const i64) void {
-    _printI64Array(@ptrToInt(buf.ptr), buf.len);
+    _printI64Array(buf.ptr, buf.len);
 }
 /// Prints number array using configured JS logger
 pub fn printU64Array(buf: []const u64) void {
-    _printU64Array(@ptrToInt(buf.ptr), buf.len);
+    _printU64Array(buf.ptr, buf.len);
 }
 /// Prints number array using configured JS logger
 pub fn printF32Array(buf: []const f32) void {
-    _printF32Array(@ptrToInt(buf.ptr), buf.len);
+    _printF32Array(buf.ptr, buf.len);
 }
 /// Prints number array using configured JS logger
 pub fn printF64Array(buf: []const f64) void {
-    _printF64Array(@ptrToInt(buf.ptr), buf.len);
+    _printF64Array(buf.ptr, buf.len);
 }
 
 /// Prints a zero-terminated string using configured JS logger
-pub extern "wasmapi" fn _printStr0(addr: usize) void;
+pub extern "wasmapi" fn _printStr0(addr: [*]const u8) void;
 /// Prints a string of given length using configured JS logger
-pub extern "wasmapi" fn _printStr(addr: usize, len: usize) void;
+pub extern "wasmapi" fn _printStr(addr: [*]const u8, len: usize) void;
 /// Convenience wrapper for _printStr, accepting a slice as arg
 pub fn printStr(msg: []const u8) void {
-    _printStr(@ptrToInt(msg.ptr), msg.len);
+    _printStr(msg.ptr, msg.len);
 }
 
 /// Calls std.fmt.allocPrint to format given string, then calls `printStr()`
@@ -175,3 +168,9 @@ pub fn printFmt(comptime fmt: []const u8, args: anytype) void {
 
 /// Triggers the JS/browser debugger
 pub extern "wasmapi" fn debug() void;
+
+/// Returns a JS/browser highres timer value (via `performance.now()`)
+pub extern "wasmapi" fn timer() f64;
+
+/// Returns a JS/browser Unix epoch (via `Date.now()`)
+pub extern "wasmapi" fn epoch() u64;
