@@ -151,9 +151,19 @@ export const U48LE = (x: ArrayLike<number>, i: number) =>
  * {@link U64BE} or {@link U64LE} for byte array based values (full 64bit range
  * supported). Alternatively, use `BigInt(x).toString(16)`.
  *
+ * Also see {@link U64BIG} for `bigint` version.
+ *
  * @param x -
  */
 export const U64 = (x: number) => U64HL(x / P32, x % P32);
+
+/**
+ * Returns 64bit bigint as hex string.
+ *
+ * @param x
+ */
+export const U64BIG = (x: bigint) =>
+	U64HL(Number(x >> BigInt(32)), Number(x & BigInt(P32 - 1)));
 
 /**
  * Similar to {@link U64}, but takes the 64bit arg as 2x 32bit values.
