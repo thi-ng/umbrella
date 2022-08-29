@@ -103,9 +103,6 @@
 		"./bridge": {
 			"default": "./bridge.js"
 		},
-		"./codegen": {
-			"default": "./codegen.js"
-		},
 		"./codegen/typescript": {
 			"default": "./codegen/typescript.js"
 		},
@@ -115,8 +112,14 @@
 		"./codegen/zig": {
 			"default": "./codegen/zig.js"
 		},
+		"./codegen": {
+			"default": "./codegen.js"
+		},
 		"./object-index": {
 			"default": "./object-index.js"
+		},
+		"./string": {
+			"default": "./string.js"
 		}
 	},
 	"thi.ng": {

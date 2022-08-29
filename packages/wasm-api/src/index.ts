@@ -5,3 +5,4 @@ export * from "./codegen/typescript.js";
 export * from "./codegen/utils.js";
 export * from "./codegen/zig.js";
 export * from "./object-index.js";
+export * from "./string.js";
