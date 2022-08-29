@@ -42,8 +42,9 @@
 	},
 	"keywords": [
 		"console",
-		"logger",
 		"filter",
+		"logger",
+		"memory",
 		"typescript"
 	],
 	"publishConfig": {
