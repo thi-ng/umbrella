@@ -1,6 +1,6 @@
 import type { BigType } from "@thi.ng/api";
 import { isString } from "@thi.ng/checks/is-string";
-import type { WasmPrim, WasmPrim32 } from "../api.js";
+import type { CodeGenOpts, StructField, WasmPrim, WasmPrim32 } from "../api.js";
 
 /**
  * Returns true iff `x` is a {@link WasmPrim32}.
@@ -38,3 +38,19 @@ export const prefixLines = (prefix: string, str: string | string[]) =>
 	(isString(str) ? str.split("\n") : str)
 		.map((line) => prefix + line)
 		.join("\n");
+
+/**
+ * Returns true if `type` is "slice".
+ * @param type
+ */
+export const isStringSlice = (
+	type: CodeGenOpts["stringType"]
+): type is "slice" => type === "slice";
+
+/**
+ * Returns filtered array of struct fields of only "string" fields.
+ *
+ * @param fields
+ */
+export const stringFields = (fields: StructField[]) =>
+	fields.filter((f) => isWasmString(f.type));

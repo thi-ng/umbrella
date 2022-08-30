@@ -72,7 +72,7 @@ export class WasmString implements IDeref<string> {
 	}
 
 	toJSON() {
-		this.deref();
+		return this.deref();
 	}
 
 	toString() {
@@ -143,7 +143,7 @@ export class WasmStringPtr implements IDeref<string> {
 	}
 
 	toJSON() {
-		this.deref();
+		return this.deref();
 	}
 
 	toString() {

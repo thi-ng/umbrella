@@ -328,15 +328,38 @@ export interface EnumValue {
 	doc?: string;
 }
 
+/**
+ * Global/shared code generator options.
+ */
+export interface CodeGenOpts {
+	/**
+	 * Optional string to be injected before generated type defs (but after
+	 * codegen's own prelude, if any)
+	 */
+	pre: string;
+	/**
+	 * Optional string to be injected after generated type defs (but before
+	 * codegen's own epilogue, if any)
+	 */
+	post: string;
+	/**
+	 * Identifier how strings are stored on WASM side, e.g. in Zig string
+	 * literals are slices (8 bytes), in C just plain pointers (4 bytes).
+	 *
+	 * @defaultValue "slice"
+	 */
+	stringType: "slice" | "ptr";
+}
+
 export interface ICodeGen {
 	/**
 	 * Optional prelude source, to be prepended before any generated type defs.
 	 */
-	pre?: string;
+	pre?: Fn<CodeGenOpts, string>;
 	/**
 	 * Optional source code to be appended after any generated type defs.
 	 */
-	post?: string;
+	post?: Fn<CodeGenOpts, string>;
 	/**
 	 * Docstring codegen
 	 */
@@ -349,11 +372,21 @@ export interface ICodeGen {
 	/**
 	 * Codegen for enum types.
 	 */
-	enum: (type: Enum, types: TypeColl, acc: string[]) => void;
+	enum: (
+		type: Enum,
+		types: TypeColl,
+		acc: string[],
+		opts: CodeGenOpts
+	) => void;
 	/**
 	 * Codegen for struct types.
 	 */
-	struct: (type: Struct, types: TypeColl, acc: string[]) => void;
+	struct: (
+		type: Struct,
+		types: TypeColl,
+		acc: string[],
+		opts: CodeGenOpts
+	) => void;
 }
 
 /**

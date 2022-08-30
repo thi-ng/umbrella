@@ -1,6 +1,6 @@
 import { isString } from "@thi.ng/checks/is-string";
 import type { ICodeGen } from "../api.js";
-import { prefixLines } from "./utils.js";
+import { isStringSlice, prefixLines } from "./utils.js";
 
 /**
  * Zig code generator options.
@@ -13,6 +13,14 @@ export interface ZigOpts {
 	 * @defaultValue false
 	 */
 	debug: boolean;
+	/**
+	 * Optional prelude
+	 */
+	pre: string;
+	/**
+	 * Optional postfix (inserted after the generated code)
+	 */
+	post: string;
 }
 
 /**
@@ -25,9 +33,13 @@ export interface ZigOpts {
  *
  * @param opts
  */
-export const ZIG = (opts?: Partial<ZigOpts>) => {
+export const ZIG = (opts: Partial<ZigOpts> = {}) => {
 	const { debug } = <ZigOpts>{ debug: false, ...opts };
 	const gen: ICodeGen = {
+		pre: () => opts.pre || "",
+
+		post: () => opts.post || "",
+
 		doc: (doc, indent, acc, topLevel = false) => {
 			acc.push(prefixLines(topLevel ? "//! " : indent + "/// ", doc));
 		},
@@ -48,13 +60,18 @@ export const ZIG = (opts?: Partial<ZigOpts>) => {
 			acc.push("};\n");
 		},
 
-		struct: (struct, _, acc) => {
+		struct: (struct, _, acc, opts) => {
 			const name = struct.name;
 			acc.push(`pub const ${name} = struct {`);
 			const ftypes: Record<string, string> = {};
 			for (let f of struct.fields) {
 				f.doc && gen.doc(f.doc, "    ", acc);
-				let ftype = f.type === "string" ? "[]const u8" : f.type;
+				let ftype =
+					f.type === "string"
+						? isStringSlice(opts.stringType)
+							? "[]const u8"
+							: "[*:0]const u8"
+						: f.type;
 				switch (f.tag) {
 					case "array":
 						ftype = `[${f.len}]${ftype}`;

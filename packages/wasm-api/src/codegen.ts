@@ -6,6 +6,7 @@ import { compareByKey } from "@thi.ng/compare/keys";
 import { compareNumDesc } from "@thi.ng/compare/numeric";
 import { DEFAULT, defmulti } from "@thi.ng/defmulti/defmulti";
 import {
+	CodeGenOpts,
 	Enum,
 	ICodeGen,
 	PKG_NAME,
@@ -16,29 +17,6 @@ import {
 	USIZE_SIZE,
 } from "./api.js";
 import { isNumeric, isWasmString } from "./codegen/utils.js";
-
-/**
- * Global/shared code generator options.
- */
-export interface CodeGenOpts {
-	/**
-	 * Optional string to be injected before generated type defs (but after
-	 * codegen's own prelude, if any)
-	 */
-	pre: string;
-	/**
-	 * Optional string to be injected after generated type defs (but before
-	 * codegen's own epilogue, if any)
-	 */
-	post: string;
-	/**
-	 * Identifier how strings are stored on WASM side, e.g. in Zig string
-	 * literals are slices (8 bytes), in C just plain pointers (4 bytes).
-	 *
-	 * @defaultValue "slice"
-	 */
-	stringType: "slice" | "ptr";
-}
 
 const sizeOf = defmulti<
 	TopLevelType | StructField,
@@ -197,14 +175,14 @@ export const generateTypes = (
 		true
 	);
 	res.push("");
-	codegen.pre && res.push(codegen.pre, "");
+	codegen.pre && res.push(codegen.pre($opts), "");
 	$opts.pre && res.push($opts.pre, "");
 	for (let id in types) {
 		const type = types[id];
 		type.doc && codegen.doc(type.doc, "", res);
-		codegen[type.type](<any>type, types, res);
+		codegen[type.type](<any>type, types, res, $opts);
 	}
 	$opts.post && res.push("", $opts.post);
-	codegen.post && res.push("", codegen.post);
+	codegen.post && res.push("", codegen.post($opts));
 	return res.join("\n");
 };
