@@ -12,7 +12,6 @@ import {
 	Enum,
 	ICodeGen,
 	PKG_NAME,
-	Struct,
 	StructField,
 	USIZE,
 	USIZE_SIZE,
@@ -24,8 +23,10 @@ import {
 	isStringSlice,
 	isWasmPrim,
 	isWasmString,
+	pointerFields,
 	prefixLines,
 	stringFields,
+	withIndentation,
 } from "./utils.js";
 
 /**
@@ -72,185 +73,199 @@ export const TYPESCRIPT = (opts: Partial<TSOpts> = {}) => {
 		uppercaseEnums: true,
 		...opts,
 	};
-	const I = indent;
-	const I2 = I + I;
-	const I3 = I2 + I;
-	const I4 = I3 + I;
-	const getStringImpl = (opts: CodeGenOpts) =>
-		isStringSlice(opts.stringType) ? "WasmString" : "WasmStringPtr";
+
+	const SCOPES: [RegExp, RegExp] = [/\{$/, /\}\)?[;,]?$/];
 
 	const gen: ICodeGen = {
-		pre: (
+		pre: (opts) => `// @ts-ignore possibly includes unused imports
+import { Pointer, ${__stringImpl(
 			opts
-		) => `import type { WasmTypeBase, WasmTypeConstructor } from "${PKG_NAME}";
-// @ts-ignore possibly unused import
-import { ${getStringImpl(opts)} } from "${PKG_NAME}/string";${
+		)}, WasmTypeBase, WasmTypeConstructor } from "${PKG_NAME}";${
 			opts.pre ? `\n${opts.pre}` : ""
 		}`,
 
 		post: () => opts.post || "",
 
-		doc: (doc, indent, acc) => {
+		doc: (doc, acc) => {
 			if (doc.indexOf("\n") !== -1) {
-				acc.push(
-					indent + "/**",
-					prefixLines(indent + " * ", doc),
-					indent + " */"
-				);
+				acc.push("/**", prefixLines(indent + " * ", doc), " */");
 			} else {
-				acc.push(`${indent}/** ${doc} */`);
+				acc.push(`/** ${doc} */`);
 			}
 		},
 
-		enum: (type, _, acc) => {
-			const e = <Enum>type;
-			acc.push(`export enum ${e.name} {`);
+		enum: (e, _, acc) => {
+			const res: string[] = [];
+			res.push(`export enum ${e.name} {`);
 			for (let v of e.values) {
 				let line = indent;
 				if (!isString(v)) {
-					v.doc && gen.doc(v.doc, indent, acc);
+					v.doc && gen.doc(v.doc, res);
 					line += uppercaseEnums ? v.name.toUpperCase() : v.name;
 					if (v.value != null) line += ` = ${v.value}`;
 				} else {
 					line += uppercaseEnums ? v.toUpperCase() : v;
 				}
-				acc.push(line + ",");
+				res.push(line + ",");
 			}
-			acc.push("}\n");
-			return acc;
+			res.push("}", "");
+			acc.push(...withIndentation(res, indent, ...SCOPES));
 		},
 
-		struct: (type, types, acc, opts) => {
-			const struct = <Struct>type;
-			const returnTypes: Record<string, string> = {};
-			const $stringImpl = getStringImpl(opts);
-
+		struct: (struct, types, acc, opts) => {
+			const fieldTypes: Record<string, string> = {};
+			const $stringImpl = __stringImpl(opts);
+			const lines: string[] = [];
 			// interface definition
-			acc.push(`export interface ${struct.name} extends WasmTypeBase {`);
+			lines.push(
+				`export interface ${struct.name} extends WasmTypeBase {`
+			);
 			for (let f of struct.fields) {
-				f.doc && gen.doc(f.doc, indent, acc);
-				let line = `${indent}${f.name}: `;
-				let rtype: string = "";
-				if (f.tag == "array" || f.tag == "slice" || f.tag === "vec") {
-					rtype = isNumeric(f.type)
-						? TYPEDARRAY_CTORS[<Type>f.type].name
-						: isBigNumeric(f.type)
-						? BIGINT_ARRAY_CTORS[<BigType>f.type].name
-						: isWasmString(f.type)
-						? $stringImpl + "[]"
-						: f.type + "[]";
-				} else if (!f.tag || f.tag === "scalar" || f.tag === "ptr") {
-					rtype = isBigNumeric(f.type)
-						? "bigint"
-						: isNumeric(f.type)
-						? "number"
-						: isWasmString(f.type)
-						? $stringImpl
-						: f.type;
-				}
-				returnTypes[f.name] = rtype;
-				acc.push(line + rtype + ";");
+				f.doc && gen.doc(f.doc, lines);
+				const ftype = __fieldType(f, opts);
+				fieldTypes[f.name] = ftype;
+				lines.push(`${f.name}: ${ftype};`);
 			}
-			acc.push("}\n");
+			lines.push("}", "");
 
+			const pointerDecls = pointerFields(struct.fields).map((x) => {
+				return `let $${x.name}: ${fieldTypes[x.name]} | null = null;`;
+			});
 			const stringDecls = stringFields(struct.fields).map((x) => {
 				const suffix =
 					x.tag === "array" || x.tag === "slice" ? "[]" : "";
-				return `${I2}let $${x.name}: ${$stringImpl}${suffix} | null = null;`;
+				return `let $${x.name}: ${$stringImpl}${suffix} | null = null;`;
 			});
 
 			// type implementation
-			acc.push(
+			lines.push(
 				`export const $${struct.name}: WasmTypeConstructor<${struct.name}> = (mem) => ({`,
-				`${I}get align() { return ${struct.__align}; },`,
-				`${I}get size() { return ${struct.__size}; },`,
-				`${I}instance: (base) => {`,
+				`get align() {`,
+				`return ${struct.__align};`,
+				`},`,
+				`get size() {`,
+				`return ${struct.__size};`,
+				`},`,
+				`instance: (base) => {`,
+				...pointerDecls,
 				...stringDecls,
-				`${I2}return {`,
-				`${I3}get __base() { return base; },`,
-				`${I3}get __bytes() { return mem.u8.subarray(base, base + ${struct.__size}); },`
+				`return {`,
+				`get __base() {`,
+				`return base;`,
+				`},`,
+				`get __bytes() {`,
+				`return mem.u8.subarray(base, base + ${struct.__size});`,
+				`},`
 			);
 
 			for (let f of struct.fields) {
+				const ftype = fieldTypes[f.name];
 				const offset = f.__offset || 0;
-				acc.push(`${I3}get ${f.name}(): ${returnTypes[f.name]} {`);
+				lines.push(`get ${f.name}(): ${ftype} {`);
 				const isPrim = isWasmPrim(f.type);
 				const isStr = isWasmString(f.type);
+				const isConst = isStr ? f.const !== false : !!f.const;
 				if (f.tag === "ptr") {
 					if (isPrim) {
-						acc.push(
-							`${I4}return mem.${f.type}[${__ptrShift(
-								offset,
-								f.type
-							)}];`
+						const fn = f.len
+							? `(base) => mem.${f.type}.subarray(${__addrShift(
+									0,
+									f.type
+							  )}, (${__addrShift(0, f.type)}) + ${f.len})`
+							: `(base) => mem.${f.type}[${__addrShift(
+									0,
+									f.type
+							  )}]`;
+						lines.push(
+							`return $${f.name} || ($${
+								f.name
+							} = new ${ftype}(mem, ${__addr(offset)}, ${fn}));`
 						);
 					} else if (isStr) {
-						acc.push(
-							`${I4}return new ${$stringImpl}(mem, ${__ptr(
+						lines.push(
+							`return $${f.name} || ($${
+								f.name
+							} = new ${ftype}(mem, ${__addr(
 								offset
-							)})`
+							)}, (addr) => new ${$stringImpl}(mem, addr, ${isConst})));`
 						);
 					} else {
-						acc.push(
-							`${I4}return $${f.type}.instance(${__ptr(offset)});`
+						lines.push(
+							`return $${f.name} || ($${
+								f.name
+							} = new ${ftype}(mem, ${__addr(
+								offset
+							)}, (addr) => new $${f.type}.instance(addr)));`
 						);
 					}
 				} else if (f.tag === "slice") {
-					acc.push(`${I4}const len = ${__ptr(offset + 4)};`);
+					lines.push(`const len = ${__ptr(offset + 4)};`);
 					if (isPrim) {
-						acc.push(
-							`${I4}const addr = ${__ptrShift(offset, f.type)};`,
-							`${I4}return mem.${f.type}.subarray(addr, addr + len);`
+						lines.push(
+							`const addr = ${__ptrShift(offset, f.type)};`,
+							`return mem.${f.type}.subarray(addr, addr + len);`
 						);
 					} else if (isStr) {
-						acc.push(
-							`${I4}const addr = ${__ptr(offset)};`,
-							__mapStringArray(I4, f.name, $stringImpl)
+						lines.push(
+							`const addr = ${__ptr(offset)};`,
+							...__mapStringArray(
+								f.name,
+								$stringImpl,
+								"len",
+								isConst
+							)
 						);
 					} else {
-						acc.push(
-							`${I4}const addr = ${__ptr(offset)};`,
-							__mapArray(f, I4)
+						lines.push(
+							`const addr = ${__ptr(offset)};`,
+							...__mapArray(f)
 						);
 					}
 				} else if (f.tag === "array" || f.tag === "vec") {
 					if (isPrim) {
-						acc.push(
-							`${I4}const addr = ${__addrShift(offset, f.type)};`,
-							`${I4}return mem.${f.type}.subarray(addr, addr + ${f.len});`
+						lines.push(
+							`const addr = ${__addrShift(offset, f.type)};`,
+							`return mem.${f.type}.subarray(addr, addr + ${f.len});`
 						);
 					} else if (isStr) {
-						acc.push(
-							`${I4}if ($${f.name}) return $${f.name};`,
-							`${I4}const addr = ${__addr(offset)};`,
-							__mapStringArray(I4, f.name, $stringImpl, f.len)
+						lines.push(
+							`if ($${f.name}) return $${f.name};`,
+							`const addr = ${__addr(offset)};`,
+							...__mapStringArray(
+								f.name,
+								$stringImpl,
+								f.len!,
+								isConst
+							)
 						);
 					} else {
-						acc.push(
-							`${I4}const addr = ${__addr(offset)};`,
-							__mapArray(f, I4, f.len)
+						lines.push(
+							`const addr = ${__addr(offset)};`,
+							...__mapArray(f, f.len)
 						);
 					}
 				} else {
 					let setter: string | undefined;
 					if (isPrim) {
 						const addr = __mem(f.type, f.__offset!);
-						acc.push(`${I4}return ${addr};`);
+						lines.push(`return ${addr};`);
 						setter = `${addr} = x`;
 					} else if (isStr) {
-						acc.push(
-							`${I4}return $${f.name} || ($${
+						lines.push(
+							`return $${f.name} || ($${
 								f.name
-							} = new ${$stringImpl}(mem, ${__addr(offset)}));`
+							} = new ${$stringImpl}(mem, ${__addr(
+								offset
+							)}, ${isConst}));`
 						);
 					} else if (types[f.type].type === "enum") {
 						const tag = (<Enum>types[f.type]).tag;
 						const addr = __mem(tag, f.__offset!);
-						acc.push(`${I4}return ${addr};`);
+						lines.push(`return ${addr};`);
 						setter = `${addr} = x`;
 					} else {
-						acc.push(
-							`${I4}return $${f.type}(mem).instance(${__addr(
+						lines.push(
+							`return $${f.type}(mem).instance(${__addr(
 								offset
 							)});`
 						);
@@ -258,23 +273,53 @@ import { ${getStringImpl(opts)} } from "${PKG_NAME}/string";${
 					}
 					// setter
 					if (setter) {
-						acc.push(
+						lines.push(
 							// close getter
-							`${I3}},`,
-							`${I3}set ${f.name}(x: ${returnTypes[f.name]}) {`,
-							`${I4}${setter};`
+							`},`,
+							`set ${f.name}(x: ${fieldTypes[f.name]}) {`,
+							`${setter};`
 						);
 					}
 				}
 				// close field accessor
-				acc.push(`${I3}},`);
+				lines.push(`},`);
 			}
 
-			acc.push(`${I2}};\n${I}}\n});\n`);
-			return acc;
+			lines.push("};", "}", "});", "");
+			acc.push(...withIndentation(lines, indent, ...SCOPES));
 		},
 	};
 	return gen;
+};
+
+/** @internal */
+const __stringImpl = (opts: CodeGenOpts) =>
+	isStringSlice(opts.stringType) ? "WasmStringSlice" : "WasmStringPtr";
+
+/** @internal */
+const __fieldType = (f: StructField, opts: CodeGenOpts) => {
+	const ftype =
+		f.tag == "array" ||
+		f.tag == "slice" ||
+		f.tag === "vec" ||
+		(f.tag === "ptr" && f.len)
+			? isNumeric(f.type)
+				? TYPEDARRAY_CTORS[<Type>f.type].name
+				: isBigNumeric(f.type)
+				? BIGINT_ARRAY_CTORS[<BigType>f.type].name
+				: isWasmString(f.type)
+				? __stringImpl(opts) + "[]"
+				: f.type + "[]"
+			: !f.tag || f.tag === "scalar" || f.tag === "ptr"
+			? isBigNumeric(f.type)
+				? "bigint"
+				: isNumeric(f.type)
+				? "number"
+				: isWasmString(f.type)
+				? __stringImpl(opts)
+				: f.type
+			: f.type;
+	return f.tag === "ptr" ? `Pointer<${ftype}>` : ftype;
 };
 
 /** @internal */
@@ -300,26 +345,23 @@ const __mem = (type: string, offset: number) =>
 	`mem.${type}[${__addrShift(offset!, type)}]`;
 
 /** @internal */
-const __mapArray = (f: StructField, indent: string, len: NumOrString = "len") =>
-	prefixLines(
-		indent,
-		`const inst = $${f.type}(mem);
-const slice: ${f.type}[] = [];
-for(let i = 0; i < ${len}; i++) slice.push(inst.instance(addr + i * ${f.__size}));
-return slice;`
-	);
+const __mapArray = (f: StructField, len: NumOrString = "len") => [
+	`const inst = $${f.type}(mem);`,
+	`const slice: ${f.type}[] = [];`,
+	`for(let i = 0; i < ${len}; i++) slice.push(inst.instance(addr + i * ${f.__size}));`,
+	`return slice;`,
+];
 
 /** @internal */
 const __mapStringArray = (
-	indent: string,
 	name: string,
-	type: "WasmString" | "WasmStringPtr",
-	len: NumOrString = "len"
-) =>
-	prefixLines(indent, [
-		`$${name} = [];`,
-		`for(let i = 0; i < ${len}; i++) $${name}.push(new ${type}(mem, addr + i * ${
-			USIZE_SIZE * (type === "WasmString" ? 2 : 1)
-		}));`,
-		`return $${name};`,
-	]);
+	type: "WasmStringSlice" | "WasmStringPtr",
+	len: NumOrString,
+	isConst: boolean
+) => [
+	`$${name} = [];`,
+	`for(let i = 0; i < ${len}; i++) $${name}.push(new ${type}(mem, addr + i * ${
+		USIZE_SIZE * (type === "WasmStringSlice" ? 2 : 1)
+	}, ${isConst}));`,
+	`return $${name};`,
+];

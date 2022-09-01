@@ -118,6 +118,9 @@
 		"./object-index": {
 			"default": "./object-index.js"
 		},
+		"./pointer": {
+			"default": "./pointer.js"
+		},
 		"./string": {
 			"default": "./string.js"
 		}

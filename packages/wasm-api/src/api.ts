@@ -287,6 +287,11 @@ export interface StructField extends TypeInfo {
 	 */
 	type: WasmPrim | "string" | "opaque" | string;
 	/**
+	 * Const qualifier (default is true for `string`, false for all other
+	 * types). Only used for pointers or slices.
+	 */
+	const?: boolean;
+	/**
 	 * TODO currently unsupported & ignored!
 	 */
 	sentinel?: number;
@@ -363,12 +368,7 @@ export interface ICodeGen {
 	/**
 	 * Docstring codegen
 	 */
-	doc: (
-		doc: string,
-		indent: string,
-		acc: string[],
-		topLevel?: boolean
-	) => void;
+	doc: (doc: string, acc: string[], topLevel?: boolean) => void;
 	/**
 	 * Codegen for enum types.
 	 */

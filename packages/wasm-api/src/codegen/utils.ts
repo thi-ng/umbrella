@@ -47,10 +47,42 @@ export const isStringSlice = (
 	type: CodeGenOpts["stringType"]
 ): type is "slice" => type === "slice";
 
+export const pointerFields = (fields: StructField[]) =>
+	fields.filter((f) => f.tag === "ptr");
+
 /**
  * Returns filtered array of struct fields of only "string" fields.
  *
  * @param fields
  */
 export const stringFields = (fields: StructField[]) =>
-	fields.filter((f) => isWasmString(f.type));
+	fields.filter((f) => isWasmString(f.type) && f.tag !== "ptr");
+
+/**
+ * Yield iterator of given lines, each with applied indentation based on given
+ * scope regexp's which are applied to each line to increase or decrease
+ * indentation level. If `scopeEnd` succeeds the level is decreased for the
+ * current line. If `scopeStart` succeeds, the indent is increased for the next
+ * line...
+ *
+ * @param lines
+ * @param indent
+ * @param scopeStart
+ * @param scopeEnd
+ * @param level
+ */
+export function* withIndentation(
+	lines: string[],
+	indent: string,
+	scopeStart: RegExp,
+	scopeEnd: RegExp,
+	level = 0
+) {
+	const stack: string[] = new Array(level).fill(indent);
+	for (let l of lines) {
+		scopeEnd.test(l) && stack.pop();
+		const curr = stack.length ? stack[stack.length - 1] : "";
+		yield curr + l;
+		scopeStart.test(l) && stack.push(curr + indent);
+	}
+}

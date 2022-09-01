@@ -1,18 +1,19 @@
 import type { IDeref } from "@thi.ng/api";
-import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
+import { unsupported } from "@thi.ng/errors/unsupported";
 import type { IWasmMemoryAccess } from "./api.js";
 
 /**
  * Memory mapped string wrapper for Zig-style UTF-8 encoded byte slices (aka
  * pointer & length pair). The actual JS string can be obtained via
- * {@link WasmString.deref} and mutated via {@link WasmString.set}.
+ * {@link WasmStringSlice.deref} and mutated via {@link WasmStringSlice.set}.
  */
-export class WasmString implements IDeref<string> {
+export class WasmStringSlice implements IDeref<string> {
 	readonly max: number;
 
 	constructor(
 		public readonly mem: IWasmMemoryAccess,
-		public readonly base: number
+		public readonly base: number,
+		public readonly isConst = true
 	) {
 		this.max = this.length;
 	}
@@ -40,35 +41,35 @@ export class WasmString implements IDeref<string> {
 	}
 
 	/**
-	 * Attempts to overwrite string's memory with given JS string (or wrapper).
-	 * Throws an error if new string is longer than the _original_ length of the
-	 * slice (i.e. when this `WasmString` instance was created). Also updates
-	 * the slice's length field to new string length.
+	 * If given a JS string as arg (and if **not** a const slice), attempts to
+	 * overwrite this wrapped string's memory with bytes from given string. If
+	 * given another {@link WasmStringSlice} as arg, only the slice pointer &
+	 * new length will be updated (always succeeds).
 	 *
 	 * @remarks
+	 * When copying bytes from a JS string, an error will be thrown if the new
+	 * string is longer than the _original_ length of the slice (i.e. from when
+	 * this `WasmStringSlice` wrapper instance was created). Also updates the
+	 * slice's length field to new string length.
+	 *
 	 * Passing a `WasmString` instance as arg is faster than JS string since
-	 * bytes can be copied directly and avoids UTF-8 encoding.
+	 * only the slice definition itself will be updated.
 	 *
 	 * @param str
 	 */
-	set(str: string | WasmString) {
-		let len: number;
+	set(str: string | WasmStringSlice) {
 		if (typeof str === "string") {
-			len = this.mem.setString(str, this.addr, this.max + 1, true);
-		} else {
-			if (str.length > this.max) {
-				illegalArgs(
-					`string too large (max. ${this.max} bytes, got ${str.length})`
-				);
-			}
-			this.mem.u8.copyWithin(
+			if (this.isConst) unsupported("can't mutate const string");
+			this.mem.u32[(this.base + 4) >>> 2] = this.mem.setString(
+				str,
 				this.addr,
-				str.addr,
-				str.addr + str.length + 1
+				this.max + 1,
+				true
 			);
-			len = str.length;
+		} else {
+			this.mem.u32[this.base >>> 2] = str.addr;
+			this.mem.u32[(this.base + 4) >>> 2] = str.length;
 		}
-		this.mem.u32[(this.base + 4) >>> 2] = len;
 	}
 
 	toJSON() {
@@ -78,17 +79,22 @@ export class WasmString implements IDeref<string> {
 	toString() {
 		return this.deref();
 	}
+
+	valueOf() {
+		return this.deref();
+	}
 }
 
 /**
  * Memory mapped string wrapper for C-style UTF-8 encoded and zero-terminated
  * char pointers. The actual JS string can be obtained via
- * {@link WasmString.deref} and mutated via {@link WasmString.set}.
+ * {@link WasmStringSlice.deref} and mutated via {@link WasmStringSlice.set}.
  */
 export class WasmStringPtr implements IDeref<string> {
 	constructor(
 		public readonly mem: IWasmMemoryAccess,
-		public readonly base: number
+		public readonly base: number,
+		public readonly isConst = true
 	) {}
 
 	/**
@@ -96,6 +102,10 @@ export class WasmStringPtr implements IDeref<string> {
 	 */
 	get addr() {
 		return this.mem.u32[this.base >>> 2];
+	}
+
+	set addr(addr: number) {
+		this.mem.u32[this.base >>> 2] = addr;
 	}
 
 	/**
@@ -116,29 +126,31 @@ export class WasmStringPtr implements IDeref<string> {
 	}
 
 	/**
-	 * Overwrites string's memory with given JS string (or wrapper). Unlike with
-	 * {@link WasmString.set} this implementation which performs bounds
-	 * checking, this method only throws an error if new string is longer than
-	 * the available memory (from the start address until the end of the WASM
-	 * memory). **Therefore, this is as (un)safe as a C pointer and should be
-	 * used with caution!**
+	 * If given a JS string as arg (and if not a const pointer), attempts to
+	 * overwrite this wrapped string's memory with bytes from given string. If
+	 * given another {@link WasmStringPtr}, it merely overrides the pointer to
+	 * the new one (always succeeds).
 	 *
 	 * @remarks
+	 * Unlike with {@link WasmStringSlice.set} this implementation which
+	 * performs bounds checking when copying bytes from a JS string, this method
+	 * only throws an error if the new string is longer than the available
+	 * memory (from the start address until the end of the WASM memory).
+	 * **Therefore, this is as (un)safe as a C pointer and should be used with
+	 * caution!**
+	 *
 	 * Passing a `WasmStringPtr` instance as arg is faster than JS string since
-	 * bytes can be copied directly and avoids UTF-8 encoding.
+	 * only the pointer itself will be updated.
 	 *
 	 * @param str
 	 */
 	set(str: string | WasmStringPtr) {
 		const addr = this.addr;
 		if (typeof str === "string") {
+			if (this.isConst) unsupported("can't mutate const string");
 			this.mem.setString(str, addr, this.mem.u8.byteLength - addr, true);
 		} else {
-			this.mem.u8.copyWithin(
-				this.addr,
-				str.addr,
-				str.addr + str.length + 1
-			);
+			this.addr = str.addr;
 		}
 	}
 
@@ -147,6 +159,10 @@ export class WasmStringPtr implements IDeref<string> {
 	}
 
 	toString() {
+		return this.deref();
+	}
+
+	valueOf() {
 		return this.deref();
 	}
 }
