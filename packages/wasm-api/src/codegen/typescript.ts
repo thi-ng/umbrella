@@ -182,20 +182,38 @@ import { Pointer, ${__stringImpl(
 							} = new ${ftype}(mem, ${__addr(offset)}, ${fn}));`
 						);
 					} else if (isStr) {
+						const fn = f.len
+							? [
+									`(addr) => {`,
+									...__mapStringArray(
+										"buf",
+										$stringImpl,
+										f.len!,
+										isConst,
+										true
+									),
+									`}`,
+							  ]
+							: [
+									`(addr) => new ${$stringImpl}(mem, addr, ${isConst})`,
+							  ];
 						lines.push(
 							`return $${f.name} || ($${
 								f.name
-							} = new ${ftype}(mem, ${__addr(
-								offset
-							)}, (addr) => new ${$stringImpl}(mem, addr, ${isConst})));`
+							} = new ${ftype}(mem, ${__addr(offset)},`,
+							...fn,
+							`));`
 						);
 					} else {
+						const fn = f.len
+							? [`(addr) => {`, ...__mapArray(f, f.len), `}`]
+							: [`(addr) => new $${f.type}.instance(addr)`];
 						lines.push(
 							`return $${f.name} || ($${
 								f.name
-							} = new ${ftype}(mem, ${__addr(
-								offset
-							)}, (addr) => new $${f.type}.instance(addr)));`
+							} = new ${ftype}(mem, ${__addr(offset)},`,
+							...fn,
+							`));`
 						);
 					}
 				} else if (f.tag === "slice") {
@@ -209,7 +227,7 @@ import { Pointer, ${__stringImpl(
 						lines.push(
 							`const addr = ${__ptr(offset)};`,
 							...__mapStringArray(
-								f.name,
+								"buf",
 								$stringImpl,
 								"len",
 								isConst
@@ -357,9 +375,10 @@ const __mapStringArray = (
 	name: string,
 	type: "WasmStringSlice" | "WasmStringPtr",
 	len: NumOrString,
-	isConst: boolean
+	isConst: boolean,
+	isLocal = false
 ) => [
-	`$${name} = [];`,
+	isLocal ? `const $${name}: ${type}[] = [];` : `$${name} = [];`,
 	`for(let i = 0; i < ${len}; i++) $${name}.push(new ${type}(mem, addr + i * ${
 		USIZE_SIZE * (type === "WasmStringSlice" ? 2 : 1)
 	}, ${isConst}));`,
