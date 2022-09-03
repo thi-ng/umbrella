@@ -72,6 +72,7 @@ testament --help
 #
 # Options:
 # --all, -a        Run all tests (don't stop at 1st failure)
+# --exclude, -e    Exclude path prefix (multiple)
 # --csv            Export results as CSV
 # --json           Export results as JSON
 # -o               Output file path for exported results
@@ -85,7 +86,9 @@ testament --help
 
 ### Result exports
 
-Test results can be exported in CSV or JSON formats. To include failed tests, make sure you include the `--all`/`-a` CLI flag. If no output file (`-o`) is given, the results will be written to stdout
+Test results can be exported in CSV or JSON formats. To include failed tests,
+make sure you include the `--all`/`-a` CLI flag. If no output file (`-o`) is
+given, the results will be written to stdout
 
 ```bash
 testament --all --csv -o results.csv test

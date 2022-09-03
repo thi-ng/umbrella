@@ -10,6 +10,7 @@ interface TestamentArgs {
 	csv: boolean;
 	json: boolean;
 	watch: boolean;
+	exclude: string[];
 	out?: string;
 	rest: string[];
 }
@@ -19,6 +20,7 @@ const parseOpts = (args: string[], i = 2): TestamentArgs | number => {
 		csv: false,
 		json: false,
 		watch: false,
+		exclude: [],
 		rest: [],
 	};
 	for (; i < args.length; i++) {
@@ -52,6 +54,11 @@ const parseOpts = (args: string[], i = 2): TestamentArgs | number => {
 			case "--watch":
 				res.watch = true;
 				break;
+			case "-e":
+			case "--exclude":
+				res.exclude.push(args[i + 1]);
+				i++;
+				break;
 			case "-h":
 			case "--help":
 				console.log(`
@@ -59,6 +66,7 @@ Usage: testament [opts] path1 [path2...] [opts]
 
 Options:
 --all, -a        Run all tests (don't stop at 1st failure)
+--exclude, -e    Exclude path prefix (multiple)
 --csv            Export results as CSV
 --json           Export results as JSON
 -o               Output file path for exported results
@@ -162,6 +170,7 @@ const randomID = () => `#${(Math.random() * 1e9) | 0}`;
 const runTests = async (opts: TestamentArgs) => {
 	const imports: Promise<any>[] = [];
 	const sources: string[] = [];
+	const excludes = opts.exclude.map((x) => resolve(x));
 
 	const enque = (src: string) => {
 		src += randomID();
@@ -173,6 +182,7 @@ const runTests = async (opts: TestamentArgs) => {
 		src = resolve(src);
 		if (statSync(src).isDirectory()) {
 			for (let f of files(src, /\.[jt]s$/)) {
+				if (excludes.some((prefix) => f.startsWith(prefix))) continue;
 				enque(f);
 			}
 		} else {
