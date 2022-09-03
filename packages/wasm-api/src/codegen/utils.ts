@@ -59,11 +59,12 @@ export const stringFields = (fields: StructField[]) =>
 	fields.filter((f) => isWasmString(f.type) && f.tag !== "ptr");
 
 /**
- * Yield iterator of given lines, each with applied indentation based on given
+ * Yields iterator of given lines, each with applied indentation based on given
  * scope regexp's which are applied to each line to increase or decrease
- * indentation level. If `scopeEnd` succeeds the level is decreased for the
- * current line. If `scopeStart` succeeds, the indent is increased for the next
- * line...
+ * indentation level (the initial indentation level can be specified via
+ * optional `level` arg, default 0). If `scopeStart` succeeds, the indent is
+ * increased for the _next_ line. If `scopeEnd` succeeds the level is decreased
+ * for the _current_ line. ...
  *
  * @param lines
  * @param indent

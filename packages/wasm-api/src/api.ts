@@ -354,6 +354,11 @@ export interface CodeGenOpts {
 	 * @defaultValue "slice"
 	 */
 	stringType: "slice" | "ptr";
+	/**
+	 * Unless set to false, the generated output will be prefixed with a header
+	 * line comment of generator meta data
+	 */
+	header: boolean;
 }
 
 export interface ICodeGen {
