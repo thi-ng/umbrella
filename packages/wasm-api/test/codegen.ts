@@ -32,22 +32,24 @@ const stringTypes: TypeColl = {
 group("codegen", {
 	stringSlice: () => {
 		const opts: Partial<CodeGenOpts> = {
+			debug: true,
 			header: false,
 			stringType: "slice",
 		};
 		const srcTS = generateTypes(stringTypes, TYPESCRIPT(), opts);
-		const srcZig = generateTypes(stringTypes, ZIG({ debug: true }), opts);
+		const srcZig = generateTypes(stringTypes, ZIG(), opts);
 		checkFixture(srcTS, "string-slice.ts");
 		checkFixture(srcZig, "string-slice.zig");
 	},
 
 	stringPtr: () => {
 		const opts: Partial<CodeGenOpts> = {
+			debug: true,
 			header: false,
 			stringType: "ptr",
 		};
 		const srcTS = generateTypes(stringTypes, TYPESCRIPT(), opts);
-		const srcZig = generateTypes(stringTypes, ZIG({ debug: true }), opts);
+		const srcZig = generateTypes(stringTypes, ZIG(), opts);
 		checkFixture(srcTS, "string-ptr.ts");
 		checkFixture(srcZig, "string-ptr.zig");
 	},

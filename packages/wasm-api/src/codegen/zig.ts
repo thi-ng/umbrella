@@ -65,7 +65,11 @@ export const ZIG = (opts: Partial<ZigOpts> = {}) => {
 		struct: (struct, _, acc, opts) => {
 			const name = struct.name;
 			const res: string[] = [];
-			res.push(`pub const ${name} = ${struct.tag || ""} struct {`);
+			res.push(
+				`pub const ${name} = ${
+					struct.tag ? struct.tag + " " : ""
+				}struct {`
+			);
 			const ftypes: Record<string, string> = {};
 			let padID = 0;
 			for (let f of struct.fields) {
