@@ -3,6 +3,7 @@ import type { Keys } from "@thi.ng/api";
 import {
 	Args,
 	flag,
+	oneOf,
 	oneOfMulti,
 	parse,
 	ParseError,
@@ -13,16 +14,18 @@ import {
 } from "@thi.ng/args";
 import { isArray, isPlainObject } from "@thi.ng/checks";
 import { illegalArgs } from "@thi.ng/errors";
+import { mutIn } from "@thi.ng/paths/mut-in";
 import { readJSON, writeText } from "@thi.ng/file-io";
 import { ConsoleLogger, ILogger } from "@thi.ng/logger";
 import { resolve } from "path";
 import type { CodeGenOpts, Struct, TopLevelType, TypeColl } from "./api.js";
 import { generateTypes } from "./codegen.js";
+import { C11Opts, C11 } from "./codegen/c11.js";
 import { TSOpts, TYPESCRIPT } from "./codegen/typescript.js";
-import { isWasmPrim, isWasmString } from "./codegen/utils.js";
+import { isPadding, isWasmPrim, isWasmString } from "./codegen/utils.js";
 import { ZIG, ZigOpts } from "./codegen/zig.js";
 
-const GENERATORS = <const>{ ts: TYPESCRIPT, zig: ZIG };
+const GENERATORS = <const>{ c11: C11, ts: TYPESCRIPT, zig: ZIG };
 
 type Language = Keys<typeof GENERATORS>;
 
@@ -32,6 +35,7 @@ interface CLIOpts {
 	dryRun: boolean;
 	lang: Language[];
 	out?: string[];
+	string?: CodeGenOpts["stringType"];
 }
 
 interface Ctx {
@@ -42,6 +46,7 @@ interface Ctx {
 
 interface GenConfig {
 	global: Partial<CodeGenOpts>;
+	c11: Partial<C11Opts>;
 	ts: Partial<TSOpts>;
 	zig: Partial<ZigOpts>;
 }
@@ -64,6 +69,11 @@ const argOpts: Args<CLIOpts> = {
 		delim: ",",
 	}),
 	out: strings({ alias: "o", hint: "FILE", desc: "output file path" }),
+	string: oneOf(["slice", "ptr"], {
+		alias: "s",
+		hint: "TYPE",
+		desc: "Force string type implementation",
+	}),
 };
 
 export const INSTALL_DIR = resolve(`${process.argv[2]}/..`);
@@ -121,7 +131,14 @@ const validateTypeRefs = (coll: TypeColl) => {
 	for (let spec of Object.values(coll)) {
 		if (spec.type !== "struct") continue;
 		for (let f of (<Struct>spec).fields) {
-			if (!(isWasmPrim(f.type) || isWasmString(f.type) || coll[f.type])) {
+			if (
+				!(
+					isPadding(f) ||
+					isWasmPrim(f.type) ||
+					isWasmString(f.type) ||
+					coll[f.type]
+				)
+			) {
 				invalidSpec(
 					(<any>spec).__path,
 					`structfield ${spec.name}.${f.name} of unknown type: ${f.type}`
@@ -184,13 +201,15 @@ try {
 
 	const ctx: Ctx = {
 		logger: new ConsoleLogger("wasm-api", opts.debug ? "DEBUG" : "INFO"),
-		config: {},
+		config: { global: {} },
 		opts,
 	};
 
 	if (opts.config) {
 		ctx.config = readJSON(resolve(opts.config), ctx.logger);
 	}
+	opts.debug && mutIn(ctx, ["config", "global", "debug"], true);
+	opts.string && mutIn(ctx, ["config", "global", "stringType"], opts.string);
 
 	generateOutputs(ctx, parseTypeSpecs(ctx, rest));
 } catch (e) {

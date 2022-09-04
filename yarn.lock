@@ -4776,6 +4776,7 @@ __metadata:
     "@thi.ng/hex": ^2.1.9
     "@thi.ng/idgen": ^2.1.12
     "@thi.ng/logger": ^1.2.1
+    "@thi.ng/paths": ^5.1.14
     "@thi.ng/testament": ^0.2.12
     rimraf: ^3.0.2
     tools: "workspace:^"
