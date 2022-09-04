@@ -3,8 +3,16 @@
 const std = @import("std");
 const root = @import("root");
 
+/// JS external part of the custom panic handler
+/// Prints message using configured JS logger and then throws JS error
 pub extern "wasmapi" fn _panic(addr: [*]const u8, len: usize) noreturn;
 
+/// Custom panic handler which prints given message using configured JS logger
+/// To use this handler, add the following line to your **root** source file:
+///
+/// ```
+/// pub const panic = @import("wasmapi").panic;
+/// ```
 pub fn panic(msg: []const u8, _: ?*std.builtin.StackTrace) noreturn {
     _panic(msg.ptr, msg.len);
     unreachable;
@@ -12,7 +20,7 @@ pub fn panic(msg: []const u8, _: ?*std.builtin.StackTrace) noreturn {
 
 /// Obtains the allocator to be exposed to the WASM host env
 /// (via `_wasm_allocate()` and `_wasm_free()`).
-/// If the user defines a public `WASM_ALLOCATOR` in their root file
+/// If the user defines a public `WASM_ALLOCATOR` in their **root** file
 /// then this allocator will be used, otherwise the implementations
 /// of the two mentioned functions are no-ops.
 /// The `WASM_ALLOCATOR` can be changed and/or enabled/disabled dynamically
