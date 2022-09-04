@@ -5,6 +5,7 @@ import { ceilPow2 } from "@thi.ng/binary/pow";
 import { compareByKey } from "@thi.ng/compare/keys";
 import { compareNumDesc } from "@thi.ng/compare/numeric";
 import { DEFAULT, defmulti } from "@thi.ng/defmulti/defmulti";
+import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import {
 	CodeGenOpts,
 	Enum,
@@ -29,6 +30,10 @@ const sizeOf = defmulti<
 	{
 		[DEFAULT]: (field: StructField, types: TypeColl, opts: CodeGenOpts) => {
 			if (field.__size) return field.__size;
+			if (field.pad != null) {
+				field.pad < 1 && illegalArgs(`pad size must be > 0`);
+				return (field.__size = field.pad);
+			}
 			let size = 0;
 			if (field.tag === "ptr") {
 				size = USIZE_SIZE;
@@ -72,6 +77,7 @@ const alignOf = defmulti<TopLevelType | StructField, TypeColl, number>(
 	{
 		[DEFAULT]: (field: StructField, types: TypeColl) => {
 			if (field.__align) return field.__align;
+			if (field.pad) return (field.__align = 1);
 			let align = isNumeric(field.type)
 				? SIZEOF[<Type>field.type]
 				: isWasmString(field.type)

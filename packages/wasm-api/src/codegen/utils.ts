@@ -27,6 +27,8 @@ export const isWasmPrim = (x: string): x is WasmPrim =>
 
 export const isWasmString = (x: string): x is "string" => x === "string";
 
+export const isPadding = (f: StructField) => f.pad != null && f.pad > 0;
+
 /**
  * Takes an array of strings or splits given string into lines, prefixes each
  * line with given `prefix` and then returns rejoined result.

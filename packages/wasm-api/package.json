@@ -103,6 +103,9 @@
 		"./bridge": {
 			"default": "./bridge.js"
 		},
+		"./codegen/c11": {
+			"default": "./codegen/c11.js"
+		},
 		"./codegen/typescript": {
 			"default": "./codegen/typescript.js"
 		},

@@ -242,11 +242,18 @@ export interface Struct extends TopLevelType {
 	/**
 	 * If true, struct fields will be re-ordered in descending order based on
 	 * their {@link TypeInfo.__align} size. This might result in overall smaller
-	 * structs due to minimizing inter-field padding.
+	 * structs due to minimizing implicit inter-field padding caused by
+	 * alignment requirements. **If this option is enabled, then the struct MUST
+	 * NOT contain any padding fields!**
 	 *
 	 * @defaultValue false
 	 */
 	auto?: boolean;
+	/**
+	 * Optional qualifier for the kind of struct to be emitted (codegen specific
+	 * interpretation, currently only used by {@link ZIG}).
+	 */
+	tag?: "extern" | "packed";
 }
 
 export interface StructField extends TypeInfo {
@@ -303,6 +310,11 @@ export interface StructField extends TypeInfo {
 	 * TODO currently unsupported & ignored!
 	 */
 	default?: any;
+	/**
+	 * If defined and > 0, the field will be considered for padding purposes only and
+	 * the value provided is the number of bytes used.
+	 */
+	pad?: number;
 }
 
 export interface Enum extends TopLevelType {
@@ -359,6 +371,13 @@ export interface CodeGenOpts {
 	 * line comment of generator meta data
 	 */
 	header: boolean;
+	/**
+	 * If true, codegens MAY generate various additional struct & struct field
+	 * analysis functions (sizes, alignment, offsets etc.).
+	 *
+	 * @defaultValue false
+	 */
+	debug: boolean;
 }
 
 export interface ICodeGen {

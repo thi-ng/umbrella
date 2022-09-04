@@ -20,6 +20,7 @@ import {
 import {
 	isBigNumeric,
 	isNumeric,
+	isPadding,
 	isStringSlice,
 	isWasmPrim,
 	isWasmString,
@@ -121,6 +122,7 @@ import { Pointer, ${__stringImpl(
 				`export interface ${struct.name} extends WasmTypeBase {`
 			);
 			for (let f of struct.fields) {
+				if (isPadding(f)) continue;
 				f.doc && gen.doc(f.doc, lines);
 				const ftype = __fieldType(f, opts);
 				fieldTypes[f.name] = ftype;
@@ -159,6 +161,8 @@ import { Pointer, ${__stringImpl(
 			);
 
 			for (let f of struct.fields) {
+				// skip explicit padding fields
+				if (isPadding(f)) continue;
 				const ftype = fieldTypes[f.name];
 				const offset = f.__offset || 0;
 				lines.push(`get ${f.name}(): ${ftype} {`);
