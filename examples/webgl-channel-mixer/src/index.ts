@@ -79,7 +79,7 @@ class WebGLImageCanvas extends Component {
 		dest.g = dot(src, chanG.xyz) + chanG.w;
 		dest.b = dot(src, chanB.xyz) + chanB.w;
 	} else {
-		dest = mix(vec3(1.), src, step(0.001, v_uv.x - maskX));
+		dest = mix(vec3(1.), src, step(sepWidth, v_uv.x - maskX));
 	}
 	fragColor = vec4(dest, 1.);
 				}`,
@@ -89,6 +89,7 @@ class WebGLImageCanvas extends Component {
 					chanG: ["vec4", DEFAULT_G],
 					chanB: ["vec4", DEFAULT_B],
 					maskX: ["float", 0.5],
+					sepWidth: "float",
 				},
 			}),
 			textures: [this.tex],
@@ -109,7 +110,6 @@ class WebGLImageCanvas extends Component {
 		// allow user to move the A/B preview separator
 		gestureStream(canvas).subscribe({
 			next: (e) => {
-				console.log(e);
 				if (e.type === "drag") {
 					this.model.uniforms!.maskX = e.pos[0] / canvas.width;
 					draw(this.model);
@@ -135,6 +135,14 @@ class WebGLImageCanvas extends Component {
 			},
 		});
 
+		/**
+		 * Resize image (if any) to always fit vertically in window
+		 */
+		window.addEventListener(
+			"resize",
+			() => this.img && this.updateImage(this.img)
+		);
+
 		// store canvas for future ref
 		this.el = canvas;
 		return this.el;
@@ -156,6 +164,8 @@ class WebGLImageCanvas extends Component {
 			height: image.height,
 			flip: true,
 		});
+		// set separator with to equivalent of 1px
+		this.model.uniforms!.sepWidth = 1 / width;
 		draw(this.model);
 	}
 
