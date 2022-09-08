@@ -1,0 +1,35 @@
+{
+	"name": "@example/svg-resample",
+	"version": "0.0.1",
+	"private": true,
+	"description": "SVG path parsing & dynamic resampling",
+	"repository": "https://github.com/thi-ng/umbrella",
+	"author": "Karsten Schmidt <k+npm@thi.ng>",
+	"license": "Apache-2.0",
+	"scripts": {
+		"start": "vite --open",
+		"build": "tsc && vite build --base='./'",
+		"preview": "vite preview --host --open"
+	},
+	"devDependencies": {
+		"typescript": "^4.7.4",
+		"vite": "^3.0.4"
+	},
+	"dependencies": {
+		"@thi.ng/geom": "workspace:^",
+		"@thi.ng/hiccup-html": "workspace:^",
+		"@thi.ng/hiccup-svg": "workspace:^",
+		"@thi.ng/math": "workspace:^",
+		"@thi.ng/rdom": "workspace:^",
+		"@thi.ng/rstream": "workspace:^",
+		"@thi.ng/sax": "workspace:^",
+		"@thi.ng/transducers": "workspace:^"
+	},
+	"browser": {
+		"process": false
+	},
+	"thi.ng": {
+		"readme": true,
+		"screenshot": "examples/svg-resample.png"
+	}
+}

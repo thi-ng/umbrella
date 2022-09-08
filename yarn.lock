@@ -1428,6 +1428,23 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@example/svg-resample@workspace:examples/svg-resample":
+  version: 0.0.0-use.local
+  resolution: "@example/svg-resample@workspace:examples/svg-resample"
+  dependencies:
+    "@thi.ng/geom": "workspace:^"
+    "@thi.ng/hiccup-html": "workspace:^"
+    "@thi.ng/hiccup-svg": "workspace:^"
+    "@thi.ng/math": "workspace:^"
+    "@thi.ng/rdom": "workspace:^"
+    "@thi.ng/rstream": "workspace:^"
+    "@thi.ng/sax": "workspace:^"
+    "@thi.ng/transducers": "workspace:^"
+    typescript: ^4.7.4
+    vite: ^3.0.4
+  languageName: unknown
+  linkType: soft
+
 "@example/svg-waveform@workspace:examples/svg-waveform":
   version: 0.0.0-use.local
   resolution: "@example/svg-waveform@workspace:examples/svg-waveform"
