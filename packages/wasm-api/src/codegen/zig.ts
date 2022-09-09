@@ -1,6 +1,7 @@
 import { isString } from "@thi.ng/checks/is-string";
 import type { ICodeGen } from "../api.js";
 import {
+	enumName,
 	isPadding,
 	isStringSlice,
 	prefixLines,
@@ -44,17 +45,17 @@ export const ZIG = (opts: Partial<ZigOpts> = {}) => {
 			acc.push(prefixLines(topLevel ? "//! " : "/// ", doc));
 		},
 
-		enum: (e, _, acc) => {
+		enum: (e, _, acc, opts) => {
 			const lines: string[] = [];
 			lines.push(`pub const ${e.name} = enum(${e.tag}) {`);
 			for (let v of e.values) {
 				let line: string;
 				if (!isString(v)) {
 					v.doc && gen.doc(v.doc, lines);
-					line = v.name;
+					line = enumName(opts, v.name);
 					if (v.value != null) line += ` = ${v.value}`;
 				} else {
-					line = v;
+					line = enumName(opts, v);
 				}
 				lines.push(line + ",");
 			}
@@ -113,9 +114,9 @@ export const ZIG = (opts: Partial<ZigOpts> = {}) => {
 			res.push("};");
 
 			if (opts.debug) {
-				res.push("");
 				const fn = (fname: string, body: string) =>
 					res.push(
+						"",
 						`export fn ${name}_${fname}() usize {`,
 						`return ${body};`,
 						`}`

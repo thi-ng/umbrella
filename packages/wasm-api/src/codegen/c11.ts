@@ -1,6 +1,8 @@
 import { isString } from "@thi.ng/checks/is-string";
+import { unsupported } from "@thi.ng/errors/unsupported";
 import type { ICodeGen, WasmPrim } from "../api.js";
 import {
+	enumName,
 	isPadding,
 	isStringSlice,
 	prefixLines,
@@ -32,6 +34,10 @@ export interface C11Opts {
 	 * Optional postfix (inserted after the generated code)
 	 */
 	post: string;
+	/**
+	 * Optional name prefix for generated types, e.g. `WASM_`.
+	 */
+	typePrefix: string;
 }
 
 /**
@@ -45,8 +51,12 @@ export interface C11Opts {
  * @param opts
  */
 export const C11 = (opts: Partial<C11Opts> = {}) => {
+	const { typePrefix } = {
+		typePrefix: "",
+		...opts,
+	};
 	const INDENT = "    ";
-	const SCOPES: [RegExp, RegExp] = [/\{$/, /\}\)?[;,]?$/];
+	const SCOPES: [RegExp, RegExp] = [/\{$/, /^\}[ A-Za-z0-9_]*[;,]?$/];
 
 	const gen: ICodeGen = {
 		pre: (opts) => `#pragma once
@@ -60,26 +70,32 @@ ${opts.debug ? "\n#include <stdalign.h>" : ""}
 			acc.push(prefixLines("// ", doc));
 		},
 
-		enum: (e, _, acc) => {
+		enum: (e, _, acc, opts) => {
+			if (!(e.tag === "i32" || e.tag === "u32")) {
+				unsupported(
+					`enum ${e.name} must be a i32/u32 in C, but got '${e.tag}'`
+				);
+			}
+			const name = typePrefix + e.name;
 			const lines: string[] = [];
-			lines.push(`enum {`);
+			lines.push(`typedef enum {`);
 			for (let v of e.values) {
 				let line: string;
 				if (!isString(v)) {
 					v.doc && gen.doc(v.doc, lines);
-					line = `${e.name}_${v.name}`;
+					line = enumName(opts, v.name);
 					if (v.value != null) line += ` = ${v.value}`;
 				} else {
-					line = v;
+					line = enumName(opts, v);
 				}
 				lines.push(line + ",");
 			}
-			lines.push("};", "");
+			lines.push(`} ${name};`, "");
 			acc.push(...withIndentation(lines, INDENT, ...SCOPES));
 		},
 
-		struct: (struct, _, acc, opts) => {
-			const name = struct.name;
+		struct: (struct, coll, acc, opts) => {
+			const name = typePrefix + struct.name;
 			const res: string[] = [];
 			res.push(`typedef struct ${name} ${name};`, `struct ${name} {`);
 			const ftypes: Record<string, string> = {};
@@ -98,6 +114,7 @@ ${opts.debug ? "\n#include <stdalign.h>" : ""}
 							? __slice("char", fconst)
 							: `${f.const !== false ? "const " : ""}char*`
 						: PRIM_ALIASES[<WasmPrim>f.type] || f.type;
+				if (coll[ftype]) ftype = typePrefix + ftype;
 				switch (f.tag) {
 					case "array":
 					case "vec":
@@ -121,9 +138,9 @@ ${opts.debug ? "\n#include <stdalign.h>" : ""}
 			res.push("};");
 
 			if (opts.debug) {
-				res.push("");
 				const fn = (fname: string, body: string) =>
 					res.push(
+						"",
 						`size_t __attribute__((used)) ${name}_${fname}() {`,
 						`return ${body};`,
 						`}`

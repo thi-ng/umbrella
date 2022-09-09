@@ -90,7 +90,9 @@ const alignOf = defmulti<TopLevelType | StructField, TypeColl, number>(
 			return align;
 		},
 
-		enum: (e) => {
+		enum: (type) => {
+			const e = <Enum>type;
+			if (!e.tag) e.tag = "i32";
 			return (e.__align = SIZEOF[(<Enum>e).tag]);
 		},
 
@@ -174,6 +176,7 @@ export const generateTypes = (
 	const $opts = <CodeGenOpts>{
 		header: true,
 		stringType: "slice",
+		uppercaseEnums: true,
 		...opts,
 	};
 	prepareTypes(types, $opts);

@@ -43,12 +43,20 @@ export const prefixLines = (prefix: string, str: string | string[]) =>
 
 /**
  * Returns true if `type` is "slice".
+ *
  * @param type
  */
 export const isStringSlice = (
 	type: CodeGenOpts["stringType"]
 ): type is "slice" => type === "slice";
 
+/**
+ * Returns filtered array of struct fields of with "ptr" tag.
+ *
+ * @param fields
+ *
+ * @internal
+ */
 export const pointerFields = (fields: StructField[]) =>
 	fields.filter((f) => f.tag === "ptr");
 
@@ -56,9 +64,22 @@ export const pointerFields = (fields: StructField[]) =>
  * Returns filtered array of struct fields of only "string" fields.
  *
  * @param fields
+ *
+ * @internal
  */
 export const stringFields = (fields: StructField[]) =>
 	fields.filter((f) => isWasmString(f.type) && f.tag !== "ptr");
+
+/**
+ * Returns enum identifier formatted according to given opts.
+ *
+ * @param opts
+ * @param name
+ *
+ * @internal
+ */
+export const enumName = (opts: CodeGenOpts, name: string) =>
+	opts.uppercaseEnums ? name.toUpperCase() : name;
 
 /**
  * Yields iterator of given lines, each with applied indentation based on given

@@ -18,6 +18,7 @@ import {
 	WasmPrim,
 } from "../api.js";
 import {
+	enumName,
 	isBigNumeric,
 	isNumeric,
 	isPadding,
@@ -41,12 +42,6 @@ export interface TSOpts {
 	 */
 	indent: string;
 	/**
-	 * If true (default), forces uppercase enums
-	 *
-	 * @defaultValue true
-	 */
-	uppercaseEnums: boolean;
-	/**
 	 * Optional prelude (inserted after the main TS prelude)
 	 */
 	pre: string;
@@ -68,10 +63,9 @@ export interface TSOpts {
  * @param opts
  */
 export const TYPESCRIPT = (opts: Partial<TSOpts> = {}) => {
-	const { indent, uppercaseEnums } = <TSOpts>{
+	const { indent } = <TSOpts>{
 		indent: "\t",
 		stringType: "slice",
-		uppercaseEnums: true,
 		...opts,
 	};
 
@@ -95,17 +89,17 @@ import { Pointer, ${__stringImpl(
 			}
 		},
 
-		enum: (e, _, acc) => {
+		enum: (e, _, acc, opts) => {
 			const res: string[] = [];
 			res.push(`export enum ${e.name} {`);
 			for (let v of e.values) {
-				let line = indent;
+				let line: string;
 				if (!isString(v)) {
 					v.doc && gen.doc(v.doc, res);
-					line += uppercaseEnums ? v.name.toUpperCase() : v.name;
+					line = enumName(opts, v.name);
 					if (v.value != null) line += ` = ${v.value}`;
 				} else {
-					line += uppercaseEnums ? v.toUpperCase() : v;
+					line = enumName(opts, v);
 				}
 				res.push(line + ",");
 			}

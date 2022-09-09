@@ -320,7 +320,10 @@ export interface StructField extends TypeInfo {
 export interface Enum extends TopLevelType {
 	type: "enum";
 	/**
-	 * No i64/u64 support, due to Typescript not supporting bigint enum values
+	 * No i64/u64 support, due to Typescript not supporting bigint enum values.
+	 * For C compatibility only i32 or u32 is allowed.
+	 *
+	 * @defaultValue "i32"
 	 */
 	tag: Exclude<WasmPrim32, FloatType>;
 	/**
@@ -366,6 +369,12 @@ export interface CodeGenOpts {
 	 * @defaultValue "slice"
 	 */
 	stringType: "slice" | "ptr";
+	/**
+	 * If true (default), forces uppercase enum identifiers
+	 *
+	 * @defaultValue true
+	 */
+	uppercaseEnums: boolean;
 	/**
 	 * Unless set to false, the generated output will be prefixed with a header
 	 * line comment of generator meta data
