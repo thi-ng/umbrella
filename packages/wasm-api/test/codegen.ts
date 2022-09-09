@@ -2,7 +2,9 @@ import { group } from "@thi.ng/testament";
 import * as assert from "assert";
 import { readFileSync } from "fs";
 import {
+	C11,
 	CodeGenOpts,
+	Enum,
 	generateTypes,
 	Struct,
 	TypeColl,
@@ -17,6 +19,11 @@ const checkFixture = (src: string, fname: string) =>
 	assert.strictEqual(src, fixture(fname));
 
 const stringTypes: TypeColl = {
+	Bar: <Enum>{
+		name: "Bar",
+		type: "enum",
+		values: ["a", { name: "b", value: 16 }, "c", { name: "d", value: 32 }],
+	},
 	Foo: <Struct>{
 		name: "Foo",
 		type: "struct",
@@ -25,6 +32,7 @@ const stringTypes: TypeColl = {
 			{ name: "multi", type: "string", tag: "array", len: 2 },
 			{ name: "singlePtr", type: "string", tag: "ptr" },
 			{ name: "multiPtr", type: "string", tag: "ptr", len: 2 },
+			{ name: "kind", type: "Bar" },
 		],
 	},
 };
@@ -36,8 +44,14 @@ group("codegen", {
 			header: false,
 			stringType: "slice",
 		};
+		const srcC11 = generateTypes(
+			stringTypes,
+			C11({ typePrefix: "WASM_" }),
+			opts
+		);
 		const srcTS = generateTypes(stringTypes, TYPESCRIPT(), opts);
 		const srcZig = generateTypes(stringTypes, ZIG(), opts);
+		checkFixture(srcC11, "string-slice.c");
 		checkFixture(srcTS, "string-slice.ts");
 		checkFixture(srcZig, "string-slice.zig");
 	},
@@ -48,8 +62,14 @@ group("codegen", {
 			header: false,
 			stringType: "ptr",
 		};
+		const srcC11 = generateTypes(
+			stringTypes,
+			C11({ typePrefix: "WASM_" }),
+			opts
+		);
 		const srcTS = generateTypes(stringTypes, TYPESCRIPT(), opts);
 		const srcZig = generateTypes(stringTypes, ZIG(), opts);
+		checkFixture(srcC11, "string-ptr.c");
 		checkFixture(srcTS, "string-ptr.ts");
 		checkFixture(srcZig, "string-ptr.zig");
 	},

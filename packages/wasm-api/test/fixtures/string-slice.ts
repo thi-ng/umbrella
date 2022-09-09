@@ -1,11 +1,19 @@
 // @ts-ignore possibly includes unused imports
 import { Pointer, WasmStringSlice, WasmTypeBase, WasmTypeConstructor } from "@thi.ng/wasm-api";
 
+export enum Bar {
+	A,
+	B = 16,
+	C,
+	D = 32,
+}
+
 export interface Foo extends WasmTypeBase {
 	single: WasmStringSlice;
 	multi: WasmStringSlice[];
 	singlePtr: Pointer<WasmStringSlice>;
 	multiPtr: Pointer<WasmStringSlice[]>;
+	kind: Bar;
 }
 
 export const $Foo: WasmTypeConstructor<Foo> = (mem) => ({
@@ -13,7 +21,7 @@ export const $Foo: WasmTypeConstructor<Foo> = (mem) => ({
 		return 4;
 	},
 	get size() {
-		return 32;
+		return 36;
 	},
 	instance: (base) => {
 		let $singlePtr: Pointer<WasmStringSlice> | null = null;
@@ -25,7 +33,7 @@ export const $Foo: WasmTypeConstructor<Foo> = (mem) => ({
 				return base;
 			},
 			get __bytes() {
-				return mem.u8.subarray(base, base + 32);
+				return mem.u8.subarray(base, base + 36);
 			},
 			get single(): WasmStringSlice {
 				return $single || ($single = new WasmStringSlice(mem, base, true));
@@ -50,6 +58,12 @@ export const $Foo: WasmTypeConstructor<Foo> = (mem) => ({
 					return $buf;
 				}
 				));
+			},
+			get kind(): Bar {
+				return mem.i32[(base + 32) >>> 2];
+			},
+			set kind(x: Bar) {
+				mem.i32[(base + 32) >>> 2] = x;
 			},
 		};
 	}
