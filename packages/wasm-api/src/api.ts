@@ -348,10 +348,7 @@ export interface EnumValue {
 	doc?: string;
 }
 
-/**
- * Global/shared code generator options.
- */
-export interface CodeGenOpts {
+export interface CodeGenOptsBase {
 	/**
 	 * Optional string to be injected before generated type defs (but after
 	 * codegen's own prelude, if any)
@@ -362,6 +359,12 @@ export interface CodeGenOpts {
 	 * codegen's own epilogue, if any)
 	 */
 	post: string;
+}
+
+/**
+ * Global/shared code generator options.
+ */
+export interface CodeGenOpts extends CodeGenOptsBase {
 	/**
 	 * Identifier how strings are stored on WASM side, e.g. in Zig string
 	 * literals are slices (8 bytes), in C just plain pointers (4 bytes).

@@ -1,5 +1,5 @@
 import { isString } from "@thi.ng/checks/is-string";
-import type { ICodeGen } from "../api.js";
+import type { CodeGenOptsBase, ICodeGen } from "../api.js";
 import {
 	enumName,
 	isPadding,
@@ -11,16 +11,7 @@ import {
 /**
  * Zig code generator options.
  */
-export interface ZigOpts {
-	/**
-	 * Optional prelude
-	 */
-	pre: string;
-	/**
-	 * Optional postfix (inserted after the generated code)
-	 */
-	post: string;
-}
+export interface ZigOpts extends CodeGenOptsBase {}
 
 /**
  * Zig code generator. Call with options and then pass to {@link generateTypes}

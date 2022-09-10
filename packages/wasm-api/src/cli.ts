@@ -15,7 +15,7 @@ import {
 import { isArray, isPlainObject } from "@thi.ng/checks";
 import { illegalArgs } from "@thi.ng/errors";
 import { mutIn } from "@thi.ng/paths/mut-in";
-import { readJSON, writeText } from "@thi.ng/file-io";
+import { readJSON, readText, writeText } from "@thi.ng/file-io";
 import { ConsoleLogger, ILogger } from "@thi.ng/logger";
 import { resolve } from "path";
 import type { CodeGenOpts, Struct, TopLevelType, TypeColl } from "./api.js";
@@ -207,6 +207,15 @@ try {
 
 	if (opts.config) {
 		ctx.config = readJSON(resolve(opts.config), ctx.logger);
+		for (let id in ctx.config) {
+			const conf = ctx.config[<keyof GenConfig>id]!;
+			if (conf.pre && conf.pre[0] === "@") {
+				conf.pre = readText(conf.pre.substring(1), ctx.logger);
+			}
+			if (conf.post && conf.post[0] === "@") {
+				conf.post = readText(conf.post.substring(1), ctx.logger);
+			}
+		}
 	}
 	opts.debug && mutIn(ctx, ["config", "global", "debug"], true);
 	opts.string && mutIn(ctx, ["config", "global", "stringType"], opts.string);

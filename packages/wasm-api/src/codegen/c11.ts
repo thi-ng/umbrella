@@ -1,6 +1,6 @@
 import { isString } from "@thi.ng/checks/is-string";
 import { unsupported } from "@thi.ng/errors/unsupported";
-import type { ICodeGen, WasmPrim } from "../api.js";
+import type { CodeGenOptsBase, ICodeGen, WasmPrim } from "../api.js";
 import {
 	enumName,
 	isPadding,
@@ -25,15 +25,7 @@ const PRIM_ALIASES = {
 /**
  * Zig code generator options.
  */
-export interface C11Opts {
-	/**
-	 * Optional prelude
-	 */
-	pre: string;
-	/**
-	 * Optional postfix (inserted after the generated code)
-	 */
-	post: string;
+export interface C11Opts extends CodeGenOptsBase {
 	/**
 	 * Optional name prefix for generated types, e.g. `WASM_`.
 	 */

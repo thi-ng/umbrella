@@ -9,6 +9,7 @@ import {
 import { isString } from "@thi.ng/checks/is-string";
 import {
 	CodeGenOpts,
+	CodeGenOptsBase,
 	Enum,
 	ICodeGen,
 	PKG_NAME,
@@ -34,21 +35,13 @@ import {
 /**
  * TypeScript code generator options.
  */
-export interface TSOpts {
+export interface TSOpts extends CodeGenOptsBase {
 	/**
 	 * Indentation string
 	 *
 	 * @defaultValue "\t"
 	 */
 	indent: string;
-	/**
-	 * Optional prelude (inserted after the main TS prelude)
-	 */
-	pre: string;
-	/**
-	 * Optional postfix (inserted after the generated code)
-	 */
-	post: string;
 }
 
 /**
