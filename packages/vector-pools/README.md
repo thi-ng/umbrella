@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![vector-pools](https://media.thi.ng/umbrella/banners/thing-vector-pools.svg?4ebed464)
+# ![vector-pools](https://media.thi.ng/umbrella/banners/thing-vector-pools.svg?d4aee0e0)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/vector-pools.svg)](https://www.npmjs.com/package/@thi.ng/vector-pools)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/vector-pools.svg)

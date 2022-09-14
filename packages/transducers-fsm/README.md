@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![transducers-fsm](https://media.thi.ng/umbrella/banners/thing-transducers-fsm.svg?2a13df81)
+# ![transducers-fsm](https://media.thi.ng/umbrella/banners/thing-transducers-fsm.svg?e4b297c7)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/transducers-fsm.svg)](https://www.npmjs.com/package/@thi.ng/transducers-fsm)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/transducers-fsm.svg)

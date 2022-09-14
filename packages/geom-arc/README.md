@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![geom-arc](https://media.thi.ng/umbrella/banners/thing-geom-arc.svg?a48f536c)
+# ![geom-arc](https://media.thi.ng/umbrella/banners/thing-geom-arc.svg?d7beaff0)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/geom-arc.svg)](https://www.npmjs.com/package/@thi.ng/geom-arc)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/geom-arc.svg)

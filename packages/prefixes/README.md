@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![prefixes](https://media.thi.ng/umbrella/banners/thing-prefixes.svg?6fee1c01)
+# ![prefixes](https://media.thi.ng/umbrella/banners/thing-prefixes.svg?f74aa494)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/prefixes.svg)](https://www.npmjs.com/package/@thi.ng/prefixes)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/prefixes.svg)

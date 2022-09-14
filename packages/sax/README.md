@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![sax](https://media.thi.ng/umbrella/banners/thing-sax.svg?ef8cfa3b)
+# ![sax](https://media.thi.ng/umbrella/banners/thing-sax.svg?af24b8f9)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/sax.svg)](https://www.npmjs.com/package/@thi.ng/sax)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/sax.svg)
@@ -97,9 +97,10 @@ directory are using this package.
 
 A selection:
 
-| Screenshot                                                                                                           | Description                          | Live demo                                           | Source                                                                           |
-|:---------------------------------------------------------------------------------------------------------------------|:-------------------------------------|:----------------------------------------------------|:---------------------------------------------------------------------------------|
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/xml-converter.png" width="240"/> | XML/HTML/SVG to hiccup/JS conversion | [Demo](https://demo.thi.ng/umbrella/xml-converter/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/xml-converter) |
+| Screenshot                                                                                                           | Description                           | Live demo                                           | Source                                                                           |
+|:---------------------------------------------------------------------------------------------------------------------|:--------------------------------------|:----------------------------------------------------|:---------------------------------------------------------------------------------|
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/svg-resample.png" width="240"/>  | SVG path parsing & dynamic resampling | [Demo](https://demo.thi.ng/umbrella/svg-resample/)  | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/svg-resample)  |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/xml-converter.png" width="240"/> | XML/HTML/SVG to hiccup/JS conversion  | [Demo](https://demo.thi.ng/umbrella/xml-converter/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/xml-converter) |
 
 ## API
 

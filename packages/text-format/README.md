@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![text-format](https://media.thi.ng/umbrella/banners/thing-text-format.svg?10f2b35d)
+# ![text-format](https://media.thi.ng/umbrella/banners/thing-text-format.svg?79525bf9)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/text-format.svg)](https://www.npmjs.com/package/@thi.ng/text-format)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/text-format.svg)

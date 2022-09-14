@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![rasterize](https://media.thi.ng/umbrella/banners/thing-rasterize.svg?8a88a1a6)
+# ![rasterize](https://media.thi.ng/umbrella/banners/thing-rasterize.svg?dfbf978d)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/rasterize.svg)](https://www.npmjs.com/package/@thi.ng/rasterize)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/rasterize.svg)

@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![logger](https://media.thi.ng/umbrella/banners/thing-logger.svg?749d8e81)
+# ![logger](https://media.thi.ng/umbrella/banners/thing-logger.svg?0715a66b)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/logger.svg)](https://www.npmjs.com/package/@thi.ng/logger)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/logger.svg)
@@ -56,7 +56,7 @@ node --experimental-repl-await
 > const logger = await import("@thi.ng/logger");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 485 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 529 bytes
 
 ## Dependencies
 

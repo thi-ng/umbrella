@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![webgl-msdf](https://media.thi.ng/umbrella/banners/thing-webgl-msdf.svg?4873cdf9)
+# ![webgl-msdf](https://media.thi.ng/umbrella/banners/thing-webgl-msdf.svg?7b0a271c)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/webgl-msdf.svg)](https://www.npmjs.com/package/@thi.ng/webgl-msdf)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/webgl-msdf.svg)

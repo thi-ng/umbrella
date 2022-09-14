@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![intervals](https://media.thi.ng/umbrella/banners/thing-intervals.svg?bccef4df)
+# ![intervals](https://media.thi.ng/umbrella/banners/thing-intervals.svg?ce3700ec)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/intervals.svg)](https://www.npmjs.com/package/@thi.ng/intervals)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/intervals.svg)

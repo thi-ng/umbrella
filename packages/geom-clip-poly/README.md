@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![geom-clip-poly](https://media.thi.ng/umbrella/banners/thing-geom-clip-poly.svg?890cd15d)
+# ![geom-clip-poly](https://media.thi.ng/umbrella/banners/thing-geom-clip-poly.svg?c0f462b4)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/geom-clip-poly.svg)](https://www.npmjs.com/package/@thi.ng/geom-clip-poly)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/geom-clip-poly.svg)

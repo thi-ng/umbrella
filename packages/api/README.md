@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![api](https://media.thi.ng/umbrella/banners/thing-api.svg?56b8f72e)
+# ![api](https://media.thi.ng/umbrella/banners/thing-api.svg?b85caaef)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/api.svg)](https://www.npmjs.com/package/@thi.ng/api)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/api.svg)

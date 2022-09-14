@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![dynvar](https://media.thi.ng/umbrella/banners/thing-dynvar.svg?d5856acc)
+# ![dynvar](https://media.thi.ng/umbrella/banners/thing-dynvar.svg?24bf2eb0)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/dynvar.svg)](https://www.npmjs.com/package/@thi.ng/dynvar)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/dynvar.svg)

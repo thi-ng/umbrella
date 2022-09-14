@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![bitstream](https://media.thi.ng/umbrella/banners/thing-bitstream.svg?dee9ec9a)
+# ![bitstream](https://media.thi.ng/umbrella/banners/thing-bitstream.svg?0953a803)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/bitstream.svg)](https://www.npmjs.com/package/@thi.ng/bitstream)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/bitstream.svg)

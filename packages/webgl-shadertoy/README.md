@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![webgl-shadertoy](https://media.thi.ng/umbrella/banners/thing-webgl-shadertoy.svg?9525f97a)
+# ![webgl-shadertoy](https://media.thi.ng/umbrella/banners/thing-webgl-shadertoy.svg?69e839db)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/webgl-shadertoy.svg)](https://www.npmjs.com/package/@thi.ng/webgl-shadertoy)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/webgl-shadertoy.svg)

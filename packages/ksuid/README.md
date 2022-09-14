@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![ksuid](https://media.thi.ng/umbrella/banners/thing-ksuid.svg?451df049)
+# ![ksuid](https://media.thi.ng/umbrella/banners/thing-ksuid.svg?49516582)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/ksuid.svg)](https://www.npmjs.com/package/@thi.ng/ksuid)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/ksuid.svg)

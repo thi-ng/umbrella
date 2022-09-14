@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![colored-noise](https://media.thi.ng/umbrella/banners/thing-colored-noise.svg?66c81e0c)
+# ![colored-noise](https://media.thi.ng/umbrella/banners/thing-colored-noise.svg?62f23640)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/colored-noise.svg)](https://www.npmjs.com/package/@thi.ng/colored-noise)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/colored-noise.svg)

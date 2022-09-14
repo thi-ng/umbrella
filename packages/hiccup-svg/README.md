@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![hiccup-svg](https://media.thi.ng/umbrella/banners/thing-hiccup-svg.svg?121a04ab)
+# ![hiccup-svg](https://media.thi.ng/umbrella/banners/thing-hiccup-svg.svg?1b5670d3)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/hiccup-svg.svg)](https://www.npmjs.com/package/@thi.ng/hiccup-svg)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/hiccup-svg.svg)
@@ -191,6 +191,7 @@ A selection:
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/poly-spline.png" width="240"/>                   | Polygon to cubic curve conversion & visualization                           | [Demo](https://demo.thi.ng/umbrella/poly-spline/)        | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/poly-spline)        |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rdom-svg-nodes.png" width="240"/>                | rdom powered SVG graph with draggable nodes                                 | [Demo](https://demo.thi.ng/umbrella/rdom-svg-nodes/)     | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rdom-svg-nodes)     |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rstream-grid.jpg" width="240"/>                  | Interactive grid generator, SVG generation & export, undo/redo support      | [Demo](https://demo.thi.ng/umbrella/rstream-grid/)       | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rstream-grid)       |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/svg-resample.png" width="240"/>                  | SVG path parsing & dynamic resampling                                       | [Demo](https://demo.thi.ng/umbrella/svg-resample/)       | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/svg-resample)       |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/svg-waveform.jpg" width="240"/>                  | Additive waveform synthesis & SVG visualization with undo/redo              | [Demo](https://demo.thi.ng/umbrella/svg-waveform/)       | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/svg-waveform)       |
 
 ## API

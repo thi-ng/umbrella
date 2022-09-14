@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![geom-resample](https://media.thi.ng/umbrella/banners/thing-geom-resample.svg?7fa0e99f)
+# ![geom-resample](https://media.thi.ng/umbrella/banners/thing-geom-resample.svg?5514caa3)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/geom-resample.svg)](https://www.npmjs.com/package/@thi.ng/geom-resample)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/geom-resample.svg)

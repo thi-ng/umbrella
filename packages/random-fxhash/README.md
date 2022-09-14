@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![random-fxhash](https://media.thi.ng/umbrella/banners/thing-random-fxhash.svg?20c05a77)
+# ![random-fxhash](https://media.thi.ng/umbrella/banners/thing-random-fxhash.svg?ecd8516e)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/random-fxhash.svg)](https://www.npmjs.com/package/@thi.ng/random-fxhash)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/random-fxhash.svg)

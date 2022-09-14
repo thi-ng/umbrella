@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![geom-poly-utils](https://media.thi.ng/umbrella/banners/thing-geom-poly-utils.svg?24f54c54)
+# ![geom-poly-utils](https://media.thi.ng/umbrella/banners/thing-geom-poly-utils.svg?65a90bef)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/geom-poly-utils.svg)](https://www.npmjs.com/package/@thi.ng/geom-poly-utils)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/geom-poly-utils.svg)

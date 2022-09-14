@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![hex](https://media.thi.ng/umbrella/banners/thing-hex.svg?ec10b9fc)
+# ![hex](https://media.thi.ng/umbrella/banners/thing-hex.svg?af56cf53)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/hex.svg)](https://www.npmjs.com/package/@thi.ng/hex)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/hex.svg)
@@ -55,7 +55,7 @@ node --experimental-repl-await
 > const hex = await import("@thi.ng/hex");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 370 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 405 bytes
 
 ## Dependencies
 

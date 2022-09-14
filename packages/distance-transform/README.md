@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![distance-transform](https://media.thi.ng/umbrella/banners/thing-distance-transform.svg?916db7be)
+# ![distance-transform](https://media.thi.ng/umbrella/banners/thing-distance-transform.svg?636c9897)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/distance-transform.svg)](https://www.npmjs.com/package/@thi.ng/distance-transform)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/distance-transform.svg)

@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![adjacency](https://media.thi.ng/umbrella/banners/thing-adjacency.svg?48d8da32)
+# ![adjacency](https://media.thi.ng/umbrella/banners/thing-adjacency.svg?63c8a276)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/adjacency.svg)](https://www.npmjs.com/package/@thi.ng/adjacency)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/adjacency.svg)

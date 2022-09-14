@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![date](https://media.thi.ng/umbrella/banners/thing-date.svg?57458de6)
+# ![date](https://media.thi.ng/umbrella/banners/thing-date.svg?e7c8db33)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/date.svg)](https://www.npmjs.com/package/@thi.ng/date)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/date.svg)

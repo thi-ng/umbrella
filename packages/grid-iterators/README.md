@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![grid-iterators](https://media.thi.ng/umbrella/banners/thing-grid-iterators.svg?a3425652)
+# ![grid-iterators](https://media.thi.ng/umbrella/banners/thing-grid-iterators.svg?a4ba60c1)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/grid-iterators.svg)](https://www.npmjs.com/package/@thi.ng/grid-iterators)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/grid-iterators.svg)

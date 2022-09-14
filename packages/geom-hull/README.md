@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![geom-hull](https://media.thi.ng/umbrella/banners/thing-geom-hull.svg?b0095b45)
+# ![geom-hull](https://media.thi.ng/umbrella/banners/thing-geom-hull.svg?e5b182cb)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/geom-hull.svg)](https://www.npmjs.com/package/@thi.ng/geom-hull)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/geom-hull.svg)

@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![geom-fuzz](https://media.thi.ng/umbrella/banners/thing-geom-fuzz.svg?87727ec7)
+# ![geom-fuzz](https://media.thi.ng/umbrella/banners/thing-geom-fuzz.svg?528deeb1)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/geom-fuzz.svg)](https://www.npmjs.com/package/@thi.ng/geom-fuzz)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/geom-fuzz.svg)

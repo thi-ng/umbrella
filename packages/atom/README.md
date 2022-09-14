@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![atom](https://media.thi.ng/umbrella/banners/thing-atom.svg?04cf5abd)
+# ![atom](https://media.thi.ng/umbrella/banners/thing-atom.svg?159b7192)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/atom.svg)](https://www.npmjs.com/package/@thi.ng/atom)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/atom.svg)

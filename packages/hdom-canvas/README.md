@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![hdom-canvas](https://media.thi.ng/umbrella/banners/thing-hdom-canvas.svg?6cf78a0b)
+# ![hdom-canvas](https://media.thi.ng/umbrella/banners/thing-hdom-canvas.svg?22a30248)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/hdom-canvas.svg)](https://www.npmjs.com/package/@thi.ng/hdom-canvas)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/hdom-canvas.svg)

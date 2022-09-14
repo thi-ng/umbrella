@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![geom-splines](https://media.thi.ng/umbrella/banners/thing-geom-splines.svg?8b86baa9)
+# ![geom-splines](https://media.thi.ng/umbrella/banners/thing-geom-splines.svg?6c5aa838)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/geom-splines.svg)](https://www.npmjs.com/package/@thi.ng/geom-splines)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/geom-splines.svg)
@@ -63,7 +63,7 @@ node --experimental-repl-await
 > const geomSplines = await import("@thi.ng/geom-splines");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 2.59 KB
+Package sizes (gzipped, pre-treeshake): ESM: 2.64 KB
 
 ## Dependencies
 

@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![markdown-table](https://media.thi.ng/umbrella/banners/thing-markdown-table.svg?9f1a94c6)
+# ![markdown-table](https://media.thi.ng/umbrella/banners/thing-markdown-table.svg?ec39d3df)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/markdown-table.svg)](https://www.npmjs.com/package/@thi.ng/markdown-table)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/markdown-table.svg)

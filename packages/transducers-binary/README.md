@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![transducers-binary](https://media.thi.ng/umbrella/banners/thing-transducers-binary.svg?85c8aaf1)
+# ![transducers-binary](https://media.thi.ng/umbrella/banners/thing-transducers-binary.svg?1e3e1de2)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/transducers-binary.svg)](https://www.npmjs.com/package/@thi.ng/transducers-binary)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/transducers-binary.svg)

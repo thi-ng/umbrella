@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![bitfield](https://media.thi.ng/umbrella/banners/thing-bitfield.svg?20dbf443)
+# ![bitfield](https://media.thi.ng/umbrella/banners/thing-bitfield.svg?257cb871)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/bitfield.svg)](https://www.npmjs.com/package/@thi.ng/bitfield)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/bitfield.svg)
