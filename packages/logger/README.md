@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![logger](https://media.thi.ng/umbrella/banners/thing-logger.svg?0715a66b)
+# ![logger](https://media.thi.ng/umbrella/banners-20220914/thing-logger.svg?8aa7a923)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/logger.svg)](https://www.npmjs.com/package/@thi.ng/logger)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/logger.svg)

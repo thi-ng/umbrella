@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![testament](https://media.thi.ng/umbrella/banners/thing-testament.svg?523afa4a)
+# ![testament](https://media.thi.ng/umbrella/banners-20220914/thing-testament.svg?c87b423c)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/testament.svg)](https://www.npmjs.com/package/@thi.ng/testament)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/testament.svg)

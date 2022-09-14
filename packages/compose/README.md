@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![compose](https://media.thi.ng/umbrella/banners/thing-compose.svg?66652c2e)
+# ![compose](https://media.thi.ng/umbrella/banners-20220914/thing-compose.svg?4cdb7e5d)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/compose.svg)](https://www.npmjs.com/package/@thi.ng/compose)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/compose.svg)

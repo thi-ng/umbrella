@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![rstream-graph](https://media.thi.ng/umbrella/banners/thing-rstream-graph.svg?c70d21c4)
+# ![rstream-graph](https://media.thi.ng/umbrella/banners-20220914/thing-rstream-graph.svg?eff7d375)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/rstream-graph.svg)](https://www.npmjs.com/package/@thi.ng/rstream-graph)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/rstream-graph.svg)

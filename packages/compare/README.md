@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![compare](https://media.thi.ng/umbrella/banners/thing-compare.svg?44585932)
+# ![compare](https://media.thi.ng/umbrella/banners-20220914/thing-compare.svg?1bc30bd9)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/compare.svg)](https://www.npmjs.com/package/@thi.ng/compare)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/compare.svg)

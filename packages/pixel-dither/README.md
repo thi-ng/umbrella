@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![pixel-dither](https://media.thi.ng/umbrella/banners/thing-pixel-dither.svg?e2fa7634)
+# ![pixel-dither](https://media.thi.ng/umbrella/banners-20220914/thing-pixel-dither.svg?fdf6c21f)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/pixel-dither.svg)](https://www.npmjs.com/package/@thi.ng/pixel-dither)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/pixel-dither.svg)

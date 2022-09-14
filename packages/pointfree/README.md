@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![pointfree](https://media.thi.ng/umbrella/banners/thing-pointfree.svg?70f3457c)
+# ![pointfree](https://media.thi.ng/umbrella/banners-20220914/thing-pointfree.svg?d39e7022)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/pointfree.svg)](https://www.npmjs.com/package/@thi.ng/pointfree)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/pointfree.svg)

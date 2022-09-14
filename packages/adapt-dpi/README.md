@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![adapt-dpi](https://media.thi.ng/umbrella/banners/thing-adapt-dpi.svg?e70fe180)
+# ![adapt-dpi](https://media.thi.ng/umbrella/banners-20220914/thing-adapt-dpi.svg?7a24f3ff)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/adapt-dpi.svg)](https://www.npmjs.com/package/@thi.ng/adapt-dpi)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/adapt-dpi.svg)

@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![dcons](https://media.thi.ng/umbrella/banners/thing-dcons.svg?38c13425)
+# ![dcons](https://media.thi.ng/umbrella/banners-20220914/thing-dcons.svg?afb61654)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/dcons.svg)](https://www.npmjs.com/package/@thi.ng/dcons)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/dcons.svg)

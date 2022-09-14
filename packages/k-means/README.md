@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![k-means](https://media.thi.ng/umbrella/banners/thing-k-means.svg?8c53f4ce)
+# ![k-means](https://media.thi.ng/umbrella/banners-20220914/thing-k-means.svg?665e9a73)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/k-means.svg)](https://www.npmjs.com/package/@thi.ng/k-means)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/k-means.svg)

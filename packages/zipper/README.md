@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![zipper](https://media.thi.ng/umbrella/banners/thing-zipper.svg?125733f8)
+# ![zipper](https://media.thi.ng/umbrella/banners-20220914/thing-zipper.svg?2c1a2e8e)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/zipper.svg)](https://www.npmjs.com/package/@thi.ng/zipper)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/zipper.svg)

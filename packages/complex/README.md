@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![complex](https://media.thi.ng/umbrella/banners/thing-complex.svg?22eca9e2)
+# ![complex](https://media.thi.ng/umbrella/banners-20220914/thing-complex.svg?f78dcda1)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/complex.svg)](https://www.npmjs.com/package/@thi.ng/complex)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/complex.svg)

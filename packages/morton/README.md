@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![morton](https://media.thi.ng/umbrella/banners/thing-morton.svg?4e1ff41b)
+# ![morton](https://media.thi.ng/umbrella/banners-20220914/thing-morton.svg?40748cd5)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/morton.svg)](https://www.npmjs.com/package/@thi.ng/morton)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/morton.svg)

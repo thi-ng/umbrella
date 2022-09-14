@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![soa](https://media.thi.ng/umbrella/banners/thing-soa.svg?6cd8ec77)
+# ![soa](https://media.thi.ng/umbrella/banners-20220914/thing-soa.svg?befa7e84)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/soa.svg)](https://www.npmjs.com/package/@thi.ng/soa)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/soa.svg)

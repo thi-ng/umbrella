@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![hiccup-canvas](https://media.thi.ng/umbrella/banners/thing-hiccup-canvas.svg?d758ad8d)
+# ![hiccup-canvas](https://media.thi.ng/umbrella/banners-20220914/thing-hiccup-canvas.svg?dee1db9a)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/hiccup-canvas.svg)](https://www.npmjs.com/package/@thi.ng/hiccup-canvas)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/hiccup-canvas.svg)

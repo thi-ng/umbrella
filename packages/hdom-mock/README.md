@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![hdom-mock](https://media.thi.ng/umbrella/banners/thing-hdom-mock.svg?7b4988e7)
+# ![hdom-mock](https://media.thi.ng/umbrella/banners-20220914/thing-hdom-mock.svg?e3625fc9)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/hdom-mock.svg)](https://www.npmjs.com/package/@thi.ng/hdom-mock)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/hdom-mock.svg)

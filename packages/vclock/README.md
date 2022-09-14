@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![vclock](https://media.thi.ng/umbrella/banners/thing-vclock.svg?56af0abe)
+# ![vclock](https://media.thi.ng/umbrella/banners-20220914/thing-vclock.svg?b9a5f8eb)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/vclock.svg)](https://www.npmjs.com/package/@thi.ng/vclock)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/vclock.svg)

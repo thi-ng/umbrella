@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![dot](https://media.thi.ng/umbrella/banners/thing-dot.svg?d06f1936)
+# ![dot](https://media.thi.ng/umbrella/banners-20220914/thing-dot.svg?3ee6f34d)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/dot.svg)](https://www.npmjs.com/package/@thi.ng/dot)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/dot.svg)

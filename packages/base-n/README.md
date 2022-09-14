@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![base-n](https://media.thi.ng/umbrella/banners/thing-base-n.svg?29a5c712)
+# ![base-n](https://media.thi.ng/umbrella/banners-20220914/thing-base-n.svg?13d66433)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/base-n.svg)](https://www.npmjs.com/package/@thi.ng/base-n)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/base-n.svg)

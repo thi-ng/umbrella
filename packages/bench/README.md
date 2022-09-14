@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![bench](https://media.thi.ng/umbrella/banners/thing-bench.svg?4ad10de9)
+# ![bench](https://media.thi.ng/umbrella/banners-20220914/thing-bench.svg?553b2baa)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/bench.svg)](https://www.npmjs.com/package/@thi.ng/bench)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/bench.svg)

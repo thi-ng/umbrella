@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![matrices](https://media.thi.ng/umbrella/banners/thing-matrices.svg?ed688261)
+# ![matrices](https://media.thi.ng/umbrella/banners-20220914/thing-matrices.svg?fda4ca8c)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/matrices.svg)](https://www.npmjs.com/package/@thi.ng/matrices)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/matrices.svg)

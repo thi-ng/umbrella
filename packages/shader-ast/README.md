@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![shader-ast](https://media.thi.ng/umbrella/banners/thing-shader-ast.svg?7c66950e)
+# ![shader-ast](https://media.thi.ng/umbrella/banners-20220914/thing-shader-ast.svg?d4ef7f32)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/shader-ast.svg)](https://www.npmjs.com/package/@thi.ng/shader-ast)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/shader-ast.svg)

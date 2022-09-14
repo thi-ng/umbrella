@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![malloc](https://media.thi.ng/umbrella/banners/thing-malloc.svg?ac04af97)
+# ![malloc](https://media.thi.ng/umbrella/banners-20220914/thing-malloc.svg?d546acaf)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/malloc.svg)](https://www.npmjs.com/package/@thi.ng/malloc)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/malloc.svg)

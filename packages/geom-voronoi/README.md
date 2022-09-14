@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![geom-voronoi](https://media.thi.ng/umbrella/banners/thing-geom-voronoi.svg?e4730e57)
+# ![geom-voronoi](https://media.thi.ng/umbrella/banners-20220914/thing-geom-voronoi.svg?0ea3ab1c)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/geom-voronoi.svg)](https://www.npmjs.com/package/@thi.ng/geom-voronoi)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/geom-voronoi.svg)

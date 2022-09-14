@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![oquery](https://media.thi.ng/umbrella/banners/thing-oquery.svg?90f66584)
+# ![oquery](https://media.thi.ng/umbrella/banners-20220914/thing-oquery.svg?c8b42ff8)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/oquery.svg)](https://www.npmjs.com/package/@thi.ng/oquery)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/oquery.svg)
