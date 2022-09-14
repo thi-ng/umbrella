@@ -1,72 +1,72 @@
 {
-    "name": "@thi.ng/hex",
-    "version": "2.1.9",
-    "description": "Hex string formatters for 4/8/16/24/32/48/64bit words",
-    "type": "module",
-    "module": "./index.js",
-    "typings": "./index.d.ts",
-    "sideEffects": false,
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/thi-ng/umbrella.git"
-    },
-    "homepage": "https://github.com/thi-ng/umbrella/tree/master/packages/hex#readme",
-    "funding": [
-        {
-            "type": "github",
-            "url": "https://github.com/sponsors/postspectacular"
-        },
-        {
-            "type": "patreon",
-            "url": "https://patreon.com/thing_umbrella"
-        }
-    ],
-    "author": "Karsten Schmidt <k+npm@thi.ng>",
-    "license": "Apache-2.0",
-    "scripts": {
-        "build": "yarn clean && tsc --declaration",
-        "clean": "rimraf '*.js' '*.d.ts' '*.map' doc",
-        "doc": "typedoc --excludePrivate --excludeInternal --out doc src/index.ts",
-        "doc:ae": "mkdir -p .ae/doc .ae/temp && api-extractor run --local --verbose",
-        "doc:readme": "yarn doc:stats && tools:readme",
-        "doc:stats": "tools:module-stats",
-        "pub": "yarn npm publish --access public",
-        "test": "testament test"
-    },
-    "devDependencies": {
-        "@microsoft/api-extractor": "^7.25.0",
-        "@thi.ng/testament": "^0.2.10",
-        "rimraf": "^3.0.2",
-        "tools": "workspace:^",
-        "typedoc": "^0.22.17",
-        "typescript": "^4.7.4"
-    },
-    "keywords": [
-        "binary",
-        "format",
-        "hex",
-        "string",
-        "typescript"
-    ],
-    "publishConfig": {
-        "access": "public"
-    },
-    "engines": {
-        "node": ">=12.7"
-    },
-    "files": [
-        "*.js",
-        "*.d.ts"
-    ],
-    "exports": {
-        ".": {
-            "default": "./index.js"
-        }
-    },
-    "thi.ng": {
-        "related": [
-            "base-n"
-        ],
-        "year": 2020
-    }
+	"name": "@thi.ng/hex",
+	"version": "2.1.9",
+	"description": "Hex string formatters for 4/8/16/24/32/48/64bit words",
+	"type": "module",
+	"module": "./index.js",
+	"typings": "./index.d.ts",
+	"sideEffects": false,
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/thi-ng/umbrella.git"
+	},
+	"homepage": "https://github.com/thi-ng/umbrella/tree/master/packages/hex#readme",
+	"funding": [
+		{
+			"type": "github",
+			"url": "https://github.com/sponsors/postspectacular"
+		},
+		{
+			"type": "patreon",
+			"url": "https://patreon.com/thing_umbrella"
+		}
+	],
+	"author": "Karsten Schmidt <k+npm@thi.ng>",
+	"license": "Apache-2.0",
+	"scripts": {
+		"build": "yarn clean && tsc --declaration",
+		"clean": "rimraf '*.js' '*.d.ts' '*.map' doc",
+		"doc": "typedoc --excludePrivate --excludeInternal --out doc src/index.ts",
+		"doc:ae": "mkdir -p .ae/doc .ae/temp && api-extractor run --local --verbose",
+		"doc:readme": "yarn doc:stats && tools:readme",
+		"doc:stats": "tools:module-stats",
+		"pub": "yarn npm publish --access public",
+		"test": "testament test"
+	},
+	"devDependencies": {
+		"@microsoft/api-extractor": "^7.25.0",
+		"@thi.ng/testament": "^0.2.10",
+		"rimraf": "^3.0.2",
+		"tools": "workspace:^",
+		"typedoc": "^0.22.17",
+		"typescript": "^4.7.4"
+	},
+	"keywords": [
+		"binary",
+		"format",
+		"hex",
+		"string",
+		"typescript"
+	],
+	"publishConfig": {
+		"access": "public"
+	},
+	"engines": {
+		"node": ">=12.7"
+	},
+	"files": [
+		"*.js",
+		"*.d.ts"
+	],
+	"exports": {
+		".": {
+			"default": "./index.js"
+		}
+	},
+	"thi.ng": {
+		"related": [
+			"base-n"
+		],
+		"year": 2020
+	}
 }
