@@ -1,6 +1,5 @@
-import { group } from "@thi.ng/testament";
+import { fileFixture, group, TestCtx } from "@thi.ng/testament";
 import * as assert from "assert";
-import { readFileSync } from "fs";
 import {
 	C11,
 	CodeGenOpts,
@@ -12,11 +11,8 @@ import {
 	ZIG,
 } from "../src/index.js";
 
-const fixture = (fname: string) =>
-	readFileSync("test/fixtures/" + fname, "utf-8");
-
-const checkFixture = (src: string, fname: string) =>
-	assert.strictEqual(src, fixture(fname));
+const checkFixture = (ctx: TestCtx, src: string, fname: string) =>
+	assert.strictEqual(src, fileFixture(fname, ctx.logger));
 
 const stringTypes: TypeColl = {
 	Bar: <Enum>{
@@ -38,7 +34,7 @@ const stringTypes: TypeColl = {
 };
 
 group("codegen", {
-	stringSlice: () => {
+	stringSlice: (ctx) => {
 		const opts: Partial<CodeGenOpts> = {
 			debug: true,
 			header: false,
@@ -51,12 +47,13 @@ group("codegen", {
 		);
 		const srcTS = generateTypes(stringTypes, TYPESCRIPT(), opts);
 		const srcZig = generateTypes(stringTypes, ZIG(), opts);
-		checkFixture(srcC11, "string-slice.c");
-		checkFixture(srcTS, "string-slice.ts");
-		checkFixture(srcZig, "string-slice.zig");
+		checkFixture(ctx, srcC11, "string-slice.c");
+		checkFixture(ctx, srcTS, "string-slice.ts");
+		checkFixture(ctx, srcZig, "string-slice.zig");
+		ctx.done();
 	},
 
-	stringPtr: () => {
+	stringPtr: (ctx) => {
 		const opts: Partial<CodeGenOpts> = {
 			debug: true,
 			header: false,
@@ -69,8 +66,9 @@ group("codegen", {
 		);
 		const srcTS = generateTypes(stringTypes, TYPESCRIPT(), opts);
 		const srcZig = generateTypes(stringTypes, ZIG(), opts);
-		checkFixture(srcC11, "string-ptr.c");
-		checkFixture(srcTS, "string-ptr.ts");
-		checkFixture(srcZig, "string-ptr.zig");
+		checkFixture(ctx, srcC11, "string-ptr.c");
+		checkFixture(ctx, srcTS, "string-ptr.ts");
+		checkFixture(ctx, srcZig, "string-ptr.zig");
+		ctx.done();
 	},
 });
