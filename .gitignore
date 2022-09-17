@@ -19,7 +19,6 @@ dist
 dev
 doc
 
-!examples/**/*.d.ts
 examples-private
 export
 lib
@@ -34,3 +33,6 @@ zig-cache
 !.yarn/releases
 !.yarn/sdks
 !.yarn/versions
+
+!examples/**/*.d.ts
+!fixtures
