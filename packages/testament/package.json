@@ -1,7 +1,7 @@
 {
 	"name": "@thi.ng/testament",
 	"version": "0.2.12",
-	"description": "Minimal, rational & TypeScript-friendly test runner, result export as CSV/JSON, watch mode",
+	"description": "Minimal, rational & TypeScript-friendly test runner, result export as CSV/JSON, watch mode, file fixtures",
 	"type": "module",
 	"module": "./index.js",
 	"typings": "./index.d.ts",
@@ -46,7 +46,19 @@
 		"typescript": "^4.7.4"
 	},
 	"keywords": [
-		"typescript"
+		"async",
+		"cli",
+		"csv",
+		"file",
+		"fixture",
+		"group",
+		"json",
+		"logger",
+		"node",
+		"report",
+		"test",
+		"typescript",
+		"watch"
 	],
 	"publishConfig": {
 		"access": "public"
@@ -72,6 +84,9 @@
 		},
 		"./exec": {
 			"default": "./exec.js"
+		},
+		"./fixtures": {
+			"default": "./fixtures.js"
 		},
 		"./group": {
 			"default": "./group.js"
