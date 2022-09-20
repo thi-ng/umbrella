@@ -1,0 +1,11 @@
+---
+tangle: out
+publish: out/a.org
+---
+* A
+
+#+BEGIN_SRC clj id:a tangle:ex02/src/a.clj
+(def version <<b.org#version>>)
+#+END_SRC
+
+More...

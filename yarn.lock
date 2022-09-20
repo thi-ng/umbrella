@@ -4524,6 +4524,29 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@thi.ng/tangle@workspace:packages/tangle":
+  version: 0.0.0-use.local
+  resolution: "@thi.ng/tangle@workspace:packages/tangle"
+  dependencies:
+    "@microsoft/api-extractor": ^7.25.0
+    "@thi.ng/api": ^8.4.1
+    "@thi.ng/args": ^2.2.1
+    "@thi.ng/checks": ^3.2.4
+    "@thi.ng/compare": ^2.1.11
+    "@thi.ng/date": ^2.3.7
+    "@thi.ng/errors": ^2.1.10
+    "@thi.ng/file-io": ^0.3.10
+    "@thi.ng/logger": ^1.2.1
+    "@thi.ng/strings": ^3.3.11
+    "@thi.ng/testament": ^0.2.12
+    "@thi.ng/transducers": ^8.3.13
+    rimraf: ^3.0.2
+    tools: "workspace:^"
+    typedoc: ^0.22.17
+    typescript: ^4.7.4
+  languageName: unknown
+  linkType: soft
+
 "@thi.ng/testament@^0.2.10, @thi.ng/testament@^0.2.11, @thi.ng/testament@^0.2.12, @thi.ng/testament@workspace:packages/testament":
   version: 0.0.0-use.local
   resolution: "@thi.ng/testament@workspace:packages/testament"

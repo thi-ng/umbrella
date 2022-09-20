@@ -1,0 +1,11 @@
+---
+tangle: out
+publish: out/a.org
+---
+* A
+
+#+BEGIN_SRC clj
+(def version 42)
+#+END_SRC
+
+More...

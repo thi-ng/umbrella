@@ -1,0 +1,80 @@
+{
+	"files": {
+		"/Users/toxi/thing/umbrella/packages/tangle/tools/dummy.md": {
+			"path": "/Users/toxi/thing/umbrella/packages/tangle/tools/dummy.md",
+			"src": "---\npublish: ../export/dummy.md\ntangle: ../export\n---\n# Generative grids\n\n```ts id:ex01a tangle:ex01/src/index.ts\n<<lib.md#imports>>\n\nconst foo: number = 42;\n\n<<lib.md#parametric { \"hello\": \"mia\" }>>\n\n<<ex01b>>\n\nconsole.log(foo + bar);\n```\n\n## Introduction\n\n```ts id:ex01b tangle:ex01/src/bar.ts publish:no\n<<comment>>\nexport const bar = 23;\n```\n\n## Tower of babel\n\n```ts id:comment publish:no\n/** @internal **/\n```\n\n## Credits\n\n&copy; 2021 Karsten Schmidt\n",
+			"blocks": {
+				"ex01a": {
+					"id": "ex01a",
+					"lang": "ts",
+					"tangle": "ex01/src/index.ts",
+					"start": 114,
+					"end": 235,
+					"matchStart": 74,
+					"matchEnd": 240,
+					"body": "import type { Fn } from \"@thi.ng/api\";\nimport { intBuffer, GRAY8 } from \"@thi.ng/pixel\";\n\nconst foo: number = 42;\n\nconst hello = \"Hi, mia!\";\n\n/** @internal **/\nexport const bar = 23;\n\nconsole.log(foo + bar);",
+					"edited": true,
+					"resolved": true
+				},
+				"ex01b": {
+					"id": "ex01b",
+					"lang": "ts",
+					"tangle": "ex01/src/bar.ts",
+					"publish": "no",
+					"start": 307,
+					"end": 341,
+					"matchStart": 258,
+					"matchEnd": 346,
+					"body": "/** @internal **/\nexport const bar = 23;",
+					"edited": true,
+					"resolved": true
+				},
+				"comment": {
+					"id": "comment",
+					"lang": "ts",
+					"publish": "no",
+					"start": 394,
+					"end": 411,
+					"matchStart": 366,
+					"matchEnd": 416,
+					"body": "/** @internal **/",
+					"resolved": true
+				}
+			}
+		},
+		"/Users/toxi/thing/umbrella/packages/tangle/tools/lib.md": {
+			"path": "/Users/toxi/thing/umbrella/packages/tangle/tools/lib.md",
+			"src": "```ts id:imports\nimport type { Fn } from \"@thi.ng/api\";\nimport { intBuffer, GRAY8 } from \"@thi.ng/pixel\";\n```\n\n```ts id:parametric\nconst hello = \"Hi, {{hello}}!\";\n```",
+			"blocks": {
+				"imports": {
+					"id": "imports",
+					"lang": "ts",
+					"start": 17,
+					"end": 105,
+					"matchStart": 0,
+					"matchEnd": 110,
+					"body": "import type { Fn } from \"@thi.ng/api\";\nimport { intBuffer, GRAY8 } from \"@thi.ng/pixel\";",
+					"resolved": true
+				},
+				"parametric": {
+					"id": "parametric",
+					"lang": "ts",
+					"start": 131,
+					"end": 162,
+					"matchStart": 111,
+					"matchEnd": 167,
+					"body": "const hello = \"Hi, {{hello}}!\";",
+					"resolved": true
+				}
+			}
+		}
+	},
+	"outputs": {
+		"/Users/toxi/thing/umbrella/packages/tangle/export/ex01/src/index.ts": "// Tangled @ 2022-09-17T17:08:24Z - DO NOT EDIT!\n// Source: /Users/toxi/thing/umbrella/packages/tangle/tools/dummy.md\n\nimport type { Fn } from \"@thi.ng/api\";\nimport { intBuffer, GRAY8 } from \"@thi.ng/pixel\";\n\nconst foo: number = 42;\n\nconst hello = \"Hi, mia!\";\n\n/** @internal **/\nexport const bar = 23;\n\nconsole.log(foo + bar);",
+		"/Users/toxi/thing/umbrella/packages/tangle/export/ex01/src/bar.ts": "// Tangled @ 2022-09-17T17:08:24Z - DO NOT EDIT!\n// Source: /Users/toxi/thing/umbrella/packages/tangle/tools/dummy.md\n\n/** @internal **/\nexport const bar = 23;",
+		"/Users/toxi/thing/umbrella/packages/tangle/export/dummy.md": "---\npublish: ../export/dummy.md\ntangle: ../export\n---\n# Generative grids\n\n```ts\nimport type { Fn } from \"@thi.ng/api\";\nimport { intBuffer, GRAY8 } from \"@thi.ng/pixel\";\n\nconst foo: number = 42;\n\nconst hello = \"Hi, mia!\";\n\n/** @internal **/\nexport const bar = 23;\n\nconsole.log(foo + bar);\n```\n\n## Introduction\n\n\n## Tower of babel\n\n\n## Credits\n\n&copy; 2021 Karsten Schmidt"
+	},
+	"format": { "prefix": "```", "suffix": "```" },
+	"logger": { "id": "tangle", "level": 2 },
+	"opts": { "comments": true }
+}
