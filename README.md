@@ -16,7 +16,7 @@
 **Please visit [thi.ng](https://thi.ng) for additional information & topic based
 search of packages relevant to your use cases...**
 
-This mono-repository is home to 167+ thi.ng TypeScript/ES6 projects, a wide and
+This mono-repository is home to 168+ thi.ng TypeScript/ES6 projects, a wide and
 jointly developed collection of packages and building blocks for (non-exhaustive
 list of topics):
 
@@ -162,12 +162,17 @@ feature or `develop` branches)
 
 ### Latest updates
 
-As of: 2022-08-23
+As of: 2022-09-21
 
-| Status                                        | Project                                    | Version                                                                                                                     | Changelog                                           |
-|-----------------------------------------------|--------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------|
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/api`](./packages/color-palettes) | [![version](https://img.shields.io/npm/v/@thi.ng/color-palettes.svg)](https://www.npmjs.com/package/@thi.ng/color-palettes) | [changelog](./packages/color-palettes/CHANGELOG.md) |
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/wasm-api`](./packages/wasm-api)  | [![version](https://img.shields.io/npm/v/@thi.ng/wasm-api.svg)](https://www.npmjs.com/package/@thi.ng/wasm-api)             | [changelog](./packages/wasm-api/CHANGELOG.md)       |
+| Status                                        | Project                                     | Version                                                                                                           | Changelog                                      |
+|-----------------------------------------------|---------------------------------------------|-------------------------------------------------------------------------------------------------------------------|------------------------------------------------|
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/color`](./packages/color)         | [![version](https://img.shields.io/npm/v/@thi.ng/color.svg)](https://www.npmjs.com/package/@thi.ng/color)         | [changelog](./packages/color/CHANGELOG.md)     |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/errors`](./packages/errors)       | [![version](https://img.shields.io/npm/v/@thi.ng/errors.svg)](https://www.npmjs.com/package/@thi.ng/errors)       | [changelog](./packages/errors/CHANGELOG.md)    |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/hex`](./packages/hex)             | [![version](https://img.shields.io/npm/v/@thi.ng/hex.svg)](https://www.npmjs.com/package/@thi.ng/hex)             | [changelog](./packages/hex/CHANGELOG.md)       |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/logger`](./packages/logger)       | [![version](https://img.shields.io/npm/v/@thi.ng/logger.svg)](https://www.npmjs.com/package/@thi.ng/logger)       | [changelog](./packages/logger/CHANGELOG.md)    |
+| ![](https://img.shields.io/badge/-new-cyan)   | [`@thi.ng/tangle`](./packages/tangle)       | [![version](https://img.shields.io/npm/v/@thi.ng/tangle.svg)](https://www.npmjs.com/package/@thi.ng/tangle)       | [changelog](./packages/tangle/CHANGELOG.md)    |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/testament`](./packages/testament) | [![version](https://img.shields.io/npm/v/@thi.ng/testament.svg)](https://www.npmjs.com/package/@thi.ng/testament) | [changelog](./packages/testament/CHANGELOG.md) |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/wasm-api`](./packages/wasm-api)   | [![version](https://img.shields.io/npm/v/@thi.ng/wasm-api.svg)](https://www.npmjs.com/package/@thi.ng/wasm-api)   | [changelog](./packages/wasm-api/CHANGELOG.md)  |
 
 <!--
 ![](https://img.shields.io/badge/-feat-green)
@@ -244,6 +249,7 @@ As of: 2022-08-23
 | [`@thi.ng/pixel-io-netpbm`](./packages/pixel-io-netpbm) | [![version](https://img.shields.io/npm/v/@thi.ng/pixel-io-netpbm.svg)](https://www.npmjs.com/package/@thi.ng/pixel-io-netpbm) | [changelog](./packages/pixel-io-netpbm/CHANGELOG.md) | 1/8/16/24bit NetPBM image format reader/writer |
 | [`@thi.ng/prefixes`](./packages/prefixes)               | [![version](https://img.shields.io/npm/v/@thi.ng/prefixes.svg)](https://www.npmjs.com/package/@thi.ng/prefixes)               | [changelog](./packages/prefixes/CHANGELOG.md)        | Linked Data, RDF & xmlns prefixes/URLs         |
 | [`@thi.ng/sax`](./packages/sax)                         | [![version](https://img.shields.io/npm/v/@thi.ng/sax.svg)](https://www.npmjs.com/package/@thi.ng/sax)                         | [changelog](./packages/sax/CHANGELOG.md)             | SAX-like XML parser / transducer               |
+| [`@thi.ng/tangle`](./packages/tangle)                   | [![version](https://img.shields.io/npm/v/@thi.ng/tangle.svg)](https://www.npmjs.com/package/@thi.ng/tangle)                   | [changelog](./packages/tangle/CHANGELOG.md)          | Literate programming utilities                 |
 
 ### Iterator, stream & sequence processing
 
