@@ -80,6 +80,9 @@
 		"./illegal-state": {
 			"default": "./illegal-state.js"
 		},
+		"./io": {
+			"default": "./io.js"
+		},
 		"./out-of-bounds": {
 			"default": "./out-of-bounds.js"
 		},
