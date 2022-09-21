@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-08-01T14:54:00Z
+- **Last updated**: 2022-09-21T21:37:59Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,14 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [0.3.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/testament@0.3.0) (2022-09-21)
+
+#### 🚀 Features
+
+- add default file exclusions (/test/fixtures) ([75049b9](https://github.com/thi-ng/umbrella/commit/75049b9))
+- add file fixture helpers, update pkg meta ([4e0f0c8](https://github.com/thi-ng/umbrella/commit/4e0f0c8))
+- add CLI support for path exclusions ([cdfe577](https://github.com/thi-ng/umbrella/commit/cdfe577))
 
 ### [0.2.7](https://github.com/thi-ng/umbrella/tree/@thi.ng/testament@0.2.7) (2022-05-20)
 

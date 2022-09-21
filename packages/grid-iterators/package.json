@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/grid-iterators",
-	"version": "2.3.12",
+	"version": "2.3.13",
 	"description": "2D grid and shape iterators w/ multiple orderings",
 	"type": "module",
 	"module": "./index.js",
@@ -35,17 +35,17 @@
 		"test": "testament test"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.4.1",
-		"@thi.ng/arrays": "^2.3.5",
-		"@thi.ng/binary": "^3.3.4",
-		"@thi.ng/bitfield": "^2.2.5",
-		"@thi.ng/morton": "^3.1.13",
-		"@thi.ng/random": "^3.3.7",
-		"@thi.ng/transducers": "^8.3.13"
+		"@thi.ng/api": "^8.4.2",
+		"@thi.ng/arrays": "^2.3.6",
+		"@thi.ng/binary": "^3.3.5",
+		"@thi.ng/bitfield": "^2.2.6",
+		"@thi.ng/morton": "^3.1.14",
+		"@thi.ng/random": "^3.3.8",
+		"@thi.ng/transducers": "^8.3.14"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.31.1",
-		"@thi.ng/testament": "^0.2.12",
+		"@thi.ng/testament": "^0.3.0",
 		"rimraf": "^3.0.2",
 		"tools": "workspace:^",
 		"typedoc": "^0.22.17",

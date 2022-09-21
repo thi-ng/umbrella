@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-08-24T09:52:32Z
+- **Last updated**: 2022-09-21T21:37:59Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,53 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [0.11.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/wasm-api@0.11.0) (2022-09-21)
+
+#### 🚀 Features
+
+- refactor CodeGenOpts, update CLI config handling ([fa2e30f](https://github.com/thi-ng/umbrella/commit/fa2e30f))
+  - extract CodeGenOptsBase interface for common pre/post config
+  - update CLI config loading to support loading pre/post contents
+    from separate files (if value given as `@path/to-file.ext`)
+- update/fix codegens & config ([87def23](https://github.com/thi-ng/umbrella/commit/87def23))
+  - add global `CodeGenOpts.uppercaseEnums` option (migrate from TSOpts)
+  - set `i32` as enum default tag (for C compatibility)
+  - update C11 codegen, add `typePrefix` option
+  - fix C11 enum codegen (use `typedef enum`)
+  - add internal enumName() helper
+  - minor updates Zig codegen
+- update codegen CLI ([435ad2b](https://github.com/thi-ng/umbrella/commit/435ad2b))
+  - add C11 support
+  - add support for padding fields (in `validateTypeRefs()`)
+  - add CLI arg for forcing string type impl
+  - update deps
+- add C11 support, update codegens & config ([590311e](https://github.com/thi-ng/umbrella/commit/590311e))
+  - add preliminary C11 codegen
+  - add optional `tag` field for structs (extern/packed)
+  - add support for auto-labeled padding fields
+    - i.e. defined via unnamed fields with `pad` value
+  - move debug config option to global `CodeGenOpts`
+- update TS codegen (array pointers) ([30360f2](https://github.com/thi-ng/umbrella/commit/30360f2))
+- update CodeGenOpts ([b9fd7ff](https://github.com/thi-ng/umbrella/commit/b9fd7ff))
+- major update codegens, string & pointer handling ([4f02295](https://github.com/thi-ng/umbrella/commit/4f02295))
+  - update/fix string wrappers (`WasmStringSlice/Ptr`)
+  - add generic `Pointer` wrapper
+  - add `const` field type support
+  - add applyIndents() formatter fn, simplify all codegens
+  - major update TS & Zig codegens
+- WasmString codegen integration ([97fc318](https://github.com/thi-ng/umbrella/commit/97fc318))
+  - update TS codegen to wrap strings using new `WasmString` or `WasmStringPtr`
+  - update global codegen options handling, now passed to each codegen
+  - update TSOpts & ZigOpts to include custom pre/post
+- add WasmString wrappers ([18d8fcb](https://github.com/thi-ng/umbrella/commit/18d8fcb))
+  - still unused (to be added to TS codegen)
+- update core API & bindings ([b185ea5](https://github.com/thi-ng/umbrella/commit/b185ea5))
+  - add _panic(), timer(), epoch() core API fns
+  - update printI/U64() fns to accept bigint
+  - update C & Zig bindings
+  - update tests
+  - add clang-format
 
 ## [0.10.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/wasm-api@0.10.0) (2022-08-24)
 
