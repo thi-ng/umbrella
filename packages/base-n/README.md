@@ -10,7 +10,7 @@ This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
 - [About](#about)
-  - [Status](#status)
+- [Status](#status)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [API](#api)
@@ -21,7 +21,7 @@ This project is part of the
 
 Arbitrary base-n conversions w/ presets for base16/32/36/58/62/64/85, support for arrays & bigints.
 
-### Status
+## Status
 
 **STABLE** - used in production
 

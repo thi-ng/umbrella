@@ -11,7 +11,7 @@ This project is part of the
 
 - [About](#about)
   - [Features](#features)
-  - [Status](#status)
+- [Status](#status)
   - [Planned features](#planned-features)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
@@ -42,7 +42,7 @@ complex data preparation, cleaning or conversion workflows. See
 [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)
 for more details/ideas.
 
-### Status
+## Status
 
 **STABLE** - used in production
 

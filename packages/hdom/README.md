@@ -10,8 +10,8 @@ This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
 - [About](#about)
-  - [Status](#status)
-  - [Support packages](#support-packages)
+- [Status](#status)
+- [Support packages](#support-packages)
   - [Blog posts](#blog-posts)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
@@ -96,13 +96,13 @@ Benefits:
 - Fast (see [benchmark examples](#benchmarks) below)
 - Only ~6.2KB gzipped
 
-### Status
+## Status
 
 **STABLE** - used in production
 
 [Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bhdom%5D+in%3Atitle)
 
-### Support packages
+## Support packages
 
 - [@thi.ng/hdom-canvas](https://github.com/thi-ng/umbrella/tree/develop/packages/hdom-canvas) - [@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/develop/packages/hdom) component wrapper for declarative canvas scenegraphs
 - [@thi.ng/hdom-components](https://github.com/thi-ng/umbrella/tree/develop/packages/hdom-components) - Raw, skinnable UI & SVG components for [@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/develop/packages/hdom)

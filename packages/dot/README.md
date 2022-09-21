@@ -10,8 +10,8 @@ This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
 - [About](#about)
-  - [Status](#status)
-  - [Related packages](#related-packages)
+- [Status](#status)
+- [Related packages](#related-packages)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [API](#api)
@@ -34,13 +34,13 @@ Please see the [GraphViz DOT
 guide](https://graphviz.gitlab.io/_pages/pdf/dotguide.pdf) for further
 details.
 
-### Status
+## Status
 
 **BETA** - possibly breaking changes forthcoming
 
 [Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bdot%5D+in%3Atitle)
 
-### Related packages
+## Related packages
 
 - [@thi.ng/adjacency](https://github.com/thi-ng/umbrella/tree/develop/packages/adjacency) - Sparse & bitwise adjacency matrices and related functions for directed & undirected graphs
 - [@thi.ng/dgraph](https://github.com/thi-ng/umbrella/tree/develop/packages/dgraph) - Type-agnostic directed acyclic graph (DAG) & graph operations

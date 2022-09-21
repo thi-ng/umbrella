@@ -10,7 +10,7 @@ This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
 - [About](#about)
-  - [Status](#status)
+- [Status](#status)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [API](#api)
@@ -65,7 +65,7 @@ Btw. Also see
 [@thi.ng/cache](https://github.com/thi-ng/umbrella/tree/develop/packages/cache)
 for more LRU, MRU implementations based on managed `DCons` impls...
 
-### Status
+## Status
 
 **STABLE** - used in production
 

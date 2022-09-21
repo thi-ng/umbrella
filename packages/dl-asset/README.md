@@ -10,8 +10,8 @@ This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
 - [About](#about)
-  - [Status](#status)
-  - [Related packages](#related-packages)
+- [Status](#status)
+- [Related packages](#related-packages)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
@@ -25,13 +25,13 @@ This project is part of the
 
 Canvas, video recording & file asset download helpers for web apps.
 
-### Status
+## Status
 
 **STABLE** - used in production
 
 [Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bdl-asset%5D+in%3Atitle)
 
-### Related packages
+## Related packages
 
 - [@thi.ng/mime](https://github.com/thi-ng/umbrella/tree/develop/packages/mime) - 650+ file extension to MIME type mappings, based on mime-db
 

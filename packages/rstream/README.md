@@ -11,10 +11,10 @@ This project is part of the
 
 - [About](#about)
 - [Conceptual differences to RxJS](#conceptual-differences-to-rxjs)
-  - [Status](#status)
+- [Status](#status)
   - [New features & breaking changes in 6.0.0](#new-features--breaking-changes-in-600)
-  - [Support packages](#support-packages)
-  - [Related packages](#related-packages)
+- [Support packages](#support-packages)
+- [Related packages](#related-packages)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
@@ -98,7 +98,7 @@ programming:
 - IMHO less confusing naming / terminology (only streams (producers) &
   subscriptions (consumers))
 
-### Status
+## Status
 
 **STABLE** - used in production
 
@@ -161,7 +161,7 @@ src.transformTopic("foo", map((e) => e.value), { error: handleError })
   signatures of `.transform()` method support up to 4 transducers and composes
   them automatically.
 
-### Support packages
+## Support packages
 
 - [@thi.ng/rstream-csp](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream-csp) - [@thi.ng/csp](https://github.com/thi-ng/umbrella/tree/develop/packages/csp) bridge module for [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream)
 - [@thi.ng/rstream-dot](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream-dot) - Graphviz DOT conversion of [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream) dataflow graph topologies
@@ -171,7 +171,7 @@ src.transformTopic("foo", map((e) => e.value), { error: handleError })
 - [@thi.ng/rstream-log-file](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream-log-file) - File output handler for structured, multilevel & hierarchical loggers based on [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream)
 - [@thi.ng/rstream-query](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream-query) - [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream) based triple store & reactive query engine
 
-### Related packages
+## Related packages
 
 - [@thi.ng/atom](https://github.com/thi-ng/umbrella/tree/develop/packages/atom) - Mutable wrappers for nested immutable values with optional undo/redo history and transaction support
 - [@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/develop/packages/hdom) - Lightweight vanilla ES6 UI component trees with customizable branch-local behaviors

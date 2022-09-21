@@ -19,8 +19,8 @@ This project is part of the
     - [256 color ANSI format](#256-color-ansi-format)
     - [16bit color ANSI & HTML formats](#16bit-color-ansi--html-formats)
   - [Ad-hoc formatting of strings](#ad-hoc-formatting-of-strings)
-  - [Status](#status)
-  - [Related packages](#related-packages)
+- [Status](#status)
+- [Related packages](#related-packages)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
@@ -176,13 +176,13 @@ const html = defFormatPresets(FMT_HTML_TACHYONS);
 // '<span class="dark-green ">hello</span> <span class="red ">world</span>!'
 ```
 
-### Status
+## Status
 
 **STABLE** - used in production
 
 [Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Btext-format%5D+in%3Atitle)
 
-### Related packages
+## Related packages
 
 - [@thi.ng/text-canvas](https://github.com/thi-ng/umbrella/tree/develop/packages/text-canvas) - Text based canvas, drawing, tables with arbitrary formatting (incl. ANSI/HTML)
 

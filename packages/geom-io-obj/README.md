@@ -12,7 +12,7 @@ This project is part of the
 - [About](#about)
   - [Features](#features)
   - [Planned features](#planned-features)
-  - [Status](#status)
+- [Status](#status)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [API](#api)
@@ -42,7 +42,7 @@ Wavefront OBJ parser (& exporter soon). This is a support package for [@thi.ng/g
 - [ ] OBJ export
 - [ ] MTL parser
 
-### Status
+## Status
 
 **ALPHA** - bleeding edge / work-in-progress
 

@@ -10,7 +10,7 @@ This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
 - [About](#about)
-  - [Status](#status)
+- [Status](#status)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [API](#api)
@@ -29,7 +29,7 @@ packages. The latter is used to perform the actual
 [Graphviz](https://graphviz.org) serialization. Please consult its
 readme & source code for visualization options.
 
-### Status
+## Status
 
 **STABLE** - used in production
 

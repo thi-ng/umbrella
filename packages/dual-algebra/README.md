@@ -10,8 +10,8 @@ This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
 - [About](#about)
-  - [Status](#status)
-  - [Related packages](#related-packages)
+- [Status](#status)
+- [Related packages](#related-packages)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
@@ -107,13 +107,13 @@ For each polynomial, there're scalar versions available too, taking only
 rational numbers as arguments (rather than dual numbers already). These versions
 are suffixed with `S` (for "scalar"): `quadraticS`, `cubicS` and `quarticS`...
 
-### Status
+## Status
 
 **ALPHA** - bleeding edge / work-in-progress
 
 [Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bdual-algebra%5D+in%3Atitle)
 
-### Related packages
+## Related packages
 
 - [@thi.ng/math](https://github.com/thi-ng/umbrella/tree/develop/packages/math) - Assorted common math functions & utilities
 

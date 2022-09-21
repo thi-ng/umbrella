@@ -11,7 +11,7 @@ This project is part of the
 
 - [About](#about)
   - [Built-in tag parsers](#built-in-tag-parsers)
-  - [Status](#status)
+- [Status](#status)
     - [Feature ideas](#feature-ideas)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
@@ -76,7 +76,7 @@ Custom parsers can be provided via config options.
 **Note:** In this reference implementation, the `#file` and `#gpg` tag parsers
 are only available in NodeJS.
 
-### Status
+## Status
 
 **ALPHA** - bleeding edge / work-in-progress
 

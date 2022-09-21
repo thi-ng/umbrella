@@ -10,7 +10,7 @@ This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
 - [About](#about)
-  - [Status](#status)
+- [Status](#status)
   - [Blog posts](#blog-posts)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
@@ -40,7 +40,7 @@ Planned features:
 - [ ] convergence testing
 - [ ] 3D turtle implementation
 
-### Status
+## Status
 
 **STABLE** - used in production
 

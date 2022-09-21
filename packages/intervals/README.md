@@ -10,7 +10,7 @@ This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
 - [About](#about)
-  - [Status](#status)
+- [Status](#status)
     - [Breaking changes](#breaking-changes)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
@@ -33,7 +33,7 @@ notation](https://en.wikipedia.org/wiki/ISO_31-11#Sets) is provided. See
 [`parse()`](https://docs.thi.ng/umbrella/intervals/modules.html#parse) for
 details.
 
-### Status
+## Status
 
 **STABLE** - used in production
 

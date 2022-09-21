@@ -14,7 +14,7 @@ This project is part of the
     - [Booleans](#booleans)
     - [String handling](#string-handling)
     - [Floating point values](#floating-point-values)
-  - [Status](#status)
+- [Status](#status)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [API](#api)
@@ -49,7 +49,7 @@ floats with an absolute value in the semi-open `[1e-6,1e21)` interval can be
 encoded. Float values requiring exponential notation will throw an error during
 encoding.
 
-### Status
+## Status
 
 **STABLE** - used in production
 

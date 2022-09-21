@@ -10,8 +10,8 @@ This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
 - [About](#about)
-  - [Status](#status)
-  - [Related packages](#related-packages)
+- [Status](#status)
+- [Related packages](#related-packages)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
@@ -31,7 +31,7 @@ which acts as useful & lightweight mechanism to provide
 context-sensitive processing capabilities as part of a transducer
 transformation pipeline.
 
-### Status
+## Status
 
 **DEPRECATED** - no further development planned
 
@@ -41,7 +41,7 @@ This package might be merged with (or deprecated by) the newer
 [@thi.ng/parse](https://github.com/thi-ng/umbrella/tree/develop/packages/parse)
 package.
 
-### Related packages
+## Related packages
 
 - [@thi.ng/fsm](https://github.com/thi-ng/umbrella/tree/develop/packages/fsm) - Composable primitives for building declarative, transducer based Finite-State Machines & matchers for arbitrary data streams
 - [@thi.ng/sax](https://github.com/thi-ng/umbrella/tree/develop/packages/sax) - Transducer-based, SAX-like, non-validating, speedy & tiny XML parser

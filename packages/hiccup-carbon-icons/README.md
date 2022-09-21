@@ -11,7 +11,7 @@ This project is part of the
 
 - [About](#about)
 - [Contact sheet](#contact-sheet)
-  - [Status](#status)
+- [Status](#status)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
@@ -39,7 +39,7 @@ All icons can be previewed here: [contact
 sheet](https://demo.thi.ng/umbrella/hiccup-carbon-icons/). ([Source
 code](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-carbon-icons/tools/contact-sheet.ts))
 
-### Status
+## Status
 
 **STABLE** - used in production
 

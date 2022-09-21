@@ -16,8 +16,8 @@ This project is part of the
   - [Rect](#rect)
   - [Flood fill](#flood-fill)
 - [Custom shaders](#custom-shaders)
-  - [Status](#status)
-  - [Related packages](#related-packages)
+- [Status](#status)
+- [Related packages](#related-packages)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [API](#api)
@@ -118,13 +118,13 @@ drawCircle(img, W/2, W/2, W/2 - 4, defUVGradient(W, W), true);
 
 ![result image: circle with gradient fill](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/rasterize/uv-circle.png)
 
-### Status
+## Status
 
 **ALPHA** - bleeding edge / work-in-progress
 
 [Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Brasterize%5D+in%3Atitle)
 
-### Related packages
+## Related packages
 
 - [@thi.ng/grid-iterators](https://github.com/thi-ng/umbrella/tree/develop/packages/grid-iterators) - 2D grid and shape iterators w/ multiple orderings
 - [@thi.ng/pixel](https://github.com/thi-ng/umbrella/tree/develop/packages/pixel) - Typedarray integer & float pixel buffers w/ customizable formats, blitting, drawing, convolution

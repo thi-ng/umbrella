@@ -12,7 +12,7 @@ This project is part of the
 - [About](#about)
   - [Tree optimizations](#tree-optimizations)
     - [Constant folding](#constant-folding)
-  - [Status](#status)
+- [Status](#status)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
@@ -81,7 +81,7 @@ glsl(constantFolding(expr))
 // 8.0
 ```
 
-### Status
+## Status
 
 **STABLE** - used in production
 

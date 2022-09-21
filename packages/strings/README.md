@@ -21,7 +21,7 @@ This project is part of the
   - [Char range presets / lookup tables](#char-range-presets--lookup-tables)
   - [Units](#units)
   - [Miscellaneous](#miscellaneous)
-  - [Status](#status)
+- [Status](#status)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
@@ -114,7 +114,7 @@ Partially based on Clojure version of [thi.ng/strf](http://thi.ng/strf).
 - `hstr` - [Hollerith strings](https://en.wikipedia.org/wiki/Hollerith_constant)
 - `computeCursorPos`
 
-### Status
+## Status
 
 **STABLE** - used in production
 

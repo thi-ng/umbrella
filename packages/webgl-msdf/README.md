@@ -10,7 +10,7 @@ This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
 - [About](#about)
-  - [Status](#status)
+- [Status](#status)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
@@ -35,7 +35,7 @@ There're different versions of MSDF font generators. The format
 supported by this module is based on [Don
 McCurdy's](https://msdf-bmfont.donmccurdy.com/).
 
-### Status
+## Status
 
 **STABLE** - used in production
 

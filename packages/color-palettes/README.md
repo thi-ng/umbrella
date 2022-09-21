@@ -15,7 +15,7 @@ This project is part of the
   - [Strong](#strong)
   - [Medium](#medium)
   - [Soft](#soft)
-  - [Status](#status)
+- [Status](#status)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
@@ -192,7 +192,7 @@ be. Any pointers to workarounds/solutions are appreciated...):
 | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/014whoAyxl5gzJwC1.svg) | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/014wjGaMtVyXGNzL6.svg)  | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/00qAZk070SYGij58C.svg) |
 | 014whoAyxl5gzJwC1                                                                                          | 014wjGaMtVyXGNzL6                                                                                           | 00qAZk070SYGij58C                                                                                          |
 
-### Status
+## Status
 
 **STABLE** - used in production
 

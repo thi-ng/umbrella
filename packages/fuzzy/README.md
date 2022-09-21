@@ -12,8 +12,8 @@ This project is part of the
 - [About](#about)
   - [Features](#features)
   - [References / Further reading](#references--further-reading)
-  - [Status](#status)
-  - [Support packages](#support-packages)
+- [Status](#status)
+- [Support packages](#support-packages)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [API](#api)
@@ -56,13 +56,13 @@ Fuzzy logic operators & configurable rule inferencing engine.
 - [Defuzzification methods](https://cse.iitkgp.ac.in/~dsamanta/courses/archive/sca/Archives/Chapter%205%20Defuzzification%20Methods.pdf)
 - [Comparison of the COG Defuzzification Technique](https://arxiv.org/pdf/1612.00742.pdf)
 
-### Status
+## Status
 
 **STABLE** - used in production
 
 [Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bfuzzy%5D+in%3Atitle)
 
-### Support packages
+## Support packages
 
 - [@thi.ng/fuzzy-viz](https://github.com/thi-ng/umbrella/tree/develop/packages/fuzzy-viz) - Visualization, instrumentation & introspection utils for [@thi.ng/fuzzy](https://github.com/thi-ng/umbrella/tree/develop/packages/fuzzy)
 

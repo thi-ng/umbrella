@@ -10,7 +10,7 @@ This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
 - [About](#about)
-  - [Status](#status)
+- [Status](#status)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [API](#api)
@@ -60,7 +60,7 @@ References:
 - [L. Lamport](http://lamport.azurewebsites.net/pubs/time-clocks.pdf)
 - [Akka docs](http://api.getakka.net/docs/stable/html/8D0C3FFF.htm)
 
-### Status
+## Status
 
 **BETA** - possibly breaking changes forthcoming
 

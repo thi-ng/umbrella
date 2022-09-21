@@ -10,7 +10,7 @@ This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
 - [About](#about)
-  - [Status](#status)
+- [Status](#status)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
@@ -32,7 +32,7 @@ Entity Component System based around typed arrays & sparse sets.
 - Systems are plain functions
 - Configurable caching of component views: LRU, Unbounded, Null (no-cache)
 
-### Status
+## Status
 
 **ALPHA** - bleeding edge / work-in-progress
 

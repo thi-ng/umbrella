@@ -10,12 +10,12 @@ This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
 - [About](#about)
-  - [Status](#status)
+- [Status](#status)
   - [7.0.0 release](#700-release)
   - [6.0.0 release](#600-release)
   - [5.0.0 release](#500-release)
-  - [Support packages](#support-packages)
-  - [Related packages](#related-packages)
+- [Support packages](#support-packages)
+- [Related packages](#related-packages)
   - [Blog posts](#blog-posts)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
@@ -81,7 +81,7 @@ functions (i.e. `transduce()`/`transduceRight()`, `reduce()`/`reduceRight()`,
 will return a transforming ES6 iterator (generator) and reducing functions
 will return a reduced result of the given input iterable.
 
-### Status
+## Status
 
 **STABLE** - used in production
 
@@ -131,7 +131,7 @@ implementation of the `IRandom` interface from the
 [@thi.ng/random](https://github.com/thi-ng/umbrella/tree/develop/packages/random)
 package.
 
-### Support packages
+## Support packages
 
 - [@thi.ng/transducers-binary](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers-binary) - Binary data related transducers & reducers
 - [@thi.ng/transducers-fsm](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers-fsm) - Transducer-based Finite State Machine transformer
@@ -139,7 +139,7 @@ package.
 - [@thi.ng/transducers-patch](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers-patch) - Reducers for patch-based, immutable-by-default array & object editing
 - [@thi.ng/transducers-stats](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers-stats) - Transducers for statistical / technical analysis
 
-### Related packages
+## Related packages
 
 - [@thi.ng/csp](https://github.com/thi-ng/umbrella/tree/develop/packages/csp) - ES6 promise based CSP primitives & operations
 - [@thi.ng/grid-iterators](https://github.com/thi-ng/umbrella/tree/develop/packages/grid-iterators) - 2D grid and shape iterators w/ multiple orderings

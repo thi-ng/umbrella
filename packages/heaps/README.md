@@ -10,7 +10,7 @@ This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
 - [About](#about)
-  - [Status](#status)
+- [Status](#status)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [API](#api)
@@ -31,7 +31,7 @@ ordering and fanout / tree arity (in case of `DHeap`) and largely unified API:
 - Pairing heap ([`PairingHeap`](https://docs.thi.ng/umbrella/heaps/classes/pairingheap.html))
 - Priority queue ([`PriorityQueue`](https://docs.thi.ng/umbrella/heaps/classes/priorityqueue.html))
 
-### Status
+## Status
 
 **STABLE** - used in production
 

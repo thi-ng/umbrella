@@ -10,7 +10,7 @@ This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
 - [About](#about)
-  - [Status](#status)
+- [Status](#status)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
@@ -28,7 +28,7 @@ well as more [generic supporting
 types](https://github.com/thi-ng/umbrella/tree/develop/packages/layout/src/api.ts)
 to define other layout types / implementations.
 
-### Status
+## Status
 
 **STABLE** - used in production
 

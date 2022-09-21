@@ -10,7 +10,7 @@ This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
 - [About](#about)
-  - [Status](#status)
+- [Status](#status)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [API](#api)
@@ -40,7 +40,7 @@ pixel buffers (aka `PackedBuffer`).
 Furthermore the `parseHeader()` function can be used to just extract image type,
 size and other meta data (from comments), without parsing the full image.
 
-### Status
+## Status
 
 **STABLE** - used in production
 

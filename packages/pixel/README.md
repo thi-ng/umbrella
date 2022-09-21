@@ -18,9 +18,9 @@ This project is part of the
   - [Strided convolution & pooling](#strided-convolution--pooling)
   - [Normal map generation](#normal-map-generation)
   - [Dominant color extraction](#dominant-color-extraction)
-  - [Status](#status)
-  - [Support packages](#support-packages)
-  - [Related packages](#related-packages)
+- [Status](#status)
+- [Support packages](#support-packages)
+- [Related packages](#related-packages)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
@@ -291,18 +291,18 @@ console.log(clusters);
 // ]
 ```
 
-### Status
+## Status
 
 **STABLE** - used in production
 
 [Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bpixel%5D+in%3Atitle)
 
-### Support packages
+## Support packages
 
 - [@thi.ng/pixel-dither](https://github.com/thi-ng/umbrella/tree/develop/packages/pixel-dither) - Extensible image dithering w/ various algorithm presets
 - [@thi.ng/pixel-io-netpbm](https://github.com/thi-ng/umbrella/tree/develop/packages/pixel-io-netpbm) - Multi-format NetPBM reader & writer support for [@thi.ng/pixel](https://github.com/thi-ng/umbrella/tree/develop/packages/pixel)
 
-### Related packages
+## Related packages
 
 - [@thi.ng/color](https://github.com/thi-ng/umbrella/tree/develop/packages/color) - Array-based color types, CSS parsing, conversions, transformations, declarative theme generation, gradients, presets
 - [@thi.ng/porter-duff](https://github.com/thi-ng/umbrella/tree/develop/packages/porter-duff) - Porter-Duff operators for packed ints & float-array alpha compositing

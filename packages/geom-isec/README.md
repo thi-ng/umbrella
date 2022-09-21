@@ -11,7 +11,7 @@ This project is part of the
 
 - [About](#about)
   - [3D tests](#3d-tests)
-  - [Status](#status)
+- [Status](#status)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [API](#api)
@@ -44,7 +44,7 @@ Current implementations partially based on
 [toxiclibs](http://toxiclibs.org) (Java) and Clojure version of
 [thi.ng/geom](http://thi.ng/geom).
 
-### Status
+## Status
 
 **STABLE** - used in production
 

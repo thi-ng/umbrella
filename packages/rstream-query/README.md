@@ -11,7 +11,7 @@ This project is part of the
 
 - [About](#about)
   - [Current features](#current-features)
-  - [Status](#status)
+- [Status](#status)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
@@ -51,7 +51,7 @@ feature is currently WIP).
 - Interim result de-duplication / dataflow gates
 - Push-based, auto-updating query results
 
-### Status
+## Status
 
 **STABLE** - used in production
 

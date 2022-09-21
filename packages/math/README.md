@@ -12,7 +12,7 @@ This project is part of the
 For the Clojure version, please visit: [thi.ng/math-clj](https://thi.ng/math-clj)
 
 - [About](#about)
-  - [Status](#status)
+- [Status](#status)
   - [Breaking changes in v4.0.0](#breaking-changes-in-v400)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
@@ -32,7 +32,7 @@ Partially ported from Clojure version
 [c.thi.ng](https://github.com/thi-ng/c-thing) and
 [thi.ng/vexed-generation](https://github.com/thi-ng/vexed-generation).
 
-### Status
+## Status
 
 **STABLE** - used in production
 

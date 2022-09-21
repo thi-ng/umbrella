@@ -10,9 +10,9 @@ This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
 - [About](#about)
-  - [Status](#status)
-  - [Support packages](#support-packages)
-  - [Related packages](#related-packages)
+- [Status](#status)
+- [Support packages](#support-packages)
+- [Related packages](#related-packages)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [API](#api)
@@ -33,17 +33,17 @@ The `Logger` class provided by this package implements the
 `ILogger` interface and uses `LogLevel` enums to configure levels /
 filtering.
 
-### Status
+## Status
 
 **STABLE** - used in production
 
 [Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Brstream-log%5D+in%3Atitle)
 
-### Support packages
+## Support packages
 
 - [@thi.ng/rstream-log-file](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream-log-file) - File output handler for structured, multilevel & hierarchical loggers based on [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream)
 
-### Related packages
+## Related packages
 
 - [@thi.ng/logger](https://github.com/thi-ng/umbrella/tree/develop/packages/logger) - Types & basis infrastructure for arbitrary logging (w/ default impls)
 

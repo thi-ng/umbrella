@@ -10,7 +10,7 @@ This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
 - [About](#about)
-  - [Status](#status)
+- [Status](#status)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
@@ -31,7 +31,7 @@ This project is part of the
 
 Datetime types, relative dates, math, iterators, composable formatters, locales.
 
-### Status
+## Status
 
 **STABLE** - used in production
 

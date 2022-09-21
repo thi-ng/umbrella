@@ -13,11 +13,11 @@ This project is part of the
   - [From hdom to rdom: Reactive UIs without virtual DOMs](#from-hdom-to-rdom-reactive-uis-without-virtual-doms)
   - [Targetted, isolated updates](#targetted-isolated-updates)
   - [Async updates, scheduling & life cycle methods](#async-updates-scheduling--life-cycle-methods)
-  - [Status](#status)
+- [Status](#status)
     - [HIC SUNT DRACONES](#hic-sunt-dracones)
     - [@thi.ng/atom integration](#thingatom-integration)
-  - [Support packages](#support-packages)
-  - [Related packages](#related-packages)
+- [Support packages](#support-packages)
+- [Related packages](#related-packages)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
@@ -112,7 +112,7 @@ explicitly using the provided control components (e.g.
 [`$compile()`](https://docs.thi.ng/umbrella/rdom/modules.html#_compile) to
 auto-wrap such values embedded in an hiccup tree.
 
-### Status
+## Status
 
 **BETA** - possibly breaking changes forthcoming
 
@@ -137,12 +137,12 @@ constructs, which can be used as lightweight adapters, i.e.:
 - [`fromAtom()`](https://docs.thi.ng/umbrella/rstream/modules.html#fromAtom)
 - [`fromView()`](https://docs.thi.ng/umbrella/rstream/modules.html#fromView)
 
-### Support packages
+## Support packages
 
 - [@thi.ng/rdom-canvas](https://github.com/thi-ng/umbrella/tree/develop/packages/rdom-canvas) - [@thi.ng/rdom](https://github.com/thi-ng/umbrella/tree/develop/packages/rdom) component wrapper for [@thi.ng/hiccup-canvas](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-canvas) and declarative canvas drawing
 - [@thi.ng/rdom-components](https://github.com/thi-ng/umbrella/tree/develop/packages/rdom-components) - Collection of unstyled, customizable components for [@thi.ng/rdom](https://github.com/thi-ng/umbrella/tree/develop/packages/rdom)
 
-### Related packages
+## Related packages
 
 - [@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/develop/packages/hdom) - Lightweight vanilla ES6 UI component trees with customizable branch-local behaviors
 - [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup) - HTML/SVG/XML serialization of nested data structures, iterables & closures

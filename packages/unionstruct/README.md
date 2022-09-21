@@ -10,7 +10,7 @@ This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
 - [About](#about)
-  - [Status](#status)
+- [Status](#status)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [API](#api)
@@ -40,7 +40,7 @@ Features:
 
 Currently does not support array fields (incl. strings).
 
-### Status
+## Status
 
 **STABLE** - used in production
 

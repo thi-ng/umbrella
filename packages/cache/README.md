@@ -12,8 +12,8 @@ This project is part of the
 - [About](#about)
   - [Available strategies](#available-strategies)
   - [Features](#features)
-  - [Status](#status)
-  - [Related packages](#related-packages)
+- [Status](#status)
+- [Related packages](#related-packages)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
@@ -44,13 +44,13 @@ strategies](https://en.wikipedia.org/wiki/Cache_replacement_policies).
 - Customizable key equality checks (@thi.ng/equiv by default)
 - Optional item release callbacks (to clean up resources when value is expunged)
 
-### Status
+## Status
 
 **STABLE** - used in production
 
 [Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bcache%5D+in%3Atitle)
 
-### Related packages
+## Related packages
 
 - [@thi.ng/associative](https://github.com/thi-ng/umbrella/tree/develop/packages/associative) - Alternative Map and Set implementations with customizable equality semantics & supporting operations
 

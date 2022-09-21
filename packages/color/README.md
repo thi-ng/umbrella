@@ -22,9 +22,9 @@ For the Clojure version, please visit: [thi.ng/color-clj](https://thi.ng/color-c
     - [Multi-stop gradients in any color space](#multi-stop-gradients-in-any-color-space)
     - [Cosine gradients](#cosine-gradients)
   - [RGB color transformations](#rgb-color-transformations)
-  - [Status](#status)
-  - [Support packages](#support-packages)
-  - [Related packages](#related-packages)
+- [Status](#status)
+- [Support packages](#support-packages)
+- [Related packages](#related-packages)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
@@ -563,17 +563,17 @@ including parametric preset transforms:
 Transformation matrices can be combined using matrix multiplication /
 concatenation (see `concat()`) for more efficient application.
 
-### Status
+## Status
 
 **STABLE** - used in production
 
 [Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bcolor%5D+in%3Atitle)
 
-### Support packages
+## Support packages
 
 - [@thi.ng/color-palettes](https://github.com/thi-ng/umbrella/tree/develop/packages/color-palettes) - Collection of 190+ image based color palettes
 
-### Related packages
+## Related packages
 
 - [@thi.ng/pixel](https://github.com/thi-ng/umbrella/tree/develop/packages/pixel) - Typedarray integer & float pixel buffers w/ customizable formats, blitting, drawing, convolution
 - [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors) - Optimized 2d/3d/4d and arbitrary length vector operations

@@ -12,9 +12,9 @@ This project is part of the
 - [About](#about)
   - [Random distributions](#random-distributions)
   - [Other utilities](#other-utilities)
-  - [Status](#status)
-  - [Support packages](#support-packages)
-  - [Related packages](#related-packages)
+- [Status](#status)
+- [Support packages](#support-packages)
+- [Related packages](#related-packages)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
@@ -59,17 +59,17 @@ Partially ported from C implementations taken from [c.thi.ng](http://c.thi.ng).
 - [`uniqueIndices()` / `uniqueValuesFrom()`](https://github.com/thi-ng/umbrella/tree/develop/packages/random/src/unique-indices.ts)
 - [`uuidv4Bytes()` / `uuid()`](https://github.com/thi-ng/umbrella/tree/develop/packages/random/src/uuid.ts)
 
-### Status
+## Status
 
 **STABLE** - used in production
 
 [Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Brandom%5D+in%3Atitle)
 
-### Support packages
+## Support packages
 
 - [@thi.ng/random-fxhash](https://github.com/thi-ng/umbrella/tree/develop/packages/random-fxhash) - [@thi.ng/random](https://github.com/thi-ng/umbrella/tree/develop/packages/random) compatible wrapper & utilities for fxhash's PRNG
 
-### Related packages
+## Related packages
 
 - [@thi.ng/ksuid](https://github.com/thi-ng/umbrella/tree/develop/packages/ksuid) - Configurable K-sortable unique IDs, ULIDs, binary & base-N encoded, 32/48/64bit time resolutions
 

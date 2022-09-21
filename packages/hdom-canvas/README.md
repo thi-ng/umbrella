@@ -10,9 +10,9 @@ This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
 - [About](#about)
-  - [Status](#status)
+- [Status](#status)
   - [BREAKING CHANGES 3.0.0](#breaking-changes-300)
-  - [Related packages](#related-packages)
+- [Related packages](#related-packages)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
@@ -39,7 +39,7 @@ in standard
 syntax/format (i.e. nested arrays) and then translates these into canvas
 API draw calls during the hdom update process / cycle.
 
-### Status
+## Status
 
 **STABLE** - used in production
 
@@ -51,7 +51,7 @@ The actual tree traversal & drawing has been extracted to the new
 [@thi.ng/hiccup-canvas](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-canvas)
 package for better re-usability, also outside without hdom.
 
-### Related packages
+## Related packages
 
 - [@thi.ng/geom](https://github.com/thi-ng/umbrella/tree/develop/packages/geom) - Functional, polymorphic API for 2D geometry types & SVG generation
 - [@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/develop/packages/hdom) - Lightweight vanilla ES6 UI component trees with customizable branch-local behaviors

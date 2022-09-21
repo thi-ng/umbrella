@@ -11,7 +11,7 @@ This project is part of the
 
 - [About](#about)
 - [Supported indicators](#supported-indicators)
-  - [Status](#status)
+- [Status](#status)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
@@ -52,7 +52,7 @@ transforming ES6 iterator (generator) instead of a transducer.
 - [TRIX (Triple smoothed EMA)](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers-stats/src/trix.ts)
 - [WMA (Weighted Moving Average)](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers-stats/src/wma.ts)
 
-### Status
+## Status
 
 **STABLE** - used in production
 

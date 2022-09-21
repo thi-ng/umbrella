@@ -12,8 +12,8 @@ This project is part of the
 - [About](#about)
   - [Reading links](#reading-links)
   - [A brief comparison](#a-brief-comparison)
-  - [Status](#status)
-  - [Support packages](#support-packages)
+- [Status](#status)
+- [Support packages](#support-packages)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
@@ -182,13 +182,13 @@ Furthermore, on-stack quotations and dataflow combinators can be used
 for dynamic programming approaches and conditionals can be used to cause
 non-linear control flow.
 
-### Status
+## Status
 
 **STABLE** - used in production
 
 [Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bpointfree%5D+in%3Atitle)
 
-### Support packages
+## Support packages
 
 - [@thi.ng/pointfree-lang](https://github.com/thi-ng/umbrella/tree/develop/packages/pointfree-lang) - Forth style syntax layer/compiler & CLI for the [@thi.ng/pointfree](https://github.com/thi-ng/umbrella/tree/develop/packages/pointfree) DSL
 

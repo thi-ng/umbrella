@@ -16,8 +16,8 @@ This project is part of the
   - [Wraparound](#wraparound)
   - [Masks](#masks)
   - [Limits](#limits)
-  - [Status](#status)
-  - [Related packages](#related-packages)
+- [Status](#status)
+- [Related packages](#related-packages)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [API](#api)
@@ -129,13 +129,13 @@ construction.
 Due to using `Uint8Arrays` for storage, only up to 256 cell states are
 supported. The same limit applies to the number of CA configs given.
 
-### Status
+## Status
 
 **STABLE** - used in production
 
 [Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bcellular%5D+in%3Atitle)
 
-### Related packages
+## Related packages
 
 - [@thi.ng/lsys](https://github.com/thi-ng/umbrella/tree/develop/packages/lsys) - Functional, extensible L-System architecture w/ support for probabilistic rules
 - [@thi.ng/pixel](https://github.com/thi-ng/umbrella/tree/develop/packages/pixel) - Typedarray integer & float pixel buffers w/ customizable formats, blitting, drawing, convolution

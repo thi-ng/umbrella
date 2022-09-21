@@ -10,7 +10,7 @@ This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
 - [About](#about)
-  - [Status](#status)
+- [Status](#status)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
@@ -33,7 +33,7 @@ This project is part of the
 work (in principle) with concave polygons, though correct results are
 highly dependent on the concavities present. YMMV!
 
-### Status
+## Status
 
 **STABLE** - used in production
 

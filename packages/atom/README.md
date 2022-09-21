@@ -10,14 +10,14 @@ This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
 - [About](#about)
-  - [Status](#status)
+- [Status](#status)
 - [Temporary restrictions](#temporary-restrictions)
 - [Breaking changes](#breaking-changes)
   - [4.0.0](#400)
     - [Type checked accessors](#type-checked-accessors)
     - [Factory functions](#factory-functions)
     - [Deprecated](#deprecated)
-  - [Related packages](#related-packages)
+- [Related packages](#related-packages)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
@@ -52,7 +52,7 @@ the concept of using a centralized atom around a nested, immutable
 object as single source of truth within an application and driving
 reactive updates from performed state changes.
 
-### Status
+## Status
 
 **STABLE** - used in production
 
@@ -96,7 +96,7 @@ Derived views can now only be created via `defView()`, `defViewUnsafe()`
 (or `new View()`). The `IViewable` interface and `.addView()` methods
 have been removed.
 
-### Related packages
+## Related packages
 
 - [@thi.ng/interceptors](https://github.com/thi-ng/umbrella/tree/develop/packages/interceptors) - Interceptor based event bus, side effect & immutable state handling
 - [@thi.ng/paths](https://github.com/thi-ng/umbrella/tree/develop/packages/paths) - Immutable, optimized and optionally typed path-based object property / array accessors with structural sharing

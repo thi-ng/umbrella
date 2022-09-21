@@ -14,9 +14,9 @@ This project is part of the
   - [Neighborhoods](#neighborhoods)
     - [Nearest](#nearest)
     - [KNearest](#knearest)
-  - [Status](#status)
-  - [Support packages](#support-packages)
-  - [Related packages](#related-packages)
+- [Status](#status)
+- [Support packages](#support-packages)
+- [Related packages](#related-packages)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [API](#api)
@@ -80,7 +80,7 @@ results can be optionally returned in order of proximity (via `.deref()` or
 `.values()`). For K=1 it will be more efficient to use `Nearest` to avoid the
 additional overhead.
 
-### Status
+## Status
 
 **STABLE** - used in production
 
@@ -91,11 +91,11 @@ structures provided by the
 [@thi.ng/geom-accel](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-accel)
 package.
 
-### Support packages
+## Support packages
 
 - [@thi.ng/distance-transform](https://github.com/thi-ng/umbrella/tree/develop/packages/distance-transform) - Binary image to Distance Field transformation
 
-### Related packages
+## Related packages
 
 - [@thi.ng/geom-accel](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-accel) - n-D spatial indexing data structures with a shared ES6 Map/Set-like API
 - [@thi.ng/k-means](https://github.com/thi-ng/umbrella/tree/develop/packages/k-means) - Configurable k-means & k-medians (with k-means++ initialization) for n-D vectors

@@ -15,7 +15,7 @@ This project is part of the
   - [Automatic attribute conversions](#automatic-attribute-conversions)
     - [Colors](#colors)
     - [Transforms](#transforms)
-  - [Status](#status)
+- [Status](#status)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
@@ -133,7 +133,7 @@ If no `transform`, but others are given, the resulting transformation
 order will always be TRS. Any string values will be used as-is and
 therefore need to be complete, e.g. `{ rotate: "rotate(60)" }`
 
-### Status
+## Status
 
 **STABLE** - used in production
 

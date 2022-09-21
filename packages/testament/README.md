@@ -10,7 +10,7 @@ This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
 - [About](#about)
-  - [Status](#status)
+- [Status](#status)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [CLI](#cli)
@@ -21,9 +21,9 @@ This project is part of the
 
 ## About
 
-Minimal, rational & TypeScript-friendly test runner, result export as CSV/JSON, watch mode.
+Minimal, rational & TypeScript-friendly test runner, result export as CSV/JSON, watch mode, file fixtures.
 
-### Status
+## Status
 
 **ALPHA** - bleeding edge / work-in-progress
 
@@ -52,7 +52,7 @@ node --experimental-repl-await
 > const testament = await import("@thi.ng/testament");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.04 KB
+Package sizes (gzipped, pre-treeshake): ESM: 1.19 KB
 
 ## Dependencies
 

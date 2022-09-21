@@ -10,7 +10,7 @@ This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
 - [About](#about)
-  - [Status](#status)
+- [Status](#status)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [API](#api)
@@ -25,7 +25,7 @@ Most functions in this package have optional support for the
 [`ILogger`](https://github.com/thi-ng/umbrella/tree/develop/packages/logger)
 logging interface.
 
-### Status
+## Status
 
 **STABLE** - used in production
 

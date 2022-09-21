@@ -10,7 +10,7 @@ This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
 - [About](#about)
-  - [Status](#status)
+- [Status](#status)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
@@ -25,7 +25,7 @@ squares](https://en.wikipedia.org/wiki/Marching_squares). Ported from
 the Clojure version of
 [thi.ng/ndarray](https://github.com/thi-ng/ndarray/blob/develop/src/contours.org).
 
-### Status
+## Status
 
 **STABLE** - used in production
 

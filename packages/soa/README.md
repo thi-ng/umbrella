@@ -14,8 +14,8 @@ This project is part of the
     - [AOS (Array Of Structures)](#aos-array-of-structures)
     - [SOA (Structure of Arrays)](#soa-structure-of-arrays)
     - [Hybrid](#hybrid)
-  - [Status](#status)
-  - [Related packages](#related-packages)
+- [Status](#status)
+- [Related packages](#related-packages)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
@@ -41,7 +41,7 @@ SOA & AOS memory mapped structured views with optional & extensible serializatio
 
 ![Hybrid memory block diagram](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/soa/hybrid.png)
 
-### Status
+## Status
 
 **ALPHA** - bleeding edge / work-in-progress
 
@@ -51,7 +51,7 @@ See tests for usage. This package might be merged with and/or superseded
 by
 [@thi.ng/ecs](https://github.com/thi-ng/umbrella/tree/develop/packages/ecs).
 
-### Related packages
+## Related packages
 
 - [@thi.ng/ecs](https://github.com/thi-ng/umbrella/tree/develop/packages/ecs) - Entity Component System based around typed arrays & sparse sets
 - [@thi.ng/malloc](https://github.com/thi-ng/umbrella/tree/develop/packages/malloc) - ArrayBuffer based malloc() impl for hybrid JS/WASM use cases, based on thi.ng/tinyalloc

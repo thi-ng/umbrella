@@ -10,9 +10,9 @@ This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
 - [About](#about)
-  - [Status](#status)
-  - [Support packages](#support-packages)
-  - [Related packages](#related-packages)
+- [Status](#status)
+- [Support packages](#support-packages)
+- [Related packages](#related-packages)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
@@ -42,7 +42,7 @@ Partially ported from other thi.ng projects (e.g.
 [thi.ng/vexed-generation](http://thi.ng/vexed-generation),
 [toxiclibs](http://toxiclibs.org)).
 
-### Status
+## Status
 
 **STABLE** - used in production
 
@@ -55,11 +55,11 @@ likely to undergo further (hopefully not too drastic) changes in the
 near future. Also, pending outcomes of ongoing experiments, some aspects
 might be ported to WASM.
 
-### Support packages
+## Support packages
 
 - [@thi.ng/dsp-io-wav](https://github.com/thi-ng/umbrella/tree/develop/packages/dsp-io-wav) - WAV file format generation
 
-### Related packages
+## Related packages
 
 - [@thi.ng/math](https://github.com/thi-ng/umbrella/tree/develop/packages/math) - Assorted common math functions & utilities
 

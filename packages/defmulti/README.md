@@ -10,7 +10,7 @@ This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
 - [About](#about)
-  - [Status](#status)
+- [Status](#status)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
@@ -34,7 +34,7 @@ supplied dispatch function, with minimal overhead and support for
 dispatch value inheritance hierarchies (more flexible and independent of
 any actual JS type relationships).
 
-### Status
+## Status
 
 **STABLE** - used in production
 

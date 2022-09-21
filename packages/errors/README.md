@@ -10,7 +10,7 @@ This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
 - [About](#about)
-  - [Status](#status)
+- [Status](#status)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [API](#api)
@@ -34,7 +34,7 @@ This package defines the following error types & helper functions to throw them:
 Custom error types can be easily defined using
 [`defError()`](https://github.com/thi-ng/umbrella/tree/develop/packages/errors/src/deferror.ts).
 
-### Status
+## Status
 
 **STABLE** - used in production
 
@@ -63,7 +63,7 @@ node --experimental-repl-await
 > const errors = await import("@thi.ng/errors");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 546 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 608 bytes
 
 ## Dependencies
 

@@ -10,9 +10,9 @@ This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
 - [About](#about)
-  - [Status](#status)
+- [Status](#status)
   - [Planned features](#planned-features)
-  - [Related packages](#related-packages)
+- [Related packages](#related-packages)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [API](#api)
@@ -31,7 +31,7 @@ number of options to configure query behavior and returns an actual query
 function. This returned function can then be used for pattern matching of
 objects and arrays of objects.
 
-### Status
+## Status
 
 **STABLE** - used in production
 
@@ -47,7 +47,7 @@ thi.ng/umbrella packages, but would benefit from a more unified approach.
 - [ ] result projection
 - [ ] result aggregation/grouping
 
-### Related packages
+## Related packages
 
 - [@thi.ng/associative](https://github.com/thi-ng/umbrella/tree/develop/packages/associative) - Alternative Map and Set implementations with customizable equality semantics & supporting operations
 - [@thi.ng/csv](https://github.com/thi-ng/umbrella/tree/develop/packages/csv) - Customizable, transducer-based CSV parser/object mapper and transformer

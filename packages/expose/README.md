@@ -10,7 +10,7 @@ This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
 - [About](#about)
-  - [Status](#status)
+- [Status](#status)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
@@ -31,7 +31,7 @@ a non-empty string) the function will **always** be enabled. Otherwise (by
 default), `exposeGlobal()` is **disabled for production builds**, i.e. if
 `process.env.NODE_ENV === "production"`.
 
-### Status
+## Status
 
 **STABLE** - used in production
 

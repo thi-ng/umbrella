@@ -10,7 +10,7 @@ This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
 - [About](#about)
-  - [Status](#status)
+- [Status](#status)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [API](#api)
@@ -21,7 +21,7 @@ This project is part of the
 
 Customizable diff implementations for arrays (sequential) & objects (associative), with or without linear edit logs.
 
-### Status
+## Status
 
 **STABLE** - used in production
 

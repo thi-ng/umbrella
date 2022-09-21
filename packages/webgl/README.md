@@ -11,9 +11,9 @@ This project is part of the
 
 - [About](#about)
   - [Features](#features)
-  - [Status](#status)
-  - [Support packages](#support-packages)
-  - [Related packages](#related-packages)
+- [Status](#status)
+- [Support packages](#support-packages)
+- [Related packages](#related-packages)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
@@ -55,18 +55,18 @@ Largely declarative WebGL 1.0 / 2.0 abstraction layer, partially ported
 - WebGL extension helpers & semi-automatic extension enabling
 - WebGL canvas creation / setup
 
-### Status
+## Status
 
 **STABLE** - used in production
 
 [Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bwebgl%5D+in%3Atitle)
 
-### Support packages
+## Support packages
 
 - [@thi.ng/webgl-msdf](https://github.com/thi-ng/umbrella/tree/develop/packages/webgl-msdf) - Multi-channel SDF font rendering & basic text layout for WebGL
 - [@thi.ng/webgl-shadertoy](https://github.com/thi-ng/umbrella/tree/develop/packages/webgl-shadertoy) - Basic WebGL scaffolding for running interactive fragment shaders via [@thi.ng/shader-ast](https://github.com/thi-ng/umbrella/tree/develop/packages/shader-ast)
 
-### Related packages
+## Related packages
 
 - [@thi.ng/ecs](https://github.com/thi-ng/umbrella/tree/develop/packages/ecs) - Entity Component System based around typed arrays & sparse sets
 - [@thi.ng/geom](https://github.com/thi-ng/umbrella/tree/develop/packages/geom) - Functional, polymorphic API for 2D geometry types & SVG generation

@@ -10,7 +10,7 @@ This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
 - [About](#about)
-  - [Status](#status)
+- [Status](#status)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [API](#api)
@@ -28,7 +28,7 @@ reducer/transducer scenario and are useful for any form of declarative
 state update. By default all edits are performed non-destructively, but
 `pushArray` also supports in place editing (mutation).
 
-### Status
+## Status
 
 **ALPHA** - bleeding edge / work-in-progress
 

@@ -10,7 +10,7 @@ This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
 - [About](#about)
-  - [Status](#status)
+- [Status](#status)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [API](#api)
@@ -34,7 +34,7 @@ sequence head of the remaining sequence values. This allows forking &
 sharing the sequence head(s) among multiple consumers, each able to read
 the remaining values at their own pace.
 
-### Status
+## Status
 
 **ALPHA** - bleeding edge / work-in-progress
 

@@ -10,8 +10,8 @@ This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
 - [About](#about)
-  - [Status](#status)
-  - [Related packages](#related-packages)
+- [Status](#status)
+- [Related packages](#related-packages)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
@@ -36,13 +36,13 @@ Construction speed: 20k random points ([poisson disc samples, even
 distribution](https://github.com/thi-ng/umbrella/tree/develop/packages/poisson))
 in ~850ms (Chrome 72, MBP 2016)
 
-### Status
+## Status
 
 **STABLE** - used in production
 
 [Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bgeom-voronoi%5D+in%3Atitle)
 
-### Related packages
+## Related packages
 
 - [@thi.ng/quad-edge](https://github.com/thi-ng/umbrella/tree/develop/packages/quad-edge) - Quadedge data structure after Guibas & Stolfi
 

@@ -10,7 +10,7 @@ This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
 - [About](#about)
-  - [Status](#status)
+- [Status](#status)
 - [Installation](#installation)
   - [CLI installation & usage](#cli-installation--usage)
 - [Dependencies](#dependencies)
@@ -29,7 +29,7 @@ String diffing w/ hiccup output for further processing, e.g. with [@thi.ng/hdom]
 
 [Live example](https://demo.thi.ng/umbrella/hdiff/)
 
-### Status
+## Status
 
 **ALPHA** - bleeding edge / work-in-progress
 

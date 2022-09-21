@@ -10,7 +10,7 @@ This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
 - [About](#about)
-  - [Status](#status)
+- [Status](#status)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
@@ -37,7 +37,7 @@ for use with
 and onwards for detailed discussion about the design intentions of these
 components**. Feedback welcome!
 
-### Status
+## Status
 
 **BETA** - possibly breaking changes forthcoming
 

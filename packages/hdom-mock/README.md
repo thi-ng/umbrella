@@ -10,7 +10,7 @@ This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
 - [About](#about)
-  - [Status](#status)
+- [Status](#status)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [API](#api)
@@ -26,7 +26,7 @@ This package provides a mock implementation of the
 interface for testing and prototyping purposes of potential basis of
 custom target implementations.
 
-### Status
+## Status
 
 **ALPHA** - bleeding edge / work-in-progress
 

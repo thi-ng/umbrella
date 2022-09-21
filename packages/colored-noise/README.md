@@ -16,8 +16,8 @@ This project is part of the
   - [Red / brown noise](#red--brown-noise)
   - [Violet noise](#violet-noise)
   - [White noise](#white-noise)
-  - [Status](#status)
-  - [Related packages](#related-packages)
+- [Status](#status)
+- [Related packages](#related-packages)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
@@ -340,13 +340,13 @@ white
 ████████████████████████████████████████████████████████████████
 ```
 
-### Status
+## Status
 
 **STABLE** - used in production
 
 [Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bcolored-noise%5D+in%3Atitle)
 
-### Related packages
+## Related packages
 
 - [@thi.ng/dsp](https://github.com/thi-ng/umbrella/tree/develop/packages/dsp) - Composable signal generators, oscillators, filters, FFT, spectrum, windowing & related DSP utils
 - [@thi.ng/lowdisc](https://github.com/thi-ng/umbrella/tree/develop/packages/lowdisc) - n-dimensional low-discrepancy sequence generators/iterators

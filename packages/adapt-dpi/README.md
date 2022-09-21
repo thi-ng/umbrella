@@ -10,7 +10,7 @@ This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
 - [About](#about)
-  - [Status](#status)
+- [Status](#status)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
@@ -27,7 +27,7 @@ Attempts to determine display pixel density via `window.devicePixelRatio`
 explicit `width` and `height` CSS properties to force canvas to given CSS pixel
 size, and resizes canvas pixel buffer itself based on DPR (e.g. 2x size).
 
-### Status
+## Status
 
 **STABLE** - used in production
 

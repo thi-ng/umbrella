@@ -13,7 +13,7 @@ This project is part of the
 - [Memory layout](#memory-layout)
   - [Free block compaction / coalescing](#free-block-compaction--coalescing)
   - [Block splitting](#block-splitting)
-  - [Status](#status)
+- [Status](#status)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [API](#api)
@@ -120,7 +120,7 @@ capacity:
 
 ![Block splitting (result)](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/malloc/split-02.png)
 
-### Status
+## Status
 
 **STABLE** - used in production
 

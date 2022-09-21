@@ -10,7 +10,7 @@ This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
 - [About](#about)
-  - [Status](#status)
+- [Status](#status)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [API](#api)
@@ -42,7 +42,7 @@ collected into an array (apart from KV pairs, which will yield an object).
 Furthermore, for multi-args, an optional delimiter can be specified to extract
 individual values, e.g. `-a 1,2,3` equals `-a 1 -a 2 -a 3`
 
-### Status
+## Status
 
 **STABLE** - used in production
 

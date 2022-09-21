@@ -10,7 +10,7 @@ This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
 - [About](#about)
-  - [Status](#status)
+- [Status](#status)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [API](#api)
@@ -29,7 +29,7 @@ Inspired by Stuart Sierra's
 [component](https://github.com/stuartsierra/component) framework for
 Clojure/ClojureScript.
 
-### Status
+## Status
 
 **STABLE** - used in production
 

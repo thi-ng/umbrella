@@ -10,8 +10,8 @@ This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
 - [About](#about)
-  - [Status](#status)
-  - [Related packages](#related-packages)
+- [Status](#status)
+- [Related packages](#related-packages)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [API](#api)
@@ -41,7 +41,7 @@ ES6 promise based CSP primitives & operations.
   - each topic implemented as `Mult`
   - wildcard topic for processing fallthrough messages
 
-### Status
+## Status
 
 **DEPRECATED** - no further development planned
 
@@ -51,7 +51,7 @@ This package might possibly become deprecated soon. See
 [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream)
 for a similar, but alternative (and actively maintained) approach.
 
-### Related packages
+## Related packages
 
 - [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream) - Reactive streams & subscription primitives for constructing dataflow graphs / pipelines
 

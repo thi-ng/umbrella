@@ -10,7 +10,7 @@ This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
 - [About](#about)
-  - [Status](#status)
+- [Status](#status)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
@@ -60,7 +60,7 @@ an ES6 embedded DSL for concatenative programming:
 - all other features of @thi.ng/pointfree (combinators, array/vector ops etc.)
 - CLI version w/ basic file I/O, library includes, JSON
 
-### Status
+## Status
 
 **STABLE** - used in production
 

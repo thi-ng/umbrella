@@ -18,7 +18,7 @@ This project is part of the
   - [String handling](#string-handling)
   - [Memory allocations](#memory-allocations)
   - [Object indices & handles](#object-indices--handles)
-  - [Status](#status)
+- [Status](#status)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [API](#api)
@@ -532,7 +532,7 @@ canvases.delete(0);
 // true
 ```
 
-### Status
+## Status
 
 **ALPHA** - bleeding edge / work-in-progress
 

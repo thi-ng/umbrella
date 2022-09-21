@@ -11,10 +11,10 @@ This project is part of the
 
 - [About](#about)
 - [Available functions](#available-functions)
-  - [Status](#status)
+- [Status](#status)
   - [BREAKING CHANGES](#breaking-changes)
     - [0.4.0](#040)
-  - [Related packages](#related-packages)
+- [Related packages](#related-packages)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [API](#api)
@@ -79,7 +79,7 @@ Also see
 [src/api.ts](https://github.com/thi-ng/umbrella/tree/develop/packages/simd/src/api.ts)
 for documentation about the exposed TS/JS API...
 
-### Status
+## Status
 
 **ALPHA** - bleeding edge / work-in-progress
 
@@ -105,7 +105,7 @@ proposed in April 2020, the WASM module will only work on engines released after
 means only v14.6.0 or newer will be supported. This was an external change and
 outside our control...
 
-### Related packages
+## Related packages
 
 - [@thi.ng/malloc](https://github.com/thi-ng/umbrella/tree/develop/packages/malloc) - ArrayBuffer based malloc() impl for hybrid JS/WASM use cases, based on thi.ng/tinyalloc
 - [@thi.ng/soa](https://github.com/thi-ng/umbrella/tree/develop/packages/soa) - SOA & AOS memory mapped structured views with optional & extensible serialization

@@ -12,8 +12,8 @@ This project is part of the
 For the Clojure version, please visit: [thi.ng/geom-clj](https://thi.ng/geom-clj)
 
 - [About](#about)
-  - [Support packages](#support-packages)
-  - [Status](#status)
+- [Support packages](#support-packages)
+- [Status](#status)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
@@ -81,7 +81,7 @@ directly and/or perform automatic resampling/conversion if needed):
 This package acts as a higher-level frontend for most of the following related
 packages (which are more low-level, lightweight and usable by themselves too):
 
-### Support packages
+## Support packages
 
 - [@thi.ng/geom-accel](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-accel) - n-D spatial indexing data structures with a shared ES6 Map/Set-like API
 - [@thi.ng/geom-api](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-api) - Shared type & interface declarations for [@thi.ng/geom](https://github.com/thi-ng/umbrella/tree/develop/packages/geom) packages
@@ -102,7 +102,7 @@ packages (which are more low-level, lightweight and usable by themselves too):
 - [@thi.ng/geom-tessellate](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-tessellate) - 2D/3D convex polygon tessellators
 - [@thi.ng/geom-voronoi](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-voronoi) - Fast, incremental 2D Delaunay & Voronoi mesh implementation
 
-### Status
+## Status
 
 **STABLE** - used in production
 

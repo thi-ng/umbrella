@@ -12,7 +12,7 @@ This project is part of the
 - [About](#about)
   - [Why?](#why)
   - [Comparison with ES6 native types](#comparison-with-es6-native-types)
-  - [Status](#status)
+- [Status](#status)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
@@ -157,7 +157,7 @@ map.get([3,4], "n/a");
 // "n/a"
 ```
 
-### Status
+## Status
 
 **STABLE** - used in production
 

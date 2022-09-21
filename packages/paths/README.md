@@ -10,12 +10,12 @@ This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
 - [About](#about)
-  - [Status](#status)
+- [Status](#status)
 - [Breaking changes](#breaking-changes)
   - [4.0.0](#400)
     - [Naming convention](#naming-convention)
     - [Type checked accessors](#type-checked-accessors)
-  - [Related packages](#related-packages)
+- [Related packages](#related-packages)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
@@ -36,7 +36,7 @@ This project is part of the
 
 Immutable, optimized and optionally typed path-based object property / array accessors with structural sharing.
 
-### Status
+## Status
 
 **STABLE** - used in production
 
@@ -65,7 +65,7 @@ Type checking for paths is currently "only" supported for the first 8
 levels of nesting. Deeper paths are supported but only partially checked
 and their value type inferred as `any`.
 
-### Related packages
+## Related packages
 
 - [@thi.ng/atom](https://github.com/thi-ng/umbrella/tree/develop/packages/atom) - Mutable wrappers for nested immutable values with optional undo/redo history and transaction support
 

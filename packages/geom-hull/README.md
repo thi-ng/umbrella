@@ -10,7 +10,7 @@ This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
 - [About](#about)
-  - [Status](#status)
+- [Status](#status)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
@@ -25,7 +25,7 @@ Fast 2D convex hull (Graham Scan). This is a support package for [@thi.ng/geom](
 Current implementation is partially based on Clojure version of
 [thi.ng/geom](http://thi.ng/geom).
 
-### Status
+## Status
 
 **STABLE** - used in production
 

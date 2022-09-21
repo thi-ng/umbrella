@@ -10,7 +10,7 @@ This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
 - [About](#about)
-  - [Status](#status)
+- [Status](#status)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
@@ -38,7 +38,7 @@ very easily extended via definition of custom kernels):
 - Stucki
 - Threshold
 
-### Status
+## Status
 
 **STABLE** - used in production
 

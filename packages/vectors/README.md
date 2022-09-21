@@ -11,10 +11,10 @@ This project is part of the
 
 - [About](#about)
   - [Features](#features)
-  - [Status](#status)
+- [Status](#status)
   - [Breaking changes in v6.0.0](#breaking-changes-in-v600)
   - [Breaking changes in v3.0.0](#breaking-changes-in-v300)
-  - [Related packages](#related-packages)
+- [Related packages](#related-packages)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
@@ -110,7 +110,7 @@ unsigned integer vectors.
 Partially ported from [thi.ng/geom-clj](http://thi.ng/geom-clj) (Clojure) and
 [c.thi.ng](http://c.thi.ng) (C11).
 
-### Status
+## Status
 
 **STABLE** - used in production
 
@@ -139,7 +139,7 @@ reasons the same changes have been applied to this package...
 - rename `perpendicularRight2` => `perpendicularCW`
 - rename `normalLeft2`/ `normalRight2` => `normalCCW` / `normalCW`
 
-### Related packages
+## Related packages
 
 - [@thi.ng/color](https://github.com/thi-ng/umbrella/tree/develop/packages/color) - Array-based color types, CSS parsing, conversions, transformations, declarative theme generation, gradients, presets
 - [@thi.ng/distance](https://github.com/thi-ng/umbrella/tree/develop/packages/distance) - N-dimensional distance metrics & K-nearest neighborhoods for point queries

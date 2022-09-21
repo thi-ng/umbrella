@@ -20,8 +20,8 @@ This project is part of the
     - [Forms / inputs](#forms--inputs)
     - [Media](#media)
   - [Compatibility](#compatibility)
-  - [Status](#status)
-  - [Related packages](#related-packages)
+- [Status](#status)
+- [Related packages](#related-packages)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
@@ -150,7 +150,7 @@ thi.ng/umbrella eco system (most relevant:
 [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream),
 [@thi.ng/atom](https://github.com/thi-ng/umbrella/tree/develop/packages/atom)).
 
-### Status
+## Status
 
 **STABLE** - used in production
 
@@ -160,7 +160,7 @@ The current aim is not necessarily to have wrappers for *each* possible
 HTML5 element, but certainly to support the most commonly used ones. PRs
 welcome!
 
-### Related packages
+## Related packages
 
 - [@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/develop/packages/hdom) - Lightweight vanilla ES6 UI component trees with customizable branch-local behaviors
 - [@thi.ng/rdom](https://github.com/thi-ng/umbrella/tree/develop/packages/rdom) - Lightweight, reactive, VDOM-less UI/DOM components with async lifecycle and [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup) compatible
