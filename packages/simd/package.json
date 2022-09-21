@@ -38,13 +38,13 @@
 		"@thi.ng/transducers-binary": "^2.1.18"
 	},
 	"devDependencies": {
-		"@microsoft/api-extractor": "^7.25.0",
+		"@microsoft/api-extractor": "^7.31.1",
 		"@thi.ng/testament": "^0.2.12",
-		"assemblyscript": "0.20.7",
+		"assemblyscript": "0.21.3",
 		"rimraf": "^3.0.2",
 		"tools": "workspace:^",
 		"typedoc": "^0.22.17",
-		"typescript": "^4.7.4"
+		"typescript": "^4.8.3"
 	},
 	"keywords": [
 		"acceleration",

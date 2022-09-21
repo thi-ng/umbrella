@@ -37,13 +37,13 @@
 		"tslib": "^2.4.0"
 	},
 	"devDependencies": {
-		"@microsoft/api-extractor": "^7.25.0",
+		"@microsoft/api-extractor": "^7.31.1",
 		"@thi.ng/testament": "^0.2.11",
-		"@types/node": "^18.6.4",
+		"@types/node": "^18.7.18",
 		"rimraf": "^3.0.2",
 		"tools": "workspace:^",
 		"typedoc": "^0.22.17",
-		"typescript": "^4.7.4"
+		"typescript": "^4.8.3"
 	},
 	"keywords": [
 		"detect",

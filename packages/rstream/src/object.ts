@@ -129,7 +129,7 @@ export interface StreamObjOpts<T, K extends Keys<T>> extends CommonOpts {
  * @param src -
  * @param opts -
  */
-export const fromObject = <T, K extends Keys<T>>(
+export const fromObject = <T extends object, K extends Keys<T>>(
 	src: T,
 	opts: Partial<StreamObjOpts<T, K>> = {}
 ) => {

@@ -32,7 +32,7 @@
 		"doc:readme": "yarn doc:stats && tools:readme",
 		"doc:stats": "tools:module-stats",
 		"pub": "yarn npm publish --access public",
-		"test": "testament -e test/fixtures test",
+		"test": "testament test",
 		"test:build-zig": "zig build-lib -O ReleaseSmall -target wasm32-freestanding -dynamic --strip --pkg-begin wasmapi include/wasmapi.zig --pkg-end test/custom.zig && wasm-dis -o custom.wast custom.wasm && cp custom.wasm test"
 	},
 	"dependencies": {
@@ -50,12 +50,12 @@
 		"@thi.ng/paths": "^5.1.14"
 	},
 	"devDependencies": {
-		"@microsoft/api-extractor": "^7.25.0",
+		"@microsoft/api-extractor": "^7.31.1",
 		"@thi.ng/testament": "^0.2.12",
 		"rimraf": "^3.0.2",
 		"tools": "workspace:^",
 		"typedoc": "^0.22.17",
-		"typescript": "^4.7.4"
+		"typescript": "^4.8.3"
 	},
 	"keywords": [
 		"allocator",

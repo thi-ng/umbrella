@@ -35,7 +35,7 @@
 		"screenshot": "examples/hdom-benchmark2.png"
 	},
 	"devDependencies": {
-		"typescript": "^4.7.4",
-		"vite": "^3.0.4"
+		"typescript": "^4.8.3",
+		"vite": "^3.1.3"
 	}
 }

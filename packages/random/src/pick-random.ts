@@ -24,5 +24,7 @@ export const pickRandom = <T>(
  * @param obj
  * @param rnd
  */
-export const pickRandomKey = <T>(obj: T, rnd: IRandom = SYSTEM) =>
-	pickRandom(<(keyof T)[]>Object.keys(obj), rnd);
+export const pickRandomKey = <T extends object>(
+	obj: T,
+	rnd: IRandom = SYSTEM
+) => pickRandom(<(keyof T)[]>Object.keys(obj), rnd);

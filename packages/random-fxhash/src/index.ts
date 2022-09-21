@@ -81,7 +81,7 @@ export const pick = <T>(choices: T[], rnd: IRandom = RND) =>
  * @param obj
  * @param rnd - default {@link RND}
  */
-export const pickKey = <T>(obj: T, rnd: IRandom = RND) =>
+export const pickKey = <T extends object>(obj: T, rnd: IRandom = RND) =>
 	pickRandomKey(obj, rnd);
 
 /**

@@ -49,7 +49,7 @@ import { $sub } from "./sub.js";
  * @param opts - options for `fromObject()` stream setup
  * @param inner -
  */
-export const $object = <T, K extends Keys<T>>(
+export const $object = <T extends object, K extends Keys<T>>(
 	src: T,
 	opts: Partial<StreamObjOpts<T, K>>,
 	inner: Fn<StreamObj<T, K>["streams"], Promise<ComponentLike>>
@@ -84,13 +84,13 @@ export const $object = <T, K extends Keys<T>>(
  * @param opts -
  * @param inner -
  */
-export const $subObject = <T, K extends Keys<T>>(
+export const $subObject = <T extends object, K extends Keys<T>>(
 	src: ISubscribable<T>,
 	opts: Partial<StreamObjOpts<T, K>>,
 	inner: Fn<StreamObj<T, K>["streams"], Promise<ComponentLike>>
 ) => $sub<T>(src, $object(src.deref() || <any>{}, opts, inner));
 
-export class $Object<T, K extends Keys<T>>
+export class $Object<T extends object, K extends Keys<T>>
 	extends Component
 	implements IMountWithState<T>
 {
