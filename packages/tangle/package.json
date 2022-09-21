@@ -5,6 +5,7 @@
 	"type": "module",
 	"module": "./index.js",
 	"typings": "./index.d.ts",
+	"bin": "bin/tangle",
 	"sideEffects": false,
 	"repository": {
 		"type": "git",

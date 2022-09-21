@@ -7,7 +7,7 @@ import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import { readText } from "@thi.ng/file-io";
 import { split } from "@thi.ng/strings";
 import { assocObj, map, transduce } from "@thi.ng/transducers";
-import { extname, resolve, sep } from "path";
+import { extname, isAbsolute, resolve, sep } from "path";
 import {
 	Block,
 	Blocks,
@@ -27,7 +27,7 @@ const extractBlocks = (src: string, { format, logger }: TangleCtx) => {
 	let nextID = 0;
 	const blocks: Blocks = {};
 	const re = new RegExp(
-		`${format.prefix.replace("+", "\\+")}\\s*(\\w+)\\s+(.+)$`,
+		`^${format.prefix.replace("+", "\\+")}(\\w+)\\s+(.+)$`,
 		"gm"
 	);
 	let match: RegExpExecArray | null;
@@ -85,7 +85,7 @@ const resolveBlock = (block: Block, ref: TangleRef, ctx: TangleCtx) => {
 		if (childID.indexOf("#") > 0) {
 			const [file, blockID] = childID.split("#");
 			childBlock = loadAndResolveBlocks(
-				ctx.resolvePath(ctx.resolvePath(ref.path, ".."), file),
+				ctx.fs.resolve(ctx.fs.resolve(ref.path, ".."), file),
 				ctx
 			).blocks[blockID];
 			childID = blockID;
@@ -143,9 +143,9 @@ const commentForLang = (lang: string, body: string) => {
 };
 
 const loadAndResolveBlocks = (path: string, ctx: TangleCtx) => {
-	path = ctx.resolvePath(path);
+	path = ctx.fs.resolve(path);
 	if (!ctx.files[path]) {
-		const src = ctx.readText(path, ctx.logger);
+		const src = ctx.fs.read(path, ctx.logger);
 		const blocks = extractBlocks(src, ctx);
 		const ref = (ctx.files[path] = { path, src, blocks });
 		resolveBlocks(ref, ctx);
@@ -161,8 +161,11 @@ export const tangleFile = (path: string, ctx: Partial<TangleCtx> = {}) => {
 		outputs: {},
 		format: fmt,
 		logger: LOGGER,
-		resolvePath: resolve,
-		readText,
+		fs: {
+			isAbsolute,
+			resolve,
+			read: readText,
+		},
 		...ctx,
 		opts: {
 			comments: true,
@@ -170,7 +173,7 @@ export const tangleFile = (path: string, ctx: Partial<TangleCtx> = {}) => {
 		},
 	};
 	const { path: $path, src, blocks } = loadAndResolveBlocks(path, $ctx);
-	const parentDir = $ctx.resolvePath($path, "..");
+	const parentDir = $ctx.fs.resolve($path, "..");
 	const meta = parseFileMeta(src);
 	const sorted = Object.values(blocks).sort(compareByKey("start"));
 	let prev = 0;
@@ -185,29 +188,35 @@ export const tangleFile = (path: string, ctx: Partial<TangleCtx> = {}) => {
 			}
 		}
 		if (block.tangle) {
-			const dest = $ctx.resolvePath(
-				parentDir,
-				`${meta.tangle || "."}${sep}${block.tangle}`
-			);
+			const dest = $ctx.fs.isAbsolute(block.tangle)
+				? block.tangle
+				: $ctx.fs.resolve(
+						parentDir,
+						`${meta.tangle || "."}${sep}${block.tangle}`
+				  );
 			let body = block.body;
-			if ($ctx.opts.comments && COMMENT_FORMATS[block.lang]) {
-				body = [
-					commentForLang(
-						block.lang,
-						`Tangled @ ${FMT_ISO_SHORT()} - DO NOT EDIT!`
-					),
-					commentForLang(block.lang, `Source: ${$path}`),
-					"",
-					body,
-				].join("\n");
+			if (!$ctx.outputs[dest]) {
+				if ($ctx.opts.comments && COMMENT_FORMATS[block.lang]) {
+					body = [
+						commentForLang(
+							block.lang,
+							`Tangled @ ${FMT_ISO_SHORT()} - DO NOT EDIT!`
+						),
+						commentForLang(block.lang, `Source: ${$path}`),
+						"",
+						body,
+					].join("\n");
+				}
+				$ctx.outputs[dest] = body;
+			} else {
+				$ctx.outputs[dest] += "\n\n" + body;
 			}
-			$ctx.outputs[dest] = body;
 		}
 		prev = block.matchEnd;
 	}
 	res.push(src.substring(prev));
 	if (meta.publish) {
-		const dest = $ctx.resolvePath(parentDir, meta.publish);
+		const dest = $ctx.fs.resolve(parentDir, meta.publish);
 		$ctx.outputs[dest] = res.join("").trim();
 	}
 	return $ctx;
@@ -220,7 +229,7 @@ export const tangleFile = (path: string, ctx: Partial<TangleCtx> = {}) => {
  * virtual "file system" (of sorts).
  *
  * @remarks
- * Only flat relative file references are supported, i.e. `foo.md` is okay, but
+ * All file references are considered absolute paths, i.e. `foo.md` is okay, but
  * `../foo/bar.md` is NOT supported.
  *
  * @param fileID
@@ -233,13 +242,16 @@ export const tangleString = (
 	ctx: Partial<TangleCtx> = {}
 ) =>
 	tangleFile(fileID, {
-		resolvePath: (...path) => path[path.length - 1],
-		readText: (path, logger) => {
-			logger.debug("reading file ref", path);
-			const body = files[path];
-			return body !== undefined
-				? body
-				: illegalArgs(`missing file for ref: ${path}`);
+		fs: {
+			isAbsolute: () => true,
+			resolve: (...path) => path[path.length - 1],
+			read: (path, logger) => {
+				logger.debug("reading file ref", path);
+				const body = files[path];
+				return body !== undefined
+					? body
+					: illegalArgs(`missing file for ref: ${path}`);
+			},
 		},
 		...ctx,
 	});

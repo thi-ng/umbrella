@@ -4559,6 +4559,8 @@ __metadata:
     tools: "workspace:^"
     typedoc: ^0.22.17
     typescript: ^4.8.3
+  bin:
+    tangle: bin/tangle
   languageName: unknown
   linkType: soft
 

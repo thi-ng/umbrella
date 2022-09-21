@@ -1,4 +1,4 @@
-import type { Fn2, FnAnyT, IObjectOf } from "@thi.ng/api";
+import type { Fn2, FnAnyT, IObjectOf, Predicate } from "@thi.ng/api";
 import { ILogger, LogLevel } from "@thi.ng/logger";
 import { ConsoleLogger } from "@thi.ng/logger/console";
 
@@ -30,9 +30,14 @@ export interface TangleCtx {
 	files: Record<string, TangleRef>;
 	outputs: Record<string, string>;
 	logger: ILogger;
-	resolvePath: FnAnyT<string, string>;
-	readText: Fn2<string, ILogger, string>;
+	fs: FileSystem;
 	opts: Partial<TangleOpts>;
+}
+
+export interface FileSystem {
+	isAbsolute: Predicate<string>;
+	resolve: FnAnyT<string, string>;
+	read: Fn2<string, ILogger, string>;
 }
 
 export interface TangleOpts {
