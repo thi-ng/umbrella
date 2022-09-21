@@ -20,7 +20,7 @@ const parseOpts = (args: string[], i = 2): TestamentArgs | number => {
 		csv: false,
 		json: false,
 		watch: false,
-		exclude: [],
+		exclude: ["test/fixtures"],
 		rest: [],
 	};
 	for (; i < args.length; i++) {
@@ -66,7 +66,7 @@ Usage: testament [opts] path1 [path2...] [opts]
 
 Options:
 --all, -a        Run all tests (don't stop at 1st failure)
---exclude, -e    Exclude path prefix (multiple)
+--exclude, -e    Exclude path prefix (multiple, always 'test/fixtures')
 --csv            Export results as CSV
 --json           Export results as JSON
 -o               Output file path for exported results
