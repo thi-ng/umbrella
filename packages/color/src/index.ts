@@ -6,6 +6,7 @@ export * from "./api/ranges.js";
 export * from "./api/system.js";
 
 export * from "./color.js";
+export * from "./contrast.js";
 export * from "./convert.js";
 export * from "./defcolor.js";
 

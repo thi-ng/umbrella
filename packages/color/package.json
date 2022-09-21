@@ -162,6 +162,9 @@
 		"./color": {
 			"default": "./color.js"
 		},
+		"./contrast": {
+			"default": "./contrast.js"
+		},
 		"./convert": {
 			"default": "./convert.js"
 		},
