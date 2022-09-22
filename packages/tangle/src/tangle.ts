@@ -153,6 +153,17 @@ const loadAndResolveBlocks = (path: string, ctx: TangleCtx) => {
 	return ctx.files[path];
 };
 
+/**
+ * Takes a file `path` and partial {@link TangleCtx}. Reads "file"
+ * (implementation specific, could be from memory or other source) and then
+ * performs all tangling steps on the document body, i.e. expanding &
+ * transcluding code blocks, generating outputs for various target files etc.
+ * Returns updated TangleCtx with all generated outputs stored under the
+ * {@link TangleCtx.outputs} key.
+ *
+ * @param path
+ * @param ctx
+ */
 export const tangleFile = (path: string, ctx: Partial<TangleCtx> = {}) => {
 	const fmt = ctx.format || BLOCK_FORMATS[extname(path)];
 	!fmt && illegalArgs(`unsupported file type: ${extname(path)}`);

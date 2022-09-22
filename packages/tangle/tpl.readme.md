@@ -86,7 +86,6 @@ extracted to its own file. If multiple code blocks in the _same_ source file are
 specifying the same target file, their contents will be concatenated (in order
 of appearance).
 
-
 ## Basic usage
 
 The following Markdown example acts as a source file (presumably for Literate
@@ -251,7 +250,11 @@ The published version of the input markdown file: `out/main.md`
 
 ### VSCode
 
-Using the [Run On Save extension](https://marketplace.visualstudio.com/items?itemName=emeraldwalk.RunOnSave), tangling can be automatically performed on each save of an Literate Programming source file. E.g. this configuration (add to your VSCode workspace `settings.json`) runs the tangle command on each save of a `*.lit.md` file.
+Using the [Run On Save
+extension](https://marketplace.visualstudio.com/items?itemName=emeraldwalk.RunOnSave),
+tangling can be automatically performed on each save of an Literate Programming
+source file. E.g. this configuration (add to your VSCode workspace
+`settings.json`) runs the tangle command on each save of a `*.lit.md` file.
 
 ```json
 "emeraldwalk.runonsave": {
@@ -264,7 +267,8 @@ Using the [Run On Save extension](https://marketplace.visualstudio.com/items?ite
 }
 ```
 
-Note: This also assumes you have this package (@thi.ng/tangle) added to your dependencies...
+Note: This also assumes you have this package (@thi.ng/tangle) added to your
+dependencies...
 
 ### Other editors
 
@@ -294,7 +298,13 @@ ${examples}
 
 ${docLink}
 
-TODO
+In addition to the CLI wrapper, the package provides the
+[`tangleFile()`](https://docs.thi.ng/umbrella/tangle/modules.html#tangleFile)
+and
+[`tangleString()`](https://docs.thi.ng/umbrella/tangle/modules.html#tangleString)
+functions. See
+[/test/index.ts](https://github.com/thi-ng/umbrella/blob/develop/packages/tangle/test/index.ts)
+for usage examples.
 
 ## Authors
 

@@ -26,11 +26,33 @@ export interface TangleRef {
 export type Blocks = Record<string, Block>;
 
 export interface TangleCtx {
+	/**
+	 * Code block marker definitions for current source file format. If not
+	 * pre-defined, then {@link tangleFile} will auto-detect the format based on
+	 * given file extension. See {@link BLOCK_FORMATS} for supported source
+	 * formats.
+	 */
 	format: CodeBlockFormat;
+	/**
+	 * Stores all referenced source files and their extracted code blocks.
+	 */
 	files: Record<string, TangleRef>;
+	/**
+	 * Stores all generated outputs (absolute file paths are used as keys)
+	 */
 	outputs: Record<string, string>;
+	/**
+	 * Logger for debug outputs
+	 */
 	logger: ILogger;
+	/**
+	 * "Filesystem" implementation. When using {@link tangleString}, in-memory
+	 * stubs will be used to obtain file contents from a given object.
+	 */
 	fs: FileSystem;
+	/**
+	 * Tangle & codegen options
+	 */
 	opts: Partial<TangleOpts>;
 }
 
