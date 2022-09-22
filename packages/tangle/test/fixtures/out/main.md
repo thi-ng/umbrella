@@ -20,13 +20,11 @@ console.log(foo + bar);
 
 ## Introduction
 
-```Once
 
 Once upon a time...
 
 ## Chapter 1
 
-```
 
 **TODO**
 

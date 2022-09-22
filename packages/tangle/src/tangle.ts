@@ -229,8 +229,8 @@ export const tangleFile = (path: string, ctx: Partial<TangleCtx> = {}) => {
  * virtual "file system" (of sorts).
  *
  * @remarks
- * All file references are considered absolute paths, i.e. `foo.md` is okay, but
- * `../foo/bar.md` is NOT supported.
+ * Relative file reference paths are only supported if they refer to children or
+ * siblings, i.e. `foo/bar.md` is okay, but `../foo/bar.md` is NOT supported.
  *
  * @param fileID
  * @param files
@@ -243,7 +243,7 @@ export const tangleString = (
 ) =>
 	tangleFile(fileID, {
 		fs: {
-			isAbsolute: () => true,
+			isAbsolute: (path) => path[0] === "/" || path[0] === "\\",
 			resolve: (...path) => path[path.length - 1],
 			read: (path, logger) => {
 				logger.debug("reading file ref", path);
