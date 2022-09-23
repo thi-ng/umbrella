@@ -35,11 +35,28 @@ export const mixBilinear: FnN6 = (a, b, c, d, u, v) => {
 	return a * iu * iv + b * u * iv + c * iu * v + d * u * v;
 };
 
+/**
+ * Computes quadratic bezier interpolation for normalized value `t`.
+ *
+ * @param a
+ * @param b
+ * @param c
+ * @param t
+ */
 export const mixQuadratic: FnN4 = (a, b, c, t) => {
 	const s = 1 - t;
 	return a * s * s + b * 2 * s * t + c * t * t;
 };
 
+/**
+ * Computes cubic bezier interpolation for normalized value `t`.
+ *
+ * @param a
+ * @param b
+ * @param c
+ * @param d
+ * @param t
+ */
 export const mixCubic: FnN5 = (a, b, c, d, t) => {
 	const t2 = t * t;
 	const s = 1 - t;
