@@ -3,13 +3,13 @@ import { files, readJSON, writeText } from "@thi.ng/file-io";
 import { CDATA, COMMENT, serialize } from "@thi.ng/hiccup";
 import { anchor, script, style, title } from "@thi.ng/hiccup-html";
 import {
-    circle,
-    group,
-    image,
-    line,
-    rect,
-    svg,
-    text,
+	circle,
+	group,
+	image,
+	line,
+	rect,
+	svg,
+	text,
 } from "@thi.ng/hiccup-svg";
 import { PI } from "@thi.ng/math";
 import { XML_SVG } from "@thi.ng/prefixes";
@@ -23,7 +23,7 @@ const LW = 150;
 const GAP = 10;
 
 const packages = [...files("packages", "package.json", 2)].map((f) =>
-    readJSON(f, LOGGER)
+	readJSON(f, LOGGER)
 );
 const ids = packages.map((p) => shortName(p.name));
 const num = ids.length;
@@ -34,14 +34,14 @@ const rels = defAdjBitMatrix(packages.length);
 const getID = (name: string) => ids.indexOf(shortName(name));
 
 for (let p of packages) {
-    const id = getID(p.name);
-    for (let d in p.dependencies) {
-        if (!d.startsWith("@thi.ng")) continue;
-        deps.addEdge(getID(d), id);
-    }
-    for (let r of p["thi.ng"]?.related || []) {
-        rels.addEdge(ids.indexOf(r), id);
-    }
+	const id = getID(p.name);
+	for (let d in p.dependencies) {
+		if (!d.startsWith("@thi.ng")) continue;
+		deps.addEdge(getID(d), id);
+	}
+	for (let r of p["thi.ng"]?.related || []) {
+		rels.addEdge(ids.indexOf(r), id);
+	}
 }
 
 const invDeps = deps.invert();
@@ -49,60 +49,60 @@ const invDeps = deps.invert();
 let row = -1;
 
 const pkgLink = (id: number, attribs: any, body: any) =>
-    anchor({ href: `https://thi.ng/${ids[id]}`, ...attribs }, body);
+	anchor({ href: `https://thi.ng/${ids[id]}`, ...attribs }, body);
 
 const processPkg = (id: number) => {
-    row++;
-    const n = deps.neighbors(id).length;
-    const y = row * W + LW;
-    return group({ class: "t", data: { id } }, [
-        pkgLink(
-            id,
-            {},
-            text(
-                [LW - 5, y + W / 2],
-                ids[id],
-                {
-                    "text-anchor": "end",
-                    "dominant-baseline": "middle",
-                },
-                title({}, `used by ${n} package${n !== 1 ? "s" : ""}`)
-            )
-        ),
-        ...map(
-            (d) =>
-                rect(
-                    [d * W + LW + 1, y + 1],
-                    W - 2,
-                    W - 2,
-                    {
-                        class: deps.hasEdge(id, d) ? "d" : "r",
-                        data: {
-                            id,
-                            col: d,
-                            row,
-                        },
-                    },
-                    title(
-                        {},
-                        deps.hasEdge(id, d)
-                            ? `dependency: ${ids[id]} ⟸ ${ids[d]}`
-                            : `related: ${ids[id]} ⟺ ${ids[d]}`
-                    )
-                ),
-            new Set([...deps.neighbors(id), ...rels.neighbors(id)])
-        ),
-    ]);
+	row++;
+	const n = deps.neighbors(id).length;
+	const y = row * W + LW;
+	return group({ class: "t", data: { id } }, [
+		pkgLink(
+			id,
+			{},
+			text(
+				[LW - 5, y + W / 2],
+				ids[id],
+				{
+					"text-anchor": "end",
+					"dominant-baseline": "middle",
+				},
+				title({}, `used by ${n} package${n !== 1 ? "s" : ""}`)
+			)
+		),
+		...map(
+			(d) =>
+				rect(
+					[d * W + LW + 1, y + 1],
+					W - 2,
+					W - 2,
+					{
+						class: deps.hasEdge(id, d) ? "d" : "r",
+						data: {
+							id,
+							col: d,
+							row,
+						},
+					},
+					title(
+						{},
+						deps.hasEdge(id, d)
+							? `dependency: ${ids[id]} ⟸ ${ids[d]}`
+							: `related: ${ids[id]} ⟺ ${ids[d]}`
+					)
+				),
+			new Set([...deps.neighbors(id), ...rels.neighbors(id)])
+		),
+	]);
 };
 
 const cells = group({ id: "cells" }, [
-    ...iterator(
-        comp(
-            filter((id) => deps.degree(id) > 0 || rels.degree(id) > 0),
-            map(processPkg)
-        ),
-        range(num)
-    ),
+	...iterator(
+		comp(
+			filter((id) => deps.degree(id) > 0 || rels.degree(id) > 0),
+			map(processPkg)
+		),
+		range(num)
+	),
 ]);
 
 row++;
@@ -111,75 +111,75 @@ const WIDTH = num * W + LW;
 const HEIGHT = row * W + LW;
 
 const doc = svg(
-    {
-        viewBox: `-${GAP} -${GAP} ${WIDTH + 2 * GAP} ${HEIGHT + 2 * GAP}`,
-        fill: "#000",
-        "font-size": "12px",
-        "font-family": "'IBM Plex Mono', monospace",
-    },
-    [COMMENT, `generated @ ${new Date().toISOString()}`],
-    style({}, [
-        CDATA,
-        "@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300&display=swap');",
-        `.d { fill: #0cf; }`,
-        `.r { fill: #f39; }`,
-        `@keyframes dsel { from { fill: #0cf; } to { fill: #40f; } }`,
-        `@keyframes rsel { from { fill: #f39; } to { fill: #906; } }`,
-        `.d:hover { animation: 0.5s ease-in-out infinite alternate dsel; }`,
-        `.dr:hover { animation: 0.5s ease-in-out infinite alternate drsel; }`,
-        `.r:hover { animation: 0.5s ease-in-out infinite alternate rsel; }`,
-        `line.sel { stroke: #000; }`,
-        `.h { opacity: 0.1; }`,
-        `.t { transition: opacity 0.1s linear; }`,
-        `@keyframes fade { from { opacity: 0; } to { opacity: 1 } }`,
-        `.fade { animation: 0.1s linear fade; }`,
-    ]),
-    anchor(
-        { href: `https://thi.ng/` },
-        circle([LW / 2, LW / 2], LW / 3, { fill: "#000" }),
-        image([LW / 4, LW / 4], "./logo-anim-white.svg", {
-            width: LW / 2,
-            height: LW / 2,
-        })
-    ),
-    group({ id: "labels" }, [
-        ...map((id) => {
-            const n = invDeps.degree(id);
-            return pkgLink(
-                id,
-                { class: "t", data: { id } },
-                text(
-                    [0, 0],
-                    ids[id],
-                    {
-                        translate: [(id + 0.5) * W + LW, LW - 5],
-                        rotate: -PI / 2,
-                        "dominant-baseline": "middle",
-                    },
-                    title({}, `depends on ${n} package${n !== 1 ? "s" : ""}`)
-                )
-            );
-        }, range(num)),
-    ]),
-    group({ stroke: "#eee", translate: [LW, LW] }, [
-        group({ id: "cols" }, [
-            ...map(
-                (x) => line([(x + 0.5) * W, 0], [(x + 0.5) * W, row * W]),
-                range(num)
-            ),
-        ]),
-        group({ id: "rows" }, [
-            ...map(
-                (y) => line([0, (y + 0.5) * W], [num * W, (y + 0.5) * W]),
-                range(row)
-            ),
-        ]),
-    ]),
-    group({ id: "links" }),
-    cells,
-    script({}, [
-        CDATA,
-        `const svg = document.querySelector("svg");
+	{
+		viewBox: `-${GAP} -${GAP} ${WIDTH + 2 * GAP} ${HEIGHT + 2 * GAP}`,
+		fill: "#000",
+		"font-size": "12px",
+		"font-family": "'IBM Plex Mono', monospace",
+	},
+	[COMMENT, `generated @ ${new Date().toISOString()}`],
+	style({}, [
+		CDATA,
+		"@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300&display=swap');",
+		`.d { fill: #0cf; }`,
+		`.r { fill: #f39; }`,
+		`@keyframes dsel { from { fill: #0cf; } to { fill: #40f; } }`,
+		`@keyframes rsel { from { fill: #f39; } to { fill: #906; } }`,
+		`.d:hover { animation: 0.5s ease-in-out infinite alternate dsel; }`,
+		`.dr:hover { animation: 0.5s ease-in-out infinite alternate drsel; }`,
+		`.r:hover { animation: 0.5s ease-in-out infinite alternate rsel; }`,
+		`line.sel { stroke: #000; }`,
+		`.h { opacity: 0.1; }`,
+		`.t { transition: opacity 0.1s linear; }`,
+		`@keyframes fade { from { opacity: 0; } to { opacity: 1 } }`,
+		`.fade { animation: 0.1s linear fade; }`,
+	]),
+	anchor(
+		{ href: `https://thi.ng/` },
+		circle([LW / 2, LW / 2], LW / 3, { fill: "#000" }),
+		image([LW / 4, LW / 4], "./logo-anim-white.svg", {
+			width: LW / 2,
+			height: LW / 2,
+		})
+	),
+	group({ id: "labels" }, [
+		...map((id) => {
+			const n = invDeps.degree(id);
+			return pkgLink(
+				id,
+				{ class: "t", data: { id } },
+				text(
+					[0, 0],
+					ids[id],
+					{
+						translate: [(id + 0.5) * W + LW, LW - 5],
+						rotate: -PI / 2,
+						"dominant-baseline": "middle",
+					},
+					title({}, `depends on ${n} package${n !== 1 ? "s" : ""}`)
+				)
+			);
+		}, range(num)),
+	]),
+	group({ stroke: "#eee", translate: [LW, LW] }, [
+		group({ id: "cols" }, [
+			...map(
+				(x) => line([(x + 0.5) * W, 0], [(x + 0.5) * W, row * W]),
+				range(num)
+			),
+		]),
+		group({ id: "rows" }, [
+			...map(
+				(y) => line([0, (y + 0.5) * W], [num * W, (y + 0.5) * W]),
+				range(row)
+			),
+		]),
+	]),
+	group({ id: "links" }),
+	cells,
+	script({}, [
+		CDATA,
+		`const svg = document.querySelector("svg");
 const links = document.getElementById("links");
 const cells = document.getElementById("cells");
 const labels = document.getElementById("labels");
@@ -298,11 +298,11 @@ const handleInteraction = (e) => {
 
 svg.addEventListener("mousemove", handleInteraction);
 svg.addEventListener("touchstart", handleInteraction);`,
-    ]),
-    script({
-        data: { domain: "dependencies.thi.ng" },
-        "xlink:href": "https://plausible.io/js/plausible.js",
-    })
+	]),
+	script({
+		data: { domain: "dependencies.thi.ng" },
+		"xlink:href": "https://plausible.io/js/plausible.js",
+	})
 );
 
 writeText("assets/deps.svg", serialize(doc), LOGGER);
@@ -310,7 +310,7 @@ execSync("gzip -9 -f assets/deps.svg");
 
 console.log("uploading...");
 console.log(
-    execSync(
-        `aws s3 cp assets/deps.svg.gz s3://dependencies.thi.ng/index.svg --content-type image/svg+xml --content-encoding gzip --acl public-read --profile thing-umbrella`
-    ).toString()
+	execSync(
+		`aws s3 cp assets/deps.svg.gz s3://dependencies.thi.ng/index.svg --content-type image/svg+xml --content-encoding gzip --acl public-read --profile thing-umbrella`
+	).toString()
 );

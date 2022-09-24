@@ -9,7 +9,7 @@ const cli = join(toolsDir, "..", "..", "src", src);
 const p = spawn(node, ["--loader", "ts-node/esm", cli, ...args]);
 
 p.stdout.pipe(process.stdout);
-p.stderr.on('data', d => {
-  const dStr = d.toString().trim();
-  !dStr.includes("ExperimentalWarning") ? console.log(dStr) : "";
+p.stderr.on("data", (d) => {
+	const dStr = d.toString().trim();
+	!dStr.includes("ExperimentalWarning") ? console.log(dStr) : "";
 });

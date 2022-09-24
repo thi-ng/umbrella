@@ -5,36 +5,36 @@ import { LOGGER } from "./api.js";
 
 const pkg = readJSON("package.json", LOGGER);
 const deps = [
-    "tslib",
-    "fs",
-    "child_process",
-    "path",
-    ...Object.keys(pkg.dependencies || {}),
+	"tslib",
+	"fs",
+	"child_process",
+	"path",
+	...Object.keys(pkg.dependencies || {}),
 ];
 const opts = [
-    "--bundle",
-    "--target=es2020",
-    "--format=esm",
-    ...deps.map((x) => `--external:${x}`),
-    "index.js",
+	"--bundle",
+	"--target=es2020",
+	"--format=esm",
+	...deps.map((x) => `--external:${x}`),
+	"index.js",
 ];
 if (pkg.keywords.includes("node") || pkg.keywords.includes("node-only")) {
-    opts.unshift("--platform=node");
+	opts.unshift("--platform=node");
 }
 const raw = execFileSync(
-    "../../node_modules/esbuild/bin/esbuild",
-    opts
+	"../../node_modules/esbuild/bin/esbuild",
+	opts
 ).toString();
 const min = execFileSync("../../node_modules/esbuild/bin/esbuild", [
-    "--minify",
-    ...opts,
+	"--minify",
+	...opts,
 ]).toString();
 const gzip = execFileSync("gzip", { input: min });
 
 const stats = {
-    raw: raw.length,
-    min: min.length,
-    gzip: gzip.byteLength,
+	raw: raw.length,
+	min: min.length,
+	gzip: gzip.byteLength,
 };
 
 !existsSync(".meta") && mkdirSync(".meta");

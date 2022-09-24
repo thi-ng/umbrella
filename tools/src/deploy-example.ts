@@ -6,16 +6,16 @@ import { existsSync } from "fs";
 import { exit } from "process";
 
 interface UploadOpts {
-    ext: string;
-    gzip: boolean;
-    depth: number;
-    process: Fn<string, void>;
+	ext: string;
+	gzip: boolean;
+	depth: number;
+	process: Fn<string, void>;
 }
 
 const EXAMPLE = process.argv[2];
 if (!EXAMPLE) {
-    console.warn("\nUsage: deploy-example.ts <example-name>");
-    exit(1);
+	console.warn("\nUsage: deploy-example.ts <example-name>");
+	exit(1);
 }
 
 const BUILD = `examples/${EXAMPLE}/dist/`;
@@ -34,26 +34,26 @@ console.log(args);
 execSync(`find examples/${EXAMPLE} -type f -name '*.DS_Store' -ls -delete`);
 
 const uploadAssets = (dir: string, opts?: Partial<UploadOpts>) => {
-    const root = `${BUILD}${dir}`;
-    if (!existsSync(root)) return;
-    opts = { ext: "", gzip: true, depth: Infinity, ...opts };
-    for (let f of files(root, opts.ext!, opts.depth)) {
-        const fd = `${BUCKET}/${f
-            .replace(BUILD, "")
-            .substring(dir === "" ? 1 : 0)}`;
-        const ext = f.substring(f.lastIndexOf(".") + 1);
-        const type = preferredType(ext);
-        console.log(f, "->", fd, type);
-        opts.process && opts.process(f);
-        if (opts.gzip && !NEVER_GZIP.has(ext)) {
-            execSync(`gzip -9 ${f}`);
-            execSync(
-                `aws s3 cp ${f}.gz ${fd} ${GZOPTS} --content-type ${type}`
-            );
-        } else {
-            execSync(`aws s3 cp ${f} ${fd} ${OPTS} --content-type ${type}`);
-        }
-    }
+	const root = `${BUILD}${dir}`;
+	if (!existsSync(root)) return;
+	opts = { ext: "", gzip: true, depth: Infinity, ...opts };
+	for (let f of files(root, opts.ext!, opts.depth)) {
+		const fd = `${BUCKET}/${f
+			.replace(BUILD, "")
+			.substring(dir === "" ? 1 : 0)}`;
+		const ext = f.substring(f.lastIndexOf(".") + 1);
+		const type = preferredType(ext);
+		console.log(f, "->", fd, type);
+		opts.process && opts.process(f);
+		if (opts.gzip && !NEVER_GZIP.has(ext)) {
+			execSync(`gzip -9 ${f}`);
+			execSync(
+				`aws s3 cp ${f}.gz ${fd} ${GZOPTS} --content-type ${type}`
+			);
+		} else {
+			execSync(`aws s3 cp ${f} ${fd} ${OPTS} --content-type ${type}`);
+		}
+	}
 };
 
 // const interpolateFile = (tpl: any) => (src: string) => {
@@ -73,7 +73,7 @@ uploadAssets("", { ext: ".html" });
 console.log("invaliding", DEST_DIR);
 
 execSync(
-    `aws cloudfront create-invalidation --distribution-id ${CF_DISTRO} --paths "${DEST_DIR}/*" --profile ${PROFILE}`
+	`aws cloudfront create-invalidation --distribution-id ${CF_DISTRO} --paths "${DEST_DIR}/*" --profile ${PROFILE}`
 );
 
 console.log("done");
