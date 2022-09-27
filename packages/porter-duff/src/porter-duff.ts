@@ -1,6 +1,6 @@
-import type { Fn3, FnN2 } from "@thi.ng/api";
+import type { FnN2 } from "@thi.ng/api";
 import { clamp, clamp01 } from "@thi.ng/math/interval";
-import type { Color, ReadonlyColor } from "./api.js";
+import type { BlendFnF, BlendFnI, Color, ReadonlyColor } from "./api.js";
 import {
 	postmultiply,
 	postmultiplyInt,
@@ -38,8 +38,8 @@ export const ONE_MINUS_B: FnN2 = (_, b) => 1 - b;
  * @param fb - fn for dest coeff
  */
 export const porterDuff =
-	(fa: FnN2, fb: FnN2) =>
-	(out: Color | null, src: ReadonlyColor, dest: ReadonlyColor) => {
+	(fa: FnN2, fb: FnN2): BlendFnF =>
+	(out, src, dest) => {
 		const sa = src[3];
 		const sb = dest[3];
 		const aa = fa(sa, sb);
@@ -54,7 +54,7 @@ export const porterDuff =
 	};
 
 export const porterDuffInt =
-	(fa: FnN2, fb: FnN2): FnN2 =>
+	(fa: FnN2, fb: FnN2): BlendFnI =>
 	(a, b) => {
 		const sa = (a >>> 24) / 255;
 		const sb = (b >>> 24) / 255;
@@ -88,8 +88,8 @@ export const porterDuffInt =
  * @param mode -
  */
 export const porterDuffP =
-	(mode: Fn3<Color | null, ReadonlyColor, ReadonlyColor, Color>) =>
-	(out: Color, src: ReadonlyColor, dest: ReadonlyColor) =>
+	(mode: BlendFnF): BlendFnF =>
+	(out, src, dest) =>
 		postmultiply(
 			null,
 			mode(null, premultiply([], src), premultiply(out, dest))
@@ -101,7 +101,7 @@ export const porterDuffP =
  * @param mode -
  */
 export const porterDuffPInt =
-	(mode: FnN2): FnN2 =>
+	(mode: BlendFnI): BlendFnI =>
 	(src, dest) =>
 		postmultiplyInt(mode(premultiplyInt(src), premultiplyInt(dest)));
 
