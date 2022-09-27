@@ -52,11 +52,11 @@ export const __drawShader2D = <T extends any[] | TypedArray, P>(
 			stride: [sx, sy],
 		} = grid;
 		for (let { 0: x, 1: y } of pts) {
-			data[offset + x * sx + y * sy] = shader(x, y);
+			data[offset + x * sx + y * sy] = shader(grid, x, y);
 		}
 	} else {
 		for (let { 0: x, 1: y } of pts) {
-			grid.setAtUnsafe(x, y, shader(x, y));
+			grid.setAtUnsafe(x, y, shader(grid, x, y));
 		}
 	}
 	return grid;

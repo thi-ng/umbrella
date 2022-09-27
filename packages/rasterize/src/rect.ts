@@ -41,13 +41,13 @@ export const drawRect = <T extends any[] | TypedArray, P>(
 			for (let { 0: xx, 1: yy } of pts) {
 				xx += x;
 				yy += y;
-				data[offset + xx * sx + yy * sy] = shader(xx, yy);
+				data[offset + xx * sx + yy * sy] = shader(grid, xx, yy);
 			}
 		} else {
 			for (let { 0: xx, 1: yy } of pts) {
 				xx += x;
 				yy += y;
-				grid.setAtUnsafe(xx, yy, shader(xx, yy));
+				grid.setAtUnsafe(xx, yy, shader(grid, xx, yy));
 			}
 		}
 		return grid;

@@ -1,3 +1,3 @@
-import type { Fn2 } from "@thi.ng/api";
+import type { Fn3, IGrid2D } from "@thi.ng/api";
 
-export type Shader2D<T> = Fn2<number, number, T>;
+export type Shader2D<T> = Fn3<IGrid2D<any, T>, number, number, T>;

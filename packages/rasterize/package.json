@@ -38,6 +38,7 @@
 		"@thi.ng/checks": "^3.2.5",
 		"@thi.ng/equiv": "^2.1.10",
 		"@thi.ng/grid-iterators": "^2.3.13",
+		"@thi.ng/porter-duff": "^2.1.12",
 		"@thi.ng/random": "^3.3.8",
 		"@thi.ng/transducers": "^8.3.14"
 	},

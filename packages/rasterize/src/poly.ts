@@ -64,7 +64,7 @@ export const fillPoly = <T extends any[] | TypedArray, P>(
 				x1 < minX && (x1 = minX);
 				x2 > maxX && (x2 = maxX);
 				for (let x = x1; x <= x2; x++) {
-					grid.setAtUnsafe(x, y, shader(x, y));
+					grid.setAtUnsafe(x, y, shader(grid, x, y));
 				}
 			}
 		}
