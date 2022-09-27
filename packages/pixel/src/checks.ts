@@ -11,6 +11,20 @@ export const ensureSize = (
 ) => assert(data.length >= width * height * stride, "pixel buffer too small");
 
 /** @internal */
+export const ensureImageData = (
+	data: ImageData | undefined,
+	width: number,
+	height: number
+) =>
+	data
+		? (assert(
+				data.width === width && data.height === height,
+				"imagedata has wrong dimensions"
+		  ),
+		  data)
+		: new ImageData(width, height);
+
+/** @internal */
 export const ensureChannel = (fmt: IntFormat | FloatFormat, id: number) => {
 	const chan = fmt.channels[id];
 	assert(chan != null, `invalid channel ID: ${id}`);

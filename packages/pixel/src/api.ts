@@ -238,8 +238,7 @@ export interface IBlit<T extends IPixelBuffer> {
 	 */
 	blitCanvas(
 		canvas: HTMLCanvasElement | CanvasRenderingContext2D,
-		x?: number,
-		y?: number
+		opts?: Partial<BlitCanvasOpts>
 	): void;
 }
 
@@ -247,7 +246,7 @@ export interface IToImageData {
 	/**
 	 * Returns the contents of the pixel buffer as HTML canvas `ImageData`.
 	 */
-	toImageData(): ImageData;
+	toImageData(idata?: ImageData): ImageData;
 }
 
 export interface IBlend<T extends IPixelBuffer, F> {
@@ -326,6 +325,25 @@ export interface BlitOpts {
 	 * @defaultValue buffer height
 	 */
 	h: number;
+}
+
+export interface BlitCanvasOpts {
+	/**
+	 * Pre-existing ImageData instance (must be same dimensions as pixel buffer)
+	 */
+	data: ImageData;
+	/**
+	 * Target X coordinate
+	 *
+	 * @defaultValue 0
+	 */
+	x: number;
+	/**
+	 * Target Y coordinate
+	 *
+	 * @defaultValue 0
+	 */
+	y: number;
 }
 
 export type PoolTemplate = Fn3<string[], number, number, string>;

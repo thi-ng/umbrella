@@ -8,6 +8,7 @@ import { clamp01 } from "@thi.ng/math/interval";
 import { postmultiply, premultiply } from "@thi.ng/porter-duff/premultiply";
 import type {
 	BlendFnFloat,
+	BlitCanvasOpts,
 	BlitOpts,
 	Filter,
 	FloatFormat,
@@ -21,7 +22,7 @@ import type {
 	IResizable,
 	IToImageData,
 } from "./api.js";
-import { ensureChannel, ensureSize } from "./checks.js";
+import { ensureChannel, ensureImageData, ensureSize } from "./checks.js";
 import { defFloatFormat } from "./format/float-format.js";
 import { FLOAT_GRAY } from "./format/float-gray.js";
 import { FLOAT_RGBA } from "./index.js";
@@ -320,18 +321,17 @@ export class FloatBuffer
 
 	blitCanvas(
 		canvas: HTMLCanvasElement | CanvasRenderingContext2D,
-		x = 0,
-		y = 0
+		opts: Partial<BlitCanvasOpts> = {}
 	) {
 		const ctx =
 			canvas instanceof HTMLCanvasElement
 				? canvas.getContext("2d")!
 				: canvas;
-		ctx.putImageData(this.toImageData(), x, y);
+		ctx.putImageData(this.toImageData(opts.data), opts.x || 0, opts.y || 0);
 	}
 
-	toImageData() {
-		const idata = new ImageData(this.width, this.height);
+	toImageData(idata?: ImageData) {
+		idata = ensureImageData(idata, this.width, this.height);
 		const dest = new Uint32Array(idata.data.buffer);
 		const {
 			stride: [stride],

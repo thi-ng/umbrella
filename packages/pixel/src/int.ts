@@ -11,6 +11,7 @@ import {
 } from "@thi.ng/porter-duff/premultiply";
 import {
 	BlendFnInt,
+	BlitCanvasOpts,
 	BlitOpts,
 	Filter,
 	IBlend,
@@ -26,7 +27,12 @@ import {
 	Lane,
 } from "./api.js";
 import { canvasPixels, imageCanvas } from "./canvas.js";
-import { ensureAlpha, ensureChannel, ensureSize } from "./checks.js";
+import {
+	ensureAlpha,
+	ensureChannel,
+	ensureImageData,
+	ensureSize,
+} from "./checks.js";
 import { ABGR8888 } from "./format/abgr8888.js";
 import { defIntFormat } from "./format/int-format.js";
 import {
@@ -277,18 +283,17 @@ export class IntBuffer
 
 	blitCanvas(
 		canvas: HTMLCanvasElement | CanvasRenderingContext2D,
-		x = 0,
-		y = 0
+		opts: Partial<BlitCanvasOpts> = {}
 	) {
 		const ctx =
 			canvas instanceof HTMLCanvasElement
 				? canvas.getContext("2d")!
 				: canvas;
-		ctx.putImageData(this.toImageData(), x, y);
+		ctx.putImageData(this.toImageData(opts.data), opts.x || 0, opts.y || 0);
 	}
 
-	toImageData() {
-		const idata = new ImageData(this.width, this.height);
+	toImageData(idata?: ImageData) {
+		idata = ensureImageData(idata, this.width, this.height);
 		const dest = new Uint32Array(idata.data.buffer);
 		const src = this.data;
 		const fmt = this.format.toABGR;
