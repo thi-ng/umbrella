@@ -990,6 +990,20 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@example/rasterize-blend@workspace:examples/rasterize-blend":
+  version: 0.0.0-use.local
+  resolution: "@example/rasterize-blend@workspace:examples/rasterize-blend"
+  dependencies:
+    "@thi.ng/adapt-dpi": "workspace:^"
+    "@thi.ng/dsp": "workspace:^"
+    "@thi.ng/pixel": "workspace:^"
+    "@thi.ng/rasterize": "workspace:^"
+    "@thi.ng/vectors": "workspace:^"
+    typescript: ^4.8.3
+    vite: ^3.1.3
+  languageName: unknown
+  linkType: soft
+
 "@example/rdom-basics@workspace:examples/rdom-basics":
   version: 0.0.0-use.local
   resolution: "@example/rdom-basics@workspace:examples/rdom-basics"
@@ -4020,7 +4034,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/rasterize@workspace:packages/rasterize":
+"@thi.ng/rasterize@workspace:^, @thi.ng/rasterize@workspace:packages/rasterize":
   version: 0.0.0-use.local
   resolution: "@thi.ng/rasterize@workspace:packages/rasterize"
   dependencies:
