@@ -50,7 +50,7 @@ following properties (all optional, also see example document further below):
 Absolute or relative path to base output directory for tangled code blocks. This
 is only used if a code block's `tangle` path is a relative path.
 
-#### `pubish`
+#### `publish`
 
 Absolute or relative path to write a "published" version of the LP source file,
 in which all code blocks have been transformed & code block references

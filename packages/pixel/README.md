@@ -333,7 +333,7 @@ node --experimental-repl-await
 > const pixel = await import("@thi.ng/pixel");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 9.59 KB
+Package sizes (gzipped, pre-treeshake): ESM: 9.65 KB
 
 ## Dependencies
 
@@ -363,6 +363,7 @@ A selection:
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/pixel-indexed.jpg" width="240"/>      | Image dithering and remapping using indexed palettes                        | [Demo](https://demo.thi.ng/umbrella/pixel-indexed/)      | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/pixel-indexed)      |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/pixel-sorting.png" width="240"/>      | Interactive pixel sorting tool using thi.ng/color & thi.ng/pixel            | [Demo](https://demo.thi.ng/umbrella/pixel-sorting/)      | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/pixel-sorting)      |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/porter-duff/porter-duff2.png" width="240"/>    | Port-Duff image compositing / alpha blending                                | [Demo](https://demo.thi.ng/umbrella/porter-duff/)        | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/porter-duff)        |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/rasterize-blend.jpg" width="240"/>    | Steering behavior drawing with alpha-blended shapes                         | [Demo](https://demo.thi.ng/umbrella/rasterize-blend/)    | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rasterize-blend)    |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/scenegraph-image.png" width="240"/>   | 2D scenegraph & image map based geometry manipulation                       | [Demo](https://demo.thi.ng/umbrella/scenegraph-image/)   | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/scenegraph-image)   |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/shader-ast-tunnel.jpg" width="240"/>  | WebGL & Canvas2D textured tunnel shader                                     | [Demo](https://demo.thi.ng/umbrella/shader-ast-tunnel/)  | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/shader-ast-tunnel)  |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/shader-ast-workers.jpg" width="240"/> | Fork-join worker-based raymarch renderer (JS/CPU only)                      | [Demo](https://demo.thi.ng/umbrella/shader-ast-workers/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/shader-ast-workers) |
@@ -426,10 +427,10 @@ Promise
         buf.setChannel(id, ch);
 
         // write pixel buffer to new position
-        buf.blitCanvas(ctx.canvas, 0, buf.height);
+        buf.blitCanvas(ctx.canvas, { y: buf.height });
 
         // create & write grayscale version
-        buf.as(GRAY8).blitCanvas(ctx.canvas, 0, buf.height * 2);
+        buf.as(GRAY8).blitCanvas(ctx.canvas, { y: buf.height * 2 });
 });
 ```
 

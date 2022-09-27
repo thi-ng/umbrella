@@ -349,10 +349,10 @@ Promise
         buf.setChannel(id, ch);
 
         // write pixel buffer to new position
-        buf.blitCanvas(ctx.canvas, 0, buf.height);
+        buf.blitCanvas(ctx.canvas, { y: buf.height });
 
         // create & write grayscale version
-        buf.as(GRAY8).blitCanvas(ctx.canvas, 0, buf.height * 2);
+        buf.as(GRAY8).blitCanvas(ctx.canvas, { y: buf.height * 2 });
 });
 ```
 
