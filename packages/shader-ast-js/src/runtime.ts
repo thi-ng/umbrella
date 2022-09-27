@@ -128,6 +128,7 @@ export const renderBuffer = (
  */
 export const canvasRenderer = (canvas: HTMLCanvasElement) => {
 	const buf = intBufferFromCanvas(canvas);
+	const data = new ImageData(canvas.width, canvas.height);
 	return (
 		fn: Fn<ReadonlyVec, Vec>,
 		x = 0,
@@ -136,6 +137,6 @@ export const canvasRenderer = (canvas: HTMLCanvasElement) => {
 		h = canvas.height
 	) => {
 		renderBuffer(fn, buf, x, y, w, h);
-		buf.blitCanvas(canvas);
+		buf.blitCanvas(canvas, { data });
 	};
 };
