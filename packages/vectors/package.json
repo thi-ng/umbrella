@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/vectors",
-	"version": "7.5.15",
+	"version": "7.5.16",
 	"description": "Optimized 2d/3d/4d and arbitrary length vector operations",
 	"type": "module",
 	"module": "./index.js",
@@ -39,11 +39,11 @@
 		"@thi.ng/checks": "^3.2.5",
 		"@thi.ng/equiv": "^2.1.10",
 		"@thi.ng/errors": "^2.2.0",
-		"@thi.ng/math": "^5.3.8",
+		"@thi.ng/math": "^5.3.9",
 		"@thi.ng/memoize": "^3.1.12",
 		"@thi.ng/random": "^3.3.8",
 		"@thi.ng/strings": "^3.3.12",
-		"@thi.ng/transducers": "^8.3.14"
+		"@thi.ng/transducers": "^8.3.15"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.31.1",

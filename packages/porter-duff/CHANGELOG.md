@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-09-21T21:37:59Z
+- **Last updated**: 2022-09-27T16:23:13Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,12 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [2.1.13](https://github.com/thi-ng/umbrella/tree/@thi.ng/porter-duff@2.1.13) (2022-09-27)
+
+#### ♻️ Refactoring
+
+- add BlendFn types ([a8ff0aa](https://github.com/thi-ng/umbrella/commit/a8ff0aa))
 
 ## [2.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/porter-duff@2.1.0) (2021-11-17)
 

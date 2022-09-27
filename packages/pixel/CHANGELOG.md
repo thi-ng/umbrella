@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-09-21T21:37:59Z
+- **Last updated**: 2022-09-27T16:23:13Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,16 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+# [4.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/pixel@4.0.0) (2022-09-27)
+
+#### 🛑 Breaking changes
+
+- update .blitCanvas(), .toImageData() ([85e4e38](https://github.com/thi-ng/umbrella/commit/85e4e38))
+- BREAKING CHANGE: add BlitCanvasOpts for optional .blitCanvas() args
+  - update .blitCanvas() impls
+  - update .toImageData() impls to accept pre-existing ImageData instance
+  - add ensureImageData() check
 
 ## [3.4.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/pixel@3.4.0) (2022-04-07)
 

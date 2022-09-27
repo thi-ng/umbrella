@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/rdom-canvas",
-	"version": "0.4.26",
+	"version": "0.4.27",
 	"description": "@thi.ng/rdom component wrapper for @thi.ng/hiccup-canvas and declarative canvas drawing",
 	"type": "module",
 	"module": "./index.js",
@@ -34,14 +34,14 @@
 		"test": "testament test"
 	},
 	"dependencies": {
-		"@thi.ng/adapt-dpi": "^2.1.10",
+		"@thi.ng/adapt-dpi": "^2.1.11",
 		"@thi.ng/api": "^8.4.2",
-		"@thi.ng/associative": "^6.2.7",
+		"@thi.ng/associative": "^6.2.8",
 		"@thi.ng/checks": "^3.2.5",
-		"@thi.ng/hiccup-canvas": "^2.1.25",
-		"@thi.ng/rdom": "^0.9.9",
-		"@thi.ng/rstream": "^7.2.18",
-		"@thi.ng/transducers": "^8.3.14"
+		"@thi.ng/hiccup-canvas": "^2.1.26",
+		"@thi.ng/rdom": "^0.9.10",
+		"@thi.ng/rstream": "^7.2.19",
+		"@thi.ng/transducers": "^8.3.15"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.31.1",
