@@ -10,6 +10,7 @@ import {
 import { $compile, $inputTrigger, Component, NumOrElement } from "@thi.ng/rdom";
 import { ISubscribable, reactive, Stream, stream, sync } from "@thi.ng/rstream";
 import { gestureStream } from "@thi.ng/rstream-gestures";
+import { map, range } from "@thi.ng/transducers";
 import {
 	compileModel,
 	defQuadModel,
@@ -21,8 +22,15 @@ import {
 	Texture,
 } from "@thi.ng/webgl";
 
+type Vec2 = [number, number];
 type Vec4 = [number, number, number, number];
-type Controls = Record<"r" | "g" | "b", Vec4>;
+
+interface Controls {
+	r: Vec4;
+	g: Vec4;
+	b: Vec4;
+	exposure: Vec2;
+}
 
 // each color channel's controls consist of:
 // RGB weights + offset (all in [-1 .. +1] interval)
@@ -78,6 +86,7 @@ class WebGLImageCanvas extends Component {
 		dest.r = dot(src, chanR.xyz) + chanR.w;
 		dest.g = dot(src, chanG.xyz) + chanG.w;
 		dest.b = dot(src, chanB.xyz) + chanB.w;
+		dest = pow(clamp(dest + exposure.x * 0.5, 0., 1.), vec3(exposure.y + 1.));
 	} else {
 		dest = mix(vec3(1.), src, step(sepWidth, v_uv.x - maskX));
 	}
@@ -88,6 +97,7 @@ class WebGLImageCanvas extends Component {
 					chanR: ["vec4", DEFAULT_R],
 					chanG: ["vec4", DEFAULT_G],
 					chanB: ["vec4", DEFAULT_B],
+					exposure: "vec2",
 					maskX: ["float", 0.5],
 					sepWidth: "float",
 				},
@@ -104,6 +114,7 @@ class WebGLImageCanvas extends Component {
 				uniforms.chanR = controls.r;
 				uniforms.chanG = controls.g;
 				uniforms.chanB = controls.b;
+				uniforms.exposure = controls.exposure;
 				draw(this.model);
 			},
 		});
@@ -194,6 +205,7 @@ const controls = {
 	r: reactive(DEFAULT_R),
 	g: reactive(DEFAULT_G),
 	b: reactive(DEFAULT_B),
+	exposure: reactive([0, 0]),
 };
 
 // subscribe to File stream, load as image and place result into the image
@@ -216,28 +228,25 @@ src.subscribe({
  * @param ctrl
  * @param name
  */
-const channelControls = (ctrl: Stream<Vec4>, name: string) => {
+const channelControls = <T extends number[]>(
+	ctrl: Stream<T>,
+	size: number,
+	name: string
+) => {
 	const slider = (c: number) =>
 		inputRange({
 			class: "w-100 range",
 			min: -1,
 			max: 1,
-			step: 0.05,
+			step: 0.01,
 			value: ctrl.map((x) => x[c]),
 			oninput: (e: InputEvent) => {
-				let val = <Vec4>ctrl.deref()!.slice();
+				let val = <T>ctrl.deref()!.slice();
 				val[c] = +(<HTMLInputElement>e.target).value;
 				ctrl.next(val);
 			},
 		});
-	return div(
-		{},
-		h4(".fw4.mb1", {}, name),
-		slider(0),
-		slider(1),
-		slider(2),
-		slider(3)
-	);
+	return div({}, h4(".fw4.mb1", {}, name), ...map(slider, range(size)));
 };
 
 const STYLE_BT = ".dib.h2.w-100.bn.bg-dark-gray.white";
@@ -258,16 +267,17 @@ $compile(
 					{},
 					inputFile({
 						class: "absolute o-0",
-						accept: ["image/jpeg"],
+						accept: ["image/jpeg", "image/png", "image/webp"],
 						onchange: (e) =>
 							src.next((<HTMLInputElement>e.target).files![0]),
 					}),
 					"Choose image"
 				)
 			),
-			channelControls(controls.r, "Red"),
-			channelControls(controls.g, "Green"),
-			channelControls(controls.b, "Blue"),
+			channelControls(controls.r, 4, "Red"),
+			channelControls(controls.g, 4, "Green"),
+			channelControls(controls.b, 4, "Blue"),
+			channelControls(controls.exposure, 2, "Exposure"),
 			button(
 				STYLE_BT + ".mt3",
 				{
@@ -275,6 +285,7 @@ $compile(
 						controls.r.next(DEFAULT_R);
 						controls.g.next(DEFAULT_G);
 						controls.b.next(DEFAULT_B);
+						controls.exposure.next([0, 0]);
 					},
 				},
 				"Reset controls"
