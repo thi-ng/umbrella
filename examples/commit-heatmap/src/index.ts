@@ -1,4 +1,4 @@
-import { withoutKeysObj } from "@thi.ng/associative/without-keys";
+import type { IObjectOf } from "@thi.ng/api";
 import {
 	cosineGradient,
 	COSINE_GRADIENTS,
@@ -15,7 +15,14 @@ import { text } from "@thi.ng/hiccup-svg/text";
 import { serialize } from "@thi.ng/hiccup/serialize";
 import { fit } from "@thi.ng/math/fit";
 import { Z2 } from "@thi.ng/strings/pad-left";
-import { add } from "@thi.ng/transducers/add";
+import {
+	add,
+	conj,
+	count,
+	partitionWhen,
+	pluck,
+	push,
+} from "@thi.ng/transducers";
 import { comp } from "@thi.ng/transducers/comp";
 import { filter } from "@thi.ng/transducers/filter";
 import { groupByObj } from "@thi.ng/transducers/group-by-obj";
@@ -24,40 +31,70 @@ import { map } from "@thi.ng/transducers/map";
 import { mapIndexed } from "@thi.ng/transducers/map-indexed";
 import { mapcat } from "@thi.ng/transducers/mapcat";
 import { max } from "@thi.ng/transducers/max";
-import { partition } from "@thi.ng/transducers/partition";
 import { pushSort } from "@thi.ng/transducers/push-sort";
 import { sortedKeys } from "@thi.ng/transducers/sorted-keys";
 import { transduce } from "@thi.ng/transducers/transduce";
-import { vals } from "@thi.ng/transducers/vals";
 import { execSync } from "child_process";
-import * as fs from "fs";
+import { writeFileSync } from "fs";
 import { resolve } from "path";
 
 interface Commit {
-	name: string;
+	date?: string;
+	name?: string;
+	msg?: string;
+	files?: string[];
 	epoch: number;
-	date: string;
-	msg: string;
-	files: number;
-	adds: number;
-	dels: number;
+	numFiles: number;
+	pkgs: string[];
 }
 
 const BASE_DIR = "..";
 
 const SEP = "~~";
 
-const RE_PKG = /\(([a-z-]+)\):/;
-
 // invalid / misspelled package names to exclude
-const IGNORE_PACKAGES = [
-	"all",
-	"cso",
-	"example",
-	"exmples",
-	"shadertoy",
-	"transducer",
-];
+const IGNORE = new Set(["all", "main", "make-example", "snowpack"]);
+
+const BUILD = new Set([
+	"yarn.lock",
+	".gitignore",
+	"scripts/make-package",
+	"scripts/make-example",
+]);
+
+const ALIASES: IObjectOf<string> = {
+	colors: "color",
+	"color-profiles": "color-palettes",
+	cso: "csp",
+	download: "dl-asset",
+	"download-asset": "dl-asset",
+	example: "examples",
+	exmples: "examples",
+	geom2: "geom",
+	geom3: "geom",
+	"geom-clip": "geom-clip-poly",
+	"geom-clip-convex": "geom-clip-poly",
+	"geom-clostest-point": "geom-closest-point",
+	"geom-tesselate": "geom-tessellate",
+	hdom2020: "rdom",
+	"hdom-cnavas": "hdom-canvas",
+	heap: "heaps",
+	"hiccup-dom": "hdom",
+	"hiccup-dom-components": "hdom-components",
+	iterator: "iterators",
+	mine: "mime",
+	shadertoy: "webgl-shadertoy",
+	tool: "tools",
+	tranducers: "transducers",
+	transducer: "transducers",
+	unionfind: "adjacency",
+	vector: "vectors",
+	vectors2: "vectors",
+	vectors3: "vectors",
+	"wasm-alloc": "wasm-api",
+	"wasm-bridge": "wasm-api",
+	zip: "zipper",
+};
 
 // heatmap gradient
 const GRAD = <any[]>cosineGradient(32, COSINE_GRADIENTS["blue-magenta-orange"]);
@@ -65,136 +102,109 @@ const GRAD = <any[]>cosineGradient(32, COSINE_GRADIENTS["blue-magenta-orange"]);
 const MIN_DATE = Date.parse("2018-01-01T00:00:00+00:00");
 const MAX_DATE = Date.now();
 
-const enum LogItem {
-	COMMIT,
-	STATS,
-}
-
-type ClassifiedCommit = [LogItem, string | string[]];
-
 /**
  * Retrieves raw git log from given repo path.
  *
  * @param repoPath -
  */
-const gitLog = (repoPath: string) =>
+const gitLog2 = (repoPath: string) =>
 	execSync(
-		`git log --pretty=format:"%ad${SEP}%s" --date=iso-strict --shortstat`,
+		`git log --pretty=format:"%ad${SEP}%s" --date=iso-strict --name-only`,
 		{
 			cwd: resolve(repoPath),
+			maxBuffer: 16 * 1024 * 1024,
 		}
 	)
 		.toString()
 		.trim();
 
 /**
- * Attempts to split commit line with field separator and classifies
- * line as COMMIT or STATS based on outcome.
- *
- * @param line -
+ * Transducer pipeline to process a single raw commit into an object
+ * containing parsed metadata.
  */
-const classifyCommitLine = (line: string): ClassifiedCommit => {
-	const parts = line.split(SEP);
-	return parts.length > 1 ? [LogItem.COMMIT, parts] : [LogItem.STATS, line];
-};
-
-/**
- * Filter predicate. Returns false if given line is empty.
- *
- * @param line -
- */
-const removeEmpty = (line: string) => line.length > 0;
-
-/**
- * Filter predicate. Returns false if commit is a merge.
- *
- * @param x -
- */
-const removeMergeCommits = (x: ClassifiedCommit) =>
-	x[0] == LogItem.STATS || !x[1][1].startsWith("Merge");
-
-/**
- * Takes a tuple of `[commit, stats]` and attempts to parse it into a
- * `Commit` object. Returns undefined if commit message is not package
- * specific (based on Conventional Commits format).
- *
- * @param tuple -
- */
-const parseCommitTuple = (tuple: ClassifiedCommit[]) => {
-	const [date, msg] = tuple[0][1];
-	const stats = <string>tuple[1][1];
-	const match = RE_PKG.exec(msg);
-	if (match) {
-		const [files, adds, dels] = [
-			...map(
-				(x: RegExpMatchArray) => parseInt(x[0]),
-				stats.matchAll(/\d+/g)
+const parseCommit = ([head, ...files]: string[]) => {
+	const [date, msg] = head.split(SEP);
+	if (/^(merge|publish)/i.test(msg)) return;
+	const ids = transduce(
+		comp(
+			map((x) =>
+				/\.md$/.test(x)
+					? "docs"
+					: /(package|tsconfig)\.json$/.test(x)
+					? "build"
+					: x.startsWith("packages")
+					? /^packages\/([a-z0-9-]+)/.exec(x)![1]
+					: x.startsWith("examples")
+					? "examples"
+					: x.startsWith("assets")
+					? "assets"
+					: x.startsWith("tools")
+					? "tools"
+					: BUILD.has(x)
+					? "build"
+					: null
 			),
-		];
-		return <Commit>{
-			name: match[1],
-			epoch: Date.parse(date),
-			date,
-			msg,
-			files,
-			adds,
-			dels,
-		};
-	}
+			keep(),
+			filter((x) => !IGNORE.has(x)),
+			map((x) => ALIASES[x] || x)
+		),
+		push<string>(),
+		files
+	);
+	return <Commit>{
+		epoch: Date.parse(date),
+		numFiles: ids.length,
+		pkgs: [...conj(ids)],
+		date,
+		msg,
+		files,
+	};
 };
 
-/**
- * Transducer pipeline to process raw commit log into an object
- * containing parsed commits per package. After transformation also
- * removes commits for ignored packages.
- */
-const commitsByPackage = withoutKeysObj(
-	transduce(
-		comp(
-			filter(removeEmpty),
-			map(classifyCommitLine),
-			filter(removeMergeCommits),
-			partition(2),
-			map(parseCommitTuple),
-			keep()
-		),
-		groupByObj<Commit, Commit[]>({
-			group: pushSort((a, b) => a.epoch - b.epoch),
-			key: (x) => x.name,
-		}),
-		gitLog(BASE_DIR).split("\n")
+const rawLog = gitLog2(BASE_DIR).split("\n");
+
+const commits = transduce(
+	comp(
+		partitionWhen((x) => !x),
+		map((x) => (x[0].length ? x : (x.shift(), x))),
+		map(parseCommit),
+		keep()
 	),
-	IGNORE_PACKAGES
+	push<Commit>(),
+	rawLog
 );
 
-/**
- * Computes max value for given statistics key.
- *
- * @param key -
- */
-const maxStat = (key: "files" | "adds" | "dels") =>
-	transduce(
-		comp(
-			mapcat((x) => x),
-			map((x) => x[key])
-		),
-		max(),
-		vals(commitsByPackage)
-	);
-
-/**
- * Total number of commits across all packages.
- */
-const totalCommits = transduce(
-	map((x) => x.length),
-	add(),
-	vals(commitsByPackage)
+const commitsByPackage = transduce(
+	mapcat((x) => map((name) => ({ name, ...x }), x.pkgs)),
+	groupByObj<Commit, Commit[]>({
+		group: pushSort((a, b) => a.epoch - b.epoch),
+		key: (x) => x.name!,
+	}),
+	commits
 );
 
-const maxFiles = maxStat("files");
-const maxAdds = maxStat("adds");
+const releases = transduce(
+	comp(
+		partitionWhen((x) => !x),
+		map((x) => (x[0].length ? x : (x.shift(), x))),
+		filter((x) => /\~\~publish/i.test(x[0]))
+	),
+	count(),
+	rawLog
+);
 
-console.log(`total: ${totalCommits}, max: ${maxFiles}, ${maxAdds}`);
+const totalCommits = commits.length;
+
+const maxFiles = transduce(pluck("numFiles"), max(), commits);
+
+const totalChanges = transduce(pluck("numFiles"), add(), commits);
+
+console.log(
+	`total commits:        ${totalCommits}
+total file changes:   ${totalChanges}
+max files per commit: ${maxFiles}
+total releases:         ${releases}`
+);
 
 const NUM_PKG = Object.keys(commitsByPackage).length;
 const PKG_WIDTH = 110;
@@ -252,7 +262,7 @@ const packageCommits = (i: number, pkg: string) =>
 		map((commit) => {
 			const x = mapEpoch(commit.epoch);
 			return line([x, 0], [x, 8], {
-				stroke: mapColor(commit.adds, maxAdds),
+				stroke: mapColor(commit.numFiles, maxFiles),
 			});
 		}, commitsByPackage[pkg])
 	);
@@ -286,5 +296,5 @@ threadLast(
 		timeLineLabels(),
 	],
 	serialize,
-	[fs.writeFileSync, "heatmap.svg"]
+	[writeFileSync, "heatmap.svg"]
 );
