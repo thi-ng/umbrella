@@ -161,8 +161,6 @@ export const style = defElement<Partial<StyleAttribs>, string | CDataContent>(
 	}
 );
 
-style({}, ["!CDATA", "foo", "bar"]);
-
 export interface ScriptAttribs extends Attribs, CORSAttribs, ReferrerAttribs {
 	async: BooleanAttrib;
 	defer: BooleanAttrib;
