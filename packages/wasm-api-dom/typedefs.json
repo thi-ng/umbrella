@@ -1,0 +1,89 @@
+[
+	{
+		"name": "EventType",
+		"type": "enum",
+		"tag": "i32",
+		"values": [
+			{ "name": "unkown", "value": -1 },
+			"mouse",
+			"touch",
+			"wheel",
+			"input",
+			"key",
+			"focus",
+			"blur",
+			"resize"
+		]
+	},
+	{
+		"name": "KeyModifier",
+		"type": "enum",
+		"tag": "u8",
+		"values": [
+			{ "name": "shift", "value": 1 },
+			{ "name": "ctrl", "value": 2 },
+			{ "name": "alt", "value": 4 },
+			{ "name": "meta", "value": 8 }
+		]
+	},
+	{
+		"name": "WindowInfo",
+		"type": "struct",
+		"fields": [
+			{ "name": "innerWidth", "type": "u16" },
+			{ "name": "innerHeight", "type": "u16" },
+			{ "name": "dpr", "type": "u8" }
+		]
+	},
+	{
+		"name": "Event",
+		"type": "struct",
+		"fields": [
+			{ "name": "target", "type": "i32" },
+			{ "name": "clientX", "type": "u32", "default": 0 },
+			{ "name": "clientY", "type": "u32", "default": 0 },
+			{ "name": "type", "type": "EventType" },
+			{ "name": "buttons", "type": "u8", "default": 0 },
+			{ "name": "modifiers", "type": "u8", "default": 0 },
+			{ "name": "key", "type": "u8", "tag": "array", "len": 8 }
+		]
+	},
+	{
+		"name": "CreateElementOpts",
+		"type": "struct",
+		"fields": [
+			{ "name": "tag", "type": "string", "doc": "DOM element name" },
+			{
+				"name": "parent",
+				"type": "i32",
+				"doc": "Parent element ID. If >=0 the new element will be attached to that parent element. Set to -1 to leave new element unattached"
+			},
+			{
+				"name": "index",
+				"type": "i32",
+				"doc": "Insertion index for new element or -1 to append (default)",
+				"default": -1
+			}
+		]
+	},
+	{
+		"name": "CreateCanvasOpts",
+		"type": "struct",
+		"fields": [
+			{ "name": "width", "type": "u16" },
+			{ "name": "height", "type": "u16" },
+			{
+				"name": "parent",
+				"type": "i32",
+				"doc": "Same as CreateElementOpts.parent"
+			},
+			{
+				"name": "index",
+				"type": "i32",
+				"doc": "Same as CreateElementOpts.index",
+				"default": -1
+			},
+			{ "name": "dpr", "type": "u8", "default": 1 }
+		]
+	}
+]

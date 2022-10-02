@@ -4848,7 +4848,24 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/wasm-api@workspace:^, @thi.ng/wasm-api@workspace:packages/wasm-api":
+"@thi.ng/wasm-api-dom@workspace:^, @thi.ng/wasm-api-dom@workspace:packages/wasm-api-dom":
+  version: 0.0.0-use.local
+  resolution: "@thi.ng/wasm-api-dom@workspace:packages/wasm-api-dom"
+  dependencies:
+    "@microsoft/api-extractor": ^7.31.1
+    "@thi.ng/adapt-dpi": ^2.1.11
+    "@thi.ng/api": ^8.4.2
+    "@thi.ng/errors": ^2.2.0
+    "@thi.ng/testament": ^0.3.0
+    "@thi.ng/wasm-api": ^0.11.0
+    rimraf: ^3.0.2
+    tools: "workspace:^"
+    typedoc: ^0.22.17
+    typescript: ^4.8.3
+  languageName: unknown
+  linkType: soft
+
+"@thi.ng/wasm-api@^0.11.0, @thi.ng/wasm-api@workspace:^, @thi.ng/wasm-api@workspace:packages/wasm-api":
   version: 0.0.0-use.local
   resolution: "@thi.ng/wasm-api@workspace:packages/wasm-api"
   dependencies:
