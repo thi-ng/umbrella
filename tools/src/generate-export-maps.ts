@@ -18,7 +18,10 @@ const generatePackageExportMaps = (id: string) => {
 		for (let f of files(srcRoot, ".ts")) {
 			if (/\/index\.ts/.test(f)) continue;
 			const src = readText(f);
-			if (/\/internal\//.test(f) && src.indexOf("// thing:export") < 0)
+			if (
+				/\/(internal|generated)\//.test(f) &&
+				src.indexOf("// thing:export") < 0
+			)
 				continue;
 			if (src.indexOf("// thing:no-export") !== -1) continue;
 			// if (/\/index\.ts$/.test(f)) continue;
