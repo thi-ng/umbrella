@@ -307,9 +307,9 @@ export interface StructField extends TypeInfo {
 	 */
 	len?: number;
 	/**
-	 * TODO currently unsupported & ignored!
+	 * Currently only supported for Zig scalar values, otherwise ignored!
 	 */
-	default?: any;
+	default?: number;
 	/**
 	 * If defined and > 0, the field will be considered for padding purposes only and
 	 * the value provided is the number of bytes used.

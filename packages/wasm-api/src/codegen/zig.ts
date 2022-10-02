@@ -83,6 +83,7 @@ export const ZIG = (opts: Partial<ZigOpts> = {}) => {
 							? "[*:0]const u8"
 							: "[*:0]u8"
 						: f.type;
+				let defaultVal = "";
 				switch (f.tag) {
 					case "array":
 						ftype = `[${f.len}]${ftype}`;
@@ -100,9 +101,11 @@ export const ZIG = (opts: Partial<ZigOpts> = {}) => {
 						break;
 					case "scalar":
 					default:
+						if (f.default != undefined)
+							defaultVal = ` = ${f.default}`;
 				}
 				ftypes[f.name] = ftype;
-				res.push(`${f.name}: ${ftype},`);
+				res.push(`${f.name}: ${ftype}${defaultVal},`);
 			}
 			res.push("};");
 
