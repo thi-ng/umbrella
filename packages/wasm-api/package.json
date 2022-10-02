@@ -47,7 +47,8 @@
 		"@thi.ng/hex": "^2.2.0",
 		"@thi.ng/idgen": "^2.1.13",
 		"@thi.ng/logger": "^1.3.0",
-		"@thi.ng/paths": "^5.1.15"
+		"@thi.ng/paths": "^5.1.15",
+		"@thi.ng/strings": "^3.3.12"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.31.1",

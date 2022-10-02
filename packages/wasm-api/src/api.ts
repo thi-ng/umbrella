@@ -390,6 +390,12 @@ export interface CodeGenOpts extends CodeGenOptsBase {
 	 * @defaultValue false
 	 */
 	debug: boolean;
+	/**
+	 * Target line width for word wrapping doc strings
+	 *
+	 * @defaultValue 80
+	 */
+	lineWidth: number;
 }
 
 export interface ICodeGen {
@@ -404,7 +410,12 @@ export interface ICodeGen {
 	/**
 	 * Docstring codegen
 	 */
-	doc: (doc: string, acc: string[], topLevel?: boolean) => void;
+	doc: (
+		doc: string,
+		acc: string[],
+		opts: CodeGenOpts,
+		topLevel?: boolean
+	) => void;
 	/**
 	 * Codegen for enum types.
 	 */

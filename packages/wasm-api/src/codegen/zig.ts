@@ -32,8 +32,10 @@ export const ZIG = (opts: Partial<ZigOpts> = {}) => {
 
 		post: () => opts.post || "",
 
-		doc: (doc, acc, topLevel = false) => {
-			acc.push(prefixLines(topLevel ? "//! " : "/// ", doc));
+		doc: (doc, acc, opts, topLevel = false) => {
+			acc.push(
+				...prefixLines(topLevel ? "//! " : "/// ", doc, opts.lineWidth)
+			);
 		},
 
 		enum: (e, _, acc, opts) => {
@@ -42,7 +44,7 @@ export const ZIG = (opts: Partial<ZigOpts> = {}) => {
 			for (let v of e.values) {
 				let line: string;
 				if (!isString(v)) {
-					v.doc && gen.doc(v.doc, lines);
+					v.doc && gen.doc(v.doc, lines, opts);
 					line = enumName(opts, v.name);
 					if (v.value != null) line += ` = ${v.value}`;
 				} else {
@@ -70,7 +72,7 @@ export const ZIG = (opts: Partial<ZigOpts> = {}) => {
 					res.push(`__pad${padID++}: [${f.pad}]u8,`);
 					continue;
 				}
-				f.doc && gen.doc(f.doc, res);
+				f.doc && gen.doc(f.doc, res, opts);
 				let ftype =
 					f.type === "string"
 						? isStringSlice(opts.stringType)

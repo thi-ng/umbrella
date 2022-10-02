@@ -58,8 +58,8 @@ ${opts.debug ? "\n#include <stdalign.h>" : ""}
 
 		post: () => opts.post || "",
 
-		doc: (doc, acc) => {
-			acc.push(prefixLines("// ", doc));
+		doc: (doc, acc, opts) => {
+			acc.push(...prefixLines("// ", doc, opts.lineWidth));
 		},
 
 		enum: (e, _, acc, opts) => {
@@ -74,7 +74,7 @@ ${opts.debug ? "\n#include <stdalign.h>" : ""}
 			for (let v of e.values) {
 				let line: string;
 				if (!isString(v)) {
-					v.doc && gen.doc(v.doc, lines);
+					v.doc && gen.doc(v.doc, lines, opts);
 					line = enumName(opts, v.name);
 					if (v.value != null) line += ` = ${v.value}`;
 				} else {
@@ -98,7 +98,7 @@ ${opts.debug ? "\n#include <stdalign.h>" : ""}
 					res.push(`uint8_t __pad${padID++}[${f.pad}];`);
 					continue;
 				}
-				f.doc && gen.doc(f.doc, res);
+				f.doc && gen.doc(f.doc, res, opts);
 				const fconst = f.const ? "const " : "";
 				let ftype =
 					f.type === "string"

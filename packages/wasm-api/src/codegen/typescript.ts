@@ -74,12 +74,8 @@ import { Pointer, ${__stringImpl(
 
 		post: () => opts.post || "",
 
-		doc: (doc, acc) => {
-			if (doc.indexOf("\n") !== -1) {
-				acc.push("/**", prefixLines(indent + " * ", doc), " */");
-			} else {
-				acc.push(`/** ${doc} */`);
-			}
+		doc: (doc, acc, opts) => {
+			acc.push("/**", ...prefixLines(" * ", doc, opts.lineWidth), " */");
 		},
 
 		enum: (e, _, acc, opts) => {
@@ -88,7 +84,7 @@ import { Pointer, ${__stringImpl(
 			for (let v of e.values) {
 				let line: string;
 				if (!isString(v)) {
-					v.doc && gen.doc(v.doc, res);
+					v.doc && gen.doc(v.doc, res, opts);
 					line = enumName(opts, v.name);
 					if (v.value != null) line += ` = ${v.value}`;
 				} else {
@@ -110,7 +106,7 @@ import { Pointer, ${__stringImpl(
 			);
 			for (let f of struct.fields) {
 				if (isPadding(f)) continue;
-				f.doc && gen.doc(f.doc, lines);
+				f.doc && gen.doc(f.doc, lines, opts);
 				const ftype = __fieldType(f, opts);
 				fieldTypes[f.name] = ftype;
 				lines.push(`${f.name}: ${ftype};`);

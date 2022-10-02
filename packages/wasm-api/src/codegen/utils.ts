@@ -1,5 +1,6 @@
 import type { BigType } from "@thi.ng/api";
 import { isString } from "@thi.ng/checks/is-string";
+import { wordWrapLine, wordWrapLines } from "@thi.ng/strings/word-wrap";
 import type { CodeGenOpts, StructField, WasmPrim, WasmPrim32 } from "../api.js";
 
 /**
@@ -30,16 +31,23 @@ export const isWasmString = (x: string): x is "string" => x === "string";
 export const isPadding = (f: StructField) => f.pad != null && f.pad > 0;
 
 /**
- * Takes an array of strings or splits given string into lines, prefixes each
- * line with given `prefix` and then returns rejoined result.
+ * Takes an array of strings or splits given string into lines, word wraps and
+ * then prefixes each line with given `width` and `prefix`. Returns array of new
+ * lines.
  *
  * @param prefix
  * @param str
+ * @param width
  */
-export const prefixLines = (prefix: string, str: string | string[]) =>
-	(isString(str) ? str.split("\n") : str)
-		.map((line) => prefix + line)
-		.join("\n");
+export const prefixLines = (
+	prefix: string,
+	str: string | string[],
+	width: number
+) =>
+	(isString(str)
+		? wordWrapLines(str, { width })
+		: str.flatMap((x) => wordWrapLine(x, { width }))
+	).map((line) => prefix + line);
 
 /**
  * Returns true if `type` is "slice".
