@@ -268,7 +268,7 @@ export class WasmBridge<T extends WasmExports = WasmExports>
 		const addr = this.exports._wasm_allocate(numBytes);
 		if (!addr)
 			throw new OutOfMemoryError(`unable to allocate: ${numBytes}`);
-		this.logger.debug(
+		this.logger.fine(
 			`allocated ${numBytes} bytes @ 0x${U32(addr)} .. 0x${U32(
 				addr + numBytes - 1
 			)}`
@@ -292,7 +292,7 @@ export class WasmBridge<T extends WasmExports = WasmExports>
 	 * @param numBytes
 	 */
 	free(addr: number, numBytes: number) {
-		this.logger.debug(
+		this.logger.fine(
 			`freeing memory @ 0x${U32(addr)} .. 0x${U32(addr + numBytes - 1)}`
 		);
 		this.exports._wasm_free(addr, numBytes);
