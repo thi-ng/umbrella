@@ -45,8 +45,8 @@ export const prefixLines = (
 	width: number
 ) =>
 	(isString(str)
-		? wordWrapLines(str, { width })
-		: str.flatMap((x) => wordWrapLine(x, { width }))
+		? wordWrapLines(str, { width: width - prefix.length })
+		: str.flatMap((x) => wordWrapLine(x, { width: width - prefix.length }))
 	).map((line) => prefix + line);
 
 /**
