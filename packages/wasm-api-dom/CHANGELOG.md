@@ -9,8 +9,14 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
 
-## [0.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/complex@0.1.0) (2022-04-07)
+## [0.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/wasm-api-dom@0.1.0) (2022-10-03)
 
 #### 🚀 Features
 
-- import as new pkg ([15344f7](https://github.com/thi-ng/umbrella/commit/15344f7))
+- extend API & types, add docs ([27fc6d6](https://github.com/thi-ng/umbrella/commit/27fc6d6))
+- import as new pkg ([58bacc1](https://github.com/thi-ng/umbrella/commit/58bacc1))
+
+#### ♻️ Refactoring
+
+- update Event struct ([80b1d7a](https://github.com/thi-ng/umbrella/commit/80b1d7a))
+  - switch clientX/Y to u16

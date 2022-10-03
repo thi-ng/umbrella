@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-09-21T21:37:59Z
+- **Last updated**: 2022-10-03T16:07:55Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,35 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [0.12.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/wasm-api@0.12.0) (2022-10-03)
+
+#### 🚀 Features
+
+- update CLI ([98d2414](https://github.com/thi-ng/umbrella/commit/98d2414))
+  - add optional type analytics JSON output
+  - add support for including user code via `@`-file references
+  - update config `@`-file refs to resolve relative to config file
+- add support for sentinels & user type body injection ([d240046](https://github.com/thi-ng/umbrella/commit/d240046))
+  - update sizeOf() to include sentinels
+  - add TopLevelType.body for extra user code
+  - update Zig codegen to:
+    - support array/slice sentinels
+    - add optional user code injection
+    - add `std` import header
+- add ReadonlyWasmString, update impls ([240a148](https://github.com/thi-ng/umbrella/commit/240a148))
+- add default value support for Zig codegen ([3c37ae7](https://github.com/thi-ng/umbrella/commit/3c37ae7))
+- add doc string word wrapping ([c0b8e15](https://github.com/thi-ng/umbrella/commit/c0b8e15))
+  - update prefixLines(), add target line width arg
+  - update ICodeGen & CodeGenOpts
+  - update all codegens
+  - update deps
+
+#### 🩹 Bug fixes
+
+- update zig panic handler sig for latest zig master version ([cb51bf6](https://github.com/thi-ng/umbrella/commit/cb51bf6))
+  - see https://github.com/ziglang/zig/commit/694fab484805088030fa36efe3e6b6e7ee385852
+- minor fix word wrap line width ([053ba0f](https://github.com/thi-ng/umbrella/commit/053ba0f))
 
 ## [0.11.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/wasm-api@0.11.0) (2022-09-21)
 

@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/unionstruct",
-	"version": "2.1.10",
+	"version": "2.1.11",
 	"description": "C-style struct, union and bitfield read/write views of ArrayBuffers",
 	"type": "module",
 	"module": "./index.js",
@@ -35,7 +35,7 @@
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.31.1",
-		"@thi.ng/testament": "^0.3.0",
+		"@thi.ng/testament": "^0.3.1",
 		"rimraf": "^3.0.2",
 		"tools": "workspace:^",
 		"typedoc": "^0.22.17",
