@@ -40,8 +40,8 @@
 		"type": "struct",
 		"fields": [
 			{ "name": "target", "type": "i32" },
-			{ "name": "clientX", "type": "u32", "default": 0 },
-			{ "name": "clientY", "type": "u32", "default": 0 },
+			{ "name": "clientX", "type": "u16", "default": 0 },
+			{ "name": "clientY", "type": "u16", "default": 0 },
 			{ "name": "type", "type": "EventType" },
 			{ "name": "buttons", "type": "u8", "default": 0 },
 			{ "name": "modifiers", "type": "u8", "default": 0 },
