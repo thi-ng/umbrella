@@ -1,13 +1,12 @@
-import type { IDeref } from "@thi.ng/api";
 import { unsupported } from "@thi.ng/errors/unsupported";
-import type { IWasmMemoryAccess } from "./api.js";
+import type { IWasmMemoryAccess, ReadonlyWasmString } from "./api.js";
 
 /**
  * Memory mapped string wrapper for Zig-style UTF-8 encoded byte slices (aka
  * pointer & length pair). The actual JS string can be obtained via
  * {@link WasmStringSlice.deref} and mutated via {@link WasmStringSlice.set}.
  */
-export class WasmStringSlice implements IDeref<string> {
+export class WasmStringSlice implements ReadonlyWasmString {
 	readonly max: number;
 
 	constructor(
@@ -90,7 +89,7 @@ export class WasmStringSlice implements IDeref<string> {
  * char pointers. The actual JS string can be obtained via
  * {@link WasmStringSlice.deref} and mutated via {@link WasmStringSlice.set}.
  */
-export class WasmStringPtr implements IDeref<string> {
+export class WasmStringPtr implements ReadonlyWasmString {
 	constructor(
 		public readonly mem: IWasmMemoryAccess,
 		public readonly base: number,
