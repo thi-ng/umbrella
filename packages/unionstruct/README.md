@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![unionstruct](https://media.thi.ng/umbrella/banners-20220914/thing-unionstruct.svg?5d52f2ae)
+# ![unionstruct](https://media.thi.ng/umbrella/banners-20220914/thing-unionstruct.svg?c0beeb99)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/unionstruct.svg)](https://www.npmjs.com/package/@thi.ng/unionstruct)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/unionstruct.svg)

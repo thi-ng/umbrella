@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![geom-io-obj](https://media.thi.ng/umbrella/banners-20220914/thing-geom-io-obj.svg?bf0fd2f8)
+# ![geom-io-obj](https://media.thi.ng/umbrella/banners-20220914/thing-geom-io-obj.svg?c62dfbf7)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/geom-io-obj.svg)](https://www.npmjs.com/package/@thi.ng/geom-io-obj)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/geom-io-obj.svg)

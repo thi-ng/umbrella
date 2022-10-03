@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![fuzzy](https://media.thi.ng/umbrella/banners-20220914/thing-fuzzy.svg?1b27c27a)
+# ![fuzzy](https://media.thi.ng/umbrella/banners-20220914/thing-fuzzy.svg?4fb57c92)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/fuzzy.svg)](https://www.npmjs.com/package/@thi.ng/fuzzy)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/fuzzy.svg)

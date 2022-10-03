@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![porter-duff](https://media.thi.ng/umbrella/banners-20220914/thing-porter-duff.svg?2aad6412)
+# ![porter-duff](https://media.thi.ng/umbrella/banners-20220914/thing-porter-duff.svg?5860729d)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/porter-duff.svg)](https://www.npmjs.com/package/@thi.ng/porter-duff)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/porter-duff.svg)

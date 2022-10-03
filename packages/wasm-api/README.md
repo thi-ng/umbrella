@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![wasm-api](https://media.thi.ng/umbrella/banners-20220914/thing-wasm-api.svg?eb6dbc93)
+# ![wasm-api](https://media.thi.ng/umbrella/banners-20220914/thing-wasm-api.svg?be328da7)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/wasm-api.svg)](https://www.npmjs.com/package/@thi.ng/wasm-api)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/wasm-api.svg)
@@ -19,8 +19,10 @@ This project is part of the
   - [Custom API modules](#custom-api-modules)
   - [Object indices & handles](#object-indices--handles)
 - [Status](#status)
+- [Support packages](#support-packages)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
+- [Usage examples](#usage-examples)
 - [API](#api)
 - [Basic usage example](#basic-usage-example)
   - [Zig version](#zig-version)
@@ -538,6 +540,10 @@ canvases.delete(0);
 
 [Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bwasm-api%5D+in%3Atitle)
 
+## Support packages
+
+- [@thi.ng/wasm-api-dom](https://github.com/thi-ng/umbrella/tree/develop/packages/wasm-api-dom) - Browser DOM bridge API for hybrid TypeScript & Zig applications
+
 ## Installation
 
 ```bash
@@ -561,7 +567,7 @@ node --experimental-repl-await
 > const wasmApi = await import("@thi.ng/wasm-api");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 6.05 KB
+Package sizes (gzipped, pre-treeshake): ESM: 6.13 KB
 
 **IMPORTANT:** The package includes code generators for various languages which
 are **not** required for just using the API bridge. Hence, the usual package
@@ -581,6 +587,19 @@ size in production will be MUCH smaller than what's stated here!
 - [@thi.ng/idgen](https://github.com/thi-ng/umbrella/tree/develop/packages/idgen)
 - [@thi.ng/logger](https://github.com/thi-ng/umbrella/tree/develop/packages/logger)
 - [@thi.ng/paths](https://github.com/thi-ng/umbrella/tree/develop/packages/paths)
+- [@thi.ng/strings](https://github.com/thi-ng/umbrella/tree/develop/packages/strings)
+
+## Usage examples
+
+Several demos in this repo's
+[/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
+directory are using this package.
+
+A selection:
+
+| Screenshot                                                                                                        | Description                                 | Live demo                                        | Source                                                                        |
+|:------------------------------------------------------------------------------------------------------------------|:--------------------------------------------|:-------------------------------------------------|:------------------------------------------------------------------------------|
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/zig-canvas.png" width="240"/> | Zig-based DOM creation & canvas drawing app | [Demo](https://demo.thi.ng/umbrella/zig-canvas/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/zig-canvas) |
 
 ## API
 

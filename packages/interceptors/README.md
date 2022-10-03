@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![interceptors](https://media.thi.ng/umbrella/banners-20220914/thing-interceptors.svg?3d8ec82b)
+# ![interceptors](https://media.thi.ng/umbrella/banners-20220914/thing-interceptors.svg?d9ee265e)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/interceptors.svg)](https://www.npmjs.com/package/@thi.ng/interceptors)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/interceptors.svg)

@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![lowdisc](https://media.thi.ng/umbrella/banners-20220914/thing-lowdisc.svg?44a39560)
+# ![lowdisc](https://media.thi.ng/umbrella/banners-20220914/thing-lowdisc.svg?b11f03a5)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/lowdisc.svg)](https://www.npmjs.com/package/@thi.ng/lowdisc)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/lowdisc.svg)

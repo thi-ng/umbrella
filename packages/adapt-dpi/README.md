@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![adapt-dpi](https://media.thi.ng/umbrella/banners-20220914/thing-adapt-dpi.svg?7a24f3ff)
+# ![adapt-dpi](https://media.thi.ng/umbrella/banners-20220914/thing-adapt-dpi.svg?3c0ddd12)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/adapt-dpi.svg)](https://www.npmjs.com/package/@thi.ng/adapt-dpi)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/adapt-dpi.svg)
@@ -56,7 +56,7 @@ node --experimental-repl-await
 > const adaptDpi = await import("@thi.ng/adapt-dpi");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 173 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 163 bytes
 
 ## Dependencies
 

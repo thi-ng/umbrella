@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![dual-algebra](https://media.thi.ng/umbrella/banners-20220914/thing-dual-algebra.svg?6cc77702)
+# ![dual-algebra](https://media.thi.ng/umbrella/banners-20220914/thing-dual-algebra.svg?76c17874)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/dual-algebra.svg)](https://www.npmjs.com/package/@thi.ng/dual-algebra)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/dual-algebra.svg)

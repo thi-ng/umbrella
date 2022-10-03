@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![hdiff](https://media.thi.ng/umbrella/banners-20220914/thing-hdiff.svg?75459bda)
+# ![hdiff](https://media.thi.ng/umbrella/banners-20220914/thing-hdiff.svg?67454ba3)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/hdiff.svg)](https://www.npmjs.com/package/@thi.ng/hdiff)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/hdiff.svg)

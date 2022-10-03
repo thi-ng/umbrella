@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![ecs](https://media.thi.ng/umbrella/banners-20220914/thing-ecs.svg?5321122b)
+# ![ecs](https://media.thi.ng/umbrella/banners-20220914/thing-ecs.svg?3a60ea80)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/ecs.svg)](https://www.npmjs.com/package/@thi.ng/ecs)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/ecs.svg)

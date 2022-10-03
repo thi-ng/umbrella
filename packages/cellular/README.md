@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![cellular](https://media.thi.ng/umbrella/banners-20220914/thing-cellular.svg?bb476df6)
+# ![cellular](https://media.thi.ng/umbrella/banners-20220914/thing-cellular.svg?4c8cf48e)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/cellular.svg)](https://www.npmjs.com/package/@thi.ng/cellular)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/cellular.svg)

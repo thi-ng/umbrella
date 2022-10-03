@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![dlogic](https://media.thi.ng/umbrella/banners-20220914/thing-dlogic.svg?0aac01dc)
+# ![dlogic](https://media.thi.ng/umbrella/banners-20220914/thing-dlogic.svg?9d5fe6c8)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/dlogic.svg)](https://www.npmjs.com/package/@thi.ng/dlogic)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/dlogic.svg)

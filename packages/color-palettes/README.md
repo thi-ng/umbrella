@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![color-palettes](https://media.thi.ng/umbrella/banners-20220914/thing-color-palettes.svg?173b7294)
+# ![color-palettes](https://media.thi.ng/umbrella/banners-20220914/thing-color-palettes.svg?b1e135aa)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/color-palettes.svg)](https://www.npmjs.com/package/@thi.ng/color-palettes)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/color-palettes.svg)

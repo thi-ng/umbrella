@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![pixel-io-netpbm](https://media.thi.ng/umbrella/banners-20220914/thing-pixel-io-netpbm.svg?6b9f7fcf)
+# ![pixel-io-netpbm](https://media.thi.ng/umbrella/banners-20220914/thing-pixel-io-netpbm.svg?c4ef1813)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/pixel-io-netpbm.svg)](https://www.npmjs.com/package/@thi.ng/pixel-io-netpbm)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/pixel-io-netpbm.svg)

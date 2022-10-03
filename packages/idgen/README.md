@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![idgen](https://media.thi.ng/umbrella/banners-20220914/thing-idgen.svg?9212bacf)
+# ![idgen](https://media.thi.ng/umbrella/banners-20220914/thing-idgen.svg?c0b9cbf9)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/idgen.svg)](https://www.npmjs.com/package/@thi.ng/idgen)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/idgen.svg)

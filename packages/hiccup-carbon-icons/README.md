@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![hiccup-carbon-icons](https://media.thi.ng/umbrella/banners-20220914/thing-hiccup-carbon-icons.svg?e159f63e)
+# ![hiccup-carbon-icons](https://media.thi.ng/umbrella/banners-20220914/thing-hiccup-carbon-icons.svg?657f9c12)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/hiccup-carbon-icons.svg)](https://www.npmjs.com/package/@thi.ng/hiccup-carbon-icons)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/hiccup-carbon-icons.svg)

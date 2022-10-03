@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![sparse](https://media.thi.ng/umbrella/banners-20220914/thing-sparse.svg?7b688c59)
+# ![sparse](https://media.thi.ng/umbrella/banners-20220914/thing-sparse.svg?39a81555)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/sparse.svg)](https://www.npmjs.com/package/@thi.ng/sparse)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/sparse.svg)

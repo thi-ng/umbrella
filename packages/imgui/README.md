@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![imgui](https://media.thi.ng/umbrella/banners-20220914/thing-imgui.svg?75a426f9)
+# ![imgui](https://media.thi.ng/umbrella/banners-20220914/thing-imgui.svg?aeebda62)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/imgui.svg)](https://www.npmjs.com/package/@thi.ng/imgui)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/imgui.svg)

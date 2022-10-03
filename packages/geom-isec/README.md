@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![geom-isec](https://media.thi.ng/umbrella/banners-20220914/thing-geom-isec.svg?8931bf2f)
+# ![geom-isec](https://media.thi.ng/umbrella/banners-20220914/thing-geom-isec.svg?d32123af)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/geom-isec.svg)](https://www.npmjs.com/package/@thi.ng/geom-isec)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/geom-isec.svg)

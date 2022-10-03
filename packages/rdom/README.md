@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![rdom](https://media.thi.ng/umbrella/banners-20220914/thing-rdom.svg?62e5f22d)
+# ![rdom](https://media.thi.ng/umbrella/banners-20220914/thing-rdom.svg?2193a58e)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/rdom.svg)](https://www.npmjs.com/package/@thi.ng/rdom)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/rdom.svg)

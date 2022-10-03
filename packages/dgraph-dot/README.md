@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![dgraph-dot](https://media.thi.ng/umbrella/banners-20220914/thing-dgraph-dot.svg?825c546c)
+# ![dgraph-dot](https://media.thi.ng/umbrella/banners-20220914/thing-dgraph-dot.svg?f014a3fb)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/dgraph-dot.svg)](https://www.npmjs.com/package/@thi.ng/dgraph-dot)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/dgraph-dot.svg)

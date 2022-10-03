@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![sexpr](https://media.thi.ng/umbrella/banners-20220914/thing-sexpr.svg?491d56c4)
+# ![sexpr](https://media.thi.ng/umbrella/banners-20220914/thing-sexpr.svg?40c7df44)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/sexpr.svg)](https://www.npmjs.com/package/@thi.ng/sexpr)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/sexpr.svg)

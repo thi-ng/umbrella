@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![fsm](https://media.thi.ng/umbrella/banners-20220914/thing-fsm.svg?89a37237)
+# ![fsm](https://media.thi.ng/umbrella/banners-20220914/thing-fsm.svg?44fc664d)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/fsm.svg)](https://www.npmjs.com/package/@thi.ng/fsm)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/fsm.svg)

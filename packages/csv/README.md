@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![csv](https://media.thi.ng/umbrella/banners-20220914/thing-csv.svg?c8358196)
+# ![csv](https://media.thi.ng/umbrella/banners-20220914/thing-csv.svg?4f8977d0)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/csv.svg)](https://www.npmjs.com/package/@thi.ng/csv)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/csv.svg)

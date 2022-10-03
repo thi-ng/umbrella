@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![binary](https://media.thi.ng/umbrella/banners-20220914/thing-binary.svg?5bece7ef)
+# ![binary](https://media.thi.ng/umbrella/banners-20220914/thing-binary.svg?4db523c5)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/binary.svg)](https://www.npmjs.com/package/@thi.ng/binary)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/binary.svg)

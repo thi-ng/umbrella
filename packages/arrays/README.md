@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![arrays](https://media.thi.ng/umbrella/banners-20220914/thing-arrays.svg?0ef5e389)
+# ![arrays](https://media.thi.ng/umbrella/banners-20220914/thing-arrays.svg?02d7f5d9)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/arrays.svg)](https://www.npmjs.com/package/@thi.ng/arrays)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/arrays.svg)

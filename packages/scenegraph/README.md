@@ -1,6 +1,6 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![scenegraph](https://media.thi.ng/umbrella/banners-20220914/thing-scenegraph.svg?c541a9ad)
+# ![scenegraph](https://media.thi.ng/umbrella/banners-20220914/thing-scenegraph.svg?b46c4533)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/scenegraph.svg)](https://www.npmjs.com/package/@thi.ng/scenegraph)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/scenegraph.svg)
