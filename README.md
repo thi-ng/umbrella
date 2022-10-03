@@ -16,7 +16,7 @@
 **Please visit [thi.ng](https://thi.ng) for additional information & topic based
 search of packages relevant to your use cases...**
 
-This mono-repository is home to 168+ thi.ng TypeScript/ES6 projects, a wide and
+This mono-repository is home to 169+ thi.ng TypeScript/ES6 projects, a wide and
 jointly developed collection of packages and building blocks for (non-exhaustive
 list of topics):
 
@@ -162,14 +162,13 @@ feature or `develop` branches)
 
 ### Latest updates
 
-As of: 2022-09-27
+As of: 2022-10-03
 
-| Status                                        | Project                                     | Version                                                                                                           | Changelog                                      |
-|-----------------------------------------------|---------------------------------------------|-------------------------------------------------------------------------------------------------------------------|------------------------------------------------|
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/pixel`](./packages/pixel)         | [![version](https://img.shields.io/npm/v/@thi.ng/pixel.svg)](https://www.npmjs.com/package/@thi.ng/pixel)         | [changelog](./packages/pixel/CHANGELOG.md)     |
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/rasterize`](./packages/rasterize)       | [![version](https://img.shields.io/npm/v/@thi.ng/rasterize.svg)](https://www.npmjs.com/package/@thi.ng/rasterize)       | [changelog](./packages/rasterize/CHANGELOG.md)    |
-| ![](https://img.shields.io/badge/-new-cyan)   | [`@thi.ng/tangle`](./packages/tangle)       | [![version](https://img.shields.io/npm/v/@thi.ng/tangle.svg)](https://www.npmjs.com/package/@thi.ng/tangle)       | [changelog](./packages/tangle/CHANGELOG.md)    |
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/wasm-api`](./packages/wasm-api)   | [![version](https://img.shields.io/npm/v/@thi.ng/wasm-api.svg)](https://www.npmjs.com/package/@thi.ng/wasm-api)   | [changelog](./packages/wasm-api/CHANGELOG.md)  |
+| Status                                        | Project                                           | Version                                                                                                                 | Changelog                                         |
+|-----------------------------------------------|---------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------|
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/adapt-dpi`](./packages/adapt-dpi)       | [![version](https://img.shields.io/npm/v/@thi.ng/adapt-dpi.svg)](https://www.npmjs.com/package/@thi.ng/adapt-dpi)       | [changelog](./packages/adapt-dpi/CHANGELOG.md)    |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/wasm-api`](./packages/wasm-api)         | [![version](https://img.shields.io/npm/v/@thi.ng/wasm-api.svg)](https://www.npmjs.com/package/@thi.ng/wasm-api)         | [changelog](./packages/wasm-api/CHANGELOG.md)     |
+| ![](https://img.shields.io/badge/-new-cyan)   | [`@thi.ng/wasm-api-dom`](./packages/wasm-api-dom) | [![version](https://img.shields.io/npm/v/@thi.ng/wasm-api-dom.svg)](https://www.npmjs.com/package/@thi.ng/wasm-api-dom) | [changelog](./packages/wasm-api-dom/CHANGELOG.md) |
 
 <!--
 ![](https://img.shields.io/badge/-feat-green)
@@ -393,6 +392,7 @@ As of: 2022-09-27
 | [`@thi.ng/unionstruct`](./packages/unionstruct)   | [![version](https://img.shields.io/npm/v/@thi.ng/unionstruct.svg)](https://www.npmjs.com/package/@thi.ng/unionstruct)   | [changelog](./packages/unionstruct/CHANGELOG.md)  | Wrapper for C-like structs / unions             |
 | [`@thi.ng/vector-pools`](./packages/vector-pools) | [![version](https://img.shields.io/npm/v/@thi.ng/vector-pools.svg)](https://www.npmjs.com/package/@thi.ng/vector-pools) | [changelog](./packages/vector-pools/CHANGELOG.md) | Data structures for memory mapped vectors       |
 | [`@thi.ng/wasm-api`](./packages/wasm-api)         | [![version](https://img.shields.io/npm/v/@thi.ng/wasm-api.svg)](https://www.npmjs.com/package/@thi.ng/wasm-api)         | [changelog](./packages/wasm-api/CHANGELOG.md)     | Modular, extensible JS/WebAssembly bridge API   |
+| [`@thi.ng/wasm-api-dom`](./packages/wasm-api-dom) | [![version](https://img.shields.io/npm/v/@thi.ng/wasm-api-dom.svg)](https://www.npmjs.com/package/@thi.ng/wasm-api-dom) | [changelog](./packages/wasm-api-dom/CHANGELOG.md) | WASM-side DOM manipulation                      |
 
 ### DSLs
 
