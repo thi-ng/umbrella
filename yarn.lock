@@ -1760,6 +1760,18 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@example/zig-canvas@workspace:examples/zig-canvas":
+  version: 0.0.0-use.local
+  resolution: "@example/zig-canvas@workspace:examples/zig-canvas"
+  dependencies:
+    "@thi.ng/api": "workspace:^"
+    "@thi.ng/wasm-api": "workspace:^"
+    "@thi.ng/wasm-api-dom": "workspace:^"
+    typescript: ^4.8.3
+    vite: ^3.1.3
+  languageName: unknown
+  linkType: soft
+
 "@gar/promisify@npm:^1.0.1":
   version: 1.1.2
   resolution: "@gar/promisify@npm:1.1.2"
