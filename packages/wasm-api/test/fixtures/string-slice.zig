@@ -1,3 +1,5 @@
+const std = @import("std");
+
 pub const Bar = enum(i32) {
     A,
     B = 16,
