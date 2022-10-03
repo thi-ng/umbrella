@@ -47,6 +47,9 @@ const sizeOf = defmulti<
 					: sizeOf(types[field.type], types, opts);
 				if (field.tag == "array" || field.tag === "vec") {
 					size *= field.len!;
+					if (field.sentinel !== undefined && field.tag === "array") {
+						size += SIZEOF[<Type>field.type];
+					}
 				}
 			}
 			return (field.__size = align(size, <Pow2>field.__align));

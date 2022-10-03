@@ -1,4 +1,7 @@
+import { isNumber } from "@thi.ng/checks/is-number";
 import { isString } from "@thi.ng/checks/is-string";
+import { unsupported } from "@thi.ng/errors/unsupported";
+import { split } from "@thi.ng/strings/split";
 import type { CodeGenOptsBase, ICodeGen } from "../api.js";
 import {
 	enumName,
@@ -28,7 +31,8 @@ export const ZIG = (opts: Partial<ZigOpts> = {}) => {
 	const SCOPES: [RegExp, RegExp] = [/\{$/, /\}\)?[;,]?$/];
 
 	const gen: ICodeGen = {
-		pre: () => opts.pre || "",
+		pre: () =>
+			`const std = @import("std");${opts.pre ? `\n${opts.pre}` : ""}`,
 
 		post: () => opts.post || "",
 
@@ -51,6 +55,9 @@ export const ZIG = (opts: Partial<ZigOpts> = {}) => {
 					line = enumName(opts, v);
 				}
 				lines.push(line + ",");
+			}
+			if (e.body?.zig) {
+				lines.push("", ...split(e.body!.zig), "");
 			}
 			lines.push("};", "");
 			acc.push(...withIndentation(lines, INDENT, ...SCOPES));
@@ -86,10 +93,15 @@ export const ZIG = (opts: Partial<ZigOpts> = {}) => {
 				let defaultVal = "";
 				switch (f.tag) {
 					case "array":
-						ftype = `[${f.len}]${ftype}`;
+						ftype =
+							f.sentinel !== undefined
+								? `[${f.len}:${f.sentinel}]${ftype}`
+								: `[${f.len}]${ftype}`;
 						break;
 					case "slice":
-						ftype = `[]${f.const ? "const " : ""}${ftype}`;
+						ftype = `[${
+							f.sentinel !== undefined ? ":" + f.sentinel : ""
+						}]${f.const ? "const " : ""}${ftype}`;
 						break;
 					case "vec":
 						ftype = `@Vector(${f.len}, ${ftype})`;
@@ -101,11 +113,20 @@ export const ZIG = (opts: Partial<ZigOpts> = {}) => {
 						break;
 					case "scalar":
 					default:
-						if (f.default != undefined)
-							defaultVal = ` = ${f.default}`;
+						if (f.default != undefined) {
+							if (!(isString(f.default) || isNumber(f.default))) {
+								unsupported(
+									`wrong default value for ${name}.${f.name} (${f.default})`
+								);
+							}
+							defaultVal = ` = ${JSON.stringify(f.default)}`;
+						}
 				}
 				ftypes[f.name] = ftype;
 				res.push(`${f.name}: ${ftype}${defaultVal},`);
+			}
+			if (struct.body?.zig) {
+				res.push("", ...split(struct.body!.zig), "");
 			}
 			res.push("};");
 

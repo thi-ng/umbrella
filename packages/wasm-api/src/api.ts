@@ -1,4 +1,11 @@
-import type { BigType, FloatType, Fn, IDeref, ILength } from "@thi.ng/api";
+import type {
+	BigType,
+	FloatType,
+	Fn,
+	IDeref,
+	ILength,
+	IObjectOf,
+} from "@thi.ng/api";
 import type { WasmBridge } from "./bridge.js";
 
 export const PKG_NAME = "@thi.ng/wasm-api";
@@ -235,6 +242,14 @@ export interface TopLevelType extends TypeInfo {
 	 * Type / kind
 	 */
 	type: "struct" | "enum";
+	/**
+	 * Optional object of user provided source codes to be injected into the
+	 * generated type. Keys are language IDs (same name as respective codegen).
+	 *
+	 * @remarks
+	 * Currently only supported by the {@link ZIG} codegen, ignored otherwise.
+	 */
+	body?: IObjectOf<string>;
 }
 
 export interface Struct extends TopLevelType {
@@ -304,7 +319,8 @@ export interface StructField extends TypeInfo {
 	 */
 	const?: boolean;
 	/**
-	 * TODO currently unsupported & ignored!
+	 * Currently only supported for {@link ZIG} arrays & slices, otherwise
+	 * ignored!
 	 */
 	sentinel?: number;
 	/**
@@ -312,7 +328,8 @@ export interface StructField extends TypeInfo {
 	 */
 	len?: number;
 	/**
-	 * Currently only supported for Zig scalar values, otherwise ignored!
+	 * Currently only supported for {@link ZIG} scalar & string values,
+	 * otherwise ignored!
 	 */
 	default?: number;
 	/**
