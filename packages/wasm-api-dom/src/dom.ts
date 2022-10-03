@@ -1,6 +1,11 @@
 import { adaptDPI } from "@thi.ng/adapt-dpi";
 import { assert } from "@thi.ng/errors/assert";
-import type { IWasmAPI, WasmBridge, WasmType } from "@thi.ng/wasm-api";
+import type {
+	IWasmAPI,
+	ReadonlyWasmString,
+	WasmBridge,
+	WasmType,
+} from "@thi.ng/wasm-api";
 import { ObjectIndex } from "@thi.ng/wasm-api/object-index";
 import {
 	$CreateCanvasOpts,
@@ -14,16 +19,22 @@ import {
 	EventType,
 } from "./api.js";
 
+interface WasmListener {
+	ctx: number;
+	name: string;
+	event: WasmEvent;
+	fn: EventListener;
+}
+
 export class WasmDom implements IWasmAPI<DOMExports> {
 	parent!: WasmBridge<DOMExports>;
 	$Event!: WasmType<WasmEvent>;
 	$CreateElementOpts!: WasmType<CreateElementOpts>;
 
 	elements = new ObjectIndex<Element>({ name: "elements" });
-	listeners: Record<
-		number,
-		{ ctx: number; name: string; fn: EventListener }
-	> = {};
+	listeners: Record<number, WasmListener> = {};
+
+	protected currEvent: Event | null = null;
 
 	async init(parent: WasmBridge<DOMExports>) {
 		this.parent = parent;
@@ -46,15 +57,27 @@ export class WasmDom implements IWasmAPI<DOMExports> {
 				const opts = this.$CreateElementOpts.instance(optsAddr);
 				const tagName = opts.tag.deref();
 				const el = document.createElement(tagName);
-				this.attachElement(el, opts.parent, opts.index);
+				this.initElement(el, opts);
 				return this.elements.add(el);
+			},
+
+			removeElement: (elementID: number) => {
+				const el = this.elements.get(elementID, false);
+				if (!el) return;
+				const remove = (el: Element) => {
+					const id = this.elements.find((x) => x === el, false);
+					if (id !== undefined) this.elements.delete(id, false);
+					el.parentNode?.removeChild(el);
+					for (let child of el.children) remove(child);
+				};
+				remove(el);
 			},
 
 			createCanvas: (optsAddr: number) => {
 				const opts = $CreateCanvasOpts(this.parent).instance(optsAddr);
 				const el = document.createElement("canvas");
 				adaptDPI(el, opts.width, opts.height, opts.dpr);
-				this.attachElement(el, opts.parent, opts.index);
+				this.initElement(el, <any>opts);
 				return this.elements.add(el);
 			},
 
@@ -71,40 +94,57 @@ export class WasmDom implements IWasmAPI<DOMExports> {
 					dpr
 				),
 
-			_setStringAttrib: (
-				elementID: number,
-				name: number,
-				val: number
-			) => {
+			_setStringAttrib: (elementID: number, name: number, val: number) =>
 				this.elements
 					.get(elementID)
 					.setAttribute(
 						this.parent.getString(name),
 						this.parent.getString(val)
-					);
-			},
+					),
 
-			_setNumericAttrib: (
-				elementID: number,
-				name: number,
-				val: number
-			) => {
+			_setNumericAttrib: (elementID: number, name: number, val: number) =>
 				this.elements
 					.get(elementID)
-					.setAttribute(this.parent.getString(name), String(val));
-			},
+					.setAttribute(this.parent.getString(name), String(val)),
+
+			_getStringAttrib: (
+				elementID: number,
+				name: number,
+				valAddr: number,
+				maxBytes: number
+			) =>
+				this.parent.setString(
+					String(
+						this.elements
+							.get(elementID)
+							.getAttribute(this.parent.getString(name)) || ""
+					),
+					valAddr,
+					maxBytes,
+					true
+				),
+
+			_getNumericAttrib: (elementID: number, name: number) =>
+				Number(
+					this.elements
+						.get(elementID)
+						.getAttribute(this.parent.getString(name))
+				),
 
 			_addListener: (ctxID: number, name: number, listenerID: number) => {
 				const ctx = ctxID < 0 ? window : this.elements.get(ctxID);
 				const eventName = this.parent.getString(name);
+				const event = this.$Event.instance(
+					this.parent.allocate(this.$Event.size)
+				);
 				const fn = (e: Event) => {
-					const event = this.$Event.instance(
-						this.parent.allocate(this.$Event.size, true)
-					);
+					this.currEvent = e;
+					this.parent.ensureMemory();
+					event.__bytes.fill(0);
 					const target =
 						e.target === window
 							? -1
-							: this.elements.find((x) => x === e.target);
+							: this.elements.find((x) => x === e.target, false);
 					event.target = target !== undefined ? target : -2;
 					if (e instanceof MouseEvent) {
 						const bounds = (<Element>(
@@ -129,6 +169,8 @@ export class WasmDom implements IWasmAPI<DOMExports> {
 							8,
 							true
 						);
+					} else {
+						event.type = EventType.UNKOWN;
 					}
 					if (
 						e instanceof MouseEvent ||
@@ -145,14 +187,26 @@ export class WasmDom implements IWasmAPI<DOMExports> {
 						listenerID,
 						event.__base
 					);
-					this.parent.free(event.__base, this.$Event.size);
+					this.currEvent = null;
 				};
+				this.parent.logger.debug(
+					`ctx ${ctxID} - adding ${eventName} listener #${listenerID}`
+				);
 				ctx.addEventListener(eventName, fn);
 				this.listeners[listenerID] = {
 					ctx: ctxID,
 					name: eventName,
+					event,
 					fn,
 				};
+			},
+
+			preventDefault: () => {
+				this.currEvent && this.currEvent.preventDefault();
+			},
+
+			stopImmediatePropagation: () => {
+				this.currEvent && this.currEvent.stopImmediatePropagation();
 			},
 
 			_removeListener: (listenerID: number) => {
@@ -161,6 +215,10 @@ export class WasmDom implements IWasmAPI<DOMExports> {
 				const ctx =
 					listener.ctx < 0 ? window : this.elements.get(listener.ctx);
 				ctx.removeEventListener(listener.name, listener.fn);
+				this.parent.logger.debug(
+					`removing event listener #${listenerID}`
+				);
+				this.parent.free(listener.event.__base, this.$Event.size);
 				delete this.listeners[listenerID];
 			},
 
@@ -176,12 +234,27 @@ export class WasmDom implements IWasmAPI<DOMExports> {
 		};
 	}
 
-	protected attachElement(el: Element, parentID: number, index: number) {
-		if (parentID >= 0) {
-			const parent = this.elements.get(parentID);
+	protected initElement(
+		el: Element,
+		opts: Pick<
+			Readonly<CreateElementOpts>,
+			"class" | "id" | "index" | "parent"
+		> &
+			Partial<{ html: ReadonlyWasmString; text: ReadonlyWasmString }>
+	) {
+		const { id, class: $class, parent, index } = opts;
+		if (id.length) el.setAttribute("id", id.deref());
+		if ($class.length) el.setAttribute("class", $class.deref());
+		if (opts.html?.length) {
+			el.innerHTML = opts.html.deref();
+		} else if (opts.text?.length) {
+			(<HTMLElement>el).innerText = opts.text.deref();
+		}
+		if (parent >= 0) {
+			const parentEl = this.elements.get(parent);
 			index < 0
-				? parent.appendChild(el)
-				: parent.insertBefore(el, parent.childNodes[index]);
+				? parentEl.appendChild(el)
+				: parentEl.insertBefore(el, parentEl.childNodes[index]);
 		}
 	}
 }

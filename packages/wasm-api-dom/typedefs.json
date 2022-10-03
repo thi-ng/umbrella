@@ -16,6 +16,17 @@
 		]
 	},
 	{
+		"name": "MouseButton",
+		"type": "enum",
+		"tag": "u8",
+		"values": [
+			"none",
+			{ "name": "primary", "value": 1 },
+			{ "name": "secondary", "value": 2 },
+			{ "name": "middle", "value": 4 }
+		]
+	},
+	{
 		"name": "KeyModifier",
 		"type": "enum",
 		"tag": "u8",
@@ -39,20 +50,90 @@
 		"name": "Event",
 		"type": "struct",
 		"fields": [
-			{ "name": "target", "type": "i32" },
-			{ "name": "clientX", "type": "u16", "default": 0 },
-			{ "name": "clientY", "type": "u16", "default": 0 },
 			{ "name": "type", "type": "EventType" },
-			{ "name": "buttons", "type": "u8", "default": 0 },
-			{ "name": "modifiers", "type": "u8", "default": 0 },
-			{ "name": "key", "type": "u8", "tag": "array", "len": 8 }
-		]
+			{
+				"name": "target",
+				"type": "i32",
+				"doc": "Target element ID, positive if a known element, otherwise:\n\n- 0: document.body\n- -1: window\n- -2: = unknown"
+			},
+			{
+				"name": "clientX",
+				"type": "i16",
+				"doc": "Mouse/touch X position in the local space of the element's bounding rect",
+				"default": 0
+			},
+			{
+				"name": "clientY",
+				"type": "i16",
+				"doc": "Mouse/touch Y position in the local space of the element's bounding rect",
+				"default": 0
+			},
+			{
+				"name": "deltaX",
+				"type": "i16",
+				"doc": "WHEEL event only, scroll X delta",
+				"default": 0
+			},
+			{
+				"name": "deltaY",
+				"type": "i16",
+				"doc": "WHEEL event only, scroll Y delta",
+				"default": 0
+			},
+			{
+				"name": "buttons",
+				"type": "u8",
+				"doc": "Encoded bitmask of currently pressed mouse buttons, see `MouseButton` enum",
+				"default": 0
+			},
+			{
+				"name": "modifiers",
+				"type": "u8",
+				"doc": "Encoded bitmask of currently pressed modifier keys, see `KeyModifier` enum",
+				"default": 0
+			},
+			{
+				"name": "key",
+				"type": "u8",
+				"tag": "array",
+				"len": 8,
+				"sentinel": 0,
+				"doc": "Value/name of the key pressed"
+			}
+		],
+		"body": {
+			"zig": "pub fn getKey(self: *const Event) []const u8 {\nreturn self.key[0..std.mem.indexOfSentinel(u8, 0, &self.key)];\n}"
+		}
 	},
 	{
 		"name": "CreateElementOpts",
 		"type": "struct",
 		"fields": [
 			{ "name": "tag", "type": "string", "doc": "DOM element name" },
+			{
+				"name": "id",
+				"type": "string",
+				"doc": "ID attrib",
+				"default": ""
+			},
+			{
+				"name": "class",
+				"type": "string",
+				"doc": "Element class attrib",
+				"default": ""
+			},
+			{
+				"name": "text",
+				"type": "string",
+				"doc": "Element inner text body",
+				"default": ""
+			},
+			{
+				"name": "html",
+				"type": "string",
+				"doc": "Element inner HTML body",
+				"default": ""
+			},
 			{
 				"name": "parent",
 				"type": "i32",
@@ -70,8 +151,28 @@
 		"name": "CreateCanvasOpts",
 		"type": "struct",
 		"fields": [
-			{ "name": "width", "type": "u16" },
-			{ "name": "height", "type": "u16" },
+			{
+				"name": "width",
+				"type": "u16",
+				"doc": "Canvas width (in CSS pixels)"
+			},
+			{
+				"name": "height",
+				"type": "u16",
+				"doc": "Canvas height (in CSS pixels)"
+			},
+			{
+				"name": "id",
+				"type": "string",
+				"doc": "Element ID attrib",
+				"default": ""
+			},
+			{
+				"name": "class",
+				"type": "string",
+				"doc": "Element class attrib",
+				"default": ""
+			},
 			{
 				"name": "parent",
 				"type": "i32",
@@ -83,7 +184,12 @@
 				"doc": "Same as CreateElementOpts.index",
 				"default": -1
 			},
-			{ "name": "dpr", "type": "u8", "default": 1 }
+			{
+				"name": "dpr",
+				"type": "u8",
+				"doc": "Device pixel ratio for computing physical pixel dimensions, see `getWindowInfo()`",
+				"default": 1
+			}
 		]
 	}
 ]

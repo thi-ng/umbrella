@@ -25,7 +25,7 @@
 	"license": "Apache-2.0",
 	"scripts": {
 		"build": "yarn clean && tsc --declaration",
-		"build:types": "npx wasm-api --lang ts -o src/generated/api.ts --lang zig -o include/api.zig typedefs.json",
+		"build:types": "npx wasm-api -a analytics.json --lang ts -o src/generated/api.ts --lang zig -o include/api.zig typedefs.json",
 		"clean": "rimraf '*.js' '*.d.ts' '*.map' doc",
 		"doc": "typedoc --excludePrivate --excludeInternal --out doc src/index.ts",
 		"doc:ae": "mkdir -p .ae/doc .ae/temp && api-extractor run --local --verbose",
