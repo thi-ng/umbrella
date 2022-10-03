@@ -13,7 +13,7 @@ pub extern "wasmapi" fn _panic(addr: [*]const u8, len: usize) noreturn;
 /// ```
 /// pub const panic = @import("wasmapi").panic;
 /// ```
-pub fn panic(msg: []const u8, _: ?*std.builtin.StackTrace) noreturn {
+pub fn panic(msg: []const u8, _: ?*std.builtin.StackTrace, _: ?usize) noreturn {
     _panic(msg.ptr, msg.len);
     unreachable;
 }
