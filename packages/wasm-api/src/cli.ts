@@ -14,13 +14,13 @@ import {
 } from "@thi.ng/args";
 import { isArray, isPlainObject } from "@thi.ng/checks";
 import { illegalArgs } from "@thi.ng/errors";
-import { mutIn } from "@thi.ng/paths/mut-in";
-import { readJSON, readText, writeText } from "@thi.ng/file-io";
+import { readJSON, readText, writeJSON, writeText } from "@thi.ng/file-io";
 import { ConsoleLogger, ILogger } from "@thi.ng/logger";
-import { resolve } from "path";
+import { mutIn } from "@thi.ng/paths";
+import { dirname, resolve } from "path";
 import type { CodeGenOpts, Struct, TopLevelType, TypeColl } from "./api.js";
 import { generateTypes } from "./codegen.js";
-import { C11Opts, C11 } from "./codegen/c11.js";
+import { C11, C11Opts } from "./codegen/c11.js";
 import { TSOpts, TYPESCRIPT } from "./codegen/typescript.js";
 import { isPadding, isWasmPrim, isWasmString } from "./codegen/utils.js";
 import { ZIG, ZigOpts } from "./codegen/zig.js";
@@ -30,6 +30,7 @@ const GENERATORS = <const>{ c11: C11, ts: TYPESCRIPT, zig: ZIG };
 type Language = Keys<typeof GENERATORS>;
 
 interface CLIOpts {
+	analytics?: string;
 	config?: string;
 	debug: boolean;
 	dryRun: boolean;
@@ -52,6 +53,11 @@ interface GenConfig {
 }
 
 const argOpts: Args<CLIOpts> = {
+	analytics: string({
+		alias: "a",
+		hint: "FILE",
+		desc: "output file path for raw codegen analytics",
+	}),
 	config: string({
 		alias: "c",
 		hint: "FILE",
@@ -122,6 +128,16 @@ const addTypeSpec = (
 		invalidSpec(path, `${spec.name} type: ${spec.type}`);
 	if (coll[spec.name]) invalidSpec(path, `duplicate name: ${spec.name}`);
 
+	if (spec.body) {
+		if (!isPlainObject(spec.body))
+			invalidSpec(path, `${spec.name}.body must be an object`);
+		for (let lang in spec.body) {
+			const src = spec.body[lang];
+			if (src[0] === "@") {
+				spec.body[lang] = readText(src.substring(1), ctx.logger);
+			}
+		}
+	}
 	ctx.logger.debug(`registering ${spec.type}: ${spec.name}`);
 	coll[spec.name] = spec;
 	(<any>spec).__path = path;
@@ -206,21 +222,40 @@ try {
 	};
 
 	if (opts.config) {
-		ctx.config = readJSON(resolve(opts.config), ctx.logger);
+		opts.config = resolve(opts.config);
+		ctx.config = readJSON(opts.config, ctx.logger);
 		for (let id in ctx.config) {
 			const conf = ctx.config[<keyof GenConfig>id]!;
 			if (conf.pre && conf.pre[0] === "@") {
-				conf.pre = readText(conf.pre.substring(1), ctx.logger);
+				conf.pre = readText(
+					resolve(dirname(opts.config), conf.pre.substring(1)),
+					ctx.logger
+				);
 			}
 			if (conf.post && conf.post[0] === "@") {
-				conf.post = readText(conf.post.substring(1), ctx.logger);
+				conf.post = readText(
+					resolve(dirname(opts.config), conf.post.substring(1)),
+					ctx.logger
+				);
 			}
 		}
 	}
 	opts.debug && mutIn(ctx, ["config", "global", "debug"], true);
 	opts.string && mutIn(ctx, ["config", "global", "stringType"], opts.string);
 
-	generateOutputs(ctx, parseTypeSpecs(ctx, rest));
+	const types = parseTypeSpecs(ctx, rest);
+	generateOutputs(ctx, types);
+
+	if (ctx.opts.analytics) {
+		// always write analytics, even if dry run
+		writeJSON(
+			resolve(ctx.opts.analytics),
+			types,
+			undefined,
+			"\t",
+			ctx.logger
+		);
+	}
 } catch (e) {
 	if (!(e instanceof ParseError)) process.stderr.write((<Error>e).message);
 	process.exit(1);
