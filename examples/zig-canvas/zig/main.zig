@@ -2,12 +2,15 @@ const std = @import("std");
 const wasm = @import("wasmapi");
 const dom = @import("dom");
 
-const Point = @Vector(2, u16);
+const Point = @Vector(2, i16);
 const Stroke = std.ArrayList(Point);
 
-// JS externals
+// use JS panic handler
+pub const panic = wasm.panic;
 
+// JS externals
 pub extern "app" fn clearCanvas(canvas: i32) void;
+pub extern "app" fn downloadCanvas(canvas: i32) void;
 pub extern "app" fn drawStroke(canvas: i32, points: [*]Point, len: u32) void;
 
 // allocator, also exposed & used by JS-side WasmBridge
@@ -18,58 +21,86 @@ pub const WASM_ALLOCATOR = gpa.allocator();
 var strokes = std.ArrayList(*Stroke).init(WASM_ALLOCATOR);
 var currStroke: ?*Stroke = null;
 
+// state
 var window: dom.WindowInfo = undefined;
 var canvasID: i32 = -1;
 
 // event handlers
 
-fn onMouseDown(event: *const dom.Event) void {
+/// mousedown/touchstart handler
+fn startStroke(event: *const dom.Event) void {
     var stroke: *Stroke = WASM_ALLOCATOR.create(Stroke) catch return;
     var strokeInst = std.ArrayList(Point).init(WASM_ALLOCATOR);
-    strokeInst.append([2]u16{
-        event.clientX * window.dpr,
-        event.clientY * window.dpr,
-    }) catch return;
+    strokeInst.append(scaledPoint(event.clientX, event.clientY)) catch return;
     stroke.* = strokeInst;
     strokes.append(stroke) catch return;
     currStroke = stroke;
 }
 
-fn onMouseDrag(event: *const dom.Event) void {
+/// mousemove/touchmove handler (only if active stroke)
+fn updateStroke(event: *const dom.Event) void {
     if (currStroke) |curr| {
-        curr.append([2]u16{
-            event.clientX * window.dpr,
-            event.clientY * window.dpr,
-        }) catch return;
+        curr.append(scaledPoint(event.clientX, event.clientY)) catch return;
         redraw();
+        dom.preventDefault();
     }
 }
 
-fn onMouseUp(event: *const dom.Event) void {
+/// mouseup/touchend handler
+fn endStroke(event: *const dom.Event) void {
     _ = event;
     currStroke = null;
 }
 
+/// computes point scaled to current DPR
+fn scaledPoint(x: i16, y: i16) Point {
+    return [2]i16{
+        (x - 8) * window.dpr,
+        (y - 8) * window.dpr,
+    };
+}
+
 fn onKeyDown(event: *const dom.Event) void {
     if (event.modifiers & @enumToInt(dom.KeyModifier.CTRL) == 0) return;
-    if (std.mem.indexOfScalar(u8, event.key[0..], 0)) |idx| {
-        const key = event.key[0..idx];
-        if (std.mem.eql(u8, key, "z")) {
-            undoStroke();
-        }
+    const key = event.getKey();
+    if (std.mem.eql(u8, key, "z")) {
+        undoStroke();
+        dom.preventDefault();
     }
 }
 
 fn onResize(event: *const dom.Event) void {
     _ = event;
+    resizeCanvas();
+    redraw();
+}
+
+fn onBtUndo(event: *const dom.Event) void {
+    _ = event;
+    undoStroke();
+}
+
+fn onBtDownload(event: *const dom.Event) void {
+    _ = event;
+    downloadCanvas(canvasID);
+}
+
+fn resizeCanvas() void {
     dom.getWindowInfo(&window);
     dom.setCanvasSize(
         canvasID,
-        window.innerWidth,
-        window.innerHeight,
+        // need to subtract margins defined via CSS (assuming 1rem = 16px)
+        window.innerWidth - 4 * 8,
+        window.innerHeight - 5 * 8 - 24,
         window.dpr,
     );
-    redraw();
+}
+
+fn redraw() void {
+    clearCanvas(canvasID);
+    for (strokes.items) |stroke| {
+        drawStroke(canvasID, stroke.items.ptr, stroke.items.len);
+    }
 }
 
 fn undoStroke() void {
@@ -80,23 +111,16 @@ fn undoStroke() void {
     }
 }
 
-fn redraw() void {
-    clearCanvas(canvasID);
-    for (strokes.items) |stroke| {
-        drawStroke(canvasID, stroke.items.ptr, stroke.items.len);
-    }
-}
-
-// main function (called from JS)
-// initialize & create DOM & setup all event listeners
-
+/// main entry point (called from JS)
+/// initialize & create DOM, setup event listeners
 export fn start() void {
     dom.init(WASM_ALLOCATOR) catch return;
     dom.getWindowInfo(&window);
 
     const container = dom.createElement(&.{
         .tag = "main",
-        .parent = 0,
+        .id = "app",
+        .parent = dom.DOC_BODY,
         .index = 0,
     });
 
@@ -105,32 +129,49 @@ export fn start() void {
         .parent = container,
     });
 
-    const btUndo = dom.createElement(&.{
-        .tag = "button",
+    _ = dom.createElement(&.{
+        .tag = "span",
+        .html = "<strong>thi.ng/wasm-api-dom canvas</strong>",
+        .class = "mr3",
         .parent = toolbar,
     });
-    dom.setInnerText(btUndo, "undo");
-    const listener = struct {
-        fn onclick(event: *const dom.Event) void {
-            _ = event;
-            undoStroke();
-        }
-    };
-    _ = dom.addListener(btUndo, "click", listener.onclick);
+
+    const btUndo = dom.createElement(&.{
+        .tag = "button",
+        .text = "undo",
+        .class = "mr1",
+        .parent = toolbar,
+    });
+    _ = dom.addListener(btUndo, "click", onBtUndo);
+
+    const btDownload = dom.createElement(&.{
+        .tag = "button",
+        .text = "download",
+        .parent = toolbar,
+    });
+    _ = dom.addListener(btDownload, "click", onBtDownload);
 
     // main editor canvas
     canvasID = dom.createCanvas(&.{
-        .width = window.innerWidth,
-        .height = window.innerHeight - 50,
+        .id = "editor",
+        // dummy size, will update via resizeCanvas() later
+        .width = 100,
+        .height = 100,
         .dpr = window.dpr,
         .parent = container,
     });
-    _ = dom.addListener(canvasID, "mousedown", onMouseDown);
-    _ = dom.addListener(canvasID, "mousemove", onMouseDrag);
-    _ = dom.addListener(canvasID, "mouseup", onMouseUp);
+    resizeCanvas();
 
-    _ = dom.addListener(-1, "keydown", onKeyDown);
-    _ = dom.addListener(-1, "resize", onResize);
+    _ = dom.addListener(canvasID, "mousedown", startStroke);
+    _ = dom.addListener(canvasID, "mousemove", updateStroke);
+    _ = dom.addListener(canvasID, "mouseup", endStroke);
+
+    _ = dom.addListener(canvasID, "touchstart", startStroke);
+    _ = dom.addListener(canvasID, "touchmove", updateStroke);
+    _ = dom.addListener(canvasID, "touchend", endStroke);
+
+    _ = dom.addListener(dom.WINDOW, "keydown", onKeyDown);
+    _ = dom.addListener(dom.WINDOW, "resize", onResize);
 
     wasm.printStr("started");
 }

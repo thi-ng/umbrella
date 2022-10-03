@@ -1,5 +1,7 @@
 import type { Fn0 } from "@thi.ng/api";
+import { downloadCanvas } from "@thi.ng/dl-asset";
 import { NULL_LOGGER } from "@thi.ng/logger";
+import { randomID } from "@thi.ng/random";
 import { IWasmAPI, WasmBridge, WasmExports } from "@thi.ng/wasm-api";
 import { DOMExports, WasmDom } from "@thi.ng/wasm-api-dom";
 import WASM_URL from "./main.wasm?url";
@@ -38,6 +40,17 @@ class DrawHandlers implements IWasmAPI<WasmApp> {
 			},
 
 			/**
+			 * Triggers PNG download of the given canvas.
+			 *
+			 * @param canvasID
+			 */
+			downloadCanvas: (canvasID: number) =>
+				downloadCanvas(
+					<HTMLCanvasElement>this.dom.elements.get(canvasID),
+					`zig-canvas-${randomID()}`
+				),
+
+			/**
 			 * Draw a stroke/polyline into given canvas. The polyline consists
 			 * of `len` [2]u16 tuples starting from given address.
 			 *
@@ -52,11 +65,11 @@ class DrawHandlers implements IWasmAPI<WasmApp> {
 				ctx.lineWidth = 3;
 
 				addr >>= 1;
-				const u16 = this.parent.u16;
-				ctx.moveTo(u16[addr], u16[addr + 1]);
+				const i16 = this.parent.i16;
+				ctx.moveTo(i16[addr], i16[addr + 1]);
 				addr += 2;
 				for (; len-- > 1; ) {
-					ctx.lineTo(u16[addr], u16[addr + 1]);
+					ctx.lineTo(i16[addr], i16[addr + 1]);
 					addr += 2;
 				}
 				ctx.stroke();
@@ -69,13 +82,13 @@ class DrawHandlers implements IWasmAPI<WasmApp> {
 
 (async () => {
 	// create new WASM bridge with extra API modules
-	// the `NULL_LOGGER` is used to suppress logging messages (remove arg to enable)
 	const bridge = new WasmBridge<WasmApp>(
 		{
 			dom: new WasmDom(),
 			app: new DrawHandlers(),
-		},
-		NULL_LOGGER
+		}
+		// uncomment to suppress logging messages
+		// NULL_LOGGER
 	);
 	// instantiate WASM module & bindings
 	await bridge.instantiate(fetch(WASM_URL));
