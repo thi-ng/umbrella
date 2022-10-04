@@ -68,7 +68,7 @@ export class WasmBridge<T extends WasmExports = WasmExports>
 		const logA =
 			(method: FnU2<number, TypedArray | BigIntArray>) =>
 			(addr: number, len: number) =>
-				this.logger.debug(method(addr, len).join(", "));
+				this.logger.debug(() => method(addr, len).join(", "));
 		this.api = {
 			printI8: logN,
 			printU8: logN,
@@ -80,10 +80,11 @@ export class WasmBridge<T extends WasmExports = WasmExports>
 			printU64: (x: bigint) => this.logger.debug(x),
 			printF32: logN,
 			printF64: logN,
-			printU8Hex: (x: number) => this.logger.debug(`0x${U8(x)}`),
-			printU16Hex: (x: number) => this.logger.debug(`0x${U16(x)}`),
-			printU32Hex: (x: number) => this.logger.debug(`0x${U32(x)}`),
-			printU64Hex: (x: bigint) => this.logger.debug(`0x${U64BIG(x)}`),
+			printU8Hex: (x: number) => this.logger.debug(() => `0x${U8(x)}`),
+			printU16Hex: (x: number) => this.logger.debug(() => `0x${U16(x)}`),
+			printU32Hex: (x: number) => this.logger.debug(() => `0x${U32(x)}`),
+			printU64Hex: (x: bigint) =>
+				this.logger.debug(() => `0x${U64BIG(x)}`),
 
 			_printI8Array: logA(this.getI8Array.bind(this)),
 			_printU8Array: logA(this.getU8Array.bind(this)),
@@ -97,10 +98,10 @@ export class WasmBridge<T extends WasmExports = WasmExports>
 			_printF64Array: logA(this.getF64Array.bind(this)),
 
 			_printStr0: (addr: number) =>
-				this.logger.debug(this.getString(addr, 0)),
+				this.logger.debug(() => this.getString(addr, 0)),
 
 			_printStr: (addr: number, len: number) =>
-				this.logger.debug(this.getString(addr, len)),
+				this.logger.debug(() => this.getString(addr, len)),
 
 			debug: () => {
 				debugger;
@@ -269,9 +270,10 @@ export class WasmBridge<T extends WasmExports = WasmExports>
 		if (!addr)
 			throw new OutOfMemoryError(`unable to allocate: ${numBytes}`);
 		this.logger.fine(
-			`allocated ${numBytes} bytes @ 0x${U32(addr)} .. 0x${U32(
-				addr + numBytes - 1
-			)}`
+			() =>
+				`allocated ${numBytes} bytes @ 0x${U32(addr)} .. 0x${U32(
+					addr + numBytes - 1
+				)}`
 		);
 		this.ensureMemory();
 		clear && this.u8.fill(0, addr, addr + numBytes);
@@ -293,7 +295,10 @@ export class WasmBridge<T extends WasmExports = WasmExports>
 	 */
 	free(addr: number, numBytes: number) {
 		this.logger.fine(
-			`freeing memory @ 0x${U32(addr)} .. 0x${U32(addr + numBytes - 1)}`
+			() =>
+				`freeing memory @ 0x${U32(addr)} .. 0x${U32(
+					addr + numBytes - 1
+				)}`
 		);
 		this.exports._wasm_free(addr, numBytes);
 	}
