@@ -22,11 +22,24 @@ This project is part of the
 
 Browser DOM bridge API for hybrid TypeScript & Zig applications. This is a support package for [@thi.ng/wasm-api](https://github.com/thi-ng/umbrella/tree/develop/packages/wasm-api).
 
+This package provides a minimal, but already quite usable TypeScript core API
+and related [Ziglang](https://ziglang.org) bindings for UI & DOM
+creation/manipulation via WebAssembly.
+
 ## Status
 
 **ALPHA** - bleeding edge / work-in-progress
 
 [Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bwasm-api-dom%5D+in%3Atitle)
+
+For now, please see the [package
+docs](https://docs.thi.ng/umbrella/wasm-api-dom/), source code comments
+([TS](https://github.com/thi-ng/umbrella/tree/develop/packages/wasm-api-dom/src/)
+&
+[Zig](https://github.com/thi-ng/umbrella/tree/develop/packages/wasm-api-dom/include/))
+and the [zig-canvas example
+project](https://github.com/thi-ng/umbrella/tree/develop/examples/zig-canvas)
+for further reference and usage patterns! Thank you!
 
 ## Installation
 
@@ -51,7 +64,7 @@ node --experimental-repl-await
 > const wasmApiDom = await import("@thi.ng/wasm-api-dom");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 2.13 KB
+Package sizes (gzipped, pre-treeshake): ESM: 2.33 KB
 
 ## Dependencies
 
