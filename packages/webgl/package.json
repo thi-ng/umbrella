@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/webgl",
-	"version": "6.2.7",
+	"version": "6.2.8",
 	"description": "WebGL & GLSL abstraction layer",
 	"type": "module",
 	"module": "./index.js",
@@ -36,20 +36,20 @@
 	"dependencies": {
 		"@thi.ng/adapt-dpi": "^2.2.0",
 		"@thi.ng/api": "^8.4.3",
-		"@thi.ng/associative": "^6.2.9",
+		"@thi.ng/associative": "^6.2.10",
 		"@thi.ng/checks": "^3.2.6",
 		"@thi.ng/equiv": "^2.1.11",
-		"@thi.ng/errors": "^2.2.1",
+		"@thi.ng/errors": "^2.2.2",
 		"@thi.ng/logger": "^1.4.0",
-		"@thi.ng/matrices": "^2.1.26",
+		"@thi.ng/matrices": "^2.1.27",
 		"@thi.ng/memoize": "^3.1.13",
-		"@thi.ng/pixel": "^4.0.1",
-		"@thi.ng/shader-ast": "^0.12.23",
-		"@thi.ng/shader-ast-glsl": "^0.4.23",
-		"@thi.ng/shader-ast-stdlib": "^0.12.16",
-		"@thi.ng/transducers": "^8.3.16",
-		"@thi.ng/vector-pools": "^3.1.27",
-		"@thi.ng/vectors": "^7.5.17"
+		"@thi.ng/pixel": "^4.0.2",
+		"@thi.ng/shader-ast": "^0.12.24",
+		"@thi.ng/shader-ast-glsl": "^0.4.24",
+		"@thi.ng/shader-ast-stdlib": "^0.12.17",
+		"@thi.ng/transducers": "^8.3.17",
+		"@thi.ng/vector-pools": "^3.1.28",
+		"@thi.ng/vectors": "^7.5.18"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.31.1",

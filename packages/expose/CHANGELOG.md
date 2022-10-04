@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-10-03T16:07:55Z
+- **Last updated**: 2022-10-04T17:35:45Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,14 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [1.1.13](https://github.com/thi-ng/umbrella/tree/@thi.ng/expose@1.1.13) (2022-10-04)
+
+#### 🩹 Bug fixes
+
+- update expose switch logic ([9a98c3e](https://github.com/thi-ng/umbrella/commit/9a98c3e))
+  - remove support for obsolete (& broken) snowpack setup
+  - add support for Vite's env var handling
 
 ## [1.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/expose@1.1.0) (2021-11-17)
 

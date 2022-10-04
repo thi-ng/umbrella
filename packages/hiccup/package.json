@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/hiccup",
-	"version": "4.2.17",
+	"version": "4.2.18",
 	"description": "HTML/SVG/XML serialization of nested data structures, iterables & closures",
 	"type": "module",
 	"module": "./index.js",
@@ -36,13 +36,13 @@
 	"dependencies": {
 		"@thi.ng/api": "^8.4.3",
 		"@thi.ng/checks": "^3.2.6",
-		"@thi.ng/errors": "^2.2.1",
-		"@thi.ng/strings": "^3.3.13"
+		"@thi.ng/errors": "^2.2.2",
+		"@thi.ng/strings": "^3.3.14"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.31.1",
-		"@thi.ng/atom": "^5.1.16",
-		"@thi.ng/testament": "^0.3.1",
+		"@thi.ng/atom": "^5.1.17",
+		"@thi.ng/testament": "^0.3.2",
 		"rimraf": "^3.0.2",
 		"tools": "workspace:^",
 		"typedoc": "^0.22.17",
