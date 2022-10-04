@@ -1,5 +1,6 @@
 import { ALogger } from "./alogger.js";
 import type { LogEntry, LogLevel, LogLevelName } from "./api.js";
+import { expandArgs } from "./utils.js";
 
 export class MemoryLogger extends ALogger {
 	journal: LogEntry[] = [];
@@ -33,6 +34,6 @@ export class MemoryLogger extends ALogger {
 
 	protected log(level: LogLevel, args: any[]) {
 		if (this.journal.length >= this.limit) this.journal.shift();
-		this.journal.push([level, this.id, Date.now(), ...args]);
+		this.journal.push([level, this.id, Date.now(), ...expandArgs(args)]);
 	}
 }
