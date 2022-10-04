@@ -56,13 +56,14 @@ export const C11 = (opts: Partial<C11Opts> = {}) => {
 #ifdef __cplusplus
 extern "C" {
 #endif
-
 ${opts.debug ? "\n#include <stdalign.h>" : ""}
 #include <stddef.h>
 #include <stdint.h>${opts.pre ? `\n${opts.pre}` : ""}`,
 
 		post: () =>
-			`${opts.post ? `${opts.post}\n` : ""}#ifdef __cplusplus\n}\n#endif`,
+			`${
+				opts.post ? `${opts.post}\n` : ""
+			}#ifdef __cplusplus\n}\n#endif\n`,
 
 		doc: (doc, acc, opts) => {
 			acc.push(...prefixLines("// ", doc, opts.lineWidth));

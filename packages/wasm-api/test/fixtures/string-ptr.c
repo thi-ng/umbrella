@@ -1,5 +1,9 @@
 #pragma once
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include <stdalign.h>
 #include <stddef.h>
 #include <stdint.h>
@@ -87,3 +91,8 @@ size_t __attribute__((used)) WASM_Foo_kind_offset() {
 size_t __attribute__((used)) WASM_Foo_kind_size() {
     return sizeof(WASM_Bar);
 }
+
+
+#ifdef __cplusplus
+}
+#endif
