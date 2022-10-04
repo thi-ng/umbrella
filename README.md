@@ -162,11 +162,12 @@ feature or `develop` branches)
 
 ### Latest updates
 
-As of: 2022-10-03
+As of: 2022-10-04
 
 | Status                                        | Project                                           | Version                                                                                                                 | Changelog                                         |
 |-----------------------------------------------|---------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------|
 | ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/adapt-dpi`](./packages/adapt-dpi)       | [![version](https://img.shields.io/npm/v/@thi.ng/adapt-dpi.svg)](https://www.npmjs.com/package/@thi.ng/adapt-dpi)       | [changelog](./packages/adapt-dpi/CHANGELOG.md)    |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/logger`](./packages/logger)             | [![version](https://img.shields.io/npm/v/@thi.ng/logger.svg)](https://www.npmjs.com/package/@thi.ng/logger)             | [changelog](./packages/logger/CHANGELOG.md)       |
 | ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/wasm-api`](./packages/wasm-api)         | [![version](https://img.shields.io/npm/v/@thi.ng/wasm-api.svg)](https://www.npmjs.com/package/@thi.ng/wasm-api)         | [changelog](./packages/wasm-api/CHANGELOG.md)     |
 | ![](https://img.shields.io/badge/-new-cyan)   | [`@thi.ng/wasm-api-dom`](./packages/wasm-api-dom) | [![version](https://img.shields.io/npm/v/@thi.ng/wasm-api-dom.svg)](https://www.npmjs.com/package/@thi.ng/wasm-api-dom) | [changelog](./packages/wasm-api-dom/CHANGELOG.md) |
 
