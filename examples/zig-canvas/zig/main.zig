@@ -5,8 +5,8 @@ const dom = @import("dom");
 const Point = @Vector(2, i16);
 const Stroke = std.ArrayList(Point);
 
-// use JS panic handler
-pub const panic = wasm.panic;
+// expose thi.ng/wasm-api core API (incl. panic handler & allocation fns)
+pub usingnamespace wasm;
 
 // JS externals
 pub extern "app" fn clearCanvas(canvas: i32) void;
@@ -41,18 +41,17 @@ fn startStroke(event: *const dom.Event) void {
 fn updateStroke(event: *const dom.Event) void {
     if (currStroke) |curr| {
         curr.append(scaledPoint(event.clientX, event.clientY)) catch return;
-        redraw();
         dom.preventDefault();
+        requestRedraw();
     }
 }
 
 /// mouseup/touchend handler
-fn endStroke(event: *const dom.Event) void {
-    _ = event;
+fn endStroke(_: *const dom.Event) void {
     currStroke = null;
 }
 
-/// computes point scaled to current DPR
+/// Computes point scaled to current DPR
 fn scaledPoint(x: i16, y: i16) Point {
     return [2]i16{
         (x - 8) * window.dpr,
@@ -69,19 +68,16 @@ fn onKeyDown(event: *const dom.Event) void {
     }
 }
 
-fn onResize(event: *const dom.Event) void {
-    _ = event;
+fn onResize(_: *const dom.Event) void {
     resizeCanvas();
-    redraw();
+    requestRedraw();
 }
 
-fn onBtUndo(event: *const dom.Event) void {
-    _ = event;
+fn onBtUndo(_: *const dom.Event) void {
     undoStroke();
 }
 
-fn onBtDownload(event: *const dom.Event) void {
-    _ = event;
+fn onBtDownload(_: *const dom.Event) void {
     downloadCanvas(canvasID);
 }
 
@@ -96,25 +92,33 @@ fn resizeCanvas() void {
     );
 }
 
-fn redraw() void {
+/// Triggers redraw during next RAF cycle. This app redraws on demand,
+/// but we NEVER want to do so from the event loop!
+fn requestRedraw() void {
+    _ = dom.requestAnimationFrame(redraw) catch return;
+}
+
+/// Redraw handler, calls into JS API to draw to canvas
+fn redraw(_: f64) void {
     clearCanvas(canvasID);
     for (strokes.items) |stroke| {
         drawStroke(canvasID, stroke.items.ptr, stroke.items.len);
     }
 }
 
+/// Attempts to discard most recent stroke and if successful
+/// also triggers redraw
 fn undoStroke() void {
-    if (strokes.items.len > 0) {
-        strokes.pop().clearAndFree();
+    if (strokes.popOrNull()) |stroke| {
+        stroke.clearAndFree();
         currStroke = null;
-        redraw();
+        requestRedraw();
     }
 }
 
-/// main entry point (called from JS)
-/// initialize & create DOM, setup event listeners
-export fn start() void {
-    dom.init(WASM_ALLOCATOR) catch return;
+/// Creates & initializes DOM, event listeners
+fn initDOM() anyerror!void {
+    try dom.init(WASM_ALLOCATOR);
     dom.getWindowInfo(&window);
 
     const container = dom.createElement(&.{
@@ -142,14 +146,14 @@ export fn start() void {
         .class = "mr1",
         .parent = toolbar,
     });
-    _ = dom.addListener(btUndo, "click", onBtUndo);
+    _ = try dom.addListener(btUndo, "click", onBtUndo);
 
     const btDownload = dom.createElement(&.{
         .tag = "button",
         .text = "download",
         .parent = toolbar,
     });
-    _ = dom.addListener(btDownload, "click", onBtDownload);
+    _ = try dom.addListener(btDownload, "click", onBtDownload);
 
     // main editor canvas
     canvasID = dom.createCanvas(&.{
@@ -162,16 +166,20 @@ export fn start() void {
     });
     resizeCanvas();
 
-    _ = dom.addListener(canvasID, "mousedown", startStroke);
-    _ = dom.addListener(canvasID, "mousemove", updateStroke);
-    _ = dom.addListener(canvasID, "mouseup", endStroke);
+    _ = try dom.addListener(canvasID, "mousedown", startStroke);
+    _ = try dom.addListener(canvasID, "mousemove", updateStroke);
+    _ = try dom.addListener(canvasID, "mouseup", endStroke);
 
-    _ = dom.addListener(canvasID, "touchstart", startStroke);
-    _ = dom.addListener(canvasID, "touchmove", updateStroke);
-    _ = dom.addListener(canvasID, "touchend", endStroke);
+    _ = try dom.addListener(canvasID, "touchstart", startStroke);
+    _ = try dom.addListener(canvasID, "touchmove", updateStroke);
+    _ = try dom.addListener(canvasID, "touchend", endStroke);
 
-    _ = dom.addListener(dom.WINDOW, "keydown", onKeyDown);
-    _ = dom.addListener(dom.WINDOW, "resize", onResize);
+    _ = try dom.addListener(dom.WINDOW, "keydown", onKeyDown);
+    _ = try dom.addListener(dom.WINDOW, "resize", onResize);
+}
 
+/// Main entry point (called from JS)
+export fn start() void {
+    initDOM() catch |e| @panic(@errorName(e));
     wasm.printStr("started");
 }
