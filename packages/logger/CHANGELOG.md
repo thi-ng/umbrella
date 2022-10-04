@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-10-03T16:07:55Z
+- **Last updated**: 2022-10-04T10:33:14Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,14 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [1.4.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/logger@1.4.0) (2022-10-04)
+
+#### 🚀 Features
+
+- add lazy arg evaluation ([21ead9c](https://github.com/thi-ng/umbrella/commit/21ead9c))
+  - add internal expandArgs() helper to expand any fn message args
+  - update ConsoleLogger & MemoryLogger
 
 ## [1.3.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/logger@1.3.0) (2022-09-21)
 
