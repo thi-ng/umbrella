@@ -82,7 +82,7 @@ try {
 
 ### Environment variables
 
-The `UMBRELLA_ASSERTS` or `SNOWPACK_PUBLIC_UMBRELLA_ASSERTS` env variables are
+The `UMBRELLA_ASSERTS` or `VITE_UMBRELLA_ASSERTS` env variables are
 used to control the behavior of the `assert()` function in production builds: If
 either is set (to a non-empty string), the function will **always** be enabled.
 Otherwise (by default), `assert()` will be **disabled for production builds**,

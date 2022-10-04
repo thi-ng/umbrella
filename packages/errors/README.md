@@ -63,7 +63,7 @@ node --experimental-repl-await
 > const errors = await import("@thi.ng/errors");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 608 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 581 bytes
 
 ## Dependencies
 
@@ -106,7 +106,7 @@ try {
 
 ### Environment variables
 
-The `UMBRELLA_ASSERTS` or `SNOWPACK_PUBLIC_UMBRELLA_ASSERTS` env variables are
+The `UMBRELLA_ASSERTS` or `VITE_UMBRELLA_ASSERTS` env variables are
 used to control the behavior of the `assert()` function in production builds: If
 either is set (to a non-empty string), the function will **always** be enabled.
 Otherwise (by default), `assert()` will be **disabled for production builds**,
