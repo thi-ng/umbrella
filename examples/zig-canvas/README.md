@@ -6,8 +6,13 @@
 
 Please refer to the [example build instructions](https://github.com/thi-ng/umbrella/wiki/Example-build-instructions) on the wiki.
 
-Additionally, this example requires [Zig](https://ziglang.org/download/) (>=
-0.10.0-dev.4213+91b05ad47) installed for building the WebAssembly binary.
+Additionally, this example requires Zig & Binaryen installed (and on the
+`$PATH`) for building the WebAssembly binary.
+
+Download from here (or via package managers, e.g. homebrew):
+
+- [Zig](https://ziglang.org/download/) (tested w/ >= 0.10.0-dev.4213+91b05ad47)
+- [Binaryen](https://github.com/WebAssembly/binaryen)
 
 ## Authors
 

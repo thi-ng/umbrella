@@ -9,9 +9,7 @@
 	"scripts": {
 		"start": "yarn build:zig && vite --open",
 		"build": "tsc && yarn build:zig && vite build --base='./'",
-		"build:zig": "yarn build:zig-small && yarn build:zig-post",
-		"build:zig-small": "zig build-lib -O ReleaseSmall -target wasm32-freestanding -dynamic --strip --pkg-begin wasmapi ../../node_modules/@thi.ng/wasm-api/include/wasmapi.zig --pkg-end --pkg-begin dom ../../node_modules/@thi.ng/wasm-api-dom/include/dom.zig --pkg-end zig/main.zig",
-		"build:zig-post": "wasm-opt main.wasm -o main.wasm -O3 --enable-simd && wasm-dis -o main.wast main.wasm && cp main.wasm src/main.wasm",
+		"build:zig": "zig build && wasm-opt src/main.wasm -o src/main.wasm -O3 && wasm-dis -o src/main.wast src/main.wasm",
 		"preview": "vite preview --host --open"
 	},
 	"devDependencies": {
