@@ -146,6 +146,8 @@ export class WasmDom implements IWasmAPI<DOMExports> {
 							? -1
 							: this.elements.find((x) => x === e.target, false);
 					event.target = target !== undefined ? target : -2;
+					let valueAddr = -1;
+					let valueLen: number;
 					if (e instanceof MouseEvent) {
 						const bounds = (<Element>(
 							e.target
@@ -166,9 +168,25 @@ export class WasmDom implements IWasmAPI<DOMExports> {
 						this.parent.setString(
 							e.key,
 							event.key.byteOffset,
-							8,
+							16,
 							true
 						);
+					} else if (e.type === "change" || e.type === "input") {
+						event.type = EventType.INPUT;
+						const el = <HTMLInputElement>e.target;
+						const value =
+							el.type === "checkbox"
+								? el.checked
+									? "on"
+									: "off"
+								: el.value;
+						const valueBytes =
+							this.parent.utf8Encoder.encode(value);
+						valueLen = valueBytes.length;
+						valueAddr = this.parent.allocate(valueLen + 1);
+						this.parent.u8.set(valueBytes, valueAddr);
+						this.parent.u8[valueAddr + valueLen] = 0;
+						event.value.setSlice(valueAddr, valueLen);
 					} else {
 						event.type = EventType.UNKOWN;
 					}
@@ -187,6 +205,10 @@ export class WasmDom implements IWasmAPI<DOMExports> {
 						listenerID,
 						event.__base
 					);
+					if (valueAddr >= 0) {
+						this.parent.free(valueAddr, valueLen! + 1);
+						valueAddr = -1;
+					}
 					this.currEvent = null;
 				};
 				this.parent.logger.debug(
@@ -230,6 +252,13 @@ export class WasmDom implements IWasmAPI<DOMExports> {
 			_setInnerText: (elementID: number, body: number) => {
 				(<HTMLElement>this.elements.get(elementID)).innerText =
 					this.parent.getString(body);
+			},
+
+			_requestAnimationFrame: (rafID: number) => {
+				this.parent.logger.fine(`requestAnimationFrame #${rafID}`);
+				requestAnimationFrame((t) =>
+					this.parent.exports.dom_callRAF(rafID, t)
+				);
 			},
 		};
 	}

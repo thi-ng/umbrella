@@ -4,6 +4,7 @@ export * from "./generated/api.js";
 
 export interface DOMExports extends WasmExports {
 	dom_callListener(listenerID: number, event: number): void;
+	dom_callRAF(rafID: number, t: number): void;
 }
 
 export interface DOMImports extends WebAssembly.ModuleImports {
@@ -146,4 +147,6 @@ export interface DOMImports extends WebAssembly.ModuleImports {
 
 	_setInnerHtml(elementID: number, body: number): void;
 	_setInnerText(elementID: number, body: number): void;
+
+	_requestAnimationFrame(rafID: number): void;
 }

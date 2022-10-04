@@ -96,9 +96,14 @@
 				"name": "key",
 				"type": "u8",
 				"tag": "array",
-				"len": 8,
+				"len": 15,
 				"sentinel": 0,
 				"doc": "Value/name of the key pressed"
+			},
+			{
+				"name": "value",
+				"type": "string",
+				"doc": "INPUT event only, the value of the targeted input element.\nThe memory is owned by the DOM API and will be freed immediatedly after the event handler has returned."
 			}
 		],
 		"body": {
