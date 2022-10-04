@@ -71,6 +71,17 @@ export class WasmStringSlice implements ReadonlyWasmString {
 		}
 	}
 
+	/**
+	 * Sets the slice itself to the new values provided.
+	 *
+	 * @param addr
+	 * @param len
+	 */
+	setSlice(addr: number, len: number) {
+		this.mem.u32[this.base >>> 2] = addr;
+		this.mem.u32[(this.base + 4) >>> 2] = len;
+	}
+
 	toJSON() {
 		return this.deref();
 	}
