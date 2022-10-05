@@ -26,6 +26,7 @@ import { sum } from "./sum.js";
  * @param freq - normalized freq
  * @param amp - amplitude
  * @param dc - DC offset / center value
+ * @param phase - normalized start phase
  */
 export const osc = (
 	osc: StatelessOscillator,
@@ -56,13 +57,18 @@ export const osc = (
  * @param freq - main osc freq
  * @param fmod - freq modulator
  * @param amod` - normalized freq
+ * @param dc` - DC offset / center value
+ * @param phase - normalized start phase
  */
 export const modOsc = (
 	osc: StatelessOscillator,
 	freq: IGen<number> | number,
 	fmod: IGen<number>,
-	amod: IGen<number> | number = 1
-) => new Osc(osc, sum(fmod, isNumber(freq) ? add(freq) : freq), amod);
+	amod: IGen<number> | number = 1,
+	dc?: number,
+	phase?: number
+) =>
+	new Osc(osc, sum(fmod, isNumber(freq) ? add(freq) : freq), amod, dc, phase);
 
 export class Osc extends AGen<number> {
 	protected _phase!: IGen<number>;
