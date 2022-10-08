@@ -16,9 +16,9 @@
 **Please visit [thi.ng](https://thi.ng) for additional information & topic based
 search of packages relevant to your use cases...**
 
-This mono-repository is home to 169+ thi.ng TypeScript/ES6 projects, a wide and
-jointly developed collection of packages and building blocks for (non-exhaustive
-list of topics):
+This mono-repository is home to 169+ thi.ng TypeScript/ES6 projects (plus 110+
+examples), a wide and jointly developed collection of packages and building
+blocks for (non-exhaustive list of topics):
 
 - Functional programming (ES6 iterators/generators, composition, memoization, transducers, multi-methods)
 - Reactive programming, stream / transducer based dataflow graphs / pipelines
@@ -74,7 +74,7 @@ examples in the docstrings.
 
 ## Examples & Showcase
 
-There's a steadily growing number (100+) of standalone examples
+There's a steadily growing number (110+) of standalone examples
 (different complexities, often combining functionality from several
 packages) in the [**examples**](./examples/README.md) directory.
 
