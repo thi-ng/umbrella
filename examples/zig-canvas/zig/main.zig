@@ -95,7 +95,7 @@ fn resizeCanvas() void {
 /// Triggers redraw during next RAF cycle. This app redraws on demand,
 /// but we NEVER want to do so from the event loop!
 fn requestRedraw() void {
-    _ = dom.requestAnimationFrame(.{ .callback = redraw }) catch return;
+    _ = dom.requestAnimationFrame(&.{ .callback = redraw }) catch return;
 }
 
 /// Redraw handler, calls into JS API to draw to canvas
@@ -146,14 +146,14 @@ fn initDOM() anyerror!void {
         .class = "mr1",
         .parent = toolbar,
     });
-    _ = try dom.addListener(btUndo, "click", .{ .callback = onBtUndo });
+    _ = try dom.addListener(btUndo, "click", &.{ .callback = onBtUndo });
 
     const btDownload = dom.createElement(&.{
         .tag = "button",
         .text = "download",
         .parent = toolbar,
     });
-    _ = try dom.addListener(btDownload, "click", .{ .callback = onBtDownload });
+    _ = try dom.addListener(btDownload, "click", &.{ .callback = onBtDownload });
 
     // main editor canvas
     canvasID = dom.createCanvas(&.{
@@ -166,16 +166,16 @@ fn initDOM() anyerror!void {
     });
     resizeCanvas();
 
-    _ = try dom.addListener(canvasID, "mousedown", .{ .callback = startStroke });
-    _ = try dom.addListener(canvasID, "mousemove", .{ .callback = updateStroke });
-    _ = try dom.addListener(canvasID, "mouseup", .{ .callback = endStroke });
+    _ = try dom.addListener(canvasID, "mousedown", &.{ .callback = startStroke });
+    _ = try dom.addListener(canvasID, "mousemove", &.{ .callback = updateStroke });
+    _ = try dom.addListener(canvasID, "mouseup", &.{ .callback = endStroke });
 
-    _ = try dom.addListener(canvasID, "touchstart", .{ .callback = startStroke });
-    _ = try dom.addListener(canvasID, "touchmove", .{ .callback = updateStroke });
-    _ = try dom.addListener(canvasID, "touchend", .{ .callback = endStroke });
+    _ = try dom.addListener(canvasID, "touchstart", &.{ .callback = startStroke });
+    _ = try dom.addListener(canvasID, "touchmove", &.{ .callback = updateStroke });
+    _ = try dom.addListener(canvasID, "touchend", &.{ .callback = endStroke });
 
-    _ = try dom.addListener(dom.WINDOW, "keydown", .{ .callback = onKeyDown });
-    _ = try dom.addListener(dom.WINDOW, "resize", .{ .callback = onResize });
+    _ = try dom.addListener(dom.WINDOW, "keydown", &.{ .callback = onKeyDown });
+    _ = try dom.addListener(dom.WINDOW, "resize", &.{ .callback = onResize });
 }
 
 /// Main entry point (called from JS)
