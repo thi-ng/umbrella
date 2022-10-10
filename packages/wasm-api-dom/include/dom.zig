@@ -1,5 +1,6 @@
 const std = @import("std");
 const dom = @import("api.zig");
+const FreeList = @import("free-list.zig").FreeList;
 
 pub usingnamespace dom;
 
@@ -24,12 +25,12 @@ pub const DOMError = error{
     InvalidID,
 };
 
-var eventListeners: std.ArrayList(?EventListener) = undefined;
-var rafListeners: std.ArrayList(?RAFListener) = undefined;
+var eventListeners: FreeList(*const EventListener) = undefined;
+var rafListeners: FreeList(*const RAFListener) = undefined;
 
 pub fn init(allocator: std.mem.Allocator) anyerror!void {
-    eventListeners = std.ArrayList(?EventListener).init(allocator);
-    rafListeners = std.ArrayList(?RAFListener).init(allocator);
+    eventListeners = FreeList(*const EventListener).init(allocator);
+    rafListeners = FreeList(*const RAFListener).init(allocator);
 }
 
 pub extern "dom" fn getWindowInfo(desc: *dom.WindowInfo) void;
@@ -79,13 +80,13 @@ pub fn setInnerText(elementID: i32, tag: []const u8) void {
 }
 
 export fn dom_callListener(listenerID: usize, event: *const dom.Event) void {
-    if (eventListeners.items[listenerID]) |listener| listener.callback(event, listener.arg);
+    if (eventListeners.get(listenerID)) |listener| listener.callback(event, listener.arg);
 }
 
 pub extern "dom" fn _addListener(elementID: i32, name: [*]const u8, listenerID: usize) void;
 
-pub fn addListener(elementID: i32, name: []const u8, listener: EventListener) anyerror!usize {
-    const listenerID = try reuseOrAddSlot(EventListener, &eventListeners, listener);
+pub fn addListener(elementID: i32, name: []const u8, listener: *const EventListener) anyerror!usize {
+    const listenerID = try eventListeners.add(listener);
     _addListener(elementID, name.ptr, listenerID);
     return listenerID;
 }
@@ -93,10 +94,8 @@ pub fn addListener(elementID: i32, name: []const u8, listener: EventListener) an
 pub extern "dom" fn _removeListener(listenerID: usize) void;
 
 pub fn removeListener(listenerID: usize) void {
-    if (eventListeners.items[listenerID] != null) {
-        _removeListener(listenerID);
-        eventListeners.items[listenerID] = null;
-    }
+    eventListeners.remove(listenerID);
+    _removeListener(listenerID);
 }
 
 /// calls .preventDefault() on currently processed event
@@ -109,30 +108,15 @@ pub extern "dom" fn stopImmediatePropagation() void;
 
 pub extern "dom" fn _requestAnimationFrame(listenerID: usize) void;
 
-pub fn requestAnimationFrame(listener: RAFListener) anyerror!usize {
-    const id = try reuseOrAddSlot(RAFListener, &rafListeners, listener);
+pub fn requestAnimationFrame(listener: *const RAFListener) anyerror!usize {
+    const id = try rafListeners.add(listener);
     _requestAnimationFrame(id);
     return id;
 }
 
 export fn dom_callRAF(listenerID: usize, time: f64) void {
-    if (rafListeners.items[listenerID]) |raf| {
-        rafListeners.items[listenerID] = null;
+    if (rafListeners.get(listenerID)) |raf| {
+        rafListeners.remove(listenerID);
         raf.callback(time, raf.arg);
     }
-}
-
-/// Finds first available null slot in given arraylist and writes `item` there,
-/// or appends item if no free slots are available
-fn reuseOrAddSlot(comptime T: type, list: *std.ArrayList(?T), item: T) anyerror!usize {
-    var i: usize = 0;
-    while (i < list.items.len) : (i += 1) {
-        if (list.items[i] == null) {
-            list.items[i] = item;
-            return i;
-        }
-    }
-    const id = list.items.len;
-    try list.append(item);
-    return id;
 }
