@@ -3,10 +3,17 @@ const dom = @import("api.zig");
 
 pub usingnamespace dom;
 
-/// DOM event listener function
-pub const EventListener = *const fn (event: *const dom.Event) void;
-/// RAF event listener function
-pub const RAFListener = *const fn (time: f64) void;
+/// DOM event listener
+pub const EventListener = struct {
+    callback: *const fn (event: *const dom.Event, ?*anyopaque) void,
+    arg: ?*anyopaque = null,
+};
+
+/// RAF event listener
+pub const RAFListener = struct {
+    callback: *const fn (time: f64, ?*anyopaque) void,
+    arg: ?*anyopaque = null,
+};
 
 /// Reserved reference handle for the browser window itself (e.g. used for event targets)
 pub const WINDOW: i32 = -1;
@@ -72,7 +79,7 @@ pub fn setInnerText(elementID: i32, tag: []const u8) void {
 }
 
 export fn dom_callListener(listenerID: usize, event: *const dom.Event) void {
-    if (eventListeners.items[listenerID]) |listener| listener(event);
+    if (eventListeners.items[listenerID]) |listener| listener.callback(event, listener.arg);
 }
 
 pub extern "dom" fn _addListener(elementID: i32, name: [*]const u8, listenerID: usize) void;
@@ -86,7 +93,7 @@ pub fn addListener(elementID: i32, name: []const u8, listener: EventListener) an
 pub extern "dom" fn _removeListener(listenerID: usize) void;
 
 pub fn removeListener(listenerID: usize) void {
-    if (eventListeners.items[listenerID]) {
+    if (eventListeners.items[listenerID] != null) {
         _removeListener(listenerID);
         eventListeners.items[listenerID] = null;
     }
@@ -111,19 +118,21 @@ pub fn requestAnimationFrame(listener: RAFListener) anyerror!usize {
 export fn dom_callRAF(listenerID: usize, time: f64) void {
     if (rafListeners.items[listenerID]) |raf| {
         rafListeners.items[listenerID] = null;
-        raf(time);
+        raf.callback(time, raf.arg);
     }
 }
 
 /// Finds first available null slot in given arraylist and writes `item` there,
 /// or appends item if no free slots are available
 fn reuseOrAddSlot(comptime T: type, list: *std.ArrayList(?T), item: T) anyerror!usize {
-    if (std.mem.indexOfScalar(?T, list.items, null)) |id| {
-        list.items[id] = item;
-        return id;
-    } else {
-        const id = list.items.len;
-        try list.append(item);
-        return id;
+    var i: usize = 0;
+    while (i < list.items.len) : (i += 1) {
+        if (list.items[i] == null) {
+            list.items[i] = item;
+            return i;
+        }
     }
+    const id = list.items.len;
+    try list.append(item);
+    return id;
 }
