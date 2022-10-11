@@ -1,6 +1,6 @@
 const std = @import("std");
 const dom = @import("api.zig");
-const FreeList = @import("free-list.zig").FreeList;
+const ManagedIndex = @import("managed-index.zig").ManagedIndex;
 
 pub usingnamespace dom;
 
@@ -25,12 +25,12 @@ pub const DOMError = error{
     InvalidID,
 };
 
-var eventListeners: FreeList(*const EventListener) = undefined;
-var rafListeners: FreeList(*const RAFListener) = undefined;
+var eventListeners: ManagedIndex(*const EventListener, u16) = undefined;
+var rafListeners: ManagedIndex(*const RAFListener, u16) = undefined;
 
 pub fn init(allocator: std.mem.Allocator) anyerror!void {
-    eventListeners = FreeList(*const EventListener).init(allocator);
-    rafListeners = FreeList(*const RAFListener).init(allocator);
+    eventListeners = ManagedIndex(*const EventListener, u16).init(allocator);
+    rafListeners = ManagedIndex(*const RAFListener, u16).init(allocator);
 }
 
 pub extern "dom" fn getWindowInfo(desc: *dom.WindowInfo) void;
@@ -79,21 +79,21 @@ pub fn setInnerText(elementID: i32, tag: []const u8) void {
     _setInnerText(elementID, tag.ptr);
 }
 
-export fn dom_callListener(listenerID: usize, event: *const dom.Event) void {
+export fn dom_callListener(listenerID: u16, event: *const dom.Event) void {
     if (eventListeners.get(listenerID)) |listener| listener.callback(event, listener.arg);
 }
 
-pub extern "dom" fn _addListener(elementID: i32, name: [*]const u8, listenerID: usize) void;
+pub extern "dom" fn _addListener(elementID: i32, name: [*]const u8, listenerID: u16) void;
 
-pub fn addListener(elementID: i32, name: []const u8, listener: *const EventListener) anyerror!usize {
+pub fn addListener(elementID: i32, name: []const u8, listener: *const EventListener) anyerror!u16 {
     const listenerID = try eventListeners.add(listener);
     _addListener(elementID, name.ptr, listenerID);
     return listenerID;
 }
 
-pub extern "dom" fn _removeListener(listenerID: usize) void;
+pub extern "dom" fn _removeListener(listenerID: u16) void;
 
-pub fn removeListener(listenerID: usize) void {
+pub fn removeListener(listenerID: u16) void {
     eventListeners.remove(listenerID);
     _removeListener(listenerID);
 }
@@ -106,15 +106,15 @@ pub extern "dom" fn preventDefault() void;
 /// (only to be called from an EventListener!)
 pub extern "dom" fn stopImmediatePropagation() void;
 
-pub extern "dom" fn _requestAnimationFrame(listenerID: usize) void;
+pub extern "dom" fn _requestAnimationFrame(listenerID: u16) void;
 
-pub fn requestAnimationFrame(listener: *const RAFListener) anyerror!usize {
+pub fn requestAnimationFrame(listener: *const RAFListener) anyerror!u16 {
     const id = try rafListeners.add(listener);
     _requestAnimationFrame(id);
     return id;
 }
 
-export fn dom_callRAF(listenerID: usize, time: f64) void {
+export fn dom_callRAF(listenerID: u16, time: f64) void {
     if (rafListeners.get(listenerID)) |raf| {
         rafListeners.remove(listenerID);
         raf.callback(time, raf.arg);
