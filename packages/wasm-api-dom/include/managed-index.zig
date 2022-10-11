@@ -2,8 +2,6 @@ const std = @import("std");
 const builtin = @import("builtin");
 const Allocator = std.mem.Allocator;
 
-const ItemType = enum(u1) { value, id };
-
 /// `std.Arraylist` based data structure for associating and auto-indexing
 /// newly added items with numeric IDs and managing a pool of free IDs.
 /// Wraps `std.Arraylist` with a simple add()/remove()/get()/has() API and
@@ -17,7 +15,7 @@ pub fn ManagedIndex(comptime T: type, comptime I: type) type {
     if (!(info == .Int and info.Int.bits > 0 and info.Int.signedness == std.builtin.Signedness.unsigned)) {
         @compileError("require unsigned int as index type");
     }
-    const Item = union(ItemType) {
+    const Item = union(enum) {
         /// Actual user defined value
         value: T,
         /// Free list slot ID. Index of the next avail free slot
