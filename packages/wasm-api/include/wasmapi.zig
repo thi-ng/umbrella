@@ -3,6 +3,36 @@
 const std = @import("std");
 const root = @import("root");
 
+/// Higher-order slice wrapper for extern struct use cases
+/// S = slice type
+/// P = pointer type
+/// default = point default value
+pub fn Slice(comptime S: type, comptime P: type, comptime default: P) type {
+    return extern struct {
+        ptr: P = default,
+        len: usize = 0,
+
+        pub fn wrap(slice: S) @This() {
+            return .{
+                .ptr = @ptrCast(P, slice.ptr),
+                .len = slice.len,
+            };
+        }
+
+        pub fn toSlice(self: *@This()) S {
+            return @ptrCast(*S, self).*;
+        }
+    };
+}
+
+/// []const u8 wrapper for extern struct use cases
+const String = Slice([]const u8, [*:0]const u8, "");
+
+/// Syntax sugar for `String.wrap()`
+pub fn string(str: []const u8) String {
+    return String.wrap(str);
+}
+
 /// JS external part of the custom panic handler
 /// Prints message using configured JS logger and then throws JS error
 pub extern "wasmapi" fn _panic(addr: [*]const u8, len: usize) noreturn;
