@@ -531,6 +531,7 @@ export class WasmBridge<T extends WasmExports = WasmExports>
 		maxBytes: number,
 		terminate = true
 	): number {
+		this.ensureMemory();
 		maxBytes = Math.min(maxBytes, this.u8.length - addr);
 		const len = this.utf8Encoder.encodeInto(
 			str,

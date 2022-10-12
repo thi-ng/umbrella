@@ -106,6 +106,12 @@ export interface IWasmMemoryAccess {
 	f64: Float64Array;
 
 	/**
+	 * Initializes and/or updates the various typed WASM memory views (e.g.
+	 * after growing the WASM memory and the previous buffer becoming detached).
+	 */
+	ensureMemory(): void;
+
+	/**
 	 * Reads UTF-8 encoded string from given address and optional byte length.
 	 * The default length is 0, which will be interpreted as a zero-terminated
 	 * string. Returns string.
