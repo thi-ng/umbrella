@@ -21,6 +21,7 @@ export class WasmStringSlice implements ReadonlyWasmString {
 	 * Returns string start address (deref'd pointer).
 	 */
 	get addr() {
+		this.mem.ensureMemory();
 		return this.mem.u32[this.base >>> 2];
 	}
 
@@ -28,6 +29,7 @@ export class WasmStringSlice implements ReadonlyWasmString {
 	 * Returns string length (read from memory)
 	 */
 	get length() {
+		this.mem.ensureMemory();
 		return this.mem.u32[(this.base + 4) >>> 2];
 	}
 
@@ -57,6 +59,7 @@ export class WasmStringSlice implements ReadonlyWasmString {
 	 * @param str
 	 */
 	set(str: string | WasmStringSlice) {
+		this.mem.ensureMemory();
 		if (typeof str === "string") {
 			if (this.isConst) unsupported("can't mutate const string");
 			this.mem.u32[(this.base + 4) >>> 2] = this.mem.setString(
@@ -78,6 +81,7 @@ export class WasmStringSlice implements ReadonlyWasmString {
 	 * @param len
 	 */
 	setSlice(addr: number, len: number) {
+		this.mem.ensureMemory();
 		this.mem.u32[this.base >>> 2] = addr;
 		this.mem.u32[(this.base + 4) >>> 2] = len;
 	}
@@ -111,10 +115,12 @@ export class WasmStringPtr implements ReadonlyWasmString {
 	 * Returns string start address (deref'd pointer).
 	 */
 	get addr() {
+		this.mem.ensureMemory();
 		return this.mem.u32[this.base >>> 2];
 	}
 
 	set addr(addr: number) {
+		this.mem.ensureMemory();
 		this.mem.u32[this.base >>> 2] = addr;
 	}
 
@@ -122,9 +128,9 @@ export class WasmStringPtr implements ReadonlyWasmString {
 	 * Returns computed string length (scanning memory for zero sentinel)
 	 */
 	get length() {
-		const addr = this.addr;
-		const idx = this.mem.u8.indexOf(0, addr);
-		return idx >= 0 ? idx - addr : 0;
+		this.mem.ensureMemory();
+		const idx = this.mem.u8.indexOf(0, this.addr);
+		return idx >= 0 ? idx - this.addr : 0;
 	}
 
 	/**
@@ -158,6 +164,7 @@ export class WasmStringPtr implements ReadonlyWasmString {
 		const addr = this.addr;
 		if (typeof str === "string") {
 			if (this.isConst) unsupported("can't mutate const string");
+			this.mem.ensureMemory();
 			this.mem.setString(str, addr, this.mem.u8.byteLength - addr, true);
 		} else {
 			this.addr = str.addr;
