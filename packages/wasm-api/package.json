@@ -62,13 +62,15 @@
 		"allocator",
 		"api",
 		"bindings",
+		"browser",
 		"c",
 		"codegen",
 		"enum",
 		"event",
-		"id",
+		"interop",
 		"logger",
 		"memory",
+		"modular",
 		"polyglot",
 		"string",
 		"struct",
@@ -77,7 +79,6 @@
 		"utf8",
 		"wasm",
 		"webassembly",
-		"wrapper",
 		"ziglang"
 	],
 	"publishConfig": {
@@ -94,8 +95,8 @@
 		"*.js",
 		"*.d.ts",
 		"bin",
-		"include",
-		"codegen"
+		"codegen",
+		"include"
 	],
 	"exports": {
 		".": {
