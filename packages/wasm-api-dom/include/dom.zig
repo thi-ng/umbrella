@@ -6,14 +6,26 @@ pub usingnamespace dom;
 
 /// DOM event listener
 pub const EventListener = struct {
+    /// Event listener function. Takes an event and optional pointer to user
+    /// supplied arbitrary context data provided when registering the handler
+    /// via addListener()
     callback: *const fn (event: *const dom.Event, ?*anyopaque) void,
-    arg: ?*anyopaque = null,
+    /// Optional type erased pointer to arbitrary user context. This pointer
+    /// can be cast back into the desired type using this form:
+    /// `@ptrCast(?*Foo, @alignCast(@alignOf(Foo), raw))`
+    ctx: ?*anyopaque = null,
 };
 
 /// RAF event listener
 pub const RAFListener = struct {
+    /// Animation frame listener function. Takes an hires timestamp and optional
+    /// pointer to user supplied arbitrary context data provided when registering
+    /// the handler via requestAnimationFrame()
     callback: *const fn (time: f64, ?*anyopaque) void,
-    arg: ?*anyopaque = null,
+    /// Optional type erased pointer to arbitrary user context. This pointer
+    /// can be cast back into the desired type using this form:
+    /// `@ptrCast(?*Foo, @alignCast(@alignOf(Foo), raw))`
+    ctx: ?*anyopaque = null,
 };
 
 /// Reserved reference handle for the browser window itself (e.g. used for event targets)
@@ -80,7 +92,7 @@ pub fn setInnerText(elementID: i32, tag: []const u8) void {
 }
 
 export fn dom_callListener(listenerID: u16, event: *const dom.Event) void {
-    if (eventListeners.get(listenerID)) |listener| listener.callback(event, listener.arg);
+    if (eventListeners.get(listenerID)) |listener| listener.callback(event, listener.ctx);
 }
 
 pub extern "dom" fn _addListener(elementID: i32, name: [*]const u8, listenerID: u16) void;
@@ -117,6 +129,6 @@ pub fn requestAnimationFrame(listener: *const RAFListener) anyerror!u16 {
 export fn dom_callRAF(listenerID: u16, time: f64) void {
     if (rafListeners.get(listenerID)) |raf| {
         rafListeners.remove(listenerID);
-        raf.callback(time, raf.arg);
+        raf.callback(time, raf.ctx);
     }
 }
