@@ -33,6 +33,17 @@ pub fn string(str: []const u8) String {
     return String.wrap(str);
 }
 
+/// Similar to @ptrCast intrinsic. Helper function to cast & re-align an
+/// optional `anyopaque` pointer to another given pointer type.
+/// E.g. useful for retrieving user context data from an opaque extra arg
+/// given to a event listner callback...
+pub fn ptrCast(comptime T: type, ptr: ?*anyopaque) ?T {
+    if (ptr == null) return null;
+    const info = @typeInfo(T);
+    if (info != .Pointer) @compileError("require pointer type");
+    return @ptrCast(T, @alignCast(@alignOf(info.Pointer.child), ptr));
+}
+
 /// JS external part of the custom panic handler
 /// Prints message using configured JS logger and then throws JS error
 pub extern "wasmapi" fn _panic(addr: [*]const u8, len: usize) noreturn;
