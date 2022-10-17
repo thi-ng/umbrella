@@ -244,6 +244,9 @@
 		"./is-symbol": {
 			"default": "./is-symbol.js"
 		},
+		"./is-touch-event": {
+			"default": "./is-touch-event.js"
+		},
 		"./is-transferable": {
 			"default": "./is-transferable.js"
 		},

@@ -56,6 +56,7 @@ export * from "./is-safari.js";
 export * from "./is-set.js";
 export * from "./is-string.js";
 export * from "./is-symbol.js";
+export * from "./is-touch-event.js";
 export * from "./is-transferable.js";
 export * from "./is-true.js";
 export * from "./is-typedarray.js";
