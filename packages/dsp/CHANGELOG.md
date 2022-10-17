@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-10-03T16:07:55Z
+- **Last updated**: 2022-10-17T12:08:09Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,12 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [4.2.17](https://github.com/thi-ng/umbrella/tree/@thi.ng/dsp@4.2.17) (2022-10-17)
+
+#### 🩹 Bug fixes
+
+- add missing opt args for modOsc() ([e67c110](https://github.com/thi-ng/umbrella/commit/e67c110))
 
 ## [4.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/dsp@4.2.0) (2022-04-07)
 

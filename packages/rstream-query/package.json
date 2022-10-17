@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/rstream-query",
-	"version": "2.1.25",
+	"version": "2.1.26",
 	"description": "@thi.ng/rstream based triple store & reactive query engine",
 	"type": "module",
 	"module": "./index.js",
@@ -35,19 +35,19 @@
 	},
 	"dependencies": {
 		"@thi.ng/api": "^8.4.3",
-		"@thi.ng/associative": "^6.2.10",
-		"@thi.ng/checks": "^3.2.6",
+		"@thi.ng/associative": "^6.2.11",
+		"@thi.ng/checks": "^3.3.0",
 		"@thi.ng/equiv": "^2.1.11",
 		"@thi.ng/errors": "^2.2.2",
-		"@thi.ng/logger": "^1.4.0",
+		"@thi.ng/logger": "^1.4.1",
 		"@thi.ng/math": "^5.3.10",
-		"@thi.ng/rstream": "^7.2.22",
-		"@thi.ng/rstream-dot": "^2.1.25",
-		"@thi.ng/transducers": "^8.3.17"
+		"@thi.ng/rstream": "^7.2.23",
+		"@thi.ng/rstream-dot": "^2.1.26",
+		"@thi.ng/transducers": "^8.3.18"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.31.1",
-		"@thi.ng/testament": "^0.3.2",
+		"@thi.ng/testament": "^0.3.3",
 		"rimraf": "^3.0.2",
 		"tools": "workspace:^",
 		"typedoc": "^0.22.17",

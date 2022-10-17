@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/bencode",
-	"version": "2.1.24",
+	"version": "2.1.25",
 	"description": "Bencode binary encoder / decoder with optional UTF8 encoding & floating point support",
 	"type": "module",
 	"module": "./index.js",
@@ -34,16 +34,16 @@
 		"test": "testament test"
 	},
 	"dependencies": {
-		"@thi.ng/arrays": "^2.3.8",
-		"@thi.ng/checks": "^3.2.6",
-		"@thi.ng/defmulti": "^2.1.17",
+		"@thi.ng/arrays": "^2.3.9",
+		"@thi.ng/checks": "^3.3.0",
+		"@thi.ng/defmulti": "^2.1.18",
 		"@thi.ng/errors": "^2.2.2",
-		"@thi.ng/transducers": "^8.3.17",
-		"@thi.ng/transducers-binary": "^2.1.22"
+		"@thi.ng/transducers": "^8.3.18",
+		"@thi.ng/transducers-binary": "^2.1.23"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.31.1",
-		"@thi.ng/testament": "^0.3.2",
+		"@thi.ng/testament": "^0.3.3",
 		"rimraf": "^3.0.2",
 		"tools": "workspace:^",
 		"typedoc": "^0.22.17",

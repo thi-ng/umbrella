@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-10-04T17:35:45Z
+- **Last updated**: 2022-10-17T12:08:09Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,18 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [0.14.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/wasm-api@0.14.0) (2022-10-17)
+
+#### 🚀 Features
+
+- add ptrCast() zig helper ([72a9406](https://github.com/thi-ng/umbrella/commit/72a9406))
+- add Zig Slice & String wrappers ([28d057e](https://github.com/thi-ng/umbrella/commit/28d057e))
+  - allows expressing & converting slices for `extern struct`s
+- ensure memory in WasmStringSlice/Ptr ([c55c6f0](https://github.com/thi-ng/umbrella/commit/c55c6f0))
+- update IWasmMemoryAccess ([28bfff6](https://github.com/thi-ng/umbrella/commit/28bfff6))
+  - add IWasmMemoryAccess.ensureMemory()
+  - update WasmBridge.setString() to ensure memory
 
 ## [0.13.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/wasm-api@0.13.0) (2022-10-04)
 
