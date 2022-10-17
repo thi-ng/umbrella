@@ -1,4 +1,5 @@
 import { adaptDPI } from "@thi.ng/adapt-dpi";
+import { isTouchEvent } from "@thi.ng/checks/is-touch-event";
 import { assert } from "@thi.ng/errors/assert";
 import type {
 	IWasmAPI,
@@ -148,7 +149,15 @@ export class WasmDom implements IWasmAPI<DOMExports> {
 					event.target = target !== undefined ? target : -2;
 					let valueAddr = -1;
 					let valueLen: number;
-					if (e instanceof MouseEvent) {
+					const isTouch = isTouchEvent(e);
+					if (isTouch) {
+						const bounds = (<Element>(
+							e.target
+						)).getBoundingClientRect();
+						event.type = EventType.TOUCH;
+						event.clientX = e.touches[0].clientX - bounds.left;
+						event.clientY = e.touches[0].clientY - bounds.top;
+					} else if (e instanceof MouseEvent) {
 						const bounds = (<Element>(
 							e.target
 						)).getBoundingClientRect();
@@ -156,13 +165,6 @@ export class WasmDom implements IWasmAPI<DOMExports> {
 						event.clientX = e.clientX - bounds.left;
 						event.clientY = e.clientY - bounds.top;
 						event.buttons = e.buttons;
-					} else if (e instanceof TouchEvent) {
-						const bounds = (<Element>(
-							e.target
-						)).getBoundingClientRect();
-						event.type = EventType.TOUCH;
-						event.clientX = e.touches[0].clientX - bounds.left;
-						event.clientY = e.touches[0].clientY - bounds.top;
 					} else if (e instanceof KeyboardEvent) {
 						event.type = EventType.KEY;
 						this.parent.setString(
@@ -191,8 +193,8 @@ export class WasmDom implements IWasmAPI<DOMExports> {
 						event.type = EventType.UNKOWN;
 					}
 					if (
+						isTouch ||
 						e instanceof MouseEvent ||
-						e instanceof TouchEvent ||
 						e instanceof KeyboardEvent
 					) {
 						event.modifiers =

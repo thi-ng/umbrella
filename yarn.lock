@@ -4862,6 +4862,7 @@ __metadata:
     "@microsoft/api-extractor": ^7.31.1
     "@thi.ng/adapt-dpi": ^2.2.0
     "@thi.ng/api": ^8.4.3
+    "@thi.ng/checks": ^3.2.6
     "@thi.ng/errors": ^2.2.2
     "@thi.ng/testament": ^0.3.2
     "@thi.ng/wasm-api": ^0.13.1
