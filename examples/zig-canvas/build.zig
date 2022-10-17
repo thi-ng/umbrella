@@ -1,5 +1,5 @@
 const std = @import("std");
-const thing = @import("thing.zig");
+const npm = @import("npm.zig");
 const wasm = std.Target.wasm;
 
 pub fn build(b: *std.build.Builder) void {
@@ -13,13 +13,14 @@ pub fn build(b: *std.build.Builder) void {
     lib.setBuildMode(.ReleaseSmall);
     lib.strip = true;
     // helper lib to simplify using thi.ng/wasm-api API packages
-    var pkgs = thing.init(.{
-        // base path where to find these packages
-        .base = "../../node_modules/@thi.ng",
+    var pkgs = npm.init(.{
+        // base path to common node_modules directory under which
+        // all to be imported packages are located
+        .base = "../../node_modules",
         // we don't need to specify core wasmapi, only custom/extra packages
         // wasmapi is also auto-added as dependency for each of these
-        .packages = &[_]thing.Pkg{
-            .{ .id = "dom", .path = "wasm-api-dom/include/dom.zig" },
+        .packages = &[_]npm.Pkg{
+            .{ .id = "dom", .path = "@thi.ng/wasm-api-dom/include/dom.zig" },
         },
     });
     defer pkgs.deinit();

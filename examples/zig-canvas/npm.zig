@@ -1,3 +1,6 @@
+//! Barebones convenience package declarations for hybrid JS/Zig packages
+//! distributed via NPM and sourced from a common "node_modules" parent dir
+
 const std = @import("std");
 
 arena: std.heap.ArenaAllocator,
@@ -11,7 +14,8 @@ pub const Pkg = struct {
     id: []const u8,
     /// Package sub path (appended to base path)
     path: []const u8,
-    /// Other thi.ng package IDs
+    /// Dependencies aka other package IDs.
+    /// All of them must already have been registered
     deps: ?[]const []const u8 = null,
 };
 
@@ -28,7 +32,7 @@ pub fn init(opts: struct {
     const api = "wasmapi";
     self.packages.put(api, .{
         .name = api,
-        .source = .{ .path = self.modulePath("wasm-api/include/wasmapi.zig") },
+        .source = .{ .path = self.modulePath("@thi.ng/wasm-api/include/wasmapi.zig") },
     }) catch unreachable;
     if (opts.packages) |pkgs| {
         for (pkgs) |pkg| {
