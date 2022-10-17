@@ -1,4 +1,4 @@
-// @thing:no-export
+// thing:no-export
 
 /** @internal */
 export const expandArgs = (args: any[]) =>
