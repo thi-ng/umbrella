@@ -14,77 +14,161 @@ pub extern "app" fn downloadCanvas(canvas: i32) void;
 pub extern "app" fn drawStroke(canvas: i32, points: [*]Point, len: u32) void;
 
 // allocator, also exposed & used by JS-side WasmBridge
+// see further comments in:
+// https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api/include/wasmapi.zig
 var gpa = std.heap.GeneralPurposeAllocator(.{}){};
 pub const WASM_ALLOCATOR = gpa.allocator();
 
-// pre-create container for storing drawn gestures
-var strokes = std.ArrayList(*Stroke).init(WASM_ALLOCATOR);
-var currStroke: ?*Stroke = null;
+// Model & operations for drawn gestures and other app state
+const State = struct {
+    /// Browser window measurements
+    window: dom.WindowInfo = undefined,
+    /// List of recorded strokes/gestures
+    strokes: std.ArrayList(*Stroke) = undefined,
+    /// Current stroke (or null if none active)
+    currStroke: ?*Stroke = null,
+    /// DOM element ID for target canvas
+    canvasID: i32 = -1,
 
-// state
-var window: dom.WindowInfo = undefined;
-var canvasID: i32 = -1;
+    const Self = @This();
+
+    /// Initializes state
+    pub fn init(allocator: std.mem.Allocator) !Self {
+        var self = Self{
+            .strokes = std.ArrayList(*Stroke).init(allocator),
+        };
+        try dom.init(allocator);
+        dom.getWindowInfo(&self.window);
+        return self;
+    }
+
+    /// Starts a new stroke and appends it to the list
+    pub fn startStroke(self: *Self, x: i16, y: i16) void {
+        var stroke: *Stroke = WASM_ALLOCATOR.create(Stroke) catch return;
+        var strokeInst = Stroke.init(WASM_ALLOCATOR);
+        strokeInst.append(self.scaledPoint(x, y)) catch return;
+        stroke.* = strokeInst;
+        self.strokes.append(stroke) catch return;
+        self.currStroke = stroke;
+    }
+
+    /// End current stroke
+    pub fn endStroke(self: *Self) void {
+        if (self.currStroke) |stroke| {
+            if (stroke.items.len == 0) self.undoStroke();
+            self.currStroke = null;
+        }
+    }
+
+    /// Appends new point to current stroke (checks if any is active)
+    /// Returns true if successful
+    pub fn updateStroke(self: *Self, x: i16, y: i16) void {
+        if (self.currStroke) |curr| {
+            curr.append(self.scaledPoint(x, y)) catch return;
+            self.requestRedraw();
+        }
+    }
+
+    /// Attempts to discard most recent stroke. Returns true if successful
+    pub fn undoStroke(self: *Self) void {
+        if (self.strokes.popOrNull()) |stroke| {
+            stroke.clearAndFree();
+            self.requestRedraw();
+            self.currStroke = null;
+        }
+    }
+
+    /// Triggers redraw during next RAF cycle. This app redraws on demand,
+    /// but we NEVER want to do so from the event loop!
+    pub fn requestRedraw(self: *State) void {
+        const wrapper = struct {
+            pub fn handler(_: f64, raw: ?*anyopaque) void {
+                if (wasm.ptrCast(*const State, raw)) |state| state.redraw();
+            }
+        };
+        _ = dom.requestAnimationFrame(&.{
+            .callback = wrapper.handler,
+            .ctx = self,
+        }) catch return;
+    }
+
+    /// Calls into JS API to clear canvas and redraw all recorded strokes.
+    pub fn redraw(self: *const State) void {
+        clearCanvas(self.canvasID);
+        for (self.strokes.items) |stroke| {
+            drawStroke(self.canvasID, stroke.items.ptr, stroke.items.len);
+        }
+    }
+
+    /// Computes point scaled to given device pixel ratio
+    fn scaledPoint(self: *const Self, x: i16, y: i16) Point {
+        return [2]i16{
+            (x - 8) * self.window.dpr,
+            (y - 8) * self.window.dpr,
+        };
+    }
+};
+
+/// Pre-declare state, will be fully initialized via the initDOM()
+var STATE: State = undefined;
 
 // event handlers
 
 /// mousedown/touchstart handler
-fn startStroke(event: *const dom.Event, _: ?*anyopaque) void {
-    var stroke: *Stroke = WASM_ALLOCATOR.create(Stroke) catch return;
-    var strokeInst = std.ArrayList(Point).init(WASM_ALLOCATOR);
-    strokeInst.append(scaledPoint(event.clientX, event.clientY)) catch return;
-    stroke.* = strokeInst;
-    strokes.append(stroke) catch return;
-    currStroke = stroke;
+/// the optional opaque pointer argument must be first cast & checked for non-null values
+fn startStroke(event: *const dom.Event, raw: ?*anyopaque) void {
+    if (wasm.ptrCast(*State, raw)) |state| {
+        state.startStroke(event.clientX, event.clientY);
+    }
 }
 
 /// mousemove/touchmove handler (only if active stroke)
-fn updateStroke(event: *const dom.Event, _: ?*anyopaque) void {
-    if (currStroke) |curr| {
-        curr.append(scaledPoint(event.clientX, event.clientY)) catch return;
+/// the optional opaque pointer argument must be first cast & checked for non-null values
+fn updateStroke(event: *const dom.Event, raw: ?*anyopaque) void {
+    if (wasm.ptrCast(*State, raw)) |state| {
+        state.updateStroke(event.clientX, event.clientY);
         dom.preventDefault();
-        requestRedraw();
     }
 }
 
 /// mouseup/touchend handler
-fn endStroke(_: *const dom.Event, _: ?*anyopaque) void {
-    currStroke = null;
+/// the optional opaque pointer argument must be first cast & checked for non-null values
+fn endStroke(_: *const dom.Event, raw: ?*anyopaque) void {
+    if (wasm.ptrCast(*State, raw)) |state| state.endStroke();
 }
 
-/// Computes point scaled to current DPR
-fn scaledPoint(x: i16, y: i16) Point {
-    return [2]i16{
-        (x - 8) * window.dpr,
-        (y - 8) * window.dpr,
-    };
-}
-
-fn onKeyDown(event: *const dom.Event, _: ?*anyopaque) void {
+fn onKeyDown(event: *const dom.Event, raw: ?*anyopaque) void {
+    // bail if Control key isn't pressed...
     if (event.modifiers & @enumToInt(dom.KeyModifier.CTRL) == 0) return;
     const key = event.getKey();
     if (std.mem.eql(u8, key, "z")) {
-        undoStroke();
-        dom.preventDefault();
+        if (wasm.ptrCast(*State, raw)) |state| {
+            state.undoStroke();
+            dom.preventDefault();
+        }
     }
 }
 
-fn onResize(_: *const dom.Event, _: ?*anyopaque) void {
-    resizeCanvas();
-    requestRedraw();
+fn onResize(_: *const dom.Event, raw: ?*anyopaque) void {
+    if (wasm.ptrCast(*State, raw)) |state| {
+        resizeCanvas();
+        state.requestRedraw();
+    }
 }
 
-fn onBtUndo(_: *const dom.Event, _: ?*anyopaque) void {
-    undoStroke();
+fn onBtUndo(_: *const dom.Event, raw: ?*anyopaque) void {
+    if (wasm.ptrCast(*State, raw)) |state| state.undoStroke();
 }
 
 fn onBtDownload(_: *const dom.Event, _: ?*anyopaque) void {
-    downloadCanvas(canvasID);
+    downloadCanvas(STATE.canvasID);
 }
 
 fn resizeCanvas() void {
-    dom.getWindowInfo(&window);
+    const window = &STATE.window;
+    dom.getWindowInfo(window);
     dom.setCanvasSize(
-        canvasID,
+        STATE.canvasID,
         // need to subtract margins defined via CSS (assuming 1rem = 16px)
         window.innerWidth - 4 * 8,
         window.innerHeight - 5 * 8 - 24,
@@ -92,34 +176,9 @@ fn resizeCanvas() void {
     );
 }
 
-/// Triggers redraw during next RAF cycle. This app redraws on demand,
-/// but we NEVER want to do so from the event loop!
-fn requestRedraw() void {
-    _ = dom.requestAnimationFrame(&.{ .callback = redraw }) catch return;
-}
-
-/// Redraw handler, calls into JS API to draw to canvas
-fn redraw(_: f64, _: ?*anyopaque) void {
-    clearCanvas(canvasID);
-    for (strokes.items) |stroke| {
-        drawStroke(canvasID, stroke.items.ptr, stroke.items.len);
-    }
-}
-
-/// Attempts to discard most recent stroke and if successful
-/// also triggers redraw
-fn undoStroke() void {
-    if (strokes.popOrNull()) |stroke| {
-        stroke.clearAndFree();
-        currStroke = null;
-        requestRedraw();
-    }
-}
-
 /// Creates & initializes DOM, event listeners
-fn initDOM() anyerror!void {
-    try dom.init(WASM_ALLOCATOR);
-    dom.getWindowInfo(&window);
+fn initDOM() !void {
+    STATE = try State.init(WASM_ALLOCATOR);
 
     const container = dom.createElement(&.{
         .tag = "main",
@@ -146,7 +205,7 @@ fn initDOM() anyerror!void {
         .class = "mr1",
         .parent = toolbar,
     });
-    _ = try dom.addListener(btUndo, "click", &.{ .callback = onBtUndo });
+    _ = try dom.addListener(btUndo, "click", &.{ .callback = onBtUndo, .ctx = &STATE });
 
     const btDownload = dom.createElement(&.{
         .tag = "button",
@@ -156,26 +215,26 @@ fn initDOM() anyerror!void {
     _ = try dom.addListener(btDownload, "click", &.{ .callback = onBtDownload });
 
     // main editor canvas
-    canvasID = dom.createCanvas(&.{
+    STATE.canvasID = dom.createCanvas(&.{
         .id = "editor",
         // dummy size, will update via resizeCanvas() later
         .width = 100,
         .height = 100,
-        .dpr = window.dpr,
+        .dpr = STATE.window.dpr,
         .parent = container,
     });
     resizeCanvas();
 
-    _ = try dom.addListener(canvasID, "mousedown", &.{ .callback = startStroke });
-    _ = try dom.addListener(canvasID, "mousemove", &.{ .callback = updateStroke });
-    _ = try dom.addListener(canvasID, "mouseup", &.{ .callback = endStroke });
+    _ = try dom.addListener(STATE.canvasID, "mousedown", &.{ .callback = startStroke, .ctx = &STATE });
+    _ = try dom.addListener(STATE.canvasID, "mousemove", &.{ .callback = updateStroke, .ctx = &STATE });
+    _ = try dom.addListener(STATE.canvasID, "mouseup", &.{ .callback = endStroke, .ctx = &STATE });
 
-    _ = try dom.addListener(canvasID, "touchstart", &.{ .callback = startStroke });
-    _ = try dom.addListener(canvasID, "touchmove", &.{ .callback = updateStroke });
-    _ = try dom.addListener(canvasID, "touchend", &.{ .callback = endStroke });
+    _ = try dom.addListener(STATE.canvasID, "touchstart", &.{ .callback = startStroke, .ctx = &STATE });
+    _ = try dom.addListener(STATE.canvasID, "touchmove", &.{ .callback = updateStroke, .ctx = &STATE });
+    _ = try dom.addListener(STATE.canvasID, "touchend", &.{ .callback = endStroke, .ctx = &STATE });
 
-    _ = try dom.addListener(dom.WINDOW, "keydown", &.{ .callback = onKeyDown });
-    _ = try dom.addListener(dom.WINDOW, "resize", &.{ .callback = onResize });
+    _ = try dom.addListener(dom.WINDOW, "keydown", &.{ .callback = onKeyDown, .ctx = &STATE });
+    _ = try dom.addListener(dom.WINDOW, "resize", &.{ .callback = onResize, .ctx = &STATE });
 }
 
 /// Main entry point (called from JS)
