@@ -17,7 +17,6 @@ This package provides a minimal, but already quite usable TypeScript core API
 and related [Ziglang](https://ziglang.org) bindings for UI & DOM
 creation/manipulation via WebAssembly.
 
-
 ${status}
 
 For now, please see the [package
@@ -25,7 +24,7 @@ docs](https://docs.thi.ng/umbrella/wasm-api-dom/), source code comments
 ([TS](https://github.com/thi-ng/umbrella/tree/develop/packages/wasm-api-dom/src/)
 &
 [Zig](https://github.com/thi-ng/umbrella/tree/develop/packages/wasm-api-dom/include/))
-and the [zig-canvas example
+and the various comments in the [zig-canvas example
 project](https://github.com/thi-ng/umbrella/tree/develop/examples/zig-canvas)
 for further reference and usage patterns! Thank you!
 

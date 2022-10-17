@@ -13,6 +13,7 @@ pub const EventListener = struct {
     /// Optional type erased pointer to arbitrary user context. This pointer
     /// can be cast back into the desired type using this form:
     /// `@ptrCast(?*Foo, @alignCast(@alignOf(Foo), raw))`
+    /// Also see: `wasmapi.ptrCast()`
     ctx: ?*anyopaque = null,
 };
 
@@ -25,6 +26,7 @@ pub const RAFListener = struct {
     /// Optional type erased pointer to arbitrary user context. This pointer
     /// can be cast back into the desired type using this form:
     /// `@ptrCast(?*Foo, @alignCast(@alignOf(Foo), raw))`
+    /// Also see: `wasmapi.ptrCast()`
     ctx: ?*anyopaque = null,
 };
 

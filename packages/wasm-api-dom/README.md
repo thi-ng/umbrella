@@ -37,7 +37,7 @@ docs](https://docs.thi.ng/umbrella/wasm-api-dom/), source code comments
 ([TS](https://github.com/thi-ng/umbrella/tree/develop/packages/wasm-api-dom/src/)
 &
 [Zig](https://github.com/thi-ng/umbrella/tree/develop/packages/wasm-api-dom/include/))
-and the [zig-canvas example
+and the various comments in the [zig-canvas example
 project](https://github.com/thi-ng/umbrella/tree/develop/examples/zig-canvas)
 for further reference and usage patterns! Thank you!
 
@@ -64,12 +64,13 @@ node --experimental-repl-await
 > const wasmApiDom = await import("@thi.ng/wasm-api-dom");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 2.33 KB
+Package sizes (gzipped, pre-treeshake): ESM: 2.36 KB
 
 ## Dependencies
 
 - [@thi.ng/adapt-dpi](https://github.com/thi-ng/umbrella/tree/develop/packages/adapt-dpi)
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
+- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
 - [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
 - [@thi.ng/wasm-api](https://github.com/thi-ng/umbrella/tree/develop/packages/wasm-api)
 
