@@ -16,6 +16,8 @@ This project is part of the
 - [Usage examples](#usage-examples)
 - [API](#api)
 - [Authors](#authors)
+  - [Maintainer](#maintainer)
+  - [Contributors](#contributors)
 - [License](#license)
 
 ## About
@@ -94,14 +96,20 @@ TODO
 
 ## Authors
 
-Karsten Schmidt
+### Maintainer
+
+- Karsten Schmidt ([@postspectacular](https://github.com/postspectacular))
+
+### Contributors
+
+- Marcus Wågberg ([@MarcusWagberg](https://github.com/MarcusWagberg))
 
 If this project contributes to an academic publication, please cite it as:
 
 ```bibtex
 @misc{thing-wasm-api-dom,
   title = "@thi.ng/wasm-api-dom",
-  author = "Karsten Schmidt",
+  author = "Karsten Schmidt and others",
   note = "https://thi.ng/wasm-api-dom",
   year = 2022
 }
