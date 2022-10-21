@@ -22,6 +22,7 @@ struct WASM_Foo {
     const char** singlePtr;
     const char** multiPtr;
     WASM_Bar kind;
+    uint32_t size;
 };
 
 size_t __attribute__((used)) WASM_Foo_align() {
@@ -90,6 +91,18 @@ size_t __attribute__((used)) WASM_Foo_kind_offset() {
 
 size_t __attribute__((used)) WASM_Foo_kind_size() {
     return sizeof(WASM_Bar);
+}
+
+size_t __attribute__((used)) WASM_Foo_size_align() {
+    return alignof(uint32_t);
+}
+
+size_t __attribute__((used)) WASM_Foo_size_offset() {
+    return offsetof(WASM_Foo, size);
+}
+
+size_t __attribute__((used)) WASM_Foo_size_size() {
+    return sizeof(uint32_t);
 }
 
 

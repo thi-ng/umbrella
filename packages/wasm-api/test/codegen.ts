@@ -28,6 +28,7 @@ const stringTypes: TypeColl = {
 			{ name: "singlePtr", type: "string", tag: "ptr" },
 			{ name: "multiPtr", type: "string", tag: "ptr", len: 2 },
 			{ name: "kind", type: "Bar" },
+			{ name: "size", type: "usize" },
 		],
 	},
 };

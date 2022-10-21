@@ -13,6 +13,7 @@ pub const Foo = struct {
     singlePtr: *[]const u8,
     multiPtr: *[2][]const u8,
     kind: Bar,
+    size: u32,
 };
 
 export fn Foo_align() usize {
@@ -81,4 +82,16 @@ export fn Foo_kind_offset() usize {
 
 export fn Foo_kind_size() usize {
     return @sizeOf(Bar);
+}
+
+export fn Foo_size_align() usize {
+    return @alignOf(u32);
+}
+
+export fn Foo_size_offset() usize {
+    return @offsetOf(Foo, "size");
+}
+
+export fn Foo_size_size() usize {
+    return @sizeOf(u32);
 }

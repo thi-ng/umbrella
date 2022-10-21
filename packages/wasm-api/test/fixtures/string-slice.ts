@@ -14,6 +14,7 @@ export interface Foo extends WasmTypeBase {
 	singlePtr: Pointer<WasmStringSlice>;
 	multiPtr: Pointer<WasmStringSlice[]>;
 	kind: Bar;
+	size: number;
 }
 
 export const $Foo: WasmTypeConstructor<Foo> = (mem) => ({
@@ -21,7 +22,7 @@ export const $Foo: WasmTypeConstructor<Foo> = (mem) => ({
 		return 4;
 	},
 	get size() {
-		return 36;
+		return 40;
 	},
 	instance: (base) => {
 		let $singlePtr: Pointer<WasmStringSlice> | null = null;
@@ -33,7 +34,7 @@ export const $Foo: WasmTypeConstructor<Foo> = (mem) => ({
 				return base;
 			},
 			get __bytes() {
-				return mem.u8.subarray(base, base + 36);
+				return mem.u8.subarray(base, base + 40);
 			},
 			get single(): WasmStringSlice {
 				return $single || ($single = new WasmStringSlice(mem, base, true));
@@ -64,6 +65,12 @@ export const $Foo: WasmTypeConstructor<Foo> = (mem) => ({
 			},
 			set kind(x: Bar) {
 				mem.i32[(base + 32) >>> 2] = x;
+			},
+			get size(): number {
+				return mem.u32[(base + 36) >>> 2];
+			},
+			set size(x: number) {
+				mem.u32[(base + 36) >>> 2] = x;
 			},
 		};
 	}
