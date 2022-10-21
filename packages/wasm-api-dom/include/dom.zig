@@ -42,7 +42,7 @@ pub const DOMError = error{
 var eventListeners: ManagedIndex(*const EventListener, u16) = undefined;
 var rafListeners: ManagedIndex(*const RAFListener, u16) = undefined;
 
-pub fn init(allocator: std.mem.Allocator) anyerror!void {
+pub fn init(allocator: std.mem.Allocator) !void {
     eventListeners = ManagedIndex(*const EventListener, u16).init(allocator);
     rafListeners = ManagedIndex(*const RAFListener, u16).init(allocator);
 }
@@ -99,7 +99,7 @@ export fn dom_callListener(listenerID: u16, event: *const dom.Event) void {
 
 pub extern "dom" fn _addListener(elementID: i32, name: [*]const u8, listenerID: u16) void;
 
-pub fn addListener(elementID: i32, name: []const u8, listener: *const EventListener) anyerror!u16 {
+pub fn addListener(elementID: i32, name: []const u8, listener: *const EventListener) !u16 {
     const listenerID = try eventListeners.add(listener);
     _addListener(elementID, name.ptr, listenerID);
     return listenerID;
@@ -112,17 +112,22 @@ pub fn removeListener(listenerID: u16) void {
     _removeListener(listenerID);
 }
 
-/// calls .preventDefault() on currently processed event
+/// Calls .preventDefault() on currently processed event
 /// (only to be called from an EventListener!)
 pub extern "dom" fn preventDefault() void;
 
-/// calls .stopImmediatePropagation() on currently processed event
+/// Calls .stopPropagation() on currently processed event
+/// (only to be called from an EventListener!)
+pub extern "dom" fn stopPropagation() void;
+
+/// Calls .stopImmediatePropagation() on currently processed event
 /// (only to be called from an EventListener!)
 pub extern "dom" fn stopImmediatePropagation() void;
 
 pub extern "dom" fn _requestAnimationFrame(listenerID: u16) void;
 
-pub fn requestAnimationFrame(listener: *const RAFListener) anyerror!u16 {
+/// Registers given listener for next animation frame
+pub fn requestAnimationFrame(listener: *const RAFListener) !u16 {
     const id = try rafListeners.add(listener);
     _requestAnimationFrame(id);
     return id;

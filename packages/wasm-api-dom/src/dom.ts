@@ -173,6 +173,16 @@ export class WasmDom implements IWasmAPI<DOMExports> {
 							16,
 							true
 						);
+					} else if (e instanceof WheelEvent) {
+						event.type = EventType.WHEEL;
+						event.deltaX = e.deltaX;
+						event.deltaY = e.deltaY;
+						event.buttons = e.buttons;
+					} else if (e instanceof FocusEvent) {
+						event.type =
+							e.type === "focus"
+								? EventType.FOCUS
+								: EventType.BLUR;
 					} else if (e.type === "change" || e.type === "input") {
 						event.type = EventType.INPUT;
 						const el = <HTMLInputElement>e.target;
@@ -195,7 +205,8 @@ export class WasmDom implements IWasmAPI<DOMExports> {
 					if (
 						isTouch ||
 						e instanceof MouseEvent ||
-						e instanceof KeyboardEvent
+						e instanceof KeyboardEvent ||
+						e instanceof WheelEvent
 					) {
 						event.modifiers =
 							(e.shiftKey ? 1 : 0) |
@@ -227,6 +238,10 @@ export class WasmDom implements IWasmAPI<DOMExports> {
 
 			preventDefault: () => {
 				this.currEvent && this.currEvent.preventDefault();
+			},
+
+			stopPropagation: () => {
+				this.currEvent && this.currEvent.stopPropagation();
 			},
 
 			stopImmediatePropagation: () => {
