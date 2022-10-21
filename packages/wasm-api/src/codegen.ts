@@ -15,7 +15,7 @@ import {
 	StructField,
 	TopLevelType,
 	TypeColl,
-	USIZE_SIZE,
+	WASM32,
 } from "./api.js";
 import { isNumeric, isWasmString } from "./codegen/utils.js";
 
@@ -36,14 +36,15 @@ const sizeOf = defmulti<
 			}
 			let size = 0;
 			if (field.tag === "ptr") {
-				size = USIZE_SIZE;
+				size = opts.target.usizeBytes;
 			} else if (field.tag === "slice") {
-				size = USIZE_SIZE * 2;
+				size = opts.target.usizeBytes * 2;
 			} else {
 				size = isNumeric(field.type)
 					? SIZEOF[<Type>field.type]
 					: isWasmString(field.type)
-					? USIZE_SIZE * (opts.stringType === "slice" ? 2 : 1)
+					? opts.target.usizeBytes *
+					  (opts.stringType === "slice" ? 2 : 1)
 					: sizeOf(types[field.type], types, opts);
 				if (field.tag == "array" || field.tag === "vec") {
 					size *= field.len!;
@@ -74,18 +75,26 @@ const sizeOf = defmulti<
 	}
 );
 
-const alignOf = defmulti<TopLevelType | StructField, TypeColl, number>(
+const alignOf = defmulti<
+	TopLevelType | StructField,
+	TypeColl,
+	CodeGenOpts,
+	number
+>(
 	(x) => x.type,
 	{},
 	{
-		[DEFAULT]: (field: StructField, types: TypeColl) => {
+		[DEFAULT]: (field: StructField, types: TypeColl, opts: CodeGenOpts) => {
 			if (field.__align) return field.__align;
+			if (field.type === "usize") {
+				field.type = opts.target.usize;
+			}
 			if (field.pad) return (field.__align = 1);
 			let align = isNumeric(field.type)
 				? SIZEOF[<Type>field.type]
 				: isWasmString(field.type)
-				? USIZE_SIZE
-				: alignOf(types[field.type], types);
+				? opts.target.usizeBytes
+				: alignOf(types[field.type], types, opts);
 			if (field.tag === "vec") {
 				align *= ceilPow2(field.len!);
 			}
@@ -99,11 +108,11 @@ const alignOf = defmulti<TopLevelType | StructField, TypeColl, number>(
 			return (e.__align = SIZEOF[(<Enum>e).tag]);
 		},
 
-		struct: (type, types) => {
+		struct: (type, types, opts) => {
 			const struct = <Struct>type;
 			let maxAlign = 0;
 			for (let f of struct.fields) {
-				maxAlign = Math.max(maxAlign, alignOf(f, types));
+				maxAlign = Math.max(maxAlign, alignOf(f, types, opts));
 			}
 			return (type.__align = maxAlign);
 		},
@@ -116,13 +125,13 @@ const prepareType = defmulti<TopLevelType, TypeColl, CodeGenOpts, void>(
 	{
 		[DEFAULT]: (x: TopLevelType, types: TypeColl, opts: CodeGenOpts) => {
 			if (x.__align && x.__size) return;
-			alignOf(x, types);
+			alignOf(x, types, opts);
 			sizeOf(x, types, opts);
 		},
 		struct: (x, types, opts) => {
 			if (x.__align && x.__size) return;
 			const struct = <Struct>x;
-			alignOf(struct, types);
+			alignOf(struct, types, opts);
 			if (struct.auto) {
 				struct.fields.sort(
 					compareByKey("__align", <any>compareNumDesc)
@@ -178,9 +187,10 @@ export const generateTypes = (
 ) => {
 	const $opts = <CodeGenOpts>{
 		header: true,
-		stringType: "slice",
-		uppercaseEnums: true,
 		lineWidth: 80,
+		stringType: "slice",
+		target: WASM32,
+		uppercaseEnums: true,
 		...opts,
 	};
 	prepareTypes(types, $opts);

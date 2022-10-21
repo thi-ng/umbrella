@@ -14,9 +14,8 @@ import {
 	ICodeGen,
 	PKG_NAME,
 	StructField,
-	USIZE,
-	USIZE_SIZE,
 	WasmPrim,
+	WasmTarget,
 } from "../api.js";
 import {
 	enumName,
@@ -173,6 +172,7 @@ import { Pointer, ${__stringImpl(
 							? [
 									`(addr) => {`,
 									...__mapStringArray(
+										opts.target,
 										"buf",
 										$stringImpl,
 										f.len!,
@@ -204,16 +204,23 @@ import { Pointer, ${__stringImpl(
 						);
 					}
 				} else if (f.tag === "slice") {
-					lines.push(`const len = ${__ptr(offset + 4)};`);
+					lines.push(
+						`const len = ${__ptr(opts.target, offset + 4)};`
+					);
 					if (isPrim) {
 						lines.push(
-							`const addr = ${__ptrShift(offset, f.type)};`,
+							`const addr = ${__ptrShift(
+								opts.target,
+								offset,
+								f.type
+							)};`,
 							`return mem.${f.type}.subarray(addr, addr + len);`
 						);
 					} else if (isStr) {
 						lines.push(
-							`const addr = ${__ptr(offset)};`,
+							`const addr = ${__ptr(opts.target, offset)};`,
 							...__mapStringArray(
+								opts.target,
 								"buf",
 								$stringImpl,
 								"len",
@@ -222,7 +229,7 @@ import { Pointer, ${__stringImpl(
 						);
 					} else {
 						lines.push(
-							`const addr = ${__ptr(offset)};`,
+							`const addr = ${__ptr(opts.target, offset)};`,
 							...__mapArray(f)
 						);
 					}
@@ -237,6 +244,7 @@ import { Pointer, ${__stringImpl(
 							`if ($${f.name}) return $${f.name};`,
 							`const addr = ${__addr(offset)};`,
 							...__mapStringArray(
+								opts.target,
 								f.name,
 								$stringImpl,
 								f.len!,
@@ -340,11 +348,12 @@ const __addrShift = (offset: number, shift: string) => {
 };
 
 /** @internal */
-const __ptr = (offset: number) => `mem.${USIZE}[${__addrShift(offset, USIZE)}]`;
+const __ptr = (target: WasmTarget, offset: number) =>
+	`mem.${target.usize}[${__addrShift(offset, target.usize)}]`;
 
 /** @internal */
-const __ptrShift = (offset: number, shift: string) =>
-	__ptr(offset) + " >>> " + __shift(shift);
+const __ptrShift = (target: WasmTarget, offset: number, shift: string) =>
+	__ptr(target, offset) + " >>> " + __shift(shift);
 
 const __mem = (type: string, offset: number) =>
 	`mem.${type}[${__addrShift(offset!, type)}]`;
@@ -359,6 +368,7 @@ const __mapArray = (f: StructField, len: NumOrString = "len") => [
 
 /** @internal */
 const __mapStringArray = (
+	target: WasmTarget,
 	name: string,
 	type: "WasmStringSlice" | "WasmStringPtr",
 	len: NumOrString,
@@ -367,7 +377,7 @@ const __mapStringArray = (
 ) => [
 	isLocal ? `const $${name}: ${type}[] = [];` : `$${name} = [];`,
 	`for(let i = 0; i < ${len}; i++) $${name}.push(new ${type}(mem, addr + i * ${
-		USIZE_SIZE * (type === "WasmStringSlice" ? 2 : 1)
+		target.usizeBytes * (type === "WasmStringSlice" ? 2 : 1)
 	}, ${isConst}));`,
 	`return $${name};`,
 ];

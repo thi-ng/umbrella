@@ -394,6 +394,12 @@ export interface CodeGenOptsBase {
  */
 export interface CodeGenOpts extends CodeGenOptsBase {
 	/**
+	 * WASM target specification.
+	 *
+	 * @defaultValue {@link WASM32}
+	 */
+	target: WasmTarget;
+	/**
 	 * Identifier how strings are stored on WASM side, e.g. in Zig string
 	 * literals are slices (8 bytes), in C just plain pointers (4 bytes).
 	 *
@@ -464,11 +470,23 @@ export interface ICodeGen {
 	) => void;
 }
 
+export interface WasmTarget {
+	usize: "u32" | "u64";
+	usizeBytes: number;
+}
+
 /**
- * WASM usize type. Assuming wasm32 until wasm64 surfaces, then need an option.
+ * WASM32 target spec
  */
-export const USIZE = "u32";
+export const WASM32: WasmTarget = {
+	usize: "u32",
+	usizeBytes: 4,
+};
+
 /**
- * Byte size of {@link USIZE}.
+ * WASM64 target spec
  */
-export const USIZE_SIZE = 4;
+export const WASM64: WasmTarget = {
+	usize: "u64",
+	usizeBytes: 8,
+};

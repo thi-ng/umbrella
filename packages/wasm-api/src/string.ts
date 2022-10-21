@@ -5,6 +5,10 @@ import type { IWasmMemoryAccess, ReadonlyWasmString } from "./api.js";
  * Memory mapped string wrapper for Zig-style UTF-8 encoded byte slices (aka
  * pointer & length pair). The actual JS string can be obtained via
  * {@link WasmStringSlice.deref} and mutated via {@link WasmStringSlice.set}.
+ *
+ * @remarks
+ * Currently only supports wasm32 target, need alt. solution for 64bit (possibly
+ * diff implementation) using bigint addresses (TODO)
  */
 export class WasmStringSlice implements ReadonlyWasmString {
 	readonly max: number;
