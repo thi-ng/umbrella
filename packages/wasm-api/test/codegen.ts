@@ -1,18 +1,17 @@
-import { fileFixture, group, TestCtx } from "@thi.ng/testament";
+import { fileFixture, fixturePath, group, TestCtx } from "@thi.ng/testament";
+import { writeText } from "@thi.ng/file-io";
 import * as assert from "assert";
 import {
 	C11,
 	CodeGenOpts,
 	Enum,
 	generateTypes,
+	ICodeGen,
 	Struct,
 	TypeColl,
 	TYPESCRIPT,
 	ZIG,
 } from "../src/index.js";
-
-const checkFixture = (ctx: TestCtx, src: string, fname: string) =>
-	assert.strictEqual(src, fileFixture(fname, ctx.logger));
 
 const stringTypes: TypeColl = {
 	Bar: <Enum>{
@@ -33,6 +32,18 @@ const stringTypes: TypeColl = {
 	},
 };
 
+const checkFixture = (
+	ctx: TestCtx,
+	gen: ICodeGen,
+	opts: Partial<CodeGenOpts>,
+	fname: string,
+	regenerate = false
+) => {
+	const src = generateTypes(stringTypes, gen, opts);
+	regenerate && writeText(fixturePath(fname), src);
+	assert.strictEqual(src, fileFixture(fname, ctx.logger));
+};
+
 group("codegen", {
 	stringSlice: (ctx) => {
 		const opts: Partial<CodeGenOpts> = {
@@ -40,16 +51,9 @@ group("codegen", {
 			header: false,
 			stringType: "slice",
 		};
-		const srcC11 = generateTypes(
-			stringTypes,
-			C11({ typePrefix: "WASM_" }),
-			opts
-		);
-		const srcTS = generateTypes(stringTypes, TYPESCRIPT(), opts);
-		const srcZig = generateTypes(stringTypes, ZIG(), opts);
-		checkFixture(ctx, srcC11, "string-slice.c");
-		checkFixture(ctx, srcTS, "string-slice.ts");
-		checkFixture(ctx, srcZig, "string-slice.zig");
+		checkFixture(ctx, C11({ typePrefix: "WASM_" }), opts, "string-slice.c");
+		checkFixture(ctx, TYPESCRIPT(), opts, "string-slice.ts");
+		checkFixture(ctx, ZIG(), opts, "string-slice.zig");
 		ctx.done();
 	},
 
@@ -59,16 +63,9 @@ group("codegen", {
 			header: false,
 			stringType: "ptr",
 		};
-		const srcC11 = generateTypes(
-			stringTypes,
-			C11({ typePrefix: "WASM_" }),
-			opts
-		);
-		const srcTS = generateTypes(stringTypes, TYPESCRIPT(), opts);
-		const srcZig = generateTypes(stringTypes, ZIG(), opts);
-		checkFixture(ctx, srcC11, "string-ptr.c");
-		checkFixture(ctx, srcTS, "string-ptr.ts");
-		checkFixture(ctx, srcZig, "string-ptr.zig");
+		checkFixture(ctx, C11({ typePrefix: "WASM_" }), opts, "string-ptr.c");
+		checkFixture(ctx, TYPESCRIPT(), opts, "string-ptr.ts");
+		checkFixture(ctx, ZIG(), opts, "string-ptr.zig");
 		ctx.done();
 	},
 });
