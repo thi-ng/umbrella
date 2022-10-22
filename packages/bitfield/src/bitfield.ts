@@ -6,17 +6,19 @@ import { assert } from "@thi.ng/errors/assert";
 import { binOp, toString } from "./util.js";
 
 /**
- * 1D bit field, backed by a Uint32Array. Hence size is always rounded
- * up to a multiple of 32.
+ * 1D bit field, backed by a Uint8Array. Hence size is always rounded
+ * up to a multiple of 8.
  */
 export class BitField implements IClear, ICopy<BitField>, ILength {
-	data: Uint32Array;
+	/** Backing byte array */
+	data: Uint8Array;
+	/** Field size in bits (always a multiple of 8) */
 	n: number;
 
 	constructor(bits: number | string | ArrayLike<boolean | number>) {
 		const isNumber = typeof bits === "number";
-		this.n = align(isNumber ? <number>bits : (<any>bits).length, 32);
-		this.data = new Uint32Array(this.n >>> 5);
+		this.n = align(isNumber ? <number>bits : (<any>bits).length, 8);
+		this.data = new Uint8Array(this.n >>> 3);
 		!isNumber && this.setRange(0, <any>bits);
 	}
 
@@ -30,7 +32,7 @@ export class BitField implements IClear, ICopy<BitField>, ILength {
 	*[Symbol.iterator]() {
 		const { data, n } = this;
 		for (let i = 0; i < n; i++) {
-			yield data[i >>> 5] & (1 << (~i & 31)) ? 1 : 0;
+			yield data[i >>> 3] & (1 << (~i & 7)) ? 1 : 0;
 		}
 	}
 
@@ -40,7 +42,7 @@ export class BitField implements IClear, ICopy<BitField>, ILength {
 	*positions() {
 		const { data, n } = this;
 		for (let i = 0; i < n; i++) {
-			if (data[i >>> 5] & (1 << (~i & 31))) yield i;
+			if (data[i >>> 3] & (1 << (~i & 7))) yield i;
 		}
 	}
 
@@ -56,14 +58,14 @@ export class BitField implements IClear, ICopy<BitField>, ILength {
 
 	/**
 	 * Resizes bitfield to new size given (rounded up to multiples of
-	 * 32).
+	 * 8).
 	 *
 	 * @param n - new size
 	 */
 	resize(n: number) {
-		n = align(n, 32);
+		n = align(n, 8);
 		if (n === this.n) return this;
-		const dest = new Uint32Array(n >>> 5);
+		const dest = new Uint8Array(n >>> 3);
 		dest.set(this.data.slice(0, dest.length));
 		this.data = dest;
 		this.n = n;
@@ -77,7 +79,7 @@ export class BitField implements IClear, ICopy<BitField>, ILength {
 	 * @param n - bit number
 	 */
 	at(n: number) {
-		return this.data[n >>> 5] & (1 << (~n & 31));
+		return this.data[n >>> 3] & (1 << (~n & 7));
 	}
 
 	/**
@@ -88,8 +90,8 @@ export class BitField implements IClear, ICopy<BitField>, ILength {
 	 * @param v - new bit value
 	 */
 	setAt(n: number, v: boolean | number = true) {
-		const id = n >>> 5;
-		const mask = 1 << (~n & 31);
+		const id = n >>> 3;
+		const mask = 1 << (~n & 7);
 		const r = this.data[id] & mask;
 		if (v) {
 			this.data[id] |= mask;
@@ -125,8 +127,8 @@ export class BitField implements IClear, ICopy<BitField>, ILength {
 	 * @param n - bit number
 	 */
 	toggleAt(n: number) {
-		const id = n >>> 5;
-		const mask = 1 << (~n & 31);
+		const id = n >>> 3;
+		const mask = 1 << (~n & 7);
 		const r = this.data[id] & mask;
 		if (r) {
 			this.data[id] &= ~mask;
