@@ -1,4 +1,4 @@
-import type { FnN, FnN2 } from "@thi.ng/api";
+import type { FnN, FnN2, IntArray, UIntArray } from "@thi.ng/api";
 
 /**
  * Returns number of 1 bits in `x`.
@@ -19,7 +19,7 @@ export const popCount: FnN = (x) => (
  * @param n -
  */
 export const popCountArray = (
-	data: Uint32Array,
+	data: IntArray | UIntArray,
 	start = 0,
 	n = data.length
 ) => {
