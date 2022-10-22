@@ -84,11 +84,7 @@ export class AdjacencyBitMatrix implements IGraph<number> {
 		const res: number[] = [];
 		const { data, stride } = this.mat;
 		id *= stride;
-		for (
-			let i = this.mat.n - 1, j = id + stride - 1;
-			i >= 0;
-			i -= 32, j--
-		) {
+		for (let i = this.mat.n - 1, j = id + stride - 1; i >= 0; i -= 8, j--) {
 			const v = data[j];
 			if (v !== 0) {
 				for (let k = 31 - Math.clz32(v); k >= 0; k--) {

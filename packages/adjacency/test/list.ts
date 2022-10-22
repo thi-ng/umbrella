@@ -22,6 +22,6 @@ group("adjacency (list)", {
 				[2, 0],
 			]
 		);
-		console.log(m.toString());
+		// console.log(m.toString());
 	},
 });
