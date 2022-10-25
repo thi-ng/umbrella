@@ -14,6 +14,7 @@ import {
 	StructField,
 	TopLevelType,
 	TypeColl,
+	Union,
 	WASM32,
 } from "./api.js";
 import { selectAlignment } from "./codegen/align.js";
@@ -85,14 +86,23 @@ const sizeOf = defmulti<
 
 		struct: (type, types, align, opts) => {
 			if (type.__size) return type.__size;
-			const struct = <Struct>type;
 			let offset = 0;
-			for (let f of struct.fields) {
+			for (let f of (<Struct>type).fields) {
 				offset = align.offset(offset, f.__align!);
 				f.__offset = offset;
 				offset += sizeOf(f, types, align, opts);
 			}
 			return (type.__size = align.size(offset, type.__align!));
+		},
+
+		union: (type, types, align, opts) => {
+			if (type.__size) return type.__size;
+			let maxSize = 0;
+			for (let f of (<Union>type).fields) {
+				f.__offset = 0;
+				maxSize = Math.max(maxSize, sizeOf(f, types, align, opts));
+			}
+			return (type.__size = align.size(maxSize, type.__align!));
 		},
 	}
 );
@@ -140,9 +150,16 @@ const alignOf = defmulti<
 		},
 
 		struct: (type, types, align, opts) => {
-			const struct = <Struct>type;
 			let maxAlign = 1;
-			for (let f of struct.fields) {
+			for (let f of (<Struct>type).fields) {
+				maxAlign = Math.max(maxAlign, alignOf(f, types, align, opts));
+			}
+			return (type.__align = <Pow2>maxAlign);
+		},
+
+		union: (type, types, align, opts) => {
+			let maxAlign = 1;
+			for (let f of (<Union>type).fields) {
 				maxAlign = Math.max(maxAlign, alignOf(f, types, align, opts));
 			}
 			return (type.__align = <Pow2>maxAlign);

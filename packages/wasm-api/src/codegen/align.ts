@@ -32,11 +32,9 @@ export const ALIGN_PACKED: AlignStrategy = {
  * @param type
  */
 export const selectAlignment = (type: TopLevelType) => {
-	if (type.type === "struct") {
-		let struct = <Struct>type;
-		return (
-			struct.align || (struct.tag === "packed" ? ALIGN_PACKED : ALIGN_C)
-		);
+	if (type.type === "struct" || type.type === "union") {
+		let $type = <Pick<Struct, "tag" | "align">>type;
+		return $type.align || ($type.tag === "packed" ? ALIGN_PACKED : ALIGN_C);
 	}
 	return ALIGN_C;
 };

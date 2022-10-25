@@ -2,7 +2,13 @@ import { isNumber } from "@thi.ng/checks/is-number";
 import { isString } from "@thi.ng/checks/is-string";
 import { unsupported } from "@thi.ng/errors/unsupported";
 import { split } from "@thi.ng/strings/split";
-import type { CodeGenOptsBase, ICodeGen } from "../api.js";
+import type {
+	CodeGenOpts,
+	CodeGenOptsBase,
+	ICodeGen,
+	Struct,
+	Union,
+} from "../api.js";
 import {
 	enumName,
 	isPadding,
@@ -64,99 +70,132 @@ export const ZIG = (opts: Partial<ZigOpts> = {}) => {
 		},
 
 		struct: (struct, _, acc, opts) => {
-			const name = struct.name;
-			const res: string[] = [];
-			res.push(
-				`pub const ${name} = ${
-					struct.tag ? struct.tag + " " : ""
-				}struct {`
+			acc.push(
+				...withIndentation(
+					[
+						`pub const ${struct.name} = ${
+							struct.tag ? struct.tag + " " : ""
+						}struct {`,
+						...__generateFields(gen, struct, opts),
+					],
+					INDENT,
+					...SCOPES
+				)
 			);
-			const ftypes: Record<string, string> = {};
-			let padID = 0;
-			for (let f of struct.fields) {
-				// autolabel explicit padding fields
-				if (isPadding(f)) {
-					struct.tag === "packed"
-						? __packedPadding(padID, f.pad!, res)
-						: res.push(`__pad${padID}: [${f.pad}]u8,`);
-					padID++;
-					continue;
-				}
-				f.doc && gen.doc(f.doc, res, opts);
-				let ftype =
-					f.type === "string"
-						? isStringSlice(opts.stringType)
-							? f.const !== false
-								? "[]const u8"
-								: "[]u8"
-							: f.const !== false
-							? "[*:0]const u8"
-							: "[*:0]u8"
-						: f.type;
-				let defaultVal = "";
-				switch (f.tag) {
-					case "array":
-						ftype =
-							f.sentinel !== undefined
-								? `[${f.len}:${f.sentinel}]${ftype}`
-								: `[${f.len}]${ftype}`;
-						break;
-					case "slice":
-						ftype = `[${
-							f.sentinel !== undefined ? ":" + f.sentinel : ""
-						}]${f.const ? "const " : ""}${ftype}`;
-						break;
-					case "vec":
-						ftype = `@Vector(${f.len}, ${ftype})`;
-						break;
-					case "ptr":
-						ftype = `*${f.const ? "const " : ""}${
-							f.len ? `[${f.len}]` : ""
-						}${ftype}`;
-						break;
-					case "scalar":
-					default:
-						if (f.default != undefined) {
-							if (!(isString(f.default) || isNumber(f.default))) {
-								unsupported(
-									`wrong default value for ${name}.${f.name} (${f.default})`
-								);
-							}
-							defaultVal = ` = ${JSON.stringify(f.default)}`;
-						}
-				}
-				ftypes[f.name] = ftype;
-				res.push(`${f.name}: ${ftype}${defaultVal},`);
-			}
-			if (struct.body?.zig) {
-				res.push("", ...split(struct.body!.zig), "");
-			}
-			res.push("};");
+		},
 
-			if (opts.debug) {
-				const fn = (fname: string, body: string) =>
-					res.push(
-						"",
-						`export fn ${name}_${fname}() usize {`,
-						`return ${body};`,
-						`}`
-					);
-
-				fn("align", `@alignOf(${name})`);
-				fn("size", `@sizeOf(${name})`);
-
-				for (let f of struct.fields) {
-					if (isPadding(f)) continue;
-					fn(f.name + "_align", `@alignOf(${ftypes[f.name]})`);
-					fn(f.name + "_offset", `@offsetOf(${name}, "${f.name}")`);
-					fn(f.name + "_size", `@sizeOf(${ftypes[f.name]})`);
-				}
-			}
-			res.push("");
-			acc.push(...withIndentation(res, INDENT, ...SCOPES));
+		union: (union, _, acc, opts) => {
+			acc.push(
+				...withIndentation(
+					[
+						`pub const ${union.name} = ${
+							union.tag ? union.tag + " " : ""
+						}union {`,
+						...__generateFields(gen, union, opts),
+					],
+					INDENT,
+					...SCOPES
+				)
+			);
 		},
 	};
 	return gen;
+};
+
+const __generateFields = (
+	gen: ICodeGen,
+	parent: Struct | Union,
+	opts: CodeGenOpts
+) => {
+	const res: string[] = [];
+	const ftypes: Record<string, string> = {};
+	const isUnion = parent.type === "union";
+	let padID = 0;
+	for (let f of parent.fields) {
+		// autolabel explicit padding fields
+		if (isPadding(f)) {
+			parent.tag === "packed"
+				? __packedPadding(padID, f.pad!, res)
+				: res.push(`__pad${padID}: [${f.pad}]u8,`);
+			padID++;
+			continue;
+		}
+		f.doc && gen.doc(f.doc, res, opts);
+		let ftype =
+			f.type === "string"
+				? isStringSlice(opts.stringType)
+					? f.const !== false
+						? "[]const u8"
+						: "[]u8"
+					: f.const !== false
+					? "[*:0]const u8"
+					: "[*:0]u8"
+				: f.type;
+		let defaultVal = "";
+		switch (f.tag) {
+			case "array":
+				ftype =
+					f.sentinel !== undefined
+						? `[${f.len}:${f.sentinel}]${ftype}`
+						: `[${f.len}]${ftype}`;
+				break;
+			case "slice":
+				ftype = `[${f.sentinel !== undefined ? ":" + f.sentinel : ""}]${
+					f.const ? "const " : ""
+				}${ftype}`;
+				break;
+			case "vec":
+				ftype = `@Vector(${f.len}, ${ftype})`;
+				break;
+			case "ptr":
+				ftype = `*${f.const ? "const " : ""}${
+					f.len ? `[${f.len}]` : ""
+				}${ftype}`;
+				break;
+			case "scalar":
+			default:
+				if (f.default != undefined) {
+					if (!(isString(f.default) || isNumber(f.default))) {
+						unsupported(
+							`wrong default value for ${name}.${f.name} (${f.default})`
+						);
+					}
+					defaultVal = ` = ${JSON.stringify(f.default)}`;
+				}
+		}
+		ftypes[f.name] = ftype;
+		res.push(`${f.name}: ${ftype}${defaultVal},`);
+	}
+	if (parent.body?.zig) {
+		res.push("", ...split(parent.body!.zig), "");
+	}
+	res.push("};");
+
+	if (opts.debug) {
+		const fn = (fname: string, body: string) =>
+			res.push(
+				"",
+				`export fn ${parent.name}_${fname}() usize {`,
+				`return ${body};`,
+				`}`
+			);
+
+		fn("align", `@alignOf(${parent.name})`);
+		fn("size", `@sizeOf(${parent.name})`);
+
+		for (let f of parent.fields) {
+			if (isPadding(f)) continue;
+			fn(f.name + "_align", `@alignOf(${ftypes[f.name]})`);
+			!isUnion &&
+				fn(
+					f.name + "_offset",
+					`@offsetOf(${parent.name}, "${f.name}")`
+				);
+			fn(f.name + "_size", `@sizeOf(${ftypes[f.name]})`);
+		}
+	}
+	res.push("");
+	return res;
 };
 
 const __packedPadding = (id: number, n: number, res: string[]) => {

@@ -301,6 +301,10 @@ import { Pointer, ${__stringImpl(
 			lines.push("};", "}", "});", "");
 			acc.push(...withIndentation(lines, indent, ...SCOPES));
 		},
+
+		union: (type, coll, acc, opts) => {
+			gen.struct(<any>type, coll, acc, opts);
+		},
 	};
 	return gen;
 };

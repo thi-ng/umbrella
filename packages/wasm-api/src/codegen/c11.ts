@@ -1,6 +1,14 @@
 import { isString } from "@thi.ng/checks/is-string";
 import { unsupported } from "@thi.ng/errors/unsupported";
-import type { CodeGenOptsBase, ICodeGen, WasmPrim } from "../api.js";
+import type {
+	CodeGenOpts,
+	CodeGenOptsBase,
+	ICodeGen,
+	Struct,
+	TypeColl,
+	Union,
+	WasmPrim,
+} from "../api.js";
 import {
 	enumName,
 	isPadding,
@@ -95,71 +103,112 @@ ${opts.debug ? "\n#include <stdalign.h>" : ""}
 
 		struct: (struct, coll, acc, opts) => {
 			const name = typePrefix + struct.name;
-			const res: string[] = [];
-			res.push(`typedef struct ${name} ${name};`, `struct ${name} {`);
-			const ftypes: Record<string, string> = {};
-			let padID = 0;
-			for (let f of struct.fields) {
-				// autolabel explicit padding fields
-				if (isPadding(f)) {
-					res.push(`uint8_t __pad${padID++}[${f.pad}];`);
-					continue;
-				}
-				f.doc && gen.doc(f.doc, res, opts);
-				const fconst = f.const ? "const " : "";
-				let ftype =
-					f.type === "string"
-						? isStringSlice(opts.stringType)
-							? __slice("char", fconst)
-							: `${f.const !== false ? "const " : ""}char*`
-						: PRIM_ALIASES[<WasmPrim>f.type] || f.type;
-				if (coll[ftype]) ftype = typePrefix + ftype;
-				switch (f.tag) {
-					case "array":
-					case "vec":
-						res.push(`${fconst}${ftype} ${f.name}[${f.len}];`);
-						ftype = `${ftype}[${f.len}]`;
-						break;
-					case "slice":
-						ftype = __slice(ftype, fconst);
-						res.push(`${ftype} ${f.name};`);
-						break;
-					case "ptr":
-						ftype = `${fconst}${ftype}*`;
-						res.push(`${ftype} ${f.name};`);
-						break;
-					case "scalar":
-					default:
-						res.push(`${ftype} ${f.name};`);
-				}
-				ftypes[f.name] = ftype;
-			}
-			res.push("};");
+			acc.push(
+				...withIndentation(
+					[
+						`typedef struct ${name} ${name};`,
+						`struct ${name} {`,
+						...__generateFields(
+							gen,
+							struct,
+							coll,
+							opts,
+							typePrefix
+						),
+					],
+					INDENT,
+					...SCOPES
+				)
+			);
+		},
 
-			if (opts.debug) {
-				const fn = (fname: string, body: string) =>
-					res.push(
-						"",
-						`size_t __attribute__((used)) ${name}_${fname}() {`,
-						`return ${body};`,
-						`}`
-					);
-
-				fn("align", `alignof(${name})`);
-				fn("size", `sizeof(${name})`);
-
-				for (let f of struct.fields) {
-					if (isPadding(f)) continue;
-					fn(f.name + "_align", `alignof(${ftypes[f.name]})`);
-					fn(f.name + "_offset", `offsetof(${name}, ${f.name})`);
-					fn(f.name + "_size", `sizeof(${ftypes[f.name]})`);
-				}
-			}
-			res.push("");
-			acc.push(...withIndentation(res, INDENT, ...SCOPES));
+		union: (union, coll, acc, opts) => {
+			const name = typePrefix + union.name;
+			acc.push(
+				...withIndentation(
+					[
+						`typedef union ${name} ${name};`,
+						`union ${name} {`,
+						...__generateFields(gen, union, coll, opts, typePrefix),
+					],
+					INDENT,
+					...SCOPES
+				)
+			);
 		},
 	};
 	return gen;
+};
+
+const __generateFields = (
+	gen: ICodeGen,
+	parent: Struct | Union,
+	coll: TypeColl,
+	opts: CodeGenOpts,
+	typePrefix: string
+) => {
+	const res: string[] = [];
+	const ftypes: Record<string, string> = {};
+	const name = typePrefix + parent.name;
+	let padID = 0;
+	for (let f of parent.fields) {
+		// autolabel explicit padding fields
+		if (isPadding(f)) {
+			res.push(`uint8_t __pad${padID++}[${f.pad}];`);
+			continue;
+		}
+		f.doc && gen.doc(f.doc, res, opts);
+		const fconst = f.const ? "const " : "";
+		let ftype =
+			f.type === "string"
+				? isStringSlice(opts.stringType)
+					? __slice("char", fconst)
+					: `${f.const !== false ? "const " : ""}char*`
+				: PRIM_ALIASES[<WasmPrim>f.type] || f.type;
+		if (coll[ftype]) ftype = typePrefix + ftype;
+		switch (f.tag) {
+			case "array":
+			case "vec":
+				res.push(`${fconst}${ftype} ${f.name}[${f.len}];`);
+				ftype = `${ftype}[${f.len}]`;
+				break;
+			case "slice":
+				ftype = __slice(ftype, fconst);
+				res.push(`${ftype} ${f.name};`);
+				break;
+			case "ptr":
+				ftype = `${fconst}${ftype}*`;
+				res.push(`${ftype} ${f.name};`);
+				break;
+			case "scalar":
+			default:
+				res.push(`${ftype} ${f.name};`);
+		}
+		ftypes[f.name] = ftype;
+	}
+	res.push("};");
+
+	if (opts.debug) {
+		const fn = (fname: string, body: string) =>
+			res.push(
+				"",
+				`size_t __attribute__((used)) ${name}_${fname}() {`,
+				`return ${body};`,
+				`}`
+			);
+
+		fn("align", `alignof(${name})`);
+		fn("size", `sizeof(${name})`);
+
+		for (let f of parent.fields) {
+			if (isPadding(f)) continue;
+			fn(f.name + "_align", `alignof(${ftypes[f.name]})`);
+			fn(f.name + "_offset", `offsetof(${name}, ${f.name})`);
+			fn(f.name + "_size", `sizeof(${ftypes[f.name]})`);
+		}
+	}
+	res.push("");
+	return res;
 };
 
 const __slice = (type: string, $const: string) =>

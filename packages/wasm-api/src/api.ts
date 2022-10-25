@@ -249,7 +249,7 @@ export interface TopLevelType extends TypeInfo {
 	/**
 	 * Type / kind
 	 */
-	type: "struct" | "enum";
+	type: "enum" | "struct" | "union";
 	/**
 	 * Optional object of user provided source codes to be injected into the
 	 * generated type. Keys are language IDs (same name as respective codegen).
@@ -263,7 +263,7 @@ export interface TopLevelType extends TypeInfo {
 export interface Struct extends TopLevelType {
 	type: "struct";
 	/**
-	 * List of struct fields (might be re-ordered if {@link Struct.auto} is
+	 * Array of struct fields (might be re-ordered if {@link Struct.auto} is
 	 * enabled).
 	 */
 	fields: StructField[];
@@ -353,6 +353,24 @@ export interface StructField extends TypeInfo {
 	 * for this field will be ignored!
 	 */
 	pad?: number;
+}
+
+export interface Union extends TopLevelType {
+	type: "union";
+	/**
+	 * Array of union fields.
+	 */
+	fields: StructField[];
+	/**
+	 * Optional qualifier for the kind of struct to be emitted (codegen specific
+	 * interpretation, currently only used by {@link ZIG}).
+	 */
+	tag?: "extern" | "packed";
+	/**
+	 * Optional user supplied {@link AlignStrategy}. By default uses
+	 * {@link ALIGN_C} or {@link ALIGN_PACKED} (if using "packed" union).
+	 */
+	align?: AlignStrategy;
 }
 
 export interface Enum extends TopLevelType {
@@ -489,6 +507,15 @@ export interface ICodeGen {
 	 */
 	struct: (
 		type: Struct,
+		types: TypeColl,
+		acc: string[],
+		opts: CodeGenOpts
+	) => void;
+	/**
+	 * Codegen for union types.
+	 */
+	union: (
+		type: Union,
 		types: TypeColl,
 		acc: string[],
 		opts: CodeGenOpts
