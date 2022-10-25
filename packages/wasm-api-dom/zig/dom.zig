@@ -1,6 +1,6 @@
 const std = @import("std");
 const dom = @import("api.zig");
-const ManagedIndex = @import("managed-index.zig").ManagedIndex;
+const ManagedIndex = @import("wasmapi").ManagedIndex;
 
 pub usingnamespace dom;
 
