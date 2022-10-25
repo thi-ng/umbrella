@@ -30,6 +30,12 @@ export const isWasmString = (x: string): x is "string" => x === "string";
 
 export const isPadding = (f: StructField) => f.pad != null && f.pad > 0;
 
+export const isPointer = (f: StructField) => f.tag === "ptr";
+
+export const isSlice = (f: StructField) => f.tag === "slice";
+
+export const isPointerLike = (f: StructField) => isPointer(f) || isSlice(f);
+
 /**
  * Takes an array of strings or splits given string into lines, word wraps and
  * then prefixes each line with given `width` and `prefix`. Returns array of new

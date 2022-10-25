@@ -2,10 +2,12 @@ import type {
 	BigType,
 	FloatType,
 	Fn,
+	Fn2,
 	IDeref,
 	ILength,
 	IObjectOf,
 } from "@thi.ng/api";
+import type { Pow2 } from "@thi.ng/binary";
 import type { WasmBridge } from "./bridge.js";
 
 export const PKG_NAME = "@thi.ng/wasm-api";
@@ -222,17 +224,17 @@ export interface TypeInfo {
 	 */
 	__size?: number;
 	/**
-	 * Auto-computed offset (in bytes) in parent struct
+	 * Auto-computed offset (in bytes) in parent struct.
 	 *
 	 * @internal
 	 */
 	__offset?: number;
 	/**
-	 * Auto-computed alignment (in bytes)
+	 * Auto-computed alignment (in bytes) actually used.
 	 *
 	 * @internal
 	 */
-	__align?: number;
+	__align?: Pow2;
 }
 
 export interface TopLevelType extends TypeInfo {
@@ -280,7 +282,14 @@ export interface Struct extends TopLevelType {
 	 * interpretation, currently only used by {@link ZIG}).
 	 */
 	tag?: "extern" | "packed";
+	/**
+	 * Optional user supplied {@link AlignStrategy}. By default uses
+	 * {@link ALIGN_C} or {@link ALIGN_PACKED} (if using "packed" structs).
+	 */
+	align?: AlignStrategy;
 }
+
+export type FieldTag = "scalar" | "array" | "ptr" | "slice" | "vec";
 
 export interface StructField extends TypeInfo {
 	/**
@@ -307,7 +316,7 @@ export interface StructField extends TypeInfo {
 	 *
 	 * @defaultValue "scalar"
 	 */
-	tag?: "scalar" | "array" | "ptr" | "slice" | "vec";
+	tag?: FieldTag;
 	/**
 	 * Field base type. If not a {@link WasmPrim}, `string` or `opaque`, the
 	 * value is interpreted as another type name in the {@link TypeColl}.
@@ -339,8 +348,9 @@ export interface StructField extends TypeInfo {
 	 */
 	default?: number;
 	/**
-	 * If defined and > 0, the field will be considered for padding purposes only and
-	 * the value provided is the number of bytes used.
+	 * If defined and > 0, the field will be considered for padding purposes
+	 * only and the value provided is the number of bytes used. All other config
+	 * for this field will be ignored!
 	 */
 	pad?: number;
 }
@@ -376,17 +386,32 @@ export interface EnumValue {
 	doc?: string;
 }
 
+export interface AlignStrategy {
+	/**
+	 * Returns implementation specific alignment for given struct field.
+	 */
+	align: Fn<StructField, Pow2>;
+	/**
+	 * Returns possibly rounded value for given base size & alignment.
+	 */
+	size: Fn2<number, Pow2, number>;
+	/**
+	 * Returns possibly rounded value for given base offset & alignment.
+	 */
+	offset: Fn2<number, Pow2, number>;
+}
+
 export interface CodeGenOptsBase {
 	/**
 	 * Optional string to be injected before generated type defs (but after
 	 * codegen's own prelude, if any)
 	 */
-	pre: string;
+	pre?: string;
 	/**
 	 * Optional string to be injected after generated type defs (but before
 	 * codegen's own epilogue, if any)
 	 */
-	post: string;
+	post?: string;
 }
 
 /**
