@@ -83,6 +83,7 @@ const ALIASES: IObjectOf<string> = {
 	"hiccup-dom-components": "hdom-components",
 	iterator: "iterators",
 	mine: "mime",
+	module: "wasm-api-dom",
 	shadertoy: "webgl-shadertoy",
 	tool: "tools",
 	tranducers: "transducers",
@@ -93,6 +94,7 @@ const ALIASES: IObjectOf<string> = {
 	vectors3: "vectors",
 	"wasm-alloc": "wasm-api",
 	"wasm-bridge": "wasm-api",
+	"wasm-api-docs": "wasm-api-dom",
 	zip: "zipper",
 };
 
