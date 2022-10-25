@@ -3,6 +3,8 @@
 const std = @import("std");
 const root = @import("root");
 
+pub const ManagedIndex = @import("managed-index.zig").ManagedIndex;
+
 /// Higher-order slice wrapper for extern struct use cases
 /// S = slice type
 /// P = pointer type
