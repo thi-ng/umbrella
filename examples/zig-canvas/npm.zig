@@ -32,7 +32,7 @@ pub fn init(opts: struct {
     const api = "wasmapi";
     self.packages.put(api, .{
         .name = api,
-        .source = .{ .path = self.modulePath("@thi.ng/wasm-api/include/wasmapi.zig") },
+        .source = .{ .path = self.modulePath("@thi.ng/wasm-api/zig/wasmapi.zig") },
     }) catch unreachable;
     if (opts.packages) |pkgs| {
         for (pkgs) |pkg| {
