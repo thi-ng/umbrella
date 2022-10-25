@@ -76,7 +76,10 @@ export const ZIG = (opts: Partial<ZigOpts> = {}) => {
 			for (let f of struct.fields) {
 				// autolabel explicit padding fields
 				if (isPadding(f)) {
-					res.push(`__pad${padID++}: [${f.pad}]u8,`);
+					struct.tag === "packed"
+						? __packedPadding(padID, f.pad!, res)
+						: res.push(`__pad${padID}: [${f.pad}]u8,`);
+					padID++;
 					continue;
 				}
 				f.doc && gen.doc(f.doc, res, opts);
@@ -154,4 +157,13 @@ export const ZIG = (opts: Partial<ZigOpts> = {}) => {
 		},
 	};
 	return gen;
+};
+
+const __packedPadding = (id: number, n: number, res: string[]) => {
+	let i = 0;
+	n <<= 3;
+	for (; n >= 128; n -= 128, i++) {
+		res.push(`__pad${id}_${i}: u128,`);
+	}
+	res.push(`__pad${id}_${i}: u${n},`);
 };
