@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-10-03T16:07:55Z
+- **Last updated**: 2022-10-26T12:46:53Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,13 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [3.3.7](https://github.com/thi-ng/umbrella/tree/@thi.ng/binary@3.3.7) (2022-10-26)
+
+#### ♻️ Refactoring
+
+- update popCountArray() args ([e56eded](https://github.com/thi-ng/umbrella/commit/e56eded))
+  - allow any int/uint typed array as input
 
 ## [3.3.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/binary@3.3.0) (2022-07-19)
 

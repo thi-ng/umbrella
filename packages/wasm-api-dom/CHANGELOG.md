@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-10-17T12:08:09Z
+- **Last updated**: 2022-10-26T12:46:53Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,25 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [0.4.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/wasm-api-dom@0.4.0) (2022-10-26)
+
+#### 🚀 Features
+
+- add/update event types & handling ([4596757](https://github.com/thi-ng/umbrella/commit/4596757))
+  - add new more specific event structs to be more mem efficient
+  - add EventBody union type
+  - refactor Event
+  - regenerate sources for TS & Zig
+  - move typedefs.json to /src folder
+- update Zig API ([5165f87](https://github.com/thi-ng/umbrella/commit/5165f87))
+  - remove ManagedIndex (see [d8bb3ee7d](https://github.com/thi-ng/umbrella/commit/d8bb3ee7d))
+  - move all Zig sources from /include => /zig
+  - update pkg
+- support more event types/fns, minor zig updates ([d05803d](https://github.com/thi-ng/umbrella/commit/d05803d))
+  - add support for focus & wheel events
+  - add stopPropagation()
+  - update zig error fn return types
 
 ## [0.3.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/wasm-api-dom@0.3.0) (2022-10-17)
 

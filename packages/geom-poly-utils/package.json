@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/geom-poly-utils",
-	"version": "2.3.14",
+	"version": "2.3.15",
 	"description": "2D polygon/polyline analysis & processing utilities",
 	"type": "module",
 	"module": "./index.js",
@@ -36,9 +36,9 @@
 	"dependencies": {
 		"@thi.ng/api": "^8.4.3",
 		"@thi.ng/errors": "^2.2.2",
-		"@thi.ng/geom-api": "^3.3.13",
+		"@thi.ng/geom-api": "^3.3.14",
 		"@thi.ng/math": "^5.3.10",
-		"@thi.ng/vectors": "^7.5.19"
+		"@thi.ng/vectors": "^7.5.20"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.31.1",

@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/dot",
-	"version": "2.1.16",
+	"version": "2.1.17",
 	"description": "Graphviz document abstraction & serialization to DOT format",
 	"type": "module",
 	"module": "./index.js",
@@ -35,7 +35,7 @@
 	},
 	"dependencies": {
 		"@thi.ng/api": "^8.4.3",
-		"@thi.ng/checks": "^3.3.0"
+		"@thi.ng/checks": "^3.3.1"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.31.1",

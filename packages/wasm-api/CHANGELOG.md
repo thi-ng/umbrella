@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-10-17T12:08:09Z
+- **Last updated**: 2022-10-26T12:46:53Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,41 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [0.15.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/wasm-api@0.15.0) (2022-10-26)
+
+#### 🚀 Features
+
+- import ManagedIndex, migrate Zig API ([d8bb3ee](https://github.com/thi-ng/umbrella/commit/d8bb3ee))
+  - migrate ManagedIndex from [@thi.ng/wasm-api-dom](https://github.com/thi-ng/umbrella/tree/main/packages/wasm-api-dom)
+  - move all Zig sources from /include => /zig
+  - update pkg
+- add codegen support for union types ([bbc1f98](https://github.com/thi-ng/umbrella/commit/bbc1f98))
+  - add Union type, update TopLevelType
+  - update all codegens (C,TS,Zig)
+  - update alignOf(), sizeOf()
+  - update selectAlignment()
+- add/update codegen alignment logic ([9c19ad9](https://github.com/thi-ng/umbrella/commit/9c19ad9))
+  - add AlignmentStrategy & impls
+  - update alignOf(), sizeOf(), prepareType()
+  - extract DEFAULT_CODEGEN_OPTS
+  - add Struct.align config option
+- add WasmTarget codegen opt & usize support ([62c049b](https://github.com/thi-ng/umbrella/commit/62c049b))
+
+#### 🩹 Bug fixes
+
+- update CLI wrapper to allow unions ([904716c](https://github.com/thi-ng/umbrella/commit/904716c))
+- fix i64/u64 handling in sizeof() ([825add3](https://github.com/thi-ng/umbrella/commit/825add3))
+- fix padding in Zig packed structs ([8d70cf6](https://github.com/thi-ng/umbrella/commit/8d70cf6))
+  - since packed structs can't contain `[n]u8` types,
+    generate padding as potentially multiple `uXXX` fields
+
+#### ♻️ Refactoring
+
+- rename types, use predicates ([4148e1e](https://github.com/thi-ng/umbrella/commit/4148e1e))
+  - rename StructField => Field
+  - update codegens to use more predicates instead of inline checks
+- minor updates C & Zig codegens ([a94e1cc](https://github.com/thi-ng/umbrella/commit/a94e1cc))
 
 ## [0.14.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/wasm-api@0.14.0) (2022-10-17)
 
