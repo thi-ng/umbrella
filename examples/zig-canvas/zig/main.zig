@@ -24,7 +24,7 @@ var STATE: State = undefined;
 /// the optional opaque pointer argument must be first cast & checked for non-null values
 fn startStroke(event: *const dom.Event, raw: ?*anyopaque) void {
     if (wasm.ptrCast(*State, raw)) |state| {
-        state.startStroke(event.clientX, event.clientY);
+        state.startStroke(event.body.mouse.clientX, event.body.mouse.clientY);
     }
 }
 
@@ -32,7 +32,7 @@ fn startStroke(event: *const dom.Event, raw: ?*anyopaque) void {
 /// the optional opaque pointer argument must be first cast & checked for non-null values
 fn updateStroke(event: *const dom.Event, raw: ?*anyopaque) void {
     if (wasm.ptrCast(*State, raw)) |state| {
-        state.updateStroke(event.clientX, event.clientY);
+        state.updateStroke(event.body.mouse.clientX, event.body.mouse.clientY);
         dom.preventDefault();
     }
 }
@@ -45,8 +45,8 @@ fn endStroke(_: *const dom.Event, raw: ?*anyopaque) void {
 
 fn onKeyDown(event: *const dom.Event, raw: ?*anyopaque) void {
     // bail if Control key isn't pressed...
-    if (event.modifiers & @enumToInt(dom.KeyModifier.CTRL) == 0) return;
-    const key = event.getKey();
+    if (event.body.key.modifiers & @enumToInt(dom.KeyModifier.CTRL) == 0) return;
+    const key = event.body.key.getKey();
     if (std.mem.eql(u8, key, "z")) {
         if (wasm.ptrCast(*State, raw)) |state| {
             state.undoStroke();
