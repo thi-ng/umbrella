@@ -8,10 +8,10 @@ import {
 	AlignStrategy,
 	CodeGenOpts,
 	Enum,
+	Field,
 	ICodeGen,
 	PKG_NAME,
 	Struct,
-	StructField,
 	TopLevelType,
 	TypeColl,
 	Union,
@@ -24,6 +24,7 @@ import {
 	isPointer,
 	isPointerLike,
 	isSlice,
+	isStringSlice,
 	isWasmString,
 } from "./codegen/utils.js";
 
@@ -37,7 +38,7 @@ export const DEFAULT_CODEGEN_OPTS: CodeGenOpts = {
 };
 
 const sizeOf = defmulti<
-	TopLevelType | StructField,
+	TopLevelType | Field,
 	TypeColl,
 	AlignStrategy,
 	CodeGenOpts,
@@ -47,7 +48,7 @@ const sizeOf = defmulti<
 	{},
 	{
 		[DEFAULT]: (
-			field: StructField,
+			field: Field,
 			types: TypeColl,
 			align: AlignStrategy,
 			opts: CodeGenOpts
@@ -68,7 +69,7 @@ const sizeOf = defmulti<
 						? SIZEOF[<Type>field.type]
 						: isWasmString(field.type)
 						? opts.target.usizeBytes *
-						  (opts.stringType === "slice" ? 2 : 1)
+						  (isStringSlice(opts.stringType) ? 2 : 1)
 						: sizeOf(types[field.type], types, align, opts);
 				if (field.tag == "array" || field.tag === "vec") {
 					size *= field.len!;
@@ -109,7 +110,7 @@ const sizeOf = defmulti<
 );
 
 const alignOf = defmulti<
-	TopLevelType | StructField,
+	TopLevelType | Field,
 	TypeColl,
 	AlignStrategy,
 	CodeGenOpts,
@@ -119,7 +120,7 @@ const alignOf = defmulti<
 	{},
 	{
 		[DEFAULT]: (
-			field: StructField,
+			field: Field,
 			types: TypeColl,
 			align: AlignStrategy,
 			opts: CodeGenOpts
@@ -130,7 +131,7 @@ const alignOf = defmulti<
 			}
 			if (field.pad) return (field.__align = 1);
 			return (field.__align = isPointerLike(field)
-				? align.align(<StructField>{ type: opts.target.usize })
+				? align.align(<Field>{ type: opts.target.usize })
 				: isNumeric(field.type) || isBigNumeric(field.type)
 				? align.align(field)
 				: alignOf(
@@ -144,7 +145,7 @@ const alignOf = defmulti<
 		enum: (type, _, align) => {
 			const e = <Enum>type;
 			if (!e.tag) e.tag = "i32";
-			return (e.__align = align.align(<StructField>{
+			return (e.__align = align.align(<Field>{
 				type: (<Enum>e).tag,
 			}));
 		},

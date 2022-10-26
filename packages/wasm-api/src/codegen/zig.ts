@@ -13,6 +13,7 @@ import {
 	enumName,
 	isPadding,
 	isStringSlice,
+	isWasmString,
 	prefixLines,
 	withIndentation,
 } from "./utils.js";
@@ -122,16 +123,15 @@ const __generateFields = (
 			continue;
 		}
 		f.doc && gen.doc(f.doc, res, opts);
-		let ftype =
-			f.type === "string"
-				? isStringSlice(opts.stringType)
-					? f.const !== false
-						? "[]const u8"
-						: "[]u8"
-					: f.const !== false
-					? "[*:0]const u8"
-					: "[*:0]u8"
-				: f.type;
+		let ftype = isWasmString(f.type)
+			? isStringSlice(opts.stringType)
+				? f.const !== false
+					? "[]const u8"
+					: "[]u8"
+				: f.const !== false
+				? "[*:0]const u8"
+				: "[*:0]u8"
+			: f.type;
 		let defaultVal = "";
 		switch (f.tag) {
 			case "array":

@@ -266,7 +266,7 @@ export interface Struct extends TopLevelType {
 	 * Array of struct fields (might be re-ordered if {@link Struct.auto} is
 	 * enabled).
 	 */
-	fields: StructField[];
+	fields: Field[];
 	/**
 	 * If true, struct fields will be re-ordered in descending order based on
 	 * their {@link TypeInfo.__align} size. This might result in overall smaller
@@ -291,7 +291,7 @@ export interface Struct extends TopLevelType {
 
 export type FieldTag = "scalar" | "array" | "ptr" | "slice" | "vec";
 
-export interface StructField extends TypeInfo {
+export interface Field extends TypeInfo {
 	/**
 	 * Field name (prefix: "__" is reserved)
 	 */
@@ -306,7 +306,7 @@ export interface StructField extends TypeInfo {
 	 *
 	 * @remarks
 	 * - Array & vector fields are statically sized (using
-	 *   {@link StructField.len})
+	 *   {@link Field.len})
 	 * - Pointers are emitted as single-value pointers (where this distinction
 	 *   exist), i.e. even if they're pointing to multiple values, there's no
 	 *   explicit length encoded/available
@@ -339,7 +339,7 @@ export interface StructField extends TypeInfo {
 	 */
 	sentinel?: number;
 	/**
-	 * Array or vector length (see {@link StructField.tag})
+	 * Array or vector length (see {@link Field.tag})
 	 */
 	len?: number;
 	/**
@@ -360,7 +360,7 @@ export interface Union extends TopLevelType {
 	/**
 	 * Array of union fields.
 	 */
-	fields: StructField[];
+	fields: Field[];
 	/**
 	 * Optional qualifier for the kind of struct to be emitted (codegen specific
 	 * interpretation, currently only used by {@link ZIG}).
@@ -408,7 +408,7 @@ export interface AlignStrategy {
 	/**
 	 * Returns implementation specific alignment for given struct field.
 	 */
-	align: Fn<StructField, Pow2>;
+	align: Fn<Field, Pow2>;
 	/**
 	 * Returns possibly rounded value for given base size & alignment.
 	 */

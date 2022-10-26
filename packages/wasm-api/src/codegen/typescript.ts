@@ -11,9 +11,9 @@ import {
 	CodeGenOpts,
 	CodeGenOptsBase,
 	Enum,
+	Field,
 	ICodeGen,
 	PKG_NAME,
-	StructField,
 	WasmPrim,
 	WasmTarget,
 } from "../api.js";
@@ -314,7 +314,7 @@ const __stringImpl = (opts: CodeGenOpts) =>
 	isStringSlice(opts.stringType) ? "WasmStringSlice" : "WasmStringPtr";
 
 /** @internal */
-const __fieldType = (f: StructField, opts: CodeGenOpts) => {
+const __fieldType = (f: Field, opts: CodeGenOpts) => {
 	const ftype =
 		f.tag == "array" ||
 		f.tag == "slice" ||
@@ -363,7 +363,7 @@ const __mem = (type: string, offset: number) =>
 	`mem.${type}[${__addrShift(offset!, type)}]`;
 
 /** @internal */
-const __mapArray = (f: StructField, len: NumOrString = "len") => [
+const __mapArray = (f: Field, len: NumOrString = "len") => [
 	`const inst = $${f.type}(mem);`,
 	`const slice: ${f.type}[] = [];`,
 	`for(let i = 0; i < ${len}; i++) slice.push(inst.instance(addr + i * ${f.__size}));`,

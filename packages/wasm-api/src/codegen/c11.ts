@@ -13,6 +13,7 @@ import {
 	enumName,
 	isPadding,
 	isStringSlice,
+	isWasmString,
 	prefixLines,
 	withIndentation,
 } from "./utils.js";
@@ -160,12 +161,11 @@ const __generateFields = (
 		}
 		f.doc && gen.doc(f.doc, res, opts);
 		const fconst = f.const ? "const " : "";
-		let ftype =
-			f.type === "string"
-				? isStringSlice(opts.stringType)
-					? __slice("char", fconst)
-					: `${f.const !== false ? "const " : ""}char*`
-				: PRIM_ALIASES[<WasmPrim>f.type] || f.type;
+		let ftype = isWasmString(f.type)
+			? isStringSlice(opts.stringType)
+				? __slice("char", fconst)
+				: `${f.const !== false ? "const " : ""}char*`
+			: PRIM_ALIASES[<WasmPrim>f.type] || f.type;
 		if (coll[ftype]) ftype = typePrefix + ftype;
 		switch (f.tag) {
 			case "array":

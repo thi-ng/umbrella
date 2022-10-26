@@ -1,7 +1,7 @@
 import type { BigType } from "@thi.ng/api";
 import { isString } from "@thi.ng/checks/is-string";
 import { wordWrapLine, wordWrapLines } from "@thi.ng/strings/word-wrap";
-import type { CodeGenOpts, StructField, WasmPrim, WasmPrim32 } from "../api.js";
+import type { CodeGenOpts, Field, WasmPrim, WasmPrim32 } from "../api.js";
 
 /**
  * Returns true iff `x` is a {@link WasmPrim32}.
@@ -28,18 +28,18 @@ export const isWasmPrim = (x: string): x is WasmPrim =>
 
 export const isWasmString = (x: string): x is "string" => x === "string";
 
-export const isPadding = (f: StructField) => f.pad != null && f.pad > 0;
+export const isPadding = (f: Field) => f.pad != null && f.pad > 0;
 
-export const isPointer = (f: StructField) => f.tag === "ptr";
+export const isPointer = (f: Field) => f.tag === "ptr";
 
-export const isSlice = (f: StructField) => f.tag === "slice";
+export const isSlice = (f: Field) => f.tag === "slice";
 
 /**
  * Returns true iff the struct field is a pointer, slice or "string" type
  *
  * @param f
  */
-export const isPointerLike = (f: StructField) =>
+export const isPointerLike = (f: Field) =>
 	isPointer(f) || isSlice(f) || isWasmString(f.type);
 
 /**
@@ -77,7 +77,7 @@ export const isStringSlice = (
  *
  * @internal
  */
-export const pointerFields = (fields: StructField[]) =>
+export const pointerFields = (fields: Field[]) =>
 	fields.filter((f) => f.tag === "ptr");
 
 /**
@@ -87,7 +87,7 @@ export const pointerFields = (fields: StructField[]) =>
  *
  * @internal
  */
-export const stringFields = (fields: StructField[]) =>
+export const stringFields = (fields: Field[]) =>
 	fields.filter((f) => isWasmString(f.type) && f.tag !== "ptr");
 
 /**
