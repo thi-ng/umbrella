@@ -18,7 +18,9 @@
 	},
 	"dependencies": {
 		"@thi.ng/api": "workspace:^",
+		"@thi.ng/dl-asset": "workspace:^",
 		"@thi.ng/logger": "workspace:^",
+		"@thi.ng/random": "workspace:^",
 		"@thi.ng/wasm-api": "workspace:^",
 		"@thi.ng/wasm-api-dom": "workspace:^"
 	},
