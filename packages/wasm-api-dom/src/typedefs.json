@@ -5,14 +5,14 @@
 		"tag": "i32",
 		"values": [
 			{ "name": "unkown", "value": -1 },
-			"mouse",
-			"touch",
-			"wheel",
+			"blur",
+			"focus",
 			"input",
 			"key",
-			"focus",
-			"blur",
-			"resize"
+			"mouse",
+			"resize",
+			"touch",
+			"wheel"
 		]
 	},
 	{
@@ -25,6 +25,12 @@
 			{ "name": "secondary", "value": 2 },
 			{ "name": "middle", "value": 4 }
 		]
+	},
+	{
+		"name": "WheelDeltaMode",
+		"type": "enum",
+		"tag": "u8",
+		"values": ["pixel", "line", "page"]
 	},
 	{
 		"name": "KeyModifier",
@@ -47,43 +53,19 @@
 		]
 	},
 	{
-		"name": "Event",
+		"name": "MouseEvent",
 		"type": "struct",
 		"fields": [
-			{ "name": "type", "type": "EventType" },
-			{
-				"name": "target",
-				"type": "i32",
-				"doc": "Target element ID, positive if a known element, otherwise:\n\n- 0: document.body\n- -1: window\n- -2: = unknown"
-			},
 			{
 				"name": "clientX",
 				"type": "i16",
-				"doc": "Mouse/touch X position in the local space of the element's bounding rect",
+				"doc": "Mouse X position in the local space of the element's bounding rect",
 				"default": 0
 			},
 			{
 				"name": "clientY",
 				"type": "i16",
-				"doc": "Mouse/touch Y position in the local space of the element's bounding rect",
-				"default": 0
-			},
-			{
-				"name": "deltaX",
-				"type": "i16",
-				"doc": "WHEEL event only, scroll X delta",
-				"default": 0
-			},
-			{
-				"name": "deltaY",
-				"type": "i16",
-				"doc": "WHEEL event only, scroll Y delta",
-				"default": 0
-			},
-			{
-				"name": "buttons",
-				"type": "u8",
-				"doc": "Encoded bitmask of currently pressed mouse buttons, see `MouseButton` enum",
+				"doc": "Mouse Y position in the local space of the element's bounding rect",
 				"default": 0
 			},
 			{
@@ -93,6 +75,83 @@
 				"default": 0
 			},
 			{
+				"name": "buttons",
+				"type": "u8",
+				"doc": "Encoded bitmask of currently pressed mouse buttons, see `MouseButton` enum",
+				"default": 0
+			}
+		]
+	},
+	{
+		"name": "WheelEvent",
+		"type": "struct",
+		"fields": [
+			{
+				"name": "deltaX",
+				"type": "i16",
+				"doc": "Scroll X delta",
+				"default": 0
+			},
+			{
+				"name": "deltaY",
+				"type": "i16",
+				"doc": "Scroll Y delta",
+				"default": 0
+			},
+			{
+				"name": "deltaZ",
+				"type": "i16",
+				"doc": "Scroll Z delta",
+				"default": 0
+			},
+			{
+				"name": "mode",
+				"type": "WheelDeltaMode",
+				"doc": "Delta mode"
+			},
+			{
+				"name": "modifiers",
+				"type": "u8",
+				"doc": "Encoded bitmask of currently pressed modifier keys, see `KeyModifier` enum",
+				"default": 0
+			},
+			{
+				"name": "buttons",
+				"type": "u8",
+				"doc": "Encoded bitmask of currently pressed mouse buttons, see `MouseButton` enum",
+				"default": 0
+			}
+		]
+	},
+	{
+		"name": "TouchEvent",
+		"type": "struct",
+		"fields": [
+			{
+				"name": "clientX",
+				"type": "i16",
+				"doc": "Touch X position in the local space of the element's bounding rect",
+				"default": 0
+			},
+			{
+				"name": "clientY",
+				"type": "i16",
+				"doc": "Touch Y position in the local space of the element's bounding rect",
+				"default": 0
+			},
+			{
+				"name": "modifiers",
+				"type": "u8",
+				"doc": "Encoded bitmask of currently pressed modifier keys, see `KeyModifier` enum",
+				"default": 0
+			}
+		]
+	},
+	{
+		"name": "KeyEvent",
+		"type": "struct",
+		"fields": [
+			{
 				"name": "key",
 				"type": "u8",
 				"tag": "array",
@@ -101,14 +160,60 @@
 				"doc": "Value/name of the key pressed"
 			},
 			{
-				"name": "value",
-				"type": "string",
-				"doc": "INPUT event only, the value of the targeted input element.\nThe memory is owned by the DOM API and will be freed immediatedly after the event handler has returned."
+				"name": "modifiers",
+				"type": "u8",
+				"doc": "Encoded bitmask of currently pressed modifier keys, see `KeyModifier` enum",
+				"default": 0
 			}
 		],
 		"body": {
-			"zig": "pub fn getKey(self: *const Event) []const u8 {\nreturn self.key[0..std.mem.indexOfSentinel(u8, 0, &self.key)];\n}"
+			"zig": "pub fn getKey(self: *const KeyEvent) []const u8 {\nreturn self.key[0..std.mem.indexOfSentinel(u8, 0, &self.key)];\n}"
 		}
+	},
+	{
+		"name": "InputEvent",
+		"type": "struct",
+		"fields": [
+			{
+				"name": "value",
+				"type": "string",
+				"doc": "Value of the targeted input element.\nThe memory is owned by the DOM API and will be freed immediatedly after the event handler has returned."
+			},
+			{
+				"name": "modifiers",
+				"type": "u8",
+				"doc": "Encoded bitmask of currently pressed modifier keys, see `KeyModifier` enum",
+				"default": 0
+			}
+		]
+	},
+	{
+		"name": "EventBody",
+		"type": "union",
+		"fields": [
+			{ "name": "input", "type": "InputEvent" },
+			{ "name": "key", "type": "KeyEvent" },
+			{ "name": "mouse", "type": "MouseEvent" },
+			{ "name": "touch", "type": "TouchEvent" },
+			{ "name": "wheel", "type": "WheelEvent" }
+		]
+	},
+	{
+		"name": "Event",
+		"type": "struct",
+		"fields": [
+			{ "name": "id", "type": "EventType" },
+			{
+				"name": "target",
+				"type": "i32",
+				"doc": "Target element ID, positive if a known element, otherwise:\n\n- 0: document.body\n- -1: window\n- -2: = unknown"
+			},
+			{
+				"name": "body",
+				"type": "EventBody",
+				"doc": "Event details / payload"
+			}
+		]
 	},
 	{
 		"name": "CreateElementOpts",

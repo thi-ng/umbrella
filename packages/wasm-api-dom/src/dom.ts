@@ -18,6 +18,11 @@ import {
 	DOMImports,
 	Event as WasmEvent,
 	EventType,
+	InputEvent as WASMInputEvent,
+	KeyEvent as WASMKeyEvent,
+	MouseEvent as WASMMouseEvent,
+	TouchEvent as WASMTouchEvent,
+	WheelEvent as WASMWheelEvent,
 } from "./api.js";
 
 interface WasmListener {
@@ -149,42 +154,51 @@ export class WasmDom implements IWasmAPI<DOMExports> {
 					event.target = target !== undefined ? target : -2;
 					let valueAddr = -1;
 					let valueLen: number;
-					const isTouch = isTouchEvent(e);
-					if (isTouch) {
+					let body:
+						| WASMInputEvent
+						| WASMKeyEvent
+						| WASMMouseEvent
+						| WASMTouchEvent
+						| WASMWheelEvent;
+					if (isTouchEvent(e)) {
 						const bounds = (<Element>(
 							e.target
 						)).getBoundingClientRect();
-						event.type = EventType.TOUCH;
-						event.clientX = e.touches[0].clientX - bounds.left;
-						event.clientY = e.touches[0].clientY - bounds.top;
+						event.id = EventType.TOUCH;
+						body = event.body.touch;
+						body.clientX = e.touches[0].clientX - bounds.left;
+						body.clientY = e.touches[0].clientY - bounds.top;
 					} else if (e instanceof MouseEvent) {
 						const bounds = (<Element>(
 							e.target
 						)).getBoundingClientRect();
-						event.type = EventType.MOUSE;
-						event.clientX = e.clientX - bounds.left;
-						event.clientY = e.clientY - bounds.top;
-						event.buttons = e.buttons;
+						event.id = EventType.MOUSE;
+						body = event.body.mouse;
+						body.clientX = e.clientX - bounds.left;
+						body.clientY = e.clientY - bounds.top;
+						(<WASMMouseEvent>body).buttons = e.buttons;
 					} else if (e instanceof KeyboardEvent) {
-						event.type = EventType.KEY;
+						body = event.body.key;
+						event.id = EventType.KEY;
 						this.parent.setString(
 							e.key,
-							event.key.byteOffset,
+							body.key.byteOffset,
 							16,
 							true
 						);
 					} else if (e instanceof WheelEvent) {
-						event.type = EventType.WHEEL;
-						event.deltaX = e.deltaX;
-						event.deltaY = e.deltaY;
-						event.buttons = e.buttons;
+						event.id = EventType.WHEEL;
+						body = event.body.wheel;
+						body.deltaX = e.deltaX;
+						body.deltaY = e.deltaY;
+						body.buttons = e.buttons;
 					} else if (e instanceof FocusEvent) {
-						event.type =
+						event.id =
 							e.type === "focus"
 								? EventType.FOCUS
 								: EventType.BLUR;
 					} else if (e.type === "change" || e.type === "input") {
-						event.type = EventType.INPUT;
+						event.id = EventType.INPUT;
 						const el = <HTMLInputElement>e.target;
 						const value =
 							el.type === "checkbox"
@@ -198,21 +212,22 @@ export class WasmDom implements IWasmAPI<DOMExports> {
 						valueAddr = this.parent.allocate(valueLen + 1);
 						this.parent.u8.set(valueBytes, valueAddr);
 						this.parent.u8[valueAddr + valueLen] = 0;
-						event.value.setSlice(valueAddr, valueLen);
+						event.body.input.value.setSlice(valueAddr, valueLen);
 					} else {
-						event.type = EventType.UNKOWN;
+						event.id = EventType.UNKOWN;
 					}
 					if (
-						isTouch ||
-						e instanceof MouseEvent ||
-						e instanceof KeyboardEvent ||
-						e instanceof WheelEvent
+						[
+							EventType.INPUT,
+							EventType.KEY,
+							EventType.MOUSE,
+							EventType.TOUCH,
+							EventType.WHEEL,
+						].includes(event.id)
 					) {
-						event.modifiers =
-							(e.shiftKey ? 1 : 0) |
-							(e.ctrlKey ? 2 : 0) |
-							(e.altKey ? 4 : 0) |
-							(e.metaKey ? 8 : 0);
+						body!.modifiers = this.encodeModifiers(
+							<KeyboardEvent>e
+						);
 					}
 					this.parent.exports.dom_callListener(
 						listenerID,
@@ -302,5 +317,14 @@ export class WasmDom implements IWasmAPI<DOMExports> {
 				? parentEl.appendChild(el)
 				: parentEl.insertBefore(el, parentEl.childNodes[index]);
 		}
+	}
+
+	protected encodeModifiers(e: KeyboardEvent) {
+		return (
+			(e.shiftKey ? 1 : 0) |
+			(e.ctrlKey ? 2 : 0) |
+			(e.altKey ? 4 : 0) |
+			(e.metaKey ? 8 : 0)
+		);
 	}
 }
