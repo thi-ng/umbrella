@@ -66,7 +66,7 @@ node --experimental-repl-await
 > const wasmApiDom = await import("@thi.ng/wasm-api-dom");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 2.36 KB
+Package sizes (gzipped, pre-treeshake): ESM: 2.73 KB
 
 ## Dependencies
 
