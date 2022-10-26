@@ -83,7 +83,7 @@ console.log("invaliding", DEST_DIR);
 
 execFileSync(
 	"aws",
-	`cloudfront create-invalidation --distribution-id ${CF_DISTRO} --paths "${DEST_DIR}/*" --profile ${PROFILE}`.split(
+	`cloudfront create-invalidation --distribution-id ${CF_DISTRO} --paths ${DEST_DIR}/* --profile ${PROFILE}`.split(
 		" "
 	)
 );

@@ -81,7 +81,7 @@ const invalidatePath = (path: string) => {
 	LOGGER.info("invalidating CDN path:", path);
 	execFileSync(
 		"aws",
-		`cloudfront create-invalidation --distribution-id ${CF_DISTRO} --paths "${path}" ${AWS_PROFILE}`.split(
+		`cloudfront create-invalidation --distribution-id ${CF_DISTRO} --paths ${path} ${AWS_PROFILE}`.split(
 			" "
 		)
 	);
@@ -109,7 +109,7 @@ if (PKG) {
 	invalidatePath(`${S3_PREFIX}/*`);
 }
 
-execFileSync("scripts/node-esm tools/src/doc-table.ts");
+execFileSync("scripts/node-esm", ["tools/src/doc-table.ts"]);
 
 execFileSync(
 	"aws",
