@@ -149,6 +149,7 @@ const __generateFields = (
 ) => {
 	const res: string[] = [];
 	const ftypes: Record<string, string> = {};
+	const isUnion = parent.type === "union";
 	const name = typePrefix + parent.name;
 	let padID = 0;
 	for (let f of parent.fields) {
@@ -203,7 +204,7 @@ const __generateFields = (
 		for (let f of parent.fields) {
 			if (isPadding(f)) continue;
 			fn(f.name + "_align", `alignof(${ftypes[f.name]})`);
-			fn(f.name + "_offset", `offsetof(${name}, ${f.name})`);
+			!isUnion && fn(f.name + "_offset", `offsetof(${name}, ${f.name})`);
 			fn(f.name + "_size", `sizeof(${ftypes[f.name]})`);
 		}
 	}

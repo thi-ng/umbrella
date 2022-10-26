@@ -110,6 +110,7 @@ const __generateFields = (
 	const res: string[] = [];
 	const ftypes: Record<string, string> = {};
 	const isUnion = parent.type === "union";
+	const name = parent.name;
 	let padID = 0;
 	for (let f of parent.fields) {
 		// autolabel explicit padding fields
@@ -175,22 +176,19 @@ const __generateFields = (
 		const fn = (fname: string, body: string) =>
 			res.push(
 				"",
-				`export fn ${parent.name}_${fname}() usize {`,
+				`export fn ${name}_${fname}() usize {`,
 				`return ${body};`,
 				`}`
 			);
 
-		fn("align", `@alignOf(${parent.name})`);
-		fn("size", `@sizeOf(${parent.name})`);
+		fn("align", `@alignOf(${name})`);
+		fn("size", `@sizeOf(${name})`);
 
 		for (let f of parent.fields) {
 			if (isPadding(f)) continue;
 			fn(f.name + "_align", `@alignOf(${ftypes[f.name]})`);
 			!isUnion &&
-				fn(
-					f.name + "_offset",
-					`@offsetOf(${parent.name}, "${f.name}")`
-				);
+				fn(f.name + "_offset", `@offsetOf(${name}, "${f.name}")`);
 			fn(f.name + "_size", `@sizeOf(${ftypes[f.name]})`);
 		}
 	}
