@@ -124,7 +124,7 @@ const addTypeSpec = (
 	spec: TopLevelType
 ) => {
 	if (!(spec.name && spec.type)) invalidSpec(path);
-	if (!(spec.type === "enum" || spec.type === "struct"))
+	if (!["enum", "struct", "union"].includes(spec.type))
 		invalidSpec(path, `${spec.name} type: ${spec.type}`);
 	if (coll[spec.name]) invalidSpec(path, `duplicate name: ${spec.name}`);
 
