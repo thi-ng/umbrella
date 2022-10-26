@@ -148,8 +148,12 @@ export interface IWasmMemoryAccess {
 
 /**
  * Core API of WASM imports defined by the {@link WasmBridge}. The same
- * functions are declared as bindings in `/zig/core.zig`. Also see this file for
- * documentation of each function...
+ * functions are declared as bindings in `/zig/wasmapi.zig`. **Also see this
+ * file for documentation of each function...**
+ *
+ * @remarks
+ * Zig API:
+ * https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api/zig/wasmapi.zig
  */
 export interface CoreAPI extends WebAssembly.ModuleImports {
 	printI8: Fn<number, void>;

@@ -24,24 +24,27 @@ applications.
 Additionally, a number of support modules for [DOM
 manipulation](https://github.com/thi-ng/umbrella/tree/develop/packages/wasm-api-dom/),
 WebGL, WebGPU, WebAudio etc. is being actively worked on.
-3. [Include files for C11/C++ and
-   Zig](https://github.com/thi-ng/umbrella/tree/develop/packages/wasm-api/include),
-   defining WASM imports of the extern JS [core
+3. Include files for
+   [C11/C++](https://github.com/thi-ng/umbrella/tree/develop/packages/wasm-api/include)
+   and
+   [Zig](https://github.com/thi-ng/umbrella/tree/develop/packages/wasm-api/zig),
+   defining glue code for the JS [core
    API](https://docs.thi.ng/umbrella/wasm-api/interfaces/CoreAPI.html) defined
    by this package
-4. Extensible shared datatype code generators for (currently) C11, TypeScript &
-   [Zig](https://ziglang.org). The latter also generates fully type checked
-   memory-mapped (zero-copy) accessors of WASM-side data. In general, all
-languages with a WebAssembly target are supported, however currently only
-bindings for these mentioned langs are included.
+4. Extensible shared datatype code generators for (currently) C11, Zig &
+   TypeScript. The latter also generates fully type checked memory-mapped
+   (zero-copy) accessors of WASM-side data. In general, all languages with a
+WebAssembly target are supported, however currently only bindings for these
+mentioned langs are included. Other languages require custom bindings, e.g.
+based on the flexible primitives provided here.
 5. [CLI frontend/utility](#cli-generator) to invoke the code generator(s)
 
 ### Data bindings & code generators
 
 The package provides an extensible codegeneration framework to simplify the
 bilateral design & exchange of data structures shared between the WASM & JS host
-env. Currently, code generators for TypeScript & Zig are supplied (more are
-planned). A CLI wrapper is available too. See the
+env. Currently, code generators for TypeScript, Zig and C11 are supplied. A CLI
+wrapper is available too. See the
 [@thi.ng/wasm-api-dom](https://github.com/thi-ng/umbrella/tree/develop/packages/wasm-api-dom/)
 support package for a more thorough realworld example...
 
@@ -57,7 +60,7 @@ $ npx @thi.ng/wasm-api
 
  █ █   █           │
 ██ █               │
- █ █ █ █   █ █ █ █ │ @thi.ng/wasm-api 0.12.0
+ █ █ █ █   █ █ █ █ │ @thi.ng/wasm-api 0.15.0
  █ █ █ █ █ █ █ █ █ │ Multi-language data bindings code generator
                  █ │
                █ █ │
@@ -67,7 +70,7 @@ usage: wasm-api [OPTS] JSON-INPUT-FILE(S) ...
 
 Flags:
 
--d, --debug                     enable debug output
+-d, --debug                     enable debug output & functions
 --dry-run                       enable dry run (don't overwrite files)
 
 Main:
@@ -128,7 +131,7 @@ Currently, the code generator supports enums, structs and unions. See API docs f
 further details:
 
 - [`Enum`](https://docs.thi.ng/umbrella/wasm-api/interfaces/Enum.html)
-- [`EnumValue`](https://docs.thi.ng/umbrella/wasm-api/interfaces/EnumValue.html)
+- [`EnumValue`](https://docs.thi.ng/umbrella/wasm-api/interfaces/EnumValue.html) (individual enum value spec)
 - [`Field`](https://docs.thi.ng/umbrella/wasm-api/interfaces/Field.html) (individual spec for values contained in structs/unions)
 - [`Struct`](https://docs.thi.ng/umbrella/wasm-api/interfaces/Struct.html)
 - [`Union`](https://docs.thi.ng/umbrella/wasm-api/interfaces/Union.html)

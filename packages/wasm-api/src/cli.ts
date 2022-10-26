@@ -63,7 +63,11 @@ const argOpts: Args<CLIOpts> = {
 		hint: "FILE",
 		desc: "JSON config file with codegen options",
 	}),
-	debug: flag({ alias: "d", default: false, desc: "enable debug output" }),
+	debug: flag({
+		alias: "d",
+		default: false,
+		desc: "enable debug output & functions",
+	}),
 	dryRun: flag({
 		default: false,
 		desc: "enable dry run (don't overwrite files)",
