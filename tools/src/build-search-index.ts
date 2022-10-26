@@ -8,7 +8,7 @@ import {
 } from "@thi.ng/file-io";
 // @ts-ignore
 import msgpack from "@ygoe/msgpack";
-import { execSync } from "child_process";
+import { execFileSync } from "child_process";
 import { LOGGER } from "./api.js";
 import { build, defEncoder } from "./search.js";
 
@@ -107,11 +107,14 @@ const packed = build(
 writeJSON("assets/search.json", packed, null, 0, LOGGER);
 // msgpack'd binary version
 writeFile("assets/search.bin", msgpack.serialize(packed), {}, LOGGER);
-execSync("gzip -9 -f assets/search.bin");
+execFileSync("gzip", "-9 -f assets/search.bin".split(" "));
 
 console.log("uploading...");
 console.log(
-	execSync(
-		`aws s3 cp assets/search.bin.gz s3://docs.thi.ng/umbrella/search-index-latest.bin --content-encoding gzip --acl public-read --profile thing-umbrella`
+	execFileSync(
+		"aws",
+		"s3 cp assets/search.bin.gz s3://docs.thi.ng/umbrella/search-index-latest.bin --content-encoding gzip --acl public-read --profile thing-umbrella".split(
+			" "
+		)
 	).toString()
 );

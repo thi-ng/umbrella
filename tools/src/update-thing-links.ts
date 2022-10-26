@@ -1,6 +1,6 @@
 import { deleteFile, readJSON, tempFilePath, writeText } from "@thi.ng/file-io";
 import { getIn } from "@thi.ng/paths";
-import { execSync } from "child_process";
+import { execFileSync } from "child_process";
 import { readdirSync, statSync } from "fs";
 import { LOGGER } from "./api.js";
 
@@ -21,8 +21,11 @@ for (let f of readdirSync(baseDir)) {
 		const html = `<html><head><meta http-equiv="refresh" content="0; url=https://github.com/thi-ng/umbrella/tree/${branch}/packages/${id}"/></head></html>`;
 		console.log(`${id} -> ${branch}`);
 		writeText(tmpFile, html);
-		execSync(
-			`aws s3 cp ${tmpFile} s3://thi.ng/${id} --profile thing-umbrella --acl public-read --content-type "text/html" --cache-control "no-cache"`
+		execFileSync(
+			"aws",
+			`s3 cp ${tmpFile} s3://thi.ng/${id} --profile thing-umbrella --acl public-read --content-type text/html --cache-control no-cache`.split(
+				" "
+			)
 		);
 	} catch (e) {
 		console.warn(`error: ${(<Error>e).message}`);

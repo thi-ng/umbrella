@@ -1,7 +1,7 @@
 import type { Fn } from "@thi.ng/api";
 import { files } from "@thi.ng/file-io";
 import { preferredType } from "@thi.ng/mime";
-import { execSync } from "child_process";
+import { execFileSync } from "child_process";
 import { existsSync } from "fs";
 import { exit } from "process";
 
@@ -31,7 +31,10 @@ const NEVER_GZIP = new Set(["mp4"]);
 const args = new Set(process.argv.slice(3).map((x) => x.substring(2)));
 console.log(args);
 
-execSync(`find examples/${EXAMPLE} -type f -name '*.DS_Store' -ls -delete`);
+execFileSync(
+	"find",
+	`examples/${EXAMPLE} -type f -name '*.DS_Store' -ls -delete`.split(" ")
+);
 
 const uploadAssets = (dir: string, opts?: Partial<UploadOpts>) => {
 	const root = `${BUILD}${dir}`;
@@ -46,12 +49,18 @@ const uploadAssets = (dir: string, opts?: Partial<UploadOpts>) => {
 		console.log(f, "->", fd, type);
 		opts.process && opts.process(f);
 		if (opts.gzip && !NEVER_GZIP.has(ext)) {
-			execSync(`gzip -9 ${f}`);
-			execSync(
-				`aws s3 cp ${f}.gz ${fd} ${GZOPTS} --content-type ${type}`
+			execFileSync("gzip", ["-9", f]);
+			execFileSync(
+				"aws",
+				`s3 cp ${f}.gz ${fd} ${GZOPTS} --content-type ${type}`.split(
+					" "
+				)
 			);
 		} else {
-			execSync(`aws s3 cp ${f} ${fd} ${OPTS} --content-type ${type}`);
+			execFileSync(
+				"aws",
+				`s3 cp ${f} ${fd} ${OPTS} --content-type ${type}`.split(" ")
+			);
 		}
 	}
 };
@@ -72,8 +81,11 @@ uploadAssets("", { ext: ".html" });
 
 console.log("invaliding", DEST_DIR);
 
-execSync(
-	`aws cloudfront create-invalidation --distribution-id ${CF_DISTRO} --paths "${DEST_DIR}/*" --profile ${PROFILE}`
+execFileSync(
+	"aws",
+	`cloudfront create-invalidation --distribution-id ${CF_DISTRO} --paths "${DEST_DIR}/*" --profile ${PROFILE}`.split(
+		" "
+	)
 );
 
 console.log("done");

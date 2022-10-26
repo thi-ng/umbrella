@@ -1,6 +1,6 @@
 import { readJSON, readText } from "@thi.ng/file-io";
 import { bytes, camel } from "@thi.ng/strings";
-import { execSync } from "child_process";
+import { execFileSync } from "child_process";
 import { readdirSync } from "fs";
 import { META_FIELD, Package, RE_PKG } from "../api.js";
 import { CONFIG } from "../config.js";
@@ -93,9 +93,9 @@ export const packageSize = () => {
 
 export const packageBanner = (name: string) => {
 	name = shortName(name);
-	const sha1 = execSync(`shasum ${CONFIG.bannerBasePath}${name}.svg`)
+	const sha1 = execFileSync("shasum", [`${CONFIG.bannerBasePath}${name}.svg`])
 		.toString()
-		.substr(0, 8);
+		.substring(0, 8);
 	return `![${name}](${CONFIG.bannerURL}${name}.svg?${sha1})`;
 };
 

@@ -1,5 +1,5 @@
 import { dirs, files, readText, writeText } from "@thi.ng/file-io";
-import { execSync } from "child_process";
+import { execFileSync } from "child_process";
 import { LOGGER } from "./api.js";
 
 const PKG = process.argv[2];
@@ -59,24 +59,31 @@ const sanitizePackage = (root: string) => {
 
 const minifyPackage = (root: string) => {
 	LOGGER.info("minifying", root);
-	execSync(
-		`node_modules/.bin/html-minifier-terser ${MINIFY_OPTS} --input-dir ${root} --output-dir ${root}`
+	execFileSync(
+		"node_modules/.bin/html-minifier-terser",
+		`${MINIFY_OPTS} --input-dir ${root} --output-dir ${root}`.split(" ")
 	);
 };
 
 const syncPackage = (id: string, root: string) => {
 	LOGGER.info("syncing", root);
 	LOGGER.info(
-		execSync(
-			`aws s3 sync ${root} ${S3_BUCKET}${S3_PREFIX}/${id} ${SYNC_OPTS}`
+		execFileSync(
+			"aws",
+			`s3 sync ${root} ${S3_BUCKET}${S3_PREFIX}/${id} ${SYNC_OPTS}`.split(
+				" "
+			)
 		).toString()
 	);
 };
 
 const invalidatePath = (path: string) => {
 	LOGGER.info("invalidating CDN path:", path);
-	execSync(
-		`aws cloudfront create-invalidation --distribution-id ${CF_DISTRO} --paths "${path}" ${AWS_PROFILE}`
+	execFileSync(
+		"aws",
+		`cloudfront create-invalidation --distribution-id ${CF_DISTRO} --paths "${path}" ${AWS_PROFILE}`.split(
+			" "
+		)
 	);
 };
 
@@ -102,9 +109,12 @@ if (PKG) {
 	invalidatePath(`${S3_PREFIX}/*`);
 }
 
-execSync(`scripts/node-esm tools/src/doc-table.ts`);
+execFileSync("scripts/node-esm tools/src/doc-table.ts");
 
-execSync(`aws s3 cp docs.html ${S3_BUCKET}/index.html ${S3_OPTS}`);
+execFileSync(
+	"aws",
+	`s3 cp docs.html ${S3_BUCKET}/index.html ${S3_OPTS}`.split(" ")
+);
 
 if (PKG) {
 	invalidatePath("/index.html");
