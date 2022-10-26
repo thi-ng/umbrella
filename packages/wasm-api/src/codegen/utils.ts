@@ -34,7 +34,13 @@ export const isPointer = (f: StructField) => f.tag === "ptr";
 
 export const isSlice = (f: StructField) => f.tag === "slice";
 
-export const isPointerLike = (f: StructField) => isPointer(f) || isSlice(f);
+/**
+ * Returns true iff the struct field is a pointer, slice or "string" type
+ *
+ * @param f
+ */
+export const isPointerLike = (f: StructField) =>
+	isPointer(f) || isSlice(f) || isWasmString(f.type);
 
 /**
  * Takes an array of strings or splits given string into lines, word wraps and

@@ -63,12 +63,13 @@ const sizeOf = defmulti<
 			} else if (isSlice(field)) {
 				size = opts.target.usizeBytes * 2;
 			} else {
-				size = isNumeric(field.type)
-					? SIZEOF[<Type>field.type]
-					: isWasmString(field.type)
-					? opts.target.usizeBytes *
-					  (opts.stringType === "slice" ? 2 : 1)
-					: sizeOf(types[field.type], types, align, opts);
+				size =
+					isNumeric(field.type) || isBigNumeric(field.type)
+						? SIZEOF[<Type>field.type]
+						: isWasmString(field.type)
+						? opts.target.usizeBytes *
+						  (opts.stringType === "slice" ? 2 : 1)
+						: sizeOf(types[field.type], types, align, opts);
 				if (field.tag == "array" || field.tag === "vec") {
 					size *= field.len!;
 					if (field.sentinel !== undefined && field.tag === "array") {
@@ -128,17 +129,16 @@ const alignOf = defmulti<
 				field.type = opts.target.usize;
 			}
 			if (field.pad) return (field.__align = 1);
-			return (field.__align =
-				isPointerLike(field) || isWasmString(field.type)
-					? align.align(<StructField>{ type: opts.target.usize })
-					: isNumeric(field.type) || isBigNumeric(field.type)
-					? align.align(field)
-					: alignOf(
-							types[field.type],
-							types,
-							selectAlignment(types[field.type]),
-							opts
-					  ));
+			return (field.__align = isPointerLike(field)
+				? align.align(<StructField>{ type: opts.target.usize })
+				: isNumeric(field.type) || isBigNumeric(field.type)
+				? align.align(field)
+				: alignOf(
+						types[field.type],
+						types,
+						selectAlignment(types[field.type]),
+						opts
+				  ));
 		},
 
 		enum: (type, _, align) => {
