@@ -1,5 +1,6 @@
 import type { Fn0, IObjectOf, Nullable } from "@thi.ng/api";
 import { readText, writeText } from "@thi.ng/file-io";
+import { execFileSync } from "child_process";
 import { LOGGER, RE_PARTIAL } from "./api.js";
 import { CONFIG, initConfig } from "./config.js";
 import { blogPosts } from "./partials/blog.js";
@@ -43,7 +44,7 @@ try {
 		authors,
 	};
 
-	let readme = readText("./tpl.readme.md", LOGGER)
+	let readme = readText("tpl.readme.md", LOGGER)
 		.replace(RE_PARTIAL, (orig, id) => {
 			if (!partials.hasOwnProperty(id)) {
 				console.warn(`skipping unsupported tpl ID: "${id}"`);
@@ -57,6 +58,15 @@ try {
 	readme = "<!-- This file is generated - DO NOT EDIT! -->\n\n" + readme;
 
 	writeText("./README.md", readme, LOGGER);
+
+	if (/tangle:/.test(readme)) {
+		LOGGER.info("tangling code blocks...");
+		console.log(
+			execFileSync("../../node_modules/.bin/tangle", [
+				"tpl.readme.md",
+			]).toString()
+		);
+	}
 } catch (e) {
 	console.log((<Error>e).message);
 	process.exit(1);
