@@ -39,11 +39,11 @@
 		"chokidar": "^3.5.3"
 	},
 	"devDependencies": {
-		"@microsoft/api-extractor": "^7.31.1",
+		"@microsoft/api-extractor": "^7.33.5",
 		"rimraf": "^3.0.2",
 		"tools": "workspace:^",
-		"typedoc": "^0.22.17",
-		"typescript": "^4.8.3"
+		"typedoc": "^0.23.18",
+		"typescript": "^4.8.4"
 	},
 	"keywords": [
 		"async",

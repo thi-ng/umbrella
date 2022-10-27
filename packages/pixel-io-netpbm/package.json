@@ -39,12 +39,12 @@
 		"@thi.ng/pixel": "^4.0.4"
 	},
 	"devDependencies": {
-		"@microsoft/api-extractor": "^7.31.1",
+		"@microsoft/api-extractor": "^7.33.5",
 		"@thi.ng/testament": "^0.3.3",
 		"rimraf": "^3.0.2",
 		"tools": "workspace:^",
-		"typedoc": "^0.22.17",
-		"typescript": "^4.8.3"
+		"typedoc": "^0.23.18",
+		"typescript": "^4.8.4"
 	},
 	"keywords": [
 		"1bit",
