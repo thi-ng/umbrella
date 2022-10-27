@@ -30,6 +30,8 @@ pub const RAFListener = struct {
     ctx: ?*anyopaque = null,
 };
 
+pub const FullscreenCallback = *const fn () void;
+
 /// Reserved reference handle for the browser window itself (e.g. used for event targets)
 pub const WINDOW: i32 = -1;
 /// Reserved reference handle for `document.body`
@@ -93,6 +95,7 @@ pub fn setInnerText(elementID: i32, tag: []const u8) void {
     _setInnerText(elementID, tag.ptr);
 }
 
+/// Internal callback. Called from JS
 export fn dom_callListener(listenerID: u16, event: *const dom.Event) void {
     if (eventListeners.get(listenerID)) |listener| listener.callback(event, listener.ctx);
 }
@@ -133,9 +136,30 @@ pub fn requestAnimationFrame(listener: *const RAFListener) !u16 {
     return id;
 }
 
+/// Internal callback. Called from JS
 export fn dom_callRAF(listenerID: u16, time: f64) void {
     if (rafListeners.get(listenerID)) |raf| {
         rafListeners.remove(listenerID);
         raf.callback(time, raf.ctx);
+    }
+}
+
+var fsCallback: ?FullscreenCallback = null;
+
+pub extern "dom" fn _requestFullscreen(elementID: i32) void;
+
+/// Only to be called from an event handler. Requests fullscreen display for
+/// given element ID. Use -1 for the entire window/document.
+/// The optional callback will be called once (and if) fullscreen is enabled
+pub fn requestFullscreen(elementID: i32, callback: ?FullscreenCallback) void {
+    fsCallback = callback;
+    _requestFullscreen(elementID);
+}
+
+/// Internal callback. Called from JS
+export fn dom_fullscreenReady() void {
+    if (fsCallback) |callback| {
+        callback();
+        fsCallback = null;
     }
 }

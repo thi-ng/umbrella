@@ -5,6 +5,7 @@ export * from "./generated/api.js";
 export interface DOMExports extends WasmExports {
 	dom_callListener(listenerID: number, event: number): void;
 	dom_callRAF(rafID: number, t: number): void;
+	dom_fullscreenReady(): void;
 }
 
 export interface DOMImports extends WebAssembly.ModuleImports {
@@ -149,4 +150,6 @@ export interface DOMImports extends WebAssembly.ModuleImports {
 	_setInnerText(elementID: number, body: number): void;
 
 	_requestAnimationFrame(rafID: number): void;
+
+	_requestFullscreen(elementID: number): Promise<void>;
 }

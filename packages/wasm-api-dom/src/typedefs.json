@@ -5,12 +5,13 @@
 		"tag": "i32",
 		"values": [
 			{ "name": "unkown", "value": -1 },
-			"blur",
+			"drag",
 			"focus",
 			"input",
 			"key",
 			"mouse",
-			"resize",
+			"pointer",
+			"scroll",
 			"touch",
 			"wheel"
 		]
@@ -25,6 +26,12 @@
 			{ "name": "secondary", "value": 2 },
 			{ "name": "middle", "value": 4 }
 		]
+	},
+	{
+		"name": "PointerType",
+		"type": "enum",
+		"tag": "u8",
+		"values": ["mouse", "pen", "touch"]
 	},
 	{
 		"name": "WheelDeltaMode",
@@ -49,8 +56,165 @@
 		"fields": [
 			{ "name": "innerWidth", "type": "u16" },
 			{ "name": "innerHeight", "type": "u16" },
-			{ "name": "dpr", "type": "u8" }
+			{
+				"name": "scrollX",
+				"type": "f32",
+				"doc": "Horizontal scroll offset in fractional CSS pixels"
+			},
+			{
+				"name": "scrollY",
+				"type": "f32",
+				"doc": "Vertical scroll offset in fractional CSS pixels"
+			},
+			{
+				"name": "dpr",
+				"type": "u8",
+				"doc": "Current device pixel ratio"
+			},
+			{
+				"name": "fullscreen",
+				"type": "u8",
+				"doc": [
+					"Encoded bitmask indicating fullscreen status / capability:",
+					"- 1 (bit 0): fullscreen active",
+					"- 2 (bit 1): fullscreen supported"
+				]
+			}
 		]
+	},
+	{
+		"name": "DragEvent",
+		"type": "struct",
+		"fields": [
+			{
+				"name": "clientX",
+				"type": "i16",
+				"doc": "Mouse X position in the local space of the element's bounding rect",
+				"default": 0
+			},
+			{
+				"name": "clientY",
+				"type": "i16",
+				"doc": "Mouse Y position in the local space of the element's bounding rect",
+				"default": 0
+			},
+			{
+				"name": "isDataTransfer",
+				"type": "u8",
+				"doc": "If non-zero, data that is being dragged during a drag & drop operation can be obtained via various DnD related API calls (only available when called from event handler).",
+				"default": 0
+			},
+			{
+				"name": "modifiers",
+				"type": "u8",
+				"doc": "Encoded bitmask of currently pressed modifier keys, see `KeyModifier` enum",
+				"default": 0
+			},
+			{
+				"name": "buttons",
+				"type": "u8",
+				"doc": "Encoded bitmask of all currently pressed mouse buttons, see `MouseButton` enum",
+				"default": 0
+			},
+			{
+				"name": "button",
+				"type": "MouseButton",
+				"doc": "Event related mouse button ID (if any)"
+			}
+		],
+		"body": {
+			"ts": {
+				"decl": "fromEvent(e: globalThis.DragEvent): void;",
+				"impl": [
+					"fromEvent(e: globalThis.DragEvent) {",
+					"const bounds = (<Element>(e.target)).getBoundingClientRect();",
+					"this.clientX = e.clientX - bounds.left;",
+					"this.clientY = e.clientY - bounds.top;",
+					"this.buttons = e.buttons;",
+					"this.button = e.button;",
+					"this.isDataTransfer = e.dataTransfer ? 1 : 0;",
+					"}"
+				]
+			}
+		}
+	},
+	{
+		"name": "InputEvent",
+		"type": "struct",
+		"fields": [
+			{
+				"name": "value",
+				"type": "string",
+				"doc": [
+					"Value of the targeted input element.",
+					"The memory is owned by the DOM API and will be freed immediatedly after the event handler has returned."
+				]
+			},
+			{
+				"name": "modifiers",
+				"type": "u8",
+				"doc": "Encoded bitmask of currently pressed modifier keys, see `KeyModifier` enum",
+				"default": 0
+			}
+		],
+		"body": {
+			"ts": {
+				"decl": "fromEvent(e: globalThis.InputEvent): MemorySlice;",
+				"impl": [
+					"fromEvent(e: globalThis.InputEvent) {",
+					"const el = <HTMLInputElement>e.target;",
+					"const value = el.type === \"checkbox\" ? el.checked ? \"on\" : \"off\" : el.value;",
+					"const bytes = new TextEncoder().encode(value);",
+					"const slice = mem.allocate(bytes.length + 1);",
+					"mem.u8.set(bytes, slice[0]);",
+					"mem.u8[slice[0] + bytes.length] = 0;",
+					"this.value.setSlice(slice[0], bytes.length);",
+					"return slice;",
+					"}"
+				]
+			}
+		}
+	},
+	{
+		"name": "KeyEvent",
+		"type": "struct",
+		"fields": [
+			{
+				"name": "key",
+				"type": "u8",
+				"tag": "array",
+				"len": 15,
+				"sentinel": 0,
+				"doc": "Value/name of the key pressed"
+			},
+			{
+				"name": "modifiers",
+				"type": "u8",
+				"doc": "Encoded bitmask of currently pressed modifier keys, see `KeyModifier` enum",
+				"default": 0
+			},
+			{
+				"name": "repeat",
+				"type": "u8",
+				"doc": "Non-zero value indicates key is being held down such that it's automatically repeating",
+				"default": 0
+			}
+		],
+		"body": {
+			"ts": {
+				"decl": "fromEvent(e: globalThis.KeyboardEvent): void;",
+				"impl": [
+					"fromEvent(e: globalThis.KeyboardEvent) {",
+					"mem.setString(e.key, this.key.byteOffset, 16, true);",
+					"}"
+				]
+			},
+			"zig": [
+				"pub fn getKey(self: *const KeyEvent) []const u8 {",
+				"return self.key[0..std.mem.indexOfSentinel(u8, 0, &self.key)];",
+				"}"
+			]
+		}
 	},
 	{
 		"name": "MouseEvent",
@@ -77,10 +241,177 @@
 			{
 				"name": "buttons",
 				"type": "u8",
-				"doc": "Encoded bitmask of currently pressed mouse buttons, see `MouseButton` enum",
+				"doc": "Encoded bitmask of all currently pressed mouse buttons, see `MouseButton` enum",
+				"default": 0
+			},
+			{
+				"name": "button",
+				"type": "MouseButton",
+				"doc": "Event related mouse button ID (if any)"
+			}
+		],
+		"body": {
+			"ts": {
+				"decl": "fromEvent(e: globalThis.MouseEvent): void;",
+				"impl": [
+					"fromEvent(e: globalThis.MouseEvent) {",
+					"const bounds = (<Element>(e.target)).getBoundingClientRect();",
+					"this.clientX = e.clientX - bounds.left;",
+					"this.clientY = e.clientY - bounds.top;",
+					"this.buttons = e.buttons;",
+					"this.button = e.button;",
+					"}"
+				]
+			}
+		}
+	},
+	{
+		"name": "PointerEvent",
+		"type": "struct",
+		"fields": [
+			{
+				"name": "clientX",
+				"type": "i16",
+				"doc": "Mouse X position in the local space of the element's bounding rect",
+				"default": 0
+			},
+			{
+				"name": "clientY",
+				"type": "i16",
+				"doc": "Mouse Y position in the local space of the element's bounding rect",
+				"default": 0
+			},
+			{
+				"name": "id",
+				"type": "u32",
+				"doc": "Unique pointer ID",
+				"default": 0
+			},
+			{
+				"name": "pressure",
+				"type": "f32",
+				"doc": "Normalized pressure value 0..1",
+				"default": 0
+			},
+			{
+				"name": "tiltX",
+				"type": "i8",
+				"doc": "The plane angle (in degrees, in the range of -90 to 90) between the Y–Z plane and the plane containing both the pointer (e.g. pen stylus) axis and the Y axis.",
+				"default": 0
+			},
+			{
+				"name": "tiltY",
+				"type": "i8",
+				"doc": "The plane angle (in degrees, in the range of -90 to 90) between the X–Z plane and the plane containing both the pointer (e.g. pen stylus) axis and the X axis.",
+				"default": 0
+			},
+			{
+				"name": "twist",
+				"type": "u16",
+				"doc": "The clockwise rotation of the pointer (e.g. pen stylus) around its major axis in degrees, with a value in the range 0 to 359.",
+				"default": 0
+			},
+			{
+				"name": "pointerType",
+				"type": "PointerType"
+			},
+			{
+				"name": "isPrimary",
+				"type": "u8",
+				"doc": "Non-zero if event's pointer is the primary pointer (in a multitouch scenario)"
+			},
+			{
+				"name": "modifiers",
+				"type": "u8",
+				"doc": "Encoded bitmask of currently pressed modifier keys, see `KeyModifier` enum",
+				"default": 0
+			},
+			{
+				"name": "buttons",
+				"type": "u8",
+				"doc": "Encoded bitmask of all currently pressed mouse buttons, see `MouseButton` enum",
+				"default": 0
+			},
+			{
+				"name": "button",
+				"type": "MouseButton",
+				"doc": "Event related mouse button ID (if any)"
+			}
+		],
+		"body": {
+			"ts": {
+				"decl": "fromEvent(e: globalThis.PointerEvent): void;",
+				"impl": [
+					"fromEvent(e: globalThis.PointerEvent) {",
+					"const bounds = (<Element>(e.target)).getBoundingClientRect();",
+					"this.clientX = e.clientX - bounds.left;",
+					"this.clientY = e.clientY - bounds.top;",
+					"this.tiltX = e.tiltX;",
+					"this.tiltY = e.tiltY;",
+					"this.twist = e.twist;",
+					"this.isPrimary = ~~e.isPrimary;",
+					"this.pointerType = PointerType[<\"PEN\">e.pointerType.toUpperCase()];",
+					"this.buttons = e.buttons;",
+					"this.button = e.button;",
+					"}"
+				]
+			}
+		}
+	},
+	{
+		"name": "ScrollEvent",
+		"type": "struct",
+		"fields": [
+			{ "name": "scrollX", "type": "f32" },
+			{ "name": "scrollY", "type": "f32" }
+		],
+		"body": {
+			"ts": {
+				"decl": "fromEvent(e: globalThis.Event): void;",
+				"impl": [
+					"fromEvent() {",
+					"this.scrollX = window.scrollX;",
+					"this.scrollY = window.scrollY;",
+					"}"
+				]
+			}
+		}
+	},
+	{
+		"name": "TouchEvent",
+		"type": "struct",
+		"fields": [
+			{
+				"name": "clientX",
+				"type": "i16",
+				"doc": "Touch X position in the local space of the element's bounding rect",
+				"default": 0
+			},
+			{
+				"name": "clientY",
+				"type": "i16",
+				"doc": "Touch Y position in the local space of the element's bounding rect",
+				"default": 0
+			},
+			{
+				"name": "modifiers",
+				"type": "u8",
+				"doc": "Encoded bitmask of currently pressed modifier keys, see `KeyModifier` enum",
 				"default": 0
 			}
-		]
+		],
+		"body": {
+			"ts": {
+				"decl": "fromEvent(e: globalThis.TouchEvent): void;",
+				"impl": [
+					"fromEvent(e: globalThis.TouchEvent) {",
+					"const bounds = (<Element>(e.target)).getBoundingClientRect();",
+					"this.clientX = e.touches[0].clientX - bounds.left;",
+					"this.clientY = e.touches[0].clientY - bounds.top;",
+					"}"
+				]
+			}
+		}
 	},
 	{
 		"name": "WheelEvent",
@@ -121,79 +452,32 @@
 				"doc": "Encoded bitmask of currently pressed mouse buttons, see `MouseButton` enum",
 				"default": 0
 			}
-		]
-	},
-	{
-		"name": "TouchEvent",
-		"type": "struct",
-		"fields": [
-			{
-				"name": "clientX",
-				"type": "i16",
-				"doc": "Touch X position in the local space of the element's bounding rect",
-				"default": 0
-			},
-			{
-				"name": "clientY",
-				"type": "i16",
-				"doc": "Touch Y position in the local space of the element's bounding rect",
-				"default": 0
-			},
-			{
-				"name": "modifiers",
-				"type": "u8",
-				"doc": "Encoded bitmask of currently pressed modifier keys, see `KeyModifier` enum",
-				"default": 0
-			}
-		]
-	},
-	{
-		"name": "KeyEvent",
-		"type": "struct",
-		"fields": [
-			{
-				"name": "key",
-				"type": "u8",
-				"tag": "array",
-				"len": 15,
-				"sentinel": 0,
-				"doc": "Value/name of the key pressed"
-			},
-			{
-				"name": "modifiers",
-				"type": "u8",
-				"doc": "Encoded bitmask of currently pressed modifier keys, see `KeyModifier` enum",
-				"default": 0
-			}
 		],
 		"body": {
-			"zig": "pub fn getKey(self: *const KeyEvent) []const u8 {\nreturn self.key[0..std.mem.indexOfSentinel(u8, 0, &self.key)];\n}"
-		}
-	},
-	{
-		"name": "InputEvent",
-		"type": "struct",
-		"fields": [
-			{
-				"name": "value",
-				"type": "string",
-				"doc": "Value of the targeted input element.\nThe memory is owned by the DOM API and will be freed immediatedly after the event handler has returned."
-			},
-			{
-				"name": "modifiers",
-				"type": "u8",
-				"doc": "Encoded bitmask of currently pressed modifier keys, see `KeyModifier` enum",
-				"default": 0
+			"ts": {
+				"decl": "fromEvent(e: globalThis.WheelEvent): void;",
+				"impl": [
+					"fromEvent(e: globalThis.WheelEvent) {",
+					"this.deltaX = e.deltaX;",
+					"this.deltaY = e.deltaY;",
+					"this.deltaZ = e.deltaZ;",
+					"this.mode = e.deltaMode;",
+					"this.buttons = e.buttons;",
+					"}"
+				]
 			}
-		]
+		}
 	},
 	{
 		"name": "EventBody",
 		"type": "union",
 		"fields": [
+			{ "name": "drag", "type": "DragEvent" },
 			{ "name": "input", "type": "InputEvent" },
 			{ "name": "key", "type": "KeyEvent" },
 			{ "name": "mouse", "type": "MouseEvent" },
+			{ "name": "pointer", "type": "PointerEvent" },
+			{ "name": "scroll", "type": "ScrollEvent" },
 			{ "name": "touch", "type": "TouchEvent" },
 			{ "name": "wheel", "type": "WheelEvent" }
 		]
@@ -206,12 +490,28 @@
 			{
 				"name": "target",
 				"type": "i32",
-				"doc": "Target element ID, positive if a known element, otherwise:\n\n- 0: document.body\n- -1: window\n- -2: = unknown"
+				"doc": [
+					"Target element ID, positive if a known element, otherwise:",
+					"",
+					"- 0: document.body",
+					"- -1: window",
+					"- -2: = unknown"
+				]
 			},
 			{
 				"name": "body",
 				"type": "EventBody",
-				"doc": "Event details / payload"
+				"doc": [
+					"Event details / payload. Currently, only the following event types have a defined body:",
+					"",
+					"- input",
+					"- key",
+					"- mouse",
+					"- pointer",
+					"- scroll",
+					"- touch",
+					"- wheel"
+				]
 			}
 		]
 	},

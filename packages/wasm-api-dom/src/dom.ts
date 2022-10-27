@@ -1,11 +1,11 @@
 import { adaptDPI } from "@thi.ng/adapt-dpi";
-import { isTouchEvent } from "@thi.ng/checks/is-touch-event";
 import { assert } from "@thi.ng/errors/assert";
 import type {
 	IWasmAPI,
 	ReadonlyWasmString,
 	WasmBridge,
 	WasmType,
+	WasmTypeBase,
 } from "@thi.ng/wasm-api";
 import { ObjectIndex } from "@thi.ng/wasm-api/object-index";
 import {
@@ -17,6 +17,7 @@ import {
 	DOMExports,
 	DOMImports,
 	Event as WasmEvent,
+	EventBody,
 	EventType,
 	InputEvent as WASMInputEvent,
 	KeyEvent as WASMKeyEvent,
@@ -25,6 +26,31 @@ import {
 	WheelEvent as WASMWheelEvent,
 } from "./api.js";
 
+const EVENT_MAP: [
+	RegExp,
+	Exclude<keyof EventBody, keyof WasmTypeBase> | undefined,
+	EventType
+][] = [
+	[/^drag(end|enter|leave|over|start)|drop$/, "drag", EventType.DRAG],
+	[/^blur|focus(in|out)?$/, , EventType.FOCUS],
+	[/^change|(before)?input$/, "input", EventType.INPUT],
+	[/^key(down|press|up)$/, "key", EventType.KEY],
+	[
+		/^(dbl)?click|contextmenu|mouse(down|enter|leave|move|out|over|up)$/,
+		"mouse",
+		EventType.MOUSE,
+	],
+	[
+		/^(got|lost)pointercapture|pointer(cancel|down|enter|leave|move|out|over|up)$/,
+		"pointer",
+		EventType.POINTER,
+	],
+	[/^scroll$/, "scroll", EventType.SCROLL],
+	[/^touch(cancel|end|move|start)$/, "touch", EventType.TOUCH],
+	[/^wheel$/, "touch", EventType.WHEEL],
+];
+
+/** @internal */
 interface WasmListener {
 	ctx: number;
 	name: string;
@@ -41,6 +67,7 @@ export class WasmDom implements IWasmAPI<DOMExports> {
 	listeners: Record<number, WasmListener> = {};
 
 	protected currEvent: Event | null = null;
+	protected currDataTransfer: DataTransfer | null = null;
 
 	async init(parent: WasmBridge<DOMExports>) {
 		this.parent = parent;
@@ -57,6 +84,11 @@ export class WasmDom implements IWasmAPI<DOMExports> {
 				info.innerWidth = window.innerWidth;
 				info.innerHeight = window.innerHeight;
 				info.dpr = window.devicePixelRatio || 1;
+				info.scrollX = window.scrollX;
+				info.scrollY = window.scrollY;
+				info.fullscreen =
+					(document.fullscreenElement ? 1 : 0) |
+					(document.fullscreenEnabled ? 2 : 0);
 			},
 
 			createElement: (optsAddr: number) => {
@@ -140,9 +172,23 @@ export class WasmDom implements IWasmAPI<DOMExports> {
 			_addListener: (ctxID: number, name: number, listenerID: number) => {
 				const ctx = ctxID < 0 ? window : this.elements.get(ctxID);
 				const eventName = this.parent.getString(name);
+				const eventSpec = EVENT_MAP.find(([re]) => re.test(eventName));
+				const [eventBodyID, eventTypeID] = eventSpec
+					? [eventSpec[1], eventSpec[2]]
+					: [undefined, EventType.UNKOWN];
+				const hasModifiers = [
+					EventType.DRAG,
+					EventType.INPUT,
+					EventType.KEY,
+					EventType.MOUSE,
+					EventType.POINTER,
+					EventType.TOUCH,
+					EventType.WHEEL,
+				].includes(eventTypeID);
 				const event = this.$Event.instance(
-					this.parent.allocate(this.$Event.size)
+					this.parent.allocate(this.$Event.size)[0]
 				);
+				const body = eventBodyID ? event.body[eventBodyID] : undefined;
 				const fn = (e: Event) => {
 					this.currEvent = e;
 					this.parent.ensureMemory();
@@ -152,92 +198,25 @@ export class WasmDom implements IWasmAPI<DOMExports> {
 							? -1
 							: this.elements.find((x) => x === e.target, false);
 					event.target = target !== undefined ? target : -2;
-					let valueAddr = -1;
-					let valueLen: number;
-					let body:
-						| WASMInputEvent
-						| WASMKeyEvent
-						| WASMMouseEvent
-						| WASMTouchEvent
-						| WASMWheelEvent;
-					if (isTouchEvent(e)) {
-						const bounds = (<Element>(
-							e.target
-						)).getBoundingClientRect();
-						event.id = EventType.TOUCH;
-						body = event.body.touch;
-						body.clientX = e.touches[0].clientX - bounds.left;
-						body.clientY = e.touches[0].clientY - bounds.top;
-					} else if (e instanceof MouseEvent) {
-						const bounds = (<Element>(
-							e.target
-						)).getBoundingClientRect();
-						event.id = EventType.MOUSE;
-						body = event.body.mouse;
-						body.clientX = e.clientX - bounds.left;
-						body.clientY = e.clientY - bounds.top;
-						(<WASMMouseEvent>body).buttons = e.buttons;
-					} else if (e instanceof KeyboardEvent) {
-						body = event.body.key;
-						event.id = EventType.KEY;
-						this.parent.setString(
-							e.key,
-							body.key.byteOffset,
-							16,
-							true
-						);
-					} else if (e instanceof WheelEvent) {
-						event.id = EventType.WHEEL;
-						body = event.body.wheel;
-						body.deltaX = e.deltaX;
-						body.deltaY = e.deltaY;
-						body.buttons = e.buttons;
-					} else if (e instanceof FocusEvent) {
-						event.id =
-							e.type === "focus"
-								? EventType.FOCUS
-								: EventType.BLUR;
-					} else if (e.type === "change" || e.type === "input") {
-						event.id = EventType.INPUT;
-						const el = <HTMLInputElement>e.target;
-						const value =
-							el.type === "checkbox"
-								? el.checked
-									? "on"
-									: "off"
-								: el.value;
-						const valueBytes =
-							this.parent.utf8Encoder.encode(value);
-						valueLen = valueBytes.length;
-						valueAddr = this.parent.allocate(valueLen + 1);
-						this.parent.u8.set(valueBytes, valueAddr);
-						this.parent.u8[valueAddr + valueLen] = 0;
-						event.body.input.value.setSlice(valueAddr, valueLen);
-					} else {
-						event.id = EventType.UNKOWN;
-					}
-					if (
-						[
-							EventType.INPUT,
-							EventType.KEY,
-							EventType.MOUSE,
-							EventType.TOUCH,
-							EventType.WHEEL,
-						].includes(event.id)
-					) {
-						body!.modifiers = this.encodeModifiers(
+					event.id = eventTypeID;
+					const slice = body ? body.fromEvent(<any>e) : undefined;
+					if (hasModifiers) {
+						(<any>body!).modifiers = this.encodeModifiers(
 							<KeyboardEvent>e
 						);
+					}
+					if (eventTypeID === EventType.DRAG) {
+						this.currDataTransfer = (<DragEvent>e).dataTransfer;
 					}
 					this.parent.exports.dom_callListener(
 						listenerID,
 						event.__base
 					);
-					if (valueAddr >= 0) {
-						this.parent.free(valueAddr, valueLen! + 1);
-						valueAddr = -1;
+					if (slice) {
+						this.parent.free(slice);
 					}
 					this.currEvent = null;
+					this.currDataTransfer = null;
 				};
 				this.parent.logger.debug(
 					`ctx ${ctxID} - adding ${eventName} listener #${listenerID}`
@@ -272,7 +251,7 @@ export class WasmDom implements IWasmAPI<DOMExports> {
 				this.parent.logger.debug(
 					`removing event listener #${listenerID}`
 				);
-				this.parent.free(listener.event.__base, this.$Event.size);
+				this.parent.free([listener.event.__base, this.$Event.size]);
 				delete this.listeners[listenerID];
 			},
 
@@ -291,6 +270,17 @@ export class WasmDom implements IWasmAPI<DOMExports> {
 				requestAnimationFrame((t) =>
 					this.parent.exports.dom_callRAF(rafID, t)
 				);
+			},
+
+			_requestFullscreen: async (elementID: number) => {
+				if (!document.fullscreenElement) {
+					const el =
+						elementID <= 0
+							? document.documentElement
+							: this.elements.get(elementID);
+					await el.requestFullscreen();
+					this.parent.exports.dom_fullscreenReady();
+				}
 			},
 		};
 	}
