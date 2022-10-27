@@ -521,6 +521,12 @@
 		"fields": [
 			{ "name": "tag", "type": "string", "doc": "DOM element name" },
 			{
+				"name": "ns",
+				"type": "string",
+				"doc": "Namespace URI or wellknown registered alias (e.g. svg, xlink, xmlns)",
+				"default": ""
+			},
+			{
 				"name": "id",
 				"type": "string",
 				"doc": "ID attrib",

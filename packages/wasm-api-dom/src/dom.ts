@@ -19,11 +19,7 @@ import {
 	Event as WasmEvent,
 	EventBody,
 	EventType,
-	InputEvent as WASMInputEvent,
-	KeyEvent as WASMKeyEvent,
-	MouseEvent as WASMMouseEvent,
-	TouchEvent as WASMTouchEvent,
-	WheelEvent as WASMWheelEvent,
+	NS_PREFIXES,
 } from "./api.js";
 
 const EVENT_MAP: [
@@ -92,9 +88,18 @@ export class WasmDom implements IWasmAPI<DOMExports> {
 			},
 
 			createElement: (optsAddr: number) => {
+				let el: Element;
 				const opts = this.$CreateElementOpts.instance(optsAddr);
 				const tagName = opts.tag.deref();
-				const el = document.createElement(tagName);
+				const ns = opts.ns.deref();
+				if (ns) {
+					el = document.createElementNS(
+						NS_PREFIXES[ns] || ns,
+						tagName
+					);
+				} else {
+					el = document.createElement(tagName);
+				}
 				this.initElement(el, opts);
 				return this.elements.add(el);
 			},

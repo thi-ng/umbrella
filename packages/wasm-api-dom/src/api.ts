@@ -1,4 +1,5 @@
 import type { WasmExports } from "@thi.ng/wasm-api";
+import { XML_SVG, XML_XLINK, XML_XMLNS } from "@thi.ng/prefixes/xml";
 
 export * from "./generated/api.js";
 
@@ -153,3 +154,12 @@ export interface DOMImports extends WebAssembly.ModuleImports {
 
 	_requestFullscreen(elementID: number): Promise<void>;
 }
+
+/**
+ * Registry of wellknown namespace URIs and their aliases.
+ */
+export const NS_PREFIXES: Record<string, string> = {
+	svg: XML_SVG,
+	xlink: XML_XLINK,
+	xmlns: XML_XMLNS,
+};
