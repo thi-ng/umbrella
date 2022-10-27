@@ -66,7 +66,7 @@ export interface WasmExports {
 	 * @remarks
 	 * #### Zig
 	 *
-	 * Using the supplied Zig bindings (see `/include/wasmapi.zig`), it's the
+	 * Using the supplied Zig bindings (see `/zig/wasmapi.zig`), it's the
 	 * user's responsibility to define a public `WASM_ALLOCATOR` in the root
 	 * source file to enable allocations, e.g. using the
 	 * [`std.heap.GeneralPurposeAllocator`](https://ziglang.org/documentation/master/#Choosing-an-Allocator)
@@ -249,19 +249,25 @@ export interface TopLevelType extends TypeInfo {
 	/**
 	 * Optional (multi-line) docstring for this type
 	 */
-	doc?: string;
+	doc?: string | string[];
 	/**
 	 * Type / kind
 	 */
 	type: "enum" | "struct" | "union";
 	/**
 	 * Optional object of user provided source codes to be injected into the
-	 * generated type. Keys are language IDs (same name as respective codegen).
+	 * generated type (after generated fields). Keys of this object are language
+	 * IDs (`ts` for {@link TYPESCRIPT}, `zig` for {@link ZIG}).
 	 *
 	 * @remarks
-	 * Currently only supported by the {@link ZIG} codegen, ignored otherwise.
+	 * Currently only supported by the code gens mentioned, ignored otherwise.
 	 */
-	body?: IObjectOf<string>;
+	body?: IObjectOf<string | string[] | InjectedBody>;
+}
+
+export interface InjectedBody {
+	decl?: string | string[];
+	impl?: string | string[];
 }
 
 export interface Struct extends TopLevelType {
@@ -293,6 +299,24 @@ export interface Struct extends TopLevelType {
 	align?: AlignStrategy;
 }
 
+export interface Union extends TopLevelType {
+	type: "union";
+	/**
+	 * Array of union fields.
+	 */
+	fields: Field[];
+	/**
+	 * Optional qualifier for the kind of struct to be emitted (codegen specific
+	 * interpretation, currently only used by {@link ZIG}).
+	 */
+	tag?: "extern" | "packed";
+	/**
+	 * Optional user supplied {@link AlignStrategy}. By default uses
+	 * {@link ALIGN_C} or {@link ALIGN_PACKED} (if using "packed" union).
+	 */
+	align?: AlignStrategy;
+}
+
 export type FieldTag = "scalar" | "array" | "ptr" | "slice" | "vec";
 
 export interface Field extends TypeInfo {
@@ -303,7 +327,7 @@ export interface Field extends TypeInfo {
 	/**
 	 * Field docstring (can be multiline, will be formatted)
 	 */
-	doc?: string;
+	doc?: string | string[];
 	/**
 	 * Field type tag/qualifier (note: `slice` & `vec` are only supported by Zig
 	 * & TS).
@@ -357,24 +381,6 @@ export interface Field extends TypeInfo {
 	 * for this field will be ignored!
 	 */
 	pad?: number;
-}
-
-export interface Union extends TopLevelType {
-	type: "union";
-	/**
-	 * Array of union fields.
-	 */
-	fields: Field[];
-	/**
-	 * Optional qualifier for the kind of struct to be emitted (codegen specific
-	 * interpretation, currently only used by {@link ZIG}).
-	 */
-	tag?: "extern" | "packed";
-	/**
-	 * Optional user supplied {@link AlignStrategy}. By default uses
-	 * {@link ALIGN_C} or {@link ALIGN_PACKED} (if using "packed" union).
-	 */
-	align?: AlignStrategy;
 }
 
 export interface Enum extends TopLevelType {
@@ -492,7 +498,7 @@ export interface ICodeGen {
 	 * Docstring codegen
 	 */
 	doc: (
-		doc: string,
+		doc: string | string[],
 		acc: string[],
 		opts: CodeGenOpts,
 		topLevel?: boolean

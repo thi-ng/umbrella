@@ -12,7 +12,7 @@ import {
 	usage,
 	UsageOpts,
 } from "@thi.ng/args";
-import { isArray, isPlainObject } from "@thi.ng/checks";
+import { isArray, isPlainObject, isString } from "@thi.ng/checks";
 import { illegalArgs } from "@thi.ng/errors";
 import { readJSON, readText, writeJSON, writeText } from "@thi.ng/file-io";
 import { ConsoleLogger, ILogger } from "@thi.ng/logger";
@@ -137,7 +137,7 @@ const addTypeSpec = (
 			invalidSpec(path, `${spec.name}.body must be an object`);
 		for (let lang in spec.body) {
 			const src = spec.body[lang];
-			if (src[0] === "@") {
+			if (isString(src) && src[0] === "@") {
 				spec.body[lang] = readText(src.substring(1), ctx.logger);
 			}
 		}

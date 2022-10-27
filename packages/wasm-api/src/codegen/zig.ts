@@ -1,7 +1,6 @@
 import { isNumber } from "@thi.ng/checks/is-number";
 import { isString } from "@thi.ng/checks/is-string";
 import { unsupported } from "@thi.ng/errors/unsupported";
-import { split } from "@thi.ng/strings/split";
 import type {
 	CodeGenOpts,
 	CodeGenOptsBase,
@@ -10,6 +9,7 @@ import type {
 	Union,
 } from "../api.js";
 import {
+	ensureLines,
 	enumName,
 	isPadding,
 	isStringSlice,
@@ -64,7 +64,7 @@ export const ZIG = (opts: Partial<ZigOpts> = {}) => {
 				lines.push(line + ",");
 			}
 			if (e.body?.zig) {
-				lines.push("", ...split(e.body!.zig), "");
+				lines.push("", ...ensureLines(e.body!.zig, "impl"), "");
 			}
 			lines.push("};", "");
 			acc.push(...withIndentation(lines, INDENT, ...SCOPES));
@@ -168,7 +168,7 @@ const __generateFields = (
 		res.push(`${f.name}: ${ftype}${defaultVal},`);
 	}
 	if (parent.body?.zig) {
-		res.push("", ...split(parent.body!.zig), "");
+		res.push("", ...ensureLines(parent.body!.zig, "impl"), "");
 	}
 	res.push("};");
 

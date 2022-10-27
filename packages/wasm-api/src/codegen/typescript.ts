@@ -18,6 +18,7 @@ import {
 	WasmTarget,
 } from "../api.js";
 import {
+	ensureLines,
 	enumName,
 	isBigNumeric,
 	isNumeric,
@@ -109,6 +110,9 @@ import { Pointer, ${__stringImpl(
 				const ftype = __fieldType(f, opts);
 				fieldTypes[f.name] = ftype;
 				lines.push(`${f.name}: ${ftype};`);
+			}
+			if (struct.body?.ts) {
+				lines.push("", ...ensureLines(struct.body!.ts, "decl"));
 			}
 			lines.push("}", "");
 
@@ -296,6 +300,10 @@ import { Pointer, ${__stringImpl(
 				}
 				// close field accessor
 				lines.push(`},`);
+			}
+
+			if (struct.body?.ts) {
+				lines.push("", ...ensureLines(struct.body!.ts, "impl"), "");
 			}
 
 			lines.push("};", "}", "});", "");

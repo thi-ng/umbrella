@@ -1,7 +1,15 @@
 import type { BigType } from "@thi.ng/api";
+import { isArray } from "@thi.ng/checks/is-array";
 import { isString } from "@thi.ng/checks/is-string";
+import { split } from "@thi.ng/strings/split";
 import { wordWrapLine, wordWrapLines } from "@thi.ng/strings/word-wrap";
-import type { CodeGenOpts, Field, WasmPrim, WasmPrim32 } from "../api.js";
+import type {
+	CodeGenOpts,
+	Field,
+	InjectedBody,
+	WasmPrim,
+	WasmPrim32,
+} from "../api.js";
 
 /**
  * Returns true iff `x` is a {@link WasmPrim32}.
@@ -43,25 +51,6 @@ export const isPointerLike = (f: Field) =>
 	isPointer(f) || isSlice(f) || isWasmString(f.type);
 
 /**
- * Takes an array of strings or splits given string into lines, word wraps and
- * then prefixes each line with given `width` and `prefix`. Returns array of new
- * lines.
- *
- * @param prefix
- * @param str
- * @param width
- */
-export const prefixLines = (
-	prefix: string,
-	str: string | string[],
-	width: number
-) =>
-	(isString(str)
-		? wordWrapLines(str, { width: width - prefix.length })
-		: str.flatMap((x) => wordWrapLine(x, { width: width - prefix.length }))
-	).map((line) => prefix + line);
-
-/**
  * Returns true if `type` is "slice".
  *
  * @param type
@@ -100,6 +89,35 @@ export const stringFields = (fields: Field[]) =>
  */
 export const enumName = (opts: CodeGenOpts, name: string) =>
 	opts.uppercaseEnums ? name.toUpperCase() : name;
+
+/**
+ * Takes an array of strings or splits given string into lines, word wraps and
+ * then prefixes each line with given `width` and `prefix`. Returns array of new
+ * lines.
+ *
+ * @param prefix
+ * @param str
+ * @param width
+ */
+export const prefixLines = (
+	prefix: string,
+	str: string | string[],
+	width: number
+) =>
+	(isString(str)
+		? wordWrapLines(str, { width: width - prefix.length })
+		: str.flatMap((x) => wordWrapLine(x, { width: width - prefix.length }))
+	).map((line) => prefix + line);
+
+export const ensureLines = (
+	src: string | string[] | InjectedBody,
+	key: keyof InjectedBody
+): Iterable<string> =>
+	isString(src)
+		? split(src)
+		: isArray(src)
+		? src
+		: ensureLines(src[key], key) || [];
 
 /**
  * Yields iterator of given lines, each with applied indentation based on given
