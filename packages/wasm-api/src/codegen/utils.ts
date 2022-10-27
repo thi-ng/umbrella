@@ -117,7 +117,9 @@ export const ensureLines = (
 		? split(src)
 		: isArray(src)
 		? src
-		: ensureLines(src[key], key) || [];
+		: src[key]
+		? ensureLines(src[key]!, key)
+		: [];
 
 /**
  * Yields iterator of given lines, each with applied indentation based on given

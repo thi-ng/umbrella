@@ -33,8 +33,16 @@ group("wasm-api", {
 		assert.throws(() => bridge.allocate(256), "no alloc");
 
 		bridge.exports.useFBA();
-		assert.strictEqual(bridge.allocate(256), 0x100b0, "fba alloc #1");
-		assert.strictEqual(bridge.allocate(16), 0x101b0, "fba alloc #2");
+		assert.deepStrictEqual(
+			bridge.allocate(256),
+			[0x100b0, 256],
+			"fba alloc #1"
+		);
+		assert.deepStrictEqual(
+			bridge.allocate(16),
+			[0x101b0, 16],
+			"fba alloc #2"
+		);
 		assert.strictEqual(
 			bridge.setString("hello fba!", 0x101b0, 16),
 			10,
@@ -44,8 +52,16 @@ group("wasm-api", {
 		assert.deepStrictEqual(sizes, [131072], "mem sizes unchanged");
 
 		bridge.exports.useGPA();
-		assert.strictEqual(bridge.allocate(256), 0x20000, "gpa alloc #1");
-		assert.strictEqual(bridge.allocate(16), 0x40000, "gpa alloc #2");
+		assert.deepStrictEqual(
+			bridge.allocate(256),
+			[0x20000, 256],
+			"gpa alloc #1"
+		);
+		assert.deepStrictEqual(
+			bridge.allocate(16),
+			[0x40000, 16],
+			"gpa alloc #2"
+		);
 		assert.strictEqual(
 			bridge.setString("hello gpa!", 0x40000, 16),
 			10,
