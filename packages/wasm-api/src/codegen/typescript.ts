@@ -66,7 +66,7 @@ export const TYPESCRIPT = (opts: Partial<TSOpts> = {}) => {
 
 	const gen: ICodeGen = {
 		pre: (opts) => `// @ts-ignore possibly includes unused imports
-import { Pointer, ${__stringImpl(
+import { MemorySlice, Pointer, ${__stringImpl(
 			opts
 		)}, WasmTypeBase, WasmTypeConstructor } from "${PKG_NAME}";${
 			opts.pre ? `\n${opts.pre}` : ""

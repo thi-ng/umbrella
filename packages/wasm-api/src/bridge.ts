@@ -18,6 +18,7 @@ import {
 	EVENT_MEMORY_CHANGED,
 	IWasmAPI,
 	IWasmMemoryAccess,
+	MemorySlice,
 	WasmExports,
 } from "./api.js";
 
@@ -252,19 +253,6 @@ export class WasmBridge<T extends WasmExports = WasmExports>
 		this.ensureMemory();
 	}
 
-	/**
-	 * Attempts to allocate `numBytes` using the exported WASM core API function
-	 * {@link WasmExports._wasm_allocate} (implementation specific) and returns
-	 * start address of the new memory block. If unsuccessful, throws an
-	 * {@link OutOfMemoryError}. If `clear` is true, the allocated region will
-	 * be zero-filled.
-	 *
-	 * @remarks
-	 * See {@link WasmExports._wasm_allocate} docs for further details.
-	 *
-	 * @param numBytes
-	 * @param clear
-	 */
 	allocate(numBytes: number, clear = false) {
 		const addr = this.exports._wasm_allocate(numBytes);
 		if (!addr)
@@ -277,23 +265,10 @@ export class WasmBridge<T extends WasmExports = WasmExports>
 		);
 		this.ensureMemory();
 		clear && this.u8.fill(0, addr, addr + numBytes);
-		return addr;
+		return <MemorySlice>[addr, numBytes];
 	}
 
-	/**
-	 * Frees a previous allocated memory region using the exported WASM core API
-	 * function {@link WasmExports._wasm_free} (implementation specific). The
-	 * `numBytes` value must be the same as previously given to
-	 * {@link WasmBridge.allocate}.
-	 *
-	 * @remarks
-	 * This function always succeeds, regardless of presence of an active
-	 * allocator on the WASM side or validity of given arguments.
-	 *
-	 * @param addr
-	 * @param numBytes
-	 */
-	free(addr: number, numBytes: number) {
+	free([addr, numBytes]: MemorySlice) {
 		this.logger.fine(
 			() =>
 				`freeing memory @ 0x${U32(addr)} .. 0x${U32(

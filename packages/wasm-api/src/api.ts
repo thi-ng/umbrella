@@ -95,6 +95,8 @@ export interface WasmExports {
 	_wasm_free(addr: number, numBytes: number): void;
 }
 
+export type MemorySlice = [addr: number, len: number];
+
 export interface IWasmMemoryAccess {
 	i8: Int8Array;
 	u8: Uint8Array;
@@ -112,6 +114,44 @@ export interface IWasmMemoryAccess {
 	 * after growing the WASM memory and the previous buffer becoming detached).
 	 */
 	ensureMemory(): void;
+
+	/**
+	 * Attempts to grow the WASM memory by an additional `numPages` (64KB/page)
+	 * and if successful updates all typed memory views to use the new
+	 * underlying buffer.
+	 *
+	 * @param numPages
+	 */
+	growMemory(numPages: number): void;
+
+	/**
+	 * Attempts to allocate `numBytes` using the exported WASM core API function
+	 * {@link WasmExports._wasm_allocate} (implementation specific) and returns
+	 * start address of the new memory block. If unsuccessful, throws an
+	 * {@link OutOfMemoryError}. If `clear` is true, the allocated region will
+	 * be zero-filled.
+	 *
+	 * @remarks
+	 * See {@link WasmExports._wasm_allocate} docs for further details.
+	 *
+	 * @param numBytes
+	 * @param clear
+	 */
+	allocate(numBytes: number, clear?: boolean): MemorySlice;
+
+	/**
+	 * Frees a previous allocated memory region using the exported WASM core API
+	 * function {@link WasmExports._wasm_free} (implementation specific). The
+	 * `numBytes` value must be the same as previously given to
+	 * {@link IWasmMemoryAccess.allocate}.
+	 *
+	 * @remarks
+	 * This function always succeeds, regardless of presence of an active
+	 * allocator on the WASM side or validity of given arguments.
+	 *
+	 * @param slice
+	 */
+	free(slice: MemorySlice): void;
 
 	/**
 	 * Reads UTF-8 encoded string from given address and optional byte length.
