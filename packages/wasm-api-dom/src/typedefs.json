@@ -188,6 +188,12 @@
 				"doc": "Value/name of the key pressed"
 			},
 			{
+				"name": "len",
+				"type": "u8",
+				"doc": "Number of characters of the `key` string",
+				"default": 0
+			},
+			{
 				"name": "modifiers",
 				"type": "u8",
 				"doc": "Encoded bitmask of currently pressed modifier keys, see `KeyModifier` enum",
@@ -205,13 +211,17 @@
 				"decl": "fromEvent(e: globalThis.KeyboardEvent): void;",
 				"impl": [
 					"fromEvent(e: globalThis.KeyboardEvent) {",
-					"mem.setString(e.key, this.key.byteOffset, 16, true);",
+					"this.len = mem.setString(e.key, this.key.byteOffset, 16, true);",
 					"}"
 				]
 			},
 			"zig": [
-				"pub fn getKey(self: *const KeyEvent) []const u8 {",
-				"return self.key[0..std.mem.indexOfSentinel(u8, 0, &self.key)];",
+				"pub inline fn getKey(self: *const KeyEvent) []const u8 {",
+				"return self.key[0..@as(usize, self.len)];",
+				"}",
+				"",
+				"pub inline fn hasModifier(self: *const KeyEvent, mod: KeyModifier) bool {",
+				"return self.modifiers & @enumToInt(mod) != 0;",
 				"}"
 			]
 		}
