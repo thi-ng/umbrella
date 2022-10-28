@@ -22,6 +22,9 @@ var STATE: State = undefined;
 
 /// mousedown/touchstart handler
 /// the optional opaque pointer argument must be first cast & checked for non-null values
+/// in this example we're using this arg to pass the global STATE var as user context
+/// (this is purely for demonstration purposes and quite obviously we could just work
+/// with that global var directly here...)
 fn startStroke(event: *const dom.Event, raw: ?*anyopaque) void {
     if (wasm.ptrCast(*State, raw)) |state| {
         state.startStroke(event.body.mouse.clientX, event.body.mouse.clientY);
@@ -45,7 +48,7 @@ fn endStroke(_: *const dom.Event, raw: ?*anyopaque) void {
 
 fn onKeyDown(event: *const dom.Event, raw: ?*anyopaque) void {
     // bail if Control key isn't pressed...
-    if (event.body.key.modifiers & @enumToInt(dom.KeyModifier.CTRL) == 0) return;
+    if (!event.body.key.hasModifier(.CTRL)) return;
     const key = event.body.key.getKey();
     if (std.mem.eql(u8, key, "z")) {
         if (wasm.ptrCast(*State, raw)) |state| {
@@ -68,6 +71,16 @@ fn onBtUndo(_: *const dom.Event, raw: ?*anyopaque) void {
 
 fn onBtDownload(_: *const dom.Event, _: ?*anyopaque) void {
     api.downloadCanvas(STATE.canvasID);
+}
+
+fn onToggleFullscreen(_: *const dom.Event, raw: ?*anyopaque) void {
+    if (wasm.ptrCast(*State, raw)) |state| {
+        if (state.window.fullscreen & 1 == 0) {
+            dom.requestFullscreen(-1, null);
+        } else {
+            dom.exitFullscreen(null);
+        }
+    }
 }
 
 fn resizeCanvas() void {
@@ -116,9 +129,17 @@ fn initDOM() !void {
     const btDownload = dom.createElement(&.{
         .tag = "button",
         .text = "download",
+        .class = "mr1",
         .parent = toolbar,
     });
     _ = try dom.addListener(btDownload, "click", &.{ .callback = onBtDownload });
+
+    const btFullscreen = dom.createElement(&.{
+        .tag = "button",
+        .text = "fullscreen",
+        .parent = toolbar,
+    });
+    _ = try dom.addListener(btFullscreen, "click", &.{ .callback = onToggleFullscreen, .ctx = &STATE });
 
     // main editor canvas
     STATE.canvasID = dom.createCanvas(&.{

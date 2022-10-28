@@ -17,6 +17,7 @@ interface WasmApp extends WasmExports, DOMExports {
 class DrawHandlers implements IWasmAPI<WasmApp> {
 	parent!: WasmBridge<WasmApp>;
 	dom!: WasmDom;
+	contexts: CanvasRenderingContext2D[] = [];
 
 	async init(parent: WasmBridge<WasmApp>) {
 		this.parent = parent;
@@ -52,25 +53,27 @@ class DrawHandlers implements IWasmAPI<WasmApp> {
 
 			/**
 			 * Draw a stroke/polyline into given canvas. The polyline consists
-			 * of `len` [2]u16 tuples starting from given address.
+			 * of `len` [2]i16 tuples starting from given address.
 			 *
 			 * @param canvasID
 			 * @param addr
 			 * @param len
 			 */
 			drawStroke: (canvasID: number, addr: number, len: number) => {
-				const ctx = (<HTMLCanvasElement>(
-					this.dom.elements.get(canvasID, false)
-				)).getContext("2d")!;
+				let ctx = this.contexts[canvasID];
+				if (!ctx) {
+					ctx = this.contexts[canvasID] = (<HTMLCanvasElement>(
+						this.dom.elements.get(canvasID, false)
+					)).getContext("2d")!;
+				}
 				ctx.lineWidth = 3;
 
 				addr >>= 1;
 				const i16 = this.parent.i16;
 				ctx.moveTo(i16[addr], i16[addr + 1]);
-				addr += 2;
 				for (; len-- > 1; ) {
-					ctx.lineTo(i16[addr], i16[addr + 1]);
 					addr += 2;
+					ctx.lineTo(i16[addr], i16[addr + 1]);
 				}
 				ctx.stroke();
 			},
