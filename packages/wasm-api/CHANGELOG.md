@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-10-26T12:46:53Z
+- **Last updated**: 2022-10-28T19:08:39Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,30 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [0.16.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/wasm-api@0.16.0) (2022-10-28)
+
+#### 🚀 Features
+
+- update TS docstring generator ([5a060b6](https://github.com/thi-ng/umbrella/commit/5a060b6))
+  - include native/WASM type in docstring (use Zig type sigs)
+  - update ensureLines() helper
+  - update test fixtures
+- update IWasmMemoryAccess & impls ([bb8a3ca](https://github.com/thi-ng/umbrella/commit/bb8a3ca))
+  - add MemorySlice tuple to describe a memory region
+  - update allocate() & free() to use MemorySlice, migrate to IWasmMemoryAccess
+  - migrate growMemory() to IWasmMemoryAccess
+  - add MemorySlice to default imports in TS codegen
+- update docstring & user code codegen config ([68694ba](https://github.com/thi-ng/umbrella/commit/68694ba))
+  - allow doc strings & user codes to be given as string array (lines)
+  - add InjectedBody type to support multiple injection sites
+    (e.g. TS interface declarations vs. wrapper impls)
+  - update TS & Zig codegens
+  - add internal ensureLines() helper
+
+#### 🩹 Bug fixes
+
+- fix ensureLines(), update tests & fixtures ([f8a4668](https://github.com/thi-ng/umbrella/commit/f8a4668))
 
 ## [0.15.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/wasm-api@0.15.0) (2022-10-26)
 

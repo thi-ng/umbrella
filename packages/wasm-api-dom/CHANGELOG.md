@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-10-26T12:46:53Z
+- **Last updated**: 2022-10-28T19:08:39Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,26 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [0.5.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/wasm-api-dom@0.5.0) (2022-10-28)
+
+#### 🚀 Features
+
+- update fullscreen handling, add exit support ([998c5fc](https://github.com/thi-ng/umbrella/commit/998c5fc))
+  - add exitFullscreen() API method
+  - add zig docstrings
+- update KeyEvent ([8c91c17](https://github.com/thi-ng/umbrella/commit/8c91c17))
+  - add u8 length field to avoid scanning for sentinel
+  - add KeyEvent.hasModifier() (zig only)
+- add XML namespace support for createElement() ([6074d04](https://github.com/thi-ng/umbrella/commit/6074d04))
+  - add public registry of wellknown namespace aliases
+- major update event types & handling ([2878bce](https://github.com/thi-ng/umbrella/commit/2878bce))
+  - major simplification of JS side event processing
+  - add regex based event name to event type mappings
+  - add DragEvent, PointerEvent, ScrollEvent
+  - inject `.fromEvent()` converters for generated event types
+  - add `requestFullscreen()` API mechanism
+  - update WindowInfo to include fullscreen info & scroll offsets
 
 ## [0.4.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/wasm-api-dom@0.4.0) (2022-10-26)
 
