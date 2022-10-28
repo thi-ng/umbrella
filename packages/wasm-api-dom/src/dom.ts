@@ -284,7 +284,14 @@ export class WasmDom implements IWasmAPI<DOMExports> {
 							? document.documentElement
 							: this.elements.get(elementID);
 					await el.requestFullscreen();
-					this.parent.exports.dom_fullscreenReady();
+					this.parent.exports.dom_fullscreenChanged();
+				}
+			},
+
+			_exitFullscreen: async () => {
+				if (document.fullscreenElement) {
+					await document.exitFullscreen();
+					this.parent.exports.dom_fullscreenChanged();
 				}
 			},
 		};

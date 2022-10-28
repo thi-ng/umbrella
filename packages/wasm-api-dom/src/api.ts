@@ -6,7 +6,7 @@ export * from "./generated/api.js";
 export interface DOMExports extends WasmExports {
 	dom_callListener(listenerID: number, event: number): void;
 	dom_callRAF(rafID: number, t: number): void;
-	dom_fullscreenReady(): void;
+	dom_fullscreenChanged(): void;
 }
 
 export interface DOMImports extends WebAssembly.ModuleImports {
