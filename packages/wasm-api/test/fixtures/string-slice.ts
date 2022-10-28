@@ -14,6 +14,9 @@ export interface Foo extends WasmTypeBase {
 	singlePtr: Pointer<WasmStringSlice>;
 	multiPtr: Pointer<WasmStringSlice[]>;
 	kind: Bar;
+	/**
+	 * WASM type: u32
+	 */
 	size: number;
 }
 

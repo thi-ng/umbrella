@@ -4,6 +4,7 @@ import { unsupported } from "@thi.ng/errors/unsupported";
 import type {
 	CodeGenOpts,
 	CodeGenOptsBase,
+	Field,
 	ICodeGen,
 	Struct,
 	Union,
@@ -123,49 +124,9 @@ const __generateFields = (
 			continue;
 		}
 		f.doc && gen.doc(f.doc, res, opts);
-		let ftype = isWasmString(f.type)
-			? isStringSlice(opts.stringType)
-				? f.const !== false
-					? "[]const u8"
-					: "[]u8"
-				: f.const !== false
-				? "[*:0]const u8"
-				: "[*:0]u8"
-			: f.type;
-		let defaultVal = "";
-		switch (f.tag) {
-			case "array":
-				ftype =
-					f.sentinel !== undefined
-						? `[${f.len}:${f.sentinel}]${ftype}`
-						: `[${f.len}]${ftype}`;
-				break;
-			case "slice":
-				ftype = `[${f.sentinel !== undefined ? ":" + f.sentinel : ""}]${
-					f.const ? "const " : ""
-				}${ftype}`;
-				break;
-			case "vec":
-				ftype = `@Vector(${f.len}, ${ftype})`;
-				break;
-			case "ptr":
-				ftype = `*${f.const ? "const " : ""}${
-					f.len ? `[${f.len}]` : ""
-				}${ftype}`;
-				break;
-			case "scalar":
-			default:
-				if (f.default != undefined) {
-					if (!(isString(f.default) || isNumber(f.default))) {
-						unsupported(
-							`wrong default value for ${name}.${f.name} (${f.default})`
-						);
-					}
-					defaultVal = ` = ${JSON.stringify(f.default)}`;
-				}
-		}
-		ftypes[f.name] = ftype;
-		res.push(`${f.name}: ${ftype}${defaultVal},`);
+		const { type, defaultVal } = fieldType(parent, f, opts);
+		ftypes[f.name] = type;
+		res.push(`${f.name}: ${type}${defaultVal},`);
 	}
 	if (parent.body?.zig) {
 		res.push("", ...ensureLines(parent.body!.zig, "impl"), "");
@@ -194,6 +155,56 @@ const __generateFields = (
 	}
 	res.push("");
 	return res;
+};
+
+/** @internal */
+export const fieldType = (
+	parent: Struct | Union,
+	f: Field,
+	opts: CodeGenOpts
+) => {
+	let type = isWasmString(f.type)
+		? isStringSlice(opts.stringType)
+			? f.const !== false
+				? "[]const u8"
+				: "[]u8"
+			: f.const !== false
+			? "[*:0]const u8"
+			: "[*:0]u8"
+		: f.type;
+	let defaultVal = "";
+	switch (f.tag) {
+		case "array":
+			type =
+				f.sentinel !== undefined
+					? `[${f.len}:${f.sentinel}]${type}`
+					: `[${f.len}]${type}`;
+			break;
+		case "slice":
+			type = `[${f.sentinel !== undefined ? ":" + f.sentinel : ""}]${
+				f.const ? "const " : ""
+			}${type}`;
+			break;
+		case "vec":
+			type = `@Vector(${f.len}, ${type})`;
+			break;
+		case "ptr":
+			type = `*${f.const ? "const " : ""}${
+				f.len ? `[${f.len}]` : ""
+			}${type}`;
+			break;
+		case "scalar":
+		default:
+			if (f.default != undefined) {
+				if (!(isString(f.default) || isNumber(f.default))) {
+					unsupported(
+						`wrong default value for ${parent.name}.${f.name} (${f.default})`
+					);
+				}
+				defaultVal = ` = ${JSON.stringify(f.default)}`;
+			}
+	}
+	return { type, defaultVal };
 };
 
 const __packedPadding = (id: number, n: number, res: string[]) => {

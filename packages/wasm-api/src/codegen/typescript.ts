@@ -14,6 +14,8 @@ import {
 	Field,
 	ICodeGen,
 	PKG_NAME,
+	Struct,
+	Union,
 	WasmPrim,
 	WasmTarget,
 } from "../api.js";
@@ -31,6 +33,7 @@ import {
 	stringFields,
 	withIndentation,
 } from "./utils.js";
+import { fieldType as zigFieldType } from "./zig.js";
 
 /**
  * TypeScript code generator options.
@@ -106,7 +109,8 @@ import { MemorySlice, Pointer, ${__stringImpl(
 			);
 			for (let f of struct.fields) {
 				if (isPadding(f)) continue;
-				f.doc && gen.doc(f.doc, lines, opts);
+				const doc = __docType(struct, f, opts);
+				doc && gen.doc(doc, lines, opts);
 				const ftype = __fieldType(f, opts);
 				fieldTypes[f.name] = ftype;
 				lines.push(`${f.name}: ${ftype};`);
@@ -393,3 +397,12 @@ const __mapStringArray = (
 	}, ${isConst}));`,
 	`return $${name};`,
 ];
+
+const __docType = (parent: Struct | Union, f: Field, opts: CodeGenOpts) => {
+	const doc = [...ensureLines(f.doc || [])];
+	if (isWasmPrim(f.type)) {
+		if (doc.length) doc.push("");
+		doc.push(`WASM type: ${zigFieldType(parent, f, opts).type}`);
+	}
+	return doc.length ? doc : undefined;
+};

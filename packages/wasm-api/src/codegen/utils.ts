@@ -111,14 +111,16 @@ export const prefixLines = (
 
 export const ensureLines = (
 	src: string | string[] | InjectedBody,
-	key: keyof InjectedBody
+	key?: keyof InjectedBody
 ): Iterable<string> =>
 	isString(src)
 		? split(src)
 		: isArray(src)
 		? src
-		: src[key]
-		? ensureLines(src[key]!, key)
+		: key
+		? src[key]
+			? ensureLines(src[key]!, key)
+			: []
 		: [];
 
 /**
