@@ -11,7 +11,7 @@ export const AssertionError = defError<any>(() => "Assertion failed");
  * the `UMBRELLA_ASSERTS` or `VITE_UMBRELLA_ASSERTS` env var is set to 1.
  */
 export const assert = (
-	typeof process !== "undefined"
+	typeof process !== "undefined" && process.env !== undefined
 		? process.env.NODE_ENV !== "production" ||
 		  !!process.env.UMBRELLA_ASSERTS
 		: (<any>import.meta).env
