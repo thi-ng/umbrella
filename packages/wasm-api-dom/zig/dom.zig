@@ -87,6 +87,20 @@ pub fn getNumericAttrib(elementID: i32, name: []const u8) f64 {
     return _getNumericAttrib(elementID, name.ptr);
 }
 
+pub extern "dom" fn _setBooleanAttrib(elementID: i32, name: [*]const u8, state: u8) void;
+
+/// Returns numeric value of attrib for given name
+pub fn setBooleanAttrib(elementID: i32, name: []const u8, state: bool) void {
+    return _setBooleanAttrib(elementID, name.ptr, if (state) 1 else 0);
+}
+
+pub extern "dom" fn _getBooleanAttrib(elementID: i32, name: [*]const u8) u8;
+
+/// Returns boolean value of attrib for given name
+pub fn getBooleanAttrib(elementID: i32, name: []const u8) bool {
+    return if (_getBooleanAttrib(elementID, name.ptr) != 0) true else false;
+}
+
 pub extern "dom" fn _setInnerHtml(elementID: i32, ptr: [*]const u8) void;
 
 /// Sets the `.innerHTML` property of a DOM element to given string

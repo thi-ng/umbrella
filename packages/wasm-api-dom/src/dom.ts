@@ -92,17 +92,14 @@ export class WasmDom implements IWasmAPI<DOMExports> {
 					opts: CreateElementOpts,
 					nestedParent?: number
 				) => {
-					let el: Element;
 					const tagName = opts.tag.deref();
 					const ns = opts.ns.deref();
-					if (ns) {
-						el = document.createElementNS(
-							NS_PREFIXES[ns] || ns,
-							tagName
-						);
-					} else {
-						el = document.createElement(tagName);
-					}
+					const el = ns
+						? document.createElementNS(
+								NS_PREFIXES[ns] || ns,
+								tagName
+						  )
+						: document.createElement(tagName);
 					this.initElement(el, opts, nestedParent);
 					const id = this.elements.add(el);
 					if (opts.children.length > 0) {
@@ -161,6 +158,16 @@ export class WasmDom implements IWasmAPI<DOMExports> {
 					.get(elementID)
 					.setAttribute(this.parent.getString(name), String(val)),
 
+			_setBooleanAttrib: (
+				elementID: number,
+				name: number,
+				val: number
+			) => {
+				const el = this.elements.get(elementID);
+				const attr = this.parent.getString(name);
+				val ? el.setAttribute(attr, "") : el.removeAttribute(attr);
+			},
+
 			_getStringAttrib: (
 				elementID: number,
 				name: number,
@@ -184,6 +191,13 @@ export class WasmDom implements IWasmAPI<DOMExports> {
 						.get(elementID)
 						.getAttribute(this.parent.getString(name))
 				),
+
+			_getBooleanAttrib: (elementID: number, name: number) =>
+				this.elements
+					.get(elementID)
+					.getAttribute(this.parent.getString(name)) != null
+					? 1
+					: 0,
 
 			_addListener: (ctxID: number, name: number, listenerID: number) => {
 				const ctx = ctxID < 0 ? window : this.elements.get(ctxID);

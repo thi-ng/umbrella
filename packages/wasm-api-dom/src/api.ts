@@ -117,12 +117,32 @@ export interface DOMImports extends WebAssembly.ModuleImports {
 	_setNumericAttrib(elementID: number, nameAddr: number, val: number): void;
 
 	/**
+	 * Sets (or removes) boolean attribute for given element. `nameAddr` is a
+	 * zero-terminated char pointer (or standard Zig `[]u8` / `[]const u8`
+	 * slices). If `state` is non-zero, the attrib will be created/ensured, if
+	 * zero it will be removed.
+	 *
+	 * @param elementID
+	 * @param nameAddr
+	 * @param state
+	 */
+	_setBooleanAttrib(elementID: number, nameAddr: number, state: number): void;
+
+	/**
 	 * Reads a numeric attribute value from DOM element and returns it as f64.
 	 *
 	 * @param elementID
 	 * @param nameAddr
 	 */
 	_getNumericAttrib(elementID: number, nameAddr: number): number;
+
+	/**
+	 * Check if the DOM element has given attribute and returns 1 if so, else 0.
+	 *
+	 * @param elementID
+	 * @param nameAddr
+	 */
+	_getBooleanAttrib(elementID: number, nameAddr: number): number;
 
 	/**
 	 * Attaches a new DOM event listener for given event name to element (or
