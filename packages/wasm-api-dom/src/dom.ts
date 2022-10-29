@@ -83,8 +83,14 @@ export class WasmDom implements IWasmAPI<DOMExports> {
 				info.scrollX = window.scrollX;
 				info.scrollY = window.scrollY;
 				info.fullscreen =
-					(document.fullscreenElement ? 1 : 0) |
-					(document.fullscreenEnabled ? 2 : 0);
+					(document.fullscreenElement ||
+					(<any>document).webkitFullscreenElement
+						? 1
+						: 0) |
+					(document.fullscreenEnabled ||
+					(<any>document).webkitFullscreenEnabled
+						? 2
+						: 0);
 			},
 
 			createElement: (optsAddr: number) => {
@@ -303,19 +309,33 @@ export class WasmDom implements IWasmAPI<DOMExports> {
 			},
 
 			_requestFullscreen: async (elementID: number) => {
-				if (!document.fullscreenElement) {
+				if (
+					!(
+						document.fullscreenElement ||
+						(<any>document).webkitFullscreenElement
+					)
+				) {
 					const el =
 						elementID <= 0
 							? document.documentElement
 							: this.elements.get(elementID);
-					await el.requestFullscreen();
+					const method =
+						el.requestFullscreen ||
+						(<any>el).webkitRequestFullscreen;
+					await method.bind(el)();
 					this.parent.exports.dom_fullscreenChanged();
 				}
 			},
 
 			_exitFullscreen: async () => {
-				if (document.fullscreenElement) {
-					await document.exitFullscreen();
+				if (
+					document.fullscreenElement ||
+					(<any>document).webkitFullscreenElement
+				) {
+					const method =
+						document.exitFullscreen ||
+						(<any>document).webkitExitFullscreen;
+					await method.bind(document)();
 					this.parent.exports.dom_fullscreenChanged();
 				}
 			},
