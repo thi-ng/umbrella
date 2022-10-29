@@ -184,12 +184,12 @@ const prepareType = defmulti<
 			alignImpl: AlignStrategy,
 			opts: CodeGenOpts
 		) => {
-			if (x.__align && x.__size) return;
+			if (x.__align) return;
 			alignOf(x, types, alignImpl, opts);
 			sizeOf(x, types, alignImpl, opts);
 		},
 		struct: (x, types, align, opts) => {
-			if (x.__align && x.__size) return;
+			if (x.__align) return;
 			const struct = <Struct>x;
 			alignOf(struct, types, align, opts);
 			if (struct.auto) {
