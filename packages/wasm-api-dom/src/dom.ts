@@ -88,20 +88,31 @@ export class WasmDom implements IWasmAPI<DOMExports> {
 			},
 
 			createElement: (optsAddr: number) => {
-				let el: Element;
-				const opts = this.$CreateElementOpts.instance(optsAddr);
-				const tagName = opts.tag.deref();
-				const ns = opts.ns.deref();
-				if (ns) {
-					el = document.createElementNS(
-						NS_PREFIXES[ns] || ns,
-						tagName
-					);
-				} else {
-					el = document.createElement(tagName);
-				}
-				this.initElement(el, opts);
-				return this.elements.add(el);
+				const create = (
+					opts: CreateElementOpts,
+					nestedParent?: number
+				) => {
+					let el: Element;
+					const tagName = opts.tag.deref();
+					const ns = opts.ns.deref();
+					if (ns) {
+						el = document.createElementNS(
+							NS_PREFIXES[ns] || ns,
+							tagName
+						);
+					} else {
+						el = document.createElement(tagName);
+					}
+					this.initElement(el, opts, nestedParent);
+					const id = this.elements.add(el);
+					if (opts.children.length > 0) {
+						for (let child of opts.children) {
+							create(child, id);
+						}
+					}
+					return id;
+				};
+				return create(this.$CreateElementOpts.instance(optsAddr));
 			},
 
 			removeElement: (elementID: number) => {
@@ -303,9 +314,10 @@ export class WasmDom implements IWasmAPI<DOMExports> {
 			Readonly<CreateElementOpts>,
 			"class" | "id" | "index" | "parent"
 		> &
-			Partial<{ html: ReadonlyWasmString; text: ReadonlyWasmString }>
+			Partial<{ html: ReadonlyWasmString; text: ReadonlyWasmString }>,
+		nestedParent?: number
 	) {
-		const { id, class: $class, parent, index } = opts;
+		const { id, class: $class, index } = opts;
 		if (id.length) el.setAttribute("id", id.deref());
 		if ($class.length) el.setAttribute("class", $class.deref());
 		if (opts.html?.length) {
@@ -313,6 +325,7 @@ export class WasmDom implements IWasmAPI<DOMExports> {
 		} else if (opts.text?.length) {
 			(<HTMLElement>el).innerText = opts.text.deref();
 		}
+		const parent = nestedParent != undefined ? nestedParent : opts.parent;
 		if (parent >= 0) {
 			const parentEl = this.elements.get(parent);
 			index < 0

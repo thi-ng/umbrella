@@ -534,42 +534,50 @@
 				"name": "ns",
 				"type": "string",
 				"doc": "Namespace URI or wellknown registered alias (e.g. svg, xlink, xmlns)",
-				"default": ""
+				"default": { "zig": "\"\"" }
 			},
 			{
 				"name": "id",
 				"type": "string",
 				"doc": "ID attrib",
-				"default": ""
+				"default": { "zig": "\"\"" }
 			},
 			{
 				"name": "class",
 				"type": "string",
 				"doc": "Element class attrib",
-				"default": ""
+				"default": { "zig": "\"\"" }
 			},
 			{
 				"name": "text",
 				"type": "string",
 				"doc": "Element inner text body",
-				"default": ""
+				"default": { "zig": "\"\"" }
 			},
 			{
 				"name": "html",
 				"type": "string",
 				"doc": "Element inner HTML body",
-				"default": ""
+				"default": { "zig": "\"\"" }
 			},
 			{
 				"name": "parent",
 				"type": "i32",
-				"doc": "Parent element ID. If >=0 the new element will be attached to that parent element. Set to -1 to leave new element unattached"
+				"doc": "Parent element ID. If >=0 the new element will be attached to that parent element. Set to -1 to leave new element unattached (default unless nested)",
+				"default": -1
 			},
 			{
 				"name": "index",
 				"type": "i32",
 				"doc": "Insertion index for new element or -1 to append (default)",
 				"default": -1
+			},
+			{
+				"name": "children",
+				"type": "CreateElementOpts",
+				"tag": "slice",
+				"const": true,
+				"default": { "zig": "&.{}" }
 			}
 		]
 	},
@@ -591,13 +599,13 @@
 				"name": "id",
 				"type": "string",
 				"doc": "Element ID attrib",
-				"default": ""
+				"default": { "zig": "\"\"" }
 			},
 			{
 				"name": "class",
 				"type": "string",
 				"doc": "Element class attrib",
-				"default": ""
+				"default": { "zig": "\"\"" }
 			},
 			{
 				"name": "parent",
