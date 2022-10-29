@@ -80,7 +80,20 @@
 					"- 2 (bit 1): fullscreen supported"
 				]
 			}
-		]
+		],
+		"body": {
+			"zig": [
+				"/// Returns true if fullscreen mode is currently active (see `.fullscreen`)",
+				"pub inline fn isFullscreen(self: *const WindowInfo) bool {",
+				"return self.fullscreen & 1 != 0;",
+				"}",
+				"",
+				"/// Returns true if fullscreen mode is supported (see `.fullscreen`)",
+				"pub inline fn hasFullscreen(self: *const WindowInfo) bool {",
+				"return self.fullscreen & 2 != 0;",
+				"}"
+			]
+		}
 	},
 	{
 		"name": "DragEvent",
