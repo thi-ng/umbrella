@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-10-28T19:08:39Z
+- **Last updated**: 2022-10-29T20:34:04Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,20 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [0.17.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/wasm-api@0.17.0) (2022-10-29)
+
+#### 🚀 Features
+
+- update default value format & handling ([c7752fb](https://github.com/thi-ng/umbrella/commit/c7752fb))
+  - update Field.default to support lang-specific alts
+  - add defaultValue() helper
+  - update zig codegen
+
+#### 🩹 Bug fixes
+
+- fix idempotence checks for self-referential types ([2c3f670](https://github.com/thi-ng/umbrella/commit/2c3f670))
+  - update prepareType()
 
 ## [0.16.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/wasm-api@0.16.0) (2022-10-28)
 

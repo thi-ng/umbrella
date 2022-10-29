@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-10-28T19:08:39Z
+- **Last updated**: 2022-10-29T20:34:04Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,13 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [1.1.15](https://github.com/thi-ng/umbrella/tree/@thi.ng/expose@1.1.15) (2022-10-29)
+
+#### 🩹 Bug fixes
+
+- fix env var check ([#361](https://github.com/thi-ng/umbrella/issues/361)) ([ac45723](https://github.com/thi-ng/umbrella/commit/ac45723))
+  - apply same fix as in [1d3a805f8](https://github.com/thi-ng/umbrella/commit/1d3a805f8)
 
 ### [1.1.13](https://github.com/thi-ng/umbrella/tree/@thi.ng/expose@1.1.13) (2022-10-04)
 

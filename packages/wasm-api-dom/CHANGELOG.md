@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-10-28T19:08:39Z
+- **Last updated**: 2022-10-29T20:34:04Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,22 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [0.6.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/wasm-api-dom@0.6.0) (2022-10-29)
+
+#### 🚀 Features
+
+- add fullscreen methods for WindowInfo [zig] ([e480b2c](https://github.com/thi-ng/umbrella/commit/e480b2c))
+  - add isFullscreen() & hasFullscreen() helpers
+- add boolean attrib support ([1d9c543](https://github.com/thi-ng/umbrella/commit/1d9c543))
+- add support for recursive DOM tree creation ([36d1857](https://github.com/thi-ng/umbrella/commit/36d1857))
+  - update CreateElementOpts w/ recursive `.children` field
+  - update createElement() API method to also create children
+
+#### 🩹 Bug fixes
+
+- fix fullscreen support for Safari ([1ad855a](https://github.com/thi-ng/umbrella/commit/1ad855a))
+  - ofc Safari doesn't support the standard API =;-(
 
 ## [0.5.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/wasm-api-dom@0.5.0) (2022-10-28)
 
