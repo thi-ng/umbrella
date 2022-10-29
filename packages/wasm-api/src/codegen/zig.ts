@@ -1,4 +1,4 @@
-import { isNumber } from "@thi.ng/checks/is-number";
+import { isNumber } from "@thi.ng/checks";
 import { isString } from "@thi.ng/checks/is-string";
 import { unsupported } from "@thi.ng/errors/unsupported";
 import type {
@@ -10,6 +10,7 @@ import type {
 	Union,
 } from "../api.js";
 import {
+	defaultValue,
 	ensureLines,
 	enumName,
 	isPadding,
@@ -172,7 +173,7 @@ export const fieldType = (
 			? "[*:0]const u8"
 			: "[*:0]u8"
 		: f.type;
-	let defaultVal = "";
+	let defaultVal = defaultValue(f, "zig");
 	switch (f.tag) {
 		case "array":
 			type =
@@ -195,16 +196,18 @@ export const fieldType = (
 			break;
 		case "scalar":
 		default:
-			if (f.default != undefined) {
-				if (!(isString(f.default) || isNumber(f.default))) {
+			if (defaultVal != undefined) {
+				if (!(isString(defaultVal) || isNumber(defaultVal))) {
 					unsupported(
-						`wrong default value for ${parent.name}.${f.name} (${f.default})`
+						`wrong default value for ${parent.name}.${f.name} (${defaultVal})`
 					);
 				}
-				defaultVal = ` = ${JSON.stringify(f.default)}`;
 			}
 	}
-	return { type, defaultVal };
+	return {
+		type,
+		defaultVal: defaultVal != undefined ? ` = ${defaultVal}` : "",
+	};
 };
 
 const __packedPadding = (id: number, n: number, res: string[]) => {

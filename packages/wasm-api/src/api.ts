@@ -6,6 +6,7 @@ import type {
 	IDeref,
 	ILength,
 	IObjectOf,
+	NumOrString,
 } from "@thi.ng/api";
 import type { Pow2 } from "@thi.ng/binary";
 import type { WasmBridge } from "./bridge.js";
@@ -258,7 +259,7 @@ export type ReadonlyWasmString = IDeref<string> &
 		readonly addr: number;
 	};
 
-export type TypeColl = Record<string, TopLevelType>;
+export type TypeColl = IObjectOf<TopLevelType>;
 
 export interface TypeInfo {
 	/**
@@ -411,10 +412,14 @@ export interface Field extends TypeInfo {
 	 */
 	len?: number;
 	/**
-	 * Currently only supported for {@link ZIG} scalar & string values,
-	 * otherwise ignored!
+	 * Currently only supported for {@link ZIG}, otherwise ignored!
+	 *
+	 * @remarks
+	 * The object form allows for different default values per language (in
+	 * theory). So if given as object, the keys refer to the lang ID and the
+	 * values as the defaults for those languages.
 	 */
-	default?: number;
+	default?: NumOrString | IObjectOf<NumOrString>;
 	/**
 	 * If defined and > 0, the field will be considered for padding purposes
 	 * only and the value provided is the number of bytes used. All other config

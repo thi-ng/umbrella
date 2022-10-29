@@ -1,5 +1,6 @@
 import type { BigType } from "@thi.ng/api";
 import { isArray } from "@thi.ng/checks/is-array";
+import { isPlainObject } from "@thi.ng/checks/is-plain-object";
 import { isString } from "@thi.ng/checks/is-string";
 import { split } from "@thi.ng/strings/split";
 import { wordWrapLine, wordWrapLines } from "@thi.ng/strings/word-wrap";
@@ -89,6 +90,20 @@ export const stringFields = (fields: Field[]) =>
  */
 export const enumName = (opts: CodeGenOpts, name: string) =>
 	opts.uppercaseEnums ? name.toUpperCase() : name;
+
+/**
+ * Returns given field's default value (or undefined). The `lang` ID is required
+ * to obtain the language specific value if the default is given as object.
+ *
+ * @param f
+ * @param lang
+ */
+export const defaultValue = (f: Field, lang: string) =>
+	f.default !== undefined
+		? isPlainObject(f.default)
+			? f.default[lang]
+			: f.default
+		: undefined;
 
 /**
  * Takes an array of strings or splits given string into lines, word wraps and
