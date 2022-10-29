@@ -17,7 +17,7 @@ export const exposeGlobal = (id: string, value: any, always = false) => {
 	if (
 		glob &&
 		(always ||
-			(typeof process !== "undefined"
+			(typeof process !== "undefined" && process.env !== undefined
 				? process.env.NODE_ENV !== "production" ||
 				  !!process.env.UMBRELLA_GLOBALS
 				: (<any>import.meta).env
