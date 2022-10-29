@@ -75,7 +75,7 @@ fn onBtDownload(_: *const dom.Event, _: ?*anyopaque) void {
 
 fn onToggleFullscreen(_: *const dom.Event, raw: ?*anyopaque) void {
     if (wasm.ptrCast(*State, raw)) |state| {
-        if (state.window.fullscreen & 1 == 0) {
+        if (!state.window.isFullscreen()) {
             dom.requestFullscreen(-1, null);
         } else {
             dom.exitFullscreen(null);
@@ -112,10 +112,12 @@ fn initDOM() !void {
     });
 
     _ = dom.createElement(&.{
-        .tag = "span",
-        .html = "<strong>thi.ng/wasm-api-dom canvas</strong>",
-        .class = "mr3",
+        .tag = "div",
+        .class = "dib mr3",
         .parent = toolbar,
+        .children = &.{
+            .{ .tag = "strong", .text = "thi.ng/wasm-api-dom canvas" },
+        },
     });
 
     const btUndo = dom.createElement(&.{
@@ -139,6 +141,7 @@ fn initDOM() !void {
         .text = "fullscreen",
         .parent = toolbar,
     });
+    dom.setBooleanAttrib(btFullscreen, "disabled", !STATE.window.hasFullscreen());
     _ = try dom.addListener(btFullscreen, "click", &.{ .callback = onToggleFullscreen, .ctx = &STATE });
 
     // main editor canvas
