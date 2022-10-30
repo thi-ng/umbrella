@@ -1,0 +1,15 @@
+[
+	{
+		"name": "TimerType",
+		"type": "enum",
+		"tag": "i32",
+		"values": [
+			{ "name": "once", "doc": "One-off execution in the future" },
+			{
+				"name": "interval",
+				"doc": "Recurring execution at fixed interval"
+			},
+			{ "name": "immediate", "doc": "As soon as possible execution" }
+		]
+	}
+]

@@ -4892,6 +4892,21 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@thi.ng/wasm-api-timer@workspace:^, @thi.ng/wasm-api-timer@workspace:packages/wasm-api-timer":
+  version: 0.0.0-use.local
+  resolution: "@thi.ng/wasm-api-timer@workspace:packages/wasm-api-timer"
+  dependencies:
+    "@microsoft/api-extractor": ^7.33.5
+    "@thi.ng/api": ^8.4.4
+    "@thi.ng/testament": ^0.3.4
+    "@thi.ng/wasm-api": ^0.17.2
+    rimraf: ^3.0.2
+    tools: "workspace:^"
+    typedoc: ^0.23.18
+    typescript: ^4.8.4
+  languageName: unknown
+  linkType: soft
+
 "@thi.ng/wasm-api@^0.17.2, @thi.ng/wasm-api@workspace:^, @thi.ng/wasm-api@workspace:packages/wasm-api":
   version: 0.0.0-use.local
   resolution: "@thi.ng/wasm-api@workspace:packages/wasm-api"
