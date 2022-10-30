@@ -1,5 +1,5 @@
 const dom = @import("api.zig");
-const event = @import("event.zig");
+const event = @import("events.zig");
 const fullscreen = @import("fullscreen.zig");
 
 pub usingnamespace dom;

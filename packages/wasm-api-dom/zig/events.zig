@@ -31,6 +31,7 @@ pub const RAFListener = struct {
 var eventListeners: ManagedIndex(*const EventListener, u16) = undefined;
 var rafListeners: ManagedIndex(*const RAFListener, u16) = undefined;
 
+/// Initializes the managed indices for DOM resources
 pub fn init(allocator: std.mem.Allocator) !void {
     eventListeners = ManagedIndex(*const EventListener, u16).init(allocator);
     rafListeners = ManagedIndex(*const RAFListener, u16).init(allocator);
