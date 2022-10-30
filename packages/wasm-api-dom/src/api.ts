@@ -144,6 +144,10 @@ export interface DOMImports extends WebAssembly.ModuleImports {
 	 */
 	_getBooleanAttrib(elementID: number, nameAddr: number): number;
 
+	_addClass(elementID: number, nameAddr: number): void;
+
+	_removeClass(elementID: number, nameAddr: number): void;
+
 	/**
 	 * Attaches a new DOM event listener for given event name to element (or
 	 * window) given by `ctxID`. The `listenerID` is managed by the Zig

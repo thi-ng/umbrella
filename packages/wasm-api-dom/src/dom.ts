@@ -207,6 +207,16 @@ export class WasmDom implements IWasmAPI<DOMExports> {
 					? 1
 					: 0,
 
+			_addClass: (elementID: number, name: number) =>
+				this.elements
+					.get(elementID)
+					.classList.add(this.parent.getString(name)),
+
+			_removeClass: (elementID: number, name: number) =>
+				this.elements
+					.get(elementID)
+					.classList.remove(this.parent.getString(name)),
+
 			_addListener: (ctxID: number, name: number, listenerID: number) => {
 				const ctx = ctxID < 0 ? window : this.elements.get(ctxID);
 				const eventName = this.parent.getString(name);

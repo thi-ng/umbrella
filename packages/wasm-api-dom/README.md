@@ -26,7 +26,7 @@ This project is part of the
 
 ## About
 
-Browser DOM bridge API for hybrid TypeScript & Zig applications. This is a support package for [@thi.ng/wasm-api](https://github.com/thi-ng/umbrella/tree/develop/packages/wasm-api).
+Browser DOM bridge API for hybrid TypeScript & WASM (Zig) applications. This is a support package for [@thi.ng/wasm-api](https://github.com/thi-ng/umbrella/tree/develop/packages/wasm-api).
 
 This package provides a minimal, but already quite usable TypeScript core API
 and related [Ziglang](https://ziglang.org) bindings for UI & DOM
@@ -69,7 +69,7 @@ pub usingnamespace wasm;
 
 // allocator, also exposed & used by JS-side WasmBridge & DOM module
 // see further comments in:
-// https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api/zig/wasmapi.zig
+// https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api/zig/lib.zig
 // https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api-dom/zig/events.zig
 var gpa = std.heap.GeneralPurposeAllocator(.{}){};
 pub const WASM_ALLOCATOR = gpa.allocator();
@@ -233,7 +233,7 @@ node --experimental-repl-await
 > const wasmApiDom = await import("@thi.ng/wasm-api-dom");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 3.88 KB
+Package sizes (gzipped, pre-treeshake): ESM: 3.91 KB
 
 ## Dependencies
 

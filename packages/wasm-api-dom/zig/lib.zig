@@ -69,6 +69,18 @@ pub fn getBooleanAttrib(elementID: i32, name: []const u8) bool {
     return if (_getBooleanAttrib(elementID, name.ptr) != 0) true else false;
 }
 
+pub extern "dom" fn _addClass(elementID: i32, name: [*]const u8) void;
+
+pub fn addClass(elementID: i32, name: []const u8) void {
+    _addClass(elementID, name.ptr);
+}
+
+pub extern "dom" fn _removeClass(elementID: i32, name: [*]const u8) void;
+
+pub fn removeClass(elementID: i32, name: []const u8) void {
+    _removeClass(elementID, name.ptr);
+}
+
 pub extern "dom" fn _setInnerHtml(elementID: i32, ptr: [*]const u8) void;
 
 /// Sets the `.innerHTML` property of a DOM element to given string
