@@ -67,7 +67,7 @@ export interface WasmExports {
 	 * @remarks
 	 * #### Zig
 	 *
-	 * Using the supplied Zig bindings (see `/zig/wasmapi.zig`), it's the
+	 * Using the supplied Zig bindings (see `/zig/lib.zig`), it's the
 	 * user's responsibility to define a public `WASM_ALLOCATOR` in the root
 	 * source file to enable allocations, e.g. using the
 	 * [`std.heap.GeneralPurposeAllocator`](https://ziglang.org/documentation/master/#Choosing-an-Allocator)
@@ -189,12 +189,12 @@ export interface IWasmMemoryAccess {
 
 /**
  * Core API of WASM imports defined by the {@link WasmBridge}. The same
- * functions are declared as bindings in `/zig/wasmapi.zig`. **Also see this
+ * functions are declared as bindings in `/zig/lib.zig`. **Also see this
  * file for documentation of each function...**
  *
  * @remarks
  * Zig API:
- * https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api/zig/wasmapi.zig
+ * https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api/zig/lib.zig
  */
 export interface CoreAPI extends WebAssembly.ModuleImports {
 	printI8: Fn<number, void>;

@@ -429,7 +429,7 @@ The actual allocator is implementation specific and suitable generic mechanisms
 are defined for both the included Zig & C bindings. Please see for further
 reference:
 
-- [`/zig/wasmapi.zig`](https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api/zig/wasmapi.zig#L64):
+- [`/zig/lib.zig`](https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api/zig/lib.zig#L64):
   comments about WASM-side allocator handling in Zig
 - [`/include/wasmapi.h`](https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api/include/wasmapi.h#L18):
   comments about WASM-side allocator handling in C/C++
@@ -520,9 +520,8 @@ export const bridge = new WasmBridge({ custom: new CustomAPI() });
 ```
 
 In Zig (or any other language of your choice) we can then utilize this custom
-API like so (Please also see
-[tests](https://github.com/thi-ng/umbrella/tree/develop/packages/wasm-api/test)
-& other examples in this readme):
+API like so (Please also see [example projects](https://github.com/thi-ng/umbrella/tree/develop/examples/zig-canvas/)
+& other example snippets in this readme):
 
 Bindings file / lib:
 
@@ -557,6 +556,19 @@ export fn test_randomVec4() void {
 	js.printF32Array(foo[0..]);
 }
 ```
+
+### Building Zig projects with these hybrid API modules
+
+Some example projects (see [list below](#usage-examples)) provide custom
+[`build.zig`](https://github.com/thi-ng/umbrella/blob/develop/examples/zig-canvas/build.zig)
+&
+[`npm.zig`](https://github.com/thi-ng/umbrella/blob/develop/examples/zig-canvas/npm.zig)
+build scripts to easily integrate these hybrid TS/Zig packages into users'
+development processes.
+
+To avoid guesswork about the internals of these API modules, all of them are
+using an overall uniform structure, with the main Zig entry point in
+`/zig/lib.zig`...
 
 ### Object indices & handles
 
@@ -609,7 +621,9 @@ Since v0.15.0, the supplied Zig core bindings lib also includes a
 [`ManagedIndex`](https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api/zig/managed-index.zig)
 for similar dealings on the Zig side of the application. For example, in the
 [@thi.ng/wasm-api-dom](https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api-dom/)
-module this is used to manage Zig event listeners.
+&
+[@thi.ng/wasm-api-timer](https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api-timer/)
+modules this is used to manage Zig event listeners.
 
 ${status}
 
@@ -625,8 +639,8 @@ ${pkg.install}
 
 ${pkg.size}
 
-**IMPORTANT:** The package includes code generators for various languages which
-are **not** required for just using the API bridge. Hence, the usual package
+**IMPORTANT:** The package includes multiple language code generators which are
+**not** required for normal use of the API bridge. Hence, the actual package
 size in production will be MUCH smaller than what's stated here!
 
 ## Dependencies
@@ -692,7 +706,7 @@ folder):
 ```bash
 # compile WASM binary
 zig build-lib \
-	--pkg-begin wasmapi node_modules/@thi.ng/wasm-api/zig/wasmapi.zig --pkg-end \
+	--pkg-begin wasmapi node_modules/@thi.ng/wasm-api/zig/lib.zig --pkg-end \
 	-target wasm32-freestanding \
 	-O ReleaseSmall -dynamic --strip \
 	hello.zig
