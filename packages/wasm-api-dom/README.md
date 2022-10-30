@@ -254,7 +254,7 @@ A selection:
 | Screenshot                                                                                                         | Description                                 | Live demo                                         | Source                                                                         |
 |:-------------------------------------------------------------------------------------------------------------------|:--------------------------------------------|:--------------------------------------------------|:-------------------------------------------------------------------------------|
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/zig-canvas.png" width="240"/>  | Zig-based DOM creation & canvas drawing app | [Demo](https://demo.thi.ng/umbrella/zig-canvas/)  | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/zig-canvas)  |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/zig-counter.png" width="240"/> | TODO                                        | [Demo](https://demo.thi.ng/umbrella/zig-counter/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/zig-counter) |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/zig-counter.png" width="240"/> | Simple Zig/WASM click counter DOM component | [Demo](https://demo.thi.ng/umbrella/zig-counter/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/zig-counter) |
 
 ## API
 
