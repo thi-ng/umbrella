@@ -48,7 +48,7 @@ fn endStroke(_: *const dom.Event, raw: ?*anyopaque) void {
 
 fn onKeyDown(event: *const dom.Event, raw: ?*anyopaque) void {
     // bail if Control key isn't pressed...
-    if (!event.body.key.hasModifier(.CTRL)) return;
+    if (!event.body.key.hasModifier(.ctrl)) return;
     const key = event.body.key.getKey();
     if (std.mem.eql(u8, key, "z")) {
         if (wasm.ptrCast(*State, raw)) |state| {
@@ -76,7 +76,7 @@ fn onBtDownload(_: *const dom.Event, _: ?*anyopaque) void {
 fn onToggleFullscreen(_: *const dom.Event, raw: ?*anyopaque) void {
     if (wasm.ptrCast(*State, raw)) |state| {
         if (!state.window.isFullscreen()) {
-            dom.requestFullscreen(-1, null);
+            dom.requestFullscreen(dom.window, null);
         } else {
             dom.exitFullscreen(null);
         }
@@ -102,7 +102,7 @@ fn initDOM() !void {
     const container = dom.createElement(&.{
         .tag = "main",
         .id = "app",
-        .parent = dom.DOC_BODY,
+        .parent = dom.body,
         .index = 0,
     });
 
@@ -163,8 +163,8 @@ fn initDOM() !void {
     _ = try dom.addListener(STATE.canvasID, "touchmove", &.{ .callback = updateStroke, .ctx = &STATE });
     _ = try dom.addListener(STATE.canvasID, "touchend", &.{ .callback = endStroke, .ctx = &STATE });
 
-    _ = try dom.addListener(dom.WINDOW, "keydown", &.{ .callback = onKeyDown, .ctx = &STATE });
-    _ = try dom.addListener(dom.WINDOW, "resize", &.{ .callback = onResize, .ctx = &STATE });
+    _ = try dom.addListener(dom.window, "keydown", &.{ .callback = onKeyDown, .ctx = &STATE });
+    _ = try dom.addListener(dom.window, "resize", &.{ .callback = onResize, .ctx = &STATE });
 }
 
 /// Main entry point (called from JS)
