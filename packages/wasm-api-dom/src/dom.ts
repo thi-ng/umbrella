@@ -67,6 +67,7 @@ export class WasmDom implements IWasmAPI<DOMExports> {
 
 	async init(parent: WasmBridge<DOMExports>) {
 		this.parent = parent;
+		this.elements.add(document.head);
 		this.elements.add(document.body);
 		this.$Event = $Event(this.parent);
 		this.$CreateElementOpts = $CreateElementOpts(this.parent);
@@ -119,6 +120,7 @@ export class WasmDom implements IWasmAPI<DOMExports> {
 			},
 
 			removeElement: (elementID: number) => {
+				assert(elementID > 1, "can't remove reserved element");
 				const el = this.elements.get(elementID, false);
 				if (!el) return;
 				const remove = (el: Element) => {
@@ -316,7 +318,7 @@ export class WasmDom implements IWasmAPI<DOMExports> {
 					)
 				) {
 					const el =
-						elementID <= 0
+						elementID <= 1
 							? document.documentElement
 							: this.elements.get(elementID);
 					const method =
