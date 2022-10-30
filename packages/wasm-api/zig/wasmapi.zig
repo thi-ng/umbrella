@@ -1,4 +1,4 @@
-//! JavaScript externals for https://thi.ng/wasm-api
+//! Zig API for https://thi.ng/wasm-api
 
 const std = @import("std");
 const root = @import("root");
@@ -72,7 +72,7 @@ pub fn panic(msg: []const u8, _: ?*std.builtin.StackTrace, _: ?usize) noreturn {
 /// Note: The type for this var is purposefully chosen as an optional,
 /// effectively disabling allocations from the WASM host side if no
 /// `WASM_ALLOCATOR` is set (or set to null).
-pub fn allocator() ?std.mem.Allocator {
+pub inline fn allocator() ?std.mem.Allocator {
     return if (@hasDecl(root, "WASM_ALLOCATOR")) root.WASM_ALLOCATOR else null;
 }
 
