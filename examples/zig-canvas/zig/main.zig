@@ -11,7 +11,7 @@ pub usingnamespace wasm;
 
 // allocator, also exposed & used by JS-side WasmBridge & DOM module
 // see further comments in:
-// https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api/zig/wasmapi.zig
+// https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api/zig/lib.zig
 // https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api-dom/zig/events.zig
 var gpa = std.heap.GeneralPurposeAllocator(.{}){};
 pub const WASM_ALLOCATOR = gpa.allocator();
@@ -97,9 +97,10 @@ fn resizeCanvas() void {
 }
 
 /// Creates & initializes DOM, app state, event listeners etc.
-fn initDOM() !void {
-    // the DOM API module must always be intialized first!
+fn initApp() !void {
+    // the WASM API modules must always be intialized first!
     try dom.init(WASM_ALLOCATOR);
+
     // now we can initialize our app state
     STATE = try State.init(WASM_ALLOCATOR);
 
@@ -173,6 +174,6 @@ fn initDOM() !void {
 
 /// Main entry point (called from JS)
 export fn start() void {
-    initDOM() catch |e| @panic(@errorName(e));
+    initApp() catch |e| @panic(@errorName(e));
     wasm.printStr("started");
 }
