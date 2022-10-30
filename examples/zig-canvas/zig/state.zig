@@ -24,7 +24,6 @@ pub fn init(allocator: std.mem.Allocator) !Self {
         .allocator = allocator,
         .strokes = std.ArrayList(*api.Stroke).init(allocator),
     };
-    try dom.init(allocator);
     dom.getWindowInfo(&self.window);
     return self;
 }

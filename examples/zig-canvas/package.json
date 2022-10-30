@@ -28,7 +28,11 @@
 		"process": false
 	},
 	"thi.ng": {
-		"readme": true,
+		"readme": [
+			"dl-asset",
+			"wasm-api",
+			"wasm-api-dom"
+		],
 		"screenshot": "examples/zig-canvas.png"
 	}
 }

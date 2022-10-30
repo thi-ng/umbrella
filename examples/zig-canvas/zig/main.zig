@@ -9,9 +9,10 @@ const api = @import("api.zig");
 // expose thi.ng/wasm-api core API (incl. panic handler & allocation fns)
 pub usingnamespace wasm;
 
-// allocator, also exposed & used by JS-side WasmBridge
+// allocator, also exposed & used by JS-side WasmBridge & DOM module
 // see further comments in:
-// https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api/include/wasmapi.zig
+// https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api/zig/wasmapi.zig
+// https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api-dom/zig/events.zig
 var gpa = std.heap.GeneralPurposeAllocator(.{}){};
 pub const WASM_ALLOCATOR = gpa.allocator();
 
@@ -95,8 +96,11 @@ fn resizeCanvas() void {
     );
 }
 
-/// Creates & initializes DOM, event listeners
+/// Creates & initializes DOM, app state, event listeners etc.
 fn initDOM() !void {
+    // the DOM API module must always be intialized first!
+    try dom.init(WASM_ALLOCATOR);
+    // now we can initialize our app state
     STATE = try State.init(WASM_ALLOCATOR);
 
     const container = dom.createElement(&.{
