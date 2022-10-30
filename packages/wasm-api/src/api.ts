@@ -505,7 +505,11 @@ export interface CodeGenOpts extends CodeGenOptsBase {
 	 */
 	stringType: "slice" | "ptr";
 	/**
-	 * If true (default), forces uppercase enum identifiers
+	 * If true (default), forces uppercase enum identifiers.
+	 *
+	 * @remarks
+	 * This option is ignored in {@link ZIG} since it's idiomatic for that
+	 * language to only use lowercase/camelCase enum IDs.
 	 *
 	 * @defaultValue true
 	 */

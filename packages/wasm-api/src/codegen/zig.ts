@@ -12,7 +12,6 @@ import type {
 import {
 	defaultValue,
 	ensureLines,
-	enumName,
 	isPadding,
 	isStringSlice,
 	isWasmString,
@@ -58,10 +57,10 @@ export const ZIG = (opts: Partial<ZigOpts> = {}) => {
 				let line: string;
 				if (!isString(v)) {
 					v.doc && gen.doc(v.doc, lines, opts);
-					line = enumName(opts, v.name);
+					line = v.name;
 					if (v.value != null) line += ` = ${v.value}`;
 				} else {
-					line = enumName(opts, v);
+					line = v;
 				}
 				lines.push(line + ",");
 			}
