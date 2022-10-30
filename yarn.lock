@@ -4872,7 +4872,7 @@ __metadata:
     "@thi.ng/checks": ^3.3.2
     "@thi.ng/errors": ^2.2.3
     "@thi.ng/testament": ^0.3.4
-    "@thi.ng/wasm-api": ^0.17.0
+    "@thi.ng/wasm-api": ^0.17.1
     rimraf: ^3.0.2
     tools: "workspace:^"
     typedoc: ^0.23.18
@@ -4880,7 +4880,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/wasm-api@^0.17.0, @thi.ng/wasm-api@workspace:^, @thi.ng/wasm-api@workspace:packages/wasm-api":
+"@thi.ng/wasm-api@^0.17.1, @thi.ng/wasm-api@workspace:^, @thi.ng/wasm-api@workspace:packages/wasm-api":
   version: 0.0.0-use.local
   resolution: "@thi.ng/wasm-api@workspace:packages/wasm-api"
   dependencies:

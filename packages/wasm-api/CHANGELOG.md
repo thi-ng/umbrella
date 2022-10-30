@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-10-29T20:34:04Z
+- **Last updated**: 2022-10-30T12:26:06Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,14 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [0.17.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/wasm-api@0.17.1) (2022-10-30)
+
+#### ♻️ Refactoring
+
+- update zig codegen to ignore uppercase enum config ([3258f91](https://github.com/thi-ng/umbrella/commit/3258f91))
+  - idiomatic zig enums are lowercase
+  - update config docs
 
 ## [0.17.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/wasm-api@0.17.0) (2022-10-29)
 
