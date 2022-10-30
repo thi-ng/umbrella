@@ -19,7 +19,8 @@
 	"dependencies": {
 		"@thi.ng/api": "workspace:^",
 		"@thi.ng/wasm-api": "workspace:^",
-		"@thi.ng/wasm-api-dom": "workspace:^"
+		"@thi.ng/wasm-api-dom": "workspace:^",
+		"@thi.ng/wasm-api-timer": "workspace:^"
 	},
 	"browser": {
 		"process": false

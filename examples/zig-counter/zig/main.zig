@@ -1,13 +1,14 @@
 const std = @import("std");
 const wasm = @import("wasmapi");
 const dom = @import("dom");
+const timer = @import("timer");
 
 // expose thi.ng/wasm-api core API (incl. panic handler & allocation fns)
 pub usingnamespace wasm;
 
 // allocator, also exposed & used by JS-side WasmBridge & DOM module
 // see further comments in:
-// https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api/zig/wasmapi.zig
+// https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api/zig/lib.zig
 // https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api-dom/zig/events.zig
 var gpa = std.heap.GeneralPurposeAllocator(.{}){};
 pub const WASM_ALLOCATOR = gpa.allocator();
@@ -29,7 +30,8 @@ const Counter = struct {
         // create DOM button element
         self.elementID = dom.createElement(&.{
             .tag = "button",
-            .class = "db w5 ma2 tc",
+            // Tachyons CSS class names
+            .class = "db w5 ma2 pa2 tc bn",
             .text = "click me!",
             .parent = parent,
         });
@@ -52,18 +54,34 @@ const Counter = struct {
         if (wasm.ptrCast(*Self, raw)) |self| {
             self.clicks += self.step;
             self.update();
+            // Trigger delayed update of button background color
+            _ = timer.setTimeout(&.{ .callback = onTimer, .ctx = self }, 500, .once) catch return;
+        }
+    }
+
+    /// timeout callback
+    fn onTimer(raw: ?*anyopaque) void {
+        wasm.printStr("timeout called");
+        if (wasm.ptrCast(*Self, raw)) |self| {
+            dom.removeClass(self.elementID, colors[@mod(self.clicks - self.step, colors.len)]);
+            dom.addClass(self.elementID, colors[@mod(self.clicks, colors.len)]);
         }
     }
 };
 
 var counters: [3]Counter = undefined;
 
+/// Button background colors (Tachyons CSS class names)
+const colors = [_][]const u8{ "bg-red", "bg-hot-pink", "bg-yellow", "bg-blue", "bg-green" };
+
 /// Since various initialization functions can return errors
 /// we're bundling them all in a single fn, which is then called by start()
 /// and so only needs one code site for error handling
 fn init() !void {
-    // the DOM API module must always be intialized first!
+    // the WASM API modules must always be intialized first!
     try dom.init(WASM_ALLOCATOR);
+    try timer.init(WASM_ALLOCATOR);
+
     // then instantiate all counter components
     for (counters) |*counter, i| try counter.init(dom.body, i + 1);
 }

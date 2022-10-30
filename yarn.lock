@@ -1790,6 +1790,7 @@ __metadata:
     "@thi.ng/api": "workspace:^"
     "@thi.ng/wasm-api": "workspace:^"
     "@thi.ng/wasm-api-dom": "workspace:^"
+    "@thi.ng/wasm-api-timer": "workspace:^"
     typescript: ^4.8.4
     vite: ^3.2.0
   languageName: unknown
