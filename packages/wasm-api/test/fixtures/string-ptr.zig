@@ -1,10 +1,10 @@
 const std = @import("std");
 
 pub const Bar = enum(i32) {
-    A,
-    B = 16,
-    C,
-    D = 32,
+    a,
+    b = 16,
+    c,
+    d = 32,
 };
 
 pub const Foo = struct {
