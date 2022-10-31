@@ -16,7 +16,7 @@
 **Please visit [thi.ng](https://thi.ng) for additional information & topic based
 search of packages relevant to your use cases...**
 
-This mono-repository is home to 169+ thi.ng TypeScript/ES6 projects (plus 110+
+This mono-repository is home to 170+ thi.ng TypeScript/ES6 projects (plus 110+
 examples), a wide and jointly developed collection of packages and building
 blocks for (non-exhaustive list of topics):
 
@@ -162,12 +162,11 @@ feature or `develop` branches)
 
 ### Latest updates
 
-As of: 2022-10-31
+As of: 2022-11-01
 
 | Status                                        | Project                                               | Version                                                                                                                     | Changelog                                           |
 |-----------------------------------------------|-------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------|
-| ![](https://img.shields.io/badge/-fix-orange) | [`@thi.ng/errors`](./packages/errors)                 | [![version](https://img.shields.io/npm/v/@thi.ng/errors.svg)](https://www.npmjs.com/package/@thi.ng/errors)                 | [changelog](./packages/errors/CHANGELOG.md)         |
-| ![](https://img.shields.io/badge/-fix-orange) | [`@thi.ng/expose`](./packages/expose)                 | [![version](https://img.shields.io/npm/v/@thi.ng/expose.svg)](https://www.npmjs.com/package/@thi.ng/expose)                 | [changelog](./packages/expose/CHANGELOG.md)         |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/arrays`](./packages/arrays)                 | [![version](https://img.shields.io/npm/v/@thi.ng/arrays.svg)](https://www.npmjs.com/package/@thi.ng/arrays)                 | [changelog](./packages/arrays/CHANGELOG.md)         |
 | ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/wasm-api`](./packages/wasm-api)             | [![version](https://img.shields.io/npm/v/@thi.ng/wasm-api.svg)](https://www.npmjs.com/package/@thi.ng/wasm-api)             | [changelog](./packages/wasm-api/CHANGELOG.md)       |
 | ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/wasm-api-dom`](./packages/wasm-api-dom)     | [![version](https://img.shields.io/npm/v/@thi.ng/wasm-api-dom.svg)](https://www.npmjs.com/package/@thi.ng/wasm-api-dom)     | [changelog](./packages/wasm-api-dom/CHANGELOG.md)   |
 | ![](https://img.shields.io/badge/-new-cyan)   | [`@thi.ng/wasm-api-timer`](./packages/wasm-api-timer) | [![version](https://img.shields.io/npm/v/@thi.ng/wasm-api-timer.svg)](https://www.npmjs.com/package/@thi.ng/wasm-api-timer) | [changelog](./packages/wasm-api-timer/CHANGELOG.md) |
