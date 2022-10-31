@@ -20,7 +20,7 @@ group("wasm-api", {
 
 		const sizes: number[] = [];
 		const logger = new MemoryLogger("wasm");
-		const bridge = new WasmBridge<Allocators>({}, logger);
+		const bridge = new WasmBridge<Allocators>([], logger);
 		// record memory growth changes
 		bridge.addListener(EVENT_MEMORY_CHANGED, (e) =>
 			sizes.push(e.value.buffer.byteLength)
@@ -93,6 +93,8 @@ group("wasm-api", {
 			test_epoch: () => void;
 		}
 		class CustomAPI implements IWasmAPI {
+			readonly id = "custom";
+
 			parent!: WasmBridge;
 
 			async init(parent: WasmBridge) {
@@ -110,10 +112,7 @@ group("wasm-api", {
 		}
 
 		const logger = new MemoryLogger("wasm");
-		const bridge = new WasmBridge<CustomWasm>(
-			{ custom: new CustomAPI() },
-			logger
-		);
+		const bridge = new WasmBridge<CustomWasm>([new CustomAPI()], logger);
 		assert.ok(await bridge.instantiate(readFileSync("test/custom.wasm")));
 
 		bridge.exports.test_setVec2();

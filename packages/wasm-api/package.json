@@ -38,6 +38,7 @@
 	"dependencies": {
 		"@thi.ng/api": "^8.4.4",
 		"@thi.ng/args": "^2.2.7",
+		"@thi.ng/arrays": "^2.3.11",
 		"@thi.ng/binary": "^3.3.8",
 		"@thi.ng/checks": "^3.3.2",
 		"@thi.ng/compare": "^2.1.14",

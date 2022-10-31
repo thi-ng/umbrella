@@ -27,6 +27,18 @@ export type BigIntArray = bigint[] | BigInt64Array | BigUint64Array;
  */
 export interface IWasmAPI<T extends WasmExports = WasmExports> {
 	/**
+	 * The unique ID for grouping the WASM imports of this module. MUST be the
+	 * same as used by the native side of the module.
+	 */
+	readonly id: string;
+	/**
+	 * IDs of other WASM API modules which this module depends on. Used to infer
+	 * correct initialization order. The core module (w/ unique ID: `wasmapi`)
+	 * is always considered an implicit dependency, will be initialized first
+	 * and MUST NOT be stated here.
+	 */
+	readonly dependencies?: string[];
+	/**
 	 * Called by {@link WasmBridge.init} to initialize all child APIs (async)
 	 * after the WASM module has been instantiated. If the method returns false
 	 * the overall initialization process will be stopped/terminated.

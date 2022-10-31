@@ -2,13 +2,15 @@ import type {
 	Event,
 	FnU2,
 	INotify,
+	IObjectOf,
 	Listener,
 	NumericArray,
 	TypedArray,
 } from "@thi.ng/api";
 import { INotifyMixin } from "@thi.ng/api/mixins/inotify";
+import { topoSort } from "@thi.ng/arrays/topo-sort";
+import { assert } from "@thi.ng/errors/assert";
 import { defError } from "@thi.ng/errors/deferror";
-import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import { U16, U32, U64BIG, U8 } from "@thi.ng/hex";
 import type { ILogger } from "@thi.ng/logger";
 import { ConsoleLogger } from "@thi.ng/logger/console";
@@ -39,12 +41,14 @@ export const OutOfMemoryError = defError(() => "Out of memory");
  * mechanisms like JS `DataView`...
  *
  * 64bit integers are handled via JS `BigInt` and hence require the host env to
- * support it. No polyfill is provided.
+ * support it. No polyfills are provided.
  */
 @INotifyMixin
 export class WasmBridge<T extends WasmExports = WasmExports>
 	implements IWasmMemoryAccess, INotify
 {
+	readonly id = "wasmapi";
+
 	i8!: Int8Array;
 	u8!: Uint8Array;
 	i16!: Int16Array;
@@ -60,9 +64,10 @@ export class WasmBridge<T extends WasmExports = WasmExports>
 	imports!: WebAssembly.Imports;
 	exports!: T;
 	api: CoreAPI;
+	modules: IObjectOf<IWasmAPI<T>>;
 
 	constructor(
-		public modules: Record<string, IWasmAPI<T>> = {},
+		modules: IWasmAPI<T>[] = [],
 		public logger: ILogger = new ConsoleLogger("wasm")
 	) {
 		const logN = (x: number) => this.logger.debug(x);
@@ -115,6 +120,14 @@ export class WasmBridge<T extends WasmExports = WasmExports>
 			timer: () => performance.now(),
 			epoch: () => BigInt(Date.now()),
 		};
+		this.modules = modules.reduce((acc, x) => {
+			assert(
+				acc[x.id] === undefined && x.id !== this.id,
+				`duplicate API module ID: ${x.id}`
+			);
+			acc[x.id] = x;
+			return acc;
+		}, <IObjectOf<IWasmAPI<T>>>{});
 	}
 
 	/**
@@ -143,9 +156,10 @@ export class WasmBridge<T extends WasmExports = WasmExports>
 	}
 
 	/**
-	 * Receives the WASM module's exports, stores the for future reference and
-	 * then initializes all declared bridge child API modules. Returns false if
-	 * any of the module initializations failed.
+	 * Receives the WASM module's combined exports, stores them for future
+	 * reference and then initializes all declared bridge child API modules in
+	 * their stated dependency order. Returns false if any of the module
+	 * initializations failed.
 	 *
 	 * @remarks
 	 * Emits the {@link EVENT_MEMORY_CHANGED} event just before returning (and
@@ -156,7 +170,11 @@ export class WasmBridge<T extends WasmExports = WasmExports>
 	async init(exports: T) {
 		this.exports = exports;
 		this.ensureMemory(false);
-		for (let id in this.modules) {
+		for (let id of topoSort(
+			this.modules,
+			(module) => module.dependencies
+		)) {
+			assert(!!this.modules[id], `missing API module: ${id}`);
 			this.logger.debug(`initializing API module: ${id}`);
 			const status = await this.modules[id].init(this);
 			if (!status) return false;
@@ -166,11 +184,11 @@ export class WasmBridge<T extends WasmExports = WasmExports>
 	}
 
 	/**
-	 * Called automatically during initialization. Initializes and/or updates
-	 * the various typed WASM memory views (e.g. after growing the WASM memory
-	 * and the previous buffer becoming detached). Unless `notify` is false,
-	 * the {@link EVENT_MEMORY_CHANGED} event will be emitted if the memory
-	 * views had to be updated.
+	 * Called automatically during initialization and from other memory
+	 * accessors. Initializes and/or updates the various typed WASM memory views
+	 * (e.g. after growing the WASM memory and the previous buffer becoming
+	 * detached). Unless `notify` is false, the {@link EVENT_MEMORY_CHANGED}
+	 * event will be emitted if the memory views had to be updated.
 	 *
 	 * @param notify
 	 */
@@ -200,16 +218,16 @@ export class WasmBridge<T extends WasmExports = WasmExports>
 	 * API and any provided bridge API modules.
 	 *
 	 * @remarks
-	 * Since v0.4.0 each API module's imports will be in their own WASM import
-	 * object, named using the same key which was assigned to the module when
-	 * creating the WASM bridge. The bridge's core API will be named `core` and
-	 * is reserved.
+	 * Each API module's imports will be in their own WASM import object/table,
+	 * named using the same key which is defined by the JS side of the module
+	 * via {@link IWasmAPI.id}. The bridge's core API is named `wasmapi` and is
+	 * reserved.
 	 *
 	 * @example
 	 * The following creates a bridge with a fictional `custom` API module:
 	 *
 	 * ```ts
-	 * const bridge = new WasmBridge({ custom: new CustomAPI() });
+	 * const bridge = new WasmBridge([new CustomAPI()]);
 	 *
 	 * // get combined imports object
 	 * bridge.getImports();
@@ -230,11 +248,8 @@ export class WasmBridge<T extends WasmExports = WasmExports>
 	 */
 	getImports(): WebAssembly.Imports {
 		if (!this.imports) {
-			this.imports = { wasmapi: this.api };
+			this.imports = { [this.id]: this.api };
 			for (let id in this.modules) {
-				if (this.imports[id] !== undefined) {
-					illegalArgs(`attempt to redeclare API module ${id}`);
-				}
 				this.imports[id] = this.modules[id].getImports();
 			}
 		}
@@ -512,13 +527,12 @@ export class WasmBridge<T extends WasmExports = WasmExports>
 			str,
 			this.u8.subarray(addr, addr + maxBytes)
 		).written!;
-		if (len == null || len >= maxBytes + (terminate ? 0 : 1)) {
-			illegalArgs(
-				`error writing string to 0x${U32(
-					addr
-				)} (max. ${maxBytes} bytes, got at least ${str.length})`
-			);
-		}
+		assert(
+			len != null && len < maxBytes + (terminate ? 0 : 1),
+			`error writing string to 0x${U32(
+				addr
+			)} (max. ${maxBytes} bytes, got at least ${str.length})`
+		);
 		if (terminate) {
 			this.u8[addr + len!] = 0;
 		}
@@ -528,7 +542,7 @@ export class WasmBridge<T extends WasmExports = WasmExports>
 	getElementById(addr: number, len = 0) {
 		const id = this.getString(addr, len);
 		const el = document.getElementById(id);
-		el == null && illegalArgs(`missing DOM element #${id}`);
+		assert(!!el, `missing DOM element #${id}`);
 		return el!;
 	}
 
