@@ -12,10 +12,7 @@ interface WasmApp extends WasmExports, DOMExports, TimerExports {
 
 (async () => {
 	// create new WASM bridge with extra API module
-	const bridge = new WasmBridge<WasmApp>({
-		dom: new WasmDom(),
-		timer: new WasmTimers(),
-	});
+	const bridge = new WasmBridge<WasmApp>([new WasmDom(), new WasmTimers()]);
 	// instantiate WASM module & bindings
 	await bridge.instantiate(fetch(WASM_URL));
 	// call WASM main function to kick off

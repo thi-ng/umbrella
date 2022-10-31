@@ -14,7 +14,9 @@ interface WasmApp extends WasmExports, DOMExports {
  * Custom WASM API module for basic canvas drawing, i.e. the functions returned
  * by `getImports()` are being made available to the WASM binary.
  */
-class DrawHandlers implements IWasmAPI<WasmApp> {
+class CanvasHandlers implements IWasmAPI<WasmApp> {
+	readonly id = "canvas";
+
 	parent!: WasmBridge<WasmApp>;
 	dom!: WasmDom;
 	contexts: CanvasRenderingContext2D[] = [];
@@ -86,10 +88,7 @@ class DrawHandlers implements IWasmAPI<WasmApp> {
 (async () => {
 	// create new WASM bridge with extra API modules
 	const bridge = new WasmBridge<WasmApp>(
-		{
-			dom: new WasmDom(),
-			app: new DrawHandlers(),
-		}
+		[new WasmDom(), new CanvasHandlers()]
 		// uncomment to suppress logging messages
 		// NULL_LOGGER
 	);

@@ -65,10 +65,12 @@ const Counter = struct {
     /// Caller owns memory
     fn snapshot(self: *const Self) *Snapshot {
         var snap = WASM_ALLOCATOR.create(Snapshot) catch @panic("couldn't create snapshot");
-        snap.callback = .{ .callback = onTimer, .ctx = snap };
-        snap.self = self;
-        snap.curr = self.clicks;
-        snap.prev = self.clicks - self.step;
+        snap.* = .{
+            .callback = .{ .callback = onTimer, .ctx = snap },
+            .self = self,
+            .curr = self.clicks,
+            .prev = self.clicks - self.step,
+        };
         return snap;
     }
 
