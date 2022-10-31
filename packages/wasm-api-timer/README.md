@@ -13,6 +13,7 @@ This project is part of the
 - [Status](#status)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
+- [Usage examples](#usage-examples)
 - [API](#api)
 - [Authors](#authors)
 - [License](#license)
@@ -91,6 +92,18 @@ Package sizes (gzipped, pre-treeshake): ESM: 446 bytes
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
 - [@thi.ng/wasm-api](https://github.com/thi-ng/umbrella/tree/develop/packages/wasm-api)
+
+## Usage examples
+
+Several demos in this repo's
+[/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
+directory are using this package.
+
+A selection:
+
+| Screenshot                                                                                                         | Description                                 | Live demo                                         | Source                                                                         |
+|:-------------------------------------------------------------------------------------------------------------------|:--------------------------------------------|:--------------------------------------------------|:-------------------------------------------------------------------------------|
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/zig-counter.png" width="240"/> | Simple Zig/WASM click counter DOM component | [Demo](https://demo.thi.ng/umbrella/zig-counter/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/zig-counter) |
 
 ## API
 

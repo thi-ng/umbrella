@@ -28,7 +28,8 @@
 	"thi.ng": {
 		"readme": [
 			"wasm-api",
-			"wasm-api-dom"
+			"wasm-api-dom",
+			"wasm-api-timer"
 		],
 		"screenshot": "examples/zig-counter.png"
 	}
