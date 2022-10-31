@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/vector-pools",
-	"version": "3.1.31",
+	"version": "3.1.32",
 	"description": "Data structures for managing & working with strided, memory mapped vectors",
 	"type": "module",
 	"module": "./index.js",
@@ -40,8 +40,8 @@
 		"@thi.ng/errors": "^2.2.3",
 		"@thi.ng/logger": "^1.4.2",
 		"@thi.ng/malloc": "^6.1.20",
-		"@thi.ng/transducers": "^8.3.20",
-		"@thi.ng/vectors": "^7.5.21"
+		"@thi.ng/transducers": "^8.3.21",
+		"@thi.ng/vectors": "^7.5.22"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.33.5",

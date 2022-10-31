@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-10-31T09:19:33Z
+- **Last updated**: 2022-10-31T23:01:45Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,17 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [0.18.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/wasm-api@0.18.0) (2022-10-31)
+
+#### 🚀 Features
+
+- update WasmBridge & child API module specs ([6773494](https://github.com/thi-ng/umbrella/commit/6773494))
+  - update IWasmAPI interface to declare import ID & module dependencies
+  - update WasmBridge ctor (array instead of object of sub-modules)
+  - update WasmBridge.init() to initialize modules in dependency order
+  - replace illegalArgs() with assert()
+  - add [@thi.ng/arrays](https://github.com/thi-ng/umbrella/tree/main/packages/arrays) as dependency, update pkg
 
 ### [0.17.3](https://github.com/thi-ng/umbrella/tree/@thi.ng/wasm-api@0.17.3) (2022-10-31)
 

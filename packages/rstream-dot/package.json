@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/rstream-dot",
-	"version": "2.1.28",
+	"version": "2.1.29",
 	"description": "Graphviz DOT conversion of @thi.ng/rstream dataflow graph topologies",
 	"type": "module",
 	"module": "./index.js",
@@ -34,9 +34,9 @@
 		"test": "testament test"
 	},
 	"dependencies": {
-		"@thi.ng/rstream": "^7.2.25",
+		"@thi.ng/rstream": "^7.2.26",
 		"@thi.ng/strings": "^3.3.15",
-		"@thi.ng/transducers": "^8.3.20"
+		"@thi.ng/transducers": "^8.3.21"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.33.5",

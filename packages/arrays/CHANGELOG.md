@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-10-28T19:08:39Z
+- **Last updated**: 2022-10-31T23:01:45Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,15 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [2.4.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/arrays@2.4.0) (2022-10-31)
+
+#### 🚀 Features
+
+- add topoSort() ([f7f2e20](https://github.com/thi-ng/umbrella/commit/f7f2e20))
+  - add topoSort() as lightweight alt for [@thi.ng/dgraph](https://github.com/thi-ng/umbrella/tree/main/packages/dgraph)
+  - add tests
+  - update readme
 
 ## [2.3.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/arrays@2.3.0) (2022-07-08)
 

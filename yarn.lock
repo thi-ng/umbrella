@@ -2018,13 +2018,13 @@ __metadata:
   dependencies:
     "@microsoft/api-extractor": ^7.33.5
     "@thi.ng/api": ^8.4.4
-    "@thi.ng/arrays": ^2.3.11
+    "@thi.ng/arrays": ^2.4.0
     "@thi.ng/bitfield": ^2.2.10
-    "@thi.ng/dcons": ^3.2.20
+    "@thi.ng/dcons": ^3.2.21
     "@thi.ng/errors": ^2.2.3
-    "@thi.ng/sparse": ^0.3.25
+    "@thi.ng/sparse": ^0.3.26
     "@thi.ng/testament": ^0.3.4
-    "@thi.ng/vectors": ^7.5.21
+    "@thi.ng/vectors": ^7.5.22
     rimraf: ^3.0.2
     tools: "workspace:^"
     typedoc: ^0.23.18
@@ -2062,7 +2062,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/arrays@^2.3.11, @thi.ng/arrays@workspace:^, @thi.ng/arrays@workspace:packages/arrays":
+"@thi.ng/arrays@^2.4.0, @thi.ng/arrays@workspace:^, @thi.ng/arrays@workspace:packages/arrays":
   version: 0.0.0-use.local
   resolution: "@thi.ng/arrays@workspace:packages/arrays"
   dependencies:
@@ -2081,21 +2081,21 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/associative@^6.2.13, @thi.ng/associative@workspace:^, @thi.ng/associative@workspace:packages/associative":
+"@thi.ng/associative@^6.2.14, @thi.ng/associative@workspace:^, @thi.ng/associative@workspace:packages/associative":
   version: 0.0.0-use.local
   resolution: "@thi.ng/associative@workspace:packages/associative"
   dependencies:
     "@microsoft/api-extractor": ^7.33.5
     "@thi.ng/api": ^8.4.4
-    "@thi.ng/arrays": ^2.3.11
+    "@thi.ng/arrays": ^2.4.0
     "@thi.ng/binary": ^3.3.8
     "@thi.ng/checks": ^3.3.2
     "@thi.ng/compare": ^2.1.14
-    "@thi.ng/dcons": ^3.2.20
+    "@thi.ng/dcons": ^3.2.21
     "@thi.ng/equiv": ^2.1.12
     "@thi.ng/errors": ^2.2.3
     "@thi.ng/testament": ^0.3.4
-    "@thi.ng/transducers": ^8.3.20
+    "@thi.ng/transducers": ^8.3.21
     rimraf: ^3.0.2
     tools: "workspace:^"
     tslib: ^2.4.0
@@ -2156,13 +2156,13 @@ __metadata:
   resolution: "@thi.ng/bencode@workspace:packages/bencode"
   dependencies:
     "@microsoft/api-extractor": ^7.33.5
-    "@thi.ng/arrays": ^2.3.11
+    "@thi.ng/arrays": ^2.4.0
     "@thi.ng/checks": ^3.3.2
     "@thi.ng/defmulti": ^2.1.19
     "@thi.ng/errors": ^2.2.3
     "@thi.ng/testament": ^0.3.4
-    "@thi.ng/transducers": ^8.3.20
-    "@thi.ng/transducers-binary": ^2.1.25
+    "@thi.ng/transducers": ^8.3.21
+    "@thi.ng/transducers-binary": ^2.1.26
     rimraf: ^3.0.2
     tools: "workspace:^"
     typedoc: ^0.23.18
@@ -2221,9 +2221,9 @@ __metadata:
   dependencies:
     "@microsoft/api-extractor": ^7.33.5
     "@thi.ng/api": ^8.4.4
-    "@thi.ng/dcons": ^3.2.20
+    "@thi.ng/dcons": ^3.2.21
     "@thi.ng/testament": ^0.3.4
-    "@thi.ng/transducers": ^8.3.20
+    "@thi.ng/transducers": ^8.3.21
     rimraf: ^3.0.2
     tools: "workspace:^"
     typedoc: ^0.23.18
@@ -2241,7 +2241,7 @@ __metadata:
     "@thi.ng/errors": ^2.2.3
     "@thi.ng/random": ^3.3.13
     "@thi.ng/testament": ^0.3.4
-    "@thi.ng/transducers": ^8.3.20
+    "@thi.ng/transducers": ^8.3.21
     rimraf: ^3.0.2
     tools: "workspace:^"
     typedoc: ^0.23.18
@@ -2277,13 +2277,13 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/color@^5.2.7, @thi.ng/color@workspace:^, @thi.ng/color@workspace:packages/color":
+"@thi.ng/color@^5.2.8, @thi.ng/color@workspace:^, @thi.ng/color@workspace:packages/color":
   version: 0.0.0-use.local
   resolution: "@thi.ng/color@workspace:packages/color"
   dependencies:
     "@microsoft/api-extractor": ^7.33.5
     "@thi.ng/api": ^8.4.4
-    "@thi.ng/arrays": ^2.3.11
+    "@thi.ng/arrays": ^2.4.0
     "@thi.ng/binary": ^3.3.8
     "@thi.ng/checks": ^3.3.2
     "@thi.ng/compare": ^2.1.14
@@ -2294,8 +2294,8 @@ __metadata:
     "@thi.ng/random": ^3.3.13
     "@thi.ng/strings": ^3.3.15
     "@thi.ng/testament": ^0.3.4
-    "@thi.ng/transducers": ^8.3.20
-    "@thi.ng/vectors": ^7.5.21
+    "@thi.ng/transducers": ^8.3.21
+    "@thi.ng/vectors": ^7.5.22
     rimraf: ^3.0.2
     tools: "workspace:^"
     typedoc: ^0.23.18
@@ -2347,7 +2347,7 @@ __metadata:
     "@thi.ng/checks": ^3.3.2
     "@thi.ng/math": ^5.3.11
     "@thi.ng/testament": ^0.3.4
-    "@thi.ng/vectors": ^7.5.21
+    "@thi.ng/vectors": ^7.5.22
     rimraf: ^3.0.2
     tools: "workspace:^"
     typedoc: ^0.23.18
@@ -2370,18 +2370,18 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/csp@^2.1.25, @thi.ng/csp@workspace:packages/csp":
+"@thi.ng/csp@^2.1.26, @thi.ng/csp@workspace:packages/csp":
   version: 0.0.0-use.local
   resolution: "@thi.ng/csp@workspace:packages/csp"
   dependencies:
     "@microsoft/api-extractor": ^7.33.5
     "@thi.ng/api": ^8.4.4
-    "@thi.ng/arrays": ^2.3.11
+    "@thi.ng/arrays": ^2.4.0
     "@thi.ng/checks": ^3.3.2
-    "@thi.ng/dcons": ^3.2.20
+    "@thi.ng/dcons": ^3.2.21
     "@thi.ng/errors": ^2.2.3
     "@thi.ng/testament": ^0.3.4
-    "@thi.ng/transducers": ^8.3.20
+    "@thi.ng/transducers": ^8.3.21
     rimraf: ^3.0.2
     tools: "workspace:^"
     typedoc: ^0.23.18
@@ -2398,7 +2398,7 @@ __metadata:
     "@thi.ng/checks": ^3.3.2
     "@thi.ng/strings": ^3.3.15
     "@thi.ng/testament": ^0.3.4
-    "@thi.ng/transducers": ^8.3.20
+    "@thi.ng/transducers": ^8.3.21
     rimraf: ^3.0.2
     tools: "workspace:^"
     typedoc: ^0.23.18
@@ -2422,7 +2422,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/dcons@^3.2.20, @thi.ng/dcons@workspace:packages/dcons":
+"@thi.ng/dcons@^3.2.21, @thi.ng/dcons@workspace:packages/dcons":
   version: 0.0.0-use.local
   resolution: "@thi.ng/dcons@workspace:packages/dcons"
   dependencies:
@@ -2434,7 +2434,7 @@ __metadata:
     "@thi.ng/errors": ^2.2.3
     "@thi.ng/random": ^3.3.13
     "@thi.ng/testament": ^0.3.4
-    "@thi.ng/transducers": ^8.3.20
+    "@thi.ng/transducers": ^8.3.21
     rimraf: ^3.0.2
     tools: "workspace:^"
     typedoc: ^0.23.18
@@ -2464,7 +2464,7 @@ __metadata:
   dependencies:
     "@microsoft/api-extractor": ^7.33.5
     "@thi.ng/api": ^8.4.4
-    "@thi.ng/dgraph": ^2.1.25
+    "@thi.ng/dgraph": ^2.1.26
     "@thi.ng/dot": ^2.1.18
     "@thi.ng/testament": ^0.3.4
     rimraf: ^3.0.2
@@ -2474,17 +2474,17 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/dgraph@^2.1.25, @thi.ng/dgraph@workspace:^, @thi.ng/dgraph@workspace:packages/dgraph":
+"@thi.ng/dgraph@^2.1.26, @thi.ng/dgraph@workspace:^, @thi.ng/dgraph@workspace:packages/dgraph":
   version: 0.0.0-use.local
   resolution: "@thi.ng/dgraph@workspace:packages/dgraph"
   dependencies:
     "@microsoft/api-extractor": ^7.33.5
     "@thi.ng/api": ^8.4.4
-    "@thi.ng/associative": ^6.2.13
+    "@thi.ng/associative": ^6.2.14
     "@thi.ng/equiv": ^2.1.12
     "@thi.ng/errors": ^2.2.3
     "@thi.ng/testament": ^0.3.4
-    "@thi.ng/transducers": ^8.3.20
+    "@thi.ng/transducers": ^8.3.21
     rimraf: ^3.0.2
     tools: "workspace:^"
     typedoc: ^0.23.18
@@ -2522,7 +2522,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/distance@^2.1.29, @thi.ng/distance@workspace:packages/distance":
+"@thi.ng/distance@^2.1.30, @thi.ng/distance@workspace:packages/distance":
   version: 0.0.0-use.local
   resolution: "@thi.ng/distance@workspace:packages/distance"
   dependencies:
@@ -2533,7 +2533,7 @@ __metadata:
     "@thi.ng/heaps": ^2.1.14
     "@thi.ng/math": ^5.3.11
     "@thi.ng/testament": ^0.3.4
-    "@thi.ng/vectors": ^7.5.21
+    "@thi.ng/vectors": ^7.5.22
     rimraf: ^3.0.2
     tools: "workspace:^"
     typedoc: ^0.23.18
@@ -2595,8 +2595,8 @@ __metadata:
     "@thi.ng/binary": ^3.3.8
     "@thi.ng/errors": ^2.2.3
     "@thi.ng/testament": ^0.3.4
-    "@thi.ng/transducers": ^8.3.20
-    "@thi.ng/transducers-binary": ^2.1.25
+    "@thi.ng/transducers": ^8.3.21
+    "@thi.ng/transducers-binary": ^2.1.26
     rimraf: ^3.0.2
     tools: "workspace:^"
     typedoc: ^0.23.18
@@ -2615,7 +2615,7 @@ __metadata:
     "@thi.ng/math": ^5.3.11
     "@thi.ng/random": ^3.3.13
     "@thi.ng/testament": ^0.3.4
-    "@thi.ng/transducers": ^8.3.20
+    "@thi.ng/transducers": ^8.3.21
     rimraf: ^3.0.2
     tools: "workspace:^"
     typedoc: ^0.23.18
@@ -2658,17 +2658,17 @@ __metadata:
   dependencies:
     "@microsoft/api-extractor": ^7.33.5
     "@thi.ng/api": ^8.4.4
-    "@thi.ng/associative": ^6.2.13
+    "@thi.ng/associative": ^6.2.14
     "@thi.ng/binary": ^3.3.8
     "@thi.ng/checks": ^3.3.2
-    "@thi.ng/dcons": ^3.2.20
+    "@thi.ng/dcons": ^3.2.21
     "@thi.ng/equiv": ^2.1.12
     "@thi.ng/errors": ^2.2.3
     "@thi.ng/idgen": ^2.1.16
     "@thi.ng/logger": ^1.4.2
     "@thi.ng/malloc": ^6.1.20
     "@thi.ng/testament": ^0.3.4
-    "@thi.ng/transducers": ^8.3.20
+    "@thi.ng/transducers": ^8.3.21
     rimraf: ^3.0.2
     tools: "workspace:^"
     tslib: ^2.4.0
@@ -2683,7 +2683,7 @@ __metadata:
   dependencies:
     "@microsoft/api-extractor": ^7.33.5
     "@thi.ng/api": ^8.4.4
-    "@thi.ng/associative": ^6.2.13
+    "@thi.ng/associative": ^6.2.14
     "@thi.ng/checks": ^3.3.2
     "@thi.ng/dot": ^2.1.18
     "@thi.ng/equiv": ^2.1.12
@@ -2692,7 +2692,7 @@ __metadata:
     "@thi.ng/prefixes": ^2.1.12
     "@thi.ng/strings": ^3.3.15
     "@thi.ng/testament": ^0.3.4
-    "@thi.ng/transducers-binary": ^2.1.25
+    "@thi.ng/transducers-binary": ^2.1.26
     rimraf: ^3.0.2
     tools: "workspace:^"
     typedoc: ^0.23.18
@@ -2758,18 +2758,18 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/fsm@^3.1.26, @thi.ng/fsm@workspace:packages/fsm":
+"@thi.ng/fsm@^3.1.27, @thi.ng/fsm@workspace:packages/fsm":
   version: 0.0.0-use.local
   resolution: "@thi.ng/fsm@workspace:packages/fsm"
   dependencies:
     "@microsoft/api-extractor": ^7.33.5
     "@thi.ng/api": ^8.4.4
-    "@thi.ng/arrays": ^2.3.11
+    "@thi.ng/arrays": ^2.4.0
     "@thi.ng/equiv": ^2.1.12
     "@thi.ng/errors": ^2.2.3
     "@thi.ng/strings": ^3.3.15
     "@thi.ng/testament": ^0.3.4
-    "@thi.ng/transducers": ^8.3.20
+    "@thi.ng/transducers": ^8.3.21
     rimraf: ^3.0.2
     tools: "workspace:^"
     typedoc: ^0.23.18
@@ -2785,11 +2785,11 @@ __metadata:
     "@thi.ng/api": ^8.4.4
     "@thi.ng/fuzzy": ^2.1.15
     "@thi.ng/hiccup": ^4.2.21
-    "@thi.ng/hiccup-svg": ^4.3.18
+    "@thi.ng/hiccup-svg": ^4.3.19
     "@thi.ng/math": ^5.3.11
     "@thi.ng/strings": ^3.3.15
     "@thi.ng/testament": ^0.3.4
-    "@thi.ng/text-canvas": ^2.4.14
+    "@thi.ng/text-canvas": ^2.4.15
     rimraf: ^3.0.2
     tools: "workspace:^"
     typedoc: ^0.23.18
@@ -2818,17 +2818,17 @@ __metadata:
   dependencies:
     "@microsoft/api-extractor": ^7.33.5
     "@thi.ng/api": ^8.4.4
-    "@thi.ng/arrays": ^2.3.11
+    "@thi.ng/arrays": ^2.4.0
     "@thi.ng/checks": ^3.3.2
     "@thi.ng/equiv": ^2.1.12
     "@thi.ng/errors": ^2.2.3
-    "@thi.ng/geom-api": ^3.3.15
-    "@thi.ng/geom-isec": ^2.1.32
+    "@thi.ng/geom-api": ^3.3.16
+    "@thi.ng/geom-isec": ^2.1.33
     "@thi.ng/heaps": ^2.1.14
     "@thi.ng/math": ^5.3.11
     "@thi.ng/testament": ^0.3.4
-    "@thi.ng/transducers": ^8.3.20
-    "@thi.ng/vectors": ^7.5.21
+    "@thi.ng/transducers": ^8.3.21
+    "@thi.ng/vectors": ^7.5.22
     rimraf: ^3.0.2
     tools: "workspace:^"
     typedoc: ^0.23.18
@@ -2836,14 +2836,14 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/geom-api@^3.3.15, @thi.ng/geom-api@workspace:^, @thi.ng/geom-api@workspace:packages/geom-api":
+"@thi.ng/geom-api@^3.3.16, @thi.ng/geom-api@workspace:^, @thi.ng/geom-api@workspace:packages/geom-api":
   version: 0.0.0-use.local
   resolution: "@thi.ng/geom-api@workspace:packages/geom-api"
   dependencies:
     "@microsoft/api-extractor": ^7.33.5
     "@thi.ng/api": ^8.4.4
     "@thi.ng/testament": ^0.3.4
-    "@thi.ng/vectors": ^7.5.21
+    "@thi.ng/vectors": ^7.5.22
     rimraf: ^3.0.2
     tools: "workspace:^"
     typedoc: ^0.23.18
@@ -2851,17 +2851,17 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/geom-arc@^2.1.32, @thi.ng/geom-arc@workspace:packages/geom-arc":
+"@thi.ng/geom-arc@^2.1.33, @thi.ng/geom-arc@workspace:packages/geom-arc":
   version: 0.0.0-use.local
   resolution: "@thi.ng/geom-arc@workspace:packages/geom-arc"
   dependencies:
     "@microsoft/api-extractor": ^7.33.5
     "@thi.ng/checks": ^3.3.2
-    "@thi.ng/geom-api": ^3.3.15
-    "@thi.ng/geom-resample": ^2.1.32
+    "@thi.ng/geom-api": ^3.3.16
+    "@thi.ng/geom-resample": ^2.1.33
     "@thi.ng/math": ^5.3.11
     "@thi.ng/testament": ^0.3.4
-    "@thi.ng/vectors": ^7.5.21
+    "@thi.ng/vectors": ^7.5.22
     rimraf: ^3.0.2
     tools: "workspace:^"
     typedoc: ^0.23.18
@@ -2869,15 +2869,15 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/geom-clip-line@^2.1.32, @thi.ng/geom-clip-line@workspace:packages/geom-clip-line":
+"@thi.ng/geom-clip-line@^2.1.33, @thi.ng/geom-clip-line@workspace:packages/geom-clip-line":
   version: 0.0.0-use.local
   resolution: "@thi.ng/geom-clip-line@workspace:packages/geom-clip-line"
   dependencies:
     "@microsoft/api-extractor": ^7.33.5
     "@thi.ng/api": ^8.4.4
-    "@thi.ng/geom-isec": ^2.1.32
+    "@thi.ng/geom-isec": ^2.1.33
     "@thi.ng/testament": ^0.3.4
-    "@thi.ng/vectors": ^7.5.21
+    "@thi.ng/vectors": ^7.5.22
     rimraf: ^3.0.2
     tools: "workspace:^"
     typedoc: ^0.23.18
@@ -2885,16 +2885,16 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/geom-clip-poly@^2.1.32, @thi.ng/geom-clip-poly@workspace:packages/geom-clip-poly":
+"@thi.ng/geom-clip-poly@^2.1.33, @thi.ng/geom-clip-poly@workspace:packages/geom-clip-poly":
   version: 0.0.0-use.local
   resolution: "@thi.ng/geom-clip-poly@workspace:packages/geom-clip-poly"
   dependencies:
     "@microsoft/api-extractor": ^7.33.5
-    "@thi.ng/geom-isec": ^2.1.32
-    "@thi.ng/geom-poly-utils": ^2.3.16
+    "@thi.ng/geom-isec": ^2.1.33
+    "@thi.ng/geom-poly-utils": ^2.3.17
     "@thi.ng/math": ^5.3.11
     "@thi.ng/testament": ^0.3.4
-    "@thi.ng/vectors": ^7.5.21
+    "@thi.ng/vectors": ^7.5.22
     rimraf: ^3.0.2
     tools: "workspace:^"
     typedoc: ^0.23.18
@@ -2902,7 +2902,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/geom-closest-point@^2.1.29, @thi.ng/geom-closest-point@workspace:^, @thi.ng/geom-closest-point@workspace:packages/geom-closest-point":
+"@thi.ng/geom-closest-point@^2.1.30, @thi.ng/geom-closest-point@workspace:^, @thi.ng/geom-closest-point@workspace:packages/geom-closest-point":
   version: 0.0.0-use.local
   resolution: "@thi.ng/geom-closest-point@workspace:packages/geom-closest-point"
   dependencies:
@@ -2910,7 +2910,7 @@ __metadata:
     "@thi.ng/api": ^8.4.4
     "@thi.ng/math": ^5.3.11
     "@thi.ng/testament": ^0.3.4
-    "@thi.ng/vectors": ^7.5.21
+    "@thi.ng/vectors": ^7.5.22
     rimraf: ^3.0.2
     tools: "workspace:^"
     typedoc: ^0.23.18
@@ -2924,16 +2924,16 @@ __metadata:
   dependencies:
     "@microsoft/api-extractor": ^7.33.5
     "@thi.ng/api": ^8.4.4
-    "@thi.ng/associative": ^6.2.13
-    "@thi.ng/color": ^5.2.7
-    "@thi.ng/geom": ^3.4.18
-    "@thi.ng/geom-api": ^3.3.15
-    "@thi.ng/geom-clip-line": ^2.1.32
-    "@thi.ng/geom-resample": ^2.1.32
-    "@thi.ng/grid-iterators": ^2.3.19
+    "@thi.ng/associative": ^6.2.14
+    "@thi.ng/color": ^5.2.8
+    "@thi.ng/geom": ^3.4.19
+    "@thi.ng/geom-api": ^3.3.16
+    "@thi.ng/geom-clip-line": ^2.1.33
+    "@thi.ng/geom-resample": ^2.1.33
+    "@thi.ng/grid-iterators": ^2.3.20
     "@thi.ng/testament": ^0.3.4
-    "@thi.ng/transducers": ^8.3.20
-    "@thi.ng/vectors": ^7.5.21
+    "@thi.ng/transducers": ^8.3.21
+    "@thi.ng/vectors": ^7.5.22
     rimraf: ^3.0.2
     tools: "workspace:^"
     typedoc: ^0.23.18
@@ -2941,14 +2941,14 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/geom-hull@^2.1.29, @thi.ng/geom-hull@workspace:packages/geom-hull":
+"@thi.ng/geom-hull@^2.1.30, @thi.ng/geom-hull@workspace:packages/geom-hull":
   version: 0.0.0-use.local
   resolution: "@thi.ng/geom-hull@workspace:packages/geom-hull"
   dependencies:
     "@microsoft/api-extractor": ^7.33.5
     "@thi.ng/math": ^5.3.11
     "@thi.ng/testament": ^0.3.4
-    "@thi.ng/vectors": ^7.5.21
+    "@thi.ng/vectors": ^7.5.22
     rimraf: ^3.0.2
     tools: "workspace:^"
     typedoc: ^0.23.18
@@ -2964,7 +2964,7 @@ __metadata:
     "@thi.ng/api": ^8.4.4
     "@thi.ng/errors": ^2.2.3
     "@thi.ng/testament": ^0.3.4
-    "@thi.ng/vectors": ^7.5.21
+    "@thi.ng/vectors": ^7.5.22
     rimraf: ^3.0.2
     tools: "workspace:^"
     typedoc: ^0.23.18
@@ -2972,17 +2972,17 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/geom-isec@^2.1.32, @thi.ng/geom-isec@workspace:packages/geom-isec":
+"@thi.ng/geom-isec@^2.1.33, @thi.ng/geom-isec@workspace:packages/geom-isec":
   version: 0.0.0-use.local
   resolution: "@thi.ng/geom-isec@workspace:packages/geom-isec"
   dependencies:
     "@microsoft/api-extractor": ^7.33.5
     "@thi.ng/api": ^8.4.4
-    "@thi.ng/geom-api": ^3.3.15
-    "@thi.ng/geom-closest-point": ^2.1.29
+    "@thi.ng/geom-api": ^3.3.16
+    "@thi.ng/geom-closest-point": ^2.1.30
     "@thi.ng/math": ^5.3.11
     "@thi.ng/testament": ^0.3.4
-    "@thi.ng/vectors": ^7.5.21
+    "@thi.ng/vectors": ^7.5.22
     rimraf: ^3.0.2
     tools: "workspace:^"
     typedoc: ^0.23.18
@@ -2990,15 +2990,15 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/geom-isoline@^2.1.29, @thi.ng/geom-isoline@workspace:^, @thi.ng/geom-isoline@workspace:packages/geom-isoline":
+"@thi.ng/geom-isoline@^2.1.30, @thi.ng/geom-isoline@workspace:^, @thi.ng/geom-isoline@workspace:packages/geom-isoline":
   version: 0.0.0-use.local
   resolution: "@thi.ng/geom-isoline@workspace:packages/geom-isoline"
   dependencies:
     "@microsoft/api-extractor": ^7.33.5
     "@thi.ng/api": ^8.4.4
     "@thi.ng/testament": ^0.3.4
-    "@thi.ng/transducers": ^8.3.20
-    "@thi.ng/vectors": ^7.5.21
+    "@thi.ng/transducers": ^8.3.21
+    "@thi.ng/vectors": ^7.5.22
     rimraf: ^3.0.2
     tools: "workspace:^"
     typedoc: ^0.23.18
@@ -3006,17 +3006,17 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/geom-poly-utils@^2.3.16, @thi.ng/geom-poly-utils@workspace:packages/geom-poly-utils":
+"@thi.ng/geom-poly-utils@^2.3.17, @thi.ng/geom-poly-utils@workspace:packages/geom-poly-utils":
   version: 0.0.0-use.local
   resolution: "@thi.ng/geom-poly-utils@workspace:packages/geom-poly-utils"
   dependencies:
     "@microsoft/api-extractor": ^7.33.5
     "@thi.ng/api": ^8.4.4
     "@thi.ng/errors": ^2.2.3
-    "@thi.ng/geom-api": ^3.3.15
+    "@thi.ng/geom-api": ^3.3.16
     "@thi.ng/math": ^5.3.11
     "@thi.ng/testament": ^0.3.4
-    "@thi.ng/vectors": ^7.5.21
+    "@thi.ng/vectors": ^7.5.22
     rimraf: ^3.0.2
     tools: "workspace:^"
     typedoc: ^0.23.18
@@ -3024,17 +3024,17 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/geom-resample@^2.1.32, @thi.ng/geom-resample@workspace:^, @thi.ng/geom-resample@workspace:packages/geom-resample":
+"@thi.ng/geom-resample@^2.1.33, @thi.ng/geom-resample@workspace:^, @thi.ng/geom-resample@workspace:packages/geom-resample":
   version: 0.0.0-use.local
   resolution: "@thi.ng/geom-resample@workspace:packages/geom-resample"
   dependencies:
     "@microsoft/api-extractor": ^7.33.5
     "@thi.ng/checks": ^3.3.2
-    "@thi.ng/geom-api": ^3.3.15
-    "@thi.ng/geom-closest-point": ^2.1.29
+    "@thi.ng/geom-api": ^3.3.16
+    "@thi.ng/geom-closest-point": ^2.1.30
     "@thi.ng/math": ^5.3.11
     "@thi.ng/testament": ^0.3.4
-    "@thi.ng/vectors": ^7.5.21
+    "@thi.ng/vectors": ^7.5.22
     rimraf: ^3.0.2
     tools: "workspace:^"
     typedoc: ^0.23.18
@@ -3051,15 +3051,15 @@ __metadata:
     "@thi.ng/checks": ^3.3.2
     "@thi.ng/defmulti": ^2.1.19
     "@thi.ng/errors": ^2.2.3
-    "@thi.ng/geom": ^3.4.18
-    "@thi.ng/geom-api": ^3.3.15
-    "@thi.ng/geom-isoline": ^2.1.29
-    "@thi.ng/geom-poly-utils": ^2.3.16
-    "@thi.ng/geom-resample": ^2.1.32
+    "@thi.ng/geom": ^3.4.19
+    "@thi.ng/geom-api": ^3.3.16
+    "@thi.ng/geom-isoline": ^2.1.30
+    "@thi.ng/geom-poly-utils": ^2.3.17
+    "@thi.ng/geom-resample": ^2.1.33
     "@thi.ng/math": ^5.3.11
     "@thi.ng/testament": ^0.3.4
-    "@thi.ng/transducers": ^8.3.20
-    "@thi.ng/vectors": ^7.5.21
+    "@thi.ng/transducers": ^8.3.21
+    "@thi.ng/vectors": ^7.5.22
     rimraf: ^3.0.2
     tools: "workspace:^"
     typedoc: ^0.23.18
@@ -3067,19 +3067,19 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/geom-splines@^2.2.6, @thi.ng/geom-splines@workspace:packages/geom-splines":
+"@thi.ng/geom-splines@^2.2.7, @thi.ng/geom-splines@workspace:packages/geom-splines":
   version: 0.0.0-use.local
   resolution: "@thi.ng/geom-splines@workspace:packages/geom-splines"
   dependencies:
     "@microsoft/api-extractor": ^7.33.5
     "@thi.ng/api": ^8.4.4
     "@thi.ng/checks": ^3.3.2
-    "@thi.ng/geom-api": ^3.3.15
-    "@thi.ng/geom-arc": ^2.1.32
-    "@thi.ng/geom-resample": ^2.1.32
+    "@thi.ng/geom-api": ^3.3.16
+    "@thi.ng/geom-arc": ^2.1.33
+    "@thi.ng/geom-resample": ^2.1.33
     "@thi.ng/math": ^5.3.11
     "@thi.ng/testament": ^0.3.4
-    "@thi.ng/vectors": ^7.5.21
+    "@thi.ng/vectors": ^7.5.22
     rimraf: ^3.0.2
     tools: "workspace:^"
     typedoc: ^0.23.18
@@ -3087,16 +3087,16 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/geom-subdiv-curve@^2.1.32, @thi.ng/geom-subdiv-curve@workspace:packages/geom-subdiv-curve":
+"@thi.ng/geom-subdiv-curve@^2.1.33, @thi.ng/geom-subdiv-curve@workspace:packages/geom-subdiv-curve":
   version: 0.0.0-use.local
   resolution: "@thi.ng/geom-subdiv-curve@workspace:packages/geom-subdiv-curve"
   dependencies:
     "@microsoft/api-extractor": ^7.33.5
     "@thi.ng/api": ^8.4.4
-    "@thi.ng/geom-api": ^3.3.15
+    "@thi.ng/geom-api": ^3.3.16
     "@thi.ng/testament": ^0.3.4
-    "@thi.ng/transducers": ^8.3.20
-    "@thi.ng/vectors": ^7.5.21
+    "@thi.ng/transducers": ^8.3.21
+    "@thi.ng/vectors": ^7.5.22
     rimraf: ^3.0.2
     tools: "workspace:^"
     typedoc: ^0.23.18
@@ -3104,18 +3104,18 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/geom-tessellate@^2.1.32, @thi.ng/geom-tessellate@workspace:^, @thi.ng/geom-tessellate@workspace:packages/geom-tessellate":
+"@thi.ng/geom-tessellate@^2.1.33, @thi.ng/geom-tessellate@workspace:^, @thi.ng/geom-tessellate@workspace:packages/geom-tessellate":
   version: 0.0.0-use.local
   resolution: "@thi.ng/geom-tessellate@workspace:packages/geom-tessellate"
   dependencies:
     "@microsoft/api-extractor": ^7.33.5
     "@thi.ng/checks": ^3.3.2
-    "@thi.ng/geom-api": ^3.3.15
-    "@thi.ng/geom-isec": ^2.1.32
-    "@thi.ng/geom-poly-utils": ^2.3.16
+    "@thi.ng/geom-api": ^3.3.16
+    "@thi.ng/geom-isec": ^2.1.33
+    "@thi.ng/geom-poly-utils": ^2.3.17
     "@thi.ng/testament": ^0.3.4
-    "@thi.ng/transducers": ^8.3.20
-    "@thi.ng/vectors": ^7.5.21
+    "@thi.ng/transducers": ^8.3.21
+    "@thi.ng/vectors": ^7.5.22
     rimraf: ^3.0.2
     tools: "workspace:^"
     typedoc: ^0.23.18
@@ -3131,14 +3131,14 @@ __metadata:
     "@thi.ng/api": ^8.4.4
     "@thi.ng/bitfield": ^2.2.10
     "@thi.ng/checks": ^3.3.2
-    "@thi.ng/geom-clip-line": ^2.1.32
-    "@thi.ng/geom-clip-poly": ^2.1.32
-    "@thi.ng/geom-isec": ^2.1.32
-    "@thi.ng/geom-poly-utils": ^2.3.16
+    "@thi.ng/geom-clip-line": ^2.1.33
+    "@thi.ng/geom-clip-poly": ^2.1.33
+    "@thi.ng/geom-isec": ^2.1.33
+    "@thi.ng/geom-poly-utils": ^2.3.17
     "@thi.ng/math": ^5.3.11
     "@thi.ng/quad-edge": ^3.1.14
     "@thi.ng/testament": ^0.3.4
-    "@thi.ng/vectors": ^7.5.21
+    "@thi.ng/vectors": ^7.5.22
     rimraf: ^3.0.2
     tools: "workspace:^"
     typedoc: ^0.23.18
@@ -3146,39 +3146,39 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/geom@^3.4.18, @thi.ng/geom@workspace:^, @thi.ng/geom@workspace:packages/geom":
+"@thi.ng/geom@^3.4.19, @thi.ng/geom@workspace:^, @thi.ng/geom@workspace:packages/geom":
   version: 0.0.0-use.local
   resolution: "@thi.ng/geom@workspace:packages/geom"
   dependencies:
     "@microsoft/api-extractor": ^7.33.5
     "@thi.ng/api": ^8.4.4
-    "@thi.ng/arrays": ^2.3.11
-    "@thi.ng/associative": ^6.2.13
+    "@thi.ng/arrays": ^2.4.0
+    "@thi.ng/associative": ^6.2.14
     "@thi.ng/checks": ^3.3.2
     "@thi.ng/defmulti": ^2.1.19
     "@thi.ng/equiv": ^2.1.12
     "@thi.ng/errors": ^2.2.3
-    "@thi.ng/geom-api": ^3.3.15
-    "@thi.ng/geom-arc": ^2.1.32
-    "@thi.ng/geom-clip-line": ^2.1.32
-    "@thi.ng/geom-clip-poly": ^2.1.32
-    "@thi.ng/geom-closest-point": ^2.1.29
-    "@thi.ng/geom-hull": ^2.1.29
-    "@thi.ng/geom-isec": ^2.1.32
-    "@thi.ng/geom-poly-utils": ^2.3.16
-    "@thi.ng/geom-resample": ^2.1.32
-    "@thi.ng/geom-splines": ^2.2.6
-    "@thi.ng/geom-subdiv-curve": ^2.1.32
-    "@thi.ng/geom-tessellate": ^2.1.32
+    "@thi.ng/geom-api": ^3.3.16
+    "@thi.ng/geom-arc": ^2.1.33
+    "@thi.ng/geom-clip-line": ^2.1.33
+    "@thi.ng/geom-clip-poly": ^2.1.33
+    "@thi.ng/geom-closest-point": ^2.1.30
+    "@thi.ng/geom-hull": ^2.1.30
+    "@thi.ng/geom-isec": ^2.1.33
+    "@thi.ng/geom-poly-utils": ^2.3.17
+    "@thi.ng/geom-resample": ^2.1.33
+    "@thi.ng/geom-splines": ^2.2.7
+    "@thi.ng/geom-subdiv-curve": ^2.1.33
+    "@thi.ng/geom-tessellate": ^2.1.33
     "@thi.ng/hiccup": ^4.2.21
-    "@thi.ng/hiccup-svg": ^4.3.18
+    "@thi.ng/hiccup-svg": ^4.3.19
     "@thi.ng/math": ^5.3.11
-    "@thi.ng/matrices": ^2.1.30
+    "@thi.ng/matrices": ^2.1.31
     "@thi.ng/random": ^3.3.13
     "@thi.ng/strings": ^3.3.15
     "@thi.ng/testament": ^0.3.4
-    "@thi.ng/transducers": ^8.3.20
-    "@thi.ng/vectors": ^7.5.21
+    "@thi.ng/transducers": ^8.3.21
+    "@thi.ng/vectors": ^7.5.22
     rimraf: ^3.0.2
     tools: "workspace:^"
     typedoc: ^0.23.18
@@ -3196,8 +3196,8 @@ __metadata:
     "@thi.ng/math": ^5.3.11
     "@thi.ng/random": ^3.3.13
     "@thi.ng/testament": ^0.3.4
-    "@thi.ng/transducers": ^8.3.20
-    "@thi.ng/zipper": ^2.1.21
+    "@thi.ng/transducers": ^8.3.21
+    "@thi.ng/zipper": ^2.1.22
     rimraf: ^3.0.2
     tools: "workspace:^"
     typedoc: ^0.23.18
@@ -3205,19 +3205,19 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/grid-iterators@^2.3.19, @thi.ng/grid-iterators@workspace:^, @thi.ng/grid-iterators@workspace:packages/grid-iterators":
+"@thi.ng/grid-iterators@^2.3.20, @thi.ng/grid-iterators@workspace:^, @thi.ng/grid-iterators@workspace:packages/grid-iterators":
   version: 0.0.0-use.local
   resolution: "@thi.ng/grid-iterators@workspace:packages/grid-iterators"
   dependencies:
     "@microsoft/api-extractor": ^7.33.5
     "@thi.ng/api": ^8.4.4
-    "@thi.ng/arrays": ^2.3.11
+    "@thi.ng/arrays": ^2.4.0
     "@thi.ng/binary": ^3.3.8
     "@thi.ng/bitfield": ^2.2.10
     "@thi.ng/morton": ^3.1.19
     "@thi.ng/random": ^3.3.13
     "@thi.ng/testament": ^0.3.4
-    "@thi.ng/transducers": ^8.3.20
+    "@thi.ng/transducers": ^8.3.21
     rimraf: ^3.0.2
     tools: "workspace:^"
     typedoc: ^0.23.18
@@ -3233,7 +3233,7 @@ __metadata:
     "@thi.ng/api": ^8.4.4
     "@thi.ng/diff": ^5.1.14
     "@thi.ng/hiccup": ^4.2.21
-    "@thi.ng/hiccup-css": ^2.1.25
+    "@thi.ng/hiccup-css": ^2.1.26
     "@thi.ng/strings": ^3.3.15
     "@thi.ng/testament": ^0.3.4
     "@types/node": ^18.11.7
@@ -3256,7 +3256,7 @@ __metadata:
     "@thi.ng/diff": ^5.1.14
     "@thi.ng/errors": ^2.2.3
     "@thi.ng/hdom": ^9.1.23
-    "@thi.ng/hiccup-canvas": ^2.1.32
+    "@thi.ng/hiccup-canvas": ^2.1.33
     "@thi.ng/testament": ^0.3.4
     rimraf: ^3.0.2
     tools: "workspace:^"
@@ -3275,8 +3275,8 @@ __metadata:
     "@thi.ng/checks": ^3.3.2
     "@thi.ng/math": ^5.3.11
     "@thi.ng/testament": ^0.3.4
-    "@thi.ng/transducers": ^8.3.20
-    "@thi.ng/transducers-stats": ^2.1.25
+    "@thi.ng/transducers": ^8.3.21
+    "@thi.ng/transducers-stats": ^2.1.26
     rimraf: ^3.0.2
     tools: "workspace:^"
     typedoc: ^0.23.18
@@ -3351,18 +3351,18 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/hiccup-canvas@^2.1.32, @thi.ng/hiccup-canvas@workspace:^, @thi.ng/hiccup-canvas@workspace:packages/hiccup-canvas":
+"@thi.ng/hiccup-canvas@^2.1.33, @thi.ng/hiccup-canvas@workspace:^, @thi.ng/hiccup-canvas@workspace:packages/hiccup-canvas":
   version: 0.0.0-use.local
   resolution: "@thi.ng/hiccup-canvas@workspace:packages/hiccup-canvas"
   dependencies:
     "@microsoft/api-extractor": ^7.33.5
     "@thi.ng/api": ^8.4.4
     "@thi.ng/checks": ^3.3.2
-    "@thi.ng/color": ^5.2.7
+    "@thi.ng/color": ^5.2.8
     "@thi.ng/math": ^5.3.11
-    "@thi.ng/pixel": ^4.0.5
+    "@thi.ng/pixel": ^4.0.6
     "@thi.ng/testament": ^0.3.4
-    "@thi.ng/vectors": ^7.5.21
+    "@thi.ng/vectors": ^7.5.22
     rimraf: ^3.0.2
     tools: "workspace:^"
     typedoc: ^0.23.18
@@ -3384,7 +3384,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/hiccup-css@^2.1.25, @thi.ng/hiccup-css@workspace:^, @thi.ng/hiccup-css@workspace:packages/hiccup-css":
+"@thi.ng/hiccup-css@^2.1.26, @thi.ng/hiccup-css@workspace:^, @thi.ng/hiccup-css@workspace:packages/hiccup-css":
   version: 0.0.0-use.local
   resolution: "@thi.ng/hiccup-css@workspace:packages/hiccup-css"
   dependencies:
@@ -3393,7 +3393,7 @@ __metadata:
     "@thi.ng/checks": ^3.3.2
     "@thi.ng/errors": ^2.2.3
     "@thi.ng/testament": ^0.3.4
-    "@thi.ng/transducers": ^8.3.20
+    "@thi.ng/transducers": ^8.3.21
     rimraf: ^3.0.2
     tools: "workspace:^"
     typedoc: ^0.23.18
@@ -3421,16 +3421,16 @@ __metadata:
   dependencies:
     "@microsoft/api-extractor": ^7.33.5
     "@thi.ng/api": ^8.4.4
-    "@thi.ng/arrays": ^2.3.11
+    "@thi.ng/arrays": ^2.4.0
     "@thi.ng/checks": ^3.3.2
     "@thi.ng/defmulti": ^2.1.19
     "@thi.ng/errors": ^2.2.3
-    "@thi.ng/fsm": ^3.1.26
+    "@thi.ng/fsm": ^3.1.27
     "@thi.ng/hiccup": ^4.2.21
     "@thi.ng/strings": ^3.3.15
     "@thi.ng/testament": ^0.3.4
-    "@thi.ng/text-canvas": ^2.4.14
-    "@thi.ng/transducers": ^8.3.20
+    "@thi.ng/text-canvas": ^2.4.15
+    "@thi.ng/transducers": ^8.3.21
     rimraf: ^3.0.2
     tools: "workspace:^"
     typedoc: ^0.23.18
@@ -3438,13 +3438,13 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/hiccup-svg@^4.3.18, @thi.ng/hiccup-svg@workspace:^, @thi.ng/hiccup-svg@workspace:packages/hiccup-svg":
+"@thi.ng/hiccup-svg@^4.3.19, @thi.ng/hiccup-svg@workspace:^, @thi.ng/hiccup-svg@workspace:packages/hiccup-svg":
   version: 0.0.0-use.local
   resolution: "@thi.ng/hiccup-svg@workspace:packages/hiccup-svg"
   dependencies:
     "@microsoft/api-extractor": ^7.33.5
     "@thi.ng/checks": ^3.3.2
-    "@thi.ng/color": ^5.2.7
+    "@thi.ng/color": ^5.2.8
     "@thi.ng/prefixes": ^2.1.12
     "@thi.ng/testament": ^0.3.4
     rimraf: ^3.0.2
@@ -3498,8 +3498,8 @@ __metadata:
     "@thi.ng/defmulti": ^2.1.19
     "@thi.ng/strings": ^3.3.15
     "@thi.ng/testament": ^0.3.4
-    "@thi.ng/transducers": ^8.3.20
-    "@thi.ng/vectors": ^7.5.21
+    "@thi.ng/transducers": ^8.3.21
+    "@thi.ng/vectors": ^7.5.22
     rimraf: ^3.0.2
     tools: "workspace:^"
     typedoc: ^0.23.18
@@ -3514,15 +3514,15 @@ __metadata:
     "@microsoft/api-extractor": ^7.33.5
     "@thi.ng/api": ^8.4.4
     "@thi.ng/checks": ^3.3.2
-    "@thi.ng/geom": ^3.4.18
-    "@thi.ng/geom-api": ^3.3.15
-    "@thi.ng/geom-isec": ^2.1.32
-    "@thi.ng/geom-tessellate": ^2.1.32
+    "@thi.ng/geom": ^3.4.19
+    "@thi.ng/geom-api": ^3.3.16
+    "@thi.ng/geom-isec": ^2.1.33
+    "@thi.ng/geom-tessellate": ^2.1.33
     "@thi.ng/layout": ^2.1.16
     "@thi.ng/math": ^5.3.11
     "@thi.ng/testament": ^0.3.4
-    "@thi.ng/transducers": ^8.3.20
-    "@thi.ng/vectors": ^7.5.21
+    "@thi.ng/transducers": ^8.3.21
+    "@thi.ng/vectors": ^7.5.22
     rimraf: ^3.0.2
     tools: "workspace:^"
     typedoc: ^0.23.18
@@ -3572,7 +3572,7 @@ __metadata:
   dependencies:
     "@microsoft/api-extractor": ^7.33.5
     "@thi.ng/api": ^8.4.4
-    "@thi.ng/dcons": ^3.2.20
+    "@thi.ng/dcons": ^3.2.21
     "@thi.ng/errors": ^2.2.3
     "@thi.ng/testament": ^0.3.4
     rimraf: ^3.0.2
@@ -3582,17 +3582,17 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/k-means@^0.5.29, @thi.ng/k-means@workspace:packages/k-means":
+"@thi.ng/k-means@^0.5.30, @thi.ng/k-means@workspace:packages/k-means":
   version: 0.0.0-use.local
   resolution: "@thi.ng/k-means@workspace:packages/k-means"
   dependencies:
     "@microsoft/api-extractor": ^7.33.5
     "@thi.ng/api": ^8.4.4
-    "@thi.ng/distance": ^2.1.29
+    "@thi.ng/distance": ^2.1.30
     "@thi.ng/errors": ^2.2.3
     "@thi.ng/random": ^3.3.13
     "@thi.ng/testament": ^0.3.4
-    "@thi.ng/vectors": ^7.5.21
+    "@thi.ng/vectors": ^7.5.22
     rimraf: ^3.0.2
     tools: "workspace:^"
     typedoc: ^0.23.18
@@ -3639,7 +3639,7 @@ __metadata:
     "@thi.ng/checks": ^3.3.2
     "@thi.ng/errors": ^2.2.3
     "@thi.ng/testament": ^0.3.4
-    "@thi.ng/transducers-binary": ^2.1.25
+    "@thi.ng/transducers-binary": ^2.1.26
     rimraf: ^3.0.2
     tools: "workspace:^"
     typedoc: ^0.23.18
@@ -3684,8 +3684,8 @@ __metadata:
     "@thi.ng/math": ^5.3.11
     "@thi.ng/random": ^3.3.13
     "@thi.ng/testament": ^0.3.4
-    "@thi.ng/transducers": ^8.3.20
-    "@thi.ng/vectors": ^7.5.21
+    "@thi.ng/transducers": ^8.3.21
+    "@thi.ng/vectors": ^7.5.22
     rimraf: ^3.0.2
     tools: "workspace:^"
     typedoc: ^0.23.18
@@ -3721,7 +3721,7 @@ __metadata:
     "@thi.ng/errors": ^2.2.3
     "@thi.ng/strings": ^3.3.15
     "@thi.ng/testament": ^0.3.4
-    "@thi.ng/transducers": ^8.3.20
+    "@thi.ng/transducers": ^8.3.21
     rimraf: ^3.0.2
     tools: "workspace:^"
     typedoc: ^0.23.18
@@ -3743,7 +3743,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/matrices@^2.1.30, @thi.ng/matrices@workspace:^, @thi.ng/matrices@workspace:packages/matrices":
+"@thi.ng/matrices@^2.1.31, @thi.ng/matrices@workspace:^, @thi.ng/matrices@workspace:packages/matrices":
   version: 0.0.0-use.local
   resolution: "@thi.ng/matrices@workspace:packages/matrices"
   dependencies:
@@ -3752,7 +3752,7 @@ __metadata:
     "@thi.ng/checks": ^3.3.2
     "@thi.ng/math": ^5.3.11
     "@thi.ng/testament": ^0.3.4
-    "@thi.ng/vectors": ^7.5.21
+    "@thi.ng/vectors": ^7.5.22
     rimraf: ^3.0.2
     tools: "workspace:^"
     typedoc: ^0.23.18
@@ -3863,7 +3863,7 @@ __metadata:
     "@microsoft/api-extractor": ^7.33.5
     "@thi.ng/checks": ^3.3.2
     "@thi.ng/math": ^5.3.11
-    "@thi.ng/pixel": ^4.0.5
+    "@thi.ng/pixel": ^4.0.6
     "@thi.ng/testament": ^0.3.4
     rimraf: ^3.0.2
     tools: "workspace:^"
@@ -3879,7 +3879,7 @@ __metadata:
     "@microsoft/api-extractor": ^7.33.5
     "@thi.ng/api": ^8.4.4
     "@thi.ng/errors": ^2.2.3
-    "@thi.ng/pixel": ^4.0.5
+    "@thi.ng/pixel": ^4.0.6
     "@thi.ng/testament": ^0.3.4
     rimraf: ^3.0.2
     tools: "workspace:^"
@@ -3888,7 +3888,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/pixel@^4.0.5, @thi.ng/pixel@workspace:^, @thi.ng/pixel@workspace:packages/pixel":
+"@thi.ng/pixel@^4.0.5, @thi.ng/pixel@^4.0.6, @thi.ng/pixel@workspace:^, @thi.ng/pixel@workspace:packages/pixel":
   version: 0.0.0-use.local
   resolution: "@thi.ng/pixel@workspace:packages/pixel"
   dependencies:
@@ -3896,9 +3896,9 @@ __metadata:
     "@thi.ng/api": ^8.4.4
     "@thi.ng/binary": ^3.3.8
     "@thi.ng/checks": ^3.3.2
-    "@thi.ng/distance": ^2.1.29
+    "@thi.ng/distance": ^2.1.30
     "@thi.ng/errors": ^2.2.3
-    "@thi.ng/k-means": ^0.5.29
+    "@thi.ng/k-means": ^0.5.30
     "@thi.ng/math": ^5.3.11
     "@thi.ng/porter-duff": ^2.1.15
     "@thi.ng/testament": ^0.3.4
@@ -3957,11 +3957,11 @@ __metadata:
     "@microsoft/api-extractor": ^7.33.5
     "@thi.ng/api": ^8.4.4
     "@thi.ng/checks": ^3.3.2
-    "@thi.ng/geom-api": ^3.3.15
+    "@thi.ng/geom-api": ^3.3.16
     "@thi.ng/random": ^3.3.13
     "@thi.ng/testament": ^0.3.4
-    "@thi.ng/transducers": ^8.3.20
-    "@thi.ng/vectors": ^7.5.21
+    "@thi.ng/transducers": ^8.3.21
+    "@thi.ng/vectors": ^7.5.22
     rimraf: ^3.0.2
     tools: "workspace:^"
     typedoc: ^0.23.18
@@ -4016,12 +4016,12 @@ __metadata:
   resolution: "@thi.ng/ramp@workspace:packages/ramp"
   dependencies:
     "@microsoft/api-extractor": ^7.33.5
-    "@thi.ng/arrays": ^2.3.11
+    "@thi.ng/arrays": ^2.4.0
     "@thi.ng/compare": ^2.1.14
     "@thi.ng/math": ^5.3.11
     "@thi.ng/testament": ^0.3.4
-    "@thi.ng/transducers": ^8.3.20
-    "@thi.ng/vectors": ^7.5.21
+    "@thi.ng/transducers": ^8.3.21
+    "@thi.ng/vectors": ^7.5.22
     rimraf: ^3.0.2
     tools: "workspace:^"
     typedoc: ^0.23.18
@@ -4085,11 +4085,11 @@ __metadata:
     "@thi.ng/api": ^8.4.4
     "@thi.ng/checks": ^3.3.2
     "@thi.ng/equiv": ^2.1.12
-    "@thi.ng/grid-iterators": ^2.3.19
+    "@thi.ng/grid-iterators": ^2.3.20
     "@thi.ng/porter-duff": ^2.1.15
     "@thi.ng/random": ^3.3.13
     "@thi.ng/testament": ^0.3.4
-    "@thi.ng/transducers": ^8.3.20
+    "@thi.ng/transducers": ^8.3.21
     rimraf: ^3.0.2
     tools: "workspace:^"
     typedoc: ^0.23.18
@@ -4104,13 +4104,13 @@ __metadata:
     "@microsoft/api-extractor": ^7.33.5
     "@thi.ng/adapt-dpi": ^2.2.1
     "@thi.ng/api": ^8.4.4
-    "@thi.ng/associative": ^6.2.13
+    "@thi.ng/associative": ^6.2.14
     "@thi.ng/checks": ^3.3.2
-    "@thi.ng/hiccup-canvas": ^2.1.32
-    "@thi.ng/rdom": ^0.9.16
-    "@thi.ng/rstream": ^7.2.25
+    "@thi.ng/hiccup-canvas": ^2.1.33
+    "@thi.ng/rdom": ^0.9.17
+    "@thi.ng/rstream": ^7.2.26
     "@thi.ng/testament": ^0.3.4
-    "@thi.ng/transducers": ^8.3.20
+    "@thi.ng/transducers": ^8.3.21
     rimraf: ^3.0.2
     tools: "workspace:^"
     typedoc: ^0.23.18
@@ -4124,13 +4124,13 @@ __metadata:
   dependencies:
     "@microsoft/api-extractor": ^7.33.5
     "@thi.ng/api": ^8.4.4
-    "@thi.ng/associative": ^6.2.13
+    "@thi.ng/associative": ^6.2.14
     "@thi.ng/hiccup-html": ^2.1.15
-    "@thi.ng/rdom": ^0.9.16
-    "@thi.ng/rstream": ^7.2.25
+    "@thi.ng/rdom": ^0.9.17
+    "@thi.ng/rstream": ^7.2.26
     "@thi.ng/strings": ^3.3.15
     "@thi.ng/testament": ^0.3.4
-    "@thi.ng/transducers": ^8.3.20
+    "@thi.ng/transducers": ^8.3.21
     rimraf: ^3.0.2
     tools: "workspace:^"
     typedoc: ^0.23.18
@@ -4138,7 +4138,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/rdom@^0.9.16, @thi.ng/rdom@workspace:^, @thi.ng/rdom@workspace:packages/rdom":
+"@thi.ng/rdom@^0.9.17, @thi.ng/rdom@workspace:^, @thi.ng/rdom@workspace:packages/rdom":
   version: 0.0.0-use.local
   resolution: "@thi.ng/rdom@workspace:packages/rdom"
   dependencies:
@@ -4149,7 +4149,7 @@ __metadata:
     "@thi.ng/hiccup": ^4.2.21
     "@thi.ng/paths": ^5.1.20
     "@thi.ng/prefixes": ^2.1.12
-    "@thi.ng/rstream": ^7.2.25
+    "@thi.ng/rstream": ^7.2.26
     "@thi.ng/strings": ^3.3.15
     "@thi.ng/testament": ^0.3.4
     rimraf: ^3.0.2
@@ -4214,8 +4214,8 @@ __metadata:
   resolution: "@thi.ng/rstream-csp@workspace:packages/rstream-csp"
   dependencies:
     "@microsoft/api-extractor": ^7.33.5
-    "@thi.ng/csp": ^2.1.25
-    "@thi.ng/rstream": ^7.2.25
+    "@thi.ng/csp": ^2.1.26
+    "@thi.ng/rstream": ^7.2.26
     "@thi.ng/testament": ^0.3.4
     rimraf: ^3.0.2
     tools: "workspace:^"
@@ -4224,15 +4224,15 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/rstream-dot@^2.1.28, @thi.ng/rstream-dot@workspace:^, @thi.ng/rstream-dot@workspace:packages/rstream-dot":
+"@thi.ng/rstream-dot@^2.1.29, @thi.ng/rstream-dot@workspace:^, @thi.ng/rstream-dot@workspace:packages/rstream-dot":
   version: 0.0.0-use.local
   resolution: "@thi.ng/rstream-dot@workspace:packages/rstream-dot"
   dependencies:
     "@microsoft/api-extractor": ^7.33.5
-    "@thi.ng/rstream": ^7.2.25
+    "@thi.ng/rstream": ^7.2.26
     "@thi.ng/strings": ^3.3.15
     "@thi.ng/testament": ^0.3.4
-    "@thi.ng/transducers": ^8.3.20
+    "@thi.ng/transducers": ^8.3.21
     rimraf: ^3.0.2
     tools: "workspace:^"
     typedoc: ^0.23.18
@@ -4248,9 +4248,9 @@ __metadata:
     "@thi.ng/api": ^8.4.4
     "@thi.ng/checks": ^3.3.2
     "@thi.ng/math": ^5.3.11
-    "@thi.ng/rstream": ^7.2.25
+    "@thi.ng/rstream": ^7.2.26
     "@thi.ng/testament": ^0.3.4
-    "@thi.ng/transducers": ^8.3.20
+    "@thi.ng/transducers": ^8.3.21
     rimraf: ^3.0.2
     tools: "workspace:^"
     typedoc: ^0.23.18
@@ -4269,9 +4269,9 @@ __metadata:
     "@thi.ng/errors": ^2.2.3
     "@thi.ng/paths": ^5.1.20
     "@thi.ng/resolve-map": ^7.1.12
-    "@thi.ng/rstream": ^7.2.25
+    "@thi.ng/rstream": ^7.2.26
     "@thi.ng/testament": ^0.3.4
-    "@thi.ng/transducers": ^8.3.20
+    "@thi.ng/transducers": ^8.3.21
     rimraf: ^3.0.2
     tools: "workspace:^"
     typedoc: ^0.23.18
@@ -4284,7 +4284,7 @@ __metadata:
   resolution: "@thi.ng/rstream-log-file@workspace:packages/rstream-log-file"
   dependencies:
     "@microsoft/api-extractor": ^7.33.5
-    "@thi.ng/rstream": ^7.2.25
+    "@thi.ng/rstream": ^7.2.26
     "@thi.ng/testament": ^0.3.4
     "@types/node": ^18.11.7
     rimraf: ^3.0.2
@@ -4303,10 +4303,10 @@ __metadata:
     "@thi.ng/checks": ^3.3.2
     "@thi.ng/errors": ^2.2.3
     "@thi.ng/logger": ^1.4.2
-    "@thi.ng/rstream": ^7.2.25
+    "@thi.ng/rstream": ^7.2.26
     "@thi.ng/strings": ^3.3.15
     "@thi.ng/testament": ^0.3.4
-    "@thi.ng/transducers": ^8.3.20
+    "@thi.ng/transducers": ^8.3.21
     rimraf: ^3.0.2
     tools: "workspace:^"
     typedoc: ^0.23.18
@@ -4320,16 +4320,16 @@ __metadata:
   dependencies:
     "@microsoft/api-extractor": ^7.33.5
     "@thi.ng/api": ^8.4.4
-    "@thi.ng/associative": ^6.2.13
+    "@thi.ng/associative": ^6.2.14
     "@thi.ng/checks": ^3.3.2
     "@thi.ng/equiv": ^2.1.12
     "@thi.ng/errors": ^2.2.3
     "@thi.ng/logger": ^1.4.2
     "@thi.ng/math": ^5.3.11
-    "@thi.ng/rstream": ^7.2.25
-    "@thi.ng/rstream-dot": ^2.1.28
+    "@thi.ng/rstream": ^7.2.26
+    "@thi.ng/rstream-dot": ^2.1.29
     "@thi.ng/testament": ^0.3.4
-    "@thi.ng/transducers": ^8.3.20
+    "@thi.ng/transducers": ^8.3.21
     rimraf: ^3.0.2
     tools: "workspace:^"
     typedoc: ^0.23.18
@@ -4337,20 +4337,20 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/rstream@^7.2.25, @thi.ng/rstream@workspace:^, @thi.ng/rstream@workspace:packages/rstream":
+"@thi.ng/rstream@^7.2.26, @thi.ng/rstream@workspace:^, @thi.ng/rstream@workspace:packages/rstream":
   version: 0.0.0-use.local
   resolution: "@thi.ng/rstream@workspace:packages/rstream"
   dependencies:
     "@microsoft/api-extractor": ^7.33.5
     "@thi.ng/api": ^8.4.4
-    "@thi.ng/arrays": ^2.3.11
-    "@thi.ng/associative": ^6.2.13
+    "@thi.ng/arrays": ^2.4.0
+    "@thi.ng/associative": ^6.2.14
     "@thi.ng/atom": ^5.1.20
     "@thi.ng/checks": ^3.3.2
     "@thi.ng/errors": ^2.2.3
     "@thi.ng/logger": ^1.4.2
     "@thi.ng/testament": ^0.3.4
-    "@thi.ng/transducers": ^8.3.20
+    "@thi.ng/transducers": ^8.3.21
     rimraf: ^3.0.2
     tools: "workspace:^"
     typedoc: ^0.23.18
@@ -4366,8 +4366,8 @@ __metadata:
     "@thi.ng/api": ^8.4.4
     "@thi.ng/strings": ^3.3.15
     "@thi.ng/testament": ^0.3.4
-    "@thi.ng/transducers": ^8.3.20
-    "@thi.ng/transducers-fsm": ^2.1.25
+    "@thi.ng/transducers": ^8.3.21
+    "@thi.ng/transducers-fsm": ^2.1.26
     rimraf: ^3.0.2
     tools: "workspace:^"
     typedoc: ^0.23.18
@@ -4383,9 +4383,9 @@ __metadata:
     "@thi.ng/api": ^8.4.4
     "@thi.ng/checks": ^3.3.2
     "@thi.ng/errors": ^2.2.3
-    "@thi.ng/matrices": ^2.1.30
+    "@thi.ng/matrices": ^2.1.31
     "@thi.ng/testament": ^0.3.4
-    "@thi.ng/vectors": ^7.5.21
+    "@thi.ng/vectors": ^7.5.22
     rimraf: ^3.0.2
     tools: "workspace:^"
     typedoc: ^0.23.18
@@ -4424,7 +4424,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/shader-ast-glsl@^0.4.27, @thi.ng/shader-ast-glsl@workspace:^, @thi.ng/shader-ast-glsl@workspace:packages/shader-ast-glsl":
+"@thi.ng/shader-ast-glsl@^0.4.28, @thi.ng/shader-ast-glsl@workspace:^, @thi.ng/shader-ast-glsl@workspace:packages/shader-ast-glsl":
   version: 0.0.0-use.local
   resolution: "@thi.ng/shader-ast-glsl@workspace:packages/shader-ast-glsl"
   dependencies:
@@ -4432,7 +4432,7 @@ __metadata:
     "@thi.ng/api": ^8.4.4
     "@thi.ng/checks": ^3.3.2
     "@thi.ng/errors": ^2.2.3
-    "@thi.ng/shader-ast": ^0.12.27
+    "@thi.ng/shader-ast": ^0.12.28
     "@thi.ng/testament": ^0.3.4
     rimraf: ^3.0.2
     tools: "workspace:^"
@@ -4450,11 +4450,11 @@ __metadata:
     "@thi.ng/checks": ^3.3.2
     "@thi.ng/errors": ^2.2.3
     "@thi.ng/math": ^5.3.11
-    "@thi.ng/matrices": ^2.1.30
-    "@thi.ng/pixel": ^4.0.5
-    "@thi.ng/shader-ast": ^0.12.27
+    "@thi.ng/matrices": ^2.1.31
+    "@thi.ng/pixel": ^4.0.6
+    "@thi.ng/shader-ast": ^0.12.28
     "@thi.ng/testament": ^0.3.4
-    "@thi.ng/vectors": ^7.5.21
+    "@thi.ng/vectors": ^7.5.22
     rimraf: ^3.0.2
     tools: "workspace:^"
     typedoc: ^0.23.18
@@ -4471,7 +4471,7 @@ __metadata:
     "@thi.ng/defmulti": ^2.1.19
     "@thi.ng/logger": ^1.4.2
     "@thi.ng/math": ^5.3.11
-    "@thi.ng/shader-ast": ^0.12.27
+    "@thi.ng/shader-ast": ^0.12.28
     "@thi.ng/testament": ^0.3.4
     rimraf: ^3.0.2
     tools: "workspace:^"
@@ -4480,13 +4480,13 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/shader-ast-stdlib@^0.12.20, @thi.ng/shader-ast-stdlib@workspace:^, @thi.ng/shader-ast-stdlib@workspace:packages/shader-ast-stdlib":
+"@thi.ng/shader-ast-stdlib@^0.12.21, @thi.ng/shader-ast-stdlib@workspace:^, @thi.ng/shader-ast-stdlib@workspace:packages/shader-ast-stdlib":
   version: 0.0.0-use.local
   resolution: "@thi.ng/shader-ast-stdlib@workspace:packages/shader-ast-stdlib"
   dependencies:
     "@microsoft/api-extractor": ^7.33.5
     "@thi.ng/api": ^8.4.4
-    "@thi.ng/shader-ast": ^0.12.27
+    "@thi.ng/shader-ast": ^0.12.28
     "@thi.ng/testament": ^0.3.4
     rimraf: ^3.0.2
     tools: "workspace:^"
@@ -4495,7 +4495,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/shader-ast@^0.12.27, @thi.ng/shader-ast@workspace:^, @thi.ng/shader-ast@workspace:packages/shader-ast":
+"@thi.ng/shader-ast@^0.12.28, @thi.ng/shader-ast@workspace:^, @thi.ng/shader-ast@workspace:packages/shader-ast":
   version: 0.0.0-use.local
   resolution: "@thi.ng/shader-ast@workspace:packages/shader-ast"
   dependencies:
@@ -4503,7 +4503,7 @@ __metadata:
     "@thi.ng/api": ^8.4.4
     "@thi.ng/checks": ^3.3.2
     "@thi.ng/defmulti": ^2.1.19
-    "@thi.ng/dgraph": ^2.1.25
+    "@thi.ng/dgraph": ^2.1.26
     "@thi.ng/errors": ^2.2.3
     "@thi.ng/logger": ^1.4.2
     "@thi.ng/testament": ^0.3.4
@@ -4520,7 +4520,7 @@ __metadata:
   dependencies:
     "@microsoft/api-extractor": ^7.33.5
     "@thi.ng/testament": ^0.3.4
-    "@thi.ng/transducers-binary": ^2.1.25
+    "@thi.ng/transducers-binary": ^2.1.26
     assemblyscript: 0.22.0
     rimraf: ^3.0.2
     tools: "workspace:^"
@@ -4539,8 +4539,8 @@ __metadata:
     "@thi.ng/equiv": ^2.1.12
     "@thi.ng/errors": ^2.2.3
     "@thi.ng/testament": ^0.3.4
-    "@thi.ng/transducers-binary": ^2.1.25
-    "@thi.ng/vectors": ^7.5.21
+    "@thi.ng/transducers-binary": ^2.1.26
+    "@thi.ng/vectors": ^7.5.22
     rimraf: ^3.0.2
     tools: "workspace:^"
     typedoc: ^0.23.18
@@ -4548,7 +4548,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/sparse@^0.3.25, @thi.ng/sparse@workspace:packages/sparse":
+"@thi.ng/sparse@^0.3.26, @thi.ng/sparse@workspace:packages/sparse":
   version: 0.0.0-use.local
   resolution: "@thi.ng/sparse@workspace:packages/sparse"
   dependencies:
@@ -4556,7 +4556,7 @@ __metadata:
     "@thi.ng/api": ^8.4.4
     "@thi.ng/errors": ^2.2.3
     "@thi.ng/testament": ^0.3.4
-    "@thi.ng/transducers": ^8.3.20
+    "@thi.ng/transducers": ^8.3.21
     rimraf: ^3.0.2
     tools: "workspace:^"
     typedoc: ^0.23.18
@@ -4587,7 +4587,7 @@ __metadata:
   dependencies:
     "@microsoft/api-extractor": ^7.33.5
     "@thi.ng/api": ^8.4.4
-    "@thi.ng/dgraph": ^2.1.25
+    "@thi.ng/dgraph": ^2.1.26
     "@thi.ng/logger": ^1.4.2
     "@thi.ng/testament": ^0.3.4
     rimraf: ^3.0.2
@@ -4612,7 +4612,7 @@ __metadata:
     "@thi.ng/logger": ^1.4.2
     "@thi.ng/strings": ^3.3.15
     "@thi.ng/testament": ^0.3.4
-    "@thi.ng/transducers": ^8.3.20
+    "@thi.ng/transducers": ^8.3.21
     rimraf: ^3.0.2
     tools: "workspace:^"
     typedoc: ^0.23.18
@@ -4638,21 +4638,21 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/text-canvas@^2.4.14, @thi.ng/text-canvas@workspace:^, @thi.ng/text-canvas@workspace:packages/text-canvas":
+"@thi.ng/text-canvas@^2.4.14, @thi.ng/text-canvas@^2.4.15, @thi.ng/text-canvas@workspace:^, @thi.ng/text-canvas@workspace:packages/text-canvas":
   version: 0.0.0-use.local
   resolution: "@thi.ng/text-canvas@workspace:packages/text-canvas"
   dependencies:
     "@microsoft/api-extractor": ^7.33.5
     "@thi.ng/api": ^8.4.4
-    "@thi.ng/arrays": ^2.3.11
+    "@thi.ng/arrays": ^2.4.0
     "@thi.ng/checks": ^3.3.2
     "@thi.ng/errors": ^2.2.3
-    "@thi.ng/geom-clip-line": ^2.1.32
+    "@thi.ng/geom-clip-line": ^2.1.33
     "@thi.ng/math": ^5.3.11
     "@thi.ng/strings": ^3.3.15
     "@thi.ng/testament": ^0.3.4
     "@thi.ng/text-format": ^1.2.7
-    "@thi.ng/transducers": ^8.3.20
+    "@thi.ng/transducers": ^8.3.21
     rimraf: ^3.0.2
     tools: "workspace:^"
     tslib: ^2.4.0
@@ -4677,7 +4677,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/transducers-binary@^2.1.25, @thi.ng/transducers-binary@workspace:^, @thi.ng/transducers-binary@workspace:packages/transducers-binary":
+"@thi.ng/transducers-binary@^2.1.26, @thi.ng/transducers-binary@workspace:^, @thi.ng/transducers-binary@workspace:packages/transducers-binary":
   version: 0.0.0-use.local
   resolution: "@thi.ng/transducers-binary@workspace:packages/transducers-binary"
   dependencies:
@@ -4688,7 +4688,7 @@ __metadata:
     "@thi.ng/hex": ^2.2.2
     "@thi.ng/random": ^3.3.13
     "@thi.ng/testament": ^0.3.4
-    "@thi.ng/transducers": ^8.3.20
+    "@thi.ng/transducers": ^8.3.21
     rimraf: ^3.0.2
     tools: "workspace:^"
     typedoc: ^0.23.18
@@ -4696,14 +4696,14 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/transducers-fsm@^2.1.25, @thi.ng/transducers-fsm@workspace:packages/transducers-fsm":
+"@thi.ng/transducers-fsm@^2.1.26, @thi.ng/transducers-fsm@workspace:packages/transducers-fsm":
   version: 0.0.0-use.local
   resolution: "@thi.ng/transducers-fsm@workspace:packages/transducers-fsm"
   dependencies:
     "@microsoft/api-extractor": ^7.33.5
     "@thi.ng/api": ^8.4.4
     "@thi.ng/testament": ^0.3.4
-    "@thi.ng/transducers": ^8.3.20
+    "@thi.ng/transducers": ^8.3.21
     rimraf: ^3.0.2
     tools: "workspace:^"
     typedoc: ^0.23.18
@@ -4719,7 +4719,7 @@ __metadata:
     "@thi.ng/hdom": ^9.1.23
     "@thi.ng/hiccup": ^4.2.21
     "@thi.ng/testament": ^0.3.4
-    "@thi.ng/transducers": ^8.3.20
+    "@thi.ng/transducers": ^8.3.21
     rimraf: ^3.0.2
     tools: "workspace:^"
     typedoc: ^0.23.18
@@ -4737,7 +4737,7 @@ __metadata:
     "@thi.ng/errors": ^2.2.3
     "@thi.ng/paths": ^5.1.20
     "@thi.ng/testament": ^0.3.4
-    "@thi.ng/transducers": ^8.3.20
+    "@thi.ng/transducers": ^8.3.21
     rimraf: ^3.0.2
     tools: "workspace:^"
     typedoc: ^0.23.18
@@ -4745,16 +4745,16 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/transducers-stats@^2.1.25, @thi.ng/transducers-stats@workspace:^, @thi.ng/transducers-stats@workspace:packages/transducers-stats":
+"@thi.ng/transducers-stats@^2.1.26, @thi.ng/transducers-stats@workspace:^, @thi.ng/transducers-stats@workspace:packages/transducers-stats":
   version: 0.0.0-use.local
   resolution: "@thi.ng/transducers-stats@workspace:packages/transducers-stats"
   dependencies:
     "@microsoft/api-extractor": ^7.33.5
     "@thi.ng/checks": ^3.3.2
-    "@thi.ng/dcons": ^3.2.20
+    "@thi.ng/dcons": ^3.2.21
     "@thi.ng/errors": ^2.2.3
     "@thi.ng/testament": ^0.3.4
-    "@thi.ng/transducers": ^8.3.20
+    "@thi.ng/transducers": ^8.3.21
     rimraf: ^3.0.2
     tools: "workspace:^"
     typedoc: ^0.23.18
@@ -4762,13 +4762,13 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/transducers@^8.3.20, @thi.ng/transducers@workspace:^, @thi.ng/transducers@workspace:packages/transducers":
+"@thi.ng/transducers@^8.3.20, @thi.ng/transducers@^8.3.21, @thi.ng/transducers@workspace:^, @thi.ng/transducers@workspace:packages/transducers":
   version: 0.0.0-use.local
   resolution: "@thi.ng/transducers@workspace:packages/transducers"
   dependencies:
     "@microsoft/api-extractor": ^7.33.5
     "@thi.ng/api": ^8.4.4
-    "@thi.ng/arrays": ^2.3.11
+    "@thi.ng/arrays": ^2.4.0
     "@thi.ng/checks": ^3.3.2
     "@thi.ng/compare": ^2.1.14
     "@thi.ng/compose": ^2.1.16
@@ -4810,7 +4810,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/vector-pools@^3.1.31, @thi.ng/vector-pools@workspace:^, @thi.ng/vector-pools@workspace:packages/vector-pools":
+"@thi.ng/vector-pools@^3.1.32, @thi.ng/vector-pools@workspace:^, @thi.ng/vector-pools@workspace:packages/vector-pools":
   version: 0.0.0-use.local
   resolution: "@thi.ng/vector-pools@workspace:packages/vector-pools"
   dependencies:
@@ -4822,8 +4822,8 @@ __metadata:
     "@thi.ng/logger": ^1.4.2
     "@thi.ng/malloc": ^6.1.20
     "@thi.ng/testament": ^0.3.4
-    "@thi.ng/transducers": ^8.3.20
-    "@thi.ng/vectors": ^7.5.21
+    "@thi.ng/transducers": ^8.3.21
+    "@thi.ng/vectors": ^7.5.22
     rimraf: ^3.0.2
     tools: "workspace:^"
     typedoc: ^0.23.18
@@ -4831,7 +4831,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/vectors@^7.5.21, @thi.ng/vectors@workspace:^, @thi.ng/vectors@workspace:packages/vectors":
+"@thi.ng/vectors@^7.5.21, @thi.ng/vectors@^7.5.22, @thi.ng/vectors@workspace:^, @thi.ng/vectors@workspace:packages/vectors":
   version: 0.0.0-use.local
   resolution: "@thi.ng/vectors@workspace:packages/vectors"
   dependencies:
@@ -4846,7 +4846,7 @@ __metadata:
     "@thi.ng/random": ^3.3.13
     "@thi.ng/strings": ^3.3.15
     "@thi.ng/testament": ^0.3.4
-    "@thi.ng/transducers": ^8.3.20
+    "@thi.ng/transducers": ^8.3.21
     rimraf: ^3.0.2
     tools: "workspace:^"
     typedoc: ^0.23.18
@@ -4860,14 +4860,14 @@ __metadata:
   dependencies:
     "@microsoft/api-extractor": ^7.33.5
     "@thi.ng/api": ^8.4.4
-    "@thi.ng/arrays": ^2.3.11
-    "@thi.ng/associative": ^6.2.13
+    "@thi.ng/arrays": ^2.4.0
+    "@thi.ng/associative": ^6.2.14
     "@thi.ng/checks": ^3.3.2
     "@thi.ng/date": ^2.3.13
     "@thi.ng/math": ^5.3.11
     "@thi.ng/strings": ^3.3.15
     "@thi.ng/testament": ^0.3.4
-    "@thi.ng/transducers": ^8.3.20
+    "@thi.ng/transducers": ^8.3.21
     rimraf: ^3.0.2
     tools: "workspace:^"
     typedoc: ^0.23.18
@@ -4885,7 +4885,7 @@ __metadata:
     "@thi.ng/checks": ^3.3.2
     "@thi.ng/errors": ^2.2.3
     "@thi.ng/testament": ^0.3.4
-    "@thi.ng/wasm-api": ^0.17.3
+    "@thi.ng/wasm-api": ^0.18.0
     rimraf: ^3.0.2
     tools: "workspace:^"
     typedoc: ^0.23.18
@@ -4900,7 +4900,7 @@ __metadata:
     "@microsoft/api-extractor": ^7.33.5
     "@thi.ng/api": ^8.4.4
     "@thi.ng/testament": ^0.3.4
-    "@thi.ng/wasm-api": ^0.17.3
+    "@thi.ng/wasm-api": ^0.18.0
     rimraf: ^3.0.2
     tools: "workspace:^"
     typedoc: ^0.23.18
@@ -4908,14 +4908,14 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/wasm-api@^0.17.3, @thi.ng/wasm-api@workspace:^, @thi.ng/wasm-api@workspace:packages/wasm-api":
+"@thi.ng/wasm-api@^0.18.0, @thi.ng/wasm-api@workspace:^, @thi.ng/wasm-api@workspace:packages/wasm-api":
   version: 0.0.0-use.local
   resolution: "@thi.ng/wasm-api@workspace:packages/wasm-api"
   dependencies:
     "@microsoft/api-extractor": ^7.33.5
     "@thi.ng/api": ^8.4.4
     "@thi.ng/args": ^2.2.7
-    "@thi.ng/arrays": ^2.3.11
+    "@thi.ng/arrays": ^2.4.0
     "@thi.ng/binary": ^3.3.8
     "@thi.ng/checks": ^3.3.2
     "@thi.ng/compare": ^2.1.14
@@ -4943,12 +4943,12 @@ __metadata:
   dependencies:
     "@microsoft/api-extractor": ^7.33.5
     "@thi.ng/api": ^8.4.4
-    "@thi.ng/shader-ast": ^0.12.27
+    "@thi.ng/shader-ast": ^0.12.28
     "@thi.ng/testament": ^0.3.4
-    "@thi.ng/transducers": ^8.3.20
-    "@thi.ng/vector-pools": ^3.1.31
-    "@thi.ng/vectors": ^7.5.21
-    "@thi.ng/webgl": ^6.2.11
+    "@thi.ng/transducers": ^8.3.21
+    "@thi.ng/vector-pools": ^3.1.32
+    "@thi.ng/vectors": ^7.5.22
+    "@thi.ng/webgl": ^6.2.12
     "@types/node": ^18.11.7
     rimraf: ^3.0.2
     tools: "workspace:^"
@@ -4963,10 +4963,10 @@ __metadata:
   dependencies:
     "@microsoft/api-extractor": ^7.33.5
     "@thi.ng/api": ^8.4.4
-    "@thi.ng/shader-ast": ^0.12.27
-    "@thi.ng/shader-ast-glsl": ^0.4.27
+    "@thi.ng/shader-ast": ^0.12.28
+    "@thi.ng/shader-ast-glsl": ^0.4.28
     "@thi.ng/testament": ^0.3.4
-    "@thi.ng/webgl": ^6.2.11
+    "@thi.ng/webgl": ^6.2.12
     "@types/node": ^18.11.7
     rimraf: ^3.0.2
     tools: "workspace:^"
@@ -4975,28 +4975,28 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/webgl@^6.2.11, @thi.ng/webgl@workspace:^, @thi.ng/webgl@workspace:packages/webgl":
+"@thi.ng/webgl@^6.2.12, @thi.ng/webgl@workspace:^, @thi.ng/webgl@workspace:packages/webgl":
   version: 0.0.0-use.local
   resolution: "@thi.ng/webgl@workspace:packages/webgl"
   dependencies:
     "@microsoft/api-extractor": ^7.33.5
     "@thi.ng/adapt-dpi": ^2.2.1
     "@thi.ng/api": ^8.4.4
-    "@thi.ng/associative": ^6.2.13
+    "@thi.ng/associative": ^6.2.14
     "@thi.ng/checks": ^3.3.2
     "@thi.ng/equiv": ^2.1.12
     "@thi.ng/errors": ^2.2.3
     "@thi.ng/logger": ^1.4.2
-    "@thi.ng/matrices": ^2.1.30
+    "@thi.ng/matrices": ^2.1.31
     "@thi.ng/memoize": ^3.1.14
-    "@thi.ng/pixel": ^4.0.5
-    "@thi.ng/shader-ast": ^0.12.27
-    "@thi.ng/shader-ast-glsl": ^0.4.27
-    "@thi.ng/shader-ast-stdlib": ^0.12.20
+    "@thi.ng/pixel": ^4.0.6
+    "@thi.ng/shader-ast": ^0.12.28
+    "@thi.ng/shader-ast-glsl": ^0.4.28
+    "@thi.ng/shader-ast-stdlib": ^0.12.21
     "@thi.ng/testament": ^0.3.4
-    "@thi.ng/transducers": ^8.3.20
-    "@thi.ng/vector-pools": ^3.1.31
-    "@thi.ng/vectors": ^7.5.21
+    "@thi.ng/transducers": ^8.3.21
+    "@thi.ng/vector-pools": ^3.1.32
+    "@thi.ng/vectors": ^7.5.22
     rimraf: ^3.0.2
     tools: "workspace:^"
     typedoc: ^0.23.18
@@ -5004,13 +5004,13 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/zipper@^2.1.21, @thi.ng/zipper@workspace:packages/zipper":
+"@thi.ng/zipper@^2.1.22, @thi.ng/zipper@workspace:packages/zipper":
   version: 0.0.0-use.local
   resolution: "@thi.ng/zipper@workspace:packages/zipper"
   dependencies:
     "@microsoft/api-extractor": ^7.33.5
     "@thi.ng/api": ^8.4.4
-    "@thi.ng/arrays": ^2.3.11
+    "@thi.ng/arrays": ^2.4.0
     "@thi.ng/checks": ^3.3.2
     "@thi.ng/errors": ^2.2.3
     "@thi.ng/testament": ^0.3.4
