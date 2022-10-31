@@ -32,19 +32,19 @@ export fn _timer_callback(timeoutID: u16, remove: api.TimerType) void {
     }
 }
 
-pub extern "timer" fn _setTimeout(timeoutID: u16, interval: usize, kind: api.TimerType) void;
+pub extern "timer" fn _schedule(timeoutID: u16, interval: usize, kind: api.TimerType) void;
 
 /// Schedules given timer callback of given kind and returns an unique listener ID.
-pub fn setTimeout(timeout: *const TimerCallback, interval: usize, kind: api.TimerType) !u16 {
+pub fn schedule(timeout: *const TimerCallback, interval: usize, kind: api.TimerType) !u16 {
     const timeoutID = try timeouts.add(timeout);
-    _setTimeout(timeoutID, interval, kind);
+    _schedule(timeoutID, interval, kind);
     return timeoutID;
 }
 
-pub extern "timer" fn _cancelTimeout(timeoutID: u16) void;
+pub extern "timer" fn _cancel(timeoutID: u16) void;
 
 /// Cancels & removes the timer callback for given ID
-pub fn cancelTimeout(timeoutID: u16) void {
+pub fn cancel(timeoutID: u16) void {
     timeouts.remove(timeoutID);
-    _cancelTimeout(timeoutID);
+    _cancel(timeoutID);
 }

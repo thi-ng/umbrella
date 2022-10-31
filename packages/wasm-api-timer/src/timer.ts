@@ -40,7 +40,7 @@ export class WasmTimers implements IWasmAPI<TimerExports> {
 
 	getImports(): TimerImports {
 		return {
-			_setTimeout: (listenerID, interval, kind) => {
+			_schedule: (listenerID, interval, kind) => {
 				const handler = () =>
 					this.parent.exports._timer_callback(listenerID, kind);
 				const timeoutID = START[kind].call(null, handler, interval);
@@ -51,7 +51,7 @@ export class WasmTimers implements IWasmAPI<TimerExports> {
 				};
 			},
 
-			_cancelTimeout: (listenerID) => {
+			_cancel: (listenerID) => {
 				const listener = this.listeners[listenerID];
 				if (listener) {
 					CANCEL[listener.kind].call(null, listenerID);

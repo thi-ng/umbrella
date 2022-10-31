@@ -27,8 +27,9 @@ The package provides a WASM bridge API and abstraction for:
 - **interval**: `setInterval()` / `clearInterval()`
 - **immediate**: `setImmediate()` / `clearImmediate()`
 
-These different types of delayed execution are exposed via the single
-`setTimeout()` function and the `TimerType` enum:
+These different types of delayed execution are unified into the single
+`schedule()` function and the `TimerType` enum. Scheduled callbacks can be
+cancelled via `cancel()`...
 
 Zig example:
 
@@ -41,19 +42,19 @@ const timer = @import("timer");
 try timer.init(allocator);
 
 // schedule a single/one-off callback 500ms in the future
-const listenerID = try timer.setTimeout(
+const listenerID = try timer.schedule(
 	&.{ .callback = onTimer, .ctx = self },
 	500,
 	.once
 );
 
-// or maybe cancel it again
-timer.cancelTimeout(listenerID);
+// ...or maybe cancel it again
+timer.cancel(listenerID);
 ```
 
 Also see
 [zig-counter](https://github.com/thi-ng/umbrella/blob/develop/examples/zig-counter/)
-example project for futher usage...
+example project for more advanced usage...
 
 ## Status
 
@@ -84,7 +85,7 @@ node --experimental-repl-await
 > const wasmApiTimer = await import("@thi.ng/wasm-api-timer");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 442 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 446 bytes
 
 ## Dependencies
 

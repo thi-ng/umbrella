@@ -15,11 +15,11 @@ export interface TimerImports extends WebAssembly.ModuleImports {
 	 * @param interval
 	 * @param type
 	 */
-	_setTimeout(listenerID: number, interval: number, type: TimerType): void;
+	_schedule(listenerID: number, interval: number, type: TimerType): void;
 	/**
 	 * Cancels & removes the timer callback for given ID.
 	 *
 	 * @param listenerID
 	 */
-	_cancelTimeout(listenerID: number): void;
+	_cancel(listenerID: number): void;
 }
