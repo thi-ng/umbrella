@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-10-30T13:56:23Z
+- **Last updated**: 2022-10-31T09:19:33Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,15 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [0.17.3](https://github.com/thi-ng/umbrella/tree/@thi.ng/wasm-api@0.17.3) (2022-10-31)
+
+#### ♻️ Refactoring
+
+- restructure/rename zig files, update readdme ([c63ca10](https://github.com/thi-ng/umbrella/commit/c63ca10))
+  - enforce uniform project structure for all `[@thi.ng/wasm-api-](https://github.com/thi-ng/umbrella/tree/main/packages/wasm-api-)*` packages
+  - rename /zig/wasmapi.zig => /zig/lib.zig
+  - update readme w/ further info
 
 ### [0.17.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/wasm-api@0.17.1) (2022-10-30)
 
