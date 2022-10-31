@@ -26,12 +26,10 @@ const CANCEL: Record<TimerType, Fn<any, void>> = {
 };
 
 export class WasmTimers implements IWasmAPI<TimerExports> {
+	readonly id = "timer";
+
 	parent!: WasmBridge<TimerExports>;
-
 	listeners: Record<number, Timer> = {};
-
-	protected currEvent: Event | null = null;
-	protected currDataTransfer: DataTransfer | null = null;
 
 	async init(parent: WasmBridge<TimerExports>) {
 		this.parent = parent;
