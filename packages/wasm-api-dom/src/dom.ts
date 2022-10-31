@@ -55,6 +55,8 @@ interface WasmListener {
 }
 
 export class WasmDom implements IWasmAPI<DOMExports> {
+	readonly id = "dom";
+
 	parent!: WasmBridge<DOMExports>;
 	$Event!: WasmType<WasmEvent>;
 	$CreateElementOpts!: WasmType<CreateElementOpts>;
