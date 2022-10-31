@@ -51,7 +51,7 @@ node --experimental-repl-await
 > const arrays = await import("@thi.ng/arrays");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 2.51 KB
+Package sizes (gzipped, pre-treeshake): ESM: 2.64 KB
 
 ## Dependencies
 
@@ -90,6 +90,7 @@ Package sizes (gzipped, pre-treeshake): ESM: 2.51 KB
 - [startsWith()](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays/src/starts-with.ts)
 - [swap()](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays/src/swap.ts)
 - [swizzle()](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays/src/swizzle.ts)
+- [topoSort()](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays/src/topo-sort.ts)
 
 ### Binary search result predicates
 

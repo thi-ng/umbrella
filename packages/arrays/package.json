@@ -53,10 +53,14 @@
 		"aos",
 		"array",
 		"binary",
+		"distance",
 		"fuzzy",
+		"levenshtein",
 		"search",
 		"shuffle",
+		"sort",
 		"swizzle",
+		"topology",
 		"typescript"
 	],
 	"publishConfig": {
@@ -141,6 +145,9 @@
 		},
 		"./swizzle": {
 			"default": "./swizzle.js"
+		},
+		"./topo-sort": {
+			"default": "./topo-sort.js"
 		}
 	},
 	"thi.ng": {

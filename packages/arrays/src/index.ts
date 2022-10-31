@@ -21,3 +21,4 @@ export * from "./sort-cached.js";
 export * from "./starts-with.js";
 export * from "./swap.js";
 export * from "./swizzle.js";
+export * from "./topo-sort.js";

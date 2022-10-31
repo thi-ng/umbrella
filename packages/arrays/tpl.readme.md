@@ -61,6 +61,7 @@ ${docLink}
 - [startsWith()](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays/src/starts-with.ts)
 - [swap()](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays/src/swap.ts)
 - [swizzle()](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays/src/swizzle.ts)
+- [topoSort()](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays/src/topo-sort.ts)
 
 ### Binary search result predicates
 
