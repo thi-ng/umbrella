@@ -505,6 +505,13 @@ following example provides a brief overview:
 import { IWasmAPI, WasmBridge } from "@thi.ng/wasm-api";
 
 export class CustomAPI implements IWasmAPI {
+	// Unique API module identifier to group WASM imports,
+	// must match ID used by native code (see further below).
+	readonly id = "custom";
+	// optionally list IDs of other API modules this module depends on
+	// these are used to infer the correct initialization order
+	readonly dependencies = [];
+
 	parent!: WasmBridge;
 
 	async init(parent: WasmBridge) {
@@ -538,7 +545,7 @@ export class CustomAPI implements IWasmAPI {
 Now we can supply this custom API when creating the main WASM bridge:
 
 ```ts
-export const bridge = new WasmBridge({ custom: new CustomAPI() });
+export const bridge = new WasmBridge([new CustomAPI()]);
 ```
 
 In Zig (or any other language of your choice) we can then utilize this custom
@@ -681,7 +688,7 @@ node --experimental-repl-await
 > const wasmApi = await import("@thi.ng/wasm-api");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 7.06 KB
+Package sizes (gzipped, pre-treeshake): ESM: 7.13 KB
 
 **IMPORTANT:** The package includes multiple language code generators which are
 **not** required for normal use of the API bridge. Hence, the actual package
@@ -691,6 +698,7 @@ size in production will be MUCH smaller than what's stated here!
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
 - [@thi.ng/args](https://github.com/thi-ng/umbrella/tree/develop/packages/args)
+- [@thi.ng/arrays](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays)
 - [@thi.ng/binary](https://github.com/thi-ng/umbrella/tree/develop/packages/binary)
 - [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
 - [@thi.ng/compare](https://github.com/thi-ng/umbrella/tree/develop/packages/compare)

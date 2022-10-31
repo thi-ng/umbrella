@@ -483,6 +483,13 @@ following example provides a brief overview:
 import { IWasmAPI, WasmBridge } from "@thi.ng/wasm-api";
 
 export class CustomAPI implements IWasmAPI {
+	// Unique API module identifier to group WASM imports,
+	// must match ID used by native code (see further below).
+	readonly id = "custom";
+	// optionally list IDs of other API modules this module depends on
+	// these are used to infer the correct initialization order
+	readonly dependencies = [];
+
 	parent!: WasmBridge;
 
 	async init(parent: WasmBridge) {
@@ -516,7 +523,7 @@ export class CustomAPI implements IWasmAPI {
 Now we can supply this custom API when creating the main WASM bridge:
 
 ```ts
-export const bridge = new WasmBridge({ custom: new CustomAPI() });
+export const bridge = new WasmBridge([new CustomAPI()]);
 ```
 
 In Zig (or any other language of your choice) we can then utilize this custom
