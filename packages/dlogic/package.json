@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/dlogic",
-	"version": "2.1.14",
+	"version": "2.1.15",
 	"description": "Assorted digital logic ops / constructs",
 	"type": "module",
 	"module": "./index.js",
@@ -34,7 +34,7 @@
 		"test": "testament test"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.4.4"
+		"@thi.ng/api": "^8.4.5"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.33.5",

@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/fuzzy",
-	"version": "2.1.15",
+	"version": "2.1.16",
 	"description": "Fuzzy logic operators & configurable rule inferencing engine",
 	"type": "module",
 	"module": "./index.js",
@@ -34,8 +34,8 @@
 		"test": "testament test"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.4.4",
-		"@thi.ng/math": "^5.3.11"
+		"@thi.ng/api": "^8.4.5",
+		"@thi.ng/math": "^5.3.12"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.33.5",

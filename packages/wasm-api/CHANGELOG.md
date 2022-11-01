@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-10-31T23:01:45Z
+- **Last updated**: 2022-11-01T12:32:51Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,14 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [0.18.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/wasm-api@0.18.1) (2022-11-01)
+
+#### 🩹 Bug fixes
+
+- fix TS code gen array mem mapping ([a0e7132](https://github.com/thi-ng/umbrella/commit/a0e7132))
+  - use correct type size for array mem mapping
+  - update test fixtures
 
 ## [0.18.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/wasm-api@0.18.0) (2022-10-31)
 

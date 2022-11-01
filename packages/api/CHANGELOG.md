@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-10-28T19:08:39Z
+- **Last updated**: 2022-11-01T12:32:51Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,12 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [8.4.5](https://github.com/thi-ng/umbrella/tree/@thi.ng/api@8.4.5) (2022-11-01)
+
+#### 🩹 Bug fixes
+
+- off-by-one error for BIT_SHIFTS LUT (f64) ([dae2279](https://github.com/thi-ng/umbrella/commit/dae2279))
 
 ## [8.4.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/api@8.4.0) (2022-08-15)
 

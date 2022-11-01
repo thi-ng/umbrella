@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-10-31T23:01:45Z
+- **Last updated**: 2022-11-01T12:32:51Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,19 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [0.9.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/wasm-api-dom@0.9.0) (2022-11-01)
+
+#### 🚀 Features
+
+- update ScrollEvent ([17a6205](https://github.com/thi-ng/umbrella/commit/17a6205))
+  - update ScrollEvent.fromEvent() to use target element's scroll offset
+  - if attached to window, use global offset
+- add attrib creation opts ([0e69c47](https://github.com/thi-ng/umbrella/commit/0e69c47))
+  - add Attrib, AttribValue, AttribType types
+  - update CreateElementOpts
+  - update initElement() to batch create given attribs
+  - update doc strings
 
 ### [0.8.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/wasm-api-dom@0.8.1) (2022-10-31)
 
