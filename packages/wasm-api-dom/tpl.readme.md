@@ -134,17 +134,24 @@ struct has some additional options and more are planned. All WIP!
 
 Attributes can be provided as part of the `CreateElementOpts` and/or accessed imperatively:
 
+Zig example:
+
 ```zig
 // creating & configuring an <input type="range"> element
 _ = dom.createElement(&.{
     .tag = "input",
-    .parent = toolbar,
+    .parent = dom.body,
+	// optional attrib declarations
     .attribs = &.{
+		// string attrib
         dom.Attrib.string("type", "range"),
+		// numeric attribs
         dom.Attrib.number("min", 0),
         dom.Attrib.number("max", 100),
         dom.Attrib.number("step", 10),
         dom.Attrib.number("value", 20),
+		// boolean attrib (only will be created if true)
+        dom.Attrib.flag("disabled", true),
     },
 });
 ```
