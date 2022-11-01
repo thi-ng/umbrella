@@ -163,7 +163,9 @@ pub const PointerEvent = struct {
 };
 
 pub const ScrollEvent = struct {
+    /// Horizontal scroll offset in fractional CSS pixels.
     scrollX: f32,
+    /// Vertical scroll offset in fractional CSS pixels.
     scrollY: f32,
 };
 

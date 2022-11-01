@@ -385,16 +385,25 @@
 		"name": "ScrollEvent",
 		"type": "struct",
 		"fields": [
-			{ "name": "scrollX", "type": "f32" },
-			{ "name": "scrollY", "type": "f32" }
+			{
+				"name": "scrollX",
+				"type": "f32",
+				"doc": "Horizontal scroll offset in fractional CSS pixels."
+			},
+			{
+				"name": "scrollY",
+				"type": "f32",
+				"doc": "Vertical scroll offset in fractional CSS pixels."
+			}
 		],
 		"body": {
 			"ts": {
 				"decl": "fromEvent(e: globalThis.Event): void;",
 				"impl": [
-					"fromEvent() {",
-					"this.scrollX = window.scrollX;",
-					"this.scrollY = window.scrollY;",
+					"fromEvent(e: globalThis.Event) {",
+					"const target = <HTMLElement>((<any>e.target).scrollTop != null ? e.target : document.scrollingElement);",
+					"this.scrollX = target.scrollLeft || 0;",
+					"this.scrollY = target.scrollTop || 0;",
 					"}"
 				]
 			}

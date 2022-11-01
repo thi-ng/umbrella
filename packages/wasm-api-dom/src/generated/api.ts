@@ -652,10 +652,14 @@ export const $PointerEvent: WasmTypeConstructor<PointerEvent> = (mem) => ({
 
 export interface ScrollEvent extends WasmTypeBase {
 	/**
+	 * Horizontal scroll offset in fractional CSS pixels.
+	 * 
 	 * WASM type: f32
 	 */
 	scrollX: number;
 	/**
+	 * Vertical scroll offset in fractional CSS pixels.
+	 * 
 	 * WASM type: f32
 	 */
 	scrollY: number;
@@ -691,9 +695,10 @@ export const $ScrollEvent: WasmTypeConstructor<ScrollEvent> = (mem) => ({
 				mem.f32[(base + 4) >>> 2] = x;
 			},
 			
-			fromEvent() {
-				this.scrollX = window.scrollX;
-				this.scrollY = window.scrollY;
+			fromEvent(e: globalThis.Event) {
+				const target = <HTMLElement>((<any>e.target).scrollTop != null ? e.target : document.scrollingElement);
+				this.scrollX = target.scrollLeft || 0;
+				this.scrollY = target.scrollTop || 0;
 			}
 			
 		};
