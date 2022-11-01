@@ -157,7 +157,7 @@ export const BIT_SHIFTS = {
 	i64: 3,
 	u64: 3,
 	f32: 2,
-	f64: 2,
+	f64: 3,
 };
 
 export const FLOAT_ARRAY_CTORS: Record<FloatType, FloatArrayConstructor> = {
