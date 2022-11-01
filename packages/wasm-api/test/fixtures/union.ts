@@ -52,10 +52,10 @@ export const $A: WasmTypeConstructor<A> = (mem) => ({
 				return $c || ($c = new Pointer<Uint16Array>(mem, (base + 8), (base) => mem.u16.subarray(base >>> 1, (base >>> 1) + 3)));
 			},
 			get d(): number {
-				return mem.f64[(base + 16) >>> 2];
+				return mem.f64[(base + 16) >>> 3];
 			},
 			set d(x: number) {
-				mem.f64[(base + 16) >>> 2] = x;
+				mem.f64[(base + 16) >>> 3] = x;
 			},
 		};
 	}
@@ -88,7 +88,7 @@ export const $B: WasmTypeConstructor<B> = (mem) => ({
 				const addr = base;
 				const inst = $A(mem);
 				const slice: A[] = [];
-				for(let i = 0; i < 3; i++) slice.push(inst.instance(addr + i * 72));
+				for(let i = 0; i < 3; i++) slice.push(inst.instance(addr + i * 24));
 				return slice;
 			},
 			get b(): bigint {

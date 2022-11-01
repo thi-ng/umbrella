@@ -15,6 +15,7 @@ import {
 	ICodeGen,
 	PKG_NAME,
 	Struct,
+	TypeColl,
 	Union,
 	WasmPrim,
 	WasmTarget,
@@ -201,7 +202,11 @@ import { MemorySlice, Pointer, ${__stringImpl(
 						);
 					} else {
 						const fn = f.len
-							? [`(addr) => {`, ...__mapArray(f, f.len), `}`]
+							? [
+									`(addr) => {`,
+									...__mapArray(f, types, f.len),
+									`}`,
+							  ]
 							: [`(addr) => new $${f.type}.instance(addr)`];
 						lines.push(
 							`return $${f.name} || ($${
@@ -238,7 +243,7 @@ import { MemorySlice, Pointer, ${__stringImpl(
 					} else {
 						lines.push(
 							`const addr = ${__ptr(opts.target, offset)};`,
-							...__mapArray(f)
+							...__mapArray(f, types)
 						);
 					}
 				} else if (f.tag === "array" || f.tag === "vec") {
@@ -262,7 +267,7 @@ import { MemorySlice, Pointer, ${__stringImpl(
 					} else {
 						lines.push(
 							`const addr = ${__addr(offset)};`,
-							...__mapArray(f, f.len)
+							...__mapArray(f, types, f.len)
 						);
 					}
 				} else {
@@ -375,10 +380,12 @@ const __mem = (type: string, offset: number) =>
 	`mem.${type}[${__addrShift(offset!, type)}]`;
 
 /** @internal */
-const __mapArray = (f: Field, len: NumOrString = "len") => [
+const __mapArray = (f: Field, types: TypeColl, len: NumOrString = "len") => [
 	`const inst = $${f.type}(mem);`,
 	`const slice: ${f.type}[] = [];`,
-	`for(let i = 0; i < ${len}; i++) slice.push(inst.instance(addr + i * ${f.__size}));`,
+	`for(let i = 0; i < ${len}; i++) slice.push(inst.instance(addr + i * ${
+		types[f.type].__size
+	}));`,
 	`return slice;`,
 ];
 
