@@ -25,6 +25,7 @@
 		"util": false
 	},
 	"thi.ng": {
+		"demo": "http://media.thi.ng/2018/talks/clojurex/index.html",
 		"readme": [
 			"hdom",
 			"rstream",
