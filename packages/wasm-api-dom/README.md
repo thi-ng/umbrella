@@ -157,16 +157,16 @@ Zig example:
 _ = dom.createElement(&.{
     .tag = "input",
     .parent = dom.body,
-	// optional attrib declarations
+    // optional attrib declarations
     .attribs = &.{
-		// string attrib
+        // string attrib
         dom.Attrib.string("type", "range"),
-		// numeric attribs
+        // numeric attribs
         dom.Attrib.number("min", 0),
         dom.Attrib.number("max", 100),
         dom.Attrib.number("step", 10),
         dom.Attrib.number("value", 20),
-		// boolean attrib (only will be created if true)
+        // boolean attrib (only will be created if true)
         dom.Attrib.flag("disabled", true),
     },
 });
