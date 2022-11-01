@@ -30,7 +30,11 @@ export const examplesTable = (pkgName: string) => {
 					desc: expkg.description || "",
 					demo:
 						meta.online !== false
-							? link("Demo", `${CONFIG.demoURL}/${exampleName}/`)
+							? link(
+									"Demo",
+									meta.demo ||
+										`${CONFIG.demoURL}/${exampleName}/`
+							  )
 							: "",
 					src: link(
 						"Source",
