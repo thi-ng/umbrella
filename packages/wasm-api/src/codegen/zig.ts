@@ -36,7 +36,7 @@ export interface ZigOpts extends CodeGenOptsBase {}
  */
 export const ZIG = (opts: Partial<ZigOpts> = {}) => {
 	const INDENT = "    ";
-	const SCOPES: [RegExp, RegExp] = [/\{$/, /\}\)?[;,]?$/];
+	const SCOPES: [RegExp, RegExp] = [/\{$/, /(?<!\{.*)\}\)?[;,]?$/];
 
 	const gen: ICodeGen = {
 		pre: () =>

@@ -65,7 +65,7 @@ export const TYPESCRIPT = (opts: Partial<TSOpts> = {}) => {
 		...opts,
 	};
 
-	const SCOPES: [RegExp, RegExp] = [/\{$/, /\}\)?[;,]?$/];
+	const SCOPES: [RegExp, RegExp] = [/\{$/, /(?<!\{.*)\}\)?[;,]?$/];
 
 	const gen: ICodeGen = {
 		pre: (opts) => `// @ts-ignore possibly includes unused imports
