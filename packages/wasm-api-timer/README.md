@@ -86,7 +86,7 @@ node --experimental-repl-await
 > const wasmApiTimer = await import("@thi.ng/wasm-api-timer");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 446 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 432 bytes
 
 ## Dependencies
 

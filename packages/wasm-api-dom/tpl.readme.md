@@ -26,9 +26,9 @@ Current key features for the Zig (WASM) side:
 - Attribute setters/getters (string, numeric, boolean)
 - `.innerHTML` & `.innerText` setters
 - Event handlers, event types (see generated types in [api.zig](https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api-dom/zig/api.zig) for details):
-	- drag 'n drop (WIP)
-	- focus
-	- input
+    - drag 'n drop (WIP)
+    - focus
+    - input
     - key
     - mouse
     - pointer
@@ -65,7 +65,7 @@ pub const WASM_ALLOCATOR = gpa.allocator();
 fn init() !void {
     // the DOM API module must always be intialized first!
     try dom.init(WASM_ALLOCATOR);
-	// ...
+    // ...
 }
 
 /// Main entry point
@@ -130,13 +130,41 @@ The
 [CreateElementOpts](https://docs.thi.ng/umbrella/wasm-api-dom/interfaces/CreateElementOpts.html)
 struct has some additional options and more are planned. All WIP!
 
+### Attribute creation & accessors
+
+Attributes can be provided as part of the `CreateElementOpts` and/or accessed imperatively:
+
+```zig
+// creating & configuring an <input type="range"> element
+_ = dom.createElement(&.{
+    .tag = "input",
+    .parent = toolbar,
+    .attribs = &.{
+        dom.Attrib.string("type", "range"),
+        dom.Attrib.number("min", 0),
+        dom.Attrib.number("max", 100),
+        dom.Attrib.number("step", 10),
+        dom.Attrib.number("value", 20),
+    },
+});
+```
+
+The following accessors are provided (see
+[/zig/lib.zig](https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api-dom/zig/lib.zig)
+for documentation):
+
+- `getStringAttrib()` / `setStringAttrib()`
+- `getNumericAttrib()` / `setNumericAttrib()`
+- `getBooleanAttrib()` / `setBooleanAttrib()`
+
 ### Event listeners
 
 Once a DOM element has been created, event listeners can be attached to it. All
 listeners take two arguments: an `Event` struct and an optional opaque pointer
 for passing arbitrary user context.
 
-This small Zig click counter button component can be seen in action in the
+A more advanced version of the following click counter button component (written
+in Zig) can be seen in action in the
 [zig-counter](https://github.com/thi-ng/umbrella/tree/develop/examples/zig-counter)
 example project.
 
