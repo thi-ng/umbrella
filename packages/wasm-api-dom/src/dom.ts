@@ -13,6 +13,8 @@ import {
 	$CreateElementOpts,
 	$Event,
 	$WindowInfo,
+	Attrib,
+	AttribType,
 	CreateElementOpts,
 	DOMExports,
 	DOMImports,
@@ -138,7 +140,7 @@ export class WasmDom implements IWasmAPI<DOMExports> {
 				const opts = $CreateCanvasOpts(this.parent).instance(optsAddr);
 				const el = document.createElement("canvas");
 				adaptDPI(el, opts.width, opts.height, opts.dpr);
-				this.initElement(el, <any>opts);
+				this.initElement(el, opts);
 				return this.elements.add(el);
 			},
 
@@ -362,16 +364,35 @@ export class WasmDom implements IWasmAPI<DOMExports> {
 			Readonly<CreateElementOpts>,
 			"class" | "id" | "index" | "parent"
 		> &
-			Partial<{ html: ReadonlyWasmString; text: ReadonlyWasmString }>,
+			Partial<{
+				attribs: Attrib[];
+				html: ReadonlyWasmString;
+				text: ReadonlyWasmString;
+			}>,
 		nestedParent?: number
 	) {
-		const { id, class: $class, index } = opts;
+		const { id, attribs, class: $class, index } = opts;
 		if (id.length) el.setAttribute("id", id.deref());
 		if ($class.length) el.setAttribute("class", $class.deref());
 		if (opts.html?.length) {
 			el.innerHTML = opts.html.deref();
 		} else if (opts.text?.length) {
 			(<HTMLElement>el).innerText = opts.text.deref();
+		}
+		if (attribs && attribs.length) {
+			for (let attr of attribs) {
+				const name = attr.name.deref();
+				if (attr.kind === AttribType.FLAG) {
+					attr.value.flag && el.setAttribute(name, "");
+				} else {
+					el.setAttribute(
+						name,
+						attr.kind === AttribType.STR
+							? attr.value.str.deref()
+							: String(attr.value.num)
+					);
+				}
+			}
 		}
 		const parent = nestedParent != undefined ? nestedParent : opts.parent;
 		if (parent >= 0) {
