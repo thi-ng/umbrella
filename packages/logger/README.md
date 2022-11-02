@@ -128,7 +128,6 @@ A selection:
 | Screenshot                                                                                                             | Description                                                      | Live demo                                             | Source                                                                             |
 |:-----------------------------------------------------------------------------------------------------------------------|:-----------------------------------------------------------------|:------------------------------------------------------|:-----------------------------------------------------------------------------------|
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/webgl-float-fbo.jpg" width="240"/> | Drawing to floating point offscreen / multi-pass shader pipeline | [Demo](https://demo.thi.ng/umbrella/webgl-float-fbo/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/webgl-float-fbo) |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/zig-canvas.png" width="240"/>      | Zig-based DOM creation & canvas drawing app                      | [Demo](https://demo.thi.ng/umbrella/zig-canvas/)      | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/zig-canvas)      |
 
 ## API
 

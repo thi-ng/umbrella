@@ -13,7 +13,6 @@ This project is part of the
 - [Status](#status)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
-- [Usage examples](#usage-examples)
 - [API](#api)
 - [Authors](#authors)
   - [Maintainer](#maintainer)
@@ -66,18 +65,6 @@ Package sizes (gzipped, pre-treeshake): ESM: 2.33 KB
 ## Dependencies
 
 None
-
-## Usage examples
-
-Several demos in this repo's
-[/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
-directory are using this package.
-
-A selection:
-
-| Screenshot                                                                                                        | Description                                 | Live demo                                        | Source                                                                        |
-|:------------------------------------------------------------------------------------------------------------------|:--------------------------------------------|:-------------------------------------------------|:------------------------------------------------------------------------------|
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/zig-canvas.png" width="240"/> | Zig-based DOM creation & canvas drawing app | [Demo](https://demo.thi.ng/umbrella/zig-canvas/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/zig-canvas) |
 
 ## API
 
