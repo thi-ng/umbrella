@@ -557,4 +557,29 @@ export class WasmBridge<T extends WasmExports = WasmExports>
 	/** {@inheritDoc @thi.ng/api#INotify.notify} */
 	// @ts-ignore: mixin
 	notify(event: Event): void {}
+
+	printHexdump(addr: number, len: number) {
+		console.log(this.hexdump(addr, len).join("\n"));
+	}
+
+	hexdump(addr: number, len: number) {
+		const res = [];
+		while (len > 0) {
+			const row = [...this.u8.subarray(addr, addr + 16)];
+			res.push(
+				[
+					U32(addr),
+					...row.map(U8),
+					row
+						.map((x) =>
+							x >= 0x20 && x < 0x80 ? String.fromCharCode(x) : "."
+						)
+						.join(""),
+				].join(" ")
+			);
+			len -= 16;
+			addr += 16;
+		}
+		return res;
+	}
 }
