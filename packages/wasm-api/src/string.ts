@@ -90,6 +90,20 @@ export class WasmStringSlice implements ReadonlyWasmString {
 		this.mem.u32[(this.base + 4) >>> 2] = len;
 	}
 
+	/**
+	 * Encodes given string to UTF-8 (by default zero terminated), allocates
+	 * memory for it and then updates this slice.
+	 *
+	 * @param str
+	 * @param terminate
+	 */
+	setAlloc(str: string, terminate = true) {
+		const buf = new TextEncoder().encode(str);
+		const [addr] = this.mem.allocate(buf.length + ~~terminate);
+		this.mem.u8.set(buf, addr);
+		this.setSlice(addr, buf.length);
+	}
+
 	toJSON() {
 		return this.deref();
 	}
