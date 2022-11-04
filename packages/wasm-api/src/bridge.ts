@@ -11,7 +11,7 @@ import { INotifyMixin } from "@thi.ng/api/mixins/inotify";
 import { topoSort } from "@thi.ng/arrays/topo-sort";
 import { assert } from "@thi.ng/errors/assert";
 import { defError } from "@thi.ng/errors/deferror";
-import { U16, U32, U64BIG, U8 } from "@thi.ng/hex";
+import { hexdumpLines, U16, U32, U64BIG, U8 } from "@thi.ng/hex";
 import type { ILogger } from "@thi.ng/logger";
 import { ConsoleLogger } from "@thi.ng/logger/console";
 import {
@@ -86,11 +86,18 @@ export class WasmBridge<T extends WasmExports = WasmExports>
 			printU64: (x: bigint) => this.logger.debug(x),
 			printF32: logN,
 			printF64: logN,
+
 			printU8Hex: (x: number) => this.logger.debug(() => `0x${U8(x)}`),
 			printU16Hex: (x: number) => this.logger.debug(() => `0x${U16(x)}`),
 			printU32Hex: (x: number) => this.logger.debug(() => `0x${U32(x)}`),
 			printU64Hex: (x: bigint) =>
 				this.logger.debug(() => `0x${U64BIG(x)}`),
+			printHexdump: (addr: number, len: number) => {
+				this.ensureMemory();
+				for (let line of hexdumpLines(this.u8, addr, len)) {
+					this.logger.debug(line);
+				}
+			},
 
 			_printI8Array: logA(this.getI8Array.bind(this)),
 			_printU8Array: logA(this.getU8Array.bind(this)),
@@ -557,29 +564,4 @@ export class WasmBridge<T extends WasmExports = WasmExports>
 	/** {@inheritDoc @thi.ng/api#INotify.notify} */
 	// @ts-ignore: mixin
 	notify(event: Event): void {}
-
-	printHexdump(addr: number, len: number) {
-		console.log(this.hexdump(addr, len).join("\n"));
-	}
-
-	hexdump(addr: number, len: number) {
-		const res = [];
-		while (len > 0) {
-			const row = [...this.u8.subarray(addr, addr + 16)];
-			res.push(
-				[
-					U32(addr),
-					...row.map(U8),
-					row
-						.map((x) =>
-							x >= 0x20 && x < 0x80 ? String.fromCharCode(x) : "."
-						)
-						.join(""),
-				].join(" ")
-			);
-			len -= 16;
-			addr += 16;
-		}
-		return res;
-	}
 }
