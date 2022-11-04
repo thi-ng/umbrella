@@ -26,6 +26,20 @@ import {
 	NS_PREFIXES,
 } from "./api.js";
 
+/**
+ * Hidden property for managed DOM elements to track IDs of attached WASM event
+ * listeners
+ */
+const __listeners = "__wasm_listeners";
+
+interface WASMElement extends Element {
+	[__listeners]: Set<number>;
+}
+
+/**
+ * Map of JS event name regexps to {@link EventType} enums and {@link EventBody}
+ * field names
+ */
 const EVENT_MAP: [
 	RegExp,
 	Exclude<keyof EventBody, keyof WasmTypeBase> | undefined,
@@ -130,10 +144,25 @@ export class WasmDom implements IWasmAPI<DOMExports> {
 				const el = this.elements.get(elementID, false);
 				if (!el) return;
 				const remove = (el: Element) => {
-					const id = this.elements.find((x) => x === el, false);
-					if (id !== undefined) this.elements.delete(id, false);
+					const elementID = this.elements.find(
+						(x) => x === el,
+						false
+					);
+					if (elementID !== undefined) {
+						this.elements.delete(elementID, false);
+						const elementListeners = (<WASMElement>el)[__listeners];
+						if (elementListeners) {
+							for (let listenerID of elementListeners) {
+								this.removeListener(el, listenerID);
+								// WASM side cleanup
+								this.parent.exports.dom_removeListener(
+									listenerID
+								);
+							}
+						}
+					}
 					el.parentNode?.removeChild(el);
-					for (let child of el.children) remove(child);
+					for (let child of [...el.children]) remove(child);
 				};
 				remove(el);
 			},
@@ -261,9 +290,7 @@ export class WasmDom implements IWasmAPI<DOMExports> {
 						listenerID,
 						event.__base
 					);
-					if (slice) {
-						this.parent.free(slice);
-					}
+					if (slice) this.parent.free(slice);
 					this.currEvent = null;
 					this.currDataTransfer = null;
 				};
@@ -277,6 +304,12 @@ export class WasmDom implements IWasmAPI<DOMExports> {
 					event,
 					fn,
 				};
+				if (ctxID >= 0) {
+					(
+						(<WASMElement>ctx)[__listeners] ||
+						((<WASMElement>ctx)[__listeners] = new Set())
+					).add(listenerID);
+				}
 			},
 
 			preventDefault: () => {
@@ -296,12 +329,11 @@ export class WasmDom implements IWasmAPI<DOMExports> {
 				assert(!!listener, `unknown listener ID: ${listenerID}`);
 				const ctx =
 					listener.ctx < 0 ? window : this.elements.get(listener.ctx);
-				ctx.removeEventListener(listener.name, listener.fn);
-				this.parent.logger.debug(
-					`removing event listener #${listenerID}`
-				);
-				this.parent.free([listener.event.__base, this.$Event.size]);
-				delete this.listeners[listenerID];
+				this.removeListener(ctx, listenerID);
+				if (listener.ctx >= 0) {
+					const listeners = (<WASMElement>ctx)[__listeners];
+					if (listeners.has(listenerID)) listeners.delete(listenerID);
+				}
 			},
 
 			_setInnerHtml: (elementID: number, body: number) => {
@@ -428,4 +460,12 @@ export class WasmDom implements IWasmAPI<DOMExports> {
 			: el.setAttribute(name, String(value));
 	}
 
+	protected removeListener(ctx: Window | Element, listenerID: number) {
+		const listener = this.listeners[listenerID];
+		assert(!!listener, `invalid listener ID ${listenerID}`);
+		this.parent.logger.debug(`removing event listener #${listenerID}`);
+		delete this.listeners[listenerID];
+		ctx.removeEventListener(listener.name, listener.fn);
+		this.parent.free([listener.event.__base, this.$Event.size]);
+	}
 }

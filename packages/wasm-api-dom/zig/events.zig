@@ -52,6 +52,13 @@ pub fn addListener(elementID: i32, name: []const u8, listener: *const EventListe
     return listenerID;
 }
 
+/// Internal callback. Called from JS when an indirectly referenced event
+/// listener must be removed as part of the recursive cleanup procedure of
+/// removeElement()
+export fn dom_removeListener(listenerID: u16) void {
+    eventListeners.remove(listenerID);
+}
+
 pub extern "dom" fn _removeListener(listenerID: u16) void;
 
 /// Removes the listener for given ID

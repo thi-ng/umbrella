@@ -7,6 +7,7 @@ export interface DOMExports extends WasmExports {
 	dom_callListener(listenerID: number, event: number): void;
 	dom_callRAF(rafID: number, t: number): void;
 	dom_fullscreenChanged(): void;
+	dom_removeListener(listenerID: number): void;
 }
 
 export interface DOMImports extends WebAssembly.ModuleImports {
