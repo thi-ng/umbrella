@@ -41,6 +41,16 @@ pub fn getStringAttrib(elementID: i32, name: []const u8, val: []u8) []u8 {
     return val[0.._getStringAttrib(elementID, name.ptr, val.ptr, val.len)];
 }
 
+pub extern "dom" fn _getStringAttribAlloc(elementID: i32, name: [*]const u8, slice: *[]u8) usize;
+
+/// Returns string value of attrib for given name and allocates memory for that string
+/// Caller owns memory
+pub fn getStringAttribAlloc(elementID: i32, name: []const u8) []u8 {
+    var addr: []u8 = undefined;
+    _ = _getStringAttribAlloc(elementID, name.ptr, &addr);
+    return addr;
+}
+
 pub extern "dom" fn _setNumericAttrib(elementID: i32, name: [*]const u8, val: f64) void;
 
 /// Sets attrib for given name to numeric val
@@ -81,14 +91,14 @@ pub fn removeClass(elementID: i32, name: []const u8) void {
     _removeClass(elementID, name.ptr);
 }
 
-pub extern "dom" fn _setInnerHtml(elementID: i32, ptr: [*]const u8) void;
+pub extern "dom" fn _setInnerHtml(elementID: i32, html: [*]const u8) void;
 
 /// Sets the `.innerHTML` property of a DOM element to given string
 pub fn setInnerHtml(elementID: i32, html: []const u8) void {
     _setInnerHtml(elementID, html.ptr);
 }
 
-pub extern "dom" fn _setInnerText(elementID: i32, ptr: [*]const u8) void;
+pub extern "dom" fn _setInnerText(elementID: i32, text: [*]const u8) void;
 
 /// Sets the `.innerText` property of a DOM element to given string
 pub fn setInnerText(elementID: i32, text: []const u8) void {

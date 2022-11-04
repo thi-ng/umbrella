@@ -1,9 +1,11 @@
 import { adaptDPI } from "@thi.ng/adapt-dpi";
+import type { NumOrString } from "@thi.ng/api";
 import { assert } from "@thi.ng/errors/assert";
-import type {
+import {
 	IWasmAPI,
 	ReadonlyWasmString,
 	WasmBridge,
+	WasmStringSlice,
 	WasmType,
 	WasmTypeBase,
 } from "@thi.ng/wasm-api";
@@ -158,58 +160,53 @@ export class WasmDom implements IWasmAPI<DOMExports> {
 				),
 
 			_setStringAttrib: (elementID: number, name: number, val: number) =>
-				this.elements
-					.get(elementID)
-					.setAttribute(
-						this.parent.getString(name),
-						this.parent.getString(val)
-					),
+				this.setAttrib(elementID, name, this.parent.getString(val)),
 
 			_setNumericAttrib: (elementID: number, name: number, val: number) =>
-				this.elements
-					.get(elementID)
-					.setAttribute(this.parent.getString(name), String(val)),
+				this.setAttrib(elementID, name, val),
 
 			_setBooleanAttrib: (
 				elementID: number,
-				name: number,
+				nameAddr: number,
 				val: number
 			) => {
 				const el = this.elements.get(elementID);
-				const attr = this.parent.getString(name);
-				val ? el.setAttribute(attr, "") : el.removeAttribute(attr);
+				const name = this.parent.getString(nameAddr);
+				if (name in el) {
+					// @ts-ignore
+					el[name] = !!val;
+				} else {
+					val ? el.setAttribute(name, "") : el.removeAttribute(name);
+				}
 			},
 
 			_getStringAttrib: (
 				elementID: number,
-				name: number,
+				nameAddr: number,
 				valAddr: number,
 				maxBytes: number
 			) =>
 				this.parent.setString(
-					String(
-						this.elements
-							.get(elementID)
-							.getAttribute(this.parent.getString(name)) || ""
-					),
+					String(this.getAttrib(elementID, nameAddr) || ""),
 					valAddr,
 					maxBytes,
 					true
 				),
 
-			_getNumericAttrib: (elementID: number, name: number) =>
-				Number(
-					this.elements
-						.get(elementID)
-						.getAttribute(this.parent.getString(name))
+			_getStringAttribAlloc: (
+				elementID: number,
+				nameAddr: number,
+				slice: number
+			) =>
+				new WasmStringSlice(this.parent, slice).setAlloc(
+					String(this.getAttrib(elementID, nameAddr) || "")
 				),
 
-			_getBooleanAttrib: (elementID: number, name: number) =>
-				this.elements
-					.get(elementID)
-					.getAttribute(this.parent.getString(name)) != null
-					? 1
-					: 0,
+			_getNumericAttrib: (elementID: number, nameAddr: number) =>
+				Number(this.getAttrib(elementID, nameAddr) || ""),
+
+			_getBooleanAttrib: (elementID: number, nameAddr: number) =>
+				~~(this.getAttrib(elementID, nameAddr) != null),
 
 			_addClass: (elementID: number, name: number) =>
 				this.elements
@@ -411,4 +408,24 @@ export class WasmDom implements IWasmAPI<DOMExports> {
 			(e.metaKey ? 8 : 0)
 		);
 	}
+
+	protected getAttrib(elementID: number, nameAddr: number) {
+		const el = this.elements.get(elementID);
+		const name = this.parent.getString(nameAddr);
+		return name in el ? el[<keyof Element>name] : el.getAttribute(name);
+	}
+
+	protected setAttrib(
+		elementID: number,
+		nameAddr: number,
+		value: NumOrString
+	) {
+		const el = this.elements.get(elementID);
+		const name = this.parent.getString(nameAddr);
+		return name in el
+			? // @ts-ignore
+			  (el[name] = value)
+			: el.setAttribute(name, String(value));
+	}
+
 }

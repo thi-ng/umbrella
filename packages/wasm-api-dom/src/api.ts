@@ -75,8 +75,8 @@ export interface DOMImports extends WebAssembly.ModuleImports {
 
 	/**
 	 * Sets attribute for given element to new string value. Both `nameAddr` and
-	 * `valAddr` are zero-terminated char pointers (or standard Zig `[]u8` /
-	 * `[]const u8` slices).
+	 * `valAddr` are pointers to zero-terminated u8 arrays (or standard Zig
+	 * `[]u8` slices).
 	 *
 	 * @param elementID
 	 * @param nameAddr
@@ -89,9 +89,10 @@ export interface DOMImports extends WebAssembly.ModuleImports {
 	): void;
 
 	/**
-	 * Reads a string attribute value from DOM element and writes it
-	 * zero-terminated to char pointer `valAddr`. Only `maxBytes` are written.
-	 * Returns actual number of bytes written (excluding the sentinel).
+	 * Reads a string attribute value from DOM element, encodes it as UTF-8 and
+	 * writes zero-terminated bytes to char pointer `valAddr`. Only `maxBytes`
+	 * are written. Returns actual number of bytes written (excluding the
+	 * sentinel).
 	 *
 	 * @param elementID
 	 * @param nameAddr
@@ -106,9 +107,24 @@ export interface DOMImports extends WebAssembly.ModuleImports {
 	): number;
 
 	/**
+	 * Similar to {@link DOMImports._getStringAttrib}, reads a string attribute
+	 * value from DOM element and allocates memory for it. Writes
+	 * `[pointer,length]` tuple to `sliceAddr` (using the global allocator
+	 * configured for the WASM bridge). Caller owns the memory.
+	 *
+	 * @param elementID
+	 * @param nameAddr
+	 * @param sliceAddr
+	 */
+	_getStringAttribAlloc(
+		elementID: number,
+		nameAddr: number,
+		sliceAddr: number
+	): void;
+
+	/**
 	 * Sets attribute for given element to new f64 value. `nameAddr` is a
-	 * zero-terminated char pointer (or standard Zig `[]u8` / `[]const u8`
-	 * slices).
+	 * pointer to a zero-terminated u8 array (or standard Zig `[]u8` slice).
 	 *
 	 * @param elementID
 	 * @param nameAddr
@@ -118,9 +134,9 @@ export interface DOMImports extends WebAssembly.ModuleImports {
 
 	/**
 	 * Sets (or removes) boolean attribute for given element. `nameAddr` is a
-	 * zero-terminated char pointer (or standard Zig `[]u8` / `[]const u8`
-	 * slices). If `state` is non-zero, the attrib will be created/ensured, if
-	 * zero it will be removed.
+	 * pointer to a zero-terminated u8 array (or standard Zig `[]u8` slice). If
+	 * `state` is non-zero, the attrib will be created/ensured, if zero it will
+	 * be removed.
 	 *
 	 * @param elementID
 	 * @param nameAddr
