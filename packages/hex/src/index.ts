@@ -203,3 +203,42 @@ export const U64LE = (x: ArrayLike<number>, i: number) =>
 export const uuid = (id: ArrayLike<number>, i = 0) =>
 	// prettier-ignore
 	`${U32BE(id, i)}-${U16BE(id, i + 4)}-${U16BE(id, i + 6)}-${U16BE(id, i + 8)}-${U48BE(id, i + 10)}`;
+
+export const hexdump = (
+	bytes: Uint8Array | Uint8ClampedArray,
+	addr: number,
+	len: number,
+	width?: number,
+	ascii?: boolean
+) => hexdumpLines(bytes, addr, len, width, ascii).join("\n");
+
+export const hexdumpLines = (
+	bytes: Uint8Array | Uint8ClampedArray,
+	addr: number,
+	len: number,
+	width = 16,
+	ascii = true
+) => {
+	len = Math.min(len, bytes.length - addr);
+	let res: string[] = [];
+	while (len > 0) {
+		const row = [...bytes.subarray(addr, addr + Math.min(len, width))];
+		const pad =
+			len < width && ascii ? new Array(width - len).fill("  ") : [];
+		res.push(
+			[
+				U32(addr),
+				...row.map(U8),
+				...pad,
+				row
+					.map((x) =>
+						x >= 0x20 && x < 0x80 ? String.fromCharCode(x) : "."
+					)
+					.join(""),
+			].join(" ")
+		);
+		addr += width;
+		len -= width;
+	}
+	return res;
+};
