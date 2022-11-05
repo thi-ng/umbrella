@@ -305,13 +305,18 @@ export interface TopLevelType extends TypeInfo {
 	 */
 	doc?: string | string[];
 	/**
-	 * Type / kind
+	 * Type / kind.
+	 *
+	 * @remarks
+	 * The {@link TYPESCRIPT} codegen doesn't emit function pointer types
+	 * themselves and only supports them indirectly, e.g. as struct fields.
 	 */
-	type: "enum" | "struct" | "union";
+	type: "enum" | "funcptr" | "struct" | "union";
 	/**
 	 * Optional object of user provided source codes to be injected into the
-	 * generated type (after generated fields). Keys of this object are language
-	 * IDs (`ts` for {@link TYPESCRIPT}, `zig` for {@link ZIG}).
+	 * generated type (language dependent, only structs or unions, after
+	 * generated fields). Keys of this object are language IDs (`ts` for
+	 * {@link TYPESCRIPT}, `zig` for {@link ZIG}).
 	 *
 	 * @remarks
 	 * Currently only supported by the code gens mentioned, ignored otherwise.
@@ -409,7 +414,7 @@ export interface Field extends TypeInfo {
 	 *
 	 * TODO `opaque` currently unsupported.
 	 */
-	type: WasmPrim | "string" | "opaque" | string;
+	type: WasmPrim | "isize" | "usize" | "string" | "opaque" | string;
 	/**
 	 * Const qualifier (default is true for `string`, false for all other
 	 * types). Only used for pointers or slices.
@@ -470,6 +475,18 @@ export interface EnumValue {
 	 * Optional docstring for this value
 	 */
 	doc?: string;
+}
+
+export interface FuncPointer extends TopLevelType {
+	type: "funcptr";
+	/**
+	 * Return type spec (subset of {@link Field}).
+	 */
+	rtype: "void" | Pick<Field, "const" | "len" | "sentinel" | "tag" | "type">;
+	/**
+	 * Function arg specs (subset of {@link Field}).
+	 */
+	args: Pick<Field, "const" | "len" | "name" | "sentinel" | "tag" | "type">[];
 }
 
 export interface AlignStrategy {
@@ -570,7 +587,7 @@ export interface ICodeGen {
 	 */
 	enum: (
 		type: Enum,
-		types: TypeColl,
+		coll: TypeColl,
 		acc: string[],
 		opts: CodeGenOpts
 	) => void;
@@ -579,7 +596,7 @@ export interface ICodeGen {
 	 */
 	struct: (
 		type: Struct,
-		types: TypeColl,
+		coll: TypeColl,
 		acc: string[],
 		opts: CodeGenOpts
 	) => void;
@@ -588,29 +605,39 @@ export interface ICodeGen {
 	 */
 	union: (
 		type: Union,
-		types: TypeColl,
+		coll: TypeColl,
+		acc: string[],
+		opts: CodeGenOpts
+	) => void;
+
+	funcptr: (
+		type: FuncPointer,
+		coll: TypeColl,
 		acc: string[],
 		opts: CodeGenOpts
 	) => void;
 }
 
 export interface WasmTarget {
+	isize: "i32" | "i64";
 	usize: "u32" | "u64";
-	usizeBytes: number;
+	sizeBytes: number;
 }
 
 /**
  * WASM32 target spec
  */
 export const WASM32: WasmTarget = {
+	isize: "i32",
 	usize: "u32",
-	usizeBytes: 4,
+	sizeBytes: 4,
 };
 
 /**
  * WASM64 target spec
  */
 export const WASM64: WasmTarget = {
+	isize: "i64",
 	usize: "u64",
-	usizeBytes: 8,
+	sizeBytes: 8,
 };

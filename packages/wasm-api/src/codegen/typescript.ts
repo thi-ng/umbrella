@@ -24,6 +24,7 @@ import {
 	ensureLines,
 	enumName,
 	isBigNumeric,
+	isFunctionPointer,
 	isNumeric,
 	isPadding,
 	isStringSlice,
@@ -100,7 +101,12 @@ import { MemorySlice, Pointer, ${__stringImpl(
 			acc.push(...withIndentation(res, indent, ...SCOPES));
 		},
 
-		struct: (struct, types, acc, opts) => {
+		struct: (struct, coll, acc, opts) => {
+			const fields = struct.fields.map((f) =>
+				isFunctionPointer(f, coll)
+					? { ...f, type: opts.target.usize }
+					: f
+			);
 			const fieldTypes: Record<string, string> = {};
 			const $stringImpl = __stringImpl(opts);
 			const lines: string[] = [];
@@ -108,7 +114,7 @@ import { MemorySlice, Pointer, ${__stringImpl(
 			lines.push(
 				`export interface ${struct.name} extends WasmTypeBase {`
 			);
-			for (let f of struct.fields) {
+			for (let f of fields) {
 				if (isPadding(f)) continue;
 				const doc = __docType(struct, f, opts);
 				doc && gen.doc(doc, lines, opts);
@@ -121,10 +127,10 @@ import { MemorySlice, Pointer, ${__stringImpl(
 			}
 			lines.push("}", "");
 
-			const pointerDecls = pointerFields(struct.fields).map((x) => {
+			const pointerDecls = pointerFields(fields).map((x) => {
 				return `let $${x.name}: ${fieldTypes[x.name]} | null = null;`;
 			});
-			const stringDecls = stringFields(struct.fields).map((x) => {
+			const stringDecls = stringFields(fields).map((x) => {
 				const suffix =
 					x.tag === "array" || x.tag === "slice" ? "[]" : "";
 				return `let $${x.name}: ${$stringImpl}${suffix} | null = null;`;
@@ -151,7 +157,7 @@ import { MemorySlice, Pointer, ${__stringImpl(
 				`},`
 			);
 
-			for (let f of struct.fields) {
+			for (let f of fields) {
 				// skip explicit padding fields
 				if (isPadding(f)) continue;
 				const ftype = fieldTypes[f.name];
@@ -204,7 +210,7 @@ import { MemorySlice, Pointer, ${__stringImpl(
 						const fn = f.len
 							? [
 									`(addr) => {`,
-									...__mapArray(f, types, f.len),
+									...__mapArray(f, coll, f.len),
 									`}`,
 							  ]
 							: [`(addr) => new $${f.type}.instance(addr)`];
@@ -221,14 +227,7 @@ import { MemorySlice, Pointer, ${__stringImpl(
 						`const len = ${__ptr(opts.target, offset + 4)};`
 					);
 					if (isPrim) {
-						lines.push(
-							`const addr = ${__ptrShift(
-								opts.target,
-								offset,
-								f.type
-							)};`,
-							`return mem.${f.type}.subarray(addr, addr + len);`
-						);
+						lines.push(...__primSlice(f.type, offset, opts));
 					} else if (isStr) {
 						lines.push(
 							`const addr = ${__ptr(opts.target, offset)};`,
@@ -243,15 +242,12 @@ import { MemorySlice, Pointer, ${__stringImpl(
 					} else {
 						lines.push(
 							`const addr = ${__ptr(opts.target, offset)};`,
-							...__mapArray(f, types)
+							...__mapArray(f, coll)
 						);
 					}
 				} else if (f.tag === "array" || f.tag === "vec") {
 					if (isPrim) {
-						lines.push(
-							`const addr = ${__addrShift(offset, f.type)};`,
-							`return mem.${f.type}.subarray(addr, addr + ${f.len});`
-						);
+						lines.push(...__primArray(f.type, f.len!, offset));
 					} else if (isStr) {
 						lines.push(
 							`if ($${f.name}) return $${f.name};`,
@@ -267,7 +263,7 @@ import { MemorySlice, Pointer, ${__stringImpl(
 					} else {
 						lines.push(
 							`const addr = ${__addr(offset)};`,
-							...__mapArray(f, types, f.len)
+							...__mapArray(f, coll, f.len)
 						);
 					}
 				} else {
@@ -284,8 +280,8 @@ import { MemorySlice, Pointer, ${__stringImpl(
 								offset
 							)}, ${isConst}));`
 						);
-					} else if (types[f.type].type === "enum") {
-						const tag = (<Enum>types[f.type]).tag;
+					} else if (coll[f.type].type === "enum") {
+						const tag = (<Enum>coll[f.type]).tag;
 						const addr = __mem(tag, f.__offset!);
 						lines.push(`return ${addr};`);
 						setter = `${addr} = x`;
@@ -322,6 +318,9 @@ import { MemorySlice, Pointer, ${__stringImpl(
 		union: (type, coll, acc, opts) => {
 			gen.struct(<any>type, coll, acc, opts);
 		},
+
+		// nothing to emit directly
+		funcptr: () => {},
 	};
 	return gen;
 };
@@ -345,10 +344,10 @@ const __fieldType = (f: Field, opts: CodeGenOpts) => {
 				? __stringImpl(opts) + "[]"
 				: f.type + "[]"
 			: !f.tag || f.tag === "scalar" || f.tag === "ptr"
-			? isBigNumeric(f.type)
-				? "bigint"
-				: isNumeric(f.type)
+			? isNumeric(f.type)
 				? "number"
+				: isBigNumeric(f.type)
+				? "bigint"
 				: isWasmString(f.type)
 				? __stringImpl(opts)
 				: f.type
@@ -380,11 +379,11 @@ const __mem = (type: string, offset: number) =>
 	`mem.${type}[${__addrShift(offset!, type)}]`;
 
 /** @internal */
-const __mapArray = (f: Field, types: TypeColl, len: NumOrString = "len") => [
+const __mapArray = (f: Field, coll: TypeColl, len: NumOrString = "len") => [
 	`const inst = $${f.type}(mem);`,
 	`const slice: ${f.type}[] = [];`,
 	`for(let i = 0; i < ${len}; i++) slice.push(inst.instance(addr + i * ${
-		types[f.type].__size
+		coll[f.type].__size
 	}));`,
 	`return slice;`,
 ];
@@ -400,9 +399,21 @@ const __mapStringArray = (
 ) => [
 	isLocal ? `const $${name}: ${type}[] = [];` : `$${name} = [];`,
 	`for(let i = 0; i < ${len}; i++) $${name}.push(new ${type}(mem, addr + i * ${
-		target.usizeBytes * (type === "WasmStringSlice" ? 2 : 1)
+		target.sizeBytes * (type === "WasmStringSlice" ? 2 : 1)
 	}, ${isConst}));`,
 	`return $${name};`,
+];
+
+/** @internal */
+const __primSlice = (type: string, offset: number, opts: CodeGenOpts) => [
+	`const addr = ${__ptrShift(opts.target, offset, type)};`,
+	`return mem.${type}.subarray(addr, addr + len);`,
+];
+
+/** @internal */
+const __primArray = (type: string, len: number, offset: number) => [
+	`const addr = ${__addrShift(offset, type)};`,
+	`return mem.${type}.subarray(addr, addr + ${len});`,
 ];
 
 const __docType = (parent: Struct | Union, f: Field, opts: CodeGenOpts) => {

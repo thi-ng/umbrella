@@ -8,6 +8,7 @@ import type {
 	CodeGenOpts,
 	Field,
 	InjectedBody,
+	TypeColl,
 	WasmPrim,
 	WasmPrim32,
 } from "../api.js";
@@ -27,6 +28,9 @@ export const isNumeric = (x: string): x is WasmPrim32 =>
  */
 export const isBigNumeric = (x: string): x is BigType => /^[iu]64$/.test(x);
 
+export const isSizeT = (x: string): x is "isize" | "usize" =>
+	/^[iu]size$/.test(x);
+
 /**
  * Returns true iff `x` is a {@link WasmPrim}.
  *
@@ -41,6 +45,9 @@ export const isPadding = (f: Field) => f.pad != null && f.pad > 0;
 
 export const isPointer = (f: Field) => f.tag === "ptr";
 
+export const isFunctionPointer = (f: Field, coll: TypeColl) =>
+	coll[f.type]?.type === "funcptr";
+
 export const isSlice = (f: Field) => f.tag === "slice";
 
 /**
@@ -48,8 +55,11 @@ export const isSlice = (f: Field) => f.tag === "slice";
  *
  * @param f
  */
-export const isPointerLike = (f: Field) =>
-	isPointer(f) || isSlice(f) || isWasmString(f.type);
+export const isPointerLike = (f: Field, coll: TypeColl) =>
+	isPointer(f) ||
+	isSlice(f) ||
+	isWasmString(f.type) ||
+	isFunctionPointer(f, coll);
 
 /**
  * Returns true if `type` is "slice".
@@ -61,14 +71,15 @@ export const isStringSlice = (
 ): type is "slice" => type === "slice";
 
 /**
- * Returns filtered array of struct fields of with "ptr" tag.
+ * Returns filtered array of struct fields of with "ptr" tag or function
+ * pointers.
  *
  * @param fields
  *
  * @internal
  */
 export const pointerFields = (fields: Field[]) =>
-	fields.filter((f) => f.tag === "ptr");
+	fields.filter((f) => isPointer(f));
 
 /**
  * Returns filtered array of struct fields of only "string" fields.

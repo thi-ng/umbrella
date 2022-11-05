@@ -18,11 +18,22 @@ import { readJSON, readText, writeJSON, writeText } from "@thi.ng/file-io";
 import { ConsoleLogger, ILogger } from "@thi.ng/logger";
 import { mutIn } from "@thi.ng/paths";
 import { dirname, resolve } from "path";
-import type { CodeGenOpts, Struct, TopLevelType, TypeColl } from "./api.js";
+import type {
+	CodeGenOpts,
+	FuncPointer,
+	Struct,
+	TopLevelType,
+	TypeColl,
+} from "./api.js";
 import { generateTypes } from "./codegen.js";
 import { C11, C11Opts } from "./codegen/c11.js";
 import { TSOpts, TYPESCRIPT } from "./codegen/typescript.js";
-import { isPadding, isWasmPrim, isWasmString } from "./codegen/utils.js";
+import {
+	isPadding,
+	isSizeT,
+	isWasmPrim,
+	isWasmString,
+} from "./codegen/utils.js";
 import { ZIG, ZigOpts } from "./codegen/zig.js";
 
 const GENERATORS = <const>{ c11: C11, ts: TYPESCRIPT, zig: ZIG };
@@ -128,7 +139,7 @@ const addTypeSpec = (
 	spec: TopLevelType
 ) => {
 	if (!(spec.name && spec.type)) invalidSpec(path);
-	if (!["enum", "struct", "union"].includes(spec.type))
+	if (!["enum", "funcptr", "struct", "union"].includes(spec.type))
 		invalidSpec(path, `${spec.name} type: ${spec.type}`);
 	if (coll[spec.name]) invalidSpec(path, `duplicate name: ${spec.name}`);
 
@@ -149,19 +160,20 @@ const addTypeSpec = (
 
 const validateTypeRefs = (coll: TypeColl) => {
 	for (let spec of Object.values(coll)) {
-		if (spec.type !== "struct") continue;
-		for (let f of (<Struct>spec).fields) {
+		if (!["funcptr", "struct", "union"].includes(spec.type)) continue;
+		for (let f of (<Struct>spec).fields || (<FuncPointer>spec).args) {
 			if (
 				!(
 					isPadding(f) ||
 					isWasmPrim(f.type) ||
+					isSizeT(f.type) ||
 					isWasmString(f.type) ||
 					coll[f.type]
 				)
 			) {
 				invalidSpec(
 					(<any>spec).__path,
-					`structfield ${spec.name}.${f.name} of unknown type: ${f.type}`
+					`${spec.name}.${f.name} has unknown type: ${f.type}`
 				);
 			}
 		}

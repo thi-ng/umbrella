@@ -9,6 +9,7 @@ import {
 	CodeGenOpts,
 	Enum,
 	Field,
+	FuncPointer,
 	ICodeGen,
 	PKG_NAME,
 	Struct,
@@ -23,6 +24,7 @@ import {
 	isNumeric,
 	isPointer,
 	isPointerLike,
+	isSizeT,
 	isSlice,
 	isStringSlice,
 	isWasmString,
@@ -49,7 +51,7 @@ const sizeOf = defmulti<
 	{
 		[DEFAULT]: (
 			field: Field,
-			types: TypeColl,
+			coll: TypeColl,
 			align: AlignStrategy,
 			opts: CodeGenOpts
 		) => {
@@ -60,17 +62,17 @@ const sizeOf = defmulti<
 			}
 			let size = 0;
 			if (isPointer(field)) {
-				size = opts.target.usizeBytes;
+				size = opts.target.sizeBytes;
 			} else if (isSlice(field)) {
-				size = opts.target.usizeBytes * 2;
+				size = opts.target.sizeBytes * 2;
 			} else {
 				size =
 					isNumeric(field.type) || isBigNumeric(field.type)
 						? SIZEOF[<Type>field.type]
 						: isWasmString(field.type)
-						? opts.target.usizeBytes *
+						? opts.target.sizeBytes *
 						  (isStringSlice(opts.stringType) ? 2 : 1)
-						: sizeOf(types[field.type], types, align, opts);
+						: sizeOf(coll[field.type], coll, align, opts);
 				if (field.tag == "array" || field.tag === "vec") {
 					size *= field.len!;
 					if (field.sentinel !== undefined && field.tag === "array") {
@@ -86,25 +88,29 @@ const sizeOf = defmulti<
 			return (type.__size = SIZEOF[(<Enum>type).tag]);
 		},
 
-		struct: (type, types, align, opts) => {
+		struct: (type, coll, align, opts) => {
 			if (type.__size) return type.__size;
 			let offset = 0;
 			for (let f of (<Struct>type).fields) {
 				offset = align.offset(offset, f.__align!);
 				f.__offset = offset;
-				offset += sizeOf(f, types, align, opts);
+				offset += sizeOf(f, coll, align, opts);
 			}
 			return (type.__size = align.size(offset, type.__align!));
 		},
 
-		union: (type, types, align, opts) => {
+		union: (type, coll, align, opts) => {
 			if (type.__size) return type.__size;
 			let maxSize = 0;
 			for (let f of (<Union>type).fields) {
 				f.__offset = 0;
-				maxSize = Math.max(maxSize, sizeOf(f, types, align, opts));
+				maxSize = Math.max(maxSize, sizeOf(f, coll, align, opts));
 			}
 			return (type.__size = align.size(maxSize, type.__align!));
+		},
+
+		funcptr: (type, _, __, opts) => {
+			return type.__size || (type.__size = opts.target.sizeBytes);
 		},
 	}
 );
@@ -121,23 +127,23 @@ const alignOf = defmulti<
 	{
 		[DEFAULT]: (
 			field: Field,
-			types: TypeColl,
+			coll: TypeColl,
 			align: AlignStrategy,
 			opts: CodeGenOpts
 		) => {
 			if (field.__align) return field.__align;
-			if (field.type === "usize") {
-				field.type = opts.target.usize;
-			}
 			if (field.pad) return (field.__align = 1);
-			return (field.__align = isPointerLike(field)
+			if (isSizeT(field.type)) {
+				field.type = opts.target[field.type];
+			}
+			return (field.__align = isPointerLike(field, coll)
 				? align.align(<Field>{ type: opts.target.usize })
 				: isNumeric(field.type) || isBigNumeric(field.type)
 				? align.align(field)
 				: alignOf(
-						types[field.type],
-						types,
-						selectAlignment(types[field.type]),
+						coll[field.type],
+						coll,
+						selectAlignment(coll[field.type]),
 						opts
 				  ));
 		},
@@ -150,20 +156,34 @@ const alignOf = defmulti<
 			}));
 		},
 
-		struct: (type, types, align, opts) => {
+		struct: (type, coll, align, opts) => {
 			let maxAlign = 1;
 			for (let f of (<Struct>type).fields) {
-				maxAlign = Math.max(maxAlign, alignOf(f, types, align, opts));
+				maxAlign = Math.max(maxAlign, alignOf(f, coll, align, opts));
 			}
 			return (type.__align = <Pow2>maxAlign);
 		},
 
-		union: (type, types, align, opts) => {
+		union: (type, coll, align, opts) => {
 			let maxAlign = 1;
 			for (let f of (<Union>type).fields) {
-				maxAlign = Math.max(maxAlign, alignOf(f, types, align, opts));
+				maxAlign = Math.max(maxAlign, alignOf(f, coll, align, opts));
 			}
 			return (type.__align = <Pow2>maxAlign);
+		},
+
+		funcptr: (type, coll, align, opts) => {
+			if (type.__align) return type.__align;
+			const ptr = <FuncPointer>type;
+			if (ptr.rtype !== "void") {
+				sizeOf(<Field>ptr.rtype, coll, align, opts);
+			}
+			for (let a of ptr.args) {
+				alignOf(a, coll, align, opts);
+			}
+			return (type.__align = align.align(<Field>{
+				type: opts.target.usize,
+			}));
 		},
 	}
 );
@@ -180,30 +200,30 @@ const prepareType = defmulti<
 	{
 		[DEFAULT]: (
 			x: TopLevelType,
-			types: TypeColl,
+			coll: TypeColl,
 			alignImpl: AlignStrategy,
 			opts: CodeGenOpts
 		) => {
 			if (x.__align) return;
-			alignOf(x, types, alignImpl, opts);
-			sizeOf(x, types, alignImpl, opts);
+			alignOf(x, coll, alignImpl, opts);
+			sizeOf(x, coll, alignImpl, opts);
 		},
-		struct: (x, types, align, opts) => {
+		struct: (x, coll, align, opts) => {
 			if (x.__align) return;
 			const struct = <Struct>x;
-			alignOf(struct, types, align, opts);
+			alignOf(struct, coll, align, opts);
 			if (struct.auto) {
 				struct.fields.sort(
 					compareByKey("__align", <any>compareNumDesc)
 				);
 			}
 			for (let f of struct.fields) {
-				const type = types[f.type];
+				const type = coll[f.type];
 				if (type) {
-					prepareType(type, types, selectAlignment(type), opts);
+					prepareType(type, coll, selectAlignment(type), opts);
 				}
 			}
-			sizeOf(struct, types, align, opts);
+			sizeOf(struct, coll, align, opts);
 		},
 	}
 );
@@ -216,15 +236,15 @@ const prepareType = defmulti<
  * This function is idempotent and called automatically by
  * {@link generateTypes}. Only exported for dev/debug purposes.
  *
- * @param types
+ * @param coll
  *
  * @internal
  */
-export const prepareTypes = (types: TypeColl, opts: CodeGenOpts) => {
-	for (let id in types) {
-		prepareType(types[id], types, selectAlignment(types[id]), opts);
+export const prepareTypes = (coll: TypeColl, opts: CodeGenOpts) => {
+	for (let id in coll) {
+		prepareType(coll[id], coll, selectAlignment(coll[id]), opts);
 	}
-	return types;
+	return coll;
 };
 
 /**
@@ -238,12 +258,12 @@ export const prepareTypes = (types: TypeColl, opts: CodeGenOpts) => {
  * alignments and sizes. This is only ever done once (idempotent), even if
  * `generateTypes()` is called multiple times for different target langs.
  *
- * @param types
+ * @param coll
  * @param codegen
  * @param opts
  */
 export const generateTypes = (
-	types: TypeColl,
+	coll: TypeColl,
 	codegen: ICodeGen,
 	opts: Partial<CodeGenOpts> = {}
 ) => {
@@ -251,7 +271,7 @@ export const generateTypes = (
 		...DEFAULT_CODEGEN_OPTS,
 		...opts,
 	};
-	prepareTypes(types, $opts);
+	prepareTypes(coll, $opts);
 	const res: string[] = [];
 	if ($opts.header) {
 		codegen.doc(
@@ -267,10 +287,10 @@ export const generateTypes = (
 		pre && res.push(pre, "");
 	}
 	$opts.pre && res.push($opts.pre, "");
-	for (let id in types) {
-		const type = types[id];
+	for (let id in coll) {
+		const type = coll[id];
 		type.doc && codegen.doc(type.doc, res, $opts);
-		codegen[type.type](<any>type, types, res, $opts);
+		codegen[type.type](<any>type, coll, res, $opts);
 	}
 	$opts.post && res.push("", $opts.post);
 	if (codegen.post) {

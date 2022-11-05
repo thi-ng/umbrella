@@ -3,6 +3,7 @@ import { unsupported } from "@thi.ng/errors/unsupported";
 import type {
 	CodeGenOpts,
 	CodeGenOptsBase,
+	Field,
 	ICodeGen,
 	Struct,
 	TypeColl,
@@ -67,7 +68,11 @@ extern "C" {
 #endif
 ${opts.debug ? "\n#include <stdalign.h>" : ""}
 #include <stddef.h>
-#include <stdint.h>${opts.pre ? `\n${opts.pre}` : ""}`,
+#include <stdint.h>
+
+typedef struct { const char* ptr; size_t len; } ${typePrefix}String;${
+			opts.pre ? `\n${opts.pre}` : ""
+		}`,
 
 		post: () =>
 			`${
@@ -137,6 +142,23 @@ ${opts.debug ? "\n#include <stdalign.h>" : ""}
 				)
 			);
 		},
+
+		funcptr: (ptr, coll, acc, opts) => {
+			const name = typePrefix + ptr.name;
+			const args = ptr.args
+				.map((a) => fieldType(a, coll, typePrefix, opts).decl)
+				.join(", ");
+			const rtype =
+				ptr.rtype === "void"
+					? ptr.rtype
+					: fieldType(
+							{ name: "return", ...ptr.rtype },
+							coll,
+							typePrefix,
+							opts
+					  ).ftype;
+			acc.push(`typedef ${rtype} (*${name})(${args});`);
+		},
 	};
 	return gen;
 };
@@ -160,32 +182,9 @@ const __generateFields = (
 			continue;
 		}
 		f.doc && gen.doc(f.doc, res, opts);
-		const fconst = f.const ? "const " : "";
-		let ftype = isWasmString(f.type)
-			? isStringSlice(opts.stringType)
-				? __slice("char", fconst)
-				: `${f.const !== false ? "const " : ""}char*`
-			: PRIM_ALIASES[<WasmPrim>f.type] || f.type;
-		if (coll[ftype]) ftype = typePrefix + ftype;
-		switch (f.tag) {
-			case "array":
-			case "vec":
-				res.push(`${fconst}${ftype} ${f.name}[${f.len}];`);
-				ftype = `${ftype}[${f.len}]`;
-				break;
-			case "slice":
-				ftype = __slice(ftype, fconst);
-				res.push(`${ftype} ${f.name};`);
-				break;
-			case "ptr":
-				ftype = `${fconst}${ftype}*`;
-				res.push(`${ftype} ${f.name};`);
-				break;
-			case "scalar":
-			default:
-				res.push(`${ftype} ${f.name};`);
-		}
+		const { ftype, decl } = fieldType(f, coll, typePrefix, opts);
 		ftypes[f.name] = ftype;
+		res.push(decl + ";");
 	}
 	res.push("};");
 
@@ -210,6 +209,41 @@ const __generateFields = (
 	}
 	res.push("");
 	return res;
+};
+
+const fieldType = (
+	f: Field,
+	coll: TypeColl,
+	prefix: string,
+	opts: CodeGenOpts
+) => {
+	const fconst = f.const ? "const " : "";
+	let ftype = isWasmString(f.type)
+		? isStringSlice(opts.stringType)
+			? prefix + "String"
+			: `${f.const !== false ? "const " : ""}char*`
+		: PRIM_ALIASES[<WasmPrim>f.type] || f.type;
+	if (coll[ftype]) ftype = prefix + ftype;
+	let decl: string;
+	switch (f.tag) {
+		case "array":
+		case "vec":
+			decl = `${fconst}${ftype} ${f.name}[${f.len}]`;
+			ftype = `${ftype}[${f.len}]`;
+			break;
+		case "slice":
+			ftype = __slice(ftype, fconst);
+			decl = `${ftype} ${f.name}`;
+			break;
+		case "ptr":
+			ftype = `${fconst}${ftype}*`;
+			decl = `${ftype} ${f.name}`;
+			break;
+		case "scalar":
+		default:
+			decl = `${ftype} ${f.name}`;
+	}
+	return { ftype, decl };
 };
 
 const __slice = (type: string, $const: string) =>

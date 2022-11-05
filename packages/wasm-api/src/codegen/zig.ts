@@ -5,6 +5,7 @@ import type {
 	CodeGenOpts,
 	CodeGenOptsBase,
 	Field,
+	FuncPointer,
 	ICodeGen,
 	Struct,
 	Union,
@@ -100,6 +101,21 @@ export const ZIG = (opts: Partial<ZigOpts> = {}) => {
 				)
 			);
 		},
+
+		funcptr: (ptr, _, acc, opts) => {
+			const args = ptr.args
+				.map((a) => `${a.name}: ${fieldType(ptr, a, opts).type}`)
+				.join(", ");
+			const rtype =
+				ptr.rtype === "void"
+					? ptr.rtype
+					: fieldType(ptr, { name: "return", ...ptr.rtype }, opts)
+							.type;
+			acc.push(
+				`pub const ${ptr.name} = *const fn(${args}) ${rtype};`,
+				""
+			);
+		},
 	};
 	return gen;
 };
@@ -159,7 +175,7 @@ const __generateFields = (
 
 /** @internal */
 export const fieldType = (
-	parent: Struct | Union,
+	parent: Struct | Union | FuncPointer,
 	f: Field,
 	opts: CodeGenOpts
 ) => {
