@@ -250,4 +250,4 @@ const fieldType = (
 };
 
 const __slice = (type: string, $const: string) =>
-	`struct { ${$const}${type} *ptr; size_t len; }`;
+	`struct { ${$const}${type}* ptr; size_t len; }`;

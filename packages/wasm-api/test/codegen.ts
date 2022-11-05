@@ -38,15 +38,28 @@ const stringTypes: TypeColl = {
 
 const checkFixture = (
 	ctx: TestCtx,
-	types: TypeColl,
+	coll: TypeColl,
 	gen: ICodeGen,
 	opts: Partial<CodeGenOpts>,
 	fname: string,
 	regenerate = false
 ) => {
-	const src = generateTypes(types, gen, opts);
+	const src = generateTypes(coll, gen, opts);
 	regenerate && writeText(fixturePath(fname), src);
 	assert.strictEqual(src, fileFixture(fname, ctx.logger));
+};
+
+const checkAll = (
+	ctx: TestCtx,
+	coll: TypeColl,
+	opts: Partial<CodeGenOpts>,
+	baseName: string,
+	regenerate = false
+) => {
+	// prettier-ignore
+	checkFixture(ctx, coll, C11({ typePrefix: "WASM_" }), opts, `${baseName}.c`, regenerate);
+	checkFixture(ctx, coll, TYPESCRIPT(), opts, `${baseName}.ts`, regenerate);
+	checkFixture(ctx, coll, ZIG(), opts, `${baseName}.zig`, regenerate);
 };
 
 group("codegen", {
@@ -56,15 +69,7 @@ group("codegen", {
 			header: false,
 			stringType: "slice",
 		};
-		checkFixture(
-			ctx,
-			stringTypes,
-			C11({ typePrefix: "WASM_" }),
-			opts,
-			"string-slice.c"
-		);
-		checkFixture(ctx, stringTypes, TYPESCRIPT(), opts, "string-slice.ts");
-		checkFixture(ctx, stringTypes, ZIG(), opts, "string-slice.zig");
+		checkAll(ctx, stringTypes, opts, "string-slice");
 		ctx.done();
 	},
 
@@ -74,15 +79,7 @@ group("codegen", {
 			header: false,
 			stringType: "ptr",
 		};
-		checkFixture(
-			ctx,
-			stringTypes,
-			C11({ typePrefix: "WASM_" }),
-			opts,
-			"string-ptr.c"
-		);
-		checkFixture(ctx, stringTypes, TYPESCRIPT(), opts, "string-ptr.ts");
-		checkFixture(ctx, stringTypes, ZIG(), opts, "string-ptr.zig");
+		checkAll(ctx, stringTypes, opts, "string-ptr");
 		ctx.done();
 	},
 
@@ -186,9 +183,68 @@ group("codegen", {
 				__size: 72,
 			},
 		});
-		checkFixture(ctx, types, C11({ typePrefix: "WASM_" }), opts, "union.c");
-		checkFixture(ctx, types, TYPESCRIPT(), opts, "union.ts");
-		checkFixture(ctx, types, ZIG(), opts, "union.zig");
+		checkAll(ctx, types, opts, "union");
+		ctx.done();
+	},
+
+	opaque: (ctx) => {
+		const opts = { ...DEFAULT_CODEGEN_OPTS, header: false };
+		const coll = {
+			A: <Struct>{
+				name: "A",
+				type: "struct",
+				fields: [
+					{ name: "a", type: "opaque" },
+					{ name: "ptr", type: "opaque", tag: "ptr" },
+					{ name: "slice", type: "opaque", tag: "slice" },
+					{ name: "array", type: "opaque", tag: "array", len: 3 },
+				],
+			},
+		};
+		prepareTypes(coll, opts);
+		assert.deepStrictEqual(coll, {
+			A: {
+				name: "A",
+				type: "struct",
+				fields: [
+					{
+						name: "a",
+						type: "opaque",
+						__align: 4,
+						__offset: 0,
+						__size: 4,
+					},
+					{
+						name: "ptr",
+						type: "opaque",
+						tag: "ptr",
+						__align: 4,
+						__offset: 4,
+						__size: 4,
+					},
+					{
+						name: "slice",
+						type: "opaque",
+						tag: "slice",
+						__align: 4,
+						__offset: 8,
+						__size: 8,
+					},
+					{
+						name: "array",
+						type: "opaque",
+						tag: "array",
+						len: 3,
+						__align: 4,
+						__offset: 16,
+						__size: 12,
+					},
+				],
+				__align: 4,
+				__size: 28,
+			},
+		});
+		checkAll(ctx, coll, opts, "opaque");
 		ctx.done();
 	},
 
@@ -273,10 +329,7 @@ group("codegen", {
 				__size: 24,
 			},
 		});
-		// prettier-ignore
-		checkFixture(ctx, coll, C11({ typePrefix: "WASM_" }), opts, "funcptr.c");
-		checkFixture(ctx, coll, TYPESCRIPT(), opts, "funcptr.ts");
-		checkFixture(ctx, coll, ZIG(), opts, "funcptr.zig");
+		checkAll(ctx, coll, opts, "funcptr");
 		ctx.done();
 	},
 });

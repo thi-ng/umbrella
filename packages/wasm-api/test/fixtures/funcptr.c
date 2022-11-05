@@ -15,7 +15,7 @@ struct WASM_B {
     WASM_A a;
     WASM_A* ptr;
     WASM_A array[2];
-    struct { WASM_A *ptr; size_t len; } slice;
+    struct { WASM_A* ptr; size_t len; } slice;
 };
 
 
