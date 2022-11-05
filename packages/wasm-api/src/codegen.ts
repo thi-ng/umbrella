@@ -22,6 +22,7 @@ import { selectAlignment } from "./codegen/align.js";
 import {
 	isBigNumeric,
 	isNumeric,
+	isOpaque,
 	isPointer,
 	isPointerLike,
 	isSizeT,
@@ -72,6 +73,8 @@ const sizeOf = defmulti<
 						: isWasmString(field.type)
 						? opts.target.sizeBytes *
 						  (isStringSlice(opts.stringType) ? 2 : 1)
+						: isOpaque(field.type)
+						? opts.target.sizeBytes
 						: sizeOf(coll[field.type], coll, align, opts);
 				if (field.tag == "array" || field.tag === "vec") {
 					size *= field.len!;

@@ -13,6 +13,7 @@ import type {
 import {
 	defaultValue,
 	ensureLines,
+	isOpaque,
 	isPadding,
 	isStringSlice,
 	isWasmString,
@@ -187,6 +188,8 @@ export const fieldType = (
 			: f.const !== false
 			? "[*:0]const u8"
 			: "[*:0]u8"
+		: isOpaque(f.type)
+		? `*${f.const ? "const " : ""}anyopaque`
 		: f.type;
 	let defaultVal = defaultValue(f, "zig");
 	switch (f.tag) {

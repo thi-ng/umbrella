@@ -412,7 +412,9 @@ export interface Field extends TypeInfo {
 	 * Please see {@link CodeGenOpts.stringType} and consult package readme for
 	 * further details re: string handling.
 	 *
-	 * TODO `opaque` currently unsupported.
+	 * Since `opaque` types have unknown size, they'll be **always** defined &
+	 * interpreted as pointers. In TypeScript these fields can only be accessed
+	 * as numbers (aka the pointers' target addresses).
 	 */
 	type: WasmPrim | "isize" | "usize" | "string" | "opaque" | string;
 	/**

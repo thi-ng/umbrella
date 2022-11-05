@@ -45,10 +45,12 @@ export const isPadding = (f: Field) => f.pad != null && f.pad > 0;
 
 export const isPointer = (f: Field) => f.tag === "ptr";
 
-export const isFunctionPointer = (f: Field, coll: TypeColl) =>
+export const isFuncPointer = (f: Field, coll: TypeColl) =>
 	coll[f.type]?.type === "funcptr";
 
 export const isSlice = (f: Field) => f.tag === "slice";
+
+export const isOpaque = (x: string): x is "opaque" => x === "opaque";
 
 /**
  * Returns true iff the struct field is a pointer, slice or "string" type
@@ -59,7 +61,8 @@ export const isPointerLike = (f: Field, coll: TypeColl) =>
 	isPointer(f) ||
 	isSlice(f) ||
 	isWasmString(f.type) ||
-	isFunctionPointer(f, coll);
+	isOpaque(f.type) ||
+	isFuncPointer(f, coll);
 
 /**
  * Returns true if `type` is "slice".

@@ -12,6 +12,7 @@ import type {
 } from "../api.js";
 import {
 	enumName,
+	isOpaque,
 	isPadding,
 	isStringSlice,
 	isWasmString,
@@ -222,6 +223,8 @@ const fieldType = (
 		? isStringSlice(opts.stringType)
 			? prefix + "String"
 			: `${f.const !== false ? "const " : ""}char*`
+		: isOpaque(f.type)
+		? `${fconst}void*`
 		: PRIM_ALIASES[<WasmPrim>f.type] || f.type;
 	if (coll[ftype]) ftype = prefix + ftype;
 	let decl: string;

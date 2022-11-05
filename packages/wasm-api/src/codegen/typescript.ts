@@ -24,8 +24,9 @@ import {
 	ensureLines,
 	enumName,
 	isBigNumeric,
-	isFunctionPointer,
+	isFuncPointer,
 	isNumeric,
+	isOpaque,
 	isPadding,
 	isStringSlice,
 	isWasmPrim,
@@ -103,7 +104,7 @@ import { MemorySlice, Pointer, ${__stringImpl(
 
 		struct: (struct, coll, acc, opts) => {
 			const fields = struct.fields.map((f) =>
-				isFunctionPointer(f, coll)
+				isFuncPointer(f, coll) || isOpaque(f.type)
 					? { ...f, type: opts.target.usize }
 					: f
 			);
