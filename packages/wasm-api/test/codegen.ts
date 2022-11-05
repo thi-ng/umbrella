@@ -1,11 +1,12 @@
-import { fileFixture, fixturePath, group, TestCtx } from "@thi.ng/testament";
 import { writeText } from "@thi.ng/file-io";
+import { fileFixture, fixturePath, group, TestCtx } from "@thi.ng/testament";
 import * as assert from "assert";
 import {
 	C11,
 	CodeGenOpts,
 	DEFAULT_CODEGEN_OPTS,
 	Enum,
+	FuncPointer,
 	generateTypes,
 	ICodeGen,
 	prepareTypes,
@@ -188,6 +189,94 @@ group("codegen", {
 		checkFixture(ctx, types, C11({ typePrefix: "WASM_" }), opts, "union.c");
 		checkFixture(ctx, types, TYPESCRIPT(), opts, "union.ts");
 		checkFixture(ctx, types, ZIG(), opts, "union.zig");
+		ctx.done();
+	},
+
+	funcptr: (ctx) => {
+		const opts = { ...DEFAULT_CODEGEN_OPTS, header: false };
+		const coll = {
+			A: <FuncPointer>{
+				name: "A",
+				type: "funcptr",
+				rtype: "void",
+				args: [
+					{ name: "x", type: "usize", tag: "ptr" },
+					{
+						name: "y",
+						type: "string",
+						const: true,
+					},
+				],
+			},
+			B: <Struct>{
+				name: "B",
+				type: "struct",
+				fields: [
+					{ name: "a", type: "A" },
+					{ name: "ptr", type: "A", tag: "ptr" },
+					{ name: "array", type: "A", tag: "array", len: 2 },
+					{ name: "slice", type: "A", tag: "slice" },
+				],
+			},
+		};
+		prepareTypes(coll, opts);
+		assert.deepStrictEqual(coll, {
+			A: {
+				name: "A",
+				type: "funcptr",
+				rtype: "void",
+				args: [
+					{ name: "x", type: "u32", tag: "ptr", __align: 4 },
+					{ name: "y", type: "string", const: true, __align: 4 },
+				],
+				__align: 4,
+				__size: 4,
+			},
+			B: {
+				name: "B",
+				type: "struct",
+				fields: [
+					{
+						name: "a",
+						type: "A",
+						__align: 4,
+						__offset: 0,
+						__size: 4,
+					},
+					{
+						name: "ptr",
+						type: "A",
+						tag: "ptr",
+						__align: 4,
+						__offset: 4,
+						__size: 4,
+					},
+					{
+						name: "array",
+						type: "A",
+						tag: "array",
+						len: 2,
+						__align: 4,
+						__offset: 8,
+						__size: 8,
+					},
+					{
+						name: "slice",
+						type: "A",
+						tag: "slice",
+						__align: 4,
+						__offset: 16,
+						__size: 8,
+					},
+				],
+				__align: 4,
+				__size: 24,
+			},
+		});
+		// prettier-ignore
+		checkFixture(ctx, coll, C11({ typePrefix: "WASM_" }), opts, "funcptr.c");
+		checkFixture(ctx, coll, TYPESCRIPT(), opts, "funcptr.ts");
+		checkFixture(ctx, coll, ZIG(), opts, "funcptr.zig");
 		ctx.done();
 	},
 });

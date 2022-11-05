@@ -7,6 +7,8 @@ extern "C" {
 #include <stddef.h>
 #include <stdint.h>
 
+typedef struct { const char* ptr; size_t len; } WASM_String;
+
 typedef struct WASM_A WASM_A;
 struct WASM_A {
     uint8_t a;

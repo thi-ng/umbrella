@@ -8,6 +8,8 @@ extern "C" {
 #include <stddef.h>
 #include <stdint.h>
 
+typedef struct { const char* ptr; size_t len; } WASM_String;
+
 typedef enum {
     A,
     B = 16,
@@ -17,10 +19,10 @@ typedef enum {
 
 typedef struct WASM_Foo WASM_Foo;
 struct WASM_Foo {
-    struct { char *ptr; size_t len; } single;
-    struct { char *ptr; size_t len; } multi[2];
-    struct { char *ptr; size_t len; }* singlePtr;
-    struct { char *ptr; size_t len; }* multiPtr;
+    WASM_String single;
+    WASM_String multi[2];
+    WASM_String* singlePtr;
+    WASM_String* multiPtr;
     WASM_Bar kind;
     uint32_t size;
 };
@@ -34,7 +36,7 @@ size_t __attribute__((used)) WASM_Foo_size() {
 }
 
 size_t __attribute__((used)) WASM_Foo_single_align() {
-    return alignof(struct { char *ptr; size_t len; });
+    return alignof(WASM_String);
 }
 
 size_t __attribute__((used)) WASM_Foo_single_offset() {
@@ -42,11 +44,11 @@ size_t __attribute__((used)) WASM_Foo_single_offset() {
 }
 
 size_t __attribute__((used)) WASM_Foo_single_size() {
-    return sizeof(struct { char *ptr; size_t len; });
+    return sizeof(WASM_String);
 }
 
 size_t __attribute__((used)) WASM_Foo_multi_align() {
-    return alignof(struct { char *ptr; size_t len; }[2]);
+    return alignof(WASM_String[2]);
 }
 
 size_t __attribute__((used)) WASM_Foo_multi_offset() {
@@ -54,11 +56,11 @@ size_t __attribute__((used)) WASM_Foo_multi_offset() {
 }
 
 size_t __attribute__((used)) WASM_Foo_multi_size() {
-    return sizeof(struct { char *ptr; size_t len; }[2]);
+    return sizeof(WASM_String[2]);
 }
 
 size_t __attribute__((used)) WASM_Foo_singlePtr_align() {
-    return alignof(struct { char *ptr; size_t len; }*);
+    return alignof(WASM_String*);
 }
 
 size_t __attribute__((used)) WASM_Foo_singlePtr_offset() {
@@ -66,11 +68,11 @@ size_t __attribute__((used)) WASM_Foo_singlePtr_offset() {
 }
 
 size_t __attribute__((used)) WASM_Foo_singlePtr_size() {
-    return sizeof(struct { char *ptr; size_t len; }*);
+    return sizeof(WASM_String*);
 }
 
 size_t __attribute__((used)) WASM_Foo_multiPtr_align() {
-    return alignof(struct { char *ptr; size_t len; }*);
+    return alignof(WASM_String*);
 }
 
 size_t __attribute__((used)) WASM_Foo_multiPtr_offset() {
@@ -78,7 +80,7 @@ size_t __attribute__((used)) WASM_Foo_multiPtr_offset() {
 }
 
 size_t __attribute__((used)) WASM_Foo_multiPtr_size() {
-    return sizeof(struct { char *ptr; size_t len; }*);
+    return sizeof(WASM_String*);
 }
 
 size_t __attribute__((used)) WASM_Foo_kind_align() {

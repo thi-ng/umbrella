@@ -8,6 +8,8 @@ extern "C" {
 #include <stddef.h>
 #include <stdint.h>
 
+typedef struct { const char* ptr; size_t len; } WASM_String;
+
 typedef enum {
     A,
     B = 16,
