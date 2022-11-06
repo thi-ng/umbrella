@@ -263,13 +263,6 @@ export class WasmBridge<T extends WasmExports = WasmExports>
 		return this.imports;
 	}
 
-	/**
-	 * Attempts to grow the WASM memory by an additional `numPages` (64KB/page)
-	 * and if successful updates all typed memory views to use the new
-	 * underlying buffer.
-	 *
-	 * @param numPages
-	 */
 	growMemory(numPages: number) {
 		this.exports.memory.grow(numPages);
 		this.ensureMemory();
@@ -488,14 +481,6 @@ export class WasmBridge<T extends WasmExports = WasmExports>
 		return this;
 	}
 
-	/**
-	 * Reads UTF-8 encoded string from given address and optional byte length.
-	 * The default length is 0, which will be interpreted as a zero-terminated
-	 * string. Returns string.
-	 *
-	 * @param addr
-	 * @param len
-	 */
 	getString(addr: number, len = 0) {
 		this.ensureMemory();
 		return this.utf8Decoder.decode(
@@ -506,22 +491,6 @@ export class WasmBridge<T extends WasmExports = WasmExports>
 		);
 	}
 
-	/**
-	 * Encodes given string as UTF-8 and writes it to WASM memory starting at
-	 * `addr`. By default the string will be zero-terminated and only `maxBytes`
-	 * will be written. Returns the number of bytes written (excluding final
-	 * sentinel, if any).
-	 *
-	 * @remarks
-	 * An error will be thrown if the encoded string doesn't fully fit into the
-	 * designated memory region (also note that there might need to be space for
-	 * the additional sentinel/termination byte).
-	 *
-	 * @param str
-	 * @param addr
-	 * @param maxBytes
-	 * @param terminate
-	 */
 	setString(
 		str: string,
 		addr: number,
