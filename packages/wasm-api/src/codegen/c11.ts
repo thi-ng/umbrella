@@ -62,6 +62,8 @@ export const C11 = (opts: Partial<C11Opts> = {}) => {
 	const SCOPES: [RegExp, RegExp] = [/\{$/, /^\}[ A-Za-z0-9_]*[;,]?$/];
 
 	const gen: ICodeGen = {
+		id: "c",
+
 		pre: (opts) => `#pragma once
 
 #ifdef __cplusplus

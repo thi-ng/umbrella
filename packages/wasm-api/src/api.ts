@@ -322,6 +322,11 @@ export interface TopLevelType extends TypeInfo {
 	 * Currently only supported by the code gens mentioned, ignored otherwise.
 	 */
 	body?: IObjectOf<string | string[] | InjectedBody>;
+	/**
+	 * Optional array of language IDs for which code generation of this type
+	 * will be skipped.
+	 */
+	skip?: string[];
 }
 
 export interface InjectedBody {
@@ -576,6 +581,11 @@ export interface CodeGenOpts extends CodeGenOptsBase {
 }
 
 export interface ICodeGen {
+	/**
+	 * Unique language ID. E.g. used to suppress generation for types utilizing
+	 * {@link TopLevelType.skip}.
+	 */
+	id: string;
 	/**
 	 * Optional prelude source, to be prepended before any generated type defs.
 	 */

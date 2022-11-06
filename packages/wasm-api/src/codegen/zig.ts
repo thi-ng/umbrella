@@ -41,6 +41,8 @@ export const ZIG = (opts: Partial<ZigOpts> = {}) => {
 	const SCOPES: [RegExp, RegExp] = [/\{$/, /(?<!\{.*)\}\)?[;,]?$/];
 
 	const gen: ICodeGen = {
+		id: "zig",
+
 		pre: () =>
 			`const std = @import("std");${opts.pre ? `\n${opts.pre}` : ""}`,
 

@@ -71,6 +71,8 @@ export const TYPESCRIPT = (opts: Partial<TSOpts> = {}) => {
 	const SCOPES: [RegExp, RegExp] = [/\{$/, /(?<!\{.*)\}\)?[;,]?$/];
 
 	const gen: ICodeGen = {
+		id: "ts",
+
 		pre: (opts) => `// @ts-ignore possibly includes unused imports
 import { MemorySlice, Pointer, ${__stringImpl(
 			opts

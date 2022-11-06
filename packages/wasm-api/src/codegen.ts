@@ -292,6 +292,7 @@ export const generateTypes = (
 	$opts.pre && res.push($opts.pre, "");
 	for (let id in coll) {
 		const type = coll[id];
+		if (type.skip?.includes(codegen.id)) continue;
 		type.doc && codegen.doc(type.doc, res, $opts);
 		codegen[type.type](<any>type, coll, res, $opts);
 	}
