@@ -20,7 +20,7 @@
 		"@thi.ng/api": "workspace:^",
 		"@thi.ng/wasm-api": "workspace:^",
 		"@thi.ng/wasm-api-dom": "workspace:^",
-		"@thi.ng/wasm-api-timer": "workspace:^"
+		"@thi.ng/wasm-api-schedule": "workspace:^"
 	},
 	"browser": {
 		"process": false
@@ -29,7 +29,7 @@
 		"readme": [
 			"wasm-api",
 			"wasm-api-dom",
-			"wasm-api-timer"
+			"wasm-api-schedule"
 		],
 		"screenshot": "examples/zig-counter.png"
 	}

@@ -19,7 +19,7 @@ canvasID: i32 = -1,
 const Self = @This();
 
 /// Returns an initialized state struct
-pub fn init(allocator: std.mem.Allocator) !Self {
+pub fn init(allocator: std.mem.Allocator) Self {
     var self = Self{
         .allocator = allocator,
         .strokes = std.ArrayList(*api.Stroke).init(allocator),
@@ -72,10 +72,7 @@ pub fn requestRedraw(self: *Self) void {
             if (wasm.ptrCast(*const Self, raw)) |state| state.redraw();
         }
     };
-    _ = dom.requestAnimationFrame(&.{
-        .callback = wrapper.handler,
-        .ctx = self,
-    }) catch return;
+    _ = dom.requestAnimationFrame(&.{ .callback = wrapper.handler, .ctx = self }) catch return;
 }
 
 /// Calls into JS API to clear canvas and redraw all recorded strokes.

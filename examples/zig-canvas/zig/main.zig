@@ -6,6 +6,8 @@ const dom = @import("dom");
 const State = @import("state.zig");
 const api = @import("api.zig");
 
+const Attrib = dom.Attrib;
+
 // expose thi.ng/wasm-api core API (incl. panic handler & allocation fns)
 pub usingnamespace wasm;
 
@@ -98,56 +100,57 @@ fn resizeCanvas() void {
 
 /// Creates & initializes DOM, app state, event listeners etc.
 fn initApp() !void {
-    // the WASM API modules must always be intialized first!
-    try dom.init(WASM_ALLOCATOR);
+    // the WASM API modules auto-initialize themselves if the root source
+    // file exposes a `WASM_ALLOCATOR`, otherwise you'll have to initialize manually:
+    // try dom.init(customAllocator);
 
     // now we can initialize our app state
-    STATE = try State.init(WASM_ALLOCATOR);
+    STATE = State.init(WASM_ALLOCATOR);
 
     const container = dom.createElement(&.{
         .tag = "main",
         .id = "app",
         .parent = dom.body,
         .index = 0,
-    });
-
-    const toolbar = dom.createElement(&.{
-        .tag = "div",
-        .parent = container,
-    });
-
-    _ = dom.createElement(&.{
-        .tag = "div",
-        .class = "dib mr3",
-        .parent = toolbar,
         .children = &.{
-            .{ .tag = "strong", .text = "thi.ng/wasm-api-dom canvas" },
+            .{
+                .tag = "div",
+                .children = &.{
+                    .{
+                        .tag = "div",
+                        .class = "dib mr3",
+                        .children = &.{
+                            .{ .tag = "strong", .text = "thi.ng/wasm-api-dom canvas" },
+                        },
+                    },
+                    .{
+                        .tag = "button",
+                        .text = "undo",
+                        .class = "mr1",
+                        .attribs = &.{
+                            Attrib.event("click", .{ .callback = onBtUndo, .ctx = &STATE }),
+                        },
+                    },
+                    .{
+                        .tag = "button",
+                        .text = "download",
+                        .class = "mr1",
+                        .attribs = &.{
+                            Attrib.event("click", .{ .callback = onBtDownload }),
+                        },
+                    },
+                    .{
+                        .tag = "button",
+                        .text = "fullscreen",
+                        .attribs = &.{
+                            Attrib.flag("disabled", !STATE.window.hasFullscreen()),
+                            Attrib.event("click", .{ .callback = onToggleFullscreen, .ctx = &STATE }),
+                        },
+                    },
+                },
+            },
         },
     });
-
-    const btUndo = dom.createElement(&.{
-        .tag = "button",
-        .text = "undo",
-        .class = "mr1",
-        .parent = toolbar,
-    });
-    _ = try dom.addListener(btUndo, "click", &.{ .callback = onBtUndo, .ctx = &STATE });
-
-    const btDownload = dom.createElement(&.{
-        .tag = "button",
-        .text = "download",
-        .class = "mr1",
-        .parent = toolbar,
-    });
-    _ = try dom.addListener(btDownload, "click", &.{ .callback = onBtDownload });
-
-    const btFullscreen = dom.createElement(&.{
-        .tag = "button",
-        .text = "fullscreen",
-        .parent = toolbar,
-    });
-    dom.setBooleanAttrib(btFullscreen, "disabled", !STATE.window.hasFullscreen());
-    _ = try dom.addListener(btFullscreen, "click", &.{ .callback = onToggleFullscreen, .ctx = &STATE });
 
     // main editor canvas
     STATE.canvasID = dom.createCanvas(&.{
@@ -157,16 +160,16 @@ fn initApp() !void {
         .height = 100,
         .dpr = STATE.window.dpr,
         .parent = container,
+        .attribs = &.{
+            Attrib.event("mousedown", .{ .callback = startStroke, .ctx = &STATE }),
+            Attrib.event("mousemove", .{ .callback = updateStroke, .ctx = &STATE }),
+            Attrib.event("mouseup", .{ .callback = endStroke, .ctx = &STATE }),
+            Attrib.event("touchstart", .{ .callback = startStroke, .ctx = &STATE }),
+            Attrib.event("touchmove", .{ .callback = updateStroke, .ctx = &STATE }),
+            Attrib.event("touchend", .{ .callback = endStroke, .ctx = &STATE }),
+        },
     });
     resizeCanvas();
-
-    _ = try dom.addListener(STATE.canvasID, "mousedown", &.{ .callback = startStroke, .ctx = &STATE });
-    _ = try dom.addListener(STATE.canvasID, "mousemove", &.{ .callback = updateStroke, .ctx = &STATE });
-    _ = try dom.addListener(STATE.canvasID, "mouseup", &.{ .callback = endStroke, .ctx = &STATE });
-
-    _ = try dom.addListener(STATE.canvasID, "touchstart", &.{ .callback = startStroke, .ctx = &STATE });
-    _ = try dom.addListener(STATE.canvasID, "touchmove", &.{ .callback = updateStroke, .ctx = &STATE });
-    _ = try dom.addListener(STATE.canvasID, "touchend", &.{ .callback = endStroke, .ctx = &STATE });
 
     _ = try dom.addListener(dom.window, "keydown", &.{ .callback = onKeyDown, .ctx = &STATE });
     _ = try dom.addListener(dom.window, "resize", &.{ .callback = onResize, .ctx = &STATE });

@@ -1,7 +1,7 @@
 const std = @import("std");
 const wasm = @import("wasmapi");
 const dom = @import("dom");
-const timer = @import("timer");
+const schedule = @import("schedule").schedule;
 
 // expose thi.ng/wasm-api core API (incl. panic handler & allocation fns)
 pub usingnamespace wasm;
@@ -10,14 +10,12 @@ pub usingnamespace wasm;
 // see further comments in:
 // https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api/zig/lib.zig
 // https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api-dom/zig/events.zig
-// https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api-timer/zig/lib.zig
+// https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api-schedule/zig/lib.zig
 var gpa = std.heap.GeneralPurposeAllocator(.{}){};
 pub const WASM_ALLOCATOR = gpa.allocator();
 
 /// Simple click counter component
 const Counter = struct {
-    listener: dom.EventListener,
-    listenerID: u16,
     elementID: i32,
     clicks: usize,
     step: usize,
@@ -25,9 +23,8 @@ const Counter = struct {
     const Self = @This();
 
     /// Data structure used for capturing current counter state for delayed
-    /// update via timer.schedule() (see onClick handler below)
+    /// update via schedule.schedule() (see onClick handler below)
     const Snapshot = struct {
-        callback: timer.TimerCallback,
         /// Back reference to counter
         self: *const Self,
         /// Click count before update
@@ -36,7 +33,7 @@ const Counter = struct {
         curr: usize,
     };
 
-    /// Create & initialize instance & DOM element w/ listener
+    /// Initialize instance & DOM element w/ listener
     pub fn init(self: *Self, parent: i32, step: usize) !void {
         self.clicks = 0;
         self.step = step;
@@ -47,10 +44,11 @@ const Counter = struct {
             .class = "db w5 ma2 pa2 tc bn",
             .text = "click me!",
             .parent = parent,
+            .attribs = &.{
+                // define & add click event listener w/ user context arg
+                dom.Attrib.event("click", .{ .callback = onClick, .ctx = self }),
+            },
         });
-        // define & add click event listener w/ user context arg
-        self.listener = .{ .callback = onClick, .ctx = self };
-        self.listenerID = try dom.addListener(self.elementID, "click", &self.listener);
     }
 
     fn update(self: *const Self) void {
@@ -66,7 +64,6 @@ const Counter = struct {
     fn snapshot(self: *const Self) *Snapshot {
         var snap = WASM_ALLOCATOR.create(Snapshot) catch @panic("couldn't create snapshot");
         snap.* = .{
-            .callback = .{ .callback = onTimer, .ctx = snap },
             .self = self,
             .curr = self.clicks,
             .prev = self.clicks - self.step,
@@ -81,14 +78,15 @@ const Counter = struct {
             self.clicks += self.step;
             self.update();
             // Trigger delayed update of button background color
+            // Supply a snapshot of current state as user context for the update
             // Since this is a one-off callback, we don't have to hold on
             // to the returned listener ID (auto-cleanup)
-            _ = timer.schedule(&self.snapshot().callback, 500, .once) catch return;
+            _ = schedule(.once, &.{ .callback = onTimeout, .ctx = self.snapshot() }, 500) catch return;
         }
     }
 
-    /// timer callback
-    fn onTimer(raw: ?*anyopaque) void {
+    /// scheduled callback
+    fn onTimeout(raw: ?*anyopaque) void {
         if (wasm.ptrCast(*Snapshot, raw)) |snap| {
             // update CSS classes based on given click counts
             dom.removeClass(snap.self.elementID, colors[@mod(snap.prev, colors.len)]);
@@ -116,9 +114,10 @@ const colors = [_][]const u8{
 /// we're bundling them all in a single fn, which is then called by start()
 /// and so only needs one code site for error handling
 fn init() !void {
-    // the WASM API modules must always be intialized first!
-    try dom.init(WASM_ALLOCATOR);
-    try timer.init(WASM_ALLOCATOR);
+    // the WASM API modules auto-initialize themselves if the root source
+    // file exposes a `WASM_ALLOCATOR`, otherwise you'll have to initialize manually:
+    // try dom.init(customAllocator);
+    // try schedule.init(customAllocator);
 
     // then instantiate all counter components
     for (counters) |*counter, i| try counter.init(dom.body, i + 1);
