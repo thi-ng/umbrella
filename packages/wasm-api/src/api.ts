@@ -423,6 +423,15 @@ export interface Field extends TypeInfo {
 	 */
 	const?: boolean;
 	/**
+	 * Optional type qualifier. Currently only supported (as type) in
+	 * {@link ZIG} for pointers (incl. `opaque`). In C/TypeScript the equivalent
+	 * semantics are that the value will be zero if there's no value, otherwise
+	 * the value is the pointer's target address.
+	 *
+	 * @defaultValue false
+	 */
+	optional?: boolean;
+	/**
 	 * Currently only supported for {@link ZIG} arrays & slices, otherwise
 	 * ignored!
 	 */

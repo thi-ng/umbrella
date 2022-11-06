@@ -189,7 +189,7 @@ export const fieldType = (
 			? "[*:0]const u8"
 			: "[*:0]u8"
 		: isOpaque(f.type)
-		? `*${f.const ? "const " : ""}anyopaque`
+		? `${f.optional ? "?" : ""}*${f.const ? "const " : ""}anyopaque`
 		: f.type;
 	let defaultVal = defaultValue(f, "zig");
 	switch (f.tag) {
@@ -208,7 +208,7 @@ export const fieldType = (
 			type = `@Vector(${f.len}, ${type})`;
 			break;
 		case "ptr":
-			type = `*${f.const ? "const " : ""}${
+			type = `${f.optional ? "?" : ""}*${f.const ? "const " : ""}${
 				f.len ? `[${f.len}]` : ""
 			}${type}`;
 			break;
