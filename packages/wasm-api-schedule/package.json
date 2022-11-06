@@ -1,5 +1,5 @@
 {
-	"name": "@thi.ng/wasm-api-timer",
+	"name": "@thi.ng/wasm-api-schedule",
 	"version": "0.1.2",
 	"description": "Delayed & scheduled function execution (via setTimeout() etc.) for hybrid WASM apps",
 	"type": "module",
@@ -10,7 +10,7 @@
 		"type": "git",
 		"url": "https://github.com/thi-ng/umbrella.git"
 	},
-	"homepage": "https://github.com/thi-ng/umbrella/tree/master/packages/wasm-api-timer#readme",
+	"homepage": "https://github.com/thi-ng/umbrella/tree/master/packages/wasm-api-schedule#readme",
 	"funding": [
 		{
 			"type": "github",
@@ -81,8 +81,8 @@
 		"./api": {
 			"default": "./api.js"
 		},
-		"./timer": {
-			"default": "./timer.js"
+		"./schedule": {
+			"default": "./schedule.js"
 		}
 	},
 	"thi.ng": {

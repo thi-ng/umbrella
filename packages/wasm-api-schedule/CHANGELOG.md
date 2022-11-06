@@ -9,13 +9,13 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
 
-### [0.1.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/wasm-api-timer@0.1.1) (2022-10-31)
+### [0.1.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/wasm-api-schedule@0.1.1) (2022-10-31)
 
 #### ♻️ Refactoring
 
 - add module ID, cleanup ([70e580c](https://github.com/thi-ng/umbrella/commit/70e580c))
 
-## [0.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/wasm-api-timer@0.1.0) (2022-10-31)
+## [0.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/wasm-api-schedule@0.1.0) (2022-10-31)
 
 #### 🚀 Features
 

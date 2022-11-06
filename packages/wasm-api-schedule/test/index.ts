@@ -2,6 +2,4 @@ import { group } from "@thi.ng/testament";
 // import * as assert from "assert";
 // import { } from "../src";
 
-group("wasm-api-timer", {
-
-});
+group("wasm-api-schedule", {});

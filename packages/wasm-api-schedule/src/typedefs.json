@@ -1,6 +1,6 @@
 [
 	{
-		"name": "TimerType",
+		"name": "ScheduleType",
 		"type": "enum",
 		"tag": "i32",
 		"values": [

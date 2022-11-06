@@ -13,7 +13,7 @@ This project is part of the
 
 ${pkg.description}
 
-The package provides a WASM bridge API and abstraction for:
+The package provides a WASM bridge API and abstraction for scheduling function calls via:
 
 - **once**: `setTimeout()` / `clearTimeout()`
 - **interval**: `setInterval()` / `clearInterval()`
@@ -26,22 +26,34 @@ cancelled via `cancel()`...
 Zig example:
 
 ```zig
-const timer = @import("timer");
+const wasm = @import("wasmapi");
+const schedule = @import("schedule");
 
 // ...
 
-// initialize API module
-try timer.init(allocator);
+// the WASM API modules auto-initialize themselves if the root source
+// file exposes a `WASM_ALLOCATOR`, otherwise you'll have to initialize manually:
+try schedule.init(customAllocator);
+
+// user callback function
+fn exampleCallback(raw: ?*anyopaque) void {
+    if (wasm.ptrCast(*u32, raw)) |state| {
+		// do something ...
+	}
+}
+
+// arbitrary user state
+var state: u32 = 0xdecafbad;
 
 // schedule a single/one-off callback 500ms in the future
-const listenerID = try timer.schedule(
-	&.{ .callback = onTimer, .ctx = self },
-	500,
-	.once
+const listenerID = try schedule.schedule(
+    .once,
+    &.{ .callback = exampleCallback, .ctx = &state },
+    500,
 );
 
 // ...or maybe cancel it again
-timer.cancel(listenerID);
+schedule.cancel(listenerID);
 ```
 
 Also see
