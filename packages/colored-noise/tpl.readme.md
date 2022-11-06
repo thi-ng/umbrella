@@ -364,7 +364,7 @@ import { take } from "@thi.ng/transducers";
 // custom config
 import { XsAdd } from "@thi.ng/random";
 
-[...take(20, red(16, 1, new XsAdd(0xdecafbad)))]
+[...take(20, red({ num: 16, scale: 1, rnd: new XsAdd(0xdecafbad) }))]
 // [ -0.17761799097704192, -0.10240132532836904, -0.1103387340810939, ...]
 ```
 
@@ -380,7 +380,7 @@ const FS = 44100;
 
 const signal = product(
     // wrap green noise as IGen
-    iterable(green(16), 0),
+    iterable(green({ bins: 16 }), 0),
     // apply gain envelope
     adsr({ a: 0.005 * FS, d: 0.2 * FS, s: 0 })
 );

@@ -1,6 +1,5 @@
 import { ctz32 } from "@thi.ng/binary/count";
-import type { INorm } from "@thi.ng/random";
-import { SYSTEM } from "@thi.ng/random/system";
+import { ColoredNoiseOpts, DEFAULT_OPTS } from "./api.js";
 import { preseed, sum } from "./utils.js";
 
 /**
@@ -15,16 +14,19 @@ import { preseed, sum } from "./utils.js";
  * - https://www.dsprelated.com/showarticle/908.php
  * - https://www.firstpr.com.au/dsp/pink-noise/#Voss-McCartney
  *
- * @param n -
- * @param scale -
- * @param rnd -
+ * @param opts -
  */
-export function* pink(n = 8, scale = 1, rnd: INorm = SYSTEM) {
-	const state = preseed(n, scale, rnd);
-	const invN = 1 / n;
+export function* pink(opts?: Partial<ColoredNoiseOpts>) {
+	const { bins, scale, rnd } = {
+		...DEFAULT_OPTS,
+		bins: 8,
+		...opts,
+	};
+	const state = preseed(bins, scale, rnd);
+	const invN = 1 / bins;
 	let acc = sum(state);
 	for (let i = 0; true; i = (i + 1) >>> 0) {
-		const id = ctz32(i) % n;
+		const id = ctz32(i) % bins;
 		acc -= state[id];
 		acc += state[id] = rnd.norm(scale);
 		yield acc * invN;

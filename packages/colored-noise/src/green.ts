@@ -1,5 +1,4 @@
-import type { INorm } from "@thi.ng/random";
-import { SYSTEM } from "@thi.ng/random/system";
+import type { ColoredNoiseOpts } from "./api.js";
 import { blue } from "./blue.js";
 import { interleave } from "./utils.js";
 
@@ -7,9 +6,7 @@ import { interleave } from "./utils.js";
  * Band-pass filtered noise (interleaved blue noise). Opposite of
  * {@link violet}.
  *
- * @param n -
- * @param scale -
- * @param rnd -
+ * @param opts -
  */
-export const green = (n = 2, scale = 1, rnd: INorm = SYSTEM) =>
-	interleave(blue(n, scale, rnd), blue(n, scale, rnd));
+export const green = (opts?: Partial<ColoredNoiseOpts>) =>
+	interleave(blue(opts), blue(opts));

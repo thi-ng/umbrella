@@ -7,7 +7,7 @@ const FS = 44100;
 
 const signal = product(
 	// wrap green noise as IGen
-	iterable(green(16), 0),
+	iterable(green({ bins: 16 }), 0),
 	// apply gain envelope
 	adsr({ a: 0.005 * FS, d: 0.2 * FS, s: 0 })
 );

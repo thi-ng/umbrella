@@ -1,20 +1,21 @@
-import type { INorm } from "@thi.ng/random";
-import { SYSTEM } from "@thi.ng/random/system";
+import { ColoredNoiseOpts, DEFAULT_OPTS } from "./api.js";
 import { preseed, sum } from "./utils.js";
 
 /**
  * High-pass filtered noise. Opposite of {@link red}.
  *
- * @param n -
- * @param scale -
- * @param rnd -
+ * @param opts -
  */
-export function* blue(n = 2, scale = 1, rnd: INorm = SYSTEM) {
-	const state = preseed(n, scale, rnd);
+export function* blue(opts?: Partial<ColoredNoiseOpts>) {
+	const { bins, scale, rnd } = {
+		...DEFAULT_OPTS,
+		...opts,
+	};
+	const state = preseed(bins, scale, rnd);
 	state.forEach((x, i) => (state[i] = i & 1 ? x : -x));
-	const invN = 1 / n;
+	const invN = 1 / bins;
 	let acc = sum(state);
-	for (let i = 0, sign = -1; true; ++i >= n && (i = 0)) {
+	for (let i = 0, sign = -1; true; ++i >= bins && (i = 0)) {
 		acc -= state[i];
 		acc += state[i] = sign * rnd.norm(scale);
 		sign ^= 0xfffffffe;

@@ -1,7 +1,15 @@
 import type { Fn } from "@thi.ng/api";
 import { wavByteArray } from "@thi.ng/dsp-io-wav";
 import { writeFileSync } from "fs";
-import { blue, green, pink, red, violet, white } from "../src";
+import {
+	blue,
+	ColoredNoiseOpts,
+	green,
+	pink,
+	red,
+	violet,
+	white,
+} from "../src/index.js";
 
 const FS = 44100;
 const LENGTH = 5 * FS;
@@ -20,11 +28,11 @@ const write = (id: string, src: Iterable<number>) => {
 
 const writeBatch = (
 	id: string,
-	fn: Fn<number, Iterable<number>>,
-	steps = [2, 4, 8, 16, 32]
+	fn: Fn<Partial<ColoredNoiseOpts>, Iterable<number>>,
+	bins = [2, 4, 8, 16, 32]
 ) => {
-	for (let n of steps) {
-		write(`${id}-${n}`, fn(n));
+	for (let n of bins) {
+		write(`${id}-${n}`, fn({ bins: n }));
 	}
 };
 

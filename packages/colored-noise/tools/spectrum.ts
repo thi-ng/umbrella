@@ -3,7 +3,14 @@ import { fft, spectrumPow } from "@thi.ng/dsp";
 import { barChartHStr } from "@thi.ng/text-canvas";
 import { map, range, reducer, take, transduce } from "@thi.ng/transducers";
 import { add, divN, Vec, zeroes } from "@thi.ng/vectors";
-import { blue, green, pink, red, violet } from "../src";
+import {
+	blue,
+	ColoredNoiseOpts,
+	green,
+	pink,
+	red,
+	violet,
+} from "../src/index.js";
 
 const computeSpectrum = (src: Fn0<Iterable<number>>, size = 128, num = 1000) =>
 	divN(
@@ -28,11 +35,11 @@ const printSpectrum = (id: string, fn: Fn0<Iterable<number>>) => {
 
 const printBatch = (
 	id: string,
-	fn: Fn<number, Iterable<number>>,
-	steps = [2, 4, 8, 16, 32]
+	fn: Fn<Partial<ColoredNoiseOpts>, Iterable<number>>,
+	bins = [2, 4, 8, 16, 32]
 ) => {
-	for (let n of steps) {
-		printSpectrum(`${id}${n}`, () => fn(n));
+	for (let n of bins) {
+		printSpectrum(`${id}${n}`, () => fn({ bins: n }));
 	}
 };
 
