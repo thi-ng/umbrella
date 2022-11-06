@@ -1,0 +1,21 @@
+[
+	{
+		"name": "Task",
+		"type": "struct",
+		"fields": [
+			{
+				"name": "state",
+				"type": "TaskState",
+				"default": { "zig": ".open" }
+			},
+			{ "name": "body", "type": "string" },
+			{ "name": "dateCreated", "type": "u32" },
+			{ "name": "dateDone", "type": "u32", "default": 0 }
+		]
+	},
+	{
+		"name": "TaskState",
+		"type": "enum",
+		"values": ["open", "done"]
+	}
+]
