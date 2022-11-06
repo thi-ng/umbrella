@@ -4,10 +4,12 @@ import { XML_SVG, XML_XLINK, XML_XMLNS } from "@thi.ng/prefixes/xml";
 export * from "./generated/api.js";
 
 export interface DOMExports extends WasmExports {
-	dom_callListener(listenerID: number, event: number): void;
-	dom_callRAF(rafID: number, t: number): void;
-	dom_fullscreenChanged(): void;
-	dom_removeListener(listenerID: number): void;
+	_dom_init(): void;
+	_dom_callListener(listenerID: number, event: number): void;
+	_dom_callRAF(rafID: number, t: number): void;
+	_dom_fullscreenChanged(): void;
+	_dom_addListener(listenerAddr: number): number;
+	_dom_removeListener(listenerID: number): void;
 }
 
 export interface DOMImports extends WebAssembly.ModuleImports {
@@ -18,6 +20,16 @@ export interface DOMImports extends WebAssembly.ModuleImports {
 	 * @param infoAddr
 	 */
 	getWindowInfo(infoAddr: number): void;
+
+	/**
+	 * Similar to global `document.getElementById()`, but returning ID handle of
+	 * found indexed element, or -1 if none could be found. If the DOM element
+	 * exists, but isn't yet managed/indexed, it will be added to the index and
+	 * its ID returned.
+	 *
+	 * @param nameAddr
+	 */
+	_getElementByID(nameAddr: number): number;
 
 	/**
 	 * Takes a {@link CreateElementOpts} pointer and creates a new DOM element

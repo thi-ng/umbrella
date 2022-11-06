@@ -23,7 +23,7 @@ pub fn exitFullscreen(callback: ?FullscreenCallback) void {
 }
 
 /// Internal callback. Called from JS
-export fn dom_fullscreenChanged() void {
+export fn _dom_fullscreenChanged() void {
     if (fsCallback) |callback| {
         callback();
         fsCallback = null;

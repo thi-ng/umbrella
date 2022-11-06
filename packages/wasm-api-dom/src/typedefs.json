@@ -177,12 +177,7 @@
 					"fromEvent(e: globalThis.InputEvent) {",
 					"const el = <HTMLInputElement>e.target;",
 					"const value = el.type === \"checkbox\" ? el.checked ? \"on\" : \"off\" : el.value;",
-					"const bytes = new TextEncoder().encode(value);",
-					"const slice = mem.allocate(bytes.length + 1);",
-					"mem.u8.set(bytes, slice[0]);",
-					"mem.u8[slice[0] + bytes.length] = 0;",
-					"this.value.setSlice(slice[0], bytes.length);",
-					"return slice;",
+					"return this.value.setAlloc(value, false);",
 					"}"
 				]
 			}
@@ -550,6 +545,73 @@
 		]
 	},
 	{
+		"name": "EventCallback",
+		"type": "funcptr",
+		"rtype": "void",
+		"args": [
+			{ "name": "event", "type": "Event", "tag": "ptr", "const": true },
+			{ "name": "ctx", "type": "opaque", "optional": true }
+		],
+		"skip": ["ts"]
+	},
+	{
+		"name": "RAFCallback",
+		"type": "funcptr",
+		"rtype": "void",
+		"args": [
+			{ "name": "time", "type": "f64" },
+			{ "name": "ctx", "type": "opaque", "optional": true }
+		],
+		"skip": ["ts"]
+	},
+	{
+		"name": "EventListener",
+		"type": "struct",
+		"doc": "DOM event listener",
+		"fields": [
+			{
+				"name": "callback",
+				"type": "EventCallback",
+				"doc": "Event listener function. Takes an event and optional pointer to user supplied arbitrary context data provided when registering the handler via `addListener()`"
+			},
+			{
+				"name": "ctx",
+				"type": "opaque",
+				"optional": true,
+				"default": { "zig": "null" },
+				"doc": [
+					"Optional type erased pointer to arbitrary user context. This pointer can be cast back into the desired type using this form:",
+					"`@ptrCast(?*Foo, @alignCast(@alignOf(Foo), raw))`",
+					"Also see: `wasmapi.ptrCast()`"
+				]
+			}
+		]
+	},
+	{
+		"name": "RAFListener",
+		"type": "struct",
+		"doc": "RAF event listener",
+		"fields": [
+			{
+				"name": "callback",
+				"type": "RAFCallback",
+				"doc": "Animation frame listener function. Takes an hires timestamp and optional pointer to user supplied arbitrary context data provided when registering the handler via `requestAnimationFrame()`"
+			},
+			{
+				"name": "ctx",
+				"type": "opaque",
+				"optional": true,
+				"default": { "zig": "null" },
+				"doc": [
+					"Optional type erased pointer to arbitrary user context. This pointer can be cast back into the desired type using this form:",
+					"`@ptrCast(?*Foo, @alignCast(@alignOf(Foo), raw))`",
+					"Also see: `wasmapi.ptrCast()`"
+				]
+			}
+		],
+		"skip": ["ts"]
+	},
+	{
 		"name": "CreateElementOpts",
 		"type": "struct",
 		"fields": [
@@ -624,16 +686,20 @@
 		],
 		"body": {
 			"zig": [
-				"pub fn string(name: []const u8, val: []const u8) Attrib {",
-				"return Attrib{ .name = name, .kind = .str, .value = .{ .str = val } };",
+				"pub fn event(name: []const u8, val: EventListener) Attrib {",
+				"return Attrib{ .name = name, .kind = .event, .value = .{ .event = val } };",
+				"}",
+				"",
+				"pub fn flag(name: []const u8, val: bool) Attrib {",
+				"return Attrib{ .name = name, .kind = .flag, .value = .{ .flag = if (val) 1 else 0 } };",
 				"}",
 				"",
 				"pub fn number(name: []const u8, val: f64) Attrib {",
 				"return Attrib{ .name = name, .kind = .num, .value = .{ .num = val } };",
 				"}",
 				"",
-				"pub fn flag(name: []const u8, val: bool) Attrib {",
-				"return Attrib{ .name = name, .kind = .flag, .value = .{ .flag = if (val) 1 else 0 } };",
+				"pub fn string(name: []const u8, val: []const u8) Attrib {",
+				"return Attrib{ .name = name, .kind = .str, .value = .{ .str = val } };",
 				"}"
 			]
 		}
@@ -642,16 +708,17 @@
 		"name": "AttribValue",
 		"type": "union",
 		"fields": [
-			{ "name": "str", "type": "string" },
+			{ "name": "event", "type": "EventListener" },
+			{ "name": "flag", "type": "u8" },
 			{ "name": "num", "type": "f64" },
-			{ "name": "flag", "type": "u8" }
+			{ "name": "str", "type": "string" }
 		]
 	},
 	{
 		"name": "AttribType",
 		"type": "enum",
 		"tag": "u8",
-		"values": ["str", "num", "flag"]
+		"values": ["event", "flag", "num", "str"]
 	},
 	{
 		"name": "CreateCanvasOpts",
@@ -695,6 +762,14 @@
 				"type": "u8",
 				"doc": "Device pixel ratio for computing physical pixel dimensions, see `getWindowInfo()`",
 				"default": 1
+			},
+			{
+				"name": "attribs",
+				"type": "Attrib",
+				"tag": "slice",
+				"const": true,
+				"doc": "Optional slice of attribute definitions for this element. Also see provided `Attrib` factory fns for convenience.",
+				"default": { "zig": "&.{}" }
 			}
 		]
 	}

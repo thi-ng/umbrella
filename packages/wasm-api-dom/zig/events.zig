@@ -1,44 +1,23 @@
 const std = @import("std");
 const dom = @import("api.zig");
-const ManagedIndex = @import("wasmapi").ManagedIndex;
+const wasm = @import("wasmapi");
 
-/// DOM event listener
-pub const EventListener = struct {
-    /// Event listener function. Takes an event and optional pointer to user
-    /// supplied arbitrary context data provided when registering the handler
-    /// via addListener()
-    callback: *const fn (event: *const dom.Event, ?*anyopaque) void,
-    /// Optional type erased pointer to arbitrary user context. This pointer
-    /// can be cast back into the desired type using this form:
-    /// `@ptrCast(?*Foo, @alignCast(@alignOf(Foo), raw))`
-    /// Also see: `wasmapi.ptrCast()`
-    ctx: ?*anyopaque = null,
-};
-
-/// RAF event listener
-pub const RAFListener = struct {
-    /// Animation frame listener function. Takes an hires timestamp and optional
-    /// pointer to user supplied arbitrary context data provided when registering
-    /// the handler via requestAnimationFrame()
-    callback: *const fn (time: f64, ?*anyopaque) void,
-    /// Optional type erased pointer to arbitrary user context. This pointer
-    /// can be cast back into the desired type using this form:
-    /// `@ptrCast(?*Foo, @alignCast(@alignOf(Foo), raw))`
-    /// Also see: `wasmapi.ptrCast()`
-    ctx: ?*anyopaque = null,
-};
-
-var eventListeners: ManagedIndex(*const EventListener, u16) = undefined;
-var rafListeners: ManagedIndex(*const RAFListener, u16) = undefined;
+var eventListeners: wasm.ManagedIndex(dom.EventListener, u16) = undefined;
+var rafListeners: wasm.ManagedIndex(dom.RAFListener, u16) = undefined;
 
 /// Initializes the managed indices for DOM resources
-pub fn init(allocator: std.mem.Allocator) !void {
-    eventListeners = ManagedIndex(*const EventListener, u16).init(allocator);
-    rafListeners = ManagedIndex(*const RAFListener, u16).init(allocator);
+pub fn init(allocator: std.mem.Allocator) void {
+    eventListeners = wasm.ManagedIndex(dom.EventListener, u16).init(allocator);
+    rafListeners = wasm.ManagedIndex(dom.RAFListener, u16).init(allocator);
+}
+
+pub fn deinit() void {
+    eventListeners.deinit();
+    rafListeners.deinit();
 }
 
 /// Internal callback. Called from JS
-export fn dom_callListener(listenerID: u16, event: *const dom.Event) void {
+export fn _dom_callListener(listenerID: u16, event: *const dom.Event) void {
     if (eventListeners.get(listenerID)) |listener| listener.callback(event, listener.ctx);
 }
 
@@ -46,16 +25,21 @@ pub extern "dom" fn _addListener(elementID: i32, name: [*]const u8, listenerID: 
 
 /// Adds given listener to a DOM element for event `name`.
 /// Returns an unique listener ID.
-pub fn addListener(elementID: i32, name: []const u8, listener: *const EventListener) !u16 {
-    const listenerID = try eventListeners.add(listener);
+pub fn addListener(elementID: i32, name: []const u8, listener: *const dom.EventListener) !u16 {
+    const listenerID = try eventListeners.add(listener.*);
     _addListener(elementID, name.ptr, listenerID);
     return listenerID;
+}
+
+export fn _dom_addListener(listener: *const dom.EventListener) i32 {
+    const listenerID = eventListeners.add(listener.*) catch return -1;
+    return @as(i32, listenerID);
 }
 
 /// Internal callback. Called from JS when an indirectly referenced event
 /// listener must be removed as part of the recursive cleanup procedure of
 /// removeElement()
-export fn dom_removeListener(listenerID: u16) void {
+export fn _dom_removeListener(listenerID: u16) void {
     eventListeners.remove(listenerID);
 }
 
@@ -82,14 +66,14 @@ pub extern "dom" fn stopImmediatePropagation() void;
 pub extern "dom" fn _requestAnimationFrame(listenerID: u16) void;
 
 /// Registers given listener for next animation frame
-pub fn requestAnimationFrame(listener: *const RAFListener) !u16 {
-    const id = try rafListeners.add(listener);
+pub fn requestAnimationFrame(listener: *const dom.RAFListener) !u16 {
+    const id = try rafListeners.add(listener.*);
     _requestAnimationFrame(id);
     return id;
 }
 
 /// Internal callback. Called from JS
-export fn dom_callRAF(listenerID: u16, time: f64) void {
+export fn _dom_callRAF(listenerID: u16, time: f64) void {
     if (rafListeners.get(listenerID)) |raf| {
         rafListeners.remove(listenerID);
         raf.callback(time, raf.ctx);

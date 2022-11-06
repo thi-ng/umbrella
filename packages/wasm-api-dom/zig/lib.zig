@@ -1,3 +1,4 @@
+const wasm = @import("wasmapi");
 const dom = @import("api.zig");
 const event = @import("events.zig");
 const fullscreen = @import("fullscreen.zig");
@@ -17,7 +18,20 @@ pub const DOMError = error{
     InvalidID,
 };
 
+export fn _dom_init() void {
+    if (wasm.allocator()) |allocator| {
+        wasm.printStr("dom using root allocator");
+        event.init(allocator);
+    }
+}
+
 pub extern "dom" fn getWindowInfo(desc: *dom.WindowInfo) void;
+
+pub extern "dom" fn _getElementByID(id: [*]const u8) i32;
+
+pub fn getElementByID(id: []const u8) i32 {
+    return _getElementByID(id.ptr);
+}
 
 pub extern "dom" fn createElement(opts: *const dom.CreateElementOpts) i32;
 
@@ -41,13 +55,13 @@ pub fn getStringAttrib(elementID: i32, name: []const u8, val: []u8) []u8 {
     return val[0.._getStringAttrib(elementID, name.ptr, val.ptr, val.len)];
 }
 
-pub extern "dom" fn _getStringAttribAlloc(elementID: i32, name: [*]const u8, slice: *[]u8) usize;
+pub extern "dom" fn _getStringAttribAlloc(elementID: i32, name: [*]const u8, slice: *[]u8) void;
 
 /// Returns string value of attrib for given name and allocates memory for that string
 /// Caller owns memory
 pub fn getStringAttribAlloc(elementID: i32, name: []const u8) []u8 {
     var addr: []u8 = undefined;
-    _ = _getStringAttribAlloc(elementID, name.ptr, &addr);
+    _getStringAttribAlloc(elementID, name.ptr, &addr);
     return addr;
 }
 

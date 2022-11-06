@@ -15,7 +15,6 @@ import {
 	$CreateElementOpts,
 	$Event,
 	$WindowInfo,
-	Attrib,
 	AttribType,
 	CreateElementOpts,
 	DOMExports,
@@ -73,7 +72,7 @@ interface WasmListener {
 }
 
 export class WasmDom implements IWasmAPI<DOMExports> {
-	readonly id = "dom";
+	static readonly id = "dom";
 
 	parent!: WasmBridge<DOMExports>;
 	$Event!: WasmType<WasmEvent>;
@@ -85,8 +84,13 @@ export class WasmDom implements IWasmAPI<DOMExports> {
 	protected currEvent: Event | null = null;
 	protected currDataTransfer: DataTransfer | null = null;
 
+	get id() {
+		return WasmDom.id;
+	}
+
 	async init(parent: WasmBridge<DOMExports>) {
 		this.parent = parent;
+		parent.exports._dom_init();
 		this.elements.add(document.head);
 		this.elements.add(document.body);
 		this.$Event = $Event(this.parent);
@@ -114,6 +118,16 @@ export class WasmDom implements IWasmAPI<DOMExports> {
 						: 0);
 			},
 
+			_getElementByID: (nameAddr: number) => {
+				const name = this.parent.getString(nameAddr);
+				let id = this.elements.find((el) => el.id === name);
+				if (id === undefined) {
+					const el = document.getElementById(name);
+					return el ? this.elements.add(el) : -1;
+				}
+				return id;
+			},
+
 			createElement: (optsAddr: number) => {
 				const create = (
 					opts: CreateElementOpts,
@@ -127,8 +141,8 @@ export class WasmDom implements IWasmAPI<DOMExports> {
 								tagName
 						  )
 						: document.createElement(tagName);
-					this.initElement(el, opts, nestedParent);
 					const id = this.elements.add(el);
+					this.initElement(id, el, opts, nestedParent);
 					if (opts.children.length > 0) {
 						for (let child of opts.children) {
 							create(child, id);
@@ -155,7 +169,7 @@ export class WasmDom implements IWasmAPI<DOMExports> {
 							for (let listenerID of elementListeners) {
 								this.removeListener(el, listenerID);
 								// WASM side cleanup
-								this.parent.exports.dom_removeListener(
+								this.parent.exports._dom_removeListener(
 									listenerID
 								);
 							}
@@ -171,8 +185,9 @@ export class WasmDom implements IWasmAPI<DOMExports> {
 				const opts = $CreateCanvasOpts(this.parent).instance(optsAddr);
 				const el = document.createElement("canvas");
 				adaptDPI(el, opts.width, opts.height, opts.dpr);
-				this.initElement(el, opts);
-				return this.elements.add(el);
+				const id = this.elements.add(el);
+				this.initElement(id, el, opts);
+				return id;
 			},
 
 			setCanvasSize: (
@@ -228,7 +243,8 @@ export class WasmDom implements IWasmAPI<DOMExports> {
 				slice: number
 			) =>
 				new WasmStringSlice(this.parent, slice).setAlloc(
-					String(this.getAttrib(elementID, nameAddr) || "")
+					String(this.getAttrib(elementID, nameAddr) || ""),
+					false
 				),
 
 			_getNumericAttrib: (elementID: number, nameAddr: number) =>
@@ -286,7 +302,7 @@ export class WasmDom implements IWasmAPI<DOMExports> {
 					if (eventTypeID === EventType.DRAG) {
 						this.currDataTransfer = (<DragEvent>e).dataTransfer;
 					}
-					this.parent.exports.dom_callListener(
+					this.parent.exports._dom_callListener(
 						listenerID,
 						event.__base
 					);
@@ -349,7 +365,7 @@ export class WasmDom implements IWasmAPI<DOMExports> {
 			_requestAnimationFrame: (rafID: number) => {
 				this.parent.logger.fine(`requestAnimationFrame #${rafID}`);
 				requestAnimationFrame((t) =>
-					this.parent.exports.dom_callRAF(rafID, t)
+					this.parent.exports._dom_callRAF(rafID, t)
 				);
 			},
 
@@ -368,7 +384,7 @@ export class WasmDom implements IWasmAPI<DOMExports> {
 						el.requestFullscreen ||
 						(<any>el).webkitRequestFullscreen;
 					await method.bind(el)();
-					this.parent.exports.dom_fullscreenChanged();
+					this.parent.exports._dom_fullscreenChanged();
 				}
 			},
 
@@ -381,20 +397,20 @@ export class WasmDom implements IWasmAPI<DOMExports> {
 						document.exitFullscreen ||
 						(<any>document).webkitExitFullscreen;
 					await method.bind(document)();
-					this.parent.exports.dom_fullscreenChanged();
+					this.parent.exports._dom_fullscreenChanged();
 				}
 			},
 		};
 	}
 
 	protected initElement(
+		elementID: number,
 		el: Element,
 		opts: Pick<
 			Readonly<CreateElementOpts>,
-			"class" | "id" | "index" | "parent"
+			"attribs" | "class" | "id" | "index" | "parent"
 		> &
 			Partial<{
-				attribs: Attrib[];
 				html: ReadonlyWasmString;
 				text: ReadonlyWasmString;
 			}>,
@@ -411,7 +427,16 @@ export class WasmDom implements IWasmAPI<DOMExports> {
 		if (attribs && attribs.length) {
 			for (let attr of attribs) {
 				const name = attr.name.deref();
-				if (attr.kind === AttribType.FLAG) {
+				if (attr.kind === AttribType.EVENT) {
+					const listenerAddr = attr.value.event.__base;
+					const listenerID =
+						this.parent.exports._dom_addListener(listenerAddr);
+					this.getImports()._addListener(
+						elementID,
+						attr.name.addr,
+						listenerID
+					);
+				} else if (attr.kind === AttribType.FLAG) {
 					attr.value.flag && el.setAttribute(name, "");
 				} else {
 					el.setAttribute(
