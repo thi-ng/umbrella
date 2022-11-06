@@ -29,6 +29,7 @@ import { generateTypes } from "./codegen.js";
 import { C11, C11Opts } from "./codegen/c11.js";
 import { TSOpts, TYPESCRIPT } from "./codegen/typescript.js";
 import {
+	isOpaque,
 	isPadding,
 	isSizeT,
 	isWasmPrim,
@@ -167,6 +168,7 @@ const validateTypeRefs = (coll: TypeColl) => {
 					isPadding(f) ||
 					isWasmPrim(f.type) ||
 					isSizeT(f.type) ||
+					isOpaque(f.type) ||
 					isWasmString(f.type) ||
 					coll[f.type]
 				)
