@@ -13,9 +13,10 @@
 	},
 	"devDependencies": {
 		"typescript": "^4.8.4",
-		"vite": "^3.2.0"
+		"vite": "^3.2.2"
 	},
 	"dependencies": {
+		"@thi.ng/api": "workspace:^",
 		"@thi.ng/hiccup-html": "workspace:^",
 		"@thi.ng/paths": "workspace:^",
 		"@thi.ng/rdom": "workspace:^",

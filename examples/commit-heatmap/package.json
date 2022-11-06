@@ -12,7 +12,7 @@
 		"build": "tools:node-esm src/index.ts"
 	},
 	"dependencies": {
-		"@thi.ng/associative": "workspace:^",
+		"@thi.ng/api": "workspace:^",
 		"@thi.ng/color": "workspace:^",
 		"@thi.ng/compose": "workspace:^",
 		"@thi.ng/date": "workspace:^",

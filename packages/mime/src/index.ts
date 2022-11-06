@@ -1,10 +1,9 @@
-import type { IObjectOf } from "@thi.ng/api";
 import { DB } from "./generated.js";
 
 // https://www.iana.org/assignments/media-types/
 
 export const MIME_TYPES = ((defs: any) => {
-	const res: IObjectOf<string[]> = {};
+	const res: Record<string, string[]> = {};
 	for (let groupID in defs) {
 		const group = defs[groupID];
 		for (let type in group) {

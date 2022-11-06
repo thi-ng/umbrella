@@ -44,7 +44,7 @@
 		"@thi.ng/logger": "^1.4.2",
 		"@thi.ng/malloc": "^6.1.21",
 		"@thi.ng/transducers": "^8.3.22",
-		"tslib": "^2.4.0"
+		"tslib": "^2.4.1"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.33.5",
@@ -52,7 +52,7 @@
 		"@thi.ng/testament": "^0.3.4",
 		"rimraf": "^3.0.2",
 		"tools": "workspace:^",
-		"typedoc": "^0.23.18",
+		"typedoc": "^0.23.20",
 		"typescript": "^4.8.4"
 	},
 	"keywords": [

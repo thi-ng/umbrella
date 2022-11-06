@@ -13,14 +13,17 @@
 	},
 	"devDependencies": {
 		"typescript": "^4.8.4",
-		"vite": "^3.2.0"
+		"vite": "^3.2.2"
 	},
 	"dependencies": {
 		"@thi.ng/dl-asset": "workspace:^",
 		"@thi.ng/hiccup-html": "workspace:^",
+		"@thi.ng/random": "workspace:^",
 		"@thi.ng/rdom": "workspace:^",
+		"@thi.ng/rdom-components": "workspace:^",
 		"@thi.ng/rstream": "workspace:^",
 		"@thi.ng/rstream-gestures": "workspace:^",
+		"@thi.ng/transducers": "workspace:^",
 		"@thi.ng/webgl": "workspace:^"
 	},
 	"browser": {
