@@ -1,5 +1,10 @@
+import { isNumber } from "@thi.ng/checks/is-number";
 import { unsupported } from "@thi.ng/errors/unsupported";
-import type { IWasmMemoryAccess, ReadonlyWasmString } from "./api.js";
+import type {
+	IWasmMemoryAccess,
+	MemorySlice,
+	ReadonlyWasmString,
+} from "./api.js";
 
 /**
  * Memory mapped string wrapper for Zig-style UTF-8 encoded byte slices (aka
@@ -81,13 +86,16 @@ export class WasmStringSlice implements ReadonlyWasmString {
 	/**
 	 * Sets the slice itself to the new values provided.
 	 *
-	 * @param addr
-	 * @param len
+	 * @param slice
 	 */
-	setSlice(addr: number, len: number) {
+	setSlice(slice: MemorySlice): MemorySlice;
+	setSlice(addr: number, len: number): MemorySlice;
+	setSlice(...args: any[]) {
 		this.mem.ensureMemory();
-		this.mem.u32[this.base >>> 2] = addr;
-		this.mem.u32[(this.base + 4) >>> 2] = len;
+		const slice = <MemorySlice>(isNumber(args[0]) ? [...args] : args[0]);
+		this.mem.u32[this.base >>> 2] = slice[0];
+		this.mem.u32[(this.base + 4) >>> 2] = slice[1];
+		return slice;
 	}
 
 	/**
@@ -99,9 +107,10 @@ export class WasmStringSlice implements ReadonlyWasmString {
 	 */
 	setAlloc(str: string, terminate = true) {
 		const buf = new TextEncoder().encode(str);
-		const [addr] = this.mem.allocate(buf.length + ~~terminate);
-		this.mem.u8.set(buf, addr);
-		this.setSlice(addr, buf.length);
+		const slice = this.mem.allocate(buf.length + ~~terminate);
+		this.mem.u8.set(buf, slice[0]);
+		terminate && (this.mem.u8[slice[0] + buf.length] = 0);
+		return this.setSlice(slice);
 	}
 
 	toJSON() {
