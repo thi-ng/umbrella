@@ -29,7 +29,7 @@ export interface DOMImports extends WebAssembly.ModuleImports {
 	 *
 	 * @param nameAddr
 	 */
-	_getElementByID(nameAddr: number): number;
+	getElementByID(nameAddr: number): number;
 
 	/**
 	 * Takes a {@link CreateElementOpts} pointer and creates a new DOM element
@@ -87,25 +87,37 @@ export interface DOMImports extends WebAssembly.ModuleImports {
 	): void;
 
 	/**
+	 * Sets `.innerHTML` property of a DOM element to provided `body` string.
+	 *
+	 * @param elementID
+	 * @param body
+	 */
+	setInnerHtml(elementID: number, body: number): void;
+
+	/**
+	 * Sets `.innerText` property of a DOM element to provided `body` string.
+	 *
+	 * @param elementID
+	 * @param body
+	 */
+	setInnerText(elementID: number, body: number): void;
+
+	/**
 	 * Sets attribute for given element to new string value. Both `nameAddr` and
 	 * `valAddr` are pointers to zero-terminated u8 arrays (or standard Zig
-	 * `[]u8` slices).
+	 * string literals).
 	 *
 	 * @param elementID
 	 * @param nameAddr
 	 * @param valAddr
 	 */
-	_setStringAttrib(
-		elementID: number,
-		nameAddr: number,
-		valAddr: number
-	): void;
+	setStringAttrib(elementID: number, nameAddr: number, valAddr: number): void;
 
 	/**
 	 * Reads a string attribute value from DOM element, encodes it as UTF-8 and
 	 * writes zero-terminated bytes to char pointer `valAddr`. Only `maxBytes`
-	 * are written. Returns actual number of bytes written (excluding the
-	 * sentinel).
+	 * are written (incl. any sentinel). Returns actual number of bytes written
+	 * (excluding the sentinel).
 	 *
 	 * @param elementID
 	 * @param nameAddr
@@ -143,7 +155,15 @@ export interface DOMImports extends WebAssembly.ModuleImports {
 	 * @param nameAddr
 	 * @param val
 	 */
-	_setNumericAttrib(elementID: number, nameAddr: number, val: number): void;
+	setNumericAttrib(elementID: number, nameAddr: number, val: number): void;
+
+	/**
+	 * Reads a numeric attribute value from DOM element and returns it as f64.
+	 *
+	 * @param elementID
+	 * @param nameAddr
+	 */
+	getNumericAttrib(elementID: number, nameAddr: number): number;
 
 	/**
 	 * Sets (or removes) boolean attribute for given element. `nameAddr` is a
@@ -158,14 +178,6 @@ export interface DOMImports extends WebAssembly.ModuleImports {
 	_setBooleanAttrib(elementID: number, nameAddr: number, state: number): void;
 
 	/**
-	 * Reads a numeric attribute value from DOM element and returns it as f64.
-	 *
-	 * @param elementID
-	 * @param nameAddr
-	 */
-	_getNumericAttrib(elementID: number, nameAddr: number): number;
-
-	/**
 	 * Check if the DOM element has given attribute and returns 1 if so, else 0.
 	 *
 	 * @param elementID
@@ -173,9 +185,9 @@ export interface DOMImports extends WebAssembly.ModuleImports {
 	 */
 	_getBooleanAttrib(elementID: number, nameAddr: number): number;
 
-	_addClass(elementID: number, nameAddr: number): void;
+	addClass(elementID: number, nameAddr: number): void;
 
-	_removeClass(elementID: number, nameAddr: number): void;
+	removeClass(elementID: number, nameAddr: number): void;
 
 	/**
 	 * Attaches a new DOM event listener for given event name to element (or
@@ -199,9 +211,6 @@ export interface DOMImports extends WebAssembly.ModuleImports {
 	 * @param listenerID
 	 */
 	_removeListener(listenerID: number): void;
-
-	_setInnerHtml(elementID: number, body: number): void;
-	_setInnerText(elementID: number, body: number): void;
 
 	_requestAnimationFrame(rafID: number): void;
 

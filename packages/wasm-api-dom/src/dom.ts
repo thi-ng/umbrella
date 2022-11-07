@@ -118,7 +118,7 @@ export class WasmDom implements IWasmAPI<DOMExports> {
 						: 0);
 			},
 
-			_getElementByID: (nameAddr: number) => {
+			getElementByID: (nameAddr: number) => {
 				const name = this.parent.getString(nameAddr);
 				let id = this.elements.find((el) => el.id === name);
 				if (id === undefined) {
@@ -203,10 +203,10 @@ export class WasmDom implements IWasmAPI<DOMExports> {
 					dpr
 				),
 
-			_setStringAttrib: (elementID: number, name: number, val: number) =>
+			setStringAttrib: (elementID: number, name: number, val: number) =>
 				this.setAttrib(elementID, name, this.parent.getString(val)),
 
-			_setNumericAttrib: (elementID: number, name: number, val: number) =>
+			setNumericAttrib: (elementID: number, name: number, val: number) =>
 				this.setAttrib(elementID, name, val),
 
 			_setBooleanAttrib: (
@@ -244,21 +244,21 @@ export class WasmDom implements IWasmAPI<DOMExports> {
 			) =>
 				new WasmStringSlice(this.parent, slice).setAlloc(
 					String(this.getAttrib(elementID, nameAddr) || ""),
-					false
+					true
 				),
 
-			_getNumericAttrib: (elementID: number, nameAddr: number) =>
+			getNumericAttrib: (elementID: number, nameAddr: number) =>
 				Number(this.getAttrib(elementID, nameAddr) || ""),
 
 			_getBooleanAttrib: (elementID: number, nameAddr: number) =>
 				~~(this.getAttrib(elementID, nameAddr) != null),
 
-			_addClass: (elementID: number, name: number) =>
+			addClass: (elementID: number, name: number) =>
 				this.elements
 					.get(elementID)
 					.classList.add(this.parent.getString(name)),
 
-			_removeClass: (elementID: number, name: number) =>
+			removeClass: (elementID: number, name: number) =>
 				this.elements
 					.get(elementID)
 					.classList.remove(this.parent.getString(name)),
@@ -352,12 +352,12 @@ export class WasmDom implements IWasmAPI<DOMExports> {
 				}
 			},
 
-			_setInnerHtml: (elementID: number, body: number) => {
+			setInnerHtml: (elementID: number, body: number) => {
 				this.elements.get(elementID).innerHTML =
 					this.parent.getString(body);
 			},
 
-			_setInnerText: (elementID: number, body: number) => {
+			setInnerText: (elementID: number, body: number) => {
 				(<HTMLElement>this.elements.get(elementID)).innerText =
 					this.parent.getString(body);
 			},

@@ -21,13 +21,13 @@ export fn _dom_callListener(listenerID: u16, event: *const dom.Event) void {
     if (eventListeners.get(listenerID)) |listener| listener.callback(event, listener.ctx);
 }
 
-pub extern "dom" fn _addListener(elementID: i32, name: [*]const u8, listenerID: u16) void;
+pub extern "dom" fn _addListener(elementID: i32, name: [*:0]const u8, listenerID: u16) void;
 
 /// Adds given listener to a DOM element for event `name`.
 /// Returns an unique listener ID.
-pub fn addListener(elementID: i32, name: []const u8, listener: *const dom.EventListener) !u16 {
+pub fn addListener(elementID: i32, name: [*:0]const u8, listener: *const dom.EventListener) !u16 {
     const listenerID = try eventListeners.add(listener.*);
-    _addListener(elementID, name.ptr, listenerID);
+    _addListener(elementID, name, listenerID);
     return listenerID;
 }
 

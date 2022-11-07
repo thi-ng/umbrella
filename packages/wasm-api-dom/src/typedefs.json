@@ -53,6 +53,8 @@
 	{
 		"name": "WindowInfo",
 		"type": "struct",
+		"tag": "extern",
+		"doc": "Various browser window related information [TODO]",
 		"fields": [
 			{ "name": "innerWidth", "type": "u16" },
 			{ "name": "innerHeight", "type": "u16" },
@@ -98,6 +100,7 @@
 	{
 		"name": "DragEvent",
 		"type": "struct",
+		"tag": "extern",
 		"fields": [
 			{
 				"name": "clientX",
@@ -154,14 +157,20 @@
 	{
 		"name": "InputEvent",
 		"type": "struct",
+		"tag": "extern",
 		"fields": [
 			{
 				"name": "value",
 				"type": "string",
 				"doc": [
 					"Value of the targeted input element.",
-					"The memory is owned by the DOM API and will be freed immediatedly after the event handler has returned."
+					"The memory is owned by the DOM API and will be freed immediately after the event handler has returned."
 				]
+			},
+			{
+				"name": "len",
+				"type": "usize",
+				"doc": "Length of the value string"
 			},
 			{
 				"name": "modifiers",
@@ -177,15 +186,23 @@
 					"fromEvent(e: globalThis.InputEvent) {",
 					"const el = <HTMLInputElement>e.target;",
 					"const value = el.type === \"checkbox\" ? el.checked ? \"on\" : \"off\" : el.value;",
-					"return this.value.setAlloc(value, false);",
+					"const slice = this.value.setAlloc(value);",
+					"this.len = slice[1] - 1;",
+					"return slice;",
 					"}"
 				]
-			}
+			},
+			"zig": [
+				"pub inline fn getValue(self: *const InputEvent) [:0]const u8 {",
+				"return self.value[0..self.len :0];",
+				"}"
+			]
 		}
 	},
 	{
 		"name": "KeyEvent",
 		"type": "struct",
+		"tag": "extern",
 		"fields": [
 			{
 				"name": "key",
@@ -224,8 +241,8 @@
 				]
 			},
 			"zig": [
-				"pub inline fn getKey(self: *const KeyEvent) []const u8 {",
-				"return self.key[0..@as(usize, self.len)];",
+				"pub inline fn getKey(self: *const KeyEvent) [:0]const u8 {",
+				"return self.key[0..@as(usize, self.len) :0];",
 				"}",
 				"",
 				"pub inline fn hasModifier(self: *const KeyEvent, mod: KeyModifier) bool {",
@@ -237,6 +254,7 @@
 	{
 		"name": "MouseEvent",
 		"type": "struct",
+		"tag": "extern",
 		"fields": [
 			{
 				"name": "clientX",
@@ -286,6 +304,7 @@
 	{
 		"name": "PointerEvent",
 		"type": "struct",
+		"tag": "extern",
 		"fields": [
 			{
 				"name": "clientX",
@@ -314,13 +333,13 @@
 			{
 				"name": "tiltX",
 				"type": "i8",
-				"doc": "The plane angle (in degrees, in the range of -90 to 90) between the Y–Z plane and the plane containing both the pointer (e.g. pen stylus) axis and the Y axis.",
+				"doc": "The plane angle (in degrees, in the range of -90 to 90) between the Y-Z plane and the plane containing both the pointer (e.g. pen stylus) axis and the Y axis.",
 				"default": 0
 			},
 			{
 				"name": "tiltY",
 				"type": "i8",
-				"doc": "The plane angle (in degrees, in the range of -90 to 90) between the X–Z plane and the plane containing both the pointer (e.g. pen stylus) axis and the X axis.",
+				"doc": "The plane angle (in degrees, in the range of -90 to 90) between the X-Z plane and the plane containing both the pointer (e.g. pen stylus) axis and the X axis.",
 				"default": 0
 			},
 			{
@@ -379,6 +398,7 @@
 	{
 		"name": "ScrollEvent",
 		"type": "struct",
+		"tag": "extern",
 		"fields": [
 			{
 				"name": "scrollX",
@@ -407,6 +427,7 @@
 	{
 		"name": "TouchEvent",
 		"type": "struct",
+		"tag": "extern",
 		"fields": [
 			{
 				"name": "clientX",
@@ -443,6 +464,7 @@
 	{
 		"name": "WheelEvent",
 		"type": "struct",
+		"tag": "extern",
 		"fields": [
 			{
 				"name": "deltaX",
@@ -498,6 +520,7 @@
 	{
 		"name": "EventBody",
 		"type": "union",
+		"tag": "extern",
 		"fields": [
 			{ "name": "drag", "type": "DragEvent" },
 			{ "name": "input", "type": "InputEvent" },
@@ -512,6 +535,7 @@
 	{
 		"name": "Event",
 		"type": "struct",
+		"tag": "extern",
 		"fields": [
 			{ "name": "id", "type": "EventType" },
 			{
@@ -557,6 +581,7 @@
 	{
 		"name": "RAFCallback",
 		"type": "funcptr",
+		"doc": "Function signature for RAF (requestAnimationFrame) event handler",
 		"rtype": "void",
 		"args": [
 			{ "name": "time", "type": "f64" },
@@ -567,6 +592,7 @@
 	{
 		"name": "EventListener",
 		"type": "struct",
+		"tag": "extern",
 		"doc": "DOM event listener",
 		"fields": [
 			{
@@ -590,6 +616,7 @@
 	{
 		"name": "RAFListener",
 		"type": "struct",
+		"tag": "extern",
 		"doc": "RAF event listener",
 		"fields": [
 			{
@@ -679,6 +706,7 @@
 	{
 		"name": "Attrib",
 		"type": "struct",
+		"tag": "extern",
 		"fields": [
 			{ "name": "name", "type": "string" },
 			{ "name": "value", "type": "AttribValue" },
@@ -686,19 +714,19 @@
 		],
 		"body": {
 			"zig": [
-				"pub fn event(name: []const u8, val: EventListener) Attrib {",
+				"pub fn event(name: [*:0]const u8, val: EventListener) Attrib {",
 				"return Attrib{ .name = name, .kind = .event, .value = .{ .event = val } };",
 				"}",
 				"",
-				"pub fn flag(name: []const u8, val: bool) Attrib {",
+				"pub fn flag(name: [*:0]const u8, val: bool) Attrib {",
 				"return Attrib{ .name = name, .kind = .flag, .value = .{ .flag = if (val) 1 else 0 } };",
 				"}",
 				"",
-				"pub fn number(name: []const u8, val: f64) Attrib {",
+				"pub fn number(name: [*:0]const u8, val: f64) Attrib {",
 				"return Attrib{ .name = name, .kind = .num, .value = .{ .num = val } };",
 				"}",
 				"",
-				"pub fn string(name: []const u8, val: []const u8) Attrib {",
+				"pub fn string(name: [*:0]const u8, val: [*:0]const u8) Attrib {",
 				"return Attrib{ .name = name, .kind = .str, .value = .{ .str = val } };",
 				"}"
 			]
@@ -707,6 +735,7 @@
 	{
 		"name": "AttribValue",
 		"type": "union",
+		"tag": "extern",
 		"fields": [
 			{ "name": "event", "type": "EventListener" },
 			{ "name": "flag", "type": "u8" },
