@@ -52,9 +52,13 @@ const Counter = struct {
     }
 
     fn update(self: *const Self) void {
-        // format new button label
+        // temp buffer for formatting new button label
         var buf: [32]u8 = undefined;
-        var label = std.fmt.bufPrint(&buf, "clicks: {d:0>4}", .{self.clicks}) catch return;
+        // Zig string literals can be auto-coerced to `[*:0]const u8`
+        // however, here we're creating a string dynamically and so must ensure
+        // the formatted string has explicit zero termination
+        // (aka using bufPrintZ() vs. bufPrint())
+        var label = std.fmt.bufPrintZ(&buf, "clicks: {d:0>4}", .{self.clicks}) catch return;
         // update DOM element
         dom.setInnerText(self.elementID, label);
     }
@@ -100,7 +104,7 @@ const Counter = struct {
 var counters: [3]Counter = undefined;
 
 /// Button background colors (Tachyons CSS class names)
-const colors = [_][]const u8{
+const colors = [_][:0]const u8{
     "bg-red",
     "bg-hot-pink",
     "bg-yellow",

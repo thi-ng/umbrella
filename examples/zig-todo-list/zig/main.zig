@@ -5,6 +5,14 @@ const timer = @import("timer");
 const todo = @import("api.zig");
 const State = @import("state.zig");
 
+// only needed for debug builds
+// pub fn log(
+//     comptime _: std.log.Level,
+//     comptime _: @Type(.EnumLiteral),
+//     comptime _: []const u8,
+//     _: anytype,
+// ) void {}
+
 // expose thi.ng/wasm-api core API (incl. panic handler & allocation fns)
 pub usingnamespace wasm;
 
@@ -16,9 +24,16 @@ pub usingnamespace wasm;
 var gpa = std.heap.GeneralPurposeAllocator(.{}){};
 pub const WASM_ALLOCATOR = gpa.allocator();
 
+/// Central app state
 var STATE: State = undefined;
 
+/// Dummy handler to log input event value to console
 fn onInput(e: *const dom.Event, _: ?*anyopaque) void {
+    wasm.printStr(e.body.input.getValue());
+}
+
+/// Key event handler to handle Enter & Esc keys
+fn onKeydown(e: *const dom.Event, _: ?*anyopaque) void {
     if (std.mem.eql(u8, e.body.key.getKey(), "Enter")) {
         onAddTask(e, null);
     } else if (std.mem.eql(u8, e.body.key.getKey(), "Escape")) {
@@ -30,8 +45,10 @@ fn onAddTask(_: *const dom.Event, _: ?*anyopaque) void {
     const input = dom.getElementByID("newtask");
     const body = dom.getStringAttribAlloc(input, "value");
     defer WASM_ALLOCATOR.free(body);
+    wasm.printHexdump(body.ptr, body.len);
 
-    if (body.len == 0) return;
+    // skip empty inputs (taking sentinel into account)
+    if (body.len <= 1) return;
 
     _ = STATE.addTask(body) catch |e| @panic(@errorName(e));
     dom.setStringAttrib(input, "value", "");
@@ -44,8 +61,10 @@ fn initApp() !void {
     // try dom.init(customAllocator);
     // try schedule.init(customAllocator);
 
+    // Initialize app state
     STATE = State.init(WASM_ALLOCATOR);
 
+    // Create DOM tree & setup event handlers
     _ = dom.createElement(&.{
         .tag = "div",
         .class = "w-100",
@@ -69,7 +88,8 @@ fn initApp() !void {
                         .attribs = &.{
                             dom.Attrib.string("placeholder", "What needs to be done?"),
                             dom.Attrib.flag("autofocus", true),
-                            dom.Attrib.event("keydown", .{ .callback = onInput }),
+                            dom.Attrib.event("keydown", .{ .callback = onKeydown }),
+                            dom.Attrib.event("input", .{ .callback = onInput }),
                         },
                     },
                     .{

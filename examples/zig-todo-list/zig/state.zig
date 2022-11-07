@@ -44,7 +44,7 @@ pub const TaskItem = struct {
                 .{
                     .tag = "span",
                     .class = "ml3",
-                    .text = self.task.body,
+                    .text = @ptrCast([*:0]const u8, self.task.body.ptr),
                 },
             },
         });
@@ -105,7 +105,7 @@ pub fn init(allocator: std.mem.Allocator) Self {
 
 pub fn addTask(self: *Self, body: []const u8) !*TaskItem {
     return self.addExisting(
-        TaskItem.init(self, try self.allocator.dupe(u8, body)),
+        TaskItem.init(self, try self.allocator.dupeZ(u8, body)),
     );
 }
 
