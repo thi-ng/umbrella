@@ -11,8 +11,9 @@ interface WasmApp extends WasmExports, DOMExports, ScheduleExports {
 }
 
 /**
- * Custom WASM API module for basic canvas drawing, i.e. the functions returned
- * by `getImports()` are being made available to the WASM binary.
+ * Custom WASM API module for to-do list related functionality, i.e. the
+ * functions returned by `getImports()` are being made available to the WASM
+ * binary.
  */
 class TodoHandlers implements IWasmAPI<WasmApp> {
 	readonly id = "todo";
@@ -23,12 +24,22 @@ class TodoHandlers implements IWasmAPI<WasmApp> {
 
 	async init(parent: WasmBridge<WasmApp>) {
 		this.parent = parent;
+		// Pre-initialize generated $Task type wrapper
 		this.$Task = $Task(parent);
 		return true;
 	}
 
 	getImports() {
 		return {
+			/**
+			 * Takes a unix epoch (in seconds) and a target address and max
+			 * length. Formats timestamp and writes result to memory from
+			 * `addr`. Returns string length.
+			 *
+			 * @param epoch
+			 * @param addr
+			 * @param maxLen
+			 */
 			_formatDateTime: (epoch: number, addr: number, maxLen: number) => {
 				epoch *= 1000;
 				const res =
@@ -36,6 +47,13 @@ class TodoHandlers implements IWasmAPI<WasmApp> {
 				return this.parent.setString(res, addr, maxLen);
 			},
 
+			/**
+			 * Reads tasks from local storage, allocates & writes them to
+			 * memory. Stores details (i.e. start address and number of tasks)
+			 * in provided `slice` pointer.
+			 *
+			 * @param slice
+			 */
 			loadTasks: (slice: number) => {
 				const src = localStorage.getItem("tasks") || "[]";
 				const tasks = JSON.parse(src);
@@ -54,6 +72,12 @@ class TodoHandlers implements IWasmAPI<WasmApp> {
 				this.parent.u32.set([addr, tasks.length], slice >> 2);
 			},
 
+			/**
+			 * Reads `num` tasks from memory and stores them in local storage
+			 * .
+			 * @param addr
+			 * @param num
+			 */
 			persistTasks: (addr: number, num: number) => {
 				const tasks: any = [];
 				for (; num-- > 0; addr += this.$Task.size) {

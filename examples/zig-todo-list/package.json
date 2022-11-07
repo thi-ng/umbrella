@@ -2,7 +2,7 @@
 	"name": "@example/zig-todo-list",
 	"version": "0.0.1",
 	"private": true,
-	"description": "TODO",
+	"description": "Zig-based To-Do list, DOM creation, local storage task persistence",
 	"repository": "https://github.com/thi-ng/umbrella",
 	"author": "Karsten Schmidt <k+npm@thi.ng>",
 	"license": "Apache-2.0",

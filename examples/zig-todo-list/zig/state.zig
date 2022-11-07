@@ -13,7 +13,7 @@ pub const TaskItem = struct {
     root: i32 = undefined,
     date: i32 = undefined,
 
-    pub fn init(parent: *Self, body: []const u8) TaskItem {
+    pub fn init(parent: *Self, body: [:0]const u8) TaskItem {
         return TaskItem{
             .parent = parent,
             .task = .{
@@ -44,7 +44,7 @@ pub const TaskItem = struct {
                 .{
                     .tag = "span",
                     .class = "ml3",
-                    .text = @ptrCast([*:0]const u8, self.task.body.ptr),
+                    .text = self.task.body,
                 },
             },
         });
