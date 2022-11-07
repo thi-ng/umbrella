@@ -185,8 +185,8 @@ export const fieldType = (
 	let type = isWasmString(f.type)
 		? isStringSlice(opts.stringType)
 			? f.const !== false
-				? "[]const u8"
-				: "[]u8"
+				? "[:0]const u8"
+				: "[:0]u8"
 			: f.const !== false
 			? "[*:0]const u8"
 			: "[*:0]u8"

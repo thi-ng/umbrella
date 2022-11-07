@@ -9,21 +9,23 @@ import type {
 /**
  * Memory mapped string wrapper for Zig-style UTF-8 encoded byte slices (aka
  * pointer & length pair). The actual JS string can be obtained via
- * {@link WasmStringSlice.deref} and mutated via {@link WasmStringSlice.set}.
+ * {@link WasmStringSlice.deref} and possibly mutated via
+ * {@link WasmStringSlice.set}.
  *
  * @remarks
  * Currently only supports wasm32 target, need alt. solution for 64bit (possibly
  * diff implementation) using bigint addresses (TODO)
  */
 export class WasmStringSlice implements ReadonlyWasmString {
-	readonly max: number;
+	protected maxLen: number;
 
 	constructor(
 		public readonly mem: IWasmMemoryAccess,
 		public readonly base: number,
-		public readonly isConst = true
+		protected isConst = true,
+		protected terminated = true
 	) {
-		this.max = this.length;
+		this.maxLen = this.length;
 	}
 
 	/**
@@ -74,8 +76,8 @@ export class WasmStringSlice implements ReadonlyWasmString {
 			this.mem.u32[(this.base + 4) >>> 2] = this.mem.setString(
 				str,
 				this.addr,
-				this.max + 1,
-				true
+				this.maxLen + ~~this.terminated,
+				this.terminated
 			);
 		} else {
 			this.mem.u32[this.base >>> 2] = str.addr;
@@ -87,30 +89,44 @@ export class WasmStringSlice implements ReadonlyWasmString {
 	 * Sets the slice itself to the new values provided.
 	 *
 	 * @param slice
+	 * @param terminated
 	 */
-	setSlice(slice: MemorySlice): MemorySlice;
-	setSlice(addr: number, len: number): MemorySlice;
+	setSlice(slice: MemorySlice, terminated: boolean): MemorySlice;
+	setSlice(addr: number, len: number, terminated: boolean): MemorySlice;
 	setSlice(...args: any[]) {
 		this.mem.ensureMemory();
-		const slice = <MemorySlice>(isNumber(args[0]) ? [...args] : args[0]);
+		const [slice, terminated] = <[MemorySlice, boolean]>(
+			(isNumber(args[0])
+				? [[args[0], args[1]], args[2]]
+				: [args[0], args[1]])
+		);
 		this.mem.u32[this.base >>> 2] = slice[0];
 		this.mem.u32[(this.base + 4) >>> 2] = slice[1];
+		this.terminated = terminated;
 		return slice;
 	}
 
 	/**
 	 * Encodes given string to UTF-8 (by default zero terminated), allocates
-	 * memory for it and then updates this slice.
+	 * memory for it, updates this slice and returns a {@link MemorySlice} of
+	 * the allocated region.
+	 *
+	 * @remarks
+	 * If `terminated` is true, the stored slice length will **NOT** include the
+	 * sentinel! E.g. the slice length of zero-terminated string `"abc"` is 3,
+	 * but the number of allocated bytes is 4. This is done for compatibility
+	 * with Zig's sentinel-terminated slice handling (e.g. `[:0]u8` slices).
+	 *
+	 * Regardless of `terminated` setting, the returned `MemorySlice` **always**
+	 * covers the entire allocated region!
 	 *
 	 * @param str
 	 * @param terminate
 	 */
 	setAlloc(str: string, terminate = true) {
-		const buf = new TextEncoder().encode(str);
-		const slice = this.mem.allocate(buf.length + ~~terminate);
-		this.mem.u8.set(buf, slice[0]);
-		terminate && (this.mem.u8[slice[0] + buf.length] = 0);
-		return this.setSlice(slice);
+		const slice = __alloc(this.mem, str, terminate);
+		this.setSlice(terminate ? [slice[0], slice[1] - 1] : slice, terminate);
+		return slice;
 	}
 
 	toJSON() {
@@ -127,15 +143,15 @@ export class WasmStringSlice implements ReadonlyWasmString {
 }
 
 /**
- * Memory mapped string wrapper for C-style UTF-8 encoded and zero-terminated
- * char pointers. The actual JS string can be obtained via
+ * Memory mapped string wrapper for C-style UTF-8 encoded and **always**
+ * zero-terminated char pointers. The actual JS string can be obtained via
  * {@link WasmStringSlice.deref} and mutated via {@link WasmStringSlice.set}.
  */
 export class WasmStringPtr implements ReadonlyWasmString {
 	constructor(
 		public readonly mem: IWasmMemoryAccess,
 		public readonly base: number,
-		public readonly isConst = true
+		protected isConst = true
 	) {}
 
 	/**
@@ -169,10 +185,11 @@ export class WasmStringPtr implements ReadonlyWasmString {
 	}
 
 	/**
-	 * If given a JS string as arg (and if not a const pointer), attempts to
-	 * overwrite this wrapped string's memory with bytes from given string. If
-	 * given another {@link WasmStringPtr}, it merely overrides the pointer to
-	 * the new one (always succeeds).
+	 * If given a JS string as arg (and if this `WasmStringPtr` instance itself
+	 * is not a `const` pointer), attempts to overwrite this wrapped string's
+	 * memory with bytes from given string. If given another
+	 * {@link WasmStringPtr}, it merely overrides the pointer to the new one
+	 * (always succeeds).
 	 *
 	 * @remarks
 	 * Unlike with {@link WasmStringSlice.set} this implementation which
@@ -195,7 +212,24 @@ export class WasmStringPtr implements ReadonlyWasmString {
 			this.mem.setString(str, addr, this.mem.u8.byteLength - addr, true);
 		} else {
 			this.addr = str.addr;
+			this.isConst = str.isConst;
 		}
+	}
+
+	/**
+	 * Encodes given string to UTF-8 (by default zero terminated), allocates
+	 * memory for it, updates this pointer to new address and returns allocated
+	 * {@link MemorySlice}.
+	 *
+	 * @remarks
+	 * See {@link WasmStringSlice.setAlloc} for important details.
+	 *
+	 * @param str
+	 */
+	setAlloc(str: string) {
+		const slice = __alloc(this.mem, str, true);
+		this.mem.u32[this.base >>> 2] = slice[0];
+		return slice;
 	}
 
 	toJSON() {
@@ -210,3 +244,17 @@ export class WasmStringPtr implements ReadonlyWasmString {
 		return this.deref();
 	}
 }
+
+const __alloc = (
+	mem: IWasmMemoryAccess,
+	str: string,
+	terminate: boolean
+): MemorySlice => {
+	const buf = new TextEncoder().encode(str);
+	const slice = mem.allocate(buf.length + ~~terminate);
+	if (slice[1] > 0) {
+		mem.u8.set(buf, slice[0]);
+		terminate && (mem.u8[slice[0] + buf.length] = 0);
+	}
+	return slice;
+};
