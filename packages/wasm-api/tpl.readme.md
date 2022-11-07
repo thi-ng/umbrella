@@ -20,28 +20,33 @@ This package provides a the following:
 class as interop basis and much reduced boilerplate for hybrid JS/WebAssembly
 applications.
 2. A minimal core API for debug output, string/pointer/typedarray accessors for
-8/16/32/64 bit (u)ints and 32/64 bit floats, memory allocation (optional).
-Additionally, a number of support modules for [DOM
+8/16/32/64 bit (u)ints and 32/64 bit floats. Additionally, a number of support
+modules for [DOM
 manipulation](https://github.com/thi-ng/umbrella/tree/develop/packages/wasm-api-dom/),
+[scheduled function
+execution](https://github.com/thi-ng/umbrella/tree/develop/packages/wasm-api-schedule/),
 WebGL, WebGPU, WebAudio etc. is being actively worked on.
-3. Include files for
-   [C11/C++](https://github.com/thi-ng/umbrella/tree/develop/packages/wasm-api/include)
-   and
+3. Different types of memory-mapped (UTF-8) string abstractions (slice or pointer based)
+5. Shared (opt-in) memory allocation mechanism, also accessible from JS/TS side
+4. Simple registration & dependency-order initialization for child WASM API modules
+6. Include files for
    [Zig](https://github.com/thi-ng/umbrella/tree/develop/packages/wasm-api/zig),
-   defining glue code for the JS [core
+   and
+   [C11/C++](https://github.com/thi-ng/umbrella/tree/develop/packages/wasm-api/include)
+   defining glue code for the TypeScript [core
    API](https://docs.thi.ng/umbrella/wasm-api/interfaces/CoreAPI.html) defined
    by this package
-4. Extensible shared datatype code generators for (currently) C11, Zig &
-   TypeScript. The latter also generates fully type checked memory-mapped
-   (zero-copy) accessors of WASM-side data. In general, all languages with a
-WebAssembly target are supported, however currently only bindings for these
-mentioned langs are included. Other languages require custom bindings, e.g.
-based on the flexible primitives provided here.
-5. [CLI frontend/utility](#cli-generator) to invoke the code generator(s)
+7. Extensible shared datatype code generator framework for (currently) Zig &
+   TypeScript and C11. For TS fully type checked and memory-mapped (zero-copy)
+   accessors of WASM-side data are generated. In principle, all languages with a
+WASM target are supported, however currently only bindings for these mentioned
+langs are included. Other languages require custom bindings, e.g. based on the
+flexible primitives provided here.
+8. [CLI frontend/utility](#cli-generator) for the code generator(s)
 
 ### Data bindings & code generators
 
-The package provides an extensible codegeneration framework to simplify the
+The package provides an extensible code generation framework to simplify the
 bilateral design & exchange of data structures shared between the WASM & JS host
 env. Currently, code generators for TypeScript, Zig and C11 are supplied. A CLI
 wrapper is available too. See the
@@ -127,15 +132,36 @@ external files by specifying their file paths using `@` as prefix, e.g.
 
 #### Data type definitions
 
-Currently, the code generator supports enums, structs and unions. See API docs for
-further details:
+Currently, the code generator supports enums, function pointers, structs and unions. See API docs for
+supported options & further details:
 
 - [`Enum`](https://docs.thi.ng/umbrella/wasm-api/interfaces/Enum.html)
 - [`EnumValue`](https://docs.thi.ng/umbrella/wasm-api/interfaces/EnumValue.html) (individual enum value spec)
 - [`Field`](https://docs.thi.ng/umbrella/wasm-api/interfaces/Field.html) (individual spec for values contained in structs/unions)
+- [`FuncPointer`](https://docs.thi.ng/umbrella/wasm-api/interfaces/FuncPointer.html)
 - [`Struct`](https://docs.thi.ng/umbrella/wasm-api/interfaces/Struct.html)
 - [`Union`](https://docs.thi.ng/umbrella/wasm-api/interfaces/Union.html)
 - [`TopLevelType`](https://docs.thi.ng/umbrella/wasm-api/interfaces/TopLevelType.html)
+
+#### JSON schema for type definitions
+
+The package provides a detailed schema to aid the authoring of type definitions
+(and provide inline documentation) via editors with JSON schema integration. The
+schema is distributed as part of the package and located in
+[`/schema/wasm-api-types.json`](https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api/schema/wasm-api-types.json).
+
+For VSCode, you can [add this snippet to your workspace
+settings](https://code.visualstudio.com/Docs/languages/json#_mapping-to-a-schema-in-the-workspace)
+to apply the schema to any `typedefs.json` files:
+
+```json
+"json.schemas": [
+	{
+		"fileMatch": ["**/typedefs.json"],
+		"url": "./node_modules/@thi.ng/wasm-api/schema/wasm-api-types.json"
+	}
+]
+```
 
 #### Example usage
 
@@ -144,7 +170,7 @@ the JSON type definitions and the resulting source codes:
 
 **⬇︎ CLICK TO EXPAND EACH CODE BLOCK ⬇︎**
 
-<details><summary>types.json (Type definitions)</summary>
+<details><summary>readme-types.json (Type definitions)</summary>
 
 ```json tangle:export/readme-types.json
 [
@@ -152,34 +178,38 @@ the JSON type definitions and the resulting source codes:
 		"name": "EventType",
 		"type": "enum",
 		"tag": "u8",
+		"doc": "Supported event types",
 		"values": [
-			"unknown",
-			{ "name": "mouse", "value": 16 },
-			{ "name": "key", "value": 32 }
+			{ "name": "mouse", "value": 1, "doc": "Any kind of mouse event" },
+			{ "name": "key", "doc": "Key down/up event" },
+			"misc"
 		]
 	},
 	{
 		"name": "MouseEvent",
 		"type": "struct",
+		"tag": "extern",
 		"doc": "Example struct",
 		"fields": [
 			{ "name": "type", "type": "EventType" },
-			{ "name": "pos", "type": "u16", "tag": "vec", "len": 2 }
+			{ "name": "pos", "type": "u16", "tag": "array", "len": 2 }
 		]
 	},
 	{
 		"name": "KeyEvent",
 		"type": "struct",
+		"tag": "extern",
 		"doc": "Example struct",
 		"fields": [
 			{ "name": "type", "type": "EventType" },
-			{ "name": "key", "type": "string" },
-			{ "name": "modifiers", "type": "u8", "doc": "Bitmask of modifier keys" }
+			{ "name": "key", "type": "string", "doc": "Name of key which triggered event" },
+			{ "name": "modifiers", "type": "u8", "doc": "Bitmask of active modifier keys" }
 		]
 	},
 	{
 		"name": "Event",
 		"type": "union",
+		"tag": "extern",
 		"fields": [
 			{ "name": "mouse", "type": "MouseEvent" },
 			{ "name": "key", "type": "KeyEvent" }
@@ -193,16 +223,25 @@ the JSON type definitions and the resulting source codes:
 
 ```ts
 /**
- * Generated by @thi.ng/wasm-api at 2022-10-26T08:36:16.825Z - DO NOT EDIT!
+ * Generated by @thi.ng/wasm-api at 2022-11-07T22:42:01.454Z - DO NOT EDIT!
  */
 
 // @ts-ignore possibly includes unused imports
-import { Pointer, WasmStringSlice, WasmTypeBase, WasmTypeConstructor } from "@thi.ng/wasm-api";
+import { MemorySlice, Pointer, WasmStringPtr, WasmTypeBase, WasmTypeConstructor } from "@thi.ng/wasm-api";
 
+/**
+ * Supported event types
+ */
 export enum EventType {
-	UNKNOWN,
-	MOUSE = 16,
-	KEY = 32,
+	/**
+	 * Any kind of mouse event
+	 */
+	MOUSE = 1,
+	/**
+	 * Key down/up event
+	 */
+	KEY,
+	MISC,
 }
 
 /**
@@ -210,15 +249,18 @@ export enum EventType {
  */
 export interface MouseEvent extends WasmTypeBase {
 	type: EventType;
+	/**
+	 * WASM type: [2]u16
+	 */
 	pos: Uint16Array;
 }
 
 export const $MouseEvent: WasmTypeConstructor<MouseEvent> = (mem) => ({
 	get align() {
-		return 4;
+		return 2;
 	},
 	get size() {
-		return 8;
+		return 6;
 	},
 	instance: (base) => {
 		return {
@@ -226,7 +268,7 @@ export const $MouseEvent: WasmTypeConstructor<MouseEvent> = (mem) => ({
 				return base;
 			},
 			get __bytes() {
-				return mem.u8.subarray(base, base + 8);
+				return mem.u8.subarray(base, base + 6);
 			},
 			get type(): EventType {
 				return mem.u8[base];
@@ -235,7 +277,7 @@ export const $MouseEvent: WasmTypeConstructor<MouseEvent> = (mem) => ({
 				mem.u8[base] = x;
 			},
 			get pos(): Uint16Array {
-				const addr = (base + 4) >>> 1;
+				const addr = (base + 2) >>> 1;
 				return mem.u16.subarray(addr, addr + 2);
 			},
 		};
@@ -247,9 +289,14 @@ export const $MouseEvent: WasmTypeConstructor<MouseEvent> = (mem) => ({
  */
 export interface KeyEvent extends WasmTypeBase {
 	type: EventType;
-	key: WasmStringSlice;
 	/**
-	 * Bitmask of modifier keys
+	 * Name of key which triggered event
+	 */
+	key: WasmStringPtr;
+	/**
+	 * Bitmask of active modifier keys
+	 *
+	 * WASM type: u8
 	 */
 	modifiers: number;
 }
@@ -259,16 +306,16 @@ export const $KeyEvent: WasmTypeConstructor<KeyEvent> = (mem) => ({
 		return 4;
 	},
 	get size() {
-		return 16;
+		return 12;
 	},
 	instance: (base) => {
-		let $key: WasmStringSlice | null = null;
+		let $key: WasmStringPtr | null = null;
 		return {
 			get __base() {
 				return base;
 			},
 			get __bytes() {
-				return mem.u8.subarray(base, base + 16);
+				return mem.u8.subarray(base, base + 12);
 			},
 			get type(): EventType {
 				return mem.u8[base];
@@ -276,14 +323,14 @@ export const $KeyEvent: WasmTypeConstructor<KeyEvent> = (mem) => ({
 			set type(x: EventType) {
 				mem.u8[base] = x;
 			},
-			get key(): WasmStringSlice {
-				return $key || ($key = new WasmStringSlice(mem, (base + 4), true));
+			get key(): WasmStringPtr {
+				return $key || ($key = new WasmStringPtr(mem, (base + 4), true));
 			},
 			get modifiers(): number {
-				return mem.u8[(base + 12)];
+				return mem.u8[(base + 8)];
 			},
 			set modifiers(x: number) {
-				mem.u8[(base + 12)] = x;
+				mem.u8[(base + 8)] = x;
 			},
 		};
 	}
@@ -299,7 +346,7 @@ export const $Event: WasmTypeConstructor<Event> = (mem) => ({
 		return 4;
 	},
 	get size() {
-		return 16;
+		return 12;
 	},
 	instance: (base) => {
 		return {
@@ -307,7 +354,7 @@ export const $Event: WasmTypeConstructor<Event> = (mem) => ({
 				return base;
 			},
 			get __bytes() {
-				return mem.u8.subarray(base, base + 16);
+				return mem.u8.subarray(base, base + 12);
 			},
 			get mouse(): MouseEvent {
 				return $MouseEvent(mem).instance(base);
@@ -330,31 +377,35 @@ export const $Event: WasmTypeConstructor<Event> = (mem) => ({
 <details><summary>generated.zig (generated Zig source)</summary>
 
 ```zig
-//! Generated by @thi.ng/wasm-api at 2022-10-26T08:36:16.827Z - DO NOT EDIT!
+//! Generated by @thi.ng/wasm-api at 2022-11-07T22:42:01.456Z - DO NOT EDIT!
 
 const std = @import("std");
 
+/// Supported event types
 pub const EventType = enum(u8) {
-    UNKNOWN,
-    MOUSE = 16,
-    KEY = 32,
+    /// Any kind of mouse event
+    mouse = 1,
+    /// Key down/up event
+    key,
+    misc,
 };
 
 /// Example struct
-pub const MouseEvent = struct {
+pub const MouseEvent = extern struct {
     type: EventType,
-    pos: @Vector(2, u16),
+    pos: [2]u16,
 };
 
 /// Example struct
-pub const KeyEvent = struct {
+pub const KeyEvent = extern struct {
     type: EventType,
-    key: []const u8,
-    /// Bitmask of modifier keys
+    /// Name of key which triggered event
+    key: [*:0]const u8,
+    /// Bitmask of active modifier keys
     modifiers: u8,
 };
 
-pub const Event = union {
+pub const Event = extern union {
     mouse: MouseEvent,
     key: KeyEvent,
 };
@@ -386,13 +437,19 @@ event.mouse.pos
 // IMPORTANT: any modifications like this are directly
 // applied to the underlying WASM memory...
 event.mouse.pos[0] = 300;
+// ...or
+event.mouse.pos.set([1, 2]);
+
+// buffer overflow protection
+event.mouse.pos.set([1, 2, 3]);
+// Uncaught RangeError: offset is out of bounds
 
 event.mouse.type === EventType.MOUSE
 // true
 ```
 
 **IMPORTANT:** Field setters are currently only supported for single values,
-incl. enums, strings, structs, unions. The latter 2 will always be copied by
+incl. enums, strings, structs, unions. The latter two will always be copied by
 value (mem copy). Arrays or slices of strings do not currently provide write
 access...
 
