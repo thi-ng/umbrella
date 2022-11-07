@@ -8,10 +8,10 @@ pub const Bar = enum(i32) {
 };
 
 pub const Foo = struct {
-    single: []const u8,
-    multi: [2][]const u8,
-    singlePtr: *[]const u8,
-    multiPtr: *[2][]const u8,
+    single: [:0]const u8,
+    multi: [2][:0]const u8,
+    singlePtr: *[:0]const u8,
+    multiPtr: *[2][:0]const u8,
     kind: Bar,
     size: u32,
 };
@@ -25,7 +25,7 @@ export fn Foo_size() usize {
 }
 
 export fn Foo_single_align() usize {
-    return @alignOf([]const u8);
+    return @alignOf([:0]const u8);
 }
 
 export fn Foo_single_offset() usize {
@@ -33,11 +33,11 @@ export fn Foo_single_offset() usize {
 }
 
 export fn Foo_single_size() usize {
-    return @sizeOf([]const u8);
+    return @sizeOf([:0]const u8);
 }
 
 export fn Foo_multi_align() usize {
-    return @alignOf([2][]const u8);
+    return @alignOf([2][:0]const u8);
 }
 
 export fn Foo_multi_offset() usize {
@@ -45,11 +45,11 @@ export fn Foo_multi_offset() usize {
 }
 
 export fn Foo_multi_size() usize {
-    return @sizeOf([2][]const u8);
+    return @sizeOf([2][:0]const u8);
 }
 
 export fn Foo_singlePtr_align() usize {
-    return @alignOf(*[]const u8);
+    return @alignOf(*[:0]const u8);
 }
 
 export fn Foo_singlePtr_offset() usize {
@@ -57,11 +57,11 @@ export fn Foo_singlePtr_offset() usize {
 }
 
 export fn Foo_singlePtr_size() usize {
-    return @sizeOf(*[]const u8);
+    return @sizeOf(*[:0]const u8);
 }
 
 export fn Foo_multiPtr_align() usize {
-    return @alignOf(*[2][]const u8);
+    return @alignOf(*[2][:0]const u8);
 }
 
 export fn Foo_multiPtr_offset() usize {
@@ -69,7 +69,7 @@ export fn Foo_multiPtr_offset() usize {
 }
 
 export fn Foo_multiPtr_size() usize {
-    return @sizeOf(*[2][]const u8);
+    return @sizeOf(*[2][:0]const u8);
 }
 
 export fn Foo_kind_align() usize {
