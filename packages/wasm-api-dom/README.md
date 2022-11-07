@@ -269,14 +269,14 @@ node --experimental-repl-await
 > const wasmApiDom = await import("@thi.ng/wasm-api-dom");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 4.19 KB
+Package sizes (gzipped, pre-treeshake): ESM: 4.59 KB
 
 ## Dependencies
 
 - [@thi.ng/adapt-dpi](https://github.com/thi-ng/umbrella/tree/develop/packages/adapt-dpi)
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
-- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
 - [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
+- [@thi.ng/prefixes](https://github.com/thi-ng/umbrella/tree/develop/packages/prefixes)
 - [@thi.ng/wasm-api](https://github.com/thi-ng/umbrella/tree/develop/packages/wasm-api)
 
 ## Usage examples
@@ -287,10 +287,11 @@ directory are using this package.
 
 A selection:
 
-| Screenshot                                                                                                         | Description                                 | Live demo                                         | Source                                                                         |
-|:-------------------------------------------------------------------------------------------------------------------|:--------------------------------------------|:--------------------------------------------------|:-------------------------------------------------------------------------------|
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/zig-canvas.png" width="240"/>  | Zig-based DOM creation & canvas drawing app | [Demo](https://demo.thi.ng/umbrella/zig-canvas/)  | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/zig-canvas)  |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/zig-counter.png" width="240"/> | Simple Zig/WASM click counter DOM component | [Demo](https://demo.thi.ng/umbrella/zig-counter/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/zig-counter) |
+| Screenshot                                                                                                           | Description                                                        | Live demo                                           | Source                                                                           |
+|:---------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------------------------|:----------------------------------------------------|:---------------------------------------------------------------------------------|
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/zig-canvas.png" width="240"/>    | Zig-based DOM creation & canvas drawing app                        | [Demo](https://demo.thi.ng/umbrella/zig-canvas/)    | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/zig-canvas)    |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/zig-counter.png" width="240"/>   | Simple Zig/WASM click counter DOM component                        | [Demo](https://demo.thi.ng/umbrella/zig-counter/)   | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/zig-counter)   |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/zig-todo-list.png" width="240"/> | Zig-based To-Do list, DOM creation, local storage task persistence | [Demo](https://demo.thi.ng/umbrella/zig-todo-list/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/zig-todo-list) |
 
 ## API
 
