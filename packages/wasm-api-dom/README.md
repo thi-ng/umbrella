@@ -29,14 +29,14 @@ This project is part of the
 
 Browser DOM bridge API for hybrid TypeScript & WASM (Zig) applications. This is a support package for [@thi.ng/wasm-api](https://github.com/thi-ng/umbrella/tree/develop/packages/wasm-api).
 
-This package provides a minimal, but already quite usable TypeScript core API
+This package provides a small TypeScript core API
 and related [Ziglang](https://ziglang.org) bindings for UI & DOM
 creation/manipulation via WebAssembly.
 
 Current key features for the Zig (WASM) side:
 
+- Fully declarative or imperative DOM tree creation & manipulation
 - ID handle management for WASM created DOM elements & listeners
-- Declarative & imperative DOM tree creation
 - Canvas element creation (with HDPI support, see
   [@thi.ng/adapt-dpi](https://github.com/thi-ng/umbrella/blob/develop/packages/adapt-dpi))
 - Attribute setters/getters (string, numeric, boolean)
@@ -56,9 +56,9 @@ Current key features for the Zig (WASM) side:
 
 ### Module initialization
 
-Before the Zig WASM API module can be used, it must be initialized with a
-standard `std.mem.Allocator`. The currently recommended pattern looks something
-like this:
+Before the Zig WASM API module can be used, it must be initialized
+(automatically or manually) with a standard `std.mem.Allocator`. The current
+recommended pattern looks something like this:
 
 ```zig
 const std = @import("std");
@@ -79,8 +79,10 @@ pub const WASM_ALLOCATOR = gpa.allocator();
 /// we're bundling them all in a single fn, which is then called by start()
 /// and so only needs one code site for error handling
 fn init() !void {
-    // the DOM API module must always be intialized first!
-    try dom.init(WASM_ALLOCATOR);
+    // all WASM API modules auto-initialize themselves if the root source
+    // file exposes a `WASM_ALLOCATOR`, otherwise you'll have to initialize manually:
+    // try dom.init(customAllocator);
+
     // ...
 }
 
@@ -110,35 +112,45 @@ avoiding magic numbers in userland code.
 
 ### DOM tree creation
 
-Single DOM elements and entire element trees can be created via the
-`createElement()` function:
+Single DOM elements and entire element trees (incl. event handler setup and
+custom attributes) can be created via the `createElement()` function:
 
 ```zig
-const dom = @import("wasmdom");
+const dom = @import("dom");
+
+// snippet taken from the zig-todo-list example project
 
 const handle = dom.createElement(&.{
-    // element tag
-    .tag = "div",
-    // CSS classes
-    .class = "bg-red white",
-    // parent element ID (here `document.body`)
-    .parent = dom.body,
-    // optional child element specs
-    .children = &.{
-        .{
-            .tag = "h1",
-            // text content for this element
-            .text = "OMG, it works!",
-            // nested childen
-            .children = &.{
-                .{
-                    .tag = "span",
-                    .text = "(recursive DOM creation FTW!)",
-                    .class = "bg-yellow black",
-                },
-            },
-        },
-    },
+	// element name
+	.tag = "div",
+	// CSS classes
+	.class = "flex flex-column mb3",
+	// nested child elements
+	.children = &.{
+		.{ .tag = "h3", .text = "Add new task" },
+		.{
+			.tag = "input",
+			// element's ID attribute
+			.id = "newtask",
+			// attribute & event listener definitions
+			.attribs = &.{
+				dom.Attrib.string("placeholder", "What needs to be done?"),
+				dom.Attrib.flag("autofocus", true),
+				// event listener setup:
+				// .ctx is an optional opaque pointer to arbitrary user state/context
+				dom.Attrib.event("keydown", .{ .callback = onKeydown, .ctx = &STATE }),
+				dom.Attrib.event("input", .{ .callback = onInput }),
+			},
+		},
+		.{
+			.tag = "button",
+			// Element .innerText content
+			.text = "Add Task",
+			.attribs = &.{
+				dom.Attrib.event("click", .{ .callback = onAddTask }),
+			},
+		},
+	},
 });
 ```
 
@@ -148,7 +160,7 @@ struct has some additional options and more are planned. All WIP!
 
 ### Attribute creation & accessors
 
-Attributes can be provided as part of the `CreateElementOpts` and/or accessed imperatively:
+As already shown above, attributes can be provided as part of the `CreateElementOpts` and/or accessed imperatively:
 
 Zig example:
 
@@ -186,20 +198,19 @@ Once a DOM element has been created, event listeners can be attached to it. All
 listeners take two arguments: an `Event` struct and an optional opaque pointer
 for passing arbitrary user context.
 
-A more advanced version of the following click counter button component (written
-in Zig) can be seen in action in the
+A more advanced version of the following click counter button component can be
+seen in action in the
 [zig-counter](https://github.com/thi-ng/umbrella/tree/develop/examples/zig-counter)
-example project.
+example project. Also check other supplied Zig examples for more realworld
+[usage examples](#usage-examples).
 
 ```zig
 const wasm = @import("wasmapi");
-const dom = @import("wasmdom");
+const dom = @import("dom");
 
 /// Simple click counter component
 const Counter = struct {
-    listener: dom.EventListener,
     elementID: i32,
-    listenerID: u16,
     clicks: usize,
     step: usize,
 
@@ -212,19 +223,21 @@ const Counter = struct {
         // create DOM button element
         self.elementID = dom.createElement(&.{
             .tag = "button",
-            .class = "db w5 ma2 tc",
+            // Tachyons CSS class names
+            .class = "db w5 ma2 pa2 tc bn",
             .text = "click me!",
             .parent = parent,
+            .attribs = &.{
+                // define & add click event listener w/ user context arg
+                dom.Attrib.event("click", .{ .callback = onClick, .ctx = self }),
+            },
         });
-        // define & add click event listener w/ user context arg
-        self.listener = .{ .callback = onClick, .ctx = self };
-        self.listenerID = try dom.addListener(self.elementID, "click", &self.listener);
     }
 
     fn update(self: *const Self) void {
         // format new button label
         var buf: [32]u8 = undefined;
-        var label = std.fmt.bufPrint(&buf, "clicks: {d:0>4}", .{self.clicks}) catch return;
+        var label = std.fmt.bufPrintZ(&buf, "clicks: {d:0>4}", .{self.clicks}) catch return;
         // update DOM element
         dom.setInnerText(self.elementID, label);
     }
