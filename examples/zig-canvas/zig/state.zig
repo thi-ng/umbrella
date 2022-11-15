@@ -72,7 +72,7 @@ pub fn requestRedraw(self: *Self) void {
             if (wasm.ptrCast(*const Self, raw)) |state| state.redraw();
         }
     };
-    _ = dom.requestAnimationFrame(&.{ .callback = wrapper.handler, .ctx = self }) catch return;
+    _ = dom.requestAnimationFrame(wrapper.handler, self) catch return;
 }
 
 /// Calls into JS API to clear canvas and redraw all recorded strokes.

@@ -44,10 +44,10 @@ const Counter = struct {
             .class = "db w5 ma2 pa2 tc bn",
             .text = "click me!",
             .parent = parent,
-            .attribs = &.{
+            .attribs = dom.attribs(&.{
                 // define & add click event listener w/ user context arg
-                dom.Attrib.event("click", .{ .callback = onClick, .ctx = self }),
-            },
+                dom.Attrib.event("click", onClick, self),
+            }),
         });
     }
 
@@ -85,7 +85,7 @@ const Counter = struct {
             // Supply a snapshot of current state as user context for the update
             // Since this is a one-off callback, we don't have to hold on
             // to the returned listener ID (auto-cleanup)
-            _ = schedule(.once, &.{ .callback = onTimeout, .ctx = self.snapshot() }, 500) catch return;
+            _ = schedule(.once, 500, onTimeout, self.snapshot()) catch return;
         }
     }
 

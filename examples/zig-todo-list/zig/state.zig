@@ -32,21 +32,21 @@ pub const TaskItem = struct {
             .tag = "div",
             .class = "task pa2",
             .parent = dom.getElementByID("tasks"),
-            .children = &.{
+            .children = dom.children(&.{
                 .{
                     .tag = "input",
                     .class = "db h2",
-                    .attribs = &.{
+                    .attribs = dom.attribs(&.{
                         dom.Attrib.string("type", "checkbox"),
-                        dom.Attrib.event("change", .{ .callback = onTaskComplete, .ctx = self }),
-                    },
+                        dom.Attrib.event("change", onTaskComplete, self),
+                    }),
                 },
                 .{
                     .tag = "span",
                     .class = "ml3",
                     .text = self.task.body,
                 },
-            },
+            }),
         });
 
         var buf: [32]u8 = undefined;
@@ -62,7 +62,7 @@ pub const TaskItem = struct {
         if (wasm.ptrCast(*TaskItem, raw)) |self| {
             self.markDone();
             self.parent.storeTasks();
-            _ = schedule(.once, &.{ .callback = onExpire, .ctx = self }, 1000) catch @panic("can't create timeout");
+            _ = schedule(.once, 1000, onExpire, self) catch @panic("can't create timeout");
         }
     }
 
@@ -89,7 +89,7 @@ pub const TaskItem = struct {
             }
         }
         _ = dom.removeElement(self.root);
-        self.parent.allocator.free(self.task.body);
+        self.parent.allocator.free(std.mem.span(self.task.body));
         self.parent.allocator.destroy(self);
     }
 };

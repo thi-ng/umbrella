@@ -112,44 +112,44 @@ fn initApp() !void {
         .id = "app",
         .parent = dom.body,
         .index = 0,
-        .children = &.{
+        .children = dom.children(&.{
             .{
                 .tag = "div",
-                .children = &.{
+                .children = dom.children(&.{
                     .{
                         .tag = "div",
                         .class = "dib mr3",
-                        .children = &.{
+                        .children = dom.children(&.{
                             .{ .tag = "strong", .text = "thi.ng/wasm-api-dom canvas" },
-                        },
+                        }),
                     },
                     .{
                         .tag = "button",
                         .text = "undo",
                         .class = "mr1",
-                        .attribs = &.{
-                            Attrib.event("click", .{ .callback = onBtUndo, .ctx = &STATE }),
-                        },
+                        .attribs = dom.attribs(&.{
+                            Attrib.event("click", onBtUndo, &STATE),
+                        }),
                     },
                     .{
                         .tag = "button",
                         .text = "download",
                         .class = "mr1",
-                        .attribs = &.{
-                            Attrib.event("click", .{ .callback = onBtDownload }),
-                        },
+                        .attribs = dom.attribs(&.{
+                            Attrib.event("click", onBtDownload, null),
+                        }),
                     },
                     .{
                         .tag = "button",
                         .text = "fullscreen",
-                        .attribs = &.{
+                        .attribs = dom.attribs(&.{
                             Attrib.flag("disabled", !STATE.window.hasFullscreen()),
-                            Attrib.event("click", .{ .callback = onToggleFullscreen, .ctx = &STATE }),
-                        },
+                            Attrib.event("click", onToggleFullscreen, &STATE),
+                        }),
                     },
-                },
+                }),
             },
-        },
+        }),
     });
 
     // main editor canvas
@@ -160,19 +160,19 @@ fn initApp() !void {
         .height = 100,
         .dpr = STATE.window.dpr,
         .parent = container,
-        .attribs = &.{
-            Attrib.event("mousedown", .{ .callback = startStroke, .ctx = &STATE }),
-            Attrib.event("mousemove", .{ .callback = updateStroke, .ctx = &STATE }),
-            Attrib.event("mouseup", .{ .callback = endStroke, .ctx = &STATE }),
-            Attrib.event("touchstart", .{ .callback = startStroke, .ctx = &STATE }),
-            Attrib.event("touchmove", .{ .callback = updateStroke, .ctx = &STATE }),
-            Attrib.event("touchend", .{ .callback = endStroke, .ctx = &STATE }),
-        },
+        .attribs = dom.attribs(&.{
+            Attrib.event("mousedown", startStroke, &STATE),
+            Attrib.event("mousemove", updateStroke, &STATE),
+            Attrib.event("mouseup", endStroke, &STATE),
+            Attrib.event("touchstart", startStroke, &STATE),
+            Attrib.event("touchmove", updateStroke, &STATE),
+            Attrib.event("touchend", endStroke, &STATE),
+        }),
     });
     resizeCanvas();
 
-    _ = try dom.addListener(dom.window, "keydown", &.{ .callback = onKeyDown, .ctx = &STATE });
-    _ = try dom.addListener(dom.window, "resize", &.{ .callback = onResize, .ctx = &STATE });
+    _ = try dom.addListener(dom.window, "keydown", onKeyDown, &STATE);
+    _ = try dom.addListener(dom.window, "resize", onResize, &STATE);
 }
 
 /// Main entry point (called from JS)

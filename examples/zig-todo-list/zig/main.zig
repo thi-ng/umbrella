@@ -6,12 +6,12 @@ const todo = @import("api.zig");
 const State = @import("state.zig");
 
 // only needed for debug builds
-// pub fn log(
-//     comptime _: std.log.Level,
-//     comptime _: @Type(.EnumLiteral),
-//     comptime _: []const u8,
-//     _: anytype,
-// ) void {}
+pub fn log(
+    comptime _: std.log.Level,
+    comptime _: @Type(.EnumLiteral),
+    comptime _: []const u8,
+    _: anytype,
+) void {}
 
 // expose thi.ng/wasm-api core API (incl. panic handler & allocation fns)
 pub usingnamespace wasm;
@@ -48,7 +48,7 @@ fn onAddTask(_: *const dom.Event, _: ?*anyopaque) void {
     wasm.printHexdump(body.ptr, body.len);
 
     // skip empty inputs (taking sentinel into account)
-    if (body.len <= 1) return;
+    if (body.len == 0) return;
 
     _ = STATE.addTask(body) catch |e| @panic(@errorName(e));
     dom.setStringAttrib(input, "value", "");
@@ -70,7 +70,7 @@ fn initApp() !void {
         .class = "w-100",
         .parent = dom.body,
         .index = 0,
-        .children = &.{
+        .children = dom.children(&.{
             .{ .tag = "h1", .class = "mt0", .text = "ToDo List" },
             .{
                 .tag = "div",
@@ -79,30 +79,30 @@ fn initApp() !void {
             .{
                 .tag = "div",
                 .class = "flex flex-column mb3",
-                .children = &.{
+                .children = dom.children(&.{
                     .{ .tag = "h3", .text = "Add new task" },
                     .{
                         .tag = "input",
                         .id = "newtask",
                         .class = "pa2",
-                        .attribs = &.{
+                        .attribs = dom.attribs(&.{
                             dom.Attrib.string("placeholder", "What needs to be done?"),
                             dom.Attrib.flag("autofocus", true),
-                            dom.Attrib.event("keydown", .{ .callback = onKeydown }),
-                            dom.Attrib.event("input", .{ .callback = onInput }),
-                        },
+                            dom.Attrib.event("keydown", onKeydown, null),
+                            dom.Attrib.event("input", onInput, null),
+                        }),
                     },
                     .{
                         .tag = "button",
                         .class = "ma0 mt2 db w-100 pa2",
                         .text = "Add Task",
-                        .attribs = &.{
-                            dom.Attrib.event("click", .{ .callback = onAddTask }),
-                        },
+                        .attribs = dom.attribs(&.{
+                            dom.Attrib.event("click", onAddTask, null),
+                        }),
                     },
-                },
+                }),
             },
-        },
+        }),
     });
 
     var tasks: []todo.Task = undefined;
