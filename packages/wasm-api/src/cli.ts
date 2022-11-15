@@ -20,6 +20,7 @@ import { mutIn } from "@thi.ng/paths";
 import { dirname, resolve } from "path";
 import type {
 	CodeGenOpts,
+	CodeGenOptsBase,
 	FuncPointer,
 	Struct,
 	TopLevelType,
@@ -220,6 +221,24 @@ const generateOutputs = ({ config, logger, opts }: Ctx, coll: TypeColl) => {
 	}
 };
 
+const resolveUserCode = (
+	ctx: Ctx,
+	conf: Partial<CodeGenOptsBase>,
+	key: "pre" | "post"
+) => {
+	if (conf[key]) {
+		if (isString(conf[key]) && conf[key]![0] === "@") {
+			conf[key] = readText(
+				resolve(
+					dirname(ctx.opts.config!),
+					(<string>conf[key]).substring(1)
+				),
+				ctx.logger
+			);
+		}
+	}
+};
+
 try {
 	const result = parse(argOpts, process.argv, { start: 3, usageOpts });
 	if (!result) process.exit(1);
@@ -244,18 +263,8 @@ try {
 		ctx.config = readJSON(opts.config, ctx.logger);
 		for (let id in ctx.config) {
 			const conf = ctx.config[<keyof GenConfig>id]!;
-			if (conf.pre && conf.pre[0] === "@") {
-				conf.pre = readText(
-					resolve(dirname(opts.config), conf.pre.substring(1)),
-					ctx.logger
-				);
-			}
-			if (conf.post && conf.post[0] === "@") {
-				conf.post = readText(
-					resolve(dirname(opts.config), conf.post.substring(1)),
-					ctx.logger
-				);
-			}
+			resolveUserCode(ctx, conf, "pre");
+			resolveUserCode(ctx, conf, "post");
 		}
 	}
 	opts.debug && mutIn(ctx, ["config", "global", "debug"], true);

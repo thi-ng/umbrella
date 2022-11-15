@@ -20,6 +20,7 @@ import {
 } from "./api.js";
 import { selectAlignment } from "./codegen/align.js";
 import {
+	ensureStringArray,
 	isBigNumeric,
 	isNumeric,
 	isOpaque,
@@ -35,7 +36,7 @@ export const DEFAULT_CODEGEN_OPTS: CodeGenOpts = {
 	debug: false,
 	header: true,
 	lineWidth: 80,
-	stringType: "slice",
+	stringType: "ptr",
 	target: WASM32,
 	uppercaseEnums: true,
 };
@@ -62,9 +63,9 @@ const sizeOf = defmulti<
 				return (field.__size = field.pad);
 			}
 			let size = 0;
-			if (isPointer(field)) {
+			if (isPointer(field.tag)) {
 				size = opts.target.sizeBytes;
-			} else if (isSlice(field)) {
+			} else if (isSlice(field.tag)) {
 				size = opts.target.sizeBytes * 2;
 			} else {
 				size =
@@ -286,19 +287,19 @@ export const generateTypes = (
 		res.push("");
 	}
 	if (codegen.pre) {
-		const pre = codegen.pre($opts);
+		const pre = codegen.pre(coll, $opts);
 		pre && res.push(pre, "");
 	}
-	$opts.pre && res.push($opts.pre, "");
+	$opts.pre && res.push(...ensureStringArray($opts.pre), "");
 	for (let id in coll) {
 		const type = coll[id];
 		if (type.skip?.includes(codegen.id)) continue;
 		type.doc && codegen.doc(type.doc, res, $opts);
 		codegen[type.type](<any>type, coll, res, $opts);
 	}
-	$opts.post && res.push("", $opts.post);
+	$opts.post && res.push("", ...ensureStringArray($opts.post));
 	if (codegen.post) {
-		const post = codegen.post($opts);
+		const post = codegen.post(coll, $opts);
 		post && res.push("", post);
 	}
 	return res.join("\n");

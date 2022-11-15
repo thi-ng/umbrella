@@ -1,6 +1,6 @@
 {
 	"$schema": "https://json-schema.org/draft/2020-12/schema",
-	"$id": "https://schema.thi.ng/wasm-api/20221107.json",
+	"$id": "https://schema.thi.ng/wasm-api/20221111.json",
 	"title": "WASM API code generator type specs",
 	"description": "Polyglot type definition for hybrid WASM/TypeScript applications",
 	"type": "array",
@@ -92,7 +92,6 @@
 				"fields": { "$ref": "#/$defs/fields" },
 				"name": { "$ref": "#/$defs/name" },
 				"skip": { "$ref": "#/$defs/skip" },
-				"tag": { "$ref": "#/$defs/typeTag" },
 				"type": {
 					"const": "struct",
 					"description": "This spec describes a struct-style type."
@@ -107,7 +106,6 @@
 				"fields": { "$ref": "#/$defs/fields" },
 				"name": { "$ref": "#/$defs/name" },
 				"skip": { "$ref": "#/$defs/skip" },
-				"tag": { "$ref": "#/$defs/typeTag" },
 				"type": {
 					"const": "union",
 					"description": "This spec describes a union type."
@@ -198,6 +196,11 @@
 							}
 						}
 					]
+				},
+				"skip": {
+					"type": "boolean",
+					"default": false,
+					"description": "If true, code generation of this field will be skipped for WASM host environment languages (e.g. TypeScript)"
 				}
 			},
 			"required": ["name", "type"],
@@ -235,7 +238,8 @@
 			"description": "Either a WASM primitive type, a preset name (i.e. `opaque` or `string`) or the name of another type in this document.\n\n- `isize` / `usize` types will be sized depending on chosen WASM target (wasm32/wasm64).\n- `opaque` types are always considered pointers only.\n- `string` types are language specific and the result type can be configured via codegen options (i.e. slice vs. raw pointer)."
 		},
 		"fieldTag": {
-			"enum": ["array", "ptr", "slice", "vec"],
+			"enum": ["array", "ptr", "single", "slice", "vec"],
+			"default": "single",
 			"title": "Optional array type modifier",
 			"description": "If `array` or `vec` is selected, the `len` MUST be given too. Note: Not all tags are natively supported by all languages and might result in generation of \"polyfills\". E.g. vectors are similar to arrays, but have stricter alignment & potentially different codegeneration (language specific)."
 		},
@@ -243,11 +247,6 @@
 			"type": "array",
 			"items": { "$ref": "#/$defs/field" },
 			"description": "Array of fields specs for a struct or union type"
-		},
-		"typeTag": {
-			"enum": ["extern", "packed"],
-			"default": "extern",
-			"description": "Mainly Zig related. Optional layout qualifier to control alignment & sizing rules.\n\n- The default alignment strategy (even if no tag is given) is the same as `extern`\n- In Zig only `extern` and `packed` structs/unions, have a guaranteed memory layout, however only support a limited choice of field types.\n- If `packed` is chosen (and considering the smallest supported field size of `u8`), all types & fields will have a theoretical alignment of 1 byte and NO automatic padding between/after fields. To ensure compatibility with the JS side of thi.ng/wasm-api, packed types will need to be manually allocated/aligned to at least 8 byte boundaries."
 		},
 		"body": {
 			"type": "object",

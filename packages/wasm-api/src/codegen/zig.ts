@@ -1,6 +1,7 @@
 import { isNumber } from "@thi.ng/checks";
 import { isString } from "@thi.ng/checks/is-string";
-import { unsupported } from "@thi.ng/errors/unsupported";
+import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
+import { capitalize } from "@thi.ng/strings/case";
 import type {
 	CodeGenOpts,
 	CodeGenOptsBase,
@@ -10,14 +11,18 @@ import type {
 	Struct,
 	Union,
 } from "../api.js";
+import { classifyField } from "./classify.js";
 import {
 	defaultValue,
 	ensureLines,
+	ensureStringArray,
 	isOpaque,
 	isPadding,
 	isStringSlice,
+	isUnion,
 	isWasmString,
 	prefixLines,
+	sliceTypes,
 	withIndentation,
 } from "./utils.js";
 
@@ -43,10 +48,30 @@ export const ZIG = (opts: Partial<ZigOpts> = {}) => {
 	const gen: ICodeGen = {
 		id: "zig",
 
-		pre: () =>
-			`const std = @import("std");${opts.pre ? `\n${opts.pre}` : ""}`,
+		pre: (coll) => {
+			const res = [
+				`const std = @import("std");`,
+				`const wasm = @import("wasmapi");`,
+			];
+			for (let type of sliceTypes(coll)) {
+				if (type !== "string" && type !== "opaque") {
+					const name = capitalize(type!);
+					res.push(
+						`\npub const ${name}Slice = wasm.Slice([]const ${type}, [*]const ${type});`,
+						`pub const Mut${name}Slice = wasm.Slice([]${type}, [*]${type});`
+					);
+				}
+			}
+			if (opts.pre) res.push("", ...ensureStringArray(opts.pre));
+			return res.join("\n");
+		},
 
-		post: () => opts.post || "",
+		post: () =>
+			opts.post
+				? isString(opts.post)
+					? opts.post
+					: opts.post.join("\n")
+				: "",
 
 		doc: (doc, acc, opts, topLevel = false) => {
 			acc.push(
@@ -79,9 +104,7 @@ export const ZIG = (opts: Partial<ZigOpts> = {}) => {
 			acc.push(
 				...withIndentation(
 					[
-						`pub const ${struct.name} = ${
-							struct.tag ? struct.tag + " " : ""
-						}struct {`,
+						`pub const ${struct.name} = extern struct {`,
 						...__generateFields(gen, struct, opts),
 					],
 					INDENT,
@@ -94,9 +117,7 @@ export const ZIG = (opts: Partial<ZigOpts> = {}) => {
 			acc.push(
 				...withIndentation(
 					[
-						`pub const ${union.name} = ${
-							union.tag ? union.tag + " " : ""
-						}union {`,
+						`pub const ${union.name} = extern union {`,
 						...__generateFields(gen, union, opts),
 					],
 					INDENT,
@@ -130,15 +151,12 @@ const __generateFields = (
 ) => {
 	const res: string[] = [];
 	const ftypes: Record<string, string> = {};
-	const isUnion = parent.type === "union";
 	const name = parent.name;
 	let padID = 0;
 	for (let f of parent.fields) {
 		// autolabel explicit padding fields
 		if (isPadding(f)) {
-			parent.tag === "packed"
-				? __packedPadding(padID, f.pad!, res)
-				: res.push(`__pad${padID}: [${f.pad}]u8,`);
+			res.push(`__pad${padID}: [${f.pad}]u8,`);
 			padID++;
 			continue;
 		}
@@ -167,7 +185,7 @@ const __generateFields = (
 		for (let f of parent.fields) {
 			if (isPadding(f)) continue;
 			fn(f.name + "_align", `@alignOf(${ftypes[f.name]})`);
-			!isUnion &&
+			!isUnion(parent) &&
 				fn(f.name + "_offset", `@offsetOf(${name}, "${f.name}")`);
 			fn(f.name + "_size", `@sizeOf(${ftypes[f.name]})`);
 		}
@@ -182,59 +200,87 @@ export const fieldType = (
 	f: Field,
 	opts: CodeGenOpts
 ) => {
-	let type = isWasmString(f.type)
-		? isStringSlice(opts.stringType)
-			? f.const !== false
-				? "[:0]const u8"
-				: "[:0]u8"
-			: f.const !== false
-			? "[*:0]const u8"
-			: "[*:0]u8"
-		: isOpaque(f.type)
-		? `${f.optional ? "?" : ""}*${f.const ? "const " : ""}anyopaque`
-		: f.type;
+	let type = f.type;
 	let defaultVal = defaultValue(f, "zig");
-	switch (f.tag) {
-		case "array":
-			type =
-				f.sentinel !== undefined
-					? `[${f.len}:${f.sentinel}]${type}`
-					: `[${f.len}]${type}`;
-			break;
-		case "slice":
-			type = `[${f.sentinel !== undefined ? ":" + f.sentinel : ""}]${
-				f.const ? "const " : ""
-			}${type}`;
-			break;
-		case "vec":
-			type = `@Vector(${f.len}, ${type})`;
-			break;
-		case "ptr":
-			type = `${f.optional ? "?" : ""}*${f.const ? "const " : ""}${
-				f.len ? `[${f.len}]` : ""
-			}${type}`;
-			break;
-		case "scalar":
-		default:
-			if (defaultVal != undefined) {
-				if (!(isString(defaultVal) || isNumber(defaultVal))) {
-					unsupported(
-						`wrong default value for ${parent.name}.${f.name} (${defaultVal})`
-					);
-				}
-			}
+	const { classifier, isConst } = classifyField(f);
+	if (isWasmString(f.type)) {
+		const useStrSlice = isStringSlice(opts.stringType);
+		type = useStrSlice
+			? isConst
+				? "wasm.String"
+				: "wasm.MutString"
+			: isConst
+			? "wasm.StringPtr"
+			: "wasm.MutStringPtr";
+		switch (classifier) {
+			case "strPtr":
+				type = `*${type}`;
+				break;
+			case "strPtrFixed":
+				type = `*[${f.len}]${type}`;
+				break;
+			case "strPtrMulti":
+				type = `[*]${type}`;
+				break;
+			case "strSlice":
+				type = `wasm.Slice([]${type},[*]${type})`;
+				break;
+			case "strArray":
+				type = `[${f.len}]${type}`;
+				break;
+		}
+	} else if (isOpaque(f.type)) {
+		type = isConst ? "wasm.OpaquePtr" : "wasm.MutOpaquePtr";
+		switch (classifier) {
+			case "opaquePtr":
+				type = `*${type}`;
+				break;
+			case "opaquePtrFixed":
+				type = `*[${f.len}]${type}`;
+				break;
+			case "opaquePtrMulti":
+				type = `[*]${type}`;
+				break;
+			case "opaqueSlice":
+				type = isConst ? "wasm.OpaqueSlice" : "wasm.MutOpaqueSlice";
+				break;
+			case "opaqueArray":
+				type = `[${f.len}]${type}`;
+				break;
+		}
+	} else {
+		const $const = isConst ? "const " : "";
+		const sentinel = f.sentinel != null ? `:${f.sentinel}` : "";
+		switch (classifier) {
+			case "ptrSingle":
+				type = `*${$const}${type}`;
+				break;
+			case "ptrFixed":
+				type = `*${$const}[${f.len}${sentinel}]${type}`;
+				break;
+			case "ptrMulti":
+				type = `[*${sentinel}]${$const}${type}`;
+				break;
+			case "slice":
+				type = `${isConst ? "" : "Mut"}${capitalize(f.type)}Slice`;
+				break;
+			case "array":
+				type = `[${f.len}${sentinel}]${type}`;
+				break;
+			case "vec":
+				type = `@Vector(${f.len}, ${type})`;
+				break;
+		}
+	}
+	if (defaultVal != undefined) {
+		if (!(isString(defaultVal) || isNumber(defaultVal))) {
+			illegalArgs(
+				`wrong default value for ${parent.name}.${f.name} (${defaultVal})`
+			);
+		}
 	}
 	return {
 		type,
 		defaultVal: defaultVal != undefined ? ` = ${defaultVal}` : "",
 	};
-};
-
-const __packedPadding = (id: number, n: number, res: string[]) => {
-	let i = 0;
-	n <<= 3;
-	for (; n >= 128; n -= 128, i++) {
-		res.push(`__pad${id}_${i}: u128,`);
-	}
-	res.push(`__pad${id}_${i}: u${n},`);
 };

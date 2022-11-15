@@ -5,34 +5,50 @@ const root = @import("root");
 
 pub const ManagedIndex = @import("managed-index.zig").ManagedIndex;
 
-/// Higher-order generic slice wrapper for extern struct use cases
+/// Higher-order generic slice wrapper for `extern struct` use cases
 /// S = slice type
 /// P = pointer type
-/// default = point default value
-pub fn Slice(comptime S: type, comptime P: type, comptime default: P) type {
+pub fn Slice(comptime S: type, comptime P: type) type {
     return extern struct {
-        ptr: P = default,
+        ptr: P = @as(S, &.{}).ptr,
         len: usize = 0,
 
-        pub fn wrap(slice: S) @This() {
+        pub inline fn wrap(slice: S) @This() {
             return .{
                 .ptr = @ptrCast(P, slice.ptr),
                 .len = slice.len,
             };
         }
 
-        pub fn toSlice(self: *@This()) S {
+        pub inline fn toSlice(self: *@This()) S {
             return @ptrCast(*S, self).*;
         }
     };
 }
 
-/// []const u8 wrapper for extern struct use cases
-const String = Slice([]const u8, [*:0]const u8, "");
+pub const StringPtr = [*:0]const u8;
+pub const MutStringPtr = [*:0]u8;
+
+/// `[]const u8` slice wrapper for `extern struct` use cases
+pub const String = Slice([]const u8, StringPtr);
+/// `[]u8` slice wrapper for `extern struct` use cases
+pub const MutString = Slice([]u8, MutStringPtr);
+
+pub const OpaquePtr = *const anyopaque;
+pub const MutOpaquePtr = *anyopaque;
+
+pub const OpaqueSlice = Slice([]OpaquePtr, [*]OpaquePtr);
+
+pub const MutOpaqueSlice = Slice([]MutOpaquePtr, [*]MutOpaquePtr);
 
 /// Syntax sugar for `String.wrap()`
-pub fn string(str: []const u8) String {
+pub inline fn string(str: []const u8) String {
     return String.wrap(str);
+}
+
+/// Syntax sugar for `MutableString.wrap()`
+pub inline fn mutString(str: []u8) String {
+    return MutableString.wrap(str);
 }
 
 /// Similar to @ptrCast intrinsic. Helper function to cast & re-align an

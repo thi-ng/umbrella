@@ -353,13 +353,8 @@ export interface Struct extends TopLevelType {
 	 */
 	auto?: boolean;
 	/**
-	 * Optional qualifier for the kind of struct to be emitted (codegen specific
-	 * interpretation, currently only used by {@link ZIG}).
-	 */
-	tag?: "extern" | "packed";
-	/**
 	 * Optional user supplied {@link AlignStrategy}. By default uses
-	 * {@link ALIGN_C} or {@link ALIGN_PACKED} (if using "packed" structs).
+	 * {@link ALIGN_C}.
 	 */
 	align?: AlignStrategy;
 }
@@ -371,18 +366,13 @@ export interface Union extends TopLevelType {
 	 */
 	fields: Field[];
 	/**
-	 * Optional qualifier for the kind of struct to be emitted (codegen specific
-	 * interpretation, currently only used by {@link ZIG}).
-	 */
-	tag?: "extern" | "packed";
-	/**
 	 * Optional user supplied {@link AlignStrategy}. By default uses
-	 * {@link ALIGN_C} or {@link ALIGN_PACKED} (if using "packed" union).
+	 * {@link ALIGN_C}.
 	 */
 	align?: AlignStrategy;
 }
 
-export type FieldTag = "scalar" | "array" | "ptr" | "slice" | "vec";
+export type FieldTag = "single" | "array" | "ptr" | "slice" | "vec";
 
 export interface Field extends TypeInfo {
 	/**
@@ -394,20 +384,20 @@ export interface Field extends TypeInfo {
 	 */
 	doc?: string | string[];
 	/**
-	 * Field type tag/qualifier (note: `slice` & `vec` are only supported by Zig
-	 * & TS).
+	 * Field type tag/qualifier. `vec` is only supported by Zig & TS. `slice`
+	 * fields will be polyfilled using auto-generated wrappers.
 	 *
 	 * @remarks
-	 * - Array & vector fields are statically sized (using
-	 *   {@link Field.len})
-	 * - Pointers are emitted as single-value pointers (where this distinction
-	 *   exist), i.e. even if they're pointing to multiple values, there's no
-	 *   explicit length encoded/available
+	 * - Array & vector fields are statically sized (using {@link Field.len})
+	 * - If no `len` is given, pointers are emitted as single-value pointers
+	 *   (where this distinction exist)
+	 * - If `len` is given, pointers are emitted as pointing to N values (for
+	 *   languages supporting this distinction, e.g. Zig)
 	 * - Zig slices are essentially a pointer w/ associated length
 	 * - Zig vectors will be processed using SIMD (if enabled in WASM target)
 	 *   and therefore will have stricter (larger) alignment requirements.
 	 *
-	 * @defaultValue "scalar"
+	 * @defaultValue `"single"`
 	 */
 	tag?: FieldTag;
 	/**
@@ -424,8 +414,13 @@ export interface Field extends TypeInfo {
 	 */
 	type: WasmPrim | "isize" | "usize" | "string" | "opaque" | string;
 	/**
-	 * Const qualifier (default is true for `string`, false for all other
-	 * types). Only used for pointers or slices.
+	 * **Only used for pointers or slices.** Const qualifier (default is true
+	 * for `string`, false for all other types).
+	 *
+	 * @remarks
+	 * In our context, constness **always** refers to the target data, never to
+	 * the pointer or slice itself (i.e. the pointer itself will always be
+	 * mutable).
 	 */
 	const?: boolean;
 	/**
@@ -461,6 +456,18 @@ export interface Field extends TypeInfo {
 	 * for this field will be ignored!
 	 */
 	pad?: number;
+	/**
+	 * If true (default: false), code generation of this field will be skipped
+	 * for WASM host environment languages (i.e. TypeScript).
+	 *
+	 * @remarks
+	 * This is useful if some fields of a struct/union aren't actually used for
+	 * WASM<>JS interop and thus can reduce the API surface & file size of the
+	 * generated wrappers.
+	 *
+	 * @defaultValue false
+	 */
+	skip?: boolean;
 }
 
 export interface Enum extends TopLevelType {
@@ -526,12 +533,12 @@ export interface CodeGenOptsBase {
 	 * Optional string to be injected before generated type defs (but after
 	 * codegen's own prelude, if any)
 	 */
-	pre?: string;
+	pre?: string | string[];
 	/**
 	 * Optional string to be injected after generated type defs (but before
 	 * codegen's own epilogue, if any)
 	 */
-	post?: string;
+	post?: string | string[];
 }
 
 /**
@@ -546,9 +553,10 @@ export interface CodeGenOpts extends CodeGenOptsBase {
 	target: WasmTarget;
 	/**
 	 * Identifier how strings are stored on WASM side, e.g. in Zig string
-	 * literals are slices (8 bytes), in C just plain pointers (4 bytes).
+	 * literals are slices (8 bytes), in C just plain pointers (4 bytes) to
+	 * zero-terminated char sequences.
 	 *
-	 * @defaultValue "slice"
+	 * @defaultValue "ptr"
 	 */
 	stringType: "slice" | "ptr";
 	/**
@@ -590,11 +598,11 @@ export interface ICodeGen {
 	/**
 	 * Optional prelude source, to be prepended before any generated type defs.
 	 */
-	pre?: Fn<CodeGenOpts, string>;
+	pre?: Fn2<TypeColl, CodeGenOpts, string>;
 	/**
 	 * Optional source code to be appended after any generated type defs.
 	 */
-	post?: Fn<CodeGenOpts, string>;
+	post?: Fn2<TypeColl, CodeGenOpts, string>;
 	/**
 	 * Docstring codegen
 	 */

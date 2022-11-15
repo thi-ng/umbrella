@@ -8,7 +8,10 @@ import type {
 	CodeGenOpts,
 	Field,
 	InjectedBody,
+	Struct,
+	TopLevelType,
 	TypeColl,
+	Union,
 	WasmPrim,
 	WasmPrim32,
 } from "../api.js";
@@ -43,12 +46,12 @@ export const isWasmString = (x: string): x is "string" => x === "string";
 
 export const isPadding = (f: Field) => f.pad != null && f.pad > 0;
 
-export const isPointer = (f: Field) => f.tag === "ptr";
+export const isPointer = (x: Field["tag"]): x is "ptr" => x === "ptr";
 
-export const isFuncPointer = (f: Field, coll: TypeColl) =>
-	coll[f.type]?.type === "funcptr";
+export const isFuncPointer = (type: Field["type"], coll: TypeColl) =>
+	coll[type]?.type === "funcptr";
 
-export const isSlice = (f: Field) => f.tag === "slice";
+export const isSlice = (x: Field["tag"]): x is "slice" => x === "slice";
 
 export const isOpaque = (x: string): x is "opaque" => x === "opaque";
 
@@ -58,11 +61,11 @@ export const isOpaque = (x: string): x is "opaque" => x === "opaque";
  * @param f
  */
 export const isPointerLike = (f: Field, coll: TypeColl) =>
-	isPointer(f) ||
-	isSlice(f) ||
+	isPointer(f.tag) ||
+	isSlice(f.tag) ||
 	isWasmString(f.type) ||
 	isOpaque(f.type) ||
-	isFuncPointer(f, coll);
+	isFuncPointer(f.type, coll);
 
 /**
  * Returns true if `type` is "slice".
@@ -73,6 +76,10 @@ export const isStringSlice = (
 	type: CodeGenOpts["stringType"]
 ): type is "slice" => type === "slice";
 
+export const isStruct = (x: TopLevelType): x is Struct => x.type === "struct";
+
+export const isUnion = (x: TopLevelType): x is Union => x.type === "union";
+
 /**
  * Returns filtered array of struct fields of with "ptr" tag or function
  * pointers.
@@ -82,7 +89,7 @@ export const isStringSlice = (
  * @internal
  */
 export const pointerFields = (fields: Field[]) =>
-	fields.filter((f) => isPointer(f));
+	fields.filter((f) => isPointer(f.tag));
 
 /**
  * Returns filtered array of struct fields of only "string" fields.
@@ -93,6 +100,14 @@ export const pointerFields = (fields: Field[]) =>
  */
 export const stringFields = (fields: Field[]) =>
 	fields.filter((f) => isWasmString(f.type) && f.tag !== "ptr");
+
+export const sliceTypes = (coll: TypeColl) =>
+	new Set(
+		Object.values(coll)
+			.flatMap((x) => (isStruct(x) || isUnion(x) ? x.fields : []))
+			.map((x) => (x.tag === "slice" ? x.type : null))
+			.filter((x) => !!x)
+	);
 
 /**
  * Returns enum identifier formatted according to given opts.
@@ -151,6 +166,9 @@ export const ensureLines = (
 			? ensureLines(src[key]!, key)
 			: []
 		: [];
+
+export const ensureStringArray = (src: string | string[]) =>
+	isString(src) ? [src] : src;
 
 /**
  * Yields iterator of given lines, each with applied indentation based on given

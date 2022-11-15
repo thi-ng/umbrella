@@ -1,5 +1,6 @@
 import { isString } from "@thi.ng/checks/is-string";
 import { unsupported } from "@thi.ng/errors/unsupported";
+import { capitalize } from "@thi.ng/strings/case";
 import type {
 	CodeGenOpts,
 	CodeGenOptsBase,
@@ -11,12 +12,14 @@ import type {
 	WasmPrim,
 } from "../api.js";
 import {
+	ensureStringArray,
 	enumName,
 	isOpaque,
 	isPadding,
 	isStringSlice,
 	isWasmString,
 	prefixLines,
+	sliceTypes,
 	withIndentation,
 } from "./utils.js";
 
@@ -64,23 +67,50 @@ export const C11 = (opts: Partial<C11Opts> = {}) => {
 	const gen: ICodeGen = {
 		id: "c",
 
-		pre: (opts) => `#pragma once
+		pre: (coll, opts) => {
+			const res = [
+				"#pragma once",
+				"",
+				"#ifdef __cplusplus",
+				`extern "C" {`,
+				"#endif",
+				opts.debug ? "\n#include <stdalign.h>" : "",
+				"#include <stddef.h>",
+				"#include <stdint.h>",
+				"",
+				`typedef struct { const char* ptr; size_t len; } ${typePrefix}String;`,
+				`typedef struct { char* ptr; size_t len; } ${typePrefix}MutString;`,
+				"",
+			];
+			for (let type of Object.values(coll)) {
+				if (type.type === "funcptr") continue;
+				res.push(
+					`typedef ${type.type} ${typePrefix}${type.name} ${typePrefix}${type.name};`
+				);
+			}
+			for (let type of sliceTypes(coll)) {
+				if (type === "string") continue;
+				const [ptr, name] =
+					type === "opaque"
+						? ["void*", "Opaque"]
+						: PRIM_ALIASES[<WasmPrim>type]
+						? [PRIM_ALIASES[<WasmPrim>type], capitalize(type!)]
+						: [type, capitalize(type!)];
+				res.push(
+					`\ntypedef struct { const ${ptr}* ptr; size_t len; } ${typePrefix}${name}Slice;`,
+					`typedef struct { ${ptr}* ptr; size_t len; } ${typePrefix}${name}MutSlice;`
+				);
+			}
+			if (opts.pre) res.push("", ...ensureStringArray(opts.pre));
+			return res.join("\n");
+		},
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-${opts.debug ? "\n#include <stdalign.h>" : ""}
-#include <stddef.h>
-#include <stdint.h>
-
-typedef struct { const char* ptr; size_t len; } ${typePrefix}String;${
-			opts.pre ? `\n${opts.pre}` : ""
-		}`,
-
-		post: () =>
-			`${
-				opts.post ? `${opts.post}\n` : ""
-			}#ifdef __cplusplus\n}\n#endif\n`,
+		post: () => {
+			const res = [];
+			if (opts.post) res.push(...ensureStringArray(opts.post), "");
+			res.push("#ifdef __cplusplus", "}", "#endif", "");
+			return res.join("\n");
+		},
 
 		doc: (doc, acc, opts) => {
 			acc.push(...prefixLines("// ", doc, opts.lineWidth));
@@ -94,7 +124,7 @@ typedef struct { const char* ptr; size_t len; } ${typePrefix}String;${
 			}
 			const name = typePrefix + e.name;
 			const lines: string[] = [];
-			lines.push(`typedef enum {`);
+			lines.push(`enum ${name} {`);
 			for (let v of e.values) {
 				let line: string;
 				if (!isString(v)) {
@@ -106,7 +136,7 @@ typedef struct { const char* ptr; size_t len; } ${typePrefix}String;${
 				}
 				lines.push(line + ",");
 			}
-			lines.push(`} ${name};`, "");
+			lines.push(`};`, "");
 			acc.push(...withIndentation(lines, INDENT, ...SCOPES));
 		},
 
@@ -115,7 +145,6 @@ typedef struct { const char* ptr; size_t len; } ${typePrefix}String;${
 			acc.push(
 				...withIndentation(
 					[
-						`typedef struct ${name} ${name};`,
 						`struct ${name} {`,
 						...__generateFields(
 							gen,
@@ -136,7 +165,6 @@ typedef struct { const char* ptr; size_t len; } ${typePrefix}String;${
 			acc.push(
 				...withIndentation(
 					[
-						`typedef union ${name} ${name};`,
 						`union ${name} {`,
 						...__generateFields(gen, union, coll, opts, typePrefix),
 					],
@@ -220,13 +248,14 @@ const fieldType = (
 	prefix: string,
 	opts: CodeGenOpts
 ) => {
+	// let isConst = false;
 	const fconst = f.const ? "const " : "";
 	let ftype = isWasmString(f.type)
 		? isStringSlice(opts.stringType)
-			? prefix + "String"
-			: `${f.const !== false ? "const " : ""}char*`
+			? `${prefix}${f.const === false ? "Mut" : ""}String`
+			: `char*`
 		: isOpaque(f.type)
-		? `${fconst}void*`
+		? `void*`
 		: PRIM_ALIASES[<WasmPrim>f.type] || f.type;
 	if (coll[ftype]) ftype = prefix + ftype;
 	let decl: string;
@@ -237,19 +266,16 @@ const fieldType = (
 			ftype = `${ftype}[${f.len}]`;
 			break;
 		case "slice":
-			ftype = __slice(ftype, fconst);
+			ftype = `struct { ${fconst}${ftype}* ptr; size_t len; }`;
 			decl = `${ftype} ${f.name}`;
 			break;
 		case "ptr":
 			ftype = `${fconst}${ftype}*`;
 			decl = `${ftype} ${f.name}`;
 			break;
-		case "scalar":
+		case "single":
 		default:
 			decl = `${ftype} ${f.name}`;
 	}
 	return { ftype, decl };
 };
-
-const __slice = (type: string, $const: string) =>
-	`struct { ${$const}${type}* ptr; size_t len; }`;

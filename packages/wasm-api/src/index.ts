@@ -4,6 +4,7 @@ export * from "./codegen.js";
 export * from "./codegen/c11.js";
 export * from "./codegen/typescript.js";
 export * from "./codegen/utils.js";
+export * from "./codegen/classify.js";
 export * from "./codegen/zig.js";
 export * from "./object-index.js";
 export * from "./pointer.js";

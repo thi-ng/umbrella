@@ -2,7 +2,8 @@ import { SIZEOF } from "@thi.ng/api/typedarray";
 import type { Pow2 } from "@thi.ng/binary";
 import { align as $align } from "@thi.ng/binary/align";
 import { ceilPow2 } from "@thi.ng/binary/pow";
-import type { AlignStrategy, Struct, TopLevelType, WasmPrim } from "../api.js";
+import type { AlignStrategy, TopLevelType, WasmPrim } from "../api.js";
+import { isStruct, isUnion } from "./utils.js";
 
 /**
  * C ABI compatible alignment
@@ -26,15 +27,10 @@ export const ALIGN_PACKED: AlignStrategy = {
 };
 
 /**
- * Returns a suitable alignment strategy for given type, either via user
- * supplied impl defined for the type or derived via a struct's tag.
+ * Returns a suitable alignment strategy for given type, i.e. either the user
+ * supplied impl defined for the type or the default ({@link ALIGN_C}).
  *
  * @param type
  */
-export const selectAlignment = (type: TopLevelType) => {
-	if (type.type === "struct" || type.type === "union") {
-		let $type = <Pick<Struct, "tag" | "align">>type;
-		return $type.align || ($type.tag === "packed" ? ALIGN_PACKED : ALIGN_C);
-	}
-	return ALIGN_C;
-};
+export const selectAlignment = (type: TopLevelType) =>
+	isStruct(type) || isUnion(type) ? type.align || ALIGN_C : ALIGN_C;

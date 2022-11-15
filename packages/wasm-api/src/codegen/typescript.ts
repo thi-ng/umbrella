@@ -73,14 +73,19 @@ export const TYPESCRIPT = (opts: Partial<TSOpts> = {}) => {
 	const gen: ICodeGen = {
 		id: "ts",
 
-		pre: (opts) => `// @ts-ignore possibly includes unused imports
+		pre: (_, globalOpts) => `// @ts-ignore possibly includes unused imports
 import { MemorySlice, Pointer, ${__stringImpl(
-			opts
+			globalOpts
 		)}, WasmTypeBase, WasmTypeConstructor } from "${PKG_NAME}";${
 			opts.pre ? `\n${opts.pre}` : ""
 		}`,
 
-		post: () => opts.post || "",
+		post: () =>
+			opts.post
+				? isString(opts.post)
+					? opts.post
+					: opts.post.join("\n")
+				: "",
 
 		doc: (doc, acc, opts) => {
 			acc.push("/**", ...prefixLines(" * ", doc, opts.lineWidth), " */");
@@ -106,7 +111,7 @@ import { MemorySlice, Pointer, ${__stringImpl(
 
 		struct: (struct, coll, acc, opts) => {
 			const fields = struct.fields.map((f) =>
-				isFuncPointer(f, coll) || isOpaque(f.type)
+				isFuncPointer(f.type, coll) || isOpaque(f.type)
 					? { ...f, type: opts.target.usize }
 					: f
 			);
@@ -118,7 +123,7 @@ import { MemorySlice, Pointer, ${__stringImpl(
 				`export interface ${struct.name} extends WasmTypeBase {`
 			);
 			for (let f of fields) {
-				if (isPadding(f)) continue;
+				if (isPadding(f) || f.skip) continue;
 				const doc = __docType(struct, f, opts);
 				doc && gen.doc(doc, lines, opts);
 				const ftype = __fieldType(f, opts);
@@ -162,7 +167,7 @@ import { MemorySlice, Pointer, ${__stringImpl(
 
 			for (let f of fields) {
 				// skip explicit padding fields
-				if (isPadding(f)) continue;
+				if (isPadding(f) || f.skip) continue;
 				const ftype = fieldTypes[f.name];
 				const offset = f.__offset || 0;
 				lines.push(`get ${f.name}(): ${ftype} {`);
@@ -346,7 +351,7 @@ const __fieldType = (f: Field, opts: CodeGenOpts) => {
 				: isWasmString(f.type)
 				? __stringImpl(opts) + "[]"
 				: f.type + "[]"
-			: !f.tag || f.tag === "scalar" || f.tag === "ptr"
+			: !f.tag || f.tag === "single" || f.tag === "ptr"
 			? isNumeric(f.type)
 				? "number"
 				: isBigNumeric(f.type)
