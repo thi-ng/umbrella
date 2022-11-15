@@ -46,9 +46,9 @@ pub inline fn string(str: []const u8) String {
     return String.wrap(str);
 }
 
-/// Syntax sugar for `MutableString.wrap()`
+/// Syntax sugar for `MutString.wrap()`
 pub inline fn mutString(str: []u8) String {
-    return MutableString.wrap(str);
+    return MutString.wrap(str);
 }
 
 /// Similar to @ptrCast intrinsic. Helper function to cast & re-align an
