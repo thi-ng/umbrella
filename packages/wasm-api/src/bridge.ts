@@ -110,7 +110,7 @@ export class WasmBridge<T extends WasmExports = WasmExports>
 			_printF32Array: logA(this.getF32Array.bind(this)),
 			_printF64Array: logA(this.getF64Array.bind(this)),
 
-			_printStr0: (addr: number) =>
+			printStrZ: (addr: number) =>
 				this.logger.debug(() => this.getString(addr, 0)),
 
 			_printStr: (addr: number, len: number) =>

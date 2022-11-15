@@ -216,7 +216,7 @@ pub fn printF64Array(buf: []const f64) void {
 pub extern "wasmapi" fn printHexdump(addr: *const anyopaque, len: usize) void;
 
 /// Prints a zero-terminated string using configured JS logger
-pub extern "wasmapi" fn _printStr0(addr: [*]const u8) void;
+pub extern "wasmapi" fn printStrZ(addr: [*:0]const u8) void;
 /// Prints a string of given length using configured JS logger
 pub extern "wasmapi" fn _printStr(addr: [*]const u8, len: usize) void;
 /// Convenience wrapper for _printStr, accepting a slice as arg

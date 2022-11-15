@@ -63,7 +63,7 @@ WASM_IMPORT("wasmapi", void, _printU64Array, wasm)(const uint64_t* addr, size_t 
 WASM_IMPORT("wasmapi", void, _printF32Array, wasm)(const float* addr, size_t len);
 WASM_IMPORT("wasmapi", void, _printF64Array, wasm)(const double* addr, size_t len);
 
-WASM_IMPORT("wasmapi", void, _printStr0, wasm)(const char* addr);
+WASM_IMPORT("wasmapi", void, printStrZ, wasm_)(const char* addr);
 WASM_IMPORT("wasmapi", void, _printStr, wasm)(const char* addr, size_t len);
 
 WASM_IMPORT("wasmapi", void, debug, wasm_)(void);

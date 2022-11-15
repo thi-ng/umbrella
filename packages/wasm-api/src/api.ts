@@ -234,7 +234,7 @@ export interface CoreAPI extends WebAssembly.ModuleImports {
 	_printU64Array: (addr: number, len: number) => void;
 	_printF32Array: (addr: number, len: number) => void;
 	_printF64Array: (addr: number, len: number) => void;
-	_printStr0: (addr: number) => void;
+	printStrZ: (addr: number) => void;
 	_printStr: (addr: number, len: number) => void;
 	printHexdump: (addr: number, len: number) => void;
 	debug: () => void;
