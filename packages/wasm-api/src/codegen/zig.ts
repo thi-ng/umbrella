@@ -272,6 +272,7 @@ export const fieldType = (
 				break;
 		}
 	}
+	if (f.optional) type = "?" + type;
 	if (defaultVal != undefined) {
 		if (!(isString(defaultVal) || isNumber(defaultVal))) {
 			illegalArgs(
