@@ -1,0 +1,15 @@
+{
+	"zig": {
+		"pre": [
+			"/// Syntax sugar for: `CreateElementOptsSlice.wrap()`",
+			"pub inline fn children(items: []const CreateElementOpts) CreateElementOptsSlice {",
+			"    return CreateElementOptsSlice.wrap(items);",
+			"}",
+			"",
+			"/// Syntax sugar for: `AttribSlice.wrap()`",
+			"pub inline fn attribs(items: []const Attrib) AttribSlice {",
+			"    return AttribSlice.wrap(items);",
+			"}"
+		]
+	}
+}

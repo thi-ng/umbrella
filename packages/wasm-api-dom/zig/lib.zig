@@ -18,9 +18,9 @@ pub const DOMError = error{
     InvalidID,
 };
 
+/// Auto-initialization hook called from JS when the module initializes
 export fn _dom_init() void {
     if (wasm.allocator()) |allocator| {
-        wasm.printStr("dom using root allocator");
         event.init(allocator);
     }
 }

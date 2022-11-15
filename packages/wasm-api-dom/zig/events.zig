@@ -25,8 +25,8 @@ pub extern "dom" fn _addListener(elementID: i32, name: [*:0]const u8, listenerID
 
 /// Adds given listener to a DOM element for event `name`.
 /// Returns an unique listener ID.
-pub fn addListener(elementID: i32, name: [*:0]const u8, listener: *const dom.EventListener) !u16 {
-    const listenerID = try eventListeners.add(listener.*);
+pub fn addListener(elementID: i32, name: [*:0]const u8, callback: dom.EventCallback, ctx: ?*anyopaque) !u16 {
+    const listenerID = try eventListeners.add(.{ .callback = callback, .ctx = ctx });
     _addListener(elementID, name, listenerID);
     return listenerID;
 }
@@ -66,8 +66,8 @@ pub extern "dom" fn stopImmediatePropagation() void;
 pub extern "dom" fn _requestAnimationFrame(listenerID: u16) void;
 
 /// Registers given listener for next animation frame
-pub fn requestAnimationFrame(listener: *const dom.RAFListener) !u16 {
-    const id = try rafListeners.add(listener.*);
+pub fn requestAnimationFrame(callback: dom.RAFCallback, ctx: ?*anyopaque) !u16 {
+    const id = try rafListeners.add(.{ .callback = callback, .ctx = ctx });
     _requestAnimationFrame(id);
     return id;
 }

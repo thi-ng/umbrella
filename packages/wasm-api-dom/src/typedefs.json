@@ -53,7 +53,6 @@
 	{
 		"name": "WindowInfo",
 		"type": "struct",
-		"tag": "extern",
 		"doc": "Various browser window related information [TODO]",
 		"fields": [
 			{ "name": "innerWidth", "type": "u16" },
@@ -100,7 +99,6 @@
 	{
 		"name": "DragEvent",
 		"type": "struct",
-		"tag": "extern",
 		"fields": [
 			{
 				"name": "clientX",
@@ -157,7 +155,6 @@
 	{
 		"name": "InputEvent",
 		"type": "struct",
-		"tag": "extern",
 		"fields": [
 			{
 				"name": "value",
@@ -202,7 +199,6 @@
 	{
 		"name": "KeyEvent",
 		"type": "struct",
-		"tag": "extern",
 		"fields": [
 			{
 				"name": "key",
@@ -254,7 +250,6 @@
 	{
 		"name": "MouseEvent",
 		"type": "struct",
-		"tag": "extern",
 		"fields": [
 			{
 				"name": "clientX",
@@ -304,7 +299,6 @@
 	{
 		"name": "PointerEvent",
 		"type": "struct",
-		"tag": "extern",
 		"fields": [
 			{
 				"name": "clientX",
@@ -398,7 +392,6 @@
 	{
 		"name": "ScrollEvent",
 		"type": "struct",
-		"tag": "extern",
 		"fields": [
 			{
 				"name": "scrollX",
@@ -427,7 +420,6 @@
 	{
 		"name": "TouchEvent",
 		"type": "struct",
-		"tag": "extern",
 		"fields": [
 			{
 				"name": "clientX",
@@ -464,7 +456,6 @@
 	{
 		"name": "WheelEvent",
 		"type": "struct",
-		"tag": "extern",
 		"fields": [
 			{
 				"name": "deltaX",
@@ -520,7 +511,6 @@
 	{
 		"name": "EventBody",
 		"type": "union",
-		"tag": "extern",
 		"fields": [
 			{ "name": "drag", "type": "DragEvent" },
 			{ "name": "input", "type": "InputEvent" },
@@ -535,7 +525,6 @@
 	{
 		"name": "Event",
 		"type": "struct",
-		"tag": "extern",
 		"fields": [
 			{ "name": "id", "type": "EventType" },
 			{
@@ -592,7 +581,6 @@
 	{
 		"name": "EventListener",
 		"type": "struct",
-		"tag": "extern",
 		"doc": "DOM event listener",
 		"fields": [
 			{
@@ -616,7 +604,6 @@
 	{
 		"name": "RAFListener",
 		"type": "struct",
-		"tag": "extern",
 		"doc": "RAF event listener",
 		"fields": [
 			{
@@ -641,6 +628,10 @@
 	{
 		"name": "CreateElementOpts",
 		"type": "struct",
+		"doc": [
+			"Data structure used for declarative creation of DOM elements / trees (passed to `createElement()`)",
+			"Also see `CreateCanvasOpts` for canvas specific use cases"
+		],
 		"fields": [
 			{ "name": "tag", "type": "string", "doc": "DOM element name" },
 			{
@@ -691,67 +682,22 @@
 				"tag": "slice",
 				"const": true,
 				"doc": "Optional slice of child element specs, which will be automatically attached as children to this element (their `parent` ID will be ignored)",
-				"default": { "zig": "&.{}" }
+				"default": { "zig": "children(&[_]CreateElementOpts{})" }
 			},
 			{
 				"name": "attribs",
 				"type": "Attrib",
 				"tag": "slice",
 				"const": true,
-				"doc": "Optional slice of attribute definitions for this element. Also see provided `Attrib` factory fns for convenience.",
-				"default": { "zig": "&.{}" }
+				"doc": "Optional slice of attribute definitions for this element. Also see provided `Attrib` factory functions for convenience.",
+				"default": { "zig": "attribs(&[_]Attrib{})" }
 			}
 		]
 	},
 	{
-		"name": "Attrib",
-		"type": "struct",
-		"tag": "extern",
-		"fields": [
-			{ "name": "name", "type": "string" },
-			{ "name": "value", "type": "AttribValue" },
-			{ "name": "kind", "type": "AttribType" }
-		],
-		"body": {
-			"zig": [
-				"pub fn event(name: [*:0]const u8, val: EventListener) Attrib {",
-				"return Attrib{ .name = name, .kind = .event, .value = .{ .event = val } };",
-				"}",
-				"",
-				"pub fn flag(name: [*:0]const u8, val: bool) Attrib {",
-				"return Attrib{ .name = name, .kind = .flag, .value = .{ .flag = if (val) 1 else 0 } };",
-				"}",
-				"",
-				"pub fn number(name: [*:0]const u8, val: f64) Attrib {",
-				"return Attrib{ .name = name, .kind = .num, .value = .{ .num = val } };",
-				"}",
-				"",
-				"pub fn string(name: [*:0]const u8, val: [*:0]const u8) Attrib {",
-				"return Attrib{ .name = name, .kind = .str, .value = .{ .str = val } };",
-				"}"
-			]
-		}
-	},
-	{
-		"name": "AttribValue",
-		"type": "union",
-		"tag": "extern",
-		"fields": [
-			{ "name": "event", "type": "EventListener" },
-			{ "name": "flag", "type": "u8" },
-			{ "name": "num", "type": "f64" },
-			{ "name": "str", "type": "string" }
-		]
-	},
-	{
-		"name": "AttribType",
-		"type": "enum",
-		"tag": "u8",
-		"values": ["event", "flag", "num", "str"]
-	},
-	{
 		"name": "CreateCanvasOpts",
 		"type": "struct",
+		"doc": "Data structure used for declarative creation of canvas elements (passed to `createCanvas()`)",
 		"fields": [
 			{
 				"name": "width",
@@ -797,9 +743,54 @@
 				"type": "Attrib",
 				"tag": "slice",
 				"const": true,
-				"doc": "Optional slice of attribute definitions for this element. Also see provided `Attrib` factory fns for convenience.",
-				"default": { "zig": "&.{}" }
+				"doc": "Optional slice of attribute definitions for this element. Also see provided `Attrib` factory functions for convenience.",
+				"default": { "zig": "attribs(&[_]Attrib{})" }
 			}
 		]
+	},
+	{
+		"name": "Attrib",
+		"type": "struct",
+		"doc": "DOM element attribute definition given as part of `CreateElementOpts`",
+		"fields": [
+			{ "name": "name", "type": "string" },
+			{ "name": "value", "type": "AttribValue" },
+			{ "name": "kind", "type": "AttribType" }
+		],
+		"body": {
+			"zig": [
+				"pub fn event(name: [*:0]const u8, callback: EventCallback, ctx: ?*anyopaque) Attrib {",
+				"return Attrib{ .name = name, .kind = .event, .value = .{ .event = .{ .callback = callback, .ctx = ctx } } };",
+				"}",
+				"",
+				"pub fn flag(name: [*:0]const u8, val: bool) Attrib {",
+				"return Attrib{ .name = name, .kind = .flag, .value = .{ .flag = if (val) 1 else 0 } };",
+				"}",
+				"",
+				"pub fn number(name: [*:0]const u8, val: f64) Attrib {",
+				"return Attrib{ .name = name, .kind = .num, .value = .{ .num = val } };",
+				"}",
+				"",
+				"pub fn string(name: [*:0]const u8, val: [*:0]const u8) Attrib {",
+				"return Attrib{ .name = name, .kind = .str, .value = .{ .str = val } };",
+				"}"
+			]
+		}
+	},
+	{
+		"name": "AttribValue",
+		"type": "union",
+		"fields": [
+			{ "name": "event", "type": "EventListener" },
+			{ "name": "flag", "type": "u8" },
+			{ "name": "num", "type": "f64" },
+			{ "name": "str", "type": "string" }
+		]
+	},
+	{
+		"name": "AttribType",
+		"type": "enum",
+		"tag": "u8",
+		"values": ["event", "flag", "num", "str"]
 	}
 ]
