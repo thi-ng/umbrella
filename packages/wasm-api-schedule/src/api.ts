@@ -13,10 +13,10 @@ export interface ScheduleImports extends WebAssembly.ModuleImports {
 	 * Schedules given callback of given kind.
 	 *
 	 * @param type
-	 * @param listenerID
 	 * @param delay
+	 * @param listenerID
 	 */
-	_schedule(type: ScheduleType, listenerID: number, delay: number): void;
+	_schedule(type: ScheduleType, delay: number, listenerID: number): void;
 	/**
 	 * Cancels & removes the sheduled callback for given ID.
 	 *

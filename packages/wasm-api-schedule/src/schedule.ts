@@ -12,17 +12,17 @@ interface ScheduledCall {
 const START: Record<ScheduleType, FnO<Fn0<void>, any>> = {
 	[ScheduleType.ONCE]: setTimeout,
 	[ScheduleType.INTERVAL]: setInterval,
-	[ScheduleType.IMMEDIATE]: typeof setImmediate !== "undefined"
-		? setImmediate
-		: (x) => setTimeout(x, 0),
+	[ScheduleType.IMMEDIATE]:
+		typeof setImmediate !== "undefined"
+			? setImmediate
+			: (x) => setTimeout(x, 0),
 };
 
 const CANCEL: Record<ScheduleType, Fn<any, void>> = {
 	[ScheduleType.ONCE]: clearTimeout,
 	[ScheduleType.INTERVAL]: clearInterval,
-	[ScheduleType.IMMEDIATE]: typeof clearImmediate !== "undefined"
-		? clearImmediate
-		: clearTimeout,
+	[ScheduleType.IMMEDIATE]:
+		typeof clearImmediate !== "undefined" ? clearImmediate : clearTimeout,
 };
 
 export class WasmSchedule implements IWasmAPI<ScheduleExports> {
@@ -43,7 +43,7 @@ export class WasmSchedule implements IWasmAPI<ScheduleExports> {
 
 	getImports(): ScheduleImports {
 		return {
-			_schedule: (kind, listenerID, delay) => {
+			_schedule: (kind, delay, listenerID) => {
 				this.listeners[listenerID] = {
 					id: listenerID,
 					timeout: START[kind].call(
