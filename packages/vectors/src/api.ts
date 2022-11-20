@@ -128,6 +128,9 @@ export type VecOpRoVVO<T, O> = (a: ReadonlyVec, b: ReadonlyVec, c?: O) => T;
 
 export type VecOpFN = (out: Vec | null, fn: Fn0<number>, n?: number) => Vec;
 
+export type VecOpFNO = (out: Vec | null, fn?: Fn0<number>, n?: number) => Vec;
+export type VecOpNFO = (out: Vec | null, n?: number, fn?: Fn0<number>) => Vec;
+
 export type VecOpSV = (
 	out: Vec | null,
 	a: ReadonlyVec,
@@ -422,6 +425,8 @@ export type MultiVecOpRoVV<T> = MultiVecOpImpl<VecOpRoVV<T>>;
 export type MultiVecOpRoVVO<T, O> = MultiVecOpImpl<VecOpRoVVO<T, O>>;
 
 export type MultiVecOpFN = MultiVecOpImpl<VecOpFN>;
+export type MultiVecOpFNO = MultiVecOpImpl<VecOpFNO>;
+export type MultiVecOpNFO = MultiVecOpImpl<VecOpNFO>;
 export type MultiVecOpSFN = MultiVecOpImpl<VecOpSFN>;
 
 export type BVecOpRoV<T> = Fn<ReadonlyBVec, T>;

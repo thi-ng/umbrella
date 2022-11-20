@@ -2,11 +2,12 @@ import type { IRandom } from "@thi.ng/random";
 import { normal } from "@thi.ng/random/distributions/normal";
 import { SYSTEM } from "@thi.ng/random/system";
 import type {
-	MultiVecOpFN,
+	MultiVecOpFNO,
 	MultiVecOpOOO,
 	ReadonlyVec,
 	Vec,
-	VecOpFN,
+	VecOpFNO,
+	VecOpNFO,
 	VecOpOOO,
 } from "./api.js";
 import { defHofOp } from "./compile/emit.js";
@@ -58,7 +59,7 @@ export const [random, random2, random3, random4] = defHofOp<
  * @param n - default 1
  */
 export const [randomDistrib, randomDistrib2, randomDistrib3, randomDistrib4] =
-	defHofOp<MultiVecOpFN, VecOpFN>(
+	defHofOp<MultiVecOpFNO, VecOpFNO>(
 		normal,
 		([a]) => `${a}=rnd()*n;`,
 		"a,rnd=op(),n=1",
@@ -74,8 +75,8 @@ const $norm =
 		normalize(null, random(v, -1, 1, rnd), n);
 
 const $normDist =
-	(random: VecOpFN): VecOpFN =>
-	(v, rnd, n = 1) =>
+	(random: VecOpFNO): VecOpNFO =>
+	(v, n = 1, rnd) =>
 		normalize(null, random(v, rnd), n);
 
 /**
@@ -103,7 +104,11 @@ export const randNorm4 = $norm(random4);
  *
  * @remarks
  * The non-fixed sized version of this function can ONLY be used if `v` is given
- * and initialized to the desired size/length.
+ * and pre-initialized to the desired size/length.
+ *
+ * @param v -
+ * @param n -
+ * @param distribFn -
  */
 export const randNormDistrib = $normDist(randomDistrib);
 export const randNormDistrib2 = $normDist(randomDistrib2);
