@@ -1,0 +1,36 @@
+{
+	"name": "@example/unbiased-normals",
+	"version": "0.0.1",
+	"private": true,
+	"description": "Visual comparison of biased vs. unbiased normal vectors projected on the surface of a sphere",
+	"repository": "https://github.com/thi-ng/umbrella",
+	"author": "Karsten Schmidt <k+npm@thi.ng>",
+	"license": "Apache-2.0",
+	"scripts": {
+		"start": "vite --open",
+		"build": "tsc && vite build --base='./'",
+		"preview": "vite preview --host --open"
+	},
+	"devDependencies": {
+		"typescript": "^4.8.4",
+		"vite": "^3.2.2"
+	},
+	"dependencies": {
+		"@thi.ng/dsp": "workspace:^",
+		"@thi.ng/matrices": "workspace:^",
+		"@thi.ng/pixel": "workspace:^",
+		"@thi.ng/transducers": "workspace:^",
+		"@thi.ng/vectors": "workspace:^"
+	},
+	"browser": {
+		"process": false
+	},
+	"thi.ng": {
+		"readme": [
+			"matrices",
+			"pixel",
+			"vectors"
+		],
+		"screenshot": "examples/unbiased-normals.png"
+	}
+}

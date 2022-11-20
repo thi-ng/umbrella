@@ -1589,6 +1589,20 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@example/unbiased-normals@workspace:examples/unbiased-normals":
+  version: 0.0.0-use.local
+  resolution: "@example/unbiased-normals@workspace:examples/unbiased-normals"
+  dependencies:
+    "@thi.ng/dsp": "workspace:^"
+    "@thi.ng/matrices": "workspace:^"
+    "@thi.ng/pixel": "workspace:^"
+    "@thi.ng/transducers": "workspace:^"
+    "@thi.ng/vectors": "workspace:^"
+    typescript: ^4.8.4
+    vite: ^3.2.2
+  languageName: unknown
+  linkType: soft
+
 "@example/webgl-channel-mixer@workspace:examples/webgl-channel-mixer":
   version: 0.0.0-use.local
   resolution: "@example/webgl-channel-mixer@workspace:examples/webgl-channel-mixer"
