@@ -1,6 +1,7 @@
 const std = @import("std");
+const wasm = @import("wasmapi");
 
-pub const A = struct {
+pub const A = extern struct {
     a: u8,
     __pad0: [3]u8,
     b: u32,
@@ -9,7 +10,7 @@ pub const A = struct {
     d: f64,
 };
 
-pub const B = union {
+pub const B = extern union {
     a: [3]A,
     b: u64,
 };

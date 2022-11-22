@@ -15,6 +15,28 @@ extern "C" {
 // Same as EMSCRIPTEN_KEEP_ALIVE, ensures symbol will be exported
 #define WASM_KEEP __attribute__((used))
 
+typedef char* WASM_StringPtr;
+typedef const char* WASM_ConstStringPtr;
+
+typedef void* WASM_OpaquePtr;
+typedef const void* WASM_ConstOpaquePtr;
+
+// slice-based string
+typedef struct { WASM_StringPtr ptr; size_t len; } WASM_String;
+typedef struct { WASM_ConstStringPtr ptr; size_t len; } WASM_ConstString;
+
+// slice of string slices
+typedef struct { WASM_String* ptr; size_t len; } WASM_StringSlice;
+typedef struct { WASM_ConstString* ptr; size_t len; } WASM_ConstStringSlice;
+
+// slice of string pointers
+typedef struct { WASM_StringPtr* ptr; size_t len; } WASM_StringPtrSlice;
+typedef struct { WASM_ConstStringPtr* ptr; size_t len; } WASM_ConstStringPtrSlice;
+
+// slice of opaque pointers
+typedef struct { WASM_OpaquePtr ptr; size_t len; } WASM_OpaquePtrSlice;
+typedef struct { WASM_ConstOpaquePtr ptr; size_t len; } WASM_ConstOpaquePtrSlice;
+
 // Generate malloc/free wrappers only if explicitly enabled by defining this
 // symbol. If undefined some function stubs are exported.
 #ifdef WASMAPI_MALLOC

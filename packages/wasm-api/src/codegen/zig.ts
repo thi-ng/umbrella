@@ -9,6 +9,7 @@ import type {
 	FuncPointer,
 	ICodeGen,
 	Struct,
+	TypeColl,
 	Union,
 } from "../api.js";
 import { classifyField } from "./classify.js";
@@ -57,8 +58,8 @@ export const ZIG = (opts: Partial<ZigOpts> = {}) => {
 				if (type !== "string" && type !== "opaque") {
 					const name = capitalize(type!);
 					res.push(
-						`\npub const ${name}Slice = wasm.Slice([]const ${type}, [*]const ${type});`,
-						`pub const Mut${name}Slice = wasm.Slice([]${type}, [*]${type});`
+						`\npub const ${name}Slice = wasm.Slice([]${type}, [*]${type});`,
+						`pub const Const${name}Slice = wasm.Slice([]const ${type}, [*]const ${type});`
 					);
 				}
 			}
@@ -100,12 +101,12 @@ export const ZIG = (opts: Partial<ZigOpts> = {}) => {
 			acc.push(...withIndentation(lines, INDENT, ...SCOPES));
 		},
 
-		struct: (struct, _, acc, opts) => {
+		struct: (struct, coll, acc, opts) => {
 			acc.push(
 				...withIndentation(
 					[
 						`pub const ${struct.name} = extern struct {`,
-						...__generateFields(gen, struct, opts),
+						...__generateFields(gen, struct, coll, opts),
 					],
 					INDENT,
 					...SCOPES
@@ -113,12 +114,12 @@ export const ZIG = (opts: Partial<ZigOpts> = {}) => {
 			);
 		},
 
-		union: (union, _, acc, opts) => {
+		union: (union, coll, acc, opts) => {
 			acc.push(
 				...withIndentation(
 					[
 						`pub const ${union.name} = extern union {`,
-						...__generateFields(gen, union, opts),
+						...__generateFields(gen, union, coll, opts),
 					],
 					INDENT,
 					...SCOPES
@@ -126,15 +127,19 @@ export const ZIG = (opts: Partial<ZigOpts> = {}) => {
 			);
 		},
 
-		funcptr: (ptr, _, acc, opts) => {
+		funcptr: (ptr, coll, acc, opts) => {
 			const args = ptr.args
-				.map((a) => `${a.name}: ${fieldType(ptr, a, opts).type}`)
+				.map((a) => `${a.name}: ${fieldType(a, ptr, coll, opts).type}`)
 				.join(", ");
 			const rtype =
 				ptr.rtype === "void"
 					? ptr.rtype
-					: fieldType(ptr, { name: "return", ...ptr.rtype }, opts)
-							.type;
+					: fieldType(
+							{ name: "return", ...ptr.rtype },
+							ptr,
+							coll,
+							opts
+					  ).type;
 			acc.push(
 				`pub const ${ptr.name} = *const fn(${args}) ${rtype};`,
 				""
@@ -147,6 +152,7 @@ export const ZIG = (opts: Partial<ZigOpts> = {}) => {
 const __generateFields = (
 	gen: ICodeGen,
 	parent: Struct | Union,
+	coll: TypeColl,
 	opts: CodeGenOpts
 ) => {
 	const res: string[] = [];
@@ -161,7 +167,7 @@ const __generateFields = (
 			continue;
 		}
 		f.doc && gen.doc(f.doc, res, opts);
-		const { type, defaultVal } = fieldType(parent, f, opts);
+		const { type, defaultVal } = fieldType(f, parent, coll, opts);
 		ftypes[f.name] = type;
 		res.push(`${f.name}: ${type}${defaultVal},`);
 	}
@@ -196,22 +202,19 @@ const __generateFields = (
 
 /** @internal */
 export const fieldType = (
-	parent: Struct | Union | FuncPointer,
 	f: Field,
+	parent: Struct | Union | FuncPointer,
+	coll: TypeColl,
 	opts: CodeGenOpts
 ) => {
 	let type = f.type;
 	let defaultVal = defaultValue(f, "zig");
-	const { classifier, isConst } = classifyField(f);
+	const { classifier, isConst } = classifyField(f, coll);
+	const $isConst = isConst ? "Const" : "";
 	if (isWasmString(f.type)) {
-		const useStrSlice = isStringSlice(opts.stringType);
-		type = useStrSlice
-			? isConst
-				? "wasm.String"
-				: "wasm.MutString"
-			: isConst
-			? "wasm.StringPtr"
-			: "wasm.MutStringPtr";
+		type = isStringSlice(opts.stringType)
+			? `wasm.${$isConst}String`
+			: `wasm.${$isConst}StringPtr`;
 		switch (classifier) {
 			case "strPtr":
 				type = `*${type}`;
@@ -223,14 +226,14 @@ export const fieldType = (
 				type = `[*]${type}`;
 				break;
 			case "strSlice":
-				type = `wasm.Slice([]${type},[*]${type})`;
+				type += "Slice";
 				break;
 			case "strArray":
 				type = `[${f.len}]${type}`;
 				break;
 		}
 	} else if (isOpaque(f.type)) {
-		type = isConst ? "wasm.OpaquePtr" : "wasm.MutOpaquePtr";
+		type = `wasm.${$isConst}OpaquePtr`;
 		switch (classifier) {
 			case "opaquePtr":
 				type = `*${type}`;
@@ -242,7 +245,7 @@ export const fieldType = (
 				type = `[*]${type}`;
 				break;
 			case "opaqueSlice":
-				type = isConst ? "wasm.OpaqueSlice" : "wasm.MutOpaqueSlice";
+				type += "Slice";
 				break;
 			case "opaqueArray":
 				type = `[${f.len}]${type}`;
@@ -252,19 +255,24 @@ export const fieldType = (
 		const $const = isConst ? "const " : "";
 		const sentinel = f.sentinel != null ? `:${f.sentinel}` : "";
 		switch (classifier) {
-			case "ptrSingle":
+			case "ptr":
+			case "enumPtr":
 				type = `*${$const}${type}`;
 				break;
 			case "ptrFixed":
+			case "enumPtrFixed":
 				type = `*${$const}[${f.len}${sentinel}]${type}`;
 				break;
 			case "ptrMulti":
+			case "enumPtrMulti":
 				type = `[*${sentinel}]${$const}${type}`;
 				break;
 			case "slice":
-				type = `${isConst ? "" : "Mut"}${capitalize(f.type)}Slice`;
+			case "enumSlice":
+				type = `${$isConst}${capitalize(f.type)}Slice`;
 				break;
 			case "array":
+			case "enumArray":
 				type = `[${f.len}${sentinel}]${type}`;
 				break;
 			case "vec":

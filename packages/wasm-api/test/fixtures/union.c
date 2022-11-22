@@ -4,12 +4,13 @@
 extern "C" {
 #endif
 
-#include <stddef.h>
-#include <stdint.h>
+#include "wasmapi.h"
 
-typedef struct { const char* ptr; size_t len; } WASM_String;
 
 typedef struct WASM_A WASM_A;
+
+typedef union WASM_B WASM_B;
+
 struct WASM_A {
     uint8_t a;
     uint8_t __pad0[3];
@@ -19,7 +20,6 @@ struct WASM_A {
     double d;
 };
 
-typedef union WASM_B WASM_B;
 union WASM_B {
     WASM_A a[3];
     uint64_t b;

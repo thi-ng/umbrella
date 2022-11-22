@@ -1,4 +1,4 @@
-import type { NumOrString } from "@thi.ng/api";
+import type { Nullable, NumOrString } from "@thi.ng/api";
 import {
 	BIGINT_ARRAY_CTORS,
 	BigType,
@@ -7,6 +7,7 @@ import {
 	TYPEDARRAY_CTORS,
 } from "@thi.ng/api/typedarray";
 import { isString } from "@thi.ng/checks/is-string";
+import { unsupported } from "@thi.ng/errors/unsupported";
 import {
 	CodeGenOpts,
 	CodeGenOptsBase,
@@ -20,23 +21,30 @@ import {
 	WasmPrim,
 	WasmTarget,
 } from "../api.js";
+import { classifyField } from "./classify.js";
 import {
 	ensureLines,
 	enumName,
-	isBigNumeric,
+	isEnum,
 	isFuncPointer,
 	isNumeric,
 	isOpaque,
-	isPadding,
+	isPointer,
 	isStringSlice,
 	isWasmPrim,
 	isWasmString,
-	pointerFields,
 	prefixLines,
-	stringFields,
 	withIndentation,
 } from "./utils.js";
 import { fieldType as zigFieldType } from "./zig.js";
+
+interface AugmentedField {
+	field: Field;
+	type: string;
+	decl: Nullable<string>;
+	getter: string[];
+	setter: Nullable<string[]>;
+}
 
 /**
  * TypeScript code generator options.
@@ -110,39 +118,39 @@ import { MemorySlice, Pointer, ${__stringImpl(
 		},
 
 		struct: (struct, coll, acc, opts) => {
-			const fields = struct.fields.map((f) =>
-				isFuncPointer(f.type, coll) || isOpaque(f.type)
-					? { ...f, type: opts.target.usize }
-					: f
+			const strType = __stringImpl(opts);
+			const fields = <AugmentedField[]>(
+				struct.fields
+					.map((f) => generateField(f, coll, opts))
+					.filter((f) => !!f)
 			);
-			const fieldTypes: Record<string, string> = {};
-			const $stringImpl = __stringImpl(opts);
+
 			const lines: string[] = [];
-			// interface definition
 			lines.push(
 				`export interface ${struct.name} extends WasmTypeBase {`
 			);
 			for (let f of fields) {
-				if (isPadding(f) || f.skip) continue;
-				const doc = __docType(struct, f, opts);
+				const doc = __docType(f.field, struct, coll, opts);
 				doc && gen.doc(doc, lines, opts);
-				const ftype = __fieldType(f, opts);
-				fieldTypes[f.name] = ftype;
-				lines.push(`${f.name}: ${ftype};`);
+				lines.push(`${f.field.name}: ${f.type};`);
 			}
 			if (struct.body?.ts) {
 				lines.push("", ...ensureLines(struct.body!.ts, "decl"));
 			}
 			lines.push("}", "");
 
-			const pointerDecls = pointerFields(fields).map((x) => {
-				return `let $${x.name}: ${fieldTypes[x.name]} | null = null;`;
-			});
-			const stringDecls = stringFields(fields).map((x) => {
-				const suffix =
-					x.tag === "array" || x.tag === "slice" ? "[]" : "";
-				return `let $${x.name}: ${$stringImpl}${suffix} | null = null;`;
-			});
+			const pointerDecls = fields
+				.filter((f) => isPointer(f.field.tag))
+				.map((f) => {
+					return `let $${f.field.name}: ${f.type} | null = null;`;
+				});
+			const stringDecls = fields
+				.filter(
+					(f) =>
+						isWasmString(f.field.type) &&
+						!["array", "ptr", "slice"].includes(f.field.tag!)
+				)
+				.map((f) => `let $${f.field.name}: ${strType} | null = null;`);
 
 			// type implementation
 			lines.push(
@@ -166,153 +174,19 @@ import { MemorySlice, Pointer, ${__stringImpl(
 			);
 
 			for (let f of fields) {
-				// skip explicit padding fields
-				if (isPadding(f) || f.skip) continue;
-				const ftype = fieldTypes[f.name];
-				const offset = f.__offset || 0;
-				lines.push(`get ${f.name}(): ${ftype} {`);
-				const isPrim = isWasmPrim(f.type);
-				const isStr = isWasmString(f.type);
-				const isConst = isStr ? f.const !== false : !!f.const;
-				if (f.tag === "ptr") {
-					if (isPrim) {
-						const fn = f.len
-							? `(base) => mem.${f.type}.subarray(${__addrShift(
-									0,
-									f.type
-							  )}, (${__addrShift(0, f.type)}) + ${f.len})`
-							: `(base) => mem.${f.type}[${__addrShift(
-									0,
-									f.type
-							  )}]`;
-						lines.push(
-							`return $${f.name} || ($${
-								f.name
-							} = new ${ftype}(mem, ${__addr(offset)}, ${fn}));`
-						);
-					} else if (isStr) {
-						const fn = f.len
-							? [
-									`(addr) => {`,
-									...__mapStringArray(
-										opts.target,
-										"buf",
-										$stringImpl,
-										f.len!,
-										isConst,
-										true
-									),
-									`}`,
-							  ]
-							: [
-									`(addr) => new ${$stringImpl}(mem, addr, ${isConst})`,
-							  ];
-						lines.push(
-							`return $${f.name} || ($${
-								f.name
-							} = new ${ftype}(mem, ${__addr(offset)},`,
-							...fn,
-							`));`
-						);
-					} else {
-						const fn = f.len
-							? [
-									`(addr) => {`,
-									...__mapArray(f, coll, f.len),
-									`}`,
-							  ]
-							: [`(addr) => new $${f.type}.instance(addr)`];
-						lines.push(
-							`return $${f.name} || ($${
-								f.name
-							} = new ${ftype}(mem, ${__addr(offset)},`,
-							...fn,
-							`));`
-						);
-					}
-				} else if (f.tag === "slice") {
+				if (!f) continue;
+				lines.push(
+					`get ${f.field.name}(): ${f.type} {`,
+					...f.getter,
+					"},"
+				);
+				if (f.setter) {
 					lines.push(
-						`const len = ${__ptr(opts.target, offset + 4)};`
+						`set ${f.field.name}(x: ${f.type}) {`,
+						...f.setter,
+						"},"
 					);
-					if (isPrim) {
-						lines.push(...__primSlice(f.type, offset, opts));
-					} else if (isStr) {
-						lines.push(
-							`const addr = ${__ptr(opts.target, offset)};`,
-							...__mapStringArray(
-								opts.target,
-								"buf",
-								$stringImpl,
-								"len",
-								isConst
-							)
-						);
-					} else {
-						lines.push(
-							`const addr = ${__ptr(opts.target, offset)};`,
-							...__mapArray(f, coll)
-						);
-					}
-				} else if (f.tag === "array" || f.tag === "vec") {
-					if (isPrim) {
-						lines.push(...__primArray(f.type, f.len!, offset));
-					} else if (isStr) {
-						lines.push(
-							`if ($${f.name}) return $${f.name};`,
-							`const addr = ${__addr(offset)};`,
-							...__mapStringArray(
-								opts.target,
-								f.name,
-								$stringImpl,
-								f.len!,
-								isConst
-							)
-						);
-					} else {
-						lines.push(
-							`const addr = ${__addr(offset)};`,
-							...__mapArray(f, coll, f.len)
-						);
-					}
-				} else {
-					let setter: string | undefined;
-					if (isPrim) {
-						const addr = __mem(f.type, f.__offset!);
-						lines.push(`return ${addr};`);
-						setter = `${addr} = x`;
-					} else if (isStr) {
-						lines.push(
-							`return $${f.name} || ($${
-								f.name
-							} = new ${$stringImpl}(mem, ${__addr(
-								offset
-							)}, ${isConst}));`
-						);
-					} else if (coll[f.type].type === "enum") {
-						const tag = (<Enum>coll[f.type]).tag;
-						const addr = __mem(tag, f.__offset!);
-						lines.push(`return ${addr};`);
-						setter = `${addr} = x`;
-					} else {
-						lines.push(
-							`return $${f.type}(mem).instance(${__addr(
-								offset
-							)});`
-						);
-						setter = `mem.u8.set(x.__bytes, ${__addr(offset)})`;
-					}
-					// setter
-					if (setter) {
-						lines.push(
-							// close getter
-							`},`,
-							`set ${f.name}(x: ${fieldTypes[f.name]}) {`,
-							`${setter};`
-						);
-					}
 				}
-				// close field accessor
-				lines.push(`},`);
 			}
 
 			if (struct.body?.ts) {
@@ -338,32 +212,6 @@ const __stringImpl = (opts: CodeGenOpts) =>
 	isStringSlice(opts.stringType) ? "WasmStringSlice" : "WasmStringPtr";
 
 /** @internal */
-const __fieldType = (f: Field, opts: CodeGenOpts) => {
-	const ftype =
-		f.tag == "array" ||
-		f.tag == "slice" ||
-		f.tag === "vec" ||
-		(f.tag === "ptr" && f.len)
-			? isNumeric(f.type)
-				? TYPEDARRAY_CTORS[<Type>f.type].name
-				: isBigNumeric(f.type)
-				? BIGINT_ARRAY_CTORS[<BigType>f.type].name
-				: isWasmString(f.type)
-				? __stringImpl(opts) + "[]"
-				: f.type + "[]"
-			: !f.tag || f.tag === "single" || f.tag === "ptr"
-			? isNumeric(f.type)
-				? "number"
-				: isBigNumeric(f.type)
-				? "bigint"
-				: isWasmString(f.type)
-				? __stringImpl(opts)
-				: f.type
-			: f.type;
-	return f.tag === "ptr" ? `Pointer<${ftype}>` : ftype;
-};
-
-/** @internal */
 const __shift = (type: string) => BIT_SHIFTS[<WasmPrim>type];
 
 /** @internal */
@@ -380,8 +228,16 @@ const __ptr = (target: WasmTarget, offset: number) =>
 	`mem.${target.usize}[${__addrShift(offset, target.usize)}]`;
 
 /** @internal */
-const __ptrShift = (target: WasmTarget, offset: number, shift: string) =>
-	__ptr(target, offset) + " >>> " + __shift(shift);
+const __ptrBody = (
+	type: string,
+	name: string,
+	offset: number,
+	body: string[]
+) => [
+	`return $${name} || ($${name} = new ${type}(mem, ${__addr(offset)},`,
+	...body,
+	`));`,
+];
 
 const __mem = (type: string, offset: number) =>
 	`mem.${type}[${__addrShift(offset!, type)}]`;
@@ -389,11 +245,11 @@ const __mem = (type: string, offset: number) =>
 /** @internal */
 const __mapArray = (f: Field, coll: TypeColl, len: NumOrString = "len") => [
 	`const inst = $${f.type}(mem);`,
-	`const slice: ${f.type}[] = [];`,
-	`for(let i = 0; i < ${len}; i++) slice.push(inst.instance(addr + i * ${
+	`const buf: ${f.type}[] = [];`,
+	`for(let i = 0; i < ${len}; i++) buf.push(inst.instance(addr + i * ${
 		coll[f.type].__size
 	}));`,
-	`return slice;`,
+	`return buf;`,
 ];
 
 /** @internal */
@@ -413,22 +269,229 @@ const __mapStringArray = (
 ];
 
 /** @internal */
-const __primSlice = (type: string, offset: number, opts: CodeGenOpts) => [
-	`const addr = ${__ptrShift(opts.target, offset, type)};`,
+const __primSlice = (type: string, _: number, __: CodeGenOpts) => [
+	// `const addr = ${__ptrShift(opts.target, offset, type)};`,
 	`return mem.${type}.subarray(addr, addr + len);`,
 ];
 
 /** @internal */
-const __primArray = (type: string, len: number, offset: number) => [
+const __primArray = (type: string, len: NumOrString, offset: number) => [
 	`const addr = ${__addrShift(offset, type)};`,
 	`return mem.${type}.subarray(addr, addr + ${len});`,
 ];
 
-const __docType = (parent: Struct | Union, f: Field, opts: CodeGenOpts) => {
+const __arrayType = (type: string) =>
+	isNumeric(type)
+		? TYPEDARRAY_CTORS[<Type>type].name
+		: BIGINT_ARRAY_CTORS[<BigType>type].name;
+
+/** @internal */
+const __docType = (
+	f: Field,
+	parent: Struct | Union,
+	coll: TypeColl,
+	opts: CodeGenOpts
+) => {
 	const doc = [...ensureLines(f.doc || [])];
 	if (isWasmPrim(f.type)) {
 		if (doc.length) doc.push("");
-		doc.push(`WASM type: ${zigFieldType(parent, f, opts).type}`);
+		doc.push(`WASM type: ${zigFieldType(f, parent, coll, opts).type}`);
 	}
 	return doc.length ? doc : undefined;
+};
+
+/** @internal */
+const generateField = (
+	field: Field,
+	coll: TypeColl,
+	opts: CodeGenOpts
+): AugmentedField | undefined => {
+	if (isFuncPointer(field.type, coll) || isOpaque(field.type)) {
+		field = { ...field, type: opts.target.usize };
+	}
+	const { classifier, isConst } = classifyField(field, coll);
+	const name = field.name;
+	const offset = field.__offset!;
+	const strType = __stringImpl(opts);
+	const isPrim = isWasmPrim(field.type);
+	const $isEnum = isEnum(field.type, coll);
+	let type = field.type;
+	let decl: Nullable<string>;
+	let getter: string[] = [];
+	let setter: Nullable<string[]>;
+	let ptrType: string;
+	let tag: string;
+	switch (classifier) {
+		case "str":
+			type = strType;
+			getter = [
+				`return $${name} || ($${name} = new ${strType}(mem, ${__addr(
+					offset
+				)}, ${isConst}));`,
+			];
+			break;
+		case "strPtr":
+			type = `Pointer<${strType}>`;
+			decl = `let $${name}: ${type} | null = null;`;
+			getter = __ptrBody(type, name, offset, [
+				`(addr) => new ${strType}(mem, addr, ${isConst})`,
+			]);
+			break;
+		case "strPtrFixed":
+			type = `Pointer<${strType}[]>`;
+			getter = __ptrBody(type, name, offset, [
+				`(addr) => {`,
+				...__mapStringArray(
+					opts.target,
+					"buf",
+					strType,
+					field.len!,
+					isConst,
+					true
+				),
+				"}",
+			]);
+			break;
+		case "strArray":
+			type = `${strType}[]`;
+			getter = [
+				`const addr = ${__addr(offset)};`,
+				...__mapStringArray(
+					opts.target,
+					name,
+					strType,
+					field.len!,
+					isConst,
+					true
+				),
+			];
+			break;
+		case "strSlice":
+			type = `${strType}[]`;
+			getter = [
+				`const addr = ${__ptr(opts.target, offset)};`,
+				`const len = ${__ptr(
+					opts.target,
+					offset + opts.target.sizeBytes
+				)};`,
+				...__mapStringArray(
+					opts.target,
+					name,
+					strType,
+					"len",
+					isConst,
+					true
+				),
+			];
+			break;
+		case "ptr":
+			if (isPrim) {
+				ptrType = `Pointer<number>`;
+				getter = __ptrBody(ptrType, name, offset, [
+					`(addr) => mem.${type}[addr >>> ${__shift(type)}]`,
+				]);
+			} else {
+				ptrType = `Pointer<${type}>`;
+				getter = __ptrBody(ptrType, name, offset, [
+					`(addr) => $${type}(mem).instance(addr)`,
+				]);
+			}
+			type = ptrType;
+			decl = `let $${name}: ${ptrType} | null = null;`;
+			break;
+		case "enumPtr":
+			tag = (<Enum>coll[type]).tag;
+			type = `Pointer<${type}>`;
+			getter = __ptrBody(type, name, offset, [
+				`(addr) => mem.${tag}[addr >>> ${__shift(tag)}]`,
+			]);
+			break;
+		case "ptrFixed":
+			if (isPrim) {
+				ptrType = `Pointer<${__arrayType(type)}>`;
+				getter = __ptrBody(ptrType, name, offset, [
+					`(addr) => mem.${type}.subarray(addr, addr + ${field.len})`,
+				]);
+			} else {
+				ptrType = `Pointer<${type}[]>`;
+				getter = __ptrBody(ptrType, name, offset, [
+					`(addr) => {`,
+					...__mapArray(field, coll, field.len),
+					"}",
+				]);
+			}
+			type = ptrType;
+			break;
+		case "enumPtrFixed":
+			tag = (<Enum>coll[type]).tag;
+			type = `Pointer<${__arrayType(tag)}>`;
+			getter = __ptrBody(type, name, offset, [
+				`(addr) => mem.${tag}.subarray(addr, addr + ${field.len})`,
+			]);
+			break;
+		case "array":
+		case "vec":
+			if (isPrim) {
+				getter = [...__primArray(type, field.len!, offset)];
+				type = __arrayType(type);
+			} else {
+				type += "[]";
+				getter = [
+					`const addr = ${__addr(offset)};`,
+					...__mapArray(field, coll, field.len),
+				];
+			}
+			break;
+		case "enumArray":
+			tag = (<Enum>coll[type]).tag;
+			type = __arrayType(tag);
+			getter = [...__primArray(tag, field.len!, offset)];
+			break;
+		case "slice":
+		case "enumSlice":
+			getter = [
+				`const addr = ${__ptr(opts.target, offset)};`,
+				`const len = ${__ptr(
+					opts.target,
+					offset + opts.target.sizeBytes
+				)};`,
+			];
+			if (isPrim) {
+				getter.push(...__primSlice(type, offset, opts));
+				type = __arrayType(type);
+			} else if ($isEnum) {
+				tag = (<Enum>coll[type]).tag;
+				getter.push(...__primSlice(tag, offset, opts));
+				type = __arrayType(tag);
+			} else {
+				type += "[]";
+				getter.push(...__mapArray(field, coll));
+			}
+			break;
+		case "single":
+			if (isPrim) {
+				getter = [`return ${__mem(type, offset)};`];
+				setter = [`${__mem(type, offset)} = x;`];
+				type = isNumeric(type) ? "number" : "bigint";
+			} else {
+				getter = [`return $${type}(mem).instance(${__addr(offset)});`];
+				setter = [`mem.u8.set(x.__bytes, ${__addr(offset)});`];
+			}
+			break;
+		case "enum": {
+			getter = [`return ${__mem((<Enum>coll[type]).tag, offset)};`];
+			setter = [`${__mem((<Enum>coll[type]).tag, offset)} = x;`];
+			break;
+		}
+		case "pad":
+		case "ptrMulti":
+		case "enumPtrMulti":
+		case "strPtrMulti":
+			// skip codegen for padding fields and multi pointers since
+			// impossible to map memory of undefined length
+			return;
+		default:
+			unsupported(`TODO: ${classifier} - please report as issue`);
+	}
+	return { field, type, decl, getter, setter };
 };

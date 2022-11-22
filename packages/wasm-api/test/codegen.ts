@@ -16,22 +16,20 @@ import {
 	ZIG,
 } from "../src/index.js";
 
+const OPTS = { ...DEFAULT_CODEGEN_OPTS, header: false };
+
 const stringTypes: TypeColl = {
-	Bar: <Enum>{
-		name: "Bar",
-		type: "enum",
-		values: ["a", { name: "b", value: 16 }, "c", { name: "d", value: 32 }],
-	},
 	Foo: <Struct>{
 		name: "Foo",
 		type: "struct",
 		fields: [
 			{ name: "single", type: "string" },
+			{ name: "singleMut", type: "string", const: false },
 			{ name: "multi", type: "string", tag: "array", len: 2 },
 			{ name: "singlePtr", type: "string", tag: "ptr" },
 			{ name: "multiPtr", type: "string", tag: "ptr", len: 2 },
-			{ name: "kind", type: "Bar" },
-			{ name: "size", type: "usize" },
+			{ name: "slice", type: "string", tag: "slice" },
+			{ name: "mutSlice", type: "string", tag: "slice", const: false },
 		],
 	},
 };
@@ -65,8 +63,8 @@ const checkAll = (
 group("codegen", {
 	stringSlice: (ctx) => {
 		const opts: Partial<CodeGenOpts> = {
+			...OPTS,
 			debug: true,
-			header: false,
 			stringType: "slice",
 		};
 		checkAll(ctx, stringTypes, opts, "string-slice");
@@ -75,8 +73,8 @@ group("codegen", {
 
 	stringPtr: (ctx) => {
 		const opts: Partial<CodeGenOpts> = {
+			...OPTS,
 			debug: true,
-			header: false,
 			stringType: "ptr",
 		};
 		checkAll(ctx, stringTypes, opts, "string-ptr");
@@ -84,7 +82,6 @@ group("codegen", {
 	},
 
 	union: (ctx) => {
-		const opts = { ...DEFAULT_CODEGEN_OPTS, header: false };
 		const types = <TypeColl>{
 			A: {
 				name: "A",
@@ -107,7 +104,7 @@ group("codegen", {
 				],
 			},
 		};
-		assert.deepStrictEqual(prepareTypes(types, opts), {
+		assert.deepStrictEqual(prepareTypes(types, OPTS), {
 			A: {
 				name: "A",
 				type: "struct",
@@ -183,12 +180,11 @@ group("codegen", {
 				__size: 72,
 			},
 		});
-		checkAll(ctx, types, opts, "union");
+		checkAll(ctx, types, OPTS, "union");
 		ctx.done();
 	},
 
 	opaque: (ctx) => {
-		const opts = { ...DEFAULT_CODEGEN_OPTS, header: false };
 		const coll = {
 			A: <Struct>{
 				name: "A",
@@ -196,12 +192,29 @@ group("codegen", {
 				fields: [
 					{ name: "a", type: "opaque" },
 					{ name: "ptr", type: "opaque", tag: "ptr" },
-					{ name: "slice", type: "opaque", tag: "slice" },
+					{ name: "ptr2", type: "opaque", tag: "ptr", len: 2 },
+					{
+						name: "constPtr",
+						type: "opaque",
+						tag: "ptr",
+						const: true,
+					},
+					{
+						name: "slice",
+						type: "opaque",
+						tag: "slice",
+					},
+					{
+						name: "constSlice",
+						type: "opaque",
+						tag: "slice",
+						const: true,
+					},
 					{ name: "array", type: "opaque", tag: "array", len: 3 },
 				],
 			},
 		};
-		prepareTypes(coll, opts);
+		prepareTypes(coll, OPTS);
 		assert.deepStrictEqual(coll, {
 			A: {
 				name: "A",
@@ -223,11 +236,38 @@ group("codegen", {
 						__size: 4,
 					},
 					{
+						name: "ptr2",
+						type: "opaque",
+						tag: "ptr",
+						len: 2,
+						__align: 4,
+						__offset: 8,
+						__size: 4,
+					},
+					{
+						name: "constPtr",
+						type: "opaque",
+						tag: "ptr",
+						const: true,
+						__align: 4,
+						__offset: 12,
+						__size: 4,
+					},
+					{
 						name: "slice",
 						type: "opaque",
 						tag: "slice",
 						__align: 4,
-						__offset: 8,
+						__offset: 16,
+						__size: 8,
+					},
+					{
+						name: "constSlice",
+						type: "opaque",
+						tag: "slice",
+						const: true,
+						__align: 4,
+						__offset: 24,
 						__size: 8,
 					},
 					{
@@ -236,20 +276,42 @@ group("codegen", {
 						tag: "array",
 						len: 3,
 						__align: 4,
-						__offset: 16,
+						__offset: 32,
 						__size: 12,
 					},
 				],
 				__align: 4,
-				__size: 28,
+				__size: 44,
 			},
 		});
-		checkAll(ctx, coll, opts, "opaque");
+		checkAll(ctx, coll, OPTS, "opaque");
+		ctx.done();
+	},
+
+	enum: (ctx) => {
+		const coll = {
+			A: <Enum>{
+				name: "A",
+				type: "enum",
+				values: ["foo", { name: "bar" }, { name: "baz", value: 10 }],
+			},
+			B: <Struct>{
+				name: "B",
+				type: "struct",
+				fields: [
+					{ name: "single", type: "A" },
+					{ name: "array", type: "A", tag: "array", len: 2 },
+					{ name: "slice", type: "A", tag: "slice" },
+					{ name: "ptr", type: "A", tag: "ptr" },
+					{ name: "ptr2", type: "A", tag: "ptr", len: 2 },
+				],
+			},
+		};
+		checkAll(ctx, coll, OPTS, "enum");
 		ctx.done();
 	},
 
 	funcptr: (ctx) => {
-		const opts = { ...DEFAULT_CODEGEN_OPTS, header: false };
 		const coll = {
 			A: <FuncPointer>{
 				name: "A",
@@ -270,12 +332,13 @@ group("codegen", {
 				fields: [
 					{ name: "a", type: "A" },
 					{ name: "ptr", type: "A", tag: "ptr" },
+					{ name: "ptr2", type: "A", tag: "ptr", len: 2 },
 					{ name: "array", type: "A", tag: "array", len: 2 },
 					{ name: "slice", type: "A", tag: "slice" },
 				],
 			},
 		};
-		prepareTypes(coll, opts);
+		prepareTypes(coll, OPTS);
 		assert.deepStrictEqual(coll, {
 			A: {
 				name: "A",
@@ -308,12 +371,21 @@ group("codegen", {
 						__size: 4,
 					},
 					{
+						name: "ptr2",
+						type: "A",
+						tag: "ptr",
+						len: 2,
+						__align: 4,
+						__offset: 8,
+						__size: 4,
+					},
+					{
 						name: "array",
 						type: "A",
 						tag: "array",
 						len: 2,
 						__align: 4,
-						__offset: 8,
+						__offset: 12,
 						__size: 8,
 					},
 					{
@@ -321,15 +393,76 @@ group("codegen", {
 						type: "A",
 						tag: "slice",
 						__align: 4,
-						__offset: 16,
+						__offset: 20,
 						__size: 8,
 					},
 				],
 				__align: 4,
-				__size: 24,
+				__size: 28,
 			},
 		});
-		checkAll(ctx, coll, opts, "funcptr");
+		checkAll(ctx, coll, OPTS, "funcptr");
+		ctx.done();
+	},
+
+	slices: (ctx) => {
+		const coll = {
+			A: <Struct>{
+				name: "A",
+				type: "struct",
+				fields: [
+					{ name: "slice", type: "u8", tag: "slice" },
+					{
+						name: "constSlice",
+						type: "u8",
+						tag: "slice",
+						const: true,
+					},
+					{ name: "ptr", type: "u8", tag: "ptr" },
+					{ name: "constPtr", type: "u8", tag: "ptr", const: true },
+					{ name: "ptr2", type: "u8", tag: "ptr", len: 2 },
+					{
+						name: "ptr2sentinel",
+						type: "u8",
+						tag: "ptr",
+						len: 2,
+						sentinel: 0,
+					},
+					{
+						name: "constPtr2",
+						type: "u8",
+						tag: "ptr",
+						len: 2,
+						const: true,
+					},
+					{
+						name: "constPtr2sentinel",
+						type: "u8",
+						tag: "ptr",
+						len: 2,
+						const: true,
+						sentinel: 0,
+					},
+					{ name: "array", type: "u8", tag: "array", len: 2 },
+					// { name: "vec", type: "u8", tag: "vec", len: 2 },
+					{ name: "bslice", type: "B", tag: "slice" },
+					{
+						name: "constBSlice",
+						type: "B",
+						tag: "slice",
+						const: true,
+					},
+					{ name: "bptr", type: "B", tag: "ptr" },
+					{ name: "bptr2", type: "B", tag: "ptr", len: 2 },
+				],
+			},
+			B: <Struct>{
+				name: "B",
+				type: "struct",
+				fields: [{ name: "a", type: "u16" }],
+			},
+		};
+		checkAll(ctx, coll, { ...OPTS, debug: true }, "slices");
 		ctx.done();
 	},
 });

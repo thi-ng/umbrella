@@ -4,17 +4,19 @@
 extern "C" {
 #endif
 
-#include <stddef.h>
-#include <stdint.h>
+#include "wasmapi.h"
 
-typedef struct { const char* ptr; size_t len; } WASM_String;
 
 typedef struct WASM_A WASM_A;
+
 struct WASM_A {
-    void* a;
-    void** ptr;
-    struct { void** ptr; size_t len; } slice;
-    void* array[3];
+    WASM_OpaquePtr a;
+    WASM_OpaquePtr* ptr;
+    WASM_OpaquePtr* ptr2;
+    WASM_ConstOpaquePtr* constPtr;
+    WASM_OpaquePtrSlice slice;
+    WASM_ConstOpaquePtrSlice constSlice;
+    WASM_OpaquePtr array[3];
 };
 
 

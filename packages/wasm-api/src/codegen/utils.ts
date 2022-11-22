@@ -44,12 +44,15 @@ export const isWasmPrim = (x: string): x is WasmPrim =>
 
 export const isWasmString = (x: string): x is "string" => x === "string";
 
-export const isPadding = (f: Field) => f.pad != null && f.pad > 0;
+export const isPadding = (f: Pick<Field, "pad">) => f.pad != null && f.pad > 0;
 
 export const isPointer = (x: Field["tag"]): x is "ptr" => x === "ptr";
 
-export const isFuncPointer = (type: Field["type"], coll: TypeColl) =>
+export const isFuncPointer = (type: string, coll: TypeColl) =>
 	coll[type]?.type === "funcptr";
+
+export const isEnum = (type: string, coll: TypeColl) =>
+	coll[type]?.type === "enum";
 
 export const isSlice = (x: Field["tag"]): x is "slice" => x === "slice";
 

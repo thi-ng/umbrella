@@ -1,5 +1,5 @@
 // @ts-ignore possibly includes unused imports
-import { MemorySlice, Pointer, WasmStringSlice, WasmTypeBase, WasmTypeConstructor } from "@thi.ng/wasm-api";
+import { MemorySlice, Pointer, WasmStringPtr, WasmTypeBase, WasmTypeConstructor } from "@thi.ng/wasm-api";
 
 export interface A extends WasmTypeBase {
 	/**
@@ -49,7 +49,9 @@ export const $A: WasmTypeConstructor<A> = (mem) => ({
 				mem.u32[(base + 4) >>> 2] = x;
 			},
 			get c(): Pointer<Uint16Array> {
-				return $c || ($c = new Pointer<Uint16Array>(mem, (base + 8), (base) => mem.u16.subarray(base >>> 1, (base >>> 1) + 3)));
+				return $c || ($c = new Pointer<Uint16Array>(mem, (base + 8),
+				(addr) => mem.u16.subarray(addr, addr + 3)
+				));
 			},
 			get d(): number {
 				return mem.f64[(base + 16) >>> 3];
@@ -87,9 +89,9 @@ export const $B: WasmTypeConstructor<B> = (mem) => ({
 			get a(): A[] {
 				const addr = base;
 				const inst = $A(mem);
-				const slice: A[] = [];
-				for(let i = 0; i < 3; i++) slice.push(inst.instance(addr + i * 24));
-				return slice;
+				const buf: A[] = [];
+				for(let i = 0; i < 3; i++) buf.push(inst.instance(addr + i * 24));
+				return buf;
 			},
 			get b(): bigint {
 				return mem.u64[base >>> 3];

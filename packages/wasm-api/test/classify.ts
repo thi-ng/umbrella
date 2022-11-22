@@ -9,7 +9,7 @@ const checkAll = (
 	][]
 ) => {
 	for (let [f, res] of specs) {
-		assert.deepStrictEqual(classifyField(f), res);
+		assert.deepStrictEqual(classifyField(f, {}), res);
 	}
 };
 
@@ -43,10 +43,10 @@ group("classifier", {
 			],
 		]);
 		assert.throws(() =>
-			classifyField({ type: "string", tag: "array", len: 0 })
+			classifyField({ type: "string", tag: "array", len: 0 }, {})
 		);
 		assert.throws(() =>
-			classifyField({ type: "string", tag: "vec", len: 2 })
+			classifyField({ type: "string", tag: "vec", len: 2 }, {})
 		);
 	},
 
@@ -79,10 +79,10 @@ group("classifier", {
 			],
 		]);
 		assert.throws(() =>
-			classifyField({ type: "opaque", tag: "array", len: 0 })
+			classifyField({ type: "opaque", tag: "array", len: 0 }, {})
 		);
 		assert.throws(() =>
-			classifyField({ type: "opaque", tag: "vec", len: 2 })
+			classifyField({ type: "opaque", tag: "vec", len: 2 }, {})
 		);
 	},
 
@@ -99,7 +99,7 @@ group("classifier", {
 			],
 			[
 				{ type: "u8", tag: "ptr" },
-				{ classifier: "ptrSingle", isConst: false },
+				{ classifier: "ptr", isConst: false },
 			],
 			[
 				{ type: "u8", tag: "ptr", len: 2 },
@@ -119,10 +119,10 @@ group("classifier", {
 			],
 		]);
 		assert.throws(() =>
-			classifyField({ type: "u8", tag: "array", len: 0 })
+			classifyField({ type: "u8", tag: "array", len: 0 }, {})
 		);
 		assert.throws(() =>
-			classifyField({ type: "u8", tag: "array", len: 0 })
+			classifyField({ type: "u8", tag: "array", len: 0 }, {})
 		);
 	},
 });

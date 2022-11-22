@@ -1,3 +1,4 @@
+import { topoSort } from "@thi.ng/arrays/topo-sort";
 import { isString } from "@thi.ng/checks/is-string";
 import { unsupported } from "@thi.ng/errors/unsupported";
 import { capitalize } from "@thi.ng/strings/case";
@@ -5,18 +6,22 @@ import type {
 	CodeGenOpts,
 	CodeGenOptsBase,
 	Field,
+	FuncPointer,
 	ICodeGen,
 	Struct,
 	TypeColl,
 	Union,
 	WasmPrim,
 } from "../api.js";
+import { classifyField } from "./classify.js";
 import {
 	ensureStringArray,
 	enumName,
 	isOpaque,
 	isPadding,
 	isStringSlice,
+	isStruct,
+	isUnion,
 	isWasmString,
 	prefixLines,
 	sliceTypes,
@@ -75,31 +80,35 @@ export const C11 = (opts: Partial<C11Opts> = {}) => {
 				`extern "C" {`,
 				"#endif",
 				opts.debug ? "\n#include <stdalign.h>" : "",
-				"#include <stddef.h>",
-				"#include <stdint.h>",
-				"",
-				`typedef struct { const char* ptr; size_t len; } ${typePrefix}String;`,
-				`typedef struct { char* ptr; size_t len; } ${typePrefix}MutString;`,
+				`#include "wasmapi.h"`,
 				"",
 			];
-			for (let type of Object.values(coll)) {
-				if (type.type === "funcptr") continue;
-				res.push(
-					`typedef ${type.type} ${typePrefix}${type.name} ${typePrefix}${type.name};`
-				);
+			// pre-declare any primitive slice types used (e.g. `U8Slice`)
+			const slices = sliceTypes(coll);
+			for (let id of slices) {
+				const prim = PRIM_ALIASES[<WasmPrim>id];
+				if (!prim) continue;
+				res.push(__sliceDef(prim, typePrefix, capitalize(id!)));
 			}
-			for (let type of sliceTypes(coll)) {
-				if (type === "string") continue;
-				const [ptr, name] =
-					type === "opaque"
-						? ["void*", "Opaque"]
-						: PRIM_ALIASES[<WasmPrim>type]
-						? [PRIM_ALIASES[<WasmPrim>type], capitalize(type!)]
-						: [type, capitalize(type!)];
-				res.push(
-					`\ntypedef struct { const ${ptr}* ptr; size_t len; } ${typePrefix}${name}Slice;`,
-					`typedef struct { ${ptr}* ptr; size_t len; } ${typePrefix}${name}MutSlice;`
-				);
+			// ...then pre-declare any custom types in dependency order
+			for (let id of __declOrder(coll)) {
+				const type = coll[id];
+				if (type.type == "funcptr") {
+					res.push(
+						__funcptr(<FuncPointer>type, coll, opts, typePrefix)
+					);
+				} else {
+					res.push(
+						`\ntypedef ${type.type} ${typePrefix}${type.name} ${typePrefix}${type.name};`
+					);
+				}
+				if (slices.has(id)) {
+					const [ptr, name] =
+						id === "opaque"
+							? ["void*", "Opaque"]
+							: [typePrefix + id, capitalize(id!)];
+					res.push(__sliceDef(ptr, typePrefix, name));
+				}
 			}
 			if (opts.pre) res.push("", ...ensureStringArray(opts.pre));
 			return res.join("\n");
@@ -174,26 +183,17 @@ export const C11 = (opts: Partial<C11Opts> = {}) => {
 			);
 		},
 
-		funcptr: (ptr, coll, acc, opts) => {
-			const name = typePrefix + ptr.name;
-			const args = ptr.args
-				.map((a) => fieldType(a, coll, typePrefix, opts).decl)
-				.join(", ");
-			const rtype =
-				ptr.rtype === "void"
-					? ptr.rtype
-					: fieldType(
-							{ name: "return", ...ptr.rtype },
-							coll,
-							typePrefix,
-							opts
-					  ).ftype;
-			acc.push(`typedef ${rtype} (*${name})(${args});`);
-		},
+		// funcpointers are emitted in `pre` phase above
+		funcptr: () => {},
 	};
 	return gen;
 };
 
+/**
+ * Generates source code for given {@link Struct} or {@link Union}.
+ *
+ * @internal
+ */
 const __generateFields = (
 	gen: ICodeGen,
 	parent: Struct | Union,
@@ -213,8 +213,8 @@ const __generateFields = (
 			continue;
 		}
 		f.doc && gen.doc(f.doc, res, opts);
-		const { ftype, decl } = fieldType(f, coll, typePrefix, opts);
-		ftypes[f.name] = ftype;
+		const { type, decl } = __fieldType(f, coll, opts, typePrefix);
+		ftypes[f.name] = type;
 		res.push(decl + ";");
 	}
 	res.push("};");
@@ -242,40 +242,166 @@ const __generateFields = (
 	return res;
 };
 
-const fieldType = (
+/**
+ * Returns the C type name and declaration (incl. field name) for a given
+ * {@link Field}.
+ *
+ * @internal
+ */
+const __fieldType = (
 	f: Field,
 	coll: TypeColl,
-	prefix: string,
-	opts: CodeGenOpts
+	opts: CodeGenOpts,
+	prefix: string
 ) => {
-	// let isConst = false;
-	const fconst = f.const ? "const " : "";
-	let ftype = isWasmString(f.type)
-		? isStringSlice(opts.stringType)
-			? `${prefix}${f.const === false ? "Mut" : ""}String`
-			: `char*`
-		: isOpaque(f.type)
-		? `void*`
-		: PRIM_ALIASES[<WasmPrim>f.type] || f.type;
-	if (coll[ftype]) ftype = prefix + ftype;
+	let type = f.type;
 	let decl: string;
-	switch (f.tag) {
-		case "array":
-		case "vec":
-			decl = `${fconst}${ftype} ${f.name}[${f.len}]`;
-			ftype = `${ftype}[${f.len}]`;
-			break;
-		case "slice":
-			ftype = `struct { ${fconst}${ftype}* ptr; size_t len; }`;
-			decl = `${ftype} ${f.name}`;
-			break;
-		case "ptr":
-			ftype = `${fconst}${ftype}*`;
-			decl = `${ftype} ${f.name}`;
-			break;
-		case "single":
-		default:
-			decl = `${ftype} ${f.name}`;
+	const { classifier, isConst } = classifyField(f, coll);
+	const $isConst = isConst ? "Const" : "";
+	const __ptr = () => {
+		decl = `${type}* ${f.name}`;
+		type = `${type}*`;
+	};
+	const __array = () => {
+		decl = `${type} ${f.name}[${f.len}]`;
+		type = `${type}[${f.len}]`;
+	};
+	const __slice = () => {
+		type += "Slice";
+		decl = `${type} ${f.name}`;
+	};
+	if (isWasmString(f.type)) {
+		const useStrSlice = isStringSlice(opts.stringType);
+		type =
+			prefix +
+			(useStrSlice ? `${$isConst}String` : `${$isConst}StringPtr`);
+		switch (classifier) {
+			case "strPtr":
+			case "strPtrFixed":
+			case "strPtrMulti":
+				__ptr();
+				break;
+			case "strSlice":
+				__slice();
+				break;
+			case "strArray":
+				__array();
+				break;
+			default:
+				decl = `${type} ${f.name}`;
+		}
+	} else if (isOpaque(f.type)) {
+		type = `${prefix}${$isConst}OpaquePtr`;
+		switch (classifier) {
+			case "opaquePtr":
+			case "opaquePtrFixed":
+			case "opaquePtrMulti":
+				__ptr();
+				break;
+			case "opaqueSlice":
+				__slice();
+				break;
+			case "opaqueArray":
+				__array();
+				break;
+			default:
+				decl = `${type} ${f.name}`;
+		}
+	} else {
+		const $const = isConst ? "const " : "";
+		type = PRIM_ALIASES[<WasmPrim>type] || prefix + type;
+		switch (classifier) {
+			case "ptr":
+			case "ptrFixed":
+			case "ptrMulti":
+			case "enumPtr":
+			case "enumPtrFixed":
+			case "enumPtrMulti":
+				type = `${$const}${type}*`;
+				decl = `${type} ${f.name}`;
+				break;
+			case "slice":
+			case "enumSlice":
+				type = `${prefix}${$isConst}${capitalize(f.type)}Slice`;
+				decl = `${type} ${f.name}`;
+				break;
+			case "array":
+			case "enumArray":
+				__array();
+				break;
+			case "vec":
+				unsupported("C doesn't support vector");
+			default:
+				decl = `${type} ${f.name}`;
+		}
 	}
-	return { ftype, decl };
+	return {
+		type: type,
+		decl: decl!,
+	};
 };
+
+/**
+ * Takes a {@link TypeColl} and returns user type names in dependency order.
+ *
+ * @param coll
+ *
+ * @internal
+ */
+const __declOrder = (coll: TypeColl) =>
+	topoSort(coll, (type) => {
+		const fields =
+			isStruct(type) || isUnion(type)
+				? type.fields
+				: type.type === "funcptr"
+				? (<FuncPointer>type).args
+				: undefined;
+		return fields
+			? fields.map((x) => x.type).filter((x) => !!coll[x])
+			: undefined;
+	});
+
+/**
+ * Generates C `typedef` for given {@link FuncPointer} spec.
+ *
+ * @param ptr
+ * @param coll
+ * @param opts
+ * @param typePrefix
+ *
+ * @internal
+ */
+const __funcptr = (
+	ptr: FuncPointer,
+	coll: TypeColl,
+	opts: CodeGenOpts,
+	typePrefix: string
+) => {
+	const name = typePrefix + ptr.name;
+	const args = ptr.args
+		.map((a) => __fieldType(a, coll, opts, typePrefix).decl)
+		.join(", ");
+	const rtype =
+		ptr.rtype === "void"
+			? ptr.rtype
+			: __fieldType(
+					{ name: "return", ...ptr.rtype },
+					coll,
+					opts,
+					typePrefix
+			  ).type;
+	return `typedef ${rtype} (*${name})(${args});`;
+};
+
+/**
+ * Generates `typedef`s for a slice emulation struct of given pointer type.
+ *
+ * @param ptr
+ * @param prefix
+ * @param name
+ *
+ *  @internal
+ */
+const __sliceDef = (ptr: string, prefix: string, name: string) =>
+	`\ntypedef struct { ${ptr}* ptr; size_t len; } ${prefix}${name}Slice;` +
+	`\ntypedef struct { const ${ptr}* ptr; size_t len; } ${prefix}Const${name}Slice;`;
