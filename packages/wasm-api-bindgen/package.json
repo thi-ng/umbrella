@@ -31,6 +31,7 @@
 		"doc:ae": "mkdir -p .ae/doc .ae/temp && api-extractor run --local --verbose",
 		"doc:readme": "yarn doc:stats && tools:readme",
 		"doc:stats": "tools:module-stats",
+		"doc:readme-types": "npx wasm-api-bindgen --lang ts -o export/api.ts --lang zig -o export/api.zig export/readme-types.json",
 		"pub": "yarn npm publish --access public",
 		"test": "testament test"
 	},
