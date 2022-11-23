@@ -22,5 +22,8 @@ jobs:
             - uses: actions/setup-node@v3
               with:
                   node-version: ">=17.5.0"
+            - uses: goto-bus-stop/setup-zig@v2
+              with:
+                  version: 0.10.0
             - run: yarn install
             - run: yarn test
