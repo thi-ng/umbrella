@@ -13,11 +13,11 @@ This project is part of the
 
 ${pkg.description}
 
-This package provides a the following:
+This package provides the following:
 
-1. A small, generic and modular
+1. A small
 [`WasmBridge`](https://docs.thi.ng/umbrella/wasm-api/classes/WasmBridge.html)
-class as interop basis and much reduced boilerplate for hybrid JS/WebAssembly
+class as generic interop basis and much reduced boilerplate for hybrid JS/WebAssembly
 applications.
 2. A minimal core API for debug output, string/pointer/typedarray accessors for
 8/16/32/64 bit (u)ints and 32/64 bit floats. Additionally, a number of support
@@ -32,495 +32,20 @@ WebGL, WebGPU, WebAudio etc. is being actively worked on.
 6. Include files for
    [Zig](https://github.com/thi-ng/umbrella/tree/develop/packages/wasm-api/zig),
    and
-   [C11/C++](https://github.com/thi-ng/umbrella/tree/develop/packages/wasm-api/include)
+   [C/C++](https://github.com/thi-ng/umbrella/tree/develop/packages/wasm-api/include)
    defining glue code for the TypeScript [core
    API](https://docs.thi.ng/umbrella/wasm-api/interfaces/CoreAPI.html) defined
    by this package
-7. Extensible shared datatype code generator framework for (currently) Zig &
-   TypeScript and C11. For TS fully type checked and memory-mapped (zero-copy)
-   accessors of WASM-side data are generated. In principle, all languages with a
-WASM target are supported, however currently only bindings for these mentioned
-langs are included. Other languages require custom bindings, e.g. based on the
-flexible primitives provided here.
-8. [CLI frontend/utility](#cli-generator) for the code generator(s)
-
-### Data bindings & code generators
-
-The package provides an extensible code generation framework to simplify the
-bilateral design & exchange of data structures shared between the WASM & JS host
-env. Currently, code generators for TypeScript, Zig and C11 are supplied. A CLI
-wrapper is available too. See the
-[@thi.ng/wasm-api-dom](https://github.com/thi-ng/umbrella/tree/develop/packages/wasm-api-dom/)
-support package for a more thorough realworld example...
-
-#### CLI generator
-
-The package includes a [small CLI
-wrapper](https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api/src/cli.ts)
-to invoke the code generator(s) from JSON type definitions and to write the
-generated source code(s) to different files:
-
-```text
-$ npx @thi.ng/wasm-api
-
- █ █   █           │
-██ █               │
- █ █ █ █   █ █ █ █ │ @thi.ng/wasm-api 0.15.0
- █ █ █ █ █ █ █ █ █ │ Multi-language data bindings code generator
-                 █ │
-               █ █ │
-
-usage: wasm-api [OPTS] JSON-INPUT-FILE(S) ...
-       wasm-api --help
-
-Flags:
-
--d, --debug                     enable debug output & functions
---dry-run                       enable dry run (don't overwrite files)
-
-Main:
-
--a FILE, --analytics FILE       output file path for raw codegen analytics
--c FILE, --config FILE          JSON config file with codegen options
--l ID[,..], --lang ID[,..]      [multiple] target language: "c11", "ts", "zig" (default: ["ts","zig"])
--o FILE, --out FILE             [multiple] output file path
--s TYPE, --string TYPE          Force string type implementation: "slice", "ptr"
-```
-
-By default, the CLI generates sources for TypeScript and Zig (in this order!).
-Order is important, since the output file paths must be given in the same order
-as the target languages. It's recommended to be explicit with this. An example
-invocation looks like:
-
-```bash
-wasm-api \
-  --config codegen-opts.json \
-  --lang ts -o src/generated.ts \
-  --lang zig -o src.zig/generated.zig \
-  typedefs.json
-```
-
-The structure of the config file is as follows (all optional):
-
-```json
-{
-	"global": { ... },
-	"c11": { ... },
-	"ts": { ... },
-	"zig": { ... },
-}
-```
-
-More details about possible
-[`global`](https://docs.thi.ng/umbrella/wasm-api/interfaces/CodeGenOpts.html),
-[`c`](https://docs.thi.ng/umbrella/wasm-api/interfaces/C11Opts.html) and
-[`ts`](https://docs.thi.ng/umbrella/wasm-api/interfaces/TSOpts.html) and
-[`zig`](https://docs.thi.ng/umbrella/wasm-api/interfaces/ZigOpts.html) config
-options & values.
-
-All code generators have support for custom code prologues & epilogues which can
-be specified via the above options. These config options exist for both non-CLI
-& CLI usage. For the latter, these custom code sections can also be loaded from
-external files by specifying their file paths using `@` as prefix, e.g.
-
-```json
-{
-	"ts": { "pre": "@tpl/prelude.ts" },
-	"zig": { "pre": "@tpl/prelude.zig", "post": "@tpl/epilogue.zig" },
-}
-```
-
-#### Data type definitions
-
-Currently, the code generator supports enums, function pointers, structs and unions. See API docs for
-supported options & further details:
-
-- [`Enum`](https://docs.thi.ng/umbrella/wasm-api/interfaces/Enum.html)
-- [`EnumValue`](https://docs.thi.ng/umbrella/wasm-api/interfaces/EnumValue.html) (individual enum value spec)
-- [`Field`](https://docs.thi.ng/umbrella/wasm-api/interfaces/Field.html) (individual spec for values contained in structs/unions)
-- [`FuncPointer`](https://docs.thi.ng/umbrella/wasm-api/interfaces/FuncPointer.html)
-- [`Struct`](https://docs.thi.ng/umbrella/wasm-api/interfaces/Struct.html)
-- [`Union`](https://docs.thi.ng/umbrella/wasm-api/interfaces/Union.html)
-- [`TopLevelType`](https://docs.thi.ng/umbrella/wasm-api/interfaces/TopLevelType.html)
-
-#### JSON schema for type definitions
-
-The package provides a detailed schema to aid the authoring of type definitions
-(and provide inline documentation) via editors with JSON schema integration. The
-schema is distributed as part of the package and located in
-[`/schema/wasm-api-types.json`](https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api/schema/wasm-api-types.json).
-
-For VSCode, you can [add this snippet to your workspace
-settings](https://code.visualstudio.com/Docs/languages/json#_mapping-to-a-schema-in-the-workspace)
-to apply the schema to any `typedefs.json` files:
-
-```json
-"json.schemas": [
-	{
-		"fileMatch": ["**/typedefs.json"],
-		"url": "./node_modules/@thi.ng/wasm-api/schema/wasm-api-types.json"
-	}
-]
-```
-
-#### Example usage
-
-The following example defines 1x enum, 2x structs and 1x union. Shown here are
-the JSON type definitions and the resulting source codes:
-
-**⬇︎ CLICK TO EXPAND EACH CODE BLOCK ⬇︎**
-
-<details><summary>readme-types.json (Type definitions)</summary>
-
-```json tangle:export/readme-types.json
-[
-	{
-		"name": "EventType",
-		"type": "enum",
-		"tag": "u8",
-		"doc": "Supported event types",
-		"values": [
-			{ "name": "mouse", "value": 1, "doc": "Any kind of mouse event" },
-			{ "name": "key", "doc": "Key down/up event" },
-			"misc"
-		]
-	},
-	{
-		"name": "MouseEvent",
-		"type": "struct",
-		"tag": "extern",
-		"doc": "Example struct",
-		"fields": [
-			{ "name": "type", "type": "EventType" },
-			{ "name": "pos", "type": "u16", "tag": "array", "len": 2 }
-		]
-	},
-	{
-		"name": "KeyEvent",
-		"type": "struct",
-		"tag": "extern",
-		"doc": "Example struct",
-		"fields": [
-			{ "name": "type", "type": "EventType" },
-			{ "name": "key", "type": "string", "doc": "Name of key which triggered event" },
-			{ "name": "modifiers", "type": "u8", "doc": "Bitmask of active modifier keys" }
-		]
-	},
-	{
-		"name": "Event",
-		"type": "union",
-		"tag": "extern",
-		"fields": [
-			{ "name": "mouse", "type": "MouseEvent" },
-			{ "name": "key", "type": "KeyEvent" }
-		]
-	}
-]
-```
-</details>
-
-<details><summary>generated.ts (generated TypeScript source)</summary>
-
-```ts
-/**
- * Generated by @thi.ng/wasm-api at 2022-11-07T22:42:01.454Z - DO NOT EDIT!
- */
-
-// @ts-ignore possibly includes unused imports
-import { MemorySlice, Pointer, WasmStringPtr, WasmTypeBase, WasmTypeConstructor } from "@thi.ng/wasm-api";
-
-/**
- * Supported event types
- */
-export enum EventType {
-	/**
-	 * Any kind of mouse event
-	 */
-	MOUSE = 1,
-	/**
-	 * Key down/up event
-	 */
-	KEY,
-	MISC,
-}
-
-/**
- * Example struct
- */
-export interface MouseEvent extends WasmTypeBase {
-	type: EventType;
-	/**
-	 * WASM type: [2]u16
-	 */
-	pos: Uint16Array;
-}
-
-export const $MouseEvent: WasmTypeConstructor<MouseEvent> = (mem) => ({
-	get align() {
-		return 2;
-	},
-	get size() {
-		return 6;
-	},
-	instance: (base) => {
-		return {
-			get __base() {
-				return base;
-			},
-			get __bytes() {
-				return mem.u8.subarray(base, base + 6);
-			},
-			get type(): EventType {
-				return mem.u8[base];
-			},
-			set type(x: EventType) {
-				mem.u8[base] = x;
-			},
-			get pos(): Uint16Array {
-				const addr = (base + 2) >>> 1;
-				return mem.u16.subarray(addr, addr + 2);
-			},
-		};
-	}
-});
-
-/**
- * Example struct
- */
-export interface KeyEvent extends WasmTypeBase {
-	type: EventType;
-	/**
-	 * Name of key which triggered event
-	 */
-	key: WasmStringPtr;
-	/**
-	 * Bitmask of active modifier keys
-	 *
-	 * WASM type: u8
-	 */
-	modifiers: number;
-}
-
-export const $KeyEvent: WasmTypeConstructor<KeyEvent> = (mem) => ({
-	get align() {
-		return 4;
-	},
-	get size() {
-		return 12;
-	},
-	instance: (base) => {
-		let $key: WasmStringPtr | null = null;
-		return {
-			get __base() {
-				return base;
-			},
-			get __bytes() {
-				return mem.u8.subarray(base, base + 12);
-			},
-			get type(): EventType {
-				return mem.u8[base];
-			},
-			set type(x: EventType) {
-				mem.u8[base] = x;
-			},
-			get key(): WasmStringPtr {
-				return $key || ($key = new WasmStringPtr(mem, (base + 4), true));
-			},
-			get modifiers(): number {
-				return mem.u8[(base + 8)];
-			},
-			set modifiers(x: number) {
-				mem.u8[(base + 8)] = x;
-			},
-		};
-	}
-});
-
-export interface Event extends WasmTypeBase {
-	mouse: MouseEvent;
-	key: KeyEvent;
-}
-
-export const $Event: WasmTypeConstructor<Event> = (mem) => ({
-	get align() {
-		return 4;
-	},
-	get size() {
-		return 12;
-	},
-	instance: (base) => {
-		return {
-			get __base() {
-				return base;
-			},
-			get __bytes() {
-				return mem.u8.subarray(base, base + 12);
-			},
-			get mouse(): MouseEvent {
-				return $MouseEvent(mem).instance(base);
-			},
-			set mouse(x: MouseEvent) {
-				mem.u8.set(x.__bytes, base);
-			},
-			get key(): KeyEvent {
-				return $KeyEvent(mem).instance(base);
-			},
-			set key(x: KeyEvent) {
-				mem.u8.set(x.__bytes, base);
-			},
-		};
-	}
-});
-```
-</details>
-
-<details><summary>generated.zig (generated Zig source)</summary>
-
-```zig
-//! Generated by @thi.ng/wasm-api at 2022-11-07T22:42:01.456Z - DO NOT EDIT!
-
-const std = @import("std");
-
-/// Supported event types
-pub const EventType = enum(u8) {
-    /// Any kind of mouse event
-    mouse = 1,
-    /// Key down/up event
-    key,
-    misc,
-};
-
-/// Example struct
-pub const MouseEvent = extern struct {
-    type: EventType,
-    pos: [2]u16,
-};
-
-/// Example struct
-pub const KeyEvent = extern struct {
-    type: EventType,
-    /// Name of key which triggered event
-    key: [*:0]const u8,
-    /// Bitmask of active modifier keys
-    modifiers: u8,
-};
-
-pub const Event = extern union {
-    mouse: MouseEvent,
-    key: KeyEvent,
-};
-```
-</details>
-
-On the TypeScript/JS side, the memory-mapped wrappers (e.g. `$Event`)
-can be used in combination with the `WasmBridge` to obtain fully typed views
-(according to the generated types) of the underlying WASM memory. Basic usage is
-like:
-
-```ts
-import { WasmBridge } from "@thi.ng/wasm-api";
-import { $Event, EventType } from "./generated.ts";
-
-const bridge = new WasmBridge();
-// bridge initialization omitted here (see other examples below)
-// ...
-
-// Create an instance using the bridge's memory views
-// and mapping a `Event` union from given address
-// (e.g. obtained from an exported WASM function/value)
-const event = $Event(bridge).instance(0x10000);
-
-// then use like normal JS object
-event.mouse.pos
-// Uint16Array(2) [100, 200]
-
-// IMPORTANT: any modifications like this are directly
-// applied to the underlying WASM memory...
-event.mouse.pos[0] = 300;
-// ...or
-event.mouse.pos.set([1, 2]);
-
-// buffer overflow protection
-event.mouse.pos.set([1, 2, 3]);
-// Uncaught RangeError: offset is out of bounds
-
-event.mouse.type === EventType.MOUSE
-// true
-```
-
-**IMPORTANT:** Field setters are currently only supported for single values,
-incl. enums, strings, structs, unions. The latter two will always be copied by
-value (mem copy). Arrays or slices of strings do not currently provide write
-access...
-
-### String handling
-
-Most low-level languages deal with strings very differently and alas there's no
-general standard. Some have UTF-8/16 support, others don't. In some languages
-(incl. C & Zig), strings are stored as zero terminated, in others they aren't...
-It's outside the scope of this package to provide an allround out-of-the-box
-solution. The `WasmBridge` provides read & write accessors to obtain JS strings
-from UTF-8 encoded WASM memory. See
-[`getString()`](https://docs.thi.ng/umbrella/wasm-api/classes/WasmBridge.html#getString)
-and
-[`setString()`](https://docs.thi.ng/umbrella/wasm-api/classes/WasmBridge.html#setString)
-for details.
-
-The code generators too provide a global `stringType` option to
-interpret the `string` type of a struct field in different ways:
-
-- `slice` (default): Considers strings as Zig-style slices (i.e. pointer + length)
-- `ptr`: Considers strings as C-style raw `*char` pointer (without any length)
-
-Note: If setting this global option to `ptr`, it also has to be repeated for the
-TypeScript code generator explicitly.
-
-### Memory allocations
-
-If explicitly enabled on the WASM side, the `WasmBridge` includes support for
-malloc/free-style allocations (within the linear WASM memory) from the JS side
-(Note: This is a breaking change in v0.10.0, now using a more flexible approach
-& reverse logic of earlier alpha versions).
-
-The actual allocator is implementation specific and suitable generic mechanisms
-are defined for both the included Zig & C bindings. Please see for further
-reference:
-
-- [`/zig/lib.zig`](https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api/zig/lib.zig#L64):
-  comments about WASM-side allocator handling in Zig
-- [`/include/wasmapi.h`](https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api/include/wasmapi.h#L18):
-  comments about WASM-side allocator handling in C/C++
-- [`WasmBridge.allocate()`](https://docs.thi.ng/umbrella/wasm-api/classes/WasmBridge.html#allocate):
-  allocating memory from JS side
-- [`WasmBridge.free()`](https://docs.thi.ng/umbrella/wasm-api/classes/WasmBridge.html#free):
-  freeing previously allocated memory from JS side
-
-Note: The provided Zig mechanism supports the idiomatic (Zig) pattern of working
-with multiple allocators in different parts of the application and supports
-dynamic assignments/swapping of the exposed allocator. See comments in source
-file and
-[tests](https://github.com/thi-ng/umbrella/tree/develop/packages/wasm-api/test)
-for more details...
-
-```ts
-try {
-	// allocate 1KB of memory for passing a string to WASM side
-	const addr = bridge.allocate(256);
-
-	// write string to reserved memory
-	// max. 256 bytes, zero terminated
-	const num = bridge.setString("hello WASM world!", addr, 256, true);
-
-	// call WASM function doing something w/ the string
-	bridge.exports.doSomethingWithString(addr, num);
-
-	// cleanup
-	bridge.free(addr, 256);
-} catch(e) {
-	// deal with allocation error
-	// ...
-}
-```
+7. Extensible shared [datatype code generator
+   infrastructure](https://github.com/thi-ng/umbrella/tree/develop/packages/wasm-api-bindgen/)
+   for (currently) Zig & TypeScript and C11. For TS fully type checked and
+memory-mapped (zero-copy) accessors of WASM-side data are generated. In
+principle, all languages with a WASM target are supported, however currently
+only bindings for these mentioned langs are included. Other languages require
+custom bindings, e.g. based on the flexible primitives provided here.
+8. [CLI
+   frontend/utility](https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api-bindgen/README.md#cli-generator)
+   for the code generator(s)
 
 ### Custom API modules
 
@@ -634,6 +159,65 @@ To avoid guesswork about the internals of these API modules, all of them are
 using an overall uniform structure, with the main Zig entry point in
 `/zig/lib.zig`...
 
+### String handling
+
+Most low-level languages deal with strings very differently and alas there's no
+general standard. Some have UTF-8/16 support, others don't. In some languages
+(incl. C & Zig), strings are stored as zero terminated, in others they aren't...
+It's outside the scope of this package to provide an allround out-of-the-box
+solution. The `WasmBridge` provides read & write accessors to obtain JS strings
+from UTF-8 encoded WASM memory. See
+[`getString()`](https://docs.thi.ng/umbrella/wasm-api/classes/WasmBridge.html#getString)
+and
+[`setString()`](https://docs.thi.ng/umbrella/wasm-api/classes/WasmBridge.html#setString)
+for details.
+
+### Memory allocations
+
+If explicitly enabled on the WASM side, the `WasmBridge` includes support for
+malloc/free-style allocations (within the linear WASM memory) from the JS side.
+
+The actual allocator is implementation specific and suitable generic mechanisms
+are defined for both the included Zig & C bindings. Please see for further
+reference:
+
+- [`/zig/lib.zig`](https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api/zig/lib.zig#L64):
+  comments about WASM-side allocator handling in Zig
+- [`/include/wasmapi.h`](https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api/include/wasmapi.h#L18):
+  comments about WASM-side allocator handling in C/C++
+- [`WasmBridge.allocate()`](https://docs.thi.ng/umbrella/wasm-api/classes/WasmBridge.html#allocate):
+  allocating memory from JS side
+- [`WasmBridge.free()`](https://docs.thi.ng/umbrella/wasm-api/classes/WasmBridge.html#free):
+  freeing previously allocated memory from JS side
+
+Note: The provided Zig library supports the idiomatic (Zig) pattern of working
+with multiple allocators in different parts of the application and supports
+dynamic assignments/swapping of the exposed allocator. See comments in source
+file and
+[tests](https://github.com/thi-ng/umbrella/tree/develop/packages/wasm-api/test)
+for more details...
+
+```ts
+try {
+	// allocate 256 bytes of memory for passing a string to WASM side
+	// the function returns a tuple of `[address, len]`
+	const [addr, len] = bridge.allocate(256);
+
+	// write zero terminated string to reserved memory (max. `len` bytes)
+	// function returns number of bytes written (excl. sentinel)
+	const num = bridge.setString("hello WASM world!", addr, len, true);
+
+	// call WASM function doing something w/ the string
+	bridge.exports.doSomethingWithString(addr, num);
+
+	// cleanup
+	bridge.free([addr, len]);
+} catch(e) {
+	// deal with allocation error
+	// ...
+}
+```
+
 ### Object indices & handles
 
 Since only numeric values can be exchanged between the WASM module and the JS
@@ -702,10 +286,6 @@ ${blogPosts}
 ${pkg.install}
 
 ${pkg.size}
-
-**IMPORTANT:** The package includes multiple language code generators which are
-**not** required for normal use of the API bridge. Hence, the actual package
-size in production will be MUCH smaller than what's stated here!
 
 ## Dependencies
 
@@ -808,7 +388,7 @@ The resulting WASM:
 )
 ```
 
-### C11 version
+### C version
 
 Requires [Emscripten](https://emscripten.org/) to be installed:
 
