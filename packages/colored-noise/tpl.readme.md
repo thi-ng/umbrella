@@ -364,7 +364,7 @@ import { take } from "@thi.ng/transducers";
 // custom config
 import { XsAdd } from "@thi.ng/random";
 
-[...take(20, red({ num: 16, scale: 1, rnd: new XsAdd(0xdecafbad) }))]
+[...take(20, red({ bins: 16, scale: 1, rnd: new XsAdd(0xdecafbad) }))]
 // [ -0.17761799097704192, -0.10240132532836904, -0.1103387340810939, ...]
 ```
 

@@ -30,7 +30,16 @@
 		"process": false
 	},
 	"thi.ng": {
-		"readme": true,
+		"readme": [
+			"dl-asset",
+			"hiccup-html",
+			"rdom",
+			"rdom-components",
+			"rstream",
+			"rstream-gestures",
+			"transducers",
+			"webgl"
+		],
 		"screenshot": "examples/webgl-channel-mixer.jpg"
 	}
 }

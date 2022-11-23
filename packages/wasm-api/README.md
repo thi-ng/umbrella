@@ -746,7 +746,7 @@ node --experimental-repl-await
 > const wasmApi = await import("@thi.ng/wasm-api");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 7.79 KB
+Package sizes (gzipped, pre-treeshake): ESM: 8.80 KB
 
 **IMPORTANT:** The package includes multiple language code generators which are
 **not** required for normal use of the API bridge. Hence, the actual package

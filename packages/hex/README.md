@@ -55,7 +55,7 @@ node --experimental-repl-await
 > const hex = await import("@thi.ng/hex");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 405 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 624 bytes
 
 ## Dependencies
 

@@ -76,9 +76,10 @@ directory are using this package.
 
 A selection:
 
-| Screenshot                                                                                                            | Description                                       | Live demo | Source                                                                            |
-|:----------------------------------------------------------------------------------------------------------------------|:--------------------------------------------------|:----------|:----------------------------------------------------------------------------------|
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/commit-heatmap.png" width="240"/> | Heatmap visualization of this mono-repo's commits |           | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/commit-heatmap) |
+| Screenshot                                                                                                            | Description                                                        | Live demo                                           | Source                                                                            |
+|:----------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------------------------|:----------------------------------------------------|:----------------------------------------------------------------------------------|
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/commit-heatmap.png" width="240"/> | Heatmap visualization of this mono-repo's commits                  |                                                     | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/commit-heatmap) |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/zig-todo-list.png" width="240"/>  | Zig-based To-Do list, DOM creation, local storage task persistence | [Demo](https://demo.thi.ng/umbrella/zig-todo-list/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/zig-todo-list)  |
 
 ## API
 

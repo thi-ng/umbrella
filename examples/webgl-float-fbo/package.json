@@ -26,7 +26,12 @@
 		"process": false
 	},
 	"thi.ng": {
-		"readme": true,
+		"readme": [
+			"colored-noise",
+			"transducers",
+			"vectors",
+			"webgl"
+		],
 		"screenshot": "examples/webgl-float-fbo.jpg"
 	}
 }

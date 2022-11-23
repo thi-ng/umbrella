@@ -29,7 +29,14 @@
 		"process": false
 	},
 	"thi.ng": {
-		"readme": true,
+		"readme": [
+			"hiccup-html",
+			"rdom",
+			"rdom-components",
+			"rstream",
+			"strings",
+			"transducers"
+		],
 		"screenshot": "examples/big-font.png"
 	}
 }

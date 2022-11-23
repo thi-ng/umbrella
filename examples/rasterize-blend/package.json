@@ -27,7 +27,13 @@
 		"process": false
 	},
 	"thi.ng": {
-		"readme": true,
+		"readme": [
+			"adapt-dpi",
+			"dsp",
+			"pixel",
+			"rasterize",
+			"vectors"
+		],
 		"screenshot": "examples/rasterize-blend.jpg"
 	}
 }
