@@ -421,6 +421,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "logue",
+      "name": "Masashi Yoshikawa",
+      "avatar_url": "https://avatars.githubusercontent.com/u/480173?v=4",
+      "profile": "https://logue.dev/",
+      "contributions": [
+        "bug"
+      ]
     }
   ],
   "contributorsPerLine": 7,
