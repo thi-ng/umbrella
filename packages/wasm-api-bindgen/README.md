@@ -10,12 +10,22 @@ This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
 - [About](#about)
-  - [Data bindings & code generators](#data-bindings--code-generators)
-    - [CLI generator](#cli-generator)
-    - [Data type definitions](#data-type-definitions)
-    - [JSON schema for type definitions](#json-schema-for-type-definitions)
-    - [Example usage](#example-usage)
+- [Data bindings & code generators](#data-bindings--code-generators)
+  - [Supported data types](#supported-data-types)
+  - [Struct/union field types](#structunion-field-types)
+    - [Primitives](#primitives)
+    - [Type variations](#type-variations)
   - [String handling](#string-handling)
+    - [Strings as zero-terminated pointers](#strings-as-zero-terminated-pointers)
+    - [Strings as slices](#strings-as-slices)
+  - [Slice emulation](#slice-emulation)
+  - [Padding](#padding)
+- [JSON schema for type definitions](#json-schema-for-type-definitions)
+- [CLI generator](#cli-generator)
+- [Example usage](#example-usage)
+  - [Type definitions](#type-definitions)
+  - [Generated TypeScript source code](#generated-typescript-source-code)
+  - [Generated Zig source code](#generated-zig-source-code)
 - [Status](#status)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
@@ -32,20 +42,188 @@ and the JS/TS host application is restricted to simple numeric values. Not even
 strings can be directly passed between the two worlds. For even the most basic
 non-Hello-World style applications this is very cumbersome and insufficient.
 
-### Data bindings & code generators
+## Data bindings & code generators
 
 The package provides an extensible code generation framework to simplify the
 bilateral design & exchange of data structures shared between the WASM & JS host
-env. Currently, code generators for TypeScript, Zig and C11 are supplied.
+env. Currently, code generators for the following languages are supplied:
 
-All supplied code generators derive their outputs from a single source of truth,
-a JSON file of shared type definitions and optional additional configuration,
-e.g. to configure string behavior and/or provide custom user code to inject into
-the generated source code. Please see the
+- TypeScript
+- Zig
+- C11
+
+These code generators derive their outputs from a single source of truth, a user
+provided JSON file of shared type definitions and optional additional
+configuration, e.g. to configure string behavior and/or provide custom user code
+to inject into the generated source code. Please see the
 [@thi.ng/wasm-api-dom](https://github.com/thi-ng/umbrella/tree/develop/packages/wasm-api-dom/)
 support package for a more thorough realworld example...
 
-#### CLI generator
+### Supported data types
+
+Currently, the code generators support top level types: enums, function pointers, structs and
+unions. See API docs for supported options & further details:
+
+- [`Enum`](https://docs.thi.ng/umbrella/wasm-api-bindgen/interfaces/Enum.html)
+- [`EnumValue`](https://docs.thi.ng/umbrella/wasm-api-bindgen/interfaces/EnumValue.html) (individual enum value spec)
+- [`Field`](https://docs.thi.ng/umbrella/wasm-api-bindgen/interfaces/Field.html) (individual spec for values contained in structs/unions)
+- [`FuncPointer`](https://docs.thi.ng/umbrella/wasm-api-bindgen/interfaces/FuncPointer.html)
+- [`Struct`](https://docs.thi.ng/umbrella/wasm-api-bindgen/interfaces/Struct.html)
+- [`Union`](https://docs.thi.ng/umbrella/wasm-api-bindgen/interfaces/Union.html)
+- [`TopLevelType`](https://docs.thi.ng/umbrella/wasm-api-bindgen/interfaces/TopLevelType.html)
+
+### Struct/union field types
+
+Struct field types can be any of the supported WASM primitives or other user
+defined types in the same JSON spec. In all cases, each field's base type can be
+customized via the `tag`, `len`, `const` and `sentinel` options.
+
+#### Primitives
+
+- `i8`, `i16`, `i32`, `i64`, `u8`, `u16`, `u32`, `u64`
+- `f32`, `f64`
+
+The following types are always available too, but are treated specially in some
+or all languages (explained in more detail further below):
+
+- `opaque` - pointer to opaque data (e.g. `void*` in C or `*anyopaque` in Zig)
+- `string` - configurable string abstraction (see dedicated section in this readme)
+
+#### Type variations
+
+| Base type | Tag     | Length | Const | Equiv Zig type signature | Description                                      |
+|-----------|---------|--------|-------|--------------------------|--------------------------------------------------|
+| `Foo`     |         |        |       | `Foo`                    | A single `Foo`                                   |
+| `Foo`     | `array` | N      |       | `[N]Foo`                 | Array of N `Foo`                                 |
+| `Foo`     | `slice` |        |       | `[]Foo`                  | Slice of `Foo`<sup>(1)</sup>                     |
+| `Foo`     | `slice` |        | true  | `[]const Foo`            | Slice of readonly `Foo`<sup>(1)</sup>            |
+| `Foo`     | `ptr`   |        |       | `*Foo`                   | Pointer to a single `Foo`                        |
+| `Foo`     | `ptr`   |        | true  | `*const Foo`             | Pointer to a single readonly `Foo`               |
+| `Foo`     | `ptr`   | N      |       | `*[N]Foo`                | Pointer to N `Foo`                               |
+| `Foo`     | `ptr`   | 0      |       | `[*]Foo`                 | Pointer to multiple `Foo`<sup>(3)</sup>          |
+| `Foo`     | `ptr`   | 0      | true  | `[*]const Foo`           | Pointer to multiple readonly `Foo`<sup>(3)</sup> |
+| `f32`     | `vec`   | N      |       | `@Vector(N, f32)`        | Vector of N `f32`<sup>(2)</sup>                  |
+
+- <sup>(1)</sup> all slices are emulated (see comments below)
+- <sup>(2)</sup> numeric types only, SIMD compatible (if enabled in WASM target)
+
+### String handling
+
+Most low-level languages deal with strings very differently and alas there's no
+general standard. Some have UTF-8/16 support, others don't. In some languages
+(incl. C & Zig), strings are stored (by default) as zero terminated char
+sequence, in others they aren't... It's outside the scope of this package to
+provide an allround out-of-the-box solution. The `WasmBridge` runtime API
+provides read & write accessors to obtain JS strings from UTF-8 encoded WASM
+memory. See
+[`getString()`](https://docs.thi.ng/umbrella/wasm-api/classes/WasmBridge.html#getString)
+and
+[`setString()`](https://docs.thi.ng/umbrella/wasm-api/classes/WasmBridge.html#setString)
+for details.
+
+The code generators check a global `stringType` option to interpret the built-in
+`string` type of a struct field in different ways:
+
+- `ptr` (default): Considers a string as C-style `char*` pointer
+  (zero-terminated, but without any explicit length)
+- `slice`: Considers strings as Zig-style slices (i.e. pointer + length)
+
+Regardless of implementation choice (and in opposite fashion to all other
+types), the default for strings is `const` aka readonly... If mutable strings
+are required, set `const` field option to `false`.
+
+#### Strings as zero-terminated pointers
+
+This is the default behavior/implementation for `string`:
+
+See
+[C/C++](https://github.com/thi-ng/umbrella/tree/develop/packages/wasm-api/include)
+and
+[Zig](https://github.com/thi-ng/umbrella/tree/develop/packages/wasm-api/zig/types.zig)
+types for definitions of `StringPtr` and `ConstStringPtr` et al...
+
+| Base type | Tag     | Length | Const | Equiv Zig type signature | Description                         |
+|-----------|---------|--------|-------|--------------------------|-------------------------------------|
+| `string`  |         |        |       | `ConstStringPtr`         | Single readonly string              |
+| `string`  |         |        | false | `StringPtr`              | Single mutable string               |
+| `string`  | `array` | N      |       | `[N]ConstStringPtr`      | Array of N readonly strings         |
+| `string`  | `array` | N      | false | `[N]StringPtr`           | Array of N mutable strings          |
+| `string`  | `slice` |        |       | `ConstStringPtrSlice`    | Slice of readonly strings           |
+| `string`  | `slice` |        | false | `StringPtrSlice`         | Slice of mutable strings            |
+| `string`  | `ptr`   |        |       | `*ConstStringPtr`        | Pointer to a single readonly string |
+| `string`  | `ptr`   |        | false | `*StringPtr`             | Pointer to a single mutable string  |
+| `string`  | `ptr`   | N      |       | `*[N]ConstStringPtr`     | Pointer to N readonly strings       |
+| `string`  | `ptr`   | N      | false | `*[N]StringPtr`          | Pointer to N mutable strings        |
+
+#### Strings as slices
+
+If the global `stringType` option is set to `slice`:
+
+| Base type | Tag     | Length | Const | Equiv Zig type signature | Description                         |
+|-----------|---------|--------|-------|--------------------------|-------------------------------------|
+| `string`  |         |        |       | `ConstString`            | Single readonly string              |
+| `string`  |         |        | false | `String`                 | Single mutable string               |
+| `string`  | `array` | N      |       | `[N]ConstString`         | Array of N readonly strings         |
+| `string`  | `array` | N      | false | `[N]String`              | Array of N mutable strings          |
+| `string`  | `slice` |        |       | `ConstStringSlice`       | Slice of readonly strings           |
+| `string`  | `slice` |        | false | `StringSlice`            | Slice of mutable strings            |
+| `string`  | `ptr`   |        |       | `*ConstString`           | Pointer to a single readonly string |
+| `string`  | `ptr`   |        | false | `*String`                | Pointer to a single mutable string  |
+| `string`  | `ptr`   | N      |       | `*[N]ConstString`        | Pointer to N readonly strings       |
+| `string`  | `ptr`   | N      | false | `*[N]String`             | Pointer to N mutable strings        |
+
+### Slice emulation
+
+In many languages a "slice" is a typed view of a memory region: A coupling of a
+pointer to a start item and a given length (number of items). Of the languages
+currently targeted by this package, only Zig has native support for this
+concept, however forbids using slices in so-called `extern struct`s (which are
+the struct type used for interop and required for guaranteed memory layouts).
+
+Therefore, all slices used here will be emulated using simple auto-generated
+wrapper structs, like:
+
+```c
+// C
+typedef struct { char* ptr; size_t len; } String;
+```
+
+```zig
+// Zig
+pub const String = extern struct { ptr: [*:0]u8, len: usize };
+```
+
+The TypeScript codegen will emit slices as JS arrays and doesn't support
+manipulation of a slice itself at current.
+
+### Padding
+
+Should there ever be a need for manual padding inside a struct or union
+definition, the following field spec can be used: `{ pad: N }`, where N is the
+number of bytes to use for the empty space... Names for these special purpose
+fields will be autogenerated and all other field options are ignored.
+
+## JSON schema for type definitions
+
+The package provides a detailed schema to aid the authoring of type definitions
+(and provide inline documentation) via editors with JSON schema integration. The
+schema is distributed as part of the package and located in
+[`/schema/wasm-api-types.json`](https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api-bindgen/schema/wasm-api-types.json).
+
+For VSCode, you can [add this snippet to your workspace
+settings](https://code.visualstudio.com/Docs/languages/json#_mapping-to-a-schema-in-the-workspace)
+to apply the schema to any `typedefs.json` files:
+
+```json
+"json.schemas": [
+	{
+		"fileMatch": ["**/typedefs.json"],
+		"url": "./node_modules/@thi.ng/wasm-api-bindgen/schema/wasm-api-types.json"
+	}
+]
+```
+
+## CLI generator
 
 The package includes a [small CLI
 wrapper](https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api-bindgen/src/cli.ts)
@@ -122,47 +300,16 @@ external files by specifying their file paths using `@` as prefix, e.g.
 }
 ```
 
-#### Data type definitions
-
-Currently, the code generator supports enums, function pointers, structs and unions. See API docs for
-supported options & further details:
-
-- [`Enum`](https://docs.thi.ng/umbrella/wasm-api-bindgen/interfaces/Enum.html)
-- [`EnumValue`](https://docs.thi.ng/umbrella/wasm-api-bindgen/interfaces/EnumValue.html) (individual enum value spec)
-- [`Field`](https://docs.thi.ng/umbrella/wasm-api-bindgen/interfaces/Field.html) (individual spec for values contained in structs/unions)
-- [`FuncPointer`](https://docs.thi.ng/umbrella/wasm-api-bindgen/interfaces/FuncPointer.html)
-- [`Struct`](https://docs.thi.ng/umbrella/wasm-api-bindgen/interfaces/Struct.html)
-- [`Union`](https://docs.thi.ng/umbrella/wasm-api-bindgen/interfaces/Union.html)
-- [`TopLevelType`](https://docs.thi.ng/umbrella/wasm-api-bindgen/interfaces/TopLevelType.html)
-
-#### JSON schema for type definitions
-
-The package provides a detailed schema to aid the authoring of type definitions
-(and provide inline documentation) via editors with JSON schema integration. The
-schema is distributed as part of the package and located in
-[`/schema/wasm-api-types.json`](https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api-bindgen/schema/wasm-api-types.json).
-
-For VSCode, you can [add this snippet to your workspace
-settings](https://code.visualstudio.com/Docs/languages/json#_mapping-to-a-schema-in-the-workspace)
-to apply the schema to any `typedefs.json` files:
-
-```json
-"json.schemas": [
-	{
-		"fileMatch": ["**/typedefs.json"],
-		"url": "./node_modules/@thi.ng/wasm-api-bindgen/schema/wasm-api-types.json"
-	}
-]
-```
-
-#### Example usage
+## Example usage
 
 The following example defines 1x enum, 2x structs and 1x union. Shown here are
 the JSON type definitions and the resulting source codes:
 
 **⬇︎ CLICK TO EXPAND EACH CODE BLOCK ⬇︎**
 
-<details><summary>readme-types.json (Type definitions)</summary>
+### Type definitions
+
+<details><summary>readme-types.json</summary>
 
 ```json tangle:export/readme-types.json
 [
@@ -211,7 +358,9 @@ the JSON type definitions and the resulting source codes:
 ```
 </details>
 
-<details><summary>generated.ts (generated TypeScript source)</summary>
+### Generated TypeScript source code
+
+<details><summary>generated.ts</summary>
 
 ```ts
 /**
@@ -367,7 +516,9 @@ export const $Event: WasmTypeConstructor<Event> = (mem) => ({
 ```
 </details>
 
-<details><summary>generated.zig (generated Zig source)</summary>
+### Generated Zig source code
+
+<details><summary>generated.zig</summary>
 
 ```zig
 //! Generated by @thi.ng/wasm-api-bindgen at 2022-11-23T16:55:22.190Z
@@ -448,25 +599,6 @@ incl. enums, strings, structs, unions. The latter two will always be copied by
 value (mem copy). Currently, array, multi-pointers and slices do not provide
 write access (from the JS side)...
 
-### String handling
-
-Most low-level languages deal with strings very differently and alas there's no
-general standard. Some have UTF-8/16 support, others don't. In some languages
-(incl. C & Zig), strings are stored as zero terminated, in others they aren't...
-It's outside the scope of this package to provide an allround out-of-the-box
-solution. The `WasmBridge` provides read & write accessors to obtain JS strings
-from UTF-8 encoded WASM memory. See
-[`getString()`](https://docs.thi.ng/umbrella/wasm-api/classes/WasmBridge.html#getString)
-and
-[`setString()`](https://docs.thi.ng/umbrella/wasm-api/classes/WasmBridge.html#setString)
-for details.
-
-The code generators too provide a global `stringType` option to
-interpret the `string` type of a struct field in different ways:
-
-- `slice` (default): Considers strings as Zig-style slices (i.e. pointer + length)
-- `ptr`: Considers strings as C-style raw `*char` pointer (without any length)
-
 ## Status
 
 **ALPHA** - bleeding edge / work-in-progress
@@ -519,6 +651,10 @@ Package sizes (gzipped, pre-treeshake): ESM: 6.29 KB
 [Generated API docs](https://docs.thi.ng/umbrella/wasm-api-bindgen/)
 
 TODO
+
+Please also see further examples in the [@thi.ng/wasm-api main
+readme](https://github.com/thi-ng/umbrella/tree/develop/packages/wasm-api) and
+the various (commented) example projects linked above.
 
 ## Authors
 
