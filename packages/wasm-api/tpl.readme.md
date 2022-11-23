@@ -181,9 +181,9 @@ The actual allocator is implementation specific and suitable generic mechanisms
 are defined for both the included Zig & C bindings. Please see for further
 reference:
 
-- [`/zig/lib.zig`](https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api/zig/lib.zig#L64):
+- [`/zig/lib.zig`](https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api/zig/lib.zig#L37-L71):
   comments about WASM-side allocator handling in Zig
-- [`/include/wasmapi.h`](https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api/include/wasmapi.h#L18):
+- [`/include/wasmapi.h`](https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api/include/wasmapi.h#L20-L30):
   comments about WASM-side allocator handling in C/C++
 - [`WasmBridge.allocate()`](https://docs.thi.ng/umbrella/wasm-api/classes/WasmBridge.html#allocate):
   allocating memory from JS side
