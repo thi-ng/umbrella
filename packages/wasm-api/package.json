@@ -1,11 +1,10 @@
 {
 	"name": "@thi.ng/wasm-api",
 	"version": "0.18.1",
-	"description": "Generic, modular, extensible API bridge, polyglot glue code and bindings code generators for hybrid JS & WebAssembly projects",
+	"description": "Generic, modular, extensible API bridge and infrastructure for hybrid JS & WebAssembly projects",
 	"type": "module",
 	"module": "./index.js",
 	"typings": "./index.d.ts",
-	"bin": "bin/wasm-api",
 	"sideEffects": false,
 	"repository": {
 		"type": "git",
@@ -33,23 +32,16 @@
 		"doc:stats": "tools:module-stats",
 		"pub": "yarn npm publish --access public",
 		"test": "testament test",
-		"test:build-zig": "zig build-lib -O ReleaseSmall -target wasm32-freestanding -dynamic --strip --pkg-begin wasmapi zig/wasmapi.zig --pkg-end test/custom.zig && wasm-dis -o custom.wast custom.wasm && cp custom.wasm test"
+		"test:build-zig": "zig build-lib -O ReleaseSmall -target wasm32-freestanding -dynamic --strip --pkg-begin wasmapi zig/lib.zig --pkg-end test/custom.zig && wasm-dis -o custom.wast custom.wasm && cp custom.wasm test"
 	},
 	"dependencies": {
 		"@thi.ng/api": "^8.4.5",
-		"@thi.ng/args": "^2.2.8",
 		"@thi.ng/arrays": "^2.4.1",
-		"@thi.ng/binary": "^3.3.9",
 		"@thi.ng/checks": "^3.3.2",
-		"@thi.ng/compare": "^2.1.15",
-		"@thi.ng/defmulti": "^2.1.20",
 		"@thi.ng/errors": "^2.2.3",
-		"@thi.ng/file-io": "^0.3.18",
 		"@thi.ng/hex": "^2.2.2",
 		"@thi.ng/idgen": "^2.1.17",
-		"@thi.ng/logger": "^1.4.2",
-		"@thi.ng/paths": "^5.1.21",
-		"@thi.ng/strings": "^3.3.16"
+		"@thi.ng/logger": "^1.4.2"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.33.5",
@@ -65,16 +57,12 @@
 		"bindings",
 		"browser",
 		"c",
-		"codegen",
-		"enum",
 		"event",
 		"interop",
 		"logger",
 		"memory",
 		"modular",
-		"polyglot",
 		"string",
-		"struct",
 		"typedarray",
 		"typescript",
 		"utf8",
@@ -110,24 +98,6 @@
 		},
 		"./bridge": {
 			"default": "./bridge.js"
-		},
-		"./codegen/align": {
-			"default": "./codegen/align.js"
-		},
-		"./codegen/c11": {
-			"default": "./codegen/c11.js"
-		},
-		"./codegen/typescript": {
-			"default": "./codegen/typescript.js"
-		},
-		"./codegen/utils": {
-			"default": "./codegen/utils.js"
-		},
-		"./codegen/zig": {
-			"default": "./codegen/zig.js"
-		},
-		"./codegen": {
-			"default": "./codegen.js"
 		},
 		"./object-index": {
 			"default": "./object-index.js"
