@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-10-28T19:08:39Z
+- **Last updated**: 2022-11-23T22:46:54Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -44,9 +44,9 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
 - update imports in all pkgs ([5fa2b6f](https://github.com/thi-ng/umbrella/commit/5fa2b6f))
   - add .js suffix for all relative imports
+- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
 
 # [2.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/matrices@2.0.0) (2021-10-12)
 
@@ -67,10 +67,10 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- internal restructure/imports ([766afe9](https://github.com/thi-ng/umbrella/commit/766afe9))
-- update imports ([138571a](https://github.com/thi-ng/umbrella/commit/138571a))
 - update all tests in _all_ pkgs ([8b582bc](https://github.com/thi-ng/umbrella/commit/8b582bc))
   - update all to use [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament)
+- update imports ([138571a](https://github.com/thi-ng/umbrella/commit/138571a))
+- internal restructure/imports ([766afe9](https://github.com/thi-ng/umbrella/commit/766afe9))
 
 ### [0.6.58](https://github.com/thi-ng/umbrella/tree/@thi.ng/matrices@0.6.58) (2021-04-24)
 
@@ -126,9 +126,9 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
-- add matXXn, matXXv, mulXXvm fns ([9359bbc](https://github.com/thi-ng/umbrella/commit/9359bbc))
-- add matXXn & matXXv fns ([7a2ef82](https://github.com/thi-ng/umbrella/commit/7a2ef82))
 - enable TS strict compiler flags (refactor) ([7b1c81a](https://github.com/thi-ng/umbrella/commit/7b1c81a))
+- add matXXn & matXXv fns ([7a2ef82](https://github.com/thi-ng/umbrella/commit/7a2ef82))
+- add matXXn, matXXv, mulXXvm fns ([9359bbc](https://github.com/thi-ng/umbrella/commit/9359bbc))
 
 #### 🩹 Bug fixes
 
@@ -136,9 +136,9 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- add explicit types to workaround typedoc bug ([099a651](https://github.com/thi-ng/umbrella/commit/099a651))
 - address TS strictNullChecks flag ([7ee8361](https://github.com/thi-ng/umbrella/commit/7ee8361))
   - update various fns to unify api (1st arg can be null)
+- add explicit types to workaround typedoc bug ([099a651](https://github.com/thi-ng/umbrella/commit/099a651))
 
 ## [0.4.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/matrices@0.4.0) (2019-05-22)
 

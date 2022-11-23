@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-10-28T19:08:39Z
+- **Last updated**: 2022-11-23T22:46:54Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -38,9 +38,9 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
 - update imports in all pkgs ([5fa2b6f](https://github.com/thi-ng/umbrella/commit/5fa2b6f))
   - add .js suffix for all relative imports
+- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
 
 ## [0.3.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/soa@0.3.0) (2021-10-12)
 
@@ -61,16 +61,16 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- minor pkg restructure (various) ([47f88d2](https://github.com/thi-ng/umbrella/commit/47f88d2))
+- update all tests in _all_ pkgs ([8b582bc](https://github.com/thi-ng/umbrella/commit/8b582bc))
+  - update all to use [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament)
+- update imports ([138571a](https://github.com/thi-ng/umbrella/commit/138571a))
 - update deps & imports in various pkgs ([e1cf29e](https://github.com/thi-ng/umbrella/commit/e1cf29e))
   - largely related to recent updates/restructuring of these packages:
     - api
     - defmulti
     - errors
     - logger
-- update imports ([138571a](https://github.com/thi-ng/umbrella/commit/138571a))
-- update all tests in _all_ pkgs ([8b582bc](https://github.com/thi-ng/umbrella/commit/8b582bc))
-  - update all to use [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament)
+- minor pkg restructure (various) ([47f88d2](https://github.com/thi-ng/umbrella/commit/47f88d2))
 
 ### [0.2.7](https://github.com/thi-ng/umbrella/tree/@thi.ng/soa@0.2.7) (2021-03-17)
 
@@ -103,12 +103,12 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
+- add new pkg [@thi.ng/soa](https://github.com/thi-ng/umbrella/tree/main/packages/soa) ([5f8ffa1](https://github.com/thi-ng/umbrella/commit/5f8ffa1))
+- add/update types, update aos(), add SOA.setValues(), tests ([b8e0780](https://github.com/thi-ng/umbrella/commit/b8e0780))
 - update SOAAttribSpec.buf to use ArrayBuffer w/ opt offset ([2759570](https://github.com/thi-ng/umbrella/commit/2759570))
   - update aos() buffer handling
   - update SOA.initSpecs()
   - update tests
-- add/update types, update aos(), add SOA.setValues(), tests ([b8e0780](https://github.com/thi-ng/umbrella/commit/b8e0780))
-- add new pkg [@thi.ng/soa](https://github.com/thi-ng/umbrella/tree/main/packages/soa) ([5f8ffa1](https://github.com/thi-ng/umbrella/commit/5f8ffa1))
 
 #### 🩹 Bug fixes
 
@@ -120,5 +120,5 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- rename SOA.initSpecs() => addSpecs(), make public ([470714d](https://github.com/thi-ng/umbrella/commit/470714d))
 - update attribValues(), add indexUnsafe() ([21c1ef6](https://github.com/thi-ng/umbrella/commit/21c1ef6))
+- rename SOA.initSpecs() => addSpecs(), make public ([470714d](https://github.com/thi-ng/umbrella/commit/470714d))

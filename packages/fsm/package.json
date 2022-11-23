@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/fsm",
-	"version": "3.1.28",
+	"version": "3.1.29",
 	"description": "Composable primitives for building declarative, transducer based Finite-State Machines & matchers for arbitrary data streams",
 	"type": "module",
 	"module": "./index.js",
@@ -34,16 +34,16 @@
 		"test": "testament test"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.4.5",
-		"@thi.ng/arrays": "^2.4.1",
-		"@thi.ng/equiv": "^2.1.12",
-		"@thi.ng/errors": "^2.2.3",
-		"@thi.ng/strings": "^3.3.16",
-		"@thi.ng/transducers": "^8.3.22"
+		"@thi.ng/api": "^8.4.6",
+		"@thi.ng/arrays": "^2.4.2",
+		"@thi.ng/equiv": "^2.1.13",
+		"@thi.ng/errors": "^2.2.4",
+		"@thi.ng/strings": "^3.3.17",
+		"@thi.ng/transducers": "^8.3.23"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.33.5",
-		"@thi.ng/testament": "^0.3.4",
+		"@thi.ng/testament": "^0.3.5",
 		"rimraf": "^3.0.2",
 		"tools": "workspace:^",
 		"typedoc": "^0.23.20",

@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-10-28T19:08:39Z
+- **Last updated**: 2022-11-23T22:46:54Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -53,18 +53,18 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- minor pkg restructure ([103f1ba](https://github.com/thi-ng/umbrella/commit/103f1ba))
-- update imports in various pkgs (rstream) ([342cf54](https://github.com/thi-ng/umbrella/commit/342cf54))
-- update imports ([138571a](https://github.com/thi-ng/umbrella/commit/138571a))
 - update all tests in _all_ pkgs ([8b582bc](https://github.com/thi-ng/umbrella/commit/8b582bc))
   - update all to use [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament)
+- update imports ([138571a](https://github.com/thi-ng/umbrella/commit/138571a))
+- update imports in various pkgs (rstream) ([342cf54](https://github.com/thi-ng/umbrella/commit/342cf54))
+- minor pkg restructure ([103f1ba](https://github.com/thi-ng/umbrella/commit/103f1ba))
 
 ### [2.0.45](https://github.com/thi-ng/umbrella/tree/@thi.ng/rstream-csp@2.0.45) (2020-12-07)
 
 #### ♻️ Refactoring
 
-- update type-only imports ([615761b](https://github.com/thi-ng/umbrella/commit/615761b))
 - update type-only imports in various tests/pkgs ([3fd9c24](https://github.com/thi-ng/umbrella/commit/3fd9c24))
+- update type-only imports ([615761b](https://github.com/thi-ng/umbrella/commit/615761b))
 
 ### [2.0.3](https://github.com/thi-ng/umbrella/tree/@thi.ng/rstream-csp@2.0.3) (2020-02-25)
 

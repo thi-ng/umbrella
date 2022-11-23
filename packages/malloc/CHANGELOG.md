@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-10-28T19:08:39Z
+- **Last updated**: 2022-11-23T22:46:54Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -32,9 +32,9 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
 - update imports in all pkgs ([5fa2b6f](https://github.com/thi-ng/umbrella/commit/5fa2b6f))
   - add .js suffix for all relative imports
+- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
 
 # [6.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/malloc@6.0.0) (2021-10-12)
 
@@ -55,16 +55,16 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
+- update all tests in _all_ pkgs ([8b582bc](https://github.com/thi-ng/umbrella/commit/8b582bc))
+  - update all to use [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament)
+- update imports ([138571a](https://github.com/thi-ng/umbrella/commit/138571a))
+- update various benchmarks ([53e8a6a](https://github.com/thi-ng/umbrella/commit/53e8a6a))
 - update deps & imports in various pkgs ([e1cf29e](https://github.com/thi-ng/umbrella/commit/e1cf29e))
   - largely related to recent updates/restructuring of these packages:
     - api
     - defmulti
     - errors
     - logger
-- update various benchmarks ([53e8a6a](https://github.com/thi-ng/umbrella/commit/53e8a6a))
-- update imports ([138571a](https://github.com/thi-ng/umbrella/commit/138571a))
-- update all tests in _all_ pkgs ([8b582bc](https://github.com/thi-ng/umbrella/commit/8b582bc))
-  - update all to use [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament)
 
 # [5.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/malloc@5.0.0) (2021-02-20)
 
@@ -81,8 +81,8 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- update type-only imports ([91817aa](https://github.com/thi-ng/umbrella/commit/91817aa))
 - update type-only imports in various tests/pkgs ([3fd9c24](https://github.com/thi-ng/umbrella/commit/3fd9c24))
+- update type-only imports ([91817aa](https://github.com/thi-ng/umbrella/commit/91817aa))
 
 ## [4.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/malloc@4.2.0) (2020-10-19)
 
@@ -92,18 +92,18 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- rename IMemPoolAs => IMemPoolArray ([2647274](https://github.com/thi-ng/umbrella/commit/2647274))
 - extract IMemPoolAs interface ([69e018c](https://github.com/thi-ng/umbrella/commit/69e018c))
+- rename IMemPoolAs => IMemPoolArray ([2647274](https://github.com/thi-ng/umbrella/commit/2647274))
 
 ### [4.1.26](https://github.com/thi-ng/umbrella/tree/@thi.ng/malloc@4.1.26) (2020-09-22)
 
 #### ♻️ Refactoring
 
-- update malloc() ([6fd0c1f](https://github.com/thi-ng/umbrella/commit/6fd0c1f))
-  - extract private mallocTop()
 - update realloc(), add 0-checks ([cc13a8f](https://github.com/thi-ng/umbrella/commit/cc13a8f))
   - extract private reallocBlock() method
   - add checks to blockDataAddress/blockSelfAddress()
+- update malloc() ([6fd0c1f](https://github.com/thi-ng/umbrella/commit/6fd0c1f))
+  - extract private mallocTop()
 
 ### [4.1.25](https://github.com/thi-ng/umbrella/tree/@thi.ng/malloc@4.1.25) (2020-09-13)
 
@@ -127,6 +127,14 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
+- add more buffered state, align opt, refactor, update tests ([1ff9487](https://github.com/thi-ng/umbrella/commit/1ff9487))
+  - add MemPoolOpts doc strings
+  - add block alignment config
+  - add separate view for pool state only
+  - store compact/split config in buffer as well, add accessors
+  - update/simplify MemBlockWrapper
+  - extract toXXXAddress() as standalone fns
+  - update tests to use computed addresses
 - fix block alignment/layout, update calloc/realloc ([a40c265](https://github.com/thi-ng/umbrella/commit/a40c265))
   - align initial `top` to first aligned address minus SIZEOF_MEM_BLOCK
   - fix new `top` calculation in malloc()
@@ -137,17 +145,10 @@ and/or version bumps of transitive dependencies.
   - update/simplify blockDataAddress/blockSelfAddress() logic
   - add unlinkBlock() helper
   - add/update tests
-- add more buffered state, align opt, refactor, update tests ([1ff9487](https://github.com/thi-ng/umbrella/commit/1ff9487))
-  - add MemPoolOpts doc strings
-  - add block alignment config
-  - add separate view for pool state only
-  - store compact/split config in buffer as well, add accessors
-  - update/simplify MemBlockWrapper
-  - extract toXXXAddress() as standalone fns
-  - update tests to use computed addresses
 
 #### 🩹 Bug fixes
 
+- update freeAll(), add test, doc strings, minor cleanup ([830b267](https://github.com/thi-ng/umbrella/commit/830b267))
 - fix realloc(), various refactorings, add tests ([fa3e1bc](https://github.com/thi-ng/umbrella/commit/fa3e1bc))
   - fix realloc() to pass original size arg to malloc (not padded size)
   - fix realloc() block migration to copy only data region
@@ -157,15 +158,14 @@ and/or version bumps of transitive dependencies.
   - minor update compact() to re-use computed value
   - rename various args/vars to be more consistent
   - add docstrings
-- update freeAll(), add test, doc strings, minor cleanup ([830b267](https://github.com/thi-ng/umbrella/commit/830b267))
 
 #### ♻️ Refactoring
 
-- fix [#163](https://github.com/thi-ng/umbrella/issues/163), extract splitBlock() method ([6737c64](https://github.com/thi-ng/umbrella/commit/6737c64))
+- migrate & re-use types from [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/main/packages/api) ([12898f0](https://github.com/thi-ng/umbrella/commit/12898f0))
+- replace MemBlockWrapper w/ implict list, remove wrap() ([973c779](https://github.com/thi-ng/umbrella/commit/973c779))
 - minor refactoring, add tests, update benchmark ([8642648](https://github.com/thi-ng/umbrella/commit/8642648))
   - re-use block size lookups in malloc()/realloc()
-- replace MemBlockWrapper w/ implict list, remove wrap() ([973c779](https://github.com/thi-ng/umbrella/commit/973c779))
-- migrate & re-use types from [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/main/packages/api) ([12898f0](https://github.com/thi-ng/umbrella/commit/12898f0))
+- fix [#163](https://github.com/thi-ng/umbrella/issues/163), extract splitBlock() method ([6737c64](https://github.com/thi-ng/umbrella/commit/6737c64))
 
 # [4.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/malloc@4.0.0) (2019-07-07)
 
@@ -179,10 +179,10 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
-- enable TS strict compiler flags (refactor) ([e23e555](https://github.com/thi-ng/umbrella/commit/e23e555))
 - export typed array ctors, update wrap() ([3413ad7](https://github.com/thi-ng/umbrella/commit/3413ad7))
   (cherry picked from commit [8fcf05c789bbc7524c340f13bbf369be77d2ed51](https://github.com/thi-ng/umbrella/commit/8fcf05c789bbc7524c340f13bbf369be77d2ed51))
 - export typed array ctors, update wrap() ([8fcf05c](https://github.com/thi-ng/umbrella/commit/8fcf05c))
+- enable TS strict compiler flags (refactor) ([e23e555](https://github.com/thi-ng/umbrella/commit/e23e555))
 
 # [3.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/malloc@3.0.0) (2019-05-22)
 
@@ -213,11 +213,11 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- update imports ([1cfefda](https://github.com/thi-ng/umbrella/commit/1cfefda))
-  (cherry picked from commit [f3a5e0ffbd03390d93b6db9bea68e4947cfff7f3](https://github.com/thi-ng/umbrella/commit/f3a5e0ffbd03390d93b6db9bea68e4947cfff7f3))
+- update imports ([f3a5e0f](https://github.com/thi-ng/umbrella/commit/f3a5e0f))
 - add/extract types to api.ts ([c8d8a37](https://github.com/thi-ng/umbrella/commit/c8d8a37))
   (cherry picked from commit [e3727ce937824b1ed889fac6d66e488d4684a53e](https://github.com/thi-ng/umbrella/commit/e3727ce937824b1ed889fac6d66e488d4684a53e))
-- update imports ([f3a5e0f](https://github.com/thi-ng/umbrella/commit/f3a5e0f))
+- update imports ([1cfefda](https://github.com/thi-ng/umbrella/commit/1cfefda))
+  (cherry picked from commit [f3a5e0ffbd03390d93b6db9bea68e4947cfff7f3](https://github.com/thi-ng/umbrella/commit/f3a5e0ffbd03390d93b6db9bea68e4947cfff7f3))
 
 ## [0.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/malloc@0.2.0) (2018-10-27)
 
@@ -229,9 +229,9 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
-- add freeAll(), release(), tests & benchmarks, update docs ([4b72cda](https://github.com/thi-ng/umbrella/commit/4b72cda))
-- re-add block compaction & splitting, update readme ([89f2bc2](https://github.com/thi-ng/umbrella/commit/89f2bc2))
 - initial import [@thi.ng/malloc](https://github.com/thi-ng/umbrella/tree/main/packages/malloc) package ([2cf20c9](https://github.com/thi-ng/umbrella/commit/2cf20c9))
+- re-add block compaction & splitting, update readme ([89f2bc2](https://github.com/thi-ng/umbrella/commit/89f2bc2))
+- add freeAll(), release(), tests & benchmarks, update docs ([4b72cda](https://github.com/thi-ng/umbrella/commit/4b72cda))
 
 #### 🩹 Bug fixes
 

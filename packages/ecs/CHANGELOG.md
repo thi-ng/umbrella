@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-10-28T19:08:39Z
+- **Last updated**: 2022-11-23T22:46:54Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -50,9 +50,9 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
 - update imports in all pkgs ([5fa2b6f](https://github.com/thi-ng/umbrella/commit/5fa2b6f))
   - add .js suffix for all relative imports
+- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
 
 ## [0.6.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/ecs@0.6.0) (2021-10-12)
 
@@ -73,15 +73,15 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
+- update all tests in _all_ pkgs ([8b582bc](https://github.com/thi-ng/umbrella/commit/8b582bc))
+  - update all to use [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament)
+- update imports ([7786209](https://github.com/thi-ng/umbrella/commit/7786209))
+- update imports (transducers) ([e940647](https://github.com/thi-ng/umbrella/commit/e940647))
 - pkg restructure ([2121452](https://github.com/thi-ng/umbrella/commit/2121452))
   - dissolve constants.ts:
     - move event IDs to api.ts
     - move logging to logger.ts
   - update deps
-- update imports (transducers) ([e940647](https://github.com/thi-ng/umbrella/commit/e940647))
-- update imports ([7786209](https://github.com/thi-ng/umbrella/commit/7786209))
-- update all tests in _all_ pkgs ([8b582bc](https://github.com/thi-ng/umbrella/commit/8b582bc))
-  - update all to use [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament)
 
 ## [0.5.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/ecs@0.5.0) (2021-02-20)
 
@@ -100,10 +100,10 @@ and/or version bumps of transitive dependencies.
 
 ## [0.4.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/ecs@0.4.0) (2020-10-19)
 
-#### 🚀 Features
+#### 🛑 Breaking changes
 
 - add custom mempool support ([1a59405](https://github.com/thi-ng/umbrella/commit/1a59405))
-  BREAKING CHANGES: update ECS ctor args, defComponent() return type
+- BREAKING CHANGES: update ECS ctor args, defComponent() return type
   - add ECSOpts for ECS ctor
   - add [@thi.ng/malloc](https://github.com/thi-ng/umbrella/tree/main/packages/malloc) dep
   - update IComponent.resize() & ECS.defComponent() to use
@@ -130,8 +130,8 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- update imports, internal restruct ([b23df65](https://github.com/thi-ng/umbrella/commit/b23df65))
 - fix [#179](https://github.com/thi-ng/umbrella/issues/179), update MemMappedComponent.get() ([8ee2139](https://github.com/thi-ng/umbrella/commit/8ee2139))
+- update imports, internal restruct ([b23df65](https://github.com/thi-ng/umbrella/commit/b23df65))
 
 ## [0.3.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/ecs@0.3.0) (2020-01-24)
 
@@ -158,33 +158,18 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- re-use uintType helper from [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/main/packages/api) ([f55cf25](https://github.com/thi-ng/umbrella/commit/f55cf25))
-- update ECS ctor, update deps, minor refactoring ([a6fa7ff](https://github.com/thi-ng/umbrella/commit/a6fa7ff))
-- replace IDGen w/ [@thi.ng/idgen](https://github.com/thi-ng/umbrella/tree/main/packages/idgen) pkg ([207594c](https://github.com/thi-ng/umbrella/commit/207594c))
 - restructure pkg, extract AComponent ([9a01b4e](https://github.com/thi-ng/umbrella/commit/9a01b4e))
+- replace IDGen w/ [@thi.ng/idgen](https://github.com/thi-ng/umbrella/tree/main/packages/idgen) pkg ([207594c](https://github.com/thi-ng/umbrella/commit/207594c))
+- update ECS ctor, update deps, minor refactoring ([a6fa7ff](https://github.com/thi-ng/umbrella/commit/a6fa7ff))
+- re-use uintType helper from [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/main/packages/api) ([f55cf25](https://github.com/thi-ng/umbrella/commit/f55cf25))
 
 ## [0.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/ecs@0.1.0) (2019-11-09)
 
 #### 🚀 Features
 
-- add ECS INotify impl, entity ops, update Group ([0423f35](https://github.com/thi-ng/umbrella/commit/0423f35))
-  - update GroupOpts
-  - move group auto-naming to defGroup()
-  - add existing ID checks for defComponent/defGroup()
-  - add ECS.hasID/deleteID()
-  - add ECS event support for defEntity()/deleteID()
-  - rename event names
-  - add IDGen to pkg re-export
-- add componentsForID/groupsForID(), add NullCache ([416a8b7](https://github.com/thi-ng/umbrella/commit/416a8b7))
-- add/update types, new components, update Group, ECS, add tests ([fdae8a7](https://github.com/thi-ng/umbrella/commit/fdae8a7))
-  - add new type aliases & interfaces (mainly mapped types)
-  - rename: Component => MemMappedComponent
-  - add new Component class for JS value types
-  - update ECS.defComponent() to choose correct comp type
-  - update Group generics
-  - update Group cache invalidation
-- add generics for Component & Group related types & methods ([82e3e92](https://github.com/thi-ng/umbrella/commit/82e3e92))
-- update Group, Component, cache behavior, IDGen, iteration ([e8c72d5](https://github.com/thi-ng/umbrella/commit/e8c72d5))
+- initial refactor & import as new package (MBP2010) ([ad0b566](https://github.com/thi-ng/umbrella/commit/ad0b566))
+- add defComponent, fix return types ([8a65446](https://github.com/thi-ng/umbrella/commit/8a65446))
+- add UnboundedCache, update Component & Group ctors/opts ([5c36892](https://github.com/thi-ng/umbrella/commit/5c36892))
 - add ECS main class, update types, Component, Group ([40dc1b6](https://github.com/thi-ng/umbrella/commit/40dc1b6))
   - move defComponent to ECS
   - add event consts
@@ -193,9 +178,24 @@ and/or version bumps of transitive dependencies.
   - fix component value caching (on delete)
   - add Group.run()
   - rename Group.deleteID() => removeID()
-- add UnboundedCache, update Component & Group ctors/opts ([5c36892](https://github.com/thi-ng/umbrella/commit/5c36892))
-- add defComponent, fix return types ([8a65446](https://github.com/thi-ng/umbrella/commit/8a65446))
-- initial refactor & import as new package (MBP2010) ([ad0b566](https://github.com/thi-ng/umbrella/commit/ad0b566))
+- update Group, Component, cache behavior, IDGen, iteration ([e8c72d5](https://github.com/thi-ng/umbrella/commit/e8c72d5))
+- add generics for Component & Group related types & methods ([82e3e92](https://github.com/thi-ng/umbrella/commit/82e3e92))
+- add/update types, new components, update Group, ECS, add tests ([fdae8a7](https://github.com/thi-ng/umbrella/commit/fdae8a7))
+  - add new type aliases & interfaces (mainly mapped types)
+  - rename: Component => MemMappedComponent
+  - add new Component class for JS value types
+  - update ECS.defComponent() to choose correct comp type
+  - update Group generics
+  - update Group cache invalidation
+- add componentsForID/groupsForID(), add NullCache ([416a8b7](https://github.com/thi-ng/umbrella/commit/416a8b7))
+- add ECS INotify impl, entity ops, update Group ([0423f35](https://github.com/thi-ng/umbrella/commit/0423f35))
+  - update GroupOpts
+  - move group auto-naming to defGroup()
+  - add existing ID checks for defComponent/defGroup()
+  - add ECS.hasID/deleteID()
+  - add ECS event support for defEntity()/deleteID()
+  - rename event names
+  - add IDGen to pkg re-export
 
 #### ♻️ Refactoring
 

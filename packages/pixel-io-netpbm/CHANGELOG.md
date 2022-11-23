@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-10-28T19:08:39Z
+- **Last updated**: 2022-11-23T22:46:54Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -50,9 +50,9 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
 - update imports in all pkgs ([5fa2b6f](https://github.com/thi-ng/umbrella/commit/5fa2b6f))
   - add .js suffix for all relative imports
+- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
 
 # [2.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/pixel-io-netpbm@2.0.0) (2021-10-12)
 
@@ -73,24 +73,22 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- update imports ([9a97d74](https://github.com/thi-ng/umbrella/commit/9a97d74))
+- update all tests in _all_ pkgs ([8b582bc](https://github.com/thi-ng/umbrella/commit/8b582bc))
+  - update all to use [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament)
+- update imports ([138571a](https://github.com/thi-ng/umbrella/commit/138571a))
 - update deps & imports in various pkgs ([e1cf29e](https://github.com/thi-ng/umbrella/commit/e1cf29e))
   - largely related to recent updates/restructuring of these packages:
     - api
     - defmulti
     - errors
     - logger
-- update imports ([138571a](https://github.com/thi-ng/umbrella/commit/138571a))
-- update all tests in _all_ pkgs ([8b582bc](https://github.com/thi-ng/umbrella/commit/8b582bc))
-  - update all to use [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament)
+- update imports ([9a97d74](https://github.com/thi-ng/umbrella/commit/9a97d74))
 
 ## [0.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/pixel-io-netpbm@0.1.0) (2021-02-20)
 
 #### 🚀 Features
 
-- add opt comment support ([2659031](https://github.com/thi-ng/umbrella/commit/2659031))
-  - add extra arg for all asPXM() functions to include
-    arbitrary comments in file header
+- import as new pkg ([697b842](https://github.com/thi-ng/umbrella/commit/697b842))
 - add/update readers/writers ([a62ef0b](https://github.com/thi-ng/umbrella/commit/a62ef0b))
   - extract parseHeader()
   - update readComments() to collect comment lines
@@ -99,7 +97,9 @@ and/or version bumps of transitive dependencies.
   - add support for channel rescaling
   - fix readPBM() bit twiddling
   - update asPGM(), add asPGM16()
-- import as new pkg ([697b842](https://github.com/thi-ng/umbrella/commit/697b842))
+- add opt comment support ([2659031](https://github.com/thi-ng/umbrella/commit/2659031))
+  - add extra arg for all asPXM() functions to include
+    arbitrary comments in file header
 
 #### ♻️ Refactoring
 

@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-10-28T19:08:39Z
+- **Last updated**: 2022-11-23T22:46:54Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -45,9 +45,9 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
 - update imports in all pkgs ([5fa2b6f](https://github.com/thi-ng/umbrella/commit/5fa2b6f))
   - add .js suffix for all relative imports
+- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
 
 # [2.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/args@2.0.0) (2021-10-12)
 
@@ -68,9 +68,9 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- update imports ([890936b](https://github.com/thi-ng/umbrella/commit/890936b))
 - update all tests in _all_ pkgs ([8b582bc](https://github.com/thi-ng/umbrella/commit/8b582bc))
   - update all to use [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament)
+- update imports ([890936b](https://github.com/thi-ng/umbrella/commit/890936b))
 
 ### [1.1.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/args@1.1.1) (2021-09-03)
 
@@ -108,11 +108,11 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
-- add vec() arg type ([f05cb2a](https://github.com/thi-ng/umbrella/commit/f05cb2a))
 - wordwrap usage prefix/suffix, defaults ([325b558](https://github.com/thi-ng/umbrella/commit/325b558))
   - update/revert default val handling in usage(), don't show null/false
   - minor other usage() refactoring
   - update doc strings
+- add vec() arg type ([f05cb2a](https://github.com/thi-ng/umbrella/commit/f05cb2a))
 
 ### [0.4.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/args@0.4.1) (2021-03-24)
 
@@ -124,13 +124,13 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
+- support arbitrary length aliases ([1cfdf49](https://github.com/thi-ng/umbrella/commit/1cfdf49))
+  - update parseKey() to allow any length aliases
+  - add test
 - add arg groups, segment usage output ([ebf5197](https://github.com/thi-ng/umbrella/commit/ebf5197))
   - add `ArgSpecBase.group` to classify args
   - update arg factories to define default groups ("flags" & "main")
   - update usage() to output segmented & sorted groups of args
-- support arbitrary length aliases ([1cfdf49](https://github.com/thi-ng/umbrella/commit/1cfdf49))
-  - update parseKey() to allow any length aliases
-  - add test
 
 ### [0.3.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/args@0.3.1) (2021-03-21)
 
@@ -163,19 +163,7 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
-- add tuple arg type support ([a05dde9](https://github.com/thi-ng/umbrella/commit/a05dde9))
-- update multi arg specs, parse ([dbdf913](https://github.com/thi-ng/umbrella/commit/dbdf913))
-  - simplify Args conditionals (remove special casing for string(s))
-  - replace spec.comma => spec.delim
-  - update ParseResult
-  - update parse() to stop at first non-arg value
-  - add/update tests
-- add strict mode kvArgs()/coerceKV(), add docs ([b76c4f1](https://github.com/thi-ng/umbrella/commit/b76c4f1))
-- add kv args, callbacks, usage opts ([c306aba](https://github.com/thi-ng/umbrella/commit/c306aba))
-  - add KVDict type, coerceKV(), kvPairs()
-  - add optional `fn` arg spec callbacks
-  - add `--help` built-in handling
-  - add ColorTheme, update usage()
+- import as new package ([af5d943](https://github.com/thi-ng/umbrella/commit/af5d943))
 - major general package update ([26ec49a](https://github.com/thi-ng/umbrella/commit/26ec49a))
   - use more mapped types to better infer & verify specs for optional args
   - add support for comma separated multi-args
@@ -187,4 +175,16 @@ and/or version bumps of transitive dependencies.
     - auto-usage on error
     - kebab -> camelCase names
   - update/rewrite usage(), add color support
-- import as new package ([af5d943](https://github.com/thi-ng/umbrella/commit/af5d943))
+- add kv args, callbacks, usage opts ([c306aba](https://github.com/thi-ng/umbrella/commit/c306aba))
+  - add KVDict type, coerceKV(), kvPairs()
+  - add optional `fn` arg spec callbacks
+  - add `--help` built-in handling
+  - add ColorTheme, update usage()
+- add strict mode kvArgs()/coerceKV(), add docs ([b76c4f1](https://github.com/thi-ng/umbrella/commit/b76c4f1))
+- update multi arg specs, parse ([dbdf913](https://github.com/thi-ng/umbrella/commit/dbdf913))
+  - simplify Args conditionals (remove special casing for string(s))
+  - replace spec.comma => spec.delim
+  - update ParseResult
+  - update parse() to stop at first non-arg value
+  - add/update tests
+- add tuple arg type support ([a05dde9](https://github.com/thi-ng/umbrella/commit/a05dde9))

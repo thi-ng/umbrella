@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-10-28T19:08:39Z
+- **Last updated**: 2022-11-23T22:46:54Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -38,9 +38,9 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
 - update imports in all pkgs ([5fa2b6f](https://github.com/thi-ng/umbrella/commit/5fa2b6f))
   - add .js suffix for all relative imports
+- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
 
 # [2.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/rstream-query@2.0.0) (2021-10-12)
 
@@ -61,32 +61,32 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- migrate logger to own file ([6f0c8c3](https://github.com/thi-ng/umbrella/commit/6f0c8c3))
-- update imports in various pkgs (rstream) ([342cf54](https://github.com/thi-ng/umbrella/commit/342cf54))
+- update all tests in _all_ pkgs ([8b582bc](https://github.com/thi-ng/umbrella/commit/8b582bc))
+  - update all to use [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament)
+- update imports ([138571a](https://github.com/thi-ng/umbrella/commit/138571a))
+- update imports (transducers) ([7fc60cd](https://github.com/thi-ng/umbrella/commit/7fc60cd))
 - update deps & imports in various pkgs ([e1cf29e](https://github.com/thi-ng/umbrella/commit/e1cf29e))
   - largely related to recent updates/restructuring of these packages:
     - api
     - defmulti
     - errors
     - logger
-- update imports (transducers) ([7fc60cd](https://github.com/thi-ng/umbrella/commit/7fc60cd))
-- update imports ([138571a](https://github.com/thi-ng/umbrella/commit/138571a))
-- update all tests in _all_ pkgs ([8b582bc](https://github.com/thi-ng/umbrella/commit/8b582bc))
-  - update all to use [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament)
+- update imports in various pkgs (rstream) ([342cf54](https://github.com/thi-ng/umbrella/commit/342cf54))
+- migrate logger to own file ([6f0c8c3](https://github.com/thi-ng/umbrella/commit/6f0c8c3))
 
 ### [1.1.66](https://github.com/thi-ng/umbrella/tree/@thi.ng/rstream-query@1.1.66) (2021-03-12)
 
 #### ♻️ Refactoring
 
-- update types/generics ([b38c561](https://github.com/thi-ng/umbrella/commit/b38c561))
 - update types to use ISubscription ([f299612](https://github.com/thi-ng/umbrella/commit/f299612))
+- update types/generics ([b38c561](https://github.com/thi-ng/umbrella/commit/b38c561))
 
 ### [1.1.52](https://github.com/thi-ng/umbrella/tree/@thi.ng/rstream-query@1.1.52) (2020-12-07)
 
 #### ♻️ Refactoring
 
-- update type-only imports ([ba70998](https://github.com/thi-ng/umbrella/commit/ba70998))
 - update type-only imports in various tests/pkgs ([3fd9c24](https://github.com/thi-ng/umbrella/commit/3fd9c24))
+- update type-only imports ([ba70998](https://github.com/thi-ng/umbrella/commit/ba70998))
 
 ### [1.1.46](https://github.com/thi-ng/umbrella/tree/@thi.ng/rstream-query@1.1.46) (2020-09-13)
 
@@ -120,8 +120,8 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- update addQueryFromSpec, nextID ([4a140e8](https://github.com/thi-ng/umbrella/commit/4a140e8))
 - simplify .findTriple(), move xforms, update deps ([c6a40df](https://github.com/thi-ng/umbrella/commit/c6a40df))
+- update addQueryFromSpec, nextID ([4a140e8](https://github.com/thi-ng/umbrella/commit/4a140e8))
 
 ## [1.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/rstream-query@1.1.0) (2019-07-07)
 
@@ -207,7 +207,17 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
-- add query spec types, addQueryFromSpec(), dedupe xforms ([d093a5c](https://github.com/thi-ng/umbrella/commit/d093a5c))
+- add addQueryJoin(), add type aliases, update tests ([c5f36a2](https://github.com/thi-ng/umbrella/commit/c5f36a2))
+- add removeTriple(), simplify wildcard subqueries ([443ff8f](https://github.com/thi-ng/umbrella/commit/443ff8f))
+  - add freeID list to reduce store fragmentation
+  - remove obsolete allSelections cache
+  - fix addQueryJoin() xform to also return empty result sets
+- rename TripleStore methods, use Set-like API ([9b5c58a](https://github.com/thi-ng/umbrella/commit/9b5c58a))
+  - rename addTriple() => add()
+  - rename addTriples() => into()
+  - rename removeTriple() => delete()
+  - add get()
+  - refactor has()
 - add path query, multi-joins, pattern query reuse ([679c4e0](https://github.com/thi-ng/umbrella/commit/679c4e0))
   - add addPathQuery()
   - add addMultiJoin()
@@ -216,36 +226,26 @@ and/or version bumps of transitive dependencies.
   - add type aliases
   - add pattern query cache
   - add patternVars() helper
-- rename TripleStore methods, use Set-like API ([9b5c58a](https://github.com/thi-ng/umbrella/commit/9b5c58a))
-  - rename addTriple() => add()
-  - rename addTriples() => into()
-  - rename removeTriple() => delete()
-  - add get()
-  - refactor has()
-- add removeTriple(), simplify wildcard subqueries ([443ff8f](https://github.com/thi-ng/umbrella/commit/443ff8f))
-  - add freeID list to reduce store fragmentation
-  - remove obsolete allSelections cache
-  - fix addQueryJoin() xform to also return empty result sets
-- add addQueryJoin(), add type aliases, update tests ([c5f36a2](https://github.com/thi-ng/umbrella/commit/c5f36a2))
+- add query spec types, addQueryFromSpec(), dedupe xforms ([d093a5c](https://github.com/thi-ng/umbrella/commit/d093a5c))
 
 ## [0.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/rstream-query@0.1.0) (2018-04-24)
 
 #### 🚀 Features
 
+- initial import ([ef3903e](https://github.com/thi-ng/umbrella/commit/ef3903e))
+- update index & sub-query caching/reuse ([66ec92f](https://github.com/thi-ng/umbrella/commit/66ec92f))
+- add IToDot impl for graphviz conversion/viz ([a68eca0](https://github.com/thi-ng/umbrella/commit/a68eca0))
 - add param queries w/ variables, update addPatternQuery ([d9b845e](https://github.com/thi-ng/umbrella/commit/d9b845e))
   - add FactGraph.addParamQuery()
   - add FactGraph.has()
   - add qvarResolver()
-- add IToDot impl for graphviz conversion/viz ([a68eca0](https://github.com/thi-ng/umbrella/commit/a68eca0))
-- update index & sub-query caching/reuse ([66ec92f](https://github.com/thi-ng/umbrella/commit/66ec92f))
-- initial import ([ef3903e](https://github.com/thi-ng/umbrella/commit/ef3903e))
 
 #### ♻️ Refactoring
 
+- simplify query handling, optimize addFact() ([a4aa4cb](https://github.com/thi-ng/umbrella/commit/a4aa4cb))
+- simplify addQuery() ([16fabb8](https://github.com/thi-ng/umbrella/commit/16fabb8))
 - rename types, update readme ([b121c47](https://github.com/thi-ng/umbrella/commit/b121c47))
   - rename Fact => Triple, FactIds => TripleIds
   - rename FactGraph => TripleStore
   - add TripleStore.addTriples()
   - update TripleStore ctor
-- simplify addQuery() ([16fabb8](https://github.com/thi-ng/umbrella/commit/16fabb8))
-- simplify query handling, optimize addFact() ([a4aa4cb](https://github.com/thi-ng/umbrella/commit/a4aa4cb))

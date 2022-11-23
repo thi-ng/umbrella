@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-11-01T12:32:51Z
+- **Last updated**: 2022-11-23T22:46:54Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -66,33 +66,21 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
-- add asInt() coercion helper ([49cd772](https://github.com/thi-ng/umbrella/commit/49cd772))
 - add IGrid2D/3D interfaces ([e57ad7e](https://github.com/thi-ng/umbrella/commit/e57ad7e))
+- add asInt() coercion helper ([49cd772](https://github.com/thi-ng/umbrella/commit/49cd772))
 
 ### [8.0.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/api@8.0.1) (2021-10-13)
 
 #### ♻️ Refactoring
 
-- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
 - update imports in all pkgs ([5fa2b6f](https://github.com/thi-ng/umbrella/commit/5fa2b6f))
   - add .js suffix for all relative imports
+- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
 
 # [8.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/api@8.0.0) (2021-10-12)
 
 #### 🛑 Breaking changes
 
-- major pkg restructure ([98e286d](https://github.com/thi-ng/umbrella/commit/98e286d))
-- BREAKING CHANGE: major pkg restructure, migrations
-  - migrate logging related types/classes to new [@thi.ng/logger](https://github.com/thi-ng/umbrella/tree/main/packages/logger) pkg
-    - see [e0399a8f6](https://github.com/thi-ng/umbrella/commit/e0399a8f6) for details
-  - migrate `exposeGlobal()` to new [@thi.ng/expose](https://github.com/thi-ng/umbrella/tree/main/packages/expose) pkg
-    - see [323995fd7](https://github.com/thi-ng/umbrella/commit/323995fd7) for details
-  - lift /api source files to main /src folder for easier import
-  - this pkg now only contains type defs, constants, decorators and mixins
-    all other functionality migrated to other packages...
-- remove obsolete assert() ([5f6ec5c](https://github.com/thi-ng/umbrella/commit/5f6ec5c))
-- BREAKING CHANGE: assert() moved to [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/main/packages/errors) pkg
-  - see [7030a6aec](https://github.com/thi-ng/umbrella/commit/7030a6aec) for details
 - major update of ALL pkgs (export maps, ESM only) ([0d1d6ea](https://github.com/thi-ng/umbrella/commit/0d1d6ea))
 - BREAKING CHANGE: discontinue CommonJS & UMD versions
   - only ESM modules will be published from now on
@@ -105,18 +93,30 @@ and/or version bumps of transitive dependencies.
   - normalize/restructure/reorg all package.json files
   - cleanup all build scripts, remove obsolete
   - switch from mocha to [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament) for all tests
+- remove obsolete assert() ([5f6ec5c](https://github.com/thi-ng/umbrella/commit/5f6ec5c))
+- BREAKING CHANGE: assert() moved to [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/main/packages/errors) pkg
+  - see [7030a6aec](https://github.com/thi-ng/umbrella/commit/7030a6aec) for details
+- major pkg restructure ([98e286d](https://github.com/thi-ng/umbrella/commit/98e286d))
+- BREAKING CHANGE: major pkg restructure, migrations
+  - migrate logging related types/classes to new [@thi.ng/logger](https://github.com/thi-ng/umbrella/tree/main/packages/logger) pkg
+    - see [e0399a8f6](https://github.com/thi-ng/umbrella/commit/e0399a8f6) for details
+  - migrate `exposeGlobal()` to new [@thi.ng/expose](https://github.com/thi-ng/umbrella/tree/main/packages/expose) pkg
+    - see [323995fd7](https://github.com/thi-ng/umbrella/commit/323995fd7) for details
+  - lift /api source files to main /src folder for easier import
+  - this pkg now only contains type defs, constants, decorators and mixins
+    all other functionality migrated to other packages...
 
 #### ♻️ Refactoring
 
-- minor pkg restructure (various) ([47f88d2](https://github.com/thi-ng/umbrella/commit/47f88d2))
+- update all tests in _all_ pkgs ([8b582bc](https://github.com/thi-ng/umbrella/commit/8b582bc))
+  - update all to use [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament)
 - update deps & imports in various pkgs ([e1cf29e](https://github.com/thi-ng/umbrella/commit/e1cf29e))
   - largely related to recent updates/restructuring of these packages:
     - api
     - defmulti
     - errors
     - logger
-- update all tests in _all_ pkgs ([8b582bc](https://github.com/thi-ng/umbrella/commit/8b582bc))
-  - update all to use [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament)
+- minor pkg restructure (various) ([47f88d2](https://github.com/thi-ng/umbrella/commit/47f88d2))
 
 ## [7.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/api@7.2.0) (2021-09-03)
 
@@ -159,9 +159,9 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
-- more finely grained typedarray types ([8316d05](https://github.com/thi-ng/umbrella/commit/8316d05))
-- add typedArrayType() classifier ([5c81fd8](https://github.com/thi-ng/umbrella/commit/5c81fd8))
 - add Range type ([5d94974](https://github.com/thi-ng/umbrella/commit/5d94974))
+- add typedArrayType() classifier ([5c81fd8](https://github.com/thi-ng/umbrella/commit/5c81fd8))
+- more finely grained typedarray types ([8316d05](https://github.com/thi-ng/umbrella/commit/8316d05))
 
 ### [6.13.4](https://github.com/thi-ng/umbrella/tree/@thi.ng/api@6.13.4) (2020-12-07)
 
@@ -173,8 +173,8 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
-- add DeepPartial type ([0d9a0de](https://github.com/thi-ng/umbrella/commit/0d9a0de))
 - add FnU and FnN function types ([4ba48d0](https://github.com/thi-ng/umbrella/commit/4ba48d0))
+- add DeepPartial type ([0d9a0de](https://github.com/thi-ng/umbrella/commit/0d9a0de))
 
 #### 🩹 Bug fixes
 
@@ -210,13 +210,13 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
+- add Path0-8, PathVal1-8, DeepPath types ([0c76108](https://github.com/thi-ng/umbrella/commit/0c76108))
+- update Path alias, add doc strings ([e2b35bc](https://github.com/thi-ng/umbrella/commit/e2b35bc))
+- add Derefed & DerefedKeys types ([95f1576](https://github.com/thi-ng/umbrella/commit/95f1576))
 - add optional props in Keys/Val types ([08b88f0](https://github.com/thi-ng/umbrella/commit/08b88f0))
   - force intermediate props using `Required<T>`
   - update Keys1-8, Val1-8
   - update KeysN / ValN
-- add Derefed & DerefedKeys types ([95f1576](https://github.com/thi-ng/umbrella/commit/95f1576))
-- update Path alias, add doc strings ([e2b35bc](https://github.com/thi-ng/umbrella/commit/e2b35bc))
-- add Path0-8, PathVal1-8, DeepPath types ([0c76108](https://github.com/thi-ng/umbrella/commit/0c76108))
 
 #### ♻️ Refactoring
 
@@ -247,28 +247,28 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- remove obsolete Drop/DropReducer ([5e80c4d](https://github.com/thi-ng/umbrella/commit/5e80c4d))
 - update IToHiccup, add opt args ([ac35685](https://github.com/thi-ng/umbrella/commit/ac35685))
+- remove obsolete Drop/DropReducer ([5e80c4d](https://github.com/thi-ng/umbrella/commit/5e80c4d))
 
 ## [6.7.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/api@6.7.0) (2020-01-24)
 
 #### 🚀 Features
 
-- add IReset interface ([d491bd0](https://github.com/thi-ng/umbrella/commit/d491bd0))
-- add Drop, TupleLength, update Tuple ([dc79324](https://github.com/thi-ng/umbrella/commit/dc79324))
-- added the ReplaceN type ([4da54ae](https://github.com/thi-ng/umbrella/commit/4da54ae))
-- added the WithoutN type ([0d13af5](https://github.com/thi-ng/umbrella/commit/0d13af5))
-- added the Init type ([f6c333a](https://github.com/thi-ng/umbrella/commit/f6c333a))
-- added the Last type ([44ae2f7](https://github.com/thi-ng/umbrella/commit/44ae2f7))
-- added the ValN type ([b48623f](https://github.com/thi-ng/umbrella/commit/b48623f))
-- added the KeysN type ([e0f0e90](https://github.com/thi-ng/umbrella/commit/e0f0e90))
-- added the Reverse type ([88cfaa4](https://github.com/thi-ng/umbrella/commit/88cfaa4))
-- added the Prepend type ([7bfe7a8](https://github.com/thi-ng/umbrella/commit/7bfe7a8))
-- added the Tail type ([fa59ff3](https://github.com/thi-ng/umbrella/commit/fa59ff3))
-- added the Head type ([f000a3d](https://github.com/thi-ng/umbrella/commit/f000a3d))
-- add IClear interface ([38f03ff](https://github.com/thi-ng/umbrella/commit/38f03ff))
-- add more RangeXX types & RangeValueMap ([654ea53](https://github.com/thi-ng/umbrella/commit/654ea53))
 - add exposeGlobal(), update assert(), update readme ([7981cc9](https://github.com/thi-ng/umbrella/commit/7981cc9))
+- add more RangeXX types & RangeValueMap ([654ea53](https://github.com/thi-ng/umbrella/commit/654ea53))
+- add IClear interface ([38f03ff](https://github.com/thi-ng/umbrella/commit/38f03ff))
+- added the Head type ([f000a3d](https://github.com/thi-ng/umbrella/commit/f000a3d))
+- added the Tail type ([fa59ff3](https://github.com/thi-ng/umbrella/commit/fa59ff3))
+- added the Prepend type ([7bfe7a8](https://github.com/thi-ng/umbrella/commit/7bfe7a8))
+- added the Reverse type ([88cfaa4](https://github.com/thi-ng/umbrella/commit/88cfaa4))
+- added the KeysN type ([e0f0e90](https://github.com/thi-ng/umbrella/commit/e0f0e90))
+- added the ValN type ([b48623f](https://github.com/thi-ng/umbrella/commit/b48623f))
+- added the Last type ([44ae2f7](https://github.com/thi-ng/umbrella/commit/44ae2f7))
+- added the Init type ([f6c333a](https://github.com/thi-ng/umbrella/commit/f6c333a))
+- added the WithoutN type ([0d13af5](https://github.com/thi-ng/umbrella/commit/0d13af5))
+- added the ReplaceN type ([4da54ae](https://github.com/thi-ng/umbrella/commit/4da54ae))
+- add Drop, TupleLength, update Tuple ([dc79324](https://github.com/thi-ng/umbrella/commit/dc79324))
+- add IReset interface ([d491bd0](https://github.com/thi-ng/umbrella/commit/d491bd0))
 
 #### 🩹 Bug fixes
 
@@ -278,12 +278,12 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
-- add WithoutX & ReplaceX types, update KeysX/ValX ([7707370](https://github.com/thi-ng/umbrella/commit/7707370))
-  - add versions up to arity 8
-- add ISeq, ISeqable ([541e9c8](https://github.com/thi-ng/umbrella/commit/541e9c8))
 - add Uint/Int/FloatType & helpers ([1d3c824](https://github.com/thi-ng/umbrella/commit/1d3c824))
   - add grouped Type aliases
   - add uintType() / intType() helpers
+- add ISeq, ISeqable ([541e9c8](https://github.com/thi-ng/umbrella/commit/541e9c8))
+- add WithoutX & ReplaceX types, update KeysX/ValX ([7707370](https://github.com/thi-ng/umbrella/commit/7707370))
+  - add versions up to arity 8
 
 #### ♻️ Refactoring
 
@@ -293,16 +293,16 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
-- add typedArray() factory, update type mappers, docs ([ac7fa13](https://github.com/thi-ng/umbrella/commit/ac7fa13))
-- add RangeXX types ([fc9cf21](https://github.com/thi-ng/umbrella/commit/fc9cf21))
 - add types, split api.ts into separate files ([b72e664](https://github.com/thi-ng/umbrella/commit/b72e664))
   - add GLType enum & GL2TYPE / TYPE2GL conversions
   - add TypedArrayContstructor, TYPEDARRAY_CTORS LUT
+- add RangeXX types ([fc9cf21](https://github.com/thi-ng/umbrella/commit/fc9cf21))
+- add typedArray() factory, update type mappers, docs ([ac7fa13](https://github.com/thi-ng/umbrella/commit/ac7fa13))
 
 #### ♻️ Refactoring
 
-- fix [#168](https://github.com/thi-ng/umbrella/issues/168), refactor Range types ([39bf8f1](https://github.com/thi-ng/umbrella/commit/39bf8f1))
 - update INotifyMixin to clean up listeners ([ed2be64](https://github.com/thi-ng/umbrella/commit/ed2be64))
+- fix [#168](https://github.com/thi-ng/umbrella/issues/168), refactor Range types ([39bf8f1](https://github.com/thi-ng/umbrella/commit/39bf8f1))
 
 ## [6.4.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/api@6.4.0) (2019-09-21)
 
@@ -320,18 +320,18 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
-- add Select2/3/4 conditional types ([a4bfb88](https://github.com/thi-ng/umbrella/commit/a4bfb88))
-- update assert() message arg types ([6137b48](https://github.com/thi-ng/umbrella/commit/6137b48))
-  - add support for supplying message as no-arg fn to delay
-    execution of template string literals
 - enable TS strict compiler flags (refactor) ([0430d01](https://github.com/thi-ng/umbrella/commit/0430d01))
   - add missing return types for IEnable, IGet, IGetIn
   - update mixins, add private interfaces
+- update assert() message arg types ([6137b48](https://github.com/thi-ng/umbrella/commit/6137b48))
+  - add support for supplying message as no-arg fn to delay
+    execution of template string literals
+- add Select2/3/4 conditional types ([a4bfb88](https://github.com/thi-ng/umbrella/commit/a4bfb88))
 
 #### ♻️ Refactoring
 
-- update IStack return types (TS strictNullChecks flag) ([daf1f4c](https://github.com/thi-ng/umbrella/commit/daf1f4c))
 - update IEnable mixin (strictNullChecks) ([525ad0d](https://github.com/thi-ng/umbrella/commit/525ad0d))
+- update IStack return types (TS strictNullChecks flag) ([daf1f4c](https://github.com/thi-ng/umbrella/commit/daf1f4c))
 
 ## [6.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/api@6.2.0) (2019-05-22)
 
@@ -349,10 +349,10 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
-- update ILogger, freeze NULL_LOGGER ([27ff8de](https://github.com/thi-ng/umbrella/commit/27ff8de))
 - add common logging types & default impls ([4578604](https://github.com/thi-ng/umbrella/commit/4578604))
   - add ILogger interface, LogLevel enum
   - add NULL_LOGGER & ConsoleLogger
+- update ILogger, freeze NULL_LOGGER ([27ff8de](https://github.com/thi-ng/umbrella/commit/27ff8de))
 
 # [6.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/api@6.0.0) (2019-03-28)
 
@@ -375,8 +375,8 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
-- add more Fn type aliases, update existing ([3707e61](https://github.com/thi-ng/umbrella/commit/3707e61))
 - add additional Fn arities ([33c7dfe](https://github.com/thi-ng/umbrella/commit/33c7dfe))
+- add more Fn type aliases, update existing ([3707e61](https://github.com/thi-ng/umbrella/commit/3707e61))
 
 #### ♻️ Refactoring
 
@@ -405,9 +405,9 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
-- add NumericArray and TypedArray types ([519394b](https://github.com/thi-ng/umbrella/commit/519394b))
 - add new/move type aliases into api.ts ([cf30ba2](https://github.com/thi-ng/umbrella/commit/cf30ba2))
   - Fn, FnAny, Pair, SEMAPHORE
+- add NumericArray and TypedArray types ([519394b](https://github.com/thi-ng/umbrella/commit/519394b))
 
 ### [4.0.6](https://github.com/thi-ng/umbrella/tree/@thi.ng/api@4.0.6) (2018-08-01)
 

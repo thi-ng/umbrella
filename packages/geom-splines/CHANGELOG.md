@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-10-28T19:08:39Z
+- **Last updated**: 2022-11-23T22:46:54Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -56,9 +56,9 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
 - update imports in all pkgs ([5fa2b6f](https://github.com/thi-ng/umbrella/commit/5fa2b6f))
   - add .js suffix for all relative imports
+- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
 
 # [2.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom-splines@2.0.0) (2021-10-12)
 
@@ -79,10 +79,10 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- update imports ([a541240](https://github.com/thi-ng/umbrella/commit/a541240))
-- update all test stubs ([f2d6d53](https://github.com/thi-ng/umbrella/commit/f2d6d53))
 - update all tests in _all_ pkgs ([8b582bc](https://github.com/thi-ng/umbrella/commit/8b582bc))
   - update all to use [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament)
+- update all test stubs ([f2d6d53](https://github.com/thi-ng/umbrella/commit/f2d6d53))
+- update imports ([a541240](https://github.com/thi-ng/umbrella/commit/a541240))
 
 ### [0.5.37](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom-splines@0.5.37) (2020-12-07)
 
@@ -100,9 +100,9 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
-- add openCubicFromBreakPoints(), refactor, [#208](https://github.com/thi-ng/umbrella/issues/208) ([1882262](https://github.com/thi-ng/umbrella/commit/1882262))
-- add sampleCubicArray(), sampleQuadraticArray(), [#208](https://github.com/thi-ng/umbrella/issues/208) ([bfc09db](https://github.com/thi-ng/umbrella/commit/bfc09db))
 - add openCubicFromControlPoints(), [#208](https://github.com/thi-ng/umbrella/issues/208) ([1a95d94](https://github.com/thi-ng/umbrella/commit/1a95d94))
+- add sampleCubicArray(), sampleQuadraticArray(), [#208](https://github.com/thi-ng/umbrella/issues/208) ([bfc09db](https://github.com/thi-ng/umbrella/commit/bfc09db))
+- add openCubicFromBreakPoints(), refactor, [#208](https://github.com/thi-ng/umbrella/issues/208) ([1882262](https://github.com/thi-ng/umbrella/commit/1882262))
 
 #### ♻️ Refactoring
 
@@ -116,9 +116,9 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- split up closedCubicFromControlPoints() ([17ac114](https://github.com/thi-ng/umbrella/commit/17ac114))
 - update cubicBounds() & sampleCubic/Quadratic() ([c3f0973](https://github.com/thi-ng/umbrella/commit/c3f0973))
   - extract private __sample() HOF & re-use
+- split up closedCubicFromControlPoints() ([17ac114](https://github.com/thi-ng/umbrella/commit/17ac114))
 
 ### [0.3.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom-splines@0.3.1) (2019-07-31)
 
@@ -134,8 +134,8 @@ and/or version bumps of transitive dependencies.
 
 #### 🩹 Bug fixes
 
-- add full circle check for cubicFromArc() ([3e386f7](https://github.com/thi-ng/umbrella/commit/3e386f7))
 - fix [#100](https://github.com/thi-ng/umbrella/issues/100), replace cubicBounds impl ([6c64b88](https://github.com/thi-ng/umbrella/commit/6c64b88))
+- add full circle check for cubicFromArc() ([3e386f7](https://github.com/thi-ng/umbrella/commit/3e386f7))
 
 ## [0.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom-splines@0.2.0) (2019-07-07)
 

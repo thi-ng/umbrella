@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-10-28T19:08:39Z
+- **Last updated**: 2022-11-23T22:46:54Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -53,10 +53,10 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- update imports ([869a773](https://github.com/thi-ng/umbrella/commit/869a773))
-- update all test stubs ([f2d6d53](https://github.com/thi-ng/umbrella/commit/f2d6d53))
 - update all tests in _all_ pkgs ([8b582bc](https://github.com/thi-ng/umbrella/commit/8b582bc))
   - update all to use [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament)
+- update all test stubs ([f2d6d53](https://github.com/thi-ng/umbrella/commit/f2d6d53))
+- update imports ([869a773](https://github.com/thi-ng/umbrella/commit/869a773))
 
 ### [1.0.38](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom-clip-poly@1.0.38) (2020-12-07)
 
@@ -73,6 +73,6 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
-- extract sutherland-hodgeman as own pkg (formerly [@thi.ng/geom-clip](https://github.com/thi-ng/umbrella/tree/main/packages/geom-clip)) ([782193f](https://github.com/thi-ng/umbrella/commit/782193f))
 - extract as own pkg (from [@thi.ng/geom-clip](https://github.com/thi-ng/umbrella/tree/main/packages/geom-clip)) ([34e3262](https://github.com/thi-ng/umbrella/commit/34e3262))
   - add liangBarsky2Raw
+- extract sutherland-hodgeman as own pkg (formerly [@thi.ng/geom-clip](https://github.com/thi-ng/umbrella/tree/main/packages/geom-clip)) ([782193f](https://github.com/thi-ng/umbrella/commit/782193f))

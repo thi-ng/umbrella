@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-10-28T19:08:39Z
+- **Last updated**: 2022-11-23T22:46:54Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -53,10 +53,10 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- update imports (transducers) ([441d708](https://github.com/thi-ng/umbrella/commit/441d708))
-- update imports ([659d32a](https://github.com/thi-ng/umbrella/commit/659d32a))
 - update all tests in _all_ pkgs ([8b582bc](https://github.com/thi-ng/umbrella/commit/8b582bc))
   - update all to use [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament)
+- update imports ([659d32a](https://github.com/thi-ng/umbrella/commit/659d32a))
+- update imports (transducers) ([441d708](https://github.com/thi-ng/umbrella/commit/441d708))
 
 ### [1.3.2](https://github.com/thi-ng/umbrella/tree/@thi.ng/dgraph@1.3.2) (2020-12-07)
 

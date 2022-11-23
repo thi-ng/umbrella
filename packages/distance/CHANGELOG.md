@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-10-28T19:08:39Z
+- **Last updated**: 2022-11-23T22:46:54Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -32,9 +32,9 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
 - update imports in all pkgs ([5fa2b6f](https://github.com/thi-ng/umbrella/commit/5fa2b6f))
   - add .js suffix for all relative imports
+- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
 
 # [2.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/distance@2.0.0) (2021-10-12)
 
@@ -62,24 +62,24 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
+- update all tests in _all_ pkgs ([8b582bc](https://github.com/thi-ng/umbrella/commit/8b582bc))
+  - update all to use [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament)
+- update imports ([df599da](https://github.com/thi-ng/umbrella/commit/df599da))
 - update deps & imports in various pkgs ([e1cf29e](https://github.com/thi-ng/umbrella/commit/e1cf29e))
   - largely related to recent updates/restructuring of these packages:
     - api
     - defmulti
     - errors
     - logger
-- update imports ([df599da](https://github.com/thi-ng/umbrella/commit/df599da))
-- update all tests in _all_ pkgs ([8b582bc](https://github.com/thi-ng/umbrella/commit/8b582bc))
-  - update all to use [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament)
 
 ## [0.3.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/distance@0.3.0) (2021-04-19)
 
 #### 🚀 Features
 
+- add argmin*() fns ([72ed376](https://github.com/thi-ng/umbrella/commit/72ed376))
 - replace HAVERSINE w/ alts ([3a9a77a](https://github.com/thi-ng/umbrella/commit/3a9a77a))
   - add HAVERSINE_LATLON,  HAVERSINE_LONLAT
   - update readme
-- add argmin*() fns ([72ed376](https://github.com/thi-ng/umbrella/commit/72ed376))
 
 ## [0.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/distance@0.2.0) (2021-03-30)
 
@@ -104,12 +104,12 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
-- add Manhattan metric, rename types, add docs ([4f0b199](https://github.com/thi-ng/umbrella/commit/4f0b199))
-- clamp search radius, minor other changes ([4a09a0f](https://github.com/thi-ng/umbrella/commit/4a09a0f))
+- add new package ([1b41aa4](https://github.com/thi-ng/umbrella/commit/1b41aa4))
 - update INeighborhood, KNearest ([be3e43d](https://github.com/thi-ng/umbrella/commit/be3e43d))
   - expose `dist` impl in INeighborhood
   - disable sort-by-default in KNearest
   - fix Knearest.reset dist metric
   - add docs
   - update tests
-- add new package ([1b41aa4](https://github.com/thi-ng/umbrella/commit/1b41aa4))
+- clamp search radius, minor other changes ([4a09a0f](https://github.com/thi-ng/umbrella/commit/4a09a0f))
+- add Manhattan metric, rename types, add docs ([4f0b199](https://github.com/thi-ng/umbrella/commit/4f0b199))

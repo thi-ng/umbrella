@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-10-28T19:08:39Z
+- **Last updated**: 2022-11-23T22:46:54Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -53,16 +53,16 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
+- update all tests in _all_ pkgs ([8b582bc](https://github.com/thi-ng/umbrella/commit/8b582bc))
+  - update all to use [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament)
+- update all test stubs ([f2d6d53](https://github.com/thi-ng/umbrella/commit/f2d6d53))
+- update imports ([138571a](https://github.com/thi-ng/umbrella/commit/138571a))
 - update deps & imports in various pkgs ([e1cf29e](https://github.com/thi-ng/umbrella/commit/e1cf29e))
   - largely related to recent updates/restructuring of these packages:
     - api
     - defmulti
     - errors
     - logger
-- update imports ([138571a](https://github.com/thi-ng/umbrella/commit/138571a))
-- update all test stubs ([f2d6d53](https://github.com/thi-ng/umbrella/commit/f2d6d53))
-- update all tests in _all_ pkgs ([8b582bc](https://github.com/thi-ng/umbrella/commit/8b582bc))
-  - update all to use [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament)
 
 ### [3.0.24](https://github.com/thi-ng/umbrella/tree/@thi.ng/hdom-canvas@3.0.24) (2020-12-22)
 
@@ -114,12 +114,12 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- update resolveColor to use resolveAsCSS ([22ab80e](https://github.com/thi-ng/umbrella/commit/22ab80e))
-- improve re-use in points(), polygon/polyline() ([b1cb63b](https://github.com/thi-ng/umbrella/commit/b1cb63b))
-- update draw state handling ([d5c0738](https://github.com/thi-ng/umbrella/commit/d5c0738))
 - split into sep files, expose direct draw fns ([4f0a220](https://github.com/thi-ng/umbrella/commit/4f0a220))
   - all fns in /draw can be used w/o hdom trees (direct canvas shape drawing)
   - make implicit deps explicit
+- update draw state handling ([d5c0738](https://github.com/thi-ng/umbrella/commit/d5c0738))
+- improve re-use in points(), polygon/polyline() ([b1cb63b](https://github.com/thi-ng/umbrella/commit/b1cb63b))
+- update resolveColor to use resolveAsCSS ([22ab80e](https://github.com/thi-ng/umbrella/commit/22ab80e))
 
 ### [2.2.2](https://github.com/thi-ng/umbrella/tree/@thi.ng/hdom-canvas@2.2.2) (2019-08-16)
 
@@ -215,51 +215,15 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
+- add _serialize control attrib to root group ([53a1d2c](https://github.com/thi-ng/umbrella/commit/53a1d2c))
 - switch canvas back to lifecycle object form ([09a821b](https://github.com/thi-ng/umbrella/commit/09a821b))
   - this allows users to augment the component with `init` & `release`
     lifecycle methods if needed...
-- add _serialize control attrib to root group ([53a1d2c](https://github.com/thi-ng/umbrella/commit/53a1d2c))
 
 ### [0.1.0-alpha](https://github.com/thi-ng/umbrella/tree/@thi.ng/hdom-canvas@0.1.0-alpha) (2018-09-16)
 
 #### 🚀 Features
 
-- update canvas component & diffTree impl, update docs ([74547aa](https://github.com/thi-ng/umbrella/commit/74547aa))
-- add HDPI auto-adjustment, update docs ([5de0255](https://github.com/thi-ng/umbrella/commit/5de0255))
-  - replace canvas fn with component object w/ life cycle methods
-  - if HDPI, inject CSS width/height props and pre-scale drawing ctx
-- add warning msg for hydrateTree() impl ([adaaa7a](https://github.com/thi-ng/umbrella/commit/adaaa7a))
-- add `.toHiccup()` interface support ([8ecdd13](https://github.com/thi-ng/umbrella/commit/8ecdd13))
-  - add `.toHiccup()` type check in `normalizeTree()` and call w/
-    user context
-- update points() to use circle or rect shapes ([d412269](https://github.com/thi-ng/umbrella/commit/d412269))
-- add `defs` node/group type ([de61c21](https://github.com/thi-ng/umbrella/commit/de61c21))
-  - in preparation for easier conversion to SVG-hiccup
-- add new shape types, add canvas attribs, refactor ([6496e47](https://github.com/thi-ng/umbrella/commit/6496e47))
-  - add `points` shapetype for optimized point drawing (rects)
-  - add arc segment support for `path`
-  - refactor rounded rects to use arc segments
-  - add `clear` boolean attrib to (optionally) disable canvas clearing
-  - extract walk() from drawTree()
-- fix [#43](https://github.com/thi-ng/umbrella/issues/43), add gradient support ([81fe154](https://github.com/thi-ng/umbrella/commit/81fe154))
-  - add "linearGradient"/"radialGradient" shape types
-  - add defLinearGradient() & defRadialGradient()
-  - update mergeState(), restoreState() & setAttrib()
-- add rounded rect option (as path) ([764373a](https://github.com/thi-ng/umbrella/commit/764373a))
-  - create path if opt radius arg is given for `["rect"...]`
-- add canvas-specific normalizeTree() impl ([1d24a16](https://github.com/thi-ng/umbrella/commit/1d24a16))
-  - update canvas component hdom control attribs
-  - update createTree() (remove fn & iterator checks,
-    moved to normalizeTree())
-  - minor refactoring
-- add path shape type, embedded fn & iterator handling ([82cd938](https://github.com/thi-ng/umbrella/commit/82cd938))
-- implement drawing state inheritance & restoration ([ccbf53c](https://github.com/thi-ng/umbrella/commit/ccbf53c))
-  - add mergeState() & restoreState() to apply & undo only edited attribs
-  - add CTX_ATTRIBS alias mappings & DEFAULTS
-  - rename beginShape() => applyTransform()
-  - rename createTree() => drawTree()
-  - remove export flags from shape fns
-  - add [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/main/packages/api) dep
 - add more shapes/prims, update transform handling ([d3acb70](https://github.com/thi-ng/umbrella/commit/d3acb70))
   - add `line`, `hline`, `vline`, `arc` & `img` prims
   - update beginShape() to support `translate`, `rotate`, `scale` attribs
@@ -267,6 +231,42 @@ and/or version bumps of transitive dependencies.
   - update endShape()
   - optimize repeated property lookups
   - add [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/main/packages/checks) dep
+- implement drawing state inheritance & restoration ([ccbf53c](https://github.com/thi-ng/umbrella/commit/ccbf53c))
+  - add mergeState() & restoreState() to apply & undo only edited attribs
+  - add CTX_ATTRIBS alias mappings & DEFAULTS
+  - rename beginShape() => applyTransform()
+  - rename createTree() => drawTree()
+  - remove export flags from shape fns
+  - add [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/main/packages/api) dep
+- add path shape type, embedded fn & iterator handling ([82cd938](https://github.com/thi-ng/umbrella/commit/82cd938))
+- add canvas-specific normalizeTree() impl ([1d24a16](https://github.com/thi-ng/umbrella/commit/1d24a16))
+  - update canvas component hdom control attribs
+  - update createTree() (remove fn & iterator checks,
+    moved to normalizeTree())
+  - minor refactoring
+- add rounded rect option (as path) ([764373a](https://github.com/thi-ng/umbrella/commit/764373a))
+  - create path if opt radius arg is given for `["rect"...]`
+- fix [#43](https://github.com/thi-ng/umbrella/issues/43), add gradient support ([81fe154](https://github.com/thi-ng/umbrella/commit/81fe154))
+  - add "linearGradient"/"radialGradient" shape types
+  - add defLinearGradient() & defRadialGradient()
+  - update mergeState(), restoreState() & setAttrib()
+- add new shape types, add canvas attribs, refactor ([6496e47](https://github.com/thi-ng/umbrella/commit/6496e47))
+  - add `points` shapetype for optimized point drawing (rects)
+  - add arc segment support for `path`
+  - refactor rounded rects to use arc segments
+  - add `clear` boolean attrib to (optionally) disable canvas clearing
+  - extract walk() from drawTree()
+- add `defs` node/group type ([de61c21](https://github.com/thi-ng/umbrella/commit/de61c21))
+  - in preparation for easier conversion to SVG-hiccup
+- update points() to use circle or rect shapes ([d412269](https://github.com/thi-ng/umbrella/commit/d412269))
+- add `.toHiccup()` interface support ([8ecdd13](https://github.com/thi-ng/umbrella/commit/8ecdd13))
+  - add `.toHiccup()` type check in `normalizeTree()` and call w/
+    user context
+- add warning msg for hydrateTree() impl ([adaaa7a](https://github.com/thi-ng/umbrella/commit/adaaa7a))
+- add HDPI auto-adjustment, update docs ([5de0255](https://github.com/thi-ng/umbrella/commit/5de0255))
+  - replace canvas fn with component object w/ life cycle methods
+  - if HDPI, inject CSS width/height props and pre-scale drawing ctx
+- update canvas component & diffTree impl, update docs ([74547aa](https://github.com/thi-ng/umbrella/commit/74547aa))
 
 #### 🩹 Bug fixes
 
@@ -282,7 +282,7 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- swap `img` args to be more consistent w/ others ([c20b24a](https://github.com/thi-ng/umbrella/commit/c20b24a))
-- update attrib aliases ([5aa9d46](https://github.com/thi-ng/umbrella/commit/5aa9d46))
-- update to reflect hdom api changes ([81a39ba](https://github.com/thi-ng/umbrella/commit/81a39ba))
 - update canvas component, add docs ([1cfad51](https://github.com/thi-ng/umbrella/commit/1cfad51))
+- update to reflect hdom api changes ([81a39ba](https://github.com/thi-ng/umbrella/commit/81a39ba))
+- update attrib aliases ([5aa9d46](https://github.com/thi-ng/umbrella/commit/5aa9d46))
+- swap `img` args to be more consistent w/ others ([c20b24a](https://github.com/thi-ng/umbrella/commit/c20b24a))

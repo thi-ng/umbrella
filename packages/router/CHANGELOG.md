@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-10-28T19:08:39Z
+- **Last updated**: 2022-11-23T22:46:54Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -13,14 +13,14 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
-- update format(), hash/prefix handling ([724b3ad](https://github.com/thi-ng/umbrella/commit/724b3ad))
-  - update HTMLRouter default prefix to "#/" if `useFragment` is true
-  - remove obsolete `HTMLRouter.format()` (now the same as BasicRouter)
-  - update BasicRouter.format() to throw error for missing route param value
 - add trailing slash option, optimize routeForID() ([c003dc2](https://github.com/thi-ng/umbrella/commit/c003dc2))
   - update BasicRouter default config init
   - pre-build `routeIndex` in ctor
   - optimize `routeForID()` to use new `routeIndex`
+- update format(), hash/prefix handling ([724b3ad](https://github.com/thi-ng/umbrella/commit/724b3ad))
+  - update HTMLRouter default prefix to "#/" if `useFragment` is true
+  - remove obsolete `HTMLRouter.format()` (now the same as BasicRouter)
+  - update BasicRouter.format() to throw error for missing route param value
 
 ### [3.1.5](https://github.com/thi-ng/umbrella/tree/@thi.ng/router@3.1.5) (2022-04-07)
 
@@ -51,9 +51,9 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
 - update imports in all pkgs ([5fa2b6f](https://github.com/thi-ng/umbrella/commit/5fa2b6f))
   - add .js suffix for all relative imports
+- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
 
 # [3.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/router@3.0.0) (2021-10-12)
 
@@ -74,15 +74,15 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
+- update all tests in _all_ pkgs ([8b582bc](https://github.com/thi-ng/umbrella/commit/8b582bc))
+  - update all to use [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament)
+- update imports ([138571a](https://github.com/thi-ng/umbrella/commit/138571a))
 - update deps & imports in various pkgs ([e1cf29e](https://github.com/thi-ng/umbrella/commit/e1cf29e))
   - largely related to recent updates/restructuring of these packages:
     - api
     - defmulti
     - errors
     - logger
-- update imports ([138571a](https://github.com/thi-ng/umbrella/commit/138571a))
-- update all tests in _all_ pkgs ([8b582bc](https://github.com/thi-ng/umbrella/commit/8b582bc))
-  - update all to use [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament)
 
 ### [2.0.54](https://github.com/thi-ng/umbrella/tree/@thi.ng/router@2.0.54) (2021-09-03)
 
@@ -167,9 +167,9 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- update error handling ([adc559a](https://github.com/thi-ng/umbrella/commit/adc559a))
 - update INotify dummy impl ([b328780](https://github.com/thi-ng/umbrella/commit/b328780))
   - reflecting INotify updates in [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/main/packages/api)
+- update error handling ([adc559a](https://github.com/thi-ng/umbrella/commit/adc559a))
 
 ## [0.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/router@0.1.0) (2018-03-11)
 

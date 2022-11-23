@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-10-28T19:08:39Z
+- **Last updated**: 2022-11-23T22:46:54Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -38,9 +38,9 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
 - update imports in all pkgs ([5fa2b6f](https://github.com/thi-ng/umbrella/commit/5fa2b6f))
   - add .js suffix for all relative imports
+- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
 
 # [2.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/oquery@2.0.0) (2021-10-12)
 
@@ -61,10 +61,10 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- update defmulti impls ([8d3d49f](https://github.com/thi-ng/umbrella/commit/8d3d49f))
-- update imports ([138571a](https://github.com/thi-ng/umbrella/commit/138571a))
 - update all tests in _all_ pkgs ([8b582bc](https://github.com/thi-ng/umbrella/commit/8b582bc))
   - update all to use [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament)
+- update imports ([138571a](https://github.com/thi-ng/umbrella/commit/138571a))
+- update defmulti impls ([8d3d49f](https://github.com/thi-ng/umbrella/commit/8d3d49f))
 
 ## [0.3.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/oquery@0.3.0) (2021-03-22)
 
@@ -83,11 +83,6 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
-- add defKeyQuery(), refactor/fix types ([4c5ba42](https://github.com/thi-ng/umbrella/commit/4c5ba42))
-  - add conditional types to fix return type inference (QueryFn/KeyQueryFn)
-  - add defKeyQuery()
-  - extract arrayQuery()/objQuery()
-  - optimize arrayQuery() by pre-selecting query impl
 - add array support, add QueryOpts ([8498db0](https://github.com/thi-ng/umbrella/commit/8498db0))
   - add QueryFn interface to define overrides for fn
     returned by defQuery()
@@ -96,6 +91,11 @@ and/or version bumps of transitive dependencies.
   - add `full` and `inspect` QueryOpts to control result format and
     array value matching behavior
   - add/update tests
+- add defKeyQuery(), refactor/fix types ([4c5ba42](https://github.com/thi-ng/umbrella/commit/4c5ba42))
+  - add conditional types to fix return type inference (QueryFn/KeyQueryFn)
+  - add defKeyQuery()
+  - extract arrayQuery()/objQuery()
+  - optimize arrayQuery() by pre-selecting query impl
 
 #### ♻️ Refactoring
 
@@ -108,8 +108,8 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- further sub-query extraction/re-use ([4fb9b4b](https://github.com/thi-ng/umbrella/commit/4fb9b4b))
 - dedupe, simplify sub-query fns ([498e4e5](https://github.com/thi-ng/umbrella/commit/498e4e5))
+- further sub-query extraction/re-use ([4fb9b4b](https://github.com/thi-ng/umbrella/commit/4fb9b4b))
 
 ## [0.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/oquery@0.1.0) (2020-07-04)
 

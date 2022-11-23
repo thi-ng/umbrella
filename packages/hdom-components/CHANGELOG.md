@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-10-28T19:08:39Z
+- **Last updated**: 2022-11-23T22:46:54Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -32,9 +32,9 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
 - update imports in all pkgs ([5fa2b6f](https://github.com/thi-ng/umbrella/commit/5fa2b6f))
   - add .js suffix for all relative imports
+- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
 
 # [5.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/hdom-components@5.0.0) (2021-10-12)
 
@@ -55,12 +55,12 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- dedupe toggle() internals ([4b09d0e](https://github.com/thi-ng/umbrella/commit/4b09d0e))
-- update imports (transducers) ([4707563](https://github.com/thi-ng/umbrella/commit/4707563))
-- update imports ([138571a](https://github.com/thi-ng/umbrella/commit/138571a))
-- update all test stubs ([f2d6d53](https://github.com/thi-ng/umbrella/commit/f2d6d53))
 - update all tests in _all_ pkgs ([8b582bc](https://github.com/thi-ng/umbrella/commit/8b582bc))
   - update all to use [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament)
+- update all test stubs ([f2d6d53](https://github.com/thi-ng/umbrella/commit/f2d6d53))
+- update imports ([138571a](https://github.com/thi-ng/umbrella/commit/138571a))
+- update imports (transducers) ([4707563](https://github.com/thi-ng/umbrella/commit/4707563))
+- dedupe toggle() internals ([4b09d0e](https://github.com/thi-ng/umbrella/commit/4b09d0e))
 
 ### [4.0.17](https://github.com/thi-ng/umbrella/tree/@thi.ng/hdom-components@4.0.17) (2020-12-07)
 
@@ -182,33 +182,36 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- update deps & imports in all packages due to [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/main/packages/api) split ([bc45636](https://github.com/thi-ng/umbrella/commit/bc45636))
 - add ButtonGroup type alias ([b4476cb](https://github.com/thi-ng/umbrella/commit/b4476cb))
+- update deps & imports in all packages due to [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/main/packages/api) split ([bc45636](https://github.com/thi-ng/umbrella/commit/bc45636))
 
 ## [2.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/hdom-components@2.1.0) (2018-05-09)
 
 #### 🚀 Features
 
-- add buttonGroup ([c0950d6](https://github.com/thi-ng/umbrella/commit/c0950d6))
-- add notification component ([a11803c](https://github.com/thi-ng/umbrella/commit/a11803c))
-- add button component ([cef3c6a](https://github.com/thi-ng/umbrella/commit/cef3c6a))
-- add title component ([f9a2daf](https://github.com/thi-ng/umbrella/commit/f9a2daf))
 - add pager component, add [@thi.ng/iterators](https://github.com/thi-ng/umbrella/tree/main/packages/iterators) dep ([efb288d](https://github.com/thi-ng/umbrella/commit/efb288d))
+- add title component ([f9a2daf](https://github.com/thi-ng/umbrella/commit/f9a2daf))
+- add button component ([cef3c6a](https://github.com/thi-ng/umbrella/commit/cef3c6a))
+- add notification component ([a11803c](https://github.com/thi-ng/umbrella/commit/a11803c))
+- add buttonGroup ([c0950d6](https://github.com/thi-ng/umbrella/commit/c0950d6))
 
 #### ♻️ Refactoring
 
-- remove CanvasOpts, update re-exports ([cefb199](https://github.com/thi-ng/umbrella/commit/cefb199))
-- update notification & appLink comps ([4f8e7ba](https://github.com/thi-ng/umbrella/commit/4f8e7ba))
-- update button args ([ec41eb9](https://github.com/thi-ng/umbrella/commit/ec41eb9))
 - make pager more customizable ([334a4d2](https://github.com/thi-ng/umbrella/commit/334a4d2))
+- update button args ([ec41eb9](https://github.com/thi-ng/umbrella/commit/ec41eb9))
+- update notification & appLink comps ([4f8e7ba](https://github.com/thi-ng/umbrella/commit/4f8e7ba))
+- remove CanvasOpts, update re-exports ([cefb199](https://github.com/thi-ng/umbrella/commit/cefb199))
 
 # [2.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/hdom-components@2.0.0) (2018-04-08)
 
 #### 🛑 Breaking changes
 
-- update dropdown components ([0873832](https://github.com/thi-ng/umbrella/commit/0873832))
-- BREAKING CHANGE: add hdom context arg as first arg to `dropdown` and
-  `groupedDropdown`
+- remove svg, update canvas (hdom context support) ([86d1f0d](https://github.com/thi-ng/umbrella/commit/86d1f0d))
+  - remove entire svg.ts
+  - remove [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/main/packages/hiccup) dependency
+  - update readme
+- BREAKING CHANGE: SVG functionality has been moved to new
+  [@thi.ng/hiccup-svg](https://github.com/thi-ng/umbrella/tree/main/packages/hiccup-svg) package. Canvas component user fns have new args
 - update canvas handlers, add webgl2 version ([7c88a3f](https://github.com/thi-ng/umbrella/commit/7c88a3f))
   - add CanvasHandlers interface
   - update canvas component to pass component args to handlers
@@ -218,15 +221,19 @@ and/or version bumps of transitive dependencies.
   - add/update docs
 - BREAKING CHANGE: canvas user handlers passed as object and taking
   different / more args
-- remove svg, update canvas (hdom context support) ([86d1f0d](https://github.com/thi-ng/umbrella/commit/86d1f0d))
-  - remove entire svg.ts
-  - remove [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/main/packages/hiccup) dependency
-  - update readme
-- BREAKING CHANGE: SVG functionality has been moved to new
-  [@thi.ng/hiccup-svg](https://github.com/thi-ng/umbrella/tree/main/packages/hiccup-svg) package. Canvas component user fns have new args
+- update dropdown components ([0873832](https://github.com/thi-ng/umbrella/commit/0873832))
+- BREAKING CHANGE: add hdom context arg as first arg to `dropdown` and
+  `groupedDropdown`
 
 ## [1.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/hdom-components@1.1.0) (2018-03-29)
 
 #### 🚀 Features
 
 - add svg line() ([6cbacec](https://github.com/thi-ng/umbrella/commit/6cbacec))
+
+# [1.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/hdom-components@1.0.0) (2018-03-03)
+
+#### 🛑 Breaking changes
+
+- rename package hiccup-dom-component => hdom-components ([752a78b](https://github.com/thi-ng/umbrella/commit/752a78b))
+- BREAKING CHANGE: rename package hiccup-dom-component => hdom-components

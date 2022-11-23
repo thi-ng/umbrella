@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-10-28T19:08:39Z
+- **Last updated**: 2022-11-23T22:46:54Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -64,8 +64,8 @@ and/or version bumps of transitive dependencies.
 
 #### 🩹 Bug fixes
 
-- FieldType typo ([02beff9](https://github.com/thi-ng/umbrella/commit/02beff9))
 - allow undefined/null args ([9636495](https://github.com/thi-ng/umbrella/commit/9636495))
+- FieldType typo ([02beff9](https://github.com/thi-ng/umbrella/commit/02beff9))
 
 # [1.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/unionstruct@1.0.0) (2019-01-21)
 

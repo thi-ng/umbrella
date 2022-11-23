@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-10-28T19:08:39Z
+- **Last updated**: 2022-11-23T22:46:54Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -32,9 +32,9 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
 - update imports in all pkgs ([5fa2b6f](https://github.com/thi-ng/umbrella/commit/5fa2b6f))
   - add .js suffix for all relative imports
+- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
 
 # [2.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/hiccup-markdown@2.0.0) (2021-10-12)
 
@@ -55,18 +55,18 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- update defmulti impls ([0188d23](https://github.com/thi-ng/umbrella/commit/0188d23))
+- update all tests in _all_ pkgs ([8b582bc](https://github.com/thi-ng/umbrella/commit/8b582bc))
+  - update all to use [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament)
+- update imports ([138571a](https://github.com/thi-ng/umbrella/commit/138571a))
+- update imports (text-canvas) ([fe5c91e](https://github.com/thi-ng/umbrella/commit/fe5c91e))
+- update imports (transducers) ([3ddf8f3](https://github.com/thi-ng/umbrella/commit/3ddf8f3))
 - update deps & imports in various pkgs ([e1cf29e](https://github.com/thi-ng/umbrella/commit/e1cf29e))
   - largely related to recent updates/restructuring of these packages:
     - api
     - defmulti
     - errors
     - logger
-- update imports (transducers) ([3ddf8f3](https://github.com/thi-ng/umbrella/commit/3ddf8f3))
-- update imports (text-canvas) ([fe5c91e](https://github.com/thi-ng/umbrella/commit/fe5c91e))
-- update imports ([138571a](https://github.com/thi-ng/umbrella/commit/138571a))
-- update all tests in _all_ pkgs ([8b582bc](https://github.com/thi-ng/umbrella/commit/8b582bc))
-  - update all to use [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament)
+- update defmulti impls ([0188d23](https://github.com/thi-ng/umbrella/commit/0188d23))
 
 ## [1.3.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/hiccup-markdown@1.3.0) (2021-01-22)
 
@@ -86,9 +86,9 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
+- add table serializer & test, update deps ([7cecf24](https://github.com/thi-ng/umbrella/commit/7cecf24))
 - add table caption support ([4b72b92](https://github.com/thi-ng/umbrella/commit/4b72b92))
   - update `th` serializer to use bold formatting
-- add table serializer & test, update deps ([7cecf24](https://github.com/thi-ng/umbrella/commit/7cecf24))
 
 ### [1.1.10](https://github.com/thi-ng/umbrella/tree/@thi.ng/hiccup-markdown@1.1.10) (2020-02-25)
 
@@ -100,10 +100,10 @@ and/or version bumps of transitive dependencies.
 
 #### 🩹 Bug fixes
 
+- [#156](https://github.com/thi-ng/umbrella/issues/156) update parse(), remove CR chars, add initial test ([602510c](https://github.com/thi-ng/umbrella/commit/602510c))
+- [#156](https://github.com/thi-ng/umbrella/issues/156) fix blockquote default tag factory args, add test ([12e445a](https://github.com/thi-ng/umbrella/commit/12e445a))
 - [#156](https://github.com/thi-ng/umbrella/issues/156) undo trimming of element children ([ccc9d40](https://github.com/thi-ng/umbrella/commit/ccc9d40))
   - was wrongly introduced in [602510c5150dbf26d43a1c9e7ca8afd7c5230f28](https://github.com/thi-ng/umbrella/commit/602510c5150dbf26d43a1c9e7ca8afd7c5230f28)
-- [#156](https://github.com/thi-ng/umbrella/issues/156) fix blockquote default tag factory args, add test ([12e445a](https://github.com/thi-ng/umbrella/commit/12e445a))
-- [#156](https://github.com/thi-ng/umbrella/issues/156) update parse(), remove CR chars, add initial test ([602510c](https://github.com/thi-ng/umbrella/commit/602510c))
 
 ### [1.1.4](https://github.com/thi-ng/umbrella/tree/@thi.ng/hiccup-markdown@1.1.4) (2019-08-21)
 
@@ -125,8 +125,8 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- update to use [@thi.ng/arrays](https://github.com/thi-ng/umbrella/tree/main/packages/arrays) ([3a74bf1](https://github.com/thi-ng/umbrella/commit/3a74bf1))
 - update fsm until() usage ([e8cd242](https://github.com/thi-ng/umbrella/commit/e8cd242))
+- update to use [@thi.ng/arrays](https://github.com/thi-ng/umbrella/tree/main/packages/arrays) ([3a74bf1](https://github.com/thi-ng/umbrella/commit/3a74bf1))
 
 # [1.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/hiccup-markdown@1.0.0) (2019-01-21)
 

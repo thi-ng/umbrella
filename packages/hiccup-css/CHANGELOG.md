@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-10-28T19:08:39Z
+- **Last updated**: 2022-11-23T22:46:54Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -32,9 +32,9 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
 - update imports in all pkgs ([5fa2b6f](https://github.com/thi-ng/umbrella/commit/5fa2b6f))
   - add .js suffix for all relative imports
+- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
 
 # [2.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/hiccup-css@2.0.0) (2021-10-12)
 
@@ -55,11 +55,11 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- minor pkg restructure ([3d34f5f](https://github.com/thi-ng/umbrella/commit/3d34f5f))
-- update imports (transducers) ([f3e1272](https://github.com/thi-ng/umbrella/commit/f3e1272))
-- update imports ([138571a](https://github.com/thi-ng/umbrella/commit/138571a))
 - update all tests in _all_ pkgs ([8b582bc](https://github.com/thi-ng/umbrella/commit/8b582bc))
   - update all to use [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament)
+- update imports ([138571a](https://github.com/thi-ng/umbrella/commit/138571a))
+- update imports (transducers) ([f3e1272](https://github.com/thi-ng/umbrella/commit/f3e1272))
+- minor pkg restructure ([3d34f5f](https://github.com/thi-ng/umbrella/commit/3d34f5f))
 
 ### [1.1.39](https://github.com/thi-ng/umbrella/tree/@thi.ng/hiccup-css@1.1.39) (2020-09-22)
 
@@ -109,10 +109,10 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
-- add injectStyleSheet() ([8d6e6c8](https://github.com/thi-ng/umbrella/commit/8d6e6c8))
 - add class scoping support ([244bf21](https://github.com/thi-ng/umbrella/commit/244bf21))
   - add CSSOpts.scope field
   - update formatRule() to inject class suffixing transducer if needed
+- add injectStyleSheet() ([8d6e6c8](https://github.com/thi-ng/umbrella/commit/8d6e6c8))
 
 ### [0.1.16](https://github.com/thi-ng/umbrella/tree/@thi.ng/hiccup-css@0.1.16) (2018-05-10)
 
@@ -138,20 +138,17 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
-- add comment() indentation support ([0f416ef](https://github.com/thi-ng/umbrella/commit/0f416ef))
-- add more unit types, update px/ms ([787d0ab](https://github.com/thi-ng/umbrella/commit/787d0ab))
-  - add rad(), turn()
-  - force int values for px()/ms()
-- add support for iterators as arg type to css() ([02bff87](https://github.com/thi-ng/umbrella/commit/02bff87))
-- update conditional handling, add formatCond() ([57533c7](https://github.com/thi-ng/umbrella/commit/57533c7))
-- update fn handling, add iterator support, units, comment ([428de3c](https://github.com/thi-ng/umbrella/commit/428de3c))
-  - update fn exec rules (now only head pos vs. other pos in array)
-  - add comment() fn
-  - add Format.comments flag
-  - update COMPACT preset to omit comments
-  - add unit format wrappers
-  - rename attribIncl() => attribContains()
-  - rename attribContains() => attribMatches()
+- add package [@thi.ng/hiccup-css](https://github.com/thi-ng/umbrella/tree/main/packages/hiccup-css) ([3a4cf1e](https://github.com/thi-ng/umbrella/commit/3a4cf1e))
+- add/fix class handling, update Format ([5247b8f](https://github.com/thi-ng/umbrella/commit/5247b8f))
+- add CSSOpts, mediaQuery(), fn expansion ([d837199](https://github.com/thi-ng/umbrella/commit/d837199))
+  - add CSSOpts w/ autoprefix & vendor config
+  - split FORMATS => COMPACT, PRETTY consts
+  - update css() to accept options arg
+  - update css() to accept function as rules
+  - update formatDecls() to accept fns as attrib values
+  - add nested indentation support for pretty printing
+- add keyframes(), split module into separate src files ([a53d2a5](https://github.com/thi-ng/umbrella/commit/a53d2a5))
+- add default vendor prefixes ([e687230](https://github.com/thi-ng/umbrella/commit/e687230))
 - add attrib fn, at-rules, quoted fns, decl value arrays ([ebbc491](https://github.com/thi-ng/umbrella/commit/ebbc491))
   - quoted functions map keywords in root-level rules to fns
     (useful for pure JSON definitions, where fns are not possible)
@@ -161,27 +158,30 @@ and/or version bumps of transitive dependencies.
   - add support for declaration value arrays (converted to string,
     first level joined w/ `,` and inner arrays joined w/ ` `
   - add/update re-exports
-- add default vendor prefixes ([e687230](https://github.com/thi-ng/umbrella/commit/e687230))
-- add keyframes(), split module into separate src files ([a53d2a5](https://github.com/thi-ng/umbrella/commit/a53d2a5))
-- add CSSOpts, mediaQuery(), fn expansion ([d837199](https://github.com/thi-ng/umbrella/commit/d837199))
-  - add CSSOpts w/ autoprefix & vendor config
-  - split FORMATS => COMPACT, PRETTY consts
-  - update css() to accept options arg
-  - update css() to accept function as rules
-  - update formatDecls() to accept fns as attrib values
-  - add nested indentation support for pretty printing
-- add/fix class handling, update Format ([5247b8f](https://github.com/thi-ng/umbrella/commit/5247b8f))
-- add package [@thi.ng/hiccup-css](https://github.com/thi-ng/umbrella/tree/main/packages/hiccup-css) ([3a4cf1e](https://github.com/thi-ng/umbrella/commit/3a4cf1e))
+- update fn handling, add iterator support, units, comment ([428de3c](https://github.com/thi-ng/umbrella/commit/428de3c))
+  - update fn exec rules (now only head pos vs. other pos in array)
+  - add comment() fn
+  - add Format.comments flag
+  - update COMPACT preset to omit comments
+  - add unit format wrappers
+  - rename attribIncl() => attribContains()
+  - rename attribContains() => attribMatches()
+- update conditional handling, add formatCond() ([57533c7](https://github.com/thi-ng/umbrella/commit/57533c7))
+- add support for iterators as arg type to css() ([02bff87](https://github.com/thi-ng/umbrella/commit/02bff87))
+- add more unit types, update px/ms ([787d0ab](https://github.com/thi-ng/umbrella/commit/787d0ab))
+  - add rad(), turn()
+  - force int values for px()/ms()
+- add comment() indentation support ([0f416ef](https://github.com/thi-ng/umbrella/commit/0f416ef))
 
 #### 🩹 Bug fixes
 
-- fn & auto-prefix handling ([f3190ff](https://github.com/thi-ng/umbrella/commit/f3190ff))
 - @import query separator ([e347c29](https://github.com/thi-ng/umbrella/commit/e347c29))
+- fn & auto-prefix handling ([f3190ff](https://github.com/thi-ng/umbrella/commit/f3190ff))
 
 #### ⏱ Performance improvements
 
-- no empty Set() creation, change type check order in css() ([105bbf4](https://github.com/thi-ng/umbrella/commit/105bbf4))
 - minor optimizations ([6de6b27](https://github.com/thi-ng/umbrella/commit/6de6b27))
+- no empty Set() creation, change type check order in css() ([105bbf4](https://github.com/thi-ng/umbrella/commit/105bbf4))
 
 #### ♻️ Refactoring
 

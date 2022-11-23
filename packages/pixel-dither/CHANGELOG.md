@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-10-28T19:08:39Z
+- **Last updated**: 2022-11-23T22:46:54Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -44,16 +44,16 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
 - update imports in all pkgs ([5fa2b6f](https://github.com/thi-ng/umbrella/commit/5fa2b6f))
   - add .js suffix for all relative imports
+- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
 
 ## [0.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/pixel-dither@0.1.0) (2021-10-12)
 
 #### 🚀 Features
 
-- add ditherWithKernel() & various presets ([e2ce82a](https://github.com/thi-ng/umbrella/commit/e2ce82a))
 - import as new pkg ([4294df4](https://github.com/thi-ng/umbrella/commit/4294df4))
+- add ditherWithKernel() & various presets ([e2ce82a](https://github.com/thi-ng/umbrella/commit/e2ce82a))
 
 #### ♻️ Refactoring
 

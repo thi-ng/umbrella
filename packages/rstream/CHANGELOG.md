@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-10-28T19:08:39Z
+- **Last updated**: 2022-11-23T22:46:54Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -35,14 +35,14 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
+- add fromNodeJS/linesFromNodeJS() ([d56026d](https://github.com/thi-ng/umbrella/commit/d56026d))
+  - add NodeJS stream adapter bridges
+  - update readme
 - Using workspaces for local tools ([bf7a404](https://github.com/thi-ng/umbrella/commit/bf7a404))
   Improving the overall build ergonomics
   - introduced a tools workspaces
   - imported it in all needed packages/examples
   - inclusive project root
-- add fromNodeJS/linesFromNodeJS() ([d56026d](https://github.com/thi-ng/umbrella/commit/d56026d))
-  - add NodeJS stream adapter bridges
-  - update readme
 
 #### ♻️ Refactoring
 
@@ -63,9 +63,9 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
 - update imports in all pkgs ([5fa2b6f](https://github.com/thi-ng/umbrella/commit/5fa2b6f))
   - add .js suffix for all relative imports
+- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
 
 # [7.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/rstream@7.0.0) (2021-10-12)
 
@@ -86,22 +86,22 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- dedupe removeAllIDs() impls ([57e57cc](https://github.com/thi-ng/umbrella/commit/57e57cc))
-- major pkg restructure ([831c113](https://github.com/thi-ng/umbrella/commit/831c113))
-  - flatten /src folder for easier imports in userland
-  - move logging from api.ts => logger.ts
-  - rename internal helpers (__nextID, __optsWithID, defWorker, ...)
-  - update imports
+- update all tests in _all_ pkgs ([8b582bc](https://github.com/thi-ng/umbrella/commit/8b582bc))
+  - update all to use [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament)
+- update imports ([138571a](https://github.com/thi-ng/umbrella/commit/138571a))
+- update imports (transducers) ([7fc60cd](https://github.com/thi-ng/umbrella/commit/7fc60cd))
 - update deps & imports in various pkgs ([e1cf29e](https://github.com/thi-ng/umbrella/commit/e1cf29e))
   - largely related to recent updates/restructuring of these packages:
     - api
     - defmulti
     - errors
     - logger
-- update imports (transducers) ([7fc60cd](https://github.com/thi-ng/umbrella/commit/7fc60cd))
-- update imports ([138571a](https://github.com/thi-ng/umbrella/commit/138571a))
-- update all tests in _all_ pkgs ([8b582bc](https://github.com/thi-ng/umbrella/commit/8b582bc))
-  - update all to use [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament)
+- major pkg restructure ([831c113](https://github.com/thi-ng/umbrella/commit/831c113))
+  - flatten /src folder for easier imports in userland
+  - move logging from api.ts => logger.ts
+  - rename internal helpers (__nextID, __optsWithID, defWorker, ...)
+  - update imports
+- dedupe removeAllIDs() impls ([57e57cc](https://github.com/thi-ng/umbrella/commit/57e57cc))
 
 ### [6.0.14](https://github.com/thi-ng/umbrella/tree/@thi.ng/rstream@6.0.14) (2021-08-08)
 
@@ -114,23 +114,6 @@ and/or version bumps of transitive dependencies.
 
 #### 🛑 Breaking changes
 
-- further simplify ISubscribable & impls ([9e290fe](https://github.com/thi-ng/umbrella/commit/9e290fe))
-- BREAKING CHANGE: remove `.subscribe(sub, xform, opts)` signature.
-  Transducer now supplied via `xform` key in `opts` (or use `.transform()`
-  instead of `.subscribe()`)
-  - further simplify `Subscription.subscribe()` / `.transform()`
-  - update Subscription ctor args
-  - make `.subscribe()` child subs partial again
-  - remove temporary & obsolete again `DUMMY` subscriber
-  - add docs
-  - update tests
-- add PubSub.transformTopic() ([123e15d](https://github.com/thi-ng/umbrella/commit/123e15d))
-- BREAKING CHANGE: replace transducer only version of
-  `PubSub.subscribeTopic()` with new `.transformTopic()`.
-  Similarly to [22c6f7cb2](https://github.com/thi-ng/umbrella/commit/22c6f7cb2), `.subscribeTopic()` subs also need to
-  provide at least a `next` key (for typechecking only)
-  - add .transformTopic() w/ opt error handling support
-  - TODO multi-transducer overrides for .transformTopic()
 - add .transform() error handler opt ([#276](https://github.com/thi-ng/umbrella/issues/276)) ([22c6f7c](https://github.com/thi-ng/umbrella/commit/22c6f7c))
 - BREAKING CHANGE: update ISubscribable contract, remove transducer
   only version of `.subscribe()`, MUST provide dummy sub w/ transducer
@@ -144,35 +127,43 @@ and/or version bumps of transitive dependencies.
   - simplify internal `.subscribe()` logic
   - add `WithErrorHandlerOpts` interface
   - update `.transform()` & `.map()`: add error handling support
+- add PubSub.transformTopic() ([123e15d](https://github.com/thi-ng/umbrella/commit/123e15d))
+- BREAKING CHANGE: replace transducer only version of
+  `PubSub.subscribeTopic()` with new `.transformTopic()`.
+  Similarly to [22c6f7cb2](https://github.com/thi-ng/umbrella/commit/22c6f7cb2), `.subscribeTopic()` subs also need to
+  provide at least a `next` key (for typechecking only)
+  - add .transformTopic() w/ opt error handling support
+  - TODO multi-transducer overrides for .transformTopic()
+- further simplify ISubscribable & impls ([9e290fe](https://github.com/thi-ng/umbrella/commit/9e290fe))
+- BREAKING CHANGE: remove `.subscribe(sub, xform, opts)` signature.
+  Transducer now supplied via `xform` key in `opts` (or use `.transform()`
+  instead of `.subscribe()`)
+  - further simplify `Subscription.subscribe()` / `.transform()`
+  - update Subscription ctor args
+  - make `.subscribe()` child subs partial again
+  - remove temporary & obsolete again `DUMMY` subscriber
+  - add docs
+  - update tests
 
 #### 🚀 Features
 
-- update Subscription FSM, add/update tests ([ea1d0c1](https://github.com/thi-ng/umbrella/commit/ea1d0c1))
-  - add state check in .subscribe()
-  - set both parent & child sub to ACTIVE
-- add StreamSource error handling ([73023b6](https://github.com/thi-ng/umbrella/commit/73023b6))
-  - update stream() opts arg type
-  - update Stream.subscribe() to use opt error handler to deal w/ errors
-    during execution of stream source function
-  - add test
-- update DONE state & teardown logic ([a8a8c44](https://github.com/thi-ng/umbrella/commit/a8a8c44))
-  - DONE state now only valid during depth-first stage of .done()
-  - state switches to UNSUBSCRIBED during recursive teardown (unless ERROR)
-  - update tests
-- [#281](https://github.com/thi-ng/umbrella/issues/281) update Subscription error/teardown logic ([a9e4040](https://github.com/thi-ng/umbrella/commit/a9e4040))
-  - replace old `Subscription` class w/ what was recently `Sub2` (removed)
-  - update/fix done(), subscribe()/unsubscribe() logic
-  - update related constructs (Stream, StreamSync, MetaStream, etc.)
-  - update Stream ctor (and factory fns) to support error handler opts arg
-  - update Timeout error dispatch
-  - fix typehints
-- update Sub2, State enum ([db0ab34](https://github.com/thi-ng/umbrella/commit/db0ab34))
-  - add State.UNSUBSCRIBED
-  - add missing Sub2.done() handling
-  - add Sub2.map()
-  - refactor Sub2 value/phase dispatch logic
-  - add logging
-- add Sub2 WIP impl ([de4149b](https://github.com/thi-ng/umbrella/commit/de4149b))
+- log error to console ([594d806](https://github.com/thi-ng/umbrella/commit/594d806))
+  - update Subscription.error() and ensure error is at least written to
+    console, even if the default `NULL_LOGGER` is used
+  - addresses [#125](https://github.com/thi-ng/umbrella/issues/125), [#276](https://github.com/thi-ng/umbrella/issues/276)
+- update ITransformable.transform() ([fe0eaa9](https://github.com/thi-ng/umbrella/commit/fe0eaa9))
+  - add new `transform()` override to supply transducer as part of options arg
+  - update/fix opts arg type in other `transform()` versions
+  - add `WithTransform`, `WithErrorHandler` interfaces
+  - update `TransformableOpts`, `WithErrorHandlerOpts`
+- add generic type for PubSub topics ([08adc5f](https://github.com/thi-ng/umbrella/commit/08adc5f))
+  - update PubSub, PubSubOpts w/ new generic for topic types (default: any)
+- add ISubscription interface ([98edee0](https://github.com/thi-ng/umbrella/commit/98edee0))
+  - replaces obsolete `ISubscribableSubscriber`
+- update PubSub ([fa87168](https://github.com/thi-ng/umbrella/commit/fa87168))
+  - update PubSub generics
+  - update .subscribeTopic() opts to use `TransformableOpts`
+- add sidechainPartitionRAF() ([a101626](https://github.com/thi-ng/umbrella/commit/a101626))
 - update error handler sig ([#281](https://github.com/thi-ng/umbrella/issues/281)) ([015380a](https://github.com/thi-ng/umbrella/commit/015380a))
   - add `ErrorHandler` type, update to return boolean
   - update `ISubscribable`, `ITransformable` to only refer to `ISubscription`
@@ -180,32 +171,41 @@ and/or version bumps of transitive dependencies.
   - refactor `Subscription.next()`, add `.dispatchXform()`
   - update various error handlers (add return values)
   - update tests
-- add sidechainPartitionRAF() ([a101626](https://github.com/thi-ng/umbrella/commit/a101626))
-- update PubSub ([fa87168](https://github.com/thi-ng/umbrella/commit/fa87168))
-  - update PubSub generics
-  - update .subscribeTopic() opts to use `TransformableOpts`
-- add ISubscription interface ([98edee0](https://github.com/thi-ng/umbrella/commit/98edee0))
-  - replaces obsolete `ISubscribableSubscriber`
-- add generic type for PubSub topics ([08adc5f](https://github.com/thi-ng/umbrella/commit/08adc5f))
-  - update PubSub, PubSubOpts w/ new generic for topic types (default: any)
-- update ITransformable.transform() ([fe0eaa9](https://github.com/thi-ng/umbrella/commit/fe0eaa9))
-  - add new `transform()` override to supply transducer as part of options arg
-  - update/fix opts arg type in other `transform()` versions
-  - add `WithTransform`, `WithErrorHandler` interfaces
-  - update `TransformableOpts`, `WithErrorHandlerOpts`
-- log error to console ([594d806](https://github.com/thi-ng/umbrella/commit/594d806))
-  - update Subscription.error() and ensure error is at least written to
-    console, even if the default `NULL_LOGGER` is used
-  - addresses [#125](https://github.com/thi-ng/umbrella/issues/125), [#276](https://github.com/thi-ng/umbrella/issues/276)
+- add Sub2 WIP impl ([de4149b](https://github.com/thi-ng/umbrella/commit/de4149b))
+- update Sub2, State enum ([db0ab34](https://github.com/thi-ng/umbrella/commit/db0ab34))
+  - add State.UNSUBSCRIBED
+  - add missing Sub2.done() handling
+  - add Sub2.map()
+  - refactor Sub2 value/phase dispatch logic
+  - add logging
+- [#281](https://github.com/thi-ng/umbrella/issues/281) update Subscription error/teardown logic ([a9e4040](https://github.com/thi-ng/umbrella/commit/a9e4040))
+  - replace old `Subscription` class w/ what was recently `Sub2` (removed)
+  - update/fix done(), subscribe()/unsubscribe() logic
+  - update related constructs (Stream, StreamSync, MetaStream, etc.)
+  - update Stream ctor (and factory fns) to support error handler opts arg
+  - update Timeout error dispatch
+  - fix typehints
+- update DONE state & teardown logic ([a8a8c44](https://github.com/thi-ng/umbrella/commit/a8a8c44))
+  - DONE state now only valid during depth-first stage of .done()
+  - state switches to UNSUBSCRIBED during recursive teardown (unless ERROR)
+  - update tests
+- add StreamSource error handling ([73023b6](https://github.com/thi-ng/umbrella/commit/73023b6))
+  - update stream() opts arg type
+  - update Stream.subscribe() to use opt error handler to deal w/ errors
+    during execution of stream source function
+  - add test
+- update Subscription FSM, add/update tests ([ea1d0c1](https://github.com/thi-ng/umbrella/commit/ea1d0c1))
+  - add state check in .subscribe()
+  - set both parent & child sub to ACTIVE
 
 #### 🩹 Bug fixes
 
-- update failing tests ([ae591a1](https://github.com/thi-ng/umbrella/commit/ae591a1))
+- minor update/revert sub ctor args ([c651421](https://github.com/thi-ng/umbrella/commit/c651421))
+- fix wrong imports ([ae4866a](https://github.com/thi-ng/umbrella/commit/ae4866a))
 - PubSub dispatch & error handling ([cca0f34](https://github.com/thi-ng/umbrella/commit/cca0f34))
   - store last received value (if caching enabled)
   - update error handler logic
-- fix wrong imports ([ae4866a](https://github.com/thi-ng/umbrella/commit/ae4866a))
-- minor update/revert sub ctor args ([c651421](https://github.com/thi-ng/umbrella/commit/c651421))
+- update failing tests ([ae591a1](https://github.com/thi-ng/umbrella/commit/ae591a1))
 
 #### ⏱ Performance improvements
 
@@ -235,8 +235,8 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- update type-only imports ([cdf5d62](https://github.com/thi-ng/umbrella/commit/cdf5d62))
 - update type-only imports in various tests/pkgs ([3fd9c24](https://github.com/thi-ng/umbrella/commit/3fd9c24))
+- update type-only imports ([cdf5d62](https://github.com/thi-ng/umbrella/commit/cdf5d62))
 
 ### [5.0.5](https://github.com/thi-ng/umbrella/tree/@thi.ng/rstream@5.0.5) (2020-09-22)
 
@@ -279,10 +279,10 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- update StreamMerge method args ([da648af](https://github.com/thi-ng/umbrella/commit/da648af))
-- update StreamSync generics & args ([0a182b0](https://github.com/thi-ng/umbrella/commit/0a182b0))
-- update forkJoin() & tween() impls (StreamSync) ([08ca3e1](https://github.com/thi-ng/umbrella/commit/08ca3e1))
 - add opts arg for trigger() ([32340f0](https://github.com/thi-ng/umbrella/commit/32340f0))
+- update forkJoin() & tween() impls (StreamSync) ([08ca3e1](https://github.com/thi-ng/umbrella/commit/08ca3e1))
+- update StreamSync generics & args ([0a182b0](https://github.com/thi-ng/umbrella/commit/0a182b0))
+- update StreamMerge method args ([da648af](https://github.com/thi-ng/umbrella/commit/da648af))
 
 ## [4.6.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/rstream@4.6.0) (2020-07-08)
 
@@ -300,11 +300,11 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
-- add debounce() sub & tests ([9c53bb4](https://github.com/thi-ng/umbrella/commit/9c53bb4))
-- add emitLast metastream option ([1073735](https://github.com/thi-ng/umbrella/commit/1073735))
 - add error handling for transducer phase ([609424e](https://github.com/thi-ng/umbrella/commit/609424e))
   - update Subscription.next()
   - update transduce()
+- add emitLast metastream option ([1073735](https://github.com/thi-ng/umbrella/commit/1073735))
+- add debounce() sub & tests ([9c53bb4](https://github.com/thi-ng/umbrella/commit/9c53bb4))
 
 ### [4.3.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/rstream@4.3.1) (2020-05-16)
 
@@ -325,8 +325,8 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
-- update fromObject(), add StreamObjOpts, update docs ([f3ca3b6](https://github.com/thi-ng/umbrella/commit/f3ca3b6))
 - add fromObject(), add docs & tests ([5e854eb](https://github.com/thi-ng/umbrella/commit/5e854eb))
+- update fromObject(), add StreamObjOpts, update docs ([f3ca3b6](https://github.com/thi-ng/umbrella/commit/f3ca3b6))
 
 ## [4.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/rstream@4.1.0) (2020-05-14)
 
@@ -391,24 +391,22 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- update fromView value type inference ([ba20557](https://github.com/thi-ng/umbrella/commit/ba20557))
 - update fromView() & options ([7565448](https://github.com/thi-ng/umbrella/commit/7565448))
+- update fromView value type inference ([ba20557](https://github.com/thi-ng/umbrella/commit/ba20557))
 
 ### [3.0.3](https://github.com/thi-ng/umbrella/tree/@thi.ng/rstream@3.0.3) (2020-02-25)
 
 #### ♻️ Refactoring
 
-- update imports ([d529e86](https://github.com/thi-ng/umbrella/commit/d529e86))
 - fix [#201](https://github.com/thi-ng/umbrella/issues/201), extract ASidechain ([b88fa04](https://github.com/thi-ng/umbrella/commit/b88fa04))
   - extract abstract ASidechain base class
   - update SidechainPartition/Toggle classes
+- update imports ([d529e86](https://github.com/thi-ng/umbrella/commit/d529e86))
 
 # [3.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/rstream@3.0.0) (2019-11-30)
 
 #### 🛑 Breaking changes
 
-- update readme ([4ecdbf9](https://github.com/thi-ng/umbrella/commit/4ecdbf9))
-- BREAKING CHANGE: document new stream/sub config opts in readme
 - update args for various fromXXX() stream factories ([b466ebc](https://github.com/thi-ng/umbrella/commit/b466ebc))
   - add types for options objects
   - update tests
@@ -418,13 +416,15 @@ and/or version bumps of transitive dependencies.
   - fromIterable
   - fromView
   - fromWorker
+- update readme ([4ecdbf9](https://github.com/thi-ng/umbrella/commit/4ecdbf9))
+- BREAKING CHANGE: document new stream/sub config opts in readme
 
 #### 🚀 Features
 
-- add CommonOpts support for ISubscribable & ITransformable ([0a70b90](https://github.com/thi-ng/umbrella/commit/0a70b90))
 - update sidechainPartition/Toggle and timeout ([898eb53](https://github.com/thi-ng/umbrella/commit/898eb53))
   - use options objects for args
   - update tests
+- add CommonOpts support for ISubscribable & ITransformable ([0a70b90](https://github.com/thi-ng/umbrella/commit/0a70b90))
 
 #### ♻️ Refactoring
 
@@ -434,16 +434,16 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
+- add ITransformable interface, minor updates ([da52b98](https://github.com/thi-ng/umbrella/commit/da52b98))
+- add forkJoin() parallel worker processing ([da03722](https://github.com/thi-ng/umbrella/commit/da03722))
+- add back pressure opts to StreamSyncOpts & ForkJoinOpts ([e236987](https://github.com/thi-ng/umbrella/commit/e236987))
+- add forkBuffer/joinBuffer HOFs, add docs ([a35c8e8](https://github.com/thi-ng/umbrella/commit/a35c8e8))
+- add/update fork/joinBuffer generics, optimize ([8f0c55c](https://github.com/thi-ng/umbrella/commit/8f0c55c))
+- add Subscription.done() error handling ([c911006](https://github.com/thi-ng/umbrella/commit/c911006))
 - update Stream cancel & reset behavior for CloseMode.NEVER ([250dfe1](https://github.com/thi-ng/umbrella/commit/250dfe1))
   - don't call cancel() if `closeOut`  is CloseMODE.NEVER
   - only initialize stream once and don't re-init on 1st  re-sub after
     all other subs have left
-- add Subscription.done() error handling ([c911006](https://github.com/thi-ng/umbrella/commit/c911006))
-- add/update fork/joinBuffer generics, optimize ([8f0c55c](https://github.com/thi-ng/umbrella/commit/8f0c55c))
-- add forkBuffer/joinBuffer HOFs, add docs ([a35c8e8](https://github.com/thi-ng/umbrella/commit/a35c8e8))
-- add back pressure opts to StreamSyncOpts & ForkJoinOpts ([e236987](https://github.com/thi-ng/umbrella/commit/e236987))
-- add forkJoin() parallel worker processing ([da03722](https://github.com/thi-ng/umbrella/commit/da03722))
-- add ITransformable interface, minor updates ([da52b98](https://github.com/thi-ng/umbrella/commit/da52b98))
 
 #### 🩹 Bug fixes
 
@@ -482,13 +482,13 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
-- add fromDOMEvent() ([6e3fec8](https://github.com/thi-ng/umbrella/commit/6e3fec8))
 - enable TS strict compiler flags (refactor) ([d796e21](https://github.com/thi-ng/umbrella/commit/d796e21))
+- add fromDOMEvent() ([6e3fec8](https://github.com/thi-ng/umbrella/commit/6e3fec8))
 
 #### 🩹 Bug fixes
 
-- generics & type hints (TS 3.5.2) ([eb2e18a](https://github.com/thi-ng/umbrella/commit/eb2e18a))
 - TS strictNullChecks, add assertions ([1aad856](https://github.com/thi-ng/umbrella/commit/1aad856))
+- generics & type hints (TS 3.5.2) ([eb2e18a](https://github.com/thi-ng/umbrella/commit/eb2e18a))
 
 ### [2.4.2](https://github.com/thi-ng/umbrella/tree/@thi.ng/rstream@2.4.2) (2019-04-24)
 
@@ -539,8 +539,8 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
-- add tween() stream operator ([c74a2d0](https://github.com/thi-ng/umbrella/commit/c74a2d0))
 - add CloseMode enum, update StreamMerge, StreamSync & opts ([f0d53b4](https://github.com/thi-ng/umbrella/commit/f0d53b4))
+- add tween() stream operator ([c74a2d0](https://github.com/thi-ng/umbrella/commit/c74a2d0))
 
 #### 🩹 Bug fixes
 
@@ -566,23 +566,23 @@ and/or version bumps of transitive dependencies.
 
 #### 🩹 Bug fixes
 
-- disable __State reverse enum lookups ([b238a3a](https://github.com/thi-ng/umbrella/commit/b238a3a))
 - avoid Subscription ctor to workaround parceljs build issue ([d1e275b](https://github.com/thi-ng/umbrella/commit/d1e275b))
   - use `subscription()` factory instead of `new Subscription`
   - solves issue w/ parcel's scope hoisting build flag
+- disable __State reverse enum lookups ([b238a3a](https://github.com/thi-ng/umbrella/commit/b238a3a))
 
 #### ♻️ Refactoring
 
-- replace Subscription.NEXT_ID w/ nextID() util ([e201ca8](https://github.com/thi-ng/umbrella/commit/e201ca8))
 - use arrow fns, update formatting ([6c3ea08](https://github.com/thi-ng/umbrella/commit/6c3ea08))
+- replace Subscription.NEXT_ID w/ nextID() util ([e201ca8](https://github.com/thi-ng/umbrella/commit/e201ca8))
 
 ## [1.14.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/rstream@1.14.0) (2018-11-24)
 
 #### 🚀 Features
 
-- add support multiple workers in Tunnel & TunnelOpts ([67a5b10](https://github.com/thi-ng/umbrella/commit/67a5b10))
-- add StreamSync.getSources() / getSourceForID() ([ef0fe42](https://github.com/thi-ng/umbrella/commit/ef0fe42))
 - add worker tunnel() sub ([4750e79](https://github.com/thi-ng/umbrella/commit/4750e79))
+- add StreamSync.getSources() / getSourceForID() ([ef0fe42](https://github.com/thi-ng/umbrella/commit/ef0fe42))
+- add support multiple workers in Tunnel & TunnelOpts ([67a5b10](https://github.com/thi-ng/umbrella/commit/67a5b10))
 
 #### 🩹 Bug fixes
 
@@ -609,8 +609,8 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
-- add trigger() generics ([288b68d](https://github.com/thi-ng/umbrella/commit/288b68d))
 - add trigger() utility stream ([929c6f4](https://github.com/thi-ng/umbrella/commit/929c6f4))
+- add trigger() generics ([288b68d](https://github.com/thi-ng/umbrella/commit/288b68d))
 
 #### ♻️ Refactoring
 
@@ -633,9 +633,9 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- use SEMAPHORE from [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/main/packages/api), not transducers ([f3d4646](https://github.com/thi-ng/umbrella/commit/f3d4646))
 - update StreamSync transducer init ([cd5c6ff](https://github.com/thi-ng/umbrella/commit/cd5c6ff))
   - fix regression caused by breaking changes in [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/main/packages/transducers)
+- use SEMAPHORE from [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/main/packages/api), not transducers ([f3d4646](https://github.com/thi-ng/umbrella/commit/f3d4646))
 
 ### [1.11.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/rstream@1.11.1) (2018-08-06)
 
@@ -647,8 +647,8 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
-- add stream() & subscription() factories, add/update docs ([e97aac0](https://github.com/thi-ng/umbrella/commit/e97aac0))
 - update StreamSync to use `reset: false` by default, update docs ([55499cc](https://github.com/thi-ng/umbrella/commit/55499cc))
+- add stream() & subscription() factories, add/update docs ([e97aac0](https://github.com/thi-ng/umbrella/commit/e97aac0))
 
 ### [1.10.3](https://github.com/thi-ng/umbrella/tree/@thi.ng/rstream@1.10.3) (2018-08-01)
 
@@ -713,13 +713,13 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
-- re-implement bisect() using PubSub, update tests ([846aaf9](https://github.com/thi-ng/umbrella/commit/846aaf9))
 - update resolve(), update subscribe() overrides ([23fdd39](https://github.com/thi-ng/umbrella/commit/23fdd39))
   - replace resolve() opt `id` arg w/ `ResolveOpts` object
   - if `fail` option is given use as Promise failure handler instead of
     calling `this.error()` and thereby stopping stream
   - add new override for actual child `Subscription`s, fixes generics
   - update `subscribe()` for Subscription, Stream, PubSub
+- re-implement bisect() using PubSub, update tests ([846aaf9](https://github.com/thi-ng/umbrella/commit/846aaf9))
 
 #### 🩹 Bug fixes
 
@@ -761,11 +761,11 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
+- add PubSub, add ISubscribableSubscriber, remove cache() ([27a098d](https://github.com/thi-ng/umbrella/commit/27a098d))
 - allow arbitrary PubSub topic vals, add [@thi.ng/associative](https://github.com/thi-ng/umbrella/tree/main/packages/associative) dep ([ba10907](https://github.com/thi-ng/umbrella/commit/ba10907))
   - use EquivMap for storing topics
   - add/update tests
   - add docs
-- add PubSub, add ISubscribableSubscriber, remove cache() ([27a098d](https://github.com/thi-ng/umbrella/commit/27a098d))
 
 ## [1.4.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/rstream@1.4.0) (2018-04-16)
 
@@ -797,22 +797,22 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
-- add IDeref impl for Subscription ([907d599](https://github.com/thi-ng/umbrella/commit/907d599))
-- add merge()/sync() ctor wrappers ([1fee7d5](https://github.com/thi-ng/umbrella/commit/1fee7d5))
-- add transduce(), update re-exports ([eec56de](https://github.com/thi-ng/umbrella/commit/eec56de))
-- Subscription stores last value and passes to new subs ([6b87bca](https://github.com/thi-ng/umbrella/commit/6b87bca))
-- fix [#6](https://github.com/thi-ng/umbrella/issues/6) update StreamMerge to support transduced input streams ([8026409](https://github.com/thi-ng/umbrella/commit/8026409))
-  - any Subscription values (incl. Streams) sent by inputs are added
-     to the set of inputs themselves and not passed downstream
-  - add test case
-- update Sidechain*.next(), add unsubscribe() ([d18a115](https://github.com/thi-ng/umbrella/commit/d18a115))
-  - don't throw errors in next() if state >= DONE
-  - unsub sidechain when unsubscribing SidechainPartition/Toggle itself
-- add fromView(), update fromAtom() docs, update re-exports ([41bb385](https://github.com/thi-ng/umbrella/commit/41bb385))
 - update Subscription.unsubscribe() ([01a751e](https://github.com/thi-ng/umbrella/commit/01a751e))
   - switch to DONE state if unsubscribing itself from parent
   - unsubscribe itself from parent after last child sub unsubscribed
     (effect propagates upstream until no more parent)
+- add fromView(), update fromAtom() docs, update re-exports ([41bb385](https://github.com/thi-ng/umbrella/commit/41bb385))
+- update Sidechain*.next(), add unsubscribe() ([d18a115](https://github.com/thi-ng/umbrella/commit/d18a115))
+  - don't throw errors in next() if state >= DONE
+  - unsub sidechain when unsubscribing SidechainPartition/Toggle itself
+- fix [#6](https://github.com/thi-ng/umbrella/issues/6) update StreamMerge to support transduced input streams ([8026409](https://github.com/thi-ng/umbrella/commit/8026409))
+  - any Subscription values (incl. Streams) sent by inputs are added
+     to the set of inputs themselves and not passed downstream
+  - add test case
+- Subscription stores last value and passes to new subs ([6b87bca](https://github.com/thi-ng/umbrella/commit/6b87bca))
+- add transduce(), update re-exports ([eec56de](https://github.com/thi-ng/umbrella/commit/eec56de))
+- add merge()/sync() ctor wrappers ([1fee7d5](https://github.com/thi-ng/umbrella/commit/1fee7d5))
+- add IDeref impl for Subscription ([907d599](https://github.com/thi-ng/umbrella/commit/907d599))
 
 #### 🩹 Bug fixes
 
@@ -820,20 +820,20 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
+- simplify Subscription, update all impls ([47b6a92](https://github.com/thi-ng/umbrella/commit/47b6a92))
+  - use Set for storing child subs
+  - update Stream, StreamMerge, StreamSync
+  - only clean sources in StreamMerge/Sync.unsubscribe()
+- update & StreamMerge/SyncOpts, minor fixes StreamSync ([ebe222c](https://github.com/thi-ng/umbrella/commit/ebe222c))
+  - only allow arrays for sources
+  - pre-add/remove source IDs in StreamSync.addAll/removeAll()
+  - update mapVals() xform to use copies
 - simplify unsubscribe() logic ([26f15b2](https://github.com/thi-ng/umbrella/commit/26f15b2))
   - add Subscription.cleanup()
   - update unsub for Stream, Subscription, StreamMerge/Sync
   - no more calling of done() as part of unsub process
     (strictly unidirectional teardown from child -> parent)
   - fix input unsubs for StreamMerge/Sync
-- update & StreamMerge/SyncOpts, minor fixes StreamSync ([ebe222c](https://github.com/thi-ng/umbrella/commit/ebe222c))
-  - only allow arrays for sources
-  - pre-add/remove source IDs in StreamSync.addAll/removeAll()
-  - update mapVals() xform to use copies
-- simplify Subscription, update all impls ([47b6a92](https://github.com/thi-ng/umbrella/commit/47b6a92))
-  - use Set for storing child subs
-  - update Stream, StreamMerge, StreamSync
-  - only clean sources in StreamMerge/Sync.unsubscribe()
 
 ### [1.0.22](https://github.com/thi-ng/umbrella/tree/@thi.ng/rstream@1.0.22) (2018-03-19)
 
@@ -843,9 +843,9 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- simplify StreamMerge source handling ([ff802a4](https://github.com/thi-ng/umbrella/commit/ff802a4))
-- minor cleanup/perf StreamSync ([f7029ef](https://github.com/thi-ng/umbrella/commit/f7029ef))
 - add/update Stream ctor arities ([c736433](https://github.com/thi-ng/umbrella/commit/c736433))
+- minor cleanup/perf StreamSync ([f7029ef](https://github.com/thi-ng/umbrella/commit/f7029ef))
+- simplify StreamMerge source handling ([ff802a4](https://github.com/thi-ng/umbrella/commit/ff802a4))
 
 # [1.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/rstream@1.0.0) (2018-02-18)
 
@@ -899,9 +899,9 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
-- add atom dep, add fromAtom() & docs ([ca3994a](https://github.com/thi-ng/umbrella/commit/ca3994a))
-- add fromPromises(), add docs ([55ba0e1](https://github.com/thi-ng/umbrella/commit/55ba0e1))
 - add trace() error handler ([2247f72](https://github.com/thi-ng/umbrella/commit/2247f72))
+- add fromPromises(), add docs ([55ba0e1](https://github.com/thi-ng/umbrella/commit/55ba0e1))
+- add atom dep, add fromAtom() & docs ([ca3994a](https://github.com/thi-ng/umbrella/commit/ca3994a))
 
 ## [0.6.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/rstream@0.6.0) (2018-01-28)
 
@@ -923,8 +923,8 @@ and/or version bumps of transitive dependencies.
 
 #### 🩹 Bug fixes
 
-- don't throw resolve() error, only warning msg ([eef65b9](https://github.com/thi-ng/umbrella/commit/eef65b9))
 - subscription generics if transducer is used ([592a242](https://github.com/thi-ng/umbrella/commit/592a242))
+- don't throw resolve() error, only warning msg ([eef65b9](https://github.com/thi-ng/umbrella/commit/eef65b9))
 
 ### [0.2.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/rstream@0.2.1) (2018-01-24)
 

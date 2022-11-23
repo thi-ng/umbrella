@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-10-28T19:08:39Z
+- **Last updated**: 2022-11-23T22:46:54Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -38,9 +38,9 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
 - update imports in all pkgs ([5fa2b6f](https://github.com/thi-ng/umbrella/commit/5fa2b6f))
   - add .js suffix for all relative imports
+- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
 
 # [2.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/compose@2.0.0) (2021-10-12)
 
@@ -61,9 +61,9 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- update imports ([7e1855c](https://github.com/thi-ng/umbrella/commit/7e1855c))
 - update all tests in _all_ pkgs ([8b582bc](https://github.com/thi-ng/umbrella/commit/8b582bc))
   - update all to use [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament)
+- update imports ([7e1855c](https://github.com/thi-ng/umbrella/commit/7e1855c))
 
 ### [1.4.17](https://github.com/thi-ng/umbrella/tree/@thi.ng/compose@1.4.17) (2020-09-13)
 
@@ -87,22 +87,22 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
-- add ifDef() ([64aba00](https://github.com/thi-ng/umbrella/commit/64aba00))
+- enable TS strict compiler flags (refactor) ([8ea894a](https://github.com/thi-ng/umbrella/commit/8ea894a))
 - address TS strictNullChecks, make Delay.value protected ([1540f37](https://github.com/thi-ng/umbrella/commit/1540f37))
   - users now MUST use .deref() to obtain result
-- enable TS strict compiler flags (refactor) ([8ea894a](https://github.com/thi-ng/umbrella/commit/8ea894a))
+- add ifDef() ([64aba00](https://github.com/thi-ng/umbrella/commit/64aba00))
 
 ## [1.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/compose@1.2.0) (2019-03-10)
 
 #### 🚀 Features
 
-- add trampoline() ([9e4c171](https://github.com/thi-ng/umbrella/commit/9e4c171))
 - add complement() ([5a5a2d1](https://github.com/thi-ng/umbrella/commit/5a5a2d1))
+- add trampoline() ([9e4c171](https://github.com/thi-ng/umbrella/commit/9e4c171))
 
 #### ♻️ Refactoring
 
-- update partial() type args, update readme ([81886fe](https://github.com/thi-ng/umbrella/commit/81886fe))
 - update Fn args in various packages ([e453ac3](https://github.com/thi-ng/umbrella/commit/e453ac3))
+- update partial() type args, update readme ([81886fe](https://github.com/thi-ng/umbrella/commit/81886fe))
 
 ## [1.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/compose@1.1.0) (2019-02-15)
 

@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-10-28T19:08:39Z
+- **Last updated**: 2022-11-23T22:46:54Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -32,9 +32,9 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
 - update imports in all pkgs ([5fa2b6f](https://github.com/thi-ng/umbrella/commit/5fa2b6f))
   - add .js suffix for all relative imports
+- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
 
 ## [0.3.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/viz@0.3.0) (2021-10-12)
 
@@ -55,10 +55,10 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- update imports ([4ca18e4](https://github.com/thi-ng/umbrella/commit/4ca18e4))
-- update imports ([138571a](https://github.com/thi-ng/umbrella/commit/138571a))
 - update all tests in _all_ pkgs ([8b582bc](https://github.com/thi-ng/umbrella/commit/8b582bc))
   - update all to use [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament)
+- update imports ([138571a](https://github.com/thi-ng/umbrella/commit/138571a))
+- update imports ([4ca18e4](https://github.com/thi-ng/umbrella/commit/4ca18e4))
 
 ### [0.2.30](https://github.com/thi-ng/umbrella/tree/@thi.ng/viz@0.2.30) (2021-06-08)
 
@@ -77,8 +77,8 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
-- update grid opts (add major flags) ([4fac849](https://github.com/thi-ng/umbrella/commit/4fac849))
 - add barPlot() & interleave opts ([8f3d4e1](https://github.com/thi-ng/umbrella/commit/8f3d4e1))
+- update grid opts (add major flags) ([4fac849](https://github.com/thi-ng/umbrella/commit/4fac849))
 
 ### [0.1.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/viz@0.1.1) (2020-09-22)
 
@@ -91,30 +91,30 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
-- add background grid support ([ca51cba](https://github.com/thi-ng/umbrella/commit/ca51cba))
-  - add GridSpec
-  - extract gridAxis(), update axisCommon()
-  - add gridCartesian()
-  - update plotCartesian()
-- update candlePlot(), add candle() shape fn ([fbb63d3](https://github.com/thi-ng/umbrella/commit/fbb63d3))
+- import as new package (ongoing port from geom-viz) ([900db82](https://github.com/thi-ng/umbrella/commit/900db82))
+- add lensAxis(), lensScale(), InitialAxisSpec ([b423600](https://github.com/thi-ng/umbrella/commit/b423600))
+- redo log scale & ticks, restructure all files ([2f51668](https://github.com/thi-ng/umbrella/commit/2f51668))
+  - add dataMinLog/dataMaxLog/dataBounds2Log()
 - improve domain data value handling ([ab89655](https://github.com/thi-ng/umbrella/commit/ab89655))
   - add DomainValues, DomainValueFn types
   - update plot fns & processedPoints() to accept new types
   - convert uniformDomain() to HOF form
   - update deps & tests
-- redo log scale & ticks, restructure all files ([2f51668](https://github.com/thi-ng/umbrella/commit/2f51668))
-  - add dataMinLog/dataMaxLog/dataBounds2Log()
-- add lensAxis(), lensScale(), InitialAxisSpec ([b423600](https://github.com/thi-ng/umbrella/commit/b423600))
-- import as new package (ongoing port from geom-viz) ([900db82](https://github.com/thi-ng/umbrella/commit/900db82))
+- update candlePlot(), add candle() shape fn ([fbb63d3](https://github.com/thi-ng/umbrella/commit/fbb63d3))
+- add background grid support ([ca51cba](https://github.com/thi-ng/umbrella/commit/ca51cba))
+  - add GridSpec
+  - extract gridAxis(), update axisCommon()
+  - add gridCartesian()
+  - update plotCartesian()
 
 #### 🩹 Bug fixes
 
-- flip Y axis tick direction ([72a3200](https://github.com/thi-ng/umbrella/commit/72a3200))
-- update areaPlot(), linePlot() ([ac20370](https://github.com/thi-ng/umbrella/commit/ac20370))
 - fix/simplify months()/days() iterators ([de6616c](https://github.com/thi-ng/umbrella/commit/de6616c))
+- update areaPlot(), linePlot() ([ac20370](https://github.com/thi-ng/umbrella/commit/ac20370))
+- flip Y axis tick direction ([72a3200](https://github.com/thi-ng/umbrella/commit/72a3200))
 
 #### ♻️ Refactoring
 
+- update imports, use new Fn types ([a3a2d7b](https://github.com/thi-ng/umbrella/commit/a3a2d7b))
 - remove obsolete date/time fns, update call sites, pkg ([5fb5d60](https://github.com/thi-ng/umbrella/commit/5fb5d60))
   - date fns migrated/extended into new [@thi.ng/date](https://github.com/thi-ng/umbrella/tree/main/packages/date) pkg
-- update imports, use new Fn types ([a3a2d7b](https://github.com/thi-ng/umbrella/commit/a3a2d7b))

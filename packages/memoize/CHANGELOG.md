@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-10-28T19:08:39Z
+- **Last updated**: 2022-11-23T22:46:54Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -32,9 +32,9 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
 - update imports in all pkgs ([5fa2b6f](https://github.com/thi-ng/umbrella/commit/5fa2b6f))
   - add .js suffix for all relative imports
+- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
 
 # [3.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/memoize@3.0.0) (2021-10-12)
 
@@ -62,8 +62,8 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- update type-only imports in remaining pkgs ([b22aa30](https://github.com/thi-ng/umbrella/commit/b22aa30))
 - update type-only imports in various tests/pkgs ([3fd9c24](https://github.com/thi-ng/umbrella/commit/3fd9c24))
+- update type-only imports in remaining pkgs ([b22aa30](https://github.com/thi-ng/umbrella/commit/b22aa30))
 
 ## [2.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/memoize@2.1.0) (2020-08-20)
 
@@ -118,5 +118,5 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
-- add optional cache arg for memoizeJ() ([2bc092d](https://github.com/thi-ng/umbrella/commit/2bc092d))
 - add [@thi.ng/memoize](https://github.com/thi-ng/umbrella/tree/main/packages/memoize) package ([adc4928](https://github.com/thi-ng/umbrella/commit/adc4928))
+- add optional cache arg for memoizeJ() ([2bc092d](https://github.com/thi-ng/umbrella/commit/2bc092d))

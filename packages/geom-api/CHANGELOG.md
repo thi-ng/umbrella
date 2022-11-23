@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-10-28T19:08:39Z
+- **Last updated**: 2022-11-23T22:46:54Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -44,9 +44,9 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
 - update imports in all pkgs ([5fa2b6f](https://github.com/thi-ng/umbrella/commit/5fa2b6f))
   - add .js suffix for all relative imports
+- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
 
 # [3.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom-api@3.0.0) (2021-10-12)
 
@@ -67,18 +67,18 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- update all test stubs ([f2d6d53](https://github.com/thi-ng/umbrella/commit/f2d6d53))
 - update all tests in _all_ pkgs ([8b582bc](https://github.com/thi-ng/umbrella/commit/8b582bc))
   - update all to use [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament)
+- update all test stubs ([f2d6d53](https://github.com/thi-ng/umbrella/commit/f2d6d53))
 
 # [2.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom-api@2.0.0) (2020-12-22)
 
 #### 🛑 Breaking changes
 
-- fix [#256](https://github.com/thi-ng/umbrella/issues/256) remove Type enum ([e2cd24a](https://github.com/thi-ng/umbrella/commit/e2cd24a))
-- BREAKING CHANGE: remove obsolete shape Type enum
 - fix [#256](https://github.com/thi-ng/umbrella/issues/256) replace enum w/ type alias ([c079a2a](https://github.com/thi-ng/umbrella/commit/c079a2a))
 - BREAKING CHANGE: replace SegmentType enum w/ type alias
+- fix [#256](https://github.com/thi-ng/umbrella/issues/256) remove Type enum ([e2cd24a](https://github.com/thi-ng/umbrella/commit/e2cd24a))
+- BREAKING CHANGE: remove obsolete shape Type enum
 
 ### [1.1.4](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom-api@1.1.4) (2020-12-07)
 

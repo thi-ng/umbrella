@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-11-01T12:32:51Z
+- **Last updated**: 2022-11-23T22:46:54Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -9,18 +9,47 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
 
+## [0.10.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/wasm-api-dom@0.10.0) (2022-11-23)
+
+#### 🚀 Features
+
+- add getStringAttribAlloc() ([61e301c](https://github.com/thi-ng/umbrella/commit/61e301c))
+  - add getStringAttribAlloc() API method
+  - refactor/simplify existing attrib accessors
+- add listener auto-cleanup ([4b443c2](https://github.com/thi-ng/umbrella/commit/4b443c2))
+  - add hidden DOM element property to stored listener IDs
+  - update removeElement() to auto-cleanup listeners
+  - update Zig API
+- add support for event listener attribs ([c7e4864](https://github.com/thi-ng/umbrella/commit/c7e4864))
+  - add/update typespecs
+  - update Attrib type to support event listener specs to be
+    given to createElement() & createCanvas()
+  - add getElementByID()
+  - update initElement()
+  - add WASM auto-initializer hook
+- update generated types & string handling ([686f867](https://github.com/thi-ng/umbrella/commit/686f867))
+  - switch to extern structs for generated types
+  - switch to zero-terminated pointers for string values
+  - update/rename/simplify API methods, remove obsolete
+  - fix string attrib handling/alloc sizes
+
+#### ♻️ Refactoring
+
+- update string, attrib & listener types/fns [zig] ([9928ab7](https://github.com/thi-ng/umbrella/commit/9928ab7))
+- update generated types ([298f194](https://github.com/thi-ng/umbrella/commit/298f194))
+
 ## [0.9.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/wasm-api-dom@0.9.0) (2022-11-01)
 
 #### 🚀 Features
 
-- update ScrollEvent ([17a6205](https://github.com/thi-ng/umbrella/commit/17a6205))
-  - update ScrollEvent.fromEvent() to use target element's scroll offset
-  - if attached to window, use global offset
 - add attrib creation opts ([0e69c47](https://github.com/thi-ng/umbrella/commit/0e69c47))
   - add Attrib, AttribValue, AttribType types
   - update CreateElementOpts
   - update initElement() to batch create given attribs
   - update doc strings
+- update ScrollEvent ([17a6205](https://github.com/thi-ng/umbrella/commit/17a6205))
+  - update ScrollEvent.fromEvent() to use target element's scroll offset
+  - if attached to window, use global offset
 
 ### [0.8.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/wasm-api-dom@0.8.1) (2022-10-31)
 
@@ -51,12 +80,12 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
-- add fullscreen methods for WindowInfo [zig] ([e480b2c](https://github.com/thi-ng/umbrella/commit/e480b2c))
-  - add isFullscreen() & hasFullscreen() helpers
-- add boolean attrib support ([1d9c543](https://github.com/thi-ng/umbrella/commit/1d9c543))
 - add support for recursive DOM tree creation ([36d1857](https://github.com/thi-ng/umbrella/commit/36d1857))
   - update CreateElementOpts w/ recursive `.children` field
   - update createElement() API method to also create children
+- add boolean attrib support ([1d9c543](https://github.com/thi-ng/umbrella/commit/1d9c543))
+- add fullscreen methods for WindowInfo [zig] ([e480b2c](https://github.com/thi-ng/umbrella/commit/e480b2c))
+  - add isFullscreen() & hasFullscreen() helpers
 
 #### 🩹 Bug fixes
 
@@ -67,14 +96,6 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
-- update fullscreen handling, add exit support ([998c5fc](https://github.com/thi-ng/umbrella/commit/998c5fc))
-  - add exitFullscreen() API method
-  - add zig docstrings
-- update KeyEvent ([8c91c17](https://github.com/thi-ng/umbrella/commit/8c91c17))
-  - add u8 length field to avoid scanning for sentinel
-  - add KeyEvent.hasModifier() (zig only)
-- add XML namespace support for createElement() ([6074d04](https://github.com/thi-ng/umbrella/commit/6074d04))
-  - add public registry of wellknown namespace aliases
 - major update event types & handling ([2878bce](https://github.com/thi-ng/umbrella/commit/2878bce))
   - major simplification of JS side event processing
   - add regex based event name to event type mappings
@@ -82,37 +103,45 @@ and/or version bumps of transitive dependencies.
   - inject `.fromEvent()` converters for generated event types
   - add `requestFullscreen()` API mechanism
   - update WindowInfo to include fullscreen info & scroll offsets
+- add XML namespace support for createElement() ([6074d04](https://github.com/thi-ng/umbrella/commit/6074d04))
+  - add public registry of wellknown namespace aliases
+- update KeyEvent ([8c91c17](https://github.com/thi-ng/umbrella/commit/8c91c17))
+  - add u8 length field to avoid scanning for sentinel
+  - add KeyEvent.hasModifier() (zig only)
+- update fullscreen handling, add exit support ([998c5fc](https://github.com/thi-ng/umbrella/commit/998c5fc))
+  - add exitFullscreen() API method
+  - add zig docstrings
 
 ## [0.4.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/wasm-api-dom@0.4.0) (2022-10-26)
 
 #### 🚀 Features
 
+- support more event types/fns, minor zig updates ([d05803d](https://github.com/thi-ng/umbrella/commit/d05803d))
+  - add support for focus & wheel events
+  - add stopPropagation()
+  - update zig error fn return types
+- update Zig API ([5165f87](https://github.com/thi-ng/umbrella/commit/5165f87))
+  - remove ManagedIndex (see [d8bb3ee7d](https://github.com/thi-ng/umbrella/commit/d8bb3ee7d))
+  - move all Zig sources from /include => /zig
+  - update pkg
 - add/update event types & handling ([4596757](https://github.com/thi-ng/umbrella/commit/4596757))
   - add new more specific event structs to be more mem efficient
   - add EventBody union type
   - refactor Event
   - regenerate sources for TS & Zig
   - move typedefs.json to /src folder
-- update Zig API ([5165f87](https://github.com/thi-ng/umbrella/commit/5165f87))
-  - remove ManagedIndex (see [d8bb3ee7d](https://github.com/thi-ng/umbrella/commit/d8bb3ee7d))
-  - move all Zig sources from /include => /zig
-  - update pkg
-- support more event types/fns, minor zig updates ([d05803d](https://github.com/thi-ng/umbrella/commit/d05803d))
-  - add support for focus & wheel events
-  - add stopPropagation()
-  - update zig error fn return types
 
 ## [0.3.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/wasm-api-dom@0.3.0) (2022-10-17)
 
 #### 🚀 Features
 
+- update EventListener and RAFListener ([9f97f3d](https://github.com/thi-ng/umbrella/commit/9f97f3d))
+  - update EventListener to allow storing a anyopaque pointer
+  - update RAFListener to allow storing a anyopaque pointer
 - update/rename ManagedIndex ([078df79](https://github.com/thi-ng/umbrella/commit/078df79))
   - rename FreeList => ManagedIndex
   - add/update ManagedIndex functions & generics
   - update DOM listener functions to only use u16 for IDs
-- update EventListener and RAFListener ([9f97f3d](https://github.com/thi-ng/umbrella/commit/9f97f3d))
-  - update EventListener to allow storing a anyopaque pointer
-  - update RAFListener to allow storing a anyopaque pointer
 
 #### 🩹 Bug fixes
 
@@ -144,8 +173,8 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
-- extend API & types, add docs ([27fc6d6](https://github.com/thi-ng/umbrella/commit/27fc6d6))
 - import as new pkg ([58bacc1](https://github.com/thi-ng/umbrella/commit/58bacc1))
+- extend API & types, add docs ([27fc6d6](https://github.com/thi-ng/umbrella/commit/27fc6d6))
 
 #### ♻️ Refactoring
 

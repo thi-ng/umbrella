@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-10-28T19:08:39Z
+- **Last updated**: 2022-11-23T22:46:54Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -53,10 +53,10 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- update various benchmarks ([53e8a6a](https://github.com/thi-ng/umbrella/commit/53e8a6a))
-- update imports ([138571a](https://github.com/thi-ng/umbrella/commit/138571a))
 - update all tests in _all_ pkgs ([8b582bc](https://github.com/thi-ng/umbrella/commit/8b582bc))
   - update all to use [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament)
+- update imports ([138571a](https://github.com/thi-ng/umbrella/commit/138571a))
+- update various benchmarks ([53e8a6a](https://github.com/thi-ng/umbrella/commit/53e8a6a))
 
 ## [2.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/rle-pack@2.1.0) (2019-07-07)
 
@@ -100,11 +100,11 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
+- add support for custom input word sizes ([fd8e761](https://github.com/thi-ng/umbrella/commit/fd8e761))
 - further update data format (non-repeats) ([4041521](https://github.com/thi-ng/umbrella/commit/4041521))
   - successive non-repeat values are now chunked and waste less bits
   - fix wordSize header field (write size-1)
   - update tests
-- add support for custom input word sizes ([fd8e761](https://github.com/thi-ng/umbrella/commit/fd8e761))
 
 #### 🩹 Bug fixes
 

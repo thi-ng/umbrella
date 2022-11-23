@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-10-28T19:08:39Z
+- **Last updated**: 2022-11-23T22:46:54Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -13,11 +13,11 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
+- add more extensions to WebGLExtensionMap ([dd2e295](https://github.com/thi-ng/umbrella/commit/dd2e295))
 - update Multipass ([5f51d26](https://github.com/thi-ng/umbrella/commit/5f51d26))
   - auto-enable EXT_float_blend extension for float outputs
     (this silences warnings on Firefox, Chrome seemed fine)
   - add Multipass.singlePass() to selectively execute single shader passes
-- add more extensions to WebGLExtensionMap ([dd2e295](https://github.com/thi-ng/umbrella/commit/dd2e295))
 
 ### [6.1.22](https://github.com/thi-ng/umbrella/tree/@thi.ng/webgl@6.1.22) (2022-08-08)
 
@@ -61,9 +61,9 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
 - update imports in all pkgs ([5fa2b6f](https://github.com/thi-ng/umbrella/commit/5fa2b6f))
   - add .js suffix for all relative imports
+- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
 
 # [6.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/webgl@6.0.0) (2021-10-12)
 
@@ -92,20 +92,20 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- update imports/exports ([ce4d3e8](https://github.com/thi-ng/umbrella/commit/ce4d3e8))
-- redefine WebGL error, migrate logger ([6a5158d](https://github.com/thi-ng/umbrella/commit/6a5158d))
+- update all tests in _all_ pkgs ([8b582bc](https://github.com/thi-ng/umbrella/commit/8b582bc))
+  - update all to use [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament)
+- update all test stubs ([f2d6d53](https://github.com/thi-ng/umbrella/commit/f2d6d53))
+- update imports ([138571a](https://github.com/thi-ng/umbrella/commit/138571a))
+- update imports ([b4c3883](https://github.com/thi-ng/umbrella/commit/b4c3883))
+- update imports ([c29d6b4](https://github.com/thi-ng/umbrella/commit/c29d6b4))
 - update deps & imports in various pkgs ([e1cf29e](https://github.com/thi-ng/umbrella/commit/e1cf29e))
   - largely related to recent updates/restructuring of these packages:
     - api
     - defmulti
     - errors
     - logger
-- update imports ([c29d6b4](https://github.com/thi-ng/umbrella/commit/c29d6b4))
-- update imports ([b4c3883](https://github.com/thi-ng/umbrella/commit/b4c3883))
-- update imports ([138571a](https://github.com/thi-ng/umbrella/commit/138571a))
-- update all test stubs ([f2d6d53](https://github.com/thi-ng/umbrella/commit/f2d6d53))
-- update all tests in _all_ pkgs ([8b582bc](https://github.com/thi-ng/umbrella/commit/8b582bc))
-  - update all to use [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament)
+- redefine WebGL error, migrate logger ([6a5158d](https://github.com/thi-ng/umbrella/commit/6a5158d))
+- update imports/exports ([ce4d3e8](https://github.com/thi-ng/umbrella/commit/ce4d3e8))
 
 # [5.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/webgl@5.0.0) (2021-06-08)
 
@@ -137,20 +137,20 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- split Texture.configureImage() ([1e8670e](https://github.com/thi-ng/umbrella/commit/1e8670e))
-- simplify defMultipass(), extract inner fns ([fda3011](https://github.com/thi-ng/umbrella/commit/fda3011))
-- further simplify shaderSourceFromAST() ([9343ba3](https://github.com/thi-ng/umbrella/commit/9343ba3))
 - extract/re-use internal helpers ([e8786f6](https://github.com/thi-ng/umbrella/commit/e8786f6))
   - update shaderSourceFromAST() & prepareShaderSource()
   - extract compilePrelude()
   - extract compileVarying()
+- further simplify shaderSourceFromAST() ([9343ba3](https://github.com/thi-ng/umbrella/commit/9343ba3))
+- simplify defMultipass(), extract inner fns ([fda3011](https://github.com/thi-ng/umbrella/commit/fda3011))
+- split Texture.configureImage() ([1e8670e](https://github.com/thi-ng/umbrella/commit/1e8670e))
 
 ### [3.3.8](https://github.com/thi-ng/umbrella/tree/@thi.ng/webgl@3.3.8) (2020-12-07)
 
 #### ♻️ Refactoring
 
-- update type-only imports ([b9685a4](https://github.com/thi-ng/umbrella/commit/b9685a4))
 - update type-only imports in various tests/pkgs ([3fd9c24](https://github.com/thi-ng/umbrella/commit/3fd9c24))
+- update type-only imports ([b9685a4](https://github.com/thi-ng/umbrella/commit/b9685a4))
 
 ### [3.3.6](https://github.com/thi-ng/umbrella/tree/@thi.ng/webgl@3.3.6) (2020-11-24)
 
@@ -204,11 +204,11 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
-- add DrawFlags opts for draw() ([800382b](https://github.com/thi-ng/umbrella/commit/800382b))
 - add opt unbind flag for .configure() ([0e5cc2b](https://github.com/thi-ng/umbrella/commit/0e5cc2b))
   - default remains true to keep existing behavior, but provide
     escape hatch where needed/useful (i.e. multipass stuff)
   - update impls for FBO, RBO, Texture
+- add DrawFlags opts for draw() ([800382b](https://github.com/thi-ng/umbrella/commit/800382b))
 
 ### [3.0.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/webgl@3.0.1) (2020-08-08)
 
@@ -258,8 +258,8 @@ and/or version bumps of transitive dependencies.
 
 #### 🩹 Bug fixes
 
-- add missing braces ([5e6d5bf](https://github.com/thi-ng/umbrella/commit/5e6d5bf))
 - `disableVertexAttribArray` in `Shader.unbind` ([d3eab37](https://github.com/thi-ng/umbrella/commit/d3eab37))
+- add missing braces ([5e6d5bf](https://github.com/thi-ng/umbrella/commit/5e6d5bf))
 
 ### [1.0.4](https://github.com/thi-ng/umbrella/tree/@thi.ng/webgl@1.0.4) (2020-04-07)
 
@@ -304,24 +304,24 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- update imports ([9999cbf](https://github.com/thi-ng/umbrella/commit/9999cbf))
 - fix [#200](https://github.com/thi-ng/umbrella/issues/200), extract private initBuffer() ([9ab496e](https://github.com/thi-ng/umbrella/commit/9ab496e))
+- update imports ([9999cbf](https://github.com/thi-ng/umbrella/commit/9999cbf))
 
 ### [0.2.2](https://github.com/thi-ng/umbrella/tree/@thi.ng/webgl@0.2.2) (2019-11-30)
 
 #### 🩹 Bug fixes
 
-- webgl1 depth texture ([5c86165](https://github.com/thi-ng/umbrella/commit/5c86165))
-- use LOGGER for warnings ([14d5025](https://github.com/thi-ng/umbrella/commit/14d5025))
 - fix PHONG shader preset, minor update LAMBERT ([792379f](https://github.com/thi-ng/umbrella/commit/792379f))
+- use LOGGER for warnings ([14d5025](https://github.com/thi-ng/umbrella/commit/14d5025))
+- webgl1 depth texture ([5c86165](https://github.com/thi-ng/umbrella/commit/5c86165))
 
 ### [0.2.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/webgl@0.2.1) (2019-11-09)
 
 #### 🩹 Bug fixes
 
+- ensure system defaults for all uniforms, update equiv checks ([39dc83f](https://github.com/thi-ng/umbrella/commit/39dc83f))
 - add LOGGER, update initUniforms() ([4719110](https://github.com/thi-ng/umbrella/commit/4719110))
   - don't throw error when initializing unused uniforms
-- ensure system defaults for all uniforms, update equiv checks ([39dc83f](https://github.com/thi-ng/umbrella/commit/39dc83f))
 
 #### ♻️ Refactoring
 
@@ -331,15 +331,15 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
-- add readPixels/readTexture(), add ReadableTextureFormat ([355f785](https://github.com/thi-ng/umbrella/commit/355f785))
-- update multipass / PassOpts ([95aba16](https://github.com/thi-ng/umbrella/commit/95aba16))
-- add renderExt to TextureFormatDecl, add FBO tex fmt checks ([180e89c](https://github.com/thi-ng/umbrella/commit/180e89c))
 - migrate multipass() & types from webgl-shadertoy pkg, reorg ([2aa31ce](https://github.com/thi-ng/umbrella/commit/2aa31ce))
+- add renderExt to TextureFormatDecl, add FBO tex fmt checks ([180e89c](https://github.com/thi-ng/umbrella/commit/180e89c))
+- update multipass / PassOpts ([95aba16](https://github.com/thi-ng/umbrella/commit/95aba16))
+- add readPixels/readTexture(), add ReadableTextureFormat ([355f785](https://github.com/thi-ng/umbrella/commit/355f785))
 
 #### 🩹 Bug fixes
 
-- update samplerXX[] uniform decl types ([48b8906](https://github.com/thi-ng/umbrella/commit/48b8906))
 - update extension handling in shader(), add ExtensionInfo ([12abaa0](https://github.com/thi-ng/umbrella/commit/12abaa0))
+- update samplerXX[] uniform decl types ([48b8906](https://github.com/thi-ng/umbrella/commit/48b8906))
 
 #### ♻️ Refactoring
 
@@ -349,13 +349,13 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
-- add initial coll of blend mode presets ([58e0b04](https://github.com/thi-ng/umbrella/commit/58e0b04))
-- add blending & stencil enums/types ([c8898a0](https://github.com/thi-ng/umbrella/commit/c8898a0))
-- update Texture.configure, store target, format, type, size ([9131310](https://github.com/thi-ng/umbrella/commit/9131310))
 - update texture config, split api.ts into mult files ([052552f](https://github.com/thi-ng/umbrella/commit/052552f))
   - TextureOpts.format now refers to internal format, with
     base format & type inferred from TEX_FORMATS decls
   - add preliminary 3D texture support
+- update Texture.configure, store target, format, type, size ([9131310](https://github.com/thi-ng/umbrella/commit/9131310))
+- add blending & stencil enums/types ([c8898a0](https://github.com/thi-ng/umbrella/commit/c8898a0))
+- add initial coll of blend mode presets ([58e0b04](https://github.com/thi-ng/umbrella/commit/58e0b04))
 
 #### 🩹 Bug fixes
 
@@ -364,25 +364,15 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- update blend mode presets as sep consts ([cc0ffcd](https://github.com/thi-ng/umbrella/commit/cc0ffcd))
-- update canvas texture gens ([da0fcb2](https://github.com/thi-ng/umbrella/commit/da0fcb2))
-- add pixel dep, update tex gens ([58822c8](https://github.com/thi-ng/umbrella/commit/58822c8))
 - add/rename types, add/move checks, update deps ([d56b720](https://github.com/thi-ng/umbrella/commit/d56b720))
+- add pixel dep, update tex gens ([58822c8](https://github.com/thi-ng/umbrella/commit/58822c8))
+- update canvas texture gens ([da0fcb2](https://github.com/thi-ng/umbrella/commit/da0fcb2))
+- update blend mode presets as sep consts ([cc0ffcd](https://github.com/thi-ng/umbrella/commit/cc0ffcd))
 
 ## [0.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/webgl@0.1.0) (2019-07-07)
 
 #### 🚀 Features
 
-- update shaderSourceFromAST(), update shader presets, remove prefixes ([6aa5715](https://github.com/thi-ng/umbrella/commit/6aa5715))
-  - lambert & phong shader presets now AST based
-  - positionAttrib & colorAttrib helpers return AST nodes
-- initial integration of shader-ast ([73faffd](https://github.com/thi-ng/umbrella/commit/73faffd))
-  - replace GLSL enums with shader-ast types
-  - add shaderSourceFromAST()
-  - update shader presets
-  - update old code gens (to be replaced soon)
-- TS strictNullChecks, assertions, minor type updates ([ad672c7](https://github.com/thi-ng/umbrella/commit/ad672c7))
-- add screen2d() arity to extract screen size from gl ctx ([7f38f10](https://github.com/thi-ng/umbrella/commit/7f38f10))
 - add AttribPool support, update shader ext handling, add screen2d() ([f8081f2](https://github.com/thi-ng/umbrella/commit/f8081f2))
   - add ModelSpec.attribPool and update compileModel to delegate to
     compileAttribPool()
@@ -390,16 +380,26 @@ and/or version bumps of transitive dependencies.
   - add GL_EXT_INFO and update compileExtensionPragma()
   - add initShaderExtensions()
   - add sceen2d() proj matrix helper
+- add screen2d() arity to extract screen size from gl ctx ([7f38f10](https://github.com/thi-ng/umbrella/commit/7f38f10))
+- TS strictNullChecks, assertions, minor type updates ([ad672c7](https://github.com/thi-ng/umbrella/commit/ad672c7))
+- initial integration of shader-ast ([73faffd](https://github.com/thi-ng/umbrella/commit/73faffd))
+  - replace GLSL enums with shader-ast types
+  - add shaderSourceFromAST()
+  - update shader presets
+  - update old code gens (to be replaced soon)
+- update shaderSourceFromAST(), update shader presets, remove prefixes ([6aa5715](https://github.com/thi-ng/umbrella/commit/6aa5715))
+  - lambert & phong shader presets now AST based
+  - positionAttrib & colorAttrib helpers return AST nodes
 
 #### 🩹 Bug fixes
 
-- update lambert shader preset ([2fea507](https://github.com/thi-ng/umbrella/commit/2fea507))
-- update GPGPU texture & shader handling ([ce286ad](https://github.com/thi-ng/umbrella/commit/ce286ad))
-- uniform array & output var handling ([7e559a1](https://github.com/thi-ng/umbrella/commit/7e559a1))
-- also disable prefixes in prepareShaderSource() ([18ca4b5](https://github.com/thi-ng/umbrella/commit/18ca4b5))
 - apply ModelSpec mode in compileModel, fix/simplify draw fns ([67334a6](https://github.com/thi-ng/umbrella/commit/67334a6))
+- also disable prefixes in prepareShaderSource() ([18ca4b5](https://github.com/thi-ng/umbrella/commit/18ca4b5))
+- uniform array & output var handling ([7e559a1](https://github.com/thi-ng/umbrella/commit/7e559a1))
+- update GPGPU texture & shader handling ([ce286ad](https://github.com/thi-ng/umbrella/commit/ce286ad))
+- update lambert shader preset ([2fea507](https://github.com/thi-ng/umbrella/commit/2fea507))
 
 #### ♻️ Refactoring
 
-- remove obsolete defglsl & old shader snippets, update deps ([98e0780](https://github.com/thi-ng/umbrella/commit/98e0780))
 - update FX_SHADER_SPEC to use AST ([341cf04](https://github.com/thi-ng/umbrella/commit/341cf04))
+- remove obsolete defglsl & old shader snippets, update deps ([98e0780](https://github.com/thi-ng/umbrella/commit/98e0780))

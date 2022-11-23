@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-10-28T19:08:39Z
+- **Last updated**: 2022-11-23T22:46:54Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -53,8 +53,8 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- update imports (transducers) ([5a20982](https://github.com/thi-ng/umbrella/commit/5a20982))
 - update imports ([138571a](https://github.com/thi-ng/umbrella/commit/138571a))
+- update imports (transducers) ([5a20982](https://github.com/thi-ng/umbrella/commit/5a20982))
 
 ### [0.2.60](https://github.com/thi-ng/umbrella/tree/@thi.ng/lsys@0.2.60) (2020-09-13)
 
@@ -78,8 +78,8 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
-- add `g` turtle command, update readme ([4d06992](https://github.com/thi-ng/umbrella/commit/4d06992))
 - add probabilistic features & example, update readme ([318a576](https://github.com/thi-ng/umbrella/commit/318a576))
+- add `g` turtle command, update readme ([4d06992](https://github.com/thi-ng/umbrella/commit/4d06992))
 
 ## [0.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/lsys@0.1.0) (2019-02-21)
 

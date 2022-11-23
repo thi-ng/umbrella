@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-10-28T19:08:39Z
+- **Last updated**: 2022-11-23T22:46:54Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -106,15 +106,15 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
+- update all tests in _all_ pkgs ([8b582bc](https://github.com/thi-ng/umbrella/commit/8b582bc))
+  - update all to use [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament)
+- update imports ([138571a](https://github.com/thi-ng/umbrella/commit/138571a))
 - update deps & imports in various pkgs ([e1cf29e](https://github.com/thi-ng/umbrella/commit/e1cf29e))
   - largely related to recent updates/restructuring of these packages:
     - api
     - defmulti
     - errors
     - logger
-- update imports ([138571a](https://github.com/thi-ng/umbrella/commit/138571a))
-- update all tests in _all_ pkgs ([8b582bc](https://github.com/thi-ng/umbrella/commit/8b582bc))
-  - update all to use [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament)
 
 ### [4.2.9](https://github.com/thi-ng/umbrella/tree/@thi.ng/resolve-map@4.2.9) (2020-12-07)
 
@@ -219,11 +219,11 @@ and/or version bumps of transitive dependencies.
 
 #### 🩹 Bug fixes
 
+- add private _resolveDeep ([558f4f8](https://github.com/thi-ng/umbrella/commit/558f4f8))
+  - fixes resolution issue if a function dynamically created deep values
 - also use _resolvePath for plain lookups, optimize ([48c796f](https://github.com/thi-ng/umbrella/commit/48c796f))
   - rename _resolveDeep => _resolvePath
   - update docs
-- add private _resolveDeep ([558f4f8](https://github.com/thi-ng/umbrella/commit/558f4f8))
-  - fixes resolution issue if a function dynamically created deep values
 
 #### ♻️ Refactoring
 

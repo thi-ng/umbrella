@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-10-28T19:08:39Z
+- **Last updated**: 2022-11-23T22:46:54Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -53,9 +53,9 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
 - update imports in all pkgs ([5fa2b6f](https://github.com/thi-ng/umbrella/commit/5fa2b6f))
   - add .js suffix for all relative imports
+- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
 
 # [2.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/parse@2.0.0) (2021-10-12)
 
@@ -76,16 +76,16 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- update defmulti impls ([0303769](https://github.com/thi-ng/umbrella/commit/0303769))
+- update all tests in _all_ pkgs ([8b582bc](https://github.com/thi-ng/umbrella/commit/8b582bc))
+  - update all to use [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament)
+- update imports ([138571a](https://github.com/thi-ng/umbrella/commit/138571a))
 - update deps & imports in various pkgs ([e1cf29e](https://github.com/thi-ng/umbrella/commit/e1cf29e))
   - largely related to recent updates/restructuring of these packages:
     - api
     - defmulti
     - errors
     - logger
-- update imports ([138571a](https://github.com/thi-ng/umbrella/commit/138571a))
-- update all tests in _all_ pkgs ([8b582bc](https://github.com/thi-ng/umbrella/commit/8b582bc))
-  - update all to use [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament)
+- update defmulti impls ([0303769](https://github.com/thi-ng/umbrella/commit/0303769))
 
 ### [0.9.7](https://github.com/thi-ng/umbrella/tree/@thi.ng/parse@0.9.7) (2020-12-07)
 
@@ -110,20 +110,20 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
+- add replace/xfReplace() xform ([7291181](https://github.com/thi-ng/umbrella/commit/7291181))
 - enable replacement rule transforms ([ca22432](https://github.com/thi-ng/umbrella/commit/ca22432))
   - allow strings as rule transform in grammar
-- add replace/xfReplace() xform ([7291181](https://github.com/thi-ng/umbrella/commit/7291181))
 
 ## [0.8.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/parse@0.8.0) (2020-07-19)
 
 #### 🚀 Features
 
-- update repeat grammar ([7aae9ac](https://github.com/thi-ng/umbrella/commit/7aae9ac))
-  - support specifying min repeat count only (max: infinity), e.g. `{3,}`
+- add nest()/xfNest() transform ([af9c97b](https://github.com/thi-ng/umbrella/commit/af9c97b))
 - update grammar (xform rule refs) ([22188a4](https://github.com/thi-ng/umbrella/commit/22188a4))
   - allow other parse rules as rule xform (via `xfNest()`)
   - add tests
-- add nest()/xfNest() transform ([af9c97b](https://github.com/thi-ng/umbrella/commit/af9c97b))
+- update repeat grammar ([7aae9ac](https://github.com/thi-ng/umbrella/commit/7aae9ac))
+  - support specifying min repeat count only (max: infinity), e.g. `{3,}`
 
 ### [0.7.2](https://github.com/thi-ng/umbrella/tree/@thi.ng/parse@0.7.2) (2020-07-18)
 
@@ -146,8 +146,14 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
-- turn xfPrint() into HOF xform ([d86fa53](https://github.com/thi-ng/umbrella/commit/d86fa53))
-  - add opt support for custom print fns (other than console)
+- add lookahead() combinator, add tests ([ee35038](https://github.com/thi-ng/umbrella/commit/ee35038))
+- update lookahead ([51a8dc5](https://github.com/thi-ng/umbrella/commit/51a8dc5))
+  - add pass flag and only succeed if main parser passed at least once
+- update grammar DSL ([accacf9](https://github.com/thi-ng/umbrella/commit/accacf9))
+  - add `.` catch-all term
+  - add `(?=...)` suffix form for lookahead
+  - update TERM/TERM_BODY
+- lookahead w/ configurable capture ([542c066](https://github.com/thi-ng/umbrella/commit/542c066))
 - update/fix grammar DSL, add trim ([f82ba1f](https://github.com/thi-ng/umbrella/commit/f82ba1f))
   - update lookahead (cap, non-cap versions)
   - add lookahead for alt terms
@@ -155,21 +161,15 @@ and/or version bumps of transitive dependencies.
   - add line comment support
   - fix `{n}` repeat modifier handling
   - add `trim()`/`xfTrim()` xforms
-- lookahead w/ configurable capture ([542c066](https://github.com/thi-ng/umbrella/commit/542c066))
-- update grammar DSL ([accacf9](https://github.com/thi-ng/umbrella/commit/accacf9))
-  - add `.` catch-all term
-  - add `(?=...)` suffix form for lookahead
-  - update TERM/TERM_BODY
-- update lookahead ([51a8dc5](https://github.com/thi-ng/umbrella/commit/51a8dc5))
-  - add pass flag and only succeed if main parser passed at least once
-- add lookahead() combinator, add tests ([ee35038](https://github.com/thi-ng/umbrella/commit/ee35038))
+- turn xfPrint() into HOF xform ([d86fa53](https://github.com/thi-ng/umbrella/commit/d86fa53))
+  - add opt support for custom print fns (other than console)
 
 ## [0.6.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/parse@0.6.0) (2020-06-28)
 
 #### 🚀 Features
 
-- add count/xfCount transform ([056ae08](https://github.com/thi-ng/umbrella/commit/056ae08))
 - add `!` discard modifier to grammar ([456efdc](https://github.com/thi-ng/umbrella/commit/456efdc))
+- add count/xfCount transform ([056ae08](https://github.com/thi-ng/umbrella/commit/056ae08))
 
 ## [0.5.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/parse@0.5.0) (2020-04-23)
 
@@ -206,21 +206,15 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
-- add grammar default transforms, update/fix rules ([03ed965](https://github.com/thi-ng/umbrella/commit/03ed965))
-- update ESC & whitespace parsers ([069a6ef](https://github.com/thi-ng/umbrella/commit/069a6ef))
-- add discarding combinators, move discard ([e09a2c4](https://github.com/thi-ng/umbrella/commit/e09a2c4))
-  - add repeatD, oneOrMoreD, zeroOrMoreD
-- update grammar parser & compiler ([822fcba](https://github.com/thi-ng/umbrella/commit/822fcba))
-  - add GrammarOpts
-  - update rules to enable repetition of all terms
-  - add string term
-  - make debug output optional
-- add/update/rename parser presets ([12f2499](https://github.com/thi-ng/umbrella/commit/12f2499))
-- add withID() xform, add doc strings ([e16426b](https://github.com/thi-ng/umbrella/commit/e16426b))
-- add/update combinators ([e4eab03](https://github.com/thi-ng/umbrella/commit/e4eab03))
-  - add startsWith, endsWith, entireLine, entirely
-  - add wrap()
-  - rename dalt/dseq => altD/seqD
+- add skipWhile(), more discarded wrappers ([832c0b7](https://github.com/thi-ng/umbrella/commit/832c0b7))
+  - add skipWhile()
+  - add dalt(), dseq() wrappers
+  - add NL, DNL presets
+  - add ParseContext .state setter
+- add more whitespace presets ([1398e2b](https://github.com/thi-ng/umbrella/commit/1398e2b))
+- add dynamic() & DynamicParser ([b914267](https://github.com/thi-ng/umbrella/commit/b914267))
+- initial checkin grammar compiler ([38e9c66](https://github.com/thi-ng/umbrella/commit/38e9c66))
+- add ParseContext.reset(), update addChild() ([d47c0a2](https://github.com/thi-ng/umbrella/commit/d47c0a2))
 - add/update/rename parser primitives ([328103f](https://github.com/thi-ng/umbrella/commit/328103f))
   - add LitParser type to annotate single-char parsers
   - add satisfyD()
@@ -231,15 +225,21 @@ and/or version bumps of transitive dependencies.
   - export predicate versions:
     - litP(), noneOfP(), oneOfP(), rangeP()
   - update skipWhile() behavior
-- add ParseContext.reset(), update addChild() ([d47c0a2](https://github.com/thi-ng/umbrella/commit/d47c0a2))
-- initial checkin grammar compiler ([38e9c66](https://github.com/thi-ng/umbrella/commit/38e9c66))
-- add dynamic() & DynamicParser ([b914267](https://github.com/thi-ng/umbrella/commit/b914267))
-- add more whitespace presets ([1398e2b](https://github.com/thi-ng/umbrella/commit/1398e2b))
-- add skipWhile(), more discarded wrappers ([832c0b7](https://github.com/thi-ng/umbrella/commit/832c0b7))
-  - add skipWhile()
-  - add dalt(), dseq() wrappers
-  - add NL, DNL presets
-  - add ParseContext .state setter
+- add/update combinators ([e4eab03](https://github.com/thi-ng/umbrella/commit/e4eab03))
+  - add startsWith, endsWith, entireLine, entirely
+  - add wrap()
+  - rename dalt/dseq => altD/seqD
+- add withID() xform, add doc strings ([e16426b](https://github.com/thi-ng/umbrella/commit/e16426b))
+- add/update/rename parser presets ([12f2499](https://github.com/thi-ng/umbrella/commit/12f2499))
+- update grammar parser & compiler ([822fcba](https://github.com/thi-ng/umbrella/commit/822fcba))
+  - add GrammarOpts
+  - update rules to enable repetition of all terms
+  - add string term
+  - make debug output optional
+- add discarding combinators, move discard ([e09a2c4](https://github.com/thi-ng/umbrella/commit/e09a2c4))
+  - add repeatD, oneOrMoreD, zeroOrMoreD
+- update ESC & whitespace parsers ([069a6ef](https://github.com/thi-ng/umbrella/commit/069a6ef))
+- add grammar default transforms, update/fix rules ([03ed965](https://github.com/thi-ng/umbrella/commit/03ed965))
 
 #### ♻️ Refactoring
 
@@ -268,20 +268,20 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
-- update defContext, add basic array test ([cd7363d](https://github.com/thi-ng/umbrella/commit/cd7363d))
-- make retained state info optional ([a89ee87](https://github.com/thi-ng/umbrella/commit/a89ee87))
-- add ArrayReader, update pkg info ([3bec0db](https://github.com/thi-ng/umbrella/commit/3bec0db))
-- add ctx getters, add presets, update maybe ([02597bf](https://github.com/thi-ng/umbrella/commit/02597bf))
+- import as new package ([151e50c](https://github.com/thi-ng/umbrella/commit/151e50c))
+- update repeat ops, reader, initial state ([c5cfabe](https://github.com/thi-ng/umbrella/commit/c5cfabe))
+- add collect/xfCollect, update xfPrint ([43f3368](https://github.com/thi-ng/umbrella/commit/43f3368))
 - update ParseContext, repeat & lift ([bef1d4f](https://github.com/thi-ng/umbrella/commit/bef1d4f))
   - add context debug option / tracing
   - add .addChild()
   - update repeat zero-match handling
   - simplify lift()
-- add collect/xfCollect, update xfPrint ([43f3368](https://github.com/thi-ng/umbrella/commit/43f3368))
-- update repeat ops, reader, initial state ([c5cfabe](https://github.com/thi-ng/umbrella/commit/c5cfabe))
-- import as new package ([151e50c](https://github.com/thi-ng/umbrella/commit/151e50c))
+- add ctx getters, add presets, update maybe ([02597bf](https://github.com/thi-ng/umbrella/commit/02597bf))
+- add ArrayReader, update pkg info ([3bec0db](https://github.com/thi-ng/umbrella/commit/3bec0db))
+- make retained state info optional ([a89ee87](https://github.com/thi-ng/umbrella/commit/a89ee87))
+- update defContext, add basic array test ([cd7363d](https://github.com/thi-ng/umbrella/commit/cd7363d))
 
 #### ♻️ Refactoring
 
-- split presets into sep files ([43f62c5](https://github.com/thi-ng/umbrella/commit/43f62c5))
 - update context, rename ops, remove arrays dep ([a913c96](https://github.com/thi-ng/umbrella/commit/a913c96))
+- split presets into sep files ([43f62c5](https://github.com/thi-ng/umbrella/commit/43f62c5))

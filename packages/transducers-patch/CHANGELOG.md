@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-10-28T19:08:39Z
+- **Last updated**: 2022-11-23T22:46:54Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -32,9 +32,9 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
 - update imports in all pkgs ([5fa2b6f](https://github.com/thi-ng/umbrella/commit/5fa2b6f))
   - add .js suffix for all relative imports
+- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
 
 ## [0.3.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/transducers-patch@0.3.0) (2021-10-12)
 
@@ -55,9 +55,9 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- update imports ([138571a](https://github.com/thi-ng/umbrella/commit/138571a))
 - update all tests in _all_ pkgs ([8b582bc](https://github.com/thi-ng/umbrella/commit/8b582bc))
   - update all to use [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament)
+- update imports ([138571a](https://github.com/thi-ng/umbrella/commit/138571a))
 
 ## [0.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/transducers-patch@0.2.0) (2020-12-22)
 
@@ -87,10 +87,10 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
-- add transaction support ([77fbb77](https://github.com/thi-ng/umbrella/commit/77fbb77))
 - import as new pkg ([274fde1](https://github.com/thi-ng/umbrella/commit/274fde1))
+- add transaction support ([77fbb77](https://github.com/thi-ng/umbrella/commit/77fbb77))
 
 #### ♻️ Refactoring
 
-- update imports ([03f6ee8](https://github.com/thi-ng/umbrella/commit/03f6ee8))
 - update PatchObjOp, update readme ([63328d6](https://github.com/thi-ng/umbrella/commit/63328d6))
+- update imports ([03f6ee8](https://github.com/thi-ng/umbrella/commit/03f6ee8))

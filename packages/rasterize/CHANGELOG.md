@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-10-28T19:08:39Z
+- **Last updated**: 2022-11-23T22:46:54Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -42,16 +42,16 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
-- major update/additions ([e6f7fb0](https://github.com/thi-ng/umbrella/commit/e6f7fb0))
-  - add new shapes (polyline, polygon)
-  - add "shader" function support for all draw fns
-  - add shader functions
-  - rename drawLineWith() => traceLine()
 - update to new IGrid2D impls ([71ac0ca](https://github.com/thi-ng/umbrella/commit/71ac0ca))
   - add floodFillWith() for custom fill content/procedures
   - update/fix rect()
   - optimize __draw2D() for primitive values
   - add/update deps
+- major update/additions ([e6f7fb0](https://github.com/thi-ng/umbrella/commit/e6f7fb0))
+  - add new shapes (polyline, polygon)
+  - add "shader" function support for all draw fns
+  - add shader functions
+  - rename drawLineWith() => traceLine()
 
 ## [0.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/rasterize@0.1.0) (2021-11-03)
 

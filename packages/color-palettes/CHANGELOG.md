@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-10-28T19:08:39Z
+- **Last updated**: 2022-11-23T22:46:54Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -20,8 +20,8 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
-- add new themes ([f3d4446](https://github.com/thi-ng/umbrella/commit/f3d4446))
 - add 12 new palettes ([eab99c7](https://github.com/thi-ng/umbrella/commit/eab99c7))
+- add new themes ([f3d4446](https://github.com/thi-ng/umbrella/commit/f3d4446))
 
 ## [0.7.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/color-palettes@0.7.0) (2021-12-02)
 
@@ -37,13 +37,13 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
+- add new themes, update swatch gen ([69f269a](https://github.com/thi-ng/umbrella/commit/69f269a))
+  - update readme, add table w/ recent additions
 - Using workspaces for local tools ([bf7a404](https://github.com/thi-ng/umbrella/commit/bf7a404))
   Improving the overall build ergonomics
   - introduced a tools workspaces
   - imported it in all needed packages/examples
   - inclusive project root
-- add new themes, update swatch gen ([69f269a](https://github.com/thi-ng/umbrella/commit/69f269a))
-  - update readme, add table w/ recent additions
 
 #### ♻️ Refactoring
 
@@ -85,16 +85,16 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- update all test stubs ([f2d6d53](https://github.com/thi-ng/umbrella/commit/f2d6d53))
 - update all tests in _all_ pkgs ([8b582bc](https://github.com/thi-ng/umbrella/commit/8b582bc))
   - update all to use [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament)
+- update all test stubs ([f2d6d53](https://github.com/thi-ng/umbrella/commit/f2d6d53))
 
 ## [0.3.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/color-palettes@0.3.0) (2021-08-24)
 
 #### 🚀 Features
 
-- add new palettes, update readme ([14f2952](https://github.com/thi-ng/umbrella/commit/14f2952))
 - update/simplify swatch gen ([3187949](https://github.com/thi-ng/umbrella/commit/3187949))
+- add new palettes, update readme ([14f2952](https://github.com/thi-ng/umbrella/commit/14f2952))
 
 ## [0.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/color-palettes@0.2.0) (2021-08-22)
 

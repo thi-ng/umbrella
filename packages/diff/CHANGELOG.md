@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-10-28T19:08:39Z
+- **Last updated**: 2022-11-23T22:46:54Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -38,9 +38,9 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
 - update imports in all pkgs ([5fa2b6f](https://github.com/thi-ng/umbrella/commit/5fa2b6f))
   - add .js suffix for all relative imports
+- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
 
 # [5.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/diff@5.0.0) (2021-10-12)
 
@@ -83,8 +83,8 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- update imports ([c1a8efa](https://github.com/thi-ng/umbrella/commit/c1a8efa))
 - update imports, use new Fn types in various pkgs ([ced1e5d](https://github.com/thi-ng/umbrella/commit/ced1e5d))
+- update imports ([c1a8efa](https://github.com/thi-ng/umbrella/commit/c1a8efa))
 
 ### [3.2.20](https://github.com/thi-ng/umbrella/tree/@thi.ng/diff@3.2.20) (2020-05-05)
 
@@ -116,10 +116,10 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- allow args to be undefined/null ([f6ae89d](https://github.com/thi-ng/umbrella/commit/f6ae89d))
 - address TS strictNullChecks flag, add/update types ([0252a4b](https://github.com/thi-ng/umbrella/commit/0252a4b))
   - add EditLog type alias
   - update ArrayDiff, ObjectDiff interfaces
+- allow args to be undefined/null ([f6ae89d](https://github.com/thi-ng/umbrella/commit/f6ae89d))
 
 ## [3.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/diff@3.1.0) (2019-04-11)
 
@@ -149,6 +149,15 @@ and/or version bumps of transitive dependencies.
 
 #### 🛑 Breaking changes
 
+- flatten linear edit logs, rewrite diffObject(), add DiffMode ([e8356cd](https://github.com/thi-ng/umbrella/commit/e8356cd))
+- BREAKING CHANGES: `ArrayDiff.linear` & `ObjectDiff.edits` now flat arrays
+  - this change drastically reduces the number of array allocations
+  - each ArrayDiff.linear entry consists of 3 successive items
+  - each ObjectDiff.edits entry constist of 2 successive items
+  - add `DiffMode` enum to control level of detail & internal fast paths
+  - update `ArrayDiff` & `ObjectDiff` types
+  - remove obsolete `DiffLogEntry`
+  - replace `diffObject` with 2.5x faster version
 - flatten linear edit logs, update readme & arg order ([64feacf](https://github.com/thi-ng/umbrella/commit/64feacf))
 - BREAKING CHANGE: `ArrayDiff.linear` & `ObjectDiff.edits` now flat arrays
   - see commit [e8356cd296c12462ad9b126f966b55545b6ef70d](https://github.com/thi-ng/umbrella/commit/e8356cd296c12462ad9b126f966b55545b6ef70d)
@@ -166,15 +175,6 @@ and/or version bumps of transitive dependencies.
 
 #### ⏱ Performance improvements
 
-- flatten linear edit logs, rewrite diffObject(), add DiffMode ([e8356cd](https://github.com/thi-ng/umbrella/commit/e8356cd))
-  BREAKING CHANGES: `ArrayDiff.linear` & `ObjectDiff.edits` now flat arrays
-  - this change drastically reduces the number of array allocations
-  - each ArrayDiff.linear entry consists of 3 successive items
-  - each ObjectDiff.edits entry constist of 2 successive items
-  - add `DiffMode` enum to control level of detail & internal fast paths
-  - update `ArrayDiff` & `ObjectDiff` types
-  - remove obsolete `DiffLogEntry`
-  - replace `diffObject` with 2.5x faster version
 - reduce amount of temp/internal array allocs (diffArray) ([d1ee6d9](https://github.com/thi-ng/umbrella/commit/d1ee6d9))
   - hdom-benchmark for 256 cells now @ 39.8fps (vs 32.5 previously)
 

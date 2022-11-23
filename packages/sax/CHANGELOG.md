@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-10-28T19:08:39Z
+- **Last updated**: 2022-11-23T22:46:54Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -65,17 +65,17 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- minor pkg restructure (various) ([47f88d2](https://github.com/thi-ng/umbrella/commit/47f88d2))
+- update all tests in _all_ pkgs ([8b582bc](https://github.com/thi-ng/umbrella/commit/8b582bc))
+  - update all to use [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament)
+- update imports ([138571a](https://github.com/thi-ng/umbrella/commit/138571a))
+- update imports (transducers) ([4bad707](https://github.com/thi-ng/umbrella/commit/4bad707))
 - update deps & imports in various pkgs ([e1cf29e](https://github.com/thi-ng/umbrella/commit/e1cf29e))
   - largely related to recent updates/restructuring of these packages:
     - api
     - defmulti
     - errors
     - logger
-- update imports (transducers) ([4bad707](https://github.com/thi-ng/umbrella/commit/4bad707))
-- update imports ([138571a](https://github.com/thi-ng/umbrella/commit/138571a))
-- update all tests in _all_ pkgs ([8b582bc](https://github.com/thi-ng/umbrella/commit/8b582bc))
-  - update all to use [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament)
+- minor pkg restructure (various) ([47f88d2](https://github.com/thi-ng/umbrella/commit/47f88d2))
 
 ### [1.1.42](https://github.com/thi-ng/umbrella/tree/@thi.ng/sax@1.1.42) (2020-12-07)
 
@@ -162,24 +162,24 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
-- add entity support, update result format, update states ([0f2fcdf](https://github.com/thi-ng/umbrella/commit/0f2fcdf))
-  - add ParseOpts, ParseElement, ParseEvent, Type
-  - add XML entity replacement (optional)
-  - update error handling (add `error()` helper)
-  - update PROC_DECL state to support arbitrary instruction tags
-  -
+- initial import ([dce189f](https://github.com/thi-ng/umbrella/commit/dce189f))
+- emit child elements with `end` results, support comments ([3dea954](https://github.com/thi-ng/umbrella/commit/3dea954))
+- add support for proc & doctype elements, update `end` results ([a4766a5](https://github.com/thi-ng/umbrella/commit/a4766a5))
+  - `end` results now include element body as well
 - update error handling, add parse() wrapper, add FSMOpts ([64f2378](https://github.com/thi-ng/umbrella/commit/64f2378))
   - `unexpected()` does NOT throw error anymore,
     but triggers new ERROR FSM state
   - add input `pos` counter to ParserState, use for error messages
   - add `parse()` transducer wrapper
   - update `fsm()` transducer to accept new `FSMOpts`
-- add support for proc & doctype elements, update `end` results ([a4766a5](https://github.com/thi-ng/umbrella/commit/a4766a5))
-  - `end` results now include element body as well
-- emit child elements with `end` results, support comments ([3dea954](https://github.com/thi-ng/umbrella/commit/3dea954))
-- initial import ([dce189f](https://github.com/thi-ng/umbrella/commit/dce189f))
+- add entity support, update result format, update states ([0f2fcdf](https://github.com/thi-ng/umbrella/commit/0f2fcdf))
+  - add ParseOpts, ParseElement, ParseEvent, Type
+  - add XML entity replacement (optional)
+  - update error handling (add `error()` helper)
+  - update PROC_DECL state to support arbitrary instruction tags
+  -
 
 #### ♻️ Refactoring
 
-- remove extracted FSM transducer &  types, update readme ([56deb45](https://github.com/thi-ng/umbrella/commit/56deb45))
 - extract parser sub-states ([74f7d02](https://github.com/thi-ng/umbrella/commit/74f7d02))
+- remove extracted FSM transducer &  types, update readme ([56deb45](https://github.com/thi-ng/umbrella/commit/56deb45))

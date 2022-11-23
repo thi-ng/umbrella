@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-10-28T19:08:39Z
+- **Last updated**: 2022-11-23T22:46:54Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -38,9 +38,9 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
 - update imports in all pkgs ([5fa2b6f](https://github.com/thi-ng/umbrella/commit/5fa2b6f))
   - add .js suffix for all relative imports
+- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
 
 # [2.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/fuzzy-viz@2.0.0) (2021-10-12)
 
@@ -61,9 +61,9 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- update imports ([85e2d4b](https://github.com/thi-ng/umbrella/commit/85e2d4b))
 - update all tests in _all_ pkgs ([8b582bc](https://github.com/thi-ng/umbrella/commit/8b582bc))
   - update all to use [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament)
+- update imports ([85e2d4b](https://github.com/thi-ng/umbrella/commit/85e2d4b))
 
 ### [0.1.17](https://github.com/thi-ng/umbrella/tree/@thi.ng/fuzzy-viz@0.1.17) (2021-03-24)
 
@@ -75,11 +75,11 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
+- import as new pkg ([8b23934](https://github.com/thi-ng/umbrella/commit/8b23934))
+- add/update viz options, fix zero marker ([bee9cd0](https://github.com/thi-ng/umbrella/commit/bee9cd0))
 - add/update instrumentStrategy() & co ([131d137](https://github.com/thi-ng/umbrella/commit/131d137))
   - add fuzzySetToHiccup/Svg/Ascii() instrumentation fns
   - add docs
-- add/update viz options, fix zero marker ([bee9cd0](https://github.com/thi-ng/umbrella/commit/bee9cd0))
-- import as new pkg ([8b23934](https://github.com/thi-ng/umbrella/commit/8b23934))
 
 #### 🩹 Bug fixes
 

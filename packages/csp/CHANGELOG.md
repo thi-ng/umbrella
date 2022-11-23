@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-10-28T19:08:39Z
+- **Last updated**: 2022-11-23T22:46:54Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -32,9 +32,9 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
 - update imports in all pkgs ([5fa2b6f](https://github.com/thi-ng/umbrella/commit/5fa2b6f))
   - add .js suffix for all relative imports
+- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
 
 # [2.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/csp@2.0.0) (2021-10-12)
 
@@ -55,8 +55,8 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- update imports (transducers) ([4705acc](https://github.com/thi-ng/umbrella/commit/4705acc))
 - update imports ([9c6f8b8](https://github.com/thi-ng/umbrella/commit/9c6f8b8))
+- update imports (transducers) ([4705acc](https://github.com/thi-ng/umbrella/commit/4705acc))
 
 ### [1.1.74](https://github.com/thi-ng/umbrella/tree/@thi.ng/csp@1.1.74) (2021-09-03)
 
@@ -74,15 +74,15 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- update IReadableChannel.read() return type ([ffc2811](https://github.com/thi-ng/umbrella/commit/ffc2811))
 - update destructuring ([5a4ad57](https://github.com/thi-ng/umbrella/commit/5a4ad57))
+- update IReadableChannel.read() return type ([ffc2811](https://github.com/thi-ng/umbrella/commit/ffc2811))
 
 ### [1.1.38](https://github.com/thi-ng/umbrella/tree/@thi.ng/csp@1.1.38) (2020-09-13)
 
 #### ♻️ Refactoring
 
-- update imports ([53a8c9e](https://github.com/thi-ng/umbrella/commit/53a8c9e))
 - update imports, use new Fn types in various pkgs ([ced1e5d](https://github.com/thi-ng/umbrella/commit/ced1e5d))
+- update imports ([53a8c9e](https://github.com/thi-ng/umbrella/commit/53a8c9e))
 
 ### [1.1.37](https://github.com/thi-ng/umbrella/tree/@thi.ng/csp@1.1.37) (2020-08-28)
 
@@ -94,8 +94,8 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- keep State as const enum, internalize ([9ea3b6e](https://github.com/thi-ng/umbrella/commit/9ea3b6e))
 - switch to non-const enums ([8e0c049](https://github.com/thi-ng/umbrella/commit/8e0c049))
+- keep State as const enum, internalize ([9ea3b6e](https://github.com/thi-ng/umbrella/commit/9ea3b6e))
 
 ### [1.1.10](https://github.com/thi-ng/umbrella/tree/@thi.ng/csp@1.1.10) (2020-02-25)
 
@@ -107,9 +107,9 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
+- enable TS strict compiler flags (refactor) ([3d7fba2](https://github.com/thi-ng/umbrella/commit/3d7fba2))
 - update Mult.tap() to use set semantics ([c9bc953](https://github.com/thi-ng/umbrella/commit/c9bc953))
   - add check if arg channel already is a tap and if so don't add duplicate
-- enable TS strict compiler flags (refactor) ([3d7fba2](https://github.com/thi-ng/umbrella/commit/3d7fba2))
 
 #### 🩹 Bug fixes
 
@@ -170,8 +170,8 @@ and/or version bumps of transitive dependencies.
 
 #### 🩹 Bug fixes
 
-- fix [#5](https://github.com/thi-ng/umbrella/issues/5), more example fixes (rfn calls) ([080c2ee](https://github.com/thi-ng/umbrella/commit/080c2ee))
 - fix [#5](https://github.com/thi-ng/umbrella/issues/5), example in readme ([a10a487](https://github.com/thi-ng/umbrella/commit/a10a487))
+- fix [#5](https://github.com/thi-ng/umbrella/issues/5), more example fixes (rfn calls) ([080c2ee](https://github.com/thi-ng/umbrella/commit/080c2ee))
 
 ### [0.3.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/csp@0.3.1) (2018-01-24)
 

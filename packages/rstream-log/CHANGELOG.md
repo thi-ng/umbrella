@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-10-28T19:08:39Z
+- **Last updated**: 2022-11-23T22:46:54Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -39,9 +39,9 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
 - update imports in all pkgs ([5fa2b6f](https://github.com/thi-ng/umbrella/commit/5fa2b6f))
   - add .js suffix for all relative imports
+- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
 
 # [4.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/rstream-log@4.0.0) (2021-10-12)
 
@@ -62,18 +62,18 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- minor pkg restructure ([761de32](https://github.com/thi-ng/umbrella/commit/761de32))
-- update imports in various pkgs (rstream) ([342cf54](https://github.com/thi-ng/umbrella/commit/342cf54))
+- update all tests in _all_ pkgs ([8b582bc](https://github.com/thi-ng/umbrella/commit/8b582bc))
+  - update all to use [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament)
+- update imports ([138571a](https://github.com/thi-ng/umbrella/commit/138571a))
+- update imports (transducers) ([7fc60cd](https://github.com/thi-ng/umbrella/commit/7fc60cd))
 - update deps & imports in various pkgs ([e1cf29e](https://github.com/thi-ng/umbrella/commit/e1cf29e))
   - largely related to recent updates/restructuring of these packages:
     - api
     - defmulti
     - errors
     - logger
-- update imports (transducers) ([7fc60cd](https://github.com/thi-ng/umbrella/commit/7fc60cd))
-- update imports ([138571a](https://github.com/thi-ng/umbrella/commit/138571a))
-- update all tests in _all_ pkgs ([8b582bc](https://github.com/thi-ng/umbrella/commit/8b582bc))
-  - update all to use [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament)
+- update imports in various pkgs (rstream) ([342cf54](https://github.com/thi-ng/umbrella/commit/342cf54))
+- minor pkg restructure ([761de32](https://github.com/thi-ng/umbrella/commit/761de32))
 
 ## [3.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/rstream-log@3.2.0) (2021-01-13)
 
@@ -155,8 +155,8 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- use rstream nextID() util (fix regression) ([3e1467f](https://github.com/thi-ng/umbrella/commit/3e1467f))
 - use arrow fns ([14c00b2](https://github.com/thi-ng/umbrella/commit/14c00b2))
+- use rstream nextID() util (fix regression) ([3e1467f](https://github.com/thi-ng/umbrella/commit/3e1467f))
 
 ### [1.0.60](https://github.com/thi-ng/umbrella/tree/@thi.ng/rstream-log@1.0.60) (2018-09-24)
 
@@ -225,9 +225,9 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
-- add support for body formatter (formatString()), add type aliases ([4048bec](https://github.com/thi-ng/umbrella/commit/4048bec))
-- add node check for writeFile() ([bc26d09](https://github.com/thi-ng/umbrella/commit/bc26d09))
 - add ILogger ([8304c82](https://github.com/thi-ng/umbrella/commit/8304c82))
+- add node check for writeFile() ([bc26d09](https://github.com/thi-ng/umbrella/commit/bc26d09))
+- add support for body formatter (formatString()), add type aliases ([4048bec](https://github.com/thi-ng/umbrella/commit/4048bec))
 
 ### [0.2.2](https://github.com/thi-ng/umbrella/tree/@thi.ng/rstream-log@0.2.2) (2018-01-25)
 

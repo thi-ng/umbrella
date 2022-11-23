@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-10-28T19:08:39Z
+- **Last updated**: 2022-11-23T22:46:54Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -56,9 +56,9 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
 - update imports in all pkgs ([5fa2b6f](https://github.com/thi-ng/umbrella/commit/5fa2b6f))
   - add .js suffix for all relative imports
+- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
 
 # [3.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/strings@3.0.0) (2021-10-12)
 
@@ -83,9 +83,9 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- update imports ([138571a](https://github.com/thi-ng/umbrella/commit/138571a))
 - update all tests in _all_ pkgs ([8b582bc](https://github.com/thi-ng/umbrella/commit/8b582bc))
   - update all to use [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament)
+- update imports ([138571a](https://github.com/thi-ng/umbrella/commit/138571a))
 
 ## [2.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/strings@2.1.0) (2021-03-24)
 
@@ -111,9 +111,9 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
-- add ANSI predicates ([928694b](https://github.com/thi-ng/umbrella/commit/928694b))
 - update split() args ([ea503e8](https://github.com/thi-ng/umbrella/commit/ea503e8))
   - allow string delimiters (or regexp)
+- add ANSI predicates ([928694b](https://github.com/thi-ng/umbrella/commit/928694b))
 
 ## [1.15.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/strings@1.15.0) (2021-02-20)
 
@@ -124,9 +124,9 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- avoid [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/main/packages/checks) dep in vector() ([410d463](https://github.com/thi-ng/umbrella/commit/410d463))
 - update uuid() ([7fe966a](https://github.com/thi-ng/umbrella/commit/7fe966a))
   - re-use fn from [@thi.ng/hex](https://github.com/thi-ng/umbrella/tree/main/packages/hex)
+- avoid [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/main/packages/checks) dep in vector() ([410d463](https://github.com/thi-ng/umbrella/commit/410d463))
 
 ## [1.14.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/strings@1.14.0) (2021-01-13)
 
@@ -136,19 +136,19 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- minor update computeCursorPos() ([a593d66](https://github.com/thi-ng/umbrella/commit/a593d66))
 - minor update uuid() ([0a37562](https://github.com/thi-ng/umbrella/commit/0a37562))
+- minor update computeCursorPos() ([a593d66](https://github.com/thi-ng/umbrella/commit/a593d66))
 
 ## [1.13.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/strings@1.13.0) (2021-01-10)
 
 #### 🚀 Features
 
-- add tab conversion fns ([aefdd97](https://github.com/thi-ng/umbrella/commit/aefdd97))
-- add wordWrap*() fns ([2a283c0](https://github.com/thi-ng/umbrella/commit/2a283c0))
-- add stripAnsi(), lengthAnsi() fns ([86fa81a](https://github.com/thi-ng/umbrella/commit/86fa81a))
 - update padLeft/Right() args ([118f97f](https://github.com/thi-ng/umbrella/commit/118f97f))
   - add optional length arg to explicitly specify string length
     (e.g. to exclude ANSI control seq chars)
+- add stripAnsi(), lengthAnsi() fns ([86fa81a](https://github.com/thi-ng/umbrella/commit/86fa81a))
+- add wordWrap*() fns ([2a283c0](https://github.com/thi-ng/umbrella/commit/2a283c0))
+- add tab conversion fns ([aefdd97](https://github.com/thi-ng/umbrella/commit/aefdd97))
 
 #### ⏱ Performance improvements
 
@@ -194,9 +194,9 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
-- add BOM const, update pkg meta ([b6751fc](https://github.com/thi-ng/umbrella/commit/b6751fc))
-- add escape(), update unescape(), add tests ([e0d5f1e](https://github.com/thi-ng/umbrella/commit/e0d5f1e))
 - add unescape() ([924466b](https://github.com/thi-ng/umbrella/commit/924466b))
+- add escape(), update unescape(), add tests ([e0d5f1e](https://github.com/thi-ng/umbrella/commit/e0d5f1e))
+- add BOM const, update pkg meta ([b6751fc](https://github.com/thi-ng/umbrella/commit/b6751fc))
 
 ### [1.9.6](https://github.com/thi-ng/umbrella/tree/@thi.ng/strings@1.9.6) (2020-09-13)
 
@@ -220,14 +220,14 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
-- add trim() HOF ([350a6c6](https://github.com/thi-ng/umbrella/commit/350a6c6))
-- add slugifyGH(), refactor slugify() ([1ef805b](https://github.com/thi-ng/umbrella/commit/1ef805b))
 - add join() HOF ([1c5c46f](https://github.com/thi-ng/umbrella/commit/1c5c46f))
+- add slugifyGH(), refactor slugify() ([1ef805b](https://github.com/thi-ng/umbrella/commit/1ef805b))
+- add trim() HOF ([350a6c6](https://github.com/thi-ng/umbrella/commit/350a6c6))
 
 #### ♻️ Refactoring
 
-- update bits/bytes unit defs ([f9becb1](https://github.com/thi-ng/umbrella/commit/f9becb1))
 - add truncateRight alias ([81fb592](https://github.com/thi-ng/umbrella/commit/81fb592))
+- update bits/bytes unit defs ([f9becb1](https://github.com/thi-ng/umbrella/commit/f9becb1))
 
 ## [1.7.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/strings@1.7.0) (2020-03-06)
 
@@ -255,8 +255,8 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
-- add interpolate() ([a19e409](https://github.com/thi-ng/umbrella/commit/a19e409))
 - add format() helpers (str, ignore) ([df87b7c](https://github.com/thi-ng/umbrella/commit/df87b7c))
+- add interpolate() ([a19e409](https://github.com/thi-ng/umbrella/commit/a19e409))
 
 ## [1.3.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/strings@1.3.0) (2019-09-21)
 
@@ -335,9 +335,9 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
+- add truncateLeft() & wrap() stringers ([1a20bc2](https://github.com/thi-ng/umbrella/commit/1a20bc2))
 - add case converters ([653a175](https://github.com/thi-ng/umbrella/commit/653a175))
   - camel / kebab / snake
-- add truncateLeft() & wrap() stringers ([1a20bc2](https://github.com/thi-ng/umbrella/commit/1a20bc2))
 
 #### 🩹 Bug fixes
 

@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-10-28T19:08:39Z
+- **Last updated**: 2022-11-23T22:46:54Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -32,9 +32,9 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
 - update imports in all pkgs ([5fa2b6f](https://github.com/thi-ng/umbrella/commit/5fa2b6f))
   - add .js suffix for all relative imports
+- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
 
 # [3.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/pointfree@3.0.0) (2021-10-12)
 
@@ -55,22 +55,22 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
+- update all tests in _all_ pkgs ([8b582bc](https://github.com/thi-ng/umbrella/commit/8b582bc))
+  - update all to use [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament)
+- update imports ([138571a](https://github.com/thi-ng/umbrella/commit/138571a))
 - update deps & imports in various pkgs ([e1cf29e](https://github.com/thi-ng/umbrella/commit/e1cf29e))
   - largely related to recent updates/restructuring of these packages:
     - api
     - defmulti
     - errors
     - logger
-- update imports ([138571a](https://github.com/thi-ng/umbrella/commit/138571a))
-- update all tests in _all_ pkgs ([8b582bc](https://github.com/thi-ng/umbrella/commit/8b582bc))
-  - update all to use [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament)
 
 ### [2.0.18](https://github.com/thi-ng/umbrella/tree/@thi.ng/pointfree@2.0.18) (2020-12-07)
 
 #### ♻️ Refactoring
 
-- update type-only imports ([34bb05c](https://github.com/thi-ng/umbrella/commit/34bb05c))
 - update type-only imports in various tests/pkgs ([3fd9c24](https://github.com/thi-ng/umbrella/commit/3fd9c24))
+- update type-only imports ([34bb05c](https://github.com/thi-ng/umbrella/commit/34bb05c))
 
 # [2.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/pointfree@2.0.0) (2020-04-16)
 
@@ -95,9 +95,9 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
-- add $try word, update compile() to allow empty quotations ([41de106](https://github.com/thi-ng/umbrella/commit/41de106))
-- add tojson()/fromjson() conversion ops ([829f3ab](https://github.com/thi-ng/umbrella/commit/829f3ab))
 - add whenq(), ismatch() ([44ab1d7](https://github.com/thi-ng/umbrella/commit/44ab1d7))
+- add tojson()/fromjson() conversion ops ([829f3ab](https://github.com/thi-ng/umbrella/commit/829f3ab))
+- add $try word, update compile() to allow empty quotations ([41de106](https://github.com/thi-ng/umbrella/commit/41de106))
 
 ### [1.2.6](https://github.com/thi-ng/umbrella/tree/@thi.ng/pointfree@1.2.6) (2020-02-25)
 
@@ -114,9 +114,9 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- update op2v, extract loops ([6392657](https://github.com/thi-ng/umbrella/commit/6392657))
-- update core stack fns (re-use) ([a7ebb2f](https://github.com/thi-ng/umbrella/commit/a7ebb2f))
 - split into separate files ([86a27e5](https://github.com/thi-ng/umbrella/commit/86a27e5))
+- update core stack fns (re-use) ([a7ebb2f](https://github.com/thi-ng/umbrella/commit/a7ebb2f))
+- update op2v, extract loops ([6392657](https://github.com/thi-ng/umbrella/commit/6392657))
 
 ## [1.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/pointfree@1.1.0) (2019-07-07)
 
@@ -187,9 +187,9 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
+- add copy() word ([68a8dba](https://github.com/thi-ng/umbrella/commit/68a8dba))
 - add math ops, update load/loadkey, update tests ([2101e92](https://github.com/thi-ng/umbrella/commit/2101e92))
   - load/loadkey throws error if var doesn't exist
-- add copy() word ([68a8dba](https://github.com/thi-ng/umbrella/commit/68a8dba))
 
 #### ♻️ Refactoring
 
@@ -212,12 +212,6 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
-- add more dataflow combinators, words & tests ([b096e43](https://github.com/thi-ng/umbrella/commit/b096e43))
-  - add tri/2/3
-  - add bis/2, tris/2
-  - add bia/2, tria/2
-  - add both, either
-  - add oneover
 - add combinators, update controlflow words, remove execq ([3dc30a8](https://github.com/thi-ng/umbrella/commit/3dc30a8))
   - add condq(), loopq()
   - update dotimes() to use quotations from stack, no more HOF
@@ -227,6 +221,12 @@ and/or version bumps of transitive dependencies.
   - add dup3
   - refactor exec to work w/ quotations, remove execq
   - add/update tests
+- add more dataflow combinators, words & tests ([b096e43](https://github.com/thi-ng/umbrella/commit/b096e43))
+  - add tri/2/3
+  - add bis/2, tris/2
+  - add bia/2, tria/2
+  - add both, either
+  - add oneover
 
 ## [0.4.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/pointfree@0.4.0) (2018-03-29)
 
@@ -244,7 +244,21 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
-- major update readme, package ([e52b869](https://github.com/thi-ng/umbrella/commit/e52b869))
+- update word/wordU, add append(), tuple(), join() ([f3f0bec](https://github.com/thi-ng/umbrella/commit/f3f0bec))
+- update all words to return stack ([79b4ce3](https://github.com/thi-ng/umbrella/commit/79b4ce3))
+- major refactor & restructure ([a48361d](https://github.com/thi-ng/umbrella/commit/a48361d))
+  - split out types into api.ts
+  - add StackContext and update all word functions to accept and return this type
+  - add comp() and update word/wordU() to precompile word
+  - add list/array fns: op2l, ladd/lsub/lmul/ldiv, lsplit, foldl
+- further restructure, perf, add tests ([3252554](https://github.com/thi-ng/umbrella/commit/3252554))
+- add rstack, update StackContext ([1c4cd2f](https://github.com/thi-ng/umbrella/commit/1c4cd2f))
+  - add 2nd stack (r-stack) to StackContext
+  - add supporting rstack words (rdrop/2, mov/cprd, mov/cpdr)
+  - add min/max
+  - add pushl
+  - add cat
+  - add printds/rs
 - add new words, rename words, remove mapnth, pushl2 ([0f0c382](https://github.com/thi-ng/umbrella/commit/0f0c382))
   - add mapl(), mapll() array transformers
   - refactor foldl() in terms of mapl()
@@ -253,26 +267,12 @@ and/or version bumps of transitive dependencies.
   - revert op2v to produce new result arrays
   - add runE() syntax sugar
   - update tests
-- add rstack, update StackContext ([1c4cd2f](https://github.com/thi-ng/umbrella/commit/1c4cd2f))
-  - add 2nd stack (r-stack) to StackContext
-  - add supporting rstack words (rdrop/2, mov/cprd, mov/cpdr)
-  - add min/max
-  - add pushl
-  - add cat
-  - add printds/rs
-- further restructure, perf, add tests ([3252554](https://github.com/thi-ng/umbrella/commit/3252554))
-- major refactor & restructure ([a48361d](https://github.com/thi-ng/umbrella/commit/a48361d))
-  - split out types into api.ts
-  - add StackContext and update all word functions to accept and return this type
-  - add comp() and update word/wordU() to precompile word
-  - add list/array fns: op2l, ladd/lsub/lmul/ldiv, lsplit, foldl
-- update all words to return stack ([79b4ce3](https://github.com/thi-ng/umbrella/commit/79b4ce3))
-- update word/wordU, add append(), tuple(), join() ([f3f0bec](https://github.com/thi-ng/umbrella/commit/f3f0bec))
+- major update readme, package ([e52b869](https://github.com/thi-ng/umbrella/commit/e52b869))
 
 #### 🩹 Bug fixes
 
-- add 0-arity comp() (identity fn) ([10d5a34](https://github.com/thi-ng/umbrella/commit/10d5a34))
 - wordU(), add tests ([1a01f9a](https://github.com/thi-ng/umbrella/commit/1a01f9a))
+- add 0-arity comp() (identity fn) ([10d5a34](https://github.com/thi-ng/umbrella/commit/10d5a34))
 
 #### ♻️ Refactoring
 
@@ -299,10 +299,8 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
-- support data vals in program, add collect(), update readme ([6cac0c7](https://github.com/thi-ng/umbrella/commit/6cac0c7))
-  - any non-function values in program place themselves on stack
-  - update StackProgram type alias
-  - add collect() to create stack partitions
+- initial import of refactored [@thi.ng/pointfree](https://github.com/thi-ng/umbrella/tree/main/packages/pointfree) package ([25bbf05](https://github.com/thi-ng/umbrella/commit/25bbf05))
+- add dropIf, neg, nop, update cond,condM, add docs/readme ([58f5716](https://github.com/thi-ng/umbrella/commit/58f5716))
 - add unwrap, quatations, math/bitops, array/obj access ([f75486d](https://github.com/thi-ng/umbrella/commit/f75486d))
   - add runU(), wordU() & unwrap()
   - add execQ() for running quotations
@@ -310,5 +308,7 @@ and/or version bumps of transitive dependencies.
   - add at(), storeAt()
   - add mapN()
   - various small optimizations / refactorings
-- add dropIf, neg, nop, update cond,condM, add docs/readme ([58f5716](https://github.com/thi-ng/umbrella/commit/58f5716))
-- initial import of refactored [@thi.ng/pointfree](https://github.com/thi-ng/umbrella/tree/main/packages/pointfree) package ([25bbf05](https://github.com/thi-ng/umbrella/commit/25bbf05))
+- support data vals in program, add collect(), update readme ([6cac0c7](https://github.com/thi-ng/umbrella/commit/6cac0c7))
+  - any non-function values in program place themselves on stack
+  - update StackProgram type alias
+  - add collect() to create stack partitions

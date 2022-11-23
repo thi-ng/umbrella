@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-10-28T19:08:39Z
+- **Last updated**: 2022-11-23T22:46:54Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -13,9 +13,9 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
-- add default file exclusions (/test/fixtures) ([75049b9](https://github.com/thi-ng/umbrella/commit/75049b9))
-- add file fixture helpers, update pkg meta ([4e0f0c8](https://github.com/thi-ng/umbrella/commit/4e0f0c8))
 - add CLI support for path exclusions ([cdfe577](https://github.com/thi-ng/umbrella/commit/cdfe577))
+- add file fixture helpers, update pkg meta ([4e0f0c8](https://github.com/thi-ng/umbrella/commit/4e0f0c8))
+- add default file exclusions (/test/fixtures) ([75049b9](https://github.com/thi-ng/umbrella/commit/75049b9))
 
 ### [0.2.7](https://github.com/thi-ng/umbrella/tree/@thi.ng/testament@0.2.7) (2022-05-20)
 
@@ -74,29 +74,29 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
+- add new pkg ([d2bbab4](https://github.com/thi-ng/umbrella/commit/d2bbab4))
+- update CLI wrapper and group() behavior ([aa2ceef](https://github.com/thi-ng/umbrella/commit/aa2ceef))
+  - update group() to only register task
+  - add registerTask(), executeTasks() to trigger queued tests
+- add result format/output, global opts ([b624396](https://github.com/thi-ng/umbrella/commit/b624396))
+- add/update types, config, cli, docs ([c045a57](https://github.com/thi-ng/umbrella/commit/c045a57))
+- add file watching, bug fixes ([4987e1d](https://github.com/thi-ng/umbrella/commit/4987e1d))
+- more flexible CLI parsing/order ([9f56f79](https://github.com/thi-ng/umbrella/commit/9f56f79))
+  - allow opts & paths to be given in any order
+  - add exit code handling for incorrect CLI opts
 - add/update lifecycle handlers ([39f6040](https://github.com/thi-ng/umbrella/commit/39f6040))
   - add group-global before/after handlers
   - add logger to TestCtx
   - update tests
-- more flexible CLI parsing/order ([9f56f79](https://github.com/thi-ng/umbrella/commit/9f56f79))
-  - allow opts & paths to be given in any order
-  - add exit code handling for incorrect CLI opts
-- add file watching, bug fixes ([4987e1d](https://github.com/thi-ng/umbrella/commit/4987e1d))
-- add/update types, config, cli, docs ([c045a57](https://github.com/thi-ng/umbrella/commit/c045a57))
-- add result format/output, global opts ([b624396](https://github.com/thi-ng/umbrella/commit/b624396))
-- update CLI wrapper and group() behavior ([aa2ceef](https://github.com/thi-ng/umbrella/commit/aa2ceef))
-  - update group() to only register task
-  - add registerTask(), executeTasks() to trigger queued tests
-- add new pkg ([d2bbab4](https://github.com/thi-ng/umbrella/commit/d2bbab4))
 
 #### ♻️ Refactoring
 
-- minor pkg restructure (various) ([47f88d2](https://github.com/thi-ng/umbrella/commit/47f88d2))
+- avoid circular deps ([459faa4](https://github.com/thi-ng/umbrella/commit/459faa4))
+- update all test stubs ([f2d6d53](https://github.com/thi-ng/umbrella/commit/f2d6d53))
 - update deps & imports in various pkgs ([e1cf29e](https://github.com/thi-ng/umbrella/commit/e1cf29e))
   - largely related to recent updates/restructuring of these packages:
     - api
     - defmulti
     - errors
     - logger
-- update all test stubs ([f2d6d53](https://github.com/thi-ng/umbrella/commit/f2d6d53))
-- avoid circular deps ([459faa4](https://github.com/thi-ng/umbrella/commit/459faa4))
+- minor pkg restructure (various) ([47f88d2](https://github.com/thi-ng/umbrella/commit/47f88d2))

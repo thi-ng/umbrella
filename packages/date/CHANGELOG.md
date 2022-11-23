@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-10-28T19:08:39Z
+- **Last updated**: 2022-11-23T22:46:54Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -51,9 +51,9 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
 - update imports in all pkgs ([5fa2b6f](https://github.com/thi-ng/umbrella/commit/5fa2b6f))
   - add .js suffix for all relative imports
+- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
 
 # [2.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/date@2.0.0) (2021-10-12)
 
@@ -74,11 +74,11 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- rename internals ([8ee94b1](https://github.com/thi-ng/umbrella/commit/8ee94b1))
-- restructure source files ([fcb3f3d](https://github.com/thi-ng/umbrella/commit/fcb3f3d))
-- update imports ([6d4be5a](https://github.com/thi-ng/umbrella/commit/6d4be5a))
 - update all tests in _all_ pkgs ([8b582bc](https://github.com/thi-ng/umbrella/commit/8b582bc))
   - update all to use [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament)
+- update imports ([6d4be5a](https://github.com/thi-ng/umbrella/commit/6d4be5a))
+- restructure source files ([fcb3f3d](https://github.com/thi-ng/umbrella/commit/fcb3f3d))
+- rename internals ([8ee94b1](https://github.com/thi-ng/umbrella/commit/8ee94b1))
 
 ### [1.0.4](https://github.com/thi-ng/umbrella/tree/@thi.ng/date@1.0.4) (2021-08-09)
 
@@ -103,31 +103,7 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
-- update DateTime, iterators, rounding ([7c0652a](https://github.com/thi-ng/umbrella/commit/7c0652a))
-  - add DateTime quarter & week readonly props & inc/decQuarter/Week()
-  - update defIterator(), add quarters() and weeks() iterators
-  - add quarter/week rounding fns
-- add quarter-based rounding fns ([24a7a76](https://github.com/thi-ng/umbrella/commit/24a7a76))
-- add/update formatters ([56d9b64](https://github.com/thi-ng/umbrella/commit/56d9b64))
-  - add `q` (quarter) formatter
-  - add `SS` formatter for zero-padded millis
-- update Locale, DateTime.add() ([f20c129](https://github.com/thi-ng/umbrella/commit/f20c129))
-  - add Locale.dateTime, update setLocale()
-  - add DateTime.toLocaleString()
-  - update DateTime.add() to accept all Period units
-  - simplify relative()
-  - fix/refactor formatters
-- add withLocale() helper ([8c9493e](https://github.com/thi-ng/umbrella/commit/8c9493e))
-- add relative date calc & formatting ([3100814](https://github.com/thi-ng/umbrella/commit/3100814))
-  - add formatRelative(), formatRelativeParts() (w/ locale support)
-  - add decomposeDifference()
-  - add support for quarters in parseRelative()
-- update Locale & presets ([50d889d](https://github.com/thi-ng/umbrella/commit/50d889d))
-- add/update formatters & presets ([3f3d8d0](https://github.com/thi-ng/umbrella/commit/3f3d8d0))
-  - add week-in-year formatters
-  - update defFormat() to accept MaybeDate arg
-  - migrate defTimecode() to sep file
-  - add decomposeDuration()
+- add/update constants ([2b28839](https://github.com/thi-ng/umbrella/commit/2b28839))
 - major update DateTime methods, fixes ([9268573](https://github.com/thi-ng/umbrella/commit/9268573))
   - add/extend types (MaybeDate, Period, RoundingFn)
   - update various fns & methods to accept MaybeDate args
@@ -143,7 +119,31 @@ and/or version bumps of transitive dependencies.
   - update return value for inc/decWeek() methods (week number)
   - add ensureDateTime(), ensureEpoch()
   - add maybeIsDate()
-- add/update constants ([2b28839](https://github.com/thi-ng/umbrella/commit/2b28839))
+- add/update formatters & presets ([3f3d8d0](https://github.com/thi-ng/umbrella/commit/3f3d8d0))
+  - add week-in-year formatters
+  - update defFormat() to accept MaybeDate arg
+  - migrate defTimecode() to sep file
+  - add decomposeDuration()
+- update Locale & presets ([50d889d](https://github.com/thi-ng/umbrella/commit/50d889d))
+- add relative date calc & formatting ([3100814](https://github.com/thi-ng/umbrella/commit/3100814))
+  - add formatRelative(), formatRelativeParts() (w/ locale support)
+  - add decomposeDifference()
+  - add support for quarters in parseRelative()
+- add withLocale() helper ([8c9493e](https://github.com/thi-ng/umbrella/commit/8c9493e))
+- update Locale, DateTime.add() ([f20c129](https://github.com/thi-ng/umbrella/commit/f20c129))
+  - add Locale.dateTime, update setLocale()
+  - add DateTime.toLocaleString()
+  - update DateTime.add() to accept all Period units
+  - simplify relative()
+  - fix/refactor formatters
+- add/update formatters ([56d9b64](https://github.com/thi-ng/umbrella/commit/56d9b64))
+  - add `q` (quarter) formatter
+  - add `SS` formatter for zero-padded millis
+- add quarter-based rounding fns ([24a7a76](https://github.com/thi-ng/umbrella/commit/24a7a76))
+- update DateTime, iterators, rounding ([7c0652a](https://github.com/thi-ng/umbrella/commit/7c0652a))
+  - add DateTime quarter & week readonly props & inc/decQuarter/Week()
+  - update defIterator(), add quarters() and weeks() iterators
+  - add quarter/week rounding fns
 
 #### 🩹 Bug fixes
 
@@ -153,27 +153,27 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
-- add/update epoch rounding fns ([ec3033e](https://github.com/thi-ng/umbrella/commit/ec3033e))
-  - add versions for second/minute/hour precisions
+- add/update locales, add separators ([61f34e7](https://github.com/thi-ng/umbrella/commit/61f34e7))
+  - add DE_SHORT/LONG, ES_LONG, FR_LONG, IT_LONG locales
+  - update `Locale` interface, add separators
+  - add `~`/`~~` formatters for referring to locale seperators
+- update/extend locales, format prims ([089a9d4](https://github.com/thi-ng/umbrella/commit/089a9d4))
+  - add LocaleSpec type, update setLocale()
+  - add new formatters for unpadded/lowercase/separators
+  - update all locale presets
 - add new DateTime methods ([a0123cb](https://github.com/thi-ng/umbrella/commit/a0123cb))
   - add .dayInYear()
   - add .weekInYear()
   - extract isLeapYear(), daysInMonth() standalone fns
   - add/update tests
-- update/extend locales, format prims ([089a9d4](https://github.com/thi-ng/umbrella/commit/089a9d4))
-  - add LocaleSpec type, update setLocale()
-  - add new formatters for unpadded/lowercase/separators
-  - update all locale presets
-- add/update locales, add separators ([61f34e7](https://github.com/thi-ng/umbrella/commit/61f34e7))
-  - add DE_SHORT/LONG, ES_LONG, FR_LONG, IT_LONG locales
-  - update `Locale` interface, add separators
-  - add `~`/`~~` formatters for referring to locale seperators
+- add/update epoch rounding fns ([ec3033e](https://github.com/thi-ng/umbrella/commit/ec3033e))
+  - add versions for second/minute/hour precisions
 
 #### 🩹 Bug fixes
 
-- flip sign in TZ offset formatter (`Z`) ([dc536cb](https://github.com/thi-ng/umbrella/commit/dc536cb))
 - fix UTC handling in formatters ([cab1434](https://github.com/thi-ng/umbrella/commit/cab1434))
   - update tests
+- flip sign in TZ offset formatter (`Z`) ([dc536cb](https://github.com/thi-ng/umbrella/commit/dc536cb))
 
 #### ⏱ Performance improvements
 
@@ -202,18 +202,18 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
-- add weeks() iterator ([7ea9d1e](https://github.com/thi-ng/umbrella/commit/7ea9d1e))
-- add interface impls to DateTime ([e3417dd](https://github.com/thi-ng/umbrella/commit/e3417dd))
-  - add impls for: `ICompare`, `IEquiv`, `IEqualsDelta`
+- add date decrement methods ([a52b89e](https://github.com/thi-ng/umbrella/commit/a52b89e))
+- add relative date offset parsing/apply ([5329538](https://github.com/thi-ng/umbrella/commit/5329538))
+  - add parseRelative()
+  - add relative()
 - update relative date handling ([80d406c](https://github.com/thi-ng/umbrella/commit/80d406c))
   - add `Period` type alias
   - update `parseRelative()`/`relative()` to support milliseconds
   - refactor `parseRelative()` (split up)
   - add tests
-- add relative date offset parsing/apply ([5329538](https://github.com/thi-ng/umbrella/commit/5329538))
-  - add parseRelative()
-  - add relative()
-- add date decrement methods ([a52b89e](https://github.com/thi-ng/umbrella/commit/a52b89e))
+- add interface impls to DateTime ([e3417dd](https://github.com/thi-ng/umbrella/commit/e3417dd))
+  - add impls for: `ICompare`, `IEquiv`, `IEqualsDelta`
+- add weeks() iterator ([7ea9d1e](https://github.com/thi-ng/umbrella/commit/7ea9d1e))
 
 ## [0.3.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/date@0.3.0) (2021-03-21)
 
@@ -241,19 +241,19 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
-- add iterator arg coercions, refactor, add docs ([1256201](https://github.com/thi-ng/umbrella/commit/1256201))
-- add defTimecode() formatter ([42753e1](https://github.com/thi-ng/umbrella/commit/42753e1))
+- add DateTime, defIterator, add/update iterators ([0e31c69](https://github.com/thi-ng/umbrella/commit/0e31c69))
+- update/fix DateTime ([27c8617](https://github.com/thi-ng/umbrella/commit/27c8617))
+  - add date/string/json conversions
+  - add/fix leap year handling
+  - add dateTime() factory
 - add/update formatters, add locale ([c8e84ad](https://github.com/thi-ng/umbrella/commit/c8e84ad))
   - add LOCALE, setLocale()
   - add EN_SHORT, EN_LONG locales
   - update MMM and E formatters to use locale
   - update defFormat() to accept format fns in addition to strings
   - update/rename preset formatters
-- update/fix DateTime ([27c8617](https://github.com/thi-ng/umbrella/commit/27c8617))
-  - add date/string/json conversions
-  - add/fix leap year handling
-  - add dateTime() factory
-- add DateTime, defIterator, add/update iterators ([0e31c69](https://github.com/thi-ng/umbrella/commit/0e31c69))
+- add defTimecode() formatter ([42753e1](https://github.com/thi-ng/umbrella/commit/42753e1))
+- add iterator arg coercions, refactor, add docs ([1256201](https://github.com/thi-ng/umbrella/commit/1256201))
 
 #### 🩹 Bug fixes
 

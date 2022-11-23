@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-10-28T19:08:39Z
+- **Last updated**: 2022-11-23T22:46:54Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -38,9 +38,9 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
 - update imports in all pkgs ([5fa2b6f](https://github.com/thi-ng/umbrella/commit/5fa2b6f))
   - add .js suffix for all relative imports
+- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
 
 ## [0.3.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/sexpr@0.3.0) (2021-10-12)
 
@@ -61,16 +61,16 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- update defmulti impls ([53e41e3](https://github.com/thi-ng/umbrella/commit/53e41e3))
+- update all tests in _all_ pkgs ([8b582bc](https://github.com/thi-ng/umbrella/commit/8b582bc))
+  - update all to use [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament)
+- update imports ([138571a](https://github.com/thi-ng/umbrella/commit/138571a))
 - update deps & imports in various pkgs ([e1cf29e](https://github.com/thi-ng/umbrella/commit/e1cf29e))
   - largely related to recent updates/restructuring of these packages:
     - api
     - defmulti
     - errors
     - logger
-- update imports ([138571a](https://github.com/thi-ng/umbrella/commit/138571a))
-- update all tests in _all_ pkgs ([8b582bc](https://github.com/thi-ng/umbrella/commit/8b582bc))
-  - update all to use [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament)
+- update defmulti impls ([53e41e3](https://github.com/thi-ng/umbrella/commit/53e41e3))
 
 ### [0.2.35](https://github.com/thi-ng/umbrella/tree/@thi.ng/sexpr@0.2.35) (2021-03-03)
 
@@ -104,6 +104,8 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
+- import as new package ([f526b7c](https://github.com/thi-ng/umbrella/commit/f526b7c))
+- add ParseError ([7998afe](https://github.com/thi-ng/umbrella/commit/7998afe))
 - update SyntaxOpts, runtime, update scope parsing, types ([7c840e1](https://github.com/thi-ng/umbrella/commit/7c840e1))
   - update SyntaxOpts scope delimiter spec
   - update parse() to check for matching scope types
@@ -111,5 +113,3 @@ and/or version bumps of transitive dependencies.
   - rename node types
   - add/update docs
   - add tests
-- add ParseError ([7998afe](https://github.com/thi-ng/umbrella/commit/7998afe))
-- import as new package ([f526b7c](https://github.com/thi-ng/umbrella/commit/f526b7c))

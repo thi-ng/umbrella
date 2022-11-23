@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-10-28T19:08:39Z
+- **Last updated**: 2022-11-23T22:46:54Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -59,15 +59,15 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
+- update all tests in _all_ pkgs ([8b582bc](https://github.com/thi-ng/umbrella/commit/8b582bc))
+  - update all to use [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament)
+- update imports ([138571a](https://github.com/thi-ng/umbrella/commit/138571a))
 - update deps & imports in various pkgs ([e1cf29e](https://github.com/thi-ng/umbrella/commit/e1cf29e))
   - largely related to recent updates/restructuring of these packages:
     - api
     - defmulti
     - errors
     - logger
-- update imports ([138571a](https://github.com/thi-ng/umbrella/commit/138571a))
-- update all tests in _all_ pkgs ([8b582bc](https://github.com/thi-ng/umbrella/commit/8b582bc))
-  - update all to use [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament)
 
 # [3.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/intervals@3.0.0) (2021-02-20)
 
@@ -127,8 +127,8 @@ and/or version bumps of transitive dependencies.
 
 #### 🩹 Bug fixes
 
-- update compare() to consider openness, add tests ([995b32a](https://github.com/thi-ng/umbrella/commit/995b32a))
 - add union/intersection tests ([d301628](https://github.com/thi-ng/umbrella/commit/d301628))
+- update compare() to consider openness, add tests ([995b32a](https://github.com/thi-ng/umbrella/commit/995b32a))
 
 ### [1.0.13](https://github.com/thi-ng/umbrella/tree/@thi.ng/intervals@1.0.13) (2019-08-21)
 

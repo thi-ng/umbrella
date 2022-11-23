@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-10-28T19:08:39Z
+- **Last updated**: 2022-11-23T22:46:54Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -23,9 +23,9 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
 - update imports in all pkgs ([5fa2b6f](https://github.com/thi-ng/umbrella/commit/5fa2b6f))
   - add .js suffix for all relative imports
+- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
 
 ## [0.5.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/simd@0.5.0) (2021-10-12)
 
@@ -46,8 +46,8 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- update b64 WASM init ([75c83e5](https://github.com/thi-ng/umbrella/commit/75c83e5))
 - update imports ([138571a](https://github.com/thi-ng/umbrella/commit/138571a))
+- update b64 WASM init ([75c83e5](https://github.com/thi-ng/umbrella/commit/75c83e5))
 
 ## [0.4.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/simd@0.4.0) (2020-07-25)
 
@@ -89,16 +89,16 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
-- add mag2/4, magsq2/4, move/extract inline fns, update tests, readme ([00ce05b](https://github.com/thi-ng/umbrella/commit/00ce05b))
-- add mix4_f32, mixn4_f32, mul_m22v2_aos, update test & readme ([d09f09e](https://github.com/thi-ng/umbrella/commit/d09f09e))
-- add swizzle fns (disabled) ([a47ec4d](https://github.com/thi-ng/umbrella/commit/a47ec4d))
-- add hadd* inline fns, update dot, normalize, mulv, sum ([a1011ea](https://github.com/thi-ng/umbrella/commit/a1011ea))
-- add clampn4_f32, sum4_f32 ([0e0dfde](https://github.com/thi-ng/umbrella/commit/0e0dfde))
-- add more vector fns ([4f4cea4](https://github.com/thi-ng/umbrella/commit/4f4cea4))
-- add new fns, switch to f32x4 namespaced ops, update readme ([4023a8f](https://github.com/thi-ng/umbrella/commit/4023a8f))
-- add matrix-vec mult fns, no async init, inline binary as b64 ([761dd98](https://github.com/thi-ng/umbrella/commit/761dd98))
-- add new dot fns, tests, rename ([50bc9fc](https://github.com/thi-ng/umbrella/commit/50bc9fc))
 - add new package ([eedb895](https://github.com/thi-ng/umbrella/commit/eedb895))
+- add new dot fns, tests, rename ([50bc9fc](https://github.com/thi-ng/umbrella/commit/50bc9fc))
+- add matrix-vec mult fns, no async init, inline binary as b64 ([761dd98](https://github.com/thi-ng/umbrella/commit/761dd98))
+- add new fns, switch to f32x4 namespaced ops, update readme ([4023a8f](https://github.com/thi-ng/umbrella/commit/4023a8f))
+- add more vector fns ([4f4cea4](https://github.com/thi-ng/umbrella/commit/4f4cea4))
+- add clampn4_f32, sum4_f32 ([0e0dfde](https://github.com/thi-ng/umbrella/commit/0e0dfde))
+- add hadd* inline fns, update dot, normalize, mulv, sum ([a1011ea](https://github.com/thi-ng/umbrella/commit/a1011ea))
+- add swizzle fns (disabled) ([a47ec4d](https://github.com/thi-ng/umbrella/commit/a47ec4d))
+- add mix4_f32, mixn4_f32, mul_m22v2_aos, update test & readme ([d09f09e](https://github.com/thi-ng/umbrella/commit/d09f09e))
+- add mag2/4, magsq2/4, move/extract inline fns, update tests, readme ([00ce05b](https://github.com/thi-ng/umbrella/commit/00ce05b))
 
 #### 🩹 Bug fixes
 
@@ -106,6 +106,6 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
+- extract SIMD API, update readme ([8b7287e](https://github.com/thi-ng/umbrella/commit/8b7287e))
 - fix [#162](https://github.com/thi-ng/umbrella/issues/162), update normalize2_f32_aos() ([74dab9a](https://github.com/thi-ng/umbrella/commit/74dab9a))
   - extract inline $norm() helper
-- extract SIMD API, update readme ([8b7287e](https://github.com/thi-ng/umbrella/commit/8b7287e))

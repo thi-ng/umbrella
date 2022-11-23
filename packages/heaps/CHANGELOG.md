@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-10-28T19:08:39Z
+- **Last updated**: 2022-11-23T22:46:54Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -38,9 +38,9 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
 - update imports in all pkgs ([5fa2b6f](https://github.com/thi-ng/umbrella/commit/5fa2b6f))
   - add .js suffix for all relative imports
+- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
 
 # [2.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/heaps@2.0.0) (2021-10-12)
 
@@ -61,21 +61,21 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- update imports ([138571a](https://github.com/thi-ng/umbrella/commit/138571a))
 - update all tests in _all_ pkgs ([8b582bc](https://github.com/thi-ng/umbrella/commit/8b582bc))
   - update all to use [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament)
+- update imports ([138571a](https://github.com/thi-ng/umbrella/commit/138571a))
 
 ## [1.3.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/heaps@1.3.0) (2021-08-17)
 
 #### 🚀 Features
 
-- add/update find()/has() impls ([5ca6538](https://github.com/thi-ng/umbrella/commit/5ca6538))
-- add PriorityQueue impl ([c33027b](https://github.com/thi-ng/umbrella/commit/c33027b))
 - update all Heap impls, opts, add factories ([fbfb7bb](https://github.com/thi-ng/umbrella/commit/fbfb7bb))
   - add HeapOpts.equiv predicate
   - add [@thi.ng/equiv](https://github.com/thi-ng/umbrella/tree/main/packages/equiv) dependency
   - add Heap.remove(), .find(), .findWith()
   - add defHeap/defDHeap/defPairingHeap() factory fns
+- add PriorityQueue impl ([c33027b](https://github.com/thi-ng/umbrella/commit/c33027b))
+- add/update find()/has() impls ([5ca6538](https://github.com/thi-ng/umbrella/commit/5ca6538))
 
 ### [1.2.38](https://github.com/thi-ng/umbrella/tree/@thi.ng/heaps@1.2.38) (2021-03-17)
 
@@ -136,8 +136,8 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- address TS strictNullChecks flag ([11b11c9](https://github.com/thi-ng/umbrella/commit/11b11c9))
 - address TS strictNullChecks flag ([6f37226](https://github.com/thi-ng/umbrella/commit/6f37226))
+- address TS strictNullChecks flag ([11b11c9](https://github.com/thi-ng/umbrella/commit/11b11c9))
 
 # [1.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/heaps@1.0.0) (2019-01-21)
 
@@ -171,8 +171,8 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
-- iterator now returns min() seq ([fccb3af](https://github.com/thi-ng/umbrella/commit/fccb3af))
 - add min/max(), update heapify() and percolate methods ([c4bbee0](https://github.com/thi-ng/umbrella/commit/c4bbee0))
+- iterator now returns min() seq ([fccb3af](https://github.com/thi-ng/umbrella/commit/fccb3af))
 
 #### 🩹 Bug fixes
 

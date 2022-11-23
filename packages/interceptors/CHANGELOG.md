@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-10-28T19:08:39Z
+- **Last updated**: 2022-11-23T22:46:54Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -38,9 +38,9 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
 - update imports in all pkgs ([5fa2b6f](https://github.com/thi-ng/umbrella/commit/5fa2b6f))
   - add .js suffix for all relative imports
+- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
 
 # [3.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/interceptors@3.0.0) (2021-10-12)
 
@@ -61,16 +61,16 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
+- update all tests in _all_ pkgs ([8b582bc](https://github.com/thi-ng/umbrella/commit/8b582bc))
+  - update all to use [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament)
+- update all test stubs ([f2d6d53](https://github.com/thi-ng/umbrella/commit/f2d6d53))
+- update imports ([138571a](https://github.com/thi-ng/umbrella/commit/138571a))
 - update deps & imports in various pkgs ([e1cf29e](https://github.com/thi-ng/umbrella/commit/e1cf29e))
   - largely related to recent updates/restructuring of these packages:
     - api
     - defmulti
     - errors
     - logger
-- update imports ([138571a](https://github.com/thi-ng/umbrella/commit/138571a))
-- update all test stubs ([f2d6d53](https://github.com/thi-ng/umbrella/commit/f2d6d53))
-- update all tests in _all_ pkgs ([8b582bc](https://github.com/thi-ng/umbrella/commit/8b582bc))
-  - update all to use [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament)
 
 ### [2.2.35](https://github.com/thi-ng/umbrella/tree/@thi.ng/interceptors@2.2.35) (2020-12-07)
 
@@ -110,8 +110,8 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- update ensureStateXXX() iceps (re-use) ([80ea335](https://github.com/thi-ng/umbrella/commit/80ea335))
 - simplify addHandler, split processXXX, add logger ([b7455ab](https://github.com/thi-ng/umbrella/commit/b7455ab))
+- update ensureStateXXX() iceps (re-use) ([80ea335](https://github.com/thi-ng/umbrella/commit/80ea335))
 
 ## [2.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/interceptors@2.1.0) (2019-07-07)
 
@@ -131,8 +131,8 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- re-use Fn type aliases ([9ebe677](https://github.com/thi-ng/umbrella/commit/9ebe677))
 - update Fn args in various packages ([e453ac3](https://github.com/thi-ng/umbrella/commit/e453ac3))
+- re-use Fn type aliases ([9ebe677](https://github.com/thi-ng/umbrella/commit/9ebe677))
 
 # [2.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/interceptors@2.0.0) (2019-01-21)
 
@@ -230,17 +230,17 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
-- add undo/redo handlers/fx & snapshot() interceptor ([3c92f7e](https://github.com/thi-ng/umbrella/commit/3c92f7e))
-- add default FX_UNDO/REDO side fx ([a102eb7](https://github.com/thi-ng/umbrella/commit/a102eb7))
 - update processQueue(), expose full ctx to handlers ([183af61](https://github.com/thi-ng/umbrella/commit/183af61))
   - update InterceptorFn / InterceptorPredicate to pass ctx as opt last arg
+- add default FX_UNDO/REDO side fx ([a102eb7](https://github.com/thi-ng/umbrella/commit/a102eb7))
+- add undo/redo handlers/fx & snapshot() interceptor ([3c92f7e](https://github.com/thi-ng/umbrella/commit/3c92f7e))
 
 #### ♻️ Refactoring
 
+- also pass ctx to sidefx handlers ([ba0c876](https://github.com/thi-ng/umbrella/commit/ba0c876))
 - refactor undo handling ([a1d9ae6](https://github.com/thi-ng/umbrella/commit/a1d9ae6))
   - update EV_UNDO/REDO handlers & docs
   - remove FX_UNDO/REDO
-- also pass ctx to sidefx handlers ([ba0c876](https://github.com/thi-ng/umbrella/commit/ba0c876))
 
 ## [1.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/interceptors@1.2.0) (2018-04-13)
 

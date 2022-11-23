@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-10-28T19:08:39Z
+- **Last updated**: 2022-11-23T22:46:54Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -32,9 +32,9 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
 - update imports in all pkgs ([5fa2b6f](https://github.com/thi-ng/umbrella/commit/5fa2b6f))
   - add .js suffix for all relative imports
+- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
 
 # [2.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/leb128@2.0.0) (2021-10-12)
 
@@ -55,10 +55,10 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- update b64 WASM init ([2cff5b0](https://github.com/thi-ng/umbrella/commit/2cff5b0))
-- update imports ([138571a](https://github.com/thi-ng/umbrella/commit/138571a))
 - update all tests in _all_ pkgs ([8b582bc](https://github.com/thi-ng/umbrella/commit/8b582bc))
   - update all to use [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament)
+- update imports ([138571a](https://github.com/thi-ng/umbrella/commit/138571a))
+- update b64 WASM init ([2cff5b0](https://github.com/thi-ng/umbrella/commit/2cff5b0))
 
 ### [1.0.68](https://github.com/thi-ng/umbrella/tree/@thi.ng/leb128@1.0.68) (2021-08-24)
 
@@ -96,7 +96,7 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
+- import new hybrid TS/WASM/zig package, incl. readme & tests ([140b238](https://github.com/thi-ng/umbrella/commit/140b238))
+- add zig tests, move binary to sep src file for auto regen ([2a89cde](https://github.com/thi-ng/umbrella/commit/2a89cde))
 - add READY promise to allow waiting for WASM initialization ([60c3245](https://github.com/thi-ng/umbrella/commit/60c3245))
   - update tests & readme
-- add zig tests, move binary to sep src file for auto regen ([2a89cde](https://github.com/thi-ng/umbrella/commit/2a89cde))
-- import new hybrid TS/WASM/zig package, incl. readme & tests ([140b238](https://github.com/thi-ng/umbrella/commit/140b238))

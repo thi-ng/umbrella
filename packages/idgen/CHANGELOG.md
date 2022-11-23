@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-10-28T19:08:39Z
+- **Last updated**: 2022-11-23T22:46:54Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -59,15 +59,15 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
+- update all tests in _all_ pkgs ([8b582bc](https://github.com/thi-ng/umbrella/commit/8b582bc))
+  - update all to use [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament)
+- update imports ([138571a](https://github.com/thi-ng/umbrella/commit/138571a))
 - update deps & imports in various pkgs ([e1cf29e](https://github.com/thi-ng/umbrella/commit/e1cf29e))
   - largely related to recent updates/restructuring of these packages:
     - api
     - defmulti
     - errors
     - logger
-- update imports ([138571a](https://github.com/thi-ng/umbrella/commit/138571a))
-- update all tests in _all_ pkgs ([8b582bc](https://github.com/thi-ng/umbrella/commit/8b582bc))
-  - update all to use [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament)
 
 ### [0.2.29](https://github.com/thi-ng/umbrella/tree/@thi.ng/idgen@0.2.29) (2021-01-02)
 
@@ -79,20 +79,20 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
-- add IClear impl, fix available() getter, add tests ([e467978](https://github.com/thi-ng/umbrella/commit/e467978))
-  - available() now takes start offset into account
 - support increasing ID range capacity ([f040eb5](https://github.com/thi-ng/umbrella/commit/f040eb5))
   - add `capacity` getter / setter
   - increasing capacity only supported if unversioned
+- add IClear impl, fix available() getter, add tests ([e467978](https://github.com/thi-ng/umbrella/commit/e467978))
+  - available() now takes start offset into account
 
 ## [0.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/idgen@0.1.0) (2019-11-30)
 
 #### 🚀 Features
 
-- add INotify impl, add tests ([7aec9b7](https://github.com/thi-ng/umbrella/commit/7aec9b7))
 - import as new pkg ([bff5f5b](https://github.com/thi-ng/umbrella/commit/bff5f5b))
+- add INotify impl, add tests ([7aec9b7](https://github.com/thi-ng/umbrella/commit/7aec9b7))
 
 #### ♻️ Refactoring
 
-- add readonly acces to `ids`, `freeID` getter ([9a2637c](https://github.com/thi-ng/umbrella/commit/9a2637c))
 - expose capacity,  available, used getters ([70d0dc9](https://github.com/thi-ng/umbrella/commit/70d0dc9))
+- add readonly acces to `ids`, `freeID` getter ([9a2637c](https://github.com/thi-ng/umbrella/commit/9a2637c))

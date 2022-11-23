@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-10-29T20:34:04Z
+- **Last updated**: 2022-11-23T22:46:54Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -61,6 +61,6 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
-- add snowpack env var support ([bdd68e1](https://github.com/thi-ng/umbrella/commit/bdd68e1))
 - extract as new pkg ([323995f](https://github.com/thi-ng/umbrella/commit/323995f))
   - migrate exposeGlobal() from [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/main/packages/api) to new pkg
+- add snowpack env var support ([bdd68e1](https://github.com/thi-ng/umbrella/commit/bdd68e1))

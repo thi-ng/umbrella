@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-10-28T19:08:39Z
+- **Last updated**: 2022-11-23T22:46:54Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -47,9 +47,9 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
 - update imports in all pkgs ([5fa2b6f](https://github.com/thi-ng/umbrella/commit/5fa2b6f))
   - add .js suffix for all relative imports
+- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
 
 ## [0.3.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/gp@0.3.0) (2021-10-12)
 
@@ -70,17 +70,17 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- minor pkg restructure (various) ([47f88d2](https://github.com/thi-ng/umbrella/commit/47f88d2))
+- update all tests in _all_ pkgs ([8b582bc](https://github.com/thi-ng/umbrella/commit/8b582bc))
+  - update all to use [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament)
+- update imports ([138571a](https://github.com/thi-ng/umbrella/commit/138571a))
+- update imports (transducers) ([d2c6ead](https://github.com/thi-ng/umbrella/commit/d2c6ead))
 - update deps & imports in various pkgs ([e1cf29e](https://github.com/thi-ng/umbrella/commit/e1cf29e))
   - largely related to recent updates/restructuring of these packages:
     - api
     - defmulti
     - errors
     - logger
-- update imports (transducers) ([d2c6ead](https://github.com/thi-ng/umbrella/commit/d2c6ead))
-- update imports ([138571a](https://github.com/thi-ng/umbrella/commit/138571a))
-- update all tests in _all_ pkgs ([8b582bc](https://github.com/thi-ng/umbrella/commit/8b582bc))
-  - update all to use [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament)
+- minor pkg restructure (various) ([47f88d2](https://github.com/thi-ng/umbrella/commit/47f88d2))
 
 ## [0.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/gp@0.2.0) (2020-12-22)
 
@@ -105,13 +105,13 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
-- update MEP.decodeChromosome, tests, add docs ([e339925](https://github.com/thi-ng/umbrella/commit/e339925))
-- update crossover/mutation for both AST/MEP, add tests ([9852631](https://github.com/thi-ng/umbrella/commit/9852631))
-- add opt min depth filter for MEP.decodeChromosome() ([921fcdd](https://github.com/thi-ng/umbrella/commit/921fcdd))
-- add MEP, refactor all as classes, add/update types, tests ([d9061b1](https://github.com/thi-ng/umbrella/commit/d9061b1))
+- import as new package ([dcfee15](https://github.com/thi-ng/umbrella/commit/dcfee15))
 - add support for arbitrary op arities, simplify ([8e71a88](https://github.com/thi-ng/umbrella/commit/8e71a88))
   - update ASTOpts
-- import as new package ([dcfee15](https://github.com/thi-ng/umbrella/commit/dcfee15))
+- add MEP, refactor all as classes, add/update types, tests ([d9061b1](https://github.com/thi-ng/umbrella/commit/d9061b1))
+- add opt min depth filter for MEP.decodeChromosome() ([921fcdd](https://github.com/thi-ng/umbrella/commit/921fcdd))
+- update crossover/mutation for both AST/MEP, add tests ([9852631](https://github.com/thi-ng/umbrella/commit/9852631))
+- update MEP.decodeChromosome, tests, add docs ([e339925](https://github.com/thi-ng/umbrella/commit/e339925))
 
 #### 🩹 Bug fixes
 

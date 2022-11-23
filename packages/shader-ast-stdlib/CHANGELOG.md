@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-10-28T19:08:39Z
+- **Last updated**: 2022-11-23T22:46:54Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -13,8 +13,8 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
-- add more 2D SDF prims ([2672e75](https://github.com/thi-ng/umbrella/commit/2672e75))
 - add 2D SDF arc/bezier fns ([07bd445](https://github.com/thi-ng/umbrella/commit/07bd445))
+- add more 2D SDF prims ([2672e75](https://github.com/thi-ng/umbrella/commit/2672e75))
 
 #### ♻️ Refactoring
 
@@ -43,9 +43,9 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
 - update imports in all pkgs ([5fa2b6f](https://github.com/thi-ng/umbrella/commit/5fa2b6f))
   - add .js suffix for all relative imports
+- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
 
 ## [0.10.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/shader-ast-stdlib@0.10.0) (2021-10-12)
 
@@ -66,10 +66,10 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- update imports ([b22054e](https://github.com/thi-ng/umbrella/commit/b22054e))
-- update all test stubs ([f2d6d53](https://github.com/thi-ng/umbrella/commit/f2d6d53))
 - update all tests in _all_ pkgs ([8b582bc](https://github.com/thi-ng/umbrella/commit/8b582bc))
   - update all to use [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament)
+- update all test stubs ([f2d6d53](https://github.com/thi-ng/umbrella/commit/f2d6d53))
+- update imports ([b22054e](https://github.com/thi-ng/umbrella/commit/b22054e))
 
 ## [0.9.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/shader-ast-stdlib@0.9.0) (2021-08-17)
 
@@ -81,12 +81,12 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
-- add variadic SDF ops ([8d6390c](https://github.com/thi-ng/umbrella/commit/8d6390c))
+- add SDF polyhedra fns ([2100e50](https://github.com/thi-ng/umbrella/commit/2100e50))
+- add oscillator fns ([f14e8cb](https://github.com/thi-ng/umbrella/commit/f14e8cb))
 - add SDF domain ops ([c41b288](https://github.com/thi-ng/umbrella/commit/c41b288))
   - add sdfMirror2()
   - add sdfRepeatPolar()
-- add oscillator fns ([f14e8cb](https://github.com/thi-ng/umbrella/commit/f14e8cb))
-- add SDF polyhedra fns ([2100e50](https://github.com/thi-ng/umbrella/commit/2100e50))
+- add variadic SDF ops ([8d6390c](https://github.com/thi-ng/umbrella/commit/8d6390c))
 
 #### ♻️ Refactoring
 
@@ -96,8 +96,8 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
-- variadic sdf isec/sub/union ([fbff935](https://github.com/thi-ng/umbrella/commit/fbff935))
 - add sdfUnion2(), add missing exports ([9d52838](https://github.com/thi-ng/umbrella/commit/9d52838))
+- variadic sdf isec/sub/union ([fbff935](https://github.com/thi-ng/umbrella/commit/fbff935))
 
 ## [0.6.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/shader-ast-stdlib@0.6.0) (2021-04-24)
 
@@ -121,16 +121,16 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
+- add fit()/fitClamped() ([64ba64c](https://github.com/thi-ng/umbrella/commit/64ba64c))
+- add mixCubic()/mixQuadratic() ([4dfc020](https://github.com/thi-ng/umbrella/commit/4dfc020))
 - add ACES film tonemapping ([8a0b1a3](https://github.com/thi-ng/umbrella/commit/8a0b1a3))
   - update module re-exports
-- add mixCubic()/mixQuadratic() ([4dfc020](https://github.com/thi-ng/umbrella/commit/4dfc020))
-- add fit()/fitClamped() ([64ba64c](https://github.com/thi-ng/umbrella/commit/64ba64c))
 
 #### ♻️ Refactoring
 
-- update/dedupe various fns/overrides ([8e5635b](https://github.com/thi-ng/umbrella/commit/8e5635b))
 - update various sym() decls ([a5901ab](https://github.com/thi-ng/umbrella/commit/a5901ab))
   - remove obsolete type arg
+- update/dedupe various fns/overrides ([8e5635b](https://github.com/thi-ng/umbrella/commit/8e5635b))
 
 ### [0.4.5](https://github.com/thi-ng/umbrella/tree/@thi.ng/shader-ast-stdlib@0.4.5) (2020-08-16)
 
@@ -158,35 +158,35 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
-- add fragUV() ([b85dc8b](https://github.com/thi-ng/umbrella/commit/b85dc8b))
-- add rotationAroundAxis3/4, matrix conversions ([8a473c1](https://github.com/thi-ng/umbrella/commit/8a473c1))
 - add snoise3 & curlNoise3 ([a7dc75d](https://github.com/thi-ng/umbrella/commit/a7dc75d))
+- add rotationAroundAxis3/4, matrix conversions ([8a473c1](https://github.com/thi-ng/umbrella/commit/8a473c1))
+- add fragUV() ([b85dc8b](https://github.com/thi-ng/umbrella/commit/b85dc8b))
 
 #### 🩹 Bug fixes
 
-- fix imports ([188309a](https://github.com/thi-ng/umbrella/commit/188309a))
 - fix imports ([16823b2](https://github.com/thi-ng/umbrella/commit/16823b2))
+- fix imports ([188309a](https://github.com/thi-ng/umbrella/commit/188309a))
 
 #### ♻️ Refactoring
 
-- more snoise3 refactoring ([977f0db](https://github.com/thi-ng/umbrella/commit/977f0db))
 - update snoise3 ([fddfa85](https://github.com/thi-ng/umbrella/commit/fddfa85))
+- more snoise3 refactoring ([977f0db](https://github.com/thi-ng/umbrella/commit/977f0db))
 
 ### [0.2.3](https://github.com/thi-ng/umbrella/tree/@thi.ng/shader-ast-stdlib@0.2.3) (2019-08-21)
 
 #### ♻️ Refactoring
 
-- update readIndex*() ([e6775f7](https://github.com/thi-ng/umbrella/commit/e6775f7))
-- update permute fns (re-use) ([c5a36a1](https://github.com/thi-ng/umbrella/commit/c5a36a1))
-- update clamp01/clamp11() ([bd59ff5](https://github.com/thi-ng/umbrella/commit/bd59ff5))
 - update & fix porterDuff() HOF ([5f83ce1](https://github.com/thi-ng/umbrella/commit/5f83ce1))
+- update clamp01/clamp11() ([bd59ff5](https://github.com/thi-ng/umbrella/commit/bd59ff5))
+- update permute fns (re-use) ([c5a36a1](https://github.com/thi-ng/umbrella/commit/c5a36a1))
+- update readIndex*() ([e6775f7](https://github.com/thi-ng/umbrella/commit/e6775f7))
 
 ## [0.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/shader-ast-stdlib@0.2.0) (2019-07-31)
 
 #### 🚀 Features
 
-- add porter-duff operators ([285197d](https://github.com/thi-ng/umbrella/commit/285197d))
 - add guassian blur fns ([759ace7](https://github.com/thi-ng/umbrella/commit/759ace7))
+- add porter-duff operators ([285197d](https://github.com/thi-ng/umbrella/commit/285197d))
 
 ### [0.1.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/shader-ast-stdlib@0.1.1) (2019-07-08)
 
@@ -202,6 +202,18 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
+- extract stdlib as separate pkg ([86461ed](https://github.com/thi-ng/umbrella/commit/86461ed))
+- add new fns, various refactoring, add docs ([b215055](https://github.com/thi-ng/umbrella/commit/b215055))
+  - add clamp11(), orthogonal(), rayPointAt()
+  - split lambert() / halfLambert()
+  - switch to more inline fns
+- add 2d worley noise & permutations ([a645c71](https://github.com/thi-ng/umbrella/commit/a645c71))
+- add voronoise2() & hash3() ([4bafe19](https://github.com/thi-ng/umbrella/commit/4bafe19))
+- add snoise2, distance fns ([0849f8b](https://github.com/thi-ng/umbrella/commit/0849f8b))
+- add additive() HOF ([43b2223](https://github.com/thi-ng/umbrella/commit/43b2223))
+- add readIndex fns, hash2, minor refactorings ([34b20f0](https://github.com/thi-ng/umbrella/commit/34b20f0))
+- add indexTo*() and readIndex*() fns ([a804c28](https://github.com/thi-ng/umbrella/commit/a804c28))
+- add more hash fns, update voronoise2 ([65b2a15](https://github.com/thi-ng/umbrella/commit/65b2a15))
 - add more functions ([4b6e4fe](https://github.com/thi-ng/umbrella/commit/4b6e4fe))
   - toLinear() / toSRGB()
   - luminanceRGB()
@@ -209,27 +221,15 @@ and/or version bumps of transitive dependencies.
   - perpendicularCW/CCW()
   - sincos() / cossin()
   - rotation matrix factories for mat2/3/4
-- add more hash fns, update voronoise2 ([65b2a15](https://github.com/thi-ng/umbrella/commit/65b2a15))
-- add indexTo*() and readIndex*() fns ([a804c28](https://github.com/thi-ng/umbrella/commit/a804c28))
-- add readIndex fns, hash2, minor refactorings ([34b20f0](https://github.com/thi-ng/umbrella/commit/34b20f0))
-- add additive() HOF ([43b2223](https://github.com/thi-ng/umbrella/commit/43b2223))
-- add snoise2, distance fns ([0849f8b](https://github.com/thi-ng/umbrella/commit/0849f8b))
-- add voronoise2() & hash3() ([4bafe19](https://github.com/thi-ng/umbrella/commit/4bafe19))
-- add 2d worley noise & permutations ([a645c71](https://github.com/thi-ng/umbrella/commit/a645c71))
-- add new fns, various refactoring, add docs ([b215055](https://github.com/thi-ng/umbrella/commit/b215055))
-  - add clamp11(), orthogonal(), rayPointAt()
-  - split lambert() / halfLambert()
-  - switch to more inline fns
-- extract stdlib as separate pkg ([86461ed](https://github.com/thi-ng/umbrella/commit/86461ed))
 
 #### 🩹 Bug fixes
 
-- fix rotationX4/Y4 return types ([c858dce](https://github.com/thi-ng/umbrella/commit/c858dce))
-- fix imports ([4d9e126](https://github.com/thi-ng/umbrella/commit/4d9e126))
 - update additive() fn arg type ([5d66ff2](https://github.com/thi-ng/umbrella/commit/5d66ff2))
+- fix imports ([4d9e126](https://github.com/thi-ng/umbrella/commit/4d9e126))
+- fix rotationX4/Y4 return types ([c858dce](https://github.com/thi-ng/umbrella/commit/c858dce))
 
 #### ♻️ Refactoring
 
-- reorg src folder ([ebaa1c2](https://github.com/thi-ng/umbrella/commit/ebaa1c2))
 - update raymarchScene/AO loops ([8a4bd89](https://github.com/thi-ng/umbrella/commit/8a4bd89))
   - use post-increment for counter to be compatible w/ WebGL1
+- reorg src folder ([ebaa1c2](https://github.com/thi-ng/umbrella/commit/ebaa1c2))

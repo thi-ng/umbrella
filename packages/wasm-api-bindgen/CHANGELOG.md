@@ -9,15 +9,13 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
 
-## [0.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/wasm-api-schedule@0.2.0) (2022-11-23)
+## [0.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/wasm-api-bindgen@0.1.0) (2022-11-23)
 
 #### 🚀 Features
 
-- update & rename pkg (formerly wasm-api-timer) ([668f3dd](https://github.com/thi-ng/umbrella/commit/668f3dd))
-  - rename types form `TimerXXX` => `ScheduleXXX`
-  - add WASM auto-initializer hook
-  - update readmes
+- import as new pkg ([2c02dc6](https://github.com/thi-ng/umbrella/commit/2c02dc6))
+  - extract all codegen related parts from [@thi.ng/wasm-api](https://github.com/thi-ng/umbrella/tree/main/packages/wasm-api)
 
 #### ♻️ Refactoring
 
-- rename/update types/arg order ([4af3445](https://github.com/thi-ng/umbrella/commit/4af3445))
+- migrate JSON schema, update readme & pkg ([a6d9c3a](https://github.com/thi-ng/umbrella/commit/a6d9c3a))

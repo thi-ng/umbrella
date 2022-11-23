@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-10-28T19:08:39Z
+- **Last updated**: 2022-11-23T22:46:54Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -44,9 +44,9 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
 - update imports in all pkgs ([5fa2b6f](https://github.com/thi-ng/umbrella/commit/5fa2b6f))
   - add .js suffix for all relative imports
+- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
 
 # [9.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/hdom@9.0.0) (2021-10-12)
 
@@ -67,16 +67,16 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- minor pkg restructure ([61a6592](https://github.com/thi-ng/umbrella/commit/61a6592))
+- update all tests in _all_ pkgs ([8b582bc](https://github.com/thi-ng/umbrella/commit/8b582bc))
+  - update all to use [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament)
+- update imports ([138571a](https://github.com/thi-ng/umbrella/commit/138571a))
 - update deps & imports in various pkgs ([e1cf29e](https://github.com/thi-ng/umbrella/commit/e1cf29e))
   - largely related to recent updates/restructuring of these packages:
     - api
     - defmulti
     - errors
     - logger
-- update imports ([138571a](https://github.com/thi-ng/umbrella/commit/138571a))
-- update all tests in _all_ pkgs ([8b582bc](https://github.com/thi-ng/umbrella/commit/8b582bc))
-  - update all to use [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament)
+- minor pkg restructure ([61a6592](https://github.com/thi-ng/umbrella/commit/61a6592))
 
 ### [8.2.14](https://github.com/thi-ng/umbrella/tree/@thi.ng/hdom@8.2.14) (2020-12-22)
 
@@ -94,9 +94,9 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
+- simplify normalizeElement() ([b310c61](https://github.com/thi-ng/umbrella/commit/b310c61))
 - update normalizeTree() ([cda40f1](https://github.com/thi-ng/umbrella/commit/cda40f1))
   - extract normalizeChildren()
-- simplify normalizeElement() ([b310c61](https://github.com/thi-ng/umbrella/commit/b310c61))
 
 ### [8.2.9](https://github.com/thi-ng/umbrella/tree/@thi.ng/hdom@8.2.9) (2020-09-13)
 
@@ -108,16 +108,16 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
-- add RDFa `prefix` attrib support, update xmlns imports ([f0e7460](https://github.com/thi-ng/umbrella/commit/f0e7460))
 - update deps, update xmlns import ([99fbae7](https://github.com/thi-ng/umbrella/commit/99fbae7))
+- add RDFa `prefix` attrib support, update xmlns imports ([f0e7460](https://github.com/thi-ng/umbrella/commit/f0e7460))
 
 ## [8.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/hdom@8.1.0) (2020-06-28)
 
 #### 🚀 Features
 
-- add support for event listener strings ([db8d350](https://github.com/thi-ng/umbrella/commit/db8d350))
 - add support `class` attrib object vals ([074985a](https://github.com/thi-ng/umbrella/commit/074985a))
   - update normalizeElement() class merge logic
+- add support for event listener strings ([db8d350](https://github.com/thi-ng/umbrella/commit/db8d350))
 
 ### [8.0.18](https://github.com/thi-ng/umbrella/tree/@thi.ng/hdom@8.0.18) (2020-04-06)
 
@@ -154,7 +154,6 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- update to use new hiccup regex names ([0236ff6](https://github.com/thi-ng/umbrella/commit/0236ff6))
 - refactor/simplify diff & dom impls ([20de716](https://github.com/thi-ng/umbrella/commit/20de716))
   - extract diffDeleted()/diffAdded() from diffTree()
   - extract incOffsets()/decOffsets() from diffTree()
@@ -162,6 +161,7 @@ and/or version bumps of transitive dependencies.
   - extract maybeInitElement() from createTree()/hydrateTree()
   - extract addChild(), update createElement/createTextElement()
   - update various conditionals
+- update to use new hiccup regex names ([0236ff6](https://github.com/thi-ng/umbrella/commit/0236ff6))
 
 # [8.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/hdom@8.0.0) (2019-07-07)
 
@@ -278,8 +278,8 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- minor update diff call sites ([c3f6f98](https://github.com/thi-ng/umbrella/commit/c3f6f98))
 - update diffTree & diffAttributes ([@thi.ng/diff](https://github.com/thi-ng/umbrella/tree/main/packages/diff) updates) ([e9b067b](https://github.com/thi-ng/umbrella/commit/e9b067b))
+- minor update diff call sites ([c3f6f98](https://github.com/thi-ng/umbrella/commit/c3f6f98))
 
 ## [5.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/hdom@5.2.0) (2018-11-07)
 
@@ -330,11 +330,8 @@ and/or version bumps of transitive dependencies.
 
 ### [5.0.0-alpha](https://github.com/thi-ng/umbrella/tree/@thi.ng/hdom@5.0.0-alpha) (2018-09-16)
 
-#### 🚀 Features
+#### 🛑 Breaking changes
 
-- add `.toHiccup()` interface support ([54ba0ce](https://github.com/thi-ng/umbrella/commit/54ba0ce))
-  - add `.toHiccup()` type check in `normalizeTree()` and call w/
-    user context
 - reorg & extend HDOMImplementation ([1ac245f](https://github.com/thi-ng/umbrella/commit/1ac245f))
   - add normalizeTree, hydrateTree & diffTree to HDOMImplementation
   - add HDOMBehaviorAttribs
@@ -346,25 +343,32 @@ and/or version bumps of transitive dependencies.
     (inject user context)
   - add `__impl` support in hydrateDOM()
   - add opt `impl` arg for start()
-  BREAKING CHANGES: new names & call signatures for:
+- BREAKING CHANGES: new names & call signatures for:
   - normalizeTree
   - diffElement => diffTree
   - createDOM
   - hydrateDOM
   - replaceChild
+
+#### 🚀 Features
+
 - update normalizeTree, add to HDOMImplementation ([59bb19c](https://github.com/thi-ng/umbrella/commit/59bb19c))
   - update normalizeTree() to check for & use branch-local impl if present
   - add existing normalizeTree to DEFAULT_IMPL
   - update HDOMImplementation interface
+- add `.toHiccup()` interface support ([54ba0ce](https://github.com/thi-ng/umbrella/commit/54ba0ce))
+  - add `.toHiccup()` type check in `normalizeTree()` and call w/
+    user context
 
 #### 🩹 Bug fixes
 
-- delegate diffTree() to branch impl ([6c33901](https://github.com/thi-ng/umbrella/commit/6c33901))
-- exclude hdom control attribs in setAttrib() ([0592063](https://github.com/thi-ng/umbrella/commit/0592063))
 - minor fix (hydrateDOM) ([e4f780c](https://github.com/thi-ng/umbrella/commit/e4f780c))
+- exclude hdom control attribs in setAttrib() ([0592063](https://github.com/thi-ng/umbrella/commit/0592063))
+- delegate diffTree() to branch impl ([6c33901](https://github.com/thi-ng/umbrella/commit/6c33901))
 
 #### ⏱ Performance improvements
 
+- add opt `__release` attrib to disable releaseDeep() ([2e3fb66](https://github.com/thi-ng/umbrella/commit/2e3fb66))
 - update diffTree(), inline node type checks ([382c45c](https://github.com/thi-ng/umbrella/commit/382c45c))
   - add child tracking index table template for diffTree()
   - bail out early if edit distance = 2 and only attribs changed
@@ -372,19 +376,21 @@ and/or version bumps of transitive dependencies.
     hydrateDOM(), setAttrib()
   - rename releaseDeep() => releaseTree()
   -
-- add opt `__release` attrib to disable releaseDeep() ([2e3fb66](https://github.com/thi-ng/umbrella/commit/2e3fb66))
 
 #### ♻️ Refactoring
 
-- export diff related fns ([ebfcf15](https://github.com/thi-ng/umbrella/commit/ebfcf15))
-- update custom equiv() ([d9af2e5](https://github.com/thi-ng/umbrella/commit/d9af2e5))
-- use custom equiv also for diffAttributes() ([bde18d5](https://github.com/thi-ng/umbrella/commit/bde18d5))
 - trial run of custom equiv() impl for diffTree() ([96beaf3](https://github.com/thi-ng/umbrella/commit/96beaf3))
+- use custom equiv also for diffAttributes() ([bde18d5](https://github.com/thi-ng/umbrella/commit/bde18d5))
+- update custom equiv() ([d9af2e5](https://github.com/thi-ng/umbrella/commit/d9af2e5))
+- export diff related fns ([ebfcf15](https://github.com/thi-ng/umbrella/commit/ebfcf15))
 
 ### [4.0.5](https://github.com/thi-ng/umbrella/tree/@thi.ng/hdom@4.0.5) (2018-09-10)
 
 #### 🚀 Features
 
+- add optional support for blocking normalize & diff ([5cb4350](https://github.com/thi-ng/umbrella/commit/5cb4350))
+  - add `__normalize` attrib to stop normalization of subtree
+  - add `__diff` attrib to stop diffing of subtree
 - generalize diffElement() ([#4](https://github.com/thi-ng/umbrella/issues/4)) ([525d90d](https://github.com/thi-ng/umbrella/commit/525d90d))
   - add HDOMOps interface
   - add DEFAULT_OPS implementation
@@ -393,9 +399,6 @@ and/or version bumps of transitive dependencies.
   - update createDOM(), add support for `__ops` node attrib
     to use custom ops for subtrees
   - add getChild(), replaceChild(), setContent()
-- add optional support for blocking normalize & diff ([5cb4350](https://github.com/thi-ng/umbrella/commit/5cb4350))
-  - add `__normalize` attrib to stop normalization of subtree
-  - add `__diff` attrib to stop diffing of subtree
 
 #### ♻️ Refactoring
 
@@ -435,8 +438,8 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- remove [@thi.ng/iterators](https://github.com/thi-ng/umbrella/tree/main/packages/iterators) dependency ([1434b0e](https://github.com/thi-ng/umbrella/commit/1434b0e))
 - replace SEMAPHORE const w/ [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/main/packages/api) def ([9b443cb](https://github.com/thi-ng/umbrella/commit/9b443cb))
+- remove [@thi.ng/iterators](https://github.com/thi-ng/umbrella/tree/main/packages/iterators) dependency ([1434b0e](https://github.com/thi-ng/umbrella/commit/1434b0e))
 
 ### [3.0.32](https://github.com/thi-ng/umbrella/tree/@thi.ng/hdom@3.0.32) (2018-08-01)
 

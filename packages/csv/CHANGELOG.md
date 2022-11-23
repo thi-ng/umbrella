@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-10-28T19:08:39Z
+- **Last updated**: 2022-11-23T22:46:54Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -13,11 +13,11 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
+- add currency formatters ([52b7340](https://github.com/thi-ng/umbrella/commit/52b7340))
 - add more cell transforms, add docs ([23646bf](https://github.com/thi-ng/umbrella/commit/23646bf))
   - add epoch(), date(), url() transforms
   - add formatPercent()
   - update readme
-- add currency formatters ([52b7340](https://github.com/thi-ng/umbrella/commit/52b7340))
 
 ## [2.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/csv@2.1.0) (2021-11-17)
 
@@ -42,9 +42,9 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
 - update imports in all pkgs ([5fa2b6f](https://github.com/thi-ng/umbrella/commit/5fa2b6f))
   - add .js suffix for all relative imports
+- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
 
 # [2.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/csv@2.0.0) (2021-10-12)
 
@@ -69,10 +69,10 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- update imports (transducers) ([4bdecc9](https://github.com/thi-ng/umbrella/commit/4bdecc9))
-- update imports ([6b102d0](https://github.com/thi-ng/umbrella/commit/6b102d0))
 - update all tests in _all_ pkgs ([8b582bc](https://github.com/thi-ng/umbrella/commit/8b582bc))
   - update all to use [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament)
+- update imports ([6b102d0](https://github.com/thi-ng/umbrella/commit/6b102d0))
+- update imports (transducers) ([4bdecc9](https://github.com/thi-ng/umbrella/commit/4bdecc9))
 
 ### [0.1.2](https://github.com/thi-ng/umbrella/tree/@thi.ng/csv@0.1.2) (2020-12-07)
 
@@ -84,6 +84,8 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
+- import as new package ([2b07100](https://github.com/thi-ng/umbrella/commit/2b07100))
+- add coercions, restructure ([93d79ec](https://github.com/thi-ng/umbrella/commit/93d79ec))
 - add/update CSVOpts, cell transforms, docs ([282e85c](https://github.com/thi-ng/umbrella/commit/282e85c))
   - allow arrays for `cols` option
   - update initIndex(), add column autonaming fallback
@@ -91,8 +93,6 @@ and/or version bumps of transitive dependencies.
   - rename CoercionFn => CellTransform
   - add upper/lower() transforms
   - add/update tests
-- add coercions, restructure ([93d79ec](https://github.com/thi-ng/umbrella/commit/93d79ec))
-- import as new package ([2b07100](https://github.com/thi-ng/umbrella/commit/2b07100))
 
 #### 🩹 Bug fixes
 

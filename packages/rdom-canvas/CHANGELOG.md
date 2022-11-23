@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-10-28T19:08:39Z
+- **Last updated**: 2022-11-23T22:46:54Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -64,11 +64,11 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- update imports (transducers) ([2fd7619](https://github.com/thi-ng/umbrella/commit/2fd7619))
-- update imports ([138571a](https://github.com/thi-ng/umbrella/commit/138571a))
-- update all test stubs ([f2d6d53](https://github.com/thi-ng/umbrella/commit/f2d6d53))
 - update all tests in _all_ pkgs ([8b582bc](https://github.com/thi-ng/umbrella/commit/8b582bc))
   - update all to use [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament)
+- update all test stubs ([f2d6d53](https://github.com/thi-ng/umbrella/commit/f2d6d53))
+- update imports ([138571a](https://github.com/thi-ng/umbrella/commit/138571a))
+- update imports (transducers) ([2fd7619](https://github.com/thi-ng/umbrella/commit/2fd7619))
 
 ### [0.1.43](https://github.com/thi-ng/umbrella/tree/@thi.ng/rdom-canvas@0.1.43) (2021-04-03)
 
@@ -80,8 +80,8 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- minor update arg type (generics) ([a7748b3](https://github.com/thi-ng/umbrella/commit/a7748b3))
 - update to use ISubscription only ([145cfe8](https://github.com/thi-ng/umbrella/commit/145cfe8))
+- minor update arg type (generics) ([a7748b3](https://github.com/thi-ng/umbrella/commit/a7748b3))
 
 ### [0.1.21](https://github.com/thi-ng/umbrella/tree/@thi.ng/rdom-canvas@0.1.21) (2020-12-07)
 

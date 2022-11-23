@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-10-28T19:08:39Z
+- **Last updated**: 2022-11-23T22:46:54Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,17 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+# [1.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/colored-noise@1.0.0) (2022-11-23)
+
+#### 🛑 Breaking changes
+
+- [#363](https://github.com/thi-ng/umbrella/issues/363) add ColoredNoiseOpts ([b2d1d13](https://github.com/thi-ng/umbrella/commit/b2d1d13))
+- BREAKING CHANGE: replace generator args with uniform options object
+  - add `ColoredNoiseOpts` config interface
+  - update all generators
+  - update tools/examples
+  - update readme
 
 ## [0.3.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/colored-noise@0.3.0) (2021-11-17)
 
@@ -32,9 +43,9 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
 - update imports in all pkgs ([5fa2b6f](https://github.com/thi-ng/umbrella/commit/5fa2b6f))
   - add .js suffix for all relative imports
+- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
 
 ## [0.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/colored-noise@0.2.0) (2021-10-12)
 
@@ -55,11 +66,11 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- minor pkg restructure (various) ([47f88d2](https://github.com/thi-ng/umbrella/commit/47f88d2))
-- update imports ([c0d9e17](https://github.com/thi-ng/umbrella/commit/c0d9e17))
-- update all test stubs ([f2d6d53](https://github.com/thi-ng/umbrella/commit/f2d6d53))
 - update all tests in _all_ pkgs ([8b582bc](https://github.com/thi-ng/umbrella/commit/8b582bc))
   - update all to use [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament)
+- update all test stubs ([f2d6d53](https://github.com/thi-ng/umbrella/commit/f2d6d53))
+- update imports ([c0d9e17](https://github.com/thi-ng/umbrella/commit/c0d9e17))
+- minor pkg restructure (various) ([47f88d2](https://github.com/thi-ng/umbrella/commit/47f88d2))
 
 ### [0.1.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/colored-noise@0.1.1) (2020-09-13)
 

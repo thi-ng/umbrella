@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-10-28T19:08:39Z
+- **Last updated**: 2022-11-23T22:46:54Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -48,9 +48,9 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
 - update imports in all pkgs ([5fa2b6f](https://github.com/thi-ng/umbrella/commit/5fa2b6f))
   - add .js suffix for all relative imports
+- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
 
 # [5.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/math@5.0.0) (2021-10-12)
 
@@ -71,9 +71,9 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- update imports ([138571a](https://github.com/thi-ng/umbrella/commit/138571a))
 - update all tests in _all_ pkgs ([8b582bc](https://github.com/thi-ng/umbrella/commit/8b582bc))
   - update all to use [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament)
+- update imports ([138571a](https://github.com/thi-ng/umbrella/commit/138571a))
 
 ### [4.0.6](https://github.com/thi-ng/umbrella/tree/@thi.ng/math@4.0.6) (2021-09-03)
 
@@ -143,20 +143,20 @@ and/or version bumps of transitive dependencies.
 
 #### 🛑 Breaking changes
 
-- fix [#256](https://github.com/thi-ng/umbrella/issues/256) replace enum w/ type alias ([8f00375](https://github.com/thi-ng/umbrella/commit/8f00375))
-  - update comparison order in classifyCrossing()
-- BREAKING CHANGE: replace Crossing enum w/ type alias
 - update/fix sigmoid() behavior ([07a278f](https://github.com/thi-ng/umbrella/commit/07a278f))
 - BREAKING CHANGE: add new bias arg for sigmoid() to satisfy more use cases.
   Use sigmoid01() for old behavior.
   - add/update docstrings
   - add desmos links
+- fix [#256](https://github.com/thi-ng/umbrella/issues/256) replace enum w/ type alias ([8f00375](https://github.com/thi-ng/umbrella/commit/8f00375))
+  - update comparison order in classifyCrossing()
+- BREAKING CHANGE: replace Crossing enum w/ type alias
 
 #### 🚀 Features
 
-- add more parametric T-norms ([38bd40e](https://github.com/thi-ng/umbrella/commit/38bd40e))
-- add gaussian() ([138befe](https://github.com/thi-ng/umbrella/commit/138befe))
 - add various T-norm functions ([ab4a810](https://github.com/thi-ng/umbrella/commit/ab4a810))
+- add gaussian() ([138befe](https://github.com/thi-ng/umbrella/commit/138befe))
+- add more parametric T-norms ([38bd40e](https://github.com/thi-ng/umbrella/commit/38bd40e))
 
 ### [2.2.2](https://github.com/thi-ng/umbrella/tree/@thi.ng/math@2.2.2) (2020-12-07)
 
@@ -178,8 +178,8 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- update deps, imports, use new Fn types ([a40840d](https://github.com/thi-ng/umbrella/commit/a40840d))
 - use new function aliases, update deps ([dd0337f](https://github.com/thi-ng/umbrella/commit/dd0337f))
+- update deps, imports, use new Fn types ([a40840d](https://github.com/thi-ng/umbrella/commit/a40840d))
 
 ### [1.7.5](https://github.com/thi-ng/umbrella/tree/@thi.ng/math@1.7.5) (2020-04-05)
 
@@ -191,21 +191,21 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
-- add minNonZero2/3() ([49c88d9](https://github.com/thi-ng/umbrella/commit/49c88d9))
 - add safeDiv() (from @nkint PR [#206](https://github.com/thi-ng/umbrella/issues/206)) ([0567b93](https://github.com/thi-ng/umbrella/commit/0567b93))
+- add minNonZero2/3() ([49c88d9](https://github.com/thi-ng/umbrella/commit/49c88d9))
 
 ## [1.6.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/math@1.6.0) (2020-01-24)
 
 #### 🚀 Features
 
-- add clamp05, update wrapOnce, wrap01, wrap11 ([19af252](https://github.com/thi-ng/umbrella/commit/19af252))
-  - add clamp05()
-  - wrap fns now consistently use *closed* intervals
 - add expFactor(), update wrap/wrapOnce() ([bb07348](https://github.com/thi-ng/umbrella/commit/bb07348))
   - rename wrap => wrapOnce()
   - add new wrap() which wraps any value, regardless of
   dist to interval border
   - update docs
+- add clamp05, update wrapOnce, wrap01, wrap11 ([19af252](https://github.com/thi-ng/umbrella/commit/19af252))
+  - add clamp05()
+  - wrap fns now consistently use *closed* intervals
 
 ## [1.5.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/math@1.5.0) (2019-11-09)
 
@@ -223,16 +223,16 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
-- add sigmoid / sigmoid11 fns ([3f085a3](https://github.com/thi-ng/umbrella/commit/3f085a3))
 - add extrema & crossing fns and Crossing enum ([e102f39](https://github.com/thi-ng/umbrella/commit/e102f39))
+- add sigmoid / sigmoid11 fns ([3f085a3](https://github.com/thi-ng/umbrella/commit/3f085a3))
 
 ## [1.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/math@1.2.0) (2019-03-18)
 
 #### 🚀 Features
 
-- add cos/sin approximations, loc(), add docstrings ([78ed751](https://github.com/thi-ng/umbrella/commit/78ed751))
-- add consts ([28e9898](https://github.com/thi-ng/umbrella/commit/28e9898))
 - more trigonometry ([b5e1c02](https://github.com/thi-ng/umbrella/commit/b5e1c02))
+- add consts ([28e9898](https://github.com/thi-ng/umbrella/commit/28e9898))
+- add cos/sin approximations, loc(), add docstrings ([78ed751](https://github.com/thi-ng/umbrella/commit/78ed751))
 
 ## [1.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/math@1.1.0) (2019-02-05)
 
@@ -254,8 +254,8 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
-- add absInnerAngle() ([a78bd87](https://github.com/thi-ng/umbrella/commit/a78bd87))
 - update eqDelta w/ adaptive eps, rename old => eqDeltaFixed ([5018009](https://github.com/thi-ng/umbrella/commit/5018009))
+- add absInnerAngle() ([a78bd87](https://github.com/thi-ng/umbrella/commit/a78bd87))
 
 #### ♻️ Refactoring
 
@@ -271,8 +271,8 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
-- migrate mixCubic()/mixQuadratic() from geom package ([4a47daa](https://github.com/thi-ng/umbrella/commit/4a47daa))
 - add sincos() & roundEps() ([f891c41](https://github.com/thi-ng/umbrella/commit/f891c41))
+- migrate mixCubic()/mixQuadratic() from geom package ([4a47daa](https://github.com/thi-ng/umbrella/commit/4a47daa))
 
 ## [0.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/math@0.1.0) (2018-10-17)
 

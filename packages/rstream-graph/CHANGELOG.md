@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-10-28T19:08:39Z
+- **Last updated**: 2022-11-23T22:46:54Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -32,9 +32,9 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
 - update imports in all pkgs ([5fa2b6f](https://github.com/thi-ng/umbrella/commit/5fa2b6f))
   - add .js suffix for all relative imports
+- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
 
 # [4.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/rstream-graph@4.0.0) (2021-10-12)
 
@@ -55,21 +55,21 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- extract getNodeInput() ([6c197fe](https://github.com/thi-ng/umbrella/commit/6c197fe))
-- update imports in various pkgs (rstream) ([342cf54](https://github.com/thi-ng/umbrella/commit/342cf54))
-- update imports (transducers) ([7fc60cd](https://github.com/thi-ng/umbrella/commit/7fc60cd))
-- update imports ([138571a](https://github.com/thi-ng/umbrella/commit/138571a))
 - update all tests in _all_ pkgs ([8b582bc](https://github.com/thi-ng/umbrella/commit/8b582bc))
   - update all to use [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament)
+- update imports ([138571a](https://github.com/thi-ng/umbrella/commit/138571a))
+- update imports (transducers) ([7fc60cd](https://github.com/thi-ng/umbrella/commit/7fc60cd))
+- update imports in various pkgs (rstream) ([342cf54](https://github.com/thi-ng/umbrella/commit/342cf54))
+- extract getNodeInput() ([6c197fe](https://github.com/thi-ng/umbrella/commit/6c197fe))
 
 ### [3.2.60](https://github.com/thi-ng/umbrella/tree/@thi.ng/rstream-graph@3.2.60) (2021-03-12)
 
 #### ♻️ Refactoring
 
+- update types to use ISubscription ([224f614](https://github.com/thi-ng/umbrella/commit/224f614))
+- update .subscribe() call sites ([009b83b](https://github.com/thi-ng/umbrella/commit/009b83b))
 - update types/generics ([2597482](https://github.com/thi-ng/umbrella/commit/2597482))
   - update types due to changes in rstream interfaces
-- update .subscribe() call sites ([009b83b](https://github.com/thi-ng/umbrella/commit/009b83b))
-- update types to use ISubscription ([224f614](https://github.com/thi-ng/umbrella/commit/224f614))
 
 ### [3.2.41](https://github.com/thi-ng/umbrella/tree/@thi.ng/rstream-graph@3.2.41) (2020-09-22)
 
@@ -87,9 +87,9 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- update fromView() call sites ([1bba1fc](https://github.com/thi-ng/umbrella/commit/1bba1fc))
-- update to new [@thi.ng/paths](https://github.com/thi-ng/umbrella/tree/main/packages/paths) API ([3f5dd20](https://github.com/thi-ng/umbrella/commit/3f5dd20))
 - update atom outputs ([d070889](https://github.com/thi-ng/umbrella/commit/d070889))
+- update to new [@thi.ng/paths](https://github.com/thi-ng/umbrella/tree/main/packages/paths) API ([3f5dd20](https://github.com/thi-ng/umbrella/commit/3f5dd20))
+- update fromView() call sites ([1bba1fc](https://github.com/thi-ng/umbrella/commit/1bba1fc))
 
 ### [3.2.3](https://github.com/thi-ng/umbrella/tree/@thi.ng/rstream-graph@3.2.3) (2020-02-25)
 
@@ -101,8 +101,8 @@ and/or version bumps of transitive dependencies.
 
 #### 🩹 Bug fixes
 
-- update prepareNodeOutputs to reflect rstream changes ([680848d](https://github.com/thi-ng/umbrella/commit/680848d))
 - update prepareNodeInputs() to reflect rstream changes ([dbe344a](https://github.com/thi-ng/umbrella/commit/dbe344a))
+- update prepareNodeOutputs to reflect rstream changes ([680848d](https://github.com/thi-ng/umbrella/commit/680848d))
 
 #### ♻️ Refactoring
 
@@ -128,8 +128,8 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
-- enable TS strict compiler flags (refactor) ([ace51f8](https://github.com/thi-ng/umbrella/commit/ace51f8))
 - add opt reset arg to `node()` ([310f4d3](https://github.com/thi-ng/umbrella/commit/310f4d3))
+- enable TS strict compiler flags (refactor) ([ace51f8](https://github.com/thi-ng/umbrella/commit/ace51f8))
 
 #### ♻️ Refactoring
 

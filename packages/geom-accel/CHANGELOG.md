@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-10-28T19:08:39Z
+- **Last updated**: 2022-11-23T22:46:54Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -45,9 +45,9 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
 - update imports in all pkgs ([5fa2b6f](https://github.com/thi-ng/umbrella/commit/5fa2b6f))
   - add .js suffix for all relative imports
+- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
 
 # [3.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom-accel@3.0.0) (2021-10-12)
 
@@ -68,20 +68,20 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- minor pkg restructure (various) ([47f88d2](https://github.com/thi-ng/umbrella/commit/47f88d2))
+- update all tests in _all_ pkgs ([8b582bc](https://github.com/thi-ng/umbrella/commit/8b582bc))
+  - update all to use [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament)
+- update all test stubs ([f2d6d53](https://github.com/thi-ng/umbrella/commit/f2d6d53))
+- update imports ([ec7199d](https://github.com/thi-ng/umbrella/commit/ec7199d))
+- update imports ([b5368f0](https://github.com/thi-ng/umbrella/commit/b5368f0))
+- update various benchmarks ([53e8a6a](https://github.com/thi-ng/umbrella/commit/53e8a6a))
+- update imports (transducers) ([25b674f](https://github.com/thi-ng/umbrella/commit/25b674f))
 - update deps & imports in various pkgs ([e1cf29e](https://github.com/thi-ng/umbrella/commit/e1cf29e))
   - largely related to recent updates/restructuring of these packages:
     - api
     - defmulti
     - errors
     - logger
-- update imports (transducers) ([25b674f](https://github.com/thi-ng/umbrella/commit/25b674f))
-- update various benchmarks ([53e8a6a](https://github.com/thi-ng/umbrella/commit/53e8a6a))
-- update imports ([b5368f0](https://github.com/thi-ng/umbrella/commit/b5368f0))
-- update imports ([ec7199d](https://github.com/thi-ng/umbrella/commit/ec7199d))
-- update all test stubs ([f2d6d53](https://github.com/thi-ng/umbrella/commit/f2d6d53))
-- update all tests in _all_ pkgs ([8b582bc](https://github.com/thi-ng/umbrella/commit/8b582bc))
-  - update all to use [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament)
+- minor pkg restructure (various) ([47f88d2](https://github.com/thi-ng/umbrella/commit/47f88d2))
 
 ### [2.1.33](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom-accel@2.1.33) (2021-01-21)
 
@@ -93,8 +93,8 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- update type-only imports ([cd893cd](https://github.com/thi-ng/umbrella/commit/cd893cd))
 - update type-only imports in various tests/pkgs ([3fd9c24](https://github.com/thi-ng/umbrella/commit/3fd9c24))
+- update type-only imports ([cd893cd](https://github.com/thi-ng/umbrella/commit/cd893cd))
 
 ### [2.1.24](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom-accel@2.1.24) (2020-09-22)
 
@@ -133,8 +133,8 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
-- add IEmpty & clear() impls ([af747d0](https://github.com/thi-ng/umbrella/commit/af747d0))
 - add initial nD quadtree impl & tests ([6f59869](https://github.com/thi-ng/umbrella/commit/6f59869))
+- add IEmpty & clear() impls ([af747d0](https://github.com/thi-ng/umbrella/commit/af747d0))
 
 #### 🩹 Bug fixes
 
@@ -148,15 +148,15 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- minor updates NdQuadtreeSet ([1df4ab5](https://github.com/thi-ng/umbrella/commit/1df4ab5))
 - update fromMinMax factories, tests, minor updates ([7f30ee0](https://github.com/thi-ng/umbrella/commit/7f30ee0))
+- minor updates NdQuadtreeSet ([1df4ab5](https://github.com/thi-ng/umbrella/commit/1df4ab5))
 
 ### [1.2.7](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom-accel@1.2.7) (2019-08-21)
 
 #### ♻️ Refactoring
 
-- simplify select*() methods, extract doSelect() ([002e3d1](https://github.com/thi-ng/umbrella/commit/002e3d1))
 - simplify nearest()/nearest1(), dedupe/extract common ([1678b69](https://github.com/thi-ng/umbrella/commit/1678b69))
+- simplify select*() methods, extract doSelect() ([002e3d1](https://github.com/thi-ng/umbrella/commit/002e3d1))
 
 ## [1.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom-accel@1.2.0) (2019-07-07)
 
@@ -225,8 +225,8 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
-- add KV support, update select/selectKeys() ([b47e641](https://github.com/thi-ng/umbrella/commit/b47e641))
 - re-import geom-accel skeleton (MBP2010) ([e14ac8b](https://github.com/thi-ng/umbrella/commit/e14ac8b))
+- add KV support, update select/selectKeys() ([b47e641](https://github.com/thi-ng/umbrella/commit/b47e641))
 
 #### ♻️ Refactoring
 

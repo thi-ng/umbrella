@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-10-28T19:08:39Z
+- **Last updated**: 2022-11-23T22:46:54Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -56,9 +56,9 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
 - update imports in all pkgs ([5fa2b6f](https://github.com/thi-ng/umbrella/commit/5fa2b6f))
   - add .js suffix for all relative imports
+- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
 
 # [3.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/checks@3.0.0) (2021-10-12)
 
@@ -92,12 +92,12 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
-- add isIllegalKey() (make public) ([507fc80](https://github.com/thi-ng/umbrella/commit/507fc80))
 - replace isPrototypePolluted() w/ isProtoPath() ([d276b84](https://github.com/thi-ng/umbrella/commit/d276b84))
   - isPrototypePolluted() assumed given string is a single property
     name, but could be a `.` separated lookup path. New function
     checks for that and also supports arrays
   - add tests
+- add isIllegalKey() (make public) ([507fc80](https://github.com/thi-ng/umbrella/commit/507fc80))
 
 ## [2.8.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/checks@2.8.0) (2021-01-10)
 
@@ -127,13 +127,13 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
+- add better type assertion for isTypedArray() ([548ba52](https://github.com/thi-ng/umbrella/commit/548ba52))
 - add new string validators ([9d9e8a8](https://github.com/thi-ng/umbrella/commit/9d9e8a8))
   - add isAlpha(), isAlphaNum(), isNumeric()
   - add isASCII(), isPrintableASCII()
   - add isDataURL()
   - add isFloatString(), isIntString()
   - add isHex()
-- add better type assertion for isTypedArray() ([548ba52](https://github.com/thi-ng/umbrella/commit/548ba52))
 
 #### 🩹 Bug fixes
 
@@ -159,9 +159,9 @@ and/or version bumps of transitive dependencies.
 
 #### 🩹 Bug fixes
 
-- fix vscode autoimport ([8ac6408](https://github.com/thi-ng/umbrella/commit/8ac6408))
-- better hex string, export, isNil doc ([19b1981](https://github.com/thi-ng/umbrella/commit/19b1981))
 - test, better naming ([90dce20](https://github.com/thi-ng/umbrella/commit/90dce20))
+- better hex string, export, isNil doc ([19b1981](https://github.com/thi-ng/umbrella/commit/19b1981))
+- fix vscode autoimport ([8ac6408](https://github.com/thi-ng/umbrella/commit/8ac6408))
 
 ## [2.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/checks@2.2.0) (2019-07-07)
 
@@ -213,8 +213,8 @@ and/or version bumps of transitive dependencies.
 
 #### 🩹 Bug fixes
 
-- return type isMap() ([76920f7](https://github.com/thi-ng/umbrella/commit/76920f7))
 - exclude functions in isArrayLike() ([ac60404](https://github.com/thi-ng/umbrella/commit/ac60404))
+- return type isMap() ([76920f7](https://github.com/thi-ng/umbrella/commit/76920f7))
 
 ## [1.5.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/checks@1.5.0) (2018-04-26)
 

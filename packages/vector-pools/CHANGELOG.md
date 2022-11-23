@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-10-28T19:08:39Z
+- **Last updated**: 2022-11-23T22:46:54Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -32,9 +32,9 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
 - update imports in all pkgs ([5fa2b6f](https://github.com/thi-ng/umbrella/commit/5fa2b6f))
   - add .js suffix for all relative imports
+- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
 
 # [3.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/vector-pools@3.0.0) (2021-10-12)
 
@@ -55,17 +55,17 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- minor pkg restructure ([b27b79c](https://github.com/thi-ng/umbrella/commit/b27b79c))
+- update all tests in _all_ pkgs ([8b582bc](https://github.com/thi-ng/umbrella/commit/8b582bc))
+  - update all to use [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament)
+- update imports ([138571a](https://github.com/thi-ng/umbrella/commit/138571a))
+- update imports ([b2f0a9f](https://github.com/thi-ng/umbrella/commit/b2f0a9f))
 - update deps & imports in various pkgs ([e1cf29e](https://github.com/thi-ng/umbrella/commit/e1cf29e))
   - largely related to recent updates/restructuring of these packages:
     - api
     - defmulti
     - errors
     - logger
-- update imports ([b2f0a9f](https://github.com/thi-ng/umbrella/commit/b2f0a9f))
-- update imports ([138571a](https://github.com/thi-ng/umbrella/commit/138571a))
-- update all tests in _all_ pkgs ([8b582bc](https://github.com/thi-ng/umbrella/commit/8b582bc))
-  - update all to use [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament)
+- minor pkg restructure ([b27b79c](https://github.com/thi-ng/umbrella/commit/b27b79c))
 
 # [2.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/vector-pools@2.0.0) (2021-02-20)
 
@@ -121,11 +121,11 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- update AttribPool imports ([88c952d](https://github.com/thi-ng/umbrella/commit/88c952d))
-  - replace malloc's wrap() w/ typedArray()
+- update imports ([6537610](https://github.com/thi-ng/umbrella/commit/6537610))
 - update type enum conversions ([9d3b2c3](https://github.com/thi-ng/umbrella/commit/9d3b2c3))
   (due to type migration & updates in [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/main/packages/api))
-- update imports ([6537610](https://github.com/thi-ng/umbrella/commit/6537610))
+- update AttribPool imports ([88c952d](https://github.com/thi-ng/umbrella/commit/88c952d))
+  - replace malloc's wrap() w/ typedArray()
 
 ### [1.0.7](https://github.com/thi-ng/umbrella/tree/@thi.ng/vector-pools@1.0.7) (2019-08-21)
 
@@ -144,9 +144,9 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
+- add AttribPool.attribArray(), add tests ([285022a](https://github.com/thi-ng/umbrella/commit/285022a))
 - enable TS strict compiler flags (refactor) ([1af6f78](https://github.com/thi-ng/umbrella/commit/1af6f78))
   - add missing type hints/return types
-- add AttribPool.attribArray(), add tests ([285022a](https://github.com/thi-ng/umbrella/commit/285022a))
 
 ### [0.2.16](https://github.com/thi-ng/umbrella/tree/@thi.ng/vector-pools@0.2.16) (2019-05-22)
 

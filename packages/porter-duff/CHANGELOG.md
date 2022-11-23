@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-10-28T19:08:39Z
+- **Last updated**: 2022-11-23T22:46:54Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -38,9 +38,9 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
 - update imports in all pkgs ([5fa2b6f](https://github.com/thi-ng/umbrella/commit/5fa2b6f))
   - add .js suffix for all relative imports
+- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
 
 # [2.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/porter-duff@2.0.0) (2021-10-12)
 
@@ -61,11 +61,11 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- minor pkg restructure (various) ([47f88d2](https://github.com/thi-ng/umbrella/commit/47f88d2))
-- update imports ([138571a](https://github.com/thi-ng/umbrella/commit/138571a))
-- update all test stubs ([f2d6d53](https://github.com/thi-ng/umbrella/commit/f2d6d53))
 - update all tests in _all_ pkgs ([8b582bc](https://github.com/thi-ng/umbrella/commit/8b582bc))
   - update all to use [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament)
+- update all test stubs ([f2d6d53](https://github.com/thi-ng/umbrella/commit/f2d6d53))
+- update imports ([138571a](https://github.com/thi-ng/umbrella/commit/138571a))
+- minor pkg restructure (various) ([47f88d2](https://github.com/thi-ng/umbrella/commit/47f88d2))
 
 ### [0.1.34](https://github.com/thi-ng/umbrella/tree/@thi.ng/porter-duff@0.1.34) (2020-12-07)
 
@@ -89,12 +89,12 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
-- add darken/dissolve/opacity, optimize int ops, update readme ([c42b795](https://github.com/thi-ng/umbrella/commit/c42b795))
-- add isPremultiplied checks ([f473761](https://github.com/thi-ng/umbrella/commit/f473761))
-- simplify main op impl, add PLUS op, update readme ([6df117a](https://github.com/thi-ng/umbrella/commit/6df117a))
 - extract as new package ([47eef2a](https://github.com/thi-ng/umbrella/commit/47eef2a))
+- simplify main op impl, add PLUS op, update readme ([6df117a](https://github.com/thi-ng/umbrella/commit/6df117a))
+- add isPremultiplied checks ([f473761](https://github.com/thi-ng/umbrella/commit/f473761))
+- add darken/dissolve/opacity, optimize int ops, update readme ([c42b795](https://github.com/thi-ng/umbrella/commit/c42b795))
 
 #### 🩹 Bug fixes
 
-- re-add missing channel blend factor (porterDuffInt) ([cf94597](https://github.com/thi-ng/umbrella/commit/cf94597))
 - use int version for PLUS_I ([ccb29dc](https://github.com/thi-ng/umbrella/commit/ccb29dc))
+- re-add missing channel blend factor (porterDuffInt) ([cf94597](https://github.com/thi-ng/umbrella/commit/cf94597))

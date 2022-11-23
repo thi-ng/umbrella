@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-10-28T19:08:39Z
+- **Last updated**: 2022-11-23T22:46:54Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -44,9 +44,9 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
 - update imports in all pkgs ([5fa2b6f](https://github.com/thi-ng/umbrella/commit/5fa2b6f))
   - add .js suffix for all relative imports
+- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
 
 # [3.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/fsm@3.0.0) (2021-10-12)
 
@@ -67,17 +67,17 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- update imports ([7eece31](https://github.com/thi-ng/umbrella/commit/7eece31))
-- update all test stubs ([f2d6d53](https://github.com/thi-ng/umbrella/commit/f2d6d53))
 - update all tests in _all_ pkgs ([8b582bc](https://github.com/thi-ng/umbrella/commit/8b582bc))
   - update all to use [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament)
+- update all test stubs ([f2d6d53](https://github.com/thi-ng/umbrella/commit/f2d6d53))
+- update imports ([7eece31](https://github.com/thi-ng/umbrella/commit/7eece31))
 
 ### [2.4.29](https://github.com/thi-ng/umbrella/tree/@thi.ng/fsm@2.4.29) (2020-12-07)
 
 #### ♻️ Refactoring
 
-- update type-only imports ([6b1c0b3](https://github.com/thi-ng/umbrella/commit/6b1c0b3))
 - update type-only imports in various tests/pkgs ([3fd9c24](https://github.com/thi-ng/umbrella/commit/3fd9c24))
+- update type-only imports ([6b1c0b3](https://github.com/thi-ng/umbrella/commit/6b1c0b3))
 
 ### [2.4.2](https://github.com/thi-ng/umbrella/tree/@thi.ng/fsm@2.4.2) (2020-04-05)
 
@@ -113,8 +113,8 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
-- TS strictNullChecks, update color conversion fns ([04dc356](https://github.com/thi-ng/umbrella/commit/04dc356))
 - enable TS strict compiler flags (refactor) ([135b838](https://github.com/thi-ng/umbrella/commit/135b838))
+- TS strictNullChecks, update color conversion fns ([04dc356](https://github.com/thi-ng/umbrella/commit/04dc356))
 
 #### 🩹 Bug fixes
 
@@ -130,9 +130,9 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
-- add optional FSM ctx update handler, add iterator support ([da9ff03](https://github.com/thi-ng/umbrella/commit/da9ff03))
-- add altsLit() matcher, optimize whitespace() ([5243241](https://github.com/thi-ng/umbrella/commit/5243241))
 - add optional failure callbacks in all matchers & fsm ([4b51c9a](https://github.com/thi-ng/umbrella/commit/4b51c9a))
+- add altsLit() matcher, optimize whitespace() ([5243241](https://github.com/thi-ng/umbrella/commit/5243241))
+- add optional FSM ctx update handler, add iterator support ([da9ff03](https://github.com/thi-ng/umbrella/commit/da9ff03))
 
 # [2.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/fsm@2.0.0) (2019-02-15)
 
@@ -162,9 +162,9 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
-- add never(), optimize alts(), add docs for all matchers ([81e3fc7](https://github.com/thi-ng/umbrella/commit/81e3fc7))
-- update not() ([a933607](https://github.com/thi-ng/umbrella/commit/a933607))
-- add always(), lit(), not(), cleanup imports ([992f31a](https://github.com/thi-ng/umbrella/commit/992f31a))
-- add support for lookahead-1, add docs ([4a9bb3d](https://github.com/thi-ng/umbrella/commit/4a9bb3d))
-- add repeat(), success(), refactor all matchers ([55671fc](https://github.com/thi-ng/umbrella/commit/55671fc))
 - import fsm package ([e03390b](https://github.com/thi-ng/umbrella/commit/e03390b))
+- add repeat(), success(), refactor all matchers ([55671fc](https://github.com/thi-ng/umbrella/commit/55671fc))
+- add support for lookahead-1, add docs ([4a9bb3d](https://github.com/thi-ng/umbrella/commit/4a9bb3d))
+- add always(), lit(), not(), cleanup imports ([992f31a](https://github.com/thi-ng/umbrella/commit/992f31a))
+- update not() ([a933607](https://github.com/thi-ng/umbrella/commit/a933607))
+- add never(), optimize alts(), add docs for all matchers ([81e3fc7](https://github.com/thi-ng/umbrella/commit/81e3fc7))

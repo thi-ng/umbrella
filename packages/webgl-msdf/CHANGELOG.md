@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-10-28T19:08:39Z
+- **Last updated**: 2022-11-23T22:46:54Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -32,9 +32,9 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
 - update imports in all pkgs ([5fa2b6f](https://github.com/thi-ng/umbrella/commit/5fa2b6f))
   - add .js suffix for all relative imports
+- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
 
 # [2.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/webgl-msdf@2.0.0) (2021-10-12)
 
@@ -55,12 +55,12 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- update imports ([c29d6b4](https://github.com/thi-ng/umbrella/commit/c29d6b4))
-- update imports ([ab75a9f](https://github.com/thi-ng/umbrella/commit/ab75a9f))
-- update imports ([138571a](https://github.com/thi-ng/umbrella/commit/138571a))
-- update all test stubs ([f2d6d53](https://github.com/thi-ng/umbrella/commit/f2d6d53))
 - update all tests in _all_ pkgs ([8b582bc](https://github.com/thi-ng/umbrella/commit/8b582bc))
   - update all to use [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament)
+- update all test stubs ([f2d6d53](https://github.com/thi-ng/umbrella/commit/f2d6d53))
+- update imports ([138571a](https://github.com/thi-ng/umbrella/commit/138571a))
+- update imports ([ab75a9f](https://github.com/thi-ng/umbrella/commit/ab75a9f))
+- update imports ([c29d6b4](https://github.com/thi-ng/umbrella/commit/c29d6b4))
 
 ### [0.1.73](https://github.com/thi-ng/umbrella/tree/@thi.ng/webgl-msdf@0.1.73) (2021-02-20)
 
@@ -105,23 +105,23 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
+- initial import MSDF font rendering pkg ([22bcc24](https://github.com/thi-ng/umbrella/commit/22bcc24))
+- add more TextOpts, update TextAlign fns ([4602883](https://github.com/thi-ng/umbrella/commit/4602883))
+  - add dirX, dirY opts to control text directions
+  - add horizontal letter spacing opt
 - initial integration of shader-ast ([73faffd](https://github.com/thi-ng/umbrella/commit/73faffd))
   - replace GLSL enums with shader-ast types
   - add shaderSourceFromAST()
   - update shader presets
   - update old code gens (to be replaced soon)
-- add more TextOpts, update TextAlign fns ([4602883](https://github.com/thi-ng/umbrella/commit/4602883))
-  - add dirX, dirY opts to control text directions
-  - add horizontal letter spacing opt
-- initial import MSDF font rendering pkg ([22bcc24](https://github.com/thi-ng/umbrella/commit/22bcc24))
 
 #### 🩹 Bug fixes
 
-- update madd call sites ([#95](https://github.com/thi-ng/umbrella/issues/95)) ([5c6fa50](https://github.com/thi-ng/umbrella/commit/5c6fa50))
-- update shader (remove prefixes) ([33731e9](https://github.com/thi-ng/umbrella/commit/33731e9))
 - update textWidth & align fns ([dd6f752](https://github.com/thi-ng/umbrella/commit/dd6f752))
+- update shader (remove prefixes) ([33731e9](https://github.com/thi-ng/umbrella/commit/33731e9))
+- update madd call sites ([#95](https://github.com/thi-ng/umbrella/issues/95)) ([5c6fa50](https://github.com/thi-ng/umbrella/commit/5c6fa50))
 
 #### ♻️ Refactoring
 
-- update shader to use AST ([af6d39f](https://github.com/thi-ng/umbrella/commit/af6d39f))
 - rename msdfShader() ([90676b5](https://github.com/thi-ng/umbrella/commit/90676b5))
+- update shader to use AST ([af6d39f](https://github.com/thi-ng/umbrella/commit/af6d39f))

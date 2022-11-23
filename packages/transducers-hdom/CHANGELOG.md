@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-10-28T19:08:39Z
+- **Last updated**: 2022-11-23T22:46:54Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -53,12 +53,12 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- minor pkg restructure (various) ([47f88d2](https://github.com/thi-ng/umbrella/commit/47f88d2))
-- update imports ([924aa26](https://github.com/thi-ng/umbrella/commit/924aa26))
-- update imports ([138571a](https://github.com/thi-ng/umbrella/commit/138571a))
-- update all test stubs ([f2d6d53](https://github.com/thi-ng/umbrella/commit/f2d6d53))
 - update all tests in _all_ pkgs ([8b582bc](https://github.com/thi-ng/umbrella/commit/8b582bc))
   - update all to use [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament)
+- update all test stubs ([f2d6d53](https://github.com/thi-ng/umbrella/commit/f2d6d53))
+- update imports ([138571a](https://github.com/thi-ng/umbrella/commit/138571a))
+- update imports ([924aa26](https://github.com/thi-ng/umbrella/commit/924aa26))
+- minor pkg restructure (various) ([47f88d2](https://github.com/thi-ng/umbrella/commit/47f88d2))
 
 ### [2.0.74](https://github.com/thi-ng/umbrella/tree/@thi.ng/transducers-hdom@2.0.74) (2020-12-07)
 
@@ -70,13 +70,6 @@ and/or version bumps of transitive dependencies.
 
 #### 🛑 Breaking changes
 
-- update package scripts, outputs, imports in remaining packages ([f912a84](https://github.com/thi-ng/umbrella/commit/f912a84))
-- BREAKING CHANGE: enable multi-outputs (ES6 modules, CJS, UMD)
-  - build scripts now first build ES6 modules in package root, then call
-    `scripts/bundle-module` to build minified CJS & UMD bundles in `/lib`
-  - all imports MUST be updated to only refer to package level
-    (not individual files anymore). tree shaking in user land will get rid of
-    all unused imported symbols
 - update package build scripts & outputs, imports in ~50 packages ([b54b703](https://github.com/thi-ng/umbrella/commit/b54b703))
 - BREAKING CHANGE: enabled multi-outputs (ES6 modules, CJS, UMD)
   - build scripts now first build ES6 modules in package root, then call
@@ -84,6 +77,13 @@ and/or version bumps of transitive dependencies.
   - all imports MUST be updated to only refer to package level
     (not individual files anymore). tree shaking in user land will get rid of
     all unused imported symbols.
+- update package scripts, outputs, imports in remaining packages ([f912a84](https://github.com/thi-ng/umbrella/commit/f912a84))
+- BREAKING CHANGE: enable multi-outputs (ES6 modules, CJS, UMD)
+  - build scripts now first build ES6 modules in package root, then call
+    `scripts/bundle-module` to build minified CJS & UMD bundles in `/lib`
+  - all imports MUST be updated to only refer to package level
+    (not individual files anymore). tree shaking in user land will get rid of
+    all unused imported symbols
 
 #### ♻️ Refactoring
 

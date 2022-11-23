@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-10-28T19:08:39Z
+- **Last updated**: 2022-11-23T22:46:54Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -38,9 +38,9 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
 - update imports in all pkgs ([5fa2b6f](https://github.com/thi-ng/umbrella/commit/5fa2b6f))
   - add .js suffix for all relative imports
+- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
 
 ## [0.3.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/shader-ast-glsl@0.3.0) (2021-10-12)
 
@@ -71,11 +71,11 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- minor update [#319](https://github.com/thi-ng/umbrella/issues/319) ([7e6f84e](https://github.com/thi-ng/umbrella/commit/7e6f84e))
-- update imports ([4541c9f](https://github.com/thi-ng/umbrella/commit/4541c9f))
-- update imports ([138571a](https://github.com/thi-ng/umbrella/commit/138571a))
 - update all tests in _all_ pkgs ([8b582bc](https://github.com/thi-ng/umbrella/commit/8b582bc))
   - update all to use [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament)
+- update imports ([138571a](https://github.com/thi-ng/umbrella/commit/138571a))
+- update imports ([4541c9f](https://github.com/thi-ng/umbrella/commit/4541c9f))
+- minor update [#319](https://github.com/thi-ng/umbrella/issues/319) ([7e6f84e](https://github.com/thi-ng/umbrella/commit/7e6f84e))
 
 ### [0.2.44](https://github.com/thi-ng/umbrella/tree/@thi.ng/shader-ast-glsl@0.2.44) (2021-08-17)
 
@@ -119,12 +119,12 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
-- add array init code gen ([afaee5f](https://github.com/thi-ng/umbrella/commit/afaee5f))
-- add/update opts, update `scope` code gen, refactor `lit` ([d1ddaf2](https://github.com/thi-ng/umbrella/commit/d1ddaf2))
-- add post-inc/dec support ([a554192](https://github.com/thi-ng/umbrella/commit/a554192))
-- add global input/output var support, update GLSLOpts, add tests ([27003c9](https://github.com/thi-ng/umbrella/commit/27003c9))
-- add while loop, ivec support, fix bool ([882c560](https://github.com/thi-ng/umbrella/commit/882c560))
 - extract GLSL codegen as separate pkg ([a1db3fc](https://github.com/thi-ng/umbrella/commit/a1db3fc))
+- add while loop, ivec support, fix bool ([882c560](https://github.com/thi-ng/umbrella/commit/882c560))
+- add global input/output var support, update GLSLOpts, add tests ([27003c9](https://github.com/thi-ng/umbrella/commit/27003c9))
+- add post-inc/dec support ([a554192](https://github.com/thi-ng/umbrella/commit/a554192))
+- add/update opts, update `scope` code gen, refactor `lit` ([d1ddaf2](https://github.com/thi-ng/umbrella/commit/d1ddaf2))
+- add array init code gen ([afaee5f](https://github.com/thi-ng/umbrella/commit/afaee5f))
 
 #### 🩹 Bug fixes
 

@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-10-28T19:08:39Z
+- **Last updated**: 2022-11-23T22:46:54Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -52,9 +52,9 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
 - update imports in all pkgs ([5fa2b6f](https://github.com/thi-ng/umbrella/commit/5fa2b6f))
   - add .js suffix for all relative imports
+- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
 
 # [3.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/dcons@3.0.0) (2021-10-12)
 
@@ -75,14 +75,14 @@ and/or version bumps of transitive dependencies.
 
 #### 🩹 Bug fixes
 
-- add missing explicit return type (TS4.4) ([98a5c5b](https://github.com/thi-ng/umbrella/commit/98a5c5b))
 - add missing explicit return type (TS4.4) ([7eba2ca](https://github.com/thi-ng/umbrella/commit/7eba2ca))
+- add missing explicit return type (TS4.4) ([98a5c5b](https://github.com/thi-ng/umbrella/commit/98a5c5b))
 
 #### ♻️ Refactoring
 
-- update imports ([045f2d9](https://github.com/thi-ng/umbrella/commit/045f2d9))
 - update all tests in _all_ pkgs ([8b582bc](https://github.com/thi-ng/umbrella/commit/8b582bc))
   - update all to use [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament)
+- update imports ([045f2d9](https://github.com/thi-ng/umbrella/commit/045f2d9))
 
 ### [2.3.17](https://github.com/thi-ng/umbrella/tree/@thi.ng/dcons@2.3.17) (2021-03-17)
 
@@ -146,21 +146,21 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
+- add ISeqable impl (seq()) & tests ([1cfb02a](https://github.com/thi-ng/umbrella/commit/1cfb02a))
+- add dcons() factory fn (syntax sugar) ([6e09446](https://github.com/thi-ng/umbrella/commit/6e09446))
 - add sort(), update shuffle(), add tests ([f6bbcd5](https://github.com/thi-ng/umbrella/commit/f6bbcd5))
   - add [@thi.ng/random](https://github.com/thi-ng/umbrella/tree/main/packages/random) dep
   - rewrite & optimize shuffle() w/ support for IRandom
   - update readme
-- add dcons() factory fn (syntax sugar) ([6e09446](https://github.com/thi-ng/umbrella/commit/6e09446))
-- add ISeqable impl (seq()) & tests ([1cfb02a](https://github.com/thi-ng/umbrella/commit/1cfb02a))
 
 ## [2.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/dcons@2.1.0) (2019-07-07)
 
 #### 🚀 Features
 
+- enable TS strict compiler flags (refactor) ([4e73667](https://github.com/thi-ng/umbrella/commit/4e73667))
 - address TS strictNullChecks flag, minor optimizations ([cb5ad93](https://github.com/thi-ng/umbrella/commit/cb5ad93))
   - extract esnureIndex() & nthCellUnsafe()
   - update pop() to return undefined rather than throw error
-- enable TS strict compiler flags (refactor) ([4e73667](https://github.com/thi-ng/umbrella/commit/4e73667))
 
 #### 🩹 Bug fixes
 

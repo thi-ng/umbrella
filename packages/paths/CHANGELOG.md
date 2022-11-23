@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-10-28T19:08:39Z
+- **Last updated**: 2022-11-23T22:46:54Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -38,9 +38,9 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
 - update imports in all pkgs ([5fa2b6f](https://github.com/thi-ng/umbrella/commit/5fa2b6f))
   - add .js suffix for all relative imports
+- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
 
 # [5.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/paths@5.0.0) (2021-10-12)
 
@@ -61,15 +61,15 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
+- update all tests in _all_ pkgs ([8b582bc](https://github.com/thi-ng/umbrella/commit/8b582bc))
+  - update all to use [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament)
+- update imports ([138571a](https://github.com/thi-ng/umbrella/commit/138571a))
 - update deps & imports in various pkgs ([e1cf29e](https://github.com/thi-ng/umbrella/commit/e1cf29e))
   - largely related to recent updates/restructuring of these packages:
     - api
     - defmulti
     - errors
     - logger
-- update imports ([138571a](https://github.com/thi-ng/umbrella/commit/138571a))
-- update all tests in _all_ pkgs ([8b582bc](https://github.com/thi-ng/umbrella/commit/8b582bc))
-  - update all to use [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament)
 
 ## [4.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/paths@4.2.0) (2021-02-20)
 
@@ -115,17 +115,8 @@ and/or version bumps of transitive dependencies.
 
 #### 🛑 Breaking changes
 
-- update path value inference ([ab4440e](https://github.com/thi-ng/umbrella/commit/ab4440e))
-  - use OptPathVal for return type of read ops
-  - use PathVal for value arg in update ops
-- BREAKING CHANGE: update generics for `UpdateFn`
-  - UpdateFn now takes input & output type generics
-
-#### 🚀 Features
-
-- add/update unsafe type infer, update doc strings ([5cc5b46](https://github.com/thi-ng/umbrella/commit/5cc5b46))
 - major API update ([b51efc6](https://github.com/thi-ng/umbrella/commit/b51efc6))
-  BREAKING CHANGES: Major API updates, new semantics, renamed operators
+- BREAKING CHANGES: Major API updates, new semantics, renamed operators
   - major simplification func sigs (using new `Path1-8` types)
   - add/rename `getter()` => `defGetter()`/`defGetterUnsafe()`
   - add/rename `setter()` => `defSetter()`/`defSetterUnsafe()`
@@ -136,9 +127,18 @@ and/or version bumps of transitive dependencies.
   - add overrides for mut/setInManyUnsafe()
   - update doc strings
   - update tests
+- update path value inference ([ab4440e](https://github.com/thi-ng/umbrella/commit/ab4440e))
+  - use OptPathVal for return type of read ops
+  - use PathVal for value arg in update ops
+- BREAKING CHANGE: update generics for `UpdateFn`
+  - UpdateFn now takes input & output type generics
+
+#### 🚀 Features
+
 - update typed path sigs ([0b6c155](https://github.com/thi-ng/umbrella/commit/0b6c155))
   - add readonly modifier to allow const path tuples in accessors
     e.g. `<const>["a", "b"]`
+- add/update unsafe type infer, update doc strings ([5cc5b46](https://github.com/thi-ng/umbrella/commit/5cc5b46))
 
 ### [3.0.2](https://github.com/thi-ng/umbrella/tree/@thi.ng/paths@3.0.2) (2020-02-25)
 

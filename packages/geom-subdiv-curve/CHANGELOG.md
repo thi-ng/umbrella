@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-10-28T19:08:39Z
+- **Last updated**: 2022-11-23T22:46:54Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -38,9 +38,9 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
 - update imports in all pkgs ([5fa2b6f](https://github.com/thi-ng/umbrella/commit/5fa2b6f))
   - add .js suffix for all relative imports
+- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
 
 # [2.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom-subdiv-curve@2.0.0) (2021-10-12)
 
@@ -61,26 +61,26 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- update imports (transducers) ([25b674f](https://github.com/thi-ng/umbrella/commit/25b674f))
-- update imports ([a647d4d](https://github.com/thi-ng/umbrella/commit/a647d4d))
-- update all test stubs ([f2d6d53](https://github.com/thi-ng/umbrella/commit/f2d6d53))
 - update all tests in _all_ pkgs ([8b582bc](https://github.com/thi-ng/umbrella/commit/8b582bc))
   - update all to use [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament)
+- update all test stubs ([f2d6d53](https://github.com/thi-ng/umbrella/commit/f2d6d53))
+- update imports ([a647d4d](https://github.com/thi-ng/umbrella/commit/a647d4d))
+- update imports (transducers) ([25b674f](https://github.com/thi-ng/umbrella/commit/25b674f))
 
 ### [0.1.67](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom-subdiv-curve@0.1.67) (2020-12-07)
 
 #### ♻️ Refactoring
 
-- update type-only imports in remaining pkgs ([b22aa30](https://github.com/thi-ng/umbrella/commit/b22aa30))
 - update type-only imports in various tests/pkgs ([3fd9c24](https://github.com/thi-ng/umbrella/commit/3fd9c24))
+- update type-only imports in remaining pkgs ([b22aa30](https://github.com/thi-ng/umbrella/commit/b22aa30))
 
 ### [0.1.63](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom-subdiv-curve@0.1.63) (2020-09-22)
 
 #### ♻️ Refactoring
 
+- update MID_OPEN, THIRDS_OPEN ([933920d](https://github.com/thi-ng/umbrella/commit/933920d))
 - update subdivide() ([be79f2e](https://github.com/thi-ng/umbrella/commit/be79f2e))
   - use mapcatIndexed() to simplify composed xform
-- update MID_OPEN, THIRDS_OPEN ([933920d](https://github.com/thi-ng/umbrella/commit/933920d))
 
 ### [0.1.30](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom-subdiv-curve@0.1.30) (2020-02-25)
 

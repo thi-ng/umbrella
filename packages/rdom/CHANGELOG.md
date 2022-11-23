@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-10-28T19:08:39Z
+- **Last updated**: 2022-11-23T22:46:54Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -57,9 +57,9 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
 - update imports in all pkgs ([5fa2b6f](https://github.com/thi-ng/umbrella/commit/5fa2b6f))
   - add .js suffix for all relative imports
+- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
 
 ## [0.7.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/rdom@0.7.0) (2021-10-12)
 
@@ -84,17 +84,17 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- update imports in various pkgs (rstream) ([342cf54](https://github.com/thi-ng/umbrella/commit/342cf54))
+- update all tests in _all_ pkgs ([8b582bc](https://github.com/thi-ng/umbrella/commit/8b582bc))
+  - update all to use [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament)
+- update all test stubs ([f2d6d53](https://github.com/thi-ng/umbrella/commit/f2d6d53))
+- update imports ([138571a](https://github.com/thi-ng/umbrella/commit/138571a))
 - update deps & imports in various pkgs ([e1cf29e](https://github.com/thi-ng/umbrella/commit/e1cf29e))
   - largely related to recent updates/restructuring of these packages:
     - api
     - defmulti
     - errors
     - logger
-- update imports ([138571a](https://github.com/thi-ng/umbrella/commit/138571a))
-- update all test stubs ([f2d6d53](https://github.com/thi-ng/umbrella/commit/f2d6d53))
-- update all tests in _all_ pkgs ([8b582bc](https://github.com/thi-ng/umbrella/commit/8b582bc))
-  - update all to use [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament)
+- update imports in various pkgs (rstream) ([342cf54](https://github.com/thi-ng/umbrella/commit/342cf54))
 
 ### [0.6.9](https://github.com/thi-ng/umbrella/tree/@thi.ng/rdom@0.6.9) (2021-09-03)
 
@@ -150,31 +150,31 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
+- simplify $el() attrib handling ([b777cf1](https://github.com/thi-ng/umbrella/commit/b777cf1))
+- split $tree() ([de159e0](https://github.com/thi-ng/umbrella/commit/de159e0))
 - split $compile() ([45156b2](https://github.com/thi-ng/umbrella/commit/45156b2))
   - extract complexComponent(), basicComponent()
-- split $tree() ([de159e0](https://github.com/thi-ng/umbrella/commit/de159e0))
-- simplify $el() attrib handling ([b777cf1](https://github.com/thi-ng/umbrella/commit/b777cf1))
 
 ## [0.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/rdom@0.2.0) (2020-07-08)
 
 #### 🚀 Features
 
-- add $promise() wrapper ([53f9688](https://github.com/thi-ng/umbrella/commit/53f9688))
 - add $input, $inputNum event listeners ([c29fb49](https://github.com/thi-ng/umbrella/commit/c29fb49))
+- add $promise() wrapper ([53f9688](https://github.com/thi-ng/umbrella/commit/53f9688))
 
 ## [0.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/rdom@0.1.0) (2020-07-02)
 
 #### 🚀 Features
 
-- add RDFa `prefix` attrib support, update prefix handling ([b589da5](https://github.com/thi-ng/umbrella/commit/b589da5))
-  - add XML_XMLNS to default prefixes
-  - update `registerPrefixes()` to error if attempting to overwrite prefix
+- rename hdom2020 => rdom, update pkg ([1224706](https://github.com/thi-ng/umbrella/commit/1224706))
+- update $tree() span handling, update $moveTo() ([6d90187](https://github.com/thi-ng/umbrella/commit/6d90187))
 - add support for namespaced el/attribs ([9d16ef0](https://github.com/thi-ng/umbrella/commit/9d16ef0))
   - add deps ([@thi.ng/prefixes](https://github.com/thi-ng/umbrella/tree/main/packages/prefixes))
   - add `registerPrefix()` helper
   - update `$el()` and `setAttrib()` to check for prefixed names
-- update $tree() span handling, update $moveTo() ([6d90187](https://github.com/thi-ng/umbrella/commit/6d90187))
-- rename hdom2020 => rdom, update pkg ([1224706](https://github.com/thi-ng/umbrella/commit/1224706))
+- add RDFa `prefix` attrib support, update prefix handling ([b589da5](https://github.com/thi-ng/umbrella/commit/b589da5))
+  - add XML_XMLNS to default prefixes
+  - update `registerPrefixes()` to error if attempting to overwrite prefix
 
 #### ♻️ Refactoring
 

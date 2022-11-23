@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-10-28T19:08:39Z
+- **Last updated**: 2022-11-23T22:46:54Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -64,17 +64,17 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- migrate CLI to TS ([9381d83](https://github.com/thi-ng/umbrella/commit/9381d83))
-- minor pkg restructure ([73ea3d1](https://github.com/thi-ng/umbrella/commit/73ea3d1))
+- update all tests in _all_ pkgs ([8b582bc](https://github.com/thi-ng/umbrella/commit/8b582bc))
+  - update all to use [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament)
+- update imports ([138571a](https://github.com/thi-ng/umbrella/commit/138571a))
 - update deps & imports in various pkgs ([e1cf29e](https://github.com/thi-ng/umbrella/commit/e1cf29e))
   - largely related to recent updates/restructuring of these packages:
     - api
     - defmulti
     - errors
     - logger
-- update imports ([138571a](https://github.com/thi-ng/umbrella/commit/138571a))
-- update all tests in _all_ pkgs ([8b582bc](https://github.com/thi-ng/umbrella/commit/8b582bc))
-  - update all to use [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament)
+- minor pkg restructure ([73ea3d1](https://github.com/thi-ng/umbrella/commit/73ea3d1))
+- migrate CLI to TS ([9381d83](https://github.com/thi-ng/umbrella/commit/9381d83))
 
 ### [1.4.18](https://github.com/thi-ng/umbrella/tree/@thi.ng/pointfree-lang@1.4.18) (2020-12-22)
 
@@ -106,11 +106,11 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
+- update grammar (add line comments) ([a8cdbe8](https://github.com/thi-ng/umbrella/commit/a8cdbe8))
+  - update readme
 - add word metadata ([7343116](https://github.com/thi-ng/umbrella/commit/7343116))
   - store word name, source loc, stack comment & arities in
     `__meta` key of compiled functions
-- update grammar (add line comments) ([a8cdbe8](https://github.com/thi-ng/umbrella/commit/a8cdbe8))
-  - update readme
 
 #### ♻️ Refactoring
 
@@ -136,8 +136,8 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
-- add `try` alias, fix `include` cli word ([ab61e5b](https://github.com/thi-ng/umbrella/commit/ab61e5b))
 - add initial CLI tooling, add new aliases, update deps ([90c9d96](https://github.com/thi-ng/umbrella/commit/90c9d96))
+- add `try` alias, fix `include` cli word ([ab61e5b](https://github.com/thi-ng/umbrella/commit/ab61e5b))
 
 ### [1.1.10](https://github.com/thi-ng/umbrella/tree/@thi.ng/pointfree-lang@1.1.10) (2020-02-25)
 
@@ -206,6 +206,18 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
+- update grammar, aliases, ASTNode, NodeType ([ee684c7](https://github.com/thi-ng/umbrella/commit/ee684c7))
+  - add VAR_DEREF_IMM node type (immediate/non-defered var deref)
+  - add node source location info
+  - add VarDerefImmediate and NonWordExpr grammar rules
+  - add more aliases for built-ins
+- overhaul visitor quote/array & map handling, grammar ([769e84d](https://github.com/thi-ng/umbrella/commit/769e84d))
+  - revert / remove NodeType.VAR_DEREF_IMM
+  - add resolveNode, resolveArray, resolveMap
+  - update resolveVar to use hasOwnProperty() check
+  - simplify VisitorState and handling
+  - add source location handling (for improved error msg)
+  - update aliases
 - implement dynamic var scoping & local var grammar ([3310ec3](https://github.com/thi-ng/umbrella/commit/3310ec3))
   - add loadvar/storevar/beginvar/endvar word fns
   - add `^{ x y }` syntax to autobind word local vars
@@ -215,18 +227,6 @@ and/or version bumps of transitive dependencies.
   - add finalizeEnv() to resolve final var results and remove var stacks
   - fix aliases
   - add docs
-- overhaul visitor quote/array & map handling, grammar ([769e84d](https://github.com/thi-ng/umbrella/commit/769e84d))
-  - revert / remove NodeType.VAR_DEREF_IMM
-  - add resolveNode, resolveArray, resolveMap
-  - update resolveVar to use hasOwnProperty() check
-  - simplify VisitorState and handling
-  - add source location handling (for improved error msg)
-  - update aliases
-- update grammar, aliases, ASTNode, NodeType ([ee684c7](https://github.com/thi-ng/umbrella/commit/ee684c7))
-  - add VAR_DEREF_IMM node type (immediate/non-defered var deref)
-  - add node source location info
-  - add VarDerefImmediate and NonWordExpr grammar rules
-  - add more aliases for built-ins
 
 #### 🩹 Bug fixes
 

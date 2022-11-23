@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-10-28T19:08:39Z
+- **Last updated**: 2022-11-23T22:46:54Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -32,9 +32,9 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
 - update imports in all pkgs ([5fa2b6f](https://github.com/thi-ng/umbrella/commit/5fa2b6f))
   - add .js suffix for all relative imports
+- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
 
 ## [0.4.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/k-means@0.4.0) (2021-10-12)
 
@@ -55,16 +55,16 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
+- update all tests in _all_ pkgs ([8b582bc](https://github.com/thi-ng/umbrella/commit/8b582bc))
+  - update all to use [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament)
+- update all test stubs ([f2d6d53](https://github.com/thi-ng/umbrella/commit/f2d6d53))
+- update imports ([138571a](https://github.com/thi-ng/umbrella/commit/138571a))
 - update deps & imports in various pkgs ([e1cf29e](https://github.com/thi-ng/umbrella/commit/e1cf29e))
   - largely related to recent updates/restructuring of these packages:
     - api
     - defmulti
     - errors
     - logger
-- update imports ([138571a](https://github.com/thi-ng/umbrella/commit/138571a))
-- update all test stubs ([f2d6d53](https://github.com/thi-ng/umbrella/commit/f2d6d53))
-- update all tests in _all_ pkgs ([8b582bc](https://github.com/thi-ng/umbrella/commit/8b582bc))
-  - update all to use [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament)
 
 ## [0.3.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/k-means@0.3.0) (2021-08-04)
 
@@ -97,15 +97,15 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
-- add kmeans++ initialization, update opts ([fcc2dcc](https://github.com/thi-ng/umbrella/commit/fcc2dcc))
-  - add `KMeansOpts.initial` to provide initial centroids
-  - add initKmeanspp() impl
-  - update kmeans() to use improved init step (if needed)
+- import as new pkg ([a32aaf6](https://github.com/thi-ng/umbrella/commit/a32aaf6))
 - add k-medians support ([6bc450b](https://github.com/thi-ng/umbrella/commit/6bc450b))
   - add CentroidStrategy, update KMeansOpts
   - update kmeans() to use strategy impl
   - extract means() & medians() strategies
-- import as new pkg ([a32aaf6](https://github.com/thi-ng/umbrella/commit/a32aaf6))
+- add kmeans++ initialization, update opts ([fcc2dcc](https://github.com/thi-ng/umbrella/commit/fcc2dcc))
+  - add `KMeansOpts.initial` to provide initial centroids
+  - add initKmeanspp() impl
+  - update kmeans() to use improved init step (if needed)
 
 #### 🩹 Bug fixes
 

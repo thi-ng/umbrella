@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-10-28T19:08:39Z
+- **Last updated**: 2022-11-23T22:46:54Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -32,9 +32,9 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
 - update imports in all pkgs ([5fa2b6f](https://github.com/thi-ng/umbrella/commit/5fa2b6f))
   - add .js suffix for all relative imports
+- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
 
 # [5.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/atom@5.0.0) (2021-10-12)
 
@@ -55,16 +55,16 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- minor pkg restructure (various) ([47f88d2](https://github.com/thi-ng/umbrella/commit/47f88d2))
+- update all tests in _all_ pkgs ([8b582bc](https://github.com/thi-ng/umbrella/commit/8b582bc))
+  - update all to use [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament)
+- update imports ([abe1675](https://github.com/thi-ng/umbrella/commit/abe1675))
 - update deps & imports in various pkgs ([e1cf29e](https://github.com/thi-ng/umbrella/commit/e1cf29e))
   - largely related to recent updates/restructuring of these packages:
     - api
     - defmulti
     - errors
     - logger
-- update imports ([abe1675](https://github.com/thi-ng/umbrella/commit/abe1675))
-- update all tests in _all_ pkgs ([8b582bc](https://github.com/thi-ng/umbrella/commit/8b582bc))
-  - update all to use [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament)
+- minor pkg restructure (various) ([47f88d2](https://github.com/thi-ng/umbrella/commit/47f88d2))
 
 ### [4.1.36](https://github.com/thi-ng/umbrella/tree/@thi.ng/atom@4.1.36) (2021-06-08)
 
@@ -82,8 +82,8 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- update imports ([78625d7](https://github.com/thi-ng/umbrella/commit/78625d7))
 - update imports, use new Fn types in various pkgs ([ced1e5d](https://github.com/thi-ng/umbrella/commit/ced1e5d))
+- update imports ([78625d7](https://github.com/thi-ng/umbrella/commit/78625d7))
 
 ### [4.1.19](https://github.com/thi-ng/umbrella/tree/@thi.ng/atom@4.1.19) (2020-08-28)
 
@@ -106,9 +106,10 @@ and/or version bumps of transitive dependencies.
 
 #### 🛑 Breaking changes
 
-- update path value inference handling ([8c2aab2](https://github.com/thi-ng/umbrella/commit/8c2aab2))
-- BREAKING CHANGE: update IReset, ISwap, SwapFn generics
-  - use PathVal & OptPathVal for value type inference
+- add typechecking for resetIn(), swapIn() impls ([f114e10](https://github.com/thi-ng/umbrella/commit/f114e10))
+- BREAKING CHANGE: add typechecking for resetIn(), swapIn() impls
+  The more stricter method signatures **could** lead to breaking changes
+  in more lax existing code bases
 - update types, API for supporting type-checked & unchecked paths ([82948b8](https://github.com/thi-ng/umbrella/commit/82948b8))
 - BREAKING CHANGE: update types, API for supporting type-checked & unchecked paths
   - support path type checking for upto 8 levels (before falling back to `any`)
@@ -127,10 +128,9 @@ and/or version bumps of transitive dependencies.
   - add factory fns for untyped paths:
     - defCursorUnsafe()
     - defViewUnsafe()
-- add typechecking for resetIn(), swapIn() impls ([f114e10](https://github.com/thi-ng/umbrella/commit/f114e10))
-- BREAKING CHANGE: add typechecking for resetIn(), swapIn() impls
-  The more stricter method signatures **could** lead to breaking changes
-  in more lax existing code bases
+- update path value inference handling ([8c2aab2](https://github.com/thi-ng/umbrella/commit/8c2aab2))
+- BREAKING CHANGE: update IReset, ISwap, SwapFn generics
+  - use PathVal & OptPathVal for value type inference
 
 #### 🩹 Bug fixes
 
@@ -138,8 +138,8 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- update all to new [@thi.ng/paths](https://github.com/thi-ng/umbrella/tree/main/packages/paths) API ([016b5fe](https://github.com/thi-ng/umbrella/commit/016b5fe))
 - simplify API & impls using new path types, fix View type inference ([b016378](https://github.com/thi-ng/umbrella/commit/b016378))
+- update all to new [@thi.ng/paths](https://github.com/thi-ng/umbrella/tree/main/packages/paths) API ([016b5fe](https://github.com/thi-ng/umbrella/commit/016b5fe))
 
 ### [3.1.5](https://github.com/thi-ng/umbrella/tree/@thi.ng/atom@3.1.5) (2020-02-25)
 
@@ -163,8 +163,8 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
-- update Transacted watch ID handling, update tests, readme ([93d9e1d](https://github.com/thi-ng/umbrella/commit/93d9e1d))
 - add Transacted wrapper & tests ([8aaf6e6](https://github.com/thi-ng/umbrella/commit/8aaf6e6))
+- update Transacted watch ID handling, update tests, readme ([93d9e1d](https://github.com/thi-ng/umbrella/commit/93d9e1d))
 
 # [3.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/atom@3.0.0) (2019-07-07)
 
@@ -212,14 +212,14 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
+- add INotify impl for History ([9422598](https://github.com/thi-ng/umbrella/commit/9422598))
+  - add EVENT_UNDO/REDO/RECORD events
+  - emit events from `undo()`, `redo()`, `record()`
 - provide prev/curr states to history event listeners ([7ac6227](https://github.com/thi-ng/umbrella/commit/7ac6227))
   - update undo()/redo() event value
     (now an object w/ `prev`/`curr` keys/states)
   - refactor/fix record(), only expunge history and truncate future
     if actually recording new state
-- add INotify impl for History ([9422598](https://github.com/thi-ng/umbrella/commit/9422598))
-  - add EVENT_UNDO/REDO/RECORD events
-  - emit events from `undo()`, `redo()`, `record()`
 
 ### [1.3.8](https://github.com/thi-ng/umbrella/tree/@thi.ng/atom@1.3.8) (2018-05-10)
 
@@ -239,9 +239,9 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
-- consider parent validators in History update fns ([d93940a](https://github.com/thi-ng/umbrella/commit/d93940a))
-- add CursorOpts and cursor validation, update ctor, add tests ([3b1d563](https://github.com/thi-ng/umbrella/commit/3b1d563))
 - add optional validation predicate for Atom, add tests ([bae1647](https://github.com/thi-ng/umbrella/commit/bae1647))
+- add CursorOpts and cursor validation, update ctor, add tests ([3b1d563](https://github.com/thi-ng/umbrella/commit/3b1d563))
+- consider parent validators in History update fns ([d93940a](https://github.com/thi-ng/umbrella/commit/d93940a))
 
 #### ♻️ Refactoring
 
@@ -266,8 +266,8 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
-- add forwardSideFx() interceptor ([357c46e](https://github.com/thi-ng/umbrella/commit/357c46e))
 - add FX_FETCH & FX_DELAY sidefx impl, update docs ([e52e7e5](https://github.com/thi-ng/umbrella/commit/e52e7e5))
+- add forwardSideFx() interceptor ([357c46e](https://github.com/thi-ng/umbrella/commit/357c46e))
 
 ### [0.12.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/atom@0.12.1) (2018-03-11)
 
@@ -279,11 +279,11 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
-- add/extract StatelessEventBus ([3fae249](https://github.com/thi-ng/umbrella/commit/3fae249))
-- update EventBus ctor, add deref() ([667691c](https://github.com/thi-ng/umbrella/commit/667691c))
 - add IRelease impls ([9b3d91e](https://github.com/thi-ng/umbrella/commit/9b3d91e))
   - add IRelease to ReadonlyAtom
   - implement IRelease for Atom, Cursor, History, View
+- update EventBus ctor, add deref() ([667691c](https://github.com/thi-ng/umbrella/commit/667691c))
+- add/extract StatelessEventBus ([3fae249](https://github.com/thi-ng/umbrella/commit/3fae249))
 
 #### 🩹 Bug fixes
 
@@ -297,12 +297,12 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
-- add valueSetter/Updater() interceptors ([359c4f5](https://github.com/thi-ng/umbrella/commit/359c4f5))
 - add default handlers, add/rename event/fx const values, add checks ([1fd43d7](https://github.com/thi-ng/umbrella/commit/1fd43d7))
   - add EV_SET_VALUE & EV_UPDATE_VALUE event handlers
   - add prefixes to built-in event/fx ID values to avoid name clashes w/ user IDs
   - refactor EventBus, add addBuiltIns()
   - display warnings if overriding existing handler/effect
+- add valueSetter/Updater() interceptors ([359c4f5](https://github.com/thi-ng/umbrella/commit/359c4f5))
 
 #### ♻️ Refactoring
 
@@ -370,17 +370,17 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
+- add View type to create derrived views/value subscriptions ([8c0c621](https://github.com/thi-ng/umbrella/commit/8c0c621))
 - add IView, IViewable, impl for Atom, Cursor, History ([9ad83b2](https://github.com/thi-ng/umbrella/commit/9ad83b2))
   - update IAtom to include IViewable
   - update View & ViewTransform generics
-- add View type to create derrived views/value subscriptions ([8c0c621](https://github.com/thi-ng/umbrella/commit/8c0c621))
 
 #### ⏱ Performance improvements
 
-- add optimized setter() for path len < 5, fix toPath() ([55c6a7d](https://github.com/thi-ng/umbrella/commit/55c6a7d))
-  - treat empty string as zero-length path
 - add optimized getters for path len < 5 ([ed23376](https://github.com/thi-ng/umbrella/commit/ed23376))
   - benchmark (len=4) now: 57ms vs 3150ms (55x faster!)
+- add optimized setter() for path len < 5, fix toPath() ([55c6a7d](https://github.com/thi-ng/umbrella/commit/55c6a7d))
+  - treat empty string as zero-length path
 
 #### ♻️ Refactoring
 
@@ -390,8 +390,8 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
-- add deleteIn() ([b593a9b](https://github.com/thi-ng/umbrella/commit/b593a9b))
 - add getIn/setIn/updateIn ([6f6e7e5](https://github.com/thi-ng/umbrella/commit/6f6e7e5))
+- add deleteIn() ([b593a9b](https://github.com/thi-ng/umbrella/commit/b593a9b))
 
 #### 🩹 Bug fixes
 
@@ -399,9 +399,9 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- update history reset/swap, record before applying val ([2e34f38](https://github.com/thi-ng/umbrella/commit/2e34f38))
-- use [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/main/packages/api)/equiv as default History predicate ([b5ee8e4](https://github.com/thi-ng/umbrella/commit/b5ee8e4))
 - don't mutate getter/setter path args, update updateIn ([398c32a](https://github.com/thi-ng/umbrella/commit/398c32a))
+- use [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/main/packages/api)/equiv as default History predicate ([b5ee8e4](https://github.com/thi-ng/umbrella/commit/b5ee8e4))
+- update history reset/swap, record before applying val ([2e34f38](https://github.com/thi-ng/umbrella/commit/2e34f38))
 
 ## [0.5.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/atom@0.5.0) (2018-02-01)
 
@@ -411,8 +411,8 @@ and/or version bumps of transitive dependencies.
 
 #### 🩹 Bug fixes
 
-- truncate redo stack in record(), swap() return type ([8218814](https://github.com/thi-ng/umbrella/commit/8218814))
 - cursor swap() return type ([36cc956](https://github.com/thi-ng/umbrella/commit/36cc956))
+- truncate redo stack in record(), swap() return type ([8218814](https://github.com/thi-ng/umbrella/commit/8218814))
 
 ## [0.4.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/atom@0.4.0) (2018-01-31)
 
@@ -424,8 +424,8 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
-- add IReset/ISwap impls for History ([e1b57de](https://github.com/thi-ng/umbrella/commit/e1b57de))
 - add History, add/update tests ([035c51a](https://github.com/thi-ng/umbrella/commit/035c51a))
+- add IReset/ISwap impls for History ([e1b57de](https://github.com/thi-ng/umbrella/commit/e1b57de))
 
 #### 🩹 Bug fixes
 
@@ -453,5 +453,5 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
-- add Cursor, update interfaces, types, readme ([04c3d59](https://github.com/thi-ng/umbrella/commit/04c3d59))
 - re-import atom package from MBP2010, update main readme ([fefc283](https://github.com/thi-ng/umbrella/commit/fefc283))
+- add Cursor, update interfaces, types, readme ([04c3d59](https://github.com/thi-ng/umbrella/commit/04c3d59))

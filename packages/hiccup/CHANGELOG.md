@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-10-28T19:08:39Z
+- **Last updated**: 2022-11-23T22:46:54Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -38,9 +38,9 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
 - update imports in all pkgs ([5fa2b6f](https://github.com/thi-ng/umbrella/commit/5fa2b6f))
   - add .js suffix for all relative imports
+- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
 
 # [4.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/hiccup@4.0.0) (2021-10-12)
 
@@ -61,15 +61,15 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
+- update all tests in _all_ pkgs ([8b582bc](https://github.com/thi-ng/umbrella/commit/8b582bc))
+  - update all to use [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament)
+- update imports ([138571a](https://github.com/thi-ng/umbrella/commit/138571a))
 - update deps & imports in various pkgs ([e1cf29e](https://github.com/thi-ng/umbrella/commit/e1cf29e))
   - largely related to recent updates/restructuring of these packages:
     - api
     - defmulti
     - errors
     - logger
-- update imports ([138571a](https://github.com/thi-ng/umbrella/commit/138571a))
-- update all tests in _all_ pkgs ([8b582bc](https://github.com/thi-ng/umbrella/commit/8b582bc))
-  - update all to use [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament)
 
 ### [3.6.4](https://github.com/thi-ng/umbrella/tree/@thi.ng/hiccup@3.6.4) (2020-12-07)
 
@@ -81,11 +81,11 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- update/split serializeAttribs() ([cdf483b](https://github.com/thi-ng/umbrella/commit/cdf483b))
-- update/split serialization fns ([32ac755](https://github.com/thi-ng/umbrella/commit/32ac755))
-  - extract serializeTag()
 - extract mergeEmmetAttribs() ([0c965c9](https://github.com/thi-ng/umbrella/commit/0c965c9))
   - simplify normalize() and improve external re-use in hdom/rdom
+- update/split serialization fns ([32ac755](https://github.com/thi-ng/umbrella/commit/32ac755))
+  - extract serializeTag()
+- update/split serializeAttribs() ([cdf483b](https://github.com/thi-ng/umbrella/commit/cdf483b))
 
 ## [3.6.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/hiccup@3.6.0) (2020-09-13)
 
@@ -100,11 +100,11 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
+- remove obsolete SVG/XLINK urls ([aa34be7](https://github.com/thi-ng/umbrella/commit/aa34be7))
+  - moved to [@thi.ng/prefixes](https://github.com/thi-ng/umbrella/tree/main/packages/prefixes) pkg for better re-use
 - add RDFa `prefix` attrib handling, add tests ([24a7748](https://github.com/thi-ng/umbrella/commit/24a7748))
   - add `formatPrefixes()` helper
   - update `serializeAttribs()`
-- remove obsolete SVG/XLINK urls ([aa34be7](https://github.com/thi-ng/umbrella/commit/aa34be7))
-  - moved to [@thi.ng/prefixes](https://github.com/thi-ng/umbrella/tree/main/packages/prefixes) pkg for better re-use
 
 ## [3.4.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/hiccup@3.4.0) (2020-06-28)
 
@@ -122,8 +122,8 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
-- update `accept` attrib handling ([fabf447](https://github.com/thi-ng/umbrella/commit/fabf447))
 - support array attrib values, add tests ([1c4ef8a](https://github.com/thi-ng/umbrella/commit/1c4ef8a))
+- update `accept` attrib handling ([fabf447](https://github.com/thi-ng/umbrella/commit/fabf447))
 
 ### [3.2.4](https://github.com/thi-ng/umbrella/tree/@thi.ng/hiccup@3.2.4) (2019-08-21)
 
@@ -216,10 +216,10 @@ and/or version bumps of transitive dependencies.
 
 #### 🩹 Bug fixes
 
-- serialize() args ([1e8b4ef](https://github.com/thi-ng/umbrella/commit/1e8b4ef))
 - disable spans for certain element types ([1b97a25](https://github.com/thi-ng/umbrella/commit/1b97a25))
   - re-add NO_SPANS (moved from hdom)
   - update _serialize()
+- serialize() args ([1e8b4ef](https://github.com/thi-ng/umbrella/commit/1e8b4ef))
 
 # [2.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/hiccup@2.0.0) (2018-05-13)
 
@@ -260,8 +260,8 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
-- support fn values in style objects ([93343d6](https://github.com/thi-ng/umbrella/commit/93343d6))
 - add auto deref() support ([0d2c16f](https://github.com/thi-ng/umbrella/commit/0d2c16f))
+- support fn values in style objects ([93343d6](https://github.com/thi-ng/umbrella/commit/93343d6))
 
 #### ♻️ Refactoring
 

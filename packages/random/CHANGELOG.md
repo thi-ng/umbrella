@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-10-28T19:08:39Z
+- **Last updated**: 2022-11-23T22:46:54Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -13,8 +13,8 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
-- add pickRandomKey(), weightedRandomKey() ([9b8ed07](https://github.com/thi-ng/umbrella/commit/9b8ed07))
 - update IRandom, add SFC32 impl ([970d7f4](https://github.com/thi-ng/umbrella/commit/970d7f4))
+- add pickRandomKey(), weightedRandomKey() ([9b8ed07](https://github.com/thi-ng/umbrella/commit/9b8ed07))
 
 ### [3.2.2](https://github.com/thi-ng/umbrella/tree/@thi.ng/random@3.2.2) (2021-11-21)
 
@@ -57,9 +57,9 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
 - update imports in all pkgs ([5fa2b6f](https://github.com/thi-ng/umbrella/commit/5fa2b6f))
   - add .js suffix for all relative imports
+- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
 
 # [3.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/random@3.0.0) (2021-10-12)
 
@@ -80,16 +80,16 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
+- update all tests in _all_ pkgs ([8b582bc](https://github.com/thi-ng/umbrella/commit/8b582bc))
+  - update all to use [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament)
+- update all test stubs ([f2d6d53](https://github.com/thi-ng/umbrella/commit/f2d6d53))
+- update imports ([138571a](https://github.com/thi-ng/umbrella/commit/138571a))
 - update deps & imports in various pkgs ([e1cf29e](https://github.com/thi-ng/umbrella/commit/e1cf29e))
   - largely related to recent updates/restructuring of these packages:
     - api
     - defmulti
     - errors
     - logger
-- update imports ([138571a](https://github.com/thi-ng/umbrella/commit/138571a))
-- update all test stubs ([f2d6d53](https://github.com/thi-ng/umbrella/commit/f2d6d53))
-- update all tests in _all_ pkgs ([8b582bc](https://github.com/thi-ng/umbrella/commit/8b582bc))
-  - update all to use [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament)
 
 ### [2.4.4](https://github.com/thi-ng/umbrella/tree/@thi.ng/random@2.4.4) (2021-08-04)
 
@@ -134,8 +134,8 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
-- add CRYPTO IRandom impl ([94e69c1](https://github.com/thi-ng/umbrella/commit/94e69c1))
 - add opt start/end for randomBytes() ([4d095da](https://github.com/thi-ng/umbrella/commit/4d095da))
+- add CRYPTO IRandom impl ([94e69c1](https://github.com/thi-ng/umbrella/commit/94e69c1))
 
 #### 🩹 Bug fixes
 
@@ -166,14 +166,14 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
-- add distribution HOFs, move gaussian() ([9328821](https://github.com/thi-ng/umbrella/commit/9328821))
-  - add exponential(), geometric(), normal(), uniform() HOFs
-  - migrate gaussian() to /distributions
 - add randomBytesFrom(), update UUID fns ([b31c872](https://github.com/thi-ng/umbrella/commit/b31c872))
   - add [@thi.ng/hex](https://github.com/thi-ng/umbrella/tree/main/packages/hex) dependency
   - update uuidv4Bytes() to take opt IRandom arg
   - refactor/optimize uuid()
   - add tests
+- add distribution HOFs, move gaussian() ([9328821](https://github.com/thi-ng/umbrella/commit/9328821))
+  - add exponential(), geometric(), normal(), uniform() HOFs
+  - migrate gaussian() to /distributions
 
 # [2.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/random@2.0.0) (2020-08-28)
 

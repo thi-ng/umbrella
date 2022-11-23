@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-10-28T19:08:39Z
+- **Last updated**: 2022-11-23T22:46:54Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -20,9 +20,9 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
+- add BitField iterators ([3d415ef](https://github.com/thi-ng/umbrella/commit/3d415ef))
 - add ILength impl, add .density() ([2f6e654](https://github.com/thi-ng/umbrella/commit/2f6e654))
   - refactor popCount() impls to use fn from [@thi.ng/binary](https://github.com/thi-ng/umbrella/tree/main/packages/binary) pkg
-- add BitField iterators ([3d415ef](https://github.com/thi-ng/umbrella/commit/3d415ef))
 
 ## [2.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/bitfield@2.1.0) (2021-11-17)
 
@@ -53,9 +53,9 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
 - update imports in all pkgs ([5fa2b6f](https://github.com/thi-ng/umbrella/commit/5fa2b6f))
   - add .js suffix for all relative imports
+- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
 
 # [2.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/bitfield@2.0.0) (2021-10-12)
 
@@ -76,17 +76,17 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- minor pkg restructure (various) ([47f88d2](https://github.com/thi-ng/umbrella/commit/47f88d2))
+- update all tests in _all_ pkgs ([8b582bc](https://github.com/thi-ng/umbrella/commit/8b582bc))
+  - update all to use [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament)
+- update all test stubs ([f2d6d53](https://github.com/thi-ng/umbrella/commit/f2d6d53))
+- update imports ([7b5ed67](https://github.com/thi-ng/umbrella/commit/7b5ed67))
 - update deps & imports in various pkgs ([e1cf29e](https://github.com/thi-ng/umbrella/commit/e1cf29e))
   - largely related to recent updates/restructuring of these packages:
     - api
     - defmulti
     - errors
     - logger
-- update imports ([7b5ed67](https://github.com/thi-ng/umbrella/commit/7b5ed67))
-- update all test stubs ([f2d6d53](https://github.com/thi-ng/umbrella/commit/f2d6d53))
-- update all tests in _all_ pkgs ([8b582bc](https://github.com/thi-ng/umbrella/commit/8b582bc))
-  - update all to use [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament)
+- minor pkg restructure (various) ([47f88d2](https://github.com/thi-ng/umbrella/commit/47f88d2))
 
 ### [0.4.6](https://github.com/thi-ng/umbrella/tree/@thi.ng/bitfield@0.4.6) (2021-03-17)
 
@@ -118,14 +118,13 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- update imports ([b09f1a6](https://github.com/thi-ng/umbrella/commit/b09f1a6))
 - update imports, use new Fn types in various pkgs ([ced1e5d](https://github.com/thi-ng/umbrella/commit/ced1e5d))
+- update imports ([b09f1a6](https://github.com/thi-ng/umbrella/commit/b09f1a6))
 
 ## [0.3.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/bitfield@0.3.0) (2020-03-06)
 
 #### 🚀 Features
 
-- add and/or/xor/not() methods, add IClear, ICopy impls ([52d3005](https://github.com/thi-ng/umbrella/commit/52d3005))
 - add toggleAt(), setRange(), update ctor ([6ed20c1](https://github.com/thi-ng/umbrella/commit/6ed20c1))
   - update BitField ctor to accept bit string or bool array
   - add size check in resize(), bail if not different
@@ -133,6 +132,7 @@ and/or version bumps of transitive dependencies.
   - add toggleAt() for BitField & BitMatrix
   - add bitField() and bitMatrix() factory fns
   - extract common toString()
+- add and/or/xor/not() methods, add IClear, ICopy impls ([52d3005](https://github.com/thi-ng/umbrella/commit/52d3005))
 
 ## [0.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/bitfield@0.2.0) (2019-09-21)
 
@@ -148,5 +148,5 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
-- add/update resize() & setAt(), add doc strings ([f227107](https://github.com/thi-ng/umbrella/commit/f227107))
 - add new package ([5e17fd1](https://github.com/thi-ng/umbrella/commit/5e17fd1))
+- add/update resize() & setAt(), add doc strings ([f227107](https://github.com/thi-ng/umbrella/commit/f227107))

@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-10-28T19:08:39Z
+- **Last updated**: 2022-11-23T22:46:54Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -50,9 +50,9 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
 - update imports in all pkgs ([5fa2b6f](https://github.com/thi-ng/umbrella/commit/5fa2b6f))
   - add .js suffix for all relative imports
+- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
 
 # [6.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/associative@6.0.0) (2021-10-12)
 
@@ -84,35 +84,35 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- rename internals ([e7818a7](https://github.com/thi-ng/umbrella/commit/e7818a7))
-- restructure package/utils ([966f5e4](https://github.com/thi-ng/umbrella/commit/966f5e4))
+- update all tests in _all_ pkgs ([8b582bc](https://github.com/thi-ng/umbrella/commit/8b582bc))
+  - update all to use [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament)
+- update node inspect import ([6786c35](https://github.com/thi-ng/umbrella/commit/6786c35))
+- update imports ([51f4867](https://github.com/thi-ng/umbrella/commit/51f4867))
+- update imports (transducers) ([3fcf9a9](https://github.com/thi-ng/umbrella/commit/3fcf9a9))
 - update deps & imports in various pkgs ([e1cf29e](https://github.com/thi-ng/umbrella/commit/e1cf29e))
   - largely related to recent updates/restructuring of these packages:
     - api
     - defmulti
     - errors
     - logger
-- update imports (transducers) ([3fcf9a9](https://github.com/thi-ng/umbrella/commit/3fcf9a9))
-- update imports ([51f4867](https://github.com/thi-ng/umbrella/commit/51f4867))
-- update node inspect import ([6786c35](https://github.com/thi-ng/umbrella/commit/6786c35))
-- update all tests in _all_ pkgs ([8b582bc](https://github.com/thi-ng/umbrella/commit/8b582bc))
-  - update all to use [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament)
+- restructure package/utils ([966f5e4](https://github.com/thi-ng/umbrella/commit/966f5e4))
+- rename internals ([e7818a7](https://github.com/thi-ng/umbrella/commit/e7818a7))
 
 ### [5.2.12](https://github.com/thi-ng/umbrella/tree/@thi.ng/associative@5.2.12) (2021-08-17)
 
 #### ♻️ Refactoring
 
+- update internal destructures ([e847a27](https://github.com/thi-ng/umbrella/commit/e847a27))
 - update ArraySet.get() ([40383fa](https://github.com/thi-ng/umbrella/commit/40383fa))
   - add explicit [@thi.ng/array](https://github.com/thi-ng/umbrella/tree/main/packages/array) dep (already was a transient dep)
   - update destructuring
-- update internal destructures ([e847a27](https://github.com/thi-ng/umbrella/commit/e847a27))
 
 ## [5.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/associative@5.2.0) (2021-03-30)
 
 #### 🚀 Features
 
-- add renameTransformedKeys() ([3190537](https://github.com/thi-ng/umbrella/commit/3190537))
 - add selectDefinedKeys*() fns ([e0977db](https://github.com/thi-ng/umbrella/commit/e0977db))
+- add renameTransformedKeys() ([3190537](https://github.com/thi-ng/umbrella/commit/3190537))
 
 ## [5.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/associative@5.1.0) (2021-02-20)
 
@@ -132,8 +132,8 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- update imports, use new Fn types in various pkgs ([ced1e5d](https://github.com/thi-ng/umbrella/commit/ced1e5d))
 - update imports, use new function aliases ([17a0be0](https://github.com/thi-ng/umbrella/commit/17a0be0))
+- update imports, use new Fn types in various pkgs ([ced1e5d](https://github.com/thi-ng/umbrella/commit/ced1e5d))
 
 # [5.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/associative@5.0.0) (2020-07-25)
 
@@ -187,9 +187,9 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
+- update Trie to allow custom value sets ([777829c](https://github.com/thi-ng/umbrella/commit/777829c))
 - add null checks for merge* fns ([7baa3ba](https://github.com/thi-ng/umbrella/commit/7baa3ba))
   - update arg types to allow nullish args
-- update Trie to allow custom value sets ([777829c](https://github.com/thi-ng/umbrella/commit/777829c))
 
 #### ♻️ Refactoring
 
@@ -284,8 +284,8 @@ and/or version bumps of transitive dependencies.
 
 #### 🩹 Bug fixes
 
-- update generics (TS3.5.2) ([75a4f72](https://github.com/thi-ng/umbrella/commit/75a4f72))
 - update SortedMap.fromObject() - PropertyKey => string ([48688da](https://github.com/thi-ng/umbrella/commit/48688da))
+- update generics (TS3.5.2) ([75a4f72](https://github.com/thi-ng/umbrella/commit/75a4f72))
 
 #### ♻️ Refactoring
 
@@ -295,8 +295,8 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
-- add sparseSet factory fn ([867eaa3](https://github.com/thi-ng/umbrella/commit/867eaa3))
 - add SparseSet8/16/32 ([b5994d9](https://github.com/thi-ng/umbrella/commit/b5994d9))
+- add sparseSet factory fn ([867eaa3](https://github.com/thi-ng/umbrella/commit/867eaa3))
 
 #### ♻️ Refactoring
 
@@ -330,6 +330,12 @@ and/or version bumps of transitive dependencies.
 
 #### 🛑 Breaking changes
 
+- update set combinator ops ([9e78d20](https://github.com/thi-ng/umbrella/commit/9e78d20))
+  - add opt `out` arg
+- BREAKING CHANGE: make `difference`, `intersection`, `union` immutable ops
+- fix/update invertMap() / invertObj() ([b57a1c0](https://github.com/thi-ng/umbrella/commit/b57a1c0))
+  - add opt `dest` arg
+- BREAKING CHANGE: changed result type handling in invertMap(), see docstring
 - update type sigs & args for various fns ([7bf2504](https://github.com/thi-ng/umbrella/commit/7bf2504))
 - BREAKING CHANGE: improved/stricter type sigs & args for various fns
   - commonKeys*()
@@ -338,17 +344,11 @@ and/or version bumps of transitive dependencies.
   - renameKeys*()
   - selectKeys*()
   - first()
-- fix/update invertMap() / invertObj() ([b57a1c0](https://github.com/thi-ng/umbrella/commit/b57a1c0))
-  - add opt `dest` arg
-- BREAKING CHANGE: changed result type handling in invertMap(), see docstring
-- update set combinator ops ([9e78d20](https://github.com/thi-ng/umbrella/commit/9e78d20))
-  - add opt `out` arg
-- BREAKING CHANGE: make `difference`, `intersection`, `union` immutable ops
 
 #### 🚀 Features
 
-- add polymorphic into() ([4577646](https://github.com/thi-ng/umbrella/commit/4577646))
 - make .forEach() args readonly, add Symbol.toStringTag ([3749d41](https://github.com/thi-ng/umbrella/commit/3749d41))
+- add polymorphic into() ([4577646](https://github.com/thi-ng/umbrella/commit/4577646))
 
 #### ♻️ Refactoring
 
@@ -398,8 +398,8 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- replace Pair & SEMAPHORE w/ identical [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/main/packages/api) defs ([c22ac3c](https://github.com/thi-ng/umbrella/commit/c22ac3c))
 - update/replace deps (iterators => transducers) ([abe1a88](https://github.com/thi-ng/umbrella/commit/abe1a88))
+- replace Pair & SEMAPHORE w/ identical [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/main/packages/api) defs ([c22ac3c](https://github.com/thi-ng/umbrella/commit/c22ac3c))
 
 ### [0.5.11](https://github.com/thi-ng/umbrella/tree/@thi.ng/associative@0.5.11) (2018-08-01)
 
@@ -425,6 +425,7 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
+- add mapKeysObj() / mapKeysMap() ([a9574a0](https://github.com/thi-ng/umbrella/commit/a9574a0))
 - add new functions, update arg & return types ([5991be6](https://github.com/thi-ng/umbrella/commit/5991be6))
   - add commonKeys*()
   - add mergeMapWith() / mergeObjWith()
@@ -434,7 +435,6 @@ and/or version bumps of transitive dependencies.
   - update indexed() arg types
   - update join() & joinWith() arg/return types
   - update re-exports
-- add mapKeysObj() / mapKeysMap() ([a9574a0](https://github.com/thi-ng/umbrella/commit/a9574a0))
 
 ### [0.4.2](https://github.com/thi-ng/umbrella/tree/@thi.ng/associative@0.4.2) (2018-04-20)
 
@@ -468,18 +468,18 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
+- add SortedMap & tests, minor refactor EquivMap ([ae0eae8](https://github.com/thi-ng/umbrella/commit/ae0eae8))
 - add SortedSet, update SortedMap ([cb4976f](https://github.com/thi-ng/umbrella/commit/cb4976f))
   - add compare() & equiv() impls for SortedMap
-- add SortedMap & tests, minor refactor EquivMap ([ae0eae8](https://github.com/thi-ng/umbrella/commit/ae0eae8))
 
 #### ♻️ Refactoring
 
-- rename EquivMap/Set => ArrayMap/Set, export interfaces ([8756027](https://github.com/thi-ng/umbrella/commit/8756027))
 - add private impls for EquivMap/Set ([a769856](https://github.com/thi-ng/umbrella/commit/a769856))
+- rename EquivMap/Set => ArrayMap/Set, export interfaces ([8756027](https://github.com/thi-ng/umbrella/commit/8756027))
 
 ## [0.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/associative@0.2.0) (2018-04-10)
 
 #### 🚀 Features
 
-- add EquivSet.first() ([0dc9f64](https://github.com/thi-ng/umbrella/commit/0dc9f64))
 - initial import [@thi.ng/associative](https://github.com/thi-ng/umbrella/tree/main/packages/associative) ([cc70dbc](https://github.com/thi-ng/umbrella/commit/cc70dbc))
+- add EquivSet.first() ([0dc9f64](https://github.com/thi-ng/umbrella/commit/0dc9f64))

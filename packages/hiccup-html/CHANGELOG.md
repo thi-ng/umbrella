@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-10-28T19:08:39Z
+- **Last updated**: 2022-11-23T22:46:54Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -32,9 +32,9 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
 - update imports in all pkgs ([5fa2b6f](https://github.com/thi-ng/umbrella/commit/5fa2b6f))
   - add .js suffix for all relative imports
+- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
 
 # [2.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/hiccup-html@2.0.0) (2021-10-12)
 
@@ -77,19 +77,19 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
-- add CSS props for SVG elements ([efe61b8](https://github.com/thi-ng/umbrella/commit/efe61b8))
 - add 360+ CSS property names ([d06a4ae](https://github.com/thi-ng/umbrella/commit/d06a4ae))
   - update `style` attrib type
+- add CSS props for SVG elements ([efe61b8](https://github.com/thi-ng/umbrella/commit/efe61b8))
 
 ## [0.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/hiccup-html@0.2.0) (2020-07-02)
 
 #### 🚀 Features
 
-- add RDFa attrib support, update types ([0737a16](https://github.com/thi-ng/umbrella/commit/0737a16))
-- add more elems (tables) ([f0616e6](https://github.com/thi-ng/umbrella/commit/f0616e6))
-- add new elems, add/update types ([9023724](https://github.com/thi-ng/umbrella/commit/9023724))
-- add textArea() ([3fceb02](https://github.com/thi-ng/umbrella/commit/3fceb02))
 - add meta & link variations ([42fb113](https://github.com/thi-ng/umbrella/commit/42fb113))
+- add textArea() ([3fceb02](https://github.com/thi-ng/umbrella/commit/3fceb02))
+- add new elems, add/update types ([9023724](https://github.com/thi-ng/umbrella/commit/9023724))
+- add more elems (tables) ([f0616e6](https://github.com/thi-ng/umbrella/commit/f0616e6))
+- add RDFa attrib support, update types ([0737a16](https://github.com/thi-ng/umbrella/commit/0737a16))
 
 #### ♻️ Refactoring
 
@@ -107,11 +107,11 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
-- add more elements, update readme ([5e3f8f1](https://github.com/thi-ng/umbrella/commit/5e3f8f1))
-- add more elements & helpers ([68a9bb8](https://github.com/thi-ng/umbrella/commit/68a9bb8))
-- re-add support for emmet style tags ([bb06dab](https://github.com/thi-ng/umbrella/commit/bb06dab))
-- add AttribVal & EventAttribVal ([469e297](https://github.com/thi-ng/umbrella/commit/469e297))
 - import as new pkg ([5fffd6f](https://github.com/thi-ng/umbrella/commit/5fffd6f))
+- add AttribVal & EventAttribVal ([469e297](https://github.com/thi-ng/umbrella/commit/469e297))
+- re-add support for emmet style tags ([bb06dab](https://github.com/thi-ng/umbrella/commit/bb06dab))
+- add more elements & helpers ([68a9bb8](https://github.com/thi-ng/umbrella/commit/68a9bb8))
+- add more elements, update readme ([5e3f8f1](https://github.com/thi-ng/umbrella/commit/5e3f8f1))
 
 #### ♻️ Refactoring
 

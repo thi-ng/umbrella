@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-10-28T19:08:39Z
+- **Last updated**: 2022-11-23T22:46:54Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -50,9 +50,9 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
 - update imports in all pkgs ([5fa2b6f](https://github.com/thi-ng/umbrella/commit/5fa2b6f))
   - add .js suffix for all relative imports
+- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
 
 ## [0.6.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/shader-ast-js@0.6.0) (2021-10-12)
 
@@ -77,18 +77,18 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- update imports ([402d5d3](https://github.com/thi-ng/umbrella/commit/402d5d3))
-- update imports ([70476b4](https://github.com/thi-ng/umbrella/commit/70476b4))
+- update all tests in _all_ pkgs ([8b582bc](https://github.com/thi-ng/umbrella/commit/8b582bc))
+  - update all to use [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament)
+- update imports ([138571a](https://github.com/thi-ng/umbrella/commit/138571a))
+- update imports ([69414ec](https://github.com/thi-ng/umbrella/commit/69414ec))
 - update deps & imports in various pkgs ([e1cf29e](https://github.com/thi-ng/umbrella/commit/e1cf29e))
   - largely related to recent updates/restructuring of these packages:
     - api
     - defmulti
     - errors
     - logger
-- update imports ([69414ec](https://github.com/thi-ng/umbrella/commit/69414ec))
-- update imports ([138571a](https://github.com/thi-ng/umbrella/commit/138571a))
-- update all tests in _all_ pkgs ([8b582bc](https://github.com/thi-ng/umbrella/commit/8b582bc))
-  - update all to use [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament)
+- update imports ([70476b4](https://github.com/thi-ng/umbrella/commit/70476b4))
+- update imports ([402d5d3](https://github.com/thi-ng/umbrella/commit/402d5d3))
 
 ### [0.5.45](https://github.com/thi-ng/umbrella/tree/@thi.ng/shader-ast-js@0.5.45) (2021-08-17)
 
@@ -108,8 +108,8 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- update type-only imports in remaining pkgs ([b22aa30](https://github.com/thi-ng/umbrella/commit/b22aa30))
 - update type-only imports in various tests/pkgs ([3fd9c24](https://github.com/thi-ng/umbrella/commit/3fd9c24))
+- update type-only imports in remaining pkgs ([b22aa30](https://github.com/thi-ng/umbrella/commit/b22aa30))
 
 ### [0.5.6](https://github.com/thi-ng/umbrella/tree/@thi.ng/shader-ast-js@0.5.6) (2020-09-13)
 
@@ -139,11 +139,11 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
-- add div-by-zero guards ([233528d](https://github.com/thi-ng/umbrella/commit/233528d))
 - replace JS runtime fns, add doc strings ([0798a35](https://github.com/thi-ng/umbrella/commit/0798a35))
   - add renderPixels()
   - add renderToBuffer()
   - add canvasRenderer()
+- add div-by-zero guards ([233528d](https://github.com/thi-ng/umbrella/commit/233528d))
 
 #### 🩹 Bug fixes
 
@@ -153,8 +153,8 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- split env.ts into separate files ([caa6301](https://github.com/thi-ng/umbrella/commit/caa6301))
 - move env to own file, update/simplify targetJS() ([f5ebec8](https://github.com/thi-ng/umbrella/commit/f5ebec8))
+- split env.ts into separate files ([caa6301](https://github.com/thi-ng/umbrella/commit/caa6301))
 
 ## [0.3.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/shader-ast-js@0.3.0) (2019-08-17)
 
@@ -178,21 +178,21 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
-- add uvec ops, update imports ([5dcd39f](https://github.com/thi-ng/umbrella/commit/5dcd39f))
-- add missing texture lookup stubs ([f0370b0](https://github.com/thi-ng/umbrella/commit/f0370b0))
-- add array init, more builtin stubs, minor refactor ([fb5141e](https://github.com/thi-ng/umbrella/commit/fb5141e))
-- add % operator support ([c1b25c6](https://github.com/thi-ng/umbrella/commit/c1b25c6))
-- add post-inc/dec support, update op1 handler ([8073edd](https://github.com/thi-ng/umbrella/commit/8073edd))
-- int/uint/ivec support, while loop, fix bool ([003069e](https://github.com/thi-ng/umbrella/commit/003069e))
 - extract JS codegen & runtime as own pkg ([8177469](https://github.com/thi-ng/umbrella/commit/8177469))
+- int/uint/ivec support, while loop, fix bool ([003069e](https://github.com/thi-ng/umbrella/commit/003069e))
+- add post-inc/dec support, update op1 handler ([8073edd](https://github.com/thi-ng/umbrella/commit/8073edd))
+- add % operator support ([c1b25c6](https://github.com/thi-ng/umbrella/commit/c1b25c6))
+- add array init, more builtin stubs, minor refactor ([fb5141e](https://github.com/thi-ng/umbrella/commit/fb5141e))
+- add missing texture lookup stubs ([f0370b0](https://github.com/thi-ng/umbrella/commit/f0370b0))
+- add uvec ops, update imports ([5dcd39f](https://github.com/thi-ng/umbrella/commit/5dcd39f))
 
 #### 🩹 Bug fixes
 
-- add missing faceForward, reflect, refract builtins ([c63058e](https://github.com/thi-ng/umbrella/commit/c63058e))
-- add/fix vec4 ops ([7f7f1f6](https://github.com/thi-ng/umbrella/commit/7f7f1f6))
-- op2 type hint interpretation ([fdaac1f](https://github.com/thi-ng/umbrella/commit/fdaac1f))
-- avoid extraneous semicolons ([2b56c91](https://github.com/thi-ng/umbrella/commit/2b56c91))
 - op2 int handling, update vectors/matrices imports, update pkg ([dc54ec2](https://github.com/thi-ng/umbrella/commit/dc54ec2))
+- avoid extraneous semicolons ([2b56c91](https://github.com/thi-ng/umbrella/commit/2b56c91))
+- op2 type hint interpretation ([fdaac1f](https://github.com/thi-ng/umbrella/commit/fdaac1f))
+- add/fix vec4 ops ([7f7f1f6](https://github.com/thi-ng/umbrella/commit/7f7f1f6))
+- add missing faceForward, reflect, refract builtins ([c63058e](https://github.com/thi-ng/umbrella/commit/c63058e))
 
 #### ♻️ Refactoring
 

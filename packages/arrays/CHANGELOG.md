@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-10-31T23:01:45Z
+- **Last updated**: 2022-11-23T22:46:54Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -68,9 +68,9 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
 - update imports in all pkgs ([5fa2b6f](https://github.com/thi-ng/umbrella/commit/5fa2b6f))
   - add .js suffix for all relative imports
+- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
 
 # [2.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/arrays@2.0.0) (2021-10-12)
 
@@ -91,15 +91,15 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
+- update all tests in _all_ pkgs ([8b582bc](https://github.com/thi-ng/umbrella/commit/8b582bc))
+  - update all to use [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament)
+- update imports ([ad3c3af](https://github.com/thi-ng/umbrella/commit/ad3c3af))
 - update deps & imports in various pkgs ([e1cf29e](https://github.com/thi-ng/umbrella/commit/e1cf29e))
   - largely related to recent updates/restructuring of these packages:
     - api
     - defmulti
     - errors
     - logger
-- update imports ([ad3c3af](https://github.com/thi-ng/umbrella/commit/ad3c3af))
-- update all tests in _all_ pkgs ([8b582bc](https://github.com/thi-ng/umbrella/commit/8b582bc))
-  - update all to use [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament)
 
 ## [0.10.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/arrays@0.10.0) (2021-01-21)
 
@@ -117,10 +117,10 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
+- add bisect(), bisectWith() ([17d06a4](https://github.com/thi-ng/umbrella/commit/17d06a4))
+- add into(), sortByCachedKey() ([b94f64c](https://github.com/thi-ng/umbrella/commit/b94f64c))
 - update sortByCachedKey(), add tests ([64e8f6e](https://github.com/thi-ng/umbrella/commit/64e8f6e))
   - add support for pre-cached key array instead of key fn
-- add into(), sortByCachedKey() ([b94f64c](https://github.com/thi-ng/umbrella/commit/b94f64c))
-- add bisect(), bisectWith() ([17d06a4](https://github.com/thi-ng/umbrella/commit/17d06a4))
 
 ## [0.8.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/arrays@0.8.0) (2020-09-13)
 
@@ -130,8 +130,8 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- update imports, use new Fn types ([1e3b6ac](https://github.com/thi-ng/umbrella/commit/1e3b6ac))
 - update imports, use new function aliases ([136482e](https://github.com/thi-ng/umbrella/commit/136482e))
+- update imports, use new Fn types ([1e3b6ac](https://github.com/thi-ng/umbrella/commit/1e3b6ac))
 
 ## [0.7.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/arrays@0.7.0) (2020-08-28)
 
@@ -162,8 +162,8 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
-- add arraySeq(), arrayIterator() & tests ([d94df57](https://github.com/thi-ng/umbrella/commit/d94df57))
 - add binarySearchNumeric() ([7b38202](https://github.com/thi-ng/umbrella/commit/7b38202))
+- add arraySeq(), arrayIterator() & tests ([d94df57](https://github.com/thi-ng/umbrella/commit/d94df57))
 
 #### ♻️ Refactoring
 
@@ -173,9 +173,9 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
-- add isSorted() ([65b29f4](https://github.com/thi-ng/umbrella/commit/65b29f4))
-- add types, quickSort(), swap(), multiSwap(), update readme ([b834722](https://github.com/thi-ng/umbrella/commit/b834722))
 - add shuffleRange(), refactor shuffle(), add tests ([1924a05](https://github.com/thi-ng/umbrella/commit/1924a05))
+- add types, quickSort(), swap(), multiSwap(), update readme ([b834722](https://github.com/thi-ng/umbrella/commit/b834722))
+- add isSorted() ([65b29f4](https://github.com/thi-ng/umbrella/commit/65b29f4))
 
 ## [0.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/arrays@0.2.0) (2019-07-07)
 
@@ -187,8 +187,8 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
-- add find/findIndex() ([0007152](https://github.com/thi-ng/umbrella/commit/0007152))
 - extract as new package ([361ba37](https://github.com/thi-ng/umbrella/commit/361ba37))
+- add find/findIndex() ([0007152](https://github.com/thi-ng/umbrella/commit/0007152))
 
 #### ♻️ Refactoring
 

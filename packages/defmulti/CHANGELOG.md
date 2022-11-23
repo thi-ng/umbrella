@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-10-28T19:08:39Z
+- **Last updated**: 2022-11-23T22:46:54Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -32,9 +32,9 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
 - update imports in all pkgs ([5fa2b6f](https://github.com/thi-ng/umbrella/commit/5fa2b6f))
   - add .js suffix for all relative imports
+- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
 
 # [2.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/defmulti@2.0.0) (2021-10-12)
 
@@ -55,15 +55,15 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
-- update defmulti args ([a10d36f](https://github.com/thi-ng/umbrella/commit/a10d36f))
-  - add additional opt arg to allow specifying/adding impls, same effect as `.addAll()`
-  - update AncestorDefs and `makeRels()` helper
-  - update tests
 - add .setDefault(), pkg restructure ([0a8641a](https://github.com/thi-ng/umbrella/commit/0a8641a))
   - dissolve constants.ts:
     - move logging to logger.ts
     - move `DEFAULT` symbol to defmulti.ts
   - update deps
+- update defmulti args ([a10d36f](https://github.com/thi-ng/umbrella/commit/a10d36f))
+  - add additional opt arg to allow specifying/adding impls, same effect as `.addAll()`
+  - update AncestorDefs and `makeRels()` helper
+  - update tests
 
 #### 🩹 Bug fixes
 
@@ -71,9 +71,9 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- update imports ([76940d3](https://github.com/thi-ng/umbrella/commit/76940d3))
 - update all tests in _all_ pkgs ([8b582bc](https://github.com/thi-ng/umbrella/commit/8b582bc))
   - update all to use [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament)
+- update imports ([76940d3](https://github.com/thi-ng/umbrella/commit/76940d3))
 
 ### [1.3.6](https://github.com/thi-ng/umbrella/tree/@thi.ng/defmulti@1.3.6) (2021-03-03)
 
@@ -146,9 +146,9 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- remove optional excess args from type sigs ([5270143](https://github.com/thi-ng/umbrella/commit/5270143))
 - update imports, fix tests (cherry picked from [cdd8659a](https://github.com/thi-ng/umbrella/commit/cdd8659a)) ([e04eb29](https://github.com/thi-ng/umbrella/commit/e04eb29))
 - update imports, fix tests ([cdd8659](https://github.com/thi-ng/umbrella/commit/cdd8659))
+- remove optional excess args from type sigs ([5270143](https://github.com/thi-ng/umbrella/commit/5270143))
 
 ## [0.7.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/defmulti@0.7.0) (2019-01-02)
 

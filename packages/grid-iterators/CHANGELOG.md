@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-10-28T19:08:39Z
+- **Last updated**: 2022-11-23T22:46:54Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -45,12 +45,12 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
+- add floodFill(), update deps ([4634cf1](https://github.com/thi-ng/umbrella/commit/4634cf1))
+- add flood fill functions ([65796b9](https://github.com/thi-ng/umbrella/commit/65796b9))
 - add clipped shape iterators ([611f0da](https://github.com/thi-ng/umbrella/commit/611f0da))
   - add generic clipped() filter iterator
   - add circleClipped()
   - add [hv]lineClipped()
-- add flood fill functions ([65796b9](https://github.com/thi-ng/umbrella/commit/65796b9))
-- add floodFill(), update deps ([4634cf1](https://github.com/thi-ng/umbrella/commit/4634cf1))
 
 #### 🩹 Bug fixes
 
@@ -58,20 +58,20 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- update floodFill() predicate type ([dec44e0](https://github.com/thi-ng/umbrella/commit/dec44e0))
-  - update docs
+- replace/re-use asInt() helper ([1b80de4](https://github.com/thi-ng/umbrella/commit/1b80de4))
 - update clipped shape iters ([dc065ed](https://github.com/thi-ng/umbrella/commit/dc065ed))
   - better pre-clipping for circle/line
   - intern intersection/clipping helpers
-- replace/re-use asInt() helper ([1b80de4](https://github.com/thi-ng/umbrella/commit/1b80de4))
+- update floodFill() predicate type ([dec44e0](https://github.com/thi-ng/umbrella/commit/dec44e0))
+  - update docs
 
 ### [2.0.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/grid-iterators@2.0.1) (2021-10-13)
 
 #### ♻️ Refactoring
 
-- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
 - update imports in all pkgs ([5fa2b6f](https://github.com/thi-ng/umbrella/commit/5fa2b6f))
   - add .js suffix for all relative imports
+- update imports in all tests/pkgs ([effd591](https://github.com/thi-ng/umbrella/commit/effd591))
 
 # [2.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/grid-iterators@2.0.0) (2021-10-12)
 
@@ -92,12 +92,12 @@ and/or version bumps of transitive dependencies.
 
 #### ♻️ Refactoring
 
-- minor pkg restructure (various) ([47f88d2](https://github.com/thi-ng/umbrella/commit/47f88d2))
-- update imports (transducers) ([cab1ea8](https://github.com/thi-ng/umbrella/commit/cab1ea8))
-- update imports ([138571a](https://github.com/thi-ng/umbrella/commit/138571a))
-- update all test stubs ([f2d6d53](https://github.com/thi-ng/umbrella/commit/f2d6d53))
 - update all tests in _all_ pkgs ([8b582bc](https://github.com/thi-ng/umbrella/commit/8b582bc))
   - update all to use [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/main/packages/testament)
+- update all test stubs ([f2d6d53](https://github.com/thi-ng/umbrella/commit/f2d6d53))
+- update imports ([138571a](https://github.com/thi-ng/umbrella/commit/138571a))
+- update imports (transducers) ([cab1ea8](https://github.com/thi-ng/umbrella/commit/cab1ea8))
+- minor pkg restructure (various) ([47f88d2](https://github.com/thi-ng/umbrella/commit/47f88d2))
 
 ### [0.4.24](https://github.com/thi-ng/umbrella/tree/@thi.ng/grid-iterators@0.4.24) (2021-03-03)
 
@@ -131,10 +131,10 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
-- add zigzagDiagonal(), update readme, rename files ([5630055](https://github.com/thi-ng/umbrella/commit/5630055))
-- add interleave fns ([c883ea0](https://github.com/thi-ng/umbrella/commit/c883ea0))
-- add z-curve & random iterators, add deps ([ba8ed18](https://github.com/thi-ng/umbrella/commit/ba8ed18))
 - make row args optional ([60dccfc](https://github.com/thi-ng/umbrella/commit/60dccfc))
+- add z-curve & random iterators, add deps ([ba8ed18](https://github.com/thi-ng/umbrella/commit/ba8ed18))
+- add interleave fns ([c883ea0](https://github.com/thi-ng/umbrella/commit/c883ea0))
+- add zigzagDiagonal(), update readme, rename files ([5630055](https://github.com/thi-ng/umbrella/commit/5630055))
 
 ## [0.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/grid-iterators@0.1.0) (2019-09-21)
 

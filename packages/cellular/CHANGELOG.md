@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-10-28T19:08:39Z
+- **Last updated**: 2022-11-23T22:46:54Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -24,7 +24,7 @@ and/or version bumps of transitive dependencies.
 
 #### 🚀 Features
 
-- add kernel presets, simplify CASpec1D ([3ee4a25](https://github.com/thi-ng/umbrella/commit/3ee4a25))
+- import as new pkg ([aaec2ed](https://github.com/thi-ng/umbrella/commit/aaec2ed))
 - update setPattern/setNoise() ([2ef2013](https://github.com/thi-ng/umbrella/commit/2ef2013))
   - add support to operate on diff target buffers (cells/mask)
-- import as new pkg ([aaec2ed](https://github.com/thi-ng/umbrella/commit/aaec2ed))
+- add kernel presets, simplify CASpec1D ([3ee4a25](https://github.com/thi-ng/umbrella/commit/3ee4a25))
