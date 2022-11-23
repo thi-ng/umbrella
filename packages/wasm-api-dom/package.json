@@ -25,7 +25,7 @@
 	"license": "Apache-2.0",
 	"scripts": {
 		"build": "yarn clean && tsc --declaration",
-		"build:types": "npx wasm-api -a analytics.json --config src/typedefs-config.json --lang ts -o src/generated/api.ts --lang zig -o zig/api.zig src/typedefs.json",
+		"build:types": "npx wasm-api-bindgen -a analytics.json --config src/typedefs-config.json --lang ts -o src/generated/api.ts --lang zig -o zig/api.zig src/typedefs.json",
 		"clean": "rimraf '*.js' '*.d.ts' '*.map' doc",
 		"doc": "typedoc --excludePrivate --excludeInternal --out doc src/index.ts",
 		"doc:ae": "mkdir -p .ae/doc .ae/temp && api-extractor run --local --verbose",
@@ -39,7 +39,8 @@
 		"@thi.ng/api": "^8.4.5",
 		"@thi.ng/errors": "^2.2.3",
 		"@thi.ng/prefixes": "^2.1.12",
-		"@thi.ng/wasm-api": "^0.18.1"
+		"@thi.ng/wasm-api": "^0.18.1",
+		"@thi.ng/wasm-api-bindgen": "^0.0.1"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.33.5",
