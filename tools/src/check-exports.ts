@@ -20,12 +20,16 @@ const processPackage = (id: string) => {
 	const srcDirs = subdirs(`${pkkRoot}/src`).sort();
 	const hasBin = existsSync(`${pkkRoot}/bin`);
 	const hasInclude = existsSync(`${pkkRoot}/include`);
+	const hasSchema = existsSync(`${pkkRoot}/schema`);
+	const hasZig = existsSync(`${pkkRoot}/zig`);
 	const oldFiles = new Set(pkg.files);
 	const newFiles = [
-		"*.js",
-		"*.d.ts",
+		"./*.js",
+		"./*.d.ts",
 		...(hasBin ? ["bin"] : []),
 		...(hasInclude ? ["include"] : []),
+		...(hasSchema ? ["schema"] : []),
+		...(hasZig ? ["zig"] : []),
 		...srcDirs,
 	];
 	if (!equivSet(oldFiles, new Set(newFiles))) {
