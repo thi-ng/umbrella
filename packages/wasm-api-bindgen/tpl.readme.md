@@ -136,7 +136,7 @@ to apply the schema to any `typedefs.json` files:
 "json.schemas": [
 	{
 		"fileMatch": ["**/typedefs.json"],
-		"url": "./node_modules/@thi.ng/wasm-api/schema/wasm-api-types.json"
+		"url": "./node_modules/@thi.ng/wasm-api-bindgen/schema/wasm-api-types.json"
 	}
 ]
 ```
