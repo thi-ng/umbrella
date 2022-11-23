@@ -17,6 +17,7 @@ pub const A = extern struct {
     constPtr2: *const [2]u8,
     constPtr2sentinel: *const [2:0]u8,
     array: [2]u8,
+    bsingle: B,
     bslice: BSlice,
     constBSlice: ConstBSlice,
     bptr: *B,
@@ -137,6 +138,18 @@ export fn A_array_offset() usize {
 
 export fn A_array_size() usize {
     return @sizeOf([2]u8);
+}
+
+export fn A_bsingle_align() usize {
+    return @alignOf(B);
+}
+
+export fn A_bsingle_offset() usize {
+    return @offsetOf(A, "bsingle");
+}
+
+export fn A_bsingle_size() usize {
+    return @sizeOf(B);
 }
 
 export fn A_bslice_align() usize {

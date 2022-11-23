@@ -11,13 +11,13 @@ extern "C" {
 typedef struct WASM_Foo WASM_Foo;
 
 struct WASM_Foo {
-    WASM_ConstStringPtr single;
-    WASM_StringPtr singleMut;
+    WASM_StringPtr single;
+    WASM_ConstStringPtr constSingle;
     WASM_ConstStringPtr multi[2];
     WASM_ConstStringPtr* singlePtr;
     WASM_ConstStringPtr* multiPtr;
-    WASM_ConstStringPtrSlice slice;
-    WASM_StringPtrSlice mutSlice;
+    WASM_StringPtrSlice slice;
+    WASM_ConstStringPtrSlice constSlice;
 };
 
 size_t __attribute__((used)) WASM_Foo_align() {
@@ -29,7 +29,7 @@ size_t __attribute__((used)) WASM_Foo_size() {
 }
 
 size_t __attribute__((used)) WASM_Foo_single_align() {
-    return alignof(WASM_ConstStringPtr);
+    return alignof(WASM_StringPtr);
 }
 
 size_t __attribute__((used)) WASM_Foo_single_offset() {
@@ -37,19 +37,19 @@ size_t __attribute__((used)) WASM_Foo_single_offset() {
 }
 
 size_t __attribute__((used)) WASM_Foo_single_size() {
-    return sizeof(WASM_ConstStringPtr);
-}
-
-size_t __attribute__((used)) WASM_Foo_singleMut_align() {
-    return alignof(WASM_StringPtr);
-}
-
-size_t __attribute__((used)) WASM_Foo_singleMut_offset() {
-    return offsetof(WASM_Foo, singleMut);
-}
-
-size_t __attribute__((used)) WASM_Foo_singleMut_size() {
     return sizeof(WASM_StringPtr);
+}
+
+size_t __attribute__((used)) WASM_Foo_constSingle_align() {
+    return alignof(WASM_ConstStringPtr);
+}
+
+size_t __attribute__((used)) WASM_Foo_constSingle_offset() {
+    return offsetof(WASM_Foo, constSingle);
+}
+
+size_t __attribute__((used)) WASM_Foo_constSingle_size() {
+    return sizeof(WASM_ConstStringPtr);
 }
 
 size_t __attribute__((used)) WASM_Foo_multi_align() {
@@ -89,7 +89,7 @@ size_t __attribute__((used)) WASM_Foo_multiPtr_size() {
 }
 
 size_t __attribute__((used)) WASM_Foo_slice_align() {
-    return alignof(WASM_ConstStringPtrSlice);
+    return alignof(WASM_StringPtrSlice);
 }
 
 size_t __attribute__((used)) WASM_Foo_slice_offset() {
@@ -97,19 +97,19 @@ size_t __attribute__((used)) WASM_Foo_slice_offset() {
 }
 
 size_t __attribute__((used)) WASM_Foo_slice_size() {
-    return sizeof(WASM_ConstStringPtrSlice);
-}
-
-size_t __attribute__((used)) WASM_Foo_mutSlice_align() {
-    return alignof(WASM_StringPtrSlice);
-}
-
-size_t __attribute__((used)) WASM_Foo_mutSlice_offset() {
-    return offsetof(WASM_Foo, mutSlice);
-}
-
-size_t __attribute__((used)) WASM_Foo_mutSlice_size() {
     return sizeof(WASM_StringPtrSlice);
+}
+
+size_t __attribute__((used)) WASM_Foo_constSlice_align() {
+    return alignof(WASM_ConstStringPtrSlice);
+}
+
+size_t __attribute__((used)) WASM_Foo_constSlice_offset() {
+    return offsetof(WASM_Foo, constSlice);
+}
+
+size_t __attribute__((used)) WASM_Foo_constSlice_size() {
+    return sizeof(WASM_ConstStringPtrSlice);
 }
 
 

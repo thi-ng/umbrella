@@ -38,6 +38,7 @@ export interface A extends WasmTypeBase {
 	 * WASM type: [2]u8
 	 */
 	array: Uint8Array;
+	bsingle: B;
 	bslice: B[];
 	constBSlice: B[];
 	bptr: Pointer<B>;
@@ -110,6 +111,12 @@ export const $A: WasmTypeConstructor<A> = (mem) => ({
 			get array(): Uint8Array {
 				const addr = (base + 40);
 				return mem.u8.subarray(addr, addr + 2);
+			},
+			get bsingle(): B {
+				return $B(mem).instance((base + 42));
+			},
+			set bsingle(x: B) {
+				mem.u8.set(x.__bytes, (base + 42));
 			},
 			get bslice(): B[] {
 				const addr = mem.u32[(base + 44) >>> 2];

@@ -3,12 +3,12 @@ import { MemorySlice, Pointer, WasmStringPtr, WasmTypeBase, WasmTypeConstructor 
 
 export interface Foo extends WasmTypeBase {
 	single: WasmStringPtr;
-	singleMut: WasmStringPtr;
+	constSingle: WasmStringPtr;
 	multi: WasmStringPtr[];
 	singlePtr: Pointer<WasmStringPtr>;
 	multiPtr: Pointer<WasmStringPtr[]>;
 	slice: WasmStringPtr[];
-	mutSlice: WasmStringPtr[];
+	constSlice: WasmStringPtr[];
 }
 
 export const $Foo: WasmTypeConstructor<Foo> = (mem) => ({
@@ -22,7 +22,7 @@ export const $Foo: WasmTypeConstructor<Foo> = (mem) => ({
 		let $singlePtr: Pointer<WasmStringPtr> | null = null;
 		let $multiPtr: Pointer<WasmStringPtr[]> | null = null;
 		let $single: WasmStringPtr | null = null;
-		let $singleMut: WasmStringPtr | null = null;
+		let $constSingle: WasmStringPtr | null = null;
 		return {
 			get __base() {
 				return base;
@@ -31,10 +31,10 @@ export const $Foo: WasmTypeConstructor<Foo> = (mem) => ({
 				return mem.u8.subarray(base, base + 56);
 			},
 			get single(): WasmStringPtr {
-				return $single || ($single = new WasmStringPtr(mem, base, true));
+				return $single || ($single = new WasmStringPtr(mem, base, false));
 			},
-			get singleMut(): WasmStringPtr {
-				return $singleMut || ($singleMut = new WasmStringPtr(mem, (base + 8), false));
+			get constSingle(): WasmStringPtr {
+				return $constSingle || ($constSingle = new WasmStringPtr(mem, (base + 8), true));
 			},
 			get multi(): WasmStringPtr[] {
 				const addr = (base + 16);
@@ -60,15 +60,15 @@ export const $Foo: WasmTypeConstructor<Foo> = (mem) => ({
 				const addr = mem.u32[(base + 40) >>> 2];
 				const len = mem.u32[(base + 44) >>> 2];
 				const $slice: WasmStringPtr[] = [];
-				for(let i = 0; i < len; i++) $slice.push(new WasmStringPtr(mem, addr + i * 4, true));
+				for(let i = 0; i < len; i++) $slice.push(new WasmStringPtr(mem, addr + i * 4, false));
 				return $slice;
 			},
-			get mutSlice(): WasmStringPtr[] {
+			get constSlice(): WasmStringPtr[] {
 				const addr = mem.u32[(base + 48) >>> 2];
 				const len = mem.u32[(base + 52) >>> 2];
-				const $mutSlice: WasmStringPtr[] = [];
-				for(let i = 0; i < len; i++) $mutSlice.push(new WasmStringPtr(mem, addr + i * 4, false));
-				return $mutSlice;
+				const $constSlice: WasmStringPtr[] = [];
+				for(let i = 0; i < len; i++) $constSlice.push(new WasmStringPtr(mem, addr + i * 4, true));
+				return $constSlice;
 			},
 		};
 	}

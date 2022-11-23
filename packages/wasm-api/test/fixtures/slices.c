@@ -28,6 +28,7 @@ struct WASM_A {
     const uint8_t* constPtr2;
     const uint8_t* constPtr2sentinel;
     uint8_t array[2];
+    WASM_B bsingle;
     WASM_BSlice bslice;
     WASM_ConstBSlice constBSlice;
     WASM_B* bptr;
@@ -148,6 +149,18 @@ size_t __attribute__((used)) WASM_A_array_offset() {
 
 size_t __attribute__((used)) WASM_A_array_size() {
     return sizeof(uint8_t[2]);
+}
+
+size_t __attribute__((used)) WASM_A_bsingle_align() {
+    return alignof(WASM_B);
+}
+
+size_t __attribute__((used)) WASM_A_bsingle_offset() {
+    return offsetof(WASM_A, bsingle);
+}
+
+size_t __attribute__((used)) WASM_A_bsingle_size() {
+    return sizeof(WASM_B);
 }
 
 size_t __attribute__((used)) WASM_A_bslice_align() {

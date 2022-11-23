@@ -2,13 +2,13 @@ const std = @import("std");
 const wasm = @import("wasmapi");
 
 pub const Foo = extern struct {
-    single: wasm.ConstStringPtr,
-    singleMut: wasm.StringPtr,
+    single: wasm.StringPtr,
+    constSingle: wasm.ConstStringPtr,
     multi: [2]wasm.ConstStringPtr,
     singlePtr: *wasm.ConstStringPtr,
     multiPtr: *[2]wasm.ConstStringPtr,
-    slice: wasm.ConstStringPtrSlice,
-    mutSlice: wasm.StringPtrSlice,
+    slice: wasm.StringPtrSlice,
+    constSlice: wasm.ConstStringPtrSlice,
 };
 
 export fn Foo_align() usize {
@@ -20,7 +20,7 @@ export fn Foo_size() usize {
 }
 
 export fn Foo_single_align() usize {
-    return @alignOf(wasm.ConstStringPtr);
+    return @alignOf(wasm.StringPtr);
 }
 
 export fn Foo_single_offset() usize {
@@ -28,19 +28,19 @@ export fn Foo_single_offset() usize {
 }
 
 export fn Foo_single_size() usize {
-    return @sizeOf(wasm.ConstStringPtr);
-}
-
-export fn Foo_singleMut_align() usize {
-    return @alignOf(wasm.StringPtr);
-}
-
-export fn Foo_singleMut_offset() usize {
-    return @offsetOf(Foo, "singleMut");
-}
-
-export fn Foo_singleMut_size() usize {
     return @sizeOf(wasm.StringPtr);
+}
+
+export fn Foo_constSingle_align() usize {
+    return @alignOf(wasm.ConstStringPtr);
+}
+
+export fn Foo_constSingle_offset() usize {
+    return @offsetOf(Foo, "constSingle");
+}
+
+export fn Foo_constSingle_size() usize {
+    return @sizeOf(wasm.ConstStringPtr);
 }
 
 export fn Foo_multi_align() usize {
@@ -80,7 +80,7 @@ export fn Foo_multiPtr_size() usize {
 }
 
 export fn Foo_slice_align() usize {
-    return @alignOf(wasm.ConstStringPtrSlice);
+    return @alignOf(wasm.StringPtrSlice);
 }
 
 export fn Foo_slice_offset() usize {
@@ -88,17 +88,17 @@ export fn Foo_slice_offset() usize {
 }
 
 export fn Foo_slice_size() usize {
-    return @sizeOf(wasm.ConstStringPtrSlice);
-}
-
-export fn Foo_mutSlice_align() usize {
-    return @alignOf(wasm.StringPtrSlice);
-}
-
-export fn Foo_mutSlice_offset() usize {
-    return @offsetOf(Foo, "mutSlice");
-}
-
-export fn Foo_mutSlice_size() usize {
     return @sizeOf(wasm.StringPtrSlice);
+}
+
+export fn Foo_constSlice_align() usize {
+    return @alignOf(wasm.ConstStringPtrSlice);
+}
+
+export fn Foo_constSlice_offset() usize {
+    return @offsetOf(Foo, "constSlice");
+}
+
+export fn Foo_constSlice_size() usize {
+    return @sizeOf(wasm.ConstStringPtrSlice);
 }

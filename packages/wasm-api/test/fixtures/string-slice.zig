@@ -2,13 +2,13 @@ const std = @import("std");
 const wasm = @import("wasmapi");
 
 pub const Foo = extern struct {
-    single: wasm.ConstString,
-    singleMut: wasm.String,
+    single: wasm.String,
+    constSingle: wasm.ConstString,
     multi: [2]wasm.ConstString,
     singlePtr: *wasm.ConstString,
     multiPtr: *[2]wasm.ConstString,
-    slice: wasm.ConstStringSlice,
-    mutSlice: wasm.StringSlice,
+    slice: wasm.StringSlice,
+    constSlice: wasm.ConstStringSlice,
 };
 
 export fn Foo_align() usize {
@@ -20,7 +20,7 @@ export fn Foo_size() usize {
 }
 
 export fn Foo_single_align() usize {
-    return @alignOf(wasm.ConstString);
+    return @alignOf(wasm.String);
 }
 
 export fn Foo_single_offset() usize {
@@ -28,19 +28,19 @@ export fn Foo_single_offset() usize {
 }
 
 export fn Foo_single_size() usize {
-    return @sizeOf(wasm.ConstString);
-}
-
-export fn Foo_singleMut_align() usize {
-    return @alignOf(wasm.String);
-}
-
-export fn Foo_singleMut_offset() usize {
-    return @offsetOf(Foo, "singleMut");
-}
-
-export fn Foo_singleMut_size() usize {
     return @sizeOf(wasm.String);
+}
+
+export fn Foo_constSingle_align() usize {
+    return @alignOf(wasm.ConstString);
+}
+
+export fn Foo_constSingle_offset() usize {
+    return @offsetOf(Foo, "constSingle");
+}
+
+export fn Foo_constSingle_size() usize {
+    return @sizeOf(wasm.ConstString);
 }
 
 export fn Foo_multi_align() usize {
@@ -80,7 +80,7 @@ export fn Foo_multiPtr_size() usize {
 }
 
 export fn Foo_slice_align() usize {
-    return @alignOf(wasm.ConstStringSlice);
+    return @alignOf(wasm.StringSlice);
 }
 
 export fn Foo_slice_offset() usize {
@@ -88,17 +88,17 @@ export fn Foo_slice_offset() usize {
 }
 
 export fn Foo_slice_size() usize {
-    return @sizeOf(wasm.ConstStringSlice);
-}
-
-export fn Foo_mutSlice_align() usize {
-    return @alignOf(wasm.StringSlice);
-}
-
-export fn Foo_mutSlice_offset() usize {
-    return @offsetOf(Foo, "mutSlice");
-}
-
-export fn Foo_mutSlice_size() usize {
     return @sizeOf(wasm.StringSlice);
+}
+
+export fn Foo_constSlice_align() usize {
+    return @alignOf(wasm.ConstStringSlice);
+}
+
+export fn Foo_constSlice_offset() usize {
+    return @offsetOf(Foo, "constSlice");
+}
+
+export fn Foo_constSlice_size() usize {
+    return @sizeOf(wasm.ConstStringSlice);
 }

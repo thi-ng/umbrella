@@ -23,13 +23,13 @@ const stringTypes: TypeColl = {
 		name: "Foo",
 		type: "struct",
 		fields: [
-			{ name: "single", type: "string" },
-			{ name: "singleMut", type: "string", const: false },
+			{ name: "single", type: "string", const: false },
+			{ name: "constSingle", type: "string" },
 			{ name: "multi", type: "string", tag: "array", len: 2 },
 			{ name: "singlePtr", type: "string", tag: "ptr" },
 			{ name: "multiPtr", type: "string", tag: "ptr", len: 2 },
-			{ name: "slice", type: "string", tag: "slice" },
-			{ name: "mutSlice", type: "string", tag: "slice", const: false },
+			{ name: "slice", type: "string", tag: "slice", const: false },
+			{ name: "constSlice", type: "string", tag: "slice" },
 		],
 	},
 };
@@ -445,6 +445,7 @@ group("codegen", {
 					},
 					{ name: "array", type: "u8", tag: "array", len: 2 },
 					// { name: "vec", type: "u8", tag: "vec", len: 2 },
+					{ name: "bsingle", type: "B" },
 					{ name: "bslice", type: "B", tag: "slice" },
 					{
 						name: "constBSlice",
