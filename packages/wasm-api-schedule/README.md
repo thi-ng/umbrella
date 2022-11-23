@@ -104,6 +104,7 @@ Package sizes (gzipped, pre-treeshake): ESM: 437 bytes
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
 - [@thi.ng/wasm-api](https://github.com/thi-ng/umbrella/tree/develop/packages/wasm-api)
+- [@thi.ng/wasm-api-bindgen](https://github.com/thi-ng/umbrella/tree/develop/packages/wasm-api-bindgen)
 
 ## Usage examples
 
