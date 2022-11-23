@@ -73,7 +73,8 @@
 	"files": [
 		"./*.js",
 		"./*.d.ts",
-		"zig"
+		"zig",
+		"generated"
 	],
 	"exports": {
 		".": {
