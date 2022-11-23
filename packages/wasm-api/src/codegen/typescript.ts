@@ -24,6 +24,7 @@ import {
 import { classifyField } from "./classify.js";
 import {
 	ensureLines,
+	ensureStringArray,
 	enumName,
 	isEnum,
 	isFuncPointer,
@@ -81,12 +82,16 @@ export const TYPESCRIPT = (opts: Partial<TSOpts> = {}) => {
 	const gen: ICodeGen = {
 		id: "ts",
 
-		pre: (_, globalOpts) => `// @ts-ignore possibly includes unused imports
-import { MemorySlice, Pointer, ${__stringImpl(
-			globalOpts
-		)}, WasmTypeBase, WasmTypeConstructor } from "${PKG_NAME}";${
-			opts.pre ? `\n${opts.pre}` : ""
-		}`,
+		pre: (_, globalOpts) => {
+			const res = [
+				"// @ts-ignore possibly includes unused imports",
+				`import { MemorySlice, Pointer, ${__stringImpl(
+					globalOpts
+				)}, WasmTypeBase, WasmTypeConstructor } from "${PKG_NAME}";`,
+			];
+			if (opts.pre) res.push("", ...ensureStringArray(opts.pre));
+			return res.join("\n");
+		},
 
 		post: () =>
 			opts.post
