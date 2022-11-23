@@ -78,8 +78,8 @@
 		"node": ">=12.7"
 	},
 	"files": [
-		"*.js",
-		"*.d.ts",
+		"./*.js",
+		"./*.d.ts",
 		"color",
 		"fog",
 		"light",

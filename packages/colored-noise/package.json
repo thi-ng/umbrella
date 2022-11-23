@@ -74,12 +74,15 @@
 		"node": ">=12.7"
 	},
 	"files": [
-		"*.js",
-		"*.d.ts"
+		"./*.js",
+		"./*.d.ts"
 	],
 	"exports": {
 		".": {
 			"default": "./index.js"
+		},
+		"./api": {
+			"default": "./api.js"
 		},
 		"./blue": {
 			"default": "./blue.js"
