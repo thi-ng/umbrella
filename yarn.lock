@@ -1822,6 +1822,7 @@ __metadata:
     "@thi.ng/api": "workspace:^"
     "@thi.ng/date": "workspace:^"
     "@thi.ng/wasm-api": "workspace:^"
+    "@thi.ng/wasm-api-bindgen": "workspace:^"
     "@thi.ng/wasm-api-dom": "workspace:^"
     "@thi.ng/wasm-api-schedule": "workspace:^"
     typescript: ^4.8.4
@@ -4901,6 +4902,34 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@thi.ng/wasm-api-bindgen@^0.0.1, @thi.ng/wasm-api-bindgen@workspace:^, @thi.ng/wasm-api-bindgen@workspace:packages/wasm-api-bindgen":
+  version: 0.0.0-use.local
+  resolution: "@thi.ng/wasm-api-bindgen@workspace:packages/wasm-api-bindgen"
+  dependencies:
+    "@microsoft/api-extractor": ^7.33.5
+    "@thi.ng/api": ^8.4.5
+    "@thi.ng/args": ^2.2.8
+    "@thi.ng/arrays": ^2.4.1
+    "@thi.ng/binary": ^3.3.9
+    "@thi.ng/checks": ^3.3.2
+    "@thi.ng/compare": ^2.1.15
+    "@thi.ng/defmulti": ^2.1.20
+    "@thi.ng/errors": ^2.2.3
+    "@thi.ng/file-io": ^0.3.18
+    "@thi.ng/logger": ^1.4.2
+    "@thi.ng/paths": ^5.1.21
+    "@thi.ng/strings": ^3.3.16
+    "@thi.ng/testament": ^0.3.4
+    "@thi.ng/wasm-api": ^0.18.1
+    rimraf: ^3.0.2
+    tools: "workspace:^"
+    typedoc: ^0.23.20
+    typescript: ^4.8.4
+  bin:
+    wasm-api-bindgen: bin/wasm-api-bindgen
+  languageName: unknown
+  linkType: soft
+
 "@thi.ng/wasm-api-dom@workspace:^, @thi.ng/wasm-api-dom@workspace:packages/wasm-api-dom":
   version: 0.0.0-use.local
   resolution: "@thi.ng/wasm-api-dom@workspace:packages/wasm-api-dom"
@@ -4912,6 +4941,7 @@ __metadata:
     "@thi.ng/prefixes": ^2.1.12
     "@thi.ng/testament": ^0.3.4
     "@thi.ng/wasm-api": ^0.18.1
+    "@thi.ng/wasm-api-bindgen": ^0.0.1
     rimraf: ^3.0.2
     tools: "workspace:^"
     typedoc: ^0.23.20
@@ -4927,6 +4957,7 @@ __metadata:
     "@thi.ng/api": ^8.4.5
     "@thi.ng/testament": ^0.3.4
     "@thi.ng/wasm-api": ^0.18.1
+    "@thi.ng/wasm-api-bindgen": ^0.0.1
     rimraf: ^3.0.2
     tools: "workspace:^"
     typedoc: ^0.23.20
@@ -4940,26 +4971,17 @@ __metadata:
   dependencies:
     "@microsoft/api-extractor": ^7.33.5
     "@thi.ng/api": ^8.4.5
-    "@thi.ng/args": ^2.2.8
     "@thi.ng/arrays": ^2.4.1
-    "@thi.ng/binary": ^3.3.9
     "@thi.ng/checks": ^3.3.2
-    "@thi.ng/compare": ^2.1.15
-    "@thi.ng/defmulti": ^2.1.20
     "@thi.ng/errors": ^2.2.3
-    "@thi.ng/file-io": ^0.3.18
     "@thi.ng/hex": ^2.2.2
     "@thi.ng/idgen": ^2.1.17
     "@thi.ng/logger": ^1.4.2
-    "@thi.ng/paths": ^5.1.21
-    "@thi.ng/strings": ^3.3.16
     "@thi.ng/testament": ^0.3.4
     rimraf: ^3.0.2
     tools: "workspace:^"
     typedoc: ^0.23.20
     typescript: ^4.8.4
-  bin:
-    wasm-api: bin/wasm-api
   languageName: unknown
   linkType: soft
 

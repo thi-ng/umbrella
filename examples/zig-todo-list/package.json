@@ -9,7 +9,7 @@
 	"scripts": {
 		"start": "yarn build:zig && vite --open --host",
 		"build": "tsc && yarn build:zig && vite build --base='./'",
-		"build:types": "npx wasm-api -a analytics.json --lang ts -o src/generated/api.ts --lang zig -o zig/api-generated.zig src/typedefs.json",
+		"build:types": "npx wasm-api-bindgen -a analytics.json --lang ts -o src/generated/api.ts --lang zig -o zig/api-generated.zig src/typedefs.json",
 		"build:zig": "zig build && wasm-opt src/main.wasm -o src/main.wasm -Oz && wasm-dis -o src/main.wast src/main.wasm",
 		"preview": "vite preview --host --open"
 	},
@@ -21,6 +21,7 @@
 		"@thi.ng/api": "workspace:^",
 		"@thi.ng/date": "workspace:^",
 		"@thi.ng/wasm-api": "workspace:^",
+		"@thi.ng/wasm-api-bindgen": "workspace:^",
 		"@thi.ng/wasm-api-dom": "workspace:^",
 		"@thi.ng/wasm-api-schedule": "workspace:^"
 	},
