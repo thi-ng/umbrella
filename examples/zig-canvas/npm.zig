@@ -34,6 +34,11 @@ pub fn init(opts: struct {
         .name = api,
         .source = .{ .path = self.modulePath("@thi.ng/wasm-api/zig/lib.zig") },
     }) catch unreachable;
+    const apiTypes = "wasmapi-types";
+    self.packages.put(apiTypes, .{
+        .name = apiTypes,
+        .source = .{ .path = self.modulePath("@thi.ng/wasm-api-bindgen/zig/lib.zig") },
+    }) catch unreachable;
     if (opts.packages) |pkgs| {
         for (pkgs) |pkg| {
             self.register(pkg.id, pkg.path, pkg.deps);
@@ -57,8 +62,9 @@ pub fn register(
         .source = .{ .path = self.modulePath(path) },
     };
     const num = if (dependencies) |deps| deps.len else 0;
-    var dpkgs = self.arena.allocator().alloc(std.build.Pkg, num + 1) catch unreachable;
-    dpkgs[0] = if (self.packages.get("wasmapi")) |api| api else unreachable;
+    var dpkgs = self.arena.allocator().alloc(std.build.Pkg, num + 2) catch unreachable;
+    dpkgs[0] = if (self.packages.get("wasmapi")) |p| p else unreachable;
+    dpkgs[1] = if (self.packages.get("wasmapi-types")) |p| p else unreachable;
     if (dependencies) |deps| {
         var i: usize = 0;
         while (i < deps.len) : (i += 1) {
