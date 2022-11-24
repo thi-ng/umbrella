@@ -288,7 +288,9 @@ export class WasmDom implements IWasmAPI<DOMExports> {
 					this.parent.ensureMemory();
 					event.__bytes.fill(0);
 					const target =
-						e.target === window
+						e.target === ctx
+							? ctxID
+							: e.target === window
 							? -1
 							: this.elements.find((x) => x === e.target, false);
 					event.target = target !== undefined ? target : -2;
