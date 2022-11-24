@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/wasm-api-bindgen",
-	"version": "0.1.0",
+	"version": "0.2.0",
 	"description": "Polyglot bindings code generators for hybrid JS & WebAssembly projects",
 	"type": "module",
 	"module": "./index.js",
@@ -48,7 +48,7 @@
 		"@thi.ng/logger": "^1.4.3",
 		"@thi.ng/paths": "^5.1.22",
 		"@thi.ng/strings": "^3.3.17",
-		"@thi.ng/wasm-api": "^1.0.0"
+		"@thi.ng/wasm-api": "^1.0.1"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.33.5",
