@@ -1,7 +1,5 @@
 #pragma once
 
-#include "wasmapi_types.h"
-
 #ifdef __cplusplus
 extern "C" {
 #endif

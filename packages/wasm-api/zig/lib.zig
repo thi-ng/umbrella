@@ -2,9 +2,6 @@
 
 const std = @import("std");
 const root = @import("root");
-const types = @import("types.zig");
-
-pub usingnamespace types;
 
 pub const ManagedIndex = @import("managed-index.zig").ManagedIndex;
 
