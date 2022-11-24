@@ -144,7 +144,7 @@ export const TYPESCRIPT = (opts: Partial<TSOpts> = {}) => {
 			lines.push("}", "");
 
 			const pointerDecls = fields
-				.filter((f) => isPointer(f.field.tag))
+				.filter((f) => isPointer(f.field.tag) && f.field.len !== 0)
 				.map((f) => {
 					return `let $${f.field.name}: ${f.type} | null = null;`;
 				});
@@ -297,9 +297,19 @@ const __docType = (
 	opts: CodeGenOpts
 ) => {
 	const doc = [...ensureLines(f.doc || [])];
-	if (isWasmPrim(f.type)) {
-		if (doc.length) doc.push("");
-		doc.push(`WASM type: ${zigFieldType(f, parent, coll, opts).type}`);
+	if (isPointer(f.tag) && f.len === 0) {
+		const typeInfo = `Multi pointer: \`${
+			zigFieldType(f, parent, coll, opts).type
+		}\``;
+		const remarks = "Only the pointer's target address can be accessed";
+		if (doc.length) {
+			doc.push("", "@remarks", typeInfo, remarks);
+		} else {
+			doc.push(typeInfo, "", "@remarks", remarks);
+		}
+	} else if (isWasmPrim(f.type)) {
+		if (doc.length) doc.push("", "@remarks");
+		doc.push(`Zig type: \`${zigFieldType(f, parent, coll, opts).type}\``);
 	}
 	return doc.length ? doc : undefined;
 };
@@ -487,12 +497,17 @@ const generateField = (
 			setter = [`${__mem((<Enum>coll[type]).tag, offset)} = x;`];
 			break;
 		}
-		case "pad":
 		case "ptrMulti":
 		case "enumPtrMulti":
 		case "strPtrMulti":
+			// impossible to map memory of undefined length so only return
+			// pointer's target addr (same as `opaquePtr`)
+			type = "number";
+			getter = [`return ${__ptr(opts.target, offset)};`];
+			setter = [`${__ptr(opts.target, offset)} = x;`];
+			break;
+		case "pad":
 			// skip codegen for padding fields and multi pointers since
-			// impossible to map memory of undefined length
 			return;
 		default:
 			unsupported(`TODO: ${classifier} - please report as issue`);
