@@ -213,9 +213,17 @@ const __generateFields = (
 			continue;
 		}
 		f.doc && gen.doc(f.doc, res, opts);
-		const { type, decl } = __fieldType(f, coll, opts, typePrefix);
+		const { type, decl, sentinel } = __fieldType(f, coll, opts, typePrefix);
 		ftypes[f.name] = type;
 		res.push(decl + ";");
+		if (sentinel) {
+			res.push(
+				`// Hidden sentinel. Must be manually initialized to ${
+					f.sentinel || 0
+				}`,
+				`${sentinel} __${f.name}Sentinel;`
+			);
+		}
 	}
 	res.push("};");
 
@@ -256,6 +264,7 @@ const __fieldType = (
 ) => {
 	let type = f.type;
 	let decl: string;
+	let sentinel: string;
 	const { classifier, isConst } = classifyField(f, coll);
 	const $isConst = isConst ? "Const" : "";
 	const __ptr = () => {
@@ -328,6 +337,9 @@ const __fieldType = (
 			case "array":
 			case "enumArray":
 				__array();
+				if (f.sentinel != null) {
+					sentinel = PRIM_ALIASES[<WasmPrim>f.type];
+				}
 				break;
 			case "vec":
 				unsupported("C doesn't support vector");
@@ -338,6 +350,7 @@ const __fieldType = (
 	return {
 		type: type,
 		decl: decl!,
+		sentinel: sentinel!,
 	};
 };
 
