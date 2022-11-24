@@ -386,7 +386,7 @@ interface App extends WasmExports {
 
 Requires [Zig](https://ziglang.org) to be installed:
 
-```zig
+```zig tangle:export/hello.zig
 //! Example Zig application (hello.zig)
 
 /// import externals
@@ -411,7 +411,7 @@ folder):
 zig build-lib \
 	--pkg-begin wasmapi node_modules/@thi.ng/wasm-api/zig/lib.zig --pkg-end \
 	-target wasm32-freestanding \
-	-O ReleaseSmall -dynamic --strip \
+	-O ReleaseSmall -dynamic \
 	hello.zig
 
 # disassemble WASM
@@ -465,73 +465,6 @@ Building the WASM module:
 emcc -Os -Inode_modules/@thi.ng/wasm-api/include \
   -sERROR_ON_UNDEFINED_SYMBOLS=0 --no-entry \
   -o hello.wasm hello.c
-```
-
-Resulting WASM:
-
-```wasm
-(module
- (type $i32_=>_none (func (param i32)))
- (type $none_=>_none (func))
- (type $i32_=>_i32 (func (param i32) (result i32)))
- (type $none_=>_i32 (func (result i32)))
- (type $i32_i32_=>_none (func (param i32 i32)))
- (import "wasmapi" "_printStr0" (func $fimport$0 (param i32)))
- (global $global$0 (mut i32) (i32.const 5243936))
- (memory $0 256 256)
- (data (i32.const 1024) "hello world!")
- (table $0 2 2 funcref)
- (elem (i32.const 1) $0)
- (export "memory" (memory $0))
- (export "_wasm_allocate" (func $1))
- (export "_wasm_free" (func $2))
- (export "start" (func $3))
- (export "__indirect_function_table" (table $0))
- (export "_initialize" (func $0))
- (export "__errno_location" (func $7))
- (export "stackSave" (func $4))
- (export "stackRestore" (func $5))
- (export "stackAlloc" (func $6))
- (func $0
-  (nop)
- )
- (func $1 (param $0 i32) (result i32)
-  (i32.const 0)
- )
- (func $2 (param $0 i32) (param $1 i32)
-  (nop)
- )
- (func $3
-  (call $fimport$0
-   (i32.const 1024)
-  )
- )
- (func $4 (result i32)
-  (global.get $global$0)
- )
- (func $5 (param $0 i32)
-  (global.set $global$0
-   (local.get $0)
-  )
- )
- (func $6 (param $0 i32) (result i32)
-  (global.set $global$0
-   (local.tee $0
-    (i32.and
-     (i32.sub
-      (global.get $global$0)
-      (local.get $0)
-     )
-     (i32.const -16)
-    )
-   )
-  )
-  (local.get $0)
- )
- (func $7 (result i32)
-  (i32.const 1040)
- )
-)
 ```
 
 ## Authors

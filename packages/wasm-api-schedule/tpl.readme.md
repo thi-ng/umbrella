@@ -13,7 +13,8 @@ This project is part of the
 
 ${pkg.description}
 
-The package provides a WASM bridge API and abstraction for scheduling function calls via:
+The package provides a WASM bridge API and abstraction for scheduling function
+calls via:
 
 - **once**: `setTimeout()` / `clearTimeout()`
 - **interval**: `setInterval()` / `clearInterval()`
@@ -48,17 +49,20 @@ var state: u32 = 0xdecafbad;
 // schedule a single/one-off callback 500ms in the future
 const listenerID = try schedule.schedule(
     .once,
-    &.{ .callback = exampleCallback, .ctx = &state },
     500,
+    exampleCallback,
+	&state,
 );
 
 // ...or maybe cancel it again
 schedule.cancel(listenerID);
 ```
 
-Also see
+Also see the
 [zig-counter](https://github.com/thi-ng/umbrella/blob/develop/examples/zig-counter/)
-example project for more advanced usage...
+and
+[zig-todo-list](https://github.com/thi-ng/umbrella/blob/develop/examples/zig-todo-list/)
+example projects for more advanced usage...
 
 ${status}
 

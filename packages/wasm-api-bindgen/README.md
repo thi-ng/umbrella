@@ -18,6 +18,7 @@ This project is part of the
   - [String handling](#string-handling)
     - [Strings as zero-terminated pointers](#strings-as-zero-terminated-pointers)
     - [Strings as slices](#strings-as-slices)
+  - [Opaque pointers](#opaque-pointers)
   - [Slice emulation](#slice-emulation)
   - [Padding](#padding)
 - [JSON schema for type definitions](#json-schema-for-type-definitions)
@@ -100,12 +101,14 @@ or all languages (explained in more detail further below):
 | `Foo`     | `ptr`   |        |       | `*Foo`                   | Pointer to a single `Foo`                        |
 | `Foo`     | `ptr`   |        | true  | `*const Foo`             | Pointer to a single readonly `Foo`               |
 | `Foo`     | `ptr`   | N      |       | `*[N]Foo`                | Pointer to N `Foo`                               |
-| `Foo`     | `ptr`   | 0      |       | `[*]Foo`                 | Pointer to multiple `Foo`<sup>(3)</sup>          |
-| `Foo`     | `ptr`   | 0      | true  | `[*]const Foo`           | Pointer to multiple readonly `Foo`<sup>(3)</sup> |
-| `f32`     | `vec`   | N      |       | `@Vector(N, f32)`        | Vector of N `f32`<sup>(2)</sup>                  |
+| `Foo`     | `ptr`   | 0      |       | `[*]Foo`                 | Pointer to multiple `Foo`<sup>(2)</sup>          |
+| `Foo`     | `ptr`   | 0      | true  | `[*]const Foo`           | Pointer to multiple readonly `Foo`<sup>(2)</sup> |
+| `f32`     | `vec`   | N      |       | `@Vector(N, f32)`        | Vector of N `f32`<sup>(3)</sup>                  |
 
-- <sup>(1)</sup> all slices are emulated (see comments below)
-- <sup>(2)</sup> numeric types only, SIMD compatible (if enabled in WASM target)
+- <sup>(1)</sup> all slices are emulated (see section below)
+- <sup>(2)</sup> type or semantics not fully supported by all languages, i.e. no
+  support in TypeScript, no diff to single-item pointers in C
+- <sup>(3)</sup> numeric types only, SIMD compatible (if enabled in WASM target)
 
 ### String handling
 
@@ -157,7 +160,8 @@ types for definitions of `StringPtr` and `ConstStringPtr` et al...
 
 #### Strings as slices
 
-If the global `stringType` option is set to `slice`:
+If the global `stringType` option is set to `slice`, i.e. instead of a simple
+pointer, strings are now stored using [emulated slices](#slice-emulation).
 
 | Base type | Tag     | Length | Const | Equiv Zig type signature | Description                         |
 |-----------|---------|--------|-------|--------------------------|-------------------------------------|
@@ -171,6 +175,13 @@ If the global `stringType` option is set to `slice`:
 | `string`  | `ptr`   |        | false | `*String`                | Pointer to a single mutable string  |
 | `string`  | `ptr`   | N      |       | `*[N]ConstString`        | Pointer to N readonly strings       |
 | `string`  | `ptr`   | N      | false | `*[N]String`             | Pointer to N mutable strings        |
+
+### Opaque pointers
+
+Opaque pointers are type erased pointers and only partially supported on the JS
+side, i.e. the pointer's target address can be retrieved, but nothing else.
+
+TODO insert table
 
 ### Slice emulation
 

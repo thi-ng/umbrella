@@ -97,10 +97,15 @@ avoiding magic numbers in userland code.
 ### DOM tree creation
 
 Single DOM elements and entire element trees (incl. event handler setup and
-custom attributes) can be created via the `createElement()` function:
+custom attributes) can be created via the `createElement()` function.
+
+Attribute definitions need to be wrapped using `dom.attribs()` and child
+elements via `dom.children()`, as shown here:
 
 ```zig
 const dom = @import("dom");
+
+const Attrib = dom.Attrib;
 
 // snippet taken from the zig-todo-list example project
 
@@ -110,31 +115,31 @@ const handle = dom.createElement(&.{
 	// CSS classes
 	.class = "flex flex-column mb3",
 	// nested child elements
-	.children = &.{
+	.children = dom.children(&.{
 		.{ .tag = "h3", .text = "Add new task" },
 		.{
 			.tag = "input",
 			// element's ID attribute
 			.id = "newtask",
 			// attribute & event listener definitions
-			.attribs = &.{
-				dom.Attrib.string("placeholder", "What needs to be done?"),
-				dom.Attrib.flag("autofocus", true),
+			.attribs = dom.attribs(&.{
+				Attrib.string("placeholder", "What needs to be done?"),
+				Attrib.flag("autofocus", true),
 				// event listener setup:
-				// .ctx is an optional opaque pointer to arbitrary user state/context
-				dom.Attrib.event("keydown", .{ .callback = onKeydown, .ctx = &STATE }),
-				dom.Attrib.event("input", .{ .callback = onInput }),
-			},
+				// last arg is optional opaque pointer to arbitrary user state/context
+				Attrib.event("keydown", onKeydown, &STATE),
+				Attrib.event("input", onInput, null),
+			}),
 		},
 		.{
 			.tag = "button",
 			// Element .innerText content
 			.text = "Add Task",
-			.attribs = &.{
-				dom.Attrib.event("click", .{ .callback = onAddTask }),
-			},
+			.attribs = dom.attribs(&.{
+				Attrib.event("click", onAddTask, null),
+			}),
 		},
-	},
+	}),
 });
 ```
 
@@ -144,7 +149,8 @@ struct has some additional options and more are planned. All WIP!
 
 ### Attribute creation & accessors
 
-As already shown above, attributes can be provided as part of the `CreateElementOpts` and/or accessed imperatively:
+As already shown above, attributes can be provided as part of the
+`CreateElementOpts` and/or accessed imperatively:
 
 Zig example:
 
@@ -154,7 +160,7 @@ _ = dom.createElement(&.{
     .tag = "input",
     .parent = dom.body,
     // optional attrib declarations
-    .attribs = &.{
+    .attribs = dom.attribs(&.{
         // string attrib
         dom.Attrib.string("type", "range"),
         // numeric attribs
@@ -164,7 +170,7 @@ _ = dom.createElement(&.{
         dom.Attrib.number("value", 20),
         // boolean attrib (only will be created if true)
         dom.Attrib.flag("disabled", true),
-    },
+    }),
 });
 ```
 
@@ -211,10 +217,10 @@ const Counter = struct {
             .class = "db w5 ma2 pa2 tc bn",
             .text = "click me!",
             .parent = parent,
-            .attribs = &.{
+            .attribs = dom.attribs(&.{
                 // define & add click event listener w/ user context arg
-                dom.Attrib.event("click", .{ .callback = onClick, .ctx = self }),
-            },
+                dom.Attrib.event("click", onClick, self),
+            }),
         });
     }
 
@@ -266,9 +272,8 @@ docs](https://docs.thi.ng/umbrella/wasm-api-dom/), source code comments
 ([TS](https://github.com/thi-ng/umbrella/tree/develop/packages/wasm-api-dom/src/)
 &
 [Zig](https://github.com/thi-ng/umbrella/tree/develop/packages/wasm-api-dom/zig/))
-and the various comments in the [zig-canvas example
-project](https://github.com/thi-ng/umbrella/tree/develop/examples/zig-canvas)
-for further reference and usage patterns! Thank you!
+and the various comments in the above linked example projects for further
+reference and usage patterns! Thank you!
 
 ## Authors
 
