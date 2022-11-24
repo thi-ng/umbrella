@@ -3,23 +3,23 @@ import { MemorySlice, Pointer, WasmStringPtr, WasmTypeBase, WasmTypeConstructor 
 
 export interface B extends WasmTypeBase {
 	/**
-	 * WASM type: u32
+	 * Zig type: `u32`
 	 */
 	a: number;
 	/**
-	 * WASM type: *u32
+	 * Zig type: `*u32`
 	 */
 	ptr: Pointer<number>;
 	/**
-	 * WASM type: *[2]u32
+	 * Zig type: `*[2]u32`
 	 */
 	ptr2: Pointer<Uint32Array>;
 	/**
-	 * WASM type: [2]u32
+	 * Zig type: `[2]u32`
 	 */
 	array: Uint32Array;
 	/**
-	 * WASM type: U32Slice
+	 * Zig type: `U32Slice`
 	 */
 	slice: Uint32Array;
 }

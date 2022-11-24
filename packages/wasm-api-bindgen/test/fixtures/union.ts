@@ -3,19 +3,19 @@ import { MemorySlice, Pointer, WasmStringPtr, WasmTypeBase, WasmTypeConstructor 
 
 export interface A extends WasmTypeBase {
 	/**
-	 * WASM type: u8
+	 * Zig type: `u8`
 	 */
 	a: number;
 	/**
-	 * WASM type: u32
+	 * Zig type: `u32`
 	 */
 	b: number;
 	/**
-	 * WASM type: *[3]u16
+	 * Zig type: `*[3]u16`
 	 */
 	c: Pointer<Uint16Array>;
 	/**
-	 * WASM type: f64
+	 * Zig type: `f64`
 	 */
 	d: number;
 }
@@ -66,7 +66,7 @@ export const $A: WasmTypeConstructor<A> = (mem) => ({
 export interface B extends WasmTypeBase {
 	a: A[];
 	/**
-	 * WASM type: u64
+	 * Zig type: `u64`
 	 */
 	b: bigint;
 }

@@ -211,6 +211,13 @@ group("wasm-api-bindgen", {
 						const: true,
 					},
 					{ name: "array", type: "opaque", tag: "array", len: 3 },
+					{
+						name: "constArray",
+						type: "opaque",
+						tag: "array",
+						len: 3,
+						const: true,
+					},
 				],
 			},
 		};
@@ -279,9 +286,19 @@ group("wasm-api-bindgen", {
 						__offset: 32,
 						__size: 12,
 					},
+					{
+						name: "constArray",
+						type: "opaque",
+						tag: "array",
+						len: 3,
+						const: true,
+						__align: 4,
+						__offset: 44,
+						__size: 12,
+					},
 				],
 				__align: 4,
-				__size: 44,
+				__size: 56,
 			},
 		});
 		checkAll(ctx, coll, OPTS, "opaque");
@@ -410,6 +427,11 @@ group("wasm-api-bindgen", {
 			A: <Struct>{
 				name: "A",
 				type: "struct",
+				fields: [{ name: "a", type: "u16" }],
+			},
+			B: <Struct>{
+				name: "B",
+				type: "struct",
 				fields: [
 					{ name: "slice", type: "u8", tag: "slice" },
 					{
@@ -443,24 +465,57 @@ group("wasm-api-bindgen", {
 						const: true,
 						sentinel: 0,
 					},
-					{ name: "array", type: "u8", tag: "array", len: 2 },
-					// { name: "vec", type: "u8", tag: "vec", len: 2 },
-					{ name: "bsingle", type: "B" },
-					{ name: "bslice", type: "B", tag: "slice" },
+					{ name: "ptrMulti", type: "u8", tag: "ptr", len: 0 },
 					{
-						name: "constBSlice",
-						type: "B",
+						name: "ptrMultiSentinel",
+						type: "u8",
+						tag: "ptr",
+						len: 0,
+						sentinel: 255,
+					},
+					{
+						name: "constPtrMulti",
+						type: "u8",
+						tag: "ptr",
+						len: 0,
+						const: true,
+					},
+					{
+						name: "constPtrMultiSentinel",
+						type: "u8",
+						tag: "ptr",
+						len: 0,
+						const: true,
+						sentinel: 255,
+					},
+
+					{ name: "array", type: "i32", tag: "array", len: 2 },
+					{
+						name: "arraySentinel",
+						type: "i32",
+						tag: "array",
+						len: 2,
+						sentinel: 0,
+					},
+					// { name: "vec", type: "u8", tag: "vec", len: 2 },
+					{ name: "aSingle", type: "A" },
+					{ name: "aSlice", type: "A", tag: "slice" },
+					{
+						name: "constASlice",
+						type: "A",
 						tag: "slice",
 						const: true,
 					},
-					{ name: "bptr", type: "B", tag: "ptr" },
-					{ name: "bptr2", type: "B", tag: "ptr", len: 2 },
+					{ name: "aPtr", type: "A", tag: "ptr" },
+					{ name: "aPtr2", type: "A", tag: "ptr", len: 2 },
+					{
+						name: "aPtrMulti",
+						type: "A",
+						tag: "ptr",
+						len: 0,
+						doc: "Multiple A's",
+					},
 				],
-			},
-			B: <Struct>{
-				name: "B",
-				type: "struct",
-				fields: [{ name: "a", type: "u16" }],
 			},
 		};
 		checkAll(ctx, coll, { ...OPTS, debug: true }, "slices");

@@ -17,6 +17,7 @@ struct WASM_A {
     WASM_OpaquePtrSlice slice;
     WASM_ConstOpaquePtrSlice constSlice;
     WASM_OpaquePtr array[3];
+    WASM_ConstOpaquePtr constArray[3];
 };
 
 

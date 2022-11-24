@@ -3,54 +3,126 @@ import { MemorySlice, Pointer, WasmStringPtr, WasmTypeBase, WasmTypeConstructor 
 
 export interface A extends WasmTypeBase {
 	/**
-	 * WASM type: U8Slice
+	 * Zig type: `u16`
 	 */
-	slice: Uint8Array;
-	/**
-	 * WASM type: ConstU8Slice
-	 */
-	constSlice: Uint8Array;
-	/**
-	 * WASM type: *u8
-	 */
-	ptr: Pointer<number>;
-	/**
-	 * WASM type: *const u8
-	 */
-	constPtr: Pointer<number>;
-	/**
-	 * WASM type: *[2]u8
-	 */
-	ptr2: Pointer<Uint8Array>;
-	/**
-	 * WASM type: *[2:0]u8
-	 */
-	ptr2sentinel: Pointer<Uint8Array>;
-	/**
-	 * WASM type: *const [2]u8
-	 */
-	constPtr2: Pointer<Uint8Array>;
-	/**
-	 * WASM type: *const [2:0]u8
-	 */
-	constPtr2sentinel: Pointer<Uint8Array>;
-	/**
-	 * WASM type: [2]u8
-	 */
-	array: Uint8Array;
-	bsingle: B;
-	bslice: B[];
-	constBSlice: B[];
-	bptr: Pointer<B>;
-	bptr2: Pointer<B[]>;
+	a: number;
 }
 
 export const $A: WasmTypeConstructor<A> = (mem) => ({
 	get align() {
+		return 2;
+	},
+	get size() {
+		return 2;
+	},
+	instance: (base) => {
+		return {
+			get __base() {
+				return base;
+			},
+			get __bytes() {
+				return mem.u8.subarray(base, base + 2);
+			},
+			get a(): number {
+				return mem.u16[base >>> 1];
+			},
+			set a(x: number) {
+				mem.u16[base >>> 1] = x;
+			},
+		};
+	}
+});
+
+export interface B extends WasmTypeBase {
+	/**
+	 * Zig type: `U8Slice`
+	 */
+	slice: Uint8Array;
+	/**
+	 * Zig type: `ConstU8Slice`
+	 */
+	constSlice: Uint8Array;
+	/**
+	 * Zig type: `*u8`
+	 */
+	ptr: Pointer<number>;
+	/**
+	 * Zig type: `*const u8`
+	 */
+	constPtr: Pointer<number>;
+	/**
+	 * Zig type: `*[2]u8`
+	 */
+	ptr2: Pointer<Uint8Array>;
+	/**
+	 * Zig type: `*[2:0]u8`
+	 */
+	ptr2sentinel: Pointer<Uint8Array>;
+	/**
+	 * Zig type: `*const [2]u8`
+	 */
+	constPtr2: Pointer<Uint8Array>;
+	/**
+	 * Zig type: `*const [2:0]u8`
+	 */
+	constPtr2sentinel: Pointer<Uint8Array>;
+	/**
+	 * Multi pointer: `[*]u8`
+	 * 
+	 * @remarks
+	 * Only the pointer's target address can be accessed
+	 */
+	ptrMulti: number;
+	/**
+	 * Multi pointer: `[*:255]u8`
+	 * 
+	 * @remarks
+	 * Only the pointer's target address can be accessed
+	 */
+	ptrMultiSentinel: number;
+	/**
+	 * Multi pointer: `[*]const u8`
+	 * 
+	 * @remarks
+	 * Only the pointer's target address can be accessed
+	 */
+	constPtrMulti: number;
+	/**
+	 * Multi pointer: `[*:255]const u8`
+	 * 
+	 * @remarks
+	 * Only the pointer's target address can be accessed
+	 */
+	constPtrMultiSentinel: number;
+	/**
+	 * Zig type: `[2]i32`
+	 */
+	array: Int32Array;
+	/**
+	 * Zig type: `[2:0]i32`
+	 */
+	arraySentinel: Int32Array;
+	aSingle: A;
+	aSlice: A[];
+	constASlice: A[];
+	aPtr: Pointer<A>;
+	aPtr2: Pointer<A[]>;
+	/**
+	 * Multiple A's
+	 * 
+	 * @remarks
+	 * Multi pointer: `[*]A`
+	 * Only the pointer's target address can be accessed
+	 */
+	aPtrMulti: number;
+}
+
+export const $B: WasmTypeConstructor<B> = (mem) => ({
+	get align() {
 		return 4;
 	},
 	get size() {
-		return 68;
+		return 108;
 	},
 	instance: (base) => {
 		let $ptr: Pointer<number> | null = null;
@@ -59,14 +131,14 @@ export const $A: WasmTypeConstructor<A> = (mem) => ({
 		let $ptr2sentinel: Pointer<Uint8Array> | null = null;
 		let $constPtr2: Pointer<Uint8Array> | null = null;
 		let $constPtr2sentinel: Pointer<Uint8Array> | null = null;
-		let $bptr: Pointer<B> | null = null;
-		let $bptr2: Pointer<B[]> | null = null;
+		let $aPtr: Pointer<A> | null = null;
+		let $aPtr2: Pointer<A[]> | null = null;
 		return {
 			get __base() {
 				return base;
 			},
 			get __bytes() {
-				return mem.u8.subarray(base, base + 68);
+				return mem.u8.subarray(base, base + 108);
 			},
 			get slice(): Uint8Array {
 				const addr = mem.u32[base >>> 2];
@@ -108,78 +180,80 @@ export const $A: WasmTypeConstructor<A> = (mem) => ({
 				(addr) => mem.u8.subarray(addr, addr + 2)
 				));
 			},
-			get array(): Uint8Array {
-				const addr = (base + 40);
-				return mem.u8.subarray(addr, addr + 2);
+			get ptrMulti(): number {
+				return mem.u32[(base + 40) >>> 2];
 			},
-			get bsingle(): B {
-				return $B(mem).instance((base + 42));
+			set ptrMulti(x: number) {
+				mem.u32[(base + 40) >>> 2] = x;
 			},
-			set bsingle(x: B) {
-				mem.u8.set(x.__bytes, (base + 42));
+			get ptrMultiSentinel(): number {
+				return mem.u32[(base + 44) >>> 2];
 			},
-			get bslice(): B[] {
-				const addr = mem.u32[(base + 44) >>> 2];
-				const len = mem.u32[(base + 48) >>> 2];
-				const inst = $B(mem);
-				const buf: B[] = [];
+			set ptrMultiSentinel(x: number) {
+				mem.u32[(base + 44) >>> 2] = x;
+			},
+			get constPtrMulti(): number {
+				return mem.u32[(base + 48) >>> 2];
+			},
+			set constPtrMulti(x: number) {
+				mem.u32[(base + 48) >>> 2] = x;
+			},
+			get constPtrMultiSentinel(): number {
+				return mem.u32[(base + 52) >>> 2];
+			},
+			set constPtrMultiSentinel(x: number) {
+				mem.u32[(base + 52) >>> 2] = x;
+			},
+			get array(): Int32Array {
+				const addr = (base + 56) >>> 2;
+				return mem.i32.subarray(addr, addr + 2);
+			},
+			get arraySentinel(): Int32Array {
+				const addr = (base + 64) >>> 2;
+				return mem.i32.subarray(addr, addr + 2);
+			},
+			get aSingle(): A {
+				return $A(mem).instance((base + 76));
+			},
+			set aSingle(x: A) {
+				mem.u8.set(x.__bytes, (base + 76));
+			},
+			get aSlice(): A[] {
+				const addr = mem.u32[(base + 80) >>> 2];
+				const len = mem.u32[(base + 84) >>> 2];
+				const inst = $A(mem);
+				const buf: A[] = [];
 				for(let i = 0; i < len; i++) buf.push(inst.instance(addr + i * 2));
 				return buf;
 			},
-			get constBSlice(): B[] {
-				const addr = mem.u32[(base + 52) >>> 2];
-				const len = mem.u32[(base + 56) >>> 2];
-				const inst = $B(mem);
-				const buf: B[] = [];
+			get constASlice(): A[] {
+				const addr = mem.u32[(base + 88) >>> 2];
+				const len = mem.u32[(base + 92) >>> 2];
+				const inst = $A(mem);
+				const buf: A[] = [];
 				for(let i = 0; i < len; i++) buf.push(inst.instance(addr + i * 2));
 				return buf;
 			},
-			get bptr(): Pointer<B> {
-				return $bptr || ($bptr = new Pointer<B>(mem, (base + 60),
-				(addr) => $B(mem).instance(addr)
+			get aPtr(): Pointer<A> {
+				return $aPtr || ($aPtr = new Pointer<A>(mem, (base + 96),
+				(addr) => $A(mem).instance(addr)
 				));
 			},
-			get bptr2(): Pointer<B[]> {
-				return $bptr2 || ($bptr2 = new Pointer<B[]>(mem, (base + 64),
+			get aPtr2(): Pointer<A[]> {
+				return $aPtr2 || ($aPtr2 = new Pointer<A[]>(mem, (base + 100),
 				(addr) => {
-					const inst = $B(mem);
-					const buf: B[] = [];
+					const inst = $A(mem);
+					const buf: A[] = [];
 					for(let i = 0; i < 2; i++) buf.push(inst.instance(addr + i * 2));
 					return buf;
 				}
 				));
 			},
-		};
-	}
-});
-
-export interface B extends WasmTypeBase {
-	/**
-	 * WASM type: u16
-	 */
-	a: number;
-}
-
-export const $B: WasmTypeConstructor<B> = (mem) => ({
-	get align() {
-		return 2;
-	},
-	get size() {
-		return 2;
-	},
-	instance: (base) => {
-		return {
-			get __base() {
-				return base;
+			get aPtrMulti(): number {
+				return mem.u32[(base + 104) >>> 2];
 			},
-			get __bytes() {
-				return mem.u8.subarray(base, base + 2);
-			},
-			get a(): number {
-				return mem.u16[base >>> 1];
-			},
-			set a(x: number) {
-				mem.u16[base >>> 1] = x;
+			set aPtrMulti(x: number) {
+				mem.u32[(base + 104) >>> 2] = x;
 			},
 		};
 	}

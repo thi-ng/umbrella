@@ -3,33 +3,37 @@ import { MemorySlice, Pointer, WasmStringPtr, WasmTypeBase, WasmTypeConstructor 
 
 export interface A extends WasmTypeBase {
 	/**
-	 * WASM type: u32
+	 * Zig type: `u32`
 	 */
 	a: number;
 	/**
-	 * WASM type: *u32
+	 * Zig type: `*u32`
 	 */
 	ptr: Pointer<number>;
 	/**
-	 * WASM type: *[2]u32
+	 * Zig type: `*[2]u32`
 	 */
 	ptr2: Pointer<Uint32Array>;
 	/**
-	 * WASM type: *const u32
+	 * Zig type: `*const u32`
 	 */
 	constPtr: Pointer<number>;
 	/**
-	 * WASM type: U32Slice
+	 * Zig type: `U32Slice`
 	 */
 	slice: Uint32Array;
 	/**
-	 * WASM type: ConstU32Slice
+	 * Zig type: `ConstU32Slice`
 	 */
 	constSlice: Uint32Array;
 	/**
-	 * WASM type: [3]u32
+	 * Zig type: `[3]u32`
 	 */
 	array: Uint32Array;
+	/**
+	 * Zig type: `[3]u32`
+	 */
+	constArray: Uint32Array;
 }
 
 export const $A: WasmTypeConstructor<A> = (mem) => ({
@@ -37,7 +41,7 @@ export const $A: WasmTypeConstructor<A> = (mem) => ({
 		return 4;
 	},
 	get size() {
-		return 44;
+		return 56;
 	},
 	instance: (base) => {
 		let $ptr: Pointer<number> | null = null;
@@ -48,7 +52,7 @@ export const $A: WasmTypeConstructor<A> = (mem) => ({
 				return base;
 			},
 			get __bytes() {
-				return mem.u8.subarray(base, base + 44);
+				return mem.u8.subarray(base, base + 56);
 			},
 			get a(): number {
 				return mem.u32[base >>> 2];
@@ -83,6 +87,10 @@ export const $A: WasmTypeConstructor<A> = (mem) => ({
 			},
 			get array(): Uint32Array {
 				const addr = (base + 32) >>> 2;
+				return mem.u32.subarray(addr, addr + 3);
+			},
+			get constArray(): Uint32Array {
+				const addr = (base + 44) >>> 2;
 				return mem.u32.subarray(addr, addr + 3);
 			},
 		};

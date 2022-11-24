@@ -9,4 +9,5 @@ pub const A = extern struct {
     slice: wasm.OpaquePtrSlice,
     constSlice: wasm.ConstOpaquePtrSlice,
     array: [3]wasm.OpaquePtr,
+    constArray: [3]wasm.ConstOpaquePtr,
 };
