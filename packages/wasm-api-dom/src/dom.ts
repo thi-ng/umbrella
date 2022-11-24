@@ -90,7 +90,11 @@ export class WasmDom implements IWasmAPI<DOMExports> {
 
 	async init(parent: WasmBridge<DOMExports>) {
 		this.parent = parent;
-		parent.exports._dom_init();
+		if (parent.exports._dom_init) {
+			parent.exports._dom_init();
+		} else {
+			parent.logger.warn("DOM module unused, skipping auto-init...");
+		}
 		this.elements.add(document.head);
 		this.elements.add(document.body);
 		this.$Event = $Event(this.parent);
