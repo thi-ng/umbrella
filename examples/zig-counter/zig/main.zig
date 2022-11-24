@@ -9,7 +9,7 @@ pub usingnamespace wasm;
 // allocator, also exposed & used by JS-side WasmBridge & DOM module
 // see further comments in:
 // https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api/zig/lib.zig
-// https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api-dom/zig/events.zig
+// https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api-dom/zig/lib.zig
 // https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api-schedule/zig/lib.zig
 var gpa = std.heap.GeneralPurposeAllocator(.{}){};
 pub const WASM_ALLOCATOR = gpa.allocator();
