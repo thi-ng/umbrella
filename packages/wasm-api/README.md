@@ -59,8 +59,7 @@ WebGL, WebGPU, WebAudio etc. is being actively worked on.
    for (currently) Zig & TypeScript and C11. For TS fully type checked and
 memory-mapped (zero-copy) accessors of WASM-side data are generated. In
 principle, all languages with a WASM target are supported, however currently
-only bindings for these mentioned langs are included. Other languages require
-custom bindings, e.g. based on the flexible primitives provided here.
+only bindings for these mentioned langs are included.
 8. [CLI
    frontend/utility](https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api-bindgen/README.md#cli-generator)
    for the code generator(s)
@@ -190,6 +189,15 @@ and
 [`setString()`](https://docs.thi.ng/umbrella/wasm-api/classes/WasmBridge.html#setString)
 for details.
 
+Furthermore, the package provides these string wrapper types:
+
+- [`WasmStringPtr`](https://docs.thi.ng/umbrella/wasm-api/classes/WasmStringPtr.html)
+- [`WasmStringSlice`](https://docs.thi.ng/umbrella/wasm-api/classes/WasmStringSlice.html)
+
+Finally, see more information in the
+[@thi.ng/wasm-api-bindgen](https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api-bindgen/README.md#string-handling)
+package readme.
+
 ### Memory allocations
 
 If explicitly enabled on the WASM side, the `WasmBridge` includes support for
@@ -199,9 +207,9 @@ The actual allocator is implementation specific and suitable generic mechanisms
 are defined for both the included Zig & C bindings. Please see for further
 reference:
 
-- [`/zig/lib.zig`](https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api/zig/lib.zig#L37-L71):
+- [`/zig/lib.zig`](https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api/zig/lib.zig#L34-L68):
   comments about WASM-side allocator handling in Zig
-- [`/include/wasmapi.h`](https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api/include/wasmapi.h#L20-L30):
+- [`/include/wasmapi.h`](https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api/include/wasmapi.h#L18-L28):
   comments about WASM-side allocator handling in C/C++
 - [`WasmBridge.allocate()`](https://docs.thi.ng/umbrella/wasm-api/classes/WasmBridge.html#allocate):
   allocating memory from JS side
@@ -288,8 +296,8 @@ Since v0.15.0, the supplied Zig core bindings lib also includes a
 for similar dealings on the Zig side of the application. For example, in the
 [@thi.ng/wasm-api-dom](https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api-dom/)
 &
-[@thi.ng/wasm-api-timer](https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api-timer/)
-modules this is used to manage Zig event listeners.
+[@thi.ng/wasm-api-schedule](https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api-schedule/)
+packages this is used to manage Zig event listeners.
 
 ## Status
 
@@ -392,10 +400,6 @@ Requires [Zig](https://ziglang.org) to be installed:
 /// import externals
 /// see build command for configuration
 const js = @import("wasmapi");
-const std = @import("std");
-
-// set custom memory allocator (here to disable)
-pub const WASM_ALLOCATOR: ?std.mem.Allocator = null;
 
 export fn start() void {
     js.printStr("hello world!");
@@ -451,11 +455,11 @@ The resulting WASM:
 
 Requires [Emscripten](https://emscripten.org/) to be installed:
 
-```c
+```c tangle:export/hello.c
 #include <wasmapi.h>
 
-void WASM_KEEP start() {
-    wasm_printStr0("hello world!");
+void WASMAPI_KEEP start() {
+    wasm_printStrZ("hello world!");
 }
 ```
 
