@@ -39,8 +39,8 @@ try schedule.init(customAllocator);
 // user callback function
 fn exampleCallback(raw: ?*anyopaque) void {
     if (wasm.ptrCast(*u32, raw)) |state| {
-		// do something ...
-	}
+        // do something ...
+    }
 }
 
 // arbitrary user state
@@ -51,7 +51,7 @@ const listenerID = try schedule.schedule(
     .once,
     500,
     exampleCallback,
-	&state,
+    &state,
 );
 
 // ...or maybe cancel it again

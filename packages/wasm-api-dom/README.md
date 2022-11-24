@@ -126,36 +126,36 @@ const Attrib = dom.Attrib;
 // snippet taken from the zig-todo-list example project
 
 const handle = dom.createElement(&.{
-	// element name
-	.tag = "div",
-	// CSS classes
-	.class = "flex flex-column mb3",
-	// nested child elements
-	.children = dom.children(&.{
-		.{ .tag = "h3", .text = "Add new task" },
-		.{
-			.tag = "input",
-			// element's ID attribute
-			.id = "newtask",
-			// attribute & event listener definitions
-			.attribs = dom.attribs(&.{
-				Attrib.string("placeholder", "What needs to be done?"),
-				Attrib.flag("autofocus", true),
-				// event listener setup:
-				// last arg is optional opaque pointer to arbitrary user state/context
-				Attrib.event("keydown", onKeydown, &STATE),
-				Attrib.event("input", onInput, null),
-			}),
-		},
-		.{
-			.tag = "button",
-			// Element .innerText content
-			.text = "Add Task",
-			.attribs = dom.attribs(&.{
-				Attrib.event("click", onAddTask, null),
-			}),
-		},
-	}),
+    // element name
+    .tag = "div",
+    // CSS classes
+    .class = "flex flex-column mb3",
+    // nested child elements
+    .children = dom.children(&.{
+        .{ .tag = "h3", .text = "Add new task" },
+        .{
+            .tag = "input",
+            // element's ID attribute
+            .id = "newtask",
+            // attribute & event listener definitions
+            .attribs = dom.attribs(&.{
+                Attrib.string("placeholder", "What needs to be done?"),
+                Attrib.flag("autofocus", true),
+                // event listener setup:
+                // last arg is optional opaque pointer to arbitrary user state/context
+                Attrib.event("keydown", onKeydown, &STATE),
+                Attrib.event("input", onInput, null),
+            }),
+        },
+        .{
+            .tag = "button",
+            // Element .innerText content
+            .text = "Add Task",
+            .attribs = dom.attribs(&.{
+                Attrib.event("click", onAddTask, null),
+            }),
+        },
+    }),
 });
 ```
 

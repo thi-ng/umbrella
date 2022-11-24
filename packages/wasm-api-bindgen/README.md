@@ -227,10 +227,10 @@ to apply the schema to any `typedefs.json` files:
 
 ```json
 "json.schemas": [
-	{
-		"fileMatch": ["**/typedefs.json"],
-		"url": "./node_modules/@thi.ng/wasm-api-bindgen/schema/wasm-api-types.json"
-	}
+    {
+        "fileMatch": ["**/typedefs.json"],
+        "url": "./node_modules/@thi.ng/wasm-api-bindgen/schema/wasm-api-types.json"
+    }
 ]
 ```
 
@@ -285,10 +285,10 @@ The structure of the config file is as follows (all optional):
 
 ```json
 {
-	"global": { ... },
-	"c11": { ... },
-	"ts": { ... },
-	"zig": { ... },
+    "global": { ... },
+    "c11": { ... },
+    "ts": { ... },
+    "zig": { ... },
 }
 ```
 
@@ -306,8 +306,8 @@ external files by specifying their file paths using `@` as prefix, e.g.
 
 ```json
 {
-	"ts": { "pre": "@tpl/prelude.ts" },
-	"zig": { "pre": "@tpl/prelude.zig", "post": "@tpl/epilogue.zig" },
+    "ts": { "pre": "@tpl/prelude.ts" },
+    "zig": { "pre": "@tpl/prelude.zig", "post": "@tpl/epilogue.zig" },
 }
 ```
 
@@ -324,47 +324,47 @@ the JSON type definitions and the resulting source codes:
 
 ```json tangle:export/readme-types.json
 [
-	{
-		"name": "EventType",
-		"type": "enum",
-		"tag": "u8",
-		"doc": "Supported event types",
-		"values": [
-			{ "name": "mouse", "value": 1, "doc": "Any kind of mouse event" },
-			{ "name": "key", "doc": "Key down/up event" },
-			"misc"
-		]
-	},
-	{
-		"name": "MouseEvent",
-		"type": "struct",
-		"tag": "extern",
-		"doc": "Example struct",
-		"fields": [
-			{ "name": "type", "type": "EventType" },
-			{ "name": "pos", "type": "u16", "tag": "array", "len": 2 }
-		]
-	},
-	{
-		"name": "KeyEvent",
-		"type": "struct",
-		"tag": "extern",
-		"doc": "Example struct",
-		"fields": [
-			{ "name": "type", "type": "EventType" },
-			{ "name": "key", "type": "string", "doc": "Name of key which triggered event" },
-			{ "name": "modifiers", "type": "u8", "doc": "Bitmask of active modifier keys" }
-		]
-	},
-	{
-		"name": "Event",
-		"type": "union",
-		"tag": "extern",
-		"fields": [
-			{ "name": "mouse", "type": "MouseEvent" },
-			{ "name": "key", "type": "KeyEvent" }
-		]
-	}
+    {
+        "name": "EventType",
+        "type": "enum",
+        "tag": "u8",
+        "doc": "Supported event types",
+        "values": [
+            { "name": "mouse", "value": 1, "doc": "Any kind of mouse event" },
+            { "name": "key", "doc": "Key down/up event" },
+            "misc"
+        ]
+    },
+    {
+        "name": "MouseEvent",
+        "type": "struct",
+        "tag": "extern",
+        "doc": "Example struct",
+        "fields": [
+            { "name": "type", "type": "EventType" },
+            { "name": "pos", "type": "u16", "tag": "array", "len": 2 }
+        ]
+    },
+    {
+        "name": "KeyEvent",
+        "type": "struct",
+        "tag": "extern",
+        "doc": "Example struct",
+        "fields": [
+            { "name": "type", "type": "EventType" },
+            { "name": "key", "type": "string", "doc": "Name of key which triggered event" },
+            { "name": "modifiers", "type": "u8", "doc": "Bitmask of active modifier keys" }
+        ]
+    },
+    {
+        "name": "Event",
+        "type": "union",
+        "tag": "extern",
+        "fields": [
+            { "name": "mouse", "type": "MouseEvent" },
+            { "name": "key", "type": "KeyEvent" }
+        ]
+    }
 ]
 ```
 </details>
@@ -386,143 +386,143 @@ import { MemorySlice, Pointer, WasmStringPtr, WasmTypeBase, WasmTypeConstructor 
  * Supported event types
  */
 export enum EventType {
-	/**
-	 * Any kind of mouse event
-	 */
-	MOUSE = 1,
-	/**
-	 * Key down/up event
-	 */
-	KEY,
-	MISC,
+    /**
+     * Any kind of mouse event
+     */
+    MOUSE = 1,
+    /**
+     * Key down/up event
+     */
+    KEY,
+    MISC,
 }
 
 /**
  * Example struct
  */
 export interface MouseEvent extends WasmTypeBase {
-	type: EventType;
-	/**
-	 * WASM type: [2]u16
-	 */
-	pos: Uint16Array;
+    type: EventType;
+    /**
+     * WASM type: [2]u16
+     */
+    pos: Uint16Array;
 }
 
 export const $MouseEvent: WasmTypeConstructor<MouseEvent> = (mem) => ({
-	get align() {
-		return 2;
-	},
-	get size() {
-		return 6;
-	},
-	instance: (base) => {
-		return {
-			get __base() {
-				return base;
-			},
-			get __bytes() {
-				return mem.u8.subarray(base, base + 6);
-			},
-			get type(): EventType {
-				return mem.u8[base];
-			},
-			set type(x: EventType) {
-				mem.u8[base] = x;
-			},
-			get pos(): Uint16Array {
-				const addr = (base + 2) >>> 1;
-				return mem.u16.subarray(addr, addr + 2);
-			},
-		};
-	}
+    get align() {
+        return 2;
+    },
+    get size() {
+        return 6;
+    },
+    instance: (base) => {
+        return {
+            get __base() {
+                return base;
+            },
+            get __bytes() {
+                return mem.u8.subarray(base, base + 6);
+            },
+            get type(): EventType {
+                return mem.u8[base];
+            },
+            set type(x: EventType) {
+                mem.u8[base] = x;
+            },
+            get pos(): Uint16Array {
+                const addr = (base + 2) >>> 1;
+                return mem.u16.subarray(addr, addr + 2);
+            },
+        };
+    }
 });
 
 /**
  * Example struct
  */
 export interface KeyEvent extends WasmTypeBase {
-	type: EventType;
-	/**
-	 * Name of key which triggered event
-	 */
-	key: WasmStringPtr;
-	/**
-	 * Bitmask of active modifier keys
-	 *
-	 * WASM type: u8
-	 */
-	modifiers: number;
+    type: EventType;
+    /**
+     * Name of key which triggered event
+     */
+    key: WasmStringPtr;
+    /**
+     * Bitmask of active modifier keys
+     *
+     * WASM type: u8
+     */
+    modifiers: number;
 }
 
 export const $KeyEvent: WasmTypeConstructor<KeyEvent> = (mem) => ({
-	get align() {
-		return 4;
-	},
-	get size() {
-		return 12;
-	},
-	instance: (base) => {
-		let $key: WasmStringPtr | null = null;
-		return {
-			get __base() {
-				return base;
-			},
-			get __bytes() {
-				return mem.u8.subarray(base, base + 12);
-			},
-			get type(): EventType {
-				return mem.u8[base];
-			},
-			set type(x: EventType) {
-				mem.u8[base] = x;
-			},
-			get key(): WasmStringPtr {
-				return $key || ($key = new WasmStringPtr(mem, (base + 4), true));
-			},
-			get modifiers(): number {
-				return mem.u8[(base + 8)];
-			},
-			set modifiers(x: number) {
-				mem.u8[(base + 8)] = x;
-			},
-		};
-	}
+    get align() {
+        return 4;
+    },
+    get size() {
+        return 12;
+    },
+    instance: (base) => {
+        let $key: WasmStringPtr | null = null;
+        return {
+            get __base() {
+                return base;
+            },
+            get __bytes() {
+                return mem.u8.subarray(base, base + 12);
+            },
+            get type(): EventType {
+                return mem.u8[base];
+            },
+            set type(x: EventType) {
+                mem.u8[base] = x;
+            },
+            get key(): WasmStringPtr {
+                return $key || ($key = new WasmStringPtr(mem, (base + 4), true));
+            },
+            get modifiers(): number {
+                return mem.u8[(base + 8)];
+            },
+            set modifiers(x: number) {
+                mem.u8[(base + 8)] = x;
+            },
+        };
+    }
 });
 
 export interface Event extends WasmTypeBase {
-	mouse: MouseEvent;
-	key: KeyEvent;
+    mouse: MouseEvent;
+    key: KeyEvent;
 }
 
 export const $Event: WasmTypeConstructor<Event> = (mem) => ({
-	get align() {
-		return 4;
-	},
-	get size() {
-		return 12;
-	},
-	instance: (base) => {
-		return {
-			get __base() {
-				return base;
-			},
-			get __bytes() {
-				return mem.u8.subarray(base, base + 12);
-			},
-			get mouse(): MouseEvent {
-				return $MouseEvent(mem).instance(base);
-			},
-			set mouse(x: MouseEvent) {
-				mem.u8.set(x.__bytes, base);
-			},
-			get key(): KeyEvent {
-				return $KeyEvent(mem).instance(base);
-			},
-			set key(x: KeyEvent) {
-				mem.u8.set(x.__bytes, base);
-			},
-		};
-	}
+    get align() {
+        return 4;
+    },
+    get size() {
+        return 12;
+    },
+    instance: (base) => {
+        return {
+            get __base() {
+                return base;
+            },
+            get __bytes() {
+                return mem.u8.subarray(base, base + 12);
+            },
+            get mouse(): MouseEvent {
+                return $MouseEvent(mem).instance(base);
+            },
+            set mouse(x: MouseEvent) {
+                mem.u8.set(x.__bytes, base);
+            },
+            get key(): KeyEvent {
+                return $KeyEvent(mem).instance(base);
+            },
+            set key(x: KeyEvent) {
+                mem.u8.set(x.__bytes, base);
+            },
+        };
+    }
 });
 ```
 </details>

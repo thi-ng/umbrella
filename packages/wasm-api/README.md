@@ -83,40 +83,40 @@ following example provides a brief overview:
 import { IWasmAPI, WasmBridge } from "@thi.ng/wasm-api";
 
 export class CustomAPI implements IWasmAPI {
-	// Unique API module identifier to group WASM imports,
-	// must match ID used by native code (see further below).
-	readonly id = "custom";
-	// optionally list IDs of other API modules this module depends on
-	// these are used to infer the correct initialization order
-	readonly dependencies = [];
+    // Unique API module identifier to group WASM imports,
+    // must match ID used by native code (see further below).
+    readonly id = "custom";
+    // optionally list IDs of other API modules this module depends on
+    // these are used to infer the correct initialization order
+    readonly dependencies = [];
 
-	parent!: WasmBridge;
+    parent!: WasmBridge;
 
-	async init(parent: WasmBridge) {
-		this.parent = parent;
-		this.parent.logger.debug("initializing custom API");
+    async init(parent: WasmBridge) {
+        this.parent = parent;
+        this.parent.logger.debug("initializing custom API");
 
-		// any other tasks you might need to do...
+        // any other tasks you might need to do...
 
-		return true;
-	}
+        return true;
+    }
 
-	/**
-	 * Returns object of functions to import as externals into the
-	 * WASM module during instantiation. These imports are merged
-	 * into a larger imports object alongside the bridge's core API...
-	 */
-	getImports(): WebAssembly.Imports {
-		return {
-			/**
-			 * Writes `num` random float32 numbers from given address
-			 */
-			fillRandom: (addr: number, num: number) => {
-				addr >>>= 2;
-				while(num-- > 0) this.parent.f32[addr++] = Math.random();
-			}
-		};
-	}
+    /**
+     * Returns object of functions to import as externals into the
+     * WASM module during instantiation. These imports are merged
+     * into a larger imports object alongside the bridge's core API...
+     */
+    getImports(): WebAssembly.Imports {
+        return {
+            /**
+             * Writes `num` random float32 numbers from given address
+             */
+            fillRandom: (addr: number, num: number) => {
+                addr >>>= 2;
+                while(num-- > 0) this.parent.f32[addr++] = Math.random();
+            }
+        };
+    }
 }
 ```
 
@@ -151,16 +151,16 @@ const js = @import("wasmapi");
 const custom = @import("custom.zig");
 
 export fn test_randomVec4() void {
-	var foo = [4]f32{ 1, 2, 3, 4 };
+    var foo = [4]f32{ 1, 2, 3, 4 };
 
-	// print original
-	js.printF32Array(foo[0..]);
+    // print original
+    js.printF32Array(foo[0..]);
 
-	// populate foo with random numbers
-	custom.fillRandom(&foo, foo.len);
+    // populate foo with random numbers
+    custom.fillRandom(&foo, foo.len);
 
-	// print result
-	js.printF32Array(foo[0..]);
+    // print result
+    js.printF32Array(foo[0..]);
 }
 ```
 
@@ -217,22 +217,22 @@ for more details...
 
 ```ts
 try {
-	// allocate 256 bytes of memory for passing a string to WASM side
-	// the function returns a tuple of `[address, len]`
-	const [addr, len] = bridge.allocate(256);
+    // allocate 256 bytes of memory for passing a string to WASM side
+    // the function returns a tuple of `[address, len]`
+    const [addr, len] = bridge.allocate(256);
 
-	// write zero terminated string to reserved memory (max. `len` bytes)
-	// function returns number of bytes written (excl. sentinel)
-	const num = bridge.setString("hello WASM world!", addr, len, true);
+    // write zero terminated string to reserved memory (max. `len` bytes)
+    // function returns number of bytes written (excl. sentinel)
+    const num = bridge.setString("hello WASM world!", addr, len, true);
 
-	// call WASM function doing something w/ the string
-	bridge.exports.doSomethingWithString(addr, num);
+    // call WASM function doing something w/ the string
+    bridge.exports.doSomethingWithString(addr, num);
 
-	// cleanup
-	bridge.free([addr, len]);
+    // cleanup
+    bridge.free([addr, len]);
 } catch(e) {
-	// deal with allocation error
-	// ...
+    // deal with allocation error
+    // ...
 }
 ```
 
@@ -364,21 +364,21 @@ import { readFileSync } from "fs";
 
 // WASM exports from our dummy module (below)
 interface App extends WasmExports {
-	start: () => void;
+    start: () => void;
 }
 
 (async () => {
-	// new API bridge with defaults
-	// (i.e. no child API modules and using console logger)
-	const bridge = new WasmBridge<App>();
+    // new API bridge with defaults
+    // (i.e. no child API modules and using console logger)
+    const bridge = new WasmBridge<App>();
 
-	// instantiate WASM module using imports provided by the bridge
-	// this also initializes any bindings & bridge child APIs (if any)
-	// (also accepts a fetch() `Response` as input)
-	await bridge.instantiate(readFileSync("hello.wasm"));
+    // instantiate WASM module using imports provided by the bridge
+    // this also initializes any bindings & bridge child APIs (if any)
+    // (also accepts a fetch() `Response` as input)
+    await bridge.instantiate(readFileSync("hello.wasm"));
 
-	// call an exported WASM function
-	bridge.exports.start();
+    // call an exported WASM function
+    bridge.exports.start();
 })();
 ```
 
@@ -398,7 +398,7 @@ const std = @import("std");
 pub const WASM_ALLOCATOR: ?std.mem.Allocator = null;
 
 export fn start() void {
-	js.printStr("hello world!");
+    js.printStr("hello world!");
 }
 ```
 
@@ -409,10 +409,10 @@ folder):
 ```bash
 # compile WASM binary
 zig build-lib \
-	--pkg-begin wasmapi node_modules/@thi.ng/wasm-api/zig/lib.zig --pkg-end \
-	-target wasm32-freestanding \
-	-O ReleaseSmall -dynamic \
-	hello.zig
+    --pkg-begin wasmapi node_modules/@thi.ng/wasm-api/zig/lib.zig --pkg-end \
+    -target wasm32-freestanding \
+    -O ReleaseSmall -dynamic \
+    hello.zig
 
 # disassemble WASM
 wasm-dis -o hello.wast hello.wasm
@@ -455,7 +455,7 @@ Requires [Emscripten](https://emscripten.org/) to be installed:
 #include <wasmapi.h>
 
 void WASM_KEEP start() {
-	wasm_printStr0("hello world!");
+    wasm_printStr0("hello world!");
 }
 ```
 
