@@ -132,11 +132,16 @@ export interface Field extends TypeInfo {
 	 *
 	 * @remarks
 	 * - Array & vector fields are statically sized (using {@link Field.len})
-	 * - If no `len` is given, pointers are emitted as single-value pointers
-	 *   (where this distinction exist)
-	 * - If `len` is given, pointers are emitted as pointing to N values (for
-	 *   languages supporting this distinction, e.g. Zig)
-	 * - Zig slices are essentially a pointer w/ associated length
+	 * - If `pointer` and no `len` is given, pointers are emitted as
+	 *   single-value pointers (where this distinction exist)
+	 * - If `pointer` and `len` is > 0, pointers are emitted as pointing to N
+	 *   values (for languages supporting this distinction, e.g. Zig)
+	 * - If `pointer` and `len = 0`, pointers are emitted as pointing to an
+	 *   unspecified number of items (where this distinction is supported). In
+	 *   TypeScript only the target address of these pointers can be accessed.
+	 * - `slice` will result in a struct consisting of a pointer, followed by
+	 *   length field. In Zig this struct also provides coercion functions
+	 *   to/from "normal" Zig slices.
 	 * - Zig vectors will be processed using SIMD (if enabled in WASM target)
 	 *   and therefore will have stricter (larger) alignment requirements.
 	 *
