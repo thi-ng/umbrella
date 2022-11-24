@@ -70,10 +70,14 @@ support package for a more thorough realworld example...
 
 Even though these code generators are published as part of the group of
 thi.ng/wasm-api packages, there are **no runtime dependencies for the generated
-native WASM side code**. Only the generated TypeScript types will depend on the
-core
+native WASM side code**. For C/Zig compilation, only the boilerplate type definition headers are required:
+
+- [C/C++](https://github.com/thi-ng/umbrella/tree/develop/packages/wasm-api-bindgen/include/wasmapi_types.h)
+- [Zig](https://github.com/thi-ng/umbrella/tree/develop/packages/wasm-api-bindgen/zig/lib.zig)
+
+However, the generated TypeScript types will depend on the core
 [thi.ng/wasm-api](https://github.com/thi-ng/umbrella/tree/develop/packages/wasm-api)
-infrastructure, but that should be expected and that kind of re-use is the
+infrastructure, but that should be expected, since that kind of re-use is the
 entire purpose of that parent package.
 
 ### Supported data types
