@@ -37,7 +37,11 @@ export class WasmSchedule implements IWasmAPI<ScheduleExports> {
 
 	async init(parent: WasmBridge<ScheduleExports>) {
 		this.parent = parent;
-		parent.exports._schedule_init();
+		if (parent.exports._schedule_init) {
+			parent.exports._schedule_init();
+		} else {
+			parent.logger.warn("schedule module unused, skipping auto-init...");
+		}
 		return true;
 	}
 
