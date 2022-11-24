@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-11-24T12:23:48Z
+- **Last updated**: 2022-11-24T17:24:36Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,12 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [0.3.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/wasm-api-schedule@0.3.0) (2022-11-24)
+
+#### 🚀 Features
+
+- add check if auto-initializer is present ([f5ad93c](https://github.com/thi-ng/umbrella/commit/f5ad93c))
 
 ## [0.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/wasm-api-schedule@0.2.0) (2022-11-23)
 
