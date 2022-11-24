@@ -1,11 +1,11 @@
 const std = @import("std");
-const wasm = @import("wasmapi");
+const wasmtypes = @import("wasmapi-types");
 
-pub const U8Slice = wasm.Slice([]u8, [*]u8);
-pub const ConstU8Slice = wasm.Slice([]const u8, [*]const u8);
+pub const U8Slice = wasmtypes.Slice([]u8, [*]u8);
+pub const ConstU8Slice = wasmtypes.Slice([]const u8, [*]const u8);
 
-pub const ASlice = wasm.Slice([]A, [*]A);
-pub const ConstASlice = wasm.Slice([]const A, [*]const A);
+pub const ASlice = wasmtypes.Slice([]A, [*]A);
+pub const ConstASlice = wasmtypes.Slice([]const A, [*]const A);
 
 pub const A = extern struct {
     a: u16,

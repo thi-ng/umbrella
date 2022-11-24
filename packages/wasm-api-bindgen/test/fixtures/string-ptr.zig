@@ -1,14 +1,14 @@
 const std = @import("std");
-const wasm = @import("wasmapi");
+const wasmtypes = @import("wasmapi-types");
 
 pub const Foo = extern struct {
-    single: wasm.StringPtr,
-    constSingle: wasm.ConstStringPtr,
-    multi: [2]wasm.ConstStringPtr,
-    singlePtr: *wasm.ConstStringPtr,
-    multiPtr: *[2]wasm.ConstStringPtr,
-    slice: wasm.StringPtrSlice,
-    constSlice: wasm.ConstStringPtrSlice,
+    single: wasmtypes.StringPtr,
+    constSingle: wasmtypes.ConstStringPtr,
+    multi: [2]wasmtypes.ConstStringPtr,
+    singlePtr: *wasmtypes.ConstStringPtr,
+    multiPtr: *[2]wasmtypes.ConstStringPtr,
+    slice: wasmtypes.StringPtrSlice,
+    constSlice: wasmtypes.ConstStringPtrSlice,
 };
 
 export fn Foo_align() usize {
@@ -20,7 +20,7 @@ export fn Foo_size() usize {
 }
 
 export fn Foo_single_align() usize {
-    return @alignOf(wasm.StringPtr);
+    return @alignOf(wasmtypes.StringPtr);
 }
 
 export fn Foo_single_offset() usize {
@@ -28,11 +28,11 @@ export fn Foo_single_offset() usize {
 }
 
 export fn Foo_single_size() usize {
-    return @sizeOf(wasm.StringPtr);
+    return @sizeOf(wasmtypes.StringPtr);
 }
 
 export fn Foo_constSingle_align() usize {
-    return @alignOf(wasm.ConstStringPtr);
+    return @alignOf(wasmtypes.ConstStringPtr);
 }
 
 export fn Foo_constSingle_offset() usize {
@@ -40,11 +40,11 @@ export fn Foo_constSingle_offset() usize {
 }
 
 export fn Foo_constSingle_size() usize {
-    return @sizeOf(wasm.ConstStringPtr);
+    return @sizeOf(wasmtypes.ConstStringPtr);
 }
 
 export fn Foo_multi_align() usize {
-    return @alignOf([2]wasm.ConstStringPtr);
+    return @alignOf([2]wasmtypes.ConstStringPtr);
 }
 
 export fn Foo_multi_offset() usize {
@@ -52,11 +52,11 @@ export fn Foo_multi_offset() usize {
 }
 
 export fn Foo_multi_size() usize {
-    return @sizeOf([2]wasm.ConstStringPtr);
+    return @sizeOf([2]wasmtypes.ConstStringPtr);
 }
 
 export fn Foo_singlePtr_align() usize {
-    return @alignOf(*wasm.ConstStringPtr);
+    return @alignOf(*wasmtypes.ConstStringPtr);
 }
 
 export fn Foo_singlePtr_offset() usize {
@@ -64,11 +64,11 @@ export fn Foo_singlePtr_offset() usize {
 }
 
 export fn Foo_singlePtr_size() usize {
-    return @sizeOf(*wasm.ConstStringPtr);
+    return @sizeOf(*wasmtypes.ConstStringPtr);
 }
 
 export fn Foo_multiPtr_align() usize {
-    return @alignOf(*[2]wasm.ConstStringPtr);
+    return @alignOf(*[2]wasmtypes.ConstStringPtr);
 }
 
 export fn Foo_multiPtr_offset() usize {
@@ -76,11 +76,11 @@ export fn Foo_multiPtr_offset() usize {
 }
 
 export fn Foo_multiPtr_size() usize {
-    return @sizeOf(*[2]wasm.ConstStringPtr);
+    return @sizeOf(*[2]wasmtypes.ConstStringPtr);
 }
 
 export fn Foo_slice_align() usize {
-    return @alignOf(wasm.StringPtrSlice);
+    return @alignOf(wasmtypes.StringPtrSlice);
 }
 
 export fn Foo_slice_offset() usize {
@@ -88,11 +88,11 @@ export fn Foo_slice_offset() usize {
 }
 
 export fn Foo_slice_size() usize {
-    return @sizeOf(wasm.StringPtrSlice);
+    return @sizeOf(wasmtypes.StringPtrSlice);
 }
 
 export fn Foo_constSlice_align() usize {
-    return @alignOf(wasm.ConstStringPtrSlice);
+    return @alignOf(wasmtypes.ConstStringPtrSlice);
 }
 
 export fn Foo_constSlice_offset() usize {
@@ -100,5 +100,5 @@ export fn Foo_constSlice_offset() usize {
 }
 
 export fn Foo_constSlice_size() usize {
-    return @sizeOf(wasm.ConstStringPtrSlice);
+    return @sizeOf(wasmtypes.ConstStringPtrSlice);
 }

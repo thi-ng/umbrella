@@ -1,5 +1,5 @@
 const std = @import("std");
-const wasm = @import("wasmapi");
+const wasmtypes = @import("wasmapi-types");
 
 pub const A = extern struct {
     a: u8,

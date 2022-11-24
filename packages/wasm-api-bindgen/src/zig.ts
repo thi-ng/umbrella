@@ -52,14 +52,14 @@ export const ZIG = (opts: Partial<ZigOpts> = {}) => {
 		pre: (coll) => {
 			const res = [
 				`const std = @import("std");`,
-				`const wasm = @import("wasmapi");`,
+				`const wasmtypes = @import("wasmapi-types");`,
 			];
 			for (let type of sliceTypes(coll)) {
 				if (type !== "string" && type !== "opaque") {
 					const name = capitalize(type!);
 					res.push(
-						`\npub const ${name}Slice = wasm.Slice([]${type}, [*]${type});`,
-						`pub const Const${name}Slice = wasm.Slice([]const ${type}, [*]const ${type});`
+						`\npub const ${name}Slice = wasmtypes.Slice([]${type}, [*]${type});`,
+						`pub const Const${name}Slice = wasmtypes.Slice([]const ${type}, [*]const ${type});`
 					);
 				}
 			}
@@ -213,8 +213,8 @@ export const fieldType = (
 	const $isConst = isConst ? "Const" : "";
 	if (isWasmString(f.type)) {
 		type = isStringSlice(opts.stringType)
-			? `wasm.${$isConst}String`
-			: `wasm.${$isConst}StringPtr`;
+			? `wasmtypes.${$isConst}String`
+			: `wasmtypes.${$isConst}StringPtr`;
 		switch (classifier) {
 			case "strPtr":
 				type = `*${type}`;
@@ -233,7 +233,7 @@ export const fieldType = (
 				break;
 		}
 	} else if (isOpaque(f.type)) {
-		type = `wasm.${$isConst}OpaquePtr`;
+		type = `wasmtypes.${$isConst}OpaquePtr`;
 		switch (classifier) {
 			case "opaquePtr":
 				type = `*${type}`;

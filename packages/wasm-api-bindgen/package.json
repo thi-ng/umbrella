@@ -88,7 +88,9 @@
 		"./*.js",
 		"./*.d.ts",
 		"bin",
+		"include",
 		"schema",
+		"zig",
 		"internal"
 	],
 	"exports": {

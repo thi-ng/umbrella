@@ -1,13 +1,13 @@
 const std = @import("std");
-const wasm = @import("wasmapi");
+const wasmtypes = @import("wasmapi-types");
 
 pub const A = extern struct {
-    a: wasm.OpaquePtr,
-    ptr: *wasm.OpaquePtr,
-    ptr2: *[2]wasm.OpaquePtr,
-    constPtr: *wasm.ConstOpaquePtr,
-    slice: wasm.OpaquePtrSlice,
-    constSlice: wasm.ConstOpaquePtrSlice,
-    array: [3]wasm.OpaquePtr,
-    constArray: [3]wasm.ConstOpaquePtr,
+    a: wasmtypes.OpaquePtr,
+    ptr: *wasmtypes.OpaquePtr,
+    ptr2: *[2]wasmtypes.OpaquePtr,
+    constPtr: *wasmtypes.ConstOpaquePtr,
+    slice: wasmtypes.OpaquePtrSlice,
+    constSlice: wasmtypes.ConstOpaquePtrSlice,
+    array: [3]wasmtypes.OpaquePtr,
+    constArray: [3]wasmtypes.ConstOpaquePtr,
 };
