@@ -63,6 +63,7 @@ const BUILD = new Set([
 ]);
 
 const ALIASES: IObjectOf<string> = {
+	"adapt-api": "adapt-dpi",
 	colors: "color",
 	"color-profiles": "color-palettes",
 	cso: "csp",
@@ -85,7 +86,6 @@ const ALIASES: IObjectOf<string> = {
 	mine: "mime",
 	module: "wasm-api-dom",
 	shadertoy: "webgl-shadertoy",
-	tool: "tools",
 	tranducers: "transducers",
 	transducer: "transducers",
 	unionfind: "adjacency",
@@ -95,6 +95,8 @@ const ALIASES: IObjectOf<string> = {
 	"wasm-alloc": "wasm-api",
 	"wasm-bridge": "wasm-api",
 	"wasm-api-docs": "wasm-api-dom",
+	"wasm-api-time": "wasm-api-schedule",
+	"wasm-api-timer": "wasm-api-schedule",
 	zip: "zipper",
 };
 
