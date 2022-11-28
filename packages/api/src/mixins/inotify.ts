@@ -9,14 +9,15 @@ interface _INotify extends INotify {
 }
 
 export const inotify_dispatch = (listeners: any[][], e: Event) => {
-	if (!listeners) return;
+	if (!listeners) return false;
 	for (let i = 0, n = listeners.length, l; i < n; i++) {
 		l = listeners[i];
 		l[0].call(l[1], e);
 		if (e.canceled) {
-			return;
+			return false;
 		}
 	}
+	return true;
 };
 
 /**
@@ -54,8 +55,8 @@ export const INotifyMixin = mixin(<INotify>{
 		let listeners: IObjectOf<[Listener, any][]>;
 		if (!(listeners = this._listeners)) return false;
 		e.target === undefined && (e.target = this);
-		inotify_dispatch(listeners[<string>e.id], e);
-		inotify_dispatch(listeners[EVENT_ALL], e);
+		const res = inotify_dispatch(listeners[<string>e.id], e);
+		return inotify_dispatch(listeners[EVENT_ALL], e) || res;
 	},
 
 	__listener(listeners: [Listener, any][], f: Listener, scope: any) {
