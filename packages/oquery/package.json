@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/oquery",
-	"version": "2.1.23",
+	"version": "2.1.24",
 	"description": "Datalog-inspired, optimized pattern/predicate query engine for JS objects & arrays",
 	"type": "module",
 	"module": "./index.js",
@@ -34,9 +34,9 @@
 		"test": "testament test"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.4.6",
+		"@thi.ng/api": "^8.5.0",
 		"@thi.ng/checks": "^3.3.3",
-		"@thi.ng/defmulti": "^2.1.21",
+		"@thi.ng/defmulti": "^2.1.22",
 		"@thi.ng/equiv": "^2.1.13"
 	},
 	"devDependencies": {

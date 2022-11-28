@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/transducers-fsm",
-	"version": "2.1.28",
+	"version": "2.1.29",
 	"description": "Transducer-based Finite State Machine transformer",
 	"type": "module",
 	"module": "./index.js",
@@ -34,8 +34,8 @@
 		"test": "testament test"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.4.6",
-		"@thi.ng/transducers": "^8.3.23"
+		"@thi.ng/api": "^8.5.0",
+		"@thi.ng/transducers": "^8.3.24"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.33.5",

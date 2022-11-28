@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-11-23T22:46:54Z
+- **Last updated**: 2022-11-28T13:36:49Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,12 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [8.5.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/api@8.5.0) (2022-11-28)
+
+#### 🚀 Features
+
+- add boolean result for INotifiy.notify(), update mixin ([f4cb33a](https://github.com/thi-ng/umbrella/commit/f4cb33a))
 
 ### [8.4.5](https://github.com/thi-ng/umbrella/tree/@thi.ng/api@8.4.5) (2022-11-01)
 

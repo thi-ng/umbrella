@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/intervals",
-	"version": "4.2.16",
+	"version": "4.2.17",
 	"description": "Closed/open/semi-open interval data type, queries & operations",
 	"type": "module",
 	"module": "./index.js",
@@ -34,9 +34,9 @@
 		"test": "testament test"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.4.6",
+		"@thi.ng/api": "^8.5.0",
 		"@thi.ng/checks": "^3.3.3",
-		"@thi.ng/dlogic": "^2.1.16",
+		"@thi.ng/dlogic": "^2.1.17",
 		"@thi.ng/errors": "^2.2.4"
 	},
 	"devDependencies": {
