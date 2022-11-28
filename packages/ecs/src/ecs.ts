@@ -150,5 +150,5 @@ export class ECS<SPEC> implements INotify {
 
 	/** {@inheritDoc @thi.ng/api#INotify.notify} */
 	// @ts-ignore: mixin
-	notify(event: Event) {}
+	notify(event: Event): boolean {}
 }

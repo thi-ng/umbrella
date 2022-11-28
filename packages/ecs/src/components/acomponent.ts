@@ -128,10 +128,10 @@ export abstract class AComponent<K extends string, VALUES, GET, SET>
 
 	/** {@inheritDoc @thi.ng/api#INotify.notify} */
 	// @ts-ignore: arguments
-	notify(event: Event) {}
+	notify(event: Event): boolean {}
 
-	notifyChange(id: number) {
-		this.notify({ id: EVENT_CHANGED, target: this, value: id });
+	notifyChange(id: number): boolean {
+		return this.notify({ id: EVENT_CHANGED, target: this, value: id });
 	}
 
 	abstract swapIndices(src: number, dest: number): boolean;
