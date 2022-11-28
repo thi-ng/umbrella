@@ -376,5 +376,5 @@ export class History<T> implements IHistory<T> {
 
 	/** {@inheritDoc @thi.ng/api#INotify.notify} */
 	// @ts-ignore: mixin
-	notify(e: Event): void {}
+	notify(e: Event): boolean {}
 }
