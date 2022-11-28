@@ -7,7 +7,7 @@ import { exit } from "process";
 
 interface UploadOpts {
 	ext: string;
-	gzip: boolean;
+	compress: boolean;
 	depth: number;
 	process: Fn<string, void>;
 }
@@ -24,9 +24,9 @@ const BUCKET = `s3://demo.thi.ng${DEST_DIR}`;
 const CF_DISTRO = "EL2F1HMDPZ2RL";
 const PROFILE = "thing-umbrella";
 const OPTS = `--profile ${PROFILE} --acl public-read`;
-const GZOPTS = `${OPTS} --content-encoding gzip`;
+const COMPRESS_OPTS = `${OPTS} --content-encoding br`;
 
-const NEVER_GZIP = new Set(["mp4"]);
+const NEVER_COMPRESS = new Set(["mp4"]);
 
 const args = new Set(process.argv.slice(3).map((x) => x.substring(2)));
 console.log(args);
@@ -39,7 +39,7 @@ execFileSync(
 const uploadAssets = (dir: string, opts?: Partial<UploadOpts>) => {
 	const root = `${BUILD}${dir}`;
 	if (!existsSync(root)) return;
-	opts = { ext: "", gzip: true, depth: Infinity, ...opts };
+	opts = { ext: "", compress: true, depth: Infinity, ...opts };
 	for (let f of files(root, opts.ext!, opts.depth)) {
 		const fd = `${BUCKET}/${f
 			.replace(BUILD, "")
@@ -48,11 +48,11 @@ const uploadAssets = (dir: string, opts?: Partial<UploadOpts>) => {
 		const type = preferredType(ext);
 		console.log(f, "->", fd, type);
 		opts.process && opts.process(f);
-		if (opts.gzip && !NEVER_GZIP.has(ext)) {
-			execFileSync("gzip", ["-9", f]);
+		if (opts.compress && !NEVER_COMPRESS.has(ext)) {
+			execFileSync("brotli", ["-9", f]);
 			execFileSync(
 				"aws",
-				`s3 cp ${f}.gz ${fd} ${GZOPTS} --content-type ${type}`.split(
+				`s3 cp ${f}.br ${fd} ${COMPRESS_OPTS} --content-type ${type}`.split(
 					" "
 				)
 			);

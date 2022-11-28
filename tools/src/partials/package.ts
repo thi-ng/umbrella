@@ -83,9 +83,9 @@ export const packageSize = () => {
 		const meta = readJSON("./.meta/size.json");
 		const res = [];
 		for (let id in meta) {
-			res.push(`${id.toUpperCase()}: ${bytes(meta[id].gzip)}`);
+			res.push(`${id.toUpperCase()}: ${bytes(meta[id].brotli)}`);
 		}
-		return "Package sizes (gzipped, pre-treeshake): " + res.join(" / ");
+		return "Package sizes (brotli'd, pre-treeshake): " + res.join(" / ");
 	} catch (_) {
 		return "";
 	}

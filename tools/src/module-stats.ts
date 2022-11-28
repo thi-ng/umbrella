@@ -29,12 +29,12 @@ const min = execFileSync("../../node_modules/esbuild/bin/esbuild", [
 	"--minify",
 	...opts,
 ]).toString();
-const gzip = execFileSync("gzip", { input: min });
+const brotli = execFileSync("brotli", { input: min });
 
 const stats = {
 	raw: raw.length,
 	min: min.length,
-	gzip: gzip.byteLength,
+	brotli: brotli.byteLength,
 };
 
 !existsSync(".meta") && mkdirSync(".meta");
