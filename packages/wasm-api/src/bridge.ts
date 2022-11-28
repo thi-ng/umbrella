@@ -18,6 +18,7 @@ import {
 	BigIntArray,
 	CoreAPI,
 	EVENT_MEMORY_CHANGED,
+	EVENT_PANIC,
 	IWasmAPI,
 	IWasmMemoryAccess,
 	MemorySlice,
@@ -121,7 +122,10 @@ export class WasmBridge<T extends WasmExports = WasmExports>
 			},
 
 			_panic: (addr, len) => {
-				throw new Panic(this.getString(addr, len));
+				const msg = this.getString(addr, len);
+				if (!this.notify({ id: EVENT_PANIC, value: msg })) {
+					throw new Panic(msg);
+				}
 			},
 
 			timer: () => performance.now(),
@@ -532,5 +536,5 @@ export class WasmBridge<T extends WasmExports = WasmExports>
 
 	/** {@inheritDoc @thi.ng/api#INotify.notify} */
 	// @ts-ignore: mixin
-	notify(event: Event): void {}
+	notify(event: Event): boolean {}
 }

@@ -2,6 +2,7 @@ import type { Fn, IDeref, ILength } from "@thi.ng/api";
 import type { WasmBridge } from "./bridge.js";
 
 export const EVENT_MEMORY_CHANGED = "memory-changed";
+export const EVENT_PANIC = "panic";
 
 export type BigIntArray = bigint[] | BigInt64Array | BigUint64Array;
 
