@@ -62,7 +62,7 @@ export class BasicRouter implements INotify {
 
 	/** {@inheritDoc @thi.ng/api#INotify.notify} */
 	// @ts-ignore: arguments
-	notify(event: Event) {}
+	notify(event: Event): boolean {}
 
 	start() {
 		if (this.config.initialRouteID) {
