@@ -96,7 +96,7 @@ node --experimental-repl-await
 > const random = await import("@thi.ng/random");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.99 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 1.83 KB
 
 ## Dependencies
 

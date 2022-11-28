@@ -56,7 +56,7 @@ node --experimental-repl-await
 > const sparse = await import("@thi.ng/sparse");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 3.62 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 3.26 KB
 
 ## Dependencies
 

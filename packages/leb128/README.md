@@ -68,7 +68,7 @@ node --experimental-repl-await
 > const leb128 = await import("@thi.ng/leb128");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.07 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 1.04 KB
 
 ## Dependencies
 

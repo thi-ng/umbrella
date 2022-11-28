@@ -69,7 +69,7 @@ node --experimental-repl-await
 > const rstreamGestures = await import("@thi.ng/rstream-gestures");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.16 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 1.07 KB
 
 ## Dependencies
 

@@ -124,7 +124,7 @@ node --experimental-repl-await
 > const distance = await import("@thi.ng/distance");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.20 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 1.11 KB
 
 ## Dependencies
 

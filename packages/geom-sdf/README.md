@@ -136,7 +136,7 @@ node --experimental-repl-await
 > const geomSdf = await import("@thi.ng/geom-sdf");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 3.87 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 3.52 KB
 
 ## Dependencies
 

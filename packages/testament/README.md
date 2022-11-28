@@ -52,7 +52,7 @@ node --experimental-repl-await
 > const testament = await import("@thi.ng/testament");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.19 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 1.08 KB
 
 ## Dependencies
 

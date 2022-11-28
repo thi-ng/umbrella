@@ -737,7 +737,7 @@ node --experimental-repl-await
 > const wasmApiBindgen = await import("@thi.ng/wasm-api-bindgen");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 6.49 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 5.92 KB
 
 ## Dependencies
 

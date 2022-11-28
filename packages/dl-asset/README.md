@@ -58,7 +58,7 @@ node --experimental-repl-await
 > const dlAsset = await import("@thi.ng/dl-asset");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 648 bytes
+Package sizes (brotli'd, pre-treeshake): ESM: 578 bytes
 
 ## Dependencies
 

@@ -70,7 +70,7 @@ node --experimental-repl-await
 > const memoize = await import("@thi.ng/memoize");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 282 bytes
+Package sizes (brotli'd, pre-treeshake): ESM: 248 bytes
 
 ## Dependencies
 

@@ -201,7 +201,7 @@ node --experimental-repl-await
 > const rstream = await import("@thi.ng/rstream");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 6.13 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 5.60 KB
 
 ## Dependencies
 

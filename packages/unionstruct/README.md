@@ -69,7 +69,7 @@ node --experimental-repl-await
 > const unionstruct = await import("@thi.ng/unionstruct");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.05 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 1009 bytes
 
 ## Dependencies
 

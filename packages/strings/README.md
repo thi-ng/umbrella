@@ -143,7 +143,7 @@ node --experimental-repl-await
 > const strings = await import("@thi.ng/strings");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 4.64 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 4.29 KB
 
 ## Dependencies
 

@@ -92,7 +92,7 @@ node --experimental-repl-await
 > const randomFxhash = await import("@thi.ng/random-fxhash");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 499 bytes
+Package sizes (brotli'd, pre-treeshake): ESM: 441 bytes
 
 **IMPORTANT**: When using this package (or any other packages from this
 monorepo) for [fxhash](https://fxhash.xyz), you MUST use a bundler (e.g. Vite,

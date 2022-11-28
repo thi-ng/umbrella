@@ -89,7 +89,7 @@ node --experimental-repl-await
 > const vclock = await import("@thi.ng/vclock");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 464 bytes
+Package sizes (brotli'd, pre-treeshake): ESM: 432 bytes
 
 ## Dependencies
 

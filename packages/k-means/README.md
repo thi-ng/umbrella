@@ -51,7 +51,7 @@ node --experimental-repl-await
 > const kMeans = await import("@thi.ng/k-means");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 987 bytes
+Package sizes (brotli'd, pre-treeshake): ESM: 906 bytes
 
 ## Dependencies
 

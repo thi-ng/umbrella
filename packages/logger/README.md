@@ -110,7 +110,7 @@ node --experimental-repl-await
 > const logger = await import("@thi.ng/logger");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 553 bytes
+Package sizes (brotli'd, pre-treeshake): ESM: 476 bytes
 
 ## Dependencies
 

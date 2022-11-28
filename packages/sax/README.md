@@ -80,7 +80,7 @@ node --experimental-repl-await
 > const sax = await import("@thi.ng/sax");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.74 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 1.56 KB
 
 ## Dependencies
 

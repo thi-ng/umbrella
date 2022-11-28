@@ -154,7 +154,7 @@ node --experimental-repl-await
 > const rasterize = await import("@thi.ng/rasterize");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.59 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 1.47 KB
 
 ## Dependencies
 

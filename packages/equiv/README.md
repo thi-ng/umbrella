@@ -63,7 +63,7 @@ node --experimental-repl-await
 > const equiv = await import("@thi.ng/equiv");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 488 bytes
+Package sizes (brotli'd, pre-treeshake): ESM: 436 bytes
 
 ## Dependencies
 

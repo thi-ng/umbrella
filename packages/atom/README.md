@@ -125,7 +125,7 @@ node --experimental-repl-await
 > const atom = await import("@thi.ng/atom");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.91 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 1.75 KB
 
 ## Dependencies
 

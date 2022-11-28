@@ -601,7 +601,7 @@ node --experimental-repl-await
 > const color = await import("@thi.ng/color");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 17.50 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 15.21 KB
 
 ## Dependencies
 

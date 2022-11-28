@@ -58,7 +58,7 @@ node --experimental-repl-await
 > const hdiff = await import("@thi.ng/hdiff");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.54 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 1.38 KB
 
 ### CLI installation & usage
 

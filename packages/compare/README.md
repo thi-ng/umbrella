@@ -60,7 +60,7 @@ node --experimental-repl-await
 > const compare = await import("@thi.ng/compare");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 431 bytes
+Package sizes (brotli'd, pre-treeshake): ESM: 393 bytes
 
 ## Dependencies
 

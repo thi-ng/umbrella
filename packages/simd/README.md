@@ -135,7 +135,7 @@ node --experimental-repl-await
 > const simd = await import("@thi.ng/simd");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 2.44 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 2.16 KB
 
 ## Dependencies
 

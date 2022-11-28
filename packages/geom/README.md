@@ -131,7 +131,7 @@ node --experimental-repl-await
 > const geom = await import("@thi.ng/geom");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 13.50 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 11.90 KB
 
 ## Dependencies
 

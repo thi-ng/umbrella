@@ -324,7 +324,7 @@ node --experimental-repl-await
 > const tangle = await import("@thi.ng/tangle");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.97 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 1.84 KB
 
 ## Dependencies
 

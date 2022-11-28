@@ -94,7 +94,7 @@ node --experimental-repl-await
 > const dcons = await import("@thi.ng/dcons");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 2.61 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 2.40 KB
 
 ## Dependencies
 

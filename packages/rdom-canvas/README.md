@@ -59,7 +59,7 @@ node --experimental-repl-await
 > const rdomCanvas = await import("@thi.ng/rdom-canvas");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 743 bytes
+Package sizes (brotli'd, pre-treeshake): ESM: 646 bytes
 
 ## Dependencies
 

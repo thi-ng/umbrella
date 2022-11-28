@@ -57,7 +57,7 @@ node --experimental-repl-await
 > const dlogic = await import("@thi.ng/dlogic");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 393 bytes
+Package sizes (brotli'd, pre-treeshake): ESM: 378 bytes
 
 ## Dependencies
 

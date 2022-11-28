@@ -78,7 +78,7 @@ node --experimental-repl-await
 > const bencode = await import("@thi.ng/bencode");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.30 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 1.18 KB
 
 ## Dependencies
 

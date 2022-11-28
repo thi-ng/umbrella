@@ -140,7 +140,7 @@ node --experimental-repl-await
 > const dualAlgebra = await import("@thi.ng/dual-algebra");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.04 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 990 bytes
 
 ## Dependencies
 

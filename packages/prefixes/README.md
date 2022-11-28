@@ -60,7 +60,7 @@ node --experimental-repl-await
 > const prefixes = await import("@thi.ng/prefixes");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.12 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 1.03 KB
 
 ## Dependencies
 

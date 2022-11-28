@@ -86,7 +86,7 @@ node --experimental-repl-await
 > const gp = await import("@thi.ng/gp");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.29 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 1.18 KB
 
 ## Dependencies
 

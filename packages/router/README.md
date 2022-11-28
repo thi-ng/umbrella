@@ -70,7 +70,7 @@ node --experimental-repl-await
 > const router = await import("@thi.ng/router");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.54 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 1.38 KB
 
 ## Dependencies
 

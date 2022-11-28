@@ -64,7 +64,7 @@ node --experimental-repl-await
 > const shaderAstGlsl = await import("@thi.ng/shader-ast-glsl");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.39 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 1.27 KB
 
 ## Dependencies
 

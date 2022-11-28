@@ -50,7 +50,7 @@ node --experimental-repl-await
 > const complex = await import("@thi.ng/complex");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.05 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 1017 bytes
 
 ## Dependencies
 

@@ -54,7 +54,7 @@ node --experimental-repl-await
 > const geomHull = await import("@thi.ng/geom-hull");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 426 bytes
+Package sizes (brotli'd, pre-treeshake): ESM: 414 bytes
 
 ## Dependencies
 

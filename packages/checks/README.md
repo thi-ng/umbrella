@@ -52,7 +52,7 @@ node --experimental-repl-await
 > const checks = await import("@thi.ng/checks");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.74 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 1.59 KB
 
 ## Dependencies
 

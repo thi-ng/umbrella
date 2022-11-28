@@ -88,7 +88,7 @@ node --experimental-repl-await
 > const viz = await import("@thi.ng/viz");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 2.86 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 2.58 KB
 
 ## Dependencies
 

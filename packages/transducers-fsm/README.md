@@ -69,7 +69,7 @@ node --experimental-repl-await
 > const transducersFsm = await import("@thi.ng/transducers-fsm");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 240 bytes
+Package sizes (brotli'd, pre-treeshake): ESM: 213 bytes
 
 ## Dependencies
 

@@ -50,7 +50,7 @@ node --experimental-repl-await
 > const dspIoWav = await import("@thi.ng/dsp-io-wav");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 534 bytes
+Package sizes (brotli'd, pre-treeshake): ESM: 488 bytes
 
 ## Dependencies
 

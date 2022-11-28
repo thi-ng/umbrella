@@ -59,7 +59,7 @@ node --experimental-repl-await
 > const geomFuzz = await import("@thi.ng/geom-fuzz");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.23 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 1.13 KB
 
 ## Dependencies
 

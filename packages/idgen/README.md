@@ -78,7 +78,7 @@ node --experimental-repl-await
 > const idgen = await import("@thi.ng/idgen");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 871 bytes
+Package sizes (brotli'd, pre-treeshake): ESM: 792 bytes
 
 ## Dependencies
 

@@ -82,7 +82,7 @@ node --experimental-repl-await
 > const hdomCanvas = await import("@thi.ng/hdom-canvas");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 914 bytes
+Package sizes (brotli'd, pre-treeshake): ESM: 824 bytes
 
 ## Dependencies
 

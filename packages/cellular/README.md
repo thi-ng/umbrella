@@ -163,7 +163,7 @@ node --experimental-repl-await
 > const cellular = await import("@thi.ng/cellular");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.51 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 1.40 KB
 
 ## Dependencies
 

@@ -71,7 +71,7 @@ node --experimental-repl-await
 > const math = await import("@thi.ng/math");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 4.29 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 3.91 KB
 
 ## Dependencies
 

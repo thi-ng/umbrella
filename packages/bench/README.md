@@ -68,7 +68,7 @@ node --experimental-repl-await
 > const bench = await import("@thi.ng/bench");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.35 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 1.25 KB
 
 ## Dependencies
 

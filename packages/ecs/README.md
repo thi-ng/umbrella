@@ -61,7 +61,7 @@ node --experimental-repl-await
 > const ecs = await import("@thi.ng/ecs");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 3.11 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 2.86 KB
 
 ## Dependencies
 

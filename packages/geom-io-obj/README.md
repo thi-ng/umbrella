@@ -71,7 +71,7 @@ node --experimental-repl-await
 > const geomIoObj = await import("@thi.ng/geom-io-obj");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 1.04 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 1004 bytes
 
 ## Dependencies
 
