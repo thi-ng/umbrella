@@ -102,7 +102,7 @@ node --experimental-repl-await
 > const wasmApiSchedule = await import("@thi.ng/wasm-api-schedule");
 ```
 
-Package sizes (gzipped, pre-treeshake): ESM: 437 bytes
+Package sizes (gzipped, pre-treeshake): ESM: 479 bytes
 
 ## Dependencies
 

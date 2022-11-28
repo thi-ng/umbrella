@@ -46,7 +46,7 @@ only bindings for these mentioned langs are included.
    frontend/utility](https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api-bindgen/README.md#cli-generator)
    for the code generator(s)
 
-### Custom API modules
+## Custom API modules
 
 The
 [`WasmBridge`](https://docs.thi.ng/umbrella/wasm-api/classes/WasmBridge.html)
@@ -108,7 +108,8 @@ export const bridge = new WasmBridge([new CustomAPI()]);
 ```
 
 In Zig (or any other language of your choice) we can then utilize this custom
-API like so (Please also see [example projects](https://github.com/thi-ng/umbrella/tree/develop/examples/zig-canvas/)
+API like so (Please also see [example
+projects](https://github.com/thi-ng/umbrella/tree/develop/examples/zig-canvas/)
 & other example snippets in this readme):
 
 Bindings file / lib:
@@ -158,7 +159,7 @@ To avoid guesswork about the internals of these API modules, all of them are
 using an overall uniform structure, with the main Zig entry point in
 `/zig/lib.zig`...
 
-### String handling
+## String handling
 
 Most low-level languages deal with strings very differently and alas there's no
 general standard. Some have UTF-8/16 support, others don't. In some languages
@@ -180,7 +181,7 @@ Finally, see more information in the
 [@thi.ng/wasm-api-bindgen](https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api-bindgen/README.md#string-handling)
 package readme.
 
-### Memory allocations
+## Memory allocations
 
 If explicitly enabled on the WASM side, the `WasmBridge` includes support for
 malloc/free-style allocations (within the linear WASM memory) from the JS side.
@@ -226,7 +227,18 @@ try {
 }
 ```
 
-### Object indices & handles
+### API module auto-initialization
+
+The supplied child APIs
+([wasm-api-dom](https://github.com/thi-ng/umbrella/tree/develop/packages/wasm-api-dom),
+[wasm-api-schedule](https://github.com/thi-ng/umbrella/tree/develop/packages/wasm-api-schedule)
+etc.) use an auto-intialization hook related to the above `WASM_ALLOCATOR`
+mechanism: If that allocator is available, the WASM side of these modules will
+auto initialize and thus reduce boilerplate. However, if no such central
+allocator is defined and/or a custom allocator should be used, then these API
+modules will be have to be initialized manually.
+
+## Object indices & handles
 
 Since only numeric values can be exchanged between the WASM module and the JS
 host, any JS native objects the WASM side might want to be working with must be
@@ -273,13 +285,14 @@ canvases.delete(0);
 // true
 ```
 
-Since v0.15.0, the supplied Zig core bindings lib also includes a
+The supplied Zig core library also includes a
 [`ManagedIndex`](https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api/zig/managed-index.zig)
-for similar dealings on the Zig side of the application. For example, in the
+for similar resource management on the Zig side of the application. For example,
+in the
 [@thi.ng/wasm-api-dom](https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api-dom/)
 &
 [@thi.ng/wasm-api-schedule](https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api-schedule/)
-packages this is used to manage Zig event listeners.
+packages this is used to manage Zig-side event listeners.
 
 ${status}
 
