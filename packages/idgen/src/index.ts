@@ -174,7 +174,7 @@ export class IDGen implements Iterable<number>, IClear, INotify {
 
 	/** {@inheritDoc @thi.ng/api#INotify.notify} */
 	// @ts-ignore: mixin
-	notify(event: Event) {}
+	notify(event: Event): boolean {}
 
 	protected nextVersion(id: number) {
 		return (
