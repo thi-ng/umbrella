@@ -18,7 +18,7 @@ group("mixins", {
 			removeListener(_: string, __: Listener, ___?: any): boolean {
 				throw new Error();
 			}
-			notify(_: Event) {
+			notify(_: Event): boolean {
 				throw new Error();
 			}
 		}
