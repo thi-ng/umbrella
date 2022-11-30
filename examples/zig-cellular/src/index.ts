@@ -20,6 +20,7 @@ interface WasmApp extends WasmExports, WasmDomExports {
 
 class CanvasPixelAccess implements IWasmAPI<WasmApp> {
 	readonly id = "pixels";
+	readonly dependencies = [WasmDom.id];
 
 	parent!: WasmBridge<WasmApp>;
 	dom!: WasmDom;
@@ -37,6 +38,17 @@ class CanvasPixelAccess implements IWasmAPI<WasmApp> {
 
 	getImports() {
 		return {
+			/**
+			 * Copies ABGR pixel buffer to canvas for given ID.
+			 *
+			 * @remarks
+			 * Assumes the canvas was created via thi.ng/wasm-api-dom's
+			 * createCanvas() function.
+			 *
+			 * @param canvasID
+			 * @param pixelsAddr
+			 * @param numPixels
+			 */
 			updatePixelsABGR: (
 				canvasID: number,
 				pixelsAddr: number,
@@ -47,6 +59,20 @@ class CanvasPixelAccess implements IWasmAPI<WasmApp> {
 				ctx.putImageData(img, 0, 0);
 			},
 
+			/**
+			 * Converts u8 indexed color pixel buffer to ABGR (using given LUT)
+			 * and copies it to canvas for given ID.
+			 *
+			 * @remarks
+			 * Assumes the canvas was created via thi.ng/wasm-api-dom's
+			 * createCanvas() function.
+			 *
+			 * @param canvasID
+			 * @param pixelsAddr
+			 * @param numPixels
+			 * @param lutAddr
+			 * @param numLut
+			 */
 			updatePixelsLUT: (
 				canvasID: number,
 				pixelsAddr: number,
@@ -63,6 +89,13 @@ class CanvasPixelAccess implements IWasmAPI<WasmApp> {
 		};
 	}
 
+	/**
+	 * Slight overkill for this demo, but future proofing for this API module to
+	 * support multiple canvases. Looks up canvas for ID in wasm-api-dom and
+	 * pre-caches canvas context and image data.
+	 *
+	 * @param canvasID
+	 */
 	protected ensureContext(canvasID: number) {
 		let $ctx = this.contexts[canvasID];
 		if (!$ctx) {

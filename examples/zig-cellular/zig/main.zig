@@ -13,7 +13,7 @@ pub usingnamespace wasm;
 // https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api/zig/lib.zig
 // https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api-dom/zig/lib.zig
 
-// 4MB "heap" buffer for allocator
+// 2MB fixed "heap" buffer for allocator
 var mem: [2 * 1024 * 1024]u8 = undefined;
 // setup allocator
 var fba = std.heap.FixedBufferAllocator.init(&mem);
