@@ -1,6 +1,6 @@
 # zig-cellular
 
-![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/zig-cellular.png)
+![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/zig-cellular.jpg)
 
 [Live demo](http://demo.thi.ng/umbrella/zig-cellular/)
 
