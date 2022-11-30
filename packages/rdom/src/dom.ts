@@ -18,25 +18,29 @@ import { mergeClasses, mergeEmmetAttribs } from "@thi.ng/hiccup/attribs";
 import { formatPrefixes } from "@thi.ng/hiccup/prefix";
 import { XML_SVG, XML_XLINK, XML_XMLNS } from "@thi.ng/prefixes/xml";
 import type { NumOrElement } from "./api.js";
-import { isComponent } from "./checks.js";
+import { isComment, isComponent } from "./checks.js";
 
 /**
- * hdom-style DOM tree creation from hiccup format. Returns DOM element
- * of `tree` root. See {@link $el} for further details.
+ * hdom-style DOM tree creation from hiccup format. Returns DOM element of
+ * `tree` root. See {@link $el} for further details.
  *
  * @remarks
  * Supports elements given in these forms:
  *
  * - {@link IComponent} instance
- * - {@link IDeref} instance (must resolve to another supported type in
- *   this list)
+ * - {@link IDeref} instance (must resolve to another supported type in this
+ *   list)
  * - `["div#id.class", {...attribs}, ...children]`
+ * - `[COMMENT, "foo", "bar"...]` (DOM comment node)
  * - `[IComponent, ...mountargs]`
  * - `[function, ...args]`
  * - ES6 iterable of the above (for child values only!)
  *
- * Any other values will be cast to strings and added as spans to
- * current `parent`.
+ * Any other values will be cast to strings and added as spans to current
+ * `parent`.
+ *
+ * Note: `COMMENT` is defined as constant in thi.ng/hiccup package. Also see
+ * {@link $comment} function to create comments directly.
  *
  * @param tree -
  * @param parent -
@@ -48,7 +52,9 @@ export const $tree = async (
 	idx: NumOrElement = -1
 ): Promise<any> =>
 	isArray(tree)
-		? $treeElem(tree, parent, idx)
+		? isComment(tree)
+			? $comment(tree.slice(1), parent, idx)
+			: $treeElem(tree, parent, idx)
 		: isComponent(tree)
 		? tree.mount(parent, idx)
 		: isDeref(tree)
@@ -144,9 +150,47 @@ export const $el = (
 	return el;
 };
 
+/**
+ * Similar to {@link $el}, but creates a new comment DOM node using provided
+ * body. If `parent` is given, the comment will be attached or inserted as child
+ * at `idx`. Returns comment node.
+ *
+ * @remarks
+ * See thi.ng/hiccup docs for reference:
+ * - https://docs.thi.ng/umbrella/hiccup/functions/serialize.html
+ *
+ * @param body
+ * @param parent
+ * @param idx
+ */
+export const $comment = (
+	body: string | string[],
+	parent?: Element,
+	idx: NumOrElement = -1
+) => {
+	const comment = document.createComment(
+		isString(body)
+			? body
+			: body.length < 2
+			? body[0] || ""
+			: ["", ...body, ""].join("\n")
+	);
+	parent && $addChild(parent, comment, idx);
+	return comment;
+};
+
+/**
+ * Appends or inserts `child` as child element of `parent`. The default `idx` of
+ * -1 means the child will be appended, else uses `parent.insertBefore()` to
+ * insert at given index.
+ *
+ * @param parent
+ * @param child
+ * @param idx
+ */
 export const $addChild = (
 	parent: Element,
-	child: Element,
+	child: Element | Comment,
 	idx: NumOrElement = -1
 ) => {
 	isNumber(idx)
@@ -156,17 +200,35 @@ export const $addChild = (
 		: parent.insertBefore(child, idx);
 };
 
-export const $remove = (el: Element) => el.remove();
+/**
+ * Removes given element or comment from the DOM.
+ *
+ * @param el
+ */
+export const $remove = (el: Element | Comment) => el.remove();
 
+/**
+ * Migrates given element to `newParent`, following the same append or insertion
+ * logic as {@link $addChild}.
+ *
+ * @param newParent
+ * @param el
+ * @param idx
+ */
 export const $moveTo = (
 	newParent: Element,
-	el: Element,
+	el: Element | Comment,
 	idx: NumOrElement = -1
 ) => {
 	$remove(el);
 	$addChild(newParent, el, idx);
 };
 
+/**
+ * Removes all content from given element.
+ *
+ * @param el
+ */
 export const $clear = (el: Element) => ((el.innerHTML = ""), el);
 
 /**
@@ -177,12 +239,12 @@ export const $clear = (el: Element) => ((el.innerHTML = ""), el);
  * @param el -
  * @param body -
  */
-export const $text = (el: HTMLElement, body: any) => {
+export const $text = (el: HTMLElement | SVGElement, body: any) => {
 	body = String(deref(body));
 	if (el.namespaceURI === XML_SVG) {
 		$clear(el).appendChild(document.createTextNode(body));
 	} else {
-		el.innerText = body;
+		(<HTMLElement>el).innerText = body;
 	}
 };
 
@@ -193,8 +255,10 @@ export const $text = (el: HTMLElement, body: any) => {
  * @param el -
  * @param body -
  */
-
-export const $html = (el: HTMLElement, body: MaybeDeref<string>) => {
+export const $html = (
+	el: HTMLElement | SVGElement,
+	body: MaybeDeref<string>
+) => {
 	el.innerHTML = String(deref(body));
 };
 

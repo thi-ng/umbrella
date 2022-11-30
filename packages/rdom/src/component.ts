@@ -4,6 +4,7 @@ import { $compile } from "./compile.js";
 import {
 	$attribs,
 	$clear,
+	$comment,
 	$el,
 	$html,
 	$moveTo,
@@ -35,6 +36,16 @@ export abstract class Component<T = any> implements IComponent<T> {
 	// @ts-ignore args
 	update(state?: T) {}
 
+	/**
+	 * Syntax sugar for {@link $el}, using this component's
+	 * {@link IComponent.el} as default `parent`.
+	 *
+	 * @param tag
+	 * @param attribs
+	 * @param body
+	 * @param parent
+	 * @param idx
+	 */
 	$el(
 		tag: string,
 		attribs?: any,
@@ -45,38 +56,121 @@ export abstract class Component<T = any> implements IComponent<T> {
 		return $el(tag, attribs, body, parent, idx);
 	}
 
+	/**
+	 * Syntax sugar for {@link $comment}, creates a new comment DOM node using
+	 * this component's {@link IComponent.el} as default `parent`.
+	 *
+	 * @param body
+	 * @param parent
+	 * @param idx
+	 */
+	$comment(body: string | string[], parent = this.el, idx?: NumOrElement) {
+		return $comment(body, parent, idx);
+	}
+
+	/**
+	 * Syntax sugar for {@link $clear}, using this component's
+	 * {@link IComponent.el} as default element to clear.
+	 *
+	 * @param el
+	 */
 	$clear(el = this.el!) {
 		return $clear(el);
 	}
 
+	/**
+	 * Same as {@link $compile}.
+	 *
+	 * @param tree
+	 */
 	$compile(tree: any) {
 		return $compile(tree);
 	}
 
+	/**
+	 * Same as {@link $tree}.
+	 *
+	 * @param tree
+	 * @param root
+	 * @param index
+	 */
 	$tree(tree: any, root = this.el!, index?: NumOrElement) {
 		return $tree(tree, root, index);
 	}
 
-	$text(body: any) {
-		this.el && $text(<any>this.el, body);
+	/**
+	 * Syntax sugar for {@link $text}, using this component's
+	 * {@link IComponent.el} as default element to edit.
+	 *
+	 * @remarks
+	 * If using the default element, assumes `this.el` is an existing
+	 * `HTMLElement`.
+	 *
+	 * @param body
+	 * @param el
+	 */
+	$text(body: any, el: HTMLElement = <HTMLElement>this.el!) {
+		$text(el, body);
 	}
 
-	$html(body: MaybeDeref<string>) {
-		this.el && $html(<any>this.el, body);
+	/**
+	 * Syntax sugar for {@link $html}, using this component's
+	 * {@link IComponent.el} as default element to edit.
+	 *
+	 * @remarks
+	 * If using the default element, assumes `this.el` is an existing
+	 * `HTMLElement` or `SVGElement`.
+	 *
+	 * @param body
+	 * @param el
+	 */
+	$html(
+		body: MaybeDeref<string>,
+		el: HTMLElement | SVGElement = <HTMLElement>this.el!
+	) {
+		$html(el, body);
 	}
 
+	/**
+	 * Syntax sugar for {@link $attribs}, using this component's
+	 * {@link IComponent.el} as default element to edit.
+	 *
+	 * @param attribs
+	 * @param el
+	 */
 	$attribs(attribs: any, el = this.el!) {
 		$attribs(el, attribs);
 	}
 
+	/**
+	 * Syntax sugar for {@link $style}, using this component's
+	 * {@link IComponent.el} as default element to edit.
+	 *
+	 * @param rules
+	 * @param el
+	 */
 	$style(rules: any, el = this.el!) {
 		$style(el, rules);
 	}
 
+	/**
+	 * Syntax sugar for {@link $remove}, using this component's
+	 * {@link IComponent.el} as default element to remove.
+	 *
+	 * @param el
+	 */
 	$remove(el = this.el!) {
 		$remove(el);
 	}
 
+	/**
+	 * Syntax sugar for {@link $moveTo}, using this component's
+	 * {@link IComponent.el} as default element to migrate.
+	 *
+	 * @param newParent
+	 * @param el
+	 * @param idx
+	 */
 	$moveTo(newParent: Element, el = this.el!, idx?: NumOrElement) {
 		$moveTo(newParent, el, idx);
 	}
