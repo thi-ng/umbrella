@@ -46,8 +46,8 @@ recommended pattern looks something like this:
 
 ```zig
 const std = @import("std");
-const wasm = @import("wasmapi");
-const dom = @import("dom");
+const wasm = @import("wasm-api");
+const dom = @import("wasm-api-dom");
 
 // expose thi.ng/wasm-api core API (incl. panic handler & allocation fns)
 pub usingnamespace wasm;
@@ -103,7 +103,7 @@ Attribute definitions need to be wrapped using `dom.attribs()` and child
 elements via `dom.children()`, as shown here:
 
 ```zig
-const dom = @import("dom");
+const dom = @import("wasm-api-dom");
 
 const Attrib = dom.Attrib;
 
@@ -195,8 +195,8 @@ example project. Also check other supplied Zig examples for more realworld
 [usage examples](#usage-examples).
 
 ```zig
-const wasm = @import("wasmapi");
-const dom = @import("dom");
+const wasm = @import("wasm-api");
+const dom = @import("wasm-api-dom");
 
 /// Simple click counter component
 const Counter = struct {

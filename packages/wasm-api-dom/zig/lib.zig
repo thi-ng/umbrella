@@ -1,4 +1,4 @@
-const wasm = @import("wasmapi");
+const wasm = @import("wasm-api");
 const dom = @import("api.zig");
 const event = @import("events.zig");
 const fullscreen = @import("fullscreen.zig");

@@ -1,9 +1,9 @@
-import type { WasmExports } from "@thi.ng/wasm-api";
 import { XML_SVG, XML_XLINK, XML_XMLNS } from "@thi.ng/prefixes/xml";
+import type { WasmExports } from "@thi.ng/wasm-api";
 
 export * from "./generated/api.js";
 
-export interface DOMExports extends WasmExports {
+export interface WasmDomExports extends WasmExports {
 	_dom_init(): void;
 	_dom_callListener(listenerID: number, event: number): void;
 	_dom_callRAF(rafID: number, t: number): void;
@@ -12,7 +12,7 @@ export interface DOMExports extends WasmExports {
 	_dom_removeListener(listenerID: number): void;
 }
 
-export interface DOMImports extends WebAssembly.ModuleImports {
+export interface WasmDomImports extends WebAssembly.ModuleImports {
 	/**
 	 * Queries the browser's current `window` object and writes results to given
 	 * {@link WindowInfo} pointer.
@@ -39,7 +39,7 @@ export interface DOMImports extends WebAssembly.ModuleImports {
 	 * @remarks
 	 * The DOM element created will NOT be garbage collected unless explicitly
 	 * (or implicitly via ancestors) removed via
-	 * {@link DOMImports.removeElement}.
+	 * {@link WasmDomImports.removeElement}.
 	 *
 	 * @param optsAddr
 	 */
@@ -51,9 +51,9 @@ export interface DOMImports extends WebAssembly.ModuleImports {
 	 * @remarks
 	 * IMPORTANT: Currently there's no way to automatically garbage collect
 	 * WASM-side event listeners (i.e. those registered via
-	 * {@link DOMImports._addListener}) attached to the element or anywhere in
+	 * {@link WasmDomImports._addListener}) attached to the element or anywhere in
 	 * its sub-tree. These must be manually removed via
-	 * {@link DOMImports._removeListener} prior to calling this function.
+	 * {@link WasmDomImports._removeListener} prior to calling this function.
 	 *
 	 * @param elementID
 	 */
@@ -62,7 +62,7 @@ export interface DOMImports extends WebAssembly.ModuleImports {
 	/**
 	 * Takes a {@link CreateCanvasOpts} pointer and creates a new canvas element
 	 * according to the given opts. Returns unique ID handle for new element,
-	 * see {@link DOMImports.createElement} for details.
+	 * see {@link WasmDomImports.createElement} for details.
 	 *
 	 * @param optsAddr
 	 */
@@ -132,7 +132,7 @@ export interface DOMImports extends WebAssembly.ModuleImports {
 	): number;
 
 	/**
-	 * Similar to {@link DOMImports._getStringAttrib}, reads a string attribute
+	 * Similar to {@link WasmDomImports._getStringAttrib}, reads a string attribute
 	 * value from DOM element and allocates memory for it. Writes
 	 * `[pointer,length]` tuple to `sliceAddr` (using the global allocator
 	 * configured for the WASM bridge). Caller owns the memory.

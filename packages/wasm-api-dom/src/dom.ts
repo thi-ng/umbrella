@@ -17,12 +17,12 @@ import {
 	$WindowInfo,
 	AttribType,
 	CreateElementOpts,
-	DOMExports,
-	DOMImports,
 	Event as WasmEvent,
 	EventBody,
 	EventType,
 	NS_PREFIXES,
+	WasmDomExports,
+	WasmDomImports,
 } from "./api.js";
 
 /**
@@ -31,7 +31,7 @@ import {
  */
 const __listeners = "__wasm_listeners";
 
-interface WASMElement extends Element {
+interface WasmElement extends Element {
 	[__listeners]: Set<number>;
 }
 
@@ -71,10 +71,10 @@ interface WasmListener {
 	fn: EventListener;
 }
 
-export class WasmDom implements IWasmAPI<DOMExports> {
+export class WasmDom implements IWasmAPI<WasmDomExports> {
 	static readonly id = "dom";
 
-	parent!: WasmBridge<DOMExports>;
+	parent!: WasmBridge<WasmDomExports>;
 	$Event!: WasmType<WasmEvent>;
 	$CreateElementOpts!: WasmType<CreateElementOpts>;
 
@@ -88,7 +88,7 @@ export class WasmDom implements IWasmAPI<DOMExports> {
 		return WasmDom.id;
 	}
 
-	async init(parent: WasmBridge<DOMExports>) {
+	async init(parent: WasmBridge<WasmDomExports>) {
 		this.parent = parent;
 		if (parent.exports._dom_init) {
 			parent.exports._dom_init();
@@ -102,7 +102,7 @@ export class WasmDom implements IWasmAPI<DOMExports> {
 		return true;
 	}
 
-	getImports(): DOMImports {
+	getImports(): WasmDomImports {
 		return {
 			getWindowInfo: (ptr: number) => {
 				const info = $WindowInfo(this.parent).instance(ptr);
@@ -168,7 +168,7 @@ export class WasmDom implements IWasmAPI<DOMExports> {
 					);
 					if (elementID !== undefined) {
 						this.elements.delete(elementID, false);
-						const elementListeners = (<WASMElement>el)[__listeners];
+						const elementListeners = (<WasmElement>el)[__listeners];
 						if (elementListeners) {
 							for (let listenerID of elementListeners) {
 								this.removeListener(el, listenerID);
@@ -328,8 +328,8 @@ export class WasmDom implements IWasmAPI<DOMExports> {
 				};
 				if (ctxID >= 0) {
 					(
-						(<WASMElement>ctx)[__listeners] ||
-						((<WASMElement>ctx)[__listeners] = new Set())
+						(<WasmElement>ctx)[__listeners] ||
+						((<WasmElement>ctx)[__listeners] = new Set())
 					).add(listenerID);
 				}
 			},
@@ -353,7 +353,7 @@ export class WasmDom implements IWasmAPI<DOMExports> {
 					listener.ctx < 0 ? window : this.elements.get(listener.ctx);
 				this.removeListener(ctx, listenerID);
 				if (listener.ctx >= 0) {
-					const listeners = (<WASMElement>ctx)[__listeners];
+					const listeners = (<WasmElement>ctx)[__listeners];
 					if (listeners.has(listenerID)) listeners.delete(listenerID);
 				}
 			},

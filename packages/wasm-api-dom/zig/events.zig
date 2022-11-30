@@ -1,6 +1,6 @@
 const std = @import("std");
 const dom = @import("api.zig");
-const wasm = @import("wasmapi");
+const wasm = @import("wasm-api");
 
 var eventListeners: wasm.ManagedIndex(dom.EventListener, u16) = undefined;
 var rafListeners: wasm.ManagedIndex(dom.RAFListener, u16) = undefined;
