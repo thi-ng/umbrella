@@ -1,7 +1,6 @@
 const std = @import("std");
-const wasm = @import("wasmapi");
+const wasm = @import("wasm-api");
 const api = @import("api.zig");
-const ManagedIndex = @import("wasmapi").ManagedIndex;
 
 pub usingnamespace api;
 
@@ -19,12 +18,12 @@ pub const ScheduledCall = struct {
     ctx: ?*anyopaque = null,
 };
 
-var calls: ManagedIndex(ScheduledCall, u16) = undefined;
+var calls: wasm.ManagedIndex(ScheduledCall, u16) = undefined;
 
 /// Initializes the API module. MUST be called before using any of the other
 /// functions provided here.
 pub fn init(allocator: std.mem.Allocator) void {
-    calls = ManagedIndex(ScheduledCall, u16).init(allocator);
+    calls = wasm.ManagedIndex(ScheduledCall, u16).init(allocator);
 }
 
 /// Auto-initialization hook called from JS when the module initializes

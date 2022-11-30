@@ -1,6 +1,10 @@
 import type { Fn, Fn0, FnO } from "@thi.ng/api";
 import type { IWasmAPI, WasmBridge } from "@thi.ng/wasm-api";
-import { ScheduleExports, ScheduleImports, ScheduleType } from "./api.js";
+import {
+	ScheduleType,
+	WasmScheduleExports,
+	WasmScheduleImports,
+} from "./api.js";
 
 /** @internal */
 interface ScheduledCall {
@@ -25,17 +29,17 @@ const CANCEL: Record<ScheduleType, Fn<any, void>> = {
 		typeof clearImmediate !== "undefined" ? clearImmediate : clearTimeout,
 };
 
-export class WasmSchedule implements IWasmAPI<ScheduleExports> {
+export class WasmSchedule implements IWasmAPI<WasmScheduleExports> {
 	static readonly id = "schedule";
 
-	parent!: WasmBridge<ScheduleExports>;
+	parent!: WasmBridge<WasmScheduleExports>;
 	listeners: Record<number, ScheduledCall> = {};
 
 	get id() {
 		return WasmSchedule.id;
 	}
 
-	async init(parent: WasmBridge<ScheduleExports>) {
+	async init(parent: WasmBridge<WasmScheduleExports>) {
 		this.parent = parent;
 		if (parent.exports._schedule_init) {
 			parent.exports._schedule_init();
@@ -45,7 +49,7 @@ export class WasmSchedule implements IWasmAPI<ScheduleExports> {
 		return true;
 	}
 
-	getImports(): ScheduleImports {
+	getImports(): WasmScheduleImports {
 		return {
 			_schedule: (kind, delay, listenerID) => {
 				this.listeners[listenerID] = {

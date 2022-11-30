@@ -27,8 +27,8 @@ cancelled via `cancel()`...
 Zig example:
 
 ```zig
-const wasm = @import("wasmapi");
-const schedule = @import("schedule");
+const wasm = @import("wasm-api");
+const schedule = @import("wasm-api-schedule");
 
 // ...
 

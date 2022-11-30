@@ -3,12 +3,12 @@ import type { ScheduleType } from "./generated/api.js";
 
 export * from "./generated/api.js";
 
-export interface ScheduleExports extends WasmExports {
+export interface WasmScheduleExports extends WasmExports {
 	_schedule_init(): void;
 	_schedule_callback(timerID: number, type: ScheduleType): void;
 }
 
-export interface ScheduleImports extends WebAssembly.ModuleImports {
+export interface WasmScheduleImports extends WebAssembly.ModuleImports {
 	/**
 	 * Schedules given callback of given kind.
 	 *
