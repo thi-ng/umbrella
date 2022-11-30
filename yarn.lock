@@ -1803,6 +1803,18 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@example/zig-cellular@workspace:examples/zig-cellular":
+  version: 0.0.0-use.local
+  resolution: "@example/zig-cellular@workspace:examples/zig-cellular"
+  dependencies:
+    "@thi.ng/api": "workspace:^"
+    "@thi.ng/wasm-api": "workspace:^"
+    "@thi.ng/wasm-api-dom": "workspace:^"
+    typescript: ^4.8.4
+    vite: ^3.2.2
+  languageName: unknown
+  linkType: soft
+
 "@example/zig-counter@workspace:examples/zig-counter":
   version: 0.0.0-use.local
   resolution: "@example/zig-counter@workspace:examples/zig-counter"
