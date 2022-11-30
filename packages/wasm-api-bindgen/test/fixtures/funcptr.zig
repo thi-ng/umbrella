@@ -1,10 +1,10 @@
 const std = @import("std");
-const wasmtypes = @import("wasmapi-types");
+const bindgen = @import("wasm-api-bindgen");
 
-pub const ASlice = wasmtypes.Slice([]A, [*]A);
-pub const ConstASlice = wasmtypes.Slice([]const A, [*]const A);
+pub const ASlice = bindgen.Slice([]A, [*]A);
+pub const ConstASlice = bindgen.Slice([]const A, [*]const A);
 
-pub const A = *const fn(x: *u32, y: wasmtypes.ConstStringPtr) void;
+pub const A = *const fn (x: *u32, y: bindgen.ConstStringPtr) void;
 
 pub const B = extern struct {
     a: A,

@@ -586,7 +586,7 @@ export const $Event: WasmTypeConstructor<Event> = (mem) => ({
 //! DO NOT EDIT!
 
 const std = @import("std");
-const wasmtypes = @import("wasmapi-types");
+const bindgen = @import("wasm-api-bindgen");
 
 /// Supported event types
 pub const EventType = enum(u8) {
@@ -607,7 +607,7 @@ pub const MouseEvent = extern struct {
 pub const KeyEvent = extern struct {
     type: EventType,
     /// Name of key which triggered event
-    key: wasmtypes.ConstStringPtr,
+    key: bindgen.ConstStringPtr,
     /// Bitmask of active modifier keys
     modifiers: u8,
 };
@@ -626,15 +626,15 @@ for the supplied type wrappers:
 
 ```bash
 zig build-lib \
-    --pkg-begin wasmapi-types node_modules/@thi.ng/wasm-api-bindgen/zig/lib.zig --pkg-end \
+    --pkg-begin wasm-api-bindgen node_modules/@thi.ng/wasm-api-bindgen/zig/lib.zig --pkg-end \
     -target wasm32-freestanding \
     -O ReleaseSmall -dynamic \
     main.zig
 ```
 
-Alternatively, use a [the setup used by various example
-projects](https://github.com/thi-ng/umbrella/blob/develop/examples/zig-canvas/build.zig)
-in this repo to use Zig's build system...
+Alternatively, use a [more elaborate setup used by various example
+projects](https://github.com/thi-ng/umbrella/blob/develop/examples/zig-todo-list/build.zig)
+in this repo, using Zig's native build system...
 
 ### Runtime example
 

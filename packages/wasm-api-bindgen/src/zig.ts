@@ -52,14 +52,14 @@ export const ZIG = (opts: Partial<ZigOpts> = {}) => {
 		pre: (coll) => {
 			const res = [
 				`const std = @import("std");`,
-				`const wasmtypes = @import("wasmapi-types");`,
+				`const bindgen = @import("wasm-api-bindgen");`,
 			];
 			for (let type of sliceTypes(coll)) {
 				if (type !== "string" && type !== "opaque") {
 					const name = capitalize(type!);
 					res.push(
-						`\npub const ${name}Slice = wasmtypes.Slice([]${type}, [*]${type});`,
-						`pub const Const${name}Slice = wasmtypes.Slice([]const ${type}, [*]const ${type});`
+						`\npub const ${name}Slice = bindgen.Slice([]${type}, [*]${type});`,
+						`pub const Const${name}Slice = bindgen.Slice([]const ${type}, [*]const ${type});`
 					);
 				}
 			}
@@ -141,7 +141,7 @@ export const ZIG = (opts: Partial<ZigOpts> = {}) => {
 							opts
 					  ).type;
 			acc.push(
-				`pub const ${ptr.name} = *const fn(${args}) ${rtype};`,
+				`pub const ${ptr.name} = *const fn (${args}) ${rtype};`,
 				""
 			);
 		},
@@ -213,8 +213,8 @@ export const fieldType = (
 	const $isConst = isConst ? "Const" : "";
 	if (isWasmString(f.type)) {
 		type = isStringSlice(opts.stringType)
-			? `wasmtypes.${$isConst}String`
-			: `wasmtypes.${$isConst}StringPtr`;
+			? `bindgen.${$isConst}String`
+			: `bindgen.${$isConst}StringPtr`;
 		switch (classifier) {
 			case "strPtr":
 				type = `*${type}`;
@@ -233,7 +233,7 @@ export const fieldType = (
 				break;
 		}
 	} else if (isOpaque(f.type)) {
-		type = `wasmtypes.${$isConst}OpaquePtr`;
+		type = `bindgen.${$isConst}OpaquePtr`;
 		switch (classifier) {
 			case "opaquePtr":
 				type = `*${type}`;

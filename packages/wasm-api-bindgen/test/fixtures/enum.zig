@@ -1,8 +1,8 @@
 const std = @import("std");
-const wasmtypes = @import("wasmapi-types");
+const bindgen = @import("wasm-api-bindgen");
 
-pub const ASlice = wasmtypes.Slice([]A, [*]A);
-pub const ConstASlice = wasmtypes.Slice([]const A, [*]const A);
+pub const ASlice = bindgen.Slice([]A, [*]A);
+pub const ConstASlice = bindgen.Slice([]const A, [*]const A);
 
 pub const A = enum(i32) {
     foo,
