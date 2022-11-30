@@ -1,8 +1,8 @@
 //! Main Zig application (aka root package)
 
 const std = @import("std");
-const wasm = @import("wasmapi");
-const dom = @import("dom");
+const wasm = @import("wasm-api");
+const dom = @import("wasm-api-dom");
 const State = @import("state.zig");
 const api = @import("api.zig");
 

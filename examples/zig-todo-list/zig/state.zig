@@ -1,7 +1,7 @@
 const std = @import("std");
-const wasm = @import("wasmapi");
-const dom = @import("dom");
-const schedule = @import("schedule").schedule;
+const wasm = @import("wasm-api");
+const dom = @import("wasm-api-dom");
+const schedule = @import("wasm-api-schedule").schedule;
 const todo = @import("api.zig");
 
 allocator: std.mem.Allocator,

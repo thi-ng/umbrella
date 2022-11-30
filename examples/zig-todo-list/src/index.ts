@@ -1,12 +1,20 @@
 import type { Fn0 } from "@thi.ng/api";
 import { FMT_HHmmss, FMT_yyyyMMdd } from "@thi.ng/date";
 import { IWasmAPI, WasmBridge, WasmExports, WasmType } from "@thi.ng/wasm-api";
-import { DOMExports, WasmDom } from "@thi.ng/wasm-api-dom";
-import { ScheduleExports, WasmSchedule } from "@thi.ng/wasm-api-schedule";
+import { WasmDom, WasmDomExports } from "@thi.ng/wasm-api-dom";
+import { WasmSchedule, WasmScheduleExports } from "@thi.ng/wasm-api-schedule";
 import { $Task, Task, TaskState } from "./api";
 import WASM_URL from "./main.wasm?url";
 
-interface WasmApp extends WasmExports, DOMExports, ScheduleExports {
+/**
+ * Combined WASM exports of all API modules used, incl. any custom user defined
+ * additions.
+ *
+ * @remarks
+ * These are usually all functions/symbols which can be called/accessed from the
+ * JS side.
+ */
+interface WasmApp extends WasmExports, WasmDomExports, WasmScheduleExports {
 	start: Fn0<void>;
 }
 

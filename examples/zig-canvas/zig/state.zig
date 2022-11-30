@@ -1,8 +1,8 @@
 //! App state model & operations for drawn gestures
 
 const std = @import("std");
-const wasm = @import("wasmapi");
-const dom = @import("dom");
+const wasm = @import("wasm-api");
+const dom = @import("wasm-api-dom");
 const api = @import("api.zig");
 
 /// Allocator to use for recorded strokes/gestures

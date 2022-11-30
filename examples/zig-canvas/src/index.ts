@@ -1,12 +1,22 @@
 import type { Fn0 } from "@thi.ng/api";
 import { downloadCanvas } from "@thi.ng/dl-asset";
-import { NULL_LOGGER } from "@thi.ng/logger";
 import { randomID } from "@thi.ng/random";
 import { IWasmAPI, WasmBridge, WasmExports } from "@thi.ng/wasm-api";
-import { DOMExports, WasmDom } from "@thi.ng/wasm-api-dom";
+import { WasmDom, WasmDomExports } from "@thi.ng/wasm-api-dom";
 import WASM_URL from "./main.wasm?url";
 
-interface WasmApp extends WasmExports, DOMExports {
+/**
+ * Combined WASM exports of all API modules used, incl. any custom user defined
+ * additions.
+ *
+ * @remarks
+ * These are usually all functions/symbols which can be called/accessed from the
+ * JS side.
+ */
+interface WasmApp extends WasmExports, WasmDomExports {
+	/**
+	 * Custom user defined start function (see /zig/main.zig)
+	 */
 	start: Fn0<void>;
 }
 

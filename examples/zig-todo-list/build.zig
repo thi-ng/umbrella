@@ -20,8 +20,8 @@ pub fn build(b: *std.build.Builder) void {
         // we don't need to specify core wasmapi, only custom/extra packages
         // wasmapi is also auto-added as dependency for each of these
         .packages = &[_]npm.Pkg{
-            .{ .id = "dom", .path = "@thi.ng/wasm-api-dom/zig/lib.zig" },
-            .{ .id = "schedule", .path = "@thi.ng/wasm-api-schedule/zig/lib.zig" },
+            .{ .id = "wasm-api-dom", .path = "@thi.ng/wasm-api-dom/zig/lib.zig" },
+            .{ .id = "wasm-api-schedule", .path = "@thi.ng/wasm-api-schedule/zig/lib.zig" },
         },
     });
     defer pkgs.deinit();
