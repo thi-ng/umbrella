@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-11-23T22:46:54Z
+- **Last updated**: 2022-11-30T22:27:37Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,12 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [2.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/hiccup-html@2.2.0) (2022-11-30)
+
+#### 🚀 Features
+
+- add comment(), related to [#367](https://github.com/thi-ng/umbrella/issues/367) ([fe952d5](https://github.com/thi-ng/umbrella/commit/fe952d5))
 
 ## [2.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/hiccup-html@2.1.0) (2021-11-17)
 

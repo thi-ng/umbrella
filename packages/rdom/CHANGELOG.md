@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-11-23T22:46:54Z
+- **Last updated**: 2022-11-30T22:27:37Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,18 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [0.10.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/rdom@0.10.0) (2022-11-30)
+
+#### 🚀 Features
+
+- add DOM comment support ([#367](https://github.com/thi-ng/umbrella/issues/367)), other refactorings ([3fd5f8e](https://github.com/thi-ng/umbrella/commit/3fd5f8e))
+  - add $comment(), isComment()
+  - add Component.$comment() syntax sugar
+  - add comment check/branch in $tree()
+  - update args for $addChild(), $remove(), $moveTo()
+  - update $text(), $html() to support SVG elements
+  - add doc strings
 
 ## [0.9.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/rdom@0.9.0) (2022-07-12)
 

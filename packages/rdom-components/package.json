@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/rdom-components",
-	"version": "0.5.20",
+	"version": "0.5.21",
 	"description": "Collection of unstyled, customizable components for @thi.ng/rdom",
 	"type": "module",
 	"module": "./index.js",
@@ -34,17 +34,17 @@
 		"test": "testament test"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.5.0",
-		"@thi.ng/associative": "^6.2.17",
-		"@thi.ng/hiccup-html": "^2.1.18",
-		"@thi.ng/rdom": "^0.9.20",
-		"@thi.ng/rstream": "^7.2.29",
-		"@thi.ng/strings": "^3.3.18",
-		"@thi.ng/transducers": "^8.3.24"
+		"@thi.ng/api": "^8.5.1",
+		"@thi.ng/associative": "^6.2.18",
+		"@thi.ng/hiccup-html": "^2.2.0",
+		"@thi.ng/rdom": "^0.10.0",
+		"@thi.ng/rstream": "^7.2.30",
+		"@thi.ng/strings": "^3.3.19",
+		"@thi.ng/transducers": "^8.3.25"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.33.5",
-		"@thi.ng/testament": "^0.3.5",
+		"@thi.ng/testament": "^0.3.6",
 		"rimraf": "^3.0.2",
 		"tools": "workspace:^",
 		"typedoc": "^0.23.20",
