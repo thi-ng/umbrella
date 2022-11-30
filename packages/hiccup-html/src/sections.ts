@@ -57,3 +57,8 @@ export const [
 export const [h1, h2, h3, h4, h5, h6] = [1, 2, 3, 4, 5, 6].map((i) =>
 	defElement("h" + i)
 );
+
+export const comment = (...body: string[]) => [
+	"__COMMENT__", // keep tag in sync with thi.ng/hiccup
+	...body,
+];
