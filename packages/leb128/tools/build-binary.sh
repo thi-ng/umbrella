@@ -4,8 +4,8 @@ zig build-lib -target wasm32-freestanding -dynamic -O ReleaseSmall --strip src/l
 # apply binaryen optimizer
 wasm-opt leb128.wasm -o opt.wasm -Oz
 
-# display as .wat text format
-wasm-dis opt.wasm -o opt.wat
+# display as .wast text format
+wasm-dis opt.wasm -o opt.wast
 
 # encode as base64
 cat << EOF > src/binary.ts
