@@ -1,14 +1,15 @@
-import { delayed } from "@thi.ng/compose/delayed";
-import { SYSTEM } from "@thi.ng/random/system";
-import type { NumOrElement } from "@thi.ng/rdom";
-import { $compile } from "@thi.ng/rdom/compile";
-import { Component } from "@thi.ng/rdom/component";
-import { $klist } from "@thi.ng/rdom/klist";
-import { $refresh } from "@thi.ng/rdom/switch";
-import { merge } from "@thi.ng/rstream/merge";
-import { fromPromise } from "@thi.ng/rstream/promise";
-import { reactive } from "@thi.ng/rstream/stream";
-import { cycle } from "@thi.ng/transducers/cycle";
+import { delayed } from "@thi.ng/compose";
+import { comment, div, h3, img } from "@thi.ng/hiccup-html";
+import { SYSTEM } from "@thi.ng/random";
+import {
+	$compile,
+	$klist,
+	$refresh,
+	Component,
+	NumOrElement,
+} from "@thi.ng/rdom";
+import { fromPromise, merge, reactive } from "@thi.ng/rstream";
+import { cycle } from "@thi.ng/transducers";
 
 interface UserSummary {
 	id: number;
@@ -32,9 +33,8 @@ const colors = cycle(["f00", "0ff", "f0f", "f90", "00f", "0f0"]);
  *
  * @param srcUrl -
  */
-const userThumb = (srcUrl: Promise<string>) => [
-	"img.db.w-100",
-	{
+const userThumb = (srcUrl: Promise<string>) =>
+	img(".db.w-100", {
 		// src image attribute
 		src: merge({
 			// stream sources
@@ -48,24 +48,24 @@ const userThumb = (srcUrl: Promise<string>) => [
 				///....
 			],
 		}),
-	},
-];
+	});
 
 /**
  * Alternative project thumbnail with custom inner pre-loader component.
  *
  * @param srcUrl -
  */
-const userThumbAlt = (srcUrl: Promise<string>) => [
-	"div.aspect-ratio.aspect-ratio--16x9.tc",
-	{},
-	$refresh(
-		fromPromise(srcUrl),
-		async (src) => ["img.w-100", { src }],
-		async (x) => ["img.w-100", { src: "broken.png" }],
-		async () => ["div", { style: { padding: "25% 0" } }, "loading..."]
-	),
-];
+const userThumbAlt = (srcUrl: Promise<string>) =>
+	div(
+		".aspect-ratio.aspect-ratio--16x9.tc",
+		{},
+		$refresh(
+			fromPromise(srcUrl),
+			async (src) => ["img.w-100", { src }],
+			async (x) => ["img.w-100", { src: "broken.png" }],
+			async () => ["div", { style: { padding: "25% 0" } }, "loading..."]
+		)
+	);
 
 class UserComponent extends Component {
 	constructor(public user: UserSummary) {
@@ -74,25 +74,29 @@ class UserComponent extends Component {
 
 	async mount(parent: Element, index?: NumOrElement): Promise<Element> {
 		this.el = await this.$tree(
-			this.$compile([
-				"div.bg-black.white",
-				{},
-				// also try out userThumbAlt...
-				userThumb(
-					// intentionally delay
-					delayed(
-						`https://via.placeholder.com/640x360.png/${
-							colors.next().value
-						}/fff?text=${this.user.name}`,
-						SYSTEM.minmax(0.5, 1) * 2000
-					)
-				),
-				[
-					"h3.pa2.ma0.f6",
+			this.$compile(
+				div(
+					".bg-black.white",
 					{},
-					`User #${this.user.id}: ${this.user.name}`,
-				],
-			]),
+					// DOM comment (inspect in browser dev tools)
+					comment(`ID: ${this.user.id}`, `Name: ${this.user.name}`),
+					// also try out userThumbAlt...
+					userThumb(
+						// intentionally delay
+						delayed(
+							`https://via.placeholder.com/640x360.png/${
+								colors.next().value
+							}/fff?text=${this.user.name}`,
+							SYSTEM.minmax(0.5, 1) * 2000
+						)
+					),
+					h3(
+						".pa2.ma0.f6",
+						{},
+						`User #${this.user.id}: ${this.user.name}`
+					)
+				)
+			),
 			parent,
 			index
 		);

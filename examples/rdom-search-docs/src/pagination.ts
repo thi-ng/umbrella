@@ -1,15 +1,9 @@
 import type { IRelease } from "@thi.ng/api";
 import { equiv } from "@thi.ng/equiv";
-import { div } from "@thi.ng/hiccup-html/blocks";
-import { button } from "@thi.ng/hiccup-html/forms";
-import { clamp } from "@thi.ng/math/interval";
-import type { ISubscription } from "@thi.ng/rstream";
-import { reactive, Stream } from "@thi.ng/rstream/stream";
-import { sync } from "@thi.ng/rstream/sync";
-import { comp } from "@thi.ng/transducers/comp";
-import { dedupe } from "@thi.ng/transducers/dedupe";
-import { map } from "@thi.ng/transducers/map";
-import { page } from "@thi.ng/transducers/page";
+import { button, div } from "@thi.ng/hiccup-html";
+import { clamp } from "@thi.ng/math";
+import { ISubscription, reactive, Stream, sync } from "@thi.ng/rstream";
+import { comp, dedupe, map, page } from "@thi.ng/transducers";
 
 export class Pagination<T extends any[]> implements IRelease {
 	page: Stream<number>;

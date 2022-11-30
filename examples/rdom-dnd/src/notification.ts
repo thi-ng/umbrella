@@ -1,11 +1,11 @@
-import { CHECKMARK_FILLED } from "@thi.ng/hiccup-carbon-icons/checkmark-filled";
-import { INFORMATION_FILLED } from "@thi.ng/hiccup-carbon-icons/information-filled";
-import { withSize } from "@thi.ng/hiccup-carbon-icons/with-size";
-import { WARNING_ALT_FILLED } from "@thi.ng/hiccup-carbon-icons/warning-alt-filled";
-import { div } from "@thi.ng/hiccup-html/blocks";
-import { span } from "@thi.ng/hiccup-html/inline";
-import type { NumOrElement } from "@thi.ng/rdom";
-import { Component } from "@thi.ng/rdom/component";
+import {
+	CHECKMARK_FILLED,
+	INFORMATION_FILLED,
+	WARNING_ALT_FILLED,
+	withSize,
+} from "@thi.ng/hiccup-carbon-icons";
+import { div, span } from "@thi.ng/hiccup-html";
+import { Component, NumOrElement } from "@thi.ng/rdom";
 
 const PRESETS = {
 	info: { class: "bg-lightest-blue blue", icon: INFORMATION_FILLED },

@@ -17,6 +17,7 @@
 	},
 	"dependencies": {
 		"@thi.ng/compose": "workspace:^",
+		"@thi.ng/hiccup-html": "workspace:^",
 		"@thi.ng/random": "workspace:^",
 		"@thi.ng/rdom": "workspace:^",
 		"@thi.ng/rstream": "workspace:^",

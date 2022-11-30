@@ -1,15 +1,10 @@
-import { defAtom } from "@thi.ng/atom/atom";
+import { defAtom } from "@thi.ng/atom";
 import { equivArrayLike } from "@thi.ng/equiv";
-import { circle } from "@thi.ng/hiccup-svg/circle";
-import { line } from "@thi.ng/hiccup-svg/line";
-import { svg } from "@thi.ng/hiccup-svg/svg";
-import { $compile } from "@thi.ng/rdom/compile";
-import { $list } from "@thi.ng/rdom/list";
-import { fromAtom } from "@thi.ng/rstream/atom";
-import { indexed } from "@thi.ng/transducers/indexed";
-import { partition } from "@thi.ng/transducers/partition";
-import { repeatedly } from "@thi.ng/transducers/repeatedly";
-import { random2 } from "@thi.ng/vectors/random";
+import { circle, line, svg } from "@thi.ng/hiccup-svg";
+import { $compile, $list } from "@thi.ng/rdom";
+import { fromAtom } from "@thi.ng/rstream";
+import { indexed, partition, repeatedly } from "@thi.ng/transducers";
+import { random2 } from "@thi.ng/vectors";
 
 const WIDTH = 600;
 const NUM = 10;

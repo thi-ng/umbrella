@@ -1,16 +1,8 @@
-import { timed } from "@thi.ng/bench/timed";
-import { div } from "@thi.ng/hiccup-html/blocks";
-import { inputText } from "@thi.ng/hiccup-html/forms";
-import { anchor } from "@thi.ng/hiccup-html/inline";
-import type { IComponent } from "@thi.ng/rdom";
-import { $compile } from "@thi.ng/rdom/compile";
-import { Component } from "@thi.ng/rdom/component";
-import { $text } from "@thi.ng/rdom/dom";
-import { $list } from "@thi.ng/rdom/list";
-import type { ISubscription } from "@thi.ng/rstream";
-import { debounce } from "@thi.ng/rstream/debounce";
-import { reactive, Stream } from "@thi.ng/rstream/stream";
-import { map } from "@thi.ng/transducers/map";
+import { timed } from "@thi.ng/bench";
+import { anchor, div, inputText } from "@thi.ng/hiccup-html";
+import { $list, $text, Component, IComponent } from "@thi.ng/rdom";
+import { debounce, ISubscription, reactive, Stream } from "@thi.ng/rstream";
+import { map } from "@thi.ng/transducers";
 import msgpack from "@ygoe/msgpack";
 import { pageControls, Pagination } from "./pagination";
 import { search, type SearchIndex } from "./search";
@@ -19,7 +11,7 @@ const INDEX_URL = "https://docs.thi.ng/umbrella/search-index-latest.bin";
 const REPO_URL = "https://github.com/thi-ng/umbrella/";
 const BASE_URL = `${REPO_URL}blob/develop/packages/`;
 const SRC_URL = `${REPO_URL}/tree/develop/examples/rdom-search-docs`;
-const INITIAL_QUERY = "hdom";
+const INITIAL_QUERY = "api";
 const PAGE_SIZE = 25;
 
 class DocSearch extends Component {
@@ -38,7 +30,7 @@ class DocSearch extends Component {
 	}
 
 	async mount(parent: Element) {
-		this.wrapper = $compile(
+		this.wrapper = this.$compile(
 			div(
 				{ class: "ma2 measure-ns center-ns f7 f6-ns" },
 				["h1.mv0", {}, "thi.ng/umbrella doc search"],
@@ -82,7 +74,7 @@ class DocSearch extends Component {
 
 			// compile inner component tree, including embedded reactive
 			// values/streams and controlflow structures
-			this.inner = $compile(
+			this.inner = this.$compile(
 				div(
 					null,
 					inputText({

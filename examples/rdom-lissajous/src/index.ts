@@ -1,17 +1,16 @@
 import type { IDeref } from "@thi.ng/api";
-import { INFORMATION } from "@thi.ng/hiccup-carbon-icons/information";
-import { withSize } from "@thi.ng/hiccup-carbon-icons/with-size";
-import { div } from "@thi.ng/hiccup-html/blocks";
-import { inputRange, label } from "@thi.ng/hiccup-html/forms";
+import { INFORMATION, withSize } from "@thi.ng/hiccup-carbon-icons";
+import { div, inputRange, label } from "@thi.ng/hiccup-html";
+import { $compile } from "@thi.ng/rdom";
 import { $canvas } from "@thi.ng/rdom-canvas";
-import { $compile } from "@thi.ng/rdom/compile";
-import type { ISubscription } from "@thi.ng/rstream";
-import { fromDOMEvent } from "@thi.ng/rstream/event";
-import { fromRAF } from "@thi.ng/rstream/raf";
-import { reactive } from "@thi.ng/rstream/stream";
-import { sync } from "@thi.ng/rstream/sync";
-import { map } from "@thi.ng/transducers/map";
-import { slidingWindow } from "@thi.ng/transducers/sliding-window";
+import {
+	fromDOMEvent,
+	fromRAF,
+	ISubscription,
+	reactive,
+	sync,
+} from "@thi.ng/rstream";
+import { map, slidingWindow } from "@thi.ng/transducers";
 
 const slider = (
 	dest: ISubscription<number, number>,

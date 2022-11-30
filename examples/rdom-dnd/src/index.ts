@@ -1,9 +1,7 @@
-import { ADD_ALT } from "@thi.ng/hiccup-carbon-icons/add-alt";
-import { CLOSE_OUTLINE } from "@thi.ng/hiccup-carbon-icons/close-outline";
-import { withSize } from "@thi.ng/hiccup-carbon-icons/with-size";
-import { div } from "@thi.ng/hiccup-html/blocks";
-import { $compile } from "@thi.ng/rdom/compile";
-import { cycle } from "@thi.ng/transducers/cycle";
+import { ADD_ALT, CLOSE_OUTLINE, withSize } from "@thi.ng/hiccup-carbon-icons";
+import { div } from "@thi.ng/hiccup-html";
+import { $compile } from "@thi.ng/rdom";
+import { cycle } from "@thi.ng/transducers";
 import { Draggable } from "./draggable";
 import { Notification, type NotifyOpts } from "./notification";
 
