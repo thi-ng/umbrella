@@ -29,6 +29,6 @@
 			"wasm-api",
 			"wasm-api-dom"
 		],
-		"screenshot": "examples/zig-cellular.png"
+		"screenshot": "examples/zig-cellular.jpg"
 	}
 }
