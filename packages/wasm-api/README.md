@@ -148,7 +148,7 @@ Main Zig file:
 
 ```zig
 // Import JS core API
-const js = @import("wasmapi");
+const js = @import("wasm-api");
 const custom = @import("custom.zig");
 
 export fn test_randomVec4() void {
@@ -413,7 +413,7 @@ Requires [Zig](https://ziglang.org) to be installed:
 
 /// import externals
 /// see build command for configuration
-const js = @import("wasmapi");
+const js = @import("wasm-api");
 
 export fn start() void {
     js.printStr("hello world!");
@@ -427,7 +427,7 @@ folder):
 ```bash
 # compile WASM binary
 zig build-lib \
-    --pkg-begin wasmapi node_modules/@thi.ng/wasm-api/zig/lib.zig --pkg-end \
+    --pkg-begin wasm-api node_modules/@thi.ng/wasm-api/zig/lib.zig --pkg-end \
     -target wasm32-freestanding \
     -O ReleaseSmall -dynamic \
     hello.zig
