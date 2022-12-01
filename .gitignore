@@ -26,6 +26,7 @@ zig-cache
 zig-out
 
 examples-private
+examples/*/wasm-api-build.zig
 node_modules
 packages/*/tools
 
