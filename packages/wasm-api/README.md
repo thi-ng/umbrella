@@ -11,11 +11,12 @@ This project is part of the
 
 - [About](#about)
 - [Custom API modules](#custom-api-modules)
-  - [Building Zig projects with these hybrid API modules](#building-zig-projects-with-these-hybrid-api-modules)
 - [String handling](#string-handling)
 - [Memory allocations](#memory-allocations)
   - [API module auto-initialization](#api-module-auto-initialization)
 - [Object indices & handles](#object-indices--handles)
+- [Using the Zig build system](#using-the-zig-build-system)
+- [Naming & structural conventions](#naming--structural-conventions)
 - [Status](#status)
 - [Support packages](#support-packages)
 - [Installation](#installation)
@@ -55,13 +56,15 @@ WebGL, WebGPU, WebAudio etc. is being actively worked on.
    defining glue code for the TypeScript [core
    API](https://docs.thi.ng/umbrella/wasm-api/interfaces/CoreAPI.html) defined
    by this package
-7. Extensible shared [datatype code generator
+7. [Zig build files]() to simplify using hybrid TS/Zig packages with the
+   built-in build system
+8. Extensible shared [datatype code generator
    infrastructure](https://github.com/thi-ng/umbrella/tree/develop/packages/wasm-api-bindgen/)
    for (currently) Zig & TypeScript and C11. For TS fully type checked and
 memory-mapped (zero-copy) accessors of WASM-side data are generated. In
 principle, all languages with a WASM target are supported, however currently
 only bindings for these mentioned langs are included.
-8. [CLI
+9. [CLI
    frontend/utility](https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api-bindgen/README.md#cli-generator)
    for the code generator(s)
 
@@ -164,19 +167,6 @@ export fn test_randomVec4() void {
     js.printF32Array(foo[0..]);
 }
 ```
-
-### Building Zig projects with these hybrid API modules
-
-Some example projects (see [list below](#usage-examples)) provide custom
-[`build.zig`](https://github.com/thi-ng/umbrella/blob/develop/examples/zig-canvas/build.zig)
-&
-[`npm.zig`](https://github.com/thi-ng/umbrella/blob/develop/examples/zig-canvas/npm.zig)
-build scripts to easily integrate these hybrid TS/Zig packages into users'
-development processes.
-
-To avoid guesswork about the internals of these API modules, all of them are
-using an overall uniform structure, with the main Zig entry point in
-`/zig/lib.zig`...
 
 ## String handling
 
@@ -312,6 +302,38 @@ in the
 &
 [@thi.ng/wasm-api-schedule](https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api-schedule/)
 packages this is used to manage Zig-side event listeners.
+
+## Using the Zig build system
+
+This package provides utilities to simplify using hybrid TS/Zig WASM API modules which are distributed as NPM packages. Using these utils, a build file for Zig's built-in build system is as simple as:
+
+```zig
+const std = @import("std");
+
+pub fn build(b: *std.build.Builder) void {
+    @import("node_modules/@thi.ng/wasm-api/zig/build.zig").wasmLib(b, .{
+        // Declare extra WASM API packages to use
+		// Each package can also declare its dependencies
+        .packages = &.{
+            .{ .id = "wasm-api-dom", .path = "@thi.ng/wasm-api-dom/zig/lib.zig" },
+            .{ .id = "wasm-api-schedule", .path = "@thi.ng/wasm-api-schedule/zig/lib.zig" },
+        },
+        // (optional) build mode override
+        .mode = .ReleaseSmall,
+    }).install();
+}
+```
+
+All bundled example projects (see [list below](#usage-examples)) are being built
+via this script. **Please find more details/options in the commented source
+code:**
+[`/zig/build.zig`](https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api/zig/build.zig)
+
+## Naming & structural conventions
+
+To avoid guesswork about the internals of any of the supplied WASM API modules,
+please also consult the information in
+[#368](https://github.com/thi-ng/umbrella/issues/368).
 
 ## Status
 
