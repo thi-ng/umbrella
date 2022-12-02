@@ -17,7 +17,7 @@ if (hasWASM()) {
 				[255, 255, 255, 255, 255, 255, 255, 15]
 			);
 			assert.deepStrictEqual(decodeSLEB128(a), [
-				Number.MAX_SAFE_INTEGER,
+				BigInt(Number.MAX_SAFE_INTEGER),
 				8,
 			]);
 			assert.deepStrictEqual(
@@ -25,29 +25,41 @@ if (hasWASM()) {
 				[129, 128, 128, 128, 128, 128, 128, 112]
 			);
 			assert.deepStrictEqual(decodeSLEB128(a), [
-				Number.MIN_SAFE_INTEGER,
+				BigInt(Number.MIN_SAFE_INTEGER),
 				8,
 			]);
-			assert.deepStrictEqual(decodeSLEB128(encodeSLEB128(64)), [64, 2]);
-			assert.deepStrictEqual(decodeSLEB128(encodeSLEB128(-64)), [-64, 1]);
+			assert.deepStrictEqual(decodeSLEB128(encodeSLEB128(64)), [
+				BigInt(64),
+				2,
+			]);
+			assert.deepStrictEqual(decodeSLEB128(encodeSLEB128(-64)), [
+				BigInt(-64),
+				1,
+			]);
 		},
 
 		unsigned: () => {
-			let a;
+			let a: Uint8Array;
 			assert.deepStrictEqual(
 				[...(a = encodeULEB128(Number.MAX_SAFE_INTEGER))],
 				[255, 255, 255, 255, 255, 255, 255, 15]
 			);
 			assert.deepStrictEqual(decodeULEB128(a), [
-				Number.MAX_SAFE_INTEGER,
+				BigInt(Number.MAX_SAFE_INTEGER),
 				8,
 			]);
 			assert.deepStrictEqual(
 				[...(a = encodeULEB128(Number.MIN_SAFE_INTEGER))],
-				[0]
+				[129, 128, 128, 128, 128, 128, 128, 240, 255, 1]
 			);
-			assert.deepStrictEqual(decodeULEB128(a), [0, 1]);
-			assert.deepStrictEqual(decodeULEB128(encodeULEB128(127)), [127, 1]);
+			assert.deepStrictEqual(decodeULEB128(a), [
+				BigInt.asUintN(64, BigInt(Number.MIN_SAFE_INTEGER)),
+				10,
+			]);
+			assert.deepStrictEqual(decodeULEB128(encodeULEB128(127)), [
+				BigInt(127),
+				1,
+			]);
 		},
 	});
 } else {

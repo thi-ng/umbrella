@@ -6,10 +6,10 @@ import { BINARY } from "./binary.js";
 interface LEB128 {
 	memory: WebAssembly.Memory;
 	buf: number;
-	leb128_encode_u_js(x: number): number;
-	leb128_decode_u_js(buf: number, num: number): number;
-	leb128_encode_s_js(x: number): number;
-	leb128_decode_s_js(buf: number, num: number): number;
+	leb128EncodeU64(x: bigint | number): number;
+	leb128DecodeU64(buf: bigint | number, num: number): bigint;
+	leb128EncodeI64(x: bigint | number): number;
+	leb128DecodeI64(buf: bigint | number, num: number): bigint;
 }
 
 let wasm: LEB128;
@@ -27,17 +27,25 @@ if (hasWASM()) {
 const ensureWASM = () => !wasm && unsupported("WASM module unavailable");
 
 const encode =
-	(op: "leb128_encode_s_js" | "leb128_encode_u_js") => (x: number) => {
+	(op: "leb128EncodeI64" | "leb128EncodeU64", signed: boolean) =>
+	(x: bigint | number) => {
 		ensureWASM();
-		return U8.slice(0, wasm[op](x));
+		const value = signed
+			? BigInt.asIntN(64, BigInt(x))
+			: BigInt.asUintN(64, BigInt(x));
+		return U8.slice(0, wasm[op](value));
 	};
 
 const decode =
-	(op: "leb128_decode_s_js" | "leb128_decode_u_js") =>
-	(src: Uint8Array, idx = 0) => {
+	(op: "leb128DecodeI64" | "leb128DecodeU64", signed: boolean) =>
+	(src: Uint8Array, idx = 0): [bigint, number] => {
 		ensureWASM();
 		U8.set(src.subarray(idx, Math.min(idx + 10, src.length)), 0);
-		return [wasm[op](0, 0), U8[0]];
+		const value = wasm[op](0, 0);
+		return [
+			signed ? BigInt.asIntN(64, value) : BigInt.asUintN(64, value),
+			U8[0],
+		];
 	};
 
 /**
@@ -46,7 +54,7 @@ const decode =
  *
  * @param x -
  */
-export const encodeSLEB128 = encode("leb128_encode_s_js");
+export const encodeSLEB128 = encode("leb128EncodeI64", true);
 
 /**
  * Takes Uint8Array with LEB128 encoded signed varint and an optional
@@ -56,7 +64,7 @@ export const encodeSLEB128 = encode("leb128_encode_s_js");
  * @param src -
  * @param idx -
  */
-export const decodeSLEB128 = decode("leb128_decode_s_js");
+export const decodeSLEB128 = decode("leb128DecodeI64", true);
 
 /**
  * Encodes unsigned integer `x` into LEB128 varint format and returns
@@ -64,7 +72,7 @@ export const decodeSLEB128 = decode("leb128_decode_s_js");
  *
  * @param x -
  */
-export const encodeULEB128 = encode("leb128_encode_u_js");
+export const encodeULEB128 = encode("leb128EncodeU64", false);
 
 /**
  * Takes Uint8Array with LEB128 encoded unsigned varint and an optional
@@ -74,4 +82,4 @@ export const encodeULEB128 = encode("leb128_encode_u_js");
  * @param src -
  * @param idx -
  */
-export const decodeULEB128 = decode("leb128_decode_u_js");
+export const decodeULEB128 = decode("leb128DecodeU64", false);

@@ -1,5 +1,5 @@
 #!/bin/sh
-zig build-lib -target wasm32-freestanding -dynamic -O ReleaseSmall --strip src/leb128.zig
+zig build-lib -target wasm32-freestanding -dynamic -O ReleaseSmall zig/leb128.zig
 
 # apply binaryen optimizer
 wasm-opt leb128.wasm -o opt.wasm -Oz

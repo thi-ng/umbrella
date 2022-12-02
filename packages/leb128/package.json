@@ -58,6 +58,7 @@
 		"varint",
 		"wasm",
 		"webassembly",
+		"zig",
 		"ziglang"
 	],
 	"publishConfig": {
