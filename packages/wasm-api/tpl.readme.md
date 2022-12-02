@@ -300,6 +300,7 @@ pub fn build(b: *std.build.Builder) void {
             .{ .id = "wasm-api-schedule", .path = "@thi.ng/wasm-api-schedule/zig/lib.zig" },
         },
         // (optional) build mode override
+		// if commented out, we can pass CLI args to choose build mode (default: .Debug)
         .mode = .ReleaseSmall,
     }).install();
 }
