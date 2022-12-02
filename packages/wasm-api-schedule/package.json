@@ -52,13 +52,16 @@
 		"codegen",
 		"delay",
 		"interop",
+		"interval",
 		"node",
 		"scheduler",
 		"time",
+		"timeout",
 		"typescript",
 		"wasm",
 		"webassembly",
-		"zig"
+		"zig",
+		"ziglang"
 	],
 	"publishConfig": {
 		"access": "public"

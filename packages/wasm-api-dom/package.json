@@ -58,11 +58,13 @@
 		"event",
 		"html",
 		"interop",
+		"svg",
 		"typescript",
 		"ui",
 		"wasm",
 		"webassembly",
-		"zig"
+		"zig",
+		"ziglang"
 	],
 	"publishConfig": {
 		"access": "public"

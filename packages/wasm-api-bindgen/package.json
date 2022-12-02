@@ -68,10 +68,12 @@
 		"memory",
 		"polyglot",
 		"schema",
+		"shared-memory",
 		"string",
 		"typescript",
 		"wasm",
 		"webassembly",
+		"zig",
 		"ziglang"
 	],
 	"publishConfig": {
