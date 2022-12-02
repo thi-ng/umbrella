@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-11-30T22:27:37Z
+- **Last updated**: 2022-12-02T14:13:34Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,19 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+# [3.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/leb128@3.0.0) (2022-12-02)
+
+#### 🛑 Breaking changes
+
+- add bigint support ([0440c34](https://github.com/thi-ng/umbrella/commit/0440c34))
+- BREAKING CHANGE: update decode return type
+  - update all encode to accept bigint or number, cast to correct u64/i64 range
+  - update decode result to [bigint, number] tuple
+  - rebuild binary (~400 bytes smaller)
+  - move zig source to /zig
+  - update tests
+  - update readme
 
 ## [2.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/leb128@2.1.0) (2021-11-17)
 
