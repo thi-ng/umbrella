@@ -36,8 +36,8 @@ WebGL, WebGPU, WebAudio etc. is being actively worked on.
    defining glue code for the TypeScript [core
    API](https://docs.thi.ng/umbrella/wasm-api/interfaces/CoreAPI.html) defined
    by this package
-7. [Zig build files]() to simplify using hybrid TS/Zig packages with the
-   built-in build system
+7. [Zig build files](#using-the-zig-build-system) to simplify using hybrid
+   TS/Zig packages with the built-in build system
 8. Extensible shared [datatype code generator
    infrastructure](https://github.com/thi-ng/umbrella/tree/develop/packages/wasm-api-bindgen/)
    for (currently) Zig & TypeScript and C11. For TS fully type checked and
@@ -285,13 +285,17 @@ packages this is used to manage Zig-side event listeners.
 
 ## Using the Zig build system
 
-This package provides utilities to simplify using hybrid TS/Zig WASM API modules which are distributed as NPM packages. Using these utils, a build file for Zig's built-in build system is as simple as:
+This package provides utilities to simplify using hybrid TS/Zig WASM API modules
+which are distributed as NPM packages. Using these utils, a build file for Zig's
+built-in build system is as simple as:
 
 ```zig
 const std = @import("std");
 
 pub fn build(b: *std.build.Builder) void {
-    @import("node_modules/@thi.ng/wasm-api/zig/build.zig").wasmLib(b, .{
+	// obtain a standard std.build.LibExeObjStep, pre-configured w/ given options
+	// see source comments in imported build.zig for further details...
+    var lib = @import("node_modules/@thi.ng/wasm-api/zig/build.zig").wasmLib(b, .{
         // Declare extra WASM API packages to use
         // Each package can also declare dependencies to other such packages
         // (wasm-api and wasm-api-bindgen are made available everywhere)
@@ -302,7 +306,12 @@ pub fn build(b: *std.build.Builder) void {
         // (optional) build mode override
 		// if commented out, we can pass CLI args to choose build mode (default: .Debug)
         .mode = .ReleaseSmall,
-    }).install();
+    });
+	// optionally, add further custom configuration
+	// ...
+
+	// finally trigger build
+	lib.install();
 }
 ```
 
