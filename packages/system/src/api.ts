@@ -38,6 +38,11 @@ export type SystemMap<T> = Record<Keys<T>, ILifecycle>;
  */
 export type ComponentFactory<T extends SystemMap<T>> = Fn<T, ILifecycle>;
 
+export interface SystemSpec<T extends SystemMap<T>> {
+	factory: ComponentFactory<T>;
+	deps?: Keys<T>[];
+}
+
 /**
  * Definition object of system component specs, i.e. their factories and
  * component dependencies. The generic type arg `T` is used to infer &
@@ -45,10 +50,7 @@ export type ComponentFactory<T extends SystemMap<T>> = Fn<T, ILifecycle>;
  */
 export type SystemSpecs<T extends SystemMap<T>> = Record<
 	Keys<T>,
-	{
-		factory: ComponentFactory<T>;
-		deps?: Keys<T>[];
-	}
+	SystemSpec<T>
 >;
 
 /** @internal */
