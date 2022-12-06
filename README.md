@@ -16,9 +16,9 @@
 **Please visit [thi.ng](https://thi.ng) for additional information & topic based
 search of packages relevant to your use cases...**
 
-This mono-repository is home to 170+ thi.ng TypeScript/ES6 projects (plus 110+
-examples), a wide and jointly developed collection of packages and building
-blocks for (non-exhaustive list of topics):
+This mono-repository is home to 172+ individual TypeScript/ES6 projects (plus
+115+ examples), a wide and jointly developed collection of packages, tools and
+general building blocks for (non-exhaustive list of topics):
 
 - Functional programming (ES6 iterators/generators, composition, memoization, transducers, multi-methods)
 - Reactive programming, stream / transducer based dataflow graphs / pipelines
@@ -58,7 +58,7 @@ All packages:
 - highly modular with largely only single function / class (only closely related
   functions) per file to help w/ selective imports and tree shaking
 - provide re-exports of all their publics for full library imports
-- have either none or only @thi.ng internal runtime dependencies
+- have either none or only @thi.ng internal runtime dependencies (w/ very few exceptions!)
 - declare public interfaces, enums & types in an `api.ts` and/or
   `constants.ts` file (larger packages only)
 - have auto-generated online documentation at [docs.thi.ng](http://docs.thi.ng)
@@ -162,11 +162,12 @@ feature or `develop` branches)
 
 ### Latest updates
 
-As of: 2022-12-02
+As of: 2022-12-06
 
 | Status                                             | Project                                                     | Version                                                                                                                           | Changelog                                              |
 |----------------------------------------------------|-------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------|
-| ![](https://img.shields.io/badge/-feat-green)      | [`@thi.ng/api`](./packages/leb128)                          | [![version](https://img.shields.io/npm/v/@thi.ng/leb128.svg)](https://www.npmjs.com/package/@thi.ng/leb128)                       | [changelog](./packages/leb128/CHANGELOG.md)            |
+| ![](https://img.shields.io/badge/-new-cyan)        | [`@thi.ng/axidraw`](./packages/axidraw)                     | [![version](https://img.shields.io/npm/v/@thi.ng/axidraw.svg)](https://www.npmjs.com/package/@thi.ng/axidraw)                     | [changelog](./packages/axidraw/CHANGELOG.md)           |
+| ![](https://img.shields.io/badge/-feat-green)      | [`@thi.ng/leb128`](./packages/leb128)                       | [![version](https://img.shields.io/npm/v/@thi.ng/leb128.svg)](https://www.npmjs.com/package/@thi.ng/leb128)                       | [changelog](./packages/leb128/CHANGELOG.md)            |
 | ![](https://img.shields.io/badge/-feat-green)      | [`@thi.ng/wasm-api`](./packages/wasm-api)                   | [![version](https://img.shields.io/npm/v/@thi.ng/wasm-api.svg)](https://www.npmjs.com/package/@thi.ng/wasm-api)                   | [changelog](./packages/wasm-api/CHANGELOG.md)          |
 | ![](https://img.shields.io/badge/-refactor-orange) | [`@thi.ng/wasm-api-bindgen`](./packages/wasm-api-bindgen)   | [![version](https://img.shields.io/npm/v/@thi.ng/wasm-api-bindgen.svg)](https://www.npmjs.com/package/@thi.ng/wasm-api-bindgen)   | [changelog](./packages/wasm-api-bindgen/CHANGELOG.md)  |
 | ![](https://img.shields.io/badge/-refactor-orange) | [`@thi.ng/wasm-api-dom`](./packages/wasm-api-dom)           | [![version](https://img.shields.io/npm/v/@thi.ng/wasm-api-dom.svg)](https://www.npmjs.com/package/@thi.ng/wasm-api-dom)           | [changelog](./packages/wasm-api-dom/CHANGELOG.md)      |
@@ -228,27 +229,28 @@ As of: 2022-12-02
 | [`@thi.ng/random`](./packages/random)               | [![version](https://img.shields.io/npm/v/@thi.ng/random.svg)](https://www.npmjs.com/package/@thi.ng/random)               | [changelog](./packages/random/CHANGELOG.md)        | Seedable PRNG implementations, distributions & utilities |
 | [`@thi.ng/random-fxhash`](./packages/random-fxhash) | [![version](https://img.shields.io/npm/v/@thi.ng/random-fxhash.svg)](https://www.npmjs.com/package/@thi.ng/random-fxhash) | [changelog](./packages/random-fxhash/CHANGELOG.md) | PRNG impl & utilities for fxhash projects                |
 
-### File / file format support
+### File / file format / hardware support
 
-| Project                                                 | Version                                                                                                                       | Changelog                                            | Description                                    |
-|---------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------|------------------------------------------------|
-| [`@thi.ng/bencode`](./packages/bencode)                 | [![version](https://img.shields.io/npm/v/@thi.ng/bencode.svg)](https://www.npmjs.com/package/@thi.ng/bencode)                 | [changelog](./packages/bencode/CHANGELOG.md)         | Bencode binary format encoding                 |
-| [`@thi.ng/csv`](./packages/csv)                         | [![version](https://img.shields.io/npm/v/@thi.ng/csv.svg)](https://www.npmjs.com/package/@thi.ng/csv)                         | [changelog](./packages/csv/CHANGELOG.md)             | Customizable CSV parser/object mapper          |
-| [`@thi.ng/dot`](./packages/dot)                         | [![version](https://img.shields.io/npm/v/@thi.ng/dot.svg)](https://www.npmjs.com/package/@thi.ng/dot)                         | [changelog](./packages/dot/CHANGELOG.md)             | Graphviz DOM & export                          |
-| [`@thi.ng/dsp-io-wav`](./packages/dsp-io-wav)           | [![version](https://img.shields.io/npm/v/@thi.ng/dsp-io-wav.svg)](https://www.npmjs.com/package/@thi.ng/dsp-io-wav)           | [changelog](./packages/dsp-io-wav/CHANGELOG.md)      | WAV file format exporter                       |
-| [`@thi.ng/file-io`](./packages/file-io)                 | [![version](https://img.shields.io/npm/v/@thi.ng/file-io.svg)](https://www.npmjs.com/package/@thi.ng/file-io)                 | [changelog](./packages/file-io/CHANGELOG.md)         | Assorted file I/O utils for NodeJS             |
-| [`@thi.ng/geom-io-obj`](./packages/geom-io-obj)         | [![version](https://img.shields.io/npm/v/@thi.ng/geom-io-obj.svg)](https://www.npmjs.com/package/@thi.ng/geom-io-obj)         | [changelog](./packages/geom-io-obj/CHANGELOG.md)     | Wavefront OBJ model parser                     |
-| [`@thi.ng/hiccup-css`](./packages/hiccup-css)           | [![version](https://img.shields.io/npm/v/@thi.ng/hiccup-css.svg)](https://www.npmjs.com/package/@thi.ng/hiccup-css)           | [changelog](./packages/hiccup-css/CHANGELOG.md)      | CSS from nested JS data structures             |
-| [`@thi.ng/hiccup-html`](./packages/hiccup-html)         | [![version](https://img.shields.io/npm/v/@thi.ng/hiccup-html.svg)](https://www.npmjs.com/package/@thi.ng/hiccup-html)         | [changelog](./packages/hiccup-html/CHANGELOG.md)     | Type-checked HTML5 element wrappers for hiccup |
-| [`@thi.ng/hiccup-markdown`](./packages/hiccup-markdown) | [![version](https://img.shields.io/npm/v/@thi.ng/hiccup-markdown.svg)](https://www.npmjs.com/package/@thi.ng/hiccup-markdown) | [changelog](./packages/hiccup-markdown/CHANGELOG.md) | Hiccup-to-Markdown serialization               |
-| [`@thi.ng/hiccup-svg`](./packages/hiccup-svg)           | [![version](https://img.shields.io/npm/v/@thi.ng/hiccup-svg.svg)](https://www.npmjs.com/package/@thi.ng/hiccup-svg)           | [changelog](./packages/hiccup-svg/CHANGELOG.md)      | hiccup based SVG vocab                         |
-| [`@thi.ng/iges`](./packages/iges)                       | [![version](https://img.shields.io/npm/v/@thi.ng/iges.svg)](https://www.npmjs.com/package/@thi.ng/iges)                       | [changelog](./packages/iges/CHANGELOG.md)            | IGES format geometry serialization             |
-| [`@thi.ng/markdown-table`](./packages/markdown-table)   | [![version](https://img.shields.io/npm/v/@thi.ng/markdown-table.svg)](https://www.npmjs.com/package/@thi.ng/markdown-table)   | [changelog](./packages/markdown-table/CHANGELOG.md)  | Markdown table generator / formatter           |
-| [`@thi.ng/mime`](./packages/mime)                       | [![version](https://img.shields.io/npm/v/@thi.ng/mime.svg)](https://www.npmjs.com/package/@thi.ng/mime)                       | [changelog](./packages/mime/CHANGELOG.md)            | File extension to MIME type mappings           |
-| [`@thi.ng/pixel-io-netpbm`](./packages/pixel-io-netpbm) | [![version](https://img.shields.io/npm/v/@thi.ng/pixel-io-netpbm.svg)](https://www.npmjs.com/package/@thi.ng/pixel-io-netpbm) | [changelog](./packages/pixel-io-netpbm/CHANGELOG.md) | 1/8/16/24bit NetPBM image format reader/writer |
-| [`@thi.ng/prefixes`](./packages/prefixes)               | [![version](https://img.shields.io/npm/v/@thi.ng/prefixes.svg)](https://www.npmjs.com/package/@thi.ng/prefixes)               | [changelog](./packages/prefixes/CHANGELOG.md)        | Linked Data, RDF & xmlns prefixes/URLs         |
-| [`@thi.ng/sax`](./packages/sax)                         | [![version](https://img.shields.io/npm/v/@thi.ng/sax.svg)](https://www.npmjs.com/package/@thi.ng/sax)                         | [changelog](./packages/sax/CHANGELOG.md)             | SAX-like XML parser / transducer               |
-| [`@thi.ng/tangle`](./packages/tangle)                   | [![version](https://img.shields.io/npm/v/@thi.ng/tangle.svg)](https://www.npmjs.com/package/@thi.ng/tangle)                   | [changelog](./packages/tangle/CHANGELOG.md)          | Literate programming utilities                 |
+| Project                                                 | Version                                                                                                                       | Changelog                                            | Description                                     |
+|---------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------|-------------------------------------------------|
+| [`@thi.ng/axidraw`](./packages/axidraw)                 | [![version](https://img.shields.io/npm/v/@thi.ng/axidraw.svg)](https://www.npmjs.com/package/@thi.ng/axidraw)                 | [changelog](./packages/axidraw/CHANGELOG.md)         | Minimal, declarative AxiDraw plotter controller |
+| [`@thi.ng/bencode`](./packages/bencode)                 | [![version](https://img.shields.io/npm/v/@thi.ng/bencode.svg)](https://www.npmjs.com/package/@thi.ng/bencode)                 | [changelog](./packages/bencode/CHANGELOG.md)         | Bencode binary format encoding                  |
+| [`@thi.ng/csv`](./packages/csv)                         | [![version](https://img.shields.io/npm/v/@thi.ng/csv.svg)](https://www.npmjs.com/package/@thi.ng/csv)                         | [changelog](./packages/csv/CHANGELOG.md)             | Customizable CSV parser/object mapper           |
+| [`@thi.ng/dot`](./packages/dot)                         | [![version](https://img.shields.io/npm/v/@thi.ng/dot.svg)](https://www.npmjs.com/package/@thi.ng/dot)                         | [changelog](./packages/dot/CHANGELOG.md)             | Graphviz DOM & export                           |
+| [`@thi.ng/dsp-io-wav`](./packages/dsp-io-wav)           | [![version](https://img.shields.io/npm/v/@thi.ng/dsp-io-wav.svg)](https://www.npmjs.com/package/@thi.ng/dsp-io-wav)           | [changelog](./packages/dsp-io-wav/CHANGELOG.md)      | WAV file format exporter                        |
+| [`@thi.ng/file-io`](./packages/file-io)                 | [![version](https://img.shields.io/npm/v/@thi.ng/file-io.svg)](https://www.npmjs.com/package/@thi.ng/file-io)                 | [changelog](./packages/file-io/CHANGELOG.md)         | Assorted file I/O utils for NodeJS              |
+| [`@thi.ng/geom-io-obj`](./packages/geom-io-obj)         | [![version](https://img.shields.io/npm/v/@thi.ng/geom-io-obj.svg)](https://www.npmjs.com/package/@thi.ng/geom-io-obj)         | [changelog](./packages/geom-io-obj/CHANGELOG.md)     | Wavefront OBJ model parser                      |
+| [`@thi.ng/hiccup-css`](./packages/hiccup-css)           | [![version](https://img.shields.io/npm/v/@thi.ng/hiccup-css.svg)](https://www.npmjs.com/package/@thi.ng/hiccup-css)           | [changelog](./packages/hiccup-css/CHANGELOG.md)      | CSS from nested JS data structures              |
+| [`@thi.ng/hiccup-html`](./packages/hiccup-html)         | [![version](https://img.shields.io/npm/v/@thi.ng/hiccup-html.svg)](https://www.npmjs.com/package/@thi.ng/hiccup-html)         | [changelog](./packages/hiccup-html/CHANGELOG.md)     | Type-checked HTML5 element wrappers for hiccup  |
+| [`@thi.ng/hiccup-markdown`](./packages/hiccup-markdown) | [![version](https://img.shields.io/npm/v/@thi.ng/hiccup-markdown.svg)](https://www.npmjs.com/package/@thi.ng/hiccup-markdown) | [changelog](./packages/hiccup-markdown/CHANGELOG.md) | Hiccup-to-Markdown serialization                |
+| [`@thi.ng/hiccup-svg`](./packages/hiccup-svg)           | [![version](https://img.shields.io/npm/v/@thi.ng/hiccup-svg.svg)](https://www.npmjs.com/package/@thi.ng/hiccup-svg)           | [changelog](./packages/hiccup-svg/CHANGELOG.md)      | hiccup based SVG vocab                          |
+| [`@thi.ng/iges`](./packages/iges)                       | [![version](https://img.shields.io/npm/v/@thi.ng/iges.svg)](https://www.npmjs.com/package/@thi.ng/iges)                       | [changelog](./packages/iges/CHANGELOG.md)            | IGES format geometry serialization              |
+| [`@thi.ng/markdown-table`](./packages/markdown-table)   | [![version](https://img.shields.io/npm/v/@thi.ng/markdown-table.svg)](https://www.npmjs.com/package/@thi.ng/markdown-table)   | [changelog](./packages/markdown-table/CHANGELOG.md)  | Markdown table generator / formatter            |
+| [`@thi.ng/mime`](./packages/mime)                       | [![version](https://img.shields.io/npm/v/@thi.ng/mime.svg)](https://www.npmjs.com/package/@thi.ng/mime)                       | [changelog](./packages/mime/CHANGELOG.md)            | File extension to MIME type mappings            |
+| [`@thi.ng/pixel-io-netpbm`](./packages/pixel-io-netpbm) | [![version](https://img.shields.io/npm/v/@thi.ng/pixel-io-netpbm.svg)](https://www.npmjs.com/package/@thi.ng/pixel-io-netpbm) | [changelog](./packages/pixel-io-netpbm/CHANGELOG.md) | 1/8/16/24bit NetPBM image format reader/writer  |
+| [`@thi.ng/prefixes`](./packages/prefixes)               | [![version](https://img.shields.io/npm/v/@thi.ng/prefixes.svg)](https://www.npmjs.com/package/@thi.ng/prefixes)               | [changelog](./packages/prefixes/CHANGELOG.md)        | Linked Data, RDF & xmlns prefixes/URLs          |
+| [`@thi.ng/sax`](./packages/sax)                         | [![version](https://img.shields.io/npm/v/@thi.ng/sax.svg)](https://www.npmjs.com/package/@thi.ng/sax)                         | [changelog](./packages/sax/CHANGELOG.md)             | SAX-like XML parser / transducer                |
+| [`@thi.ng/tangle`](./packages/tangle)                   | [![version](https://img.shields.io/npm/v/@thi.ng/tangle.svg)](https://www.npmjs.com/package/@thi.ng/tangle)                   | [changelog](./packages/tangle/CHANGELOG.md)          | Literate programming utilities                  |
 
 ### Iterator, stream & sequence processing
 
