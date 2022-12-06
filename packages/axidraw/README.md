@@ -17,6 +17,7 @@ This project is part of the
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [API](#api)
+  - [Example usage](#example-usage)
 - [Authors](#authors)
 - [License](#license)
 
@@ -113,6 +114,15 @@ Package sizes (brotli'd, pre-treeshake): ESM: 1.01 KB
 ## API
 
 [Generated API docs](https://docs.thi.ng/umbrella/axidraw/)
+
+### Example usage
+
+List of toots/tweets:
+
+- https://mastodon.thi.ng/@toxi/109469016803633396
+- more to come...
+
+Basic example:
 
 ```ts tangle:export/readme.js
 import { AxiDraw } from "@thi.ng/axidraw";

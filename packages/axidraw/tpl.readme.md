@@ -83,6 +83,15 @@ ${examples}
 
 ${docLink}
 
+### Example usage
+
+List of toots/tweets:
+
+- https://mastodon.thi.ng/@toxi/109469016803633396
+- more to come...
+
+Basic example:
+
 ```ts tangle:export/readme.js
 import { AxiDraw } from "@thi.ng/axidraw";
 import { circle, vertices } from "@thi.ng/geom";
