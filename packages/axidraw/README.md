@@ -27,9 +27,10 @@ Minimal AxiDraw plotter/drawing machine controller for Node.js.
 This package provides a super-lightweight alternative to control an [AxiDraw
 plotter](https://axidraw.com/) directly from Node.js, using a small custom set
 of medium/high-level drawing commands. Structurally, these custom commands are
-[thi.ng/hiccup-like](https://github.com/thi-ng/umbrella/blob/develop/packages/hiccup/)
+[thi.ng/hiccup](https://github.com/thi-ng/umbrella/blob/develop/packages/hiccup/)-like
 S-expressions, which can be easily serialized to/from JSON and are translated to
-[EBB commands](https://evil-mad.github.io/EggBot/ebb.html) for the plotter.
+the native [EBB commands](https://evil-mad.github.io/EggBot/ebb.html) for the
+plotter.
 
 ### Declarative vs. imperative
 
@@ -44,26 +45,30 @@ output...
 
 ### No SVG support
 
-This package does **not** provide conversion from SVG or any other geometry
-format conversions. Whilst not containing a full SVG parser (only single paths),
-the family of
+This package does **not** provide any conversions from SVG or any other geometry
+format. Whilst not containing a full SVG parser (at current only single paths
+can be parsed), the family of
 [thi.ng/geom](https://github.com/thi-ng/umbrella/tree/develop/packages/geom)
 packages provides numerous other shape types & operations which can be directly
 utilized to output generated geometry together with this package...
 
-The only built-in conversion provided is the [`AxiDraw.polyline()`]() method to
-convert an array of points (representing a polyline) into an array of drawing
-commands. All other conversions are out of scope for this package (& for now).
+The only built-in conversion provided is the
+[`AxiDraw.polyline()`](https://docs.thi.ng/umbrella/axidraw/classes/AxiDraw.html#polyline)
+method to convert an array of points (representing a polyline) to an array of
+drawing commands. All other conversions are out of scope for this package (& for
+now).
 
 ### Serial port support
 
 We're using the [serialport](https://serialport.io/) NPM package to submit data
-directly to the drawing machine. That pacakge includes native bindings for
+directly to the drawing machine. That package includes native bindings for
 Linux, MacOS and Windows.
 
-The `AxiDraw.connect()` function (see example below) attempts to find the
-drawing machine by matching a given regexp with available port names. The
-default regexp might only work on Mac, but YMMV!
+The
+[`AxiDraw.connect()`](https://docs.thi.ng/umbrella/axidraw/classes/AxiDraw.html#connect)
+function (see example below) attempts to find the drawing machine by matching a
+given regexp with available port names. The default regexp might only work on
+Mac, but YMMV!
 
 ## Status
 
@@ -145,6 +150,7 @@ const path = axi.polyline(verts)
 // ]
 
 // draw/send seq of commands (incl. start/end sequence, configurable)
+// i.e. in this case the path representing the (approximated) circle defined above
 await axi.draw([["start"], ...path, ["stop"]]);
 
 })();
