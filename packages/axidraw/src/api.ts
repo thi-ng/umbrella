@@ -16,10 +16,16 @@ export type MotorCommand = ["on" | "off"];
 /** Pen config, min/down position, max/up position (in %) */
 export type PenConfigCommand = ["pen", number?, number?];
 
-/** Pen up/down, optional delay (in ms) */
+/**
+ * Pen up/down, optional delay (in ms), if omitted values used from
+ * {@link AxiDrawOpts}.
+ */
 export type PenUpDownCommand = ["u" | "d", number?];
 
-/** Move to abs pos (in mm), optional speed factor (1 = normal, 0.5 = half speed) */
+/**
+ * Move to abs pos (in worldspace coords, default mm), optional speed factor
+ * (default: 1)
+ */
 export type MoveXYCommand = ["m", ReadonlyVec, number?];
 
 /** Explicit delay (in ms) */
@@ -37,11 +43,12 @@ export type DrawCommand =
 
 export interface AxiDrawOpts {
 	/**
-	 * Bounding rect of document in mm
+	 * Conversion factor from geometry worldspace units to inches.
+	 * Default units are millimeters.
 	 *
-	 * @defaultValue [297, 210]
+	 * @defaultValue 25.4
 	 */
-	pageSize: [number, number];
+	unitsPerInch: number;
 	/**
 	 * Hardware resolution (steps / inch)
 	 *
@@ -51,7 +58,7 @@ export interface AxiDrawOpts {
 	/**
 	 * Steps per second
 	 *
-	 * @defaultValue 1500
+	 * @defaultValue 4000
 	 */
 	speed: number;
 	/**
@@ -69,25 +76,31 @@ export interface AxiDrawOpts {
 	/**
 	 * Delay after pen up
 	 *
-	 * @defaultValue 0
+	 * @defaultValue 300
 	 */
 	delayUp: number;
 	/**
 	 * Delay after pen down
 	 *
-	 * @defaultValue 0
+	 * @defaultValue 300
 	 */
 	delayDown: number;
 	/**
 	 * Time in ms to subtract from actual delay time until next command
+	 *
+	 * @defaultValue 0
 	 */
 	preDelay: number;
 	/**
 	 * Sequence for `start` {@link DrawCommand}
+	 *
+	 * @defaultValue `[ON, PEN, UP]`
 	 */
 	start: DrawCommand[];
 	/**
 	 * Sequence for `end` {@link DrawCommand}
+	 *
+	 * @defaultValue `[UP, HOME, OFF]`
 	 */
 	stop: DrawCommand[];
 	/**
@@ -95,3 +108,19 @@ export interface AxiDrawOpts {
 	 */
 	logger: ILogger;
 }
+
+export const START: StartCommand = ["start"];
+
+export const STOP: StopCommand = ["stop"];
+
+export const HOME: HomeCommand = ["home"];
+
+export const PEN: PenConfigCommand = ["pen"];
+
+export const UP: PenUpDownCommand = ["u"];
+
+export const DOWN: PenUpDownCommand = ["d"];
+
+export const ON: MotorCommand = ["on"];
+
+export const OFF: MotorCommand = ["off"];

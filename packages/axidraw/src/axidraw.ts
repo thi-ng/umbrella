@@ -1,14 +1,23 @@
 import type { Fn0 } from "@thi.ng/api";
 import { delayed } from "@thi.ng/compose";
-import { illegalState } from "@thi.ng/errors";
+import { assert, unsupported } from "@thi.ng/errors";
 import { ConsoleLogger } from "@thi.ng/logger";
 import { abs2, mulN2, ReadonlyVec, set2, sub2, Vec } from "@thi.ng/vectors";
 import { SerialPort } from "serialport";
-import type { AxiDrawOpts, DrawCommand } from "./api.js";
+import {
+	AxiDrawOpts,
+	DOWN,
+	DrawCommand,
+	HOME,
+	OFF,
+	ON,
+	PEN,
+	UP,
+} from "./api.js";
 
 export const DEFAULT_OPTS: AxiDrawOpts = {
 	logger: new ConsoleLogger("axidraw"),
-	pageSize: [297, 210],
+	unitsPerInch: 25.4,
 	stepsPerInch: 2032,
 	speed: 4000,
 	up: 60,
@@ -16,19 +25,26 @@ export const DEFAULT_OPTS: AxiDrawOpts = {
 	delayUp: 300,
 	delayDown: 300,
 	preDelay: 0,
-	start: [["on"], ["pen"], ["u"]],
-	stop: [["u"], ["home"], ["off"]],
+	start: [ON, PEN, UP],
+	stop: [UP, HOME, OFF],
 };
 
 export class AxiDraw {
 	serial!: SerialPort;
 	opts: AxiDrawOpts;
+	isConnected = false;
 	pos: Vec = [0, 0];
 
 	constructor(opts: Partial<AxiDrawOpts> = {}) {
 		this.opts = { ...DEFAULT_OPTS, ...opts };
 	}
 
+	/**
+	 * Async function. Attempts to connect to the drawing machine via given
+	 * (partial) serial port path/name, returns true if successful.
+	 *
+	 * @param path
+	 */
 	async connect(path: RegExp = /^\/dev\/tty\.usbmodem/) {
 		for (let port of await SerialPort.list()) {
 			if (path.test(port.path)) {
@@ -37,6 +53,7 @@ export class AxiDraw {
 					path: port.path,
 					baudRate: 38400,
 				});
+				this.isConnected = true;
 				return true;
 			}
 		}
@@ -44,10 +61,12 @@ export class AxiDraw {
 	}
 
 	/**
-	 * Converts sequence of {@link DrawCommand}s into actual EBB commands and
-	 * sends them via configured serial port to the AxiDraw. The optional
-	 * `cancel` predicate is checked prior to each individual command and
-	 * processing is stopped if that function returns a truthy result.
+	 * Async function. Converts sequence of {@link DrawCommand}s into actual EBB
+	 * commands and sends them via configured serial port to the AxiDraw. The
+	 * optional `cancel` predicate is checked prior to each individual command
+	 * and processing is stopped if that function returns a truthy result.
+	 *
+	 * Returns number of milliseconds taken for drawing.
 	 *
 	 * @remarks
 	 * This function is async and if using `await` will only return once all
@@ -70,11 +89,16 @@ export class AxiDraw {
 	 * @param cancel
 	 */
 	async draw(commands: Iterable<DrawCommand>, cancel?: Fn0<boolean>) {
+		assert(
+			this.isConnected,
+			"AxiDraw not yet connected, need to call .connect() first"
+		);
+		let t0 = Date.now();
 		if (!cancel) cancel = () => false;
 		const { opts: config, pos } = this;
-		const { stepsPerInch, speed, preDelay } = config;
-		// scale factor: mm -> motor steps
-		const scale = stepsPerInch / 25.4;
+		const { stepsPerInch, unitsPerInch, speed, preDelay } = config;
+		// scale factor: worldspace units -> motor steps
+		const scale = stepsPerInch / unitsPerInch;
 		let targetPos: Vec = [0, 0];
 		let delta: Vec = [0, 0];
 		for (let $cmd of commands) {
@@ -98,6 +122,8 @@ export class AxiDraw {
 				case "pen":
 					{
 						let val = a !== undefined ? a : config.down;
+						// unit ref:
+						// https://github.com/evil-mad/AxiDraw-Processing/blob/80d81a8c897b8a1872b0555af52a8d1b5b13cec4/AxiGen1/AxiGen1.pde#L213
 						this.send(`SC,5,${(7500 + 175 * val) | 0}\r`);
 						val = b !== undefined ? b : config.up;
 						this.send(`SC,4,${(7500 + 175 * val) | 0}\r`);
@@ -129,14 +155,15 @@ export class AxiDraw {
 					}
 					break;
 				default:
-					illegalState(`unknown command: ${$cmd}`);
+					unsupported(`unknown command: ${$cmd}`);
 			}
 			if (wait > 0) {
-				wait -= preDelay;
+				wait = Math.max(0, wait - preDelay);
 				config.logger.debug(`waiting ${wait}ms...`);
-				await delayed(0, Math.max(0, wait));
+				await delayed(0, wait);
 			}
 		}
+		return Date.now() - t0;
 	}
 
 	/**
@@ -156,7 +183,7 @@ export class AxiDraw {
 		const commands = pts.map((p) => <DrawCommand>["m", p, speed]);
 		return onlyGeo
 			? commands
-			: [["u"], commands[0], ["d"], ...commands.slice(1), ["u"]];
+			: [UP, commands[0], DOWN, ...commands.slice(1), UP];
 	}
 
 	protected send(msg: string) {
