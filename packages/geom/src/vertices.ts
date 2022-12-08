@@ -2,7 +2,7 @@ import { isArray } from "@thi.ng/checks/is-array";
 import { isNumber } from "@thi.ng/checks/is-number";
 import type { MultiFn1O } from "@thi.ng/defmulti";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
-import type { IShape } from "@thi.ng/geom-api";
+import type { Attribs, IShape } from "@thi.ng/geom-api";
 import { DEFAULT_SAMPLES, SamplingOpts } from "@thi.ng/geom-api/sample";
 import { sample as _arcVertices } from "@thi.ng/geom-arc/sample";
 import { resample } from "@thi.ng/geom-resample/resample";
@@ -34,6 +34,25 @@ import { __dispatch } from "./internal/dispatch.js";
  * array. Some shapes also support {@link @thi.ng/geom-api#SamplingOpts}.
  *
  * @remarks
+ * The given sampling options (if any) can also be overridden per shape using
+ * the special `__samples` attribute. If specified, these will be merged with
+ * the options.
+ *
+ * @example
+ * ```ts
+ * // using default
+ * vertices(circle(100))
+ *
+ * // specify resolution only
+ * vertices(circle(100), 6)
+ *
+ * // specify more advanced options
+ * vertices(circle(100), { dist: 10 })
+ *
+ * // using shape attribs
+ * vertices(circle(100, { __samples: { dist: 10 } }))
+ * ```
+ *
  * Currently implemented for:
  *
  * - {@link AABB}
@@ -93,9 +112,17 @@ export const vertices: MultiFn1O<
 		},
 
 		arc: ($: Arc, opts?: number | Partial<SamplingOpts>): Vec[] =>
-			_arcVertices($.pos, $.r, $.axis, $.start, $.end, opts),
+			_arcVertices(
+				$.pos,
+				$.r,
+				$.axis,
+				$.start,
+				$.end,
+				__sampleAttribs(opts, $.attribs)
+			),
 
 		circle: ($: Circle, opts = DEFAULT_SAMPLES) => {
+			opts = __sampleAttribs(opts, $.attribs)!;
 			const pos = $.pos;
 			const r = $.r;
 			let [num, last] = __circleOpts(opts, r);
@@ -109,9 +136,10 @@ export const vertices: MultiFn1O<
 		},
 
 		cubic: ($: Cubic, opts?: number | Partial<SamplingOpts>) =>
-			sampleCubic($.points, opts),
+			sampleCubic($.points, __sampleAttribs(opts, $.attribs)),
 
 		ellipse: ($: Ellipse, opts = DEFAULT_SAMPLES) => {
+			opts = __sampleAttribs(opts, $.attribs)!;
 			const buf: Vec[] = [];
 			const pos = $.pos;
 			const r = $.r;
@@ -128,6 +156,7 @@ export const vertices: MultiFn1O<
 			children.reduce((acc, $) => acc.concat(vertices($)), <Vec[]>[]),
 
 		path: ($: Path, opts?: number | Partial<SamplingOpts>) => {
+			opts = __sampleAttribs(opts, $.attribs);
 			const _opts = isNumber(opts) ? { num: opts } : opts;
 			let verts: Vec[] = [];
 			for (
@@ -150,14 +179,17 @@ export const vertices: MultiFn1O<
 
 		points: ($: Points) => $.points,
 
-		poly: ($: Polygon, opts?) => resample($.points, opts, true),
+		poly: ($: Polygon, opts?) =>
+			resample($.points, __sampleAttribs(opts, $.attribs), true),
 
-		polyline: ($: Polyline, opts?) => resample($.points, opts),
+		polyline: ($: Polyline, opts?) =>
+			resample($.points, __sampleAttribs(opts, $.attribs)),
 
 		quadratic: ($: Quadratic, opts?: number | Partial<SamplingOpts>) =>
-			sampleQuadratic($.points, opts),
+			sampleQuadratic($.points, __sampleAttribs(opts, $.attribs)),
 
-		rect: ($: Rect, opts) => {
+		rect: ($: Rect, opts?) => {
+			opts = __sampleAttribs(opts, $.attribs);
 			const p = $.pos;
 			const q = add2([], p, $.size);
 			const verts = [set2([], p), [q[0], p[1]], q, [p[0], q[1]]];
@@ -191,3 +223,20 @@ const __circleOpts = (
 					: opts.num || DEFAULT_SAMPLES,
 				opts.last === true,
 		  ];
+
+const __sampleAttribs = (
+	opts?: number | Partial<SamplingOpts>,
+	attribs?: Attribs
+): number | Partial<SamplingOpts> | undefined => {
+	if (attribs) {
+		const val = attribs.__samples;
+		return isNumber(opts)
+			? isNumber(val)
+				? val
+				: { num: opts, ...val }
+			: isNumber(val)
+			? { ...opts, num: val }
+			: { ...opts, ...val };
+	}
+	return opts;
+};
