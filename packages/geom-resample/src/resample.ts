@@ -1,3 +1,4 @@
+import { isNumber } from "@thi.ng/checks/is-number";
 import { isPlainObject } from "@thi.ng/checks/is-plain-object";
 import { DEFAULT_SAMPLES, SamplingOpts } from "@thi.ng/geom-api/sample";
 import type { ReadonlyVec } from "@thi.ng/vectors";
@@ -10,7 +11,7 @@ export const resample = (
 	closed = false,
 	copy = false
 ) => {
-	if (opts !== undefined) {
+	if (__validateOpts(opts)) {
 		const sampler = new Sampler(pts, closed);
 		return isPlainObject(opts)
 			? closed
@@ -30,3 +31,10 @@ export const resample = (
 	}
 	return copy ? copyVectors(pts) : pts;
 };
+
+const __validateOpts = (opts?: number | Partial<SamplingOpts>) =>
+	opts !== undefined &&
+	(isNumber(opts) ||
+		opts.dist != null ||
+		opts.last != null ||
+		opts.num != null);
