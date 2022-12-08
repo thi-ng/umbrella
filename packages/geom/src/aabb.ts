@@ -31,7 +31,7 @@ export const aabbFromMinMaxWithMargin = (
 export const aabbFromCentroid = (centroid: Vec, size: Vec, attribs?: Attribs) =>
 	new AABB(maddN3([], size, -0.5, centroid), size, attribs);
 
-export const aabbFromCentroidWithMargin = (
+export const aabbWithCentroidAndMargin = (
 	centroid: Vec,
 	size: Vec,
 	margin: number,

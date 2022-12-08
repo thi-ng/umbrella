@@ -5,7 +5,7 @@ import { add2 } from "@thi.ng/vectors/add";
 import { normalCW } from "@thi.ng/vectors/normal";
 import { set2 } from "@thi.ng/vectors/set";
 import { sub2 } from "@thi.ng/vectors/sub";
-import { aabbFromCentroidWithMargin } from "./aabb.js";
+import { aabbWithCentroidAndMargin } from "./aabb.js";
 import type { AABB } from "./api/aabb.js";
 import { Circle } from "./api/circle.js";
 import type { Line } from "./api/line.js";
@@ -14,7 +14,7 @@ import type { Rect } from "./api/rect.js";
 import { centroid } from "./centroid.js";
 import { __copyAttribs } from "./internal/copy.js";
 import { __dispatch } from "./internal/dispatch.js";
-import { rectFromCentroidWithMargin } from "./rect.js";
+import { rectWithCentroidAndMargin } from "./rect.js";
 
 /**
  * Computes an offset shape (as in "path offsetting") of given shape and offset
@@ -42,7 +42,7 @@ export const offset: MultiFn2<IShape, number, IShape> = defmulti<
 	{},
 	{
 		aabb: ($: AABB, n) =>
-			aabbFromCentroidWithMargin(
+			aabbWithCentroidAndMargin(
 				centroid($)!,
 				$.size,
 				n,
@@ -66,7 +66,7 @@ export const offset: MultiFn2<IShape, number, IShape> = defmulti<
 		},
 
 		rect: ($: Rect, n) =>
-			rectFromCentroidWithMargin(
+			rectWithCentroidAndMargin(
 				centroid($)!,
 				$.size,
 				n,

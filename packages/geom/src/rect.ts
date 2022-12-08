@@ -31,7 +31,7 @@ export const rectFromMinMaxWithMargin = (
 	attribs?: Attribs
 ) => rectFromMinMax(min, max, attribs).offset(margin);
 
-export const rectFromCentroid = (
+export const rectWithCentroid = (
 	centroid: Vec,
 	size: number | Vec,
 	attribs?: Attribs
@@ -40,12 +40,12 @@ export const rectFromCentroid = (
 	return new Rect(maddN2([], size, -0.5, centroid), size, attribs);
 };
 
-export const rectFromCentroidWithMargin = (
+export const rectWithCentroidAndMargin = (
 	centroid: Vec,
 	size: number | Vec,
 	margin: number,
 	attribs?: Attribs
-) => rectFromCentroid(centroid, size, attribs).offset(margin);
+) => rectWithCentroid(centroid, size, attribs).offset(margin);
 
 /**
  * Returns the intersection rect of given inputs or `undefined` if they
