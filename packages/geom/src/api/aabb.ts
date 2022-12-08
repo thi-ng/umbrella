@@ -1,3 +1,4 @@
+import type { IToHiccup } from "@thi.ng/api";
 import type { AABBLike, Attribs } from "@thi.ng/geom-api";
 import { add3 } from "@thi.ng/vectors/add";
 import { addN3 } from "@thi.ng/vectors/addn";
@@ -8,7 +9,7 @@ import { subN3 } from "@thi.ng/vectors/subn";
 import { __asVec } from "../internal/args.js";
 import { __copyAttribs } from "../internal/copy.js";
 
-export class AABB implements AABBLike {
+export class AABB implements AABBLike, IToHiccup {
 	size: Vec;
 
 	constructor(
@@ -43,5 +44,9 @@ export class AABB implements AABBLike {
 		subN3(null, this.pos, offset);
 		max3(null, addN3(null, this.size, offset * 2), ZERO3);
 		return this;
+	}
+
+	toHiccup() {
+		return ["aabb", this.attribs, this.pos, this.size];
 	}
 }
