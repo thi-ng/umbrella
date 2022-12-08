@@ -80,6 +80,9 @@
 		},
 		"./axidraw": {
 			"default": "./axidraw.js"
+		},
+		"./utils": {
+			"default": "./utils.js"
 		}
 	},
 	"thi.ng": {
