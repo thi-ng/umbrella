@@ -32,20 +32,32 @@ following the pattern of other packages in the
 until the very last moment before being sent to the machine for physical
 output...
 
+### thi.ng/geom support
+
+The [thi.ng/geom](https://github.com/thi-ng/umbrella/tree/develop/packages/geom)
+package provides numerous shape types & operations to generate & transform
+geometry. Additionally,
+[thi.ng/geom-axidraw](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-axidraw)
+can act as bridge API and provides the polymorphic
+[`asAxiDraw()`](https://docs.thi.ng/umbrella/geom-axidraw/functions/asAxiDraw())
+function to convert single shapes or entire shape groups/hierarchies directly
+into the draw commands used by this (axidraw) package. See package readme for
+more details and examples.
+
 ### No SVG support
 
-This package does **not** provide any conversions from SVG or any other geometry
-format. Whilst not containing a full SVG parser (at current only single paths
-can be parsed), the family of
+This package does **not** provide any direct conversions from SVG or any other
+geometry format. But again, whilst not containing a full SVG parser (at current
+only single paths can be parsed), the family of
 [thi.ng/geom](https://github.com/thi-ng/umbrella/tree/develop/packages/geom)
 packages provides numerous other shape types & operations which can be directly
 utilized to output generated geometry together with this package...
 
 The only built-in conversion provided is the
-[`AxiDraw.polyline()`](https://docs.thi.ng/umbrella/axidraw/classes/AxiDraw.html#polyline)
-method to convert an array of points (representing a polyline) to an array of
-drawing commands. All other conversions are out of scope for this package (& for
-now).
+[`polyline()`](https://docs.thi.ng/umbrella/axidraw/functions/polyline.html)
+utility function to convert an array of points (representing a polyline) to an
+array of drawing commands. All other conversions are out of scope for this
+package (& for now).
 
 ### Serial port support
 
@@ -93,7 +105,7 @@ List of toots/tweets:
 Basic example:
 
 ```ts tangle:export/readme.js
-import { AxiDraw } from "@thi.ng/axidraw";
+import { AxiDraw, complete, polyline } from "@thi.ng/axidraw";
 import { circle, vertices } from "@thi.ng/geom";
 
 (async () => {
@@ -117,7 +129,7 @@ const verts = vertices(circle([100, 50], 30), { num: 60, last: true });
 // ]
 
 // convert to drawing commands (w/ default opts)
-const path = axi.polyline(verts)
+const path = polyline(verts)
 // [
 //   [ 'u' ],
 //   [ 'm', [ 130, 50 ], 1 ],
@@ -127,9 +139,10 @@ const path = axi.polyline(verts)
 //   ...
 // ]
 
-// draw/send seq of commands (incl. start/end sequence, configurable)
-// i.e. in this case the path representing the (approximated) circle defined above
-await axi.draw([["start"], ...path, ["stop"]]);
+// draw/send seq of commands (wrapped with a start/end
+// command sequence, configurable) i.e. in this case the path
+// representing the (approximated) circle defined above
+await axi.draw(complete(path));
 
 })();
 ```
