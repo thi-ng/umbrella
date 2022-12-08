@@ -1,0 +1,88 @@
+{
+	"name": "@thi.ng/geom-axidraw",
+	"version": "0.0.1",
+	"description": "Conversion of thi.ng/geom shape hierarchies to AxiDraw pen plotter draw commands",
+	"type": "module",
+	"module": "./index.js",
+	"typings": "./index.d.ts",
+	"sideEffects": false,
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/thi-ng/umbrella.git"
+	},
+	"homepage": "https://github.com/thi-ng/umbrella/tree/master/packages/geom-axidraw#readme",
+	"funding": [
+		{
+			"type": "github",
+			"url": "https://github.com/sponsors/postspectacular"
+		},
+		{
+			"type": "patreon",
+			"url": "https://patreon.com/thing_umbrella"
+		}
+	],
+	"author": "Karsten Schmidt <k+npm@thi.ng>",
+	"license": "Apache-2.0",
+	"scripts": {
+		"build": "yarn clean && tsc --declaration",
+		"clean": "rimraf '*.js' '*.d.ts' '*.map' doc",
+		"doc": "typedoc --excludePrivate --excludeInternal --out doc src/index.ts",
+		"doc:ae": "mkdir -p .ae/doc .ae/temp && api-extractor run --local --verbose",
+		"doc:readme": "yarn doc:stats && tools:readme",
+		"doc:stats": "tools:module-stats",
+		"pub": "yarn npm publish --access public",
+		"test": "testament test"
+	},
+	"dependencies": {
+		"@thi.ng/axidraw": "^0.1.0",
+		"@thi.ng/defmulti": "^2.1.23",
+		"@thi.ng/geom": "^3.4.23",
+		"@thi.ng/geom-api": "^3.3.20",
+		"@thi.ng/geom-clip-line": "^2.1.37",
+		"@thi.ng/geom-isec": "^2.1.37"
+	},
+	"devDependencies": {
+		"@microsoft/api-extractor": "^7.33.5",
+		"@thi.ng/testament": "^0.3.6",
+		"rimraf": "^3.0.2",
+		"tools": "workspace:^",
+		"typedoc": "^0.23.20",
+		"typescript": "^4.8.4"
+	},
+	"keywords": [
+		"typescript"
+	],
+	"publishConfig": {
+		"access": "public"
+	},
+	"browser": {
+		"process": false,
+		"setTimeout": false
+	},
+	"engines": {
+		"node": ">=14"
+	},
+	"files": [
+		"./*.js",
+		"./*.d.ts"
+	],
+	"exports": {
+		".": {
+			"default": "./index.js"
+		},
+		"./api": {
+			"default": "./api.js"
+		},
+		"./as-axidraw": {
+			"default": "./as-axidraw.js"
+		}
+	},
+	"thi.ng": {
+		"parent": "@thi.ng/geom",
+		"related": [
+			"axidraw"
+		],
+		"status": "alpha",
+		"year": 2022
+	}
+}
