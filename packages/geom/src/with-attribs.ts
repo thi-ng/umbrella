@@ -13,4 +13,4 @@ export const withAttribs = <T extends IShape>(
 	shape: T,
 	attribs: Attribs,
 	replace = true
-) => shape.withAttribs(replace ? attribs : { ...shape.attribs, ...attribs });
+) => <T>shape.withAttribs(replace ? attribs : { ...shape.attribs, ...attribs });
