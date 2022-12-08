@@ -2275,7 +2275,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/axidraw@workspace:packages/axidraw":
+"@thi.ng/axidraw@^0.1.0, @thi.ng/axidraw@workspace:packages/axidraw":
   version: 0.0.0-use.local
   resolution: "@thi.ng/axidraw@workspace:packages/axidraw"
   dependencies:
@@ -3034,6 +3034,25 @@ __metadata:
     "@thi.ng/math": ^5.3.15
     "@thi.ng/testament": ^0.3.6
     "@thi.ng/vectors": ^7.5.26
+    rimraf: ^3.0.2
+    tools: "workspace:^"
+    typedoc: ^0.23.20
+    typescript: ^4.8.4
+  languageName: unknown
+  linkType: soft
+
+"@thi.ng/geom-axidraw@workspace:packages/geom-axidraw":
+  version: 0.0.0-use.local
+  resolution: "@thi.ng/geom-axidraw@workspace:packages/geom-axidraw"
+  dependencies:
+    "@microsoft/api-extractor": ^7.33.5
+    "@thi.ng/axidraw": ^0.1.0
+    "@thi.ng/defmulti": ^2.1.23
+    "@thi.ng/geom": ^3.4.23
+    "@thi.ng/geom-api": ^3.3.20
+    "@thi.ng/geom-clip-line": ^2.1.37
+    "@thi.ng/geom-isec": ^2.1.37
+    "@thi.ng/testament": ^0.3.6
     rimraf: ^3.0.2
     tools: "workspace:^"
     typedoc: ^0.23.20
