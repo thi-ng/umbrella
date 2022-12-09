@@ -25,6 +25,7 @@ import {
 	UP,
 } from "./api.js";
 import { AxiDrawControl } from "./control.js";
+import { complete } from "./utils.js";
 
 export const DEFAULT_OPTS: AxiDrawOpts = {
 	logger: new ConsoleLogger("axidraw"),
@@ -101,14 +102,18 @@ export class AxiDraw implements IReset {
 	/**
 	 * Async function. Converts sequence of {@link DrawCommand}s into actual EBB
 	 * commands and sends them via configured serial port to the AxiDraw. If
-	 * provided as part of {@link AxiDrawOpts}, the optional `control`
-	 * implementation can be used to pause, resume or cancel the drawing (see
-	 * {@link AxiDrawOpts.control} for details). Returns total number of
-	 * milliseconds taken for drawing (incl. any pauses caused by the control).
+	 * `wrap` is enabled (default), the given commands will be automatically
+	 * wrapped with start/stop commands via {@link complete}. Returns total
+	 * number of milliseconds taken for drawing (incl. any pauses caused by the
+	 * control).
 	 *
 	 * @remarks
 	 * This function is async and if using `await` will only return once all
 	 * commands have been processed or cancelled.
+	 *
+	 * The `control` implementation/ provided as part of {@link AxiDrawOpts} can
+	 * be used to pause, resume or cancel the drawing (see
+	 * {@link AxiDrawOpts.control} for details).
 	 *
 	 * Reference:
 	 * - http://evil-mad.github.io/EggBot/ebb.html
@@ -124,14 +129,16 @@ export class AxiDraw implements IReset {
 	 * ```
 	 *
 	 * @param commands
+	 * @param wrap
 	 */
-	async draw(commands: Iterable<DrawCommand>) {
+	async draw(commands: Iterable<DrawCommand>, wrap = true) {
 		assert(
 			this.isConnected,
 			"AxiDraw not yet connected, need to call .connect() first"
 		);
 		let t0 = Date.now();
 		const { control, logger, preDelay, refresh } = this.opts;
+		if (wrap) commands = complete(commands);
 		for (let $cmd of commands) {
 			if (control) {
 				let state = control.deref();

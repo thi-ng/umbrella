@@ -34,6 +34,12 @@ export function* polyline(
  * Syntax sugar. Takes an iterable of draw commands, adds {@link START} as
  * prefix and {@link STOP} as suffix. I.e. it creates a "complete" drawing...
  *
+ * @example
+ * ```ts
+ * [...complete([ ["m", [0, 0]] ])]
+ * // [ ["start"], ["m", [0, 0]], ["stop"] ]
+ * ```
+ *
  * @param commands
  */
 export function* complete(commands: Iterable<DrawCommand>) {
