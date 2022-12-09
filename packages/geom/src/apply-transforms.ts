@@ -9,6 +9,8 @@ import { scale } from "./scale.js";
 import { transform } from "./transform.js";
 import { translate } from "./translate.js";
 
+const TX_ATTRIBS = ["transform", "translate", "rotate", "scale"];
+
 /** @internal */
 const __apply = ($: IShape) => {
 	let attribs = $.attribs;
@@ -16,13 +18,11 @@ const __apply = ($: IShape) => {
 	const { transform: tx, translate: t, rotate: r, scale: s } = attribs;
 	if (tx)
 		return transform(
-			$.withAttribs(withoutKeysObj(attribs, ["transform"])),
+			$.withAttribs(withoutKeysObj(attribs, TX_ATTRIBS)),
 			tx
 		);
 	if (!(t || r || s)) return $;
-	$ = $.withAttribs(
-		withoutKeysObj(attribs, ["translate", "rotate", "scale"])
-	);
+	$ = $.withAttribs(withoutKeysObj(attribs, TX_ATTRIBS));
 	if (r) $ = rotate($, r);
 	if (s) $ = scale($, s);
 	if (t) $ = translate($, t);
