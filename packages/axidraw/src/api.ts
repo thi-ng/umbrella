@@ -181,3 +181,37 @@ export enum AxiDrawState {
 	 */
 	CANCEL,
 }
+
+/**
+ * Drawing behavior options for a single polyline.
+ */
+export interface PolylineOpts {
+	/**
+	 * Speed factor (multiple of globally configured draw speed). Depending on
+	 * pen used, slower speeds might result in thicker strokes.
+	 *
+	 * @defaultValue 1
+	 */
+	speed: number;
+	/**
+	 * Pen down (Z) position (%) for this particular shape/polyline. Will be
+	 * reset to globally configured default at the end of the shape.
+	 */
+	down: number;
+	/**
+	 * Delay for pen down command at the start of this particular
+	 * shape/polyline.
+	 */
+	delayDown: number;
+	/**
+	 * Delay for pen up command at the end this particular shape/polyline.
+	 */
+	delayUp: number;
+	/**
+	 * If enabled, no pen up/down commands will be included.
+	 * {@link PolylineOpts.speed} is the only other option considered then.
+	 *
+	 * @defaultValue false
+	 */
+	onlyGeo: boolean;
+}
