@@ -250,6 +250,9 @@
 		"./group": {
 			"default": "./group.js"
 		},
+		"./internal/bounds": {
+			"default": "./internal/bounds.js"
+		},
 		"./internal/copy": {
 			"default": "./internal/copy.js"
 		},

@@ -1,3 +1,4 @@
+// thing:export
 import type { Fn } from "@thi.ng/api";
 import type { AABBLike, IShape } from "@thi.ng/geom-api";
 import type { ReadonlyVec, VecPair } from "@thi.ng/vectors";
