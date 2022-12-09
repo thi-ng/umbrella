@@ -1,5 +1,5 @@
 import { DrawCommand, UP } from "@thi.ng/axidraw/api";
-import { polyline } from "@thi.ng/axidraw/utils";
+import { polyline } from "@thi.ng/axidraw/polyline";
 import type { MultiFn1O } from "@thi.ng/defmulti";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
 import type { Group } from "@thi.ng/geom";
@@ -118,7 +118,8 @@ function* __points(
 	opts?: Partial<AsAxiDrawOpts>
 ): IterableIterator<DrawCommand> {
 	if (!pts.length) return;
-	const { clip, delay, down, speed, sort } = __axiAttribs(attribs);
+	const { clip, delayDown, delayUp, down, speed, sort } =
+		__axiAttribs(attribs);
 	const clipPts = clip || opts?.clip;
 	if (clipPts) {
 		pts = pts.filter((p) => !!pointInPolygon2(p, clipPts));
@@ -127,7 +128,11 @@ function* __points(
 	yield UP;
 	if (down != undefined) yield ["pen", down];
 	for (let p of sort ? (<PointOrdering>sort)(pts) : pts) {
-		yield* [["m", p, speed], ["d", delay], UP];
+		yield* <DrawCommand[]>[
+			["m", p, speed],
+			["d", delayDown],
+			["up", delayUp],
+		];
 	}
 	if (down != undefined) yield ["pen"];
 }
@@ -138,16 +143,13 @@ function* __polyline(
 	opts?: Partial<AsAxiDrawOpts>
 ): IterableIterator<DrawCommand> {
 	if (!pts.length) return;
-	const { clip, down, speed } = __axiAttribs(attribs);
+	const { clip, down, delayDown, delayUp, speed } = __axiAttribs(attribs);
 	const clipPts = clip || opts?.clip;
 	const chunks = clipPts ? clipPolylinePoly(pts, clipPts) : [pts];
 	if (!chunks.length) return;
-	if (down != undefined) yield ["pen", down];
 	for (let chunk of chunks) {
-		yield* polyline(chunk, speed);
+		yield* polyline(chunk, { down, delayDown, delayUp, speed });
 	}
-	// reset pen to configured defaults
-	if (down != undefined) yield ["pen"];
 }
 
 /** @internal */

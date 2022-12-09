@@ -6,6 +6,10 @@ import type { ReadonlyVec } from "@thi.ng/vectors";
  * Package-specific shape attributes used to control conversion behavior. MUST
  * be stored under the `__axi` attribute name.
  *
+ * @remark
+ * Important: TODO keep this in sync with
+ * [PolylineOpts](https://docs.thi.ng/umbrella/axidraw/interfaces/PolylineOpts.html)
+ *
  * @example
  * ```ts
  * // a circle which will be drawn at 25% speed
@@ -23,12 +27,17 @@ export interface AxiDrawAttribs {
 	 */
 	speed: number;
 	/**
-	 * Optional shape specific delay (in ms), e.g. hold time for pen down when
-	 * stippling...
+	 * Optional shape specific delay (in ms), i.e. initial hold time for the
+	 * stroke or when stippling...
 	 */
-	delay: number;
+	delayDown: number;
 	/**
-	 * Optional pen down position (%).
+	 * Delay for pen up command at the end this particular shape/polyline/point.
+	 */
+	delayUp: number;
+	/**
+	 * PPen down position (%) for this particular shape/polyline. Will be reset
+	 * to globally configured default at the end of the shape.
 	 */
 	down: number;
 	/**

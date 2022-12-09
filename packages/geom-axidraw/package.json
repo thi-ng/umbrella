@@ -80,6 +80,9 @@
 		},
 		"./as-axidraw": {
 			"default": "./as-axidraw.js"
+		},
+		"./sort": {
+			"default": "./sort.js"
 		}
 	},
 	"thi.ng": {
