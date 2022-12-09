@@ -1,4 +1,3 @@
-import type { Predicate } from "@thi.ng/api";
 import { DrawCommand, UP } from "@thi.ng/axidraw/api";
 import { polyline } from "@thi.ng/axidraw/utils";
 import type { MultiFn1O } from "@thi.ng/defmulti";
@@ -11,7 +10,7 @@ import { applyTransforms } from "@thi.ng/geom/apply-transforms";
 import { asPolyline } from "@thi.ng/geom/as-polyline";
 import { __dispatch } from "@thi.ng/geom/internal/dispatch";
 import type { ReadonlyVec } from "@thi.ng/vectors";
-import type { AxiDrawAttribs } from "./api.js";
+import type { AxiDrawAttribs, PointOrdering, ShapeOrdering } from "./api.js";
 
 export interface AsAxiDrawOpts {
 	/**
@@ -31,6 +30,33 @@ export interface AsAxiDrawOpts {
 	clip: ReadonlyVec[];
 }
 
+/**
+ * Lazily converts given shape (or group) into an iterable of thi.ng/axidraw
+ * drawing commands, using optionally provided config options.
+ *
+ * @remarks
+ * The provided conversion options can (and will) be overridden by a shape's
+ * `__axi` attribute. See {@link AxiDrawAttribs} for details.
+ *
+ * Currently supported shape types (basically all types which
+ * are supported by the
+ * [`asPolyline()`](https://docs.thi.ng/umbrella/geom/functions/asPolyline.html)
+ * function):
+ *
+ * - arc
+ * - circle
+ * - cubic
+ * - ellipse
+ * - line
+ * - path
+ * - polygon
+ * - polyline
+ * - quad
+ * - quadratic
+ * - rect
+ * - triangle
+ *
+ */
 export const asAxiDraw: MultiFn1O<
 	IShape,
 	Partial<AsAxiDrawOpts>,
@@ -74,7 +100,9 @@ function* __group(
 	$: Group,
 	opts?: Partial<AsAxiDrawOpts>
 ): IterableIterator<DrawCommand> {
-	for (let child of $.children) {
+	const { sort } = __axiAttribs($.attribs);
+	const children = sort ? (<ShapeOrdering>sort)($.children) : $.children;
+	for (let child of children) {
 		const shape = applyTransforms(child);
 		shape.attribs = {
 			...shape.attribs,
@@ -90,17 +118,16 @@ function* __points(
 	opts?: Partial<AsAxiDrawOpts>
 ): IterableIterator<DrawCommand> {
 	if (!pts.length) return;
-	const { clip, delay, down, speed } = __axiAttribs(attribs);
+	const { clip, delay, down, speed, sort } = __axiAttribs(attribs);
 	const clipPts = clip || opts?.clip;
-	const clipFn: Predicate<ReadonlyVec> = clipPts
-		? (p: ReadonlyVec) => !!pointInPolygon2(p, clipPts)
-		: () => true;
+	if (clipPts) {
+		pts = pts.filter((p) => !!pointInPolygon2(p, clipPts));
+		if (!pts.length) return;
+	}
 	yield UP;
 	if (down != undefined) yield ["pen", down];
-	for (let p of pts) {
-		if (clipFn(p)) {
-			yield* [["m", p, speed], ["d", delay], UP];
-		}
+	for (let p of sort ? (<PointOrdering>sort)(pts) : pts) {
+		yield* [["m", p, speed], ["d", delay], UP];
 	}
 	if (down != undefined) yield ["pen"];
 }
@@ -119,6 +146,7 @@ function* __polyline(
 	for (let chunk of chunks) {
 		yield* polyline(chunk, speed);
 	}
+	// reset pen to configured defaults
 	if (down != undefined) yield ["pen"];
 }
 

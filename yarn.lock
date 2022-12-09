@@ -3046,13 +3046,18 @@ __metadata:
   resolution: "@thi.ng/geom-axidraw@workspace:packages/geom-axidraw"
   dependencies:
     "@microsoft/api-extractor": ^7.33.5
+    "@thi.ng/api": ^8.5.1
+    "@thi.ng/arrays": ^2.4.4
     "@thi.ng/axidraw": ^0.1.0
+    "@thi.ng/compare": ^2.1.18
     "@thi.ng/defmulti": ^2.1.23
     "@thi.ng/geom": ^3.4.23
     "@thi.ng/geom-api": ^3.3.20
     "@thi.ng/geom-clip-line": ^2.1.37
     "@thi.ng/geom-isec": ^2.1.37
+    "@thi.ng/geom-poly-utils": ^2.3.21
     "@thi.ng/testament": ^0.3.6
+    "@thi.ng/vectors": ^7.5.26
     rimraf: ^3.0.2
     tools: "workspace:^"
     typedoc: ^0.23.20
