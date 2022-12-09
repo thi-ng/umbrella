@@ -81,8 +81,11 @@
 		"./axidraw": {
 			"default": "./axidraw.js"
 		},
-		"./utils": {
-			"default": "./utils.js"
+		"./control": {
+			"default": "./control.js"
+		},
+		"./polyline": {
+			"default": "./polyline.js"
 		}
 	},
 	"thi.ng": {
