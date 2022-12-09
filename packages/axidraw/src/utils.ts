@@ -7,7 +7,7 @@ import { DOWN, DrawCommand, START, STOP, UP } from "./api.js";
  *
  * @remarks
  * Unless `onlyGeo` is explicitly enabled (default: false), the resulting
- * command sequence will also contain necessary pen up/down commands.
+ * command sequence **will** also contain necessary pen up/down commands.
  *
  * @param pts
  * @param speed
@@ -23,7 +23,7 @@ export function* polyline(
 		for (let p of pts) yield ["m", p, speed];
 	} else {
 		yield UP;
-		yield ["m", pts[0], speed];
+		yield ["m", pts[0]];
 		yield DOWN;
 		for (let i = 1, n = pts.length; i < n; i++) yield ["m", pts[i], speed];
 		yield UP;
