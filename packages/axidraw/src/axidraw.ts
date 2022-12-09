@@ -25,7 +25,7 @@ import {
 	UP,
 } from "./api.js";
 import { AxiDrawControl } from "./control.js";
-import { complete } from "./utils.js";
+import { complete } from "./polyline.js";
 
 export const DEFAULT_OPTS: AxiDrawOpts = {
 	logger: new ConsoleLogger("axidraw"),
@@ -138,8 +138,7 @@ export class AxiDraw implements IReset {
 		);
 		let t0 = Date.now();
 		const { control, logger, preDelay, refresh } = this.opts;
-		if (wrap) commands = complete(commands);
-		for (let $cmd of commands) {
+		for (let $cmd of wrap ? complete(commands) : commands) {
 			if (control) {
 				let state = control.deref();
 				if (state === AxiDrawState.PAUSE) {
@@ -162,7 +161,7 @@ export class AxiDraw implements IReset {
 			switch (cmd) {
 				case "start":
 				case "stop":
-					this.draw(this.opts[cmd]);
+					this.draw(this.opts[cmd], false);
 					break;
 				case "home":
 					this.home();
@@ -210,7 +209,7 @@ export class AxiDraw implements IReset {
 	 * @param cmd
 	 */
 	draw1(cmd: DrawCommand) {
-		return this.draw([cmd]);
+		return this.draw([cmd], false);
 	}
 
 	motorsOn() {
