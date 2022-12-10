@@ -161,10 +161,10 @@ export class AxiDraw implements IReset {
 			switch (cmd) {
 				case "start":
 				case "stop":
-					this.draw(this.opts[cmd], false);
+					await this.draw(this.opts[cmd], false);
 					break;
 				case "home":
-					this.home();
+					wait = this.home();
 					break;
 				case "reset":
 					this.reset();
@@ -259,7 +259,7 @@ export class AxiDraw implements IReset {
 	}
 
 	home() {
-		this.moveTo(ZERO2);
+		return this.moveTo(ZERO2);
 	}
 
 	protected async onSignal() {
