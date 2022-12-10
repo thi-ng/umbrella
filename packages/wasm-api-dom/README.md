@@ -297,7 +297,6 @@ Package sizes (brotli'd, pre-treeshake): ESM: 4.10 KB
 - [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
 - [@thi.ng/prefixes](https://github.com/thi-ng/umbrella/tree/develop/packages/prefixes)
 - [@thi.ng/wasm-api](https://github.com/thi-ng/umbrella/tree/develop/packages/wasm-api)
-- [@thi.ng/wasm-api-bindgen](https://github.com/thi-ng/umbrella/tree/develop/packages/wasm-api-bindgen)
 
 ## Usage examples
 
