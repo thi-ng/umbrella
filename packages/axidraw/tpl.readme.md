@@ -32,6 +32,25 @@ following the pattern of other packages in the
 until the very last moment before being sent to the machine for physical
 output...
 
+### Units, limits & clipping
+
+This package performs **no bounds checking nor clipping** and expects all given
+coordinates to be valid and within machine limits. Coordinates can be given in
+any unit, but if not using millimeters (default), a conversion factor to inches
+(`unitsPerInch`) **MUST** be provided as part of the [options
+object](https://docs.thi.ng/umbrella/axidraw/interfaces/AxiDrawOpts.html) given
+to the `AxiDraw` constructor. Clipping can be handled by the geom or
+geom-axidraw packages (see below)...
+
+### Path planning
+
+Path planning is considered a higher level operation than what's addressed by
+this package and is therefore out of scope. The
+[thi.ng/geom-axidraw](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-axidraw)
+provides some configurable point & shape sorting functions, but this is an
+interim solution and a full path/route planning facility is currently still
+outstanding and awaiting to be ported from other projects.
+
 ### thi.ng/geom support
 
 The [thi.ng/geom](https://github.com/thi-ng/umbrella/tree/develop/packages/geom)
@@ -39,25 +58,25 @@ package provides numerous shape types & operations to generate & transform
 geometry. Additionally,
 [thi.ng/geom-axidraw](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-axidraw)
 can act as bridge API and provides the polymorphic
-[`asAxiDraw()`](https://docs.thi.ng/umbrella/geom-axidraw/functions/asAxiDraw())
+[`asAxiDraw()`](https://docs.thi.ng/umbrella/geom-axidraw/functions/asAxiDraw.html)
 function to convert single shapes or entire shape groups/hierarchies directly
 into the draw commands used by this (axidraw) package. See package readme for
 more details and examples.
 
-### No SVG support
+### SVG support
 
 This package does **not** provide any direct conversions from SVG or any other
 geometry format. But again, whilst not containing a full SVG parser (at current
 only single paths can be parsed), the family of
 [thi.ng/geom](https://github.com/thi-ng/umbrella/tree/develop/packages/geom)
-packages provides numerous other shape types & operations which can be directly
+packages provides numerous shape types & operations which can be directly
 utilized to output generated geometry together with this package...
 
-The only built-in conversion provided is the
+The only built-in conversion provided here is the
 [`polyline()`](https://docs.thi.ng/umbrella/axidraw/functions/polyline.html)
 utility function to convert an array of points (representing a polyline) to an
-array of drawing commands. All other conversions are out of scope for this
-package (& for now).
+array of drawing commands (with various config options). All other conversions
+are out of scope for this package (& for now).
 
 ### Serial port support
 
@@ -70,6 +89,11 @@ The
 function (see example below) attempts to find the drawing machine by matching a
 given regexp with available port names. The default regexp might only work on
 Mac, but YMMV!
+
+At some point it would also be worth looking into
+[WebSerial](https://developer.mozilla.org/en-US/docs/Web/API/Web_Serial_API)
+support to enable plotting directly from the browser. Right now this package is
+only aimed at Node.js though...
 
 ${status}
 
@@ -97,55 +121,84 @@ ${docLink}
 
 ### Example usage
 
-List of toots/tweets:
+#### Basics
 
-- https://mastodon.thi.ng/@toxi/109469016803633396
-- more to come...
-
-Basic example:
-
-```ts tangle:export/readme.js
-import { AxiDraw, complete, polyline } from "@thi.ng/axidraw";
-import { circle, vertices } from "@thi.ng/geom";
+```js tangle:export/readme-basic.js
+import { AxiDraw, polyline } from "@thi.ng/axidraw";
 
 (async () => {
 
 // instantiate w/ default options (see docs for info)
-// default paper size is DIN A4
 const axi = new AxiDraw();
 
-// connect to 1st serial port matching given regexp
-await axi.connect(/^\/dev\/tty\.usbmodem/);
+// connect to 1st serial port matching given pre-string or regexp
+// (the port used here is the default arg)
+await axi.connect("/dev/tty.usbmodem");
 // true
 
-// compute 60 points on a circle at (100,50) w/ radius 30
-// (all units in mm)
-const verts = vertices(circle([100, 50], 30), { num: 60, last: true });
+// vertices defining a polyline of a 100x100 mm square (top left at 20,20)
+const verts = [[20, 20], [120, 20], [120, 120], [20, 120], [20, 20]];
+
+// convert to drawing commands (w/ custom speed, 25%)
+// see docs for config options
+const path = polyline(verts, { speed: 0.25 })
 // [
-//   [ 130, 50 ],
-//   [ 129.8356568610482, 53.1358538980296 ],
-//   [ 129.34442802201417, 56.23735072453278 ],
-//   ...
+//   ["m", [20, 20]],
+//   ["d"],
+//   ["m", [120, 20], 0.25],
+//   ["m", [120, 120], 0.25],
+//   ["m", [20, 120], 0.25],
+//   ["m", [20, 20], 0.25],
+//   ["u"]
 // ]
 
-// convert to drawing commands (w/ default opts)
-const path = polyline(verts)
-// [
-//   [ 'u' ],
-//   [ 'm', [ 130, 50 ], 1 ],
-//   [ 'd' ],
-//   [ 'm', [ 129.8356568610482, 53.1358538980296 ], 1 ],
-//   [ 'm', [ 129.34442802201417, 56.23735072453278 ], 1 ],
-//   ...
-// ]
-
-// draw/send seq of commands (wrapped with a start/end
-// command sequence, configurable) i.e. in this case the path
-// representing the (approximated) circle defined above
-await axi.draw(complete(path));
+// draw/send seq of commands
+// by default the given commands will be wrapped with a start/end
+// command sequence, configurable via options given to AxiDraw ctor)...
+await axi.draw(path);
 
 })();
 ```
+
+### geom-axidraw example
+
+Result shown here: https://mastodon.thi.ng/@toxi/109473655772673067
+
+```js tangle:export/readme-geom.js
+import { AxiDraw } from "@thi.ng/axidraw";
+import { asCubic, group, pathFromCubics, star } from "@thi.ng/geom";
+import { asAxiDraw } from "@thi.ng/geom-axidraw";
+import { map, range } from "@thi.ng/transducers";
+
+(async () => {
+	// create group of bezier-interpolated star polygons,
+	// with each path using a slightly different configuration
+	const geo = group({ translate: [100, 100] }, [
+		...map(
+			(t) =>
+				pathFromCubics(
+					asCubic(star(90, 6, [t, 1]), {
+						breakPoints: true,
+						scale: 0.66,
+					})
+				),
+			range(0.3, 1.01, 0.05)
+		),
+	]);
+
+	// connect to plotter
+	const axi = new AxiDraw();
+	await axi.connect();
+	// convert geometry to drawing commands & send to plotter
+	await axi.draw(asAxiDraw(geo, { samples: 40 }));
+})();
+```
+
+Other selected toots/tweets:
+
+- https://mastodon.thi.ng/@toxi/109474947869078797
+- https://mastodon.thi.ng/@toxi/109483553358349473
+- more to come...
 
 
 ## Authors
