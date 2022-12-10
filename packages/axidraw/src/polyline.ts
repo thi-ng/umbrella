@@ -6,6 +6,10 @@ import { DOWN, DrawCommand, PolylineOpts, START, STOP, UP } from "./api.js";
  * The drawing behavior can be customized via additional {@link PolylineOpts}
  * given.
  *
+ * @remarks
+ * The resulting command sequence assumes the pen is in the **up** position at
+ * the beginning of the line. Each polyline will end with a {@link UP} command.
+ *
  * @param pts
  * @param opts
  */
@@ -23,7 +27,6 @@ export function* polyline(
 		for (let p of pts) yield ["m", p, speed];
 		return;
 	}
-	yield UP;
 	yield ["m", pts[0]];
 	if (down !== undefined) yield ["pen", down];
 	yield delayDown != undefined ? ["d", delayDown] : DOWN;
