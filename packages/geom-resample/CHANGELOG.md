@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-11-30T22:27:37Z
+- **Last updated**: 2022-12-10T14:04:38Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,14 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [2.1.38](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom-resample@2.1.38) (2022-12-10)
+
+#### 🩹 Bug fixes
+
+- avoid unnecessary resampling ([f2b0ef2](https://github.com/thi-ng/umbrella/commit/f2b0ef2))
+  - update resample(), check if given `opts` are actually usable
+    if not, just use orig points (or copies)
 
 ## [2.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom-resample@2.1.0) (2021-11-17)
 

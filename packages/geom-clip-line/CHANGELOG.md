@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-11-30T22:27:37Z
+- **Last updated**: 2022-12-10T14:04:38Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,12 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [2.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom-clip-line@2.2.0) (2022-12-10)
+
+#### 🚀 Features
+
+- add clipPolylinePoly() ([445ccd6](https://github.com/thi-ng/umbrella/commit/445ccd6))
 
 ### [2.1.22](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom-clip-line@2.1.22) (2022-08-06)
 

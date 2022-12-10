@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-11-30T22:27:37Z
+- **Last updated**: 2022-12-10T14:04:38Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,30 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+# [4.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom@4.0.0) (2022-12-10)
+
+#### 🛑 Breaking changes
+
+- unify function naming ([980f625](https://github.com/thi-ng/umbrella/commit/980f625))
+- BREAKING CHANGE: rename rect & aabb ctor fns
+  - rename rectFromCentroid => rectWithCentroid
+  - rename rectFromCentroidWithMargin => rectWithCentroidAndMargin
+  - same for aabb versions
+
+#### 🚀 Features
+
+- add AABB.toHiccup() impl ([2c419cc](https://github.com/thi-ng/umbrella/commit/2c419cc))
+- add startWithCentroid(), add docs ([6b4df6a](https://github.com/thi-ng/umbrella/commit/6b4df6a))
+- update vertices(), config via attribs ([b5a53ba](https://github.com/thi-ng/umbrella/commit/b5a53ba))
+  - add support for per-shape config overrides via `__samples` attrib object
+  - add docs
+
+#### 🩹 Bug fixes
+
+- correct withAttribs() return type ([867c302](https://github.com/thi-ng/umbrella/commit/867c302))
+- update applyTransforms() ([b6262c2](https://github.com/thi-ng/umbrella/commit/b6262c2))
+  - always remove all spatial transform attribs
 
 ### [3.4.6](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom@3.4.6) (2022-08-06)
 
