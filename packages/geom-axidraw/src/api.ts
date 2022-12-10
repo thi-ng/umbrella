@@ -1,5 +1,5 @@
 import type { Fn } from "@thi.ng/api";
-import type { IShape } from "@thi.ng/geom-api";
+import type { IShape, SamplingOpts } from "@thi.ng/geom-api";
 import type { ReadonlyVec } from "@thi.ng/vectors";
 
 /**
@@ -36,7 +36,7 @@ export interface AxiDrawAttribs {
 	 */
 	delayUp: number;
 	/**
-	 * PPen down position (%) for this particular shape/polyline. Will be reset
+	 * Pen down position (%) for this particular shape/polyline. Will be reset
 	 * to globally configured default at the end of the shape.
 	 */
 	down: number;
@@ -53,6 +53,24 @@ export interface AxiDrawAttribs {
 	 * - {@link shapesByProximity} (for `group()`)
 	 */
 	sort: PointOrdering | ShapeOrdering;
+}
+
+export interface AsAxiDrawOpts {
+	/**
+	 * Global options for sampling non-polygonal shape. Shapes can also provide
+	 * a `__samples` attribute to override these global options.
+	 *
+	 * @remarks
+	 * References:
+	 * - https://docs.thi.ng/umbrella/geom-api/interfaces/SamplingOpts.html
+	 * - https://docs.thi.ng/umbrella/geom/functions/vertices.html
+	 */
+	samples: number | Partial<SamplingOpts>;
+	/**
+	 * Clip polygon vertices. Can also be provided per-shape as
+	 * {@link AxiDrawAttribs.clip} (i.e. as part of a shape's `__axi` attrib).
+	 */
+	clip: ReadonlyVec[];
 }
 
 export type PointOrdering = Fn<ReadonlyVec[], Iterable<ReadonlyVec>>;

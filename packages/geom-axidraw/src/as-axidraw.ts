@@ -3,33 +3,20 @@ import { polyline } from "@thi.ng/axidraw/polyline";
 import type { MultiFn1O } from "@thi.ng/defmulti";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
 import type { Group } from "@thi.ng/geom";
-import type { Attribs, IShape, PCLike, SamplingOpts } from "@thi.ng/geom-api";
+import type { Attribs, IShape, PCLike } from "@thi.ng/geom-api";
 import { clipPolylinePoly } from "@thi.ng/geom-clip-line/clip-poly";
 import { pointInPolygon2 } from "@thi.ng/geom-isec/point";
 import { applyTransforms } from "@thi.ng/geom/apply-transforms";
 import { asPolyline } from "@thi.ng/geom/as-polyline";
 import { __dispatch } from "@thi.ng/geom/internal/dispatch";
 import type { ReadonlyVec } from "@thi.ng/vectors";
-import type { AxiDrawAttribs, PointOrdering, ShapeOrdering } from "./api.js";
+import type {
+	AsAxiDrawOpts,
+	AxiDrawAttribs,
+	PointOrdering,
+	ShapeOrdering,
+} from "./api.js";
 import { pointsByNearestNeighbor } from "./sort.js";
-
-export interface AsAxiDrawOpts {
-	/**
-	 * Global options for sampling non-polygonal shape. Shapes can also provide
-	 * a `__samples` attribute to override these global options.
-	 *
-	 * @remarks
-	 * References:
-	 * - https://docs.thi.ng/umbrella/geom-api/interfaces/SamplingOpts.html
-	 * - https://docs.thi.ng/umbrella/geom/functions/vertices.html
-	 */
-	samples: number | Partial<SamplingOpts>;
-	/**
-	 * Clip polygon vertices. Can also be provided per-shape as
-	 * {@link AxiDrawAttribs.clip} (i.e. as part of a shape's `__axi` attrib).
-	 */
-	clip: ReadonlyVec[];
-}
 
 /**
  * Lazily converts given shape (or group) into an iterable of thi.ng/axidraw
@@ -59,6 +46,16 @@ export interface AsAxiDrawOpts {
  * - rect
  * - triangle
  *
+ * @example
+ * ```ts
+ * [...asAxiDraw(circle(100), { samples: 100 })]
+ * [
+ *   [ 'm', [ 10, 0 ] ],
+ *   [ 'd' ],
+ *   [ 'm', [ 9.980267284282716, 0.6279051952931337 ], undefined ],
+ *   ...
+ * ]
+ * ```
  */
 export const asAxiDraw: MultiFn1O<
 	IShape,
