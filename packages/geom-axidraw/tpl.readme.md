@@ -28,7 +28,7 @@ is responsible for the actual plotter output...
 | group      | shape group (possibly nested)                   |
 | line       | line segment<sup>(2)</sup>                      |
 | path       | single outline only, no holes                   |
-| points     | point cloud (stipples)                          |
+| points     | point cloud (stippling)                         |
 | polyline   | polyline (any number of vertices)<sup>(2)</sup> |
 | polygon    | simple polygon, no holes<sup>(2)</sup>          |
 | quad       | arbitrary 4-gon<sup>(2)</sup>                   |
@@ -47,31 +47,56 @@ shape types have support for arbitrary attributes. Different support packages
 can then utilize these attribs to customize usage or behaviors. In this case,
 any package-specific attribs must be stored under the `__axi` key:
 
-- `clip` - Optional clip polygon vertices (if given only the parts of strokes
+- `clip`: Optional clip polygon vertices (if given only the parts of strokes
   inside that polygon will be plotted)
-- `delay` - Optional shape specific delay (in ms), e.g. hold time for pen down
-  when stippling...
-- `down` - Optional custom pen down position (in %)
-- `speed` - Optional speed factor (multiple of globally configured draw speed).
-  Depending on pen used, slower speeds might result in thicker strokes.
+- `delayDown`: Shape specific delay (in ms), i.e. initial hold time for the
+  stroke or when stippling...
+- `delayUp`: Delay for pen up command at the end this particular
+  shape/polyline/point.
+- `down`: Pen down position (in \%) for this particular shape/polyline. Will be
+  reset to globally configured default at the end of the shape.
+- `speed`: Speed factor (multiple of globally configured draw speed). Depending
+  on pen used, slower speeds might result in thicker strokes.
+- `sort`: Ordering function (in lieu of full path planning/optimization, which
+  is planned for a later stage). For shapes other than `points()`, order of
+  appearance is used by default.
 
 ```ts
-// a circle which will be plotted with only 10% of the normal speed
+// a circle which will be plotted at only 10% of the normal speed
 circle(100, { __axi: { speed: 0.1 } })
 ```
 
-In addition to the above attributes, the thi.ng/geom package itself also makes
-use of the `__samples` attribute to control the re-sampling of individual
-shapes. Please see the following links for more details:
+#### Shape interpolation/resampling
+
+Since many of the supported shapes are not inherently vertex-based, their
+boundaries/outlines need to be sampled when they are being converted to
+polylines. Therefore, in addition to the above attributes, the thi.ng/geom
+package itself also makes use of the `__samples` attribute to control the
+re-sampling of individual shapes. Please see the following links for more
+details and supported options:
 
 - [`SamplingOpts`](https://docs.thi.ng/umbrella/geom-api/interfaces/SamplingOpts.html)
 - [`vertices()`](https://docs.thi.ng/umbrella/geom/functions/vertices.html)
 
+### Draw order
+
+As mentioned above, the default draw order for shapes within a group is order of
+appearance. For point clouds, the {@link pointsByNearestNeighbor} ordering
+function is used by default, which attempts to minimize travel distance between
+points.
+
+Currently, the following ordering functions are available, but custom
+implementations can be provided too...
+
+- [`pointsByNearestNeighbor()`](https://docs.thi.ng/umbrella/geom-axidraw/functions/pointsByNearestNeighbor.html)
+- [`pointsByProximity()`](https://docs.thi.ng/umbrella/geom-axidraw/functions/pointsByProximity.html)
+- [`shapesByProximity()`](https://docs.thi.ng/umbrella/geom-axidraw/functions/shapesByProximity.html)
+
 ### Basic usage & examples
 
-This package only exposes a single polymorphic function
-[`asAxiDraw()`](https://docs.thi.ng/umbrella/geom-axidraw/functions/asAxiDraw.html)
-to convert any of the supported shape types into an iterable of
+The main function of this package is the polymorphic function
+[`asAxiDraw()`](https://docs.thi.ng/umbrella/geom-axidraw/functions/asAxiDraw.html),
+which converts any of the supported shape types into an iterable of
 [thi.ng/axidraw](https://github.com/thi-ng/umbrella/blob/develop/packages/axidraw)
 drawing commands. This conversion happens **semi-lazily** (via generator
 functions) to minimize memory usage and spread out the computational load of the
@@ -80,15 +105,19 @@ conversions.
 The below example can be directly launched via `node cubics.js` (obviously
 provided you have an AxiDraw connected and all listed packages installed):
 
-```ts tangle:export/cubics.ts
-import { AxiDraw, complete } from "@thi.ng/axidraw";
+#### Interpolated polygons
+
+(Result: https://mastodon.thi.ng/@toxi/109473655772673067)
+
+```ts tangle:export/readme-cubics.ts
+import { AxiDraw } from "@thi.ng/axidraw";
 import { asCubic, group, pathFromCubics, star } from "@thi.ng/geom";
 import { asAxiDraw } from "@thi.ng/geom-axidraw";
 import { map, range } from "@thi.ng/transducers";
 
 (async () => {
-	// create group of bezier-interpolated star polygons
-	// each path uses a different interpolation config
+	// create group of bezier-interpolated star polygons,
+	// with each path using a slightly different configuration
 	const geo = group({ translate: [100, 100] }, [
 		...map(
 			(t) =>
@@ -106,7 +135,34 @@ import { map, range } from "@thi.ng/transducers";
 	const axi = new AxiDraw();
 	await axi.connect();
 	// convert geometry to drawing commands & send to plotter
-	await axi.draw(complete(asAxiDraw(geo, { samples: 40 })));
+	await axi.draw(asAxiDraw(geo, { samples: 40 }));
+})();
+```
+
+### Clipping
+
+(Result: https://mastodon.thi.ng/@toxi/109483553358349473)
+
+```ts tangle:export/readme-clipping.ts
+import { AxiDraw, complete } from "@thi.ng/axidraw";
+import { circle, group, starWithCentroid, vertices } from "@thi.ng/geom";
+import { asAxiDraw } from "@thi.ng/geom-axidraw";
+import { map, range } from "@thi.ng/transducers";
+
+(async () => {
+	const origin = [100, 100];
+	const radius = 50;
+	const boundary = starWithCentroid(origin, radius, 5, [1, 0.45], { __axi: { speed: 0.25 } });
+	// group of concentric circles using boundary as clip polygon
+	const geo = group({}, [
+		boundary,
+		group({ __samples: 40, __axi: { clip: vertices(boundary) } }, [
+			...map((r) => circle(origin, r), range(2, radius, 2)),
+		]),
+	]);
+	const axi = new AxiDraw();
+	await axi.connect();
+	await axi.draw(asAxiDraw(geo));
 })();
 ```
 
