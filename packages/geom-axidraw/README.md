@@ -16,7 +16,7 @@ This project is part of the
   - [Draw order](#draw-order)
   - [Basic usage & examples](#basic-usage--examples)
     - [Interpolated polygons](#interpolated-polygons)
-  - [Clipping](#clipping)
+    - [Clipping](#clipping)
 - [Status](#status)
 - [Related packages](#related-packages)
 - [Installation](#installation)
@@ -155,7 +155,7 @@ import { map, range } from "@thi.ng/transducers";
 })();
 ```
 
-### Clipping
+#### Clipping
 
 (Result: https://mastodon.thi.ng/@toxi/109483553358349473)
 

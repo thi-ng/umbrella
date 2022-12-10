@@ -139,7 +139,7 @@ import { map, range } from "@thi.ng/transducers";
 })();
 ```
 
-### Clipping
+#### Clipping
 
 (Result: https://mastodon.thi.ng/@toxi/109483553358349473)
 
