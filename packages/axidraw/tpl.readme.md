@@ -95,6 +95,22 @@ At some point it would also be worth looking into
 support to enable plotting directly from the browser. Right now this package is
 only aimed at Node.js though...
 
+### Draw control
+
+The main draw function provided by this package is async and can supports custom
+implementations to pause, resume or cancel the processing of further drawing
+commands. By the default
+[`AxiDrawControl`](https://docs.thi.ng/umbrella/axidraw/classes/AxiDrawControl.html)
+is used as default implementation.
+
+If a control is provided, it will be checked prior to processing each individual
+command. Drawing will be paused if the control state is in paused state and the
+control will be rechecked every N milliseconds for updates (configurable). In
+paused state, the pen will be automatically lifted (if it wasn't already) and
+when resuming it will be sent down again (if it was originally down). Draw
+commands are only sent to the machine if no control is provided at all or if the
+control is in the "continue" state.
+
 ${status}
 
 ${supportPackages}
