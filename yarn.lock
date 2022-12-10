@@ -2984,7 +2984,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/geom-accel@workspace:^, @thi.ng/geom-accel@workspace:packages/geom-accel":
+"@thi.ng/geom-accel@^3.2.28, @thi.ng/geom-accel@workspace:^, @thi.ng/geom-accel@workspace:packages/geom-accel":
   version: 0.0.0-use.local
   resolution: "@thi.ng/geom-accel@workspace:packages/geom-accel"
   dependencies:
@@ -3052,10 +3052,10 @@ __metadata:
     "@thi.ng/compare": ^2.1.18
     "@thi.ng/defmulti": ^2.1.23
     "@thi.ng/geom": ^3.4.23
+    "@thi.ng/geom-accel": ^3.2.28
     "@thi.ng/geom-api": ^3.3.20
     "@thi.ng/geom-clip-line": ^2.1.37
     "@thi.ng/geom-isec": ^2.1.37
-    "@thi.ng/geom-poly-utils": ^2.3.21
     "@thi.ng/testament": ^0.3.6
     "@thi.ng/vectors": ^7.5.26
     rimraf: ^3.0.2

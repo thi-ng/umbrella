@@ -1,4 +1,4 @@
-import type { FnU } from "@thi.ng/api";
+import type { Fn } from "@thi.ng/api";
 import type { IShape } from "@thi.ng/geom-api";
 import type { ReadonlyVec } from "@thi.ng/vectors";
 
@@ -42,17 +42,19 @@ export interface AxiDrawAttribs {
 	down: number;
 	/**
 	 * Ordering function (in lieu of full path planning/optimization, which is
-	 * planned for a later stage). By default order of appearance is used.
+	 * planned for a later stage). For shapes other than `points()`, order of
+	 * appearance is used by default.
 	 *
 	 * @remarks
 	 * Currently available implementations:
 	 *
+	 * - {@link pointsByNearestNeighbor} (for `points()`, default)
 	 * - {@link pointsByProximity} (for `points()`)
 	 * - {@link shapesByProximity} (for `group()`)
 	 */
 	sort: PointOrdering | ShapeOrdering;
 }
 
-export type PointOrdering = FnU<ReadonlyVec[]>;
+export type PointOrdering = Fn<ReadonlyVec[], Iterable<ReadonlyVec>>;
 
-export type ShapeOrdering = FnU<IShape[]>;
+export type ShapeOrdering = Fn<IShape[], Iterable<IShape>>;

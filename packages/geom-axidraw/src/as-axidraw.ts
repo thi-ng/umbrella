@@ -11,6 +11,7 @@ import { asPolyline } from "@thi.ng/geom/as-polyline";
 import { __dispatch } from "@thi.ng/geom/internal/dispatch";
 import type { ReadonlyVec } from "@thi.ng/vectors";
 import type { AxiDrawAttribs, PointOrdering, ShapeOrdering } from "./api.js";
+import { pointsByNearestNeighbor } from "./sort.js";
 
 export interface AsAxiDrawOpts {
 	/**
@@ -38,8 +39,8 @@ export interface AsAxiDrawOpts {
  * The provided conversion options can (and will) be overridden by a shape's
  * `__axi` attribute. See {@link AxiDrawAttribs} for details.
  *
- * Currently supported shape types (basically all types which
- * are supported by the
+ * Currently supported shape types (at least all types which are supported by
+ * the
  * [`asPolyline()`](https://docs.thi.ng/umbrella/geom/functions/asPolyline.html)
  * function):
  *
@@ -47,8 +48,10 @@ export interface AsAxiDrawOpts {
  * - circle
  * - cubic
  * - ellipse
+ * - group
  * - line
  * - path
+ * - points
  * - polygon
  * - polyline
  * - quad
@@ -118,8 +121,10 @@ function* __points(
 	opts?: Partial<AsAxiDrawOpts>
 ): IterableIterator<DrawCommand> {
 	if (!pts.length) return;
-	const { clip, delayDown, delayUp, down, speed, sort } =
-		__axiAttribs(attribs);
+	const { clip, delayDown, delayUp, down, speed, sort } = {
+		sort: pointsByNearestNeighbor(),
+		...__axiAttribs(attribs),
+	};
 	const clipPts = clip || opts?.clip;
 	if (clipPts) {
 		pts = pts.filter((p) => !!pointInPolygon2(p, clipPts));
@@ -128,10 +133,10 @@ function* __points(
 	yield UP;
 	if (down != undefined) yield ["pen", down];
 	for (let p of sort ? (<PointOrdering>sort)(pts) : pts) {
-		yield* <DrawCommand[]>[
+		yield* [
 			["m", p, speed],
 			["d", delayDown],
-			["up", delayUp],
+			["u", delayUp],
 		];
 	}
 	if (down != undefined) yield ["pen"];
