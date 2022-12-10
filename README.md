@@ -42,6 +42,7 @@ general building blocks for (non-exhaustive list of topics):
 - Low-level tooling for binary data, shared memory/WASM/WebGL interop
 - SIMD batch-processing of vector data
 - WebAssembly bridge API & data structure bindings code generators for multiple target languages
+- AxiDraw penplotter toolchain & geometry conversions
 - Various interpolations, math helpers, automatic differentiation (Dual numbers)
 - etc. (see package overview below)
 
@@ -137,22 +138,6 @@ for other project-wide information, tidbits, useful snippets etc.
 
 ## Projects
 
-### Important changes (10/2021)
-
-**All packages are now only published in ESM format (ES2020 syntax) with
-TypeScript typings.** You can find more details & rationale in issue
-[#315](https://github.com/thi-ng/umbrella/issues/315).
-
-As a result (and opportunity), many packages have undergone internal
-restructuring, some have been split up. All are now fully supporting
-deep-imports (based on declared [export
-maps](https://docs.skypack.dev/package-authors/package-checks#export-map)),
-leading to drastically smaller userland bundle sizes.
-
-Previously we also created & published CommonJS & UMD formats, but deemed them
-an unnecessary burden & hindrance, since all important JS tooling/platforms do
-support ES modules by now.
-
 <!--
 ### New / unreleased packages in development
 
@@ -162,16 +147,15 @@ feature or `develop` branches)
 
 ### Latest updates
 
-As of: 2022-12-06
+As of: 2022-12-10
 
-| Status                                             | Project                                                     | Version                                                                                                                           | Changelog                                              |
-|----------------------------------------------------|-------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------|
-| ![](https://img.shields.io/badge/-new-cyan)        | [`@thi.ng/axidraw`](./packages/axidraw)                     | [![version](https://img.shields.io/npm/v/@thi.ng/axidraw.svg)](https://www.npmjs.com/package/@thi.ng/axidraw)                     | [changelog](./packages/axidraw/CHANGELOG.md)           |
-| ![](https://img.shields.io/badge/-feat-green)      | [`@thi.ng/leb128`](./packages/leb128)                       | [![version](https://img.shields.io/npm/v/@thi.ng/leb128.svg)](https://www.npmjs.com/package/@thi.ng/leb128)                       | [changelog](./packages/leb128/CHANGELOG.md)            |
-| ![](https://img.shields.io/badge/-feat-green)      | [`@thi.ng/wasm-api`](./packages/wasm-api)                   | [![version](https://img.shields.io/npm/v/@thi.ng/wasm-api.svg)](https://www.npmjs.com/package/@thi.ng/wasm-api)                   | [changelog](./packages/wasm-api/CHANGELOG.md)          |
-| ![](https://img.shields.io/badge/-refactor-orange) | [`@thi.ng/wasm-api-bindgen`](./packages/wasm-api-bindgen)   | [![version](https://img.shields.io/npm/v/@thi.ng/wasm-api-bindgen.svg)](https://www.npmjs.com/package/@thi.ng/wasm-api-bindgen)   | [changelog](./packages/wasm-api-bindgen/CHANGELOG.md)  |
-| ![](https://img.shields.io/badge/-refactor-orange) | [`@thi.ng/wasm-api-dom`](./packages/wasm-api-dom)           | [![version](https://img.shields.io/npm/v/@thi.ng/wasm-api-dom.svg)](https://www.npmjs.com/package/@thi.ng/wasm-api-dom)           | [changelog](./packages/wasm-api-dom/CHANGELOG.md)      |
-| ![](https://img.shields.io/badge/-refactor-orange) | [`@thi.ng/wasm-api-schedule`](./packages/wasm-api-schedule) | [![version](https://img.shields.io/npm/v/@thi.ng/wasm-api-schedule.svg)](https://www.npmjs.com/package/@thi.ng/wasm-api-schedule) | [changelog](./packages/wasm-api-schedule/CHANGELOG.md) |
+| Status                                        | Project                                               | Version                                                                                                                     | Changelog                                           |
+|-----------------------------------------------|-------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------|
+| ![](https://img.shields.io/badge/-new-cyan)   | [`@thi.ng/axidraw`](./packages/axidraw)               | [![version](https://img.shields.io/npm/v/@thi.ng/axidraw.svg)](https://www.npmjs.com/package/@thi.ng/axidraw)               | [changelog](./packages/axidraw/CHANGELOG.md)        |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/geom`](./packages/geom)                     | [![version](https://img.shields.io/npm/v/@thi.ng/geom.svg)](https://www.npmjs.com/package/@thi.ng/geom)                     | [changelog](./packages/geom/CHANGELOG.md)           |
+| ![](https://img.shields.io/badge/-new-cyan)   | [`@thi.ng/geom-axidraw`](./packages/geom-axidraw)     | [![version](https://img.shields.io/npm/v/@thi.ng/geom-axidraw.svg)](https://www.npmjs.com/package/@thi.ng/geom-axidraw)     | [changelog](./packages/geom-axidraw/CHANGELOG.md)   |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/geom-clip-line`](./packages/geom-clip-line) | [![version](https://img.shields.io/npm/v/@thi.ng/geom-clip-line.svg)](https://www.npmjs.com/package/@thi.ng/geom-clip-line) | [changelog](./packages/geom-clip-line/CHANGELOG.md) |
+| ![](https://img.shields.io/badge/-fix-orange) | [`@thi.ng/geom-resample`](./packages/geom-resample)   | [![version](https://img.shields.io/npm/v/@thi.ng/geom-resample.svg)](https://www.npmjs.com/package/@thi.ng/geom-resample)   | [changelog](./packages/geom-resample/CHANGELOG.md)  |
 
 <!--
 ![](https://img.shields.io/badge/-feat-green)
@@ -342,6 +326,7 @@ As of: 2022-12-06
 | [`@thi.ng/geom`](./packages/geom)                             | [![version](https://img.shields.io/npm/v/@thi.ng/geom.svg)](https://www.npmjs.com/package/@thi.ng/geom)                             | [changelog](./packages/geom/CHANGELOG.md)               | 2D only geometry types & ops                        |
 | [`@thi.ng/geom-accel`](./packages/geom-accel)                 | [![version](https://img.shields.io/npm/v/@thi.ng/geom-accel.svg)](https://www.npmjs.com/package/@thi.ng/geom-accel)                 | [changelog](./packages/geom-accel/CHANGELOG.md)         | Spatial indexing data structures                    |
 | [`@thi.ng/geom-api`](./packages/geom-api)                     | [![version](https://img.shields.io/npm/v/@thi.ng/geom-api.svg)](https://www.npmjs.com/package/@thi.ng/geom-api)                     | [changelog](./packages/geom-api/CHANGELOG.md)           | Shared types & interfaces                           |
+| [`@thi.ng/geom-axidraw`](./packages/geom-axidraw)             | [![version](https://img.shields.io/npm/v/@thi.ng/geom-axidraw.svg)](https://www.npmjs.com/package/@thi.ng/geom-axidraw)             | [changelog](./packages/geom-axidraw/CHANGELOG.md)       | Shape conversions for AxiDraw penplotter            |
 | [`@thi.ng/geom-arc`](./packages/geom-arc)                     | [![version](https://img.shields.io/npm/v/@thi.ng/geom-arc.svg)](https://www.npmjs.com/package/@thi.ng/geom-arc)                     | [changelog](./packages/geom-arc/CHANGELOG.md)           | 2D elliptic arc utils                               |
 | [`@thi.ng/geom-clip-line`](./packages/geom-clip-line)         | [![version](https://img.shields.io/npm/v/@thi.ng/geom-clip-line.svg)](https://www.npmjs.com/package/@thi.ng/geom-clip-line)         | [changelog](./packages/geom-clip-line/CHANGELOG.md)     | 2D line clipping                                    |
 | [`@thi.ng/geom-clip-poly`](./packages/geom-clip-poly)         | [![version](https://img.shields.io/npm/v/@thi.ng/geom-clip-poly.svg)](https://www.npmjs.com/package/@thi.ng/geom-clip-poly)         | [changelog](./packages/geom-clip-poly/CHANGELOG.md)     | 2D convex polygon clipping                          |
