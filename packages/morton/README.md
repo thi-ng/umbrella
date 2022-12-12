@@ -66,7 +66,7 @@ node --experimental-repl-await
 > const morton = await import("@thi.ng/morton");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 1.91 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 1.90 KB
 
 ## Dependencies
 

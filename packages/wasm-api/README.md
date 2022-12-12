@@ -313,8 +313,8 @@ built-in build system is as simple as:
 const std = @import("std");
 
 pub fn build(b: *std.build.Builder) void {
-	// obtain a standard std.build.LibExeObjStep, pre-configured w/ given options
-	// see source comments in imported build.zig for further details...
+    // obtain a standard std.build.LibExeObjStep, pre-configured w/ given options
+    // see source comments in imported build.zig for further details...
     var lib = @import("node_modules/@thi.ng/wasm-api/zig/build.zig").wasmLib(b, .{
         // Declare extra WASM API packages to use
         // Each package can also declare dependencies to other such packages
@@ -324,14 +324,14 @@ pub fn build(b: *std.build.Builder) void {
             .{ .id = "wasm-api-schedule", .path = "@thi.ng/wasm-api-schedule/zig/lib.zig" },
         },
         // (optional) build mode override
-		// if commented out, we can pass CLI args to choose build mode (default: .Debug)
+        // if commented out, we can pass CLI args to choose build mode (default: .Debug)
         .mode = .ReleaseSmall,
     });
-	// optionally, add further custom configuration
-	// ...
+    // optionally, add further custom configuration
+    // ...
 
-	// finally trigger build
-	lib.install();
+    // finally trigger build
+    lib.install();
 }
 ```
 

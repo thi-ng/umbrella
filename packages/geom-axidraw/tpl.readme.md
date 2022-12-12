@@ -116,26 +116,26 @@ import { asAxiDraw } from "@thi.ng/geom-axidraw";
 import { map, range } from "@thi.ng/transducers";
 
 (async () => {
-	// create group of bezier-interpolated star polygons,
-	// with each path using a slightly different configuration
-	const geo = group({ translate: [100, 100] }, [
-		...map(
-			(t) =>
-				pathFromCubics(
-					asCubic(star(90, 6, [t, 1]), {
-						breakPoints: true,
-						scale: 0.66,
-					})
-				),
-			range(0.3, 1.01, 0.05)
-		),
-	]);
+    // create group of bezier-interpolated star polygons,
+    // with each path using a slightly different configuration
+    const geo = group({ translate: [100, 100] }, [
+        ...map(
+            (t) =>
+                pathFromCubics(
+                    asCubic(star(90, 6, [t, 1]), {
+                        breakPoints: true,
+                        scale: 0.66,
+                    })
+                ),
+            range(0.3, 1.01, 0.05)
+        ),
+    ]);
 
-	// connect to plotter
-	const axi = new AxiDraw();
-	await axi.connect();
-	// convert geometry to drawing commands & send to plotter
-	await axi.draw(asAxiDraw(geo, { samples: 40 }));
+    // connect to plotter
+    const axi = new AxiDraw();
+    await axi.connect();
+    // convert geometry to drawing commands & send to plotter
+    await axi.draw(asAxiDraw(geo, { samples: 40 }));
 })();
 ```
 
@@ -150,19 +150,19 @@ import { asAxiDraw } from "@thi.ng/geom-axidraw";
 import { map, range } from "@thi.ng/transducers";
 
 (async () => {
-	const origin = [100, 100];
-	const radius = 50;
-	const boundary = starWithCentroid(origin, radius, 5, [1, 0.45], { __axi: { speed: 0.25 } });
-	// group of concentric circles using boundary as clip polygon
-	const geo = group({}, [
-		boundary,
-		group({ __samples: 40, __axi: { clip: vertices(boundary) } }, [
-			...map((r) => circle(origin, r), range(2, radius, 2)),
-		]),
-	]);
-	const axi = new AxiDraw();
-	await axi.connect();
-	await axi.draw(asAxiDraw(geo));
+    const origin = [100, 100];
+    const radius = 50;
+    const boundary = starWithCentroid(origin, radius, 5, [1, 0.45], { __axi: { speed: 0.25 } });
+    // group of concentric circles using boundary as clip polygon
+    const geo = group({}, [
+        boundary,
+        group({ __samples: 40, __axi: { clip: vertices(boundary) } }, [
+            ...map((r) => circle(origin, r), range(2, radius, 2)),
+        ]),
+    ]);
+    const axi = new AxiDraw();
+    await axi.connect();
+    await axi.draw(asAxiDraw(geo));
 })();
 ```
 

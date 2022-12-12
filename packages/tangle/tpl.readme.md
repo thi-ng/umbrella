@@ -258,12 +258,12 @@ source file. E.g. this configuration (add to your VSCode workspace
 
 ```json
 "emeraldwalk.runonsave": {
-	"commands": [
-		{
-			"match": "\\.lit\\.md$",
-			"cmd": "${workspaceFolder}/node_modules/.bin/tangle ${file}"
-		}
-	]
+    "commands": [
+        {
+            "match": "\\.lit\\.md$",
+            "cmd": "${workspaceFolder}/node_modules/.bin/tangle ${file}"
+        }
+    ]
 }
 ```
 
