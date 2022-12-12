@@ -1,1 +1,2 @@
-export const isFunction = (x: any): x is Function => typeof x === "function";
+export const isFunction = <T extends Function>(x: any): x is T =>
+	typeof x === "function";
