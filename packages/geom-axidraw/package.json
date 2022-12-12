@@ -47,12 +47,12 @@
 		"@thi.ng/vectors": "^7.5.26"
 	},
 	"devDependencies": {
-		"@microsoft/api-extractor": "^7.33.5",
+		"@microsoft/api-extractor": "^7.33.7",
 		"@thi.ng/testament": "^0.3.6",
 		"rimraf": "^3.0.2",
 		"tools": "workspace:^",
-		"typedoc": "^0.23.20",
-		"typescript": "^4.8.4"
+		"typedoc": "^0.23.22",
+		"typescript": "^4.9.4"
 	},
 	"keywords": [
 		"2d",
