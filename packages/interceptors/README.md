@@ -9,6 +9,11 @@
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
+**Update 12/2022: This package is considered completed and no longer being
+updated with new features. Please consider using
+[@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream)
+instead...**
+
 - [About](#about)
 - [Event bus, interceptors, side effects](#event-bus-interceptors-side-effects)
   - [Interceptors: Event and Effect primitives](#interceptors-event-and-effect-primitives)
@@ -117,7 +122,7 @@ commented source code and examples for now:
 
 ## Status
 
-**DEPRECATED** - no further development planned
+**COMPLETED** - no further development planned
 
 [Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Binterceptors%5D+in%3Atitle)
 

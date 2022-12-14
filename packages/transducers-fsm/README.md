@@ -9,6 +9,9 @@
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
+**Update 12/2022: This package is considered completed and no longer being
+updated with new features.**
+
 - [About](#about)
 - [Status](#status)
 - [Related packages](#related-packages)
@@ -33,7 +36,7 @@ transformation pipeline.
 
 ## Status
 
-**DEPRECATED** - no further development planned
+**COMPLETED** - no further development planned
 
 [Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Btransducers-fsm%5D+in%3Atitle)
 

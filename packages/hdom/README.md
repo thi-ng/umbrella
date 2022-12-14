@@ -9,9 +9,15 @@
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
+**Update 12/2022: This package is considered completed and no longer being
+updated with new features. Please consider using
+[@thi.ng/rdom](https://github.com/thi-ng/umbrella/tree/develop/packages/rdom)
+instead...**
+
 - [About](#about)
 - [Status](#status)
 - [Support packages](#support-packages)
+- [Related packages](#related-packages)
   - [Blog posts](#blog-posts)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
@@ -98,7 +104,7 @@ Benefits:
 
 ## Status
 
-**STABLE** - used in production
+**COMPLETED** - no further development planned
 
 [Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bhdom%5D+in%3Atitle)
 
@@ -107,6 +113,10 @@ Benefits:
 - [@thi.ng/hdom-canvas](https://github.com/thi-ng/umbrella/tree/develop/packages/hdom-canvas) - [@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/develop/packages/hdom) component wrapper for declarative canvas scenegraphs
 - [@thi.ng/hdom-components](https://github.com/thi-ng/umbrella/tree/develop/packages/hdom-components) - Raw, skinnable UI & SVG components for [@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/develop/packages/hdom)
 - [@thi.ng/hdom-mock](https://github.com/thi-ng/umbrella/tree/develop/packages/hdom-mock) - Mock base implementation for [@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/develop/packages/hdom) API
+
+## Related packages
+
+- [@thi.ng/rdom](https://github.com/thi-ng/umbrella/tree/develop/packages/rdom) - Lightweight, reactive, VDOM-less UI/DOM components with async lifecycle and [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup) compatible
 
 ### Blog posts
 

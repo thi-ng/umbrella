@@ -15,6 +15,7 @@
 		"beta": "possibly breaking changes forthcoming",
 		"stable": "used in production",
 		"refactor": "undergoing major refactoring",
-		"deprecated": "no further development planned"
+		"completed": "no further development planned",
+		"deprecated": "superseded by other package(s)"
 	}
 }
