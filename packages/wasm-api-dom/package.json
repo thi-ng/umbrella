@@ -29,7 +29,7 @@
 	"scripts": {
 		"build": "yarn clean && tsc --declaration",
 		"build:types": "npx wasm-api-bindgen -a analytics.json --config src/typedefs-config.json --lang ts -o src/generated/api.ts --lang zig -o zig/api.zig src/typedefs.json",
-		"clean": "rimraf '*.js' '*.d.ts' '*.map' doc",
+		"clean": "rimraf '*.js' '*.d.ts' '*.map' doc generated",
 		"doc": "typedoc --excludePrivate --excludeInternal --out doc src/index.ts",
 		"doc:ae": "mkdir -p .ae/doc .ae/temp && api-extractor run --local --verbose",
 		"doc:readme": "yarn doc:stats && tools:readme",
