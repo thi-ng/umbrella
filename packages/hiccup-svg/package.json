@@ -1,7 +1,7 @@
 {
 	"name": "@thi.ng/hiccup-svg",
 	"version": "4.3.23",
-	"description": "SVG element functions for @thi.ng/hiccup & @thi.ng/hdom",
+	"description": "SVG element functions for @thi.ng/hiccup & related tooling",
 	"type": "module",
 	"module": "./index.js",
 	"typings": "./index.d.ts",
@@ -21,7 +21,7 @@
 			"url": "https://patreon.com/thing_umbrella"
 		}
 	],
-	"author": "Karsten Schmidt <k+npm@thi.ng>",
+	"author": "Karsten Schmidt (https://thi.ng)",
 	"license": "Apache-2.0",
 	"scripts": {
 		"build": "yarn clean && tsc --declaration",
