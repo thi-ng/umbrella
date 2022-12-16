@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/egf",
-	"version": "0.6.33",
+	"version": "0.6.34",
 	"description": "Extensible Graph Format",
 	"type": "module",
 	"module": "./index.js",
@@ -29,20 +29,20 @@
 		"test": "testament test"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.5.1",
-		"@thi.ng/associative": "^6.2.18",
-		"@thi.ng/checks": "^3.3.4",
-		"@thi.ng/dot": "^2.1.22",
-		"@thi.ng/errors": "^2.2.5",
-		"@thi.ng/logger": "^1.4.4",
-		"@thi.ng/prefixes": "^2.1.14",
-		"@thi.ng/strings": "^3.3.19",
-		"@thi.ng/transducers-binary": "^2.1.30"
+		"@thi.ng/api": "^8.6.0",
+		"@thi.ng/associative": "^6.2.19",
+		"@thi.ng/checks": "^3.3.5",
+		"@thi.ng/dot": "^2.1.23",
+		"@thi.ng/errors": "^2.2.6",
+		"@thi.ng/logger": "^1.4.5",
+		"@thi.ng/prefixes": "^2.1.15",
+		"@thi.ng/strings": "^3.3.20",
+		"@thi.ng/transducers-binary": "^2.1.31"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.33.7",
-		"@thi.ng/equiv": "^2.1.14",
-		"@thi.ng/testament": "^0.3.6",
+		"@thi.ng/equiv": "^2.1.15",
+		"@thi.ng/testament": "^0.3.7",
 		"rimraf": "^3.0.2",
 		"tools": "workspace:^",
 		"typedoc": "^0.23.22",

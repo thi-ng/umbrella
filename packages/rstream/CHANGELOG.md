@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-11-30T22:27:38Z
+- **Last updated**: 2022-12-16T12:52:25Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,12 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [7.2.31](https://github.com/thi-ng/umbrella/tree/@thi.ng/rstream@7.2.31) (2022-12-16)
+
+#### 🩹 Bug fixes
+
+- (TS4.9 regression) update defWorker(), add explicit typehint ([bce5df7](https://github.com/thi-ng/umbrella/commit/bce5df7))
 
 ### [7.2.7](https://github.com/thi-ng/umbrella/tree/@thi.ng/rstream@7.2.7) (2022-06-09)
 
