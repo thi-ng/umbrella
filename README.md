@@ -1,10 +1,9 @@
 ![thi.ng/umbrella](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/banners/thing-umbrella-masthead.jpg)
 
-[![Build status](https://img.shields.io/github/workflow/status/thi-ng/umbrella/test-all)](https://github.com/thi-ng/umbrella/actions?query=workflow%3Atest-all)
+[![Build status](https://img.shields.io/github/actions/workflow/status/thi-ng/umbrella/.github/workflows/test.yml?branch=main)](https://github.com/thi-ng/umbrella/actions?query=workflow%3Atest-all)
 [![Code Climate](https://api.codeclimate.com/v1/badges/592940419adb5bf8abaf/maintainability)](https://codeclimate.com/github/thi-ng/umbrella/maintainability)
 [![Become a patron](https://img.shields.io/badge/patreon-donate-yellow.svg)](https://www.patreon.com/thing_umbrella)
-[![Discord chat](https://img.shields.io/discord/445761008837984256.svg)](https://discord.gg/JhYcmBw)
-[![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?label=%40thing_umbrella&style=social)](https://twitter.com/thing_umbrella)
+[![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 ## About
 
