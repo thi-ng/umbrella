@@ -1,5 +1,6 @@
 import type { IObjectOf } from "@thi.ng/api";
 import { ConsoleLogger, LogLevel, LogLevelName } from "@thi.ng/logger";
+import type { Package as $Package } from "@thi.ng/transclude";
 
 export const RE_PKG = /@thi\.ng\/[a-z0-9-]+/g;
 export const RE_USER = /@([a-z0-9_-]+)/gi;
@@ -39,12 +40,7 @@ export interface Config extends BaseConfig {
 	branchURL: string;
 }
 
-export interface Package {
-	name: string;
-	description: string;
-	version: string;
-	dependencies?: IObjectOf<string>;
-	keywords?: string[];
+export interface Package extends $Package {
 	[META_FIELD]?: Partial<PackageMeta>;
 }
 

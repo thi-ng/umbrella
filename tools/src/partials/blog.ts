@@ -3,7 +3,6 @@ import { link } from "./link.js";
 import { list } from "./list.js";
 
 export const blogPosts = (posts: BlogPost[]) => {
-	if (!posts) return;
 	return [
 		"### Blog posts",
 		"",

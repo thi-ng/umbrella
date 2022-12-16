@@ -63,5 +63,5 @@ export const examplesTable = (pkgName: string) => {
 				"",
 				tableKeys(headers, <any>keys, examples),
 		  ].join("\n")
-		: null;
+		: "";
 };

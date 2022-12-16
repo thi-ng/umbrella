@@ -1,6 +1,4 @@
-export const copyright = (startYear: number, author: string) => {
+export const copyright = (startYear: number) => {
 	const now = new Date().getFullYear();
-	return startYear < now
-		? `${startYear} - ${now} ${author}`
-		: `${startYear} ${author}`;
+	return startYear < now ? `${startYear} - ${now}` : `${startYear}`;
 };
