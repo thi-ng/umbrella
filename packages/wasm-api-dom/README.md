@@ -1,10 +1,10 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![wasm-api-dom](https://media.thi.ng/umbrella/banners-20220914/thing-wasm-api-dom.svg?2d6e3998)
+# ![@thi.ng/wasm-api-dom](https://media.thi.ng/umbrella/banners-20220914/thing-wasm-api-dom.svg?2d6e3998)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/wasm-api-dom.svg)](https://www.npmjs.com/package/@thi.ng/wasm-api-dom)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/wasm-api-dom.svg)
-[![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
+[![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
@@ -21,13 +21,11 @@ This project is part of the
 - [Usage examples](#usage-examples)
 - [API](#api)
 - [Authors](#authors)
-  - [Maintainer](#maintainer)
-  - [Contributors](#contributors)
 - [License](#license)
 
 ## About
 
-Browser DOM bridge API for hybrid TypeScript & WASM (Zig) applications. This is a support package for [@thi.ng/wasm-api](https://github.com/thi-ng/umbrella/tree/develop/packages/wasm-api).
+Browser DOM bridge API for hybrid TypeScript & WASM (Zig) applications
 
 This package provides a small TypeScript core API
 and related [Ziglang](https://ziglang.org) bindings for UI & DOM
@@ -281,11 +279,8 @@ ES module import:
 
 For Node.js REPL:
 
-```text
-# with flag only for < v16
-node --experimental-repl-await
-
-> const wasmApiDom = await import("@thi.ng/wasm-api-dom");
+```js
+const wasmApiDom = await import("@thi.ng/wasm-api-dom");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 4.10 KB
@@ -327,13 +322,8 @@ reference and usage patterns! Thank you!
 
 ## Authors
 
-### Maintainer
-
-- Karsten Schmidt ([@postspectacular](https://github.com/postspectacular))
-
-### Contributors
-
-- Marcus Wågberg ([@MarcusWagberg](https://github.com/MarcusWagberg))
+- [Karsten Schmidt](https://thi.ng) (Main author)
+- [Marcus Wågberg](https://github.com/MarcusWagberg)
 
 If this project contributes to an academic publication, please cite it as:
 
@@ -348,4 +338,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2022 Karsten Schmidt // Apache Software License 2.0
+&copy; 2022 Karsten Schmidt // Apache License 2.0

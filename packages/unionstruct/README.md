@@ -1,10 +1,10 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![unionstruct](https://media.thi.ng/umbrella/banners-20220914/thing-unionstruct.svg?c0beeb99)
+# ![@thi.ng/unionstruct](https://media.thi.ng/umbrella/banners-20220914/thing-unionstruct.svg?c0beeb99)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/unionstruct.svg)](https://www.npmjs.com/package/@thi.ng/unionstruct)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/unionstruct.svg)
-[![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
+[![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
@@ -24,7 +24,7 @@ This project is part of the
 
 ## About
 
-C-style struct, union and bitfield read/write views of ArrayBuffers.
+C-style struct, union and bitfield read/write views of ArrayBuffers
 
 Features:
 
@@ -62,11 +62,8 @@ ES module import:
 
 For Node.js REPL:
 
-```text
-# with flag only for < v16
-node --experimental-repl-await
-
-> const unionstruct = await import("@thi.ng/unionstruct");
+```js
+const unionstruct = await import("@thi.ng/unionstruct");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 1009 bytes
@@ -250,7 +247,7 @@ bitfields.__offsets
 
 ## Authors
 
-Karsten Schmidt
+- [Karsten Schmidt](https://thi.ng)
 
 If this project contributes to an academic publication, please cite it as:
 
@@ -265,4 +262,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2017 - 2022 Karsten Schmidt // Apache Software License 2.0
+&copy; 2017 - 2022 Karsten Schmidt // Apache License 2.0

@@ -1,13 +1,6 @@
-# ${pkg.banner}
+<!-- include ../../assets/tpl/header.md -->
 
-[![npm version](https://img.shields.io/npm/v/${pkg.name}.svg)](https://www.npmjs.com/package/${pkg.name})
-![npm downloads](https://img.shields.io/npm/dm/${pkg.name}.svg)
-[![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
-
-This project is part of the
-[@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
-
-<!-- TOC -->
+<!-- toc -->
 
 ## About
 
@@ -31,25 +24,25 @@ an ES6 embedded DSL for concatenative programming:
 - all other features of @thi.ng/pointfree (combinators, array/vector ops etc.)
 - CLI version w/ basic file I/O, library includes, JSON
 
-${status}
+{{meta.status}}
 
-${supportPackages}
+{{repo.supportPackages}}
 
-${relatedPackages}
+{{repo.relatedPackages}}
 
-${blogPosts}
+{{meta.blogPosts}}
 
 ## Installation
 
-${pkg.install}
+{{pkg.install}}
 
-${pkg.size}
+{{pkg.size}}
 
 ## Dependencies
 
-${pkg.deps}
+{{pkg.deps}}
 
-${examples}
+{{repo.examples}}
 
 ## Command line usage
 
@@ -159,7 +152,7 @@ pointfree semver.f node_modules '^type'
 
 ## API
 
-${docLink}
+{{pkg.docs}}
 
 (Code for the above example)
 
@@ -656,12 +649,4 @@ pf.runU(src, {bingo: 42}, [43]);
 - [ ] @thi.ng/atom vocab & integration
 - [ ] @thi.ng/rstream vocab & integration
 
-## Authors
-
-${authors}
-
-${pkg.cite}
-
-## License
-
-&copy; ${copyright} // ${license}
+<!-- include ../../assets/tpl/footer.md -->

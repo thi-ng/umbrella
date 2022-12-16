@@ -1,46 +1,39 @@
-# ${pkg.banner}
+<!-- include ../../assets/tpl/header.md -->
 
-[![npm version](https://img.shields.io/npm/v/${pkg.name}.svg)](https://www.npmjs.com/package/${pkg.name})
-![npm downloads](https://img.shields.io/npm/dm/${pkg.name}.svg)
-[![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
-
-This project is part of the
-[@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
-
-<!-- TOC -->
+<!-- toc -->
 
 ## About
 
-${pkg.description}
+{{pkg.description}}
 
 Attempts to determine display pixel density via `window.devicePixelRatio`
 (default 1.0) and resizes canvas accordingly. I.e. If DPR != 1.0, attaches
 explicit `width` and `height` CSS properties to force canvas to given CSS pixel
 size, and resizes canvas pixel buffer itself based on DPR (e.g. 2x size).
 
-${status}
+{{meta.status}}
 
-${supportPackages}
+{{repo.supportPackages}}
 
-${relatedPackages}
+{{repo.relatedPackages}}
 
-${blogPosts}
+{{meta.blogPosts}}
 
 ## Installation
 
-${pkg.install}
+{{pkg.install}}
 
-${pkg.size}
+{{pkg.size}}
 
 ## Dependencies
 
-${pkg.deps}
+{{pkg.deps}}
 
-${examples}
+{{repo.examples}}
 
 ## API
 
-${docLink}
+{{pkg.docs}}
 
 ```ts
 import { adaptDPI, isHighDPI } from "@thi.ng/adapt-dpi";
@@ -54,12 +47,4 @@ if (isHighDPI()) {
 }
 ```
 
-## Authors
-
-${authors}
-
-${pkg.cite}
-
-## License
-
-&copy; ${copyright} // ${license}
+<!-- include ../../assets/tpl/footer.md -->

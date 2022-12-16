@@ -1,10 +1,10 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![geom-clip-poly](https://media.thi.ng/umbrella/banners-20220914/thing-geom-clip-poly.svg?35f8bd74)
+# ![@thi.ng/geom-clip-poly](https://media.thi.ng/umbrella/banners-20220914/thing-geom-clip-poly.svg?35f8bd74)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/geom-clip-poly.svg)](https://www.npmjs.com/package/@thi.ng/geom-clip-poly)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/geom-clip-poly.svg)
-[![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
+[![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
@@ -20,7 +20,7 @@ This project is part of the
 
 ## About
 
-2D polygon clipping / offsetting (Sutherland-Hodgeman, Grainer-Hormann). This is a support package for [@thi.ng/geom](https://github.com/thi-ng/umbrella/tree/develop/packages/geom).
+2D polygon clipping / offsetting (Sutherland-Hodgeman, Grainer-Hormann)
 
 Current implementations are based on [toxiclibs](http://toxiclibs.org)
 (Java) and Clojure versions [thi.ng/geom-clj](http://thi.ng/geom-clj).
@@ -51,11 +51,8 @@ ES module import:
 
 For Node.js REPL:
 
-```text
-# with flag only for < v16
-node --experimental-repl-await
-
-> const geomClipPoly = await import("@thi.ng/geom-clip-poly");
+```js
+const geomClipPoly = await import("@thi.ng/geom-clip-poly");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 321 bytes
@@ -75,7 +72,7 @@ TODO
 
 ## Authors
 
-Karsten Schmidt
+- [Karsten Schmidt](https://thi.ng)
 
 If this project contributes to an academic publication, please cite it as:
 
@@ -90,4 +87,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2013 - 2022 Karsten Schmidt // Apache Software License 2.0
+&copy; 2013 - 2022 Karsten Schmidt // Apache License 2.0

@@ -1,10 +1,10 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![geom-poly-utils](https://media.thi.ng/umbrella/banners-20220914/thing-geom-poly-utils.svg?831b2b27)
+# ![@thi.ng/geom-poly-utils](https://media.thi.ng/umbrella/banners-20220914/thing-geom-poly-utils.svg?831b2b27)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/geom-poly-utils.svg)](https://www.npmjs.com/package/@thi.ng/geom-poly-utils)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/geom-poly-utils.svg)
-[![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
+[![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
@@ -19,7 +19,7 @@ This project is part of the
 
 ## About
 
-2D polygon/polyline analysis & processing utilities. This is a support package for [@thi.ng/geom](https://github.com/thi-ng/umbrella/tree/develop/packages/geom).
+2D polygon/polyline analysis & processing utilities
 
 - signed 2D polygon & triangle area
 - triangle barycentric coord conversion
@@ -57,11 +57,8 @@ ES module import:
 
 For Node.js REPL:
 
-```text
-# with flag only for < v16
-node --experimental-repl-await
-
-> const geomPolyUtils = await import("@thi.ng/geom-poly-utils");
+```js
+const geomPolyUtils = await import("@thi.ng/geom-poly-utils");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 1.94 KB
@@ -82,7 +79,7 @@ TODO
 
 ## Authors
 
-Karsten Schmidt
+- [Karsten Schmidt](https://thi.ng)
 
 If this project contributes to an academic publication, please cite it as:
 
@@ -97,4 +94,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2013 - 2022 Karsten Schmidt // Apache Software License 2.0
+&copy; 2013 - 2022 Karsten Schmidt // Apache License 2.0

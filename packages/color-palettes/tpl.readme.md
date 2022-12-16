@@ -1,17 +1,10 @@
-# ${pkg.banner}
+<!-- include ../../assets/tpl/header.md -->
 
-[![npm version](https://img.shields.io/npm/v/${pkg.name}.svg)](https://www.npmjs.com/package/${pkg.name})
-![npm downloads](https://img.shields.io/npm/dm/${pkg.name}.svg)
-[![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
-
-This project is part of the
-[@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
-
-<!-- TOC -->
+<!-- toc -->
 
 ## About
 
-${pkg.description} (zero dependencies)
+{{pkg.description}} (zero dependencies)
 
 ## Recent additions
 
@@ -177,25 +170,25 @@ be. Any pointers to workarounds/solutions are appreciated...):
 | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/014whoAyxl5gzJwC1.svg) | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/014wjGaMtVyXGNzL6.svg)  | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color-palettes/00qAZk070SYGij58C.svg) |
 | 014whoAyxl5gzJwC1                                                                                          | 014wjGaMtVyXGNzL6                                                                                           | 00qAZk070SYGij58C                                                                                          |
 
-${status}
+{{meta.status}}
 
-${supportPackages}
+{{repo.supportPackages}}
 
-${relatedPackages}
+{{repo.relatedPackages}}
 
-${blogPosts}
+{{meta.blogPosts}}
 
 ## Installation
 
-${pkg.install}
+{{pkg.install}}
 
-${pkg.size}
+{{pkg.size}}
 
 ## Dependencies
 
-${pkg.deps}
+{{pkg.deps}}
 
-${examples}
+{{repo.examples}}
 
 ## Available palettes
 
@@ -209,12 +202,4 @@ const theme = THEMES["00bYahDYU6E7wDJwL"];
 
 Also see the [swatch generator](https://github.com/thi-ng/umbrella/blob/develop/packages/color-palettes/tools/index.ts) as usage example...
 
-## Authors
-
-${authors}
-
-${pkg.cite}
-
-## License
-
-&copy; ${copyright} // ${license}
+<!-- include ../../assets/tpl/footer.md -->

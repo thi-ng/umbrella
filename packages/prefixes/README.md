@@ -1,10 +1,10 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![prefixes](https://media.thi.ng/umbrella/banners-20220914/thing-prefixes.svg?a84513ae)
+# ![@thi.ng/prefixes](https://media.thi.ng/umbrella/banners-20220914/thing-prefixes.svg?a84513ae)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/prefixes.svg)](https://www.npmjs.com/package/@thi.ng/prefixes)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/prefixes.svg)
-[![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
+[![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
@@ -21,7 +21,7 @@ This project is part of the
 
 ## About
 
-50+ Linked Data vocabulary prefixes and their namespace URLs.
+50+ Linked Data vocabulary prefixes and their namespace URLs
 
 ## Status
 
@@ -34,7 +34,7 @@ This project is part of the
 - [@thi.ng/egf](https://github.com/thi-ng/umbrella/tree/develop/packages/egf) - Extensible Graph Format
 - [@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/develop/packages/hdom) - Lightweight vanilla ES6 UI component trees with customizable branch-local behaviors
 - [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup) - HTML/SVG/XML serialization of nested data structures, iterables & closures
-- [@thi.ng/hiccup-svg](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-svg) - SVG element functions for [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup) & [@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/develop/packages/hdom)
+- [@thi.ng/hiccup-svg](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-svg) - SVG element functions for [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup) & related tooling
 - [@thi.ng/rdom](https://github.com/thi-ng/umbrella/tree/develop/packages/rdom) - Lightweight, reactive, VDOM-less UI/DOM components with async lifecycle and [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup) compatible
 
 ## Installation
@@ -53,11 +53,8 @@ ES module import:
 
 For Node.js REPL:
 
-```text
-# with flag only for < v16
-node --experimental-repl-await
-
-> const prefixes = await import("@thi.ng/prefixes");
+```js
+const prefixes = await import("@thi.ng/prefixes");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 1.03 KB
@@ -126,7 +123,7 @@ Serialized HTML/RDFa result:
 
 ## Authors
 
-Karsten Schmidt
+- [Karsten Schmidt](https://thi.ng)
 
 If this project contributes to an academic publication, please cite it as:
 
@@ -141,4 +138,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2020 - 2022 Karsten Schmidt // Apache Software License 2.0
+&copy; 2020 - 2022 Karsten Schmidt // Apache License 2.0

@@ -1,10 +1,10 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![file-io](https://media.thi.ng/umbrella/banners-20220914/thing-file-io.svg?86fa755f)
+# ![@thi.ng/file-io](https://media.thi.ng/umbrella/banners-20220914/thing-file-io.svg?86fa755f)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/file-io.svg)](https://www.npmjs.com/package/@thi.ng/file-io)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/file-io.svg)
-[![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
+[![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
@@ -19,7 +19,7 @@ This project is part of the
 
 ## About
 
-Assorted file I/O utils (with logging support) for NodeJS.
+Assorted file I/O utils (with logging support) for NodeJS
 
 Most functions in this package have optional support for the
 [`ILogger`](https://github.com/thi-ng/umbrella/tree/develop/packages/logger)
@@ -39,11 +39,8 @@ yarn add @thi.ng/file-io
 
 For Node.js REPL:
 
-```text
-# with flag only for < v16
-node --experimental-repl-await
-
-> const fileIo = await import("@thi.ng/file-io");
+```js
+const fileIo = await import("@thi.ng/file-io");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 997 bytes
@@ -63,7 +60,7 @@ TODO
 
 ## Authors
 
-Karsten Schmidt
+- [Karsten Schmidt](https://thi.ng)
 
 If this project contributes to an academic publication, please cite it as:
 
@@ -78,4 +75,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2022 Karsten Schmidt // Apache Software License 2.0
+&copy; 2022 Karsten Schmidt // Apache License 2.0

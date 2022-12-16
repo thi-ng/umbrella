@@ -1,10 +1,10 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![hiccup](https://media.thi.ng/umbrella/banners-20220914/thing-hiccup.svg?81af4609)
+# ![@thi.ng/hiccup](https://media.thi.ng/umbrella/banners-20220914/thing-hiccup.svg?81af4609)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/hiccup.svg)](https://www.npmjs.com/package/@thi.ng/hiccup)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/hiccup.svg)
-[![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
+[![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
@@ -41,7 +41,7 @@ This project is part of the
 
 ## About
 
-HTML/SVG/XML serialization of nested data structures, iterables & closures.
+HTML/SVG/XML serialization of nested data structures, iterables & closures
 
 Inspired by [Hiccup](https://github.com/weavejester/hiccup) and
 [Reagent](http://reagent-project.github.io/) for Clojure/ClojureScript.
@@ -123,7 +123,7 @@ iterable
 - [@thi.ng/hiccup-css](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-css) - CSS from nested JS data structures
 - [@thi.ng/hiccup-html](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-html) - 100+ type-checked HTML5 element functions for [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup) related infrastructure
 - [@thi.ng/hiccup-markdown](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-markdown) - Markdown parser & serializer from/to Hiccup format
-- [@thi.ng/hiccup-svg](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-svg) - SVG element functions for [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup) & [@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/develop/packages/hdom)
+- [@thi.ng/hiccup-svg](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-svg) - SVG element functions for [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup) & related tooling
 
 ## Related packages
 
@@ -153,11 +153,8 @@ ES module import:
 
 For Node.js REPL:
 
-```text
-# with flag only for < v16
-node --experimental-repl-await
-
-> const hiccup = await import("@thi.ng/hiccup");
+```js
+const hiccup = await import("@thi.ng/hiccup");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 2.04 KB
@@ -657,7 +654,7 @@ considered](https://github.com/thi-ng/umbrella/blob/develop/packages/hiccup/src/
 
 ## Authors
 
-Karsten Schmidt
+- [Karsten Schmidt](https://thi.ng)
 
 If this project contributes to an academic publication, please cite it as:
 
@@ -672,4 +669,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2016 - 2022 Karsten Schmidt // Apache Software License 2.0
+&copy; 2016 - 2022 Karsten Schmidt // Apache License 2.0

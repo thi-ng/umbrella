@@ -1,10 +1,10 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![geom-api](https://media.thi.ng/umbrella/banners-20220914/thing-geom-api.svg?c0b50d1e)
+# ![@thi.ng/geom-api](https://media.thi.ng/umbrella/banners-20220914/thing-geom-api.svg?c0b50d1e)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/geom-api.svg)](https://www.npmjs.com/package/@thi.ng/geom-api)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/geom-api.svg)
-[![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
+[![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
@@ -19,7 +19,7 @@ This project is part of the
 
 ## About
 
-Shared type & interface declarations for [@thi.ng/geom](https://github.com/thi-ng/umbrella/tree/develop/packages/geom) packages.
+Shared type & interface declarations for @thi.ng/geom packages
 
 ## Status
 
@@ -43,11 +43,8 @@ ES module import:
 
 For Node.js REPL:
 
-```text
-# with flag only for < v16
-node --experimental-repl-await
-
-> const geomApi = await import("@thi.ng/geom-api");
+```js
+const geomApi = await import("@thi.ng/geom-api");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 237 bytes
@@ -65,7 +62,7 @@ TODO
 
 ## Authors
 
-Karsten Schmidt
+- [Karsten Schmidt](https://thi.ng)
 
 If this project contributes to an academic publication, please cite it as:
 
@@ -80,4 +77,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2013 - 2022 Karsten Schmidt // Apache Software License 2.0
+&copy; 2013 - 2022 Karsten Schmidt // Apache License 2.0

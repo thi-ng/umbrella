@@ -1,17 +1,10 @@
-# ${pkg.banner}
+<!-- include ../../assets/tpl/header.md -->
 
-[![npm version](https://img.shields.io/npm/v/${pkg.name}.svg)](https://www.npmjs.com/package/${pkg.name})
-![npm downloads](https://img.shields.io/npm/dm/${pkg.name}.svg)
-[![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
-
-This project is part of the
-[@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
-
-<!-- TOC -->
+<!-- toc -->
 
 ## About
 
-${pkg.description}
+{{pkg.description}}
 
 ### Important
 
@@ -119,29 +112,29 @@ If no `transform`, but others are given, the resulting transformation
 order will always be TRS. Any string values will be used as-is and
 therefore need to be complete, e.g. `{ rotate: "rotate(60)" }`
 
-${status}
+{{meta.status}}
 
-${supportPackages}
+{{repo.supportPackages}}
 
-${relatedPackages}
+{{repo.relatedPackages}}
 
-${blogPosts}
+{{meta.blogPosts}}
 
 ## Installation
 
-${pkg.install}
+{{pkg.install}}
 
-${pkg.size}
+{{pkg.size}}
 
 ## Dependencies
 
-${pkg.deps}
+{{pkg.deps}}
 
-${examples}
+{{repo.examples}}
 
 ## API
 
-${docLink}
+{{pkg.docs}}
 
 ```ts
 import * as svg from "@thi.ng/hiccup-svg";
@@ -189,7 +182,7 @@ Result:
 
 ```xml
 <svg version="1.1"
-    xmlns="http://www.w3.org/2000/svg" 
+    xmlns="http://www.w3.org/2000/svg"
     xmlns:xlink="http://www.w3.org/1999/xlink" width="300" height="300">
     <defs>
         <radialGradient id="bg" fx="150.00" fy="280.00" cx="150.00" cy="300.00" fr="300.00" r="100.00" gradientUnits="userSpaceOnUse">
@@ -208,12 +201,4 @@ Result:
 </svg>
 ```
 
-## Authors
-
-${authors}
-
-${pkg.cite}
-
-## License
-
-&copy; ${copyright} // ${license}
+<!-- include ../../assets/tpl/footer.md -->

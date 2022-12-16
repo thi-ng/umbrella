@@ -1,17 +1,10 @@
-# ${pkg.banner}
+<!-- include ../../assets/tpl/header.md -->
 
-[![npm version](https://img.shields.io/npm/v/${pkg.name}.svg)](https://www.npmjs.com/package/${pkg.name})
-![npm downloads](https://img.shields.io/npm/dm/${pkg.name}.svg)
-[![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
-
-This project is part of the
-[@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
-
-<!-- TOC -->
+<!-- toc -->
 
 ## About
 
-${pkg.description}
+{{pkg.description}}
 
 This library provides altogether ~130 transducers, reducers, sequence
 generators (ES6 generators/iterators) and additional supporting
@@ -31,7 +24,7 @@ functions (i.e. `transduce()`/`transduceRight()`, `reduce()`/`reduceRight()`,
 will return a transforming ES6 iterator (generator) and reducing functions
 will return a reduced result of the given input iterable.
 
-${status}
+{{meta.status}}
 
 ### 7.0.0 release
 
@@ -77,23 +70,23 @@ implementation of the `IRandom` interface from the
 [@thi.ng/random](https://github.com/thi-ng/umbrella/tree/develop/packages/random)
 package.
 
-${supportPackages}
+{{repo.supportPackages}}
 
-${relatedPackages}
+{{repo.relatedPackages}}
 
-${blogPosts}
+{{meta.blogPosts}}
 
 ## Installation
 
-${pkg.install}
+{{pkg.install}}
 
-${pkg.size}
+{{pkg.size}}
 
 ## Dependencies
 
-${pkg.deps}
+{{pkg.deps}}
 
-${examples}
+{{repo.examples}}
 
 ### Basic usage patterns
 
@@ -471,7 +464,7 @@ docs for details.
 
 ## API
 
-${docLink}
+{{pkg.docs}}
 
 ### Types
 
@@ -849,12 +842,4 @@ and return a reduced result (as if it would be called via `reduce()`).
 - [str](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/str.ts)
 - [sub](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers/src/sub.ts)
 
-## Authors
-
-${authors}
-
-${pkg.cite}
-
-## License
-
-&copy; ${copyright} // ${license}
+<!-- include ../../assets/tpl/footer.md -->

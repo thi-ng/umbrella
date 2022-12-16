@@ -1,10 +1,10 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![geom](https://media.thi.ng/umbrella/banners-20220914/thing-geom.svg?f8c3d358)
+# ![@thi.ng/geom](https://media.thi.ng/umbrella/banners-20220914/thing-geom.svg?f8c3d358)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/geom.svg)](https://www.npmjs.com/package/@thi.ng/geom)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/geom.svg)
-[![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
+[![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
@@ -27,7 +27,7 @@ For the Clojure version, please visit: [thi.ng/geom-clj](https://thi.ng/geom-clj
 
 ## About
 
-Functional, polymorphic API for 2D geometry types & SVG generation.
+Functional, polymorphic API for 2D geometry types & SVG generation
 
 This project is a partially ported from the [Clojure version of the same
 name](http://thi.ng/geom-clj). All polymorphic operations built on
@@ -182,11 +182,8 @@ ES module import:
 
 For Node.js REPL:
 
-```text
-# with flag only for < v16
-node --experimental-repl-await
-
-> const geom = await import("@thi.ng/geom");
+```js
+const geom = await import("@thi.ng/geom");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 11.98 KB
@@ -257,7 +254,7 @@ TODO
 
 ## Authors
 
-Karsten Schmidt
+- [Karsten Schmidt](https://thi.ng)
 
 If this project contributes to an academic publication, please cite it as:
 
@@ -272,4 +269,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2013 - 2022 Karsten Schmidt // Apache Software License 2.0
+&copy; 2013 - 2022 Karsten Schmidt // Apache License 2.0

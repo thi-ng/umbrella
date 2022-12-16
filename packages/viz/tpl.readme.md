@@ -1,17 +1,10 @@
-# ${pkg.banner}
+<!-- include ../../assets/tpl/header.md -->
 
-[![npm version](https://img.shields.io/npm/v/${pkg.name}.svg)](https://www.npmjs.com/package/${pkg.name})
-![npm downloads](https://img.shields.io/npm/dm/${pkg.name}.svg)
-[![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
-
-This project is part of the
-[@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
-
-<!-- TOC -->
+<!-- toc -->
 
 ## About
 
-${pkg.description}
+{{pkg.description}}
 
 This package largely started as a port of the visualization module of the
 Clojure version [thi.ng/geom-clj](https://github.com/thi-ng/geom/) and is still
@@ -44,40 +37,30 @@ For reference & what to expect (links to the Clojure version):
 | Contour plot                                                   |                                                          |
 | ![](https://media.thi.ng/geom/viz/timeline-3.svg)              |                                                          |
 
-${status}
+{{meta.status}}
 
-${supportPackages}
+{{repo.supportPackages}}
 
-${relatedPackages}
+{{repo.relatedPackages}}
 
-${blogPosts}
+{{meta.blogPosts}}
 
 ## Installation
 
-${pkg.install}
+{{pkg.install}}
 
-${pkg.size}
+{{pkg.size}}
 
 ## Dependencies
 
-${pkg.deps}
+{{pkg.deps}}
 
-${examples}
+{{repo.examples}}
 
 ## API
 
-${docLink}
+{{pkg.docs}}
 
 TODO
 
-## Authors
-
-${authors}
-
-${pkg.cite}
-
-${pkg.cite}
-
-## License
-
-&copy; ${copyright} // ${license}
+<!-- include ../../assets/tpl/footer.md -->

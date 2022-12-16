@@ -1,10 +1,10 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![ksuid](https://media.thi.ng/umbrella/banners-20220914/thing-ksuid.svg?2a899961)
+# ![@thi.ng/ksuid](https://media.thi.ng/umbrella/banners-20220914/thing-ksuid.svg?2a899961)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/ksuid.svg)](https://www.npmjs.com/package/@thi.ng/ksuid)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/ksuid.svg)
-[![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
+[![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
@@ -21,7 +21,7 @@ This project is part of the
 
 ## About
 
-Configurable K-sortable unique IDs, ULIDs, binary & base-N encoded, 32/48/64bit time resolutions.
+Configurable K-sortable unique IDs, ULIDs, binary & base-N encoded, 32/48/64bit time resolutions
 
 Idea based on [segmentio/ksuid](https://github.com/segmentio/ksuid), though the
 added flexibility in terms of configuration & implementation also enables the
@@ -80,11 +80,8 @@ ES module import:
 
 For Node.js REPL:
 
-```text
-# with flag only for < v16
-node --experimental-repl-await
-
-> const ksuid = await import("@thi.ng/ksuid");
+```js
+const ksuid = await import("@thi.ng/ksuid");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 754 bytes
@@ -179,7 +176,7 @@ benchmarking: b62, 32bit, n=10000
 
 ## Authors
 
-Karsten Schmidt
+- [Karsten Schmidt](https://thi.ng)
 
 If this project contributes to an academic publication, please cite it as:
 
@@ -194,4 +191,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2020 - 2022 Karsten Schmidt // Apache Software License 2.0
+&copy; 2020 - 2022 Karsten Schmidt // Apache License 2.0

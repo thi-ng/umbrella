@@ -1,17 +1,10 @@
-# ${pkg.banner}
+<!-- include ../../assets/tpl/header.md -->
 
-[![npm version](https://img.shields.io/npm/v/${pkg.name}.svg)](https://www.npmjs.com/package/${pkg.name})
-![npm downloads](https://img.shields.io/npm/dm/${pkg.name}.svg)
-[![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
-
-This project is part of the
-[@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
-
-<!-- TOC -->
+<!-- toc -->
 
 ## About
 
-${pkg.description}
+{{pkg.description}}
 
 Striving to be both easily readable & writable for humans and machines, this
 line based, plain text data format and package supports:
@@ -59,7 +52,7 @@ Custom parsers can be provided via config options.
 **Note:** In this reference implementation, the `#file` and `#gpg` tag parsers
 are only available in NodeJS.
 
-${status}
+{{meta.status}}
 
 **You're strongly encouraged to update to at least v0.4.0 to avoid the potential
 of arbitrary code execution in older versions when decrypting `#gpg`-tagged
@@ -78,27 +71,27 @@ deployed already.
 - [ ] `#md` tag parser for markdown content
 - [ ] `#gpg` fallback behavior options
 
-${supportPackages}
+{{repo.supportPackages}}
 
-${relatedPackages}
+{{repo.relatedPackages}}
 
-${blogPosts}
+{{meta.blogPosts}}
 
 ## Installation
 
-${pkg.install}
+{{pkg.install}}
 
-${pkg.size}
+{{pkg.size}}
 
 ## Dependencies
 
-${pkg.deps}
+{{pkg.deps}}
 
-${examples}
+{{repo.examples}}
 
 ## API
 
-${docLink}
+{{pkg.docs}}
 
 **TODO - Full docs forthcoming...**
 
@@ -485,12 +478,4 @@ thi:umbrella
     schema:programmingLanguage TypeScript
 ```
 
-## Authors
-
-${authors}
-
-${pkg.cite}
-
-## License
-
-&copy; ${copyright} // ${license}
+<!-- include ../../assets/tpl/footer.md -->

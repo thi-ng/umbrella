@@ -1,10 +1,10 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![arrays](https://media.thi.ng/umbrella/banners-20220914/thing-arrays.svg?02d7f5d9)
+# ![@thi.ng/arrays](https://media.thi.ng/umbrella/banners-20220914/thing-arrays.svg?02d7f5d9)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/arrays.svg)](https://www.npmjs.com/package/@thi.ng/arrays)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/arrays.svg)
-[![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
+[![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
@@ -20,7 +20,7 @@ This project is part of the
 
 ## About
 
-Array / Arraylike utilities.
+Array / Arraylike utilities
 
 ## Status
 
@@ -44,11 +44,8 @@ ES module import:
 
 For Node.js REPL:
 
-```text
-# with flag only for < v16
-node --experimental-repl-await
-
-> const arrays = await import("@thi.ng/arrays");
+```js
+const arrays = await import("@thi.ng/arrays");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 2.40 KB
@@ -122,7 +119,7 @@ bsGT(binarySearch(src, 40), src.length)
 
 ## Authors
 
-Karsten Schmidt
+- [Karsten Schmidt](https://thi.ng)
 
 If this project contributes to an academic publication, please cite it as:
 
@@ -137,4 +134,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2018 - 2022 Karsten Schmidt // Apache Software License 2.0
+&copy; 2018 - 2022 Karsten Schmidt // Apache License 2.0

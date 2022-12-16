@@ -1,10 +1,10 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![hdom](https://media.thi.ng/umbrella/banners-20220914/thing-hdom.svg?5a0cd007)
+# ![@thi.ng/hdom](https://media.thi.ng/umbrella/banners-20220914/thing-hdom.svg?5a0cd007)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/hdom.svg)](https://www.npmjs.com/package/@thi.ng/hdom)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/hdom.svg)
-[![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
+[![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
@@ -58,13 +58,11 @@ instead...**
     - [\_\_skip](#__skip)
   - [Benchmarks](#benchmarks)
 - [Authors](#authors)
-  - [Maintainer](#maintainer)
-  - [Contributors](#contributors)
 - [License](#license)
 
 ## About
 
-Lightweight vanilla ES6 UI component trees with customizable branch-local behaviors.
+Lightweight vanilla ES6 UI component trees with customizable branch-local behaviors
 
 Lightweight UI component tree definition syntax, DOM creation and
 differential updates using only vanilla JS data structures (arrays,
@@ -139,11 +137,8 @@ ES module import:
 
 For Node.js REPL:
 
-```text
-# with flag only for < v16
-node --experimental-repl-await
-
-> const hdom = await import("@thi.ng/hdom");
+```js
+const hdom = await import("@thi.ng/hdom");
 ```
 
 You can use the
@@ -1249,13 +1244,8 @@ Some stress test benchmarks are here:
 
 ## Authors
 
-### Maintainer
-
-- Karsten Schmidt ([@postspectacular](https://github.com/postspectacular))
-
-### Contributors
-
-- Kevin Nolan ([@allforabit](https://github.com/allforabit))
+- [Karsten Schmidt](https://thi.ng) (Main author)
+- [Kevin Nolan](https://github.com/allforabit)
 
 If this project contributes to an academic publication, please cite it as:
 
@@ -1270,4 +1260,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2015 - 2022 Karsten Schmidt // Apache Software License 2.0
+&copy; 2015 - 2022 Karsten Schmidt // Apache License 2.0

@@ -1,10 +1,10 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![poisson](https://media.thi.ng/umbrella/banners-20220914/thing-poisson.svg?a3bd957b)
+# ![@thi.ng/poisson](https://media.thi.ng/umbrella/banners-20220914/thing-poisson.svg?a3bd957b)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/poisson.svg)](https://www.npmjs.com/package/@thi.ng/poisson)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/poisson.svg)
-[![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
+[![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
@@ -68,11 +68,8 @@ ES module import:
 
 For Node.js REPL:
 
-```text
-# with flag only for < v16
-node --experimental-repl-await
-
-> const poisson = await import("@thi.ng/poisson");
+```js
+const poisson = await import("@thi.ng/poisson");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 449 bytes
@@ -215,7 +212,7 @@ document.body.innerHTML = asSvg(
 
 ## Authors
 
-Karsten Schmidt
+- [Karsten Schmidt](https://thi.ng)
 
 If this project contributes to an academic publication, please cite it as:
 
@@ -230,4 +227,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2016 - 2022 Karsten Schmidt // Apache Software License 2.0
+&copy; 2016 - 2022 Karsten Schmidt // Apache License 2.0

@@ -1,10 +1,10 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![paths](https://media.thi.ng/umbrella/banners-20220914/thing-paths.svg?a9667d16)
+# ![@thi.ng/paths](https://media.thi.ng/umbrella/banners-20220914/thing-paths.svg?a9667d16)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/paths.svg)](https://www.npmjs.com/package/@thi.ng/paths)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/paths.svg)
-[![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
+[![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
@@ -34,7 +34,7 @@ This project is part of the
 
 ## About
 
-Immutable, optimized and optionally typed path-based object property / array accessors with structural sharing.
+Immutable, optimized and optionally typed path-based object property / array accessors with structural sharing
 
 ## Status
 
@@ -85,11 +85,8 @@ ES module import:
 
 For Node.js REPL:
 
-```text
-# with flag only for < v16
-node --experimental-repl-await
-
-> const paths = await import("@thi.ng/paths");
+```js
+const paths = await import("@thi.ng/paths");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 1.09 KB
@@ -368,7 +365,7 @@ exists({ a: { b: { c: [null] } } }, "a.b.c.1");
 
 ## Authors
 
-Karsten Schmidt
+- [Karsten Schmidt](https://thi.ng)
 
 If this project contributes to an academic publication, please cite it as:
 
@@ -383,4 +380,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2016 - 2022 Karsten Schmidt // Apache Software License 2.0
+&copy; 2016 - 2022 Karsten Schmidt // Apache License 2.0

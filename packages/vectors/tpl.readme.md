@@ -1,17 +1,10 @@
-# ${pkg.banner}
+<!-- include ../../assets/tpl/header.md -->
 
-[![npm version](https://img.shields.io/npm/v/${pkg.name}.svg)](https://www.npmjs.com/package/${pkg.name})
-![npm downloads](https://img.shields.io/npm/dm/${pkg.name}.svg)
-[![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
-
-This project is part of the
-[@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
-
-<!-- TOC -->
+<!-- toc -->
 
 ## About
 
-${pkg.description}
+{{pkg.description}}
 
 Likely the most comprehensive vector library for TypeScript / JavaScript
 currently available.
@@ -69,7 +62,7 @@ unsigned integer vectors.
 Partially ported from [thi.ng/geom-clj](http://thi.ng/geom-clj) (Clojure) and
 [c.thi.ng](http://c.thi.ng) (C11).
 
-${status}
+{{meta.status}}
 
 ### Breaking changes in v6.0.0
 
@@ -94,23 +87,23 @@ reasons the same changes have been applied to this package...
 - rename `perpendicularRight2` => `perpendicularCW`
 - rename `normalLeft2`/ `normalRight2` => `normalCCW` / `normalCW`
 
-${supportPackages}
+{{repo.supportPackages}}
 
-${relatedPackages}
+{{repo.relatedPackages}}
 
-${blogPosts}
+{{meta.blogPosts}}
 
 ## Installation
 
-${pkg.install}
+{{pkg.install}}
 
-${pkg.size}
+{{pkg.size}}
 
 ## Dependencies
 
-${pkg.deps}
+{{pkg.deps}}
 
-${examples}
+{{repo.examples}}
 
 ```ts
 import * as v from "@thi.ng/vectors";
@@ -167,7 +160,7 @@ v.hash([1, 2, 3])
 
 ## API
 
-${docLink}
+{{pkg.docs}}
 
 ### Naming conventions
 
@@ -555,12 +548,4 @@ For more information about the code generator see:
 - [templates.ts](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors/src/codegen/templates.ts)
 - [vop.ts](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors/src/vop.ts)
 
-## Authors
-
-${authors}
-
-${pkg.cite}
-
-## License
-
-&copy; ${copyright} // ${license}
+<!-- include ../../assets/tpl/footer.md -->

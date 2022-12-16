@@ -1,10 +1,10 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![hiccup-svg](https://media.thi.ng/umbrella/banners-20220914/thing-hiccup-svg.svg?63f904cc)
+# ![@thi.ng/hiccup-svg](https://media.thi.ng/umbrella/banners-20220914/thing-hiccup-svg.svg?63f904cc)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/hiccup-svg.svg)](https://www.npmjs.com/package/@thi.ng/hiccup-svg)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/hiccup-svg.svg)
-[![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
+[![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
@@ -25,7 +25,7 @@ This project is part of the
 
 ## About
 
-SVG element functions for [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup) & [@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/develop/packages/hdom).
+SVG element functions for @thi.ng/hiccup & related tooling
 
 ### Important
 
@@ -155,11 +155,8 @@ ES module import:
 
 For Node.js REPL:
 
-```text
-# with flag only for < v16
-node --experimental-repl-await
-
-> const hiccupSvg = await import("@thi.ng/hiccup-svg");
+```js
+const hiccupSvg = await import("@thi.ng/hiccup-svg");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 2.31 KB
@@ -244,7 +241,7 @@ Result:
 
 ```xml
 <svg version="1.1"
-    xmlns="http://www.w3.org/2000/svg" 
+    xmlns="http://www.w3.org/2000/svg"
     xmlns:xlink="http://www.w3.org/1999/xlink" width="300" height="300">
     <defs>
         <radialGradient id="bg" fx="150.00" fy="280.00" cx="150.00" cy="300.00" fr="300.00" r="100.00" gradientUnits="userSpaceOnUse">
@@ -265,7 +262,7 @@ Result:
 
 ## Authors
 
-Karsten Schmidt
+- [Karsten Schmidt](https://thi.ng)
 
 If this project contributes to an academic publication, please cite it as:
 
@@ -280,4 +277,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2016 - 2022 Karsten Schmidt // Apache Software License 2.0
+&copy; 2016 - 2022 Karsten Schmidt // Apache License 2.0

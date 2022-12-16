@@ -1,10 +1,10 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![dsp-io-wav](https://media.thi.ng/umbrella/banners-20220914/thing-dsp-io-wav.svg?f591b28a)
+# ![@thi.ng/dsp-io-wav](https://media.thi.ng/umbrella/banners-20220914/thing-dsp-io-wav.svg?f591b28a)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/dsp-io-wav.svg)](https://www.npmjs.com/package/@thi.ng/dsp-io-wav)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/dsp-io-wav.svg)
-[![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
+[![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
@@ -19,7 +19,7 @@ This project is part of the
 
 ## About
 
-WAV file format generation. This is a support package for [@thi.ng/dsp](https://github.com/thi-ng/umbrella/tree/develop/packages/dsp).
+WAV file format generation
 
 ## Status
 
@@ -43,11 +43,8 @@ ES module import:
 
 For Node.js REPL:
 
-```text
-# with flag only for < v16
-node --experimental-repl-await
-
-> const dspIoWav = await import("@thi.ng/dsp-io-wav");
+```js
+const dspIoWav = await import("@thi.ng/dsp-io-wav");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 488 bytes
@@ -84,7 +81,7 @@ fs.writeFileSync(
 
 ## Authors
 
-Karsten Schmidt
+- [Karsten Schmidt](https://thi.ng)
 
 If this project contributes to an academic publication, please cite it as:
 
@@ -99,4 +96,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2020 - 2022 Karsten Schmidt // Apache Software License 2.0
+&copy; 2020 - 2022 Karsten Schmidt // Apache License 2.0

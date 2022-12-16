@@ -1,10 +1,10 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![transducers-patch](https://media.thi.ng/umbrella/banners-20220914/thing-transducers-patch.svg?37747d24)
+# ![@thi.ng/transducers-patch](https://media.thi.ng/umbrella/banners-20220914/thing-transducers-patch.svg?37747d24)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/transducers-patch.svg)](https://www.npmjs.com/package/@thi.ng/transducers-patch)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/transducers-patch.svg)
-[![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
+[![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
@@ -21,7 +21,7 @@ This project is part of the
 
 ## About
 
-Reducers for patch-based, immutable-by-default array & object editing. This is a support package for [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers).
+Reducers for patch-based, immutable-by-default array & object editing
 
 The `patchArray` and `patchObj` reducers can be used in any
 reducer/transducer scenario and are useful for any form of declarative
@@ -50,11 +50,8 @@ ES module import:
 
 For Node.js REPL:
 
-```text
-# with flag only for < v16
-node --experimental-repl-await
-
-> const transducersPatch = await import("@thi.ng/transducers-patch");
+```js
+const transducersPatch = await import("@thi.ng/transducers-patch");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 497 bytes
@@ -172,7 +169,7 @@ state.next(["delete", "x"]);
 
 ## Authors
 
-Karsten Schmidt
+- [Karsten Schmidt](https://thi.ng)
 
 If this project contributes to an academic publication, please cite it as:
 
@@ -187,4 +184,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2020 - 2022 Karsten Schmidt // Apache Software License 2.0
+&copy; 2020 - 2022 Karsten Schmidt // Apache License 2.0

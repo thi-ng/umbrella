@@ -1,10 +1,10 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![bench](https://media.thi.ng/umbrella/banners-20220914/thing-bench.svg?7a8d9aad)
+# ![@thi.ng/bench](https://media.thi.ng/umbrella/banners-20220914/thing-bench.svg?7a8d9aad)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/bench.svg)](https://www.npmjs.com/package/@thi.ng/bench)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/bench.svg)
-[![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
+[![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
@@ -24,15 +24,15 @@ This project is part of the
 
 ## About
 
-Benchmarking utilities w/ various statistics & formatters (CSV, Markdown etc.).
+Benchmarking utilities w/ various statistics & formatters (CSV, Markdown etc.)
 
 Though no public API change (only additions), since v2.0.0 this library
 internally attempts to use high-res ES
 [`BigInt`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt)
 timestamps (in Node via
 [`process.hrtime.bigint()`](https://nodejs.org/dist/latest-v12.x/docs/api/process.html#process_process_hrtime_bigint)).
-If `BigInt` is not available in the target environment, timestamps are
-still only sourced via `Date.now()`.
+If `BigInt` is not available in the target environment, timestamps are still
+only sourced via `Date.now()`.
 
 ## Status
 
@@ -61,11 +61,8 @@ ES module import:
 
 For Node.js REPL:
 
-```text
-# with flag only for < v16
-node --experimental-repl-await
-
-> const bench = await import("@thi.ng/bench");
+```js
+const bench = await import("@thi.ng/bench");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 1.25 KB
@@ -212,7 +209,7 @@ option given to `benchmark()` or `suite()`.
 
 ## Authors
 
-Karsten Schmidt
+- Karsten Schmidt
 
 If this project contributes to an academic publication, please cite it as:
 
@@ -227,4 +224,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2018 - 2022 Karsten Schmidt // Apache Software License 2.0
+&copy; 2018 - 2022 Karsten Schmidt // Apache License 2.0

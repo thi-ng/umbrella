@@ -1,10 +1,10 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![mime](https://media.thi.ng/umbrella/banners-20220914/thing-mime.svg?81076c66)
+# ![@thi.ng/mime](https://media.thi.ng/umbrella/banners-20220914/thing-mime.svg?81076c66)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/mime.svg)](https://www.npmjs.com/package/@thi.ng/mime)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/mime.svg)
-[![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
+[![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
@@ -21,7 +21,7 @@ This project is part of the
 
 ## About
 
-650+ file extension to MIME type mappings, based on mime-db.
+650+ file extension to MIME type mappings, based on mime-db
 
 All MIME type mappings based on [mime-db](https://github.com/jshttp/mime-db)
 (2022-04-07). For filesize reasons only [a small selected
@@ -58,11 +58,8 @@ ES module import:
 
 For Node.js REPL:
 
-```text
-# with flag only for < v16
-node --experimental-repl-await
-
-> const mime = await import("@thi.ng/mime");
+```js
+const mime = await import("@thi.ng/mime");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 4.51 KB
@@ -144,7 +141,7 @@ Additional configuration options are available in the `tools/convert.ts` script.
 
 ## Authors
 
-Karsten Schmidt
+- [Karsten Schmidt](https://thi.ng)
 
 If this project contributes to an academic publication, please cite it as:
 
@@ -159,4 +156,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2020 - 2022 Karsten Schmidt // Apache Software License 2.0
+&copy; 2020 - 2022 Karsten Schmidt // Apache License 2.0

@@ -1,10 +1,10 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![math](https://media.thi.ng/umbrella/banners-20220914/thing-math.svg?9dfcf861)
+# ![@thi.ng/math](https://media.thi.ng/umbrella/banners-20220914/thing-math.svg?9dfcf861)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/math.svg)](https://www.npmjs.com/package/@thi.ng/math)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/math.svg)
-[![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
+[![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
@@ -19,13 +19,11 @@ For the Clojure version, please visit: [thi.ng/math-clj](https://thi.ng/math-clj
 - [Usage examples](#usage-examples)
 - [API](#api)
 - [Authors](#authors)
-  - [Maintainer](#maintainer)
-  - [Contributors](#contributors)
 - [License](#license)
 
 ## About
 
-Assorted common math functions & utilities.
+Assorted common math functions & utilities
 
 Partially ported from Clojure version
 [thi.ng/math-clj](https://github.com/thi-ng/math),
@@ -64,11 +62,8 @@ ES module import:
 
 For Node.js REPL:
 
-```text
-# with flag only for < v16
-node --experimental-repl-await
-
-> const math = await import("@thi.ng/math");
+```js
+const math = await import("@thi.ng/math");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 3.91 KB
@@ -105,13 +100,8 @@ TODO
 
 ## Authors
 
-### Maintainer
-
--   Karsten Schmidt ([@postspectacular](https://github.com/postspectacular))
-
-### Contributors
-
--   [@nkint](https://github.com/nkint)
+- [Karsten Schmidt](https://thi.ng) (Main author)
+- [@nkint](https://github.com/nkint)
 
 If this project contributes to an academic publication, please cite it as:
 
@@ -126,4 +116,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2013 - 2022 Karsten Schmidt // Apache Software License 2.0
+&copy; 2013 - 2022 Karsten Schmidt // Apache License 2.0

@@ -1,10 +1,10 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![hiccup-css](https://media.thi.ng/umbrella/banners-20220914/thing-hiccup-css.svg?a302745b)
+# ![@thi.ng/hiccup-css](https://media.thi.ng/umbrella/banners-20220914/thing-hiccup-css.svg?a302745b)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/hiccup-css.svg)](https://www.npmjs.com/package/@thi.ng/hiccup-css)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/hiccup-css.svg)
-[![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
+[![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
@@ -40,7 +40,7 @@ This project is part of the
 
 ## About
 
-CSS from nested JS data structures. This is a support package for [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup).
+CSS from nested JS data structures
 
 Following a similar pattern as the
 [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup)
@@ -94,7 +94,7 @@ Clojure projects:
 ## Related packages
 
 - [@thi.ng/hiccup-html](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-html) - 100+ type-checked HTML5 element functions for [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup) related infrastructure
-- [@thi.ng/hiccup-svg](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-svg) - SVG element functions for [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup) & [@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/develop/packages/hdom)
+- [@thi.ng/hiccup-svg](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-svg) - SVG element functions for [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup) & related tooling
 
 ## Installation
 
@@ -112,11 +112,8 @@ ES module import:
 
 For Node.js REPL:
 
-```text
-# with flag only for < v16
-node --experimental-repl-await
-
-> const hiccupCss = await import("@thi.ng/hiccup-css");
+```js
+const hiccupCss = await import("@thi.ng/hiccup-css");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 1.99 KB
@@ -663,7 +660,7 @@ const QUOTED_FNS = {
 
 ## Authors
 
-Karsten Schmidt
+- [Karsten Schmidt](https://thi.ng)
 
 If this project contributes to an academic publication, please cite it as:
 
@@ -678,4 +675,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2016 - 2022 Karsten Schmidt // Apache Software License 2.0
+&copy; 2016 - 2022 Karsten Schmidt // Apache License 2.0

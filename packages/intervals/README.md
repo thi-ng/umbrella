@@ -1,10 +1,10 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![intervals](https://media.thi.ng/umbrella/banners-20220914/thing-intervals.svg?86016315)
+# ![@thi.ng/intervals](https://media.thi.ng/umbrella/banners-20220914/thing-intervals.svg?86016315)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/intervals.svg)](https://www.npmjs.com/package/@thi.ng/intervals)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/intervals.svg)
-[![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
+[![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
@@ -17,13 +17,11 @@ This project is part of the
 - [Usage examples](#usage-examples)
 - [API](#api)
 - [Authors](#authors)
-  - [Maintainer](#maintainer)
-  - [Contributors](#contributors)
 - [License](#license)
 
 ## About
 
-Closed/open/semi-open interval data type, queries & operations.
+Closed/open/semi-open interval data type, queries & operations
 
 Supports point & range queries and set operations with other intervals
 (union, intersection, difference).
@@ -62,11 +60,8 @@ ES module import:
 
 For Node.js REPL:
 
-```text
-# with flag only for < v16
-node --experimental-repl-await
-
-> const intervals = await import("@thi.ng/intervals");
+```js
+const intervals = await import("@thi.ng/intervals");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 1.53 KB
@@ -184,12 +179,7 @@ clamp(interval("[0..1)"), 2, 1e-3)
 
 ## Authors
 
-### Maintainer
-
-- Karsten Schmidt ([@postspectacular](https://github.com/postspectacular))
-
-### Contributors
-
+- [Karsten Schmidt](https://thi.ng) (Main author)
 - [@oljeger](https://github.com/oljeger)
 
 If this project contributes to an academic publication, please cite it as:
@@ -205,4 +195,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2018 - 2022 Karsten Schmidt // Apache Software License 2.0
+&copy; 2018 - 2022 Karsten Schmidt // Apache License 2.0

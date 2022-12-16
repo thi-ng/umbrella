@@ -1,10 +1,10 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![viz](https://media.thi.ng/umbrella/banners-20220914/thing-viz.svg?a413e6e2)
+# ![@thi.ng/viz](https://media.thi.ng/umbrella/banners-20220914/thing-viz.svg?a413e6e2)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/viz.svg)](https://www.npmjs.com/package/@thi.ng/viz)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/viz.svg)
-[![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
+[![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
@@ -20,7 +20,7 @@ This project is part of the
 
 ## About
 
-Declarative, functional & multi-format data visualization toolkit based around [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup).
+Declarative, functional & multi-format data visualization toolkit based around @thi.ng/hiccup
 
 This package largely started as a port of the visualization module of the
 Clojure version [thi.ng/geom-clj](https://github.com/thi-ng/geom/) and is still
@@ -63,7 +63,7 @@ For reference & what to expect (links to the Clojure version):
 
 - [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup) - HTML/SVG/XML serialization of nested data structures, iterables & closures
 - [@thi.ng/hiccup-canvas](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-canvas) - Hiccup shape tree renderer for vanilla Canvas 2D contexts
-- [@thi.ng/hiccup-svg](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-svg) - SVG element functions for [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup) & [@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/develop/packages/hdom)
+- [@thi.ng/hiccup-svg](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-svg) - SVG element functions for [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup) & related tooling
 
 ## Installation
 
@@ -81,11 +81,8 @@ ES module import:
 
 For Node.js REPL:
 
-```text
-# with flag only for < v16
-node --experimental-repl-await
-
-> const viz = await import("@thi.ng/viz");
+```js
+const viz = await import("@thi.ng/viz");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 2.58 KB
@@ -108,18 +105,7 @@ TODO
 
 ## Authors
 
-Karsten Schmidt
-
-If this project contributes to an academic publication, please cite it as:
-
-```bibtex
-@misc{thing-viz,
-  title = "@thi.ng/viz",
-  author = "Karsten Schmidt",
-  note = "https://thi.ng/viz",
-  year = 2014
-}
-```
+- [Karsten Schmidt](https://thi.ng)
 
 If this project contributes to an academic publication, please cite it as:
 
@@ -134,4 +120,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2014 - 2022 Karsten Schmidt // Apache Software License 2.0
+&copy; 2014 - 2022 Karsten Schmidt // Apache License 2.0

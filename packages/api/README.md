@@ -1,10 +1,10 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![api](https://media.thi.ng/umbrella/banners-20220914/thing-api.svg?1c0ba288)
+# ![@thi.ng/api](https://media.thi.ng/umbrella/banners-20220914/thing-api.svg?1c0ba288)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/api.svg)](https://www.npmjs.com/package/@thi.ng/api)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/api.svg)
-[![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
+[![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
@@ -15,13 +15,11 @@ This project is part of the
 - [Dependencies](#dependencies)
 - [API](#api)
 - [Authors](#authors)
-  - [Maintainer](#maintainer)
-  - [Contributors](#contributors)
 - [License](#license)
 
 ## About
 
-Common, generic types, interfaces & mixins.
+Common, generic types, interfaces & mixins
 
 This package is implicitly used by most other projects in this repository. It
 defines:
@@ -53,11 +51,8 @@ ES module import:
 
 For Node.js REPL:
 
-```text
-# with flag only for < v16
-node --experimental-repl-await
-
-> const api = await import("@thi.ng/api");
+```js
+const api = await import("@thi.ng/api");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 2.15 KB
@@ -72,13 +67,8 @@ None
 
 ## Authors
 
-### Maintainer
-
-- Karsten Schmidt ([@postspectacular](https://github.com/postspectacular))
-
-### Contributors
-
-- Matei Adriel ([@Mateiadrielrafael](https://github.com/Mateiadrielrafael))
+- [Karsten Schmidt](https://thi.ng) (Main author)
+- [Matei Adriel](https://github.com/Mateiadrielrafael)
 
 If this project contributes to an academic publication, please cite it as:
 
@@ -93,4 +83,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2016 - 2022 Karsten Schmidt // Apache Software License 2.0
+&copy; 2016 - 2022 Karsten Schmidt // Apache License 2.0

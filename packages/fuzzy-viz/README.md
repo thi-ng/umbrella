@@ -1,10 +1,10 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![fuzzy-viz](https://media.thi.ng/umbrella/banners-20220914/thing-fuzzy-viz.svg?61b5d627)
+# ![@thi.ng/fuzzy-viz](https://media.thi.ng/umbrella/banners-20220914/thing-fuzzy-viz.svg?61b5d627)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/fuzzy-viz.svg)](https://www.npmjs.com/package/@thi.ng/fuzzy-viz)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/fuzzy-viz.svg)
-[![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
+[![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
@@ -21,7 +21,7 @@ This project is part of the
 
 ## About
 
-Visualization, instrumentation & introspection utils for [@thi.ng/fuzzy](https://github.com/thi-ng/umbrella/tree/develop/packages/fuzzy).
+Visualization, instrumentation & introspection utils for @thi.ng/fuzzy
 
 ## Status
 
@@ -45,11 +45,8 @@ ES module import:
 
 For Node.js REPL:
 
-```text
-# with flag only for < v16
-node --experimental-repl-await
-
-> const fuzzyViz = await import("@thi.ng/fuzzy-viz");
+```js
+const fuzzyViz = await import("@thi.ng/fuzzy-viz");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 1.00 KB
@@ -149,7 +146,7 @@ created following the same pattern as above:
 
 ## Authors
 
-Karsten Schmidt
+- [Karsten Schmidt](https://thi.ng)
 
 If this project contributes to an academic publication, please cite it as:
 
@@ -164,4 +161,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2020 - 2022 Karsten Schmidt // Apache Software License 2.0
+&copy; 2020 - 2022 Karsten Schmidt // Apache License 2.0

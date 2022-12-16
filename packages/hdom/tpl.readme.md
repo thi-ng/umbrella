@@ -1,22 +1,15 @@
-# ${pkg.banner}
-
-[![npm version](https://img.shields.io/npm/v/${pkg.name}.svg)](https://www.npmjs.com/package/${pkg.name})
-![npm downloads](https://img.shields.io/npm/dm/${pkg.name}.svg)
-[![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
-
-This project is part of the
-[@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
+<!-- include ../../assets/tpl/header.md -->
 
 **Update 12/2022: This package is considered completed and no longer being
 updated with new features. Please consider using
 [@thi.ng/rdom](https://github.com/thi-ng/umbrella/tree/develop/packages/rdom)
 instead...**
 
-<!-- TOC -->
+<!-- toc -->
 
 ## About
 
-${pkg.description}
+{{pkg.description}}
 
 Lightweight UI component tree definition syntax, DOM creation and
 differential updates using only vanilla JS data structures (arrays,
@@ -54,17 +47,17 @@ Benefits:
 - Fast (see [benchmark examples](#benchmarks) below)
 - Only ~6.2KB gzipped
 
-${status}
+{{meta.status}}
 
-${supportPackages}
+{{repo.supportPackages}}
 
-${relatedPackages}
+{{repo.relatedPackages}}
 
-${blogPosts}
+{{meta.blogPosts}}
 
 ## Installation
 
-${pkg.install}
+{{pkg.install}}
 
 You can use the
 [create-hdom-app](https://github.com/thi-ng/create-hdom-app) project
@@ -81,13 +74,13 @@ yarn install
 yarn start
 ```
 
-${pkg.size}
+{{pkg.size}}
 
 ## Dependencies
 
-${pkg.deps}
+{{pkg.deps}}
 
-${examples}
+{{repo.examples}}
 
 ### Minimal example #1: Local state, RAF update
 
@@ -294,7 +287,7 @@ start(() =>
 
 ## API
 
-${docLink}
+{{pkg.docs}}
 
 ### The hdom data flow
 
@@ -1116,12 +1109,4 @@ Some stress test benchmarks are here:
 - [/examples/hdom-benchmark2](https://github.com/thi-ng/umbrella/tree/develop/examples/hdom-benchmark2)
   | [Live version](https://demo.thi.ng/umbrella/hdom-benchmark2/) (w/ selective updates)
 
-## Authors
-
-${authors}
-
-${pkg.cite}
-
-## License
-
-&copy; ${copyright} // ${license}
+<!-- include ../../assets/tpl/footer.md -->

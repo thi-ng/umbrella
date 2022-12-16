@@ -1,10 +1,10 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![adapt-dpi](https://media.thi.ng/umbrella/banners-20220914/thing-adapt-dpi.svg?3c0ddd12)
+# ![@thi.ng/adapt-dpi](https://media.thi.ng/umbrella/banners-20220914/thing-adapt-dpi.svg?3c0ddd12)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/adapt-dpi.svg)](https://www.npmjs.com/package/@thi.ng/adapt-dpi)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/adapt-dpi.svg)
-[![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
+[![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
@@ -20,7 +20,7 @@ This project is part of the
 
 ## About
 
-HDPI canvas adapter / styling utility.
+HDPI canvas adapter / styling utility
 
 Attempts to determine display pixel density via `window.devicePixelRatio`
 (default 1.0) and resizes canvas accordingly. I.e. If DPR != 1.0, attaches
@@ -49,11 +49,8 @@ ES module import:
 
 For Node.js REPL:
 
-```text
-# with flag only for < v16
-node --experimental-repl-await
-
-> const adaptDpi = await import("@thi.ng/adapt-dpi");
+```js
+const adaptDpi = await import("@thi.ng/adapt-dpi");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 135 bytes
@@ -96,7 +93,7 @@ if (isHighDPI()) {
 
 ## Authors
 
-Karsten Schmidt
+- [Karsten Schmidt](https://thi.ng)
 
 If this project contributes to an academic publication, please cite it as:
 
@@ -111,4 +108,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2015 - 2022 Karsten Schmidt // Apache Software License 2.0
+&copy; 2015 - 2022 Karsten Schmidt // Apache License 2.0

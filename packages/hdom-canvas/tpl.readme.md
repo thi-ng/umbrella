@@ -1,17 +1,10 @@
-# ${pkg.banner}
+<!-- include ../../assets/tpl/header.md -->
 
-[![npm version](https://img.shields.io/npm/v/${pkg.name}.svg)](https://www.npmjs.com/package/${pkg.name})
-![npm downloads](https://img.shields.io/npm/dm/${pkg.name}.svg)
-[![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
-
-This project is part of the
-[@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
-
-<!-- TOC -->
+<!-- toc -->
 
 ## About
 
-${pkg.description}
+{{pkg.description}}
 
 This package provides a [re-usable canvas
 component](https://github.com/thi-ng/umbrella/tree/develop/packages/hdom-canvas/src/index.ts#L66),
@@ -21,7 +14,7 @@ in standard
 syntax/format (i.e. nested arrays) and then translates these into canvas
 API draw calls during the hdom update process / cycle.
 
-${status}
+{{meta.status}}
 
 ### BREAKING CHANGES 3.0.0
 
@@ -29,27 +22,27 @@ The actual tree traversal & drawing has been extracted to the new
 [@thi.ng/hiccup-canvas](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-canvas)
 package for better re-usability, also outside without hdom.
 
-${supportPackages}
+{{repo.supportPackages}}
 
-${relatedPackages}
+{{repo.relatedPackages}}
 
-${blogPosts}
+{{meta.blogPosts}}
 
 ## Installation
 
-${pkg.install}
+{{pkg.install}}
 
-${pkg.size}
+{{pkg.size}}
 
 ## Dependencies
 
-${pkg.deps}
+{{pkg.deps}}
 
-${examples}
+{{repo.examples}}
 
 ## API
 
-${docLink}
+{{pkg.docs}}
 
 ```ts
 import { start } from "@thi.ng/hdom";
@@ -212,12 +205,4 @@ README](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-canvas/R
 for the full list of supported shapes, gradients, attributes, colors and
 transformations.
 
-## Authors
-
-${authors}
-
-${pkg.cite}
-
-## License
-
-&copy; ${copyright} // ${license}
+<!-- include ../../assets/tpl/footer.md -->

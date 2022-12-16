@@ -1,10 +1,10 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![color-palettes](https://media.thi.ng/umbrella/banners-20220914/thing-color-palettes.svg?b1e135aa)
+# ![@thi.ng/color-palettes](https://media.thi.ng/umbrella/banners-20220914/thing-color-palettes.svg?b1e135aa)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/color-palettes.svg)](https://www.npmjs.com/package/@thi.ng/color-palettes)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/color-palettes.svg)
-[![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
+[![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
@@ -26,7 +26,7 @@ This project is part of the
 
 ## About
 
-Collection of 190+ image based color palettes. This is a support package for [@thi.ng/color](https://github.com/thi-ng/umbrella/tree/develop/packages/color). (zero dependencies)
+Collection of 190+ image based color palettes (zero dependencies)
 
 ## Recent additions
 
@@ -214,11 +214,8 @@ ES module import:
 
 For Node.js REPL:
 
-```text
-# with flag only for < v16
-node --experimental-repl-await
-
-> const colorPalettes = await import("@thi.ng/color-palettes");
+```js
+const colorPalettes = await import("@thi.ng/color-palettes");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 6.20 KB
@@ -253,7 +250,7 @@ Also see the [swatch generator](https://github.com/thi-ng/umbrella/blob/develop/
 
 ## Authors
 
-Karsten Schmidt
+- [Karsten Schmidt](https://thi.ng)
 
 If this project contributes to an academic publication, please cite it as:
 
@@ -268,4 +265,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2021 - 2022 Karsten Schmidt // Apache Software License 2.0
+&copy; 2021 - 2022 Karsten Schmidt // Apache License 2.0

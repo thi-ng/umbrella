@@ -1,10 +1,10 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![bitfield](https://media.thi.ng/umbrella/banners-20220914/thing-bitfield.svg?d320c323)
+# ![@thi.ng/bitfield](https://media.thi.ng/umbrella/banners-20220914/thing-bitfield.svg?d320c323)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/bitfield.svg)](https://www.npmjs.com/package/@thi.ng/bitfield)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/bitfield.svg)
-[![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
+[![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
@@ -20,7 +20,7 @@ This project is part of the
 
 ## About
 
-1D / 2D bit field implementations.
+1D / 2D bit field implementations
 
 All implementations are backed by typed arrays. Due to `Uint32Array`
 backing the width is always rounded to a multiple of 32.
@@ -51,11 +51,8 @@ ES module import:
 
 For Node.js REPL:
 
-```text
-# with flag only for < v16
-node --experimental-repl-await
-
-> const bitfield = await import("@thi.ng/bitfield");
+```js
+const bitfield = await import("@thi.ng/bitfield");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 1.18 KB
@@ -116,7 +113,7 @@ mat.toString();
 
 ## Authors
 
-Karsten Schmidt
+- [Karsten Schmidt](https://thi.ng)
 
 If this project contributes to an academic publication, please cite it as:
 
@@ -131,4 +128,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2016 - 2022 Karsten Schmidt // Apache Software License 2.0
+&copy; 2016 - 2022 Karsten Schmidt // Apache License 2.0

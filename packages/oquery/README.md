@@ -1,10 +1,10 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![oquery](https://media.thi.ng/umbrella/banners-20220914/thing-oquery.svg?5410c2aa)
+# ![@thi.ng/oquery](https://media.thi.ng/umbrella/banners-20220914/thing-oquery.svg?5410c2aa)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/oquery.svg)](https://www.npmjs.com/package/@thi.ng/oquery)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/oquery.svg)
-[![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
+[![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
@@ -24,7 +24,7 @@ This project is part of the
 
 ## About
 
-Datalog-inspired, optimized pattern/predicate query engine for JS objects & arrays.
+Datalog-inspired, optimized pattern/predicate query engine for JS objects & arrays
 
 This package provides a single higher-order function `defQuery()`, which takes a
 number of options to configure query behavior and returns an actual query
@@ -70,11 +70,8 @@ ES module import:
 
 For Node.js REPL:
 
-```text
-# with flag only for < v16
-node --experimental-repl-await
-
-> const oquery = await import("@thi.ng/oquery");
+```js
+const oquery = await import("@thi.ng/oquery");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 1.15 KB
@@ -272,7 +269,7 @@ More query examples in [tests](https://github.com/thi-ng/umbrella/blob/develop/p
 
 ## Authors
 
-Karsten Schmidt
+- [Karsten Schmidt](https://thi.ng)
 
 If this project contributes to an academic publication, please cite it as:
 
@@ -287,4 +284,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2020 - 2022 Karsten Schmidt // Apache Software License 2.0
+&copy; 2020 - 2022 Karsten Schmidt // Apache License 2.0

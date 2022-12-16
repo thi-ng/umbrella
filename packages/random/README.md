@@ -1,10 +1,10 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![random](https://media.thi.ng/umbrella/banners-20220914/thing-random.svg?c79b7908)
+# ![@thi.ng/random](https://media.thi.ng/umbrella/banners-20220914/thing-random.svg?c79b7908)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/random.svg)](https://www.npmjs.com/package/@thi.ng/random)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/random.svg)
-[![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
+[![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
@@ -24,7 +24,7 @@ This project is part of the
 
 ## About
 
-Pseudo-random number generators w/ unified API, distributions, weighted choices, ID generation.
+Pseudo-random number generators w/ unified API, distributions, weighted choices, ID generation
 
 This package provides the `IRandom` interface and various (mostly seedable)
 pseudo-random number generator implementations, incl. `IRandom` wrappers for
@@ -89,11 +89,8 @@ ES module import:
 
 For Node.js REPL:
 
-```text
-# with flag only for < v16
-node --experimental-repl-await
-
-> const random = await import("@thi.ng/random");
+```js
+const random = await import("@thi.ng/random");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 1.83 KB
@@ -154,7 +151,7 @@ rnd.minmaxInt(10, 20)
 
 ## Authors
 
-Karsten Schmidt
+- [Karsten Schmidt](https://thi.ng)
 
 If this project contributes to an academic publication, please cite it as:
 
@@ -169,4 +166,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2015 - 2022 Karsten Schmidt // Apache Software License 2.0
+&copy; 2015 - 2022 Karsten Schmidt // Apache License 2.0

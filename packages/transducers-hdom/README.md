@@ -1,10 +1,10 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![transducers-hdom](https://media.thi.ng/umbrella/banners-20220914/thing-transducers-hdom.svg?ed226ae3)
+# ![@thi.ng/transducers-hdom](https://media.thi.ng/umbrella/banners-20220914/thing-transducers-hdom.svg?ed226ae3)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/transducers-hdom.svg)](https://www.npmjs.com/package/@thi.ng/transducers-hdom)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/transducers-hdom.svg)
-[![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
+[![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
@@ -21,7 +21,7 @@ This project is part of the
 
 ## About
 
-Transducer based UI updater for [@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/develop/packages/hdom). This is a support package for [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers).
+Transducer based UI updater for @thi.ng/hdom
 
 This package provides a single `updateDOM` function, a side-effecting &
 stateful transducer which receives
@@ -79,11 +79,8 @@ ES module import:
 
 For Node.js REPL:
 
-```text
-# with flag only for < v16
-node --experimental-repl-await
-
-> const transducersHdom = await import("@thi.ng/transducers-hdom");
+```js
+const transducersHdom = await import("@thi.ng/transducers-hdom");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 272 bytes
@@ -169,7 +166,7 @@ clickStream.next(0);
 
 ## Authors
 
-Karsten Schmidt
+- [Karsten Schmidt](https://thi.ng)
 
 If this project contributes to an academic publication, please cite it as:
 
@@ -184,4 +181,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2018 - 2022 Karsten Schmidt // Apache Software License 2.0
+&copy; 2018 - 2022 Karsten Schmidt // Apache License 2.0

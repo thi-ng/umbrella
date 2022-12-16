@@ -1,10 +1,10 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![args](https://media.thi.ng/umbrella/banners-20220914/thing-args.svg?2466633e)
+# ![@thi.ng/args](https://media.thi.ng/umbrella/banners-20220914/thing-args.svg?2466633e)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/args.svg)](https://www.npmjs.com/package/@thi.ng/args)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/args.svg)
-[![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
+[![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
@@ -22,7 +22,7 @@ This project is part of the
 
 ## About
 
-Declarative, functional & typechecked CLI argument/options parser, value coercions etc..
+Declarative, functional & typechecked CLI argument/options parser, value coercions etc.
 
 Includes built-in support for the following argument types (of course custom arg types are supported too):
 
@@ -64,11 +64,8 @@ ES module import:
 
 For Node.js REPL:
 
-```text
-# with flag only for < v16
-node --experimental-repl-await
-
-> const args = await import("@thi.ng/args");
+```js
+const args = await import("@thi.ng/args");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 2.29 KB
@@ -218,7 +215,7 @@ ts-node index.ts \
 
 ## Authors
 
-Karsten Schmidt
+- [Karsten Schmidt](https://thi.ng)
 
 If this project contributes to an academic publication, please cite it as:
 
@@ -233,4 +230,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2018 - 2022 Karsten Schmidt // Apache Software License 2.0
+&copy; 2018 - 2022 Karsten Schmidt // Apache License 2.0

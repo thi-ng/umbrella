@@ -1,10 +1,10 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![wasm-api-bindgen](https://media.thi.ng/umbrella/banners-20220914/thing-wasm-api-bindgen.svg?4570122f)
+# ![@thi.ng/wasm-api-bindgen](https://media.thi.ng/umbrella/banners-20220914/thing-wasm-api-bindgen.svg?4570122f)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/wasm-api-bindgen.svg)](https://www.npmjs.com/package/@thi.ng/wasm-api-bindgen)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/wasm-api-bindgen.svg)
-[![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
+[![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
@@ -40,7 +40,7 @@ This project is part of the
 
 ## About
 
-Polyglot bindings code generators for hybrid JS & WebAssembly projects. This is a support package for [@thi.ng/wasm-api](https://github.com/thi-ng/umbrella/tree/develop/packages/wasm-api).
+Polyglot bindings code generators for hybrid JS & WebAssembly projects
 
 Without any additional help, current data exchange between a WebAssembly module
 and the JS/TS host application is restricted to simple numeric values. Not even
@@ -730,11 +730,8 @@ ES module import:
 
 For Node.js REPL:
 
-```text
-# with flag only for < v16
-node --experimental-repl-await
-
-> const wasmApiBindgen = await import("@thi.ng/wasm-api-bindgen");
+```js
+const wasmApiBindgen = await import("@thi.ng/wasm-api-bindgen");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 5.93 KB
@@ -767,7 +764,7 @@ the various (commented) example projects linked above.
 
 ## Authors
 
-Karsten Schmidt
+- [Karsten Schmidt](https://thi.ng)
 
 If this project contributes to an academic publication, please cite it as:
 
@@ -782,4 +779,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2022 Karsten Schmidt // Apache Software License 2.0
+&copy; 2022 Karsten Schmidt // Apache License 2.0

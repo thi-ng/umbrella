@@ -1,19 +1,12 @@
-# ${pkg.banner}
+<!-- include ../../assets/tpl/header.md -->
 
-[![npm version](https://img.shields.io/npm/v/${pkg.name}.svg)](https://www.npmjs.com/package/${pkg.name})
-![npm downloads](https://img.shields.io/npm/dm/${pkg.name}.svg)
-[![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
-
-This project is part of the
-[@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
-
-<!-- TOC -->
+<!-- toc -->
 
 ## About
 
 ![Custom cellular automata w/ 7-neighborhood & 128 states](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/cellular/hero.png)
 
-${pkg.description}
+{{pkg.description}}
 
 The generic implementation provided by this package enables many novel and
 unusual CA setups as well as coevolution of multiple CAs within a shared
@@ -111,29 +104,29 @@ construction.
 Due to using `Uint8Arrays` for storage, only up to 256 cell states are
 supported. The same limit applies to the number of CA configs given.
 
-${status}
+{{meta.status}}
 
-${supportPackages}
+{{repo.supportPackages}}
 
-${relatedPackages}
+{{repo.relatedPackages}}
 
-${blogPosts}
+{{meta.blogPosts}}
 
 ## Installation
 
-${pkg.install}
+{{pkg.install}}
 
-${pkg.size}
+{{pkg.size}}
 
 ## Dependencies
 
-${pkg.deps}
+{{pkg.deps}}
 
-${examples}
+{{repo.examples}}
 
 ## API
 
-${docLink}
+{{pkg.docs}}
 
 ## Code examples
 
@@ -248,12 +241,4 @@ writeFileSync("export/out.ppm", asPPM(img));
 | Hybrid (stripe pattern)                                                                           | Hybrid (noise)                                                                                  |
 | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/cellular/hybrid-pattern.png) | ![](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/cellular/hybrid-noise.png) |
 
-## Authors
-
-${authors}
-
-${pkg.cite}
-
-## License
-
-&copy; ${copyright} // ${license}
+<!-- include ../../assets/tpl/footer.md -->

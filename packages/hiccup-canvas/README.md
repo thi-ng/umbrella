@@ -1,10 +1,10 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![hiccup-canvas](https://media.thi.ng/umbrella/banners-20220914/thing-hiccup-canvas.svg?8c2d66b0)
+# ![@thi.ng/hiccup-canvas](https://media.thi.ng/umbrella/banners-20220914/thing-hiccup-canvas.svg?8c2d66b0)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/hiccup-canvas.svg)](https://www.npmjs.com/package/@thi.ng/hiccup-canvas)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/hiccup-canvas.svg)
-[![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
+[![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
@@ -52,7 +52,7 @@ This project is part of the
 
 ## About
 
-Hiccup shape tree renderer for vanilla Canvas 2D contexts. This is a support package for [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup).
+Hiccup shape tree renderer for vanilla Canvas 2D contexts
 
 This package provides a simple `draw()` function, which accepts a scene tree of
 different shape types in
@@ -88,11 +88,8 @@ ES module import:
 
 For Node.js REPL:
 
-```text
-# with flag only for < v16
-node --experimental-repl-await
-
-> const hiccupCanvas = await import("@thi.ng/hiccup-canvas");
+```js
+const hiccupCanvas = await import("@thi.ng/hiccup-canvas");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 2.36 KB
@@ -498,7 +495,7 @@ package for creating different kinds of transformation matrices, e.g.
 
 ## Authors
 
-Karsten Schmidt
+- [Karsten Schmidt](https://thi.ng)
 
 If this project contributes to an academic publication, please cite it as:
 
@@ -513,4 +510,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2018 - 2022 Karsten Schmidt // Apache Software License 2.0
+&copy; 2018 - 2022 Karsten Schmidt // Apache License 2.0

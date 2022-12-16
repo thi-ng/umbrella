@@ -1,10 +1,10 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![cellular](https://media.thi.ng/umbrella/banners-20220914/thing-cellular.svg?4c8cf48e)
+# ![@thi.ng/cellular](https://media.thi.ng/umbrella/banners-20220914/thing-cellular.svg?4c8cf48e)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/cellular.svg)](https://www.npmjs.com/package/@thi.ng/cellular)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/cellular.svg)
-[![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
+[![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
@@ -31,7 +31,7 @@ This project is part of the
 
 ![Custom cellular automata w/ 7-neighborhood & 128 states](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/cellular/hero.png)
 
-Highly customizable 1D cellular automata, shared env, multiple rules, arbitrary sized/shaped neighborhoods, short term memory, cell states etc..
+Highly customizable 1D cellular automata, shared env, multiple rules, arbitrary sized/shaped neighborhoods, short term memory, cell states etc.
 
 The generic implementation provided by this package enables many novel and
 unusual CA setups as well as coevolution of multiple CAs within a shared
@@ -156,11 +156,8 @@ ES module import:
 
 For Node.js REPL:
 
-```text
-# with flag only for < v16
-node --experimental-repl-await
-
-> const cellular = await import("@thi.ng/cellular");
+```js
+const cellular = await import("@thi.ng/cellular");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 1.40 KB
@@ -292,7 +289,7 @@ writeFileSync("export/out.ppm", asPPM(img));
 
 ## Authors
 
-Karsten Schmidt
+- [Karsten Schmidt](https://thi.ng)
 
 If this project contributes to an academic publication, please cite it as:
 
@@ -307,4 +304,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2022 Karsten Schmidt // Apache Software License 2.0
+&copy; 2022 Karsten Schmidt // Apache License 2.0

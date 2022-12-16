@@ -1,10 +1,10 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![checks](https://media.thi.ng/umbrella/banners-20220914/thing-checks.svg?8a250e50)
+# ![@thi.ng/checks](https://media.thi.ng/umbrella/banners-20220914/thing-checks.svg?8a250e50)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/checks.svg)](https://www.npmjs.com/package/@thi.ng/checks)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/checks.svg)
-[![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
+[![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
@@ -15,13 +15,11 @@ This project is part of the
 - [Dependencies](#dependencies)
 - [API](#api)
 - [Authors](#authors)
-  - [Maintainer](#maintainer)
-  - [Contributors](#contributors)
 - [License](#license)
 
 ## About
 
-Collection of 70+ type, feature & value checks.
+Collection of 70+ type, feature & value checks
 
 ## Status
 
@@ -45,11 +43,8 @@ ES module import:
 
 For Node.js REPL:
 
-```text
-# with flag only for < v16
-node --experimental-repl-await
-
-> const checks = await import("@thi.ng/checks");
+```js
+const checks = await import("@thi.ng/checks");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 1.59 KB
@@ -66,14 +61,9 @@ TODO
 
 ## Authors
 
-### Maintainer
-
--   Karsten Schmidt ([@postspectacular](https://github.com/postspectacular))
-
-### Contributors
-
--   Gavin Cannizzaro ([@gavinpc-mindgrub](https://github.com/gavinpc-mindgrub))
--   Jay Zawrotny ([@eccentric-j](https://github.com/eccentric-j))
+- [Karsten Schmidt](https://thi.ng) (Main author)
+- [Gavin Cannizzaro](https://github.com/gavinpc-mindgrub)
+- [Jay Zawrotny](https://github.com/eccentric-j)
 
 If this project contributes to an academic publication, please cite it as:
 
@@ -88,4 +78,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2016 - 2022 Karsten Schmidt // Apache Software License 2.0
+&copy; 2016 - 2022 Karsten Schmidt // Apache License 2.0

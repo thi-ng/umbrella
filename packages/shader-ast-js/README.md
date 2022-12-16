@@ -1,10 +1,10 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![shader-ast-js](https://media.thi.ng/umbrella/banners-20220914/thing-shader-ast-js.svg?6e5a768b)
+# ![@thi.ng/shader-ast-js](https://media.thi.ng/umbrella/banners-20220914/thing-shader-ast-js.svg?6e5a768b)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/shader-ast-js.svg)](https://www.npmjs.com/package/@thi.ng/shader-ast-js)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/shader-ast-js.svg)
-[![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
+[![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
@@ -22,7 +22,7 @@ This project is part of the
 
 ## About
 
-Customizable JS codegen, compiler & runtime for [@thi.ng/shader-ast](https://github.com/thi-ng/umbrella/tree/develop/packages/shader-ast).
+Customizable JS codegen, compiler & runtime for @thi.ng/shader-ast
 
 Due to the lack of native vector operations in JS, this compile target
 is much more involved than the
@@ -71,11 +71,8 @@ ES module import:
 
 For Node.js REPL:
 
-```text
-# with flag only for < v16
-node --experimental-repl-await
-
-> const shaderAstJs = await import("@thi.ng/shader-ast-js");
+```js
+const shaderAstJs = await import("@thi.ng/shader-ast-js");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 5.42 KB
@@ -140,7 +137,7 @@ Module.hello(10);
 
 ## Authors
 
-Karsten Schmidt
+- [Karsten Schmidt](https://thi.ng)
 
 If this project contributes to an academic publication, please cite it as:
 
@@ -155,4 +152,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2019 - 2022 Karsten Schmidt // Apache Software License 2.0
+&copy; 2019 - 2022 Karsten Schmidt // Apache License 2.0

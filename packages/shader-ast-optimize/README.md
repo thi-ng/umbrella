@@ -1,10 +1,10 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![shader-ast-optimize](https://media.thi.ng/umbrella/banners-20220914/thing-shader-ast-optimize.svg?287287ef)
+# ![@thi.ng/shader-ast-optimize](https://media.thi.ng/umbrella/banners-20220914/thing-shader-ast-optimize.svg?287287ef)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/shader-ast-optimize.svg)](https://www.npmjs.com/package/@thi.ng/shader-ast-optimize)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/shader-ast-optimize.svg)
-[![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
+[![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
@@ -22,7 +22,7 @@ This project is part of the
 
 ## About
 
-Shader AST code optimization passes/strategies. This is a support package for [@thi.ng/shader-ast](https://github.com/thi-ng/umbrella/tree/develop/packages/shader-ast).
+Shader AST code optimization passes/strategies
 
 ### Tree optimizations
 
@@ -103,11 +103,8 @@ ES module import:
 
 For Node.js REPL:
 
-```text
-# with flag only for < v16
-node --experimental-repl-await
-
-> const shaderAstOptimize = await import("@thi.ng/shader-ast-optimize");
+```js
+const shaderAstOptimize = await import("@thi.ng/shader-ast-optimize");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 928 bytes
@@ -140,7 +137,7 @@ TODO
 
 ## Authors
 
-Karsten Schmidt
+- [Karsten Schmidt](https://thi.ng)
 
 If this project contributes to an academic publication, please cite it as:
 
@@ -155,4 +152,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2019 - 2022 Karsten Schmidt // Apache Software License 2.0
+&copy; 2019 - 2022 Karsten Schmidt // Apache License 2.0

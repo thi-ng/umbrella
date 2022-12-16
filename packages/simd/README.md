@@ -1,10 +1,10 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![simd](https://media.thi.ng/umbrella/banners-20220914/thing-simd.svg?4afce80e)
+# ![@thi.ng/simd](https://media.thi.ng/umbrella/banners-20220914/thing-simd.svg?4afce80e)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/simd.svg)](https://www.npmjs.com/package/@thi.ng/simd)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/simd.svg)
-[![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
+[![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
@@ -128,11 +128,8 @@ ES module import:
 
 For Node.js REPL:
 
-```text
-# with flag only for < v16
-node --experimental-repl-await
-
-> const simd = await import("@thi.ng/simd");
+```js
+const simd = await import("@thi.ng/simd");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 2.16 KB
@@ -211,7 +208,7 @@ points
 
 ## Authors
 
-Karsten Schmidt
+- [Karsten Schmidt](https://thi.ng)
 
 If this project contributes to an academic publication, please cite it as:
 
@@ -226,4 +223,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2019 - 2022 Karsten Schmidt // Apache Software License 2.0
+&copy; 2019 - 2022 Karsten Schmidt // Apache License 2.0

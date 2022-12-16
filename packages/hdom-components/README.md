@@ -1,10 +1,10 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![hdom-components](https://media.thi.ng/umbrella/banners-20220914/thing-hdom-components.svg?8d5cc6b2)
+# ![@thi.ng/hdom-components](https://media.thi.ng/umbrella/banners-20220914/thing-hdom-components.svg?8d5cc6b2)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/hdom-components.svg)](https://www.npmjs.com/package/@thi.ng/hdom-components)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/hdom-components.svg)
-[![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
+[![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
@@ -24,7 +24,7 @@ This project is part of the
 
 ## About
 
-Raw, skinnable UI & SVG components for [@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/develop/packages/hdom).
+Raw, skinnable UI & SVG components for @thi.ng/hdom
 
 A growing collection of unstyled, re-usable & customizable components
 for use with
@@ -59,11 +59,8 @@ ES module import:
 
 For Node.js REPL:
 
-```text
-# with flag only for < v16
-node --experimental-repl-await
-
-> const hdomComponents = await import("@thi.ng/hdom-components");
+```js
+const hdomComponents = await import("@thi.ng/hdom-components");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 2.06 KB
@@ -128,7 +125,7 @@ A selection:
 
 ## Authors
 
-Karsten Schmidt
+- [Karsten Schmidt](https://thi.ng)
 
 If this project contributes to an academic publication, please cite it as:
 
@@ -143,4 +140,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2018 - 2022 Karsten Schmidt // Apache Software License 2.0
+&copy; 2018 - 2022 Karsten Schmidt // Apache License 2.0

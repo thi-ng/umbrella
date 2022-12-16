@@ -1,10 +1,10 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![logger](https://media.thi.ng/umbrella/banners-20220914/thing-logger.svg?fe782804)
+# ![@thi.ng/logger](https://media.thi.ng/umbrella/banners-20220914/thing-logger.svg?fe782804)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/logger.svg)](https://www.npmjs.com/package/@thi.ng/logger)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/logger.svg)
-[![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
+[![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
@@ -23,7 +23,7 @@ This project is part of the
 
 ## About
 
-Types & basis infrastructure for arbitrary logging (w/ default impls).
+Types & basis infrastructure for arbitrary logging (w/ default impls)
 
 The types & implementations provided by this package are used in various places
 throughout the thi.ng/umbrella ecosystem and can be swapped out on demand to
@@ -103,11 +103,8 @@ ES module import:
 
 For Node.js REPL:
 
-```text
-# with flag only for < v16
-node --experimental-repl-await
-
-> const logger = await import("@thi.ng/logger");
+```js
+const logger = await import("@thi.ng/logger");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 476 bytes
@@ -124,7 +121,7 @@ TODO
 
 ## Authors
 
-Karsten Schmidt
+- [Karsten Schmidt](https://thi.ng)
 
 If this project contributes to an academic publication, please cite it as:
 
@@ -139,4 +136,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2016 - 2022 Karsten Schmidt // Apache Software License 2.0
+&copy; 2016 - 2022 Karsten Schmidt // Apache License 2.0

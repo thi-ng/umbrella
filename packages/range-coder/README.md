@@ -1,10 +1,10 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![range-coder](https://media.thi.ng/umbrella/banners-20220914/thing-range-coder.svg?34c9f374)
+# ![@thi.ng/range-coder](https://media.thi.ng/umbrella/banners-20220914/thing-range-coder.svg?34c9f374)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/range-coder.svg)](https://www.npmjs.com/package/@thi.ng/range-coder)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/range-coder.svg)
-[![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
+[![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
@@ -50,11 +50,8 @@ ES module import:
 
 For Node.js REPL:
 
-```text
-# with flag only for < v16
-node --experimental-repl-await
-
-> const rangeCoder = await import("@thi.ng/range-coder");
+```js
+const rangeCoder = await import("@thi.ng/range-coder");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 618 bytes
@@ -89,7 +86,7 @@ dest = rc.decodeBytes(packed);
 
 ## Authors
 
-Karsten Schmidt
+- [Karsten Schmidt](https://thi.ng)
 
 If this project contributes to an academic publication, please cite it as:
 
@@ -104,4 +101,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2017 - 2022 Karsten Schmidt // Apache Software License 2.0
+&copy; 2017 - 2022 Karsten Schmidt // Apache License 2.0

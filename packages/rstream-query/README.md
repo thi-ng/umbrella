@@ -1,10 +1,10 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![rstream-query](https://media.thi.ng/umbrella/banners-20220914/thing-rstream-query.svg?2cfe42ce)
+# ![@thi.ng/rstream-query](https://media.thi.ng/umbrella/banners-20220914/thing-rstream-query.svg?2cfe42ce)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/rstream-query.svg)](https://www.npmjs.com/package/@thi.ng/rstream-query)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/rstream-query.svg)
-[![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
+[![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
@@ -78,11 +78,8 @@ ES module import:
 
 For Node.js REPL:
 
-```text
-# with flag only for < v16
-node --experimental-repl-await
-
-> const rstreamQuery = await import("@thi.ng/rstream-query");
+```js
+const rstreamQuery = await import("@thi.ng/rstream-query");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 2.49 KB
@@ -233,7 +230,7 @@ The source code for the above example is
 
 ## Authors
 
-Karsten Schmidt
+- [Karsten Schmidt](https://thi.ng)
 
 If this project contributes to an academic publication, please cite it as:
 
@@ -248,4 +245,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2018 - 2022 Karsten Schmidt // Apache Software License 2.0
+&copy; 2018 - 2022 Karsten Schmidt // Apache License 2.0

@@ -1,17 +1,10 @@
-# ${pkg.banner}
+<!-- include ../../assets/tpl/header.md -->
 
-[![npm version](https://img.shields.io/npm/v/${pkg.name}.svg)](https://www.npmjs.com/package/${pkg.name})
-![npm downloads](https://img.shields.io/npm/dm/${pkg.name}.svg)
-[![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
-
-This project is part of the
-[@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
-
-<!-- TOC -->
+<!-- toc -->
 
 ## About
 
-${pkg.description}
+{{pkg.description}}
 
 The following type-checked factory functions are provided **so far** and
 in most cases include specialized type definitions for element-specific
@@ -128,33 +121,33 @@ thi.ng/umbrella eco system (most relevant:
 [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream),
 [@thi.ng/atom](https://github.com/thi-ng/umbrella/tree/develop/packages/atom)).
 
-${status}
+{{meta.status}}
 
 The current aim is not necessarily to have wrappers for *each* possible
 HTML5 element, but certainly to support the most commonly used ones. PRs
 welcome!
 
-${supportPackages}
+{{repo.supportPackages}}
 
-${relatedPackages}
+{{repo.relatedPackages}}
 
-${blogPosts}
+{{meta.blogPosts}}
 
 ## Installation
 
-${pkg.install}
+{{pkg.install}}
 
-${pkg.size}
+{{pkg.size}}
 
 ## Dependencies
 
-${pkg.deps}
+{{pkg.deps}}
 
-${examples}
+{{repo.examples}}
 
 ## API
 
-${docLink}
+{{pkg.docs}}
 
 ```ts
 import { div, label, option, select } from "@thi.ng/hiccup-html";
@@ -289,12 +282,4 @@ const el = defElement<any>("a", { b: 1 });
 | `el("#id.foo", { c: 2 }, "body")` | `["a#id.foo", { b: 1, c: 2 }, "body"]` |
 | `el("#id.foo", null, "body")`     | `["a#id.foo", { b: 1 }, "body"]`       |
 
-## Authors
-
-${authors}
-
-${pkg.cite}
-
-## License
-
-&copy; ${copyright} // ${license}
+<!-- include ../../assets/tpl/footer.md -->
