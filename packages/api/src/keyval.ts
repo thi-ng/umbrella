@@ -1,6 +1,13 @@
 import type { Head, Tail } from "./tuple.js";
 
 /**
+ * A version of `T` in which only keys in K are mandatory and the rest are
+ * considered optional.
+ */
+export type SomeRequired<T, K extends keyof T> = Partial<Omit<T, K>> &
+	Required<Pick<T, K>>;
+
+/**
  * Extracts from A all keys which have values assignable to type B.
  */
 export type TypedKeys<A, B> = {
