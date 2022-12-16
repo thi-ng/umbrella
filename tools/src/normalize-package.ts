@@ -21,6 +21,7 @@ export const normalizePackage = (pkg: any) => {
 		"homepage",
 		"funding",
 		"author",
+		"contributors",
 		"license",
 		"scripts",
 		"dependencies",
