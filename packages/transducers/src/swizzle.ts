@@ -5,9 +5,8 @@ import { iterator1 } from "./iterator.js";
 import { map } from "./map.js";
 
 /**
- * Transducer which performs value reordering on inputs using provided
- * property order. Accepts arrays or objects as input, but always yields
- * arrays.
+ * Transducer which performs value reordering on inputs using provided property
+ * order. Accepts arrays or objects as input, but always yields arrays.
  *
  * @example
  * ```ts
@@ -21,7 +20,9 @@ import { map } from "./map.js";
  * // [ [ 3, 1 ] ]
  * ```
  *
- * {@link @thi.ng/arrays#swizzle}
+ * @remarks
+ * Also see
+ * [`swizzle()`](https://docs.thi.ng/umbrella/arrays/functions/swizzle.html)
  *
  * @param order - key order
  */

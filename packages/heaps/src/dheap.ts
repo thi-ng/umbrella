@@ -8,16 +8,16 @@ export const defDHeap = <T>(
 ) => new DHeap(values, opts);
 
 /**
- * Generic d-ary heap / priority queue with configurable arity (default
- * = 4) and ordering via user-supplied comparator.
+ * Generic d-ary heap / priority queue with configurable arity (default = 4) and
+ * ordering via user-supplied comparator.
  *
  * @remarks
  * By default, implements min-heap ordering and uses
- * {@link @thi.ng/compare#compare}. The arity `d` must be >= 2 (default:
- * 4). If `d=2`, the default binary {@link Heap} implementation will be
- * faster.
+ * [`compare()`](https://docs.thi.ng/umbrella/compare/functions/compare.html).
+ * The arity `d` must be >= 2 (default: 4). If `d=2`, the default binary
+ * {@link Heap} implementation will be faster.
  *
- * {@link https://en.wikipedia.org/wiki/D-ary_heap }
+ * https://en.wikipedia.org/wiki/D-ary_heap
  */
 export class DHeap<T>
 	extends Heap<T>

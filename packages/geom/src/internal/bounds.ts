@@ -35,8 +35,8 @@ export const __collBounds = (
 
 /**
  * Takes the position and size vectors of 2
- * {@link @thi.ng/geom-api#AABBLike}s and returns 2-tuple of
- * `[pos,size]` of their union bounds.
+ * [`AABBLike`](https://docs.thi.ng/umbrella/geom-api/interfaces/AABBLike.html)s
+ * and returns 2-tuple of `[pos,size]` of their union bounds.
  *
  * @param apos - bbox 1 min pos
  * @param asize - bbox1 size

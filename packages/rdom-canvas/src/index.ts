@@ -22,7 +22,8 @@ export interface CanvasOpts {
 	 */
 	onunmount: Fn<HTMLCanvasElement, void>;
 	/**
-	 * Custom component event handler called when canvas size has changed (only used when canvas size is initially given as reactive value).
+	 * Custom component event handler called when canvas size has changed (only
+	 * used when canvas size is initially given as reactive value).
 	 */
 	onresize: Fn3<HTMLCanvasElement, CanvasRenderingContext2D, number[], void>;
 	/**
@@ -33,15 +34,15 @@ export interface CanvasOpts {
 }
 
 /**
- * Reactive {@link @thi.ng/hiccup-canvas} component wrapper. Returns a
- * canvas component wrapped in a {@link $sub} and updates/re-renders
- * canvas with each new input received from `body`.
+ * Reactive [thi.ng/hiccup-canvas](https://thi.ng/hiccup-canvas) component
+ * wrapper. Returns a canvas component wrapped in a {@link $sub} and
+ * updates/re-renders canvas with each new input received from `body`.
  *
  * @remarks
- * If `size` is subscribable, the canvas is resized each time a new
- * value is received, else will only be used to define initial canvas
- * size. The `attribs` SHOULD not include `width`, `height`, since these
- * will be overriden in any way by `size` arg.
+ * If `size` is subscribable, the canvas is resized each time a new value is
+ * received, else will only be used to define initial canvas size. The `attribs`
+ * SHOULD not include `width`, `height`, since these will be overriden in any
+ * way by `size` arg.
  */
 export const $canvas = (
 	body: ISubscription<any, any[] | IToHiccup>,

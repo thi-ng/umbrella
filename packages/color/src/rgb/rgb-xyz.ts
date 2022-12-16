@@ -7,7 +7,7 @@ import { __mulV33 } from "../internal/matrix-ops.js";
  * Converts RGB to XYZ using provided transformation matrix (default:
  * {@link RGB_XYZ_D50}).
  *
- * {@link https://en.wikipedia.org/wiki/CIE_1931_color_space}
+ * https://en.wikipedia.org/wiki/CIE_1931_color_space
  *
  * @param out - result
  * @param src - source color

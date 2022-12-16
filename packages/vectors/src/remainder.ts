@@ -9,7 +9,8 @@ import { ARGS_VV, FN2 } from "./compile/templates.js";
  * componentwise `a - b * round(a / b)`.
  *
  * @remarks
- * Also see {@link @thi.ng/math#remainder}.
+ * Also see
+ * [`remainder()`](https://docs.thi.ng/umbrella/math/functions/remainder.html).
  */
 export const [remainder, remainder2, remainder3, remainder4] = defHofOp<
 	MultiVecOpVV,

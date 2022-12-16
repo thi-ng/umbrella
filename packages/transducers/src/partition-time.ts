@@ -4,17 +4,16 @@ import { iterator } from "./iterator.js";
 import { partitionBy } from "./partition-by.js";
 
 /**
- * Transducer. Yields tumbling, non-overlapping windows/partitions of
- * input values, with the window size defined by given realtime `period`
- * (in milliseconds).
+ * Transducer. Yields tumbling, non-overlapping windows/partitions of input
+ * values, with the window size defined by given realtime `period` (in
+ * milliseconds).
  *
  * @remarks
- * Only to be used in async contexts, NOT with {@link (transduce:1)}
- * directly.
+ * Only to be used in async contexts, NOT with {@link transduce} directly.
  *
  * Also see:
- * - {@link @thi.ng/rstream# | @thi.ng/rstream}
- * - {@link @thi.ng/csp# | @thi.ng/csp}.
+ * - [`thi.ng/rstream`](https://thi.ng/rstream)
+ * - [`thi.ng/csp`](https://thi.ng/csp).
  *
  * @example
  * ```ts

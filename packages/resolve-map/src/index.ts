@@ -435,17 +435,19 @@ export class Resolved<T> implements IDeref<T> {
 /**
  * Factory function for {@link Resolved} to wrap & protect values from further
  * resolution attempts. The wrapped value can be later obtained via the standard
- * {@link @thi.ng/api#IDeref} interface/mechanism. In lookup functions, the
- * unwrapped value will be supplied, no `.deref()` necessary there.
+ * [`IDeref`](https://docs.thi.ng/umbrella/api/interfaces/IDeref.html)
+ * interface/mechanism. In lookup functions, the unwrapped value will be
+ * supplied, no `.deref()` necessary there.
  *
  * @param val
  */
 export const resolved = <T>(val: T) => new Resolved<T>(val);
 
 /**
- * Special version of {@link @thi.ng/paths#getInUnsafe} with extra support for
- * intermediate wrapped {@link Resolved} values and returning tuple of:
- * `[val,isResolved]`.
+ * Special version of
+ * [`getInUnsafe()`](https://docs.thi.ng/umbrella/paths/functions/getInUnsafe.html)
+ * with extra support for intermediate wrapped {@link Resolved} values and
+ * returning tuple of: `[val,isResolved]`.
  *
  * @param obj
  * @param path

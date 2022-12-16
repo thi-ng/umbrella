@@ -10,7 +10,8 @@ import type { AsciiVizOpts, InstrumentFn, VizualizeVarOpts } from "./api.js";
 import { varToHiccup } from "./var.js";
 
 /**
- * Higher order function. Takes an existing {@link @thi.ng/fuzzy#DefuzzStrategy}
+ * Higher order function. Takes an existing
+ * [`DefuzzStrategy`](https://docs.thi.ng/umbrella/fuzzy/types/DefuzzStrategy.html)
  * and an instrumentation function. Returns new `DefuzzStrategy` which first
  * executes original `strategy`, then calls `instrument` with the same args AND
  * the computed result obtained from `strategy`. Returns result of original
@@ -19,10 +20,11 @@ import { varToHiccup } from "./var.js";
  * @remarks
  * The instrumentation function is intended to perform side effects (e.g. debug
  * outputs) and/or produce secondary results (e.g. visualizations). The latter
- * can be obtained through the {@link @thi.ng/api#IDeref} mechanism implemented
- * by the returned function. Since {@link defuzz} might call the strategy
- * multiple times (i.e. if there are multiple output vars used), `.deref()` will
- * always return an array of secondary results.
+ * can be obtained through the
+ * [`IDeref`](https://docs.thi.ng/umbrella/api/interfaces/IDeref.html) mechanism
+ * implemented by the returned function. Since {@link defuzz} might call the
+ * strategy multiple times (i.e. if there are multiple output vars used),
+ * `.deref()` will always return an array of secondary results.
  *
  * Note: The secondary results from the instrumentation function will persist &
  * accumulate. If re-using the instrumented strategy for multiple `defuzz()`

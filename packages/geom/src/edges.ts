@@ -19,7 +19,7 @@ import { vertices } from "./vertices.js";
 /**
  * Extracts the edges of given shape's boundary and returns them as an iterable
  * of vector pairs. Some shapes also support
- * {@link @thi.ng/geom-api#SamplingOpts}.
+ * [`SamplingOpts`](https://docs.thi.ng/umbrella/geom-api/interfaces/SamplingOpts.html).
  *
  * @remarks
  * Currently implemented for:

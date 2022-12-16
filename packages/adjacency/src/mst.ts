@@ -18,9 +18,11 @@ import { DisjointSet } from "./disjoint-set.js";
  * criteria. The result edges will be in ascending order, based on the supplied
  * cost function. The cost function is called once for each edge and return
  * values will be cached prior to sorting (see
- * {@link @thi.ng/arrays#sortByCachedKey} for details).
+ * [`sortByCachedKey()`](https://docs.thi.ng/umbrella/arrays/functions/sortByCachedKey.html)
+ * for details).
  *
- * Reference: {@link https://en.wikipedia.org/wiki/Kruskal%27s_algorithm}
+ * References:
+ * - https://en.wikipedia.org/wiki/Kruskal%27s_algorithm
  *
  * @example
  * ```ts

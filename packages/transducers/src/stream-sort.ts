@@ -5,9 +5,9 @@ import { __sortOpts } from "./internal/sort-opts.js";
 import { __iter, iterator } from "./iterator.js";
 
 /**
- * Transducer. Similar to {@link (partitionSort:1)}, however uses proper
- * sliding window and insertion sort instead of fully sorting window as
- * done by `partitionSort`.
+ * Transducer. Similar to {@link partitionSort}, however uses proper sliding
+ * window and insertion sort instead of fully sorting window as done by
+ * `partitionSort`.
  *
  * @example
  * ```ts

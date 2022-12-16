@@ -6,12 +6,12 @@ import { map } from "./map.js";
 import { partition } from "./partition.js";
 
 /**
- * Transducer. Similar to {@link (movingAverage:1)}, but yields median
- * of sliding window and supports non-numeric inputs.
+ * Transducer. Similar to {@link movingAverage}, but yields median of sliding
+ * window and supports non-numeric inputs.
  *
  * @remarks
- * The optional `key` and `cmp` function options can be used to select /
- * compute a sortable value and change sorting behavior.
+ * The optional `key` and `cmp` function options can be used to select / compute
+ * a sortable value and change sorting behavior.
  *
  * @param n - window size
  * @param opts -

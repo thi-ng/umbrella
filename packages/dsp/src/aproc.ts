@@ -4,7 +4,8 @@ import type { IProc, IProc2 } from "./api.js";
 
 /**
  * Abstract base class for processors in this package. Provides
- * {@link @thi.ng/api#IDeref} to obtain the processor's current value.
+ * [`IDeref`](https://docs.thi.ng/umbrella/api/interfaces/IDeref.html) to obtain
+ * the processor's current value.
  */
 export abstract class AProc<A, B> implements IProc<A, B>, IXform<A, B> {
 	constructor(protected _val: B) {}

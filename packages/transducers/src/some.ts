@@ -4,9 +4,9 @@ import { $$reduce, reducer } from "./reduce.js";
 import { reduced } from "./reduced.js";
 
 /**
- * Similar to {@link (every:1)} reducer, but only requires at least 1 value to
- * succeed predicate test (and then immediately terminates with `true`
- * as result).
+ * Similar to {@link every} reducer, but only requires at least 1 value to
+ * succeed predicate test (and then immediately terminates with `true` as
+ * result).
  *
  * @param pred -
  */

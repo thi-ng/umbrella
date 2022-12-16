@@ -5,7 +5,8 @@ import { AGen } from "./agen.js";
 
 /**
  * White noise gen with customizable gain and
- * {@link @thi.ng/random#IRandom} source.
+ * [`IRandom`](https://docs.thi.ng/umbrella/random/interfaces/IRandom.html)
+ * source.
  *
  * @param gain -
  * @param rnd -

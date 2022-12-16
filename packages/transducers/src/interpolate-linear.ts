@@ -3,16 +3,16 @@ import type { Transducer } from "./api.js";
 import { interpolate } from "./interpolate.js";
 
 /**
- * Pre-configured version of {@link (interpolate:1)} for numeric values
- * and using pairwise linear interpolation.
+ * Pre-configured version of {@link interpolate} for numeric values and using
+ * pairwise linear interpolation.
  *
  * @remarks
  * The number of samples per interval is configurable. No values will be
  * produced if there're less than 2 inputs.
  *
  * See also:
- * - {@link (interpolate:1)}
- * - {@link (interpolateHermite:1)}
+ * - {@link interpolate}
+ * - {@link interpolateHermite}
  *
  * @param n -
  */

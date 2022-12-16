@@ -1,11 +1,11 @@
 import { asInt } from "@thi.ng/api/typedarray";
 
 /**
- * Yields sequence of 2D grid coordinates along 2D Hilbert curve using
- * given `cols` and `rows` (each max. 32768 (2^15)).
+ * Yields sequence of 2D grid coordinates along 2D Hilbert curve using given
+ * `cols` and `rows` (each max. 32768 (2^15)).
  *
  * Ported & modified from original Java code by Christopher Kulla.
- * {@link https://sourceforge.net/p/sunflow/code/HEAD/tree/trunk/src/org/sunflow/core/bucket/HilbertBucketOrder.java}
+ * https://sourceforge.net/p/sunflow/code/HEAD/tree/trunk/src/org/sunflow/core/bucket/HilbertBucketOrder.java
  *
  * @param cols -
  * @param rows -

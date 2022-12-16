@@ -40,7 +40,7 @@ export const additive = (
 
 /**
  * Interactive graph of this oscillator:
- * {@link https://www.desmos.com/calculator/irugw6gnhy}
+ * https://www.desmos.com/calculator/irugw6gnhy
  *
  * @param n - number of octaves
  */
@@ -54,7 +54,7 @@ export const squareAdditive = (n = 8) =>
 
 /**
  * Interactive graph of this oscillator:
- * {@link https://www.desmos.com/calculator/irugw6gnhy}
+ * https://www.desmos.com/calculator/irugw6gnhy
  *
  * @param n - number of octaves
  */

@@ -4,13 +4,12 @@ import { distSq } from "@thi.ng/vectors/distsq";
 import { mixCubic } from "@thi.ng/vectors/mix-cubic";
 
 /**
- * Performs recursive search for closest point to `p` on cubic curve
- * defined by control points `a`,`b`,`c`,`d`. The `res` and `recur`
- * params are used to control the recursion behavior. If `eps` is given,
- * the search is terminated as soon as a point with a shorter *squared*
- * distance than `eps` is found.
+ * Performs recursive search for closest point to `p` on cubic curve defined by
+ * control points `a`,`b`,`c`,`d`. The `res` and `recur` params are used to
+ * control the recursion behavior. If `eps` is given, the search is terminated
+ * as soon as a point with a shorter *squared* distance than `eps` is found.
  *
- * {@link @thi.ng/math#minError}
+ * [`minError()`](https://docs.thi.ng/umbrella/math/functions/minError.html)
  *
  * @param p - query point
  * @param a - control point 1

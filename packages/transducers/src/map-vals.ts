@@ -4,13 +4,13 @@ import { __iter } from "./iterator.js";
 import { map } from "./map.js";
 
 /**
- * Transducer. Similar to {@link (map:1)}, but expects object values and
- * the given function `fn` is applied to each enumerable property value
- * and the results reassigned to their original keys.
+ * Transducer. Similar to {@link map}, but expects object values and the given
+ * function `fn` is applied to each enumerable property value and the results
+ * reassigned to their original keys.
  *
  * @remarks
- * By default, a shallow copy of the source object is created. The
- * resulting object is then used as the result of this transducer.
+ * By default, a shallow copy of the source object is created. The resulting
+ * object is then used as the result of this transducer.
  *
  * @example
  * ```ts
@@ -19,8 +19,8 @@ import { map } from "./map.js";
  * ```
  *
  * @param fn -
- * @param copy - if true (default), creates a shallow copy of each
- * incoming value
+ * @param copy - if true (default), creates a shallow copy of each incoming
+ * value
  */
 export function mapVals<A, B>(
 	fn: Fn<A, B>,

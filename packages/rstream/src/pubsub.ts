@@ -45,9 +45,10 @@ export interface PubSubOpts<A, B, T> {
  * The actual topic (return value from `topic` fn) can be of any type `T`, or
  * `undefined`. If the latter is returned, the incoming value will not be
  * processed further. Complex topics (e.g objects / arrays) are allowed and
- * they're matched against registered topics using {@link @thi.ng/equiv#equiv}
- * by default (but customizable via `equiv` option). Each topic can have any
- * number of subscribers.
+ * they're matched against registered topics using
+ * [`equiv()`](https://docs.thi.ng/umbrella/equiv/functions/equiv.html) by
+ * default (but customizable via `equiv` option). Each topic can have any number
+ * of subscribers.
  *
  * If a `xform` transducer is given, it is always applied prior to passing the
  * input to the topic function. I.e. in this case the topic function will

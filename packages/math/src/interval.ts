@@ -157,11 +157,11 @@ export const minNonZero3: FnN3 = (a, b, c) => minNonZero2(minNonZero2(a, b), c);
 export const smin: FnN3 = (a, b, k) => smax(a, b, -k);
 
 /**
- * Smooth maximum. Note: Result values will be slightly larger than max
- * value near max(a,b) + eps due to exponential decay. Higher `k` values
- * reduce the error, but also reduce the smoothing. Recommended k=16.
+ * Smooth maximum. Note: Result values will be slightly larger than max value
+ * near max(a,b) + eps due to exponential decay. Higher `k` values reduce the
+ * error, but also reduce the smoothing. Recommended k=16.
  *
- * {@link https://en.wikipedia.org/wiki/Smooth_maximum}
+ * https://en.wikipedia.org/wiki/Smooth_maximum
  *
  * @param a -
  * @param b -

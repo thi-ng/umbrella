@@ -3,21 +3,20 @@ import { compare } from "@thi.ng/compare/compare";
 import { compareNumAsc } from "@thi.ng/compare/numeric";
 
 /**
- * Returns the supposed index of `x` in pre-sorted array-like collection
- * `buf`.
+ * Returns the supposed index of `x` in pre-sorted array-like collection `buf`.
  *
  * @remarks
- * If `x` can't be found, returns `-index-1`, representing the negative
- * of the index, were `x` to be inserted into `buf`. E.g if the return
- * value is -3, `x` would appear/insert at index 2.
+ * If `x` can't be found, returns `-index-1`, representing the negative of the
+ * index, were `x` to be inserted into `buf`. E.g if the return value is -3, `x`
+ * would appear/insert at index 2.
  *
- * The optional `key` function is used to obtain the actual sort value
- * of `x` and each array item (default: identity).
+ * The optional `key` function is used to obtain the actual sort value of `x`
+ * and each array item (default: identity).
  *
  * The optional `cmp` comparator (default:
- * {@link @thi.ng/compare#compare}) is then used to identify the index
- * of `x`. The sort order of `buf` MUST be compatible with that of
- * `cmp`.
+ * [`compare()`](https://docs.thi.ng/umbrella/compare/functions/compare.html))
+ * is then used to identify the index of `x`. The sort order of `buf` MUST be
+ * compatible with that of `cmp`.
  *
  * @example
  * ```ts
@@ -58,7 +57,7 @@ export const binarySearch = <A, B>(
 /**
  * Similar to {@link binarySearch}, but optimized for numeric arrays and
  * supporting custom comparators (default:
- * {@link @thi.ng/compare#compareNumAsc}).
+ * [`compareNumAsc()`](https://docs.thi.ng/umbrella/compare/functions/compareNumAsc.html)).
  *
  * @param buf - array
  * @param x - search value

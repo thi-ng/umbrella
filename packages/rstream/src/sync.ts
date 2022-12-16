@@ -103,9 +103,9 @@ export interface StreamSyncOpts<
  * option to `false`.
  *
  * The synchronization is done via the
- * {@link @thi.ng/transducers#(partitionSync:1)} transducer from the
- * {@link @thi.ng/transducers# | @thi.ng/transducers} package. See this
- * function's docs for further details.
+ * [`partitionSync()`](https://docs.thi.ng/umbrella/transducers/functions/partitionSync-1.html)
+ * transducer from the [`thi.ng/transducers`](https://thi.ng/transducers)
+ * package. See this function's docs for further details.
  *
  * @example
  * ```ts

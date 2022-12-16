@@ -1,12 +1,12 @@
 import type { IObjectOf } from "@thi.ng/api";
 
 /**
- * Iterator yielding key-value pairs of given object's own properties
- * and their values. Same as `zip(keys(x), vals(x))`.
+ * Iterator yielding key-value pairs of given object's own properties and their
+ * values. Same as `zip(keys(x), vals(x))`.
  *
  * @remarks
  * - {@link vals}
- * - {@link (zip:1)}
+ * - {@link zip}
  *
  * @example
  * ```ts

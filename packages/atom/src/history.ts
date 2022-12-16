@@ -32,13 +32,14 @@ export const defHistory = <T>(
 
 /**
  * Undo/redo history stack wrapper for atoms and cursors. Implements
- * {@link IAtom} interface and so can be used directly in place and
- * delegates to wrapped atom/cursor.
+ * {@link IAtom} interface and so can be used directly in place and delegates to
+ * wrapped atom/cursor.
  *
  * @remarks
- * Value changes are only recorded in history if `changed` predicate
- * returns truthy value, or else by calling {@link History.record}
- * directly. This class too implements the {@link @thi.ng/api#INotify}
+ * Value changes are only recorded in history if `changed` predicate returns
+ * truthy value, or else by calling {@link History.record} directly. This class
+ * too implements the
+ * [`INotify`](https://docs.thi.ng/umbrella/api/interfaces/INotify.html)
  * interface to support event listeners for {@link History.undo},
  * {@link History.redo} and {@link History.record}.
  */

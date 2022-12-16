@@ -6,7 +6,7 @@ import { rgbHcv } from "./rgb-hcv.js";
 
 /**
  * Ported from:
- * {@link https://github.com/tobspr/GLSL-Color-Spaces/blob/develop/ColorSpaces.inc.glsl#L226}
+ * https://github.com/tobspr/GLSL-Color-Spaces/blob/develop/ColorSpaces.inc.glsl#L226
  *
  * @param out - result
  * @param src - source color

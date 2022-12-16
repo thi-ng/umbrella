@@ -31,7 +31,8 @@ import { __dispatch } from "./internal/dispatch.js";
 
 /**
  * Extracts/samples vertices from given shape's boundary and returns them as
- * array. Some shapes also support {@link @thi.ng/geom-api#SamplingOpts}.
+ * array. Some shapes also support
+ * [`SamplingOpts`](https://docs.thi.ng/umbrella/geom-api/interfaces/SamplingOpts.html).
  *
  * @remarks
  * The given sampling options (if any) can also be overridden per shape using

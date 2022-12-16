@@ -7,10 +7,11 @@ import { inRange } from "@thi.ng/math/interval";
 import type { VizualizeVarOpts } from "./api.js";
 
 /**
- * Takes an {@link @thi.ng/fuzzy#LVar} and visualization options. Evaluates all
- * of the var's fuzzy sets in the var's value domain and visualizes them as
- * polygons. Returns a {@link @thi.ng/hiccup-canvas#} compatible shape component
- * tree.
+ * Takes an [`LVar`](https://docs.thi.ng/umbrella/fuzzy/interfaces/LVar.html)
+ * and visualization options. Evaluates all of the var's fuzzy sets in the var's
+ * value domain and visualizes them as polygons. Returns a
+ * [thi.ng/hiccup-canvas](https://thi.ng/thi.ng/hiccup-canvas) compatible shape
+ * component tree.
  *
  * @param var -
  * @param opts -

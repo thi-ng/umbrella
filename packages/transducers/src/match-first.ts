@@ -16,7 +16,7 @@ import { take } from "./take.js";
  *
  * Yields none or only the first value which passed the predicate check
  * and then causes early termination. If `src` input is given, returns
- * first match found (or `undefined`). Also see {@link (matchLast:1)}.
+ * first match found (or `undefined`). Also see {@link matchLast}.
  *
  * @example
  * ```ts

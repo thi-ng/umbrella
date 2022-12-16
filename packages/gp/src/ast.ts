@@ -91,8 +91,8 @@ export class AST<OP, T> {
 	}
 
 	/**
-	 * Returns linearized/flat version of given AST as an array of
-	 * {@link @thi.ng/zipper#Location | zipper locations}.
+	 * Returns linearized/flat version of given AST as an array of [zipper
+	 * locations](https://docs.thi.ng/umbrella/zipper/classes/Location.html).
 	 *
 	 * @param tree -
 	 */
@@ -106,19 +106,19 @@ export class AST<OP, T> {
 	}
 
 	/**
-	 * Returns random {@link ASTNode} from given tree, using the user
-	 * provided PRNG (via `opts`) or {@link @thi.ng/random#SYSTEM}. The
-	 * returned value is a
-	 * {@link @thi.ng/zipper#Location | zipper location} of the selected
-	 * node.
+	 * Returns random {@link ASTNode} from given tree, using the user provided
+	 * PRNG (via `opts`) or
+	 * [`SYSTEM`](https://docs.thi.ng/umbrella/random/variables/SYSTEM.html).
+	 * The returned value is a [zipper
+	 * location](https://docs.thi.ng/umbrella/zipper/classes/Location.html) of
+	 * the selected node.
 	 *
 	 * @remarks
 	 * The actual `ASTNode` can be obtained via `.node`.
 	 *
-	 * Only nodes in the linearized index range `[min..max)` are
-	 * returned (default: entire tree range). Since the linear tree
-	 * length isn't known beforehand, `max` < 0 (default) is equivalent
-	 * to the linearized tree end.
+	 * Only nodes in the linearized index range `[min..max)` are returned
+	 * (default: entire tree range). Since the linear tree length isn't known
+	 * beforehand, `max` < 0 (default) is equivalent to the linearized tree end.
 	 *
 	 * @param opts -
 	 * @param tree -

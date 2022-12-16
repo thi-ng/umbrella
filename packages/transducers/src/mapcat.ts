@@ -7,10 +7,10 @@ import { iterator } from "./iterator.js";
 import { map } from "./map.js";
 
 /**
- * Transducer. Similar to {@link (map:1)}, but expects the given mapping
- * function `fn` to return an iterable result (or `null`) and then emits
- * each value of the result individually downstream. `null` or
- * `undefined` result values will be skipped / omitted.
+ * Transducer. Similar to {@link map}, but expects the given mapping function
+ * `fn` to return an iterable result (or `null`) and then emits each value of
+ * the result individually downstream. `null` or `undefined` result values will
+ * be skipped / omitted.
  *
  * @example
  * ```

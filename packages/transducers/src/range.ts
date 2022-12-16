@@ -10,9 +10,9 @@ export function range(from?: number, to?: number, step?: number) {
 }
 
 /**
- * Simple class wrapper around given range interval and implementing
- * `Iterable` and {@link IReducible} interfaces, the latter is used to
- * accelerate use with {@link (reduce:1)}.
+ * Simple class wrapper around given range interval and implementing `Iterable`
+ * and {@link IReducible} interfaces, the latter is used to accelerate use with
+ * {@link reduce}.
  */
 export class Range implements Iterable<number>, IReducible<any, number> {
 	protected from: number;

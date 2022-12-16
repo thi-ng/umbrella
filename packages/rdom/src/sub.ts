@@ -10,8 +10,9 @@ import { SCHEDULER } from "./scheduler.js";
 import { $wrapText } from "./wrap.js";
 
 /**
- * Takes an {@link @thi.ng/rstream#ISubscribable} and creates a simple component
- * wrapper for its reactively produced values.
+ * Takes an
+ * [`ISubscribable`](https://docs.thi.ng/umbrella/rstream/interfaces/ISubscribable.html)
+ * and creates a simple component wrapper for its reactively produced values.
  *
  * @remarks
  * If given an {@link IMountWithState} component, new stream values are applied

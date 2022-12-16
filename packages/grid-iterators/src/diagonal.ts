@@ -1,12 +1,12 @@
 import { asInt } from "@thi.ng/api/typedarray";
 
 /**
- * Yields sequence of 2D grid coordinates in diagonal order starting at
- * [0,0] and using given `cols` and `rows`. Each diagonal starts at y=0
- * and progresses in -x,+y direction.
+ * Yields sequence of 2D grid coordinates in diagonal order starting at [0,0]
+ * and using given `cols` and `rows`. Each diagonal starts at y=0 and progresses
+ * in -x,+y direction.
  *
  * Ported & modified from original Java code by Christopher Kulla.
- * {@link https://sourceforge.net/p/sunflow/code/HEAD/tree/trunk/src/org/sunflow/core/bucket/DiagonalBucketOrder.java}
+ * https://sourceforge.net/p/sunflow/code/HEAD/tree/trunk/src/org/sunflow/core/bucket/DiagonalBucketOrder.java
  *
  * @param cols -
  * @param rows -

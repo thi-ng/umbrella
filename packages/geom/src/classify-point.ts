@@ -27,9 +27,9 @@ import { __dispatch } from "./internal/dispatch.js";
  * - {@link Sphere}
  * - {@link Triangle}
  *
- * The {@link @thi.ng/geom-sdf#} package provides a much more comprehensive
- * feature set (incl. support for more shapes) to perform similar checks as this
- * function.
+ * The [thi.ng/geom-sdf](https://thi.ng/thi.ng/geom-sdf) package provides a much
+ * more comprehensive feature set (incl. support for more shapes) to perform
+ * similar checks as this function.
  *
  * Also see {@link pointInside}.
  *

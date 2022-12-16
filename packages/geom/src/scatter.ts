@@ -6,12 +6,14 @@ import { bounds } from "./bounds.js";
 import { pointInside } from "./point-inside.js";
 
 /**
- * Produces `num` random points for which {@link pointInside} succeeeds for the
+ * Produces `num` random points for which {@link pointInside} succeeds for the
  * given `shape`. Writes results into `out` array (or creates a new one).
  *
  * @remarks
  * Samples are only created with the shapes bounding box and are chosen using
- * optionall yprovided `rnd` {@link @thi.ng/random#IRandom} instance.
+ * optionally provided `rnd`
+ * [`IRandom`](https://docs.thi.ng/umbrella/random/interfaces/IRandom.html)
+ * instance.
  *
  * @param shape
  * @param num

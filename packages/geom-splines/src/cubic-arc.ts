@@ -8,11 +8,11 @@ import { magSq2 } from "@thi.ng/vectors/magsq";
 import { cubicFromLine } from "./cubic-line.js";
 
 /**
- * Converts elliptic arc into a 1-4 cubic curve segments, depending on
- * arc's angle range.
+ * Converts elliptic arc into a 1-4 cubic curve segments, depending on arc's
+ * angle range.
  *
  * Partially based on:
- * {@link https://github.com/chromium/chromium/blob/develop/third_party/blink/renderer/core/svg/svg_path_parser.cc#L253}
+ * https://github.com/chromium/chromium/blob/develop/third_party/blink/renderer/core/svg/svg_path_parser.cc#L253
  *
  * @param pos - ellipse center
  * @param r - ellipse radii

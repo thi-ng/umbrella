@@ -38,13 +38,13 @@ export function defEdge<T>(id: number, src?: T, dest?: T): Edge<T> {
 }
 
 /**
- * Quad-edge implementation after Guibas & Stolfi. Based on C++ versions
- * by Paul Heckbert, Dani Lischinski et al:
+ * Quad-edge implementation after Guibas & Stolfi. Based on C++ versions by Paul
+ * Heckbert, Dani Lischinski et al:
  *
  * References:
  *
- * - {@link http://www.cs.cmu.edu/afs/andrew/scs/cs/15-463/2001/pub/src/a2/quadedge.html}
- * - {@link http://www.cs.cmu.edu/afs/andrew/scs/cs/15-463/2001/pub/src/a2/lischinski/114.ps}
+ * - http://www.cs.cmu.edu/afs/andrew/scs/cs/15-463/2001/pub/src/a2/quadedge.html
+ * - http://www.cs.cmu.edu/afs/andrew/scs/cs/15-463/2001/pub/src/a2/lischinski/114.ps
  */
 export class Edge<T> {
 	id: number;

@@ -132,9 +132,8 @@ export class StatelessEventBus implements IDispatch {
 	 * Adds built-in event & side effect handlers.
 	 *
 	 * @remarks
-	 * Also see additional built-ins defined by the stateful
-	 * {@link EventBus} extension of this class, as well as comments for
-	 * these class methods:
+	 * Also see additional built-ins defined by the stateful {@link EventBus}
+	 * extension of this class, as well as comments for these class methods:
 	 *
 	 * - {@link StatelessEventBus.mergeEffects}
 	 * - {@link StatelessEventBus.processEvent}
@@ -147,8 +146,8 @@ export class StatelessEventBus implements IDispatch {
 	 *
 	 * #### `FX_CANCEL`
 	 *
-	 * If assigned `true`, cancels processing of current event, though
-	 * still applies any side effects already accumulated.
+	 * If assigned `true`, cancels processing of current event, though still
+	 * applies any side effects already accumulated.
 	 *
 	 * #### `FX_DISPATCH`
 	 *
@@ -160,8 +159,8 @@ export class StatelessEventBus implements IDispatch {
 	 *
 	 * #### `FX_DISPATCH_NOW`
 	 *
-	 * Dispatches assigned events as part of currently processed event
-	 * queue (no delay).
+	 * Dispatches assigned events as part of currently processed event queue (no
+	 * delay).
 	 *
 	 * #### `FX_DELAY`
 	 *
@@ -176,13 +175,13 @@ export class StatelessEventBus implements IDispatch {
 	 * #### `FX_FETCH`
 	 *
 	 * Async side effect. Only to be used in conjunction with
-	 * `FX_DISPATCH_ASYNC`. Performs `fetch()` HTTP request and triggers
-	 * success with received response, or if there was an error with
-	 * response's `statusText`. The error event is only triggered if the
-	 * fetched response's `ok` field is non-truthy.
+	 * `FX_DISPATCH_ASYNC`. Performs `fetch()` HTTP request and triggers success
+	 * with received response, or if there was an error with response's
+	 * `statusText`. The error event is only triggered if the fetched response's
+	 * `ok` field is non-truthy.
 	 *
-	 * - {@link https://developer.mozilla.org/en-US/docs/Web/API/Response/ok}
-	 * - {@link https://developer.mozilla.org/en-US/docs/Web/API/Response/statusText}
+	 * - https://developer.mozilla.org/en-US/docs/Web/API/Response/ok
+	 * - https://developer.mozilla.org/en-US/docs/Web/API/Response/statusText
 	 *
 	 * ```
 	 * // fetches "foo.json" and then dispatches EV_SUCCESS or EV_ERROR event
@@ -594,10 +593,10 @@ export class StatelessEventBus implements IDispatch {
  * Stateful version of {@link StatelessEventBus}.
  *
  * @remarks
- * Wraps an {@link @thi.ng/atom#IAtom} state container (i.e.
- * `Atom`/`Cursor`/`History`) and provides additional pre-defined event
- * handlers and side effects to manipulate wrapped state. Prefer this as
- * the default implementation for most use cases.
+ * Wraps an [`IAtom`](https://docs.thi.ng/umbrella/atom/interfaces/IAtom.html)
+ * state container (i.e. `Atom`/`Cursor`/`History`) and provides additional
+ * pre-defined event handlers and side effects to manipulate wrapped state.
+ * Prefer this as the default implementation for most use cases.
  */
 export class EventBus
 	extends StatelessEventBus
@@ -606,17 +605,17 @@ export class EventBus
 	readonly state: IAtom<any>;
 
 	/**
-	 * Creates a new event bus instance with given parent state, handler
-	 * and effect definitions (all optional).
+	 * Creates a new event bus instance with given parent state, handler and
+	 * effect definitions (all optional).
 	 *
 	 * @remarks
 	 * If no state is given, automatically creates an
-	 * {@link @thi.ng/atom#Atom} with empty state object.
+	 * [`Atom`](https://docs.thi.ng/umbrella/atom/classes/Atom.html) with empty
+	 * state object.
 	 *
 	 * In addition to the user provided handlers & effects, a number of
-	 * built-ins are added automatically. See
-	 * {@link EventBus.addBuiltIns}. User handlers can override
-	 * built-ins.
+	 * built-ins are added automatically. See {@link EventBus.addBuiltIns}. User
+	 * handlers can override built-ins.
 	 *
 	 * @param state -
 	 * @param handlers -
@@ -648,7 +647,7 @@ export class EventBus
 	 * #### `EV_SET_VALUE`
 	 *
 	 * Resets state path to provided value. See
-	 * {@link @thi.ng/paths#setIn}.
+	 * [`setIn()`](https://docs.thi.ng/umbrella/paths/functions/setIn.html).
 	 *
 	 * Example event definition:
 	 * ```
@@ -657,8 +656,9 @@ export class EventBus
 	 *
 	 * #### `EV_UPDATE_VALUE`
 	 *
-	 * Updates a state path's value with provided function and optional
-	 * extra arguments. See {@link @thi.ng/paths#updateIn}.
+	 * Updates a state path's value with provided function and optional extra
+	 * arguments. See
+	 * [`updateIn()`](https://docs.thi.ng/umbrella/paths/functions/updateIn.html).
 	 *
 	 * Example event definition:
 	 * ```
@@ -676,18 +676,19 @@ export class EventBus
 	 *
 	 * #### `EV_UNDO`
 	 *
-	 * Calls `ctx[id].undo()` and uses return value as new state.
-	 * Assumes `ctx[id]` is a {@link @thi.ng/atom#History} instance,
-	 * provided via e.g. `processQueue({ history })`. The event can be
-	 * triggered with or without ID. By default `"history"` is used as
-	 * default key to lookup the `History` instance. Furthermore, an
-	 * additional event can be triggered based on if a previous state
-	 * has been restored or not (basically, if the undo was successful).
-	 * This is useful for resetting/re-initializing stateful resources
-	 * after a successful undo action or to notify the user that no more
-	 * undo's are possible. The new event will be processed in the same
-	 * frame and has access to the (possibly) restored state. The event
-	 * structure for these options is shown below:
+	 * Calls `ctx[id].undo()` and uses return value as new state. Assumes
+	 * `ctx[id]` is a
+	 * [`History`](https://docs.thi.ng/umbrella/atom/classes/History.html)
+	 * instance, provided via e.g. `processQueue({ history })`. The event can be
+	 * triggered with or without ID. By default `"history"` is used as default
+	 * key to lookup the `History` instance. Furthermore, an additional event
+	 * can be triggered based on if a previous state has been restored or not
+	 * (basically, if the undo was successful). This is useful for
+	 * resetting/re-initializing stateful resources after a successful undo
+	 * action or to notify the user that no more undo's are possible. The new
+	 * event will be processed in the same frame and has access to the
+	 * (possibly) restored state. The event structure for these options is shown
+	 * below:
 	 *
 	 * ```
 	 * // using default ID
@@ -708,8 +709,8 @@ export class EventBus
 	 *
 	 * #### `FX_STATE`
 	 *
-	 * Resets state atom to provided value (only a single update per
-	 * processing frame).
+	 * Resets state atom to provided value (only a single update per processing
+	 * frame).
 	 */
 	addBuiltIns(): any {
 		super.addBuiltIns();
@@ -735,21 +736,22 @@ export class EventBus
 	}
 
 	/**
-	 * Triggers processing of current event queue and returns `true` if
-	 * the any of the processed events caused a state change.
+	 * Triggers processing of current event queue and returns `true` if the any
+	 * of the processed events caused a state change.
 	 *
-	 * If an event handler triggers the `FX_DISPATCH_NOW` side effect,
-	 * the new event will be added to the currently processed batch and
-	 * therefore executed in the same frame. Also see {@link dispatchNow}.
+	 * If an event handler triggers the `FX_DISPATCH_NOW` side effect, the new
+	 * event will be added to the currently processed batch and therefore
+	 * executed in the same frame. Also see {@link dispatchNow}.
 	 *
 	 * If the optional `ctx` arg is provided it will be merged into the
 	 * {@link InterceptorContext} object passed to each interceptor. Since the
-	 * merged object is also used to collect triggered side effects,
-	 * care must be taken that there're no key name clashes.
+	 * merged object is also used to collect triggered side effects, care must
+	 * be taken that there're no key name clashes.
 	 *
-	 * In order to use the built-in `EV_UNDO`, `EV_REDO` events, users
-	 * MUST provide a {@link @thi.ng/atom#History} (or compatible undo
-	 * history instance) via the `ctx` arg, e.g.
+	 * In order to use the built-in `EV_UNDO`, `EV_REDO` events, users MUST
+	 * provide a
+	 * [`History`](https://docs.thi.ng/umbrella/atom/classes/History.html) (or
+	 * compatible undo history instance) via the `ctx` arg, e.g.
 	 *
 	 * ```
 	 * bus.processQueue({ history });

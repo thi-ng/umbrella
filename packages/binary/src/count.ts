@@ -34,7 +34,7 @@ export const popCountArray = (
 /**
  * Returns number of bit changes between `x` and `y`.
  *
- * {@link https://en.wikipedia.org/wiki/Hamming_distance}
+ * https://en.wikipedia.org/wiki/Hamming_distance
  *
  * @param x -
  * @param y -
@@ -44,7 +44,7 @@ export const hammingDist: FnN2 = (x, y) => popCount(x ^ y);
 /**
  * Math.clz32() polyfill (corrected).
  *
- * {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/clz32$revision/1426816}
+ * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/clz32$revision/1426816
  *
  * @param x -
  */

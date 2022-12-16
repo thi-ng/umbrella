@@ -60,8 +60,9 @@ export const exists = (obj: any, path: Path) => {
 
 /**
  * Helper function to analyze given `path` using
- * {@link @thi.ng/checks#isProtoPath}. Throws an error if path contains any
- * property which might lead to prototype poisoning.
+ * [`isProtoPath()`](https://docs.thi.ng/umbrella/checks/functions/isProtoPath.html).
+ * Throws an error if path contains any property which might lead to prototype
+ * poisoning.
  *
  * @remarks
  * The following properties are considered illegal.

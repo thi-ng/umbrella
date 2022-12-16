@@ -108,10 +108,10 @@ export interface MemPoolStats {
 
 export interface IMemPoolArray extends IRelease {
 	/**
-	 * Takes a {@link @thi.ng/api#Type} enum and element count `num` (in
-	 * units of given type). Similar to {@link IMemPool.malloc} and if
-	 * successful returns typed array of given `type`.
-	 * Returns undefined if allocation failed.
+	 * Takes a [`Type`](https://docs.thi.ng/umbrella/api/types/Type.html) enum
+	 * and element count `num` (in units of given type). Similar to
+	 * {@link IMemPool.malloc} and if successful returns typed array of given
+	 * `type`. Returns undefined if allocation failed.
 	 *
 	 * @param type -
 	 * @param num -

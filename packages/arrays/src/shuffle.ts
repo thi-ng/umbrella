@@ -5,14 +5,14 @@ import { SYSTEM } from "@thi.ng/random/system";
 import type { AnyArray } from "./api.js";
 
 /**
- * Shuffles the items in the given index range of array `buf` using
- * Fisher-yates and optional `rnd` PRNG.
+ * Shuffles the items in the given index range of array `buf` using Fisher-yates
+ * and optional `rnd` PRNG.
  *
  * @remarks
- * If neither `start` / `end` are given, the entire array will be
- * shuffled. Mutates original array.
+ * If neither `start` / `end` are given, the entire array will be shuffled.
+ * Mutates original array.
  *
- * See {@link @thi.ng/random#IRandom}
+ * See [`IRandom`](https://docs.thi.ng/umbrella/random/interfaces/IRandom.html)
  *
  * @param buf - array
  * @param n - num items

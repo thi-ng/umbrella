@@ -14,9 +14,9 @@ interface Canvas2DContextAttributes {
 
 /**
  * User provided canvas life cycle methods. These differ from the usual
- * {@link @thi.ng/hdom#ILifecycle} methods and are always passed at
- * least the canvas DOM element, canvas context and hdom user context.
- * Not all handlers need to be implemented.
+ * [`ILifecycle`](https://docs.thi.ng/umbrella/hdom/interfaces/ILifecycle.html)
+ * methods and are always passed at least the canvas DOM element, canvas context
+ * and hdom user context. Not all handlers need to be implemented.
  */
 export interface CanvasHandlers<T extends CanvasContext> {
 	/**

@@ -8,7 +8,8 @@ import { vertices } from "./vertices.js";
 
 /**
  * Converts given shape into a {@link Polygon}, optionally using provided
- * {@link @thi.ng/geom-api#SamplingOpts} or number of target vertices.
+ * [`SamplingOpts`](https://docs.thi.ng/umbrella/geom-api/interfaces/SamplingOpts.html)
+ * or number of target vertices.
  *
  * @remarks
  * Currently implemented for:

@@ -22,29 +22,27 @@ export interface FSMOpts<T extends FSMState, A, B> {
 }
 
 /**
- * Finite State Machine transducer. Takes an FSM configuration object
- * and returns a transducer, which processes inputs using the provided
- * state handler functions, which in turn can return any number of
- * outputs per consumed input.
+ * Finite State Machine transducer. Takes an FSM configuration object and
+ * returns a transducer, which processes inputs using the provided state handler
+ * functions, which in turn can return any number of outputs per consumed input.
  *
- * Before processing the first input, the FSM state is initialized by
- * calling the user provided `init()` function, which MUST return a
- * state object with at least a `state` key, whose value is used for
- * dynamic (i.e. stateful) dispatch during input processing. This state
- * object is passed with each input value to the current state handler,
- * which is expected to mutate this object, e.g. to cause state changes
- * based on given inputs.
+ * Before processing the first input, the FSM state is initialized by calling
+ * the user provided `init()` function, which MUST return a state object with at
+ * least a `state` key, whose value is used for dynamic (i.e. stateful) dispatch
+ * during input processing. This state object is passed with each input value to
+ * the current state handler, which is expected to mutate this object, e.g. to
+ * cause state changes based on given inputs.
  *
- * If a state handler needs to "emit" results for downstream processing,
- * it can return an array of values. Any such values are passed on
- * (individually, not as array) to the next reducer in the chain. If a
- * state handler returns `null` or `undefined`, further downstream
- * processing of the current input is skipped.
+ * If a state handler needs to "emit" results for downstream processing, it can
+ * return an array of values. Any such values are passed on (individually, not
+ * as array) to the next reducer in the chain. If a state handler returns `null`
+ * or `undefined`, further downstream processing of the current input is
+ * skipped.
  *
- * Regardless of return value, if a state handler has caused a state
- * change to the configured `terminal` state, processing is terminated
- * (by calling {@link @thi.ng/transducers#ensureReduced}) and no further
- * inputs will be consumed.
+ * Regardless of return value, if a state handler has caused a state change to
+ * the configured `terminal` state, processing is terminated (by calling
+ * [`ensureReduced()`](https://docs.thi.ng/umbrella/transducers/functions/ensureReduced.html))
+ * and no further inputs will be consumed.
  *
  * @example
  * ```ts

@@ -20,19 +20,18 @@ export const ONE_MINUS_B: FnN2 = (_, b) => 1 - b;
 
 /**
  * General Porter-Duff HOF operator for **pre-multiplied** RGBA. Use
- * {@link porterDuffP} for applying pre & post multiplication of input
- * and output colors. The returned function takes 3 arguments:
+ * {@link porterDuffP} for applying pre & post multiplication of input and
+ * output colors. The returned function takes 3 arguments:
  *
  * - `out` color (if `null` or `undefined` writes to `dest`)
  * - `src` color (background)
  * - `dest` color (foreground)
  *
- * Unlike the packed int version, here only the alpha channel of the
- * result color will be clamped. RGB components can potentially go out
- * of [0..1] range (depending on coefficient functions used).
+ * Unlike the packed int version, here only the alpha channel of the result
+ * color will be clamped. RGB components can potentially go out of [0..1] range
+ * (depending on coefficient functions used).
  *
- * Reference:
- * {@link https://keithp.com/~keithp/porterduff/p253-porter.pdf}
+ * Reference: https://keithp.com/~keithp/porterduff/p253-porter.pdf
  *
  * @param fa - fn for src coeff
  * @param fb - fn for dest coeff

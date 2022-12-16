@@ -5,8 +5,8 @@ import { dot, max } from "@thi.ng/shader-ast/builtin/math";
 import { fit1101 } from "../math/fit.js";
 
 /**
- * Inline function. Computes Lambert term, i.e. `max(dot(n, l), 0)`.
- * Both vectors must be pre-normalized.
+ * Inline function. Computes Lambert term, i.e. `max(dot(n, l), 0)`. Both
+ * vectors must be pre-normalized.
  *
  * @param surfNormal - vec3
  * @param lightDir - vec3
@@ -18,7 +18,7 @@ export const lambert = (n: Vec3Term, ldir: Vec3Term) =>
  * Inline function. Computes Half-Lambertian term. Both vectors must be
  * pre-normalized.
  *
- * {@link https://developer.valvesoftware.com/wiki/Half_Lambert}
+ * https://developer.valvesoftware.com/wiki/Half_Lambert
  *
  * @param n -
  * @param ldir -

@@ -12,37 +12,38 @@ const STR = "string";
 
 /**
  * Special HTML5 canvas component which injects a branch-local hdom
- * implementation for virtual SVG-like shape components / elements.
- * These elements are then translated into canvas draw commands during
- * the hdom update process.
+ * implementation for virtual SVG-like shape components / elements. These
+ * elements are then translated into canvas draw commands during the hdom update
+ * process.
  *
- * The canvas component automatically adjusts its size for HDPI displays
- * by adding CSS `width` & `height` properties and pre-scaling the
- * drawing context accordingly before shapes are processed.
+ * The canvas component automatically adjusts its size for HDPI displays by
+ * adding CSS `width` & `height` properties and pre-scaling the drawing context
+ * accordingly before shapes are processed.
  *
- * Shape components are expressed in standard hiccup syntax, however
- * with the following restrictions:
+ * Shape components are expressed in standard hiccup syntax, however with the
+ * following restrictions:
  *
  * - Shape component objects with life cycle methods are only partially
- *   supported, i.e. only the {@link @thi.ng/hdom#ILifecycle.render} &
- *   {@link @thi.ng/hdom#ILifecycle.release} methods are used (Note, for
- *   performance reasons `release` methods are ignored by default. If
- *   your shape tree contains stateful components which use the
- *   `release` life cycle method, you'll need to explicitly enable the
+ *   supported, i.e. only the
+ *   [`ILifecycle.render()`](https://docs.thi.ng/umbrella/hdom/interfaces/ILifecycle.html#render)
+ *   &
+ *   [`ILifecycle.release()`](https://docs.thi.ng/umbrella/hdom/interfaces/ILifecycle.html#release)
+ *   methods are used (Note, for performance reasons `release` methods are
+ *   ignored by default. If your shape tree contains stateful components which
+ *   use the `release` life cycle method, you'll need to explicitly enable the
  *   canvas component's `__release` attribute by setting it to `true`).
- * - Currently no event listeners can be assigned to shapes (ignored),
- *   though this is planned for a future version. The canvas element
- *   itself can of course have event handlers as usual.
+ * - Currently no event listeners can be assigned to shapes (ignored), though
+ *   this is planned for a future version. The canvas element itself can of
+ *   course have event handlers as usual.
  *
- * All embedded component functions receive the user context object just
- * like normal hdom components.
+ * All embedded component functions receive the user context object just like
+ * normal hdom components.
  *
  * For best performance, it's recommended to ensure all resulting shapes
- * elements are provided in already normalized hiccup format (i.e.
- * `[tag, {attribs}, ...]`). That way the `__normalize: false` control
- * attribute can be added either to the canvas component itself (or to
- * individual shapes / groups), and if present, will skip normalization
- * of all children.
+ * elements are provided in already normalized hiccup format (i.e. `[tag,
+ * {attribs}, ...]`). That way the `__normalize: false` control attribute can be
+ * added either to the canvas component itself (or to individual shapes /
+ * groups), and if present, will skip normalization of all children.
  *
  * @param _ - hdom user context (ignored)
  * @param attribs - canvas attribs

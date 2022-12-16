@@ -5,7 +5,8 @@ import { Edge, Graph, GraphAttribs, Node, serializeGraph } from "@thi.ng/dot";
 export interface DGraphDotOpts<T> {
 	/**
 	 * Graph visualization attributes. See
-	 * {@link @thi.ng/dot#GraphAttribs} for details.
+	 * [`GraphAttribs`](https://docs.thi.ng/umbrella/dot/interfaces/GraphAttribs.html)
+	 * for details.
 	 */
 	attribs?: Partial<GraphAttribs>;
 	/**
@@ -21,15 +22,17 @@ export interface DGraphDotOpts<T> {
 	label?: Fn<T, string>;
 	/**
 	 * Optional function applied to each node to provide an object of
-	 * visualization options. See {@link @thi.ng/dot#Node} for details.
+	 * visualization options. See
+	 * [`Node`](https://docs.thi.ng/umbrella/dot/interfaces/Node.html) for
+	 * details.
 	 */
 	spec?: Fn<T, Partial<Node>>;
 }
 
 /**
- * Takes a {@link @thi.ng/dgraph#DGraph} and object of visualization &
- * serialization options. Returns Graphviz DOT format serialization of
- * given graph.
+ * Takes a [`DGraph`](https://docs.thi.ng/umbrella/dgraph/classes/DGraph.html)
+ * and object of visualization & serialization options. Returns Graphviz DOT
+ * format serialization of given graph.
  *
  * @param src -
  * @param opts -

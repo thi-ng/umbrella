@@ -22,7 +22,7 @@ import { __dispatch2 } from "./internal/dispatch.js";
 
 /**
  * Performs intersection tests on given 2 shapes and returns
- * {@link @thi.ng/geom-api#IntersectionResult}.
+ * [`IntersectionResult`](https://docs.thi.ng/umbrella/geom-api/interfaces/IntersectionResult.html).
  *
  * @remarks
  * Currently supported pairs:

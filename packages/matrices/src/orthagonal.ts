@@ -3,10 +3,10 @@ import { eqDelta } from "@thi.ng/math/eqdelta";
 import type { ReadonlyMat } from "./api.js";
 
 /**
- * Returns true, if given square matrix of size `n` is orthagonal, i.e.
- * check if `A * AT = I`.
+ * Returns true, if given square matrix of size `n` is orthagonal, i.e. check if
+ * `A * AT = I`.
  *
- * {@link https://en.wikipedia.org/wiki/Orthogonal_matrix}
+ * https://en.wikipedia.org/wiki/Orthogonal_matrix
  *
  * @param m -
  * @param n -

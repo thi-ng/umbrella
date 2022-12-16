@@ -16,7 +16,7 @@ import { normalize } from "./normalize.js";
 
 /**
  * Sets `v` to random vector, with each component in interval `[n..m)`. If no
- * `rnd` instance is given, uses {@link @thi.ng/random#SYSTEM}, i.e.
+ * `rnd` instance is given, uses [`SYSTEM`](https://docs.thi.ng/umbrella/random/variables/SYSTEM.html), i.e.
  * `Math.random`. Creates new vector if `v` is null.
  *
  * @remarks
@@ -82,7 +82,8 @@ const $normDist =
 /**
  * Sets `v` to a random vector (using {@link random}), normalized to length `n`
  * (default: 1). If no `rnd` instance is given, uses
- * {@link @thi.ng/random#SYSTEM}, i.e. `Math.random`.
+ * [`SYSTEM`](https://docs.thi.ng/umbrella/random/variables/SYSTEM.html), i.e.
+ * `Math.random`.
  *
  * @remarks
  * The non-fixed sized version of this function can ONLY be used if `v` is given

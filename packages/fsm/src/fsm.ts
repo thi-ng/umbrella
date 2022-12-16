@@ -11,31 +11,33 @@ import {
 import { Match, Matcher } from "./api.js";
 
 /**
- * Finite-state machine transducer / iterator with support for single
- * lookahead value.
+ * Finite-state machine transducer / iterator with support for single lookahead
+ * value.
  *
  * @remarks
- * Takes an object of `states` and their matchers, an arbitrary context
- * object and an `initial` state ID (default: "start").
+ * Takes an object of `states` and their matchers, an arbitrary context object
+ * and an `initial` state ID (default: "start").
  *
- * The returned transducer consumes inputs of type `T` and produces
- * results of type `R`. The results are produced by callbacks of the
- * given state matchers. Each can produce any number of values. If a
- * callback returns a result wrapped w/
- * {@link @thi.ng/transducers#(reduce:1)d}, the FSM causes early termination
- * of the overall transducer pipeline. Failed state callbacks too can
- * produce outputs, but will afterwards terminate the FSM.
+ * The returned transducer consumes inputs of type `T` and produces results of
+ * type `R`. The results are produced by callbacks of the given state matchers.
+ * Each can produce any number of values. If a callback returns a result wrapped
+ * w/
+ * [`reduced()`](https://docs.thi.ng/umbrella/transducers/functions/reduced.html),
+ * the FSM causes early termination of the overall transducer pipeline. Failed
+ * state callbacks too can produce outputs, but will afterwards terminate the
+ * FSM.
  *
- * An {@link @thi.ng/errors#IllegalStateError} will be thrown if a
- * transition to an undefined state ID occurs.
+ * An
+ * [`IllegalStateError`](https://docs.thi.ng/umbrella/errors/variables/IllegalStateError.html)
+ * will be thrown if a transition to an undefined state ID occurs.
  *
- * The optional `update` function will be invoked for each input prior
- * to executing the currently active state matcher. It is intended to
- * update the context object (e.g. to update input location info for
- * generating error messages).
+ * The optional `update` function will be invoked for each input prior to
+ * executing the currently active state matcher. It is intended to update the
+ * context object (e.g. to update input location info for generating error
+ * messages).
  *
- * If the optional `src` iterable is given, the function returns a
- * transforming iterator of the FSM results.
+ * If the optional `src` iterable is given, the function returns a transforming
+ * iterator of the FSM results.
  *
  * @param states - FSM state matchers
  * @param ctx - FSM context object

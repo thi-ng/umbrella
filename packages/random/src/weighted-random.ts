@@ -16,7 +16,7 @@ import { SYSTEM } from "./system.js";
  * the resulting function will only ever return the first `choice`.
  *
  * Based on:
- * {@link https://www.electricmonk.nl/log/2009/12/23/weighted-random-distribution/}
+ * https://www.electricmonk.nl/log/2009/12/23/weighted-random-distribution/
  *
  * @param choices -
  * @param weights - optional weights

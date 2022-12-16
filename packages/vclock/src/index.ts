@@ -89,11 +89,15 @@ export const absSkew: FnU2<VClock, number> = (a, b) =>
 
 /**
  * Vector clock comparator, yielding ascending order in terms of all clocks.
- * Follows standard {@link @this.ng/api#Comparator} contract and returns:
+ * Follows standard
+ * [`Comparator`](https://docs.thi.ng/umbrella/api/types/Comparator.html)
+ * contract and returns:
  *
- * - -1 (before): iff for all i a(i) <= b(i) and there exist a j such that a(j) < b(j)
+ * - -1 (before): iff for all i a(i) <= b(i) and there exist a j such that a(j)
+ *   < b(j)
  * - 0 (same): iff for all i a(i) == b(i)
- * - +1 (after): iff for all i a(i) >= b(i) and there exist a j such that a(j) > b(j)
+ * - +1 (after): iff for all i a(i) >= b(i) and there exist a j such that a(j) >
+ *   b(j)
  * - 0 (concurrent): iff a != b otherwise
  *
  * @example

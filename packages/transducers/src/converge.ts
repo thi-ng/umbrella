@@ -6,18 +6,18 @@ import { __iter } from "./iterator.js";
 import { ensureReduced } from "./reduced.js";
 
 /**
- * Transducer which for each input `x` (apart from the very first one)
- * applies given predicate `pred` to previous input and `x`. Only passes
- * values downstream as long as the predicate returns a falsy result.
- * Once the result is truthy, `x` is considered converged and the
- * transformation is terminated (by emitting a {@link reduced} value).
+ * Transducer which for each input `x` (apart from the very first one) applies
+ * given predicate `pred` to previous input and `x`. Only passes values
+ * downstream as long as the predicate returns a falsy result. Once the result
+ * is truthy, `x` is considered converged and the transformation is terminated
+ * (by emitting a {@link reduced} value).
  *
  * @remarks
- * This can be used to limit processing of inputs only as long as
- * there're noticeable changes (according to the predicate) and then
- * stop the transducer pipeline once results have converged.
+ * This can be used to limit processing of inputs only as long as there're
+ * noticeable changes (according to the predicate) and then stop the transducer
+ * pipeline once results have converged.
  *
- * See also: {@link (takeWhile:1)}
+ * See also: {@link takeWhile}
  *
  * @example
  * ```ts

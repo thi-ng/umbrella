@@ -16,14 +16,16 @@ export interface FilterFuzzyOpts<A, B> {
 }
 
 /**
- * Returns transducer which calls {@link @thi.ng/arrays#fuzzyMatch} for
- * each value and discards all non-matching values.
+ * Returns transducer which calls
+ * [`fuzzyMatch()`](https://docs.thi.ng/umbrella/arrays/functions/fuzzyMatch.html)
+ * for each value and discards all non-matching values.
  *
  * @remarks
- * The `key` option function can be used to extract/produce the actual
- * value used for the search. The `equiv` option predicate can be used
- * to customize item equality checking. Uses {@link @thi.ng/equiv#equiv}
- * by default.
+ * The `key` option function can be used to extract/produce the actual value
+ * used for the search. The `equiv` option predicate can be used to customize
+ * item equality checking. Uses
+ * [`equiv()`](https://docs.thi.ng/umbrella/equiv/functions/equiv.html) by
+ * default.
  *
  * @example
  * ```ts

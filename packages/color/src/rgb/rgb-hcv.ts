@@ -6,7 +6,7 @@ import { clamp } from "../clamp.js";
 
 /**
  * Based on:
- * {@link https://github.com/tobspr/GLSL-Color-Spaces/blob/develop/ColorSpaces.inc.glsl#L159}
+ * https://github.com/tobspr/GLSL-Color-Spaces/blob/develop/ColorSpaces.inc.glsl#L159
  *
  * @param out - result
  * @param src - source color

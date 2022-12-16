@@ -3,14 +3,14 @@ import type { MapLike } from "./api.js";
 
 /**
  * Function memoization for arbitrary argument counts. Returns augmented
- * function, which uses the given `Map` implementation to obtain and
- * store memoized result of given args. Supports generics for up to 4
- * args (otherwise untyped).
+ * function, which uses the given `Map` implementation to obtain and store
+ * memoized result of given args. Supports generics for up to 4 args (otherwise
+ * untyped).
  *
- * **Important:** It only makes sense to use `Map` types which support
- * value (rather than object) equality, e.g. those provided by
- * {@link @thi.ng/associative# | @thi.ng/associative}. Using a native `Map` type here will lead
- * to memory leaks! Alternatively, use {@link (memoizeJ:1)}.
+ * **Important:** It only makes sense to use `Map` types which support value
+ * (rather than object) equality, e.g. those provided by
+ * [`thi.ng/associative`](https://thi.ng/associative). Using a native `Map` type
+ * here will lead to memory leaks! Alternatively, use {@link memoizeJ}.
  *
  * @param fn -
  * @param cache -

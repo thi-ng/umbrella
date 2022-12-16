@@ -269,8 +269,9 @@ export class DCons<T>
 	 *
 	 * @remarks
 	 * Supports configurable iterations and custom PRNG via
-	 * {@link @thi.ng/random#IRandom} (default:
-	 * {@link @thi.ng/random#SYSTEM}).
+	 * [`IRandom`](https://docs.thi.ng/umbrella/random/interfaces/IRandom.html)
+	 * (default:
+	 * [`SYSTEM`](https://docs.thi.ng/umbrella/random/variables/SYSTEM.html)).
 	 *
 	 * Default iterations: `ceil(3/2 * log2(n))`
 	 *
@@ -317,7 +318,7 @@ export class DCons<T>
 	 * https://www.chiark.greenend.org.uk/~sgtatham/algorithms/listsort.html
 	 *
 	 * @remarks
-	 * Uses {@link @thi.ng/compare#compare} as default comparator.
+	 * Uses [`compare()`](https://docs.thi.ng/umbrella/compare/functions/compare.html) as default comparator.
 	 *
 	 * @param cmp -
 	 */

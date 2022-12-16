@@ -21,7 +21,8 @@ import { rectWithCentroidAndMargin } from "./rect.js";
  * distance `dist`.
  *
  * @remarks
- * Also see {@link @thi.ng/geom-sdf#} package for more flexible & advanced usage.
+ * Also see [thi.ng/geom-sdf](https://thi.ng/thi.ng/geom-sdf) package for more
+ * flexible & advanced usage.
  *
  * Currently only implemented for:
  *

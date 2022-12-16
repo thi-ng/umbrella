@@ -6,8 +6,8 @@ import { mapcat } from "./mapcat.js";
 import { partition } from "./partition.js";
 
 /**
- * Transducer. Composition of {@link (partition:1)} and
- * {@link (mapcat:1)} which yields a **partially** sorted sequence of
+ * Transducer. Composition of {@link partition} and
+ * {@link mapcat} which yields a **partially** sorted sequence of
  * input values. Sorting is performed on sliding / non-overlapping
  * chunks of `n` inputs.
  *

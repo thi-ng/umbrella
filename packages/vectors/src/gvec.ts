@@ -42,13 +42,13 @@ const keys = memoize1<number, StringOrSym[]>((size: number) => [
  * Wrapper for strided, arbitrary length vectors.
  *
  * @remarks
- * Wraps given buffer in ES6 `Proxy` with custom property
- * getters/setters and implements the following interfaces:
+ * Wraps given buffer in ES6 `Proxy` with custom property getters/setters and
+ * implements the following interfaces:
  *
  * - `Iterable` (ES6)
- * - {@link @thi.ng/api#ICopy}
- * - {@link @thi.ng/api#IEmpty}
- * - {@link @thi.ng/api#IEqualsDelta}
+ * - [`ICopy`](https://docs.thi.ng/umbrella/api/interfaces/ICopy.html)
+ * - [`IEmpty`](https://docs.thi.ng/umbrella/api/interfaces/IEmpty.html)
+ * - [`IEqualsDelta`](https://docs.thi.ng/umbrella/api/interfaces/IEqualsDelta.html)
  * - {@link IVector}
  * - `Object.toString()`
  *
@@ -60,14 +60,13 @@ const keys = memoize1<number, StringOrSym[]>((size: number) => [
  * - `buf` - backing buffer (readonly)
  * - `length` - vector size
  *
- * Array index access uses bounds checking against the [0 .. `size`)
- * interval, but, for performance reasons, **not** against the actual
- * wrapped buffer.
+ * Array index access uses bounds checking against the [0 .. `size`) interval,
+ * but, for performance reasons, **not** against the actual wrapped buffer.
  *
- * Note: ES6 proxies are ~10x slower than standard array accesses. If
- * several computations are to be performed on such vectors it will be
- * much more efficient to first copy them to compact arrays and then
- * copy result back if needed.
+ * Note: ES6 proxies are ~10x slower than standard array accesses. If several
+ * computations are to be performed on such vectors it will be much more
+ * efficient to first copy them to compact arrays and then copy result back if
+ * needed.
  *
  * @example
  * ```

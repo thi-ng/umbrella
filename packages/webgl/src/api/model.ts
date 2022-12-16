@@ -27,7 +27,8 @@ export interface ModelSpec {
 	attribs: ModelAttributeSpecs;
 	/**
 	 * Geometry attributes given as
-	 * {@link @thi.ng/vector-pools#AttribPool} instance.
+	 * [`AttribPool`](https://docs.thi.ng/umbrella/vector-pools/classes/AttribPool.html)
+	 * instance.
 	 */
 	attribPool?: AttribPool;
 	/**
@@ -97,8 +98,8 @@ export interface ModelAttributeSpec {
 	 */
 	type?: Type | GLType;
 	/**
-	 * Only used for instanced attributes.
-	 * See: {@link https://www.khronos.org/registry/OpenGL/extensions/ANGLE/ANGLE_instanced_arrays.txt}
+	 * Only used for instanced attributes. See:
+	 * https://www.khronos.org/registry/OpenGL/extensions/ANGLE/ANGLE_instanced_arrays.txt
 	 */
 	divisor?: number;
 }

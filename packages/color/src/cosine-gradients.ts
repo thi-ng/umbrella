@@ -262,7 +262,8 @@ export const cosineCoeffs: FnU2<ReadonlyColor, CosGradientSpec> = (
  * an array of `n+1` linear RGBA color samples.
  *
  * @remarks
- * @see {@link @thi.ng/transducers#tween}
+ * See
+ * [`tween()`](https://docs.thi.ng/umbrella/transducers/functions/tween.html)
  *
  * @example
  * ```ts

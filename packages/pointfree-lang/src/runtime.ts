@@ -429,10 +429,11 @@ const finalizeEnv = (ctx: pf.StackContext) => {
 };
 
 /**
- * Main user function. Takes a string w/ DSL source code and optional
- * env and stack. Prepares env using `ensureEnv`, parses, compiles and
- * executes source, then returns resulting
- * {@link @thi.ng/pointfree#StackContext} tuple.
+ * Main user function. Takes a string w/ DSL source code and optional env and
+ * stack. Prepares env using `ensureEnv`, parses, compiles and executes source,
+ * then returns resulting
+ * [`StackContext`](https://docs.thi.ng/umbrella/pointfree/interfaces/StackContext.html)
+ * tuple.
  *
  * @param src -
  * @param env -
@@ -479,9 +480,10 @@ export const runE = (src: string, env?: pf.StackEnv, stack?: pf.Stack) =>
 	run(src, env, stack)[2];
 
 /**
- * Executes word with given name, defined in supplied `env` object and
- * with given optional initial stack. Returns resulting
- * {@link @thi.ng/pointfree#StackContext} tuple.
+ * Executes word with given name, defined in supplied `env` object and with
+ * given optional initial stack. Returns resulting
+ * [`StackContext`](https://docs.thi.ng/umbrella/pointfree/interfaces/StackContext.html)
+ * tuple.
  *
  * @param id -
  * @param env -
@@ -517,10 +519,10 @@ export const runWordE = (id: string, env: pf.StackEnv, stack: pf.Stack = []) =>
 	finalizeEnv(env.__words[id](pf.ctx(stack, ensureEnv(env))))[2];
 
 /**
- * Takes an environment object and injects given custom word
- * definitions. `words` is an object with keys representing word names
- * and their values {@link @thi.ng/pointfree#StackFn}s. See
- * {@link @thi.ng/pointfree# | @thi.ng/pointfree} package
+ * Takes an environment object and injects given custom word definitions.
+ * `words` is an object with keys representing word names
+ * and their values [`StackFn`](https://docs.thi.ng/umbrella/pointfree/types/StackFn.html)s. See
+ * [`thi.ng/pointfree`](https://thi.ng/pointfree) package
  * for more details about stack functions.
  *
  * @param env -

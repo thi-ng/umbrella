@@ -53,7 +53,9 @@ const analogNUU = defAnalog(analogN, analogU, analogU);
 /**
  * Returns a random analog color based on given `src` color and variance
  * `delta`. Each channel will be randomized by +/- `delta`, optionally using
- * provided {@link @thi.ng/random#IRandom} PRNG.
+ * provided
+ * [`IRandom`](https://docs.thi.ng/umbrella/random/interfaces/IRandom.html)
+ * PRNG.
  */
 export const analog = defmulti<
 	Color | null,
@@ -80,7 +82,9 @@ export const analog = defmulti<
 /**
  * Similar to {@link analogRGB}. Returns an analog color based on given HSVA
  * color, with each channel randomly varied by given channel-specific delta
- * amounts (and optionally given {@link @thi.ng/random#IRandom} PRNG).
+ * amounts (and optionally given
+ * [`IRandom`](https://docs.thi.ng/umbrella/random/interfaces/IRandom.html)
+ * PRNG).
  *
  * @remarks
  * This function provides more user control than {@link analog}, but the latter
@@ -117,7 +121,9 @@ export const analogHsv = (
 /**
  * Similar to {@link analogHSV}. Returns an analog color based on given RGBA
  * color, with each channel randomly varied by given delta amounts (and
- * optionally given {@link @thi.ng/random#IRandom} PRNG).
+ * optionally given
+ * [`IRandom`](https://docs.thi.ng/umbrella/random/interfaces/IRandom.html)
+ * PRNG).
  *
  * @remarks
  * By default the green and blue channel variance will be the same as `deltaR`.

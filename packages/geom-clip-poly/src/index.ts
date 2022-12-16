@@ -5,11 +5,11 @@ import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
 import { corner2 } from "@thi.ng/vectors/clockwise";
 
 /**
- * Extended version of Sutherland-Hodgeman convex polygon clipping
- * supporting any convex boundary polygon (not only rects). Returns new
- * array of clipped vertices.
+ * Extended version of Sutherland-Hodgeman convex polygon clipping supporting
+ * any convex boundary polygon (not only rects). Returns new array of clipped
+ * vertices.
  *
- * {@link https://en.wikipedia.org/wiki/Sutherland%E2%80%93Hodgman_algorithm}
+ * https://en.wikipedia.org/wiki/Sutherland%E2%80%93Hodgman_algorithm
  *
  * @param pts - subject poly vertices
  * @param bounds - clipping boundary vertices

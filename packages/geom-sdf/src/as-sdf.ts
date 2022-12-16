@@ -62,8 +62,11 @@ interface ParametricOps {
 }
 
 /**
- * Takes an {@link @thi.ng/geom-api#IShape} instance (possibly a tree, e.g. via
- * {@link @thi.ng/geom#group}) and converts it into a {@link SDFn}.
+ * Takes an
+ * [`IShape`](https://docs.thi.ng/umbrella/geom-api/interfaces/IShape.html)
+ * instance (possibly a tree, e.g. via
+ * [`group()`](https://docs.thi.ng/umbrella/geom/functions/group.html)) and
+ * converts it into a {@link SDFn}.
  *
  * @remarks
  * Currently supported shape types:
@@ -82,9 +85,10 @@ interface ParametricOps {
  *
  * For shapes which need to be converted to polygons/polylines, the
  * {@link SDFAttribs.samples} attribute can be used to control the resulting
- * number of vertices. If not specified {@link @thi.ng/geom-api#DEFAULT_SAMPLES}
+ * number of vertices. If not specified
+ * [`DEFAULT_SAMPLES`](https://docs.thi.ng/umbrella/geom-api/variables/DEFAULT_SAMPLES.html)
  * will be used (which can be globally set via
- * {@link @thi.ng/geom-api#setDefaultSamples}).
+ * [`setDefaultSamples()`](https://docs.thi.ng/umbrella/geom-api/functions/setDefaultSamples.html)).
  */
 export const asSDF: MultiFn1<IShape, SDFn> = defmulti<any, SDFn>(
 	__dispatch,

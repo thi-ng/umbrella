@@ -3,19 +3,20 @@ import { compare } from "@thi.ng/compare/compare";
 import { swap } from "./swap.js";
 
 /**
- * In-place quicksort implementation with optional comparator & index
- * based swap function, useful for sorting multiple related arrays in
- * parallel, based on a single sort criteria.
+ * In-place quicksort implementation with optional comparator & index based swap
+ * function, useful for sorting multiple related arrays in parallel, based on a
+ * single sort criteria.
  *
  * @remarks
- * Supports sorting of sub-ranges only, via optionally given
- * `start`/`end` indices (both inclusive).
+ * Supports sorting of sub-ranges only, via optionally given `start`/`end`
+ * indices (both inclusive).
  *
- * Uses Hoare partitioning scheme. {@link @thi.ng/compare#compare} is
- * used as default comparator and {@link swap} from this package as
- * default swap function. Also see {@link multiSwap}.
+ * Uses Hoare partitioning scheme.
+ * [`compare()`](https://docs.thi.ng/umbrella/compare/functions/compare.html) is
+ * used as default comparator and {@link swap} from this package as default swap
+ * function. Also see {@link multiSwap}.
  *
- * {@link https://en.wikipedia.org/wiki/Quicksort#Hoare_partition_scheme}
+ * - https://en.wikipedia.org/wiki/Quicksort#Hoare_partition_scheme
  *
  * @example
  * ```ts

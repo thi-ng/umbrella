@@ -6,7 +6,7 @@ import { mulN } from "./muln.js";
 /**
  * Returns vector projection of `v` onto `dir`.
  *
- * {@link https://en.wikipedia.org/wiki/Vector_projection}
+ * https://en.wikipedia.org/wiki/Vector_projection
  *
  * @param v -
  * @param dir -

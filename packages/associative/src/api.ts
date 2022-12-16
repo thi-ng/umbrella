@@ -30,10 +30,11 @@ export interface EquivSetConstructor<T> {
 
 export interface EquivSetOpts<T> {
 	/**
-	 * Key equivalence predicate. MUST return truthy result if given
-	 * keys are considered equal.
+	 * Key equivalence predicate. MUST return truthy result if given keys are
+	 * considered equal.
 	 *
-	 * @defaultValue {@link @thi.ng/equiv#equiv}
+	 * @defaultValue
+	 * [`equiv()`](https://docs.thi.ng/umbrella/equiv/functions/equiv.html)
 	 */
 	equiv: Predicate2<T>;
 }
@@ -65,7 +66,8 @@ export interface HashMapOpts<K> {
 	/**
 	 * Optional key equality predicate.
 	 *
-	 * @defaultValue {@link @thi.ng/equiv#equiv}
+	 * @defaultValue
+	 * [`equiv()`](https://docs.thi.ng/umbrella/equiv/functions/equiv.html)
 	 */
 	equiv?: Predicate2<K>;
 	/**
@@ -90,8 +92,8 @@ export interface HashMapOpts<K> {
  */
 export interface SortedMapOpts<K> {
 	/**
-	 * Key comparison function. Must follow standard comparator contract
-	 * and return:
+	 * Key comparison function. Must follow standard comparator contract and
+	 * return:
 	 * - negative if `a < b`
 	 * - positive if `a > b`
 	 * - `0` if `a == b`
@@ -99,7 +101,8 @@ export interface SortedMapOpts<K> {
 	 * Note: The {@link SortedMap} implementation only uses `<` and `==` style
 	 * comparisons.
 	 *
-	 * @defaultValue {@link @thi.ng/compare#compare}
+	 * @defaultValue
+	 * [`compare()`](https://docs.thi.ng/umbrella/compare/functions/compare.html)
 	 */
 	compare: Comparator<K>;
 	/**

@@ -82,8 +82,8 @@ export const mixNNNN: ColorMixFn = mixN4;
  * Any hue channel will always be interpolated using the smallest angle
  * difference (using {@link mixH}).
  *
- * The {@link @thi.ng/math#} package provides various easing functions to create
- * non-linear interpolations. For example:
+ * The [thi.ng/math](https://thi.ng/thi.ng/math) package provides various easing
+ * functions to create non-linear interpolations. For example:
  *
  * @example
  * ```ts

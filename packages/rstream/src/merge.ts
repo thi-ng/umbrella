@@ -21,9 +21,9 @@ export interface StreamMergeOpts<A, B> extends TransformableOpts<A, B> {
  * multiple inputs and passing received values on to any subscribers.
  *
  * @remarks
- * Input streams can be added and removed dynamically. By default,
- * `StreamMerge` calls {@link ISubscriber.done} when the last active
- * input is done, but this behavior can be overridden via the provided
+ * Input streams can be added and removed dynamically. By default, `StreamMerge`
+ * calls {@link ISubscriber.done} when the last active input is done, but this
+ * behavior can be overridden via the provided
  * {@link StreamMergeOpts | options}.
  *
  * @example
@@ -48,8 +48,10 @@ export interface StreamMergeOpts<A, B> extends TransformableOpts<A, B> {
  * ```
  *
  * @example
- * Use the {@link @thi.ng/transducers#(labeled:1)} transducer for each
- * input to create a stream of labeled values and track their provenance:
+ * Use the
+ * [`labeled()`](https://docs.thi.ng/umbrella/transducers/functions/labeled.html)
+ * transducer for each input to create a stream of labeled values and
+ * track their provenance:
  *
  * @example
  * ```ts

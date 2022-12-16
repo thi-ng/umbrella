@@ -8,10 +8,10 @@ import { momentum } from "./momentum.js";
 import { sma } from "./sma.js";
 
 /**
- * {@link https://en.wikipedia.org/wiki/Relative_strength_index}
+ * https://en.wikipedia.org/wiki/Relative_strength_index
  *
- * Note: the number of results will be `period` less than the
- * number of processed inputs.
+ * Note: the number of results will be `period` less than the number of
+ * processed inputs.
  *
  * @param period -
  * @param src -

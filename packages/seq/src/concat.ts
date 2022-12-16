@@ -3,7 +3,9 @@ import { ensureSeq } from "./ensure.js";
 
 /**
  * Returns the concatenation sequence of given nullable
- * {@link @thi,ng/api#ISeq} or {@link @thi.ng/api#ISeqable} values.
+ * [`ISeq`](https://docs.thi.ng/umbrella/api/interfaces/ISeq.html) or
+ * [`ISeqable`](https://docs.thi.ng/umbrella/api/interfaces/ISeqable.html)
+ * values.
  *
  * @param args -
  */

@@ -40,7 +40,7 @@ export const worleyDistManhattan = defn(
  * can be used individually or combined (e.g. `noise.y - noise.x`)...
  *
  * Based on implementation by Stefan Gustavson:
- * {@link http://webstaff.itn.liu.se/~stegu/GLSL-cellular/GLSL-cellular-notes.pdf}
+ * http://webstaff.itn.liu.se/~stegu/GLSL-cellular/GLSL-cellular-notes.pdf
  *
  * @param distFn -
  */

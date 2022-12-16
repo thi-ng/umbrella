@@ -10,7 +10,7 @@ import { SYSTEM } from "../system.js";
  * The default configuration produces samples in the approx. [-0.5,0.5] range
  * with a ~12% standard deviation.
  *
- * Reference: {@link https://en.wikipedia.org/wiki/Central_limit_theorem}
+ * Reference: https://en.wikipedia.org/wiki/Central_limit_theorem
  *
  * @param rnd - default `SYSTEM`
  * @param n - num samples, default 24

@@ -26,17 +26,18 @@ export const copyComplex = (complex: ComplexArray): ComplexArray => [
 ];
 
 /**
- * If given a {@link ComplexArray}, computes the complex conjugate,
- * concatenates it in mirrored order to input (excluding bin 0) and
- * returns it as new (complex) array.
+ * If given a {@link ComplexArray}, computes the complex conjugate, concatenates
+ * it in mirrored order to input (excluding bin 0) and returns it as new
+ * (complex) array.
  *
  * @remarks
  * The length of the input buffer(s) is assumed to be a power of 2.
  *
- * If given a {@link @thi.ng/api#NumericArray}, the `isImg` arg chooses
- * from one of the following operations: If `true` (default), returns
- * new array with *negated* values concatenated in reverse order. If
- * `false`, returns new array with *original* values concatenated in
+ * If given a
+ * [`NumericArray`](https://docs.thi.ng/umbrella/api/types/NumericArray.html),
+ * the `isImg` arg chooses from one of the following operations: If `true`
+ * (default), returns new array with *negated* values concatenated in reverse
+ * order. If `false`, returns new array with *original* values concatenated in
  * reverse order.
  *
  * @example

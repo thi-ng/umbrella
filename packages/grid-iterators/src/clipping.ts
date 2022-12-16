@@ -28,7 +28,8 @@ const axis: FnN3 = (a, b, c) =>
 	(a < b ? a - b : a > b + c ? a - b - c : 0) ** 2;
 
 /**
- * Based on {@link @thi.ng/geom-isec}, but inlined to avoid dependency.
+ * Based on [thi.ng/geom-isec](https://thi.ng/geom-isec), but inlined to avoid
+ * dependency.
  *
  * @param x -
  * @param y -
@@ -51,7 +52,7 @@ export const intersectRectCircle: FnU7<number, boolean> = (
 ) => axis(cx, x, w) + axis(cy, y, h) <= r * r;
 
 /**
- * Based on {@link @thi.ng/geom-clip-line#liangBarsky2Raw}, but with diff return type.
+ * Based on [`liangBarsky2Raw()`](https://docs.thi.ng/umbrella/geom-clip-line/functions/liangBarsky2Raw.html), but with diff return type.
  *
  * @param ax -
  * @param ay -

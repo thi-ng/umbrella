@@ -25,35 +25,34 @@ import { __optsWithID } from "./idgen.js";
 import { LOGGER } from "./logger.js";
 
 /**
- * Creates a new {@link Subscription} instance, the fundamental datatype
- * and building block provided by this package.
+ * Creates a new {@link Subscription} instance, the fundamental datatype and
+ * building block provided by this package.
  *
  * @remarks
- * Most other types in rstream, including {@link Stream}s, are
- * `Subscription`s and all can be:
+ * Most other types in rstream, including {@link Stream}s, are `Subscription`s
+ * and all can be:
  *
- * - connected into directed graphs (sync or async & not necessarily
- *   DAGs)
+ * - connected into directed graphs (sync or async & not necessarily DAGs)
  * - transformed using transducers (incl. support for early termination)
  * - can have any number of subscribers (optionally each w/ their own
  *   transducers)
- * - recursively unsubscribe themselves from parent after their last
- *   subscriber unsubscribed (configurable)
- * - will go into a non-recoverable error state if none of the
- *   subscribers has an error handler itself
- * - implement the {@link @thi.ng/api#IDeref} interface
+ * - recursively unsubscribe themselves from parent after their last subscriber
+ *   unsubscribed (configurable)
+ * - will go into a non-recoverable error state if none of the subscribers has
+ *   an error handler itself
+ * - implement the
+ *   [`IDeref`](https://docs.thi.ng/umbrella/api/interfaces/IDeref.html)
+ *   interface
  *
- * If a transducer is provided (via the `xform` option), all received
- * values will be first processed by the transducer and only its
- * transformed result(s) (if any) will be passed to downstream
- * subscribers. Any uncaught errors *inside* the transducer will cause
- * this subscription's error handler to be called and will stop this
- * subscription from receiving any further values (by default, unless
- * overridden).
+ * If a transducer is provided (via the `xform` option), all received values
+ * will be first processed by the transducer and only its transformed result(s)
+ * (if any) will be passed to downstream subscribers. Any uncaught errors
+ * *inside* the transducer will cause this subscription's error handler to be
+ * called and will stop this subscription from receiving any further values (by
+ * default, unless overridden).
  *
- * Subscription behavior can be customized via the additional (optional)
- * options arg. See {@link CommonOpts} and {@link SubscriptionOpts} for
- * further details.
+ * Subscription behavior can be customized via the additional (optional) options
+ * arg. See {@link CommonOpts} and {@link SubscriptionOpts} for further details.
  *
  * @example
  * ```ts
@@ -157,10 +156,10 @@ export class Subscription<A, B> implements ISubscription<A, B> {
 	}
 
 	/**
-	 * Creates a new child subscription using given transducers and
-	 * optional subscription ID. Supports up to 4 transducers and if
-	 * more than one transducer is given, composes them in left-to-right
-	 * order using {@link @thi.ng/transducers#(comp:1)}.
+	 * Creates a new child subscription using given transducers and optional
+	 * subscription ID. Supports up to 4 transducers and if more than one
+	 * transducer is given, composes them in left-to-right order using
+	 * [`comp()`](https://docs.thi.ng/umbrella/transducers/functions/comp.html).
 	 *
 	 * Shorthand for `subscribe(comp(xf1, xf2,...), id)`
 	 */
@@ -212,9 +211,10 @@ export class Subscription<A, B> implements ISubscription<A, B> {
 	}
 
 	/**
-	 * Syntax sugar for {@link Subscription.transform} when using a
-	 * single {@link @thi.ng/transducers#map} transducer only. The given
-	 * function `fn` is used as `map`'s transformation fn.
+	 * Syntax sugar for {@link Subscription.transform} when using a single
+	 * [`map()`](https://docs.thi.ng/umbrella/transducers/functions/map.html)
+	 * transducer only. The given function `fn` is used as `map`'s
+	 * transformation fn.
 	 *
 	 * @param fn -
 	 * @param opts -

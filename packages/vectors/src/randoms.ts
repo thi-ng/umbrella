@@ -23,7 +23,7 @@ import {
 
 /**
  * Randomizes `v` with each component in interval `[n..m)`. If no `rnd`
- * instance is given, uses {@link @thi.ng/random#SYSTEM}, i.e.
+ * instance is given, uses [`SYSTEM`](https://docs.thi.ng/umbrella/random/variables/SYSTEM.html), i.e.
  * `Math.random`.
  *
  * @param v -
@@ -76,7 +76,8 @@ const $normDist =
 
 /**
  * Sets `v` to random strided vector, normalized to length `n` (default: 1). If
- * no `rnd` instance is given, uses {@link @thi.ng/random#SYSTEM}, i.e.
+ * no `rnd` instance is given, uses
+ * [`SYSTEM`](https://docs.thi.ng/umbrella/random/variables/SYSTEM.html), i.e.
  * `Math.random`.
  *
  * @param v -

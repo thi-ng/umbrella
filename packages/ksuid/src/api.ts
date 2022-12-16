@@ -59,8 +59,8 @@ export interface IKSUID {
 
 export interface KSUIDOpts {
 	/**
-	 * {@link @this.ng/base-n#BaseN} instance for string encoding the generated
-	 * binary IDs.
+	 * [`BaseN`](https://docs.thi.ng/umbrella/base-n/classes/BaseN.html)
+	 * instance for string encoding the generated binary IDs.
 	 *
 	 * @defaultValue BASE62
 	 */

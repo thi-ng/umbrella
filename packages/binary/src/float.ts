@@ -61,11 +61,13 @@ export const uintBitsToFloat64: FnN2 = (hi, lo) => {
 };
 
 /**
- * Converts given float (f32) into a sortable integer representation,
- * using raw bitwise conversion via {@link floatToIntBits}.
+ * Converts given float (f32) into a sortable integer representation, using raw
+ * bitwise conversion via {@link floatToIntBits}.
  *
- * {@link https://github.com/tzaeschke/phtree/blob/develop/PhTreeRevisited.pdf}
- * (page 3)
+ * @remarks
+ * References:
+ * - https://github.com/tzaeschke/phtree/blob/develop/PhTreeRevisited.pdf (page
+ *   3)
  *
  * @param x - value to convert
  */

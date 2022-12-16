@@ -3,17 +3,17 @@ import { EPS } from "./api.js";
 import { safeDiv } from "./safe-div.js";
 
 /**
- * Produces a new function which computes derivative of the given
- * single-arg function. The extra optional arg `eps` is used to
- * define the step width for computing derived values:
+ * Produces a new function which computes derivative of the given single-arg
+ * function. The extra optional arg `eps` is used to define the step width for
+ * computing derived values:
  *
  * `f'(x) = (f(x + eps) - f(x)) / eps`
  *
- * The original function is assumed to be fully differentiable
- * in the interval the returned function is going to be used.
- * No validity checks of any form are done.
+ * The original function is assumed to be fully differentiable in the interval
+ * the returned function is going to be used. No validity checks of any form are
+ * done.
  *
- * {@link https://en.wikipedia.org/wiki/Derivative#Continuity_and_differentiability}
+ * https://en.wikipedia.org/wiki/Derivative#Continuity_and_differentiability
  *
  * @param fn -
  * @param eps -
@@ -34,13 +34,12 @@ export const derivative =
 export const solveLinear: FnN2 = (a, b) => safeDiv(-b, a);
 
 /**
- * Computes solutions for quadratic equation: `ax^2 + bx + c = 0`.
- * Returns array of real solutions.
- * Note: `a` MUST NOT be zero. If the quadratic term is missing,
- * use {@link solveLinear} instead.
+ * Computes solutions for quadratic equation: `ax^2 + bx + c = 0`. Returns array
+ * of real solutions. Note: `a` MUST NOT be zero. If the quadratic term is
+ * missing, use {@link solveLinear} instead.
  *
- * - {@link https://en.wikipedia.org/wiki/Quadratic_function}
- * - {@link https://en.wikipedia.org/wiki/Quadratic_equation}
+ * - https://en.wikipedia.org/wiki/Quadratic_function
+ * - https://en.wikipedia.org/wiki/Quadratic_equation
  *
  * @param a - quadratic coefficient
  * @param b - linear coefficient
@@ -59,11 +58,11 @@ export const solveQuadratic = (a: number, b: number, c: number, eps = 1e-9) => {
 
 /**
  * Computes solutions for quadratic equation: `ax^3 + bx^2 + c*x + d = 0`.
- * Returns array of solutions, both real & imaginary.
- * Note: `a` MUST NOT be zero. If the cubic term is missing (i.e. zero),
- * use {@link solveQuadratic} or {@link solveLinear} instead.
+ * Returns array of solutions, both real & imaginary. Note: `a` MUST NOT be
+ * zero. If the cubic term is missing (i.e. zero), use {@link solveQuadratic} or
+ * {@link solveLinear} instead.
  *
- * {@link https://en.wikipedia.org/wiki/Cubic_function}
+ * https://en.wikipedia.org/wiki/Cubic_function
  *
  * @param a - cubic coefficient
  * @param b - quadratic coefficient

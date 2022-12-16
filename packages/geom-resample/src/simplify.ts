@@ -4,7 +4,7 @@ import type { Vec } from "@thi.ng/vectors";
 import { eqDelta } from "@thi.ng/vectors/eqdelta";
 
 /**
- * {@link https://en.wikipedia.org/wiki/Ramer%E2%80%93Douglas%E2%80%93Peucker_algorithm}
+ * https://en.wikipedia.org/wiki/Ramer%E2%80%93Douglas%E2%80%93Peucker_algorithm
  *
  * @param pts - points
  * @param eps - simplify threshold

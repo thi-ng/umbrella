@@ -176,12 +176,12 @@ export class NdQtNode<K extends ReadonlyVec, V> {
 }
 
 /**
- * Point-based quadtree for nD keys and optional value association.
- * Supports radial range queries and key removal with tree pruning. See
+ * Point-based quadtree for nD keys and optional value association. Supports
+ * radial range queries and key removal with tree pruning. See
  * {@link ndQuadtreeFromMinMax}.
  *
  * @remarks
- * Partially ported from Clojure version of {@link http://thi.ng/geom}.
+ * Partially ported from Clojure version of thi.ng/geom.
  */
 export class NdQuadtreeMap<K extends ReadonlyVec, V>
 	implements
@@ -193,14 +193,14 @@ export class NdQuadtreeMap<K extends ReadonlyVec, V>
 	static readonly MAX_DIM = 16;
 
 	/**
-	 * Returns a new point-based `NdQuadtreeMap` for nD keys in given
-	 * region defined by `min` / `max` coordinates. The dimensionality
-	 * of the tree is implicitly defined by the provided coordinates.
-	 * Only points within that region can be indexed.
+	 * Returns a new point-based `NdQuadtreeMap` for nD keys in given region
+	 * defined by `min` / `max` coordinates. The dimensionality of the tree is
+	 * implicitly defined by the provided coordinates. Only points within that
+	 * region can be indexed.
 	 *
 	 * @remarks
-	 * Due to exponentially growing lookup tables, currently only
-	 * supports up to 16 dimensions.
+	 * Due to exponentially growing lookup tables, currently only supports up to
+	 * 16 dimensions.
 	 */
 	static fromMinMax<K extends ReadonlyVec, V>(
 		min: ReadonlyVec,

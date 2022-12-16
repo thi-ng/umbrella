@@ -2,7 +2,7 @@ import { range2d } from "@thi.ng/transducers/range2d";
 
 /**
  * Yields sequence of 2D grid coordinates in row-major order. Same as
- * {@link @thi.ng/transducers#range2d}.
+ * [`range2d()`](https://docs.thi.ng/umbrella/transducers/functions/range2d.html).
  *
  * @param cols -
  * @param rows -

@@ -1,14 +1,15 @@
 import { equiv as _eq } from "@thi.ng/equiv";
 
 /**
- * Returns true if the last items of `buf` are the same items as in
- * `needle`.
+ * Returns true if the last items of `buf` are the same items as in `needle`.
  *
  * @remarks
- * This means `buf` should have at least the same length as `needle` for
- * this to be true.
+ * This means `buf` should have at least the same length as `needle` for this to
+ * be true.
  *
- * By default, uses {@link @thi.ng/equiv#equiv} for equality checking.
+ * By default, uses
+ * [`equiv()`](https://docs.thi.ng/umbrella/equiv/functions/equiv.html) for
+ * equality checking.
  *
  * {@link startsWith}
  *

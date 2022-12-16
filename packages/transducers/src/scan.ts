@@ -11,7 +11,7 @@ import { ensureReduced, isReduced, unreduced } from "./reduced.js";
  * default.
  *
  * @remarks
- * {@link https://en.wikipedia.org/wiki/Prefix_sum#Scan_higher_order_function}
+ * https://en.wikipedia.org/wiki/Prefix_sum#Scan_higher_order_function
  *
  * @example
  * ```ts

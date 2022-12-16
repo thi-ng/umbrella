@@ -53,11 +53,11 @@ export const dispatchNow =
 	});
 
 /**
- * Higher-order interceptor. Returns interceptor which calls
- * `ctx[id].record()`, where `ctx` is the currently active
- * {@link InterceptorContext} passed to all event handlers and `ctx[id]`
- * is assumed to be a {@link @thi.ng/atom#History} instance, passed to
- * {@link EventBus.processQueue}. The default ID for the history
+ * Higher-order interceptor. Returns interceptor which calls `ctx[id].record()`,
+ * where `ctx` is the currently active {@link InterceptorContext} passed to all
+ * event handlers and `ctx[id]` is assumed to be a
+ * [`History`](https://docs.thi.ng/umbrella/atom/classes/History.html) instance,
+ * passed to {@link EventBus.processQueue}. The default ID for the history
  * instance is `"history"`.
  *
  * Example usage:

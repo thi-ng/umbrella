@@ -3,8 +3,9 @@ import type { Transducer } from "./api.js";
 import { map } from "./map.js";
 
 /**
- * Transducer version of {@link @thi.ng/api#peek}, i.e. extracts the
- * last item of an array.
+ * Transducer version of
+ * [`peek()`](https://docs.thi.ng/umbrella/api/functions/peek.html), i.e.
+ * extracts the last item of an array.
  *
  * @example
  * ```ts

@@ -6,7 +6,7 @@ const re = new RegExp(src.split("").join("|"), "g");
 
 /**
  * Based on:
- * {@link https://medium.com/@matthagemann/the-ultimate-way-to-slugify-a-url-string-in-javascript-b8e4a0d849e1}
+ * https://medium.com/@matthagemann/the-ultimate-way-to-slugify-a-url-string-in-javascript-b8e4a0d849e1
  *
  * @example
  * ```ts

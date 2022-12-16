@@ -5,11 +5,11 @@ import type { Term } from "./api/nodes.js";
 import type { TargetImpl } from "./api/target.js";
 
 /**
- * Takes an object of code generator functions and returns a new code
- * generator / compile target function which serializes a given AST
- * using the provided node type implementations.
+ * Takes an object of code generator functions and returns a new code generator
+ * / compile target function which serializes a given AST using the provided
+ * node type implementations.
  *
- * {@link @thi.ng/shader-ast-glsl#targetGLSL}
+ * [`targetGLSL()`](https://docs.thi.ng/umbrella/shader-ast-glsl/functions/targetGLSL.html)
  *
  * @param impls -
  */

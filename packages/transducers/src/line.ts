@@ -2,16 +2,16 @@ import { map } from "./map.js";
 import { normRange } from "./norm-range.js";
 
 /**
- * Iterator yielding `steps` + 1 interpolated values on a line in the
- * closed `[start .. end]` interval.
+ * Iterator yielding `steps` + 1 interpolated values on a line in the closed
+ * `[start .. end]` interval.
  *
  * @remarks
- * This is similar to {@link range}, but potentially provides more
- * precise values (by avoiding the accumulation of floating point errors
- * during iteration).
+ * This is similar to {@link range}, but potentially provides more precise
+ * values (by avoiding the accumulation of floating point errors during
+ * iteration).
  *
  * Similar functionality (w/ more options) is availble here:
- * {@link @thi.ng/dsp#line}.
+ * [`line()`](https://docs.thi.ng/umbrella/dsp/functions/line.html).
  *
  * @example
  * ```ts

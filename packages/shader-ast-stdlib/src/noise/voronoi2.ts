@@ -32,7 +32,7 @@ import { hash32 } from "./hash.js";
  * - perlin noise (0,1)
  * - voronoise (1,1)
  *
- * {@link http://www.iquilezles.org/www/articles/voronoise/voronoise.htm}
+ * http://www.iquilezles.org/www/articles/voronoise/voronoise.htm
  *
  * Note: This implementation uses the improved {@link hash32} by Dave Hoskins
  * instead of iq's original {@link hash3}.

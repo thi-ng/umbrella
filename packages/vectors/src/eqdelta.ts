@@ -23,8 +23,9 @@ const $ = (dim: number) =>
 	);
 
 /**
- * Checks given vectors for componentwise equality, taking tolerance
- * `eps` (default: {@link @thi.ng/math#EPS}) into account.
+ * Checks given vectors for componentwise equality, taking tolerance `eps`
+ * (default: [`EPS`](https://docs.thi.ng/umbrella/math/variables/EPS.html)) into
+ * account.
  *
  * @param a -
  * @param b -
@@ -47,8 +48,9 @@ export const eqDelta3 = $(3);
 export const eqDelta4 = $(4);
 
 /**
- * Checks given strided vectors for componentwise equality, taking
- * tolerance `eps` (default: {@link @thi.ng/math#EPS}) into account.
+ * Checks given strided vectors for componentwise equality, taking tolerance
+ * `eps` (default:
+ * [`EPS`](https://docs.thi.ng/umbrella/math/variables/EPS.html)) into account.
  *
  * @param a - first vector
  * @param b - second vector

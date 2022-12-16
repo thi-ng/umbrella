@@ -37,32 +37,30 @@ export interface TweenOpts<A, B, C> {
 }
 
 /**
- * Keyframe based interpolator. Yields a sequence of `num+1` equally
- * spaced, tweened values from given keyframe tuples (`stops`).
- * Keyframes are defined as `[time, value]` tuples. Only values in the
- * closed `[min..max]` time interval will be computed.
+ * Keyframe based interpolator. Yields a sequence of `num+1` equally spaced,
+ * tweened values from given keyframe tuples (`stops`). Keyframes are defined as
+ * `[time, value]` tuples. Only values in the closed `[min..max]` time interval
+ * will be computed.
  *
  * @remarks
- * Interpolation happens in two stages: First the given `init` function
- * is called to transform/prepare pairs of consecutive keyframes into a
- * single interval (user defined). Then, to produce each tweened value
- * calls `mix` with the currently active interval and interpolation time
- * value `t` (re-normalized and relative to current interval). The
- * iterator yields results of these `mix()` function calls.
+ * Interpolation happens in two stages: First the given `init` function is
+ * called to transform/prepare pairs of consecutive keyframes into a single
+ * interval (user defined). Then, to produce each tweened value calls `mix` with
+ * the currently active interval and interpolation time value `t` (re-normalized
+ * and relative to current interval). The iterator yields results of these
+ * `mix()` function calls.
  *
- * Depending on the overall `num`ber of samples requested and the
- * distance between keyframes, some keyframes MIGHT be skipped. E.g. if
- * requesting 10 samples within [0,1], the interval between two
- * successive keyframes at 0.12 and 0.19 would be skipped entirely,
- * since samples will only be taken at multiples of `1/num` (i.e. 0.0,
- * 0.1, 0.2... in this example).
+ * Depending on the overall `num`ber of samples requested and the distance
+ * between keyframes, some keyframes MIGHT be skipped. E.g. if requesting 10
+ * samples within [0,1], the interval between two successive keyframes at 0.12
+ * and 0.19 would be skipped entirely, since samples will only be taken at
+ * multiples of `1/num` (i.e. 0.0, 0.1, 0.2... in this example).
  *
- * The given keyframe times can lie outside the `min`/`max` range and
- * also don't need to cover the range fully. In the latter case, tweened
- * values before the first or after the last keyframe will yield the
- * value of the first/last keyframe. If only a single keyframe is given
- * in total, all `num` yielded samples will be that keyframe's
- * transformed value.
+ * The given keyframe times can lie outside the `min`/`max` range and also don't
+ * need to cover the range fully. In the latter case, tweened values before the
+ * first or after the last keyframe will yield the value of the first/last
+ * keyframe. If only a single keyframe is given in total, all `num` yielded
+ * samples will be that keyframe's transformed value.
  *
  * @example
  * ```ts
@@ -77,7 +75,7 @@ export interface TweenOpts<A, B, C> {
  * // [ 100, 100, 100, 133, 166, 200, 133, 66, 0, 0, 0 ]
  * ```
  *
- * Using easing functions (e.g. via {@link @thi.ng/math# | @thi.ng/math}),
+ * Using easing functions (e.g. via [`thi.ng/math`](https://thi.ng/math)),
  * non-linear interpolation within each keyframe interval can be achieved:
  *
  * @example
@@ -96,9 +94,9 @@ export interface TweenOpts<A, B, C> {
  * ```
  *
  * - {@link TweenOpts}
- * - {@link (interpolate:1)}
- * - {@link (interpolateHermite:1)}
- * - {@link (interpolateLinear:1)}
+ * - {@link interpolate}
+ * - {@link interpolateHermite}
+ * - {@link interpolateLinear}
  *
  * @param opts -
  */

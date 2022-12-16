@@ -13,10 +13,10 @@ import { DIST_SQ, DIST_SQ1, DIST_SQ2, DIST_SQ3 } from "./squared.js";
  *
  * @remarks
  * The K-nearest neighbors will be accumulated via an internal
- * {@link @thi.ng/heaps#Heap} and results can be optionally returned in order of
- * proximity (via {@link KNearest.deref} or {@link KNearest.values}). For K=1 it
- * will be more efficient to use {@link Nearest} to avoid the additional
- * overhead.
+ * [`Heap`](https://docs.thi.ng/umbrella/heaps/classes/Heap.html) and results
+ * can be optionally returned in order of proximity (via {@link KNearest.deref}
+ * or {@link KNearest.values}). For K=1 it will be more efficient to use
+ * {@link Nearest} to avoid the additional overhead.
  *
  * @typeParam D - spatial position for distance metric
  * @typeParam T - indexed value

@@ -6,7 +6,7 @@ import { multiplex } from "./multiplex.js";
 import { rename } from "./rename.js";
 
 /**
- * Transducer. Similar to (and building on) {@link (multiplex:1)}, but takes an
+ * Transducer. Similar to (and building on) {@link multiplex}, but takes an
  * object of transducers and produces a result object for each input.
  *
  * @example

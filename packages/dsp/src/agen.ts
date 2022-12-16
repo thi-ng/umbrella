@@ -3,8 +3,9 @@ import { __take } from "./internal/take.js";
 
 /**
  * Abstract base class for unit gens in this package. Provides
- * {@link @thi.ng/api#IDeref} to obtain the gen's current value and
- * `Iterable` implementations to use gens as ES6 iterables.
+ * [`IDeref`](https://docs.thi.ng/umbrella/api/interfaces/IDeref.html) to obtain
+ * the gen's current value and `Iterable` implementations to use gens as ES6
+ * iterables.
  */
 export abstract class AGen<T> implements IGen<T> {
 	constructor(protected _val: T) {}

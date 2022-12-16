@@ -14,14 +14,13 @@ const coeff = (
 
 /**
  * Higher-order Porter-Duff alpha compositing operator. See
- * {@link @thi.ng/porter-duff# | @thi.ng/porter-duff} for reference. Returns an optimized AST
- * function which accepts 2 RGBA colors (vec4) and returns blended &
- * clamped result (also a vec4). All built-in PD operators are defined
- * via this HOF.
+ * [thi.ng/porter-duff](https://thi.ng/porter-duff) for reference. Returns an
+ * optimized AST function which accepts 2 RGBA colors (vec4) and returns blended
+ * & clamped result (also a vec4). All built-in PD operators are defined via
+ * this HOF.
  *
- * The two given JS functions are used to extract blending coefficients
- * for src/dest colors and are called with the alpha components of both
- * colors.
+ * The two given JS functions are used to extract blending coefficients for
+ * src/dest colors and are called with the alpha components of both colors.
  *
  * Optimization only happens for cases where either `fa` and/or `fb` are
  * {@link ZERO}.

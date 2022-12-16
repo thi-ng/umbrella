@@ -6,12 +6,12 @@ import { __iter, iterator } from "./iterator.js";
 import { mapIndexed } from "./map-indexed.js";
 
 /**
- * Transducer. Similar to {@link (mapcat:1)}, but given `fn` takes two
- * arguments: `index` and `value` to transform.
+ * Transducer. Similar to {@link mapcat}, but given `fn` takes two arguments:
+ * `index` and `value` to transform.
  *
  * @remarks
  * An optional start index `offset` can be provided (default 0). Also see
- * {@link (mapIndexed:1)}.
+ * {@link mapIndexed}.
  *
  * @param fn - transformation function
  * @param offset - initial index

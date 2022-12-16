@@ -18,7 +18,8 @@ import { sum } from "./sum.js";
  * freq and its `dc` offset to `baseFreq * TAU`). Also see {@link fmodOsc} for
  * syntax sugar. The `phase` arg is only used if `freq` is NOT an `IGen`.
  *
- * The oscillator initializes to zero and its {@link @thi.ng/api#IDeref.deref}
+ * The oscillator initializes to zero and its
+ * [`IDeref`](https://docs.thi.ng/umbrella/api/interfaces/IDeref.html).deref}
  * value is only available / valid after the first invocation of
  * {@link IGen.next}.
  *

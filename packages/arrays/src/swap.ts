@@ -14,17 +14,17 @@ export const swap = (arr: AnyArray, x: number, y: number) => {
 };
 
 /**
- * Higher-order version of {@link swap} for swapping elements in
- * multiple arrays at once and hence useful for sorting multiple arrays
- * based on a single criteria.
+ * Higher-order version of {@link swap} for swapping elements in multiple arrays
+ * at once and hence useful for sorting multiple arrays based on a single
+ * criteria.
  *
  * @remarks
- * The returned function takes the same args as `swap`, and when called
- * swaps 2 elements in the array given to that function AND in the
- * arrays given to {@link multiSwap} itself. Provides fast routes for up to 3
- * extra arrays, then falls back to a loop-based approach.
+ * The returned function takes the same args as `swap`, and when called swaps 2
+ * elements in the array given to that function AND in the arrays given to
+ * {@link multiSwap} itself. Provides fast routes for up to 3 extra arrays, then
+ * falls back to a loop-based approach.
  *
- * {@link (quickSort:1)}
+ * {@link quickSort}
  *
  * @example
  * ```ts

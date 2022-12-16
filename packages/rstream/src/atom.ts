@@ -22,15 +22,16 @@ export interface FromAtomOpts<T> extends CommonOpts {
 }
 
 /**
- * Yields {@link Stream} of value changes in given
- * {@link @thi.ng/atom# | Atom-like state container}.
+ * Yields {@link Stream} of value changes in given [Atom-like state
+ * container](https://thi.ng/atom).
  *
  * @remarks
- * Attaches a {@link @thi.ng/api#IWatch.addWatch | watch} to the atom
- * and checks for value changes with given `changed` predicate (`!==` by
- * default). If the predicate returns truthy result, the new value is
- * emitted on the stream. If `emitFirst` is true (default), also emits
- * atom's current value when first subscriber attaches to stream.
+ * [Attaches a
+ * watch](https://docs.thi.ng/umbrella/api/interfaces/IWatch.html#addWatch) to
+ * the atom and checks for value changes with given `changed` predicate (`!==`
+ * by default). If the predicate returns truthy result, the new value is emitted
+ * on the stream. If `emitFirst` is true (default), also emits atom's current
+ * value when first subscriber attaches to stream.
  *
  * Also see {@link fromView}, {@link fromViewUnsafe}
  *

@@ -9,7 +9,7 @@ const max = Math.max;
 
 /**
  * Based on:
- * {@link https://tavianator.com/fast-branchless-raybounding-box-intersections/}
+ * https://tavianator.com/fast-branchless-raybounding-box-intersections/
  *
  * @param rpos - ray origin
  * @param dir - ray dir

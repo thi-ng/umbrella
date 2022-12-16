@@ -5,9 +5,9 @@ import { weightedRandom } from "@thi.ng/random/weighted-random";
 import { repeatedly } from "./repeatedly.js";
 
 /**
- * Returns an infinite iterator of random choices and their (optional)
- * weights. If `weights` is given, it must have at least the same size
- * as `choices`. If omitted, each choice will have same probability.
+ * Returns an infinite iterator of random choices and their (optional) weights.
+ * If `weights` is given, it must have at least the same size as `choices`. If
+ * omitted, each choice will have same probability.
  *
  * @example
  * ```ts
@@ -15,7 +15,7 @@ import { repeatedly } from "./repeatedly.js";
  * // Map { 'c' => 132, 'a' => 545, 'b' => 251, 'd' => 72 }
  * ```
  *
- * {@link @thi.ng/random#weightedRandom}
+ * [`weightedRandom()`](https://docs.thi.ng/umbrella/random/functions/weightedRandom.html)
  *
  * @param choices -
  * @param weights -

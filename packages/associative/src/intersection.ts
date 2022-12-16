@@ -31,9 +31,12 @@ export const intersection = <T>(a: Set<T>, b: Set<T>, out?: Set<T>): Set<T> => {
 
 /**
  * Reducer version of {@link intersection}. If `src` is given returns the
- * reduced intersection of given inputs, else merely returns a reducer
- * to be used with {@link @thi.ng/transducers#(reduce:1)} /
- * {@link @thi.ng/transducers#(transduce:1)} functions.
+ * reduced intersection of given inputs, else merely returns a reducer to be
+ * used with
+ * [`reduce()`](https://docs.thi.ng/umbrella/transducers/functions/reduce.html)
+ * /
+ * [`transduce()`](https://docs.thi.ng/umbrella/transducers/functions/transduce.html)
+ * functions.
  *
  * @param src - input collections
  */

@@ -112,10 +112,11 @@ export class AdjacencyBitMatrix implements IGraph<number> {
 }
 
 /**
- * Creates adjacency matrix backed by a {@link @thi.ng/bitfield#BitMatrix}
+ * Creates adjacency matrix backed by a
+ * [`BitMatrix`](https://docs.thi.ng/umbrella/bitfield/classes/BitMatrix.html)
  * with capacity `n` (max vertices), optionally initialized with given edge
- * pairs. Each edge is `[src-node dest-node]`. If `undirected` is true
- * (default: false), creates symmetrical adjacencies.
+ * pairs. Each edge is `[src-node dest-node]`. If `undirected` is true (default:
+ * false), creates symmetrical adjacencies.
  *
  * @param n - max vertices
  * @param edges - edge pairs

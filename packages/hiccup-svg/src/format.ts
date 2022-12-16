@@ -59,8 +59,10 @@ const numericAttribs = (attribs: any, ids: string[]) => {
  * complete, e.g. `{ rotate: "rotate(60)" }`
  *
  * For color related attribs (`fill`, `stroke`), if given value is array-like, a
- * number or an {@link @thi.ng/color#IColor} instance, it will be converted into
- * a CSS color string using {@link @thi.ng/color#asCSS}.
+ * number or an
+ * [`IColor`](https://docs.thi.ng/umbrella/color/interfaces/IColor.html)
+ * instance, it will be converted into a CSS color string using
+ * [`asCSS()`](https://docs.thi.ng/umbrella/color/functions/asCSS.html).
  *
  * String color attribs prefixed with `$` are replaced with `url(#...)` refs
  * (used for referencing gradients).

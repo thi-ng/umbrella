@@ -11,32 +11,32 @@ export type DensityFunction = Fn<ReadonlyVec, number>;
  */
 export interface PoissonOpts {
 	/**
-	 * Point generator function. Responsible for producing a new
-	 * candidate point within user defined bounds using provided RNG.
+	 * Point generator function. Responsible for producing a new candidate point
+	 * within user defined bounds using provided RNG.
 	 */
 	points: PointGenerator;
 	/**
-	 * Density field function. Called for each new candidate point
-	 * created by point generator and should return the poisson disc
-	 * exclusion radius for the given point location. The related
-	 * candidate point can only be placed if no other points are already
-	 * existing within the given radius/distance. If this option is
-	 * given as number, uses this value to create a uniform distance
-	 * field.
+	 * Density field function. Called for each new candidate point created by
+	 * point generator and should return the poisson disc exclusion radius for
+	 * the given point location. The related candidate point can only be placed
+	 * if no other points are already existing within the given radius/distance.
+	 * If this option is given as number, uses this value to create a uniform
+	 * distance field.
 	 */
 	density: DensityFunction | number;
 	/**
 	 * Spatial indexing implementation for nearest neighbor searches of
-	 * candidate points. Currently only {@link @thi.ng/geom-accel} types
-	 * are supported and must be pre-initialized. The data structure is
-	 * used to store all successful sample points.
+	 * candidate points. Currently only
+	 * [thi.ng/geom-accel](https://thi.ng/geom-accel) types are supported and
+	 * must be pre-initialized. The data structure is used to store all
+	 * successful sample points.
 	 *
 	 * Pre-seeding the data structure allows already indexed points to
 	 * participate in the sampling process and so can be used to define
 	 * exclusion zones. It also can be used as mechanism for progressive
-	 * sampling, i.e. generating a large number of samples and
-	 * distributing the process over multiple invocations of smaller
-	 * sample sizes (see `max` option) to avoid long delays.
+	 * sampling, i.e. generating a large number of samples and distributing the
+	 * process over multiple invocations of smaller sample sizes (see `max`
+	 * option) to avoid long delays.
 	 */
 	index: ISpatialSet<ReadonlyVec>;
 	/**
@@ -52,18 +52,17 @@ export interface PoissonOpts {
 	 */
 	jitter?: number;
 	/**
-	 * Number of random walk steps performed before giving up on a
-	 * candidate point. Increasing this value improves overall quality.
+	 * Number of random walk steps performed before giving up on a candidate
+	 * point. Increasing this value improves overall quality.
 	 *
 	 * @defaultValue 1
 	 */
 	iter?: number;
 	/**
-	 * Number of allowed failed consecutive candidate points before
-	 * stopping entire sampling process (most likely due to not being
-	 * able to place any further points). As with the `iter` param,
-	 * increasing this value improves overall quality, especially in
-	 * dense regions with small radii.
+	 * Number of allowed failed consecutive candidate points before stopping
+	 * entire sampling process (most likely due to not being able to place any
+	 * further points). As with the `iter` param, increasing this value improves
+	 * overall quality, especially in dense regions with small radii.
 	 *
 	 * @defaultValue 500
 	 */
@@ -71,7 +70,9 @@ export interface PoissonOpts {
 	/**
 	 * Random number generator instance.
 	 *
-	 * @defaultValue {@link @thi.ng/random#SYSTEM} (aka Math.random)
+	 * @defaultValue
+	 * [`SYSTEM`](https://docs.thi.ng/umbrella/random/variables/SYSTEM.html)
+	 * (aka Math.random)
 	 */
 	rnd?: IRandom;
 }
@@ -90,7 +91,9 @@ export interface StratifiedGridOpts {
 	/**
 	 * Random number generator instance.
 	 *
-	 * @defaultValue {@link @thi.ng/random#SYSTEM} (aka Math.random)
+	 * @defaultValue
+	 * [`SYSTEM`](https://docs.thi.ng/umbrella/random/variables/SYSTEM.html)
+	 * (aka Math.random)
 	 */
 	rnd?: IRandom;
 }

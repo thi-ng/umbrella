@@ -10,11 +10,15 @@ import { partition } from "@thi.ng/transducers/partition";
 import type { HexDumpOpts } from "./api.js";
 
 /**
- * Transforms bytes into a sequence of hexdump lines with configurable
- * number of `columns` and `address` offset. Uses
- * {@link @thi.ng/transducers#(partition:1)} internally, so new lines
- * are only produced once filled. If the input hasn't an exact multiple
- * of `cols` bytes, the last line will be padded with zeroes.
+ * Transforms bytes into a sequence of hexdump lines with configurable number of
+ * `columns` and `address` offset. Uses
+ * [`partition()`](https://docs.thi.ng/umbrella/transducers/functions/partition.html)
+ * internally, so new lines are only produced once filled. If the input hasn't
+ * an exact multiple of `cols` bytes, the last line will be padded with zeroes.
+ *
+ * @remarks
+ * Also see alt implementation in
+ * [thi.ng/hex](https://docs.thi.ng/umbrella/hex/functions/hexdump.html)
  *
  * @example
  * ```ts

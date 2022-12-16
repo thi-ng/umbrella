@@ -111,28 +111,31 @@ export function defViewUnsafe<T = undefined>(
 }
 
 /**
- * This class implements readonly access to a deeply nested value with
- * in an Atom/Cursor. An optional transformer function can be supplied
- * at creation time to produce a derived/materialized view of the actual
- * value held in the atom.
+ * This class implements readonly access to a deeply nested value with in an
+ * Atom/Cursor. An optional transformer function can be supplied at creation
+ * time to produce a derived/materialized view of the actual value held in the
+ * atom.
  *
  * @remarks
- * Views can be created directly or via the {@link IViewable.addView}
- * method of the parent state. Views can be
- * {@link @thi.ng/api#IDeref.deref}'d like atoms and polled for value
- * changes using {@link IView.changed}. The transformer is only applied
- * once per value change and its result cached until the next change.
+ * Views can be created directly or via the {@link IViewable.addView} method of
+ * the parent state. Views can be
+ * [`IDeref`](https://docs.thi.ng/umbrella/api/interfaces/IDeref.html).deref}'d
+ * like atoms and polled for value changes using {@link IView.changed}. The
+ * transformer is only applied once per value change and its result cached until
+ * the next change.
  *
- * If the optional `lazy` is true (default), the transformer will only
- * be executed with the first {@link @thi.ng/api#IDeref.deref} after
- * each value change. If `lazy` is false, the transformer function will
- * be executed immediately after a value change occurred and so can be
- * used like a watch which only triggers if there was an actual value
- * change (in contrast to normal watches, which execute with each
- * update, regardless of value change).
+ * If the optional `lazy` is true (default), the transformer will only be
+ * executed with the first
+ * [`IDeref`](https://docs.thi.ng/umbrella/api/interfaces/IDeref.html).deref}
+ * after each value change. If `lazy` is false, the transformer function will be
+ * executed immediately after a value change occurred and so can be used like a
+ * watch which only triggers if there was an actual value change (in contrast to
+ * normal watches, which execute with each update, regardless of value change).
  *
- * Related, the actual value change predicate can be customized. If not
- * given, the default {@link @thi.ng/equiv#equiv} will be used.
+ * Related, the actual value change predicate can be customized. If not given,
+ * the default
+ * [`equiv()`](https://docs.thi.ng/umbrella/equiv/functions/equiv.html) will be
+ * used.
  *
  * @example
  * ```ts
@@ -226,23 +229,26 @@ export class View<T> implements IView<T> {
 
 	/**
 	 * Returns true, if the view's value has changed since last
-	 * {@link @thi.ng/api#IDeref.deref}.
+	 * [`IDeref`](https://docs.thi.ng/umbrella/api/interfaces/IDeref.html).deref}.
 	 */
 	changed() {
 		return this.isDirty;
 	}
 
 	/**
-	 * Like {@link @thi.ng/api#IDeref.deref}, but doesn't update view's
-	 * cached state and dirty flag if value has changed.
+	 * Like
+	 * [`IDeref`](https://docs.thi.ng/umbrella/api/interfaces/IDeref.html).deref},
+	 * but doesn't update view's cached state and dirty flag if value has
+	 * changed.
 	 *
 	 * @remarks
-	 * If there's an unprocessed value change, returns result of this
-	 * sub's transformer or else the cached value.
+	 * If there's an unprocessed value change, returns result of this sub's
+	 * transformer or else the cached value.
 	 *
-	 * **Important:** Use this function only if the view has none or or
-	 * a stateless transformer. Else might cause undefined/inconsistent
-	 * behavior when calling `view` or {@link @thi.ng/api#IDeref.deref}
+	 * **Important:** Use this function only if the view has none or or a
+	 * stateless transformer. Else might cause undefined/inconsistent behavior
+	 * when calling `view` or
+	 * [`IDeref`](https://docs.thi.ng/umbrella/api/interfaces/IDeref.html).deref}
 	 * subsequently.
 	 */
 	view() {

@@ -19,14 +19,17 @@ const __vals = (inst: ArraySet<any>) => __private.get(inst)!.vals;
 
 /**
  * An alternative set implementation to the native ES6 Set type. Uses
- * customizable equality/equivalence predicate and so is more useful
- * when dealing with structured data. Implements full API of native Set
- * and by the default uses {@link @thi.ng/equiv#equiv} for equivalence
- * checking.
+ * customizable equality/equivalence predicate and so is more useful when
+ * dealing with structured data. Implements full API of native Set and by the
+ * default uses
+ * [`equiv()`](https://docs.thi.ng/umbrella/equiv/functions/equiv.html) for
+ * equivalence checking.
  *
- * Additionally, the type also implements the {@link @thi.ng/api#ICopy},
- * {@link @thi.ng/api#IEmpty} and {@link @thi.ng/api#IEquiv} interfaces
- * itself.
+ * Additionally, the type also implements the
+ * [`ICopy`](https://docs.thi.ng/umbrella/api/interfaces/ICopy.html),
+ * [`IEmpty`](https://docs.thi.ng/umbrella/api/interfaces/IEmpty.html) and
+ * [`IEquiv`](https://docs.thi.ng/umbrella/api/interfaces/IEquiv.html)
+ * interfaces itself.
  */
 @__inspectable
 export class ArraySet<T> extends Set<T> implements IEquivSet<T> {

@@ -5,17 +5,16 @@ import { compR } from "./compr.js";
 import { iterator1 } from "./iterator.js";
 
 /**
- * Computes the
- * {@link https://en.wikipedia.org/wiki/Moving_average#Simple_moving_average | Simple Moving Average}
+ * Computes the [Simple Moving
+ * Average](https://en.wikipedia.org/wiki/Moving_average#Simple_moving_average)
  * of given period.
  *
  * @remarks
- * The number of results will be `period-1` less than the number of
- * processed inputs and no outputs will be produced if there were less
- * than `period` input values.
+ * The number of results will be `period-1` less than the number of processed
+ * inputs and no outputs will be produced if there were less than `period` input
+ * values.
  *
- * Also see the
- * {@link @thi.ng/transducers-stats# | @thi.ng/transducers-stats}
+ * Also see the [thi.ng/transducers-stats](https://thi.ng/transducers-stats)
  * package for more optimized and alternative MA strategies.
  *
  * @param period -

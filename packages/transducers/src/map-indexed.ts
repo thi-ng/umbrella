@@ -4,8 +4,8 @@ import { compR } from "./compr.js";
 import { __iter } from "./iterator.js";
 
 /**
- * Transducer. Similar to {@link (map:1)}, but given `fn` takes two
- * arguments: `index` and `value` to transform.
+ * Transducer. Similar to {@link map}, but given `fn` takes two arguments:
+ * `index` and `value` to transform.
  *
  * @remarks
  * An optional start index `offset` can be provided (default 0).

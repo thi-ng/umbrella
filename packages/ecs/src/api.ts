@@ -101,9 +101,12 @@ export interface ECSOpts {
 	 */
 	capacity: number;
 	/**
-	 * Optional {@link @thi.ng/malloc#IMemPoolArray} implementation
+	 * Optional
+	 * [`IMemPoolArray`](https://docs.thi.ng/umbrella/malloc/interfaces/IMemPoolArray.html)
+	 * implementation
 	 *
-	 * @defaultValue {@link @thi.ng/malloc#NativePool}
+	 * @defaultValue
+	 * [`NativePool`](https://docs.thi.ng/umbrella/malloc/classes/NativePool.html)
 	 */
 	pool: IMemPoolArray;
 }

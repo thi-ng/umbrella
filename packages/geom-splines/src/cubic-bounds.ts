@@ -5,8 +5,7 @@ import type { ReadonlyVec, Vec, VecPair } from "@thi.ng/vectors";
 /**
  * Computes cubic spline bounds for a single vector component.
  *
- * Based on:
- * {@link http://www.iquilezles.org/www/articles/bezierbbox/bezierbbox.htm}
+ * Based on: http://www.iquilezles.org/www/articles/bezierbbox/bezierbbox.htm
  *
  * @param min - min accumulator
  * @param max - max accumulator

@@ -48,8 +48,9 @@ export interface StreamObjOpts<T, K extends Keys<T>> extends CommonOpts {
 	 */
 	defaults: Partial<T>;
 	/**
-	 * If true, attaches {@link @thi.ng/transducers#dedupe} transducer
-	 * to each key's value stream to avoid obsolete downstream
+	 * If true, attaches
+	 * [`dedupe()`](https://docs.thi.ng/umbrella/transducers/functions/dedupe.html)
+	 * transducer to each key's value stream to avoid obsolete downstream
 	 * propagation when a key's value hasn't actually changed.
 	 *
 	 * @defaultValue true

@@ -5,13 +5,14 @@ import type { BVec, Vec } from "@thi.ng/vectors";
 
 export interface JSTarget extends Fn<Term<any>, string> {
 	/**
-	 * Compiles given AST to JavaScript, using optional `env` as backend
-	 * for various operators / builtins. If `env` is not given the
-	 * bundled {@link JS_DEFAULT_ENV} is used (based on
-	 * {@link @thi.ng/vectors# | @thi.ng/vectors} and {@link @thi.ng/matrices# | @thi.ng/matrices} packages).
+	 * Compiles given AST to JavaScript, using optional `env` as backend for
+	 * various operators / builtins. If `env` is not given the bundled
+	 * {@link JS_DEFAULT_ENV} is used (based on
+	 * [`thi.ng/vectors`](https://thi.ng/vectors) and
+	 * [`thi.ng/matrices`](https://thi.ng/matrices) packages).
 	 *
-	 * Any functions defined in the given AST will be exported using
-	 * their defined name via the returned object.
+	 * Any functions defined in the given AST will be exported using their
+	 * defined name via the returned object.
 	 *
 	 * ```
 	 * const js = targetJS();

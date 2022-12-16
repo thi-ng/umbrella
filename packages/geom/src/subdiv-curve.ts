@@ -8,9 +8,11 @@ import { __copyAttribs } from "./internal/copy.js";
 import { __dispatch } from "./internal/dispatch.js";
 
 /**
- * Recursively applies {@link @thi.ng/geom-api#SubdivKernel} to given
- * shape/boundary. See {@link @thi.ng/geom-subdiv-curve#} package for further
- * details.
+ * Recursively applies
+ * [`SubdivKernel`](https://docs.thi.ng/umbrella/geom-api/interfaces/SubdivKernel.html)
+ * to given shape/boundary. See
+ * [thi.ng/geom-subdiv-curve](https://thi.ng/thi.ng/geom-subdiv-curve) package
+ * for further details.
  *
  * @remarks
  * By default only applies a single iteration.

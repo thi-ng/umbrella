@@ -6,8 +6,10 @@ import { range } from "@thi.ng/transducers/range";
 
 /**
  * Yields 2D grid coordinates in random order w/ support for optional
- * {@link @thi.ng/random#IRandom} implementation (default:
- * {@link @thi.ng/random#SYSTEM} aka `Math.random`).
+ * [`IRandom`](https://docs.thi.ng/umbrella/random/interfaces/IRandom.html)
+ * implementation (default:
+ * [`SYSTEM`](https://docs.thi.ng/umbrella/random/variables/SYSTEM.html) aka
+ * `Math.random`).
  *
  * @param cols -
  * @param rows -

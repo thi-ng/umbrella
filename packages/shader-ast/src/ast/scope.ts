@@ -151,12 +151,11 @@ export const scope = (body: (Term<any> | null)[], global = false): Scope => ({
 });
 
 /**
- * Takes an array of global sym/var definitions ({@link input},
- * {@link output}, {@link uniform}) and functions defined via
- * {@link (defn:1)}. Constructs the call graph of all transitively used
- * functions and bundles everything in topological order within a global
- * scope object, which is then returned to the user and can be passed to
- * a target codegen for full program output.
+ * Takes an array of global sym/var definitions ({@link input}, {@link output},
+ * {@link uniform}) and functions defined via {@link defn}. Constructs the call
+ * graph of all transitively used functions and bundles everything in
+ * topological order within a global scope object, which is then returned to the
+ * user and can be passed to a target codegen for full program output.
  *
  * - {@link scope}
  * - {@link input}

@@ -2,7 +2,8 @@ import { addW4 } from "./addw.js";
 import type { ReadonlyVec, Vec } from "./api.js";
 
 /**
- * Vector version of {@link @thi.ng/math#mixCubic}.
+ * Vector version of
+ * [`mixCubic()`](https://docs.thi.ng/umbrella/math/functions/mixCubic.html).
  *
  * @param out - result
  * @param a -

@@ -233,8 +233,9 @@ export const $clear = (el: Element) => ((el.innerHTML = ""), el);
 
 /**
  * Same as `el.innerText = body`, however if `body` is an
- * {@link @thi.ng/api#IDeref} it'll be automatically deref'd. For SVG elements a
- * new child text DOM node will be created.
+ * [`IDeref`](https://docs.thi.ng/umbrella/api/interfaces/IDeref.html) it'll be
+ * automatically deref'd. For SVG elements a new child text DOM node will be
+ * created.
  *
  * @param el -
  * @param body -
@@ -250,7 +251,8 @@ export const $text = (el: HTMLElement | SVGElement, body: any) => {
 
 /**
  * Same as `el.innerHtml = body`, use with caution! If `body` is an
- * {@link @thi.ng/api#IDeref} it'll be automatically deref'd.
+ * [`IDeref`](https://docs.thi.ng/umbrella/api/interfaces/IDeref.html) it'll be
+ * automatically deref'd.
  *
  * @param el -
  * @param body -
@@ -266,30 +268,29 @@ export const $html = (
  * Takes an object of attributes and applies them to given DOM element.
  *
  * @remarks
- * The following rules & transformations are applied (in the stated
- * order):
+ * The following rules & transformations are applied (in the stated order):
  *
- * - {@link @thi.ng/api#IDeref} values are `deref`d
- * - attributes prefixed with `on` are considered event listeners and
- *   can either have a function value or tuple of `[listener, opts]`,
- *   where `opts` are the standard `.addEventListener()` options
- * - function values for any other attribs are first called with the
- *   entire `attribs` object and return value used
+ * - [`IDeref`](https://docs.thi.ng/umbrella/api/interfaces/IDeref.html) values
+ *   are `deref`d
+ * - attributes prefixed with `on` are considered event listeners and can either
+ *   have a function value or tuple of `[listener, opts]`, where `opts` are the
+ *   standard `.addEventListener()` options
+ * - function values for any other attribs are first called with the entire
+ *   `attribs` object and return value used
  * - array values are converted into space-delimited string
  *
- * CSS classs are to given as `class` attribute, with its value either a
- * string or an object of booleans. If the latter, the given class names
- * are either added to or removed from the current list of classes.
+ * CSS classs are to given as `class` attribute, with its value either a string
+ * or an object of booleans. If the latter, the given class names are either
+ * added to or removed from the current list of classes.
  *
- * CSS style rules can be defined via the `style` attrib. Please
- * {@link $style} for further details.
+ * CSS style rules can be defined via the `style` attrib. Please {@link $style}
+ * for further details.
  *
- * Data attributes are to be given as object under the `data` attribute
- * name, with its values being merged with the element's current
- * `dataset` property.
+ * Data attributes are to be given as object under the `data` attribute name,
+ * with its values being merged with the element's current `dataset` property.
  *
- * Depending on element type the `value` attribute will be updated
- * keeping the current cursor position / selection intact.
+ * Depending on element type the `value` attribute will be updated keeping the
+ * current cursor position / selection intact.
  *
  * @param el -
  * @param attribs -
@@ -407,15 +408,15 @@ const updateDataAttribs = (el: HTMLElement, attribs: any) => {
 };
 
 /**
- * Takes an object (or string) of CSS properties, compiles them into a
- * single CSS string and sets it as `style` attribute on the given
- * element.
+ * Takes an object (or string) of CSS properties, compiles them into a single
+ * CSS string and sets it as `style` attribute on the given element.
  *
  * @remarks
- * All property values can be {@link @thi.ng/api#IDeref} values, in
- * which case they're are first `deref`d before use. If the value is a
- * function, it will be called with the entire `rules` object as arg and
- * the return value used.
+ * All property values can be
+ * [`IDeref`](https://docs.thi.ng/umbrella/api/interfaces/IDeref.html) values,
+ * in which case they're are first `deref`d before use. If the value is a
+ * function, it will be called with the entire `rules` object as arg and the
+ * return value used.
  *
  * @param el -
  * @param rules -

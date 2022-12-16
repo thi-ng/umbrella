@@ -9,23 +9,23 @@ import { normRange } from "./norm-range.js";
 import { partition } from "./partition.js";
 
 /**
- * Higher order interpolation transducer. The resulting transducer forms
- * a sliding window and calls `fn` (the given interpolation function)
- * `n` times with the current window and a normalized time value to
- * produce the requested number of interpolated values per interval.
+ * Higher order interpolation transducer. The resulting transducer forms a
+ * sliding window and calls `fn` (the given interpolation function) `n` times
+ * with the current window and a normalized time value to produce the requested
+ * number of interpolated values per interval.
  *
  * @remarks
- * If the optional `src` iterable is given, `interpolate` returns an
- * iterator of interpolated values. No values will be produced if the
- * number of inputs is less than given `window` size.
+ * If the optional `src` iterable is given, `interpolate` returns an iterator of
+ * interpolated values. No values will be produced if the number of inputs is
+ * less than given `window` size.
  *
- * Note: The *very last* input value can never be fully reached and
- * might need to be explicitly duplicated in the input, e.g. via the
- * {@link extendSides} iterator...
+ * Note: The *very last* input value can never be fully reached and might need
+ * to be explicitly duplicated in the input, e.g. via the {@link extendSides}
+ * iterator...
  *
  * See also:
- * - {@link (interpolateHermite:1)}
- * - {@link (interpolateLinear:1)}
+ * - {@link interpolateHermite}
+ * - {@link interpolateLinear}
  * - {@link extendSides}
  *
  * @example

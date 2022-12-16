@@ -37,7 +37,8 @@ export interface ShaderToyOpts<U extends ShaderToyUniforms> {
 	 */
 	textures?: ITexture[];
 	/**
-	 * Options for {@link @thi.ng/webgl#defShader}.
+	 * Options for
+	 * [`defShader()`](https://docs.thi.ng/umbrella/webgl/functions/defShader.html).
 	 */
 	opts?: Partial<DefShaderOpts>;
 }

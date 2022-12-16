@@ -82,7 +82,8 @@ export class AdjacencyMatrix extends CSR implements IGraph<number> {
 	}
 
 	/**
-	 * Returns a diagonal sparse matrix {@link @thi.ng/sparse#CSR} containing
+	 * Returns a diagonal sparse matrix
+	 * [`CSR`](https://docs.thi.ng/umbrella/sparse/classes/CSR.html) containing
 	 * information about the degree of each vertex, i.e. the number of edges
 	 * attached to each vertex.
 	 *
@@ -115,12 +116,13 @@ export class AdjacencyMatrix extends CSR implements IGraph<number> {
 	}
 
 	/**
-	 * Returns this graph's Laplacian matrix: `L = D - A` Where `D` is
-	 * the degree matrix and `A` this adjacency matrix.
+	 * Returns this graph's Laplacian matrix: `L = D - A` Where `D` is the
+	 * degree matrix and `A` this adjacency matrix.
 	 *
 	 * @remarks
-	 * - {@link https://en.wikipedia.org/wiki/Laplacian_matrix}
-	 * - {@link https://en.wikipedia.org/wiki/Discrete_Laplace_operator}
+	 * References:
+	 * - https://en.wikipedia.org/wiki/Laplacian_matrix
+	 * - https://en.wikipedia.org/wiki/Discrete_Laplace_operator
 	 *
 	 * @param deg - degree type for {@link AdjacencyMatrix.degreeMat}
 	 */
@@ -173,10 +175,11 @@ export class AdjacencyMatrix extends CSR implements IGraph<number> {
 }
 
 /**
- * Creates an adjacency matrix backed by a sparse {@link @thi.ng/sparse#CSR}
- * matrix, optionally initialize with given edge pairs. Each edge is a `[src,
- * dest]` tuple. If `undirected` is true (default: false), creates symmetrical
- * edges (i.e. undirected graph).
+ * Creates an adjacency matrix backed by a sparse
+ * [`CSR`](https://docs.thi.ng/umbrella/sparse/classes/CSR.html) matrix,
+ * optionally initialize with given edge pairs. Each edge is a `[src, dest]`
+ * tuple. If `undirected` is true (default: false), creates symmetrical edges
+ * (i.e. undirected graph).
  *
  * @param n - max number of vertices
  * @param edges - edge pairs

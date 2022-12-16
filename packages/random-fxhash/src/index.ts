@@ -20,7 +20,8 @@ declare var fxhash: string;
  * Note: The first characters of the given `hash` will ALWAYS be ignored (same
  * logic fxhash is using & due to Tezos hash structure).
  *
- * Also see {@link @thi.ng/base-n#BASE58_LC}.
+ * Also see
+ * [`BASE58_LC`](https://docs.thi.ng/umbrella/base-n/variables/BASE58_LC.html).
  *
  * @example
  * ```ts
@@ -100,14 +101,15 @@ export const pickAlt = <T>(fn: Fn0<T>, orig: T) => {
 };
 
 /**
- * One-shot wrapper for {@link @thi.ng/random#weightedRandom}. Takes an array of
- * `choices` and an array of `weights`, returns random item from `choices`,
- * taking relative weights into account.
+ * One-shot wrapper for
+ * [`weightedRandom()`](https://docs.thi.ng/umbrella/random/functions/weightedRandom.html).
+ * Takes an array of `choices` and an array of `weights`, returns random item
+ * from `choices`, taking relative weights into account.
  *
  * @remarks
  * If repeated use (with the same choices/weights) is required, then using
- * {@link @thi.ng/random#weightedRandom} directly is more efficient since the
- * pre-calculations will be cached.
+ * [`weightedRandom()`](https://docs.thi.ng/umbrella/random/functions/weightedRandom.html)
+ * directly is more efficient since the pre-calculations will be cached.
  *
  * @param choices
  * @param weights
@@ -120,14 +122,15 @@ export const weighted = <T>(
 ) => weightedRandom(choices, weights, rnd)();
 
 /**
- * One-shot wrapper for {@link @thi.ng/random#weightedRandomKey}, accepting an
- * object of weights. Return keys of given `choices` object, taking into account
- * the weights given for each key.
+ * One-shot wrapper for
+ * [`weightedRandomKey()`](https://docs.thi.ng/umbrella/random/functions/weightedRandomKey.html),
+ * accepting an object of weights. Return keys of given `choices` object, taking
+ * into account the weights given for each key.
  *
  * @remarks
  * If repeated use (with the same choices/weights) is required, then using
- * {@link @thi.ng/random#weightedRandomKey} directly is more efficient since the
- * pre-calculations will be cached.
+ * [`weightedRandomKey()`](https://docs.thi.ng/umbrella/random/functions/weightedRandomKey.html)
+ * directly is more efficient since the pre-calculations will be cached.
  *
  * @param choices
  * @param rnd

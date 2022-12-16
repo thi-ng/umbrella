@@ -118,7 +118,7 @@ export function comp(...fns: any[]): any {
 }
 
 /**
- * Similar to {@link (comp:1)}, but composes given functions in left-to-right order.
+ * Similar to {@link comp}, but composes given functions in left-to-right order.
  */
 export function compL<A>(a: FnAny<A>): FnAny<A>;
 export function compL<A, B>(a: FnAny<A>, b: Fn<A, B>): FnAny<B>;
@@ -204,6 +204,6 @@ export function compL(...fns: any[]): any {
 }
 
 /**
- * @deprecated renamed to {@link (compL:1)}
+ * @deprecated renamed to {@link compL}
  */
 export const compI = compL;

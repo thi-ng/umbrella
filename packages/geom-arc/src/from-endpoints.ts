@@ -13,10 +13,9 @@ import { submN2 } from "@thi.ng/vectors/submn";
 /**
  * Conversion from endpoint to center parameterization.
  *
- * {@link https://svgwg.org/svg2-draft/implnote.html#ArcConversionEndpointToCenter}
+ * https://svgwg.org/svg2-draft/implnote.html#ArcConversionEndpointToCenter
  *
- * Returns undefined if `a` & `b` are equal or any `radii` component is
- * zero.
+ * Returns undefined if `a` & `b` are equal or any `radii` component is zero.
  *
  * @param a - start point
  * @param b - end point

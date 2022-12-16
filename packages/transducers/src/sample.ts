@@ -7,7 +7,7 @@ import { __iter } from "./iterator.js";
 /**
  * Transducer which only yields values with given `prob` probability
  * (0.0 .. 1.0 range). Supports custom PRNGs via
- * {@link @thi.ng/random#IRandom} interface.
+ * [`IRandom`](https://docs.thi.ng/umbrella/random/interfaces/IRandom.html) interface.
  *
  * @example
  * ```ts

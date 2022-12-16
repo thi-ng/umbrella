@@ -7,11 +7,11 @@ import type { ReadonlyVec } from "./api.js";
  * Returns an unsigned 32-bit hash code for the given vector.
  *
  * @remarks
- * The hash is the reduction of `hash = H * hash + murmur(x)`, where
- * `murmur(x)` is the partial Murmur3 hash of a single vector
- * component's bitwise representation and `H` an optional hash factor,
- * by default Knuth's 0x9e3779b1 (see TAOCP, section 6.4, page 516). If
- * the vector `v` is empty (length 0), the function returns -1.
+ * The hash is the reduction of `hash = H * hash + murmur(x)`, where `murmur(x)`
+ * is the partial Murmur3 hash of a single vector component's bitwise
+ * representation and `H` an optional hash factor, by default Knuth's 0x9e3779b1
+ * (see TAOCP, section 6.4, page 516). If the vector `v` is empty (length 0),
+ * the function returns -1.
  *
  * Hashes for zero-vectors:
  *
@@ -45,8 +45,8 @@ import type { ReadonlyVec } from "./api.js";
  * // 0.0106 %
  * ```
  *
- * - {@link https://github.com/thi-ng/c-thing/blob/develop/src/math/hashfn.c}
- * - {@link @thi.ng/morton# | @thi.ng/morton} for Z-curve ordered hashing
+ * - https://github.com/thi-ng/c-thing/blob/develop/src/math/hashfn.c
+ * - [`thi.ng/morton`](https://thi.ng/morton) for Z-curve ordered hashing
  *
  * @param v - vector
  * @param hash - hash factor

@@ -84,33 +84,33 @@ export function defCursorUnsafe<T = any>(
 }
 
 /**
- * A cursor provides read/write access to a path location within a
- * nested (Atom-like) parent state.
+ * A cursor provides read/write access to a path location within a nested
+ * (Atom-like) parent state.
  *
  * @remarks
  * Cursors behave like Atoms for all practical purposes, i.e. support
- * {@link @thi.ng/api#IDeref.deref}, {@link IReset.reset},
- * {@link ISwap.swap}, {@link @thi.ng/api#IWatch.addWatch} etc. However,
- * when updating a cursor's value, the parent state will be updated at
- * the cursor's path as well (incl. triggering any watches and/or
- * validators) attached to the parent. Likewise, when the parent state
- * is modified externally, the cursor's value will automatically update
- * as well. The update order of cursor's sharing a common parent is
- * undefined, but can be overridden by extending this class with a
- * custom {@link @thi.ng/api#IWatch.notifyWatches} implementation.
+ * [`IDeref`](https://docs.thi.ng/umbrella/api/interfaces/IDeref.html).deref},
+ * {@link IReset.reset}, {@link ISwap.swap},
+ * [`IWatch`](https://docs.thi.ng/umbrella/api/interfaces/IWatch.html).addWatch}
+ * etc. However, when updating a cursor's value, the parent state will be
+ * updated at the cursor's path as well (incl. triggering any watches and/or
+ * validators) attached to the parent. Likewise, when the parent state is
+ * modified externally, the cursor's value will automatically update as well.
+ * The update order of cursor's sharing a common parent is undefined, but can be
+ * overridden by extending this class with a custom
+ * [`IWatch`](https://docs.thi.ng/umbrella/api/interfaces/IWatch.html).notifyWatches}
+ * implementation.
  *
- * If creating multiple cursors w/ a shared parent and each cursor
- * configured with a custom ID (provided via config object to ctor),
- * it's the user's responsibility to ensure the given IDs are unique.
- * Cursors are implemented by attaching a watch to the parent and the ID
- * is used to identify each watch.
+ * If creating multiple cursors w/ a shared parent and each cursor configured
+ * with a custom ID (provided via config object to ctor), it's the user's
+ * responsibility to ensure the given IDs are unique. Cursors are implemented by
+ * attaching a watch to the parent and the ID is used to identify each watch.
  *
- * When using the optional validator predicate (also specified via
- * config object to ctor), the cursor's validator MUST NOT conflict with
- * the one assigned to the parent or else both will go out-of-sync.
- * Therefore, when requiring validation and updating values via cursors
- * it's recommended to only specify validators for leaf-level cursors in
- * the hierarchy.
+ * When using the optional validator predicate (also specified via config object
+ * to ctor), the cursor's validator MUST NOT conflict with the one assigned to
+ * the parent or else both will go out-of-sync. Therefore, when requiring
+ * validation and updating values via cursors it's recommended to only specify
+ * validators for leaf-level cursors in the hierarchy.
  */
 export class Cursor<T> implements IAtom<T>, IID<string>, IRelease {
 	readonly id: string;

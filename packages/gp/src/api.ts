@@ -23,10 +23,10 @@ export interface GPOpts<OP, T, ARGS> {
 	 */
 	ops: OpGenSpec<ARGS, OP>[];
 	/**
-	 * Possibly seeded PRNG instance to be used for AST generation /
-	 * editing.
+	 * Possibly seeded PRNG instance to be used for AST generation / editing.
 	 *
-	 * @defaultValue {@link @thi.ng/random#SYSTEM}
+	 * @defaultValue
+	 * [`SYSTEM`](https://docs.thi.ng/umbrella/random/variables/SYSTEM.html)
 	 */
 	rnd?: IRandom;
 	/**

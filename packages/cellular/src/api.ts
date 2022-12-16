@@ -110,7 +110,8 @@ export interface UpdateImageOpts1D {
 	probabilistic: boolean;
 	/**
 	 * PRNG instance to use for perturbance. Default:
-	 * {@link @thi.ng/random#SYSTEM} aka `Math.random`.
+	 * [`SYSTEM`](https://docs.thi.ng/umbrella/random/variables/SYSTEM.html) aka
+	 * `Math.random`.
 	 */
 	rnd: IRandom;
 	/**

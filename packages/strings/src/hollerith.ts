@@ -11,7 +11,7 @@ import type { Stringer } from "./api.js";
  * hstr(null)   // ""
  * ```
  *
- * {@link https://en.wikipedia.org/wiki/Hollerith_constant}
+ * https://en.wikipedia.org/wiki/Hollerith_constant
  *
  * @param x -
  */

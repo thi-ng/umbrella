@@ -9,19 +9,18 @@ const GL_COLOR_ATTACHMENT0_WEBGL = 0x8ce0;
 const GL_MAX_COLOR_ATTACHMENTS_WEBGL = 0x8cdf;
 
 /**
- * WebGL framebuffer wrapper w/ automatic detection & support for
- * multiple render targets (color attachments) and optional depth
- * buffer. Multiple targets are only supported if the
- * `WEBGL_draw_buffers` extension is available. The max. number of
- * attachments can be obtained via the `maxAttachments` property of the
- * FBO instance.
+ * WebGL framebuffer wrapper w/ automatic detection & support for multiple
+ * render targets (color attachments) and optional depth buffer. Multiple
+ * targets are only supported if the `WEBGL_draw_buffers` extension is
+ * available. The max. number of attachments can be obtained via the
+ * `maxAttachments` property of the FBO instance.
  *
  * ```
  * // create FBO w/ 2 render targets
  * fbo = new FBO(gl, { tex: [tex1, tex2] });
  * ```
  *
- * {@link https://developer.mozilla.org/en-US/docs/Web/API/WEBGL_draw_buffers}
+ * https://developer.mozilla.org/en-US/docs/Web/API/WEBGL_draw_buffers
  */
 export class FBO implements IFbo {
 	gl: WebGLRenderingContext;

@@ -7,7 +7,7 @@ import { transduce } from "@thi.ng/transducers/transduce";
 import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
 
 /**
- * {@link http://algorithmicbotany.org/papers/subgpu.sig2003.pdf}
+ * http://algorithmicbotany.org/papers/subgpu.sig2003.pdf
  *
  * @param kernel - subdivision scheme
  * @param pts - source points

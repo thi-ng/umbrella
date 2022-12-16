@@ -15,7 +15,7 @@ export interface FromChannelOpts extends CommonOpts {
 
 /**
  * Returns a stream of values received from given
- * {@link @thi.ng/csp#Channel}.
+ * [`Channel`](https://docs.thi.ng/umbrella/csp/classes/Channel.html).
  *
  * @param src -
  * @param opts -

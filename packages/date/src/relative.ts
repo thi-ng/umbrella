@@ -149,7 +149,7 @@ export const difference = (a: MaybeDate, b: MaybeDate) =>
  * Computes and decomposes difference between given dates. Returns tuple of:
  * `[sign, years, months, days, hours, mins, secs, millis]`. The `sign` is used
  * to indicate the relative order of `a` compared to `b`, i.e. same contract as
- * {@link @thi.ng/api#ICompare}.
+ * [`ICompare`](https://docs.thi.ng/umbrella/api/interfaces/ICompare.html).
  *
  * @param a -
  * @param b -

@@ -10,23 +10,24 @@ import { $sub, $SubA } from "./sub.js";
 import { $wrapText } from "./wrap.js";
 
 /**
- * Compiles a tree of components given in any supported format incl.
- * reactive state values into a single, nested {@link IComponent}.
+ * Compiles a tree of components given in any supported format incl. reactive
+ * state values into a single, nested {@link IComponent}.
  *
  * @remarks
  * Supported formats:
  *
  * - hiccup component trees, i.e. `["tag#id.class", attribs, [...]]`
  * - {@link IComponent} instances
- * - {@link @thi.ng/rstream#ISubscribable} instances
- * - {@link @thi.ng/api#IDeref} instances
+ * - [`ISubscribable`](https://docs.thi.ng/umbrella/rstream/interfaces/ISubscribable.html)
+ *   instances
+ * - [`IDeref`](https://docs.thi.ng/umbrella/api/interfaces/IDeref.html)
+ *   instances
  *
  * Any other value type will be wrapped in a `<span>` element. Reactive
  * `ISubscribable` values can be used as element attributes or element
- * body/children. For the former, a subscription will be added to update
- * the target attribute. If used as element body, the reactive value
- * will be wrapped using a {@link $sub} `<span>` with the value as its
- * reactive body.
+ * body/children. For the former, a subscription will be added to update the
+ * target attribute. If used as element body, the reactive value will be wrapped
+ * using a {@link $sub} `<span>` with the value as its reactive body.
  *
  * @param tree -
  */

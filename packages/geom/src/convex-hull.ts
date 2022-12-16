@@ -11,7 +11,8 @@ import { vertices } from "./vertices.js";
  * Computes the convex hull for given shape and returns it as {@link Polygon}.
  *
  * @remarks
- * Internally uses {@link @thi.ng/geom-hull#grahamScan2}.
+ * Internally uses
+ * [`grahamScan2()`](https://docs.thi.ng/umbrella/geom-hull/functions/grahamScan2.html).
  *
  * Currently implemented for:
  *

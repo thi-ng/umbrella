@@ -1,7 +1,7 @@
 /**
  * Maps a single linear RGB channel value to sRGB.
  *
- * {@link https://en.wikipedia.org/wiki/SRGB}
+ * https://en.wikipedia.org/wiki/SRGB
  *
  * @param x - channel value
  */
@@ -11,7 +11,7 @@ export const linearSrgb = (x: number) =>
 /**
  * Maps a single linear sRGB channel value to linear RGB.
  *
- * {@link https://en.wikipedia.org/wiki/SRGB}
+ * https://en.wikipedia.org/wiki/SRGB
  *
  * @param x - channel value
  */

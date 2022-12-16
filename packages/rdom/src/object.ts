@@ -17,15 +17,18 @@ import { $sub } from "./sub.js";
  * that function's return value as component body.
  *
  * @remarks
- * Uses {@link @thi.ng/rstream#fromObject} for creating the internal key-value
- * streams. These can then be used by `inner` to produce reactive child
- * elements. The given `src` object is only used to seed those streams with
- * initial values. The component wrapper can be updated with new values, using
- * the `.update()` life cycle method with a new object.
+ * Uses
+ * [`fromObject()`](https://docs.thi.ng/umbrella/rstream/functions/fromObject.html)
+ * for creating the internal key-value streams. These can then be used by
+ * `inner` to produce reactive child elements. The given `src` object is only
+ * used to seed those streams with initial values. The component wrapper can be
+ * updated with new values, using the `.update()` life cycle method with a new
+ * object.
  *
  * By default the value streams will only trigger updates if their values have
- * changed. See {@link @thi.ng/rstream#StreamObjOpts} for more details and
- * options.
+ * changed. See
+ * [`StreamObjOpts`](https://docs.thi.ng/umbrella/rstream/interfaces/StreamObjOpts.html)
+ * for more details and options.
  *
  * Also see {@link $subObject}.
  *

@@ -186,8 +186,8 @@ export const medians: CentroidStrategy = () => {
  *
  * @remarks
  * When using this strategy, you should also use the
- * {@link @thi.ng/distance#HAVERSINE_LATLON} distance metric for
- * {@link KMeansOpts.distance}.
+ * [`HAVERSINE_LATLON`](https://docs.thi.ng/umbrella/distance/variables/HAVERSINE_LATLON.html)
+ * distance metric for {@link KMeansOpts.distance}.
  *
  * @example
  * ```ts

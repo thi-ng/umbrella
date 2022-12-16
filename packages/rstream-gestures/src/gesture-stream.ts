@@ -37,19 +37,17 @@ const EVENT_GESTURETYPES: IObjectOf<GestureType> = {
 };
 
 /**
- * Attaches mouse & touch event listeners to given DOM element and
- * returns a stream of {@link GestureEvent}s and their
- * {@link GestureInfo} details.
+ * Attaches mouse & touch event listeners to given DOM element and returns a
+ * stream of {@link GestureEvent}s and their {@link GestureInfo} details.
  *
- * In multi-touch environments, a `GestureEvent` can contain multiple
- * such `GestureInfo` objects (one per active touch). In general, the
- * `click` and `delta` values are only present if the abstracted event
- * `type == "drag"`. Both (and `pos` too) are 2-element arrays
- * of `[x,y]` coordinates.
+ * In multi-touch environments, a `GestureEvent` can contain multiple such
+ * `GestureInfo` objects (one per active touch). In general, the `click` and
+ * `delta` values are only present if the abstracted event `type == "drag"`.
+ * Both (and `pos` too) are 2-element arrays of `[x,y]` coordinates.
  *
- * The `zoom` value is always present, but is only updated with wheel
- * events. The value will be constrained to `minZoom` ... `maxZoom`
- * interval (provided via options object).
+ * The `zoom` value is always present, but is only updated with wheel events.
+ * The value will be constrained to `minZoom` ... `maxZoom` interval (provided
+ * via options object).
  *
  * Note: If using `preventDefault` and attaching the event stream to
  * `document.body`, the following event listener options SHOULD be used:
@@ -59,7 +57,7 @@ const EVENT_GESTURETYPES: IObjectOf<GestureType> = {
  * eventOpts: { passive: false }
  * ```
  *
- * {@link https://www.chromestatus.com/features/5093566007214080 }
+ * https://www.chromestatus.com/features/5093566007214080
  *
  * @param el -
  * @param opts -

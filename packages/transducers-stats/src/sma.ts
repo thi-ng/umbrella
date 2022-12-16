@@ -5,11 +5,12 @@ import { compR } from "@thi.ng/transducers/compr";
 import { iterator1 } from "@thi.ng/transducers/iterator";
 
 /**
- * Like {@link @thi.ng/transducers#(movingAverage:1)}, but using more
- * efficient linked list as sliding window buffer.
+ * Like
+ * [`movingAverage()`](https://docs.thi.ng/umbrella/transducers/functions/movingAverage.html),
+ * but using more efficient linked list as sliding window buffer.
  *
- * Note: the number of results will be `period-1` less than the number
- * of processed inputs.
+ * Note: the number of results will be `period-1` less than the number of
+ * processed inputs.
  *
  * @param period -
  */

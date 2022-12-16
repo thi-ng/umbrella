@@ -63,30 +63,31 @@ export const fromViewUnsafe = <T>(
 ): Stream<T extends undefined ? any : T> => fromView(atom, <any>opts);
 
 /**
- * Similar to {@link fromAtom}, but creates a type checked, eager
- * derived view for a nested value in an Atom-like state container and
- * yields stream of its value changes.
+ * Similar to {@link fromAtom}, but creates a type checked, eager derived view
+ * for a nested value in an Atom-like state container and yields stream of its
+ * value changes.
  *
  * @remarks
- * Stream value type is inferred from target path or (if given), the
- * result type of the optional view transformer (`tx` option).
+ * Stream value type is inferred from target path or (if given), the result type
+ * of the optional view transformer (`tx` option).
  *
- * Views are readonly and more lightweight versions of
- * {@link @thi.ng/atom#Cursor | cursors}. The view checks for value
- * changes with given `equiv` predicate (default:
- * {@link @thi.ng/equiv#equiv}). If the predicate returns a falsy result
- * (i.e. there's a new value), the new value is emitted on the stream.
- * The first value emitted is always the (possibly transformed) current
- * value at the stream's start time (i.e. when the first subscriber
- * attaches).
+ * Views are readonly and more lightweight versions of [thi.ng/atom
+ * cursors](https://docs.thi.ng/umbrella/atom/classes/Cursor.html). The view
+ * checks for value changes with given `equiv` predicate (default:
+ * [`equiv()`](https://docs.thi.ng/umbrella/equiv/functions/equiv.html)). If the
+ * predicate returns a falsy result (i.e. there's a new value), the new value is
+ * emitted on the stream. The first value emitted is always the (possibly
+ * transformed) current value at the stream's start time (i.e. when the first
+ * subscriber attaches).
  *
  * If the `tx` option is given, the raw value is first passed to this
  * transformer function and its result emitted on the stream instead.
  *
  * When the stream is cancelled the view is destroyed as well.
  *
- * Also see {@link @thi.ng/atom#defView},
- * {@link @thi.ng/atom#defViewUnsafe}
+ * Also see
+ * [`defView()`](https://docs.thi.ng/umbrella/atom/functions/defView.html),
+ * [`defViewUnsafe()`](https://docs.thi.ng/umbrella/atom/functions/defViewUnsafe.html)
  *
  * @example
  * ```ts

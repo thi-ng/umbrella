@@ -2,12 +2,12 @@ import { isFunction } from "@thi.ng/checks/is-function";
 import type { TransformSpec } from "./api.js";
 
 /**
- * Higher-order deep object transformer used by {@link (mapDeep:1)}.
- * Accepts a nested `spec` array reflecting same key structure as the
- * object to be mapped, but with functions or sub-specs as their values.
- * Returns a new function, which when called, recursively applies nested
- * transformers in post-order traversal (child transformers are run
- * first) and returns the result of the root transformer.
+ * Higher-order deep object transformer used by {@link mapDeep}. Accepts a
+ * nested `spec` array reflecting same key structure as the object to be mapped,
+ * but with functions or sub-specs as their values. Returns a new function,
+ * which when called, recursively applies nested transformers in post-order
+ * traversal (child transformers are run first) and returns the result of the
+ * root transformer.
  *
  * @remarks
  * The transform specs are given as arrays in this format:
@@ -16,9 +16,8 @@ import type { TransformSpec } from "./api.js";
  * [tx-function, { key1: [tx-function, {...}], key2: tx-fn }]
  * ```
  *
- * If a key in the spec has no further sub maps, its transform function
- * can be given directly without having to wrap it into the usual array
- * structure.
+ * If a key in the spec has no further sub maps, its transform function can be
+ * given directly without having to wrap it into the usual array structure.
  *
  * @example
  * ```ts

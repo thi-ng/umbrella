@@ -5,8 +5,8 @@ import type { Transducer } from "@thi.ng/transducers";
 
 /**
  * A function which constructs and returns an
- * {@link @thi.ng/rstream#ISubscribable} using given object of inputs
- * and node ID. See `node()` and `node1()`.
+ * [`ISubscribable`](https://docs.thi.ng/umbrella/rstream/interfaces/ISubscribable.html)
+ * using given object of inputs and node ID. See `node()` and `node1()`.
  */
 export type NodeFactory<T> = (
 	src: NodeInputs,
@@ -33,22 +33,24 @@ export interface Node {
 export type GraphSpec = IObjectOf<NodeSpec | Node | NodeResolver>;
 
 /**
- * Specification for a single "node" in the dataflow graph. Nodes here
- * are actually just wrappers of streams / subscriptions (or generally
- * any form of {@link @thi.ng/rstream#ISubscribable}), usually with an
- * associated transducer to transform / combine the inputs and produce
- * values for the node's result stream.
+ * Specification for a single "node" in the dataflow graph. Nodes here are
+ * actually just wrappers of streams / subscriptions (or generally any form of
+ * [`ISubscribable`](https://docs.thi.ng/umbrella/rstream/interfaces/ISubscribable.html)),
+ * usually with an associated transducer to transform / combine the inputs and
+ * produce values for the node's result stream.
  *
  * The `fn` function is responsible to produce such a stream transformer
- * construct. The keys used to specify inputs in the `ins` object are
- * dictated by the actual node `fn` used. Most node functions with
- * multiple inputs will be implemented as
- * {@link @thi.ng/rstream#StreamSync} instances and the
- * input IDs are used to locally rename input streams within the
- * {@link @thi.ng/rstream#StreamSync} container.
+ * construct. The keys used to specify inputs in the `ins` object are dictated
+ * by the actual node `fn` used. Most node functions with multiple inputs will
+ * be implemented as
+ * [`StreamSync`](https://docs.thi.ng/umbrella/rstream/classes/StreamSync.html)
+ * instances and the input IDs are used to locally rename input streams within
+ * the
+ * [`StreamSync`](https://docs.thi.ng/umbrella/rstream/classes/StreamSync.html)
+ * container.
  *
- * Alo see {@link initGraph} and {@link nodeFromSpec} (in /src/nodes.ts) for more
- * details how these specs are compiled into stream constructs.
+ * Alo see {@link initGraph} and {@link nodeFromSpec} (in /src/nodes.ts) for
+ * more details how these specs are compiled into stream constructs.
  */
 export interface NodeSpec {
 	fn: NodeFactory<any>;
@@ -57,8 +59,7 @@ export interface NodeSpec {
 }
 
 /**
- * Specification for a single input, which can be given in different
- * ways:
+ * Specification for a single input, which can be given in different ways:
  *
  * 1) Create a stream for given path in state atom (passed to
  *    {@link initGraph}):
@@ -68,19 +69,18 @@ export interface NodeSpec {
  * { path: ["nested", "src", "path"] }
  * ```
  *
- * 2) Reference path to another node's output in the GraphSpec object.
- *    See {@link @thi.ng/resolve-map# | @thi.ng/resolve-map} for details.
+ * 2) Reference path to another node's output in the GraphSpec object. See
+ *    [thi.ng/resolve-map](https://thi.ng/resolve-map) for details.
  *
  * ```
  * { stream: "/node-id/node" } // main node output
  * { stream: "/node-id/outs/foo" } // specific output
  * ```
  *
- * 3) Reference another node indirectly. The passed in `resolve`
- *    function can be used to lookup other nodes, with the same logic as
- *    above. E.g. the following spec looks up the main output of node
- *    "abc" and adds a transformed subscription, which is then used as
- *    input for current node.
+ * 3) Reference another node indirectly. The passed in `resolve` function can be
+ *    used to lookup other nodes, with the same logic as above. E.g. the
+ *    following spec looks up the main output of node "abc" and adds a
+ *    transformed subscription, which is then used as input for current node.
  *
  * ```
  * { stream: (resolve) =>
@@ -100,8 +100,8 @@ export interface NodeSpec {
  * { const: () => 1 }
  * ```
  *
- * If the optional `xform` is given, a subscription with the given
- * transducer is added to the input and then used as input instead.
+ * If the optional `xform` is given, a subscription with the given transducer is
+ * added to the input and then used as input instead.
  */
 export interface NodeInputSpec {
 	id?: string;

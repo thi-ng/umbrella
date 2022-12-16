@@ -26,9 +26,9 @@ export interface TunnelOpts<A> {
 	 */
 	id?: string;
 	/**
-	 * Optional function to extract transferables from incoming stream
-	 * values, e.g. ArrayBuffers. See:
-	 * {@link https://developer.mozilla.org/en-US/docs/Web/API/Worker/postMessage}
+	 * Optional function to extract transferables from incoming stream values,
+	 * e.g. ArrayBuffers. See:
+	 * https://developer.mozilla.org/en-US/docs/Web/API/Worker/postMessage
 	 */
 	transferables?: Fn<A, any[]>;
 	/**

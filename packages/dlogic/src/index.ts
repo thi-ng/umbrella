@@ -10,7 +10,7 @@ export interface Sum<T> {
 }
 
 /**
- * {@link https://en.wikipedia.org/wiki/Inverter_(logic_gate)}
+ * https://en.wikipedia.org/wiki/Inverter_(logic_gate)
  *
  * | X | Q |
  * |---|---|
@@ -22,7 +22,7 @@ export interface Sum<T> {
 export const not = (x: boolean) => !x;
 
 /**
- * {@link https://en.wikipedia.org/wiki/NAND_gate}
+ * https://en.wikipedia.org/wiki/NAND_gate
  *
  * | A | B | Q |
  * |---|---|---|
@@ -37,7 +37,7 @@ export const not = (x: boolean) => !x;
 export const nand: Op2 = (a, b) => !(a && b);
 
 /**
- * {@link https://en.wikipedia.org/wiki/AND_gate}
+ * https://en.wikipedia.org/wiki/AND_gate
  *
  * | A | B | Q |
  * |---|---|---|
@@ -52,7 +52,7 @@ export const nand: Op2 = (a, b) => !(a && b);
 export const and: Op2 = (a, b) => a && b;
 
 /**
- * {@link https://en.wikipedia.org/wiki/OR_gate}
+ * https://en.wikipedia.org/wiki/OR_gate
  *
  * | A | B | Q |
  * |---|---|---|
@@ -67,7 +67,7 @@ export const and: Op2 = (a, b) => a && b;
 export const or: Op2 = (a, b) => a || b;
 
 /**
- * {@link https://en.wikipedia.org/wiki/NOR_gate}
+ * https://en.wikipedia.org/wiki/NOR_gate
  *
  * | A | B | Q |
  * |---|---|---|
@@ -82,7 +82,7 @@ export const or: Op2 = (a, b) => a || b;
 export const nor: Op2 = (a, b) => !(a || b);
 
 /**
- * {@link https://en.wikipedia.org/wiki/XOR_gate}
+ * https://en.wikipedia.org/wiki/XOR_gate
  *
  * | A | B | Q |
  * |---|---|---|
@@ -97,7 +97,7 @@ export const nor: Op2 = (a, b) => !(a || b);
 export const xor: Op2 = (a, b) => a !== b;
 
 /**
- * {@link https://en.wikipedia.org/wiki/XNOR_gate}
+ * https://en.wikipedia.org/wiki/XNOR_gate
  *
  * | A | B | Q |
  * |---|---|---|
@@ -112,7 +112,7 @@ export const xor: Op2 = (a, b) => a !== b;
 export const xnor: Op2 = (a, b) => a === b;
 
 /**
- * {@link https://web.archive.org/web/20160304050642/http://www.zigwap.com/digital/gates/imply_gate}
+ * https://web.archive.org/web/20160304050642/http://www.zigwap.com/digital/gates/imply_gate
  *
  * | A | B | Q |
  * |---|---|---|
@@ -126,7 +126,7 @@ export const xnor: Op2 = (a, b) => a === b;
 export const imply: Op2 = (a, b) => !a || b;
 
 /**
- * {@link https://en.wikipedia.org/wiki/AND-OR-Invert}
+ * https://en.wikipedia.org/wiki/AND-OR-Invert
  *
  * `q = nor(a, and(b, c))`
  *
@@ -148,7 +148,7 @@ export const imply: Op2 = (a, b) => !a || b;
 export const aoi21: Op3 = (a, b, c) => !(a || (b && c));
 
 /**
- * {@link https://en.wikipedia.org/wiki/AND-OR-Invert}
+ * https://en.wikipedia.org/wiki/AND-OR-Invert
  *
  * `q = nor(and(a, b), and(c, d))`
  *
@@ -191,7 +191,7 @@ export const oai21: Op3 = (a, b, c) => !(a && (b || c));
 export const oai22: Op4 = (a, b, c, d) => !((a || b) && (c || d));
 
 /**
- * {@link https://en.wikipedia.org/wiki/NAND_logic#MUX}
+ * https://en.wikipedia.org/wiki/NAND_logic#MUX
  *
  * | A | B | S | Q |
  * |---|---|---|---|
@@ -212,7 +212,7 @@ export const mux: Op3 = (a: boolean, b: boolean, s: boolean) =>
 	(a && !s) || (b && s);
 
 /**
- * {@link https://en.wikipedia.org/wiki/NAND_logic#DEMUX}
+ * https://en.wikipedia.org/wiki/NAND_logic#DEMUX
  *
  * | I | S | A | B |
  * |---|---|---|---|
@@ -230,7 +230,7 @@ export const demux: FnU2<boolean, [boolean, boolean]> = (i, s) => [
 ];
 
 /**
- * {@link https://en.wikipedia.org/wiki/Adder_(electronics)#Half_adder}
+ * https://en.wikipedia.org/wiki/Adder_(electronics)#Half_adder
  *
  * @param a -
  * @param b -
@@ -241,7 +241,7 @@ export const hadd1: FnU2<boolean, Sum<boolean>> = (a, b) => ({
 });
 
 /**
- * {@link https://en.wikipedia.org/wiki/Adder_(electronics)#Full_adder}
+ * https://en.wikipedia.org/wiki/Adder_(electronics)#Full_adder
  *
  * @param a -
  * @param b -
@@ -253,7 +253,7 @@ export const fadd1: FnU3<boolean, Sum<boolean>> = (a, b, c) => ({
 });
 
 /**
- * {@link https://en.wikipedia.org/wiki/Adder_(electronics)#Ripple-carry_adder}
+ * https://en.wikipedia.org/wiki/Adder_(electronics)#Ripple-carry_adder
  *
  * @param a -
  * @param b -

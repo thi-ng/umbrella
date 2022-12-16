@@ -5,12 +5,12 @@ import { iterator1 } from "./iterator.js";
 import { map } from "./map.js";
 
 /**
- * Transducer which yields sequence of transformed objects, each only
- * only containing the given `keys`. If a key's value is `undefined` (or
- * missing entirely) it will be omitted in the result.
+ * Transducer which yields sequence of transformed objects, each only only
+ * containing the given `keys`. If a key's value is `undefined` (or missing
+ * entirely) it will be omitted in the result.
  *
  * @remarks
- * For single key extraction {@link (pluck:1)} is a faster alternative.
+ * For single key extraction {@link pluck} is a faster alternative.
  *
  * @example
  * ```ts

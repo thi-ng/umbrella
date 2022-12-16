@@ -73,7 +73,8 @@ export const parseHeader = (src: Uint8Array) => {
 
 /**
  * Takes a PBM/PGM/PPM file as byte array and parses it into a
- * {@link @thi.ng/pixel#IntBuffer} of corresponding format.
+ * [`IntBuffer`](https://docs.thi.ng/umbrella/pixel/classes/IntBuffer.html) of
+ * corresponding format.
  *
  * @remarks
  * Depending on header information, the following rules apply:
@@ -106,8 +107,9 @@ export const read = (src: Uint8Array) => {
 
 /**
  * Reads pixels from given 1bit PBM file byte buffer, starting at index `i` and
- * returns {@link @thi.ng/pixel#IntBuffer} in `GRAY8` format (due to current
- * lack of true 1bit format).
+ * returns
+ * [`IntBuffer`](https://docs.thi.ng/umbrella/pixel/classes/IntBuffer.html) in
+ * `GRAY8` format (due to current lack of true 1bit format).
  *
  * @param src -
  * @param i -
@@ -134,9 +136,10 @@ export const readPBM = (
 
 /**
  * Reads pixels from given 8bit PGM file byte buffer, starting at index `i` and
- * returns {@link @thi.ng/pixel#IntBuffer} in `GRAY8` format. If needed,
- * pixel values are rescaled given `max` value defined in PGM header (MUST
- * be <= 0xff).
+ * returns
+ * [`IntBuffer`](https://docs.thi.ng/umbrella/pixel/classes/IntBuffer.html) in
+ * `GRAY8` format. If needed, pixel values are rescaled given `max` value
+ * defined in PGM header (MUST be <= 0xff).
  *
  * @remarks
  * Reference: http://netpbm.sourceforge.net/doc/pbm.html
@@ -169,8 +172,10 @@ export const readPGM8 = (
 
 /**
  * Reads pixels from given 16bit PGM file byte buffer, starting at index `i` and
- * returns {@link @thi.ng/pixel#IntBuffer} in `GRAY16` format. Pixel values
- * are rescaled given `max` value defined in PGM header (MUST be <= 0xffff).
+ * returns
+ * [`IntBuffer`](https://docs.thi.ng/umbrella/pixel/classes/IntBuffer.html) in
+ * `GRAY16` format. Pixel values are rescaled given `max` value defined in PGM
+ * header (MUST be <= 0xffff).
  *
  * @remarks
  * Reference: http://netpbm.sourceforge.net/doc/pgm.html
@@ -199,9 +204,10 @@ export const readPGM16 = (
 
 /**
  * Reads pixels from given 24bit PPM file byte buffer, starting at index `i` and
- * returns {@link @thi.ng/pixel#IntBuffer} in `RGB888` format. Color channel
- * values are rescaled given `max` value defined in PGM header (MUST be <=
- * 0xff).
+ * returns
+ * [`IntBuffer`](https://docs.thi.ng/umbrella/pixel/classes/IntBuffer.html) in
+ * `RGB888` format. Color channel values are rescaled given `max` value defined
+ * in PGM header (MUST be <= 0xff).
  *
  * @remarks
  * Reference: http://netpbm.sourceforge.net/doc/pgm.html

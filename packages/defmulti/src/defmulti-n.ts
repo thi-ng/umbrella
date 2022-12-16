@@ -3,20 +3,19 @@ import type { Implementation } from "./api.js";
 import { DEFAULT, defmulti } from "./defmulti.js";
 
 /**
- * Returns a multi-dispatch function which delegates to one of the
- * provided implementations, based on the arity (number of args) when
- * the function is called.
+ * Returns a multi-dispatch function which delegates to one of the provided
+ * implementations, based on the arity (number of args) when the function is
+ * called.
  *
  * @remarks
- * Internally uses {@link (defmulti:1)}, so new arities can be dynamically
- * added (or removed) at a later time. If no `fallback` is provided,
- * `defmultiN` also registers a {@link DEFAULT} implementation which
- * simply throws an {@link @thi.ng/errors#IllegalArityError} when
- * invoked.
+ * Internally uses {@link defmulti}, so new arities can be dynamically added (or
+ * removed) at a later time. If no `fallback` is provided, `defmultiN` also
+ * registers a {@link DEFAULT} implementation which simply throws an
+ * [`IllegalArityError`](https://docs.thi.ng/umbrella/errors/variables/IllegalArityError.html)
+ * when invoked.
  *
- * **Note:** Unlike {@link (defmulti:1)} no argument type checking is
- * supported, however you can specify the return type for the generated
- * function.
+ * **Note:** Unlike {@link defmulti} no argument type checking is supported,
+ * however you can specify the return type for the generated function.
  *
  * @example
  * ```ts

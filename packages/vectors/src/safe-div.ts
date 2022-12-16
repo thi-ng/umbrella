@@ -4,7 +4,8 @@ import { defHofOp } from "./compile/emit.js";
 import { ARGS_VV, FN2 } from "./compile/templates.js";
 
 /**
- * Componentwise application of {@link @thi.ng/math#safeDiv}.
+ * Componentwise application of
+ * [`safeDiv()`](https://docs.thi.ng/umbrella/math/functions/safeDiv.html).
  *
  * @param out -
  * @param a -

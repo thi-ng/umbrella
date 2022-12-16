@@ -4,7 +4,8 @@ import type { ReadonlyVec, Vec } from "./api.js";
 import { submN } from "./submn.js";
 
 /**
- * Vector version of {@link @thi.ng/math#mixCubicHermite}.
+ * Vector version of
+ * [`mixCubicHermite()`](https://docs.thi.ng/umbrella/math/functions/mixCubicHermite.html).
  *
  * @param out - result
  * @param a -
@@ -105,7 +106,8 @@ export const mixHermiteDiff3 = (
 	);
 
 /**
- * Vector version of {@link @thi.ng/math#tangentCardinal}.
+ * Vector version of
+ * [`tangentCardinal()`](https://docs.thi.ng/umbrella/math/functions/tangentCardinal.html).
  *
  * @param out -
  * @param prev -
@@ -124,7 +126,8 @@ export const tangentCardinal = (
 ) => submN(out, next, prev, scale / (tc - ta));
 
 /**
- * Vector version of {@link @thi.ng/math#tangentDiff3}.
+ * Vector version of
+ * [`tangentDiff3()`](https://docs.thi.ng/umbrella/math/functions/tangentDiff3.html).
  *
  * @param out - result
  * @param prev -

@@ -26,14 +26,14 @@ import type {
 } from "./api.js";
 
 /**
- * Dataflow graph initialization function. Takes a state Atom (or `null`
- * if not needed) and an object of {@link NodeSpec} values or functions
- * returning {@link Node} objects. Calls `nodeFromSpec()` for each spec
- * and then recursively resolves references via
- * {@link @thi.ng/resolve-map#resolve}. Returns new initialized graph
- * object of {@link Node} objects and
- * {@link @thi.ng/rstream# | @thi.ng/rstream} stream constructs. Does
- * NOT mutate original {@link GraphSpec} object.
+ * Dataflow graph initialization function. Takes a state Atom (or `null` if not
+ * needed) and an object of {@link NodeSpec} values or functions returning
+ * {@link Node} objects. Calls `nodeFromSpec()` for each spec and then
+ * recursively resolves references via
+ * [`resolve()`](https://docs.thi.ng/umbrella/resolve-map/functions/resolve.html).
+ * Returns new initialized graph object of {@link Node} objects and
+ * [`thi.ng/rstream`](https://thi.ng/rstream) stream constructs. Does NOT mutate
+ * original {@link GraphSpec} object.
  *
  * @param state -
  * @param spec -
@@ -53,24 +53,24 @@ const isNodeSpec = (x: any): x is NodeSpec =>
 
 /**
  * Transforms a single {@link NodeSpec} into a lookup function for
- * {@link resolve} (which is called from {@link initGraph}). When that
- * function is called, recursively resolves all specified input streams
- * and calls this spec's `fn` to produce a new stream from these inputs.
+ * {@link resolve} (which is called from {@link initGraph}). When that function
+ * is called, recursively resolves all specified input streams and calls this
+ * spec's `fn` to produce a new stream from these inputs.
  *
  * If the spec includes the optional `outs` keys, it also creates the
- * subscriptions for each of the given output keys, which then can be
- * used as inputs by other nodes. Each value in the `outs` subspec can
- * be a function or state path (string/number/array, see
- * {@link @thi.ng/paths# | @thi.ng/paths}). Functions are called with this node's
- * constructed stream/subscribable and the output id and must return a
- * new {@link @thi.ng/rstream#ISubscribable}. For path values a
- * subscription is added to this node's result stream which then updates
- * the provided state atom at the path given.
+ * subscriptions for each of the given output keys, which then can be used as
+ * inputs by other nodes. Each value in the `outs` subspec can be a function or
+ * state path (string/number/array, see [`thi.ng/paths`](https://thi.ng/paths)).
+ * Functions are called with this node's constructed stream/subscribable and the
+ * output id and must return a new
+ * [`ISubscribable`](https://docs.thi.ng/umbrella/rstream/interfaces/ISubscribable.html).
+ * For path values a subscription is added to this node's result stream which
+ * then updates the provided state atom at the path given.
  *
- * Non-function output specs subs assume the raw node output value is an
- * object from which the different output keys are being extracted. The
- * special `*` output key can be used to handle the entire node output
- * value. This is useful/required for non-object node result values.
+ * Non-function output specs subs assume the raw node output value is an object
+ * from which the different output keys are being extracted. The special `*`
+ * output key can be used to handle the entire node output value. This is
+ * useful/required for non-object node result values.
  *
  * @example
  * ```ts
@@ -246,14 +246,16 @@ export const stop = (graph: Graph) => {
 
 /**
  * Higher order node / stream creator. Takes a transducer and (optional)
- * required input stream IDs. The returned function takes an object of
- * input streams and returns a new {@link @thi.ng/rstream#StreamSync}
- * instance. The returned function will throw an error if `inputIDs` is
- * given and the object of inputs does not contain all of them.
+ * required input stream IDs. The returned function takes an object of input
+ * streams and returns a new
+ * [`StreamSync`](https://docs.thi.ng/umbrella/rstream/classes/StreamSync.html)
+ * instance. The returned function will throw an error if `inputIDs` is given
+ * and the object of inputs does not contain all of them.
  *
- * If `reset` is true (default: false), the `xform` will only re-run
- * when all inputs have produced new values. See
- * {@link @thi.ng/rstream#StreamSync} for further reference.
+ * If `reset` is true (default: false), the `xform` will only re-run when all
+ * inputs have produced new values. See
+ * [`StreamSync`](https://docs.thi.ng/umbrella/rstream/classes/StreamSync.html)
+ * for further reference.
  *
  * // TODO add close behavior opts
  *

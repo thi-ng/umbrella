@@ -5,13 +5,12 @@ import { __iter } from "./iterator.js";
 import { take } from "./take.js";
 
 /**
- * Pagination helper. Returns transducer which extracts only items for
- * given page number (and page length, default 10).
+ * Pagination helper. Returns transducer which extracts only items for given
+ * page number (and page length, default 10).
  *
  * @remarks
- * When {@link (comp:1) | composing} with other transducers, it's most
- * efficient if `page` is used as early as possible / prior to any heavy
- * processing steps.
+ * When {@link comp}osing with other transducers, it's most efficient if `page`
+ * is used as early as possible / prior to any heavy processing steps.
  *
  * @example
  * ```ts

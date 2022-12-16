@@ -1,7 +1,9 @@
 import type { Fn } from "@thi.ng/api";
 
 /**
- * @deprecated use {@link @thi.ng/compose#(juxt:1)}
+ * @deprecated use
+ * [`@thi.ng/compose`](https://docs.thi.ng/umbrella/compose/functions/juxt.html)
+ * instead
  *
  * @param fns -
  */

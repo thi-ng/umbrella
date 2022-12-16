@@ -241,7 +241,9 @@ export class MultiCA1D implements IClear {
 
 	/**
 	 * Sets cells in current generation array to a random state using given
-	 * `probability` and optional PRNG ({@link @thi.ng/random#IRandom} instance).
+	 * `probability` and optional PRNG
+	 * ([`IRandom`](https://docs.thi.ng/umbrella/random/interfaces/IRandom.html)
+	 * instance).
 	 *
 	 * @param target
 	 * @param prob
@@ -423,7 +425,9 @@ const __rotate = (buf: TypedArray, dir: number) => {
 
 /**
  * Creates a random rule ID for given `kernelSize` and using optionally provided
- * `rnd` {@link @thi.ng/random#IRandom} instance.
+ * `rnd`
+ * [`IRandom`](https://docs.thi.ng/umbrella/random/interfaces/IRandom.html)
+ * instance.
  *
  * @param kernelSize
  * @param rnd

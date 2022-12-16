@@ -33,10 +33,10 @@ export class KdNode<K extends ReadonlyVec, V> {
 }
 
 /**
- * {@link https://en.wikipedia.org/wiki/K-d_tree}
+ * https://en.wikipedia.org/wiki/K-d_tree
  *
  * Partially based on:
- * {@link https://github.com/ubilabs/kd-tree-javascript}
+ * https://github.com/ubilabs/kd-tree-javascript
  *
  */
 export class KdTreeMap<K extends ReadonlyVec, V>

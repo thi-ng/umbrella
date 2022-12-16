@@ -4,8 +4,8 @@ import { iterator, iterator1 } from "@thi.ng/transducers/iterator";
 import { isReduced } from "@thi.ng/transducers/reduced";
 
 /**
- * Transducer which decodes a byte input sequence into UTF-8 characters.
- * Also see {@link (utf8Encode:1)} for reverse transformation.
+ * Transducer which decodes a byte input sequence into UTF-8 characters. Also
+ * see {@link utf8Encode} for reverse transformation.
  */
 export function utf8Decode(): Transducer<number, string>;
 export function utf8Decode(src: Iterable<number>): string;
@@ -109,7 +109,7 @@ export function utf8Decode(src?: Iterable<number>): any {
 /**
  * Transducer which encodes UTF-8 characters into a byte sequence.
  *
- * Also see {@link (utf8Decode:1)} for reverse transformation.
+ * Also see {@link utf8Decode} for reverse transformation.
  *
  * @example
  * ```ts

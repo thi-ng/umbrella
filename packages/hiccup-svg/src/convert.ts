@@ -37,12 +37,12 @@ const BASE_LINE: Record<string, string> = {
 };
 
 /**
- * Takes a normalized hiccup tree of {@link @thi.ng/geom# | @thi.ng/geom} or
- * {@link @thi.ng/hdom-canvas# | @thi.ng/hdom-canvas} shape definitions and recursively
- * converts it into an hiccup flavor which is compatible for SVG
- * serialization. This conversion also involves translation & reorg of
- * various attributes. Returns new tree. The original remains untouched,
- * as will any unrecognized tree/shape nodes.
+ * Takes a normalized hiccup tree of [`thi.ng/geom`](https://thi.ng/geom) or
+ * [thi.ng/hdom-canvas](https://thi.ng/hdom-canvas) shape definitions and
+ * recursively converts it into an hiccup flavor which is compatible for SVG
+ * serialization. This conversion also involves translation & reorg of various
+ * attributes. Returns new tree. The original remains untouched, as will any
+ * unrecognized tree/shape nodes.
  *
  * @param tree - shape tree
  */

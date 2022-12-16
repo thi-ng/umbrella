@@ -7,7 +7,8 @@ import { SYSTEM } from "./system.js";
  * lowercase a-z).
  *
  * @remarks
- * See {@link @thi.ng/ksuid#} for a more advanced and collision-free approach.
+ * See [thi.ng/ksuid](https://thi.ng/thi.ng/ksuid) for a more advanced and
+ * collision-free approach.
  *
  * @example
  * ```ts

@@ -72,7 +72,8 @@ export interface ColorRangeOpts {
 	/**
 	 * PRNG instance to use for randomized values
 	 *
-	 * @defaultValue {@link @thi.ng/random#SYSTEM}
+	 * @defaultValue
+	 * [`SYSTEM`](https://docs.thi.ng/umbrella/random/variables/SYSTEM.html)
 	 */
 	rnd: IRandom;
 }

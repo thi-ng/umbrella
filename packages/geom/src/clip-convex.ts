@@ -18,8 +18,9 @@ import { ensureVertices, vertices } from "./vertices.js";
  * boundary). Returns `undefined` if there're no remaining result vertices.
  *
  * @remarks
- * Internally uses {@link @thi.ng/geom-clip-poly#sutherlandHodgeman}. For
- * groups, calls itself for each child shape individually and returns a new
+ * Internally uses
+ * [`sutherlandHodgeman()`](https://docs.thi.ng/umbrella/geom-clip-poly/functions/sutherlandHodgeman.html).
+ * For groups, calls itself for each child shape individually and returns a new
  * group of results (if any).
  *
  * @param shape

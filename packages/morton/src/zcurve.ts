@@ -147,13 +147,13 @@ export class ZCurve<T extends Range2_64> {
 	 * Yields iterator of Z-curve indices in given nD bounding box.
 	 *
 	 * @remarks
-	 * Uses {@link ZCurve.pointInBox} and {@link ZCurve.bigMin} to
-	 * efficiently skip Z index sub-ranges outside the box.
+	 * Uses {@link ZCurve.pointInBox} and {@link ZCurve.bigMin} to efficiently
+	 * skip Z index sub-ranges outside the box.
 	 *
 	 * References:
-	 * - {@link https://en.wikipedia.org/wiki/Z-order_curve#Use_with_one-dimensional_data_structures_for_range_searching}
-	 * - {@link https://aws.amazon.com/blogs/database/z-order-indexing-for-multifaceted-queries-in-amazon-dynamodb-part-1/}
-	 * - {@link https://aws.amazon.com/blogs/database/z-order-indexing-for-multifaceted-queries-in-amazon-dynamodb-part-2/}
+	 * - https://en.wikipedia.org/wiki/Z-order_curve#Use_with_one-dimensional_data_structures_for_range_searching
+	 * - https://aws.amazon.com/blogs/database/z-order-indexing-for-multifaceted-queries-in-amazon-dynamodb-part-1/
+	 * - https://aws.amazon.com/blogs/database/z-order-indexing-for-multifaceted-queries-in-amazon-dynamodb-part-2/
 	 *
 	 * @param rmin - bbox min point
 	 * @param rmax - bbox max point
@@ -175,13 +175,12 @@ export class ZCurve<T extends Range2_64> {
 	}
 
 	/**
-	 * Computes the next valid Z index in bbox defined by `zmin` /
-	 * `zmax` and greater than `zcurr`. Returns -1 if no further indices
-	 * are in the box.
+	 * Computes the next valid Z index in bbox defined by `zmin` / `zmax` and
+	 * greater than `zcurr`. Returns -1 if no further indices are in the box.
 	 *
 	 * @remarks
 	 * Partially based on:
-	 * {@link https://github.com/statgen/LDServer/blob/develop/core/src/Morton.cpp#L38}
+	 * https://github.com/statgen/LDServer/blob/develop/core/src/Morton.cpp#L38
 	 *
 	 * @param zcurr -
 	 * @param zmin -

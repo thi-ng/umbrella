@@ -266,7 +266,7 @@ export function parseCSVSimple(
 /**
  * Syntax sugar for iterator version of {@link parseCSV}, efficiently splitting
  * given source string into a line based input using
- * {@link @thi.ng/strings#split}.
+ * [`split()`](https://docs.thi.ng/umbrella/strings/functions/split.html).
  *
  * @param opts -
  * @param src -
@@ -277,7 +277,7 @@ export const parseCSVFromString = (opts: Partial<CSVOpts>, src: string) =>
 /**
  * Syntax sugar for iterator version of {@link parseCSVSimple}, efficiently
  * splitting given source string into a line based input using
- * {@link @thi.ng/strings#split}.
+ * [`split()`](https://docs.thi.ng/umbrella/strings/functions/split.html).
  *
  * @param opts -
  * @param src -

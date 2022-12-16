@@ -31,10 +31,10 @@ export interface MACD {
  * Computes the Moving Average Convergence/Divergence (MACD) using given
  * periods.
  *
- * Note: the number of results will be `slow + smooth - 2` less than the
- * number of processed inputs.
+ * Note: the number of results will be `slow + smooth - 2` less than the number
+ * of processed inputs.
  *
- * {@link https://en.wikipedia.org/wiki/MACD}
+ * https://en.wikipedia.org/wiki/MACD
  *
  * @param fast - fast EMA period
  * @param slow - slow EMA period

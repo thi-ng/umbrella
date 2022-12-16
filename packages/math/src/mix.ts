@@ -65,19 +65,19 @@ export const mixCubic: FnN5 = (a, b, c, d, t) => {
 };
 
 /**
- * Returns hermite interpolation of `a, b, c, d` at normalized position
- * `t`, where `a` and `d` are used as predecessor/successor of `b` / `c`
- * and only inform the tangent of the interpolation curve. The
- * interpolated result is that of `b` and `c`.
+ * Returns hermite interpolation of `a, b, c, d` at normalized position `t`,
+ * where `a` and `d` are used as predecessor/successor of `b` / `c` and only
+ * inform the tangent of the interpolation curve. The interpolated result is
+ * that of `b` and `c`.
  *
  * Assumes all inputs are uniformly spaced. If that's not the case, use
  * {@link mixCubicHermite} with one of the tangent generators supporting
  * non-uniform spacing of points.
  *
- * See: {@link https://www.desmos.com/calculator/j4gf8g9vkr}
+ * See: https://www.desmos.com/calculator/j4gf8g9vkr
  *
  * Source:
- * {@link https://www.musicdsp.org/en/latest/Other/93-hermite-interpollation.html}
+ * https://www.musicdsp.org/en/latest/Other/93-hermite-interpollation.html
  *
  * - {@link mixCubicHermite}
  * - {@link tangentCardinal}
@@ -99,7 +99,7 @@ export const mixHermite: FnN5 = (a, b, c, d, t) => {
  * Computes cubic-hermite interpolation between `a` / `b` at normalized
  * time `t` and using respective tangents `ta` / `tb`.
  *
- * {@link https://en.wikipedia.org/wiki/Cubic_Hermite_spline}
+ * https://en.wikipedia.org/wiki/Cubic_Hermite_spline
  *
  * - {@link mixHermite}
  * - {@link tangentCardinal}
@@ -199,14 +199,14 @@ export const mixBicubic = (
 	);
 
 /**
- * Helper function for {@link mixCubicHermite}. Computes cardinal tangents
- * based on point neighbors of a point B (not given), i.e. `a`
- * (predecessor) and `c` (successor) and their times (defaults to
- * uniformly spaced). The optional `tension` parameter can be used to
- * scale the tangent where 0.0 produces a Cardinal spline tangent and
- * 1.0 a Catmull-Rom (opposite to the Wikipedia ref).
+ * Helper function for {@link mixCubicHermite}. Computes cardinal tangents based
+ * on point neighbors of a point B (not given), i.e. `a` (predecessor) and `c`
+ * (successor) and their times (defaults to uniformly spaced). The optional
+ * `tension` parameter can be used to scale the tangent where 0.0 produces a
+ * Cardinal spline tangent and 1.0 a Catmull-Rom (opposite to the Wikipedia
+ * ref).
  *
- * {@link https://en.wikipedia.org/wiki/Cubic_Hermite_spline#Cardinal_spline}
+ * https://en.wikipedia.org/wiki/Cubic_Hermite_spline#Cardinal_spline
  *
  * @param prev -
  * @param next -
@@ -224,15 +224,15 @@ export const tangentCardinal = (
 
 /**
  * Helper function for {@link mixCubicHermite}. Computes tangent for `curr`,
- * based on 3-point finite difference, where `prev` & `next` are
- * `curr`'s neighbors and the `tX` the three points' respective time
- * values. The latter are equally spaced by default (each 1.0 apart).
+ * based on 3-point finite difference, where `prev` & `next` are `curr`'s
+ * neighbors and the `tX` the three points' respective time values. The latter
+ * are equally spaced by default (each 1.0 apart).
  *
  * Using this function with equal spacing of 1.0 and together with
- * {@link mixCubicHermite} will produce same results as the somewhat
- * optimized variant {@link mixHermite}.
+ * {@link mixCubicHermite} will produce same results as the somewhat optimized
+ * variant {@link mixHermite}.
  *
- * {@link https://en.wikipedia.org/wiki/Cubic_Hermite_spline#Finite_difference}
+ * https://en.wikipedia.org/wiki/Cubic_Hermite_spline#Finite_difference
  *
  * @param prev -
  * @param curr -

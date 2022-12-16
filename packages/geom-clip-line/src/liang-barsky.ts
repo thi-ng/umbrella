@@ -2,17 +2,16 @@ import type { FnU2, FnU8, Tuple } from "@thi.ng/api";
 import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
 
 /**
- * Performs Liang-Barsky clipping of the line segment with endpoints
- * `a`, `b` against the clipping rect defined by `min` and `max`. The
- * optional `ca` and `cb` vectors can be given to store the result
- * (clipped points). If omitted creates new vectors. Returns a tuple of
- * `[ca, cb, a, b]`, where the latter two values represent the
- * normalized distances of the clipped points relative to original given
- * line segment. Returns `undefined` iff the line lies completely
- * outside the rect.
+ * Performs Liang-Barsky clipping of the line segment with endpoints `a`, `b`
+ * against the clipping rect defined by `min` and `max`. The optional `ca` and
+ * `cb` vectors can be given to store the result (clipped points). If omitted
+ * creates new vectors. Returns a tuple of `[ca, cb, a, b]`, where the latter
+ * two values represent the normalized distances of the clipped points relative
+ * to original given line segment. Returns `undefined` iff the line lies
+ * completely outside the rect.
  *
- * - {@link https://en.wikipedia.org/wiki/Liang%E2%80%93Barsky_algorithm}
- * - {@link https://github.com/thi-ng/c-thing/blob/develop/src/geom/clip/liangbarsky.c}
+ * - https://en.wikipedia.org/wiki/Liang%E2%80%93Barsky_algorithm
+ * - https://github.com/thi-ng/c-thing/blob/develop/src/geom/clip/liangbarsky.c
  *
  * @param a - line endpoint
  * @param b - line endpoint

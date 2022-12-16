@@ -1,12 +1,14 @@
 import type { ISeq, Nullable } from "@thi.ng/api";
 
 /**
- * Returns a zero-copy {@link @thi.ng/api#ISeq} for the given array and
- * optionally for defined index range only.
+ * Returns a zero-copy
+ * [`ISeq`](https://docs.thi.ng/umbrella/api/interfaces/ISeq.html) for the given
+ * array and optionally for defined index range only.
  *
  * @remarks
- * If given, `start` MUST be < `end`. The latter defaults to the end of
- * the array (`.length`). Also see {@link @thi.ng/arrays#arrayIterator}
+ * If given, `start` MUST be < `end`. The latter defaults to the end of the
+ * array (`.length`). Also see
+ * [`arrayIterator()`](https://docs.thi.ng/umbrella/arrays/functions/arrayIterator.html)
  * for related functionality.
  *
  * @param buf - array
@@ -33,14 +35,15 @@ export const aseq = <T>(
 };
 
 /**
- * Similar to {@link aseq}, returns a zero-copy {@link @thi.ng/api#ISeq}
- * for the given array, though in reverse order and optionally for
- * defined index range only.
+ * Similar to {@link aseq}, returns a zero-copy
+ * [`ISeq`](https://docs.thi.ng/umbrella/api/interfaces/ISeq.html) for the given
+ * array, though in reverse order and optionally for defined index range only.
  *
  * @remarks
- * If given, `start` MUST be > `end`. The latter defaults to beginning
- * of the array (-1). Also see {@link @thi.ng/arrays#arrayIterator} for
- * related functionality.
+ * If given, `start` MUST be > `end`. The latter defaults to beginning of the
+ * array (-1). Also see
+ * [`arrayIterator()`](https://docs.thi.ng/umbrella/arrays/functions/arrayIterator.html)
+ * for related functionality.
  *
  * @param buf - array
  * @param start - start index

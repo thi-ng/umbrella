@@ -7,8 +7,10 @@ import { vertices } from "./vertices.js";
 
 /**
  * Recursively tessellates shape using provided
- * {@link @thi.ng/geom-api#Tessellator} functions. See
- * {@link @thi.ng/geom-tessellate#} package for more details.
+ * [`Tessellator`](https://docs.thi.ng/umbrella/geom-api/types/Tessellator.html)
+ * functions. See
+ * [thi.ng/geom-tessellate](https://thi.ng/thi.ng/geom-tessellate) package for
+ * more details.
  *
  * @remarks
  * Implemented for all shapes supported by {@link vertices}.

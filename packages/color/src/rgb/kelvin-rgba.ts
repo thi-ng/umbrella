@@ -16,9 +16,10 @@ const B2 = 0.0032447435545127036;
 const B3 = 0.453646839257496;
 
 /**
+ * @remarks
  * Based on:
- * - {@link https://github.com/neilbartlett/color-temperature/blob/develop/index.js}
- * - {@link http://www.zombieprototypes.com/?p=210}
+ * - https://github.com/neilbartlett/color-temperature/blob/develop/index.js
+ * - http://www.zombieprototypes.com/?p=210
  *
  * Uses adjusted coefficients to produce normalized sRGB values.
  *

@@ -1,9 +1,9 @@
 import { unsupported } from "@thi.ng/errors/unsupported";
 
 /**
- * Specialized / optimized version of {@link @thi.ng/defmulti# | @thi.ng/defmulti} for
- * vector operations. Uses simplified logic to dispatch on length
- * (vector size) of `dispatch` argument.
+ * Specialized / optimized version of
+ * [`thi.ng/defmulti`](https://thi.ng/defmulti) for vector operations. Uses
+ * simplified logic to dispatch on length (vector size) of `dispatch` argument.
  *
  * @param dispatch - arg index
  */

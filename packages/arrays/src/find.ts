@@ -2,7 +2,7 @@ import type { Predicate2 } from "@thi.ng/api";
 import { equiv as _equiv } from "@thi.ng/equiv";
 
 /**
- * Similar to `Array.find()`, but uses {@link @thi.ng/equiv#equiv} as
+ * Similar to `Array.find()`, but uses [`equiv()`](https://docs.thi.ng/umbrella/equiv/functions/equiv.html) as
  * default predicate.
  *
  * @param buf - array
@@ -19,8 +19,9 @@ export const find = <T>(
 };
 
 /**
- * Similar to `Array.findIndex()`, but uses {@link @thi.ng/equiv#equiv}
- * as default predicate.
+ * Similar to `Array.findIndex()`, but uses
+ * [`equiv()`](https://docs.thi.ng/umbrella/equiv/functions/equiv.html) as
+ * default predicate.
  *
  * @param buf - array
  * @param x - search value

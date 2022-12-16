@@ -18,7 +18,7 @@ export interface Stochastic {
  * - %D1 = SMA(%K, periodD1)
  * - %D2 = SMA(%D1, periodD2)
  *
- * {@link https://en.wikipedia.org/wiki/Stochastic_oscillator}
+ * https://en.wikipedia.org/wiki/Stochastic_oscillator
  *
  * @param periodK -
  * @param periodD1 -
