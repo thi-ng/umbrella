@@ -5013,6 +5013,26 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@thi.ng/transclude@workspace:packages/transclude":
+  version: 0.0.0-use.local
+  resolution: "@thi.ng/transclude@workspace:packages/transclude"
+  dependencies:
+    "@microsoft/api-extractor": ^7.33.7
+    "@thi.ng/api": ^8.5.1
+    "@thi.ng/checks": ^3.3.4
+    "@thi.ng/errors": ^2.2.5
+    "@thi.ng/file-io": ^0.3.21
+    "@thi.ng/logger": ^1.4.4
+    "@thi.ng/strings": ^3.3.19
+    "@thi.ng/testament": ^0.3.6
+    "@thi.ng/transducers": ^8.3.25
+    rimraf: ^3.0.2
+    tools: "workspace:^"
+    typedoc: ^0.23.22
+    typescript: ^4.9.4
+  languageName: unknown
+  linkType: soft
+
 "@thi.ng/transducers-binary@^2.1.30, @thi.ng/transducers-binary@workspace:^, @thi.ng/transducers-binary@workspace:packages/transducers-binary":
   version: 0.0.0-use.local
   resolution: "@thi.ng/transducers-binary@workspace:packages/transducers-binary"

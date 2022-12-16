@@ -1,10 +1,10 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![egf](https://media.thi.ng/umbrella/banners-20220914/thing-egf.svg?4253a705)
+# ![@thi.ng/egf](https://media.thi.ng/umbrella/banners-20220914/thing-egf.svg?4253a705)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/egf.svg)](https://www.npmjs.com/package/@thi.ng/egf)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/egf.svg)
-[![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
+[![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
@@ -28,7 +28,7 @@ This project is part of the
 
 ## About
 
-Extensible Graph Format.
+Extensible Graph Format
 
 Striving to be both easily readable & writable for humans and machines, this
 line based, plain text data format and package supports:
@@ -115,11 +115,8 @@ ES module import:
 
 For Node.js REPL:
 
-```text
-# with flag only for < v16
-node --experimental-repl-await
-
-> const egf = await import("@thi.ng/egf");
+```js
+const egf = await import("@thi.ng/egf");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 2.61 KB
@@ -527,7 +524,7 @@ thi:umbrella
 
 ## Authors
 
-Karsten Schmidt
+- [Karsten Schmidt](https://thi.ng)
 
 If this project contributes to an academic publication, please cite it as:
 
@@ -542,4 +539,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2020 - 2022 Karsten Schmidt // Apache Software License 2.0
+&copy; 2020 - 2022 Karsten Schmidt // Apache License 2.0

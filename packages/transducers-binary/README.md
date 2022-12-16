@@ -1,10 +1,10 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![transducers-binary](https://media.thi.ng/umbrella/banners-20220914/thing-transducers-binary.svg?56c93de8)
+# ![@thi.ng/transducers-binary](https://media.thi.ng/umbrella/banners-20220914/thing-transducers-binary.svg?56c93de8)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/transducers-binary.svg)](https://www.npmjs.com/package/@thi.ng/transducers-binary)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/transducers-binary.svg)
-[![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
+[![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
@@ -28,7 +28,7 @@ This project is part of the
 
 ## About
 
-Binary data related transducers & reducers. This is a support package for [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers).
+Binary data related transducers & reducers
 
 Like the transducers and reducers defined in
 [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers),
@@ -63,11 +63,8 @@ ES module import:
 
 For Node.js REPL:
 
-```text
-# with flag only for < v16
-node --experimental-repl-await
-
-> const transducersBinary = await import("@thi.ng/transducers-binary");
+```js
+const transducersBinary = await import("@thi.ng/transducers-binary");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 2.58 KB
@@ -306,7 +303,7 @@ tx.transduce(tx.comp(txb.base64Decode(), txb.utf8Decode()), tx.str(), buf);
 
 ## Authors
 
-Karsten Schmidt
+- [Karsten Schmidt](https://thi.ng)
 
 If this project contributes to an academic publication, please cite it as:
 
@@ -321,4 +318,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2018 - 2022 Karsten Schmidt // Apache Software License 2.0
+&copy; 2018 - 2022 Karsten Schmidt // Apache License 2.0

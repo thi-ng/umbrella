@@ -1,20 +1,13 @@
-# ${pkg.banner}
-
-[![npm version](https://img.shields.io/npm/v/${pkg.name}.svg)](https://www.npmjs.com/package/${pkg.name})
-![npm downloads](https://img.shields.io/npm/dm/${pkg.name}.svg)
-[![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
-
-This project is part of the
-[@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
+<!-- include ../../assets/tpl/header.md -->
 
 **Update 12/2022: This package is considered completed and no longer being
 updated with new features.**
 
-<!-- TOC -->
+<!-- toc -->
 
 ## About
 
-${pkg.description}
+{{pkg.description}}
 
 This package provides a single function, a general purpose [Finite State
 Machine](https://en.wikipedia.org/wiki/Finite-state_machine) transducer,
@@ -22,29 +15,29 @@ which acts as useful & lightweight mechanism to provide
 context-sensitive processing capabilities as part of a transducer
 transformation pipeline.
 
-${status}
+{{meta.status}}
 
 This package might be merged with (or deprecated by) the newer
 [@thi.ng/parse](https://github.com/thi-ng/umbrella/tree/develop/packages/parse)
 package.
 
-${supportPackages}
+{{repo.supportPackages}}
 
-${relatedPackages}
+{{repo.relatedPackages}}
 
-${blogPosts}
+{{meta.blogPosts}}
 
 ## Installation
 
-${pkg.install}
+{{pkg.install}}
 
-${pkg.size}
+{{pkg.size}}
 
 ## Dependencies
 
-${pkg.deps}
+{{pkg.deps}}
 
-${examples}
+{{repo.examples}}
 
 ## Usage examples
 
@@ -141,7 +134,7 @@ const testFSM = fsm({
 
 ## API
 
-${docLink}
+{{pkg.docs}}
 
 ### fsm transducer
 
@@ -170,12 +163,4 @@ Regardless of return value, if a state handler has caused a state change
 to the configured `terminate` state, processing is terminated (by calling
 `ensureReduced()`) and no further inputs will be consumed.
 
-## Authors
-
-${authors}
-
-${pkg.cite}
-
-## License
-
-&copy; ${copyright} // ${license}
+<!-- include ../../assets/tpl/footer.md -->

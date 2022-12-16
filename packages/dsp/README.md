@@ -1,10 +1,10 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![dsp](https://media.thi.ng/umbrella/banners-20220914/thing-dsp.svg?5dc8dc3b)
+# ![@thi.ng/dsp](https://media.thi.ng/umbrella/banners-20220914/thing-dsp.svg?5dc8dc3b)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/dsp.svg)](https://www.npmjs.com/package/@thi.ng/dsp)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/dsp.svg)
-[![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
+[![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
@@ -35,7 +35,7 @@ This project is part of the
 
 ## About
 
-Composable signal generators, oscillators, filters, FFT, spectrum, windowing & related DSP utils.
+Composable signal generators, oscillators, filters, FFT, spectrum, windowing & related DSP utils
 
 Partially ported from other thi.ng projects (e.g.
 [thi.ng/synstack](https://github.com/thi-ng/synstack),
@@ -79,11 +79,8 @@ ES module import:
 
 For Node.js REPL:
 
-```text
-# with flag only for < v16
-node --experimental-repl-await
-
-> const dsp = await import("@thi.ng/dsp");
+```js
+const dsp = await import("@thi.ng/dsp");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 6.84 KB
@@ -569,7 +566,7 @@ Desmos](https://www.desmos.com/calculator/lkyf2ag3ta) to experiment.
 
 ## Authors
 
-Karsten Schmidt
+- [Karsten Schmidt](https://thi.ng)
 
 If this project contributes to an academic publication, please cite it as:
 
@@ -584,4 +581,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2015 - 2022 Karsten Schmidt // Apache Software License 2.0
+&copy; 2015 - 2022 Karsten Schmidt // Apache License 2.0

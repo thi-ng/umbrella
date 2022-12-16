@@ -1,26 +1,19 @@
-# ${pkg.banner}
-
-[![npm version](https://img.shields.io/npm/v/${pkg.name}.svg)](https://www.npmjs.com/package/${pkg.name})
-![npm downloads](https://img.shields.io/npm/dm/${pkg.name}.svg)
-[![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
-
-This project is part of the
-[@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
+<!-- include ../../assets/tpl/header.md -->
 
 For the Clojure version, please visit: [thi.ng/math-clj](https://thi.ng/math-clj)
 
-<!-- TOC -->
+<!-- toc -->
 
 ## About
 
-${pkg.description}
+{{pkg.description}}
 
 Partially ported from Clojure version
 [thi.ng/math-clj](https://github.com/thi-ng/math),
 [c.thi.ng](https://github.com/thi-ng/c-thing) and
 [thi.ng/vexed-generation](https://github.com/thi-ng/vexed-generation).
 
-${status}
+{{meta.status}}
 
 ### Breaking changes in v4.0.0
 
@@ -32,36 +25,28 @@ of the existing `fmod()` function...
 - add new `fmod()` w/ standard libc behavior (same as JS % op)
 - add `remainder()` w/ standard libc behavior
 
-${supportPackages}
+{{repo.supportPackages}}
 
-${relatedPackages}
+{{repo.relatedPackages}}
 
-${blogPosts}
+{{meta.blogPosts}}
 
 ## Installation
 
-${pkg.install}
+{{pkg.install}}
 
-${pkg.size}
+{{pkg.size}}
 
 ## Dependencies
 
-${pkg.deps}
+{{pkg.deps}}
 
-${examples}
+{{repo.examples}}
 
 ## API
 
-${docLink}
+{{pkg.docs}}
 
 TODO
 
-## Authors
-
-${authors}
-
-${pkg.cite}
-
-## License
-
-&copy; ${copyright} // ${license}
+<!-- include ../../assets/tpl/footer.md -->

@@ -1,10 +1,10 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![equiv](https://media.thi.ng/umbrella/banners-20220914/thing-equiv.svg?36534ada)
+# ![@thi.ng/equiv](https://media.thi.ng/umbrella/banners-20220914/thing-equiv.svg?36534ada)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/equiv.svg)](https://www.npmjs.com/package/@thi.ng/equiv)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/equiv.svg)
-[![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
+[![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
@@ -20,7 +20,7 @@ This project is part of the
 
 ## About
 
-Extensible deep value equivalence checking for any data types.
+Extensible deep value equivalence checking for any data types
 
 Supports:
 
@@ -56,11 +56,8 @@ ES module import:
 
 For Node.js REPL:
 
-```text
-# with flag only for < v16
-node --experimental-repl-await
-
-> const equiv = await import("@thi.ng/equiv");
+```js
+const equiv = await import("@thi.ng/equiv");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 436 bytes
@@ -118,7 +115,7 @@ equiv(new Node([1,2,3], "foo"), new Node([1,2,3], "bar"));
 
 ## Authors
 
-Karsten Schmidt
+- [Karsten Schmidt](https://thi.ng)
 
 If this project contributes to an academic publication, please cite it as:
 
@@ -133,4 +130,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2016 - 2022 Karsten Schmidt // Apache Software License 2.0
+&copy; 2016 - 2022 Karsten Schmidt // Apache License 2.0

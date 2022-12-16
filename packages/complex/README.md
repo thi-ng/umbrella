@@ -1,10 +1,10 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![complex](https://media.thi.ng/umbrella/banners-20220914/thing-complex.svg?d0d78e75)
+# ![@thi.ng/complex](https://media.thi.ng/umbrella/banners-20220914/thing-complex.svg?d0d78e75)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/complex.svg)](https://www.npmjs.com/package/@thi.ng/complex)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/complex.svg)
-[![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
+[![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
@@ -19,7 +19,7 @@ This project is part of the
 
 ## About
 
-Array-based complex number algebra.
+Array-based complex number algebra
 
 ## Status
 
@@ -43,11 +43,8 @@ ES module import:
 
 For Node.js REPL:
 
-```text
-# with flag only for < v16
-node --experimental-repl-await
-
-> const complex = await import("@thi.ng/complex");
+```js
+const complex = await import("@thi.ng/complex");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 1017 bytes
@@ -172,7 +169,7 @@ lllllllllllllllllllllllliiiiiiiiiiiiiiiiiiii============****++:                 
 
 ## Authors
 
-Karsten Schmidt
+- [Karsten Schmidt](https://thi.ng)
 
 If this project contributes to an academic publication, please cite it as:
 
@@ -187,4 +184,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2022 Karsten Schmidt // Apache Software License 2.0
+&copy; 2022 Karsten Schmidt // Apache License 2.0

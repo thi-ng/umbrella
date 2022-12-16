@@ -10,7 +10,7 @@
 		"type": "git",
 		"url": "https://github.com/thi-ng/umbrella.git"
 	},
-	"homepage": "https://github.com/thi-ng/umbrella/tree/master/packages/oquery#readme",
+	"homepage": "https://github.com/thi-ng/umbrella/tree/develop/packages/oquery#readme",
 	"funding": [
 		{
 			"type": "github",
@@ -21,7 +21,7 @@
 			"url": "https://patreon.com/thing_umbrella"
 		}
 	],
-	"author": "Karsten Schmidt <k+npm@thi.ng>",
+	"author": "Karsten Schmidt (https://thi.ng)",
 	"license": "Apache-2.0",
 	"scripts": {
 		"build": "yarn clean && tsc --declaration",

@@ -1,0 +1,111 @@
+{
+	"name": "@thi.ng/transclude",
+	"version": "0.0.1",
+	"description": "Extensible functional template engine for text document generation, incl. various high-level Markdown features",
+	"type": "module",
+	"module": "./index.js",
+	"typings": "./index.d.ts",
+	"sideEffects": false,
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/thi-ng/umbrella.git"
+	},
+	"homepage": "https://github.com/thi-ng/umbrella/tree/develop/packages/transclude#readme",
+	"funding": [
+		{
+			"type": "github",
+			"url": "https://github.com/sponsors/postspectacular"
+		},
+		{
+			"type": "patreon",
+			"url": "https://patreon.com/thing_umbrella"
+		}
+	],
+	"author": "Karsten Schmidt (https://thi.ng)",
+	"license": "Apache-2.0",
+	"scripts": {
+		"build": "yarn clean && tsc --declaration",
+		"clean": "rimraf '*.js' '*.d.ts' '*.map' doc tpl",
+		"doc": "typedoc --excludePrivate --excludeInternal --out doc src/index.ts",
+		"doc:ae": "mkdir -p .ae/doc .ae/temp && api-extractor run --local --verbose",
+		"doc:readme": "yarn doc:stats && tools:readme",
+		"doc:stats": "tools:module-stats",
+		"pub": "yarn npm publish --access public",
+		"test": "testament test"
+	},
+	"dependencies": {
+		"@thi.ng/api": "^8.5.1",
+		"@thi.ng/checks": "^3.3.4",
+		"@thi.ng/errors": "^2.2.5",
+		"@thi.ng/file-io": "^0.3.21",
+		"@thi.ng/logger": "^1.4.4",
+		"@thi.ng/strings": "^3.3.19",
+		"@thi.ng/transducers": "^8.3.25"
+	},
+	"devDependencies": {
+		"@microsoft/api-extractor": "^7.33.7",
+		"@thi.ng/testament": "^0.3.6",
+		"rimraf": "^3.0.2",
+		"tools": "workspace:^",
+		"typedoc": "^0.23.22",
+		"typescript": "^4.9.4"
+	},
+	"keywords": [
+		"engine",
+		"functional",
+		"generator",
+		"json",
+		"markdown",
+		"npm",
+		"template",
+		"text",
+		"typescript"
+	],
+	"publishConfig": {
+		"access": "public"
+	},
+	"browser": {
+		"process": false,
+		"setTimeout": false
+	},
+	"engines": {
+		"node": ">=14"
+	},
+	"files": [
+		"./*.js",
+		"./*.d.ts",
+		"tpl"
+	],
+	"exports": {
+		".": {
+			"default": "./index.js"
+		},
+		"./api": {
+			"default": "./api.js"
+		},
+		"./tpl/file": {
+			"default": "./tpl/file.js"
+		},
+		"./tpl/markdown": {
+			"default": "./tpl/markdown.js"
+		},
+		"./tpl/pkg": {
+			"default": "./tpl/pkg.js"
+		},
+		"./tpl/whitespace": {
+			"default": "./tpl/whitespace.js"
+		},
+		"./transclude": {
+			"default": "./transclude.js"
+		}
+	},
+	"thi.ng": {
+		"related": [
+			"hiccup-markdown",
+			"markdown-table",
+			"tangle"
+		],
+		"status": "alpha",
+		"year": 2022
+	}
+}

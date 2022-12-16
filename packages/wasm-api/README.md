@@ -1,10 +1,10 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![wasm-api](https://media.thi.ng/umbrella/banners-20220914/thing-wasm-api.svg?be328da7)
+# ![@thi.ng/wasm-api](https://media.thi.ng/umbrella/banners-20220914/thing-wasm-api.svg?be328da7)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/wasm-api.svg)](https://www.npmjs.com/package/@thi.ng/wasm-api)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/wasm-api.svg)
-[![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
+[![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
@@ -31,7 +31,7 @@ This project is part of the
 
 ## About
 
-Generic, modular, extensible API bridge and infrastructure for hybrid JS & WebAssembly projects.
+Generic, modular, extensible API bridge and infrastructure for hybrid JS & WebAssembly projects
 
 This package provides the following:
 
@@ -374,11 +374,8 @@ ES module import:
 
 For Node.js REPL:
 
-```text
-# with flag only for < v16
-node --experimental-repl-await
-
-> const wasmApi = await import("@thi.ng/wasm-api");
+```js
+const wasmApi = await import("@thi.ng/wasm-api");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 2.47 KB
@@ -521,7 +518,7 @@ emcc -Os -Inode_modules/@thi.ng/wasm-api/include \
 
 ## Authors
 
-Karsten Schmidt
+- [Karsten Schmidt](https://thi.ng)
 
 If this project contributes to an academic publication, please cite it as:
 
@@ -536,4 +533,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2022 Karsten Schmidt // Apache Software License 2.0
+&copy; 2022 Karsten Schmidt // Apache License 2.0

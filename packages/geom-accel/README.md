@@ -1,10 +1,10 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![geom-accel](https://media.thi.ng/umbrella/banners-20220914/thing-geom-accel.svg?34deae23)
+# ![@thi.ng/geom-accel](https://media.thi.ng/umbrella/banners-20220914/thing-geom-accel.svg?34deae23)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/geom-accel.svg)](https://www.npmjs.com/package/@thi.ng/geom-accel)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/geom-accel.svg)
-[![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
+[![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
@@ -20,7 +20,7 @@ This project is part of the
 
 ## About
 
-n-D spatial indexing data structures with a shared ES6 Map/Set-like API.
+n-D spatial indexing data structures with a shared ES6 Map/Set-like API
 
 Some implementations were ported from the Clojure version of
 [thi.ng/geom](http://thi.ng/geom).
@@ -56,11 +56,8 @@ ES module import:
 
 For Node.js REPL:
 
-```text
-# with flag only for < v16
-node --experimental-repl-await
-
-> const geomAccel = await import("@thi.ng/geom-accel");
+```js
+const geomAccel = await import("@thi.ng/geom-accel");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 3.68 KB
@@ -102,7 +99,7 @@ TODO
 
 ## Authors
 
-Karsten Schmidt
+- [Karsten Schmidt](https://thi.ng)
 
 If this project contributes to an academic publication, please cite it as:
 
@@ -117,4 +114,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2013 - 2022 Karsten Schmidt // Apache Software License 2.0
+&copy; 2013 - 2022 Karsten Schmidt // Apache License 2.0

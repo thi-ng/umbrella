@@ -1,10 +1,10 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![dcons](https://media.thi.ng/umbrella/banners-20220914/thing-dcons.svg?657d4371)
+# ![@thi.ng/dcons](https://media.thi.ng/umbrella/banners-20220914/thing-dcons.svg?657d4371)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/dcons.svg)](https://www.npmjs.com/package/@thi.ng/dcons)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/dcons.svg)
-[![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
+[![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
@@ -25,7 +25,7 @@ This project is part of the
 
 ## About
 
-Double-linked lists with comprehensive set of operations (incl. optional self-organizing behaviors).
+Double-linked lists with comprehensive set of operations (incl. optional self-organizing behaviors)
 
 - ES6 iterator support
 - Stack & queue API (front and/or back)
@@ -87,11 +87,8 @@ ES module import:
 
 For Node.js REPL:
 
-```text
-# with flag only for < v16
-node --experimental-repl-await
-
-> const dcons = await import("@thi.ng/dcons");
+```js
+const dcons = await import("@thi.ng/dcons");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 2.40 KB
@@ -163,7 +160,7 @@ TODO
 
 ## Authors
 
-Karsten Schmidt
+- [Karsten Schmidt](https://thi.ng)
 
 If this project contributes to an academic publication, please cite it as:
 
@@ -178,4 +175,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2017 - 2022 Karsten Schmidt // Apache Software License 2.0
+&copy; 2017 - 2022 Karsten Schmidt // Apache License 2.0

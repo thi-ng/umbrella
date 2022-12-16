@@ -1,10 +1,10 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![csv](https://media.thi.ng/umbrella/banners-20220914/thing-csv.svg?4f8977d0)
+# ![@thi.ng/csv](https://media.thi.ng/umbrella/banners-20220914/thing-csv.svg?4f8977d0)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/csv.svg)](https://www.npmjs.com/package/@thi.ng/csv)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/csv.svg)
-[![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
+[![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
@@ -21,7 +21,7 @@ This project is part of the
 
 ## About
 
-Customizable, transducer-based CSV parser/object mapper and transformer.
+Customizable, transducer-based CSV parser/object mapper and transformer
 
 Partially ported and extended from the Clojure versions of the
 [ws-ldn-1](https://github.com/thi-ng/ws-ldn-1/blob/master/src/ws_ldn_1/day1/csv.clj)
@@ -71,11 +71,8 @@ ES module import:
 
 For Node.js REPL:
 
-```text
-# with flag only for < v16
-node --experimental-repl-await
-
-> const csv = await import("@thi.ng/csv");
+```js
+const csv = await import("@thi.ng/csv");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 1.52 KB
@@ -124,7 +121,7 @@ import { parseCSV, upper, float } from "@thi.ng/csv";
 
 ## Authors
 
-Karsten Schmidt
+- [Karsten Schmidt](https://thi.ng)
 
 If this project contributes to an academic publication, please cite it as:
 
@@ -139,4 +136,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2014 - 2022 Karsten Schmidt // Apache Software License 2.0
+&copy; 2014 - 2022 Karsten Schmidt // Apache License 2.0

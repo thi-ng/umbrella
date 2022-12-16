@@ -1,10 +1,10 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![imgui](https://media.thi.ng/umbrella/banners-20220914/thing-imgui.svg?aeebda62)
+# ![@thi.ng/imgui](https://media.thi.ng/umbrella/banners-20220914/thing-imgui.svg?aeebda62)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/imgui.svg)](https://www.npmjs.com/package/@thi.ng/imgui)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/imgui.svg)
-[![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
+[![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
@@ -27,7 +27,7 @@ This project is part of the
 
 ## About
 
-Immediate mode GUI with flexible state handling & data only shape output.
+Immediate mode GUI with flexible state handling & data only shape output
 
 ![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/imgui/imgui-all.png)
 
@@ -248,11 +248,8 @@ ES module import:
 
 For Node.js REPL:
 
-```text
-# with flag only for < v16
-node --experimental-repl-await
-
-> const imgui = await import("@thi.ng/imgui");
+```js
+const imgui = await import("@thi.ng/imgui");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 6.48 KB
@@ -292,7 +289,7 @@ TODO
 
 ## Authors
 
-Karsten Schmidt
+- [Karsten Schmidt](https://thi.ng)
 
 If this project contributes to an academic publication, please cite it as:
 
@@ -307,4 +304,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2019 - 2022 Karsten Schmidt // Apache Software License 2.0
+&copy; 2019 - 2022 Karsten Schmidt // Apache License 2.0

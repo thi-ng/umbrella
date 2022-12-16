@@ -1,17 +1,10 @@
-# ${pkg.banner}
+<!-- include ../../assets/tpl/header.md -->
 
-[![npm version](https://img.shields.io/npm/v/${pkg.name}.svg)](https://www.npmjs.com/package/${pkg.name})
-![npm downloads](https://img.shields.io/npm/dm/${pkg.name}.svg)
-[![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
-
-This project is part of the
-[@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
-
-<!-- TOC -->
+<!-- toc -->
 
 ## About
 
-${pkg.description}
+{{pkg.description}}
 
 This still package provides several data structures for managing &
 working with memory mapped vectors. Together with
@@ -23,34 +16,34 @@ region of a WebGL or WASM memory buffer.
 
 <sup>*</sup> The only copying taking place is to GPU memory
 
-${status}
+{{meta.status}}
 
 This package might be merged with and/or superseded by
 [@thi.ng/ecs](https://github.com/thi-ng/umbrella/tree/develop/packages/ecs)
 /
 [@thi.ng/soa](https://github.com/thi-ng/umbrella/tree/develop/packages/soa).
 
-${supportPackages}
+{{repo.supportPackages}}
 
-${relatedPackages}
+{{repo.relatedPackages}}
 
-${blogPosts}
+{{meta.blogPosts}}
 
 ## Installation
 
-${pkg.install}
+{{pkg.install}}
 
-${pkg.size}
+{{pkg.size}}
 
 ## Dependencies
 
-${pkg.deps}
+{{pkg.deps}}
 
-${examples}
+{{repo.examples}}
 
 ## API
 
-${docLink}
+{{pkg.docs}}
 
 ### WebGL geometry definition / manipulation
 
@@ -223,12 +216,4 @@ const geo = new vp.AttribPool(
 //   Float32Array [ -5, 5, 0 ] ]
 ```
 
-## Authors
-
-${authors}
-
-${pkg.cite}
-
-## License
-
-&copy; ${copyright} // ${license}
+<!-- include ../../assets/tpl/footer.md -->

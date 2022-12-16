@@ -1,10 +1,10 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![wasm-api-schedule](https://media.thi.ng/umbrella/banners-20220914/thing-wasm-api-schedule.svg?9ad94e26)
+# ![@thi.ng/wasm-api-schedule](https://media.thi.ng/umbrella/banners-20220914/thing-wasm-api-schedule.svg?9ad94e26)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/wasm-api-schedule.svg)](https://www.npmjs.com/package/@thi.ng/wasm-api-schedule)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/wasm-api-schedule.svg)
-[![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
+[![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
@@ -20,7 +20,7 @@ This project is part of the
 
 ## About
 
-Delayed & scheduled function execution (via setTimeout() etc.) for hybrid WASM apps. This is a support package for [@thi.ng/wasm-api](https://github.com/thi-ng/umbrella/tree/develop/packages/wasm-api).
+Delayed & scheduled function execution (via setTimeout() etc.) for hybrid WASM apps
 
 The package provides a WASM bridge API and abstraction for scheduling function
 calls via:
@@ -95,11 +95,8 @@ ES module import:
 
 For Node.js REPL:
 
-```text
-# with flag only for < v16
-node --experimental-repl-await
-
-> const wasmApiSchedule = await import("@thi.ng/wasm-api-schedule");
+```js
+const wasmApiSchedule = await import("@thi.ng/wasm-api-schedule");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 400 bytes
@@ -130,7 +127,7 @@ TODO
 
 ## Authors
 
-Karsten Schmidt
+- [Karsten Schmidt](https://thi.ng)
 
 If this project contributes to an academic publication, please cite it as:
 
@@ -145,4 +142,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2022 Karsten Schmidt // Apache Software License 2.0
+&copy; 2022 Karsten Schmidt // Apache License 2.0

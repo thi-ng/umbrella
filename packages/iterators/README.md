@@ -1,10 +1,10 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![iterators](https://media.thi.ng/umbrella/banners-20220914/thing-iterators.svg?0c3536b7)
+# ![@thi.ng/iterators](https://media.thi.ng/umbrella/banners-20220914/thing-iterators.svg?0c3536b7)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/iterators.svg)](https://www.npmjs.com/package/@thi.ng/iterators)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/iterators.svg)
-[![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
+[![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
@@ -72,7 +72,7 @@ This project is part of the
 
 ## About
 
-Clojure inspired, composable ES6 iterators & generators.
+Clojure inspired, composable ES6 iterators & generators
 
 Most of the provided functionality here is also available in the form of
 more composable & efficient transducers via
@@ -80,7 +80,7 @@ more composable & efficient transducers via
 
 ## Status
 
-**DEPRECATED** - no further development planned
+**DEPRECATED** - superseded by other package(s)
 
 [Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Biterators%5D+in%3Atitle)
 
@@ -104,11 +104,8 @@ ES module import:
 
 For Node.js REPL:
 
-```text
-# with flag only for < v16
-node --experimental-repl-await
-
-> const iterators = await import("@thi.ng/iterators");
+```js
+const iterators = await import("@thi.ng/iterators");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 2.38 KB
@@ -1172,7 +1169,7 @@ ti.zip(ti.map((x)=> x.id, langs), langs)
 
 ## Authors
 
-Karsten Schmidt
+- [Karsten Schmidt](https://thi.ng)
 
 If this project contributes to an academic publication, please cite it as:
 
@@ -1187,4 +1184,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2017 - 2022 Karsten Schmidt // Apache Software License 2.0
+&copy; 2017 - 2022 Karsten Schmidt // Apache License 2.0

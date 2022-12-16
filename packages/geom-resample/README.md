@@ -1,10 +1,10 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![geom-resample](https://media.thi.ng/umbrella/banners-20220914/thing-geom-resample.svg?b216a728)
+# ![@thi.ng/geom-resample](https://media.thi.ng/umbrella/banners-20220914/thing-geom-resample.svg?b216a728)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/geom-resample.svg)](https://www.npmjs.com/package/@thi.ng/geom-resample)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/geom-resample.svg)
-[![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
+[![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
@@ -20,7 +20,7 @@ This project is part of the
 
 ## About
 
-Customizable nD polyline interpolation, re-sampling, splitting & nearest point computation. This is a support package for [@thi.ng/geom](https://github.com/thi-ng/umbrella/tree/develop/packages/geom).
+Customizable nD polyline interpolation, re-sampling, splitting & nearest point computation
 
 Also includes an implementation of [Douglas-Peucker polyline / polygon
 simplification](https://en.wikipedia.org/wiki/Ramer%E2%80%93Douglas%E2%80%93Peucker_algorithm).
@@ -51,11 +51,8 @@ ES module import:
 
 For Node.js REPL:
 
-```text
-# with flag only for < v16
-node --experimental-repl-await
-
-> const geomResample = await import("@thi.ng/geom-resample");
+```js
+const geomResample = await import("@thi.ng/geom-resample");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 1.22 KB
@@ -104,7 +101,7 @@ simplify(pts, 0, true)
 
 ## Authors
 
-Karsten Schmidt
+- [Karsten Schmidt](https://thi.ng)
 
 If this project contributes to an academic publication, please cite it as:
 
@@ -119,4 +116,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2013 - 2022 Karsten Schmidt // Apache Software License 2.0
+&copy; 2013 - 2022 Karsten Schmidt // Apache License 2.0

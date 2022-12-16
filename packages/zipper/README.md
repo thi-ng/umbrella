@@ -1,10 +1,10 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![zipper](https://media.thi.ng/umbrella/banners-20220914/thing-zipper.svg?5836a2eb)
+# ![@thi.ng/zipper](https://media.thi.ng/umbrella/banners-20220914/thing-zipper.svg?5836a2eb)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/zipper.svg)](https://www.npmjs.com/package/@thi.ng/zipper)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/zipper.svg)
-[![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
+[![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
@@ -22,7 +22,7 @@ This project is part of the
 
 ## About
 
-Functional tree editing, manipulation & navigation.
+Functional tree editing, manipulation & navigation
 
 Immutable, semi-functional, structural tree editing, manipulation &
 navigation, based on my fork and optimizations to
@@ -64,11 +64,8 @@ ES module import:
 
 For Node.js REPL:
 
-```text
-# with flag only for < v16
-node --experimental-repl-await
-
-> const zipper = await import("@thi.ng/zipper");
+```js
+const zipper = await import("@thi.ng/zipper");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 943 bytes
@@ -155,7 +152,7 @@ total: 4616ms, mean: 0.4616ms, runs: 10000
 
 ## Authors
 
-Karsten Schmidt
+- [Karsten Schmidt](https://thi.ng)
 
 If this project contributes to an academic publication, please cite it as:
 
@@ -170,4 +167,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2015 - 2022 Karsten Schmidt // Apache Software License 2.0
+&copy; 2015 - 2022 Karsten Schmidt // Apache License 2.0

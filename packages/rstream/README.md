@@ -1,10 +1,10 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![rstream](https://media.thi.ng/umbrella/banners-20220914/thing-rstream.svg?86471843)
+# ![@thi.ng/rstream](https://media.thi.ng/umbrella/banners-20220914/thing-rstream.svg?86471843)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/rstream.svg)](https://www.npmjs.com/package/@thi.ng/rstream)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/rstream.svg)
-[![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
+[![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
@@ -41,13 +41,11 @@ This project is part of the
   - [Other subscription ops](#other-subscription-ops)
   - [Error handling](#error-handling)
 - [Authors](#authors)
-  - [Maintainer](#maintainer)
-  - [Contributors](#contributors)
 - [License](#license)
 
 ## About
 
-Reactive streams & subscription primitives for constructing dataflow graphs / pipelines.
+Reactive streams & subscription primitives for constructing dataflow graphs / pipelines
 
 This library provides & uses three key building blocks for reactive
 programming:
@@ -194,11 +192,8 @@ ES module import:
 
 For Node.js REPL:
 
-```text
-# with flag only for < v16
-node --experimental-repl-await
-
-> const rstream = await import("@thi.ng/rstream");
+```js
+const rstream = await import("@thi.ng/rstream");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 5.60 KB
@@ -878,14 +873,9 @@ src.next(2)
 
 ## Authors
 
-### Maintainer
-
-- Karsten Schmidt ([@postspectacular](https://github.com/postspectacular))
-
-### Contributors
-
-- André Wachter ([@andrew8er](https://github.com/andrew8er))
-- Gavin Cannizzaro ([@gavinpc-mindgrub](https://github.com/gavinpc-mindgrub))
+- [Karsten Schmidt](https://thi.ng) (Main author)
+- [André Wachter](https://github.com/andrew8er)
+- [Gavin Cannizzaro](https://github.com/gavinpc-mindgrub)
 
 If this project contributes to an academic publication, please cite it as:
 
@@ -900,4 +890,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2017 - 2022 Karsten Schmidt // Apache Software License 2.0
+&copy; 2017 - 2022 Karsten Schmidt // Apache License 2.0

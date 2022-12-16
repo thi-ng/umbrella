@@ -1,10 +1,10 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![markdown-table](https://media.thi.ng/umbrella/banners-20220914/thing-markdown-table.svg?c79f56c1)
+# ![@thi.ng/markdown-table](https://media.thi.ng/umbrella/banners-20220914/thing-markdown-table.svg?c79f56c1)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/markdown-table.svg)](https://www.npmjs.com/package/@thi.ng/markdown-table)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/markdown-table.svg)
-[![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
+[![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
@@ -20,7 +20,7 @@ This project is part of the
 
 ## About
 
-Markdown table formatter/generator with support for column alignments.
+Markdown table formatter/generator with support for column alignments
 
 See related packages below for alternative solutions / approaches...
 
@@ -51,11 +51,8 @@ ES module import:
 
 For Node.js REPL:
 
-```text
-# with flag only for < v16
-node --experimental-repl-await
-
-> const markdownTable = await import("@thi.ng/markdown-table");
+```js
+const markdownTable = await import("@thi.ng/markdown-table");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 619 bytes
@@ -124,7 +121,7 @@ Result as Markdown:
 
 ## Authors
 
-Karsten Schmidt
+- [Karsten Schmidt](https://thi.ng)
 
 If this project contributes to an academic publication, please cite it as:
 
@@ -139,4 +136,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2021 - 2022 Karsten Schmidt // Apache Software License 2.0
+&copy; 2021 - 2022 Karsten Schmidt // Apache License 2.0

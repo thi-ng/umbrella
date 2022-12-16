@@ -21,7 +21,11 @@
 			"url": "https://patreon.com/thing_umbrella"
 		}
 	],
-	"author": "Karsten Schmidt <k+npm@thi.ng>",
+	"author": "Karsten Schmidt (https://thi.ng)",
+	"contributors": [
+		"Gavin Cannizzaro (https://github.com/gavinpc-mindgrub)",
+		"Jay Zawrotny (https://github.com/eccentric-j)"
+	],
 	"license": "Apache-2.0",
 	"scripts": {
 		"build": "yarn clean && tsc --declaration",

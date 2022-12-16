@@ -1,10 +1,10 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![errors](https://media.thi.ng/umbrella/banners-20220914/thing-errors.svg?e0537a6e)
+# ![@thi.ng/errors](https://media.thi.ng/umbrella/banners-20220914/thing-errors.svg?e0537a6e)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/errors.svg)](https://www.npmjs.com/package/@thi.ng/errors)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/errors.svg)
-[![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
+[![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
@@ -20,7 +20,7 @@ This project is part of the
 
 ## About
 
-Custom error types and error factory functions.
+Custom error types and error factory functions
 
 This package defines the following error types & helper functions to throw them:
 
@@ -56,11 +56,8 @@ ES module import:
 
 For Node.js REPL:
 
-```text
-# with flag only for < v16
-node --experimental-repl-await
-
-> const errors = await import("@thi.ng/errors");
+```js
+const errors = await import("@thi.ng/errors");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 502 bytes
@@ -114,7 +111,7 @@ i.e. if `process.env.NODE_ENV === "production"`.
 
 ## Authors
 
-Karsten Schmidt
+- [Karsten Schmidt](https://thi.ng)
 
 If this project contributes to an academic publication, please cite it as:
 
@@ -129,4 +126,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2018 - 2022 Karsten Schmidt // Apache Software License 2.0
+&copy; 2018 - 2022 Karsten Schmidt // Apache License 2.0

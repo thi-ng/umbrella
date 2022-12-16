@@ -1,10 +1,10 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![webgl](https://media.thi.ng/umbrella/banners-20220914/thing-webgl.svg?f7d7962f)
+# ![@thi.ng/webgl](https://media.thi.ng/umbrella/banners-20220914/thing-webgl.svg?f7d7962f)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/webgl.svg)](https://www.npmjs.com/package/@thi.ng/webgl)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/webgl.svg)
-[![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
+[![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
@@ -19,13 +19,11 @@ This project is part of the
 - [Usage examples](#usage-examples)
 - [API](#api)
 - [Authors](#authors)
-  - [Maintainer](#maintainer)
-  - [Contributors](#contributors)
 - [License](#license)
 
 ## About
 
-WebGL & GLSL abstraction layer.
+WebGL & GLSL abstraction layer
 
 Largely declarative WebGL 1.0 / 2.0 abstraction layer, partially ported
 & updated from Clojure/ClojureScript versions of
@@ -93,11 +91,8 @@ ES module import:
 
 For Node.js REPL:
 
-```text
-# with flag only for < v16
-node --experimental-repl-await
-
-> const webgl = await import("@thi.ng/webgl");
+```js
+const webgl = await import("@thi.ng/webgl");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 11.23 KB
@@ -156,12 +151,7 @@ TODO
 
 ## Authors
 
-### Maintainer
-
-- Karsten Schmidt ([@postspectacular](https://github.com/postspectacular))
-
-### Contributors
-
+- [Karsten Schmidt](https://thi.ng) (Main author)
 - [@nkint](https://github.com/nkint)
 - [@stwind](https://github.com/stwind)
 
@@ -178,4 +168,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2014 - 2022 Karsten Schmidt // Apache Software License 2.0
+&copy; 2014 - 2022 Karsten Schmidt // Apache License 2.0

@@ -1,10 +1,10 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![rasterize](https://media.thi.ng/umbrella/banners-20220914/thing-rasterize.svg?75411efe)
+# ![@thi.ng/rasterize](https://media.thi.ng/umbrella/banners-20220914/thing-rasterize.svg?75411efe)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/rasterize.svg)](https://www.npmjs.com/package/@thi.ng/rasterize)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/rasterize.svg)
-[![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
+[![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
@@ -27,7 +27,7 @@ This project is part of the
 
 ## About
 
-2D shape drawing & rasterization.
+2D shape drawing & rasterization
 
 The functions in this package can be used with any
 [`IGrid2D`](https://docs.thi.ng/umbrella/api/interfaces/IGrid2D.html) compatible
@@ -147,11 +147,8 @@ ES module import:
 
 For Node.js REPL:
 
-```text
-# with flag only for < v16
-node --experimental-repl-await
-
-> const rasterize = await import("@thi.ng/rasterize");
+```js
+const rasterize = await import("@thi.ng/rasterize");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 1.47 KB
@@ -186,7 +183,7 @@ TODO
 
 ## Authors
 
-Karsten Schmidt
+- [Karsten Schmidt](https://thi.ng)
 
 If this project contributes to an academic publication, please cite it as:
 
@@ -201,4 +198,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2021 - 2022 Karsten Schmidt // Apache Software License 2.0
+&copy; 2021 - 2022 Karsten Schmidt // Apache License 2.0

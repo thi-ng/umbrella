@@ -1,10 +1,10 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![interceptors](https://media.thi.ng/umbrella/banners-20220914/thing-interceptors.svg?d9ee265e)
+# ![@thi.ng/interceptors](https://media.thi.ng/umbrella/banners-20220914/thing-interceptors.svg?d9ee265e)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/interceptors.svg)](https://www.npmjs.com/package/@thi.ng/interceptors)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/interceptors.svg)
-[![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
+[![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
@@ -27,13 +27,11 @@ instead...**
 - [Usage examples](#usage-examples)
 - [API](#api)
 - [Authors](#authors)
-  - [Maintainer](#maintainer)
-  - [Contributors](#contributors)
 - [License](#license)
 
 ## About
 
-Interceptor based event bus, side effect & immutable state handling.
+Interceptor based event bus, side effect & immutable state handling
 
 ## Event bus, interceptors, side effects
 
@@ -148,11 +146,8 @@ ES module import:
 
 For Node.js REPL:
 
-```text
-# with flag only for < v16
-node --experimental-repl-await
-
-> const interceptors = await import("@thi.ng/interceptors");
+```js
+const interceptors = await import("@thi.ng/interceptors");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 2.04 KB
@@ -193,13 +188,8 @@ TODO
 
 ## Authors
 
-### Maintainer
-
-- Karsten Schmidt ([@postspectacular](https://github.com/postspectacular))
-
-### Contributors
-
-- Logan Powell ([@loganpowell](https://github.com/loganpowell))
+- [Karsten Schmidt](https://thi.ng) (Main author)
+- [Logan Powell](https://github.com/loganpowell)
 
 If this project contributes to an academic publication, please cite it as:
 
@@ -214,4 +204,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2016 - 2022 Karsten Schmidt // Apache Software License 2.0
+&copy; 2016 - 2022 Karsten Schmidt // Apache License 2.0

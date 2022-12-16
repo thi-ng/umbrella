@@ -1,10 +1,10 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![dual-algebra](https://media.thi.ng/umbrella/banners-20220914/thing-dual-algebra.svg?76c17874)
+# ![@thi.ng/dual-algebra](https://media.thi.ng/umbrella/banners-20220914/thing-dual-algebra.svg?76c17874)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/dual-algebra.svg)](https://www.npmjs.com/package/@thi.ng/dual-algebra)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/dual-algebra.svg)
-[![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
+[![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
@@ -21,7 +21,7 @@ This project is part of the
 
 ## About
 
-Multivariate dual number algebra, automatic differentiation.
+Multivariate dual number algebra, automatic differentiation
 
 - [Wikipedia: Dual numbers](https://en.wikipedia.org/wiki/Dual_number)
 - [Wikipedia: Automatic_differentiation](https://en.wikipedia.org/wiki/Automatic_differentiation#Automatic_differentiation_using_dual_numbers)
@@ -133,11 +133,8 @@ ES module import:
 
 For Node.js REPL:
 
-```text
-# with flag only for < v16
-node --experimental-repl-await
-
-> const dualAlgebra = await import("@thi.ng/dual-algebra");
+```js
+const dualAlgebra = await import("@thi.ng/dual-algebra");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 990 bytes
@@ -222,7 +219,7 @@ f2(2) // [1, 8]
 
 ## Authors
 
-Karsten Schmidt
+- [Karsten Schmidt](https://thi.ng)
 
 If this project contributes to an academic publication, please cite it as:
 
@@ -237,4 +234,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2020 - 2022 Karsten Schmidt // Apache Software License 2.0
+&copy; 2020 - 2022 Karsten Schmidt // Apache License 2.0

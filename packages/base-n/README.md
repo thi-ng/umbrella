@@ -1,10 +1,10 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![base-n](https://media.thi.ng/umbrella/banners-20220914/thing-base-n.svg?ff456543)
+# ![@thi.ng/base-n](https://media.thi.ng/umbrella/banners-20220914/thing-base-n.svg?ff456543)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/base-n.svg)](https://www.npmjs.com/package/@thi.ng/base-n)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/base-n.svg)
-[![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
+[![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
@@ -19,7 +19,7 @@ This project is part of the
 
 ## About
 
-Arbitrary base-n conversions w/ presets for base16/32/36/58/62/64/85, support for arrays & bigints.
+Arbitrary base-n conversions w/ presets for base16/32/36/58/62/64/85, support for arrays & bigints
 
 ## Status
 
@@ -43,11 +43,8 @@ ES module import:
 
 For Node.js REPL:
 
-```text
-# with flag only for < v16
-node --experimental-repl-await
-
-> const baseN = await import("@thi.ng/base-n");
+```js
+const baseN = await import("@thi.ng/base-n");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 846 bytes
@@ -81,7 +78,7 @@ ternary.decode("212020020002100");
 
 ## Authors
 
-Karsten Schmidt
+- [Karsten Schmidt](https://thi.ng)
 
 If this project contributes to an academic publication, please cite it as:
 
@@ -96,4 +93,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2017 - 2022 Karsten Schmidt // Apache Software License 2.0
+&copy; 2017 - 2022 Karsten Schmidt // Apache License 2.0

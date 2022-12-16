@@ -1,10 +1,10 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![bitstream](https://media.thi.ng/umbrella/banners-20220914/thing-bitstream.svg?83eee6da)
+# ![@thi.ng/bitstream](https://media.thi.ng/umbrella/banners-20220914/thing-bitstream.svg?83eee6da)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/bitstream.svg)](https://www.npmjs.com/package/@thi.ng/bitstream)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/bitstream.svg)
-[![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
+[![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
@@ -23,7 +23,7 @@ This project is part of the
 
 ## About
 
-ES6 iterator based read/write bit streams with support for variable word widths.
+ES6 iterator based read/write bit streams with support for variable word widths
 
 ## Status
 
@@ -52,11 +52,8 @@ ES module import:
 
 For Node.js REPL:
 
-```text
-# with flag only for < v16
-node --experimental-repl-await
-
-> const bitstream = await import("@thi.ng/bitstream");
+```js
+const bitstream = await import("@thi.ng/bitstream");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 1.21 KB
@@ -197,7 +194,7 @@ reader(5);
 
 ## Authors
 
-Karsten Schmidt
+- [Karsten Schmidt](https://thi.ng)
 
 If this project contributes to an academic publication, please cite it as:
 
@@ -212,4 +209,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2016 - 2022 Karsten Schmidt // Apache Software License 2.0
+&copy; 2016 - 2022 Karsten Schmidt // Apache License 2.0

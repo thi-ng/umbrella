@@ -1,10 +1,10 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![pixel-dither](https://media.thi.ng/umbrella/banners-20220914/thing-pixel-dither.svg?2cbd8ab2)
+# ![@thi.ng/pixel-dither](https://media.thi.ng/umbrella/banners-20220914/thing-pixel-dither.svg?2cbd8ab2)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/pixel-dither.svg)](https://www.npmjs.com/package/@thi.ng/pixel-dither)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/pixel-dither.svg)
-[![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
+[![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
@@ -23,7 +23,7 @@ This project is part of the
 
 ![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/pixel-dither.jpg)
 
-Extensible image dithering w/ various algorithm presets. This is a support package for [@thi.ng/pixel](https://github.com/thi-ng/umbrella/tree/develop/packages/pixel).
+Extensible image dithering w/ various algorithm presets
 
 The package provides the following dithering algorithm presets (can also be
 very easily extended via definition of custom kernels):
@@ -60,11 +60,8 @@ ES module import:
 
 For Node.js REPL:
 
-```text
-# with flag only for < v16
-node --experimental-repl-await
-
-> const pixelDither = await import("@thi.ng/pixel-dither");
+```js
+const pixelDither = await import("@thi.ng/pixel-dither");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 1.06 KB
@@ -149,7 +146,7 @@ demo](https://demo.thi.ng/umbrella/pixel-dither/).
 
 ## Authors
 
-Karsten Schmidt
+- [Karsten Schmidt](https://thi.ng)
 
 If this project contributes to an academic publication, please cite it as:
 
@@ -164,4 +161,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2021 - 2022 Karsten Schmidt // Apache Software License 2.0
+&copy; 2021 - 2022 Karsten Schmidt // Apache License 2.0

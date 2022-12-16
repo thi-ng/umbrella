@@ -1,10 +1,10 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![system](https://media.thi.ng/umbrella/banners-20220914/thing-system.svg?9d062154)
+# ![@thi.ng/system](https://media.thi.ng/umbrella/banners-20220914/thing-system.svg?9d062154)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/system.svg)](https://www.npmjs.com/package/@thi.ng/system)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/system.svg)
-[![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
+[![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
@@ -17,13 +17,11 @@ This project is part of the
   - [Example system](#example-system)
   - [System visualization](#system-visualization)
 - [Authors](#authors)
-  - [Maintainer](#maintainer)
-  - [Contributors](#contributors)
 - [License](#license)
 
 ## About
 
-Minimal and explicit dependency-injection & lifecycle container for stateful app components.
+Minimal and explicit dependency-injection & lifecycle container for stateful app components
 
 Inspired by Stuart Sierra's
 [component](https://github.com/stuartsierra/component) framework for
@@ -51,11 +49,8 @@ ES module import:
 
 For Node.js REPL:
 
-```text
-# with flag only for < v16
-node --experimental-repl-await
-
-> const system = await import("@thi.ng/system");
+```js
+const system = await import("@thi.ng/system");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 387 bytes
@@ -91,7 +86,7 @@ interface FooSys {
 // `ILifecycle` interface...
 
 class Logger implements ILifecycle {
-    
+
     info(msg: string) {
         console.log(`[info] ${msg}`);
     }
@@ -100,7 +95,7 @@ class Logger implements ILifecycle {
         this.info("start logger");
         return true;
     }
-    
+
     async stop() {
         this.info("stop logger");
         return true;
@@ -110,7 +105,7 @@ class Logger implements ILifecycle {
 // DB requires a logger & cache
 
 class DB implements ILifecycle {
-    
+
     constructor(protected logger: Logger, protected cache: Cache) {}
 
     async start() {
@@ -132,7 +127,7 @@ class Cache implements ILifecycle {
         this.logger.info("start cache");
         return true;
     }
-    
+
     async stop() {
         this.logger.info("stop cache");
         return true;
@@ -224,13 +219,8 @@ Resulting visualization:
 
 ## Authors
 
-### Maintainer
-
-- Karsten Schmidt ([@postspectacular](https://github.com/postspectacular))
-
-### Contributors
-
-- Kevin Nolan ([@allforabit](https://github.com/allforabit))
+- [Karsten Schmidt](https://thi.ng) (Main author)
+- [Kevin Nolan](https://github.com/allforabit)
 
 If this project contributes to an academic publication, please cite it as:
 
@@ -245,4 +235,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2020 - 2022 Karsten Schmidt // Apache Software License 2.0
+&copy; 2020 - 2022 Karsten Schmidt // Apache License 2.0

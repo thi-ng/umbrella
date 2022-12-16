@@ -1,10 +1,10 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![rstream-gestures](https://media.thi.ng/umbrella/banners-20220914/thing-rstream-gestures.svg?cb215875)
+# ![@thi.ng/rstream-gestures](https://media.thi.ng/umbrella/banners-20220914/thing-rstream-gestures.svg?cb215875)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/rstream-gestures.svg)](https://www.npmjs.com/package/@thi.ng/rstream-gestures)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/rstream-gestures.svg)
-[![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
+[![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
@@ -22,13 +22,11 @@ This project is part of the
   - [GestureStreamOpts](#gesturestreamopts)
   - [Basic usage](#basic-usage)
 - [Authors](#authors)
-  - [Maintainer](#maintainer)
-  - [Contributors](#contributors)
 - [License](#license)
 
 ## About
 
-Unified mouse, mouse wheel & multi-touch event stream abstraction. This is a support package for [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream).
+Unified mouse, mouse wheel & multi-touch event stream abstraction
 
 ## Status
 
@@ -62,11 +60,8 @@ ES module import:
 
 For Node.js REPL:
 
-```text
-# with flag only for < v16
-node --experimental-repl-await
-
-> const rstreamGestures = await import("@thi.ng/rstream-gestures");
+```js
+const rstreamGestures = await import("@thi.ng/rstream-gestures");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 1.07 KB
@@ -193,14 +188,9 @@ gestures.subscribe(
 
 ## Authors
 
-### Maintainer
-
-- Karsten Schmidt ([@postspectacular](https://github.com/postspectacular))
-
-### Contributors
-
-- Arthur Carabott ([@acarabott](https://github.com/acarabott))
-- Matei Adriel ([@Mateiadrielrafael](https://github.com/Mateiadrielrafael))
+- [Karsten Schmidt](https://thi.ng) (Main author)
+- [Arthur Carabott](https://github.com/acarabott)
+- [Matei Adriel](https://github.com/Mateiadrielrafael)
 
 If this project contributes to an academic publication, please cite it as:
 
@@ -215,4 +205,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2018 - 2022 Karsten Schmidt // Apache Software License 2.0
+&copy; 2018 - 2022 Karsten Schmidt // Apache License 2.0

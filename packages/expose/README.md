@@ -1,10 +1,10 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![expose](https://media.thi.ng/umbrella/banners-20220914/thing-expose.svg?b1e990a3)
+# ![@thi.ng/expose](https://media.thi.ng/umbrella/banners-20220914/thing-expose.svg?b1e990a3)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/expose.svg)](https://www.npmjs.com/package/@thi.ng/expose)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/expose.svg)
-[![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
+[![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
@@ -20,7 +20,7 @@ This project is part of the
 
 ## About
 
-Conditional global variable exposition.
+Conditional global variable exposition
 
 This package provides a single function
 [`exposeGlobal()`](https://docs.thi.ng/umbrella/expose/modules.html#exposeGlobal)
@@ -53,11 +53,8 @@ ES module import:
 
 For Node.js REPL:
 
-```text
-# with flag only for < v16
-node --experimental-repl-await
-
-> const expose = await import("@thi.ng/expose");
+```js
+const expose = await import("@thi.ng/expose");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 198 bytes
@@ -87,7 +84,7 @@ A selection:
 
 ## Authors
 
-Karsten Schmidt
+- [Karsten Schmidt](https://thi.ng)
 
 If this project contributes to an academic publication, please cite it as:
 
@@ -102,4 +99,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2016 - 2022 Karsten Schmidt // Apache Software License 2.0
+&copy; 2016 - 2022 Karsten Schmidt // Apache License 2.0

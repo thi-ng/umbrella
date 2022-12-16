@@ -1,17 +1,10 @@
-# ${pkg.banner}
+<!-- include ../../assets/tpl/header.md -->
 
-[![npm version](https://img.shields.io/npm/v/${pkg.name}.svg)](https://www.npmjs.com/package/${pkg.name})
-![npm downloads](https://img.shields.io/npm/dm/${pkg.name}.svg)
-[![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
-
-This project is part of the
-[@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
-
-<!-- TOC -->
+<!-- toc -->
 
 ## About
 
-${pkg.description}
+{{pkg.description}}
 
 Supports point & range queries and set operations with other intervals
 (union, intersection, difference).
@@ -21,7 +14,7 @@ notation](https://en.wikipedia.org/wiki/ISO_31-11#Sets) is provided. See
 [`parse()`](https://docs.thi.ng/umbrella/intervals/modules.html#parse) for
 details.
 
-${status}
+{{meta.status}}
 
 #### Breaking changes
 
@@ -30,27 +23,27 @@ OOP, with all static (and most instance) `Interval` methods converted into
 standalone functions. The only class methods remaining are to implement these
 standard interfaces: `ICompare`, `IContains`, `ICopy`, `IEquiv`.
 
-${supportPackages}
+{{repo.supportPackages}}
 
-${relatedPackages}
+{{repo.relatedPackages}}
 
-${blogPosts}
+{{meta.blogPosts}}
 
 ## Installation
 
-${pkg.install}
+{{pkg.install}}
 
-${pkg.size}
+{{pkg.size}}
 
 ## Dependencies
 
-${pkg.deps}
+{{pkg.deps}}
 
-${examples}
+{{repo.examples}}
 
 ## API
 
-${docLink}
+{{pkg.docs}}
 
 ```ts
 // [0 .. +∞] (fully closed)
@@ -140,12 +133,4 @@ clamp(interval("[0..1)"), 2, 1e-3)
 // 0.999
 ```
 
-## Authors
-
-${authors}
-
-${pkg.cite}
-
-## License
-
-&copy; ${copyright} // ${license}
+<!-- include ../../assets/tpl/footer.md -->

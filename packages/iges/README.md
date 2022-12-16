@@ -1,10 +1,10 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![iges](https://media.thi.ng/umbrella/banners-20220914/thing-iges.svg?98dfafa7)
+# ![@thi.ng/iges](https://media.thi.ng/umbrella/banners-20220914/thing-iges.svg?98dfafa7)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/iges.svg)](https://www.npmjs.com/package/@thi.ng/iges)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/iges.svg)
-[![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
+[![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
@@ -20,7 +20,7 @@ This project is part of the
 
 ## About
 
-IGES 5.3 serializer for (currently only) polygonal geometry, both open & closed.
+IGES 5.3 serializer for (currently only) polygonal geometry, both open & closed
 
 Mainly intended for exporting geometry to be used in various CAD
 applications (e.g. Rhino, Houdini, Fusion 360)
@@ -53,11 +53,8 @@ ES module import:
 
 For Node.js REPL:
 
-```text
-# with flag only for < v16
-node --experimental-repl-await
-
-> const iges = await import("@thi.ng/iges");
+```js
+const iges = await import("@thi.ng/iges");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 2.44 KB
@@ -123,7 +120,7 @@ S0000002G0000003D0000002P0000003                                        T      1
 
 ## Authors
 
-Karsten Schmidt
+- [Karsten Schmidt](https://thi.ng)
 
 If this project contributes to an academic publication, please cite it as:
 
@@ -138,4 +135,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2016 - 2022 Karsten Schmidt // Apache Software License 2.0
+&copy; 2016 - 2022 Karsten Schmidt // Apache License 2.0

@@ -1,10 +1,10 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![tangle](https://media.thi.ng/umbrella/banners-20220914/thing-tangle.svg?1436490f)
+# ![@thi.ng/tangle](https://media.thi.ng/umbrella/banners-20220914/thing-tangle.svg?1436490f)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/tangle.svg)](https://www.npmjs.com/package/@thi.ng/tangle)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/tangle.svg)
-[![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
+[![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
@@ -32,7 +32,7 @@ This project is part of the
 
 ## About
 
-Literate programming code block tangling / codegen utility, inspired by org-mode & noweb.
+Literate programming code block tangling / codegen utility, inspired by org-mode & noweb
 
 [Literate Programming](https://en.wikipedia.org/wiki/Literate_programming) (LP)
 is a form of programming focused on creating documents of interleaved prose,
@@ -317,11 +317,8 @@ ES module import:
 
 For Node.js REPL:
 
-```text
-# with flag only for < v16
-node --experimental-repl-await
-
-> const tangle = await import("@thi.ng/tangle");
+```js
+const tangle = await import("@thi.ng/tangle");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 1.84 KB
@@ -353,7 +350,7 @@ for usage examples.
 
 ## Authors
 
-Karsten Schmidt
+- [Karsten Schmidt](https://thi.ng)
 
 If this project contributes to an academic publication, please cite it as:
 
@@ -368,4 +365,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2022 Karsten Schmidt // Apache Software License 2.0
+&copy; 2022 Karsten Schmidt // Apache License 2.0

@@ -1,10 +1,10 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![adjacency](https://media.thi.ng/umbrella/banners-20220914/thing-adjacency.svg?f522aab9)
+# ![@thi.ng/adjacency](https://media.thi.ng/umbrella/banners-20220914/thing-adjacency.svg?f522aab9)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/adjacency.svg)](https://www.npmjs.com/package/@thi.ng/adjacency)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/adjacency.svg)
-[![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
+[![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
@@ -21,7 +21,7 @@ This project is part of the
 
 ## About
 
-Sparse & bitwise adjacency matrices and related functions for directed & undirected graphs.
+Sparse & bitwise adjacency matrices and related functions for directed & undirected graphs
 
 ## Status
 
@@ -49,11 +49,8 @@ ES module import:
 
 For Node.js REPL:
 
-```text
-# with flag only for < v16
-node --experimental-repl-await
-
-> const adjacency = await import("@thi.ng/adjacency");
+```js
+const adjacency = await import("@thi.ng/adjacency");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 2.28 KB
@@ -87,7 +84,7 @@ TODO
 
 ## Authors
 
-Karsten Schmidt
+- [Karsten Schmidt](https://thi.ng)
 
 If this project contributes to an academic publication, please cite it as:
 
@@ -102,4 +99,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2018 - 2022 Karsten Schmidt // Apache Software License 2.0
+&copy; 2018 - 2022 Karsten Schmidt // Apache License 2.0

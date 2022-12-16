@@ -1,10 +1,10 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![axidraw](https://media.thi.ng/umbrella/banners-20220914/thing-axidraw.svg?25c834ce)
+# ![@thi.ng/axidraw](https://media.thi.ng/umbrella/banners-20220914/thing-axidraw.svg?25c834ce)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/axidraw.svg)](https://www.npmjs.com/package/@thi.ng/axidraw)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/axidraw.svg)
-[![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
+[![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
@@ -29,7 +29,7 @@ This project is part of the
 
 ## About
 
-Minimal AxiDraw plotter/drawing machine controller for Node.js.
+Minimal AxiDraw plotter/drawing machine controller for Node.js
 
 This package provides a super-lightweight alternative to control an [AxiDraw
 plotter](https://axidraw.com/) directly from Node.js, using a small custom set
@@ -151,11 +151,8 @@ ES module import:
 
 For Node.js REPL:
 
-```text
-# with flag only for < v16
-node --experimental-repl-await
-
-> const axidraw = await import("@thi.ng/axidraw");
+```js
+const axidraw = await import("@thi.ng/axidraw");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 1.67 KB
@@ -256,7 +253,7 @@ Other selected toots/tweets:
 
 ## Authors
 
-Karsten Schmidt
+- [Karsten Schmidt](https://thi.ng)
 
 If this project contributes to an academic publication, please cite it as:
 
@@ -271,4 +268,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2022 Karsten Schmidt // Apache Software License 2.0
+&copy; 2022 Karsten Schmidt // Apache License 2.0

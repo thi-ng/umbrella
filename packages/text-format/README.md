@@ -1,10 +1,10 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![text-format](https://media.thi.ng/umbrella/banners-20220914/thing-text-format.svg?c90d9fe3)
+# ![@thi.ng/text-format](https://media.thi.ng/umbrella/banners-20220914/thing-text-format.svg?c90d9fe3)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/text-format.svg)](https://www.npmjs.com/package/@thi.ng/text-format)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/text-format.svg)
-[![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
+[![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
@@ -30,7 +30,7 @@ This project is part of the
 
 ## About
 
-Customizable color text formatting with presets for ANSI & HTML.
+Customizable color text formatting with presets for ANSI & HTML
 
 This package provides a number of color and other styling format constants, as
 well as formatting functions to interpret and apply these abstract format
@@ -202,11 +202,8 @@ ES module import:
 
 For Node.js REPL:
 
-```text
-# with flag only for < v16
-node --experimental-repl-await
-
-> const textFormat = await import("@thi.ng/text-format");
+```js
+const textFormat = await import("@thi.ng/text-format");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 1.54 KB
@@ -238,7 +235,7 @@ TODO
 
 ## Authors
 
-Karsten Schmidt
+- [Karsten Schmidt](https://thi.ng)
 
 If this project contributes to an academic publication, please cite it as:
 
@@ -253,4 +250,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2020 - 2022 Karsten Schmidt // Apache Software License 2.0
+&copy; 2020 - 2022 Karsten Schmidt // Apache License 2.0

@@ -1,17 +1,10 @@
-# ${pkg.banner}
+<!-- include ../../assets/tpl/header.md -->
 
-[![npm version](https://img.shields.io/npm/v/${pkg.name}.svg)](https://www.npmjs.com/package/${pkg.name})
-![npm downloads](https://img.shields.io/npm/dm/${pkg.name}.svg)
-[![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
-
-This project is part of the
-[@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
-
-<!-- TOC -->
+<!-- toc -->
 
 ## About
 
-${pkg.description}
+{{pkg.description}}
 
 Partially ported and extended from the Clojure versions of the
 [ws-ldn-1](https://github.com/thi-ng/ws-ldn-1/blob/master/src/ws_ldn_1/day1/csv.clj)
@@ -32,7 +25,7 @@ complex data preparation, cleaning or conversion workflows. See
 [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)
 for more details/ideas.
 
-${status}
+{{meta.status}}
 
 ### Planned features
 
@@ -41,27 +34,27 @@ ${status}
 - [ ] CSVW support (#257)
 - [ ] Integration with thi.ng/egf
 
-${supportPackages}
+{{repo.supportPackages}}
 
-${relatedPackages}
+{{repo.relatedPackages}}
 
-${blogPosts}
+{{meta.blogPosts}}
 
 ## Installation
 
-${pkg.install}
+{{pkg.install}}
 
-${pkg.size}
+{{pkg.size}}
 
 ## Dependencies
 
-${pkg.deps}
+{{pkg.deps}}
 
-${examples}
+{{repo.examples}}
 
 ## API
 
-${docLink}
+{{pkg.docs}}
 
 Also see extensive doc strings for `parseCSV()` and `CSVOpts`. See
 `parseCSVSimple()` and `parseCSVFromString()` for alternatives and syntax sugar
@@ -94,12 +87,4 @@ import { parseCSV, upper, float } from "@thi.ng/csv";
 // ]
 ```
 
-## Authors
-
-${authors}
-
-${pkg.cite}
-
-## License
-
-&copy; ${copyright} // ${license}
+<!-- include ../../assets/tpl/footer.md -->

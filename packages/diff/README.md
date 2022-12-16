@@ -1,10 +1,10 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![diff](https://media.thi.ng/umbrella/banners-20220914/thing-diff.svg?d748f0c3)
+# ![@thi.ng/diff](https://media.thi.ng/umbrella/banners-20220914/thing-diff.svg?d748f0c3)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/diff.svg)](https://www.npmjs.com/package/@thi.ng/diff)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/diff.svg)
-[![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
+[![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
@@ -19,7 +19,7 @@ This project is part of the
 
 ## About
 
-Customizable diff implementations for arrays (sequential) & objects (associative), with or without linear edit logs.
+Customizable diff implementations for arrays (sequential) & objects (associative), with or without linear edit logs
 
 ## Status
 
@@ -43,11 +43,8 @@ ES module import:
 
 For Node.js REPL:
 
-```text
-# with flag only for < v16
-node --experimental-repl-await
-
-> const diff = await import("@thi.ng/diff");
+```js
+const diff = await import("@thi.ng/diff");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 1.05 KB
@@ -77,7 +74,7 @@ diffArray([1, 2, 3], [1, 2, 4], "full");
 
 ## Authors
 
-Karsten Schmidt
+- [Karsten Schmidt](https://thi.ng)
 
 If this project contributes to an academic publication, please cite it as:
 
@@ -92,4 +89,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2016 - 2022 Karsten Schmidt // Apache Software License 2.0
+&copy; 2016 - 2022 Karsten Schmidt // Apache License 2.0

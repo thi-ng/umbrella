@@ -1,10 +1,10 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![ecs](https://media.thi.ng/umbrella/banners-20220914/thing-ecs.svg?3a60ea80)
+# ![@thi.ng/ecs](https://media.thi.ng/umbrella/banners-20220914/thing-ecs.svg?3a60ea80)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/ecs.svg)](https://www.npmjs.com/package/@thi.ng/ecs)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/ecs.svg)
-[![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
+[![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
@@ -21,7 +21,7 @@ This project is part of the
 
 ## About
 
-Entity Component System based around typed arrays & sparse sets.
+Entity Component System based around typed arrays & sparse sets
 
 - Entities are merely numeric identifiers
 - Component types:
@@ -54,11 +54,8 @@ ES module import:
 
 For Node.js REPL:
 
-```text
-# with flag only for < v16
-node --experimental-repl-await
-
-> const ecs = await import("@thi.ng/ecs");
+```js
+const ecs = await import("@thi.ng/ecs");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 2.86 KB
@@ -165,7 +162,7 @@ group.forEach((x) => console.log(x));
 
 ## Authors
 
-Karsten Schmidt
+- [Karsten Schmidt](https://thi.ng)
 
 If this project contributes to an academic publication, please cite it as:
 
@@ -180,4 +177,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2019 - 2022 Karsten Schmidt // Apache Software License 2.0
+&copy; 2019 - 2022 Karsten Schmidt // Apache License 2.0

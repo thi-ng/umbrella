@@ -1,10 +1,10 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![transducers](https://media.thi.ng/umbrella/banners-20220914/thing-transducers.svg?ac87c470)
+# ![@thi.ng/transducers](https://media.thi.ng/umbrella/banners-20220914/thing-transducers.svg?ac87c470)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/transducers.svg)](https://www.npmjs.com/package/@thi.ng/transducers)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/transducers.svg)
-[![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
+[![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
@@ -55,13 +55,11 @@ This project is part of the
   - [Generators / Iterators](#generators--iterators)
   - [Reducers](#reducers)
 - [Authors](#authors)
-  - [Maintainer](#maintainer)
-  - [Contributors](#contributors)
 - [License](#license)
 
 ## About
 
-Lightweight transducer implementations for ES6 / TypeScript.
+Lightweight transducer implementations for ES6 / TypeScript
 
 This library provides altogether ~130 transducers, reducers, sequence
 generators (ES6 generators/iterators) and additional supporting
@@ -171,11 +169,8 @@ ES module import:
 
 For Node.js REPL:
 
-```text
-# with flag only for < v16
-node --experimental-repl-await
-
-> const transducers = await import("@thi.ng/transducers");
+```js
+const transducers = await import("@thi.ng/transducers");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 8.64 KB
@@ -1006,14 +1001,9 @@ and return a reduced result (as if it would be called via `reduce()`).
 
 ## Authors
 
-### Maintainer
-
-- Karsten Schmidt ([@postspectacular](https://github.com/postspectacular))
-
-### Contributors
-
-- Alberto ([@nkint](https://github.com/nkint))
-- Gavin Cannizzaro ([@gavinpc-mindgrub](https://github.com/gavinpc-mindgrub))
+- [Karsten Schmidt](https://thi.ng) (Main author)
+- [Gavin Cannizzaro](https://github.com/gavinpc-mindgrub)
+- [@nkint](https://github.com/nkint)
 
 If this project contributes to an academic publication, please cite it as:
 
@@ -1028,4 +1018,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2016 - 2022 Karsten Schmidt // Apache Software License 2.0
+&copy; 2016 - 2022 Karsten Schmidt // Apache License 2.0

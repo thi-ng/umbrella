@@ -1,13 +1,6 @@
-# ${pkg.banner}
+<!-- include ../../assets/tpl/header.md -->
 
-[![npm version](https://img.shields.io/npm/v/${pkg.name}.svg)](https://www.npmjs.com/package/${pkg.name})
-![npm downloads](https://img.shields.io/npm/dm/${pkg.name}.svg)
-[![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
-
-This project is part of the
-[@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
-
-<!-- TOC -->
+<!-- toc -->
 
 ## About
 
@@ -41,34 +34,34 @@ feature is currently WIP).
 - Interim result de-duplication / dataflow gates
 - Push-based, auto-updating query results
 
-${status}
+{{meta.status}}
 
 This project is currently still in early development and intended as a
 continuation of the Clojure based [thi.ng/fabric](http://thi.ng/fabric),
 this time built on the streaming primitives provided by
 [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream).
 
-${supportPackages}
+{{repo.supportPackages}}
 
-${relatedPackages}
+{{repo.relatedPackages}}
 
-${blogPosts}
+{{meta.blogPosts}}
 
 ## Installation
 
-${pkg.install}
+{{pkg.install}}
 
-${pkg.size}
+{{pkg.size}}
 
 ## Dependencies
 
-${pkg.deps}
+{{pkg.deps}}
 
-${examples}
+{{repo.examples}}
 
 ## API
 
-${docLink}
+{{pkg.docs}}
 
 ```ts
 import { TripleStore, asTriples } from "@thi.ng/rstream-query";
@@ -185,12 +178,4 @@ The source code for the above example is
 
 (Many) more features forthcoming...
 
-## Authors
-
-${authors}
-
-${pkg.cite}
-
-## License
-
-&copy; ${copyright} // ${license}
+<!-- include ../../assets/tpl/footer.md -->

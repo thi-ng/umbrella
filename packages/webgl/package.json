@@ -21,7 +21,11 @@
 			"url": "https://patreon.com/thing_umbrella"
 		}
 	],
-	"author": "Karsten Schmidt <k+npm@thi.ng>",
+	"author": "Karsten Schmidt (https://thi.ng)",
+	"contributors": [
+		"@nkint (https://github.com/nkint)",
+		"@stwind (https://github.com/stwind)"
+	],
 	"license": "Apache-2.0",
 	"scripts": {
 		"build": "yarn clean && tsc --declaration",

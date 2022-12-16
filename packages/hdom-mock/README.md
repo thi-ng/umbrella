@@ -1,10 +1,10 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![hdom-mock](https://media.thi.ng/umbrella/banners-20220914/thing-hdom-mock.svg?0204c76d)
+# ![@thi.ng/hdom-mock](https://media.thi.ng/umbrella/banners-20220914/thing-hdom-mock.svg?0204c76d)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/hdom-mock.svg)](https://www.npmjs.com/package/@thi.ng/hdom-mock)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/hdom-mock.svg)
-[![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
+[![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
@@ -19,7 +19,7 @@ This project is part of the
 
 ## About
 
-Mock base implementation for [@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/develop/packages/hdom) API.
+Mock base implementation for @thi.ng/hdom API
 
 This package provides a mock implementation of the
 [`HDOMImplementation`](https://github.com/thi-ng/umbrella/tree/develop/packages/hdom/src/api.ts)
@@ -48,11 +48,8 @@ ES module import:
 
 For Node.js REPL:
 
-```text
-# with flag only for < v16
-node --experimental-repl-await
-
-> const hdomMock = await import("@thi.ng/hdom-mock");
+```js
+const hdomMock = await import("@thi.ng/hdom-mock");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 972 bytes
@@ -113,7 +110,7 @@ impl.root.children[0].toHiccup();
 
 ## Authors
 
-Karsten Schmidt
+- [Karsten Schmidt](https://thi.ng)
 
 If this project contributes to an academic publication, please cite it as:
 
@@ -128,4 +125,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2018 - 2022 Karsten Schmidt // Apache Software License 2.0
+&copy; 2018 - 2022 Karsten Schmidt // Apache License 2.0

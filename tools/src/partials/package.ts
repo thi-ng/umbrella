@@ -2,8 +2,7 @@ import { readJSON, readText } from "@thi.ng/file-io";
 import { bytes, camel } from "@thi.ng/strings";
 import { execFileSync } from "child_process";
 import { readdirSync } from "fs";
-import { META_FIELD, Package, RE_PKG } from "../api.js";
-import { CONFIG } from "../config.js";
+import { Config, META_FIELD, Package, RE_PKG } from "../api.js";
 import { link } from "./link.js";
 import { list } from "./list.js";
 
@@ -17,18 +16,24 @@ export const isNodeOnly = (pkg: Package) =>
 export const isWebModule = (pkg: Package) =>
 	!isNodeOnly(pkg) && pkg[META_FIELD]?.skypack !== false;
 
-export const pkgLink = (name: string) =>
-	link(name, `${CONFIG.branchURL}/packages/${shortName(name)}`);
+export const pkgLink = (config: Config, name: string) =>
+	link(name, `${config.branchURL}/packages/${shortName(name)}`);
 
-export const packageList = (pkgShortNames: string[], title: string) => {
+export const packageList = (
+	config: Config,
+	pkgShortNames: string[],
+	title: string
+) => {
 	const items = [];
 	for (let p of pkgShortNames) {
 		try {
 			const pkg = readJSON(`../${p}/package.json`);
 			items.push(
-				pkgLink(pkg.name) +
+				pkgLink(config, pkg.name) +
 					" - " +
-					pkg.description.replace(RE_PKG, pkgLink)
+					pkg.description.replace(RE_PKG, (x: string) =>
+						pkgLink(config, x)
+					)
 			);
 		} catch (_) {
 			console.log(`error reading support pkg: ${p}`);
@@ -37,34 +42,40 @@ export const packageList = (pkgShortNames: string[], title: string) => {
 	return items.length > 0 ? `## ${title}\n\n${list(items)}` : "";
 };
 
-export const supportPackages = (pkgName: string) => {
+export const supportPackages = (config: Config, pkgName: string) => {
 	const pkgShortName = shortName(pkgName);
 	return packageList(
+		config,
 		readdirSync("../").filter((x) => x.startsWith(pkgShortName + "-")),
 		"Support packages"
 	);
 };
 
-export const relatedPackages = (pkgShortNames: string[] = []) =>
-	packageList(pkgShortNames, "Related packages");
+export const relatedPackages = (config: Config, pkgShortNames: string[] = []) =>
+	packageList(config, pkgShortNames, "Related packages");
 
-export const packageDesc = (pkg: Package) => {
-	const desc = pkg.description.replace(RE_PKG, pkgLink) + ".";
+export const packageDesc = (config: Config, pkg: Package) => {
+	const desc =
+		pkg.description.replace(RE_PKG, (x) => pkgLink(config, x)) + ".";
 	const parent = (pkg[META_FIELD] || {}).parent;
 	return parent && desc.indexOf(parent) == -1
-		? `${desc} This is a support package for ${pkgLink(parent)}.`
+		? `${desc} This is a support package for ${pkgLink(config, parent)}.`
 		: desc;
 };
 
-export const packageDeps = (pkg: Package) => {
+export const packageDeps = (config: Config, pkg: Package) => {
 	const deps = Object.keys(pkg.dependencies || {})
 		.sort()
-		.map(pkgLink);
+		.map((x) => pkgLink(config, x));
 	return deps.length ? list(deps) : "None";
 };
 
-export const packageStatus = (pkgName: string, id = "stable") => {
-	const status = CONFIG.statuses[id];
+export const packageStatus = (
+	config: Config,
+	pkgName: string,
+	id = "stable"
+) => {
+	const status = config.statuses[id];
 	const name = shortName(pkgName);
 	return [
 		"## Status",
@@ -91,12 +102,14 @@ export const packageSize = () => {
 	}
 };
 
-export const packageBanner = (name: string) => {
-	name = shortName(name);
-	const sha1 = execFileSync("shasum", [`${CONFIG.bannerBasePath}${name}.svg`])
+export const packageBanner = (config: Config, name: string) => {
+	const $name = shortName(name);
+	const sha1 = execFileSync("shasum", [
+		`${config.bannerBasePath}${$name}.svg`,
+	])
 		.toString()
 		.substring(0, 8);
-	return `![${name}](${CONFIG.bannerURL}${name}.svg?${sha1})`;
+	return `![${name}](${config.bannerURL}${$name}.svg?${sha1})`;
 };
 
 export const packageInstallation = (pkg: Package) =>
@@ -115,15 +128,12 @@ yarn add ${pkg.name}
 			: "",
 		`For Node.js REPL:
 
-\`\`\`text
-# with flag only for < v16
-node --experimental-repl-await
-
-> const ${camel(shortName(pkg.name))} = await import("${pkg.name}");
+\`\`\`js
+const ${camel(shortName(pkg.name))} = await import("${pkg.name}");
 \`\`\`\n`,
 	].join("\n");
 
-export const packageCitation = (name: string) => {
+export const packageCitation = (config: Config, name: string) => {
 	let hasAuthors = false;
 	try {
 		hasAuthors = !!readText("./AUTHORS.md").length;
@@ -133,9 +143,9 @@ export const packageCitation = (name: string) => {
 \`\`\`bibtex
 @misc{thing-${shortName(name)},
   title = "${name}",
-  author = "${CONFIG.mainAuthor}${hasAuthors ? " and others" : ""}",
+  author = "${config.mainAuthor}${hasAuthors ? " and others" : ""}",
   note = "${packageURL(name)}",
-  year = ${CONFIG.meta.year}
+  year = ${config.meta.year}
 }
 \`\`\``;
 };

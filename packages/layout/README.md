@@ -1,10 +1,10 @@
 <!-- This file is generated - DO NOT EDIT! -->
 
-# ![layout](https://media.thi.ng/umbrella/banners-20220914/thing-layout.svg?4984f585)
+# ![@thi.ng/layout](https://media.thi.ng/umbrella/banners-20220914/thing-layout.svg?4984f585)
 
 [![npm version](https://img.shields.io/npm/v/@thi.ng/layout.svg)](https://www.npmjs.com/package/@thi.ng/layout)
 ![npm downloads](https://img.shields.io/npm/dm/@thi.ng/layout.svg)
-[![Twitter Follow](https://img.shields.io/twitter/follow/thing_umbrella.svg?style=flat-square&label=twitter)](https://twitter.com/thing_umbrella)
+[![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
 This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
@@ -21,7 +21,7 @@ This project is part of the
 
 ## About
 
-Configurable nested 2D grid layout manager.
+Configurable nested 2D grid layout manager
 
 Currently, this package features only a single grid layout allocator, as
 well as more [generic supporting
@@ -50,11 +50,8 @@ ES module import:
 
 For Node.js REPL:
 
-```text
-# with flag only for < v16
-node --experimental-repl-await
-
-> const layout = await import("@thi.ng/layout");
+```js
+const layout = await import("@thi.ng/layout");
 ```
 
 Package sizes (brotli'd, pre-treeshake): ESM: 620 bytes
@@ -136,7 +133,7 @@ twoCols.next([1, 2]);
 
 ## Authors
 
-Karsten Schmidt
+- [Karsten Schmidt](https://thi.ng)
 
 If this project contributes to an academic publication, please cite it as:
 
@@ -151,4 +148,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2019 - 2022 Karsten Schmidt // Apache Software License 2.0
+&copy; 2019 - 2022 Karsten Schmidt // Apache License 2.0
