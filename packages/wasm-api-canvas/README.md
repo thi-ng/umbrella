@@ -79,8 +79,8 @@ A selection:
 
 ### Zig bindings
 
-- [api.zig](https://github.com/thi-ng/umbrella/blob/feature/wasm-api-canvas/packages/wasm-api-canvas/zig/api.zig)
-- [lib.zig](https://github.com/thi-ng/umbrella/blob/feature/wasm-api-canvas/packages/wasm-api-canvas/zig/lib.zig)
+- [api.zig](https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api-canvas/zig/api.zig)
+- [lib.zig](https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api-canvas/zig/lib.zig)
 
 ### Minimal example
 
