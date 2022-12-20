@@ -15,7 +15,7 @@
 **Please visit [thi.ng](https://thi.ng) for additional information & topic based
 search of packages relevant to your use cases...**
 
-This mono-repository is home to 172+ individual TypeScript/ES6 projects (plus
+This mono-repository is home to 175 individual TypeScript/ES6 projects (plus
 115+ examples), a wide and jointly developed collection of packages, tools and
 general building blocks for (non-exhaustive list of topics):
 
@@ -146,12 +146,12 @@ feature or `develop` branches)
 
 ### Latest updates
 
-As of: 2022-12-16
+As of: 2022-12-20
 
-| Status                                        | Project                                       | Version                                                                                                             | Changelog                                       |
-|-----------------------------------------------|-----------------------------------------------|---------------------------------------------------------------------------------------------------------------------|-------------------------------------------------|
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/api`](./packages/api)               | [![version](https://img.shields.io/npm/v/@thi.ng/api.svg)](https://www.npmjs.com/package/@thi.ng/api)               | [changelog](./packages/api/CHANGELOG.md)        |
-| ![](https://img.shields.io/badge/-new-cyan)   | [`@thi.ng/transclude`](./packages/transclude) | [![version](https://img.shields.io/npm/v/@thi.ng/transclude.svg)](https://www.npmjs.com/package/@thi.ng/transclude) | [changelog](./packages/transclude/CHANGELOG.md) |
+| Status                                      | Project                                                 | Version                                                                                                                       | Changelog                                            |
+|---------------------------------------------|---------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------|
+| ![](https://img.shields.io/badge/-new-cyan) | [`@thi.ng/transclude`](./packages/transclude)           | [![version](https://img.shields.io/npm/v/@thi.ng/transclude.svg)](https://www.npmjs.com/package/@thi.ng/transclude)           | [changelog](./packages/transclude/CHANGELOG.md)      |
+| ![](https://img.shields.io/badge/-new-cyan) | [`@thi.ng/wasm-api-canvas`](./packages/wasm-api-canvas) | [![version](https://img.shields.io/npm/v/@thi.ng/wasm-api-canvas.svg)](https://www.npmjs.com/package/@thi.ng/wasm-api-canvas) | [changelog](./packages/wasm-api-canvas/CHANGELOG.md) |
 
 <!--
 ![](https://img.shields.io/badge/-feat-green)
@@ -380,6 +380,7 @@ As of: 2022-12-16
 | [`@thi.ng/vector-pools`](./packages/vector-pools)           | [![version](https://img.shields.io/npm/v/@thi.ng/vector-pools.svg)](https://www.npmjs.com/package/@thi.ng/vector-pools)           | [changelog](./packages/vector-pools/CHANGELOG.md)      | Data structures for memory mapped vectors       |
 | [`@thi.ng/wasm-api`](./packages/wasm-api)                   | [![version](https://img.shields.io/npm/v/@thi.ng/wasm-api.svg)](https://www.npmjs.com/package/@thi.ng/wasm-api)                   | [changelog](./packages/wasm-api/CHANGELOG.md)          | Modular, extensible JS/WebAssembly bridge API   |
 | [`@thi.ng/wasm-api-bindgen`](./packages/wasm-api-bindgen)   | [![version](https://img.shields.io/npm/v/@thi.ng/wasm-api-bindgen.svg)](https://www.npmjs.com/package/@thi.ng/wasm-api-bindgen)   | [changelog](./packages/wasm-api-bindgen/CHANGELOG.md)  | Polyglot bindings code generator for C/Zig/TS   |
+| [`@thi.ng/wasm-api-canvas`](./packages/wasm-api-canvas)     | [![version](https://img.shields.io/npm/v/@thi.ng/wasm-api-canvas.svg)](https://www.npmjs.com/package/@thi.ng/wasm-api-canvas)     | [changelog](./packages/wasm-api-canvas/CHANGELOG.md)   | WASM-side Canvas2D API bindings                 |
 | [`@thi.ng/wasm-api-dom`](./packages/wasm-api-dom)           | [![version](https://img.shields.io/npm/v/@thi.ng/wasm-api-dom.svg)](https://www.npmjs.com/package/@thi.ng/wasm-api-dom)           | [changelog](./packages/wasm-api-dom/CHANGELOG.md)      | WASM-side DOM manipulation                      |
 | [`@thi.ng/wasm-api-schedule`](./packages/wasm-api-schedule) | [![version](https://img.shields.io/npm/v/@thi.ng/wasm-api-schedule.svg)](https://www.npmjs.com/package/@thi.ng/wasm-api-schedule) | [changelog](./packages/wasm-api-schedule/CHANGELOG.md) | WASM-side delayed code execution/scheduling     |
 
