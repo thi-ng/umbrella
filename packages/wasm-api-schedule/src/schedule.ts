@@ -32,12 +32,10 @@ const CANCEL: Record<ScheduleType, Fn<any, void>> = {
 export class WasmSchedule implements IWasmAPI<WasmScheduleExports> {
 	static readonly id = "schedule";
 
+	readonly id = WasmSchedule.id;
+
 	parent!: WasmBridge<WasmScheduleExports>;
 	listeners: Record<number, ScheduledCall> = {};
-
-	get id() {
-		return WasmSchedule.id;
-	}
 
 	async init(parent: WasmBridge<WasmScheduleExports>) {
 		this.parent = parent;
