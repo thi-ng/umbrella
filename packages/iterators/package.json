@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/iterators",
-	"version": "6.1.31",
+	"version": "6.1.32",
 	"description": "Clojure inspired, composable ES6 iterators & generators",
 	"type": "module",
 	"module": "./index.js",
@@ -34,8 +34,8 @@
 		"test": "testament test"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.6.0",
-		"@thi.ng/dcons": "^3.2.26",
+		"@thi.ng/api": "^8.6.1",
+		"@thi.ng/dcons": "^3.2.27",
 		"@thi.ng/errors": "^2.2.6"
 	},
 	"devDependencies": {

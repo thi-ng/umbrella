@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/color",
-	"version": "5.2.13",
+	"version": "5.2.14",
 	"description": "Array-based color types, CSS parsing, conversions, transformations, declarative theme generation, gradients, presets",
 	"type": "module",
 	"module": "./index.js",
@@ -36,19 +36,19 @@
 		"tool:swatches": "tools:node-esm tools/index.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.6.0",
-		"@thi.ng/arrays": "^2.4.5",
-		"@thi.ng/binary": "^3.3.13",
+		"@thi.ng/api": "^8.6.1",
+		"@thi.ng/arrays": "^2.4.6",
+		"@thi.ng/binary": "^3.3.14",
 		"@thi.ng/checks": "^3.3.5",
-		"@thi.ng/compare": "^2.1.19",
-		"@thi.ng/compose": "^2.1.21",
-		"@thi.ng/defmulti": "^2.1.24",
+		"@thi.ng/compare": "^2.1.20",
+		"@thi.ng/compose": "^2.1.22",
+		"@thi.ng/defmulti": "^2.1.25",
 		"@thi.ng/errors": "^2.2.6",
-		"@thi.ng/math": "^5.3.16",
-		"@thi.ng/random": "^3.3.18",
-		"@thi.ng/strings": "^3.3.20",
-		"@thi.ng/transducers": "^8.3.26",
-		"@thi.ng/vectors": "^7.5.27"
+		"@thi.ng/math": "^5.3.17",
+		"@thi.ng/random": "^3.3.19",
+		"@thi.ng/strings": "^3.3.21",
+		"@thi.ng/transducers": "^8.3.27",
+		"@thi.ng/vectors": "^7.5.28"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.33.7",

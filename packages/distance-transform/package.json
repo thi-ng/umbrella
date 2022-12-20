@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/distance-transform",
-	"version": "0.1.17",
+	"version": "0.1.18",
 	"description": "Binary image to Distance Field transformation",
 	"type": "module",
 	"module": "./index.js",
@@ -34,11 +34,11 @@
 		"test": "testament test"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.6.0"
+		"@thi.ng/api": "^8.6.1"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.33.7",
-		"@thi.ng/pixel": "^4.0.11",
+		"@thi.ng/pixel": "^4.0.12",
 		"@thi.ng/testament": "^0.3.7",
 		"rimraf": "^3.0.2",
 		"tools": "workspace:^",

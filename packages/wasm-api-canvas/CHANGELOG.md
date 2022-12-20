@@ -9,15 +9,8 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
 
-## [0.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/random-fxhash@0.2.0) (2022-05-25)
+## [0.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/wasm-api-canvas@0.1.0) (2022-12-20)
 
 #### 🚀 Features
 
-- extract/export seedFromHash() ([d68ec97](https://github.com/thi-ng/umbrella/commit/d68ec97))
-  - update readme
-
-## [0.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/random-fxhash@0.1.0) (2022-05-22)
-
-#### 🚀 Features
-
-- import as new pkg ([9e23031](https://github.com/thi-ng/umbrella/commit/9e23031))
+- import as new pkg ([748460e](https://github.com/thi-ng/umbrella/commit/748460e))
