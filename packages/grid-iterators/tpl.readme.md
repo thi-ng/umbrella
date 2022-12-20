@@ -149,7 +149,7 @@ img
 // ]
 ```
 
-### Miscellaneous
+### Shape iterators
 
 Additionally, the following shape iterators are available, all also with
 optional clipping:
@@ -186,13 +186,22 @@ optional clipping:
 ```ts
 import * as gi from "@thi.ng/grid-iterators";
 
-[...gi.zigzagRows2d(4, 4)]
+[...gi.zigzagRows2d({ cols: 4, rows: 4 })]
 
 // [
 //   [ 0, 0 ], [ 1, 0 ], [ 2, 0 ], [ 3, 0 ],
 //   [ 3, 1 ], [ 2, 1 ], [ 1, 1 ], [ 0, 1 ],
 //   [ 0, 2 ], [ 1, 2 ], [ 2, 2 ], [ 3, 2 ],
 //   [ 3, 3 ], [ 2, 3 ], [ 1, 3 ], [ 0, 3 ]
+// ]
+
+// with applied horizontal mirroring
+[...gi.zigzagRows2d({ cols: 4, tx: gi.flipX })]
+// [
+//   [ 3, 0 ], [ 2, 0 ], [ 1, 0 ], [ 0, 0 ],
+//   [ 0, 1 ], [ 1, 1 ], [ 2, 1 ], [ 3, 1 ],
+//   [ 3, 2 ], [ 2, 2 ], [ 1, 2 ], [ 0, 2 ],
+//   [ 0, 3 ], [ 1, 3 ], [ 2, 3 ], [ 3, 3 ]
 // ]
 ```
 

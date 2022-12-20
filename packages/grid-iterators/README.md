@@ -23,7 +23,7 @@ This project is part of the
   - [Zigzag diagonal](#zigzag-diagonal)
   - [Zigzag rows](#zigzag-rows)
   - [Flood filling](#flood-filling)
-  - [Miscellaneous](#miscellaneous)
+  - [Shape iterators](#shape-iterators)
 - [Status](#status)
 - [Related packages](#related-packages)
 - [Installation](#installation)
@@ -180,7 +180,7 @@ img
 // ]
 ```
 
-### Miscellaneous
+### Shape iterators
 
 Additionally, the following shape iterators are available, all also with
 optional clipping:
@@ -222,7 +222,7 @@ For Node.js REPL:
 const gridIterators = await import("@thi.ng/grid-iterators");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 2.19 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 2.32 KB
 
 ## Dependencies
 
@@ -253,13 +253,22 @@ A selection:
 ```ts
 import * as gi from "@thi.ng/grid-iterators";
 
-[...gi.zigzagRows2d(4, 4)]
+[...gi.zigzagRows2d({ cols: 4, rows: 4 })]
 
 // [
 //   [ 0, 0 ], [ 1, 0 ], [ 2, 0 ], [ 3, 0 ],
 //   [ 3, 1 ], [ 2, 1 ], [ 1, 1 ], [ 0, 1 ],
 //   [ 0, 2 ], [ 1, 2 ], [ 2, 2 ], [ 3, 2 ],
 //   [ 3, 3 ], [ 2, 3 ], [ 1, 3 ], [ 0, 3 ]
+// ]
+
+// with applied horizontal mirroring
+[...gi.zigzagRows2d({ cols: 4, tx: gi.flipX })]
+// [
+//   [ 3, 0 ], [ 2, 0 ], [ 1, 0 ], [ 0, 0 ],
+//   [ 0, 1 ], [ 1, 1 ], [ 2, 1 ], [ 3, 1 ],
+//   [ 3, 2 ], [ 2, 2 ], [ 1, 2 ], [ 0, 2 ],
+//   [ 0, 3 ], [ 1, 3 ], [ 2, 3 ], [ 3, 3 ]
 // ]
 ```
 
