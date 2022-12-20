@@ -2,6 +2,7 @@
 
 const std = @import("std");
 const wasm = @import("wasm-api");
+const canvas2d = @import("wasm-api-canvas");
 const dom = @import("wasm-api-dom");
 const CA = @import("ca.zig");
 
@@ -18,10 +19,6 @@ var mem: [2 * 1024 * 1024]u8 = undefined;
 // setup allocator
 var fba = std.heap.FixedBufferAllocator.init(&mem);
 pub const WASM_ALLOCATOR = fba.allocator();
-
-// imported JS functions (see /src/index.ts for details)
-pub extern "pixels" fn updatePixelsABGR(canvasID: i32, pixels: [*]const u32, numPix: usize) void;
-pub extern "pixels" fn updatePixelsLUT(canvasID: i32, pixels: [*]const u8, numPix: usize, paletteAddr: [*]const u32, numPal: usize) void;
 
 // initialize PRNG instance
 var rnd = std.rand.DefaultPrng.init(0xdecafbad);
@@ -82,25 +79,22 @@ const behaviors = [_]CA.Behavior{
     behavior2,
 };
 
-// Colors as 24bit RGB
+// Colors as 32bit ARGB)
 // Palette taken from: thi.ng/color-palettes
 var palette = [_]u32{
-    0x000000,
-    0x00334b,
-    0x6699bb,
-    0x99ddff,
-    0x7a0011,
-    0xc21122,
-    0xe5bf99,
-    0xfef2d8,
+    0xff000000,
+    0xff00334b,
+    0xff6699bb,
+    0xff99ddff,
+    0xff7a0011,
+    0xffc21122,
+    0xffe5bf99,
+    0xfffef2d8,
 };
 
 // canvas dimensions
 const width = 640;
 const height = 480;
-
-// ABGR pixel buffer
-var abgr: [width * height]u32 = undefined;
 
 fn initApp() !void {
     // create canvas DOM element
@@ -110,20 +104,20 @@ fn initApp() !void {
         .parent = dom.body,
         .index = 0,
     });
+    canvas2d.beginCtx(canvas);
+
     // init simulation
     sim = try CA.init(WASM_ALLOCATOR, rnd.random(), width, height, &behaviors, palette.len);
     sim.seed();
-    // convert colors
-    convertPalette(&palette);
+
     // start update loop
     requestLoop();
 }
 
 fn update(_: f64, _: ?*anyopaque) void {
     sim.update();
-    formatPixels(&abgr, sim.cells, &palette);
-    updatePixelsABGR(canvas, &abgr, abgr.len);
-    // updatePixelsLUT(canvas, sim.cells.ptr, sim.cells.len, &palette, palette.len);
+    // write pixels (using current palette) to canvas
+    canvas2d.putPixelsIndexed(sim.cells.ptr, &palette, palette.len);
     requestLoop();
 }
 
@@ -136,23 +130,4 @@ fn requestLoop() void {
 export fn start() void {
     initApp() catch |e| @panic(@errorName(e));
     wasm.printStr("started");
-}
-
-// helper functions
-
-/// Converts array of palette indices into array of u32 colors,
-/// using provided LUT (palette)
-fn formatPixels(dest: []u32, src: []const u8, lut: []const u32) void {
-    for (src) |x, i| dest[i] = lut[x];
-}
-
-/// Converts (in-place) palette of 24bit RGB to 32bit ABGR colors
-/// ABGR format is required for canvas image data compatibility
-fn convertPalette(lut: []u32) void {
-    for (lut) |*color| color.* = 0xff000000 | rgb2bgr(color.*);
-}
-
-/// Swaps byte lanes to convert from ARGB => ABGR
-inline fn rgb2bgr(x: u32) u32 {
-    return x & 0xff00ff00 | ((x << 16) & 0xff0000) | ((x >> 16) & 0xff);
 }
