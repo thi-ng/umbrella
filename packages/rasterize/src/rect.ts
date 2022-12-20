@@ -35,7 +35,10 @@ export const drawRect = <T extends any[] | TypedArray, P>(
 			h += y;
 			y = 0;
 		}
-		const pts = rows2d(Math.min(w, width - x), Math.min(h, height - y));
+		const pts = rows2d({
+			cols: Math.min(w, width - x),
+			rows: Math.min(h, height - y),
+		});
 		const shader = ensureShader2D(val);
 		if (isPrimitive(val)) {
 			for (let { 0: xx, 1: yy } of pts) {
