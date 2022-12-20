@@ -83,6 +83,9 @@
 		".": {
 			"default": "./index.js"
 		},
+		"./api": {
+			"default": "./api.js"
+		},
 		"./circle": {
 			"default": "./circle.js"
 		},
@@ -130,6 +133,9 @@
 		},
 		"./spiral": {
 			"default": "./spiral.js"
+		},
+		"./transforms": {
+			"default": "./transforms.js"
 		},
 		"./zcurve": {
 			"default": "./zcurve.js"

@@ -1,17 +1,17 @@
-import { asInt } from "@thi.ng/api/typedarray";
+import type { GridIterOpts } from "./api.js";
+import { __opts } from "./utils.js";
 
 /**
  * Filtered version of {@link rows2d}, only including end points of
  * each row.
  *
- * @param cols -
- * @param rows -
+ * @param opts -
  */
-export function* rowEnds2d(cols: number, rows = cols) {
-	[cols, rows] = asInt(cols, rows);
+export function* rowEnds2d(opts: GridIterOpts) {
+	let { cols, rows, tx } = __opts(opts);
 	cols--;
 	for (let y = 0; y < rows; y++) {
-		yield [0, y];
-		yield [cols, y];
+		yield tx(0, y);
+		yield tx(cols, y);
 	}
 }

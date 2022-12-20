@@ -1,14 +1,10 @@
 // thing:no-export
-/**
- * Swaps XY in-place.
- *
- * @param p -
- *
- * @internal
- */
-export const swapxy = (p: number[]) => {
-	const t = p[0];
-	p[0] = p[1];
-	p[1] = t;
-	return p;
+import { asInt } from "@thi.ng/api/typedarray";
+import type { GridIterOpts } from "./api.js";
+import { ident } from "./transforms.js";
+
+export const __opts = (opts: GridIterOpts) => {
+	let { cols, rows, tx } = { rows: opts.cols, tx: ident, ...opts };
+	[cols, rows] = asInt(cols, rows);
+	return { cols, rows, tx: tx(cols, rows) };
 };

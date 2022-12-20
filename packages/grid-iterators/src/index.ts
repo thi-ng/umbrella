@@ -14,6 +14,7 @@ export * from "./random.js";
 export * from "./row-ends.js";
 export * from "./rows.js";
 export * from "./spiral.js";
+export * from "./transforms.js";
 export * from "./zcurve.js";
 export * from "./zigzag-columns.js";
 export * from "./zigzag-diagonal.js";

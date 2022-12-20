@@ -1,4 +1,5 @@
-import { asInt } from "@thi.ng/api/typedarray";
+import type { GridIterOpts } from "./api.js";
+import { __opts } from "./utils.js";
 
 /**
  * Yields sequence of 2D grid coordinates along 2D Hilbert curve using given
@@ -7,11 +8,10 @@ import { asInt } from "@thi.ng/api/typedarray";
  * Ported & modified from original Java code by Christopher Kulla.
  * https://sourceforge.net/p/sunflow/code/HEAD/tree/trunk/src/org/sunflow/core/bucket/HilbertBucketOrder.java
  *
- * @param cols -
- * @param rows -
+ * @param opts -
  */
-export function* hilbert2d(cols: number, rows = cols) {
-	[cols, rows] = asInt(cols, rows);
+export function* hilbert2d(opts: GridIterOpts) {
+	const { cols, rows, tx } = __opts(opts);
 	let hIndex = 0; // hilbert curve index
 	let hOrder = 0; // hilbert curve order
 	// fit to number of buckets
@@ -62,6 +62,6 @@ export function* hilbert2d(cols: number, rows = cols) {
 			(hx >= cols || hy >= rows || hx < 0 || hy < 0) &&
 			hIndex < numBuckets
 		);
-		yield [hx, hy];
+		yield tx(hx, hy);
 	}
 }
