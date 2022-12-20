@@ -10,6 +10,7 @@ pub fn build(b: *std.build.Builder) void {
         .base = "../../node_modules",
         // Declare extra WASM API packages to use
         .packages = &.{
+            .{ .id = "wasm-api-canvas", .path = "@thi.ng/wasm-api-canvas/zig/lib.zig" },
             .{ .id = "wasm-api-dom", .path = "@thi.ng/wasm-api-dom/zig/lib.zig" },
         },
         // build mode override

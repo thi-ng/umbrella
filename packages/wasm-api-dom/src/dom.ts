@@ -74,6 +74,8 @@ interface WasmListener {
 export class WasmDom implements IWasmAPI<WasmDomExports> {
 	static readonly id = "dom";
 
+	readonly id = WasmDom.id;
+
 	parent!: WasmBridge<WasmDomExports>;
 	$Event!: WasmType<WasmEvent>;
 	$CreateElementOpts!: WasmType<CreateElementOpts>;
@@ -83,10 +85,6 @@ export class WasmDom implements IWasmAPI<WasmDomExports> {
 
 	protected currEvent: Event | null = null;
 	protected currDataTransfer: DataTransfer | null = null;
-
-	get id() {
-		return WasmDom.id;
-	}
 
 	async init(parent: WasmBridge<WasmDomExports>) {
 		this.parent = parent;

@@ -20,6 +20,7 @@
 	"dependencies": {
 		"@thi.ng/api": "workspace:^",
 		"@thi.ng/wasm-api": "workspace:^",
+		"@thi.ng/wasm-api-canvas": "workspace:^",
 		"@thi.ng/wasm-api-dom": "workspace:^"
 	},
 	"browser": {
@@ -28,6 +29,7 @@
 	"thi.ng": {
 		"readme": [
 			"wasm-api",
+			"wasm-api-canvas",
 			"wasm-api-dom"
 		],
 		"screenshot": "examples/zig-cellular.jpg"

@@ -1949,6 +1949,7 @@ __metadata:
   dependencies:
     "@thi.ng/api": "workspace:^"
     "@thi.ng/wasm-api": "workspace:^"
+    "@thi.ng/wasm-api-canvas": "workspace:^"
     "@thi.ng/wasm-api-dom": "workspace:^"
     typescript: ^4.9.4
     vite: ^4.0.0
@@ -5259,7 +5260,24 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/wasm-api-dom@workspace:^, @thi.ng/wasm-api-dom@workspace:packages/wasm-api-dom":
+"@thi.ng/wasm-api-canvas@workspace:^, @thi.ng/wasm-api-canvas@workspace:packages/wasm-api-canvas":
+  version: 0.0.0-use.local
+  resolution: "@thi.ng/wasm-api-canvas@workspace:packages/wasm-api-canvas"
+  dependencies:
+    "@microsoft/api-extractor": ^7.33.7
+    "@thi.ng/binary": ^3.3.13
+    "@thi.ng/testament": ^0.3.7
+    "@thi.ng/wasm-api": ^1.2.3
+    "@thi.ng/wasm-api-bindgen": ^0.2.6
+    "@thi.ng/wasm-api-dom": ^0.11.7
+    rimraf: ^3.0.2
+    tools: "workspace:^"
+    typedoc: ^0.23.22
+    typescript: ^4.9.4
+  languageName: unknown
+  linkType: soft
+
+"@thi.ng/wasm-api-dom@^0.11.7, @thi.ng/wasm-api-dom@workspace:^, @thi.ng/wasm-api-dom@workspace:packages/wasm-api-dom":
   version: 0.0.0-use.local
   resolution: "@thi.ng/wasm-api-dom@workspace:packages/wasm-api-dom"
   dependencies:
