@@ -1,0 +1,76 @@
+{
+	"name": "@thi.ng/wasm-api-canvas",
+	"version": "0.0.1",
+	"description": "HTML Canvas2D bridge API for hybrid TypeScript & WASM (Zig) applications",
+	"type": "module",
+	"module": "./index.js",
+	"typings": "./index.d.ts",
+	"sideEffects": false,
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/thi-ng/umbrella.git"
+	},
+	"homepage": "https://github.com/thi-ng/umbrella/tree/develop/packages/wasm-api-canvas#readme",
+	"funding": [
+		{
+			"type": "github",
+			"url": "https://github.com/sponsors/postspectacular"
+		},
+		{
+			"type": "patreon",
+			"url": "https://patreon.com/thing_umbrella"
+		}
+	],
+	"author": "Karsten Schmidt (https://thi.ng)",
+	"license": "Apache-2.0",
+	"scripts": {
+		"build": "yarn clean && tsc --declaration",
+		"build:types": "npx wasm-api-bindgen -a analytics.json --config src/typedefs-config.json --lang ts -o src/generated/api.ts --lang zig -o zig/api.zig src/typedefs.json",
+		"clean": "rimraf '*.js' '*.d.ts' '*.map' doc",
+		"doc": "typedoc --excludePrivate --excludeInternal --out doc src/index.ts",
+		"doc:ae": "mkdir -p .ae/doc .ae/temp && api-extractor run --local --verbose",
+		"doc:readme": "yarn doc:stats && tools:readme",
+		"doc:stats": "tools:module-stats",
+		"pub": "yarn npm publish --access public",
+		"test": "testament test"
+	},
+	"dependencies": {
+		"@thi.ng/binary": "^3.3.13",
+		"@thi.ng/wasm-api": "^1.2.3",
+		"@thi.ng/wasm-api-dom": "^0.11.7"
+	},
+	"devDependencies": {
+		"@microsoft/api-extractor": "^7.33.7",
+		"@thi.ng/testament": "^0.3.7",
+		"@thi.ng/wasm-api-bindgen": "^0.2.6",
+		"rimraf": "^3.0.2",
+		"tools": "workspace:^",
+		"typedoc": "^0.23.22",
+		"typescript": "^4.9.4"
+	},
+	"keywords": [
+		"canvas",
+		"typescript"
+	],
+	"publishConfig": {
+		"access": "public"
+	},
+	"browser": {
+		"process": false,
+		"setTimeout": false
+	},
+	"files": [
+		"./*.js",
+		"./*.d.ts"
+	],
+	"exports": {
+		".": {
+			"default": "./index.js"
+		}
+	},
+	"thi.ng": {
+		"parent": "@thi.ng/wasm-api",
+		"status": "alpha",
+		"year": 2022
+	}
+}

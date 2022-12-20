@@ -1,0 +1,132 @@
+[
+	{
+		"name": "LineCap",
+		"type": "enum",
+		"values": ["butt", "round", "square"]
+	},
+	{
+		"name": "LineJoin",
+		"type": "enum",
+		"values": ["bevel", "round", "miter"]
+	},
+	{
+		"name": "TextAlign",
+		"type": "enum",
+		"values": ["start", "end", "left", "right", "center"]
+	},
+	{
+		"name": "TextBaseline",
+		"type": "enum",
+		"values": [
+			"top",
+			"hanging",
+			"middle",
+			"alphabetic",
+			"ideographic",
+			"bottom"
+		]
+	},
+	{
+		"name": "TextDirection",
+		"type": "enum",
+		"values": ["inherit", "ltr", "rtl"]
+	},
+	{
+		"name": "FontKerning",
+		"type": "enum",
+		"values": ["auto", "normal", "none"]
+	},
+	{
+		"name": "FillRule",
+		"type": "enum",
+		"values": ["nonzero", "evenodd"]
+	},
+	{
+		"name": "PatternRepeat",
+		"type": "enum",
+		"values": ["repeat", "repeat_x", "repeat_y", "no_repeat"]
+	},
+	{
+		"name": "GlobalCompositeOp",
+		"type": "enum",
+		"values": [
+			"color",
+			"color_burn",
+			"color_dodge",
+			"copy",
+			"darken",
+			"destination_atop",
+			"destination_in",
+			"destination_out",
+			"destination_over",
+			"difference",
+			"exclusion",
+			"hard_light",
+			"hue",
+			"lighten",
+			"lighter",
+			"luminosity",
+			"multiply",
+			"overlay",
+			"saturation",
+			"screen",
+			"soft_light",
+			"source_atop",
+			"source_in",
+			"source_out",
+			"source_over",
+			"xor"
+		]
+	},
+	{
+		"name": "GradientColorStop",
+		"type": "struct",
+		"fields": [
+			{
+				"name": "pos",
+				"type": "f32",
+				"doc": "Normalized position of this color stop"
+			},
+			{
+				"name": "color",
+				"type": "string",
+				"doc": "CSS color string associated with this stop"
+			}
+		]
+	},
+	{
+		"name": "TextMetrics",
+		"type": "struct",
+		"doc": "The dimensions of a piece of text in the canvas, as created by the CanvasRenderingContext2D.measureText() method.",
+		"fields": [
+			{ "name": "actualBoundingBoxAscent", "type": "f32" },
+			{ "name": "actualBoundingBoxDescent", "type": "f32" },
+			{ "name": "actualBoundingBoxLeft", "type": "f32" },
+			{ "name": "actualBoundingBoxRight", "type": "f32" },
+			{ "name": "fontBoundingBoxAscent", "type": "f32" },
+			{ "name": "fontBoundingBoxDescent", "type": "f32" },
+			{ "name": "width", "type": "f32" }
+		],
+		"body": {
+			"ts": {
+				"decl": [
+					"/**",
+					" * Populate all fields from a canvas TextMetrics JS object",
+					" */",
+					"fromMetrics(m: globalThis.TextMetrics): void;"
+				],
+				"impl": [
+					"fromMetrics(m: globalThis.TextMetrics) {",
+					"this.actualBoundingBoxAscent = m.actualBoundingBoxAscent;",
+					"this.actualBoundingBoxDescent = m.actualBoundingBoxDescent;",
+					"this.actualBoundingBoxLeft = m.actualBoundingBoxLeft;",
+					"this.actualBoundingBoxRight = m.actualBoundingBoxRight;",
+					"this.fontBoundingBoxAscent = m.fontBoundingBoxAscent;",
+					"this.fontBoundingBoxDescent = m.fontBoundingBoxDescent;",
+					"this.width = m.width;",
+					"}"
+				]
+			}
+		}
+	}
+]
