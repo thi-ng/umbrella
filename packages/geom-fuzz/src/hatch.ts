@@ -8,6 +8,7 @@ import { unmapPoint } from "@thi.ng/geom/unmap-point";
 import { columnEnds2d } from "@thi.ng/grid-iterators/column-ends";
 import { diagonalEnds2d } from "@thi.ng/grid-iterators/diagonal-ends";
 import { rowEnds2d } from "@thi.ng/grid-iterators/row-ends";
+import { flipX, flipXY, flipY, ident } from "@thi.ng/grid-iterators/transforms";
 import { partition } from "@thi.ng/transducers/partition";
 import { div2 } from "@thi.ng/vectors/div";
 import { DEFAULT_LINE, FillFn, HatchOpts } from "./api.js";
@@ -36,7 +37,14 @@ export const defHatch = (opts: Partial<HatchOpts> = {}): FillFn => {
 		const rows = ~~(h / opts.space!);
 		const maxg = [cols - 1, rows - 1];
 		const acc = group(opts.line ? opts.line.attribs : null);
-		for (let [a, b] of partition(2, HATCH_DIRS[opts.dir!](cols, rows))) {
+		const grid = HATCH_DIRS[opts.dir!]({
+			cols,
+			rows,
+			tx: opts.flip
+				? { x: flipX, y: flipY, xy: flipXY }[opts.flip]
+				: ident,
+		});
+		for (let [a, b] of partition(2, grid)) {
 			unmapPoint(box, div2(null, a, maxg), a);
 			unmapPoint(box, div2(null, b, maxg), b);
 			const segments = clipLinePoly(a, b, shape.points);

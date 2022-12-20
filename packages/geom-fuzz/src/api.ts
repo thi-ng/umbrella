@@ -9,6 +9,8 @@ export type FillFn = Fn<Polygon, IHiccupShape>;
 
 export type HatchDir = "d" | "h" | "v";
 
+export type FlipDir = "x" | "y" | "xy";
+
 export interface FuzzyPolygonOpts {
 	num: number;
 	jitter: number;
@@ -25,6 +27,7 @@ export interface FuzzyLineOpts {
 
 export interface HatchOpts {
 	dir: HatchDir;
+	flip?: FlipDir;
 	space: number;
 	line: Partial<FuzzyLineOpts>;
 }
