@@ -26,16 +26,16 @@ const BH = Math.ceil(H / NB);
 // create infinite sequence of all grid iterators
 const buckets = cycle(
 	concat(
-		diagonal2d(NB, NB),
-		zigzagRows2d(NB),
-		hilbert2d(NB),
-		zigzagColumns2d(NB),
-		spiral2d(NB),
-		zigzagDiagonal2d(NB),
-		interleaveColumns2d(NB, NB, 4),
-		interleaveRows2d(NB, NB, 4),
-		zcurve2d(NB),
-		random2d(NB)
+		diagonal2d({ cols: NB }),
+		zigzagRows2d({ cols: NB }),
+		hilbert2d({ cols: NB }),
+		zigzagColumns2d({ cols: NB }),
+		spiral2d({ cols: NB }),
+		zigzagDiagonal2d({ cols: NB }),
+		interleaveColumns2d({ cols: NB, step: 4 }),
+		interleaveRows2d({ cols: NB, step: 4 }),
+		zcurve2d({ cols: NB }),
+		random2d({ cols: NB })
 	)
 );
 
