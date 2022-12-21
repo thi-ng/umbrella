@@ -19,7 +19,7 @@ This project is part of the
 
 ## About
 
-Customizable diff implementations for arrays (sequential) & objects (associative), with or without linear edit logs
+Customizable diff implementations for arrays (sequential) & objects (associative), with or without linear edit logs.
 
 ## Status
 

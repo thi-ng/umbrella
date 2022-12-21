@@ -21,7 +21,7 @@ This project is part of the
 
 ## About
 
-Transducer based UI updater for @thi.ng/hdom
+Transducer based UI updater for [@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/develop/packages/hdom). This is a support package for [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers).
 
 This package provides a single `updateDOM` function, a side-effecting &
 stateful transducer which receives

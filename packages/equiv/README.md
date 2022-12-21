@@ -20,7 +20,7 @@ This project is part of the
 
 ## About
 
-Extensible deep value equivalence checking for any data types
+Extensible deep value equivalence checking for any data types.
 
 Supports:
 

@@ -20,7 +20,7 @@ This project is part of the
 
 ## About
 
-Multi-channel SDF font rendering & basic text layout for WebGL
+Multi-channel SDF font rendering & basic text layout for WebGL. This is a support package for [@thi.ng/webgl](https://github.com/thi-ng/umbrella/tree/develop/packages/webgl).
 
 This package provides [multi-channel SDF font
 rendering](https://github.com/Chlumsky/msdfgen) capabilities for

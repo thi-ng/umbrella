@@ -34,7 +34,7 @@ This project is part of the
 
 ## About
 
-Mutable wrappers for nested immutable values with optional undo/redo history and transaction support
+Mutable wrappers for nested immutable values with optional undo/redo history and transaction support.
 
 Additional support for:
 

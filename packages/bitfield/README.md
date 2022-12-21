@@ -20,7 +20,7 @@ This project is part of the
 
 ## About
 
-1D / 2D bit field implementations
+1D / 2D bit field implementations.
 
 All implementations are backed by typed arrays. Due to `Uint32Array`
 backing the width is always rounded to a multiple of 32.

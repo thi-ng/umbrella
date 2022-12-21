@@ -21,7 +21,7 @@ This project is part of the
 
 ## About
 
-Graphviz DOT conversion of @thi.ng/rstream dataflow graph topologies
+Graphviz DOT conversion of [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream) dataflow graph topologies.
 
 ## Status
 

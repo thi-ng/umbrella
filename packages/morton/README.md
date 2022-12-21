@@ -22,7 +22,7 @@ This project is part of the
 
 ## About
 
-Z-order curve / Morton encoding, decoding & range extraction for arbitrary dimensions
+Z-order curve / Morton encoding, decoding & range extraction for arbitrary dimensions.
 
 References:
 

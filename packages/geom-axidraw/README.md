@@ -27,7 +27,7 @@ This project is part of the
 
 ## About
 
-Conversion and preparation of thi.ng/geom shapes & shape groups to AxiDraw pen plotter draw commands
+Conversion and preparation of thi.ng/geom shapes & shape groups to AxiDraw pen plotter draw commands. This is a support package for [@thi.ng/geom](https://github.com/thi-ng/umbrella/tree/develop/packages/geom).
 
 This package only deals with the conversion aspects. The
 [@thi.ng/axidraw](https://github.com/thi-ng/umbrella/blob/develop/packages/axidraw)

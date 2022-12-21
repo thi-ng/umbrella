@@ -21,7 +21,7 @@ This project is part of the
 
 ## About
 
-Reducers for patch-based, immutable-by-default array & object editing
+Reducers for patch-based, immutable-by-default array & object editing. This is a support package for [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers).
 
 The `patchArray` and `patchObj` reducers can be used in any
 reducer/transducer scenario and are useful for any form of declarative

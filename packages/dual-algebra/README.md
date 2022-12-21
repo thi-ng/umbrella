@@ -21,7 +21,7 @@ This project is part of the
 
 ## About
 
-Multivariate dual number algebra, automatic differentiation
+Multivariate dual number algebra, automatic differentiation.
 
 - [Wikipedia: Dual numbers](https://en.wikipedia.org/wiki/Dual_number)
 - [Wikipedia: Automatic_differentiation](https://en.wikipedia.org/wiki/Automatic_differentiation#Automatic_differentiation_using_dual_numbers)

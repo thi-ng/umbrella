@@ -33,7 +33,7 @@ This project is part of the
 
 ## About
 
-Alternative Map and Set implementations with customizable equality semantics & supporting operations
+Alternative Map and Set implementations with customizable equality semantics & supporting operations.
 
 - Array based `ArraySet`, Linked List based `LLSet`,
   [Skiplist](https://en.wikipedia.org/wiki/Skip_list) based `SortedMap`

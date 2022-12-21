@@ -21,7 +21,7 @@ This project is part of the
 
 ## About
 
-Entity Component System based around typed arrays & sparse sets
+Entity Component System based around typed arrays & sparse sets.
 
 - Entities are merely numeric identifiers
 - Component types:

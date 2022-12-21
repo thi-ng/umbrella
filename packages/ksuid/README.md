@@ -21,7 +21,7 @@ This project is part of the
 
 ## About
 
-Configurable K-sortable unique IDs, ULIDs, binary & base-N encoded, 32/48/64bit time resolutions
+Configurable K-sortable unique IDs, ULIDs, binary & base-N encoded, 32/48/64bit time resolutions.
 
 Idea based on [segmentio/ksuid](https://github.com/segmentio/ksuid), though the
 added flexibility in terms of configuration & implementation also enables the

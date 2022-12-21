@@ -40,7 +40,7 @@ This project is part of the
 
 ## About
 
-CSS from nested JS data structures
+CSS from nested JS data structures. This is a support package for [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup).
 
 Following a similar pattern as the
 [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup)

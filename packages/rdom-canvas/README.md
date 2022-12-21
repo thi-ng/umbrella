@@ -21,7 +21,7 @@ This project is part of the
 
 ## About
 
-@thi.ng/rdom component wrapper for @thi.ng/hiccup-canvas and declarative canvas drawing
+[@thi.ng/rdom](https://github.com/thi-ng/umbrella/tree/develop/packages/rdom) component wrapper for [@thi.ng/hiccup-canvas](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-canvas) and declarative canvas drawing.
 
 ## Status
 

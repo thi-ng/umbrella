@@ -20,7 +20,7 @@ This project is part of the
 
 ## About
 
-Extensible functional template engine for text document generation, incl. various high-level Markdown features
+Extensible functional template engine for text document generation, incl. various high-level Markdown features.
 
 This package evolved from this monorepo's readme generator toolchain and
 currently is mainly used to generate all ~350 readme & changelog files in this

@@ -35,7 +35,7 @@ This project is part of the
 
 ## About
 
-Text based canvas, drawing, tables with arbitrary formatting (incl. ANSI/HTML)
+Text based canvas, drawing, tables with arbitrary formatting (incl. ANSI/HTML).
 
 ## Status
 

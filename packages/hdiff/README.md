@@ -23,7 +23,7 @@ This project is part of the
 
 ## About
 
-String diffing w/ hiccup output for further processing, e.g. with @thi.ng/hdom, @thi.ng/hiccup. Includes CLI util to generate HTML, with theme support and code folding
+String diffing w/ hiccup output for further processing, e.g. with [@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/develop/packages/hdom), [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup). Includes CLI util to generate HTML, with theme support and code folding.
 
 ![screenshot of example output](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/hdiff/hdiff.png)
 

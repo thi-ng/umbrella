@@ -20,7 +20,7 @@ This project is part of the
 
 ## About
 
-2D line clipping (Liang-Barsky)
+2D line clipping (Liang-Barsky). This is a support package for [@thi.ng/geom](https://github.com/thi-ng/umbrella/tree/develop/packages/geom).
 
 Current implementation is based on [toxiclibs](http://toxiclibs.org)
 (Java) and Clojure version [thi.ng/geom-clj](http://thi.ng/geom-clj).

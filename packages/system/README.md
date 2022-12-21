@@ -21,7 +21,7 @@ This project is part of the
 
 ## About
 
-Minimal and explicit dependency-injection & lifecycle container for stateful app components
+Minimal and explicit dependency-injection & lifecycle container for stateful app components.
 
 Inspired by Stuart Sierra's
 [component](https://github.com/stuartsierra/component) framework for

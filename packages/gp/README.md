@@ -22,7 +22,7 @@ This project is part of the
 
 ## About
 
-Genetic programming helpers & strategies (tree based & multi-expression programming)
+Genetic programming helpers & strategies (tree based & multi-expression programming).
 
 This package does not (yet) provide a complete GP framework and is
 largely focused on the following operations:

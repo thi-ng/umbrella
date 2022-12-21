@@ -19,7 +19,7 @@ This project is part of the
 
 ## About
 
-Multi-format NetPBM reader & writer support for @thi.ng/pixel
+Multi-format NetPBM reader & writer support for [@thi.ng/pixel](https://github.com/thi-ng/umbrella/tree/develop/packages/pixel).
 
 This package can read & write binary
 [NetPBM](https://en.wikipedia.org/wiki/Netpbm) image formats from byte

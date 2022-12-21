@@ -20,7 +20,7 @@ This project is part of the
 
 ## About
 
-Conditional global variable exposition
+Conditional global variable exposition.
 
 This package provides a single function
 [`exposeGlobal()`](https://docs.thi.ng/umbrella/expose/modules.html#exposeGlobal)

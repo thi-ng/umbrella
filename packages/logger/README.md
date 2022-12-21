@@ -23,7 +23,7 @@ This project is part of the
 
 ## About
 
-Types & basis infrastructure for arbitrary logging (w/ default impls)
+Types & basis infrastructure for arbitrary logging (w/ default impls).
 
 The types & implementations provided by this package are used in various places
 throughout the thi.ng/umbrella ecosystem and can be swapped out on demand to

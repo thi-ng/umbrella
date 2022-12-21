@@ -23,7 +23,7 @@ This project is part of the
 
 ## About
 
-ES6 iterator based read/write bit streams with support for variable word widths
+ES6 iterator based read/write bit streams with support for variable word widths.
 
 ## Status
 

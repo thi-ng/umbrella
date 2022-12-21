@@ -29,7 +29,7 @@ This project is part of the
 
 ## About
 
-Datetime types, relative dates, math, iterators, composable formatters, locales
+Datetime types, relative dates, math, iterators, composable formatters, locales.
 
 ## Status
 

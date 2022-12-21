@@ -24,7 +24,7 @@ This project is part of the
 
 ## About
 
-Pseudo-random number generators w/ unified API, distributions, weighted choices, ID generation
+Pseudo-random number generators w/ unified API, distributions, weighted choices, ID generation.
 
 This package provides the `IRandom` interface and various (mostly seedable)
 pseudo-random number generator implementations, incl. `IRandom` wrappers for

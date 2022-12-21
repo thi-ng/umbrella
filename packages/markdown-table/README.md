@@ -20,7 +20,7 @@ This project is part of the
 
 ## About
 
-Markdown table formatter/generator with support for column alignments
+Markdown table formatter/generator with support for column alignments.
 
 See related packages below for alternative solutions / approaches...
 

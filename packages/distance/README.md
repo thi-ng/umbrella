@@ -25,7 +25,7 @@ This project is part of the
 
 ## About
 
-N-dimensional distance metrics & K-nearest neighborhoods for point queries
+N-dimensional distance metrics & K-nearest neighborhoods for point queries.
 
 ### Distance metrics
 

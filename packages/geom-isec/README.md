@@ -20,7 +20,7 @@ This project is part of the
 
 ## About
 
-2D/3D shape intersection checks
+2D/3D shape intersection checks. This is a support package for [@thi.ng/geom](https://github.com/thi-ng/umbrella/tree/develop/packages/geom).
 
 | Type   | Circle | Line | Poly | Ray | Rect | Tri |
 |--------|:------:|:----:|:----:|:---:|:----:|:---:|

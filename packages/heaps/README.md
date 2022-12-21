@@ -21,7 +21,7 @@ This project is part of the
 
 ## About
 
-Various heap implementations for arbitrary values and with customizable ordering
+Various heap implementations for arbitrary values and with customizable ordering.
 
 Type agnostic Heap and Priority Queue implementations with customizable
 ordering and fanout / tree arity (in case of `DHeap`) and largely unified API:

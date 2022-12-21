@@ -19,7 +19,7 @@ This project is part of the
 
 ## About
 
-Vector clock functions for synchronizing distributed states & processes
+Vector clock functions for synchronizing distributed states & processes.
 
 [Vector clock algorithm](https://en.wikipedia.org/wiki/Vector_clock):
 

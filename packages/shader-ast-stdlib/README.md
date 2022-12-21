@@ -41,7 +41,7 @@ This project is part of the
 
 ## About
 
-Function collection for modular GPGPU / shader programming with @thi.ng/shader-ast
+Function collection for modular GPGPU / shader programming with [@thi.ng/shader-ast](https://github.com/thi-ng/umbrella/tree/develop/packages/shader-ast).
 
 A growing collection (currently ~170) of useful functions & higher order
 constructs (incl. meta programming approaches) for GPU / shader programming,

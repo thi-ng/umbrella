@@ -59,7 +59,7 @@ This project is part of the
 
 ## About
 
-Lightweight transducer implementations for ES6 / TypeScript
+Lightweight transducer implementations for ES6 / TypeScript.
 
 This library provides altogether ~130 transducers, reducers, sequence
 generators (ES6 generators/iterators) and additional supporting

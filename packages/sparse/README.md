@@ -20,7 +20,7 @@ This project is part of the
 
 ## About
 
-Sparse vector & matrix implementations
+Sparse vector & matrix implementations.
 
 ## Status
 

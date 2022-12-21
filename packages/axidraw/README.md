@@ -29,7 +29,7 @@ This project is part of the
 
 ## About
 
-Minimal AxiDraw plotter/drawing machine controller for Node.js
+Minimal AxiDraw plotter/drawing machine controller for Node.js.
 
 This package provides a super-lightweight alternative to control an [AxiDraw
 plotter](https://axidraw.com/) directly from Node.js, using a small custom set

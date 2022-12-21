@@ -21,7 +21,7 @@ This project is part of the
 
 ## About
 
-50+ Linked Data vocabulary prefixes and their namespace URLs
+50+ Linked Data vocabulary prefixes and their namespace URLs.
 
 ## Status
 

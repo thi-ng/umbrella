@@ -20,7 +20,7 @@ This project is part of the
 
 ## About
 
-Freely customizable, iterative nD subdivision curves for open / closed geometries
+Freely customizable, iterative nD subdivision curves for open / closed geometries. This is a support package for [@thi.ng/geom](https://github.com/thi-ng/umbrella/tree/develop/packages/geom).
 
 Based in principle on:
 

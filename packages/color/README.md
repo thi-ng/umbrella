@@ -34,7 +34,7 @@ For the Clojure version, please visit: [thi.ng/color-clj](https://thi.ng/color-c
 
 ## About
 
-Array-based color types, CSS parsing, conversions, transformations, declarative theme generation, gradients, presets
+Array-based color types, CSS parsing, conversions, transformations, declarative theme generation, gradients, presets.
 
 ---
 

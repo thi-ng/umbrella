@@ -25,7 +25,7 @@ This project is part of the
 
 ## About
 
-DAG resolution of vanilla objects & arrays with internally linked values
+DAG resolution of vanilla objects & arrays with internally linked values.
 
 This is useful for expressing complex configurations with
 derived values or computing interrelated values without having to

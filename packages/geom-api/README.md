@@ -19,7 +19,7 @@ This project is part of the
 
 ## About
 
-Shared type & interface declarations for @thi.ng/geom packages
+Shared type & interface declarations for [@thi.ng/geom](https://github.com/thi-ng/umbrella/tree/develop/packages/geom) packages.
 
 ## Status
 

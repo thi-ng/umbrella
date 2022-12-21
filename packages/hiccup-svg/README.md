@@ -25,7 +25,7 @@ This project is part of the
 
 ## About
 
-SVG element functions for @thi.ng/hiccup & related tooling
+SVG element functions for [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup) & related tooling.
 
 ### Important
 

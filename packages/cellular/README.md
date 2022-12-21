@@ -31,7 +31,7 @@ This project is part of the
 
 ![Custom cellular automata w/ 7-neighborhood & 128 states](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/cellular/hero.png)
 
-Highly customizable 1D cellular automata, shared env, multiple rules, arbitrary sized/shaped neighborhoods, short term memory, cell states etc.
+Highly customizable 1D cellular automata, shared env, multiple rules, arbitrary sized/shaped neighborhoods, short term memory, cell states etc..
 
 The generic implementation provided by this package enables many novel and
 unusual CA setups as well as coevolution of multiple CAs within a shared

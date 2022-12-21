@@ -20,7 +20,7 @@ This project is part of the
 
 ## About
 
-Dynamically scoped variable bindings
+Dynamically scoped variable bindings.
 
 References:
 

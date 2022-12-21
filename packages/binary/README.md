@@ -21,7 +21,7 @@ This project is part of the
 
 ## About
 
-100+ assorted binary / bitwise operations, conversions, utilities, lookup tables
+100+ assorted binary / bitwise operations, conversions, utilities, lookup tables.
 
 ## Status
 

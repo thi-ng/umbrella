@@ -52,7 +52,7 @@ This project is part of the
 
 ## About
 
-DSL to define shader code in TypeScript and cross-compile to GLSL, JS and other targets
+DSL to define shader code in TypeScript and cross-compile to GLSL, JS and other targets.
 
 ![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/shader-ast/shader-ast-01.jpg)
 

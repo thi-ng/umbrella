@@ -52,7 +52,7 @@ This project is part of the
 
 ## About
 
-Optimized 2d/3d/4d and arbitrary length vector operations
+Optimized 2d/3d/4d and arbitrary length vector operations.
 
 Likely the most comprehensive vector library for TypeScript / JavaScript
 currently available.

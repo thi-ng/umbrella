@@ -19,7 +19,7 @@ This project is part of the
 
 ## About
 
-2D polygon/polyline analysis & processing utilities
+2D polygon/polyline analysis & processing utilities. This is a support package for [@thi.ng/geom](https://github.com/thi-ng/umbrella/tree/develop/packages/geom).
 
 - signed 2D polygon & triangle area
 - triangle barycentric coord conversion

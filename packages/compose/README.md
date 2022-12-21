@@ -19,7 +19,7 @@ This project is part of the
 
 ## About
 
-Optimized functional composition helpers
+Optimized functional composition helpers.
 
 ## Status
 

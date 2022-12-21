@@ -19,7 +19,7 @@ This project is part of the
 
 ## About
 
-Arbitrary base-n conversions w/ presets for base16/32/36/58/62/64/85, support for arrays & bigints
+Arbitrary base-n conversions w/ presets for base16/32/36/58/62/64/85, support for arrays & bigints.
 
 ## Status
 

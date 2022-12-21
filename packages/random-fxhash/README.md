@@ -21,7 +21,7 @@ This project is part of the
 
 ## About
 
-@thi.ng/random compatible wrapper & utilities for fxhash's PRNG
+[@thi.ng/random](https://github.com/thi-ng/umbrella/tree/develop/packages/random) compatible wrapper & utilities for fxhash's PRNG.
 
 [fxhash](https://fxhash.xyz) is a platform for publishing generative art
 projects on the Tezos blockchain, where each individual project edition is

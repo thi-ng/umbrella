@@ -23,7 +23,7 @@ This project is part of the
 
 ## About
 
-Generator of opaque numeric identifiers with optional support for ID versioning and efficient re-use
+Generator of opaque numeric identifiers with optional support for ID versioning and efficient re-use.
 
 Previously generated IDs that have been discarded are stored in a
 memory-efficient implicit list of free IDs and will be re-used. The

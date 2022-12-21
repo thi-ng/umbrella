@@ -19,7 +19,7 @@ This project is part of the
 
 ## About
 
-Common, generic types, interfaces & mixins
+Common, generic types, interfaces & mixins.
 
 This package is implicitly used by most other projects in this repository. It
 defines:

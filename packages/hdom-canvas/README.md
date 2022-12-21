@@ -27,7 +27,7 @@ This project is part of the
 
 ## About
 
-@thi.ng/hdom component wrapper for declarative canvas scenegraphs
+[@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/develop/packages/hdom) component wrapper for declarative canvas scenegraphs.
 
 This package provides a [re-usable canvas
 component](https://github.com/thi-ng/umbrella/tree/develop/packages/hdom-canvas/src/index.ts#L66),

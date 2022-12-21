@@ -21,7 +21,7 @@ This project is part of the
 
 ## About
 
-Collection of unstyled, customizable components for @thi.ng/rdom
+Collection of unstyled, customizable components for [@thi.ng/rdom](https://github.com/thi-ng/umbrella/tree/develop/packages/rdom).
 
 Currently, this package provides:
 

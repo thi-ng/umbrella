@@ -34,7 +34,7 @@ This project is part of the
 
 ## About
 
-Matrix & quaternion operations for 2D/3D geometry processing
+Matrix & quaternion operations for 2D/3D geometry processing.
 
 This package provides 160+ matrix & quaternion operations for 2D/3D
 geometry processing and acts as companion package for

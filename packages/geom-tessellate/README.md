@@ -20,7 +20,7 @@ This project is part of the
 
 ## About
 
-2D/3D convex polygon tessellators
+2D/3D convex polygon tessellators. This is a support package for [@thi.ng/geom](https://github.com/thi-ng/umbrella/tree/develop/packages/geom).
 
 - [earcut](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-tessellate/src/earcut.ts)
 - [edgeSplit](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-tessellate/src/edge-split.ts)

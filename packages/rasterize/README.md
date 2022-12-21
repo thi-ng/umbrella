@@ -27,7 +27,7 @@ This project is part of the
 
 ## About
 
-2D shape drawing & rasterization
+2D shape drawing & rasterization.
 
 The functions in this package can be used with any
 [`IGrid2D`](https://docs.thi.ng/umbrella/api/interfaces/IGrid2D.html) compatible

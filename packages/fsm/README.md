@@ -23,7 +23,7 @@ This project is part of the
 
 ## About
 
-Composable primitives for building declarative, transducer based Finite-State Machines & matchers for arbitrary data streams
+Composable primitives for building declarative, transducer based Finite-State Machines & matchers for arbitrary data streams.
 
 See the [hiccup-markdown
 parser](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-markdown/src/parser.ts)

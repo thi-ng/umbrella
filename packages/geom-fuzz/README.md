@@ -21,7 +21,7 @@ This project is part of the
 
 ## About
 
-Highly configurable, fuzzy line & polygon creation with presets and composable fill & stroke styles. Canvas & SVG support
+Highly configurable, fuzzy line & polygon creation with presets and composable fill & stroke styles. Canvas & SVG support. This is a support package for [@thi.ng/geom](https://github.com/thi-ng/umbrella/tree/develop/packages/geom).
 
 ![example output](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom/geom-fuzz.png)
 
@@ -56,7 +56,7 @@ For Node.js REPL:
 const geomFuzz = await import("@thi.ng/geom-fuzz");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 1.13 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 1.24 KB
 
 ## Dependencies
 

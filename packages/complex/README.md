@@ -19,7 +19,7 @@ This project is part of the
 
 ## About
 
-Array-based complex number algebra
+Array-based complex number algebra.
 
 ## Status
 

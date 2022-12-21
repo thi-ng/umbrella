@@ -35,7 +35,7 @@ This project is part of the
 
 ## About
 
-Composable signal generators, oscillators, filters, FFT, spectrum, windowing & related DSP utils
+Composable signal generators, oscillators, filters, FFT, spectrum, windowing & related DSP utils.
 
 Partially ported from other thi.ng projects (e.g.
 [thi.ng/synstack](https://github.com/thi-ng/synstack),

@@ -19,7 +19,7 @@ This project is part of the
 
 ## About
 
-Assorted file I/O utils (with logging support) for NodeJS
+Assorted file I/O utils (with logging support) for NodeJS.
 
 Most functions in this package have optional support for the
 [`ILogger`](https://github.com/thi-ng/umbrella/tree/develop/packages/logger)

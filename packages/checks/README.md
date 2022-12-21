@@ -19,7 +19,7 @@ This project is part of the
 
 ## About
 
-Collection of 70+ type, feature & value checks
+Collection of 70+ type, feature & value checks.
 
 ## Status
 

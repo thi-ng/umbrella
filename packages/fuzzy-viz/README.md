@@ -21,7 +21,7 @@ This project is part of the
 
 ## About
 
-Visualization, instrumentation & introspection utils for @thi.ng/fuzzy
+Visualization, instrumentation & introspection utils for [@thi.ng/fuzzy](https://github.com/thi-ng/umbrella/tree/develop/packages/fuzzy).
 
 ## Status
 

@@ -28,7 +28,7 @@ This project is part of the
 
 ## About
 
-Extensible Graph Format
+Extensible Graph Format.
 
 Striving to be both easily readable & writable for humans and machines, this
 line based, plain text data format and package supports:

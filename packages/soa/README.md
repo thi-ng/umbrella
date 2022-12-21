@@ -25,7 +25,7 @@ This project is part of the
 
 ## About
 
-SOA & AOS memory mapped structured views with optional & extensible serialization
+SOA & AOS memory mapped structured views with optional & extensible serialization.
 
 ### Supported memory layouts
 

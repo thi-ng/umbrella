@@ -35,7 +35,7 @@ This project is part of the
 
 ## About
 
-2D grid and shape iterators w/ multiple orderings
+2D grid and shape iterators w/ multiple orderings.
 
 Provides the altogether 25 following orderings to generate grid coordinates,
 including iterators for shape rasterization, drawing, clipping, filling,
@@ -222,7 +222,7 @@ For Node.js REPL:
 const gridIterators = await import("@thi.ng/grid-iterators");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 2.32 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 2.31 KB
 
 ## Dependencies
 

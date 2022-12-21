@@ -27,7 +27,7 @@ This project is part of the
 
 ## About
 
-Porter-Duff operators for packed ints & float-array alpha compositing
+Porter-Duff operators for packed ints & float-array alpha compositing.
 
 This package provides all 13 fundamental
 [Porter-Duff](https://keithp.com/~keithp/porterduff/p253-porter.pdf)

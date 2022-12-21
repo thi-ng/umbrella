@@ -31,7 +31,7 @@ instead...**
 
 ## About
 
-Interceptor based event bus, side effect & immutable state handling
+Interceptor based event bus, side effect & immutable state handling.
 
 ## Event bus, interceptors, side effects
 

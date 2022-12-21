@@ -20,7 +20,7 @@ This project is part of the
 
 ## About
 
-IGES 5.3 serializer for (currently only) polygonal geometry, both open & closed
+IGES 5.3 serializer for (currently only) polygonal geometry, both open & closed.
 
 Mainly intended for exporting geometry to be used in various CAD
 applications (e.g. Rhino, Houdini, Fusion 360)

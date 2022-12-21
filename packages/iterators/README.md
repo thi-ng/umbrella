@@ -72,7 +72,7 @@ This project is part of the
 
 ## About
 
-Clojure inspired, composable ES6 iterators & generators
+Clojure inspired, composable ES6 iterators & generators.
 
 Most of the provided functionality here is also available in the form of
 more composable & efficient transducers via

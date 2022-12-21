@@ -23,7 +23,7 @@ This project is part of the
 
 ## About
 
-2D Signed Distance Field creation from @thi.ng/geom shapes, conversions, sampling, combinators
+2D Signed Distance Field creation from [@thi.ng/geom](https://github.com/thi-ng/umbrella/tree/develop/packages/geom) shapes, conversions, sampling, combinators.
 
 Includes several distance functions and SDF operators ported from GLSL
 implementations by:

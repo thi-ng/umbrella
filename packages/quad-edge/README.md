@@ -20,7 +20,7 @@ This project is part of the
 
 ## About
 
-Quadedge data structure after Guibas & Stolfi
+Quadedge data structure after Guibas & Stolfi.
 
 See the related
 [@thi.ng/geom-voronoi](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-voronoi)

@@ -30,7 +30,7 @@ This project is part of the
 
 ## About
 
-Typedarray integer & float pixel buffers w/ customizable formats, blitting, drawing, convolution
+Typedarray integer & float pixel buffers w/ customizable formats, blitting, drawing, convolution.
 
 ![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/pixel/pixel-basics.png)
 

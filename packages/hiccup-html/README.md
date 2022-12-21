@@ -33,7 +33,7 @@ This project is part of the
 
 ## About
 
-100+ type-checked HTML5 element functions for @thi.ng/hiccup related infrastructure
+100+ type-checked HTML5 element functions for [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup) related infrastructure.
 
 The following type-checked factory functions are provided **so far** and
 in most cases include specialized type definitions for element-specific

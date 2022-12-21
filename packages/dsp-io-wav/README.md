@@ -19,7 +19,7 @@ This project is part of the
 
 ## About
 
-WAV file format generation
+WAV file format generation. This is a support package for [@thi.ng/dsp](https://github.com/thi-ng/umbrella/tree/develop/packages/dsp).
 
 ## Status
 

@@ -32,7 +32,7 @@ This project is part of the
 
 ## About
 
-Literate programming code block tangling / codegen utility, inspired by org-mode & noweb
+Literate programming code block tangling / codegen utility, inspired by org-mode & noweb.
 
 [Literate Programming](https://en.wikipedia.org/wiki/Literate_programming) (LP)
 is a form of programming focused on creating documents of interleaved prose,

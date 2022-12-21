@@ -35,7 +35,7 @@ This project is part of the
 
 ## About
 
-ArrayBuffer based malloc() impl for hybrid JS/WASM use cases, based on thi.ng/tinyalloc
+ArrayBuffer based malloc() impl for hybrid JS/WASM use cases, based on thi.ng/tinyalloc.
 
 Supports free block compaction and configurable splitting. Unlike the
 original, this implementation also supports `realloc()` and does not

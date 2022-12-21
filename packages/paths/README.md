@@ -34,7 +34,7 @@ This project is part of the
 
 ## About
 
-Immutable, optimized and optionally typed path-based object property / array accessors with structural sharing
+Immutable, optimized and optionally typed path-based object property / array accessors with structural sharing.
 
 ## Status
 

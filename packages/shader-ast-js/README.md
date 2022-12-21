@@ -22,7 +22,7 @@ This project is part of the
 
 ## About
 
-Customizable JS codegen, compiler & runtime for @thi.ng/shader-ast
+Customizable JS codegen, compiler & runtime for [@thi.ng/shader-ast](https://github.com/thi-ng/umbrella/tree/develop/packages/shader-ast).
 
 Due to the lack of native vector operations in JS, this compile target
 is much more involved than the

@@ -52,7 +52,7 @@ This project is part of the
 
 ## About
 
-Hiccup shape tree renderer for vanilla Canvas 2D contexts
+Hiccup shape tree renderer for vanilla Canvas 2D contexts. This is a support package for [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup).
 
 This package provides a simple `draw()` function, which accepts a scene tree of
 different shape types in

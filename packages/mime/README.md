@@ -21,7 +21,7 @@ This project is part of the
 
 ## About
 
-650+ file extension to MIME type mappings, based on mime-db
+650+ file extension to MIME type mappings, based on mime-db.
 
 All MIME type mappings based on [mime-db](https://github.com/jshttp/mime-db)
 (2022-04-07). For filesize reasons only [a small selected

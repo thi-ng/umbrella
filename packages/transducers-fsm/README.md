@@ -26,7 +26,7 @@ updated with new features.**
 
 ## About
 
-Transducer-based Finite State Machine transformer
+Transducer-based Finite State Machine transformer. This is a support package for [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers).
 
 This package provides a single function, a general purpose [Finite State
 Machine](https://en.wikipedia.org/wiki/Finite-state_machine) transducer,

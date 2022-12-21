@@ -41,7 +41,7 @@ This project is part of the
 
 ## About
 
-HTML/SVG/XML serialization of nested data structures, iterables & closures
+HTML/SVG/XML serialization of nested data structures, iterables & closures.
 
 Inspired by [Hiccup](https://github.com/weavejester/hiccup) and
 [Reagent](http://reagent-project.github.io/) for Clojure/ClojureScript.

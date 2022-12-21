@@ -20,7 +20,7 @@ This project is part of the
 
 ## About
 
-2D polygon clipping / offsetting (Sutherland-Hodgeman, Grainer-Hormann)
+2D polygon clipping / offsetting (Sutherland-Hodgeman, Grainer-Hormann). This is a support package for [@thi.ng/geom](https://github.com/thi-ng/umbrella/tree/develop/packages/geom).
 
 Current implementations are based on [toxiclibs](http://toxiclibs.org)
 (Java) and Clojure versions [thi.ng/geom-clj](http://thi.ng/geom-clj).

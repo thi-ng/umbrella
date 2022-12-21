@@ -25,7 +25,7 @@ This project is part of the
 
 ## About
 
-Fuzzy logic operators & configurable rule inferencing engine
+Fuzzy logic operators & configurable rule inferencing engine.
 
 ### Features
 

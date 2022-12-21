@@ -19,7 +19,7 @@ This project is part of the
 
 ## About
 
-Customizable Graphviz DOT serialization for @thi.ng/dgraph
+Customizable Graphviz DOT serialization for [@thi.ng/dgraph](https://github.com/thi-ng/umbrella/tree/develop/packages/dgraph).
 
 This package acts as optional glue layer between the
 [@thi.ng/dgraph](https://github.com/thi-ng/umbrella/tree/develop/packages/dgraph)

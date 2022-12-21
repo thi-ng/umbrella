@@ -21,7 +21,7 @@ This project is part of the
 
 ## About
 
-Transducers for statistical / technical analysis
+Transducers for statistical / technical analysis. This is a support package for [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers).
 
 This package provides a set of
 [transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)

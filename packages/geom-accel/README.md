@@ -20,7 +20,7 @@ This project is part of the
 
 ## About
 
-n-D spatial indexing data structures with a shared ES6 Map/Set-like API
+n-D spatial indexing data structures with a shared ES6 Map/Set-like API.
 
 Some implementations were ported from the Clojure version of
 [thi.ng/geom](http://thi.ng/geom).

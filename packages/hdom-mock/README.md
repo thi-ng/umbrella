@@ -19,7 +19,7 @@ This project is part of the
 
 ## About
 
-Mock base implementation for @thi.ng/hdom API
+Mock base implementation for [@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/develop/packages/hdom) API.
 
 This package provides a mock implementation of the
 [`HDOMImplementation`](https://github.com/thi-ng/umbrella/tree/develop/packages/hdom/src/api.ts)

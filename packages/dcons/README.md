@@ -25,7 +25,7 @@ This project is part of the
 
 ## About
 
-Double-linked lists with comprehensive set of operations (incl. optional self-organizing behaviors)
+Double-linked lists with comprehensive set of operations (incl. optional self-organizing behaviors).
 
 - ES6 iterator support
 - Stack & queue API (front and/or back)

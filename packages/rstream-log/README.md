@@ -21,7 +21,7 @@ This project is part of the
 
 ## About
 
-Structured, multilevel & hierarchical loggers based on @thi.ng/rstream
+Structured, multilevel & hierarchical loggers based on [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream).
 
 This package provides extensible, multi-level & multi-hierarchy logging
 infrastructure, with logged values transformable via

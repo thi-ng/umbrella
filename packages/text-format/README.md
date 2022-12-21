@@ -30,7 +30,7 @@ This project is part of the
 
 ## About
 
-Customizable color text formatting with presets for ANSI & HTML
+Customizable color text formatting with presets for ANSI & HTML.
 
 This package provides a number of color and other styling format constants, as
 well as formatting functions to interpret and apply these abstract format

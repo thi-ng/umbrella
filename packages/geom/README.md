@@ -27,7 +27,7 @@ For the Clojure version, please visit: [thi.ng/geom-clj](https://thi.ng/geom-clj
 
 ## About
 
-Functional, polymorphic API for 2D geometry types & SVG generation
+Functional, polymorphic API for 2D geometry types & SVG generation.
 
 This project is a partially ported from the [Clojure version of the same
 name](http://thi.ng/geom-clj). All polymorphic operations built on

@@ -21,7 +21,7 @@ This project is part of the
 
 ## About
 
-Minimal, rational & TypeScript-friendly test runner, result export as CSV/JSON, watch mode, file fixtures
+Minimal, rational & TypeScript-friendly test runner, result export as CSV/JSON, watch mode, file fixtures.
 
 ## Status
 

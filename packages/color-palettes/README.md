@@ -26,7 +26,7 @@ This project is part of the
 
 ## About
 
-Collection of 190+ image based color palettes (zero dependencies)
+Collection of 190+ image based color palettes. This is a support package for [@thi.ng/color](https://github.com/thi-ng/umbrella/tree/develop/packages/color). (zero dependencies)
 
 ## Recent additions
 

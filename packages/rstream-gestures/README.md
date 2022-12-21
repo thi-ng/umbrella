@@ -26,7 +26,7 @@ This project is part of the
 
 ## About
 
-Unified mouse, mouse wheel & multi-touch event stream abstraction
+Unified mouse, mouse wheel & multi-touch event stream abstraction. This is a support package for [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream).
 
 ## Status
 

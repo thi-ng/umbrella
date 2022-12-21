@@ -22,7 +22,7 @@ This project is part of the
 
 ## About
 
-Shader AST code optimization passes/strategies
+Shader AST code optimization passes/strategies. This is a support package for [@thi.ng/shader-ast](https://github.com/thi-ng/umbrella/tree/develop/packages/shader-ast).
 
 ### Tree optimizations
 

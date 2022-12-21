@@ -22,7 +22,7 @@ This project is part of the
 
 ## About
 
-Functional tree editing, manipulation & navigation
+Functional tree editing, manipulation & navigation.
 
 Immutable, semi-functional, structural tree editing, manipulation &
 navigation, based on my fork and optimizations to

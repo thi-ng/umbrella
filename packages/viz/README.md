@@ -20,7 +20,7 @@ This project is part of the
 
 ## About
 
-Declarative, functional & multi-format data visualization toolkit based around @thi.ng/hiccup
+Declarative, functional & multi-format data visualization toolkit based around [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup).
 
 This package largely started as a port of the visualization module of the
 Clojure version [thi.ng/geom-clj](https://github.com/thi-ng/geom/) and is still

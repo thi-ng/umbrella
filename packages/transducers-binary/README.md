@@ -28,7 +28,7 @@ This project is part of the
 
 ## About
 
-Binary data related transducers & reducers
+Binary data related transducers & reducers. This is a support package for [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers).
 
 Like the transducers and reducers defined in
 [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers),

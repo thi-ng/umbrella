@@ -19,7 +19,7 @@ This project is part of the
 
 ## About
 
-Binary image to Distance Field transformation
+Binary image to Distance Field transformation.
 
 ![example distance field comparison for three different
 metrics](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/distance-transform/dt.png)

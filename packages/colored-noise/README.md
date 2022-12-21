@@ -28,7 +28,7 @@ This project is part of the
 
 ## About
 
-Customizable O(1) ES6 generators for colored noise
+Customizable O(1) ES6 generators for colored noise.
 
 [Colored noise](https://en.wikipedia.org/wiki/Colors_of_noise) is useful for a
 wide variety of use cases where a more controlled approach to random number

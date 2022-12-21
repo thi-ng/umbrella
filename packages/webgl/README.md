@@ -23,7 +23,7 @@ This project is part of the
 
 ## About
 
-WebGL & GLSL abstraction layer
+WebGL & GLSL abstraction layer.
 
 Largely declarative WebGL 1.0 / 2.0 abstraction layer, partially ported
 & updated from Clojure/ClojureScript versions of

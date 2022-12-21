@@ -21,7 +21,7 @@ This project is part of the
 
 ## About
 
-Closed/open/semi-open interval data type, queries & operations
+Closed/open/semi-open interval data type, queries & operations.
 
 Supports point & range queries and set operations with other intervals
 (union, intersection, difference).

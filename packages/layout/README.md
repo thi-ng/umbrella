@@ -21,7 +21,7 @@ This project is part of the
 
 ## About
 
-Configurable nested 2D grid layout manager
+Configurable nested 2D grid layout manager.
 
 Currently, this package features only a single grid layout allocator, as
 well as more [generic supporting

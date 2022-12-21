@@ -22,7 +22,7 @@ This project is part of the
 
 ## About
 
-Declarative, functional & typechecked CLI argument/options parser, value coercions etc.
+Declarative, functional & typechecked CLI argument/options parser, value coercions etc..
 
 Includes built-in support for the following argument types (of course custom arg types are supported too):
 

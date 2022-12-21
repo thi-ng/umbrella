@@ -24,7 +24,7 @@ This project is part of the
 
 ## About
 
-Benchmarking utilities w/ various statistics & formatters (CSV, Markdown etc.)
+Benchmarking utilities w/ various statistics & formatters (CSV, Markdown etc.).
 
 Though no public API change (only additions), since v2.0.0 this library
 internally attempts to use high-res ES

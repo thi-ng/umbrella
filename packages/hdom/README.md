@@ -62,7 +62,7 @@ instead...**
 
 ## About
 
-Lightweight vanilla ES6 UI component trees with customizable branch-local behaviors
+Lightweight vanilla ES6 UI component trees with customizable branch-local behaviors.
 
 Lightweight UI component tree definition syntax, DOM creation and
 differential updates using only vanilla JS data structures (arrays,

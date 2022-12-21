@@ -20,7 +20,7 @@ This project is part of the
 
 ## About
 
-Array / Arraylike utilities
+Array / Arraylike utilities.
 
 ## Status
 

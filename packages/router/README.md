@@ -21,7 +21,7 @@ This project is part of the
 
 ## About
 
-Generic router for browser & non-browser based applications
+Generic router for browser & non-browser based applications.
 
 - Declarative route definitions
 - Parametric routes, each param with optional value coercion &

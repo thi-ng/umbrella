@@ -23,7 +23,7 @@ This project is part of the
 
 ## About
 
-ES6 promise based CSP primitives & operations
+ES6 promise based CSP primitives & operations.
 
 - `Channel` with/without buffering and/or
   [transducers](https://github.com/thi-ng/umbrella/blob/develop/packages/transducers)

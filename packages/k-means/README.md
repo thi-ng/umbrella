@@ -20,7 +20,7 @@ This project is part of the
 
 ## About
 
-Configurable k-means & k-medians (with k-means++ initialization) for n-D vectors
+Configurable k-means & k-medians (with k-means++ initialization) for n-D vectors.
 
 ## Status
 

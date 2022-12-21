@@ -20,7 +20,7 @@ This project is part of the
 
 ## About
 
-Delayed & scheduled function execution (via setTimeout() etc.) for hybrid WASM apps
+Delayed & scheduled function execution (via setTimeout() etc.) for hybrid WASM apps. This is a support package for [@thi.ng/wasm-api](https://github.com/thi-ng/umbrella/tree/develop/packages/wasm-api).
 
 The package provides a WASM bridge API and abstraction for scheduling function
 calls via:
@@ -99,7 +99,7 @@ For Node.js REPL:
 const wasmApiSchedule = await import("@thi.ng/wasm-api-schedule");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 400 bytes
+Package sizes (brotli'd, pre-treeshake): ESM: 396 bytes
 
 ## Dependencies
 

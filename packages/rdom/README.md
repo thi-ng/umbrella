@@ -27,7 +27,7 @@ This project is part of the
 
 ## About
 
-Lightweight, reactive, VDOM-less UI/DOM components with async lifecycle and @thi.ng/hiccup compatible
+Lightweight, reactive, VDOM-less UI/DOM components with async lifecycle and [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup) compatible.
 
 ### From hdom to rdom: Reactive UIs without virtual DOMs
 

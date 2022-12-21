@@ -19,7 +19,7 @@ This project is part of the
 
 ## About
 
-File output handler for structured, multilevel & hierarchical loggers based on @thi.ng/rstream
+File output handler for structured, multilevel & hierarchical loggers based on [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream). This is a support package for [@thi.ng/rstream-log](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream-log).
 
 ## Status
 

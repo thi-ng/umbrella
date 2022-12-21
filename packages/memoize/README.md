@@ -24,7 +24,7 @@ This project is part of the
 
 ## About
 
-Function memoization with configurable caching
+Function memoization with configurable caching.
 
 This package provides different function memoization implementations for
 functions with 1 or more arguments and custom result caching using ES6

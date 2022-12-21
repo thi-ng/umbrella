@@ -25,7 +25,7 @@ This project is part of the
 
 ## About
 
-Browser DOM bridge API for hybrid TypeScript & WASM (Zig) applications
+Browser DOM bridge API for hybrid TypeScript & WASM (Zig) applications. This is a support package for [@thi.ng/wasm-api](https://github.com/thi-ng/umbrella/tree/develop/packages/wasm-api).
 
 This package provides a small TypeScript core API
 and related [Ziglang](https://ziglang.org) bindings for UI & DOM
@@ -283,7 +283,7 @@ For Node.js REPL:
 const wasmApiDom = await import("@thi.ng/wasm-api-dom");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 4.10 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 4.08 KB
 
 ## Dependencies
 

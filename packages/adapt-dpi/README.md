@@ -20,7 +20,7 @@ This project is part of the
 
 ## About
 
-HDPI canvas adapter / styling utility
+HDPI canvas adapter / styling utility.
 
 Attempts to determine display pixel density via `window.devicePixelRatio`
 (default 1.0) and resizes canvas accordingly. I.e. If DPR != 1.0, attaches

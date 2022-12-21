@@ -23,7 +23,7 @@ This project is part of the
 
 ## About
 
-Data structures for managing & working with strided, memory mapped vectors
+Data structures for managing & working with strided, memory mapped vectors.
 
 This still package provides several data structures for managing &
 working with memory mapped vectors. Together with

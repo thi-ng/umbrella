@@ -24,7 +24,7 @@ This project is part of the
 
 ## About
 
-Datalog-inspired, optimized pattern/predicate query engine for JS objects & arrays
+Datalog-inspired, optimized pattern/predicate query engine for JS objects & arrays.
 
 This package provides a single higher-order function `defQuery()`, which takes a
 number of options to configure query behavior and returns an actual query

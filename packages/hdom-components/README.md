@@ -24,7 +24,7 @@ This project is part of the
 
 ## About
 
-Raw, skinnable UI & SVG components for @thi.ng/hdom
+Raw, skinnable UI & SVG components for [@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/develop/packages/hdom).
 
 A growing collection of unstyled, re-usable & customizable components
 for use with

@@ -21,7 +21,7 @@ This project is part of the
 
 ## About
 
-Sparse & bitwise adjacency matrices and related functions for directed & undirected graphs
+Sparse & bitwise adjacency matrices and related functions for directed & undirected graphs.
 
 ## Status
 
@@ -53,7 +53,7 @@ For Node.js REPL:
 const adjacency = await import("@thi.ng/adjacency");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 2.28 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 2.48 KB
 
 ## Dependencies
 

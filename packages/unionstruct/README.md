@@ -24,7 +24,7 @@ This project is part of the
 
 ## About
 
-C-style struct, union and bitfield read/write views of ArrayBuffers
+C-style struct, union and bitfield read/write views of ArrayBuffers.
 
 Features:
 

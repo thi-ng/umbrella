@@ -21,7 +21,7 @@ This project is part of the
 
 ## About
 
-Basic WebGL scaffolding for running interactive fragment shaders via @thi.ng/shader-ast
+Basic WebGL scaffolding for running interactive fragment shaders via [@thi.ng/shader-ast](https://github.com/thi-ng/umbrella/tree/develop/packages/shader-ast). This is a support package for [@thi.ng/webgl](https://github.com/thi-ng/umbrella/tree/develop/packages/webgl).
 
 ## Status
 

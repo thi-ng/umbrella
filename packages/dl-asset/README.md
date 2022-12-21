@@ -23,7 +23,7 @@ This project is part of the
 
 ## About
 
-Canvas, video recording & file asset download helpers for web apps
+Canvas, video recording & file asset download helpers for web apps.
 
 ## Status
 

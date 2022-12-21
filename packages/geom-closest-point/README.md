@@ -21,7 +21,7 @@ This project is part of the
 
 ## About
 
-2D / 3D closest point / proximity helpers
+2D / 3D closest point / proximity helpers. This is a support package for [@thi.ng/geom](https://github.com/thi-ng/umbrella/tree/develop/packages/geom).
 
 Current implementations partially based on
 [toxiclibs](http://toxiclibs.org) (Java) and Clojure version of

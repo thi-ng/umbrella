@@ -21,7 +21,7 @@ This project is part of the
 
 ## About
 
-Customizable, transducer-based CSV parser/object mapper and transformer
+Customizable, transducer-based CSV parser/object mapper and transformer.
 
 Partially ported and extended from the Clojure versions of the
 [ws-ldn-1](https://github.com/thi-ng/ws-ldn-1/blob/master/src/ws_ldn_1/day1/csv.clj)

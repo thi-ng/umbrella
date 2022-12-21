@@ -27,7 +27,7 @@ This project is part of the
 
 ## About
 
-Immediate mode GUI with flexible state handling & data only shape output
+Immediate mode GUI with flexible state handling & data only shape output.
 
 ![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/imgui/imgui-all.png)
 

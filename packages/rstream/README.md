@@ -45,7 +45,7 @@ This project is part of the
 
 ## About
 
-Reactive streams & subscription primitives for constructing dataflow graphs / pipelines
+Reactive streams & subscription primitives for constructing dataflow graphs / pipelines.
 
 This library provides & uses three key building blocks for reactive
 programming:

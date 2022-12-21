@@ -23,7 +23,7 @@ For the Clojure version, please visit: [thi.ng/math-clj](https://thi.ng/math-clj
 
 ## About
 
-Assorted common math functions & utilities
+Assorted common math functions & utilities.
 
 Partially ported from Clojure version
 [thi.ng/math-clj](https://github.com/thi-ng/math),

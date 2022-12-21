@@ -20,7 +20,7 @@ This project is part of the
 
 ## About
 
-Custom error types and error factory functions
+Custom error types and error factory functions.
 
 This package defines the following error types & helper functions to throw them:
 

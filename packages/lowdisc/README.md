@@ -23,7 +23,7 @@ This project is part of the
 
 ## About
 
-n-dimensional low-discrepancy sequence generators/iterators
+n-dimensional low-discrepancy sequence generators/iterators.
 
 This package provides the following n-dimensional [low-discrepancy
 sequence](https://en.wikipedia.org/wiki/Low-discrepancy_sequence) generators,

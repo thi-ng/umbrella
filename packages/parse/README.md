@@ -40,7 +40,7 @@ This project is part of the
 
 ## About
 
-Purely functional parser combinators & AST generation for generic inputs
+Purely functional parser combinators & AST generation for generic inputs.
 
 ### Features
 
