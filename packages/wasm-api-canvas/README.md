@@ -22,7 +22,7 @@ This project is part of the
 
 ## About
 
-HTML Canvas2D bridge API for hybrid TypeScript & WASM (Zig) applications
+HTML Canvas2D bridge API for hybrid TypeScript & WASM (Zig) applications. This is a support package for [@thi.ng/wasm-api](https://github.com/thi-ng/umbrella/tree/develop/packages/wasm-api).
 
 This package already covers ~80-90% of the HTML Canvas2D features and provides
 some additional drawing utilities to minimize boilerplate & WASM/JS cross-calling.
@@ -108,8 +108,8 @@ canvas2d.setFill("#f0f");
 // draw a triangle
 canvas2d.beginPath();
 canvas2d.moveTo(250, 50);
-canvas2d.moveTo(150, 250);
-canvas2d.moveTo(50, 100);
+canvas2d.lineTo(150, 250);
+canvas2d.lineTo(50, 100);
 canvas2d.fill();
 
 // (could also be shortened via this helper:)

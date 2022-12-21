@@ -64,8 +64,8 @@ canvas2d.setFill("#f0f");
 // draw a triangle
 canvas2d.beginPath();
 canvas2d.moveTo(250, 50);
-canvas2d.moveTo(150, 250);
-canvas2d.moveTo(50, 100);
+canvas2d.lineTo(150, 250);
+canvas2d.lineTo(50, 100);
 canvas2d.fill();
 
 // (could also be shortened via this helper:)
