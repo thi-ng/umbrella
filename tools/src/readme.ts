@@ -20,6 +20,7 @@ import {
 	packageBanner,
 	packageCitation,
 	packageDeps,
+	packageDesc,
 	packageInstallation,
 	packageSize,
 	packageStatus,
@@ -32,6 +33,7 @@ try {
 
 	const templates: IObjectOf<TemplateFn<Config>> = {
 		...packageTemplates<Config>((x) => x.root),
+		"pkg.description": ({ user }) => packageDesc(user, user.root),
 		"pkg.deps": ({ user }) => packageDeps(user, user.root),
 		"pkg.size": packageSize,
 		"pkg.banner": ({ user }) => packageBanner(user, user.root.name),
