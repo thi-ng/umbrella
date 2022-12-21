@@ -16,7 +16,7 @@ import {
 	TextBaseline,
 	TextDirection,
 	WasmCanvas2DImports,
-} from "./api";
+} from "./api.js";
 
 const TAU = Math.PI * 2;
 
