@@ -2,17 +2,29 @@ import { BitField } from "@thi.ng/bitfield/bitfield";
 import { DCons } from "@thi.ng/dcons/dcons";
 import type { CostFn, IGraph } from "./api.js";
 
+/**
+ * Breadth-First / shortest path search between `src` and `dest` in `graph`,
+ * with optional `cost` function. By default all edges have an uniform cost,
+ * i.e. the overall path cost is topological distance.
+ *
+ * @remarks
+ * Also see {@link bfs} for ad hoc queries.
+ *
+ * Reference:
+ * - https://en.wikipedia.org/wiki/Breadth-first_search
+ * - https://algs4.cs.princeton.edu/40graphs/
+ */
 export class BFS {
 	graph: IGraph;
 	marked: BitField;
 	edges: Uint32Array;
-	dist: Uint32Array;
+	dist: Float32Array;
 
 	constructor(graph: IGraph, src: number, cost: CostFn = () => 1) {
 		this.graph = graph;
 		const numV = graph.numVertices();
 		this.edges = new Uint32Array(numV);
-		this.dist = new Uint32Array(numV);
+		this.dist = new Float32Array(numV);
 		this.marked = new BitField(numV);
 		this.search(src, cost);
 	}
