@@ -40,9 +40,11 @@ export const defHatch = (opts: Partial<HatchOpts> = {}): FillFn => {
 		const grid = HATCH_DIRS[opts.dir!]({
 			cols,
 			rows,
-			tx: opts.flip
-				? { x: flipX, y: flipY, xy: flipXY }[opts.flip]
-				: ident,
+			tx:
+				opts.tx ||
+				(opts.flip
+					? { x: flipX, y: flipY, xy: flipXY }[opts.flip]
+					: ident),
 		});
 		for (let [a, b] of partition(2, grid)) {
 			unmapPoint(box, div2(null, a, maxg), a);
