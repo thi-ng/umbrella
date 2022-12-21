@@ -1,4 +1,4 @@
-import type { GridIterOpts } from "./api";
+import type { GridIterOpts } from "./api.js";
 import { __opts } from "./utils.js";
 
 /**

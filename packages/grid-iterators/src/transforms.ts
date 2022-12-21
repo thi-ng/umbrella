@@ -1,4 +1,4 @@
-import type { PointTransform } from "./api";
+import type { PointTransform } from "./api.js";
 
 /**
  * No-op / identity {@link PointTransform}.
