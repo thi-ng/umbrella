@@ -103,6 +103,9 @@
 		"./disjoint-set": {
 			"default": "./disjoint-set.js"
 		},
+		"./floyd-warshall": {
+			"default": "./floyd-warshall.js"
+		},
 		"./list": {
 			"default": "./list.js"
 		},
