@@ -146,12 +146,17 @@ feature or `develop` branches)
 
 ### Latest updates
 
-As of: 2022-12-20
+As of: 2022-12-22
 
-| Status                                      | Project                                                 | Version                                                                                                                       | Changelog                                            |
-|---------------------------------------------|---------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------|
-| ![](https://img.shields.io/badge/-new-cyan) | [`@thi.ng/transclude`](./packages/transclude)           | [![version](https://img.shields.io/npm/v/@thi.ng/transclude.svg)](https://www.npmjs.com/package/@thi.ng/transclude)           | [changelog](./packages/transclude/CHANGELOG.md)      |
-| ![](https://img.shields.io/badge/-new-cyan) | [`@thi.ng/wasm-api-canvas`](./packages/wasm-api-canvas) | [![version](https://img.shields.io/npm/v/@thi.ng/wasm-api-canvas.svg)](https://www.npmjs.com/package/@thi.ng/wasm-api-canvas) | [changelog](./packages/wasm-api-canvas/CHANGELOG.md) |
+| Status                                        | Project                                                 | Version                                                                                                                       | Changelog                                            |
+|-----------------------------------------------|---------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------|
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/adjacency`](./packages/adjacency)             | [![version](https://img.shields.io/npm/v/@thi.ng/adjacency.svg)](https://www.npmjs.com/package/@thi.ng/adjacency)             | [changelog](./packages/adjacency/CHANGELOG.md)       |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/geom`](./packages/geom)                       | [![version](https://img.shields.io/npm/v/@thi.ng/geom.svg)](https://www.npmjs.com/package/@thi.ng/geom)                       | [changelog](./packages/geom/CHANGELOG.md)            |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/geom-fuzz`](./packages/geom-fuzz)             | [![version](https://img.shields.io/npm/v/@thi.ng/geom-fuzz.svg)](https://www.npmjs.com/package/@thi.ng/geom-fuzz)             | [changelog](./packages/geom-fuzz/CHANGELOG.md)       |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/grid-iterators`](./packages/grid-iterators)   | [![version](https://img.shields.io/npm/v/@thi.ng/grid-iterators.svg)](https://www.npmjs.com/package/@thi.ng/grid-iterators)   | [changelog](./packages/grid-iterators/CHANGELOG.md)  |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/poisson`](./packages/poisson)                 | [![version](https://img.shields.io/npm/v/@thi.ng/poisson.svg)](https://www.npmjs.com/package/@thi.ng/poisson)                 | [changelog](./packages/poisson/CHANGELOG.md)         |
+| ![](https://img.shields.io/badge/-new-cyan)   | [`@thi.ng/transclude`](./packages/transclude)           | [![version](https://img.shields.io/npm/v/@thi.ng/transclude.svg)](https://www.npmjs.com/package/@thi.ng/transclude)           | [changelog](./packages/transclude/CHANGELOG.md)      |
+| ![](https://img.shields.io/badge/-new-cyan)   | [`@thi.ng/wasm-api-canvas`](./packages/wasm-api-canvas) | [![version](https://img.shields.io/npm/v/@thi.ng/wasm-api-canvas.svg)](https://www.npmjs.com/package/@thi.ng/wasm-api-canvas) | [changelog](./packages/wasm-api-canvas/CHANGELOG.md) |
 
 <!--
 ![](https://img.shields.io/badge/-feat-green)
