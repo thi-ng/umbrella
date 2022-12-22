@@ -185,13 +185,11 @@ following config options:
 ![example output](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/poisson/stratified-grid.png)
 
 ```ts
-import { asSvg, circle, group, line, svgDoc } from "@thi.ng/geom";
+import { asSvg, group, line, points, svgDoc } from "@thi.ng/geom";
 import { stratifiedGrid2 } from "@thi.ng/poisson";
 import { map, range } from "@thi.ng/transducers";
 
 const W = 50;
-
-const pts = stratifiedGrid2({ dim: [W, W], separation: 0.5 });
 
 document.body.innerHTML = asSvg(
     svgDoc(
@@ -201,7 +199,16 @@ document.body.innerHTML = asSvg(
             fill: "blue",
             stroke: "none",
         },
-        ...map((p) => circle(p, 0.25), pts)
+        // grid lines
+        group({ stroke: "#fcc", weight: 0.1 }, [
+            ...map((x) => line([x, 0], [x, W]), range(1, W)),
+            ...map((y) => line([0, y], [W, y]), range(1, W)),
+        ]),
+        // grid samples as point cloud
+        points(
+            [...stratifiedGrid2({ dim: [W, W], separation: 0.5 })],
+            { shape: "circle", size: 0.25 }
+        )
     )
 );
 ```
