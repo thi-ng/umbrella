@@ -141,14 +141,6 @@ control is in the "continue" state.
 yarn add @thi.ng/axidraw
 ```
 
-ES module import:
-
-```html
-<script type="module" src="https://cdn.skypack.dev/@thi.ng/axidraw"></script>
-```
-
-[Skypack documentation](https://docs.skypack.dev/)
-
 For Node.js REPL:
 
 ```js
@@ -160,6 +152,7 @@ Package sizes (brotli'd, pre-treeshake): ESM: 1.67 KB
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
+- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
 - [@thi.ng/compose](https://github.com/thi-ng/umbrella/tree/develop/packages/compose)
 - [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
 - [@thi.ng/logger](https://github.com/thi-ng/umbrella/tree/develop/packages/logger)

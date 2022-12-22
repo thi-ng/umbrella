@@ -151,7 +151,7 @@ For Node.js REPL:
 const rasterize = await import("@thi.ng/rasterize");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 1.47 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 1.48 KB
 
 ## Dependencies
 

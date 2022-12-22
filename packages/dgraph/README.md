@@ -46,7 +46,7 @@ maps & sets as backend.
 
 ## Related packages
 
-- [@thi.ng/adjacency](https://github.com/thi-ng/umbrella/tree/develop/packages/adjacency) - Sparse & bitwise adjacency matrices and related functions for directed & undirected graphs
+- [@thi.ng/adjacency](https://github.com/thi-ng/umbrella/tree/develop/packages/adjacency) - Sparse & bitwise adjacency matrices, lists and selected traversal algorithms for directed & undirected graphs
 - [@thi.ng/dot](https://github.com/thi-ng/umbrella/tree/develop/packages/dot) - Graphviz document abstraction & serialization to DOT format
 - [@thi.ng/system](https://github.com/thi-ng/umbrella/tree/develop/packages/system) - Minimal and explicit dependency-injection & lifecycle container for stateful app components
 

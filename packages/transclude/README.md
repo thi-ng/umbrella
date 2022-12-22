@@ -48,14 +48,6 @@ for a concrete usage example...
 yarn add @thi.ng/transclude
 ```
 
-ES module import:
-
-```html
-<script type="module" src="https://cdn.skypack.dev/@thi.ng/transclude"></script>
-```
-
-[Skypack documentation](https://docs.skypack.dev/)
-
 For Node.js REPL:
 
 ```js
@@ -68,7 +60,6 @@ Package sizes (brotli'd, pre-treeshake): ESM: 1.86 KB
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
 - [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
-- [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
 - [@thi.ng/file-io](https://github.com/thi-ng/umbrella/tree/develop/packages/file-io)
 - [@thi.ng/logger](https://github.com/thi-ng/umbrella/tree/develop/packages/logger)
 - [@thi.ng/strings](https://github.com/thi-ng/umbrella/tree/develop/packages/strings)

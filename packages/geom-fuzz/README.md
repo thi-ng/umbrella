@@ -56,7 +56,7 @@ For Node.js REPL:
 const geomFuzz = await import("@thi.ng/geom-fuzz");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 1.24 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 1.20 KB
 
 ## Dependencies
 

@@ -80,7 +80,6 @@ Package sizes (brotli'd, pre-treeshake): ESM: 682 bytes
 - [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
 - [@thi.ng/geom-api](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-api)
 - [@thi.ng/random](https://github.com/thi-ng/umbrella/tree/develop/packages/random)
-- [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)
 - [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors)
 
 ## Usage examples
