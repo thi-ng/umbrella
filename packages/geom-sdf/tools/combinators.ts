@@ -1,5 +1,5 @@
 import { writeText } from "@thi.ng/file-io";
-import { asSvg, bounds, group, rectFromCentroid, svgDoc } from "@thi.ng/geom";
+import { asSvg, bounds, group, rectWithCentroid, svgDoc } from "@thi.ng/geom";
 import { asPolygons, asSDF, sample2d, SDFAttribs } from "@thi.ng/geom-sdf";
 import { range } from "@thi.ng/transducers";
 
@@ -16,7 +16,7 @@ for (let op of <const>["none", "chamfer", "round", "smooth", "steps"]) {
 				weight: 3,
 				__sdf,
 			},
-			[rectFromCentroid([-33, -33], 200), rectFromCentroid([33, 33], 200)]
+			[rectWithCentroid([-33, -33], 200), rectWithCentroid([33, 33], 200)]
 		);
 
 		const sceneBounds = bounds(scene, margin)!;
@@ -41,9 +41,8 @@ for (let op of <const>["none", "chamfer", "round", "smooth", "steps"]) {
 						width: 280,
 						height: 280,
 						viewBox: "-180 -180 360 360",
-						fill: "none",
 					},
-					group({ stroke: "#000", weight: 0.5 }, polys),
+					group({ weight: 0.5 }, polys),
 					scene
 				)
 			)

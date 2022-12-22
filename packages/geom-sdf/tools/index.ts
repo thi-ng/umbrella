@@ -40,9 +40,9 @@ writeText(
 	"export/points.svg",
 	asSvg(
 		svgDoc(
-			{ fill: "none" },
+			{},
 			// contours
-			group({ stroke: "#000", weight: 0.5 }, polys),
+			group({ weight: 0.5 }, polys),
 			// original scene
 			scene
 		)
