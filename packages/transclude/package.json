@@ -36,7 +36,6 @@
 	"dependencies": {
 		"@thi.ng/api": "^8.6.1",
 		"@thi.ng/checks": "^3.3.5",
-		"@thi.ng/errors": "^2.2.6",
 		"@thi.ng/file-io": "^0.3.23",
 		"@thi.ng/logger": "^1.4.5",
 		"@thi.ng/strings": "^3.3.21",
@@ -56,6 +55,7 @@
 		"generator",
 		"json",
 		"markdown",
+		"node-only",
 		"npm",
 		"template",
 		"text",

@@ -35,6 +35,7 @@
 	},
 	"dependencies": {
 		"@thi.ng/api": "^8.6.1",
+		"@thi.ng/checks": "^3.3.5",
 		"@thi.ng/compose": "^2.1.22",
 		"@thi.ng/errors": "^2.2.6",
 		"@thi.ng/logger": "^1.4.5",
@@ -57,7 +58,7 @@
 		"geometry",
 		"io",
 		"logger",
-		"node",
+		"node-only",
 		"penplotter",
 		"polyline",
 		"serialport",

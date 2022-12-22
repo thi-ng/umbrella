@@ -1,7 +1,7 @@
 {
 	"name": "@thi.ng/adjacency",
 	"version": "2.2.20",
-	"description": "Sparse & bitwise adjacency matrices and related functions for directed & undirected graphs",
+	"description": "Sparse & bitwise adjacency matrices, lists and selected traversal algorithms for directed & undirected graphs",
 	"type": "module",
 	"module": "./index.js",
 	"typings": "./index.d.ts",
