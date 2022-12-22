@@ -143,7 +143,6 @@ const app =
 						width: 480,
 						height: 480,
 						viewBox: "-150 -150 300 300",
-						fill: "none",
 						stroke: "#ccc",
 						"stroke-width": 0.25,
 					},

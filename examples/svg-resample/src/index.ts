@@ -69,7 +69,6 @@ import SVG from "./example.svg";
 						{
 							viewBox: "-160 -160 320 320",
 							stroke: "red",
-							fill: "none",
 						},
 						...shapes
 					)

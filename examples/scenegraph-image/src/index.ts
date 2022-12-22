@@ -104,9 +104,7 @@ imagePromise(LOGO).then((img) => {
 			range(-200, 200, 5)
 		);
 
-		geom.body = group({ fill: "none", stroke: "#fff", weight: 0.5 }, [
-			...waves,
-		]);
+		geom.body = group({ stroke: "#fff", weight: 0.5 }, [...waves]);
 		return [
 			"div.sans-serif.pl3",
 			["h1", "scenegraph node-to-node UV mapping"],

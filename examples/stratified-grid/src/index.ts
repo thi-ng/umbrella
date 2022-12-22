@@ -13,7 +13,6 @@ document.body.innerHTML = asSvg(
 		{
 			width: 600,
 			height: 600,
-			fill: "none",
 			stroke: "blue",
 			"stroke-width": 0.1,
 		},

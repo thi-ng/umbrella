@@ -23,6 +23,4 @@ const circles = pts.map((p) =>
 	circle(p, dist(p, index.queryKeys(p, 40, 2)[1]) / 2)
 );
 
-document.body.innerHTML = asSvg(
-	svgDoc({ fill: "none", stroke: "blue" }, ...circles)
-);
+document.body.innerHTML = asSvg(svgDoc({ stroke: "blue" }, ...circles));
