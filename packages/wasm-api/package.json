@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/wasm-api",
-	"version": "1.2.4",
+	"version": "1.2.5",
 	"description": "Generic, modular, extensible API bridge and infrastructure for hybrid JS & WebAssembly projects",
 	"type": "module",
 	"module": "./index.js",
@@ -35,17 +35,17 @@
 		"test:build-zig": "zig build-lib -O ReleaseSmall -target wasm32-freestanding -dynamic --strip --pkg-begin wasmapi zig/lib.zig --pkg-end test/custom.zig && wasm-dis -o custom.wast custom.wasm && cp custom.wasm test"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.6.1",
-		"@thi.ng/arrays": "^2.4.6",
-		"@thi.ng/checks": "^3.3.5",
-		"@thi.ng/errors": "^2.2.6",
-		"@thi.ng/hex": "^2.3.2",
-		"@thi.ng/idgen": "^2.1.22",
-		"@thi.ng/logger": "^1.4.5"
+		"@thi.ng/api": "^8.6.2",
+		"@thi.ng/arrays": "^2.4.7",
+		"@thi.ng/checks": "^3.3.6",
+		"@thi.ng/errors": "^2.2.7",
+		"@thi.ng/hex": "^2.3.3",
+		"@thi.ng/idgen": "^2.1.23",
+		"@thi.ng/logger": "^1.4.6"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.33.7",
-		"@thi.ng/testament": "^0.3.7",
+		"@thi.ng/testament": "^0.3.8",
 		"rimraf": "^3.0.2",
 		"tools": "workspace:^",
 		"typedoc": "^0.23.22",

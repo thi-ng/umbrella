@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-12-20T16:33:11Z
+- **Last updated**: 2022-12-22T21:47:07Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,16 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+# [3.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/poisson@3.0.0) (2022-12-22)
+
+#### 🛑 Breaking changes
+
+- update/fix/replace stratifiedGrid() ([e84f920](https://github.com/thi-ng/umbrella/commit/e84f920))
+- BREAKING CHANGE: replace stratifiedGrid() w/ new fns
+  - add stratifiedGrid2/3() fns
+  - update StratifiedGridOpts
+  - remove old stratifiedGrid() fn
 
 ## [2.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/poisson@2.1.0) (2021-11-17)
 

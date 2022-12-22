@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/transducers",
-	"version": "8.3.27",
+	"version": "8.3.28",
 	"description": "Lightweight transducer implementations for ES6 / TypeScript",
 	"type": "module",
 	"module": "./index.js",
@@ -38,18 +38,18 @@
 		"test": "testament test"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.6.1",
-		"@thi.ng/arrays": "^2.4.6",
-		"@thi.ng/checks": "^3.3.5",
-		"@thi.ng/compare": "^2.1.20",
-		"@thi.ng/compose": "^2.1.22",
-		"@thi.ng/errors": "^2.2.6",
-		"@thi.ng/math": "^5.3.17",
-		"@thi.ng/random": "^3.3.19"
+		"@thi.ng/api": "^8.6.2",
+		"@thi.ng/arrays": "^2.4.7",
+		"@thi.ng/checks": "^3.3.6",
+		"@thi.ng/compare": "^2.1.21",
+		"@thi.ng/compose": "^2.1.23",
+		"@thi.ng/errors": "^2.2.7",
+		"@thi.ng/math": "^5.3.18",
+		"@thi.ng/random": "^3.3.20"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.33.7",
-		"@thi.ng/testament": "^0.3.7",
+		"@thi.ng/testament": "^0.3.8",
 		"rimraf": "^3.0.2",
 		"tools": "workspace:^",
 		"typedoc": "^0.23.22",

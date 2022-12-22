@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/text-canvas",
-	"version": "2.4.22",
+	"version": "2.4.23",
 	"description": "Text based canvas, drawing, tables with arbitrary formatting (incl. ANSI/HTML)",
 	"type": "module",
 	"module": "./index.js",
@@ -34,19 +34,19 @@
 		"test": "testament test"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.6.1",
-		"@thi.ng/arrays": "^2.4.6",
-		"@thi.ng/checks": "^3.3.5",
-		"@thi.ng/errors": "^2.2.6",
-		"@thi.ng/geom-clip-line": "^2.2.2",
-		"@thi.ng/math": "^5.3.17",
-		"@thi.ng/strings": "^3.3.21",
-		"@thi.ng/text-format": "^1.2.13",
-		"@thi.ng/transducers": "^8.3.27"
+		"@thi.ng/api": "^8.6.2",
+		"@thi.ng/arrays": "^2.4.7",
+		"@thi.ng/checks": "^3.3.6",
+		"@thi.ng/errors": "^2.2.7",
+		"@thi.ng/geom-clip-line": "^2.2.3",
+		"@thi.ng/math": "^5.3.18",
+		"@thi.ng/strings": "^3.3.22",
+		"@thi.ng/text-format": "^1.2.14",
+		"@thi.ng/transducers": "^8.3.28"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.33.7",
-		"@thi.ng/testament": "^0.3.7",
+		"@thi.ng/testament": "^0.3.8",
 		"rimraf": "^3.0.2",
 		"tools": "workspace:^",
 		"tslib": "^2.4.1",

@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-12-16T12:52:25Z
+- **Last updated**: 2022-12-22T21:47:07Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,12 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [1.0.13](https://github.com/thi-ng/umbrella/tree/@thi.ng/rasterize@1.0.13) (2022-12-22)
+
+#### ♻️ Refactoring
+
+- update drawRect() (rows2d iterator changes) ([a77ee60](https://github.com/thi-ng/umbrella/commit/a77ee60))
 
 # [1.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/rasterize@1.0.0) (2022-09-27)
 

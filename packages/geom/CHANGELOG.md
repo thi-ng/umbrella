@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-12-20T16:33:11Z
+- **Last updated**: 2022-12-22T21:47:07Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,14 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [4.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom@4.1.0) (2022-12-22)
+
+#### 🚀 Features
+
+- add SVG default attribs & setter ([3cb07a6](https://github.com/thi-ng/umbrella/commit/3cb07a6))
+  - set defaults to no fill & black stroke
+  - add setSvgDefaultAttribs()
 
 # [4.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom@4.0.0) (2022-12-10)
 

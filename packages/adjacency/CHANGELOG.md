@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-12-20T16:33:11Z
+- **Last updated**: 2022-12-22T21:47:07Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,13 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [2.3.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/adjacency@2.3.0) (2022-12-22)
+
+#### 🚀 Features
+
+- add FloydWarshall shortest-path impl ([26fa3ac](https://github.com/thi-ng/umbrella/commit/26fa3ac))
+- update BFS distance array to Float32Array ([3997923](https://github.com/thi-ng/umbrella/commit/3997923))
 
 ### [2.2.12](https://github.com/thi-ng/umbrella/tree/@thi.ng/adjacency@2.2.12) (2022-10-26)
 

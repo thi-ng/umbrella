@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/hiccup-markdown",
-	"version": "2.1.42",
+	"version": "2.1.43",
 	"description": "Markdown parser & serializer from/to Hiccup format",
 	"type": "module",
 	"module": "./index.js",
@@ -34,20 +34,20 @@
 		"test": "testament test"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.6.1",
-		"@thi.ng/arrays": "^2.4.6",
-		"@thi.ng/checks": "^3.3.5",
-		"@thi.ng/defmulti": "^2.1.25",
-		"@thi.ng/errors": "^2.2.6",
-		"@thi.ng/fsm": "^3.1.33",
-		"@thi.ng/hiccup": "^4.2.27",
-		"@thi.ng/strings": "^3.3.21",
-		"@thi.ng/text-canvas": "^2.4.22",
-		"@thi.ng/transducers": "^8.3.27"
+		"@thi.ng/api": "^8.6.2",
+		"@thi.ng/arrays": "^2.4.7",
+		"@thi.ng/checks": "^3.3.6",
+		"@thi.ng/defmulti": "^2.1.26",
+		"@thi.ng/errors": "^2.2.7",
+		"@thi.ng/fsm": "^3.1.34",
+		"@thi.ng/hiccup": "^4.2.28",
+		"@thi.ng/strings": "^3.3.22",
+		"@thi.ng/text-canvas": "^2.4.23",
+		"@thi.ng/transducers": "^8.3.28"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.33.7",
-		"@thi.ng/testament": "^0.3.7",
+		"@thi.ng/testament": "^0.3.8",
 		"rimraf": "^3.0.2",
 		"tools": "workspace:^",
 		"typedoc": "^0.23.22",

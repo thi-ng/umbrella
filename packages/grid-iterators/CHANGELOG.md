@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-12-20T16:33:11Z
+- **Last updated**: 2022-12-22T21:47:07Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,21 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+# [3.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/grid-iterators@3.0.0) (2022-12-22)
+
+#### 🛑 Breaking changes
+
+- add point transforms & global options ([1861154](https://github.com/thi-ng/umbrella/commit/1861154))
+- BREAKING CHANGE: update function signatures, switch to using options object as arg
+  - add `GridIterOpts` interface
+  - add `PointTransform` and implementations:
+  - add flipX/Y/XY, swapXY transforms
+  - update most iterators to use new options
+
+#### 🩹 Bug fixes
+
+- fix imports ([d4cede6](https://github.com/thi-ng/umbrella/commit/d4cede6))
 
 ## [2.3.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/grid-iterators@2.3.0) (2022-04-07)
 
