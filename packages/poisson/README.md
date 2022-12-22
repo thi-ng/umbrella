@@ -72,7 +72,7 @@ For Node.js REPL:
 const poisson = await import("@thi.ng/poisson");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 449 bytes
+Package sizes (brotli'd, pre-treeshake): ESM: 682 bytes
 
 ## Dependencies
 
@@ -173,10 +173,11 @@ document.body.innerHTML = asSvg(
 
 ### Stratified grid sampling
 
-The `stratifiedGrid` function can produce nD grid samples based on the following config options:
+The `stratifiedGrid` function can produce 2D or 3D grid samples based on the
+following config options:
 
-- **dim**: nD vector defining grid size (in cells)
-- **samples?**: Number of samples per grid cell (default: 1)
+- **dim**: 2D/3D vector defining grid size (in cells)
+- **separation?**: Enforced minimum distance between samples (in [0 .. 0.99] range)
 - **rnd?**: Random number generator instance. Default:
   [@thi.ng/random](https://github.com/thi-ng/umbrella/tree/develop/packages/random)
   `SYSTEM` (aka Math.random)
@@ -184,28 +185,23 @@ The `stratifiedGrid` function can produce nD grid samples based on the following
 ![example output](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/poisson/stratified-grid.png)
 
 ```ts
-import { asSvg, circle, svgDoc } from "@thi.ng/geom";
-import { KdTreeSet } from "@thi.ng/geom-accel";
-import { stratifiedGrid } from "@thi.ng/poisson";
-import { map } from "@thi.ng/transducers";
-import { dist } from "@thi.ng/vectors";
+import { asSvg, circle, group, line, svgDoc } from "@thi.ng/geom";
+import { stratifiedGrid2 } from "@thi.ng/poisson";
+import { map, range } from "@thi.ng/transducers";
 
-const index = new KdTreeSet(2);
-index.into(stratifiedGrid({ dim: [50, 50], samples: 1 }));
+const W = 50;
+
+const pts = stratifiedGrid2({ dim: [W, W], separation: 0.5 });
 
 document.body.innerHTML = asSvg(
     svgDoc(
         {
             width: 600,
             height: 600,
-            fill: "none",
-            stroke: "blue",
-            "stroke-width": 0.1,
+            fill: "blue",
+            stroke: "none",
         },
-        ...map(
-            (p) => circle(p, dist(p, index.queryKeys(p, 2 * Math.SQRT2, 2)[1]) / 2),
-            index.keys()
-        )
+        ...map((p) => circle(p, 0.25), pts)
     )
 );
 ```
