@@ -10,6 +10,8 @@ This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
 - [About](#about)
+  - [Graph implementations](#graph-implementations)
+  - [Traversals](#traversals)
 - [Status](#status)
 - [Related packages](#related-packages)
 - [Installation](#installation)
@@ -21,7 +23,24 @@ This project is part of the
 
 ## About
 
-Sparse & bitwise adjacency matrices and related functions for directed & undirected graphs.
+Sparse & bitwise adjacency matrices, lists and selected traversal algorithms for directed & undirected graphs.
+
+### Graph implementations
+
+The following types all implement the [`IGraph`
+interface](https://docs.thi.ng/umbrella/adjacency/interfaces/IGraph.html) and
+support both directed & undirected graphs:
+
+- [AdjacencyBitMatrix (bit matrix based)](https://docs.thi.ng/umbrella/adjacency/classes/AdjacencyBitMatrix.html)
+- [AdjacencyMatrix (sparse matrix based)](https://docs.thi.ng/umbrella/adjacency/classes/AdjacencyMatrix.html)
+- [AdjacencyList](https://docs.thi.ng/umbrella/adjacency/classes/AdjacencyList.html)
+
+### Traversals
+
+- [Breadth-First Search](https://docs.thi.ng/umbrella/adjacency/functions/bfs.html)
+- [Depth-First Search](https://docs.thi.ng/umbrella/adjacency/functions/dfs.html)
+- [Floyd-Warshall (global shortest paths search)](https://docs.thi.ng/umbrella/adjacency/functions/floydWarshall.html)
+- [Minimum Spanning Tree](https://docs.thi.ng/umbrella/adjacency/functions/mst.html)
 
 ## Status
 
@@ -53,7 +72,7 @@ For Node.js REPL:
 const adjacency = await import("@thi.ng/adjacency");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 2.48 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 2.54 KB
 
 ## Dependencies
 
