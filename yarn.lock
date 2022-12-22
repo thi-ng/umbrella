@@ -1575,10 +1575,8 @@ __metadata:
   resolution: "@example/stratified-grid@workspace:examples/stratified-grid"
   dependencies:
     "@thi.ng/geom": "workspace:^"
-    "@thi.ng/geom-accel": "workspace:^"
     "@thi.ng/poisson": "workspace:^"
     "@thi.ng/transducers": "workspace:^"
-    "@thi.ng/vectors": "workspace:^"
     typescript: ^4.9.4
     vite: ^4.0.0
   languageName: unknown

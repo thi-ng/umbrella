@@ -13,10 +13,8 @@
 	},
 	"dependencies": {
 		"@thi.ng/geom": "workspace:^",
-		"@thi.ng/geom-accel": "workspace:^",
 		"@thi.ng/poisson": "workspace:^",
-		"@thi.ng/transducers": "workspace:^",
-		"@thi.ng/vectors": "workspace:^"
+		"@thi.ng/transducers": "workspace:^"
 	},
 	"browser": {
 		"process": false,
