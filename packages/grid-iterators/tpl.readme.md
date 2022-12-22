@@ -6,9 +6,9 @@
 
 {{pkg.description}}
 
-Provides the altogether 25 following orderings to generate grid coordinates,
-including iterators for shape rasterization, drawing, clipping, filling,
-processing in general:
+Provides the altogether 25 following orderings (excluding symmetries) to
+generate grid coordinates, including iterators for shape rasterization, drawing,
+clipping, filling, processing in general:
 
 ### Columns
 
@@ -108,6 +108,15 @@ renderer](https://sunflow.sf.net).
 For more basic 2D/3D grid iteration, also see `range2d()` & `range3d()`
 in
 [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers).
+
+### Mirror symmetries & arbitrary coordinate transformations
+
+All of the above mentioned grid iterators support point (grid coordinate)
+transformations to create variations of their base orderings. The package
+provides the `flipX`, `flipY` and `flipXY` preset transforms to mirror one or
+both axes, but custom transforms can be easily implemented via the same
+underlying mechanism. These transforms can be specified via the `tx` option
+passed to the iterators (see code example further below).
 
 ### Flood filling
 
