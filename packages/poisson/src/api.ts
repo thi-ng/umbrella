@@ -83,11 +83,9 @@ export interface StratifiedGridOpts {
 	 */
 	dim: ReadonlyVec;
 	/**
-	 * Number of samples per grid cell
-	 *
-	 * @defaultValue 1
+	 * Enforced minimum distance between samples (usually in [0 .. 0.99] range)
 	 */
-	samples?: number;
+	separation?: number;
 	/**
 	 * Random number generator instance.
 	 *
