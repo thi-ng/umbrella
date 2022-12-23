@@ -11,7 +11,7 @@ export const shortName = (name: string) => name.split("/")[1];
 export const packageURL = (name: string) => `https://${name.substring(1)}`;
 
 export const isNodeOnly = (pkg: Package) =>
-	pkg.keywords ? pkg.keywords.includes("node-only") : false;
+	pkg.keywords ? pkg.keywords.includes("no-browser") : false;
 
 export const isWebModule = (pkg: Package) =>
 	!isNodeOnly(pkg) && pkg[META_FIELD]?.skypack !== false;

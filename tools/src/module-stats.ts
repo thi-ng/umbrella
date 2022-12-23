@@ -18,7 +18,7 @@ const opts = [
 	...deps.map((x) => `--external:${x}`),
 	"index.js",
 ];
-if (pkg.keywords.includes("node") || pkg.keywords.includes("node-only")) {
+if (pkg.keywords.includes("nodejs") || pkg.keywords.includes("no-browser")) {
 	opts.unshift("--platform=node");
 }
 const raw = execFileSync(
