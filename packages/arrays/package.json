@@ -107,6 +107,9 @@
 		"./find": {
 			"default": "./find.js"
 		},
+		"./floyd-rivest": {
+			"default": "./floyd-rivest.js"
+		},
 		"./fuzzy-match": {
 			"default": "./fuzzy-match.js"
 		},

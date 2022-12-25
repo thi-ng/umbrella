@@ -8,6 +8,7 @@ export * from "./ensure-array.js";
 export * from "./ensure-iterable.js";
 export * from "./find.js";
 export * from "./fill-range.js";
+export * from "./floyd-rivest.js";
 export * from "./fuzzy-match.js";
 export * from "./is-sorted.js";
 export * from "./insert.js";

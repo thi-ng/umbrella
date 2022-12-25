@@ -40,6 +40,7 @@
 - [ensureIterable()](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays/src/ensure-iterable.ts)
 - [fillRange()](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays/src/fill-range.ts)
 - [find()](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays/src/find.ts)
+- [floydRivest()](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays/src/floyd-rivest.ts)
 - [fuzzyMatch()](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays/src/fuzzy-match.ts)
 - [insert()](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays/src/insert.ts)
 - [into()](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays/src/into.ts)
