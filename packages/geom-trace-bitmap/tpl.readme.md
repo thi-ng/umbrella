@@ -6,13 +6,14 @@
 
 {{pkg.description}}
 
-This package extracts user selectable single-pixel width line segments in
-horizontal, vertical and diagonal (45°) directions and/or extracts as pixels 2d
-point cloud. The main
+This package provides an extensible setup to extract user selectable
+single-pixel width line segments in horizontal, vertical and diagonal (45°)
+directions and/or single pixels 2d point cloud. The main
 [`traceBitmap()`](https://docs.thi.ng/umbrella/geom-trace-bitmap/functions/traceBitmap.html)
 function supports a predicate function to filter qualifying pixel values,
-options to control which line orientations should be considered (and in which
-order) and a 2x3 matrix to transform extracted points (coordinates). See
+options to control which line orientations should be considered (incl. providing
+custom ones and in which order of application), as well as a 2x3 matrix to
+transform extracted points (pixel coordinates). See
 [`TraceBitmapOpts`](https://docs.thi.ng/umbrella/geom-trace-bitma/interfaces/TraceBitmapOpts.html)
 and example below for details.
 
@@ -58,7 +59,9 @@ import { traceBitmap } from "@thi.ng/geom-trace-bitmap";
 import { read } from "@thi.ng/pixel-io-netpbm";
 import { readFileSync, writeFileSync } from "fs";
 
-// vectorize bitmap
+// vectorize bitmap, the returned arrays contain:
+// - pairs of vectors (line segments)
+// - vectors (points)
 const { lines, points: dots } =  traceBitmap({
     // source image (WILL be mutated!)
     img: read(readFileSync("foo.pgm")),
@@ -75,7 +78,7 @@ writeFileSync(
         svgDoc(
             {},
             group({}, lines.map(([a,b]) => line(a, b))),
-            points(dots)
+            points(dots, { fill: "#000", stroke: "none" })
         )
     )
 );
