@@ -1,7 +1,7 @@
 import { sortByCachedKey } from "@thi.ng/arrays/sort-cached";
 import { compareNumAsc } from "@thi.ng/compare/numeric";
 import { KdTreeSet } from "@thi.ng/geom-accel/kd-tree-set";
-import type { IShape } from "@thi.ng/geom-api";
+import type { IRegionQuery, IShape, ISpatialMap } from "@thi.ng/geom-api";
 import { centroid } from "@thi.ng/geom/centroid";
 import { ReadonlyVec, ZERO2 } from "@thi.ng/vectors/api";
 import { distSq2 } from "@thi.ng/vectors/distsq";
@@ -62,4 +62,21 @@ export const shapesByProximity =
 			(s) => distSq2(centroid(s) || ZERO2, ref!),
 			compareNumAsc
 		);
+	};
+
+export const shapesByNearestNeighbor = (
+	index: ISpatialMap<ReadonlyVec, IShape> &
+		IRegionQuery<ReadonlyVec, IShape, number>,
+	ref: ReadonlyVec = ZERO2
+): ShapeOrdering =>
+	function* (shapes: IShape[]) {
+		index.into(
+			shapes.map((s) => <[ReadonlyVec, IShape]>[centroid(s) || [0, 0], s])
+		);
+		while (index.size) {
+			const pair = index.query(ref, 1e4, 1)[0];
+			ref = pair[0];
+			index.remove(ref);
+			yield pair[1];
+		}
 	};
