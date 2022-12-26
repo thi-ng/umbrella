@@ -1,4 +1,4 @@
-import type { FnU2 } from "@thi.ng/api";
+import type { Fn, FnU2 } from "@thi.ng/api";
 
 /**
  * Higher order point coordinate transformation function. First is called with
@@ -24,3 +24,10 @@ export interface GridIterOpts {
 	 */
 	tx?: PointTransform;
 }
+
+export type GridIterator2D = Fn<GridIterOpts, Iterable<[number, number]>>;
+
+export type GridIterator3D = Fn<
+	GridIterOpts,
+	Iterable<[number, number, number]>
+>;
