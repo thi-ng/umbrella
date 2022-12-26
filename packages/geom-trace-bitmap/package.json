@@ -1,0 +1,97 @@
+{
+	"name": "@thi.ng/geom-trace-bitmap",
+	"version": "0.0.1",
+	"description": "Bitmap image to hairline vector and point cloud conversions",
+	"type": "module",
+	"module": "./index.js",
+	"typings": "./index.d.ts",
+	"sideEffects": false,
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/thi-ng/umbrella.git"
+	},
+	"homepage": "https://github.com/thi-ng/umbrella/tree/develop/packages/geom-trace-bitmap#readme",
+	"funding": [
+		{
+			"type": "github",
+			"url": "https://github.com/sponsors/postspectacular"
+		},
+		{
+			"type": "patreon",
+			"url": "https://patreon.com/thing_umbrella"
+		}
+	],
+	"author": "Karsten Schmidt (https://thi.ng)",
+	"license": "Apache-2.0",
+	"scripts": {
+		"build": "yarn clean && tsc --declaration",
+		"clean": "rimraf '*.js' '*.d.ts' '*.map' doc",
+		"doc": "typedoc --excludePrivate --excludeInternal --out doc src/index.ts",
+		"doc:ae": "mkdir -p .ae/doc .ae/temp && api-extractor run --local --verbose",
+		"doc:readme": "yarn doc:stats && tools:readme",
+		"doc:stats": "tools:module-stats",
+		"pub": "yarn npm publish --access public",
+		"test": "testament test"
+	},
+	"dependencies": {
+		"@thi.ng/api": "^8.6.2",
+		"@thi.ng/errors": "^2.2.7",
+		"@thi.ng/grid-iterators": "^3.0.0",
+		"@thi.ng/matrices": "^2.1.38",
+		"@thi.ng/pixel": "^4.0.13",
+		"@thi.ng/vectors": "^7.5.29"
+	},
+	"devDependencies": {
+		"@microsoft/api-extractor": "^7.33.7",
+		"@thi.ng/testament": "^0.3.7",
+		"rimraf": "^3.0.2",
+		"tools": "workspace:^",
+		"typedoc": "^0.23.22",
+		"typescript": "^4.9.4"
+	},
+	"keywords": [
+		"bitmap",
+		"conversion",
+		"image",
+		"line",
+		"pixel",
+		"pointcloud",
+		"trace",
+		"typescript",
+		"vector"
+	],
+	"publishConfig": {
+		"access": "public"
+	},
+	"browser": {
+		"process": false,
+		"setTimeout": false
+	},
+	"engines": {
+		"node": ">=14"
+	},
+	"files": [
+		"./*.js",
+		"./*.d.ts"
+	],
+	"exports": {
+		".": {
+			"default": "./index.js"
+		},
+		"./api": {
+			"default": "./api.js"
+		},
+		"./trace": {
+			"default": "./trace.js"
+		}
+	},
+	"thi.ng": {
+		"parent": "@thi.ng/geom",
+		"related": [
+			"geom-axidraw",
+			"pixel"
+		],
+		"status": "alpha",
+		"year": 2022
+	}
+}

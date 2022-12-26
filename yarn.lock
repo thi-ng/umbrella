@@ -3459,6 +3459,24 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@thi.ng/geom-trace-bitmap@workspace:packages/geom-trace-bitmap":
+  version: 0.0.0-use.local
+  resolution: "@thi.ng/geom-trace-bitmap@workspace:packages/geom-trace-bitmap"
+  dependencies:
+    "@microsoft/api-extractor": ^7.33.7
+    "@thi.ng/api": ^8.6.2
+    "@thi.ng/grid-iterators": ^3.0.0
+    "@thi.ng/matrices": ^2.1.38
+    "@thi.ng/pixel": ^4.0.13
+    "@thi.ng/testament": ^0.3.7
+    "@thi.ng/vectors": ^7.5.29
+    rimraf: ^3.0.2
+    tools: "workspace:^"
+    typedoc: ^0.23.22
+    typescript: ^4.9.4
+  languageName: unknown
+  linkType: soft
+
 "@thi.ng/geom-voronoi@workspace:^, @thi.ng/geom-voronoi@workspace:packages/geom-voronoi":
   version: 0.0.0-use.local
   resolution: "@thi.ng/geom-voronoi@workspace:packages/geom-voronoi"
