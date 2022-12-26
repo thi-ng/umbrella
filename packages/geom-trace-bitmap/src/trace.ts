@@ -1,4 +1,4 @@
-import type { Fn, FnU2, Predicate } from "@thi.ng/api";
+import type { Fn, Predicate } from "@thi.ng/api";
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import type { GridIterOpts, PointTransform } from "@thi.ng/grid-iterators";
 import { columns2d } from "@thi.ng/grid-iterators/columns";
@@ -8,12 +8,13 @@ import { flipX, ident } from "@thi.ng/grid-iterators/transforms";
 import { mulV23 } from "@thi.ng/matrices/mulv";
 import type { Vec, VecPair } from "@thi.ng/vectors";
 import type { TraceBitmapOpts, TraceOpts } from "./api.js";
+import { borderX, borderXY, borderY } from "./border.js";
 
 /**
  * Main conversion/extraction function. According to given
  * {@link TraceBitmapOpts.flags}, extracts line segments and/or points from
  * given pixel buffer and returns object of results. By default _all_ line
- * directions and points are processed. If {@link TraceBitmapOpts.tx} is given,
+ * directions and points are processed. If {@link TraceBitmapOpts.mat} is given,
  * all coordinates are transformed with that matrix.
  *
  * ```ts
@@ -24,34 +25,38 @@ import type { TraceBitmapOpts, TraceOpts } from "./api.js";
  * @param opts
  */
 export const traceBitmap = (opts: TraceBitmapOpts) => {
-	const tx = opts.tx;
+	const mat = opts.mat;
 	const { width, height } = opts.img;
 	const lines: VecPair[] = [];
 	const points: Vec[] = [];
 	for (let d of opts.dir || "hvdp") {
+		if (typeof d !== "string") {
+			traceLines(
+				opts,
+				d.order,
+				(d.border || borderXY)(width, height),
+				d.tx || ident,
+				lines
+			);
+			continue;
+		}
 		switch (d) {
 			case "h":
-				traceWithOrder(
-					opts,
-					rows2d,
-					ident,
-					__borderX(width, height),
-					lines
-				);
+				traceLines(opts, rows2d, borderX(width, height), ident, lines);
 				break;
 			case "v":
-				traceWithOrder(
+				traceLines(
 					opts,
 					columns2d,
+					borderY(width, height),
 					ident,
-					__borderY(width, height),
 					lines
 				);
 				break;
 			case "d": {
-				const border = __borderXY(width, height);
-				traceWithOrder(opts, diagonal2d, ident, border, lines);
-				traceWithOrder(opts, diagonal2d, flipX, border, lines);
+				const border = borderXY(width, height);
+				traceLines(opts, diagonal2d, border, ident, lines);
+				traceLines(opts, diagonal2d, border, flipX, lines);
 				break;
 			}
 			case "p":
@@ -61,12 +66,12 @@ export const traceBitmap = (opts: TraceBitmapOpts) => {
 				illegalArgs(`invalid trace direction: ${d}`);
 		}
 	}
-	if (tx) {
+	if (mat) {
 		lines.forEach((p) => {
-			mulV23(null, tx, p[0]);
-			mulV23(null, tx, p[1]);
+			mulV23(null, mat, p[0]);
+			mulV23(null, mat, p[1]);
 		});
-		points.forEach((p) => mulV23(null, tx, p));
+		points.forEach((p) => mulV23(null, mat, p));
 	}
 	return { lines, points };
 };
@@ -77,15 +82,15 @@ export const traceBitmap = (opts: TraceBitmapOpts) => {
  *
  * @param opts
  * @param order
+ * @param border
  * @param tx
- * @param isBorder
  * @param acc
  */
-export const traceWithOrder = (
+export const traceLines = (
 	opts: TraceOpts,
 	order: Fn<GridIterOpts, Iterable<[number, number]>>,
+	border: Predicate<[number, number]>,
 	tx: PointTransform,
-	isBorder: Predicate<[number, number]>,
 	acc: VecPair[] = []
 ) => {
 	const { img, select, clear, min } = { clear: 0, min: 2, ...opts };
@@ -93,7 +98,7 @@ export const traceWithOrder = (
 	for (let p of order({ cols: img.width, rows: img.height, tx })) {
 		const c = select(img.getAtUnsafe(p[0], p[1]));
 		if (c) curr.push(p);
-		if ((curr.length > 0 && !c) || (curr.length > 1 && isBorder(p))) {
+		if ((curr.length > 0 && !c) || (curr.length > 1 && border(p))) {
 			if (curr.length >= min) {
 				acc.push([curr[0], p]);
 				for (let q of curr) img.setAtUnsafe(q[0], q[1], clear);
@@ -122,26 +127,4 @@ export const tracePoints = (
 		}
 	}
 	return acc;
-};
-
-/** @internal */
-type BorderFn = FnU2<number, Predicate<[number, number]>>;
-
-/** @internal */
-const __borderX: BorderFn = (w) => {
-	w--;
-	return (p) => p[0] === 0 || p[0] === w;
-};
-
-/** @internal */
-const __borderY: BorderFn = (_, h) => {
-	h--;
-	return (p) => p[1] === 0 || p[1] === h;
-};
-
-/** @internal */
-const __borderXY: BorderFn = (w, h) => {
-	w--;
-	h--;
-	return (p) => p[0] === 0 || p[0] === w || p[1] === 0 || p[1] === h;
 };

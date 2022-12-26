@@ -1,4 +1,5 @@
-import type { Predicate } from "@thi.ng/api";
+import type { FnU2, Predicate } from "@thi.ng/api";
+import type { GridIterator2D, PointTransform } from "@thi.ng/grid-iterators";
 import type { ReadonlyMat } from "@thi.ng/matrices";
 import type { IntBuffer } from "@thi.ng/pixel";
 
@@ -40,11 +41,19 @@ export interface TraceBitmapOpts extends TraceOpts {
 	 * - (d)iagonal
 	 * - (p)oints
 	 */
-	dir?: TraceDir[];
+	dir?: (TraceDir | TraceDirImpl)[];
 	/**
 	 * Optional 2x3 transformation matrix to transform all extracted coordinates
 	 */
-	tx?: ReadonlyMat;
+	mat?: ReadonlyMat;
 }
 
 export type TraceDir = "d" | "h" | "p" | "v";
+
+export interface TraceDirImpl {
+	order: GridIterator2D;
+	tx?: PointTransform;
+	border?: BorderFn;
+}
+
+export type BorderFn = FnU2<number, Predicate<[number, number]>>;

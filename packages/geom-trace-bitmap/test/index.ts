@@ -16,24 +16,25 @@ group("geom-trace-bitmap", {
 		const { lines, points } = traceBitmap({
 			img: intBuffer(5, 5, GRAY8, pixels),
 			select: (x) => x > 0,
+			mat: [1, 0, 0, 1, 10, 20],
 		});
 		assert.deepStrictEqual(lines, [
 			[
-				[1, 0],
-				[4, 0],
+				[11, 20],
+				[14, 20],
 			],
 			[
-				[1, 1],
-				[1, 3],
+				[11, 21],
+				[11, 23],
 			],
 			[
-				[4, 2],
-				[2, 4],
+				[14, 22],
+				[12, 24],
 			],
 		]);
 		assert.deepStrictEqual(points, [
-			[0, 4],
-			[4, 4],
+			[10, 24],
+			[14, 24],
 		]);
 	},
 });

@@ -3465,6 +3465,7 @@ __metadata:
   dependencies:
     "@microsoft/api-extractor": ^7.33.7
     "@thi.ng/api": ^8.6.2
+    "@thi.ng/errors": ^2.2.7
     "@thi.ng/grid-iterators": ^3.0.0
     "@thi.ng/matrices": ^2.1.38
     "@thi.ng/pixel": ^4.0.13

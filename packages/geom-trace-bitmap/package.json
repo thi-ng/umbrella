@@ -81,6 +81,9 @@
 		"./api": {
 			"default": "./api.js"
 		},
+		"./border": {
+			"default": "./border.js"
+		},
 		"./trace": {
 			"default": "./trace.js"
 		}
