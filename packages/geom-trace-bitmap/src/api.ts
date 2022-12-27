@@ -56,12 +56,35 @@ export interface TraceBitmapOpts extends TraceOpts {
 	mat?: ReadonlyMat;
 }
 
-export type TraceDir = "d" | "h" | "p" | "v";
+/**
+ * Predefined line trace directions:
+ *
+ * - `d1`: Diagonal to bottom-left
+ * - `d2`: Diagonal to bottom-right
+ * - `h`: Horizontal (left to right)
+ * - `v`: Vertical (top to bottom)
+ * - `p`: Points only
+ */
+export type TraceDir = "d1" | "d2" | "h" | "p" | "v";
 
 export interface TraceDirImpl {
+	/**
+	 * Grid iterator, providing stream of pixel coordinates in a certain order.
+	 */
 	order: GridIterator2D;
-	tx?: PointTransform;
+	/**
+	 * Border predicate function. Called for every selected pixel (coordinates)
+	 * and returns true if considered a border pixel.
+	 *
+	 * @remarks
+	 * See {@link borderX}, {@link borderY}, {@link borderXY}.
+	 */
 	border?: BorderFn;
+	/**
+	 * Optional point transform passed to {@link TraceDirImpl.order} (e.g. to
+	 * flip iteration order and therefore line direction)
+	 */
+	tx?: PointTransform;
 }
 
 export type BorderFn = FnU2<number, Predicate<[number, number]>>;

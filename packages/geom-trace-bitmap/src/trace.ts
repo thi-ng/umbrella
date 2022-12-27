@@ -7,7 +7,7 @@ import { rows2d } from "@thi.ng/grid-iterators/rows";
 import { flipX, ident } from "@thi.ng/grid-iterators/transforms";
 import { mulV23 } from "@thi.ng/matrices/mulv";
 import type { Vec, VecPair } from "@thi.ng/vectors";
-import type { TraceBitmapOpts, TraceOpts } from "./api.js";
+import type { TraceBitmapOpts, TraceDir, TraceOpts } from "./api.js";
 import { borderX, borderXY, borderY } from "./border.js";
 
 /**
@@ -29,7 +29,7 @@ export const traceBitmap = (opts: TraceBitmapOpts) => {
 	const { width, height } = opts.img;
 	const lines: VecPair[] = [];
 	const points: Vec[] = [];
-	for (let d of opts.dir || "hvdp") {
+	for (let d of opts.dir || ["h", "v", "d1", "d2", "p"]) {
 		if (typeof d !== "string") {
 			traceLines(
 				opts,
@@ -40,7 +40,7 @@ export const traceBitmap = (opts: TraceBitmapOpts) => {
 			);
 			continue;
 		}
-		switch (d) {
+		switch (<TraceDir>d) {
 			case "h":
 				traceLines(opts, rows2d, borderX(width, height), ident, lines);
 				break;
@@ -53,12 +53,24 @@ export const traceBitmap = (opts: TraceBitmapOpts) => {
 					lines
 				);
 				break;
-			case "d": {
-				const border = borderXY(width, height);
-				traceLines(opts, diagonal2d, border, ident, lines);
-				traceLines(opts, diagonal2d, border, flipX, lines);
+			case "d1":
+				traceLines(
+					opts,
+					diagonal2d,
+					borderXY(width, height),
+					ident,
+					lines
+				);
 				break;
-			}
+			case "d2":
+				traceLines(
+					opts,
+					diagonal2d,
+					borderXY(width, height),
+					flipX,
+					lines
+				);
+				break;
 			case "p":
 				tracePoints(opts, points);
 				break;
