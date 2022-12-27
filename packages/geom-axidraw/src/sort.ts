@@ -1,33 +1,43 @@
 import { sortByCachedKey } from "@thi.ng/arrays/sort-cached";
 import { compareNumAsc } from "@thi.ng/compare/numeric";
 import { KdTreeSet } from "@thi.ng/geom-accel/kd-tree-set";
-import type { IRegionQuery, IShape, ISpatialMap } from "@thi.ng/geom-api";
+import type {
+	IRegionQuery,
+	IShape,
+	ISpatialMap,
+	ISpatialSet,
+} from "@thi.ng/geom-api";
 import { centroid } from "@thi.ng/geom/centroid";
 import { ReadonlyVec, ZERO2 } from "@thi.ng/vectors/api";
 import { distSq2 } from "@thi.ng/vectors/distsq";
 import type { PointOrdering, ShapeOrdering } from "./api.js";
 
 /**
- * Higher order point ordering fn. Lazily sorts points by nearest neighbor
+ * Higher order point ordering fn. Adds points to given spatial
+ * index/acceleration structure and then lazily sorts them by nearest neighbor
  * distance, starting selection of first point based on given `ref` point
  * (default: [0, 0]).
  *
  * @remarks
- * Internally uses a
+ * By default is using a
  * [`KdTreeSet`](https://docs.thi.ng/umbrella/geom-accel/classes/KdTreeSet.html)
  * to index all points and then successively perform efficient nearest neighbor
  * searches (always w.r.t the most recent result point).
  *
+ * @param accel
  * @param ref
  */
 export const pointsByNearestNeighbor = (
+	accel: ISpatialSet<ReadonlyVec> &
+		IRegionQuery<ReadonlyVec, ReadonlyVec, number> = new KdTreeSet(2),
 	ref: ReadonlyVec = ZERO2
 ): PointOrdering =>
 	function* (pts: ReadonlyVec[]) {
-		const index = new KdTreeSet(2, pts);
-		while (index.size) {
-			ref = index.queryKeys(ref, 1e4, 1)[0];
-			index.remove(ref);
+		accel.into(pts);
+		// const index = new KdTreeSet(2, pts);
+		while (accel.size) {
+			ref = accel.queryKeys(ref, 1e4, 1)[0];
+			accel.remove(ref);
 			yield ref;
 		}
 	};
@@ -64,19 +74,33 @@ export const shapesByProximity =
 		);
 	};
 
+/**
+ * Similar to {@link pointsByNearestNeighbor}, however for shapes and requiring
+ * an
+ * [`ISpatialMap`](https://docs.thi.ng/umbrella/geom-api/interfaces/ISpatialMap.html)
+ * implementation and is using shape centroid (auto-computed) to perform
+ * indexing and nearest neighbor queries.
+ *
+ * @remarks
+ * Currently recommended to use
+ * [`NdQuadtreeMap`](https://docs.thi.ng/umbrella/geom-accel/classes/NdQuadtreeMap.html).
+ *
+ * @param accel
+ * @param ref
+ */
 export const shapesByNearestNeighbor = (
-	index: ISpatialMap<ReadonlyVec, IShape> &
+	accel: ISpatialMap<ReadonlyVec, IShape> &
 		IRegionQuery<ReadonlyVec, IShape, number>,
 	ref: ReadonlyVec = ZERO2
 ): ShapeOrdering =>
 	function* (shapes: IShape[]) {
-		index.into(
+		accel.into(
 			shapes.map((s) => <[ReadonlyVec, IShape]>[centroid(s) || [0, 0], s])
 		);
-		while (index.size) {
-			const pair = index.query(ref, 1e4, 1)[0];
+		while (accel.size) {
+			const pair = accel.query(ref, 1e4, 1)[0];
 			ref = pair[0];
-			index.remove(ref);
+			accel.remove(ref);
 			yield pair[1];
 		}
 	};
