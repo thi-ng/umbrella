@@ -3197,6 +3197,7 @@ __metadata:
     "@thi.ng/geom-clip-line": ^2.2.3
     "@thi.ng/geom-isec": ^2.1.40
     "@thi.ng/testament": ^0.3.8
+    "@thi.ng/transducers": ^8.3.28
     "@thi.ng/vectors": ^7.5.29
     rimraf: ^3.0.2
     tools: "workspace:^"

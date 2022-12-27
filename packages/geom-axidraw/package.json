@@ -44,6 +44,7 @@
 		"@thi.ng/geom-api": "^3.3.23",
 		"@thi.ng/geom-clip-line": "^2.2.3",
 		"@thi.ng/geom-isec": "^2.1.40",
+		"@thi.ng/transducers": "^8.3.28",
 		"@thi.ng/vectors": "^7.5.29"
 	},
 	"devDependencies": {

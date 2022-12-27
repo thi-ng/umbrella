@@ -53,6 +53,12 @@ export interface AxiDrawAttribs {
 	 * - {@link shapesByProximity} (for `group()`)
 	 */
 	sort: PointOrdering | ShapeOrdering;
+	/**
+	 * Only used for groups or point clouds. If given, only every (n+1)th child
+	 * shape or point is being processed and the others ignored. Useful for low
+	 * detail test runs.
+	 */
+	skip: number;
 }
 
 export interface AsAxiDrawOpts {

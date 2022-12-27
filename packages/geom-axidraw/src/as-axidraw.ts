@@ -9,6 +9,7 @@ import { pointInPolygon2 } from "@thi.ng/geom-isec/point";
 import { applyTransforms } from "@thi.ng/geom/apply-transforms";
 import { asPolyline } from "@thi.ng/geom/as-polyline";
 import { __dispatch } from "@thi.ng/geom/internal/dispatch";
+import { takeNth } from "@thi.ng/transducers/take-nth";
 import type { ReadonlyVec } from "@thi.ng/vectors";
 import type {
 	AsAxiDrawOpts,
@@ -100,9 +101,10 @@ function* __group(
 	$: Group,
 	opts?: Partial<AsAxiDrawOpts>
 ): IterableIterator<DrawCommand> {
-	const { sort } = __axiAttribs($.attribs);
-	const children = sort ? (<ShapeOrdering>sort)($.children) : $.children;
-	for (let child of children) {
+	const { skip, sort } = __axiAttribs($.attribs);
+	const children = skip ? [...takeNth(skip + 1, $.children)] : $.children;
+	const childrenIter = sort ? (<ShapeOrdering>sort)(children) : children;
+	for (let child of childrenIter) {
 		const shape = applyTransforms(child);
 		shape.attribs = {
 			...shape.attribs,
@@ -118,7 +120,7 @@ function* __points(
 	opts?: Partial<AsAxiDrawOpts>
 ): IterableIterator<DrawCommand> {
 	if (!pts.length) return;
-	const { clip, delayDown, delayUp, down, speed, sort } = {
+	const { clip, delayDown, delayUp, down, skip, speed, sort } = {
 		sort: pointsByNearestNeighbor(),
 		...__axiAttribs(attribs),
 	};
@@ -126,6 +128,9 @@ function* __points(
 	if (clipPts) {
 		pts = pts.filter((p) => !!pointInPolygon2(p, clipPts));
 		if (!pts.length) return;
+	}
+	if (skip) {
+		pts = [...takeNth(skip + 1, pts)];
 	}
 	yield UP;
 	if (down != undefined) yield ["pen", down];
