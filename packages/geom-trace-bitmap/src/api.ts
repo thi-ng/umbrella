@@ -29,6 +29,14 @@ export interface TraceOpts {
 	 * @defaultValue 0
 	 */
 	clear?: number;
+	/**
+	 * If true (default), lines not terminating at a border will use the
+	 * coordinates of the first non-selected pixel as their end point, rather
+	 * than those of the last selected pixel.
+	 *
+	 * @defaultValue true
+	 */
+	last?: boolean;
 }
 
 export interface TraceBitmapOpts extends TraceOpts {

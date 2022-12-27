@@ -93,18 +93,50 @@ export const traceLines = (
 	tx: PointTransform,
 	acc: VecPair[] = []
 ) => {
-	const { img, select, clear, min } = { clear: 0, min: 2, ...opts };
+	let { img, select, clear, last, min } = {
+		clear: 0,
+		last: true,
+		min: 2,
+		...opts,
+	};
+	min--;
 	let curr: [number, number][] = [];
+	let prevBorder = false;
+	const $record = () => {
+		acc.push([curr[0], curr[curr.length - 1]]);
+		for (let q of curr) img.setAtUnsafe(q[0], q[1], clear);
+	};
 	for (let p of order({ cols: img.width, rows: img.height, tx })) {
 		const c = select(img.getAtUnsafe(p[0], p[1]));
-		if (c) curr.push(p);
-		if ((curr.length > 0 && !c) || (curr.length > 1 && border(p))) {
-			if (curr.length >= min) {
-				acc.push([curr[0], p]);
-				for (let q of curr) img.setAtUnsafe(q[0], q[1], clear);
+		const isBorder = border(p);
+		const n = curr.length;
+		if (c) {
+			if (isBorder) {
+				if (n > 0) {
+					if (prevBorder) {
+						if (n > min) $record();
+						curr = [p];
+					} else {
+						if (n >= min) {
+							curr.push(p);
+							$record();
+						}
+						curr = [];
+					}
+				} else {
+					curr.push(p);
+				}
+			} else {
+				curr.push(p);
+			}
+		} else if (n > 0) {
+			if (n > min) {
+				if (last) curr.push(p);
+				$record();
 			}
 			curr = [];
 		}
+		prevBorder = isBorder;
 	}
 	return acc;
 };
