@@ -15,12 +15,12 @@ import {
 	zero,
 	ZERO2,
 } from "@thi.ng/vectors";
-import { SerialPort } from "serialport";
 import {
 	AxiDrawOpts,
 	AxiDrawState,
 	DrawCommand,
 	HOME,
+	ISerial,
 	OFF,
 	ON,
 	PEN,
@@ -28,8 +28,10 @@ import {
 } from "./api.js";
 import { AxiDrawControl } from "./control.js";
 import { complete } from "./polyline.js";
+import { SERIAL_PORT } from "./serial.js";
 
 export const DEFAULT_OPTS: AxiDrawOpts = {
+	serial: SERIAL_PORT,
 	logger: new ConsoleLogger("axidraw"),
 	control: new AxiDrawControl(),
 	refresh: 1000,
@@ -47,7 +49,7 @@ export const DEFAULT_OPTS: AxiDrawOpts = {
 };
 
 export class AxiDraw implements IReset {
-	serial!: SerialPort;
+	serial!: ISerial;
 	opts: AxiDrawOpts;
 	isConnected = false;
 	isPenDown = false;
@@ -80,16 +82,13 @@ export class AxiDraw implements IReset {
 	 */
 	async connect(path: string | RegExp = "/dev/tty.usbmodem") {
 		const isStr = isString(path);
-		for (let port of await SerialPort.list()) {
+		for (let port of await this.opts.serial.list(path.toString())) {
 			if (
 				(isStr && port.path.startsWith(path)) ||
 				(!isStr && path.test(port.path))
 			) {
 				this.opts.logger.info(`using device: ${port.path}...`);
-				this.serial = new SerialPort({
-					path: port.path,
-					baudRate: 38400,
-				});
+				this.serial = this.opts.serial.ctor(port.path, 38400);
 				this.isConnected = true;
 				if (this.opts.sigint) {
 					this.opts.logger.debug("installing signal handler...");

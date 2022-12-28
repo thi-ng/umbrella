@@ -90,6 +90,9 @@
 		},
 		"./polyline": {
 			"default": "./polyline.js"
+		},
+		"./serial": {
+			"default": "./serial.js"
 		}
 	},
 	"thi.ng": {

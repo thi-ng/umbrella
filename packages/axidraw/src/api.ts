@@ -1,4 +1,4 @@
-import type { IDeref } from "@thi.ng/api";
+import type { Fn, Fn2, IDeref } from "@thi.ng/api";
 import type { ILogger } from "@thi.ng/logger";
 import type { ReadonlyVec } from "@thi.ng/vectors";
 
@@ -51,6 +51,33 @@ export type DrawCommand =
  * Global plotter drawing configuration. Also see {@link DEFAULT_OPTS}.
  */
 export interface AxiDrawOpts {
+	/**
+	 * Serial connection to use (only used for testing/dev purposes, otherwise
+	 * leave default).
+	 *
+	 * @defaultValue {@link SERIAL_PORT}
+	 */
+	serial: SerialConnection;
+	/**
+	 * Logger instance for outputting draw commands, state info and metrics.
+	 */
+	logger: ILogger;
+	/**
+	 * Optional implementation to pause, resume or cancel the processing of
+	 * drawing commands (see {@link AxiDrawControl} for default impl).
+	 *
+	 * @remarks
+	 * If a control is provided, it will be checked prior to processing each
+	 * individual command. Drawing will be paused if the control state is in
+	 * {@link AxiDrawState.PAUSE} state and the control will be rechecked every
+	 * {@link AxiDrawOpts.refresh} milliseconds for updates. In paused state,
+	 * the pen will be automatically lifted (if it wasn't already) and when
+	 * resuming it will be sent down again (if it was originally down).
+	 *
+	 * Draw commands are only sent to the machine if no control is provided at
+	 * all or if the control is in the {@link AxiDrawState.CONTINUE} state.
+	 */
+	control?: IDeref<AxiDrawState>;
 	/**
 	 * Conversion factor from geometry worldspace units to inches.
 	 * Default units are millimeters.
@@ -112,26 +139,6 @@ export interface AxiDrawOpts {
 	 * @defaultValue `[UP, HOME, OFF]`
 	 */
 	stop: DrawCommand[];
-	/**
-	 * Logger instance
-	 */
-	logger: ILogger;
-	/**
-	 * Optional implementation to pause, resume or cancel the processing of
-	 * drawing commands (see {@link AxiDrawControl} for default impl).
-	 *
-	 * @remarks
-	 * If a control is provided, it will be checked prior to processing each
-	 * individual command. Drawing will be paused if the control state is in
-	 * {@link AxiDrawState.PAUSE} state and the control will be rechecked every
-	 * {@link AxiDrawOpts.refresh} milliseconds for updates. In paused state,
-	 * the pen will be automatically lifted (if it wasn't already) and when
-	 * resuming it will be sent down again (if it was originally down).
-	 *
-	 * Draw commands are only sent to the machine if no control is provided at
-	 * all or if the control is in the {@link AxiDrawState.CONTINUE} state.
-	 */
-	control?: IDeref<AxiDrawState>;
 	/**
 	 * Refresh interval for checking the control FSM in paused state.
 	 *
@@ -239,4 +246,31 @@ export interface Metrics {
 	 * Total number of {@link DrawCommand}s processed.
 	 */
 	commands: number;
+}
+
+export interface SerialConnection {
+	/**
+	 * Async function. Returns a list of available serial ports. The arg given
+	 * is the path requested by the user when calling {@link AxiDraw.connect}.
+	 *
+	 * @param path
+	 */
+	list(path: string): Promise<{ path: string }[]>;
+	/**
+	 * Returns an actual serial port (or mock) instance, is given the first
+	 * matching path in array returned by {@link SerialConnection.list}.
+	 *
+	 * @param path
+	 * @param baudRate
+	 */
+	ctor(path: string, baudRate: number): ISerial;
+}
+
+export interface ISerial {
+	/**
+	 * Writes given string to the port.
+	 *
+	 * @param msg
+	 */
+	write(msg: string): void;
 }
