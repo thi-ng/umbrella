@@ -215,3 +215,28 @@ export interface PolylineOpts {
 	 */
 	onlyGeo: boolean;
 }
+
+/**
+ * Metrics returned by {@link AxiDraw.draw}.
+ */
+export interface Metrics {
+	/**
+	 * Total number of milliseconds taken for drawing all given commands (incl.
+	 * any pauses caused by the control)
+	 */
+	duration: number;
+	/**
+	 * Total draw distance, i.e. distance traveled whilst pen down (in original
+	 * user units, see {@link AxiDrawOpts.unitsPerInch}).
+	 */
+	drawDist: number;
+	/**
+	 * Total traveled, incl. any movements without drawing (in original user
+	 * units, see {@link AxiDrawOpts.unitsPerInch}).
+	 */
+	totalDist: number;
+	/**
+	 * Total number of {@link DrawCommand}s processed.
+	 */
+	commands: number;
+}

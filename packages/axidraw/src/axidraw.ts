@@ -1,10 +1,12 @@
 import type { IReset } from "@thi.ng/api";
 import { isString } from "@thi.ng/checks";
 import { delayed } from "@thi.ng/compose";
+import { formatDuration } from "@thi.ng/date";
 import { assert, ioerror, unsupported } from "@thi.ng/errors";
 import { ConsoleLogger } from "@thi.ng/logger";
 import {
 	abs2,
+	mag,
 	mulN2,
 	ReadonlyVec,
 	set2,
@@ -103,9 +105,9 @@ export class AxiDraw implements IReset {
 	 * Async function. Converts sequence of {@link DrawCommand}s into actual EBB
 	 * commands and sends them via configured serial port to the AxiDraw. If
 	 * `wrap` is enabled (default), the given commands will be automatically
-	 * wrapped with start/stop commands via {@link complete}. Returns total
-	 * number of milliseconds taken for drawing (incl. any pauses caused by the
-	 * control).
+	 * wrapped with start/stop commands via {@link complete}. Returns object of
+	 * collected {@link Metrics}. If `showMetrics` is enabled (default), the
+	 * metrics will also be written to the configured logger.
 	 *
 	 * @remarks
 	 * This function is async and if using `await` will only return once all
@@ -130,15 +132,28 @@ export class AxiDraw implements IReset {
 	 *
 	 * @param commands
 	 * @param wrap
+	 * @param showMetrics
 	 */
-	async draw(commands: Iterable<DrawCommand>, wrap = true) {
+	async draw(
+		commands: Iterable<DrawCommand>,
+		wrap = true,
+		showMetrics = true
+	) {
 		assert(
 			this.isConnected,
 			"AxiDraw not yet connected, need to call .connect() first"
 		);
 		let t0 = Date.now();
+		let numCommands = 0;
+		let totalDist = 0;
+		let drawDist = 0;
+		const $recordDist = (dist: number) => {
+			totalDist += dist;
+			if (this.isPenDown) drawDist += dist;
+		};
 		const { control, logger, preDelay, refresh } = this.opts;
 		for (let $cmd of wrap ? complete(commands) : commands) {
+			numCommands++;
 			if (control) {
 				let state = control.deref();
 				if (state === AxiDrawState.PAUSE) {
@@ -158,13 +173,15 @@ export class AxiDraw implements IReset {
 			}
 			const [cmd, a, b] = $cmd;
 			let wait: number = -1;
+			let dist: number;
 			switch (cmd) {
 				case "start":
 				case "stop":
-					await this.draw(this.opts[cmd], false);
+					await this.draw(this.opts[cmd], false, false);
 					break;
 				case "home":
-					wait = this.home();
+					[wait, dist] = this.home();
+					$recordDist(dist);
 					break;
 				case "reset":
 					this.reset();
@@ -188,7 +205,8 @@ export class AxiDraw implements IReset {
 					wait = <number>a;
 					break;
 				case "m":
-					wait = this.moveTo(a, b);
+					[wait, dist] = this.moveTo(a, b);
+					$recordDist(dist);
 					break;
 				default:
 					unsupported(`unknown command: ${$cmd}`);
@@ -199,7 +217,19 @@ export class AxiDraw implements IReset {
 				await delayed(0, wait);
 			}
 		}
-		return Date.now() - t0;
+		const duration = Date.now() - t0;
+		if (showMetrics) {
+			logger.info(`total duration : ${formatDuration(duration)}`);
+			logger.info(`total distance : ${totalDist.toFixed(2)}`);
+			logger.info(`draw distance  : ${drawDist.toFixed(2)}`);
+			logger.info(`commands       : ${numCommands}`);
+		}
+		return {
+			duration,
+			drawDist,
+			totalDist,
+			commands: numCommands,
+		};
 	}
 
 	/**
@@ -246,6 +276,13 @@ export class AxiDraw implements IReset {
 		return delay;
 	}
 
+	/**
+	 * Sends a "moveto" command (absolute coords). Returns tuple of `[duration,
+	 * distance]` (distance in original/configured units)
+	 *
+	 * @param p
+	 * @param tempo
+	 */
 	moveTo(p: ReadonlyVec, tempo = 1) {
 		const { pos, targetPos, opts } = this;
 		// apply scale factor: worldspace units -> motor steps
@@ -255,9 +292,12 @@ export class AxiDraw implements IReset {
 		const maxAxis = Math.max(...abs2([], delta));
 		const duration = (1000 * maxAxis) / (opts.speed * tempo);
 		this.send(`XM,${duration | 0},${delta[0] | 0},${delta[1] | 0}\r`);
-		return duration;
+		return [duration, (mag(delta) * opts.unitsPerInch) / opts.stepsPerInch];
 	}
 
+	/**
+	 * Syntax sugar for {@link AxiDraw.moveTo}([0, 0]).
+	 */
 	home() {
 		return this.moveTo(ZERO2);
 	}
