@@ -1,9 +1,22 @@
 import { isFunction } from "@thi.ng/checks/is-function";
 import { isString } from "@thi.ng/checks/is-string";
 import { Z2, Z3, Z4 } from "@thi.ng/strings/pad-left";
-import { FormatFn, MaybeDate, MINUTE } from "./api.js";
-import { ensureDate } from "./checks.js";
-import { LOCALE } from "./i18n.js";
+import {
+	DAY,
+	FormatFn,
+	HOUR,
+	MaybeDate,
+	MINUTE,
+	MONTH,
+	Precision,
+	SECOND,
+	YEAR,
+} from "./api.js";
+import { ensureDate, ensureEpoch } from "./checks.js";
+import { decomposeDuration } from "./duration.js";
+import { LOCALE, tense, units, unitsLessThan } from "./i18n.js";
+import { __idToPrecision, __precisionToID } from "./internal/precision.js";
+import { decomposeDifference, difference } from "./relative.js";
 import { weekInYear } from "./units.js";
 
 export const FORMATTERS: Record<string, FormatFn> = {
@@ -251,3 +264,172 @@ export const FMT_ISO_SHORT = defFormat(
 export const FMT_ISO = defFormat(
     ["yyyy", "-", "MM", "-", "dd", "T", "HH", ":", "mm", ":", "ss", ".", "SS", "ZZ"]
 );
+
+/**
+ * Takes a `date` and optional reference `base` date and (also optional
+ * `prec`ision, i.e. number of fractional digits, default: 0). Computes the
+ * difference between given dates and returns it as formatted string.
+ *
+ * @remarks
+ * Returns {@link LOCALE.now} if absolute difference is < `eps` milliseconds
+ * (default: 100).
+ *
+ * @see {@link formatRelativeParts} for alternative output.
+ *
+ *
+ * @example
+ * ```ts
+ * formatRelative("2020-06-01", "2021-07-01")
+ * // "1 year ago"
+ *
+ * formatRelative("2020-08-01", "2021-07-01")
+ * // "11 months ago"
+ *
+ * formatRelative("2021-07-01 13:45", "2021-07-01 12:05")
+ * // "in 2 hours"
+ *
+ * formatRelative("2021-07-01 12:23:24", "2021-07-01 12:05")
+ * // "in 18 minutes"
+ * ```
+ *
+ * @param date -
+ * @param base -
+ * @param prec -
+ * @param eps -
+ */
+export const formatRelative = (
+	date: MaybeDate,
+	base: MaybeDate = new Date(),
+	prec = 0,
+	eps = 100
+) => {
+	const delta = difference(date, base);
+	if (Math.abs(delta) < eps) return LOCALE.now;
+
+	let abs = Math.abs(delta);
+	let unit: Precision;
+	if (abs < SECOND) {
+		unit = "t";
+	} else if (abs < MINUTE) {
+		abs /= SECOND;
+		unit = "s";
+	} else if (abs < HOUR) {
+		abs /= MINUTE;
+		unit = "m";
+	} else if (abs < DAY) {
+		abs /= HOUR;
+		unit = "h";
+	} else if (abs < MONTH) {
+		abs /= DAY;
+		unit = "d";
+	} else if (abs < YEAR) {
+		abs /= MONTH;
+		unit = "M";
+	} else {
+		abs /= YEAR;
+		unit = "y";
+	}
+
+	const exp = 10 ** -prec;
+	abs = Math.round(abs / exp) * exp;
+
+	return tense(delta, `${abs.toFixed(prec)} ${units(abs, unit, true, true)}`);
+};
+
+/**
+ * Similar to {@link formatRelative}, however precision is specified as
+ * {@link Precision} (default: seconds). The result will be formatted as a
+ * string made up of parts of increasing precision (years, months, days, hours,
+ * etc.). Only non-zero parts will be mentioned.
+ *
+ * @remarks
+ * Returns {@link LOCALE.now} if absolute difference is < `eps` milliseconds
+ * (default: 100). In all other cases uses {@link decomposeDifference} for
+ * given dates to extract parts for formatting.
+ *
+ * @example
+ * ```ts
+ * // with default precision (seconds)
+ * formatRelativeParts("2022-09-01 12:23:24", "2021-07-01 12:05")
+ * // "in 1 year, 2 months, 21 hours, 18 minutes, 24 seconds"
+ *
+ * // with day precision
+ * formatRelativeParts("2012-12-25 17:59", "2021-07-01 12:05", "d")
+ * // "8 years, 6 months, 5 days ago"
+ *
+ * formatRelativeParts("2021-07-01 17:59", "2021-07-01 12:05", "d")
+ * // "in less than a day"
+ * ```
+ *
+ * @param date -
+ * @param base -
+ * @param prec -
+ * @param eps -
+ */
+export const formatRelativeParts = (
+	date: MaybeDate,
+	base: MaybeDate = Date.now(),
+	prec: Precision = "s",
+	eps = 1000
+) => {
+	date = ensureEpoch(date);
+	base = ensureEpoch(base);
+	if (Math.abs(date - base) < eps) return LOCALE.now;
+	const [sign, ...parts] = decomposeDifference(date, base);
+	return tense(sign, formatDurationParts(parts, prec));
+};
+
+/**
+ * Formats given duration (in ms) to given precision and using current
+ * {@link LOCALE}.
+ *
+ * @example
+ * ```ts
+ * formatDuration(45296000)
+ * // "12 h, 34 min, 56 s"
+ *
+ * formatDuration(45296000, "h")
+ * // "13 h"
+ *
+ * formatDuration(45296000,"d")
+ * // "< 1 d"
+ * ```
+ *
+ * @param dur
+ * @param prec
+ */
+export const formatDuration = (dur: number, prec: Precision = "s") =>
+	formatDurationParts(decomposeDuration(dur), prec);
+
+/**
+ * Formats an already decomposed duration (in most case you'll want to use
+ * {@link formatDuration}).
+ *
+ * @param parts
+ * @param prec
+ */
+export const formatDurationParts = (parts: number[], prec: Precision = "s") => {
+	const precID = __precisionToID(prec);
+	let maxID = precID;
+	while (!parts[maxID] && maxID > 0) maxID--;
+	let minID = parts.findIndex((x) => x > 0);
+	minID < 0 && (minID = maxID);
+	maxID = Math.min(Math.max(maxID, minID), precID);
+	if (minID <= precID && precID < 6) {
+		parts[maxID] = Math.round(
+			parts[maxID] + parts[maxID + 1] / [12, 31, 24, 60, 60, 1000][maxID]
+		);
+	}
+	return parts
+		.slice(0, maxID + 1)
+		.map((x, i) => {
+			let unit = LOCALE.units[__idToPrecision(i)];
+			return x > 0
+				? units(x, unit, true)
+				: i === maxID && maxID < 6
+				? unitsLessThan(1, unit, true)
+				: "";
+		})
+		.filter((x) => !!x)
+		.join(", ");
+};

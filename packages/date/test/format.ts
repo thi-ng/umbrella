@@ -5,6 +5,7 @@ import {
 	DAY,
 	defFormat,
 	defTimecode,
+	formatDuration,
 	HOUR,
 	MINUTE,
 	SECOND,
@@ -65,5 +66,12 @@ group("date", {
 			),
 			"04d 01h 02' 03\" 29"
 		);
+	},
+
+	duration: () => {
+		assert.strictEqual(formatDuration(98765), "1 min, 39 s");
+		assert.strictEqual(formatDuration(98765, "t"), "1 min, 38 s, 765 ms");
+		assert.strictEqual(formatDuration(98765, "m"), "2 min");
+		assert.strictEqual(formatDuration(98765, "h"), "< 1 h");
 	},
 });

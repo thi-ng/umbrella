@@ -1,6 +1,7 @@
 export * from "./api.js";
 export * from "./checks.js";
 export * from "./datetime.js";
+export * from "./duration.js";
 export * from "./format.js";
 export * from "./i18n.js";
 export * from "./iterators.js";

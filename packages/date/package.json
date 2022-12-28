@@ -89,6 +89,9 @@
 		"./datetime": {
 			"default": "./datetime.js"
 		},
+		"./duration": {
+			"default": "./duration.js"
+		},
 		"./format": {
 			"default": "./format.js"
 		},

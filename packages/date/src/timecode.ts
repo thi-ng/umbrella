@@ -1,5 +1,5 @@
 import { Z2 } from "@thi.ng/strings/pad-left";
-import { DAY, HOUR, MINUTE, MONTH, SECOND, YEAR } from "./api.js";
+import { decomposeDuration } from "./duration.js";
 
 /**
  * Returns a time formatter for given FPS (frames / second, in [1..1000] range),
@@ -44,26 +44,4 @@ export const defTimecode = (fps: number, sep: ArrayLike<string> = "::::") => {
 		d > 0 && parts.unshift(Z2(d), sep[0]);
 		return parts.join("");
 	};
-};
-
-/**
- * Decomposes given duration (in milliseconds) into a tuple of: `[year, month,
- * day, hour, minute, second, millis]`.
- *
- * @param dur -
- */
-export const decomposeDuration = (dur: number) => {
-	const year = (dur / YEAR) | 0;
-	dur -= year * YEAR;
-	const month = (dur / MONTH) | 0;
-	dur -= month * MONTH;
-	const day = (dur / DAY) | 0;
-	dur -= day * DAY;
-	const hour = (dur / HOUR) | 0;
-	dur -= hour * HOUR;
-	const min = (dur / MINUTE) | 0;
-	dur -= min * MINUTE;
-	const sec = (dur / SECOND) | 0;
-	dur -= sec * SECOND;
-	return [year, month, day, hour, min, sec, dur];
 };
