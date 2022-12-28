@@ -1,4 +1,4 @@
-import type { Fn, Fn2, IDeref } from "@thi.ng/api";
+import type { IDeref } from "@thi.ng/api";
 import type { ILogger } from "@thi.ng/logger";
 import type { ReadonlyVec } from "@thi.ng/vectors";
 
