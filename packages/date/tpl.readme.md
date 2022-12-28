@@ -244,6 +244,16 @@ withLocale(DE_LONG, () => formatRelativeParts("2020-01-01 12:34"))
 // returns tuple of: [sign, years, months, days, hours, mins, secs, millis]
 decomposeDifference("2020-01-01 12:34", Date.now())
 // [-1, 1, 6, 15, 23, 38, 9, 703]
+
+// format a duration (in ms), optionally with given precision
+formatDuration(45296000)
+// "12 h, 34 min, 56 s"
+
+formatDuration(45296000, "h")
+// "13 h"
+
+formatDuration(45296000,"d")
+// "< 1 d"
 ```
 
 ### Date & time formatters
