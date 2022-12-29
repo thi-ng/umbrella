@@ -73,6 +73,9 @@ any package-specific attribs must be stored under the `__axi` key:
   reset to globally configured default at the end of the shape.
 - `speed`: Speed factor (multiple of globally configured draw speed). Depending
   on pen used, slower speeds might result in thicker strokes.
+- `skip`: Only used for groups or point clouds. If given, only every (n+1)th
+  child shape or point is being processed and the others ignored. Useful for low
+  detail test runs.
 - `sort`: Ordering function (in lieu of full path planning/optimization, which
   is planned for a later stage). For shapes other than `points()`, order of
   appearance is used by default.
@@ -105,6 +108,7 @@ Currently, the following ordering functions are available, but custom
 implementations can be provided too...
 
 - [`pointsByNearestNeighbor()`](https://docs.thi.ng/umbrella/geom-axidraw/functions/pointsByNearestNeighbor.html)
+- [`shapesByNearestNeighbor()`](https://docs.thi.ng/umbrella/geom-axidraw/functions/shapesByNearestNeighbor.html)
 - [`pointsByProximity()`](https://docs.thi.ng/umbrella/geom-axidraw/functions/pointsByProximity.html)
 - [`shapesByProximity()`](https://docs.thi.ng/umbrella/geom-axidraw/functions/shapesByProximity.html)
 
@@ -212,7 +216,7 @@ For Node.js REPL:
 const geomAxidraw = await import("@thi.ng/geom-axidraw");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 856 bytes
+Package sizes (brotli'd, pre-treeshake): ESM: 963 bytes
 
 ## Dependencies
 
@@ -226,6 +230,7 @@ Package sizes (brotli'd, pre-treeshake): ESM: 856 bytes
 - [@thi.ng/geom-api](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-api)
 - [@thi.ng/geom-clip-line](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-clip-line)
 - [@thi.ng/geom-isec](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-isec)
+- [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)
 - [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors)
 
 ## API
