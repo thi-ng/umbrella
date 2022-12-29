@@ -144,6 +144,7 @@ export class AxiDraw implements IReset {
 		);
 		let t0 = Date.now();
 		let numCommands = 0;
+		let penCommands = 0;
 		let totalDist = 0;
 		let drawDist = 0;
 		const $recordDist = (dist: number) => {
@@ -175,9 +176,18 @@ export class AxiDraw implements IReset {
 			let dist: number;
 			switch (cmd) {
 				case "start":
-				case "stop":
-					await this.draw(this.opts[cmd], false, false);
+				case "stop": {
+					const metrics = await this.draw(
+						this.opts[cmd],
+						false,
+						false
+					);
+					numCommands += metrics.commands;
+					penCommands += metrics.penCommands;
+					totalDist += metrics.totalDist;
+					drawDist += metrics.drawDist;
 					break;
+				}
 				case "home":
 					[wait, dist] = this.home();
 					$recordDist(dist);
@@ -196,9 +206,11 @@ export class AxiDraw implements IReset {
 					break;
 				case "u":
 					wait = this.penUp(a, b);
+					penCommands++;
 					break;
 				case "d":
 					wait = this.penDown(a, b);
+					penCommands++;
 					break;
 				case "w":
 					wait = <number>a;
@@ -219,14 +231,16 @@ export class AxiDraw implements IReset {
 		const duration = Date.now() - t0;
 		if (showMetrics) {
 			logger.info(`total duration : ${formatDuration(duration)}`);
+			logger.info(`total commands : ${numCommands}`);
+			logger.info(`pen up/downs   : ${penCommands}`);
 			logger.info(`total distance : ${totalDist.toFixed(2)}`);
 			logger.info(`draw distance  : ${drawDist.toFixed(2)}`);
-			logger.info(`commands       : ${numCommands}`);
 		}
 		return {
 			duration,
 			drawDist,
 			totalDist,
+			penCommands,
 			commands: numCommands,
 		};
 	}

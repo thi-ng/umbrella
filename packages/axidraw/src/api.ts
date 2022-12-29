@@ -243,6 +243,10 @@ export interface Metrics {
 	 */
 	totalDist: number;
 	/**
+	 * Number of pen up/down commands (useful for measuring servo lifespan).
+	 */
+	penCommands: number;
+	/**
 	 * Total number of {@link DrawCommand}s processed.
 	 */
 	commands: number;
