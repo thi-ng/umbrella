@@ -9,6 +9,7 @@ group(
 		"square + diagonals": async (ctx) => {
 			const axi = new AxiDraw({
 				serial: MOCK_SERIAL,
+				sigint: false,
 			});
 			await axi.connect("/foo");
 			const metrics = await axi.draw([
@@ -28,10 +29,14 @@ group(
 				["m", [0, 100]],
 				["u"],
 			]);
-			assert.ok(eqDelta(metrics.drawDist, 682.843, 1e3));
-			assert.ok(eqDelta(metrics.totalDist, 782.843, 1e3));
-			assert.strictEqual(metrics.commands, 17);
-			assert.deepStrictEqual((<MockSerial>axi.serial).sent, [
+			const sent = (<MockSerial>axi.serial).sent;
+			const dist = 4 * 100 + 2 * Math.hypot(100, 100);
+			assert.ok(eqDelta(metrics.drawDist, dist, 1e-3));
+			assert.ok(eqDelta(metrics.totalDist, dist + 2 * 100, 1e-3));
+			assert.strictEqual(metrics.penCommands, 8);
+			assert.strictEqual(metrics.commands, 23);
+			assert.strictEqual(metrics.commands, sent.length);
+			assert.deepStrictEqual(sent, [
 				"EM,1,1\r",
 				"SC,5,12750\r",
 				"SC,4,18000\r",
