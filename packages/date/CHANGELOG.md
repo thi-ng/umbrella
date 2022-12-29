@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-12-22T21:47:07Z
+- **Last updated**: 2022-12-29T20:56:59Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,18 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [2.4.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/date@2.4.0) (2022-12-29)
+
+#### 🚀 Features
+
+- add formatDuration(), internal restructure ([d610a8a](https://github.com/thi-ng/umbrella/commit/d610a8a))
+  - add formatDuration() & formatDurationParts()
+  - add composeDuration()
+  - refactor formatRelativeParts()
+  - move all formatting fns to format.ts
+  - move decomposeDuration() to duration.ts
+  - add tests
 
 ## [2.3.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/date@2.3.0) (2022-06-15)
 

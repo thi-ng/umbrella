@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-12-22T21:47:07Z
+- **Last updated**: 2022-12-29T20:56:59Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,28 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [0.3.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/axidraw@0.3.0) (2022-12-29)
+
+#### 🚀 Features
+
+- add draw metrics ([0ff015c](https://github.com/thi-ng/umbrella/commit/0ff015c))
+  - add Metrics interface
+  - update AxiDraw.draw() to record metrics
+  - update .moveTo() to return delay & distance
+- add serial port abstraction & impls ([c774da1](https://github.com/thi-ng/umbrella/commit/c774da1))
+  - add SerialConnection adapter
+  - add `SERIAL_PORT` default impl (actual serial port)
+  - add `MOCK_SERIAL` & MockSerial impl for testing
+  - update AxiDrawOpts & AxiDraw to use adapter only
+- add registrationMark() util, fix imports ([e05e99d](https://github.com/thi-ng/umbrella/commit/e05e99d))
+- add Metrics.penCommands, fix nested metrics handling ([a7149cd](https://github.com/thi-ng/umbrella/commit/a7149cd))
+  - add counter for pen up/down commands
+  - add start/stop cmd metrics to current tally
+
+#### ♻️ Refactoring
+
+- update "no-browser" pkg handling ([0e84f1b](https://github.com/thi-ng/umbrella/commit/0e84f1b))
 
 ## [0.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/axidraw@0.2.0) (2022-12-10)
 

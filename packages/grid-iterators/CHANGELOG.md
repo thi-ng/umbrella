@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-12-22T21:47:07Z
+- **Last updated**: 2022-12-29T20:56:59Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,16 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [3.0.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/grid-iterators@3.0.1) (2022-12-29)
+
+#### 🩹 Bug fixes
+
+- add missing type exports ([879c11c](https://github.com/thi-ng/umbrella/commit/879c11c))
+
+#### ♻️ Refactoring
+
+- add GridIterator2D/3D type aliases ([610ad0e](https://github.com/thi-ng/umbrella/commit/610ad0e))
 
 # [3.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/grid-iterators@3.0.0) (2022-12-22)
 
