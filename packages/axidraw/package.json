@@ -93,6 +93,9 @@
 		},
 		"./serial": {
 			"default": "./serial.js"
+		},
+		"./utils": {
+			"default": "./utils.js"
 		}
 	},
 	"thi.ng": {
