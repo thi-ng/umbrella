@@ -64,7 +64,9 @@
 	},
 	"files": [
 		"./*.js",
-		"./*.d.ts"
+		"./*.d.ts",
+    "zig",
+    "generated"
 	],
 	"exports": {
 		".": {
