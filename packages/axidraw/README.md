@@ -17,6 +17,7 @@ This project is part of the
   - [SVG support](#svg-support)
   - [Serial port support](#serial-port-support)
   - [Draw control](#draw-control)
+  - [Metrics](#metrics)
 - [Status](#status)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
@@ -115,9 +116,11 @@ only aimed at Node.js though...
 
 ### Draw control
 
-The main draw function provided by this package is async and can supports custom
-implementations to pause, resume or cancel the processing of further drawing
-commands. By the default
+The main
+[`draw()`](https://docs.thi.ng/umbrella/axidraw/classes/AxiDraw.html#draw)
+function provided by this package is async and supports custom implementations
+to pause, resume or cancel the processing of further drawing commands. By the
+default
 [`AxiDrawControl`](https://docs.thi.ng/umbrella/axidraw/classes/AxiDrawControl.html)
 is used as default implementation.
 
@@ -128,6 +131,20 @@ paused state, the pen will be automatically lifted (if it wasn't already) and
 when resuming it will be sent down again (if it was originally down). Draw
 commands are only sent to the machine if no control is provided at all or if the
 control is in the "continue" state.
+
+### Metrics
+
+The [`draw()`](https://docs.thi.ng/umbrella/axidraw/classes/AxiDraw.html#draw)
+function also records several
+[metrics](https://docs.thi.ng/umbrella/axidraw/interfaces/Metrics.html), useful
+for further analysis (or to identify optimizations) of the plotting process.
+These metrics include:
+
+- total duration
+- total distance traveled
+- draw distance (i.e. only whilst pen is down)
+- number of pen up/down commands (i.e. to consider servo lifespan)
+- total number of commands
 
 ## Status
 
@@ -147,7 +164,7 @@ For Node.js REPL:
 const axidraw = await import("@thi.ng/axidraw");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 1.67 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 3.96 KB
 
 ## Dependencies
 
@@ -240,8 +257,12 @@ import { map, range } from "@thi.ng/transducers";
 
 Other selected toots/tweets:
 
+- https://mastodon.thi.ng/@toxi/109490174709589253
+- https://mastodon.thi.ng/@toxi/109473655772673067
 - https://mastodon.thi.ng/@toxi/109474947869078797
 - https://mastodon.thi.ng/@toxi/109483553358349473
+- https://mastodon.thi.ng/@toxi/109570540391689321
+- https://mastodon.thi.ng/@toxi/109586780630493994
 - more to come...
 
 ## Authors
