@@ -21,6 +21,7 @@ import {
 	DrawCommand,
 	HOME,
 	ISerial,
+	Metrics,
 	OFF,
 	ON,
 	PEN,
@@ -236,7 +237,7 @@ export class AxiDraw implements IReset {
 			logger.info(`total distance : ${totalDist.toFixed(2)}`);
 			logger.info(`draw distance  : ${drawDist.toFixed(2)}`);
 		}
-		return {
+		return <Metrics>{
 			duration,
 			drawDist,
 			totalDist,
