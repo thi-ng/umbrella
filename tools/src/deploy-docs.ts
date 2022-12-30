@@ -2,8 +2,6 @@ import { dirs, files, readText, writeText } from "@thi.ng/file-io";
 import { execFileSync } from "child_process";
 import { LOGGER } from "./api.js";
 
-const PKG = process.argv[2];
-
 const AWS_PROFILE = "--profile thing-umbrella";
 const S3_BUCKET = "s3://docs.thi.ng";
 const S3_PREFIX = "/umbrella";
@@ -77,45 +75,43 @@ const syncPackage = (id: string, root: string) => {
 	);
 };
 
-const invalidatePath = (path: string) => {
-	LOGGER.info("invalidating CDN path:", path);
+const invalidatePaths = (paths: string) => {
+	LOGGER.info("invalidating CDN paths:", paths);
 	execFileSync(
 		"aws",
-		`cloudfront create-invalidation --distribution-id ${CF_DISTRO} --paths ${path} ${AWS_PROFILE}`.split(
+		`cloudfront create-invalidation --distribution-id ${CF_DISTRO} --paths ${paths} ${AWS_PROFILE}`.split(
 			" "
 		)
 	);
 };
 
-const processPackage = (id: string, invalidate = true) => {
+const processPackage = (id: string) => {
 	LOGGER.info("processing package", id);
 	const root = `packages/${id}/doc`;
 	try {
 		sanitizePackage(root);
 		minifyPackage(root);
 		syncPackage(id, root);
-		invalidate && invalidatePath(`${S3_PREFIX}/${id}/*`);
 	} catch (e) {
 		console.warn(e);
 	}
 };
 
-if (PKG) {
-	processPackage(PKG);
-} else {
-	for (let pkg of dirs("packages", "", 1)) {
-		processPackage(pkg.replace("packages/", ""), false);
-	}
-	invalidatePath(`${S3_PREFIX}/*`);
+const packages =
+	process.argv.length > 2
+		? process.argv.slice(2)
+		: [...dirs("packages", "", 1)];
+
+const invalidations: string[] = [];
+for (let id of packages) {
+	processPackage(id.replace("packages/", ""));
+	invalidations.push(`${S3_PREFIX}/${id}/*`);
 }
 
 execFileSync("scripts/node-esm", ["tools/src/doc-table.ts"]);
-
 execFileSync(
 	"aws",
 	`s3 cp docs.html ${S3_BUCKET}/index.html ${S3_OPTS}`.split(" ")
 );
 
-if (PKG) {
-	invalidatePath("/index.html");
-}
+invalidatePaths(`/index.html ${invalidations.join(" ")}`);
