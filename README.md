@@ -7,27 +7,32 @@
 
 ## About
 
-> "A collection of functional programming libraries that can be composed together.
-> Unlike a framework, thi.ng is a suite of instruments and you (the user) must be
-> the composer of. Geared towards versatility, not any specific type of music."
-> &mdash; [@loganpowell](https://twitter.com/logantpowell/status/1186334119812304901) via Twitter
+> "A collection of functional programming libraries that can be composed
+> together. Unlike a framework, thi.ng is a suite of instruments and you (the
+> user) must be the composer of. Geared towards versatility, not any specific
+> type of music." &mdash;
+> [@loganpowell](https://twitter.com/logantpowell/status/1186334119812304901)
+> via Twitter
 
 **Please visit [thi.ng](https://thi.ng) for additional information & topic based
 search of packages relevant to your use cases...**
 
-This mono-repository is home to 175 individual TypeScript/ES6 projects (plus
-115+ examples), a wide and jointly developed collection of packages, tools and
-general building blocks for (non-exhaustive list of topics):
+This mono-repository is home to 176 individual TypeScript/ES6 projects (plus 119
+example projects), a wide and jointly developed collection of packages, tools
+and general building blocks for (non-exhaustive list of topics, see [package
+overview](#projects) below):
 
 - Functional programming (ES6 iterators/generators, composition, memoization, transducers, multi-methods)
-- Reactive programming, stream / transducer based dataflow graphs / pipelines
+- Reactive programming, stream / transducer based dataflow graphs / pipelines / DOM
 - Data structures & data transformations for wide range of use cases (maps, sets, heaps, queues, graphs etc.)
+- WebAssembly bridge APIs & data structure bindings code generators for multiple target languages
+- PEG-style functional parser combinators w/ (optional) custom grammar definition language
 - 2D geometry generation, shape primitives, math, manipulation, intersections, conversions & visualizations
 - Canvas abstractions, pixel buffers & SVG serialization/conversion
 - Vector, matrix (dense & sparse), ECS implementations with optional support for strided memory layouts
 - Semi-declarative WebGL 1/2 abstraction layer
 - DSL for shader functions defined in TypeScript and cross-compilation to GLSL, JS, VEX etc.
-- Value-based equivalence
+- Value-based equivalence (vs. native object identity)
 - DSP building blocks: oscillators, noise generators, filters, 1D FFT/IFFT, muxers, rate converters
 - Immutable data handling, state containers, transacted state updates, Undo-Redo history
 - Data driven UI component toolkits (DOM-based, canvas-based, immediate-mode, multiple approaches...)
@@ -35,15 +40,12 @@ general building blocks for (non-exhaustive list of topics):
 - Color space/format conversions, matrix based color manipulation, gradient generators, color palettes
 - Date-time abstraction, relative dates, iterators, formatters, math
 - WebWorker workflow abstractions
-- PEG-style functional parser combinators w/ (optional) custom grammar definition language
 - Forth-style pointfree DSL for functional composition and DSL development/extension
 - S-expression parser & runtime (interpreter) infrastructure for custom DSL creation
-- Low-level tooling for binary data, shared memory/WASM/WebGL interop
 - SIMD batch-processing of vector data
-- WebAssembly bridge API & data structure bindings code generators for multiple target languages
-- AxiDraw penplotter toolchain & geometry conversions
+- Pen-plotter (AxiDraw) toolchain & geometry conversions
 - Various interpolations, math helpers, automatic differentiation (Dual numbers)
-- etc. (see package overview below)
+- etc.
 
 **This project is NOT a framework**, provides no turn-key, one-size-fits-all
 approach and instead encourages a mix & match philosophy for various key aspects
@@ -55,13 +57,12 @@ All packages:
 - are versioned independently
 - distributed as ESM modules (ES2020 syntax) with export maps, TypeScript
   typings & change logs
-- highly modular with largely only single function / class (only closely related
-  functions) per file to help w/ selective imports and tree shaking
+- highly modular with largely only a single function / class (only closely
+  related functions) per file to help w/ selective imports and tree shaking
 - provide re-exports of all their publics for full library imports
 - have either none or only @thi.ng internal runtime dependencies (w/ very few exceptions!)
-- declare public interfaces, enums & types in an `api.ts` and/or
-  `constants.ts` file (larger packages only)
-- have auto-generated online documentation at [docs.thi.ng](http://docs.thi.ng)
+- declare public interfaces, enums & types in an `api.ts`
+- have auto-generated online documentation at [docs.thi.ng](https://docs.thi.ng)
 - licensed under Apache Software License 2.0
 
 ## Getting started
@@ -74,9 +75,9 @@ examples in the docstrings.
 
 ## Examples & Showcase
 
-There's a steadily growing number (115+) of standalone examples
-(different complexities, often combining functionality from several
-packages) in the [**examples**](./examples/README.md) directory.
+There's a steadily growing number (~120) of standalone examples of different
+complexities (often combining functionality from several packages) in the
+[**examples**](./examples/README.md) directory.
 
 | Example screenshots                                           | (small selection)                                                 |                                                                      |
 |---------------------------------------------------------------|-------------------------------------------------------------------|----------------------------------------------------------------------|
@@ -406,8 +407,8 @@ yarn install
 yarn build
 ```
 
-Once the entire mono-repo has been fully built at least once before,
-individual packages can then be (re)built like so:
+Once the entire mono-repo has been fully built at least once before, individual
+packages can then be (re)built like so:
 
 ```bash
 yarn workspace @thi.ng/transducers run build
@@ -427,8 +428,8 @@ in the wiki for further details.
 
 (Most, but not all packages have tests)
 
-Due to various build/config issues/complexities, we're now using our own minimal test
-runner
+Due to various build/config issues/complexities, we're now using our own minimal
+test runner
 [@thi.ng/testament](https://github.com/thi-ng/umbrella/tree/develop/packages/testament)
 
 ```bash
@@ -442,7 +443,7 @@ yarn workspace @thi.ng/rstream run test
 
 Autogenerated documentation (using
 [TypeDoc](https://github.com/TypeStrong/typedoc)) will be saved under
-`/packages/*/doc/` and is also available at [docs.thi.ng](http://docs.thi.ng).
+`/packages/*/doc/` and is also available at [docs.thi.ng](https://docs.thi.ng).
 
 ```bash
 yarn doc
@@ -457,7 +458,7 @@ https://github.com/thi-ng/umbrella-docs-temp
 
 ## License
 
-&copy; 2015 - 2022 Karsten Schmidt // Apache Software License 2.0
+&copy; 2015 - 2023 Karsten Schmidt // Apache Software License 2.0
 
 ## Contributors ✨
 
