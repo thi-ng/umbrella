@@ -524,6 +524,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     </tr>
     <tr>
       <td align="center"><a href="https://logue.dev/"><img src="https://avatars.githubusercontent.com/u/480173?v=4?s=100" width="100px;" alt="Masashi Yoshikawa"/><br /><sub><b>Masashi Yoshikawa</b></sub></a><br /><a href="https://github.com/thi-ng/umbrella/issues?q=author%3Alogue" title="Bug reports">🐛</a></td>
+      <td align="center"><a href="http://www.guidoschmidt.cc"><img src="https://avatars.githubusercontent.com/u/463136?v=4?s=100" width="100px;" alt="Guido Schmidt"/><br /><sub><b>Guido Schmidt</b></sub></a><br /><a href="https://github.com/thi-ng/umbrella/issues?q=author%3Aguidoschmidt" title="Bug reports">🐛</a> <a href="#financial-guidoschmidt" title="Financial">💵</a></td>
     </tr>
   </tbody>
 </table>
