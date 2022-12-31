@@ -430,6 +430,16 @@
       "contributions": [
         "bug"
       ]
+    },
+    {
+      "login": "guidoschmidt",
+      "name": "Guido Schmidt",
+      "avatar_url": "https://avatars.githubusercontent.com/u/463136?v=4",
+      "profile": "http://www.guidoschmidt.cc",
+      "contributions": [
+        "bug",
+        "financial"
+      ]
     }
   ],
   "contributorsPerLine": 7,
