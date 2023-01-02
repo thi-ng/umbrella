@@ -18,7 +18,7 @@ import {
 	selectChannel,
 	sort,
 	swatchesH,
-} from "../src";
+} from "../src/index.js";
 
 Object.keys(COSINE_GRADIENTS).forEach((id) => {
 	const fname = `export/gradient-${id}-srgb.svg`;

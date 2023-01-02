@@ -55,7 +55,7 @@ import {
 	waveshapeTan,
 	wavetable,
 	whiteNoise,
-} from "../src";
+} from "../src/index.js";
 
 const FS = 48000;
 

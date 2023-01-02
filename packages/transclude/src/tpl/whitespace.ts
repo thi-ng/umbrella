@@ -1,4 +1,4 @@
-import type { TemplateFn } from "../api";
+import type { TemplateFn } from "../api.js";
 
 /**
  * Post-processing stage template function. Replaces all leading tabs (per line

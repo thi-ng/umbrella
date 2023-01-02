@@ -1,7 +1,7 @@
 import { map, normRange3d, reducer, transduce } from "@thi.ng/transducers";
 import { max4, MAX4, MIN4, min4, Vec } from "@thi.ng/vectors";
 import { vector } from "@thi.ng/strings";
-import { ColorMode, convert } from "../src";
+import { ColorMode, convert } from "../src/index.js";
 
 const FMT = vector(4, 4);
 

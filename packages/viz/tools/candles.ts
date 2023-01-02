@@ -12,7 +12,7 @@ import {
 	linearAxis,
 	linearTicks,
 	plotCartesian,
-} from "../src";
+} from "../src/index.js";
 
 const prices: any[] = JSON.parse(
 	readFileSync("dev/ohlc.json").toString()

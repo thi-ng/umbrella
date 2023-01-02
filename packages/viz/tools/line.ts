@@ -13,7 +13,7 @@ import {
 	plotCartesian,
 	scatterPlot,
 	uniformDomain,
-} from "../src";
+} from "../src/index.js";
 
 const xaxis = linearAxis({
 	domain: [0, 100],

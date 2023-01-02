@@ -4,7 +4,7 @@ import { setPrecision } from "@thi.ng/hiccup-svg";
 import { Z4 } from "@thi.ng/strings";
 import { mapIndexed, take } from "@thi.ng/transducers";
 import { writeFileSync } from "fs";
-import { plasticND } from "../src";
+import { plasticND } from "../src/index.js";
 
 const W = 600;
 const R = 0.005;

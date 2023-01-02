@@ -4,7 +4,7 @@ import { svg } from "@thi.ng/hiccup-svg";
 import { mix } from "@thi.ng/math";
 import { map, normRange } from "@thi.ng/transducers";
 import { writeFileSync } from "fs";
-import { kelvinRgb, wavelengthXyz } from "../src";
+import { kelvinRgb, wavelengthXyz } from "../src/index.js";
 
 writeFileSync(
 	"export/blackbody.svg",
