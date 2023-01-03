@@ -456,6 +456,22 @@ cross-references between all packages, but currently isn't frequently updated
 
 https://github.com/thi-ng/umbrella-docs-temp
 
+## Acknowledgements
+
+Maintaining a large monorepo like this requires a lot of infrastructure and I'm
+grateful for the tooling provided by the following projects to simplify those
+tasks:
+
+- [esbuild](https://github.com/evanw/esbuild)
+- [html-minifier-terser](https://terser.org/html-minifier-terser/)
+- [rimraf](https://github.com/isaacs/rimraf)
+- [ts-node](https://typestrong.org/ts-node)
+- [typedoc](https://typedoc.org/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Vite](http://vitejs.dev/)
+- [@thi.ng/monopub](https://github.com/thi-ng/monopub)
+- [@ygoe/msgpack](https://github.com/ygoe/msgpack.js)
+
 ## License
 
 &copy; 2015 - 2023 Karsten Schmidt // Apache Software License 2.0
