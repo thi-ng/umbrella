@@ -440,6 +440,15 @@
         "bug",
         "financial"
       ]
+    },
+    {
+      "login": "tsukamotohideki",
+      "name": "tsukamotohideki",
+      "avatar_url": "https://avatars.githubusercontent.com/u/76874433?v=4",
+      "profile": "https://github.com/tsukamotohideki",
+      "contributions": [
+        "financial"
+      ]
     }
   ],
   "contributorsPerLine": 7,
