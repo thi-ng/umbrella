@@ -36,9 +36,37 @@ export const ONE_MINUS_B: FnN2 = (_, b) => 1 - b;
  * @param fa - fn for src coeff
  * @param fb - fn for dest coeff
  */
-export const porterDuff =
-	(fa: FnN2, fb: FnN2): BlendFnF =>
-	(out, src, dest) => {
+export const porterDuff = (fa: FnN2, fb: FnN2): BlendFnF => {
+	const srcZero = fa === ZERO;
+	const destZero = fb === ZERO;
+	if (srcZero) {
+		return destZero
+			? (out, _, dest) => setN4(out || dest, 0)
+			: (out, src, dest) => {
+					const sb = dest[3];
+					const bb = fb(src[3], sb);
+					return setC4(
+						out || dest,
+						dest[0] * bb,
+						dest[1] * bb,
+						dest[2] * bb,
+						clamp01(sb * bb)
+					);
+			  };
+	} else if (destZero) {
+		return (out, src, dest) => {
+			const sa = src[3];
+			const aa = fa(sa, dest[3]);
+			return setC4(
+				out || dest,
+				src[0] * aa,
+				src[1] * aa,
+				src[2] * aa,
+				clamp01(sa * aa)
+			);
+		};
+	}
+	return (out, src, dest) => {
 		const sa = src[3];
 		const sb = dest[3];
 		const aa = fa(sa, sb);
@@ -51,10 +79,35 @@ export const porterDuff =
 			clamp01(src[3] * aa + dest[3] * bb)
 		);
 	};
+};
 
-export const porterDuffInt =
-	(fa: FnN2, fb: FnN2): BlendFnI =>
-	(a, b) => {
+export const porterDuffInt = (fa: FnN2, fb: FnN2): BlendFnI => {
+	const srcZero = fa === ZERO;
+	const destZero = fb === ZERO;
+	if (srcZero) {
+		return destZero
+			? () => 0
+			: (a, b) => {
+					const bb = fb((a >>> 24) / 255, (b >>> 24) / 255);
+					return (
+						(clamp(((b >>> 24) & 0xff) * bb, 0, 255) << 24) |
+						(clamp(((b >>> 16) & 0xff) * bb, 0, 255) << 16) |
+						(clamp(((b >>> 8) & 0xff) * bb, 0, 255) << 8) |
+						clamp((b & 0xff) * bb, 0, 255)
+					);
+			  };
+	} else if (destZero) {
+		return (a, b) => {
+			const aa = fa((a >>> 24) / 255, (b >>> 24) / 255);
+			return (
+				(clamp(((a >>> 24) & 0xff) * aa, 0, 255) << 24) |
+				(clamp(((a >>> 16) & 0xff) * aa, 0, 255) << 16) |
+				(clamp(((a >>> 8) & 0xff) * aa, 0, 255) << 8) |
+				clamp((a & 0xff) * aa, 0, 255)
+			);
+		};
+	}
+	return (a, b) => {
 		const sa = (a >>> 24) / 255;
 		const sb = (b >>> 24) / 255;
 		const aa = fa(sa, sb);
@@ -77,6 +130,7 @@ export const porterDuffInt =
 			clamp((a & 0xff) * aa + (b & 0xff) * bb, 0, 255)
 		);
 	};
+};
 
 /**
  * Higher order function. Takes existing PD operator and returns
