@@ -5,13 +5,18 @@ import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
 import { direction2 } from "@thi.ng/vectors/direction";
 
 /**
- * Computes all intersection points of the infinite line defined by `a`,
- * `b` with the given polygon. Returns an array of segments where the
- * line is inside the polygon.
+ * Computes all intersection points of the **infinite** line defined by `a`, `b`
+ * with the given polygon. Returns an array of segments where the line is inside
+ * the polygon.
  *
- * @param a -
- * @param b -
- * @param poly -
+ * @remarks
+ * "Infinite" here means the line extends indefinitely on either side and
+ * intersections are found also outside the segment a..b. If only intra-segment
+ * intersections are desired, use {@link clipLineSegmentPoly} instead.
+ *
+ * @param a
+ * @param b
+ * @param poly
  */
 export const clipLinePoly = (
 	a: ReadonlyVec,
@@ -27,6 +32,14 @@ export const clipLinePoly = (
 	return isecs ? collectSegments(<Vec[]>isecs) : undefined;
 };
 
+/**
+ * Similar to {@link clipLinePoly}, but only considers intersections within the
+ * given line segment.
+ *
+ * @param a
+ * @param b
+ * @param poly
+ */
 export const clipLineSegmentPoly = (
 	a: ReadonlyVec,
 	b: ReadonlyVec,

@@ -6,11 +6,17 @@
 
 {{pkg.description}}
 
-Current implementation is based on [toxiclibs](http://toxiclibs.org)
-(Java) and Clojure version [thi.ng/geom-clj](http://thi.ng/geom-clj).
+Current implementation is partially based on [toxiclibs](http://toxiclibs.org)
+(Java) and Clojure version [thi.ng/geom-clj](http://thi.ng/geom-clj). Also see
+[@thi.ng/geom-clip-poly](https://github.com/thi-ng/umbrella/blob/develop/packages/geom-clip-poly)
+sister package.
 
-This package has been extracted from the former (now obsolete)
-@thi.ng/geom-clip package.
+The following main functions are provided:
+
+- [`clipLinePoly()`](https://docs.thi.ng/umbrella/geom-clip-line/functions/clipLinePoly.html)
+- [`clipLineSegmentPoly()`](https://docs.thi.ng/umbrella/geom-clip-line/functions/clipLineSegmentPoly.html)
+- [`clipPolylinePoly()`](https://docs.thi.ng/umbrella/geom-clip-line/functions/clipPolylinePoly.html)
+- [`liangBarsky2()`](https://docs.thi.ng/umbrella/geom-clip-line/functions/liangBarsky2.html)
 
 {{meta.status}}
 
@@ -36,12 +42,24 @@ This package has been extracted from the former (now obsolete)
 
 {{pkg.docs}}
 
-- `liangBarsky2`
-- `liangBarksy2Raw`
-
 ```ts
-import { liangBarsky2 } from "@thi.ng/geom-clip-line";
+import { clipPolylinePoly, liangBarsky2 } from "@thi.ng/geom-clip-line";
 
+clipPolylinePoly(
+	// polyline vertices
+	[[10, -50], [30, 30], [-50, 50], [150, 50], [70, 70], [90, 150]],
+	// boundary polygon vertices
+	[[0, 0], [100, 0], [100, 100], [0, 100]]
+);
+// result is 3 polylines:
+// (since the original is temporarily leaving the poly)
+// [
+//   [ [ 22.5, 0 ], [ 30, 30 ], [ 0, 37.5 ] ],
+//   [ [ 0, 50 ], [ 100, 50 ] ],
+//   [ [ 100, 62.5 ], [ 70, 70 ], [ 77.5, 100 ] ]
+// ]
+
+// Liang-Barsky is optimized for rectangular clipping regions
 liangBarsky2(
     // line end points
     [-10, -20], [30, 400],
