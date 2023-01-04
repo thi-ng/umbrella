@@ -1,6 +1,10 @@
-import { canvas2d, imagePromise } from "@thi.ng/pixel/canvas";
-import { ABGR8888 } from "@thi.ng/pixel/format/abgr8888";
-import { intBufferFromCanvas, intBufferFromImage } from "@thi.ng/pixel/int";
+import {
+	canvas2d,
+	imagePromise,
+	ABGR8888,
+	intBufferFromCanvas,
+	intBufferFromImage,
+} from "@thi.ng/pixel";
 import {
 	DEST_ATOP_I,
 	DEST_I,
@@ -18,7 +22,7 @@ import {
 import IMG2 from "./plus.png";
 import IMG from "./ring.png";
 
-const MODES: any = {
+const MODES = {
 	SRC: SRC_I,
 	DEST: DEST_I,
 	SRC_OVER: SRC_OVER_I,
@@ -33,7 +37,7 @@ const MODES: any = {
 	PLUS: PLUS_I,
 };
 
-const IDS = Object.keys(MODES);
+const IDS = <(keyof typeof MODES)[]>Object.keys(MODES);
 
 Promise.all([IMG, IMG2].map((x) => imagePromise(x)))
 	.then(([circle, plus]) => {
