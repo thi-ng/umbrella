@@ -53,6 +53,12 @@ export const porterDuff = (
 		];
 	});
 
+export const premultiplyAlpha = (col: Vec4Sym) =>
+	vec4(mul($xyz(col), $w(col)), $w(col));
+
+export const postmultiplyAlpha = (col: Vec4Sym) =>
+	vec4(div($xyz(col), $w(col)), $w(col));
+
 // coefficient functions
 
 export const ZERO = () => FLOAT0;
