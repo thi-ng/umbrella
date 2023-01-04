@@ -5,7 +5,11 @@ import { isNumber } from "@thi.ng/checks/is-number";
 import { isString } from "@thi.ng/checks/is-string";
 import { assert } from "@thi.ng/errors/assert";
 import { clamp01 } from "@thi.ng/math/interval";
-import { postmultiply, premultiply } from "@thi.ng/porter-duff/premultiply";
+import {
+	isPremultiplied,
+	postmultiply,
+	premultiply,
+} from "@thi.ng/porter-duff/premultiply";
 import type {
 	BlendFnFloat,
 	BlitCanvasOpts,
@@ -99,13 +103,13 @@ export const floatBufferFromCanvas = (
 export class FloatBuffer
 	implements
 		IPixelBuffer<Float32Array, NumericArray>,
-		IToImageData,
-		IResizable<FloatBuffer, FloatSampler>,
 		IBlend<FloatBuffer, BlendFnFloat>,
 		IBlit<FloatBuffer>,
-		IInvert<FloatBuffer>,
 		ICopy<FloatBuffer>,
-		IEmpty<FloatBuffer>
+		IEmpty<FloatBuffer>,
+		IInvert<FloatBuffer>,
+		IResizable<FloatBuffer, FloatSampler>,
+		IToImageData
 {
 	readonly size: [number, number];
 	readonly stride: [number, number];
@@ -408,6 +412,20 @@ export class FloatBuffer
 			postmultiply(null, data.subarray(i, i + stride));
 		}
 		return this;
+	}
+
+	isPremultiplied() {
+		this.ensureRGBA();
+		const {
+			data,
+			stride: [stride],
+		} = this;
+		for (let i = 0, n = data.length; i < n; i += stride) {
+			if (!isPremultiplied(data.subarray(i, i + stride))) {
+				return false;
+			}
+		}
+		return true;
 	}
 
 	clamp() {

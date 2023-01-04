@@ -122,13 +122,13 @@ export const intBufferFromCanvas = (
 export class IntBuffer
 	implements
 		IPixelBuffer<UIntArray, number>,
-		IToImageData,
-		IResizable<IntBuffer, IntSampler>,
 		IBlend<IntBuffer, BlendFnInt>,
 		IBlit<IntBuffer>,
-		IInvert<IntBuffer>,
 		ICopy<IntBuffer>,
-		IEmpty<IntBuffer>
+		IEmpty<IntBuffer>,
+		IInvert<IntBuffer>,
+		IResizable<IntBuffer, IntSampler>,
+		IToImageData
 {
 	readonly size: [number, number];
 	readonly stride: [number, number];

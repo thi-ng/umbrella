@@ -44,14 +44,13 @@ export type BlendFnFloat = (
 ) => NumericArray;
 
 /**
- * Color channel getter. Returns 0-based channel value (regardless of
- * shift/bit position)
+ * Color channel getter. Returns 0-based channel value (regardless of shift/bit
+ * position)
  */
 export type ChannelGetter<T> = Fn<T, number>;
 /**
- * Color channel setter. Takes current full pixel value and 0-based
- * channel value to set (regardless of shift/bit position). Returns
- * updated pixel value.
+ * Color channel setter. Takes current full pixel value and 0-based channel
+ * value to set (regardless of shift/bit position). Returns updated pixel value.
  */
 export type ChannelSetter<T> = Fn2<T, number, T>;
 
@@ -72,10 +71,9 @@ export interface IntChannelSpec {
 	 */
 	size: number;
 	/**
-	 * Related ABGR lane this channel is mapped from/to. Only used if
-	 * parent format uses auto-generated {@link IABGRConvert} implementation
-	 * (i.e. only if no-user defined converters are given to
-	 * {@link IntFormatSpec}).
+	 * Related ABGR lane this channel is mapped from/to. Only used if parent
+	 * format uses auto-generated {@link IABGRConvert} implementation (i.e. only
+	 * if no-user defined converters are given to {@link IntFormatSpec}).
 	 */
 	lane?: Lane;
 }
@@ -219,9 +217,9 @@ export interface IPixelBuffer<T extends TypedArray = TypedArray, P = any>
 
 export interface IBlit<T extends IPixelBuffer> {
 	/**
-	 * Blits pixels into given `dest` pixel buffer, using provided
-	 * options. If `dest` buffer is smaller than source buffer, only the
-	 * top-left region will be written.
+	 * Blits pixels into given `dest` pixel buffer, using provided options. If
+	 * `dest` buffer is smaller than source buffer, only the top-left region
+	 * will be written.
 	 *
 	 * Destination MUST be of same format as original. No conversion is
 	 * performed.
@@ -251,15 +249,42 @@ export interface IToImageData {
 
 export interface IBlend<T extends IPixelBuffer, F> {
 	/**
-	 * Uses given `op` function to blend / compose pixels of this buffer
-	 * with those of `dest` and writes results into `dest`. Supports
-	 * same options as `blit()`.
+	 * Uses given `op` function to blend / composite pixels of this buffer with
+	 * those of `dest` and writes results into `dest`. Supports same options as
+	 * `blit()`.
 	 *
 	 * @param op -
 	 * @param dest -
 	 * @param opts -
 	 */
 	blend(op: F, dest: T, opts?: Partial<BlitOpts>): void;
+
+	/**
+	 * Premultiplies alpha of all pixels (requires a pixel format with alpha
+	 * channel).
+	 *
+	 * @remarks
+	 * Usually called before starting a compositing/blending process. See
+	 * {@link IBlend.postmultiply} for reverse operation.
+	 */
+	premultiply(): this;
+
+	/**
+	 * Postmultiplies alpha of all pixels (requires a pixel format with alpha
+	 * channel).
+	 *
+	 * @remarks
+	 * Usually called after the final compositing/blending step. See
+	 * {@link IBlend.premultiply} for reverse operation.
+	 */
+	postmultiply(): this;
+
+	/**
+	 * Returns true if all pixels in the buffer are _likely_ to be already using
+	 * pre-multiplied alpha, i.e. if all channel values of a pixel are less than
+	 * or equal to that pixel's alpha value.
+	 */
+	isPremultiplied(): boolean;
 }
 
 export interface IInvert<T extends IPixelBuffer> {
@@ -274,13 +299,13 @@ export interface IResizable<T extends IPixelBuffer, F> {
 
 export interface IColorChannel<T extends TypedArray, C> {
 	/**
-	 * Returns new pixel buffer of selected color channel. The extracted
-	 * values are a copy of the original.
+	 * Returns new pixel buffer of selected color channel. The extracted values
+	 * are a copy of the original.
 	 */
 	getChannel(id: C): IPixelBuffer<T, number>;
 	/**
-	 * Replaces selected color channel with values from given pixel
-	 * buffer, which MUST be of same size as target.
+	 * Replaces selected color channel with values from given pixel buffer,
+	 * which MUST be of same size as target.
 	 *
 	 * @param id -
 	 * @param buf -
@@ -408,7 +433,7 @@ export interface ConvolveOpts {
 	stride?: number | [number, number];
 	/**
 	 * Pixel read offset, only to be used for pooling operations. Should be set
-	 * to `kernelSize/2` and MUST be in `[0,stride)` interval.
+	 * to `kernelSize/2`, and for the X-axis MUST be in `[0,stride)` interval.
 	 */
 	offset?: number | [number, number];
 }
