@@ -175,7 +175,8 @@ const declOffset = (
  * HOF convolution or pooling kernel code generator. Takes either a
  * {@link PoolTemplate} function or array of kernel coefficients and kernel
  * width/height. Returns optimized kernel function for use with
- * {@link convolve}.
+ * {@link convolve}. If `normalize` is true (default: false), the given
+ * coefficients are divided by their sum (only used if provided as array).
  *
  * @remarks
  * If total kernel size (width * height) is < 512, the result function will use
@@ -189,19 +190,26 @@ const declOffset = (
  * @param tpl -
  * @param w -
  * @param h -
+ * @param normalize -
  */
 export const defKernel = (
 	tpl: NumericArray | PoolTemplate,
 	w: number,
-	h: number
+	h: number,
+	normalize = false
 ) => {
-	if (w * h > 512 && !isFunction(tpl)) return defLargeKernel(tpl, w, h);
+	if (w * h > 512 && !isFunction(tpl))
+		return defLargeKernel(tpl, w, h, normalize);
 	const isPool = isFunction(tpl);
 	const prefix: string[] = [];
 	const body: string[] = [];
 	const kvars: string[] = [];
 	const h2 = h >> 1;
 	const w2 = w >> 1;
+	if (normalize) {
+		const scale = 1 / (<number[]>tpl).reduce((acc, x) => acc + x, 0);
+		tpl = (<number[]>tpl).map((x) => x * scale);
+	}
 	for (let y = 0, i = 0; y < h; y++) {
 		const yy = y - h2;
 		const row: string[] = [];
@@ -246,17 +254,24 @@ export const defKernel = (
 
 /**
  * Loop based fallback for {@link defKernel}, intended for larger kernel sizes
- * for which loop-unrolled approach is prohibitive.
+ * for which loop-unrolled approach is prohibitive. If `normalize` is true
+ * (default: false), the given coefficients are divided by their sum.
  *
  * @param kernel -
  * @param w -
  * @param h -
+ * @param normalize -
  */
 export const defLargeKernel = (
 	kernel: NumericArray,
 	w: number,
-	h: number
+	h: number,
+	normalize = false
 ): Fn<FloatBuffer, FnN3> => {
+	if (normalize) {
+		const scale = 1 / (<number[]>kernel).reduce((acc, x) => acc + x, 0);
+		kernel = (<number[]>kernel).map((x) => x * scale);
+	}
 	return (src) => {
 		const {
 			data,
