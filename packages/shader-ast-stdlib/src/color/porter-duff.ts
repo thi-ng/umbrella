@@ -2,28 +2,31 @@ import type { Fn2 } from "@thi.ng/api";
 import type { FloatTerm, Vec4Sym } from "@thi.ng/shader-ast";
 import { defn, ret } from "@thi.ng/shader-ast/ast/function";
 import { FLOAT0, FLOAT1, vec4 } from "@thi.ng/shader-ast/ast/lit";
-import { add, mul, sub } from "@thi.ng/shader-ast/ast/ops";
-import { $w } from "@thi.ng/shader-ast/ast/swizzle";
+import { add, div, mul, sub } from "@thi.ng/shader-ast/ast/ops";
+import { $w, $xyz } from "@thi.ng/shader-ast/ast/swizzle";
 import { clamp01 } from "../math/clamp.js";
 
-const coeff = (
-	f: Fn2<FloatTerm, FloatTerm, FloatTerm>,
-	a: Vec4Sym,
-	b: Vec4Sym
-) => (f === ZERO ? FLOAT0 : f === ONE ? a : mul(a, f($w(a), $w(b))));
+/** @internal */
+const __coeff = (col: Vec4Sym, f: FloatTerm) =>
+	f === FLOAT0 ? vec4() : f === FLOAT1 ? col : mul(col, f);
 
 /**
  * Higher-order Porter-Duff alpha compositing operator. See
  * [thi.ng/porter-duff](https://thi.ng/porter-duff) for reference. Returns an
  * optimized AST function which accepts 2 RGBA colors (vec4) and returns blended
- * & clamped result (also a vec4). All built-in PD operators are defined via
- * this HOF.
+ * & clamped result (also a vec4).
  *
- * The two given JS functions are used to extract blending coefficients for
- * src/dest colors and are called with the alpha components of both colors.
+ * @remark
+ * All built-in PD operators are defined via this HOF. The two given coefficient
+ * functions are used to extract blending coefficients for src/dest colors and
+ * are called with the alpha components of both colors.
  *
  * Optimization only happens for cases where either `fa` and/or `fb` are
- * {@link ZERO}.
+ * {@link ZERO} or {@link ONE}.
+ *
+ * *IMPORTANT*: Both colors MUST be use pre-multiplied alpha for correct
+ * results. If needed, use {@link premultiplyAlpha} and
+ * {@link postmultiplyAlpha}.
  *
  * @param name - function name
  * @param fa - src coeff fn
@@ -35,10 +38,12 @@ export const porterDuff = (
 	fb: Fn2<FloatTerm, FloatTerm, FloatTerm>
 ) =>
 	defn("vec4", name, ["vec4", "vec4"], (a, b) => {
-		const src = coeff(fa, a, b);
-		const dest = coeff(fb, a, b);
-		const srcZero = src === FLOAT0;
-		const destZero = dest === FLOAT0;
+		const sa = fa($w(a), $w(b));
+		const sb = fb($w(a), $w(b));
+		const src = __coeff(a, sa);
+		const dest = __coeff(b, sb);
+		const srcZero = sa === FLOAT0;
+		const destZero = sb === FLOAT0;
 		return [
 			ret(
 				srcZero && destZero
