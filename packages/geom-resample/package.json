@@ -37,6 +37,7 @@
 		"@thi.ng/checks": "^3.3.6",
 		"@thi.ng/geom-api": "^3.3.24",
 		"@thi.ng/geom-closest-point": "^2.1.38",
+		"@thi.ng/geom-isec": "^2.1.41",
 		"@thi.ng/math": "^5.3.18",
 		"@thi.ng/vectors": "^7.5.30"
 	},
@@ -79,6 +80,9 @@
 	"exports": {
 		".": {
 			"default": "./index.js"
+		},
+		"./axis": {
+			"default": "./axis.js"
 		},
 		"./resample": {
 			"default": "./resample.js"
