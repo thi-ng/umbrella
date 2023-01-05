@@ -66,6 +66,7 @@ export class AxiDraw implements IReset {
 	reset() {
 		zero(this.pos);
 		zero(this.targetPos);
+		this.send("R\r");
 		return this;
 	}
 
