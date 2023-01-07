@@ -11,9 +11,10 @@ export const defFloatFormat = (fmt: FloatFormatSpec) => {
 	);
 	const res = <FloatFormat>{
 		...fmt,
+		__float: true,
 		size: chan.length,
 		shift: chanShift,
-		__float: true,
+		getNormalized: (val) => clamp01(val),
 	};
 	if (fmt.convert) {
 		Object.assign(res, fmt.convert);

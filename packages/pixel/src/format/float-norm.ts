@@ -1,4 +1,4 @@
-import { clamp } from "@thi.ng/math/interval";
+import { clamp, clamp01 } from "@thi.ng/math/interval";
 import { FloatFormat, Lane } from "../api.js";
 
 const from = (x: number) => x / 127.5 - 1;
@@ -13,6 +13,7 @@ export const FLOAT_NORMAL: FloatFormat = {
 	channels: [Lane.RED, Lane.GREEN, Lane.BLUE],
 	shift: { 3: 0, 2: 8, 1: 16 },
 	size: 3,
+	getNormalized: (val) => clamp01(val * 0.5 + 0.5),
 	fromABGR: (src) => [
 		from(src & 0xff),
 		from((src >> 8) & 0xff),

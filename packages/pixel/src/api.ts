@@ -155,7 +155,13 @@ export interface IntFormatSpec extends Partial<IABGRConvert<number>> {
  */
 export interface IntFormat extends IABGRConvert<number> {
 	type: UintType;
+	/**
+	 * Total size in bits.
+	 */
 	size: number;
+	/**
+	 * Number of bits for alpha channel.
+	 */
 	alpha: number;
 	channels: IntChannel[];
 	// internal marker only
@@ -174,13 +180,25 @@ export interface FloatFormatSpec {
 }
 
 export interface FloatFormat extends IABGRConvert<NumericArray> {
+	// internal marker only
+	readonly __float: true;
+
 	alpha: boolean;
 	gray: boolean;
+	/**
+	 * Number of channels
+	 */
 	size: number;
 	shift: IObjectOf<number>;
 	channels: Lane[];
-	// internal marker only
-	readonly __float: true;
+
+	/**
+	 * Maps given value to [0..1] interval. Used in combination with
+	 * {@link IntChannel.setFloat}.
+	 *
+	 * @param val
+	 */
+	getNormalized(val: number): number;
 }
 
 export interface CanvasContext {
