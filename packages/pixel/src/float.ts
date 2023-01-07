@@ -168,10 +168,17 @@ export class FloatBuffer
 		} = this;
 		const dest = new IntBuffer(width, height, fmt);
 		const dpixels = dest.data;
-		for (let i = 0, j = 0, n = data.length; i < n; i += stride, j++) {
-			dpixels[j] = fmt.fromABGR(
-				sfmt.toABGR(data.subarray(i, i + stride))
-			);
+		if (sfmt.size === 1 && fmt.channels.length === 1) {
+			const setFloat = fmt.channels[0].setFloat;
+			for (let i = 0, j = 0, n = data.length; i < n; i += stride, j++) {
+				dpixels[j] = setFloat(0, sfmt.getNormalized(data[i]));
+			}
+		} else {
+			for (let i = 0, j = 0, n = data.length; i < n; i += stride, j++) {
+				dpixels[j] = fmt.fromABGR(
+					sfmt.toABGR(data.subarray(i, i + stride))
+				);
+			}
 		}
 		return dest;
 	}
