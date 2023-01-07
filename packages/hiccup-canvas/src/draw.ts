@@ -34,9 +34,10 @@ export const draw = (
 		}
 		return;
 	}
-	const state = __mergeState(ctx, pstate, shape[1]);
+	const origAttribs = shape[1];
+	if (origAttribs.__skip) return;
+	const state = __mergeState(ctx, pstate, origAttribs);
 	const attribs = state ? state.attribs : pstate.attribs;
-	if (attribs.__skip) return;
 	switch (shape[0]) {
 		case "g":
 		case "defs":
@@ -45,22 +46,22 @@ export const draw = (
 		case "linearGradient":
 			__registerGradient(
 				pstate,
-				shape[1].id,
-				defLinearGradient(ctx, shape[1], shape[2])
+				origAttribs.id,
+				defLinearGradient(ctx, origAttribs, shape[2])
 			);
 			break;
 		case "radialGradient":
 			__registerGradient(
 				pstate,
-				shape[1].id,
-				defRadialGradient(ctx, shape[1], shape[2])
+				origAttribs.id,
+				defRadialGradient(ctx, origAttribs, shape[2])
 			);
 			break;
 		case "points":
-			points(ctx, attribs, shape[1], shape[2]);
+			points(ctx, attribs, origAttribs, shape[2]);
 			break;
 		case "packedPoints":
-			packedPoints(ctx, attribs, shape[1], shape[2]);
+			packedPoints(ctx, attribs, origAttribs, shape[2]);
 			break;
 		case "line":
 			line(ctx, attribs, shape[2], shape[3]);
@@ -110,7 +111,7 @@ export const draw = (
 			image(
 				ctx,
 				attribs,
-				shape[1],
+				origAttribs,
 				shape[2],
 				shape[3],
 				shape[4],

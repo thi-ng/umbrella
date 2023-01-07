@@ -79,6 +79,12 @@ export const __mergeState = (
 				res.edits!.push(id);
 				setAttrib(ctx, state, id, k, v);
 			}
+		} else if (id === "__background") {
+			ctx.save();
+			ctx.resetTransform();
+			ctx.fillStyle = resolveGradientOrColor(state, attribs[id]);
+			ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+			ctx.restore();
 		}
 	}
 	return res;
