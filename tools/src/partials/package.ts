@@ -1,4 +1,5 @@
 import { readJSON, readText } from "@thi.ng/file-io";
+import { isString } from "@thi.ng/checks";
 import { bytes, camel } from "@thi.ng/strings";
 import { execFileSync } from "child_process";
 import { readdirSync } from "fs";
@@ -16,8 +17,21 @@ export const isNodeOnly = (pkg: Package) =>
 export const isWebModule = (pkg: Package) =>
 	!isNodeOnly(pkg) && pkg[META_FIELD]?.skypack !== false;
 
-export const pkgLink = (config: Config, name: string) =>
-	link(name, `${config.branchURL}/packages/${shortName(name)}`);
+export const pkgLink = (config: Config, name: string) => {
+	let url: string | undefined = undefined;
+	if (name.startsWith(config.pkgScope)) {
+		url = `${config.branchURL}/packages/${shortName(name)}`;
+	} else {
+		const { homepage, repository } = readJSON(
+			`../../node_modules/${name}/package.json`
+		);
+		url = homepage;
+		if (!url && repository) {
+			url = isString(repository) ? repository : repository.url;
+		}
+	}
+	return url ? link(name, url) : name;
+};
 
 export const packageList = (
 	config: Config,
