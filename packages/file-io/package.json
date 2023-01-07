@@ -95,6 +95,9 @@
 		"./mask": {
 			"default": "./mask.js"
 		},
+		"./read": {
+			"default": "./read.js"
+		},
 		"./temp": {
 			"default": "./temp.js"
 		},

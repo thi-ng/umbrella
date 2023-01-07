@@ -5,6 +5,7 @@ export * from "./files.js";
 export * from "./hash.js";
 export * from "./json.js";
 export * from "./mask.js";
+export * from "./read.js";
 export * from "./temp.js";
 export * from "./text.js";
 export * from "./write.js";
