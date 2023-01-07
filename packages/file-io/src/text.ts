@@ -3,9 +3,24 @@ import type { ILogger } from "@thi.ng/logger";
 import { readFileSync } from "fs";
 import { writeFile } from "./write.js";
 
-export const readText = (path: string, logger?: ILogger) => {
+/**
+ * Reads text from given file `path`, optionally with custom encoding (default:
+ * UTF-8).
+ *
+ * @param path
+ * @param logger
+ * @param encoding
+ */
+export const readText = (
+	path: string,
+	logger?: ILogger,
+	encoding: Extract<
+		BufferEncoding,
+		"ascii" | "latin1" | "utf-8" | "utf-16le" | "ucs-2"
+	> = "utf-8"
+) => {
 	logger && logger.debug("reading file:", path);
-	return readFileSync(path, "utf-8");
+	return readFileSync(path, encoding);
 };
 
 /**
