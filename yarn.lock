@@ -2140,6 +2140,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@petamoriken/float16@npm:^3.4.7":
+  version: 3.7.1
+  resolution: "@petamoriken/float16@npm:3.7.1"
+  checksum: 36e8d7ae40bb3979264278212cd082923c0bafae8b17007feb0fa98bc69c8583a1401683b6a4cce3959182d398d382a3d7ce9ad0fe5bcdb8851a4b23599eef86
+  languageName: node
+  linkType: hard
+
 "@rushstack/node-core-library@npm:3.53.3":
   version: 3.53.3
   resolution: "@rushstack/node-core-library@npm:3.53.3"
@@ -4222,6 +4229,22 @@ __metadata:
     "@thi.ng/math": ^5.3.18
     "@thi.ng/pixel": ^4.0.14
     "@thi.ng/testament": ^0.3.8
+    rimraf: ^3.0.2
+    tools: "workspace:^"
+    typedoc: ^0.23.22
+    typescript: ^4.9.4
+  languageName: unknown
+  linkType: soft
+
+"@thi.ng/pixel-io-geotiff@workspace:packages/pixel-io-geotiff":
+  version: 0.0.0-use.local
+  resolution: "@thi.ng/pixel-io-geotiff@workspace:packages/pixel-io-geotiff"
+  dependencies:
+    "@microsoft/api-extractor": ^7.33.7
+    "@thi.ng/api": ^8.6.2
+    "@thi.ng/pixel": ^4.0.14
+    "@thi.ng/testament": ^0.3.8
+    geotiff: ^2.0.7
     rimraf: ^3.0.2
     tools: "workspace:^"
     typedoc: ^0.23.22
@@ -6355,6 +6378,21 @@ __metadata:
   languageName: node
   linkType: hard
 
+"geotiff@npm:^2.0.7":
+  version: 2.0.7
+  resolution: "geotiff@npm:2.0.7"
+  dependencies:
+    "@petamoriken/float16": ^3.4.7
+    lerc: ^3.0.0
+    pako: ^2.0.4
+    parse-headers: ^2.0.2
+    quick-lru: ^6.1.1
+    web-worker: ^1.2.0
+    xml-utils: ^1.0.2
+  checksum: d64bd3c3cf0342368899fe693059520e003a6610515760e6afe1cb4191397e5fc180591f2aa75729bb0283190eda0574e10e3da0241be2556cbedc5c50222f69
+  languageName: node
+  linkType: hard
+
 "get-intrinsic@npm:^1.0.2":
   version: 1.1.3
   resolution: "get-intrinsic@npm:1.1.3"
@@ -6680,6 +6718,13 @@ __metadata:
     graceful-fs:
       optional: true
   checksum: 6447d6224f0d31623eef9b51185af03ac328a7553efcee30fa423d98a9e276ca08db87d71e17f2310b0263fd3ffa6c2a90a6308367f661dc21580f9469897c9e
+  languageName: node
+  linkType: hard
+
+"lerc@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "lerc@npm:3.0.0"
+  checksum: 637699a1359cd80e581bac4bd66dd7ac09e6681fe97346c97939abdbc0170deac1b79ea00a17e334ef5d9d510973ca382abb43c39c8294788dd8391daeb75c32
   languageName: node
   linkType: hard
 
@@ -7077,6 +7122,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"pako@npm:^2.0.4":
+  version: 2.1.0
+  resolution: "pako@npm:2.1.0"
+  checksum: 71666548644c9a4d056bcaba849ca6fd7242c6cf1af0646d3346f3079a1c7f4a66ffec6f7369ee0dc88f61926c10d6ab05da3e1fca44b83551839e89edd75a3e
+  languageName: node
+  linkType: hard
+
 "param-case@npm:^3.0.4":
   version: 3.0.4
   resolution: "param-case@npm:3.0.4"
@@ -7084,6 +7136,13 @@ __metadata:
     dot-case: ^3.0.4
     tslib: ^2.0.3
   checksum: b34227fd0f794e078776eb3aa6247442056cb47761e9cd2c4c881c86d84c64205f6a56ef0d70b41ee7d77da02c3f4ed2f88e3896a8fefe08bdfb4deca037c687
+  languageName: node
+  linkType: hard
+
+"parse-headers@npm:^2.0.2":
+  version: 2.0.5
+  resolution: "parse-headers@npm:2.0.5"
+  checksum: 3e97f01e4c7f960bfbfd0ee489f0bd8d3c72b6c814f1f79b66abec2cca8eaf8e4ecd89deba0b6e61266469aed87350bc932001181c01ff8c29a59e696abe251f
   languageName: node
   linkType: hard
 
@@ -7199,6 +7258,13 @@ __metadata:
   dependencies:
     side-channel: ^1.0.4
   checksum: 6e1f29dd5385f7488ec74ac7b6c92f4d09a90408882d0c208414a34dd33badc1a621019d4c799a3df15ab9b1d0292f97c1dd71dc7c045e69f81a8064e5af7297
+  languageName: node
+  linkType: hard
+
+"quick-lru@npm:^6.1.1":
+  version: 6.1.1
+  resolution: "quick-lru@npm:6.1.1"
+  checksum: a9c75bf1d208c1d207590e10403a75d037f9faf7857f2e0d38c294d92b40d8b400776bcb5d4dd516baa84e6f5e3baf2a16cf405e6fedc18107922f46aeae83ee
   languageName: node
   linkType: hard
 
@@ -7903,6 +7969,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"web-worker@npm:^1.2.0":
+  version: 1.2.0
+  resolution: "web-worker@npm:1.2.0"
+  checksum: 1bb28348ddcf9b2e7c62c5fd02e49a84098795856cd905456de957271bba288e9618941cf69d8960f0a7ae81f5dfb74b427c0634be47ec69e3e955c4ec5213be
+  languageName: node
+  linkType: hard
+
 "which@npm:^2.0.2":
   version: 2.0.2
   resolution: "which@npm:2.0.2"
@@ -7927,6 +8000,13 @@ __metadata:
   version: 1.0.2
   resolution: "wrappy@npm:1.0.2"
   checksum: 159da4805f7e84a3d003d8841557196034155008f817172d4e986bd591f74aa82aa7db55929a54222309e01079a65a92a9e6414da5a6aa4b01ee44a511ac3ee5
+  languageName: node
+  linkType: hard
+
+"xml-utils@npm:^1.0.2":
+  version: 1.3.0
+  resolution: "xml-utils@npm:1.3.0"
+  checksum: f2377579b60b00eb70bea93fc48ddbdd9f8f5aa78ee22e16511db23d6eb8bfe9ce84b62db42728f284038aadd1c07fadfd44e85ad8b35d1b95342cc7a82496a0
   languageName: node
   linkType: hard
 
