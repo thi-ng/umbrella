@@ -27,6 +27,7 @@ export * from "./format/rgb888.js";
 export * from "./format/float-format.js";
 export * from "./format/float-gray.js";
 export * from "./format/float-gray-alpha.js";
+export * from "./format/float-gray-range.js";
 export * from "./format/float-hsva.js";
 export * from "./format/float-norm.js";
 export * from "./format/float-rgb.js";
