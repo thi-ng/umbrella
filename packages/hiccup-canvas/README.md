@@ -47,6 +47,8 @@ This project is part of the
     - [Translation](#translation)
     - [Scaling](#scaling)
     - [Rotation](#rotation)
+  - [Special attributes](#special-attributes)
+    - [Background fill](#background-fill)
 - [Authors](#authors)
 - [License](#license)
 
@@ -92,7 +94,7 @@ For Node.js REPL:
 const hiccupCanvas = await import("@thi.ng/hiccup-canvas");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 2.36 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 2.40 KB
 
 ## Dependencies
 
@@ -493,6 +495,15 @@ package for creating different kinds of transformation matrices, e.g.
 { rotate: theta } // in radians
 ```
 
+### Special attributes
+
+#### Background fill
+
+The special `__background` attribute can be used to fill the entire canvas with
+a given background color. The attribute only makes sense if attached to the root
+group/shape and can take the same values as any other [color
+attribs](#color-attributes).
+
 ## Authors
 
 - [Karsten Schmidt](https://thi.ng)
@@ -510,4 +521,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2018 - 2022 Karsten Schmidt // Apache License 2.0
+&copy; 2018 - 2023 Karsten Schmidt // Apache License 2.0

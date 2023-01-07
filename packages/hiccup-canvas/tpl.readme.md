@@ -406,4 +406,13 @@ package for creating different kinds of transformation matrices, e.g.
 { rotate: theta } // in radians
 ```
 
+### Special attributes
+
+#### Background fill
+
+The special `__background` attribute can be used to fill the entire canvas with
+a given background color. The attribute only makes sense if attached to the root
+group/shape and can take the same values as any other [color
+attribs](#color-attributes).
+
 <!-- include ../../assets/tpl/footer.md -->
