@@ -147,6 +147,9 @@
 		"./format/float-gray-alpha": {
 			"default": "./format/float-gray-alpha.js"
 		},
+		"./format/float-gray-range": {
+			"default": "./format/float-gray-range.js"
+		},
 		"./format/float-gray": {
 			"default": "./format/float-gray.js"
 		},
