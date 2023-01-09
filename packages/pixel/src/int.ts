@@ -413,6 +413,17 @@ export class IntBuffer
 	}
 
 	/**
+	 * Flips image horizontally.
+	 */
+	flipX() {
+		const { data, width } = this;
+		for (let i = 0; i < data.length; i += width) {
+			data.subarray(i, i + width).reverse();
+		}
+		return this;
+	}
+
+	/**
 	 * Flips image vertically.
 	 */
 	flipY() {

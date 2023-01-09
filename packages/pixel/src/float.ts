@@ -457,7 +457,28 @@ export class FloatBuffer
 		}
 	}
 
+	flipX() {
+		const {
+			data,
+			width,
+			height,
+			stride: [sx, sy],
+		} = this;
+		const tmp = new Float32Array(sx);
+		const w1 = width - 1;
+		const w2 = width >>> 1;
+		for (let y = 0; y < height; y++) {
+			for (
+				let x = 0, i = y * sy, j = i + w1 * sx;
+				x < w2;
+				x++, i += sx, j -= sx
+			) {
+				tmp.set(data.subarray(i, i + sx));
+				data.copyWithin(i, j, j + sx);
+				data.set(tmp, j);
+			}
 		}
+		return this;
 	}
 
 	/**
