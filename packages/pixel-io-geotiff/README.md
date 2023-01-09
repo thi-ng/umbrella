@@ -21,6 +21,8 @@ This project is part of the
 
 GeoTIFF reader support for [@thi.ng/pixel](https://github.com/thi-ng/umbrella/tree/develop/packages/pixel).
 
+![Pseudo-3D DEM visualization using hidden lines](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/pixel-io-geotiff/20230109-n45w121-crop-1280.jpg)
+
 ## Status
 
 **ALPHA** - bleeding edge / work-in-progress
@@ -47,7 +49,7 @@ For Node.js REPL:
 const pixelIoGeotiff = await import("@thi.ng/pixel-io-geotiff");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 345 bytes
+Package sizes (brotli'd, pre-treeshake): ESM: 367 bytes
 
 ## Dependencies
 
