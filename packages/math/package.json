@@ -113,6 +113,9 @@
 		"./mix": {
 			"default": "./mix.js"
 		},
+		"./permutations": {
+			"default": "./permutations.js"
+		},
 		"./prec": {
 			"default": "./prec.js"
 		},

@@ -10,6 +10,7 @@ export * from "./interval.js";
 export * from "./libc.js";
 export * from "./min-error.js";
 export * from "./mix.js";
+export * from "./permutations.js";
 export * from "./prec.js";
 export * from "./prime.js";
 export * from "./ratio.js";
