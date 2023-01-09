@@ -2,21 +2,42 @@ import { TypedArray, typedArrayType } from "@thi.ng/api";
 import { FloatBuffer, floatBuffer, FLOAT_GRAY_RANGE } from "@thi.ng/pixel";
 import { fromArrayBuffer } from "geotiff";
 
-export const readGeoTiff = async (src: ArrayBufferView) => {
+export interface GeoTiffOpts {
+	/**
+	 * Raster channel to extract from image.
+	 *
+	 * @defaultValue 0
+	 */
+	channel: number;
+	/**
+	 * Min/max elevation range to configure image pixel format. If omitted, the
+	 * range will be auto-computed.
+	 */
+	range: [number, number];
+}
+
+export const readGeoTiff = async (
+	src: ArrayBufferView,
+	opts: Partial<GeoTiffOpts> = {}
+) => {
 	const tiff = await fromArrayBuffer(src.buffer);
 	const tiffImg = await tiff.getImage();
 	const width = tiffImg.getWidth();
 	const height = tiffImg.getHeight();
-	const data = <TypedArray>(await tiffImg.readRasters({ samples: [0] }))![0];
-	const type = typedArrayType(data);
-	const [min, max] = (<Float32Array>data).reduce(
-		(acc: number[], x) => {
-			acc[0] = Math.min(acc[0], x);
-			acc[1] = Math.max(acc[1], x);
-			return acc;
-		},
-		[Infinity, -Infinity]
+	const data = <TypedArray>(
+		(await tiffImg.readRasters({ samples: [opts.channel || 0] }))![0]
 	);
+	const type = typedArrayType(data);
+	const [min, max] = opts.range
+		? opts.range
+		: (<Float32Array>data).reduce(
+				(acc: number[], x) => {
+					acc[0] = Math.min(acc[0], x);
+					acc[1] = Math.max(acc[1], x);
+					return acc;
+				},
+				[Infinity, -Infinity]
+		  );
 	const fmt = FLOAT_GRAY_RANGE(min, max);
 	let img: FloatBuffer;
 	switch (type) {
