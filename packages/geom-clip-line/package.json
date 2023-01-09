@@ -73,6 +73,9 @@
 		"./clip-poly": {
 			"default": "./clip-poly.js"
 		},
+		"./clip-with": {
+			"default": "./clip-with.js"
+		},
 		"./liang-barsky": {
 			"default": "./liang-barsky.js"
 		}
