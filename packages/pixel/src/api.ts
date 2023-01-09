@@ -192,6 +192,8 @@ export interface FloatFormat extends IABGRConvert<NumericArray> {
 	shift: IObjectOf<number>;
 	channels: Lane[];
 
+	range: [number, number];
+
 	/**
 	 * Maps given value to [0..1] interval. Used in combination with
 	 * {@link IntChannel.setFloat}.

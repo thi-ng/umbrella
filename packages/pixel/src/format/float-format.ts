@@ -14,6 +14,7 @@ export const defFloatFormat = (fmt: FloatFormatSpec) => {
 		__float: true,
 		size: chan.length,
 		shift: chanShift,
+		range: [0, 1],
 		getNormalized: (val) => clamp01(val),
 	};
 	if (fmt.convert) {

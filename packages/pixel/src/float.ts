@@ -4,7 +4,7 @@ import { IGrid2DMixin } from "@thi.ng/api/mixins/igrid";
 import { isNumber } from "@thi.ng/checks/is-number";
 import { isString } from "@thi.ng/checks/is-string";
 import { assert } from "@thi.ng/errors/assert";
-import { clamp01 } from "@thi.ng/math/interval";
+import { clamp } from "@thi.ng/math/interval";
 import {
 	isPremultiplied,
 	postmultiply,
@@ -248,9 +248,10 @@ export class FloatBuffer
 			data,
 			stride: [stride],
 		} = this;
+		const [min, max] = this.format.range;
 		const dest = new Float32Array(this.width * this.height);
 		for (let i = id, j = 0, n = data.length; i < n; i += stride, j++) {
-			dest[j] = clamp01(data[i]);
+			dest[j] = clamp(data[i], min, max);
 		}
 		return new FloatBuffer(this.width, this.height, FLOAT_GRAY, dest);
 	}
@@ -437,8 +438,9 @@ export class FloatBuffer
 
 	clamp() {
 		const data = this.data;
+		const [min, max] = this.format.range;
 		for (let i = data.length; i-- > 0; ) {
-			data[i] = clamp01(data[i]);
+			data[i] = clamp(data[i], min, max);
 		}
 		return this;
 	}
@@ -449,8 +451,12 @@ export class FloatBuffer
 			data,
 			stride: [stride],
 		} = this;
+		const [min, max] = this.format.range;
 		for (let i = id, n = data.length; i < n; i += stride) {
-			data[i] = clamp01(data[i]);
+			data[i] = clamp(data[i], min, max);
+		}
+	}
+
 		}
 	}
 

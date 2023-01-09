@@ -13,6 +13,7 @@ export const FLOAT_NORMAL: FloatFormat = {
 	channels: [Lane.RED, Lane.GREEN, Lane.BLUE],
 	shift: { 3: 0, 2: 8, 1: 16 },
 	size: 3,
+	range: [-1, 1],
 	getNormalized: (val) => clamp01(val * 0.5 + 0.5),
 	fromABGR: (src) => [
 		from(src & 0xff),
