@@ -101,13 +101,14 @@ New formats can be defined via `defIntFormat()`.
 Strided floating point format presets for use with `floatBuffer()`. New
 formats can be defined via `defFloatFormat()`.
 
-| Format ID          | Channel count | Description                 |
-|--------------------|---------------|-----------------------------|
-| `FLOAT_GRAY`       | 1             | Single channel / grayscale  |
-| `FLOAT_GRAY_ALPHA` | 2             | Grayscale and alpha channel |
-| `FLOAT_NORMAL`     | 3             | Normal map (signed values)  |
-| `FLOAT_RGB`        | 3             | Red, Green, Blue            |
-| `FLOAT_RGBA`       | 4             | Red, Green, Blue, Alpha     |
+| Format ID          | Channel count | Description                          |
+|--------------------|---------------|--------------------------------------|
+| `FLOAT_GRAY`       | 1             | Single channel / grayscale           |
+| `FLOAT_GRAY_ALPHA` | 2             | Grayscale and alpha channel          |
+| `FLOAT_GRAY_RANGE` | 1             | Grayscale (user defined value range) |
+| `FLOAT_NORMAL`     | 3             | Normal map (signed values)           |
+| `FLOAT_RGB`        | 3             | Red, Green, Blue                     |
+| `FLOAT_RGBA`       | 4             | Red, Green, Blue, Alpha              |
 
 - All color channels are unclamped (but can be clamped via `buf.clamp()`). For
   conversion to packed int formats assumed to contain normalized data (i.e.
@@ -300,6 +301,7 @@ console.log(clusters);
 ## Support packages
 
 - [@thi.ng/pixel-dither](https://github.com/thi-ng/umbrella/tree/develop/packages/pixel-dither) - Extensible image dithering w/ various algorithm presets
+- [@thi.ng/pixel-io-geotiff](https://github.com/thi-ng/umbrella/tree/develop/packages/pixel-io-geotiff) - GeoTIFF reader support for [@thi.ng/pixel](https://github.com/thi-ng/umbrella/tree/develop/packages/pixel)
 - [@thi.ng/pixel-io-netpbm](https://github.com/thi-ng/umbrella/tree/develop/packages/pixel-io-netpbm) - Multi-format NetPBM reader & writer support for [@thi.ng/pixel](https://github.com/thi-ng/umbrella/tree/develop/packages/pixel)
 
 ## Related packages
@@ -330,7 +332,7 @@ For Node.js REPL:
 const pixel = await import("@thi.ng/pixel");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 8.65 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 9.01 KB
 
 ## Dependencies
 
@@ -452,4 +454,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2019 - 2022 Karsten Schmidt // Apache License 2.0
+&copy; 2019 - 2023 Karsten Schmidt // Apache License 2.0
