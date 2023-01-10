@@ -408,6 +408,13 @@ for various other effects, filters etc.
 Variation of `delay()` which adds a portion of the delayed value to each
 new input and stores result in delay line.
 
+#### Filtered feedback delay
+
+[Source](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/filter-delay.ts)
+
+Variation of `feedbackDelay()` which processes feedback via given filter /
+`IProc`, e.g. to create dub style filter delays.
+
 #### Wave shaping
 
 [Source](https://github.com/thi-ng/umbrella/blob/develop/packages/dsp/src/waveshaper.ts)
