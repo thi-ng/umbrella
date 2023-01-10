@@ -21,7 +21,13 @@ This project is part of the
 
 GeoTIFF reader support for [@thi.ng/pixel](https://github.com/thi-ng/umbrella/tree/develop/packages/pixel).
 
-![Pseudo-3D DEM visualization using hidden lines](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/pixel-io-geotiff/20230109-n45w121-crop-1280.jpg)
+![Pseudo-3D DEM visualization using hidden lines plot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/pixel-io-geotiff/20230109-n45w121-crop-1280.jpg)
+
+This package is only intended to simplify obtaining DEM (elevation) data and not
+aimed at general
+[GeoTIFF](http://docs.opengeospatial.org/is/19-008r4/19-008r4.html)
+functionality. For the latter we recommend using the wrapped
+[geotiff.js](https://geotiffjs.github.io/) package directly.
 
 ## Status
 
@@ -49,7 +55,7 @@ For Node.js REPL:
 const pixelIoGeotiff = await import("@thi.ng/pixel-io-geotiff");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 367 bytes
+Package sizes (brotli'd, pre-treeshake): ESM: 402 bytes
 
 ## Dependencies
 
