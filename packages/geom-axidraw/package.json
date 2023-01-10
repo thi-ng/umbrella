@@ -106,6 +106,9 @@
 		"./as-axidraw": {
 			"default": "./as-axidraw.js"
 		},
+		"./as-geometry": {
+			"default": "./as-geometry.js"
+		},
 		"./sort": {
 			"default": "./sort.js"
 		}
