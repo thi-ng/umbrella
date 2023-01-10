@@ -1,6 +1,6 @@
 import { TypedArray, typedArrayType } from "@thi.ng/api";
 import { FloatBuffer, floatBuffer, FLOAT_GRAY_RANGE } from "@thi.ng/pixel";
-import { fromArrayBuffer } from "geotiff";
+import { fromArrayBuffer, Pool } from "geotiff";
 
 export interface GeoTiffOpts {
 	/**
@@ -14,6 +14,17 @@ export interface GeoTiffOpts {
 	 * range will be auto-computed.
 	 */
 	range: [number, number];
+	/**
+	 * Optionally enable geotiff.js worker pool to speed up processing. Disabled
+	 * by default.
+	 *
+	 * @remarks
+	 * TODO Submit issue to geotiff.js project re: file URL errors in NodeJS
+	 *
+	 * If given as number, a worker pool with `n` workers will be created. If
+	 * `true`, the default number of workers will be used.
+	 */
+	pool: boolean | number | Pool;
 }
 
 export const readGeoTiff = async (
@@ -24,8 +35,14 @@ export const readGeoTiff = async (
 	const tiffImg = await tiff.getImage();
 	const width = tiffImg.getWidth();
 	const height = tiffImg.getHeight();
+	const pool =
+		opts.pool instanceof Pool
+			? opts.pool
+			: opts.pool
+			? new Pool()
+			: undefined;
 	const data = <TypedArray>(
-		(await tiffImg.readRasters({ samples: [opts.channel || 0] }))![0]
+		(await tiffImg.readRasters({ pool, samples: [opts.channel || 0] }))![0]
 	);
 	const type = typedArrayType(data);
 	const [min, max] = opts.range
