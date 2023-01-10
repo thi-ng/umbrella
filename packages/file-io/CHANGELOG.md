@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-12-29T20:56:59Z
+- **Last updated**: 2023-01-10T15:20:18Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,13 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [0.4.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/file-io@0.4.0) (2023-01-10)
+
+#### 🚀 Features
+
+- add readText() encoding opts ([22366c0](https://github.com/thi-ng/umbrella/commit/22366c0))
+- add readBinary(), update pkg exports ([2c647ed](https://github.com/thi-ng/umbrella/commit/2c647ed))
 
 ### [0.3.25](https://github.com/thi-ng/umbrella/tree/@thi.ng/file-io@0.3.25) (2022-12-29)
 

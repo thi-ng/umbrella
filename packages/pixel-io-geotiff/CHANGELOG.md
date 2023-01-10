@@ -9,14 +9,10 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
 
-### [0.1.3](https://github.com/thi-ng/umbrella/tree/@thi.ng/transclude@0.1.3) (2022-12-29)
-
-#### ♻️ Refactoring
-
-- update "no-browser" pkg handling ([0e84f1b](https://github.com/thi-ng/umbrella/commit/0e84f1b))
-
-## [0.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/transclude@0.1.0) (2022-12-16)
+## [0.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/pixel-io-geotiff@0.1.0) (2023-01-10)
 
 #### 🚀 Features
 
-- import as new pkg ([dc05320](https://github.com/thi-ng/umbrella/commit/dc05320))
+- import as new pkg ([e19274d](https://github.com/thi-ng/umbrella/commit/e19274d))
+- add GeoTiffOpts ([b30ae17](https://github.com/thi-ng/umbrella/commit/b30ae17))
+- add worker pool support ([449ecfc](https://github.com/thi-ng/umbrella/commit/449ecfc))

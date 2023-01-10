@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-12-22T21:47:07Z
+- **Last updated**: 2023-01-10T15:20:18Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,16 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [4.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom@4.2.0) (2023-01-10)
+
+#### 🚀 Features
+
+- update vertices() for circle, ellipse, group ([9ff890a](https://github.com/thi-ng/umbrella/commit/9ff890a))
+  - add support for SamplingOpts.start (circle/ellipse)
+  - add SamplingOpts support for groups
+  - migrate internal helpers
+  - update export maps
 
 ## [4.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom@4.1.0) (2022-12-22)
 

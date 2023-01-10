@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-12-22T21:47:07Z
+- **Last updated**: 2023-01-10T15:20:19Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,12 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [4.3.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/dsp@4.3.0) (2023-01-10)
+
+#### 🚀 Features
+
+- add FilterFeedbackDelay ([d69b3bc](https://github.com/thi-ng/umbrella/commit/d69b3bc))
 
 ### [4.2.17](https://github.com/thi-ng/umbrella/tree/@thi.ng/dsp@4.2.17) (2022-10-17)
 

@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2022-12-22T21:47:07Z
+- **Last updated**: 2023-01-10T15:20:19Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,30 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [4.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/pixel@4.1.0) (2023-01-10)
+
+#### 🚀 Features
+
+- add normalize opt for defKernel()/defLargeKernel() ([9286590](https://github.com/thi-ng/umbrella/commit/9286590))
+- add FloatFormat.getNormalized() ([ddf0980](https://github.com/thi-ng/umbrella/commit/ddf0980))
+- add FLOAT_GRAY_RANGE format ([eedb24f](https://github.com/thi-ng/umbrella/commit/eedb24f))
+- update/improve FloatBuffer.as() single channel conversions ([0146075](https://github.com/thi-ng/umbrella/commit/0146075))
+  - check if both source & dest formats are single channel
+  - if so, convert directly via getNormalized() and avoid intermediate
+    (lossy) conversion via ABGR
+  - using only scalar access also faster than per-pixel subarrays
+- add FloatFormat.range ([0dbac7d](https://github.com/thi-ng/umbrella/commit/0dbac7d))
+  - update all float formats
+  - update FloatBuffer.clamp/clampChannel/getChannel()
+- add IntBuffer/FloatBuffer.flipX() ([daa7c32](https://github.com/thi-ng/umbrella/commit/daa7c32))
+
+#### ♻️ Refactoring
+
+- update IBlend ([1d3f358](https://github.com/thi-ng/umbrella/commit/1d3f358))
+  - include pre/postmultiply() fns
+  - add docs
+  - add FloatBuffer.isPremultiplied()
 
 # [4.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/pixel@4.0.0) (2022-09-27)
 
