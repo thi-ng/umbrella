@@ -332,7 +332,7 @@ For Node.js REPL:
 const pixel = await import("@thi.ng/pixel");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 9.01 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 9.00 KB
 
 ## Dependencies
 

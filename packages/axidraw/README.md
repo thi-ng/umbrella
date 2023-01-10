@@ -164,7 +164,7 @@ For Node.js REPL:
 const axidraw = await import("@thi.ng/axidraw");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 3.96 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 3.97 KB
 
 ## Dependencies
 
@@ -174,7 +174,7 @@ Package sizes (brotli'd, pre-treeshake): ESM: 3.96 KB
 - [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
 - [@thi.ng/logger](https://github.com/thi-ng/umbrella/tree/develop/packages/logger)
 - [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors)
-- [serialport](https://github.com/thi-ng/umbrella/tree/develop/packages/undefined)
+- [serialport](git://github.com/serialport/node-serialport.git)
 
 ## API
 
@@ -282,4 +282,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2022 Karsten Schmidt // Apache License 2.0
+&copy; 2022 - 2023 Karsten Schmidt // Apache License 2.0

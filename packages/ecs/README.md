@@ -72,7 +72,7 @@ Package sizes (brotli'd, pre-treeshake): ESM: 2.86 KB
 - [@thi.ng/logger](https://github.com/thi-ng/umbrella/tree/develop/packages/logger)
 - [@thi.ng/malloc](https://github.com/thi-ng/umbrella/tree/develop/packages/malloc)
 - [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)
-- [tslib](https://github.com/thi-ng/umbrella/tree/develop/packages/undefined)
+- [tslib](https://www.typescriptlang.org/)
 
 ## Usage examples
 
@@ -177,4 +177,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2019 - 2022 Karsten Schmidt // Apache License 2.0
+&copy; 2019 - 2023 Karsten Schmidt // Apache License 2.0

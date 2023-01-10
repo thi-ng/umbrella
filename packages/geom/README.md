@@ -158,6 +158,7 @@ packages (which are more low-level, lightweight and usable by themselves too):
 - [@thi.ng/geom-splines](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-splines) - nD cubic & quadratic curve analysis, conversion, interpolation, splitting
 - [@thi.ng/geom-subdiv-curve](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-subdiv-curve) - Freely customizable, iterative nD subdivision curves for open / closed geometries
 - [@thi.ng/geom-tessellate](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-tessellate) - 2D/3D convex polygon tessellators
+- [@thi.ng/geom-trace-bitmap](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-trace-bitmap) - Bitmap image to hairline vector and point cloud conversions
 - [@thi.ng/geom-voronoi](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-voronoi) - Fast, incremental 2D Delaunay & Voronoi mesh implementation
 
 ## Status
@@ -269,4 +270,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2013 - 2022 Karsten Schmidt // Apache License 2.0
+&copy; 2013 - 2023 Karsten Schmidt // Apache License 2.0

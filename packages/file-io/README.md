@@ -43,7 +43,7 @@ For Node.js REPL:
 const fileIo = await import("@thi.ng/file-io");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 997 bytes
+Package sizes (brotli'd, pre-treeshake): ESM: 1.03 KB
 
 ## Dependencies
 
@@ -75,4 +75,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2022 Karsten Schmidt // Apache License 2.0
+&copy; 2022 - 2023 Karsten Schmidt // Apache License 2.0

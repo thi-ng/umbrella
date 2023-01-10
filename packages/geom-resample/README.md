@@ -55,13 +55,14 @@ For Node.js REPL:
 const geomResample = await import("@thi.ng/geom-resample");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 1.22 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 1.31 KB
 
 ## Dependencies
 
 - [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
 - [@thi.ng/geom-api](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-api)
 - [@thi.ng/geom-closest-point](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-closest-point)
+- [@thi.ng/geom-isec](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-isec)
 - [@thi.ng/math](https://github.com/thi-ng/umbrella/tree/develop/packages/math)
 - [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors)
 
@@ -116,4 +117,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2013 - 2022 Karsten Schmidt // Apache License 2.0
+&copy; 2013 - 2023 Karsten Schmidt // Apache License 2.0

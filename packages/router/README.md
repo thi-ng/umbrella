@@ -75,7 +75,7 @@ Package sizes (brotli'd, pre-treeshake): ESM: 1.38 KB
 - [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
 - [@thi.ng/equiv](https://github.com/thi-ng/umbrella/tree/develop/packages/equiv)
 - [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
-- [tslib](https://github.com/thi-ng/umbrella/tree/develop/packages/undefined)
+- [tslib](https://www.typescriptlang.org/)
 
 ## Usage examples
 
@@ -199,4 +199,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2014 - 2022 Karsten Schmidt // Apache License 2.0
+&copy; 2014 - 2023 Karsten Schmidt // Apache License 2.0

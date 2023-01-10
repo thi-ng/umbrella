@@ -104,4 +104,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2016 - 2022 Karsten Schmidt // Apache License 2.0
+&copy; 2016 - 2023 Karsten Schmidt // Apache License 2.0

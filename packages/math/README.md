@@ -66,7 +66,7 @@ For Node.js REPL:
 const math = await import("@thi.ng/math");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 3.91 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 4.03 KB
 
 ## Dependencies
 
@@ -116,4 +116,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2013 - 2022 Karsten Schmidt // Apache License 2.0
+&copy; 2013 - 2023 Karsten Schmidt // Apache License 2.0

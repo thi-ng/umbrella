@@ -54,7 +54,7 @@ Package sizes (brotli'd, pre-treeshake): ESM: 1.08 KB
 ## Dependencies
 
 - [@thi.ng/logger](https://github.com/thi-ng/umbrella/tree/develop/packages/logger)
-- [chokidar](https://github.com/thi-ng/umbrella/tree/develop/packages/undefined)
+- [chokidar](https://github.com/paulmillr/chokidar)
 
 ## CLI
 
@@ -167,4 +167,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2021 - 2022 Karsten Schmidt // Apache License 2.0
+&copy; 2021 - 2023 Karsten Schmidt // Apache License 2.0

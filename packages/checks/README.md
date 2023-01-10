@@ -51,7 +51,7 @@ Package sizes (brotli'd, pre-treeshake): ESM: 1.59 KB
 
 ## Dependencies
 
-- [tslib](https://github.com/thi-ng/umbrella/tree/develop/packages/undefined)
+- [tslib](https://www.typescriptlang.org/)
 
 ## API
 
@@ -78,4 +78,4 @@ If this project contributes to an academic publication, please cite it as:
 
 ## License
 
-&copy; 2016 - 2022 Karsten Schmidt // Apache License 2.0
+&copy; 2016 - 2023 Karsten Schmidt // Apache License 2.0
