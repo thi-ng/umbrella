@@ -6,7 +6,8 @@
 
 {{pkg.description}}
 
-This package only deals with the conversion aspects. The
+This package only deals with the (bi-directional) conversion aspects between
+geometry and plotter commands. The
 [@thi.ng/axidraw](https://github.com/thi-ng/umbrella/blob/develop/packages/axidraw)
 is responsible for the actual plotter output...
 
@@ -89,6 +90,15 @@ implementations can be provided too...
 - [`pointsByProximity()`](https://docs.thi.ng/umbrella/geom-axidraw/functions/pointsByProximity.html)
 - [`shapesByProximity()`](https://docs.thi.ng/umbrella/geom-axidraw/functions/shapesByProximity.html)
 
+### Command visualization
+
+For debug, optimization & visualization purposes it's useful to convert a
+sequence of plotter commands back into 2D geometry. This can be done via the
+supplied
+[`asGeometry()`](https://docs.thi.ng/umbrella/geom-axidraw/functions/asGeometry.html)
+function, which also takes several options to customize the resulting output.
+One of the [examples](#clipping) below is demonstrating basic usage.
+
 ### Basic usage & examples
 
 The main function of this package is the polymorphic function
@@ -141,10 +151,18 @@ import { map, range } from "@thi.ng/transducers";
 (Result: https://mastodon.thi.ng/@toxi/109483553358349473)
 
 ```ts tangle:export/readme-clipping.ts
-import { AxiDraw, complete } from "@thi.ng/axidraw";
-import { circle, group, starWithCentroid, vertices } from "@thi.ng/geom";
-import { asAxiDraw } from "@thi.ng/geom-axidraw";
+import { AxiDraw } from "@thi.ng/axidraw";
+import {
+    asSvg,
+    circle,
+    group,
+    starWithCentroid,
+    svgDoc,
+    vertices,
+} from "@thi.ng/geom";
+import { asAxiDraw, asGeometry } from "@thi.ng/geom-axidraw";
 import { map, range } from "@thi.ng/transducers";
+import { writeFileSync } from "fs";
 
 (async () => {
     const origin = [100, 100];
@@ -153,13 +171,26 @@ import { map, range } from "@thi.ng/transducers";
     // group of concentric circles using boundary as clip polygon
     const geo = group({}, [
         boundary,
-        group({ __samples: 40, __axi: { clip: vertices(boundary) } }, [
+        group({ __samples: 60, __axi: { clip: vertices(boundary) } }, [
             ...map((r) => circle(origin, r), range(2, radius, 2)),
         ]),
     ]);
+
+    // convert into AxiDraw command sequence
+    const commands = [...asAxiDraw(geo)];
+
+    // now visualize command sequence (convert back to geometry, incl. pen movements)
+    const { paths, rapids, ups, downs } = asGeometry(commands);
+    // write visualization as SVG
+    writeFileSync(
+        "export/clipping-commands.svg",
+        asSvg(svgDoc({ width: 600, weight: 0.2 }, paths, rapids, ups, downs))
+    );
+
+    // actually connect & send to plotter
     const axi = new AxiDraw();
     await axi.connect();
-    await axi.draw(asAxiDraw(geo));
+    await axi.draw(commands);
 })();
 ```
 
