@@ -262,6 +262,9 @@
 		"./internal/transform": {
 			"default": "./internal/transform.js"
 		},
+		"./internal/vertices": {
+			"default": "./internal/vertices.js"
+		},
 		"./intersects": {
 			"default": "./intersects.js"
 		},

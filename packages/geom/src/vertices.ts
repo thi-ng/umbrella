@@ -2,7 +2,7 @@ import { isArray } from "@thi.ng/checks/is-array";
 import { isNumber } from "@thi.ng/checks/is-number";
 import type { MultiFn1O } from "@thi.ng/defmulti";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
-import type { Attribs, IShape } from "@thi.ng/geom-api";
+import type { IShape } from "@thi.ng/geom-api";
 import { DEFAULT_SAMPLES, SamplingOpts } from "@thi.ng/geom-api/sample";
 import { sample as _arcVertices } from "@thi.ng/geom-arc/sample";
 import { resample } from "@thi.ng/geom-resample/resample";
@@ -28,6 +28,7 @@ import type { Polyline } from "./api/polyline.js";
 import type { Quadratic } from "./api/quadratic.js";
 import type { Rect } from "./api/rect.js";
 import { __dispatch } from "./internal/dispatch.js";
+import { __circleOpts, __sampleAttribs } from "./internal/vertices.js";
 
 /**
  * Extracts/samples vertices from given shape's boundary and returns them as
@@ -126,12 +127,12 @@ export const vertices: MultiFn1O<
 			opts = __sampleAttribs(opts, $.attribs)!;
 			const pos = $.pos;
 			const r = $.r;
-			let [num, last] = __circleOpts(opts, r);
+			let [num, start, last] = __circleOpts(opts, r);
 			const delta = TAU / num;
 			last && num++;
 			const buf: Vec[] = new Array(num);
 			for (let i = 0; i < num; i++) {
-				buf[i] = cartesian2(null, [r, i * delta], pos);
+				buf[i] = cartesian2(null, [r, start + i * delta], pos);
 			}
 			return buf;
 		},
@@ -144,17 +145,25 @@ export const vertices: MultiFn1O<
 			const buf: Vec[] = [];
 			const pos = $.pos;
 			const r = $.r;
-			let [num, last] = __circleOpts(opts, Math.max($.r[0], $.r[1]));
+			let [num, start, last] = __circleOpts(
+				opts,
+				Math.max($.r[0], $.r[1])
+			);
 			const delta = TAU / num;
 			last && num++;
 			for (let i = 0; i < num; i++) {
-				buf[i] = madd2([], cossin(i * delta), r, pos);
+				buf[i] = madd2([], cossin(start + i * delta), r, pos);
 			}
 			return buf;
 		},
 
-		group: ({ children }: Group) =>
-			children.reduce((acc, $) => acc.concat(vertices($)), <Vec[]>[]),
+		group: ($: Group, opts?: number | Partial<SamplingOpts>) => {
+			opts = __sampleAttribs(opts, $.attribs);
+			return $.children.reduce(
+				(acc, $) => acc.concat(vertices($, opts)),
+				<Vec[]>[]
+			);
+		},
 
 		path: ($: Path, opts?: number | Partial<SamplingOpts>) => {
 			opts = __sampleAttribs(opts, $.attribs);
@@ -208,36 +217,3 @@ export const vertices: MultiFn1O<
  */
 export const ensureVertices = (shape: IShape | Vec[]) =>
 	isArray(shape) ? shape : vertices(shape);
-
-/** @internal */
-const __circleOpts = (
-	opts: number | Partial<SamplingOpts>,
-	r: number
-): [number, boolean] =>
-	isNumber(opts)
-		? [opts, false]
-		: [
-				opts.theta
-					? Math.floor(TAU / opts.theta)
-					: opts.dist
-					? Math.floor(TAU / (opts.dist / r))
-					: opts.num || DEFAULT_SAMPLES,
-				opts.last === true,
-		  ];
-
-const __sampleAttribs = (
-	opts?: number | Partial<SamplingOpts>,
-	attribs?: Attribs
-): number | Partial<SamplingOpts> | undefined => {
-	if (attribs) {
-		const val = attribs.__samples;
-		return isNumber(opts)
-			? isNumber(val)
-				? val
-				: { num: opts, ...val }
-			: isNumber(val)
-			? { ...opts, num: val }
-			: { ...opts, ...val };
-	}
-	return opts;
-};
