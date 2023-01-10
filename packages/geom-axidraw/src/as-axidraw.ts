@@ -9,6 +9,7 @@ import { pointInPolygon2 } from "@thi.ng/geom-isec/point";
 import { applyTransforms } from "@thi.ng/geom/apply-transforms";
 import { asPolyline } from "@thi.ng/geom/as-polyline";
 import { __dispatch } from "@thi.ng/geom/internal/dispatch";
+import { __sampleAttribs } from "@thi.ng/geom/internal/vertices";
 import { takeNth } from "@thi.ng/transducers/take-nth";
 import type { ReadonlyVec } from "@thi.ng/vectors";
 import type {
@@ -102,13 +103,15 @@ function* __group(
 	opts?: Partial<AsAxiDrawOpts>
 ): IterableIterator<DrawCommand> {
 	const { skip, sort } = __axiAttribs($.attribs);
+	const sopts = __sampleAttribs(opts?.samples, $.attribs);
 	const children = skip ? [...takeNth(skip + 1, $.children)] : $.children;
 	const childrenIter = sort ? (<ShapeOrdering>sort)(children) : children;
 	for (let child of childrenIter) {
 		const shape = applyTransforms(child);
 		shape.attribs = {
-			...shape.attribs,
 			...$.attribs,
+			...shape.attribs,
+			__samples: __sampleAttribs(sopts, shape.attribs),
 		};
 		yield* asAxiDraw(shape, opts);
 	}
