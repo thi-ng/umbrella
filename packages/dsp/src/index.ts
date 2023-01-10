@@ -18,6 +18,7 @@ export * from "./dcblock.js";
 export * from "./delay.js";
 export * from "./feedback-delay.js";
 export * from "./fft.js";
+export * from "./filter-delay.js";
 export * from "./filter-response.js";
 export * from "./foldback.js";
 export * from "./impulse-train.js";

@@ -154,6 +154,9 @@
 		"./fft": {
 			"default": "./fft.js"
 		},
+		"./filter-delay": {
+			"default": "./filter-delay.js"
+		},
 		"./filter-response": {
 			"default": "./filter-response.js"
 		},

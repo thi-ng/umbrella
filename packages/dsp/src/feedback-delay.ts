@@ -5,6 +5,9 @@ import { Delay } from "./delay.js";
  * Extension of {@link Delay} which adds sum delayed value multiplied
  * with `feedback` for each new input.
  *
+ * @remarks
+ * Also see {@link filterFeedbackDelay} for filtered version.
+ *
  * @param n - delay length
  * @param feedback - feedback factor (default: 0.5)
  */
