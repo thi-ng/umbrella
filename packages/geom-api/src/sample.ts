@@ -51,4 +51,14 @@ export interface SamplingOpts {
 	 * in `num+1` points.
 	 */
 	last: boolean;
+	/**
+	 * Optional parametric (normalized) start position.
+	 *
+	 * @remarks
+	 * Note: Currently, in thi.ng/geom this option is only used for resampling
+	 * circles or ellipses.
+	 *
+	 * @defaultValue 0
+	 */
+	start: number;
 }
