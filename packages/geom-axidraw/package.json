@@ -1,7 +1,7 @@
 {
 	"name": "@thi.ng/geom-axidraw",
 	"version": "0.3.0",
-	"description": "Conversion and preparation of thi.ng/geom shapes & shape groups to AxiDraw pen plotter draw commands",
+	"description": "Conversion and preparation of thi.ng/geom shapes & shape groups to/from AxiDraw pen plotter draw commands",
 	"type": "module",
 	"module": "./index.js",
 	"typings": "./index.d.ts",

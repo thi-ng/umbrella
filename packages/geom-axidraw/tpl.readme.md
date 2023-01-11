@@ -9,7 +9,7 @@
 This package only deals with the (bi-directional) conversion aspects between
 geometry and plotter commands. The
 [@thi.ng/axidraw](https://github.com/thi-ng/umbrella/blob/develop/packages/axidraw)
-is responsible for the actual plotter output...
+package is responsible for the actual plotter output...
 
 ### Supported shape types
 
@@ -98,6 +98,8 @@ supplied
 [`asGeometry()`](https://docs.thi.ng/umbrella/geom-axidraw/functions/asGeometry.html)
 function, which also takes several options to customize the resulting output.
 One of the [examples](#clipping) below is demonstrating basic usage.
+
+![Example draw command visualization based on the code example in this readme](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/geom-axidraw/readme-commands.png)
 
 ### Basic usage & examples
 
