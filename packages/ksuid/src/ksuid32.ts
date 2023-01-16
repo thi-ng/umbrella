@@ -4,7 +4,7 @@ import type { KSUIDOpts } from "./api.js";
 export class KSUID32 extends AKSUID {
 	constructor(opts?: Partial<KSUIDOpts>) {
 		super(4, {
-			epoch: 1_600_000_000,
+			epoch: 1_600_000_000_000,
 			bytes: 16,
 			...opts,
 		});
@@ -12,7 +12,7 @@ export class KSUID32 extends AKSUID {
 
 	timeOnlyBinary(epoch = Date.now()) {
 		const buf = new Uint8Array(this.size);
-		const t = this.ensureTime((epoch / 1000 - this.epoch) | 0);
+		const t = this.ensureTime(((epoch - this.epoch) / 1000) | 0);
 		buf.set([t >>> 24, (t >> 16) & 0xff, (t >> 8) & 0xff, t & 0xff]);
 		return buf;
 	}
@@ -21,7 +21,7 @@ export class KSUID32 extends AKSUID {
 		const buf = new Uint8Array(this.size);
 		this.base.decodeBytes(id, buf);
 		return {
-			epoch: (this.u32(buf) + this.epoch) * 1000,
+			epoch: this.u32(buf) * 1000 + this.epoch,
 			id: buf.slice(4),
 		};
 	}

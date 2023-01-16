@@ -97,15 +97,15 @@ export interface KSUIDOpts {
 	 */
 	bytes: number;
 	/**
-	 * Time offset in seconds, relative to standard Unix epoch. This is used to
-	 * extend the time headroom of IDs into the future.
+	 * Time offset in milliseconds, relative to standard Unix epoch. This is
+	 * used to extend the time headroom of IDs into the future.
 	 *
 	 * @remarks
 	 * The default value (for both 32 & 64bit impls) is approx. 2020-09-13,
-	 * meaning this is the T0 epoch for all IDs (providing an additional ~50
-	 * year lifespan compared to the standard 1970-01-01 epoch)
+	 * meaning this is the `t0` base epoch for all generated IDs (providing an
+	 * additional ~50 year lifespan compared to the standard 1970-01-01 epoch)
 	 *
-	 * @defaultValue 1_600_000_000 or 1_600_000_000_000
+	 * @defaultValue 1_600_000_000_000
 	 */
 	epoch: number;
 }

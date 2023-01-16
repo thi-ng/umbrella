@@ -3,65 +3,84 @@ import { group } from "@thi.ng/testament";
 import * as assert from "assert";
 import { defKSUID32, defKSUID64, defULID, IKSUID } from "../src/index.js";
 
-const check = (
-	id: IKSUID,
-	eps: number,
-	buf: Uint8Array,
-	epochBuf: Uint8Array
-) => {
+const check = ({
+	idgen,
+	eps,
+	epoch,
+	epochId,
+	id1,
+	id2,
+}: {
+	idgen: IKSUID;
+	eps: number;
+	epoch: number;
+	epochId: string;
+	id1: Uint8Array;
+	id2: Uint8Array;
+}) => {
 	const t = Date.now();
-	const a = id.timeOnly(t);
-	assert.strictEqual(a.length, id.encodedSize);
-	let res = id.parse(a);
+	let a = idgen.timeOnly(t);
+	assert.strictEqual(a.length, idgen.encodedSize);
+	let res = idgen.parse(a);
 	assert.ok(Math.abs(res.epoch - t) < eps);
-	assert.deepStrictEqual(res.id, new Uint8Array(id.size - id.epochSize));
-	const b = id.nextBinary();
-	assert.deepStrictEqual(b.slice(id.epochSize), buf);
-	res = id.parse(id.format(b));
+	assert.deepStrictEqual(
+		res.id,
+		new Uint8Array(idgen.size - idgen.epochSize)
+	);
+	const b = idgen.nextBinary();
+	assert.deepStrictEqual(b.slice(idgen.epochSize), id1);
+	res = idgen.parse(idgen.format(b));
 	assert.ok(Math.abs(res.epoch - t) < eps);
-	assert.deepStrictEqual(res.id, buf);
-	assert.deepStrictEqual(id.fromEpochBinary(1673827200000), epochBuf);
+	assert.deepStrictEqual(res.id, id1);
+
+	a = idgen.fromEpoch(epoch);
+	assert.strictEqual(a, epochId);
+	res = idgen.parse(a);
+	assert.ok(Math.abs(res.epoch - epoch) < 1000);
+	assert.deepStrictEqual(res.id, id2);
 };
 
 group("ksuid", {
 	ksuid32: () => {
-		check(
-			defKSUID32({ rnd: new XsAdd(0xdecafbad) }),
-			1000 * 2,
-			new Uint8Array([
+		check({
+			idgen: defKSUID32({ rnd: new XsAdd(0xdecafbad) }),
+			eps: 1000 * 2,
+			epoch: 1673827200987,
+			epochId: "0cvXkpEgU5CRFeBfpf2KrwummtA",
+			id1: new Uint8Array([
 				170, 213, 122, 63, 189, 122, 161, 143, 91, 187, 80, 231, 61, 17,
 				112, 238,
 			]),
-			new Uint8Array([
-				4, 102, 131, 128, 226, 90, 28, 179, 222, 71, 112, 20, 59, 2, 22,
-				112, 98, 25, 104, 28,
-			])
-		);
+			id2: new Uint8Array([
+				226, 90, 28, 179, 222, 71, 112, 20, 59, 2, 22, 112, 98, 25, 104,
+				28,
+			]),
+		});
 	},
 
 	ksuid64: () => {
-		check(
-			defKSUID64({ rnd: new XsAdd(0xdecafbad) }),
-			1 * 2,
-			new Uint8Array([
+		check({
+			idgen: defKSUID64({ rnd: new XsAdd(0xdecafbad) }),
+			eps: 1 * 2,
+			epoch: 1673827200987,
+			epochId: "000029vWC12Ap6k6ZH00XfKuZGp",
+			id1: new Uint8Array([
 				189, 122, 161, 143, 91, 187, 80, 231, 61, 17, 112, 238,
 			]),
-			new Uint8Array([
-				0, 0, 0, 17, 48, 113, 172, 0, 59, 2, 22, 112, 98, 25, 104, 28,
-				170, 213, 122, 63,
-			])
-		);
+			id2: new Uint8Array([
+				59, 2, 22, 112, 98, 25, 104, 28, 170, 213, 122, 63,
+			]),
+		});
 	},
 
 	ulid: () => {
-		check(
-			defULID({ rnd: new XsAdd(0xdecafbad) }),
-			1 * 2,
-			new Uint8Array([161, 143, 91, 187, 80, 231, 61, 17, 112, 238]),
-			new Uint8Array([
-				1, 133, 183, 224, 44, 0, 98, 25, 104, 28, 170, 213, 122, 63,
-				189, 122,
-			])
-		);
+		check({
+			idgen: defULID({ rnd: new XsAdd(0xdecafbad) }),
+			eps: 1 * 2,
+			epoch: 1673827200987,
+			epochId: "01GPVY0BYVC8CPG75ATNX3ZFBT",
+			id1: new Uint8Array([161, 143, 91, 187, 80, 231, 61, 17, 112, 238]),
+			id2: new Uint8Array([98, 25, 104, 28, 170, 213, 122, 63, 189, 122]),
+		});
 	},
 });
