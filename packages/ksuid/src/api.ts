@@ -39,6 +39,22 @@ export interface IKSUID {
 	timeOnlyBinary(epoch?: number): Uint8Array;
 
 	/**
+	 * Returns a new formatted ID, composed from user supplied timestamp
+	 * (default: current time) and a random payload.
+	 *
+	 * @param epoch
+	 */
+	fromEpoch(epoch?: number): string;
+
+	/**
+	 * Returns a new ID as byte array, composed from user supplied timestamp
+	 * (default: current time) and a random payload.
+	 *
+	 * @param epoch
+	 */
+	fromEpochBinary(epoch?: number): Uint8Array;
+
+	/**
 	 * Returns baseN encoded version of given binary ID (generated via
 	 * `.nextBinary()`).
 	 */

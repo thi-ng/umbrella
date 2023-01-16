@@ -47,6 +47,17 @@ export abstract class AKSUID implements IKSUID {
 
 	abstract timeOnlyBinary(epoch?: number): Uint8Array;
 
+	fromEpoch(epoch?: number) {
+		return this.format(this.fromEpochBinary(epoch));
+	}
+
+	fromEpochBinary(epoch?: number) {
+		const buf = this.timeOnlyBinary(epoch);
+		return this.rnd
+			? randomBytesFrom(this.rnd, buf, this.epochSize)
+			: randomBytes(buf, this.epochSize);
+	}
+
 	format(buf: Uint8Array) {
 		this.ensureSize(buf);
 		return this.pad(this.base.encodeBytes(buf));
