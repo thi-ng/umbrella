@@ -449,6 +449,16 @@
       "contributions": [
         "financial"
       ]
+    },
+    {
+      "login": "dmeehan1968",
+      "name": "Dave Meehan",
+      "avatar_url": "https://avatars.githubusercontent.com/u/2016856?v=4",
+      "profile": "http://davemeehan.com",
+      "contributions": [
+        "code",
+        "ideas"
+      ]
     }
   ],
   "contributorsPerLine": 7,
