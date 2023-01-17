@@ -5,6 +5,17 @@
 [![Become a patron](https://img.shields.io/badge/patreon-donate-yellow.svg)](https://www.patreon.com/thing_umbrella)
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109331703950160316?domain=https%3A%2F%2Fmastodon.thi.ng&style=social)](https://mastodon.thi.ng/@toxi)
 
+- [About](#about)
+- [Getting Started](#getting-started)
+- [Examples & Showcase](#examples--showcase)
+- [Blog posts](#blog-posts)
+- [Community, contributing, getting help](#community-contributing-getting-help)
+- [Projects](#projects)
+- [Building](#building)
+- [Acknowledgements](#acknowledgements)
+- [License](#license)
+- [Contributors](#contributors-✨)
+
 ## About
 
 > "A collection of functional programming libraries that can be composed
@@ -17,10 +28,10 @@
 **Please visit [thi.ng](https://thi.ng) for additional information & topic based
 search of packages relevant to your use cases...**
 
-This mono-repository is home to 177 individual TypeScript/ES6 projects (plus 119
-example projects), a wide and jointly developed collection of packages, tools
-and general building blocks for (non-exhaustive list of topics, see [package
-overview](#projects) below):
+**This project is NOT a framework!** This mono-repository is home to currently 177 individual TypeScript/ES6 projects
+(and ~120 example projects), a wide and jointly developed collection of
+packages, tools and general purpose building blocks for (non-exhaustive list of
+topics, see [package overview](#projects) below):
 
 - Functional programming (ES6 iterators/generators, composition, memoization, transducers, multi-methods)
 - Reactive programming, stream / transducer based dataflow graphs / pipelines / DOM
@@ -47,31 +58,36 @@ overview](#projects) below):
 - Various interpolations, math helpers, automatic differentiation (Dual numbers)
 - etc.
 
-**This project is NOT a framework**, provides no turn-key, one-size-fits-all
-approach and instead encourages a mix & match philosophy for various key aspects
-of application design (in & outside the browser). Most customization points only
-expect certain interfaces/type signatures rather than concrete implementations.
+Once more, **this project is NOT a framework**, provides no turn-key,
+one-size-fits-all approach and instead encourages a mix & match philosophy for
+various key aspects of application design (in & outside the browser).
+Customization points are provided wherever possible and usually only expect
+certain interfaces/type signatures rather than concrete implementations.
 
 All packages:
 
 - are versioned independently
+- released via [thi.ng/monopub](https://github.com/thi-ng/monopub)
 - distributed as ESM modules (ES2020 syntax) with export maps, TypeScript
   typings & change logs
 - highly modular with largely only a single function / class (only closely
   related functions) per file to help w/ selective imports and tree shaking
 - provide re-exports of all their publics for full library imports
-- have either none or only @thi.ng internal runtime dependencies (w/ very few exceptions!)
-- declare public interfaces, enums & types in an `api.ts`
+- have either none or only `@thi.ng` internal runtime dependencies (w/ very few exceptions!)
+- declare public interfaces, enums & types in an `api.ts` file
 - have auto-generated online documentation at [docs.thi.ng](https://docs.thi.ng)
-- licensed under Apache Software License 2.0
+- licensed under [Apache Software License 2.0](#license)
 
 ## Getting started
 
-The sheer number and varied nature & purpose of these packages makes it
-impossible to provide traditional "Getting started" tutorials. To compensate,
-this repo provides a large number of example projects, detailed readmes (at the
-very least for all the larger and/or more important packages) and smaller usage
-examples in the docstrings.
+The sheer number and varied nature & purpose of these [packages](#packages)
+makes it impossible to provide traditional "Getting started" tutorials. To
+compensate, this repo provides ~120 [example projects](#examples--showcase),
+detailed readmes (at the very least for all the larger and/or more important
+packages) and hundreds of small usage examples/snippets in various docstrings.
+
+If unsure about something, please [reach
+out](#community-contributing-getting-help)!
 
 ## Examples & Showcase
 
@@ -107,20 +123,21 @@ libraries from this collection.
 
 ## Blog posts
 
-- [How to UI in 2018](https://medium.com/@thi.ng/how-to-ui-in-2018-ac2ae02acdf3)
-
 - "Of umbrellas, transducers, reactive streams & mushrooms" (ongoing series):
-  - [Part 1 - Project & series overview](https://medium.com/@thi.ng/of-umbrellas-transducers-reactive-streams-mushrooms-pt-1-a8717ce3a170)
-  - [Part 2 - HOFs, Transducers, Reducers](https://medium.com/@thi.ng/of-umbrellas-transducers-reactive-streams-mushrooms-pt-2-9c540beb0023)
-  - [Part 3 - Convolution, 1D/2D Cellular automata](https://medium.com/@thi.ng/of-umbrellas-transducers-reactive-streams-mushrooms-pt-3-a1c4e621db9b)
-  - [Part 4 - Disjoint Sets, Graph analysis, Signed Distance Fields](https://medium.com/@thi.ng/of-umbrellas-transducers-reactive-streams-mushrooms-pt-4-62d8e71e5603)
+  - [Part 1 - Project & series overview](https://github.com/thi-ng/blog/blob/main/2019/20190304-of-umbrellas-transducers-reactive-streams-pt1.md)
+  - [Part 2 - HOFs, Transducers, Reducers](https://github.com/thi-ng/blog/blob/main/2019/20190307-of-umbrellas-transducers-reactive-streams-pt2.md)
+  - [Part 3 - Convolution, 1D/2D Cellular automata](https://github.com/thi-ng/blog/blob/main/2019/20190310-of-umbrellas-transducers-reactive-streams-pt3.md)
+  - [Part 4 - Disjoint Sets, Graph analysis, Signed Distance Fields](https://github.com/thi-ng/blog/blob/main/2019/20190314-of-umbrellas-transducers-reactive-streams-pt4.md)
+- [How to UI in 2018](https://github.com/thi-ng/blog/blob/main/2018/20180204-how-to-ui-in-2018.md)
+- [The Jacob's Ladder of coding](https://github.com/thi-ng/blog/blob/main/2015/20151215-jacobs-ladder-of-coding.md)
 
 ## Community, contributing, getting help
 
-Join our little community on our [Discord server](https://discord.gg/JhYcmBw) or
-get in touch via [Twitter](https://twitter.com/thing_umbrella) or the [issue
-tracker](https://github.com/thi-ng/umbrella/issues). If you'd like to
-contribute, please first read [this document](./CONTRIBUTING.md).
+Join the (still new) [discussions here on
+Github](https://github.com/thi-ng/umbrella/discussions), get in touch via
+[Mastodon](https://mastodon.thi.ng/@toxi) or use the [issue
+tracker](https://github.com/thi-ng/umbrella/issues). If you'd like to contribute
+in other ways, please first read [this document](./CONTRIBUTING.md).
 
 In general, we welcome contributions of all kinds (docs, examples, bug fixes,
 feature requests, financial contributions etc.). You can find a fairly detailed
@@ -128,13 +145,17 @@ overview for contributors here:
 [CONTRIBUTING.md](https://github.com/thi-ng/umbrella/blob/develop/CONTRIBUTING.md).
 
 **Note: The default branch for this repo is `develop` and all PRs should be
-created based on this branch. This too means, the README files on this branch
-_might_ refer to yet-unreleased features or packages. Please use the
+based on this branch. This too means, the README files on this branch _might_
+refer to yet-unreleased features or packages. Please use the
 [main](https://github.com/thi-ng/umbrella/tree/main) branch for viewing the most
 recently released version(s)!**.
 
-Also please be sure to check the [wiki](https://github.com/thi-ng/umbrella/wiki)
-for other project-wide information, tidbits, useful snippets etc.
+### Wiki
+
+So far the [wiki](https://github.com/thi-ng/umbrella/wiki) has only been updated
+sporadically, but please be sure to check it out for project-wide
+[glossary](https://github.com/thi-ng/umbrella/wiki/Glossary), information,
+cookbooks, useful snippets etc.
 
 ## Projects
 
@@ -147,7 +168,7 @@ feature or `develop` branches)
 
 ### Latest updates
 
-As of: 2023-01-10
+As of: 2023-01-17
 
 | Status                                         | Project                                                     | Version                                                                                                                           | Changelog                                              |
 |------------------------------------------------|-------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------|
@@ -161,6 +182,7 @@ As of: 2023-01-10
 | ![](https://img.shields.io/badge/-feat-green)  | [`@thi.ng/geom-resample`](./packages/geom-resample)         | [![version](https://img.shields.io/npm/v/@thi.ng/geom-resample.svg)](https://www.npmjs.com/package/@thi.ng/geom-resample)         | [changelog](./packages/geom-resample/CHANGELOG.md)     |
 | ![](https://img.shields.io/badge/-new-cyan)    | [`@thi.ng/geom-trace-bitmap`](./packages/geom-trace-bitmap) | [![version](https://img.shields.io/npm/v/@thi.ng/geom-trace-bitmap.svg)](https://www.npmjs.com/package/@thi.ng/geom-trace-bitmap) | [changelog](./packages/geom-trace-bitmap/CHANGELOG.md) |
 | ![](https://img.shields.io/badge/-feat-green)  | [`@thi.ng/hiccup-canvas`](./packages/hiccup-canvas)         | [![version](https://img.shields.io/npm/v/@thi.ng/hiccup-canvas.svg)](https://www.npmjs.com/package/@thi.ng/hiccup-canvas)         | [changelog](./packages/hiccup-canvas/CHANGELOG.md)     |
+| ![](https://img.shields.io/badge/-feat-green)  | [`@thi.ng/ksuid`](./packages/ksuid)                         | [![version](https://img.shields.io/npm/v/@thi.ng/ksuid.svg)](https://www.npmjs.com/package/@thi.ng/ksuid)                         | [changelog](./packages/ksuid/CHANGELOG.md)             |
 | ![](https://img.shields.io/badge/-feat-green)  | [`@thi.ng/math`](./packages/math)                           | [![version](https://img.shields.io/npm/v/@thi.ng/math.svg)](https://www.npmjs.com/package/@thi.ng/math)                           | [changelog](./packages/math/CHANGELOG.md)              |
 | ![](https://img.shields.io/badge/-feat-green)  | [`@thi.ng/pixel`](./packages/pixel)                         | [![version](https://img.shields.io/npm/v/@thi.ng/pixel.svg)](https://www.npmjs.com/package/@thi.ng/pixel)                         | [changelog](./packages/pixel/CHANGELOG.md)             |
 | ![](https://img.shields.io/badge/-new-cyan)    | [`@thi.ng/pixel-io-geotiff`](./packages/pixel-io-geotiff)   | [![version](https://img.shields.io/npm/v/@thi.ng/pixel-io-geotiff.svg)](https://www.npmjs.com/package/@thi.ng/pixel-io-geotiff)   | [changelog](./packages/pixel-io-geotiff/CHANGELOG.md)  |
