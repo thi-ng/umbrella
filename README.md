@@ -7,6 +7,7 @@
 
 - [About](#about)
 - [Getting Started](#getting-started)
+  - [Project templates](#project-templates)
 - [Examples & Showcase](#examples--showcase)
 - [Blog posts](#blog-posts)
 - [Community, contributing, getting help](#community-contributing-getting-help)
@@ -88,6 +89,18 @@ packages) and hundreds of small usage examples/snippets in various docstrings.
 
 If unsure about something, please [reach
 out](#community-contributing-getting-help)!
+
+### Project templates
+
+You might find one of the following template repos an useful starting point:
+
+- [tpl-umbrella-basic](https://github.com/thi-ng/tpl-umbrella-basic): Bare-bones
+  template repo for thi.ng/umbrella browser-based projects
+- [tpl-umbrella-fxhash](https://github.com/thi-ng/tpl-umbrella-fxhash): Project
+  template repo for generative art projects on the fx(hash) platform
+- [tpl-umbrella-zig](https://github.com/thi-ng/tpl-umbrella-zig): Minimal
+  thi.ng/umbrella browser project template for hybrid TypeScript & Zig
+  (WebAssembly) apps
 
 ## Examples & Showcase
 
