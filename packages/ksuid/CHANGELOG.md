@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2023-01-10T15:20:19Z
+- **Last updated**: 2023-01-17T10:57:27Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,29 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+# [3.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/ksuid@3.0.0) (2023-01-17)
+
+#### 🛑 Breaking changes
+
+- update readme w/ v3.0.0 info ([f8d83c8](https://github.com/thi-ng/umbrella/commit/f8d83c8))
+- BREAKING CHANGE: `epoch` config unified to use milliseconds
+  - add new section to readme
+  - see [3d73b1766](https://github.com/thi-ng/umbrella/commit/3d73b1766) for code details
+
+#### 🚀 Features
+
+- fix [#372](https://github.com/thi-ng/umbrella/issues/372), add fromEpoch() methods ([e416e91](https://github.com/thi-ng/umbrella/commit/e416e91))
+  - add fromEpoch/fromEpochBinary() to IKSUID interface
+  - add impls in AKSUID
+  - add tests for all 3 classes
+
+#### ♻️ Refactoring
+
+- use milliseconds as unified epoch offsets ([3d73b17](https://github.com/thi-ng/umbrella/commit/3d73b17))
+  - clarify KSUIDOpts.epoch docs
+  - refactor KSUID32 to use milliseconds as `epoch` offset
+  - update tests
 
 ## [2.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/ksuid@2.1.0) (2021-11-17)
 
