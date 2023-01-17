@@ -9,7 +9,7 @@ of them.
 <!-- TOC depthFrom:2 depthTo:3 -->
 
 - [Usage questions & issues](#usage-questions--issues)
-    - [Join our Discord](#join-our-discord)
+    - [Join our discussion forum](#join-our-discussions)
     - [Submit an issue](#submit-an-issue)
 - [Documentation, examples & advocacy](#documentation-examples--advocacy)
     - [Changes to readme files](#changes-to-readme-files)
@@ -41,12 +41,17 @@ of them.
 
 ## Usage questions & issues
 
-### Join our Discord
+### Join our discussions
 
-We have a [Discord community](https://discord.gg/JhYcmBw) where it's
-usually the fastest to get some answers to any burning questions and
-where we generally share & discuss feedback/ideas/interesting things
-loosely related to this project. Come and say Hi!
+We have a (still new) [discussion
+forum](https://github.com/thi-ng/umbrella/discussions/) here on Github,
+(hopefully soon again) the fastest way to get some answers to any burning
+questions and where we generally share & discuss feedback/ideas/interesting
+things loosely related to this project. Come and say Hi!
+
+(In the past (2018-2022), we also had a [Discord](https://discord.gg/JhYcmBw),
+but you can read more about its fate in this [forum
+post](https://github.com/thi-ng/umbrella/discussions/374#discussion-4764271)...)
 
 ### Submit an issue
 
@@ -198,7 +203,7 @@ The Conventional Commits classifiers/prefixes used in this project are:
 - `test` - testing related
 - `perf` - any type of optimization (not just performance)
 - `build` - build/dependency related updates
-- `doc` - documentation related only (e.g. readme, doc strings...)
+- `docs` - documentation related only (e.g. readme, doc strings...)
 - `chore` - unclassified chores
 - `minor` - usually fixed typos (unless it qualifies as bug fix)
 
@@ -513,6 +518,4 @@ channels:
 
 - [GitHub Sponsors](https://github.com/sponsors/postspectacular)
 - [Patreon](https://www.patreon.com/thing_umbrella)
-- BTC: 132aMfzNypBPgEy4Lz2tPQsKGimixdFrsb
-- LTC: LMyfhJoXTq62W9zvUBvk9o6pCDZJx12dPV
-- ETH: 0x8530bD57cCfCD5e95939E5bA3d81D8c9C9581941
+- [Tezos](https://tzkt.io/tz1d4ThofujwwaWvxDQHF7VyJfaeR2ay3jhf)
