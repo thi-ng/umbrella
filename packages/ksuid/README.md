@@ -11,6 +11,7 @@ This project is part of the
 
 - [About](#about)
 - [Status](#status)
+  - [Breaking changes](#breaking-changes)
 - [Related packages](#related-packages)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
@@ -58,6 +59,16 @@ support
 
 [Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bksuid%5D+in%3Atitle)
 
+### Breaking changes
+
+Since v3.0.0 all
+[`epoch`](https://docs.thi.ng/umbrella/ksuid/interfaces/KSUIDOpts.html#epoch)
+time-shift config values are to be given in milliseconds. This change is
+unifying this behavior and is only a breaking change if using `KSUID32` and
+specifying custom `epoch` offsets (using defaults is **not** impacted).
+Previously, `KSUID32` used an offset given in seconds, whereas the other
+implementations already used milliseconds.
+
 ## Related packages
 
 - [@thi.ng/base-n](https://github.com/thi-ng/umbrella/tree/develop/packages/base-n) - Arbitrary base-n conversions w/ presets for base16/32/36/58/62/64/85, support for arrays & bigints
@@ -84,7 +95,7 @@ For Node.js REPL:
 const ksuid = await import("@thi.ng/ksuid");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 754 bytes
+Package sizes (brotli'd, pre-treeshake): ESM: 769 bytes
 
 ## Dependencies
 
@@ -143,6 +154,8 @@ import { BASE36 } from "@thi.ng/base-n";
 
 // no time shift, 64bit random
 const id36 = defKSUID32({ base: BASE36, epoch: 0, bytes: 8 });
+
+id32.next();
 // '2VOUKH4K59AG0RXR4XH'
 ```
 
