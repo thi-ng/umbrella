@@ -95,12 +95,11 @@ out](#community-contributing-getting-help)!
 You might find one of the following template repos an useful starting point:
 
 - [tpl-umbrella-basic](https://github.com/thi-ng/tpl-umbrella-basic): Bare-bones
-  template repo for thi.ng/umbrella browser-based projects
+  template repo for browser-based projects
 - [tpl-umbrella-fxhash](https://github.com/thi-ng/tpl-umbrella-fxhash): Project
   template repo for generative art projects on the fx(hash) platform
 - [tpl-umbrella-zig](https://github.com/thi-ng/tpl-umbrella-zig): Minimal
-  thi.ng/umbrella browser project template for hybrid TypeScript & Zig
-  (WebAssembly) apps
+  browser project template for hybrid TypeScript & Zig (WebAssembly) apps
 
 ## Examples & Showcase
 
