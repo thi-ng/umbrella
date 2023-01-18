@@ -3,6 +3,8 @@ import { floatToUintBits } from "@thi.ng/binary/float";
 import { rotateLeft } from "@thi.ng/binary/rotate";
 import type { ReadonlyVec } from "./api.js";
 
+const imul = Math.imul;
+
 /**
  * Returns an unsigned 32-bit hash code for the given vector.
  *
@@ -54,7 +56,7 @@ import type { ReadonlyVec } from "./api.js";
 export const hash = (v: ReadonlyVec, H = 0x9e3779b1) => {
 	let hash = -1;
 	for (let i = v.length; i-- > 0; ) {
-		hash = (Math.imul(H, hash) + mix(hash, floatToUintBits(v[i]))) >>> 0;
+		hash = (imul(H, hash) + mix(hash, floatToUintBits(v[i]))) >>> 0;
 	}
 	return hash;
 };
@@ -64,6 +66,24 @@ const M2 = 0x1b873593;
 const M3 = 0xe6546b64;
 
 const mix: FnN2 = (h, k) => {
-	k = Math.imul(rotateLeft(Math.imul(k, M1) >>> 0, 15), M2) >>> 0;
-	return ((Math.imul(rotateLeft(h ^ k, 13), 5) >>> 0) + M3) >>> 0;
+	k = imul(rotateLeft(imul(k, M1) >>> 0, 15), M2) >>> 0;
+	return ((imul(rotateLeft(h ^ k, 13), 5) >>> 0) + M3) >>> 0;
 };
+
+/**
+ * Computes unsigned int hash code for given 2D coordinates.
+ *
+ * @param x
+ * @param y
+ */
+export const hash2 = (x: number, y: number) =>
+	(imul(x, M1) ^ imul(y, M3)) >>> 0;
+
+/**
+ * Computes unsigned int hash code for given 3D coordinates.
+ *
+ * @param x
+ * @param y
+ */
+export const hash3 = (x: number, y: number, z: number) =>
+	(imul(x, M1) ^ imul(y, M2) ^ imul(z, M3)) >>> 0;
