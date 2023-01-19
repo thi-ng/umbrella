@@ -120,6 +120,8 @@ The `stratifiedGrid` function can produce 2D or 3D grid samples based on the
 following config options:
 
 - **dim**: 2D/3D vector defining grid size (in cells)
+- **scale**: Scale factor/vector applied to all generated points. If omitted,
+  the points will be in grid coordinates.
 - **separation?**: Enforced minimum distance between samples (in [0 .. 0.99] range)
 - **rnd?**: Random number generator instance. Default:
   [@thi.ng/random](https://github.com/thi-ng/umbrella/tree/develop/packages/random)
