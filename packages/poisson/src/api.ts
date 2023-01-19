@@ -87,6 +87,11 @@ export interface StratifiedGridOpts {
 	 */
 	separation?: number;
 	/**
+	 * Optional scale factor/vector applied to all generated points. If omitted,
+	 * the points will be in grid coordinates.
+	 */
+	scale?: number | ReadonlyVec;
+	/**
 	 * Random number generator instance.
 	 *
 	 * @defaultValue
