@@ -24,7 +24,6 @@ import { DIST_SQ, DIST_SQ1, DIST_SQ2, DIST_SQ3 } from "./squared.js";
 export class KNearest<D, T>
 	implements INeighborhood<D, T>, IDeref<Neighbor<T>[]>
 {
-	readonly radius;
 	protected _currR!: number;
 	protected _heap = new Heap<Neighbor<T>>(null, {
 		compare: (a, b) => b[0] - a[0],
@@ -32,20 +31,49 @@ export class KNearest<D, T>
 
 	constructor(
 		public readonly dist: IDistance<D>,
-		public readonly target: D,
-		public readonly k: number,
-		radius = Infinity,
+		public target: D,
+		public k: number,
+		public radius = Infinity,
 		public sorted = false
 	) {
-		assert(k > 0, `invalid k (must be > 0)`);
 		this.radius = clamp0(radius);
-		this.reset();
+		this.setK(k);
 	}
 
 	reset() {
 		this._currR = this.dist.to(this.radius);
 		this._heap.clear();
 		return this;
+	}
+
+	/**
+	 * Resets search/reference position.
+	 *
+	 * @param target
+	 */
+	setTarget(target: D) {
+		this.target = target;
+	}
+
+	/**
+	 * Resets max. search/query radius and clears current results.
+	 *
+	 * @param r
+	 */
+	setRadius(r: number) {
+		this.radius = clamp0(r);
+		this.reset();
+	}
+
+	/**
+	 * Resets `k-nearest` limit and clears current results.
+	 *
+	 * @param r
+	 */
+	setK(k: number) {
+		assert(k > 0, `invalid k (must be > 0)`);
+		this.k = k;
+		this.reset();
 	}
 
 	/**
