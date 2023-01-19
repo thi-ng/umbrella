@@ -38,7 +38,8 @@ export const DEFAULT_OPTS: AxiDrawOpts = {
 	refresh: 1000,
 	unitsPerInch: 25.4,
 	stepsPerInch: 2032,
-	speed: 4000,
+	speedDown: 4000,
+	speedUp: 4000,
 	up: 60,
 	down: 30,
 	delayUp: 150,
@@ -295,17 +296,25 @@ export class AxiDraw implements IReset {
 	 * Sends a "moveto" command (absolute coords). Returns tuple of `[duration,
 	 * distance]` (distance in original/configured units)
 	 *
+	 * @remarks
+	 * Even though this method accepts absolute coords, all AxiDraw movements
+	 * are relative. Depending on pen up/down state, movement speed will be
+	 * either the configured {@link AxiDrawOpts.speedDown} or
+	 * {@link AxiDrawOpts.speedUp}.
+	 *
 	 * @param p
 	 * @param tempo
 	 */
 	moveTo(p: ReadonlyVec, tempo = 1) {
-		const { pos, targetPos, opts } = this;
+		const { pos, targetPos, opts, isPenDown } = this;
 		// apply scale factor: worldspace units -> motor steps
 		mulN2(targetPos, p, opts.stepsPerInch / opts.unitsPerInch);
 		const delta = sub2([], targetPos, pos);
 		set2(pos, targetPos);
 		const maxAxis = Math.max(...abs2([], delta));
-		const duration = (1000 * maxAxis) / (opts.speed * tempo);
+		const duration =
+			(1000 * maxAxis) /
+			((isPenDown ? opts.speedDown : opts.speedUp) * tempo);
 		this.send(`XM,${duration | 0},${delta[0] | 0},${delta[1] | 0}\r`);
 		return [duration, (mag(delta) * opts.unitsPerInch) / opts.stepsPerInch];
 	}

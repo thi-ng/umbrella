@@ -92,11 +92,17 @@ export interface AxiDrawOpts {
 	 */
 	stepsPerInch: number;
 	/**
-	 * Steps per second
+	 * Steps per second for XY movements whilst pen down
 	 *
 	 * @defaultValue 4000
 	 */
-	speed: number;
+	speedDown: number;
+	/**
+	 * Steps per second for XY movements whilst pen up
+	 *
+	 * @defaultValue 4000
+	 */
+	speedUp: number;
 	/**
 	 * Up position (%)
 	 *
