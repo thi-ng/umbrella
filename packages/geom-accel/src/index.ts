@@ -1,3 +1,4 @@
+export * from "./hash-grid.js";
 export * from "./kd-tree-map.js";
 export * from "./kd-tree-set.js";
 export * from "./nd-quadtree-map.js";
