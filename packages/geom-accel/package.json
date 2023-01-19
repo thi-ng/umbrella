@@ -91,6 +91,9 @@
 		"./aspatial-grid": {
 			"default": "./aspatial-grid.js"
 		},
+		"./hash-grid": {
+			"default": "./hash-grid.js"
+		},
 		"./kd-tree-map": {
 			"default": "./kd-tree-map.js"
 		},

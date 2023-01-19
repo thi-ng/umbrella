@@ -313,7 +313,7 @@ __metadata:
     "@thi.ng/transducers": "workspace:^"
     "@thi.ng/transducers-hdom": "workspace:^"
     "@types/express": ^4.17.14
-    "@types/node": ^18.11.13
+    "@types/node": ^18.11.18
     express: ^4.18.2
     ts-node: ^10.9.1
     typescript: ^4.9.4
@@ -2462,7 +2462,7 @@ __metadata:
     "@microsoft/api-extractor": ^7.33.7
     "@thi.ng/api": ^8.6.3
     "@thi.ng/testament": ^0.3.9
-    "@types/node": ^18.11.13
+    "@types/node": ^18.11.18
     rimraf: ^3.0.2
     tools: "workspace:^"
     typedoc: ^0.23.22
@@ -2574,7 +2574,7 @@ __metadata:
   dependencies:
     "@microsoft/api-extractor": ^7.33.7
     "@thi.ng/testament": ^0.3.9
-    "@types/node": ^18.11.13
+    "@types/node": ^18.11.18
     rimraf: ^3.0.2
     tools: "workspace:^"
     tslib: ^2.4.1
@@ -3038,7 +3038,7 @@ __metadata:
   dependencies:
     "@microsoft/api-extractor": ^7.33.7
     "@thi.ng/testament": ^0.3.9
-    "@types/node": ^18.11.13
+    "@types/node": ^18.11.18
     rimraf: ^3.0.2
     tools: "workspace:^"
     typedoc: ^0.23.22
@@ -3052,7 +3052,7 @@ __metadata:
   dependencies:
     "@microsoft/api-extractor": ^7.33.7
     "@thi.ng/testament": ^0.3.9
-    "@types/node": ^18.11.13
+    "@types/node": ^18.11.18
     rimraf: ^3.0.2
     tools: "workspace:^"
     typedoc: ^0.23.22
@@ -3601,7 +3601,7 @@ __metadata:
     "@thi.ng/hiccup-css": ^2.1.35
     "@thi.ng/strings": ^3.3.23
     "@thi.ng/testament": ^0.3.9
-    "@types/node": ^18.11.13
+    "@types/node": ^18.11.18
     rimraf: ^3.0.2
     tools: "workspace:^"
     typedoc: ^0.23.22
@@ -4666,7 +4666,7 @@ __metadata:
     "@microsoft/api-extractor": ^7.33.7
     "@thi.ng/rstream": ^7.2.35
     "@thi.ng/testament": ^0.3.9
-    "@types/node": ^18.11.13
+    "@types/node": ^18.11.18
     rimraf: ^3.0.2
     tools: "workspace:^"
     typedoc: ^0.23.22
@@ -5386,7 +5386,7 @@ __metadata:
     "@thi.ng/vector-pools": ^3.1.41
     "@thi.ng/vectors": ^7.5.31
     "@thi.ng/webgl": ^6.2.21
-    "@types/node": ^18.11.13
+    "@types/node": ^18.11.18
     rimraf: ^3.0.2
     tools: "workspace:^"
     typedoc: ^0.23.22
@@ -5404,7 +5404,7 @@ __metadata:
     "@thi.ng/shader-ast-glsl": ^0.4.37
     "@thi.ng/testament": ^0.3.9
     "@thi.ng/webgl": ^6.2.21
-    "@types/node": ^18.11.13
+    "@types/node": ^18.11.18
     rimraf: ^3.0.2
     tools: "workspace:^"
     typedoc: ^0.23.22
@@ -5563,10 +5563,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:^18.11.13":
-  version: 18.11.13
-  resolution: "@types/node@npm:18.11.13"
-  checksum: b0c1aa3bd2f5df8240e61096a49d6d4be600109b824d23408ec4ba1ec057dc0c60588e09f73b8a60455ad26d367e9c5562fad8403099f885cbc7b4cace83ec4c
+"@types/node@npm:^18.11.18":
+  version: 18.11.18
+  resolution: "@types/node@npm:18.11.18"
+  checksum: 03f17f9480f8d775c8a72da5ea7e9383db5f6d85aa5fefde90dd953a1449bd5e4ffde376f139da4f3744b4c83942166d2a7603969a6f8ea826edfb16e6e3b49d
   languageName: node
   linkType: hard
 
@@ -7417,7 +7417,7 @@ __metadata:
   dependencies:
     "@microsoft/api-documenter": ^7.19.26
     "@microsoft/api-extractor": ^7.33.7
-    "@types/node": ^18.11.13
+    "@types/node": ^18.11.18
     "@ygoe/msgpack": ^1.0.3
     esbuild: ^0.16.4
     html-minifier-terser: ^7.1.0

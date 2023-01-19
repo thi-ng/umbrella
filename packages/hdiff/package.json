@@ -44,7 +44,7 @@
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.33.7",
 		"@thi.ng/testament": "^0.3.9",
-		"@types/node": "^18.11.13",
+		"@types/node": "^18.11.18",
 		"rimraf": "^3.0.2",
 		"tools": "workspace:^",
 		"typedoc": "^0.23.22",

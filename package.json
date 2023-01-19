@@ -9,7 +9,7 @@
     "devDependencies": {
         "@microsoft/api-documenter": "^7.19.26",
         "@microsoft/api-extractor": "^7.33.7",
-        "@types/node": "^18.11.13",
+        "@types/node": "^18.11.18",
         "esbuild": "^0.16.4",
         "html-minifier-terser": "^7.1.0",
         "rimraf": "^3.0.2",
