@@ -35,7 +35,7 @@ export const draw = (
 		return;
 	}
 	const origAttribs = shape[1];
-	if (origAttribs.__skip) return;
+	if (origAttribs?.__skip) return;
 	const state = __mergeState(ctx, pstate, origAttribs);
 	const attribs = state ? state.attribs : pstate.attribs;
 	switch (shape[0]) {
