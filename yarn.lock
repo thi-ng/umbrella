@@ -440,6 +440,26 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@example/geom-knn-hash@workspace:examples/geom-knn-hash":
+  version: 0.0.0-use.local
+  resolution: "@example/geom-knn-hash@workspace:examples/geom-knn-hash"
+  dependencies:
+    "@thi.ng/bench": "workspace:^"
+    "@thi.ng/distance": "workspace:^"
+    "@thi.ng/geom-accel": "workspace:^"
+    "@thi.ng/hdom-canvas": "workspace:^"
+    "@thi.ng/poisson": "workspace:^"
+    "@thi.ng/random": "workspace:^"
+    "@thi.ng/rstream": "workspace:^"
+    "@thi.ng/rstream-gestures": "workspace:^"
+    "@thi.ng/transducers": "workspace:^"
+    "@thi.ng/transducers-hdom": "workspace:^"
+    "@thi.ng/vectors": "workspace:^"
+    typescript: ^4.9.4
+    vite: ^4.0.0
+  languageName: unknown
+  linkType: soft
+
 "@example/geom-knn@workspace:examples/geom-knn":
   version: 0.0.0-use.local
   resolution: "@example/geom-knn@workspace:examples/geom-knn"
@@ -2841,7 +2861,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/distance@^2.1.39, @thi.ng/distance@workspace:packages/distance":
+"@thi.ng/distance@^2.1.39, @thi.ng/distance@workspace:^, @thi.ng/distance@workspace:packages/distance":
   version: 0.0.0-use.local
   resolution: "@thi.ng/distance@workspace:packages/distance"
   dependencies:
