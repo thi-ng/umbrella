@@ -36,6 +36,7 @@
 	"dependencies": {
 		"@thi.ng/api": "^8.6.3",
 		"@thi.ng/checks": "^3.3.7",
+		"@thi.ng/hex": "^2.3.4",
 		"@thi.ng/logger": "^1.4.7",
 		"@thi.ng/random": "^3.3.21"
 	},
@@ -82,6 +83,9 @@
 		},
 		"./ext": {
 			"default": "./ext.js"
+		},
+		"./file-chunks": {
+			"default": "./file-chunks.js"
 		},
 		"./files": {
 			"default": "./files.js"

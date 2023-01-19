@@ -1,6 +1,7 @@
 export * from "./delete.js";
 export * from "./dir.js";
 export * from "./ext.js";
+export * from "./file-chunks.js";
 export * from "./files.js";
 export * from "./hash.js";
 export * from "./json.js";
