@@ -89,7 +89,7 @@ cat << EOF > "$MODULE"/package.json
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.33.7",
-		"@thi.ng/testament": "^0.3.8",
+		"@thi.ng/testament": "^0.3.9",
 		"rimraf": "^3.0.2",
 		"tools": "workspace:^",
 		"typedoc": "^0.23.22",
@@ -116,7 +116,7 @@ cat << EOF > "$MODULE"/package.json
 	},
 	"thi.ng": {
 		"status": "alpha",
-		"year": 2022
+		"year": 2023
 	}
 }
 EOF
