@@ -23,10 +23,11 @@ This project is part of the
 n-D spatial indexing data structures with a shared ES6 Map/Set-like API.
 
 Some implementations were ported from the Clojure version of
-[thi.ng/geom](http://thi.ng/geom).
+[thi.ng/geom](http://thi.ng/geom-clj).
 
 Currently available:
 
+- [HashGrid2/3](src/hash-grid.ts)
 - [KdTreeMap](src/kd-tree-map.ts)
 - [KdTreeSet](src/kd-tree-set.ts)
 - [NdQuadtreeMap](src/nd-quadtree-map.ts)
