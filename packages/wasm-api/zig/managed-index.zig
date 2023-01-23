@@ -42,6 +42,13 @@ pub fn ManagedIndex(comptime T: type, comptime I: type) type {
             };
         }
 
+        /// Initializes the underlying array list with given initial capacity
+        pub fn initCapacity(allocator: Allocator, num: usize) !Self {
+            return .{
+                .list = try std.ArrayList(Item).initCapacity(allocator, num),
+            };
+        }
+
         /// De-initializes the underlying array list
         pub fn deinit(self: *Self) void {
             self.list.deinit();
@@ -89,7 +96,7 @@ pub fn ManagedIndex(comptime T: type, comptime I: type) type {
         }
 
         /// Returns true if given `id` is valid, i.e. is referring to a
-        /// currently used item (and isn't part of the list of free slots).
+        /// currently used item and isn't part of the list of free slots.
         pub fn has(self: *const Self, id: I) bool {
             if (id >= self.list.items.len) return false;
             var freeID = self.freeID;
@@ -112,7 +119,7 @@ pub fn ManagedIndex(comptime T: type, comptime I: type) type {
                 return .{ .parent = parent };
             }
 
-            pub fn next(self: *@This()) ?T {
+            pub inline fn next(self: *@This()) ?T {
                 const items = self.parent.list.items;
                 if (self.i >= items.len) return null;
                 while (self.i < items.len) {
@@ -155,8 +162,8 @@ pub fn ManagedIndex(comptime T: type, comptime I: type) type {
             while (i < slice.len) {
                 if (freeID) |fid| {
                     slice[i] = fid;
-                    i += 1;
                     freeID = self.list.items[fid].id;
+                    i += 1;
                 } else {
                     break;
                 }
