@@ -320,6 +320,7 @@ const generateField = (
 	coll: TypeColl,
 	opts: CodeGenOpts
 ): AugmentedField | undefined => {
+	if (field.skip) return;
 	if (isFuncPointer(field.type, coll) || isOpaque(field.type)) {
 		field = { ...field, type: opts.target.usize };
 	}
