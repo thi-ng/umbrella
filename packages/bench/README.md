@@ -27,12 +27,18 @@ This project is part of the
 Benchmarking utilities w/ various statistics & formatters (CSV, Markdown etc.).
 
 Though no public API change (only additions), since v2.0.0 this library
-internally attempts to use high-res ES
+internally (via
+[`now()`](https://docs.thi.ng/umbrella/bench/functions/now.html)) attempts to
+use high-res ES
 [`BigInt`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt)
 timestamps (in Node via
-[`process.hrtime.bigint()`](https://nodejs.org/dist/latest-v12.x/docs/api/process.html#process_process_hrtime_bigint)).
-If `BigInt` is not available in the target environment, timestamps are still
-only sourced via `Date.now()`.
+[`process.hrtime.bigint()`](https://nodejs.org/dist/latest-v12.x/docs/api/process.html#process_process_hrtime_bigint))
+or falls back to `performance.now()` or lacking that to `Date.now()`. In all
+cases, returns a (possibly rounded) nanosec-scale timestamp, either as `bigint`
+or `number`. The
+[`timeDiff()`](https://docs.thi.ng/umbrella/bench/functions/timeDiff.html)
+function can be used to compute the difference between two such timestamp and
+return it as milliseconds.
 
 ## Status
 
@@ -65,7 +71,7 @@ For Node.js REPL:
 const bench = await import("@thi.ng/bench");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 1.25 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 1.27 KB
 
 ## Dependencies
 
@@ -82,6 +88,7 @@ A selection:
 | Screenshot                                                                                                                | Description                                                                      | Live demo                                                | Source                                                                                |
 |:--------------------------------------------------------------------------------------------------------------------------|:---------------------------------------------------------------------------------|:---------------------------------------------------------|:--------------------------------------------------------------------------------------|
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/geom-knn.jpg" width="240"/>           | Doodle w/ K-nearest neighbor search result visualization                         | [Demo](https://demo.thi.ng/umbrella/geom-knn/)           | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/geom-knn)           |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/geom-knn-hash.jpg" width="240"/>      | K-nearest neighbor search in an hash grid                                        | [Demo](https://demo.thi.ng/umbrella/geom-knn-hash/)      | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/geom-knn-hash)      |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/geom-voronoi-mst.jpg" width="240"/>   | Poisson-disk shape-aware sampling, Voronoi & Minimum Spanning Tree visualization | [Demo](https://demo.thi.ng/umbrella/geom-voronoi-mst/)   | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/geom-voronoi-mst)   |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/markdown-parser.jpg" width="240"/>    | Minimal Markdown to Hiccup to HTML parser / transformer                          | [Demo](https://demo.thi.ng/umbrella/markdown/)           | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/markdown)           |
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/parse-playground.png" width="240"/>   | Parser grammar livecoding editor/playground & codegen                            | [Demo](https://demo.thi.ng/umbrella/parse-playground/)   | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/parse-playground)   |

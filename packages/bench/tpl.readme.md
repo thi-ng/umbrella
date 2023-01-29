@@ -7,12 +7,18 @@
 {{pkg.description}}
 
 Though no public API change (only additions), since v2.0.0 this library
-internally attempts to use high-res ES
+internally (via
+[`now()`](https://docs.thi.ng/umbrella/bench/functions/now.html)) attempts to
+use high-res ES
 [`BigInt`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt)
 timestamps (in Node via
-[`process.hrtime.bigint()`](https://nodejs.org/dist/latest-v12.x/docs/api/process.html#process_process_hrtime_bigint)).
-If `BigInt` is not available in the target environment, timestamps are still
-only sourced via `Date.now()`.
+[`process.hrtime.bigint()`](https://nodejs.org/dist/latest-v12.x/docs/api/process.html#process_process_hrtime_bigint))
+or falls back to `performance.now()` or lacking that to `Date.now()`. In all
+cases, returns a (possibly rounded) nanosec-scale timestamp, either as `bigint`
+or `number`. The
+[`timeDiff()`](https://docs.thi.ng/umbrella/bench/functions/timeDiff.html)
+function can be used to compute the difference between two such timestamp and
+return it as milliseconds.
 
 {{meta.status}}
 
