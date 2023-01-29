@@ -348,3 +348,90 @@ export const uintTypeForBits = (x: number): UintType =>
  */
 export const intTypeForBits = (x: number): IntType =>
 	x > 16 ? "i32" : x > 8 ? "i16" : "i8";
+
+/**
+ * Returns the next smaller {@link IntType} for given type (or the same type if
+ * already the narrowest).
+ *
+ * @param t
+ */
+export const narrowInt = (t: IntType | "i64") =>
+	t === "i64" ? "i32" : t === "i32" ? "i16" : t === "i16" ? "i8" : "i8";
+
+/**
+ * Returns the next larger {@link IntType} for given type (or the same type if
+ * already the widest).
+ *
+ * @param t
+ */
+export const widenInt = (t: IntType) =>
+	t === "i8" ? "i16" : t === "i16" ? "i32" : t === "i32" ? "i64" : "i64";
+
+/**
+ * Returns the next smaller {@link UintType} for given type (or the same type if
+ * already the narrowest).
+ *
+ * @remarks
+ * If type is `u8c`, returns `u8`.
+ *
+ * @param t
+ */
+export const narrowUint = (t: UintType | "u64") =>
+	t === "u64" ? "u32" : t === "u32" ? "u16" : t === "u16" ? "u8" : "u8";
+
+/**
+ * Returns the next larger {@link UintType} for given type (or the same type if
+ * already the widest).
+ *
+ * @param t
+ */
+export const widenUint = (t: UintType) =>
+	t === "u8" || t === "u8c"
+		? "u16"
+		: t === "u16"
+		? "u32"
+		: t === "u32"
+		? "u64"
+		: "u64";
+
+/**
+ * Returns the next smaller {@link FloatType} for given type (or the same type
+ * if already the narrowest).
+ *
+ * @param t
+ */
+export const narrowFloat = (t: FloatType) => (t === "f64" ? "f32" : "f32");
+
+/**
+ * Returns the next larger {@link FloatType} for given type (or the same type if
+ * already the widest).
+ *
+ * @param t
+ */
+export const widenFloat = (t: FloatType) => (t === "f32" ? "f64" : "f64");
+
+/**
+ * Returns the next smaller type (i.e. {@link IntType}, {@link UintType} or
+ * {@link FloatType}) for given type (or the same type if already the smallest).
+ *
+ * @param t
+ */
+export const narrowType = (t: Type | BigType) =>
+	t[0] === "i"
+		? narrowInt(<IntType>t)
+		: t[0] === "u"
+		? narrowUint(<UintType>t)
+		: narrowFloat(<FloatType>t);
+
+/**
+ * Returns the next larger type (i.e. {@link IntType}, {@link UintType} or
+ * {@link FloatType}) for given type (or the same type if already the widest).
+ *
+ * @param t
+ */
+export const widenType = (t: Type | BigType) =>
+	t[0] === "i"
+		? widenInt(<IntType>t)
+		: t[0] === "u"
+		? widenUint(<UintType>t)
+		: widenFloat(<FloatType>t);
