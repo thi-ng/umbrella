@@ -18,6 +18,11 @@ export const $Foo: WasmTypeConstructor<Foo> = (mem) => ({
 	get size() {
 		return 56;
 	},
+	instanceArray(base, num) {
+		const items: Foo[] = [];
+		for (; num --> 0; base += 56) items.push(this.instance(base));
+		return items;
+	},
 	instance: (base) => {
 		let $singlePtr: Pointer<WasmStringPtr> | null = null;
 		let $multiPtr: Pointer<WasmStringPtr[]> | null = null;

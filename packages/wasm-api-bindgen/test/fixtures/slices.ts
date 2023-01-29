@@ -15,6 +15,11 @@ export const $A: WasmTypeConstructor<A> = (mem) => ({
 	get size() {
 		return 2;
 	},
+	instanceArray(base, num) {
+		const items: A[] = [];
+		for (; num --> 0; base += 2) items.push(this.instance(base));
+		return items;
+	},
 	instance: (base) => {
 		return {
 			get __base() {
@@ -123,6 +128,11 @@ export const $B: WasmTypeConstructor<B> = (mem) => ({
 	},
 	get size() {
 		return 108;
+	},
+	instanceArray(base, num) {
+		const items: B[] = [];
+		for (; num --> 0; base += 108) items.push(this.instance(base));
+		return items;
 	},
 	instance: (base) => {
 		let $ptr: Pointer<number> | null = null;
