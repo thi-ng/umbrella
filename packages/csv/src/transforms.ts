@@ -1,6 +1,7 @@
+import type { IObjectOf } from "@thi.ng/api";
 import { padLeft } from "@thi.ng/strings/pad-left";
-import { percent as $percent } from "@thi.ng/strings/percent";
 import { maybeParseFloat, maybeParseInt } from "@thi.ng/strings/parse";
+import { percent as $percent } from "@thi.ng/strings/percent";
 import type { CellTransform } from "./api.js";
 
 /**
@@ -88,6 +89,19 @@ export const date =
  * @param x -
  */
 export const url: CellTransform = (x) => new URL(x);
+
+/**
+ * Cell parse value transform. Accepts an object of mappings with original cell
+ * values as keys which are then mapped to arbitrary new values in an enum like
+ * fashion.
+ *
+ * @param mappings
+ * @param defaultVal
+ */
+export const oneOf =
+	<T>(mappings: IObjectOf<T>, defaultVal: T): CellTransform =>
+	(x) =>
+		mappings[x] ?? defaultVal;
 
 // formatters
 
