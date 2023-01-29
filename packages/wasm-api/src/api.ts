@@ -23,9 +23,29 @@ export interface WasmTypeBase {
 }
 
 export interface WasmType<T> {
+	/**
+	 * Type alignment (in bytes)
+	 */
 	readonly align: number;
+	/**
+	 * Type size (in bytes)
+	 */
 	readonly size: number;
-	instance: Fn<number, T>;
+	/**
+	 * Takes a start address and number of items. Returns an array of memory
+	 * mapped type instances (see {@link WasmType.instance}).
+	 *
+	 * @param base
+	 * @param num
+	 * @returns
+	 */
+	instanceArray: (base: number, num: number) => T[];
+	/**
+	 * Returns a memory-mapped type instance for given start address.
+	 *
+	 * @param base
+	 */
+	instance: (base: number) => T;
 }
 
 export type WasmTypeConstructor<T> = Fn<IWasmMemoryAccess, WasmType<T>>;
