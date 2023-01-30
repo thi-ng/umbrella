@@ -2449,6 +2449,7 @@ __metadata:
     "@thi.ng/api": ^8.6.3
     "@thi.ng/checks": ^3.3.7
     "@thi.ng/compose": ^2.1.24
+    "@thi.ng/date": ^2.4.1
     "@thi.ng/errors": ^2.2.8
     "@thi.ng/logger": ^1.4.7
     "@thi.ng/testament": ^0.3.9
