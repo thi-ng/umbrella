@@ -57,6 +57,7 @@ const updateImports = (root: string, latest = false) => {
 	if (edit) {
 		const result = assocObj(pairs.sort(compareByKeys2(0, 1)));
 		console.log(JSON.stringify(result, null, 2));
+		process.exit(1);
 	} else {
 		console.log("ok");
 	}
