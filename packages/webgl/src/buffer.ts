@@ -1,4 +1,9 @@
-import { asGLType, TypedArray } from "@thi.ng/api/typedarray";
+import {
+	asGLType,
+	BIT_SHIFTS,
+	TypedArray,
+	typedArrayType,
+} from "@thi.ng/api/typedarray";
 import type { AttribPool } from "@thi.ng/vector-pools";
 import type { IndexBufferSpec, IWebGLBuffer } from "./api/buffers.js";
 import {
@@ -15,18 +20,23 @@ export class WebGLArrayBuffer<T extends TypedArray> implements IWebGLBuffer<T> {
 	buffer: WebGLBuffer;
 	target: number;
 	mode: number;
+	data?: T;
 
 	constructor(
 		gl: WebGLRenderingContext,
 		data?: T,
 		target = gl.ARRAY_BUFFER,
-		mode = gl.STATIC_DRAW
+		mode = gl.STATIC_DRAW,
+		retain = false
 	) {
 		this.gl = gl;
 		this.buffer = gl.createBuffer() || error("error creating WebGL buffer");
 		this.target = target;
 		this.mode = mode;
-		data && this.set(data);
+		if (data) {
+			this.set(data);
+			if (retain) this.data = data;
+		}
 	}
 
 	bind() {
@@ -47,14 +57,33 @@ export class WebGLArrayBuffer<T extends TypedArray> implements IWebGLBuffer<T> {
 		return true;
 	}
 
+	/**
+	 * Re-applies retained data (from ctor arg) using
+	 * {@link WebGLArrayBuffer.set}. Presumably the underlying data has been
+	 * updated elsewhere, but needs to be reflected to WebGL.
+	 *
+	 * @remarks
+	 * If no data is retained, this method is a no-op.
+	 */
+	update() {
+		if (this.data) this.set(this.data);
+	}
+
 	set(data: T, mode = this.mode) {
 		this.bind();
 		this.gl.bufferData(this.target, data, mode);
+		if (this.data) this.data = data;
 	}
 
-	setChunk(data: T, offset = 0) {
+	setChunk(data: T, byteOffset = 0) {
 		this.bind();
-		this.gl.bufferSubData(this.target, offset, data);
+		this.gl.bufferSubData(this.target, byteOffset, data);
+		if (this.data) {
+			this.data.set(
+				data,
+				byteOffset >>> BIT_SHIFTS[typedArrayType(data)]
+			);
+		}
 	}
 }
 

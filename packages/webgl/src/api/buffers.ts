@@ -5,7 +5,8 @@ export type IndexBufferData = Uint16Array | Uint32Array;
 
 export interface IWebGLBuffer<T> extends IBind<void>, IRelease {
 	set(data: T, mode?: GLenum): void;
-	setChunk(data: T, offset: number): void;
+	setChunk(data: T, byteOffset: number): void;
+	update(): void;
 }
 
 export interface IConfigure<T> {
