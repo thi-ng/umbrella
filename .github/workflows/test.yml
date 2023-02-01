@@ -28,3 +28,4 @@ jobs:
                   version: 0.10.0
             - run: yarn install --frozen-lockfile
             - run: yarn test
+            - run: yarn tool:imports
