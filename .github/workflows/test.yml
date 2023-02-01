@@ -26,6 +26,6 @@ jobs:
             - uses: goto-bus-stop/setup-zig@v2
               with:
                   version: 0.10.0
-            - run: yarn install --frozen-lockfile
+            - run: yarn install --immutable --immutable-cache
             - run: yarn test
             - run: yarn tool:imports
