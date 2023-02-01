@@ -2453,6 +2453,7 @@ __metadata:
     "@thi.ng/errors": ^2.2.8
     "@thi.ng/logger": ^1.4.7
     "@thi.ng/testament": ^0.3.9
+    "@thi.ng/transducers": ^8.3.30
     "@thi.ng/vectors": ^7.5.31
     rimraf: ^3.0.2
     serialport: ^10.5.0
@@ -3161,6 +3162,7 @@ __metadata:
     "@thi.ng/api": ^8.6.3
     "@thi.ng/arrays": ^2.5.1
     "@thi.ng/checks": ^3.3.7
+    "@thi.ng/distance": ^2.1.39
     "@thi.ng/equiv": ^2.1.17
     "@thi.ng/errors": ^2.2.8
     "@thi.ng/geom-api": ^3.4.0
