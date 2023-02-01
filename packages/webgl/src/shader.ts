@@ -83,6 +83,20 @@ export class Shader implements IShader {
 		this.state = state || {};
 	}
 
+	/**
+	 * Returns a shallow copy of this shader with its state config merged with
+	 * given options (priority). Useful for re-using a shader, but applying
+	 * different settings.
+	 *
+	 * @param state
+	 */
+	withState(state: Partial<ShaderState>) {
+		return new Shader(this.gl, this.program, this.attribs, this.uniforms, {
+			...this.state,
+			...state,
+		});
+	}
+
 	bind(spec: ModelSpec) {
 		if (this.program) {
 			this.gl.useProgram(this.program);
