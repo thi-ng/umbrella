@@ -19,7 +19,7 @@ const RE_IMPORT = /\}? from "(?!\.)([a-z0-9@/.-]+)";/;
 
 const xform = comp(
 	mapcat((f: string) => readText(f, LOGGER).split("\n")),
-	filter((line) => !line.startsWith(" * ")),
+	filter((line) => !/^\s+\*\s/.test(line)),
 	map((line) => RE_IMPORT.exec(line)),
 	filter((x) => !!x),
 	map((x) =>
