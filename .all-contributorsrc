@@ -459,6 +459,15 @@
         "code",
         "ideas"
       ]
+    },
+    {
+      "login": "aurelienbottazini",
+      "name": "Aurélien Bottazini",
+      "avatar_url": "https://avatars.githubusercontent.com/u/32635?v=4",
+      "profile": "http://aurelienbottazini.com",
+      "contributions": [
+        "bug"
+      ]
     }
   ],
   "contributorsPerLine": 7,
