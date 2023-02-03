@@ -38,7 +38,7 @@
 		"@thi.ng/random": "^3.3.21"
 	},
 	"devDependencies": {
-		"@microsoft/api-extractor": "^7.33.7",
+		"@microsoft/api-extractor": "^7.34.2",
 		"@thi.ng/api": "^8.6.3",
 		"@thi.ng/dsp": "^4.3.0",
 		"@thi.ng/dsp-io-wav": "^2.1.35",
@@ -46,10 +46,10 @@
 		"@thi.ng/text-canvas": "^2.4.25",
 		"@thi.ng/transducers": "^8.3.30",
 		"@thi.ng/vectors": "^7.5.31",
-		"rimraf": "^3.0.2",
+		"rimraf": "^4.1.2",
 		"tools": "workspace:^",
-		"typedoc": "^0.23.22",
-		"typescript": "^4.9.4"
+		"typedoc": "^0.23.24",
+		"typescript": "^4.9.5"
 	},
 	"keywords": [
 		"1d",

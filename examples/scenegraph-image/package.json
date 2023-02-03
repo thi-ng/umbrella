@@ -41,7 +41,7 @@
 		"screenshot": "examples/scenegraph-image.png"
 	},
 	"devDependencies": {
-		"typescript": "^4.9.4",
-		"vite": "^4.0.0"
+		"typescript": "^4.9.5",
+		"vite": "^4.1.1"
 	}
 }
