@@ -138,6 +138,8 @@ Currently, documentation only exists in the form of small examples and
 various doc strings (incomplete). I'm working to alleviate this
 situation ASAP... In that respect, PRs are welcome as well!
 
+### Basic usage
+
 ```ts
 import { $compile } from "@thi.ng/rdom";
 import { reactive } from "@thi.ng/rstream";
@@ -162,7 +164,7 @@ $compile([
     "div",
     {},
     // transformed color as title (aka derived view)
-    ["h1", {}, bg.transform(map((col) => `Hello, ${col}!`))],
+    ["h1", {}, bg.map((col) => `Hello, ${col}!`)],
     [
         // tag with Emmet-style ID & classes
         "button#foo.w4.pa3.bn",
@@ -175,6 +177,49 @@ $compile([
         bg,
     ],
 ]).mount(document.body);
+```
+
+### Lists
+
+See [`$list`]() and [`$klist`]() docs for further information...
+
+```ts
+import { $klist } from "@thi.ng/rdom";
+import { reactive } from "@thi.ng/rstream";
+
+const items = reactive([
+	{ id: "a", val: 1 },
+	{ id: "b", val: 2 },
+	{ id: "c", val: 3 },
+]);
+
+$klist(
+	// reactive data source (any rstream subscribable)
+	items,
+	// outer list element & attribs
+	"ul",
+	{ class: "list red" },
+	// list item component constructor
+	(x) => ["li", {}, x.id, ` (${x.val})`],
+	// key function (includes)
+	(x) => `${x.id}-${x.val}`
+).mount(document.body);
+
+// update list:
+// - item a will be removed
+// - item b is unchanged
+// - item d will be newly inserted
+// - item c will be updated (due to new value)
+setTimeout(
+	() => {
+		items.next([
+			{ id: "b", val: 2 },
+			{ id: "d", val: 4 },
+			{ id: "c", val: 30 },
+		]);
+	},
+	1000
+);
 ```
 
 <!-- include ../../assets/tpl/footer.md -->
