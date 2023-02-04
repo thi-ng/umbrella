@@ -13,32 +13,48 @@ interface KListItem {
 
 /**
  * Similar to {@link $list}, however additionally uses keying to establish list
- * item identities and uses them in a more complex diffing algorithm to avoid
- * re-initialization of list items if they've been re-ordered or changed
- * positions due to removal/insertion of other items in the list.
+ * item identities and uses these keys (and *only* these!) in a more complex
+ * diffing algorithm to avoid re-initialization of list items if they've been
+ * re-ordered or changed positions due to removal/insertion of other items in
+ * the list.
  *
  * @remarks
  * The given `keyFn` is used to obtain a *unique* key value for each list item
- * obtained from the reactive arrays obtained from `src`.
+ * obtained from the reactive arrays obtained from `src`. Like a hash, the key
+ * value MUST represent an item's *current* value such that if the value
+ * changes, so does the key.
  *
  * @example
  * ```ts
- * const items = reactive([{id: "a"}, {id: "b"}, {id: "c"}]);
+ * const items = reactive([{id: "a", val: 1}, {id: "b", val: 2}, {id: "c", val: 3}]);
  *
  * $klist(
- *   // data source (rstream subsribable)
+ *   // data source (any rstream subscribable)
  *   items,
  *   // outer list element & attribs
  *   "ul",
  *   { class: "list red" },
  *   // list item component constructor
- *   (x) => ["li", {}, x.id],
+ *   (x) => ["li", {}, x.id, ` (${x.val})`],
  *   // key function
- *   (x) => x.id
+ *   (x) => `${x.id}-${x.val}`
  * ).mount(document.body);
  *
- * // update list
- * items.next([{id: "b"}, {id: "d"}, {id: "c"}]);
+ * // update list:
+ * // - item a will be removed
+ * // - item b is unchanged
+ * // - item d will be newly inserted
+ * // - item c will be updated (due to new value)
+ * setTimeout(
+ *   () => {
+ *     items.next([
+ *       { id: "b", val: 2 },
+ *       { id: "d", val: 4 },
+ *       { id: "c", val: 30 },
+ *     ]);
+ *   },
+ *   1000
+ * );
  * ```
  *
  * @param src -
