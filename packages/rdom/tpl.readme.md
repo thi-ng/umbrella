@@ -181,7 +181,9 @@ $compile([
 
 ### Lists
 
-See [`$list`]() and [`$klist`]() docs for further information...
+See [`$list`](https://docs.thi.ng/umbrella/rdom/functions/_list.html) and
+[`$klist`](https://docs.thi.ng/umbrella/rdom/functions/_klist.html) docs for
+further information...
 
 ```ts
 import { $klist } from "@thi.ng/rdom";
