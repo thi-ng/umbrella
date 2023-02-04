@@ -8,6 +8,7 @@
 	"license": "Apache-2.0",
 	"scripts": {
 		"start": "yarn build:zig && vite --open --host",
+		"clean": "rimraf zig-cache zig-out",
 		"build": "tsc && yarn build:zig && vite build --base='./'",
 		"build:types": "npx wasm-api-bindgen -a analytics.json --lang ts -o src/generated/api.ts --lang zig -o zig/api-generated.zig src/typedefs.json",
 		"build:zig": "yarn prepare:zig && zig build && wasm-opt src/main.wasm -o src/main.wasm -O3 && wasm-dis -o src/main.wast src/main.wasm",
@@ -15,6 +16,7 @@
 		"preview": "vite preview --host --open"
 	},
 	"devDependencies": {
+		"rimraf": "^4.1.2",
 		"typescript": "^4.9.5",
 		"vite": "^4.1.1"
 	},
