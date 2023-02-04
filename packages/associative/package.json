@@ -42,6 +42,7 @@
 		"@thi.ng/dcons": "^3.2.30",
 		"@thi.ng/equiv": "^2.1.17",
 		"@thi.ng/errors": "^2.2.8",
+		"@thi.ng/random": "^3.3.21",
 		"@thi.ng/transducers": "^8.3.30",
 		"tslib": "^2.5.0"
 	},

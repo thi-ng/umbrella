@@ -76,10 +76,7 @@ export class SortedSet<T>
 	}
 
 	empty() {
-		return new SortedSet<T>(null, {
-			...this.opts(),
-			capacity: SortedMap.DEFAULT_CAP,
-		});
+		return new SortedSet<T>(null, this.opts());
 	}
 
 	compare(o: Set<T>) {

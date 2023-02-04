@@ -9,6 +9,7 @@ import type {
 	IInto,
 	Predicate2,
 } from "@thi.ng/api";
+import type { IRandom } from "@thi.ng/random";
 
 export interface IEquivSet<T>
 	extends Set<T>,
@@ -106,19 +107,19 @@ export interface SortedMapOpts<K> {
 	 */
 	compare: Comparator<K>;
 	/**
-	 * Initial capacity before resizing (doubling) occurs.
-	 * This value will be rounded up to next pow2.
-	 *
-	 * @defaultValue 8
-	 */
-	capacity: number;
-	/**
 	 * Probability for a value to exist in any express lane of the
 	 * underlying Skip List implementation.
 	 *
 	 * @defaultValue `1 / Math.E`
 	 */
 	probability: number;
+	/**
+	 * Random number generator for choosing new insertion levels. By default
+	 * uses
+	 * [`SYSTEM`](https://docs.thi.ng/umbrella/random/variables/SYSTEM.html)
+	 * from thi.ng/random pkg.
+	 */
+	rnd: IRandom;
 }
 
 export type SortedSetOpts<T> = SortedMapOpts<T>;

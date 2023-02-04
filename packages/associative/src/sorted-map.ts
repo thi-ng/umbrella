@@ -1,7 +1,8 @@
 import type { Comparator, Fn3, IObjectOf, Pair } from "@thi.ng/api";
-import { SEMAPHORE } from "@thi.ng/api/api";
 import { isPlainObject } from "@thi.ng/checks/is-plain-object";
 import { compare } from "@thi.ng/compare/compare";
+import type { IRandom } from "@thi.ng/random";
+import { SYSTEM } from "@thi.ng/random/system";
 import type { ReductionFn } from "@thi.ng/transducers";
 import { map } from "@thi.ng/transducers/map";
 import { isReduced } from "@thi.ng/transducers/reduced";
@@ -14,23 +15,18 @@ import { into } from "./into.js";
 interface SortedMapState<K, V> {
 	head: Node<K, V>;
 	cmp: Comparator<K>;
-	maxh: number;
-	h: number;
-	length: number;
-	cap: number;
 	p: number;
+	rnd: IRandom;
+	size: number;
 }
 
 class Node<K, V> {
-	k: K | null;
-	v: V | null;
-	next: Node<K, V>[];
+	next: Node<K, V> | undefined;
+	prev: Node<K, V> | undefined;
+	up: Node<K, V> | undefined;
+	down: Node<K, V> | undefined;
 
-	constructor(k: K | null, v: V | null, h: number) {
-		this.k = k;
-		this.v = v;
-		this.next = new Array(h + 1);
-	}
+	constructor(public k?: K, public v?: V, public level = 0) {}
 }
 
 // stores private properties for all instances
@@ -39,35 +35,27 @@ const __private = new WeakMap<SortedMap<any, any>, SortedMapState<any, any>>();
 
 @__inspectable
 export class SortedMap<K, V> extends Map<K, V> {
-	static DEFAULT_CAP = 8;
 	static DEFAULT_P = 1 / Math.E;
 
-	/**
-	 * Creates new {@link SortedMap} instance with optionally given pairs
-	 * and/or options.
-	 *
-	 * @param pairs - key-value pairs
-	 * @param opts - config options
-	 */
 	constructor(
 		pairs?: Iterable<Pair<K, V>> | null,
 		opts: Partial<SortedMapOpts<K>> = {}
 	) {
 		super();
-		const cap = opts.capacity || SortedMap.DEFAULT_CAP;
-		const maxh = Math.ceil(Math.log2(cap));
 		__private.set(this, {
-			head: new Node<K, V>(null, null, 0),
-			cap: Math.pow(2, maxh),
+			head: new Node(),
 			cmp: opts.compare || compare,
-			p: opts.probability || SortedMap.DEFAULT_P,
-			maxh,
-			length: 0,
-			h: 0,
+			rnd: opts.rnd || SYSTEM,
+			p: opts.probability || 1 / Math.E,
+			size: 0,
 		});
 		if (pairs) {
 			this.into(pairs);
 		}
+	}
+
+	get size(): number {
+		return __private.get(this)!.size;
 	}
 
 	get [Symbol.species]() {
@@ -75,27 +63,34 @@ export class SortedMap<K, V> extends Map<K, V> {
 	}
 
 	*[Symbol.iterator](): IterableIterator<Pair<K, V>> {
-		let node = __private.get(this)!.head;
-		while ((node = node.next[0])) {
-			yield [node.k, node.v];
+		let node: Node<K, V> | undefined = this.firstNode();
+		while (node && node.k !== undefined) {
+			yield [node.k, node.v!];
+			node = node.next;
 		}
 	}
 
 	*entries(key?: K, max = false): IterableIterator<Pair<K, V>> {
-		let { head: node, cmp } = __private.get(this)!;
-		let code: number | undefined;
+		if (key === undefined) {
+			yield* this;
+			return;
+		}
+		const { cmp, size } = __private.get(this)!;
+		if (!size) return;
 		if (max) {
-			while ((node = node.next[0])) {
-				if (key === undefined || (code = cmp(node.k, key)) <= 0) {
-					yield [node.k, node.v];
-					if (code === 0) return;
-				}
+			let node: Node<K, V> | undefined = this.firstNode();
+			while (node && node.k !== undefined && cmp(node.k, key) < 0) {
+				yield [node.k!, node.v!];
+				node = node.next;
 			}
 		} else {
-			while ((node = node.next[0])) {
-				if (key === undefined || (code = cmp(node.k, key)) >= 0) {
-					yield [node.k, node.v];
+			let node: Node<K, V> | undefined = this.firstNode();
+			while (node.down) node = node!.down;
+			while (node) {
+				if (node.k !== undefined && cmp(node.k, key) >= 0) {
+					yield [node.k!, node.v!];
 				}
+				node = node.next;
 			}
 		}
 	}
@@ -108,22 +103,14 @@ export class SortedMap<K, V> extends Map<K, V> {
 		return map((p) => p[1], this.entries(key, max));
 	}
 
-	get size(): number {
-		return __private.get(this)!.length;
-	}
-
 	clear() {
 		const $this = __private.get(this)!;
-		$this.head = new Node<K, V>(null, null, 0);
-		$this.length = 0;
-		$this.h = 0;
+		$this.head = new Node<K, V>();
+		$this.size = 0;
 	}
 
 	empty(): SortedMap<K, V> {
-		return new SortedMap<K, V>(null, {
-			...this.opts(),
-			capacity: SortedMap.DEFAULT_CAP,
-		});
+		return new SortedMap<K, V>(null, this.opts());
 	}
 
 	copy(): SortedMap<K, V> {
@@ -154,86 +141,79 @@ export class SortedMap<K, V> extends Map<K, V> {
 		return __equivMap(this, o);
 	}
 
-	first(): Pair<K, V> | undefined {
-		const node = __private.get(this)!.head.next[0];
-		return node ? [node.k, node.v] : undefined;
+	first() {
+		const node = this.firstNode();
+		return node && node.k !== undefined ? [node.k, node.v] : undefined;
 	}
 
-	get(k: K, notFound?: V): V | undefined {
-		const node = this.findPredNode(k).next[0];
-		return node && __private.get(this)!.cmp(node.k, k) === 0
+	get(key: K, notFound?: V): V | undefined {
+		const $this = __private.get(this)!;
+		const node = this.findNode(key);
+		return node.k !== undefined && $this.cmp(node.k, key) === 0
 			? node.v
 			: notFound;
 	}
 
-	has(key: K) {
-		return this.get(key, <any>SEMAPHORE) !== <any>SEMAPHORE;
+	has(key: K): boolean {
+		const { cmp } = __private.get(this)!;
+		const node = this.findNode(key);
+		return node.k !== undefined && cmp(node.k, key) === 0;
 	}
 
-	set(k: K, v: V) {
+	set(key: K, val: V) {
 		const $this = __private.get(this)!;
-		let node = $this.head;
-		let level = $this.h;
-		let stack = new Array(level);
-		const cmp = $this.cmp;
-		let code: number | undefined;
-		while (level >= 0) {
-			while (
-				node.next[level] &&
-				(code = cmp(node.next[level].k, k)) < 0
-			) {
-				node = node.next[level];
+		const { cmp, p, rnd } = $this;
+		let node: Node<K, V> | undefined = this.findNode(key);
+		if (node.k !== undefined && cmp(node.k, key) === 0) {
+			node.v = val;
+			return this;
+		}
+		let newNode = new Node(key, val, node.level);
+		this.insertInLane(node, newNode);
+		let currLevel = node.level;
+		let headLevel = $this.head.level;
+		while (rnd.float() < p) {
+			if (currLevel >= headLevel) {
+				const newHead = new Node<K, V>(
+					undefined,
+					undefined,
+					headLevel + 1
+				);
+				this.linkLanes(newHead, $this.head);
+				$this.head = newHead;
+				headLevel++;
 			}
-			if (node.next[level] && code === 0) {
-				do {
-					node.next[level].v = v;
-				} while (level-- > 0);
-				return this;
-			}
-			stack[level--] = node;
+			while (!node!.up) node = node!.prev;
+			node = node!.up;
+			const tmp = new Node(key, val, node.level);
+			this.insertInLane(node, tmp);
+			this.linkLanes(tmp, newNode);
+			newNode = tmp;
+			currLevel++;
 		}
-		const h = this.pickHeight($this.maxh, $this.h, $this.p);
-		node = new Node<K, V>(k, v, h);
-		while ($this.h < h) {
-			stack[++$this.h] = $this.head;
-		}
-		for (let i = 0; i <= h; i++) {
-			node.next[i] = stack[i].next[i];
-			stack[i].next[i] = node;
-		}
-		$this.length++;
-		if ($this.length >= $this.cap) {
-			$this.cap *= 2;
-			$this.maxh++;
-		}
+		$this.size++;
 		return this;
 	}
 
-	delete(k: K) {
+	delete(key: K) {
 		const $this = __private.get(this)!;
-		let node: Node<K, V> = $this.head;
-		let level = $this.h;
-		let removed = false;
-		const cmp = $this.cmp;
-		let code: number | undefined;
-		while (level >= 0) {
-			while (
-				node.next[level] &&
-				(code = cmp(node.next[level].k, k)) < 0
-			) {
-				node = node.next[level];
-			}
-			if (node.next[level] && code === 0) {
-				removed = true;
-				node.next[level] = node.next[level].next[level];
-				if (node == $this.head && !node.next[level]) {
-					$this.h = Math.max(0, $this.h - 1);
-				}
-			}
-			level--;
+		let node: Node<K, V> | undefined = this.findNode(key);
+		if (node.k === undefined || $this.cmp(node.k, key) !== 0) return false;
+		while (node.down) node = node.down;
+		let prev: Node<K, V> | undefined;
+		let next: Node<K, V> | undefined;
+		for (; node; node = node.up) {
+			prev = node.prev;
+			next = node.next;
+			if (prev) prev.next = next;
+			if (next) next.prev = prev;
 		}
-		if (removed) $this.length--;
-		return removed;
+		while ($this.head.next && $this.head.down) {
+			$this.head = $this.head.down;
+			$this.head.up = undefined;
+		}
+		$this.size--;
+		return true;
 	}
 
 	into(pairs: Iterable<Pair<K, V>>) {
@@ -259,9 +239,10 @@ export class SortedMap<K, V> extends Map<K, V> {
 	}
 
 	$reduce(rfn: ReductionFn<any, Pair<K, V>>, acc: any) {
-		let node = __private.get(this)!.head;
-		while ((node = node.next[0]) && !isReduced(acc)) {
-			acc = rfn(acc, [node.k, node.v]);
+		let node: Node<K, V> | undefined = this.firstNode();
+		while (node && node.k !== undefined && !isReduced(acc)) {
+			acc = rfn(acc, [node.k, node.v!]);
+			node = node.next;
 		}
 		return acc;
 	}
@@ -269,30 +250,74 @@ export class SortedMap<K, V> extends Map<K, V> {
 	opts(): SortedMapOpts<K> {
 		const $this = __private.get(this)!;
 		return {
-			capacity: $this.cap,
 			compare: $this.cmp,
 			probability: $this.p,
+			rnd: $this.rnd,
 		};
 	}
 
-	protected findPredNode(k: K) {
-		let { cmp, head: node, h: level } = __private.get(this)!;
-		while (level >= 0) {
-			while (node.next[level] && cmp(node.next[level].k, k) < 0) {
-				node = node.next[level];
-			}
-			level--;
-		}
+	/**
+	 * Inserts `b` as successor of `a` (in the same lane as `a`).
+	 *
+	 * @param a
+	 * @param b
+	 */
+	protected insertInLane(a: Node<K, V>, b: Node<K, V>) {
+		b.prev = a;
+		b.next = a.next;
+		if (a.next) a.next.prev = b;
+		a.next = b;
+	}
+
+	/**
+	 * Links lanes by connecting `a` and `b` vertically.
+	 *
+	 * @param a
+	 * @param b
+	 */
+	protected linkLanes(a: Node<K, V>, b: Node<K, V>) {
+		a.down = b;
+		b.up = a;
+	}
+
+	/**
+	 * Returns first node on lowest level. Unless the map is empty, this node
+	 * will be the first data node (with the smallest key).
+	 */
+	protected firstNode() {
+		const { head } = __private.get(this)!;
+		let node: Node<K, V> | undefined = head;
+		while (node.down) node = node.down;
+		while (node.prev) node = node.prev;
+		if (node.next) node = node.next;
 		return node;
 	}
 
-	protected pickHeight(maxh: number, h: number, p: number) {
-		const max = Math.min(maxh, h + 1);
-		let level = 0;
-		while (Math.random() < p && level < max) {
-			level++;
+	/**
+	 * Returns the first matching (or predecessor) node for given key at the
+	 * level closest to the head.
+	 *
+	 * @param key
+	 */
+	protected findNode(key: K) {
+		let { cmp, head } = __private.get(this)!;
+		let node: Node<K, V> = head;
+		let next: Node<K, V> | undefined;
+		let down: Node<K, V> | undefined;
+		let nodeKey: K | undefined;
+		while (true) {
+			next = node.next;
+			while (next && cmp(next.k!, key) <= 0) {
+				node = next;
+				next = node.next;
+			}
+			nodeKey = node.k;
+			if (nodeKey !== undefined && cmp(nodeKey, key) === 0) break;
+			down = node.down;
+			if (!down) break;
+			node = down;
 		}
-		return level;
+		return node;
 	}
 }
 
@@ -308,16 +333,7 @@ export function defSortedMap<V>(
 	src: any,
 	opts?: Partial<SortedMapOpts<any>>
 ): SortedMap<any, V> {
-	if (isPlainObject(src)) {
-		const keys = Object.keys(src);
-		return new SortedMap<string, V>(
-			map((k) => <Pair<string, V>>[k, (<IObjectOf<V>>src)[k]], keys),
-			{
-				capacity: keys.length,
-				...opts,
-			}
-		);
-	} else {
-		return new SortedMap(src, opts);
-	}
+	return isPlainObject(src)
+		? new SortedMap<string, V>(Object.entries(src), opts)
+		: new SortedMap(src, opts);
 }

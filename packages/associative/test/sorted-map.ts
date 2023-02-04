@@ -16,9 +16,9 @@ group(
 			assert.strictEqual(m.size, 3);
 			m.set("d", 10);
 			assert.strictEqual(m.size, 4);
-			m.delete("d");
+			assert.ok(m.delete("d"));
 			assert.strictEqual(m.size, 3);
-			m.delete("d");
+			assert.ok(!m.delete("d"));
 			assert.strictEqual(m.size, 3);
 		},
 
@@ -26,6 +26,8 @@ group(
 			m.clear();
 			assert.strictEqual(m.size, 0);
 			assert.deepStrictEqual([...m.entries()], []);
+			assert.ok(!m.delete("a"));
+			assert.strictEqual(m.size, 0);
 		},
 
 		empty: () => {
