@@ -586,6 +586,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     </tr>
     <tr>
       <td align="center" valign="top" width="14.28%"><a href="https://ul.mantike.pro/"><img src="https://avatars.githubusercontent.com/u/233227?v=4?s=100" width="100px;" alt="Ruslan Prakapchuk"/><br /><sub><b>Ruslan Prakapchuk</b></sub></a><br /><a href="#financial-ul" title="Financial">💵</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://jarrodldavis.com"><img src="https://avatars.githubusercontent.com/u/235875?v=4?s=100" width="100px;" alt="Jarrod Davis"/><br /><sub><b>Jarrod Davis</b></sub></a><br /><a href="#financial-jarrodldavis" title="Financial">💵</a></td>
     </tr>
   </tbody>
 </table>

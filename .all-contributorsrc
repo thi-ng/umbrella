@@ -496,6 +496,15 @@
       "contributions": [
         "financial"
       ]
+    },
+    {
+      "login": "jarrodldavis",
+      "name": "Jarrod Davis",
+      "avatar_url": "https://avatars.githubusercontent.com/u/235875?v=4",
+      "profile": "https://jarrodldavis.com",
+      "contributions": [
+        "financial"
+      ]
     }
   ],
   "contributorsPerLine": 7,
