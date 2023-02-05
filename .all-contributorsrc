@@ -478,6 +478,15 @@
         "bug",
         "financial"
       ]
+    },
+    {
+      "login": "rc1",
+      "name": "Ross Cairns",
+      "avatar_url": "https://avatars.githubusercontent.com/u/166915?v=4",
+      "profile": "http://rosscairns.com/",
+      "contributions": [
+        "financial"
+      ]
     }
   ],
   "contributorsPerLine": 7,
