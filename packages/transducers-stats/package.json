@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/transducers-stats",
-	"version": "2.1.35",
+	"version": "2.1.36",
 	"description": "Transducers for statistical / technical analysis",
 	"type": "module",
 	"module": "./index.js",
@@ -34,14 +34,14 @@
 		"test": "testament test"
 	},
 	"dependencies": {
-		"@thi.ng/checks": "^3.3.7",
-		"@thi.ng/dcons": "^3.2.30",
-		"@thi.ng/errors": "^2.2.8",
-		"@thi.ng/transducers": "^8.3.30"
+		"@thi.ng/checks": "^3.3.8",
+		"@thi.ng/dcons": "^3.2.31",
+		"@thi.ng/errors": "^2.2.9",
+		"@thi.ng/transducers": "^8.3.31"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.34.2",
-		"@thi.ng/testament": "^0.3.9",
+		"@thi.ng/testament": "^0.3.10",
 		"rimraf": "^4.1.2",
 		"tools": "workspace:^",
 		"typedoc": "^0.23.24",

@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2023-01-10T15:20:19Z
+- **Last updated**: 2023-02-05T14:42:22Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,17 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [0.3.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/wasm-api-bindgen@0.3.0) (2023-02-05)
+
+#### 🚀 Features
+
+- add WasmType.instanceArray() impl ([f69d46e](https://github.com/thi-ng/umbrella/commit/f69d46e))
+
+#### 🩹 Bug fixes
+
+- add missing Field.skip check ([ac43440](https://github.com/thi-ng/umbrella/commit/ac43440))
+  - update generateField() in TypeScript gen
 
 ### [0.2.2](https://github.com/thi-ng/umbrella/tree/@thi.ng/wasm-api-bindgen@0.2.2) (2022-11-30)
 

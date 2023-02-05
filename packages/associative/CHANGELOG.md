@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2023-01-10T15:20:18Z
+- **Last updated**: 2023-02-05T14:42:21Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,19 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [6.2.24](https://github.com/thi-ng/umbrella/tree/@thi.ng/associative@6.2.24) (2023-02-05)
+
+#### 🩹 Bug fixes
+
+- [#375](https://github.com/thi-ng/umbrella/issues/375) major update/rewrite SortedMap impl ([d5f793a](https://github.com/thi-ng/umbrella/commit/d5f793a))
+  - update Node impl to use 4-way linkage
+  - simplify .set()/.delete() impls
+  - remove obsolete SortedMapOpts.capacity
+  - add SortedMapOpts.rnd to customize IRandom impl
+    (e.g. for reproducible behavior/branching)
+  - update tests
+  - update deps (add [@thi.ng/random](https://github.com/thi-ng/umbrella/tree/main/packages/random))
 
 ## [6.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/associative@6.2.0) (2022-07-19)
 

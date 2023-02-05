@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/bench",
-	"version": "3.1.23",
+	"version": "3.2.0",
 	"description": "Benchmarking utilities w/ various statistics & formatters (CSV, Markdown etc.)",
 	"type": "module",
 	"module": "./index.js",
@@ -34,11 +34,11 @@
 		"test": "testament test"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.6.3"
+		"@thi.ng/api": "^8.7.0"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.34.2",
-		"@thi.ng/testament": "^0.3.9",
+		"@thi.ng/testament": "^0.3.10",
 		"@types/node": "^18.11.18",
 		"rimraf": "^4.1.2",
 		"tools": "workspace:^",

@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2023-01-10T15:20:18Z
+- **Last updated**: 2023-02-05T14:42:21Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,12 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [8.7.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/api@8.7.0) (2023-02-05)
+
+#### 🚀 Features
+
+- add narrow/widenType() fns ([5ce9938](https://github.com/thi-ng/umbrella/commit/5ce9938))
 
 ## [8.6.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/api@8.6.0) (2022-12-16)
 

@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/transducers-binary",
-	"version": "2.1.35",
+	"version": "2.1.36",
 	"description": "Binary data related transducers & reducers",
 	"type": "module",
 	"module": "./index.js",
@@ -34,16 +34,16 @@
 		"test": "testament test"
 	},
 	"dependencies": {
-		"@thi.ng/binary": "^3.3.16",
-		"@thi.ng/compose": "^2.1.24",
-		"@thi.ng/errors": "^2.2.8",
-		"@thi.ng/hex": "^2.3.4",
-		"@thi.ng/random": "^3.3.21",
-		"@thi.ng/transducers": "^8.3.30"
+		"@thi.ng/binary": "^3.3.17",
+		"@thi.ng/compose": "^2.1.25",
+		"@thi.ng/errors": "^2.2.9",
+		"@thi.ng/hex": "^2.3.5",
+		"@thi.ng/random": "^3.3.22",
+		"@thi.ng/transducers": "^8.3.31"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.34.2",
-		"@thi.ng/testament": "^0.3.9",
+		"@thi.ng/testament": "^0.3.10",
 		"rimraf": "^4.1.2",
 		"tools": "workspace:^",
 		"typedoc": "^0.23.24",

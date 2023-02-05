@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/random",
-	"version": "3.3.21",
+	"version": "3.3.22",
 	"description": "Pseudo-random number generators w/ unified API, distributions, weighted choices, ID generation",
 	"type": "module",
 	"module": "./index.js",
@@ -34,14 +34,14 @@
 		"test": "testament test"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.6.3",
-		"@thi.ng/checks": "^3.3.7",
-		"@thi.ng/errors": "^2.2.8",
-		"@thi.ng/hex": "^2.3.4"
+		"@thi.ng/api": "^8.7.0",
+		"@thi.ng/checks": "^3.3.8",
+		"@thi.ng/errors": "^2.2.9",
+		"@thi.ng/hex": "^2.3.5"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.34.2",
-		"@thi.ng/testament": "^0.3.9",
+		"@thi.ng/testament": "^0.3.10",
 		"rimraf": "^4.1.2",
 		"tools": "workspace:^",
 		"typedoc": "^0.23.24",

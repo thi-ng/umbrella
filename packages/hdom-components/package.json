@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/hdom-components",
-	"version": "5.1.35",
+	"version": "5.1.36",
 	"description": "Raw, skinnable UI & SVG components for @thi.ng/hdom",
 	"type": "module",
 	"module": "./index.js",
@@ -34,16 +34,16 @@
 		"test": "testament test"
 	},
 	"dependencies": {
-		"@thi.ng/adapt-dpi": "^2.2.6",
-		"@thi.ng/api": "^8.6.3",
-		"@thi.ng/checks": "^3.3.7",
-		"@thi.ng/math": "^5.4.0",
-		"@thi.ng/transducers": "^8.3.30",
-		"@thi.ng/transducers-stats": "^2.1.35"
+		"@thi.ng/adapt-dpi": "^2.2.7",
+		"@thi.ng/api": "^8.7.0",
+		"@thi.ng/checks": "^3.3.8",
+		"@thi.ng/math": "^5.4.1",
+		"@thi.ng/transducers": "^8.3.31",
+		"@thi.ng/transducers-stats": "^2.1.36"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.34.2",
-		"@thi.ng/testament": "^0.3.9",
+		"@thi.ng/testament": "^0.3.10",
 		"rimraf": "^4.1.2",
 		"tools": "workspace:^",
 		"typedoc": "^0.23.24",
