@@ -468,6 +468,16 @@
       "contributions": [
         "bug"
       ]
+    },
+    {
+      "login": "alexlurvey",
+      "name": "Alex",
+      "avatar_url": "https://avatars.githubusercontent.com/u/6192716?v=4",
+      "profile": "https://github.com/alexlurvey",
+      "contributions": [
+        "bug",
+        "financial"
+      ]
     }
   ],
   "contributorsPerLine": 7,
