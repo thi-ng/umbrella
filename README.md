@@ -582,6 +582,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
       <td align="center" valign="top" width="14.28%"><a href="http://davemeehan.com"><img src="https://avatars.githubusercontent.com/u/2016856?v=4?s=100" width="100px;" alt="Dave Meehan"/><br /><sub><b>Dave Meehan</b></sub></a><br /><a href="https://github.com/thi-ng/umbrella/commits?author=dmeehan1968" title="Code">💻</a> <a href="#ideas-dmeehan1968" title="Ideas, Planning, & Feedback">🤔</a></td>
       <td align="center" valign="top" width="14.28%"><a href="http://aurelienbottazini.com"><img src="https://avatars.githubusercontent.com/u/32635?v=4?s=100" width="100px;" alt="Aurélien Bottazini"/><br /><sub><b>Aurélien Bottazini</b></sub></a><br /><a href="https://github.com/thi-ng/umbrella/issues?q=author%3Aaurelienbottazini" title="Bug reports">🐛</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/alexlurvey"><img src="https://avatars.githubusercontent.com/u/6192716?v=4?s=100" width="100px;" alt="Alex"/><br /><sub><b>Alex</b></sub></a><br /><a href="https://github.com/thi-ng/umbrella/issues?q=author%3Aalexlurvey" title="Bug reports">🐛</a> <a href="#financial-alexlurvey" title="Financial">💵</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="http://rosscairns.com/"><img src="https://avatars.githubusercontent.com/u/166915?v=4?s=100" width="100px;" alt="Ross Cairns"/><br /><sub><b>Ross Cairns</b></sub></a><br /><a href="#financial-rc1" title="Financial">💵</a></td>
     </tr>
   </tbody>
 </table>
