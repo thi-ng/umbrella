@@ -584,6 +584,9 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/alexlurvey"><img src="https://avatars.githubusercontent.com/u/6192716?v=4?s=100" width="100px;" alt="Alex"/><br /><sub><b>Alex</b></sub></a><br /><a href="https://github.com/thi-ng/umbrella/issues?q=author%3Aalexlurvey" title="Bug reports">🐛</a> <a href="#financial-alexlurvey" title="Financial">💵</a></td>
       <td align="center" valign="top" width="14.28%"><a href="http://rosscairns.com/"><img src="https://avatars.githubusercontent.com/u/166915?v=4?s=100" width="100px;" alt="Ross Cairns"/><br /><sub><b>Ross Cairns</b></sub></a><br /><a href="#financial-rc1" title="Financial">💵</a></td>
     </tr>
+    <tr>
+      <td align="center" valign="top" width="14.28%"><a href="https://ul.mantike.pro/"><img src="https://avatars.githubusercontent.com/u/233227?v=4?s=100" width="100px;" alt="Ruslan Prakapchuk"/><br /><sub><b>Ruslan Prakapchuk</b></sub></a><br /><a href="#financial-ul" title="Financial">💵</a></td>
+    </tr>
   </tbody>
 </table>
 
