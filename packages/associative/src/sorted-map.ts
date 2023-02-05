@@ -33,10 +33,20 @@ class Node<K, V> {
 // http://fitzgeraldnick.com/2014/01/13/hiding-implementation-details-with-e6-weakmaps.html
 const __private = new WeakMap<SortedMap<any, any>, SortedMapState<any, any>>();
 
+/**
+ * Sorted map implementation based on Skip List data structure. Supports any
+ * keys (other than `undefined`) which can be sorted via user-defined
+ * comparator, given as ctor option.
+ *
+ * @remarks
+ * v6.3.0 .set() & .delete() implementations rewritten, based on:
+ *
+ * - https://en.wikipedia.org/wiki/Skip_list
+ * - https://www.youtube.com/watch?v=kBwUoWpeH_Q (MIT courseware)
+ * - https://www.educba.com/skip-list-java/
+ */
 @__inspectable
 export class SortedMap<K, V> extends Map<K, V> {
-	static DEFAULT_P = 1 / Math.E;
-
 	constructor(
 		pairs?: Iterable<Pair<K, V>> | null,
 		opts: Partial<SortedMapOpts<K>> = {}
@@ -70,6 +80,21 @@ export class SortedMap<K, V> extends Map<K, V> {
 		}
 	}
 
+	/**
+	 * Yields iterator of sorted `[key, value]` pairs, optionally taking given
+	 * `key` and `max` flag into account.
+	 *
+	 * @remarks
+	 * If `key` is given and `max=false`, the key is used as minimum search key
+	 * and the iterator will only yield pairs for which keys are `>=` given key.
+	 * If `max=true`, the given is used as maximum and only yields pairs for
+	 * which keys are `<=` given key.
+	 *
+	 * If **no** key is given, yields **all** pairs.
+	 *
+	 * @param key
+	 * @param max
+	 */
 	*entries(key?: K, max = false): IterableIterator<Pair<K, V>> {
 		if (key === undefined) {
 			yield* this;
@@ -79,7 +104,7 @@ export class SortedMap<K, V> extends Map<K, V> {
 		if (!size) return;
 		if (max) {
 			let node: Node<K, V> | undefined = this.firstNode();
-			while (node && node.k !== undefined && cmp(node.k, key) < 0) {
+			while (node && node.k !== undefined && cmp(node.k, key) <= 0) {
 				yield [node.k!, node.v!];
 				node = node.next;
 			}
@@ -95,10 +120,22 @@ export class SortedMap<K, V> extends Map<K, V> {
 		}
 	}
 
+	/**
+	 * Similar to {@link SortedMap.entries}, but only yield sequence of keys.
+	 *
+	 * @param key
+	 * @param max
+	 */
 	keys(key?: K, max = false): IterableIterator<K> {
 		return map((p) => p[0], this.entries(key, max));
 	}
 
+	/**
+	 * Similar to {@link SortedMap.entries}, but only yield sequence of values.
+	 *
+	 * @param key
+	 * @param max
+	 */
 	values(key?: K, max = false): IterableIterator<V> {
 		return map((p) => p[1], this.entries(key, max));
 	}
@@ -173,6 +210,7 @@ export class SortedMap<K, V> extends Map<K, V> {
 		let currLevel = node.level;
 		let headLevel = $this.head.level;
 		while (rnd.float() < p) {
+			// check if new head (at a new level) is needed
 			if (currLevel >= headLevel) {
 				const newHead = new Node<K, V>(
 					undefined,
@@ -183,10 +221,13 @@ export class SortedMap<K, V> extends Map<K, V> {
 				$this.head = newHead;
 				headLevel++;
 			}
+			// find nearest predecessor with up link
 			while (!node!.up) node = node!.prev;
 			node = node!.up;
+			// insert new link in express lane
 			const tmp = new Node(key, val, node.level);
 			this.insertInLane(node, tmp);
+			// connect with new node at base level
 			this.linkLanes(tmp, newNode);
 			newNode = tmp;
 			currLevel++;
@@ -199,15 +240,19 @@ export class SortedMap<K, V> extends Map<K, V> {
 		const $this = __private.get(this)!;
 		let node: Node<K, V> | undefined = this.findNode(key);
 		if (node.k === undefined || $this.cmp(node.k, key) !== 0) return false;
+		// descent to lowest level
 		while (node.down) node = node.down;
 		let prev: Node<K, V> | undefined;
 		let next: Node<K, V> | undefined;
-		for (; node; node = node.up) {
+		// ascend & remove node from all levels
+		while (node) {
 			prev = node.prev;
 			next = node.next;
 			if (prev) prev.next = next;
 			if (next) next.prev = prev;
+			node = node.up;
 		}
+		// patch up head
 		while ($this.head.next && $this.head.down) {
 			$this.head = $this.head.down;
 			$this.head.up = undefined;
@@ -295,7 +340,7 @@ export class SortedMap<K, V> extends Map<K, V> {
 
 	/**
 	 * Returns the first matching (or predecessor) node for given key at the
-	 * level closest to the head.
+	 * lowest level.
 	 *
 	 * @param key
 	 */
