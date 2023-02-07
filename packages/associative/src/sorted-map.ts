@@ -203,6 +203,10 @@ export class SortedMap<K, V> extends Map<K, V> {
 		let node: Node<K, V> | undefined = this.findNode(key);
 		if (node.k !== undefined && cmp(node.k, key) === 0) {
 			node.v = val;
+			while (node.down) {
+				node = node!.down;
+				node.v = val;
+			}
 			return this;
 		}
 		let newNode = new Node(key, val, node.level);
@@ -339,8 +343,8 @@ export class SortedMap<K, V> extends Map<K, V> {
 	}
 
 	/**
-	 * Returns the first matching (or predecessor) node for given key at the
-	 * lowest level.
+	 * Returns the first matching (or predecessor) node for given key (NOT
+	 * necessarily at the lowest level).
 	 *
 	 * @param key
 	 */

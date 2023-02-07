@@ -1,7 +1,8 @@
 import { shuffle } from "@thi.ng/arrays";
 import { equiv } from "@thi.ng/equiv";
-import { range, repeat, zip } from "@thi.ng/transducers";
+import { XsAdd } from "@thi.ng/random";
 import { group } from "@thi.ng/testament";
+import { range, repeat, zip } from "@thi.ng/transducers";
 import * as assert from "assert";
 import { defSortedMap, SortedMap } from "../src/index.js";
 
@@ -191,6 +192,21 @@ group(
 				m = new SortedMap(zip(shuffle(keys.slice()), repeat(1)));
 				assert.deepStrictEqual([...m.keys()], keys);
 			}
+		},
+
+		updateValue: () => {
+			m = defSortedMap(
+				[
+					["one", 1],
+					["two", 2],
+					["three", 3],
+				],
+				{ rnd: new XsAdd(0xdecafbad) }
+			);
+			assert.deepStrictEqual([...m.values()], [1, 3, 2]);
+			m.set("one", 10);
+			m.set("three", 30);
+			assert.deepStrictEqual([...m.values()], [10, 30, 2]);
 		},
 	},
 	{
