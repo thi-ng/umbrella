@@ -26,14 +26,28 @@ creation of [ULIDs](https://github.com/ulid/spec):
   for alternatives
 - <sup>(2)</sup> Default: `window.crypto`, `Math.random` as fallback
 
-IDs generated w/ this package are composed of a 32, 48 or 64 bit Unix epochs (by
-default time shifted to free up bits for future timestamps) and N additional
-bits of a random payload (from a configurable source). IDs can be generated as
-byte arrays or base-N encoded strings. For the latter, the JS runtime MUST
+IDs generated w/ this package are composed of a 32, 48 or 64 bit Unix epochs and
+N additional bits of a random payload (from a configurable source). By default
+all timestamps are shifted to free up bits for the future. IDs can be generated
+as byte arrays or base-N encoded strings. For the latter, the JS runtime MUST
 support
 [`BigInt`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt).
 
 ![KSUID bit layout diagram](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/ksuid/ksuid.png)
+
+### CLI usage
+
+Since v3.1.0 a small CLI for ad-hoc KSUID generation is included. Currently only
+KSUID32 is supported and IDs are always based on the current time:
+
+```bash
+npx @thi.ng/ksuid
+# 0dwncLZE8byaQdccncWDmsNmlYt
+
+# optionally provide number of random bytes to be used (default: 16)
+npx @thi.ng/ksuid 8
+# 01ogp9KDpWlQ0pXCY
+```
 
 {{meta.status}}
 
