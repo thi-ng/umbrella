@@ -5,6 +5,7 @@
 	"type": "module",
 	"module": "./index.js",
 	"typings": "./index.d.ts",
+	"bin": "bin/ksuid",
 	"sideEffects": false,
 	"repository": {
 		"type": "git",
