@@ -8,6 +8,7 @@ import {
 	BASE62,
 	BASE64,
 	BASE85,
+	defBase,
 	IBase,
 } from "../src/index.js";
 
@@ -31,5 +32,14 @@ group("base-n", {
 		check(BASE62, "7n42DGM5Tflk9n8mt7Fhc7");
 		check(BASE64, "3/////////////////////");
 		check(BASE85, "=r54lj&NUUO~Hi%c2ym0");
+	},
+
+	padding: () => {
+		const B4 = defBase("abcd");
+		assert.strictEqual(B4.encode(0), "a");
+		assert.strictEqual(B4.encode(0, 6), "aaaaaa");
+		assert.strictEqual(B4.encode(123), "bdcd");
+		assert.strictEqual(B4.encode(123, 6), "aabdcd");
+		assert.strictEqual(B4.encode(12345, 6), "daaadcb");
 	},
 });

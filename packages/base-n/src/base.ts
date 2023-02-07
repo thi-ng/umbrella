@@ -15,34 +15,34 @@ export class BaseN implements IBase {
 		);
 	}
 
-	encode(x: number) {
+	encode(x: number, size = 0) {
 		const { base, N } = this;
-		if (x === 0) return base[0];
+		if (x === 0) return __pad(base[0], size, base[0]);
 		let res = "";
 		while (x > 0) {
 			res = base[x % N] + res;
 			x = Math.floor(x / N);
 		}
-		return res;
+		return __pad(res, size, base[0]);
 	}
 
-	encodeBigInt(x: bigint) {
-		if (x < BigInt(2 ** 53)) return this.encode(Number(x));
+	encodeBigInt(x: bigint, size = 0) {
+		if (x < BigInt(2 ** 53)) return this.encode(Number(x), size);
 		const { base, N } = this;
-		if (x === BigInt(0)) return base[0];
+		if (x === BigInt(0)) return __pad(base[0], size, base[0]);
 		const NN = BigInt(N);
 		let res = "";
 		while (x > 0) {
 			res = base[Number(x % NN)] + res;
 			x /= NN;
 		}
-		return res;
+		return __pad(res, size, base[0]);
 	}
 
-	encodeBytes(buf: Uint8Array) {
+	encodeBytes(buf: Uint8Array, size = 0) {
 		let hex = "";
 		for (let i = 0, n = buf.length; i < n; i++) hex += U8(buf[i]);
-		return this.encodeBigInt(BigInt(`0x${hex}`));
+		return this.encodeBigInt(BigInt(`0x${hex}`), size);
 	}
 
 	decode(x: string) {
@@ -83,3 +83,6 @@ export class BaseN implements IBase {
 		return Math.ceil(Math.log(x) / Math.log(this.N));
 	}
 }
+
+const __pad = (x: string, size: number, fill: string) =>
+	size - x.length > 0 ? fill.repeat(size - x.length) + x : x;

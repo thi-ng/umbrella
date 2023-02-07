@@ -4,24 +4,32 @@ export interface IBase {
 
 	/**
 	 * Encodes `x` into a baseN encoded string. `x` MUST be < 2^53. Use
-	 * `encodeBigInt()` for arbitrary values.
+	 * `encodeBigInt()` for arbitrary values. If the optional `size > 0` the
+	 * resulting string will be "zero padded" (using the zero-equivalent digit)
+	 * to given size.
 	 *
 	 * @param x -
+	 * @param size -
 	 */
 	encode(x: number): string;
 	/**
-	 * Encodes bigint `x` into a baseN encoded string.
+	 * Encodes bigint `x` into a baseN encoded string. If the optional `size >
+	 * 0` the resulting string will be "zero padded" (using the zero-equivalent
+	 * digit) to given size.
 	 *
 	 * @param x -
+	 * @param size -
 	 */
-	encodeBigInt(x: bigint): string;
-
+	encodeBigInt(x: bigint, size?: number): string;
 	/**
-	 * Encodes given byte array into a bigint and then baseN encodes it.
+	 * Encodes given byte array into a bigint and then baseN encodes it. If the
+	 * optional `size > 0` the resulting string will be "zero padded" (using the
+	 * zero-equivalent digit) to given size.
 	 *
 	 * @param buf -
+	 * @param size -
 	 */
-	encodeBytes(buf: Uint8Array): string;
+	encodeBytes(buf: Uint8Array, size?: number): string;
 
 	/**
 	 * Decodes baseN encoded string `x` into a numeric value. Assumes the
