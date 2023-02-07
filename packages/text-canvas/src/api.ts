@@ -167,7 +167,7 @@ export const BARS_H = " ▏▎▍▌▋▊▉█";
 export const BARS_V = " ▁▂▃▄▅▆▇█";
 
 export const SHADES_ASCII_10 = " .-:=+*#%@";
-export const SHADES_ASCII_16 = " .,:|+*=il3GOWQ0";
+export const SHADES_ASCII_16 = " .,-:+=il3GXOQW0";
 
 export const SHADES_BLOCK = " ░▒▓█";
 export const SHADES_BLOCK_ALT = " ▖▞▟█";
