@@ -79,7 +79,8 @@
 	},
 	"files": [
 		"./*.js",
-		"./*.d.ts"
+		"./*.d.ts",
+		"bin"
 	],
 	"exports": {
 		".": {
@@ -90,6 +91,9 @@
 		},
 		"./api": {
 			"default": "./api.js"
+		},
+		"./cli": {
+			"default": "./cli.js"
 		},
 		"./ksuid32": {
 			"default": "./ksuid32.js"
