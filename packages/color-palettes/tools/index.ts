@@ -119,11 +119,11 @@ for (let gid of [...grouped.keys()].sort(compareNumDesc)) {
 
 writeFileSync(`export/table.md`, sections.join("\n\n"));
 
-const RECENT_ID = "014xxHPGJc41M07kL";
+const RECENT_ID = "01ogu1qYNvT6sk91Z";
 
 const recents = Object.keys(THEMES)
 	.sort((a, b) => (a < b ? 1 : a > b ? -1 : 0))
-	.filter((x) => x > RECENT_ID);
+	.filter((x) => x >= RECENT_ID);
 
 const recentPalettes = iterator(
 	comp(
