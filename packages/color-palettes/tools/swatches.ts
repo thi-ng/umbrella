@@ -1,28 +1,30 @@
 import { dotsH, lch } from "@thi.ng/color";
 import { compareByKey, compareNumDesc } from "@thi.ng/compare";
 import { serialize } from "@thi.ng/hiccup";
-import { svg, setPrecision } from "@thi.ng/hiccup-svg";
+import { setPrecision, svg } from "@thi.ng/hiccup-svg";
 import { table } from "@thi.ng/markdown-table";
+import { Z4 } from "@thi.ng/strings";
 import {
 	assocObj,
 	comp,
 	groupByMap,
 	iterator,
-	map,
 	mapcat,
 	mapIndexed,
 	minMax,
-	pairs,
 	partition,
 	pluck,
+	range,
 	range2d,
 	transduce,
 	vals,
 } from "@thi.ng/transducers";
 import { writeFileSync } from "fs";
-import { THEMES } from "../src/index.js";
+import { THEMES } from "./themes.js";
 
 setPrecision(2);
+
+const RECENT_ID = 191;
 
 const BASE_URL =
 	process.argv[2] !== "--local"
@@ -56,11 +58,11 @@ const composition = (theme: string[], i: number) => [
 	]),
 ];
 
-type ThemeStat = { id: string; sortKey: number; key: number; theme: string[] };
+type ThemeStat = { id: number; sortKey: number; key: number; theme: string[] };
 
 const themeStats = transduce(
-	map(([id, theme]) => {
-		const lchTheme = THEMES[<keyof typeof THEMES>id].map((x) => lch(x));
+	mapIndexed((id, theme) => {
+		const lchTheme = theme.map((x) => lch(x));
 		const [_, maxC] = transduce(pluck("c"), minMax(), lchTheme);
 		// const meanC = transduce(pluck("c"), mean(), lchTheme);
 		// const hue = transduce(pluck("h"), mean(), lchTheme);
@@ -69,7 +71,7 @@ const themeStats = transduce(
 		return <any>[id, { id, key, sortKey: maxC, theme }];
 	}),
 	assocObj<ThemeStat>(),
-	pairs(THEMES)
+	THEMES
 );
 
 const grouped: Map<number, ThemeStat[]> = groupByMap(
@@ -106,8 +108,8 @@ for (let gid of [...grouped.keys()].sort(compareNumDesc)) {
 				)
 			)
 		);
-		writeFileSync(`export/${id}.svg`, doc);
-		curr.push([id, `![](${BASE_URL}/${id}.svg)`]);
+		writeFileSync(`export/${Z4(id)}.svg`, doc);
+		curr.push([String(id), `![](${BASE_URL}/${Z4(id)}.svg)`]);
 		if (curr.length == 3) {
 			rows.push(curr.map((x) => x[1]));
 			rows.push(curr.map((x) => x[0]));
@@ -119,18 +121,15 @@ for (let gid of [...grouped.keys()].sort(compareNumDesc)) {
 
 writeFileSync(`export/table.md`, sections.join("\n\n"));
 
-const RECENT_ID = "01ogu1qYNvT6sk91Z";
-
-const recents = Object.keys(THEMES)
-	.sort((a, b) => (a < b ? 1 : a > b ? -1 : 0))
-	.filter((x) => x >= RECENT_ID);
-
 const recentPalettes = iterator(
 	comp(
 		partition(3, true),
-		mapcat((ids) => [ids.map((id) => `![](${BASE_URL}/${id}.svg)`), ids])
+		mapcat((ids) => [
+			ids.map((id) => `![](${BASE_URL}/${Z4(id)}.svg)`),
+			ids,
+		])
 	),
-	recents
+	range(THEMES.length - 1, RECENT_ID - 1)
 );
 
 writeFileSync(
