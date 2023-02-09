@@ -222,6 +222,9 @@
 		"./hsv/hsv": {
 			"default": "./hsv/hsv.js"
 		},
+		"./hue": {
+			"default": "./hue.js"
+		},
 		"./int/int-css": {
 			"default": "./int/int-css.js"
 		},
