@@ -2773,7 +2773,9 @@ __metadata:
   resolution: "@thi.ng/color-palettes@workspace:packages/color-palettes"
   dependencies:
     "@microsoft/api-extractor": ^7.34.2
+    "@thi.ng/api": ^8.7.0
     "@thi.ng/base-n": ^2.3.13
+    "@thi.ng/color": ^5.2.18
     "@thi.ng/errors": ^2.2.9
     "@thi.ng/hex": ^2.3.5
     "@thi.ng/testament": ^0.3.10

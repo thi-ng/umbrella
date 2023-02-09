@@ -1,7 +1,7 @@
 {
 	"name": "@thi.ng/color-palettes",
 	"version": "0.9.9",
-	"description": "Collection of 200+ image based color palettes (extracted via k-means clustering)",
+	"description": "Collection of 200+ image based color themes & composable theme query filters",
 	"type": "module",
 	"module": "./index.js",
 	"typings": "./index.d.ts",
@@ -36,7 +36,9 @@
 		"tool:swatches": "tools:node-esm tools/swatches.ts"
 	},
 	"dependencies": {
+		"@thi.ng/api": "^8.7.0",
 		"@thi.ng/base-n": "^2.3.13",
+		"@thi.ng/color": "^5.2.18",
 		"@thi.ng/errors": "^2.2.9",
 		"@thi.ng/hex": "^2.3.5"
 	},
@@ -75,6 +77,9 @@
 		},
 		"./api": {
 			"default": "./api.js"
+		},
+		"./filter": {
+			"default": "./filter.js"
 		},
 		"./theme": {
 			"default": "./theme.js"
