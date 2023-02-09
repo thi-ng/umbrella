@@ -48,7 +48,7 @@ For Node.js REPL:
 const kMeans = await import("@thi.ng/k-means");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 906 bytes
+Package sizes (brotli'd, pre-treeshake): ESM: 878 bytes
 
 ## Dependencies
 
@@ -82,7 +82,7 @@ import { kmeans, meansLatLon } from "@thi.ng/k-means";
 import { HAVERSINE_LATLON } from "@thi.ng/distance";
 
 // data from: https://simplemaps.com/data/world-cities
-const items = [
+const cities = [
     { id: "berlin", latlon: [52.5167, 13.3833] },
     { id: "boston", latlon: [42.3188, -71.0846] },
     { id: "detroit", latlon: [42.3834, -83.1024] },
@@ -99,7 +99,7 @@ const items = [
 // cluster based on lat/lon
 const clusters = kmeans(
     3,
-    items.map((x) => x.latlon),
+    cities.map((x) => x.latlon),
     {
         // custom centroid calc for geo locations
         // https://docs.thi.ng/umbrella/k-means/modules.html#meansLatLon
@@ -111,7 +111,7 @@ const clusters = kmeans(
 
 // print each cluster
 for (let c of clusters) {
-    console.log(c.items.map((i) => items[i].id));
+    console.log(c.items.map((i) => cities[i].id));
 }
 
 // [ 'boston', 'detroit', 'new york', 'philadelphia' ]

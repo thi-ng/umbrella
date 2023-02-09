@@ -19,6 +19,7 @@ This project is part of the
 - [Related packages](#related-packages)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
+- [Usage examples](#usage-examples)
 - [API](#api)
 - [Authors](#authors)
 - [License](#license)
@@ -121,7 +122,7 @@ For Node.js REPL:
 const distance = await import("@thi.ng/distance");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 1.11 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 1.15 KB
 
 ## Dependencies
 
@@ -131,6 +132,18 @@ Package sizes (brotli'd, pre-treeshake): ESM: 1.11 KB
 - [@thi.ng/heaps](https://github.com/thi-ng/umbrella/tree/develop/packages/heaps)
 - [@thi.ng/math](https://github.com/thi-ng/umbrella/tree/develop/packages/math)
 - [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors)
+
+## Usage examples
+
+Several demos in this repo's
+[/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
+directory are using this package.
+
+A selection:
+
+| Screenshot                                                                                                           | Description                               | Live demo                                           | Source                                                                           |
+|:---------------------------------------------------------------------------------------------------------------------|:------------------------------------------|:----------------------------------------------------|:---------------------------------------------------------------------------------|
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/geom-knn-hash.jpg" width="240"/> | K-nearest neighbor search in an hash grid | [Demo](https://demo.thi.ng/umbrella/geom-knn-hash/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/geom-knn-hash) |
 
 ## API
 

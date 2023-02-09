@@ -60,7 +60,7 @@ For Node.js REPL:
 const errors = await import("@thi.ng/errors");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 502 bytes
+Package sizes (brotli'd, pre-treeshake): ESM: 497 bytes
 
 ## Dependencies
 

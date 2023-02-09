@@ -283,7 +283,7 @@ For Node.js REPL:
 const wasmApiDom = await import("@thi.ng/wasm-api-dom");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 4.08 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 4.16 KB
 
 ## Dependencies
 

@@ -734,7 +734,7 @@ For Node.js REPL:
 const wasmApiBindgen = await import("@thi.ng/wasm-api-bindgen");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 5.93 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 5.96 KB
 
 ## Dependencies
 

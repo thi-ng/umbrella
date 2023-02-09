@@ -55,7 +55,7 @@ For Node.js REPL:
 const api = await import("@thi.ng/api");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 2.15 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 2.30 KB
 
 ## Dependencies
 

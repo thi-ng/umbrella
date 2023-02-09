@@ -75,7 +75,7 @@ For Node.js REPL:
 const csv = await import("@thi.ng/csv");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 1.52 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 1.53 KB
 
 ## Dependencies
 

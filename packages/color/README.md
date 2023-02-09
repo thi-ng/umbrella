@@ -571,7 +571,7 @@ concatenation (see `concat()`) for more efficient application.
 
 ## Support packages
 
-- [@thi.ng/color-palettes](https://github.com/thi-ng/umbrella/tree/develop/packages/color-palettes) - Collection of 190+ image based color palettes
+- [@thi.ng/color-palettes](https://github.com/thi-ng/umbrella/tree/develop/packages/color-palettes) - Collection of 200+ image based color themes & composable theme query filters
 
 ## Related packages
 
@@ -598,7 +598,7 @@ For Node.js REPL:
 const color = await import("@thi.ng/color");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 15.21 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 15.25 KB
 
 ## Dependencies
 

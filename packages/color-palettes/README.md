@@ -26,7 +26,24 @@ This project is part of the
 
 ## About
 
-Collection of 200+ image based color palettes (extracted via k-means clustering). This is a support package for [@thi.ng/color](https://github.com/thi-ng/umbrella/tree/develop/packages/color).. (though no dependency on parent package)
+Collection of 200+ image based color themes & composable theme query filters. This is a support package for [@thi.ng/color](https://github.com/thi-ng/umbrella/tree/develop/packages/color)..
+
+Themes can be obtained as CSS hex colors, LCH or sRGB color vectors (see [thi.ng/color readme](https://github.com/thi-ng/umbrella/tree/develop/packages/color) for details).
+
+Additionally, the themes/palettes can be filtered/queried via arbitrary predicate functions and the ones provided:
+
+- [`chroma()`](https://docs.thi.ng/umbrella/color-palettes/functions/chroma.html)
+- [`hue()`](https://docs.thi.ng/umbrella/color-palettes/functions/hue.html)
+- [`luma()`](https://docs.thi.ng/umbrella/color-palettes/functions/luma.html)
+- [`proximityLCH()`](https://docs.thi.ng/umbrella/color-palettes/functions/promixityLCH.html)
+- [`proximityRGB()`](https://docs.thi.ng/umbrella/color-palettes/functions/promixityRGB.html)
+
+Custom filters can be defines via:
+
+- [`defFilter()`](https://docs.thi.ng/umbrella/color-palettes/functions/defFilter.html)
+- [`compFilter()`](https://docs.thi.ng/umbrella/color-palettes/functions/compFilter.html)
+
+See [code examples](#usage) further below...
 
 ## Recent additions
 
@@ -231,11 +248,13 @@ For Node.js REPL:
 const colorPalettes = await import("@thi.ng/color-palettes");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 4.06 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 4.50 KB
 
 ## Dependencies
 
+- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
 - [@thi.ng/base-n](https://github.com/thi-ng/umbrella/tree/develop/packages/base-n)
+- [@thi.ng/color](https://github.com/thi-ng/umbrella/tree/develop/packages/color)
 - [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
 - [@thi.ng/hex](https://github.com/thi-ng/umbrella/tree/develop/packages/hex)
 
@@ -265,15 +284,25 @@ asCSS(7);
 // ...or as normalized sRGB colors (e.g. for WebGL)
 asRGB(7)
 // [
-//   [ 0.1843137254901961, 0.09411764705882353, 0.39215686274509803, 1 ],
-//   [ 0.8941176470588236, 0.011764705882352941, 0.00784313725490196, 1 ],
-//   [ 0.9490196078431372, 0.3607843137254902, 0.13333333333333333, 1 ],
-//   [ 0.8509803921568627, 0.5294117647058824, 0.7411764705882353, 1 ],
-//   [ 0.26666666666666666, 0.7137254901960784, 0.9058823529411765, 1 ],
-//   [ 0.8901960784313725, 0.8549019607843137, 0.8666666666666667, 1 ]
+//   $Color [srgb] { buf: [ 0.1843137254901961, 0.09411764705882353, 0.39215686274509803, 1 ] },
+//   $Color [srgb] { buf: [ 0.8941176470588236, 0.01176470588235294, 0.00784313725490196, 1 ] },
+//   $Color [srgb] { buf: [ 0.9490196078431372, 0.3607843137254902, 0.13333333333333333, 1 ] },
+//   $Color [srgb] { buf: [ 0.8509803921568627, 0.5294117647058824, 0.7411764705882353, 1 ] },
+//   $Color [srgb] { buf: [ 0.26666666666666666, 0.7137254901960784, 0.9058823529411765, 1 ] },
+//   $Color [srgb] { buf: [ 0.8901960784313725, 0.8549019607843137, 0.8666666666666667, 1 ] }
 // ]
 
-// obtaining multiple themes
+asLCH(7)
+// [
+//   $Color [lch] { buf: [ 0.15797892652137088, 0.49615468001539725, 0.842100407558194, 1 ] },
+//   $Color [lch] { buf: [ 0.4867485453448416, 0.9761480104088418, 0.11297366790826968, 1 ] },
+//   $Color [lch] { buf: [ 0.5945798809377795, 0.8338400414305036, 0.1303121912233266, 1 ] },
+//   $Color [lch] { buf: [ 0.6643751725923083, 0.4049427929839432, 0.9415908177143242, 1 ] },
+//   $Color [lch] { buf: [ 0.6922992189834556, 0.4061292095121689, 0.662063627151946, 1 ] },
+//   $Color [lch] { buf: [ 0.8784094632887679, 0.035905272403327554, 0.9856917205639929, 1 ] }
+// ]
+
+// obtaining multiple themes (by ID)
 
 [...cssThemes(100, 115, 125)]
 // [
@@ -285,20 +314,53 @@ asRGB(7)
 [...rgbThemes(100, 115, 125)]
 // [
 //   [
-//     [ 0.4470588235294118, 0.33725490196078434, 0.2901960784313726, 1 ],
-//     [ 0.6352941176470588, 0.6039215686274509, 0.6352941176470588, 1 ],
-//     [ 0.07058823529411765, 0.615686274509804, 0.6705882352941176, 1 ],
-//     [ 0.9686274509803922, 0.5372549019607843, 0.08235294117647059, 1 ],
-//     [ 0.8784313725490196, 0.6509803921568628, 0.3411764705882353, 1 ],
-//     [ 0.9529411764705882, 0.8196078431372549, 0.6627450980392157, 1 ]
+//     $Color [srgb] { offset: 0, stride: 1, buf: [Array] },
+//     $Color [srgb] { offset: 0, stride: 1, buf: [Array] },
+//     $Color [srgb] { offset: 0, stride: 1, buf: [Array] },
+//     $Color [srgb] { offset: 0, stride: 1, buf: [Array] },
+//     $Color [srgb] { offset: 0, stride: 1, buf: [Array] },
+//     $Color [srgb] { offset: 0, stride: 1, buf: [Array] }
 //   ],
 //   ...
 // ]
+
+// query themes with predicates
+
+// pre-compose a combined query filter
+const pastels = compFilter(
+  // require all theme colors to have max 25% chroma
+  chroma(0, 0.25),
+  // require at least 3 theme colors to have min 50% luma
+  luma(0.5, 1, 3)
+);
+
+[...cssThemes(pastels)]
+// [
+//   [ '#453f38', '#746b5d', '#b39777', '#c1c2b2', '#e3dccf', '#f1ede7' ],
+//   [ '#857b84', '#b1a7b0', '#d0c7d0', '#e7e0e8', '#faeceb', '#e4e9fa' ]
+// ]
+
+// ..or directly provide one or more predicates directly
+
+[...cssThemes(chroma(0, 0.25), luma(0.5, 1, 3))]
+// [
+//   [ '#453f38', '#746b5d', '#b39777', '#c1c2b2', '#e3dccf', '#f1ede7' ],
+//   [ '#857b84', '#b1a7b0', '#d0c7d0', '#e7e0e8', '#faeceb', '#e4e9fa' ]
+// ]
+
+// select themes with at least 2 colors near given color (tolerance/distance = 0.33)
+[...cssThemes(proximityRGB("#f00", 0.33, 2))]
+[
+  [ '#411c20', '#b71022', '#f63a3a', '#c1c3d1', '#8a858e', '#5c555d' ],
+  [ '#f0181f', '#b51c1c', '#b4a8a2', '#dcd4db', '#75787a', '#3c373b' ],
+  [ '#252426', '#ad0401', '#e90408', '#fc9518', '#62c3d9', '#b6e7f2' ],
+  [ '#4e0101', '#850503', '#bb2609', '#e54908', '#f87c23', '#fdc170' ]
+]
 ```
 
 Also see the [swatch
 generator](https://github.com/thi-ng/umbrella/blob/develop/packages/color-palettes/tools/swatches.ts)
-as usage example...
+as another usage example...
 
 ## Authors
 

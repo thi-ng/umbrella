@@ -250,7 +250,7 @@ For Node.js REPL:
 const geomAxidraw = await import("@thi.ng/geom-axidraw");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 1.31 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 1.32 KB
 
 ## Dependencies
 
