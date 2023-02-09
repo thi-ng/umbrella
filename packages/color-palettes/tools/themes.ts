@@ -1,7 +1,7 @@
 /**
  * This is the place where new themes can be added...
  *
- * APPEND ONLY!!!
+ * APPEND ONLY!!! (or cause breaking changes)
  */
 export const THEMES = [
 	["#18132c", "#492f5e", "#775692", "#bf89bb", "#ecb1d0", "#fbd0c8"],
