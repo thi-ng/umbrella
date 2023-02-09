@@ -58,6 +58,7 @@ export * from "./color-range.js";
 export * from "./cosine-gradients.js";
 export * from "./distance.js";
 export * from "./gradients.js";
+export * from "./hue.js";
 export * from "./invert.js";
 export * from "./is-black.js";
 export * from "./is-gamut.js";
