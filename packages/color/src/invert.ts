@@ -39,7 +39,7 @@ export const invert = defmulti<Color | null, TypedColor<any>, Color>(
 	{
 		hcy: "hsv",
 		hsi: "hsv",
-		hsl: "hsl",
+		hsl: "hsv",
 		labD65: "labD50",
 		oklab: "labD50",
 		srgb: "rgb",
