@@ -2,7 +2,7 @@ export const em = (x: number) => `${x}em`;
 export const ex = (x: number) => `${x}ex`;
 export const rem = (x: number) => `${x}rem`;
 export const percent = (x: number) => `${x}%`;
-export const px = (x: number) => `${x >>> 0}px`;
+export const px = (x: number) => `${x | 0}px`;
 export const vh = (x: number) => `${x}vh`;
 export const vw = (x: number) => `${x}vw`;
 
