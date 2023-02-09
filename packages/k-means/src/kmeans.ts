@@ -3,7 +3,6 @@ import { argmin } from "@thi.ng/distance/argmin";
 import { DIST_SQ } from "@thi.ng/distance/squared";
 import { assert } from "@thi.ng/errors/assert";
 import { SYSTEM } from "@thi.ng/random/system";
-import { uniqueIndices } from "@thi.ng/random/unique-indices";
 import { weightedRandom } from "@thi.ng/random/weighted-random";
 import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
 import { add } from "@thi.ng/vectors/add";
@@ -14,7 +13,8 @@ import type { CentroidStrategy, Cluster, KMeansOpts } from "./api.js";
 
 /**
  * Takes an array of n-dimensional `samples` and attempts to assign them to up
- * to `k` clusters, using the behavior defined by (optionally) given `opts`.
+ * to `k` clusters (might produce less), using the behavior defined by
+ * (optionally) given `opts`.
  *
  * @remarks
  * https://en.wikipedia.org/wiki/K-medians_clustering
@@ -40,25 +40,18 @@ export const kmeans = <T extends ReadonlyVec>(
 	assert(centroidIDs.length > 0, `missing initial centroids`);
 	k = centroidIDs.length;
 	const centroids: Vec[] = centroidIDs.map((i) => samples[i]);
-	const clusters: number[] = [];
+	const clusters = new Uint32Array(num).fill(k);
 	let update = true;
-	outer: while (update && maxIter-- > 0) {
+	while (update && maxIter-- > 0) {
 		update = assign(samples, centroids, clusters, dist);
+		if (!update) break;
 		for (let i = 0; i < k; i++) {
 			const impl = strategy(dim);
 			for (let j = 0; j < num; j++) {
 				i === clusters[j] && impl.update(samples[j]);
 			}
 			const centroid = impl.finish();
-			if (centroid) {
-				centroids[i] = centroid;
-			} else {
-				const numC = centroidIDs.length;
-				uniqueIndices(1, num, centroidIDs, undefined, rnd);
-				if (centroidIDs.length === numC) break outer;
-				centroids[i] = samples[centroidIDs[numC]];
-				update = true;
-			}
+			if (centroid) centroids[i] = centroid;
 		}
 	}
 	return buildClusters(centroids, clusters);
@@ -120,30 +113,34 @@ export const initKmeanspp = <T extends ReadonlyVec>(
 const assign = <T extends ReadonlyVec>(
 	samples: T[],
 	centroids: ReadonlyVec[],
-	clusters: number[],
+	assignments: Uint32Array,
 	dist: IDistance<ReadonlyVec>
 ) => {
 	let update = false;
-	for (let i = 0, n = samples.length; i < n; i++) {
+	for (let i = samples.length; i-- > 0; ) {
 		const id = argmin(samples[i], centroids, dist)!;
-		if (id !== clusters[i]) {
-			clusters[i] = id;
+		if (id !== assignments[i]) {
+			assignments[i] = id;
 			update = true;
 		}
 	}
 	return update;
 };
 
-const buildClusters = (centroids: ReadonlyVec[], clusters: number[]) => {
-	const indices: Cluster[] = [];
-	for (let i = 0, n = clusters.length; i < n; i++) {
-		const c = clusters[i];
+const buildClusters = (centroids: ReadonlyVec[], assignments: Uint32Array) => {
+	const clusters: Cluster[] = [];
+	for (let i = 0, n = assignments.length; i < n; i++) {
+		const id = assignments[i];
 		(
-			indices[c] ||
-			(indices[c] = { id: c, centroid: centroids[c], items: [] })
+			clusters[id] ||
+			(clusters[id] = {
+				id,
+				centroid: centroids[id],
+				items: [],
+			})
 		).items.push(i);
 	}
-	return indices;
+	return clusters.filter((x) => !!x);
 };
 
 /**
