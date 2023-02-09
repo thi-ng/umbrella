@@ -10,6 +10,7 @@ import type {
 	ThemePredicate,
 } from "./api.js";
 import { BINARY, NUM_THEMES } from "./binary.js";
+import { compFilter } from "./filter.js";
 
 /**
  * Returns theme for given ID as thi.ng/color sRGB color vectors.
@@ -64,53 +65,41 @@ export const asCSS = (id: number) => {
  * Yields iterator of RGB themes (via {@link asRGB}). Unless specific theme IDs
  * are provided, yields all themes.
  *
- * @param ids
+ * @param preds
  */
-export function rgbThemes(): IterableIterator<RGBTheme>;
-export function rgbThemes(pred: ThemePredicate): IterableIterator<RGBTheme>;
-export function rgbThemes(...ids: number[]): IterableIterator<RGBTheme>;
-export function rgbThemes(pred?: ThemePredicate | number, ...ids: number[]) {
-	return __themes(asRGB, pred, ids);
-}
+export const rgbThemes = (...preds: ThemePredicate[] | number[]) =>
+	__themes(asRGB, preds);
 
 /**
  * Yields iterator of LCH themes (via {@link asLCH}). Unless specific theme IDs
  * are provided, yields all themes.
  *
- * @param ids
+ * @param preds
  */
-export function lchThemes(): IterableIterator<LCHTheme>;
-export function lchThemes(pred: ThemePredicate): IterableIterator<LCHTheme>;
-export function lchThemes(...ids: number[]): IterableIterator<LCHTheme>;
-export function lchThemes(pred?: ThemePredicate | number, ...ids: number[]) {
-	return __themes(asLCH, pred, ids);
-}
+export const lchThemes = (...preds: ThemePredicate[] | number[]) =>
+	__themes(asLCH, preds);
 
 /**
  * Yields iterator of CSS themes (via {@link asCSS}). Unless specific theme IDs
  * are provided, yields all themes.
  *
- * @param ids
+ * @param preds
  */
-export function cssThemes(): IterableIterator<CSSTheme>;
-export function cssThemes(pred: ThemePredicate): IterableIterator<CSSTheme>;
-export function cssThemes(...ids: number[]): IterableIterator<CSSTheme>;
-export function cssThemes(pred?: ThemePredicate | number, ...ids: number[]) {
-	return __themes(asCSS, pred, ids);
-}
+export const cssThemes = (...preds: ThemePredicate[] | number[]) =>
+	__themes(asCSS, preds);
 
 function* __themes<T extends Theme>(
 	fn: (id: number) => T,
-	pred: ThemePredicate | number | undefined,
-	ids: number[]
+	preds: ThemePredicate[] | number[]
 ) {
-	if (typeof pred === "function") {
+	if (preds.length && typeof preds[0] === "function") {
+		const pred = compFilter(...(<ThemePredicate[]>preds));
 		for (let i = 0; i < NUM_THEMES; i++) {
 			const theme = fn(i);
 			if (pred(theme)) yield theme;
 		}
-	} else if (pred !== undefined && ids.length) {
-		for (let id of [pred, ...ids]) yield fn(id);
+	} else if (preds.length) {
+		for (let id of <number[]>preds) yield fn(id);
 	} else {
 		for (let i = 0; i < NUM_THEMES; i++) yield fn(i);
 	}
