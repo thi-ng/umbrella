@@ -194,6 +194,18 @@ group(
 			}
 		},
 
+		fuzzSetDelete: () => {
+			const s = defSortedMap<number, number>(null, {
+				compare: (a, b) => a - b,
+			});
+			const N = 1e5;
+			const M = 1e4;
+			for (let i = 0; i < N; i++) {
+				s.set((Math.random() * M) | 0, i);
+				s.delete((Math.random() * M) | 0);
+			}
+		},
+
 		updateValue: () => {
 			m = defSortedMap(
 				[

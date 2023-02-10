@@ -257,7 +257,7 @@ export class SortedMap<K, V> extends Map<K, V> {
 			node = node.up;
 		}
 		// patch up head
-		while ($this.head.next && $this.head.down) {
+		while (!$this.head.next && $this.head.down) {
 			$this.head = $this.head.down;
 			$this.head.up = undefined;
 		}
