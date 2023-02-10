@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/dot",
-	"version": "2.1.28",
+	"version": "2.1.29",
 	"description": "Graphviz document abstraction & serialization to DOT format",
 	"type": "module",
 	"module": "./index.js",
@@ -34,12 +34,12 @@
 		"test": "testament test"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.7.1",
-		"@thi.ng/checks": "^3.3.8"
+		"@thi.ng/api": "^8.7.2",
+		"@thi.ng/checks": "^3.3.9"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.34.2",
-		"@thi.ng/testament": "^0.3.10",
+		"@thi.ng/testament": "^0.3.11",
 		"rimraf": "^4.1.2",
 		"tools": "workspace:^",
 		"typedoc": "^0.23.24",
@@ -83,5 +83,6 @@
 		],
 		"status": "beta",
 		"year": 2018
-	}
+	},
+	"gitHead": "2b5a99a8af71670780875637299be9118b01084d\n"
 }

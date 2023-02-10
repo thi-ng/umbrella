@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/shader-ast-glsl",
-	"version": "0.4.39",
+	"version": "0.4.40",
 	"description": "Customizable GLSL codegen for @thi.ng/shader-ast",
 	"type": "module",
 	"module": "./index.js",
@@ -34,14 +34,14 @@
 		"test": "testament test"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.7.1",
-		"@thi.ng/checks": "^3.3.8",
-		"@thi.ng/errors": "^2.2.10",
-		"@thi.ng/shader-ast": "^0.12.39"
+		"@thi.ng/api": "^8.7.2",
+		"@thi.ng/checks": "^3.3.9",
+		"@thi.ng/errors": "^2.2.11",
+		"@thi.ng/shader-ast": "^0.12.40"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.34.2",
-		"@thi.ng/testament": "^0.3.10",
+		"@thi.ng/testament": "^0.3.11",
 		"rimraf": "^4.1.2",
 		"tools": "workspace:^",
 		"typedoc": "^0.23.24",
@@ -87,5 +87,6 @@
 			"webgl"
 		],
 		"year": 2019
-	}
+	},
+	"gitHead": "2b5a99a8af71670780875637299be9118b01084d\n"
 }

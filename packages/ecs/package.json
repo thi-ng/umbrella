@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/ecs",
-	"version": "0.7.39",
+	"version": "0.7.40",
 	"description": "Entity Component System based around typed arrays & sparse sets",
 	"type": "module",
 	"module": "./index.js",
@@ -34,22 +34,22 @@
 		"test": "testament test"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.7.1",
-		"@thi.ng/associative": "^6.2.25",
-		"@thi.ng/binary": "^3.3.18",
-		"@thi.ng/checks": "^3.3.8",
-		"@thi.ng/dcons": "^3.2.32",
-		"@thi.ng/errors": "^2.2.10",
-		"@thi.ng/idgen": "^2.1.26",
-		"@thi.ng/logger": "^1.4.8",
-		"@thi.ng/malloc": "^6.1.30",
-		"@thi.ng/transducers": "^8.3.32",
+		"@thi.ng/api": "^8.7.2",
+		"@thi.ng/associative": "^6.2.26",
+		"@thi.ng/binary": "^3.3.19",
+		"@thi.ng/checks": "^3.3.9",
+		"@thi.ng/dcons": "^3.2.33",
+		"@thi.ng/errors": "^2.2.11",
+		"@thi.ng/idgen": "^2.1.27",
+		"@thi.ng/logger": "^1.4.9",
+		"@thi.ng/malloc": "^6.1.31",
+		"@thi.ng/transducers": "^8.3.33",
 		"tslib": "^2.5.0"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.34.2",
-		"@thi.ng/equiv": "^2.1.18",
-		"@thi.ng/testament": "^0.3.10",
+		"@thi.ng/equiv": "^2.1.19",
+		"@thi.ng/testament": "^0.3.11",
 		"rimraf": "^4.1.2",
 		"tools": "workspace:^",
 		"typedoc": "^0.23.24",
@@ -121,5 +121,6 @@
 	"thi.ng": {
 		"status": "alpha",
 		"year": 2019
-	}
+	},
+	"gitHead": "2b5a99a8af71670780875637299be9118b01084d\n"
 }

@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/color-palettes",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "Collection of 200+ image based color themes & composable theme query filters",
 	"type": "module",
 	"module": "./index.js",
@@ -36,16 +36,16 @@
 		"tool:swatches": "tools:node-esm tools/swatches.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.7.1",
-		"@thi.ng/base-n": "^2.4.0",
-		"@thi.ng/checks": "^3.3.8",
-		"@thi.ng/color": "^5.3.0",
-		"@thi.ng/errors": "^2.2.10",
-		"@thi.ng/hex": "^2.3.5"
+		"@thi.ng/api": "^8.7.2",
+		"@thi.ng/base-n": "^2.4.1",
+		"@thi.ng/checks": "^3.3.9",
+		"@thi.ng/color": "^5.3.1",
+		"@thi.ng/errors": "^2.2.11",
+		"@thi.ng/hex": "^2.3.6"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.34.2",
-		"@thi.ng/testament": "^0.3.10",
+		"@thi.ng/testament": "^0.3.11",
 		"rimraf": "^4.1.2",
 		"tools": "workspace:^",
 		"typedoc": "^0.23.24",
@@ -89,5 +89,6 @@
 	"thi.ng": {
 		"parent": "@thi.ng/color",
 		"year": 2021
-	}
+	},
+	"gitHead": "2b5a99a8af71670780875637299be9118b01084d\n"
 }

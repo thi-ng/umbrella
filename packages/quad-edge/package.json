@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/quad-edge",
-	"version": "3.1.22",
+	"version": "3.1.23",
 	"description": "Quadedge data structure after Guibas & Stolfi",
 	"type": "module",
 	"module": "./index.js",
@@ -34,11 +34,11 @@
 		"test": "testament test"
 	},
 	"dependencies": {
-		"@thi.ng/errors": "^2.2.10"
+		"@thi.ng/errors": "^2.2.11"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.34.2",
-		"@thi.ng/testament": "^0.3.10",
+		"@thi.ng/testament": "^0.3.11",
 		"rimraf": "^4.1.2",
 		"tools": "workspace:^",
 		"typedoc": "^0.23.24",
@@ -77,5 +77,6 @@
 			"geom-voronoi"
 		],
 		"year": 2015
-	}
+	},
+	"gitHead": "2b5a99a8af71670780875637299be9118b01084d\n"
 }

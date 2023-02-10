@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/checks",
-	"version": "3.3.8",
+	"version": "3.3.9",
 	"description": "Collection of 70+ type, feature & value checks",
 	"type": "module",
 	"module": "./index.js",
@@ -42,7 +42,7 @@
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.34.2",
-		"@thi.ng/testament": "^0.3.10",
+		"@thi.ng/testament": "^0.3.11",
 		"@types/node": "^18.11.18",
 		"rimraf": "^4.1.2",
 		"tools": "workspace:^",

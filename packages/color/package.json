@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/color",
-	"version": "5.3.0",
+	"version": "5.3.1",
 	"description": "Array-based color types, CSS parsing, conversions, transformations, declarative theme generation, gradients, presets",
 	"type": "module",
 	"module": "./index.js",
@@ -36,23 +36,23 @@
 		"tool:swatches": "tools:node-esm tools/index.ts"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.7.1",
-		"@thi.ng/arrays": "^2.5.3",
-		"@thi.ng/binary": "^3.3.18",
-		"@thi.ng/checks": "^3.3.8",
-		"@thi.ng/compare": "^2.1.24",
-		"@thi.ng/compose": "^2.1.26",
-		"@thi.ng/defmulti": "^2.1.29",
-		"@thi.ng/errors": "^2.2.10",
-		"@thi.ng/math": "^5.4.2",
-		"@thi.ng/random": "^3.3.23",
-		"@thi.ng/strings": "^3.3.25",
-		"@thi.ng/transducers": "^8.3.32",
-		"@thi.ng/vectors": "^7.6.1"
+		"@thi.ng/api": "^8.7.2",
+		"@thi.ng/arrays": "^2.5.4",
+		"@thi.ng/binary": "^3.3.19",
+		"@thi.ng/checks": "^3.3.9",
+		"@thi.ng/compare": "^2.1.25",
+		"@thi.ng/compose": "^2.1.27",
+		"@thi.ng/defmulti": "^2.1.30",
+		"@thi.ng/errors": "^2.2.11",
+		"@thi.ng/math": "^5.4.3",
+		"@thi.ng/random": "^3.3.24",
+		"@thi.ng/strings": "^3.3.26",
+		"@thi.ng/transducers": "^8.3.33",
+		"@thi.ng/vectors": "^7.6.2"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.34.2",
-		"@thi.ng/testament": "^0.3.10",
+		"@thi.ng/testament": "^0.3.11",
 		"rimraf": "^4.1.2",
 		"tools": "workspace:^",
 		"typedoc": "^0.23.24",
@@ -426,5 +426,6 @@
 			"pixel",
 			"vectors"
 		]
-	}
+	},
+	"gitHead": "2b5a99a8af71670780875637299be9118b01084d\n"
 }

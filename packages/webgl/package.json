@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/webgl",
-	"version": "6.3.1",
+	"version": "6.3.2",
 	"description": "WebGL & GLSL abstraction layer",
 	"type": "module",
 	"module": "./index.js",
@@ -38,26 +38,26 @@
 		"test": "testament test"
 	},
 	"dependencies": {
-		"@thi.ng/adapt-dpi": "^2.2.7",
-		"@thi.ng/api": "^8.7.1",
-		"@thi.ng/associative": "^6.2.25",
-		"@thi.ng/checks": "^3.3.8",
-		"@thi.ng/equiv": "^2.1.18",
-		"@thi.ng/errors": "^2.2.10",
-		"@thi.ng/logger": "^1.4.8",
-		"@thi.ng/matrices": "^2.1.42",
-		"@thi.ng/memoize": "^3.1.24",
-		"@thi.ng/pixel": "^4.1.2",
-		"@thi.ng/shader-ast": "^0.12.39",
-		"@thi.ng/shader-ast-glsl": "^0.4.39",
-		"@thi.ng/shader-ast-stdlib": "^0.13.2",
-		"@thi.ng/transducers": "^8.3.32",
-		"@thi.ng/vector-pools": "^3.1.43",
-		"@thi.ng/vectors": "^7.6.1"
+		"@thi.ng/adapt-dpi": "^2.2.8",
+		"@thi.ng/api": "^8.7.2",
+		"@thi.ng/associative": "^6.2.26",
+		"@thi.ng/checks": "^3.3.9",
+		"@thi.ng/equiv": "^2.1.19",
+		"@thi.ng/errors": "^2.2.11",
+		"@thi.ng/logger": "^1.4.9",
+		"@thi.ng/matrices": "^2.1.43",
+		"@thi.ng/memoize": "^3.1.25",
+		"@thi.ng/pixel": "^4.1.3",
+		"@thi.ng/shader-ast": "^0.12.40",
+		"@thi.ng/shader-ast-glsl": "^0.4.40",
+		"@thi.ng/shader-ast-stdlib": "^0.13.3",
+		"@thi.ng/transducers": "^8.3.33",
+		"@thi.ng/vector-pools": "^3.1.44",
+		"@thi.ng/vectors": "^7.6.2"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.34.2",
-		"@thi.ng/testament": "^0.3.10",
+		"@thi.ng/testament": "^0.3.11",
 		"rimraf": "^4.1.2",
 		"tools": "workspace:^",
 		"typedoc": "^0.23.24",
@@ -218,5 +218,6 @@
 			"vector-pools"
 		],
 		"year": 2014
-	}
+	},
+	"gitHead": "2b5a99a8af71670780875637299be9118b01084d\n"
 }
