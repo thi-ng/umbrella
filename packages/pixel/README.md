@@ -248,13 +248,22 @@ writeFileSync("noise-normal.ppm", asPPM(nmap.as(RGB888)));
 
 ### Dominant color extraction
 
-The `dominantColors()` function applies [k-means
+The
+[`dominantColors()`](https://docs.thi.ng/umbrella/pixel/functions/dominantColors.html)
+function applies [k-means
 clustering](https://github.com/thi-ng/umbrella/tree/develop/packages/k-means) to
 extract the dominant colors from the given image. The clustering can be
 configured. The function returns an array of `{ color, area }` objects (sorted
 by descending area), where `color` is a cluster's dominant color (in the format
 of the source image) and `area` the normalized cluster size (number of selected
 pixels over total number of pixels in the image).
+
+Also see the [dominant colors example project & online
+tool](https://demo.thi.ng/umbrella/dominant-colors/) based on this function.
+Furthermore, the
+[thi.ng/color-palettes](https://github.com/thi-ng/umbrella/tree/develop/packages/color-palettes)
+package provides 200+ curated color themes extracted from images using this
+function...
 
 ![Example image & extracted dominant colors](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/pixel/dominant-colors-01.jpg)
 
