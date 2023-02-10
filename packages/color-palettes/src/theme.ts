@@ -120,6 +120,7 @@ export const lchThemes = (...preds: ThemePredicate[] | number[]) =>
 export const rgbThemes = (...preds: ThemePredicate[] | number[]) =>
 	__themes(asRGB, preds);
 
+/** @internal */
 function* __themes<T extends Theme>(
 	fn: (id: number) => T,
 	preds: ThemePredicate[] | number[]
@@ -137,5 +138,6 @@ function* __themes<T extends Theme>(
 	}
 }
 
+/** @internal */
 const __ensureID = (id: number) =>
 	assert(id >= 0 && id < NUM_THEMES, `invalid theme ID`);
