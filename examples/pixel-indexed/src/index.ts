@@ -1,5 +1,4 @@
-import { THEMES } from "@thi.ng/color-palettes";
-import { parseHex } from "@thi.ng/color/css/parse-css";
+import { asInt } from "@thi.ng/color-palettes";
 import { srgbIntArgb32 } from "@thi.ng/color/srgb/srgb-int";
 import { orderedDither } from "@thi.ng/pixel-dither/ordered";
 import { canvas2d, imagePromise } from "@thi.ng/pixel/canvas";
@@ -35,6 +34,6 @@ import IMG from "./test.jpg";
 	);
 
 	// another version using a preset palette
-	// see https://github.com/thi-ng/umbrella/tree/develop/packages/color-palettes#available-palettes
-	processImage(buf, THEMES["00QMxescYuh8eYT39"].map(parseHex));
+	// see https://github.com/thi-ng/umbrella/tree/develop/packages/color-palettes#all-themes
+	processImage(buf, asInt(50));
 })();
