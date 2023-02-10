@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/hiccup-html",
-	"version": "2.2.6",
+	"version": "2.2.7",
 	"description": "100+ type-checked HTML5 element functions for @thi.ng/hiccup related infrastructure",
 	"type": "module",
 	"module": "./index.js",
@@ -34,7 +34,7 @@
 		"test": "testament test"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.7.0"
+		"@thi.ng/api": "^8.7.1"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.34.2",

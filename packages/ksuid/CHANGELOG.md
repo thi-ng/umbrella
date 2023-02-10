@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2023-02-05T14:42:21Z
+- **Last updated**: 2023-02-10T13:55:30Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,12 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [3.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/ksuid@3.1.0) (2023-02-10)
+
+#### 🚀 Features
+
+- add CLI wrapper ([36fdc08](https://github.com/thi-ng/umbrella/commit/36fdc08))
 
 # [3.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/ksuid@3.0.0) (2023-01-17)
 

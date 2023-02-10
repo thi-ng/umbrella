@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2023-02-05T14:42:21Z
+- **Last updated**: 2023-02-10T13:55:29Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,18 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [6.2.25](https://github.com/thi-ng/umbrella/tree/@thi.ng/associative@6.2.25) (2023-02-10)
+
+#### 🩹 Bug fixes
+
+- [#375](https://github.com/thi-ng/umbrella/issues/375) update .set() for existing keys ([4c1da10](https://github.com/thi-ng/umbrella/commit/4c1da10))
+  - when updating existing keys, add missing value propagation
+    for intermediate nodes
+  - add tests
+- [#375](https://github.com/thi-ng/umbrella/issues/375) fix SortedMap.delete(), add fuzz test ([ccbdfeb](https://github.com/thi-ng/umbrella/commit/ccbdfeb))
+  - fix issue which caused lane corruption and detached heads
+  - add fuzz test repeatedly setting/deleting keys
 
 ### [6.2.24](https://github.com/thi-ng/umbrella/tree/@thi.ng/associative@6.2.24) (2023-02-05)
 

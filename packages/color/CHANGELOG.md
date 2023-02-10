@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2023-02-05T14:42:21Z
+- **Last updated**: 2023-02-10T13:55:29Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,17 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [5.3.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/color@5.3.0) (2023-02-10)
+
+#### 🚀 Features
+
+- add hue() function ([c5c3dd5](https://github.com/thi-ng/umbrella/commit/c5c3dd5))
+- add distLch() ([f1b509d](https://github.com/thi-ng/umbrella/commit/f1b509d))
+
+#### 🩹 Bug fixes
+
+- fix invert() for HSL ([84d0640](https://github.com/thi-ng/umbrella/commit/84d0640))
 
 ## [5.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/color@5.2.0) (2022-09-21)
 

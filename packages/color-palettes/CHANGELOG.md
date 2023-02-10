@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2023-02-05T14:42:21Z
+- **Last updated**: 2023-02-10T13:55:29Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,38 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+# [1.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/color-palettes@1.0.0) (2023-02-10)
+
+#### 🛑 Breaking changes
+
+- major restructuring/updates ([410d99d](https://github.com/thi-ng/umbrella/commit/410d99d))
+- BREAKING CHANGE: entirely new pkg structure & API
+  - themes now stored in single flat byte array
+  - remove need for KSUID theme IDs
+  - add single theme accessors: asCSS()/asRGB()
+  - add multi theme iterators: cssThemes()/rgbThemes()
+  - add new /tools/encode.ts to generate /src/binary.ts
+  - update swatch/table generator
+  - update dependencies
+  - update readme
+  - regenerate & rename assets (swatch files)
+
+#### 🚀 Features
+
+- add 18 new themes ([d9ea6dd](https://github.com/thi-ng/umbrella/commit/d9ea6dd))
+- add LCH support, update iterators ([8f1bf32](https://github.com/thi-ng/umbrella/commit/8f1bf32))
+  - add asLCH(), lchThemes()
+  - return typed colors for theme getters (SRGB/LCH)
+  - update all theme iterators to accept filter predicates or indices
+- add theme filter predicates ([e8e7a23](https://github.com/thi-ng/umbrella/commit/e8e7a23))
+  - add defFilter(), compFilter()
+  - add hue(), chroma(), luma() filters
+  - add proximityRGB/LCH() filters
+- add packed ARGB int format support ([73a3d8e](https://github.com/thi-ng/umbrella/commit/73a3d8e))
+  - add/update types
+  - add asInt(), intThemes()
+  - update deps
 
 ## [0.9.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/color-palettes@0.9.0) (2022-08-23)
 
