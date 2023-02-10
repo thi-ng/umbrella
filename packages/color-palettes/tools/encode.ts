@@ -25,9 +25,11 @@ import { BASE64 } from "@thi.ng/base-n/64";
 
 export const NUM_THEMES = ${THEMES.length};
 
+/** @internal */
 export const BINARY = BASE64.decodeBytes(
 	"${BASE64.encodeBytes(bytes)}",
 	new Uint8Array(NUM_THEMES * 18)
-);`;
+);
+`;
 
 writeFileSync("src/binary.ts", src, "utf-8");
