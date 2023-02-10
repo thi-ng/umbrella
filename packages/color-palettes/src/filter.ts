@@ -57,10 +57,10 @@ export const defFilter =
  *
  * @param filters
 = */
-export const compFilter =
-	(...filters: ThemePredicate[]): ThemePredicate =>
-	(theme) =>
-		filters.every((f) => f(theme));
+export const compFilter = (...filters: ThemePredicate[]): ThemePredicate =>
+	filters.length > 1
+		? (theme) => filters.every((f) => f(theme))
+		: (theme) => filters[0](theme);
 
 /**
  * Theme predicate which ensures colors are within the given normalized hue
@@ -170,8 +170,10 @@ export const proximityRGB = (
 	);
 };
 
+/** @internal */
 const __isLCH = (x: ThemeColor): x is LCH =>
 	!isPrimitive(x) && x.mode === "lch";
 
+/** @internal */
 const __isRGB = (x: ThemeColor): x is SRGB =>
 	!isPrimitive(x) && x.mode === "srgb";
