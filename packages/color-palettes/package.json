@@ -38,6 +38,7 @@
 	"dependencies": {
 		"@thi.ng/api": "^8.7.0",
 		"@thi.ng/base-n": "^2.3.13",
+		"@thi.ng/checks": "^3.3.8",
 		"@thi.ng/color": "^5.2.18",
 		"@thi.ng/errors": "^2.2.9",
 		"@thi.ng/hex": "^2.3.5"

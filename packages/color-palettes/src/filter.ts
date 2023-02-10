@@ -1,3 +1,4 @@
+import { isPrimitive } from "@thi.ng/checks/is-primitive";
 import { distEucledian3, distLch } from "@thi.ng/color/distance";
 import { hsv } from "@thi.ng/color/hsv/hsv";
 import { hue as $hue } from "@thi.ng/color/hue";
@@ -79,7 +80,7 @@ export const compFilter =
  */
 export const hue = (min: number, max: number, threshold?: number) =>
 	defFilter((col) => {
-		let h = $hue(typeof col === "string" ? hsv(col) : col);
+		let h = $hue(isPrimitive(col) ? hsv(col) : col);
 		h = h - Math.floor(h);
 		return min <= max ? h >= min && h <= max : h >= min || h <= max;
 	}, threshold);
@@ -170,7 +171,7 @@ export const proximityRGB = (
 };
 
 const __isLCH = (x: ThemeColor): x is LCH =>
-	typeof x !== "string" && x.mode === "lch";
+	!isPrimitive(x) && x.mode === "lch";
 
 const __isRGB = (x: ThemeColor): x is SRGB =>
-	typeof x !== "string" && x.mode === "srgb";
+	!isPrimitive(x) && x.mode === "srgb";
