@@ -19,7 +19,6 @@ This project is part of the
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
-- [Available palettes](#available-palettes)
   - [Usage](#usage)
 - [Authors](#authors)
 - [License](#license)
@@ -28,13 +27,26 @@ This project is part of the
 
 Collection of 200+ image based color themes & composable theme query filters. This is a support package for [@thi.ng/color](https://github.com/thi-ng/umbrella/tree/develop/packages/color)..
 
-Themes can be obtained as arrays of CSS hex colors (strings), normalized LCH or sRGB color vectors (e.g. for WebGL/WebGPU purposes). See [thi.ng/color readme](https://github.com/thi-ng/umbrella/tree/develop/packages/color) for details.
+Themes can be obtained as arrays of CSS hex colors (strings), packed ARGB ints,
+or normalized LCH/sRGB color vectors (e.g. for WebGL/WebGPU purposes). See
+[thi.ng/color
+readme](https://github.com/thi-ng/umbrella/tree/develop/packages/color) for
+details.
 
-Additionally, the themes/palettes can be iterated, filtered or queried via arbitrary predicate functions and the ones provided:
+Additionally, the themes/palettes can be iterated, filtered or queried via
+arbitrary predicate functions and the ones provided:
+
+Single theme accessors:
+
+- [`asCSS()`](https://docs.thi.ng/umbrella/color-palettes/functions/asCSS.html)
+- [`asInt()`](https://docs.thi.ng/umbrella/color-palettes/functions/asInt.html)
+- [`asLCH()`](https://docs.thi.ng/umbrella/color-palettes/functions/asLCH.html)
+- [`asRGB()`](https://docs.thi.ng/umbrella/color-palettes/functions/asRGB.html)
 
 Iterators:
 
 - [`cssThemes()`](https://docs.thi.ng/umbrella/color-palettes/functions/cssThemes.html)
+- [`intThemes()`](https://docs.thi.ng/umbrella/color-palettes/functions/intThemes.html)
 - [`lchThemes()`](https://docs.thi.ng/umbrella/color-palettes/functions/lchThemes.html)
 - [`rgbThemes()`](https://docs.thi.ng/umbrella/color-palettes/functions/rgbThemes.html)
 
@@ -256,12 +268,13 @@ For Node.js REPL:
 const colorPalettes = await import("@thi.ng/color-palettes");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 4.50 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 4.55 KB
 
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
 - [@thi.ng/base-n](https://github.com/thi-ng/umbrella/tree/develop/packages/base-n)
+- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
 - [@thi.ng/color](https://github.com/thi-ng/umbrella/tree/develop/packages/color)
 - [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
 - [@thi.ng/hex](https://github.com/thi-ng/umbrella/tree/develop/packages/hex)
@@ -278,8 +291,6 @@ A selection:
 |:---------------------------------------------------------------------------------------------------------------------|:-----------------------------------------------------|:----------------------------------------------------|:---------------------------------------------------------------------------------|
 | <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/pixel-indexed.jpg" width="240"/> | Image dithering and remapping using indexed palettes | [Demo](https://demo.thi.ng/umbrella/pixel-indexed/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/pixel-indexed) |
 
-## Available palettes
-
 ### Usage
 
 ```ts
@@ -288,6 +299,9 @@ import { asCSS, asRGB } from "@thi.ng/color-palettes";
 // get theme for ID
 asCSS(7);
 // ["#2f1864", "#e40302", "#f25c22", "#d987bd", "#44b6e7", "#e3dadd"]
+
+asInt(7).map(x => x.toString(16));
+// [ 'ff2f1864', 'ffe40302', 'fff25c22', 'ffd987bd', 'ff44b6e7', 'ffe3dadd']
 
 // ...or as normalized sRGB colors (e.g. for WebGL)
 asRGB(7)
@@ -358,12 +372,12 @@ const pastels = compFilter(
 
 // select themes with at least 2 colors near given color (tolerance/distance = 0.33)
 [...cssThemes(proximityRGB("#f00", 0.33, 2))]
-[
-  [ '#411c20', '#b71022', '#f63a3a', '#c1c3d1', '#8a858e', '#5c555d' ],
-  [ '#f0181f', '#b51c1c', '#b4a8a2', '#dcd4db', '#75787a', '#3c373b' ],
-  [ '#252426', '#ad0401', '#e90408', '#fc9518', '#62c3d9', '#b6e7f2' ],
-  [ '#4e0101', '#850503', '#bb2609', '#e54908', '#f87c23', '#fdc170' ]
-]
+// [
+//   [ '#411c20', '#b71022', '#f63a3a', '#c1c3d1', '#8a858e', '#5c555d' ],
+//   [ '#f0181f', '#b51c1c', '#b4a8a2', '#dcd4db', '#75787a', '#3c373b' ],
+//   [ '#252426', '#ad0401', '#e90408', '#fc9518', '#62c3d9', '#b6e7f2' ],
+//   [ '#4e0101', '#850503', '#bb2609', '#e54908', '#f87c23', '#fdc170' ]
+// ]
 ```
 
 Also see the [swatch
