@@ -28,9 +28,17 @@ This project is part of the
 
 Collection of 200+ image based color themes & composable theme query filters. This is a support package for [@thi.ng/color](https://github.com/thi-ng/umbrella/tree/develop/packages/color)..
 
-Themes can be obtained as CSS hex colors, LCH or sRGB color vectors (see [thi.ng/color readme](https://github.com/thi-ng/umbrella/tree/develop/packages/color) for details).
+Themes can be obtained as arrays of CSS hex colors (strings), normalized LCH or sRGB color vectors (e.g. for WebGL/WebGPU purposes). See [thi.ng/color readme](https://github.com/thi-ng/umbrella/tree/develop/packages/color) for details.
 
-Additionally, the themes/palettes can be filtered/queried via arbitrary predicate functions and the ones provided:
+Additionally, the themes/palettes can be iterated, filtered or queried via arbitrary predicate functions and the ones provided:
+
+Iterators:
+
+- [`cssThemes()`](https://docs.thi.ng/umbrella/color-palettes/functions/cssThemes.html)
+- [`lchThemes()`](https://docs.thi.ng/umbrella/color-palettes/functions/lchThemes.html)
+- [`rgbThemes()`](https://docs.thi.ng/umbrella/color-palettes/functions/rgbThemes.html)
+
+Provided (composable) filters:
 
 - [`chroma()`](https://docs.thi.ng/umbrella/color-palettes/functions/chroma.html)
 - [`hue()`](https://docs.thi.ng/umbrella/color-palettes/functions/hue.html)
