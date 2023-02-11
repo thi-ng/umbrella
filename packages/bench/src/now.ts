@@ -20,13 +20,13 @@ export const now: Fn0<Timestamp> =
 		: () => Date.now() * 1e6;
 
 /**
- * Returns the difference in milliseconds between 2 given
- * {@link Timestamp}s.
+ * Returns the difference in milliseconds between 2 given {@link Timestamp}s.
+ * `b` defaults to result of {@link now}.
  *
  * @param a
  * @param b
  */
-export const timeDiff: FnU2<Timestamp, number> = (a, b) =>
+export const timeDiff: FnU2<Timestamp, number> = (a, b = now()) =>
 	(typeof BigInt !== "undefined"
 		? Number(<bigint>b - <bigint>a)
 		: <number>b - <number>a) * 1e-6;
