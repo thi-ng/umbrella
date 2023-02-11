@@ -30,15 +30,6 @@ const ORDERED = false;
 	// dither image and convert to indexed color using given palette
 	const buf = intBufferFromImage(img, ARGB8888).scale(0.5, "cubic");
 
-	// extract palette from image and use it
-	// to create indexed color version
-	// processImage(
-	// 	buf,
-	// 	dominantColors(floatBuffer(buf.scale(1 / 4), FLOAT_RGB), 6).map((c) =>
-	// 		srgbIntArgb32(c.color)
-	// 	)
-	// );
-
 	// another version using a preset palette
 	// see https://github.com/thi-ng/umbrella/tree/develop/packages/color-palettes#all-themes
 	const themes = range(NUM_THEMES);
