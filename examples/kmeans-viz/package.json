@@ -1,0 +1,40 @@
+{
+	"name": "@example/kmeans-viz",
+	"version": "0.0.1",
+	"private": true,
+	"description": "k-means clustering visualization",
+	"repository": "https://github.com/thi-ng/umbrella",
+	"author": "Karsten Schmidt <k+npm@thi.ng>",
+	"license": "Apache-2.0",
+	"scripts": {
+		"start": "vite --open",
+		"build": "tsc && vite build --base='./'",
+		"preview": "vite preview --host --open"
+	},
+	"devDependencies": {
+		"typescript": "^4.9.5",
+		"vite": "^4.1.1"
+	},
+	"dependencies": {
+		"@thi.ng/arrays": "workspace:^",
+		"@thi.ng/color": "workspace:^",
+		"@thi.ng/geom": "workspace:^",
+		"@thi.ng/k-means": "workspace:^",
+		"@thi.ng/random": "workspace:^",
+		"@thi.ng/transducers": "workspace:^",
+		"@thi.ng/vectors": "workspace:^"
+	},
+	"browser": {
+		"process": false
+	},
+	"thi.ng": {
+		"readme": [
+			"color",
+			"geom",
+			"k-means",
+			"random",
+			"vectors"
+		],
+		"screenshot": "examples/kmeans-viz.jpg"
+	}
+}

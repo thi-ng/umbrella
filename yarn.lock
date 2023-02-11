@@ -1080,6 +1080,22 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@example/kmeans-viz@workspace:examples/kmeans-viz":
+  version: 0.0.0-use.local
+  resolution: "@example/kmeans-viz@workspace:examples/kmeans-viz"
+  dependencies:
+    "@thi.ng/arrays": "workspace:^"
+    "@thi.ng/color": "workspace:^"
+    "@thi.ng/geom": "workspace:^"
+    "@thi.ng/k-means": "workspace:^"
+    "@thi.ng/random": "workspace:^"
+    "@thi.ng/transducers": "workspace:^"
+    "@thi.ng/vectors": "workspace:^"
+    typescript: ^4.9.5
+    vite: ^4.1.1
+  languageName: unknown
+  linkType: soft
+
 "@example/login-form@workspace:examples/login-form":
   version: 0.0.0-use.local
   resolution: "@example/login-form@workspace:examples/login-form"
@@ -4139,7 +4155,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/k-means@^0.6.1, @thi.ng/k-means@workspace:packages/k-means":
+"@thi.ng/k-means@^0.6.1, @thi.ng/k-means@workspace:^, @thi.ng/k-means@workspace:packages/k-means":
   version: 0.0.0-use.local
   resolution: "@thi.ng/k-means@workspace:packages/k-means"
   dependencies:
