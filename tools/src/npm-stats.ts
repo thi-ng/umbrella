@@ -1,13 +1,13 @@
 import type { IObjectOf } from "@thi.ng/api";
 import { delayed } from "@thi.ng/compose";
-import { defFormat } from "@thi.ng/date";
+import { FMT_yyyyMMdd } from "@thi.ng/date";
 import { dirs, writeJSON } from "@thi.ng/file-io";
 import { add, map, range, vals } from "@thi.ng/transducers";
 import { request } from "https";
 import { basename } from "path";
 import { LOGGER } from "./api.js";
 
-const currDate = defFormat(["yyyy", "-", "MM", "-", "dd"])();
+const currDate = FMT_yyyyMMdd();
 const currYear = new Date().getFullYear();
 
 (async () => {
