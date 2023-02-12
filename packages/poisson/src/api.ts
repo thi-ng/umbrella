@@ -83,7 +83,9 @@ export interface StratifiedGridOpts {
 	 */
 	dim: ReadonlyVec;
 	/**
-	 * Enforced minimum distance between samples (usually in [0 .. 0.99] range)
+	 * Enforced minimum distance between samples (usually in [0 .. 0.99] range).
+	 *
+	 * @defaultValue 1/sqrt(2)
 	 */
 	separation?: number;
 	/**
