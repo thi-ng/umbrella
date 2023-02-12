@@ -122,7 +122,8 @@ following config options:
 - **dim**: 2D/3D vector defining grid size (in cells)
 - **scale**: Scale factor/vector applied to all generated points. If omitted,
   the points will be in grid coordinates.
-- **separation?**: Enforced minimum distance between samples (in [0 .. 0.99] range)
+- **separation?**: Enforced minimum distance between samples (in [0 .. 0.99]
+  range, default: `1/sqrt(2)`)
 - **rnd?**: Random number generator instance. Default:
   [@thi.ng/random](https://github.com/thi-ng/umbrella/tree/develop/packages/random)
   `SYSTEM` (aka Math.random)
