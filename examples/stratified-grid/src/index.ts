@@ -11,7 +11,7 @@ document.body.innerHTML = asSvg(
 			height: 600,
 			fill: "blue",
 			stroke: "none",
-			weight: 0.1,
+			weight: 0.05,
 		},
 		group({ stroke: "#fcc" }, [
 			...map((x) => line([x, 0], [x, W]), range(1, W)),
@@ -21,7 +21,7 @@ document.body.innerHTML = asSvg(
 			[
 				...stratifiedGrid2({
 					dim: [W, W],
-					separation: 0.5,
+					separation: Math.SQRT1_2,
 				}),
 			],
 			{ shape: "circle", size: 0.25 }
