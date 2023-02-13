@@ -6,6 +6,10 @@
 
 {{pkg.description}}
 
+(**A 2h 40m long video tutorial (live stream) introducing this package: [Building a shader graph editor (WebGL, shader AST transpiler, UI)](https://www.youtube.com/watch?v=hEC_qbUXDo8)**)
+
+---
+
 ![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/shader-ast/shader-ast-01.jpg)
 
 <small>Example shader running in plain JS & Canvas 2D context,
@@ -79,6 +83,36 @@ package](https://github.com/thi-ng/umbrella/tree/develop/packages/shader-ast-std
   chains, no extra plugins needed
 - small run time & file size overhead (depending on output target impl)
 
+### Shadergraph playground
+
+During one of the thi.ng live streams in 2020 I started [building a shader graph editor](https://www.youtube.com/watch?v=hEC_qbUXDo8) which I subsequently developed further and which is online at: [shadergraph.thi.ng](https://shadergraph.thi.ng). All shader ops are entirely based on functionality provided by shader-ast and its support packages.
+
+Some small example projects documented as short clips:
+
+#### Rose
+
+[![rose](../../assets/examples/shadergraph-twitter-01.jpg)](https://twitter.com/thing_umbrella/status/1294240300714676224)<br/>
+[Final version](https://twitter.com/thing_umbrella/status/1294276813087223811)
+
+#### DEM visualization
+
+[![screenshot](../../assets/examples/shadergraph-twitter-05.jpg)](https://twitter.com/thing_umbrella/status/1297311020336197632)
+
+[![screenshot](../../assets/examples/shadergraph-twitter-02.jpg)](https://twitter.com/thing_umbrella/status/1297935421914132481)
+
+#### Animated radar swipe
+
+[![radar](../../assets/examples/shadergraph-twitter-07.jpg)](https://twitter.com/toxi/status/1513278436378304515)
+
+#### Pattern tessellations
+
+[![tessellation](../../assets/examples/shadergraph-twitter-06.jpg)](https://twitter.com/thing_umbrella/status/1290571474852511744)
+
+[![screenshot](../../assets/examples/shadergraph-twitter-03.jpg)](https://twitter.com/thing_umbrella/status/1292860207110991873)
+
+##### Bump mapping
+[![screenshot](../../assets/examples/shadergraph-twitter-04.jpg)](https://twitter.com/thing_umbrella/status/1293286949357326337)
+
 ### Prior art / influences
 
 - [Hypergiant](http://alex-charlton.com/posts/Prototype_to_polish_Making_games_in_CHICKEN_Scheme_with_Hypergiant)
@@ -98,10 +132,10 @@ status. The TL;DR list...
 - [ ] struct support
 - [ ] uniform blocks
 - [ ] more code gens (JS ✅, WASM, WHLSL, OpenCL, Houdini VEX (WIP))
-- [ ] JS runtime improvements / features (non-GPU / vanilla JS shader execution)
+- [x] JS runtime improvements / features (non-GPU / vanilla JS shader execution)
 - [ ] Integration w/ a GLSL parser (new or existing)
-- [ ] AST transformations (optimizers, e.g. [constant
-  folding ✅](https://github.com/thi-ng/umbrella/tree/develop/packages/shader-ast/src/optimize.ts))
+- [x] AST transformations (dead code elimination, optimizers, e.g. [constant
+  folding](https://github.com/thi-ng/umbrella/tree/develop/packages/shader-ast/src/optimize.ts))
 
 {{meta.status}}
 
