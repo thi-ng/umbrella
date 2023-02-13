@@ -85,9 +85,14 @@ package](https://github.com/thi-ng/umbrella/tree/develop/packages/shader-ast-std
 
 ### Shadergraph playground
 
-During one of the thi.ng live streams in 2020 I started [building a shader graph editor](https://www.youtube.com/watch?v=hEC_qbUXDo8) which I subsequently developed further and which is online at: [shadergraph.thi.ng](https://shadergraph.thi.ng). All shader ops are entirely based on functionality provided by shader-ast and its support packages.
+During one of the thi.ng live streams in 2020 I started [building a shader graph
+editor](https://www.youtube.com/watch?v=hEC_qbUXDo8) which I subsequently
+developed further and which is online at:
+[shadergraph.thi.ng](https://shadergraph.thi.ng). All shader ops are entirely
+based on functionality provided by shader-ast and its support packages.
 
-Some small example projects documented as short clips:
+Some small example projects documented as short clips (images are links to
+videos on Twitter):
 
 #### Rose
 
