@@ -144,6 +144,12 @@ libraries from this collection.
 - [How to UI in 2018](https://github.com/thi-ng/blog/blob/main/2018/20180204-how-to-ui-in-2018.md)
 - [The Jacob's Ladder of coding](https://github.com/thi-ng/blog/blob/main/2015/20151215-jacobs-ladder-of-coding.md)
 
+## Videos
+
+- [Building a web editor for creating/testing parse grammars](https://www.youtube.com/watch?v=mXp92s_VP40)
+- [Building a shader graph editor (WebGL, shader AST transpiler, UI)](https://www.youtube.com/watch?v=hEC_qbUXDo8)
+- [Crash course: TypeScript mapped types in action](https://www.youtube.com/watch?v=jeQ_1oOFlJs)
+
 ## Community, contributing, getting help
 
 Join the (still new) [discussions here on
