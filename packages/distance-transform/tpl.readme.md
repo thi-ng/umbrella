@@ -20,6 +20,11 @@ Based on: ["A general algorithm for computing Distance Transforms in linear
 time"](http://www.cs.rug.nl/~roe/publications/dt.pdf), A. Meijster, J.B.T.M.
 Roerdink and W.H. Hesselink
 
+![3d visualization](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/distance-transform/dt3d.png)
+
+Example of distance maps being utilized for 3D surface detailing.<br/>
+Image credits: (c) 2017 Karsten Schmidt
+
 {{meta.status}}
 
 {{repo.supportPackages}}
