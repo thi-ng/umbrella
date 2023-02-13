@@ -96,27 +96,27 @@ videos on Twitter):
 
 #### Rose
 
-[![rose](../../assets/examples/shadergraph-twitter-01.jpg)](https://twitter.com/thing_umbrella/status/1294240300714676224)<br/>
+[![rose](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/shadergraph-twitter-01.jpg)](https://twitter.com/thing_umbrella/status/1294240300714676224)<br/>
 [Final version](https://twitter.com/thing_umbrella/status/1294276813087223811)
 
 #### DEM visualization
 
-[![screenshot](../../assets/examples/shadergraph-twitter-05.jpg)](https://twitter.com/thing_umbrella/status/1297311020336197632)
+[![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/shadergraph-twitter-05.jpg)](https://twitter.com/thing_umbrella/status/1297311020336197632)
 
-[![screenshot](../../assets/examples/shadergraph-twitter-02.jpg)](https://twitter.com/thing_umbrella/status/1297935421914132481)
+[![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/shadergraph-twitter-02.jpg)](https://twitter.com/thing_umbrella/status/1297935421914132481)
 
 #### Animated radar swipe
 
-[![radar](../../assets/examples/shadergraph-twitter-07.jpg)](https://twitter.com/toxi/status/1513278436378304515)
+[![radar](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/shadergraph-twitter-07.jpg)](https://twitter.com/toxi/status/1513278436378304515)
 
 #### Pattern tessellations
 
-[![tessellation](../../assets/examples/shadergraph-twitter-06.jpg)](https://twitter.com/thing_umbrella/status/1290571474852511744)
+[![tessellation](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/shadergraph-twitter-06.jpg)](https://twitter.com/thing_umbrella/status/1290571474852511744)
 
-[![screenshot](../../assets/examples/shadergraph-twitter-03.jpg)](https://twitter.com/thing_umbrella/status/1292860207110991873)
+[![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/shadergraph-twitter-03.jpg)](https://twitter.com/thing_umbrella/status/1292860207110991873)
 
 ##### Bump mapping
-[![screenshot](../../assets/examples/shadergraph-twitter-04.jpg)](https://twitter.com/thing_umbrella/status/1293286949357326337)
+[![screenshot](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/shadergraph-twitter-04.jpg)](https://twitter.com/thing_umbrella/status/1293286949357326337)
 
 ### Prior art / influences
 
