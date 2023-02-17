@@ -16,10 +16,10 @@ const sha = process.argv[2];
 const IGNORE_PACKAGES = new Set(["examples", "tools"]);
 
 const CHANGE_TYPES: IObjectOf<number> = {
-	perf: 0,
 	refactor: 0,
-	fix: 1,
-	feat: 2,
+	perf: 1,
+	fix: 2,
+	feat: 3,
 };
 
 const CHANGE_COLORS: IObjectOf<string> = {
@@ -35,7 +35,7 @@ const changes = transduce(
 			const match = /^([a-z]+)\(([a-z0-9_-]+)\):/i.exec(x);
 			if (
 				!match ||
-				!CHANGE_TYPES[match[1]] ||
+				CHANGE_TYPES[match[1]] == null ||
 				IGNORE_PACKAGES.has(match[2])
 			)
 				return;
