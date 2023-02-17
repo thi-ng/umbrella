@@ -282,6 +282,8 @@ This package provides utilities to simplify using hybrid TS/Zig WASM API modules
 which are distributed as NPM packages. Using these utils, a build file for Zig's
 built-in build system is as simple as:
 
+### Zig v0.10.1 or older
+
 ```zig
 const std = @import("std");
 
@@ -308,10 +310,42 @@ pub fn build(b: *std.build.Builder) void {
 }
 ```
 
+### Zig v0.11.0-dev or newer
+
+```zig
+const std = @import("std");
+
+pub fn build(b: *std.Build) void {
+    // obtain a standard std.Build.CompileStep, pre-configured w/ given options
+    // see source comments in imported build-v0.11.zig for further details...
+    var lib = @import("node_modules/@thi.ng/wasm-api/zig/build-v0.11.zig").wasmLib(b, .{
+        // Declare extra WASM API packages to use
+        // Each package can also declare dependencies to other such packages
+        // (wasm-api and wasm-api-bindgen are made available everywhere)
+        .modules = &.{
+            .{ .name = "wasm-api-dom", .path = "@thi.ng/wasm-api-dom/zig/lib.zig" },
+            .{ .name = "wasm-api-schedule", .path = "@thi.ng/wasm-api-schedule/zig/lib.zig" },
+        },
+        // (optional) build mode override
+        // if commented out, we can pass CLI args to choose build mode (default: .Debug)
+        .mode = .ReleaseSmall,
+    });
+    // optionally, add further custom configuration
+    // ...
+
+    // finally trigger build
+    lib.install();
+}
+```
+
+### Example projects
+
 All bundled example projects (see [list below](#usage-examples)) are being built
 via this script. **Please find more details/options in the commented source
 code:**
-[`/zig/build.zig`](https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api/zig/build.zig)
+
+- [`/zig/build.zig`](https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api/zig/build.zig)
+- [`/zig/build-v0.11.zig`](https://github.com/thi-ng/umbrella/blob/develop/packages/wasm-api/zig/build-v0.11.zig)
 
 ## Naming & structural conventions
 
