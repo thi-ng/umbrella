@@ -23,13 +23,15 @@ pub const WasmLibOpts = struct {
     /// `wasm-api` and `wasm-api-bindgen` are auto-added as dependency for all...
     modules: ?[]const ModuleSpec = null,
     /// Build mode override (else allows config via CLI args)
-    mode: ?std.builtin.Mode = null,
+    optimize: ?std.builtin.Mode = null,
     /// Additional WASM target features, e.g. `.simd128` to enable SIMD
     features: ?[]const std.Target.wasm.Feature = null,
     /// Initial memory (in bytes, MUST be multiple of 0x10000)
     initialMemory: ?u64 = null,
     /// Max memory (in bytes, MUST be multiple of 0x10000)
     maxMemory: ?u64 = null,
+    /// If true, build will also generate docs
+    docs: bool = false,
 };
 
 /// WASM API sub-module declaration
@@ -44,33 +46,39 @@ pub const ModuleSpec = struct {
     dependencies: ?[]const []const u8 = null,
 };
 
+const wasmapi = "wasm-api";
+const wasmbind = "wasm-api-bindgen";
+
 /// Creates and returns a build step to build a dynamic WASM library, configured
 /// with given options and package declarations. The given package specs will be inserted
 pub fn wasmLib(b: *Build, opts: WasmLibOpts) *Build.CompileStep {
     const lib = b.addSharedLibrary(.{
         .name = "main",
-        .root_source_file = .{ .path = "zig/main.zig" },
+        .root_source_file = .{ .path = opts.root },
         .target = .{
             .cpu_arch = .wasm32,
             .os_tag = .freestanding,
             .cpu_features_add = if (opts.features) |features| std.Target.wasm.featureSet(features) else std.Target.Cpu.Feature.Set.empty,
         },
-        .optimize = if (opts.mode) |m| m else b.standardOptimizeOption(.{}),
+        .optimize = if (opts.optimize) |m| m else b.standardOptimizeOption(.{}),
     });
     if (lib.optimize == .ReleaseSmall or lib.optimize == .ReleaseFast) lib.strip = true;
     lib.setOutputDir(opts.out);
+    // build flags
     lib.rdynamic = true;
     lib.import_symbols = true;
     lib.initial_memory = opts.initialMemory;
     lib.max_memory = opts.maxMemory;
+    if (opts.docs) lib.emit_docs = .emit;
+    // add default dependencies
     lib.addModule(
-        "wasm-api",
+        wasmapi,
         b.createModule(.{
             .source_file = modulePath(b.allocator, opts.base, "@thi.ng/wasm-api/zig/lib.zig"),
         }),
     );
     lib.addModule(
-        "wasm-api-bindgen",
+        wasmbind,
         b.createModule(.{
             .source_file = modulePath(b.allocator, opts.base, "@thi.ng/wasm-api-bindgen/zig/lib.zig"),
         }),
@@ -87,8 +95,8 @@ pub fn wasmLib(b: *Build, opts: WasmLibOpts) *Build.CompileStep {
 pub fn register(step: *Build.CompileStep, mod: ModuleSpec, opts: WasmLibOpts) void {
     const num = if (mod.dependencies) |ids| ids.len else 0;
     var dpkgs = step.builder.allocator.alloc(Build.ModuleDependency, num + 2) catch unreachable;
-    dpkgs[0] = if (step.modules.get("wasm-api")) |m| .{ .name = "wasm-api", .module = m } else unreachable;
-    dpkgs[1] = if (step.modules.get("wasm-api-bindgen")) |m| .{ .name = "wasm-api-bindgen", .module = m } else unreachable;
+    dpkgs[0] = if (step.modules.get(wasmapi)) |m| .{ .name = wasmapi, .module = m } else unreachable;
+    dpkgs[1] = if (step.modules.get(wasmbind)) |m| .{ .name = wasmbind, .module = m } else unreachable;
     var i: usize = 2;
     if (mod.dependencies) |ids| {
         for (ids) |id| {
