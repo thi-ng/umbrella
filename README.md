@@ -187,17 +187,15 @@ feature or `develop` branches)
 
 ### Latest updates
 
-As of: 2023-02-10
+As of: 2023-02-17
 
-| Status                                        | Package                                               | Version                                                                                                                     | Changelog                                           |
-|:----------------------------------------------|:------------------------------------------------------|:----------------------------------------------------------------------------------------------------------------------------|:----------------------------------------------------|
-| ![](https://img.shields.io/badge/-fix-orange) | [`@thi.ng/associative`](./packages/associative)       | [![version](https://img.shields.io/npm/v/@thi.ng/associative.svg)](https://www.npmjs.com/package/@thi.ng/associative)       | [changelog](./packages/associative/CHANGELOG.md)    |
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/base-n`](./packages/base-n)                 | [![version](https://img.shields.io/npm/v/@thi.ng/base-n.svg)](https://www.npmjs.com/package/@thi.ng/base-n)                 | [changelog](./packages/base-n/CHANGELOG.md)         |
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/color`](./packages/color)                   | [![version](https://img.shields.io/npm/v/@thi.ng/color.svg)](https://www.npmjs.com/package/@thi.ng/color)                   | [changelog](./packages/color/CHANGELOG.md)          |
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/color-palettes`](./packages/color-palettes) | [![version](https://img.shields.io/npm/v/@thi.ng/color-palettes.svg)](https://www.npmjs.com/package/@thi.ng/color-palettes) | [changelog](./packages/color-palettes/CHANGELOG.md) |
-| ![](https://img.shields.io/badge/-fix-orange) | [`@thi.ng/hiccup-css`](./packages/hiccup-css)         | [![version](https://img.shields.io/npm/v/@thi.ng/hiccup-css.svg)](https://www.npmjs.com/package/@thi.ng/hiccup-css)         | [changelog](./packages/hiccup-css/CHANGELOG.md)     |
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/k-means`](./packages/k-means)               | [![version](https://img.shields.io/npm/v/@thi.ng/k-means.svg)](https://www.npmjs.com/package/@thi.ng/k-means)               | [changelog](./packages/k-means/CHANGELOG.md)        |
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/ksuid`](./packages/ksuid)                   | [![version](https://img.shields.io/npm/v/@thi.ng/ksuid.svg)](https://www.npmjs.com/package/@thi.ng/ksuid)                   | [changelog](./packages/ksuid/CHANGELOG.md)          |
+| Status                                           | Package                                               | Version                                                                                                                     | Changelog                                           |
+|:-------------------------------------------------|:------------------------------------------------------|:----------------------------------------------------------------------------------------------------------------------------|:----------------------------------------------------|
+| ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/bench`](./packages/bench)                   | [![version](https://img.shields.io/npm/v/@thi.ng/bench.svg)](https://www.npmjs.com/package/@thi.ng/bench)                   | [changelog](./packages/bench/CHANGELOG.md)          |
+| ![](https://img.shields.io/badge/-perf-cyan)     | [`@thi.ng/color-palettes`](./packages/color-palettes) | [![version](https://img.shields.io/npm/v/@thi.ng/color-palettes.svg)](https://www.npmjs.com/package/@thi.ng/color-palettes) | [changelog](./packages/color-palettes/CHANGELOG.md) |
+| ![](https://img.shields.io/badge/-fix-orange)    | [`@thi.ng/hiccup-css`](./packages/hiccup-css)         | [![version](https://img.shields.io/npm/v/@thi.ng/hiccup-css.svg)](https://www.npmjs.com/package/@thi.ng/hiccup-css)         | [changelog](./packages/hiccup-css/CHANGELOG.md)     |
+| ![](https://img.shields.io/badge/-fix-orange)    | [`@thi.ng/poisson`](./packages/poisson)               | [![version](https://img.shields.io/npm/v/@thi.ng/poisson.svg)](https://www.npmjs.com/package/@thi.ng/poisson)               | [changelog](./packages/poisson/CHANGELOG.md)        |
+| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/wasm-api`](./packages/wasm-api)             | [![version](https://img.shields.io/npm/v/@thi.ng/wasm-api.svg)](https://www.npmjs.com/package/@thi.ng/wasm-api)             | [changelog](./packages/wasm-api/CHANGELOG.md)       |
 
 ### Fundamentals
 
