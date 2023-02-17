@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/ksuid",
-	"version": "3.1.1",
+	"version": "3.1.2",
 	"description": "Configurable K-sortable unique IDs, ULIDs, binary & base-N encoded, 32/48/64bit time resolutions",
 	"type": "module",
 	"module": "./index.js",
@@ -38,7 +38,7 @@
 	"dependencies": {
 		"@thi.ng/base-n": "^2.4.1",
 		"@thi.ng/errors": "^2.2.11",
-		"@thi.ng/random": "^3.3.24",
+		"@thi.ng/random": "^3.3.25",
 		"@thi.ng/strings": "^3.3.26"
 	},
 	"devDependencies": {

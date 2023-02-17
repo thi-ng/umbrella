@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2023-02-10T14:03:10Z
+- **Last updated**: 2023-02-17T20:06:13Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,14 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [2.1.39](https://github.com/thi-ng/umbrella/tree/@thi.ng/hiccup-css@2.1.39) (2023-02-17)
+
+#### 🩹 Bug fixes
+
+- update px() & ms() units [#383](https://github.com/thi-ng/umbrella/issues/383) ([e590d3f](https://github.com/thi-ng/umbrella/commit/e590d3f))
+  - remove pixel rounding
+  - use signed flooring for ms()
 
 ### [2.1.37](https://github.com/thi-ng/umbrella/tree/@thi.ng/hiccup-css@2.1.37) (2023-02-10)
 

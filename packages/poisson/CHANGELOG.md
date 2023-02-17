@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2023-02-10T14:03:10Z
+- **Last updated**: 2023-02-17T20:06:13Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,13 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [3.1.3](https://github.com/thi-ng/umbrella/tree/@thi.ng/poisson@3.1.3) (2023-02-17)
+
+#### 🩹 Bug fixes
+
+- actually use squared distance in stratifiedGrid2/3 ([59f20f5](https://github.com/thi-ng/umbrella/commit/59f20f5))
+  - update separation default value
 
 ## [3.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/poisson@3.1.0) (2023-02-05)
 

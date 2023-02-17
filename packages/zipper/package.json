@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/zipper",
-	"version": "2.1.34",
+	"version": "2.1.35",
 	"description": "Functional tree editing, manipulation & navigation",
 	"type": "module",
 	"module": "./index.js",
@@ -35,7 +35,7 @@
 	},
 	"dependencies": {
 		"@thi.ng/api": "^8.7.2",
-		"@thi.ng/arrays": "^2.5.4",
+		"@thi.ng/arrays": "^2.5.5",
 		"@thi.ng/checks": "^3.3.9",
 		"@thi.ng/errors": "^2.2.11"
 	},

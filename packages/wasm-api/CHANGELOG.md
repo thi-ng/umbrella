@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2023-02-10T14:03:11Z
+- **Last updated**: 2023-02-17T20:06:13Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,19 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [1.4.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/wasm-api@1.4.0) (2023-02-17)
+
+#### 🚀 Features
+
+- add build script for Zig v0.11.0-dev ([4c8abcb](https://github.com/thi-ng/umbrella/commit/4c8abcb))
+
+#### ♻️ Refactoring
+
+- update build-v0.11.zig build script ([fe7c24c](https://github.com/thi-ng/umbrella/commit/fe7c24c))
+  - single source of truth for core module names
+  - rename .mode => .optimize (as per new zig nomenclature)
+  - add autodoc generation option
 
 ## [1.3.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/wasm-api@1.3.0) (2023-02-05)
 

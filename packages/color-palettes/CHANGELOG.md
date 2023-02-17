@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2023-02-10T14:03:10Z
+- **Last updated**: 2023-02-17T20:06:13Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,12 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [1.0.2](https://github.com/thi-ng/umbrella/tree/@thi.ng/color-palettes@1.0.2) (2023-02-17)
+
+#### ⏱ Performance improvements
+
+- update compFilter() for single arg ([ea8dc86](https://github.com/thi-ng/umbrella/commit/ea8dc86))
 
 # [1.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/color-palettes@1.0.0) (2023-02-10)
 
