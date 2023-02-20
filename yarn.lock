@@ -4000,6 +4000,7 @@ __metadata:
     "@thi.ng/errors": ^2.2.11
     "@thi.ng/fsm": ^3.1.40
     "@thi.ng/hiccup": ^4.2.32
+    "@thi.ng/parse": ^2.2.26
     "@thi.ng/strings": ^3.3.26
     "@thi.ng/testament": ^0.3.11
     "@thi.ng/text-canvas": ^2.4.29
@@ -4397,7 +4398,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/parse@workspace:^, @thi.ng/parse@workspace:packages/parse":
+"@thi.ng/parse@^2.2.26, @thi.ng/parse@workspace:^, @thi.ng/parse@workspace:packages/parse":
   version: 0.0.0-use.local
   resolution: "@thi.ng/parse@workspace:packages/parse"
   dependencies:
