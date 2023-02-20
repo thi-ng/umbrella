@@ -38,6 +38,7 @@
 		"@thi.ng/arrays": "^2.5.5",
 		"@thi.ng/checks": "^3.3.9",
 		"@thi.ng/defmulti": "^2.1.30",
+		"@thi.ng/emoji": "^0.0.1",
 		"@thi.ng/errors": "^2.2.11",
 		"@thi.ng/fsm": "^3.1.40",
 		"@thi.ng/hiccup": "^4.2.32",
@@ -95,6 +96,5 @@
 		"parent": "@thi.ng/hiccup",
 		"status": "alpha",
 		"year": 2018
-	},
-	"gitHead": "2b5a99a8af71670780875637299be9118b01084d\n"
+	}
 }
