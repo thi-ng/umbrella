@@ -4014,6 +4014,7 @@ __metadata:
     "@thi.ng/errors": ^2.2.11
     "@thi.ng/fsm": ^3.1.40
     "@thi.ng/hiccup": ^4.2.32
+    "@thi.ng/logger": ^1.4.9
     "@thi.ng/parse": ^2.2.26
     "@thi.ng/strings": ^3.3.26
     "@thi.ng/testament": ^0.3.11

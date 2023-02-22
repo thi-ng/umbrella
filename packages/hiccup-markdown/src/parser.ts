@@ -8,6 +8,7 @@ import { peek } from "@thi.ng/arrays/peek";
 import { delay } from "@thi.ng/compose/delay";
 import { DEFAULT, defmulti } from "@thi.ng/defmulti";
 import { EMOJI } from "@thi.ng/emoji/emoji";
+import type { ILogger } from "@thi.ng/logger";
 import type { ContextOpts, ParseScope } from "@thi.ng/parse";
 import { defContext } from "@thi.ng/parse/context";
 import { defGrammar } from "@thi.ng/parse/grammar";
@@ -107,7 +108,8 @@ export interface TagTransforms {
 	footnoteRef(ctx: MDParseContext, id: string): any;
 	footnoteWrapper(ctx: MDParseContext, notes: IObjectOf<any>): any;
 	hd(ctx: MDParseContext, level: number, body: any[], meta?: any): any;
-	hr(ctx: MDParseContext, lenght: number): any;
+	hr(ctx: MDParseContext, length: number): any;
+	img(ctx: MDParseContext, src: string, alt: string): any;
 	italic(ctx: MDParseContext, body: string): any;
 	link(ctx: MDParseContext, target: string, body: any[]): any;
 	linkRef(ctx: MDParseContext, refID: string, body: any[]): any;
@@ -135,10 +137,12 @@ export interface TagTransforms {
 }
 
 export interface MDParseContext {
+	logger?: ILogger;
 	tags: TagTransforms;
 	linkRefs: IObjectOf<string>;
 	footnotes: IObjectOf<any>;
 	headings: { level: number; body: any[] }[];
+	hasFootnotes: boolean;
 	meta?: any;
 	opts: MDParseOpts;
 }
@@ -164,6 +168,7 @@ export const defMDContext = (
 	footnotes: {},
 	headings: [],
 	linkRefs: {},
+	hasFootnotes: false,
 	meta: null,
 	opts: {
 		bqLineBreak: " ",
@@ -205,11 +210,12 @@ export const defMDContext = (
 				.map((id) => notes[id]),
 		],
 		hd: (_, level, body, meta) => [
-			`h${level}`,
+			level > 6 ? "p" : `h${level}`,
 			__withMeta({}, meta),
 			...body,
 		],
 		hr: (_, __length) => ["hr", { __length }],
+		img: (_, src, alt) => ["img", { src, alt }],
 		italic: (_, body) => ["em", {}, body],
 		link: (_, href, body) => ["a", { href }, ...body],
 		linkRef: (ctx, refID, body) => [
@@ -246,8 +252,8 @@ export const walk: Fn3<
 	any[],
 	void
 > = defmulti<ParseScope<string>, MDParseContext, any[], void>(
-	(x) => {
-		console.log(x);
+	(x, ctx) => {
+		ctx.logger && ctx.logger.debug(x);
 		return x.id;
 	},
 	{
@@ -268,7 +274,9 @@ export const walk: Fn3<
 
 		root: ({ children }, ctx, acc) => {
 			walk(children![0], ctx, acc);
-			__collect(acc, ctx.tags.footnoteWrapper(ctx, ctx.footnotes));
+			if (ctx.hasFootnotes) {
+				__collect(acc, ctx.tags.footnoteWrapper(ctx, ctx.footnotes));
+			}
 		},
 
 		main: ({ children }, ctx, acc) => walk(children![0], ctx, acc),
@@ -304,7 +312,7 @@ export const walk: Fn3<
 					ctx,
 					lang,
 					head,
-					children![1].result,
+					children![1].result.trim(),
 					ctx.meta
 				)
 			);
@@ -335,7 +343,11 @@ export const walk: Fn3<
 			const body: any[] = [];
 			const id = children![0].result;
 			walk(children![1].children![0], ctx, body);
-			ctx.footnotes[id] = ctx.tags.footnote(ctx, id, body, ctx.meta);
+			const res = ctx.tags.footnote(ctx, id, body, ctx.meta);
+			if (res != null) {
+				ctx.hasFootnotes = true;
+				ctx.footnotes[id] = res;
+			}
 			ctx.meta = null;
 		},
 
@@ -353,6 +365,12 @@ export const walk: Fn3<
 
 		hr: ({ result }, ctx, acc) =>
 			__collect(acc, ctx.tags.hr(ctx, result.length)),
+
+		img: ({ children }, ctx, acc) =>
+			__collect(
+				acc,
+				ctx.tags.img(ctx, children![1].result, children![0].result)
+			),
 
 		italic: ({ result }, ctx, acc) =>
 			__collect(acc, ctx.tags.italic(ctx, result)),
@@ -455,7 +473,9 @@ export const walk: Fn3<
 			let align: ColumnAlign[] = [];
 			if (children.length > 1) {
 				for (let c of children[1].children![0].children!) {
-					const raw = <string>c.children![0].children![0].result;
+					const raw = <string>(
+						c.children![0].children![0].result.trim()
+					);
 					align.push(
 						raw.startsWith(":-")
 							? raw.endsWith("-:")
@@ -472,7 +492,7 @@ export const walk: Fn3<
 					children[0].children![0].children!.length
 				).fill("left");
 			}
-			__collect(acc, ctx.tags.table(ctx, align, head, rows, ctx.meta));
+			__collect(acc, ctx.tags.table(ctx, align, head[0], rows, ctx.meta));
 			ctx.meta = null;
 		},
 
