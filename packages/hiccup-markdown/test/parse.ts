@@ -1,115 +1,143 @@
 import { group } from "@thi.ng/testament";
-import { iterator } from "@thi.ng/transducers";
 import * as assert from "assert";
 import { parse } from "../src/index.js";
 
-const check = (src: string, expected: any[]) =>
-	assert.deepStrictEqual([...iterator(parse(), src)], expected);
+const check = (src: string, expected: any[]) => {
+	const { result } = parse(src);
+	assert.deepStrictEqual(result, expected, JSON.stringify(result, null, 4));
+};
 
 group("parse", {
 	CRLF: () => {
-		check(`# hello\r\n\r\nworld\r\n\r\n`, [
-			["h1", {}, " hello "],
-			["p", {}, "world "],
+		check(`# hello\r\n\r\nworld`, [
+			["h1", {}, "hello"],
+			["p", {}, "world"],
 		]);
 	},
 
 	blockquote: () => {
-		check(`>a block **quote** of\n> two _lines_.\n\n`, [
+		check(`> a block **quote** of\n> two _lines_.`, [
 			[
 				"blockquote",
 				{},
 				"a block ",
 				["strong", {}, "quote"],
-				" of ",
-				["br", {}],
-				" two ",
+				" of",
+				" ",
+				"two ",
 				["em", {}, "lines"],
-				". ",
+				".",
 			],
 		]);
 	},
 
 	code: () => {
-		check("inline `const example = 'indeed!'` code\n\n", [
+		check("inline `const example = 'indeed!'` code", [
 			[
 				"p",
 				{},
 				"inline ",
 				["code", {}, "const example = 'indeed!'"],
-				" code ",
+				" code",
 			],
 		]);
 	},
 
-	code_block: () => {
-		check("```js\nconst code = () => 'indeed!'\n```\n", [
-			["pre", { lang: "js" }, "const code = () => 'indeed!'"],
-		]);
+	codeblock: () => {
+		check(
+			"```js tangle:foo.ts linenum:yes\nconst code = () => 'indeed!'\n\n```",
+			[
+				[
+					"pre",
+					{
+						data: { lang: "js" },
+						__head: ["tangle:foo.ts", "linenum:yes"],
+					},
+					["code", {}, "const code = () => 'indeed!'"],
+				],
+			]
+		);
 	},
 
 	em: () => {
-		check(`some _emphasized_ text\n\n`, [
-			["p", {}, "some ", ["em", {}, "emphasized"], " text "],
+		check(`some _emphasized_ text`, [
+			["p", {}, "some ", ["em", {}, "emphasized"], " text"],
 		]);
 	},
 
 	h1: () => {
-		check(`# Heading One\n\nbody\n\n`, [
-			["h1", {}, " Heading One "],
-			["p", {}, "body "],
+		check(`# Heading One\n\nbody`, [
+			["h1", {}, "Heading One"],
+			["p", {}, "body"],
 		]);
 	},
 
 	h2: () => {
-		check(`## Heading Two\n\nbody\n\n`, [
-			["h2", {}, " Heading Two "],
-			["p", {}, "body "],
+		check(`## Heading Two\n\nbody`, [
+			["h2", {}, "Heading Two"],
+			["p", {}, "body"],
 		]);
 	},
 
 	h3: () => {
-		check(`### Heading Three\n\nbody\n\n`, [
-			["h3", {}, " Heading Three "],
-			["p", {}, "body "],
+		check(`### Heading Three\n\nbody`, [
+			["h3", {}, "Heading Three"],
+			["p", {}, "body"],
 		]);
 	},
 
 	h4: () => {
-		check(`#### Heading Four\n\nbody\n\n`, [
-			["h4", {}, " Heading Four "],
-			["p", {}, "body "],
+		check(`#### Heading Four\n\nbody`, [
+			["h4", {}, "Heading Four"],
+			["p", {}, "body"],
 		]);
 	},
 
 	h5: () => {
-		check(`##### Heading Five\n\nbody\n\n`, [
-			["h5", {}, " Heading Five "],
-			["p", {}, "body "],
+		check(`##### Heading Five\n\nbody`, [
+			["h5", {}, "Heading Five"],
+			["p", {}, "body"],
 		]);
 	},
 
 	h6: () => {
-		check(`###### Heading Six\n\nbody\n\n`, [
-			["h6", {}, " Heading Six "],
-			["p", {}, "body "],
+		check(`###### Heading Six\n\nbody`, [
+			["h6", {}, "Heading Six"],
+			["p", {}, "body"],
 		]);
 	},
 
 	h7: () => {
-		check(`####### Heading Seven\n\nbody\n\n`, [
-			["p", {}, " Heading Seven "],
-			["p", {}, "body "],
+		check(`####### Heading Seven\n\nbody`, [
+			["p", {}, "Heading Seven"],
+			["p", {}, "body"],
+		]);
+	},
+
+	"hd inline fmt": () => {
+		check("# abc `def` **ghi** _jkl_", [
+			[
+				"h1",
+				{},
+				"abc ",
+				["code", {}, "def"],
+				" ",
+				["strong", {}, "ghi"],
+				" ",
+				["em", {}, "jkl"],
+			],
 		]);
 	},
 
 	hr: () => {
-		check(`---\n`, [["hr", {}]]);
+		check(`--`, [["hr", { __length: 2 }]]);
+		check(`---`, [["hr", { __length: 3 }]]);
+		check(`----`, [["hr", { __length: 4 }]]);
 	},
 
 	img: () => {
 		check(
-			`![thi.ng](https://media.giphy.com/media/f6qMGmXuOdkwU/giphy.gif)\n\n`,
+			`![thi.ng](https://media.giphy.com/media/f6qMGmXuOdkwU/giphy.gif)`,
 			[
 				[
 					"p",
@@ -121,53 +149,202 @@ group("parse", {
 							alt: "thi.ng",
 						},
 					],
-					" ",
 				],
 			]
 		);
 	},
 
-	li: () => {
-		check(`- an item\n- another\n\n`, [
-			["ul", {}, ["li", {}, "an item "], ["li", {}, "another "]],
+	ul: () => {
+		check(`- an item\n- another`, [
+			["ul", {}, ["li", {}, "an item"], ["li", {}, "another"]],
 		]);
 	},
 
+	ol: () => {
+		check(`11. an item\n22. another`, [
+			[
+				"ol",
+				{},
+				[
+					"li",
+					{
+						__index: 11,
+					},
+					"an item",
+				],
+				[
+					"li",
+					{
+						__index: 22,
+					},
+					"another",
+				],
+			],
+		]);
+	},
+
+	todo: () => {
+		check("- [ ] abc\n- [x] def", [
+			[
+				"ul",
+				{},
+				[
+					"li",
+					{
+						__todo: true,
+						__done: false,
+					},
+					"abc",
+				],
+				[
+					"li",
+					{
+						__todo: true,
+						__done: true,
+					},
+					"def",
+				],
+			],
+		]);
+	},
+
+	"nested list": () => {
+		check(
+			"- outer 1\n  - nested 1a\n  - nested 1b\n- outer 2\n  1. nested 2a\n  2. nested 2b\n    - nested 3a\n- outer 3",
+			[
+				[
+					"ul",
+					{},
+					[
+						"li",
+						{},
+						"outer 1",
+						[
+							"ul",
+							{},
+							["li", {}, "nested 1a"],
+							["li", {}, "nested 1b"],
+						],
+					],
+					[
+						"li",
+						{},
+						"outer 2",
+						[
+							"ol",
+							{},
+							[
+								"li",
+								{
+									__index: 1,
+								},
+								"nested 2a",
+							],
+							[
+								"li",
+								{
+									__index: 2,
+								},
+								"nested 2b",
+								["ul", {}, ["li", {}, "nested 3a"]],
+							],
+						],
+					],
+					["li", {}, "outer 3"],
+				],
+			]
+		);
+	},
+
 	link: () => {
-		check(`come [to](http://thi.ng/umbrella) the light\n\n`, [
+		check(`come [to](http://thi.ng/umbrella) the light`, [
 			[
 				"p",
 				{},
 				"come ",
 				["a", { href: "http://thi.ng/umbrella" }, "to"],
-				" the light ",
+				" the light",
 			],
 		]);
 	},
 
 	strike: () => {
-		check(`I ~~am amazing~~ messed up\n\n`, [
-			["p", {}, "I ", ["del", {}, "am amazing"], " messed up "],
+		check(`This is ~~all wrong~~ correct`, [
+			["p", {}, "This is ", ["s", {}, "all wrong"], " correct"],
 		]);
 	},
 
 	strong: () => {
-		check(`I **really** meant that\n\n`, [
-			["p", {}, "I ", ["strong", {}, "really"], " meant that "],
+		check(`I **really** meant that`, [
+			["p", {}, "I ", ["strong", {}, "really"], " meant that"],
 		]);
 	},
 
 	table: () => {
-		check(`| col1 | col2 |\n| --- | --- |\n| row1 | row2 |\n\n`, [
+		check(`| col1 | col2 |\n| :-- | --: |\n| row1 | row2 |`, [
 			[
 				"table",
-				{},
+				{ __align: ["left", "right"] },
+				[
+					"thead",
+					{},
+					["tr", {}, ["td", {}, "col1"], ["td", {}, "col2"]],
+				],
 				[
 					"tbody",
 					{},
-					["tr", {}, ["td", {}, " col1 "], ["td", {}, " col2 "]],
-					["tr", {}, ["td", {}, " row1 "], ["td", {}, " row2 "]],
+					["tr", {}, ["td", {}, "row1"], ["td", {}, "row2"]],
 				],
+			],
+		]);
+	},
+
+	"meta hd": () => {
+		check("{{{ foo }}}\n# Hello", [["h1", { __meta: "foo" }, "Hello"]]);
+	},
+
+	"meta para": () => {
+		check("{{{ foo }}}\nHello", [["p", { __meta: "foo" }, "Hello"]]);
+	},
+
+	"meta codeblock": () => {
+		check("{{{ foo }}}\n```ts\n//Hello\n```", [
+			[
+				"pre",
+				{
+					data: {
+						lang: "ts",
+					},
+					__head: [],
+					__meta: "foo",
+				},
+				["code", {}, "//Hello"],
+			],
+		]);
+	},
+
+	"meta bq": () => {
+		check("{{{ foo }}}\n> Hello", [
+			["blockquote", { __meta: "foo" }, "Hello"],
+		]);
+	},
+
+	"meta list": () => {
+		check("{{{ foo }}}\n- Hello", [
+			["ul", { __meta: "foo" }, ["li", {}, "Hello"]],
+		]);
+	},
+
+	"meta table": () => {
+		check("{{{ foo }}}\n|Hello|", [
+			[
+				"table",
+				{
+					__align: ["left"],
+					__meta: "foo",
+				},
+				["thead", {}, ["tr", {}, ["td", {}, "Hello"]]],
+				["tbody", {}],
 			],
 		]);
 	},

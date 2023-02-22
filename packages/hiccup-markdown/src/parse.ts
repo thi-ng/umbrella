@@ -1,382 +1,505 @@
-import type { Fn, Fn2 } from "@thi.ng/api";
+// thing:no-export
+
+// Downloaded @ 2023-02-22T10:27:02.306Z
+// Source: https://demo.thi.ng/umbrella/parse-playground/#ldoKdkROTDE6IDxETkw-KyA9PiBkaXNjYXJkIDsKRE5MMjogPE5MPnsyLH0gOwppbmxpbmVkZWxpbTogKCAiIVsiIHwgJ1snIHwgIioqIiB8ICdfJyB8ICJ-fiIgfCAnYCcgfCAiIDoiICkgOwpkZWxpbTogKCA8aW5saW5lZGVsaW0-IHwgPEROTDI-ICkgOwpkZWxpbTE6ICggPGlubGluZWRlbGltPiB8IDxOTD4gKSA7CmJvZHk6IC4oPy08ZGVsaW0-ISkgPT4gam9pbiA7CmJvZHkxOiAuKD8tPGRlbGltMT4hKSA9PiBqb2luIDsKCnJlZjogIltbIiEgLig_KyJdXSIhKSA9PiBqb2luIDsKZm5yZWY6ICJbXiIhIDxsYWJlbD4gOwpmbm90ZTogPExTVEFSVD4gIlteIiEgPGZubGFiZWw-IDxXUzE-IDxwYXJhPiA7CmZubGFiZWw6IC4oPysiXToiISkgPT4gam9pbiA7CmxhYmVsOiAuKD8rJ10nISkgPT4gam9pbiA7CnRhcmdldDogLig_KycpJyEpID0-IGpvaW4gOwpsaW5rOiAnWychIDxsYWJlbD4gJygnISA8dGFyZ2V0PiA7CmxpbmtyZWY6ICdbJyEgPGxhYmVsPiAnWychIDxsYWJlbD4gOwpsaW5rZGVmOiA8TFNUQVJUPiAnWychIDxsYWJlbD4gJzonISA8V1MxPiA8bGR0YXJnZXQ-IDsKbGR0YXJnZXQ6IC4oPys8RE5MMT4pID0-IGpvaW4gOwppbWc6ICIhWyIhIDxsYWJlbD4gJygnISA8dGFyZ2V0PiA7CmJvbGQ6ICIqKiIhIC4oPysiKioiISkgPT4gam9pbiA7Cml0YWxpYzogIl8iISAuKD8rIl8iISkgPT4gam9pbiA7CmNvZGU6ICdgJyEgLig_KydgJyEpID0-IGpvaW4gOwpzdHJpa2U6ICJ-fiIhIC4oPysifn4iISkgPT4gam9pbiA7CmVtb2ppOiAnICc_ICc6JyEgPEFMUEhBX05VTT4oPysnOichKSA9PiBqb2luIDsKcGFyYTogKDxyZWY-IHwgPGltZz4gfCA8Zm5yZWY-IHwgPGxpbmtyZWY-IHwgPGxpbms-IHwgPGJvbGQ-IHwgPGl0YWxpYz4gfCA8c3RyaWtlPiB8IDxjb2RlPiB8IDxlbW9qaT4gfCA8Ym9keT4pKiA8RE5MMj4hIDsKCmhkbGV2ZWw6ICcjJysgPT4gY291bnQgOwpoZDogPExTVEFSVD4gPGhkbGV2ZWw-IDxXUzA-CiAgICAoPHJlZj4gfCA8aW1nPiB8IDxmbnJlZj4gfCA8bGluaz4gfCA8Ym9sZD4gfCA8aXRhbGljPiB8IDxzdHJpa2U-IHwgPGNvZGU-IHwgPGVtb2ppPiB8IDxib2R5MT4gKSogPEROTDE-IDsKCmxpbGV2ZWw6ICcgJyogPT4gY291bnQgOwp1aW50OiA8RElHSVQ-KyA9PiBpbnQgOwp1bGlkOiA8RE5MPiA8V1MwPiAnLSchIDsKb2xpZDogPEROTD4gPFdTMD4gPERJR0lUPishICcuJyEgOwpsaWRlbGltOiAoIDxkZWxpbT4gfCA8dWxpZD4gfCA8b2xpZD4gKSA7CmxpYm9keTogLig_LTxsaWRlbGltPiEpID0-IGpvaW4gOwp0b2RvOiAnWychIFsgeFhdICddJyEgPFdTMT4gPT4gaG9pc3RSIDsKdWxpdGVtOiA8TFNUQVJUPiA8bGlsZXZlbD4gIi0gIiEgPHRvZG8-PwogICAgICAgICg8cmVmPiB8IDxpbWc-IHwgPGZucmVmPiB8IDxsaW5rPiB8IDxib2xkPiB8IDxpdGFsaWM-IHwgPHN0cmlrZT4gfCA8Y29kZT4gfCA8ZW1vamk-IHwgPGxpYm9keT4gKSogPEROTD4gOwpvbGl0ZW06IDxMU1RBUlQ-IDxsaWxldmVsPiA8dWludD4gIi4gIiEgPHRvZG8-PwogICAgICAgICg8cmVmPiB8IDxpbWc-IHwgPGZucmVmPiB8IDxsaW5rPiB8IDxib2xkPiB8IDxpdGFsaWM-IHwgPHN0cmlrZT4gfCA8Y29kZT4gfCA8ZW1vamk-IHwgPGxpYm9keT4gKSogPEROTD4gOwpsaXN0OiAoPHVsaXRlbT4gfCA8b2xpdGVtPikrIDxETkwxPiA7CgpjYmRlbGltOiA8TFNUQVJUPiAiYGBgIiEgOwpjb2RlYmxvY2s6IDxjYmRlbGltPiEgPGNvZGVtZXRhPiA8Y29kZWJvZHk-IDxETkwxPiA7CmNvZGVtZXRhOiAuKD8rPE5MPiEpID0-IGpvaW4gOwpjb2RlYm9keTogLig_KzxjYmRlbGltPikgPT4gam9pbiA7CgpjdXN0b21kZWxpbTogPExTVEFSVD4gIjo6OiIhIDsKY3VzdG9tYmxvY2s6IDxjdXN0b21kZWxpbT4hIDxjdXN0b21tZXRhPiA8Y3VzdG9tYm9keT4gPEROTDE-IDsKY3VzdG9tbWV0YTogLig_KzxOTD4hKSA9PiBqb2luIDsKY3VzdG9tYm9keTogLig_KzxjdXN0b21kZWxpbT4pID0-IGpvaW4gOwoKbWV0YWJsb2NrOiA8TFNUQVJUPiAie3t7IiEgPG1ldGFib2R5PiA8RE5MMT4gOwptZXRhYm9keTogLig_KzxtZXRhZW5kPiEpID0-IGpvaW4gOwptZXRhZW5kOiAifX19IiA8TEVORD4gOwoKYnFsaW5lOiA8TFNUQVJUPiAiPiAiIQogICAgICAgICg8cmVmPiB8IDxpbWc-IHwgPGZucmVmPiB8IDxsaW5rPiB8IDxib2xkPiB8IDxpdGFsaWM-IHwgPHN0cmlrZT4gfCA8Y29kZT4gfCA8ZW1vamk-IHwgPGJvZHkxPikqIDxETkw-IDsKYnF1b3RlOiA8YnFsaW5lPisgPEROTDE-IDsKCnRkZWxpbTogKDxpbmxpbmVkZWxpbT4gfCAnfCcgKSA7CnRib2R5OiAuKD8tPHRkZWxpbT4hKSA9PiBqb2luIDsKdGNlbGw6IDxXUzA-ICg8cmVmPiB8IDxpbWc-IHwgPGZucmVmPiB8IDxsaW5rPiB8IDxib2xkPiB8IDxpdGFsaWM-IHwgPHN0cmlrZT4gfCA8Y29kZT4gfCA8ZW1vamk-IHwgPHRib2R5PiApKiAnfCchIDsKdHJvdzogPExTVEFSVD4gJ3wnISA8dGNlbGw-KD8rPEROTD4pIDsKdGFibGU6IDx0cm93PisgPEROTDE-IDsKCmhyOiAiLS0iICgnLScoPy08Tkw-ISkpKiA8RE5MMT4gPT4gam9pbiA7CgptYWluOiA8V1MwPiAoPGhkPiB8IDxsaXN0PiB8IDxicXVvdGU-IHwgPGNvZGVibG9jaz4gfCA8Y3VzdG9tYmxvY2s-IHwgPG1ldGFibG9jaz4gfCA8dGFibGU-IHwgPGhyPiB8IDxmbm90ZT4gfCA8bGlua2RlZj4gfCA8cGFyYT4pKiA7pG1haW7aAg8jIEhlbGxvIDp3b3JsZDpbXmFiY10KCjpzbWlsZToKCjo6OmFsZXJ0ClRlc3QgW2xhYmVsXVtyZWZyZWZdCjo6OgoKLS0tCgp7e3sgeyJpZCI6IDEyMywgInByb3RlY3RlZCI6IHRydWUgfSB9fX0KU28gW1tzbWlsZV9mb28xMl1dIPCfmI0gd2hhdCdzIFt0aGlzXSguL3RoaXMubWQpW14yXSB0aGVuOgoKQSBbbGluayB3aXRoIHJlZmVyZW5jZV1bcmVmcmVmXS4uLgoKOnNtaWxlOgoKYGBgdHMgdGFuZ2xlOm5vIGxuOnllcwpjb25zdCBmb28gPSA0MjsKLy8gdGhlIGVuZApgYGAKCjEuIGZvbwogIDQuIGJhcgogICAgIGJheiBhbmQgc28gb24KICAgICBtdWx0aWxpbmUKMi4gWyBdIHRhc2sKMy4gW3hdICoqZG9uZSoqCgo-IGJsb2NrcXVvdGUKPiBtdWx0aWxpbmUgdG9vCj4gLS0gc291cmNlCgp8IGZvbyB8IGJhciB8Cnw6LXwtOnwKfCBbW3JlZiMyMl1dIHwgYG9uYCAqKm9mZioqIHwKClteYWJjXTogRm9vIF9iYXJfIGJhegoKW14yXTogVE9ETwoKW3JlZnJlZl06IGh0dHA6Ly90aGkubmcvCltmb29dOiAuL2Zvby5tZCNiYXIKCtktMTEuIGFiYwogIC0geHl6CjIxLiB4eHgKICAxLiBmb28KICAgIDEuIGJhcgoK2SZ7e3t5YW1sCi0gZm9vCi0gYmFyCiAgLSBiYXoKfX19ClRlc3QKCg
+
+import type { Fn3 } from "@thi.ng/api";
 import { peek } from "@thi.ng/arrays/peek";
-import type { ResultBody } from "@thi.ng/fsm";
-import { alts } from "@thi.ng/fsm/alts";
-import { fsm } from "@thi.ng/fsm/fsm";
-import { not } from "@thi.ng/fsm/not";
-import { whitespace } from "@thi.ng/fsm/range";
-import { repeat } from "@thi.ng/fsm/repeat";
-import { seq } from "@thi.ng/fsm/seq";
-import { str } from "@thi.ng/fsm/str";
-import { untilStr } from "@thi.ng/fsm/until";
-import { comp } from "@thi.ng/transducers/comp";
-import { filter } from "@thi.ng/transducers/filter";
-import type { TagFactories } from "./api.js";
+import { isString } from "@thi.ng/checks/is-string";
+import { delay } from "@thi.ng/compose/delay";
+import { DEFAULT, defmulti } from "@thi.ng/defmulti";
+import { EMOJI } from "@thi.ng/emoji/emoji";
+import type { ParseScope, ParseState } from "@thi.ng/parse";
+import { defContext } from "@thi.ng/parse/context";
+import { defGrammar } from "@thi.ng/parse/grammar";
+import type {
+	ColumnAlign,
+	MDParseContext,
+	ParseOpts,
+	TagTransforms,
+	TodoAttribs,
+} from "./api.js";
 
-type ParseResult = ResultBody<any[]>;
+export const GRAMMAR = defGrammar(`
+DNL1: <DNL>+ => discard ;
+DNL2: <NL>{2,} ;
+inlinedelim: ( "![" | '[' | "**" | '_' | "~~" | '\`' | " :" ) ;
+delim: ( <inlinedelim> | <DNL2> ) ;
+delim1: ( <inlinedelim> | <NL> ) ;
+body: .(?-<delim>!) => join ;
+body1: .(?-<delim1>!) => join ;
 
-/**
- * Parser state IDs
- */
-const enum State {
-	BLOCKQUOTE,
-	CODE,
-	CODEBLOCK,
-	EMPHASIS,
-	END_BLOCKQUOTE,
-	END_LI,
-	END_PARA,
-	END_HEADING,
-	END_TABLE,
-	HEADING,
-	IMG,
-	LINK,
-	LI,
-	PARA,
-	START,
-	START_CODEBLOCK,
-	STRIKE,
-	STRONG,
-	TABLE,
+ref: "[["! .(?+"]]"!) => join ;
+fnref: "[^"! <label> ;
+fnote: <LSTART> "[^"! <fnlabel> <WS1> <para> ;
+fnlabel: .(?+"]:"!) => join ;
+label: .(?+']'!) => join ;
+target: .(?+')'!) => join ;
+link: '['! <label> '('! <target> ;
+linkref: '['! <label> '['! <label> ;
+linkdef: <LSTART> '['! <label> ':'! <WS1> <ldtarget> ;
+ldtarget: .(?+<DNL1>) => join ;
+img: "!["! <label> '('! <target> ;
+bold: "**"! .(?+"**"!) => join ;
+italic: "_"! .(?+"_"!) => join ;
+code: '\`'! .(?+'\`'!) => join ;
+strike: "~~"! .(?+"~~"!) => join ;
+emoji: ' '? ':'! <ALPHA_NUM>(?+':'!) => join ;
+para: (<ref> | <img> | <fnref> | <linkref> | <link> | <bold> | <italic> | <strike> | <code> | <emoji> | <body>)* <DNL2>! ;
+
+hdlevel: '#'+ => count ;
+hd: <LSTART> <hdlevel> <WS0>
+    (<ref> | <img> | <fnref> | <link> | <bold> | <italic> | <strike> | <code> | <emoji> | <body1> )* <DNL1> ;
+
+lilevel: ' '* => count ;
+uint: <DIGIT>+ => int ;
+ulid: <DNL> <WS0> '-'! ;
+olid: <DNL> <WS0> <DIGIT>+! '.'! ;
+lidelim: ( <delim> | <ulid> | <olid> ) ;
+libody: .(?-<lidelim>!) => join ;
+todo: '['! [ xX] ']'! <WS1> => hoistR ;
+ulitem: <LSTART> <lilevel> "- "! <todo>?
+        (<ref> | <img> | <fnref> | <link> | <bold> | <italic> | <strike> | <code> | <emoji> | <libody> )* <DNL> ;
+olitem: <LSTART> <lilevel> <uint> ". "! <todo>?
+        (<ref> | <img> | <fnref> | <link> | <bold> | <italic> | <strike> | <code> | <emoji> | <libody> )* <DNL> ;
+list: (<ulitem> | <olitem>)+ <DNL1> ;
+
+cbdelim: <LSTART> "\`\`\`"! ;
+codeblock: <cbdelim>! <codemeta> <codebody> <DNL1> ;
+codemeta: .(?+<NL>!) => join ;
+codebody: .(?+<cbdelim>) => join ;
+
+customdelim: <LSTART> ":::"! ;
+customblock: <customdelim>! <custommeta> <custombody> <DNL1> ;
+custommeta: .(?+<NL>!) => join ;
+custombody: .(?+<customdelim>) => join ;
+
+metablock: <LSTART> "{{{"! <metabody> <DNL1> ;
+metabody: .(?+<metaend>!) => join ;
+metaend: "}}}" <LEND> ;
+
+bqline: <LSTART> "> "!
+        (<ref> | <img> | <fnref> | <link> | <bold> | <italic> | <strike> | <code> | <emoji> | <body1>)* <DNL> ;
+bquote: <bqline>+ <DNL1> ;
+
+tdelim: (<inlinedelim> | '|' ) ;
+tbody: .(?-<tdelim>!) => join ;
+tcell: <WS0> (<ref> | <img> | <fnref> | <link> | <bold> | <italic> | <strike> | <code> | <emoji> | <tbody> )* '|'! ;
+trow: <LSTART> '|'! <tcell>(?+<DNL>) ;
+table: <trow>+ <DNL1> ;
+
+hr: "--" ('-'(?-<NL>!))* <DNL1> => join ;
+
+main: <WS0> (<hd> | <list> | <bquote> | <codeblock> | <customblock> | <metablock> | <table> | <hr> | <fnote> | <linkdef> | <para>)* ;
+`);
+
+export class ParseError extends Error {
+	constructor(public state?: ParseState<string>) {
+		super();
+	}
 }
 
-/**
- * Parser context / state
- */
-interface FSMCtx {
-	stack: any[];
-	container?: any[];
-	children?: any[];
-	body?: string;
-	title?: string;
-	href?: string;
-	lang?: string;
-	hd?: number;
-}
-
-/**
- * Default hiccup element factories
- */
-const DEFAULT_TAGS: TagFactories = {
-	blockquote: (xs) => ["blockquote", {}, ...xs],
-	code: (body) => ["code", {}, body],
-	codeblock: (lang, body) => ["pre", { lang }, body],
-	em: (body) => ["em", {}, body],
-	heading: (level, xs) => [level < 7 ? `h${level}` : "p", {}, ...xs],
-	hr: () => ["hr", {}],
-	img: (src, alt) => ["img", { src, alt }],
-	li: (xs: any[]) => ["li", {}, ...xs],
-	link: (href, body) => ["a", { href }, body],
-	list: (type, xs) => [type, {}, ...xs],
-	paragraph: (xs) => ["p", {}, ...xs],
-	strong: (body) => ["strong", {}, body],
-	strike: (body) => ["del", {}, body],
-	table: (rows) => ["table", {}, ["tbody", {}, ...rows]],
-	td: (_, xs) => ["td", {}, ...xs],
-	tr: (_, xs) => ["tr", {}, ...xs],
+export const parse = (
+	src: string,
+	tags?: Partial<TagTransforms>,
+	opts?: Partial<ParseOpts>
+) => {
+	const parseCtx = defContext(src + "\n\n");
+	if (!GRAMMAR!.rules.main(parseCtx)) throw new ParseError(parseCtx.state);
+	const mdCtx = defParseContext(tags, opts);
+	const result: any[] = [];
+	walk(parseCtx.root, mdCtx, result);
+	return { result, ctx: mdCtx };
 };
 
-const BQUOTE = ">";
-const CODE = "`";
-const CODEBLOCK = "```";
-const CODEBLOCK_END = "\n```\n";
-const EM = "_";
-const HD = "#";
-const HR = "-";
-const IMG = "![";
-const LI = "- ";
-const LINK_LABEL = "[";
-const LINK_LABEL_END = "]";
-const LINK_HREF = "(";
-const LINK_HREF_END = ")";
-const NL = "\n";
-const STRIKE = "~~";
-const STRONG = "**";
-const TD = "|";
-
-// state / context handling helpers
-
-const transition = (ctx: FSMCtx, id: State): ParseResult => {
-	ctx.children = [];
-	ctx.body = "";
-	return [id];
-};
-
-const push =
-	(id: State, next: State) =>
-	(ctx: FSMCtx): ParseResult => {
-		ctx.stack.push({ id, children: ctx.children!.concat(ctx.body) });
-		return transition(ctx, next);
-	};
-
-const pop =
-	(result: Fn2<FSMCtx, string, any>) =>
-	(ctx: FSMCtx, body: any): ParseResult => {
-		const { id, children } = ctx.stack.pop();
-		children.push(result(ctx, body));
-		ctx.children = children;
-		ctx.body = "";
-		return [id];
-	};
-
-const collectChildren = (ctx: FSMCtx) => (
-	ctx.children!.push(ctx.body), ctx.children!
-);
-
-const collect =
-	(id: State) =>
-	(ctx: FSMCtx, buf: string[]): ParseResult => {
-		ctx.body += buf.join("");
-		return [id];
-	};
-
-const collectHeading =
-	(tag: Fn2<number, any[], any[]>) =>
-	(ctx: FSMCtx): ParseResult =>
-		[State.START, [tag(ctx.hd!, collectChildren(ctx))]];
-
-const collectAndRestart =
-	(tag: (xs: any[]) => any[]) =>
-	(ctx: FSMCtx): ParseResult =>
-		[State.START, [tag(collectChildren(ctx))]];
-
-const collectBlockQuote = (ctx: FSMCtx): ParseResult => (
-	ctx.children!.push(ctx.body, ["br", {}]),
-	(ctx.body = ""),
-	[State.BLOCKQUOTE]
-);
-
-const collectCodeBlock =
-	(tag: Fn2<string, string, any[]>) =>
-	(ctx: FSMCtx, body: string): ParseResult =>
-		[State.START, [tag(ctx.lang!, body)]];
-
-const collectLi = (ctx: FSMCtx, tag: Fn<any[], any[]>) =>
-	ctx.container!.push(tag(collectChildren(ctx)));
-
-const collectList =
-	(type: string, list: Fn2<string, any[], any[]>, item: Fn<any[], any[]>) =>
-	(ctx: FSMCtx): ParseResult => {
-		collectLi(ctx, item);
-		return [State.START, [list(type, ctx.container!)]];
-	};
-
-const collectTD = (tag: Fn2<number, any[], any[]>) => (ctx: FSMCtx) => {
-	ctx.children!.push(ctx.body);
-	ctx.container!.push(tag(peek(ctx.stack).container.length, ctx.children!));
-	return transition(ctx, State.TABLE);
-};
-
-const collectTR = (tag: Fn2<number, any[], any[]>) => (ctx: FSMCtx) => {
-	const rows = peek(ctx.stack).container;
-	rows.push(tag(rows.length, ctx.container!));
-	ctx.container = [];
-	return transition(ctx, State.END_TABLE);
-};
-
-const collectTable =
-	(tag: Fn<any[], any[]>) =>
-	(ctx: FSMCtx): ParseResult => {
-		const rows = ctx.stack.pop().container;
-		rows.splice(1, 1);
-		return [State.START, [tag(rows)]];
-	};
-
-const collectInline = (fn: Fn<string, any[]>) =>
-	pop((ctx, body: string) => fn(ctx.body + body.trim()));
-
-const heading = (ctx: FSMCtx, body: string[]): ParseResult => (
-	(ctx.hd = body.length), transition(ctx, State.HEADING)
-);
-
-const matchInline = (id: State) => [
-	str("![", push(id, State.IMG)),
-	str(LINK_LABEL, push(id, State.LINK)),
-	str(STRIKE, push(id, State.STRIKE)),
-	str(STRONG, push(id, State.STRONG)),
-	str(EM, push(id, State.EMPHASIS)),
-	str(CODE, push(id, State.CODE)),
-];
-
-const matchLink = (result: Fn2<string, string, any[]>) =>
-	seq<string, FSMCtx, any>(
-		[
-			untilStr(
-				LINK_LABEL_END,
-				(ctx, body) => ((ctx.title = body), undefined)
-			),
-			str(LINK_HREF),
-			untilStr(
-				LINK_HREF_END,
-				(ctx, body) => ((ctx.href = body), undefined)
-			),
+export const defParseContext = (
+	tags?: Partial<TagTransforms>,
+	opts?: Partial<ParseOpts>
+): MDParseContext => ({
+	footnotes: {},
+	headings: [],
+	linkRefs: {},
+	hasFootnotes: false,
+	meta: null,
+	opts: {
+		bqLineBreak: " ",
+		...opts,
+	},
+	tags: {
+		bold: (_, body) => ["strong", {}, body],
+		blockquote: (_, body, meta) => [
+			"blockquote",
+			__withMeta({}, meta),
+			...body,
 		],
-		pop((ctx: FSMCtx) => result(ctx.href!, ctx.title!))
-	);
-
-const matchPara = (id: State, next: State) =>
-	alts<string, FSMCtx, any>(
-		[
-			...matchInline(id),
-			str(NL, (ctx: FSMCtx) => ((ctx.body += " "), [next])),
+		code: (_, body) => ["code", {}, body],
+		codeblock: (_, lang, __head, body, meta) => [
+			"pre",
+			__withMeta({ data: { lang }, __head }, meta),
+			["code", {}, body],
 		],
-		collect(id)
-	);
+		custom: (_, kind, body, meta) => [kind, __withMeta({}, meta), body],
+		emoji: (_, id) => EMOJI[id] || id,
+		footnote: (_, id, body, meta) => [
+			"li",
+			__withMeta({ id: `fn-${id}` }, meta),
+			["sup", {}, `[${id}] `],
+			...body,
+			" ",
+			["a", { href: `#fnref-${id}` }, "⏎"],
+		],
+		footnoteRef: (_, id) => [
+			"sup",
+			{},
+			["a", { id: `fnref-${id}`, href: `#fn-${id}` }, `[${id}]`],
+		],
+		footnoteWrapper: (_, notes) => [
+			"ul",
+			{ id: "footnotes" },
+			...Object.keys(notes)
+				.sort()
+				.map((id) => notes[id]),
+		],
+		heading: (_, level, body, meta) => [
+			level > 6 ? "p" : `h${level}`,
+			__withMeta({}, meta),
+			...body,
+		],
+		hr: (_, __length) => ["hr", { __length }],
+		img: (_, src, alt) => ["img", { src, alt }],
+		italic: (_, body) => ["em", {}, body],
+		link: (_, href, body) => ["a", { href }, ...body],
+		linkRef: (ctx, refID, body) => [
+			"a",
+			{ href: delay(() => ctx.linkRefs[refID]) },
+			...body,
+		],
+		meta: (_, body) => body,
+		olitem: (_, attribs, index, body) => [
+			"li",
+			{ ...attribs, __index: index },
+			...body,
+		],
+		ol: (_, items, meta) => ["ol", __withMeta({}, meta), ...items],
+		para: (_, body, meta) => ["p", __withMeta({}, meta), ...body],
+		strike: (_, body) => ["s", {}, body],
+		table: (_, __align, head, rows, meta) => [
+			"table",
+			__withMeta({ __align }, meta),
+			["thead", {}, head],
+			["tbody", {}, ...rows],
+		],
+		tableCell: (_, body) => ["td", {}, ...body],
+		tableRow: (_, cells) => ["tr", {}, ...cells],
+		ul: (_, items, meta) => ["ul", __withMeta({}, meta), ...items],
+		ulitem: (_, attribs, body) => ["li", attribs, ...body],
+		...tags,
+	},
+});
 
-const newPara = (ctx: FSMCtx, buf: string[]): ParseResult => (
-	(ctx.body = buf.join("")), (ctx.children = []), [State.PARA]
+export const walk: Fn3<
+	ParseScope<string>,
+	MDParseContext,
+	any[],
+	void
+> = defmulti<ParseScope<string>, MDParseContext, any[], void>(
+	(x, ctx) => {
+		ctx.logger && ctx.logger.debug(x);
+		return x.id;
+	},
+	{
+		body1: "body",
+		bqline: "repeat0",
+		label: "body",
+		libody: "body",
+		main: "root",
+		repeat1: "repeat0",
+		tbody: "body",
+	},
+	{
+		[DEFAULT]: (scope: ParseScope<string>, ctx: MDParseContext) => {
+			throw new Error(
+				`unknown ID: ${scope.id}, ctx: ${JSON.stringify(ctx)}`
+			);
+		},
+
+		root: ({ children }, ctx, acc) => {
+			if (!children) return;
+			walk(children![0], ctx, acc);
+			if (ctx.hasFootnotes) {
+				__collect(acc, ctx.tags.footnoteWrapper(ctx, ctx.footnotes));
+			}
+		},
+
+		main: ({ children }, ctx, acc) => walk(children![0], ctx, acc),
+
+		repeat0: ({ children }, ctx, acc) => {
+			for (let c of children!) walk(c, ctx, acc);
+		},
+
+		body: ({ result }, _, acc) => __collect(acc, result),
+
+		bold: ({ result }, ctx, acc) =>
+			__collect(acc, ctx.tags.bold(ctx, result)),
+
+		bquote: (scope, ctx, acc) => {
+			const body: any[] = [];
+			const children = scope.children![0].children!;
+			for (let i = 0, n = children!.length - 1; i <= n; i++) {
+				walk(children[i].children![0], ctx, body);
+				if (i < n) body.push(ctx.opts.bqLineBreak);
+			}
+			__collect(
+				acc,
+				ctx.tags.blockquote(ctx, __trimBody(body), ctx.meta)
+			);
+			ctx.meta = null;
+		},
+
+		code: ({ result }, ctx, acc) =>
+			__collect(acc, ctx.tags.code(ctx, result)),
+
+		codeblock: ({ children }, ctx, acc) => {
+			const [lang, ...head] = children![0].result.split(" ");
+			__collect(
+				acc,
+				ctx.tags.codeblock(
+					ctx,
+					lang,
+					head,
+					children![1].result.trim(),
+					ctx.meta
+				)
+			);
+			ctx.meta = null;
+		},
+
+		customblock: ({ children }, ctx, acc) => {
+			__collect(
+				acc,
+				ctx.tags.custom(
+					children![0].result,
+					children![1].result.trim(),
+					ctx.meta
+				)
+			);
+			ctx.meta = null;
+		},
+
+		emoji: ({ result }, ctx, acc) => {
+			if (result[0] === " ") {
+				__collect(acc, " ");
+				result = result.substring(1);
+			}
+			__collect(acc, ctx.tags.emoji(ctx, result));
+		},
+
+		fnote: ({ children }, ctx) => {
+			const body: any[] = [];
+			const id = children![0].result;
+			walk(children![1].children![0], ctx, body);
+			const res = ctx.tags.footnote(ctx, id, body, ctx.meta);
+			if (res != null) {
+				ctx.hasFootnotes = true;
+				ctx.footnotes[id] = res;
+			}
+			ctx.meta = null;
+		},
+
+		fnref: ({ children }, ctx, acc) =>
+			__collect(acc, ctx.tags.footnoteRef(ctx, children![0].result)),
+
+		hd: ({ children }, ctx, acc) => {
+			const body: any[] = [];
+			const level = children![0].result;
+			walk(children![1], ctx, body);
+			ctx.headings.push({ level, body });
+			__collect(
+				acc,
+				ctx.tags.heading(ctx, level, __trimBody(body), ctx.meta)
+			);
+			ctx.meta = null;
+		},
+
+		hr: ({ result }, ctx, acc) =>
+			__collect(acc, ctx.tags.hr(ctx, result.length)),
+
+		img: ({ children }, ctx, acc) =>
+			__collect(
+				acc,
+				ctx.tags.img(
+					ctx,
+					children![1].result,
+					children![0].result.trim()
+				)
+			),
+
+		italic: ({ result }, ctx, acc) =>
+			__collect(acc, ctx.tags.italic(ctx, result)),
+
+		link: ({ children }, ctx, acc) => {
+			const body: any[] = [];
+			walk(children![0], ctx, body);
+			__collect(acc, ctx.tags.link(ctx, children![1].result, body));
+		},
+
+		linkdef: ({ children }, ctx) => {
+			ctx.linkRefs[children![0].result] = children![1].result;
+		},
+
+		linkref: ({ children }, ctx, acc) => {
+			const body: any[] = [];
+			walk(children![0], ctx, body);
+			__collect(acc, ctx.tags.linkRef(ctx, children![1].result, body));
+		},
+
+		list: (scope, ctx, acc) => {
+			const children = scope.children![0].children!;
+			const stack: any[][] = [
+				[children[0].id === "ulitem" ? "ul" : "ol"],
+			];
+			const levels = [0];
+			for (let item of children) {
+				const currLevel = item.children![0].result;
+				if (currLevel > peek(levels)) {
+					const sublist = [item.id === "ulitem" ? "ul" : "ol"];
+					const parent = peek(stack);
+					parent.length > 1
+						? peek(parent).push(sublist)
+						: parent.push([
+								parent[0] === "ul" ? "ulitem" : "olitem",
+								{},
+								sublist,
+						  ]);
+					stack.push(sublist);
+					levels.push(currLevel);
+				} else if (currLevel < peek(levels)) {
+					while (currLevel < peek(levels)) {
+						stack.pop();
+						levels.pop();
+					}
+				}
+				walk(item, ctx, peek(stack));
+			}
+
+			const $list = (root: any[], isRoot = false) =>
+				ctx.tags[<"ul" | "ol">root[0]](
+					ctx,
+					root.slice(1).map($item),
+					isRoot ? ctx.meta : null
+				);
+
+			const $item = (item: any[]) => {
+				let last = item[item.length - 1];
+				if (last[0] === "ul" || last[0] === "ol")
+					item[item.length - 1] = $list(last);
+				return item[0] === "ulitem"
+					? ctx.tags.ulitem(ctx, item[1], item.slice(2))
+					: ctx.tags.olitem(ctx, item[1], item[2], item.slice(3));
+			};
+
+			__collect(acc, $list(stack[0], true));
+			ctx.meta = null;
+		},
+
+		metablock: ({ children }, ctx) => {
+			ctx.meta = ctx.tags.meta(ctx, children![0].result.trim());
+		},
+
+		olitem: ({ children }, ctx, acc) => {
+			const body: any[] = [];
+			walk(children![3], ctx, body);
+			__collect(acc, [
+				"olitem",
+				__listItemAttribs(children![2]),
+				children![1].result,
+				...__trimBody(body),
+			]);
+		},
+
+		para: ({ children }, ctx, acc) => {
+			const body: any[] = [];
+			for (let c of children!) walk(c, ctx, body);
+			__collect(acc, ctx.tags.para(ctx, __trimBody(body), ctx.meta));
+			ctx.meta = null;
+		},
+
+		strike: ({ result }, ctx, acc) =>
+			__collect(acc, ctx.tags.strike(ctx, result)),
+
+		table: (scope, ctx, acc) => {
+			const children = scope.children![0].children!;
+			const head: any[] = [];
+			const rows: any[] = [];
+			walk(children[0], ctx, head);
+			let align: ColumnAlign[] = [];
+			if (children.length > 1) {
+				for (let c of children[1].children![0].children!) {
+					const raw = <string>(
+						c.children![0].children![0].result.trim()
+					);
+					align.push(
+						raw.startsWith(":-")
+							? raw.endsWith("-:")
+								? "center"
+								: "left"
+							: raw.endsWith("-:")
+							? "right"
+							: "left"
+					);
+				}
+				for (let c of children.slice(2)) walk(c, ctx, rows);
+			} else {
+				align = new Array(
+					children[0].children![0].children!.length
+				).fill("left");
+			}
+			__collect(acc, ctx.tags.table(ctx, align, head[0], rows, ctx.meta));
+			ctx.meta = null;
+		},
+
+		tcell: ({ children }, ctx, acc) => {
+			const body: any[] = [];
+			for (let c of children!) walk(c, ctx, body);
+			__collect(acc, ctx.tags.tableCell(ctx, __trimBody(body)));
+		},
+
+		trow: ({ children }, ctx, acc) => {
+			const cols: any[] = [];
+			for (let c of children![0].children!) walk(c, ctx, cols);
+			__collect(acc, ctx.tags.tableRow(ctx, cols));
+		},
+
+		ulitem: ({ children }, ctx, acc) => {
+			const body: any[] = [];
+			walk(children![2], ctx, body);
+			__collect(acc, [
+				"ulitem",
+				__listItemAttribs(children![1]),
+				...__trimBody(body),
+			]);
+		},
+	}
 );
 
-const newParaInline =
-	(next: State) =>
-	(ctx: FSMCtx): ParseResult => {
-		ctx.stack.push({ id: State.PARA, children: [] });
-		return transition(ctx, next);
-	};
+const __collect = (acc: any[], x: any) => x != null && acc.push(x);
 
-const newParaCode = (ctx: FSMCtx, x: string[]): ParseResult => (
-	(ctx.body = x[1]),
-	ctx.stack.push({ id: State.PARA, children: [] }),
-	[State.CODE]
-);
+const __withMeta = (target: any, meta?: any) => {
+	if (meta != null) {
+		target.__meta = meta;
+	}
+	return target;
+};
 
-const newList = (ctx: FSMCtx): ParseResult => (
-	(ctx.container = []), transition(ctx, State.LI)
-);
+const __listItemAttribs = (scope?: ParseScope<string>): TodoAttribs =>
+	scope?.id === "todo"
+		? {
+				__todo: true,
+				__done: scope.result === "x",
+		  }
+		: {};
 
-const newTable = (ctx: FSMCtx) => (
-	ctx.stack.push({ id: State.TABLE, container: [] }),
-	(ctx.container = []),
-	transition(ctx, State.TABLE)
-);
-
-/**
- * Main parser / transducer. Defines state map with the various Markdown
- * syntax matchers and state transition handlers. The returned parser
- * itself is only used in `index.ts`.
- */
-export const parse = (_tags?: Partial<TagFactories>) => {
-	const tags = <TagFactories>{ ...DEFAULT_TAGS, ..._tags };
-	return comp(
-		filter((x) => x !== "\r"),
-		fsm<string, FSMCtx, any[]>(
-			{
-				[State.START]: alts(
-					[
-						whitespace(() => [State.START]),
-						repeat(str(HD), 1, Infinity, heading),
-						str(BQUOTE, (ctx) => transition(ctx, State.BLOCKQUOTE)),
-						str(LI, newList),
-						alts(
-							[
-								seq([str(CODE), not(str(CODE))], newParaCode),
-								str(CODEBLOCK, () => [State.START_CODEBLOCK]),
-							],
-							undefined,
-							(_, next) => next
-						),
-						seq([repeat(str(HR), 3, Infinity), str(NL)], () => [
-							State.START,
-							[tags.hr()],
-						]),
-						str(IMG, newParaInline(State.IMG)),
-						str(LINK_LABEL, newParaInline(State.LINK)),
-						str(STRONG, newParaInline(State.STRONG)),
-						str(STRIKE, newParaInline(State.STRIKE)),
-						str(EM, newParaInline(State.EMPHASIS)),
-						str(TD, newTable),
-					],
-					newPara
-				),
-
-				[State.PARA]: matchPara(State.PARA, State.END_PARA),
-
-				[State.END_PARA]: alts(
-					[
-						...matchInline(State.PARA),
-						str(NL, collectAndRestart(tags.paragraph)),
-					],
-					collect(State.PARA)
-				),
-
-				[State.BLOCKQUOTE]: matchPara(
-					State.BLOCKQUOTE,
-					State.END_BLOCKQUOTE
-				),
-
-				[State.END_BLOCKQUOTE]: alts(
-					[
-						...matchInline(State.BLOCKQUOTE),
-						str(BQUOTE, collectBlockQuote),
-						str(NL, collectAndRestart(tags.blockquote)),
-					],
-					collect(State.BLOCKQUOTE)
-				),
-
-				[State.HEADING]: matchPara(State.HEADING, State.END_HEADING),
-
-				[State.END_HEADING]: alts(
-					[
-						...matchInline(State.HEADING),
-						str(NL, collectHeading(tags.heading)),
-					],
-					collect(State.HEADING)
-				),
-
-				[State.START_CODEBLOCK]: untilStr(
-					NL,
-					(ctx, lang) => ((ctx.lang = lang), [State.CODEBLOCK])
-				),
-
-				[State.CODEBLOCK]: untilStr(
-					CODEBLOCK_END,
-					collectCodeBlock(tags.codeblock)
-				),
-
-				[State.LI]: matchPara(State.LI, State.END_LI),
-
-				[State.END_LI]: alts(
-					[
-						str(NL, collectList("ul", tags.list, tags.li)),
-						str(
-							LI,
-							(ctx) => (
-								collectLi(ctx, tags.li),
-								transition(ctx, State.LI)
-							)
-						),
-					],
-					collect(State.LI)
-				),
-
-				[State.LINK]: matchLink(tags.link),
-
-				[State.IMG]: matchLink(tags.img),
-
-				[State.STRONG]: untilStr(STRONG, collectInline(tags.strong)),
-
-				[State.STRIKE]: untilStr(STRIKE, collectInline(tags.strike)),
-
-				[State.EMPHASIS]: untilStr(EM, collectInline(tags.em)),
-
-				[State.CODE]: untilStr(CODE, collectInline(tags.code)),
-
-				[State.TABLE]: alts(
-					[
-						...matchInline(State.TABLE),
-						str(TD, collectTD(tags.td)),
-						str(NL, collectTR(tags.tr)),
-					],
-					collect(State.TABLE)
-				),
-
-				[State.END_TABLE]: alts([
-					str(NL, collectTable(tags.table)),
-					str(TD, () => [State.TABLE]),
-				]),
-			},
-			{ stack: [] },
-			State.START
-		)
-	);
+const __trimBody = (body: any[]) => {
+	if (body.length === 1 && isString(body[0])) body[0] = body[0].trim();
+	return body;
 };

@@ -3226,6 +3226,19 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@thi.ng/emoji@^0.0.1, @thi.ng/emoji@workspace:packages/emoji":
+  version: 0.0.0-use.local
+  resolution: "@thi.ng/emoji@workspace:packages/emoji"
+  dependencies:
+    "@microsoft/api-extractor": ^7.34.2
+    "@thi.ng/testament": ^0.3.11
+    rimraf: ^4.1.2
+    tools: "workspace:^"
+    typedoc: ^0.23.24
+    typescript: ^4.9.5
+  languageName: unknown
+  linkType: soft
+
 "@thi.ng/equiv@^2.1.19, @thi.ng/equiv@workspace:^, @thi.ng/equiv@workspace:packages/equiv":
   version: 0.0.0-use.local
   resolution: "@thi.ng/equiv@workspace:packages/equiv"
@@ -3285,7 +3298,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/fsm@^3.1.40, @thi.ng/fsm@workspace:packages/fsm":
+"@thi.ng/fsm@workspace:packages/fsm":
   version: 0.0.0-use.local
   resolution: "@thi.ng/fsm@workspace:packages/fsm"
   dependencies:
@@ -3996,14 +4009,16 @@ __metadata:
     "@thi.ng/api": ^8.7.2
     "@thi.ng/arrays": ^2.5.5
     "@thi.ng/checks": ^3.3.9
+    "@thi.ng/compose": ^2.1.27
     "@thi.ng/defmulti": ^2.1.30
+    "@thi.ng/emoji": ^0.0.1
     "@thi.ng/errors": ^2.2.11
-    "@thi.ng/fsm": ^3.1.40
     "@thi.ng/hiccup": ^4.2.32
+    "@thi.ng/logger": ^1.4.9
+    "@thi.ng/parse": ^2.2.26
     "@thi.ng/strings": ^3.3.26
     "@thi.ng/testament": ^0.3.11
     "@thi.ng/text-canvas": ^2.4.29
-    "@thi.ng/transducers": ^8.3.34
     rimraf: ^4.1.2
     tools: "workspace:^"
     typedoc: ^0.23.24
@@ -4397,7 +4412,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/parse@workspace:^, @thi.ng/parse@workspace:packages/parse":
+"@thi.ng/parse@^2.2.26, @thi.ng/parse@workspace:^, @thi.ng/parse@workspace:packages/parse":
   version: 0.0.0-use.local
   resolution: "@thi.ng/parse@workspace:packages/parse"
   dependencies:

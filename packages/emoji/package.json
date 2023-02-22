@@ -1,7 +1,7 @@
 {
-	"name": "@thi.ng/hiccup-markdown",
-	"version": "2.1.49",
-	"description": "Markdown parser & serializer from/to Hiccup format",
+	"name": "@thi.ng/emoji",
+	"version": "0.0.1",
+	"description": "Bi-directional lookup tables mapping emoji names & their characters",
 	"type": "module",
 	"module": "./index.js",
 	"typings": "./index.d.ts",
@@ -10,7 +10,7 @@
 		"type": "git",
 		"url": "https://github.com/thi-ng/umbrella.git"
 	},
-	"homepage": "https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-markdown#readme",
+	"homepage": "https://github.com/thi-ng/umbrella/tree/develop/packages/emoji#readme",
 	"funding": [
 		{
 			"type": "github",
@@ -33,20 +33,6 @@
 		"pub": "yarn npm publish --access public",
 		"test": "testament test"
 	},
-	"dependencies": {
-		"@thi.ng/api": "^8.7.2",
-		"@thi.ng/arrays": "^2.5.5",
-		"@thi.ng/checks": "^3.3.9",
-		"@thi.ng/compose": "^2.1.27",
-		"@thi.ng/defmulti": "^2.1.30",
-		"@thi.ng/emoji": "^0.0.1",
-		"@thi.ng/errors": "^2.2.11",
-		"@thi.ng/hiccup": "^4.2.32",
-		"@thi.ng/logger": "^1.4.9",
-		"@thi.ng/parse": "^2.2.26",
-		"@thi.ng/strings": "^3.3.26",
-		"@thi.ng/text-canvas": "^2.4.29"
-	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.34.2",
 		"@thi.ng/testament": "^0.3.11",
@@ -56,23 +42,23 @@
 		"typescript": "^4.9.5"
 	},
 	"keywords": [
-		"ast",
-		"conversion",
-		"dom",
-		"export",
-		"fileformat",
-		"hiccup",
-		"markdown",
-		"parser",
-		"transducer",
-		"tree",
-		"typescript"
+		"bidirectional",
+		"database",
+		"emoji",
+		"lut",
+		"name",
+		"typescript",
+		"unicode"
 	],
 	"publishConfig": {
 		"access": "public"
 	},
+	"browser": {
+		"process": false,
+		"setTimeout": false
+	},
 	"engines": {
-		"node": ">=12.7"
+		"node": ">=14"
 	},
 	"files": [
 		"./*.js",
@@ -82,19 +68,15 @@
 		".": {
 			"default": "./index.js"
 		},
-		"./api": {
-			"default": "./api.js"
+		"./emoji": {
+			"default": "./emoji.js"
 		},
-		"./parse": {
-			"default": "./parse.js"
-		},
-		"./serialize": {
-			"default": "./serialize.js"
+		"./names": {
+			"default": "./names.js"
 		}
 	},
 	"thi.ng": {
-		"parent": "@thi.ng/hiccup",
 		"status": "alpha",
-		"year": 2018
+		"year": 2023
 	}
 }
