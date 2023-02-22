@@ -1,10 +1,11 @@
 // thing:no-export
 
-// Downloaded @ 2023-02-20T22:42:01.250Z
-// Source: https://demo.thi.ng/umbrella/parse-playground/#ldoKi0ROTDE6IDxETkw-KyA9PiBkaXNjYXJkIDsKRE5MMjogPE5MPnsyLH0gOwppbmxpbmVkZWxpbTogKCAiIVsiIHwgJ1snIHwgIioqIiB8ICdfJyB8ICJ-fiIgfCAnYCcgfCAiIDoiICkgOwpkZWxpbTogKCA8aW5saW5lZGVsaW0-IHwgPEROTDI-ICkgOwpkZWxpbTE6ICggPGlubGluZWRlbGltPiB8IDxOTD4gKSA7CmJvZHk6IC4oPy08ZGVsaW0-ISkgPT4gam9pbiA7CmJvZHkxOiAuKD8tPGRlbGltMT4hKSA9PiBqb2luIDsKCnJlZjogIltbIiEgLig_KyJdXSIhKSA9PiBqb2luIDsKZm5yZWY6ICJbXiIhIDx1aW50PiAiXSIhIDsKZm5vdGU6IDxMU1RBUlQ-ICJbXiIhIDx1aW50PiAiXToiISA8V1MxPiA8cGFyYT4gOwpsYWJlbDogLig_KyddJyEpID0-IGpvaW4gOwp0YXJnZXQ6IC4oPysnKSchKSA9PiBqb2luIDsKbGluazogJ1snISA8bGFiZWw-ICcoJyEgPHRhcmdldD4gOwpsaW5rcmVmOiAnWychIDxsYWJlbD4gJ1snISA8bGFiZWw-IDsKbGlua2RlZjogPExTVEFSVD4gJ1snISA8bGFiZWw-ICc6JyEgPFdTMT4gPGxkdGFyZ2V0PiA7CmxkdGFyZ2V0OiAuKD8rPEROTDE-KSA9PiBqb2luIDsKaW1nOiAiIVsiISA8bGFiZWw-ICcoJyEgPHRhcmdldD4gOwpib2xkOiAiKioiISAuKD8rIioqIiEpID0-IGpvaW4gOwppdGFsaWM6ICJfIiEgLig_KyJfIiEpID0-IGpvaW4gOwpjb2RlOiAnYCchIC4oPysnYCchKSA9PiBqb2luIDsKc3RyaWtlOiAifn4iISAuKD8rIn5-IiEpID0-IGpvaW4gOwplbW9qaTogJyAnPyAnOichIDxBTFBIQV9OVU0-KD8rJzonISkgPT4gam9pbiA7CnBhcmE6ICg8cmVmPiB8IDxpbWc-IHwgPGZucmVmPiB8IDxsaW5rcmVmPiB8IDxsaW5rPiB8IDxib2xkPiB8IDxpdGFsaWM-IHwgPHN0cmlrZT4gfCA8Y29kZT4gfCA8ZW1vamk-IHwgPGJvZHk-KSogPEROTDI-ISA7CgpoZGxldmVsOiAnIycrID0-IGNvdW50IDsKaGQ6IDxMU1RBUlQ-IDxoZGxldmVsPiA8V1MwPgogICAgKDxyZWY-IHwgPGltZz4gfCA8Zm5yZWY-IHwgPGxpbms-IHwgPGJvbGQ-IHwgPGl0YWxpYz4gfCA8c3RyaWtlPiB8IDxjb2RlPiB8IDxlbW9qaT4gfCA8Ym9keTE-ICkqIDxETkwxPiA7CgpsaWxldmVsOiAnICcqID0-IGNvdW50IDsKdWludDogPERJR0lUPisgPT4gaW50IDsKdWxpZDogPEROTD4gPFdTMD4gJy0nISA7Cm9saWQ6IDxETkw-IDxXUzA-IDxESUdJVD4rISAnLichIDsKbGlkZWxpbTogKCA8ZGVsaW0-IHwgPHVsaWQ-IHwgPG9saWQ-ICkgOwpsaWJvZHk6IC4oPy08bGlkZWxpbT4hKSA9PiBqb2luIDsKdG9kbzogJ1snISBbIHhYXSAnXSchIDxXUzE-ID0-IGhvaXN0UiA7CnVsaXRlbTogPExTVEFSVD4gPGxpbGV2ZWw-ICItICIhIDx0b2RvPj8KICAgICAgICAoPHJlZj4gfCA8aW1nPiB8IDxmbnJlZj4gfCA8bGluaz4gfCA8Ym9sZD4gfCA8aXRhbGljPiB8IDxzdHJpa2U-IHwgPGNvZGU-IHwgPGVtb2ppPiB8IDxsaWJvZHk-ICkqIDxETkw-IDsKb2xpdGVtOiA8TFNUQVJUPiA8bGlsZXZlbD4gPHVpbnQ-ICIuICIhIDx0b2RvPj8KICAgICAgICAoPHJlZj4gfCA8aW1nPiB8IDxmbnJlZj4gfCA8bGluaz4gfCA8Ym9sZD4gfCA8aXRhbGljPiB8IDxzdHJpa2U-IHwgPGNvZGU-IHwgPGVtb2ppPiB8IDxsaWJvZHk-ICkqIDxETkw-IDsKbGlzdDogKDx1bGl0ZW0-IHwgPG9saXRlbT4pKyA8RE5MMT4gOwoKY2JkZWxpbTogPExTVEFSVD4gImBgYCIhIDsKY29kZWJsb2NrOiA8Y2JkZWxpbT4hIDxjb2RlbWV0YT4gPGNvZGVib2R5PiA8RE5MMT4gOwpjb2RlbWV0YTogLig_KzxOTD4hKSA9PiBqb2luIDsKY29kZWJvZHk6IC4oPys8Y2JkZWxpbT4pID0-IGpvaW4gOwoKY3VzdG9tZGVsaW06IDxMU1RBUlQ-ICI6OjoiISA7CmN1c3RvbWJsb2NrOiA8Y3VzdG9tZGVsaW0-ISA8Y3VzdG9tbWV0YT4gPGN1c3RvbWJvZHk-IDxETkwxPiA7CmN1c3RvbW1ldGE6IC4oPys8Tkw-ISkgPT4gam9pbiA7CmN1c3RvbWJvZHk6IC4oPys8Y3VzdG9tZGVsaW0-KSA9PiBqb2luIDsKCm1ldGFibG9jazogPExTVEFSVD4gInt7eyIhIDxtZXRhdHlwZT4gPG1ldGFib2R5PiA8RE5MMT4gOwptZXRhdHlwZTogPEFMUEhBX05VTT4rID0-IGpvaW4gOwptZXRhYm9keTogLig_KzxtZXRhZW5kPiEpID0-IGpvaW4gOwptZXRhZW5kOiAifX19IiA8TEVORD4gOwoKYnFsaW5lOiA8TFNUQVJUPiAiPiAiIQogICAgICAgICg8cmVmPiB8IDxpbWc-IHwgPGZucmVmPiB8IDxsaW5rPiB8IDxib2xkPiB8IDxpdGFsaWM-IHwgPHN0cmlrZT4gfCA8Y29kZT4gfCA8ZW1vamk-IHwgPGJvZHkxPikqIDxETkw-IDsKYnF1b3RlOiA8YnFsaW5lPisgPEROTDE-IDsKCnRkZWxpbTogKDxpbmxpbmVkZWxpbT4gfCAnfCcgKSA7CnRib2R5OiAuKD8tPHRkZWxpbT4hKSA9PiBqb2luIDsKdGNlbGw6IDxXUzA-ICg8cmVmPiB8IDxpbWc-IHwgPGZucmVmPiB8IDxsaW5rPiB8IDxib2xkPiB8IDxpdGFsaWM-IHwgPHN0cmlrZT4gfCA8Y29kZT4gfCA8ZW1vamk-IHwgPHRib2R5PiApKiAnfCchIDsKdHJvdzogPExTVEFSVD4gJ3wnISA8dGNlbGw-KD8rPEROTD4pIDsKdGFibGU6IDx0cm93PisgPEROTDE-IDsKCmhyOiAiLS0iICgnLScoPy08Tkw-ISkpKiA8RE5MMT4gPT4gam9pbiA7CgptYWluOiA8V1MwPiAoPGhkPiB8IDxsaXN0PiB8IDxicXVvdGU-IHwgPGNvZGVibG9jaz4gfCA8Y3VzdG9tYmxvY2s-IHwgPG1ldGFibG9jaz4gfCA8dGFibGU-IHwgPGhyPiB8IDxmbm90ZT4gfCA8bGlua2RlZj4gfCA8cGFyYT4pKiA7pG1haW7aAgMjIEhlbGxvIDp3b3JsZDpbXjFdCgo6c21pbGU6Cgo6OjphbGVydApUZXN0IFtsYWJlbF1bcmVmcmVmXQo6OjoKCi0tLQoKe3t7anNvbiB7ImlkIjogMTIzLCAicHJvdGVjdGVkIjogdHJ1ZSB9IH19fQpTbyBbW3NtaWxlX2ZvbzEyXV0g8J-YjSB3aGF0J3MgW3RoaXNdKC4vdGhpcy5tZClbXjFdIHRoZW46CgpBIFtsaW5rIHdpdGggcmVmZXJlbmNlXVtyZWZyZWZdLi4uCgpbXjFdOiBGb28gYmFyIGJhegoKOnNtaWxlOgoKYGBgdHMgdGFuZ2xlOm5vIGxuOnllcwpjb25zdCBmb28gPQoKYGBgCgoxLiBmb28KICAyMy4gYmFyCiAgICAgYmF6IGFuZCBzbyBvbgogICAgIG11bHRpbGluZQoyLiBiYXJycnIKCj4gYmxvY2txdW90ZQo-IG11bHRpbGluZSB0b28KPiAtLSBzb3VyY2UKCnwgZm9vIHwgYmFyIHwKfDotfC06fAp8IFtbcmVmIzIyXV0gfCBgb25gICoqb2ZmKiogfAoKW14xXTogRm9vIF9iYXJfIGJhegoKW14yXTogVE9ETwoKW3JlZnJlZl06IGh0dHA6Ly90aGkubmcvCltmb29dOiAuL2Zvby5tZCNiYXIKCtktMTEuIGFiYwogIC0geHl6CjIxLiB4eHgKICAxLiBmb28KICAgIDEuIGJhcgoK2SZ7e3t5YW1sCi0gZm9vCi0gYmFyCiAgLSBiYXoKfX19ClRlc3QKCg
+// Downloaded @ 2023-02-22T10:27:02.306Z
+// Source: https://demo.thi.ng/umbrella/parse-playground/#ldoKdkROTDE6IDxETkw-KyA9PiBkaXNjYXJkIDsKRE5MMjogPE5MPnsyLH0gOwppbmxpbmVkZWxpbTogKCAiIVsiIHwgJ1snIHwgIioqIiB8ICdfJyB8ICJ-fiIgfCAnYCcgfCAiIDoiICkgOwpkZWxpbTogKCA8aW5saW5lZGVsaW0-IHwgPEROTDI-ICkgOwpkZWxpbTE6ICggPGlubGluZWRlbGltPiB8IDxOTD4gKSA7CmJvZHk6IC4oPy08ZGVsaW0-ISkgPT4gam9pbiA7CmJvZHkxOiAuKD8tPGRlbGltMT4hKSA9PiBqb2luIDsKCnJlZjogIltbIiEgLig_KyJdXSIhKSA9PiBqb2luIDsKZm5yZWY6ICJbXiIhIDxsYWJlbD4gOwpmbm90ZTogPExTVEFSVD4gIlteIiEgPGZubGFiZWw-IDxXUzE-IDxwYXJhPiA7CmZubGFiZWw6IC4oPysiXToiISkgPT4gam9pbiA7CmxhYmVsOiAuKD8rJ10nISkgPT4gam9pbiA7CnRhcmdldDogLig_KycpJyEpID0-IGpvaW4gOwpsaW5rOiAnWychIDxsYWJlbD4gJygnISA8dGFyZ2V0PiA7CmxpbmtyZWY6ICdbJyEgPGxhYmVsPiAnWychIDxsYWJlbD4gOwpsaW5rZGVmOiA8TFNUQVJUPiAnWychIDxsYWJlbD4gJzonISA8V1MxPiA8bGR0YXJnZXQ-IDsKbGR0YXJnZXQ6IC4oPys8RE5MMT4pID0-IGpvaW4gOwppbWc6ICIhWyIhIDxsYWJlbD4gJygnISA8dGFyZ2V0PiA7CmJvbGQ6ICIqKiIhIC4oPysiKioiISkgPT4gam9pbiA7Cml0YWxpYzogIl8iISAuKD8rIl8iISkgPT4gam9pbiA7CmNvZGU6ICdgJyEgLig_KydgJyEpID0-IGpvaW4gOwpzdHJpa2U6ICJ-fiIhIC4oPysifn4iISkgPT4gam9pbiA7CmVtb2ppOiAnICc_ICc6JyEgPEFMUEhBX05VTT4oPysnOichKSA9PiBqb2luIDsKcGFyYTogKDxyZWY-IHwgPGltZz4gfCA8Zm5yZWY-IHwgPGxpbmtyZWY-IHwgPGxpbms-IHwgPGJvbGQ-IHwgPGl0YWxpYz4gfCA8c3RyaWtlPiB8IDxjb2RlPiB8IDxlbW9qaT4gfCA8Ym9keT4pKiA8RE5MMj4hIDsKCmhkbGV2ZWw6ICcjJysgPT4gY291bnQgOwpoZDogPExTVEFSVD4gPGhkbGV2ZWw-IDxXUzA-CiAgICAoPHJlZj4gfCA8aW1nPiB8IDxmbnJlZj4gfCA8bGluaz4gfCA8Ym9sZD4gfCA8aXRhbGljPiB8IDxzdHJpa2U-IHwgPGNvZGU-IHwgPGVtb2ppPiB8IDxib2R5MT4gKSogPEROTDE-IDsKCmxpbGV2ZWw6ICcgJyogPT4gY291bnQgOwp1aW50OiA8RElHSVQ-KyA9PiBpbnQgOwp1bGlkOiA8RE5MPiA8V1MwPiAnLSchIDsKb2xpZDogPEROTD4gPFdTMD4gPERJR0lUPishICcuJyEgOwpsaWRlbGltOiAoIDxkZWxpbT4gfCA8dWxpZD4gfCA8b2xpZD4gKSA7CmxpYm9keTogLig_LTxsaWRlbGltPiEpID0-IGpvaW4gOwp0b2RvOiAnWychIFsgeFhdICddJyEgPFdTMT4gPT4gaG9pc3RSIDsKdWxpdGVtOiA8TFNUQVJUPiA8bGlsZXZlbD4gIi0gIiEgPHRvZG8-PwogICAgICAgICg8cmVmPiB8IDxpbWc-IHwgPGZucmVmPiB8IDxsaW5rPiB8IDxib2xkPiB8IDxpdGFsaWM-IHwgPHN0cmlrZT4gfCA8Y29kZT4gfCA8ZW1vamk-IHwgPGxpYm9keT4gKSogPEROTD4gOwpvbGl0ZW06IDxMU1RBUlQ-IDxsaWxldmVsPiA8dWludD4gIi4gIiEgPHRvZG8-PwogICAgICAgICg8cmVmPiB8IDxpbWc-IHwgPGZucmVmPiB8IDxsaW5rPiB8IDxib2xkPiB8IDxpdGFsaWM-IHwgPHN0cmlrZT4gfCA8Y29kZT4gfCA8ZW1vamk-IHwgPGxpYm9keT4gKSogPEROTD4gOwpsaXN0OiAoPHVsaXRlbT4gfCA8b2xpdGVtPikrIDxETkwxPiA7CgpjYmRlbGltOiA8TFNUQVJUPiAiYGBgIiEgOwpjb2RlYmxvY2s6IDxjYmRlbGltPiEgPGNvZGVtZXRhPiA8Y29kZWJvZHk-IDxETkwxPiA7CmNvZGVtZXRhOiAuKD8rPE5MPiEpID0-IGpvaW4gOwpjb2RlYm9keTogLig_KzxjYmRlbGltPikgPT4gam9pbiA7CgpjdXN0b21kZWxpbTogPExTVEFSVD4gIjo6OiIhIDsKY3VzdG9tYmxvY2s6IDxjdXN0b21kZWxpbT4hIDxjdXN0b21tZXRhPiA8Y3VzdG9tYm9keT4gPEROTDE-IDsKY3VzdG9tbWV0YTogLig_KzxOTD4hKSA9PiBqb2luIDsKY3VzdG9tYm9keTogLig_KzxjdXN0b21kZWxpbT4pID0-IGpvaW4gOwoKbWV0YWJsb2NrOiA8TFNUQVJUPiAie3t7IiEgPG1ldGFib2R5PiA8RE5MMT4gOwptZXRhYm9keTogLig_KzxtZXRhZW5kPiEpID0-IGpvaW4gOwptZXRhZW5kOiAifX19IiA8TEVORD4gOwoKYnFsaW5lOiA8TFNUQVJUPiAiPiAiIQogICAgICAgICg8cmVmPiB8IDxpbWc-IHwgPGZucmVmPiB8IDxsaW5rPiB8IDxib2xkPiB8IDxpdGFsaWM-IHwgPHN0cmlrZT4gfCA8Y29kZT4gfCA8ZW1vamk-IHwgPGJvZHkxPikqIDxETkw-IDsKYnF1b3RlOiA8YnFsaW5lPisgPEROTDE-IDsKCnRkZWxpbTogKDxpbmxpbmVkZWxpbT4gfCAnfCcgKSA7CnRib2R5OiAuKD8tPHRkZWxpbT4hKSA9PiBqb2luIDsKdGNlbGw6IDxXUzA-ICg8cmVmPiB8IDxpbWc-IHwgPGZucmVmPiB8IDxsaW5rPiB8IDxib2xkPiB8IDxpdGFsaWM-IHwgPHN0cmlrZT4gfCA8Y29kZT4gfCA8ZW1vamk-IHwgPHRib2R5PiApKiAnfCchIDsKdHJvdzogPExTVEFSVD4gJ3wnISA8dGNlbGw-KD8rPEROTD4pIDsKdGFibGU6IDx0cm93PisgPEROTDE-IDsKCmhyOiAiLS0iICgnLScoPy08Tkw-ISkpKiA8RE5MMT4gPT4gam9pbiA7CgptYWluOiA8V1MwPiAoPGhkPiB8IDxsaXN0PiB8IDxicXVvdGU-IHwgPGNvZGVibG9jaz4gfCA8Y3VzdG9tYmxvY2s-IHwgPG1ldGFibG9jaz4gfCA8dGFibGU-IHwgPGhyPiB8IDxmbm90ZT4gfCA8bGlua2RlZj4gfCA8cGFyYT4pKiA7pG1haW7aAg8jIEhlbGxvIDp3b3JsZDpbXmFiY10KCjpzbWlsZToKCjo6OmFsZXJ0ClRlc3QgW2xhYmVsXVtyZWZyZWZdCjo6OgoKLS0tCgp7e3sgeyJpZCI6IDEyMywgInByb3RlY3RlZCI6IHRydWUgfSB9fX0KU28gW1tzbWlsZV9mb28xMl1dIPCfmI0gd2hhdCdzIFt0aGlzXSguL3RoaXMubWQpW14yXSB0aGVuOgoKQSBbbGluayB3aXRoIHJlZmVyZW5jZV1bcmVmcmVmXS4uLgoKOnNtaWxlOgoKYGBgdHMgdGFuZ2xlOm5vIGxuOnllcwpjb25zdCBmb28gPSA0MjsKLy8gdGhlIGVuZApgYGAKCjEuIGZvbwogIDQuIGJhcgogICAgIGJheiBhbmQgc28gb24KICAgICBtdWx0aWxpbmUKMi4gWyBdIHRhc2sKMy4gW3hdICoqZG9uZSoqCgo-IGJsb2NrcXVvdGUKPiBtdWx0aWxpbmUgdG9vCj4gLS0gc291cmNlCgp8IGZvbyB8IGJhciB8Cnw6LXwtOnwKfCBbW3JlZiMyMl1dIHwgYG9uYCAqKm9mZioqIHwKClteYWJjXTogRm9vIF9iYXJfIGJhegoKW14yXTogVE9ETwoKW3JlZnJlZl06IGh0dHA6Ly90aGkubmcvCltmb29dOiAuL2Zvby5tZCNiYXIKCtktMTEuIGFiYwogIC0geHl6CjIxLiB4eHgKICAxLiBmb28KICAgIDEuIGJhcgoK2SZ7e3t5YW1sCi0gZm9vCi0gYmFyCiAgLSBiYXoKfX19ClRlc3QKCg
 
 import type { Fn3, IObjectOf } from "@thi.ng/api";
 import { peek } from "@thi.ng/arrays/peek";
+import { delay } from "@thi.ng/compose/delay";
 import { DEFAULT, defmulti } from "@thi.ng/defmulti";
 import { EMOJI } from "@thi.ng/emoji/emoji";
 import type { ContextOpts, ParseScope } from "@thi.ng/parse";
@@ -21,8 +22,9 @@ body: .(?-<delim>!) => join ;
 body1: .(?-<delim1>!) => join ;
 
 ref: "[["! .(?+"]]"!) => join ;
-fnref: "[^"! <uint> "]"! ;
-fnote: <LSTART> "[^"! <uint> "]:"! <WS1> <para> ;
+fnref: "[^"! <label> ;
+fnote: <LSTART> "[^"! <fnlabel> <WS1> <para> ;
+fnlabel: .(?+"]:"!) => join ;
 label: .(?+']'!) => join ;
 target: .(?+')'!) => join ;
 link: '['! <label> '('! <target> ;
@@ -64,8 +66,7 @@ customblock: <customdelim>! <custommeta> <custombody> <DNL1> ;
 custommeta: .(?+<NL>!) => join ;
 custombody: .(?+<customdelim>) => join ;
 
-metablock: <LSTART> "{{{"! <metatype> <metabody> <DNL1> ;
-metatype: <ALPHA_NUM>+ => join ;
+metablock: <LSTART> "{{{"! <metabody> <DNL1> ;
 metabody: .(?+<metaend>!) => join ;
 metaend: "}}}" <LEND> ;
 
@@ -90,66 +91,154 @@ export const parseRaw = (src: string, opts?: Partial<ContextOpts>) => {
 };
 
 export interface TagTransforms {
-	bold(body: string): any;
-	bquote(body: any[], meta?: any): any;
-	code(body: string): any;
-	custom(kind: string, body: string, meta?: any): any;
-	emoji(id: string): any;
-	hd(level: number, body: any[], meta?: any): any;
-	hr(lenght: number): any;
-	italic(body: string): any;
-	link(target: string, body: any[]): any;
-	ol(items: any[], meta?: any): any;
-	olitem(attribs: TodoAttribs, index: number, ...body: any[]): any;
-	para(body: any[], meta?: any): any;
-	strike(body: string): any;
-	ul(items: any[], meta?: any): any;
-	ulitem(attribs: TodoAttribs, ...body: any[]): any;
+	bold(ctx: MDParseContext, body: string): any;
+	bquote(ctx: MDParseContext, body: any[], meta?: any): any;
+	code(ctx: MDParseContext, body: string): any;
+	codeblock(
+		ctx: MDParseContext,
+		lang: string,
+		head: string,
+		body: string,
+		meta?: any
+	): any;
+	custom(ctx: MDParseContext, kind: string, body: string, meta?: any): any;
+	emoji(ctx: MDParseContext, id: string): any;
+	footnote(ctx: MDParseContext, id: string, body: any[], meta?: any): any;
+	footnoteRef(ctx: MDParseContext, id: string): any;
+	footnoteWrapper(ctx: MDParseContext, notes: IObjectOf<any>): any;
+	hd(ctx: MDParseContext, level: number, body: any[], meta?: any): any;
+	hr(ctx: MDParseContext, lenght: number): any;
+	italic(ctx: MDParseContext, body: string): any;
+	link(ctx: MDParseContext, target: string, body: any[]): any;
+	linkRef(ctx: MDParseContext, refID: string, body: any[]): any;
+	meta(ctx: MDParseContext, body: string): any;
+	ol(ctx: MDParseContext, items: any[], meta?: any): any;
+	olitem(
+		ctx: MDParseContext,
+		attribs: TodoAttribs,
+		index: number,
+		...body: any[]
+	): any;
+	para(ctx: MDParseContext, body: any[], meta?: any): any;
+	strike(ctx: MDParseContext, body: string): any;
+	table(
+		ctx: MDParseContext,
+		align: ColumnAlign[],
+		head: any[],
+		rows: any[],
+		meta?: any
+	): any;
+	tableCell(ctx: MDParseContext, body: any[]): any;
+	tableRow(ctx: MDParseContext, cells: any[]): any;
+	ul(ctx: MDParseContext, items: any[], meta?: any): any;
+	ulitem(ctx: MDParseContext, attribs: TodoAttribs, ...body: any[]): any;
 }
 
 export interface MDParseContext {
 	tags: TagTransforms;
 	linkRefs: IObjectOf<string>;
-	fnRefs: IObjectOf<string>;
+	footnotes: IObjectOf<any>;
+	headings: { level: number; body: any[] }[];
 	meta?: any;
+	opts: MDParseOpts;
+}
+
+export interface MDParseOpts {
+	/**
+	 * Line break representation in blockquotes. E.g. Use `["br",{}]` for actual
+	 * line breaks.
+	 *
+	 * @defaultValue `" "`
+	 */
+	bqLineBreak: any;
 }
 
 export type TodoAttribs = Partial<{ __todo: true; __done: boolean }>;
 
-export const defMDContext = (tags: Partial<TagTransforms>): MDParseContext => ({
+export type ColumnAlign = "center" | "left" | "right";
+
+export const defMDContext = (
+	tags?: Partial<TagTransforms>,
+	opts?: Partial<MDParseOpts>
+): MDParseContext => ({
+	footnotes: {},
+	headings: [],
 	linkRefs: {},
-	fnRefs: {},
 	meta: null,
+	opts: {
+		bqLineBreak: " ",
+		...opts,
+	},
 	tags: {
-		bold: (body) => ["strong", {}, body],
-		bquote: (body, meta) => ["blockquote", __withMeta({}, meta), ...body],
-		code: (body) => ["code", {}, body],
-		custom: (kind, body, meta) => [kind, __withMeta({}, meta), body],
-		emoji: (id) => EMOJI[id] || id,
-		hd: (level, body, meta) => [`h${level}`, __withMeta({}, meta), ...body],
-		hr: (__length) => ["hr", { __length }],
-		italic: (body) => ["em", {}, body],
-		link: (href, body) => ["a", { href }, ...body],
-		olitem: (attribs, index, body) => [
+		bold: (_, body) => ["strong", {}, body],
+		bquote: (_, body, meta) => [
+			"blockquote",
+			__withMeta({}, meta),
+			...body,
+		],
+		code: (_, body) => ["code", {}, body],
+		codeblock: (_, lang, __head, body, meta) => [
+			"pre",
+			__withMeta({ data: { lang }, __head }, meta),
+			["code", {}, body],
+		],
+		custom: (_, kind, body, meta) => [kind, __withMeta({}, meta), body],
+		emoji: (_, id) => EMOJI[id] || id,
+		footnote: (_, id, body, meta) => [
+			"li",
+			__withMeta({ id: `fn-${id}` }, meta),
+			["sup", {}, `[${id}] `],
+			...body,
+			" ",
+			["a", { href: `#fnref-${id}` }, "⏎"],
+		],
+		footnoteRef: (_, id) => [
+			"sup",
+			{},
+			["a", { id: `fnref-${id}`, href: `#fn-${id}` }, `[${id}]`],
+		],
+		footnoteWrapper: (_, notes) => [
+			"ul",
+			{ id: "footnotes" },
+			...Object.keys(notes)
+				.sort()
+				.map((id) => notes[id]),
+		],
+		hd: (_, level, body, meta) => [
+			`h${level}`,
+			__withMeta({}, meta),
+			...body,
+		],
+		hr: (_, __length) => ["hr", { __length }],
+		italic: (_, body) => ["em", {}, body],
+		link: (_, href, body) => ["a", { href }, ...body],
+		linkRef: (ctx, refID, body) => [
+			"a",
+			{ href: delay(() => ctx.linkRefs[refID]) },
+			...body,
+		],
+		meta: (_, body) => body,
+		olitem: (_, attribs, index, body) => [
 			"li",
 			{ ...attribs, __index: index },
 			...body,
 		],
-		ol: (items, meta) => ["ol", __withMeta({}, meta), ...items],
-		para: (body, meta) => ["p", __withMeta({}, meta), ...body],
-		strike: (body) => ["s", {}, body],
-		ul: (items, meta) => ["ul", __withMeta({}, meta), ...items],
-		ulitem: (attribs, body) => ["li", attribs, ...body],
+		ol: (_, items, meta) => ["ol", __withMeta({}, meta), ...items],
+		para: (_, body, meta) => ["p", __withMeta({}, meta), ...body],
+		strike: (_, body) => ["s", {}, body],
+		table: (_, __align, head, rows, meta) => [
+			"table",
+			__withMeta({ __align }, meta),
+			["thead", {}, head],
+			["tbody", {}, ...rows],
+		],
+		tableCell: (_, body) => ["td", {}, ...body],
+		tableRow: (_, cells) => ["tr", {}, ...cells],
+		ul: (_, items, meta) => ["ul", __withMeta({}, meta), ...items],
+		ulitem: (_, attribs, body) => ["li", attribs, ...body],
 		...tags,
 	},
 });
-
-const __withMeta = (target: any, meta?: any) => {
-	if (meta != null) {
-		target.__meta = meta;
-	}
-	return target;
-};
 
 export const walk: Fn3<
 	ParseScope<string>,
@@ -164,9 +253,11 @@ export const walk: Fn3<
 	{
 		body1: "body",
 		bqline: "repeat0",
+		label: "body",
 		libody: "body",
 		main: "root",
 		repeat1: "repeat0",
+		tbody: "body",
 	},
 	{
 		[DEFAULT]: (scope: ParseScope<string>, ctx: MDParseContext) => {
@@ -175,32 +266,54 @@ export const walk: Fn3<
 			);
 		},
 
-		root: (scope, ctx, acc) => walk(scope.children![0], ctx, acc),
-
-		repeat0: (scope, ctx, acc) => {
-			for (let c of scope.children!) walk(c, ctx, acc);
+		root: ({ children }, ctx, acc) => {
+			walk(children![0], ctx, acc);
+			__collect(acc, ctx.tags.footnoteWrapper(ctx, ctx.footnotes));
 		},
 
-		body: (scope, _, acc) => acc.push(scope.result),
+		main: ({ children }, ctx, acc) => walk(children![0], ctx, acc),
 
-		bold: (scope, ctx, acc) => acc.push(ctx.tags.bold(scope.result)),
+		repeat0: ({ children }, ctx, acc) => {
+			for (let c of children!) walk(c, ctx, acc);
+		},
+
+		body: ({ result }, _, acc) => __collect(acc, result),
+
+		bold: ({ result }, ctx, acc) =>
+			__collect(acc, ctx.tags.bold(ctx, result)),
 
 		bquote: (scope, ctx, acc) => {
 			const body: any[] = [];
 			const children = scope.children![0].children!;
 			for (let i = 0, n = children!.length - 1; i <= n; i++) {
 				walk(children[i].children![0], ctx, body);
-				// TODO add opt to customize break (e.g. ["br"] vs " ")
-				if (i < n) body.push(" ");
+				if (i < n) body.push(ctx.opts.bqLineBreak);
 			}
-			acc.push(ctx.tags.bquote(body, ctx.meta));
+			__collect(acc, ctx.tags.bquote(ctx, body, ctx.meta));
 			ctx.meta = null;
 		},
 
-		code: (scope, ctx, acc) => acc.push(ctx.tags.code(scope.result)),
+		code: ({ result }, ctx, acc) =>
+			__collect(acc, ctx.tags.code(ctx, result)),
+
+		codeblock: ({ children }, ctx, acc) => {
+			const [lang, ...head] = children![0].result.split(" ");
+			__collect(
+				acc,
+				ctx.tags.codeblock(
+					ctx,
+					lang,
+					head,
+					children![1].result,
+					ctx.meta
+				)
+			);
+			ctx.meta = null;
+		},
 
 		customblock: ({ children }, ctx, acc) => {
-			acc.push(
+			__collect(
+				acc,
 				ctx.tags.custom(
 					children![0].result,
 					children![1].result.trim(),
@@ -212,27 +325,52 @@ export const walk: Fn3<
 
 		emoji: ({ result }, ctx, acc) => {
 			if (result[0] === " ") {
-				acc.push(" ");
+				__collect(acc, " ");
 				result = result.substring(1);
 			}
-			acc.push(ctx.tags.emoji(result));
+			__collect(acc, ctx.tags.emoji(ctx, result));
 		},
 
-		hd: ({ children }, ctx, acc) => {
+		fnote: ({ children }, ctx) => {
 			const body: any[] = [];
-			walk(children![1], ctx, body);
-			acc.push(ctx.tags.hd(children![0].result, body, ctx.meta));
+			const id = children![0].result;
+			walk(children![1].children![0], ctx, body);
+			ctx.footnotes[id] = ctx.tags.footnote(ctx, id, body, ctx.meta);
 			ctx.meta = null;
 		},
 
-		hr: (scope, ctx, acc) => acc.push(ctx.tags.hr(scope.result.length)),
+		fnref: ({ children }, ctx, acc) =>
+			__collect(acc, ctx.tags.footnoteRef(ctx, children![0].result)),
 
-		italic: (scope, ctx, acc) => acc.push(ctx.tags.italic(scope.result)),
-
-		link: (scope, ctx, acc) => {
+		hd: ({ children }, ctx, acc) => {
 			const body: any[] = [];
-			walk(scope.children![0], ctx, body);
-			acc.push(ctx.tags.link(scope.children![1].result, body));
+			const level = children![0].result;
+			walk(children![1], ctx, body);
+			ctx.headings.push({ level, body });
+			__collect(acc, ctx.tags.hd(ctx, level, body, ctx.meta));
+			ctx.meta = null;
+		},
+
+		hr: ({ result }, ctx, acc) =>
+			__collect(acc, ctx.tags.hr(ctx, result.length)),
+
+		italic: ({ result }, ctx, acc) =>
+			__collect(acc, ctx.tags.italic(ctx, result)),
+
+		link: ({ children }, ctx, acc) => {
+			const body: any[] = [];
+			walk(children![0], ctx, body);
+			__collect(acc, ctx.tags.link(ctx, children![1].result, body));
+		},
+
+		linkdef: ({ children }, ctx) => {
+			ctx.linkRefs[children![0].result] = children![1].result;
+		},
+
+		linkref: ({ children }, ctx, acc) => {
+			const body: any[] = [];
+			walk(children![0], ctx, body);
+			__collect(acc, ctx.tags.linkRef(ctx, children![1].result, body));
 		},
 
 		list: (scope, ctx, acc) => {
@@ -264,10 +402,11 @@ export const walk: Fn3<
 				walk(item, ctx, peek(stack));
 			}
 
-			const $list = (root: any[], isTop = false) =>
+			const $list = (root: any[], isRoot = false) =>
 				ctx.tags[<"ul" | "ol">root[0]](
+					ctx,
 					root.slice(1).map($item),
-					isTop ? ctx.meta : null
+					isRoot ? ctx.meta : null
 				);
 
 			const $item = (item: any[]) => {
@@ -275,52 +414,100 @@ export const walk: Fn3<
 				if (last[0] === "ul" || last[0] === "ol")
 					item[item.length - 1] = $list(last);
 				return item[0] === "ulitem"
-					? ctx.tags.ulitem(item[1], item.slice(2))
-					: ctx.tags.olitem(item[1], item[2], item.slice(3));
+					? ctx.tags.ulitem(ctx, item[1], item.slice(2))
+					: ctx.tags.olitem(ctx, item[1], item[2], item.slice(3));
 			};
 
-			acc.push($list(stack[0], true));
+			__collect(acc, $list(stack[0], true));
 			ctx.meta = null;
 		},
 
 		metablock: ({ children }, ctx) => {
-			ctx.meta = {
-				type: children![0].result,
-				body: children![1].result.trim(),
-			};
+			ctx.meta = ctx.tags.meta(ctx, children![0].result.trim());
 		},
 
-		olitem: (scope, ctx, acc) => {
+		olitem: ({ children }, ctx, acc) => {
 			const body: any[] = [];
-			walk(scope.children![3], ctx, body);
-			acc.push([
+			walk(children![3], ctx, body);
+			__collect(acc, [
 				"olitem",
-				__listItemAttribs(scope.children![2]),
-				scope.children![1].result,
+				__listItemAttribs(children![2]),
+				children![1].result,
 				...body,
 			]);
 		},
 
-		para: (scope, ctx, acc) => {
+		para: ({ children }, ctx, acc) => {
 			const body: any[] = [];
-			for (let c of scope.children!) walk(c, ctx, body);
-			acc.push(ctx.tags.para(body, ctx.meta));
+			for (let c of children!) walk(c, ctx, body);
+			__collect(acc, ctx.tags.para(ctx, body, ctx.meta));
 			ctx.meta = null;
 		},
 
-		strike: (scope, ctx, acc) => acc.push(ctx.tags.strike(scope.result)),
+		strike: ({ result }, ctx, acc) =>
+			__collect(acc, ctx.tags.strike(ctx, result)),
 
-		ulitem: (scope, ctx, acc) => {
+		table: (scope, ctx, acc) => {
+			const children = scope.children![0].children!;
+			const head: any[] = [];
+			const rows: any[] = [];
+			walk(children[0], ctx, head);
+			let align: ColumnAlign[] = [];
+			if (children.length > 1) {
+				for (let c of children[1].children![0].children!) {
+					const raw = <string>c.children![0].children![0].result;
+					align.push(
+						raw.startsWith(":-")
+							? raw.endsWith("-:")
+								? "center"
+								: "left"
+							: raw.endsWith("-:")
+							? "right"
+							: "left"
+					);
+				}
+				for (let c of children.slice(2)) walk(c, ctx, rows);
+			} else {
+				align = new Array(
+					children[0].children![0].children!.length
+				).fill("left");
+			}
+			__collect(acc, ctx.tags.table(ctx, align, head, rows, ctx.meta));
+			ctx.meta = null;
+		},
+
+		tcell: ({ children }, ctx, acc) => {
 			const body: any[] = [];
-			walk(scope.children![2], ctx, body);
-			acc.push([
+			for (let c of children!) walk(c, ctx, body);
+			__collect(acc, ctx.tags.tableCell(ctx, body));
+		},
+
+		trow: ({ children }, ctx, acc) => {
+			const cols: any[] = [];
+			for (let c of children![0].children!) walk(c, ctx, cols);
+			__collect(acc, ctx.tags.tableRow(ctx, cols));
+		},
+
+		ulitem: ({ children }, ctx, acc) => {
+			const body: any[] = [];
+			walk(children![2], ctx, body);
+			__collect(acc, [
 				"ulitem",
-				__listItemAttribs(scope.children![1]),
+				__listItemAttribs(children![1]),
 				...body,
 			]);
 		},
 	}
 );
+
+const __collect = (acc: any[], x: any) => x != null && acc.push(x);
+
+const __withMeta = (target: any, meta?: any) => {
+	if (meta != null) {
+		target.__meta = meta;
+	}
+	return target;
+};
 
 const __listItemAttribs = (scope?: ParseScope<string>): TodoAttribs =>
 	scope?.id === "todo"
