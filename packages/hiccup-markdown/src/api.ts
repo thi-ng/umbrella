@@ -2,8 +2,9 @@ import type { IObjectOf } from "@thi.ng/api";
 import type { ILogger } from "@thi.ng/logger";
 
 export interface TagTransforms {
-	bold(ctx: MDParseContext, body: string): any;
+	bold(ctx: MDParseContext, body: any[]): any;
 	blockquote(ctx: MDParseContext, body: any[], meta?: any): any;
+	br(ctx: MDParseContext): any;
 	code(ctx: MDParseContext, body: string): any;
 	codeblock(
 		ctx: MDParseContext,
@@ -19,8 +20,9 @@ export interface TagTransforms {
 	footnoteWrapper(ctx: MDParseContext, notes: IObjectOf<any>): any;
 	heading(ctx: MDParseContext, level: number, body: any[], meta?: any): any;
 	hr(ctx: MDParseContext, length: number): any;
-	img(ctx: MDParseContext, src: string, alt: string): any;
-	italic(ctx: MDParseContext, body: string): any;
+	img(ctx: MDParseContext, label: string, src: string): any;
+	italic(ctx: MDParseContext, body: any[]): any;
+	kbd(ctx: MDParseContext, key: string): any;
 	link(ctx: MDParseContext, target: string, body: any[]): any;
 	linkRef(ctx: MDParseContext, refID: string, body: any[]): any;
 	meta(ctx: MDParseContext, body: string): any;
@@ -32,7 +34,7 @@ export interface TagTransforms {
 		...body: any[]
 	): any;
 	para(ctx: MDParseContext, body: any[], meta?: any): any;
-	strike(ctx: MDParseContext, body: string): any;
+	strike(ctx: MDParseContext, body: any[]): any;
 	table(
 		ctx: MDParseContext,
 		align: ColumnAlign[],
@@ -59,14 +61,15 @@ export interface MDParseContext {
 
 export interface ParseOpts {
 	/**
-	 * Line break representation in blockquotes. E.g. Use `["br",{}]` for actual
-	 * line breaks.
+	 * If true, automatically escapes some characters using HTML entities.
 	 *
-	 * @defaultValue `" "`
+	 * @remarks
+	 * Reference:
+	 * - https://github.com/thi-ng/umbrella/blob/develop/packages/strings/src/entities.ts
 	 */
-	bqLineBreak: any;
+	escape: boolean;
 }
 
 export type TodoAttribs = Partial<{ __todo: true; __done: boolean }>;
 
-export type ColumnAlign = "center" | "left" | "right";
+export type ColumnAlign = "center" | "default" | "left" | "right";

@@ -29,6 +29,22 @@ group("parse", {
 				".",
 			],
 		]);
+		check("> line 1\\\n> line 2\n> line 3", [
+			["blockquote", {}, "line 1", ["br", {}], "line 2", " ", "line 3"],
+		]);
+		check("> line 1\\\n> line 2\n> \n> line 3", [
+			[
+				"blockquote",
+				{},
+				"line 1",
+				["br", {}],
+				"line 2",
+				" ",
+				["br", {}],
+				["br", {}],
+				"line 3",
+			],
+		]);
 	},
 
 	code: () => {
@@ -40,6 +56,12 @@ group("parse", {
 				["code", {}, "const example = 'indeed!'"],
 				" code",
 			],
+		]);
+	},
+
+	"code no inline fmt": () => {
+		check("`exp_2(x) = 2 ** x`", [
+			["p", {}, ["code", {}, "exp_2(x) = 2 ** x"]],
 		]);
 	},
 
@@ -152,6 +174,20 @@ group("parse", {
 				],
 			]
 		);
+	},
+
+	kbd: () => {
+		check("Press <kbd>Control</kbd> + <kbd>R</kbd> to reload", [
+			[
+				"p",
+				{},
+				"Press ",
+				["kbd", {}, "Control"],
+				" + ",
+				["kbd", {}, "R"],
+				" to reload",
+			],
+		]);
 	},
 
 	ul: () => {
@@ -269,14 +305,26 @@ group("parse", {
 	},
 
 	strike: () => {
-		check(`This is ~~all wrong~~ correct`, [
-			["p", {}, "This is ", ["s", {}, "all wrong"], " correct"],
+		check(`This is ~~all **wrong**~~ correct`, [
+			[
+				"p",
+				{},
+				"This is ",
+				["s", {}, "all ", ["strong", {}, "wrong"]],
+				" correct",
+			],
 		]);
 	},
 
 	strong: () => {
-		check(`I **really** meant that`, [
-			["p", {}, "I ", ["strong", {}, "really"], " meant that"],
+		check(`I **_really_ meant** that`, [
+			[
+				"p",
+				{},
+				"I ",
+				["strong", {}, ["em", {}, "really"], " meant"],
+				" that",
+			],
 		]);
 	},
 
