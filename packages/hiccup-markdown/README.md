@@ -17,7 +17,6 @@ This project is part of the
 - [API](#api)
 - [Parser](#parser)
   - [Features](#features)
-  - [Current issues & limitations](#current-issues--limitations)
   - [Other parser features](#other-parser-features)
   - [Serializing to HTML](#serializing-to-html)
   - [Customizing tags](#customizing-tags)
@@ -31,6 +30,10 @@ This project is part of the
 ## About
 
 Markdown parser & serializer from/to Hiccup format. This is a support package for [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup).
+
+**⚠️ IMPORTANT: The parser implementation is undergoing a complete rewrite at
+the moment (with lots of improvements) and the information shown here in this
+readme _might_ be incomplete and/or out of date for the next few days. ⚠️**
 
 This package provides both a customizable
 [Markdown](https://en.wikipedia.org/wiki/Markdown)-to-[Hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup)
@@ -62,20 +65,22 @@ For Node.js REPL:
 const hiccupMarkdown = await import("@thi.ng/hiccup-markdown");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 2.44 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 3.88 KB
 
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
 - [@thi.ng/arrays](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays)
 - [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
+- [@thi.ng/compose](https://github.com/thi-ng/umbrella/tree/develop/packages/compose)
 - [@thi.ng/defmulti](https://github.com/thi-ng/umbrella/tree/develop/packages/defmulti)
+- [@thi.ng/emoji](https://github.com/thi-ng/umbrella/tree/develop/packages/emoji)
 - [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
-- [@thi.ng/fsm](https://github.com/thi-ng/umbrella/tree/develop/packages/fsm)
 - [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup)
+- [@thi.ng/logger](https://github.com/thi-ng/umbrella/tree/develop/packages/logger)
+- [@thi.ng/parse](https://github.com/thi-ng/umbrella/tree/develop/packages/parse)
 - [@thi.ng/strings](https://github.com/thi-ng/umbrella/tree/develop/packages/strings)
 - [@thi.ng/text-canvas](https://github.com/thi-ng/umbrella/tree/develop/packages/text-canvas)
-- [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)
 
 ## Usage examples
 
@@ -99,62 +104,36 @@ A selection:
 
 The parser itself is not aimed at supporting **all** of Markdown's
 quirky syntax features, but restricts itself to a sane subset of
-features:
+features and [additional features]() not part of standard MD syntax.
 
-| Feature     | Comments                                                                                            |
-|-------------|-----------------------------------------------------------------------------------------------------|
-| Heading     | ATX only (`#` line prefix), levels 1-6, then downgrade to paragraph                                 |
-| Paragraph   | no support for `\` line breaks                                                                      |
-| Blockquote  | Respects newlines                                                                                   |
-| Format      | **bold**, _emphasis_, `code`, ~~strikethrough~~ in paragraphs, headings, lists, blockquotes, tables |
-| Link        | no support for inline formats in label                                                              |
-| Image       | no image links                                                                                      |
-| List        | only unordered (`- ` line prefix), no nesting, supports line breaks                                 |
-| Table       | no support for column alignment                                                                     |
-| Code block  | GFM only (triple backtick prefix), w/ optional language hint                                        |
-| Horiz. Rule | only dash supported (e.g. `---`), min 3 chars required                                              |
-
-**Note: Because of MD's line break handling and the fact the parser only
-consumes single characters from an iterable without knowledge of further
-values, the last heading, paragraph, blockquote, list or table requires
-an additional newline.**
-
-### Current issues & limitations
-
-Paragraphs, headings and blockquotes ending with a character involved w/
-inline formatting (e.g. `!`, `~`, `*`, `_`) either require an additional
-space or 2 empty lines (instead of just one) between the next paragraph.
-See [#156](https://github.com/thi-ng/umbrella/issues/156) for details.
-
-Also, these MD features (and probably many more) are currently **not**
-supported:
-
-- inline HTML
-- nested inline formats (e.g. **bold** inside _italic_)
-- inline formats within link labels
-- image links
-- footnotes
-- link references
-- nested / ordered / numbered / todo lists
-
-Some of these are considered, though currently not high priority... Pull
-requests are welcome, though!
+| Feature     | Comments                                                                                                     |
+|-------------|--------------------------------------------------------------------------------------------------------------|
+| Heading     | ATX only (`#` line prefix), levels 1-6, then downgrade to paragraph                                          |
+| Format      | Nestable **bold**, _emphasis_, `code`, ~~strikethrough~~ in paragraphs, headings, lists, blockquotes, tables |
+| Footnotes   | Supported and stored separately in parse context                                                             |
+| Link        | Supports inline formats in label                                                                             |
+|             | Supports `[label](target)` and `[label][ref]` style links                                                    |
+| Image       | Alt text required, can be used in links                                                                      |
+| List        | ordered & unordered, nestable, supports line breaks, `[x]`-style to-do list items                            |
+| Table       | Support for column alignments, nestable inline formatting                                                    |
+| Code block  | GFM only (triple backtick prefix), w/ optional language hint & extra header information                      |
+| Horiz. Rule | only dash supported (e.g. `---`), min 2 chars required, length retained for downstream transformations       |
 
 ### Other parser features
 
-- **Functional:** parser entirely built using
-  [transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)
-  (specifically those defined in
-  [@thi.ng/fsm](https://github.com/thi-ng/umbrella/tree/develop/packages/fsm))
-  & function composition. Use the parser in a transducer pipeline to
-  easily apply post-processing of the emitted results
+- **Functional:** parser implemented using
+  [thi.ng/parse](https://github.com/thi-ng/umbrella/tree/develop/packages/parse)
+  grammar and
+  [thi.ng/defmulti](https://github.com/thi-ng/umbrella/tree/develop/packages/defmulti)
+  for polymorphic parse tree transformation
 - **Declarative:** parsing rules defined declaratively with only minimal
   state/context handling needed
-- **No regex:** consumes input character-wise and produces an iterator
-  of hiccup-style tree nodes, ready to be used with
+- **No regex:** consumes input character-wise and (by default) produces a tree
+  of hiccup nodes, ready to be used with
   [@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/develop/packages/hdom),
+  [@thi.ng/rdom](https://github.com/thi-ng/umbrella/tree/develop/packages/rdom),
   [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup)
-  or the serializer of this package for back conversion to MD
+  or the serializer of this package here for back-conversion to MD
 - **Customizable:** supports custom tag factory functions to override
   default behavior / representation of each parsed result element
 - **Fast (enough):** parses this markdown file (5.9KB) in ~5ms on MBP2016 / Chrome 71
@@ -163,32 +142,32 @@ requests are welcome, though!
 ### Serializing to HTML
 
 ```ts
-import { iterator } from "@thi.ng/transducers";
 import { serialize } from "@thi.ng/hiccup";
-
 import { parse } from "@thi.ng/hiccup-markdown";
 
-const src = `
-# Hello world
-
-[This](http://example.com) is a _test_.
-
-`;
+const src = `# Hello world\n[This is a _test_](http://example.com) :smile:`;
 
 // convert to hiccup tree
-[...iterator(parse(), src)]
-// [ [ 'h1', ' Hello world ' ],
-//   [ 'p',
-//     [ 'a', { href: 'http://example.com' }, 'This' ],
-//     ' is a ',
-//     [ 'em', 'test' ],
-//     '. ' ] ]
+parse(src).result
+// [
+//   [ 'h1', {}, 'Hello world' ],
+//   [
+//     'p',
+//     {},
+//     [
+//       'a',
+//       { href: 'http://example.com' },
+//       'This is a ',
+//       [ 'em', {}, 'test' ]
+//     ],
+//     ' ',
+//     '😄'
+//   ]
+// ]
 
 // or serialize to HTML
-serialize(iterator(parse(), src));
-
-// <h1>Hello world</h1><p>
-// <a href="http://example.com">This</a> is a <em>test</em>. </p>
+serialize(parse(src).result);
+// <h1>Hello world</h1><p><a href="http://example.com">This is a <em>test</em></a> 😄</p>
 ```
 
 ### Customizing tags
@@ -196,6 +175,8 @@ serialize(iterator(parse(), src));
 The following interface defines factory functions for all supported
 elements. User implementations / overrides can be given to the
 `parse()` transducer to customize output.
+
+FIXME out of date
 
 ```ts
 interface TagFactories {
@@ -358,10 +339,10 @@ import { serialize } from "@thi.ng/hiccup-markdown";
 
 > So long and thanks for all the fish.
 
-| **ID**  | **Name**         |
-| ------- | ---------------- |
-| 1       | Alice B. Charles |
-| 2       | Bart Simpson     |
+| **ID** | **Name**         |
+|--------|------------------|
+| 1      | Alice B. Charles |
+| 2      | Bart Simpson     |
 
 _Table #1_
 
@@ -391,10 +372,10 @@ import { serialize } from "@thi.ng/hiccup-markdown";
 
 > So long and thanks for all the fish.
 
-| **ID**  | **Name**         |
-| ------- | ---------------- |
-| 1       | Alice B. Charles |
-| 2       | Bart Simpson     |
+| **ID** | **Name**         |
+|--------|------------------|
+| 1      | Alice B. Charles |
+| 2      | Bart Simpson     |
 
 _Table #1_
 
