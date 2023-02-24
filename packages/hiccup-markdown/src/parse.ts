@@ -159,7 +159,7 @@ export const DEFAULT_TAG_TRANSFORMS: TagTransforms = {
 		["sup", {}, `[${id}] `],
 		...body,
 		" ",
-		["a", { href: `#fnref-${id}` }, "⏎"],
+		["a", { href: `#fnref-${id}` }, "↩︎"],
 	],
 	footnoteRef: (_, id) => [
 		"sup",
@@ -336,6 +336,9 @@ export const walk: Fn3<
 			}
 			__collect(acc, ctx.tags.emoji(ctx, result));
 		},
+
+		esc: (scope, ctx, acc) =>
+			acc.push(__escape(ctx, scope.children![0].result)),
 
 		fnote: ({ children }, ctx) => {
 			const body: any[] = [];
