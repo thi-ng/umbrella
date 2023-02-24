@@ -209,7 +209,7 @@ with linebreaks
 
 	img: () => {
 		check(
-			`![thi.ng](https://media.giphy.com/media/f6qMGmXuOdkwU/giphy.gif)`,
+			`![label](https://media.giphy.com/media/f6qMGmXuOdkwU/giphy.gif "trippy GIF")`,
 			[
 				[
 					"p",
@@ -218,7 +218,8 @@ with linebreaks
 						"img",
 						{
 							src: "https://media.giphy.com/media/f6qMGmXuOdkwU/giphy.gif",
-							alt: "thi.ng",
+							alt: "label",
+							title: "trippy GIF",
 						},
 					],
 				],
@@ -343,15 +344,51 @@ with linebreaks
 	},
 
 	link: () => {
-		check(`come [to](http://thi.ng/umbrella) the light`, [
+		check(
+			`[label _with **nested fmt**_](http://thi.ng/umbrella "thi.ng/umbrella website").`,
+			[
+				[
+					"p",
+					{},
+					[
+						"a",
+						{
+							href: "http://thi.ng/umbrella",
+							title: "thi.ng/umbrella website",
+						},
+						"label ",
+						["em", {}, "with ", ["strong", {}, "nested fmt"]],
+					],
+					".",
+				],
+			]
+		);
+	},
+
+	linkref: () => {
+		const src = `[_label_][1]\n\n[1]: http://thi.ng/umbrella "thi.ng/umbrella website"`;
+		const { result, ctx } = parse(src);
+		assert.deepStrictEqual(ctx.linkRefs, {
+			1: ["http://thi.ng/umbrella", "thi.ng/umbrella website"],
+		});
+		const link = result[0][2][1];
+		link.href = link.href.deref();
+		link.title = link.title.deref();
+		const expected = [
 			[
 				"p",
 				{},
-				"come ",
-				["a", { href: "http://thi.ng/umbrella" }, "to"],
-				" the light",
+				[
+					"a",
+					{
+						href: "http://thi.ng/umbrella",
+						title: "thi.ng/umbrella website",
+					},
+					["em", {}, "label"],
+				],
 			],
-		]);
+		];
+		assert.deepStrictEqual(result, expected);
 	},
 
 	strike: () => {

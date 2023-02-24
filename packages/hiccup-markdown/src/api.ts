@@ -26,10 +26,15 @@ export interface TagTransforms {
 	footnoteWrapper(ctx: MDParseContext, notes: IObjectOf<any>): any;
 	heading(ctx: MDParseContext, level: number, body: any[], meta?: any): any;
 	hr(ctx: MDParseContext, length: number): any;
-	img(ctx: MDParseContext, label: string, src: string): any;
+	img(ctx: MDParseContext, label: string, src: string, title?: string): any;
 	italic(ctx: MDParseContext, body: any[]): any;
 	kbd(ctx: MDParseContext, key: string): any;
-	link(ctx: MDParseContext, target: string, body: any[]): any;
+	link(
+		ctx: MDParseContext,
+		target: string,
+		title: string | undefined,
+		body: any[]
+	): any;
 	linkRef(ctx: MDParseContext, refID: string, body: any[]): any;
 	meta(ctx: MDParseContext, body: string): any;
 	ol(ctx: MDParseContext, items: any[], meta?: any): any;
@@ -58,7 +63,7 @@ export interface TagTransforms {
 export interface MDParseContext {
 	logger?: ILogger;
 	tags: TagTransforms;
-	linkRefs: IObjectOf<string>;
+	linkRefs: IObjectOf<[string, string?]>;
 	footnotes: IObjectOf<any>;
 	headings: { level: number; body: any[] }[];
 	hasFootnotes: boolean;

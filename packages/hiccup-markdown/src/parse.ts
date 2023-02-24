@@ -148,13 +148,16 @@ export const DEFAULT_TAG_TRANSFORMS: TagTransforms = {
 		...body,
 	],
 	hr: (_, __length) => ["hr", { __length }],
-	img: (_, alt, src) => ["img", { src, alt }],
+	img: (_, alt, src, title) => ["img", { src, alt, title }],
 	italic: (_, body) => ["em", {}, ...body],
 	kbd: (_, key) => ["kbd", {}, key],
-	link: (_, href, body) => ["a", { href }, ...body],
+	link: (_, href, title, body) => ["a", { href, title }, ...body],
 	linkRef: (ctx, refID, body) => [
 		"a",
-		{ href: delay(() => ctx.linkRefs[refID]) },
+		{
+			href: delay(() => ctx.linkRefs[refID][0]),
+			title: delay(() => ctx.linkRefs[refID][1]),
+		},
 		...body,
 	],
 	meta: (_, body) => body,
@@ -391,7 +394,7 @@ export const walk: Fn3<
 				ctx.tags.img(
 					ctx,
 					__escape(ctx, children![0].result.trim()),
-					__escape(ctx, children![1].result)
+					...__linkTitle(children![1].result)
 				)
 			),
 
@@ -406,26 +409,31 @@ export const walk: Fn3<
 
 		lbr: (_, ctx, acc) => __collect(acc, ctx.tags.br(ctx)),
 
-		link: ({ children }, ctx, acc) => {
+		link: ({ children }, ctx, acc) =>
 			__collect(
 				acc,
 				ctx.tags.link(
 					ctx,
-					children![1].result,
+					...__linkTitle(children![1].result),
 					__children(ctx, children![0].children!)
 				)
+			),
+
+		linkdef: ({ children }, ctx) => {
+			ctx.linkRefs[children![0].result] = __linkTitle(
+				children![1].result
 			);
 		},
 
-		linkdef: ({ children }, ctx) => {
-			ctx.linkRefs[children![0].result] = children![1].result;
-		},
-
-		linkref: ({ children }, ctx, acc) => {
-			const body: any[] = [];
-			walk(children![0], ctx, body);
-			__collect(acc, ctx.tags.linkRef(ctx, children![1].result, body));
-		},
+		linkref: ({ children }, ctx, acc) =>
+			__collect(
+				acc,
+				ctx.tags.linkRef(
+					ctx,
+					children![1].result,
+					__children(ctx, children![0].children!)
+				)
+			),
 
 		list: (scope, ctx, acc) => {
 			const children = scope.children![0].children!;
@@ -629,4 +637,9 @@ const __columnAlignments = (children: ParseScope<string>[]) => {
 		);
 	}
 	return align;
+};
+
+const __linkTitle = (src: string): [string, string | undefined] => {
+	const match = /\s"(.+)"$/.exec(src);
+	return match ? [src.substring(0, match.index), match[1]] : [src, undefined];
 };
