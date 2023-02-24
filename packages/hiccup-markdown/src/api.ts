@@ -9,11 +9,17 @@ export interface TagTransforms {
 	codeblock(
 		ctx: MDParseContext,
 		lang: string,
-		head: string,
+		head: string[],
 		body: string,
 		meta?: any
 	): any;
-	custom(ctx: MDParseContext, kind: string, body: string, meta?: any): any;
+	custom(
+		ctx: MDParseContext,
+		type: string,
+		head: string[],
+		body: string,
+		meta?: any
+	): any;
 	emoji(ctx: MDParseContext, id: string): any;
 	footnote(ctx: MDParseContext, id: string, body: any[], meta?: any): any;
 	footnoteRef(ctx: MDParseContext, id: string): any;
@@ -46,6 +52,7 @@ export interface TagTransforms {
 	tableRow(ctx: MDParseContext, cells: any[]): any;
 	ul(ctx: MDParseContext, items: any[], meta?: any): any;
 	ulitem(ctx: MDParseContext, attribs: TodoAttribs, ...body: any[]): any;
+	wikiref(ctx: MDParseContext, id: string, label?: string): any;
 }
 
 export interface MDParseContext {
