@@ -16,10 +16,12 @@ This project is part of the
 - [Usage examples](#usage-examples)
 - [API](#api)
 - [Parser](#parser)
-  - [Features](#features)
-  - [Other parser features](#other-parser-features)
+  - [Basic features](#basic-features)
+  - [Additional syntax & parser features](#additional-syntax--parser-features)
+    - [Custom blocks](#custom-blocks)
+    - [Metadata](#metadata)
+  - [Customizing tag transforms](#customizing-tag-transforms)
   - [Serializing to HTML](#serializing-to-html)
-  - [Customizing tags](#customizing-tags)
 - [Serializer (Hiccup to Markdown)](#serializer-hiccup-to-markdown)
   - [Features](#features)
   - [Behaviors](#behaviors)
@@ -65,7 +67,7 @@ For Node.js REPL:
 const hiccupMarkdown = await import("@thi.ng/hiccup-markdown");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 3.88 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 4.05 KB
 
 ## Dependencies
 
@@ -100,44 +102,134 @@ A selection:
 
 ## Parser
 
-### Features
+### Basic features
 
 The parser itself is not aimed at supporting **all** of Markdown's
-quirky syntax features, but restricts itself to a sane subset of
-features and [additional features]() not part of standard MD syntax.
+(CommonMark's) quirky syntax features, but restricts itself to a sane subset of
+features and some useful [additional
+features](#additional-syntax--parser-features) not part of the standard syntax.
 
-| Feature     | Comments                                                                                                     |
-|-------------|--------------------------------------------------------------------------------------------------------------|
-| Heading     | ATX only (`#` line prefix), levels 1-6, then downgrade to paragraph                                          |
-| Format      | Nestable **bold**, _emphasis_, `code`, ~~strikethrough~~ in paragraphs, headings, lists, blockquotes, tables |
-| Footnotes   | Supported and stored separately in parse context                                                             |
-| Link        | Supports inline formats in label                                                                             |
-|             | Supports `[label](target)` and `[label][ref]` style links                                                    |
-| Image       | Alt text required, can be used in links                                                                      |
-| List        | ordered & unordered, nestable, supports line breaks, `[x]`-style to-do list items                            |
-| Table       | Support for column alignments, nestable inline formatting                                                    |
-| Code block  | GFM only (triple backtick prefix), w/ optional language hint & extra header information                      |
-| Horiz. Rule | only dash supported (e.g. `---`), min 2 chars required, length retained for downstream transformations       |
+| Feature       | Comments                                                                                                                    |
+|---------------|-----------------------------------------------------------------------------------------------------------------------------|
+| Code blocks   | GFM style only (triple backtick prefix), w/ optional language hint & extra header information                               |
+| Formatting    | Nestable **bold**, _italic_, `code`, ~~strike~~, supported in paragraphs, headings, link labels, lists, blockquotes, tables |
+| Footnotes     | Supported and stored separately in parse context                                                                            |
+| Headings      | ATX-style only (`#` line prefix), any level                                                                                 |
+| Horiz. Rulers | Only dash supported (e.g. `---`), min 2 chars required, length retained for downstream transformations                      |
+| Images        | Alt text is required, image can be used in link labels                                                                      |
+| Links         | Supports `[label](target)`, `[label][ref]`, `[[page id]]` or `[[page id|label]]` style links, inline formats in label       |
+| Lists         | Ordered & unordered, nestable, inline formatting, line breaks, GFM task list items                                          |
+| Paragraphs    | Support for forced line breaks (trailing `\`)                                                                               |
+| Tables        | Support for column alignments, nestable inline formatting                                                                   |
 
-### Other parser features
+### Additional syntax & parser features
 
-- **Functional:** parser implemented using
-  [thi.ng/parse](https://github.com/thi-ng/umbrella/tree/develop/packages/parse)
-  grammar and
-  [thi.ng/defmulti](https://github.com/thi-ng/umbrella/tree/develop/packages/defmulti)
-  for polymorphic parse tree transformation
-- **Declarative:** parsing rules defined declaratively with only minimal
-  state/context handling needed
-- **No regex:** consumes input character-wise and (by default) produces a tree
-  of hiccup nodes, ready to be used with
-  [@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/develop/packages/hdom),
-  [@thi.ng/rdom](https://github.com/thi-ng/umbrella/tree/develop/packages/rdom),
-  [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup)
-  or the serializer of this package here for back-conversion to MD
-- **Customizable:** supports custom tag factory functions to override
-  default behavior / representation of each parsed result element
-- **Fast (enough):** parses this markdown file (5.9KB) in ~5ms on MBP2016 / Chrome 71
-- **Small:** minified + gzipped ~2.5KB (parser sub-module incl. deps)
+#### Custom blocks
+
+Since the parser does not directly transform Markdown into HTML, blocks of custom
+freeform content can be used to define arbitrary data structures (e.g. UI
+components, diagrams/visualizations etc.). Similarly to code blocks, custom
+blocks are wrapped with `:::` and a type specifier:
+
+```text
+:::csv some=optional extra=data
+city,lat,lon
+berlin,52.5167,13.3833
+new york,40.6943,-73.9249
+tokyo,35.6897,139.6922
+:::
+```
+
+How such a custom block is transformed is entirely down to the user provided tag
+transformer. The default handler merely creates an element like this:
+
+```js
+[
+  "custom",
+  { type: "csv", __head: [ "some=optional", "extra=data" ] },
+  "city,lat,lon\nberlin,52.5167,13.3833\nnew york,40.6943,-73.9249\ntokyo,35.6897,139.6922"
+]
+```
+
+**Tip:** Use a
+[`defmulti()`](https://github.com/thi-ng/umbrella/tree/develop/packages/defmulti)
+polymorphic function as tag transformer to elegantly handle multiple types of
+custom blocks (in an extensible manner).
+
+#### Metadata
+
+Arbitrary metadata can be assigned to _any_ block level element:
+
+- code blocks
+- custom blocks
+- footnotes
+- headings
+- lists
+- paragraphs
+- tables
+
+This metadata is given within a block element itself which must directly precede
+the target element (no empty lines in between). A custom tag handler can be
+defined to transform that metadata before it's being handed to the target's tag
+handler.
+
+```text
+{{{ Hello metadata }}}
+- item 1
+- item 2
+```
+
+Using the default tag handlers, this snippet will translate to:
+
+```js
+[
+  "ul",
+  { __meta: "Hello metadata" },
+  [ "li", {}, "item 1" ],
+  [ "li", {}, "item 2" ]
+]
+```
+
+Using structured data as body of these metadata blocks is more powerful and (as
+mentioned above) can be dealt with using a custom tag handler, e.g. here we
+interpret the body as JSON:
+
+```text
+{{{ {"task:status": "waiting-on", "task:due": "2023-02-28"} }}}
+# Chapter 3
+```
+
+```js
+parse(src, { tags: { meta: (_, body) => JSON.parse(body) }}).result
+[
+  [
+    "h1",
+    { id: "chapter-3", __meta: { "task:status": "waiting-on", "task:due": "2023-02-28" } },
+    "Chapter 3"
+  ]
+]
+```
+
+### Customizing tag transforms
+
+The
+[`TagTransforms`](https://docs.thi.ng/umbrella/hiccup-markdown/interfaces/TagTransforms.html)
+interface defines functions for all supported elements. User implementations /
+overrides can be given to the `parse()` function to customize output.
+
+Example with custom link elements:
+
+```ts
+const tags: Partial<TagTransforms> = {
+    link: (ctx, href, body) => ["a.link.blue", { href }, ...body]
+};
+
+// using the same markdown `src` as earlier example
+serialize(parse(src, { tags }).result);
+
+// <h1 id="hello-world">Hello world</h1>
+// <p><a href="http://example.com" class="link blue">This is a <em>test</em></a> 😄</p>
+```
 
 ### Serializing to HTML
 
@@ -150,66 +242,24 @@ const src = `# Hello world\n[This is a _test_](http://example.com) :smile:`;
 // convert to hiccup tree
 parse(src).result
 // [
-//   [ 'h1', {}, 'Hello world' ],
+//   [ "h1", { id: "hello-world" }, "Hello world" ],
 //   [
-//     'p',
+//     "p",
 //     {},
 //     [
-//       'a',
-//       { href: 'http://example.com' },
-//       'This is a ',
-//       [ 'em', {}, 'test' ]
+//       "a",
+//       { href: "http://example.com" },
+//       "This is a ",
+//       [ "em", {}, "test" ]
 //     ],
-//     ' ',
-//     '😄'
+//     " ",
+//     "😄"
 //   ]
 // ]
 
 // or serialize to HTML
 serialize(parse(src).result);
-// <h1>Hello world</h1><p><a href="http://example.com">This is a <em>test</em></a> 😄</p>
-```
-
-### Customizing tags
-
-The following interface defines factory functions for all supported
-elements. User implementations / overrides can be given to the
-`parse()` transducer to customize output.
-
-FIXME out of date
-
-```ts
-interface TagFactories {
-    blockquote(children: any[]): any[];
-    code(body: string): any[];
-    codeblock(lang: string, body: string): any[];
-    em(body: string): any[];
-    heading(level, children: any[]): any[];
-    hr(): any[];
-    img(src: string, alt: string): any[];
-    li(children: any[]): any[];
-    link(href: string, body: string): any[];
-    list(type: string, items: any[]): any[];
-    paragraph(children: any[]): any[];
-    strike(body: string): any[];
-    strong(body: string): any[];
-    table(rows: any[]): any[];
-    td(i: number, children: any[]): any[];
-    tr(i: number, cells: any[]): any[];
-}
-```
-
-Example with custom link elements:
-
-```ts
-const tags = {
-    link: (href, body) => ["a.link.blue", { href }, body]
-};
-
-serialize(iterator(parse(tags), src));
-
-// <h1>Hello world</h1>
-// <p><a href="http://example.com" class="link blue">This</a> is a <em>test</em>. </p>
+// <h1 id="hello-world">Hello world</h1><p><a href="http://example.com">This is a <em>test</em></a> 😄</p>
 ```
 
 ## Serializer (Hiccup to Markdown)
