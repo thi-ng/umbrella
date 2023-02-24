@@ -30,10 +30,11 @@
 **Please visit [thi.ng](https://thi.ng) for additional information & topic based
 search of packages relevant to your use cases...**
 
-**This project is NOT a framework!** This mono-repository is home to currently 177 individual TypeScript/ES6 projects
-(and ~120 example projects), a wide and jointly developed collection of
-packages, tools and general purpose building blocks for (non-exhaustive list of
-topics, see [package overview](#projects) below):
+**This project is NOT a framework!** This mono-repository is home to currently
+178 individual TypeScript/ES6 projects (and ~120 example projects), a wide and
+jointly developed collection of packages, tools and general purpose building
+blocks for (non-exhaustive list of topics, see [package overview](#projects)
+below):
 
 - Functional programming (ES6 iterators/generators, composition, memoization, transducers, multi-methods)
 - Reactive programming, stream / transducer based dataflow graphs / pipelines / DOM
@@ -187,15 +188,13 @@ feature or `develop` branches)
 
 ### Latest updates
 
-As of: 2023-02-17
+As of: 2023-02-24
 
-| Status                                           | Package                                               | Version                                                                                                                     | Changelog                                           |
-|:-------------------------------------------------|:------------------------------------------------------|:----------------------------------------------------------------------------------------------------------------------------|:----------------------------------------------------|
-| ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/bench`](./packages/bench)                   | [![version](https://img.shields.io/npm/v/@thi.ng/bench.svg)](https://www.npmjs.com/package/@thi.ng/bench)                   | [changelog](./packages/bench/CHANGELOG.md)          |
-| ![](https://img.shields.io/badge/-perf-cyan)     | [`@thi.ng/color-palettes`](./packages/color-palettes) | [![version](https://img.shields.io/npm/v/@thi.ng/color-palettes.svg)](https://www.npmjs.com/package/@thi.ng/color-palettes) | [changelog](./packages/color-palettes/CHANGELOG.md) |
-| ![](https://img.shields.io/badge/-fix-orange)    | [`@thi.ng/hiccup-css`](./packages/hiccup-css)         | [![version](https://img.shields.io/npm/v/@thi.ng/hiccup-css.svg)](https://www.npmjs.com/package/@thi.ng/hiccup-css)         | [changelog](./packages/hiccup-css/CHANGELOG.md)     |
-| ![](https://img.shields.io/badge/-fix-orange)    | [`@thi.ng/poisson`](./packages/poisson)               | [![version](https://img.shields.io/npm/v/@thi.ng/poisson.svg)](https://www.npmjs.com/package/@thi.ng/poisson)               | [changelog](./packages/poisson/CHANGELOG.md)        |
-| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/wasm-api`](./packages/wasm-api)             | [![version](https://img.shields.io/npm/v/@thi.ng/wasm-api.svg)](https://www.npmjs.com/package/@thi.ng/wasm-api)             | [changelog](./packages/wasm-api/CHANGELOG.md)       |
+| Status                                        | Package                                                 | Version                                                                                                                       | Changelog                                            |
+|:----------------------------------------------|:--------------------------------------------------------|:------------------------------------------------------------------------------------------------------------------------------|:-----------------------------------------------------|
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/emoji`](./packages/emoji)                     | [![version](https://img.shields.io/npm/v/@thi.ng/emoji.svg)](https://www.npmjs.com/package/@thi.ng/emoji)                     | [changelog](./packages/emoji/CHANGELOG.md)           |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/hiccup-markdown`](./packages/hiccup-markdown) | [![version](https://img.shields.io/npm/v/@thi.ng/hiccup-markdown.svg)](https://www.npmjs.com/package/@thi.ng/hiccup-markdown) | [changelog](./packages/hiccup-markdown/CHANGELOG.md) |
+| ![](https://img.shields.io/badge/-fix-orange) | [`@thi.ng/strings`](./packages/strings)                 | [![version](https://img.shields.io/npm/v/@thi.ng/strings.svg)](https://www.npmjs.com/package/@thi.ng/strings)                 | [changelog](./packages/strings/CHANGELOG.md)         |
 
 ### Fundamentals
 
@@ -332,6 +331,7 @@ As of: 2023-02-17
 |-----------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------|--------------------------------------------------|
 | [`@thi.ng/adapt-dpi`](./packages/adapt-dpi)                     | [![version](https://img.shields.io/npm/v/@thi.ng/adapt-dpi.svg)](https://www.npmjs.com/package/@thi.ng/adapt-dpi)                     | [changelog](./packages/adapt-dpi/CHANGELOG.md)           | HDPI canvas adaptation / styling util            |
 | [`@thi.ng/dl-asset`](./packages/dl-asset)                       | [![version](https://img.shields.io/npm/v/@thi.ng/dl-asset.svg)](https://www.npmjs.com/package/@thi.ng/dl-asset)                       | [changelog](./packages/dl-asset/CHANGELOG.md)            | Asset/canvas/file download helpers               |
+| [`@thi.ng/emoji`](./packages/emoji)                             | [![version](https://img.shields.io/npm/v/@thi.ng/emoji.svg)](https://www.npmjs.com/package/@thi.ng/emoji)                             | [changelog](./packages/emoji/CHANGELOG.md)               | Bi-directional emoji lookup tables               |
 | [`@thi.ng/hdiff`](./packages/hdiff)                             | [![version](https://img.shields.io/npm/v/@thi.ng/hdiff.svg)](https://www.npmjs.com/package/@thi.ng/hdiff)                             | [changelog](./packages/hdiff/CHANGELOG.md)               | String diffing w/ hiccup output (includes CLI)   |
 | [`@thi.ng/hdom`](./packages/hdom)                               | [![version](https://img.shields.io/npm/v/@thi.ng/hdom.svg)](https://www.npmjs.com/package/@thi.ng/hdom)                               | [changelog](./packages/hdom/CHANGELOG.md)                | Hiccup based VDOM & diffing                      |
 | [`@thi.ng/hdom-canvas`](./packages/hdom-canvas)                 | [![version](https://img.shields.io/npm/v/@thi.ng/hdom-canvas.svg)](https://www.npmjs.com/package/@thi.ng/hdom-canvas)                 | [changelog](./packages/hdom-canvas/CHANGELOG.md)         | hdom adapter for hiccup-canvas                   |
