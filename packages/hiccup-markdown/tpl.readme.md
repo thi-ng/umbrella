@@ -6,37 +6,11 @@
 
 {{pkg.description}}
 
-**⚠️ IMPORTANT: The parser implementation is undergoing a complete rewrite at
-the moment (with lots of improvements) and the information shown here in this
-readme _might_ be incomplete and/or out of date for the next few days. ⚠️**
+**⚠️ IMPORTANT: With v3.0.0 the parser implementation underwent a complete rewrite (with breaking changes, but lots of improvements). ⚠️**
 
 This package provides both a customizable
 [Markdown](https://en.wikipedia.org/wiki/Markdown)-to-[Hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup)
 parser and an extensible Hiccup-to-Markdown converter.
-
-{{meta.status}}
-
-{{repo.supportPackages}}
-
-{{repo.relatedPackages}}
-
-{{meta.blogPosts}}
-
-## Installation
-
-{{pkg.install}}
-
-{{pkg.size}}
-
-## Dependencies
-
-{{pkg.deps}}
-
-{{repo.examples}}
-
-## API
-
-{{pkg.docs}}
 
 ## Parser
 
@@ -49,7 +23,7 @@ features](#additional-syntax--parser-features) not part of the standard syntax.
 
 | Feature       | Comments                                                                                                                    |
 |---------------|-----------------------------------------------------------------------------------------------------------------------------|
-| Code blocks   | GFM style only (triple backtick prefix), w/ optional language hint & extra header information                               |
+| Code blocks   | GFM style only (triple backtick prefix), w/ mandatory language hint & optional extra headers information                    |
 | Formatting    | Nestable **bold**, _italic_, `code`, ~~strike~~, supported in paragraphs, headings, link labels, lists, blockquotes, tables |
 | Footnotes     | Supported and stored separately in parse context                                                                            |
 | Headings      | ATX-style only (`#` line prefix), any level                                                                                 |
@@ -61,6 +35,22 @@ features](#additional-syntax--parser-features) not part of the standard syntax.
 | Tables        | Support for column alignments, nestable inline formatting                                                                   |
 
 ### Additional syntax & parser features
+
+#### Code block headers
+
+In addition to the mandatory language hint, code blocks support optional user
+defined headers/metadata. Items will be separated by spaces (e.g. see
+[@thi.ng/tangle](https://github.com/thi-ng/umbrella/tree/develop/packages/tangle)
+for concrete use cases).
+
+(Note: the GFM codeblock fences are only shown escaped here to avoid GH
+layout breakage)
+
+```text
+\`\`\`language extra=data even=more
+// code...
+\`\`\`
+```
 
 #### Custom blocks
 
@@ -93,6 +83,28 @@ transformer. The default handler merely creates an element like this:
 [`defmulti()`](https://github.com/thi-ng/umbrella/tree/develop/packages/defmulti)
 polymorphic function as tag transformer to elegantly handle multiple types of
 custom blocks (in an extensible manner).
+
+#### Headings with anchor IDs
+
+The default tag transform for headlines auto-generates ID attributes using that
+headline's body and
+[slugifying](https://docs.thi.ng/umbrella/strings/functions/slugifyGH.html) it
+(Github readme compatible):
+
+```text
+# The **beautiful `code`**
+```
+
+Results in:
+
+```js
+// [
+//   "h1",
+//   { id: "the-beautiful-code" },
+//   "The ",
+//   [ "strong", {}, "beautiful ", [ "code", {}, "code" ] ]
+// ]
+```
 
 #### Metadata
 
@@ -133,27 +145,34 @@ mentioned above) can be dealt with using a custom tag handler, e.g. here we
 interpret the body as JSON:
 
 ```text
-{{{ {"task:status": "waiting-on", "task:due": "2023-02-28"} }}}
+{{{
+	{
+		"task:status": "waiting-on",
+		"task:due": "2023-02-28"
+	}
+}}}
 # Chapter 3
 ```
 
 ```js
 parse(src, { tags: { meta: (_, body) => JSON.parse(body) }}).result
-[
-  [
-    "h1",
-    { id: "chapter-3", __meta: { "task:status": "waiting-on", "task:due": "2023-02-28" } },
-    "Chapter 3"
-  ]
-]
+// [
+//   [
+//     "h1",
+//     { id: "chapter-3", __meta: { "task:status": "waiting-on", "task:due": "2023-02-28" } },
+//     "Chapter 3"
+//   ]
+// ]
 ```
 
 ### Customizing tag transforms
 
 The
 [`TagTransforms`](https://docs.thi.ng/umbrella/hiccup-markdown/interfaces/TagTransforms.html)
-interface defines functions for all supported elements. User implementations /
-overrides can be given to the `parse()` function to customize output.
+interface defines transformation functions for all supported elements and can be
+used to completely customize the parser's result data. User implementations can
+be given to the `parse()` function to selectively customize/override
+defaults/outputs.
 
 Example with custom link elements:
 
@@ -162,11 +181,11 @@ const tags: Partial<TagTransforms> = {
     link: (ctx, href, body) => ["a.link.blue", { href }, ...body]
 };
 
-// using the same markdown `src` as earlier example
-serialize(parse(src, { tags }).result);
-
-// <h1 id="hello-world">Hello world</h1>
-// <p><a href="http://example.com" class="link blue">This is a <em>test</em></a> 😄</p>
+// parse with custom tag transform overrides
+parse("[label](url)", { tags }).result;
+// [
+//   ["p", {}, ["a.link.blue", { href: "url" }, "label"]]
+// ]
 ```
 
 ### Serializing to HTML
@@ -370,5 +389,29 @@ _Table #1_
 More info [here](http://thi.ng/hiccup-markdown).
 
 ---
+
+{{meta.status}}
+
+{{repo.supportPackages}}
+
+{{repo.relatedPackages}}
+
+{{meta.blogPosts}}
+
+## Installation
+
+{{pkg.install}}
+
+{{pkg.size}}
+
+## Dependencies
+
+{{pkg.deps}}
+
+{{repo.examples}}
+
+## API
+
+{{pkg.docs}}
 
 <!-- include ../../assets/tpl/footer.md -->

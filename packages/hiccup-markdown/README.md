@@ -10,15 +10,12 @@ This project is part of the
 [@thi.ng/umbrella](https://github.com/thi-ng/umbrella/) monorepo.
 
 - [About](#about)
-- [Status](#status)
-- [Installation](#installation)
-- [Dependencies](#dependencies)
-- [Usage examples](#usage-examples)
-- [API](#api)
 - [Parser](#parser)
   - [Basic features](#basic-features)
   - [Additional syntax & parser features](#additional-syntax--parser-features)
+    - [Code block headers](#code-block-headers)
     - [Custom blocks](#custom-blocks)
+    - [Headings with anchor IDs](#headings-with-anchor-ids)
     - [Metadata](#metadata)
   - [Customizing tag transforms](#customizing-tag-transforms)
   - [Serializing to HTML](#serializing-to-html)
@@ -26,6 +23,11 @@ This project is part of the
   - [Features](#features)
   - [Behaviors](#behaviors)
   - [Usage examples](#usage-examples)
+- [Status](#status)
+- [Installation](#installation)
+- [Dependencies](#dependencies)
+- [Usage examples](#usage-examples)
+- [API](#api)
 - [Authors](#authors)
 - [License](#license)
 
@@ -33,72 +35,11 @@ This project is part of the
 
 Markdown parser & serializer from/to Hiccup format. This is a support package for [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup).
 
-**⚠️ IMPORTANT: The parser implementation is undergoing a complete rewrite at
-the moment (with lots of improvements) and the information shown here in this
-readme _might_ be incomplete and/or out of date for the next few days. ⚠️**
+**⚠️ IMPORTANT: With v3.0.0 the parser implementation underwent a complete rewrite (with breaking changes, but lots of improvements). ⚠️**
 
 This package provides both a customizable
 [Markdown](https://en.wikipedia.org/wiki/Markdown)-to-[Hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup)
 parser and an extensible Hiccup-to-Markdown converter.
-
-## Status
-
-**ALPHA** - bleeding edge / work-in-progress
-
-[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bhiccup-markdown%5D+in%3Atitle)
-
-## Installation
-
-```bash
-yarn add @thi.ng/hiccup-markdown
-```
-
-ES module import:
-
-```html
-<script type="module" src="https://cdn.skypack.dev/@thi.ng/hiccup-markdown"></script>
-```
-
-[Skypack documentation](https://docs.skypack.dev/)
-
-For Node.js REPL:
-
-```js
-const hiccupMarkdown = await import("@thi.ng/hiccup-markdown");
-```
-
-Package sizes (brotli'd, pre-treeshake): ESM: 4.05 KB
-
-## Dependencies
-
-- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
-- [@thi.ng/arrays](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays)
-- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
-- [@thi.ng/compose](https://github.com/thi-ng/umbrella/tree/develop/packages/compose)
-- [@thi.ng/defmulti](https://github.com/thi-ng/umbrella/tree/develop/packages/defmulti)
-- [@thi.ng/emoji](https://github.com/thi-ng/umbrella/tree/develop/packages/emoji)
-- [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
-- [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup)
-- [@thi.ng/logger](https://github.com/thi-ng/umbrella/tree/develop/packages/logger)
-- [@thi.ng/parse](https://github.com/thi-ng/umbrella/tree/develop/packages/parse)
-- [@thi.ng/strings](https://github.com/thi-ng/umbrella/tree/develop/packages/strings)
-- [@thi.ng/text-canvas](https://github.com/thi-ng/umbrella/tree/develop/packages/text-canvas)
-
-## Usage examples
-
-Several demos in this repo's
-[/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
-directory are using this package.
-
-A selection:
-
-| Screenshot                                                                                                             | Description                                             | Live demo                                      | Source                                                                      |
-|:-----------------------------------------------------------------------------------------------------------------------|:--------------------------------------------------------|:-----------------------------------------------|:----------------------------------------------------------------------------|
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/markdown-parser.jpg" width="240"/> | Minimal Markdown to Hiccup to HTML parser / transformer | [Demo](https://demo.thi.ng/umbrella/markdown/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/markdown) |
-
-## API
-
-[Generated API docs](https://docs.thi.ng/umbrella/hiccup-markdown/)
 
 ## Parser
 
@@ -111,7 +52,7 @@ features](#additional-syntax--parser-features) not part of the standard syntax.
 
 | Feature       | Comments                                                                                                                    |
 |---------------|-----------------------------------------------------------------------------------------------------------------------------|
-| Code blocks   | GFM style only (triple backtick prefix), w/ optional language hint & extra header information                               |
+| Code blocks   | GFM style only (triple backtick prefix), w/ mandatory language hint & optional extra headers information                    |
 | Formatting    | Nestable **bold**, _italic_, `code`, ~~strike~~, supported in paragraphs, headings, link labels, lists, blockquotes, tables |
 | Footnotes     | Supported and stored separately in parse context                                                                            |
 | Headings      | ATX-style only (`#` line prefix), any level                                                                                 |
@@ -123,6 +64,22 @@ features](#additional-syntax--parser-features) not part of the standard syntax.
 | Tables        | Support for column alignments, nestable inline formatting                                                                   |
 
 ### Additional syntax & parser features
+
+#### Code block headers
+
+In addition to the mandatory language hint, code blocks support optional user
+defined headers/metadata. Items will be separated by spaces (e.g. see
+[@thi.ng/tangle](https://github.com/thi-ng/umbrella/tree/develop/packages/tangle)
+for concrete use cases).
+
+(Note: the GFM codeblock fences are only shown escaped here to avoid GH
+layout breakage)
+
+```text
+\`\`\`language extra=data even=more
+// code...
+\`\`\`
+```
 
 #### Custom blocks
 
@@ -155,6 +112,28 @@ transformer. The default handler merely creates an element like this:
 [`defmulti()`](https://github.com/thi-ng/umbrella/tree/develop/packages/defmulti)
 polymorphic function as tag transformer to elegantly handle multiple types of
 custom blocks (in an extensible manner).
+
+#### Headings with anchor IDs
+
+The default tag transform for headlines auto-generates ID attributes using that
+headline's body and
+[slugifying](https://docs.thi.ng/umbrella/strings/functions/slugifyGH.html) it
+(Github readme compatible):
+
+```text
+# The **beautiful `code`**
+```
+
+Results in:
+
+```js
+// [
+//   "h1",
+//   { id: "the-beautiful-code" },
+//   "The ",
+//   [ "strong", {}, "beautiful ", [ "code", {}, "code" ] ]
+// ]
+```
 
 #### Metadata
 
@@ -195,27 +174,34 @@ mentioned above) can be dealt with using a custom tag handler, e.g. here we
 interpret the body as JSON:
 
 ```text
-{{{ {"task:status": "waiting-on", "task:due": "2023-02-28"} }}}
+{{{
+    {
+        "task:status": "waiting-on",
+        "task:due": "2023-02-28"
+    }
+}}}
 # Chapter 3
 ```
 
 ```js
 parse(src, { tags: { meta: (_, body) => JSON.parse(body) }}).result
-[
-  [
-    "h1",
-    { id: "chapter-3", __meta: { "task:status": "waiting-on", "task:due": "2023-02-28" } },
-    "Chapter 3"
-  ]
-]
+// [
+//   [
+//     "h1",
+//     { id: "chapter-3", __meta: { "task:status": "waiting-on", "task:due": "2023-02-28" } },
+//     "Chapter 3"
+//   ]
+// ]
 ```
 
 ### Customizing tag transforms
 
 The
 [`TagTransforms`](https://docs.thi.ng/umbrella/hiccup-markdown/interfaces/TagTransforms.html)
-interface defines functions for all supported elements. User implementations /
-overrides can be given to the `parse()` function to customize output.
+interface defines transformation functions for all supported elements and can be
+used to completely customize the parser's result data. User implementations can
+be given to the `parse()` function to selectively customize/override
+defaults/outputs.
 
 Example with custom link elements:
 
@@ -224,11 +210,11 @@ const tags: Partial<TagTransforms> = {
     link: (ctx, href, body) => ["a.link.blue", { href }, ...body]
 };
 
-// using the same markdown `src` as earlier example
-serialize(parse(src, { tags }).result);
-
-// <h1 id="hello-world">Hello world</h1>
-// <p><a href="http://example.com" class="link blue">This is a <em>test</em></a> 😄</p>
+// parse with custom tag transform overrides
+parse("[label](url)", { tags }).result;
+// [
+//   ["p", {}, ["a.link.blue", { href: "url" }, "label"]]
+// ]
 ```
 
 ### Serializing to HTML
@@ -432,6 +418,65 @@ _Table #1_
 More info [here](http://thi.ng/hiccup-markdown).
 
 ---
+
+## Status
+
+**ALPHA** - bleeding edge / work-in-progress
+
+[Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bhiccup-markdown%5D+in%3Atitle)
+
+## Installation
+
+```bash
+yarn add @thi.ng/hiccup-markdown
+```
+
+ES module import:
+
+```html
+<script type="module" src="https://cdn.skypack.dev/@thi.ng/hiccup-markdown"></script>
+```
+
+[Skypack documentation](https://docs.skypack.dev/)
+
+For Node.js REPL:
+
+```js
+const hiccupMarkdown = await import("@thi.ng/hiccup-markdown");
+```
+
+Package sizes (brotli'd, pre-treeshake): ESM: 4.05 KB
+
+## Dependencies
+
+- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
+- [@thi.ng/arrays](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays)
+- [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
+- [@thi.ng/compose](https://github.com/thi-ng/umbrella/tree/develop/packages/compose)
+- [@thi.ng/defmulti](https://github.com/thi-ng/umbrella/tree/develop/packages/defmulti)
+- [@thi.ng/emoji](https://github.com/thi-ng/umbrella/tree/develop/packages/emoji)
+- [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
+- [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup)
+- [@thi.ng/logger](https://github.com/thi-ng/umbrella/tree/develop/packages/logger)
+- [@thi.ng/parse](https://github.com/thi-ng/umbrella/tree/develop/packages/parse)
+- [@thi.ng/strings](https://github.com/thi-ng/umbrella/tree/develop/packages/strings)
+- [@thi.ng/text-canvas](https://github.com/thi-ng/umbrella/tree/develop/packages/text-canvas)
+
+## Usage examples
+
+Several demos in this repo's
+[/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
+directory are using this package.
+
+A selection:
+
+| Screenshot                                                                                                             | Description                                             | Live demo                                      | Source                                                                      |
+|:-----------------------------------------------------------------------------------------------------------------------|:--------------------------------------------------------|:-----------------------------------------------|:----------------------------------------------------------------------------|
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/markdown-parser.jpg" width="240"/> | Minimal Markdown to Hiccup to HTML parser / transformer | [Demo](https://demo.thi.ng/umbrella/markdown/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/markdown) |
+
+## API
+
+[Generated API docs](https://docs.thi.ng/umbrella/hiccup-markdown/)
 
 ## Authors
 
