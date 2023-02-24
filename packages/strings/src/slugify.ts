@@ -10,21 +10,25 @@ const re = new RegExp(src.split("").join("|"), "g");
  *
  * @example
  * ```ts
- * slugify("Me, myself (& ëye)!")
+ * slugify("Me, myself (& ëye) 😀!")
  * // "me-myself-and-eye"
  * ```
  *
  * @param str -
  */
 export const slugify: Stringer<string> = (str: string) => {
-	return str
-		.toLowerCase()
-		.replace(/\s+/g, "-")
-		.replace(re, (c) => dest[src.indexOf(c)])
-		.replace(/&+/g, "-and-")
-		.replace(/[^\w\-]+/g, "")
-		.replace(/\-{2,}/g, "-")
-		.replace(/(^-+)|(-+$)/g, "");
+	return (
+		str
+			.toLowerCase()
+			.replace(/\s+/g, "-")
+			.replace(re, (c) => dest[src.indexOf(c)])
+			.replace(/&+/g, "-and-")
+			.replace(/[^\w\-]+/g, "")
+			// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions/Unicode_Property_Escapes
+			.replace(/\p{Emoji_Presentation}/gu, "")
+			.replace(/\-{2,}/g, "-")
+			.replace(/(^-+)|(-+$)/g, "")
+	);
 };
 
 /**
@@ -33,8 +37,8 @@ export const slugify: Stringer<string> = (str: string) => {
  *
  * @example
  * ```ts
- * slugifyGH("Me, myself (& ëye)!")
- * // "me-myself--ëye"
+ * slugifyGH("Me, myself (& ëye) 😀!")
+ * // "me-myself--ëye-"
  * ```
  *
  * @param str -
@@ -52,6 +56,8 @@ export const slugifyGH = (str: string) => {
 				/[!"#$%&'()*+,./:;<=>?@\[\\\]^`{|}~\u0000-\u001f\u2000-\u206f\u2700-\u27bf\u2e00-\u2e7f]/g,
 				""
 			)
+			// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions/Unicode_Property_Escapes
+			.replace(/\p{Emoji_Presentation}/gu, "")
 			.replace(/\s/g, "-")
 	);
 };
