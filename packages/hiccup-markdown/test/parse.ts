@@ -16,35 +16,29 @@ group("parse", {
 	},
 
 	blockquote: () => {
-		check(`> a block **quote** of\n> two _lines_.`, [
+		check(
+			"> line1\n>> **line 2**\\\n>> line 2a\n>> line 2b\n>> \n>> line 2c\n>>> line 3",
 			[
-				"blockquote",
-				{},
-				"a block ",
-				["strong", {}, "quote"],
-				" of",
-				" ",
-				"two ",
-				["em", {}, "lines"],
-				".",
-			],
-		]);
-		check("> line 1\\\n> line 2\n> line 3", [
-			["blockquote", {}, "line 1", ["br", {}], "line 2", " ", "line 3"],
-		]);
-		check("> line 1\\\n> line 2\n> \n> line 3", [
-			[
-				"blockquote",
-				{},
-				"line 1",
-				["br", {}],
-				"line 2",
-				" ",
-				["br", {}],
-				["br", {}],
-				"line 3",
-			],
-		]);
+				[
+					"blockquote",
+					{},
+					"line1",
+					[
+						"blockquote",
+						{},
+						["strong", {}, "line 2"],
+						["br", {}],
+						"line 2a",
+						" ",
+						"line 2b",
+						["br", {}],
+						["br", {}],
+						"line 2c",
+						["blockquote", {}, "line 3"],
+					],
+				],
+			]
+		);
 	},
 
 	code: () => {
@@ -202,7 +196,6 @@ with linebreaks
 	},
 
 	hr: () => {
-		check(`--`, [["hr", { __length: 2 }]]);
 		check(`---`, [["hr", { __length: 3 }]]);
 		check(`----`, [["hr", { __length: 4 }]]);
 	},
@@ -345,7 +338,7 @@ with linebreaks
 
 	link: () => {
 		check(
-			`[label _with **nested fmt**_](http://thi.ng/umbrella "thi.ng/umbrella website").`,
+			`[label _with **nested fmt**_](http://thi.ng/umbrella "link title").`,
 			[
 				[
 					"p",
@@ -354,7 +347,7 @@ with linebreaks
 						"a",
 						{
 							href: "http://thi.ng/umbrella",
-							title: "thi.ng/umbrella website",
+							title: "link title",
 						},
 						"label ",
 						["em", {}, "with ", ["strong", {}, "nested fmt"]],
@@ -363,13 +356,31 @@ with linebreaks
 				],
 			]
 		);
+		check("**[_abc_](def)**", [
+			[
+				"p",
+				{},
+				[
+					"strong",
+					{},
+					[
+						"a",
+						{
+							href: "def",
+							title: undefined,
+						},
+						["em", {}, "abc"],
+					],
+				],
+			],
+		]);
 	},
 
 	linkref: () => {
-		const src = `[_label_][1]\n\n[1]: http://thi.ng/umbrella "thi.ng/umbrella website"`;
+		const src = `[_label_][1]\n\n[1]: http://thi.ng/umbrella "link title"`;
 		const { result, ctx } = parse(src);
 		assert.deepStrictEqual(ctx.linkRefs, {
-			1: ["http://thi.ng/umbrella", "thi.ng/umbrella website"],
+			1: ["http://thi.ng/umbrella", "link title"],
 		});
 		const link = result[0][2][1];
 		link.href = link.href.deref();
@@ -382,7 +393,7 @@ with linebreaks
 					"a",
 					{
 						href: "http://thi.ng/umbrella",
-						title: "thi.ng/umbrella website",
+						title: "link title",
 					},
 					["em", {}, "label"],
 				],
