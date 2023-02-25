@@ -47,6 +47,7 @@
 		"emoji",
 		"lut",
 		"name",
+		"shortcode",
 		"typescript",
 		"unicode"
 	],

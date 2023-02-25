@@ -4,9 +4,13 @@ import { EMOJI, NAMES } from "../src/index.js";
 
 group("emoji", {
 	roundtrip: () => {
-		assert.strictEqual(EMOJI["wink"], "😉");
-		assert.strictEqual(NAMES[EMOJI["wink"]], "wink");
-		assert.strictEqual(EMOJI[NAMES["💎"]], "💎");
+		Object.keys(EMOJI).forEach((id) => {
+			assert.ok(
+				NAMES[EMOJI[id]] === id ||
+					EMOJI[NAMES[EMOJI[id]]] === EMOJI[id],
+				id
+			);
+		});
 	},
 
 	"no-hyphens": () => {

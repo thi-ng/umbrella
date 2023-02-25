@@ -21,7 +21,7 @@ is based on the one used by
 package).
 
 For reasons of uniformity, all hyphens (`-`) in names have been replaced with
-underscores (`_`), e.g. `female-artist` → `female_artist` (👩‍🎨).
+underscores (`_`).
 
 {{meta.status}}
 
