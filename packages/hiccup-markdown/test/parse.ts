@@ -383,8 +383,8 @@ with linebreaks
 			1: ["http://thi.ng/umbrella", "link title"],
 		});
 		const link = result[0][2][1];
-		link.href = link.href.deref();
-		link.title = link.title.deref();
+		link.href = link.href();
+		link.title = link.title();
 		const expected = [
 			[
 				"p",
@@ -427,22 +427,33 @@ with linebreaks
 	},
 
 	table: () => {
-		check(`| col1 | col2 |\n| :-- | --: |\n| row1 | row2 |`, [
+		check(
+			`| col1 | col2 |\n| :-- | --: |\n| row1a | row1b |\n| _row2a_ | **row2b** |`,
 			[
-				"table",
-				{ __align: ["left", "right"] },
 				[
-					"thead",
-					{},
-					["tr", {}, ["td", {}, "col1"], ["td", {}, "col2"]],
+					"table",
+					{
+						__align: ["left", "right"],
+					},
+					[
+						"thead",
+						{},
+						["tr", {}, ["th", {}, "col1"], ["th", {}, "col2"]],
+					],
+					[
+						"tbody",
+						{},
+						["tr", {}, ["td", {}, "row1a"], ["td", {}, "row1b"]],
+						[
+							"tr",
+							{},
+							["td", {}, ["em", {}, "row2a"], " "],
+							["td", {}, ["strong", {}, "row2b"], " "],
+						],
+					],
 				],
-				[
-					"tbody",
-					{},
-					["tr", {}, ["td", {}, "row1"], ["td", {}, "row2"]],
-				],
-			],
-		]);
+			]
+		);
 	},
 
 	wikiref: () => {
@@ -524,7 +535,7 @@ with linebreaks
 					__align: ["left"],
 					__meta: "foo",
 				},
-				["thead", {}, ["tr", {}, ["td", {}, "Hello"]]],
+				["thead", {}, ["tr", {}, ["th", {}, "Hello"]]],
 				["tbody", {}],
 			],
 		]);

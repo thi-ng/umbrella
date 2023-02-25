@@ -24,7 +24,7 @@ export interface TagTransforms {
 	footnote(ctx: MDParseContext, id: string, body: any[], meta?: any): any;
 	footnoteRef(ctx: MDParseContext, id: string): any;
 	footnoteWrapper(ctx: MDParseContext, notes: IObjectOf<any>): any;
-	heading(ctx: MDParseContext, level: number, body: any[], meta?: any): any;
+	heading(ctx: MDParseContext, level: number, id: string, body: any[], meta?: any): any;
 	hr(ctx: MDParseContext, length: number): any;
 	img(ctx: MDParseContext, label: string, src: string, title?: string): any;
 	italic(ctx: MDParseContext, body: any[]): any;
@@ -54,7 +54,8 @@ export interface TagTransforms {
 		meta?: any
 	): any;
 	tableCell(ctx: MDParseContext, body: any[]): any;
-	tableRow(ctx: MDParseContext, cells: any[]): any;
+	tableHead(ctx: MDParseContext, body: any[]): any;
+	tableRow(ctx: MDParseContext, index: number, cells: any[]): any;
 	ul(ctx: MDParseContext, items: any[], meta?: any): any;
 	ulitem(ctx: MDParseContext, attribs: TodoAttribs, ...body: any[]): any;
 	wikiref(ctx: MDParseContext, id: string, label?: string): any;
@@ -68,6 +69,7 @@ export interface MDParseContext {
 	headings: { level: number; body: any[] }[];
 	hasFootnotes: boolean;
 	meta?: any;
+	row: number;
 	opts: ParseOpts;
 }
 

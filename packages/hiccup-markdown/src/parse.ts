@@ -1,7 +1,7 @@
 // thing:no-export
 
-// Downloaded @ 2023-02-25T08:45:18.874Z
-// Source: https://demo.thi.ng/umbrella/parse-playground/#ldoNOEROTDE6IDxETkw-KyA9PiBkaXNjYXJkIDsKRE5MMjogPE5MPnsyLH0gOwpsYnI6ICdcXCchIDxOTD4hIDsKZXNjOiAnXFwnISAoICc8JyB8ICdbJyB8ICdfJyB8ICcqJyB8ICdgJyB8ICd-JyB8ICc6JyApIDsKaW5saW5lZGVsaW06ICggIiFbIiB8ICdbJyB8ICIqKiIgfCAnXycgfCAnYCcgfCAnPCcgfCAnXFwnIHwgIn5-IiB8ICIgOiIgfCA8bGJyPiApIDsKZGVsaW06ICggPGlubGluZWRlbGltPiB8IDxETkwyPiApIDsKZGVsaW0xOiAoIDxpbmxpbmVkZWxpbT4gfCA8Tkw-ICkgOwpib2R5OiAuKD8tPGRlbGltPiEpID0-IGpvaW4gOwpib2R5MTogLig_LTxkZWxpbTE-ISkgPT4gam9pbiA7Cgp3aWtpcmVmOiAiW1siISAuKD8rIl1dIiEpID0-IGpvaW4gOwpmbnJlZjogIlteIiEgPGxhYmVsPiA7CmZub3RlOiA8TFNUQVJUPiAiW14iISA8Zm5sYWJlbD4gPFdTMT4gPHBhcmE-IDsKZm5sYWJlbDogLig_KyJdOiIhKSA9PiBqb2luIDsKbGFiZWw6IC4oPysnXSchKSA9PiBqb2luIDsKdGFyZ2V0OiAuKD8rJyknISkgPT4gam9pbiA7Cmxpbms6ICdbJyEgPGxpbmtsYWJlbD4gJygnISA8dGFyZ2V0PiA7CmxpbmtyZWY6ICdbJyEgPGxpbmtsYWJlbD4gJ1snISA8bGFiZWw-IDsKbGlua2RlZjogPExTVEFSVD4gJ1snISA8bGFiZWw-ICc6JyEgPFdTMT4gPGxkdGFyZ2V0PiA7CmxkdGFyZ2V0OiAuKD8rPEROTDE-KSA9PiBqb2luIDsKbGlua2xhYmVsOiAoPGltZz4gfCA8Ym9sZD4gfCA8aXRhbGljPiB8IDxzdHJpa2U-IHwgPGNvZGU-IHwgPGVtb2ppPiB8IDxsaW5rYm9keT4pKiAnXSchIDsKbGlua2RlbGltOiAoICIhWyIgfCAnWycgfCAiKioiIHwgJ18nIHwgIn5-IiB8ICdgJyB8ICddJykgOwpsaW5rYm9keTogLig_LTxsaW5rZGVsaW0-ISkgPT4gam9pbiA7CmltZzogIiFbIiEgPGxhYmVsPiAnKCchIDx0YXJnZXQ-IDsKYm9sZDogIioqIiEgKDx3aWtpcmVmPiB8IDxpbWc-IHwgPGZucmVmPiB8IDxsaW5rcmVmPiB8IDxsaW5rPiB8IDxpdGFsaWM-IHwgPHN0cmlrZT4gfCA8Y29kZT4gfCA8ZW1vamk-IHwgPGJvZHkxPikqICIqKiIhIDsKaXRhbGljOiAnXychICg8d2lraXJlZj4gfCA8aW1nPiB8IDxmbnJlZj4gfCA8bGlua3JlZj4gfCA8bGluaz4gfCA8Ym9sZD4gfCA8c3RyaWtlPiB8IDxjb2RlPiB8IDxlbW9qaT4gfCA8Ym9keTE-KSogJ18nISA7CnN0cmlrZTogIn5-IiEgKDx3aWtpcmVmPiB8IDxpbWc-IHwgPGZucmVmPiB8IDxsaW5rcmVmPiB8IDxsaW5rPiB8IDxib2xkPiB8IDxpdGFsaWM-IHwgPGNvZGU-IHwgPGVtb2ppPiB8IDxib2R5MT4pKiAifn4iISA7CmNvZGU6ICdgJyEgLig_KydgJyEpID0-IGpvaW4gOwprYmQ6ICI8a2JkPiIhIC4oPysiPC9rYmQ-IiEpID0-IGpvaW4gOwplbW9qaTogJyAnPyAnOichIDxBTFBIQV9OVU0-KD8rJzonISkgPT4gam9pbiA7CnBhcmE6ICg8d2lraXJlZj4gfCA8aW1nPiB8IDxmbnJlZj4gfCA8bGlua3JlZj4gfCA8bGluaz4gfCA8Ym9sZD4gfCA8aXRhbGljPiB8IDxzdHJpa2U-IHwgPGNvZGU-IHwgPGtiZD4gfCA8ZW1vamk-IHwgPGxicj4gfCA8ZXNjPiB8IDxib2R5PikqIDxETkwyPiEgOwoKaGRsZXZlbDogJyMnKyA9PiBjb3VudCA7CmhkOiA8TFNUQVJUPiA8aGRsZXZlbD4gPFdTMD4KICAgICg8d2lraXJlZj4gfCA8aW1nPiB8IDxmbnJlZj4gfCA8bGluaz4gfCA8Ym9sZD4gfCA8aXRhbGljPiB8IDxzdHJpa2U-IHwgPGNvZGU-IHwgPGVtb2ppPiB8IDxib2R5MT4gKSogPEROTDE-IDsKCmxpbGV2ZWw6ICcgJyogPT4gY291bnQgOwp1aW50OiA8RElHSVQ-KyA9PiBpbnQgOwp1bGlkOiA8RE5MPiA8V1MwPiAnLSchIDsKb2xpZDogPEROTD4gPFdTMD4gPERJR0lUPishICcuJyEgOwpsaWRlbGltOiAoIDxkZWxpbT4gfCA8dWxpZD4gfCA8b2xpZD4gKSA7CmxpYm9keTogLig_LTxsaWRlbGltPiEpID0-IGpvaW4gOwp0b2RvOiAnWychIFsgeFhdICddJyEgPFdTMT4gPT4gaG9pc3RSIDsKdWxpdGVtOiA8TFNUQVJUPiA8bGlsZXZlbD4gIi0gIiEgPHRvZG8-PwogICAgICAgICg8d2lraXJlZj4gfCA8aW1nPiB8IDxmbnJlZj4gfCA8bGluaz4gfCA8Ym9sZD4gfCA8aXRhbGljPiB8IDxzdHJpa2U-IHwgPGNvZGU-IHwgPGVtb2ppPiB8IDxsaWJvZHk-ICkqIDxETkw-IDsKb2xpdGVtOiA8TFNUQVJUPiA8bGlsZXZlbD4gPHVpbnQ-ICIuICIhIDx0b2RvPj8KICAgICAgICAoPHdpa2lyZWY-IHwgPGltZz4gfCA8Zm5yZWY-IHwgPGxpbms-IHwgPGJvbGQ-IHwgPGl0YWxpYz4gfCA8c3RyaWtlPiB8IDxjb2RlPiB8IDxlbW9qaT4gfCA8bGlib2R5PiApKiA8RE5MPiA7Cmxpc3Q6ICg8dWxpdGVtPiB8IDxvbGl0ZW0-KSsgPEROTDE-IDsKCmNiZGVsaW06IDxMU1RBUlQ-ICJgYGAiISA7CmNvZGVibG9jazogPGNiZGVsaW0-ISA8Y29kZW1ldGE-IDxjb2RlYm9keT4gPEROTDE-IDsKY29kZW1ldGE6IC4oPys8Tkw-ISkgPT4gam9pbiA7CmNvZGVib2R5OiAuKD8rPGNiZGVsaW0-KSA9PiBqb2luIDsKCmN1c3RvbWRlbGltOiA8TFNUQVJUPiAiOjo6IiEgOwpjdXN0b21ibG9jazogPGN1c3RvbWRlbGltPiEgPGN1c3RvbW1ldGE-IDxjdXN0b21ib2R5PiA8RE5MMT4gOwpjdXN0b21tZXRhOiAuKD8rPE5MPiEpID0-IGpvaW4gOwpjdXN0b21ib2R5OiAuKD8rPGN1c3RvbWRlbGltPikgPT4gam9pbiA7CgptZXRhYmxvY2s6IDxMU1RBUlQ-ICJ7e3siISA8bWV0YWJvZHk-IDxETkwxPiA7Cm1ldGFib2R5OiAuKD8rPG1ldGFlbmQ-ISkgPT4gam9pbiA7Cm1ldGFlbmQ6ICJ9fX0iIDxMRU5EPiA7CgpicWxldmVsOiAnPicrID0-IGNvdW50IDsKYnFsaW5lOiA8TFNUQVJUPiA8YnFsZXZlbD4gJyAnIQogICAgICAgICg8d2lraXJlZj4gfCA8aW1nPiB8IDxmbnJlZj4gfCA8bGluaz4gfCA8Ym9sZD4gfCA8aXRhbGljPiB8IDxzdHJpa2U-IHwgPGNvZGU-IHwgPGVtb2ppPiB8IDxicWxicj4gfCA8Ym9keTE-KSogPEROTD4gOwpicWxicjogJ1xcJyEoPy08RE5MPikgOwpicXVvdGU6IDxicWxpbmU-KyA8RE5MMT4gOwoKdGRlbGltOiAoPGlubGluZWRlbGltPiB8ICd8JyApIDsKdGJvZHk6IC4oPy08dGRlbGltPiEpID0-IGpvaW4gOwp0Y2VsbDogPFdTMD4gKDx3aWtpcmVmPiB8IDxpbWc-IHwgPGZucmVmPiB8IDxsaW5rPiB8IDxib2xkPiB8IDxpdGFsaWM-IHwgPHN0cmlrZT4gfCA8Y29kZT4gfCA8ZW1vamk-IHwgPHRib2R5PiApKiAnfCchIDsKdHJvdzogPExTVEFSVD4gJ3wnISA8dGNlbGw-KD8rPEROTD4pIDsKdGFibGU6IDx0cm93PisgPEROTDE-IDsKCmhyOiAiLS0iICctJysgPEROTDE-ID0-IGpvaW4gOwoKbWFpbjogPFdTMD4gKDxoZD4gfCA8bGlzdD4gfCA8YnF1b3RlPiB8IDxjb2RlYmxvY2s-IHwgPGN1c3RvbWJsb2NrPiB8IDxtZXRhYmxvY2s-IHwgPHRhYmxlPiB8IDxocj4gfCA8Zm5vdGU-IHwgPGxpbmtkZWY-IHwgPHBhcmE-KSogO6RtYWlu2gKLIyBIZWxsbyA6d29ybGQ6OnNtaWxlOlteYWJjXQoKYSBcPCBiCgpMZXQgYGV4cDIoeCkgPSAyKip4YAoKUHJlc3MgPGtiZD5Db250cm9sPC9rYmQ-ICsgPGtiZD5SPC9rYmQ-IHRvIHJlbG9hZC4KCjo6OmFsZXJ0ClRlc3QgW2xhYmVsXVtyZWZyZWZdCjo6OgoKLS0tCgp7e3sgeyJpZCI6IDEyMywgInByb3RlY3RlZCI6IHRydWUgfSB9fX0KU28gW1tzbWlsZV9mb28xMl1dIPCfmI0gd2hhdCdzIFt0aGlzXSguL3RoaXMubWQpW14yXSB0aGVuOgoKQSBbbGluayBfd2l0aCAqKm5lc3RlZCB-fmZvcm1hdH5-KiogYW5kIGByZWZlcmVuY2VgX11bcmVmcmVmXS4uLgoKYGBgdHMgdGFuZ2xlOm5vIGxuOnllcwpjb25zdCBmb28gPSA0MjsKLy8gdGhlIGVuZApgYGAKCjEuIGZvbwogIDQuIGJhcgogICAgIGJheiBhbmQgc28gb24KICAgICBtdWx0aWxpbmUKMi4gWyBdIHRhc2sKMy4gW3hdICoqZG9uZSoqCgo-IGJsb2NrcXVvdGUKPiBtdWx0aWxpbmUgdG9vXAo-PiBuZXN0ZWQKPj4-IGxldmVsIDMKPiAtLSBzb3VyY2UKCnwgZm9vIHwgYmFyIHwKfDotfC06fAp8IFtbcmVmIzIyXV0gfCBgb25gICoqb2ZmKiogfAoKW15hYmNdOiBGb28gX2Jhcl8gYmF6CgpbXjJdOiBUT0RPCgpbcmVmcmVmXTogaHR0cDovL3RoaS5uZy8KW2Zvb106IC4vZm9vLm1kI2JhcgoK2TUxMS4gYWJjCiAgLSB4eXoKMjEuIHh4eAogIDEuIGZvbwogICAgMS4gYmFyCjMxLiB5eXkKCtlXPiAqKmxldmVsIDFhKioKPj4gbGV2ZWwgMmEKPj4gbGV2ZWwgMmIKPiAKPiBsZXZlbCAxYgoKWyoqZm9vKipdKGJhcikKCioqIVtmb29dKGJhcikqKgoK
+// Downloaded @ 2023-02-25T17:02:04.365Z
+// Source: https://demo.thi.ng/umbrella/parse-playground/#ldoNOUROTDE6IDxETkw-KyA9PiBkaXNjYXJkIDsKRE5MMjogPE5MPnsyLH0gOwpsYnI6ICdcXCchIDxOTD4hIDsKZXNjOiAnXFwnISAoICc8JyB8ICdbJyB8ICdfJyB8ICcqJyB8ICdgJyB8ICd-JyB8ICc6JyApIDsKaW5saW5lZGVsaW06ICggIiFbIiB8ICdbJyB8ICIqKiIgfCAnXycgfCAnYCcgfCAnPCcgfCAnXFwnIHwgIn5-IiB8ICIgOiIgfCA8bGJyPiApIDsKZGVsaW06ICggPGlubGluZWRlbGltPiB8IDxETkwyPiApIDsKZGVsaW0xOiAoIDxpbmxpbmVkZWxpbT4gfCA8Tkw-ICkgOwpib2R5OiAuKD8tPGRlbGltPiEpID0-IGpvaW4gOwpib2R5MTogLig_LTxkZWxpbTE-ISkgPT4gam9pbiA7Cgp3aWtpcmVmOiAiW1siISAuKD8rIl1dIiEpID0-IGpvaW4gOwpmbnJlZjogIlteIiEgPGxhYmVsPiA7CmZub3RlOiA8TFNUQVJUPiAiW14iISA8Zm5sYWJlbD4gPFdTMT4gPHBhcmE-IDsKZm5sYWJlbDogLig_KyJdOiIhKSA9PiBqb2luIDsKbGFiZWw6IC4oPysnXSchKSA9PiBqb2luIDsKdGFyZ2V0OiAuKD8rJyknISkgPT4gam9pbiA7Cmxpbms6ICdbJyEgPGxpbmtsYWJlbD4gJygnISA8dGFyZ2V0PiA7CmxpbmtyZWY6ICdbJyEgPGxpbmtsYWJlbD4gJ1snISA8bGFiZWw-IDsKbGlua2RlZjogPExTVEFSVD4gJ1snISA8bGFiZWw-ICc6JyEgPFdTMT4gPGxkdGFyZ2V0PiA7CmxkdGFyZ2V0OiAuKD8rPEROTDE-KSA9PiBqb2luIDsKbGlua2xhYmVsOiAoPGltZz4gfCA8Ym9sZD4gfCA8aXRhbGljPiB8IDxzdHJpa2U-IHwgPGNvZGU-IHwgPGVtb2ppPiB8IDxsaW5rYm9keT4pKiAnXSchIDsKbGlua2RlbGltOiAoICIhWyIgfCAnWycgfCAiKioiIHwgJ18nIHwgIn5-IiB8ICdgJyB8ICddJykgOwpsaW5rYm9keTogLig_LTxsaW5rZGVsaW0-ISkgPT4gam9pbiA7CmltZzogIiFbIiEgPGxhYmVsPiAnKCchIDx0YXJnZXQ-IDsKYm9sZDogIioqIiEgKDx3aWtpcmVmPiB8IDxpbWc-IHwgPGZucmVmPiB8IDxsaW5rcmVmPiB8IDxsaW5rPiB8IDxpdGFsaWM-IHwgPHN0cmlrZT4gfCA8Y29kZT4gfCA8ZW1vamk-IHwgPGJvZHkxPikqICIqKiIhIDsKaXRhbGljOiAnXychICg8d2lraXJlZj4gfCA8aW1nPiB8IDxmbnJlZj4gfCA8bGlua3JlZj4gfCA8bGluaz4gfCA8Ym9sZD4gfCA8c3RyaWtlPiB8IDxjb2RlPiB8IDxlbW9qaT4gfCA8Ym9keTE-KSogJ18nISA7CnN0cmlrZTogIn5-IiEgKDx3aWtpcmVmPiB8IDxpbWc-IHwgPGZucmVmPiB8IDxsaW5rcmVmPiB8IDxsaW5rPiB8IDxib2xkPiB8IDxpdGFsaWM-IHwgPGNvZGU-IHwgPGVtb2ppPiB8IDxib2R5MT4pKiAifn4iISA7CmNvZGU6ICdgJyEgLig_KydgJyEpID0-IGpvaW4gOwprYmQ6ICI8a2JkPiIhIC4oPysiPC9rYmQ-IiEpID0-IGpvaW4gOwplbW9qaTogJyAnPyAnOichIDxBTFBIQV9OVU0-KD8rJzonISkgPT4gam9pbiA7CnBhcmE6ICg8d2lraXJlZj4gfCA8aW1nPiB8IDxmbnJlZj4gfCA8bGlua3JlZj4gfCA8bGluaz4gfCA8Ym9sZD4gfCA8aXRhbGljPiB8IDxzdHJpa2U-IHwgPGNvZGU-IHwgPGtiZD4gfCA8ZW1vamk-IHwgPGxicj4gfCA8ZXNjPiB8IDxib2R5PikqIDxETkwyPiEgOwoKaGRsZXZlbDogJyMnKyA9PiBjb3VudCA7CmhkOiA8TFNUQVJUPiA8aGRsZXZlbD4gPFdTMD4KICAgICg8d2lraXJlZj4gfCA8aW1nPiB8IDxmbnJlZj4gfCA8bGluaz4gfCA8Ym9sZD4gfCA8aXRhbGljPiB8IDxzdHJpa2U-IHwgPGNvZGU-IHwgPGVtb2ppPiB8IDxib2R5MT4gKSogPEROTDE-IDsKCmxpbGV2ZWw6ICcgJyogPT4gY291bnQgOwp1aW50OiA8RElHSVQ-KyA9PiBpbnQgOwp1bGlkOiA8RE5MPiA8V1MwPiAnLSchIDsKb2xpZDogPEROTD4gPFdTMD4gPERJR0lUPishICcuJyEgOwpsaWRlbGltOiAoIDxkZWxpbT4gfCA8dWxpZD4gfCA8b2xpZD4gKSA7CmxpYm9keTogLig_LTxsaWRlbGltPiEpID0-IGpvaW4gOwp0b2RvOiAnWychIFsgeFhdICddJyEgPFdTMT4gPT4gaG9pc3RSIDsKdWxpdGVtOiA8TFNUQVJUPiA8bGlsZXZlbD4gIi0gIiEgPHRvZG8-PwogICAgICAgICg8d2lraXJlZj4gfCA8aW1nPiB8IDxmbnJlZj4gfCA8bGluaz4gfCA8Ym9sZD4gfCA8aXRhbGljPiB8IDxzdHJpa2U-IHwgPGNvZGU-IHwgPGVtb2ppPiB8IDxsaWJvZHk-ICkqIDxETkw-IDsKb2xpdGVtOiA8TFNUQVJUPiA8bGlsZXZlbD4gPHVpbnQ-ICIuICIhIDx0b2RvPj8KICAgICAgICAoPHdpa2lyZWY-IHwgPGltZz4gfCA8Zm5yZWY-IHwgPGxpbms-IHwgPGJvbGQ-IHwgPGl0YWxpYz4gfCA8c3RyaWtlPiB8IDxjb2RlPiB8IDxlbW9qaT4gfCA8bGlib2R5PiApKiA8RE5MPiA7Cmxpc3Q6ICg8dWxpdGVtPiB8IDxvbGl0ZW0-KSsgPEROTDE-IDsKCmNiZGVsaW06IDxMU1RBUlQ-ICJgYGAiISA7CmNvZGVibG9jazogPGNiZGVsaW0-ISA8Y29kZW1ldGE-IDxjb2RlYm9keT4gPEROTDE-IDsKY29kZW1ldGE6IC4oPys8Tkw-ISkgPT4gam9pbiA7CmNvZGVib2R5OiAuKD8rPGNiZGVsaW0-KSA9PiBqb2luIDsKCmN1c3RvbWRlbGltOiA8TFNUQVJUPiAiOjo6IiEgOwpjdXN0b21ibG9jazogPGN1c3RvbWRlbGltPiEgPGN1c3RvbW1ldGE-IDxjdXN0b21ib2R5PiA8RE5MMT4gOwpjdXN0b21tZXRhOiAuKD8rPE5MPiEpID0-IGpvaW4gOwpjdXN0b21ib2R5OiAuKD8rPGN1c3RvbWRlbGltPikgPT4gam9pbiA7CgptZXRhYmxvY2s6IDxMU1RBUlQ-ICJ7e3siISA8bWV0YWJvZHk-IDxETkwxPiA7Cm1ldGFib2R5OiAuKD8rPG1ldGFlbmQ-ISkgPT4gam9pbiA7Cm1ldGFlbmQ6ICJ9fX0iIDxMRU5EPiA7CgpicWxldmVsOiAnPicrID0-IGNvdW50IDsKYnFsaW5lOiA8TFNUQVJUPiA8YnFsZXZlbD4gJyAnPyEKICAgICAgICAoPHdpa2lyZWY-IHwgPGltZz4gfCA8Zm5yZWY-IHwgPGxpbms-IHwgPGJvbGQ-IHwgPGl0YWxpYz4gfCA8c3RyaWtlPiB8IDxjb2RlPiB8IDxlbW9qaT4gfCA8YnFsYnI-IHwgPGJvZHkxPikqIDxETkw-IDsKYnFsYnI6ICdcXCchKD8tPEROTD4pIDsKYnF1b3RlOiA8YnFsaW5lPisgPEROTDE-IDsKCnRkZWxpbTogKDxpbmxpbmVkZWxpbT4gfCAnfCcgKSA7CnRib2R5OiAuKD8tPHRkZWxpbT4hKSA9PiBqb2luIDsKdGNlbGw6IDxXUzA-ICg8d2lraXJlZj4gfCA8aW1nPiB8IDxmbnJlZj4gfCA8bGluaz4gfCA8Ym9sZD4gfCA8aXRhbGljPiB8IDxzdHJpa2U-IHwgPGNvZGU-IHwgPGVtb2ppPiB8IDx0Ym9keT4gKSogJ3wnISA7CnRyb3c6IDxMU1RBUlQ-ICd8JyEgPHRjZWxsPig_KzxETkw-KSA7CnRhYmxlOiA8dHJvdz4rIDxETkwxPiA7CgpocjogIi0tIiAnLScrIDxETkwxPiA9PiBqb2luIDsKCm1haW46IDxXUzA-ICg8aGQ-IHwgPGxpc3Q-IHwgPGJxdW90ZT4gfCA8Y29kZWJsb2NrPiB8IDxjdXN0b21ibG9jaz4gfCA8bWV0YWJsb2NrPiB8IDx0YWJsZT4gfCA8aHI-IHwgPGZub3RlPiB8IDxsaW5rZGVmPiB8IDxwYXJhPikqIDukbWFpbtoCiyMgSGVsbG8gOndvcmxkOjpzbWlsZTpbXmFiY10KCmEgXDwgYgoKTGV0IGBleHAyKHgpID0gMioqeGAKClByZXNzIDxrYmQ-Q29udHJvbDwva2JkPiArIDxrYmQ-Ujwva2JkPiB0byByZWxvYWQuCgo6OjphbGVydApUZXN0IFtsYWJlbF1bcmVmcmVmXQo6OjoKCi0tLQoKe3t7IHsiaWQiOiAxMjMsICJwcm90ZWN0ZWQiOiB0cnVlIH0gfX19ClNvIFtbc21pbGVfZm9vMTJdXSDwn5iNIHdoYXQncyBbdGhpc10oLi90aGlzLm1kKVteMl0gdGhlbjoKCkEgW2xpbmsgX3dpdGggKipuZXN0ZWQgfn5mb3JtYXR-fioqIGFuZCBgcmVmZXJlbmNlYF9dW3JlZnJlZl0uLi4KCmBgYHRzIHRhbmdsZTpubyBsbjp5ZXMKY29uc3QgZm9vID0gNDI7Ci8vIHRoZSBlbmQKYGBgCgoxLiBmb28KICA0LiBiYXIKICAgICBiYXogYW5kIHNvIG9uCiAgICAgbXVsdGlsaW5lCjIuIFsgXSB0YXNrCjMuIFt4XSAqKmRvbmUqKgoKPiBibG9ja3F1b3RlCj4gbXVsdGlsaW5lIHRvb1wKPj4gbmVzdGVkCj4-PiBsZXZlbCAzCj4gLS0gc291cmNlCgp8IGZvbyB8IGJhciB8Cnw6LXwtOnwKfCBbW3JlZiMyMl1dIHwgYG9uYCAqKm9mZioqIHwKClteYWJjXTogRm9vIF9iYXJfIGJhegoKW14yXTogVE9ETwoKW3JlZnJlZl06IGh0dHA6Ly90aGkubmcvCltmb29dOiAuL2Zvby5tZCNiYXIKCtk1MTEuIGFiYwogIC0geHl6CjIxLiB4eHgKICAxLiBmb28KICAgIDEuIGJhcgozMS4geXl5CgrZVj4gKipsZXZlbCAxYSoqCj4-IGxldmVsIDJhCj4-IGxldmVsIDJiCj4KPiBsZXZlbCAxYgoKWyoqZm9vKipdKGJhcikKCioqIVtmb29dKGJhcikqKgoK
 
 import type { Fn3, Primitive } from "@thi.ng/api";
 import { peek } from "@thi.ng/arrays/peek";
@@ -9,7 +9,6 @@ import { isArray } from "@thi.ng/checks/is-array";
 import { isPlainObject } from "@thi.ng/checks/is-plain-object";
 import { isPrimitive } from "@thi.ng/checks/is-primitive";
 import { isString } from "@thi.ng/checks/is-string";
-import { delay } from "@thi.ng/compose/delay";
 import { DEFAULT, defmulti } from "@thi.ng/defmulti";
 import { EMOJI } from "@thi.ng/emoji/emoji";
 import type { ILogger } from "@thi.ng/logger";
@@ -91,7 +90,7 @@ metabody: .(?+<metaend>!) => join ;
 metaend: "}}}" <LEND> ;
 
 bqlevel: '>'+ => count ;
-bqline: <LSTART> <bqlevel> ' '!
+bqline: <LSTART> <bqlevel> ' '?!
         (<wikiref> | <img> | <fnref> | <link> | <bold> | <italic> | <strike> | <code> | <emoji> | <bqlbr> | <body1>)* <DNL> ;
 bqlbr: '\\\\'!(?-<DNL>) ;
 bquote: <bqline>+ <DNL1> ;
@@ -143,9 +142,9 @@ export const DEFAULT_TAG_TRANSFORMS: TagTransforms = {
 			.sort()
 			.map((id) => notes[id]),
 	],
-	heading: (_, level, body, meta) => [
+	heading: (_, level, id, body, meta) => [
 		level > 6 ? "p" : `h${level}`,
-		withMeta({ id: slugifyGH(extractBody(body).join("")) }, meta),
+		withMeta({ id }, meta),
 		...body,
 	],
 	hr: (_, __length) => ["hr", { __length }],
@@ -156,8 +155,8 @@ export const DEFAULT_TAG_TRANSFORMS: TagTransforms = {
 	linkRef: (ctx, refID, body) => [
 		"a",
 		{
-			href: delay(() => ctx.linkRefs[refID][0]),
-			title: delay(() => ctx.linkRefs[refID][1]),
+			href: () => ctx.linkRefs[refID]?.[0],
+			title: () => ctx.linkRefs[refID]?.[1],
 		},
 		...body,
 	],
@@ -177,7 +176,8 @@ export const DEFAULT_TAG_TRANSFORMS: TagTransforms = {
 		["tbody", {}, ...rows],
 	],
 	tableCell: (_, body) => ["td", {}, ...body],
-	tableRow: (_, cells) => ["tr", {}, ...cells],
+	tableHead: (_, body) => ["th", {}, ...body],
+	tableRow: (_, __, cells) => ["tr", {}, ...cells],
 	ul: (_, items, meta) => ["ul", withMeta({}, meta), ...items],
 	ulitem: (_, attribs, body) => ["li", attribs, ...body],
 	wikiref: (_, id, label) => [
@@ -233,6 +233,7 @@ export const defParseContext = (
 	hasFootnotes: false,
 	logger,
 	meta: null,
+	row: 0,
 	opts: {
 		escape: false,
 		...opts,
@@ -400,9 +401,16 @@ export const walk: Fn3<
 			const level = children![0].result;
 			walk(children![1], ctx, body);
 			ctx.headings.push({ level, body });
+			__trimBody(body);
 			__collect(
 				acc,
-				ctx.tags.heading(ctx, level, __trimBody(body), ctx.meta)
+				ctx.tags.heading(
+					ctx,
+					level,
+					slugifyGH(extractBody(body).join("")),
+					body,
+					ctx.meta
+				)
 			);
 			ctx.meta = null;
 		},
@@ -543,11 +551,15 @@ export const walk: Fn3<
 			const children = scope.children![0].children!;
 			const head: any[] = [];
 			const rows: any[] = [];
+			ctx.row = 0;
 			walk(children[0], ctx, head);
 			let align: ColumnAlign[];
 			if (children.length > 1) {
 				align = __columnAlignments(children[1].children![0].children!);
-				for (let c of children.slice(2)) walk(c, ctx, rows);
+				for (let i = 2, n = children.length; i < n; i++) {
+					ctx.row = i - 1;
+					walk(children[i], ctx, rows);
+				}
 			} else {
 				align = new Array(
 					children[0].children![0].children!.length
@@ -560,13 +572,20 @@ export const walk: Fn3<
 		tcell: ({ children }, ctx, acc) =>
 			__collect(
 				acc,
-				ctx.tags.tableCell(ctx, __trimBody(__children(ctx, children!)))
+				(ctx.row > 0 ? ctx.tags.tableCell : ctx.tags.tableHead)(
+					ctx,
+					__trimBody(__children(ctx, children!))
+				)
 			),
 
 		trow: ({ children }, ctx, acc) =>
 			__collect(
 				acc,
-				ctx.tags.tableRow(ctx, __children(ctx, children![0].children!))
+				ctx.tags.tableRow(
+					ctx,
+					ctx.row,
+					__children(ctx, children![0].children!)
+				)
 			),
 
 		ulitem: ({ children }, ctx, acc) => {
