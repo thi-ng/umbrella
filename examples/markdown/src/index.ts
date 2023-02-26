@@ -1,35 +1,68 @@
+import type { IObjectOf } from "@thi.ng/api";
+import { exposeGlobal } from "@thi.ng/expose";
 import { timedResult } from "@thi.ng/bench/timed";
-import type { TagFactories } from "@thi.ng/hiccup-markdown";
+import type { MDParseContext, TagTransforms } from "@thi.ng/hiccup-markdown";
 import { parse } from "@thi.ng/hiccup-markdown/parse";
 import { reactive, Stream } from "@thi.ng/rstream/stream";
 import { updateDOM } from "@thi.ng/transducers-hdom";
-import { iterator } from "@thi.ng/transducers/iterator";
 import { map } from "@thi.ng/transducers/map";
-// @ts-expect-error
 import readme from "./README.md?url";
 
-// ignore error, resolved by parcel
-// const readme = "README.af35c500.md"
+const CUSTOM_TYPES: IObjectOf<{ class: string; icon: string }> = {
+	default: { class: "bg-light-gray dark-gray", icon: "❓" },
+	info: { class: "bg-light-blue dark-blue", icon: "👍" },
+	warn: { class: "bg-washed-red dark-red", icon: "✋" },
+};
 
-// custom tag factories (passed to parser)
+// custom tag transformers (passed to parser)
 // uses Tachyons CSS classes for styling
-const CUSTOM_TAGS: Partial<TagFactories> = {
-	blockquote: (xs) => ["blockquote.pl3.bl.bw2.i.f4.gray", ...xs],
-	code: (body) => ["code.bg-light-gray.ph1", body],
-	codeblock: (lang, body) => [
+const CUSTOM_TAGS: Partial<TagTransforms> = {
+	blockquote: (ctx, xs) => ["blockquote.ml3.pl2.bl.bw2.i.f4.gray", ...xs],
+	code: (ctx, body) => ["code.bg-light-gray.ph1", body],
+	codeblock: (ctx, lang, head, body) => [
 		"pre.bg-washed-yellow.pa3.f7.overflow-x-scroll",
 		{ lang: lang || "code" },
 		["code", body],
 	],
-	link: (href, body) => [
+	custom: (ctx, type, head, body, meta) => {
+		if (!Object.keys(CUSTOM_TYPES).includes(type)) type = "default";
+		return [
+			"div.custom.pa3.mb3",
+			{ class: CUSTOM_TYPES[type].class },
+			["h4.ma0", {}, CUSTOM_TYPES[type].icon, " ", head.join(" ")],
+			...parse(body).result,
+			meta ? ["p.mb0.f7.gray", {}, meta] : null,
+		];
+	},
+	heading: (ctx, level, id, body, meta) => {
+		const hd = [`h${level}`, { id, class: meta ? "mb0" : null }, ...body];
+		return meta ? ["div", {}, hd, ["div.f7.gray", {}, meta]] : hd;
+	},
+	link: (ctx, href, title, body) => [
 		"a.link.dark-blue.hover-white.hover-bg-dark-blue.b",
-		{ href },
-		body,
+		{ href, title },
+		...body,
 	],
-	strike: (body) => ["del.bg-washed-red", body],
-	table: (xs) => ["table.w-100.collapse.ba.b--black-10", ["tbody", ...xs]],
-	tr: (_, xs) => ["tr.striped--near-white", ...xs],
-	td: (i, xs) => [i < 1 ? "th.pa2.ttu.tl" : "td.pa2", ...xs],
+	linkRef: (ctx, refID, body) => [
+		"a.link.dark-blue.hover-white.hover-bg-dark-blue.b",
+		{
+			href: () => ctx.linkRefs[refID]?.[0],
+			title: () => ctx.linkRefs[refID]?.[1],
+		},
+		...body,
+	],
+	strike: (ctx, body) => ["del.bg-washed-red", ...body],
+	table: (ctx, align, head, rows) => [
+		"table.w-100.collapse.ba.b--black-10",
+		["thead", {}, head],
+		["tbody", {}, ...rows],
+	],
+	tableRow: (ctx, id, cells) => [
+		`tr.striped--near-white.ba.b--black-10`,
+		...cells,
+	],
+	tableCell: (ctx, body) => ["td.pa2", {}, ...body],
+	tableHead: (ctx, body) => ["th.pa2.bg-black.white.tl", {}, ...body],
 };
 
 // UI root component
@@ -68,9 +101,11 @@ src.transform(
 	map((src) => ({
 		src,
 		// append exta newline to force last paragraph (see readme)
-		parsed: timedResult(() => [
-			...iterator(parse(CUSTOM_TAGS), src + "\n"),
-		]),
+		parsed: timedResult(() => {
+			const result = parse(src, { tags: CUSTOM_TAGS });
+			exposeGlobal("result", result);
+			return result.result;
+		}),
 	})),
 	map(app(src)),
 	updateDOM()
@@ -81,9 +116,3 @@ fetch(readme)
 	.then((res) => res.text())
 	.then((txt) => src.next(txt))
 	.catch((e) => src.next(`# Error loading file: ${e}`));
-
-// // HMR handling
-// if (process.env.NODE_ENV !== "production") {
-//     const hot = (<any>module).hot;
-//     hot && hot.dispose(() => src.done());
-// }
