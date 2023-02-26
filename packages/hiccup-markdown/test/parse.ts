@@ -527,6 +527,12 @@ with linebreaks
 		]);
 	},
 
+	"meta hr": () => {
+		check("{{{ front matter }}}\n---", [
+			["hr", { __length: 3, __meta: "front matter" }],
+		]);
+	},
+
 	"meta list": () => {
 		check("{{{ foo }}}\n- Hello", [
 			["ul", { __meta: "foo" }, ["li", {}, "Hello"]],

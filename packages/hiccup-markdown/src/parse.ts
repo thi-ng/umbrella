@@ -147,7 +147,7 @@ export const DEFAULT_TAG_TRANSFORMS: TagTransforms = {
 		withMeta({ id }, meta),
 		...body,
 	],
-	hr: (_, __length) => ["hr", { __length }],
+	hr: (_, __length, meta?) => ["hr", withMeta({ __length }, meta)],
 	img: (_, alt, src, title) => ["img", { src, alt, title }],
 	italic: (_, body) => ["em", {}, ...body],
 	kbd: (_, key) => ["kbd", {}, key],
@@ -415,8 +415,10 @@ export const walk: Fn3<
 			ctx.meta = null;
 		},
 
-		hr: (scope, ctx, acc) =>
-			__collect(acc, ctx.tags.hr(ctx, scope.result.length)),
+		hr: (scope, ctx, acc) => {
+			__collect(acc, ctx.tags.hr(ctx, scope.result.length, ctx.meta));
+			ctx.meta = null;
+		},
 
 		img: ({ children }, ctx, acc) =>
 			__collect(

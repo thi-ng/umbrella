@@ -24,8 +24,14 @@ export interface TagTransforms {
 	footnote(ctx: MDParseContext, id: string, body: any[], meta?: any): any;
 	footnoteRef(ctx: MDParseContext, id: string): any;
 	footnoteWrapper(ctx: MDParseContext, notes: IObjectOf<any>): any;
-	heading(ctx: MDParseContext, level: number, id: string, body: any[], meta?: any): any;
-	hr(ctx: MDParseContext, length: number): any;
+	heading(
+		ctx: MDParseContext,
+		level: number,
+		id: string,
+		body: any[],
+		meta?: any
+	): any;
+	hr(ctx: MDParseContext, length: number, meta?: any): any;
 	img(ctx: MDParseContext, label: string, src: string, title?: string): any;
 	italic(ctx: MDParseContext, body: any[]): any;
 	kbd(ctx: MDParseContext, key: string): any;
