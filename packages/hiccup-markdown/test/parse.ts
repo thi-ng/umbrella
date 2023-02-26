@@ -81,6 +81,12 @@ group("parse", {
 		]);
 	},
 
+	emoji: () => {
+		check(`prefix :smile::+1: :star_struck:`, [
+			["p", {}, "prefix", " ", "😄", "👍", " ", "🤩"],
+		]);
+	},
+
 	footnotes: () => {
 		check(
 			`abc[^2] def[^1]
