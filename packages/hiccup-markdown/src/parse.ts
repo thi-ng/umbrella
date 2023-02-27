@@ -3,7 +3,7 @@
 // Downloaded @ 2023-02-26T13:59:47.034Z
 // Source: https://demo.thi.ng/umbrella/parse-playground/#ldoNR0ROTDE6IDxETkw-KyA9PiBkaXNjYXJkIDsKRE5MMjogPE5MPnsyLH0gOwpsYnI6ICdcXCchIDxOTD4hIDsKZXNjOiAnXFwnISAoICc8JyB8ICdbJyB8ICdfJyB8ICcqJyB8ICdgJyB8ICd-JyB8ICc6JyApIDsKaW5saW5lZGVsaW06ICggIiFbIiB8ICdbJyB8ICIqKiIgfCAnXycgfCAnYCcgfCAnPCcgfCAnXFwnIHwgIn5-IiB8ICIgOiIgfCA8bGJyPiApIDsKZGVsaW06ICggPGlubGluZWRlbGltPiB8IDxETkwyPiApIDsKZGVsaW0xOiAoIDxpbmxpbmVkZWxpbT4gfCA8Tkw-ICkgOwpib2R5OiAuKD8tPGRlbGltPiEpID0-IGpvaW4gOwpib2R5MTogLig_LTxkZWxpbTE-ISkgPT4gam9pbiA7Cgp3aWtpcmVmOiAiW1siISAuKD8rIl1dIiEpID0-IGpvaW4gOwpmbnJlZjogIlteIiEgPGxhYmVsPiA7CmZub3RlOiA8TFNUQVJUPiAiW14iISA8Zm5sYWJlbD4gPFdTMT4gPHBhcmE-IDsKZm5sYWJlbDogLig_KyJdOiIhKSA9PiBqb2luIDsKbGFiZWw6IC4oPysnXSchKSA9PiBqb2luIDsKdGFyZ2V0OiAuKD8rJyknISkgPT4gam9pbiA7Cmxpbms6ICdbJyEgPGxpbmtsYWJlbD4gJygnISA8dGFyZ2V0PiA7CmxpbmtyZWY6ICdbJyEgPGxpbmtsYWJlbD4gJ1snISA8bGFiZWw-IDsKbGlua2RlZjogPExTVEFSVD4gJ1snISA8bGFiZWw-ICc6JyEgPFdTMT4gPGxkdGFyZ2V0PiA7CmxkdGFyZ2V0OiAuKD8rPEROTDE-KSA9PiBqb2luIDsKbGlua2xhYmVsOiAoPGltZz4gfCA8Ym9sZD4gfCA8aXRhbGljPiB8IDxzdHJpa2U-IHwgPGNvZGU-IHwgPGVtb2ppPiB8IDxsaW5rYm9keT4pKiAnXSchIDsKbGlua2RlbGltOiAoICIhWyIgfCAnWycgfCAiKioiIHwgJ18nIHwgIn5-IiB8ICdgJyB8ICddJykgOwpsaW5rYm9keTogLig_LTxsaW5rZGVsaW0-ISkgPT4gam9pbiA7CmltZzogIiFbIiEgPGxhYmVsPiAnKCchIDx0YXJnZXQ-IDsKYm9sZDogIioqIiEgKDx3aWtpcmVmPiB8IDxpbWc-IHwgPGZucmVmPiB8IDxsaW5rcmVmPiB8IDxsaW5rPiB8IDxpdGFsaWM-IHwgPHN0cmlrZT4gfCA8Y29kZT4gfCA8ZW1vamk-IHwgPGJvZHkxPikqICIqKiIhIDsKaXRhbGljOiAnXychICg8d2lraXJlZj4gfCA8aW1nPiB8IDxmbnJlZj4gfCA8bGlua3JlZj4gfCA8bGluaz4gfCA8Ym9sZD4gfCA8c3RyaWtlPiB8IDxjb2RlPiB8IDxlbW9qaT4gfCA8Ym9keTE-KSogJ18nISA7CnN0cmlrZTogIn5-IiEgKDx3aWtpcmVmPiB8IDxpbWc-IHwgPGZucmVmPiB8IDxsaW5rcmVmPiB8IDxsaW5rPiB8IDxib2xkPiB8IDxpdGFsaWM-IHwgPGNvZGU-IHwgPGVtb2ppPiB8IDxib2R5MT4pKiAifn4iISA7CmNvZGU6ICdgJyEgLig_KydgJyEpID0-IGpvaW4gOwprYmQ6ICI8a2JkPiIhIC4oPysiPC9rYmQ-IiEpID0-IGpvaW4gOwplbW9qaTogJyAnPyAnOichICg8QUxQSEFfTlVNPiB8ICcrJyB8ICctJykoPysnOichKSA9PiBqb2luIDsKcGFyYTogKDx3aWtpcmVmPiB8IDxpbWc-IHwgPGZucmVmPiB8IDxsaW5rcmVmPiB8IDxsaW5rPiB8IDxib2xkPiB8IDxpdGFsaWM-IHwgPHN0cmlrZT4gfCA8Y29kZT4gfCA8a2JkPiB8IDxlbW9qaT4gfCA8bGJyPiB8IDxlc2M-IHwgPGJvZHk-KSogPEROTDI-ISA7CgpoZGxldmVsOiAnIycrID0-IGNvdW50IDsKaGQ6IDxMU1RBUlQ-IDxoZGxldmVsPiA8V1MwPgogICAgKDx3aWtpcmVmPiB8IDxpbWc-IHwgPGZucmVmPiB8IDxsaW5rPiB8IDxib2xkPiB8IDxpdGFsaWM-IHwgPHN0cmlrZT4gfCA8Y29kZT4gfCA8ZW1vamk-IHwgPGJvZHkxPiApKiA8RE5MMT4gOwoKbGlsZXZlbDogJyAnKiA9PiBjb3VudCA7CnVpbnQ6IDxESUdJVD4rID0-IGludCA7CnVsaWQ6IDxETkw-IDxXUzA-ICctJyEgOwpvbGlkOiA8RE5MPiA8V1MwPiA8RElHSVQ-KyEgJy4nISA7CmxpZGVsaW06ICggPGRlbGltPiB8IDx1bGlkPiB8IDxvbGlkPiApIDsKbGlib2R5OiAuKD8tPGxpZGVsaW0-ISkgPT4gam9pbiA7CnRvZG86ICdbJyEgWyB4WF0gJ10nISA8V1MxPiA9PiBob2lzdFIgOwp1bGl0ZW06IDxMU1RBUlQ-IDxsaWxldmVsPiAiLSAiISA8dG9kbz4_CiAgICAgICAgKDx3aWtpcmVmPiB8IDxpbWc-IHwgPGZucmVmPiB8IDxsaW5rPiB8IDxib2xkPiB8IDxpdGFsaWM-IHwgPHN0cmlrZT4gfCA8Y29kZT4gfCA8ZW1vamk-IHwgPGxpYm9keT4gKSogPEROTD4gOwpvbGl0ZW06IDxMU1RBUlQ-IDxsaWxldmVsPiA8dWludD4gIi4gIiEgPHRvZG8-PwogICAgICAgICg8d2lraXJlZj4gfCA8aW1nPiB8IDxmbnJlZj4gfCA8bGluaz4gfCA8Ym9sZD4gfCA8aXRhbGljPiB8IDxzdHJpa2U-IHwgPGNvZGU-IHwgPGVtb2ppPiB8IDxsaWJvZHk-ICkqIDxETkw-IDsKbGlzdDogKDx1bGl0ZW0-IHwgPG9saXRlbT4pKyA8RE5MMT4gOwoKY2JkZWxpbTogPExTVEFSVD4gImBgYCIhIDsKY29kZWJsb2NrOiA8Y2JkZWxpbT4hIDxjb2RlbWV0YT4gPGNvZGVib2R5PiA8RE5MMT4gOwpjb2RlbWV0YTogLig_KzxOTD4hKSA9PiBqb2luIDsKY29kZWJvZHk6IC4oPys8Y2JkZWxpbT4pID0-IGpvaW4gOwoKY3VzdG9tZGVsaW06IDxMU1RBUlQ-ICI6OjoiISA7CmN1c3RvbWJsb2NrOiA8Y3VzdG9tZGVsaW0-ISA8Y3VzdG9tbWV0YT4gPGN1c3RvbWJvZHk-IDxETkwxPiA7CmN1c3RvbW1ldGE6IC4oPys8Tkw-ISkgPT4gam9pbiA7CmN1c3RvbWJvZHk6IC4oPys8Y3VzdG9tZGVsaW0-KSA9PiBqb2luIDsKCm1ldGFibG9jazogPExTVEFSVD4gInt7eyIhIDxtZXRhYm9keT4gPEROTDE-IDsKbWV0YWJvZHk6IC4oPys8bWV0YWVuZD4hKSA9PiBqb2luIDsKbWV0YWVuZDogIn19fSIgPExFTkQ-IDsKCmJxbGV2ZWw6ICc-JysgPT4gY291bnQgOwpicWxpbmU6IDxMU1RBUlQ-IDxicWxldmVsPiAnICc_IQogICAgICAgICg8d2lraXJlZj4gfCA8aW1nPiB8IDxmbnJlZj4gfCA8bGluaz4gfCA8Ym9sZD4gfCA8aXRhbGljPiB8IDxzdHJpa2U-IHwgPGNvZGU-IHwgPGVtb2ppPiB8IDxicWxicj4gfCA8Ym9keTE-KSogPEROTD4gOwpicWxicjogJ1xcJyEoPy08RE5MPikgOwpicXVvdGU6IDxicWxpbmU-KyA8RE5MMT4gOwoKdGRlbGltOiAoPGlubGluZWRlbGltPiB8ICd8JyApIDsKdGJvZHk6IC4oPy08dGRlbGltPiEpID0-IGpvaW4gOwp0Y2VsbDogPFdTMD4gKDx3aWtpcmVmPiB8IDxpbWc-IHwgPGZucmVmPiB8IDxsaW5rPiB8IDxib2xkPiB8IDxpdGFsaWM-IHwgPHN0cmlrZT4gfCA8Y29kZT4gfCA8ZW1vamk-IHwgPHRib2R5PiApKiAnfCchIDsKdHJvdzogPExTVEFSVD4gJ3wnISA8dGNlbGw-KD8rPEROTD4pIDsKdGFibGU6IDx0cm93PisgPEROTDE-IDsKCmhyOiAiLS0iICctJysgPEROTDE-ID0-IGpvaW4gOwoKbWFpbjogPFdTMD4gKDxoZD4gfCA8bGlzdD4gfCA8YnF1b3RlPiB8IDxjb2RlYmxvY2s-IHwgPGN1c3RvbWJsb2NrPiB8IDxtZXRhYmxvY2s-IHwgPHRhYmxlPiB8IDxocj4gfCA8Zm5vdGU-IHwgPGxpbmtkZWY-IHwgPHBhcmE-KSogO6RtYWlu2gKLIyBIZWxsbyA6d29ybGQ6OnNtaWxlOlteYWJjXQoKYSBcPCBiCgpMZXQgYGV4cDIoeCkgPSAyKip4YAoKUHJlc3MgPGtiZD5Db250cm9sPC9rYmQ-ICsgPGtiZD5SPC9rYmQ-IHRvIHJlbG9hZC4KCjo6OmFsZXJ0ClRlc3QgW2xhYmVsXVtyZWZyZWZdCjo6OgoKLS0tCgp7e3sgeyJpZCI6IDEyMywgInByb3RlY3RlZCI6IHRydWUgfSB9fX0KU28gW1tzbWlsZV9mb28xMl1dIPCfmI0gd2hhdCdzIFt0aGlzXSguL3RoaXMubWQpW14yXSB0aGVuOgoKQSBbbGluayBfd2l0aCAqKm5lc3RlZCB-fmZvcm1hdH5-KiogYW5kIGByZWZlcmVuY2VgX11bcmVmcmVmXS4uLgoKYGBgdHMgdGFuZ2xlOm5vIGxuOnllcwpjb25zdCBmb28gPSA0MjsKLy8gdGhlIGVuZApgYGAKCjEuIGZvbwogIDQuIGJhcgogICAgIGJheiBhbmQgc28gb24KICAgICBtdWx0aWxpbmUKMi4gWyBdIHRhc2sKMy4gW3hdICoqZG9uZSoqCgo-IGJsb2NrcXVvdGUKPiBtdWx0aWxpbmUgdG9vXAo-PiBuZXN0ZWQKPj4-IGxldmVsIDMKPiAtLSBzb3VyY2UKCnwgZm9vIHwgYmFyIHwKfDotfC06fAp8IFtbcmVmIzIyXV0gfCBgb25gICoqb2ZmKiogfAoKW15hYmNdOiBGb28gX2Jhcl8gYmF6CgpbXjJdOiBUT0RPCgpbcmVmcmVmXTogaHR0cDovL3RoaS5uZy8KW2Zvb106IC4vZm9vLm1kI2JhcgoK2TUxMS4gYWJjCiAgLSB4eXoKMjEuIHh4eAogIDEuIGZvbwogICAgMS4gYmFyCjMxLiB5eXkKCtlWPiAqKmxldmVsIDFhKioKPj4gbGV2ZWwgMmEKPj4gbGV2ZWwgMmIKPgo-IGxldmVsIDFiCgpbKipmb28qKl0oYmFyKQoKKiohW2Zvb10oYmFyKSoqCgo
 
-import type { Fn3, Primitive } from "@thi.ng/api";
+import type { Fn3, IObjectOf, Primitive } from "@thi.ng/api";
 import { peek } from "@thi.ng/arrays/peek";
 import { isArray } from "@thi.ng/checks/is-array";
 import { isPlainObject } from "@thi.ng/checks/is-plain-object";
@@ -19,10 +19,11 @@ import { escapeEntities } from "@thi.ng/strings/entities";
 import { slugifyGH } from "@thi.ng/strings/slugify";
 import type {
 	ColumnAlign,
-	MDParseContext,
 	ParseOpts,
+	ParseResult,
 	TagTransforms,
 	TodoAttribs,
+	TransformCtx,
 } from "./api.js";
 
 export const GRAMMAR = defGrammar(`
@@ -197,64 +198,113 @@ export class ParseError extends Error {
 	}
 }
 
+/**
+ * Parses given Markdown source string into a tree structure defined by given
+ * {@link TagTransforms}.
+ *
+ * @remarks
+ * The tag transforms are optional and the default implementations can be
+ * overwritten on tag-by-tag basis. The default transforms yield a simple hiccup
+ * tree (aka each tag will be an array in the form: `["tagname", {...},
+ * ...body]`).
+ *
+ * See [thi.ng/hiccup](https://thi.ng/hiccup) and related packages for further
+ * details.
+ *
+ * @param src
+ * @param opts
+ */
 export const parse = (
 	src: string,
 	{
 		tags,
 		opts,
+		linkRefs,
 		logger,
 	}: Partial<{
 		tags: Partial<TagTransforms>;
 		opts: Partial<ParseOpts>;
+		linkRefs: IObjectOf<[string, (string | undefined)?]>;
 		logger: ILogger;
 	}> = {}
-) => {
-	const parseCtx = parseRaw(src);
-	const mdCtx = defParseContext(tags, opts, logger);
+): ParseResult => {
+	const parseCtx = parseRaw(src, opts?.retain);
+	const mdCtx = defTransformContext(tags, opts, linkRefs, logger);
 	const result: any[] = [];
-	walk(parseCtx.root, mdCtx, result);
-	return { result, ctx: mdCtx, complete: parseCtx.done };
+	transformScope(parseCtx.root, mdCtx, result);
+	return {
+		result,
+		ctx: mdCtx,
+		complete: !!parseCtx.done,
+		state: parseCtx.state,
+	};
 };
 
-export const parseRaw = (src: string) => {
-	const ctx = defContext(src + "\n\n");
+/**
+ * 1st stage of the parsing (with out result transformations). This calls the
+ * `main` rule of the provided parse {@link GRAMMAR} and returns a parse
+ * context, incl. the raw abstract syntax tree of the parsed document. If
+ * parsing failed entirely (due to invalid input), throws a {@link ParseError}.
+ *
+ * @remarks
+ * Note: Even if the function returns a result, parsing might only have
+ * partially successful (can be checked via the [`.done`
+ * flag](https://docs.thi.ng/umbrella/parse/classes/ParseContext.html#done)).
+ *
+ * This function is only for advanced use. Mostly you'll probably want to use
+ * the main {@link parse} function instead.
+ *
+ * @param src
+ * @param retain
+ */
+export const parseRaw = (src: string, retain = false) => {
+	const ctx = defContext(src + "\n\n", { retain });
 	if (!GRAMMAR!.rules.main(ctx)) throw new ParseError(ctx.state);
 	return ctx;
 };
 
-export const defParseContext = (
+export const defTransformContext = (
 	tags?: Partial<TagTransforms>,
 	opts?: Partial<ParseOpts>,
+	linkRefs?: IObjectOf<[string, (string | undefined)?]>,
 	logger?: ILogger
-): MDParseContext => ({
+): TransformCtx => ({
 	footnotes: {},
 	headings: [],
-	linkRefs: {},
+	linkRefs: linkRefs || {},
 	hasFootnotes: false,
 	logger,
 	meta: null,
 	row: 0,
 	opts: {
 		escape: false,
+		retain: false,
 		...opts,
 	},
 	tags: { ...DEFAULT_TAG_TRANSFORMS, ...tags },
 });
 
-export const walk: Fn3<
+/**
+ * Polymorphic & recursive parse scope/node transformation function. Takes a
+ * single scope, context and accumulator array, then calls itself recursively
+ * for any child scopes and passes relevant data to its user defined
+ * {@link TagTransforms} handler and adds result to the accumulator array.
+ *
+ */
+export const transformScope: Fn3<
 	ParseScope<string>,
-	MDParseContext,
+	TransformCtx,
 	any[],
 	void
-> = defmulti<ParseScope<string>, MDParseContext, any[], void>(
+> = defmulti<ParseScope<string>, TransformCtx, any[], void>(
 	(x, ctx) => {
 		ctx.logger && ctx.logger.debug(x);
 		return x.id;
 	},
 	{
 		body1: "body",
-		bqline: "repeat0",
 		bqlbr: "lbr",
+		bqline: "repeat0",
 		label: "body",
 		libody: "body",
 		linkbody: "body",
@@ -263,7 +313,7 @@ export const walk: Fn3<
 		tbody: "body",
 	},
 	{
-		[DEFAULT]: (scope: ParseScope<string>, ctx: MDParseContext) => {
+		[DEFAULT]: (scope: ParseScope<string>, ctx: TransformCtx) => {
 			throw new Error(
 				`unknown ID: ${scope.id}, ctx: ${JSON.stringify(ctx)}`
 			);
@@ -271,13 +321,13 @@ export const walk: Fn3<
 
 		root: ({ children }, ctx, acc) => {
 			if (!children) return;
-			walk(children![0], ctx, acc);
+			transformScope(children![0], ctx, acc);
 			if (ctx.hasFootnotes) {
 				__collect(acc, ctx.tags.footnoteWrapper(ctx, ctx.footnotes));
 			}
 		},
 
-		main: (scope, ctx, acc) => walk(scope.children![0], ctx, acc),
+		main: (scope, ctx, acc) => transformScope(scope.children![0], ctx, acc),
 
 		repeat0: (scope, ctx, acc) =>
 			scope.children && __children(ctx, scope.children, acc),
@@ -324,7 +374,7 @@ export const walk: Fn3<
 						body.push(" ");
 					}
 				}
-				walk(bqline, ctx, body);
+				transformScope(bqline, ctx, body);
 			}
 			__collect(
 				acc,
@@ -381,7 +431,7 @@ export const walk: Fn3<
 		fnote: ({ children }, ctx) => {
 			const body: any[] = [];
 			const id = children![0].result;
-			walk(children![1].children![0], ctx, body);
+			transformScope(children![1].children![0], ctx, body);
 			const res = ctx.tags.footnote(ctx, id, body, ctx.meta);
 			if (res != null) {
 				ctx.hasFootnotes = true;
@@ -399,7 +449,7 @@ export const walk: Fn3<
 		hd: ({ children }, ctx, acc) => {
 			const body: any[] = [];
 			const level = children![0].result;
-			walk(children![1], ctx, body);
+			transformScope(children![1], ctx, body);
 			ctx.headings.push({ level, body });
 			__trimBody(body);
 			__collect(
@@ -493,7 +543,7 @@ export const walk: Fn3<
 						levels.pop();
 					}
 				}
-				walk(item, ctx, peek(stack));
+				transformScope(item, ctx, peek(stack));
 			}
 
 			const $list = (root: any[], isRoot = false) =>
@@ -522,7 +572,7 @@ export const walk: Fn3<
 
 		olitem: ({ children }, ctx, acc) => {
 			const body: any[] = [];
-			walk(children![3], ctx, body);
+			transformScope(children![3], ctx, body);
 			__collect(acc, [
 				"olitem",
 				__listItemAttribs(children![2]),
@@ -554,13 +604,13 @@ export const walk: Fn3<
 			const head: any[] = [];
 			const rows: any[] = [];
 			ctx.row = 0;
-			walk(children[0], ctx, head);
+			transformScope(children[0], ctx, head);
 			let align: ColumnAlign[];
 			if (children.length > 1) {
 				align = __columnAlignments(children[1].children![0].children!);
 				for (let i = 2, n = children.length; i < n; i++) {
 					ctx.row = i - 1;
-					walk(children[i], ctx, rows);
+					transformScope(children[i], ctx, rows);
 				}
 			} else {
 				align = new Array(
@@ -592,7 +642,7 @@ export const walk: Fn3<
 
 		ulitem: ({ children }, ctx, acc) => {
 			const body: any[] = [];
-			walk(children![2], ctx, body);
+			transformScope(children![2], ctx, body);
 			__collect(acc, [
 				"ulitem",
 				__listItemAttribs(children![1]),
@@ -639,16 +689,16 @@ const __collect = (acc: any[], x: any) => x != null && acc.push(x);
 
 /** @internal */
 const __children = (
-	ctx: MDParseContext,
+	ctx: TransformCtx,
 	children: ParseScope<string>[],
 	acc: any[] = []
 ) => {
-	for (let c of children!) walk(c, ctx, acc);
+	for (let c of children!) transformScope(c, ctx, acc);
 	return acc;
 };
 
 /** @internal */
-const __escape = (ctx: MDParseContext, x: string) =>
+const __escape = (ctx: TransformCtx, x: string) =>
 	ctx.opts.escape ? escapeEntities(x) : x;
 
 /** @internal */

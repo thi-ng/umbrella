@@ -3,7 +3,8 @@ import * as assert from "assert";
 import { parse } from "../src/index.js";
 
 const check = (src: string, expected: any[]) => {
-	const { result } = parse(src);
+	const { result, complete } = parse(src);
+	assert.ok(complete);
 	assert.deepStrictEqual(result, expected, JSON.stringify(result, null, 4));
 };
 
@@ -344,7 +345,7 @@ with linebreaks
 
 	link: () => {
 		check(
-			`[label _with **nested fmt**_](http://thi.ng/umbrella "link title").`,
+			`[label _with **nested fmt**_](https://thi.ng/umbrella "link title").`,
 			[
 				[
 					"p",
@@ -352,7 +353,7 @@ with linebreaks
 					[
 						"a",
 						{
-							href: "http://thi.ng/umbrella",
+							href: "https://thi.ng/umbrella",
 							title: "link title",
 						},
 						"label ",
@@ -383,10 +384,10 @@ with linebreaks
 	},
 
 	linkref: () => {
-		const src = `[_label_][1]\n\n[1]: http://thi.ng/umbrella "link title"`;
+		const src = `[_label_][1]\n\n[1]: https://thi.ng/umbrella "link title"`;
 		const { result, ctx } = parse(src);
 		assert.deepStrictEqual(ctx.linkRefs, {
-			1: ["http://thi.ng/umbrella", "link title"],
+			1: ["https://thi.ng/umbrella", "link title"],
 		});
 		const link = result[0][2][1];
 		link.href = link.href();
@@ -398,7 +399,7 @@ with linebreaks
 				[
 					"a",
 					{
-						href: "http://thi.ng/umbrella",
+						href: "https://thi.ng/umbrella",
 						title: "link title",
 					},
 					["em", {}, "label"],
