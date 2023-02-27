@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2023-02-10T14:03:11Z
+- **Last updated**: 2023-02-27T21:43:54Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,16 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [3.4.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/strings@3.4.0) (2023-02-27)
+
+#### 🚀 Features
+
+- add more HTML entities ([d617132](https://github.com/thi-ng/umbrella/commit/d617132))
+
+#### 🩹 Bug fixes
+
+- add emoji ranges for slugify/slugifyGH() ([f5cb210](https://github.com/thi-ng/umbrella/commit/f5cb210))
 
 ### [3.3.3](https://github.com/thi-ng/umbrella/tree/@thi.ng/strings@3.3.3) (2022-04-07)
 

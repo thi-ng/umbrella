@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/parse",
-	"version": "2.2.26",
+	"version": "2.2.27",
 	"description": "Purely functional parser combinators & AST generation for generic inputs",
 	"type": "module",
 	"module": "./index.js",
@@ -38,7 +38,7 @@
 		"@thi.ng/checks": "^3.3.9",
 		"@thi.ng/defmulti": "^2.1.30",
 		"@thi.ng/errors": "^2.2.11",
-		"@thi.ng/strings": "^3.3.26"
+		"@thi.ng/strings": "^3.4.0"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.34.2",

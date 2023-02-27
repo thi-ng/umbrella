@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/viz",
-	"version": "0.4.40",
+	"version": "0.4.41",
 	"description": "Declarative, functional & multi-format data visualization toolkit based around @thi.ng/hiccup",
 	"type": "module",
 	"module": "./index.js",
@@ -45,12 +45,12 @@
 		"@thi.ng/associative": "^6.2.27",
 		"@thi.ng/checks": "^3.3.9",
 		"@thi.ng/math": "^5.4.3",
-		"@thi.ng/strings": "^3.3.26",
+		"@thi.ng/strings": "^3.4.0",
 		"@thi.ng/transducers": "^8.3.34"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.34.2",
-		"@thi.ng/date": "^2.4.4",
+		"@thi.ng/date": "^2.4.5",
 		"@thi.ng/testament": "^0.3.11",
 		"rimraf": "^4.1.2",
 		"tools": "workspace:^",

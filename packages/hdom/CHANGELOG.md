@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2023-02-10T14:03:10Z
+- **Last updated**: 2023-02-27T21:43:54Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,14 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [9.3.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/hdom@9.3.0) (2023-02-27)
+
+#### 🚀 Features
+
+- update setAttrib() ([61aa627](https://github.com/thi-ng/umbrella/commit/61aa627))
+  - add IDeref support for individual attrib values (i.e. via `deref()` wrappers)
+  - update attribute removal/deletion logic
 
 ## [9.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/hdom@9.2.0) (2022-12-16)
 
