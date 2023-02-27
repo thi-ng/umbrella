@@ -140,7 +140,7 @@ For Node.js REPL:
 const strings = await import("@thi.ng/strings");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 4.29 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 4.62 KB
 
 ## Dependencies
 

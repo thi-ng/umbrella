@@ -14,7 +14,6 @@ This project is part of the
 - [Related packages](#related-packages)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
-- [Usage examples](#usage-examples)
 - [API](#api)
   - [Matchers](#matchers)
   - [FSM transducer](#fsm-transducer)
@@ -75,18 +74,6 @@ Package sizes (brotli'd, pre-treeshake): ESM: 1.32 KB
 - [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
 - [@thi.ng/strings](https://github.com/thi-ng/umbrella/tree/develop/packages/strings)
 - [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)
-
-## Usage examples
-
-Several demos in this repo's
-[/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
-directory are using this package.
-
-A selection:
-
-| Screenshot                                                                                                             | Description                                             | Live demo                                      | Source                                                                      |
-|:-----------------------------------------------------------------------------------------------------------------------|:--------------------------------------------------------|:-----------------------------------------------|:----------------------------------------------------------------------------|
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/markdown-parser.jpg" width="240"/> | Minimal Markdown to Hiccup to HTML parser / transformer | [Demo](https://demo.thi.ng/umbrella/markdown/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/markdown) |
 
 ## API
 

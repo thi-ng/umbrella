@@ -462,7 +462,7 @@ For Node.js REPL:
 const hiccupMarkdown = await import("@thi.ng/hiccup-markdown");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 4.26 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 4.35 KB
 
 ## Dependencies
 
@@ -486,9 +486,9 @@ directory are using this package.
 
 A selection:
 
-| Screenshot                                                                                                             | Description                                             | Live demo                                      | Source                                                                      |
-|:-----------------------------------------------------------------------------------------------------------------------|:--------------------------------------------------------|:-----------------------------------------------|:----------------------------------------------------------------------------|
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/markdown-parser.jpg" width="240"/> | Minimal Markdown to Hiccup to HTML parser / transformer | [Demo](https://demo.thi.ng/umbrella/markdown/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/markdown) |
+| Screenshot                                                                                                             | Description                                     | Live demo                                      | Source                                                                      |
+|:-----------------------------------------------------------------------------------------------------------------------|:------------------------------------------------|:-----------------------------------------------|:----------------------------------------------------------------------------|
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/markdown-parser.jpg" width="240"/> | Markdown to Hiccup to HTML parser / transformer | [Demo](https://demo.thi.ng/umbrella/markdown/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/markdown) |
 
 ## API
 
