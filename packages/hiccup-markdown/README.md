@@ -12,7 +12,8 @@ This project is part of the
 - [About](#about)
 - [Parser](#parser)
   - [Basic features](#basic-features)
-  - [Additional syntax & parser features](#additional-syntax--parser-features)
+  - [Additional syntax & parser features/restrictions](#additional-syntax--parser-featuresrestrictions)
+    - [Formatting](#formatting)
     - [Code block headers](#code-block-headers)
     - [Custom blocks](#custom-blocks)
     - [Headings with anchor IDs](#headings-with-anchor-ids)
@@ -48,22 +49,38 @@ parser and an extensible Hiccup-to-Markdown converter.
 The parser itself is not aimed at supporting **all** of Markdown's
 (CommonMark's) quirky syntax features, but restricts itself to a sane subset of
 features and some useful [additional
-features](#additional-syntax--parser-features) not part of the standard syntax.
+features](#additional-syntax--parser-featuresrestrictions) not part of the
+standard syntax.
 
-| Feature       | Comments                                                                                                                    |
-|---------------|-----------------------------------------------------------------------------------------------------------------------------|
-| Code blocks   | GFM style only (triple backtick prefix), w/ mandatory language hint & optional extra headers information                    |
-| Formatting    | Nestable **bold**, _italic_, `code`, ~~strike~~, supported in paragraphs, headings, link labels, lists, blockquotes, tables |
-| Footnotes     | Supported and stored separately in parse context                                                                            |
-| Headings      | ATX-style only (`#` line prefix), any level                                                                                 |
-| Horiz. Rulers | Only dash supported (e.g. `---`), min 2 chars required, length retained for downstream transformations                      |
-| Images        | Alt text is required, image can be used in link labels                                                                      |
-| Links         | Supports `[label](target)`, `[label][ref]`, `[[page id]]` or `[[page id|label]]` style links, inline formats in label       |
-| Lists         | Ordered & unordered, nestable, inline formatting, line breaks, GFM task list items                                          |
-| Paragraphs    | Support for forced line breaks (trailing `\`)                                                                               |
-| Tables        | Support for column alignments, nestable inline formatting                                                                   |
+| Feature       | Comments                                                                                                                                   |
+|---------------|--------------------------------------------------------------------------------------------------------------------------------------------|
+| Blockquotes   | Nestable, support for inline formatting and forced line breaks (trailing `\`)                                                              |
+| Code blocks   | GFM style only (triple backtick prefix), w/ mandatory language hint & optional extra headers information                                   |
+| Formatting    | Nestable **bold**, _italic_, `code`, ~~strike~~, <kbd>Key</kbd> supported in paragraphs, headings, link labels, lists, blockquotes, tables |
+| Footnotes     | Supported and stored separately in parse context                                                                                           |
+| Headings      | ATX-style only (`#` line prefix), any level                                                                                                |
+| Horiz. Rulers | Only dash supported (e.g. `---`), min 2 chars required, length retained for downstream transformations                                     |
+| HTML elements | Unsupported                                                                                                                                |
+| Images        | Alt text is required, image can be used in link labels                                                                                     |
+| Links         | Supports `[label](target)`, `[label][ref]`, `[[page id]]` or `[[page id|label]]` style links, inline formats in label                      |
+| Lists         | Ordered & unordered, nestable, inline formatting, line breaks, GFM task list items                                                         |
+| Paragraphs    | Support for forced line breaks (trailing `\`)                                                                                              |
+| Tables        | Support for column alignments, nestable inline formatting                                                                                  |
 
-### Additional syntax & parser features
+### Additional syntax & parser features/restrictions
+
+#### Formatting
+
+To avoid ambiguity and simplify nesting, only the following formatting syntax is
+supported for bold & italic:
+
+- `**bold**`
+- `_italic_`
+
+`code` (\`) and ~~strikethrough~~ (`~~`) as usual...
+
+For keyboard commands `<kbd>` can be used, e.g.:\
+`<kbd>Control</kbd> + <kbd>R</kbd>`
 
 #### Code block headers
 
@@ -445,14 +462,13 @@ For Node.js REPL:
 const hiccupMarkdown = await import("@thi.ng/hiccup-markdown");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 4.05 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 4.26 KB
 
 ## Dependencies
 
 - [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
 - [@thi.ng/arrays](https://github.com/thi-ng/umbrella/tree/develop/packages/arrays)
 - [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
-- [@thi.ng/compose](https://github.com/thi-ng/umbrella/tree/develop/packages/compose)
 - [@thi.ng/defmulti](https://github.com/thi-ng/umbrella/tree/develop/packages/defmulti)
 - [@thi.ng/emoji](https://github.com/thi-ng/umbrella/tree/develop/packages/emoji)
 - [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)

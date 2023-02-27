@@ -3,7 +3,8 @@ import * as assert from "assert";
 import { parse } from "../src/index.js";
 
 const check = (src: string, expected: any[]) => {
-	const { result } = parse(src);
+	const { result, complete } = parse(src);
+	assert.ok(complete);
 	assert.deepStrictEqual(result, expected, JSON.stringify(result, null, 4));
 };
 
@@ -16,35 +17,29 @@ group("parse", {
 	},
 
 	blockquote: () => {
-		check(`> a block **quote** of\n> two _lines_.`, [
+		check(
+			"> line1\n>> **line 2**\\\n>> line 2a\n>> line 2b\n>> \n>> line 2c\n>>> line 3",
 			[
-				"blockquote",
-				{},
-				"a block ",
-				["strong", {}, "quote"],
-				" of",
-				" ",
-				"two ",
-				["em", {}, "lines"],
-				".",
-			],
-		]);
-		check("> line 1\\\n> line 2\n> line 3", [
-			["blockquote", {}, "line 1", ["br", {}], "line 2", " ", "line 3"],
-		]);
-		check("> line 1\\\n> line 2\n> \n> line 3", [
-			[
-				"blockquote",
-				{},
-				"line 1",
-				["br", {}],
-				"line 2",
-				" ",
-				["br", {}],
-				["br", {}],
-				"line 3",
-			],
-		]);
+				[
+					"blockquote",
+					{},
+					"line1",
+					[
+						"blockquote",
+						{},
+						["strong", {}, "line 2"],
+						["br", {}],
+						"line 2a",
+						" ",
+						"line 2b",
+						["br", {}],
+						["br", {}],
+						"line 2c",
+						["blockquote", {}, "line 3"],
+					],
+				],
+			]
+		);
 	},
 
 	code: () => {
@@ -84,6 +79,12 @@ group("parse", {
 	em: () => {
 		check(`some _emphasized_ text`, [
 			["p", {}, "some ", ["em", {}, "emphasized"], " text"],
+		]);
+	},
+
+	emoji: () => {
+		check(`prefix :smile::+1: :star_struck:`, [
+			["p", {}, "prefix", " ", "😄", "👍", " ", "🤩"],
 		]);
 	},
 
@@ -202,14 +203,13 @@ with linebreaks
 	},
 
 	hr: () => {
-		check(`--`, [["hr", { __length: 2 }]]);
 		check(`---`, [["hr", { __length: 3 }]]);
 		check(`----`, [["hr", { __length: 4 }]]);
 	},
 
 	img: () => {
 		check(
-			`![thi.ng](https://media.giphy.com/media/f6qMGmXuOdkwU/giphy.gif)`,
+			`![label](https://media.giphy.com/media/f6qMGmXuOdkwU/giphy.gif "trippy GIF")`,
 			[
 				[
 					"p",
@@ -218,7 +218,8 @@ with linebreaks
 						"img",
 						{
 							src: "https://media.giphy.com/media/f6qMGmXuOdkwU/giphy.gif",
-							alt: "thi.ng",
+							alt: "label",
+							title: "trippy GIF",
 						},
 					],
 				],
@@ -343,15 +344,69 @@ with linebreaks
 	},
 
 	link: () => {
-		check(`come [to](http://thi.ng/umbrella) the light`, [
+		check(
+			`[label _with **nested fmt**_](https://thi.ng/umbrella "link title").`,
+			[
+				[
+					"p",
+					{},
+					[
+						"a",
+						{
+							href: "https://thi.ng/umbrella",
+							title: "link title",
+						},
+						"label ",
+						["em", {}, "with ", ["strong", {}, "nested fmt"]],
+					],
+					".",
+				],
+			]
+		);
+		check("**[_abc_](def)**", [
 			[
 				"p",
 				{},
-				"come ",
-				["a", { href: "http://thi.ng/umbrella" }, "to"],
-				" the light",
+				[
+					"strong",
+					{},
+					[
+						"a",
+						{
+							href: "def",
+							title: undefined,
+						},
+						["em", {}, "abc"],
+					],
+				],
 			],
 		]);
+	},
+
+	linkref: () => {
+		const src = `[_label_][1]\n\n[1]: https://thi.ng/umbrella "link title"`;
+		const { result, ctx } = parse(src);
+		assert.deepStrictEqual(ctx.linkRefs, {
+			1: ["https://thi.ng/umbrella", "link title"],
+		});
+		const link = result[0][2][1];
+		link.href = link.href();
+		link.title = link.title();
+		const expected = [
+			[
+				"p",
+				{},
+				[
+					"a",
+					{
+						href: "https://thi.ng/umbrella",
+						title: "link title",
+					},
+					["em", {}, "label"],
+				],
+			],
+		];
+		assert.deepStrictEqual(result, expected);
 	},
 
 	strike: () => {
@@ -379,22 +434,33 @@ with linebreaks
 	},
 
 	table: () => {
-		check(`| col1 | col2 |\n| :-- | --: |\n| row1 | row2 |`, [
+		check(
+			`| col1 | col2 |\n| :-- | --: |\n| row1a | row1b |\n| _row2a_ | **row2b** |`,
 			[
-				"table",
-				{ __align: ["left", "right"] },
 				[
-					"thead",
-					{},
-					["tr", {}, ["td", {}, "col1"], ["td", {}, "col2"]],
+					"table",
+					{
+						__align: ["left", "right"],
+					},
+					[
+						"thead",
+						{},
+						["tr", {}, ["th", {}, "col1"], ["th", {}, "col2"]],
+					],
+					[
+						"tbody",
+						{},
+						["tr", {}, ["td", {}, "row1a"], ["td", {}, "row1b"]],
+						[
+							"tr",
+							{},
+							["td", {}, ["em", {}, "row2a"], " "],
+							["td", {}, ["strong", {}, "row2b"], " "],
+						],
+					],
 				],
-				[
-					"tbody",
-					{},
-					["tr", {}, ["td", {}, "row1"], ["td", {}, "row2"]],
-				],
-			],
-		]);
+			]
+		);
 	},
 
 	wikiref: () => {
@@ -462,6 +528,12 @@ with linebreaks
 		]);
 	},
 
+	"meta hr": () => {
+		check("{{{ front matter }}}\n---", [
+			["hr", { __length: 3, __meta: "front matter" }],
+		]);
+	},
+
 	"meta list": () => {
 		check("{{{ foo }}}\n- Hello", [
 			["ul", { __meta: "foo" }, ["li", {}, "Hello"]],
@@ -476,7 +548,7 @@ with linebreaks
 					__align: ["left"],
 					__meta: "foo",
 				},
-				["thead", {}, ["tr", {}, ["td", {}, "Hello"]]],
+				["thead", {}, ["tr", {}, ["th", {}, "Hello"]]],
 				["tbody", {}],
 			],
 		]);

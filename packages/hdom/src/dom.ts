@@ -1,3 +1,4 @@
+import { implementsFunction } from "@thi.ng/checks/implements-function";
 import { isArray as isa } from "@thi.ng/checks/is-array";
 import { isNotStringAndIterable as isi } from "@thi.ng/checks/is-not-string-iterable";
 import { isString as iss } from "@thi.ng/checks/is-string";
@@ -217,6 +218,7 @@ export const setAttribs = (el: Element, attribs: any) => {
  * @param attribs - object of all attribs
  */
 export const setAttrib = (el: Element, id: string, val: any, attribs?: any) => {
+	implementsFunction(val, "deref") && (val = val.deref());
 	if (id.startsWith("__")) return;
 	const isListener = id[0] === "o" && id[1] === "n";
 	if (!isListener && typeof val === "function") {
@@ -263,7 +265,9 @@ export const setAttrib = (el: Element, id: string, val: any, attribs?: any) => {
 					: el.setAttribute(id, val === true ? "" : val);
 		}
 	} else {
-		(<any>el)[id] != null ? ((<any>el)[id] = null) : el.removeAttribute(id);
+		el.hasAttribute(id)
+			? el.removeAttribute("title")
+			: (<any>el)[id] && ((<any>el)[id] = null);
 	}
 	return el;
 };

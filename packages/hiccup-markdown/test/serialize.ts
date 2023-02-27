@@ -24,7 +24,7 @@ group("hiccup-markdown", {
 		// link component for thi.ng URLs
 		const thingLink = (_: any, id: string, label: any) => [
 			"a",
-			{ href: `http://thi.ng/${id}` },
+			{ href: `https://thi.ng/${id}` },
 			label,
 		];
 
@@ -124,8 +124,7 @@ My magic number is: 42
 
 _Table caption_
 
-More info [here](http://thi.ng/hiccup-markdown).
-`
+More info [here](https://thi.ng/hiccup-markdown).`
 		);
 	},
 });
