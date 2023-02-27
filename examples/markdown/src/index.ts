@@ -4,7 +4,7 @@ import { parse, TagTransforms } from "@thi.ng/hiccup-markdown";
 import { reactive, Stream } from "@thi.ng/rstream";
 import { map } from "@thi.ng/transducers";
 import { updateDOM } from "@thi.ng/transducers-hdom";
-import readme from "./README.md?url";
+import readme from "../README.md?url";
 
 const CUSTOM_TYPES: IObjectOf<{ class: string; icon: string }> = {
 	default: { class: "bg-light-gray dark-gray", icon: "❓" },
