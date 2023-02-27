@@ -16,7 +16,6 @@
 		"vite": "^4.1.1"
 	},
 	"dependencies": {
-		"@thi.ng/color": "workspace:^",
 		"@thi.ng/color-palettes": "workspace:^",
 		"@thi.ng/pixel": "workspace:^",
 		"@thi.ng/pixel-dither": "workspace:^"

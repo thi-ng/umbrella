@@ -1133,6 +1133,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@example/markdown@workspace:examples/markdown"
   dependencies:
+    "@thi.ng/api": "workspace:^"
     "@thi.ng/bench": "workspace:^"
     "@thi.ng/hiccup-markdown": "workspace:^"
     "@thi.ng/rstream": "workspace:^"
