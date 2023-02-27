@@ -1,11 +1,9 @@
 import type { IObjectOf } from "@thi.ng/api";
-import { exposeGlobal } from "@thi.ng/expose";
-import { timedResult } from "@thi.ng/bench/timed";
-import type { MDParseContext, TagTransforms } from "@thi.ng/hiccup-markdown";
-import { parse } from "@thi.ng/hiccup-markdown/parse";
-import { reactive, Stream } from "@thi.ng/rstream/stream";
+import { timedResult } from "@thi.ng/bench";
+import { parse, TagTransforms } from "@thi.ng/hiccup-markdown";
+import { reactive, Stream } from "@thi.ng/rstream";
+import { map } from "@thi.ng/transducers";
 import { updateDOM } from "@thi.ng/transducers-hdom";
-import { map } from "@thi.ng/transducers/map";
 import readme from "./README.md?url";
 
 const CUSTOM_TYPES: IObjectOf<{ class: string; icon: string }> = {
@@ -34,6 +32,13 @@ const CUSTOM_TAGS: Partial<TagTransforms> = {
 			meta ? ["p.mb0.f7.gray", {}, meta] : null,
 		];
 	},
+	footnoteWrapper: (_, notes) => [
+		"ul.gray.f7",
+		{},
+		...Object.keys(notes)
+			.sort()
+			.map((id) => notes[id]),
+	],
 	heading: (ctx, level, id, body, meta) => {
 		const hd = [`h${level}`, { id, class: meta ? "mb0" : null }, ...body];
 		return meta ? ["div", {}, hd, ["div.f7.gray", {}, meta]] : hd;
@@ -100,11 +105,24 @@ const src = reactive("# Loading readme...");
 src.transform(
 	map((src) => ({
 		src,
-		// append exta newline to force last paragraph (see readme)
 		parsed: timedResult(() => {
-			const result = parse(src, { tags: CUSTOM_TAGS });
-			exposeGlobal("result", result);
-			return result.result;
+			try {
+				const { complete, result, state } = parse(src, {
+					tags: CUSTOM_TAGS,
+				});
+				return complete
+					? result
+					: [
+							...result,
+							[
+								"div.bg-gold.red.pa2",
+								{},
+								`Incomplete parse, stopped at line ${state.l}`,
+							],
+					  ];
+			} catch (e) {
+				return ["div.bg-dark-red.white", {}, (<Error>e).message];
+			}
 		}),
 	})),
 	map(app(src)),

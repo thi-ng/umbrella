@@ -3,6 +3,8 @@
 This example is showcasing some features of the Markdown parser of
 [@thi.ng/hiccup-markdown][pkghome] monorepo.
 
+![screenshot of markdown editor w/ preview](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/markdown-parser.jpg "image title")
+
 ## Syntax features & extensions
 
 ### Blockquotes
@@ -129,8 +131,10 @@ Just checkout that metadata...
 
 ## Onwards!
 
-Please also check out the main package readme & API docs for further details. If
-you've got any questions, please use the [thi.ng/umbrella discussion
+Please see the [package
+readme](https://github.com/thi-ng/umbrella/blob/develop/packages/hiccup-markdown/README.md)
+& [API docs](https://docs.thi.ng/umbrella/hiccup-markdown/) for further details.
+If you've got any questions, please use the [thi.ng/umbrella discussion
 forum](https://github.com/thi-ng/umbrella/discussions) or [issue
 tracker](https://github.com/thi-ng/umbrella/issues)...
 
