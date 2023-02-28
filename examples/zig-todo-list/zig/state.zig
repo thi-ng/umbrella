@@ -82,7 +82,7 @@ pub const TaskItem = struct {
     }
 
     pub fn deinit(self: *TaskItem) void {
-        for (self.parent.tasks.items) |item, i| {
+        for (self.parent.tasks.items, 0..) |item, i| {
             if (item == self) {
                 _ = self.parent.tasks.orderedRemove(i);
                 break;

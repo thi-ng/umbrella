@@ -124,7 +124,7 @@ fn init() !void {
     // try schedule.init(customAllocator);
 
     // then instantiate all counter components
-    for (counters) |*counter, i| try counter.init(dom.body, i + 1);
+    for (&counters, 0..) |*counter, i| try counter.init(dom.body, i + 1);
 }
 
 /// Main entry point
