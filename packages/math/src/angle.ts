@@ -7,7 +7,7 @@ import { DEG2RAD, HALF_PI, INV_HALF_PI, PI, RAD2DEG, TAU } from "./api.js";
  * @param theta -
  * @param n -
  */
-export const sincos = (theta: number, n = 1) => [
+export const sincos = (theta: number, n = 1): [number, number] => [
 	Math.sin(theta) * n,
 	Math.cos(theta) * n,
 ];
@@ -18,7 +18,7 @@ export const sincos = (theta: number, n = 1) => [
  * @param theta -
  * @param n -
  */
-export const cossin = (theta: number, n = 1) => [
+export const cossin = (theta: number, n = 1): [number, number] => [
 	Math.cos(theta) * n,
 	Math.sin(theta) * n,
 ];
