@@ -32,28 +32,30 @@ from the integer types).
 - [Lab](https://en.wikipedia.org/wiki/CIELAB_color_space) (float4, D50/D65 versions)
 - [LCH](https://en.wikipedia.org/wiki/HCL_color_space) (float4)
 - [Oklab](https://bottosson.github.io/posts/oklab/) (float4)
+- [Oklch](https://bottosson.github.io/posts/oklab/) (float4) (polar version of oklab)
 - [RGB](https://en.wikipedia.org/wiki/RGB_color_space) (float4, _linear_)
 - [sRGB](https://en.wikipedia.org/wiki/SRGB) (float4, [gamma corrected](https://en.wikipedia.org/wiki/Gamma_correction))
 - [XYY](https://en.wikipedia.org/wiki/CIE_1931_color_space#CIE_xy_chromaticity_diagram_and_the_CIE_xyY_color_space) (float4)
 - [XYZ](https://en.wikipedia.org/wiki/CIE_1931_color_space) (float4, aka CIE 1931, D50/D65 versions)
 - [YCC](https://en.wikipedia.org/wiki/YCbCr) (float4, aka YCbCr)
 
-| From/To   | CSS | HCY             | HSI             | HSL             | HSV             | Int             | Lab             | LCH | Oklab | RGB             | sRGB            | XYY | XYZ             | YCC             |
-|-----------|-----|-----------------|-----------------|-----------------|-----------------|-----------------|-----------------|-----|-------|-----------------|-----------------|-----|-----------------|-----------------|
-| **CSS**   | ✅   | 🆎              | 🆎              | ✅               | 🆎              | ✅<sup>(1)</sup> | ✅<sup>(4)</sup> | ✅   | 🆎    | ✅               | ✅               | 🆎  | 🆎              | 🆎              |
-| **HCY**   | 🆎  | ✅               | 🆎              | 🆎              | 🆎              | ❌               | 🆎              | 🆎  | 🆎    | ✅<sup>(2)</sup> | ✅<sup>(2)</sup> | 🆎  | 🆎              | 🆎              |
-| **HSI**   | 🆎  | 🆎              | ✅               | 🆎              | 🆎              | ❌               | 🆎              | 🆎  | 🆎    | ✅<sup>(2)</sup> | ✅<sup>(2)</sup> | 🆎  | 🆎              | 🆎              |
-| **HSL**   | ✅   | 🆎              | 🆎              | ✅               | 🆎              | ❌               | 🆎              | 🆎  | 🆎    | ✅<sup>(2)</sup> | ✅<sup>(2)</sup> | 🆎  | 🆎              | 🆎              |
-| **HSV**   | 🆎  | 🆎              | 🆎              | ✅               | ✅               | ❌               | 🆎              | 🆎  | 🆎    | ✅<sup>(2)</sup> | ✅<sup>(2)</sup> | 🆎  | 🆎              | 🆎              |
-| **Int**   | ✅   | 🆎              | 🆎              | 🆎              | 🆎              | ❌               | 🆎              | 🆎  | 🆎    | 🆎              | ✅               | ✅   | 🆎              | 🆎              |
-| **Lab**   | ✅   | 🆎              | 🆎              | 🆎              | 🆎              | ❌               | ✅<sup>(3)</sup> | ✅   | 🆎    | ✅<sup>(3)</sup> | 🆎              | 🆎  | ✅<sup>(3)</sup> | 🆎              |
-| **LCH**   | ✅   | 🆎              | 🆎              | 🆎              | 🆎              | ❌               | ✅               | ✅   | 🆎    | 🆎              | 🆎              | 🆎  | 🆎              | 🆎              |
-| **Oklab** | 🆎  | 🆎              | 🆎              | 🆎              | 🆎              | ❌               | 🆎              | 🆎  | ✅     | ✅               | 🆎              | 🆎  | ✅               | 🆎              |
-| **RGB**   | 🆎  | ✅<sup>(2)</sup> | ✅<sup>(2)</sup> | ✅<sup>(2)</sup> | ✅<sup>(2)</sup> | ✅               | ✅<sup>(3)</sup> | ✅   | ✅     | ✅               | ✅               | 🆎  | ✅<sup>(3)</sup> | ✅<sup>(2)</sup> |
-| **sRGB**  | ✅   | ✅<sup>(2)</sup> | ✅<sup>(2)</sup> | ✅<sup>(2)</sup> | ✅<sup>(2)</sup> | ✅               | 🆎              | 🆎  | 🆎    | ✅               | ✅               | 🆎  | 🆎              | 🆎              |
-| **XYY**   | 🆎  | 🆎              | 🆎              | 🆎              | 🆎              | ❌               | 🆎              | 🆎  | 🆎    | 🆎              | 🆎              | ✅   | ✅               | 🆎              |
-| **XYZ**   | 🆎  | 🆎              | 🆎              | 🆎              | 🆎              | ❌               | ✅               | 🆎  | 🆎    | ✅               | 🆎              | ✅   | ✅<sup>(3)</sup> | 🆎              |
-| **YCC**   | 🆎  | 🆎              | 🆎              | 🆎              | 🆎              | ❌               | 🆎              | 🆎  | 🆎    | ✅<sup>(2)</sup> | 🆎              | 🆎  | 🆎              | ✅               |
+| From/To   | CSS             | HCY             | HSI             | HSL             | HSV             | Int             | Lab             | LCH | Oklab | Oklch | RGB             | sRGB            | XYY | XYZ             | YCC             |
+|-----------|-----------------|-----------------|-----------------|-----------------|-----------------|-----------------|-----------------|-----|-------|-------|-----------------|-----------------|-----|-----------------|-----------------|
+| **CSS**   | ✅               | 🆎              | 🆎              | ✅               | 🆎              | ✅<sup>(1)</sup> | ✅<sup>(4)</sup> | ✅   | ✅     | ✅     | ✅               | ✅               | 🆎  | 🆎              | 🆎              |
+| **HCY**   | 🆎              | ✅               | 🆎              | 🆎              | 🆎              | ❌               | 🆎              | 🆎  | 🆎    | 🆎    | ✅<sup>(2)</sup> | ✅<sup>(2)</sup> | 🆎  | 🆎              | 🆎              |
+| **HSI**   | 🆎              | 🆎              | ✅               | 🆎              | 🆎              | ❌               | 🆎              | 🆎  | 🆎    | 🆎    | ✅<sup>(2)</sup> | ✅<sup>(2)</sup> | 🆎  | 🆎              | 🆎              |
+| **HSL**   | ✅               | 🆎              | 🆎              | ✅               | 🆎              | ❌               | 🆎              | 🆎  | 🆎    | 🆎    | ✅<sup>(2)</sup> | ✅<sup>(2)</sup> | 🆎  | 🆎              | 🆎              |
+| **HSV**   | 🆎              | 🆎              | 🆎              | ✅               | ✅               | ❌               | 🆎              | 🆎  | 🆎    | 🆎    | ✅<sup>(2)</sup> | ✅<sup>(2)</sup> | 🆎  | 🆎              | 🆎              |
+| **Int**   | ✅               | 🆎              | 🆎              | 🆎              | 🆎              | ❌               | 🆎              | 🆎  | 🆎    | 🆎    | 🆎              | ✅               | ✅   | 🆎              | 🆎              |
+| **Lab**   | ✅<sup>(5)</sup> | 🆎              | 🆎              | 🆎              | 🆎              | ❌               | ✅<sup>(3)</sup> | ✅   | 🆎    | 🆎    | ✅<sup>(3)</sup> | 🆎              | 🆎  | ✅<sup>(3)</sup> | 🆎              |
+| **LCH**   | ✅<sup>(5)</sup> | 🆎              | 🆎              | 🆎              | 🆎              | ❌               | ✅               | ✅   | 🆎    | 🆎    | 🆎              | 🆎              | 🆎  | 🆎              | 🆎              |
+| **Oklab** | ✅<sup>(5)</sup> | 🆎              | 🆎              | 🆎              | 🆎              | ❌               | 🆎              | 🆎  | ✅     | ✅     | ✅               | 🆎              | 🆎  | ✅               | 🆎              |
+| **Oklch** | ✅<sup>(5)</sup> | 🆎              | 🆎              | 🆎              | 🆎              | ❌               | 🆎              | 🆎  | ✅     | ✅     | 🆎              | 🆎              | 🆎  | 🆎              | 🆎              |
+| **RGB**   | 🆎              | ✅<sup>(2)</sup> | ✅<sup>(2)</sup> | ✅<sup>(2)</sup> | ✅<sup>(2)</sup> | ✅               | ✅<sup>(3)</sup> | ✅   | ✅     | 🆎    | ✅               | ✅               | 🆎  | ✅<sup>(3)</sup> | ✅<sup>(2)</sup> |
+| **sRGB**  | ✅               | ✅<sup>(2)</sup> | ✅<sup>(2)</sup> | ✅<sup>(2)</sup> | ✅<sup>(2)</sup> | ✅               | 🆎              | 🆎  | 🆎    | 🆎    | ✅               | ✅               | 🆎  | 🆎              | 🆎              |
+| **XYY**   | 🆎              | 🆎              | 🆎              | 🆎              | 🆎              | ❌               | 🆎              | 🆎  | 🆎    | 🆎    | 🆎              | 🆎              | ✅   | ✅               | 🆎              |
+| **XYZ**   | 🆎              | 🆎              | 🆎              | 🆎              | 🆎              | ❌               | ✅               | 🆎  | 🆎    | 🆎    | ✅               | 🆎              | ✅   | ✅<sup>(3)</sup> | 🆎              |
+| **YCC**   | 🆎              | 🆎              | 🆎              | 🆎              | 🆎              | ❌               | 🆎              | 🆎  | 🆎    | 🆎    | ✅<sup>(2)</sup> | 🆎              | 🆎  | 🆎              | ✅               |
 
 - ✅ - direct conversion
 - 🆎 - indirect conversion (mostly via RGB/sRGB)
@@ -62,6 +64,7 @@ from the integer types).
   (see [Wikipedia](https://en.wikipedia.org/wiki/HSL_and_HSV#cite_note-26))
 - (3) - including [D50/D65 illuminant](https://en.wikipedia.org/wiki/Illuminant_D65) options
 - (4) - parsed as Lab w/ D50 illuminant as per [CSS Color Module Level 4](https://www.w3.org/TR/css-color-4/#lab-colors)
+- (5) - only if targeting CSS Color Module Level 4 or newer
 
 #### Color creation / conversion
 
@@ -70,9 +73,9 @@ from other models/spaces. These functions can take the following arguments:
 
 - CSS string
 - number (interpreted as packed ARGB int32)
-- array (used as is)
+- array of color channel values (used as is)
 - scalars (one per channel, alpha optional, always defaults to 1.0)
-- color instance (triggers conversion)
+- color instance (might trigger conversion if needed)
 
 Additionally, an optional target backing buffer, start index and stride can be
 given. See [next section](#storage--memory-mapping).
