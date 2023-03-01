@@ -67,7 +67,15 @@ export interface IColor {
 
 export interface ChannelSpec {
 	/**
-	 * Acceptable value range for this channel. Used by {@link TypedColor.clamp}.
+	 * Acceptable approximate value range for this color channel. Used by
+	 * {@link TypedColor.clamp} and {@link TypedColor.randomize}. At current and
+	 * for compatibility reasons, the "valid" ranges for each color channel are
+	 * configured such that they combined only approximately cover the full sRGB
+	 * gamut (even though some color modes have gamuts larger than that).
+	 * However, due to only using individual per-channel/per-axis definitions
+	 * for those value ranges, it's still possible for colors in those larger
+	 * color spaces to be slightly outside that sRGB gamut. These are soft
+	 * limits, for orientation only.
 	 *
 	 * @defaultValue [0,1]
 	 */

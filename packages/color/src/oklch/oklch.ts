@@ -42,6 +42,9 @@ export declare class Oklch implements TypedColor<Oklch> {
  */
 export const oklch = <ColorFactory<Oklch>>defColor({
 	mode: "oklch",
+	channels: {
+		c: { range: [0, 0.3225] },
+	},
 	order: <const>["l", "c", "h", "alpha"],
 	from: {
 		oklab: oklabOklch,

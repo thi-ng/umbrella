@@ -52,8 +52,8 @@ export const defColor = <M extends ColorMode, K extends string>(
 		};
 		return acc;
 	}, channels);
-	const min = order.map((id) => channels[id]!.range![0]);
-	const max = order.map((id) => channels[id]!.range![1]);
+	const min = Object.freeze(order.map((id) => channels[id]!.range![0]));
+	const max = Object.freeze(order.map((id) => channels[id]!.range![1]));
 	// fix alpha channel for randomize()
 	const minR = set4([], min);
 	const maxR = set4([], max);

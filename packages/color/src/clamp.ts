@@ -5,12 +5,16 @@ import type { Color, ReadonlyColor } from "./api.js";
 import { __ensureAlpha } from "./internal/ensure.js";
 
 /**
- * Clamps all color channels to [0,1] interval and calls `ensureAlpha`
- * to ensure alpha channel is defined (if missing sets it to `alpha`,
- * default: 1).
+ * Clamps all color channels to [0,1] interval and calls `ensureAlpha` to ensure
+ * alpha channel is defined (if missing sets it to `alpha`, default: 1).
  *
  * @remarks
  * If `out` is null, the resulting color will be written back into `src`.
+ *
+ * Note: The result of this function might be different than
+ * {@link TypedColor.clamp}. The latter is taking into account pre-configured
+ * channel value ranges (per color mode). See {@link ChannelSpec.range} for
+ * details.
  *
  * @param out - result
  * @param src - source color
