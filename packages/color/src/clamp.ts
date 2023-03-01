@@ -9,6 +9,9 @@ import { __ensureAlpha } from "./internal/ensure.js";
  * to ensure alpha channel is defined (if missing sets it to `alpha`,
  * default: 1).
  *
+ * @remarks
+ * If `out` is null, the resulting color will be written back into `src`.
+ *
  * @param out - result
  * @param src - source color
  * @param alpha - alpha value
@@ -25,6 +28,9 @@ export const clamp = (out: Color | null, src: ReadonlyColor, alpha = 1) =>
 /**
  * Similar to {@link clamp}, but calls `ensureHue` to fold (instead of
  * clamping) the hue into [0,1] interval.
+ *
+ * @remarks
+ * If `out` is null, the resulting color will be written back into `src`.
  *
  * @param out - result
  * @param src - source color

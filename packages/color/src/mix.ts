@@ -75,10 +75,12 @@ export const mixNNNN: ColorMixFn = mixN4;
 
 /**
  * Channelwise and {@link ColorMode}-aware interpolation between colors `a` and
- * `b` using `t` [0..1] as blend factor. `a` and `b` need to be of same color
+ * `b` using `t` [0..1] as blend factor. `a` and `b` MUST be of same color
  * type.
  *
  * @remarks
+ * If `out` is null, the resulting color will be written back into `a`.
+ *
  * Any hue channel will always be interpolated using the smallest angle
  * difference (using {@link mixH}).
  *

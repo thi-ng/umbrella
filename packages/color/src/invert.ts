@@ -14,6 +14,8 @@ import { __ensureAlpha } from "./internal/ensure.js";
  * Inverts the RGB channels of an RGBA color.
  *
  * @remarks
+ * If `out` is null, the resulting color will be written back into `src`.
+ *
  * Also see {@link TypedColor.invert}.
  *
  * @param out - result
@@ -34,6 +36,13 @@ export const invertRgb: ColorOp = (out, src) => {
  */
 export const invertInt = (src: number) => src ^ 0xffffff;
 
+/**
+ * Inverts given color and writes result into `out` (or if null, mutates `src`
+ * in place).
+ *
+ * @param out
+ * @param src
+ */
 export const invert = defmulti<Color | null, TypedColor<any>, Color>(
 	__dispatch1,
 	{

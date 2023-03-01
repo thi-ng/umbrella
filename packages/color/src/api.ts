@@ -19,6 +19,9 @@ export type MaybeColor =
 	| string
 	| number;
 
+/**
+ * Color manipulation function. If `out` is null, the `src` will be mutated.
+ */
 export type ColorOp = (out: Color | null, src: ReadonlyColor) => Color;
 
 export type ColorMode =

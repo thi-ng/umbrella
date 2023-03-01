@@ -15,6 +15,9 @@ const $ =
  * Adjust the "lightness" (luma, brightness etc.) channel of given `src` color
  * and `delta` offset. Writes result into `out` (or if null, back into `src`).
  *
+ * @remarks
+ * If `offset` is negative, then color will be darkened.
+ *
  * @param out -
  * @param src -
  * @param delta -

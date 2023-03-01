@@ -38,6 +38,15 @@ export const defConversions = (
 	CONVERSIONS[mode] = { ...CONVERSIONS[mode], ...(<Conversions>spec) };
 };
 
+/**
+ * Converts a (raw, untyped) color from one mode to another and writes result
+ * into `out` (or if null, back into `src`).
+ *
+ * @param res
+ * @param src
+ * @param destMode
+ * @param srcMode
+ */
 export const convert = <T extends Color>(
 	res: T | null,
 	src: ReadonlyColor,

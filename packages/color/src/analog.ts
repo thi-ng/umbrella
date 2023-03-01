@@ -56,6 +56,10 @@ const analogNUU = defAnalog(analogN, analogU, analogU);
  * provided
  * [`IRandom`](https://docs.thi.ng/umbrella/random/interfaces/IRandom.html)
  * PRNG.
+ *
+ * @remarks
+ * If `out` is null, the resulting color will be written back into `src`.
+ *
  */
 export const analog = defmulti<
 	Color | null,

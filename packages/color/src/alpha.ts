@@ -4,6 +4,14 @@ import type { Color, ReadonlyColor } from "./api.js";
 export const alpha = (src: ReadonlyColor) =>
 	src[3] !== undefined ? src[3] : 1;
 
+/**
+ * Creates version of `src` color with modified `alpha` and writes result into
+ * `out` (or if null, back into `src`).
+ *
+ * @param out
+ * @param src
+ * @param alpha
+ */
 export const setAlpha = (
 	out: Color | null,
 	src: ReadonlyColor,
