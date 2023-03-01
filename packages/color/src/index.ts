@@ -46,6 +46,7 @@ export * from "./lab/lab65.js";
 export * from "./lch/lch-css.js";
 export * from "./lch/lch.js";
 
+export * from "./oklab/oklab-css.js";
 export * from "./oklab/oklab-rgb.js";
 export * from "./oklab/oklab-xyz.js";
 export * from "./oklab/oklab.js";

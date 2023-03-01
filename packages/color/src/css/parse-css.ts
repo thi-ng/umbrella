@@ -32,6 +32,8 @@ import { intArgb32Srgb } from "../int/int-srgb.js";
  * - `hsla(h,s%,l%,a)`
  * - `lab(l a b / alpha?)`
  * - `lch(l c h / alpha?)`
+ * - `oklab(l a b / alpha?)`
+ * - `oklch(l c h / alpha?)`
  *
  * Hue values can be given according to CSS Color L4 spec (raw, deg, rad, grad,
  * turn): https://www.w3.org/TR/css-color-4/#typedef-hue
@@ -87,6 +89,20 @@ export const parseCss = (src: string | IDeref<string>): IParsedColor => {
 			]);
 		case "lch":
 			return new ParsedColor("lch", [
+				parsePercent(a, false),
+				parseNumber(b) * 0.01,
+				parseHue(c),
+				parseAlpha(d),
+			]);
+		case "oklab":
+			return new ParsedColor("oklab", [
+				parsePercent(a, false),
+				parseNumber(b) * 0.01,
+				parseNumber(c) * 0.01,
+				parseAlpha(d),
+			]);
+		case "oklch":
+			return new ParsedColor("oklch", [
 				parsePercent(a, false),
 				parseNumber(b) * 0.01,
 				parseHue(c),
