@@ -1,9 +1,18 @@
 import type { ColorOp } from "../api.js";
 import { __mulV33 } from "../internal/matrix-ops.js";
 
+/**
+ * @remarks
+ * Reference:
+ * - https://bottosson.github.io/posts/oklab/#converting-from-linear-srgb-to-oklab
+ *
+ * @internal
+ */
+// prettier-ignore
 const LMS_CONE = [
-	4.0767245293, -1.2681437731, -0.0041119885, -3.3072168827, 2.6093323231,
-	-0.7034763098, 0.2307590544, -0.341134429, 1.7068625689,
+	4.0767416621, -1.2684380046, -0.0041960863,
+	-3.307711591, 2.6097574011, -0.7034186147,
+	0.2309699292, -0.3413193965, 1.707614701,
 ];
 
 /**
