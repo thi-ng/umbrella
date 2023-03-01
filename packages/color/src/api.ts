@@ -35,6 +35,7 @@ export type ColorMode =
 	| "lab65"
 	| "lch"
 	| "oklab"
+	| "oklch"
 	| "rgb"
 	| "srgb"
 	| "xyy"

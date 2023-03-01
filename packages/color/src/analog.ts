@@ -69,7 +69,7 @@ export const analog = defmulti<
 	Color
 >(
 	__dispatch1,
-	{},
+	{ oklab: "lab50", oklch: "lch" },
 	{
 		hcy: analogHNN,
 		hsi: analogHNN,

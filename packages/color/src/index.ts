@@ -50,6 +50,11 @@ export * from "./oklab/oklab-rgb.js";
 export * from "./oklab/oklab-xyz.js";
 export * from "./oklab/oklab.js";
 
+export * from "./oklch/oklch-css.js";
+export * from "./oklch/oklch-oklab.js";
+export * from "./oklch/oklab-oklch.js";
+export * from "./oklch/oklch.js";
+
 export * from "./alpha.js";
 export * from "./analog.js";
 export * from "./clamp.js";

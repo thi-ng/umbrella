@@ -31,7 +31,7 @@ import { __ensureAlpha } from "./internal/ensure.js";
  */
 export const rotate = defmulti<Color | null, TypedColor<any>, number, Color>(
 	__dispatch1,
-	{ hsv: "hsl", hsi: "hsl", hcy: "hsl" },
+	{ hcy: "hsl", hsi: "hsl", hsv: "hsl", oklch: "lch" },
 	{
 		hsl: (out, src, theta) =>
 			setC4(
