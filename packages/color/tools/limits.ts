@@ -14,6 +14,7 @@ const modes: ColorMode[] = [
 	"lab65",
 	"lch",
 	"oklab",
+	"oklch",
 	"srgb",
 	"xyy",
 	"xyz50",

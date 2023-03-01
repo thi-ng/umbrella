@@ -32,6 +32,7 @@
 		"doc:stats": "tools:module-stats",
 		"pub": "yarn npm publish --access public",
 		"test": "testament test",
+		"tool:limits": "tools:node-esm tools/limits.ts",
 		"tool:maxchroma": "tools:node-esm tools/max-chroma.ts",
 		"tool:swatches": "tools:node-esm tools/index.ts"
 	},
@@ -300,6 +301,9 @@
 		"./mix": {
 			"default": "./mix.js"
 		},
+		"./oklab/oklab-css": {
+			"default": "./oklab/oklab-css.js"
+		},
 		"./oklab/oklab-rgb": {
 			"default": "./oklab/oklab-rgb.js"
 		},
@@ -308,6 +312,18 @@
 		},
 		"./oklab/oklab": {
 			"default": "./oklab/oklab.js"
+		},
+		"./oklch/oklab-oklch": {
+			"default": "./oklch/oklab-oklch.js"
+		},
+		"./oklch/oklch-css": {
+			"default": "./oklch/oklch-css.js"
+		},
+		"./oklch/oklch-oklab": {
+			"default": "./oklch/oklch-oklab.js"
+		},
+		"./oklch/oklch": {
+			"default": "./oklch/oklch.js"
 		},
 		"./rgb/hue-rgb": {
 			"default": "./rgb/hue-rgb.js"
@@ -426,6 +442,5 @@
 			"pixel",
 			"vectors"
 		]
-	},
-	"gitHead": "2b5a99a8af71670780875637299be9118b01084d\n"
+	}
 }
