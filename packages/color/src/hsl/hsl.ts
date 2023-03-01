@@ -33,6 +33,11 @@ export declare class HSL implements TypedColor<HSL> {
 	toJSON(): number[];
 }
 
+/**
+ * @remarks
+ * Note: As with other hue-based color modes in this package, the hue is stored
+ * normalized (in [0..1] interval) and NOT as degrees.
+ */
 export const hsl = <ColorFactory<HSL>>defColor({
 	mode: "hsl",
 	channels: { h: { hue: true } },

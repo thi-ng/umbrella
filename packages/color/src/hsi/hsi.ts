@@ -32,6 +32,11 @@ export declare class HSI implements TypedColor<HSI> {
 	toJSON(): number[];
 }
 
+/**
+ * @remarks
+ * Note: As with other hue-based color modes in this package, the hue is stored
+ * normalized (in [0..1] interval) and NOT as degrees.
+ */
 export const hsi = <ColorFactory<HSI>>defColor({
 	mode: "hsi",
 	channels: { h: { hue: true } },

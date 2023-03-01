@@ -35,7 +35,11 @@ export declare class LCH implements TypedColor<LCH> {
 
 /**
  * Luminance Chroma Hue (conversions assume {@link D50} white point, as per CSS
- * spec).
+ * spec). Polar version of {@link labD50}.
+ *
+ * @remarks
+ * Note: As with other hue-based color modes in this package, the hue is stored
+ * normalized (in [0..1] interval) and NOT as degrees.
  */
 export const lch = <ColorFactory<LCH>>defColor({
 	mode: "lch",

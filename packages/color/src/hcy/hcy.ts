@@ -32,6 +32,11 @@ export declare class HCY implements TypedColor<HCY> {
 	toJSON(): number[];
 }
 
+/**
+ * @remarks
+ * Note: As with other hue-based color modes in this package, the hue is stored
+ * normalized (in [0..1] interval) and NOT as degrees.
+ */
 export const hcy = <ColorFactory<HCY>>defColor({
 	mode: "hcy",
 	channels: { h: { hue: true } },
