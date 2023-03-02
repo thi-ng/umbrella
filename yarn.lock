@@ -2792,7 +2792,7 @@ __metadata:
     "@thi.ng/api": ^8.7.3
     "@thi.ng/base-n": ^2.4.2
     "@thi.ng/checks": ^3.3.9
-    "@thi.ng/color": ^5.4.0
+    "@thi.ng/color": ^5.4.1
     "@thi.ng/errors": ^2.2.12
     "@thi.ng/hex": ^2.3.6
     "@thi.ng/testament": ^0.3.11
@@ -2803,7 +2803,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/color@^5.4.0, @thi.ng/color@workspace:^, @thi.ng/color@workspace:packages/color":
+"@thi.ng/color@^5.4.1, @thi.ng/color@workspace:^, @thi.ng/color@workspace:packages/color":
   version: 0.0.0-use.local
   resolution: "@thi.ng/color@workspace:packages/color"
   dependencies:
@@ -3325,7 +3325,7 @@ __metadata:
     "@thi.ng/api": ^8.7.3
     "@thi.ng/fuzzy": ^2.1.27
     "@thi.ng/hiccup": ^4.2.34
-    "@thi.ng/hiccup-svg": ^4.3.34
+    "@thi.ng/hiccup-svg": ^4.3.35
     "@thi.ng/math": ^5.4.4
     "@thi.ng/strings": ^3.4.1
     "@thi.ng/testament": ^0.3.11
@@ -3420,7 +3420,7 @@ __metadata:
     "@thi.ng/axidraw": ^0.5.5
     "@thi.ng/compare": ^2.1.26
     "@thi.ng/defmulti": ^2.1.31
-    "@thi.ng/geom": ^4.2.6
+    "@thi.ng/geom": ^4.2.7
     "@thi.ng/geom-accel": ^3.3.5
     "@thi.ng/geom-api": ^3.4.6
     "@thi.ng/geom-clip-line": ^2.3.6
@@ -3491,8 +3491,8 @@ __metadata:
     "@microsoft/api-extractor": ^7.34.2
     "@thi.ng/api": ^8.7.3
     "@thi.ng/associative": ^6.2.28
-    "@thi.ng/color": ^5.4.0
-    "@thi.ng/geom": ^4.2.6
+    "@thi.ng/color": ^5.4.1
+    "@thi.ng/geom": ^4.2.7
     "@thi.ng/geom-api": ^3.4.6
     "@thi.ng/geom-clip-line": ^2.3.6
     "@thi.ng/geom-resample": ^2.2.6
@@ -3618,7 +3618,7 @@ __metadata:
     "@thi.ng/checks": ^3.3.9
     "@thi.ng/defmulti": ^2.1.31
     "@thi.ng/errors": ^2.2.12
-    "@thi.ng/geom": ^4.2.6
+    "@thi.ng/geom": ^4.2.7
     "@thi.ng/geom-api": ^3.4.6
     "@thi.ng/geom-isoline": ^2.1.45
     "@thi.ng/geom-poly-utils": ^2.3.32
@@ -3732,7 +3732,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/geom@^4.2.6, @thi.ng/geom@workspace:^, @thi.ng/geom@workspace:packages/geom":
+"@thi.ng/geom@^4.2.7, @thi.ng/geom@workspace:^, @thi.ng/geom@workspace:packages/geom":
   version: 0.0.0-use.local
   resolution: "@thi.ng/geom@workspace:packages/geom"
   dependencies:
@@ -3757,7 +3757,7 @@ __metadata:
     "@thi.ng/geom-subdiv-curve": ^2.1.48
     "@thi.ng/geom-tessellate": ^2.1.48
     "@thi.ng/hiccup": ^4.2.34
-    "@thi.ng/hiccup-svg": ^4.3.34
+    "@thi.ng/hiccup-svg": ^4.3.35
     "@thi.ng/math": ^5.4.4
     "@thi.ng/matrices": ^2.1.46
     "@thi.ng/random": ^3.3.26
@@ -3842,7 +3842,7 @@ __metadata:
     "@thi.ng/diff": ^5.1.26
     "@thi.ng/errors": ^2.2.12
     "@thi.ng/hdom": ^9.3.1
-    "@thi.ng/hiccup-canvas": ^2.2.6
+    "@thi.ng/hiccup-canvas": ^2.2.7
     "@thi.ng/testament": ^0.3.11
     rimraf: ^4.1.2
     tools: "workspace:^"
@@ -3937,14 +3937,14 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/hiccup-canvas@^2.2.6, @thi.ng/hiccup-canvas@workspace:^, @thi.ng/hiccup-canvas@workspace:packages/hiccup-canvas":
+"@thi.ng/hiccup-canvas@^2.2.7, @thi.ng/hiccup-canvas@workspace:^, @thi.ng/hiccup-canvas@workspace:packages/hiccup-canvas":
   version: 0.0.0-use.local
   resolution: "@thi.ng/hiccup-canvas@workspace:packages/hiccup-canvas"
   dependencies:
     "@microsoft/api-extractor": ^7.34.2
     "@thi.ng/api": ^8.7.3
     "@thi.ng/checks": ^3.3.9
-    "@thi.ng/color": ^5.4.0
+    "@thi.ng/color": ^5.4.1
     "@thi.ng/math": ^5.4.4
     "@thi.ng/pixel": ^4.1.6
     "@thi.ng/testament": ^0.3.11
@@ -4025,13 +4025,13 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/hiccup-svg@^4.3.34, @thi.ng/hiccup-svg@workspace:^, @thi.ng/hiccup-svg@workspace:packages/hiccup-svg":
+"@thi.ng/hiccup-svg@^4.3.35, @thi.ng/hiccup-svg@workspace:^, @thi.ng/hiccup-svg@workspace:packages/hiccup-svg":
   version: 0.0.0-use.local
   resolution: "@thi.ng/hiccup-svg@workspace:packages/hiccup-svg"
   dependencies:
     "@microsoft/api-extractor": ^7.34.2
     "@thi.ng/checks": ^3.3.9
-    "@thi.ng/color": ^5.4.0
+    "@thi.ng/color": ^5.4.1
     "@thi.ng/prefixes": ^2.1.19
     "@thi.ng/testament": ^0.3.11
     rimraf: ^4.1.2
@@ -4101,7 +4101,7 @@ __metadata:
     "@microsoft/api-extractor": ^7.34.2
     "@thi.ng/api": ^8.7.3
     "@thi.ng/checks": ^3.3.9
-    "@thi.ng/geom": ^4.2.6
+    "@thi.ng/geom": ^4.2.7
     "@thi.ng/geom-api": ^3.4.6
     "@thi.ng/geom-isec": ^2.1.48
     "@thi.ng/geom-tessellate": ^2.1.48
@@ -4710,7 +4710,7 @@ __metadata:
     "@thi.ng/api": ^8.7.3
     "@thi.ng/associative": ^6.2.28
     "@thi.ng/checks": ^3.3.9
-    "@thi.ng/hiccup-canvas": ^2.2.6
+    "@thi.ng/hiccup-canvas": ^2.2.7
     "@thi.ng/rdom": ^0.10.12
     "@thi.ng/rstream": ^7.2.41
     "@thi.ng/testament": ^0.3.11
