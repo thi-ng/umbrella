@@ -36,16 +36,26 @@ export const distHsv: ColorDistance = (a, b) => {
 /**
  * Similar to {@link distHsv}, but computes distance between two LCH colors
  * (with different channel order), i.e. the eucledian distance between points in
- * a cyclinder.
+ * a cyclinder (using Law of Cosines).
  *
- * @param a -
- * @param b -
+ * @remarks
+ * Reference:
+ * - https://math.stackexchange.com/a/3612602
+ * - https://en.wikipedia.org/wiki/Law_of_cosines
+ *
+ * @param a
+ * @param b
  */
-export const distLch: ColorDistance = (a, b) => {
-	const aa = cossin(a[2] * TAU, a[1]);
-	const bb = cossin(b[2] * TAU, b[1]);
-	return hypot(aa[0] - bb[0], aa[1] - bb[1], a[0] - b[0]);
-};
+export const distLch: ColorDistance = (
+	{ 0: la, 1: ca, 2: ha },
+	{ 0: lb, 1: cb, 2: hb }
+) =>
+	Math.sqrt(
+		ca * ca +
+			cb * cb -
+			2 * ca * cb * Math.cos((ha - hb) * TAU) +
+			(la - lb) ** 2
+	);
 
 /**
  * Computes difference in saturation between two HSV colors.
