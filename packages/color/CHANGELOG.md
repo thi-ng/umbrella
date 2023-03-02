@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2023-02-17T20:06:13Z
+- **Last updated**: 2023-03-02T18:09:03Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,44 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [5.4.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/color@5.4.0) (2023-03-02)
+
+#### 🚀 Features
+
+- add oklch mode impl/support ([3e77420](https://github.com/thi-ng/umbrella/commit/3e77420))
+  - add oklch() factory & class decl
+  - add oklab<>oklch conversions
+  - update analog() & rotate()
+- add CSS Level4 oklab/oklch support ([137d322](https://github.com/thi-ng/umbrella/commit/137d322))
+  - update parseCss() to support oklab/oklch colors
+  - add oklab/oklch CSS serializers
+  - update css() to optionally support CSS Color Module L4
+  - add CSS_LEVEL3 / CSS_LEVEL4 conversions
+- update color() to accept CSS color strings ([0d5b3e9](https://github.com/thi-ng/umbrella/commit/0d5b3e9))
+
+#### 🩹 Bug fixes
+
+- update oklab LMS matrices ([6e2cb75](https://github.com/thi-ng/umbrella/commit/6e2cb75))
+  - according to @bottosson they were already updated in 01/2021
+- update parseCss()/parseHex() ([dbbdc7d](https://github.com/thi-ng/umbrella/commit/dbbdc7d))
+  - fix support for percentages
+  - fix channel scale factors
+  - fix alpha-channel handling in parseHex()
+  - rename internal helpers
+  - add/update tests
+
+#### ⏱ Performance improvements
+
+- refactor distLch() ([fa2d4e0](https://github.com/thi-ng/umbrella/commit/fa2d4e0))
+  - use Law of Cosines impl to avoid 1x cos and 2x sin ops
+
+#### ♻️ Refactoring
+
+- update oklab/oklch channel ranges, add docs ([d87b30d](https://github.com/thi-ng/umbrella/commit/d87b30d))
+- update (ok)lab/lch CSS serializers ([8492f5e](https://github.com/thi-ng/umbrella/commit/8492f5e))
+  - extract internal helpers
+  - update/fix channel scale factors
 
 ## [5.3.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/color@5.3.0) (2023-02-10)
 

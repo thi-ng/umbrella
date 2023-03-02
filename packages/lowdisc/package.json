@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/lowdisc",
-	"version": "0.3.22",
+	"version": "0.3.23",
 	"description": "n-dimensional low-discrepancy sequence generators/iterators",
 	"type": "module",
 	"module": "./index.js",
@@ -34,7 +34,7 @@
 		"test": "testament test"
 	},
 	"dependencies": {
-		"@thi.ng/errors": "^2.2.11"
+		"@thi.ng/errors": "^2.2.12"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.34.2",
