@@ -188,14 +188,16 @@ feature or `develop` branches)
 
 ### Latest updates
 
-As of: 2023-02-27
+As of: 2023-03-02
 
-| Status                                        | Package                                                 | Version                                                                                                                       | Changelog                                            |
-|:----------------------------------------------|:--------------------------------------------------------|:------------------------------------------------------------------------------------------------------------------------------|:-----------------------------------------------------|
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/emoji`](./packages/emoji)                     | [![version](https://img.shields.io/npm/v/@thi.ng/emoji.svg)](https://www.npmjs.com/package/@thi.ng/emoji)                     | [changelog](./packages/emoji/CHANGELOG.md)           |
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/hdom`](./packages/hdom)                       | [![version](https://img.shields.io/npm/v/@thi.ng/hdom.svg)](https://www.npmjs.com/package/@thi.ng/hdom)                       | [changelog](./packages/hdom/CHANGELOG.md)            |
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/hiccup-markdown`](./packages/hiccup-markdown) | [![version](https://img.shields.io/npm/v/@thi.ng/hiccup-markdown.svg)](https://www.npmjs.com/package/@thi.ng/hiccup-markdown) | [changelog](./packages/hiccup-markdown/CHANGELOG.md) |
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/strings`](./packages/strings)                 | [![version](https://img.shields.io/npm/v/@thi.ng/strings.svg)](https://www.npmjs.com/package/@thi.ng/strings)                 | [changelog](./packages/strings/CHANGELOG.md)         |
+| Status                                           | Package                                                 | Version                                                                                                                       | Changelog                                            |
+|:-------------------------------------------------|:--------------------------------------------------------|:------------------------------------------------------------------------------------------------------------------------------|:-----------------------------------------------------|
+| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/color`](./packages/color)                     | [![version](https://img.shields.io/npm/v/@thi.ng/color.svg)](https://www.npmjs.com/package/@thi.ng/color)                     | [changelog](./packages/color/CHANGELOG.md)           |
+| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/emoji`](./packages/emoji)                     | [![version](https://img.shields.io/npm/v/@thi.ng/emoji.svg)](https://www.npmjs.com/package/@thi.ng/emoji)                     | [changelog](./packages/emoji/CHANGELOG.md)           |
+| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/hdom`](./packages/hdom)                       | [![version](https://img.shields.io/npm/v/@thi.ng/hdom.svg)](https://www.npmjs.com/package/@thi.ng/hdom)                       | [changelog](./packages/hdom/CHANGELOG.md)            |
+| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/hiccup-markdown`](./packages/hiccup-markdown) | [![version](https://img.shields.io/npm/v/@thi.ng/hiccup-markdown.svg)](https://www.npmjs.com/package/@thi.ng/hiccup-markdown) | [changelog](./packages/hiccup-markdown/CHANGELOG.md) |
+| ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/math`](./packages/math)                       | [![version](https://img.shields.io/npm/v/@thi.ng/math.svg)](https://www.npmjs.com/package/@thi.ng/math)                       | [changelog](./packages/math/CHANGELOG.md)            |
+| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/strings`](./packages/strings)                 | [![version](https://img.shields.io/npm/v/@thi.ng/strings.svg)](https://www.npmjs.com/package/@thi.ng/strings)                 | [changelog](./packages/strings/CHANGELOG.md)         |
 
 ### Fundamentals
 
