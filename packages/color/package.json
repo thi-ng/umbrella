@@ -34,6 +34,7 @@
 		"test": "testament test",
 		"tool:limits": "tools:node-esm tools/limits.ts",
 		"tool:maxchroma": "tools:node-esm tools/max-chroma.ts",
+		"tool:strategies": "tools:node-esm tools/strategies.ts",
 		"tool:swatches": "tools:node-esm tools/index.ts"
 	},
 	"dependencies": {

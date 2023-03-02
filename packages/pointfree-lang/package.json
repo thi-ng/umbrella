@@ -103,6 +103,5 @@
 	"thi.ng": {
 		"parent": "@thi.ng/pointfree",
 		"year": 2018
-	},
-	"gitHead": "2b5a99a8af71670780875637299be9118b01084d\n"
+	}
 }
