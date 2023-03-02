@@ -1,7 +1,5 @@
-import { clamp0 } from "@thi.ng/math/interval";
 import type { ReadonlyColor } from "../api.js";
-import { FF, PC } from "../api/constants.js";
-import { __ensureAlpha } from "../internal/ensure.js";
+import { __labCss } from "../internal/css.js";
 
 /**
  * @remarks
@@ -11,10 +9,4 @@ import { __ensureAlpha } from "../internal/ensure.js";
  *
  * @param src -
  */
-export const labCss = (src: ReadonlyColor) => {
-	const l = PC(clamp0(src[0]));
-	const a = FF(src[1] * 100);
-	const b = FF(src[2] * 100);
-	const alpha = __ensureAlpha(src[3]);
-	return `lab(${l} ${a} ${b}` + (alpha < 1 ? `/${FF(alpha)})` : ")");
-};
+export const labCss = (src: ReadonlyColor) => __labCss("lab", src, 100);

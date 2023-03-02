@@ -1,5 +1,5 @@
 import type { ReadonlyColor } from "../api.js";
-import { lchCss } from "../lch/lch-css.js";
+import { __lchCss } from "../internal/css.js";
 
 /**
  * @remarks
@@ -9,4 +9,4 @@ import { lchCss } from "../lch/lch-css.js";
  *
  * @param src -
  */
-export const oklchCss = (src: ReadonlyColor) => "ok" + lchCss(src);
+export const oklchCss = (src: ReadonlyColor) => __lchCss("oklch", src, 1);
