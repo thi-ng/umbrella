@@ -7,7 +7,8 @@ half.
 
 ![screenshot of markdown editor w/ preview](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/markdown-parser.jpg "screenshot")
 
-[Live demo](https://demo.thi.ng/umbrella/markdown/)
+[Live demo](https://demo.thi.ng/umbrella/markdown/) |
+[Source code](https://github.com/thi-ng/umbrella/tree/develop/examples/markdown)
 
 ## Syntax features & extensions
 
@@ -62,14 +63,18 @@ Kewl! :sunglasses:
 Footnotes are supported, but this statement might need some further
 explanation[^1].
 
-### Headings
+### Headings {#custom-header-id}
 
-Only ATX-style headings are supported (any level). The parser also provides
-content-based, auto-generated slugs/IDs (via
-[`slugifyGH()`](https://docs.thi.ng/umbrella/strings/functions/slugifyGH.html "function docs"))
-which are passed to the element handler.
+Only ATX-style headings (aka lines prefixed with `#`) are supported (levels
+1-6). The parser supports `{#custom-id}`-style line suffixes for headings, which
+are passed as separate `anchorID` param to the element handlers. If not
+specified in the Markdown source, the parser auto-generates this ID (with no
+uniqueness guarantee) based on
+[slugifying](https://docs.thi.ng/umbrella/strings/functions/slugifyGH.html) the
+heading's body content (Github readme compatible).
 
-For example, here is a [link to this section](#headings) (using ID `#headings`).
+For example, here is a [link to this section](#custom-header-id) (using ID
+`#custom-header-id`).
 
 ### Images
 
