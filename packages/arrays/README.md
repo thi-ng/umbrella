@@ -13,6 +13,7 @@ This project is part of the
 - [Status](#status)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
+- [Usage examples](#usage-examples)
 - [API](#api)
   - [Binary search result predicates](#binary-search-result-predicates)
 - [Authors](#authors)
@@ -58,6 +59,18 @@ Package sizes (brotli'd, pre-treeshake): ESM: 2.61 KB
 - [@thi.ng/equiv](https://github.com/thi-ng/umbrella/tree/develop/packages/equiv)
 - [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
 - [@thi.ng/random](https://github.com/thi-ng/umbrella/tree/develop/packages/random)
+
+## Usage examples
+
+Several demos in this repo's
+[/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
+directory are using this package.
+
+A selection:
+
+| Screenshot                                                                                                        | Description                      | Live demo                                        | Source                                                                        |
+|:------------------------------------------------------------------------------------------------------------------|:---------------------------------|:-------------------------------------------------|:------------------------------------------------------------------------------|
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/kmeans-viz.jpg" width="240"/> | k-means clustering visualization | [Demo](https://demo.thi.ng/umbrella/kmeans-viz/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/kmeans-viz) |
 
 ## API
 
