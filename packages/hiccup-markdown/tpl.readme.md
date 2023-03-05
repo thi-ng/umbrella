@@ -28,7 +28,7 @@ standard syntax.
 | Code blocks   | GFM style only (triple backtick prefix), w/ mandatory language hint & optional extra headers information                                   |
 | Formatting    | Nestable **bold**, _italic_, `code`, ~~strike~~, <kbd>Key</kbd> supported in paragraphs, headings, link labels, lists, blockquotes, tables |
 | Footnotes     | Supported and stored separately in parse context                                                                                           |
-| Headings      | ATX-style only (`#` line prefix), any level                                                                                                |
+| Headings      | ATX-style only (`#` line prefix), optional custom ID attrib (via `{#custom-id}` suffix), levels 1-6 then fallback to paragraph             |
 | Horiz. Rulers | Only dash supported (e.g. `---`), min 2 chars required, length retained for downstream transformations                                     |
 | HTML elements | Unsupported                                                                                                                                |
 | Images        | Alt text is required, image can be used in link labels                                                                                     |
@@ -102,23 +102,30 @@ custom blocks (in an extensible manner).
 
 #### Headings with anchor IDs
 
-The default tag transform for headlines auto-generates ID attributes using that
-headline's body and
-[slugifying](https://docs.thi.ng/umbrella/strings/functions/slugifyGH.html) it
-(Github readme compatible):
+The parser supports `{#custom-id}`-style line suffixes for headings, which are
+passed as separate `anchorID` param to the element handlers. If not specified in
+the Markdown source, the parser auto-generates this ID (with no uniqueness
+guarantee) based on
+[slugifying](https://docs.thi.ng/umbrella/strings/functions/slugifyGH.html) the
+heading's body content (Github readme compatible):
 
 ```text
 # The **beautiful `code`**
+
+## Heading with anchor {#custom-id-123}
 ```
 
 Results in:
 
 ```js
 // [
-//   "h1",
-//   { id: "the-beautiful-code" },
-//   "The ",
-//   [ "strong", {}, "beautiful ", [ "code", {}, "code" ] ]
+//   [
+//     "h1",
+//     { id: "the-beautiful-code" },
+//     "The ",
+//     [ "strong", {}, "beautiful ", [ "code", {}, "code" ] ]
+//   ],
+//   [ "h2", { id: "custom-id-123" }, "Heading with anchor" ]
 // ]
 ```
 
