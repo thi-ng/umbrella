@@ -1,6 +1,4 @@
-import { map } from "@thi.ng/transducers/map";
-import { mapIndexed } from "@thi.ng/transducers/map-indexed";
-import { repeat } from "@thi.ng/transducers/repeat";
+import { map, mapIndexed, repeat } from "@thi.ng/transducers";
 import type { AppContext } from "../api";
 import { section } from "./section";
 import { table } from "./table";

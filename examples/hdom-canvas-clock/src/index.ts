@@ -1,11 +1,9 @@
+import { EN_SHORT } from "@thi.ng/date";
+import { start } from "@thi.ng/hdom";
 import { canvas } from "@thi.ng/hdom-canvas";
-import { start } from "@thi.ng/hdom/start";
-import { HALF_PI, TAU } from "@thi.ng/math/api";
-import { mapcat } from "@thi.ng/transducers/mapcat";
-import { range } from "@thi.ng/transducers/range";
-import { cartesian2 } from "@thi.ng/vectors/cartesian";
-
-const WEEKDAYS = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
+import { HALF_PI, TAU } from "@thi.ng/math";
+import { mapcat, range } from "@thi.ng/transducers";
+import { cartesian2 } from "@thi.ng/vectors";
 
 const tick = (i: number, r1: number, r2: number) => {
 	const theta = (i / 12) * TAU - HALF_PI;
@@ -95,7 +93,7 @@ start(() => {
 						"text",
 						{ stroke: "none" },
 						[55, 0],
-						WEEKDAYS[now.getDay()],
+						EN_SHORT.days[now.getDay()].toUpperCase(),
 					],
 				],
 				// hands

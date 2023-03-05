@@ -1,52 +1,48 @@
-import { Atom } from "@thi.ng/atom/atom";
-import { History } from "@thi.ng/atom/history";
-import { timedResult } from "@thi.ng/bench/timed";
-import { line } from "@thi.ng/geom/line";
-import { normalizedPath } from "@thi.ng/geom/path";
-import { pathFromSvg } from "@thi.ng/geom/path-from-svg";
+import { Atom, History } from "@thi.ng/atom";
+import { timedResult } from "@thi.ng/bench";
+import { line, normalizedPath, pathFromSvg } from "@thi.ng/geom";
 import { canvas } from "@thi.ng/hdom-canvas";
-import { DOWNLOAD } from "@thi.ng/hiccup-carbon-icons/download";
-import { RESTART } from "@thi.ng/hiccup-carbon-icons/restart";
-import { DEFAULT_THEME, Key, NONE, type GUITheme } from "@thi.ng/imgui/api";
-import { buttonH, buttonV } from "@thi.ng/imgui/components/button";
-import { dialGroup } from "@thi.ng/imgui/components/dial";
-import { dropdown } from "@thi.ng/imgui/components/dropdown";
-import { iconButton } from "@thi.ng/imgui/components/icon-button";
-import { radialMenu } from "@thi.ng/imgui/components/radial-menu";
-import { radio } from "@thi.ng/imgui/components/radio";
-import { ring, ringGroup } from "@thi.ng/imgui/components/ring";
-import { sliderH, sliderHGroup } from "@thi.ng/imgui/components/sliderh";
-import { sliderVGroup } from "@thi.ng/imgui/components/sliderv";
-import { textField } from "@thi.ng/imgui/components/textfield";
-import { textLabel, textLabelRaw } from "@thi.ng/imgui/components/textlabel";
-import { toggle } from "@thi.ng/imgui/components/toggle";
-import { xyPad } from "@thi.ng/imgui/components/xypad";
-import { IMGUI } from "@thi.ng/imgui/gui";
-import { layoutBox } from "@thi.ng/layout/box";
-import { gridLayout, GridLayout } from "@thi.ng/layout/grid-layout";
-import { PI } from "@thi.ng/math/api";
-import { clamp } from "@thi.ng/math/interval";
-import { setInManyUnsafe } from "@thi.ng/paths/set-in-many";
+import { DOWNLOAD, RESTART } from "@thi.ng/hiccup-carbon-icons";
+import {
+	buttonH,
+	buttonV,
+	DEFAULT_THEME,
+	dialGroup,
+	dropdown,
+	GUITheme,
+	iconButton,
+	IMGUI,
+	Key,
+	NONE,
+	radialMenu,
+	radio,
+	ring,
+	ringGroup,
+	sliderH,
+	sliderHGroup,
+	sliderVGroup,
+	textField,
+	textLabel,
+	textLabelRaw,
+	toggle,
+	xyPad,
+} from "@thi.ng/imgui";
+import { gridLayout, GridLayout, layoutBox } from "@thi.ng/layout";
+import { clamp, PI } from "@thi.ng/math";
+import { setInManyUnsafe } from "@thi.ng/paths";
+import {
+	fromAtom,
+	fromDOMEvent,
+	merge,
+	sidechainPartitionRAF,
+	sync,
+} from "@thi.ng/rstream";
 import { gestureStream } from "@thi.ng/rstream-gestures";
-import { fromAtom } from "@thi.ng/rstream/atom";
-import { fromDOMEvent } from "@thi.ng/rstream/event";
-import { merge } from "@thi.ng/rstream/merge";
-import { sidechainPartitionRAF } from "@thi.ng/rstream/sidechain-partition";
-import { sync } from "@thi.ng/rstream/sync";
-import { float } from "@thi.ng/strings/float";
+import { float } from "@thi.ng/strings";
+import { comp, iterator, map, mapcat, step } from "@thi.ng/transducers";
 import { updateDOM } from "@thi.ng/transducers-hdom";
-import { sma } from "@thi.ng/transducers-stats/sma";
-import { comp } from "@thi.ng/transducers/comp";
-import { iterator } from "@thi.ng/transducers/iterator";
-import { map } from "@thi.ng/transducers/map";
-import { mapcat } from "@thi.ng/transducers/mapcat";
-import { step } from "@thi.ng/transducers/step";
-import { add2 } from "@thi.ng/vectors/add";
-import { type Vec, ZERO2 } from "@thi.ng/vectors/api";
-import { hash } from "@thi.ng/vectors/hash";
-import { min2 } from "@thi.ng/vectors/min";
-import { setC2 } from "@thi.ng/vectors/setc";
-import { vecOf } from "@thi.ng/vectors/vec-of";
+import { sma } from "@thi.ng/transducers-stats";
+import { add2, hash, min2, setC2, Vec, vecOf, ZERO2 } from "@thi.ng/vectors";
 
 // define theme colors in RGBA format for future compatibility with
 // WebGL backend

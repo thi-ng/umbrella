@@ -1,10 +1,10 @@
+import { start } from "@thi.ng/hdom";
 import {
 	slideToggleDot,
 	slideToggleRect,
-	type ToggleDotOpts,
-	type ToggleRectOpts,
-} from "@thi.ng/hdom-components/toggle";
-import { start } from "@thi.ng/hdom/start";
+	ToggleDotOpts,
+	ToggleRectOpts,
+} from "@thi.ng/hdom-components";
 
 const state = [true, false, true, false, true];
 

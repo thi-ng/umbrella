@@ -1,4 +1,4 @@
-import { start } from "@thi.ng/hdom/start";
+import { start } from "@thi.ng/hdom";
 
 /**
  * HOF component for rendering HTML strings by setting `innerHTML`. The

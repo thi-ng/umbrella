@@ -1,23 +1,24 @@
 import { adaptDPI } from "@thi.ng/adapt-dpi";
-import { canvasWebGL } from "@thi.ng/hdom-components/canvas";
-import { start } from "@thi.ng/hdom/start";
-import { PI } from "@thi.ng/math/api";
-import { lookAt } from "@thi.ng/matrices/lookat";
-import { ortho } from "@thi.ng/matrices/ortho";
-import { scale44 } from "@thi.ng/matrices/scale";
-import { mapcat } from "@thi.ng/transducers/mapcat";
-import { range2d } from "@thi.ng/transducers/range2d";
-import { normalize3 } from "@thi.ng/vectors/normalize";
-import { rotateY } from "@thi.ng/vectors/rotate";
-import type { GLMat4, GLVec3, ModelSpec } from "@thi.ng/webgl";
-import { TextureFilter, TextureRepeat } from "@thi.ng/webgl/api/texture";
-import { compileModel } from "@thi.ng/webgl/buffer";
-import { draw } from "@thi.ng/webgl/draw";
-import { defCubeModel } from "@thi.ng/webgl/geo/cube";
-import { defShader } from "@thi.ng/webgl/shader";
-import { LAMBERT } from "@thi.ng/webgl/shaders/lambert";
-import { defTexture } from "@thi.ng/webgl/texture";
-import { checkerboard } from "@thi.ng/webgl/textures/checkerboard";
+import { start } from "@thi.ng/hdom";
+import { canvasWebGL } from "@thi.ng/hdom-components";
+import { PI } from "@thi.ng/math";
+import { lookAt, ortho, scale44 } from "@thi.ng/matrices";
+import { mapcat, range2d } from "@thi.ng/transducers";
+import { normalize3, rotateY } from "@thi.ng/vectors";
+import {
+	checkerboard,
+	compileModel,
+	defCubeModel,
+	defShader,
+	defTexture,
+	draw,
+	GLMat4,
+	GLVec3,
+	LAMBERT,
+	ModelSpec,
+	TextureFilter,
+	TextureRepeat,
+} from "@thi.ng/webgl";
 
 const app = () => {
 	let model: ModelSpec;

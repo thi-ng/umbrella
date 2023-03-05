@@ -1,30 +1,45 @@
-import { intAbgr32Srgb } from "@thi.ng/color/int/int-srgb";
-import { ABGR8888 } from "@thi.ng/pixel/format/abgr8888";
-import { intBuffer } from "@thi.ng/pixel/int";
-import { defSampler } from "@thi.ng/pixel/sample";
-import type { FloatSym, Vec2Sym } from "@thi.ng/shader-ast";
+import { intAbgr32Srgb } from "@thi.ng/color";
+import { ABGR8888, defSampler, intBuffer } from "@thi.ng/pixel";
+import {
+	$x,
+	$xy,
+	$xyz,
+	$y,
+	add,
+	assign,
+	atan,
+	defMain,
+	defn,
+	div,
+	float,
+	FloatSym,
+	mul,
+	neg,
+	pow,
+	program,
+	ret,
+	sym,
+	texture,
+	vec2,
+	Vec2Sym,
+	vec4,
+} from "@thi.ng/shader-ast";
 import { GLSLVersion, targetGLSL } from "@thi.ng/shader-ast-glsl";
 import {
 	canvasRenderer,
 	JS_DEFAULT_ENV,
 	targetJS,
 } from "@thi.ng/shader-ast-js";
-import { assign } from "@thi.ng/shader-ast/ast/assign";
-import { defMain, defn, ret } from "@thi.ng/shader-ast/ast/function";
-import { float, vec2, vec4 } from "@thi.ng/shader-ast/ast/lit";
-import { add, div, mul, neg } from "@thi.ng/shader-ast/ast/ops";
-import { program } from "@thi.ng/shader-ast/ast/scope";
-import { $x, $xy, $xyz, $y } from "@thi.ng/shader-ast/ast/swizzle";
-import { sym } from "@thi.ng/shader-ast/ast/sym";
-import { atan, pow } from "@thi.ng/shader-ast/builtin/math";
-import { texture } from "@thi.ng/shader-ast/builtin/texture";
-import { TextureFilter, TextureRepeat } from "@thi.ng/webgl/api/texture";
-import { compileModel } from "@thi.ng/webgl/buffer";
-import { draw } from "@thi.ng/webgl/draw";
-import { defQuadModel } from "@thi.ng/webgl/geo/quad";
-import { defShader } from "@thi.ng/webgl/shader";
-import { FX_SHADER_SPEC } from "@thi.ng/webgl/shaders/pipeline";
-import { defTexture } from "@thi.ng/webgl/texture";
+import {
+	compileModel,
+	defQuadModel,
+	defShader,
+	defTexture,
+	draw,
+	FX_SHADER_SPEC,
+	TextureFilter,
+	TextureRepeat,
+} from "@thi.ng/webgl";
 import TEX_URL from "./tex.jpg";
 
 // set URL hash to "#2d" to enable JS Canvas2D version

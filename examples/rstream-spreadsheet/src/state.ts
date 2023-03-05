@@ -1,16 +1,16 @@
 import type { IObjectOf } from "@thi.ng/api";
-import { Atom } from "@thi.ng/atom/atom";
-import { setIn } from "@thi.ng/paths/set-in";
-import { setInManyUnsafe } from "@thi.ng/paths/set-in-many";
-import type { Node } from "@thi.ng/rstream-graph";
-import { removeNode } from "@thi.ng/rstream-graph/graph";
-import { charRange } from "@thi.ng/strings/range";
-import { assocObj } from "@thi.ng/transducers/assoc-obj";
-import { map } from "@thi.ng/transducers/map";
-import { permutations } from "@thi.ng/transducers/permutations";
-import { range } from "@thi.ng/transducers/range";
-import { transduce } from "@thi.ng/transducers/transduce";
-import { type Cell, MAX_COL, NUM_ROWS } from "./api";
+import { Atom } from "@thi.ng/atom";
+import { setIn, setInManyUnsafe } from "@thi.ng/paths";
+import { Node, removeNode } from "@thi.ng/rstream-graph";
+import { charRange } from "@thi.ng/strings";
+import {
+	assocObj,
+	map,
+	permutations,
+	range,
+	transduce,
+} from "@thi.ng/transducers";
+import { MAX_COL, NUM_ROWS, type Cell } from "./api";
 import { $eval } from "./dsl";
 
 /**

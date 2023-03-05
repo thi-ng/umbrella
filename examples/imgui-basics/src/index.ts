@@ -1,14 +1,9 @@
+import { start } from "@thi.ng/hdom";
 import { canvas } from "@thi.ng/hdom-canvas";
-import { start } from "@thi.ng/hdom/start";
-import { DEFAULT_THEME, Key } from "@thi.ng/imgui/api";
-import { buttonH } from "@thi.ng/imgui/components/button";
-import { sliderH } from "@thi.ng/imgui/components/sliderh";
-import { IMGUI } from "@thi.ng/imgui/gui";
-import { gridLayout } from "@thi.ng/layout/grid-layout";
+import { buttonH, DEFAULT_THEME, IMGUI, Key, sliderH } from "@thi.ng/imgui";
+import { gridLayout } from "@thi.ng/layout";
+import { fromDOMEvent, reactive, tweenNumber } from "@thi.ng/rstream";
 import { gestureStream } from "@thi.ng/rstream-gestures";
-import { fromDOMEvent } from "@thi.ng/rstream/event";
-import { reactive } from "@thi.ng/rstream/stream";
-import { tweenNumber } from "@thi.ng/rstream/tween";
 
 // GUI initialization
 const gui = new IMGUI({

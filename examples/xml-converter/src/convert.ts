@@ -1,13 +1,15 @@
-import { isString } from "@thi.ng/checks/is-string";
-import { parse, type ParseElement, type ParseEvent, Type } from "@thi.ng/sax";
-import { assocObj } from "@thi.ng/transducers/assoc-obj";
-import { comp } from "@thi.ng/transducers/comp";
-import { filter } from "@thi.ng/transducers/filter";
-import { last } from "@thi.ng/transducers/last";
-import { map } from "@thi.ng/transducers/map";
-import { pairs } from "@thi.ng/transducers/pairs";
-import { push } from "@thi.ng/transducers/push";
-import { transduce } from "@thi.ng/transducers/transduce";
+import { isString } from "@thi.ng/checks";
+import { parse, Type, type ParseElement, type ParseEvent } from "@thi.ng/sax";
+import {
+	assocObj,
+	comp,
+	filter,
+	last,
+	map,
+	pairs,
+	push,
+	transduce,
+} from "@thi.ng/transducers";
 import { DEFAULT_FORMAT, format, type FormatOpts } from "./format.js";
 
 export interface ConversionOpts {

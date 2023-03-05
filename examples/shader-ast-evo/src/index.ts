@@ -1,25 +1,16 @@
-import type { ASTNode, ASTOpts } from "@thi.ng/gp";
-import { AST } from "@thi.ng/gp/ast";
-import { ConsoleLogger } from "@thi.ng/logger/console";
-import type { IRandom } from "@thi.ng/random";
-import { SYSTEM } from "@thi.ng/random/system";
-import type { Term, Vec3Sym, Vec3Term } from "@thi.ng/shader-ast";
-import { constantFolding } from "@thi.ng/shader-ast-optimize/contant-folding";
-import { clamp11 } from "@thi.ng/shader-ast-stdlib/math/clamp";
-import { snoise3, snoiseVec3 } from "@thi.ng/shader-ast-stdlib/noise/simplex3";
-import { fragUV } from "@thi.ng/shader-ast-stdlib/screen/uv";
-import { assign } from "@thi.ng/shader-ast/ast/assign";
-import { ret } from "@thi.ng/shader-ast/ast/function";
-import { vec3, vec4 } from "@thi.ng/shader-ast/ast/lit";
-import { add, div, mul, neg, sub } from "@thi.ng/shader-ast/ast/ops";
-import { $ } from "@thi.ng/shader-ast/ast/swizzle";
-import { sym } from "@thi.ng/shader-ast/ast/sym";
+import { AST, ASTNode, ASTOpts } from "@thi.ng/gp";
+import { ConsoleLogger } from "@thi.ng/logger";
+import { IRandom, SYSTEM } from "@thi.ng/random";
 import {
+	$,
 	abs,
 	acos,
+	add,
 	asin,
+	assign,
 	cos,
 	distance,
+	div,
 	exp,
 	fract,
 	inversesqrt,
@@ -27,19 +18,35 @@ import {
 	log,
 	mix,
 	mod,
+	mul,
+	neg,
 	normalize,
 	pow,
+	ret,
 	sin,
 	sqrt,
+	sub,
+	sym,
 	tan,
-} from "@thi.ng/shader-ast/builtin/math";
+	Term,
+	vec3,
+	Vec3Sym,
+	Vec3Term,
+	vec4,
+} from "@thi.ng/shader-ast";
+import { constantFolding } from "@thi.ng/shader-ast-optimize";
 import {
-	type MainImageFn,
+	clamp11,
+	fragUV,
+	snoise3,
+	snoiseVec3,
+} from "@thi.ng/shader-ast-stdlib";
+import { glCanvas, setLogger } from "@thi.ng/webgl";
+import {
 	shaderToy,
+	type MainImageFn,
 	type ShaderToyUniforms,
 } from "@thi.ng/webgl-shadertoy";
-import { glCanvas } from "@thi.ng/webgl/canvas";
-import { setLogger } from "@thi.ng/webgl/logger";
 
 // enable logging to show generated shader code
 setLogger(new ConsoleLogger("webgl"));

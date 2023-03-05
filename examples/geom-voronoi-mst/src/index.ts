@@ -1,31 +1,32 @@
-import { mst } from "@thi.ng/adjacency/mst";
-import { timed } from "@thi.ng/bench/timed";
-import { KdTreeMap } from "@thi.ng/geom-accel/kd-tree-map";
-import { KdTreeSet } from "@thi.ng/geom-accel/kd-tree-set";
+import { mst } from "@thi.ng/adjacency";
+import { timed } from "@thi.ng/bench";
+import {
+	center,
+	closestPoint,
+	group,
+	line,
+	points,
+	polygon,
+	rect,
+	scatter,
+	star,
+	vertices,
+} from "@thi.ng/geom";
+import { KdTreeMap, KdTreeSet } from "@thi.ng/geom-accel";
 import { DVMesh } from "@thi.ng/geom-voronoi";
-import { center } from "@thi.ng/geom/center";
-import { closestPoint } from "@thi.ng/geom/closest-point";
-import { group } from "@thi.ng/geom/group";
-import { line } from "@thi.ng/geom/line";
-import { points } from "@thi.ng/geom/points";
-import { polygon, star } from "@thi.ng/geom/polygon";
-import { rect } from "@thi.ng/geom/rect";
-import { scatter } from "@thi.ng/geom/scatter";
-import { vertices } from "@thi.ng/geom/vertices";
+import { clearDOM, renderOnce } from "@thi.ng/hdom";
 import { canvas } from "@thi.ng/hdom-canvas";
-import { clearDOM } from "@thi.ng/hdom/dom";
-import { renderOnce } from "@thi.ng/hdom/render-once";
-import { fit } from "@thi.ng/math/fit";
-import { samplePoisson } from "@thi.ng/poisson/poisson";
-import { comp } from "@thi.ng/transducers/comp";
-import { map } from "@thi.ng/transducers/map";
-import { mapIndexed } from "@thi.ng/transducers/map-indexed";
-import { mapcat } from "@thi.ng/transducers/mapcat";
-import { push } from "@thi.ng/transducers/push";
-import { transduce } from "@thi.ng/transducers/transduce";
-import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
-import { dist } from "@thi.ng/vectors/dist";
-import { floor } from "@thi.ng/vectors/floor";
+import { fit } from "@thi.ng/math";
+import { samplePoisson } from "@thi.ng/poisson";
+import {
+	comp,
+	map,
+	mapcat,
+	mapIndexed,
+	push,
+	transduce,
+} from "@thi.ng/transducers";
+import { dist, floor, ReadonlyVec, Vec } from "@thi.ng/vectors";
 
 const W = 500;
 const R = W / 2;

@@ -1,10 +1,9 @@
 import type { Fn, IObjectOf } from "@thi.ng/api";
-import { Atom } from "@thi.ng/atom/atom";
-import { defViewUnsafe } from "@thi.ng/atom/view";
-import { isArray } from "@thi.ng/checks/is-array";
-import { start } from "@thi.ng/hdom/start";
+import { Atom, defViewUnsafe } from "@thi.ng/atom";
+import { isArray } from "@thi.ng/checks";
+import { start } from "@thi.ng/hdom";
 import { EventBus, EV_SET_VALUE } from "@thi.ng/interceptors";
-import { TripleStore } from "@thi.ng/rstream-query/store";
+import { TripleStore } from "@thi.ng/rstream-query";
 import type { AppConfig, AppContext, AppViews, ViewSpec } from "./api";
 import * as ev from "./events";
 

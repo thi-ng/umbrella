@@ -1,6 +1,5 @@
-import { start } from "@thi.ng/hdom/start";
-import { getInUnsafe } from "@thi.ng/paths/get-in";
-import { setInUnsafe } from "@thi.ng/paths/set-in";
+import { start } from "@thi.ng/hdom";
+import { getInUnsafe, setInUnsafe } from "@thi.ng/paths";
 
 interface ButtonAttribs {
 	// unique button id / local state path

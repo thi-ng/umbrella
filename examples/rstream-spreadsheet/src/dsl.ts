@@ -1,35 +1,40 @@
 import type { Fn, IObjectOf } from "@thi.ng/api";
-import { defmulti } from "@thi.ng/defmulti/defmulti";
-import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
-import { fit } from "@thi.ng/math/fit";
-import { memoize1 } from "@thi.ng/memoize/memoize1";
+import { defmulti } from "@thi.ng/defmulti";
+import { illegalArgs } from "@thi.ng/errors";
+import { fit } from "@thi.ng/math";
+import { memoize1 } from "@thi.ng/memoize";
+import { fromView } from "@thi.ng/rstream";
 import type { NodeInputSpec, NodeSpec } from "@thi.ng/rstream-graph";
-import { addNode, node } from "@thi.ng/rstream-graph/graph";
-import { fromView } from "@thi.ng/rstream/view";
-import type { ASTNode, Implementations, Str, Sym } from "@thi.ng/sexpr";
-import { parse } from "@thi.ng/sexpr/parse";
-import { runtime } from "@thi.ng/sexpr/runtime";
-import { tokenize } from "@thi.ng/sexpr/tokenize";
-import { Z2 } from "@thi.ng/strings/pad-left";
-import { maybeParseFloat } from "@thi.ng/strings/parse";
-import { charRange } from "@thi.ng/strings/range";
-import type { Reducer } from "@thi.ng/transducers";
-import { add } from "@thi.ng/transducers/add";
-import { assocObj } from "@thi.ng/transducers/assoc-obj";
-import { comp } from "@thi.ng/transducers/comp";
-import { div } from "@thi.ng/transducers/div";
-import { filter } from "@thi.ng/transducers/filter";
-import { map } from "@thi.ng/transducers/map";
-import { mapIndexed } from "@thi.ng/transducers/map-indexed";
-import { mapcat } from "@thi.ng/transducers/mapcat";
-import { max } from "@thi.ng/transducers/max";
-import { mean } from "@thi.ng/transducers/mean";
-import { min } from "@thi.ng/transducers/min";
-import { mul } from "@thi.ng/transducers/mul";
-import { permutations } from "@thi.ng/transducers/permutations";
-import { range } from "@thi.ng/transducers/range";
-import { sub } from "@thi.ng/transducers/sub";
-import { transduce } from "@thi.ng/transducers/transduce";
+import { addNode, node } from "@thi.ng/rstream-graph";
+import {
+	ASTNode,
+	Implementations,
+	parse,
+	runtime,
+	Str,
+	Sym,
+	tokenize,
+} from "@thi.ng/sexpr";
+import { charRange, maybeParseFloat, Z2 } from "@thi.ng/strings";
+import {
+	add,
+	assocObj,
+	comp,
+	div,
+	filter,
+	map,
+	mapcat,
+	mapIndexed,
+	max,
+	mean,
+	min,
+	mul,
+	permutations,
+	range,
+	Reducer,
+	sub,
+	transduce,
+} from "@thi.ng/transducers";
 import { RE_CELL_ID, RE_CELL_RANGE } from "./api";
 import { DB, graph, removeCell } from "./state";
 

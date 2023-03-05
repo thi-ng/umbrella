@@ -1,9 +1,8 @@
-import { polyline } from "@thi.ng/hiccup-canvas/polyline";
-import { fitClamped } from "@thi.ng/math/fit";
-import { canvasPixels } from "@thi.ng/pixel/canvas";
-import { forkJoin } from "@thi.ng/rstream/forkjoin";
-import { reactive } from "@thi.ng/rstream/stream";
-import { bounds } from "@thi.ng/transducers-stats/bounds";
+import { polyline } from "@thi.ng/hiccup-canvas";
+import { fitClamped } from "@thi.ng/math";
+import { canvasPixels } from "@thi.ng/pixel";
+import { forkJoin, reactive } from "@thi.ng/rstream";
+import { bounds } from "@thi.ng/transducers-stats";
 import { NUM_WORKERS, type WorkerJob, type WorkerResult } from "./api";
 import WORKER from "./worker?worker&inline";
 

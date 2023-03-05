@@ -1,6 +1,6 @@
 import type { IObjectOf, Path } from "@thi.ng/api";
-import { defView, defViewUnsafe } from "@thi.ng/atom/view";
-import { start } from "@thi.ng/hdom/start";
+import { defView, defViewUnsafe } from "@thi.ng/atom";
+import { start } from "@thi.ng/hdom";
 import {
 	ensureStateGreaterThan,
 	ensureStateLessThan,

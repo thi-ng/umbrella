@@ -1,23 +1,31 @@
-import type { FloatSym, Vec2Sym } from "@thi.ng/shader-ast";
+import {
+	$xy,
+	assign,
+	cos,
+	defMain,
+	defn,
+	float,
+	FloatSym,
+	min,
+	mul,
+	program,
+	ret,
+	sym,
+	vec2,
+	Vec2Sym,
+	vec3,
+	vec4,
+} from "@thi.ng/shader-ast";
 import { GLSLVersion, targetGLSL } from "@thi.ng/shader-ast-glsl";
 import { canvasRenderer, targetJS } from "@thi.ng/shader-ast-js";
-import { fit1101 } from "@thi.ng/shader-ast-stdlib/math/fit";
-import { aspectCorrectedUV } from "@thi.ng/shader-ast-stdlib/screen/uv";
-import { sdfBox2 } from "@thi.ng/shader-ast-stdlib/sdf/box";
-import { sdfSmoothUnion } from "@thi.ng/shader-ast-stdlib/sdf/smooth-union";
-import { sdfTriangle2 } from "@thi.ng/shader-ast-stdlib/sdf/tri";
-import { assign } from "@thi.ng/shader-ast/ast/assign";
-import { defMain, defn, ret } from "@thi.ng/shader-ast/ast/function";
-import { float, vec2, vec3, vec4 } from "@thi.ng/shader-ast/ast/lit";
-import { mul } from "@thi.ng/shader-ast/ast/ops";
-import { program } from "@thi.ng/shader-ast/ast/scope";
-import { $xy } from "@thi.ng/shader-ast/ast/swizzle";
-import { sym } from "@thi.ng/shader-ast/ast/sym";
-import { cos, min } from "@thi.ng/shader-ast/builtin/math";
-import { compileModel } from "@thi.ng/webgl/buffer";
-import { draw } from "@thi.ng/webgl/draw";
-import { defQuadModel } from "@thi.ng/webgl/geo/quad";
-import { defShader } from "@thi.ng/webgl/shader";
+import {
+	aspectCorrectedUV,
+	fit1101,
+	sdfBox2,
+	sdfSmoothUnion,
+	sdfTriangle2,
+} from "@thi.ng/shader-ast-stdlib";
+import { compileModel, defQuadModel, defShader, draw } from "@thi.ng/webgl";
 
 // set URL hash to "#2d" to enable JS Canvas2D version
 const JS_MODE = location.hash.indexOf("2d") >= 0;

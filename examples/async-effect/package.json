@@ -23,6 +23,7 @@
 	},
 	"thi.ng": {
 		"readme": [
+			"hdom",
 			"interceptors"
 		]
 	},

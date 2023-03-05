@@ -1,11 +1,7 @@
 import type { IObjectOf } from "@thi.ng/api";
-import { defAtom } from "@thi.ng/atom/atom";
-import { defCursor } from "@thi.ng/atom/cursor";
-import { defHistory } from "@thi.ng/atom/history";
-import { defView } from "@thi.ng/atom/view";
-import { start } from "@thi.ng/hdom/start";
-import { map } from "@thi.ng/transducers/map";
-import { pairs } from "@thi.ng/transducers/pairs";
+import { defAtom, defCursor, defHistory, defView } from "@thi.ng/atom";
+import { start } from "@thi.ng/hdom";
+import { map, pairs } from "@thi.ng/transducers";
 
 interface Task {
 	done: boolean;

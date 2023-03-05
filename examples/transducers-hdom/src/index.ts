@@ -1,10 +1,6 @@
-import { fromInterval } from "@thi.ng/rstream/interval";
-import { stream } from "@thi.ng/rstream/stream";
-import { sync } from "@thi.ng/rstream/sync";
+import { fromInterval, stream, sync } from "@thi.ng/rstream";
+import { count, map, scan } from "@thi.ng/transducers";
 import { updateDOM } from "@thi.ng/transducers-hdom";
-import { count } from "@thi.ng/transducers/count";
-import { map } from "@thi.ng/transducers/map";
-import { scan } from "@thi.ng/transducers/scan";
 
 // root component function
 // (using Tachyons CSS classes for styling)

@@ -1,10 +1,7 @@
-import { group } from "@thi.ng/hiccup-svg/group";
-import { rect } from "@thi.ng/hiccup-svg/rect";
-import { svg } from "@thi.ng/hiccup-svg/svg";
+import { group, rect, svg } from "@thi.ng/hiccup-svg";
 import type { EventBus } from "@thi.ng/interceptors";
-import { initGraph, node } from "@thi.ng/rstream-graph/graph";
-import { map } from "@thi.ng/transducers/map";
-import { range2d } from "@thi.ng/transducers/range2d";
+import { initGraph, node } from "@thi.ng/rstream-graph";
+import { map, range2d } from "@thi.ng/transducers";
 import * as ev from "./events";
 import * as paths from "./paths";
 

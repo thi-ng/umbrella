@@ -1,12 +1,19 @@
 import type { IObjectOf } from "@thi.ng/api";
-import { mat23to44 } from "@thi.ng/matrices/m23-m44";
-import type { GLMat4, GLVec, ModelSpec } from "@thi.ng/webgl";
-import { TextureFilter } from "@thi.ng/webgl/api/texture";
-import { draw } from "@thi.ng/webgl/draw";
-import { defFBO, FBO } from "@thi.ng/webgl/fbo";
-import { defShader, Shader } from "@thi.ng/webgl/shader";
-import { FX_SHADER_SPEC_UV } from "@thi.ng/webgl/shaders/pipeline";
-import { defTexture, Texture } from "@thi.ng/webgl/texture";
+import { mat23to44 } from "@thi.ng/matrices";
+import {
+	defFBO,
+	defShader,
+	defTexture,
+	draw,
+	FBO,
+	FX_SHADER_SPEC_UV,
+	GLMat4,
+	GLVec,
+	ModelSpec,
+	Shader,
+	Texture,
+	TextureFilter,
+} from "@thi.ng/webgl";
 import type { AppCtx, OpSpec, UserUniforms } from "./api";
 
 export class OpNode<T extends UserUniforms> {

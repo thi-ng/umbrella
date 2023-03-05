@@ -1,4 +1,4 @@
-import { reactive } from "@thi.ng/rstream/stream";
+import { reactive } from "@thi.ng/rstream";
 import type { AppState } from "./api";
 
 /**

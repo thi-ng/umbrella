@@ -1,7 +1,6 @@
 import type { Comparator } from "@thi.ng/api";
-import type { LCH } from "@thi.ng/color/lch/lch";
-import { compareByKey, compareByKeys2 } from "@thi.ng/compare/keys";
-import { compareNumDesc } from "@thi.ng/compare/numeric";
+import type { LCH } from "@thi.ng/color";
+import { compareByKey, compareByKeys2, compareNumDesc } from "@thi.ng/compare";
 
 export type SortMode = "hue" | "luma" | "area";
 

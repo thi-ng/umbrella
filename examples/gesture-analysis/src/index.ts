@@ -1,28 +1,27 @@
-import { peek } from "@thi.ng/arrays/peek";
-import { polyline as gPolyline } from "@thi.ng/geom/polyline";
-import { resample } from "@thi.ng/geom/resample";
-import { vertices } from "@thi.ng/geom/vertices";
-import { circle } from "@thi.ng/hiccup-svg/circle";
-import { group } from "@thi.ng/hiccup-svg/group";
-import { polyline } from "@thi.ng/hiccup-svg/polyline";
-import { svg } from "@thi.ng/hiccup-svg/svg";
-import { type GestureEvent, gestureStream } from "@thi.ng/rstream-gestures";
-import { fromIterable } from "@thi.ng/rstream/iterable";
-import { merge } from "@thi.ng/rstream/merge";
-import { sync } from "@thi.ng/rstream/sync";
+import { peek } from "@thi.ng/arrays";
+import {
+	circle,
+	group,
+	polyline as gPolyline,
+	polyline,
+	resample,
+	svgDoc,
+	vertices,
+} from "@thi.ng/geom";
+import { fromIterable, merge, sync } from "@thi.ng/rstream";
+import { gestureStream, type GestureEvent } from "@thi.ng/rstream-gestures";
+import {
+	comp,
+	filter,
+	map,
+	multiplexObj,
+	noop,
+	partition,
+	push,
+	transduce,
+} from "@thi.ng/transducers";
 import { updateDOM } from "@thi.ng/transducers-hdom";
-import { comp } from "@thi.ng/transducers/comp";
-import { filter } from "@thi.ng/transducers/filter";
-import { map } from "@thi.ng/transducers/map";
-import { multiplexObj } from "@thi.ng/transducers/multiplex-obj";
-import { noop } from "@thi.ng/transducers/noop";
-import { partition } from "@thi.ng/transducers/partition";
-import { push } from "@thi.ng/transducers/push";
-import { transduce } from "@thi.ng/transducers/transduce";
-import type { Vec } from "@thi.ng/vectors";
-import { angleBetween2 } from "@thi.ng/vectors/angle-between";
-import { mixN2 } from "@thi.ng/vectors/mixn";
-import { sub2 } from "@thi.ng/vectors/sub";
+import { angleBetween2, mixN2, sub2, Vec } from "@thi.ng/vectors";
 import { CTA } from "./config";
 
 /**
@@ -40,12 +39,15 @@ const app = ({
 	processed: { path: Vec[]; corners: Vec[] };
 }) => [
 	"div",
-	svg(
+	svgDoc(
 		{
 			width: window.innerWidth,
 			height: window.innerHeight,
+			viewBox: `0 0 ${window.innerWidth} ${window.innerHeight}`,
 			stroke: "none",
 			fill: "none",
+			// convert shape tree into DOM compatible format
+			convert: true,
 		},
 		path(raw || [], processed.path, processed.corners || [])
 	),
@@ -66,16 +68,15 @@ const app = ({
  * @param corners - rray of corner points
  */
 const path = (raw: Vec[], sampled: Vec[], corners: Vec[]) =>
-	group(
-		{ __diff: false },
+	group({ __diff: false }, [
 		polyline(raw, { stroke: "#444" }),
-		map((p) => circle(p, 2, { fill: "#444" }), raw),
+		...map((p) => circle(p, 2, { fill: "#444" }), raw),
 		polyline(sampled, { stroke: "#fff" }),
-		map((p) => circle(p, 2, { fill: "#fff" }), sampled),
-		map((p) => circle(p, 6, { fill: "#cf0" }), corners),
+		...map((p) => circle(p, 2, { fill: "#fff" }), sampled),
+		...map((p) => circle(p, 6, { fill: "#cf0" }), corners),
 		circle(sampled[0], 6, { fill: "#f0c" }),
-		circle(peek(sampled), 6, { fill: "#0cf" })
-	);
+		circle(peek(sampled), 6, { fill: "#0cf" }),
+	]);
 
 /**
  * Re-samples given polyline at given uniform distance. Returns array of

@@ -1,19 +1,11 @@
+import { asPolygon, circle, pointInside, rect } from "@thi.ng/geom";
 import type { IShape } from "@thi.ng/geom-api";
-import { asPolygon } from "@thi.ng/geom/as-polygon";
-import { circle } from "@thi.ng/geom/circle";
-import { pointInside } from "@thi.ng/geom/point-inside";
-import { rect } from "@thi.ng/geom/rect";
+import { start } from "@thi.ng/hdom";
 import { canvas } from "@thi.ng/hdom-canvas";
-import { start } from "@thi.ng/hdom/start";
-import { HALF_PI, PI } from "@thi.ng/math/api";
-import type { NodeInfo } from "@thi.ng/scenegraph";
-import { Node2D } from "@thi.ng/scenegraph/node2";
-import { cycle } from "@thi.ng/transducers/cycle";
-import { map } from "@thi.ng/transducers/map";
-import { range } from "@thi.ng/transducers/range";
-import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
-import { cartesian2 } from "@thi.ng/vectors/cartesian";
-import { mulN2 } from "@thi.ng/vectors/muln";
+import { HALF_PI, PI } from "@thi.ng/math";
+import { Node2D, NodeInfo } from "@thi.ng/scenegraph";
+import { cycle, map, range } from "@thi.ng/transducers";
+import { cartesian2, mulN2, ReadonlyVec, Vec } from "@thi.ng/vectors";
 
 /**
  * Specialized scene graph node using @thi.ng/geom shapes as body.

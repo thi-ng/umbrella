@@ -1,5 +1,5 @@
 import type { IntBuffer } from "@thi.ng/pixel";
-import { sidechainPartitionRAF } from "@thi.ng/rstream/sidechain-partition";
+import { sidechainPartitionRAF } from "@thi.ng/rstream";
 import { map } from "@thi.ng/transducers/map";
 import { updateDOM } from "@thi.ng/transducers-hdom";
 import {

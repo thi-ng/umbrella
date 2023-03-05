@@ -1,15 +1,12 @@
-import { downloadCanvas } from "@thi.ng/dl-asset/canvas";
+import { downloadCanvas } from "@thi.ng/dl-asset";
 import { equiv } from "@thi.ng/equiv";
-import { canvas2D } from "@thi.ng/hdom-components/canvas";
-import { fit } from "@thi.ng/math/fit";
-import { mix } from "@thi.ng/math/mix";
+import { canvas2D } from "@thi.ng/hdom-components";
+import { fit, mix } from "@thi.ng/math";
+import { Stream, stream, sync, tunnel } from "@thi.ng/rstream";
 import { gestureStream } from "@thi.ng/rstream-gestures";
-import { Stream, stream } from "@thi.ng/rstream/stream";
-import { sync } from "@thi.ng/rstream/sync";
-import { tunnel } from "@thi.ng/rstream/tunnel";
-import { Z4 } from "@thi.ng/strings/pad-left";
+import { Z4 } from "@thi.ng/strings";
+import { map } from "@thi.ng/transducers";
 import { updateDOM } from "@thi.ng/transducers-hdom";
-import { map } from "@thi.ng/transducers/map";
 import WORKER from "./worker?worker&inline";
 
 // if enabled, auto-zoom out & export frames

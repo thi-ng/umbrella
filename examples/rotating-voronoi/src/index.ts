@@ -1,29 +1,29 @@
-import { downloadWithMime } from "@thi.ng/dl-asset/raw";
-import { simplify } from "@thi.ng/geom-resample/simplify";
+import { downloadWithMime } from "@thi.ng/dl-asset";
+import {
+	asCubic,
+	asSvg,
+	group,
+	pathFromCubics,
+	points,
+	polygon,
+	rect,
+	svgDoc,
+	vertices,
+} from "@thi.ng/geom";
+import { simplify } from "@thi.ng/geom-resample";
 import { DVMesh } from "@thi.ng/geom-voronoi";
-import { asCubic } from "@thi.ng/geom/as-cubic";
-import { asSvg, svgDoc } from "@thi.ng/geom/as-svg";
-import { group } from "@thi.ng/geom/group";
-import { pathFromCubics } from "@thi.ng/geom/path";
-import { points } from "@thi.ng/geom/points";
-import { polygon } from "@thi.ng/geom/polygon";
-import { rect } from "@thi.ng/geom/rect";
-import { vertices } from "@thi.ng/geom/vertices";
 import { canvas } from "@thi.ng/hdom-canvas";
-import { PI, TAU } from "@thi.ng/math/api";
-import { SYSTEM } from "@thi.ng/random/system";
+import { PI, TAU } from "@thi.ng/math";
+import { SYSTEM } from "@thi.ng/random";
+import { map, mapcat, normRange } from "@thi.ng/transducers";
 import { updateDOM } from "@thi.ng/transducers-hdom";
-import { map } from "@thi.ng/transducers/map";
-import { mapcat } from "@thi.ng/transducers/mapcat";
-import { normRange } from "@thi.ng/transducers/norm-range";
-import type { Vec } from "@thi.ng/vectors";
-import { cartesian2 } from "@thi.ng/vectors/cartesian";
+import { cartesian2, Vec } from "@thi.ng/vectors";
 import { checkbox, slider } from "./controllers";
 import {
-	type AppState,
 	animationStream,
 	mainStream,
 	scaleStream,
+	type AppState,
 } from "./stream-state";
 
 const edge = window.innerWidth * 0.7;

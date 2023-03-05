@@ -1,22 +1,20 @@
 import type { IObjectOf } from "@thi.ng/api";
-import { isMobile } from "@thi.ng/checks/is-mobile";
-import { isString } from "@thi.ng/checks/is-string";
-import type {
+import { isMobile, isString } from "@thi.ng/checks";
+import {
 	ColorRangePreset,
+	colorsFromTheme,
 	ColorThemePart,
 	CSSColorName,
+	distCIEDE2000,
+	lch,
+	proximity,
+	sort,
+	type LCH,
 } from "@thi.ng/color";
-import { colorsFromTheme } from "@thi.ng/color/color-range";
-import { distCIEDE2000 } from "@thi.ng/color/distance";
-import { type LCH, lch } from "@thi.ng/color/lch/lch";
-import { proximity, sort } from "@thi.ng/color/sort";
-import { SYSTEM } from "@thi.ng/random/system";
-import { XsAdd } from "@thi.ng/random/xsadd";
-import { debounce } from "@thi.ng/rstream/debounce";
-import { reactive, stream, Stream } from "@thi.ng/rstream/stream";
-import { sync } from "@thi.ng/rstream/sync";
-import { map } from "@thi.ng/transducers/map";
-import { type MainInputs, type MainOutputs, RANGE_IDs } from "./api";
+import { SYSTEM, XsAdd } from "@thi.ng/random";
+import { debounce, reactive, stream, Stream, sync } from "@thi.ng/rstream";
+import { map } from "@thi.ng/transducers";
+import { RANGE_IDs, type MainInputs, type MainOutputs } from "./api";
 import { downloadACT } from "./palette";
 import { attachSerializer, initFromHash } from "./serialize";
 

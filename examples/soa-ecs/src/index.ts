@@ -1,38 +1,48 @@
 import { adaptDPI } from "@thi.ng/adapt-dpi";
-import type { GroupInfo, GroupTuple } from "@thi.ng/ecs";
-import { ECS } from "@thi.ng/ecs/ecs";
-import { canvasWebGL } from "@thi.ng/hdom-components/canvas";
-import { start } from "@thi.ng/hdom/start";
-import { fract } from "@thi.ng/math/prec";
-import { ortho } from "@thi.ng/matrices/ortho";
-import type { Mat4Sym, Vec2Sym } from "@thi.ng/shader-ast";
-import { assign } from "@thi.ng/shader-ast/ast/assign";
-import { defMain } from "@thi.ng/shader-ast/ast/function";
-import { float, vec4 } from "@thi.ng/shader-ast/ast/lit";
-import { mul } from "@thi.ng/shader-ast/ast/ops";
-import { $y } from "@thi.ng/shader-ast/ast/swizzle";
-import { mix } from "@thi.ng/shader-ast/builtin/math";
-import { add2 } from "@thi.ng/vectors/add";
-import { addS2 } from "@thi.ng/vectors/adds";
-import { magSq2 } from "@thi.ng/vectors/magsq";
-import { magSqS2 } from "@thi.ng/vectors/magsqs";
-import { mixN2 } from "@thi.ng/vectors/mixn";
-import { mixNS2 } from "@thi.ng/vectors/mixns";
-import { mulN2 } from "@thi.ng/vectors/muln";
-import { mulNS2 } from "@thi.ng/vectors/mulns";
-import { normalize2 } from "@thi.ng/vectors/normalize";
-import { normalizeS2 } from "@thi.ng/vectors/normalizes";
-import { randNorm } from "@thi.ng/vectors/random";
-import { randNormS2 } from "@thi.ng/vectors/randoms";
-import { rotate } from "@thi.ng/vectors/rotate";
-import { rotateS2 } from "@thi.ng/vectors/rotates";
-import { setVN4 } from "@thi.ng/vectors/setvn";
-import type { GLMat4, GLVec4, ModelSpec, ShaderSpec } from "@thi.ng/webgl";
-import { BLEND_ADD } from "@thi.ng/webgl/api/blend";
-import { DrawMode } from "@thi.ng/webgl/api/model";
-import { compileModel } from "@thi.ng/webgl/buffer";
-import { draw } from "@thi.ng/webgl/draw";
-import { defShader } from "@thi.ng/webgl/shader";
+import { ECS, GroupInfo, GroupTuple } from "@thi.ng/ecs";
+import { start } from "@thi.ng/hdom";
+import { canvasWebGL } from "@thi.ng/hdom-components";
+import { fract } from "@thi.ng/math";
+import { ortho } from "@thi.ng/matrices";
+import {
+	$y,
+	assign,
+	defMain,
+	float,
+	Mat4Sym,
+	mix,
+	mul,
+	Vec2Sym,
+	vec4,
+} from "@thi.ng/shader-ast";
+import {
+	add2,
+	addS2,
+	magSq2,
+	magSqS2,
+	mixN2,
+	mixNS2,
+	mulN2,
+	mulNS2,
+	normalize2,
+	normalizeS2,
+	randNorm,
+	randNormS2,
+	rotate,
+	rotateS2,
+	setVN4,
+} from "@thi.ng/vectors";
+import {
+	BLEND_ADD,
+	compileModel,
+	defShader,
+	draw,
+	DrawMode,
+	GLMat4,
+	GLVec4,
+	ModelSpec,
+	ShaderSpec,
+} from "@thi.ng/webgl";
 
 const BATCH_UPDATE = true;
 

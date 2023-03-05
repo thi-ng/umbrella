@@ -1,9 +1,6 @@
-import { imagePromise } from "@thi.ng/pixel/canvas";
-import { RGB565 } from "@thi.ng/pixel/format/rgb565";
-import { intBufferFromImage } from "@thi.ng/pixel/int";
-import { canvas, setAt } from "@thi.ng/text-canvas/canvas";
-import { formatCanvas } from "@thi.ng/text-canvas/format";
-import { FMT_HTML565 } from "@thi.ng/text-format/html";
+import { imagePromise, intBufferFromImage, RGB565 } from "@thi.ng/pixel";
+import { canvas, formatCanvas, setAt } from "@thi.ng/text-canvas";
+import { FMT_HTML565 } from "@thi.ng/text-format";
 import IMG from "./test.png";
 
 // text canvas size

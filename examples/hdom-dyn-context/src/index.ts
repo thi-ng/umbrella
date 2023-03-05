@@ -1,6 +1,5 @@
-import { defAtom } from "@thi.ng/atom/atom";
-import { defView } from "@thi.ng/atom/view";
-import { start } from "@thi.ng/hdom/start";
+import { defAtom, defView } from "@thi.ng/atom";
+import { start } from "@thi.ng/hdom";
 
 // theme definitions
 const THEMES = [

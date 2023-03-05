@@ -1,10 +1,14 @@
 import type { Fn, IObjectOf } from "@thi.ng/api";
-import { Atom, defAtom } from "@thi.ng/atom/atom";
-import { defCursorUnsafe } from "@thi.ng/atom/cursor";
-import { defHistory, History } from "@thi.ng/atom/history";
-import { defViewUnsafe } from "@thi.ng/atom/view";
-import { isArray } from "@thi.ng/checks/is-array";
-import { start } from "@thi.ng/hdom/start";
+import {
+	Atom,
+	defAtom,
+	defCursorUnsafe,
+	defHistory,
+	defViewUnsafe,
+	History,
+} from "@thi.ng/atom";
+import { isArray } from "@thi.ng/checks";
+import { start } from "@thi.ng/hdom";
 import { EventBus } from "@thi.ng/interceptors";
 import type { AppConfig, AppContext, AppViews, ViewSpec } from "./api";
 import { initDataflow } from "./dataflow";

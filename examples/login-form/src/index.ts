@@ -1,9 +1,8 @@
 import type { Nullable, Path } from "@thi.ng/api";
-import { defAtom } from "@thi.ng/atom/atom";
-import { defView } from "@thi.ng/atom/view";
+import { defAtom, defView } from "@thi.ng/atom";
 import { exposeGlobal } from "@thi.ng/expose";
-import { start } from "@thi.ng/hdom/start";
-import { capitalize } from "@thi.ng/strings/case";
+import { start } from "@thi.ng/hdom";
+import { capitalize } from "@thi.ng/strings";
 
 interface State {
 	state: string;

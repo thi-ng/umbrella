@@ -1,11 +1,14 @@
 import { asInt, NUM_THEMES } from "@thi.ng/color-palettes";
-import { ATKINSON, ditherWith } from "@thi.ng/pixel-dither";
-import { orderedDither } from "@thi.ng/pixel-dither/ordered";
-import { canvas2d, imagePromise } from "@thi.ng/pixel/canvas";
-import { ARGB8888 } from "@thi.ng/pixel/format/argb8888";
-import { defIndexed } from "@thi.ng/pixel/format/indexed";
-import { IntBuffer, intBufferFromImage } from "@thi.ng/pixel/int";
-import { range } from "@thi.ng/pixel/range";
+import {
+	ARGB8888,
+	canvas2d,
+	defIndexed,
+	imagePromise,
+	IntBuffer,
+	intBufferFromImage,
+	range,
+} from "@thi.ng/pixel";
+import { ATKINSON, ditherWith, orderedDither } from "@thi.ng/pixel-dither";
 import IMG from "./test.jpg";
 
 const ORDERED = false;

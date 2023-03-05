@@ -1,23 +1,25 @@
-import { sin } from "@thi.ng/dsp/osc-sin";
-import { asCubic } from "@thi.ng/geom/as-cubic";
-import { svgDoc } from "@thi.ng/geom/as-svg";
-import { circle } from "@thi.ng/geom/circle";
-import { group } from "@thi.ng/geom/group";
-import { line } from "@thi.ng/geom/line";
-import { pathFromCubics } from "@thi.ng/geom/path";
-import { star } from "@thi.ng/geom/polygon";
-import { withAttribs } from "@thi.ng/geom/with-attribs";
-import { fromRAF } from "@thi.ng/rstream/raf";
-import { reactive, Stream } from "@thi.ng/rstream/stream";
-import { sync } from "@thi.ng/rstream/sync";
+import { sin } from "@thi.ng/dsp";
+import {
+	asCubic,
+	circle,
+	group,
+	line,
+	pathFromCubics,
+	star,
+	svgDoc,
+	withAttribs,
+} from "@thi.ng/geom";
+import { fromRAF, reactive, Stream, sync } from "@thi.ng/rstream";
+import {
+	comp,
+	iterator,
+	map,
+	mapcat,
+	partition,
+	reducer,
+	scan,
+} from "@thi.ng/transducers";
 import { updateDOM } from "@thi.ng/transducers-hdom";
-import { comp } from "@thi.ng/transducers/comp";
-import { iterator } from "@thi.ng/transducers/iterator";
-import { map } from "@thi.ng/transducers/map";
-import { mapcat } from "@thi.ng/transducers/mapcat";
-import { partition } from "@thi.ng/transducers/partition";
-import { reducer } from "@thi.ng/transducers/reduce";
-import { scan } from "@thi.ng/transducers/scan";
 
 const BUTTONS = {
 	blue: "bg-blue white hover-bg-light-blue hover-navy",

@@ -1,9 +1,9 @@
 import type { Fn, IObjectOf, NumOrString, Path } from "@thi.ng/api";
 import type { ReadonlyAtom } from "@thi.ng/atom";
-import { isString } from "@thi.ng/checks/is-string";
-import { appLink } from "@thi.ng/hdom-components/link";
+import { isString } from "@thi.ng/checks";
+import { appLink } from "@thi.ng/hdom-components";
 import { EventBus, EV_SET_VALUE, EV_TOGGLE_VALUE } from "@thi.ng/interceptors";
-import { getInUnsafe } from "@thi.ng/paths/get-in";
+import { getInUnsafe } from "@thi.ng/paths";
 
 export interface BaseContext {
 	bus: EventBus;

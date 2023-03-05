@@ -1,20 +1,16 @@
 import type { Fn } from "@thi.ng/api";
-import { setIn } from "@thi.ng/paths/set-in";
-import { floatBufferFromImage } from "@thi.ng/pixel/float";
-import { FLOAT_GRAY } from "@thi.ng/pixel/format/float-gray";
-import type { ISubscriber } from "@thi.ng/rstream";
-import { pubsub } from "@thi.ng/rstream/pubsub";
-import { stream } from "@thi.ng/rstream/stream";
-import { trace } from "@thi.ng/rstream/trace";
+import { setIn } from "@thi.ng/paths";
+import { floatBufferFromImage, FLOAT_GRAY } from "@thi.ng/pixel";
+import { ISubscriber, pubsub, stream, trace } from "@thi.ng/rstream";
 import type { Transducer } from "@thi.ng/transducers";
 import {
-	type Event,
-	type EventType,
-	type EventTypeMap,
 	SET_IMAGE,
 	SET_KERNEL_OFFSET,
 	SET_KERNEL_WIDTH,
 	UPDATE_IMAGE,
+	type Event,
+	type EventType,
+	type EventTypeMap,
 } from "./api";
 import { state } from "./state";
 import { adaptiveThreshold } from "./threshold";

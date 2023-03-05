@@ -1,16 +1,18 @@
 import type { Fn } from "@thi.ng/api";
+import { polygon } from "@thi.ng/geom";
 import { isolines, setBorder } from "@thi.ng/geom-isoline";
-import { polygon } from "@thi.ng/geom/polygon";
+import { start } from "@thi.ng/hdom";
 import { canvas } from "@thi.ng/hdom-canvas";
-import { start } from "@thi.ng/hdom/start";
-import { TAU } from "@thi.ng/math/api";
-import { comp } from "@thi.ng/transducers/comp";
-import { iterator } from "@thi.ng/transducers/iterator";
-import { map } from "@thi.ng/transducers/map";
-import { mapIndexed } from "@thi.ng/transducers/map-indexed";
-import { mapcat } from "@thi.ng/transducers/mapcat";
-import { range } from "@thi.ng/transducers/range";
-import { range2d } from "@thi.ng/transducers/range2d";
+import { TAU } from "@thi.ng/math";
+import {
+	comp,
+	iterator,
+	map,
+	mapcat,
+	mapIndexed,
+	range,
+	range2d,
+} from "@thi.ng/transducers";
 import type { Vec } from "@thi.ng/vectors";
 
 const W = 100;

@@ -1,4 +1,4 @@
-import { map } from "@thi.ng/transducers/map";
+import { map } from "@thi.ng/transducers";
 import type { AppContext } from "../api";
 
 const row = (ctx: AppContext, body: Iterable<any>) => [

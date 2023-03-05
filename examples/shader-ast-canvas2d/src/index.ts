@@ -1,13 +1,24 @@
-import { targetGLSL } from "@thi.ng/shader-ast-glsl/target";
+import {
+	$x,
+	$y,
+	add,
+	cos,
+	defn,
+	div,
+	dot,
+	float,
+	FloatSym,
+	mul,
+	ret,
+	sin,
+	sym,
+	Vec2Sym,
+	vec3,
+	vec4,
+} from "@thi.ng/shader-ast";
+import { targetGLSL } from "@thi.ng/shader-ast-glsl";
 import { canvasRenderer, targetJS } from "@thi.ng/shader-ast-js";
-import { fit0111, fit1101 } from "@thi.ng/shader-ast-stdlib/math/fit";
-import type { FloatSym, Vec2Sym } from "@thi.ng/shader-ast/api/syms";
-import { defn, ret } from "@thi.ng/shader-ast/ast/function";
-import { float, vec3, vec4 } from "@thi.ng/shader-ast/ast/lit";
-import { add, div, mul } from "@thi.ng/shader-ast/ast/ops";
-import { $x, $y } from "@thi.ng/shader-ast/ast/swizzle";
-import { sym } from "@thi.ng/shader-ast/ast/sym";
-import { cos, dot, sin } from "@thi.ng/shader-ast/builtin/math";
+import { fit0111, fit1101 } from "@thi.ng/shader-ast-stdlib";
 
 const js = targetJS();
 const gl = targetGLSL();

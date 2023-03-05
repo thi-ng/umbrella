@@ -1,9 +1,12 @@
-import { canvas2d, imagePromise } from "@thi.ng/pixel/canvas";
-import { GRAY_ALPHA8 } from "@thi.ng/pixel/format/gray-alpha8";
-import { GRAY8 } from "@thi.ng/pixel/format/gray8";
-import { RGB565 } from "@thi.ng/pixel/format/rgb565";
-import { intBufferFromImage } from "@thi.ng/pixel/int";
-import { SRC_OVER_I } from "@thi.ng/porter-duff/porter-duff";
+import {
+	canvas2d,
+	GRAY8,
+	GRAY_ALPHA8,
+	imagePromise,
+	intBufferFromImage,
+	RGB565,
+} from "@thi.ng/pixel";
+import { SRC_OVER_I } from "@thi.ng/porter-duff";
 import IMG from "./haystack.jpg";
 import LOGO from "./logo-64.png";
 

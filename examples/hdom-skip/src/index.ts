@@ -1,4 +1,4 @@
-import { start } from "@thi.ng/hdom/start";
+import { start } from "@thi.ng/hdom";
 
 const timer = (period: number, name = `${period}ms`) => {
 	return <any>{

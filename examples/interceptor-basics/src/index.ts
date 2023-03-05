@@ -1,12 +1,12 @@
-import { defAtom } from "@thi.ng/atom/atom";
-import { start } from "@thi.ng/hdom/start";
+import { defAtom } from "@thi.ng/atom";
+import { start } from "@thi.ng/hdom";
 import {
 	dispatchNow,
 	EventBus,
 	FX_STATE,
 	valueUpdater,
 } from "@thi.ng/interceptors";
-import { choices } from "@thi.ng/transducers/choices";
+import { choices } from "@thi.ng/transducers";
 
 // infinite iterator of random color choices
 const colors = choices(["cyan", "yellow", "magenta", "chartreuse"]);

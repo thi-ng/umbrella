@@ -1,7 +1,7 @@
-import { start } from "@thi.ng/hdom/start";
-import { SYSTEM } from "@thi.ng/random/system";
-import { U24 } from "@thi.ng/strings/radix";
-import { repeatedly } from "@thi.ng/transducers/repeatedly";
+import { start } from "@thi.ng/hdom";
+import { SYSTEM } from "@thi.ng/random";
+import { U24 } from "@thi.ng/strings";
+import { repeatedly } from "@thi.ng/transducers";
 
 const width = window.innerWidth;
 const height = window.innerHeight;

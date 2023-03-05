@@ -1,21 +1,30 @@
-import { floatBuffer, FLOAT_GRAY } from "@thi.ng/pixel";
-import { canvas2d } from "@thi.ng/pixel/canvas";
-import type { Vec2Sym, Vec4Sym } from "@thi.ng/shader-ast";
-import { clamp01 } from "@thi.ng/shader-ast-stdlib/math/clamp";
-import { fit1101 } from "@thi.ng/shader-ast-stdlib/math/fit";
-import { fragUV } from "@thi.ng/shader-ast-stdlib/screen/uv";
-import { assign } from "@thi.ng/shader-ast/ast/assign";
-import { defMain } from "@thi.ng/shader-ast/ast/function";
-import { vec3, vec4 } from "@thi.ng/shader-ast/ast/lit";
-import { mul, sub } from "@thi.ng/shader-ast/ast/ops";
-import { $x, $xyz } from "@thi.ng/shader-ast/ast/swizzle";
-import { sym } from "@thi.ng/shader-ast/ast/sym";
-import { fract, length, pow, sin } from "@thi.ng/shader-ast/builtin/math";
-import { texture } from "@thi.ng/shader-ast/builtin/texture";
-import { TextureFormat, TextureType } from "@thi.ng/webgl/api/texture";
-import { glCanvas } from "@thi.ng/webgl/canvas";
-import { defMultiPass } from "@thi.ng/webgl/multipass";
-import { readTexture } from "@thi.ng/webgl/readpixels";
+import { canvas2d, floatBuffer, FLOAT_GRAY } from "@thi.ng/pixel";
+import {
+	$x,
+	$xyz,
+	assign,
+	defMain,
+	fract,
+	length,
+	mul,
+	pow,
+	sin,
+	sub,
+	sym,
+	texture,
+	Vec2Sym,
+	vec3,
+	vec4,
+	Vec4Sym,
+} from "@thi.ng/shader-ast";
+import { clamp01, fit1101, fragUV } from "@thi.ng/shader-ast-stdlib";
+import {
+	defMultiPass,
+	glCanvas,
+	readTexture,
+	TextureFormat,
+	TextureType,
+} from "@thi.ng/webgl";
 
 // create WebGL canvas
 const canvas = glCanvas({

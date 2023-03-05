@@ -1,7 +1,7 @@
 import type { Nullable } from "@thi.ng/api";
-import { mergeDeepObj } from "@thi.ng/associative/merge-deep";
-import { serialize } from "@thi.ng/hiccup/serialize";
-import { map } from "@thi.ng/transducers/map";
+import { mergeDeepObj } from "@thi.ng/associative";
+import { serialize } from "@thi.ng/hiccup";
+import { map } from "@thi.ng/transducers";
 import type { AppContext, HTMLDoc } from "../common/api";
 import { DEFAULT_DOC } from "../common/config";
 

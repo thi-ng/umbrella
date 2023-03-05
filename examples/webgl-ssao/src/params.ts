@@ -1,10 +1,6 @@
 import type { IObjectOf } from "@thi.ng/api";
-import { reactive, Stream } from "@thi.ng/rstream/stream";
-import { assocObj } from "@thi.ng/transducers/assoc-obj";
-import { map } from "@thi.ng/transducers/map";
-import { pairs } from "@thi.ng/transducers/pairs";
-import { push } from "@thi.ng/transducers/push";
-import { transduce } from "@thi.ng/transducers/transduce";
+import { reactive, Stream } from "@thi.ng/rstream";
+import { assocObj, map, pairs, push, transduce } from "@thi.ng/transducers";
 
 const slider = (label: string, attribs: any, stream: Stream<number>) => () =>
 	[

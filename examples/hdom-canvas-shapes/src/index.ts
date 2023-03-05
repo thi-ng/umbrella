@@ -1,25 +1,16 @@
-import { hsv } from "@thi.ng/color/hsv/hsv";
-import { downloadWithMime } from "@thi.ng/dl-asset/raw";
-import { pathBuilder } from "@thi.ng/geom/path-builder";
-import { points } from "@thi.ng/geom/points";
+import { hsv } from "@thi.ng/color";
+import { downloadWithMime } from "@thi.ng/dl-asset";
+import { pathBuilder, points } from "@thi.ng/geom";
 import { canvas, normalizeTree } from "@thi.ng/hdom-canvas";
-import { dropdown } from "@thi.ng/hdom-components/dropdown";
-import { svg } from "@thi.ng/hiccup-svg/svg";
-import { COMMENT } from "@thi.ng/hiccup/api";
-import { serialize } from "@thi.ng/hiccup/serialize";
-import { sincos } from "@thi.ng/math/angle";
-import { concat } from "@thi.ng/matrices/concat";
-import { skewX23 } from "@thi.ng/matrices/skew";
-import { translation23 } from "@thi.ng/matrices/translation";
-import type { ISubscriber } from "@thi.ng/rstream";
-import { fromRAF } from "@thi.ng/rstream/raf";
-import { stream } from "@thi.ng/rstream/stream";
-import { sync } from "@thi.ng/rstream/sync";
+import { dropdown } from "@thi.ng/hdom-components";
+import { COMMENT, serialize } from "@thi.ng/hiccup";
+import { svg } from "@thi.ng/hiccup-svg";
+import { sincos } from "@thi.ng/math";
+import { concat, skewX23, translation23 } from "@thi.ng/matrices";
+import { fromRAF, ISubscriber, stream, sync } from "@thi.ng/rstream";
+import { map, range, repeatedly } from "@thi.ng/transducers";
 import { updateDOM } from "@thi.ng/transducers-hdom";
-import { map } from "@thi.ng/transducers/map";
-import { range } from "@thi.ng/transducers/range";
-import { repeatedly } from "@thi.ng/transducers/repeatedly";
-import { addN } from "@thi.ng/vectors/addn";
+import { addN } from "@thi.ng/vectors";
 import logo from "./logo-64.png";
 
 // for testing SVG conversion

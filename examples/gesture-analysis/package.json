@@ -14,7 +14,6 @@
 	"dependencies": {
 		"@thi.ng/arrays": "workspace:^",
 		"@thi.ng/geom": "workspace:^",
-		"@thi.ng/hiccup-svg": "workspace:^",
 		"@thi.ng/rstream": "workspace:^",
 		"@thi.ng/rstream-gestures": "workspace:^",
 		"@thi.ng/transducers": "workspace:^",

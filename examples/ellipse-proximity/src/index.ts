@@ -1,14 +1,10 @@
-import { closestPointEllipse } from "@thi.ng/geom-closest-point/ellipse";
+import { closestPointEllipse } from "@thi.ng/geom-closest-point";
+import { $compile } from "@thi.ng/rdom";
 import { $canvas } from "@thi.ng/rdom-canvas";
-import { $compile } from "@thi.ng/rdom/compile";
+import { merge, reactive } from "@thi.ng/rstream";
 import { gestureStream } from "@thi.ng/rstream-gestures";
-import { merge } from "@thi.ng/rstream/merge";
-import { reactive } from "@thi.ng/rstream/stream";
-import { mapcat } from "@thi.ng/transducers/mapcat";
-import { repeatedly } from "@thi.ng/transducers/repeatedly";
-import { add2 } from "@thi.ng/vectors/add";
-import { normalCCW } from "@thi.ng/vectors/normal";
-import { random2 } from "@thi.ng/vectors/random";
+import { mapcat, repeatedly } from "@thi.ng/transducers";
+import { add2, normalCCW, random2 } from "@thi.ng/vectors";
 
 const W = 600;
 

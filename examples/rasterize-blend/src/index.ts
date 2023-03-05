@@ -1,7 +1,7 @@
 import { adaptDPI } from "@thi.ng/adapt-dpi";
 import type { NumericArray } from "@thi.ng/api";
 import { osc, sin } from "@thi.ng/dsp";
-import { canvas2d, floatBuffer, floatBufferFromCanvas } from "@thi.ng/pixel";
+import { canvas2d, floatBufferFromCanvas } from "@thi.ng/pixel";
 import { defBlendF, drawCircle, drawLine, Shader2D } from "@thi.ng/rasterize";
 import { Agent } from "./agent.js";
 

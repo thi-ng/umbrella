@@ -1,10 +1,7 @@
 import type { IView } from "@thi.ng/atom";
 import { EV_SET_VALUE } from "@thi.ng/interceptors";
-import { toPath } from "@thi.ng/paths/path";
-import { comp } from "@thi.ng/transducers/comp";
-import { filterFuzzy } from "@thi.ng/transducers/filter-fuzzy";
-import { iterator } from "@thi.ng/transducers/iterator";
-import { map } from "@thi.ng/transducers/map";
+import { toPath } from "@thi.ng/paths";
+import { comp, filterFuzzy, iterator, map } from "@thi.ng/transducers";
 import {
 	dropdownListeners,
 	type DropdownItem,

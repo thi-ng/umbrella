@@ -1,16 +1,13 @@
 import { canvas } from "@thi.ng/hdom-canvas";
-import { memoize1 } from "@thi.ng/memoize/memoize1";
+import { memoize1 } from "@thi.ng/memoize";
+import { CloseMode, sync, trigger } from "@thi.ng/rstream";
 import {
+	gestureStream,
 	type GestureEvent,
 	type GestureInfo,
-	gestureStream,
 } from "@thi.ng/rstream-gestures";
-import { CloseMode } from "@thi.ng/rstream/api";
-import { sync } from "@thi.ng/rstream/sync";
-import { trigger } from "@thi.ng/rstream/trigger";
+import { map, mapcat } from "@thi.ng/transducers";
 import { updateDOM } from "@thi.ng/transducers-hdom";
-import { map } from "@thi.ng/transducers/map";
-import { mapcat } from "@thi.ng/transducers/mapcat";
 
 // memoized HOF component
 // uses init lifecycle method to attach gesture stream

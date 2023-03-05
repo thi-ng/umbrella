@@ -12,6 +12,7 @@
 		"preview": "vite preview --host --open"
 	},
 	"dependencies": {
+		"@thi.ng/date": "workspace:^",
 		"@thi.ng/hdom": "workspace:^",
 		"@thi.ng/hdom-canvas": "workspace:^",
 		"@thi.ng/math": "workspace:^",

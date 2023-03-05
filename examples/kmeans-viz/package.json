@@ -29,6 +29,7 @@
 	},
 	"thi.ng": {
 		"readme": [
+			"arrays",
 			"color",
 			"geom",
 			"k-means",

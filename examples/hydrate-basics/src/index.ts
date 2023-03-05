@@ -1,9 +1,8 @@
 import type { IDeref } from "@thi.ng/api";
-import { defAtom } from "@thi.ng/atom/atom";
-import { canvas2D } from "@thi.ng/hdom-components/canvas";
-import { dropdown } from "@thi.ng/hdom-components/dropdown";
-import { start } from "@thi.ng/hdom/start";
-import { serialize } from "@thi.ng/hiccup/serialize";
+import { defAtom } from "@thi.ng/atom";
+import { start } from "@thi.ng/hdom";
+import { canvas2D, dropdown } from "@thi.ng/hdom-components";
+import { serialize } from "@thi.ng/hiccup";
 
 // basic state container
 const state = defAtom<any>({

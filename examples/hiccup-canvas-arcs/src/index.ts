@@ -1,18 +1,17 @@
-import { hsl } from "@thi.ng/color/hsl/hsl";
-import { arc } from "@thi.ng/geom/arc";
-import { asCubic } from "@thi.ng/geom/as-cubic";
-import { closestPoint } from "@thi.ng/geom/closest-point";
-import { group } from "@thi.ng/geom/group";
-import { pathFromCubics } from "@thi.ng/geom/path";
-import { draw } from "@thi.ng/hiccup-canvas/draw";
-import { TAU } from "@thi.ng/math/api";
-import { fit01 } from "@thi.ng/math/fit";
-import { SYSTEM } from "@thi.ng/random/system";
-import { fromDOMEvent } from "@thi.ng/rstream/event";
-import { fromRAF } from "@thi.ng/rstream/raf";
-import { map } from "@thi.ng/transducers/map";
-import { normRange } from "@thi.ng/transducers/norm-range";
-import { dist } from "@thi.ng/vectors/dist";
+import { hsl } from "@thi.ng/color";
+import {
+	arc,
+	asCubic,
+	closestPoint,
+	group,
+	pathFromCubics,
+} from "@thi.ng/geom";
+import { draw } from "@thi.ng/hiccup-canvas";
+import { fit01, TAU } from "@thi.ng/math";
+import { SYSTEM } from "@thi.ng/random";
+import { fromDOMEvent, fromRAF } from "@thi.ng/rstream";
+import { map, normRange } from "@thi.ng/transducers";
+import { dist } from "@thi.ng/vectors";
 
 const W = 600;
 const ORIGIN = [W / 2, W / 2];

@@ -676,7 +676,6 @@ __metadata:
   dependencies:
     "@thi.ng/arrays": "workspace:^"
     "@thi.ng/geom": "workspace:^"
-    "@thi.ng/hiccup-svg": "workspace:^"
     "@thi.ng/rstream": "workspace:^"
     "@thi.ng/rstream-gestures": "workspace:^"
     "@thi.ng/transducers": "workspace:^"
@@ -743,6 +742,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@example/hdom-canvas-clock@workspace:examples/hdom-canvas-clock"
   dependencies:
+    "@thi.ng/date": "workspace:^"
     "@thi.ng/hdom": "workspace:^"
     "@thi.ng/hdom-canvas": "workspace:^"
     "@thi.ng/math": "workspace:^"

@@ -1,7 +1,5 @@
-import type { ReadonlyColor } from "@thi.ng/color";
-import { srgb } from "@thi.ng/color/srgb/srgb";
-import { srgbIntArgb32 } from "@thi.ng/color/srgb/srgb-int";
-import { downloadWithMime } from "@thi.ng/dl-asset/raw";
+import { ReadonlyColor, srgb, srgbIntArgb32 } from "@thi.ng/color";
+import { downloadWithMime } from "@thi.ng/dl-asset";
 
 export const downloadACT = (colors: ReadonlyColor[]) => {
 	const num = colors.length;

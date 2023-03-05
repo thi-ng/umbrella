@@ -1,17 +1,12 @@
-import { sin } from "@thi.ng/dsp/osc-sin";
-import { group } from "@thi.ng/geom/group";
-import { polyline } from "@thi.ng/geom/polyline";
+import { sin } from "@thi.ng/dsp";
+import { group, polyline } from "@thi.ng/geom";
+import { start } from "@thi.ng/hdom";
 import { canvas } from "@thi.ng/hdom-canvas";
-import { start } from "@thi.ng/hdom/start";
-import { mulV23 } from "@thi.ng/matrices/mulv";
-import { imagePromise } from "@thi.ng/pixel/canvas";
-import { GRAY8 } from "@thi.ng/pixel/format/gray8";
-import { intBufferFromImage } from "@thi.ng/pixel/int";
-import { Node2D } from "@thi.ng/scenegraph/node2";
-import { map } from "@thi.ng/transducers/map";
-import { range } from "@thi.ng/transducers/range";
-import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
-import { setN2 } from "@thi.ng/vectors/setn";
+import { mulV23 } from "@thi.ng/matrices";
+import { GRAY8, imagePromise, intBufferFromImage } from "@thi.ng/pixel";
+import { Node2D } from "@thi.ng/scenegraph";
+import { map, range } from "@thi.ng/transducers";
+import { ReadonlyVec, setN2, Vec } from "@thi.ng/vectors";
 import LOGO from "./logo-256.png";
 
 /**
@@ -88,7 +83,7 @@ imagePromise(LOGO).then((img) => {
 
 	// main hdom root component / app
 	const app = () => {
-		imgRoot.rotate += 0.04;
+		imgRoot.rotate += 0.02;
 		imgRoot.scale = setN2([], sin(imgRoot.rotate, 0.5, 2, 3.5));
 		imgRoot.update();
 

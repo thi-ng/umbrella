@@ -1,9 +1,9 @@
-import { downloadWithMime } from "@thi.ng/dl-asset/raw";
-import { serialize } from "@thi.ng/hiccup/serialize";
-import { snapshot, valueSetter } from "@thi.ng/interceptors/interceptors";
-import { getInUnsafe } from "@thi.ng/paths/get-in";
-import { fromIterable } from "@thi.ng/rstream/iterable";
-import { range } from "@thi.ng/transducers/range";
+import { downloadWithMime } from "@thi.ng/dl-asset";
+import { serialize } from "@thi.ng/hiccup";
+import { snapshot, valueSetter } from "@thi.ng/interceptors";
+import { getInUnsafe } from "@thi.ng/paths";
+import { fromIterable } from "@thi.ng/rstream";
+import { range } from "@thi.ng/transducers";
 import type { AppConfig } from "./api";
 import { main } from "./components/main";
 import * as fx from "./effects";

@@ -1,6 +1,5 @@
 import type { NumericArray } from "@thi.ng/api";
-import { Delay } from "@thi.ng/dsp/delay";
-import { conjugate, ifft } from "@thi.ng/dsp/fft";
+import { conjugate, Delay, ifft } from "@thi.ng/dsp";
 import { BIN_AMP, NUM_BINS, PITCH_SCALE } from "./config";
 import { DB } from "./state";
 

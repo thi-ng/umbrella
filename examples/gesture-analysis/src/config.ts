@@ -1,4 +1,4 @@
-import { Vec2 } from "@thi.ng/vectors/vec2";
+import { Vec2 } from "@thi.ng/vectors";
 
 // initial call to action gesture
 // (recorded handwriting)

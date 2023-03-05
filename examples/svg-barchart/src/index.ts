@@ -1,8 +1,6 @@
-import { renderOnce } from "@thi.ng/hdom/render-once";
-import { fit } from "@thi.ng/math/fit";
-import { map } from "@thi.ng/transducers/map";
-import { mapcat } from "@thi.ng/transducers/mapcat";
-import { range } from "@thi.ng/transducers/range";
+import { renderOnce } from "@thi.ng/hdom";
+import { fit } from "@thi.ng/math";
+import { map, mapcat, range } from "@thi.ng/transducers";
 
 // iterator of range mapped tuples: `[mapped, orig]`
 const mappedRange = (

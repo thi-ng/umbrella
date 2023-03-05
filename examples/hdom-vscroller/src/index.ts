@@ -1,6 +1,5 @@
-import { start } from "@thi.ng/hdom/start";
-import { map } from "@thi.ng/transducers/map";
-import { mapIndexed } from "@thi.ng/transducers/map-indexed";
+import { start } from "@thi.ng/hdom";
+import { map, mapIndexed } from "@thi.ng/transducers";
 import _commits from "./commits.json";
 import _logo from "./logo-64.png";
 import _packages from "./packages.json";

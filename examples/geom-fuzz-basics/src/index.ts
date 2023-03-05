@@ -1,4 +1,5 @@
 import { adaptDPI } from "@thi.ng/adapt-dpi";
+import { circle, group, star, vertices } from "@thi.ng/geom";
 import {
 	compFill,
 	defDots,
@@ -6,12 +7,8 @@ import {
 	fuzzyPoly,
 	jitterPoints,
 } from "@thi.ng/geom-fuzz";
-import { circle } from "@thi.ng/geom/circle";
-import { group } from "@thi.ng/geom/group";
-import { star } from "@thi.ng/geom/polygon";
-import { vertices } from "@thi.ng/geom/vertices";
-import { draw } from "@thi.ng/hiccup-canvas/draw";
-import { fromInterval } from "@thi.ng/rstream/interval";
+import { draw } from "@thi.ng/hiccup-canvas";
+import { fromInterval } from "@thi.ng/rstream";
 
 const W = 300;
 
@@ -47,7 +44,7 @@ adaptDPI(canvas, W, W);
 
 const ctx = canvas.getContext("2d")!;
 
-fromInterval(1000 / 15).subscribe({
+fromInterval(1000 / 30).subscribe({
 	next(t: number) {
 		ctx.clearRect(0, 0, canvas.width, canvas.height);
 		draw(

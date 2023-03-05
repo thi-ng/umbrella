@@ -1,5 +1,4 @@
-import { map } from "@thi.ng/transducers/map";
-import { range } from "@thi.ng/transducers/range";
+import { map, range } from "@thi.ng/transducers";
 import type { Vec } from "@thi.ng/vectors";
 
 export const WIDTH = 600;

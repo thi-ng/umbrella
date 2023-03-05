@@ -1,16 +1,11 @@
-import { partial } from "@thi.ng/compose/partial";
-import type { Cubic } from "@thi.ng/geom";
-import { cubic } from "@thi.ng/geom/cubic";
-import { pointAt } from "@thi.ng/geom/point-at";
+import { partial } from "@thi.ng/compose";
+import { Cubic, cubic, pointAt } from "@thi.ng/geom";
+import { start } from "@thi.ng/hdom";
 import { canvas } from "@thi.ng/hdom-canvas";
-import { start } from "@thi.ng/hdom/start";
-import { cossin } from "@thi.ng/math/angle";
-import { wrap01 } from "@thi.ng/math/interval";
-import { SYSTEM } from "@thi.ng/random/system";
-import { map } from "@thi.ng/transducers/map";
-import { range } from "@thi.ng/transducers/range";
-import { ZERO2 } from "@thi.ng/vectors/api";
-import { sub2 } from "@thi.ng/vectors/sub";
+import { cossin, wrap01 } from "@thi.ng/math";
+import { SYSTEM } from "@thi.ng/random";
+import { map, range } from "@thi.ng/transducers";
+import { sub2, ZERO2 } from "@thi.ng/vectors";
 
 // num curves (should be odd number)
 const NUMC = 21;

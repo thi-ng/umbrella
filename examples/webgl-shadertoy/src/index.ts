@@ -1,24 +1,32 @@
-import type { FloatSym, Vec2Sym, Vec2Term, Vec3Sym } from "@thi.ng/shader-ast";
-import { fit1101 } from "@thi.ng/shader-ast-stdlib/math/fit";
-import { aspectCorrectedUV } from "@thi.ng/shader-ast-stdlib/screen/uv";
-import { ret } from "@thi.ng/shader-ast/ast/function";
-import { float, int, vec3, vec4 } from "@thi.ng/shader-ast/ast/lit";
-import { add, eq, mul, neg } from "@thi.ng/shader-ast/ast/ops";
-import { $xy } from "@thi.ng/shader-ast/ast/swizzle";
-import { sym } from "@thi.ng/shader-ast/ast/sym";
 import {
+	$xy,
+	add,
 	distance,
+	eq,
+	float,
+	FloatSym,
 	fract,
+	int,
 	min,
 	mix,
+	mul,
+	neg,
+	ret,
 	sin,
-} from "@thi.ng/shader-ast/builtin/math";
+	sym,
+	Vec2Sym,
+	Vec2Term,
+	vec3,
+	Vec3Sym,
+	vec4,
+} from "@thi.ng/shader-ast";
+import { aspectCorrectedUV, fit1101 } from "@thi.ng/shader-ast-stdlib";
+import { glCanvas } from "@thi.ng/webgl";
 import {
-	type MainImageFn,
+	MainImageFn,
 	shaderToy,
-	type ShaderToyUniforms,
+	ShaderToyUniforms,
 } from "@thi.ng/webgl-shadertoy";
-import { glCanvas } from "@thi.ng/webgl/canvas";
 
 interface DemoUniforms extends ShaderToyUniforms {
 	bright: FloatSym;

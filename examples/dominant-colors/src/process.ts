@@ -1,14 +1,13 @@
-import { timed } from "@thi.ng/bench/timed";
-import { lch } from "@thi.ng/color/lch/lch";
-import { srgb } from "@thi.ng/color/srgb/srgb";
-import { dominantColors } from "@thi.ng/pixel/dominant-colors";
-import { floatBuffer } from "@thi.ng/pixel/float";
-import { FLOAT_RGB } from "@thi.ng/pixel/format/float-rgb";
-import { intBufferFromImage } from "@thi.ng/pixel/int";
-import { map } from "@thi.ng/transducers/map";
-import { minMax } from "@thi.ng/transducers/min-max";
-import { transduce } from "@thi.ng/transducers/transduce";
-import { type DominantColor, type SortMode, SORT_MODES } from "./api";
+import { timed } from "@thi.ng/bench";
+import { lch, srgb } from "@thi.ng/color";
+import {
+	dominantColors,
+	floatBuffer,
+	FLOAT_RGB,
+	intBufferFromImage,
+} from "@thi.ng/pixel";
+import { map, minMax, transduce } from "@thi.ng/transducers";
+import { SORT_MODES, type DominantColor, type SortMode } from "./api";
 
 /**
  * Converts image into pixel buffer, resizes it to max 256 pixels (longest side)

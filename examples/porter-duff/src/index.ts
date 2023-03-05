@@ -18,7 +18,7 @@ import {
 	SRC_OUT_I,
 	SRC_OVER_I,
 	XOR_I,
-} from "@thi.ng/porter-duff/porter-duff";
+} from "@thi.ng/porter-duff";
 import IMG2 from "./plus.png";
 import IMG from "./ring.png";
 

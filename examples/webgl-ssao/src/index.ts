@@ -1,33 +1,30 @@
 import type { IDeref } from "@thi.ng/api";
-import { sin } from "@thi.ng/dsp/osc-sin";
-import { canvasWebGL2 } from "@thi.ng/hdom-components/canvas";
-import { start } from "@thi.ng/hdom/start";
-import { lookAt } from "@thi.ng/matrices/lookat";
-import { perspective } from "@thi.ng/matrices/perspective";
-import { transform44 } from "@thi.ng/matrices/transform";
-import { fromRAF } from "@thi.ng/rstream/raf";
-import { tweenNumber } from "@thi.ng/rstream/tween";
-import { benchmark } from "@thi.ng/transducers/benchmark";
-import { map } from "@thi.ng/transducers/map";
-import { movingAverage } from "@thi.ng/transducers/moving-average";
-import { repeatedly } from "@thi.ng/transducers/repeatedly";
-import { rotateY } from "@thi.ng/vectors/rotate";
-import type { GLMat4, GLVec3, ModelSpec } from "@thi.ng/webgl";
+import { sin } from "@thi.ng/dsp";
+import { start } from "@thi.ng/hdom";
+import { canvasWebGL2 } from "@thi.ng/hdom-components";
+import { lookAt, perspective, transform44 } from "@thi.ng/matrices";
+import { fromRAF, tweenNumber } from "@thi.ng/rstream";
+import { benchmark, map, movingAverage, repeatedly } from "@thi.ng/transducers";
+import { rotateY } from "@thi.ng/vectors";
 import {
+	checkerboard,
+	compileModel,
+	defCubeModel,
+	defFBO,
+	defQuadModel,
+	defRBO,
+	defShader,
+	defTexture,
+	draw,
+	FBO,
+	GLMat4,
+	GLVec3,
+	ModelSpec,
 	TextureFilter,
 	TextureFormat,
-	type TextureOpts,
+	TextureOpts,
 	TextureRepeat,
-} from "@thi.ng/webgl/api/texture";
-import { compileModel } from "@thi.ng/webgl/buffer";
-import { draw } from "@thi.ng/webgl/draw";
-import { defFBO, FBO } from "@thi.ng/webgl/fbo";
-import { defCubeModel } from "@thi.ng/webgl/geo/cube";
-import { defQuadModel } from "@thi.ng/webgl/geo/quad";
-import { defRBO } from "@thi.ng/webgl/rbo";
-import { defShader } from "@thi.ng/webgl/shader";
-import { defTexture } from "@thi.ng/webgl/texture";
-import { checkerboard } from "@thi.ng/webgl/textures/checkerboard";
+} from "@thi.ng/webgl";
 import { CONTROLS, PARAMS, PARAM_DEFS } from "./params";
 import { FINAL_SHADER, LIGHT_SHADER, SSAO_SHADER } from "./shaders";
 

@@ -1,22 +1,23 @@
 import type { IObjectOf } from "@thi.ng/api";
-import { compare } from "@thi.ng/compare/compare";
+import { compare } from "@thi.ng/compare";
 import {
 	dispatchNow,
-	type EffectDef,
-	type EventDef,
 	FX_DISPATCH_NOW,
 	FX_STATE,
 	valueSetter,
+	type EffectDef,
+	type EventDef,
 } from "@thi.ng/interceptors";
-import { getIn } from "@thi.ng/paths/get-in";
-import { setIn } from "@thi.ng/paths/set-in";
+import { getIn, setIn } from "@thi.ng/paths";
 import type { Triple } from "@thi.ng/rstream-query";
-import { comp } from "@thi.ng/transducers/comp";
-import { iterator } from "@thi.ng/transducers/iterator";
-import { mapIndexed } from "@thi.ng/transducers/map-indexed";
-import { padLast } from "@thi.ng/transducers/pad-last";
-import { page } from "@thi.ng/transducers/page";
-import { repeat } from "@thi.ng/transducers/repeat";
+import {
+	comp,
+	iterator,
+	mapIndexed,
+	padLast,
+	page,
+	repeat,
+} from "@thi.ng/transducers";
 import * as fx from "./effects";
 import * as ev from "./events";
 

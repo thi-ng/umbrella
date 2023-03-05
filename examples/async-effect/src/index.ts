@@ -1,5 +1,5 @@
 import type { IObjectOf } from "@thi.ng/api";
-import { start } from "@thi.ng/hdom/start";
+import { start } from "@thi.ng/hdom";
 import {
 	EventBus,
 	FX_DISPATCH_ASYNC,

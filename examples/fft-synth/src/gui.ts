@@ -1,11 +1,13 @@
-import { DEFAULT_THEME } from "@thi.ng/imgui/api";
-import { buttonH } from "@thi.ng/imgui/components/button";
-import { sliderH } from "@thi.ng/imgui/components/sliderh";
-import { sliderVGroup } from "@thi.ng/imgui/components/sliderv";
-import { textLabel } from "@thi.ng/imgui/components/textlabel";
-import { toggle } from "@thi.ng/imgui/components/toggle";
-import { IMGUI } from "@thi.ng/imgui/gui";
-import { gridLayout, GridLayout } from "@thi.ng/layout/grid-layout";
+import {
+	buttonH,
+	DEFAULT_THEME,
+	IMGUI,
+	sliderH,
+	sliderVGroup,
+	textLabel,
+	toggle,
+} from "@thi.ng/imgui";
+import { gridLayout, GridLayout } from "@thi.ng/layout";
 import { initAudio, isAudioActive, stopAudio } from "./audio";
 import { toggleAutoMode } from "./automode";
 import {

@@ -1,6 +1,5 @@
-import { weightedRandom } from "@thi.ng/random/weighted-random";
-import { map } from "@thi.ng/transducers/map";
-import { range } from "@thi.ng/transducers/range";
+import { weightedRandom } from "@thi.ng/random";
+import { map, range } from "@thi.ng/transducers";
 import { updateAudio } from "./audio";
 import { NUM_BINS } from "./config";
 import { DB, updateSpectrumBin } from "./state";

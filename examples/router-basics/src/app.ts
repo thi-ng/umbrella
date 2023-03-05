@@ -1,8 +1,7 @@
 import type { Fn, IObjectOf } from "@thi.ng/api";
-import { Atom, defAtom } from "@thi.ng/atom/atom";
-import { defViewUnsafe } from "@thi.ng/atom/view";
-import { isArray } from "@thi.ng/checks/is-array";
-import { start } from "@thi.ng/hdom/start";
+import { Atom, defAtom, defViewUnsafe } from "@thi.ng/atom";
+import { isArray } from "@thi.ng/checks";
+import { start } from "@thi.ng/hdom";
 import { EventBus, trace, valueSetter } from "@thi.ng/interceptors";
 import { EVENT_ROUTE_CHANGED, HTMLRouter } from "@thi.ng/router";
 import type { AppConfig, AppContext, AppViews, ViewSpec } from "./api";

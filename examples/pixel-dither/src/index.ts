@@ -1,11 +1,18 @@
 import type { IObjectOf } from "@thi.ng/api";
-import { GRAY8 } from "@thi.ng/pixel";
+import {
+	canvas2d,
+	GRAY8,
+	imagePromise,
+	IntBuffer,
+	intBufferFromImage,
+} from "@thi.ng/pixel";
 import {
 	ATKINSON,
 	BURKES,
 	DIFFUSION_2D,
 	DIFFUSION_COLUMN,
 	DIFFUSION_ROW,
+	DitherKernel,
 	ditherWith,
 	FLOYD_STEINBERG,
 	JARVIS_JUDICE_NINKE,
@@ -13,9 +20,6 @@ import {
 	STUCKI,
 	THRESHOLD,
 } from "@thi.ng/pixel-dither";
-import type { DitherKernel } from "@thi.ng/pixel-dither/api";
-import { canvas2d, imagePromise } from "@thi.ng/pixel/canvas";
-import { IntBuffer, intBufferFromImage } from "@thi.ng/pixel/int";
 import IMG from "./michelangelo.png";
 
 (async () => {

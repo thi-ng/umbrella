@@ -31,7 +31,9 @@ const POSITIONS = new Float32Array([
 const POINTS = Vec2.mapBuffer(POSITIONS);
 
 // pre-create a noise generator for each vertex
-const VELOCITIES = [...repeatedly(() => red(32, VEL_GAIN), NUM_POINTS)];
+const VELOCITIES = [
+	...repeatedly(() => red({ bins: 32, scale: VEL_GAIN }), NUM_POINTS),
+];
 
 // create WebGL canvas
 const { gl } = glCanvas({
