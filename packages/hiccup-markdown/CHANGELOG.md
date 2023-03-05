@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2023-03-02T18:09:03Z
+- **Last updated**: 2023-03-05T16:02:40Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,16 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [3.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/hiccup-markdown@3.1.0) (2023-03-05)
+
+#### 🚀 Features
+
+- add anchor ID syntax support for headings ([86ce79e](https://github.com/thi-ng/umbrella/commit/86ce79e))
+  - update parse grammar & hd parser
+  - support for `{#id}` suffixes for defining heading anchor IDs
+  - only auto-generate anchor IDs if not explicitly specified
+  - update tests
 
 # [3.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/hiccup-markdown@3.0.0) (2023-02-27)
 

@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/shader-ast-stdlib",
-	"version": "0.13.5",
+	"version": "0.13.6",
 	"description": "Function collection for modular GPGPU / shader programming with @thi.ng/shader-ast",
 	"type": "module",
 	"module": "./index.js",
@@ -35,7 +35,7 @@
 	},
 	"dependencies": {
 		"@thi.ng/api": "^8.7.3",
-		"@thi.ng/shader-ast": "^0.12.42"
+		"@thi.ng/shader-ast": "^0.12.43"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.34.2",

@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/hdom-mock",
-	"version": "2.1.36",
+	"version": "2.1.37",
 	"description": "Mock base implementation for @thi.ng/hdom API",
 	"type": "module",
 	"module": "./index.js",
@@ -36,7 +36,7 @@
 	"dependencies": {
 		"@thi.ng/api": "^8.7.3",
 		"@thi.ng/checks": "^3.3.9",
-		"@thi.ng/hdom": "^9.3.1"
+		"@thi.ng/hdom": "^9.3.2"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.34.2",
