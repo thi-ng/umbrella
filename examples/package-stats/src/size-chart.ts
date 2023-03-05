@@ -81,12 +81,12 @@ const fileSizeChart = (stats: any, modType: string, type: string) => {
 					[width / 2 + 40, 28],
 					`@thi.ng/umbrella package sizes (${modType.toUpperCase()})`
 				),
-				text([width / 2 + 40, 56], `(minified + gzipped)`)
+				text([width / 2 + 40, 56], `(minified + brotli)`)
 			),
 		])
 	);
 };
 
-fileSizeChart(meta, "esm", "gzip");
+fileSizeChart(meta, "esm", "brotli");
 // fileSizeChart(meta, "cjs", "gzip");
 // fileSizeChart(meta, "umd", "gzip");

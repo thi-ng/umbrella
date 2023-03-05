@@ -79,7 +79,7 @@ fs.writeFileSync(
 			},
 			y: {
 				axis: [170, 10, 35],
-				domain: [0, maxDeps, 10],
+				domain: [0, maxDeps, 20],
 				range: [160, 20],
 				label: labeledTickY(width - 15),
 			},
