@@ -2,9 +2,10 @@ import { group } from "@thi.ng/testament";
 import * as assert from "assert";
 import { parse } from "../src/index.js";
 
-const check = (src: string, expected: any[]) => {
-	const { result, complete } = parse(src);
-	assert.ok(complete);
+const check = (src: string, expected: any[], expectFailure = false) => {
+	const { result, complete, state } = parse(src);
+	if (expectFailure) assert.ok(!complete, "didn't fail");
+	else assert.ok(complete, `failed to parse at line ${state.l}`);
 	assert.deepStrictEqual(result, expected, JSON.stringify(result, null, 4));
 };
 
@@ -199,6 +200,15 @@ with linebreaks
 				" ",
 				["em", {}, "jkl"],
 			],
+		]);
+	},
+
+	"hd optional id": () => {
+		check(`# Heading {#custom-id-123}`, [
+			["h1", { id: "custom-id-123" }, "Heading"],
+		]);
+		check(`# _Head_ing{#custom_id}`, [
+			["h1", { id: "custom_id" }, ["em", {}, "Head"], "ing"],
 		]);
 	},
 

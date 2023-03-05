@@ -123,14 +123,14 @@ export interface TagTransforms {
 	 *
 	 * @param ctx
 	 * @param level
-	 * @param id
+	 * @param anchorID
 	 * @param body
 	 * @param meta
 	 */
 	heading(
 		ctx: TransformCtx,
 		level: number,
-		id: string,
+		anchorID: string,
 		body: any[],
 		meta?: any
 	): any;
