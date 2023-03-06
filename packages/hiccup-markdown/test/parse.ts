@@ -314,23 +314,24 @@ with linebreaks
 	},
 
 	ol: () => {
-		check(`11. an item\n22. another`, [
+		check(`11. an item\n22. another\n  a. inner`, [
 			[
 				"ol",
 				{},
 				[
 					"li",
 					{
-						__index: 11,
+						__index: "11",
 					},
 					"an item",
 				],
 				[
 					"li",
 					{
-						__index: 22,
+						__index: "22",
 					},
 					"another",
+					["ol", {}, ["li", { __index: "a" }, "inner"]],
 				],
 			],
 		]);
@@ -363,7 +364,7 @@ with linebreaks
 
 	"nested list": () => {
 		check(
-			"- outer 1\n  - nested 1a\n  - nested 1b\n- outer 2\n  1. nested 2a\n  2. nested 2b\n    - nested 3a\n- outer 3",
+			"- outer 1\n  - nested 1a\n  - nested 1b\n- outer 2\n  1. nested 2a\n  b. nested 2b\n    - nested 3a\n- outer 3",
 			[
 				[
 					"ul",
@@ -389,14 +390,14 @@ with linebreaks
 							[
 								"li",
 								{
-									__index: 1,
+									__index: "1",
 								},
 								"nested 2a",
 							],
 							[
 								"li",
 								{
-									__index: 2,
+									__index: "b",
 								},
 								"nested 2b",
 								["ul", {}, ["li", {}, "nested 3a"]],
@@ -497,6 +498,11 @@ with linebreaks
 				" that",
 			],
 		]);
+	},
+
+	"sub/sup": () => {
+		check("X<sub>123</sub>", [["p", {}, "X", ["sub", {}, "123"]]]);
+		check("X<sup>123</sup>", [["p", {}, "X", ["sup", {}, "123"]]]);
 	},
 
 	table: () => {

@@ -1,5 +1,5 @@
-// Downloaded @ 2023-03-06T09:08:29.220Z
-// Source: https://demo.thi.ng/umbrella/parse-playground/#ldoPBUROTDE6IDxETkw-KyA9PiBkaXNjYXJkIDsKRE5MMjogPE5MPnsyLH0gOwpsYnI6ICdcXCchIDxOTD4hIDsKZXNjOiAnXFwnISAoJ18nIHwgJyonIHwgJ2AnIHwgJ34nIHwgJzonIHwgJy0nIHwgJzwnIHwgJz4nIHwgJ1snIHwgJ10nIHwgJygnIHwgJyknIHwgJ3snIHwgJ30nKSA7CmlubGluZWRlbGltOiAoIiFbIiB8ICdbJyB8ICIqKiIgfCAnXycgfCAnYCcgfCAnPCcgfCAifn4iIHwgIiA6IiB8IDxsYnI-KSA7CmRlbGltOiAoPGlubGluZWRlbGltPiB8IDxETkwyPikgOwpkZWxpbTE6ICg8aW5saW5lZGVsaW0-IHwgPE5MPikgOwplYm9keTogKDxlc2M-fC4pIDsKYm9keTogPGVib2R5Pig_LTxkZWxpbT4hKSA9PiBqb2luIDsKYm9keTE6IDxlYm9keT4oPy08ZGVsaW0xPiEpID0-IGpvaW4gOwoKY29tbWVudDogIjwhLS0iISAuKD8rIi0tPiIpID0-IGRpc2NhcmQgOwp3aWtpcmVmOiAiW1siISA8ZWJvZHk-KD8rIl1dIiEpID0-IGpvaW4gOwpmbnJlZjogIlteIiEgPGxhYmVsPiA7CmZub3RlOiA8TFNUQVJUPiAiW14iISA8Zm5sYWJlbD4gPFdTMT4gPHBhcmE-IDsKZm5sYWJlbDogPGVib2R5Pig_KyJdOiIhKSA9PiBqb2luIDsKbGFiZWw6IDxlYm9keT4oPysnXSchKSA9PiBqb2luIDsKdGFyZ2V0OiA8ZWJvZHk-KD8rJyknISkgPT4gam9pbiA7Cmxpbms6ICdbJyEgPGxpbmtsYWJlbD4gJygnISA8dGFyZ2V0PiA7CmxpbmtyZWY6ICdbJyEgPGxpbmtsYWJlbD4gJ1snISA8bGFiZWw-IDsKbGlua2RlZjogPExTVEFSVD4gJ1snISA8bGFiZWw-ICc6JyEgPFdTMT4gPGxkdGFyZ2V0PiA7CmxkdGFyZ2V0OiA8ZWJvZHk-KD8rPEROTDE-KSA9PiBqb2luIDsKbGlua2xhYmVsOiAoPGltZz4gfCA8Ym9sZD4gfCA8aXRhbGljPiB8IDxzdHJpa2U-IHwgPGNvZGU-IHwgPGVtb2ppPiB8IDxsaW5rYm9keT4pKiAnXSchIDsKbGlua2RlbGltOiAoIiFbIiB8ICdbJyB8ICIqKiIgfCAnXycgfCAifn4iIHwgJ2AnIHwgJ10nKSA7Cmxpbmtib2R5OiA8ZWJvZHk-KD8tPGxpbmtkZWxpbT4hKSA9PiBqb2luIDsKaW1nOiAiIVsiISA8bGFiZWw-ICcoJyEgPHRhcmdldD4gOwpib2xkOiAiKioiISAoPHdpa2lyZWY-IHwgPGltZz4gfCA8Zm5yZWY-IHwgPGxpbmtyZWY-IHwgPGxpbms-IHwgPGl0YWxpYz4gfCA8c3RyaWtlPiB8IDxjb2RlPiB8IDxlbW9qaT4gfCA8Ym9keTE-KSogIioqIiEgOwppdGFsaWM6ICdfJyEgKDx3aWtpcmVmPiB8IDxpbWc-IHwgPGZucmVmPiB8IDxsaW5rcmVmPiB8IDxsaW5rPiB8IDxib2xkPiB8IDxzdHJpa2U-IHwgPGNvZGU-IHwgPGVtb2ppPiB8IDxib2R5MT4pKiAnXychIDsKc3RyaWtlOiAifn4iISAoPHdpa2lyZWY-IHwgPGltZz4gfCA8Zm5yZWY-IHwgPGxpbmtyZWY-IHwgPGxpbms-IHwgPGJvbGQ-IHwgPGl0YWxpYz4gfCA8Y29kZT4gfCA8ZW1vamk-IHwgPGJvZHkxPikqICJ-fiIhIDsKY29kZTogJ2AnISA8ZWJvZHk-KD8rJ2AnISkgPT4gam9pbiA7CmtiZDogIjxrYmQ-IiEgPGVib2R5Pig_KyI8L2tiZD4iISkgPT4gam9pbiA7CnN1YjogIjxzdWI-IiEgPGVib2R5Pig_KyI8L3N1Yj4iISkgPT4gam9pbiA7CnN1cDogIjxzdXA-IiEgPGVib2R5Pig_KyI8L3N1cD4iISkgPT4gam9pbiA7CmVtb2ppOiAnICc_ICc6JyEgKDxBTFBIQV9OVU0-IHwgJysnIHwgJy0nKSg_Kyc6JyEpID0-IGpvaW4gOwpwYXJhOiAoPHdpa2lyZWY-IHwgPGltZz4gfCA8Zm5yZWY-IHwgPGxpbmtyZWY-IHwgPGxpbms-IHwgPGJvbGQ-IHwgPGl0YWxpYz4gfCA8c3RyaWtlPiB8IDxjb2RlPiB8IDxrYmQ-IHwgPHN1Yj4gfCA8c3VwPiB8IDxlbW9qaT4gfCA8bGJyPiB8IDxjb21tZW50PiB8IDxib2R5PikqIDxETkwyPiEgOwoKaGRsZXZlbDogJyMnKyA9PiBjb3VudCA7CmhkaWQ6ICJ7IyIhICg8QUxQSEFfTlVNPiB8ICctJykrICd9JyEgPT4gam9pbiA7CmhkZGVsaW06ICg8ZGVsaW0xPiB8ICJ7IyIpIDsKaGRib2R5OiA8ZWJvZHk-KD8tPGhkZGVsaW0-ISkgPT4gam9pbiA7CmhkOiA8TFNUQVJUPiA8aGRsZXZlbD4gPFdTMD4KICAgICg8d2lraXJlZj4gfCA8aW1nPiB8IDxmbnJlZj4gfCA8bGluaz4gfCA8Ym9sZD4gfCA8aXRhbGljPiB8IDxzdHJpa2U-IHwgPGNvZGU-IHwgPGtiZD4gfCA8c3ViPiB8IDxzdXA-IHwgPGVtb2ppPiB8IDxoZGJvZHk-KSogPGhkaWQ-PyA8RE5MMT4gOwoKbGlsZXZlbDogJyAnKiA9PiBjb3VudCA7CnVpbnQ6IDxESUdJVD4rID0-IGludCA7CnVsaWQ6IDxETkw-IDxXUzA-ICctJyEgOwpvbGlkOiA8RE5MPiA8V1MwPiA8RElHSVQ-KyEgJy4nISA7CmxpZGVsaW06ICg8ZGVsaW0-IHwgPHVsaWQ-IHwgPG9saWQ-KSA7CmxpYm9keTogPGVib2R5Pig_LTxsaWRlbGltPiEpID0-IGpvaW4gOwp0b2RvOiAnWychIFsgeFhdICddJyEgPFdTMT4gPT4gaG9pc3RSIDsKdWxpdGVtOiA8TFNUQVJUPiA8bGlsZXZlbD4gIi0gIiEgPHRvZG8-PwogICAgICAgICg8d2lraXJlZj4gfCA8aW1nPiB8IDxmbnJlZj4gfCA8bGluaz4gfCA8Ym9sZD4gfCA8aXRhbGljPiB8IDxzdHJpa2U-IHwgPGNvZGU-IHwgPGVtb2ppPiB8IDxsaWJvZHk-ICkqIDxETkw-IDsKb2xpdGVtOiA8TFNUQVJUPiA8bGlsZXZlbD4gPHVpbnQ-ICIuICIhIDx0b2RvPj8KICAgICAgICAoPHdpa2lyZWY-IHwgPGltZz4gfCA8Zm5yZWY-IHwgPGxpbms-IHwgPGJvbGQ-IHwgPGl0YWxpYz4gfCA8c3RyaWtlPiB8IDxjb2RlPiB8IDxlbW9qaT4gfCA8bGlib2R5PiApKiA8RE5MPiA7Cmxpc3Q6ICg8dWxpdGVtPiB8IDxvbGl0ZW0-KSsgPEROTDE-IDsKCmNiZGVsaW06IDxMU1RBUlQ-ICJgYGAiISA7CmNvZGVibG9jazogPGNiZGVsaW0-ISA8Y29kZW1ldGE-IDxjb2RlYm9keT4gPEROTDE-IDsKY29kZW1ldGE6IC4oPys8Tkw-ISkgPT4gam9pbiA7CmNvZGVib2R5OiA8ZWJvZHk-KD8rPGNiZGVsaW0-KSA9PiBqb2luIDsKCmN1c3RvbWRlbGltOiA8TFNUQVJUPiAiOjo6IiEgOwpjdXN0b21ibG9jazogPGN1c3RvbWRlbGltPiEgPGN1c3RvbW1ldGE-IDxjdXN0b21ib2R5PiA8RE5MMT4gOwpjdXN0b21tZXRhOiAuKD8rPE5MPiEpID0-IGpvaW4gOwpjdXN0b21ib2R5OiA8ZWJvZHk-KD8rPGN1c3RvbWRlbGltPikgPT4gam9pbiA7CgptZXRhYmxvY2s6IDxMU1RBUlQ-ICJ7e3siISA8bWV0YWJvZHk-IDxETkwxPiA7Cm1ldGFib2R5OiA8ZWJvZHk-KD8rPG1ldGFlbmQ-ISkgPT4gam9pbiA7Cm1ldGFlbmQ6ICJ9fX0iIDxMRU5EPiA7CgpicWxldmVsOiAnPicrID0-IGNvdW50IDsKYnFsaW5lOiA8TFNUQVJUPiA8YnFsZXZlbD4gJyAnPyEKICAgICAgICAoPHdpa2lyZWY-IHwgPGltZz4gfCA8Zm5yZWY-IHwgPGxpbms-IHwgPGJvbGQ-IHwgPGl0YWxpYz4gfCA8c3RyaWtlPiB8IDxjb2RlPiB8IDxlbW9qaT4gfCA8YnFsYnI-IHwgPGJvZHkxPikqIDxETkw-IDsKYnFsYnI6ICdcXCchKD8tPEROTD4pIDsKYnF1b3RlOiA8YnFsaW5lPisgPEROTDE-IDsKCnRkZWxpbTogKDxpbmxpbmVkZWxpbT4gfCAnfCcgKSA7CnRib2R5OiA8ZWJvZHk-KD8tPHRkZWxpbT4hKSA9PiBqb2luIDsKdGNlbGw6IDxXUzA-ICg8d2lraXJlZj4gfCA8aW1nPiB8IDxmbnJlZj4gfCA8bGluaz4gfCA8Ym9sZD4gfCA8aXRhbGljPiB8IDxzdHJpa2U-IHwgPGNvZGU-IHwgPGVtb2ppPiB8IDx0Ym9keT4gKSogJ3wnISA7CnRyb3c6IDxMU1RBUlQ-ICd8JyEgPHRjZWxsPig_KzxETkw-KSA7CnRhYmxlOiA8dHJvdz4rIDxETkwxPiA7CgpocjogIi0tIiAnLScrIDxETkwxPiA9PiBqb2luIDsKCm1haW46IDxXUzA-ICg8aGQ-IHwgPGxpc3Q-IHwgPGJxdW90ZT4gfCA8Y29kZWJsb2NrPiB8IDxjdXN0b21ibG9jaz4gfCA8bWV0YWJsb2NrPiB8IDx0YWJsZT4gfCA8aHI-IHwgPGZub3RlPiB8IDxsaW5rZGVmPiB8IDxjb21tZW50PiB8IDxwYXJhPiApKiA7pG1haW7aAswjIEhlbGxvIFwhXFsgOndvcmxkOjpzbWlsZTpbXmFiY10geyNoZDF9CgojIyBhYmMgeyNoZDJ9CiMjIGRlZiA8c3VwPkNvbnRyb2w8L3N1cD4KCmEgXDwgYgoKTGV0IGBleHAyKHgpID0gMioqeGAKClByZXNzIDxrYmQ-Q29udHJvbDwva2JkPiArIDxrYmQ-Ujwva2JkPiB0byA8IS0tc2tpcC0tPiByZWxvYWQuCgo6OjphbGVydApUZXN0IFtsYWJlbF1bcmVmcmVmXQo6OjoKCi0tLQoKe3t7IHsiaWQiOiAxMjMsICJwcm90ZWN0ZWQiOiB0cnVlIH0gfX19ClNvIFtbc21pbGVfZm9vMTJdXSDwn5iNIHdoYXQncyBbdGhpc10oLi90aGlzLm1kKVteMl0gdGhlbjoKCkEgW2xpbmsgX3dpdGggKipuZXN0ZWQgfn5mb3JtYXR-fioqIGFuZCBgcmVmZXJlbmNlYF9dW3JlZnJlZl0uLi4KCmBgYHRzIHRhbmdsZTpubyBsbjp5ZXMKY29uc3QgZm9vID0gNDI7Ci8vIHRoZSBlbmQKYGBgCgoxLiBmb28KICA0LiBiYXIKICAgICBiYXogYW5kIHNvIG9uCiAgICAgbXVsdGlsaW5lCjIuIFsgXSB0YXNrCjMuIFt4XSAqKmRvbmUqKgoKPiBibG9ja3F1b3RlCj4gbXVsdGlsaW5lIHRvb1wKPj4gbmVzdGVkCj4-PiBsZXZlbCAzCj4gLS0gc291cmNlCgp8IGZvbyB8IGJhciB8Cnw6LXwtOnwKfCBbW3JlZiMyMl1dIHwgYG9uYCAqKm9mZioqIHwKClteYWJjXTogRm9vIF9iYXJfIGJhegoKW14yXTogVE9ETwoKW3JlZnJlZl06IGh0dHA6Ly90aGkubmcvCltmb29dOiAuL2Zvby5tZCNiYXIKCtlQPCEtLQppZ25vcmUKbXVsdGlsaW5lCi0tPgoKMTEuIGFiYwogIC0geHl6CjIxLiB4eHgKICAxLiBmb28KICAgIDEuIGJhcgozMS4geXl5CgrZVj4gKipsZXZlbCAxYSoqCj4-IGxldmVsIDJhCj4-IGxldmVsIDJiCj4KPiBsZXZlbCAxYgoKWyoqZm9vKipdKGJhcikKCioqIVtmb29dKGJhcikqKgoK
+// Downloaded @ 2023-03-06T12:44:14.677Z
+// Source: https://demo.thi.ng/umbrella/parse-playground/#ldoPEUROTDE6IDxETkw-KyA9PiBkaXNjYXJkIDsKRE5MMjogPE5MPnsyLH0gOwpsYnI6ICdcXCchIDxOTD4hIDsKZXNjOiAnXFwnISAoJ18nIHwgJyonIHwgJ2AnIHwgJ34nIHwgJzonIHwgJy0nIHwgJzwnIHwgJz4nIHwgJ1snIHwgJ10nIHwgJygnIHwgJyknIHwgJ3snIHwgJ30nKSA7CmlubGluZWRlbGltOiAoIiFbIiB8ICdbJyB8ICIqKiIgfCAnXycgfCAnYCcgfCAnPCcgfCAifn4iIHwgIiA6IiB8IDxsYnI-KSA7CmRlbGltOiAoPGlubGluZWRlbGltPiB8IDxETkwyPikgOwpkZWxpbTE6ICg8aW5saW5lZGVsaW0-IHwgPE5MPikgOwplYm9keTogKDxlc2M-fC4pIDsKYm9keTogPGVib2R5Pig_LTxkZWxpbT4hKSA9PiBqb2luIDsKYm9keTE6IDxlYm9keT4oPy08ZGVsaW0xPiEpID0-IGpvaW4gOwoKY29tbWVudDogIjwhLS0iISAuKD8rIi0tPiIpID0-IGRpc2NhcmQgOwp3aWtpcmVmOiAiW1siISA8ZWJvZHk-KD8rIl1dIiEpID0-IGpvaW4gOwpmbnJlZjogIlteIiEgPGxhYmVsPiA7CmZub3RlOiA8TFNUQVJUPiAiW14iISA8Zm5sYWJlbD4gPFdTMT4gPHBhcmE-IDsKZm5sYWJlbDogPGVib2R5Pig_KyJdOiIhKSA9PiBqb2luIDsKbGFiZWw6IDxlYm9keT4oPysnXSchKSA9PiBqb2luIDsKdGFyZ2V0OiA8ZWJvZHk-KD8rJyknISkgPT4gam9pbiA7Cmxpbms6ICdbJyEgPGxpbmtsYWJlbD4gJygnISA8dGFyZ2V0PiA7CmxpbmtyZWY6ICdbJyEgPGxpbmtsYWJlbD4gJ1snISA8bGFiZWw-IDsKbGlua2RlZjogPExTVEFSVD4gJ1snISA8bGFiZWw-ICc6JyEgPFdTMT4gPGxkdGFyZ2V0PiA7CmxkdGFyZ2V0OiA8ZWJvZHk-KD8rPEROTDE-KSA9PiBqb2luIDsKbGlua2xhYmVsOiAoPGltZz4gfCA8Ym9sZD4gfCA8aXRhbGljPiB8IDxzdHJpa2U-IHwgPGNvZGU-IHwgPGVtb2ppPiB8IDxsaW5rYm9keT4pKiAnXSchIDsKbGlua2RlbGltOiAoIiFbIiB8ICdbJyB8ICIqKiIgfCAnXycgfCAifn4iIHwgJ2AnIHwgJ10nKSA7Cmxpbmtib2R5OiA8ZWJvZHk-KD8tPGxpbmtkZWxpbT4hKSA9PiBqb2luIDsKaW1nOiAiIVsiISA8bGFiZWw-ICcoJyEgPHRhcmdldD4gOwpib2xkOiAiKioiISAoPHdpa2lyZWY-IHwgPGltZz4gfCA8Zm5yZWY-IHwgPGxpbmtyZWY-IHwgPGxpbms-IHwgPGl0YWxpYz4gfCA8c3RyaWtlPiB8IDxjb2RlPiB8IDxlbW9qaT4gfCA8Ym9keTE-KSogIioqIiEgOwppdGFsaWM6ICdfJyEgKDx3aWtpcmVmPiB8IDxpbWc-IHwgPGZucmVmPiB8IDxsaW5rcmVmPiB8IDxsaW5rPiB8IDxib2xkPiB8IDxzdHJpa2U-IHwgPGNvZGU-IHwgPGVtb2ppPiB8IDxib2R5MT4pKiAnXychIDsKc3RyaWtlOiAifn4iISAoPHdpa2lyZWY-IHwgPGltZz4gfCA8Zm5yZWY-IHwgPGxpbmtyZWY-IHwgPGxpbms-IHwgPGJvbGQ-IHwgPGl0YWxpYz4gfCA8Y29kZT4gfCA8ZW1vamk-IHwgPGJvZHkxPikqICJ-fiIhIDsKY29kZTogJ2AnISA8ZWJvZHk-KD8rJ2AnISkgPT4gam9pbiA7CmtiZDogIjxrYmQ-IiEgPGVib2R5Pig_KyI8L2tiZD4iISkgPT4gam9pbiA7CnN1YjogIjxzdWI-IiEgPGVib2R5Pig_KyI8L3N1Yj4iISkgPT4gam9pbiA7CnN1cDogIjxzdXA-IiEgPGVib2R5Pig_KyI8L3N1cD4iISkgPT4gam9pbiA7CmVtb2ppOiAnICc_ICc6JyEgKDxBTFBIQV9OVU0-IHwgJysnKSg_Kyc6JyEpID0-IGpvaW4gOwpwYXJhOiAoPHdpa2lyZWY-IHwgPGltZz4gfCA8Zm5yZWY-IHwgPGxpbmtyZWY-IHwgPGxpbms-IHwgPGJvbGQ-IHwgPGl0YWxpYz4gfCA8c3RyaWtlPiB8IDxjb2RlPiB8IDxrYmQ-IHwgPHN1Yj4gfCA8c3VwPiB8IDxlbW9qaT4gfCA8bGJyPiB8IDxjb21tZW50PiB8IDxib2R5PikqIDxETkwyPiEgOwoKaGRsZXZlbDogJyMnKyA9PiBjb3VudCA7CmhkaWQ6ICJ7IyIhICg8QUxQSEFfTlVNPiB8ICctJykrICd9JyEgPT4gam9pbiA7CmhkZGVsaW06ICg8ZGVsaW0xPiB8ICJ7IyIpIDsKaGRib2R5OiA8ZWJvZHk-KD8tPGhkZGVsaW0-ISkgPT4gam9pbiA7CmhkOiA8TFNUQVJUPiA8aGRsZXZlbD4gPFdTMD4KICAgICg8d2lraXJlZj4gfCA8aW1nPiB8IDxmbnJlZj4gfCA8bGluaz4gfCA8Ym9sZD4gfCA8aXRhbGljPiB8IDxzdHJpa2U-IHwgPGNvZGU-IHwgPGtiZD4gfCA8c3ViPiB8IDxzdXA-IHwgPGVtb2ppPiB8IDxoZGJvZHk-KSogPGhkaWQ-PyA8RE5MMT4gOwoKbGlsZXZlbDogJyAnKiA9PiBjb3VudCA7Cm9saWQ6ICg8QUxQSEE-K3w8RElHSVQ-KykgPT4gam9pbiA7CnVsaW5pdDogPEROTD4gPFdTMD4gJy0nISA7Cm9saW5pdDogPEROTD4gPFdTMD4gPG9saWQ-ISAnLichIDsKbGlkZWxpbTogKDxkZWxpbT4gfCA8dWxpbml0PiB8IDxvbGluaXQ-KSA7CmxpYm9keTogPGVib2R5Pig_LTxsaWRlbGltPiEpID0-IGpvaW4gOwp0b2RvOiAnWychIFsgeFhdICddJyEgPFdTMT4gPT4gaG9pc3RSIDsKdWxpdGVtOiA8TFNUQVJUPiA8bGlsZXZlbD4gIi0gIiEgPHRvZG8-PwogICAgICAgICg8d2lraXJlZj4gfCA8aW1nPiB8IDxmbnJlZj4gfCA8bGluaz4gfCA8Ym9sZD4gfCA8aXRhbGljPiB8IDxzdHJpa2U-IHwgPGNvZGU-IHwgPGVtb2ppPiB8IDxsaWJvZHk-ICkqIDxETkw-IDsKb2xpdGVtOiA8TFNUQVJUPiA8bGlsZXZlbD4gPG9saWQ-ICIuICIhIDx0b2RvPj8KICAgICAgICAoPHdpa2lyZWY-IHwgPGltZz4gfCA8Zm5yZWY-IHwgPGxpbms-IHwgPGJvbGQ-IHwgPGl0YWxpYz4gfCA8c3RyaWtlPiB8IDxjb2RlPiB8IDxlbW9qaT4gfCA8bGlib2R5PiApKiA8RE5MPiA7Cmxpc3Q6ICg8dWxpdGVtPiB8IDxvbGl0ZW0-KSsgPEROTDE-IDsKCmNiZGVsaW06IDxMU1RBUlQ-ICJgYGAiISA7CmNvZGVibG9jazogPGNiZGVsaW0-ISA8Y29kZW1ldGE-IDxjb2RlYm9keT4gPEROTDE-IDsKY29kZW1ldGE6IC4oPys8Tkw-ISkgPT4gam9pbiA7CmNvZGVib2R5OiA8ZWJvZHk-KD8rPGNiZGVsaW0-KSA9PiBqb2luIDsKCmN1c3RvbWRlbGltOiA8TFNUQVJUPiAiOjo6IiEgOwpjdXN0b21ibG9jazogPGN1c3RvbWRlbGltPiEgPGN1c3RvbW1ldGE-IDxjdXN0b21ib2R5PiA8RE5MMT4gOwpjdXN0b21tZXRhOiAuKD8rPE5MPiEpID0-IGpvaW4gOwpjdXN0b21ib2R5OiA8ZWJvZHk-KD8rPGN1c3RvbWRlbGltPikgPT4gam9pbiA7CgptZXRhYmxvY2s6IDxMU1RBUlQ-ICJ7e3siISA8bWV0YWJvZHk-IDxETkwxPiA7Cm1ldGFib2R5OiA8ZWJvZHk-KD8rPG1ldGFlbmQ-ISkgPT4gam9pbiA7Cm1ldGFlbmQ6ICJ9fX0iIDxMRU5EPiA7CgpicWxldmVsOiAnPicrID0-IGNvdW50IDsKYnFsaW5lOiA8TFNUQVJUPiA8YnFsZXZlbD4gJyAnPyEKICAgICAgICAoPHdpa2lyZWY-IHwgPGltZz4gfCA8Zm5yZWY-IHwgPGxpbms-IHwgPGJvbGQ-IHwgPGl0YWxpYz4gfCA8c3RyaWtlPiB8IDxjb2RlPiB8IDxlbW9qaT4gfCA8YnFsYnI-IHwgPGJvZHkxPikqIDxETkw-IDsKYnFsYnI6ICdcXCchKD8tPEROTD4pIDsKYnF1b3RlOiA8YnFsaW5lPisgPEROTDE-IDsKCnRkZWxpbTogKDxpbmxpbmVkZWxpbT4gfCAnfCcgKSA7CnRib2R5OiA8ZWJvZHk-KD8tPHRkZWxpbT4hKSA9PiBqb2luIDsKdGNlbGw6IDxXUzA-ICg8d2lraXJlZj4gfCA8aW1nPiB8IDxmbnJlZj4gfCA8bGluaz4gfCA8Ym9sZD4gfCA8aXRhbGljPiB8IDxzdHJpa2U-IHwgPGNvZGU-IHwgPGVtb2ppPiB8IDx0Ym9keT4gKSogJ3wnISA7CnRyb3c6IDxMU1RBUlQ-ICd8JyEgPHRjZWxsPig_KzxETkw-KSA7CnRhYmxlOiA8dHJvdz4rIDxETkwxPiA7CgpocjogIi0tIiAnLScrIDxETkwxPiA9PiBqb2luIDsKCm1haW46IDxXUzA-ICg8aGQ-IHwgPGxpc3Q-IHwgPGJxdW90ZT4gfCA8Y29kZWJsb2NrPiB8IDxjdXN0b21ibG9jaz4gfCA8bWV0YWJsb2NrPiB8IDx0YWJsZT4gfCA8aHI-IHwgPGZub3RlPiB8IDxsaW5rZGVmPiB8IDxjb21tZW50PiB8IDxwYXJhPiApKiA7pG1haW7aAs0jIEhlbGxvIFwhXFsgOndvcmxkOjpzbWlsZTpbXmFiY10geyNoZDF9CgojIyBhYmMgeyNoZDJ9CiMjIGRlZiA8c3VwPkNvbnRyb2w8L3N1cD4KCmEgXDwgYgoKTGV0IGBleHAyKHgpID0gMioqeGAKClByZXNzIDxrYmQ-Q29udHJvbDwva2JkPiArIDxrYmQ-Ujwva2JkPiB0byA8IS0tc2tpcC0tPiByZWxvYWQuCgo6OjphbGVydApUZXN0IFtsYWJlbF1bcmVmcmVmXQo6OjoKCi0tLQoKe3t7IHsiaWQiOiAxMjMsICJwcm90ZWN0ZWQiOiB0cnVlIH0gfX19ClNvIFtbc21pbGVfZm9vMTJdXSDwn5iNIHdoYXQncyBbdGhpc10oLi90aGlzLm1kKVteMl0gdGhlbjoKCkEgW2xpbmsgX3dpdGggKipuZXN0ZWQgfn5mb3JtYXR-fioqIGFuZCBgcmVmZXJlbmNlYF9dW3JlZnJlZl0uLi4KCmBgYHRzIHRhbmdsZTpubyBsbjp5ZXMKY29uc3QgZm9vID0gNDI7Ci8vIHRoZSBlbmQKYGBgCgoxLiBmb28KICA0LiBiYXIKICAgICBiYXogYW5kIHNvIG9uCiAgICAgbXVsdGlsaW5lCjIuIFsgXSB0YXNrCjMuIFt4XSAqKmRvbmUqKgoKPiBibG9ja3F1b3RlCj4gbXVsdGlsaW5lIHRvb1wKPj4gbmVzdGVkCj4-PiBsZXZlbCAzCj4gLS0gc291cmNlCgp8IGZvbyB8IGJhciB8Cnw6LTp8LTp8CnwgW1tyZWYjMjJdXSB8IGBvbmAgKipvZmYqKiB8CgpbXmFiY106IEZvbyBfYmFyXyBiYXoKClteMl06IFRPRE8KCltyZWZyZWZdOiBodHRwOi8vdGhpLm5nLwpbZm9vXTogLi9mb28ubWQjYmFyCgrZUDwhLS0KaWdub3JlCm11bHRpbGluZQotLT4KCjExLiBhYmMKICAtIHh5egoyMS4geHh4CiAgYS4gZm9vCiAgICBiLiBiYXIKMzEuIHl5eQoK2VY-ICoqbGV2ZWwgMWEqKgo-PiBsZXZlbCAyYQo-PiBsZXZlbCAyYgo-Cj4gbGV2ZWwgMWIKClsqKmZvbyoqXShiYXIpCgoqKiFbZm9vXShiYXIpKioKCg
 
 import type { Fn3, IObjectOf, Primitive } from "@thi.ng/api";
 import { peek } from "@thi.ng/arrays/peek";
@@ -58,7 +58,7 @@ code: '\`'! <ebody>(?+'\`'!) => join ;
 kbd: "<kbd>"! <ebody>(?+"</kbd>"!) => join ;
 sub: "<sub>"! <ebody>(?+"</sub>"!) => join ;
 sup: "<sup>"! <ebody>(?+"</sup>"!) => join ;
-emoji: ' '? ':'! (<ALPHA_NUM> | '+' | '-')(?+':'!) => join ;
+emoji: ' '? ':'! (<ALPHA_NUM> | '+')(?+':'!) => join ;
 para: (<wikiref> | <img> | <fnref> | <linkref> | <link> | <bold> | <italic> | <strike> | <code> | <kbd> | <sub> | <sup> | <emoji> | <lbr> | <comment> | <body>)* <DNL2>! ;
 
 hdlevel: '#'+ => count ;
@@ -69,15 +69,15 @@ hd: <LSTART> <hdlevel> <WS0>
     (<wikiref> | <img> | <fnref> | <link> | <bold> | <italic> | <strike> | <code> | <kbd> | <sub> | <sup> | <emoji> | <hdbody>)* <hdid>? <DNL1> ;
 
 lilevel: ' '* => count ;
-uint: <DIGIT>+ => int ;
-ulid: <DNL> <WS0> '-'! ;
-olid: <DNL> <WS0> <DIGIT>+! '.'! ;
-lidelim: (<delim> | <ulid> | <olid>) ;
+olid: (<ALPHA>+|<DIGIT>+) => join ;
+ulinit: <DNL> <WS0> '-'! ;
+olinit: <DNL> <WS0> <olid>! '.'! ;
+lidelim: (<delim> | <ulinit> | <olinit>) ;
 libody: <ebody>(?-<lidelim>!) => join ;
 todo: '['! [ xX] ']'! <WS1> => hoistR ;
 ulitem: <LSTART> <lilevel> "- "! <todo>?
         (<wikiref> | <img> | <fnref> | <link> | <bold> | <italic> | <strike> | <code> | <emoji> | <libody> )* <DNL> ;
-olitem: <LSTART> <lilevel> <uint> ". "! <todo>?
+olitem: <LSTART> <lilevel> <olid> ". "! <todo>?
         (<wikiref> | <img> | <fnref> | <link> | <bold> | <italic> | <strike> | <code> | <emoji> | <libody> )* <DNL> ;
 list: (<ulitem> | <olitem>)+ <DNL1> ;
 
@@ -175,15 +175,17 @@ export const DEFAULT_TAG_TRANSFORMS: TagTransforms = {
 	ol: (_, items, meta) => ["ol", withMeta({}, meta), ...items],
 	para: (_, body, meta) => ["p", withMeta({}, meta), ...body],
 	strike: (_, body) => ["s", {}, ...body],
-	table: (_, __align, head, rows, meta) => [
+	sub: (_, body) => ["sub", {}, body],
+	sup: (_, body) => ["sup", {}, body],
+	table: (ctx, head, rows, meta) => [
 		"table",
-		withMeta({ __align }, meta),
+		withMeta({ __align: ctx.align }, meta),
 		["thead", {}, head],
 		["tbody", {}, ...rows],
 	],
 	tableCell: (_, body) => ["td", {}, ...body],
 	tableHead: (_, body) => ["th", {}, ...body],
-	tableRow: (_, __, cells) => ["tr", {}, ...cells],
+	tableRow: (_, cells) => ["tr", {}, ...cells],
 	ul: (_, items, meta) => ["ul", withMeta({}, meta), ...items],
 	ulitem: (_, attribs, body) => ["li", attribs, ...body],
 	wikiref: (_, id, label) => [
@@ -280,6 +282,8 @@ export const defTransformContext = (
 	hasFootnotes: false,
 	logger,
 	meta: null,
+	align: [],
+	column: 0,
 	row: 0,
 	opts: {
 		escape: false,
@@ -485,8 +489,7 @@ export const transformScope: Fn3<
 				ctx.tags.italic(ctx, __children(ctx, scope.children!))
 			),
 
-		kbd: (scope, ctx, acc) =>
-			__collect(acc, ctx.tags.kbd(ctx, scope.result)),
+		kbd: (scope, ctx, acc) => __collectPrim(scope, ctx, acc, "kbd"),
 
 		lbr: (_, ctx, acc) => __collect(acc, ctx.tags.br(ctx)),
 
@@ -598,25 +601,31 @@ export const transformScope: Fn3<
 				ctx.tags.strike(ctx, __children(ctx, scope.children!))
 			),
 
+		sub: (scope, ctx, acc) => __collectPrim(scope, ctx, acc, "sub"),
+
+		sup: (scope, ctx, acc) => __collectPrim(scope, ctx, acc, "sup"),
+
 		table: (scope, ctx, acc) => {
 			const children = scope.children![0].children!;
 			const head: any[] = [];
 			const rows: any[] = [];
 			ctx.row = 0;
-			transformScope(children[0], ctx, head);
-			let align: ColumnAlign[];
 			if (children.length > 1) {
-				align = __columnAlignments(children[1].children![0].children!);
+				ctx.align = __columnAlignments(
+					children[1].children![0].children!
+				);
 				for (let i = 2, n = children.length; i < n; i++) {
 					ctx.row = i - 1;
 					transformScope(children[i], ctx, rows);
 				}
 			} else {
-				align = new Array(
+				ctx.align = new Array(
 					children[0].children![0].children!.length
 				).fill("left");
 			}
-			__collect(acc, ctx.tags.table(ctx, align, head[0], rows, ctx.meta));
+			ctx.row = 0;
+			transformScope(children[0], ctx, head);
+			__collect(acc, ctx.tags.table(ctx, head[0], rows, ctx.meta));
 			ctx.meta = null;
 		},
 
@@ -629,15 +638,14 @@ export const transformScope: Fn3<
 				)
 			),
 
-		trow: ({ children }, ctx, acc) =>
-			__collect(
-				acc,
-				ctx.tags.tableRow(
-					ctx,
-					ctx.row,
-					__children(ctx, children![0].children!)
-				)
-			),
+		trow: (scope, ctx, acc) => {
+			const cells: any[] = [];
+			scope.children![0].children!.forEach((c, i) => {
+				ctx.column = i;
+				transformScope(c, ctx, cells);
+			});
+			__collect(acc, ctx.tags.tableRow(ctx, cells));
+		},
 
 		ulitem: ({ children }, ctx, acc) => {
 			const body: any[] = [];
@@ -685,6 +693,13 @@ export const extractBody = (body: any[], acc: Primitive[] = []) => {
 
 /** @internal */
 const __collect = (acc: any[], x: any) => x != null && acc.push(x);
+
+const __collectPrim = (
+	scope: ParseScope<string>,
+	ctx: TransformCtx,
+	acc: any[],
+	tag: "kbd" | "sub" | "sup"
+) => __collect(acc, ctx.tags[tag](ctx, scope.result));
 
 /** @internal */
 const __children = (

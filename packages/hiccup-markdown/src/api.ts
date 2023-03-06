@@ -213,7 +213,8 @@ export interface TagTransforms {
 	ol(ctx: TransformCtx, items: any[], meta?: any): any;
 	/**
 	 * Handler for a single list item in an ordered list. The `index` arg is the
-	 * parsed integer index specified in the MD source code for that item.
+	 * raw item index specified in the MD source code for that item (e.g. a
+	 * digit or letter).
 	 *
 	 * @remarks
 	 * If the `attribs` object has a `__todo` attrib, the item is a task list
@@ -227,8 +228,8 @@ export interface TagTransforms {
 	olitem(
 		ctx: TransformCtx,
 		attribs: TodoAttribs,
-		index: number,
-		...body: any[]
+		index: string,
+		body: any[]
 	): any;
 	/**
 	 * Handler for a paragraph of body content.
@@ -246,42 +247,54 @@ export interface TagTransforms {
 	 */
 	strike(ctx: TransformCtx, body: any[]): any;
 	/**
-	 * Handler for a table container.
+	 * Handler for subscript inline content.
 	 *
 	 * @param ctx
-	 * @param align
+	 * @param body
+	 */
+	sub(ctx: TransformCtx, body: string): any;
+	/**
+	 * Handler for superscript inline content.
+	 *
+	 * @param ctx
+	 * @param body
+	 */
+	sup(ctx: TransformCtx, body: string): any;
+	/**
+	 * Handler for a table container. The alignment settings for each column can
+	 * be accessed via given context's {@link TransformCtx.align} array.
+	 *
+	 * @param ctx
 	 * @param head
 	 * @param rows
 	 * @param meta
 	 */
-	table(
-		ctx: TransformCtx,
-		align: ColumnAlign[],
-		head: any[],
-		rows: any[],
-		meta?: any
-	): any;
+	table(ctx: TransformCtx, head: any[], rows: any[], meta?: any): any;
 	/**
-	 * Handler for a single table cell in a non-header row.
+	 * Handler for a single table cell in a non-header row. The current column index can
+	 * be accessed via given context's {@link TransformCtx.column} property.
 	 *
 	 * @param ctx
 	 * @param body
 	 */
 	tableCell(ctx: TransformCtx, body: any[]): any;
 	/**
-	 * Handler for a single table cell in the header row.
+	 * Handler for a single table cell in the header row. The current column index can
+	 * be accessed via given context's {@link TransformCtx.column} property.
 	 *
 	 * @param ctx
 	 * @param body
 	 */
 	tableHead(ctx: TransformCtx, body: any[]): any;
 	/**
-	 * Handler for a single table row. The header row will have `index=0`.
+	 * Handler for a single table row. The current row index can be accessed via
+	 * given context's {@link TransformCtx.row} property. The header row will
+	 * have `index=0`. The first data row `index=1`.
 	 *
 	 * @param ctx
 	 * @param body
 	 */
-	tableRow(ctx: TransformCtx, index: number, cells: any[]): any;
+	tableRow(ctx: TransformCtx, cells: any[]): any;
 	/**
 	 * Handler for an unordered list wrapper.
 	 *
@@ -301,7 +314,7 @@ export interface TagTransforms {
 	 * @param attribs
 	 * @param body
 	 */
-	ulitem(ctx: TransformCtx, attribs: TodoAttribs, ...body: any[]): any;
+	ulitem(ctx: TransformCtx, attribs: TodoAttribs, body: any[]): any;
 	/**
 	 * Handler for `[[page name]]` or `[[page name|label]]-style links.
 	 *
@@ -324,6 +337,8 @@ export interface TransformCtx {
 	headings: { level: number; body: any[] }[];
 	hasFootnotes: boolean;
 	meta?: any;
+	align: ColumnAlign[];
+	column: number;
 	row: number;
 	opts: ParseOpts;
 }
