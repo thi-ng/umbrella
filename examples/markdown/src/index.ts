@@ -1,6 +1,6 @@
 import type { IObjectOf } from "@thi.ng/api";
 import { timedResult } from "@thi.ng/bench";
-import { parse, TagTransforms } from "@thi.ng/hiccup-markdown";
+import { parse, TagTransforms, TransformCtx } from "@thi.ng/hiccup-markdown";
 import { reactive, Stream } from "@thi.ng/rstream";
 import { map } from "@thi.ng/transducers";
 import { updateDOM } from "@thi.ng/transducers-hdom";
@@ -56,19 +56,60 @@ const CUSTOM_TAGS: Partial<TagTransforms> = {
 		},
 		...body,
 	],
+	ol: (ctx, items, meta) => [
+		"ol",
+		{ type: /^[0-9]+$/.test(items[0][1].__index) ? "1" : "a" },
+		...items,
+	],
+	olitem: (ctx, attribs, index, body) =>
+		attribs.__todo
+			? [
+					"li",
+					{ __index: index },
+					["input", { type: "checkbox", checked: attribs.__done }],
+					" ",
+					...body,
+			  ]
+			: ["li", { __index: index }, ...body],
+	ulitem: (ctx, attribs, body) =>
+		attribs.__todo
+			? [
+					"li",
+					{},
+					["input", { type: "checkbox", checked: attribs.__done }],
+					" ",
+					...body,
+			  ]
+			: ["li", {}, ...body],
 	strike: (ctx, body) => ["del.bg-washed-red", ...body],
-	table: (ctx, align, head, rows) => [
+	table: (ctx, head, rows) => [
 		"table.w-100.collapse.ba.b--black-10",
+		{ "data-align": ctx.align.toString() },
 		["thead", {}, head],
 		["tbody", {}, ...rows],
 	],
-	tableRow: (ctx, id, cells) => [
+	tableRow: (ctx, cells) => [
 		`tr.striped--near-white.ba.b--black-10`,
 		...cells,
 	],
-	tableCell: (ctx, body) => ["td.pa2", {}, ...body],
-	tableHead: (ctx, body) => ["th.pa2.bg-black.white.tl", {}, ...body],
+	tableCell: (ctx, body) => [
+		"td.pa2",
+		{
+			class: colAlign(ctx),
+		},
+		...body,
+	],
+	tableHead: (ctx, body) => [
+		"th.pa2.bg-black.white",
+		{ class: colAlign(ctx) },
+		...body,
+	],
 };
+
+const colAlign = (ctx: TransformCtx) =>
+	({ default: "tl", left: "tl", center: "tc", right: "tr" }[
+		ctx.align[ctx.column]
+	]);
 
 // UI root component
 const app =
@@ -121,7 +162,14 @@ src.transform(
 							],
 					  ];
 			} catch (e) {
-				return ["div.bg-dark-red.white", {}, (<Error>e).message];
+				return [
+					[
+						"div.bg-dark-red.white.pa2.f7",
+						{},
+						["h3", {}, "Parser error"],
+						(<Error>e).message,
+					],
+				];
 			}
 		}),
 	})),

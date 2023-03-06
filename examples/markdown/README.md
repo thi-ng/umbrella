@@ -18,7 +18,7 @@ Nested blockquotes are supported and can contain links, images and inline
 formatting, but not other block elements (e.g. lists):
 
 > Nesting is supported:
->> "To understand recursion, one must first understand recursion."
+>> "To understand recursion, one must **first** understand recursion."
 >> — Stephen Hawking
 >
 > Images in blockquotes are ok too:\
@@ -78,8 +78,8 @@ For example, here is a [link to this section](#custom-header-id) (using ID
 
 ### Images
 
-**Alt text for images is required**. `title` attributes (e.g. for tooltips) can
-be given in quotes after the image URL. For example:
+**Alt text for images is required**. Optional `title` attribute (e.g. for hover
+tooltip or caption) can be given in quotes after the image URL. For example:
 
 ```markdown
 ![alt text](url "title text")
@@ -95,6 +95,15 @@ The following link formats are supported:
    the document or pre-defined via options given to the parser
 4. `[[page name]]` - Wiki-style page reference, non-standard Markdown
 5. `[[page name|label]]` - like 4., but with added link label
+
+### Lists
+
+- Ordered and unordered lists are supported
+  - Fully nestable
+- Ordered lists start with a `1.` (digit or letter followed by a dot) prefix
+- Unordered lists **must** use a `-` line prefix
+- [ ] TODO list items
+  - [x] ...are supported as well
 
 ### Blocklevel metadata
 
@@ -127,16 +136,16 @@ Just checkout that metadata...
 
 ### Tables
 
-| Cells in...       | header are treated separately                                                                  |
-|:------------------|:-----------------------------------------------------------------------------------------------|
-| Column alignments | :white_check_mark: supported (ignored in this demo though)                                     |
-| Inline formats    | :white_check_mark: _supported and **nestable**_                                                |
-| Images            | ![C-SCAPE](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/cellular/hero.png) |
-| Links             | :white_check_mark: [supported](#links)                                                         |
+|    Cells in...    | header are treated separately                                                                  |
+|:-----------------:|------------------------------------------------------------------------------------------------|
+| Column alignments | :white_check_mark: supported                                                                   |
+|  Inline formats   | :white_check_mark: _supported and **nestable**_                                                |
+|      Images       | ![C-SCAPE](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/cellular/hero.png) |
+|       Links       | :white_check_mark: [supported](#links)                                                         |
 |                   |                                                                                                |
-| Unsupported       | :x: no linebreaks                                                                              |
-|                   | :x: no lists                                                                                   |
-|                   | :x: no blockquotes                                                                             |
+|    Unsupported    | :x: linebreaks                                                                                 |
+|                   | :x: lists                                                                                      |
+|                   | :x: blockquotes                                                                                |
 
 ## Onwards!
 
