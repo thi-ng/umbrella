@@ -6,7 +6,8 @@
 
 {{pkg.description}}
 
-**⚠️ IMPORTANT: With v3.0.0 the parser implementation underwent a complete rewrite (with breaking changes, but lots of improvements). ⚠️**
+**⚠️ IMPORTANT: With v3.0.0 the parser implementation underwent a complete
+rewrite (with breaking changes, but lots of improvements). ⚠️**
 
 This package provides both a customizable
 [Markdown](https://en.wikipedia.org/wiki/Markdown)-to-[Hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup)
@@ -26,16 +27,20 @@ standard syntax.
 |---------------|--------------------------------------------------------------------------------------------------------------------------------------------|
 | Blockquotes   | Nestable, support for inline formatting and forced line breaks (trailing `\`)                                                              |
 | Code blocks   | GFM style only (triple backtick prefix), w/ mandatory language hint & optional extra headers information                                   |
+| Escaping      | Uniformly escape MD control characters via backslash, e.g. `\*`                                                                            |
 | Formatting    | Nestable **bold**, _italic_, `code`, ~~strike~~, <kbd>Key</kbd> supported in paragraphs, headings, link labels, lists, blockquotes, tables |
 | Footnotes     | Supported and stored separately in parse context                                                                                           |
-| Headings      | ATX-style only (`#` line prefix), optional custom ID attrib (via `{#custom-id}` suffix), levels 1-6 then fallback to paragraph             |
+| Headings      | ATX-style only (`#` line prefix), optional anchor ID (via `{#custom-id}` suffix), levels 1-6 then fallback to paragraph                    |
 | Horiz. Rulers | Only dash supported (e.g. `---`), min 2 chars required, length retained for downstream transformations                                     |
-| HTML elements | Unsupported                                                                                                                                |
-| Images        | Alt text is required, image can be used in link labels                                                                                     |
+| HTML elements | Only `<kbd>`, `<sub>`, `<sup>`                                                                                                             |
+| Images        | Alt text is required, image can be used in link labels, optional title suffix                                                              |
 | Links         | Supports `[label](target)`, `[label][ref]`, `[[page id]]` or `[[page id|label]]` style links, inline formats in label                      |
 | Lists         | Ordered & unordered, nestable, inline formatting, line breaks, GFM task list items                                                         |
 | Paragraphs    | Support for forced line breaks (trailing `\`)                                                                                              |
-| Tables        | Support for column alignments, nestable inline formatting                                                                                  |
+| Tables        | Support for column alignments, nestable inline formatting (no nested block elements)                                                       |
+
+**Please visit the [interactive Markdown parser/editor/preview
+demo](https://demo.thi.ng/umbrella/markdown/) for further details/examples...**
 
 ### Additional syntax & parser features/restrictions
 
@@ -128,6 +133,35 @@ Results in:
 //   [ "h2", { id: "custom-id-123" }, "Heading with anchor" ]
 // ]
 ```
+
+### Images
+
+**Alt text for images is required**. Optional `title` attribute (e.g. for hover
+tooltip or caption) can be given in quotes after the image URL. For example:
+
+```markdown
+![alt text](url "title text")
+```
+
+### Link formats
+
+The following link formats are supported:
+
+1. `[label](target)`
+2. `[label](target "title")`
+3. `[label][ref-id]` - the reference ID will have to provided somewhere else in
+   the document or pre-defined via options given to the parser
+4. `[[page name]]` - Wiki-style page reference, non-standard Markdown
+5. `[[page name|label]]` - like 4., but with added link label
+
+### Lists
+
+- Ordered and unordered lists are supported
+  - Fully nestable
+- Ordered lists start with a `1.` (digit or letter followed by a dot) prefix
+- Unordered lists **must** use a `-` line prefix
+- [ ] TODO list items
+  - [x] ...are supported as well
 
 #### Metadata
 
