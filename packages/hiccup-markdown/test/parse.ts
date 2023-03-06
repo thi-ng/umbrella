@@ -89,6 +89,62 @@ group("parse", {
 		]);
 	},
 
+	"escape in hd": () => {
+		check("# a\\*\\*bc", [["h1", { id: "abc" }, "a**bc"]]);
+	},
+
+	"escape in para": () => {
+		check("a \\`bc\\`", [["p", {}, "a `bc`"]]);
+	},
+
+	"escape in inline fmt": () => {
+		check("**a\\_bc**", [["p", {}, ["strong", {}, "a_bc"]]]);
+		check("_a\\**bc_", [["p", {}, ["em", {}, "a**bc"]]]);
+	},
+
+	"escape in link": () => {
+		check(`[a\\_bc](d\\(ef\\) "with\\_esc")`, [
+			["p", {}, ["a", { href: "d(ef)", title: "with_esc" }, "a_bc"]],
+		]);
+	},
+
+	"escape in wikiref": () => {
+		check(`[[ a\\[bc\\]]]`, [
+			[
+				"p",
+				{},
+				[
+					"a",
+					{
+						class: "wikiref",
+						href: "a%5Bbc%5D",
+					},
+					"a[bc]",
+				],
+			],
+		]);
+		check(`[[ a\\[bc\\]| Title ]]`, [
+			[
+				"p",
+				{},
+				[
+					"a",
+					{
+						class: "wikiref",
+						href: "a%5Bbc%5D",
+					},
+					"Title",
+				],
+			],
+		]);
+	},
+
+	"escape in list": () => {
+		check(`- a\\_bc\n\\- d\\[ef\\]`, [
+			["ul", {}, ["li", {}, "a_bc\n- d[ef]"]],
+		]);
+	},
+
 	footnotes: () => {
 		check(
 			`abc[^2] def[^1]
