@@ -113,10 +113,14 @@
 			}
 		],
 		"related": [
+			"axidraw",
+			"geom",
+			"geom-axidraw",
 			"hdom",
 			"hdom-canvas",
 			"rdom",
-			"rdom-canvas"
+			"rdom-canvas",
+			"zipper"
 		],
 		"year": 2016
 	}
