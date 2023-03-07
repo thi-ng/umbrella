@@ -118,8 +118,11 @@
 			"geom-axidraw",
 			"hdom",
 			"hdom-canvas",
+			"hdom-components",
 			"rdom",
 			"rdom-canvas",
+			"rdom-components",
+			"transducers",
 			"zipper"
 		],
 		"year": 2016
