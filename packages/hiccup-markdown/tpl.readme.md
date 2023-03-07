@@ -15,52 +15,47 @@ parser and an extensible Hiccup-to-Markdown converter.
 
 ## Parser
 
+Sadly, none of the available Markdown flavors have ever been designed with much
+consistency and/or ease-of-implementation/parsing aspects in mind. The result is
+a proliferation of Markdown-ish flavors, even though there've been attempts to
+standardize the syntax.
+
 ### Basic features
 
-The parser itself is not aimed at supporting **all** of Markdown's
-(CommonMark's) quirky syntax features, but restricts itself to a sane subset of
-features and some useful [additional
+The parser provided here is _not_ aimed at supporting **all** of Markdown's (or
+CommonMark's) quirky syntax features, but restricts itself to a large _sane
+subset_ of features and some useful [additional
 features](#additional-syntax--parser-featuresrestrictions) not part of the
-standard syntax.
+standard/common syntax.
 
-| Feature       | Comments                                                                                                                                   |
-|---------------|--------------------------------------------------------------------------------------------------------------------------------------------|
-| Blockquotes   | Nestable, support for inline formatting and forced line breaks (trailing `\`)                                                              |
-| Code blocks   | GFM style only (triple backtick prefix), w/ mandatory language hint & optional extra headers information                                   |
-| Escaping      | Uniformly escape MD control characters via backslash, e.g. `\*`                                                                            |
-| Formatting    | Nestable **bold**, _italic_, `code`, ~~strike~~, <kbd>Key</kbd> supported in paragraphs, headings, link labels, lists, blockquotes, tables |
-| Footnotes     | Supported and stored separately in parse context                                                                                           |
-| Headings      | ATX-style only (`#` line prefix), optional anchor ID (via `{#custom-id}` suffix), levels 1-6 then fallback to paragraph                    |
-| Horiz. Rulers | Only dash supported (e.g. `---`), min 2 chars required, length retained for downstream transformations                                     |
-| HTML elements | Only `<kbd>`, `<sub>`, `<sup>`                                                                                                             |
-| Images        | Alt text is required, image can be used in link labels, optional title suffix                                                              |
-| Links         | Supports `[label](target)`, `[label][ref]`, `[[page id]]` or `[[page id|label]]` style links, inline formats in label                      |
-| Lists         | Ordered & unordered, nestable, inline formatting, line breaks, GFM task list items                                                         |
-| Paragraphs    | Support for forced line breaks (trailing `\`)                                                                                              |
-| Tables        | Support for column alignments, nestable inline formatting (no nested block elements)                                                       |
+| Feature       | Comments                                                                                                                |
+|---------------|-------------------------------------------------------------------------------------------------------------------------|
+| Blockquotes   | Nestable, support for inline formatting and forced line breaks (trailing backslash)                                     |
+| Code blocks   | GFM style only (triple backtick prefix), w/ mandatory language hint & optional extra headers information                |
+| Escaping      | Uniformly escape MD control characters via backslash, e.g. `\*`                                                         |
+| Formatting    | Nestable inline formats supported in paragraphs, headings, link labels, lists, blockquotes, tables:                     |
+|               | **bold**, _italic_, `code`, ~~strike~~                                                                                  |
+|               | <kbd>Key</kbd>, <sub>subscript</sub> and <sup>super</sup>                                                               |
+| Footnotes     | Supported and stored separately in parse context for further processing                                                 |
+| Headings      | ATX-style only (`#` line prefix), optional anchor ID (via `{#custom-id}` suffix), levels 1-6 then fallback to paragraph |
+| Horiz. Rulers | Only dash supported (e.g. `---`), min 3 chars required, length retained for downstream transformations                  |
+| HTML elements | Only `<kbd>`, `<sub>` `<sup>`                                                                                           |
+| Images        | Alt text is required, image can be used in link labels, optional title suffix                                           |
+| Links         | Supports `[label](target)`, `[label][ref]`, `[[page id]]` or `[[page id\|label]]` style links, inline formats in label  |
+| Lists         | Ordered & unordered, nestable, inline formatting, line breaks, GFM todo list items                                      |
+| Paragraphs    | Support for forced line breaks (trailing backslash)                                                                     |
+| Tables        | Support for column alignments, nestable inline formatting (no nested block elements)                                    |
 
-**Please visit the [interactive Markdown parser/editor/preview
-demo](https://demo.thi.ng/umbrella/markdown/) for further details/examples...**
+**Please visit the [interactive Markdown parser/editor
+playground](https://demo.thi.ng/umbrella/markdown/) for further
+details/examples...**
 
 ### Additional syntax & parser features/restrictions
 
-#### Formatting
+#### Code blocks
 
-To avoid ambiguity and simplify nesting, only the following formatting syntax is
-supported for bold & italic:
-
-- `**bold**`
-- `_italic_`
-
-`code` (\`) and ~~strikethrough~~ (`~~`) as usual...
-
-For keyboard commands `<kbd>` can be used, e.g.:\
-`<kbd>Control</kbd> + <kbd>R</kbd>`
-
-#### Code block headers
-
-In addition to the mandatory language hint, code blocks support optional user
-defined headers/metadata. Items will be separated by spaces (e.g. see
+In addition to the **mandatory language hint**, code blocks support optional
+user defined headers/metadata. Items will be separated by spaces (e.g. see
 [@thi.ng/tangle](https://github.com/thi-ng/umbrella/tree/develop/packages/tangle)
 for concrete use cases).
 
@@ -75,8 +70,8 @@ layout breakage)
 
 #### Custom blocks
 
-Since the parser does not directly transform Markdown into HTML, blocks of custom
-freeform content can be used to define arbitrary data structures (e.g. UI
+Since the parser does not directly transform Markdown into HTML, blocks of
+custom freeform content can be used to define arbitrary data structures (e.g. UI
 components, diagrams/visualizations etc.). Similarly to code blocks, custom
 blocks are wrapped with `:::` and a type specifier:
 
@@ -103,7 +98,34 @@ transformer. The default handler merely creates an element like this:
 **Tip:** Use a
 [`defmulti()`](https://github.com/thi-ng/umbrella/tree/develop/packages/defmulti)
 polymorphic function as tag transformer to elegantly handle multiple types of
-custom blocks (in an extensible manner).
+custom blocks (in an easily extensible manner).
+
+#### Escaping control characters
+
+Unlike the weird & hard-to-memorize escape rules in "standard" Markdown, here
+we're taking a more uniform approach of exclusively using backslash escapes
+(e.g. `\*`) to ensure various Markdown control characters are used verbatim.
+Only the following minor exceptions apply:
+
+1. In inline code sections only backticks (`\``) need to be escaped and
+   backslashes _can_ be escaped. All others chars are used as is.
+2. In fenced code blocks only backticks can be escaped (e.g. if escaping the
+   triple-backtick block fence itself). Backslashes and others chars are used as is.
+3. In custom blocks only colons (`:`) can be escaped (e.g. if escaping the
+   triple-colon block fence itself). All other chars are used as is.
+4. In metadata blocks only `}` can be escaped. All other chars are used as is.
+
+#### Formatting
+
+To avoid ambiguity and simplify nesting, only the following formatting syntax is
+supported for bold & italic:
+
+- `**bold**`
+- `_italic_`
+- `code` (\`) and ~~strikethrough~~ (`~~`) as usual...
+- `<kbd>` for keyboard shortcuts (e.g. <kbd>Control</kbd>)
+- `<sub>` for <sub>subscript</sub>
+- `<sup>` for <sup>superscript</sup>
 
 #### Headings with anchor IDs
 
