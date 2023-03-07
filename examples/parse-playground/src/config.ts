@@ -53,10 +53,11 @@ main: <START> <expr> <END> => hoist ;
 export const DEFAULT_RULE = "main";
 
 export const DEFAULT_INPUTS = [
-	`(def hello (x) (str "hello, " x))
-(print (hello -12.3))`,
+	`(def hello (x) (str "hello, " x))\n(print (hello -12.3))`,
 	"(hello world)",
 	"intentionally left blank",
+	"",
+	"",
 ];
 
 export const LINK_CLASSES = "link blue";

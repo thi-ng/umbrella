@@ -39,7 +39,11 @@ import {
 // this uses a base64 & msgpack encoded version of the two editors
 const parseState = ((): Nullable<string[]> => {
 	try {
-		return deserialize(base64Decode(location.hash.substring(1)));
+		const res = deserialize(base64Decode(location.hash.substring(1)));
+		// fill up missing test inputs w / empty string when loading presets
+		// from older playground versions (which only had 3 input panels)
+		while (res.length < 2 + DEFAULT_INPUTS.length) res.push("");
+		return res;
 	} catch (e) {}
 })() || [DEFAULT_GRAMMAR, DEFAULT_RULE, ...DEFAULT_INPUTS];
 
