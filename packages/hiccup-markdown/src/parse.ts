@@ -1,5 +1,5 @@
-// Downloaded @ 2023-03-06T12:44:14.677Z
-// Source: https://demo.thi.ng/umbrella/parse-playground/#ldoPEUROTDE6IDxETkw-KyA9PiBkaXNjYXJkIDsKRE5MMjogPE5MPnsyLH0gOwpsYnI6ICdcXCchIDxOTD4hIDsKZXNjOiAnXFwnISAoJ18nIHwgJyonIHwgJ2AnIHwgJ34nIHwgJzonIHwgJy0nIHwgJzwnIHwgJz4nIHwgJ1snIHwgJ10nIHwgJygnIHwgJyknIHwgJ3snIHwgJ30nKSA7CmlubGluZWRlbGltOiAoIiFbIiB8ICdbJyB8ICIqKiIgfCAnXycgfCAnYCcgfCAnPCcgfCAifn4iIHwgIiA6IiB8IDxsYnI-KSA7CmRlbGltOiAoPGlubGluZWRlbGltPiB8IDxETkwyPikgOwpkZWxpbTE6ICg8aW5saW5lZGVsaW0-IHwgPE5MPikgOwplYm9keTogKDxlc2M-fC4pIDsKYm9keTogPGVib2R5Pig_LTxkZWxpbT4hKSA9PiBqb2luIDsKYm9keTE6IDxlYm9keT4oPy08ZGVsaW0xPiEpID0-IGpvaW4gOwoKY29tbWVudDogIjwhLS0iISAuKD8rIi0tPiIpID0-IGRpc2NhcmQgOwp3aWtpcmVmOiAiW1siISA8ZWJvZHk-KD8rIl1dIiEpID0-IGpvaW4gOwpmbnJlZjogIlteIiEgPGxhYmVsPiA7CmZub3RlOiA8TFNUQVJUPiAiW14iISA8Zm5sYWJlbD4gPFdTMT4gPHBhcmE-IDsKZm5sYWJlbDogPGVib2R5Pig_KyJdOiIhKSA9PiBqb2luIDsKbGFiZWw6IDxlYm9keT4oPysnXSchKSA9PiBqb2luIDsKdGFyZ2V0OiA8ZWJvZHk-KD8rJyknISkgPT4gam9pbiA7Cmxpbms6ICdbJyEgPGxpbmtsYWJlbD4gJygnISA8dGFyZ2V0PiA7CmxpbmtyZWY6ICdbJyEgPGxpbmtsYWJlbD4gJ1snISA8bGFiZWw-IDsKbGlua2RlZjogPExTVEFSVD4gJ1snISA8bGFiZWw-ICc6JyEgPFdTMT4gPGxkdGFyZ2V0PiA7CmxkdGFyZ2V0OiA8ZWJvZHk-KD8rPEROTDE-KSA9PiBqb2luIDsKbGlua2xhYmVsOiAoPGltZz4gfCA8Ym9sZD4gfCA8aXRhbGljPiB8IDxzdHJpa2U-IHwgPGNvZGU-IHwgPGVtb2ppPiB8IDxsaW5rYm9keT4pKiAnXSchIDsKbGlua2RlbGltOiAoIiFbIiB8ICdbJyB8ICIqKiIgfCAnXycgfCAifn4iIHwgJ2AnIHwgJ10nKSA7Cmxpbmtib2R5OiA8ZWJvZHk-KD8tPGxpbmtkZWxpbT4hKSA9PiBqb2luIDsKaW1nOiAiIVsiISA8bGFiZWw-ICcoJyEgPHRhcmdldD4gOwpib2xkOiAiKioiISAoPHdpa2lyZWY-IHwgPGltZz4gfCA8Zm5yZWY-IHwgPGxpbmtyZWY-IHwgPGxpbms-IHwgPGl0YWxpYz4gfCA8c3RyaWtlPiB8IDxjb2RlPiB8IDxlbW9qaT4gfCA8Ym9keTE-KSogIioqIiEgOwppdGFsaWM6ICdfJyEgKDx3aWtpcmVmPiB8IDxpbWc-IHwgPGZucmVmPiB8IDxsaW5rcmVmPiB8IDxsaW5rPiB8IDxib2xkPiB8IDxzdHJpa2U-IHwgPGNvZGU-IHwgPGVtb2ppPiB8IDxib2R5MT4pKiAnXychIDsKc3RyaWtlOiAifn4iISAoPHdpa2lyZWY-IHwgPGltZz4gfCA8Zm5yZWY-IHwgPGxpbmtyZWY-IHwgPGxpbms-IHwgPGJvbGQ-IHwgPGl0YWxpYz4gfCA8Y29kZT4gfCA8ZW1vamk-IHwgPGJvZHkxPikqICJ-fiIhIDsKY29kZTogJ2AnISA8ZWJvZHk-KD8rJ2AnISkgPT4gam9pbiA7CmtiZDogIjxrYmQ-IiEgPGVib2R5Pig_KyI8L2tiZD4iISkgPT4gam9pbiA7CnN1YjogIjxzdWI-IiEgPGVib2R5Pig_KyI8L3N1Yj4iISkgPT4gam9pbiA7CnN1cDogIjxzdXA-IiEgPGVib2R5Pig_KyI8L3N1cD4iISkgPT4gam9pbiA7CmVtb2ppOiAnICc_ICc6JyEgKDxBTFBIQV9OVU0-IHwgJysnKSg_Kyc6JyEpID0-IGpvaW4gOwpwYXJhOiAoPHdpa2lyZWY-IHwgPGltZz4gfCA8Zm5yZWY-IHwgPGxpbmtyZWY-IHwgPGxpbms-IHwgPGJvbGQ-IHwgPGl0YWxpYz4gfCA8c3RyaWtlPiB8IDxjb2RlPiB8IDxrYmQ-IHwgPHN1Yj4gfCA8c3VwPiB8IDxlbW9qaT4gfCA8bGJyPiB8IDxjb21tZW50PiB8IDxib2R5PikqIDxETkwyPiEgOwoKaGRsZXZlbDogJyMnKyA9PiBjb3VudCA7CmhkaWQ6ICJ7IyIhICg8QUxQSEFfTlVNPiB8ICctJykrICd9JyEgPT4gam9pbiA7CmhkZGVsaW06ICg8ZGVsaW0xPiB8ICJ7IyIpIDsKaGRib2R5OiA8ZWJvZHk-KD8tPGhkZGVsaW0-ISkgPT4gam9pbiA7CmhkOiA8TFNUQVJUPiA8aGRsZXZlbD4gPFdTMD4KICAgICg8d2lraXJlZj4gfCA8aW1nPiB8IDxmbnJlZj4gfCA8bGluaz4gfCA8Ym9sZD4gfCA8aXRhbGljPiB8IDxzdHJpa2U-IHwgPGNvZGU-IHwgPGtiZD4gfCA8c3ViPiB8IDxzdXA-IHwgPGVtb2ppPiB8IDxoZGJvZHk-KSogPGhkaWQ-PyA8RE5MMT4gOwoKbGlsZXZlbDogJyAnKiA9PiBjb3VudCA7Cm9saWQ6ICg8QUxQSEE-K3w8RElHSVQ-KykgPT4gam9pbiA7CnVsaW5pdDogPEROTD4gPFdTMD4gJy0nISA7Cm9saW5pdDogPEROTD4gPFdTMD4gPG9saWQ-ISAnLichIDsKbGlkZWxpbTogKDxkZWxpbT4gfCA8dWxpbml0PiB8IDxvbGluaXQ-KSA7CmxpYm9keTogPGVib2R5Pig_LTxsaWRlbGltPiEpID0-IGpvaW4gOwp0b2RvOiAnWychIFsgeFhdICddJyEgPFdTMT4gPT4gaG9pc3RSIDsKdWxpdGVtOiA8TFNUQVJUPiA8bGlsZXZlbD4gIi0gIiEgPHRvZG8-PwogICAgICAgICg8d2lraXJlZj4gfCA8aW1nPiB8IDxmbnJlZj4gfCA8bGluaz4gfCA8Ym9sZD4gfCA8aXRhbGljPiB8IDxzdHJpa2U-IHwgPGNvZGU-IHwgPGVtb2ppPiB8IDxsaWJvZHk-ICkqIDxETkw-IDsKb2xpdGVtOiA8TFNUQVJUPiA8bGlsZXZlbD4gPG9saWQ-ICIuICIhIDx0b2RvPj8KICAgICAgICAoPHdpa2lyZWY-IHwgPGltZz4gfCA8Zm5yZWY-IHwgPGxpbms-IHwgPGJvbGQ-IHwgPGl0YWxpYz4gfCA8c3RyaWtlPiB8IDxjb2RlPiB8IDxlbW9qaT4gfCA8bGlib2R5PiApKiA8RE5MPiA7Cmxpc3Q6ICg8dWxpdGVtPiB8IDxvbGl0ZW0-KSsgPEROTDE-IDsKCmNiZGVsaW06IDxMU1RBUlQ-ICJgYGAiISA7CmNvZGVibG9jazogPGNiZGVsaW0-ISA8Y29kZW1ldGE-IDxjb2RlYm9keT4gPEROTDE-IDsKY29kZW1ldGE6IC4oPys8Tkw-ISkgPT4gam9pbiA7CmNvZGVib2R5OiA8ZWJvZHk-KD8rPGNiZGVsaW0-KSA9PiBqb2luIDsKCmN1c3RvbWRlbGltOiA8TFNUQVJUPiAiOjo6IiEgOwpjdXN0b21ibG9jazogPGN1c3RvbWRlbGltPiEgPGN1c3RvbW1ldGE-IDxjdXN0b21ib2R5PiA8RE5MMT4gOwpjdXN0b21tZXRhOiAuKD8rPE5MPiEpID0-IGpvaW4gOwpjdXN0b21ib2R5OiA8ZWJvZHk-KD8rPGN1c3RvbWRlbGltPikgPT4gam9pbiA7CgptZXRhYmxvY2s6IDxMU1RBUlQ-ICJ7e3siISA8bWV0YWJvZHk-IDxETkwxPiA7Cm1ldGFib2R5OiA8ZWJvZHk-KD8rPG1ldGFlbmQ-ISkgPT4gam9pbiA7Cm1ldGFlbmQ6ICJ9fX0iIDxMRU5EPiA7CgpicWxldmVsOiAnPicrID0-IGNvdW50IDsKYnFsaW5lOiA8TFNUQVJUPiA8YnFsZXZlbD4gJyAnPyEKICAgICAgICAoPHdpa2lyZWY-IHwgPGltZz4gfCA8Zm5yZWY-IHwgPGxpbms-IHwgPGJvbGQ-IHwgPGl0YWxpYz4gfCA8c3RyaWtlPiB8IDxjb2RlPiB8IDxlbW9qaT4gfCA8YnFsYnI-IHwgPGJvZHkxPikqIDxETkw-IDsKYnFsYnI6ICdcXCchKD8tPEROTD4pIDsKYnF1b3RlOiA8YnFsaW5lPisgPEROTDE-IDsKCnRkZWxpbTogKDxpbmxpbmVkZWxpbT4gfCAnfCcgKSA7CnRib2R5OiA8ZWJvZHk-KD8tPHRkZWxpbT4hKSA9PiBqb2luIDsKdGNlbGw6IDxXUzA-ICg8d2lraXJlZj4gfCA8aW1nPiB8IDxmbnJlZj4gfCA8bGluaz4gfCA8Ym9sZD4gfCA8aXRhbGljPiB8IDxzdHJpa2U-IHwgPGNvZGU-IHwgPGVtb2ppPiB8IDx0Ym9keT4gKSogJ3wnISA7CnRyb3c6IDxMU1RBUlQ-ICd8JyEgPHRjZWxsPig_KzxETkw-KSA7CnRhYmxlOiA8dHJvdz4rIDxETkwxPiA7CgpocjogIi0tIiAnLScrIDxETkwxPiA9PiBqb2luIDsKCm1haW46IDxXUzA-ICg8aGQ-IHwgPGxpc3Q-IHwgPGJxdW90ZT4gfCA8Y29kZWJsb2NrPiB8IDxjdXN0b21ibG9jaz4gfCA8bWV0YWJsb2NrPiB8IDx0YWJsZT4gfCA8aHI-IHwgPGZub3RlPiB8IDxsaW5rZGVmPiB8IDxjb21tZW50PiB8IDxwYXJhPiApKiA7pG1haW7aAs0jIEhlbGxvIFwhXFsgOndvcmxkOjpzbWlsZTpbXmFiY10geyNoZDF9CgojIyBhYmMgeyNoZDJ9CiMjIGRlZiA8c3VwPkNvbnRyb2w8L3N1cD4KCmEgXDwgYgoKTGV0IGBleHAyKHgpID0gMioqeGAKClByZXNzIDxrYmQ-Q29udHJvbDwva2JkPiArIDxrYmQ-Ujwva2JkPiB0byA8IS0tc2tpcC0tPiByZWxvYWQuCgo6OjphbGVydApUZXN0IFtsYWJlbF1bcmVmcmVmXQo6OjoKCi0tLQoKe3t7IHsiaWQiOiAxMjMsICJwcm90ZWN0ZWQiOiB0cnVlIH0gfX19ClNvIFtbc21pbGVfZm9vMTJdXSDwn5iNIHdoYXQncyBbdGhpc10oLi90aGlzLm1kKVteMl0gdGhlbjoKCkEgW2xpbmsgX3dpdGggKipuZXN0ZWQgfn5mb3JtYXR-fioqIGFuZCBgcmVmZXJlbmNlYF9dW3JlZnJlZl0uLi4KCmBgYHRzIHRhbmdsZTpubyBsbjp5ZXMKY29uc3QgZm9vID0gNDI7Ci8vIHRoZSBlbmQKYGBgCgoxLiBmb28KICA0LiBiYXIKICAgICBiYXogYW5kIHNvIG9uCiAgICAgbXVsdGlsaW5lCjIuIFsgXSB0YXNrCjMuIFt4XSAqKmRvbmUqKgoKPiBibG9ja3F1b3RlCj4gbXVsdGlsaW5lIHRvb1wKPj4gbmVzdGVkCj4-PiBsZXZlbCAzCj4gLS0gc291cmNlCgp8IGZvbyB8IGJhciB8Cnw6LTp8LTp8CnwgW1tyZWYjMjJdXSB8IGBvbmAgKipvZmYqKiB8CgpbXmFiY106IEZvbyBfYmFyXyBiYXoKClteMl06IFRPRE8KCltyZWZyZWZdOiBodHRwOi8vdGhpLm5nLwpbZm9vXTogLi9mb28ubWQjYmFyCgrZUDwhLS0KaWdub3JlCm11bHRpbGluZQotLT4KCjExLiBhYmMKICAtIHh5egoyMS4geHh4CiAgYS4gZm9vCiAgICBiLiBiYXIKMzEuIHl5eQoK2VY-ICoqbGV2ZWwgMWEqKgo-PiBsZXZlbCAyYQo-PiBsZXZlbCAyYgo-Cj4gbGV2ZWwgMWIKClsqKmZvbyoqXShiYXIpCgoqKiFbZm9vXShiYXIpKioKCg
+// Downloaded @ 2023-03-07T13:30:37.046Z
+// Source: https://demo.thi.ng/umbrella/parse-playground/#l9oQo0ROTDE6IDxETkw-KyA9PiBkaXNjYXJkIDsKRE5MMjogPE5MPnsyLH0gOwpsYnI6ICdcXCchIDxOTD4hIDsKZXNjOiAnXFwnISAoJ18nIHwgJyonIHwgJ2AnIHwgJ34nIHwgJzonIHwgJy0nIHwgJzwnIHwgJz4nIHwgJ1snIHwgJ10nIHwgJygnIHwgJyknIHwgJ3snIHwgJ30nIHwgJyMnIHwgJy4nIHwgJ3wnIHwgJ1xcJykgOwpjZXNjOiAnXFwnISAoJ2AnfCAnXFwnKSA7CmNiZXNjOiAnXFwnISAnYCcgOwpjdWVzYzogJ1xcJyEgJzonIDsKbWVzYzogJ1xcJyEgJ30nIDsKaWRlbGltOiAoIiFbIiB8ICdbJyB8ICIqKiIgfCAnXycgfCAnYCcgfCAnPCcgfCAifn4iIHwgIiA6IiB8IDxsYnI-KSA7CmRlbGltOiAoPGlkZWxpbT4gfCA8RE5MMj4pIDsKZWJvZHk6ICg8ZXNjPnwuKSA7CmNib2R5OiAoPGNlc2M-fC4pIDsKY2Jib2R5OiAoPGNiZXNjPnwuKSA7CmN1Ym9keTogKDxjdWVzYz58LikgOwptYm9keTogKDxtZXNjPnwuKSA7CmJvZHk6IDxlYm9keT4oPy08ZGVsaW0-ISkgPT4gam9pbiA7Cmlib2R5OiA8ZWJvZHk-KD8tPGlkZWxpbT4hKSA9PiBqb2luIDsKCmNvbW1lbnQ6ICI8IS0tIiEgLig_KyItLT4iKSA9PiBkaXNjYXJkIDsKd2lraXJlZjogIltbIiEgPGVib2R5Pig_KyJdXSIhKSA9PiBqb2luIDsKZm5yZWY6ICJbXiIhIDxsYWJlbD4gOwpmbm90ZTogPExTVEFSVD4gIlteIiEgPGZubGFiZWw-IDxXUzE-IDxwYXJhPiA7CmZubGFiZWw6IDxlYm9keT4oPysiXToiISkgPT4gam9pbiA7CmxhYmVsOiA8ZWJvZHk-KD8rJ10nISkgPT4gam9pbiA7CnRhcmdldDogPGVib2R5Pig_KycpJyEpID0-IGpvaW4gOwpsaW5rOiAnWychIDxsaW5rbGFiZWw-ICcoJyEgPHRhcmdldD4gOwpsaW5rcmVmOiAnWychIDxsaW5rbGFiZWw-ICdbJyEgPGxhYmVsPiA7CmxpbmtkZWY6IDxMU1RBUlQ-ICdbJyEgPGxhYmVsPiAnOichIDxXUzE-IDxsZHRhcmdldD4gOwpsZHRhcmdldDogPGVib2R5Pig_KzxETkwxPikgPT4gam9pbiA7CmxpbmtsYWJlbDogKDxpbWc-IHwgPGJvbGQ-IHwgPGl0YWxpYz4gfCA8c3RyaWtlPiB8IDxjb2RlPiB8IDxlbW9qaT4gfCA8a2JkPiB8IDxzdWI-IHwgPHN1cD4gfCA8bGlua2JvZHk-KSogJ10nISA7CmxpbmtkZWxpbTogKCIhWyIgfCAnWycgfCAiKioiIHwgJ18nIHwgIn5-IiB8ICdgJyB8ICddJykgOwpsaW5rYm9keTogPGVib2R5Pig_LTxsaW5rZGVsaW0-ISkgPT4gam9pbiA7CmltZzogIiFbIiEgPGxhYmVsPiAnKCchIDx0YXJnZXQ-IDsKYm9sZDogIioqIiEgKDx3aWtpcmVmPiB8IDxpbWc-IHwgPGZucmVmPiB8IDxsaW5rcmVmPiB8IDxsaW5rPiB8IDxpdGFsaWM-IHwgPHN0cmlrZT4gfCA8Y29kZT4gfCA8ZW1vamk-IHwgPGtiZD4gfCA8c3ViPiB8IDxzdXA-IHwgPGlib2R5PikqICIqKiIhIDsKaXRhbGljOiAnXychICg8d2lraXJlZj4gfCA8aW1nPiB8IDxmbnJlZj4gfCA8bGlua3JlZj4gfCA8bGluaz4gfCA8Ym9sZD4gfCA8c3RyaWtlPiB8IDxjb2RlPiB8IDxlbW9qaT4gfCA8a2JkPiB8IDxzdWI-IHwgPHN1cD4gfCA8aWJvZHk-KSogJ18nISA7CnN0cmlrZTogIn5-IiEgKDx3aWtpcmVmPiB8IDxpbWc-IHwgPGZucmVmPiB8IDxsaW5rcmVmPiB8IDxsaW5rPiB8IDxib2xkPiB8IDxpdGFsaWM-IHwgPGNvZGU-IHwgPGVtb2ppPiB8IDxrYmQ-IHwgPHN1Yj4gfCA8c3VwPiB8IDxpYm9keT4pKiAifn4iISA7CmNvZGU6ICdgJyEgPGNib2R5Pig_KydgJyEpID0-IGpvaW4gOwprYmQ6ICI8a2JkPiIhIDxlYm9keT4oPysiPC9rYmQ-IiEpID0-IGpvaW4gOwpzdWI6ICI8c3ViPiIhIDxlYm9keT4oPysiPC9zdWI-IiEpID0-IGpvaW4gOwpzdXA6ICI8c3VwPiIhIDxlYm9keT4oPysiPC9zdXA-IiEpID0-IGpvaW4gOwplbW9qaTogJyAnPyAnOichICg8QUxQSEFfTlVNPiB8ICcrJykoPysnOichKSA9PiBqb2luIDsKcGFyYTogKDx3aWtpcmVmPiB8IDxpbWc-IHwgPGZucmVmPiB8IDxsaW5rcmVmPiB8IDxsaW5rPiB8IDxib2xkPiB8IDxpdGFsaWM-IHwgPHN0cmlrZT4gfCA8Y29kZT4gfCA8a2JkPiB8IDxzdWI-IHwgPHN1cD4gfCA8ZW1vamk-IHwgPGxicj4gfCA8Y29tbWVudD4gfCA8Ym9keT4pKiA8RE5MMj4hIDsKCmhkbGV2ZWw6ICcjJysgPT4gY291bnQgOwpoZGlkOiAieyMiISAoPEFMUEhBX05VTT4gfCAnLScpKyAnfSchID0-IGpvaW4gOwpoZGRlbGltOiAoPGlkZWxpbT4gfCA8Tkw-IHwgInsjIikgOwpoZGJvZHk6IDxlYm9keT4oPy08aGRkZWxpbT4hKSA9PiBqb2luIDsKaGQ6IDxMU1RBUlQ-IDxoZGxldmVsPiA8V1MwPgogICAgKDx3aWtpcmVmPiB8IDxpbWc-IHwgPGZucmVmPiB8IDxsaW5rPiB8IDxib2xkPiB8IDxpdGFsaWM-IHwgPHN0cmlrZT4gfCA8Y29kZT4gfCA8ZW1vamk-IHwgPGtiZD4gfCA8c3ViPiB8IDxzdXA-IHwgPGhkYm9keT4pKiA8aGRpZD4_IDxETkwxPiA7CgpsaWxldmVsOiAnICcqID0-IGNvdW50IDsKb2xpZDogKDxBTFBIQT4rfDxESUdJVD4rKSA9PiBqb2luIDsKdWxpbml0OiA8RE5MPiA8V1MwPiAnLSchIDsKb2xpbml0OiA8RE5MPiA8V1MwPiA8b2xpZD4hICcuJyEgOwpsaWRlbGltOiAoPGRlbGltPiB8IDx1bGluaXQ-IHwgPG9saW5pdD4pIDsKbGlib2R5OiA8ZWJvZHk-KD8tPGxpZGVsaW0-ISkgPT4gam9pbiA7CnRvZG86ICdbJyEgWyB4WF0gJ10nISA8V1MxPiA9PiBob2lzdFIgOwp1bGl0ZW06IDxMU1RBUlQ-IDxsaWxldmVsPiAiLSAiISA8dG9kbz4_CiAgICAgICAgKDx3aWtpcmVmPiB8IDxpbWc-IHwgPGZucmVmPiB8IDxsaW5rPiB8IDxib2xkPiB8IDxpdGFsaWM-IHwgPHN0cmlrZT4gfCA8Y29kZT4gfCA8ZW1vamk-IHwgPGtiZD4gfCA8c3ViPiB8IDxzdXA-IHwgPGxpYm9keT4gKSogPEROTD4gOwpvbGl0ZW06IDxMU1RBUlQ-IDxsaWxldmVsPiA8b2xpZD4gIi4gIiEgPHRvZG8-PwogICAgICAgICg8d2lraXJlZj4gfCA8aW1nPiB8IDxmbnJlZj4gfCA8bGluaz4gfCA8Ym9sZD4gfCA8aXRhbGljPiB8IDxzdHJpa2U-IHwgPGNvZGU-IHwgPGVtb2ppPiB8IDxrYmQ-IHwgPHN1Yj4gfCA8c3VwPiB8IDxsaWJvZHk-ICkqIDxETkw-IDsKbGlzdDogKDx1bGl0ZW0-IHwgPG9saXRlbT4pKyA8RE5MMT4gOwoKY2JkZWxpbTogPExTVEFSVD4gImBgYCIhIDsKY29kZWJsb2NrOiA8Y2JkZWxpbT4hIDxjb2RlbWV0YT4gPGNvZGVib2R5PiA8RE5MMT4gOwpjb2RlbWV0YTogLig_KzxOTD4hKSA9PiBqb2luIDsKY29kZWJvZHk6IDxjYmJvZHk-KD8rPGNiZGVsaW0-KSA9PiBqb2luIDsKCmN1ZGVsaW06IDxMU1RBUlQ-ICI6OjoiISA7CmN1c3RvbWJsb2NrOiA8Y3VkZWxpbT4hIDxjdXN0b21tZXRhPiA8Y3VzdG9tYm9keT4gPEROTDE-IDsKY3VzdG9tbWV0YTogLig_KzxOTD4hKSA9PiBqb2luIDsKY3VzdG9tYm9keTogPGN1Ym9keT4oPys8Y3VkZWxpbT4pID0-IGpvaW4gOwoKbWV0YWJsb2NrOiA8TFNUQVJUPiAie3t7IiEgPG1ldGFib2R5PiA8RE5MMT4gOwptZXRhYm9keTogPG1ib2R5Pig_KzxtZXRhZW5kPiEpID0-IGpvaW4gOwptZXRhZW5kOiAifX19IiA8TEVORD4gOwoKYnFsZXZlbDogJz4nKyA9PiBjb3VudCA7CmJxZGVsaW06ICg8aWRlbGltPiB8IDxOTD4pIDsKYnFib2R5OiA8ZWJvZHk-KD8tPGJxZGVsaW0-ISkgPT4gam9pbiA7CmJxbGluZTogPExTVEFSVD4gPGJxbGV2ZWw-ICcgJz8hCiAgICAgICAgKDx3aWtpcmVmPiB8IDxpbWc-IHwgPGZucmVmPiB8IDxsaW5rPiB8IDxib2xkPiB8IDxpdGFsaWM-IHwgPHN0cmlrZT4gfCA8Y29kZT4gfCA8ZW1vamk-IHwgPGtiZD4gfCA8c3ViPiB8IDxzdXA-IHwgPGJxbGJyPiB8IDxicWJvZHk-KSogPEROTD4gOwpicWxicjogJ1xcJyEoPy08RE5MPikgOwpicXVvdGU6IDxicWxpbmU-KyA8RE5MMT4gOwoKdGRlbGltOiAoPGlkZWxpbT4gfCAnfCcgKSA7CnRib2R5OiA8ZWJvZHk-KD8tPHRkZWxpbT4hKSA9PiBqb2luIDsKdGNlbGw6IDxXUzA-ICg8d2lraXJlZj4gfCA8aW1nPiB8IDxmbnJlZj4gfCA8bGluaz4gfCA8Ym9sZD4gfCA8aXRhbGljPiB8IDxzdHJpa2U-IHwgPGNvZGU-IHwgPGVtb2ppPiB8IDxrYmQ-IHwgPHN1Yj4gfCA8c3VwPiB8IDx0Ym9keT4gKSogJ3wnISA7CnRyb3c6IDxMU1RBUlQ-ICd8JyEgPHRjZWxsPig_KzxETkw-KSA7CnRhYmxlOiA8dHJvdz4rIDxETkwxPiA7CgpocjogIi0tIiAnLScrIDxETkwxPiA9PiBqb2luIDsKCm1haW46IDxXUzA-ICg8aGQ-IHwgPGxpc3Q-IHwgPGJxdW90ZT4gfCA8Y29kZWJsb2NrPiB8IDxjdXN0b21ibG9jaz4gfCA8bWV0YWJsb2NrPiB8IDx0YWJsZT4gfCA8aHI-IHwgPGZub3RlPiB8IDxsaW5rZGVmPiB8IDxjb21tZW50PiB8IDxwYXJhPiApKiA7pG1haW7aAtQjIEhlbGxvIFwhXFsgOndvcmxkOjpzbWlsZTpbXmFiY10geyNoZDF9CgojIyBhYmMgeyNoZDJ9CiMjIGRlZiA8c3VwPkNvbnRyb2w8L3N1cD4KCmEgXDwgYgoKTGV0IGBleHAyKHgpID0gMioqeGAKClByZXNzIDxrYmQ-Q29udHJvbDwva2JkPiArIDxrYmQ-Ujwva2JkPiB0byA8IS0tc2tpcC0tPiByZWxvYWQuCgo6OjphbGVydApUZXN0IFtsYWJlbF1bcmVmcmVmXQo6OjoKCi0tLQoKe3t7IHsiaWQiOiAxMjMsICJwcm90ZWN0ZWQiOiB0cnVlIH0gfX19ClNvIFtbc21pbGVfZm9vMTJdXSDwn5iNIHdoYXQncyBbdGhpc10oLi90aGlzLm1kKVteMl0gdGhlbjoKCkEgW2xpbmsgX3dpdGggKipuZXN0ZWQgfn5mb3JtYXR-fioqIGFuZCBgcmVmZXJlbmNlYF9dW3JlZnJlZl0uLi4KCmBgYHRzIHRhbmdsZTpubyBsbjp5ZXMKY29uc3QgcmUgPSAvW1xuXHJdKy9nOwovLyB0aGUgZW5kCmBgYAoKMS4gZm9vCiAgNC4gYmFyCiAgICAgYmF6IGFuZCBzbyBvbgogICAgIG11bHRpbGluZQoyLiBbIF0gdGFzawozLiBbeF0gKipkb25lKioKCj4gYmxvY2txdW90ZQo-IG11bHRpbGluZSB0b29cCj4-IG5lc3RlZAo-Pj4gbGV2ZWwgMwo-IC0tIHNvdXJjZQoKfCBmb28gfCBiYXIgfAp8Oi06fC06fAp8IFtbcmVmIzIyXV0gfCBgb25gICoqb2ZmKiogfAoKW15hYmNdOiBGb28gX2Jhcl8gYmF6CgpbXjJdOiBUT0RPCgpbcmVmcmVmXTogaHR0cDovL3RoaS5uZy8KW2Zvb106IC4vZm9vLm1kI2JhcgoK2VA8IS0tCmlnbm9yZQptdWx0aWxpbmUKLS0-CgoxMS4gYWJjCiAgLSB4eXoKMjEuIHh4eAogIGEuIGZvbwogICAgYi4gYmFyCjMxLiB5eXkKCtlSfCBjb2wxIHwgY29sMiB8CnwgLS0tLSB8IC0tLS06fAp8IDxrYmQ-Q3RybDwva2JkPiB8IDxzdXA-Ujwvc3VwPiBgW1thYmNcfGlkXV1gIHwKCrkqKjp3YXJuOiBhYmMKZGVmIDpvazoqKgoK2Ug-IGxpbmUxCj4-ICoqbGluZSAyKipcCj4-IGxpbmUgMmEKPj4gbGluZSAyYgo-PiAKPj4gbGluZSAyYwo-Pj4gbGluZSAzCgo
 
 import type { Fn3, IObjectOf, Primitive } from "@thi.ng/api";
 import { peek } from "@thi.ng/arrays/peek";
@@ -28,13 +28,20 @@ export const GRAMMAR = defGrammar(`
 DNL1: <DNL>+ => discard ;
 DNL2: <NL>{2,} ;
 lbr: '\\\\'! <NL>! ;
-esc: '\\\\'! ('_' | '*' | '\`' | '~' | ':' | '-' | '<' | '>' | '[' | ']' | '(' | ')' | '{' | '}') ;
-inlinedelim: ("![" | '[' | "**" | '_' | '\`' | '<' | "~~" | " :" | <lbr>) ;
-delim: (<inlinedelim> | <DNL2>) ;
-delim1: (<inlinedelim> | <NL>) ;
+esc: '\\\\'! ('_' | '*' | '\`' | '~' | ':' | '-' | '<' | '>' | '[' | ']' | '(' | ')' | '{' | '}' | '#' | '.' | '|' | '\\\\') ;
+cesc: '\\\\'! ('\`'| '\\\\') ;
+cbesc: '\\\\'! '\`' ;
+cuesc: '\\\\'! ':' ;
+mesc: '\\\\'! '}' ;
+idelim: ("![" | '[' | "**" | '_' | '\`' | '<' | "~~" | " :" | <lbr>) ;
+delim: (<idelim> | <DNL2>) ;
 ebody: (<esc>|.) ;
+cbody: (<cesc>|.) ;
+cbbody: (<cbesc>|.) ;
+cubody: (<cuesc>|.) ;
+mbody: (<mesc>|.) ;
 body: <ebody>(?-<delim>!) => join ;
-body1: <ebody>(?-<delim1>!) => join ;
+ibody: <ebody>(?-<idelim>!) => join ;
 
 comment: "<!--"! .(?+"-->") => discard ;
 wikiref: "[["! <ebody>(?+"]]"!) => join ;
@@ -47,14 +54,14 @@ link: '['! <linklabel> '('! <target> ;
 linkref: '['! <linklabel> '['! <label> ;
 linkdef: <LSTART> '['! <label> ':'! <WS1> <ldtarget> ;
 ldtarget: <ebody>(?+<DNL1>) => join ;
-linklabel: (<img> | <bold> | <italic> | <strike> | <code> | <emoji> | <linkbody>)* ']'! ;
+linklabel: (<img> | <bold> | <italic> | <strike> | <code> | <emoji> | <kbd> | <sub> | <sup> | <linkbody>)* ']'! ;
 linkdelim: ("![" | '[' | "**" | '_' | "~~" | '\`' | ']') ;
 linkbody: <ebody>(?-<linkdelim>!) => join ;
 img: "!["! <label> '('! <target> ;
-bold: "**"! (<wikiref> | <img> | <fnref> | <linkref> | <link> | <italic> | <strike> | <code> | <emoji> | <body1>)* "**"! ;
-italic: '_'! (<wikiref> | <img> | <fnref> | <linkref> | <link> | <bold> | <strike> | <code> | <emoji> | <body1>)* '_'! ;
-strike: "~~"! (<wikiref> | <img> | <fnref> | <linkref> | <link> | <bold> | <italic> | <code> | <emoji> | <body1>)* "~~"! ;
-code: '\`'! <ebody>(?+'\`'!) => join ;
+bold: "**"! (<wikiref> | <img> | <fnref> | <linkref> | <link> | <italic> | <strike> | <code> | <emoji> | <kbd> | <sub> | <sup> | <ibody>)* "**"! ;
+italic: '_'! (<wikiref> | <img> | <fnref> | <linkref> | <link> | <bold> | <strike> | <code> | <emoji> | <kbd> | <sub> | <sup> | <ibody>)* '_'! ;
+strike: "~~"! (<wikiref> | <img> | <fnref> | <linkref> | <link> | <bold> | <italic> | <code> | <emoji> | <kbd> | <sub> | <sup> | <ibody>)* "~~"! ;
+code: '\`'! <cbody>(?+'\`'!) => join ;
 kbd: "<kbd>"! <ebody>(?+"</kbd>"!) => join ;
 sub: "<sub>"! <ebody>(?+"</sub>"!) => join ;
 sup: "<sup>"! <ebody>(?+"</sup>"!) => join ;
@@ -63,10 +70,10 @@ para: (<wikiref> | <img> | <fnref> | <linkref> | <link> | <bold> | <italic> | <s
 
 hdlevel: '#'+ => count ;
 hdid: "{#"! (<ALPHA_NUM> | '-')+ '}'! => join ;
-hddelim: (<delim1> | "{#") ;
+hddelim: (<idelim> | <NL> | "{#") ;
 hdbody: <ebody>(?-<hddelim>!) => join ;
 hd: <LSTART> <hdlevel> <WS0>
-    (<wikiref> | <img> | <fnref> | <link> | <bold> | <italic> | <strike> | <code> | <kbd> | <sub> | <sup> | <emoji> | <hdbody>)* <hdid>? <DNL1> ;
+    (<wikiref> | <img> | <fnref> | <link> | <bold> | <italic> | <strike> | <code> | <emoji> | <kbd> | <sub> | <sup> | <hdbody>)* <hdid>? <DNL1> ;
 
 lilevel: ' '* => count ;
 olid: (<ALPHA>+|<DIGIT>+) => join ;
@@ -76,34 +83,36 @@ lidelim: (<delim> | <ulinit> | <olinit>) ;
 libody: <ebody>(?-<lidelim>!) => join ;
 todo: '['! [ xX] ']'! <WS1> => hoistR ;
 ulitem: <LSTART> <lilevel> "- "! <todo>?
-        (<wikiref> | <img> | <fnref> | <link> | <bold> | <italic> | <strike> | <code> | <emoji> | <libody> )* <DNL> ;
+        (<wikiref> | <img> | <fnref> | <link> | <bold> | <italic> | <strike> | <code> | <emoji> | <kbd> | <sub> | <sup> | <libody> )* <DNL> ;
 olitem: <LSTART> <lilevel> <olid> ". "! <todo>?
-        (<wikiref> | <img> | <fnref> | <link> | <bold> | <italic> | <strike> | <code> | <emoji> | <libody> )* <DNL> ;
+        (<wikiref> | <img> | <fnref> | <link> | <bold> | <italic> | <strike> | <code> | <emoji> | <kbd> | <sub> | <sup> | <libody> )* <DNL> ;
 list: (<ulitem> | <olitem>)+ <DNL1> ;
 
 cbdelim: <LSTART> "\`\`\`"! ;
 codeblock: <cbdelim>! <codemeta> <codebody> <DNL1> ;
 codemeta: .(?+<NL>!) => join ;
-codebody: <ebody>(?+<cbdelim>) => join ;
+codebody: <cbbody>(?+<cbdelim>) => join ;
 
-customdelim: <LSTART> ":::"! ;
-customblock: <customdelim>! <custommeta> <custombody> <DNL1> ;
+cudelim: <LSTART> ":::"! ;
+customblock: <cudelim>! <custommeta> <custombody> <DNL1> ;
 custommeta: .(?+<NL>!) => join ;
-custombody: <ebody>(?+<customdelim>) => join ;
+custombody: <cubody>(?+<cudelim>) => join ;
 
 metablock: <LSTART> "{{{"! <metabody> <DNL1> ;
-metabody: <ebody>(?+<metaend>!) => join ;
+metabody: <mbody>(?+<metaend>!) => join ;
 metaend: "}}}" <LEND> ;
 
 bqlevel: '>'+ => count ;
+bqdelim: (<idelim> | <NL>) ;
+bqbody: <ebody>(?-<bqdelim>!) => join ;
 bqline: <LSTART> <bqlevel> ' '?!
-        (<wikiref> | <img> | <fnref> | <link> | <bold> | <italic> | <strike> | <code> | <emoji> | <bqlbr> | <body1>)* <DNL> ;
+        (<wikiref> | <img> | <fnref> | <link> | <bold> | <italic> | <strike> | <code> | <emoji> | <kbd> | <sub> | <sup> | <bqlbr> | <bqbody>)* <DNL> ;
 bqlbr: '\\\\'!(?-<DNL>) ;
 bquote: <bqline>+ <DNL1> ;
 
-tdelim: (<inlinedelim> | '|' ) ;
+tdelim: (<idelim> | '|' ) ;
 tbody: <ebody>(?-<tdelim>!) => join ;
-tcell: <WS0> (<wikiref> | <img> | <fnref> | <link> | <bold> | <italic> | <strike> | <code> | <emoji> | <tbody> )* '|'! ;
+tcell: <WS0> (<wikiref> | <img> | <fnref> | <link> | <bold> | <italic> | <strike> | <code> | <emoji> | <kbd> | <sub> | <sup> | <tbody> )* '|'! ;
 trow: <LSTART> '|'! <tcell>(?+<DNL>) ;
 table: <trow>+ <DNL1> ;
 
@@ -311,10 +320,11 @@ export const transformScope: Fn3<
 		return x.id;
 	},
 	{
-		body1: "body",
+		bqbody: "body",
 		bqlbr: "lbr",
 		bqline: "repeat0",
 		hdbody: "body",
+		ibody: "body",
 		label: "body",
 		libody: "body",
 		linkbody: "body",
@@ -434,9 +444,6 @@ export const transformScope: Fn3<
 			}
 			__collect(acc, ctx.tags.emoji(ctx, result));
 		},
-
-		esc: (scope, ctx, acc) =>
-			acc.push(__escape(ctx, scope.children![0].result)),
 
 		fnote: ({ children }, ctx) => {
 			const body: any[] = [];
@@ -727,6 +734,10 @@ const __listItemAttribs = (scope?: ParseScope<string>): TodoAttribs =>
 /** @internal */
 const __trimBody = (body: any[]) => {
 	if (body.length === 1 && isString(body[0])) body[0] = body[0].trim();
+	else {
+		const last = peek(body);
+		if (isString(last) && /^\s+$/.test(last)) body.pop();
+	}
 	return body;
 };
 

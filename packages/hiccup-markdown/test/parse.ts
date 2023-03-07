@@ -89,8 +89,34 @@ group("parse", {
 		]);
 	},
 
+	"escape in code": () => {
+		check("`\\\\\\``", [["p", {}, ["code", {}, "\\`"]]]);
+	},
+
+	"escape in codeblock": () => {
+		check("```ts\n\\```\n\\\\\n```", [
+			[
+				"pre",
+				{ data: { lang: "ts" }, __head: [] },
+				["code", {}, "```\n\\\\"],
+			],
+		]);
+	},
+
+	"escape in custom": () => {
+		check(":::xxx\n\\:::\n\\\\\n:::", [
+			["custom", { type: "xxx", __head: [] }, ":::\n\\\\"],
+		]);
+	},
+
 	"escape in hd": () => {
 		check("# a\\*\\*bc", [["h1", { id: "abc" }, "a**bc"]]);
+	},
+
+	"escape in meta": () => {
+		check("{{{\n\\}}}\n\\\\\n}}}\n# hd", [
+			["h1", { id: "hd", __meta: "}}}\n\\\\" }, "hd"],
+		]);
 	},
 
 	"escape in para": () => {
@@ -507,7 +533,7 @@ with linebreaks
 
 	table: () => {
 		check(
-			`| col1 | col2 |\n| :-- | --: |\n| row1a | row1b |\n| _row2a_ | **row2b** |`,
+			`| col1 | col2 |\n| :-- | --: |\n| row1a | row1b |\n| _row2a_ | **row2b** |\n| \`[[page id\|title]]\` | \`\\\`\`   |`,
 			[
 				[
 					"table",
@@ -526,8 +552,14 @@ with linebreaks
 						[
 							"tr",
 							{},
-							["td", {}, ["em", {}, "row2a"], " "],
-							["td", {}, ["strong", {}, "row2b"], " "],
+							["td", {}, ["em", {}, "row2a"]],
+							["td", {}, ["strong", {}, "row2b"]],
+						],
+						[
+							"tr",
+							{},
+							["td", {}, ["code", {}, "[[page id|title]]"]],
+							["td", {}, ["code", {}, "`"]],
 						],
 					],
 				],
