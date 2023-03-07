@@ -63,6 +63,18 @@ Kewl! :sunglasses:
 Footnotes are supported, but this statement might need some further
 explanation[^1].
 
+#### Formatting
+
+To avoid ambiguity and simplify nesting, only the following formatting syntax is
+supported for bold & italic:
+
+- `**bold**`
+- `_italic_`
+- `code` (\`) and ~~strikethrough~~ (`~~`) as usual...
+- `<kbd>` for keyboard shortcuts (e.g. <kbd>Control</kbd>)
+- `<sub>` for <sub>subscript</sub>
+- `<sup>` for <sup>superscript</sup>
+
 ### Headings {#custom-header-id}
 
 Only ATX-style headings (aka lines prefixed with `#`) are supported (levels
