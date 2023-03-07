@@ -17,6 +17,7 @@ For the Clojure version, please visit: [thi.ng/geom-clj](https://thi.ng/geom-clj
   - [SVG support](#svg-support)
   - [Polymorphic operations](#polymorphic-operations)
 - [Support packages](#support-packages)
+- [Related packages](#related-packages)
 - [Status](#status)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
@@ -160,6 +161,16 @@ packages (which are more low-level, lightweight and usable by themselves too):
 - [@thi.ng/geom-tessellate](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-tessellate) - 2D/3D convex polygon tessellators
 - [@thi.ng/geom-trace-bitmap](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-trace-bitmap) - Bitmap image to hairline vector and point cloud conversions
 - [@thi.ng/geom-voronoi](https://github.com/thi-ng/umbrella/tree/develop/packages/geom-voronoi) - Fast, incremental 2D Delaunay & Voronoi mesh implementation
+
+## Related packages
+
+- [@thi.ng/axidraw](https://github.com/thi-ng/umbrella/tree/develop/packages/axidraw) - Minimal AxiDraw plotter/drawing machine controller for Node.js
+- [@thi.ng/color](https://github.com/thi-ng/umbrella/tree/develop/packages/color) - Array-based color types, CSS parsing, conversions, transformations, declarative theme generation, gradients, presets
+- [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup) - HTML/SVG/XML serialization of nested data structures, iterables & closures
+- [@thi.ng/hiccup-canvas](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-canvas) - Hiccup shape tree renderer for vanilla Canvas 2D contexts
+- [@thi.ng/hiccup-svg](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-svg) - SVG element functions for [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup) & related tooling
+- [@thi.ng/viz](https://github.com/thi-ng/umbrella/tree/develop/packages/viz) - Declarative, functional & multi-format data visualization toolkit based around [@thi.ng/hiccup](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup)
+- [@thi.ng/webgl](https://github.com/thi-ng/umbrella/tree/develop/packages/webgl) - WebGL & GLSL abstraction layer
 
 ## Status
 

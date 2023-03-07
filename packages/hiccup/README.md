@@ -51,9 +51,12 @@ power of ES6 to directly define fully data-driven, purely functional and
 easily *composable* components for static serialization to HTML &
 friends.
 
-This library is suitable for static website generation, server side
-rendering etc. For interactive use cases, please see companion package
-[@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/develop/packages/hdom).
+This library is suitable for static website generation, server side rendering
+etc. For interactive use cases, please see companion packages
+[@thi.ng/rdom](https://github.com/thi-ng/umbrella/tree/develop/packages/rdom)
+(or the older
+[@thi.ng/hdom](https://github.com/thi-ng/umbrella/tree/develop/packages/hdom))
+and their various support packages.
 
 ### Features
 
@@ -78,6 +81,7 @@ serialization time. Examples below...
 - `.innerHTML` body generation
 - SVG asset creation
 - Shape trees for declarative canvas API drawing
+- Generic intermediate representation format for many other use cases...
 
 ### No special sauce needed (or wanted)
 

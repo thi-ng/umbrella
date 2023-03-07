@@ -384,6 +384,15 @@
 		}
 	},
 	"thi.ng": {
+		"related": [
+			"axidraw",
+			"color",
+			"hiccup",
+			"hiccup-canvas",
+			"hiccup-svg",
+			"viz",
+			"webgl"
+		],
 		"year": 2013
 	}
 }

@@ -30,6 +30,7 @@ This project is part of the
   - [Behaviors](#behaviors)
   - [Usage examples](#usage-examples)
 - [Status](#status)
+- [Related packages](#related-packages)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [Usage examples](#usage-examples)
@@ -509,6 +510,10 @@ More info [here](http://thi.ng/hiccup-markdown).
 **STABLE** - used in production
 
 [Search or submit any issues for this package](https://github.com/thi-ng/umbrella/issues?q=%5Bhiccup-markdown%5D+in%3Atitle)
+
+## Related packages
+
+- [@thi.ng/markdown-table](https://github.com/thi-ng/umbrella/tree/develop/packages/markdown-table) - Markdown table formatter/generator with support for column alignments
 
 ## Installation
 

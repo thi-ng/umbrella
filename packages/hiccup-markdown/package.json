@@ -93,6 +93,9 @@
 	},
 	"thi.ng": {
 		"parent": "@thi.ng/hiccup",
+		"related": [
+			"markdown-table"
+		],
 		"year": 2018
 	}
 }
