@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/hdom",
-	"version": "9.3.2",
+	"version": "9.3.3",
 	"description": "Lightweight vanilla ES6 UI component trees with customizable branch-local behaviors",
 	"type": "module",
 	"module": "./index.js",
@@ -42,7 +42,7 @@
 		"@thi.ng/diff": "^5.1.26",
 		"@thi.ng/equiv": "^2.1.19",
 		"@thi.ng/errors": "^2.2.12",
-		"@thi.ng/hiccup": "^4.2.35",
+		"@thi.ng/hiccup": "^4.2.36",
 		"@thi.ng/logger": "^1.4.9",
 		"@thi.ng/prefixes": "^2.1.19"
 	},

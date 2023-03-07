@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2023-03-05T16:02:40Z
+- **Last updated**: 2023-03-07T14:54:11Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,31 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [3.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/hiccup-markdown@3.2.0) (2023-03-07)
+
+#### 🚀 Features
+
+- update parse grammar ([e0be40a](https://github.com/thi-ng/umbrella/commit/e0be40a))
+  - char escapes now usable in almost all situs
+    (excl. metadata for code/custom blocks)
+  - add support for these HTML tags:
+    - comments `<!-- ... -->`
+    - `<sub>` / `<sup>`
+  - add tests
+- update parse grammar & handlers ([7bd4edb](https://github.com/thi-ng/umbrella/commit/7bd4edb))
+  - update TransformCtx, add .column & .align fields
+  - update table row/cell handlers
+  - update olitem handler (index now a string)
+    - this is to support alphabetical ordered lists
+  - add `<sub>`/`<sup>` handlers
+  - update tests
+  - update docs
+- update char escapes & inline format nesting rules ([2fde69b](https://github.com/thi-ng/umbrella/commit/2fde69b))
+  - allow nested kbd/sub/sup elements
+  - update char escape rules for inline code, codeblocks, custom blocks & meta blocks
+  - update __trimBody() helper to remove isolate trailing WS
+  - add/update tests
 
 ## [3.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/hiccup-markdown@3.1.0) (2023-03-05)
 
