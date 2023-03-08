@@ -4,11 +4,10 @@ import {
 	h4,
 	inputFile,
 	InputFileAttribs,
-	inputRange,
 	main,
 } from "@thi.ng/hiccup-html";
 import { $compile, $inputTrigger } from "@thi.ng/rdom";
-import { staticDropdown } from "@thi.ng/rdom-components";
+import { inputVectorCoord, staticDropdown } from "@thi.ng/rdom-components";
 import { reactive, Stream, stream, sync } from "@thi.ng/rstream";
 import { map, range } from "@thi.ng/transducers";
 import { DEFAULT_B, DEFAULT_G, DEFAULT_R, STYLE_BT, Vec2 } from "./api";
@@ -69,6 +68,10 @@ const fileButton = (attribs: Partial<InputFileAttribs>, title: string) =>
 /**
  * Creates reactive component tree of all controls for a single color channel.
  *
+ * @remarks
+ * Generates a slider input for each color channel using a numeric input
+ * component from the thi.ng/rdom-components package
+ *
  * @param ctrl
  * @param name
  */
@@ -76,22 +79,22 @@ const channelControls = <T extends number[]>(
 	ctrl: Stream<T>,
 	size: number,
 	name: string
-) => {
-	const slider = (c: number) =>
-		inputRange({
-			class: "w-100 range",
-			min: -1,
-			max: 1,
-			step: 0.01,
-			value: ctrl.map((x) => x[c]),
-			oninput: (e: InputEvent) => {
-				let val = <T>ctrl.deref()!.slice();
-				val[c] = +(<HTMLInputElement>e.target).value;
-				ctrl.next(val);
-			},
-		});
-	return div({}, h4(".fw4.mv1", {}, name), ...map(slider, range(size)));
-};
+) =>
+	div(
+		{},
+		h4(".fw4.mv1", {}, name),
+		...map(
+			(i: number) =>
+				inputVectorCoord(size, i, <Stream<any>>ctrl, {
+					type: "range",
+					class: "w-100 range",
+					min: -1,
+					max: 1,
+					step: 0.01,
+				}),
+			range(size)
+		)
+	);
 
 // compile & mount the entire UI component tree
 $compile(
