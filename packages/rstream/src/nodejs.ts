@@ -31,7 +31,7 @@ export const fromNodeJS = <T>(
  * breaks by default).
  *
  * @remarks
- * Internally uses https://docs.thi.ng/umbrella/transducers/modules.html#rechunk
+ * Internally uses https://docs.thi.ng/umbrella/transducers/functions/rechunk.html
  * to rechunk input.
  *
  * @example
