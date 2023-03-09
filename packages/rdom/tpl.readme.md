@@ -95,16 +95,7 @@ explicitly using the provided control components (e.g.
 [`$compile()`](https://docs.thi.ng/umbrella/rdom/functions/_compile.html) to
 auto-wrap such values embedded in an hiccup tree.
 
-{{meta.status}}
-
-#### HIC SUNT DRACONES
-
-This is still a young project. Even though most of the overall approach,
-component lifecycle and API are fairly stable by now (after ~75 commits) and
-used in production, so far there's only brief documentation and only few public
-examples. This is being worked & improved on...
-
-#### @thi.ng/atom integration
+### @thi.ng/atom integration
 
 For the sake of deduplication of functionality and to keep the number of
 dependencies to a minimum, direct
@@ -116,6 +107,111 @@ constructs, which can be used as lightweight adapters, i.e.:
 - [`fromAtom()`](https://docs.thi.ng/umbrella/rstream/functions/fromAtom.html)
 - [`fromObject()`](https://docs.thi.ng/umbrella/rstream/functions/fromObject.html)
 - [`fromView()`](https://docs.thi.ng/umbrella/rstream/functions/fromView.html)
+
+## DOM creation & mutation
+
+The package provides many functions to simplify the creation of individual or
+entire trees of DOM elements and to manipulate them at a later time. The single
+most important function of the package is
+[$compile](https://docs.thi.ng/umbrella/rdom/functions/_compile.html). It acts
+as a facade for many of these other functions and creates an actual DOM from a
+given hiccup component tree. It also automatically wraps any reactive values
+contained therein.
+
+**All of these functions are also usable, even if you don't intend to use any
+other package features!**
+
+- [$addChild](https://docs.thi.ng/umbrella/rdom/functions/_addChild.html)
+- [$attribs](https://docs.thi.ng/umbrella/rdom/functions/_attribs.html)
+- [$clear](https://docs.thi.ng/umbrella/rdom/functions/_clear.html)
+- [$comment](https://docs.thi.ng/umbrella/rdom/functions/_comment.html)
+- [$el](https://docs.thi.ng/umbrella/rdom/functions/_el.html)
+- [$html](https://docs.thi.ng/umbrella/rdom/functions/_html.html)
+- [$moveTo](https://docs.thi.ng/umbrella/rdom/functions/_moveTo.html)
+- [$remove](https://docs.thi.ng/umbrella/rdom/functions/_remove.html)
+- [$style](https://docs.thi.ng/umbrella/rdom/functions/_style.html)
+- [$text](https://docs.thi.ng/umbrella/rdom/functions/_text.html)
+- [$tree](https://docs.thi.ng/umbrella/rdom/functions/_tree.html)
+
+## Control structures
+
+For more advanced usage, rdom provides a range of control structures (container
+components) to simplify the handling of reactive states and reduce boilerplate
+for the implementation of common UI structures (e.g. item lists of any kind).
+
+The following links lead to the documentation of these wrappers, incl. small
+code examples:
+
+- [$klist](https://docs.thi.ng/umbrella/rdom/functions/_klist.html)
+- [$list](https://docs.thi.ng/umbrella/rdom/functions/_list.html)
+- [$object](https://docs.thi.ng/umbrella/rdom/functions/_object-1.html)
+- [$promise](https://docs.thi.ng/umbrella/rdom/functions/_promise-1.html)
+- [$refresh](https://docs.thi.ng/umbrella/rdom/functions/_refresh.html)
+- [$replace](https://docs.thi.ng/umbrella/rdom/functions/_replace.html)
+- [$sub](https://docs.thi.ng/umbrella/rdom/functions/_sub-1.html)
+- [$subObject](https://docs.thi.ng/umbrella/rdom/functions/_subObject.html)
+- [$switch](https://docs.thi.ng/umbrella/rdom/functions/_switch.html)
+- [$wrapHtml](https://docs.thi.ng/umbrella/rdom/functions/_wrapHtml.html)
+- [$wrapText](https://docs.thi.ng/umbrella/rdom/functions/_wrapText.html)
+
+### Event handlers for reactive streams
+
+Reactive rdom component are based on
+[@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream)
+subscriptions. In order to create a feedback loop between those reactive state
+values and their subscribed UI components, input event handlers need to feed any
+user changes back to those reactive state(s). To reduce boilerplate for these
+tasks, the following higher order input event handlers are provided:
+
+- [$input](https://docs.thi.ng/umbrella/rdom/functions/_input.html)
+- [$inputCheckbox](https://docs.thi.ng/umbrella/rdom/functions/_inputCheckbox.html)
+- [$inputFile](https://docs.thi.ng/umbrella/rdom/functions/_inputFile.html)
+- [$inputFiles](https://docs.thi.ng/umbrella/rdom/functions/_inputFiles.html)
+- [$inputNum](https://docs.thi.ng/umbrella/rdom/functions/_inputNum.html)
+- [$inputTrigger](https://docs.thi.ng/umbrella/rdom/functions/_inputTrigger.html)
+
+```ts
+import { $compile, $input } from "@thi.ng/rdom";
+import { reactive, trace } from "@thi.ng/rstream";
+
+// reactive value/state w/ transformation
+const name = reactive("").map((x) => x.toUpperCase());
+
+// reactive text field for `name`
+$compile(["input", {
+	type: "text",
+	// any value changes are fed back into `name`, which in return
+	// triggers an update of this (and any other) subscription
+	oninput: $input(name),
+	value: name
+}]).mount(document.body);
+
+// addtional subscription for debug console output
+name.subscribe(trace("name:"));
+```
+
+Click counter:
+
+```ts
+import { $compile, $inputTrigger } from "@thi.ng/rdom";
+import { reactive } from "@thi.ng/rstream";
+import { count, scan } from "@thi.ng/transducers";
+
+// reactive value/stream setup
+const clicks = reactive(true);
+
+// button component with reactive label showing click count
+$compile([
+	"button",
+	// $inputTrigger merely emits `true` onto the given reactive stream
+	{ onclick: $inputTrigger(clicks) },
+	"clicks: ",
+	// using transducers to transform click stream into a counter
+	clicks.transform(scan(count(-1))),
+]).mount(document.body);
+```
+
+{{meta.status}}
 
 {{repo.supportPackages}}
 
