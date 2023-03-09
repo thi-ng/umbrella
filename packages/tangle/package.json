@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/tangle",
-	"version": "0.1.25",
+	"version": "0.1.26",
 	"description": "Literate programming code block tangling / codegen utility, inspired by org-mode & noweb",
 	"type": "module",
 	"module": "./index.js",
@@ -39,16 +39,16 @@
 		"@thi.ng/args": "^2.2.21",
 		"@thi.ng/checks": "^3.3.9",
 		"@thi.ng/compare": "^2.1.26",
-		"@thi.ng/date": "^2.4.6",
+		"@thi.ng/date": "^2.4.7",
 		"@thi.ng/errors": "^2.2.12",
-		"@thi.ng/file-io": "^0.5.4",
-		"@thi.ng/logger": "^1.4.9",
+		"@thi.ng/file-io": "^0.5.5",
+		"@thi.ng/logger": "^1.4.10",
 		"@thi.ng/strings": "^3.4.1",
-		"@thi.ng/transducers": "^8.3.36"
+		"@thi.ng/transducers": "^8.3.37"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.34.2",
-		"@thi.ng/testament": "^0.3.11",
+		"@thi.ng/testament": "^0.3.12",
 		"rimraf": "^4.1.2",
 		"tools": "workspace:^",
 		"typedoc": "^0.23.24",

@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/pixel-io-geotiff",
-	"version": "0.1.7",
+	"version": "0.1.8",
 	"description": "GeoTIFF reader support for @thi.ng/pixel",
 	"type": "module",
 	"module": "./index.js",
@@ -35,12 +35,12 @@
 	},
 	"dependencies": {
 		"@thi.ng/api": "^8.7.3",
-		"@thi.ng/pixel": "^4.1.7",
+		"@thi.ng/pixel": "^4.1.8",
 		"geotiff": "^2.0.7"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.34.2",
-		"@thi.ng/testament": "^0.3.11",
+		"@thi.ng/testament": "^0.3.12",
 		"rimraf": "^4.1.2",
 		"tools": "workspace:^",
 		"typedoc": "^0.23.24",

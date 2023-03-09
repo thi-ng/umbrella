@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/transclude",
-	"version": "0.1.11",
+	"version": "0.1.12",
 	"description": "Extensible functional template engine for text document generation, incl. various high-level Markdown features",
 	"type": "module",
 	"module": "./index.js",
@@ -36,14 +36,14 @@
 	"dependencies": {
 		"@thi.ng/api": "^8.7.3",
 		"@thi.ng/checks": "^3.3.9",
-		"@thi.ng/file-io": "^0.5.4",
-		"@thi.ng/logger": "^1.4.9",
+		"@thi.ng/file-io": "^0.5.5",
+		"@thi.ng/logger": "^1.4.10",
 		"@thi.ng/strings": "^3.4.1",
-		"@thi.ng/transducers": "^8.3.36"
+		"@thi.ng/transducers": "^8.3.37"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.34.2",
-		"@thi.ng/testament": "^0.3.11",
+		"@thi.ng/testament": "^0.3.12",
 		"rimraf": "^4.1.2",
 		"tools": "workspace:^",
 		"typedoc": "^0.23.24",

@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/intervals",
-	"version": "4.2.26",
+	"version": "4.2.27",
 	"description": "Closed/open/semi-open interval data type, queries & operations",
 	"type": "module",
 	"module": "./index.js",
@@ -44,7 +44,7 @@
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.34.2",
-		"@thi.ng/testament": "^0.3.11",
+		"@thi.ng/testament": "^0.3.12",
 		"rimraf": "^4.1.2",
 		"tools": "workspace:^",
 		"typedoc": "^0.23.24",
