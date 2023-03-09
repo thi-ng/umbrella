@@ -126,7 +126,7 @@ downloadWithMime("hello.txt", src, {
 ### Simplified canvas downloads
 
 Since v2.1.0, HTML canvas downloads can be simplified using
-[`downloadCanvas()`](https://docs.thi.ng/umbrella/dl-asset/modules.html#downloadCanvas):
+[`downloadCanvas()`](https://docs.thi.ng/umbrella/dl-asset/functions/downloadCanvas.html):
 
 ```ts
 import { downloadCanvas } from "@thi.ng/dl-asset";

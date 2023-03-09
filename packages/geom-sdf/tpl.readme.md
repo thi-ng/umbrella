@@ -38,7 +38,7 @@ const f = asSDF(group({}, [circle([-50, 0], 100), circle([50, 0], 100)]));
 ### SDF combinators
 
 The following table illustrates various options how SDFs can be combined. When
-using the [`asSDF()`](https://docs.thi.ng/umbrella/geom-sdf/modules.html#asSDF)
+using the [`asSDF()`](https://docs.thi.ng/umbrella/geom-sdf/functions/asSDF.html)
 geometry converter, these operators can be specified and configured (most are
 parametric) via a shape `group()`'s
 [attributes](https://docs.thi.ng/umbrella/geom-sdf/interfaces/SDFAttribs.html),
@@ -63,8 +63,8 @@ group({ __sdf: { combine: "diff", chamfer: 50 }}, [
 ### SDF discretization, sampling & domain modifiers
 
 The package provides the
-[`sample2d()`](https://docs.thi.ng/umbrella/geom-sdf/modules.html#sample2d) and
-[`asPolygons()`](https://docs.thi.ng/umbrella/geom-sdf/modules.html#asPolygons)
+[`sample2d()`](https://docs.thi.ng/umbrella/geom-sdf/functions/sample2d.html) and
+[`asPolygons()`](https://docs.thi.ng/umbrella/geom-sdf/functions/asPolygons.html)
 functions to discretize an SDF and cache results in a buffer (image) and then
 extract contour polygons from it, i.e. convert the 2D back into geometry (see
 example further below). The SDF will be sampled in a user defined bounding
@@ -72,7 +72,7 @@ rectangle (with customizable resolution) and the sampling positions can be
 modulated via several provided domain modifiers to create various axial/spatial
 repetions, symmetries etc. Modifiers are nestable/composable via standard
 functional composition (e.g. using
-[`compL()`](https://docs.thi.ng/umbrella/compose/modules.html#compL)) and also
+[`compL()`](https://docs.thi.ng/umbrella/compose/functions/compL.html)) and also
 support custom modfifiers. The table below illustrates a few examples effects:
 
 | Modifier          |                                                                                                     |                                                                                                     |                                                                                                     |
@@ -137,7 +137,7 @@ const sceneBounds = bounds(scene, 40);
 
 // convert to an SDF distance function
 // more information about supported shape types:
-// https://docs.thi.ng/umbrella/geom-sdf/modules.html#asSDF
+// https://docs.thi.ng/umbrella/geom-sdf/functions/asSDF.html
 const sdf = asSDF(scene);
 
 // sample SDF in given bounding rect and resolution

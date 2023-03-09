@@ -194,7 +194,7 @@ usually seen in shader code and not easily achievable via the usual
 string templating approach used by most other GLSL libraries.
 
 For example, the
-[`additive()`](https://docs.thi.ng/umbrella/shader-ast-stdlib/modules.html#additive)
+[`additive()`](https://docs.thi.ng/umbrella/shader-ast-stdlib/functions/additive.html)
 HOF takes a single-arg scalar function and a number of octaves. It returns a new
 function which computes the summed value of `fn` over the given number octaves,
 with a user defined phase shift & decay factor (per octave). This can be used

@@ -301,7 +301,7 @@ when later providing attribute values to an element.
 #### Element creation
 
 The function returned by `defElement` has the [following
-signatures](https://docs.thi.ng/umbrella/hiccup-html/modules.html#defElement):
+signatures](https://docs.thi.ng/umbrella/hiccup-html/functions/defElement.html):
 
 ```ts
 (attribs?: Nullable<T>, ...body: B[]) => [string, Nullable<T>, ...B[]];

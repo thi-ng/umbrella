@@ -244,7 +244,7 @@ res.e(2);
 #### Protecting values
 
 Values can be protected from further resolution attempts by wrapping them via
-[`resolved()`](https://docs.thi.ng/umbrella/resolve-map/modules.html#resolved).
+[`resolved()`](https://docs.thi.ng/umbrella/resolve-map/functions/resolved.html).
 By default, these wrapped values are only used during the resolution phase and
 the final result object/array will only contain the original, unwrapped values.
 Unwrapped values will also be supplied to any lookup functions, no

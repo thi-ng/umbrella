@@ -164,7 +164,7 @@ faster `readBit()` for reading single bits.
 
 ### Barebones alternatives
 
-For use cases requiring only word sizes <=8 bits and none of the advanced features provided by the above implementations, the package also provides functional barebones alternatives in the form of [`bitWriter()`](https://docs.thi.ng/umbrella/bitstream/modules.html#bitWriter) and [`bitReader()`](https://docs.thi.ng/umbrella/bitstream/modules.html#bitReader):
+For use cases requiring only word sizes <=8 bits and none of the advanced features provided by the above implementations, the package also provides functional barebones alternatives in the form of [`bitWriter()`](https://docs.thi.ng/umbrella/bitstream/functions/bitWriter.html) and [`bitReader()`](https://docs.thi.ng/umbrella/bitstream/functions/bitReader.html):
 
 ```ts
 import { bitReader, bitWriter } from "@thi.ng/bistream";

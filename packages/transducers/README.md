@@ -92,7 +92,7 @@ issue](https://github.com/thi-ng/umbrella/issues/186) by
 [@gavinpc-mindgrub](https://github.com/gavinpc-mindgrub), various transducers
 functions have been fixed for the case when they're invoked with an _empty_
 string as input iterable. Furthermore,
-[`flatten()`](https://docs.thi.ng/umbrella/transducers/modules.html#flatten) is
+[`flatten()`](https://docs.thi.ng/umbrella/transducers/functions/flatten.html) is
 _always_ treating strings as atomic values now, whereas before top-level strings
 would be split into individual characters.
 

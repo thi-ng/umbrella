@@ -7,7 +7,7 @@
 {{pkg.description}}
 
 This package provides a single function
-[`exposeGlobal()`](https://docs.thi.ng/umbrella/expose/modules.html#exposeGlobal)
+[`exposeGlobal()`](https://docs.thi.ng/umbrella/expose/functions/exposeGlobal.html)
 to expose a variable in the global scope (e.g. for development/debugging
 purposes). It's behavior is controled by the `UMBRELLA_GLOBALS` or
 `VITE_UMBRELLA_GLOBALS` environment variables - if either is set (to a non-empty

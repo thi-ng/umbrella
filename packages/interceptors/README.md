@@ -45,7 +45,7 @@ programming](https://en.wikipedia.org/wiki/Aspect-oriented_programming)).
 You want to reuse some functionality across components within your app.
 For example, if you have multiple actions which should be undoable, you
 can compose your main event handlers with the
-[`snapShot()`](https://docs.thi.ng/umbrella/interceptors/modules.html#snapshot)
+[`snapShot()`](https://docs.thi.ng/umbrella/interceptors/functions/snapshot.html)
 interceptor, which requires a
 [@thi.ng/atom](https://github.com/thi-ng/umbrella/tree/develop/packages/atom)/History-like
 instance and records a snapshot of the current app state, but else is
@@ -94,7 +94,7 @@ validation & logging post-update. I.e., interceptors commonly need `pre`
 only.
 
 Like with
-[`trace()`](https://docs.thi.ng/umbrella/interceptors/modules.html#trace) some
+[`trace()`](https://docs.thi.ng/umbrella/interceptors/functions/trace.html) some
 interceptors DO have side effects, but they're really the exception to the rule.
 For example, `snapshot()` is idempotent since it only records a new snapshot if
 it's different from the last and `trace()`, but is typically used during

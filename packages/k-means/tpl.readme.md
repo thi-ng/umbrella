@@ -57,7 +57,7 @@ const clusters = kmeans(
     cities.map((x) => x.latlon),
     {
         // custom centroid calc for geo locations
-        // https://docs.thi.ng/umbrella/k-means/modules.html#meansLatLon
+        // https://docs.thi.ng/umbrella/k-means/functions/meansLatLon.html
         strategy: meansLatLon,
         // custom distance function for geo location (default: DIST_SQ)
         dist: HAVERSINE_LATLON

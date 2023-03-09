@@ -114,9 +114,9 @@ css(rgb(labD50("#ff0")))
 ```
 
 Additionally, colors can be created from black body temperatures
-([`kelvinRgb()`](https://docs.thi.ng/umbrella/color/modules.html#kelvinRgb))
+([`kelvinRgb()`](https://docs.thi.ng/umbrella/color/functions/kelvinRgb.html))
 or wavelengths
-([`wavelengthXyz()`](https://docs.thi.ng/umbrella/color/modules.html#wavelengthXyz)).
+([`wavelengthXyz()`](https://docs.thi.ng/umbrella/color/functions/wavelengthXyz.html)).
 
 ![kelvinRgb() result swatches](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/color/blackbody.svg)
 

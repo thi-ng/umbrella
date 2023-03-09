@@ -50,7 +50,7 @@ The following logger implementations are provided:
 
 - [`ConsoleLogger`](https://docs.thi.ng/umbrella/logger/classes/ConsoleLogger.html): writes output to `console`
 - [`MemoryLogger`](https://docs.thi.ng/umbrella/logger/classes/MemoryLogger.html): writes output to in-memory journal
-- [`NULL_LOGGER`](https://docs.thi.ng/umbrella/logger/modules.html#NULL_LOGGER): no-op logger, suppresses all output
+- [`NULL_LOGGER`](https://docs.thi.ng/umbrella/logger/variables/NULL_LOGGER.html): no-op logger, suppresses all output
 
 ### Lazy evaluation
 

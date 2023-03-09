@@ -116,7 +116,7 @@ const initialState: any = { x: 23 };
 
 // create transformed stream mapping patch commands to states
 // since `patchArray` is only a reducer, we need to wrap it w/ the `scan` transducer
-// see: https://docs.thi.ng/umbrella/transducers/modules.html#scan
+// see: https://docs.thi.ng/umbrella/transducers/functions/scan.html
 export const state = stream<PatchObjOp>().transform(
     scan(patchObj(), initialState)
 );

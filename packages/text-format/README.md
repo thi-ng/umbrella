@@ -117,7 +117,7 @@ If targeting this output format, all 16 bits available for formatting
 information are used to encode 2x 8bit foreground/background colors. Therefore,
 none of the above mentioned preset color names and/or any additional formatting
 flags (e.g. bold, underline etc.) **cannot be used**. Instead, use the
-[`format256()`](https://docs.thi.ng/umbrella/text-format/modules.html#format256)
+[`format256()`](https://docs.thi.ng/umbrella/text-format/functions/format256.html)
 function to create a format ID based on given FG, BG colors.
 
 ![ANSI256 color pallette](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/text-canvas/ansi256.png)
@@ -160,7 +160,7 @@ defAnsi16(FG_LIGHT_RED | BG_GRAY)("hello")
 ```
 
 Furthermore,
-[`defFormatPresets()`](https://docs.thi.ng/umbrella/text-format/modules.html#defFormatPresets)
+[`defFormatPresets()`](https://docs.thi.ng/umbrella/text-format/functions/defFormatPresets.html)
 can be used to create formatting functions for all 16 preset [foreground color
 IDs](#colors) for a given string format strategy:
 

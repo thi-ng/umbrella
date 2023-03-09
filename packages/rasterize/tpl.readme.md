@@ -18,41 +18,41 @@ shader-like](#custom-shaders) functions to produce "pixel" values.
 
 ### Circle
 
-- [`drawCircle()`](https://docs.thi.ng/umbrella/rasterize/modules.html#drawCircle):
+- [`drawCircle()`](https://docs.thi.ng/umbrella/rasterize/functions/drawCircle.html):
   Filled or outline implementation of [Bresenham's circle
   algorithm](https://en.wikipedia.org/wiki/Midpoint_circle_algorithm), with
   clipping.
 
 ### Line
 
-- [`drawLine()`](https://docs.thi.ng/umbrella/rasterize/modules.html#drawLine):
+- [`drawLine()`](https://docs.thi.ng/umbrella/rasterize/functions/drawLine.html):
   Implementation of [Bresenham's line
   algorithm](https://en.wikipedia.org/wiki/Bresenham%27s_line_algorithm) with
   pre-applied [Liang-Barsky
   clipping](https://en.wikipedia.org/wiki/Liang%E2%80%93Barsky_algorithm)
-- [`traceLine()`](https://docs.thi.ng/umbrella/rasterize/modules.html#traceLine):
+- [`traceLine()`](https://docs.thi.ng/umbrella/rasterize/functions/traceLine.html):
   Apply custom functions to trace the line
 
 ### Polygon / polyline
 
 Filled or outline drawing of polygons (without holes):
 
-- [`drawPolyline()`](https://docs.thi.ng/umbrella/rasterize/modules.html#drawPolyline)
-- [`fillPoly()`](https://docs.thi.ng/umbrella/rasterize/modules.html#fillPoly)
+- [`drawPolyline()`](https://docs.thi.ng/umbrella/rasterize/functions/drawPolyline.html)
+- [`fillPoly()`](https://docs.thi.ng/umbrella/rasterize/functions/fillPoly.html)
 
 ### Rect
 
-- [`drawRect()`](https://docs.thi.ng/umbrella/rasterize/modules.html#drawRect):
+- [`drawRect()`](https://docs.thi.ng/umbrella/rasterize/functions/drawRect.html):
   Filled or outline implementation with pre-applied clipping against the target
   grid.
 
 ### Flood fill
 
-- [`floodFill()`](https://docs.thi.ng/umbrella/rasterize/modules.html#floodFill):
+- [`floodFill()`](https://docs.thi.ng/umbrella/rasterize/functions/floodFill.html):
   Fills grid in the connected region around `x,y` with given value or shader
 
 Also see corresponding function in
-[@thi.ng/grid-iterators](https://docs.thi.ng/umbrella/grid-iterators/modules.html#floodFill).
+[@thi.ng/grid-iterators](https://docs.thi.ng/umbrella/grid-iterators/functions/floodFill.html).
 
 
 ## Custom shaders
@@ -66,15 +66,15 @@ draw call.
 
 The following shader functions are provided:
 
-- [`defPattern()`](https://docs.thi.ng/umbrella/rasterize/modules.html#defPattern):
+- [`defPattern()`](https://docs.thi.ng/umbrella/rasterize/functions/defPattern.html):
   pattern fill (must be same format as target grid)
-- [`defStripes()`](https://docs.thi.ng/umbrella/rasterize/modules.html#defStripes):
+- [`defStripes()`](https://docs.thi.ng/umbrella/rasterize/functions/defStripes.html):
   procedural stripes (configurable)
-- [`defNoise()`](https://docs.thi.ng/umbrella/rasterize/modules.html#defNoise):
+- [`defNoise()`](https://docs.thi.ng/umbrella/rasterize/functions/defNoise.html):
   random noise pattern (configurable)
 
 As an example, here's a simple custom UV gradient shader for drawing into a
-[float RGBA](https://docs.thi.ng/umbrella/pixel/modules.html#floatBuffer)
+[float RGBA](https://docs.thi.ng/umbrella/pixel/functions/floatBuffer.html)
 buffer:
 
 ```ts

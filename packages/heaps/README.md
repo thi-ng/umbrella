@@ -103,7 +103,7 @@ h.push(24);
 Even though all provided heap implementations support arbitrary values and
 comparators and could be used as-is to implement a priority queue, since v1.3.0
 this package also includes a dedicated
-[`PriorityQueue`](https://docs.thi.ng/umbrella/heaps/modules.html#defPriorityQueue)
+[`PriorityQueue`](https://docs.thi.ng/umbrella/heaps/functions/defPriorityQueue.html)
 class, a thin veneer wrapper for a backing `Heap` and exposing a PQ-like API for
 arbitrary values, with configurable value equality handling and priority
 ordering:

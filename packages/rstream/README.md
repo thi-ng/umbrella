@@ -155,7 +155,7 @@ src.transformTopic("foo", map((e) => e.value), { error: handleError })
 **Notes:**
 
 - (1): If using multiple transducers, they must be pre-composed with
-  [`comp()`](https://docs.thi.ng/umbrella/transducers/modules.html#comp). Other
+  [`comp()`](https://docs.thi.ng/umbrella/transducers/functions/comp.html). Other
   signatures of `.transform()` method support up to 4 transducers and composes
   them automatically.
 

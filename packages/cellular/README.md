@@ -255,8 +255,8 @@ ca.setPattern("mask", WIDTH / 4, WIDTH / 2, 1, 0, WIDTH / 8);
 // create color gradient to visualize the different cell states
 // and wrap as indexed color model for pixel buffer below...
 // references:
-// https://docs.thi.ng/umbrella/color/modules.html#multiColorGradient
-// https://docs.thi.ng/umbrella/pixel/modules.html#defIndexed
+// https://docs.thi.ng/umbrella/color/functions/multiColorGradient.html
+// https://docs.thi.ng/umbrella/pixel/functions/defIndexed.html
 const fmt = defIndexed(
     multiColorGradient(
         {

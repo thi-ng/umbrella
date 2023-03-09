@@ -47,13 +47,13 @@ only that body/subtree in the target DOM will be impacted/updated directly...
 The package provides an interface
 [`IComponent`](https://docs.thi.ng/umbrella/rdom/interfaces/IComponent.html)
 (with a super simple life cycle API), a base component class
-[`Component`](https://docs.thi.ng/umbrella/rdom/classes/Component.html) for stubbing and a
-number of fundamental control constructs & component-wrappers for composing more
-complex components and to reduce boilerplate for various situations. Whilst
-targetting a standard JS DOM by default, each component can decide for itself
-what kind of target data structure (apart from a browser DOM) it manages. _rdom_
-components themselves have **no mandatory** knowledge of a browser DOM. As an
-example, similar to
+[`Component`](https://docs.thi.ng/umbrella/rdom/classes/Component.html) for
+stubbing and a number of fundamental control constructs & component-wrappers for
+composing more complex components and to reduce boilerplate for various
+situations. Whilst targetting a standard JS DOM by default, each component can
+decide for itself what kind of target data structure (apart from a browser DOM)
+it manages. _rdom_ components themselves have **no mandatory** knowledge of a
+browser DOM. As an example, similar to
 [@thi.ng/hdom-canvas](https://github.com/thi-ng/umbrella/tree/develop/packages/hiccup-canvas),
 the
 [@thi.ng/rdom-canvas](https://github.com/thi-ng/umbrella/tree/develop/packages/rdom-canvas)
@@ -66,7 +66,13 @@ draw calls.
 Since there's no central coordination in _rdom_ (neither explicitly nor
 implicitly), each component can (and does) update whenever its state value has
 changed. Likewise, components are free to directly manipulate the DOM through
-other means, as hinted at earlier. Various _rdom_ control constructs are dispatching component updates via a central scheduler. By default this is only a dummy implementation which processes tasks immediately. However, as usual _rdom_ only relies on the [`IScheduler`](https://docs.thi.ng/umbrella/rdom/interfaces/IScheduler.html) interface and so supports other implementations, like [`RAFScheduler`](https://docs.thi.ng/umbrella/rdom/classes/RAFScheduler.html).
+other means, as hinted at earlier. Various _rdom_ control constructs are
+dispatching component updates via a central scheduler. By default this is only a
+dummy implementation which processes tasks immediately. However, as usual _rdom_
+only relies on the
+[`IScheduler`](https://docs.thi.ng/umbrella/rdom/interfaces/IScheduler.html)
+interface and so supports other implementations, like
+[`RAFScheduler`](https://docs.thi.ng/umbrella/rdom/classes/RAFScheduler.html).
 
 The [`IComponent`](https://docs.thi.ng/umbrella/rdom/interfaces/icomponent.html)
 interface is at the heart of _rdom_. It defines three lifecycle methods to:
@@ -85,8 +91,8 @@ please consult the docs for these packages to learn more about the available
 constructs and patterns. Most of _rdom_ only deals with either subscribing to
 reactive values and/or wrapping/transforming existing subscriptions, either
 explicitly using the provided control components (e.g.
-[`$sub()`](https://docs.thi.ng/umbrella/rdom/modules.html#_sub)) or using
-[`$compile()`](https://docs.thi.ng/umbrella/rdom/modules.html#_compile) to
+[`$sub()`](https://docs.thi.ng/umbrella/rdom/functions/_sub.html)) or using
+[`$compile()`](https://docs.thi.ng/umbrella/rdom/functions/_compile.html) to
 auto-wrap such values embedded in an hiccup tree.
 
 {{meta.status}}
@@ -107,8 +113,9 @@ integration has been removed in favor of using relevant
 [@thi.ng/rstream](https://github.com/thi-ng/umbrella/tree/develop/packages/rstream)
 constructs, which can be used as lightweight adapters, i.e.:
 
-- [`fromAtom()`](https://docs.thi.ng/umbrella/rstream/modules.html#fromAtom)
-- [`fromView()`](https://docs.thi.ng/umbrella/rstream/modules.html#fromView)
+- [`fromAtom()`](https://docs.thi.ng/umbrella/rstream/functions/fromAtom.html)
+- [`fromObject()`](https://docs.thi.ng/umbrella/rstream/functions/fromObject.html)
+- [`fromView()`](https://docs.thi.ng/umbrella/rstream/functions/fromView.html)
 
 {{repo.supportPackages}}
 
@@ -134,9 +141,9 @@ constructs, which can be used as lightweight adapters, i.e.:
 
 TODO
 
-Currently, documentation only exists in the form of small examples and
-various doc strings (incomplete). I'm working to alleviate this
-situation ASAP... In that respect, PRs are welcome as well!
+Currently, documentation only exists in the form of small examples and various
+doc strings (incomplete). I'm working to alleviate this situation ASAP... In
+that respect, PRs are welcome as well!
 
 ### Basic usage
 

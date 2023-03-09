@@ -231,8 +231,8 @@ purposes (i.e. as axis tick label generators for
 #### Parsing
 
 Relative dates can be obtained via
-[`parseRelative()`](https://docs.thi.ng/umbrella/date/modules.html#parseRelative)
-or [`relative()`](https://docs.thi.ng/umbrella/date/modules.html#relative).
+[`parseRelative()`](https://docs.thi.ng/umbrella/date/functions/parseRelative.html)
+or [`relative()`](https://docs.thi.ng/umbrella/date/functions/relative.html).
 
 ```ts
 const now = dateTime();
@@ -255,9 +255,9 @@ parseRelative("-1 month", now)
 #### Formatting
 
 Dates can be formatted as relative descriptions using
-[`formatRelative()`](https://docs.thi.ng/umbrella/date/modules.html#formatRelative)
+[`formatRelative()`](https://docs.thi.ng/umbrella/date/functions/formatRelative.html)
 and
-[`formatRelativeParts()`](https://docs.thi.ng/umbrella/date/modules.html#formatRelativeParts).
+[`formatRelativeParts()`](https://docs.thi.ng/umbrella/date/functions/formatRelativeParts.html).
 Both functions use the currently active [locale](#locales) and accept an optional
 reference date (default: now).
 
@@ -311,7 +311,7 @@ formatDuration(45296000,"d")
 ### Date & time formatters
 
 Custom date/time formatters can be assembled via
-[`defFormat()`](https://docs.thi.ng/umbrella/date/modules.html#defFormat),
+[`defFormat()`](https://docs.thi.ng/umbrella/date/functions/defFormat.html),
 using the following partial format identifiers. The `MMM` and `E` formatters use
 the currently active [locale](#locales). To escape a formatter and use as a
 string literal, prefix the term with `\\`.
@@ -427,7 +427,7 @@ fmt(dateTime());
 // Saturday 19 September 2020
 ```
 
-Use [`withLocale()`](https://docs.thi.ng/umbrella/date/modules.html#withLocale)
+Use [`withLocale()`](https://docs.thi.ng/umbrella/date/functions/withLocale.html)
 to only temporarily set a locale and execute a function with it, then
 automatically restoring the currently active locale.
 

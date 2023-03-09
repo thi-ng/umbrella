@@ -292,9 +292,9 @@ Accepting PRs with instructruction for other editors & IDEs.
 {{pkg.docs}}
 
 In addition to the CLI wrapper, the package provides the
-[`tangleFile()`](https://docs.thi.ng/umbrella/tangle/modules.html#tangleFile)
+[`tangleFile()`](https://docs.thi.ng/umbrella/tangle/functions/tangleFile.html)
 and
-[`tangleString()`](https://docs.thi.ng/umbrella/tangle/modules.html#tangleString)
+[`tangleString()`](https://docs.thi.ng/umbrella/tangle/functions/tangleString.html)
 functions. See
 [/test/index.ts](https://github.com/thi-ng/umbrella/blob/develop/packages/tangle/test/index.ts)
 for usage examples.
