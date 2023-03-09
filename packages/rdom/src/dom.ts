@@ -110,12 +110,17 @@ const $treeIter = (tree: any, parent: Element) => {
  * Create a single DOM element and optionally attaches it to `parent`.
  *
  * @remarks
- * Supports Emmet-style tag names in this form: `tag#id.class1.class2`.
- * `attribs` is a plain object of element attributes. See
- * {@link $attribs} for further details.
+ * If `tag` is a namespaced tagname (e.g. `prefix:tag`), the element will be
+ * created via `document.createElementNS()` and the prefix will be resolved via
+ * known aliases registered by {@link registerPrefix}. SVG element names do not
+ * need to be prefixed and are recognized automatically.
  *
- * If `parent` is given, but no `idx` arg, the new element will be
- * appended as child.
+ * Supports Emmet-style tag names in this form: `tag#id.class1.class2`.
+ * `attribs` is a plain object of element attributes. See {@link $attribs} for
+ * further details.
+ *
+ * If `parent` is given, but no `idx` arg, the new element will be appended as
+ * child.
  *
  * @param tag -
  * @param attribs -
@@ -444,8 +449,8 @@ const PREFIXES: IObjectOf<string> = {
 };
 
 /**
- * Registers an XML namespace prefix and its URL for later use, e.g. to
- * define namespaced elements/attributes.
+ * Registers an XML namespace prefix and its URL for later use, e.g. to define
+ * namespaced elements/attributes via {@link $el}, {@link $tree}.
  *
  * @param prefix -
  * @param url -
