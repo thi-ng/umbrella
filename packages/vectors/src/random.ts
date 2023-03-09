@@ -52,7 +52,7 @@ export const [random, random2, random3, random4] = defHofOp<
  *
  * References:
  * - https://docs.thi.ng/umbrella/random/#random-distributions
- * - https://docs.thi.ng/umbrella/random/modules.html#normal
+ * - https://docs.thi.ng/umbrella/random/functions/normal.html
  *
  * @param v -
  * @param rnd -
