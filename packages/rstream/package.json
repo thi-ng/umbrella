@@ -48,11 +48,11 @@
 		"@thi.ng/transducers": "^8.3.37"
 	},
 	"devDependencies": {
-		"@microsoft/api-extractor": "^7.34.2",
+		"@microsoft/api-extractor": "^7.34.4",
 		"@thi.ng/testament": "^0.3.12",
-		"rimraf": "^4.1.2",
+		"rimraf": "^4.4.0",
 		"tools": "workspace:^",
-		"typedoc": "^0.23.24",
+		"typedoc": "^0.23.26",
 		"typescript": "^4.9.5"
 	},
 	"keywords": [

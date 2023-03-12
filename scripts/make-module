@@ -85,14 +85,14 @@ cat << EOF > "$MODULE"/package.json
 		"test": "testament test"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.7.2"
+		"@thi.ng/api": "^8.7.3"
 	},
 	"devDependencies": {
-		"@microsoft/api-extractor": "^7.34.2",
-		"@thi.ng/testament": "^0.3.11",
-		"rimraf": "^4.1.2",
+		"@microsoft/api-extractor": "^7.34.4",
+		"@thi.ng/testament": "^0.3.12",
+		"rimraf": "^4.4.0",
 		"tools": "workspace:^",
-		"typedoc": "^0.23.24",
+		"typedoc": "^0.23.26",
 		"typescript": "^4.9.5"
 	},
 	"keywords": [
