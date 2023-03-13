@@ -1,12 +1,12 @@
 import { defUnit, mul, prefix, unit } from "./unit.js";
 
-export const S = defUnit("s", "second", unit(2, 1, 0, true));
-export const MS = defUnit("ms", "millisecond", prefix("m", S));
-export const µS = defUnit("µs", "microsecond", prefix("µ", S));
-export const NS = defUnit("ns", "nanosecond", prefix("n", S));
-export const MIN = defUnit("min", "minute", mul(S, 60));
-export const H = defUnit("h", "hour", mul(MIN, 60));
-export const DAY = defUnit("day", "day", mul(H, 24));
-export const WEEK = defUnit("week", "week", mul(DAY, 7));
-export const MONTH = defUnit("month", "month", mul(DAY, 30));
-export const YEAR = defUnit("year", "year", mul(DAY, 365.25));
+export const s = defUnit("s", "second", unit(2, 1, 0, true));
+export const ms = defUnit("ms", "millisecond", prefix("m", s));
+export const µs = defUnit("µs", "microsecond", prefix("µ", s));
+export const ns = defUnit("ns", "nanosecond", prefix("n", s));
+export const min = defUnit("min", "minute", mul(s, 60));
+export const h = defUnit("h", "hour", mul(min, 60));
+export const d = defUnit("day", "day", mul(h, 24));
+export const week = defUnit("week", "week", mul(d, 7));
+export const month = defUnit("month", "month", mul(d, 30));
+export const year = defUnit("year", "year", mul(d, 365.25));

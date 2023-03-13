@@ -1,9 +1,9 @@
 import { defUnit, div } from "./unit.js";
-import { FT, KM, M, MI, NMI } from "./length.js";
-import { H, S } from "./time.js";
+import { ft, km, m, mi, nmi } from "./length.js";
+import { h, s } from "./time.js";
 
-export const M_S = defUnit("m/s", "meter per second", div(M, S));
-export const KM_H = defUnit("km/h", "kilometer per hour", div(KM, H));
-export const FT_S = defUnit("ft/s", "foot per second", div(FT, S));
-export const MPH = defUnit("mph", "mile per hour", div(MI, H));
-export const KNOT = defUnit("kn", "knot", div(NMI, H));
+export const m_s = defUnit("m/s", "meter per second", div(m, s));
+export const km_h = defUnit("km/h", "kilometer per hour", div(km, h));
+export const ft_s = defUnit("ft/s", "foot per second", div(ft, s));
+export const mph = defUnit("mph", "mile per hour", div(mi, h));
+export const kn = defUnit("kn", "knot", div(nmi, h));

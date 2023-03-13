@@ -1,13 +1,13 @@
-import { CM, FT, IN, KM, M, MI, MM } from "./length.js";
+import { cm, ft, inch, km, m, mi, mm } from "./length.js";
 import { defUnit, mul, pow } from "./unit.js";
 
-export const M2 = defUnit("m2", "square meter", pow(M, 2));
-export const MM2 = defUnit("mm2", "square millimeter", pow(MM, 2));
-export const CM2 = defUnit("cm2", "square centimeter", pow(CM, 2));
-export const KM2 = defUnit("km2", "square kilometer", pow(KM, 2));
-export const HA = defUnit("ha", "hectar", mul(M2, 1e4));
+export const m2 = defUnit("m2", "square meter", pow(m, 2));
+export const mm2 = defUnit("mm2", "square millimeter", pow(mm, 2));
+export const cm2 = defUnit("cm2", "square centimeter", pow(cm, 2));
+export const km2 = defUnit("km2", "square kilometer", pow(km, 2));
+export const ha = defUnit("ha", "hectar", mul(m2, 1e4));
 
-export const AC = defUnit("ac", "acre", mul(M2, 4046.86));
-export const SQIN = defUnit("sqin", "square inch", pow(IN, 2));
-export const SQFT = defUnit("sqft", "square foot", pow(FT, 2));
-export const SQMI = defUnit("sqmi", "square mile", pow(MI, 2));
+export const ac = defUnit("ac", "acre", mul(m2, 4046.86));
+export const sqin = defUnit("sqin", "square inch", pow(inch, 2));
+export const sqft = defUnit("sqft", "square foot", pow(ft, 2));
+export const sqmi = defUnit("sqmi", "square mile", pow(mi, 2));

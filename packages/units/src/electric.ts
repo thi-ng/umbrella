@@ -1,28 +1,29 @@
-import { M2 } from "./area.js";
+import { m2 } from "./area.js";
 import { J } from "./energy.js";
-import { H, S } from "./time.js";
+import { h, s } from "./time.js";
 import { defUnit, div, mul, prefix, unit } from "./unit.js";
 
 export const A = defUnit("A", "ampere", unit(3, 1, 0, true));
-export const MA = defUnit("mA", "milliampere", prefix("m", A));
-export const MA_H = defUnit("mAh", "milliampere-hour", mul(MA, H));
+export const mA = defUnit("mA", "milliampere", prefix("m", A));
+export const mAh = defUnit("mAh", "milliampere-hour", mul(mA, h));
 
-export const C = defUnit("C", "coulomb", mul(A, S, true));
+export const C = defUnit("C", "coulomb", mul(A, s, true));
 
 export const V = defUnit("V", "volt", div(J, C, true));
-export const MV = defUnit("mV", "millivolt", prefix("m", V));
-export const KV = defUnit("kV", "kilovolt", prefix("k", V));
+export const mV = defUnit("mV", "millivolt", prefix("m", V));
+export const kV = defUnit("kV", "kilovolt", prefix("k", V));
+export const MV = defUnit("MV", "megavolt", prefix("M", V));
 
 export const F = defUnit("F", "farad", div(C, V, true));
-export const PF = defUnit("pF", "picofarad", prefix("p", F));
+export const pF = defUnit("pF", "picofarad", prefix("p", F));
 export const µF = defUnit("µF", "microfarad", prefix("µ", F));
 
-export const OHM = defUnit("Ω", "ohm", div(V, A, true));
-export const KOHM = defUnit("kΩ", "kiloohm", prefix("k", OHM));
-export const MOHM = defUnit("MΩ", "megaohm", prefix("M", OHM));
-export const GOHM = defUnit("GΩ", "gigaohm", prefix("G", OHM));
+export const Ω = defUnit("Ω", "ohm", div(V, A, true));
+export const kΩ = defUnit("kΩ", "kiloohm", prefix("k", Ω));
+export const MΩ = defUnit("MΩ", "megaohm", prefix("M", Ω));
+export const GΩ = defUnit("GΩ", "gigaohm", prefix("G", Ω));
 
-export const SIEMENS = defUnit("S", "siemens", div(A, V, true));
-export const WB = defUnit("Wb", "weber", mul(V, S, true));
-export const TESLA = defUnit("T", "tesla", div(WB, M2, true));
-export const HENRY = defUnit("H", "henry", div(WB, A, true));
+export const S = defUnit("S", "siemens", div(A, V, true));
+export const Wb = defUnit("Wb", "weber", mul(V, s, true));
+export const T = defUnit("T", "tesla", div(Wb, m2, true));
+export const H = defUnit("H", "henry", div(Wb, A, true));

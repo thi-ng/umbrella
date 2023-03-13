@@ -1,24 +1,24 @@
-import { RAD } from "./angle.js";
-import { FT, M } from "./length.js";
-import { S } from "./time.js";
+import { rad } from "./angle.js";
+import { ft, m } from "./length.js";
+import { s } from "./time.js";
 import { defUnit, div, mul, pow } from "./unit.js";
 
-export const M_S2 = defUnit(
+export const m_s2 = defUnit(
 	"m/s2",
 	"meter per second squared",
-	div(M, pow(S, 2))
+	div(m, pow(s, 2))
 );
 
-export const FT_S2 = defUnit(
+export const ft_s2 = defUnit(
 	"ft/s2",
 	"foot per second squared",
-	div(FT, pow(S, 2))
+	div(ft, pow(s, 2))
 );
 
-export const RAD_S2 = defUnit(
+export const rad_s2 = defUnit(
 	"rad/s2",
 	"radian per second squared",
-	div(RAD, pow(S, 2))
+	div(rad, pow(s, 2))
 );
 
-export const G0 = defUnit("g0", "standard gravity", mul(M_S2, 9.80665));
+export const g0 = defUnit("g0", "standard gravity", mul(m_s2, 9.80665));

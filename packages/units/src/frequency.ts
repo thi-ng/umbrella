@@ -1,11 +1,11 @@
-import { S } from "./time.js";
+import { s } from "./time.js";
 import { defUnit, div, mul, prefix, reciprocal } from "./unit.js";
 
-export const HZ = defUnit("Hz", "hertz", reciprocal(S, true));
-export const KHZ = defUnit("kHz", "kilohertz", prefix("k", HZ));
-export const MHZ = defUnit("MHz", "megahertz", prefix("M", HZ));
-export const GHZ = defUnit("GHz", "gigahertz", prefix("G", HZ));
-export const THZ = defUnit("THz", "terahertz", prefix("T", HZ));
-export const RPM = defUnit("rpm", "rotation per minute", mul(HZ, 1 / 60));
+export const Hz = defUnit("Hz", "hertz", reciprocal(s, true));
+export const kHz = defUnit("kHz", "kilohertz", prefix("k", Hz));
+export const MHz = defUnit("MHz", "megahertz", prefix("M", Hz));
+export const GHz = defUnit("GHz", "gigahertz", prefix("G", Hz));
+export const THz = defUnit("THz", "terahertz", prefix("T", Hz));
+export const rpm = defUnit("rpm", "rotation per minute", mul(Hz, 1 / 60));
 
-export const OMEGA = defUnit("ω", "radian per second", div(HZ, 2 * Math.PI));
+export const ω = defUnit("ω", "radian per second", div(Hz, 2 * Math.PI));
