@@ -1,0 +1,157 @@
+{
+	"name": "@thi.ng/units",
+	"version": "0.0.1",
+	"description": "Extensible SI unit creation & conversions (130+ units predefined)",
+	"type": "module",
+	"module": "./index.js",
+	"typings": "./index.d.ts",
+	"sideEffects": false,
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/thi-ng/umbrella.git"
+	},
+	"homepage": "https://github.com/thi-ng/umbrella/tree/develop/packages/units#readme",
+	"funding": [
+		{
+			"type": "github",
+			"url": "https://github.com/sponsors/postspectacular"
+		},
+		{
+			"type": "patreon",
+			"url": "https://patreon.com/thing_umbrella"
+		}
+	],
+	"author": "Karsten Schmidt (https://thi.ng)",
+	"license": "Apache-2.0",
+	"scripts": {
+		"build": "yarn clean && tsc --declaration",
+		"clean": "rimraf '*.js' '*.d.ts' '*.map' doc",
+		"doc": "typedoc --excludePrivate --excludeInternal --out doc src/index.ts",
+		"doc:ae": "mkdir -p .ae/doc .ae/temp && api-extractor run --local --verbose",
+		"doc:readme": "yarn doc:stats && tools:readme",
+		"doc:stats": "tools:module-stats",
+		"pub": "yarn npm publish --access public",
+		"test": "testament test"
+	},
+	"dependencies": {
+		"@thi.ng/checks": "^3.3.9",
+		"@thi.ng/equiv": "^2.1.19",
+		"@thi.ng/errors": "^2.2.12"
+	},
+	"devDependencies": {
+		"@microsoft/api-extractor": "^7.34.4",
+		"@thi.ng/testament": "^0.3.12",
+		"rimraf": "^4.4.0",
+		"tools": "workspace:^",
+		"typedoc": "^0.23.26",
+		"typescript": "^4.9.5"
+	},
+	"keywords": [
+		"acceleration",
+		"angle",
+		"area",
+		"bits",
+		"bytes",
+		"capacitance",
+		"current",
+		"voltage",
+		"resistance",
+		"converter",
+		"energy",
+		"force",
+		"frequency",
+		"length",
+		"mass",
+		"power",
+		"si",
+		"speed",
+		"temperature",
+		"time",
+		"typescript",
+		"units",
+		"volume"
+	],
+	"publishConfig": {
+		"access": "public"
+	},
+	"browser": {
+		"process": false,
+		"setTimeout": false
+	},
+	"engines": {
+		"node": ">=14"
+	},
+	"files": [
+		"./*.js",
+		"./*.d.ts"
+	],
+	"exports": {
+		".": {
+			"default": "./index.js"
+		},
+		"./accel": {
+			"default": "./accel.js"
+		},
+		"./angle": {
+			"default": "./angle.js"
+		},
+		"./api": {
+			"default": "./api.js"
+		},
+		"./area": {
+			"default": "./area.js"
+		},
+		"./data": {
+			"default": "./data.js"
+		},
+		"./electric": {
+			"default": "./electric.js"
+		},
+		"./energy": {
+			"default": "./energy.js"
+		},
+		"./force": {
+			"default": "./force.js"
+		},
+		"./frequency": {
+			"default": "./frequency.js"
+		},
+		"./length": {
+			"default": "./length.js"
+		},
+		"./luminous": {
+			"default": "./luminous.js"
+		},
+		"./mass": {
+			"default": "./mass.js"
+		},
+		"./power": {
+			"default": "./power.js"
+		},
+		"./pressure": {
+			"default": "./pressure.js"
+		},
+		"./speed": {
+			"default": "./speed.js"
+		},
+		"./substance": {
+			"default": "./substance.js"
+		},
+		"./temperature": {
+			"default": "./temperature.js"
+		},
+		"./time": {
+			"default": "./time.js"
+		},
+		"./unit": {
+			"default": "./unit.js"
+		},
+		"./volume": {
+			"default": "./volume.js"
+		}
+	},
+	"thi.ng": {
+		"status": "beta",
+		"year": 2021
+	}
+}
