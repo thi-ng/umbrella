@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/dl-asset",
-	"version": "2.3.28",
+	"version": "2.3.29",
 	"description": "Canvas, video recording & file asset download helpers for web apps",
 	"type": "module",
 	"module": "./index.js",
@@ -34,13 +34,13 @@
 		"test": "testament test"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.7.3",
-		"@thi.ng/checks": "^3.3.9",
-		"@thi.ng/mime": "^2.2.14"
+		"@thi.ng/api": "^8.7.4",
+		"@thi.ng/checks": "^3.3.10",
+		"@thi.ng/mime": "^2.2.15"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.34.4",
-		"@thi.ng/testament": "^0.3.12",
+		"@thi.ng/testament": "^0.3.13",
 		"rimraf": "^4.4.0",
 		"tools": "workspace:^",
 		"typedoc": "^0.23.26",

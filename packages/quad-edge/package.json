@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/quad-edge",
-	"version": "3.1.24",
+	"version": "3.1.25",
 	"description": "Quadedge data structure after Guibas & Stolfi",
 	"type": "module",
 	"module": "./index.js",
@@ -34,11 +34,11 @@
 		"test": "testament test"
 	},
 	"dependencies": {
-		"@thi.ng/errors": "^2.2.12"
+		"@thi.ng/errors": "^2.2.13"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.34.4",
-		"@thi.ng/testament": "^0.3.11",
+		"@thi.ng/testament": "^0.3.13",
 		"rimraf": "^4.4.0",
 		"tools": "workspace:^",
 		"typedoc": "^0.23.26",
