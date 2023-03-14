@@ -346,7 +346,7 @@ https://en.wikipedia.org/wiki/Parts-per_notation
 #### Using standard metric prefixes
 
 Existing [coherent units]() can be
-[prefixed](https://docs.thi.ng/umbrella/units/functions/prefix.html) to produce
+[prefixed](https://docs.thi.ng/umbrella/units/functions/prefix-1.html) to produce
 derived versions:
 
 ```ts
@@ -450,7 +450,5 @@ convert(10, "arcsec", "rad") * R;
 ## API
 
 {{pkg.docs}}
-
-TODO
 
 <!-- include ../../assets/tpl/footer.md -->
