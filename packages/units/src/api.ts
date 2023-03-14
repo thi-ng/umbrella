@@ -33,6 +33,8 @@ export interface NamedUnit extends Unit {
 	name: string;
 }
 
+export type MaybeUnit = Unit | string;
+
 /**
  * Vector of the 7 basic SI unit dimensions.
  *

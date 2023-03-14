@@ -3,8 +3,18 @@ import { isString } from "@thi.ng/checks/is-string";
 import { equivArrayLike } from "@thi.ng/equiv";
 import { assert } from "@thi.ng/errors/assert";
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
-import { Dimensions, NamedUnit, Prefix, PREFIXES, Unit } from "./api.js";
+import {
+	Dimensions,
+	MaybeUnit,
+	NamedUnit,
+	Prefix,
+	PREFIXES,
+	Unit,
+} from "./api.js";
 
+/**
+ * Cache/registry for all units defined via {@link defUint}.
+ */
 export const UNITS: Record<string, NamedUnit> = {};
 
 /**
@@ -77,7 +87,7 @@ export const defUnit = (
  *
  * @param id
  */
-export const asUnit = (id: string) => {
+export const asUnit = (id: string): Unit => {
 	for (let i = 0; i < id.length; i++) {
 		const pre = id.substring(0, i);
 		const unit = UNITS[id.substring(i)];
@@ -123,15 +133,19 @@ export const prefix = (id: Prefix, unit: Unit, coherent = false) =>
  * @param b
  * @param coherent
  */
-export const mul = (a: Unit, b: Unit | number, coherent = false) =>
-	isNumber(b)
-		? unit(a.dim, a.scale * b, a.offset, coherent)
-		: unit(
-				<Dimensions>a.dim.map((x, i) => x + b.dim[i]),
-				a.scale * b.scale,
-				0,
-				coherent
-		  );
+export const mul = (a: MaybeUnit, b: MaybeUnit | number, coherent = false) => {
+	const $a = __ensureUnit(a);
+	if (isNumber(b)) {
+		return unit($a.dim, $a.scale * b, $a.offset, coherent);
+	}
+	const $b = __ensureUnit(b);
+	return unit(
+		<Dimensions>$a.dim.map((x, i) => x + $b.dim[i]),
+		$a.scale * $b.scale,
+		0,
+		coherent
+	);
+};
 
 /**
  * Derives a new unit via the division of the given units. If `coherent` is true
@@ -142,19 +156,25 @@ export const mul = (a: Unit, b: Unit | number, coherent = false) =>
  * @param b
  * @param coherent
  */
-export const div = (a: Unit, b: Unit | number, coherent = false) =>
-	isNumber(b)
-		? unit(a.dim, a.scale / b, a.offset, coherent)
-		: unit(
-				<Dimensions>a.dim.map((x, i) => x - b.dim[i]),
-				a.scale / b.scale,
-				0,
-				coherent
-		  );
+export const div = (a: MaybeUnit, b: MaybeUnit | number, coherent = false) => {
+	const $a = __ensureUnit(a);
+	if (isNumber(b)) {
+		return unit($a.dim, $a.scale / b, $a.offset, coherent);
+	}
+	const $b = __ensureUnit(b);
+	return unit(
+		<Dimensions>$a.dim.map((x, i) => x - $b.dim[i]),
+		$a.scale / $b.scale,
+		0,
+		coherent
+	);
+};
 
 /**
  * Creates the reciprocal version of given unit (i.e. all SI dimensions will
- * flip sign) and the scale factor of the new unit will be `1/scale`.
+ * flip sign) and the scale factor of the new unit will be `1/scale`. If
+ * `coherent` is true (default: false), the new unit itself is considered
+ * coherent and can be prefixed later.
  *
  * @example
  * ```ts
@@ -164,11 +184,12 @@ export const div = (a: Unit, b: Unit | number, coherent = false) =>
  * @param u
  * @param coherent
  */
-export const reciprocal = (u: Unit, coherent = false) =>
+export const reciprocal = (u: MaybeUnit, coherent = false) =>
 	div(dimensionless(1), u, coherent);
 
 /**
- * Raises given unit to power `k`.
+ * Raises given unit to power `k`. If `coherent` is true (default: false), the
+ * new unit itself is considered coherent and can be prefixed later.
  *
  * ```ts
  * // create kilometer unit from (builtin) meter
@@ -182,8 +203,15 @@ export const reciprocal = (u: Unit, coherent = false) =>
  * @param k
  * @param coherent
  */
-export const pow = (u: Unit, k: number, coherent = false) =>
-	unit(<Dimensions>u.dim.map((x) => x * k), u.scale ** k, 0, coherent);
+export const pow = (u: MaybeUnit, k: number, coherent = false) => {
+	const $u = __ensureUnit(u);
+	return unit(
+		<Dimensions>$u.dim.map((x) => x * k),
+		$u.scale ** k,
+		0,
+		coherent
+	);
+};
 
 /**
  * Attempts to convert `x` from `src` unit into `dest` unit. Throws an error if
@@ -197,7 +225,7 @@ export const pow = (u: Unit, k: number, coherent = false) =>
  * @param src
  * @param dest
  */
-export const convert = (x: number, src: Unit | string, dest: Unit | string) => {
+export const convert = (x: number, src: MaybeUnit, dest: MaybeUnit) => {
 	const $src = __ensureUnit(src);
 	const $dest = __ensureUnit(dest);
 	const xnorm = x * $src.scale + $src.offset;
@@ -214,7 +242,7 @@ export const convert = (x: number, src: Unit | string, dest: Unit | string) => {
  * @param a
  * @param b
  */
-export const isReciprocal = (src: Unit | string, dest: Unit | string) => {
+export const isReciprocal = (src: MaybeUnit, dest: MaybeUnit) => {
 	const { dim: a } = __ensureUnit(src);
 	const { dim: b } = __ensureUnit(dest);
 	let ok = false;
@@ -234,13 +262,14 @@ export const isReciprocal = (src: Unit | string, dest: Unit | string) => {
  * @param src
  * @param dest
  */
-export const isConvertible = (src: Unit | string, dest: Unit | string) => {
+export const isConvertible = (src: MaybeUnit, dest: MaybeUnit) => {
 	const $src = __ensureUnit(src);
 	const $dest = __ensureUnit(dest);
 	return isReciprocal($src, $dest) || equivArrayLike($src.dim, $dest.dim);
 };
 
-export const formatSI = ({ dim }: Unit) => {
+export const formatSI = (u: MaybeUnit) => {
+	const { dim } = __ensureUnit(u);
 	const SI = ["kg", "m", "s", "A", "K", "mol", "cd"];
 	const acc: string[] = [];
 	for (let i = 0; i < 7; i++) {
@@ -251,7 +280,7 @@ export const formatSI = ({ dim }: Unit) => {
 };
 
 /** @internal */
-const __ensureUnit = (x: Unit | string) => (isString(x) ? asUnit(x) : x);
+const __ensureUnit = (x: MaybeUnit) => (isString(x) ? asUnit(x) : x);
 
 /** @internal */
 const __oneHot = (x: number) => {
