@@ -23,6 +23,12 @@ export const kΩ = defUnit("kΩ", "kiloohm", prefix("k", Ω));
 export const MΩ = defUnit("MΩ", "megaohm", prefix("M", Ω));
 export const GΩ = defUnit("GΩ", "gigaohm", prefix("G", Ω));
 
+// latin aliases
+export const ohm = Ω;
+export const kohm = kΩ;
+export const Mohm = MΩ;
+export const Gohm = GΩ;
+
 export const S = defUnit("S", "siemens", div(A, V, true));
 export const Wb = defUnit("Wb", "weber", mul(V, s, true));
 export const T = defUnit("T", "tesla", div(Wb, m2, true));

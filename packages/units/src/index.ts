@@ -12,6 +12,7 @@ export * from "./frequency.js";
 export * from "./length.js";
 export * from "./luminous.js";
 export * from "./mass.js";
+export * from "./parts.js";
 export * from "./power.js";
 export * from "./pressure.js";
 export * from "./speed.js";

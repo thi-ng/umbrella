@@ -9,3 +9,4 @@ export const THz = defUnit("THz", "terahertz", prefix("T", Hz));
 export const rpm = defUnit("rpm", "rotation per minute", mul(Hz, 1 / 60));
 
 export const ω = defUnit("ω", "radian per second", div(Hz, 2 * Math.PI));
+export const omega = ω;
