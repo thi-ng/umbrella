@@ -25,7 +25,7 @@
 	"license": "Apache-2.0",
 	"scripts": {
 		"build": "yarn clean && tsc --declaration",
-		"clean": "rimraf '*.js' '*.d.ts' '*.map' doc compile",
+		"clean": "rimraf --glob '*.js' '*.d.ts' '*.map' doc compile",
 		"doc": "typedoc --excludePrivate --excludeInternal --out doc src/index.ts",
 		"doc:ae": "mkdir -p .ae/doc .ae/temp && api-extractor run --local --verbose",
 		"doc:readme": "yarn doc:stats && tools:readme",
