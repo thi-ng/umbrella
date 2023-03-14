@@ -119,10 +119,12 @@ export const asUnit = (id: string): Unit => {
  * @param unit
  * @param coherent
  */
-export const prefix = (id: Prefix, unit: Unit, coherent = false) =>
-	unit.coherent
-		? mul(unit, PREFIXES[id], coherent)
-		: illegalArgs(`unit isn't coherent: ${id}`);
+export const prefix = (id: Prefix, unit: MaybeUnit, coherent = false) => {
+	const $u = __ensureUnit(unit);
+	return $u.coherent
+		? mul($u, PREFIXES[id], coherent)
+		: illegalArgs("unit isn't coherent");
+};
 
 /**
  * Derives a new unit as the product of the given units. If `coherent` is true
@@ -236,27 +238,6 @@ export const convert = (x: number, src: MaybeUnit, dest: MaybeUnit) => {
 };
 
 /**
- * Returns true if the two given units are reciprocal to each other (and
- * therefore can be used for conversion).
- *
- * @param a
- * @param b
- */
-export const isReciprocal = (src: MaybeUnit, dest: MaybeUnit) => {
-	const { dim: a } = __ensureUnit(src);
-	const { dim: b } = __ensureUnit(dest);
-	let ok = false;
-	for (let i = 0; i < 7; i++) {
-		const xa = a[i];
-		const xb = b[i];
-		if (xa === 0 && xb === 0) continue;
-		if (xa !== -xb) return false;
-		ok = true;
-	}
-	return ok;
-};
-
-/**
  * Returns true if `src` unit is convertible to `dest`.
  *
  * @param src
@@ -266,6 +247,35 @@ export const isConvertible = (src: MaybeUnit, dest: MaybeUnit) => {
 	const $src = __ensureUnit(src);
 	const $dest = __ensureUnit(dest);
 	return isReciprocal($src, $dest) || equivArrayLike($src.dim, $dest.dim);
+};
+
+/**
+ * Returns true, if `u` is a dimensionless unit.
+ *
+ * @param u
+ */
+export const isDimensionless = (u: MaybeUnit) =>
+	__ensureUnit(u).dim.every((x) => x === 0);
+
+/**
+ * Returns true if the two given units are reciprocal to each other (and
+ * therefore can be used for conversion).
+ *
+ * @param a
+ * @param b
+ */
+export const isReciprocal = (a: MaybeUnit, b: MaybeUnit) => {
+	const { dim: $a } = __ensureUnit(a);
+	const { dim: $b } = __ensureUnit(b);
+	let ok = false;
+	for (let i = 0; i < 7; i++) {
+		const xa = $a[i];
+		const xb = $b[i];
+		if (xa === 0 && xb === 0) continue;
+		if (xa !== -xb) return false;
+		ok = true;
+	}
+	return ok;
 };
 
 export const formatSI = (u: MaybeUnit) => {

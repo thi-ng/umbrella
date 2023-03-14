@@ -1,6 +1,6 @@
 export interface Unit {
 	/**
-	 * SI dimension vector ({@link Dimensions})
+	 * SI base dimension vector ({@link Dimensions})
 	 */
 	dim: Dimensions;
 	/**
@@ -52,7 +52,7 @@ export type MaybeUnit = Unit | string;
  * Note: For dimensionless units, all dimensions are zero.
  *
  * Reference:
- * - https://en.wikipedia.org/wiki/International_System_of_Units
+ * - https://en.wikipedia.org/wiki/SI_base_unit
  */
 export type Dimensions = [
 	number,
