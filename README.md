@@ -31,7 +31,7 @@
 search of packages relevant to your use cases...**
 
 **This project is NOT a framework!** This mono-repository is home to currently
-178 individual TypeScript/ES6 projects (and ~120 example projects), a wide and
+179 individual TypeScript/ES6 projects (and ~120 example projects), a wide and
 jointly developed collection of packages, tools and general purpose building
 blocks for (non-exhaustive list of topics, see [package overview](#projects)
 below):
@@ -188,16 +188,11 @@ feature or `develop` branches)
 
 ### Latest updates
 
-As of: 2023-03-02
+As of: 2023-03-14
 
-| Status                                           | Package                                                 | Version                                                                                                                       | Changelog                                            |
-|:-------------------------------------------------|:--------------------------------------------------------|:------------------------------------------------------------------------------------------------------------------------------|:-----------------------------------------------------|
-| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/color`](./packages/color)                     | [![version](https://img.shields.io/npm/v/@thi.ng/color.svg)](https://www.npmjs.com/package/@thi.ng/color)                     | [changelog](./packages/color/CHANGELOG.md)           |
-| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/emoji`](./packages/emoji)                     | [![version](https://img.shields.io/npm/v/@thi.ng/emoji.svg)](https://www.npmjs.com/package/@thi.ng/emoji)                     | [changelog](./packages/emoji/CHANGELOG.md)           |
-| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/hdom`](./packages/hdom)                       | [![version](https://img.shields.io/npm/v/@thi.ng/hdom.svg)](https://www.npmjs.com/package/@thi.ng/hdom)                       | [changelog](./packages/hdom/CHANGELOG.md)            |
-| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/hiccup-markdown`](./packages/hiccup-markdown) | [![version](https://img.shields.io/npm/v/@thi.ng/hiccup-markdown.svg)](https://www.npmjs.com/package/@thi.ng/hiccup-markdown) | [changelog](./packages/hiccup-markdown/CHANGELOG.md) |
-| ![](https://img.shields.io/badge/-refactor-cyan) | [`@thi.ng/math`](./packages/math)                       | [![version](https://img.shields.io/npm/v/@thi.ng/math.svg)](https://www.npmjs.com/package/@thi.ng/math)                       | [changelog](./packages/math/CHANGELOG.md)            |
-| ![](https://img.shields.io/badge/-feat-green)    | [`@thi.ng/strings`](./packages/strings)                 | [![version](https://img.shields.io/npm/v/@thi.ng/strings.svg)](https://www.npmjs.com/package/@thi.ng/strings)                 | [changelog](./packages/strings/CHANGELOG.md)         |
+| Status                                        | Package                             | Version                                                                                                   | Changelog                                  |
+|:----------------------------------------------|:------------------------------------|:----------------------------------------------------------------------------------------------------------|:-------------------------------------------|
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/units`](./packages/units) | [![version](https://img.shields.io/npm/v/@thi.ng/units.svg)](https://www.npmjs.com/package/@thi.ng/units) | [changelog](./packages/units/CHANGELOG.md) |
 
 ### Fundamentals
 
@@ -225,6 +220,7 @@ As of: 2023-03-02
 | [`@thi.ng/system`](./packages/system)         | [![version](https://img.shields.io/npm/v/@thi.ng/system.svg)](https://www.npmjs.com/package/@thi.ng/system)         | [changelog](./packages/system/CHANGELOG.md)     | Minimal life cycle container for stateful app components |
 | [`@thi.ng/testament`](./packages/testament)   | [![version](https://img.shields.io/npm/v/@thi.ng/testament.svg)](https://www.npmjs.com/package/@thi.ng/testament)   | [changelog](./packages/testament/CHANGELOG.md)  | Minimal test runner                                      |
 | [`@thi.ng/transclude`](./packages/transclude) | [![version](https://img.shields.io/npm/v/@thi.ng/transclude.svg)](https://www.npmjs.com/package/@thi.ng/transclude) | [changelog](./packages/transclude/CHANGELOG.md) | Template engine for text document generation             |
+| [`@thi.ng/units`](./packages/units)           | [![version](https://img.shields.io/npm/v/@thi.ng/units.svg)](https://www.npmjs.com/package/@thi.ng/units)           | [changelog](./packages/units/CHANGELOG.md)      | Extensible SI unit conversions                           |
 
 ### Maths
 
