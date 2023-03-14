@@ -13,7 +13,7 @@ import {
 } from "./api.js";
 
 /**
- * Cache/registry for all units defined via {@link defUint}.
+ * Cache/registry for all units defined via {@link defUnit}.
  */
 export const UNITS: Record<string, NamedUnit> = {};
 
