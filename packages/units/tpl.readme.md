@@ -15,6 +15,8 @@ described here:
 - https://en.wikipedia.org/wiki/Coherence_(units_of_measurement)
 - https://en.wikipedia.org/wiki/Metric_prefix
 
+The overall conversion approach is based on [@g7s/unit](https://github.com/g7s/unit).
+
 ### Unit definitions
 
 Each unit is defined via a 7-dimensional vector representing individual
