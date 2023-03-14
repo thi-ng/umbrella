@@ -23,6 +23,7 @@ This project is part of the
     - [Length](#length)
     - [Luminous intensity](#luminous-intensity)
     - [Mass](#mass)
+    - [Parts per notation](#parts-per-notation)
     - [Power](#power)
     - [Pressure](#pressure)
     - [Speed](#speed)
@@ -166,6 +167,10 @@ The following units are provided as "builtins", here grouped by dimension:
 | `Mbit`    | `Mbit`        | megabit           |
 | `Gbit`    | `Gbit`        | gigabit           |
 | `Tbit`    | `Tbit`        | terabit           |
+| `kibit`   | `kibit`       | kibibit (1024)    |
+| `Mibit`   | `Mibit`       | mebibit (1024)    |
+| `Gibit`   | `Gibit`       | gibibit (1024)    |
+| `Tibit`   | `Tibit`       | tebibit (1024)    |
 | `B`       | `B`           | byte (8 bit)      |
 | `kB`      | `kB`          | kilobyte (metric) |
 | `MB`      | `MB`          | megabyte (metric) |
@@ -195,10 +200,10 @@ The following units are provided as "builtins", here grouped by dimension:
 | `F`   | `F`           | farad             |
 | `pF`  | `pF`          | picofarad         |
 | `µF`  | `µF`          | microfarad        |
-| `Ω`   | `Ω`           | ohm               |
-| `kΩ`  | `kΩ`          | kiloohm           |
-| `MΩ`  | `MΩ`          | megaohm           |
-| `GΩ`  | `GΩ`          | gigaohm           |
+| `Ω`   | `Ω` / `ohm`   | ohm               |
+| `kΩ`  | `kΩ` / `kohm` | kiloohm           |
+| `MΩ`  | `MΩ` / `Mohm` | megaohm           |
+| `GΩ`  | `GΩ` / `Gohm` | gigaohm           |
 | `S`   | `S`           | siemens           |
 | `Wb`  | `Wb`          | weber             |
 | `T`   | `T`           | tesla             |
@@ -231,26 +236,30 @@ The following units are provided as "builtins", here grouped by dimension:
 | `GHz` | `GHz`         | gigahertz           |
 | `THz` | `THz`         | terahertz           |
 | `rpm` | `rpm`         | rotation per minute |
-| `ω`   | `ω`           | radian per second   |
+| `ω`   | `ω` / `omega` | radian per second   |
 
 #### Length
 
-| Unit name | Variable name | Description       |
-|-----------|---------------|-------------------|
-| `m`       | `m`           | meter             |
-| `cm`      | `cm`          | centimeter        |
-| `mm`      | `mm`          | millimeter        |
-| `µm`      | `µm`          | micrometer        |
-| `nm`      | `nm`          | nanometer         |
-| `km`      | `km`          | kilometer         |
-| `au`      | `au`          | astronomical unit |
-| `in`      | `in`          | inch              |
-| `ft`      | `ft`          | foot              |
-| `yd`      | `yd`          | yard              |
-| `mi`      | `mi`          | mile              |
-| `nmi`     | `nmi`         | nautical mile     |
-| `pica`    | `pica`        | pica              |
-| `point`   | `point`       | point             |
+| Unit name | Variable name  | Description       |
+|-----------|----------------|-------------------|
+| `m`       | `m`            | meter             |
+| `Å`       | `angstrom`     | angstrom          |
+| `nm`      | `nm`           | nanometer         |
+| `µm`      | `µm`           | micrometer        |
+| `mm`      | `mm`           | millimeter        |
+| `cm`      | `cm`           | centimeter        |
+| `km`      | `km`           | kilometer         |
+| `au`      | `au`           | astronomical unit |
+| `pc`      | `pc`           | parsec            |
+| `ly`      | `ly`           | light year        |
+| `in`      | `in`           | inch              |
+| `mil`     | `mil` / `thou` | 1/1000th inch     |
+| `ft`      | `ft`           | foot              |
+| `yd`      | `yd`           | yard              |
+| `mi`      | `mi`           | mile              |
+| `nmi`     | `nmi`          | nautical mile     |
+| `pica`    | `pica`         | pica              |
+| `point`   | `point`        | point             |
 
 #### Luminous intensity
 
@@ -274,6 +283,20 @@ The following units are provided as "builtins", here grouped by dimension:
 | `Gt`      | `Gt`          | gigatonne      |
 | `lb`      | `lb`          | imperial pound |
 | `st`      | `st`          | stone          |
+
+#### Parts per notation
+
+https://en.wikipedia.org/wiki/Parts-per_notation
+
+| Unit name | Variable name | Description                    |
+|-----------|---------------|--------------------------------|
+| `%`       | `percent`     | part per hundred               |
+| `‰`       | `permille`    | part per thousand              |
+| `‱`       | `permyriad`   | part per ten thousand          |
+| `pcm`     | `pcm`         | part per cent hundred thousand |
+| `ppm`     | `ppm`         | part per million               |
+| `ppb`     | `ppb`         | part per billion               |
+| `ppt`     | `ppt`         | part per trillion              |
 
 #### Power
 
@@ -428,6 +451,10 @@ convert(60, mph, km_h);
 // or using anonymous units (meter/second ⇒ yard/hour)
 convert(1, "m/s", div(yd, h));
 // 3937.007874015749
+
+// convert into opposite direction (meter/second  ⇒ second/meter)
+convert(10, "m/s", reciprocal("m/s"));
+// 0.1
 ```
 
 Another example using dimensionless units (here angles, arc second ⇒ radian) to
@@ -466,7 +493,7 @@ For Node.js REPL:
 const units = await import("@thi.ng/units");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 3.27 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 3.57 KB
 
 ## Dependencies
 
