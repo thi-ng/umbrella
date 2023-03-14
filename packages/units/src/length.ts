@@ -1,6 +1,6 @@
-import { defUnit, mul, prefix, unit } from "./unit.js";
+import { coherent, defUnit, mul, prefix } from "./unit.js";
 
-export const m = defUnit("m", "meter", unit(1, 1, 0, true));
+export const m = defUnit("m", "meter", coherent(1));
 export const cm = defUnit("cm", "centimeter", prefix("c", m));
 export const mm = defUnit("mm", "millimeter", prefix("m", m));
 export const µm = defUnit("µm", "micrometer", prefix("µ", m));

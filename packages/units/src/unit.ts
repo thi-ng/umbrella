@@ -31,6 +31,13 @@ export const unit = (
 });
 
 /**
+ * Syntax sugar for defining coherent SI base units. See {@link unit}.
+ *
+ * @param dim
+ */
+export const coherent = (dim: Dimensions | number) => unit(dim, 1, 0, true);
+
+/**
  * Returns a new dimensionless unit (i.e. all SI dimensions are zero) with given
  * `scale` factor.
  *

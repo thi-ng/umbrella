@@ -1,6 +1,6 @@
-import { defUnit, mul, prefix, unit } from "./unit.js";
+import { coherent, defUnit, mul, prefix } from "./unit.js";
 
-export const s = defUnit("s", "second", unit(2, 1, 0, true));
+export const s = defUnit("s", "second", coherent(2));
 export const ms = defUnit("ms", "millisecond", prefix("m", s));
 export const µs = defUnit("µs", "microsecond", prefix("µ", s));
 export const ns = defUnit("ns", "nanosecond", prefix("n", s));
