@@ -118,8 +118,9 @@ units](https://en.wikipedia.org/wiki/SI_derived_unit)):
 
 > Ω = kg⋅m<sup>2</sup>⋅s<sup>−3</sup>⋅A<sup>−2</sup>
 
-Btw. The [`formatSI()`]() function can be used to format a unit's dimension
-vector:
+Btw. The
+[`formatSI()`](https://docs.thi.ng/umbrella/units/functions/formatSI.html)
+function can be used to format a unit's dimension vector:
 
 ```ts
 formatSI(div(V, A));
@@ -392,9 +393,9 @@ https://en.wikipedia.org/wiki/Parts-per_notation
 
 #### Using standard metric prefixes
 
-Existing [coherent units]() can be
-[prefixed](https://docs.thi.ng/umbrella/units/functions/prefix-1.html) to produce
-derived versions:
+Existing coherent units can be
+[prefixed](https://docs.thi.ng/umbrella/units/functions/prefix-1.html) to
+produce derived versions:
 
 ```ts
 // define micrometer (also available as preset)
@@ -440,9 +441,12 @@ const Hz = reciprocal(s);
 
 ### Unit conversions
 
-Only units with compatible (incl. reciprocal) dimensions can be converted,
-otherwise an error will be thrown. All dimensionless units can be converted
-to other dimensionless units (even if it would be semantic nonsense).
+Units (and [quantities](#quantities)) can be converted using
+[`convert()`](https://docs.thi.ng/umbrella/units/functions/convert.html). Only
+units with compatible (incl. reciprocal) dimensions can be converted, otherwise
+an error will be thrown. On the other hand, all _dimensionless_ units can be
+converted to other _dimensionless_ units (even if it would be semantic
+nonsense).
 
 Units can be specified in various ways:
 
@@ -481,11 +485,13 @@ given unit. These can be a number or vector-based and can be used for
 calculations & conversions using the above mentioned polymorphic functions:
 `div()`, `mul()`, `reciprocal()` and `convert()`.
 
-Quantities are created via [`quantity()`]() which acts a factory function for
- the thin `Quantity` class wrapper. The latter also implements the standard
- [`IDeref`]() interface to obtain the unwrapped amount (though it only should be
- used for dimensionless quantities). Use [`convert()`](#unit-conversions)
- otherwise!
+Quantities are created via
+ [`quantity()`](https://docs.thi.ng/umbrella/units/functions/quantity-1.html)
+ which acts a factory function for a thin `Quantity` class wrapper. The latter
+ also implements the standard
+ [`IDeref`](https://docs.thi.ng/umbrella/api/interfaces/IDeref.html) interface
+ to obtain the unwrapped amount (though it only should be used for dimensionless
+ quantities). Use [`convert()`](#unit-conversions) otherwise!
 
  ```ts
 // (also available as preset)

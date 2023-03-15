@@ -202,7 +202,8 @@ export const quantity = <T extends number | number[]>(
 	);
 
 /**
- * Derives a new quantity or unit as the product of the given quantities/units.
+ * Polymorphic function. Derives a new quantity or unit as the product of the
+ * given quantities/units.
  *
  * @remarks
  * If given units and if `coherent` is true (default: false), the new unit
@@ -248,8 +249,8 @@ export function mul(
 }
 
 /**
- * Derives a new quantity or unit via the division of the given
- * quantities/units.
+ * Polymorphic function. Derives a new quantity or unit via the division of the
+ * given quantities/units.
  *
  * @remarks
  * If given units and if `coherent` is true (default: false), the new unit
@@ -297,9 +298,9 @@ export function div(
 }
 
 /**
- * Creates the reciprocal version of given quantity or unit (i.e. all SI
- * dimensions will flip sign) and the scale factor of the new unit will be
- * `1/scale`.
+ * Polymorphic function. Creates the reciprocal version of given quantity or
+ * unit (i.e. all SI dimensions will flip sign) and the scale factor of the new
+ * unit will be `1/scale`.
  *
  * @remarks
  * If given a unit and if `coherent` is true (default: false), the new unit
@@ -441,6 +442,12 @@ export const isReciprocal = (a: MaybeUnit, b: MaybeUnit) => {
 	return ok;
 };
 
+/**
+ * Polymorphic function. Returns formatted version of given quantity's or unit's
+ * SI dimension vector.
+ *
+ * @param u
+ */
 export const formatSI = (u: Quantity<any> | MaybeUnit): string => {
 	if (u instanceof Quantity) return formatSI(__qunit(u));
 	const { dim } = __ensureUnit(u);
