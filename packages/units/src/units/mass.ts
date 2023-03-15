@@ -1,4 +1,4 @@
-import { defUnit, mul, prefix, unit } from "./unit.js";
+import { defUnit, mul, prefix, unit } from "../unit.js";
 
 export const g = defUnit("g", "gram", unit(0, 1e-3, 0, true));
 export const kg = defUnit("kg", "kilogram", prefix("k", g));

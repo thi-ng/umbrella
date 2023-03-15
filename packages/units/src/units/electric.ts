@@ -1,7 +1,7 @@
 import { m2 } from "./area.js";
 import { J } from "./energy.js";
 import { h, s } from "./time.js";
-import { coherent, defUnit, div, mul, prefix } from "./unit.js";
+import { coherent, defUnit, div, mul, prefix } from "../unit.js";
 
 export const A = defUnit("A", "ampere", coherent(3));
 export const mA = defUnit("mA", "milliampere", prefix("m", A));

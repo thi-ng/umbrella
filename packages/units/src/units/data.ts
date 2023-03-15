@@ -1,4 +1,4 @@
-import { defUnit, dimensionless, mul, prefix } from "./unit.js";
+import { defUnit, dimensionless, mul, prefix } from "../unit.js";
 
 export const bit = defUnit("bit", "bit", dimensionless(1, 0, true));
 export const kbit = defUnit("kbit", "kilobit", prefix("k", bit));

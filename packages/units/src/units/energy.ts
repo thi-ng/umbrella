@@ -1,6 +1,6 @@
 import { N } from "./force.js";
 import { m } from "./length.js";
-import { defUnit, mul, prefix } from "./unit.js";
+import { defUnit, mul, prefix } from "../unit.js";
 
 export const J = defUnit("J", "joule", mul(N, m, true));
 export const kJ = defUnit("kJ", "kilojoule", prefix("k", J));

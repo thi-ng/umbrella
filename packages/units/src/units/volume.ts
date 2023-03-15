@@ -1,5 +1,5 @@
 import { cm, km, m, mm } from "./length.js";
-import { defUnit, mul, pow, prefix } from "./unit.js";
+import { defUnit, mul, pow, prefix } from "../unit.js";
 
 export const m3 = defUnit("m3", "cubic meter", pow(m, 3));
 export const mm3 = defUnit("mm3", "cubic millimeter", pow(mm, 3));

@@ -1,7 +1,7 @@
 import { rad } from "./angle.js";
 import { ft, m } from "./length.js";
 import { s } from "./time.js";
-import { defUnit, div, mul, pow } from "./unit.js";
+import { defUnit, div, mul, pow } from "../unit.js";
 
 const s2 = pow(s, 2);
 

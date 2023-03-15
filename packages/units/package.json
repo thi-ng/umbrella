@@ -83,71 +83,85 @@
 	},
 	"files": [
 		"./*.js",
-		"./*.d.ts"
+		"./*.d.ts",
+		"constants",
+		"units"
 	],
 	"exports": {
 		".": {
 			"default": "./index.js"
 		},
-		"./accel": {
-			"default": "./accel.js"
-		},
-		"./angle": {
-			"default": "./angle.js"
-		},
 		"./api": {
 			"default": "./api.js"
 		},
-		"./area": {
-			"default": "./area.js"
+		"./constants/din-sizes": {
+			"default": "./constants/din-sizes.js"
 		},
-		"./data": {
-			"default": "./data.js"
-		},
-		"./electric": {
-			"default": "./electric.js"
-		},
-		"./energy": {
-			"default": "./energy.js"
-		},
-		"./force": {
-			"default": "./force.js"
-		},
-		"./frequency": {
-			"default": "./frequency.js"
-		},
-		"./length": {
-			"default": "./length.js"
-		},
-		"./luminous": {
-			"default": "./luminous.js"
-		},
-		"./mass": {
-			"default": "./mass.js"
-		},
-		"./power": {
-			"default": "./power.js"
-		},
-		"./pressure": {
-			"default": "./pressure.js"
-		},
-		"./speed": {
-			"default": "./speed.js"
-		},
-		"./substance": {
-			"default": "./substance.js"
-		},
-		"./temperature": {
-			"default": "./temperature.js"
-		},
-		"./time": {
-			"default": "./time.js"
+		"./constants/velocities": {
+			"default": "./constants/velocities.js"
 		},
 		"./unit": {
 			"default": "./unit.js"
 		},
-		"./volume": {
-			"default": "./volume.js"
+		"./units/accel": {
+			"default": "./units/accel.js"
+		},
+		"./units/angle": {
+			"default": "./units/angle.js"
+		},
+		"./units/area": {
+			"default": "./units/area.js"
+		},
+		"./units/data": {
+			"default": "./units/data.js"
+		},
+		"./units/density": {
+			"default": "./units/density.js"
+		},
+		"./units/electric": {
+			"default": "./units/electric.js"
+		},
+		"./units/energy": {
+			"default": "./units/energy.js"
+		},
+		"./units/force": {
+			"default": "./units/force.js"
+		},
+		"./units/frequency": {
+			"default": "./units/frequency.js"
+		},
+		"./units/length": {
+			"default": "./units/length.js"
+		},
+		"./units/luminous": {
+			"default": "./units/luminous.js"
+		},
+		"./units/mass": {
+			"default": "./units/mass.js"
+		},
+		"./units/parts": {
+			"default": "./units/parts.js"
+		},
+		"./units/power": {
+			"default": "./units/power.js"
+		},
+		"./units/pressure": {
+			"default": "./units/pressure.js"
+		},
+		"./units/substance": {
+			"default": "./units/substance.js"
+		},
+		"./units/temperature": {
+			"default": "./units/temperature.js"
+		},
+		"./units/time": {
+			"default": "./units/time.js"
+		},
+		"./units/velocity": {
+			"default": "./units/velocity.js"
+		},
+		"./units/volume": {
+			"default": "./units/volume.js"
 		}
 	},
 	"thi.ng": {

@@ -1,5 +1,5 @@
 import { cm, ft, inch, km, m, mi, mm } from "./length.js";
-import { defUnit, mul, pow } from "./unit.js";
+import { defUnit, mul, pow } from "../unit.js";
 
 export const m2 = defUnit("m2", "square meter", pow(m, 2));
 export const mm2 = defUnit("mm2", "square millimeter", pow(mm, 2));

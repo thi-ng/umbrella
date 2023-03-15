@@ -1,6 +1,6 @@
 import { J } from "./energy.js";
 import { h, s } from "./time.js";
-import { defUnit, div, mul, prefix } from "./unit.js";
+import { defUnit, div, mul, prefix } from "../unit.js";
 
 export const W = defUnit("W", "watt", div(J, s, true));
 export const mW = defUnit("mW", "milliwatt", prefix("m", W));

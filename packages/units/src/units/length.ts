@@ -1,4 +1,4 @@
-import { coherent, defUnit, mul, prefix } from "./unit.js";
+import { coherent, defUnit, mul, prefix } from "../unit.js";
 
 export const m = defUnit("m", "meter", coherent(1));
 export const km = defUnit("km", "kilometer", prefix("k", m));

@@ -1,4 +1,4 @@
-import { defUnit, dimensionless, mul } from "./unit.js";
+import { defUnit, dimensionless, mul } from "../unit.js";
 
 const PI = Math.PI;
 

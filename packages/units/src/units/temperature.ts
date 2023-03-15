@@ -1,4 +1,4 @@
-import { coherent, defUnit, unit } from "./unit.js";
+import { coherent, defUnit, unit } from "../unit.js";
 
 export const K = defUnit("K", "kelvin", coherent(4));
 export const celsius = defUnit("℃", "degree celsius", unit(4, 1, 273.15));

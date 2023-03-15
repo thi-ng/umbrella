@@ -1,4 +1,4 @@
-import { defUnit, dimensionless } from "./unit.js";
+import { defUnit, dimensionless } from "../unit.js";
 
 export const percent = defUnit("%", "percent", dimensionless(1e-2));
 export const permille = defUnit("‰", "permille", dimensionless(1e-3));

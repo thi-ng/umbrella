@@ -1,6 +1,6 @@
 import { m2 } from "./area.js";
 import { N } from "./force.js";
-import { defUnit, div, mul, prefix } from "./unit.js";
+import { defUnit, div, mul, prefix } from "../unit.js";
 
 export const Pa = defUnit("Pa", "pascal", div(N, m2, true));
 export const kPa = defUnit("kPa", "kilopascal", prefix("k", Pa));

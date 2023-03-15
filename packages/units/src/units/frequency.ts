@@ -1,5 +1,5 @@
 import { s } from "./time.js";
-import { defUnit, div, mul, prefix, reciprocal } from "./unit.js";
+import { defUnit, div, mul, prefix, reciprocal } from "../unit.js";
 
 export const Hz = defUnit("Hz", "hertz", reciprocal(s, true));
 export const kHz = defUnit("kHz", "kilohertz", prefix("k", Hz));

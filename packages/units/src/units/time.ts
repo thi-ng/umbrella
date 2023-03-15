@@ -1,4 +1,4 @@
-import { coherent, defUnit, mul, prefix } from "./unit.js";
+import { coherent, defUnit, mul, prefix } from "../unit.js";
 
 export const s = defUnit("s", "second", coherent(2));
 export const ms = defUnit("ms", "millisecond", prefix("m", s));
