@@ -99,3 +99,13 @@ export const PREFIXES = {
 	r: 1e-27,
 	q: 1e-30,
 };
+
+/**
+ * Dimensionless unit preset.
+ */
+export const NONE: Unit = {
+	dim: [0, 0, 0, 0, 0, 0, 0],
+	scale: 1,
+	offset: 0,
+	coherent: false,
+};
