@@ -88,7 +88,7 @@ For example, here's how we can define kilograms and meters:
 
 ```ts
 // kilogram, SI dimension 0
-const KG = coherent(1);
+const KG = coherent(0);
 // { dim: [ 1, 0, 0, 0, 0, 0, 0 ], scale: 1, offset: 0, coherent: true }
 
 // meters, SI dimension 1
@@ -296,15 +296,15 @@ The following units are provided as "builtins", here grouped by dimension:
 
 https://en.wikipedia.org/wiki/Parts-per_notation
 
-| Unit name | Variable name | Description                    |
-|-----------|---------------|--------------------------------|
-| `%`       | `percent`     | part per hundred               |
-| `‰`       | `permille`    | part per thousand              |
-| `‱`       | `permyriad`   | part per ten thousand          |
-| `pcm`     | `pcm`         | part per cent hundred thousand |
-| `ppm`     | `ppm`         | part per million               |
-| `ppb`     | `ppb`         | part per billion               |
-| `ppt`     | `ppt`         | part per trillion              |
+| Unit name | Variable name | Description               |
+|-----------|---------------|---------------------------|
+| `%`       | `percent`     | part per hundred          |
+| `‰`       | `permille`    | part per thousand         |
+| `‱`       | `permyriad`   | part per ten thousand     |
+| `pcm`     | `pcm`         | part per hundred thousand |
+| `ppm`     | `ppm`         | part per million          |
+| `ppb`     | `ppb`         | part per billion          |
+| `ppt`     | `ppt`         | part per trillion         |
 
 #### Power
 
@@ -487,7 +487,7 @@ calculations & conversions using the above mentioned polymorphic functions:
 
 Quantities are created via
  [`quantity()`](https://docs.thi.ng/umbrella/units/functions/quantity-1.html)
- which acts a factory function for a thin `Quantity` class wrapper. The latter
+ which acts as factory function for a thin `Quantity` class wrapper. The latter
  also implements the standard
  [`IDeref`](https://docs.thi.ng/umbrella/api/interfaces/IDeref.html) interface
  to obtain the unwrapped amount (though it only should be used for dimensionless
@@ -511,12 +511,12 @@ convert(A4, "in");
 // [ 8.2677, 11.6929 ]
 
 // or calculate pixel dimensions @ 300 dpi
-// the result of the product is dimensionless
+// the result of this product is dimensionless,
 // so we use the NONE preset as target unit...
 convert(mul(A4, quantity(300, "dpi")), NONE)
 // [ 2480.314960629921, 3507.8740157480315 ]
 
-// alternatively dimensionless units can be deref'd directly
+// alternatively, dimensionless units can be deref'd directly
 mul(A4, quantity(300, "dpi")).deref()
 // [ 2480.314960629921, 3507.8740157480315 ]
 ```
