@@ -6,8 +6,8 @@
 
 {{pkg.description}}
 
-All unit definitions & conversions are based on the SI unit system & concepts
-described here:
+All unit definitions, quantities & conversions are based on the SI unit system &
+concepts described here:
 
 - https://en.wikipedia.org/wiki/International_System_of_Units
 - https://en.wikipedia.org/wiki/SI_base_unit
@@ -15,7 +15,10 @@ described here:
 - https://en.wikipedia.org/wiki/Coherence_(units_of_measurement)
 - https://en.wikipedia.org/wiki/Metric_prefix
 
-The overall conversion approach is based on [@g7s/unit](https://github.com/g7s/unit).
+The overall conversion approach is inspired & partially based on:
+
+- [Frink](https://frinklang.org/)
+- [@g7s/unit](https://github.com/g7s/unit)
 
 ### Unit definitions
 
@@ -364,7 +367,7 @@ prefix("k", Hz);
 #### Unit combinators
 
 The following combinators can be used to derive scaled and/or more complex units
-in multiple SI dimensions:
+(or [quantities](#quantities)) in multiple SI dimensions:
 
 - [`div(a, b)`](https://docs.thi.ng/umbrella/units/functions/div.html): derives
   a new unit via the division of the given units
@@ -428,6 +431,66 @@ const R = 6371000; // earth radius in meters
 convert(10, "arcsec", "rad") * R;
 // 308.87479623488537
 ```
+
+### Quantities
+
+The library also supports defining quantities, i.e. certain finite amounts of a
+given unit. These can be a number or vector-based and can be used for
+calculations & conversions using the above mentioned polymorphic functions:
+`div()`, `mul()`, `reciprocal()` and `convert()`.
+
+Quantities are created via [`quantity()`]() which acts a factory function for
+ the thin `Quantity` class wrapper. The latter also implements the standard
+ [`IDeref`]() interface to obtain the unwrapped amount (though it only should be
+ used for dimensionless quantities). Use [`convert()`](#unit-conversions)
+ otherwise!
+
+ ```ts
+// (also available as preset)
+const speedOfLight = quantity(299792458, "m/s");
+
+// compute wavelength of a WiFi signal in millimeters
+convert(div(speedOfLight, quantity(2.4,"GHz")), "mm");
+// 124.9135
+```
+
+```ts
+// DIN A4 paper size (also available as preset)
+const A4 = quantity([210, 297], "mm");
+
+// convert paper size to inches
+convert(A4, "in");
+// [ 8.2677, 11.6929 ]
+
+// or calculate pixel dimensions @ 300 dpi
+// the result of the product is dimensionless
+// so we use the NONE preset as target unit...
+convert(mul(A4, quantity(300, "dpi")), NONE)
+// [ 2480.314960629921, 3507.8740157480315 ]
+
+// alternatively dimensionless units can be deref'd directly
+mul(A4, quantity(300, "dpi")).deref()
+// [ 2480.314960629921, 3507.8740157480315 ]
+```
+
+When combining different quantities, their units do not need to be the same:
+
+```ts
+// compute 10 mm x 2 inch and convert to square centimeter
+convert(mul(quantity(10, "mm"), quantity(2, "in")), "cm2")
+// 5.08
+```
+
+#### Constants
+
+The following constants are provided (more to come):
+
+| Var name                  | Unit           |
+|---------------------------|----------------|
+| `DIN_A0` ... `DIN_A8`     | `["mm", "mm"]` |
+| `SPEED_OF_LIGHT`          | `"m/s"`        |
+| `SPEED_OF_SOUND_IN_AIR`   | `"m/s"`        |
+| `SPEED_OF_SOUND_IN_WATER` | `"m/s"`        |
 
 {{meta.status}}
 
