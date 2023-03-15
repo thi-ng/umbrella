@@ -5424,6 +5424,7 @@ __metadata:
   resolution: "@thi.ng/units@workspace:packages/units"
   dependencies:
     "@microsoft/api-extractor": ^7.34.4
+    "@thi.ng/api": ^8.7.4
     "@thi.ng/checks": ^3.3.10
     "@thi.ng/equiv": ^2.1.20
     "@thi.ng/errors": ^2.2.13

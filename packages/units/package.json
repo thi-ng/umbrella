@@ -1,7 +1,7 @@
 {
 	"name": "@thi.ng/units",
 	"version": "0.1.1",
-	"description": "Extensible SI unit creation, conversions & calculations (~150 units predefined)",
+	"description": "Extensible SI unit creation, conversions, quantities & calculations (incl. ~170 predefined units & constants)",
 	"type": "module",
 	"module": "./index.js",
 	"typings": "./index.d.ts",
@@ -34,6 +34,7 @@
 		"test": "testament test"
 	},
 	"dependencies": {
+		"@thi.ng/api": "^8.7.4",
 		"@thi.ng/checks": "^3.3.10",
 		"@thi.ng/equiv": "^2.1.20",
 		"@thi.ng/errors": "^2.2.13"
@@ -52,23 +53,27 @@
 		"area",
 		"bits",
 		"bytes",
+		"calculation",
 		"capacitance",
 		"current",
 		"voltage",
 		"resistance",
-		"converter",
+		"conversion",
 		"energy",
 		"force",
 		"frequency",
 		"length",
 		"mass",
+		"math",
 		"power",
 		"si",
 		"speed",
+		"symbolic",
 		"temperature",
 		"time",
 		"typescript",
 		"units",
+		"velocity",
 		"volume"
 	],
 	"publishConfig": {

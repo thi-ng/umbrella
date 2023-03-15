@@ -46,7 +46,7 @@ This project is part of the
 
 ## About
 
-Extensible SI unit creation, conversions & calculations (~150 units predefined).
+Extensible SI unit creation, conversions, quantities & calculations (incl. ~170 predefined units & constants).
 
 All unit definitions, quantities & conversions are based on the SI unit system &
 concepts described here:
@@ -570,6 +570,7 @@ Package sizes (brotli'd, pre-treeshake): ESM: 4.05 KB
 
 ## Dependencies
 
+- [@thi.ng/api](https://github.com/thi-ng/umbrella/tree/develop/packages/api)
 - [@thi.ng/checks](https://github.com/thi-ng/umbrella/tree/develop/packages/checks)
 - [@thi.ng/equiv](https://github.com/thi-ng/umbrella/tree/develop/packages/equiv)
 - [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
