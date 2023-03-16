@@ -16,6 +16,7 @@ This project is part of the
     - [Angle](#angle)
     - [Area](#area)
     - [Data](#data)
+    - [Density](#density)
     - [Electric current](#electric-current)
     - [Energy](#energy)
     - [Force](#force)
@@ -192,6 +193,13 @@ The following units are provided as "builtins", here grouped by dimension:
 | `TiB`     | `TiB`         | tebibyte (1024)   |
 | `PiB`     | `PiB`         | pebibyte (1024)   |
 | `EiB`     | `EiB`         | exbibyte (1024)   |
+
+#### Density
+
+| Unit     | Variable name | Description   |
+|----------|---------------|---------------|
+| `kg/m3`  | `kg_m3`       | density       |
+| `1/inch` | `dpi`         | dots per inch |
 
 #### Electric current
 
