@@ -188,11 +188,12 @@ feature or `develop` branches)
 
 ### Latest updates
 
-As of: 2023-03-14
+As of: 2023-03-16
 
-| Status                                        | Package                             | Version                                                                                                   | Changelog                                  |
-|:----------------------------------------------|:------------------------------------|:----------------------------------------------------------------------------------------------------------|:-------------------------------------------|
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/units`](./packages/units) | [![version](https://img.shields.io/npm/v/@thi.ng/units.svg)](https://www.npmjs.com/package/@thi.ng/units) | [changelog](./packages/units/CHANGELOG.md) |
+| Status                                        | Package                                         | Version                                                                                                               | Changelog                                        |
+|:----------------------------------------------|:------------------------------------------------|:----------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------|
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/text-format`](./packages/text-format) | [![version](https://img.shields.io/npm/v/@thi.ng/text-format.svg)](https://www.npmjs.com/package/@thi.ng/text-format) | [changelog](./packages/text-format/CHANGELOG.md) |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/units`](./packages/units)             | [![version](https://img.shields.io/npm/v/@thi.ng/units.svg)](https://www.npmjs.com/package/@thi.ng/units)             | [changelog](./packages/units/CHANGELOG.md)       |
 
 ### Fundamentals
 
