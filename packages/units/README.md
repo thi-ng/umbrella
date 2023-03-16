@@ -472,7 +472,9 @@ Another example using dimensionless units (here angles, arc second ⇒ radian) t
 compute the distance of 10 arcsec on the earth surface (in meters):
 
 ```ts
-const R = 6371000; // earth radius in meters
+// earth radius in meters
+// (also available as quantity EARTH_RADIUS, see section below)
+const R = 6371000;
 
 convert(10, "arcsec", "rad") * R;
 // 308.87479623488537
@@ -501,6 +503,8 @@ const speedOfLight = quantity(299792458, "m/s");
 convert(div(speedOfLight, quantity(2.4,"GHz")), "mm");
 // 124.9135
 ```
+
+Some examples using vector quantities:
 
 ```ts
 // DIN A4 paper size (also available as preset)
@@ -533,12 +537,42 @@ convert(mul(quantity(10, "mm"), quantity(2, "in")), "cm2")
 
 The following constants are provided (more to come):
 
-| Var name                  | Unit           |
-|---------------------------|----------------|
-| `DIN_A0` ... `DIN_A8`     | `["mm", "mm"]` |
-| `SPEED_OF_LIGHT`          | `"m/s"`        |
-| `SPEED_OF_SOUND_IN_AIR`   | `"m/s"`        |
-| `SPEED_OF_SOUND_IN_WATER` | `"m/s"`        |
+| Var name                  | Unit              | Comment                |
+|---------------------------|-------------------|------------------------|
+| `DIN_A0` ... `DIN_A8`     | 2d vector of `mm` | Paper sizes            |
+| `EARTH_GRAVITY`           | `m/s`             |                        |
+| `EARTH_CIRCUMFERENCE`     | `m`               |                        |
+| `EARTH_MASS`              | `kg`              |                        |
+| `EARTH_RADIUS`            | `m`               |                        |
+| `GRAVITATION`             | `kg-1·m3·s-2`     | Gravitational constant |
+| `SPEED_OF_LIGHT`          | `m/s`             |                        |
+| `SPEED_OF_SOUND_IN_AIR`   | `m/s`             | at 20 ℃                |
+| `SPEED_OF_SOUND_IN_WATER` | `m/s`             | at 20 ℃                |
+
+Densities of selected materials:
+
+| Var name     | Unit    |
+|--------------|---------|
+| `AIR`        | `kg/m3` |
+| `ALUMINIUM`  | `kg/m3` |
+| `CONCRETE`   | `kg/m3` |
+| `COPPER`     | `kg/m3` |
+| `DIAMOND`    | `kg/m3` |
+| `GLASS`      | `kg/m3` |
+| `GOLD`       | `kg/m3` |
+| `ICE`        | `kg/m3` |
+| `IRON`       | `kg/m3` |
+| `NYLON`      | `kg/m3` |
+| `PLASTIC`    | `kg/m3` |
+| `PLATINUM`   | `kg/m3` |
+| `SAND`       | `kg/m3` |
+| `SALT_WATER` | `kg/m3` |
+| `SILICON`    | `kg/m3` |
+| `SILVER`     | `kg/m3` |
+| `STEEL`      | `kg/m3` |
+| `TITANIUM`   | `kg/m3` |
+| `WATER`      | `kg/m3` |
+| `WOOD`       | `kg/m3` |
 
 ## Status
 
@@ -566,7 +600,7 @@ For Node.js REPL:
 const units = await import("@thi.ng/units");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 4.05 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 4.37 KB
 
 ## Dependencies
 
