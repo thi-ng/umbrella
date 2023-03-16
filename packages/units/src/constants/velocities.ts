@@ -1,6 +1,9 @@
 import { quantity } from "../unit.js";
 import { m_s } from "../units/velocity.js";
 
+/**
+ * https://en.wikipedia.org/wiki/Speed_of_light
+ */
 export const SPEED_OF_LIGHT = quantity(299792458, m_s);
 
 /**

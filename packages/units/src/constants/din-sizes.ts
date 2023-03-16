@@ -1,6 +1,8 @@
 import { mm } from "../units/length.js";
 import { quantity } from "../unit.js";
 
+// https://en.wikipedia.org/wiki/ISO_216x
+
 export const DIN_A0 = quantity([841, 1189], mm);
 export const DIN_A1 = quantity([594, 841], mm);
 export const DIN_A2 = quantity([420, 594], mm);
