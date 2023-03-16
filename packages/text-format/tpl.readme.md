@@ -139,6 +139,7 @@ can be used to create formatting functions for all 16 preset [foreground color
 IDs](#colors) for a given string format strategy:
 
 ```ts
+// since v1.3.0 also available as PRESET_ANSI16
 const ansi = defFormatPresets(FMT_ANSI16);
 
 `${ansi.green("hello")} ${ansi.lightRed("world")}!`;

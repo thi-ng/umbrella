@@ -92,6 +92,9 @@
 		},
 		"./none": {
 			"default": "./none.js"
+		},
+		"./presets": {
+			"default": "./presets.js"
 		}
 	},
 	"thi.ng": {
