@@ -67,6 +67,22 @@ export const PRESETS_TPL = {
 	lightMagenta: FG_LIGHT_MAGENTA,
 	lightRed: FG_LIGHT_RED,
 	lightYellow: FG_LIGHT_YELLOW,
+	bgBlack: BG_BLACK,
+	bgBlue: BG_BLUE,
+	bgCyan: BG_CYAN,
+	bgGray: BG_GRAY,
+	bgGreen: BG_GREEN,
+	bgMagenta: BG_MAGENTA,
+	bgRed: BG_RED,
+	bgWhite: BG_WHITE,
+	bgYellow: BG_YELLOW,
+	bgLightBlue: BG_LIGHT_BLUE,
+	bgLightCyan: BG_LIGHT_CYAN,
+	bgLightGray: BG_LIGHT_GRAY,
+	bgLightGreen: BG_LIGHT_GREEN,
+	bgLightMagenta: BG_LIGHT_MAGENTA,
+	bgLightRed: BG_LIGHT_RED,
+	bgLightYellow: BG_LIGHT_YELLOW,
 };
 
 export type PresetID = Keys<typeof PRESETS_TPL>;
