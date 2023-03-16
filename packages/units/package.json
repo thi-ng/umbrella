@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/units",
-	"version": "0.3.0",
+	"version": "0.3.1",
 	"description": "Extensible SI unit creation, conversions, quantities & calculations (incl. ~170 predefined units & constants)",
 	"type": "module",
 	"module": "./index.js",
