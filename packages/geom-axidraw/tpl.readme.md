@@ -22,7 +22,7 @@ package is responsible for the actual plotter output...
 | group      | shape group (possibly nested)                   |
 | line       | line segment<sup>(2)</sup>                      |
 | path       | single outline only, no holes                   |
-| points     | point cloud (stippling)                         |
+| points     | point cloud (stippling)<sup>(3)</sup>           |
 | polyline   | polyline (any number of vertices)<sup>(2)</sup> |
 | polygon    | simple polygon, no holes<sup>(2)</sup>          |
 | quad       | arbitrary 4-gon<sup>(2)</sup>                   |
@@ -32,6 +32,7 @@ package is responsible for the actual plotter output...
 
 - <sup>(1)</sup> always interpolated/sampled
 - <sup>(2)</sup> only interpolated if forced via attrib
+- <sup>(3)</sup> supports command sequence interleaving
 
 ### AxiDraw specific shape attributes
 
@@ -57,6 +58,8 @@ any package-specific attribs must be stored under the `__axi` key:
 - `sort`: Ordering function (in lieu of full path planning/optimization, which
   is planned for a later stage). For shapes other than `points()`, order of
   appearance is used by default.
+- `interleave`: Currently only supported for point clouds. See [Supporting
+  custom drawing tools](#supporting-custom-drawing-tools).
 
 ```ts
 // a circle which will be plotted at only 10% of the normal speed
@@ -193,6 +196,58 @@ import { writeFileSync } from "fs";
     const axi = new AxiDraw();
     await axi.connect();
     await axi.draw(commands);
+})();
+```
+
+### Supporting custom drawing tools
+
+AxiDraw (and other pen plotters) are not restricted to just using pens, but can
+be used with all sorts of custom drawing tools, some of which (like paint
+brushes) require regular "refills" every N strokes/dots. For that reason, some
+shape types (currently **only** point clouds) are supporting config & behavior
+options for interleaving their normal shape command sequence with additional
+tool-specific arbitrary utility command sequences (e.g. to regularly dip a brush
+into a paint pot/palette).
+
+```ts tangle:export/readme-interleave.ts
+import { COMMENT, DOWN, MOVE, UP } from "@thi.ng/axidraw";
+import { circle, points, vertices } from "@thi.ng/geom";
+import { asAxiDraw } from "@thi.ng/geom-axidraw";
+
+(async () => {
+    // create point cloud container
+    const pts = points(
+        // using 24 points on a circle w/ origin @ 150,150, radius=100
+        vertices(circle([150,150], 100), 24),
+        { __axi: {
+            // use command interleaving
+            interleave: {
+                // every 5 points/dots
+                num: 5,
+                // insert these draw commands:
+                // (this function is being re-called every `num` points and
+                // can produce different commands to insert each time...)
+                commands: (n) => [
+                    // no-op command, but will be logged during plotting
+                    COMMENT(`--- refill brush (@ ${n} points) ---`),
+                    // move to XY pos (i.e. position of paint reservoir)
+                    MOVE([10,50]),
+                    // pen down
+                    DOWN,
+                    // wait 500ms
+                    WAIT(500),
+                    // pen up
+                    // (...and then drawing continues w/ next 5 points)
+                    UP
+                ]
+            }
+        }
+    });
+
+    // actually connect & send to plotter
+    const axi = new AxiDraw();
+    await axi.connect();
+    await axi.draw(pts);
 })();
 ```
 
