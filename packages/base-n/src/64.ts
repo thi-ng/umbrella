@@ -8,5 +8,7 @@ export const B64_CHARS = B62_CHARS + "+/";
  *
  * @remarks
  * Reference: https://en.wikipedia.org/wiki/Base64
+ *
+ * Note: This encoder does NOT perform automatic padding (i.e. `=`-suffixes)
  */
 export const BASE64 = defBase(B64_CHARS);

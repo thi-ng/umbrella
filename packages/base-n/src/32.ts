@@ -9,6 +9,11 @@ import { defBase } from "./base.js";
 export const BASE32_RFC4648 = defBase("ABCDEFGHIJKLMNOPQRSTUVWXYZ234567");
 
 /**
+ * Alias for {@link BASE32_RFC4648}
+ */
+export const BASE32 = BASE32_RFC4648;
+
+/**
  * Digits: 0-9 A-V
  *
  * @remarks

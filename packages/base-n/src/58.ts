@@ -13,7 +13,12 @@ export const B58_CHARS = B58_CHARS_UC;
 /**
  * Reference: https://en.wikipedia.org/wiki/Binary-to-text_encoding
  */
-export const BASE58 = defBase(B58_CHARS);
+export const BASE58_UC = defBase(B58_CHARS_UC);
+
+/**
+ * Alias for {@link BASE58_UC}.
+ */
+export const BASE58 = BASE58_UC;
 
 /**
  * Alt version of Base58 which uses {@link B58_CHARS_LC}.
