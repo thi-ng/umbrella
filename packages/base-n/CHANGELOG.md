@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2023-03-14T13:27:19Z
+- **Last updated**: 2023-03-17T08:24:43Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,12 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [2.5.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/base-n@2.5.0) (2023-03-17)
+
+#### 🚀 Features
+
+- add BASE16/32/58 aliases for default impls ([7a8ae1f](https://github.com/thi-ng/umbrella/commit/7a8ae1f))
 
 ## [2.4.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/base-n@2.4.0) (2023-02-10)
 
