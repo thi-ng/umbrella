@@ -222,6 +222,9 @@ export class AxiDraw implements IReset {
 					[wait, dist] = this.moveTo(a, b);
 					$recordDist(dist);
 					break;
+				case "comment":
+					logger.info(`comment: ${a}`);
+					break;
 				default:
 					unsupported(`unknown command: ${$cmd}`);
 			}
