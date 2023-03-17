@@ -123,7 +123,7 @@ function* __points(
 	opts?: Partial<AsAxiDrawOpts>
 ): IterableIterator<DrawCommand> {
 	if (!pts.length) return;
-	const { clip, delayDown, delayUp, down, skip, speed, sort } = {
+	const { clip, delayDown, delayUp, down, skip, speed, sort, interleave } = {
 		sort: pointsByNearestNeighbor(),
 		...__axiAttribs(attribs),
 	};
@@ -135,16 +135,30 @@ function* __points(
 	if (skip) {
 		pts = [...takeNth(skip + 1, pts)];
 	}
-	yield UP;
-	if (down != undefined) yield ["pen", down];
-	for (let p of sort ? (<PointOrdering>sort)(pts) : pts) {
-		yield* [
-			["m", p, speed],
-			["d", delayDown],
-			["u", delayUp],
-		];
+	function* emitChunk($pts: ReadonlyVec[]): IterableIterator<DrawCommand> {
+		if (down != undefined) yield ["pen", down];
+		for (let p of sort ? (<PointOrdering>sort)($pts) : $pts) {
+			yield* [
+				["m", p, speed],
+				["d", delayDown],
+				["u", delayUp],
+			];
+		}
+		if (down != undefined) yield ["pen"];
 	}
-	if (down != undefined) yield ["pen"];
+	yield UP;
+	if (interleave) {
+		const { num, commands } = interleave;
+		if (interleave.start !== false) yield* commands(0);
+		for (let i = 0, n = pts.length; i < n; ) {
+			yield* emitChunk(pts.slice(i, i + num));
+			i += num;
+			if (i < n) yield* commands(i);
+		}
+		if (interleave.end) yield* interleave.commands(pts.length);
+	} else {
+		yield* emitChunk(pts);
+	}
 }
 
 function* __polyline(

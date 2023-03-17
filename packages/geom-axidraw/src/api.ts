@@ -1,4 +1,5 @@
 import type { Fn } from "@thi.ng/api";
+import type { DrawCommand } from "@thi.ng/axidraw";
 import type { IShape, SamplingOpts } from "@thi.ng/geom-api";
 import type { ReadonlyVec } from "@thi.ng/vectors";
 
@@ -59,6 +60,11 @@ export interface AxiDrawAttribs {
 	 * detail test runs.
 	 */
 	skip: number;
+	/**
+	 * Currently only supported for point clouds. See {@link InterleaveOpts} for
+	 * details.
+	 */
+	interleave: InterleaveOpts;
 }
 
 export interface AsAxiDrawOpts {
@@ -77,6 +83,38 @@ export interface AsAxiDrawOpts {
 	 * {@link AxiDrawAttribs.clip} (i.e. as part of a shape's `__axi` attrib).
 	 */
 	clip: ReadonlyVec[];
+}
+
+/**
+ * Config & behavior options for interleaving the normal shape command sequence
+ * with tool-specific arbitrary utility command sequences (e.g. to regularly dip
+ * a brush into a paint pot/palette).
+ */
+export interface InterleaveOpts {
+	/**
+	 * Number of elements after which to insert the interleave command sequence
+	 */
+	num: number;
+	/**
+	 * Single arg function which is called every `num` elements (with the count
+	 * of elements already processed) and each time yielding a
+	 * [`DrawCommand`](https://docs.thi.ng/umbrella/axidraw/types/DrawCommand.html)
+	 * sequence, which will be inserted as-is into the generated main command
+	 * sequence of the currently processed shape.
+	 *
+	 * @param num
+	 */
+	commands: Fn<number, Iterable<DrawCommand>>;
+	/**
+	 * If true (default), call the given `commands` fn at the beginning of the
+	 * shape processing (with arg=0).
+	 */
+	start: boolean;
+	/**
+	 * If true (default: false), call the given `commands` fn at the end of the
+	 * shape processing (with arg=number of points/elements in the shape).
+	 */
+	end: boolean;
 }
 
 export type PointOrdering = Fn<ReadonlyVec[], Iterable<ReadonlyVec>>;
