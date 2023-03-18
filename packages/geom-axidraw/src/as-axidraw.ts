@@ -1,4 +1,5 @@
-import { DrawCommand, UP } from "@thi.ng/axidraw/api";
+import type { DrawCommand } from "@thi.ng/axidraw/api";
+import { DOWN, MOVE, UP } from "@thi.ng/axidraw/commands.js";
 import { polyline } from "@thi.ng/axidraw/polyline";
 import type { MultiFn1O } from "@thi.ng/defmulti";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
@@ -138,15 +139,13 @@ function* __points(
 	function* emitChunk($pts: ReadonlyVec[]): IterableIterator<DrawCommand> {
 		if (down != undefined) yield ["pen", down];
 		for (let p of sort ? (<PointOrdering>sort)($pts) : $pts) {
-			yield* [
-				["m", p, speed],
-				["d", delayDown],
-				["u", delayUp],
-			];
+			yield MOVE(p, speed);
+			yield DOWN(delayDown);
+			yield UP(delayUp);
 		}
 		if (down != undefined) yield ["pen"];
 	}
-	yield UP;
+	yield UP();
 	if (interleave) {
 		const { num, commands } = interleave;
 		if (interleave.start !== false) yield* commands(0);
