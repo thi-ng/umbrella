@@ -1,6 +1,7 @@
 import { map, normRange } from "@thi.ng/transducers";
 import { cartesian2, ReadonlyVec } from "@thi.ng/vectors";
 import type { DrawCommand } from "./api.js";
+import { DOWN, MOVE, UP } from "./commands.js";
 
 /**
  * Generates a {@link DrawCommand} sequence to draw a registration mark
@@ -22,22 +23,22 @@ export const registrationMark = (
 ): DrawCommand[] => [
 	// crosshair
 	// horizontal
-	["m", [x - size, y]],
-	["d"],
-	["m", [x + size, y]],
-	["u"],
+	MOVE([x - size, y]),
+	DOWN(),
+	MOVE([x + size, y]),
+	UP(),
 	// vertical
-	["m", [x, y - size]],
-	["d"],
-	["m", [x, y + size]],
-	["u"],
+	MOVE([x, y - size]),
+	DOWN(),
+	MOVE([x, y + size]),
+	UP(),
 	// circle
-	["m", [x + r, y]],
-	["d"],
+	MOVE([x + r, y]),
+	DOWN(),
 	...map(
-		(t) => <DrawCommand>["m", cartesian2([], [r, t * Math.PI * 2], [x, y])],
+		(t) => MOVE(cartesian2([], [r, t * Math.PI * 2], [x, y])),
 		normRange(40)
 	),
-	["u"],
-	["m", [x, y]],
+	UP(),
+	MOVE([x, y]),
 ];

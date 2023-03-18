@@ -1,5 +1,6 @@
 import type { ReadonlyVec } from "@thi.ng/vectors";
-import { DOWN, DrawCommand, PolylineOpts, START, STOP, UP } from "./api.js";
+import type { DrawCommand, PolylineOpts } from "./api.js";
+import { DOWN, MOVE, PEN, START, STOP, UP } from "./commands.js";
 
 /**
  * Takes an array of 2D points and yields an iterable of {@link DrawCommand}s.
@@ -24,16 +25,16 @@ export function* polyline(
 		...opts,
 	};
 	if (onlyGeo) {
-		for (let p of pts) yield ["m", p, speed];
+		for (let p of pts) yield MOVE(p, speed);
 		return;
 	}
-	yield ["m", pts[0]];
-	if (down !== undefined) yield ["pen", down];
-	yield delayDown != undefined ? ["d", delayDown] : DOWN;
-	for (let i = 1, n = pts.length; i < n; i++) yield ["m", pts[i], speed];
-	yield delayUp != undefined ? ["u", delayUp] : UP;
+	yield MOVE(pts[0]);
+	if (down !== undefined) yield PEN(down);
+	yield DOWN(delayDown);
+	for (let i = 1, n = pts.length; i < n; i++) yield MOVE(pts[i], speed);
+	yield UP(delayUp);
 	// reset pen to configured defaults
-	if (down !== undefined) yield ["pen"];
+	if (down !== undefined) yield PEN();
 }
 
 /**

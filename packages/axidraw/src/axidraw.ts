@@ -6,6 +6,7 @@ import { assert, ioerror, unsupported } from "@thi.ng/errors";
 import { ConsoleLogger } from "@thi.ng/logger";
 import {
 	abs2,
+	maddN2,
 	mag,
 	mulN2,
 	ReadonlyVec,
@@ -19,14 +20,10 @@ import {
 	AxiDrawOpts,
 	AxiDrawState,
 	DrawCommand,
-	HOME,
 	ISerial,
 	Metrics,
-	OFF,
-	ON,
-	PEN,
-	UP,
 } from "./api.js";
+import { HOME, OFF, ON, PEN, UP } from "./commands.js";
 import { AxiDrawControl } from "./control.js";
 import { complete } from "./polyline.js";
 import { SERIAL_PORT } from "./serial.js";
@@ -45,8 +42,8 @@ export const DEFAULT_OPTS: AxiDrawOpts = {
 	delayUp: 150,
 	delayDown: 150,
 	preDelay: 0,
-	start: [ON, PEN, UP],
-	stop: [UP, HOME, OFF],
+	start: [ON, PEN(), UP()],
+	stop: [UP(), HOME, OFF],
 	sigint: true,
 };
 
@@ -218,8 +215,12 @@ export class AxiDraw implements IReset {
 				case "w":
 					wait = <number>a;
 					break;
-				case "m":
+				case "M":
 					[wait, dist] = this.moveTo(a, b);
+					$recordDist(dist);
+					break;
+				case "m":
+					[wait, dist] = this.moveRelative(a, b);
 					$recordDist(dist);
 					break;
 				case "comment":
@@ -308,18 +309,24 @@ export class AxiDraw implements IReset {
 	 * @param p
 	 * @param tempo
 	 */
-	moveTo(p: ReadonlyVec, tempo = 1) {
-		const { pos, targetPos, opts, isPenDown } = this;
+	moveTo(p: ReadonlyVec, tempo?: number) {
+		const { targetPos, opts } = this;
 		// apply scale factor: worldspace units -> motor steps
 		mulN2(targetPos, p, opts.stepsPerInch / opts.unitsPerInch);
-		const delta = sub2([], targetPos, pos);
-		set2(pos, targetPos);
-		const maxAxis = Math.max(...abs2([], delta));
-		const duration =
-			(1000 * maxAxis) /
-			((isPenDown ? opts.speedDown : opts.speedUp) * tempo);
-		this.send(`XM,${duration | 0},${delta[0] | 0},${delta[1] | 0}\r`);
-		return [duration, (mag(delta) * opts.unitsPerInch) / opts.stepsPerInch];
+		return this.sendMove(tempo);
+	}
+
+	/**
+	 * Similar to {@link AxiDraw.moveTo}, but using **relative** coordinates.
+	 *
+	 * @param delta
+	 * @param tempo
+	 */
+	moveRelative(delta: ReadonlyVec, tempo?: number) {
+		const { pos, targetPos, opts } = this;
+		// apply scale factor: worldspace units -> motor steps
+		maddN2(targetPos, delta, opts.stepsPerInch / opts.unitsPerInch, pos);
+		return this.sendMove(tempo);
 	}
 
 	/**
@@ -340,6 +347,18 @@ export class AxiDraw implements IReset {
 	protected send(msg: string) {
 		this.opts.logger.debug(msg);
 		this.serial.write(msg);
+	}
+
+	protected sendMove(tempo = 1) {
+		const { pos, targetPos, opts, isPenDown } = this;
+		const delta = sub2([], targetPos, pos);
+		set2(pos, targetPos);
+		const maxAxis = Math.max(...abs2([], delta));
+		const duration =
+			(1000 * maxAxis) /
+			((isPenDown ? opts.speedDown : opts.speedUp) * tempo);
+		this.send(`XM,${duration | 0},${delta[0] | 0},${delta[1] | 0}\r`);
+		return [duration, (mag(delta) * opts.unitsPerInch) / opts.stepsPerInch];
 	}
 
 	/**

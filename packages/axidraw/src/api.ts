@@ -31,7 +31,13 @@ export type PenUpDownCommand = ["u" | "d", number?, number?];
  * Move to abs pos (in worldspace coords, default mm), optional speed factor
  * (default: 1)
  */
-export type MoveXYCommand = ["m", ReadonlyVec, number?];
+export type MoveXYCommand = ["M", ReadonlyVec, number?];
+
+/**
+ * Move to **relative** pos (based on curr plotter position, im worldspace
+ * units, default mm), optional speed factor (default: 1)
+ */
+export type MoveRelCommand = ["m", ReadonlyVec, number?];
 
 /** Explicit delay (in ms) */
 export type WaitCommand = ["w", number];
@@ -48,6 +54,7 @@ export type DrawCommand =
 	| PenConfigCommand
 	| PenUpDownCommand
 	| MoveXYCommand
+	| MoveRelCommand
 	| WaitCommand
 	| CommentCommand;
 
@@ -161,50 +168,6 @@ export interface AxiDrawOpts {
 	 */
 	sigint: boolean;
 }
-
-export const START: StartCommand = ["start"];
-
-export const STOP: StopCommand = ["stop"];
-
-export const HOME: HomeCommand = ["home"];
-
-export const RESET: ResetCommand = ["reset"];
-
-export const PEN: PenConfigCommand = ["pen"];
-
-export const UP: PenUpDownCommand = ["u"];
-
-export const DOWN: PenUpDownCommand = ["d"];
-
-export const ON: MotorCommand = ["on"];
-
-export const OFF: MotorCommand = ["off"];
-
-/**
- * Creates a {@link MoveXYCommand} command.
- *
- * @param pos
- * @param speed
- */
-export const MOVE = (pos: ReadonlyVec, speed = 1): MoveXYCommand => [
-	"m",
-	pos,
-	speed,
-];
-
-/**
- * Creates a {@link WaitCommand}.
- *
- * @param delay
- */
-export const WAIT = (delay = 1000): WaitCommand => ["w", delay];
-
-/**
- * Creates a {@link CommentCommand}.
- *
- * @param msg
- */
-export const COMMENT = (msg = ""): CommentCommand => ["comment", msg];
 
 /**
  * FSM state enum for (interactive) control for processing of drawing commands.
