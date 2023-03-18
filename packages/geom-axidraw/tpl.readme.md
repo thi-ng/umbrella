@@ -233,7 +233,8 @@ import { asAxiDraw } from "@thi.ng/geom-axidraw";
                     // move to XY pos (i.e. position of paint reservoir)
                     MOVE([10,50]),
 					// dip the brush 3x times down & up (each time wait 200ms whilst down)
-					DIP(3, 200),
+					// (DIP creates a cmd sequence, so need to use the spread operator `...` here)
+					...DIP(3, 200),
                     // (...and then drawing continues w/ next 5 points)
                 ]
             }
