@@ -1,10 +1,10 @@
 import type { DrawCommand } from "@thi.ng/axidraw/api";
-import { DOWN, MOVE, UP } from "@thi.ng/axidraw/commands.js";
+import { DOWN, MOVE, UP } from "@thi.ng/axidraw/commands";
 import { polyline } from "@thi.ng/axidraw/polyline";
 import type { MultiFn1O } from "@thi.ng/defmulti";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
 import type { Group } from "@thi.ng/geom";
-import type { Attribs, IShape, PCLike } from "@thi.ng/geom-api";
+import type { Attribs, IHiccupShape, IShape, PCLike } from "@thi.ng/geom-api";
 import { clipPolylinePoly } from "@thi.ng/geom-clip-line/clip-poly";
 import { pointInPolygon2 } from "@thi.ng/geom-isec/point";
 import { applyTransforms } from "@thi.ng/geom/apply-transforms";
@@ -103,18 +103,32 @@ function* __group(
 	$: Group,
 	opts?: Partial<AsAxiDrawOpts>
 ): IterableIterator<DrawCommand> {
-	const { skip, sort } = __axiAttribs($.attribs);
+	const { skip, sort, interleave } = __axiAttribs($.attribs);
 	const sopts = __sampleAttribs(opts?.samples, $.attribs);
 	const children = skip ? [...takeNth(skip + 1, $.children)] : $.children;
-	const childrenIter = sort ? (<ShapeOrdering>sort)(children) : children;
-	for (let child of childrenIter) {
-		const shape = applyTransforms(child);
-		shape.attribs = {
-			...$.attribs,
-			...shape.attribs,
-			__samples: __sampleAttribs(sopts, shape.attribs),
-		};
-		yield* asAxiDraw(shape, opts);
+	function* emitChunk(chunk: IHiccupShape[]) {
+		const iter = sort ? (<ShapeOrdering>sort)(chunk) : chunk;
+		for (let child of iter) {
+			const shape = applyTransforms(child);
+			shape.attribs = {
+				...$.attribs,
+				...shape.attribs,
+				__samples: __sampleAttribs(sopts, shape.attribs),
+			};
+			yield* asAxiDraw(shape, opts);
+		}
+	}
+	if (interleave) {
+		const { num, commands } = interleave;
+		if (interleave.start !== false) yield* commands(0);
+		for (let i = 0, n = children.length; i < n; ) {
+			yield* emitChunk(children.slice(i, i + num));
+			i += num;
+			if (i < n) yield* commands(i);
+		}
+		if (interleave.end) yield* interleave.commands(children.length);
+	} else {
+		yield* emitChunk(children);
 	}
 }
 

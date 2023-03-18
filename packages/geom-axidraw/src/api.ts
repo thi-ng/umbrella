@@ -61,8 +61,8 @@ export interface AxiDrawAttribs {
 	 */
 	skip: number;
 	/**
-	 * Currently only supported for point clouds. See {@link InterleaveOpts} for
-	 * details.
+	 * Currently only supported for shape groups and point clouds. See
+	 * {@link InterleaveOpts} for details.
 	 */
 	interleave: InterleaveOpts;
 }
@@ -97,7 +97,7 @@ export interface InterleaveOpts {
 	num: number;
 	/**
 	 * Single arg function which is called every `num` elements (with the count
-	 * of elements already processed) and each time yielding a
+	 * of elements already processed given as arg) and each time yielding a
 	 * [`DrawCommand`](https://docs.thi.ng/umbrella/axidraw/types/DrawCommand.html)
 	 * sequence, which will be inserted as-is into the generated main command
 	 * sequence of the currently processed shape.
