@@ -1,7 +1,14 @@
 import { group } from "@thi.ng/testament";
 import { eqDelta } from "@thi.ng/math";
 import * as assert from "assert";
-import { AxiDraw, MockSerial, MOCK_SERIAL } from "../src/index.js";
+import {
+	AxiDraw,
+	DOWN,
+	MockSerial,
+	MOCK_SERIAL,
+	MOVE,
+	UP,
+} from "../src/index.js";
 
 group(
 	"axidraw",
@@ -13,21 +20,21 @@ group(
 			});
 			await axi.connect("/foo");
 			const metrics = await axi.draw([
-				["m", [0, 0]],
-				["d"],
-				["m", [100, 0]],
-				["m", [100, 100]],
-				["m", [0, 100]],
-				["m", [0, 0]],
-				["u"],
-				["m", [0, 0]],
-				["d"],
-				["m", [100, 100]],
-				["u"],
-				["m", [100, 0]],
-				["d"],
-				["m", [0, 100]],
-				["u"],
+				MOVE([0, 0]),
+				DOWN(),
+				MOVE([100, 0]),
+				MOVE([100, 100]),
+				MOVE([0, 100]),
+				MOVE([0, 0]),
+				UP(),
+				MOVE([0, 0]),
+				DOWN(),
+				MOVE([100, 100]),
+				UP(),
+				MOVE([100, 0]),
+				DOWN(),
+				MOVE([0, 100]),
+				UP(),
 			]);
 			const sent = (<MockSerial>axi.serial).sent;
 			const dist = 4 * 100 + 2 * Math.hypot(100, 100);
