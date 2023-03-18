@@ -100,6 +100,10 @@ export class AxiDraw implements IReset {
 		ioerror(`no matching device for ${path}`);
 	}
 
+	disconnect() {
+		this.serial.close();
+	}
+
 	/**
 	 * Async function. Converts sequence of {@link DrawCommand}s into actual EBB
 	 * commands and sends them via configured serial port to the AxiDraw. If

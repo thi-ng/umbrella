@@ -1,3 +1,4 @@
+import { illegalState } from "@thi.ng/errors/illegal-state";
 import { SerialPort } from "serialport";
 import type { ISerial, SerialConnection } from "./api.js";
 
@@ -24,6 +25,7 @@ export const MOCK_SERIAL: SerialConnection = {
  */
 export class MockSerial implements ISerial {
 	sent: string[] = [];
+	isClosed: boolean = false;
 
 	/**
 	 * Clears internal log of "sent" message.
@@ -32,11 +34,16 @@ export class MockSerial implements ISerial {
 		this.sent = [];
 	}
 
+	close() {
+		this.isClosed = true;
+	}
+
 	/**
 	 * Appends
 	 * @param msg
 	 */
 	write(msg: string): void {
+		this.isClosed && illegalState("connection already closed");
 		this.sent.push(msg);
 	}
 }

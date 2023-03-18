@@ -270,6 +270,7 @@ export interface SerialConnection {
 }
 
 export interface ISerial {
+	close(): void;
 	/**
 	 * Writes given string to the port.
 	 *
