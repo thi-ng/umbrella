@@ -22,14 +22,30 @@ export const HOME: HomeCommand = ["home"];
 
 export const RESET: ResetCommand = ["reset"];
 
-export const PEN = (delayDown?: number, delayUp?: number): PenConfigCommand => [
+/**
+ * Creates a {@link PenConfigCommand} using provided down/up positions.
+ *
+ * @param posDown
+ * @param posUp
+ */
+export const PEN = (posDown?: number, posUp?: number): PenConfigCommand => [
 	"pen",
-	delayDown,
-	delayUp,
+	posDown,
+	posUp,
 ];
 
+/**
+ * Creates a {@link PenUpDownCommand} to move the pen up.
+ *
+ * @param delay
+ */
 export const UP = (delay?: number): PenUpDownCommand => ["u", delay];
 
+/**
+ * Creates a {@link PenUpDownCommand} to move the pen down.
+ *
+ * @param delay
+ */
 export const DOWN = (delay?: number): PenUpDownCommand => ["d", delay];
 
 export const ON: MotorCommand = ["on"];
@@ -37,7 +53,7 @@ export const ON: MotorCommand = ["on"];
 export const OFF: MotorCommand = ["off"];
 
 /**
- * Creates a {@link MoveXYCommand} command.
+ * Creates a {@link MoveXYCommand} command (absolute coordinates).
  *
  * @param pos
  * @param speed
@@ -49,7 +65,7 @@ export const MOVE = (pos: ReadonlyVec, speed = 1): MoveXYCommand => [
 ];
 
 /**
- * Creates a {@link MoveRelCommand} command.
+ * Creates a {@link MoveRelCommand} command (relative coordinates).
  *
  * @param delta
  * @param speed
@@ -78,6 +94,9 @@ export const COMMENT = (msg = ""): CommentCommand => ["comment", msg];
  * Yields a sequence of `n` repetitions of {@link DOWN}, {@link UP} commands,
  * e.g. for dipping a brush a few times into a paint reservoir to refill.
  *
+ * @remarks
+ * By default `delayUp` is the same as `delayDown`.
+ *
  * @example
  * ```ts
  * [...DIP(3, 100, 200)]
@@ -95,5 +114,5 @@ export const COMMENT = (msg = ""): CommentCommand => ["comment", msg];
  * @param delayDown
  * @param delayUp
  */
-export const DIP = (n: number, delayDown?: number, delayUp?: number) =>
+export const DIP = (n: number, delayDown?: number, delayUp = delayDown) =>
 	take(n * 2, cycle([DOWN(delayDown), UP(delayUp)]));

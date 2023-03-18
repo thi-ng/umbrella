@@ -87,6 +87,9 @@
 		"./axidraw": {
 			"default": "./axidraw.js"
 		},
+		"./commands": {
+			"default": "./commands.js"
+		},
 		"./control": {
 			"default": "./control.js"
 		},
