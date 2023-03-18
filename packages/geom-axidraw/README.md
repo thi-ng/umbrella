@@ -44,7 +44,7 @@ package is responsible for the actual plotter output...
 | circle     | circle<sup>(1)</sup>                            |
 | cubic      | cubic bezier segment<sup>(1)</sup>              |
 | ellipse    | ellipse<sup>(1)</sup>                           |
-| group      | shape group (possibly nested)                   |
+| group      | shape group (possibly nested)<sup>(3)</sup>     |
 | line       | line segment<sup>(2)</sup>                      |
 | path       | single outline only, no holes                   |
 | points     | point cloud (stippling)<sup>(3)</sup>           |
@@ -229,10 +229,10 @@ import { writeFileSync } from "fs";
 AxiDraw (and other pen plotters) are not restricted to just using pens, but can
 be used with all sorts of custom drawing tools, some of which (like paint
 brushes) require regular "refills" every N strokes/dots. For that reason, some
-shape types (currently **only** point clouds) are supporting config & behavior
-options for interleaving their normal shape command sequence with additional
-tool-specific arbitrary utility command sequences (e.g. to regularly dip a brush
-into a paint pot/palette).
+shape types (currently **only** shape groups and point clouds) are supporting
+config & behavior options for interleaving their normal shape command sequence
+with additional tool-specific arbitrary utility command sequences (e.g. to
+regularly dip a brush into a paint pot/palette).
 
 ```ts tangle:export/readme-interleave.ts
 import { AxiDraw, COMMENT, DIP, MOVE } from "@thi.ng/axidraw";
@@ -303,7 +303,7 @@ For Node.js REPL:
 const geomAxidraw = await import("@thi.ng/geom-axidraw");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 1.42 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 1.48 KB
 
 ## Dependencies
 
