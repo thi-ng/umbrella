@@ -109,12 +109,12 @@ export interface InterleaveOpts {
 	 * If true (default), call the given `commands` fn at the beginning of the
 	 * shape processing (with arg=0).
 	 */
-	start: boolean;
+	start?: boolean;
 	/**
 	 * If true (default: false), call the given `commands` fn at the end of the
 	 * shape processing (with arg=number of points/elements in the shape).
 	 */
-	end: boolean;
+	end?: boolean;
 }
 
 export type PointOrdering = Fn<ReadonlyVec[], Iterable<ReadonlyVec>>;
