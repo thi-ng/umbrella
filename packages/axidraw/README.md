@@ -25,6 +25,8 @@ This project is part of the
   - [Example usage](#example-usage)
     - [Basics](#basics)
   - [geom-axidraw example](#geom-axidraw-example)
+  - [Available draw commands](#available-draw-commands)
+    - [Command sequence generators](#command-sequence-generators)
 - [Authors](#authors)
 - [License](#license)
 
@@ -164,7 +166,7 @@ For Node.js REPL:
 const axidraw = await import("@thi.ng/axidraw");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 2.15 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 2.46 KB
 
 ## Dependencies
 
@@ -259,13 +261,45 @@ import { map, range } from "@thi.ng/transducers";
 
 Other selected toots/tweets:
 
-- https://mastodon.thi.ng/@toxi/109490174709589253
-- https://mastodon.thi.ng/@toxi/109473655772673067
-- https://mastodon.thi.ng/@toxi/109474947869078797
-- https://mastodon.thi.ng/@toxi/109483553358349473
-- https://mastodon.thi.ng/@toxi/109570540391689321
-- https://mastodon.thi.ng/@toxi/109586780630493994
+- [Project announcement](https://mastodon.thi.ng/@toxi/109490174709589253)
+- [Geometry conversion basics](https://mastodon.thi.ng/@toxi/109473655772673067)
+- [Shape group conversion and stippling](https://mastodon.thi.ng/@toxi/109474947869078797)
+- [Per-shape & on-the-fly polyline clipping](https://mastodon.thi.ng/@toxi/109483553358349473)
+- [Bitmap-to-vector conversions & shape sorting](https://mastodon.thi.ng/@toxi/109570540391689321)
+- [Multi-color plotting](https://mastodon.thi.ng/@toxi/109586780630493994)
+- [Using water color & paintbrush](https://mastodon.thi.ng/@toxi/110044424626641749)
 - more to come...
+
+### Available draw commands
+
+All
+[`DrawCommand`s](https://docs.thi.ng/umbrella/axidraw/types/DrawCommand.html)
+are expressed as S-expression-like, [thi.ng/hiccup]()-style elements, aka JS
+arrays/tuples of `[command, ...args]`. The following commands are supported. All
+also as predefined constants or factory functions for the parametric ones:
+
+| Command                           | Preset/factory                                                                                                                      |
+|-----------------------------------|-------------------------------------------------------------------------------------------------------------------------------------|
+| `["comment", msg]`                | [`COMMENT`](https://docs.thi.ng/umbrella/axidraw/functions/COMMENT.html)                                                            |
+| `["d", delay?]` / `["u", delay?]` | [`DOWN`](https://docs.thi.ng/umbrella/axidraw/functions/DOWN.html) / [`UP`](https://docs.thi.ng/umbrella/axidraw/functions/UP.html) |
+| `["home"]`                        | `HOME`                                                                                                                              |
+| `["m", [x,y], speed?]`            | [`MOVE_REL`](https://docs.thi.ng/umbrella/axidraw/functions/MOVE_REL.html)                                                          |
+| `["M", [x,y], speed?]`            | [`MOVE`](https://docs.thi.ng/umbrella/axidraw/functions/MOVE.html)                                                                  |
+| `["on"]` / `["off"]`              | `ON` / `OFF`                                                                                                                        |
+| `["pen", down, up]`               | [`PEN`](https://docs.thi.ng/umbrella/axidraw/functions/PEN.html)                                                                    |
+| `["reset"]`                       | `RESET`                                                                                                                             |
+| `["start"]`                       | `START`                                                                                                                             |
+| `["stop"]`                        | `STOP`                                                                                                                              |
+| `["w", delay]`                    | [`WAIT`](https://docs.thi.ng/umbrella/axidraw/functions/WAIT.html)                                                                  |
+
+#### Command sequence generators
+
+Additionally, the following command sequence generators are provided (see their docs for code examples):
+
+- [`complete`](https://docs.thi.ng/umbrella/axidraw/functions/complete.html)
+- [`dip`](https://docs.thi.ng/umbrella/axidraw/functions/dip.html)
+- [`polyline`](https://docs.thi.ng/umbrella/axidraw/functions/polyline.html)
+- [`registrationMark`](https://docs.thi.ng/umbrella/axidraw/functions/registrationMark.html)
 
 ## Authors
 
