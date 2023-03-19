@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2023-03-14T13:27:19Z
+- **Last updated**: 2023-03-19T14:07:45Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,38 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+# [1.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/axidraw@1.0.0) (2023-03-19)
+
+#### 🛑 Breaking changes
+
+- add/update command presets ([610f873](https://github.com/thi-ng/umbrella/commit/610f873))
+- BREAKING CHANGE: update DrawCommands and cmd presets
+  - update MoveXYCommand to use `"M"`
+  - add MoveRelCommand (using `"m"`)
+  - add/update AxiDraw.moveTo()/moveRelative()
+  - migrate command presets to commands.ts
+  - refactor parametric command type presets as functions:
+    -  PEN(), UP(), DOWN(), MOVE(), MOVE_REL(), WAIT(), COMMENT()
+  - add DIP() command sequence gen
+
+#### 🚀 Features
+
+- add command fns, add COMMENT cmd ([0d64b55](https://github.com/thi-ng/umbrella/commit/0d64b55))
+  - add MOVE(), WAIT(), COMMENT()
+  - add CommentCommand
+  - update AxiDraw.draw() to log comments
+- add disconnect() ([af93177](https://github.com/thi-ng/umbrella/commit/af93177))
+  - add disconnect() for ISerial & AxiDraw
+  - update MockSerial impl
+- update commands, docs & pkg exports ([1324cb8](https://github.com/thi-ng/umbrella/commit/1324cb8))
+- update dip(), update imports. restructure /src ([b108760](https://github.com/thi-ng/umbrella/commit/b108760))
+  - add DipOpts, extend dip() functionality
+  - move dip() to own file dip.ts
+  - move complete() to commands.ts
+  - move registrationMark() to own file registration.ts
+  - update all imports
+  - update pkg exports map
 
 ## [0.5.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/axidraw@0.5.0) (2023-02-05)
 

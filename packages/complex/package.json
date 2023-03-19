@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/complex",
-	"version": "0.1.39",
+	"version": "0.1.40",
 	"description": "Array-based complex number algebra",
 	"type": "module",
 	"module": "./index.js",
@@ -37,7 +37,7 @@
 		"@thi.ng/api": "^8.7.4",
 		"@thi.ng/checks": "^3.3.10",
 		"@thi.ng/math": "^5.4.5",
-		"@thi.ng/vectors": "^7.6.8"
+		"@thi.ng/vectors": "^7.6.9"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.34.4",

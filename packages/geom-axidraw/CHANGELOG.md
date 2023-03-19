@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2023-03-14T13:27:19Z
+- **Last updated**: 2023-03-19T14:07:45Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,22 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [0.4.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom-axidraw@0.4.0) (2023-03-19)
+
+#### 🚀 Features
+
+- add InterleaveOpts for point clouds ([78012a0](https://github.com/thi-ng/umbrella/commit/78012a0))
+  - add InterleaveOpts & docs
+  - update AxiDrawAttribs
+  - update point cloud processing to support command sequence interleaving
+- add interleave opts support for shape groups ([57783ff](https://github.com/thi-ng/umbrella/commit/57783ff))
+  - update asAxiDraw() impl for shape groups
+
+#### ♻️ Refactoring
+
+- update draw command handling ([18cd5bc](https://github.com/thi-ng/umbrella/commit/18cd5bc))
+- update InterleaveOpts ([0866f9f](https://github.com/thi-ng/umbrella/commit/0866f9f))
 
 ## [0.3.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom-axidraw@0.3.0) (2023-01-10)
 
