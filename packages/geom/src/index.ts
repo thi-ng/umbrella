@@ -71,6 +71,7 @@ export * from "./rotate.js";
 export * from "./scale.js";
 export * from "./scatter.js";
 export * from "./simplify.js";
+export * from "./split-arclength.js";
 export * from "./split-at.js";
 export * from "./split-near.js";
 export * from "./subdiv-curve.js";

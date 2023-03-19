@@ -334,6 +334,9 @@
 		"./sphere": {
 			"default": "./sphere.js"
 		},
+		"./split-arclength": {
+			"default": "./split-arclength.js"
+		},
 		"./split-at": {
 			"default": "./split-at.js"
 		},
