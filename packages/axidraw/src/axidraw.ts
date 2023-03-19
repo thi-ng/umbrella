@@ -1,21 +1,19 @@
 import type { IReset } from "@thi.ng/api";
-import { isString } from "@thi.ng/checks";
-import { delayed } from "@thi.ng/compose";
-import { formatDuration } from "@thi.ng/date";
-import { assert, ioerror, unsupported } from "@thi.ng/errors";
-import { ConsoleLogger } from "@thi.ng/logger";
-import {
-	abs2,
-	maddN2,
-	mag,
-	mulN2,
-	ReadonlyVec,
-	set2,
-	sub2,
-	Vec,
-	zero,
-	ZERO2,
-} from "@thi.ng/vectors";
+import { isString } from "@thi.ng/checks/is-string";
+import { delayed } from "@thi.ng/compose/delayed";
+import { formatDuration } from "@thi.ng/date/format";
+import { assert } from "@thi.ng/errors/assert";
+import { ioerror } from "@thi.ng/errors/io";
+import { unsupported } from "@thi.ng/errors/unsupported";
+import { ConsoleLogger } from "@thi.ng/logger/console";
+import { abs2 } from "@thi.ng/vectors/abs";
+import { ReadonlyVec, Vec, ZERO2 } from "@thi.ng/vectors/api";
+import { maddN2 } from "@thi.ng/vectors/maddn";
+import { mag } from "@thi.ng/vectors/mag";
+import { mulN2 } from "@thi.ng/vectors/muln";
+import { set2 } from "@thi.ng/vectors/set";
+import { zero } from "@thi.ng/vectors/setn";
+import { sub2 } from "@thi.ng/vectors/sub";
 import {
 	AxiDrawOpts,
 	AxiDrawState,
@@ -23,9 +21,8 @@ import {
 	ISerial,
 	Metrics,
 } from "./api.js";
-import { HOME, OFF, ON, PEN, UP } from "./commands.js";
+import { complete, HOME, OFF, ON, PEN, UP } from "./commands.js";
 import { AxiDrawControl } from "./control.js";
-import { complete } from "./polyline.js";
 import { SERIAL_PORT } from "./serial.js";
 
 export const DEFAULT_OPTS: AxiDrawOpts = {

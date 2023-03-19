@@ -93,14 +93,17 @@
 		"./control": {
 			"default": "./control.js"
 		},
+		"./dip": {
+			"default": "./dip.js"
+		},
 		"./polyline": {
 			"default": "./polyline.js"
 		},
+		"./registration": {
+			"default": "./registration.js"
+		},
 		"./serial": {
 			"default": "./serial.js"
-		},
-		"./utils": {
-			"default": "./utils.js"
 		}
 	},
 	"thi.ng": {

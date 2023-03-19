@@ -1,7 +1,7 @@
-import { cycle, take } from "@thi.ng/transducers";
 import type { ReadonlyVec } from "@thi.ng/vectors";
 import type {
 	CommentCommand,
+	DrawCommand,
 	HomeCommand,
 	MotorCommand,
 	MoveRelCommand,
@@ -88,31 +88,22 @@ export const WAIT = (delay = 1000): WaitCommand => ["w", delay];
  *
  * @param msg
  */
-export const COMMENT = (msg = ""): CommentCommand => ["comment", msg];
+export const COMMENT = (msg: string): CommentCommand => ["comment", msg];
 
 /**
- * Yields a sequence of `n` repetitions of {@link DOWN}, {@link UP} commands,
- * e.g. for dipping a brush a few times into a paint reservoir to refill.
- *
- * @remarks
- * By default `delayUp` is the same as `delayDown`.
+ * Syntax sugar. Takes an iterable of draw commands, adds {@link START} as
+ * prefix and {@link STOP} as suffix. I.e. it creates a "complete" drawing...
  *
  * @example
  * ```ts
- * [...DIP(3, 100, 200)]
- * // [
- * //   [ "d", 100 ],
- * //   [ "u", 200 ],
- * //   [ "d", 100 ],
- * //   [ "u", 200 ],
- * //   [ "d", 100 ],
- * //   [ "u", 200 ]
- * // ]
+ * [...complete([ MOVE([0, 0]) ])]
+ * // [ ["start"], ["M", [0, 0]], ["stop"] ]
  * ```
  *
- * @param n
- * @param delayDown
- * @param delayUp
+ * @param commands
  */
-export const DIP = (n: number, delayDown?: number, delayUp = delayDown) =>
-	take(n * 2, cycle([DOWN(delayDown), UP(delayUp)]));
+export function* complete(commands: Iterable<DrawCommand>) {
+	yield START;
+	yield* commands;
+	yield STOP;
+}

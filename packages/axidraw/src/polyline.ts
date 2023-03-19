@@ -1,6 +1,6 @@
 import type { ReadonlyVec } from "@thi.ng/vectors";
 import type { DrawCommand, PolylineOpts } from "./api.js";
-import { DOWN, MOVE, PEN, START, STOP, UP } from "./commands.js";
+import { DOWN, MOVE, PEN, UP } from "./commands.js";
 
 /**
  * Takes an array of 2D points and yields an iterable of {@link DrawCommand}s.
@@ -35,22 +35,4 @@ export function* polyline(
 	yield UP(delayUp);
 	// reset pen to configured defaults
 	if (down !== undefined) yield PEN();
-}
-
-/**
- * Syntax sugar. Takes an iterable of draw commands, adds {@link START} as
- * prefix and {@link STOP} as suffix. I.e. it creates a "complete" drawing...
- *
- * @example
- * ```ts
- * [...complete([ ["m", [0, 0]] ])]
- * // [ ["start"], ["m", [0, 0]], ["stop"] ]
- * ```
- *
- * @param commands
- */
-export function* complete(commands: Iterable<DrawCommand>) {
-	yield START;
-	yield* commands;
-	yield STOP;
 }
