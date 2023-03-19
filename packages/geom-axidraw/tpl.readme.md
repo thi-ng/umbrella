@@ -210,7 +210,7 @@ with additional tool-specific arbitrary utility command sequences (e.g. to
 regularly dip a brush into a paint pot/palette).
 
 ```ts tangle:export/readme-interleave.ts
-import { AxiDraw, COMMENT, DIP, MOVE } from "@thi.ng/axidraw";
+import { AxiDraw, COMMENT, dip, MOVE } from "@thi.ng/axidraw";
 import { circle, points, vertices } from "@thi.ng/geom";
 import { asAxiDraw } from "@thi.ng/geom-axidraw";
 
@@ -218,7 +218,7 @@ import { asAxiDraw } from "@thi.ng/geom-axidraw";
     // create point cloud container
     const pts = points(
         // using 24 points on a circle w/ origin @ 150,150, radius=100
-        vertices(circle([150,150], 100), 24),
+        vertices(circle([150, 150], 100), 24),
         { __axi: {
             // use command interleaving
             interleave: {
@@ -232,9 +232,9 @@ import { asAxiDraw } from "@thi.ng/geom-axidraw";
                     COMMENT(`--- refill brush (@ ${n} points) ---`),
                     // move to XY pos (i.e. position of paint reservoir)
                     MOVE([10,50]),
-					// dip the brush 3x times down & up (each time wait 200ms whilst down)
-					// (DIP creates a cmd sequence, so need to use the spread operator `...` here)
-					...DIP(3, 200),
+                    // dip the brush 3x times down & up (each time wait 200ms whilst down)
+                    // (dip() creates a cmd sequence, so need to use the spread operator `...` here)
+                    ...dip(3, { down: 200 }),
                     // (...and then drawing continues w/ next 5 points)
                 ]
             }
