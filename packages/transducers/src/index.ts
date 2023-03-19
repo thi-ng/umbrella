@@ -70,6 +70,7 @@ export * from "./filter.js";
 export * from "./filter-fuzzy.js";
 export * from "./flatten-with.js";
 export * from "./flatten.js";
+export * from "./flatten1.js";
 export * from "./indexed.js";
 export * from "./interleave.js";
 export * from "./interpolate.js";

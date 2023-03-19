@@ -214,6 +214,9 @@
 		"./flatten": {
 			"default": "./flatten.js"
 		},
+		"./flatten1": {
+			"default": "./flatten1.js"
+		},
 		"./frequencies": {
 			"default": "./frequencies.js"
 		},
