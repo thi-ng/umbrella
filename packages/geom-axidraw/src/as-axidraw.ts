@@ -103,8 +103,8 @@ function* __group(
 	$: Group,
 	opts?: Partial<AsAxiDrawOpts>
 ): IterableIterator<DrawCommand> {
+	const $sampleOpts = __sampleAttribs(opts?.samples, $.attribs);
 	const { skip, sort, interleave } = __axiAttribs($.attribs);
-	const sopts = __sampleAttribs(opts?.samples, $.attribs);
 	const children = skip ? [...takeNth(skip + 1, $.children)] : $.children;
 	function* emitChunk(chunk: IHiccupShape[]) {
 		const iter = sort ? (<ShapeOrdering>sort)(chunk) : chunk;
@@ -113,7 +113,7 @@ function* __group(
 			shape.attribs = {
 				...$.attribs,
 				...shape.attribs,
-				__samples: __sampleAttribs(sopts, shape.attribs),
+				__samples: __sampleAttribs($sampleOpts, shape.attribs),
 			};
 			yield* asAxiDraw(shape, opts);
 		}
