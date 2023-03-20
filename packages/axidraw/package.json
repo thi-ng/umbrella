@@ -40,6 +40,7 @@
 		"@thi.ng/date": "^2.4.8",
 		"@thi.ng/errors": "^2.2.13",
 		"@thi.ng/logger": "^1.4.11",
+		"@thi.ng/math": "^5.4.5",
 		"@thi.ng/transducers": "^8.4.0",
 		"@thi.ng/vectors": "^7.6.9",
 		"serialport": "^10.5.0"
