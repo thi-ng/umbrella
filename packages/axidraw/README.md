@@ -22,11 +22,12 @@ This project is part of the
 - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [API](#api)
+- [Available draw commands](#available-draw-commands)
+  - [Command sequence generators](#command-sequence-generators)
   - [Example usage](#example-usage)
     - [Basics](#basics)
   - [geom-axidraw example](#geom-axidraw-example)
-  - [Available draw commands](#available-draw-commands)
-    - [Command sequence generators](#command-sequence-generators)
+  - [Brush & paint palette](#brush--paint-palette)
 - [Authors](#authors)
 - [License](#license)
 
@@ -166,7 +167,7 @@ For Node.js REPL:
 const axidraw = await import("@thi.ng/axidraw");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 2.46 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 2.96 KB
 
 ## Dependencies
 
@@ -183,6 +184,46 @@ Package sizes (brotli'd, pre-treeshake): ESM: 2.46 KB
 ## API
 
 [Generated API docs](https://docs.thi.ng/umbrella/axidraw/)
+
+## Available draw commands
+
+All
+[`DrawCommand`s](https://docs.thi.ng/umbrella/axidraw/types/DrawCommand.html)
+are expressed as S-expression-like, [thi.ng/hiccup]()-style elements, aka JS
+arrays/tuples of `[command, ...args]`. The following commands are supported. All
+also as predefined constants or factory functions for the parametric ones:
+
+| Command                                           | Preset/factory                                                                                                                      | Description                                        |
+|---------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------|
+| `["comment", msg]`                                | [`COMMENT`](https://docs.thi.ng/umbrella/axidraw/functions/COMMENT.html)                                                            | Ignored, but logged during plotting                |
+| `["d", delay?, level?]` / `["u", delay?, level?]` | [`DOWN`](https://docs.thi.ng/umbrella/axidraw/functions/DOWN.html) / [`UP`](https://docs.thi.ng/umbrella/axidraw/functions/UP.html) | Move pen up/down w/ optional delay & level (0-100) |
+| `["home"]`                                        | `HOME`                                                                                                                              | Move to home position (origin)                     |
+| `["m", [x,y], speed?]`                            | [`MOVE_REL`](https://docs.thi.ng/umbrella/axidraw/functions/MOVE_REL.html)                                                          | Move to relative position w/ optional speed factor |
+| `["M", [x,y], speed?]`                            | [`MOVE`](https://docs.thi.ng/umbrella/axidraw/functions/MOVE.html)                                                                  | Move to absolute position w/ optional speed factor |
+| `["on"]` / `["off"]`                              | `ON` / `OFF`                                                                                                                        | Turn motors on/off                                 |
+| `["pen", down, up]`                               | [`PEN`](https://docs.thi.ng/umbrella/axidraw/functions/PEN.html)                                                                    | Pen config (up/down levels)                        |
+| `["reset"]`                                       | `RESET`                                                                                                                             | Execute user defined reset sequence<sup>(1)</sup>  |
+| `["restore"]`                                     | `RESTORE`                                                                                                                           | Restore saved pen up/down levels                   |
+| `["save"]`                                        | `SAVE`                                                                                                                              | Save current pen up/down levels                    |
+| `["start"]`                                       | `START`                                                                                                                             | Execute user defined start sequence<sup>(1)</sup>  |
+| `["stop"]`                                        | `STOP`                                                                                                                              | Execute user defined stop sequence<sup>(1)</sup>   |
+| `["w", delay]`                                    | [`WAIT`](https://docs.thi.ng/umbrella/axidraw/functions/WAIT.html)                                                                  | Wait N milliseconds                                |
+
+- <sup>(1)</sup> See
+  [AxiDrawOpts](https://docs.thi.ng/umbrella/axidraw/interfaces/AxiDrawOpts.html)
+  for details.
+
+### Command sequence generators
+
+Additionally, the following command sequence generators are provided (see their
+docs for details and code examples):
+
+- [`complete()`](https://docs.thi.ng/umbrella/axidraw/functions/complete.html)
+- [`dip()`](https://docs.thi.ng/umbrella/axidraw/functions/dip.html)
+- [`linearPalette()`](https://docs.thi.ng/umbrella/axidraw/functions/linearPalette.html)
+- [`polyline()`](https://docs.thi.ng/umbrella/axidraw/functions/polyline.html)
+- [`radialPalette()`](https://docs.thi.ng/umbrella/axidraw/functions/radialPalette.html)
+- [`registrationMark()`](https://docs.thi.ng/umbrella/axidraw/functions/registrationMark.html)
 
 ### Example usage
 
@@ -259,6 +300,72 @@ import { map, range } from "@thi.ng/transducers";
 })();
 ```
 
+### Brush & paint palette
+
+This example illustrates how the [`linearPalette()`]() command sequence
+generator can be used to paint random dots with a brush which gets re-dipped in
+different paints every 10 dots...
+
+Also see
+[`InterleaveOpts`](https://docs.thi.ng/umbrella/geom-axidraw/interfaces/InterleaveOpts.html)
+for more details...
+
+```ts
+import { points } from "@thi.ng/geom";
+import { asAxiDraw } from "@thi.ng/geom-axidraw";
+import { repeatedly } from "@thi.ng/transducers";
+import { randMinMax2 } from "@thi.ng/vectors";
+
+// configure palette
+// "linear" here means the palette slots are arranged in a line
+// (there's also a radialPalette() function for circular/elliptical palette layouts)
+const palette = linearPalette({
+    // first palette slot is near the world origin (slight offset)
+    pos: [2, 0],
+    // 2mm jitter radius (to not always move to exact same position)
+    jitter: 2,
+    // palette has 5 paint slots
+    num: 5,
+    // each slot 40mm separation along Y-axis
+    // (needs to be measured/determined manually)
+    step: [0, 40],
+    // dip brush 3x each time
+    repeat: 3,
+});
+
+// define point cloud of 100 random points
+// using a random palette slot each time (for each refill)
+// assign axidraw-specific attribs to refill brush every 10 dots
+const cloud = points(
+    // pick random points
+    [...repeatedly(() => randMinMax2([], [10, 10], [190, 190]), 100)],
+    // shape attributes
+    {
+        __axi: {
+            interleave: {
+                // every 10 elements/dots...
+                num: 10,
+                // execute these commands...
+                commands: () => [
+                    // first brush cleaning in water
+                    // (we decide to use the last palette slot for that)
+                    ...palette(4),
+                    // now "refill" brush at a random other slot
+                    ...palette(Math.floor(Math.random() * 4))
+                ]
+            }
+        }
+    }
+);
+
+// AxiDraw setup
+const axi = new AxiDraw();
+...
+
+// convert geometry into axidraw commands and send to plotter
+axi.draw(asAxiDraw(cloud));
+```
+
 Other selected toots/tweets:
 
 - [Project announcement](https://mastodon.thi.ng/@toxi/109490174709589253)
@@ -268,38 +375,8 @@ Other selected toots/tweets:
 - [Bitmap-to-vector conversions & shape sorting](https://mastodon.thi.ng/@toxi/109570540391689321)
 - [Multi-color plotting](https://mastodon.thi.ng/@toxi/109586780630493994)
 - [Using water color & paintbrush](https://mastodon.thi.ng/@toxi/110044424626641749)
+- [Water color brush tests](https://mastodon.thi.ng/@toxi/110051629944117139)
 - more to come...
-
-### Available draw commands
-
-All
-[`DrawCommand`s](https://docs.thi.ng/umbrella/axidraw/types/DrawCommand.html)
-are expressed as S-expression-like, [thi.ng/hiccup]()-style elements, aka JS
-arrays/tuples of `[command, ...args]`. The following commands are supported. All
-also as predefined constants or factory functions for the parametric ones:
-
-| Command                           | Preset/factory                                                                                                                      |
-|-----------------------------------|-------------------------------------------------------------------------------------------------------------------------------------|
-| `["comment", msg]`                | [`COMMENT`](https://docs.thi.ng/umbrella/axidraw/functions/COMMENT.html)                                                            |
-| `["d", delay?]` / `["u", delay?]` | [`DOWN`](https://docs.thi.ng/umbrella/axidraw/functions/DOWN.html) / [`UP`](https://docs.thi.ng/umbrella/axidraw/functions/UP.html) |
-| `["home"]`                        | `HOME`                                                                                                                              |
-| `["m", [x,y], speed?]`            | [`MOVE_REL`](https://docs.thi.ng/umbrella/axidraw/functions/MOVE_REL.html)                                                          |
-| `["M", [x,y], speed?]`            | [`MOVE`](https://docs.thi.ng/umbrella/axidraw/functions/MOVE.html)                                                                  |
-| `["on"]` / `["off"]`              | `ON` / `OFF`                                                                                                                        |
-| `["pen", down, up]`               | [`PEN`](https://docs.thi.ng/umbrella/axidraw/functions/PEN.html)                                                                    |
-| `["reset"]`                       | `RESET`                                                                                                                             |
-| `["start"]`                       | `START`                                                                                                                             |
-| `["stop"]`                        | `STOP`                                                                                                                              |
-| `["w", delay]`                    | [`WAIT`](https://docs.thi.ng/umbrella/axidraw/functions/WAIT.html)                                                                  |
-
-#### Command sequence generators
-
-Additionally, the following command sequence generators are provided (see their docs for code examples):
-
-- [`complete`](https://docs.thi.ng/umbrella/axidraw/functions/complete.html)
-- [`dip`](https://docs.thi.ng/umbrella/axidraw/functions/dip.html)
-- [`polyline`](https://docs.thi.ng/umbrella/axidraw/functions/polyline.html)
-- [`registrationMark`](https://docs.thi.ng/umbrella/axidraw/functions/registrationMark.html)
 
 ## Authors
 
