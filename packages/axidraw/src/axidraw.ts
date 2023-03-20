@@ -50,12 +50,14 @@ export class AxiDraw implements IReset {
 	isConnected = false;
 	isPenDown = false;
 	penLimits: [number, number];
+	penState: [number, number][] = [];
 	pos: Vec = [0, 0];
 	targetPos: Vec = [0, 0];
 
 	constructor(opts: Partial<AxiDrawOpts> = {}) {
 		this.opts = { ...DEFAULT_OPTS, ...opts };
 		this.penLimits = [this.opts.down, this.opts.up];
+		this.save();
 	}
 
 	reset() {
@@ -213,6 +215,12 @@ export class AxiDraw implements IReset {
 					wait = this.penDown(a, b);
 					penCommands++;
 					break;
+				case "save":
+					this.save();
+					break;
+				case "restore":
+					this.restore();
+					break;
 				case "w":
 					wait = <number>a;
 					break;
@@ -234,6 +242,12 @@ export class AxiDraw implements IReset {
 				wait = Math.max(0, wait - preDelay);
 				logger.debug(`waiting ${wait}ms...`);
 				await delayed(0, wait);
+			}
+			// restore one-off pen config to current state
+			if (cmd === "d" && b !== undefined) {
+				this.sendPenConfig(5, this.penLimits[0]);
+			} else if (cmd === "u" && b !== undefined) {
+				this.sendPenConfig(4, this.penLimits[1]);
 			}
 		}
 		const duration = Date.now() - t0;
@@ -269,6 +283,22 @@ export class AxiDraw implements IReset {
 
 	motorsOff() {
 		this.send("EM,0,0\r");
+	}
+
+	save() {
+		this.opts.logger.debug("saving pen state:", this.penLimits);
+		this.penState.push(<[number, number]>this.penLimits.slice());
+	}
+
+	restore() {
+		if (this.penState.length < 2) {
+			this.opts.logger.warn("stack underflow, can't restore pen state");
+			return;
+		}
+		const [down, up] = (this.penLimits = this.penState.pop()!);
+		this.sendPenConfig(5, down);
+		this.sendPenConfig(4, up);
+		this.opts.logger.debug("restored pen state:", this.penLimits);
 	}
 
 	penConfig(down?: number, up?: number) {

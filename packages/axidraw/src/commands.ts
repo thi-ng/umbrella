@@ -9,6 +9,8 @@ import type {
 	PenConfigCommand,
 	PenUpDownCommand,
 	ResetCommand,
+	RestoreCommand,
+	SaveCommand,
 	StartCommand,
 	StopCommand,
 	WaitCommand,
@@ -21,6 +23,14 @@ export const STOP: StopCommand = ["stop"];
 export const HOME: HomeCommand = ["home"];
 
 export const RESET: ResetCommand = ["reset"];
+
+export const ON: MotorCommand = ["on"];
+
+export const OFF: MotorCommand = ["off"];
+
+export const SAVE: SaveCommand = ["save"];
+
+export const RESTORE: RestoreCommand = ["restore"];
 
 /**
  * Creates a {@link PenConfigCommand} using provided down/up positions.
@@ -35,22 +45,30 @@ export const PEN = (posDown?: number, posUp?: number): PenConfigCommand => [
 ];
 
 /**
- * Creates a {@link PenUpDownCommand} to move the pen up.
+ * Creates a {@link PenUpDownCommand} to move the pen up. Both args are optional
+ * and if omitted globally configured values are used.
  *
  * @param delay
+ * @param level
  */
-export const UP = (delay?: number): PenUpDownCommand => ["u", delay];
+export const UP = (delay?: number, level?: number): PenUpDownCommand => [
+	"u",
+	delay,
+	level,
+];
 
 /**
- * Creates a {@link PenUpDownCommand} to move the pen down.
+ * Creates a {@link PenUpDownCommand} to move the pen down. Both args are
+ * optional and if omitted globally configured values are used.
  *
  * @param delay
+ * @param level
  */
-export const DOWN = (delay?: number): PenUpDownCommand => ["d", delay];
-
-export const ON: MotorCommand = ["on"];
-
-export const OFF: MotorCommand = ["off"];
+export const DOWN = (delay?: number, level?: number): PenUpDownCommand => [
+	"d",
+	delay,
+	level,
+];
 
 /**
  * Creates a {@link MoveXYCommand} command (absolute coordinates).

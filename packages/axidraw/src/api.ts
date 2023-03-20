@@ -45,18 +45,30 @@ export type WaitCommand = ["w", number];
 /** Ignored, but will be logged (if logging enabled) */
 export type CommentCommand = ["comment", string];
 
+/**
+ * Stores current pen configuration on stack.
+ */
+export type SaveCommand = ["save"];
+
+/**
+ * Restores current pen configuration from stack.
+ */
+export type RestoreCommand = ["restore"];
+
 export type DrawCommand =
-	| StartCommand
-	| StopCommand
+	| CommentCommand
 	| HomeCommand
-	| ResetCommand
 	| MotorCommand
+	| MoveRelCommand
+	| MoveXYCommand
 	| PenConfigCommand
 	| PenUpDownCommand
-	| MoveXYCommand
-	| MoveRelCommand
-	| WaitCommand
-	| CommentCommand;
+	| ResetCommand
+	| RestoreCommand
+	| SaveCommand
+	| StartCommand
+	| StopCommand
+	| WaitCommand;
 
 /**
  * Global plotter drawing configuration. Also see {@link DEFAULT_OPTS}.
