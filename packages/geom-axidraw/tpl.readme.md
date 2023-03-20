@@ -234,7 +234,7 @@ import { asAxiDraw } from "@thi.ng/geom-axidraw";
                     MOVE([10,50]),
                     // dip the brush 3x times down & up (each time wait 200ms whilst down)
                     // (dip() creates a cmd sequence, so need to use the spread operator `...` here)
-                    ...dip(3, { down: 200 }),
+                    ...dip(3, { downDelay: 200 }),
                     // (...and then drawing continues w/ next 5 points)
                 ]
             }
