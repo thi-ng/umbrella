@@ -2,22 +2,32 @@ import type { Fn0 } from "@thi.ng/api";
 import { flatten1 } from "@thi.ng/transducers/flatten1";
 import { repeatedly } from "@thi.ng/transducers/repeatedly";
 import type { DrawCommand } from "./api.js";
-import { DOWN, UP } from "./commands.js";
+import { DOWN, RESTORE, SAVE, UP } from "./commands.js";
 
 export interface DipOpts {
 	/**
-	 * Delay for emitted {@link DOWN} commands. If omitted, uses globally
-	 * configured default.
+	 * Pen level (0-99) for emitted {@link UP} commands. If omitted, uses
+	 * currently configured default.
 	 */
 	up: number;
 	/**
-	 * Delay for emitted {@link UP} commands. If omitted, uses globally
+	 * Delay for emitted {@link DOWN} commands. If omitted, uses currently
 	 * configured default.
+	 */
+	upDelay: number;
+	/**
+	 * Pen level (0-99) for emitted {@link DOWN} commands. If omitted, uses
+	 * currently configured default.
 	 */
 	down: number;
 	/**
+	 * Delay for emitted {@link UP} commands. If omitted, uses currently
+	 * configured default.
+	 */
+	downDelay: number;
+	/**
 	 * No-arg function to inject custom commands between each down - up command.
-	 * See example in {@link DIP} docs.
+	 * See example in {@link dip} docs.
 	 */
 	commands: Fn0<Iterable<DrawCommand>>;
 }
@@ -61,12 +71,21 @@ export interface DipOpts {
  * @param n
  * @param opts
  */
-export const dip = (n: number, opts: Partial<DipOpts> = {}) =>
-	flatten1<DrawCommand>(
+export const dip = (
+	n: number,
+	opts: Partial<DipOpts> = {}
+): Iterable<DrawCommand> => {
+	const down = DOWN(opts.downDelay, opts.down);
+	const up = UP(opts.upDelay, opts.up);
+	const main = flatten1<DrawCommand>(
 		repeatedly(
 			opts.commands
-				? () => [DOWN(opts.down), ...opts.commands!(), UP(opts.up)]
-				: () => [DOWN(opts.down), UP(opts.up)],
+				? () => [down, ...opts.commands!(), up]
+				: () => [down, up],
 			n
 		)
 	);
+	return opts.down !== undefined || opts.up !== undefined
+		? [SAVE, ...main, RESTORE]
+		: main;
+};
