@@ -3,7 +3,9 @@ import type { Attribs } from "@thi.ng/geom-api";
 import { group } from "@thi.ng/geom/group";
 import { points } from "@thi.ng/geom/points";
 import { polyline } from "@thi.ng/geom/polyline";
-import { copy, ReadonlyVec } from "@thi.ng/vectors";
+import type { ReadonlyVec } from "@thi.ng/vectors";
+import { add2 } from "@thi.ng/vectors/add";
+import { copy } from "@thi.ng/vectors/copy";
 
 export interface AsGeometryOpts {
 	/**
@@ -68,17 +70,22 @@ export const asGeometry = (
 	let penDown = false;
 	let pts: ReadonlyVec[] | null = null;
 	let currPos: ReadonlyVec = [0, 0];
+	const $move = (newPos: ReadonlyVec) => {
+		if (penDown || opts.rapids) {
+			if (!pts) pts = [copy(currPos), newPos];
+			else pts.push(newPos);
+		}
+		currPos = newPos;
+	};
 	for (let cmd of src) {
 		switch (cmd[0]) {
+			// absolute
+			case "M":
+				$move(copy(cmd[1]));
+				break;
+			// relative
 			case "m":
-				{
-					const newPos = copy(cmd[1]);
-					if (penDown || opts.rapids) {
-						if (!pts) pts = [copy(currPos), newPos];
-						else pts.push(newPos);
-					}
-					currPos = newPos;
-				}
+				$move(add2([], currPos, cmd[1]));
 				break;
 			case "u":
 				if (pts) {
