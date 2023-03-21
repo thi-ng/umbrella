@@ -111,7 +111,7 @@ export interface AxiDrawOpts {
 	 *
 	 * @defaultValue [[0, 0], [420, 297]]
 	 */
-	clip?: [ReadonlyVec, ReadonlyVec];
+	bounds?: [ReadonlyVec, ReadonlyVec];
 	/**
 	 * Conversion factor from geometry worldspace units to inches.
 	 * Default units are millimeters.

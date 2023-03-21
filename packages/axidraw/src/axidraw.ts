@@ -7,7 +7,7 @@ import { ioerror } from "@thi.ng/errors/io";
 import { unsupported } from "@thi.ng/errors/unsupported";
 import { ConsoleLogger } from "@thi.ng/logger/console";
 import { abs2 } from "@thi.ng/vectors/abs";
-import { ReadonlyVec, Vec, ZERO2 } from "@thi.ng/vectors/api";
+import { ReadonlyVec, Vec, VecPair, ZERO2 } from "@thi.ng/vectors/api";
 import { clamp2 } from "@thi.ng/vectors/clamp";
 import { maddN2 } from "@thi.ng/vectors/maddn";
 import { mag } from "@thi.ng/vectors/mag";
@@ -31,7 +31,7 @@ export const DEFAULT_OPTS: AxiDrawOpts = {
 	logger: new ConsoleLogger("axidraw"),
 	control: new AxiDrawControl(),
 	refresh: 1000,
-	clip: [
+	bounds: [
 		[0, 0],
 		[420, 297],
 	],
@@ -58,10 +58,19 @@ export class AxiDraw implements IReset {
 	penState: [number, number][] = [];
 	pos: Vec = [0, 0];
 	targetPos: Vec = [0, 0];
+	scale: number;
+	bounds?: VecPair;
 
 	constructor(opts: Partial<AxiDrawOpts> = {}) {
 		this.opts = { ...DEFAULT_OPTS, ...opts };
 		this.penLimits = [this.opts.down, this.opts.up];
+		this.scale = this.opts.stepsPerInch / this.opts.unitsPerInch;
+		if (this.opts.bounds) {
+			this.bounds = [
+				mulN2([], this.opts.bounds[0], this.scale),
+				mulN2([], this.opts.bounds[1], this.scale),
+			];
+		}
 		this.save();
 	}
 
@@ -346,9 +355,9 @@ export class AxiDraw implements IReset {
 	 * @param tempo
 	 */
 	moveTo(p: ReadonlyVec, tempo?: number) {
-		const { targetPos, opts } = this;
+		const { scale, targetPos } = this;
 		// apply scale factor: worldspace units -> motor steps
-		mulN2(targetPos, p, opts.stepsPerInch / opts.unitsPerInch);
+		mulN2(targetPos, p, scale);
 		return this.sendMove(tempo);
 	}
 
@@ -359,9 +368,9 @@ export class AxiDraw implements IReset {
 	 * @param tempo
 	 */
 	moveRelative(delta: ReadonlyVec, tempo?: number) {
-		const { pos, targetPos, opts } = this;
+		const { pos, scale, targetPos } = this;
 		// apply scale factor: worldspace units -> motor steps
-		maddN2(targetPos, delta, opts.stepsPerInch / opts.unitsPerInch, pos);
+		maddN2(targetPos, delta, scale, pos);
 		return this.sendMove(tempo);
 	}
 
@@ -386,8 +395,8 @@ export class AxiDraw implements IReset {
 	}
 
 	protected sendMove(tempo = 1) {
-		const { pos, targetPos, opts, isPenDown } = this;
-		if (opts.clip) clamp2(null, targetPos, ...opts.clip);
+		const { bounds, pos, targetPos, opts, isPenDown } = this;
+		if (bounds) clamp2(null, targetPos, ...bounds);
 		const delta = sub2([], targetPos, pos);
 		set2(pos, targetPos);
 		const maxAxis = Math.max(...abs2([], delta));
