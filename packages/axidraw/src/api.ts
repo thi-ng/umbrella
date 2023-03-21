@@ -102,6 +102,17 @@ export interface AxiDrawOpts {
 	 */
 	control?: IDeref<AxiDrawState>;
 	/**
+	 * All XY coords will be clamped to given bounding rect (in worldspace
+	 * units) defined by `[[minX,minY], [maxX,maxY]]`. See
+	 * {@link AxiDrawOpts.unitsPerInch}. The default value is DIN A3 dimensions.
+	 *
+	 * @remarks
+	 * Set to `undefined` to disable clipping.
+	 *
+	 * @defaultValue [[0, 0], [420, 297]]
+	 */
+	clip?: [ReadonlyVec, ReadonlyVec];
+	/**
 	 * Conversion factor from geometry worldspace units to inches.
 	 * Default units are millimeters.
 	 *

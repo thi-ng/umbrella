@@ -8,6 +8,7 @@ import { unsupported } from "@thi.ng/errors/unsupported";
 import { ConsoleLogger } from "@thi.ng/logger/console";
 import { abs2 } from "@thi.ng/vectors/abs";
 import { ReadonlyVec, Vec, ZERO2 } from "@thi.ng/vectors/api";
+import { clamp2 } from "@thi.ng/vectors/clamp";
 import { maddN2 } from "@thi.ng/vectors/maddn";
 import { mag } from "@thi.ng/vectors/mag";
 import { mulN2 } from "@thi.ng/vectors/muln";
@@ -30,6 +31,10 @@ export const DEFAULT_OPTS: AxiDrawOpts = {
 	logger: new ConsoleLogger("axidraw"),
 	control: new AxiDrawControl(),
 	refresh: 1000,
+	clip: [
+		[0, 0],
+		[420, 297],
+	],
 	unitsPerInch: 25.4,
 	stepsPerInch: 2032,
 	speedDown: 4000,
@@ -382,6 +387,7 @@ export class AxiDraw implements IReset {
 
 	protected sendMove(tempo = 1) {
 		const { pos, targetPos, opts, isPenDown } = this;
+		if (opts.clip) clamp2(null, targetPos, ...opts.clip);
 		const delta = sub2([], targetPos, pos);
 		set2(pos, targetPos);
 		const maxAxis = Math.max(...abs2([], delta));
