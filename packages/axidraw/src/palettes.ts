@@ -2,11 +2,10 @@ import { isNumber } from "@thi.ng/checks/is-number";
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import { cossin } from "@thi.ng/math/angle";
 import { mix } from "@thi.ng/math/mix";
-import { ReadonlyVec, ZERO2 } from "@thi.ng/vectors/api";
+import type { ReadonlyVec } from "@thi.ng/vectors/api";
 import { jitter } from "@thi.ng/vectors/jitter";
 import { madd2 } from "@thi.ng/vectors/madd";
 import { maddN2 } from "@thi.ng/vectors/maddn";
-import { max2 } from "@thi.ng/vectors/max";
 import { MOVE } from "./commands.js";
 import { dip, DipOpts } from "./dip.js";
 
@@ -154,14 +153,10 @@ export const linearPalette = (opts: LinearPaletteOpts) => {
 		}
 		return [
 			MOVE(
-				max2(
+				jitter(
 					null,
-					jitter(
-						null,
-						maddN2([], $opts.step, id, $opts.pos),
-						$opts.jitter
-					),
-					ZERO2
+					maddN2([], $opts.step, id, $opts.pos),
+					$opts.jitter
 				)
 			),
 			...dip($opts.repeat, dipOpts),
