@@ -182,7 +182,7 @@ For Node.js REPL:
 const axidraw = await import("@thi.ng/axidraw");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 3.11 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 3.13 KB
 
 ## Dependencies
 
