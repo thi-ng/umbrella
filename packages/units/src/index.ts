@@ -23,6 +23,6 @@ export * from "./units/velocity.js";
 export * from "./units/volume.js";
 
 export * from "./constants/densities.js";
-export * from "./constants/din-sizes.js";
 export * from "./constants/earth.js";
+export * from "./constants/paper-sizes.js";
 export * from "./constants/velocities.js";

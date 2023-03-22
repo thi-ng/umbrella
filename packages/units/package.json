@@ -102,11 +102,11 @@
 		"./constants/densities": {
 			"default": "./constants/densities.js"
 		},
-		"./constants/din-sizes": {
-			"default": "./constants/din-sizes.js"
-		},
 		"./constants/earth": {
 			"default": "./constants/earth.js"
+		},
+		"./constants/paper-sizes": {
+			"default": "./constants/paper-sizes.js"
 		},
 		"./constants/velocities": {
 			"default": "./constants/velocities.js"
