@@ -35,6 +35,10 @@ This project is part of the
 
 Minimal AxiDraw plotter/drawing machine controller for Node.js.
 
+![AXI-SCAPE #000](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/axidraw/axiscape-1280.jpg)
+
+<small>AXI-SCAPE \#000, 12-layer watercolor painting/plot of cellular automata, © 2023 Karsten Schmidt</small>
+
 This package provides a super-lightweight alternative to control an [AxiDraw
 plotter](https://axidraw.com/) directly from Node.js, using a small custom set
 of medium/high-level drawing commands. Structurally, these custom commands are
