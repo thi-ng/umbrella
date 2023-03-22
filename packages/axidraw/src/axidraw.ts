@@ -6,6 +6,9 @@ import { assert } from "@thi.ng/errors/assert";
 import { ioerror } from "@thi.ng/errors/io";
 import { unsupported } from "@thi.ng/errors/unsupported";
 import { ConsoleLogger } from "@thi.ng/logger/console";
+import { DIN_A3_LANDSCAPE } from "@thi.ng/units/constants/paper-sizes";
+import { convert, div, Quantity } from "@thi.ng/units/unit";
+import { inch } from "@thi.ng/units/units/length";
 import { abs2 } from "@thi.ng/vectors/abs";
 import { ReadonlyVec, Vec, VecPair, ZERO2 } from "@thi.ng/vectors/api";
 import { clamp2 } from "@thi.ng/vectors/clamp";
@@ -31,10 +34,8 @@ export const DEFAULT_OPTS: AxiDrawOpts = {
 	logger: new ConsoleLogger("axidraw"),
 	control: new AxiDrawControl(),
 	refresh: 1000,
-	bounds: [
-		[0, 0],
-		[420, 297],
-	],
+	bounds: DIN_A3_LANDSCAPE,
+	home: [0, 0],
 	unitsPerInch: 25.4,
 	stepsPerInch: 2032,
 	speedDown: 4000,
@@ -58,6 +59,7 @@ export class AxiDraw implements IReset {
 	penState: [number, number][] = [];
 	pos: Vec = [0, 0];
 	targetPos: Vec = [0, 0];
+	homePos!: ReadonlyVec;
 	scale: number;
 	bounds?: VecPair;
 
@@ -65,11 +67,21 @@ export class AxiDraw implements IReset {
 		this.opts = { ...DEFAULT_OPTS, ...opts };
 		this.penLimits = [this.opts.down, this.opts.up];
 		this.scale = this.opts.stepsPerInch / this.opts.unitsPerInch;
+		this.setHome(this.opts.home);
 		if (this.opts.bounds) {
-			this.bounds = [
-				mulN2([], this.opts.bounds[0], this.scale),
-				mulN2([], this.opts.bounds[1], this.scale),
-			];
+			this.bounds =
+				this.opts.bounds instanceof Quantity
+					? [
+							[0, 0],
+							convert(
+								this.opts.bounds,
+								div(inch, this.opts.stepsPerInch)
+							),
+					  ]
+					: [
+							mulN2([], this.opts.bounds[0], this.scale),
+							mulN2([], this.opts.bounds[1], this.scale),
+					  ];
 		}
 		this.save();
 	}
@@ -355,9 +367,9 @@ export class AxiDraw implements IReset {
 	 * @param tempo
 	 */
 	moveTo(p: ReadonlyVec, tempo?: number) {
-		const { scale, targetPos } = this;
-		// apply scale factor: worldspace units -> motor steps
-		mulN2(targetPos, p, scale);
+		const { homePos, scale, targetPos } = this;
+		// apply scale factor: worldspace units -> motor steps, add home offset
+		maddN2(targetPos, p, scale, homePos);
 		return this.sendMove(tempo);
 	}
 
@@ -381,6 +393,11 @@ export class AxiDraw implements IReset {
 		return this.moveTo(ZERO2);
 	}
 
+	setHome(pos: ReadonlyVec) {
+		this.homePos = mulN2([], pos, this.scale);
+		this.opts.logger.debug("setting home position:", pos);
+	}
+
 	protected async onSignal() {
 		this.opts.logger.warn(`SIGNINT received, stop drawing...`);
 		this.penUp(0);
@@ -395,7 +412,7 @@ export class AxiDraw implements IReset {
 	}
 
 	protected sendMove(tempo = 1) {
-		const { bounds, pos, targetPos, opts, isPenDown } = this;
+		const { bounds, pos, scale, targetPos, opts, isPenDown } = this;
 		if (bounds) clamp2(null, targetPos, ...bounds);
 		const delta = sub2([], targetPos, pos);
 		set2(pos, targetPos);
@@ -404,7 +421,7 @@ export class AxiDraw implements IReset {
 			(1000 * maxAxis) /
 			((isPenDown ? opts.speedDown : opts.speedUp) * tempo);
 		this.send(`XM,${duration | 0},${delta[0] | 0},${delta[1] | 0}\r`);
-		return [duration, (mag(delta) * opts.unitsPerInch) / opts.stepsPerInch];
+		return [duration, mag(delta) / scale];
 	}
 
 	/**

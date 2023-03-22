@@ -1,5 +1,6 @@
 import type { IDeref } from "@thi.ng/api";
 import type { ILogger } from "@thi.ng/logger";
+import type { Quantity } from "@thi.ng/units";
 import type { ReadonlyVec } from "@thi.ng/vectors";
 
 /** Start command sequence (configurable via {@link AxiDrawOpts}) */
@@ -102,16 +103,27 @@ export interface AxiDrawOpts {
 	 */
 	control?: IDeref<AxiDrawState>;
 	/**
-	 * All XY coords will be clamped to given bounding rect (in worldspace
-	 * units) defined by `[[minX,minY], [maxX,maxY]]`. See
-	 * {@link AxiDrawOpts.unitsPerInch}. The default value is DIN A3 dimensions.
+	 * All XY coords will be clamped to given bounding rect, either defined by
+	 * `[[minX,minY], [maxX,maxY]]` (in worldspace units) or as paper size
+	 * defined as a
+	 * [`quantity`](https://docs.thi.ng/umbrella/units/functions/quantity-1.html).
+	 * The default value is DIN A3 landscape.
 	 *
 	 * @remarks
-	 * Set to `undefined` to disable clipping.
+	 * Set to `undefined` to disable bounds/clipping. If given a paper size (via
+	 * thi.ng/units `quantity()`), the units used to define these dimensions are
+	 * irrelevant (and independent of {@link AxiDrawOpts.unitsPerInch}!) and
+	 * will be automatically converted. Also, the resulting bounds will always
+	 * be based on [0, 0].
 	 *
-	 * @defaultValue [[0, 0], [420, 297]]
+	 * List of paper sizes/presets:
+	 * https://github.com/thi-ng/umbrella/blob/develop/packages/units/README.md#constants
+	 *
+	 * Also see {@link AxiDrawOpts.unitsPerInch}
+	 *
+	 * @defaultValue `DIN_A3_LANDSCAPE`
 	 */
-	bounds?: [ReadonlyVec, ReadonlyVec];
+	bounds?: [ReadonlyVec, ReadonlyVec] | Quantity<number[]>;
 	/**
 	 * Conversion factor from geometry worldspace units to inches.
 	 * Default units are millimeters.
@@ -179,6 +191,22 @@ export interface AxiDrawOpts {
 	 * @defaultValue `[UP, HOME, OFF]`
 	 */
 	stop: DrawCommand[];
+	/**
+	 * Position (in world space units) which is considered the origin and which
+	 * will be added to all coordinates as offset (e.g. for plotting with a
+	 * physically offset easel).
+	 *
+	 * @remarks
+	 * Note: The configured {@link AxiDrawOpts.bounds} are independent from this
+	 * setting and are intended to enforce the plotter's physical movement
+	 * limits. E.g. shifting the home/offset position by +100mm along X (and
+	 * assuming only positive coordinates will be used for the drawing), simply
+	 * means the available horizontal drawing space will be reduced by the same
+	 * amount...
+	 *
+	 * @defaultValue [0, 0]
+	 */
+	home: ReadonlyVec;
 	/**
 	 * Refresh interval for checking the control FSM in paused state.
 	 *

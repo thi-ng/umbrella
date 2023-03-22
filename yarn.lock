@@ -2634,6 +2634,7 @@ __metadata:
     "@thi.ng/math": ^5.4.5
     "@thi.ng/testament": ^0.3.13
     "@thi.ng/transducers": ^8.4.0
+    "@thi.ng/units": ^0.3.1
     "@thi.ng/vectors": ^7.6.9
     rimraf: ^4.4.0
     serialport: ^10.5.0
@@ -5420,7 +5421,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/units@workspace:packages/units":
+"@thi.ng/units@^0.3.1, @thi.ng/units@workspace:packages/units":
   version: 0.0.0-use.local
   resolution: "@thi.ng/units@workspace:packages/units"
   dependencies:
