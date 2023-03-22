@@ -545,17 +545,21 @@ convert(mul(quantity(10, "mm"), quantity(2, "in")), "cm2")
 
 The following constants are provided (more to come):
 
-| Var name                  | Unit              | Comment                |
-|---------------------------|-------------------|------------------------|
-| `DIN_A0` ... `DIN_A8`     | 2d vector of `mm` | Paper sizes            |
-| `EARTH_GRAVITY`           | `m/s`             |                        |
-| `EARTH_CIRCUMFERENCE`     | `m`               |                        |
-| `EARTH_MASS`              | `kg`              |                        |
-| `EARTH_RADIUS`            | `m`               |                        |
-| `GRAVITATION`             | `kg-1·m3·s-2`     | Gravitational constant |
-| `SPEED_OF_LIGHT`          | `m/s`             |                        |
-| `SPEED_OF_SOUND_IN_AIR`   | `m/s`             | at 20 ℃                |
-| `SPEED_OF_SOUND_IN_WATER` | `m/s`             | at 20 ℃                |
+| Var name                       | Unit                | Comment                |
+|--------------------------------|---------------------|------------------------|
+| `DIN_A0` ... `DIN_A8`          | 2d vector of `mm`   | Paper sizes            |
+| `EARTH_GRAVITY`                | `m/s`               |                        |
+| `EARTH_CIRCUMFERENCE`          | `m`                 |                        |
+| `EARTH_MASS`                   | `kg`                |                        |
+| `EARTH_RADIUS`                 | `m`                 |                        |
+| `GRAVITATION`                  | `kg-1·m3·s-2`       | Gravitational constant |
+| `SPEED_OF_LIGHT`               | `m/s`               |                        |
+| `SPEED_OF_SOUND_IN_AIR`        | `m/s`               | at 20 ℃                |
+| `SPEED_OF_SOUND_IN_WATER`      | `m/s`               | at 20 ℃                |
+| `US_ANSI_A` ... `US_ANSI_E`    | 2d vector of `inch` | Paper sizes            |
+| `US_ARCH_A` ... `US_ARCH_E`    | 2d vector of `inch` | Paper sizes            |
+| `US_LETTER` / `US_HALF_LETTER` | 2d vector of `inch` | Paper sizes            |
+| `US_LEGAL` / `US_JUNIOR_LEGAL` | 2d vector of `inch` | Paper sizes            |
 
 Densities of selected materials:
 
@@ -608,7 +612,7 @@ For Node.js REPL:
 const units = await import("@thi.ng/units");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 4.37 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 4.51 KB
 
 ## Dependencies
 
