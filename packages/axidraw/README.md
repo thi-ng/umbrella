@@ -11,7 +11,7 @@ This project is part of the
 
 - [About](#about)
   - [Declarative vs. imperative](#declarative-vs-imperative)
-  - [Units, limits & clipping](#units-limits--clipping)
+  - [Units, limits & clamping](#units-limits--clamping)
   - [Path planning](#path-planning)
   - [thi.ng/geom support](#thinggeom-support)
   - [SVG support](#svg-support)
@@ -54,15 +54,30 @@ following the pattern of other packages in the
 until the very last moment before being sent to the machine for physical
 output...
 
-### Units, limits & clipping
+### Units, limits & clamping
 
-This package performs **no bounds checking nor clipping** and expects all given
-coordinates to be valid and within machine limits. Coordinates can be given in
-any unit, but if not using millimeters (default), a conversion factor to inches
-(`unitsPerInch`) **MUST** be provided as part of the [options
+By default, bounds checking and coordinate clamping are applied (against a user
+defined bounding rect or paper size), however this can be disabled (in which
+case all given coordinates are expected to be valid and within machine limits).
+Coordinates can be given in any unit, but if not using millimeters (default), a
+conversion factor to inches (`unitsPerInch`) **MUST** be provided as part of the
+[options
 object](https://docs.thi.ng/umbrella/axidraw/interfaces/AxiDrawOpts.html) given
-to the `AxiDraw` constructor. Clipping can be handled by the geom or
-geom-axidraw packages (see below)...
+to the `AxiDraw` constructor. Actual geometry clipping can be handled by the
+[geom or geom-axidraw](#thinggeom-support) packages...
+
+The bounding rect can be either defined by a tuple of `[[minX,minY],
+[maxX,maxY]]` (in worldspace units) or as paper size defined as a
+[`quantity()`](https://docs.thi.ng/umbrella/units/functions/quantity-1.html). The
+default value is DIN A3 landscape.
+
+If given as paper size (e.g. via
+[thi.ng/units](https://github.com/thi-ng/umbrella/blob/develop/packages/units/)
+presets), the actual units used to define these dimensions are irrelevant and
+will be automatically converted.
+
+[List of paper
+sizes/presets](https://github.com/thi-ng/umbrella/blob/develop/packages/units/README.md#constants)
 
 ### Path planning
 
@@ -167,7 +182,7 @@ For Node.js REPL:
 const axidraw = await import("@thi.ng/axidraw");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 2.96 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 3.11 KB
 
 ## Dependencies
 
@@ -177,7 +192,9 @@ Package sizes (brotli'd, pre-treeshake): ESM: 2.96 KB
 - [@thi.ng/date](https://github.com/thi-ng/umbrella/tree/develop/packages/date)
 - [@thi.ng/errors](https://github.com/thi-ng/umbrella/tree/develop/packages/errors)
 - [@thi.ng/logger](https://github.com/thi-ng/umbrella/tree/develop/packages/logger)
+- [@thi.ng/math](https://github.com/thi-ng/umbrella/tree/develop/packages/math)
 - [@thi.ng/transducers](https://github.com/thi-ng/umbrella/tree/develop/packages/transducers)
+- [@thi.ng/units](https://github.com/thi-ng/umbrella/tree/develop/packages/units)
 - [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors)
 - [serialport](git://github.com/serialport/node-serialport.git)
 
