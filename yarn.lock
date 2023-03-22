@@ -2620,7 +2620,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/axidraw@^1.0.0, @thi.ng/axidraw@workspace:packages/axidraw":
+"@thi.ng/axidraw@^1.1.0, @thi.ng/axidraw@workspace:packages/axidraw":
   version: 0.0.0-use.local
   resolution: "@thi.ng/axidraw@workspace:packages/axidraw"
   dependencies:
@@ -2628,13 +2628,13 @@ __metadata:
     "@thi.ng/api": ^8.7.4
     "@thi.ng/checks": ^3.3.10
     "@thi.ng/compose": ^2.1.29
-    "@thi.ng/date": ^2.4.8
+    "@thi.ng/date": ^2.4.9
     "@thi.ng/errors": ^2.2.13
     "@thi.ng/logger": ^1.4.11
     "@thi.ng/math": ^5.4.5
     "@thi.ng/testament": ^0.3.13
     "@thi.ng/transducers": ^8.4.0
-    "@thi.ng/units": ^0.3.1
+    "@thi.ng/units": ^0.4.0
     "@thi.ng/vectors": ^7.6.9
     rimraf: ^4.4.0
     serialport: ^10.5.0
@@ -2644,7 +2644,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/base-n@^2.5.0, @thi.ng/base-n@workspace:packages/base-n":
+"@thi.ng/base-n@^2.5.1, @thi.ng/base-n@workspace:packages/base-n":
   version: 0.0.0-use.local
   resolution: "@thi.ng/base-n@workspace:packages/base-n"
   dependencies:
@@ -2792,7 +2792,7 @@ __metadata:
   dependencies:
     "@microsoft/api-extractor": ^7.34.4
     "@thi.ng/api": ^8.7.4
-    "@thi.ng/base-n": ^2.5.0
+    "@thi.ng/base-n": ^2.5.1
     "@thi.ng/checks": ^3.3.10
     "@thi.ng/color": ^5.4.5
     "@thi.ng/errors": ^2.2.13
@@ -2934,7 +2934,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/date@^2.4.8, @thi.ng/date@workspace:^, @thi.ng/date@workspace:packages/date":
+"@thi.ng/date@^2.4.8, @thi.ng/date@^2.4.9, @thi.ng/date@workspace:^, @thi.ng/date@workspace:packages/date":
   version: 0.0.0-use.local
   resolution: "@thi.ng/date@workspace:packages/date"
   dependencies:
@@ -3331,7 +3331,7 @@ __metadata:
     "@thi.ng/math": ^5.4.5
     "@thi.ng/strings": ^3.4.2
     "@thi.ng/testament": ^0.3.13
-    "@thi.ng/text-canvas": ^2.4.37
+    "@thi.ng/text-canvas": ^2.4.38
     rimraf: ^4.4.0
     tools: "workspace:^"
     typedoc: ^0.23.26
@@ -3419,10 +3419,10 @@ __metadata:
     "@microsoft/api-extractor": ^7.34.4
     "@thi.ng/api": ^8.7.4
     "@thi.ng/arrays": ^2.5.8
-    "@thi.ng/axidraw": ^1.0.0
+    "@thi.ng/axidraw": ^1.1.0
     "@thi.ng/compare": ^2.1.27
     "@thi.ng/defmulti": ^2.1.33
-    "@thi.ng/geom": ^4.2.12
+    "@thi.ng/geom": ^4.3.0
     "@thi.ng/geom-accel": ^3.3.9
     "@thi.ng/geom-api": ^3.4.10
     "@thi.ng/geom-clip-line": ^2.3.10
@@ -3494,7 +3494,7 @@ __metadata:
     "@thi.ng/api": ^8.7.4
     "@thi.ng/associative": ^6.2.32
     "@thi.ng/color": ^5.4.5
-    "@thi.ng/geom": ^4.2.12
+    "@thi.ng/geom": ^4.3.0
     "@thi.ng/geom-api": ^3.4.10
     "@thi.ng/geom-clip-line": ^2.3.10
     "@thi.ng/geom-resample": ^2.2.10
@@ -3620,7 +3620,7 @@ __metadata:
     "@thi.ng/checks": ^3.3.10
     "@thi.ng/defmulti": ^2.1.33
     "@thi.ng/errors": ^2.2.13
-    "@thi.ng/geom": ^4.2.12
+    "@thi.ng/geom": ^4.3.0
     "@thi.ng/geom-api": ^3.4.10
     "@thi.ng/geom-isoline": ^2.1.49
     "@thi.ng/geom-poly-utils": ^2.3.36
@@ -3734,7 +3734,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/geom@^4.2.12, @thi.ng/geom@workspace:^, @thi.ng/geom@workspace:packages/geom":
+"@thi.ng/geom@^4.3.0, @thi.ng/geom@workspace:^, @thi.ng/geom@workspace:packages/geom":
   version: 0.0.0-use.local
   resolution: "@thi.ng/geom@workspace:packages/geom"
   dependencies:
@@ -4019,7 +4019,7 @@ __metadata:
     "@thi.ng/parse": ^2.2.30
     "@thi.ng/strings": ^3.4.2
     "@thi.ng/testament": ^0.3.13
-    "@thi.ng/text-canvas": ^2.4.37
+    "@thi.ng/text-canvas": ^2.4.38
     rimraf: ^4.4.0
     tools: "workspace:^"
     typedoc: ^0.23.26
@@ -4103,7 +4103,7 @@ __metadata:
     "@microsoft/api-extractor": ^7.34.4
     "@thi.ng/api": ^8.7.4
     "@thi.ng/checks": ^3.3.10
-    "@thi.ng/geom": ^4.2.12
+    "@thi.ng/geom": ^4.3.0
     "@thi.ng/geom-api": ^3.4.10
     "@thi.ng/geom-isec": ^2.1.52
     "@thi.ng/geom-tessellate": ^2.1.52
@@ -4194,7 +4194,7 @@ __metadata:
   resolution: "@thi.ng/ksuid@workspace:packages/ksuid"
   dependencies:
     "@microsoft/api-extractor": ^7.34.4
-    "@thi.ng/base-n": ^2.5.0
+    "@thi.ng/base-n": ^2.5.1
     "@thi.ng/errors": ^2.2.13
     "@thi.ng/random": ^3.3.27
     "@thi.ng/strings": ^3.4.2
@@ -4641,7 +4641,7 @@ __metadata:
   dependencies:
     "@microsoft/api-extractor": ^7.34.4
     "@thi.ng/api": ^8.7.4
-    "@thi.ng/base-n": ^2.5.0
+    "@thi.ng/base-n": ^2.5.1
     "@thi.ng/random": ^3.3.27
     "@thi.ng/testament": ^0.3.13
     rimraf: ^4.4.0
@@ -5212,7 +5212,7 @@ __metadata:
     "@thi.ng/args": ^2.2.22
     "@thi.ng/checks": ^3.3.10
     "@thi.ng/compare": ^2.1.27
-    "@thi.ng/date": ^2.4.8
+    "@thi.ng/date": ^2.4.9
     "@thi.ng/errors": ^2.2.13
     "@thi.ng/file-io": ^0.5.6
     "@thi.ng/logger": ^1.4.11
@@ -5244,7 +5244,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/text-canvas@^2.4.34, @thi.ng/text-canvas@^2.4.37, @thi.ng/text-canvas@workspace:^, @thi.ng/text-canvas@workspace:packages/text-canvas":
+"@thi.ng/text-canvas@^2.4.34, @thi.ng/text-canvas@^2.4.38, @thi.ng/text-canvas@workspace:^, @thi.ng/text-canvas@workspace:packages/text-canvas":
   version: 0.0.0-use.local
   resolution: "@thi.ng/text-canvas@workspace:packages/text-canvas"
   dependencies:
@@ -5257,7 +5257,7 @@ __metadata:
     "@thi.ng/math": ^5.4.5
     "@thi.ng/strings": ^3.4.2
     "@thi.ng/testament": ^0.3.13
-    "@thi.ng/text-format": ^1.4.0
+    "@thi.ng/text-format": ^1.4.1
     "@thi.ng/transducers": ^8.4.0
     rimraf: ^4.4.0
     tools: "workspace:^"
@@ -5267,7 +5267,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/text-format@^1.4.0, @thi.ng/text-format@workspace:^, @thi.ng/text-format@workspace:packages/text-format":
+"@thi.ng/text-format@^1.4.1, @thi.ng/text-format@workspace:^, @thi.ng/text-format@workspace:packages/text-format":
   version: 0.0.0-use.local
   resolution: "@thi.ng/text-format@workspace:packages/text-format"
   dependencies:
@@ -5421,7 +5421,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/units@^0.3.1, @thi.ng/units@workspace:packages/units":
+"@thi.ng/units@^0.4.0, @thi.ng/units@workspace:packages/units":
   version: 0.0.0-use.local
   resolution: "@thi.ng/units@workspace:packages/units"
   dependencies:

@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/date",
-	"version": "2.4.8",
+	"version": "2.4.9",
 	"description": "Datetime types, relative dates, math, iterators, composable formatters, locales",
 	"type": "module",
 	"module": "./index.js",

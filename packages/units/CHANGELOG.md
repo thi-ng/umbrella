@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2023-03-16T11:22:27Z
+- **Last updated**: 2023-03-22T22:24:21Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,15 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [0.4.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/units@0.4.0) (2023-03-22)
+
+#### 🚀 Features
+
+- add US paper sizes/presets ([bc78668](https://github.com/thi-ng/umbrella/commit/bc78668))
+  - rename file din-sizes.ts => paper-sizes.ts
+  - update pkg export maps
+- add landscape presets (paper sizes) ([a96a714](https://github.com/thi-ng/umbrella/commit/a96a714))
 
 ## [0.3.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/units@0.3.0) (2023-03-16)
 

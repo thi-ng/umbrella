@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2023-03-19T14:07:45Z
+- **Last updated**: 2023-03-22T22:24:21Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,38 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [1.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/axidraw@1.1.0) (2023-03-22)
+
+#### 🚀 Features
+
+- add save/restore commands ([317f8e0](https://github.com/thi-ng/umbrella/commit/317f8e0))
+  - add/update command types
+  - add SAVE/RESTORE to store/restore pen levels
+  - update AxiDraw.draw() to restore state after one-off pen config
+- update DipOpts & dip() ([52d8924](https://github.com/thi-ng/umbrella/commit/52d8924))
+  - rename `down` => `downDelay`, `up` => `upDelay`
+  - add `down`/`up` level opts
+  - update dip() impl to store/restore pen state if using custom
+    up/down levels for dipping
+- add palette command seq gens ([0e453c1](https://github.com/thi-ng/umbrella/commit/0e453c1))
+  - add linearPalette() & radialPalette() and config options
+  - update pkg export maps
+- add global clipping bounds option ([a99a58e](https://github.com/thi-ng/umbrella/commit/a99a58e))
+  - add AxiDrawOpts.clip
+- add support for paper sizes, home offset ([c44510f](https://github.com/thi-ng/umbrella/commit/c44510f))
+  - update AxiDrawOpts.bounds to accept paper sizes ([@thi.ng/units](https://github.com/thi-ng/umbrella/tree/main/packages/units) quantities)
+  - add AxiDrawOpts.home
+  - update AxiDraw ctor & move/sendMove methods
+  - add AxiDraw.setHome()
+  - update pkg deps
+
+#### ♻️ Refactoring
+
+- remove obsolete clamping ([50978ba](https://github.com/thi-ng/umbrella/commit/50978ba))
+  - update linearPalette()
+- update bounds handling/clamping ([7850ed6](https://github.com/thi-ng/umbrella/commit/7850ed6))
+  - precalc scale factor & bounds in ctor
 
 # [1.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/axidraw@1.0.0) (2023-03-19)
 

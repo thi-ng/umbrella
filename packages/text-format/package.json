@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/text-format",
-	"version": "1.4.0",
+	"version": "1.4.1",
 	"description": "Customizable color text formatting with presets for ANSI & HTML",
 	"type": "module",
 	"module": "./index.js",
