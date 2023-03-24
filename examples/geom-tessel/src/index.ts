@@ -7,9 +7,11 @@ import {
 	Polygon,
 	polygon,
 	tessellate,
+	TESSELLATE_EDGE_SPLIT,
+	TESSELLATE_QUAD_FAN,
+	TESSELLATE_TRI_FAN,
 } from "@thi.ng/geom";
 import type { IShape, Tessellator } from "@thi.ng/geom-api";
-import { edgeSplit, quadFan, triFan } from "@thi.ng/geom-tessellate";
 import { canvas } from "@thi.ng/hdom-canvas";
 import { deg, fit01, fit11 } from "@thi.ng/math";
 import { fromInterval, sync } from "@thi.ng/rstream";
@@ -23,11 +25,13 @@ const MIN_RES = 3;
 const MAX_RES = 30;
 // const MAX_RES = MIN_RES;
 
-// const SUBDIVS = [tesselQuadFan];
-// const SUBDIVS = [tesselTriFan];
-// const SUBDIVS = [tesselEdgeSplit];
-const SUBDIVS = [quadFan, triFan, edgeSplit, quadFan];
-// const SUBDIVS = [...take(4, cycle([tesselQuadFan]))];
+const SUBDIVS = [
+	TESSELLATE_QUAD_FAN,
+	TESSELLATE_TRI_FAN,
+	TESSELLATE_EDGE_SPLIT,
+	TESSELLATE_QUAD_FAN,
+];
+// const SUBDIVS = [...take(4, cycle([TESSELLATE_QUAD_FAN]))];
 
 const W = 600;
 const W2 = W / 2;
