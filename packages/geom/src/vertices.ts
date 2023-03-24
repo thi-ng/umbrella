@@ -113,7 +113,7 @@ export const vertices: MultiFn1O<
 			];
 		},
 
-		arc: ($: Arc, opts?: number | Partial<SamplingOpts>): Vec[] =>
+		arc: ($: Arc, opts?): Vec[] =>
 			_arcVertices(
 				$.pos,
 				$.r,
@@ -137,7 +137,7 @@ export const vertices: MultiFn1O<
 			return buf;
 		},
 
-		cubic: ($: Cubic, opts?: number | Partial<SamplingOpts>) =>
+		cubic: ($: Cubic, opts?) =>
 			sampleCubic($.points, __sampleAttribs(opts, $.attribs)),
 
 		ellipse: ($: Ellipse, opts = DEFAULT_SAMPLES) => {
@@ -157,7 +157,7 @@ export const vertices: MultiFn1O<
 			return buf;
 		},
 
-		group: ($: Group, opts?: number | Partial<SamplingOpts>) => {
+		group: ($: Group, opts?) => {
 			opts = __sampleAttribs(opts, $.attribs);
 			return $.children.reduce(
 				(acc, $) => acc.concat(vertices($, opts)),
@@ -165,7 +165,7 @@ export const vertices: MultiFn1O<
 			);
 		},
 
-		path: ($: Path, opts?: number | Partial<SamplingOpts>) => {
+		path: ($: Path, opts?) => {
 			opts = __sampleAttribs(opts, $.attribs);
 			const _opts = isNumber(opts) ? { num: opts } : opts;
 			let verts: Vec[] = [];
@@ -195,7 +195,7 @@ export const vertices: MultiFn1O<
 		polyline: ($: Polyline, opts?) =>
 			resample($.points, __sampleAttribs(opts, $.attribs)),
 
-		quadratic: ($: Quadratic, opts?: number | Partial<SamplingOpts>) =>
+		quadratic: ($: Quadratic, opts?) =>
 			sampleQuadratic($.points, __sampleAttribs(opts, $.attribs)),
 
 		rect: ($: Rect, opts?) => {
