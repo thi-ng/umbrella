@@ -101,6 +101,7 @@ directly and/or perform automatic resampling/conversion if needed).
 | [`scale()`](https://docs.thi.ng/umbrella/geom/functions/scale.html)                         | scale shape (uniformly/non-uniformly)                        |
 | [`scatter()`](https://docs.thi.ng/umbrella/geom/functions/scatter.html)                     | create random points inside a shape boundary                 |
 | [`simplify()`](https://docs.thi.ng/umbrella/geom/functions/simplify.html)                   | simplify shape/boundary (Douglas-Peucker)                    |
+| [`splitArcLength()`](https://docs.thi.ng/umbrella/geom/functions/splitArcLength.html)       | split shapes based on max. arc length                        |
 | [`splitAt()`](https://docs.thi.ng/umbrella/geom/functions/splitAt.html)                     | split shape/boundary at parametric position                  |
 | [`splitNear()`](https://docs.thi.ng/umbrella/geom/functions/splitNear.html)                 | split shape/boundary near world position                     |
 | [`subdivCurve()`](https://docs.thi.ng/umbrella/geom/functions/subdivCurve.html)             | recursively apply curve subdivision kernel                   |

@@ -57,7 +57,7 @@ create them, please check linked sources and/or docs.
 | [Quad](https://github.com/thi-ng/umbrella/blob/develop/packages/geom/src/quad.ts)                     | 2D/3D quad (4-gon)           | ✅<sup>(1)</sup> |
 | [Quadratic](https://github.com/thi-ng/umbrella/blob/develop/packages/geom/src/quadratic.ts)           | nD quadratic bezier          | ✅<sup>(1)</sup> |
 | [Ray](https://github.com/thi-ng/umbrella/blob/develop/packages/geom/src/ray.ts)                       | nD ray                       | ✅<sup>(1)</sup> |
-| [Rectangle](https://github.com/thi-ng/umbrella/blob/develop/packages/geom/src/ray.ts)                 | 2D rectangle                 | ✅               |
+| [Rectangle](https://github.com/thi-ng/umbrella/blob/develop/packages/geom/src/rect.ts)                | 2D rectangle                 | ✅               |
 | [Sphere](https://github.com/thi-ng/umbrella/blob/develop/packages/geom/src/sphere.ts)                 | 3D sphere                    | ✅<sup>(2)</sup> |
 | [Text](https://github.com/thi-ng/umbrella/blob/develop/packages/geom/src/text.ts)                     | Basic stub for text labels   | ✅<sup>(3)</sup> |
 | [Triangle](https://github.com/thi-ng/umbrella/blob/develop/packages/geom/src/triangle.ts)             | 2D triangle                  | ✅               |
@@ -122,6 +122,7 @@ directly and/or perform automatic resampling/conversion if needed).
 | [`scale()`](https://docs.thi.ng/umbrella/geom/functions/scale.html)                         | scale shape (uniformly/non-uniformly)                        |
 | [`scatter()`](https://docs.thi.ng/umbrella/geom/functions/scatter.html)                     | create random points inside a shape boundary                 |
 | [`simplify()`](https://docs.thi.ng/umbrella/geom/functions/simplify.html)                   | simplify shape/boundary (Douglas-Peucker)                    |
+| [`splitArcLength()`](https://docs.thi.ng/umbrella/geom/functions/splitArcLength.html)       | split shapes based on max. arc length                        |
 | [`splitAt()`](https://docs.thi.ng/umbrella/geom/functions/splitAt.html)                     | split shape/boundary at parametric position                  |
 | [`splitNear()`](https://docs.thi.ng/umbrella/geom/functions/splitNear.html)                 | split shape/boundary near world position                     |
 | [`subdivCurve()`](https://docs.thi.ng/umbrella/geom/functions/subdivCurve.html)             | recursively apply curve subdivision kernel                   |
@@ -198,7 +199,7 @@ For Node.js REPL:
 const geom = await import("@thi.ng/geom");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 12.29 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 12.62 KB
 
 ## Dependencies
 
