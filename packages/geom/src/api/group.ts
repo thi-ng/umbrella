@@ -5,7 +5,7 @@ import { __copyAttribs } from "../internal/copy.js";
 
 export class Group implements IHiccupShape {
 	constructor(
-		public attribs: Attribs,
+		public attribs?: Attribs,
 		public children: IHiccupShape[] = []
 	) {}
 

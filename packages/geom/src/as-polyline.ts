@@ -4,7 +4,7 @@ import type { IShape, SamplingOpts } from "@thi.ng/geom-api";
 import { set } from "@thi.ng/vectors/set";
 import type { Path } from "./api/path.js";
 import { Polyline } from "./api/polyline.js";
-import { __copyAttribs } from "./internal/copy.js";
+import { __copyAttribsNoSamples as __attribs } from "./internal/copy.js";
 import { __dispatch } from "./internal/dispatch.js";
 import { vertices } from "./vertices.js";
 
@@ -14,6 +14,9 @@ import { vertices } from "./vertices.js";
  * or number of target vertices.
  *
  * @remarks
+ * If the shape has a `__samples` attribute, it will be removed in the result to
+ * avoid recursive application.
+ *
  * Currently implemented for:
  *
  * - {@link Arc}
@@ -51,18 +54,18 @@ export const asPolyline: MultiFn1O<
 		tri: "poly",
 	},
 	{
-		points: ($, opts) => new Polyline(vertices($, opts), __copyAttribs($)),
+		points: ($, opts) => new Polyline(vertices($, opts), __attribs($)),
 
 		path: ($: Path, opts) => {
 			const pts = vertices($, opts);
 			$.closed && pts.push(set([], pts[0]));
-			return new Polyline(pts, __copyAttribs($));
+			return new Polyline(pts, __attribs($));
 		},
 
 		poly: ($, opts) => {
 			const pts = vertices($, opts);
 			pts.push(set([], pts[0]));
-			return new Polyline(pts, __copyAttribs($));
+			return new Polyline(pts, __attribs($));
 		},
 	}
 );

@@ -5,7 +5,7 @@ import { resample as _resample } from "@thi.ng/geom-resample/resample";
 import { Polygon } from "./api/polygon.js";
 import { Polyline } from "./api/polyline.js";
 import { asPolygon } from "./as-polygon.js";
-import { __copyAttribs } from "./internal/copy.js";
+import { __copyAttribsNoSamples as __attribs } from "./internal/copy.js";
 import { __dispatch } from "./internal/dispatch.js";
 
 /**
@@ -13,6 +13,9 @@ import { __dispatch } from "./internal/dispatch.js";
  * closed) or polyline (if open).
  *
  * @remarks
+ * If the shape has a `__samples` attribute, it will be removed in the result to
+ * avoid recursive application.
+ *
  * Currently implemented for:
  *
  * - {@link Circle}
@@ -44,15 +47,9 @@ export const resample: MultiFn2<
 		circle: ($: IShape, opts) => asPolygon($, opts),
 
 		poly: ($: PCLike, opts) =>
-			new Polygon(
-				_resample($.points, opts, true, true),
-				__copyAttribs($)
-			),
+			new Polygon(_resample($.points, opts, true, true), __attribs($)),
 
 		polyline: ($: PCLike, opts) =>
-			new Polyline(
-				_resample($.points, opts, false, true),
-				__copyAttribs($)
-			),
+			new Polyline(_resample($.points, opts, false, true), __attribs($)),
 	}
 );

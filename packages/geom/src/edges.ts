@@ -1,11 +1,13 @@
 import type { MultiFn1O } from "@thi.ng/defmulti";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
 import type { IShape, SamplingOpts } from "@thi.ng/geom-api";
+import { mapcat } from "@thi.ng/transducers/mapcat";
 import type { VecPair } from "@thi.ng/vectors";
 import type { AABB } from "./api/aabb.js";
 import type { Arc } from "./api/arc.js";
 import type { BPatch } from "./api/bpatch.js";
 import type { Circle } from "./api/circle.js";
+import type { Group } from "./api/group.js";
 import type { Path } from "./api/path.js";
 import type { Polygon } from "./api/polygon.js";
 import type { Polyline } from "./api/polyline.js";
@@ -18,10 +20,12 @@ import { vertices } from "./vertices.js";
 
 /**
  * Extracts the edges of given shape's boundary and returns them as an iterable
- * of vector pairs. Some shapes also support
- * [`SamplingOpts`](https://docs.thi.ng/umbrella/geom-api/interfaces/SamplingOpts.html).
+ * of vector pairs.
  *
  * @remarks
+ * If the shape has a `__samples` attribute, it will be removed in the result to
+ * avoid recursive application.
+ *
  * Currently implemented for:
  *
  * - {@link AABB}
@@ -30,12 +34,24 @@ import { vertices } from "./vertices.js";
  * - {@link Circle}
  * - {@link Cubic}
  * - {@link Ellipse}
+ * - {@link Group}
  * - {@link Line}
  * - {@link Path}
  * - {@link Polygon}
  * - {@link Polyline}
  * - {@link Quad}
  * - {@link Quadratic}
+ * - {@link Rect}
+ * - {@link Triangle}
+ *
+ * The implementations for the following shapes **do not** support
+ * [`SamplingOpts`](https://docs.thi.ng/umbrella/geom-api/interfaces/SamplingOpts.html)
+ * (all others do):
+ *
+ * - {@link Line}
+ * - {@link Polygon}
+ * - {@link Polyline}
+ * - {@link Quad}
  * - {@link Rect}
  * - {@link Triangle}
  *
@@ -84,6 +100,8 @@ export const edges: MultiFn1O<
 		bpatch: ($: BPatch) => $.edges(),
 
 		circle: ($: Circle, opts) => __edges(asPolygon($, opts).points, true),
+
+		group: ($: Group, opts) => mapcat((c) => edges(c, opts), $.children),
 
 		path: ($: Path, opts) => __edges(asPolygon($, opts).points, $.closed),
 

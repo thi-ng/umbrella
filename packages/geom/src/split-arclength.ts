@@ -7,7 +7,7 @@ import type { Vec } from "@thi.ng/vectors";
 import { Group } from "./api/group.js";
 import { Polyline } from "./api/polyline.js";
 import { asPolyline } from "./as-polyline.js";
-import { __copyAttribs } from "./internal/copy.js";
+import { __copyAttribsNoSamples as __attribs } from "./internal/copy.js";
 import { __dispatch } from "./internal/dispatch.js";
 import { __pointArraysAsShapes } from "./internal/points-as-shape.js";
 
@@ -16,6 +16,9 @@ import { __pointArraysAsShapes } from "./internal/points-as-shape.js";
  * Returns array of new shapes/polylines.
  *
  * @remarks
+ * If the shape has a `__samples` attribute, it will be removed in the result to
+ * avoid recursive application.
+ *
  * Currently only implemented for:
  *
  * - {@link Group}
@@ -24,10 +27,15 @@ import { __pointArraysAsShapes } from "./internal/points-as-shape.js";
  * Other shape types will be attempted to be auto-converted via
  * {@link asPolyline} first.
  *
+ * Groups will be recursively processed (i.e. by calling {@link splitArcLength}
+ * for each child). Any nested groups will be retained, but each group might
+ * have a greater resulting number of children (depending on number of splits
+ * performed).
+ *
  * @param shape
  * @param dist
  */
-export const splitArclength: MultiFn2<IShape, number, IShape[]> = defmulti<
+export const splitArcLength: MultiFn2<IShape, number, IShape[]> = defmulti<
 	any,
 	number,
 	IShape[]
@@ -35,12 +43,12 @@ export const splitArclength: MultiFn2<IShape, number, IShape[]> = defmulti<
 	__dispatch,
 	{},
 	{
-		[DEFAULT]: ($: IShape, d: number) => splitArclength(asPolyline($), d),
+		[DEFAULT]: ($: IShape, d: number) => splitArcLength(asPolyline($), d),
 
 		group: ($, d) => [
-			new Group(__copyAttribs($.attribs), [
+			new Group(__attribs($), [
 				...mapcat(
-					(c: IShape) => <IHiccupShape[]>splitArclength(c, d),
+					(c: IShape) => <IHiccupShape[]>splitArcLength(c, d),
 					$.children
 				),
 			]),
@@ -62,7 +70,7 @@ export const splitArclength: MultiFn2<IShape, number, IShape[]> = defmulti<
 					break;
 				}
 			}
-			return __pointArraysAsShapes(Polyline, chunks, $.attribs)!;
+			return __pointArraysAsShapes(Polyline, chunks, __attribs($))!;
 		},
 	}
 );

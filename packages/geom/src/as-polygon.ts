@@ -2,7 +2,7 @@ import type { MultiFn1O } from "@thi.ng/defmulti";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
 import type { IShape, SamplingOpts } from "@thi.ng/geom-api";
 import { Polygon } from "./api/polygon.js";
-import { __copyAttribs } from "./internal/copy.js";
+import { __copyAttribsNoSamples as __attribs } from "./internal/copy.js";
 import { __dispatch } from "./internal/dispatch.js";
 import { vertices } from "./vertices.js";
 
@@ -12,6 +12,9 @@ import { vertices } from "./vertices.js";
  * or number of target vertices.
  *
  * @remarks
+ * If the shape has a `__samples` attribute, it will be removed in the result to
+ * avoid recursive application.
+ *
  * Currently implemented for:
  *
  * - {@link Circle}
@@ -45,6 +48,6 @@ export const asPolygon: MultiFn1O<
 		tri: "points",
 	},
 	{
-		points: ($, opts) => new Polygon(vertices($, opts), __copyAttribs($)),
+		points: ($, opts) => new Polygon(vertices($, opts), __attribs($)),
 	}
 );
