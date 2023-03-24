@@ -68,9 +68,6 @@
 		"./accel": {
 			"default": "./accel.js"
 		},
-		"./clip": {
-			"default": "./clip.js"
-		},
 		"./convex": {
 			"default": "./convex.js"
 		},
