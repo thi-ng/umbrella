@@ -35,7 +35,7 @@ create them, please check linked sources and/or docs.
 | [Quad](https://github.com/thi-ng/umbrella/blob/develop/packages/geom/src/quad.ts)                     | 2D/3D quad (4-gon)           | ✅<sup>(1)</sup> |
 | [Quadratic](https://github.com/thi-ng/umbrella/blob/develop/packages/geom/src/quadratic.ts)           | nD quadratic bezier          | ✅<sup>(1)</sup> |
 | [Ray](https://github.com/thi-ng/umbrella/blob/develop/packages/geom/src/ray.ts)                       | nD ray                       | ✅<sup>(1)</sup> |
-| [Rectangle](https://github.com/thi-ng/umbrella/blob/develop/packages/geom/src/ray.ts)                 | 2D rectangle                 | ✅               |
+| [Rectangle](https://github.com/thi-ng/umbrella/blob/develop/packages/geom/src/rect.ts)                | 2D rectangle                 | ✅               |
 | [Sphere](https://github.com/thi-ng/umbrella/blob/develop/packages/geom/src/sphere.ts)                 | 3D sphere                    | ✅<sup>(2)</sup> |
 | [Text](https://github.com/thi-ng/umbrella/blob/develop/packages/geom/src/text.ts)                     | Basic stub for text labels   | ✅<sup>(3)</sup> |
 | [Triangle](https://github.com/thi-ng/umbrella/blob/develop/packages/geom/src/triangle.ts)             | 2D triangle                  | ✅               |
