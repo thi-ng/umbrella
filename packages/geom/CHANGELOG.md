@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2023-03-22T22:24:21Z
+- **Last updated**: 2023-03-24T19:50:18Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,23 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [4.4.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom@4.4.0) (2023-03-24)
+
+#### 🚀 Features
+
+- avoid recursive application of __samples attrib ([189446d](https://github.com/thi-ng/umbrella/commit/189446d))
+  - add internal __copyAttribsNoSamples() helper
+  - update implementations for:
+    - asPolygon()
+    - asPolyline()
+    - edges()
+    - resample()
+    - splitArcLength()
+  - update Group ctor to make attribs optional
+- add/expose subdiv & tessellation presets ([0f79c6d](https://github.com/thi-ng/umbrella/commit/0f79c6d))
+  - re-export aliases for subdivCurve() from [@thi.ng/geom-subdiv-curve](https://github.com/thi-ng/umbrella/tree/main/packages/geom-subdiv-curve) (as `SUBDIV_XXX`...)
+  - re-export aliases for tessellate() from [@thi.ng/geom-tessellate](https://github.com/thi-ng/umbrella/tree/main/packages/geom-tessellate) (as `TESSELLATE_XXX`...)
 
 ## [4.3.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom@4.3.0) (2023-03-22)
 

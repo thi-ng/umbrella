@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2023-03-14T13:27:19Z
+- **Last updated**: 2023-03-24T19:50:18Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,13 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+### [3.4.11](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom-api@3.4.11) (2023-03-24)
+
+#### ♻️ Refactoring
+
+- update PCLikeConstructor ([1c10c09](https://github.com/thi-ng/umbrella/commit/1c10c09))
+  - make attribs optional
 
 ## [3.4.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom-api@3.4.0) (2023-01-10)
 
