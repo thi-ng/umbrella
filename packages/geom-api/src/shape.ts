@@ -33,7 +33,7 @@ export interface PCLike extends IShape<PCLike> {
 }
 
 export interface PCLikeConstructor {
-	new (pts: Vec[], attribs: Attribs): PCLike;
+	new (pts: Vec[], attribs?: Attribs): PCLike;
 }
 
 export interface IHiccupShape extends IShape, IToHiccup {}
