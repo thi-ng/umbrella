@@ -1,6 +1,8 @@
 import { hueRgb, srgbCss } from "@thi.ng/color";
 import {
 	diagonal2d,
+	diagonalSlopeX,
+	diagonalSlopeY,
 	hilbert2d,
 	interleaveColumns2d,
 	interleaveRows2d,
@@ -25,6 +27,8 @@ const BH = Math.ceil(H / NB);
 const buckets = cycle(
 	concat(
 		diagonal2d({ cols: NB }),
+		diagonalSlopeX({ cols: NB, slope: 3 }),
+		diagonalSlopeY({ cols: NB, slope: 3 }),
 		zigzagRows2d({ cols: NB }),
 		hilbert2d({ cols: NB }),
 		zigzagColumns2d({ cols: NB }),
