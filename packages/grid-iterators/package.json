@@ -32,7 +32,8 @@
 		"doc:readme": "yarn doc:stats && tools:readme",
 		"doc:stats": "tools:module-stats",
 		"pub": "yarn npm publish --access public",
-		"test": "testament test"
+		"test": "testament test",
+		"tool:assets": "tools:node-esm tools/build-assets.ts"
 	},
 	"dependencies": {
 		"@thi.ng/api": "^8.7.4",
