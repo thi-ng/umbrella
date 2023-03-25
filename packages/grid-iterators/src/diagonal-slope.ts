@@ -2,16 +2,23 @@ import { assert } from "@thi.ng/errors/assert";
 import type { GridIterOpts } from "./api.js";
 import { __opts } from "./utils.js";
 
+interface DiagonalSlopeOpts extends GridIterOpts {
+	/**
+	 * Diagonal slope / step size
+	 */
+	slope: number;
+}
+
 /**
  * Similar to {@link diagonalSlopeX}. Yields sequence of 2D grid coordinates in
  * diagonal order with configurable slope, starting at [0,0]. Each diagonal
- * starts at y=0 and progresses in +y direction and every `slope` steps, one
+ * starts at y=0 and progresses in +y direction and every `step` steps, one
  * step in -x direction.
  *
  * @example
  * ```ts
  * // iterate grid in diagonals of 1:3 ratio (x:y)
- * [...diagonalSlopeY({ cols: 5, slope: 3 })]
+ * [...diagonalSlopeY({ cols: 5, step: 3 })]
  * // [
  * //   [0, 0], [0, 1 ], [0, 2 ],
  * //   [1, 0], [1, 1 ], [1, 2 ],
@@ -27,7 +34,7 @@ import { __opts } from "./utils.js";
  *
  * @param opts -
  */
-export function* diagonalSlopeY(opts: GridIterOpts & { slope: number }) {
+export function* diagonalSlopeY(opts: DiagonalSlopeOpts) {
 	const { cols, rows, tx } = __opts(opts);
 	const maxX = cols - 1;
 	const slope = opts.slope | 0;
@@ -61,13 +68,13 @@ export function* diagonalSlopeY(opts: GridIterOpts & { slope: number }) {
 
 /**
  * Similar to {@link diagonalSlopeY}. Yields sequence of 2D grid coordinates in
- * diagonal order with configurable slope, starting at [slope-1,0]. Each
- * diagonal starts at y=0 and progresses in -x direction and every `slope`
+ * diagonal order with configurable slope, starting at [step-1,0]. Each
+ * diagonal starts at y=0 and progresses in -x direction and every `step`
  * steps, one step in +y direction.
  *
  * @param opts -
  */
-export function* diagonalSlopeX(opts: GridIterOpts & { slope: number }) {
+export function* diagonalSlopeX(opts: DiagonalSlopeOpts) {
 	const { cols, rows, tx } = __opts(opts);
 	const maxX = cols - 1;
 	const slope = opts.slope | 0;
