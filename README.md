@@ -188,15 +188,17 @@ feature or `develop` branches)
 
 ### Latest updates
 
-As of: 2023-03-22
+As of: 2023-03-25
 
-| Status                                        | Package                                           | Version                                                                                                                 | Changelog                                         |
-|:----------------------------------------------|:--------------------------------------------------|:------------------------------------------------------------------------------------------------------------------------|:--------------------------------------------------|
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/axidraw`](./packages/axidraw)           | [![version](https://img.shields.io/npm/v/@thi.ng/axidraw.svg)](https://www.npmjs.com/package/@thi.ng/axidraw)           | [changelog](./packages/axidraw/CHANGELOG.md)      |
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/geom`](./packages/geom)                 | [![version](https://img.shields.io/npm/v/@thi.ng/geom.svg)](https://www.npmjs.com/package/@thi.ng/geom)                 | [changelog](./packages/geom/CHANGELOG.md)         |
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/geom-axidraw`](./packages/geom-axidraw) | [![version](https://img.shields.io/npm/v/@thi.ng/geom-axidraw.svg)](https://www.npmjs.com/package/@thi.ng/geom-axidraw) | [changelog](./packages/geom-axidraw/CHANGELOG.md) |
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/transducers`](./packages/transducers)   | [![version](https://img.shields.io/npm/v/@thi.ng/transducers.svg)](https://www.npmjs.com/package/@thi.ng/transducers)   | [changelog](./packages/transducers/CHANGELOG.md)  |
-| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/units`](./packages/units)               | [![version](https://img.shields.io/npm/v/@thi.ng/units.svg)](https://www.npmjs.com/package/@thi.ng/units)               | [changelog](./packages/units/CHANGELOG.md)        |
+| Status                                        | Package                                                     | Version                                                                                                                           | Changelog                                              |
+|:----------------------------------------------|:------------------------------------------------------------|:----------------------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------------|
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/axidraw`](./packages/axidraw)                     | [![version](https://img.shields.io/npm/v/@thi.ng/axidraw.svg)](https://www.npmjs.com/package/@thi.ng/axidraw)                     | [changelog](./packages/axidraw/CHANGELOG.md)           |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/geom`](./packages/geom)                           | [![version](https://img.shields.io/npm/v/@thi.ng/geom.svg)](https://www.npmjs.com/package/@thi.ng/geom)                           | [changelog](./packages/geom/CHANGELOG.md)              |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/geom-axidraw`](./packages/geom-axidraw)           | [![version](https://img.shields.io/npm/v/@thi.ng/geom-axidraw.svg)](https://www.npmjs.com/package/@thi.ng/geom-axidraw)           | [changelog](./packages/geom-axidraw/CHANGELOG.md)      |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/geom-trace-bitmap`](./packages/geom-trace-bitmap) | [![version](https://img.shields.io/npm/v/@thi.ng/geom-trace-bitmap.svg)](https://www.npmjs.com/package/@thi.ng/geom-trace-bitmap) | [changelog](./packages/geom-trace-bitmap/CHANGELOG.md) |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/grid-iterators`](./packages/grid-iterators)       | [![version](https://img.shields.io/npm/v/@thi.ng/grid-iterators.svg)](https://www.npmjs.com/package/@thi.ng/grid-iterators)       | [changelog](./packages/grid-iterators/CHANGELOG.md)    |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/transducers`](./packages/transducers)             | [![version](https://img.shields.io/npm/v/@thi.ng/transducers.svg)](https://www.npmjs.com/package/@thi.ng/transducers)             | [changelog](./packages/transducers/CHANGELOG.md)       |
+| ![](https://img.shields.io/badge/-feat-green) | [`@thi.ng/units`](./packages/units)                         | [![version](https://img.shields.io/npm/v/@thi.ng/units.svg)](https://www.npmjs.com/package/@thi.ng/units)                         | [changelog](./packages/units/CHANGELOG.md)             |
 
 ### Fundamentals
 
