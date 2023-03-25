@@ -16,7 +16,7 @@ export function* diagonal2d(opts: GridIterOpts) {
 	const num = cols * rows - 1;
 	for (let x = 0, y = 0, nx = 1, ny = 0, i = 0; i <= num; i++) {
 		yield tx(x, y);
-		if (i != num) {
+		if (i !== num) {
 			do {
 				if (y === ny) {
 					y = 0;
