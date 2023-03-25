@@ -20,7 +20,7 @@ Also see the filtered version
 [`columnEnds2d()`](https://github.com/thi-ng/umbrella/tree/develop/packages/grid-iterators/src/column-ends.ts),
 which only includes the end points of each column.
 
-### Diagonal
+### Diagonal (45 degrees)
 
 ![anim](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/grid-iterators/diagonal2d-small.gif)
 
@@ -29,6 +29,13 @@ which only includes the end points of each column.
 Also see the filtered version
 [`diagonalEnds2d()`](https://github.com/thi-ng/umbrella/tree/develop/packages/grid-iterators/src/diagonal-ends.ts),
 which only includes the end points of the diagonals.
+
+### Diagonal with configurable slope
+
+![anim](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/grid-iterators/diagonalslopex-small.gif)
+![anim](https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/grid-iterators/diagonalslopey-small.gif)
+
+[Source](https://github.com/thi-ng/umbrella/tree/develop/packages/grid-iterators/src/diagonal-slope.ts)
 
 ### Hilbert curve
 
@@ -205,6 +212,7 @@ import * as gi from "@thi.ng/grid-iterators";
 // ]
 
 // with applied horizontal mirroring
+// also, if `rows` is missing, it defaults to same value as `cols`
 [...gi.zigzagRows2d({ cols: 4, tx: gi.flipX })]
 // [
 //   [ 3, 0 ], [ 2, 0 ], [ 1, 0 ], [ 0, 0 ],
