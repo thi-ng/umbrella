@@ -84,6 +84,9 @@
 		"./border": {
 			"default": "./border.js"
 		},
+		"./extract": {
+			"default": "./extract.js"
+		},
 		"./trace": {
 			"default": "./trace.js"
 		}
