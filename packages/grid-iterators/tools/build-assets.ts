@@ -1,3 +1,4 @@
+import { lch } from "@thi.ng/color";
 import { asSvg, group, polyline, rect, svgDoc } from "@thi.ng/geom";
 import {
 	columns2d,
@@ -54,19 +55,22 @@ iterators.forEach(([fn, opts]) => {
 						width: 600,
 						height: 600,
 						viewBox: "-1 -1 18 18",
-						stroke: "black",
-						"stroke-width": 0.1,
+						stroke: "none",
 					},
-					polyline(
-						pts.slice(0, i * 2).map(([x, y]) => [x + 0.5, y + 0.5])
-					),
 					group(
-						{ fill: [0, 1, 0.5, 0.25], stroke: "none" },
-						pts.slice(0, i * 2 - 1).map((p) => rect(p, 1))
+						{},
+						pts.slice(0, i * 2 - 1).map((p, j) =>
+							rect(p, 1, {
+								fill: lch(0.8, 0.6, j / 256, 0.5),
+							})
+						)
+					),
+					polyline(
+						pts.slice(0, i * 2).map(([x, y]) => [x + 0.5, y + 0.5]),
+						{ stroke: "black", "stroke-width": 0.1 }
 					),
 					rect(pts[i * 2 - 1], 1, {
-						fill: [0, 1, 0.5, 0.85],
-						stroke: "none",
+						fill: "black",
 					})
 				)
 			)
