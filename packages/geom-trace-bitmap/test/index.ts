@@ -1,7 +1,27 @@
+import { GRAY8, intBuffer } from "@thi.ng/pixel";
 import { group } from "@thi.ng/testament";
-import { intBuffer, GRAY8 } from "@thi.ng/pixel";
+import type { ReadonlyVec } from "@thi.ng/vectors";
 import * as assert from "assert";
-import { traceBitmap } from "../src/index.js";
+import {
+	extractSegmentsX,
+	extractSegmentsY,
+	traceBitmap,
+} from "../src/index.js";
+
+const PTS: ReadonlyVec[] = [
+	[0, 10],
+	[0, 12],
+	[0, 16],
+	[0, 18],
+	[2, 12],
+	[2, 16],
+	[2, 30],
+	[3, 18],
+	[4, 10],
+	[5, 12],
+	[8, 12],
+	[14, 12],
+];
 
 group("geom-trace-bitmap", {
 	basic: () => {
@@ -62,5 +82,38 @@ group("geom-trace-bitmap", {
 			],
 		]);
 		assert.deepStrictEqual(points, [[2, 0]]);
+	},
+
+	extractX: () => {
+		assert.deepStrictEqual(extractSegmentsX(PTS, 5), [
+			[
+				[0, 10],
+				[4, 10],
+			],
+			[
+				[0, 12],
+				[8, 12],
+			],
+			[
+				[0, 16],
+				[2, 16],
+			],
+			[
+				[0, 18],
+				[3, 18],
+			],
+		]);
+	},
+	extractY: () => {
+		assert.deepStrictEqual(extractSegmentsY(PTS, 5), [
+			[
+				[0, 10],
+				[0, 18],
+			],
+			[
+				[2, 12],
+				[2, 16],
+			],
+		]);
 	},
 });
