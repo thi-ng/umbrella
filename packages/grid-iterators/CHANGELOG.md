@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2023-03-14T13:27:19Z
+- **Last updated**: 2023-03-25T17:04:52Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,22 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [3.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/grid-iterators@3.1.0) (2023-03-25)
+
+#### 🚀 Features
+
+- add diagonalSlopeX/Y() ([f63dc6e](https://github.com/thi-ng/umbrella/commit/f63dc6e))
+  - add diagonal iterators with configurable slope (X & Y versions)
+  - update pkg deps
+
+#### ♻️ Refactoring
+
+- update diagonalEnds2d() ([e20bf7b](https://github.com/thi-ng/umbrella/commit/e20bf7b))
+  - add `all` option to include first & last points
+- extract DiagonalSlopeOpts ([e08857d](https://github.com/thi-ng/umbrella/commit/e08857d))
+- update diagonalEnds2d() opts ([d14458a](https://github.com/thi-ng/umbrella/commit/d14458a))
+  - make `all` optional
 
 ### [3.0.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/grid-iterators@3.0.1) (2022-12-29)
 

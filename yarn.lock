@@ -3498,7 +3498,7 @@ __metadata:
     "@thi.ng/geom-api": ^3.4.11
     "@thi.ng/geom-clip-line": ^2.3.11
     "@thi.ng/geom-resample": ^2.2.11
-    "@thi.ng/grid-iterators": ^3.0.12
+    "@thi.ng/grid-iterators": ^3.1.0
     "@thi.ng/testament": ^0.3.13
     "@thi.ng/transducers": ^8.4.0
     "@thi.ng/vectors": ^7.6.9
@@ -3699,7 +3699,7 @@ __metadata:
     "@microsoft/api-extractor": ^7.34.4
     "@thi.ng/api": ^8.7.4
     "@thi.ng/errors": ^2.2.13
-    "@thi.ng/grid-iterators": ^3.0.12
+    "@thi.ng/grid-iterators": ^3.1.0
     "@thi.ng/matrices": ^2.1.50
     "@thi.ng/pixel": ^4.1.10
     "@thi.ng/testament": ^0.3.13
@@ -3793,7 +3793,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/grid-iterators@^3.0.12, @thi.ng/grid-iterators@workspace:^, @thi.ng/grid-iterators@workspace:packages/grid-iterators":
+"@thi.ng/grid-iterators@^3.1.0, @thi.ng/grid-iterators@workspace:^, @thi.ng/grid-iterators@workspace:packages/grid-iterators":
   version: 0.0.0-use.local
   resolution: "@thi.ng/grid-iterators@workspace:packages/grid-iterators"
   dependencies:
@@ -4692,7 +4692,7 @@ __metadata:
     "@thi.ng/api": ^8.7.4
     "@thi.ng/checks": ^3.3.10
     "@thi.ng/equiv": ^2.1.20
-    "@thi.ng/grid-iterators": ^3.0.12
+    "@thi.ng/grid-iterators": ^3.1.0
     "@thi.ng/porter-duff": ^2.1.28
     "@thi.ng/random": ^3.3.27
     "@thi.ng/testament": ^0.3.13

@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2023-03-14T13:27:19Z
+- **Last updated**: 2023-03-25T17:04:52Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,13 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [0.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom-trace-bitmap@0.2.0) (2023-03-25)
+
+#### 🚀 Features
+
+- add pointcloud line extractions ([d65a9ae](https://github.com/thi-ng/umbrella/commit/d65a9ae))
+  - add extractSegmentsX/Y() functions
 
 ## [0.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom-trace-bitmap@0.1.0) (2022-12-29)
 
