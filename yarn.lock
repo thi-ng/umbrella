@@ -3802,6 +3802,7 @@ __metadata:
     "@thi.ng/arrays": ^2.5.8
     "@thi.ng/binary": ^3.3.21
     "@thi.ng/bitfield": ^2.2.24
+    "@thi.ng/errors": ^2.2.13
     "@thi.ng/morton": ^3.1.32
     "@thi.ng/random": ^3.3.27
     "@thi.ng/testament": ^0.3.13
