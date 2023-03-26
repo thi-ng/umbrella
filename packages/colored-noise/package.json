@@ -46,10 +46,10 @@
 		"@thi.ng/text-canvas": "^2.4.34",
 		"@thi.ng/transducers": "^8.3.38",
 		"@thi.ng/vectors": "^7.6.8",
-		"rimraf": "^4.4.0",
+		"rimraf": "^4.4.1",
 		"tools": "workspace:^",
-		"typedoc": "^0.23.26",
-		"typescript": "^4.9.5"
+		"typedoc": "^0.23.28",
+		"typescript": "^5.0.2"
 	},
 	"keywords": [
 		"1d",

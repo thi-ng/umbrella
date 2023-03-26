@@ -1,9 +1,7 @@
 {
 	"extends": "../../tsconfig.json",
 	"compilerOptions": {
-		"outDir": ".",
-		"preserveConstEnums": false,
-		"isolatedModules": false
+		"outDir": "."
 	},
 	"include": ["./src/**/*.ts"]
 }
