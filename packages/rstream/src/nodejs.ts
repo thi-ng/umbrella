@@ -1,6 +1,6 @@
 import { rechunk } from "@thi.ng/transducers/rechunk";
 import type { Readable } from "stream";
-import { Stream, stream } from "./stream.js";
+import { stream, type Stream } from "./stream.js";
 import type { Subscription } from "./subscription.js";
 
 /**

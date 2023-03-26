@@ -5,11 +5,11 @@ import { isPlainObject } from "@thi.ng/checks/is-plain-object";
 import { assert } from "@thi.ng/errors/assert";
 import { illegalState } from "@thi.ng/errors/illegal-state";
 import { NULL_LOGGER } from "@thi.ng/logger/null";
-import type { Reducer, Transducer } from "@thi.ng/transducers";
+import type { Reduced, Reducer, Transducer } from "@thi.ng/transducers";
 import { comp } from "@thi.ng/transducers/comp";
 import { map } from "@thi.ng/transducers/map";
 import { push } from "@thi.ng/transducers/push";
-import { Reduced, isReduced, unreduced } from "@thi.ng/transducers/reduced";
+import { isReduced, unreduced } from "@thi.ng/transducers/reduced";
 import {
 	CloseMode,
 	State,
