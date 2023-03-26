@@ -5,12 +5,12 @@ import {
 	packageTemplates,
 	preincludeFile,
 	tabsToSpaces,
-	TemplateFn,
 	toc,
 	transcludeFile,
+	type TemplateFn,
 } from "@thi.ng/transclude";
 import { execFileSync } from "child_process";
-import { Config, LOGGER } from "./api.js";
+import { LOGGER, type Config } from "./api.js";
 import { CONFIG, initConfig } from "./config.js";
 import { blogPosts } from "./partials/blog.js";
 import { docLink } from "./partials/docs.js";

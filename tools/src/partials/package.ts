@@ -1,9 +1,9 @@
-import { readJSON, readText } from "@thi.ng/file-io";
 import { isString } from "@thi.ng/checks";
+import { readJSON, readText } from "@thi.ng/file-io";
 import { bytes, camel } from "@thi.ng/strings";
 import { execFileSync } from "child_process";
 import { readdirSync } from "fs";
-import { Config, META_FIELD, Package, RE_PKG } from "../api.js";
+import { META_FIELD, RE_PKG, type Config, type Package } from "../api.js";
 import { link } from "./link.js";
 import { list } from "./list.js";
 

@@ -1,7 +1,7 @@
 import { files, readJSON, writeText } from "@thi.ng/file-io";
 import { serialize } from "@thi.ng/hiccup";
 import { comp, filter, map, push, transduce } from "@thi.ng/transducers";
-import { LOGGER, META_FIELD, Package } from "./api.js";
+import { LOGGER, META_FIELD, type Package } from "./api.js";
 import { shortName } from "./partials/package.js";
 
 const REPO_URL = "https://github.com/thi-ng/umbrella/blob/develop/packages";

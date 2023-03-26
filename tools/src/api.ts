@@ -1,5 +1,5 @@
 import type { IObjectOf } from "@thi.ng/api";
-import { ConsoleLogger, LogLevel, LogLevelName } from "@thi.ng/logger";
+import { ConsoleLogger, LogLevel, type LogLevelName } from "@thi.ng/logger";
 import type { Package as $Package } from "@thi.ng/transclude";
 
 export const RE_PKG = /@thi\.ng\/[a-z0-9-]+/g;
