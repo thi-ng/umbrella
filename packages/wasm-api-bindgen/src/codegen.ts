@@ -1,22 +1,22 @@
-import { SIZEOF, Type } from "@thi.ng/api/typedarray";
+import { SIZEOF, type Type } from "@thi.ng/api/typedarray";
 import type { Pow2 } from "@thi.ng/binary";
 import { compareByKey } from "@thi.ng/compare/keys";
 import { compareNumDesc } from "@thi.ng/compare/numeric";
 import { DEFAULT, defmulti } from "@thi.ng/defmulti/defmulti";
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import {
-	AlignStrategy,
-	CodeGenOpts,
-	Enum,
-	Field,
-	FuncPointer,
-	ICodeGen,
 	PKG_NAME,
-	Struct,
-	TopLevelType,
-	TypeColl,
-	Union,
 	WASM32,
+	type AlignStrategy,
+	type CodeGenOpts,
+	type Enum,
+	type Field,
+	type FuncPointer,
+	type ICodeGen,
+	type Struct,
+	type TopLevelType,
+	type TypeColl,
+	type Union,
 } from "./api.js";
 import { selectAlignment } from "./internal/align.js";
 import {

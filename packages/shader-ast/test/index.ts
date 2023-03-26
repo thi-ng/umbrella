@@ -1,19 +1,19 @@
 import { group } from "@thi.ng/testament";
 import * as assert from "assert";
 import {
+	TRUE,
 	bvec2,
 	defn,
 	float,
 	isTerm,
 	ivec2,
-	Lit,
 	mul,
 	ret,
 	sym,
 	texture,
-	TRUE,
 	vec2,
 	vec3,
+	type Lit,
 } from "../src/index.js";
 
 group("shader-ast", {

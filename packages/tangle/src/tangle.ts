@@ -9,13 +9,13 @@ import { split } from "@thi.ng/strings";
 import { assocObj, map, transduce } from "@thi.ng/transducers";
 import { extname, isAbsolute, resolve, sep } from "path";
 import {
-	Block,
-	Blocks,
 	BLOCK_FORMATS,
 	COMMENT_FORMATS,
 	LOGGER,
-	TangleCtx,
-	TangleRef,
+	type Block,
+	type Blocks,
+	type TangleCtx,
+	type TangleRef,
 } from "./api.js";
 
 const UnknownBlockError = defError<[string, string]>(

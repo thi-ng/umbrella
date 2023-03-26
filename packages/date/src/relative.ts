@@ -1,4 +1,11 @@
-import { DAY, HOUR, MaybeDate, MINUTE, Period, SECOND } from "./api.js";
+import {
+	DAY,
+	HOUR,
+	MINUTE,
+	SECOND,
+	type MaybeDate,
+	type Period,
+} from "./api.js";
 import { ensureEpoch } from "./checks.js";
 import { DateTime, dateTime, ensureDateTime } from "./datetime.js";
 import { EN_LONG, EN_SHORT } from "./i18n/en.js";

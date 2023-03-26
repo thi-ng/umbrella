@@ -1,8 +1,8 @@
 import { peek } from "@thi.ng/arrays";
 import {
 	circle,
-	group,
 	polyline as gPolyline,
+	group,
 	polyline,
 	resample,
 	svgDoc,
@@ -21,7 +21,7 @@ import {
 	transduce,
 } from "@thi.ng/transducers";
 import { updateDOM } from "@thi.ng/transducers-hdom";
-import { angleBetween2, mixN2, sub2, Vec } from "@thi.ng/vectors";
+import { angleBetween2, mixN2, sub2, type Vec } from "@thi.ng/vectors";
 import { CTA } from "./config";
 
 /**

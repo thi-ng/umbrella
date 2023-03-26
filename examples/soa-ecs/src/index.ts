@@ -1,5 +1,5 @@
 import { adaptDPI } from "@thi.ng/adapt-dpi";
-import { ECS, GroupInfo, GroupTuple } from "@thi.ng/ecs";
+import { ECS, type GroupInfo, type GroupTuple } from "@thi.ng/ecs";
 import { start } from "@thi.ng/hdom";
 import { canvasWebGL } from "@thi.ng/hdom-components";
 import { fract } from "@thi.ng/math";
@@ -9,11 +9,11 @@ import {
 	assign,
 	defMain,
 	float,
-	Mat4Sym,
 	mix,
 	mul,
-	Vec2Sym,
 	vec4,
+	type Mat4Sym,
+	type Vec2Sym,
 } from "@thi.ng/shader-ast";
 import {
 	add2,
@@ -34,14 +34,14 @@ import {
 } from "@thi.ng/vectors";
 import {
 	BLEND_ADD,
+	DrawMode,
 	compileModel,
 	defShader,
 	draw,
-	DrawMode,
-	GLMat4,
-	GLVec4,
-	ModelSpec,
-	ShaderSpec,
+	type GLMat4,
+	type GLVec4,
+	type ModelSpec,
+	type ShaderSpec,
 } from "@thi.ng/webgl";
 
 const BATCH_UPDATE = true;

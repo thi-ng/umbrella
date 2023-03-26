@@ -8,7 +8,7 @@ import { mod } from "@thi.ng/math/prec";
 import { mapIndexed } from "@thi.ng/transducers/map-indexed";
 import { add2 } from "@thi.ng/vectors/add";
 import { hash } from "@thi.ng/vectors/hash";
-import { Hash, Key } from "../api.js";
+import { Key, type Hash } from "../api.js";
 import type { IMGUI } from "../gui.js";
 import { buttonRaw } from "./button.js";
 import { textLabelRaw } from "./textlabel.js";

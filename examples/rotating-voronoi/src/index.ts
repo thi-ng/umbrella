@@ -17,7 +17,7 @@ import { PI, TAU } from "@thi.ng/math";
 import { SYSTEM } from "@thi.ng/random";
 import { map, mapcat, normRange } from "@thi.ng/transducers";
 import { updateDOM } from "@thi.ng/transducers-hdom";
-import { cartesian2, Vec } from "@thi.ng/vectors";
+import { cartesian2, type Vec } from "@thi.ng/vectors";
 import { checkbox, slider } from "./controllers";
 import {
 	animationStream,

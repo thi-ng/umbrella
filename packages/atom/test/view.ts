@@ -1,6 +1,13 @@
-import * as assert from "assert";
 import { group } from "@thi.ng/testament";
-import { Atom, defCursor, defView, IView, View } from "../src/index.js";
+import * as assert from "assert";
+import {
+	View,
+	defAtom,
+	defCursor,
+	defView,
+	type Atom,
+	type IView,
+} from "../src/index.js";
 
 interface State {
 	a: number;
@@ -107,7 +114,7 @@ group(
 	},
 	{
 		beforeEach: () => {
-			a = new Atom({ a: 1, b: { c: 2, d: 3 }, e: 4 });
+			a = defAtom({ a: 1, b: { c: 2, d: 3 }, e: 4 });
 		},
 	}
 );

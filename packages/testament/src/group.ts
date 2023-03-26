@@ -1,10 +1,10 @@
 import {
-	Fn,
 	GLOBAL_OPTS,
-	GroupOpts,
-	LifecycleCtx,
-	TestCtx,
-	TestResult,
+	type Fn,
+	type GroupOpts,
+	type LifecycleCtx,
+	type TestCtx,
+	type TestResult,
 } from "./api.js";
 import { register } from "./exec.js";
 import { test } from "./test.js";

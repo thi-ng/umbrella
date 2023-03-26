@@ -1,5 +1,5 @@
 // @ts-ignore possibly includes unused imports
-import { MemorySlice, Pointer, WasmStringSlice, WasmTypeBase, WasmTypeConstructor } from "@thi.ng/wasm-api";
+import { Pointer, WasmStringSlice, type MemorySlice, type WasmTypeBase, type WasmTypeConstructor } from "@thi.ng/wasm-api";
 
 export interface Foo extends WasmTypeBase {
 	single: WasmStringSlice;

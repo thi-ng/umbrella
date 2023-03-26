@@ -6,11 +6,11 @@ import { repeat } from "@thi.ng/strings/repeat";
 import { stringify } from "@thi.ng/strings/stringify";
 import { SPLIT_ANSI, wordWrapLines } from "@thi.ng/strings/word-wrap";
 import {
-	Args,
-	ArgSpecExt,
-	ColorTheme,
 	DEFAULT_THEME,
-	UsageOpts,
+	type ArgSpecExt,
+	type Args,
+	type ColorTheme,
+	type UsageOpts,
 } from "./api.js";
 
 export const usage = <T extends IObjectOf<any>>(

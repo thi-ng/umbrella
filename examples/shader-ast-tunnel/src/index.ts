@@ -12,7 +12,6 @@ import {
 	defn,
 	div,
 	float,
-	FloatSym,
 	mul,
 	neg,
 	pow,
@@ -21,24 +20,25 @@ import {
 	sym,
 	texture,
 	vec2,
-	Vec2Sym,
 	vec4,
+	type FloatSym,
+	type Vec2Sym,
 } from "@thi.ng/shader-ast";
 import { GLSLVersion, targetGLSL } from "@thi.ng/shader-ast-glsl";
 import {
-	canvasRenderer,
 	JS_DEFAULT_ENV,
+	canvasRenderer,
 	targetJS,
 } from "@thi.ng/shader-ast-js";
 import {
+	FX_SHADER_SPEC,
+	TextureFilter,
+	TextureRepeat,
 	compileModel,
 	defQuadModel,
 	defShader,
 	defTexture,
 	draw,
-	FX_SHADER_SPEC,
-	TextureFilter,
-	TextureRepeat,
 } from "@thi.ng/webgl";
 import TEX_URL from "./tex.jpg";
 

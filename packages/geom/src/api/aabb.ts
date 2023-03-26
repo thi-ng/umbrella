@@ -2,7 +2,7 @@ import type { IToHiccup } from "@thi.ng/api";
 import type { AABBLike, Attribs } from "@thi.ng/geom-api";
 import { add3 } from "@thi.ng/vectors/add";
 import { addN3 } from "@thi.ng/vectors/addn";
-import { Vec, ZERO3 } from "@thi.ng/vectors/api";
+import { ZERO3, type Vec } from "@thi.ng/vectors/api";
 import { max3 } from "@thi.ng/vectors/max";
 import { set3 } from "@thi.ng/vectors/set";
 import { subN3 } from "@thi.ng/vectors/subn";

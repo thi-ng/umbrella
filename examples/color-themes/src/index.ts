@@ -1,9 +1,9 @@
 import {
-	ColorRangePreset,
-	ColorThemePart,
 	css,
 	lch,
 	swatchesH,
+	type ColorRangePreset,
+	type ColorThemePart,
 	type LCH,
 } from "@thi.ng/color";
 import {
@@ -24,7 +24,7 @@ import {
 	$inputTrigger,
 	$list,
 	$replace,
-	ComponentLike,
+	type ComponentLike,
 } from "@thi.ng/rdom";
 import { staticDropdown } from "@thi.ng/rdom-components";
 import { reactive } from "@thi.ng/rstream";

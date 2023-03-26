@@ -1,7 +1,7 @@
 import type { MultiFn1O } from "@thi.ng/defmulti";
 import { DEFAULT, defmulti } from "@thi.ng/defmulti/defmulti";
 import type { IShape } from "@thi.ng/geom-api";
-import { ReadonlyVec, ZERO2, ZERO3 } from "@thi.ng/vectors/api";
+import { ZERO2, ZERO3, type ReadonlyVec } from "@thi.ng/vectors/api";
 import { set2, set3 } from "@thi.ng/vectors/set";
 import { submN } from "@thi.ng/vectors/submn";
 import { Arc } from "./api/arc.js";

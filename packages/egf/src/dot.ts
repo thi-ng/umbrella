@@ -1,6 +1,6 @@
 import type { Fn2, IObjectOf } from "@thi.ng/api";
 import { isArray } from "@thi.ng/checks/is-array";
-import { Edge, GraphAttribs, serializeGraph } from "@thi.ng/dot";
+import { serializeGraph, type Edge, type GraphAttribs } from "@thi.ng/dot";
 import { slugify } from "@thi.ng/strings/slugify";
 import type { Node, Nodes } from "./api.js";
 import { isRef } from "./checks.js";

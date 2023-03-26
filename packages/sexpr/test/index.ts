@@ -3,13 +3,13 @@ import { defmulti } from "@thi.ng/defmulti";
 import { group } from "@thi.ng/testament";
 import * as assert from "assert";
 import {
-	ASTNode,
-	Implementations,
 	parse,
 	runtime,
-	Sym,
-	SyntaxOpts,
 	tokenize,
+	type ASTNode,
+	type Implementations,
+	type Sym,
+	type SyntaxOpts,
 } from "../src/index.js";
 
 const ops = defmulti<ASTNode, ASTNode[], any, any>((x) => (<Sym>x).value);

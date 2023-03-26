@@ -12,13 +12,13 @@ import {
 	DIFFUSION_2D,
 	DIFFUSION_COLUMN,
 	DIFFUSION_ROW,
-	DitherKernel,
 	ditherWith,
 	FLOYD_STEINBERG,
 	JARVIS_JUDICE_NINKE,
 	SIERRA2,
 	STUCKI,
 	THRESHOLD,
+	type DitherKernel,
 } from "@thi.ng/pixel-dither";
 import IMG from "./michelangelo.png";
 

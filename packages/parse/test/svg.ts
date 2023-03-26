@@ -1,17 +1,17 @@
 import { group } from "@thi.ng/testament";
 import * as assert from "assert";
 import {
+	INT,
+	WS0,
 	alt,
 	collect,
 	defContext,
 	discard,
-	INT,
 	oneOf,
-	Parser,
 	seq,
-	WS0,
 	xform,
 	zeroOrMore,
+	type Parser,
 } from "../src/index.js";
 
 const check = (

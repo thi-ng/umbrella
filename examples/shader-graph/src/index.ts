@@ -25,13 +25,13 @@ import {
 	fit1101,
 	snoise3,
 } from "@thi.ng/shader-ast-stdlib";
-import { add2, copy, ReadonlyVec, Vec } from "@thi.ng/vectors";
+import { add2, copy, type ReadonlyVec, type Vec } from "@thi.ng/vectors";
 import {
 	compileModel,
 	defQuadModel,
 	defShader,
 	glCanvas,
-	GLMat4,
+	type GLMat4,
 } from "@thi.ng/webgl";
 import type { AppCtx } from "./api";
 import { OpNode } from "./opnode";

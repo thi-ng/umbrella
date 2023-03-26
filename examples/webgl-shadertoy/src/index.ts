@@ -4,7 +4,6 @@ import {
 	distance,
 	eq,
 	float,
-	FloatSym,
 	fract,
 	int,
 	min,
@@ -14,18 +13,19 @@ import {
 	ret,
 	sin,
 	sym,
-	Vec2Sym,
-	Vec2Term,
 	vec3,
-	Vec3Sym,
 	vec4,
+	type FloatSym,
+	type Vec2Sym,
+	type Vec2Term,
+	type Vec3Sym,
 } from "@thi.ng/shader-ast";
 import { aspectCorrectedUV, fit1101 } from "@thi.ng/shader-ast-stdlib";
 import { glCanvas } from "@thi.ng/webgl";
 import {
-	MainImageFn,
 	shaderToy,
-	ShaderToyUniforms,
+	type MainImageFn,
+	type ShaderToyUniforms,
 } from "@thi.ng/webgl-shadertoy";
 
 interface DemoUniforms extends ShaderToyUniforms {

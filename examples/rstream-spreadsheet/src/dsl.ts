@@ -7,15 +7,15 @@ import { fromView } from "@thi.ng/rstream";
 import type { NodeInputSpec, NodeSpec } from "@thi.ng/rstream-graph";
 import { addNode, node } from "@thi.ng/rstream-graph";
 import {
-	ASTNode,
-	Implementations,
 	parse,
 	runtime,
-	Str,
-	Sym,
 	tokenize,
+	type ASTNode,
+	type Implementations,
+	type Str,
+	type Sym,
 } from "@thi.ng/sexpr";
-import { charRange, maybeParseFloat, Z2 } from "@thi.ng/strings";
+import { Z2, charRange, maybeParseFloat } from "@thi.ng/strings";
 import {
 	add,
 	assocObj,
@@ -23,17 +23,17 @@ import {
 	div,
 	filter,
 	map,
-	mapcat,
 	mapIndexed,
+	mapcat,
 	max,
 	mean,
 	min,
 	mul,
 	permutations,
 	range,
-	Reducer,
 	sub,
 	transduce,
+	type Reducer,
 } from "@thi.ng/transducers";
 import { RE_CELL_ID, RE_CELL_RANGE } from "./api";
 import { DB, graph, removeCell } from "./state";

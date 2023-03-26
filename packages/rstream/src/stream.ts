@@ -1,14 +1,14 @@
 import { isFunction } from "@thi.ng/checks/is-function";
 import {
 	CloseMode,
-	CommonOpts,
-	IStream,
-	ISubscriber,
-	ISubscription,
-	StreamCancel,
-	StreamSource,
-	TransformableOpts,
-	WithErrorHandlerOpts,
+	type CommonOpts,
+	type IStream,
+	type ISubscriber,
+	type ISubscription,
+	type StreamCancel,
+	type StreamSource,
+	type TransformableOpts,
+	type WithErrorHandlerOpts,
 } from "./api.js";
 import { __optsWithID } from "./idgen.js";
 import { LOGGER } from "./logger.js";

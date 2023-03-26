@@ -1,13 +1,13 @@
 import { group } from "@thi.ng/testament";
 import * as assert from "assert";
 import {
-	defContext,
 	DIGIT,
-	oneOrMore,
-	Parser,
-	seq,
 	WS,
+	defContext,
+	oneOrMore,
+	seq,
 	zeroOrMore,
+	type Parser,
 } from "../src/index.js";
 
 const check = (

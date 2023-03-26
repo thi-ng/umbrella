@@ -4,16 +4,15 @@ import { line, normalizedPath, pathFromSvg } from "@thi.ng/geom";
 import { canvas } from "@thi.ng/hdom-canvas";
 import { DOWNLOAD, RESTART } from "@thi.ng/hiccup-carbon-icons";
 import {
-	buttonH,
-	buttonV,
 	DEFAULT_THEME,
-	dialGroup,
-	dropdown,
-	GUITheme,
-	iconButton,
 	IMGUI,
 	Key,
 	NONE,
+	buttonH,
+	buttonV,
+	dialGroup,
+	dropdown,
+	iconButton,
 	radialMenu,
 	radio,
 	ring,
@@ -26,9 +25,10 @@ import {
 	textLabelRaw,
 	toggle,
 	xyPad,
+	type GUITheme,
 } from "@thi.ng/imgui";
-import { gridLayout, GridLayout, layoutBox } from "@thi.ng/layout";
-import { clamp, PI } from "@thi.ng/math";
+import { GridLayout, gridLayout, layoutBox } from "@thi.ng/layout";
+import { PI, clamp } from "@thi.ng/math";
 import { setInManyUnsafe } from "@thi.ng/paths";
 import {
 	fromAtom,
@@ -42,7 +42,15 @@ import { float } from "@thi.ng/strings";
 import { comp, iterator, map, mapcat, step } from "@thi.ng/transducers";
 import { updateDOM } from "@thi.ng/transducers-hdom";
 import { sma } from "@thi.ng/transducers-stats";
-import { add2, hash, min2, setC2, Vec, vecOf, ZERO2 } from "@thi.ng/vectors";
+import {
+	ZERO2,
+	add2,
+	hash,
+	min2,
+	setC2,
+	vecOf,
+	type Vec,
+} from "@thi.ng/vectors";
 
 // define theme colors in RGBA format for future compatibility with
 // WebGL backend

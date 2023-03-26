@@ -1,5 +1,5 @@
 import { clamp, clamp01 } from "@thi.ng/math/interval";
-import { lch, LCH } from "./lch/lch.js";
+import { lch, type LCH } from "./lch/lch.js";
 import { rotate } from "./rotate.js";
 
 const $ = (src: LCH, l = 0, c = 0) => {

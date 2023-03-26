@@ -1,6 +1,6 @@
 import * as assert from "assert";
 import { group } from "@thi.ng/testament";
-import { defAdjBitMatrix, Edge } from "../src/index.js";
+import { defAdjBitMatrix, type Edge } from "../src/index.js";
 
 const edges: Edge[] = [
 	[2, 3],

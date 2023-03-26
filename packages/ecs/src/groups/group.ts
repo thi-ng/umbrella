@@ -4,15 +4,15 @@ import { assert } from "@thi.ng/errors/assert";
 import { map } from "@thi.ng/transducers/map";
 import { transduce } from "@thi.ng/transducers/transduce";
 import {
-	ComponentID,
 	EVENT_ADDED,
 	EVENT_CHANGED,
 	EVENT_PRE_DELETE,
-	GroupInfo,
-	GroupOpts,
-	GroupTuple,
-	ICache,
-	IComponent,
+	type ComponentID,
+	type GroupInfo,
+	type GroupOpts,
+	type GroupTuple,
+	type ICache,
+	type IComponent,
 } from "../api.js";
 import { UnboundedCache } from "../caches/unbounded.js";
 import { ObjectComponent } from "../components/object-component.js";

@@ -1,5 +1,5 @@
 import type { IObjectOf } from "@thi.ng/api";
-import { cosineGradient, COSINE_GRADIENTS } from "@thi.ng/color";
+import { COSINE_GRADIENTS, cosineGradient } from "@thi.ng/color";
 import { threadLast } from "@thi.ng/compose";
 import { DAY, quarters } from "@thi.ng/date";
 import { serialize } from "@thi.ng/hiccup";
@@ -15,8 +15,8 @@ import {
 	groupByObj,
 	keep,
 	map,
-	mapcat,
 	mapIndexed,
+	mapcat,
 	max,
 	partitionWhen,
 	pluck,
@@ -68,6 +68,7 @@ const ALIASES: IObjectOf<string> = {
 	"geom-clip-convex": "geom-clip-poly",
 	"geom-clostest-point": "geom-closest-point",
 	"geom-tesselate": "geom-tessellate",
+	"grid-iterator": "grid-iterators",
 	hdom2020: "rdom",
 	"hdom-cnavas": "hdom-canvas",
 	heap: "heaps",

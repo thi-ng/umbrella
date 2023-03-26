@@ -1,9 +1,9 @@
 import type { IObjectOf } from "@thi.ng/api";
 import {
-	ColorRangePreset,
-	ColorThemePart,
 	COLOR_RANGES,
-	ReadonlyColor,
+	type ColorRangePreset,
+	type ColorThemePart,
+	type ReadonlyColor,
 } from "@thi.ng/color";
 
 export interface MainInputs {

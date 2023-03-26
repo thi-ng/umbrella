@@ -4,7 +4,7 @@ import { canvasWebGL } from "@thi.ng/hdom-components";
 import { fitClamped } from "@thi.ng/math";
 import { concat, lookAt, perspective, transform44 } from "@thi.ng/matrices";
 import { SYSTEM } from "@thi.ng/random";
-import { fromDOMEvent, ISubscription } from "@thi.ng/rstream";
+import { fromDOMEvent, type ISubscription } from "@thi.ng/rstream";
 import {
 	$w,
 	add,
@@ -24,27 +24,32 @@ import {
 import { map } from "@thi.ng/transducers";
 import { AttribPool } from "@thi.ng/vector-pools";
 import {
+	Y3,
+	ZERO3,
 	fit3,
 	madd3,
 	mixN,
 	mulN,
-	ReadonlyVec,
-	Y3,
-	ZERO3,
+	type ReadonlyVec,
 } from "@thi.ng/vectors";
 import {
 	BLEND_NORMAL,
+	DrawMode,
+	TextureFilter,
+	TextureRepeat,
 	compileModel,
 	defShader,
 	defTexture,
 	draw,
-	DrawMode,
-	GLMat4,
-	ModelSpec,
-	TextureFilter,
-	TextureRepeat,
+	type GLMat4,
+	type ModelSpec,
 } from "@thi.ng/webgl";
-import { alignCenter, MSDFFont, msdfShader, text } from "@thi.ng/webgl-msdf";
+import {
+	alignCenter,
+	msdfShader,
+	text,
+	type MSDFFont,
+} from "@thi.ng/webgl-msdf";
 import GLYPHS from "./ibmplexsans-light-msdf-converted.json";
 import GLYPH_TEX from "./ibmplexsans-light.png";
 

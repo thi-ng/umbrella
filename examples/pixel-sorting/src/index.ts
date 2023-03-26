@@ -6,15 +6,15 @@ import {
 	h1,
 	inputFile,
 	inputNumber,
-	InputNumericAttribs,
 	inputRange,
 	label,
+	type InputNumericAttribs,
 } from "@thi.ng/hiccup-html";
 import { closedOpen, intersection } from "@thi.ng/intervals";
 import { ABGR8888, IntBuffer, intBufferFromImage } from "@thi.ng/pixel";
 import { SYSTEM } from "@thi.ng/random";
-import { $compile, $replace, Component, NumOrElement } from "@thi.ng/rdom";
-import { CloseMode, reactive, Stream, stream, sync } from "@thi.ng/rstream";
+import { $compile, $replace, Component, type NumOrElement } from "@thi.ng/rdom";
+import { CloseMode, Stream, reactive, stream, sync } from "@thi.ng/rstream";
 import { map } from "@thi.ng/transducers";
 
 interface ProcessParams {

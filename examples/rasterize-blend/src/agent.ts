@@ -6,7 +6,7 @@ import {
 	normalize2,
 	randMinMax2,
 	randNorm2,
-	Vec,
+	type Vec,
 } from "@thi.ng/vectors";
 
 interface AgentOpts {

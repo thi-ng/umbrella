@@ -3,7 +3,7 @@ import { isNumber } from "@thi.ng/checks/is-number";
 import { dedupe } from "@thi.ng/transducers/dedupe";
 import { reducer } from "@thi.ng/transducers/reduce";
 import { scan } from "@thi.ng/transducers/scan";
-import { CloseMode, ISubscribable } from "./api.js";
+import { CloseMode, type ISubscribable } from "./api.js";
 import { fromInterval } from "./interval.js";
 import { fromRAF } from "./raf.js";
 import { sync } from "./sync.js";

@@ -3,8 +3,8 @@ import { NO_OP } from "@thi.ng/api/api";
 import { unescapeEntities } from "@thi.ng/strings/entities";
 import { ESCAPES } from "@thi.ng/strings/escape";
 import type { Transducer } from "@thi.ng/transducers";
-import { fsm, FSMState, FSMStateMap } from "@thi.ng/transducers-fsm";
-import { iterator, __iter } from "@thi.ng/transducers/iterator";
+import { fsm, type FSMState, type FSMStateMap } from "@thi.ng/transducers-fsm";
+import { __iter, iterator } from "@thi.ng/transducers/iterator";
 
 export interface ParseOpts {
 	/**

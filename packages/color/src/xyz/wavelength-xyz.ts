@@ -1,6 +1,6 @@
 import type { FnU5 } from "@thi.ng/api";
 import { setC4 } from "@thi.ng/vectors/setc";
-import { xyzD65, XYZD65 } from "./xyz65.js";
+import { xyzD65, type XYZD65 } from "./xyz65.js";
 
 /**
  * Computes XYZA for given wavelength (in nanometers) and optional alpha channel

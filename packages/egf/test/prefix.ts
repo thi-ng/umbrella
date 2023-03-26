@@ -1,6 +1,6 @@
-import * as assert from "assert";
 import { group } from "@thi.ng/testament";
-import { ParseContext, parseString, qualifiedID } from "../src/index.js";
+import * as assert from "assert";
+import { parseString, qualifiedID, type ParseContext } from "../src/index.js";
 
 const $ctx: Partial<ParseContext> = { opts: { prefixes: true } };
 

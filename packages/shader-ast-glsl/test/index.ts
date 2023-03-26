@@ -1,22 +1,22 @@
 import {
 	$,
-	bool,
 	FALSE,
+	TRUE,
+	bool,
 	float,
 	input,
 	int,
-	IVec,
 	output,
 	scope,
 	sym,
-	Term,
-	TRUE,
 	uint,
 	uniform,
-	Vec,
 	vec2,
 	vec3,
 	vec4,
+	type IVec,
+	type Term,
+	type Vec,
 } from "@thi.ng/shader-ast";
 import { group } from "@thi.ng/testament";
 import * as assert from "assert";

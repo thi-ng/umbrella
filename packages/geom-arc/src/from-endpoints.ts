@@ -1,7 +1,7 @@
 import { EPS, TAU } from "@thi.ng/math/api";
 import { abs2 } from "@thi.ng/vectors/abs";
 import { angleBetween2 } from "@thi.ng/vectors/angle-between";
-import { ReadonlyVec, Vec, X2 } from "@thi.ng/vectors/api";
+import { X2, type ReadonlyVec, type Vec } from "@thi.ng/vectors/api";
 import { div2 } from "@thi.ng/vectors/div";
 import { eqDelta2 } from "@thi.ng/vectors/eqdelta";
 import { mulN2 } from "@thi.ng/vectors/muln";

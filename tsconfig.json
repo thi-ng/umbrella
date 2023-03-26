@@ -9,7 +9,7 @@
 		"importHelpers": true,
 		"noUnusedParameters": true,
 		"noUnusedLocals": true,
-		"importsNotUsedAsValues": "error",
+		"verbatimModuleSyntax": true,
 		"preserveConstEnums": true,
 		"moduleResolution": "node",
 		"strict": true,

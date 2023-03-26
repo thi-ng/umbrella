@@ -4,11 +4,11 @@ import { unsupported } from "@thi.ng/errors/unsupported";
 import type { Transducer } from "@thi.ng/transducers";
 import {
 	CloseMode,
-	ISubscriber,
-	ISubscription,
-	SubscriptionOpts,
-	TransformableOpts,
-	WithErrorHandlerOpts,
+	type ISubscriber,
+	type ISubscription,
+	type SubscriptionOpts,
+	type TransformableOpts,
+	type WithErrorHandlerOpts,
 } from "./api.js";
 import { __optsWithID } from "./idgen.js";
 import { LOGGER } from "./logger.js";

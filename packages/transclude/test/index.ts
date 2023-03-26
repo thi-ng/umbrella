@@ -2,12 +2,12 @@ import { fileFixture, fixturePath, group } from "@thi.ng/testament";
 import assert from "assert";
 import {
 	compactEmptyLines,
-	Package,
 	packageTemplates,
 	preincludeFile,
 	tabsToSpaces,
 	toc,
 	transcludeFile,
+	type Package,
 } from "../src/index.js";
 
 const DUMMY_PKG: Package = {

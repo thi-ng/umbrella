@@ -1,5 +1,5 @@
 import { group } from "@thi.ng/testament";
-import { eqDelta, maddN3, mulN3, normalize3, Vec } from "@thi.ng/vectors";
+import { eqDelta, maddN3, mulN3, normalize3, type Vec } from "@thi.ng/vectors";
 import * as assert from "assert";
 import { intersectRayAABB } from "../src/index.js";
 

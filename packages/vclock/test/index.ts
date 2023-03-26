@@ -7,7 +7,7 @@ import {
 	merge,
 	remove,
 	signedSkew,
-	VClock,
+	type VClock,
 } from "../src/index.js";
 
 group("vclock", {

@@ -2,7 +2,7 @@ import type { Fn0 } from "@thi.ng/api";
 import { group } from "@thi.ng/testament";
 import * as tx from "@thi.ng/transducers";
 import * as assert from "assert";
-import { resolve, Resolved, resolved, ResolveFn } from "../src/index.js";
+import { resolve, Resolved, resolved, type ResolveFn } from "../src/index.js";
 
 group("resolve-map", {
 	simple: () => {

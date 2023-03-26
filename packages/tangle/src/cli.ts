@@ -1,5 +1,12 @@
 // thing:no-export
-import { Args, flag, parse, ParseError, usage, UsageOpts } from "@thi.ng/args";
+import {
+	ParseError,
+	flag,
+	parse,
+	usage,
+	type Args,
+	type UsageOpts,
+} from "@thi.ng/args";
 import { readJSON, writeText } from "@thi.ng/file-io";
 import { ConsoleLogger } from "@thi.ng/logger";
 import { resolve } from "path";

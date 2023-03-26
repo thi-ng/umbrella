@@ -1,6 +1,10 @@
 import type { Fn2, ICopy, IEmpty } from "@thi.ng/api";
 import { IGrid2DMixin } from "@thi.ng/api/mixins/igrid";
-import { typedArray, UIntArray, uintTypeForBits } from "@thi.ng/api/typedarray";
+import {
+	typedArray,
+	uintTypeForBits,
+	type UIntArray,
+} from "@thi.ng/api/typedarray";
 import { isNumber } from "@thi.ng/checks/is-number";
 import { isString } from "@thi.ng/checks/is-string";
 import { assert } from "@thi.ng/errors/assert";
@@ -10,21 +14,21 @@ import {
 	premultiplyInt,
 } from "@thi.ng/porter-duff/premultiply";
 import {
-	BlendFnInt,
-	BlitCanvasOpts,
-	BlitOpts,
-	Filter,
-	IBlend,
-	IBlit,
-	IInvert,
-	IntChannel,
-	IntFormat,
-	IntFormatSpec,
-	IntSampler,
-	IPixelBuffer,
-	IResizable,
-	IToImageData,
 	Lane,
+	type BlendFnInt,
+	type BlitCanvasOpts,
+	type BlitOpts,
+	type Filter,
+	type IBlend,
+	type IBlit,
+	type IInvert,
+	type IPixelBuffer,
+	type IResizable,
+	type IToImageData,
+	type IntChannel,
+	type IntFormat,
+	type IntFormatSpec,
+	type IntSampler,
 } from "./api.js";
 import { canvasPixels, imageCanvas } from "./canvas.js";
 import {

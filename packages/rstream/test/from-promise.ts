@@ -3,8 +3,8 @@ import * as assert from "assert";
 import {
 	fromIterable,
 	fromPromise,
-	ISubscribable,
 	resolve,
+	type ISubscribable,
 } from "../src/index.js";
 import { TIMEOUT } from "./config.js";
 import { assertActive } from "./utils.js";

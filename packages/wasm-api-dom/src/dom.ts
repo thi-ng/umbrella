@@ -2,12 +2,12 @@ import { adaptDPI } from "@thi.ng/adapt-dpi";
 import type { NumOrString } from "@thi.ng/api";
 import { assert } from "@thi.ng/errors/assert";
 import {
-	IWasmAPI,
-	ReadonlyWasmString,
 	WasmBridge,
 	WasmStringSlice,
-	WasmType,
-	WasmTypeBase,
+	type IWasmAPI,
+	type ReadonlyWasmString,
+	type WasmType,
+	type WasmTypeBase,
 } from "@thi.ng/wasm-api";
 import { ObjectIndex } from "@thi.ng/wasm-api/object-index";
 import {
@@ -16,13 +16,13 @@ import {
 	$Event,
 	$WindowInfo,
 	AttribType,
-	CreateElementOpts,
-	Event as WasmEvent,
-	EventBody,
 	EventType,
 	NS_PREFIXES,
-	WasmDomExports,
-	WasmDomImports,
+	type CreateElementOpts,
+	type EventBody,
+	type WasmDomExports,
+	type WasmDomImports,
+	type Event as WasmEvent,
 } from "./api.js";
 
 /**

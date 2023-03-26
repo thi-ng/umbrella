@@ -1,7 +1,10 @@
 import type { Fn0 } from "@thi.ng/api";
 import { WasmBridge } from "@thi.ng/wasm-api";
-import { WasmCanvas2D, WasmCanvas2DExports } from "@thi.ng/wasm-api-canvas";
-import { WasmDom, WasmDomExports } from "@thi.ng/wasm-api-dom";
+import {
+	WasmCanvas2D,
+	type WasmCanvas2DExports,
+} from "@thi.ng/wasm-api-canvas";
+import { WasmDom, type WasmDomExports } from "@thi.ng/wasm-api-dom";
 import WASM_URL from "./main.wasm?url";
 
 /**

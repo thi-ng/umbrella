@@ -5,7 +5,6 @@ import {
 	bisectorStrategy,
 	centroidStrategy,
 	defuzz,
-	DefuzzStrategy,
 	firstOfMaximaStrategy,
 	gaussian,
 	invRamp,
@@ -15,6 +14,7 @@ import {
 	ramp,
 	triangle,
 	variable,
+	type DefuzzStrategy,
 } from "../src/index.js";
 
 group("defuzz", {

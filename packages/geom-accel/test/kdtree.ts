@@ -1,6 +1,6 @@
 import { group } from "@thi.ng/testament";
 import { mapIndexed } from "@thi.ng/transducers";
-import { distHaversineLatLon, ReadonlyVec } from "@thi.ng/vectors";
+import { distHaversineLatLon, type ReadonlyVec } from "@thi.ng/vectors";
 import * as assert from "assert";
 import { KdTreeMap, KdTreeSet } from "../src/index.js";
 

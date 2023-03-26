@@ -1,7 +1,7 @@
 import type { Fn } from "@thi.ng/api";
 import { setIn } from "@thi.ng/paths";
-import { floatBufferFromImage, FLOAT_GRAY } from "@thi.ng/pixel";
-import { ISubscriber, pubsub, stream, trace } from "@thi.ng/rstream";
+import { FLOAT_GRAY, floatBufferFromImage } from "@thi.ng/pixel";
+import { pubsub, stream, trace, type ISubscriber } from "@thi.ng/rstream";
 import type { Transducer } from "@thi.ng/transducers";
 import {
 	SET_IMAGE,

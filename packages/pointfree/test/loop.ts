@@ -12,9 +12,9 @@ import {
 	maptos,
 	nop,
 	runU,
-	StackFn,
-	StackProgram,
 	swap,
+	type StackFn,
+	type StackProgram,
 } from "../src/index.js";
 
 /**

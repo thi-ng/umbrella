@@ -6,7 +6,13 @@ import * as $prefixes from "@thi.ng/prefixes";
 import { unescape } from "@thi.ng/strings/escape";
 import { readFileSync } from "fs";
 import { dirname, resolve as resolvePath } from "path";
-import { IS_NODE, Node, ParseContext, ParseOpts, TagParser } from "./api.js";
+import {
+	IS_NODE,
+	type Node,
+	type ParseContext,
+	type ParseOpts,
+	type TagParser,
+} from "./api.js";
 import { qualifiedID } from "./prefix.js";
 import { BUILTINS } from "./tags.js";
 

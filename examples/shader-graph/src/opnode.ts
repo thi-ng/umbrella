@@ -1,18 +1,18 @@
 import type { IObjectOf } from "@thi.ng/api";
 import { mat23to44 } from "@thi.ng/matrices";
 import {
+	FBO,
+	FX_SHADER_SPEC_UV,
+	Shader,
+	Texture,
+	TextureFilter,
 	defFBO,
 	defShader,
 	defTexture,
 	draw,
-	FBO,
-	FX_SHADER_SPEC_UV,
-	GLMat4,
-	GLVec,
-	ModelSpec,
-	Shader,
-	Texture,
-	TextureFilter,
+	type GLMat4,
+	type GLVec,
+	type ModelSpec,
 } from "@thi.ng/webgl";
 import type { AppCtx, OpSpec, UserUniforms } from "./api";
 

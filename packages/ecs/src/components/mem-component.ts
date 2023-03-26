@@ -1,10 +1,10 @@
-import {
-	Type,
-	typedArray,
-	TypedArray,
-	UIntArray,
-} from "@thi.ng/api/typedarray";
 import { INotifyMixin } from "@thi.ng/api/mixins/inotify";
+import {
+	typedArray,
+	type Type,
+	type TypedArray,
+	type UIntArray,
+} from "@thi.ng/api/typedarray";
 import { assert } from "@thi.ng/errors/assert";
 import type { IMemPoolArray } from "@thi.ng/malloc";
 import type { ICache, MemMappedComponentOpts } from "../api.js";

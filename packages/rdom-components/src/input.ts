@@ -1,7 +1,10 @@
 import type { NumericArray } from "@thi.ng/api";
 import type { Attribs } from "@thi.ng/hiccup-html";
 import { div } from "@thi.ng/hiccup-html/blocks";
-import { inputNumber, InputNumericAttribs } from "@thi.ng/hiccup-html/forms";
+import {
+	inputNumber,
+	type InputNumericAttribs,
+} from "@thi.ng/hiccup-html/forms";
 import { $inputNum } from "@thi.ng/rdom/event";
 import type { ISubscription } from "@thi.ng/rstream";
 import { pluck } from "@thi.ng/transducers/pluck";

@@ -16,8 +16,8 @@ import {
 	nm,
 	rad,
 	turn,
-	Unit,
 	yd,
+	type Unit,
 } from "../src/index.js";
 
 const PI = Math.PI;

@@ -7,6 +7,10 @@ import { fromRAF, tweenNumber } from "@thi.ng/rstream";
 import { benchmark, map, movingAverage, repeatedly } from "@thi.ng/transducers";
 import { rotateY } from "@thi.ng/vectors";
 import {
+	FBO,
+	TextureFilter,
+	TextureFormat,
+	TextureRepeat,
 	checkerboard,
 	compileModel,
 	defCubeModel,
@@ -16,14 +20,10 @@ import {
 	defShader,
 	defTexture,
 	draw,
-	FBO,
-	GLMat4,
-	GLVec3,
-	ModelSpec,
-	TextureFilter,
-	TextureFormat,
-	TextureOpts,
-	TextureRepeat,
+	type GLMat4,
+	type GLVec3,
+	type ModelSpec,
+	type TextureOpts,
 } from "@thi.ng/webgl";
 import { CONTROLS, PARAMS, PARAM_DEFS } from "./params";
 import { FINAL_SHADER, LIGHT_SHADER, SSAO_SHADER } from "./shaders";

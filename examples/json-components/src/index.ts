@@ -1,5 +1,5 @@
 import { start } from "@thi.ng/hdom";
-import { deepTransform, TransformSubSpec } from "@thi.ng/transducers";
+import { deepTransform, type TransformSubSpec } from "@thi.ng/transducers";
 
 import "./style.css";
 

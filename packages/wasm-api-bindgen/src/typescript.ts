@@ -1,10 +1,10 @@
 import type { Nullable, NumOrString } from "@thi.ng/api";
 import {
 	BIGINT_ARRAY_CTORS,
-	BigType,
 	BIT_SHIFTS,
-	Type,
 	TYPEDARRAY_CTORS,
+	type BigType,
+	type Type,
 } from "@thi.ng/api/typedarray";
 import { isString } from "@thi.ng/checks/is-string";
 import { unsupported } from "@thi.ng/errors/unsupported";
@@ -84,9 +84,9 @@ export const TYPESCRIPT = (opts: Partial<TSOpts> = {}) => {
 		pre: (_, globalOpts) => {
 			const res = [
 				"// @ts-ignore possibly includes unused imports",
-				`import { MemorySlice, Pointer, ${__stringImpl(
+				`import { Pointer, ${__stringImpl(
 					globalOpts
-				)}, WasmTypeBase, WasmTypeConstructor } from "@thi.ng/wasm-api";`,
+				)}, type MemorySlice, type WasmTypeBase, type WasmTypeConstructor } from "@thi.ng/wasm-api";`,
 			];
 			if (opts.pre) res.push("", ...ensureStringArray(opts.pre));
 			return res.join("\n");

@@ -1,6 +1,6 @@
 import { fit, fitClamped } from "@thi.ng/math/fit";
 import { mix } from "@thi.ng/math/mix";
-import { FloatFormat, Lane } from "../api.js";
+import { Lane, type FloatFormat } from "../api.js";
 import { __luminanceABGR } from "../internal/utils.js";
 
 /**

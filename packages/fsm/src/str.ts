@@ -1,4 +1,4 @@
-import { LitCallback, Match, Matcher, RES_PARTIAL } from "./api.js";
+import { Match, RES_PARTIAL, type LitCallback, type Matcher } from "./api.js";
 import { result } from "./result.js";
 
 /**

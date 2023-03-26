@@ -1,4 +1,4 @@
-import { CloseMode, State, WithErrorHandlerOpts } from "./api.js";
+import { CloseMode, State, type WithErrorHandlerOpts } from "./api.js";
 import { __optsWithID } from "./idgen.js";
 import { stream } from "./stream.js";
 

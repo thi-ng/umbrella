@@ -1,9 +1,9 @@
 import { start } from "@thi.ng/hdom";
 import { canvas } from "@thi.ng/hdom-canvas";
 import { fitClamped, fract } from "@thi.ng/math";
-import { HermiteRamp, IRamp, LinearRamp } from "@thi.ng/ramp";
+import { HermiteRamp, LinearRamp, type IRamp } from "@thi.ng/ramp";
 import { repeatedly } from "@thi.ng/transducers";
-import { ReadonlyVec, setC2, Vec } from "@thi.ng/vectors";
+import { setC2, type ReadonlyVec, type Vec } from "@thi.ng/vectors";
 import {
 	BASE_FREQ,
 	CHEIGHT,

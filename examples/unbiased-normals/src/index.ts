@@ -2,20 +2,20 @@ import { sin } from "@thi.ng/dsp";
 import {
 	concat,
 	lookAt,
-	Mat,
 	perspective,
 	project3,
 	rotationX44,
 	rotationY44,
 	viewport,
+	type Mat,
 } from "@thi.ng/matrices";
-import { canvas2d, GRAY8, IntBuffer, intBufferFromCanvas } from "@thi.ng/pixel";
+import { GRAY8, IntBuffer, canvas2d, intBufferFromCanvas } from "@thi.ng/pixel";
 import { repeatedly } from "@thi.ng/transducers";
 import {
 	add3,
 	randNorm3,
 	randNormDistrib3,
-	ReadonlyVec,
+	type ReadonlyVec,
 } from "@thi.ng/vectors";
 
 // create canvas & pixel buffer

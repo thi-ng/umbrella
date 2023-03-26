@@ -1,4 +1,4 @@
-import { ITexture, TextureType } from "./api/texture.js";
+import { TextureType, type ITexture } from "./api/texture.js";
 
 export const isGL2Context = (
 	gl: WebGLRenderingContext | WebGL2RenderingContext

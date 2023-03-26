@@ -1,4 +1,4 @@
-import { DAY, HOUR, MINUTE, RoundingFn, SECOND, WEEK } from "./api.js";
+import { DAY, HOUR, MINUTE, SECOND, WEEK, type RoundingFn } from "./api.js";
 import { ensureDate } from "./checks.js";
 
 /**

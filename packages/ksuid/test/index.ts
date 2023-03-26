@@ -1,7 +1,7 @@
 import { XsAdd } from "@thi.ng/random";
 import { group } from "@thi.ng/testament";
 import * as assert from "assert";
-import { defKSUID32, defKSUID64, defULID, IKSUID } from "../src/index.js";
+import { defKSUID32, defKSUID64, defULID, type IKSUID } from "../src/index.js";
 
 const check = ({
 	idgen,

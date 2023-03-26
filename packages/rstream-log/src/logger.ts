@@ -1,6 +1,6 @@
 import { illegalArity } from "@thi.ng/errors/illegal-arity";
-import { LogEntry, LogLevel } from "@thi.ng/logger/api";
-import { CloseMode, ISubscribable } from "@thi.ng/rstream/api";
+import { LogLevel, type LogEntry } from "@thi.ng/logger/api";
+import { CloseMode, type ISubscribable } from "@thi.ng/rstream/api";
 import { __nextID } from "@thi.ng/rstream/idgen";
 import { StreamMerge } from "@thi.ng/rstream/merge";
 import type { ILogger } from "./api.js";

@@ -1,19 +1,24 @@
 import { writeText } from "@thi.ng/file-io";
-import { fileFixture, fixturePath, group, TestCtx } from "@thi.ng/testament";
+import {
+	fileFixture,
+	fixturePath,
+	group,
+	type TestCtx,
+} from "@thi.ng/testament";
 import * as assert from "assert";
 import {
 	C11,
-	CodeGenOpts,
 	DEFAULT_CODEGEN_OPTS,
-	Enum,
-	FuncPointer,
 	generateTypes,
-	ICodeGen,
 	prepareTypes,
-	Struct,
-	TypeColl,
 	TYPESCRIPT,
 	ZIG,
+	type CodeGenOpts,
+	type Enum,
+	type FuncPointer,
+	type ICodeGen,
+	type Struct,
+	type TypeColl,
 } from "../src/index.js";
 
 const OPTS = { ...DEFAULT_CODEGEN_OPTS, header: false };

@@ -1,6 +1,11 @@
 import type { Keys } from "@thi.ng/api";
 import { DGraph } from "@thi.ng/dgraph";
-import { ILifecycle, LOGGER, SystemMap, SystemSpecs } from "./api.js";
+import {
+	LOGGER,
+	type ILifecycle,
+	type SystemMap,
+	type SystemSpecs,
+} from "./api.js";
 
 export const defSystem = <T extends SystemMap<T>>(map: SystemSpecs<T>) =>
 	new System<T>(map);

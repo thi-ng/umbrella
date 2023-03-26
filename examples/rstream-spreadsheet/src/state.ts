@@ -1,7 +1,7 @@
 import type { IObjectOf } from "@thi.ng/api";
 import { Atom } from "@thi.ng/atom";
 import { setIn, setInManyUnsafe } from "@thi.ng/paths";
-import { Node, removeNode } from "@thi.ng/rstream-graph";
+import { removeNode, type Node } from "@thi.ng/rstream-graph";
 import { charRange } from "@thi.ng/strings";
 import {
 	assocObj,

@@ -2,7 +2,7 @@ import { SQRT3 } from "@thi.ng/math/api";
 import { clamp01 } from "@thi.ng/math/interval";
 import { abs2 } from "@thi.ng/vectors/abs";
 import { add2 } from "@thi.ng/vectors/add";
-import { ReadonlyVec, Vec, ZERO2 } from "@thi.ng/vectors/api";
+import { ZERO2, type ReadonlyVec, type Vec } from "@thi.ng/vectors/api";
 import { cross2 } from "@thi.ng/vectors/cross";
 import { distSq2 } from "@thi.ng/vectors/distsq";
 import { dot2 } from "@thi.ng/vectors/dot";

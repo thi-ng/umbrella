@@ -1,18 +1,18 @@
 import type { IObjectOf } from "@thi.ng/api";
 import { isMobile, isString } from "@thi.ng/checks";
 import {
-	ColorRangePreset,
 	colorsFromTheme,
-	ColorThemePart,
-	CSSColorName,
 	distCIEDE2000,
 	lch,
 	proximity,
 	sort,
+	type CSSColorName,
+	type ColorRangePreset,
+	type ColorThemePart,
 	type LCH,
 } from "@thi.ng/color";
 import { SYSTEM, XsAdd } from "@thi.ng/random";
-import { debounce, reactive, stream, Stream, sync } from "@thi.ng/rstream";
+import { Stream, debounce, reactive, stream, sync } from "@thi.ng/rstream";
 import { map } from "@thi.ng/transducers";
 import { RANGE_IDs, type MainInputs, type MainOutputs } from "./api";
 import { downloadACT } from "./palette";

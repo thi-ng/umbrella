@@ -1,5 +1,5 @@
 import type { ILength } from "@thi.ng/api";
-import { SIZEOF, TypedArray, typedArray } from "@thi.ng/api/typedarray";
+import { SIZEOF, typedArray, type TypedArray } from "@thi.ng/api/typedarray";
 import { assert } from "@thi.ng/errors/assert";
 import { ensureIndex } from "@thi.ng/errors/out-of-bounds";
 import type { ReadonlyVec, Vec } from "@thi.ng/vectors";

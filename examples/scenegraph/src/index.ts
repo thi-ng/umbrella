@@ -3,9 +3,9 @@ import type { IShape } from "@thi.ng/geom-api";
 import { start } from "@thi.ng/hdom";
 import { canvas } from "@thi.ng/hdom-canvas";
 import { HALF_PI, PI } from "@thi.ng/math";
-import { Node2D, NodeInfo } from "@thi.ng/scenegraph";
+import { Node2D, type NodeInfo } from "@thi.ng/scenegraph";
 import { cycle, map, range } from "@thi.ng/transducers";
-import { cartesian2, mulN2, ReadonlyVec, Vec } from "@thi.ng/vectors";
+import { cartesian2, mulN2, type ReadonlyVec, type Vec } from "@thi.ng/vectors";
 
 /**
  * Specialized scene graph node using @thi.ng/geom shapes as body.

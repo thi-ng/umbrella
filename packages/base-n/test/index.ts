@@ -9,7 +9,7 @@ import {
 	BASE64,
 	BASE85,
 	defBase,
-	IBase,
+	type IBase,
 } from "../src/index.js";
 
 group("base-n", {

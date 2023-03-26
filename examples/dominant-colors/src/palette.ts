@@ -1,4 +1,4 @@
-import { ReadonlyColor, srgb, srgbIntArgb32 } from "@thi.ng/color";
+import { srgb, srgbIntArgb32, type ReadonlyColor } from "@thi.ng/color";
 import { downloadWithMime } from "@thi.ng/dl-asset";
 
 export const downloadACT = (colors: ReadonlyColor[]) => {

@@ -1,4 +1,4 @@
-import { ILogger, LogLevel, LogLevelName } from "./api.js";
+import { LogLevel, type ILogger, type LogLevelName } from "./api.js";
 
 /**
  * Abstract {@link ILogger} base implementation.

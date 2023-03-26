@@ -1,4 +1,4 @@
-import { LogEntry, LogLevel } from "@thi.ng/logger/api";
+import { LogLevel, type LogEntry } from "@thi.ng/logger/api";
 import { stringify } from "@thi.ng/strings/stringify";
 import type { Transducer } from "@thi.ng/transducers";
 import { map } from "@thi.ng/transducers/map";

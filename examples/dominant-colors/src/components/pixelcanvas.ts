@@ -2,7 +2,7 @@
 // creates a canvas element and blits given pixel buffer into it
 
 import type { IntBuffer } from "@thi.ng/pixel";
-import { Component, NumOrElement } from "@thi.ng/rdom";
+import { Component, type NumOrElement } from "@thi.ng/rdom";
 
 // when the component mounts
 export class PixelCanvas extends Component {

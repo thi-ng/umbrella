@@ -9,6 +9,7 @@ import type { IRandom } from "@thi.ng/random";
 import { coin } from "@thi.ng/random/coin";
 import { SYSTEM } from "@thi.ng/random/system";
 import { weightedRandom } from "@thi.ng/random/weighted-random";
+import { analog } from "./analog.js";
 import type {
 	ColorRange,
 	ColorRangeOpts,
@@ -18,11 +19,10 @@ import type {
 } from "./api/ranges.js";
 import { parseCss } from "./css/parse-css.js";
 import { __ensureAlpha } from "./internal/ensure.js";
-import { LCH, lch } from "./lch/lch.js";
-import { analog } from "./analog.js";
 import { isBlack } from "./is-black.js";
 import { isGray } from "./is-gray.js";
 import { isWhite } from "./is-white.js";
+import { lch, type LCH } from "./lch/lch.js";
 
 /**
  * Preset {@link ColorRange}s for use with {@link colorsFromRange},

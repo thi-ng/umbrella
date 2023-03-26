@@ -13,10 +13,6 @@ import {
 	asinh,
 	atan,
 	atanh,
-	Complex,
-	ComplexOp1,
-	ComplexOp2,
-	ComplexOpN,
 	conjugate,
 	cos,
 	cosh,
@@ -37,6 +33,10 @@ import {
 	sub,
 	tan,
 	tanh,
+	type Complex,
+	type ComplexOp1,
+	type ComplexOp2,
+	type ComplexOpN,
 } from "../src/index.js";
 
 const A = [3, 2];

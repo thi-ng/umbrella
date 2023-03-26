@@ -1,5 +1,5 @@
 import { implementsFunction } from "@thi.ng/checks/implements-function";
-import { CloseMode, ISubscribable } from "./api.js";
+import { CloseMode, type ISubscribable } from "./api.js";
 
 export const isSubscribable = (x: any): x is ISubscribable<any> =>
 	implementsFunction(x, "subscribe");

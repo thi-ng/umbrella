@@ -6,9 +6,9 @@ import { $canvas } from "@thi.ng/rdom-canvas";
 import {
 	fromDOMEvent,
 	fromRAF,
-	ISubscription,
 	reactive,
 	sync,
+	type ISubscription,
 } from "@thi.ng/rstream";
 import { map, slidingWindow } from "@thi.ng/transducers";
 

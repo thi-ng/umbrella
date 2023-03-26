@@ -1,5 +1,5 @@
 import * as assert from "assert";
-import { ISubscription, State } from "../src/index.js";
+import { State, type ISubscription } from "../src/index.js";
 
 export const assertState = (x: ISubscription<any, any>, state: State) =>
 	assert.strictEqual(x.getState(), state, `${x.id} != ${State[state]}`);

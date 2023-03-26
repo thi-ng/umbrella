@@ -1,7 +1,7 @@
 import type { AABBLike, Attribs, IHiccupShape } from "@thi.ng/geom-api";
 import { add2 } from "@thi.ng/vectors/add";
 import { addN2 } from "@thi.ng/vectors/addn";
-import { Vec, ZERO2 } from "@thi.ng/vectors/api";
+import { ZERO2, type Vec } from "@thi.ng/vectors/api";
 import { max2 } from "@thi.ng/vectors/max";
 import { set2 } from "@thi.ng/vectors/set";
 import { subN2 } from "@thi.ng/vectors/subn";

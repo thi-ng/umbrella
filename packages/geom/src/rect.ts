@@ -2,7 +2,7 @@ import type { Attribs } from "@thi.ng/geom-api";
 import { centroid } from "@thi.ng/geom-poly-utils/centroid";
 import { SQRT2_2, SQRT3 } from "@thi.ng/math/api";
 import { add2 } from "@thi.ng/vectors/add";
-import { ReadonlyVec, Vec, ZERO2 } from "@thi.ng/vectors/api";
+import { ZERO2, type ReadonlyVec, type Vec } from "@thi.ng/vectors/api";
 import { dist } from "@thi.ng/vectors/dist";
 import { maddN2 } from "@thi.ng/vectors/maddn";
 import { max2 } from "@thi.ng/vectors/max";

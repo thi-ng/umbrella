@@ -1,5 +1,5 @@
 import type { IObjectOf } from "@thi.ng/api";
-import { reactive, Stream } from "@thi.ng/rstream";
+import { reactive, type Stream } from "@thi.ng/rstream";
 import { assocObj, map, pairs, push, transduce } from "@thi.ng/transducers";
 
 const slider = (label: string, attribs: any, stream: Stream<number>) => () =>

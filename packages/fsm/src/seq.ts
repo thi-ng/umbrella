@@ -1,4 +1,4 @@
-import { Match, Matcher, RES_PARTIAL, SeqCallback } from "./api.js";
+import { Match, RES_PARTIAL, type Matcher, type SeqCallback } from "./api.js";
 import { result } from "./result.js";
 
 /**

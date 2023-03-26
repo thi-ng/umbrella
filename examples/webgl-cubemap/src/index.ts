@@ -14,15 +14,15 @@ import {
 } from "@thi.ng/shader-ast";
 import {
 	BLEND_ADD,
+	TextureFilter,
 	compileModel,
 	defCubeModel,
 	defShader,
 	defTextureCubeMap,
 	draw,
-	GLMat4,
-	ModelSpec,
-	ShaderSpec,
-	TextureFilter,
+	type GLMat4,
+	type ModelSpec,
+	type ShaderSpec,
 } from "@thi.ng/webgl";
 
 const CUBEMAP_SHADER: ShaderSpec = {

@@ -14,20 +14,20 @@ import { resolve } from "@thi.ng/resolve-map";
 import {
 	fromEvent,
 	fromInterval,
-	ISubscriber,
 	reactive,
 	resolve as resolvePromise,
 	stream,
 	sync,
 	trace,
+	type ISubscriber,
 } from "@thi.ng/rstream";
 import { Z2 } from "@thi.ng/strings";
 import {
 	comp,
 	filter,
 	map,
-	mapcat,
 	mapIndexed,
+	mapcat,
 	max,
 	min,
 	pairs,
@@ -35,7 +35,7 @@ import {
 	push,
 	range,
 	transduce,
-	Transducer,
+	type Transducer,
 } from "@thi.ng/transducers";
 import { updateDOM } from "@thi.ng/transducers-hdom";
 import { ema, hma, sma, wma } from "@thi.ng/transducers-stats";

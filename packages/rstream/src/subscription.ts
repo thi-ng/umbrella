@@ -9,17 +9,17 @@ import type { Reducer, Transducer } from "@thi.ng/transducers";
 import { comp } from "@thi.ng/transducers/comp";
 import { map } from "@thi.ng/transducers/map";
 import { push } from "@thi.ng/transducers/push";
-import { isReduced, Reduced, unreduced } from "@thi.ng/transducers/reduced";
+import { Reduced, isReduced, unreduced } from "@thi.ng/transducers/reduced";
 import {
 	CloseMode,
-	CommonOpts,
-	ISubscriber,
-	ISubscription,
 	State,
-	SubscriptionOpts,
-	TransformableOpts,
-	WithErrorHandlerOpts,
-	WithTransform,
+	type CommonOpts,
+	type ISubscriber,
+	type ISubscription,
+	type SubscriptionOpts,
+	type TransformableOpts,
+	type WithErrorHandlerOpts,
+	type WithTransform,
 } from "./api.js";
 import { __optsWithID } from "./idgen.js";
 import { LOGGER } from "./logger.js";

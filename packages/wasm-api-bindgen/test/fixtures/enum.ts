@@ -1,5 +1,5 @@
 // @ts-ignore possibly includes unused imports
-import { MemorySlice, Pointer, WasmStringPtr, WasmTypeBase, WasmTypeConstructor } from "@thi.ng/wasm-api";
+import { Pointer, WasmStringPtr, type MemorySlice, type WasmTypeBase, type WasmTypeConstructor } from "@thi.ng/wasm-api";
 
 export enum A {
 	FOO,

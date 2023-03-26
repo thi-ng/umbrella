@@ -4,9 +4,9 @@ import * as assert from "assert";
 import { readFileSync } from "fs";
 import {
 	EVENT_MEMORY_CHANGED,
-	IWasmAPI,
 	WasmBridge,
-	WasmExports,
+	type IWasmAPI,
+	type WasmExports,
 } from "../src/index.js";
 
 group("wasm-api", {

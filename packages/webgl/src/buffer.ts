@@ -1,16 +1,16 @@
 import {
-	asGLType,
 	BIT_SHIFTS,
-	TypedArray,
+	asGLType,
 	typedArrayType,
+	type TypedArray,
 } from "@thi.ng/api/typedarray";
 import type { AttribPool } from "@thi.ng/vector-pools";
-import type { IndexBufferSpec, IWebGLBuffer } from "./api/buffers.js";
+import type { IWebGLBuffer, IndexBufferSpec } from "./api/buffers.js";
 import {
 	DrawMode,
-	ModelAttributeSpec,
-	ModelAttributeSpecs,
-	ModelSpec,
+	type ModelAttributeSpec,
+	type ModelAttributeSpecs,
+	type ModelSpec,
 } from "./api/model.js";
 import { isGL2Context } from "./checks.js";
 import { error } from "./error.js";
@@ -25,8 +25,8 @@ export class WebGLArrayBuffer<T extends TypedArray> implements IWebGLBuffer<T> {
 	constructor(
 		gl: WebGLRenderingContext,
 		data?: T,
-		target = gl.ARRAY_BUFFER,
-		mode = gl.STATIC_DRAW,
+		target: GLenum = gl.ARRAY_BUFFER,
+		mode: GLenum = gl.STATIC_DRAW,
 		retain = false
 	) {
 		this.gl = gl;

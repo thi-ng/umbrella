@@ -1,4 +1,4 @@
-import { BenchmarkFormatter, EMPTY, FLOAT } from "../api.js";
+import { EMPTY, FLOAT, type BenchmarkFormatter } from "../api.js";
 
 export const FORMAT_CSV: BenchmarkFormatter = {
 	prefix: () => `Title,Iterations,Size,Total,Mean,Median,Min,Max,Q1,Q3,SD%`,

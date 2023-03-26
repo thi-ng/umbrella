@@ -7,14 +7,14 @@ import {
 	div,
 	dot,
 	float,
-	FloatSym,
 	mul,
 	ret,
 	sin,
 	sym,
-	Vec2Sym,
 	vec3,
 	vec4,
+	type FloatSym,
+	type Vec2Sym,
 } from "@thi.ng/shader-ast";
 import { targetGLSL } from "@thi.ng/shader-ast-glsl";
 import { canvasRenderer, targetJS } from "@thi.ng/shader-ast-js";

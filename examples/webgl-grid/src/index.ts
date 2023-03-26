@@ -6,18 +6,18 @@ import { lookAt, ortho, scale44 } from "@thi.ng/matrices";
 import { mapcat, range2d } from "@thi.ng/transducers";
 import { normalize3, rotateY } from "@thi.ng/vectors";
 import {
+	LAMBERT,
+	TextureFilter,
+	TextureRepeat,
 	checkerboard,
 	compileModel,
 	defCubeModel,
 	defShader,
 	defTexture,
 	draw,
-	GLMat4,
-	GLVec3,
-	LAMBERT,
-	ModelSpec,
-	TextureFilter,
-	TextureRepeat,
+	type GLMat4,
+	type GLVec3,
+	type ModelSpec,
 } from "@thi.ng/webgl";
 
 const app = () => {

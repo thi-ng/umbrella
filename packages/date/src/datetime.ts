@@ -5,11 +5,11 @@ import { Z2, Z3, Z4 } from "@thi.ng/strings/pad-left";
 import {
 	DAY,
 	HOUR,
-	MaybeDate,
 	MINUTE,
-	Period,
-	Precision,
 	SECOND,
+	type MaybeDate,
+	type Period,
+	type Precision,
 } from "./api.js";
 import { ensureDate, ensureEpoch, isLeapYear } from "./checks.js";
 import { defFormat } from "./format.js";

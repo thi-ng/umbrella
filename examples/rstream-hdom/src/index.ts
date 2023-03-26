@@ -1,9 +1,9 @@
 import {
-	ISubscribable,
-	ISubscriber,
 	sidechainPartitionRAF,
 	subscription,
 	sync,
+	type ISubscribable,
+	type ISubscriber,
 } from "@thi.ng/rstream";
 import { autoObj, map, reducer, scan, vals } from "@thi.ng/transducers";
 import { updateDOM } from "@thi.ng/transducers-hdom";

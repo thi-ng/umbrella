@@ -1,5 +1,5 @@
 import type { IObjectOf, IRelease } from "@thi.ng/api";
-import { sizeOf, TypedArray, typedArray } from "@thi.ng/api/typedarray";
+import { sizeOf, typedArray, type TypedArray } from "@thi.ng/api/typedarray";
 import type { Pow2 } from "@thi.ng/binary";
 import { align } from "@thi.ng/binary/align";
 import { isNumber } from "@thi.ng/checks/is-number";
@@ -8,7 +8,7 @@ import { MemPool } from "@thi.ng/malloc/pool";
 import { range } from "@thi.ng/transducers/range";
 import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
 import { zeroes } from "@thi.ng/vectors/setn";
-import { AttribPoolOpts, AttribSpec, LOGGER } from "./api.js";
+import { LOGGER, type AttribPoolOpts, type AttribSpec } from "./api.js";
 
 /*
  *              0x00            0x08            0x10            0x18
