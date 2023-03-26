@@ -1,5 +1,5 @@
 import type { IObjectOf, Pair } from "@thi.ng/api";
-import { BitField, defBitField } from "@thi.ng/bitfield/bitfield";
+import { defBitField, type BitField } from "@thi.ng/bitfield/bitfield";
 import { isNumber } from "@thi.ng/checks/is-number";
 import { liangBarsky2 } from "@thi.ng/geom-clip-line/liang-barsky";
 import { sutherlandHodgeman } from "@thi.ng/geom-clip-poly";
@@ -11,7 +11,7 @@ import {
 import { centroid } from "@thi.ng/geom-poly-utils/centroid";
 import { circumCenter2 } from "@thi.ng/geom-poly-utils/circumcenter";
 import { EPS } from "@thi.ng/math/api";
-import { Edge, defEdge } from "@thi.ng/quad-edge";
+import { defEdge, type Edge } from "@thi.ng/quad-edge";
 import {
 	ZERO2,
 	type ReadonlyVec,
@@ -26,9 +26,6 @@ export type Visitor<T> = (
 	vistedEdges: BitField,
 	visitedVerts: BitField
 ) => void;
-
-const rightOf = (p: ReadonlyVec, e: Edge<Vertex<any>>) =>
-	signedArea2(p, e.dest.pos, e.origin.pos) > 0;
 
 export interface Vertex<T> {
 	pos: ReadonlyVec;
@@ -102,7 +99,7 @@ export class DVMesh<T> {
 		do {
 			const t = e.oprev;
 			if (
-				rightOf(t.dest.pos, e) &&
+				isRightOf(t.dest.pos, e) &&
 				pointInCircumCircle(e.origin.pos, t.dest.pos, e.dest.pos, p)
 			) {
 				e.swap();
@@ -145,11 +142,11 @@ export class DVMesh<T> {
 				eqDelta2(p, e.dest.pos, eps)
 			) {
 				return [e, true];
-			} else if (rightOf(p, e)) {
+			} else if (isRightOf(p, e)) {
 				e = e.sym;
-			} else if (!rightOf(p, e.onext)) {
+			} else if (!isRightOf(p, e.onext)) {
 				e = e.onext;
-			} else if (!rightOf(p, e.dprev)) {
+			} else if (!isRightOf(p, e.dprev)) {
 				e = e.dprev;
 			} else {
 				return [e, false];
@@ -307,3 +304,7 @@ export class DVMesh<T> {
 		}
 	}
 }
+
+/** @internal */
+const isRightOf = (p: ReadonlyVec, e: Edge<Vertex<any>>) =>
+	signedArea2(p, e.dest.pos, e.origin.pos) > 0;
