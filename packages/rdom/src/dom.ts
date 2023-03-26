@@ -1,5 +1,5 @@
 import type { IObjectOf } from "@thi.ng/api";
-import { deref, isDeref, MaybeDeref } from "@thi.ng/api/deref";
+import { deref, isDeref, type MaybeDeref } from "@thi.ng/api/deref";
 import { implementsFunction } from "@thi.ng/checks/implements-function";
 import { isArray } from "@thi.ng/checks/is-array";
 import { isFunction } from "@thi.ng/checks/is-function";

@@ -1,4 +1,9 @@
-import { SIZEOF, Type, TypedArray, typedArray } from "@thi.ng/api/typedarray";
+import {
+	SIZEOF,
+	typedArray,
+	type Type,
+	type TypedArray,
+} from "@thi.ng/api/typedarray";
 import type { Pow2 } from "@thi.ng/binary";
 import { align } from "@thi.ng/binary/align";
 import { isNumber } from "@thi.ng/checks/is-number";

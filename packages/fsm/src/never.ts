@@ -1,4 +1,4 @@
-import { LitCallback, Match, Matcher } from "./api.js";
+import { Match, type LitCallback, type Matcher } from "./api.js";
 import { result } from "./result.js";
 
 /**

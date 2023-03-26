@@ -15,20 +15,20 @@ import { wordWrap } from "@thi.ng/transducers/word-wrap";
 import { wrapSides } from "@thi.ng/transducers/wrap-sides";
 import type { ReadonlyVec } from "@thi.ng/vectors";
 import {
-	BooleanNode,
-	BooleanTree,
 	DEFAULT_GLOBALS,
-	DictEntry,
-	EntityOpts,
-	EntityStatus,
 	EntityType,
-	GlobalParams,
-	IGESDocument,
-	Param,
 	PolylineMode,
-	SectionType,
 	Type,
 	Unit,
+	type BooleanNode,
+	type BooleanTree,
+	type DictEntry,
+	type EntityOpts,
+	type EntityStatus,
+	type GlobalParams,
+	type IGESDocument,
+	type Param,
+	type SectionType,
 } from "./api.js";
 
 // https://wiki.eclipse.org/IGES_file_Specification

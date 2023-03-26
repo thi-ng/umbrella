@@ -1,4 +1,4 @@
-import { CommonOpts, State } from "./api.js";
+import { State, type CommonOpts } from "./api.js";
 import { __optsWithID } from "./idgen.js";
 import { Subscription } from "./subscription.js";
 

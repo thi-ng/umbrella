@@ -1,5 +1,5 @@
 import type { Fn } from "@thi.ng/api";
-import { option, select, SelectAttribs } from "@thi.ng/hiccup-html/forms";
+import { option, select, type SelectAttribs } from "@thi.ng/hiccup-html/forms";
 import { $input } from "@thi.ng/rdom/event";
 import { $list } from "@thi.ng/rdom/list";
 import type { ISubscribable, Subscription } from "@thi.ng/rstream";

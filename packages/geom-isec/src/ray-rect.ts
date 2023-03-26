@@ -1,5 +1,8 @@
 import type { FnU4, Range } from "@thi.ng/api";
-import { IntersectionResult, IntersectionType } from "@thi.ng/geom-api/isec";
+import {
+	IntersectionType,
+	type IntersectionResult,
+} from "@thi.ng/geom-api/isec";
 import type { ReadonlyVec } from "@thi.ng/vectors";
 import { maddN } from "@thi.ng/vectors/maddn";
 import { NONE } from "./api.js";

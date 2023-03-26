@@ -6,13 +6,13 @@ import { equivArrayLike } from "@thi.ng/equiv";
 import { assert } from "@thi.ng/errors/assert";
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import {
-	Dimensions,
-	MaybeUnit,
-	NamedUnit,
 	NONE,
-	Prefix,
 	PREFIXES,
-	Unit,
+	type Dimensions,
+	type MaybeUnit,
+	type NamedUnit,
+	type Prefix,
+	type Unit,
 } from "./api.js";
 
 /**

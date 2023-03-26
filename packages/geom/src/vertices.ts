@@ -3,7 +3,7 @@ import { isNumber } from "@thi.ng/checks/is-number";
 import type { MultiFn1O } from "@thi.ng/defmulti";
 import { defmulti } from "@thi.ng/defmulti/defmulti";
 import type { IShape } from "@thi.ng/geom-api";
-import { DEFAULT_SAMPLES, SamplingOpts } from "@thi.ng/geom-api/sample";
+import { DEFAULT_SAMPLES, type SamplingOpts } from "@thi.ng/geom-api/sample";
 import { sample as _arcVertices } from "@thi.ng/geom-arc/sample";
 import { resample } from "@thi.ng/geom-resample/resample";
 import { sampleCubic } from "@thi.ng/geom-splines/cubic-sample";

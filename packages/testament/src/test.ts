@@ -1,11 +1,11 @@
 import {
-	Fn,
-	Fn0,
 	GLOBAL_OPTS,
-	TestCtx,
-	TestOpts,
-	TestResult,
-	Timestamp,
+	type Fn,
+	type Fn0,
+	type TestCtx,
+	type TestOpts,
+	type TestResult,
+	type Timestamp,
 } from "./api.js";
 import { now, timeDiff } from "./utils.js";
 

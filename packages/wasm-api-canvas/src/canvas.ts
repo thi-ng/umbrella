@@ -15,7 +15,7 @@ import {
 	TextAlign,
 	TextBaseline,
 	TextDirection,
-	WasmCanvas2DImports,
+	type WasmCanvas2DImports,
 } from "./api.js";
 
 const TAU = Math.PI * 2;

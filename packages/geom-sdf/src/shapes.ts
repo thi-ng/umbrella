@@ -1,5 +1,5 @@
 import { isFunction } from "@thi.ng/checks/is-function";
-import { distSq2, ReadonlyVec } from "@thi.ng/vectors";
+import { distSq2, type ReadonlyVec } from "@thi.ng/vectors";
 import { sub2 } from "@thi.ng/vectors/sub";
 import type { SDFAttribs, SDFn } from "./api.js";
 import { withBoundingCircle } from "./bounds.js";

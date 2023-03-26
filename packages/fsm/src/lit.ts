@@ -1,6 +1,6 @@
 import type { Predicate2 } from "@thi.ng/api";
 import { equiv as _equiv } from "@thi.ng/equiv";
-import { Match, Matcher, RES_PARTIAL, SeqCallback } from "./api.js";
+import { Match, RES_PARTIAL, type Matcher, type SeqCallback } from "./api.js";
 import { result } from "./result.js";
 
 export const lit =

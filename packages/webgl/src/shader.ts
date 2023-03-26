@@ -14,32 +14,32 @@ import { program } from "@thi.ng/shader-ast/ast/scope";
 import { input, output, sym, uniform } from "@thi.ng/shader-ast/ast/sym";
 import { vals } from "@thi.ng/transducers/vals";
 import {
-	ExtensionBehavior,
-	ExtensionBehaviors,
-	ExtensionName,
 	GL_EXT_INFO,
+	type ExtensionBehavior,
+	type ExtensionBehaviors,
+	type ExtensionName,
 } from "./api/ext.js";
 import type { GLSL } from "./api/glsl.js";
 import type { ModelAttributeSpecs, ModelSpec } from "./api/model.js";
 import {
 	DEFAULT_OUTPUT,
-	DefShaderOpts,
-	GLSLDeclPrefixes,
-	IShader,
-	ShaderAttrib,
-	ShaderAttribSpec,
-	ShaderAttribSpecs,
-	ShaderFn,
-	ShaderOutputSpec,
-	ShaderSpec,
-	ShaderState,
-	ShaderType,
-	ShaderUniform,
-	ShaderUniforms,
-	ShaderUniformSpecs,
-	ShaderVaryingSpec,
-	UniformValue,
-	UniformValues,
+	type DefShaderOpts,
+	type GLSLDeclPrefixes,
+	type IShader,
+	type ShaderAttrib,
+	type ShaderAttribSpec,
+	type ShaderAttribSpecs,
+	type ShaderFn,
+	type ShaderOutputSpec,
+	type ShaderSpec,
+	type ShaderState,
+	type ShaderType,
+	type ShaderUniform,
+	type ShaderUniformSpecs,
+	type ShaderUniforms,
+	type ShaderVaryingSpec,
+	type UniformValue,
+	type UniformValues,
 } from "./api/shader.js";
 import { getExtensions } from "./canvas.js";
 import { isGL2Context } from "./checks.js";

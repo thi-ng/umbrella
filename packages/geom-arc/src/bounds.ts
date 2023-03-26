@@ -1,7 +1,13 @@
 import { HALF_PI } from "@thi.ng/math/api";
 import { inRange } from "@thi.ng/math/interval";
 import { roundTo } from "@thi.ng/math/prec";
-import { MAX2, MIN2, ReadonlyVec, Vec, VecPair } from "@thi.ng/vectors/api";
+import {
+	MAX2,
+	MIN2,
+	type ReadonlyVec,
+	type Vec,
+	type VecPair,
+} from "@thi.ng/vectors/api";
 import { max2 } from "@thi.ng/vectors/max";
 import { min2 } from "@thi.ng/vectors/min";
 import { set2 } from "@thi.ng/vectors/set";

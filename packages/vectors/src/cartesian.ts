@@ -1,6 +1,6 @@
 import { cossin } from "@thi.ng/math/angle";
 import { add2 } from "./add.js";
-import { MultiVecOpVO, ReadonlyVec, ZERO2, ZERO3 } from "./api.js";
+import { ZERO2, ZERO3, type MultiVecOpVO, type ReadonlyVec } from "./api.js";
 import { setC3 } from "./setc.js";
 import { vop } from "./vop.js";
 

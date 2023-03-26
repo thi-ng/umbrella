@@ -1,11 +1,11 @@
 import { isString } from "@thi.ng/checks/is-string";
 import {
-	ASTNode,
 	DEFAULT_SYNTAX,
-	Expression,
-	Root,
-	SyntaxOpts,
-	Token,
+	type ASTNode,
+	type Expression,
+	type Root,
+	type SyntaxOpts,
+	type Token,
 } from "./api.js";
 import { tokenize } from "./tokenize.js";
 

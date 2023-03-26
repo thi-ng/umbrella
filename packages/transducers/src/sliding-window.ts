@@ -1,4 +1,4 @@
-import { deref, MaybeDeref } from "@thi.ng/api/deref";
+import { deref, type MaybeDeref } from "@thi.ng/api/deref";
 import type { Reducer, Transducer } from "./api.js";
 import { compR } from "./compr.js";
 import { __iter } from "./iterator.js";

@@ -1,7 +1,7 @@
 // thing:export
 import { isNumber } from "@thi.ng/checks/is-number";
 import type { Attribs } from "@thi.ng/geom-api";
-import { DEFAULT_SAMPLES, SamplingOpts } from "@thi.ng/geom-api/sample";
+import { DEFAULT_SAMPLES, type SamplingOpts } from "@thi.ng/geom-api/sample";
 import { TAU } from "@thi.ng/math/api";
 
 /** @internal */

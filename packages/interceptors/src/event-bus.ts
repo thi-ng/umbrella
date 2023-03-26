@@ -9,10 +9,6 @@ import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import { setInUnsafe } from "@thi.ng/paths/set-in";
 import { updateInUnsafe } from "@thi.ng/paths/update-in";
 import {
-	EffectDef,
-	EffectPriority,
-	Event,
-	EventDef,
 	EV_REDO,
 	EV_SET_VALUE,
 	EV_TOGGLE_VALUE,
@@ -25,12 +21,16 @@ import {
 	FX_DISPATCH_NOW,
 	FX_FETCH,
 	FX_STATE,
-	IDispatch,
-	Interceptor,
-	InterceptorContext,
-	InterceptorFn,
 	LOGGER,
-	SideEffect,
+	type EffectDef,
+	type EffectPriority,
+	type Event,
+	type EventDef,
+	type IDispatch,
+	type Interceptor,
+	type InterceptorContext,
+	type InterceptorFn,
+	type SideEffect,
 } from "./api.js";
 
 /**

@@ -1,5 +1,5 @@
 import { endsWith } from "@thi.ng/arrays/ends-with";
-import { LitCallback, Matcher, RES_PARTIAL } from "./api.js";
+import { RES_PARTIAL, type LitCallback, type Matcher } from "./api.js";
 import { result } from "./result.js";
 
 /**

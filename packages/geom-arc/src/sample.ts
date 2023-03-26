@@ -1,6 +1,6 @@
 import { isNumber } from "@thi.ng/checks/is-number";
 import { isPlainObject } from "@thi.ng/checks/is-plain-object";
-import { DEFAULT_SAMPLES, SamplingOpts } from "@thi.ng/geom-api/sample";
+import { DEFAULT_SAMPLES, type SamplingOpts } from "@thi.ng/geom-api/sample";
 import { Sampler } from "@thi.ng/geom-resample/sampler";
 import { TAU } from "@thi.ng/math/api";
 import type { ReadonlyVec, Vec } from "@thi.ng/vectors";

@@ -1,6 +1,11 @@
 import type { Fn, Nullable } from "@thi.ng/api";
 import { assert } from "@thi.ng/errors/assert";
-import { CloseMode, CommonOpts, ISubscription, State } from "./api.js";
+import {
+	CloseMode,
+	State,
+	type CommonOpts,
+	type ISubscription,
+} from "./api.js";
 import { __optsWithID } from "./idgen.js";
 import { Subscription } from "./subscription.js";
 

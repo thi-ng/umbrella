@@ -1,4 +1,4 @@
-import { ColoredNoiseOpts, DEFAULT_OPTS } from "./api.js";
+import { DEFAULT_OPTS, type ColoredNoiseOpts } from "./api.js";
 import { preseed, sum } from "./utils.js";
 
 /**

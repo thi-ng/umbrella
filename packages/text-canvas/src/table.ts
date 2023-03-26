@@ -1,11 +1,11 @@
 import { peek } from "@thi.ng/arrays/peek";
 import { isString } from "@thi.ng/checks/is-string";
 import { wordWrapLines } from "@thi.ng/strings/word-wrap";
-import { Border, TableOpts } from "./api.js";
+import { Border, type TableOpts } from "./api.js";
 import {
+	Canvas,
 	beginClip,
 	beginStyle,
-	Canvas,
 	canvas,
 	endClip,
 	endStyle,

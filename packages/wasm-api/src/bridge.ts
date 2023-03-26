@@ -11,18 +11,18 @@ import { INotifyMixin } from "@thi.ng/api/mixins/inotify";
 import { topoSort } from "@thi.ng/arrays/topo-sort";
 import { assert } from "@thi.ng/errors/assert";
 import { defError } from "@thi.ng/errors/deferror";
-import { hexdumpLines, U16, U32, U64BIG, U8 } from "@thi.ng/hex";
+import { U16, U32, U64BIG, U8, hexdumpLines } from "@thi.ng/hex";
 import type { ILogger } from "@thi.ng/logger";
 import { ConsoleLogger } from "@thi.ng/logger/console";
 import {
-	BigIntArray,
-	CoreAPI,
 	EVENT_MEMORY_CHANGED,
 	EVENT_PANIC,
-	IWasmAPI,
-	IWasmMemoryAccess,
-	MemorySlice,
-	WasmExports,
+	type BigIntArray,
+	type CoreAPI,
+	type IWasmAPI,
+	type IWasmMemoryAccess,
+	type MemorySlice,
+	type WasmExports,
 } from "./api.js";
 
 export const Panic = defError(() => "Panic");

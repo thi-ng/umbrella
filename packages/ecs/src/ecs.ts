@@ -10,14 +10,14 @@ import type { IMemPoolArray } from "@thi.ng/malloc";
 import { NativePool } from "@thi.ng/malloc/native";
 import { filter } from "@thi.ng/transducers/filter";
 import {
-	ComponentID,
-	ECSOpts,
 	EVENT_ADDED,
 	EVENT_PRE_DELETE,
-	GroupOpts,
-	IComponent,
-	MemMappedComponentOpts,
-	ObjectComponentOpts,
+	type ComponentID,
+	type ECSOpts,
+	type GroupOpts,
+	type IComponent,
+	type MemMappedComponentOpts,
+	type ObjectComponentOpts,
 } from "./api.js";
 import { MemMappedComponent } from "./components/mem-component.js";
 import { ObjectComponent } from "./components/object-component.js";

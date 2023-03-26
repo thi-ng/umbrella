@@ -1,10 +1,10 @@
 import type { Nullable, NumOrString } from "@thi.ng/api";
 import {
 	BIGINT_ARRAY_CTORS,
-	BigType,
 	BIT_SHIFTS,
-	Type,
 	TYPEDARRAY_CTORS,
+	type BigType,
+	type Type,
 } from "@thi.ng/api/typedarray";
 import { isString } from "@thi.ng/checks/is-string";
 import { unsupported } from "@thi.ng/errors/unsupported";

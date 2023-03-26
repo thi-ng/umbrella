@@ -1,5 +1,5 @@
 import type { FnU4 } from "@thi.ng/api";
-import { Crossing, EPS } from "./api.js";
+import { EPS, type Crossing } from "./api.js";
 import { eqDelta } from "./eqdelta.js";
 
 /**

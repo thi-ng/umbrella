@@ -1,5 +1,5 @@
 import type { Predicate } from "@thi.ng/api";
-import { CommonOpts, ISubscribable, State } from "./api.js";
+import { State, type CommonOpts, type ISubscribable } from "./api.js";
 import { ASidechain } from "./asidechain.js";
 import { __optsWithID } from "./idgen.js";
 import type { Subscription } from "./subscription.js";

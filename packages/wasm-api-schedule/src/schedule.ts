@@ -2,8 +2,8 @@ import type { Fn, Fn0, FnO } from "@thi.ng/api";
 import type { IWasmAPI, WasmBridge } from "@thi.ng/wasm-api";
 import {
 	ScheduleType,
-	WasmScheduleExports,
-	WasmScheduleImports,
+	type WasmScheduleExports,
+	type WasmScheduleImports,
 } from "./api.js";
 
 /** @internal */

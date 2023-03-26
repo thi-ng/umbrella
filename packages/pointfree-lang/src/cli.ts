@@ -1,10 +1,10 @@
 // thing:no-export
 import type { FnU, IObjectOf } from "@thi.ng/api";
-import { Args, flag, parse, string, usage } from "@thi.ng/args";
+import { flag, parse, string, usage, type Args } from "@thi.ng/args";
 import { timedResult } from "@thi.ng/bench";
 import { ConsoleLogger, NULL_LOGGER } from "@thi.ng/logger";
-import { ensureStack, StackContext } from "@thi.ng/pointfree";
-import { readdirSync, readFileSync, writeFileSync } from "fs";
+import { ensureStack, type StackContext } from "@thi.ng/pointfree";
+import { readFileSync, readdirSync, writeFileSync } from "fs";
 import { ffi, run, runU } from "./runtime.js";
 
 interface CLIOpts {

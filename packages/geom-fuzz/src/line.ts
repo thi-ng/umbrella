@@ -6,7 +6,7 @@ import { line } from "@thi.ng/geom/line";
 import { polyline } from "@thi.ng/geom/polyline";
 import type { ReadonlyVec } from "@thi.ng/vectors";
 import { jitter } from "@thi.ng/vectors/jitter";
-import { DEFAULT_LINE, FuzzyLineOpts } from "./api.js";
+import { DEFAULT_LINE, type FuzzyLineOpts } from "./api.js";
 import { jitterPoints } from "./points.js";
 
 export const defLine = (

@@ -3,14 +3,14 @@ import { isString } from "@thi.ng/checks/is-string";
 import { Z2, Z3, Z4 } from "@thi.ng/strings/pad-left";
 import {
 	DAY,
-	FormatFn,
 	HOUR,
-	MaybeDate,
 	MINUTE,
 	MONTH,
-	Precision,
 	SECOND,
 	YEAR,
+	type FormatFn,
+	type MaybeDate,
+	type Precision,
 } from "./api.js";
 import { ensureDate, ensureEpoch } from "./checks.js";
 import { decomposeDuration } from "./duration.js";

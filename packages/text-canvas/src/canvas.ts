@@ -1,4 +1,10 @@
-import { Fn0, ICopy, IGrid2D, nomixin, NumOrString } from "@thi.ng/api";
+import {
+	nomixin,
+	type Fn0,
+	type ICopy,
+	type IGrid2D,
+	type NumOrString,
+} from "@thi.ng/api";
 import { IGrid2DMixin } from "@thi.ng/api/mixins/igrid";
 import { peek } from "@thi.ng/arrays/peek";
 import { assert } from "@thi.ng/errors/assert";
@@ -7,7 +13,7 @@ import { NONE } from "@thi.ng/text-format";
 import { map } from "@thi.ng/transducers/map";
 import { max } from "@thi.ng/transducers/max";
 import { transduce } from "@thi.ng/transducers/transduce";
-import { ClipRect, StrokeStyle, STYLE_ASCII } from "./api.js";
+import { STYLE_ASCII, type ClipRect, type StrokeStyle } from "./api.js";
 import { charCode, intersectRect } from "./utils.js";
 
 @IGrid2DMixin

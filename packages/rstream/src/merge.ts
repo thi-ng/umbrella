@@ -1,8 +1,8 @@
 import {
-	ISubscribable,
-	ISubscription,
 	State,
-	TransformableOpts,
+	type ISubscribable,
+	type ISubscription,
+	type TransformableOpts,
 } from "./api.js";
 import { isFirstOrLastInput } from "./checks.js";
 import { __optsWithID } from "./idgen.js";

@@ -1,7 +1,7 @@
 import type { Attribs } from "@thi.ng/geom-api";
 import { SQRT2_2 } from "@thi.ng/math/api";
 import { add3 } from "@thi.ng/vectors/add";
-import { ReadonlyVec, Vec, ZERO3 } from "@thi.ng/vectors/api";
+import { ZERO3, type ReadonlyVec, type Vec } from "@thi.ng/vectors/api";
 import { maddN3 } from "@thi.ng/vectors/maddn";
 import { max3 } from "@thi.ng/vectors/max";
 import { min3 } from "@thi.ng/vectors/min";

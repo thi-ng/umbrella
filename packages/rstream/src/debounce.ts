@@ -1,6 +1,6 @@
 import { __optsWithID } from "./idgen.js";
 import { fromIterable } from "./iterable.js";
-import { metaStream, MetaStreamOpts } from "./metastream.js";
+import { metaStream, type MetaStreamOpts } from "./metastream.js";
 
 /**
  * Returns a subscription which buffers any intermediate inputs arriving faster

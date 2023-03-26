@@ -1,6 +1,6 @@
 import type { Fn2, FnN2, IObjectOf, NumericArray } from "@thi.ng/api";
 import { clamp01 } from "@thi.ng/math/interval";
-import { FloatFormat, FloatFormatSpec, Lane } from "../api.js";
+import { Lane, type FloatFormat, type FloatFormatSpec } from "../api.js";
 import { __luminanceABGR } from "../internal/utils.js";
 
 export const defFloatFormat = (fmt: FloatFormatSpec) => {

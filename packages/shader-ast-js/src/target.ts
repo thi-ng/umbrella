@@ -5,6 +5,7 @@ import { unsupported } from "@thi.ng/errors/unsupported";
 import type {
 	Func,
 	Lit,
+	Op1,
 	Operator,
 	Scope,
 	Swizzle,
@@ -217,7 +218,7 @@ export const targetJS = (opts?: Partial<JSTargetOpts>) => {
 				? `${(<Sym<any>>t.val).id} = ${t.type}.${OP_IDS[op]}(${val})`
 				: complex
 				? `${t.type}.${OP_IDS[op]}1(${val})`
-				: t.post
+				: (<Op1<any>>t).post
 				? `(${val}${op})`
 				: `${op}${val}`;
 		},

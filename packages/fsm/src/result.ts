@@ -1,4 +1,4 @@
-import { Match, MatchResult, ResultBody } from "./api.js";
+import { Match, type MatchResult, type ResultBody } from "./api.js";
 
 export const result = <T>(
 	body?: ResultBody<T>,

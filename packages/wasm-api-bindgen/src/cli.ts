@@ -1,21 +1,21 @@
 // thing:no-export
 import type { Keys } from "@thi.ng/api";
 import {
-	Args,
+	ParseError,
 	flag,
 	oneOf,
 	oneOfMulti,
 	parse,
-	ParseError,
 	string,
 	strings,
 	usage,
-	UsageOpts,
+	type Args,
+	type UsageOpts,
 } from "@thi.ng/args";
 import { isArray, isPlainObject, isString } from "@thi.ng/checks";
 import { illegalArgs } from "@thi.ng/errors";
 import { readJSON, readText, writeJSON, writeText } from "@thi.ng/file-io";
-import { ConsoleLogger, ILogger } from "@thi.ng/logger";
+import { ConsoleLogger, type ILogger } from "@thi.ng/logger";
 import { mutIn } from "@thi.ng/paths";
 import { dirname, resolve } from "path";
 import type {
@@ -26,9 +26,8 @@ import type {
 	TopLevelType,
 	TypeColl,
 } from "./api.js";
+import { C11, type C11Opts } from "./c11.js";
 import { generateTypes } from "./codegen.js";
-import { C11, C11Opts } from "./c11.js";
-import { TSOpts, TYPESCRIPT } from "./typescript.js";
 import {
 	isOpaque,
 	isPadding,
@@ -36,7 +35,8 @@ import {
 	isWasmPrim,
 	isWasmString,
 } from "./internal/utils.js";
-import { ZIG, ZigOpts } from "./zig.js";
+import { TYPESCRIPT, type TSOpts } from "./typescript.js";
+import { ZIG, type ZigOpts } from "./zig.js";
 
 const GENERATORS = <const>{ c11: C11, ts: TYPESCRIPT, zig: ZIG };
 

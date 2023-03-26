@@ -14,7 +14,11 @@ import { isArrayLike } from "@thi.ng/checks/is-arraylike";
 import { compare } from "@thi.ng/compare";
 import { equiv } from "@thi.ng/equiv";
 import { outOfBounds } from "@thi.ng/errors/out-of-bounds";
-import { IReducible, isReduced, ReductionFn } from "@thi.ng/transducers";
+import {
+	isReduced,
+	type IReducible,
+	type ReductionFn,
+} from "@thi.ng/transducers";
 import type { ConsCell } from "./api.js";
 
 export abstract class AList<L extends AList<any, T>, T>

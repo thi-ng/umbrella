@@ -1,4 +1,4 @@
-import { ReadonlyVec, ZERO3 } from "@thi.ng/vectors/api";
+import { ZERO3, type ReadonlyVec } from "@thi.ng/vectors/api";
 import { setC } from "@thi.ng/vectors/setc";
 import type { Mat } from "./api.js";
 

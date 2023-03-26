@@ -1,4 +1,4 @@
-import { ColoredNoiseOpts, DEFAULT_OPTS } from "./api.js";
+import { DEFAULT_OPTS, type ColoredNoiseOpts } from "./api.js";
 
 /**
  * Unfiltered noise w/ uniform distribution. Merely yields samples from

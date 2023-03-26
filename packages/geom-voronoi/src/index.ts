@@ -11,8 +11,13 @@ import {
 import { centroid } from "@thi.ng/geom-poly-utils/centroid";
 import { circumCenter2 } from "@thi.ng/geom-poly-utils/circumcenter";
 import { EPS } from "@thi.ng/math/api";
-import { defEdge, Edge } from "@thi.ng/quad-edge";
-import { ReadonlyVec, Vec, VecPair, ZERO2 } from "@thi.ng/vectors/api";
+import { Edge, defEdge } from "@thi.ng/quad-edge";
+import {
+	ZERO2,
+	type ReadonlyVec,
+	type Vec,
+	type VecPair,
+} from "@thi.ng/vectors/api";
 import { eqDelta2 } from "@thi.ng/vectors/eqdelta";
 import { signedArea2 } from "@thi.ng/vectors/signed-area";
 

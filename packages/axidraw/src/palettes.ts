@@ -7,7 +7,7 @@ import { jitter } from "@thi.ng/vectors/jitter";
 import { madd2 } from "@thi.ng/vectors/madd";
 import { maddN2 } from "@thi.ng/vectors/maddn";
 import { MOVE } from "./commands.js";
-import { dip, DipOpts } from "./dip.js";
+import { dip, type DipOpts } from "./dip.js";
 
 export interface BasePaletteOpts extends Partial<DipOpts> {
 	/**

@@ -3,11 +3,11 @@ import { INotifyMixin } from "@thi.ng/api/mixins/inotify";
 import { isFunction } from "@thi.ng/checks/is-function";
 import type { IMemPoolArray } from "@thi.ng/malloc";
 import {
-	ComponentDefaultValue,
 	EVENT_ADDED,
 	EVENT_CHANGED,
 	EVENT_PRE_DELETE,
-	IComponent,
+	type ComponentDefaultValue,
+	type IComponent,
 } from "../api.js";
 
 @INotifyMixin

@@ -1,7 +1,13 @@
 import { max3id } from "@thi.ng/math/interval";
 import { addmN2, addmN3 } from "@thi.ng/vectors/addmn";
 import { addW2 } from "@thi.ng/vectors/addw";
-import { MAX2, MIN2, ReadonlyVec, Vec, VecPair } from "@thi.ng/vectors/api";
+import {
+	MAX2,
+	MIN2,
+	type ReadonlyVec,
+	type Vec,
+	type VecPair,
+} from "@thi.ng/vectors/api";
 import { distSq2, distSq3 } from "@thi.ng/vectors/distsq";
 import { max } from "@thi.ng/vectors/max";
 import { min } from "@thi.ng/vectors/min";

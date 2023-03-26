@@ -1,4 +1,4 @@
-import { DrawMode, ModelSpec } from "../api/model.js";
+import { DrawMode, type ModelSpec } from "../api/model.js";
 
 export interface QuadOpts {
 	/**

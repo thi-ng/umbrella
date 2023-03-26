@@ -3,13 +3,13 @@ import { getInUnsafe } from "@thi.ng/paths/get-in";
 import { defSetterUnsafe } from "@thi.ng/paths/setter";
 import { defUpdaterUnsafe } from "@thi.ng/paths/updater";
 import {
-	Event,
 	FX_CANCEL,
 	FX_DISPATCH,
 	FX_DISPATCH_NOW,
 	FX_STATE,
-	InterceptorFn,
-	InterceptorPredicate,
+	type Event,
+	type InterceptorFn,
+	type InterceptorPredicate,
 } from "./api.js";
 
 /**

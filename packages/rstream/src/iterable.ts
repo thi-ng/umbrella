@@ -1,4 +1,4 @@
-import { CloseMode, CommonOpts } from "./api.js";
+import { CloseMode, type CommonOpts } from "./api.js";
 import { __optsWithID } from "./idgen.js";
 import { stream } from "./stream.js";
 

@@ -1,4 +1,7 @@
-import { IntersectionResult, IntersectionType } from "@thi.ng/geom-api/isec";
+import {
+	IntersectionType,
+	type IntersectionResult,
+} from "@thi.ng/geom-api/isec";
 import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
 import { maddN2 } from "@thi.ng/vectors/maddn";
 import { NONE } from "./api.js";

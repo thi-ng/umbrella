@@ -1,6 +1,6 @@
 import { assert } from "@thi.ng/errors/assert";
 import type { FboOpts, IFbo } from "./api/buffers.js";
-import { ITexture, TEX_FORMATS } from "./api/texture.js";
+import { TEX_FORMATS, type ITexture } from "./api/texture.js";
 import { isGL2Context } from "./checks.js";
 import { error } from "./error.js";
 import { RBO } from "./rbo.js";

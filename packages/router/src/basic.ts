@@ -7,10 +7,10 @@ import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import { illegalArity } from "@thi.ng/errors/illegal-arity";
 import {
 	EVENT_ROUTE_CHANGED,
-	Route,
-	RouteMatch,
-	RouteParamValidator,
-	RouterConfig,
+	type Route,
+	type RouteMatch,
+	type RouteParamValidator,
+	type RouterConfig,
 } from "./api.js";
 
 @INotifyMixin

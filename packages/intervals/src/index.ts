@@ -282,8 +282,8 @@ export const isBefore = (
 			? i.r <= x.l
 			: i.r < x.l
 		: i.ropen
-		? i.r <= x
-		: i.r < x;
+		? i.r <= <number>x
+		: i.r < <number>x;
 
 /**
  * Returns true iff interval `i` LHS > `x`, taking into account openness. If `x`
@@ -302,8 +302,8 @@ export const isAfter = (
 			? i.l >= x.r
 			: i.l > x.r
 		: i.ropen
-		? i.l >= x
-		: i.l > x;
+		? i.l >= <number>x
+		: i.l > <number>x;
 
 /**
  * Compares interval `a` with `b` and returns a comparator value

@@ -1,14 +1,14 @@
 import { withoutKeysObj } from "@thi.ng/associative/without-keys";
 import { isArray } from "@thi.ng/checks/is-array";
 import {
-	ITexture,
+	TEX_FORMATS,
 	TextureFilter,
 	TextureFormat,
-	TextureOpts,
 	TextureRepeat,
 	TextureTarget,
 	TextureType,
-	TEX_FORMATS,
+	type ITexture,
+	type TextureOpts,
 } from "./api/texture.js";
 import { isGL2Context } from "./checks.js";
 import { error } from "./error.js";

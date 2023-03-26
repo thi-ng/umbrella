@@ -1,20 +1,20 @@
 import type { IHash, NumericArray } from "@thi.ng/api";
 import { EPS } from "@thi.ng/math/api";
-import { declareIndices } from "./compile/accessors.js";
 import {
-	IVector,
 	MAX3,
 	MIN3,
 	ONE3,
-	ReadonlyVec,
-	Vec,
 	X3,
 	Y3,
 	Z3,
 	ZERO3,
+	type IVector,
+	type ReadonlyVec,
+	type Vec,
 } from "./api.js";
 import { AVec } from "./avec.js";
 import { intoStridedBuffer, mapStridedBuffer } from "./buffer.js";
+import { declareIndices } from "./compile/accessors.js";
 import { eqDelta3 } from "./eqdelta.js";
 import { hash } from "./hash.js";
 import { stridedValues, vecIterator } from "./iterator.js";

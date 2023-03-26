@@ -8,7 +8,7 @@ import {
 	isReduced,
 	unreduced,
 } from "@thi.ng/transducers/reduced";
-import { Match, Matcher } from "./api.js";
+import { Match, type Matcher } from "./api.js";
 
 /**
  * Finite-state machine transducer / iterator with support for single lookahead

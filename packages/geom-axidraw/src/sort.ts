@@ -8,7 +8,7 @@ import type {
 	ISpatialSet,
 } from "@thi.ng/geom-api";
 import { centroid } from "@thi.ng/geom/centroid";
-import { ReadonlyVec, ZERO2 } from "@thi.ng/vectors/api";
+import { ZERO2, type ReadonlyVec } from "@thi.ng/vectors/api";
 import { distSq2 } from "@thi.ng/vectors/distsq";
 import type { PointOrdering, ShapeOrdering } from "./api.js";
 

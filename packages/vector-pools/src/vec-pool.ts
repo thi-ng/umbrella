@@ -1,4 +1,9 @@
-import { asNativeType, GLType, Type, TypedArray } from "@thi.ng/api/typedarray";
+import {
+	asNativeType,
+	GLType,
+	type Type,
+	type TypedArray,
+} from "@thi.ng/api/typedarray";
 import { isTypedArray } from "@thi.ng/checks/is-typedarray";
 import type { MemPoolOpts, MemPoolStats } from "@thi.ng/malloc";
 import { MemPool } from "@thi.ng/malloc/pool";

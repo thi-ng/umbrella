@@ -1,5 +1,5 @@
 import type { Fn2, FnAnyT, IObjectOf, Predicate } from "@thi.ng/api";
-import { ILogger, LogLevel } from "@thi.ng/logger";
+import { LogLevel, type ILogger } from "@thi.ng/logger";
 import { ConsoleLogger } from "@thi.ng/logger/console";
 
 export interface Block {

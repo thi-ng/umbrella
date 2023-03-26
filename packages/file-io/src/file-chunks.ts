@@ -1,7 +1,7 @@
 import type { Nullable } from "@thi.ng/api";
 import { U32 } from "@thi.ng/hex";
 import type { ILogger } from "@thi.ng/logger";
-import { FileHandle, open } from "fs/promises";
+import { open, type FileHandle } from "fs/promises";
 
 export interface FileChunkOpts {
 	/**

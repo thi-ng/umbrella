@@ -10,7 +10,12 @@ import { DIN_A3_LANDSCAPE } from "@thi.ng/units/constants/paper-sizes";
 import { convert, div, Quantity } from "@thi.ng/units/unit";
 import { inch } from "@thi.ng/units/units/length";
 import { abs2 } from "@thi.ng/vectors/abs";
-import { ReadonlyVec, Vec, VecPair, ZERO2 } from "@thi.ng/vectors/api";
+import {
+	ZERO2,
+	type ReadonlyVec,
+	type Vec,
+	type VecPair,
+} from "@thi.ng/vectors/api";
 import { clamp2 } from "@thi.ng/vectors/clamp";
 import { maddN2 } from "@thi.ng/vectors/maddn";
 import { mag } from "@thi.ng/vectors/mag";
@@ -19,11 +24,11 @@ import { set2 } from "@thi.ng/vectors/set";
 import { zero } from "@thi.ng/vectors/setn";
 import { sub2 } from "@thi.ng/vectors/sub";
 import {
-	AxiDrawOpts,
 	AxiDrawState,
-	DrawCommand,
-	ISerial,
-	Metrics,
+	type AxiDrawOpts,
+	type DrawCommand,
+	type ISerial,
+	type Metrics,
 } from "./api.js";
 import { complete, HOME, OFF, ON, PEN, UP } from "./commands.js";
 import { AxiDrawControl } from "./control.js";

@@ -4,7 +4,7 @@ import { closestPointPlane } from "@thi.ng/geom-closest-point/plane";
 import { alignmentQuat } from "@thi.ng/matrices/alignment-quat";
 import { mulVQ } from "@thi.ng/matrices/mulv";
 import { add3 } from "@thi.ng/vectors/add";
-import { ReadonlyVec, Vec, Z3 } from "@thi.ng/vectors/api";
+import { Z3, type ReadonlyVec, type Vec } from "@thi.ng/vectors/api";
 import type { Plane } from "./api/plane.js";
 import { Quad } from "./api/quad.js";
 import { Quad3 } from "./api/quad3.js";

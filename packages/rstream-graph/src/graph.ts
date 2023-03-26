@@ -5,8 +5,8 @@ import { isPlainObject } from "@thi.ng/checks/is-plain-object";
 import { isString } from "@thi.ng/checks/is-string";
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import { getInUnsafe } from "@thi.ng/paths/get-in";
-import { absPath, resolve, ResolveFn } from "@thi.ng/resolve-map";
-import { CloseMode, ISubscription } from "@thi.ng/rstream/api";
+import { absPath, resolve, type ResolveFn } from "@thi.ng/resolve-map";
+import { CloseMode, type ISubscription } from "@thi.ng/rstream/api";
 import { fromIterableSync } from "@thi.ng/rstream/iterable";
 import { StreamSync, sync } from "@thi.ng/rstream/sync";
 import { fromViewUnsafe } from "@thi.ng/rstream/view";
@@ -17,10 +17,10 @@ import type {
 	GraphSpec,
 	Node,
 	NodeFactory,
-	NodeInputs,
 	NodeInputSpec,
-	NodeOutputs,
+	NodeInputs,
 	NodeOutputSpec,
+	NodeOutputs,
 	NodeResolver,
 	NodeSpec,
 } from "./api.js";

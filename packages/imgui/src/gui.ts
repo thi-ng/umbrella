@@ -3,13 +3,13 @@ import type { Vec } from "@thi.ng/vectors";
 import { set2 } from "@thi.ng/vectors/set";
 import {
 	DEFAULT_THEME,
-	GUITheme,
-	Hash,
-	IMGUIOpts,
 	Key,
 	KeyModifier,
 	MouseButton,
 	NONE,
+	type GUITheme,
+	type Hash,
+	type IMGUIOpts,
 } from "./api.js";
 
 export class IMGUI implements IClear, IToHiccup {

@@ -1,7 +1,7 @@
 import type { Fn, Fn2, Predicate, Predicate2 } from "@thi.ng/api";
 import { isNumber } from "@thi.ng/checks/is-number";
 import { cossin } from "@thi.ng/math/angle";
-import { addmN2, ReadonlyVec, submN2 } from "@thi.ng/vectors";
+import { addmN2, submN2, type ReadonlyVec } from "@thi.ng/vectors";
 import { add2 } from "@thi.ng/vectors/add";
 import { cartesian2 } from "@thi.ng/vectors/cartesian";
 import { divN2 } from "@thi.ng/vectors/divn";

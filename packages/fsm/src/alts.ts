@@ -1,11 +1,11 @@
 import {
-	AltCallback,
-	AltFallback,
 	Match,
-	Matcher,
-	MatcherInst,
-	MatchResult,
 	RES_PARTIAL,
+	type AltCallback,
+	type AltFallback,
+	type MatchResult,
+	type Matcher,
+	type MatcherInst,
 } from "./api.js";
 import { result } from "./result.js";
 

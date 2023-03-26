@@ -4,7 +4,7 @@ import { labeled } from "@thi.ng/transducers/labeled";
 import { mapVals } from "@thi.ng/transducers/map-vals";
 import {
 	partitionSync,
-	PartitionSync,
+	type PartitionSync,
 } from "@thi.ng/transducers/partition-sync";
 import type { ISubscribable, ISubscription, TransformableOpts } from "./api.js";
 import { isFirstOrLastInput } from "./checks.js";
