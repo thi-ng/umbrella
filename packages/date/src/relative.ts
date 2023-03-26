@@ -7,7 +7,7 @@ import {
 	type Period,
 } from "./api.js";
 import { ensureEpoch } from "./checks.js";
-import { DateTime, dateTime, ensureDateTime } from "./datetime.js";
+import { dateTime, ensureDateTime, type DateTime } from "./datetime.js";
 import { EN_LONG, EN_SHORT } from "./i18n/en.js";
 
 /**
