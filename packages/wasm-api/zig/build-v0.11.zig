@@ -2,7 +2,7 @@
 //! Intended for use with https://thi.ng/wasm-api and support packages
 //!
 //! This version of the script is only compatible with:
-//! Zig v0.11.0-dev.1622+fc48467a9 or newer
+//! Zig v0.11.0-dev.2266+49e33a2f2 or newer
 //!
 //! Use build.zig (in this same directory) for earlier Zig versions
 
@@ -94,7 +94,7 @@ pub fn wasmLib(b: *Build, opts: WasmLibOpts) *Build.CompileStep {
 /// Registers a single package and its deps (also injects core wasm-api deps)
 pub fn register(step: *Build.CompileStep, mod: ModuleSpec, opts: WasmLibOpts) void {
     const num = if (mod.dependencies) |ids| ids.len else 0;
-    var dpkgs = step.builder.allocator.alloc(Build.ModuleDependency, num + 2) catch unreachable;
+    var dpkgs = step.step.owner.allocator.alloc(Build.ModuleDependency, num + 2) catch unreachable;
     dpkgs[0] = if (step.modules.get(wasmapi)) |m| .{ .name = wasmapi, .module = m } else unreachable;
     dpkgs[1] = if (step.modules.get(wasmbind)) |m| .{ .name = wasmbind, .module = m } else unreachable;
     var i: usize = 2;
@@ -110,8 +110,8 @@ pub fn register(step: *Build.CompileStep, mod: ModuleSpec, opts: WasmLibOpts) vo
             } else @panic("unknown dependency");
         }
     }
-    step.addModule(mod.name, step.builder.createModule(.{
-        .source_file = modulePath(step.builder.allocator, opts.base, mod.path),
+    step.addModule(mod.name, step.step.owner.createModule(.{
+        .source_file = modulePath(step.step.owner.allocator, opts.base, mod.path),
         .dependencies = dpkgs[0..i],
     }));
 }
