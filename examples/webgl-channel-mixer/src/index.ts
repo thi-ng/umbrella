@@ -3,18 +3,18 @@ import {
 	div,
 	h4,
 	inputFile,
-	InputFileAttribs,
 	main,
+	type InputFileAttribs,
 } from "@thi.ng/hiccup-html";
 import { $compile, $inputTrigger } from "@thi.ng/rdom";
 import { inputVectorCoord, staticDropdown } from "@thi.ng/rdom-components";
-import { reactive, Stream, stream, sync } from "@thi.ng/rstream";
+import { Stream, reactive, stream, sync } from "@thi.ng/rstream";
 import { map, range } from "@thi.ng/transducers";
-import { DEFAULT_B, DEFAULT_G, DEFAULT_R, STYLE_BT, Vec2 } from "./api";
+import { DEFAULT_B, DEFAULT_G, DEFAULT_R, STYLE_BT, type Vec2 } from "./api";
 import { WebGLImageCanvas } from "./canvas";
 import {
-	downloadPreset,
 	PRESETS,
+	downloadPreset,
 	setPresetFromID,
 	setPresetFromObj,
 } from "./presets";

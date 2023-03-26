@@ -1,7 +1,10 @@
 import type { Fn0 } from "@thi.ng/api";
-import { WasmBridge, WasmExports } from "@thi.ng/wasm-api";
-import { WasmDom, WasmDomExports } from "@thi.ng/wasm-api-dom";
-import { WasmSchedule, WasmScheduleExports } from "@thi.ng/wasm-api-schedule";
+import { WasmBridge, type WasmExports } from "@thi.ng/wasm-api";
+import { WasmDom, type WasmDomExports } from "@thi.ng/wasm-api-dom";
+import {
+	WasmSchedule,
+	type WasmScheduleExports,
+} from "@thi.ng/wasm-api-schedule";
 import WASM_URL from "./main.wasm?url";
 
 /**

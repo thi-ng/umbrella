@@ -7,7 +7,7 @@ import { COMMENT, serialize } from "@thi.ng/hiccup";
 import { svg } from "@thi.ng/hiccup-svg";
 import { sincos } from "@thi.ng/math";
 import { concat, skewX23, translation23 } from "@thi.ng/matrices";
-import { fromRAF, ISubscriber, stream, sync } from "@thi.ng/rstream";
+import { fromRAF, stream, sync, type ISubscriber } from "@thi.ng/rstream";
 import { map, range, repeatedly } from "@thi.ng/transducers";
 import { updateDOM } from "@thi.ng/transducers-hdom";
 import { addN } from "@thi.ng/vectors";

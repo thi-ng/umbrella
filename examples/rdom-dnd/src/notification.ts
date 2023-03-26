@@ -5,7 +5,7 @@ import {
 	withSize,
 } from "@thi.ng/hiccup-carbon-icons";
 import { div, span } from "@thi.ng/hiccup-html";
-import { Component, NumOrElement } from "@thi.ng/rdom";
+import { Component, type NumOrElement } from "@thi.ng/rdom";
 
 const PRESETS = {
 	info: { class: "bg-lightest-blue blue", icon: INFORMATION_FILLED },

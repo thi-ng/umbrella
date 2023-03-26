@@ -1,5 +1,5 @@
 import type { IObjectOf } from "@thi.ng/api";
-import { ColorRangePreset, ColorThemePart, lch } from "@thi.ng/color";
+import { lch, type ColorRangePreset, type ColorThemePart } from "@thi.ng/color";
 import type { ISubscribable, ISubscriber } from "@thi.ng/rstream";
 import { NUM_STATE_TOKENS, type MainOutputs } from "./api";
 

@@ -6,7 +6,6 @@ import {
 	defMain,
 	defn,
 	float,
-	FloatSym,
 	gte,
 	ifThen,
 	mix,
@@ -15,10 +14,11 @@ import {
 	ret,
 	sym,
 	vec2,
-	Vec2Sym,
 	vec3,
-	Vec3Sym,
 	vec4,
+	type FloatSym,
+	type Vec2Sym,
+	type Vec3Sym,
 } from "@thi.ng/shader-ast";
 import { GLSLVersion, targetGLSL } from "@thi.ng/shader-ast-glsl";
 import { canvasRenderer, targetJS } from "@thi.ng/shader-ast-js";
@@ -29,11 +29,11 @@ import {
 	fogExp2,
 	halfLambert,
 	lookat,
+	rayPointAt,
 	raymarchAO,
 	raymarchDir,
 	raymarchNormal,
 	raymarchScene,
-	rayPointAt,
 	sdfBox3,
 	sdfRepeat3,
 	sdfSmoothUnion,
@@ -44,7 +44,7 @@ import {
 	defQuadModel,
 	defShader,
 	draw,
-	GLVec3,
+	type GLVec3,
 } from "@thi.ng/webgl";
 
 // set URL hash to "#2d" to enable JS Canvas2D version

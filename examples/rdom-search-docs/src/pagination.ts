@@ -2,7 +2,7 @@ import type { IRelease } from "@thi.ng/api";
 import { equiv } from "@thi.ng/equiv";
 import { button, div } from "@thi.ng/hiccup-html";
 import { clamp } from "@thi.ng/math";
-import { ISubscription, reactive, Stream, sync } from "@thi.ng/rstream";
+import { Stream, reactive, sync, type ISubscription } from "@thi.ng/rstream";
 import { comp, dedupe, map, page } from "@thi.ng/transducers";
 
 export class Pagination<T extends any[]> implements IRelease {

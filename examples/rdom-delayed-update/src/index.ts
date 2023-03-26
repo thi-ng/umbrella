@@ -6,7 +6,7 @@ import {
 	$klist,
 	$refresh,
 	Component,
-	NumOrElement,
+	type NumOrElement,
 } from "@thi.ng/rdom";
 import { fromPromise, merge, reactive } from "@thi.ng/rstream";
 import { cycle } from "@thi.ng/transducers";

@@ -13,8 +13,8 @@ import { clamp01 } from "@thi.ng/shader-ast-stdlib";
 import {
 	FX_SHADER_SPEC,
 	FX_SHADER_SPEC_UV,
-	ShaderFn,
-	ShaderSpec,
+	type ShaderFn,
+	type ShaderSpec,
 } from "@thi.ng/webgl";
 
 export const LIGHT_SHADER: ShaderSpec = {

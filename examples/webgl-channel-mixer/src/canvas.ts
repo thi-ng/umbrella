@@ -1,18 +1,18 @@
 import { downloadCanvas } from "@thi.ng/dl-asset";
-import { Component, NumOrElement } from "@thi.ng/rdom";
+import { Component, type NumOrElement } from "@thi.ng/rdom";
 import type { ISubscribable } from "@thi.ng/rstream";
 import { gestureStream } from "@thi.ng/rstream-gestures";
 import {
+	FX_SHADER_SPEC_UV,
+	Texture,
 	compileModel,
 	defQuadModel,
 	defShader,
 	defTexture,
 	draw,
-	FX_SHADER_SPEC_UV,
-	ModelSpec,
-	Texture,
+	type ModelSpec,
 } from "@thi.ng/webgl";
-import { Controls, DEFAULT_B, DEFAULT_G, DEFAULT_R } from "./api";
+import { DEFAULT_B, DEFAULT_G, DEFAULT_R, type Controls } from "./api";
 
 /**
  * Reactive WebGL based image component implementing the actual channel editing,

@@ -1,11 +1,11 @@
 import { downloadWithMime } from "@thi.ng/dl-asset";
 import { randomID } from "@thi.ng/random";
 import {
-	Controls,
 	DEFAULT_B,
 	DEFAULT_G,
 	DEFAULT_R,
-	ReactiveControls,
+	type Controls,
+	type ReactiveControls,
 } from "./api";
 
 export const PRESETS: Record<string, Controls> = {

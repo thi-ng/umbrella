@@ -21,12 +21,12 @@ import { samplePoisson } from "@thi.ng/poisson";
 import {
 	comp,
 	map,
-	mapcat,
 	mapIndexed,
+	mapcat,
 	push,
 	transduce,
 } from "@thi.ng/transducers";
-import { dist, floor, ReadonlyVec, Vec } from "@thi.ng/vectors";
+import { dist, floor, type ReadonlyVec, type Vec } from "@thi.ng/vectors";
 
 const W = 500;
 const R = W / 2;

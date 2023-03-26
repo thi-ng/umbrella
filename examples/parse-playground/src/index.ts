@@ -3,7 +3,7 @@ import { timedResult } from "@thi.ng/bench";
 import { downloadWithMime } from "@thi.ng/dl-asset";
 import { DOWNLOAD, withSize } from "@thi.ng/hiccup-carbon-icons";
 import { anchor, div, h1, main, textArea } from "@thi.ng/hiccup-html";
-import { defContext, defGrammar, Language, print } from "@thi.ng/parse";
+import { defContext, defGrammar, print, type Language } from "@thi.ng/parse";
 import { $compile } from "@thi.ng/rdom";
 import {
 	dynamicDropdown,

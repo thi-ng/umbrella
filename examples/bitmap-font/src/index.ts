@@ -1,7 +1,7 @@
 import type { IObjectOf } from "@thi.ng/api";
 import { dropdown } from "@thi.ng/hdom-components";
 import { clamp } from "@thi.ng/math";
-import { ISubscriber, reactive, Stream, sync } from "@thi.ng/rstream";
+import { Stream, reactive, sync, type ISubscriber } from "@thi.ng/rstream";
 import {
 	comp,
 	map,

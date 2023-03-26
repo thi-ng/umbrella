@@ -1,7 +1,7 @@
 import type { Fn } from "@thi.ng/api";
 import { setInManyUnsafe } from "@thi.ng/paths";
-import { ISubscriber, pubsub, stream, trace } from "@thi.ng/rstream";
-import { filter, Transducer } from "@thi.ng/transducers";
+import { pubsub, stream, trace, type ISubscriber } from "@thi.ng/rstream";
+import { filter, type Transducer } from "@thi.ng/transducers";
 import {
 	NEXT,
 	PAGE_READY,

@@ -11,13 +11,13 @@ import { SOA } from "@thi.ng/soa";
 import { permutations, repeat } from "@thi.ng/transducers";
 import { normalize3 } from "@thi.ng/vectors";
 import {
+	LAMBERT,
 	compileModel,
 	defShader,
 	draw,
-	GLMat4,
-	GLVec3,
-	LAMBERT,
-	ModelSpec,
+	type GLMat4,
+	type GLVec3,
+	type ModelSpec,
 } from "@thi.ng/webgl";
 
 const cube = (): Partial<ModelSpec> => {

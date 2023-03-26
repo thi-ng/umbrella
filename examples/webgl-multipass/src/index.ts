@@ -1,4 +1,4 @@
-import { canvas2d, floatBuffer, FLOAT_GRAY } from "@thi.ng/pixel";
+import { FLOAT_GRAY, canvas2d, floatBuffer } from "@thi.ng/pixel";
 import {
 	$x,
 	$xyz,
@@ -12,18 +12,18 @@ import {
 	sub,
 	sym,
 	texture,
-	Vec2Sym,
 	vec3,
 	vec4,
-	Vec4Sym,
+	type Vec2Sym,
+	type Vec4Sym,
 } from "@thi.ng/shader-ast";
 import { clamp01, fit1101, fragUV } from "@thi.ng/shader-ast-stdlib";
 import {
+	TextureFormat,
+	TextureType,
 	defMultiPass,
 	glCanvas,
 	readTexture,
-	TextureFormat,
-	TextureType,
 } from "@thi.ng/webgl";
 
 // create WebGL canvas

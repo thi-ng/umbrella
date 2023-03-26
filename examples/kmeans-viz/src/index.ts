@@ -12,7 +12,7 @@ import {
 import { kmeans } from "@thi.ng/k-means";
 import { SYSTEM } from "@thi.ng/random";
 import { repeatedly } from "@thi.ng/transducers";
-import { add2, randNormDistrib2, Vec } from "@thi.ng/vectors";
+import { add2, randNormDistrib2, type Vec } from "@thi.ng/vectors";
 
 const W = 600;
 const W2 = W / 2;

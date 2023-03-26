@@ -6,7 +6,7 @@ import { mulV23 } from "@thi.ng/matrices";
 import { GRAY8, imagePromise, intBufferFromImage } from "@thi.ng/pixel";
 import { Node2D } from "@thi.ng/scenegraph";
 import { map, range } from "@thi.ng/transducers";
-import { ReadonlyVec, setN2, Vec } from "@thi.ng/vectors";
+import { setN2, type ReadonlyVec, type Vec } from "@thi.ng/vectors";
 import LOGO from "./logo-256.png";
 
 /**

@@ -1,10 +1,15 @@
 import { timed } from "@thi.ng/bench";
 import { anchor, div, inputText } from "@thi.ng/hiccup-html";
-import { $list, $text, Component, IComponent } from "@thi.ng/rdom";
-import { debounce, ISubscription, reactive, Stream } from "@thi.ng/rstream";
+import { $list, $text, Component, type IComponent } from "@thi.ng/rdom";
+import {
+	Stream,
+	debounce,
+	reactive,
+	type ISubscription,
+} from "@thi.ng/rstream";
 import { map } from "@thi.ng/transducers";
 import msgpack from "@ygoe/msgpack";
-import { pageControls, Pagination } from "./pagination";
+import { Pagination, pageControls } from "./pagination";
 import { search, type SearchIndex } from "./search";
 
 const INDEX_URL = "https://docs.thi.ng/umbrella/search-index-latest.bin";

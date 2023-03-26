@@ -17,7 +17,7 @@ import { deg, fit01, fit11 } from "@thi.ng/math";
 import { fromInterval, sync } from "@thi.ng/rstream";
 import { map } from "@thi.ng/transducers";
 import { updateDOM } from "@thi.ng/transducers-hdom";
-import { polar, Vec } from "@thi.ng/vectors";
+import { polar, type Vec } from "@thi.ng/vectors";
 
 type Tint = (p: Polygon) => string;
 

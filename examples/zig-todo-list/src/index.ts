@@ -1,9 +1,17 @@
 import type { Fn0 } from "@thi.ng/api";
 import { FMT_HHmmss, FMT_yyyyMMdd } from "@thi.ng/date";
-import { IWasmAPI, WasmBridge, WasmExports, WasmType } from "@thi.ng/wasm-api";
-import { WasmDom, WasmDomExports } from "@thi.ng/wasm-api-dom";
-import { WasmSchedule, WasmScheduleExports } from "@thi.ng/wasm-api-schedule";
-import { $Task, Task, TaskState } from "./api";
+import {
+	WasmBridge,
+	type IWasmAPI,
+	type WasmExports,
+	type WasmType,
+} from "@thi.ng/wasm-api";
+import { WasmDom, type WasmDomExports } from "@thi.ng/wasm-api-dom";
+import {
+	WasmSchedule,
+	type WasmScheduleExports,
+} from "@thi.ng/wasm-api-schedule";
+import { $Task, TaskState, type Task } from "./api";
 import WASM_URL from "./main.wasm?url";
 
 /**

@@ -1,4 +1,4 @@
-import { dotsH, ReadonlyColor } from "@thi.ng/color";
+import { dotsH, type ReadonlyColor } from "@thi.ng/color";
 import { svg } from "@thi.ng/hiccup-svg";
 
 export const svgSwatches = (colors: ReadonlyColor[], size: number) =>

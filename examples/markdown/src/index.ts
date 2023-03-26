@@ -1,6 +1,10 @@
 import type { IObjectOf } from "@thi.ng/api";
 import { timedResult } from "@thi.ng/bench";
-import { parse, TagTransforms, TransformCtx } from "@thi.ng/hiccup-markdown";
+import {
+	parse,
+	type TagTransforms,
+	type TransformCtx,
+} from "@thi.ng/hiccup-markdown";
 import { reactive, Stream } from "@thi.ng/rstream";
 import { map } from "@thi.ng/transducers";
 import { updateDOM } from "@thi.ng/transducers-hdom";

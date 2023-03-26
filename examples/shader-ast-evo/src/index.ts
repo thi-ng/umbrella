@@ -1,6 +1,6 @@
-import { AST, ASTNode, ASTOpts } from "@thi.ng/gp";
+import { AST, type ASTNode, type ASTOpts } from "@thi.ng/gp";
 import { ConsoleLogger } from "@thi.ng/logger";
-import { IRandom, SYSTEM } from "@thi.ng/random";
+import { SYSTEM, type IRandom } from "@thi.ng/random";
 import {
 	$,
 	abs,
@@ -28,11 +28,11 @@ import {
 	sub,
 	sym,
 	tan,
-	Term,
 	vec3,
-	Vec3Sym,
-	Vec3Term,
 	vec4,
+	type Term,
+	type Vec3Sym,
+	type Vec3Term,
 } from "@thi.ng/shader-ast";
 import { constantFolding } from "@thi.ng/shader-ast-optimize";
 import {
