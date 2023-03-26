@@ -4,14 +4,14 @@ import * as assert from "assert";
 import {
 	abgr32,
 	argb32,
-	Color,
-	ColorMode,
 	css,
 	hsl,
 	labD50,
 	parseCss,
 	rgb,
 	srgb,
+	type Color,
+	type ColorMode,
 } from "../src/index.js";
 
 group("color", {

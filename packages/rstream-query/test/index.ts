@@ -1,6 +1,6 @@
 import { group } from "@thi.ng/testament";
 import * as assert from "assert";
-import { Triple, TripleIds, TripleStore } from "../src/index.js";
+import { TripleStore, type Triple, type TripleIds } from "../src/index.js";
 
 const triples: Triple[] = [
 	["a", "type", "foo"], // 0

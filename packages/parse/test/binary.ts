@@ -4,10 +4,10 @@ import {
 	defContext,
 	lit,
 	oneOrMore,
-	Parser,
 	range,
 	seq,
 	string,
+	type Parser,
 } from "../src/index.js";
 
 const check = (

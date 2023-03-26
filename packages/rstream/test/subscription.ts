@@ -3,13 +3,13 @@ import { map, partition } from "@thi.ng/transducers";
 import * as assert from "assert";
 import {
 	CloseMode,
+	State,
+	Stream,
 	fromIterable,
 	fromIterableSync,
-	ISubscription,
-	State,
 	stream,
-	Stream,
 	subscription,
+	type ISubscription,
 } from "../src/index.js";
 import { TIMEOUT } from "./config.js";
 import { assertActive, assertError, assertIdle, assertUnsub } from "./utils.js";

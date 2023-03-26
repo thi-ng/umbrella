@@ -1,7 +1,7 @@
 import type { IDeref } from "@thi.ng/api";
 import { group } from "@thi.ng/testament";
 import * as assert from "assert";
-import { AttribVal, defElement } from "../src/index.js";
+import { defElement, type AttribVal } from "../src/index.js";
 
 group("hiccup-html", {
 	defElement: () => {

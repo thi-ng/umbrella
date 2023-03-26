@@ -6,11 +6,11 @@ import {
 	ES_LONG,
 	FR_LONG,
 	IT_LONG,
-	LocaleSpec,
 	tense,
 	units,
 	unitsLessThan,
 	withLocale,
+	type LocaleSpec,
 } from "../src/index.js";
 
 interface I18NTestSpec {

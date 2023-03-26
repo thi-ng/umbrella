@@ -1,6 +1,7 @@
-import * as assert from "assert";
 import { group } from "@thi.ng/testament";
+import * as assert from "assert";
 import {
+	Tuple,
 	coerceInt,
 	flag,
 	float,
@@ -8,8 +9,6 @@ import {
 	int,
 	ints,
 	json,
-	KVDict,
-	KVMultiDict,
 	kvPairs,
 	kvPairsMulti,
 	oneOf,
@@ -17,7 +16,8 @@ import {
 	size,
 	string,
 	tuple,
-	Tuple,
+	type KVDict,
+	type KVMultiDict,
 } from "../src/index.js";
 
 group("args", {

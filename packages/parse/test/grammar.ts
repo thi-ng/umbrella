@@ -1,6 +1,6 @@
 import { group } from "@thi.ng/testament";
 import * as assert from "assert";
-import { defContext, defGrammar, Parser } from "../src/index.js";
+import { defContext, defGrammar, type Parser } from "../src/index.js";
 
 const check = (
 	parser: Parser<string>,

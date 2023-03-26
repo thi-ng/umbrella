@@ -1,11 +1,11 @@
-import * as assert from "assert";
 import { group } from "@thi.ng/testament";
+import * as assert from "assert";
 import {
-	Event,
 	EVENT_ALL,
-	INotify,
 	INotifyMixin,
-	Listener,
+	type Event,
+	type INotify,
+	type Listener,
 } from "../src/index.js";
 
 group("mixins", {

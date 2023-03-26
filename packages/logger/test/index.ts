@@ -1,5 +1,5 @@
 import * as assert from "assert";
-import { LogEntry, LogLevel, MemoryLogger } from "../src/index.js";
+import { LogLevel, MemoryLogger, type LogEntry } from "../src/index.js";
 
 const journalWithoutTimestamp = (journal: LogEntry[]) =>
 	journal.map((x) => {

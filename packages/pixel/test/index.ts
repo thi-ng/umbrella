@@ -10,9 +10,9 @@ import {
 	GRAY8,
 	GRAY_ALPHA16,
 	GRAY_ALPHA8,
-	IntFormat,
 	RGB565,
 	RGB888,
+	type IntFormat,
 } from "../src/index.js";
 // import { equiv } from "@thi.ng/equiv";
 

@@ -1,4 +1,4 @@
-import { DEFAULT, defmulti, MultiFn1 } from "@thi.ng/defmulti";
+import { DEFAULT, defmulti, type MultiFn1 } from "@thi.ng/defmulti";
 import { group } from "@thi.ng/testament";
 import {
 	comp,
@@ -11,7 +11,7 @@ import {
 	transduce,
 } from "@thi.ng/transducers";
 import * as assert from "assert";
-import { parse, ParseElement, Type } from "../src/index.js";
+import { parse, Type, type ParseElement } from "../src/index.js";
 
 const svg = `
 <?xml version="1.0"?>

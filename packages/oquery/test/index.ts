@@ -4,9 +4,9 @@ import * as assert from "assert";
 import {
 	defKeyQuery,
 	defQuery,
-	OTerm,
-	QueryType,
-	SPInputTerm,
+	type OTerm,
+	type QueryType,
+	type SPInputTerm,
 } from "../src/index.js";
 
 const DB = {

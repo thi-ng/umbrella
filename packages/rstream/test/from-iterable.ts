@@ -1,11 +1,11 @@
 import { group } from "@thi.ng/testament";
 import * as assert from "assert";
 import {
-	fromIterable,
-	ISubscription,
 	State,
 	Stream,
 	Subscription,
+	fromIterable,
+	type ISubscription,
 } from "../src/index.js";
 import { TIMEOUT } from "./config.js";
 

@@ -1,6 +1,6 @@
 import { group } from "@thi.ng/testament";
 import * as assert from "assert";
-import { classifyField, Field, FieldClass } from "../src/index.js";
+import { classifyField, type Field, type FieldClass } from "../src/index.js";
 
 const checkAll = (
 	specs: [
