@@ -84,7 +84,7 @@ For Node.js REPL:
 const dsp = await import("@thi.ng/dsp");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 6.88 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 6.90 KB
 
 ## Dependencies
 

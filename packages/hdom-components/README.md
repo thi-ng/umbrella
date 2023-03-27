@@ -63,7 +63,7 @@ For Node.js REPL:
 const hdomComponents = await import("@thi.ng/hdom-components");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 2.06 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 2.05 KB
 
 ## Dependencies
 

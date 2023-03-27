@@ -75,7 +75,7 @@ For Node.js REPL:
 const csp = await import("@thi.ng/csp");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 2.42 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 2.48 KB
 
 ## Dependencies
 

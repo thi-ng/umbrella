@@ -72,7 +72,7 @@ Largely declarative WebGL 1.0 / 2.0 abstraction layer, partially ported
 - [@thi.ng/matrices](https://github.com/thi-ng/umbrella/tree/develop/packages/matrices) - Matrix & quaternion operations for 2D/3D geometry processing
 - [@thi.ng/shader-ast](https://github.com/thi-ng/umbrella/tree/develop/packages/shader-ast) - DSL to define shader code in TypeScript and cross-compile to GLSL, JS and other targets
 - [@thi.ng/soa](https://github.com/thi-ng/umbrella/tree/develop/packages/soa) - SOA & AOS memory mapped structured views with optional & extensible serialization
-- [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors) - Optimized 2d/3d/4d and arbitrary length vector operations
+- [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors) - Optimized 2d/3d/4d and arbitrary length vector operations, support for memory mapping/layouts
 - [@thi.ng/vector-pools](https://github.com/thi-ng/umbrella/tree/develop/packages/vector-pools) - Data structures for managing & working with strided, memory mapped vectors
 
 ## Installation
@@ -95,7 +95,7 @@ For Node.js REPL:
 const webgl = await import("@thi.ng/webgl");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 11.30 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 11.31 KB
 
 ## Dependencies
 

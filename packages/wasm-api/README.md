@@ -419,7 +419,7 @@ For Node.js REPL:
 const wasmApi = await import("@thi.ng/wasm-api");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 2.47 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 2.48 KB
 
 ## Dependencies
 

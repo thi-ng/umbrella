@@ -65,7 +65,7 @@ For Node.js REPL:
 const geomTraceBitmap = await import("@thi.ng/geom-trace-bitmap");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 759 bytes
+Package sizes (brotli'd, pre-treeshake): ESM: 940 bytes
 
 ## Dependencies
 

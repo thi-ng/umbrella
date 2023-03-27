@@ -55,7 +55,7 @@ For Node.js REPL:
 const pixelIoGeotiff = await import("@thi.ng/pixel-io-geotiff");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 402 bytes
+Package sizes (brotli'd, pre-treeshake): ESM: 399 bytes
 
 ## Dependencies
 

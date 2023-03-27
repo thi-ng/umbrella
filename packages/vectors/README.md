@@ -52,12 +52,12 @@ This project is part of the
 
 ## About
 
-Optimized 2d/3d/4d and arbitrary length vector operations.
+Optimized 2d/3d/4d and arbitrary length vector operations, support for memory mapping/layouts.
 
 Likely the most comprehensive vector library for TypeScript / JavaScript
 currently available.
 
-This package provides **over 800(!) largely code generated functions** and
+This package provides **over 875(!) largely code generated functions** and
 supporting types to perform vector operations on fixed and arbitrary-length
 vectors, both packed and strided (i.e. where individual vector components are
 not successive array elements, for example in SOA memory layouts).
@@ -85,7 +85,7 @@ unsigned integer vectors.
   provided code generation helpers (see
   [vop.ts](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors/src/vop.ts)
   and
-  [emit.ts](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors/src/codegen/emit.ts)
+  [emit.ts](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors/src/compile/emit.ts)
   for details).
 - Immutable by default: Each operation producing a vector result takes an output
   vector as first argument. If `null`, the vector given as 2nd argument will
@@ -666,8 +666,8 @@ All resulting in boolean vectors:
 
 For more information about the code generator see:
 
-- [emit.ts](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors/src/codegen/emit.ts)
-- [templates.ts](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors/src/codegen/templates.ts)
+- [emit.ts](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors/src/compile/emit.ts)
+- [templates.ts](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors/src/compile/templates.ts)
 - [vop.ts](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors/src/vop.ts)
 
 ## Authors

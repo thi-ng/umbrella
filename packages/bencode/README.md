@@ -75,7 +75,7 @@ For Node.js REPL:
 const bencode = await import("@thi.ng/bencode");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 1.18 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 1.41 KB
 
 ## Dependencies
 
