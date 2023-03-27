@@ -2,10 +2,10 @@ import { adaptDPI } from "@thi.ng/adapt-dpi";
 import type { NumOrString } from "@thi.ng/api";
 import { assert } from "@thi.ng/errors/assert";
 import {
-	WasmBridge,
 	WasmStringSlice,
 	type IWasmAPI,
 	type ReadonlyWasmString,
+	type WasmBridge,
 	type WasmType,
 	type WasmTypeBase,
 } from "@thi.ng/wasm-api";
