@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/adjacency",
-	"version": "2.3.12",
+	"version": "2.3.13",
 	"description": "Sparse & bitwise adjacency matrices, lists and selected traversal algorithms for directed & undirected graphs",
 	"type": "module",
 	"module": "./index.js",
@@ -34,17 +34,17 @@
 		"test": "testament test"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.7.4",
-		"@thi.ng/arrays": "^2.5.8",
-		"@thi.ng/bitfield": "^2.2.24",
-		"@thi.ng/dcons": "^3.2.39",
-		"@thi.ng/errors": "^2.2.13",
-		"@thi.ng/sparse": "^0.3.44"
+		"@thi.ng/api": "^8.7.5",
+		"@thi.ng/arrays": "^2.5.9",
+		"@thi.ng/bitfield": "^2.2.25",
+		"@thi.ng/dcons": "^3.2.40",
+		"@thi.ng/errors": "^2.2.14",
+		"@thi.ng/sparse": "^0.3.45"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.34.4",
-		"@thi.ng/testament": "^0.3.13",
-		"@thi.ng/vectors": "^7.6.9",
+		"@thi.ng/testament": "^0.3.14",
+		"@thi.ng/vectors": "^7.6.10",
 		"rimraf": "^4.4.1",
 		"tools": "workspace:^",
 		"typedoc": "^0.23.28",

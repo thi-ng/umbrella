@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/layout",
-	"version": "2.1.24",
+	"version": "2.1.25",
 	"description": "Configurable nested 2D grid layout manager",
 	"type": "module",
 	"module": "./index.js",
@@ -34,11 +34,11 @@
 		"test": "testament test"
 	},
 	"dependencies": {
-		"@thi.ng/checks": "^3.3.10"
+		"@thi.ng/checks": "^3.3.11"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.34.4",
-		"@thi.ng/testament": "^0.3.13",
+		"@thi.ng/testament": "^0.3.14",
 		"rimraf": "^4.4.1",
 		"tools": "workspace:^",
 		"typedoc": "^0.23.28",

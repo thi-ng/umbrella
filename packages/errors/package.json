@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/errors",
-	"version": "2.2.13",
+	"version": "2.2.14",
 	"description": "Custom error types and error factory functions",
 	"type": "module",
 	"module": "./index.js",
@@ -35,7 +35,7 @@
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.34.4",
-		"@thi.ng/testament": "^0.3.13",
+		"@thi.ng/testament": "^0.3.14",
 		"@types/node": "^18.15.9",
 		"rimraf": "^4.4.1",
 		"tools": "workspace:^",

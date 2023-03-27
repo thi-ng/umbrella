@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/dsp-io-wav",
-	"version": "2.1.44",
+	"version": "2.1.45",
 	"description": "WAV file format generation",
 	"type": "module",
 	"module": "./index.js",
@@ -34,15 +34,15 @@
 		"test": "testament test"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.7.4",
-		"@thi.ng/binary": "^3.3.21",
-		"@thi.ng/errors": "^2.2.13",
-		"@thi.ng/transducers": "^8.4.0",
-		"@thi.ng/transducers-binary": "^2.1.44"
+		"@thi.ng/api": "^8.7.5",
+		"@thi.ng/binary": "^3.3.22",
+		"@thi.ng/errors": "^2.2.14",
+		"@thi.ng/transducers": "^8.4.1",
+		"@thi.ng/transducers-binary": "^2.1.45"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.34.4",
-		"@thi.ng/testament": "^0.3.13",
+		"@thi.ng/testament": "^0.3.14",
 		"rimraf": "^4.4.1",
 		"tools": "workspace:^",
 		"typedoc": "^0.23.28",
