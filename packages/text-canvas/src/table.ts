@@ -3,13 +3,13 @@ import { isString } from "@thi.ng/checks/is-string";
 import { wordWrapLines } from "@thi.ng/strings/word-wrap";
 import { Border, type TableOpts } from "./api.js";
 import {
-	Canvas,
 	beginClip,
 	beginStyle,
 	canvas,
 	endClip,
 	endStyle,
 	setAt,
+	type Canvas,
 } from "./canvas.js";
 import { hline, vline } from "./hvline.js";
 import { fillRect, strokeRect } from "./rect.js";

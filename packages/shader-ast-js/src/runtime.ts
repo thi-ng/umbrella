@@ -2,7 +2,7 @@ import type { Fn } from "@thi.ng/api";
 import { assert } from "@thi.ng/errors/assert";
 import { clamp, clamp01 } from "@thi.ng/math/interval";
 import { ABGR8888 } from "@thi.ng/pixel/format/abgr8888";
-import { IntBuffer, intBufferFromCanvas } from "@thi.ng/pixel/int";
+import { intBufferFromCanvas, type IntBuffer } from "@thi.ng/pixel/int";
 import type { ReadonlyVec, Vec } from "@thi.ng/vectors";
 
 const rgba2bgra = (rgba: ReadonlyVec) =>

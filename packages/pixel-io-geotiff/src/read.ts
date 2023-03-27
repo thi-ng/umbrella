@@ -1,5 +1,5 @@
 import { typedArrayType, type TypedArray } from "@thi.ng/api";
-import { FLOAT_GRAY_RANGE, FloatBuffer, floatBuffer } from "@thi.ng/pixel";
+import { FLOAT_GRAY_RANGE, floatBuffer, type FloatBuffer } from "@thi.ng/pixel";
 import { Pool, fromArrayBuffer } from "geotiff";
 
 export interface GeoTiffOpts {

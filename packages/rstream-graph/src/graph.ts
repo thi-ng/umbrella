@@ -8,7 +8,7 @@ import { getInUnsafe } from "@thi.ng/paths/get-in";
 import { absPath, resolve, type ResolveFn } from "@thi.ng/resolve-map";
 import { CloseMode, type ISubscription } from "@thi.ng/rstream/api";
 import { fromIterableSync } from "@thi.ng/rstream/iterable";
-import { StreamSync, sync } from "@thi.ng/rstream/sync";
+import { sync, type StreamSync } from "@thi.ng/rstream/sync";
 import { fromViewUnsafe } from "@thi.ng/rstream/view";
 import type { Transducer } from "@thi.ng/transducers";
 import { map } from "@thi.ng/transducers/map";
