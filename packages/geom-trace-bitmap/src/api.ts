@@ -18,11 +18,17 @@ export interface TraceOpts {
 	 */
 	select: Predicate<number>;
 	/**
-	 * Minimum length of line segments (in pixels).
+	 * Minimum length of line segments (in consecutive pixels).
 	 *
 	 * @defaultValue 2
 	 */
 	min?: number;
+	/**
+	 * Maximum length of line segments (in consecutive pixels).
+	 *
+	 * @defaultValue Infinity
+	 */
+	max?: number;
 	/**
 	 * Clear value to replace extracted pixels with.
 	 *

@@ -105,10 +105,11 @@ export const traceLines = (
 	tx: PointTransform,
 	acc: VecPair[] = []
 ) => {
-	let { img, select, clear, last, min } = {
+	let { img, select, clear, last, min, max } = {
 		clear: 0,
 		last: true,
 		min: 2,
+		max: Infinity,
 		...opts,
 	};
 	min--;
@@ -123,7 +124,7 @@ export const traceLines = (
 		const isBorder = border(p);
 		const n = curr.length;
 		if (c) {
-			if (isBorder) {
+			if (isBorder || n >= max) {
 				if (n > 0) {
 					if (prevBorder) {
 						if (n > min) $record();
