@@ -112,6 +112,9 @@
 		"./diamond-square": {
 			"default": "./diamond-square.js"
 		},
+		"./filters": {
+			"default": "./filters.js"
+		},
 		"./flood-fill": {
 			"default": "./flood-fill.js"
 		},
