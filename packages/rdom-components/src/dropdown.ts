@@ -2,7 +2,7 @@ import type { Fn } from "@thi.ng/api";
 import { option, select, type SelectAttribs } from "@thi.ng/hiccup-html/forms";
 import { $input } from "@thi.ng/rdom/event";
 import { $list } from "@thi.ng/rdom/list";
-import type { ISubscribable, Subscription } from "@thi.ng/rstream";
+import type { ISubscribable, ISubscription } from "@thi.ng/rstream";
 
 export interface DropdownOpts<T> {
 	attribs: Partial<SelectAttribs>;
@@ -12,7 +12,7 @@ export interface DropdownOpts<T> {
 
 export const dynamicDropdown = <T = string, S extends string = string>(
 	items: ISubscribable<T[]>,
-	sel: Subscription<S, S>,
+	sel: ISubscription<S, S>,
 	opts?: Partial<DropdownOpts<T>>
 ) => {
 	opts = {
@@ -23,14 +23,14 @@ export const dynamicDropdown = <T = string, S extends string = string>(
 	return $list<T>(
 		items,
 		"select",
-		{ ...opts!.attribs, onchange: $input(sel) },
+		{ onchange: $input(sel), ...opts!.attribs },
 		$option(sel, <Required<DropdownOpts<T>>>opts)
 	);
 };
 
 export const staticDropdown = <T = string, S extends string = string>(
 	items: T[],
-	sel: Subscription<S, S>,
+	sel: ISubscription<S, S>,
 	opts?: Partial<DropdownOpts<T>>
 ) => {
 	opts = {
@@ -39,14 +39,14 @@ export const staticDropdown = <T = string, S extends string = string>(
 		...opts,
 	};
 	return select(
-		{ ...opts.attribs, onchange: $input(sel) },
+		{ onchange: $input(sel), ...opts.attribs },
 		...items.map($option(sel, <Required<DropdownOpts<T>>>opts))
 	);
 };
 
 const $option =
 	<T, S extends string>(
-		sel: Subscription<S, S>,
+		sel: ISubscription<S, S>,
 		{ label, value }: DropdownOpts<T>
 	) =>
 	(x: T) => {
