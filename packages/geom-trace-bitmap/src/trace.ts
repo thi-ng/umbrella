@@ -1,6 +1,6 @@
 import type { Fn, Predicate } from "@thi.ng/api";
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
-import type { GridIterOpts, PointTransform } from "@thi.ng/grid-iterators";
+import type { GridIterOpts2D, PointTransform2D } from "@thi.ng/grid-iterators";
 import { columns2d } from "@thi.ng/grid-iterators/columns";
 import { diagonal2d } from "@thi.ng/grid-iterators/diagonal";
 import { rows2d } from "@thi.ng/grid-iterators/rows";
@@ -100,9 +100,9 @@ export const traceBitmap = (opts: TraceBitmapOpts) => {
  */
 export const traceLines = (
 	opts: TraceOpts,
-	order: Fn<GridIterOpts, Iterable<[number, number]>>,
+	order: Fn<GridIterOpts2D, Iterable<[number, number]>>,
 	border: Predicate<[number, number]>,
-	tx: PointTransform,
+	tx: PointTransform2D,
 	acc: VecPair[] = []
 ) => {
 	let { img, select, clear, last, min, max } = {
@@ -120,7 +120,7 @@ export const traceLines = (
 		for (let q of curr) img.setAtUnsafe(q[0], q[1], clear);
 	};
 	for (let p of order({ cols: img.width, rows: img.height, tx })) {
-		const c = select(img.getAtUnsafe(p[0], p[1]));
+		const c = select(img.getAtUnsafe(p[0], p[1]), p);
 		const isBorder = border(p);
 		const n = curr.length;
 		if (c) {
@@ -166,7 +166,7 @@ export const tracePoints = (
 ) => {
 	if (clear === undefined) clear = 0;
 	for (let i = 0, n = img.data.length, w = img.width; i < n; i++) {
-		if (select(img.data[i])) {
+		if (select(img.data[i], [i % w, (i / w) | 0])) {
 			acc.push([i % w, (i / w) | 0]);
 			img.data[i] = clear;
 		}

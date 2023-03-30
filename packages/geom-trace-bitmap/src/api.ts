@@ -1,5 +1,9 @@
-import type { FnU2, Predicate } from "@thi.ng/api";
-import type { GridIterator2D, PointTransform } from "@thi.ng/grid-iterators";
+import type { Fn2, FnU2, Predicate } from "@thi.ng/api";
+import type {
+	GridCoord2D,
+	GridIterator2D,
+	PointTransform2D,
+} from "@thi.ng/grid-iterators";
 import type { ReadonlyMat } from "@thi.ng/matrices";
 import type { IntBuffer } from "@thi.ng/pixel";
 
@@ -13,10 +17,14 @@ export interface TraceOpts {
 	 */
 	img: IntBuffer;
 	/**
-	 * Predicate function to determine if a pixel value is considered part of a
-	 * line.
+	 * Predicate function to determine if a pixel position (or pixel value) is
+	 * considered selectable (part of a line or point cloud). The function is
+	 * being called with the pixel value and its coordinates.
+	 *
+	 * @param val
+	 * @param p
 	 */
-	select: Predicate<number>;
+	select: Fn2<number, GridCoord2D, boolean>;
 	/**
 	 * Minimum length of line segments (in consecutive pixels).
 	 *
@@ -90,7 +98,7 @@ export interface TraceDirImpl {
 	 * Optional point transform passed to {@link TraceDirImpl.order} (e.g. to
 	 * flip iteration order and therefore line direction)
 	 */
-	tx?: PointTransform;
+	tx?: PointTransform2D;
 }
 
 export type BorderFn = FnU2<number, Predicate<[number, number]>>;
