@@ -36,8 +36,6 @@ import {
 	updateLayerParam,
 } from "./state";
 
-// setScheduler(new RAFScheduler());
-
 // setLogger(new ConsoleLogger("rs"));
 
 // File import button UI component
@@ -54,7 +52,7 @@ const fileButton = (attribs: Partial<InputFileAttribs>, title: string) =>
 		)
 	);
 
-const layerControlsWidget = (layerID: string) => {
+const layerControlsForID = (layerID: string) => {
 	const { ctrls } = DB.deref().layers[layerID];
 	const moveButton = (dir: -1 | 1, tx: Predicate<string[]>) =>
 		button(
@@ -126,10 +124,16 @@ const layerControlsWidget = (layerID: string) => {
 			onchange: onchange("color"),
 			value: ctrls.color,
 		}),
-		layerParam("min", 1, 1000),
-		layerParam("max", 1, 1000),
+		layerParam("min", 1, 1000, {
+			disabled: ctrls.dir.map((id) => TRACE_MODES[id].points),
+		}),
+		layerParam("max", 1, 1000, {
+			disabled: ctrls.dir.map((id) => TRACE_MODES[id].points),
+		}),
 		layerParam("slope", 1, 16, {
-			disabled: ctrls.dir.map((id) => !TRACE_MODES[id].slope),
+			disabled: ctrls.dir.map(
+				(id) => !TRACE_MODES[id].slope || TRACE_MODES[id].points
+			),
 		}),
 		layerParam("skip", 0, 16, {
 			disabled: ctrls.dir.map((id) => !TRACE_MODES[id].skip),
@@ -177,8 +181,8 @@ $compile(
 					{ class: "bg-gray white bb b--dark-gray pa2" },
 					imageParam("scale", 0.1, 2),
 					imageParam("gamma", 0.1, 4),
-					imageParam("low", 0, 1),
-					imageParam("high", 0, 1),
+					imageParam("low", -1, 1),
+					imageParam("high", 0, 2),
 					staticDropdown(
 						Object.keys(DITHER_MODES),
 						fromView(DB, { path: ["img", "dither"] }),
@@ -202,14 +206,14 @@ $compile(
 					})
 				),
 				button(
-					".db.h2.w-100.bn.bg-dark-gray.white",
 					{
+						class: "dib h2 w-100 bn bg-dark-gray white",
 						onclick: () => addLayer(),
 					},
 					"+ add layer"
 				)
 			),
-			$list(layerOrder, "div", {}, layerControlsWidget)
+			$list(layerOrder, "div", {}, layerControlsForID)
 		),
 		div(".dib", {}, $canvas(scene, [1000, 1000]))
 	)

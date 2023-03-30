@@ -1,5 +1,9 @@
 import type { Fn, IObjectOf, Keys, Keys1 } from "@thi.ng/api";
-import { type TraceDirImpl, type TraceOpts } from "@thi.ng/geom-trace-bitmap";
+import {
+	type TraceDir,
+	type TraceDirImpl,
+	type TraceOpts,
+} from "@thi.ng/geom-trace-bitmap";
 import {
 	columns2d,
 	diagonal2d,
@@ -14,6 +18,7 @@ import {
 import { IntBuffer } from "@thi.ng/pixel";
 import {
 	ATKINSON,
+	BURKES,
 	FLOYD_STEINBERG,
 	SIERRA2,
 	STUCKI,
@@ -59,10 +64,11 @@ export type LayerControls = KeyStreams<Layer["params"], LayerParam>;
 
 export interface TraceConfig {
 	label: string;
-	dir: Fn<number, TraceDirImpl>;
+	dir: TraceDir | Fn<number, TraceDirImpl>;
 	select: Fn<number, TraceOpts["select"]>;
 	slope?: boolean;
 	skip?: boolean;
+	points?: boolean;
 }
 
 const SELECT = (v: number) => v < 128;
@@ -112,6 +118,14 @@ export const TRACE_MODES = {
 		}),
 		select: () => SELECT,
 	},
+	p: <TraceConfig>{
+		label: "· points",
+		points: true,
+		skip: true,
+		dir: "p",
+		select: (skip) =>
+			skip > 0 ? (v, p) => v < 128 && p[0] % skip === 0 : SELECT,
+	},
 };
 
 export type TraceMode = Keys<typeof TRACE_MODES>;
@@ -121,8 +135,8 @@ export const DITHER_MODES = {
 	Atkinson: (img: IntBuffer) => ditherWith(ATKINSON, img),
 	"Bayer 2": (img: IntBuffer) => orderedDither(img, 2, 2),
 	"Bayer 4": (img: IntBuffer) => orderedDither(img, 4, 2),
-	"Bayer 8": (img: IntBuffer) => orderedDither(img, 8, 2),
-	"Bayer 16": (img: IntBuffer) => orderedDither(img, 16, 2),
+	"Bayer 8": (img: IntBuffer) => orderedDither(img, 8, 3),
+	Burkes: (img: IntBuffer) => ditherWith(BURKES, img),
 	"Floyd-Steinberg": (img: IntBuffer) => ditherWith(FLOYD_STEINBERG, img),
 	Sierra: (img: IntBuffer) => ditherWith(SIERRA2, img),
 	Stucki: (img: IntBuffer) => ditherWith(STUCKI, img),

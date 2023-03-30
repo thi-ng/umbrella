@@ -1,7 +1,8 @@
 import type { Keys } from "@thi.ng/api";
 import { defAtom } from "@thi.ng/atom";
+import { isString } from "@thi.ng/checks";
 import { css, hcy } from "@thi.ng/color";
-import { group, line } from "@thi.ng/geom";
+import { group, line, points } from "@thi.ng/geom";
 import { traceBitmap } from "@thi.ng/geom-trace-bitmap";
 import { smoothStep } from "@thi.ng/math";
 import { deleteIn } from "@thi.ng/paths";
@@ -173,20 +174,25 @@ export const scene = main.map((job) => {
 	for (let id of job.__order) {
 		const layer: Layer["params"] = (<any>job)[id];
 		const mode = TRACE_MODES[layer.dir];
-		let elements = traceBitmap({
+		const res = traceBitmap({
 			img,
 			select: mode.select(layer.skip + 1),
-			dir: [mode.dir(layer.slope)],
+			dir: [isString(mode.dir) ? mode.dir : mode.dir(layer.slope)],
 			clear: 255,
 			min: layer.min,
 			max: layer.max,
-		}).lines;
-		root.children.push(
-			group(
-				{ stroke: layer.color },
-				elements.map(([a, b]) => line(a, b))
-			)
-		);
+		});
+		const elements = mode.points
+			? points(res.points, {
+					fill: layer.color,
+					stroke: "none",
+					size: 0.7,
+			  })
+			: group(
+					{ stroke: layer.color },
+					res.lines.map(([a, b]) => line(a, b))
+			  );
+		root.children.push(elements);
 	}
 	return root;
 });
