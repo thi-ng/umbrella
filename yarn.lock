@@ -1732,6 +1732,33 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@example/trace-bitmap@workspace:examples/trace-bitmap":
+  version: 0.0.0-use.local
+  resolution: "@example/trace-bitmap@workspace:examples/trace-bitmap"
+  dependencies:
+    "@thi.ng/api": "workspace:^"
+    "@thi.ng/atom": "workspace:^"
+    "@thi.ng/color": "workspace:^"
+    "@thi.ng/expose": "workspace:^"
+    "@thi.ng/geom": "workspace:^"
+    "@thi.ng/geom-trace-bitmap": "workspace:^"
+    "@thi.ng/grid-iterators": "workspace:^"
+    "@thi.ng/hiccup-html": "workspace:^"
+    "@thi.ng/math": "workspace:^"
+    "@thi.ng/paths": "workspace:^"
+    "@thi.ng/pixel": "workspace:^"
+    "@thi.ng/pixel-dither": "workspace:^"
+    "@thi.ng/random": "workspace:^"
+    "@thi.ng/rdom": "workspace:^"
+    "@thi.ng/rdom-canvas": "workspace:^"
+    "@thi.ng/rdom-components": "workspace:^"
+    "@thi.ng/rstream": "workspace:^"
+    "@thi.ng/transducers": "workspace:^"
+    typescript: ^5.0.2
+    vite: ^4.2.1
+  languageName: unknown
+  linkType: soft
+
 "@example/transducers-hdom@workspace:examples/transducers-hdom":
   version: 0.0.0-use.local
   resolution: "@example/transducers-hdom@workspace:examples/transducers-hdom"
@@ -3538,7 +3565,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/geom-trace-bitmap@workspace:packages/geom-trace-bitmap":
+"@thi.ng/geom-trace-bitmap@workspace:^, @thi.ng/geom-trace-bitmap@workspace:packages/geom-trace-bitmap":
   version: 0.0.0-use.local
   resolution: "@thi.ng/geom-trace-bitmap@workspace:packages/geom-trace-bitmap"
   dependencies:
