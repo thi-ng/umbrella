@@ -2,7 +2,7 @@ import type { Fn } from "@thi.ng/api";
 import type { IColor } from "@thi.ng/color";
 import type { Polygon } from "@thi.ng/geom";
 import type { IHiccupShape } from "@thi.ng/geom-api";
-import type { PointTransform } from "@thi.ng/grid-iterators/api";
+import type { PointTransform2D } from "@thi.ng/grid-iterators/api";
 
 export type Color = string | number[] | IColor;
 
@@ -31,10 +31,10 @@ export interface HatchOpts {
 	/**
 	 * Optional transform fn for generated grid points. If given,
 	 * {@link HatchOpts.flip} will be ignored. See
-	 * [`PointTransform`](https://docs.thi.ng/umbrella/grid-iterators/types/PointTransform.html)
+	 * [`PointTransform`](https://docs.thi.ng/umbrella/grid-iterators/types/PointTransform2D.html)
 	 * for more details.
 	 */
-	tx?: PointTransform;
+	tx?: PointTransform2D;
 	flip?: FlipDir;
 	space: number;
 	line: Partial<FuzzyLineOpts>;
