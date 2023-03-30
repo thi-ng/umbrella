@@ -1,5 +1,6 @@
 import type {
 	DeepPath,
+	Fn,
 	OptPathVal,
 	Path,
 	Path0,
@@ -36,6 +37,31 @@ export const defTransacted = <T>(parent: IAtom<T>) => new Transacted(parent);
  */
 export const beginTransaction = <T>(parent: IAtom<T>) =>
 	new Transacted(parent).begin();
+
+/**
+ * An "anonymous" version of {@link Transacted.updateAsTransaction}. Takes an
+ * atom, wraps it as a {@link Transacted} and calls given `fn` with it to update
+ * the state as a single transaction. If the update function returns true, the
+ * transaction will be committed, else cancelled. Returns atom.
+ *
+ * @remarks
+ * **IMPORTANT:** Within body of the update function **only** work with the
+ * transaction wrapper given as argument! **DO NOT** update the original state
+ * atom!
+ *
+ * If an error occurs during the update, the transaction will be canceled, the
+ * wrapper silently removed and the error re-thrown.
+ *
+ * @param parent
+ * @param fn
+ */
+export const updateAsTransaction = <T>(
+	parent: IAtom<T>,
+	fn: Fn<Transacted<T>, boolean>
+) => {
+	new Transacted(parent).updateAsTransaction(fn);
+	return parent;
+};
 
 export class Transacted<T> implements IAtom<T> {
 	parent: IAtom<T>;
@@ -206,6 +232,33 @@ export class Transacted<T> implements IAtom<T> {
 		this.parent.removeWatch(this.id + "--guard--");
 		this.current = undefined;
 		this.isActive = false;
+	}
+
+	/**
+	 * Starts a new transaction and calls given `fn` with this instance to
+	 * update the state (presumably in multiple stages) as a single transaction.
+	 * If the update function returns true, the transaction will be committed,
+	 * else cancelled.
+	 *
+	 * @remarks
+	 * **IMPORTANT:** Within body of the update function **only** work with the
+	 * transaction wrapper given as argument! **DO NOT** update the original
+	 * state atom!
+	 *
+	 * If an error occurs during the update, the transaction will be canceled
+	 * and the error re-thrown.
+	 *
+	 * @param parent
+	 * @param fn
+	 */
+	updateAsTransaction(fn: Fn<Transacted<T>, boolean>) {
+		try {
+			this.begin();
+			fn(this) ? this.commit() : this.cancel();
+		} catch (e) {
+			this.cancel();
+			throw e;
+		}
 	}
 
 	addWatch(id: string, watch: Watch<T>) {
