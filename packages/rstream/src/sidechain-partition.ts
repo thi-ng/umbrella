@@ -47,8 +47,23 @@ export const sidechainPartition = <A, B>(
  * Syntax sugar for one of most common {@link sidechainPartition} use cases, to
  * synchronize downstream processing w/ `requestAnimationFrame()`. The returned
  * subscription debounces any high frequency intra-frame input values and (if
- * any present), passes only most recent one downstream *during* next RAF event
+ * any present), passes only most recent one downstream during next RAF event
  * processing.
+ *
+ * This example uses thi.ng/atom as state container. Also see {@link fromAtom}.
+ *
+ * @example
+ * ```ts
+ * const atom = defAtom("alice");
+ *
+ * // any change to the atom will only be applied during next RAF update
+ * sideChainPartitionRAF(fromAtom(atom)).subscribe({
+ *   next({ name }) { document.body.innerText = name; }
+ * });
+ *
+ * // trigger update
+ * atom.reset("bob");
+ * ```
  *
  * @param src -
  */
