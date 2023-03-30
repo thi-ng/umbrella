@@ -210,7 +210,7 @@ export const $addChild = (
  *
  * @param el
  */
-export const $remove = (el: Element | Comment) => el.remove();
+export const $remove = (el: Element | Comment) => el && el.remove();
 
 /**
  * Migrates given element to `newParent`, following the same append or insertion
