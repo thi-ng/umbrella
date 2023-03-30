@@ -1,6 +1,6 @@
 import { ceilPow2 } from "@thi.ng/binary/pow";
 import { demux2 } from "@thi.ng/morton/mux";
-import type { GridIterOpts } from "./api.js";
+import type { GridIterOpts2D } from "./api.js";
 import { __opts } from "./utils.js";
 
 /**
@@ -11,7 +11,7 @@ import { __opts } from "./utils.js";
  *
  * @param opts -
  */
-export function* zcurve2d(opts: GridIterOpts) {
+export function* zcurve2d(opts: GridIterOpts2D) {
 	const { cols, rows, tx } = __opts(opts);
 	const max = ceilPow2(Math.pow(Math.max(cols, rows), 2));
 	for (let i = 0; i < max; i++) {

@@ -1,4 +1,4 @@
-import type { GridIterOpts } from "./api.js";
+import type { GridIterOpts2D } from "./api.js";
 import { diagonal2d } from "./diagonal.js";
 import { __opts } from "./utils.js";
 
@@ -12,7 +12,7 @@ import { __opts } from "./utils.js";
  *
  * @param opts -
  */
-export function* diagonalEnds2d(opts: GridIterOpts & { all?: boolean }) {
+export function* diagonalEnds2d(opts: GridIterOpts2D & { all?: boolean }) {
 	const { cols, rows, tx } = __opts(opts);
 	const num = cols * rows - 1;
 	const maxX = cols - 1;

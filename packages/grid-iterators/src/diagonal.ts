@@ -1,4 +1,4 @@
-import type { GridIterOpts } from "./api.js";
+import type { GridIterOpts2D } from "./api.js";
 import { __opts } from "./utils.js";
 
 /**
@@ -11,7 +11,7 @@ import { __opts } from "./utils.js";
  *
  * @param opts -
  */
-export function* diagonal2d(opts: GridIterOpts) {
+export function* diagonal2d(opts: GridIterOpts2D) {
 	const { cols, rows, tx } = __opts(opts);
 	const num = cols * rows - 1;
 	for (let x = 0, y = 0, nx = 1, ny = 0, i = 0; i <= num; i++) {

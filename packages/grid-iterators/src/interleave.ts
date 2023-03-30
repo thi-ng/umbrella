@@ -1,9 +1,9 @@
 import { map } from "@thi.ng/transducers/map";
 import { range2d } from "@thi.ng/transducers/range2d";
-import type { GridIterOpts } from "./api.js";
+import type { GridIterOpts2D } from "./api.js";
 import { __opts } from "./utils.js";
 
-interface InterleaveOpts extends GridIterOpts {
+interface InterleaveOpts2D extends GridIterOpts2D {
 	/**
 	 * Row or column stride.
 	 *
@@ -27,7 +27,7 @@ interface InterleaveOpts extends GridIterOpts {
  *
  * @param opts -
  */
-export function* interleaveColumns2d(opts: InterleaveOpts) {
+export function* interleaveColumns2d(opts: InterleaveOpts2D) {
 	const { cols, rows, tx } = __opts(opts);
 	const step = (opts.step != null ? opts.step : 2) | 0;
 	for (let j = 0; j < step; j++) {
@@ -49,7 +49,7 @@ export function* interleaveColumns2d(opts: InterleaveOpts) {
  *
  * @param opts -
  */
-export function* interleaveRows2d(opts: InterleaveOpts) {
+export function* interleaveRows2d(opts: InterleaveOpts2D) {
 	const { cols, rows, tx } = __opts(opts);
 	const step = (opts.step != null ? opts.step : 2) | 0;
 	for (let j = 0; j < step; j++) {

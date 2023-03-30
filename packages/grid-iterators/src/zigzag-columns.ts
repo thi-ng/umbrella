@@ -1,4 +1,4 @@
-import type { GridIterOpts } from "./api.js";
+import type { GridIterOpts2D } from "./api.js";
 import { __opts } from "./utils.js";
 
 /**
@@ -10,7 +10,7 @@ import { __opts } from "./utils.js";
  *
  * @param opts -
  */
-export function* zigzagColumns2d(opts: GridIterOpts) {
+export function* zigzagColumns2d(opts: GridIterOpts2D) {
 	const { cols, rows, tx } = __opts(opts);
 	const num = cols * rows;
 	for (let i = 0; i < num; i++) {

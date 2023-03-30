@@ -1,21 +1,21 @@
-import type { PointTransform } from "./api.js";
+import type { PointTransform2D } from "./api.js";
 
 /**
  * No-op / identity {@link PointTransform}.
  */
-export const ident: PointTransform = () => (x, y) => [x, y];
+export const ident: PointTransform2D = () => (x, y) => [x, y];
 
-export const flipX: PointTransform = (cols) => (x, y) => [cols - 1 - x, y];
+export const flipX: PointTransform2D = (cols) => (x, y) => [cols - 1 - x, y];
 
-export const flipY: PointTransform = (_, rows) => (x, y) => [x, rows - 1 - y];
+export const flipY: PointTransform2D = (_, rows) => (x, y) => [x, rows - 1 - y];
 
-export const flipXY: PointTransform = (cols, rows) => (x, y) =>
+export const flipXY: PointTransform2D = (cols, rows) => (x, y) =>
 	[cols - 1 - x, rows - 1 - y];
 
 /**
  * {@link PointTransform} to swaps X & Y coords.
  */
-export const swapXY: PointTransform = () => (x, y) => [y, x];
+export const swapXY: PointTransform2D = () => (x, y) => [y, x];
 
 /**
  * Higher order {@link PointTransform} to compose given transforms in
@@ -25,7 +25,7 @@ export const swapXY: PointTransform = () => (x, y) => [y, x];
  * @param b
  */
 export const compTransforms =
-	(a: PointTransform, b: PointTransform): PointTransform =>
+	(a: PointTransform2D, b: PointTransform2D): PointTransform2D =>
 	(cols, rows) => {
 		const $a = a(cols, rows);
 		const $b = b(cols, rows);

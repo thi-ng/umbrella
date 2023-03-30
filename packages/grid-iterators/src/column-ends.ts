@@ -1,4 +1,4 @@
-import type { GridIterOpts } from "./api.js";
+import type { GridIterOpts2D } from "./api.js";
 import { __opts } from "./utils.js";
 
 /**
@@ -7,7 +7,7 @@ import { __opts } from "./utils.js";
  *
  * @param opts -
  */
-export function* columnEnds2d(opts: GridIterOpts) {
+export function* columnEnds2d(opts: GridIterOpts2D) {
 	let { cols, rows, tx } = __opts(opts);
 	rows--;
 	for (let x = 0; x < cols; x++) {
