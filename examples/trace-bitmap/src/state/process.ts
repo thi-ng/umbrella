@@ -9,6 +9,7 @@ import { keep, map } from "@thi.ng/transducers";
 import { mulN2 } from "@thi.ng/vectors";
 import { DITHER_MODES, TRACE_MODES, type Layer } from "../api";
 import { DB } from "../state";
+import { setCanvasTranslation } from "./canvas";
 
 /**
  * File stream to asynchronously load an image and then place the result pixel
@@ -21,6 +22,7 @@ export const imageSrc = stream<File>().subscribe({
 		const img = new Image();
 		img.onload = () => {
 			DB.resetIn(["img", "buf"], intBufferFromImage(img, GRAY8));
+			setCanvasTranslation(mulN2([], DB.deref().canvas.size, 0.5));
 			URL.revokeObjectURL(url);
 		};
 		img.src = url;
@@ -81,12 +83,12 @@ export const geometryStats = reactive({ lines: 0, points: 0 });
  * propagate here and trigger a new computation.
  *
  * @remarks
- * The result of this subscription is a single thi.ng/geom `group()` shape which
- * is then used for other downsteam processing (e.g. the UI canvas component
- * subscribes to here for rendering).
+ * With each update this subscription produces a single thi.ng/geom `group()`
+ * shape which is then used for other downstream processing (e.g. the UI canvas
+ * component subscribes to here for rendering).
  */
 export const scene = main.map((job) => {
-	// create result group
+	// create result group with current translation offset & scale
 	const root = group({
 		__background: job.__canvas.bg,
 		translate: job.__canvas.translate,

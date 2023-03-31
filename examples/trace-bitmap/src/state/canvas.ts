@@ -1,5 +1,5 @@
 import { gestureStream } from "@thi.ng/rstream-gestures";
-import { add2 } from "@thi.ng/vectors";
+import { add2, type Vec } from "@thi.ng/vectors";
 import { DB } from "../state";
 
 /**
@@ -7,6 +7,7 @@ import { DB } from "../state";
  * sidebar width)
  */
 export const computeCanvasSize = () => [
+	// sidebar width = 16rem = 256px
 	window.innerWidth - 256,
 	window.innerHeight,
 ];
@@ -26,13 +27,16 @@ export const resizeCanvas = () =>
 export const setCanvasBackground = (col: string) =>
 	DB.resetIn(["canvas", "bg"], col);
 
+export const setCanvasTranslation = (pos: Vec) =>
+	DB.resetIn(["canvas", "translate"], <number[]>pos);
+
 /**
  * Initialize canvas mouse/touch events to translate & zoom the viewport.
  *
  * @param canvas
  */
 export const initGestures = (canvas: HTMLCanvasElement) =>
-	gestureStream(canvas, { scale: false }).subscribe({
+	gestureStream(canvas, { smooth: 0.1 }).subscribe({
 		next(e) {
 			switch (e.type) {
 				// store current offset at begin of each gesture
@@ -44,14 +48,11 @@ export const initGestures = (canvas: HTMLCanvasElement) =>
 					break;
 				// apply delta offset to stored start position
 				case "drag":
-					DB.resetIn(
-						["canvas", "translate"],
-						<number[]>(
-							add2(
-								[],
-								DB.deref().canvas.clickPos!,
-								e.active[0].delta!
-							)
+					setCanvasTranslation(
+						add2(
+							[],
+							DB.deref().canvas.clickPos!,
+							e.active[0].delta!
 						)
 					);
 					break;

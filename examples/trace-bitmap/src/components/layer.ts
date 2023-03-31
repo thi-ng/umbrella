@@ -86,7 +86,7 @@ export const layerControlsForID = (layerID: string) => {
 		}),
 		inputColor({
 			class: "db w-100 pa0 mb1",
-			onchange: onchange("color"),
+			oninput: onchange("color"),
 			value: ctrls.color,
 		}),
 		layerParam("min", 1, 1000, {
