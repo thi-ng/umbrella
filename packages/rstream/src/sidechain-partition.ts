@@ -66,6 +66,8 @@ export const sidechainPartition = <A, B>(
  * ```
  *
  * @param src -
+ *
+ * @deprecated use {@link syncRAF} instead
  */
 export const sidechainPartitionRAF = <T>(src: ISubscribable<T>) =>
 	src

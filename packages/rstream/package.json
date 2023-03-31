@@ -168,6 +168,9 @@
 		"./subscription": {
 			"default": "./subscription.js"
 		},
+		"./sync-raf": {
+			"default": "./sync-raf.js"
+		},
 		"./sync": {
 			"default": "./sync.js"
 		},

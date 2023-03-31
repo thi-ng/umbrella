@@ -26,6 +26,7 @@ export * from "./sidechain-toggle.js";
 export * from "./stream.js";
 export * from "./subscription.js";
 export * from "./sync.js";
+export * from "./sync-raf.js";
 export * from "./timeout.js";
 export * from "./trace.js";
 export * from "./transduce.js";
