@@ -25,7 +25,7 @@ import {
 	ditherWith,
 	orderedDither,
 } from "@thi.ng/pixel-dither";
-import { type KeyStreams, type StreamSync } from "@thi.ng/rstream";
+import { type KeyStreams } from "@thi.ng/rstream";
 
 export interface AppState {
 	bg: string;
@@ -36,7 +36,7 @@ export interface AppState {
 
 export interface ImageControls {
 	buf?: IntBuffer;
-	dither: DitherType;
+	dither: DitherMode;
 	scale: number;
 	gamma: number;
 	low: number;
@@ -48,7 +48,6 @@ export type ImageParam = Keys<ImageControls>;
 export interface Layer {
 	id: string;
 	ctrls: LayerControls;
-	proc: StreamSync<LayerControls>;
 	params: {
 		color: string;
 		dir: TraceMode;
@@ -142,4 +141,4 @@ export const DITHER_MODES = {
 	Stucki: (img: IntBuffer) => ditherWith(STUCKI, img),
 };
 
-export type DitherType = Keys<typeof DITHER_MODES>;
+export type DitherMode = Keys<typeof DITHER_MODES>;
