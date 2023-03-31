@@ -8,31 +8,31 @@ import { DITHER_MODES, type DitherMode } from "./api";
 import { fileButton } from "./components/button";
 import { imageParam } from "./components/image";
 import { layerControlsForID } from "./components/layer";
+import { stats } from "./components/stats";
+import { DB } from "./state";
 import {
-	DB,
-	addLayer,
-	imageSrc,
-	layerOrder,
-	scene,
-	setBgColor,
-	setImageDither,
-} from "./state";
+	initGestures,
+	resizeCanvas,
+	setCanvasBackground,
+} from "./state/canvas";
+import { setImageDither } from "./state/image";
+import { addLayer } from "./state/layers";
+import { canvasState, imageSrc, layerOrder, scene } from "./state/process";
 
 // setLogger(new ConsoleLogger("rs"));
 
 //////////////////////////////// IMPORTANT! ////////////////////////////////////
-// Please ensure you read comments in /src/state.ts to understand how the
-// different parts of this app are fitting together! This file here only sets up
-// the toplevel UI.
+// Please ensure you read the detailed comments in /src/state.ts and
+// /src/state/*.ts to understand how the different parts of this app are fitting
+// together! This file here only sets up the toplevel UI.
 ////////////////////////////////////////////////////////////////////////////////
 
 $compile(
 	div(
-		{ class: "w-100 vh-100 flex overflow-y-hidden" },
+		{ class: "vh-100 flex f7" },
 		div(
 			{
-				class: "dib bg-washed-red vh-100 f7",
-				style: { width: "16rem" },
+				class: "w5 bg-light-gray vh-100 overflow-y-scroll",
 			},
 			div(
 				{},
@@ -69,9 +69,11 @@ $compile(
 					),
 					inputColor({
 						class: "w-100",
-						value: fromView(DB, { path: ["bg"] }),
+						value: fromView(DB, { path: ["canvas", "bg"] }),
 						onchange: (e) =>
-							setBgColor((<HTMLSelectElement>e.target).value),
+							setCanvasBackground(
+								(<HTMLSelectElement>e.target).value
+							),
 					})
 				),
 				button(
@@ -84,9 +86,20 @@ $compile(
 			),
 			$list(layerOrder, "div", {}, layerControlsForID)
 		),
-		div(".dib", {}, $canvas(scene, [1000, 1000]))
+		div(
+			".dib",
+			{},
+			$canvas(
+				scene,
+				canvasState.map((x) => x.size),
+				{ id: "viz", onmount: initGestures }
+			)
+		),
+		stats
 	)
 ).mount(document.getElementById("app")!);
+
+window.addEventListener("resize", resizeCanvas);
 
 // Only for dev builds:
 // Expose DB as global var to be able to inspect via console

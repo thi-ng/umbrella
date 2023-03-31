@@ -8,14 +8,14 @@ import {
 } from "@thi.ng/hiccup-html";
 import { staticDropdown } from "@thi.ng/rdom-components";
 import { TRACE_MODES, type LayerParam, type TraceMode } from "../api";
+import { DB } from "../state";
 import {
-	DB,
 	duplicateLayer,
-	layerOrder,
 	moveLayer,
 	removeLayer,
 	updateLayerParam,
-} from "../state";
+} from "../state/layers";
+import { layerOrder } from "../state/process";
 
 export const layerControlsForID = (layerID: string) => {
 	const { ctrls } = DB.deref().layers[layerID];

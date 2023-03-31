@@ -5,7 +5,12 @@ import {
 	type InputFileAttribs,
 } from "@thi.ng/hiccup-html";
 
-// File import button UI component
+/**
+ * File import button UI component
+ *
+ * @param attribs
+ * @param title
+ */
 export const fileButton = (attribs: Partial<InputFileAttribs>, title: string) =>
 	div(
 		{ class: "relative overflow-hidden" },

@@ -25,13 +25,19 @@ import {
 	ditherWith,
 	orderedDither,
 } from "@thi.ng/pixel-dither";
-import { type KeyStreams } from "@thi.ng/rstream";
+import { StreamSync, type KeyStreams } from "@thi.ng/rstream";
 
 export interface AppState {
-	bg: string;
 	layers: IObjectOf<Layer>;
 	order: string[];
 	img: ImageControls;
+	canvas: {
+		bg: string;
+		size: number[];
+		translate: number[];
+		clickPos?: number[];
+		scale: number;
+	};
 }
 
 export interface ImageControls {
@@ -46,6 +52,7 @@ export interface ImageControls {
 export type ImageParam = Keys<ImageControls>;
 
 export interface Layer {
+	proc: StreamSync<LayerControls>;
 	id: string;
 	ctrls: LayerControls;
 	params: {
@@ -134,7 +141,7 @@ export const DITHER_MODES = {
 	Atkinson: (img: IntBuffer) => ditherWith(ATKINSON, img),
 	"Bayer 2": (img: IntBuffer) => orderedDither(img, 2, 2),
 	"Bayer 4": (img: IntBuffer) => orderedDither(img, 4, 2),
-	"Bayer 8": (img: IntBuffer) => orderedDither(img, 8, 3),
+	"Bayer 8": (img: IntBuffer) => orderedDither(img, 8, 2),
 	Burkes: (img: IntBuffer) => ditherWith(BURKES, img),
 	"Floyd-Steinberg": (img: IntBuffer) => ditherWith(FLOYD_STEINBERG, img),
 	Sierra: (img: IntBuffer) => ditherWith(SIERRA2, img),

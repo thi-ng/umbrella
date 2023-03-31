@@ -1,7 +1,8 @@
 import { inputNumber } from "@thi.ng/hiccup-html";
 import { fromView } from "@thi.ng/rstream";
 import type { ImageParam } from "../api";
-import { DB, setImageParam } from "../state";
+import { DB } from "../state";
+import { setImageParam } from "../state/image";
 
 export const imageParam = (
 	id: Exclude<ImageParam, "buf" | "dither">,
