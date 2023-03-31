@@ -40,9 +40,13 @@ export interface CanvasOpts {
  *
  * @remarks
  * If `size` is subscribable, the canvas is resized each time a new value is
- * received, else will only be used to define initial canvas size. The `attribs`
- * SHOULD not include `width`, `height`, since these will be overriden in any
- * way by `size` arg.
+ * received, else will only be used to define initial canvas size.
+ *
+ * If given a sub (for size) and it has not (yet) produced a value, a default
+ * canvas size of 1x1 pixel will be used.
+ *
+ * The `attribs` SHOULD not include `width`, `height`, since these will be
+ * overriden in any way by `size` arg.
  */
 export const $canvas = (
 	body: ISubscription<any, any[] | IToHiccup>,
@@ -89,7 +93,7 @@ export class $Canvas
 		]);
 		this.el = <HTMLCanvasElement>await this.inner.mount(parent, index);
 		this.ctx = this.el.getContext("2d", this.attribs.ctx)!;
-		this.resize(this.size.deref()!);
+		this.resize(this.size.deref() || [1, 1]);
 		this.attribs.onmount && this.attribs.onmount(this.el, this.ctx);
 		this.update(shapes);
 		return this.el;
