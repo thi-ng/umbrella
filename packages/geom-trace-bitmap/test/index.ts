@@ -85,35 +85,47 @@ group("geom-trace-bitmap", {
 	},
 
 	extractX: () => {
-		assert.deepStrictEqual(extractSegmentsX(PTS, 5), [
-			[
-				[0, 10],
-				[4, 10],
+		assert.deepStrictEqual(extractSegmentsX(PTS, 5), {
+			segments: [
+				[
+					[0, 10],
+					[4, 10],
+				],
+				[
+					[0, 12],
+					[8, 12],
+				],
+				[
+					[0, 16],
+					[2, 16],
+				],
+				[
+					[0, 18],
+					[3, 18],
+				],
 			],
-			[
-				[0, 12],
-				[8, 12],
-			],
-			[
-				[0, 16],
-				[2, 16],
-			],
-			[
-				[0, 18],
-				[3, 18],
-			],
-		]);
+			points: [[14, 12]],
+		});
 	},
 	extractY: () => {
-		assert.deepStrictEqual(extractSegmentsY(PTS, 5), [
-			[
-				[0, 10],
-				[0, 18],
+		assert.deepStrictEqual(extractSegmentsY(PTS, 5), {
+			segments: [
+				[
+					[0, 10],
+					[0, 18],
+				],
+				[
+					[2, 12],
+					[2, 16],
+				],
 			],
-			[
-				[2, 12],
-				[2, 16],
+			points: [
+				[2, 30],
+				[3, 18],
+				[4, 10],
+				[5, 12],
+				[8, 12],
 			],
-		]);
+		});
 	},
 });
