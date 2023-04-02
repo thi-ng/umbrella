@@ -1,4 +1,11 @@
-import type { Fn2, ICopy, IEmpty, NumericArray } from "@thi.ng/api";
+import type {
+	Fn2,
+	FnN2,
+	ICopy,
+	IEmpty,
+	NumericArray,
+	Range0_3,
+} from "@thi.ng/api";
 import { nomixin } from "@thi.ng/api/decorators/nomixin";
 import { IGrid2DMixin } from "@thi.ng/api/mixins/igrid";
 import { isNumber } from "@thi.ng/checks/is-number";
@@ -21,10 +28,12 @@ import type {
 	IBlend,
 	IBlit,
 	IInvert,
-	IntFormat,
 	IPixelBuffer,
 	IResizable,
+	IRotate,
 	IToImageData,
+	IntFormat,
+	Rotation,
 } from "./api.js";
 import { ensureChannel, ensureImageData, ensureSize } from "./checks.js";
 import { defFloatFormat } from "./format/float-format.js";
@@ -109,12 +118,13 @@ export class FloatBuffer
 		IEmpty<FloatBuffer>,
 		IInvert<FloatBuffer>,
 		IResizable<FloatBuffer, FloatSampler>,
+		IRotate<FloatBuffer>,
 		IToImageData
 {
 	readonly size: [number, number];
 	readonly stride: [number, number];
-	readonly data: Float32Array;
 	readonly format: FloatFormat;
+	data: Float32Array;
 	protected __empty: NumericArray;
 
 	constructor(
@@ -500,6 +510,38 @@ export class FloatBuffer
 		return this;
 	}
 
+	rotateByID(id: Range0_3): this {
+		return id > 0
+			? this[<Rotation>[, "rotateCW", "rotate180", "rotateCCW"][id]]()
+			: this;
+	}
+
+	rotateCW() {
+		const { width, height } = this;
+		const h1 = height - 1;
+		this._rotate((x, y) => x * height + h1 - y);
+		this.size[0] = height;
+		this.size[1] = width;
+		return this;
+	}
+
+	rotateCCW() {
+		const { width, height } = this;
+		const w1 = width - 1;
+		this._rotate((x, y) => (w1 - x) * height + y);
+		this.size[0] = height;
+		this.size[1] = width;
+		return this;
+	}
+
+	rotate180() {
+		const { width, height } = this;
+		const w1 = width - 1;
+		const h1 = height - 1;
+		this._rotate((x, y) => (h1 - y) * width + w1 - x);
+		return this;
+	}
+
 	invert() {
 		const {
 			data,
@@ -562,6 +604,22 @@ export class FloatBuffer
 			}
 		}
 		return dest;
+	}
+
+	protected _rotate(idxFn: FnN2) {
+		const {
+			data,
+			width,
+			height,
+			stride: [stride],
+		} = this;
+		const tmp = new Float32Array(width * height * stride);
+		for (let y = 0, i = 0; y < height; y++) {
+			for (let x = 0; x < width; x++, i += stride) {
+				tmp.set(data.subarray(i, i + stride), idxFn(x, y) * stride);
+			}
+		}
+		this.data = tmp;
 	}
 
 	protected ensureFormat(dest: FloatBuffer) {

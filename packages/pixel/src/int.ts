@@ -1,4 +1,4 @@
-import type { Fn2, ICopy, IEmpty } from "@thi.ng/api";
+import type { Fn2, FnN2, ICopy, IEmpty, Range0_3 } from "@thi.ng/api";
 import { IGrid2DMixin } from "@thi.ng/api/mixins/igrid";
 import {
 	typedArray,
@@ -24,11 +24,13 @@ import {
 	type IInvert,
 	type IPixelBuffer,
 	type IResizable,
+	type IRotate,
 	type IToImageData,
 	type IntChannel,
 	type IntFormat,
 	type IntFormatSpec,
 	type IntSampler,
+	type Rotation,
 } from "./api.js";
 import { canvasPixels, imageCanvas } from "./canvas.js";
 import {
@@ -132,12 +134,13 @@ export class IntBuffer
 		IEmpty<IntBuffer>,
 		IInvert<IntBuffer>,
 		IResizable<IntBuffer, IntSampler>,
+		IRotate<IntBuffer>,
 		IToImageData
 {
 	readonly size: [number, number];
 	readonly stride: [number, number];
 	readonly format: IntFormat;
-	readonly data: UIntArray;
+	data: UIntArray;
 
 	constructor(
 		w: number,
@@ -445,6 +448,38 @@ export class IntBuffer
 		return this;
 	}
 
+	rotateByID(id: Range0_3): this {
+		return id > 0
+			? this[<Rotation>[, "rotateCW", "rotate180", "rotateCCW"][id]]()
+			: this;
+	}
+
+	rotateCW() {
+		const { width, height } = this;
+		const h1 = height - 1;
+		this._rotate((x, y) => x * height + h1 - y);
+		this.size[0] = height;
+		this.size[1] = width;
+		return this;
+	}
+
+	rotateCCW() {
+		const { width, height } = this;
+		const w1 = width - 1;
+		this._rotate((x, y) => (w1 - x) * height + y);
+		this.size[0] = height;
+		this.size[1] = width;
+		return this;
+	}
+
+	rotate180() {
+		const { width, height } = this;
+		const w1 = width - 1;
+		const h1 = height - 1;
+		this._rotate((x, y) => (h1 - y) * width + w1 - x);
+		return this;
+	}
+
 	/**
 	 * Returns scaled version of this buffer using given sampler or filter
 	 * (default: `"linear"`) for interpolation. Syntax sugar for
@@ -487,5 +522,16 @@ export class IntBuffer
 			}
 		}
 		return dest;
+	}
+
+	protected _rotate(idxFn: FnN2) {
+		const { data, format, width, height } = this;
+		const tmp = typedArray(format.type, width * height);
+		for (let y = 0; y < height; y++) {
+			for (let x = 0; x < width; x++) {
+				tmp[idxFn(x, y)] = data[y * width + x];
+			}
+		}
+		this.data = tmp;
 	}
 }

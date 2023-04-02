@@ -8,6 +8,7 @@ import type {
 	IGrid2D,
 	IObjectOf,
 	NumericArray,
+	Range0_3,
 	TypedArray,
 	UintType,
 } from "@thi.ng/api";
@@ -316,6 +317,34 @@ export interface IResizable<T extends IPixelBuffer, F> {
 
 	resize(w: number, h: number, sampler?: F | Filter): T;
 }
+
+export interface IRotate<T extends IPixelBuffer> {
+	/**
+	 * Rotates pixel buffer according to given ID:
+	 *
+	 * - 0 = no rotation
+	 * - 1 = {@link IRotate.rotateCW}
+	 * - 2 = {@link IRotate.rotate180}
+	 * - 3 = {@link IRotate.rotateCCW}
+	 *
+	 * @param id
+	 */
+	rotateByID(id: Range0_3): T;
+	/**
+	 * Rotates pixel buffer 90 degrees clockwise.
+	 */
+	rotateCW(): T;
+	/**
+	 * Rotates pixel buffer 90 degrees counterclockwise.
+	 */
+	rotateCCW(): T;
+	/**
+	 * Rotates pixel buffer 180 degrees.
+	 */
+	rotate180(): T;
+}
+
+export type Rotation = Exclude<keyof IRotate<IPixelBuffer>, "rotateByID">;
 
 export interface IColorChannel<T extends TypedArray, C> {
 	/**
