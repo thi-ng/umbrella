@@ -1,11 +1,11 @@
-import { button, div } from "@thi.ng/hiccup-html";
+import { div } from "@thi.ng/hiccup-html";
 import { sync, trigger } from "@thi.ng/rstream";
-import { THEME } from "../api";
 import {
 	exportJsonTrigger,
 	exportSvgTrigger,
 	geometryStats,
 } from "../state/process";
+import { smallButton } from "./form";
 
 export const exportControls = div(
 	{
@@ -14,18 +14,6 @@ export const exportControls = div(
 			mergeOnly: true,
 		}).map(({ stats }) => (stats?.lines || stats?.points ? "" : "dn")),
 	},
-	button(
-		{
-			class: THEME.button.small,
-			onclick: () => exportSvgTrigger.next(true),
-		},
-		"export SVG"
-	),
-	button(
-		{
-			class: THEME.button.small,
-			onclick: () => exportJsonTrigger.next(true),
-		},
-		"export JSON"
-	)
+	smallButton(() => exportSvgTrigger.next(true), "export SVG"),
+	smallButton(() => exportJsonTrigger.next(true), "export JSON")
 );

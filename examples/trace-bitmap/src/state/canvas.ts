@@ -1,5 +1,5 @@
 import { gestureStream } from "@thi.ng/rstream-gestures";
-import { add2, type Vec } from "@thi.ng/vectors";
+import { add2, mulN2, type Vec } from "@thi.ng/vectors";
 import { DB } from "./atom";
 
 /**
@@ -35,6 +35,9 @@ export const setCanvasBackground = (col: string) =>
  */
 export const setCanvasTranslation = (pos: Vec) =>
 	DB.resetIn(["canvas", "translate"], <number[]>pos);
+
+export const resetCanvasView = () =>
+	setCanvasTranslation(<number[]>mulN2([], DB.deref().canvas.size, 0.5));
 
 /**
  * Initialize canvas mouse/touch events to translate & zoom the viewport.

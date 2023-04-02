@@ -16,11 +16,12 @@ import { computeCanvasSize } from "./canvas";
 export const DB = defAtom<AppState>({
 	layers: {},
 	order: [],
-	img: { scale: 1, gamma: 1, low: 0, high: 1, dither: "None" },
+	img: { scale: 1, gamma: 1, rotate: 0, low: 0, high: 1, dither: "None" },
 	canvas: {
 		size: computeCanvasSize(),
 		translate: [0, 0],
 		scale: 1,
 		bg: "#e8e0e0",
 	},
+	preset: "Custom",
 });

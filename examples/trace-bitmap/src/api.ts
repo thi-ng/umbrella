@@ -1,4 +1,4 @@
-import type { Fn, IObjectOf, Keys } from "@thi.ng/api";
+import type { Fn, IObjectOf, Keys, Range0_3 } from "@thi.ng/api";
 import {
 	extractSegmentsX,
 	extractSegmentsY,
@@ -42,12 +42,14 @@ export interface AppState {
 		clickPos?: number[];
 		scale: number;
 	};
+	preset: Keys<typeof PRESETS>;
 }
 
 export interface ImageControls {
 	buf?: IntBuffer;
 	dither: DitherMode;
 	scale: number;
+	rotate: Range0_3;
 	gamma: number;
 	low: number;
 	high: number;
@@ -75,7 +77,6 @@ export type LayerParam = Keys<LayerParams>;
 export type LayerControls = KeyStreams<LayerParams, LayerParam>;
 
 export interface Preset {
-	version: number;
 	bg: string;
 	dither: DitherMode;
 	layers: LayerParams[];
@@ -187,19 +188,131 @@ export const DITHER_MODES = {
 
 export type DitherMode = Keys<typeof DITHER_MODES>;
 
+export const PRESETS = {
+	Custom: <Preset>{},
+	"B&W, vert/horiz": <Preset>{
+		bg: "#e0e0e0",
+		dither: "None",
+		layers: [
+			{
+				color: "#000000",
+				mode: "v",
+				min: 2,
+				max: 1000,
+				skip: 0,
+				slope: 1,
+			},
+			{
+				color: "#000000",
+				mode: "h",
+				min: 2,
+				max: 1000,
+				skip: 0,
+				slope: 1,
+			},
+		],
+	},
+	"RBY, Bayer8": <Preset>{
+		bg: "#e4e0e0",
+		dither: "Bayer 8",
+		layers: [
+			{
+				color: "#ff1800",
+				mode: "d",
+				min: 2,
+				max: 1000,
+				skip: 1,
+				slope: 1,
+			},
+			{
+				color: "#220088",
+				mode: "dalt",
+				min: 2,
+				max: 1000,
+				skip: 0,
+				slope: 1,
+			},
+			{
+				mode: "px",
+				min: 0,
+				max: 0,
+				slope: 1,
+				skip: 1,
+				color: "#ffd91a",
+			},
+		],
+	},
+	"CMYW, Gray BG": <Preset>{
+		bg: "#666666",
+		dither: "None",
+		layers: [
+			{
+				mode: "d",
+				min: 8,
+				max: 1000,
+				slope: 1,
+				skip: 1,
+				color: "#00eeff",
+			},
+			{
+				mode: "dalt",
+				min: 2,
+				max: 1000,
+				slope: 1,
+				skip: 1,
+				color: "#ff61ff",
+			},
+			{
+				mode: "h",
+				min: 2,
+				max: 1000,
+				slope: 1,
+				skip: 0,
+				color: "#ffdd00",
+			},
+			{
+				mode: "py",
+				min: 0,
+				max: 2,
+				slope: 1,
+				skip: 1,
+				color: "#ffffff",
+			},
+		],
+	},
+	"Points only, Atkinson": <Preset>{
+		bg: "#e0e0e0",
+		dither: "Atkinson",
+		layers: [
+			{ mode: "py", min: 0, max: 0, slope: 1, skip: 0, color: "#0000ff" },
+		],
+	},
+};
+
+export type PresetID = Keys<typeof PRESETS>;
+
 export interface Theme {
+	geom: {
+		psize: number;
+	};
 	button: {
 		base: string;
 		large: string;
 		small: string;
+		col2: string;
+		col4: string;
 	};
 	fileButton: IObjectOf<{ root: string; button: string }>;
 	sideBar: {
 		root: string;
+		title: string;
 		section: string;
 		layerParam: string;
 		imageParam: string;
 		control: string;
+	};
+	overlays: {
+		stats: string;
 	};
 }
 
@@ -208,6 +321,8 @@ export const THEME = resolve<Theme>({
 		base: "dib h2 b--black bg-dark-gray white",
 		large: ({ base }: Theme["button"]) => base + " w-100",
 		small: ({ base }: Theme["button"]) => base + " w-50",
+		col2: "w-50",
+		col4: "w-25",
 	},
 	fileButton: {
 		large: {
@@ -221,9 +336,16 @@ export const THEME = resolve<Theme>({
 	},
 	sideBar: {
 		root: "w5 bg-near-black vh-100 overflow-y-scroll",
+		title: "ma2 white",
 		section: "bg-gray white bb b--dark-gray pa2",
 		control: "db w-100 mb1",
 		layerParam: "dib w-25 mb1",
 		imageParam: "@layerParam",
+	},
+	overlays: {
+		stats: "fixed z1 bottom-0 right-0 ma3 pa2 bg-black-60 white",
+	},
+	geom: {
+		psize: 1.41,
 	},
 });

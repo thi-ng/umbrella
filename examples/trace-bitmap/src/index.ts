@@ -1,5 +1,5 @@
 import { exposeGlobal } from "@thi.ng/expose";
-import { div } from "@thi.ng/hiccup-html";
+import { div, h3 } from "@thi.ng/hiccup-html";
 import { $compile } from "@thi.ng/rdom";
 import { $canvas } from "@thi.ng/rdom-canvas";
 import { THEME } from "./api";
@@ -9,12 +9,10 @@ import { layerControls } from "./components/layer";
 import { presetControls } from "./components/presets";
 import { stats } from "./components/stats";
 import { DB } from "./state/atom";
-import { initGestures, resizeCanvas } from "./state/canvas";
+import { initGestures, resetCanvasView, resizeCanvas } from "./state/canvas";
 import { canvasState, scene } from "./state/process";
-import { ConsoleLogger } from "@thi.ng/logger";
-import { setLogger } from "@thi.ng/rstream";
 
-setLogger(new ConsoleLogger("rs"));
+// setLogger(new ConsoleLogger("rs"));
 
 //////////////////////////////// IMPORTANT! ////////////////////////////////////
 // Please ensure you read the detailed comments in /src/state.ts and
@@ -29,25 +27,30 @@ $compile(
 			{
 				class: THEME.sideBar.root,
 			},
-			presetControls,
+			h3({ class: THEME.sideBar.title }, "thi.ng/geom-trace-bitmap"),
 			imageControls,
+			presetControls,
 			layerControls,
 			exportControls
 		),
-		div(
-			".dib",
-			{},
-			$canvas(
-				scene,
-				canvasState.map((x) => x.size),
-				{ id: "viz", onmount: initGestures }
-			)
+		$canvas(
+			scene,
+			canvasState.map((x) => x.size),
+			{ onmount: initGestures }
 		),
 		stats
 	)
 ).mount(document.getElementById("app")!);
 
 window.addEventListener("resize", resizeCanvas);
+
+window.addEventListener("keydown", (e) => {
+	switch (e.key.toLowerCase()) {
+		case "h":
+			resetCanvasView();
+			break;
+	}
+});
 
 // Only for dev builds:
 // Expose DB as global var to be able to inspect via console

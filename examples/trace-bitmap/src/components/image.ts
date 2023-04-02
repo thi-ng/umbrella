@@ -1,12 +1,15 @@
 import { div, inputColor, inputNumber } from "@thi.ng/hiccup-html";
-import { staticDropdown } from "@thi.ng/rdom-components";
 import { fromView } from "@thi.ng/rstream";
 import { DITHER_MODES, THEME, type DitherMode, type ImageParam } from "../api";
 import { DB } from "../state/atom";
 import { setCanvasBackground } from "../state/canvas";
-import { setImageDither, setImageParam } from "../state/image";
-import { loadImage } from "../state/process";
-import { fileButton } from "./button";
+import {
+	loadImage,
+	rotateImage,
+	setImageDither,
+	setImageParam,
+} from "../state/image";
+import { button, dropdown, fileButton } from "./form";
 
 const param = (
 	id: Exclude<ImageParam, "buf" | "dither">,
@@ -28,7 +31,15 @@ export const imageControls = div(
 	{},
 	fileButton(
 		{
-			accept: ["image/jpeg", "image/png", "image/webp"],
+			accept: [
+				"image/jpeg",
+				"image/png",
+				"image/gif",
+				"image/webp",
+				"image/x-portable-bitmap",
+				"image/x-portable-pixmap",
+				"image/x-portable-graymap",
+			],
 			onchange: (e) => loadImage((<HTMLInputElement>e.target).files![0]),
 		},
 		THEME.fileButton.large,
@@ -36,25 +47,20 @@ export const imageControls = div(
 	),
 	div(
 		{ class: THEME.sideBar.section },
+		div(
+			{ class: THEME.sideBar.control },
+			button("col2", () => rotateImage(-1), "-90°"),
+			button("col2", () => rotateImage(1), "+90°")
+		),
 		param("scale", 0.1, 2),
 		param("gamma", 0.1, 4),
 		param("low", -1, 1),
 		param("high", 0, 2),
-		staticDropdown(
-			Object.keys(DITHER_MODES),
-			fromView(DB, { path: ["img", "dither"] }),
-			{
-				attribs: {
-					class: THEME.sideBar.control,
-					onchange: (e) =>
-						setImageDither(
-							<DitherMode>(<HTMLSelectElement>e.target).value
-						),
-				},
-			}
+		dropdown(Object.keys(DITHER_MODES), ["img", "dither"], (x) =>
+			setImageDither(<DitherMode>x)
 		),
 		inputColor({
-			class: THEME.sideBar.control + " pa0",
+			class: THEME.sideBar.control,
 			value: fromView(DB, { path: ["canvas", "bg"] }),
 			oninput: (e) =>
 				setCanvasBackground((<HTMLSelectElement>e.target).value),

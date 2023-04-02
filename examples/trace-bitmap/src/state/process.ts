@@ -12,48 +12,25 @@ import {
 } from "@thi.ng/geom";
 import { traceBitmap } from "@thi.ng/geom-trace-bitmap";
 import { smoothStep } from "@thi.ng/math";
-import {
-	GRAY8,
-	IntBuffer,
-	imagePromise,
-	intBufferFromImage,
-} from "@thi.ng/pixel";
+import { IntBuffer } from "@thi.ng/pixel";
 import { fromView, reactive, stream, sync, syncRAF } from "@thi.ng/rstream";
-import { keep, map, push, transduce } from "@thi.ng/transducers";
+import { keep, map } from "@thi.ng/transducers";
 import { mulN2, type Vec, type VecPair } from "@thi.ng/vectors";
-import {
-	DITHER_MODES,
-	TRACE_MODES,
-	type LayerParams,
-	type Preset,
-} from "../api";
+import { DITHER_MODES, THEME, TRACE_MODES, type LayerParams } from "../api";
 import { DB } from "./atom";
-import { setCanvasBackground, setCanvasTranslation } from "./canvas";
-import { setImageDither } from "./image";
-import { addLayer, removeAllLayers } from "./layers";
-
-/**
- * Asynchronously loads an image and then places the result pixel buffer into
- * the state atom to which the {@link imageProcessor} and UI are subscribed to
- */
-export const loadImage = async (file: File) => {
-	const url = URL.createObjectURL(file);
-	const img = await imagePromise(url);
-	DB.resetIn(["img", "buf"], intBufferFromImage(img, GRAY8));
-	setCanvasTranslation(mulN2([], DB.deref().canvas.size, 0.5));
-	URL.revokeObjectURL(url);
-};
+import { addLayer } from "./layers";
 
 /**
  * Reactive transformer to reprocess a loaded image whenever the image itself or
  * any of the related params have been changed. Emits updated pixel buffer.
  */
 export const imageProcessor = fromView(DB, { path: ["img"] }).transform(
-	map(({ buf, scale, gamma, low, high, dither }) => {
+	map(({ buf, scale, rotate, gamma, low, high, dither }) => {
 		if (!buf) return;
 		let img = buf
 			.scale(scale)
 			.forEach((x) => smoothStep(low, high, (x / 255) ** gamma) * 255);
+		if (rotate) img.rotateByID(rotate);
 		if (dither) img = DITHER_MODES[dither](img);
 		return img;
 	}),
@@ -185,7 +162,7 @@ export const scene = sync({
 						? withAttribs(
 								child,
 								{
-									size: strokeWeight,
+									size: strokeWeight * THEME.geom.psize,
 								},
 								false
 						  )
@@ -232,34 +209,3 @@ sync({
 		);
 	},
 });
-
-export const savePreset = () => {
-	const state = DB.deref();
-	const preset: Preset = {
-		version: 1,
-		bg: state.canvas.bg,
-		dither: state.img.dither,
-		layers: transduce(
-			map((id) => state.layers[id].params),
-			push(),
-			state.order
-		),
-	};
-	downloadWithMime(
-		`preset-${FMT_yyyyMMdd_HHmmss()}.json`,
-		JSON.stringify(preset),
-		{ mime: "application/json" }
-	);
-};
-
-export const loadPreset = (file: File) => {
-	const reader = new FileReader();
-	reader.onload = (e) => {
-		const preset: Preset = JSON.parse(<string>e.target!.result);
-		setCanvasBackground(preset.bg);
-		setImageDither(preset.dither);
-		removeAllLayers();
-		preset.layers.forEach(addLayer);
-	};
-	reader.readAsText(file);
-};
