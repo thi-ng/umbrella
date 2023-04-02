@@ -1,13 +1,25 @@
 import { div } from "@thi.ng/hiccup-html";
 import { $refresh } from "@thi.ng/rdom";
-import { geometryStats } from "../state/process";
+import { geometryStats, imageProcessor } from "../state/process";
 
 /**
  * Stats overlay
  */
-export const stats = $refresh(geometryStats, async ({ lines, points }) =>
+export const stats = div(
+	{ class: "fixed z1 bottom-0 right-0 ma3 pa2 bg-black-60 white" },
 	div(
-		{ class: "fixed z1 bottom-0 right-0 ma3 pa2 bg-black-60 white" },
-		`lines: ${lines} | points: ${points}`
+		{},
+		$refresh(
+			imageProcessor,
+			async ({ size: [width, height] }) =>
+				`image: ${width} x ${height} px`
+		)
+	),
+	div(
+		{},
+		$refresh(
+			geometryStats,
+			async ({ lines, points }) => `lines: ${lines} | points: ${points}`
+		)
 	)
 );

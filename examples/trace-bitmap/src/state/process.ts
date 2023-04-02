@@ -1,39 +1,54 @@
 import { isString } from "@thi.ng/checks";
-import { group, line, points } from "@thi.ng/geom";
+import { FMT_yyyyMMdd_HHmmss } from "@thi.ng/date";
+import { downloadWithMime } from "@thi.ng/dl-asset";
+import {
+	asSvg,
+	group,
+	line,
+	points,
+	rect,
+	svgDoc,
+	withAttribs,
+} from "@thi.ng/geom";
 import { traceBitmap } from "@thi.ng/geom-trace-bitmap";
 import { smoothStep } from "@thi.ng/math";
-import { translation23 } from "@thi.ng/matrices";
-import { GRAY8, IntBuffer, intBufferFromImage } from "@thi.ng/pixel";
+import {
+	GRAY8,
+	IntBuffer,
+	imagePromise,
+	intBufferFromImage,
+} from "@thi.ng/pixel";
 import { fromView, reactive, stream, sync, syncRAF } from "@thi.ng/rstream";
-import { keep, map } from "@thi.ng/transducers";
-import { mulN2 } from "@thi.ng/vectors";
-import { DITHER_MODES, TRACE_MODES, type Layer } from "../api";
-import { DB } from "../state";
-import { setCanvasTranslation } from "./canvas";
+import { keep, map, push, transduce } from "@thi.ng/transducers";
+import { mulN2, type Vec, type VecPair } from "@thi.ng/vectors";
+import {
+	DITHER_MODES,
+	TRACE_MODES,
+	type LayerParams,
+	type Preset,
+} from "../api";
+import { DB } from "./atom";
+import { setCanvasBackground, setCanvasTranslation } from "./canvas";
+import { setImageDither } from "./image";
+import { addLayer, removeAllLayers } from "./layers";
 
 /**
- * File stream to asynchronously load an image and then place the result pixel
- * buffer into the state atom to which the UI and {@link imageProcessor} are
- * subscribed to
+ * Asynchronously loads an image and then places the result pixel buffer into
+ * the state atom to which the {@link imageProcessor} and UI are subscribed to
  */
-export const imageSrc = stream<File>().subscribe({
-	next(file) {
-		const url = URL.createObjectURL(file);
-		const img = new Image();
-		img.onload = () => {
-			DB.resetIn(["img", "buf"], intBufferFromImage(img, GRAY8));
-			setCanvasTranslation(mulN2([], DB.deref().canvas.size, 0.5));
-			URL.revokeObjectURL(url);
-		};
-		img.src = url;
-	},
-});
+export const loadImage = async (file: File) => {
+	const url = URL.createObjectURL(file);
+	const img = await imagePromise(url);
+	DB.resetIn(["img", "buf"], intBufferFromImage(img, GRAY8));
+	setCanvasTranslation(mulN2([], DB.deref().canvas.size, 0.5));
+	URL.revokeObjectURL(url);
+};
 
 /**
  * Reactive transformer to reprocess a loaded image whenever the image itself or
  * any of the related params have been changed. Emits updated pixel buffer.
  */
-const imageProcessor = fromView(DB, { path: ["img"] }).transform(
+export const imageProcessor = fromView(DB, { path: ["img"] }).transform(
 	map(({ buf, scale, gamma, low, high, dither }) => {
 		if (!buf) return;
 		let img = buf
@@ -70,7 +85,6 @@ export const main = sync({
 	src: {
 		__order: layerOrder,
 		__img: imageProcessor,
-		__canvas: canvasState,
 	},
 	clean: true,
 });
@@ -87,25 +101,17 @@ export const geometryStats = reactive({ lines: 0, points: 0 });
  * shape which is then used for other downstream processing (e.g. the UI canvas
  * component subscribes to here for rendering).
  */
-export const scene = main.map((job) => {
-	// create result group with current translation offset & scale
-	const root = group({
-		__background: job.__canvas.bg,
-		translate: job.__canvas.translate,
-		scale: job.__canvas.scale,
-		weight: 1 / job.__canvas.scale,
-	});
+const geo = main.map((job) => {
+	const root = group({ stroke: "none" });
 	// need to copy pixel buffer because it will be mutated during vectorization
 	const img = job.__img.copy();
-	// create translation matrix to center geometry
-	const mat = translation23([], mulN2([], img.size, -0.5));
 	// keep stats
 	let numLines = 0;
 	let numPoints = 0;
 	// process all layers in given order
 	for (let id of job.__order) {
-		const layer: Layer["params"] = (<any>job)[id];
-		const mode = TRACE_MODES[layer.dir];
+		const layer: LayerParams = (<any>job)[id];
+		const mode = TRACE_MODES[layer.mode];
 		// vectorize image with layer's config
 		const res = traceBitmap({
 			select: mode.select(layer.skip + 1),
@@ -114,30 +120,146 @@ export const scene = main.map((job) => {
 			min: layer.min,
 			max: layer.max,
 			img,
-			mat,
+			// mat,
 		});
-		// depending on mode chosen, use lines or points
+		let lines: VecPair[] | undefined;
+		let pts: Vec[] | undefined;
 		if (mode.points) {
-			numPoints += res.points.length;
-			root.children.push(
-				points(res.points, {
-					fill: layer.color,
-					stroke: "none",
-					size: 0.7,
-				})
-			);
+			// if max enabled, also attempt to extract lines from point cloud
+			if (layer.max > 0) {
+				const extracted = mode.extract!(res.points, layer.max);
+				lines = extracted.segments;
+				pts = extracted.points;
+			} else {
+				pts = res.points;
+			}
 		} else {
-			numLines += res.lines.length;
+			lines = res.lines;
+		}
+		if (lines && lines.length) {
+			numLines += lines.length;
 			root.children.push(
 				group(
 					{ stroke: layer.color },
-					res.lines.map(([a, b]) => line(a, b))
+					lines.map(([a, b]) => line(a, b))
 				)
+			);
+		}
+		if (pts && pts.length) {
+			numPoints += pts.length;
+			root.children.push(
+				points(pts, {
+					fill: layer.color,
+				})
 			);
 		}
 	}
 	// update stats (for UI)
 	geometryStats.next({ lines: numLines, points: numPoints });
-
 	return root;
 });
+
+export const scene = sync({
+	src: {
+		geo,
+		img: imageProcessor,
+		canvas: canvasState,
+	},
+}).map(({ geo, canvas, img }) => {
+	const strokeWeight = 1 / canvas.scale;
+	// create result group with current translation offset & scale
+	const root = group(
+		{
+			__background: canvas.bg,
+			translate: canvas.translate,
+			scale: canvas.scale,
+			weight: strokeWeight,
+		},
+		[
+			group(
+				// center geometry around parent group position
+				{ translate: mulN2([], img.size, -0.5) },
+				// inject point size attrib
+				geo.children.map((child) =>
+					child.type == "points"
+						? withAttribs(
+								child,
+								{
+									size: strokeWeight,
+								},
+								false
+						  )
+						: child
+				)
+			),
+		]
+	);
+	return root;
+});
+
+export const exportSvgTrigger = stream<boolean>();
+
+sync({
+	src: { _: exportSvgTrigger, geo, img: imageProcessor, canvas: canvasState },
+	reset: true,
+}).subscribe({
+	next({ geo, img, canvas }) {
+		downloadWithMime(
+			`trace-${FMT_yyyyMMdd_HHmmss()}.svg`,
+			asSvg(
+				svgDoc(
+					{ stroke: "none" },
+					rect([0, 0], img.size, { fill: canvas.bg }),
+					geo
+				)
+			),
+			{ mime: "image/svg+xml" }
+		);
+	},
+});
+
+export const exportJsonTrigger = stream<boolean>();
+
+sync({
+	src: { _: exportJsonTrigger, geo },
+	reset: true,
+}).subscribe({
+	next({ geo }) {
+		downloadWithMime(
+			`trace-${FMT_yyyyMMdd_HHmmss()}.json`,
+			JSON.stringify(geo.toHiccup()),
+			{ mime: "application/json" }
+		);
+	},
+});
+
+export const savePreset = () => {
+	const state = DB.deref();
+	const preset: Preset = {
+		version: 1,
+		bg: state.canvas.bg,
+		dither: state.img.dither,
+		layers: transduce(
+			map((id) => state.layers[id].params),
+			push(),
+			state.order
+		),
+	};
+	downloadWithMime(
+		`preset-${FMT_yyyyMMdd_HHmmss()}.json`,
+		JSON.stringify(preset),
+		{ mime: "application/json" }
+	);
+};
+
+export const loadPreset = (file: File) => {
+	const reader = new FileReader();
+	reader.onload = (e) => {
+		const preset: Preset = JSON.parse(<string>e.target!.result);
+		setCanvasBackground(preset.bg);
+		setImageDither(preset.dither);
+		removeAllLayers();
+		preset.layers.forEach(addLayer);
+	};
+	reader.readAsText(file);
+};

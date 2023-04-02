@@ -4,18 +4,25 @@ import { deleteIn } from "@thi.ng/paths";
 import { randomID } from "@thi.ng/random";
 import { fromView, sync, syncRAF, type ISubscription } from "@thi.ng/rstream";
 import { assocObj, keys, map, transduce } from "@thi.ng/transducers";
-import { type AppState, type Layer, type LayerControls } from "../api";
-import { DB } from "../state";
+import {
+	TRACE_MODES,
+	type AppState,
+	type Layer,
+	type LayerControls,
+	type LayerParams,
+	type TraceMode,
+} from "../api";
+import { DB } from "./atom";
 import { main } from "./process";
 
 /**
  * Define default params for new layer (incl. random color)
  */
-const defLayer = () =>
-	<Layer["params"]>{
-		dir: "v",
+const defaultParams = () =>
+	<LayerParams>{
+		mode: "v",
 		min: 2,
-		max: 100,
+		max: 1000,
 		slope: 1,
 		skip: 0,
 		color: css(hcy(Math.random(), 1, 0.2)),
@@ -28,7 +35,7 @@ const defLayer = () =>
  *
  * @param params
  */
-export const addLayer = (params: Layer["params"] = defLayer()) => {
+export const addLayer = (params: LayerParams = defaultParams()) => {
 	const layer = <Layer>{ id: randomID(), params };
 	DB.swapIn(["layers"], (layers) => ({ ...layers, [layer.id]: layer }));
 	DB.swapIn(["order"], (order) => [...order, layer.id]);
@@ -68,8 +75,15 @@ export const addLayer = (params: Layer["params"] = defLayer()) => {
  *
  * @param layerID
  */
-export const duplicateLayer = (layerID: string) =>
+export const duplicateLayer = (layerID: string) => {
 	addLayer({ ...DB.deref().layers[layerID].params });
+	DB.swapIn(["order"], (order) => {
+		order = order.slice();
+		const newID = order.pop()!;
+		order.splice(order.indexOf(layerID), 0, newID);
+		return order;
+	});
+};
 
 /**
  * State handler to remove the layer with given ID from the central {@link DB}
@@ -80,7 +94,7 @@ export const duplicateLayer = (layerID: string) =>
 export const removeLayer = (id: string) => {
 	const proc = DB.deref().layers[id].proc;
 	main.remove(proc);
-	proc.done();
+	proc.done!();
 	DB.swapIn(["order"], (order) => {
 		order = order.slice();
 		order.splice(
@@ -91,6 +105,16 @@ export const removeLayer = (id: string) => {
 	});
 	DB.swapIn(["layers"], (layers) => deleteIn(layers, [id]));
 };
+
+export const removeAllLayers = () =>
+	DB.swap((state) => {
+		for (let id of state.order) {
+			const proc = state.layers[id].proc;
+			main.remove(proc);
+			proc.done!();
+		}
+		return { ...state, order: [], layers: {} };
+	});
 
 /**
  * State handler to update a single layer param to the given new value. Since
@@ -106,6 +130,21 @@ export const updateLayerParam = (
 	param: Keys<LayerControls>,
 	value: any
 ) => DB.resetIn(["layers", layerID, "params", param], value);
+
+export const setLayerMode = (layerID: string, mode: TraceMode) =>
+	DB.swapIn(["layers", layerID, "params"], (layer) => {
+		let { min, max } = layer;
+		if (isPointMode(mode) && !isPointMode(layer.mode)) {
+			min = 0;
+			max = 0;
+		} else if (!isPointMode(mode) && isPointMode(layer.mode)) {
+			min = 2;
+			max = 1000;
+		}
+		return { ...layer, mode, min, max };
+	});
+
+const isPointMode = (x: TraceMode) => !!TRACE_MODES[x].points;
 
 /**
  * State handler to update the layer order in the central {@link DB} atom by

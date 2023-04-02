@@ -6,18 +6,27 @@ import {
 	inputNumber,
 	type InputNumericAttribs,
 } from "@thi.ng/hiccup-html";
+import { $list } from "@thi.ng/rdom";
 import { staticDropdown } from "@thi.ng/rdom-components";
-import { TRACE_MODES, type LayerParam, type TraceMode } from "../api";
-import { DB } from "../state";
 import {
+	THEME,
+	TRACE_MODE_ORDER,
+	TRACE_MODES,
+	type LayerParam,
+	type TraceMode,
+} from "../api";
+import { DB } from "../state/atom";
+import {
+	addLayer,
 	duplicateLayer,
 	moveLayer,
 	removeLayer,
+	setLayerMode,
 	updateLayerParam,
 } from "../state/layers";
 import { layerOrder } from "../state/process";
 
-export const layerControlsForID = (layerID: string) => {
+const layerControlsForID = (layerID: string) => {
 	const { ctrls } = DB.deref().layers[layerID];
 	const moveButton = (dir: -1 | 1, tx: Predicate<string[]>) =>
 		button(
@@ -38,25 +47,25 @@ export const layerControlsForID = (layerID: string) => {
 					? parseInt((<HTMLInputElement>e.target).value)
 					: (<HTMLInputElement>e.target).value
 			);
-	const layerParam = (
-		pid: Exclude<LayerParam, "dir" | "color">,
+	const param = (
+		pid: Exclude<LayerParam, "mode" | "color">,
 		min: number,
 		max: number,
 		attribs?: Partial<InputNumericAttribs>
 	) =>
 		inputNumber({
-			...attribs,
-			class: "dib w-25",
+			onchange: onchange(pid, true),
+			class: "w-25",
 			step: 1,
 			min,
 			max,
+			...attribs,
 			value: ctrls[pid],
-			onchange: onchange(pid, true),
 		});
 	return div(
-		{ class: "bg-gray white bb b--dark-gray pa2" },
+		{ class: THEME.sideBar.section },
 		div(
-			{ class: "mb1" },
+			{ class: THEME.sideBar.control },
 			button(
 				{
 					class: "w-25",
@@ -77,31 +86,49 @@ export const layerControlsForID = (layerID: string) => {
 				(order) => order.indexOf(layerID) === order.length - 1
 			)
 		),
-		staticDropdown(Object.keys(TRACE_MODES).sort(), ctrls.dir, {
+		staticDropdown(TRACE_MODE_ORDER, ctrls.mode, {
 			label: (x) => TRACE_MODES[<TraceMode>x].label,
 			attribs: {
-				class: "db w-100 mb1",
-				onchange: onchange("dir"),
+				class: THEME.sideBar.control,
+				onchange: (e) =>
+					setLayerMode(
+						layerID,
+						<TraceMode>(<HTMLSelectElement>e.target).value
+					),
 			},
 		}),
 		inputColor({
-			class: "db w-100 pa0 mb1",
+			class: THEME.sideBar.control,
 			oninput: onchange("color"),
 			value: ctrls.color,
 		}),
-		layerParam("min", 1, 1000, {
-			disabled: ctrls.dir.map((id) => TRACE_MODES[id].points),
+		param("min", 0, 1000, {
+			min: ctrls.mode.map((id) => (TRACE_MODES[id].points ? 0 : 2)),
+			disabled: ctrls.mode.map((id) => TRACE_MODES[id].points),
 		}),
-		layerParam("max", 1, 1000, {
-			disabled: ctrls.dir.map((id) => TRACE_MODES[id].points),
+		param("max", 0, 1000, {
+			min: ctrls.mode.map((id) => (TRACE_MODES[id].points ? 0 : 1)),
+			// disabled: ctrls.dir.map((id) => TRACE_MODES[id].points),
 		}),
-		layerParam("slope", 1, 16, {
-			disabled: ctrls.dir.map(
+		param("slope", 1, 16, {
+			disabled: ctrls.mode.map(
 				(id) => !TRACE_MODES[id].slope || TRACE_MODES[id].points
 			),
 		}),
-		layerParam("skip", 0, 16, {
-			disabled: ctrls.dir.map((id) => !TRACE_MODES[id].skip),
+		param("skip", 0, 16, {
+			disabled: ctrls.mode.map((id) => !TRACE_MODES[id].skip),
 		})
 	);
 };
+
+export const layerControls = div(
+	{},
+	button(
+		{
+			class: THEME.button.large,
+			onclick: () => addLayer(),
+		},
+		"+ add layer"
+	),
+	$list(layerOrder, "div", {}, layerControlsForID)
+);

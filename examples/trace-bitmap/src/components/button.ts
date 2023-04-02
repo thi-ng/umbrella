@@ -1,21 +1,27 @@
 import {
 	button,
-	inputFile,
 	div,
+	inputFile,
 	type InputFileAttribs,
 } from "@thi.ng/hiccup-html";
+import { type Theme } from "../api";
 
 /**
  * File import button UI component
  *
  * @param attribs
+ * @param theme
  * @param title
  */
-export const fileButton = (attribs: Partial<InputFileAttribs>, title: string) =>
+export const fileButton = (
+	attribs: Partial<InputFileAttribs>,
+	theme: Theme["fileButton"]["_"],
+	title: string
+) =>
 	div(
-		{ class: "relative overflow-hidden" },
+		{ class: theme.root },
 		button(
-			{ class: "dib h2 w-100 bn bg-dark-gray white" },
+			{ class: theme.button },
 			inputFile({
 				class: "absolute o-0",
 				...attribs,

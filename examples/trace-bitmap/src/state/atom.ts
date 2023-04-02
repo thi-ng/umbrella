@@ -1,6 +1,6 @@
 import { defAtom } from "@thi.ng/atom";
-import { type AppState } from "./api";
-import { computeCanvasSize } from "./state/canvas";
+import { type AppState } from "../api";
+import { computeCanvasSize } from "./canvas";
 
 /**
  * Global/central state atom, single source of truth. Various subscriptions will

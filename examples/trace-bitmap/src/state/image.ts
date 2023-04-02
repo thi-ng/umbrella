@@ -1,5 +1,5 @@
 import type { DitherMode, ImageParam } from "../api";
-import { DB } from "../state";
+import { DB } from "./atom";
 
 /**
  * State handler to update a single (numeric) image param in the central

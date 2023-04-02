@@ -1,6 +1,6 @@
 import { gestureStream } from "@thi.ng/rstream-gestures";
 import { add2, type Vec } from "@thi.ng/vectors";
-import { DB } from "../state";
+import { DB } from "./atom";
 
 /**
  * Compute the currently available canvas size available (window width minus
@@ -27,6 +27,12 @@ export const resizeCanvas = () =>
 export const setCanvasBackground = (col: string) =>
 	DB.resetIn(["canvas", "bg"], col);
 
+/**
+ * State handler to update the global canvas translation offset in the central
+ * {@link DB} atom.
+ *
+ * @param col
+ */
 export const setCanvasTranslation = (pos: Vec) =>
 	DB.resetIn(["canvas", "translate"], <number[]>pos);
 
@@ -36,7 +42,7 @@ export const setCanvasTranslation = (pos: Vec) =>
  * @param canvas
  */
 export const initGestures = (canvas: HTMLCanvasElement) =>
-	gestureStream(canvas, { smooth: 0.1 }).subscribe({
+	gestureStream(canvas, { smooth: -0.1 }).subscribe({
 		next(e) {
 			switch (e.type) {
 				// store current offset at begin of each gesture
@@ -46,7 +52,7 @@ export const initGestures = (canvas: HTMLCanvasElement) =>
 						DB.deref().canvas.translate
 					);
 					break;
-				// apply delta offset to stored start position
+				// apply delta offset to stored translation @ gesture start
 				case "drag":
 					setCanvasTranslation(
 						add2(
