@@ -1,11 +1,11 @@
 import type { Keys, Predicate2 } from "@thi.ng/api";
 import { dedupe } from "@thi.ng/transducers/dedupe";
-import type { CommonOpts, SubscriptionOpts } from "./api.js";
+import type { CommonOpts, ISubscription, SubscriptionOpts } from "./api.js";
 import { __nextID } from "./idgen.js";
-import { subscription, type Subscription } from "./subscription.js";
+import { subscription } from "./subscription.js";
 
 export type KeyStreams<T, K extends Keys<T>> = {
-	[id in K]-?: Subscription<T[id], T[id]>;
+	[id in K]-?: ISubscription<T[id], T[id]>;
 };
 
 /**
