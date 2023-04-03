@@ -4598,7 +4598,6 @@ __metadata:
     "@thi.ng/rdom": ^0.10.18
     "@thi.ng/rstream": ^7.2.46
     "@thi.ng/testament": ^0.3.14
-    "@thi.ng/transducers": ^8.4.1
     rimraf: ^4.4.1
     tools: "workspace:^"
     typedoc: ^0.23.28

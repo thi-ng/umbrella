@@ -2,15 +2,14 @@ import { adaptDPI } from "@thi.ng/adapt-dpi";
 import type { Fn, Fn2, Fn3, IToHiccup } from "@thi.ng/api";
 import { withoutKeysObj } from "@thi.ng/associative/without-keys";
 import { implementsFunction } from "@thi.ng/checks/implements-function";
-import { resolveColor } from "@thi.ng/hiccup-canvas/color";
 import { draw } from "@thi.ng/hiccup-canvas/draw";
 import type { IComponent, IMountWithState, NumOrElement } from "@thi.ng/rdom";
 import { Component } from "@thi.ng/rdom/component";
-import { $sub } from "@thi.ng/rdom/sub";
+import { __nextID } from "@thi.ng/rdom/idgen";
+import { $subWithID } from "@thi.ng/rdom/sub";
 import type { ISubscription } from "@thi.ng/rstream";
 import { isSubscribable } from "@thi.ng/rstream/checks";
 import { reactive } from "@thi.ng/rstream/stream";
-import { sideEffect } from "@thi.ng/transducers/side-effect";
 
 export interface CanvasOpts {
 	/**
@@ -48,11 +47,11 @@ export interface CanvasOpts {
  * The `attribs` SHOULD not include `width`, `height`, since these will be
  * overriden in any way by `size` arg.
  */
-export const $canvas = (
-	body: ISubscription<any, any[] | IToHiccup>,
+export const $canvas = <T extends any[] | IToHiccup>(
+	body: ISubscription<any, T>,
 	size: number[] | ISubscription<any, number[]>,
 	attribs?: Partial<CanvasOpts>
-) => $sub(body, new $Canvas(size, attribs));
+) => $subWithID(body, new $Canvas(size, attribs), __nextID("canvas", body));
 
 export class $Canvas
 	extends Component
@@ -72,8 +71,9 @@ export class $Canvas
 		this.size = isSubscribable(size)
 			? <ISubscription<any, number[]>>size
 			: reactive(<number[]>size);
-		this.sizeSub = this.size.transform(
-			sideEffect((size) => this.resize(size))
+		this.sizeSub = this.size.subscribe(
+			{ next: this.resize.bind(this) },
+			{ id: __nextID("canvas-resize") }
 		);
 	}
 
@@ -121,12 +121,6 @@ export class $Canvas
 		const shapes = implementsFunction(tree, "toHiccup")
 			? tree.toHiccup()
 			: tree;
-		if (shapes[1].__bg) {
-			this.ctx!.fillStyle = resolveColor(shapes[1].__bg);
-			this.ctx!.fillRect(0, 0, this.el!.width, this.el!.height);
-		} else if (shapes[1].__clear !== false) {
-			this.ctx!.clearRect(0, 0, this.el!.width, this.el!.height);
-		}
 		const scale = window.devicePixelRatio || 1;
 		this.ctx!.resetTransform();
 		this.ctx!.scale(scale, scale);

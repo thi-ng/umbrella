@@ -40,8 +40,7 @@
 		"@thi.ng/checks": "^3.3.11",
 		"@thi.ng/hiccup-canvas": "^2.2.12",
 		"@thi.ng/rdom": "^0.10.18",
-		"@thi.ng/rstream": "^7.2.46",
-		"@thi.ng/transducers": "^8.4.1"
+		"@thi.ng/rstream": "^7.2.46"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.34.4",
