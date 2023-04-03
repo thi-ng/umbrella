@@ -17,8 +17,8 @@
 	},
 	"dependencies": {
 		"@thi.ng/geom": "workspace:^",
-		"@thi.ng/rdom": "workspace:^",
 		"@thi.ng/rdom-canvas": "workspace:^",
+		"@thi.ng/rstream": "workspace:^",
 		"@thi.ng/transducers": "workspace:^"
 	},
 	"browser": {

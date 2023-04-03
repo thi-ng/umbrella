@@ -15,7 +15,6 @@
 		"@thi.ng/compose": "workspace:^",
 		"@thi.ng/geom": "workspace:^",
 		"@thi.ng/geom-api": "workspace:^",
-		"@thi.ng/geom-tessellate": "workspace:^",
 		"@thi.ng/hdom-canvas": "workspace:^",
 		"@thi.ng/math": "workspace:^",
 		"@thi.ng/rstream": "workspace:^",

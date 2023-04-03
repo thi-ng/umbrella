@@ -16,6 +16,7 @@
 		"preview": "vite preview --host --open"
 	},
 	"devDependencies": {
+		"@thi.ng/wasm-api-bindgen": "workspace:^",
 		"rimraf": "^4.4.1",
 		"typescript": "^5.0.2",
 		"vite": "^4.2.1"
@@ -24,7 +25,6 @@
 		"@thi.ng/api": "workspace:^",
 		"@thi.ng/date": "workspace:^",
 		"@thi.ng/wasm-api": "workspace:^",
-		"@thi.ng/wasm-api-bindgen": "workspace:^",
 		"@thi.ng/wasm-api-dom": "workspace:^",
 		"@thi.ng/wasm-api-schedule": "workspace:^"
 	},

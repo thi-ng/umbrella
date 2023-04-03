@@ -484,7 +484,6 @@ __metadata:
     "@thi.ng/compose": "workspace:^"
     "@thi.ng/geom": "workspace:^"
     "@thi.ng/geom-api": "workspace:^"
-    "@thi.ng/geom-tessellate": "workspace:^"
     "@thi.ng/hdom-canvas": "workspace:^"
     "@thi.ng/math": "workspace:^"
     "@thi.ng/rstream": "workspace:^"
@@ -1209,8 +1208,8 @@ __metadata:
   resolution: "@example/rdom-canvas-basics@workspace:examples/rdom-canvas-basics"
   dependencies:
     "@thi.ng/geom": "workspace:^"
-    "@thi.ng/rdom": "workspace:^"
     "@thi.ng/rdom-canvas": "workspace:^"
+    "@thi.ng/rstream": "workspace:^"
     "@thi.ng/transducers": "workspace:^"
     typescript: ^5.0.2
     vite: ^4.2.1
@@ -1772,6 +1771,7 @@ __metadata:
     "@thi.ng/rdom-components": "workspace:^"
     "@thi.ng/resolve-map": "workspace:^"
     "@thi.ng/rstream": "workspace:^"
+    "@thi.ng/rstream-dot": "workspace:^"
     "@thi.ng/rstream-gestures": "workspace:^"
     "@thi.ng/transducers": "workspace:^"
     "@thi.ng/vectors": "workspace:^"
@@ -3567,7 +3567,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@thi.ng/geom-tessellate@^2.1.54, @thi.ng/geom-tessellate@workspace:^, @thi.ng/geom-tessellate@workspace:packages/geom-tessellate":
+"@thi.ng/geom-tessellate@^2.1.54, @thi.ng/geom-tessellate@workspace:packages/geom-tessellate":
   version: 0.0.0-use.local
   resolution: "@thi.ng/geom-tessellate@workspace:packages/geom-tessellate"
   dependencies:

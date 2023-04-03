@@ -39,6 +39,7 @@
 		"@thi.ng/rdom-components": "workspace:^",
 		"@thi.ng/resolve-map": "workspace:^",
 		"@thi.ng/rstream": "workspace:^",
+		"@thi.ng/rstream-dot": "workspace:^",
 		"@thi.ng/rstream-gestures": "workspace:^",
 		"@thi.ng/transducers": "workspace:^",
 		"@thi.ng/vectors": "workspace:^"
