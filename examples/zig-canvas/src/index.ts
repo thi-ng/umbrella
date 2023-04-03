@@ -1,5 +1,6 @@
 import type { Fn0 } from "@thi.ng/api";
 import { downloadCanvas } from "@thi.ng/dl-asset";
+import { NULL_LOGGER } from "@thi.ng/logger";
 import { randomID } from "@thi.ng/random";
 import { WasmBridge, type IWasmAPI, type WasmExports } from "@thi.ng/wasm-api";
 import { WasmDom, type WasmDomExports } from "@thi.ng/wasm-api-dom";
