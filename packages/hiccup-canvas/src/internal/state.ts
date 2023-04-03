@@ -79,11 +79,16 @@ export const __mergeState = (
 				res.edits!.push(id);
 				setAttrib(ctx, state, id, k, v);
 			}
-		} else if (id === "__background") {
+		} else if (id === "__background" || id === "__clear") {
 			ctx.save();
 			ctx.resetTransform();
-			ctx.fillStyle = resolveGradientOrColor(state, attribs[id]);
-			ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+			if (id === "__clear") {
+				attribs[id] &&
+					ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+			} else {
+				ctx.fillStyle = resolveGradientOrColor(state, attribs[id]);
+				ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+			}
 			ctx.restore();
 		}
 	}
