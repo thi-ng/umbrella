@@ -189,5 +189,5 @@ export function fromView(
 			isActive = false;
 			view.release();
 		};
-	});
+	}, opts);
 }

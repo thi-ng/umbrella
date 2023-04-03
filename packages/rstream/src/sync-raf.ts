@@ -1,7 +1,11 @@
 import { isNode } from "@thi.ng/checks/is-node";
-import { State, type ISubscribable, type CommonOpts } from "./api.js";
+import { State, type CommonOpts, type ISubscribable } from "./api.js";
+import { __optsWithID } from "./idgen.js";
 import { Subscription } from "./subscription.js";
 
+/**
+ * See {@link syncRAF} for details.
+ */
 export class SyncRAF<T> extends Subscription<T, T> {
 	queued?: T;
 	raf?: number | NodeJS.Timeout;
@@ -45,7 +49,7 @@ export class SyncRAF<T> extends Subscription<T, T> {
 }
 
 /**
- * Similar to (in in effect the same as the now deprecated)
+ * Similar to (in in effect the same as the **now deprecated**)
  * {@link sidechainPartitionRAF}, however more performant & lightweight.
  * Synchronizes downstream processing w/ `requestAnimationFrame()`. The returned
  * subscription delays & debounces any high frequency intra-frame input values
@@ -73,4 +77,7 @@ export class SyncRAF<T> extends Subscription<T, T> {
 export const syncRAF = <T>(
 	parent: ISubscribable<T>,
 	opts?: Partial<CommonOpts>
-) => parent.subscribe(new SyncRAF<T>(opts));
+) =>
+	parent.subscribe(
+		new SyncRAF<T>(__optsWithID(`syncraf-${parent.id}`, opts))
+	);
