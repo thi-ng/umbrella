@@ -1,5 +1,5 @@
 import { div } from "@thi.ng/hiccup-html";
-import { $refresh } from "@thi.ng/rdom";
+import { $replace } from "@thi.ng/rdom";
 import { THEME } from "../api";
 import { geometryStats, imageProcessor } from "../state/process";
 
@@ -10,17 +10,16 @@ export const stats = div(
 	{ class: THEME.overlays.stats },
 	div(
 		{},
-		$refresh(
-			imageProcessor,
-			async ({ size: [width, height] }) =>
-				`image: ${width} x ${height} px`
+		$replace(
+			imageProcessor.map(
+				({ size: [width, height] }) => `image: ${width} x ${height} px`
+			)
 		)
 	),
 	div(
 		{},
-		$refresh(
-			geometryStats,
-			async ({ lines, points }) => `lines: ${lines}, points: ${points}`
+		geometryStats.map(
+			({ lines, points }) => `lines: ${lines}, points: ${points}`
 		)
 	)
 );

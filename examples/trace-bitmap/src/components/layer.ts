@@ -32,7 +32,7 @@ const layerControlsForID = (layerID: string) => {
 			"col4",
 			() => moveLayer(layerID, dir),
 			dir > 0 ? "↓" : "↑",
-			layerOrder.map(tx)
+			layerOrder.map(tx, { id: `move${dir}` })
 		);
 	const onchange =
 		(param: LayerParam, isNum = false) =>
@@ -83,19 +83,28 @@ const layerControlsForID = (layerID: string) => {
 			value: ctrls.color,
 		}),
 		param("min", 0, 1000, {
-			min: ctrls.mode.map((id) => (TRACE_MODES[id].points ? 0 : 2)),
-			disabled: ctrls.mode.map((id) => TRACE_MODES[id].points),
+			min: ctrls.mode.map((id) => (TRACE_MODES[id].points ? 0 : 2), {
+				id: "min",
+			}),
+			disabled: ctrls.mode.map((id) => TRACE_MODES[id].points, {
+				id: "min-dis",
+			}),
 		}),
 		param("max", 0, 1000, {
-			min: ctrls.mode.map((id) => (TRACE_MODES[id].points ? 0 : 1)),
+			min: ctrls.mode.map((id) => (TRACE_MODES[id].points ? 0 : 1), {
+				id: "max",
+			}),
 		}),
 		param("slope", 1, 16, {
 			disabled: ctrls.mode.map(
-				(id) => !TRACE_MODES[id].slope || TRACE_MODES[id].points
+				(id) => !TRACE_MODES[id].slope || TRACE_MODES[id].points,
+				{ id: "slope-dis" }
 			),
 		}),
 		param("skip", 0, 16, {
-			disabled: ctrls.mode.map((id) => !TRACE_MODES[id].skip),
+			disabled: ctrls.mode.map((id) => !TRACE_MODES[id].skip, {
+				id: "skip",
+			}),
 		})
 	);
 };

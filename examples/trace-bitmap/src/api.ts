@@ -314,9 +314,11 @@ export interface Theme {
 	overlays: {
 		stats: string;
 	};
+	root: string;
 }
 
 export const THEME = resolve<Theme>({
+	root: "vh-100 flex f7",
 	button: {
 		base: "dib h2 b--black bg-dark-gray white",
 		large: ({ base }: Theme["button"]) => base + " w-100",

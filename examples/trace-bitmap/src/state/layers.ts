@@ -55,7 +55,7 @@ export const addLayer = (params: LayerParams = defaultParams()) => {
 								"params",
 								<Keys<LayerControls>>id,
 							],
-							id: `${layer.id}-${id}`,
+							id: `layer-${layer.id}-${id}`,
 						})
 					),
 				]
@@ -65,7 +65,7 @@ export const addLayer = (params: LayerParams = defaultParams()) => {
 	);
 	// re-combine param streams into single one and
 	// add to main stream combinator
-	layer.proc = sync({ src: layer.ctrls });
+	layer.proc = sync({ src: layer.ctrls, id: `layerproc-${layer.id}` });
 	main.add(layer.proc, layer.id);
 };
 
