@@ -1,10 +1,11 @@
 import type { Fn, Fn2, NumOrString } from "@thi.ng/api";
 import type { ISubscribable } from "@thi.ng/rstream";
+import { __nextID } from "@thi.ng/rstream/idgen";
 import type { IComponent, IMountWithState, NumOrElement } from "./api.js";
 import { $compile } from "./compile.js";
 import { Component } from "./component.js";
 import { $moveTo } from "./dom.js";
-import { $sub } from "./sub.js";
+import { $Sub } from "./sub.js";
 
 interface KListItem {
 	k: NumOrString;
@@ -69,7 +70,13 @@ export const $klist = <T>(
 	attribs: any,
 	childCtor: Fn<T, any>,
 	keyFn?: Fn2<T, number, NumOrString>
-) => $sub<T[]>(src, new KList<T>(tag, attribs, childCtor, keyFn));
+) =>
+	src.subscribe(
+		new $Sub<T[]>(
+			new KList<T>(tag, attribs, childCtor, keyFn),
+			`rdom$klist-${src.id}-${__nextID()}`
+		)
+	);
 
 export class KList<T> extends Component<T[]> implements IMountWithState<T[]> {
 	items?: KListItem[] = [];

@@ -55,8 +55,8 @@ export function $sub(
 export class $Sub<T = any> extends Subscription<T, T> {
 	el?: Element;
 
-	constructor(protected inner: IMountWithState<T | undefined>) {
-		super(undefined, { id: `rdom$sub-${__nextID()}` });
+	constructor(protected inner: IMountWithState<T | undefined>, id?: string) {
+		super(undefined, { id: id || `rdom$sub-${__nextID()}` });
 	}
 
 	async mount(parent: Element, index: NumOrElement = -1) {
@@ -87,8 +87,8 @@ export class $SubA extends Subscription<any, any> {
 	protected setter: Fn2<any, any, any>;
 	protected attr: any = {};
 
-	constructor(protected comp: IComponent, path: Path) {
-		super(undefined, { id: `rdom$sub-${__nextID()}` });
+	constructor(protected comp: IComponent, path: Path, id?: string) {
+		super(undefined, { id: id || `rdom$attr-${__nextID()}` });
 		this.setter = defSetterUnsafe(path);
 	}
 
