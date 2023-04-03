@@ -1,4 +1,4 @@
-import type { GridCoord2D } from "./api";
+import type { GridCoord2D } from "./api.js";
 
 /**
  * Returns true if x,y is on a right-to-left diagonal with spacing `n`.
