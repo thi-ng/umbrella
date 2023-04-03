@@ -1204,6 +1204,19 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@example/rdom-canvas-basics@workspace:examples/rdom-canvas-basics":
+  version: 0.0.0-use.local
+  resolution: "@example/rdom-canvas-basics@workspace:examples/rdom-canvas-basics"
+  dependencies:
+    "@thi.ng/geom": "workspace:^"
+    "@thi.ng/rdom": "workspace:^"
+    "@thi.ng/rdom-canvas": "workspace:^"
+    "@thi.ng/transducers": "workspace:^"
+    typescript: ^5.0.2
+    vite: ^4.2.1
+  languageName: unknown
+  linkType: soft
+
 "@example/rdom-delayed-update@workspace:examples/rdom-delayed-update":
   version: 0.0.0-use.local
   resolution: "@example/rdom-delayed-update@workspace:examples/rdom-delayed-update"
