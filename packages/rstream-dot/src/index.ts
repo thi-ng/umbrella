@@ -17,6 +17,14 @@ const getNodeType = (sub: ISubscribable<any>) =>
 		? "StreamMerge"
 		: undefined;
 
+const getChildren = (sub: any): ISubscribable<any>[] => {
+	let children: ISubscribable<any>[] = [];
+	if (sub.subs) children.push(...sub.subs);
+	if (sub.__owner) children.push(sub.__owner);
+	if (sub.wrapped) children.push(...getChildren(sub.wrapped));
+	return children;
+};
+
 const dotNode = (s: Node, opts: DotOpts) => {
 	let res = `s${s.id}[label="`;
 	res += s.type ? `${s.label}\\n(${s.type})` : `${s.label}`;
@@ -57,10 +65,8 @@ export const walk = (
 		};
 		state.subs.set(sub, desc);
 		state.id++;
-		const children =
-			(<any>sub).subs ||
-			((<any>sub).__owner ? [(<any>sub).__owner] : undefined);
-		if (children) {
+		const children = getChildren(sub);
+		if (children.length) {
 			walk(children, opts, state);
 			for (let c of children) {
 				const childNode = state.subs.get(c);
