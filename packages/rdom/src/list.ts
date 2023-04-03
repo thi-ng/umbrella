@@ -1,10 +1,10 @@
 import type { Fn, Predicate2 } from "@thi.ng/api";
 import type { ISubscribable } from "@thi.ng/rstream";
-import { __nextID } from "@thi.ng/rstream/idgen";
 import type { IComponent, IMountWithState, NumOrElement } from "./api.js";
 import { $compile } from "./compile.js";
 import { Component } from "./component.js";
-import { $Sub } from "./sub.js";
+import { __nextID } from "./idgen.js";
+import { $subWithID } from "./sub.js";
 
 /**
  * Creates a generalized and dynamically updating list component from items of
@@ -60,11 +60,10 @@ export const $list = <T>(
 	ctor: Fn<T, any>,
 	equiv?: Predicate2<T>
 ) =>
-	src.subscribe(
-		new $Sub<T[]>(
-			new List<T>(tag, attribs, ctor, equiv),
-			`rdom$list-${src.id}-${__nextID()}`
-		)
+	$subWithID(
+		src,
+		new List<T>(tag, attribs, ctor, equiv),
+		__nextID("list", src)
 	);
 
 export class List<T> extends Component implements IMountWithState<T[]> {

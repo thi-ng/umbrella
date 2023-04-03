@@ -4,6 +4,7 @@ export * from "./compile.js";
 export * from "./component.js";
 export * from "./dom.js";
 export * from "./event.js";
+export * from "./idgen.js";
 export * from "./klist.js";
 export * from "./list.js";
 export * from "./object.js";

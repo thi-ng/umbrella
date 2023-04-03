@@ -2,7 +2,8 @@ import type { ISubscribable } from "@thi.ng/rstream";
 import type { IComponent, IMountWithState, NumOrElement } from "./api.js";
 import { $compile } from "./compile.js";
 import { Component } from "./component.js";
-import { $sub } from "./sub.js";
+import { __nextID } from "./idgen.js";
+import { $subWithID } from "./sub.js";
 import { $wrapText } from "./wrap.js";
 
 /**
@@ -38,7 +39,7 @@ import { $wrapText } from "./wrap.js";
  * @param src -
  */
 export const $replace = <T>(src: ISubscribable<T>) =>
-	$sub(src, new Replace<T>());
+	$subWithID(src, new Replace<T>(), __nextID("replace", src));
 
 export class Replace<T> extends Component implements IMountWithState<T> {
 	protected parent?: Element;

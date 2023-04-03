@@ -8,7 +8,8 @@ import type {
 	NumOrElement,
 } from "./api.js";
 import { Component } from "./component.js";
-import { $sub } from "./sub.js";
+import { __nextID } from "./idgen.js";
+import { $subWithID } from "./sub.js";
 
 /**
  * Creates a control component wrapper with an internal stream setup for user
@@ -91,7 +92,12 @@ export const $subObject = <T extends object, K extends Keys<T>>(
 	src: ISubscribable<T>,
 	opts: Partial<StreamObjOpts<T, K>>,
 	inner: Fn<StreamObj<T, K>["streams"], Promise<ComponentLike>>
-) => $sub<T>(src, $object(src.deref() || <any>{}, opts, inner));
+) =>
+	$subWithID<T>(
+		src,
+		$object(src.deref() || <any>{}, opts, inner),
+		__nextID("obj", src)
+	);
 
 export class $Object<T extends object, K extends Keys<T>>
 	extends Component

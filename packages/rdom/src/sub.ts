@@ -52,6 +52,21 @@ export function $sub(
 	);
 }
 
+/**
+ * Version of {@link $sub} which supports specifying an rstream stream ID for
+ * the resulting subscription (useful for debugging/visualizing the reactive
+ * graph topology).
+ *
+ * @param src
+ * @param inner
+ * @param id
+ */
+export const $subWithID = <T>(
+	src: ISubscribable<T>,
+	inner: IMountWithState<T>,
+	id: string
+): IComponent<T> => <$Sub>src.subscribe(new $Sub(inner, id));
+
 export class $Sub<T = any> extends Subscription<T, T> {
 	el?: Element;
 

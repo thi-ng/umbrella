@@ -101,6 +101,9 @@
 		"./event": {
 			"default": "./event.js"
 		},
+		"./idgen": {
+			"default": "./idgen.js"
+		},
 		"./klist": {
 			"default": "./klist.js"
 		},

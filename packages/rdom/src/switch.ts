@@ -4,7 +4,8 @@ import type { ISubscribable } from "@thi.ng/rstream";
 import type { IComponent, IMountWithState, NumOrElement } from "./api.js";
 import { $compile } from "./compile.js";
 import { Component } from "./component.js";
-import { $sub } from "./sub.js";
+import { __nextID } from "./idgen.js";
+import { $subWithID } from "./sub.js";
 import { $wrapText } from "./wrap.js";
 
 /**
@@ -65,7 +66,12 @@ export const $switch = <T>(
 	ctors: Record<NumOrString, Fn<T, Promise<any>>>,
 	error?: Fn<Error, Promise<any>>,
 	loader?: Fn<T, Promise<any>>
-) => $sub<T>(src, new Switch<T>(keyFn, ctors, error, loader));
+) =>
+	$subWithID(
+		src,
+		new Switch<T>(keyFn, ctors, error, loader),
+		__nextID("switch", src)
+	);
 
 /**
  * Syntax sugar for {@link $switch} for cases when there's only a single
@@ -78,6 +84,8 @@ export const $switch = <T>(
  * whilst the async `ctor` component factory executes, its result
  * `$compile`d and then getting re-mounted. See {@link $switch} for
  * further details.
+ *
+ * Also see {@link $replace}.
  *
  * @example
  * ```ts
@@ -94,7 +102,12 @@ export const $refresh = <T>(
 	ctor: Fn<T, Promise<any>>,
 	error?: Fn<Error, Promise<any>>,
 	loader?: Fn<T, Promise<any>>
-) => $switch(src, () => 0, { 0: ctor }, error, loader);
+) =>
+	$subWithID(
+		src,
+		new Switch<T>(() => 0, { 0: ctor }, error, loader),
+		__nextID("refresh", src)
+	);
 
 export class Switch<T> extends Component implements IMountWithState<T> {
 	protected val?: T;
