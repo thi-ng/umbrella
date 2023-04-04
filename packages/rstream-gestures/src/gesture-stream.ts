@@ -1,8 +1,10 @@
 import type { IObjectOf } from "@thi.ng/api";
 import { isBoolean } from "@thi.ng/checks/is-boolean";
+import { isNumber } from "@thi.ng/checks/is-number";
 import { clamp } from "@thi.ng/math/interval";
 import type { Stream } from "@thi.ng/rstream";
 import { fromDOMEvent } from "@thi.ng/rstream/event";
+import { __nextID } from "@thi.ng/rstream/idgen";
 import { merge } from "@thi.ng/rstream/merge";
 import { map } from "@thi.ng/transducers/map";
 import type {
@@ -82,9 +84,15 @@ export const gestureStream = (
 		..._opts,
 	};
 	const active: GestureInfo[] = [];
-	let zoom = clamp(opts.zoom, opts.minZoom, opts.maxZoom);
+	let zoom = clamp(
+		isNumber(opts.zoom) ? opts.zoom : opts.zoom.deref() || 1,
+		opts.minZoom,
+		opts.maxZoom
+	);
 	let zoomDelta = 0;
 	let numTouches = 0;
+	let lastPos: number[] = [0, 0];
+
 	let tempStreams: Stream<UIEvent>[] | undefined;
 
 	const isBody = el === document.body;
@@ -164,10 +172,30 @@ export const gestureStream = (
 	};
 
 	const stream = merge<UIEvent, GestureEvent>({
+		id: `gesturestream-${__nextID()}`,
 		src: BASE_EVENTS.map((id) => eventSource(el, id, opts)),
+
 		xform: map((e) => {
-			opts.preventDefault && e.preventDefault();
 			const etype = e.type;
+
+			if (etype === "$zoom") {
+				zoomDelta = (<any>e).value - zoom;
+				if (opts.absZoom) {
+					zoom = clamp(zoom + zoomDelta, opts.minZoom, opts.maxZoom);
+				} else {
+					zoom = zoomDelta;
+				}
+				return {
+					pos: lastPos.slice(),
+					buttons: 0,
+					type: "zoom",
+					active,
+					zoom,
+					zoomDelta,
+					isTouch: false,
+				};
+			}
+
 			const type = classifyEventType(etype, !!tempStreams);
 			let isTouch = !!(<TouchEvent>e).touches;
 			let events: Array<Touch | MouseEvent | WheelEvent> = isTouch
@@ -182,9 +210,13 @@ export const gestureStream = (
 			} else if (type === "zoom") {
 				updateZoom(e);
 			}
+
+			lastPos = getPos(events[0], bounds, opts.local, opts.scale);
+
+			opts.preventDefault && e.preventDefault();
 			return {
 				event: e,
-				pos: getPos(events[0], bounds, opts.local, opts.scale),
+				pos: lastPos,
 				buttons: isTouch ? active.length : (<MouseEvent>e).buttons,
 				type,
 				active,
@@ -194,6 +226,11 @@ export const gestureStream = (
 			};
 		}),
 	});
+
+	// attach zoom reset
+	if (!isNumber(opts.zoom)) {
+		stream.add(opts.zoom.map((x) => <any>{ type: "$zoom", value: x }));
+	}
 
 	return stream;
 };

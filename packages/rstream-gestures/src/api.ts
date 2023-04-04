@@ -1,5 +1,5 @@
 import type { IID } from "@thi.ng/api";
-import type { StreamMerge } from "@thi.ng/rstream";
+import type { ISubscription, StreamMerge } from "@thi.ng/rstream";
 
 export type GestureStream = StreamMerge<UIEvent, GestureEvent>;
 
@@ -49,9 +49,11 @@ export interface GestureEvent {
 	 */
 	type: GestureType;
 	/**
-	 * Original DOM event.
+	 * Original DOM event. This will **NOT** be present for `zoom` events
+	 * originating from a value change of an attached
+	 * {@link GestureStreamOpts.zoom} subscription.
 	 */
-	event: UIEvent;
+	event?: UIEvent;
 	/**
 	 * Event position (as per {@link GestureStreamOpts.local} &
 	 * {@link GestureStreamOpts.scale})
@@ -108,7 +110,7 @@ export interface GestureStreamOpts extends IID<string> {
 	/**
 	 * Initial zoom value. Default: 1
 	 */
-	zoom: number;
+	zoom: number | ISubscription<any, number>;
 	/**
 	 * If true, the produced `zoom` values are considered absolute and
 	 * will be constrained to the `minZoom .. maxZoom` interval. If
