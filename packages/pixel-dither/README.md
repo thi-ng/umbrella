@@ -80,10 +80,11 @@ directory are using this package.
 
 A selection:
 
-| Screenshot                                                                                                           | Description                                          | Live demo                                           | Source                                                                           |
-|:---------------------------------------------------------------------------------------------------------------------|:-----------------------------------------------------|:----------------------------------------------------|:---------------------------------------------------------------------------------|
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/pixel-dither.jpg" width="240"/>  | Showcase of various dithering algorithms             | [Demo](https://demo.thi.ng/umbrella/pixel-dither/)  | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/pixel-dither)  |
-| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/pixel-indexed.jpg" width="240"/> | Image dithering and remapping using indexed palettes | [Demo](https://demo.thi.ng/umbrella/pixel-indexed/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/pixel-indexed) |
+| Screenshot                                                                                                           | Description                                            | Live demo                                           | Source                                                                           |
+|:---------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------------|:----------------------------------------------------|:---------------------------------------------------------------------------------|
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/pixel-dither.jpg" width="240"/>  | Showcase of various dithering algorithms               | [Demo](https://demo.thi.ng/umbrella/pixel-dither/)  | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/pixel-dither)  |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/pixel-indexed.jpg" width="240"/> | Image dithering and remapping using indexed palettes   | [Demo](https://demo.thi.ng/umbrella/pixel-indexed/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/pixel-indexed) |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/trace-bitmap.jpg" width="240"/>  | Multi-layer vectorization & dithering of bitmap images | [Demo](https://demo.thi.ng/umbrella/trace-bitmap/)  | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/trace-bitmap)  |
 
 ## API
 

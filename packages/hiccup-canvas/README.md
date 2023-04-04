@@ -49,6 +49,7 @@ This project is part of the
     - [Rotation](#rotation)
   - [Special attributes](#special-attributes)
     - [Background fill](#background-fill)
+    - [Background clear](#background-clear)
 - [Authors](#authors)
 - [License](#license)
 
@@ -94,7 +95,7 @@ For Node.js REPL:
 const hiccupCanvas = await import("@thi.ng/hiccup-canvas");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 2.40 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 2.43 KB
 
 ## Dependencies
 
@@ -503,6 +504,13 @@ The special `__background` attribute can be used to fill the entire canvas with
 a given background color. The attribute only makes sense if attached to the root
 group/shape and can take the same values as any other [color
 attribs](#color-attributes).
+
+#### Background clear
+
+The special `__clear` boolean attribute is used to force clearing of the canvas
+before drawing. This attrib takes priority over `__background` and it too only
+should be attached to the root group/shape. By default the canvas is **not**
+being cleared.
 
 ## Authors
 

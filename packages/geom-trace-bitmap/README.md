@@ -14,6 +14,7 @@ This project is part of the
 - [Related packages](#related-packages)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
+- [Usage examples](#usage-examples)
 - [API](#api)
   - [Basic usage](#basic-usage)
 - [Authors](#authors)
@@ -65,7 +66,7 @@ For Node.js REPL:
 const geomTraceBitmap = await import("@thi.ng/geom-trace-bitmap");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 940 bytes
+Package sizes (brotli'd, pre-treeshake): ESM: 988 bytes
 
 ## Dependencies
 
@@ -75,6 +76,18 @@ Package sizes (brotli'd, pre-treeshake): ESM: 940 bytes
 - [@thi.ng/matrices](https://github.com/thi-ng/umbrella/tree/develop/packages/matrices)
 - [@thi.ng/pixel](https://github.com/thi-ng/umbrella/tree/develop/packages/pixel)
 - [@thi.ng/vectors](https://github.com/thi-ng/umbrella/tree/develop/packages/vectors)
+
+## Usage examples
+
+Several demos in this repo's
+[/examples](https://github.com/thi-ng/umbrella/tree/develop/examples)
+directory are using this package.
+
+A selection:
+
+| Screenshot                                                                                                          | Description                                            | Live demo                                          | Source                                                                          |
+|:--------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------------|:---------------------------------------------------|:--------------------------------------------------------------------------------|
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/trace-bitmap.jpg" width="240"/> | Multi-layer vectorization & dithering of bitmap images | [Demo](https://demo.thi.ng/umbrella/trace-bitmap/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/trace-bitmap) |
 
 ## API
 
