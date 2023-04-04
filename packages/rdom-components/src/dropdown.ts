@@ -1,6 +1,7 @@
 import type { Fn } from "@thi.ng/api";
 import { option, select, type SelectAttribs } from "@thi.ng/hiccup-html/forms";
 import { $input } from "@thi.ng/rdom/event";
+import { __nextID } from "@thi.ng/rdom/idgen";
 import { $list } from "@thi.ng/rdom/list";
 import { $replace } from "@thi.ng/rdom/replace";
 import type { ISubscribable, ISubscription } from "@thi.ng/rstream";
@@ -111,17 +112,19 @@ export const staticDropdownAlt = <T = string, S extends string = string>(
 		...opts,
 	};
 	return $replace(
-		sel.map((id) =>
-			select(
-				{ onchange: $input(sel), ...opts!.attribs },
-				...items.map((x) => {
-					const value = opts!.value!(x);
-					return option(
-						{ value, selected: value === id },
-						opts!.label!(x)
-					);
-				})
-			)
+		sel.map(
+			(id) =>
+				select(
+					{ onchange: $input(sel), ...opts!.attribs },
+					...items.map((x) => {
+						const value = opts!.value!(x);
+						return option(
+							{ value, selected: value === id },
+							opts!.label!(x)
+						);
+					})
+				),
+			{ id: __nextID("dropdown") }
 		)
 	);
 };
@@ -134,7 +137,10 @@ const $option =
 	(x: T) => {
 		let v = value(x);
 		return option(
-			{ value: v, selected: sel.map((x) => v === x) },
+			{
+				value: v,
+				selected: sel.map((x) => v === x, { id: __nextID("opt") }),
+			},
 			label(x)
 		);
 	};
