@@ -19,7 +19,7 @@ export interface Node {
 	body?: string;
 }
 
-export interface WalkState {
+export interface TraversalState {
 	subs: Map<ISubscribable<any>, Node>;
 	rels: Node[][];
 	id: number;

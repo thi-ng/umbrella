@@ -4,7 +4,7 @@ import { Stream } from "@thi.ng/rstream/stream";
 import { StreamSync } from "@thi.ng/rstream/sync";
 import { truncate } from "@thi.ng/strings/truncate";
 import { map } from "@thi.ng/transducers/map";
-import type { DotOpts, Node, NodeType, WalkState } from "./api.js";
+import type { DotOpts, Node, NodeType, TraversalState } from "./api.js";
 
 export * from "./api.js";
 
@@ -46,10 +46,10 @@ const subValue = (sub: ISubscribable<any>) => {
 	return res ? truncate(64, "...")(res) : res;
 };
 
-export const walk = (
+export const traverse = (
 	subs: ISubscribable<any>[],
 	opts?: Partial<DotOpts>,
-	state?: WalkState
+	state?: TraversalState
 ) => {
 	opts || (opts = {});
 	state || (state = { id: 0, subs: new Map(), rels: [] });
@@ -67,7 +67,7 @@ export const walk = (
 		state.id++;
 		const children = getChildren(sub);
 		if (children.length) {
-			walk(children, opts, state);
+			traverse(children, opts, state);
 			for (let c of children) {
 				const childNode = state.subs.get(c);
 				childNode && state.rels.push([desc, childNode]);
@@ -77,9 +77,9 @@ export const walk = (
 	return state;
 };
 
-export const toDot = (state: WalkState, opts?: Partial<DotOpts>) => {
+export const toDot = (state: TraversalState, opts?: Partial<DotOpts>) => {
 	opts = {
-		dir: "TB",
+		dir: "LR",
 		font: "sans-serif",
 		fontsize: 10,
 		text: "white",
@@ -103,3 +103,15 @@ export const toDot = (state: WalkState, opts?: Partial<DotOpts>) => {
 		"}",
 	].join("\n");
 };
+
+/**
+ * Syntax sugar for the composition {@link traverse} and {@link toDot},
+ * serializing the traversable graph topology to Graphviz DOT format.
+ *
+ * @param subs
+ * @param opts
+ */
+export const serialize = (
+	subs: ISubscribable<any>[],
+	opts?: Partial<DotOpts>
+) => toDot(traverse(subs, opts), opts);
