@@ -5,7 +5,7 @@ import { assert } from "@thi.ng/errors/assert";
 import { illegalArgs } from "@thi.ng/errors/illegal-arguments";
 import { min3id } from "@thi.ng/math/interval";
 import type { Subscription } from "@thi.ng/rstream";
-import { toDot, walk, type DotOpts, type IToDot } from "@thi.ng/rstream-dot";
+import { serialize, type DotOpts, type IToDot } from "@thi.ng/rstream-dot";
 import { CloseMode, type ISubscription } from "@thi.ng/rstream/api";
 import { __nextID } from "@thi.ng/rstream/idgen";
 import { Stream } from "@thi.ng/rstream/stream";
@@ -384,11 +384,8 @@ export class TripleStore implements Iterable<Triple>, IToDot {
 	}
 
 	toDot(opts?: Partial<DotOpts>) {
-		return toDot(
-			walk(
-				[this.streamS, this.streamP, this.streamO, this.streamAll],
-				opts
-			),
+		return serialize(
+			[this.streamS, this.streamP, this.streamO, this.streamAll],
 			opts
 		);
 	}
