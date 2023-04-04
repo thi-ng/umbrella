@@ -12,6 +12,8 @@ This project is part of the
 - [About](#about)
 - [Status](#status)
   - [Breaking changes](#breaking-changes)
+    - [v3.0.0](#v300)
+    - [v2.0.0](#v200)
 - [Related packages](#related-packages)
 - [Installation](#installation)
 - [Dependencies](#dependencies)
@@ -21,6 +23,7 @@ This project is part of the
   - [GestureEvent](#gestureevent)
   - [GestureStreamOpts](#gesturestreamopts)
   - [Basic usage](#basic-usage)
+  - [Resettable zoom](#resettable-zoom)
 - [Authors](#authors)
 - [License](#license)
 
@@ -36,6 +39,17 @@ Unified mouse, mouse wheel & multi-touch event stream abstraction. This is a sup
 
 ### Breaking changes
 
+#### v3.0.0
+
+The `gestureStream()` now supports external zoom control/resetting via providing
+a subscription as `zoom` option. That itself isn't a breaking change, however a
+result of this is that the `GestureEvent`s emitted by the stream do not *always*
+contain the original [DOM
+event](https://docs.thi.ng/umbrella/rstream-gestures/interfaces/GestureEvent.html#event)
+anymore (i.e. not in the case when the zoom factor is being reset via attached
+subscription).
+
+#### v2.0.0
 Multi-touch support has been added in v2.0.0, resulting in a complete
 rewrite of `gestureStream()` and new event data formats.
 
@@ -64,7 +78,7 @@ For Node.js REPL:
 const rstreamGestures = await import("@thi.ng/rstream-gestures");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 1.07 KB
+Package sizes (brotli'd, pre-treeshake): ESM: 1.20 KB
 
 ## Dependencies
 
@@ -186,6 +200,26 @@ gestures.subscribe(
         map((e) => e.active.map((g) => Math.hypot(...g.delta)))
     )
 );
+```
+
+### Resettable zoom
+
+For some applications (e.g. graphical editors), it can be helpful to reset the
+zoom value. This can be done by supplying a stream/subscription as part of the
+config options:
+
+```ts
+// create stream for initial zoom value & for resetting
+const zoomReset = reactive(1);
+
+// create gesture stream w/ zoom subscription
+const gestures = gestureStream(document.body, {
+    smooth: 0.01,
+    zoom: zoomReset
+});
+
+// ... then to reset the zoom at some point (e.g to zoom=2)
+zoomReset.next(2);
 ```
 
 ## Authors
