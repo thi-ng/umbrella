@@ -69,7 +69,6 @@ export const gestureStream = (
 	_opts?: Partial<GestureStreamOpts>
 ): GestureStream => {
 	const opts = <GestureStreamOpts>{
-		id: "gestures",
 		zoom: 1,
 		absZoom: true,
 		minZoom: 0.25,
@@ -83,6 +82,7 @@ export const gestureStream = (
 		scale: false,
 		..._opts,
 	};
+	opts.id = opts.id || `gestures-${__nextID()}`;
 	const active: GestureInfo[] = [];
 	let zoom = clamp(
 		isNumber(opts.zoom) ? opts.zoom : opts.zoom.deref() || 1,
@@ -172,7 +172,7 @@ export const gestureStream = (
 	};
 
 	const stream = merge<UIEvent, GestureEvent>({
-		id: `gesturestream-${__nextID()}`,
+		id: opts.id,
 		src: BASE_EVENTS.map((id) => eventSource(el, id, opts)),
 
 		xform: map((e) => {
