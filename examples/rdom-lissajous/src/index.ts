@@ -81,7 +81,12 @@ const dots: ISubscription<any, any[]> = sync({
 		const r = radius.deref()!;
 		return [
 			"g",
-			{ fill: "purple", translate: [width / 2, height / 2] },
+			{
+				// clear canvas before drawing (see rdom-canvas readme)
+				__clear: true,
+				fill: "purple",
+				translate: [width / 2, height / 2],
+			},
 			points.map((pos, i) => [
 				"circle",
 				{ alpha: (i + 1) / points.length },
