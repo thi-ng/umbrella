@@ -12,14 +12,16 @@ export const stats = div(
 		{},
 		$replace(
 			imageProcessor.map(
-				({ size: [width, height] }) => `image: ${width} x ${height} px`
+				({ size: [width, height] }) => `image: ${width} x ${height} px`,
+				{ id: "statsImg" }
 			)
 		)
 	),
 	div(
 		{},
 		geometryStats.map(
-			({ lines, points }) => `lines: ${lines}, points: ${points}`
+			({ lines, points }) => `lines: ${lines}, points: ${points}`,
+			{ id: "statsGeo" }
 		)
 	)
 );

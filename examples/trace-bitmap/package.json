@@ -64,6 +64,7 @@
 			"rdom-components",
 			"resolve-map",
 			"rstream",
+			"rstream-dot",
 			"rstream-gestures",
 			"transducers"
 		],

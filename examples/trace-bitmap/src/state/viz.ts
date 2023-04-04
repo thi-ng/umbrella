@@ -1,7 +1,8 @@
 import type { ISubscribable } from "@thi.ng/rstream";
-import { toDot, walk } from "@thi.ng/rstream-dot";
+import { serialize } from "@thi.ng/rstream-dot";
 import { mapcat, vals } from "@thi.ng/transducers";
 import { DB } from "./atom";
+import { canvasGestures } from "./canvas";
 import {
 	canvasState,
 	exportJsonTrigger,
@@ -21,10 +22,11 @@ export const visualizeTopology = () => {
 		imageProcessor,
 		layerOrder,
 		canvasState,
+		canvasGestures,
 		geometryStats,
 		exportSvgTrigger,
 		exportJsonTrigger,
 		...mapcat((layer) => vals(layer.ctrls), vals(layers)),
 	];
-	console.log(toDot(walk(roots), { dir: "LR" }));
+	console.log(serialize(roots));
 };

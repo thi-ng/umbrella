@@ -6,7 +6,7 @@ import {
 	inputFile,
 	type InputFileAttribs,
 } from "@thi.ng/hiccup-html";
-import { staticDropdown, type DropdownOpts } from "@thi.ng/rdom-components";
+import { staticDropdownAlt, type DropdownOpts } from "@thi.ng/rdom-components";
 import {
 	fromViewUnsafe,
 	type ISubscribable,
@@ -63,10 +63,14 @@ export const dropdown = <T = string, S extends string = string>(
 	onchange: Fn<string, void>,
 	opts?: Partial<DropdownOpts<T>>
 ) =>
-	staticDropdown(items, isArray(path) ? fromViewUnsafe(DB, { path }) : path, {
-		...opts,
-		attribs: {
-			class: THEME.sideBar.control,
-			onchange: (e) => onchange((<HTMLSelectElement>e.target).value),
-		},
-	});
+	staticDropdownAlt(
+		items,
+		isArray(path) ? fromViewUnsafe(DB, { path }) : path,
+		{
+			...opts,
+			attribs: {
+				class: THEME.sideBar.control,
+				onchange: (e) => onchange((<HTMLSelectElement>e.target).value),
+			},
+		}
+	);
