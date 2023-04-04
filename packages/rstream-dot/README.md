@@ -54,7 +54,7 @@ For Node.js REPL:
 const rstreamDot = await import("@thi.ng/rstream-dot");
 ```
 
-Package sizes (brotli'd, pre-treeshake): ESM: 786 bytes
+Package sizes (brotli'd, pre-treeshake): ESM: 807 bytes
 
 ## Dependencies
 
@@ -70,29 +70,28 @@ directory are using this package.
 
 A selection:
 
-| Description                    | Live demo                                              | Source                                                                              |
-|:-------------------------------|:-------------------------------------------------------|:------------------------------------------------------------------------------------|
-| Minimal rstream dataflow graph | [Demo](https://demo.thi.ng/umbrella/rstream-dataflow/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rstream-dataflow) |
+| Screenshot                                                                                                          | Description                                            | Live demo                                              | Source                                                                              |
+|:--------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------------|:-------------------------------------------------------|:------------------------------------------------------------------------------------|
+|                                                                                                                     | Minimal rstream dataflow graph                         | [Demo](https://demo.thi.ng/umbrella/rstream-dataflow/) | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/rstream-dataflow) |
+| <img src="https://raw.githubusercontent.com/thi-ng/umbrella/develop/assets/examples/trace-bitmap.jpg" width="240"/> | Multi-layer vectorization & dithering of bitmap images | [Demo](https://demo.thi.ng/umbrella/trace-bitmap/)     | [Source](https://github.com/thi-ng/umbrella/tree/develop/examples/trace-bitmap)     |
 
 ## API
 
 [Generated API docs](https://docs.thi.ng/umbrella/rstream-dot/)
 
-```ts
-import * as rsd from "@thi.ng/rstream-dot";
-
-import * as rs from "@thi.ng/rstream";
-import * as tx from "@thi.ng/transducers";
+```ts tangle:export/readme.ts
+import { fromIterable, merge, trace } from "@thi.ng/rstream";
+import { serialize } from "@thi.ng/rstream-dot";
 
 // create dummy dataflow
-a = rs.fromIterable([1,2,3]);
-b = rs.fromIterable([10, 20, 30]);
-a.transform(tx.map((x) => x * 10), "x10");
-rs.merge({src: [a, b]}).subscribe(rs.trace());
+const a = fromIterable([1, 2, 3]);
+const b = fromIterable([10, 20, 30]);
+a.map((x) => x * 10, { id: "x10" });
+merge({ src: [a, b] }).subscribe(trace());
 
 // now capture the topology by walking the graph from its root(s)
 // and convert the result to GraphViz DOT format
-console.log(rsd.toDot(rsd.walk([a, b])));
+console.log(serialize([a, b]));
 
 // digraph g {
 // rankdir=LR;
