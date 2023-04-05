@@ -30,6 +30,16 @@ import {
 } from "@thi.ng/pixel-dither";
 import { resolve } from "@thi.ng/resolve-map";
 import { type ISubscription, type KeyStreams } from "@thi.ng/rstream";
+import {
+	DIN_A3,
+	DIN_A3_LANDSCAPE,
+	DIN_A4,
+	DIN_A4_LANDSCAPE,
+	DIN_A5,
+	DIN_A5_LANDSCAPE,
+	DIN_A6,
+	DIN_A6_LANDSCAPE,
+} from "@thi.ng/units";
 
 export interface AppState {
 	layers: IObjectOf<Layer>;
@@ -43,6 +53,7 @@ export interface AppState {
 		scale: number;
 	};
 	preset: Keys<typeof PRESETS>;
+	axi: AxiDrawConfig;
 }
 
 export interface ImageControls {
@@ -75,6 +86,18 @@ export interface LayerParams {
 
 export type LayerParam = Keys<LayerParams>;
 export type LayerControls = KeyStreams<LayerParams, LayerParam>;
+
+export interface AxiDrawConfig {
+	paperSize: PaperSize;
+	/**
+	 * Num points before refilling brush
+	 */
+	maxPoints: number;
+	/**
+	 * Max distance (arc length) before refilling brush (when drawing lines)
+	 */
+	maxDist: number;
+}
 
 export interface Preset {
 	bg: string;
@@ -291,6 +314,19 @@ export const PRESETS = {
 
 export type PresetID = Keys<typeof PRESETS>;
 
+export const PAPER_SIZES = {
+	DIN_A3,
+	DIN_A3_LANDSCAPE,
+	DIN_A4,
+	DIN_A4_LANDSCAPE,
+	DIN_A5,
+	DIN_A5_LANDSCAPE,
+	DIN_A6,
+	DIN_A6_LANDSCAPE,
+};
+
+export type PaperSize = Keys<typeof PAPER_SIZES>;
+
 export interface Theme {
 	geom: {
 		psize: number;
@@ -310,6 +346,8 @@ export interface Theme {
 		layerParam: string;
 		imageParam: string;
 		control: string;
+		col2: string;
+		col4: string;
 	};
 	overlays: {
 		stats: string;
@@ -323,8 +361,8 @@ export const THEME = resolve<Theme>({
 		base: "dib h2 b--black bg-dark-gray white",
 		large: ({ base }: Theme["button"]) => base + " w-100",
 		small: ({ base }: Theme["button"]) => base + " w-50",
-		col2: "w-50",
-		col4: "w-25",
+		col2: "@/sideBar/col2",
+		col4: "@/sideBar/col4",
 	},
 	fileButton: {
 		large: {
@@ -343,6 +381,8 @@ export const THEME = resolve<Theme>({
 		control: "db w-100 mb1",
 		layerParam: "dib w-25 mb1",
 		imageParam: "@layerParam",
+		col2: "w-50",
+		col4: "w-25",
 	},
 	overlays: {
 		stats: "fixed z1 bottom-0 right-0 ma3 pa2 bg-black-60 white",

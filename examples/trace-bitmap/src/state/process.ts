@@ -2,14 +2,17 @@ import { isString } from "@thi.ng/checks";
 import { FMT_yyyyMMdd_HHmmss } from "@thi.ng/date";
 import { downloadWithMime } from "@thi.ng/dl-asset";
 import {
+	Group,
 	asSvg,
 	group,
 	line,
 	points,
 	rect,
+	splitArcLength,
 	svgDoc,
 	withAttribs,
 } from "@thi.ng/geom";
+import { type AxiDrawAttribs } from "@thi.ng/geom-axidraw";
 import { traceBitmap } from "@thi.ng/geom-trace-bitmap";
 import { smoothStep } from "@thi.ng/math";
 import { IntBuffer } from "@thi.ng/pixel";
@@ -54,6 +57,8 @@ export const canvasState = syncRAF(fromView(DB, { path: ["canvas"] }), {
 	id: "canvasState",
 });
 
+const axiConfig = fromView(DB, { path: ["axi"] });
+
 /**
  * Main stream combinator, initially subscribed only to layer order and the
  * processed image. When adding/removing layers (via {@link addLayer} and
@@ -72,6 +77,7 @@ export const main = sync({
 	src: {
 		__order: layerOrder,
 		__img: imageProcessor,
+		__axi: axiConfig,
 	},
 	clean: true,
 	id: "main",
@@ -113,9 +119,16 @@ export const main = sync({
 			if (lines && lines.length) {
 				numLines += lines.length;
 				root.children.push(
-					group(
-						{ stroke: layer.color },
-						lines.map(([a, b]) => line(a, b))
+					withAttribs(
+						<Group>splitArcLength(
+							group(
+								{ stroke: layer.color },
+								lines.map(([a, b]) => line(a, b))
+							),
+							job.__axi.maxDist
+						)[0],
+						{ __axi: <AxiDrawAttribs>{ interleave: { num: 1 } } },
+						false
 					)
 				);
 			}
@@ -124,6 +137,9 @@ export const main = sync({
 				root.children.push(
 					points(pts, {
 						fill: layer.color,
+						__axi: <AxiDrawAttribs>{
+							interleave: { num: job.__axi.maxPoints },
+						},
 					})
 				);
 			}

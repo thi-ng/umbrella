@@ -1,10 +1,11 @@
 import { div } from "@thi.ng/hiccup-html";
 import { PRESETS, THEME, type PresetID } from "../api";
 import { applyPresetForID, loadPreset, savePreset } from "../state/presets";
-import { button, dropdown, fileButton } from "./form";
+import { button, dropdown, fileButton, title } from "./common";
 
 export const presetControls = div(
 	{},
+	title("Presets"),
 	div(
 		{ class: "flex" },
 		fileButton(
@@ -20,8 +21,11 @@ export const presetControls = div(
 	),
 	div(
 		{ class: THEME.sideBar.section },
-		dropdown(Object.keys(PRESETS), ["preset"], (x) =>
-			applyPresetForID(<PresetID>x)
+		dropdown(
+			Object.keys(PRESETS),
+			["preset"],
+			(x) => applyPresetForID(<PresetID>x),
+			"preset"
 		)
 	)
 );

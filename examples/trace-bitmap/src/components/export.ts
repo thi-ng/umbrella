@@ -4,7 +4,7 @@ import {
 	exportSvgTrigger,
 	geometryStats,
 } from "../state/process";
-import { smallButton } from "./form";
+import { smallButton, title } from "./common";
 
 export const exportControls = div(
 	{
@@ -13,6 +13,7 @@ export const exportControls = div(
 			{ id: "exportCtrl" }
 		),
 	},
+	title("Export"),
 	smallButton(() => exportSvgTrigger.next(true), "export SVG"),
 	smallButton(() => exportJsonTrigger.next(true), "export JSON")
 );

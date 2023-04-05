@@ -24,4 +24,9 @@ export const DB = defAtom<AppState>({
 		bg: "#e8e0e0",
 	},
 	preset: "Custom",
+	axi: {
+		paperSize: "DIN_A4",
+		maxDist: 100,
+		maxPoints: 5,
+	},
 });

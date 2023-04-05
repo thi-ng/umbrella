@@ -1,10 +1,9 @@
 import { exposeGlobal } from "@thi.ng/expose";
 import { div, h3 } from "@thi.ng/hiccup-html";
-import { ConsoleLogger } from "@thi.ng/logger";
 import { $compile } from "@thi.ng/rdom";
 import { $canvas } from "@thi.ng/rdom-canvas";
-import { setLogger } from "@thi.ng/rstream";
 import { THEME } from "./api";
+import { axidrawControls } from "./components/axidraw";
 import { exportControls } from "./components/export";
 import { imageControls } from "./components/image";
 import { layerControls } from "./components/layer";
@@ -31,10 +30,10 @@ $compile(
 			{
 				class: THEME.sideBar.root,
 			},
-			h3({ class: THEME.sideBar.title }, "thi.ng/geom-trace-bitmap"),
 			imageControls,
 			presetControls,
 			layerControls,
+			axidrawControls,
 			exportControls
 		),
 		$canvas(
