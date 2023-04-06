@@ -1,0 +1,30 @@
+{
+	"name": "@example/rstream-sync",
+	"version": "0.0.1",
+	"private": true,
+	"description": "Minimal rstream sync() example using rdom",
+	"repository": "https://github.com/thi-ng/umbrella",
+	"author": "Karsten Schmidt <k+npm@thi.ng>",
+	"license": "Apache-2.0",
+	"scripts": {
+		"start": "vite --open",
+		"build": "tsc && vite build --base='./'",
+		"preview": "vite preview --host --open"
+	},
+	"devDependencies": {
+		"typescript": "^5.0.2",
+		"vite": "^4.2.1"
+	},
+	"dependencies": {
+		"@thi.ng/rdom": "workspace:^",
+		"@thi.ng/rstream": "workspace:^",
+		"@thi.ng/transducers": "workspace:^"
+	},
+	"browser": {
+		"process": false
+	},
+	"thi.ng": {
+		"readme": true,
+		"screenshot": "examples/rstream-sync.png"
+	}
+}
