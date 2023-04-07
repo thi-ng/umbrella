@@ -1426,7 +1426,6 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@example/rstream-sync@workspace:examples/rstream-sync"
   dependencies:
-    "@thi.ng/api": "workspace:^"
     "@thi.ng/rdom": "workspace:^"
     "@thi.ng/rstream": "workspace:^"
     "@thi.ng/transducers": "workspace:^"
