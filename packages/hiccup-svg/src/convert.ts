@@ -2,7 +2,7 @@ import { implementsFunction } from "@thi.ng/checks/implements-function";
 import { isArray } from "@thi.ng/checks/is-array";
 import { circle } from "./circle.js";
 import { ellipse } from "./ellipse.js";
-import { fattribs } from "./format.js";
+import { PRECISION, fattribs, setPrecision } from "./format.js";
 import { linearGradient, radialGradient } from "./gradients.js";
 import { image } from "./image.js";
 import { hline, line, vline } from "./line.js";
@@ -36,13 +36,25 @@ const BASE_LINE: Record<string, string> = {
 	bottom: "text-bottom",
 };
 
+const precisionStack: number[] = [];
+
 /**
- * Takes a normalized hiccup tree of [`thi.ng/geom`](https://thi.ng/geom) or
+ * Takes a normalized hiccup tree of [`thi.ng/geom`](https://thi.ng/geom) and/or
  * [thi.ng/hdom-canvas](https://thi.ng/hdom-canvas) shape definitions and
- * recursively converts it into an hiccup flavor which is compatible for SVG
- * serialization. This conversion also involves translation & reorg of various
- * attributes. Returns new tree. The original remains untouched, as will any
- * unrecognized tree/shape nodes.
+ * recursively converts it into an hiccup flavor which is compatible for direct
+ * SVG serialization. This conversion also involves translation, stringification
+ * & reorg of various attributes. The function returns new tree. The original
+ * remains untouched, as will any unrecognized tree/shape nodes.
+ *
+ * @remarks
+ * The `__prec` control attribute can be used (on a per-shape basis) to control
+ * the formatting used for various floating point values (except color
+ * conversions). See {@link setPrecision}. Child shapes (of a group) inherit the
+ * precision setting of their parent.
+ *
+ * To control the formatting precision for colors, use [the relevant function in
+ * the thi.ng/color
+ * package](https://docs.thi.ng/umbrella/color/functions/setPrecision.html).
  *
  * @param tree - shape tree
  */
@@ -56,20 +68,24 @@ export const convertTree = (tree: any): any[] | null => {
 		return tree.map(convertTree);
 	}
 	let attribs = convertAttribs(tree[1]);
+	if (attribs.__prec) {
+		precisionStack.push(PRECISION);
+		setPrecision(attribs.__prec);
+	}
+	let result: any[];
 	switch (tree[0]) {
 		case "svg":
 		case "defs":
 		case "a":
-		case "g": {
-			const res: any[] = [type, fattribs(attribs)];
+		case "g":
+			result = [type, fattribs(attribs)];
 			for (let i = 2, n = tree.length; i < n; i++) {
 				const c = convertTree(tree[i]);
-				c != null && res.push(c);
+				c != null && result.push(c);
 			}
-			return res;
-		}
+			break;
 		case "linearGradient":
-			return linearGradient(
+			result = linearGradient(
 				attribs.id,
 				attribs.from,
 				attribs.to,
@@ -81,8 +97,9 @@ export const convertTree = (tree: any): any[] | null => {
 						: null),
 				}
 			);
+			break;
 		case "radialGradient":
-			return radialGradient(
+			result = radialGradient(
 				attribs.id,
 				attribs.from,
 				attribs.to,
@@ -96,19 +113,22 @@ export const convertTree = (tree: any): any[] | null => {
 						: null),
 				}
 			);
+			break;
 		case "circle":
-			return circle(tree[2], tree[3], attribs, ...tree.slice(4));
+			result = circle(tree[2], tree[3], attribs, ...tree.slice(4));
+			break;
 		case "ellipse":
-			return ellipse(
+			result = ellipse(
 				tree[2],
 				tree[3][0],
 				tree[3][1],
 				attribs,
 				...tree.slice(4)
 			);
+			break;
 		case "rect": {
 			const r = tree[5] || 0;
-			return roundedRect(
+			result = roundedRect(
 				tree[2],
 				tree[3],
 				tree[4],
@@ -117,42 +137,57 @@ export const convertTree = (tree: any): any[] | null => {
 				attribs,
 				...tree.slice(6)
 			);
+			break;
 		}
 		case "line":
-			return line(tree[2], tree[3], attribs, ...tree.slice(4));
+			result = line(tree[2], tree[3], attribs, ...tree.slice(4));
+			break;
 		case "hline":
-			return hline(tree[2], attribs);
+			result = hline(tree[2], attribs);
+			break;
 		case "vline":
-			return vline(tree[2], attribs);
+			result = vline(tree[2], attribs);
+			break;
 		case "polyline":
-			return polyline(tree[2], attribs, ...tree.slice(3));
+			result = polyline(tree[2], attribs, ...tree.slice(3));
+			break;
 		case "polygon":
-			return polygon(tree[2], attribs, ...tree.slice(3));
+			result = polygon(tree[2], attribs, ...tree.slice(3));
+			break;
 		case "path":
-			return path(tree[2], attribs, ...tree.slice(3));
+			result = path(tree[2], attribs, ...tree.slice(3));
+			break;
 		case "text":
-			return text(tree[2], tree[3], attribs, ...tree.slice(4));
+			result = text(tree[2], tree[3], attribs, ...tree.slice(4));
+			break;
 		case "img":
-			return image(tree[3], tree[2].src, attribs, ...tree.slice(4));
+			result = image(tree[3], tree[2].src, attribs, ...tree.slice(4));
+			break;
 		case "points":
-			return points(
+			result = points(
 				tree[2],
 				attribs.shape,
 				attribs.size,
 				attribs,
 				...tree.slice(3)
 			);
+			break;
 		case "packedPoints":
-			return packedPoints(
+			result = packedPoints(
 				tree[2],
 				attribs.shape,
 				attribs.size,
 				attribs,
 				...tree.slice(3)
 			);
+			break;
 		default:
-			return tree;
+			result = tree;
 	}
+	if (attribs.__prec) {
+		setPrecision(precisionStack.pop()!);
+	}
+	return result;
 };
 
 const convertAttribs = (attribs: any) => {

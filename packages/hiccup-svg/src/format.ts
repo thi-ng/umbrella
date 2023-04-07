@@ -3,8 +3,15 @@ import { isString } from "@thi.ng/checks/is-string";
 import { css } from "@thi.ng/color/css/css";
 import type { Vec2Like } from "./api.js";
 
-let PRECISION = 3;
+export let PRECISION = 3;
 
+/**
+ * Sets the number of fractional digits used for formatting various floating
+ * point values in the serialized SVG. The current value can be read via
+ * {@link PRECISION}.
+ *
+ * @param n
+ */
 export const setPrecision = (n: number) => (PRECISION = n);
 
 /** @internal */
@@ -62,7 +69,7 @@ const numericAttribs = (attribs: any, ids: string[]) => {
  * number or an
  * [`IColor`](https://docs.thi.ng/umbrella/color/interfaces/IColor.html)
  * instance, it will be converted into a CSS color string using
- * [`asCSS()`](https://docs.thi.ng/umbrella/color/functions/asCSS.html).
+ * [`css()`](https://docs.thi.ng/umbrella/color/functions/css.html).
  *
  * String color attribs prefixed with `$` are replaced with `url(#...)` refs
  * (used for referencing gradients).
@@ -147,7 +154,9 @@ const buildTransform = (attribs: any) => {
 
 /**
  * Attempts to convert a single color attrib value. If `col` is prefixed with
- * `$`, the value will be converted into a `url(#...)` reference.
+ * `$`, the value will be converted into a `url(#...)` reference. If not a
+ * string already, it will be converted into a CSS color string using
+ * [`css()`](https://docs.thi.ng/umbrella/color/functions/css.html)
  *
  * {@link fattribs}
  *
