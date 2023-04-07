@@ -12,7 +12,7 @@ import { subN2 } from "@thi.ng/vectors/subn";
 import type { Circle } from "./api/circle.js";
 import type { Polygon } from "./api/polygon.js";
 import { Rect } from "./api/rect.js";
-import { __argsVV, __asVec } from "./internal/args.js";
+import { __argAttribs, __argsVV, __asVec } from "./internal/args.js";
 
 export function rect(pos: Vec, size: number | Vec, attribs?: Attribs): Rect;
 export function rect(size: number | Vec, attribs?: Attribs): Rect;
@@ -66,11 +66,17 @@ export const intersectionRect = (a: Rect, b: Rect) => {
  * given as centroid & radius.
  *
  * @param circle - target circle
+ * @param attribs -
  */
-export function inscribedSquare(circle: Circle): Rect;
-export function inscribedSquare(pos: ReadonlyVec, r: number): Rect;
+export function inscribedSquare(circle: Circle, attribs?: Attribs): Rect;
+export function inscribedSquare(
+	pos: ReadonlyVec,
+	r: number,
+	attribs?: Attribs
+): Rect;
 export function inscribedSquare(...args: any[]) {
 	let pos: ReadonlyVec, r: number;
+	const attribs = __argAttribs(args);
 	if (args.length === 1) {
 		const c: Circle = args[0];
 		pos = c.pos;
@@ -79,7 +85,7 @@ export function inscribedSquare(...args: any[]) {
 		[pos, r] = args;
 	}
 	r *= SQRT2_2;
-	return rect(subN2([], pos, r), r * 2);
+	return rect(subN2([], pos, r), r * 2, attribs);
 }
 
 /**
@@ -88,10 +94,15 @@ export function inscribedSquare(...args: any[]) {
  *
  * @param hex - target hexagon
  */
-export function inscribedSquareHex(hex: Polygon): Rect;
-export function inscribedSquareHex(pos: ReadonlyVec, len: number): Rect;
+export function inscribedSquareHex(hex: Polygon, attribs?: Attribs): Rect;
+export function inscribedSquareHex(
+	pos: ReadonlyVec,
+	len: number,
+	attribs?: Attribs
+): Rect;
 export function inscribedSquareHex(...args: any[]) {
 	let pos: ReadonlyVec, l: number;
+	const attribs = __argAttribs(args);
 	if (args.length === 1) {
 		const pts = (<Polygon>args[0]).points;
 		pos = centroid(pts);
@@ -100,5 +111,5 @@ export function inscribedSquareHex(...args: any[]) {
 		[pos, l] = args;
 	}
 	l *= 3 - SQRT3;
-	return rect(subN2([], pos, l / 2), l);
+	return rect(subN2([], pos, l / 2), l, attribs);
 }
