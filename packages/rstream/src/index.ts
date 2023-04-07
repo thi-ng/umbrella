@@ -23,6 +23,7 @@ export * from "./raf.js";
 export * from "./resolve.js";
 export * from "./sidechain-partition.js";
 export * from "./sidechain-toggle.js";
+export * from "./sidechain-trigger.js";
 export * from "./stream.js";
 export * from "./subscription.js";
 export * from "./sync.js";

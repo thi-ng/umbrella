@@ -162,6 +162,9 @@
 		"./sidechain-toggle": {
 			"default": "./sidechain-toggle.js"
 		},
+		"./sidechain-trigger": {
+			"default": "./sidechain-trigger.js"
+		},
 		"./stream": {
 			"default": "./stream.js"
 		},
