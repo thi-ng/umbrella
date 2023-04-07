@@ -21,6 +21,8 @@ export interface SidechainPartitionOpts<T> extends CommonOpts {
  * only their timing is used), however the `pred`icate option can be
  * used to only trigger for specific values / conditions.
  *
+ * Also see {@link syncRAF}.
+ *
  * @example
  * ```t
  * // merge various event streams
@@ -50,7 +52,8 @@ export const sidechainPartition = <A, B>(
  * any present), passes only most recent one downstream during next RAF event
  * processing.
  *
- * This example uses thi.ng/atom as state container. Also see {@link fromAtom}.
+ * This example uses thi.ng/atom as state container. Also see {@link fromAtom}
+ * and {@link syncRAF}.
  *
  * @example
  * ```ts
@@ -83,22 +86,21 @@ export class SidechainPartition<T, S> extends ASidechain<T, S, T[]> {
 	) {
 		opts = __optsWithID("sidepart", opts);
 		super(opts);
-		this.buf = [];
 		const pred = opts.pred || (() => true);
-		const $this = this;
+		this.buf = [];
 		this.sideSub = side.subscribe({
-			next(x) {
-				if ($this.buf.length && pred!(x)) {
-					$this.dispatch($this.buf);
-					$this.buf = [];
+			next: (x) => {
+				if (this.buf.length && pred!(x)) {
+					this.dispatch(this.buf);
+					this.buf = [];
 				}
 			},
-			done() {
-				if ($this.buf.length) {
-					$this.dispatch($this.buf);
+			done: () => {
+				if (this.buf.length) {
+					this.dispatch(this.buf);
 				}
-				$this.done();
-				delete (<any>$this).buf;
+				this.done();
+				delete (<any>this).buf;
 			},
 		});
 	}
