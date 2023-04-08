@@ -26,7 +26,7 @@ export interface SidechainToggleOpts<T> extends CommonOpts {
  *
  * @example
  * ```ts
- * // use slower interval stream to toggle main stream on/off
+ * // use slower interval stream to toggle faster main stream on/off
  * sidechainToggle(fromInterval(500), fromInterval(1000)).subscribe(trace());
  * // 0
  * // 3

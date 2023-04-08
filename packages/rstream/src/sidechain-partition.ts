@@ -53,11 +53,14 @@ export const sidechainPartition = <T, S>(
 	src.subscribe(new SidechainPartition<T, S>(side, opts));
 
 /**
- * Syntax sugar for one of most common {@link sidechainPartition} use cases, to
- * synchronize downstream processing w/ `requestAnimationFrame()`. The returned
- * subscription debounces any high frequency intra-frame input values and (if
- * any present), passes only most recent one downstream during next RAF event
- * processing.
+ * **Deprecated** syntax sugar for one of most common {@link sidechainPartition}
+ * use cases, to synchronize downstream processing w/ `requestAnimationFrame()`.
+ * Please use {@link syncRAF} instead.
+ *
+ * @remarks
+ * The returned subscription debounces any high frequency intra-frame input
+ * values and (if any present), passes only most recent one downstream during
+ * next RAF event processing.
  *
  * This example uses thi.ng/atom as state container. Also see {@link fromAtom}
  * and {@link syncRAF}.
@@ -77,7 +80,7 @@ export const sidechainPartition = <T, S>(
  *
  * @param src -
  *
- * @deprecated use {@link syncRAF} instead
+ * @deprecated
  */
 export const sidechainPartitionRAF = <T>(src: ISubscribable<T>) =>
 	sidechainPartition<T, number>(src, fromRAF()).transform(map(peek));

@@ -65,7 +65,7 @@ export const fromViewUnsafe = <T>(
 /**
  * Similar to {@link fromAtom}, but creates a type checked, eager derived view
  * for a nested value in an Atom-like state container and yields stream of its
- * value changes.
+ * value changes. See {@link fromViewUnsafe} for unchecked version.
  *
  * @remarks
  * Stream value type is inferred from target path or (if given), the result type
