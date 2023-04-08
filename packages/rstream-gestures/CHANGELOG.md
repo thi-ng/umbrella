@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2023-03-27T19:05:49Z
+- **Last updated**: 2023-04-08T11:09:50Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,20 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+# [5.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/rstream-gestures@5.0.0) (2023-04-08)
+
+#### 🛑 Breaking changes
+
+- support zoom reset via subscription ([03b1621](https://github.com/thi-ng/umbrella/commit/03b1621))
+- BREAKING CHANGE: Original DOM event **might** not anymore be present in all cases
+  - update GestureStreamOpts.zoom to accept subscription
+  - update gestureStream() to support resetting of zoom value via subscription
+  - update docs
+
+#### ♻️ Refactoring
+
+- update stream ID handling ([2c9fa02](https://github.com/thi-ng/umbrella/commit/2c9fa02))
 
 ## [4.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/rstream-gestures@4.1.0) (2021-11-17)
 

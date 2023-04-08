@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2023-03-27T19:05:48Z
+- **Last updated**: 2023-04-08T11:09:50Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,39 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+# [8.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/rstream@8.0.0) (2023-04-08)
+
+#### 🛑 Breaking changes
+
+- simplify/unify sidechain API ([5e90431](https://github.com/thi-ng/umbrella/commit/5e90431))
+- BREAKING CHANGE: simplify/unify sidechain subscription API
+  - update sidechainPartition/Toggle/Trigger() to take src sub as 1st arg
+    - old: `src.subscribe(sidechainXXX(side))`...
+    - new: `sidechainXXX(src, side)`
+  - update docs
+  - update tests
+
+#### 🚀 Features
+
+- add syncRAF() ([3c17520](https://github.com/thi-ng/umbrella/commit/3c17520))
+  - add SyncRAF class and syncRAF() factory
+  - deprecate sidechainPartitionRAF()
+  - add tests
+- add sidechainTrigger() ([3d2b56d](https://github.com/thi-ng/umbrella/commit/3d2b56d))
+- add timestamp support for fromRAF() ([a2b8629](https://github.com/thi-ng/umbrella/commit/a2b8629))
+  - add FromRAFOpts
+  - update docs
+
+#### 🩹 Bug fixes
+
+- fix opts handling in syncRAF() & fromView() ([baa8878](https://github.com/thi-ng/umbrella/commit/baa8878))
+
+#### ♻️ Refactoring
+
+- update KeyStreams type ([1dd60e9](https://github.com/thi-ng/umbrella/commit/1dd60e9))
+  - switch value types Subscription => ISubscription
+- minor update sidechainPartition/Toggle() ([c3ffd38](https://github.com/thi-ng/umbrella/commit/c3ffd38))
 
 ### [7.2.46](https://github.com/thi-ng/umbrella/tree/@thi.ng/rstream@7.2.46) (2023-03-27)
 

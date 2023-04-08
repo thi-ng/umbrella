@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2023-03-27T19:05:49Z
+- **Last updated**: 2023-04-08T11:09:50Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,20 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+# [3.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/rstream-dot@3.0.0) (2023-04-08)
+
+#### 🛑 Breaking changes
+
+- add serialize() ([f3bb5ab](https://github.com/thi-ng/umbrella/commit/f3bb5ab))
+- BREAKING CHANGE: rename walk() => traverse()
+  - add serialize() function
+  - rename WalkState => TraversalState
+  - update default rank direction from TB => LR
+
+#### 🩹 Bug fixes
+
+- update descendants collection ([fdd1ad2](https://github.com/thi-ng/umbrella/commit/fdd1ad2))
 
 ## [2.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/rstream-dot@2.1.0) (2021-11-17)
 

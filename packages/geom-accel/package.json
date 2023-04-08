@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/geom-accel",
-	"version": "3.3.11",
+	"version": "3.3.12",
 	"description": "n-D spatial indexing data structures with a shared ES6 Map/Set-like API",
 	"type": "module",
 	"module": "./index.js",
@@ -35,22 +35,22 @@
 		"test": "testament test"
 	},
 	"dependencies": {
-		"@thi.ng/api": "^8.7.5",
-		"@thi.ng/arrays": "^2.5.9",
-		"@thi.ng/checks": "^3.3.11",
-		"@thi.ng/distance": "^2.2.10",
-		"@thi.ng/equiv": "^2.1.21",
-		"@thi.ng/errors": "^2.2.14",
-		"@thi.ng/geom-api": "^3.4.12",
-		"@thi.ng/geom-isec": "^2.1.54",
-		"@thi.ng/heaps": "^2.1.29",
-		"@thi.ng/math": "^5.4.6",
-		"@thi.ng/transducers": "^8.4.1",
-		"@thi.ng/vectors": "^7.6.10"
+		"@thi.ng/api": "^8.7.6",
+		"@thi.ng/arrays": "^2.5.10",
+		"@thi.ng/checks": "^3.3.12",
+		"@thi.ng/distance": "^2.2.11",
+		"@thi.ng/equiv": "^2.1.22",
+		"@thi.ng/errors": "^2.2.15",
+		"@thi.ng/geom-api": "^3.4.13",
+		"@thi.ng/geom-isec": "^2.1.55",
+		"@thi.ng/heaps": "^2.1.30",
+		"@thi.ng/math": "^5.4.7",
+		"@thi.ng/transducers": "^8.4.2",
+		"@thi.ng/vectors": "^7.6.11"
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.34.4",
-		"@thi.ng/testament": "^0.3.14",
+		"@thi.ng/testament": "^0.3.15",
 		"rimraf": "^4.4.1",
 		"tools": "workspace:^",
 		"typedoc": "^0.23.28",

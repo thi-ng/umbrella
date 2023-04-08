@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2023-03-27T19:05:48Z
+- **Last updated**: 2023-04-08T11:09:50Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,14 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [4.2.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/pixel@4.2.0) (2023-04-08)
+
+#### 🚀 Features
+
+- add IRotate and impls for int/float buffers ([a25b52a](https://github.com/thi-ng/umbrella/commit/a25b52a))
+  - add rotateCW/CCW/180 methods
+  - add rotateByID()
 
 ## [4.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/pixel@4.1.0) (2023-01-10)
 

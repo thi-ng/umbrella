@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2023-03-27T19:05:49Z
+- **Last updated**: 2023-04-08T11:09:50Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,12 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [2.3.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/hiccup-canvas@2.3.0) (2023-04-08)
+
+#### 🚀 Features
+
+- add support for __clear ctrl attrib ([2f3de82](https://github.com/thi-ng/umbrella/commit/2f3de82))
 
 ### [2.2.1](https://github.com/thi-ng/umbrella/tree/@thi.ng/hiccup-canvas@2.2.1) (2023-02-05)
 

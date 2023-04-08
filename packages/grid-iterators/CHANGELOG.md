@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2023-03-27T19:05:49Z
+- **Last updated**: 2023-04-08T11:09:50Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,22 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+# [4.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/grid-iterators@4.0.0) (2023-04-08)
+
+#### 🛑 Breaking changes
+
+- add/rename types/opts ([bc3ea21](https://github.com/thi-ng/umbrella/commit/bc3ea21))
+- BREAKING CHANGE: rename various option types (add 2D/3D suffixes)
+
+#### 🚀 Features
+
+- add filter predicates ([81abf60](https://github.com/thi-ng/umbrella/commit/81abf60))
+  - add isDiagonal/Alt() filters
+
+#### 🩹 Bug fixes
+
+- fix imports ([353bc3d](https://github.com/thi-ng/umbrella/commit/353bc3d))
 
 ## [3.1.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/grid-iterators@3.1.0) (2023-03-25)
 

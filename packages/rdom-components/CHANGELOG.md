@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2023-03-27T19:05:49Z
+- **Last updated**: 2023-04-08T11:09:50Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,18 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+## [0.6.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/rdom-components@0.6.0) (2023-04-08)
+
+#### 🚀 Features
+
+- add staticDropdownAlt(), add docs ([0f1b922](https://github.com/thi-ng/umbrella/commit/0f1b922))
+
+#### 🩹 Bug fixes
+
+- update dropdown args & attrib handling ([f2bd62b](https://github.com/thi-ng/umbrella/commit/f2bd62b))
+  - update static/dynamicDropdown()
+  - allow user attribs to supply onchange handler
 
 ## [0.5.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/rdom-components@0.5.0) (2022-07-12)
 

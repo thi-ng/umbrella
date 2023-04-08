@@ -1,6 +1,6 @@
 {
 	"name": "@thi.ng/adapt-dpi",
-	"version": "2.2.10",
+	"version": "2.2.11",
 	"description": "HDPI canvas adapter / styling utility",
 	"type": "module",
 	"module": "./index.js",
@@ -35,7 +35,7 @@
 	},
 	"devDependencies": {
 		"@microsoft/api-extractor": "^7.34.4",
-		"@thi.ng/testament": "^0.3.14",
+		"@thi.ng/testament": "^0.3.15",
 		"rimraf": "^4.4.1",
 		"tools": "workspace:^",
 		"typedoc": "^0.23.28",

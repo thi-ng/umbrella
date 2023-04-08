@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2023-03-27T19:05:49Z
+- **Last updated**: 2023-04-08T11:09:50Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,26 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+# [5.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/hiccup-svg@5.0.0) (2023-04-08)
+
+#### 🛑 Breaking changes
+
+- update svgDoc() conversion handling ([f0e9092](https://github.com/thi-ng/umbrella/commit/f0e9092))
+- BREAKING CHANGE: update svgDoc(), rename `convert` attrib => `__convert`
+  - for consistency, keep all control attribs prefixed as `__xxx`
+
+#### 🚀 Features
+
+- add support for precision attribute ([f81d0d8](https://github.com/thi-ng/umbrella/commit/f81d0d8))
+  - update convertTree() to allow dynamic floating point precision
+    handling via `__prec` control attrib
+  - update docs
+  - add tests
+
+#### 🩹 Bug fixes
+
+- update ff() to always return string ([ae1d844](https://github.com/thi-ng/umbrella/commit/ae1d844))
 
 ## [4.3.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/hiccup-svg@4.3.0) (2022-06-20)
 

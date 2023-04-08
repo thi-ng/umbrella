@@ -1,6 +1,6 @@
 # Change Log
 
-- **Last updated**: 2023-03-27T19:05:49Z
+- **Last updated**: 2023-04-08T11:09:50Z
 - **Generator**: [thi.ng/monopub](https://thi.ng/monopub)
 
 All notable changes to this project will be documented in this file.
@@ -8,6 +8,27 @@ See [Conventional Commits](https://conventionalcommits.org/) for commit guidelin
 
 **Note:** Unlisted _patch_ versions only involve non-code or otherwise excluded changes
 and/or version bumps of transitive dependencies.
+
+# [5.0.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom@5.0.0) (2023-04-08)
+
+#### 🛑 Breaking changes
+
+- update asSVG() bleed handling ([cf3eafb](https://github.com/thi-ng/umbrella/commit/cf3eafb))
+- BREAKING CHANGE: rename `bleed` attrib to `__bleed`
+  - for consistency, keep all control attribs prefixed as `__xxx`
+  - add asSvg() support for `__prec`
+  - update docs
+- update splitArcLength() group handling ([6b97085](https://github.com/thi-ng/umbrella/commit/6b97085))
+- BREAKING CHANGE: update splitArcLength() group handling & return type
+  - update group handling to form sub-groups of predictable length
+    (e.g. grouping shorter shapes and/or splitting longer shapes until desired arc length is reached)
+  - remove support for nested groups
+  - update docs, add example
+  - update all impls to return single group
+
+#### 🚀 Features
+
+- update inscribedSquare/Hex() args, add attribs ([317f630](https://github.com/thi-ng/umbrella/commit/317f630))
 
 ## [4.4.0](https://github.com/thi-ng/umbrella/tree/@thi.ng/geom@4.4.0) (2023-03-24)
 
