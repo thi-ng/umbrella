@@ -34,8 +34,8 @@ Provided (composable) filters:
 - [`chroma()`](https://docs.thi.ng/umbrella/color-palettes/functions/chroma.html)
 - [`hue()`](https://docs.thi.ng/umbrella/color-palettes/functions/hue.html)
 - [`luma()`](https://docs.thi.ng/umbrella/color-palettes/functions/luma.html)
-- [`proximityLCH()`](https://docs.thi.ng/umbrella/color-palettes/functions/promixityLCH.html)
-- [`proximityRGB()`](https://docs.thi.ng/umbrella/color-palettes/functions/promixityRGB.html)
+- [`proximityLCH()`](https://docs.thi.ng/umbrella/color-palettes/functions/proximityLCH.html)
+- [`proximityRGB()`](https://docs.thi.ng/umbrella/color-palettes/functions/proximityRGB.html)
 
 Custom filters can be defines via:
 
