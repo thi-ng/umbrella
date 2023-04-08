@@ -104,7 +104,8 @@ const packages =
 
 const invalidations: string[] = [];
 for (let id of packages) {
-	processPackage(id.replace("packages/", ""));
+	id = id.replace("packages/", "");
+	processPackage(id);
 	invalidations.push(`${S3_PREFIX}/${id}/*`);
 }
 
